@@ -126,3 +126,18 @@ The Story 125 eval tested 12 models with the original `_BBOX_PROMPT`, but the la
 **Requirements struck by user:**
 - "promptfoo eval with text-density scoring" — Story 125 eval sufficient
 - "Local OCR text density check" — VLM validator more accurate than Tesseract heuristics
+
+### 2026-03-03 — Validator benchmark refresh with new models
+
+- Updated `benchmarks/tasks/crop-validation.yaml` to add:
+  - `openai:chat:gpt-5.3-chat-latest` (`GPT-5.3 Instant`)
+  - `google:gemini-3.1-flash-lite-preview` (`Gemini 3.1 Flash Lite`)
+- Ran a same-sample comparison on the first 10 validation crops to keep cost bounded while testing the new models:
+  - New models: `results/crop-validation-2026-03-04-new-models-sample10.json`
+  - Baseline incumbents (`Gemini 2.5 Flash`, `Gemini 2.5 Pro`): `results/crop-validation-2026-03-04-baseline-sample10.json`
+- Sampled results (10 crops x 6 prompts each):
+  - `Gemini 3.1 Flash Lite`: 0.933 avg score, 93.3% pass rate (56/60)
+  - `Gemini 2.5 Flash`: 0.900 avg score, 90.0% pass rate (54/60)
+  - `Gemini 2.5 Pro`: 0.867 avg score, 86.7% pass rate (52/60, 1 error)
+  - `GPT-5.3 Instant`: 0.783 avg score, 78.3% pass rate (47/60)
+- Outcome: On the sampled validator benchmark, **`Gemini 3.1 Flash Lite` is the new average-score leader**. `tolerant` and `caption-focus` stayed perfect (10/10) for both new models, but `Gemini 3.1 Flash Lite` was materially more consistent across the other prompts than `GPT-5.3 Instant`.

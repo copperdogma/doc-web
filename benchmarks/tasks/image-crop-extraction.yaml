@@ -49,6 +49,11 @@ providers:
     config:
       temperature: 0
       max_tokens: 4096
+  - id: openai:chat:gpt-5.3-chat-latest
+    label: "GPT-5.3 Instant"
+    config:
+      temperature: 0
+      max_tokens: 4096
 
   # Anthropic
   - id: anthropic:messages:claude-sonnet-4-5-20250929
@@ -82,6 +87,11 @@ providers:
       maxOutputTokens: 16384
   - id: google:gemini-3-pro-preview
     label: "Gemini 3 Pro"
+    config:
+      temperature: 0
+      maxOutputTokens: 16384
+  - id: google:gemini-3.1-flash-lite-preview
+    label: "Gemini 3.1 Flash Lite"
     config:
       temperature: 0
       maxOutputTokens: 16384

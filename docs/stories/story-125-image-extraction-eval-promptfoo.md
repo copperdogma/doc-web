@@ -203,3 +203,17 @@ Key findings:
   - `rescue_max_tokens: 4096` (was 800; Gemini uses thinking tokens that eat into output budget)
 
 **Validation:** Ran crop module standalone on 3 test pages (Image000, Image020, Image021) with `rescue_always: true`. All pages returned correct bounding boxes with caption schema. 4 clean crops produced — no caption text, no header bleed. Visual inspection confirmed quality matches eval expectations.
+
+### 2026-03-03 — New model refresh (GPT-5.3 Instant, Gemini 3.1 Flash Lite)
+
+- Updated `benchmarks/tasks/image-crop-extraction.yaml` to add:
+  - `openai:chat:gpt-5.3-chat-latest` (`GPT-5.3 Instant`)
+  - `google:gemini-3.1-flash-lite-preview` (`Gemini 3.1 Flash Lite`)
+- Ran focused promptfoo comparison on the stable crop extraction benchmark:
+  - Command: `cd benchmarks && source ~/.nvm/nvm.sh && nvm use 24 > /dev/null 2>&1 && promptfoo eval -c tasks/image-crop-extraction.yaml --no-cache -j 3 --filter-providers "gpt-5.3-chat-latest|gemini-3.1-flash-lite-preview" --output results/image-crop-extraction-2026-03-04-new-models.json`
+  - Scope: 2 providers x 3 prompts x 13 images = 78 calls
+- Results:
+  - `GPT-5.3 Instant`: 0.655 avg score across prompts, 64.1% pass rate (25/39)
+  - Best `GPT-5.3 Instant` prompt: `strict-exclude` at 0.664 avg score, 9/13 pass
+  - `Gemini 3.1 Flash Lite`: 0.163 avg score across prompts, 5.1% pass rate (2/39)
+- Outcome: **No new extraction winner.** Prior leader `Gemini 3 Pro + baseline` remains ahead at 0.856 avg score (`benchmarks/results/run2-analysis.md`). `GPT-5.3 Instant` improves over `GPT-5.1` but does not beat `GPT-5.2`, and `Gemini 3.1 Flash Lite` is not competitive for crop extraction.
