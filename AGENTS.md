@@ -1,11 +1,35 @@
-# AGENTS GUIDE — codex-forge
+# AGENTS.md — codex-forge
 
-This repo processes scanned (or text) books into structured JSON, using modular stages driven by LLMs.
+Source of truth for all AI agents working on codex-forge (Claude Code, Cursor, Gemini CLI).
+Read this file at the start of every session.
 
-## Prime Directives
-- **Do NOT run `git commit`, `git push`, or modify remotes unless the user explicitly requests it.**
-- System is in active development (not production); do not preserve backward compatibility or keep legacy shims unless explicitly requested.
-- **AI-first:** the AI owns implementation and self-verification; humans provide requirements and oversight.
+> **The Ideal (`docs/ideal.md`) is the most important document in this project.**
+> It defines what codex-forge should be with zero limitations. Every architectural
+> decision should move toward the Ideal. Every compromise in `docs/spec.md`
+> carries a detection mechanism for when it's no longer needed. When in doubt:
+> "Does this move us toward the Ideal?"
+>
+> **Preferences exist at two levels.** Vision-level preferences (Central Tenets)
+> persist across all implementations. Compromise-level preferences die when their
+> compromise is eliminated. Know which level you're working at.
+
+## Central Tenets (Vision-Level Preferences)
+
+0. **Traceability is the Product** — Every piece of extracted text traces back to source page, OCR engine, confidence score, and processing step. Without provenance, output is noise.
+1. **AI-First, Code-Second** — Use AI (VLMs, LLMs) for intelligence (extraction, classification, understanding). Use code for orchestration, storage, validation, and glue.
+2. **Eval Before Build** — Before implementing complex logic, measure what SOTA can do. Record all attempts in `docs/evals/registry.yaml`. Never re-try blocked approaches without new evidence.
+3. **Fidelity to Source** — The pipeline preserves the author's work faithfully. OCR errors, formatting quirks, and edge cases are bugs, not acceptable losses.
+4. **Modular by Default** — Swappable modules, YAML-driven recipes. A new book type needs a new recipe, not new code.
+5. **Inspect the Artifacts** — Tests passing is necessary but not sufficient. Always visually inspect outputs before marking Done.
+
+## Core Agent Mandates
+
+- **ACTIVE PROJECT — NO BACKWARDS COMPAT**: Zero external users. Change things directly. No migration paths, no deprecation shims.
+- **Critical Pushback Required**: Push back when an idea is worse than what exists. Sycophantic agreement is harmful.
+- **No Implicit Commits**: NEVER commit or push unless explicitly requested.
+- **Security First**: NEVER stage secrets, API keys, or credentials.
+- **Verify, Don't Assume**: Check files and dependencies exist before using them.
+- **Eval-First Engineering**: Test the simplest AI approach first. If SOTA succeeds in one call, there's nothing to build. Never conclude "AI can't do this" from a cheap model's failure.
 - **The Definition of Done:** A story or task is **NOT complete** until:
     1. It runs successfully through `driver.py` in a real (or partial resume) pipeline.
     2. Produced artifacts exist in `output/runs/`.
@@ -14,6 +38,53 @@ This repo processes scanned (or text) books into structured JSON, using modular 
 - **100% Accuracy Requirement:** The final artifacts (gamebook.json) are used directly in a game engine. **If even ONE section number or choice is wrong, the game is broken.** Partial success on section coverage or choice extraction is a complete failure. Pipeline must achieve 100% accuracy or fail explicitly.
 - **Inspect outputs, not just logs:** A green or non-crashing run is not evidence of correctness. Always manually open produced artifacts and check for logical errors (e.g., concatenated sections, missing data, incorrect values).
 - **Precompute context for readers:** Prefer computing metrics (e.g., costs/usage/quality signals) at the stage that produces them and write them into artifacts/logs (e.g., `instrumentation.json`) instead of relying on downstream recomputation.
+
+## Subagent Strategy
+
+| Task | Model | Rationale |
+|------|-------|-----------|
+| File search, glob, grep, simple reads | **Haiku** | Fast, cheap, mechanical |
+| Write a single focused module/script | **Sonnet** | Good code quality, fast enough |
+| Multi-file refactor, architecture decisions | **Opus** | Needs full context and judgment |
+| Research/exploration across codebase | **Sonnet** | Good at synthesis, thorough |
+| Writing tests for existing code | **Sonnet** | Needs to understand contracts |
+| Reviewing/validating generated code | **Opus** | Quality gate, catches subtle issues |
+
+**Guidelines:** Parallelize independent work. Opus orchestrates, delegates, reviews — never blindly trusts. Use subagents for large-output tasks to protect main context. Fail fast: bad subagent output → adjust approach, don't retry same prompt.
+
+## Skills
+
+Canonical location: `.agents/skills/` — works across Claude Code, Cursor, Gemini CLI.
+- `.claude/skills` and `.cursor/skills` are symlinks to `.agents/skills`
+- `skills/` at repo root is a symlink for backwards compatibility
+- `.gemini/commands/*.toml` are generated wrappers — run `scripts/sync-agent-skills.sh` after changes
+- To create a new skill: `/create-cross-cli-skill`
+
+## Story Lifecycle
+
+**Statuses:** Draft → Pending → In Progress → Done | Blocked
+- **Draft** — Skeleton with goal/notes. NOT buildable. Needs detailed ACs and tasks before `/build-story`.
+- **Pending** — Fully detailed (ACs, tasks, files to modify). Ready for `/build-story`.
+- **In Progress** — Active work.
+- **Done** — All checks pass, work log current, CHANGELOG updated, eval registry updated if applicable.
+- **Blocked** — Waiting on dependency or decision.
+
+**Story IDs are identifiers, not sequence numbers.** New stories get max+1. Order via `Depends On`, not ID. Never use letter suffixes.
+
+**Workflow:** `/create-story` → `/build-story` → `/validate` → `/mark-story-done`
+
+**Central Tenet Verification** — Every story includes a tenet checklist (T0-T5). Must be verified before marking Done.
+
+## Docs
+
+- `docs/ideal.md` — The Ideal: zero-limitation north star
+- `docs/spec.md` — Active compromises with detection evals
+- `docs/evals/registry.yaml` — Eval scores, targets, attempt history
+- `docs/requirements.md` — Functional requirements
+- `docs/stories.md` — Story index (130+ stories)
+- `docs/stories/` — Individual story files with ACs, tasks, work logs
+- `docs/scout.md` — Scout expedition index
+- `CHANGELOG.md` — Release history (CalVer format)
 
 ## Generality & Non-Overfitting (Read First)
 - Optimize for an input *category* (e.g., Fighting Fantasy scans), not a single PDF/run.

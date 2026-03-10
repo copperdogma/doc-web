@@ -1,0 +1,9 @@
+# Scout Expeditions
+
+Scouting log for external sources researched for ideas to adopt. See `/scout` skill for process.
+
+| # | Source | Date | Scope | Items | Adopted | Stories | Status |
+|---|--------|------|-------|-------|---------|---------|--------|
+| 001 | [dossier](/docs/scout/scout-001-dossier-patterns.md) | 2026-03-10 | Skills, docs, AGENTS.md, evals, runbooks | 8 | 8 | — | Complete |
+| 002 | [cine-forge](/docs/scout/scout-002-cine-forge-patterns.md) | 2026-03-10 | Skills, docs, AGENTS.md, eval registry, lifecycle | 8 | 7 | — | Complete |
+| 003 | [storybook](/docs/scout/scout-003-storybook-patterns.md) | 2026-03-10 | Skills, AGENTS.md, Ideal-First, story discipline | 10 | 9 | — | Complete |

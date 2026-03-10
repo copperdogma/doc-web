@@ -1,3 +1,22 @@
+## [2026-03-10-01] - Cross-project infrastructure modernization (Scout 001-003)
+
+### Added
+- `AGENTS.md` — Central Tenets (T0-T5), core mandates, subagent strategy, story lifecycle, docs index
+- `CLAUDE.md` — One-liner redirect to AGENTS.md
+- `docs/ideal.md` — Zero-limitation north star vision document
+- `docs/spec.md` — 8 active compromises (C1-C8) with detection evals
+- `docs/evals/registry.yaml` — Centralized eval registry with score history and attempt tracking (4 evals)
+- 13 cross-CLI skills in `.agents/skills/`: create-story, build-story, check-in-diff, mark-story-done, improve-eval, verify-eval, scout, create-cross-cli-skill, validate, improve, fix-difficult-issue, advice-for-past-self, you-pick
+- `scripts/sync-agent-skills.sh` — Cross-CLI skill sync (Claude, Cursor, Gemini)
+- `.gemini/commands/*.toml` — Auto-generated Gemini CLI wrappers for all skills
+- `docs/runbooks/crop-eval-workflow.md` and `docs/runbooks/golden-build.md`
+- `docs/scout.md` and 3 scout expedition docs (dossier, cine-forge, storybook patterns)
+- Story template with Central Tenet verification checklist (T0-T5)
+
+### Changed
+- `AGENTS.md` restructured with Ideal-First methodology, Central Tenets, and skill ecosystem
+- `Makefile` expanded with test, lint, format, skills-sync, skills-check, check-size targets
+
 ## [2025-12-31] - Canonical sequence pipeline + Node validator alignment
 
 ### Added
