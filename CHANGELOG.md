@@ -1,3 +1,11 @@
+## [2026-03-10-03] - Redefine mission as Dossier intake R&D lab
+
+### Changed
+- `docs/ideal.md` rewritten: mission is now "intake R&D lab for Dossier" — solve hard format conversion problems, graduate proven converters
+- `docs/spec.md` restructured: FF-specific compromises retired, remaining compromises generalized for document processing
+- `AGENTS.md` generalized (431→388 lines): removed FF-specific content, added mission statement, added "graduate don't accumulate" mandate
+- Tenet T3 wording updated from "author's words" to "source content" across skills
+
 ## [2026-03-10-02] - Infrastructure cleanup and AGENTS.md tightening
 
 ### Changed

@@ -43,7 +43,7 @@
   - [ ] T0 — Traceability: every output traces to source page, OCR engine, confidence, processing step
   - [ ] T1 — AI-First: didn't write code for a problem AI solves better
   - [ ] T2 — Eval Before Build: measured SOTA before building complex logic
-  - [ ] T3 — Fidelity: author's words preserved faithfully, no silent losses
+  - [ ] T3 — Fidelity: source content preserved faithfully, no silent losses
   - [ ] T4 — Modular: new recipe not new code; no hardcoded book assumptions
   - [ ] T5 — Inspect Artifacts: visually verified outputs, not just checked logs
 

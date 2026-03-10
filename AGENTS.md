@@ -3,11 +3,14 @@
 Source of truth for all AI agents working on codex-forge (Claude Code, Cursor, Gemini CLI).
 Read this file at the start of every session.
 
+> **Mission:** Codex-forge is the **intake R&D lab for Dossier**. It solves hard
+> format conversion problems — scanned PDFs, images, weird document formats — one
+> at a time. Each converter is perfected here, then graduated into Dossier when ready.
+>
 > **The Ideal (`docs/ideal.md`) is the most important document in this project.**
-> It defines what codex-forge should be with zero limitations. Every architectural
-> decision should move toward the Ideal. Every compromise in `docs/spec.md`
-> carries a detection mechanism for when it's no longer needed. When in doubt:
-> "Does this move us toward the Ideal?"
+> It defines what codex-forge should be with zero limitations. Every compromise
+> in `docs/spec.md` carries a detection mechanism for when it's no longer needed.
+> When in doubt: "Does this move us toward the Ideal?"
 >
 > **Preferences exist at two levels.** Vision-level preferences (Central Tenets)
 > persist across all implementations. Compromise-level preferences die when their
@@ -18,8 +21,8 @@ Read this file at the start of every session.
 0. **Traceability is the Product** — Every piece of extracted text traces back to source page, OCR engine, confidence score, and processing step. Without provenance, output is noise.
 1. **AI-First, Code-Second** — Use AI (VLMs, LLMs) for intelligence (extraction, classification, understanding). Use code for orchestration, storage, validation, and glue.
 2. **Eval Before Build** — Before implementing complex logic, measure what SOTA can do. Record all attempts in `docs/evals/registry.yaml`. Never re-try blocked approaches without new evidence.
-3. **Fidelity to Source** — The pipeline preserves the author's work faithfully. OCR errors, formatting quirks, and edge cases are bugs, not acceptable losses.
-4. **Modular by Default** — Swappable modules, YAML-driven recipes. A new book type needs a new recipe, not new code.
+3. **Fidelity to Source** — The pipeline preserves the source document faithfully. OCR errors, formatting loss, and missing content are bugs, not acceptable losses.
+4. **Modular by Default** — Swappable modules, YAML-driven recipes. A new document type needs a new recipe, not new code.
 5. **Inspect the Artifacts** — Tests passing is necessary but not sufficient. Always visually inspect outputs before marking Done.
 
 ## Core Agent Mandates
@@ -35,9 +38,9 @@ Read this file at the start of every session.
     2. Produced artifacts exist in `output/runs/`.
     3. **Manual Data Inspection**: You have opened the artifacts (JSON/JSONL) and manually verified that the specific data being added/fixed is accurate and high-quality.
     4. You have reported the specific artifact paths and sample data verified to the user.
-- **100% Accuracy Requirement:** The final artifacts (gamebook.json) are used directly in a game engine. **If even ONE section number or choice is wrong, the game is broken.** Partial success on section coverage or choice extraction is a complete failure. Pipeline must achieve 100% accuracy or fail explicitly.
-- **Inspect outputs, not just logs:** A green or non-crashing run is not evidence of correctness. Always manually open produced artifacts and check for logical errors (e.g., concatenated sections, missing data, incorrect values).
+- **Inspect outputs, not just logs:** A green or non-crashing run is not evidence of correctness. Always manually open produced artifacts and check for logical errors (e.g., garbled text, broken tables, missing data, incorrect values).
 - **Precompute context for readers:** Prefer computing metrics (e.g., costs/usage/quality signals) at the stage that produces them and write them into artifacts/logs (e.g., `instrumentation.json`) instead of relying on downstream recomputation.
+- **Graduate, don't accumulate:** When a converter is stable and proven, plan its migration to Dossier. Codex-forge stays focused on unsolved problems.
 
 ## Subagent Strategy
 
@@ -88,16 +91,16 @@ Canonical location: `.agents/skills/` — works across Claude Code, Cursor, Gemi
 - `docs/runbooks/` — Operational runbooks for repeatable workflows
 - `CHANGELOG.md` — Release history (CalVer `YYYY-MM-DD-NN` format)
 
-## Generality & Non-Overfitting (Read First)
-- Optimize for an input *category* (e.g., Fighting Fantasy scans), not a single PDF/run.
-- Do not hard-code page IDs, book-specific strings, or one-off replacements (e.g., `staMTNA→STAMINA`) in pipeline code.
+## Generality & Non-Overfitting
+- Optimize for an input *category* (e.g., scanned genealogy books), not a single PDF/run.
+- Do not hard-code page IDs, document-specific strings, or one-off replacements in pipeline code.
 - Specialization must be explicit and scoped:
   - Prefer recipe/module params (knobs) over branching logic.
   - If something truly is recipe-specific, keep it in a clearly scoped module and document the scope + knobs.
-- **Architecture goal (reusability):** Keep upstream intake/OCR modules as generic as possible. Push booktype-specific heuristics/normalization (e.g., gamebook navigation phrases, FF section conventions) downstream into booktype-aware modules (portionize/extract/enrich/export) or recipe-scoped adapters.
+- **Architecture goal (reusability):** Keep upstream intake/OCR modules as generic as possible. Push format-specific heuristics downstream into format-aware modules or recipe-scoped adapters.
 - Prefer *signals and loops* over brittle fixes: detect → validate → targeted escalate → validate.
 - If adding deterministic corrections, they must be generic (class-based, conservative), opt-in by default, and preserve original text/provenance.
-- Validate across multiple pages/runs; add regression checks on *patterns* (coverage, bad-token occurrence, empty text rate), not exact strings.
+- Validate across multiple documents/runs; add regression checks on *patterns* (coverage, bad-token occurrence, empty text rate), not exact strings.
 
 ## Module Development & Testing Workflow
 
@@ -116,8 +119,8 @@ This is a **data pipeline** project. Success means correct data in `output/runs/
 
 ```bash
 # Good for development - iterate quickly
-PYTHONPATH=. python modules/enrich/ending_guard_v1/main.py \
-  --portions /path/to/test_input.jsonl \
+PYTHONPATH=. python modules/<stage>/<module_id>/main.py \
+  --input /path/to/test_input.jsonl \
   --out /tmp/test_output.jsonl
 ```
 
@@ -140,11 +143,11 @@ PYTHONPATH=. python modules/enrich/ending_guard_v1/main.py \
 
 ```bash
 # Completion testing - must succeed for work to be "done"
-find modules/enrich/ending_guard_v1 -name "*.pyc" -delete
-python driver.py --recipe configs/recipes/recipe-ff-ai-ocr-gpt51.yaml \
-  --run-id test-ending-detection --start-from detect_endings --force
-ls -lh output/runs/test-ending-detection/13_ending_guard_v1/portions_with_endings.jsonl
-python3 -c "import json; [print(json.loads(line).get('ending')) for line in open('...')[:5]]"
+find modules/<stage>/<module_id> -name "*.pyc" -delete
+python driver.py --recipe configs/recipes/<recipe>.yaml \
+  --run-id test-run --start-from <stage> --force
+ls -lh output/runs/test-run/<ordinal>_<module_id>/
+python3 -c "import json; [print(json.loads(line)) for line in open('output/runs/test-run/...')][:5]"
 ```
 
 **Completion criteria:**
@@ -178,9 +181,9 @@ python3 -c "import json; [print(json.loads(line).get('ending')) for line in open
 - ❌ "Added classification. Tests pass."
 
 **What TO do:**
-- ✅ "Implemented extraction. Inspected `output/runs/.../03_portionize/portions.jsonl` - 293 portions with populated text (e.g., portion 9: 1295 chars 'There is also a LUCK box...'). Quality verified."
-- ✅ "Fixed duplicates. Checked `output/runs/.../06_enrich/portions_enriched.jsonl` - was 3 sections claiming id='1', now 1 (page 16, correct). Resolved."
-- ✅ "Added classification. Sampled 10 from `output/runs/.../gamebook.json` - 8 'gameplay', 2 'rules'. Section 42: 'gameplay', has combat 'SKILL 7 STAMINA 9'. Correct."
+- ✅ "Implemented OCR extraction. Inspected `output/runs/.../01_extract_ocr/pages.jsonl` - 293 pages with populated text (e.g., page 9: 1295 chars, table structure preserved). Quality verified."
+- ✅ "Fixed duplicates. Checked `output/runs/.../03_structure/structured.jsonl` - was 3 sections claiming id='1', now 1 (page 16, correct). Resolved."
+- ✅ "Added crop detection. Sampled 10 from `output/runs/.../02_illustrate/crops.json` - 8 illustrations, 2 diagrams. Page 42: correct bounding box, no text contamination."
 
 ## Validation & Stage Resolution
 
@@ -194,7 +197,7 @@ Examples:
 - **Stub-fatal policy:** Default is fatal on stubs—pipelines must fail unless `allow_stubs` is explicitly set
 
 ### Diagnostic validation
-For every missing/no-text/no-choice warning, emit a per-item provenance trace walking upstream artifacts (OCR → elements → boundaries → portions) showing where content disappeared. Traces must include artifact paths, page/element IDs, and text snippets. No manual artifact edits—fix code/logic and regenerate.
+For every missing/no-text warning, emit a per-item provenance trace walking upstream artifacts showing where content disappeared. Traces must include artifact paths, page/element IDs, and text snippets. No manual artifact edits—fix code/logic and regenerate.
 
 ### Escalate-to-success loop (applies to every stage)
 - Default pattern: **detect/code → validate → targeted escalate → validate**, repeat until 100% success or a retry/budget cap is hit.
@@ -206,47 +209,17 @@ For every missing/no-text/no-choice warning, emit a per-item provenance trace wa
 ## Escalation Strategy (known-good pattern)
 When a first-pass run leaves quality gaps, escalate in a controlled, data-driven loop:
 1. **Baseline**: Run the fastest/cheapest model with conservative prompts.
-2. **Detect issues**: Programmatically flag suspect items (missing choices, low alpha ratio, empty text, dead ends, etc.).
+2. **Detect issues**: Programmatically flag suspect items (low alpha ratio, empty text, garbled tables, etc.).
 3. **Targeted re-read**: Re-run only the flagged items with a stronger multimodal model and a focused prompt that embeds the minimal context directly (page image + raw_text in the prompt; no external attachments).
 4. **Rebuild & revalidate**: Rebuild downstream artifacts from the patched portions and re-run validation.
-5. **Verify artifacts**: Spot-check the repaired items and confirm warnings/errors are cleared or correctly justified (e.g., true deaths).
-Avoid manual text edits; use this loop to stay generic, reproducible, and book-agnostic (see “Generality & Non-Overfitting”).
+5. **Verify artifacts**: Spot-check the repaired items and confirm warnings/errors are cleared.
+Avoid manual text edits; use this loop to stay generic, reproducible, and format-agnostic (see “Generality & Non-Overfitting”).
 
 ## Patching System (Last Resort)
-When a book strongly defies conventions and generic/escalation passes still fail, use the patching system to override specific outputs. This is a **last-resort** mechanism after attempts to generalize.
-
-**When to use patches:**
-- After generic modules + escalation loops still produce wrong structure/data.
-- When fixes would be overly specific and would harm reusability.
-- When the book has unique layout rules that can’t be reliably inferred.
-
-**Patch rules:**
-- Patches must be minimal and scoped to the smallest necessary correction.
-- Preserve original provenance; do not hand-edit artifacts outside the pipeline.
-- Prefer patching structured outputs (portion boundaries, chapter map, table rows) rather than raw OCR text.
-- Document the rationale, the patch file, and verification evidence in the story work log.
-
-**Workflow (recommended):**
-1. Run the pipeline to the best generic result.
-2. Inspect artifacts and identify specific incorrect items.
-3. Create/update a `*.patch.json` file (see `input/FF22 Robot Commando.patch.json` for structure).
-4. Apply the patch via the patching module/recipe step.
-5. Rebuild downstream artifacts and re-validate.
-6. Manually verify patched outputs and record the artifact paths + samples.
-
-**How patches are applied (meta-layer in driver):**
-- `driver.py` discovers a patch file next to the input (`{book_name}.patch.json`) and copies it into the run as `output/runs/<run_id>/patch.json`.
-- Patches are applied **outside** modules by the driver, keyed by `apply_before` / `apply_after` with a **module_id**.
-- `apply_before`: driver finds the input artifact that matches `target_file` and applies the patch before the module runs.
-- `apply_after`: driver applies the patch directly to the module’s output artifact (so downstream stages read patched data).
-- Patch failures do **not** fail the pipeline; they emit warnings in `pipeline_events.jsonl`.
-- Validation modules (currently `validate_ff_engine_v2`) can receive `--patch-file` so warnings may be suppressed.
-
-### OCR structural guard (add before baseline split)
-Before portionization, automatically flag pages for high-fidelity re-OCR if either engine output shows fused/structurally bad text:
-- Headers present in the image but missing as standalone lines (e.g., multiple section numbers fused into one long line).
-- Extreme per-page text divergence between engines (token Jaccard low or one engine has a mega-line while the other does not), based on flattened page text, not headers.
-- On flagged pages, re-OCR with a stronger, layout-aware vision model (page ±1 if needed), then continue the pipeline with the improved page text.
+When a document strongly defies conventions and generic/escalation passes still fail, use `*.patch.json` files to override specific outputs. Patches are applied by `driver.py` outside modules, keyed by `apply_before`/`apply_after` with a module_id. Rules:
+- Patches must be minimal, scoped, and documented in the story work log.
+- Preserve provenance; do not hand-edit artifacts outside the pipeline.
+- Patch failures emit warnings (not errors) in `pipeline_events.jsonl`.
 
 ## Repo Map
 - `modules/<stage>/<module_id>/` — `module.yaml` + `main.py` (no registry file)
@@ -257,28 +230,13 @@ Before portionization, automatically flag pages for high-fidelity re-OCR if eith
 - `scripts/` — utility scripts
 - `input/` — source PDFs/images (git-ignored); `output/` — pipeline artifacts (git-ignored)
 
-## Current Pipeline (modules + driver)
-- Use `driver.py` with recipes in `configs/recipes/`.
-- **Primary recipe for Fighting Fantasy**: `recipe-ff-ai-ocr-gpt51.yaml` (GPT-5.1 AI-first OCR, HTML output)
-- Legacy OCR ensemble recipe (`configs/recipes/legacy/recipe-ff-canonical.yaml`) is deprecated; do not use.
-- **Canonical validator**: `validate_ff_engine_node_v1` (Node/Ajv) is the authoritative schema validator and should ship alongside `gamebook.json` to the game engine. It is generic across Fighting Fantasy books (not tuned to a specific title). Python `validate_ff_engine_v2` remains for forensics only.
-- Other recipes: `configs/recipes/legacy/recipe-ocr.yaml`, `configs/recipes/recipe-text.yaml` (for reference/testing only)
-- Legacy linear scripts were removed; use modules only.
-
-## Modular Plan (story 015)
-- Modules scanned from `modules/`; recipes select module ids per stage.
-- Validator: `validate_artifact.py --schema <name> --file <artifact.jsonl>` (page_doc, clean_page, portion_hyp, locked_portion, resolved_portion, enriched_portion).
-
-## Key Files/Paths
-- Artifacts live under `output/runs/<run_id>/`.
-- **Artifact organization**: Each module's artifacts are in `{ordinal:02d}_{module_id}/` folders directly in run_dir (e.g., `01_extract_ocr_ensemble_v1/pages_raw.jsonl`)
-- **Final outputs**: `gamebook.json` stays in root for easy access
-- **Game-ready package**: `output/runs/<run_id>/output/` (contains `gamebook.json` + `validator/` bundle + README)
-- **Pipeline metadata**: `pipeline_state.json`, `pipeline_events.jsonl`, `snapshots/` remain in root
-- Driver now auto-generates a fresh `run_id`/output directory per run; reuse is opt-in via `--allow-run-id-reuse` (or explicit `--run-id`).
-- Input PDF: `input/06 deathtrap dungeon.pdf`; images: `input/images/`.
-- Story work logs: bottom of each `docs/stories/story-XXX-*.md`.
-- Change log: `CHANGELOG.md`.
+## Pipeline
+- `driver.py` executes recipes from `configs/recipes/`. Modules scanned from `modules/`; recipes select module IDs per stage.
+- Artifacts live under `output/runs/<run_id>/{ordinal:02d}_{module_id}/`.
+- Pipeline metadata: `pipeline_state.json`, `pipeline_events.jsonl` in run root.
+- Driver auto-generates a fresh `run_id` per run; reuse is opt-in via `--allow-run-id-reuse`.
+- Validator: `validate_artifact.py --schema <name> --file <artifact.jsonl>`.
+- Legacy recipes in `configs/recipes/legacy/` — preserved for reference, not active use.
 
 ## Models / Dependencies
 - OpenAI API (set `OPENAI_API_KEY`).
@@ -296,7 +254,7 @@ Before portionization, automatically flag pages for high-fidelity re-OCR if eith
 
 ### Key Developer Commands
 - **Resume a run:** `scripts/run_driver_monitored.sh ... --start-from <stage>`
-- **Smoke Test:** `python driver.py ... --settings configs/settings.ff-ai-ocr-gpt51-smoke-20.yaml`
+- **Smoke Test:** `make smoke`
 
 ## Model Benchmarking (promptfoo)
 
@@ -411,7 +369,7 @@ When a new AI-powered module needs tuning:
   - Include a short “Impact” block with:
     - **Story-scope impact:** What acceptance criteria/tasks this unblocked or de-risked.
     - **Pipeline-scope impact:** What got measurably better downstream (coverage, fewer escalations, fewer bad tokens, cleaner boundaries, etc.).
-    - **Evidence:** 1–3 concrete artifact paths checked (e.g., `output/runs/<run_id>/07_reconstruct_text_v1/pagelines_reconstructed.jsonl`, `.../09_elements_content_type_v1/elements_core_typed.jsonl`) and what you saw there.
+    - **Evidence:** 1–3 concrete artifact paths checked and what you saw there.
     - **Next:** The next highest-leverage step and what would falsify success.
   - If results are mixed, say so explicitly and name the remaining failure mode(s).
 - **Debugging discipline:** when diagnosing issues, inspect the actual data/artifacts at each stage before changing code. Prefer evidence-driven plans (e.g., grep/rg on outputs, view JSONL samples) over guess-and-edit loops. Document what was observed and the decision that follows.
@@ -420,11 +378,10 @@ When a new AI-powered module needs tuning:
   - Example (edit run-local `config.yaml` to start from a later stage):
     ```yaml
     # output/runs/<run_id>/config.yaml
-    start_from: extract_inventory   # only re-run from this stage forward
+    start_from: <stage>   # only re-run from this stage forward
     allow_run_id_reuse: true
     ```
-- **Schema stamping gotcha (critical):** `driver.py` *stamps* artifacts using `schemas.py`. Any output fields not declared in the schema **will be dropped** when stamping rewrites the JSONL. If you add new fields in a module output, **you must add them to the corresponding schema** (e.g., `PageHtml`) or they will disappear. Always verify the stamped artifact (`output/runs/<run_id>/.../*.jsonl`) contains the new fields after the stage completes.
-- **Validation report HTML generation:** `validation_report.html` is produced by `tools/generate_forensic_html.py` when `validate_ff_engine_v2` runs with `forensics: true`. The JSON report (`validation_report.json`) lives in the run root and is the source of the HTML.
+- **Schema stamping gotcha (critical):** `driver.py` *stamps* artifacts using `schemas.py`. Any output fields not declared in the schema **will be dropped** when stamping rewrites the JSONL. If you add new fields in a module output, **you must add them to the corresponding schema** or they will disappear. Always verify the stamped artifact contains the new fields after the stage completes.
 
 ## AI Learning Log
 
