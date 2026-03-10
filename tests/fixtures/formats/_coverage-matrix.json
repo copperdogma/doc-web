@@ -1,0 +1,310 @@
+{
+  "version": "1.0",
+  "generated": "2026-03-10",
+  "description": "Format coverage matrix tracking which input formats codex-forge can convert, how well, and what test fixtures exist. Agents query this to find untested formats and prioritize work.",
+  "statuses": {
+    "untested": "Format identified but no test fixtures or pipeline support",
+    "has-fixture": "Test document exists but pipeline not yet built or passing",
+    "passing": "Pipeline converts this format with acceptable accuracy",
+    "graduated": "Converter migrated to Dossier — codex-forge no longer the primary owner"
+  },
+  "accuracy_dimensions": {
+    "text_fidelity": "Character-level accuracy of extracted text vs source (0.0-1.0)",
+    "structure_preservation": "Tables, columns, headers, lists preserved correctly (0.0-1.0)",
+    "illustration_extraction": "Illustrations detected, cropped, and cataloged correctly (0.0-1.0)",
+    "provenance_completeness": "Every output traces to source page/location (0.0-1.0)"
+  },
+  "format_families": [
+    "scanned-pdf",
+    "born-digital-pdf",
+    "image-directory",
+    "plain-text",
+    "markdown",
+    "html",
+    "docx",
+    "xlsx",
+    "pptx",
+    "epub",
+    "email",
+    "web-page",
+    "handwritten",
+    "mixed-archive"
+  ],
+  "complexity_dimensions": [
+    "simple-prose",
+    "multi-column",
+    "tables",
+    "illustrations",
+    "mixed-layout",
+    "degraded-quality",
+    "handwritten",
+    "multilingual"
+  ],
+  "formats": [
+    {
+      "id": "scanned-pdf-prose",
+      "format_family": "scanned-pdf",
+      "status": "passing",
+      "description": "Scanned PDF with primarily prose content",
+      "pipeline_recipe": "recipe-ff-ai-ocr-gpt51.yaml",
+      "intake_module": "extract_pdf_images_fast_v1 → ocr_ai_gpt51_v1",
+      "complexity": ["simple-prose"],
+      "fixtures": [
+        {
+          "id": "ff-deathtrap-dungeon",
+          "source": "input/06 deathtrap dungeon.pdf",
+          "pages": 400,
+          "notes": "Fighting Fantasy gamebook. Primary test document for scanned PDF pipeline."
+        }
+      ],
+      "scores": {
+        "text_fidelity": 0.97,
+        "structure_preservation": 0.95,
+        "illustration_extraction": 0.856,
+        "measured": "2026-01-25",
+        "notes": "Text fidelity from Story 127 OCR eval. Illustration score from image-crop-extraction eval."
+      },
+      "known_gaps": [],
+      "graduated": false
+    },
+    {
+      "id": "scanned-pdf-tables",
+      "format_family": "scanned-pdf",
+      "status": "has-fixture",
+      "description": "Scanned PDF with dense tables (genealogy, reference books)",
+      "pipeline_recipe": "recipe-onward-images-html-mvp.yaml",
+      "intake_module": "images_dir_to_manifest_v1 → ocr_ai_gpt51_v1 → table_rescue_html_loop_v1",
+      "complexity": ["tables", "multi-column"],
+      "fixtures": [
+        {
+          "id": "onward-to-the-unknown",
+          "source": "input/onward-to-the-unknown-images/",
+          "pages": 129,
+          "notes": "Genealogy book with dense tables. Currently being processed by Dossier as well."
+        }
+      ],
+      "scores": {
+        "text_fidelity": 0.93,
+        "structure_preservation": 0.80,
+        "illustration_extraction": 0.856,
+        "measured": "2026-02-20",
+        "notes": "Tables are the weak point. table_rescue_html_loop_v1 helps but doesn't fully solve dense genealogy tables."
+      },
+      "known_gaps": ["Dense table structure not fully preserved", "Column alignment lost on some pages"],
+      "graduated": false
+    },
+    {
+      "id": "image-directory-scans",
+      "format_family": "image-directory",
+      "status": "passing",
+      "description": "Directory of scanned page images (JPG/PNG/TIFF)",
+      "pipeline_recipe": "recipe-images-ocr-html-mvp.yaml",
+      "intake_module": "images_dir_to_manifest_v1 → ocr_ai_gpt51_v1",
+      "complexity": ["simple-prose", "illustrations"],
+      "fixtures": [
+        {
+          "id": "onward-images",
+          "source": "input/onward-to-the-unknown-images/",
+          "pages": 129,
+          "notes": "Same book as scanned-pdf-tables but ingested as pre-extracted images."
+        }
+      ],
+      "scores": {
+        "text_fidelity": 0.93,
+        "structure_preservation": 0.80,
+        "illustration_extraction": 0.856,
+        "measured": "2026-02-20",
+        "notes": "Same quality as PDF path since images are the intermediate format anyway."
+      },
+      "known_gaps": [],
+      "graduated": false
+    },
+    {
+      "id": "plain-text",
+      "format_family": "plain-text",
+      "status": "passing",
+      "description": "Plain text files (.txt)",
+      "pipeline_recipe": "recipe-text.yaml",
+      "intake_module": "extract_text_v1",
+      "complexity": ["simple-prose"],
+      "fixtures": [],
+      "scores": {
+        "text_fidelity": 1.0,
+        "structure_preservation": null,
+        "illustration_extraction": null,
+        "measured": "2025-12-01",
+        "notes": "Text passthrough — no OCR needed. Structure preservation N/A for plain text."
+      },
+      "known_gaps": [],
+      "graduated": false
+    },
+    {
+      "id": "markdown",
+      "format_family": "markdown",
+      "status": "passing",
+      "description": "Markdown files (.md)",
+      "pipeline_recipe": "recipe-text.yaml",
+      "intake_module": "extract_text_v1",
+      "complexity": ["simple-prose"],
+      "fixtures": [],
+      "scores": {
+        "text_fidelity": 1.0,
+        "structure_preservation": null,
+        "illustration_extraction": null,
+        "measured": "2025-12-01",
+        "notes": "Markdown passthrough. Structure (headers, lists) preserved as-is."
+      },
+      "known_gaps": ["No semantic structure extraction from markdown headers/lists"],
+      "graduated": false
+    },
+    {
+      "id": "html-files",
+      "format_family": "html",
+      "status": "passing",
+      "description": "HTML files",
+      "pipeline_recipe": "recipe-text.yaml",
+      "intake_module": "extract_text_v1",
+      "complexity": ["simple-prose"],
+      "fixtures": [],
+      "scores": {
+        "text_fidelity": 1.0,
+        "structure_preservation": null,
+        "illustration_extraction": null,
+        "measured": "2025-12-01",
+        "notes": "HTML passthrough. Tags preserved."
+      },
+      "known_gaps": ["No tag stripping or semantic extraction from HTML structure"],
+      "graduated": false
+    },
+    {
+      "id": "born-digital-pdf",
+      "format_family": "born-digital-pdf",
+      "status": "untested",
+      "description": "PDFs with embedded text (no OCR needed), possibly with complex layouts",
+      "pipeline_recipe": null,
+      "intake_module": null,
+      "complexity": ["simple-prose", "tables", "illustrations"],
+      "fixtures": [],
+      "scores": null,
+      "known_gaps": ["No native text extraction — currently runs through OCR path which is wasteful"],
+      "graduated": false
+    },
+    {
+      "id": "docx",
+      "format_family": "docx",
+      "status": "untested",
+      "description": "Microsoft Word documents (.docx)",
+      "pipeline_recipe": null,
+      "intake_module": null,
+      "complexity": ["simple-prose", "tables", "illustrations"],
+      "fixtures": [],
+      "scores": null,
+      "known_gaps": [],
+      "graduated": false
+    },
+    {
+      "id": "xlsx",
+      "format_family": "xlsx",
+      "status": "untested",
+      "description": "Microsoft Excel spreadsheets (.xlsx)",
+      "pipeline_recipe": null,
+      "intake_module": null,
+      "complexity": ["tables"],
+      "fixtures": [],
+      "scores": null,
+      "known_gaps": [],
+      "graduated": false
+    },
+    {
+      "id": "pptx",
+      "format_family": "pptx",
+      "status": "untested",
+      "description": "Microsoft PowerPoint presentations (.pptx)",
+      "pipeline_recipe": null,
+      "intake_module": null,
+      "complexity": ["mixed-layout", "illustrations"],
+      "fixtures": [],
+      "scores": null,
+      "known_gaps": [],
+      "graduated": false
+    },
+    {
+      "id": "epub",
+      "format_family": "epub",
+      "status": "untested",
+      "description": "EPUB e-books",
+      "pipeline_recipe": null,
+      "intake_module": null,
+      "complexity": ["simple-prose", "illustrations"],
+      "fixtures": [],
+      "scores": null,
+      "known_gaps": [],
+      "graduated": false
+    },
+    {
+      "id": "email-eml",
+      "format_family": "email",
+      "status": "untested",
+      "description": "Email messages (.eml) with headers, body, and attachments",
+      "pipeline_recipe": null,
+      "intake_module": null,
+      "complexity": ["simple-prose"],
+      "fixtures": [],
+      "scores": null,
+      "known_gaps": [],
+      "graduated": false
+    },
+    {
+      "id": "email-mbox",
+      "format_family": "email",
+      "status": "untested",
+      "description": "Email archives (.mbox) containing multiple messages",
+      "pipeline_recipe": null,
+      "intake_module": null,
+      "complexity": ["simple-prose"],
+      "fixtures": [],
+      "scores": null,
+      "known_gaps": [],
+      "graduated": false
+    },
+    {
+      "id": "web-page",
+      "format_family": "web-page",
+      "status": "untested",
+      "description": "Web pages (URL → structured content)",
+      "pipeline_recipe": null,
+      "intake_module": null,
+      "complexity": ["mixed-layout", "illustrations"],
+      "fixtures": [],
+      "scores": null,
+      "known_gaps": [],
+      "graduated": false
+    },
+    {
+      "id": "handwritten-notes",
+      "format_family": "handwritten",
+      "status": "untested",
+      "description": "Photos of handwritten notes, letters, diaries",
+      "pipeline_recipe": null,
+      "intake_module": null,
+      "complexity": ["handwritten", "degraded-quality"],
+      "fixtures": [],
+      "scores": null,
+      "known_gaps": [],
+      "graduated": false
+    },
+    {
+      "id": "mixed-archive",
+      "format_family": "mixed-archive",
+      "status": "untested",
+      "description": "ZIP or folder containing multiple file types that need format detection and routing",
+      "pipeline_recipe": null,
+      "intake_module": null,
+      "complexity": ["mixed-layout"],
+      "fixtures": [],
+      "scores": null,
+      "known_gaps": [],
+      "graduated": false
+    }
+  ]
+}

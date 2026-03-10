@@ -88,6 +88,8 @@ Canonical location: `.agents/skills/` — works across Claude Code, Cursor, Gemi
 - `docs/stories/` — Individual story files with ACs, tasks, work logs
 - `docs/scout.md` — Scout expedition index
 - `docs/ai-learning-log.md` — AI self-improvement log (patterns, pitfalls, lessons)
+- `docs/format-registry.md` — Format conversion status, gaps, graduation tracking
+- `tests/fixtures/formats/_coverage-matrix.json` — Machine-readable format inventory (16 formats)
 - `docs/runbooks/` — Operational runbooks for repeatable workflows
 - `CHANGELOG.md` — Release history (CalVer `YYYY-MM-DD-NN` format)
 

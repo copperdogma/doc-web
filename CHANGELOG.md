@@ -1,3 +1,14 @@
+## [2026-03-10-04] - Format registry and gap analysis infrastructure
+
+### Added
+- `docs/format-registry.md` — Living status document tracking 16 formats, accuracy scores, gaps, graduation criteria
+- `tests/fixtures/formats/_coverage-matrix.json` — Machine-readable format inventory (16 formats with scores, fixtures, pipelines)
+- `tests/fixtures/golden/` — Directory for golden reference files
+- `.agents/skills/format-gap-analysis/SKILL.md` — 5-phase diagnostic skill adapted from dossier's gap-analysis
+
+### Changed
+- `AGENTS.md` docs section updated with format registry references
+
 ## [2026-03-10-03] - Redefine mission as Dossier intake R&D lab
 
 ### Changed
