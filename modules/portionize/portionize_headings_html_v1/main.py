@@ -6,6 +6,7 @@ page-level outputs in build_chapter_html_v1.
 """
 import argparse
 import re
+from datetime import datetime
 from typing import Any, Dict, List, Optional
 
 from bs4 import BeautifulSoup
@@ -132,6 +133,8 @@ def main() -> None:
         current = {
             "schema_version": "portion_hyp_v1",
             "module_id": "portionize_headings_html_v1",
+            "run_id": args.run_id,
+            "created_at": datetime.utcnow().isoformat() + "Z",
             "portion_id": portion_id,
             "page_start": boundary["printed_page_number"] if isinstance(boundary.get("printed_page_number"), int) else None,
             "page_end": None,

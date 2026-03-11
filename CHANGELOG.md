@@ -1,3 +1,21 @@
+## [2026-03-11-01] - Provenance envelope fixes and measurement tool (Story 132)
+
+### Added
+- `scripts/measure_provenance.py` — Measures provenance completeness across pipeline runs (4 sub-dimensions: envelope, page tracing, OCR confidence, gamebook section provenance)
+- Provenance column in `docs/format-registry.md` coverage table
+- Gap 2 (provenance envelope gaps) in format registry with root causes and fix plan
+
+### Fixed
+- `modules/extract/extract_pdf_images_fast_v1` — extraction_report.jsonl now carries envelope fields
+- `modules/portionize/detect_boundaries_html_loop_v1` — boundary records now stamped with envelope fields
+- `modules/build/build_chapter_html_v1` — manifest rows now carry all 4 envelope fields
+- `modules/portionize/portionize_headings_html_v1` — portion hypothesis records now include run_id and created_at
+- `modules/common/load_artifact_v1` — loaded JSONL records now stamped with current run's run_id and created_at
+
+### Changed
+- `tests/fixtures/formats/_coverage-matrix.json` — Added provenance_completeness scores for 3 passing formats
+- `docs/format-registry.md` — Updated accuracy dimensions, known gaps renumbered, next actions reprioritized
+
 ## [2026-03-10-05] - Table structure fidelity 0.80→0.95, three-part model ranking, Anthropic pipeline support (Story 131)
 
 ### Added

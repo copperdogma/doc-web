@@ -588,6 +588,13 @@ def main() -> None:
             for sec in missing:
                 f.write(json.dumps({"section_id": str(sec)}) + "\n")
 
+        # Stamp envelope fields on boundary records
+        for b in boundaries:
+            b.setdefault("schema_version", "section_boundary_v1")
+            b.setdefault("module_id", "detect_boundaries_html_loop_v1")
+            b.setdefault("run_id", args.run_id)
+            b.setdefault("created_at", _utc())
+
         if not missing and not ordering_conflicts:
             save_jsonl(boundaries_out_path, boundaries)
             save_jsonl(out_pages_path, pages_html)

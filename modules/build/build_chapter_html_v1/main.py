@@ -6,12 +6,17 @@ Removes running heads and page numbers from final HTML output.
 import argparse
 import json
 import os
+from datetime import datetime
 from pathlib import Path
 from typing import Any, Dict, List, Optional
 
 from bs4 import BeautifulSoup
 
 from modules.common.utils import read_jsonl, save_jsonl, ensure_dir, ProgressLogger
+
+
+def _utc() -> str:
+    return datetime.utcnow().isoformat() + "Z"
 
 
 def _resolve_run_dir(out_path: Path) -> Path:
@@ -170,6 +175,10 @@ def main() -> None:
             f.write(body_html)
 
         manifest_rows.append({
+            "schema_version": "chapter_html_manifest_v1",
+            "module_id": "build_chapter_html_v1",
+            "run_id": args.run_id,
+            "created_at": _utc(),
             "chapter_index": idx,
             "title": title,
             "page_start": page_start,
@@ -215,6 +224,10 @@ def main() -> None:
             "printed_page_number_text": printed_text,
         })
         manifest_rows.append({
+            "schema_version": "chapter_html_manifest_v1",
+            "module_id": "build_chapter_html_v1",
+            "run_id": args.run_id,
+            "created_at": _utc(),
             "chapter_index": None,
             "title": title,
             "page_start": printed_num if isinstance(printed_num, int) else None,

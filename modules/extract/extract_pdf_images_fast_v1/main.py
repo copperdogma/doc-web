@@ -571,6 +571,10 @@ def main() -> None:
         page_number += 1
         manifest_rows.append(_build_manifest_row(page_idx, page_number, out_path, args.run_id, os.path.abspath(args.pdf), out_path_native))
         report_rows.append({
+            "schema_version": "extraction_report_v1",
+            "module_id": "extract_pdf_images_fast_v1",
+            "run_id": args.run_id,
+            "created_at": _utc(),
             "page": page_idx,
             **metadata,
         })
