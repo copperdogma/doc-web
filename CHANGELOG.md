@@ -1,3 +1,22 @@
+## [2026-03-10-05] - Table structure fidelity 0.80→0.95, three-part model ranking, Anthropic pipeline support (Story 131)
+
+### Added
+- `benchmarks/lib/ranking.py` — Three-part model ranking (quality 60%, speed 25%, cost 15%) ported from Dossier
+- `benchmarks/lib/pricing.py` — MODEL_PRICING table with cost estimation for Anthropic, OpenAI, and Google models
+- `benchmarks/scripts/rank_eval_results.py` — CLI tool to extract cost/latency from promptfoo results and rank models
+- `modules/common/anthropic_client.py` — AnthropicVisionClient for Claude vision API calls in pipeline modules
+- `tests/test_ranking.py` — 8 tests for ranking logic
+- `docs/evals/registry.yaml` — `onward-table-fidelity` eval with 5-model scores, cost/latency, and ranking
+
+### Changed
+- `benchmarks/scorers/html_table_diff.py` — Rewritten with LCS sequence alignment (eliminates cascading false errors)
+- `benchmarks/prompts/onward_ocr.js` — Fixed column count, added continuation/section header rules, added Anthropic provider path
+- `benchmarks/tasks/onward-table-fidelity.yaml` — 5-provider eval config (Claude Opus/Sonnet, GPT-5.1/4o, Gemini 2.5 Pro)
+- `modules/extract/ocr_ai_gpt51_v1/main.py` — Added Claude model routing via AnthropicVisionClient
+- `configs/recipes/recipe-onward-images-html-mvp.yaml` — OCR model switched from `gemini-3-pro-preview` to `claude-sonnet-4-6` (balanced winner)
+- `docs/format-registry.md` — Structure preservation 0.80→0.95, Gap 1 resolved
+- `tests/fixtures/formats/_coverage-matrix.json` — Updated scores for scanned-pdf-tables and image-directory
+
 ## [2026-03-10-04] - Format registry and gap analysis infrastructure
 
 ### Added

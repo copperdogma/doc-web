@@ -19,7 +19,7 @@ stages:
       pages: images_to_manifest
     out: pages_html.jsonl
     params:
-      model: gemini-3-pro-preview
+      model: claude-sonnet-4-6
       max_output_tokens: 16384
       ocr_hints: |
         - Preserve text exactly as printed; do not correct spelling or normalize punctuation.

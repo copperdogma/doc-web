@@ -21,9 +21,19 @@ except Exception as exc:  # pragma: no cover - environment dependency
     GeminiVisionClient = None
     _GEMINI_IMPORT_ERROR = exc
 
+try:
+    from modules.common.anthropic_client import AnthropicVisionClient
+except Exception as exc:  # pragma: no cover - environment dependency
+    AnthropicVisionClient = None
+    _ANTHROPIC_IMPORT_ERROR = exc
+
 
 def _is_gemini_model(model: str) -> bool:
     return model.startswith("gemini-")
+
+
+def _is_anthropic_model(model: str) -> bool:
+    return model.startswith("claude-")
 
 
 ALLOWED_TAGS = {
@@ -292,6 +302,7 @@ def main() -> None:
 
         # Preserve stage id for instrumentation; driver sets INSTRUMENT_STAGE to recipe stage id.
         use_gemini = _is_gemini_model(args.model)
+        use_anthropic = _is_anthropic_model(args.model)
 
         logger = ProgressLogger(state_path=args.state_file, progress_path=args.progress_file, run_id=args.run_id)
         logger.log(
@@ -305,16 +316,24 @@ def main() -> None:
             schema_version="page_html_v1",
         )
 
-        if use_gemini:
+        if use_anthropic:
+            if AnthropicVisionClient is None:
+                raise RuntimeError("anthropic package required for Claude models") from _ANTHROPIC_IMPORT_ERROR
+            anthropic_client = AnthropicVisionClient()
+            gemini_client = None
+            client = None
+        elif use_gemini:
             if GeminiVisionClient is None:
                 raise RuntimeError("google-genai package required for Gemini models") from _GEMINI_IMPORT_ERROR
             gemini_client = GeminiVisionClient()
+            anthropic_client = None
             client = None
         else:
             if OpenAI is None:
                 raise RuntimeError("openai package required") from _OPENAI_IMPORT_ERROR
             client = OpenAI()
             gemini_client = None
+            anthropic_client = None
         system_prompt = build_system_prompt(args.ocr_hints)
         if out_path.exists() and args.force:
             out_path.unlink()
@@ -363,7 +382,16 @@ def main() -> None:
             # Retry once if the model returns empty HTML.
             for attempt in range(2):
                 try:
-                    if use_gemini:
+                    if use_anthropic:
+                        raw, usage, request_id = anthropic_client.generate_vision(
+                            model=args.model,
+                            system_prompt=system_prompt,
+                            user_text=user_text,
+                            image_data=data_uri,
+                            temperature=args.temperature,
+                            max_tokens=args.max_output_tokens,
+                        )
+                    elif use_gemini:
                         raw, usage, request_id = gemini_client.generate_vision(
                             model=args.model,
                             system_prompt=system_prompt,

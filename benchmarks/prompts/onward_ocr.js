@@ -37,58 +37,61 @@ Output ONLY HTML, no Markdown, no code fences, no extra commentary.
 
 Recipe hints:
 This is a genealogy book.
-Genealogy tables use a specific 6-column layout:
+Genealogy tables use a specific 7-column layout:
 NAME | BORN | MARRIED | SPOUSE | BOY | GIRL | DIED
 
 CRITICAL TABLE RULES:
 1. Preserve the table structure exactly. Do not merge columns.
-2. BOY and GIRL are separate columns. Do not merge them into "Children".
-3. Dates often appear in the wrong column (e.g. death date in spouse column). Move them to the correct column if obvious, otherwise transcribe as seen.
-4. Remarriages often appear on a second row with just MARRIED/SPOUSE populated.
-5. Continuation lines (e.g. long spouse names) should be merged into the same cell if possible, or kept as a second row if ambiguous.`;
+2. BOY and GIRL are separate columns. Do not merge them into "Children" or "BOY/GIRL".
+3. One visual line in the source must map to one <tr> row in the output. Do NOT merge continuation lines into the parent row. If a person's spouse death date appears on the next line, that is a separate <tr>.
+4. Remarriages appear on their own row(s) with just MARRIED/SPOUSE/DIED populated; other cells empty.
+5. Section headers (e.g. "ALMA'S FAMILY", "Alma's Grandchildren") appear as a single-cell row: <tr><td colspan="7">HEADER TEXT</td></tr>. When multiple headers appear on consecutive lines (e.g. "Alma's Grandchildren" then "MOISE'S FAMILY"), each line is its OWN separate single-cell row. Do NOT concatenate them.
+6. Every data row must have exactly 7 <td> cells. Use empty <td></td> for blank cells.
+7. Transcribe exactly as printed — do not correct, normalize, or reorder data. Include handwritten annotations if legible.`;
 
   const userText = 'Return HTML only. FIRST line MUST be: <meta name="ocr-metadata" data-ocr-quality="0.0-1.0" data-ocr-integrity="0.0-1.0" data-continuation-risk="0.0-1.0">';
 
-  if (provider.id.startsWith('google')) {
-    const parts = [
-      { text: systemPrompt + "\n\n" + userText }
-    ];
-    for (const imgPath of imagePaths) {
-      const resolvedPath = path.resolve(__dirname, imgPath);
-      if (fs.existsSync(resolvedPath)) {
-        const base64Image = fs.readFileSync(resolvedPath).toString('base64');
-        parts.push({
-          inlineData: {
-            mimeType: 'image/jpeg',
-            data: base64Image
-          }
-        });
-      }
-    }
-    return JSON.stringify([
-      {
-        role: 'user',
-        parts: parts
-      }
-    ]);
-  }
-
-  // OpenAI / Default
-  const userContent = [
-    { type: 'text', text: userText }
-  ];
-
+  // Load all images as base64
+  const images = [];
   for (const imgPath of imagePaths) {
     const resolvedPath = path.resolve(__dirname, imgPath);
     if (fs.existsSync(resolvedPath)) {
-      const base64Image = fs.readFileSync(resolvedPath).toString('base64');
-      userContent.push({
-        type: 'image_url',
-        image_url: { url: `data:image/jpeg;base64,${base64Image}` }
-      });
+      images.push(fs.readFileSync(resolvedPath).toString('base64'));
     }
   }
 
+  // --- Google (Gemini) ---
+  if (provider.id.startsWith('google')) {
+    const parts = [{ text: systemPrompt + "\n\n" + userText }];
+    for (const b64 of images) {
+      parts.push({ inlineData: { mimeType: 'image/jpeg', data: b64 } });
+    }
+    return JSON.stringify([{ role: 'user', parts }]);
+  }
+
+  // --- Anthropic (Claude) ---
+  if (provider.id.startsWith('anthropic')) {
+    const userContent = [{ type: 'text', text: userText }];
+    for (const b64 of images) {
+      userContent.push({
+        type: 'image',
+        source: { type: 'base64', media_type: 'image/jpeg', data: b64 }
+      });
+    }
+    return JSON.stringify([
+      { role: 'system', content: systemPrompt },
+      { role: 'user', content: userContent }
+    ]);
+  }
+
+  // --- OpenAI / Default ---
+  const userContent = [{ type: 'text', text: userText }];
+  for (const b64 of images) {
+    userContent.push({
+      type: 'image_url',
+      image_url: { url: `data:image/jpeg;base64,${b64}` }
+    });
+  }
   return JSON.stringify([
     { role: 'system', content: systemPrompt },
     { role: 'user', content: userContent }

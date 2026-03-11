@@ -85,12 +85,12 @@
       ],
       "scores": {
         "text_fidelity": 0.93,
-        "structure_preservation": 0.80,
+        "structure_preservation": 0.95,
         "illustration_extraction": 0.856,
-        "measured": "2026-02-20",
-        "notes": "Tables are the weak point. table_rescue_html_loop_v1 helps but doesn't fully solve dense genealogy tables."
+        "measured": "2026-03-10",
+        "notes": "Claude Opus 4.6 achieves 0.952 avg on onward-table-fidelity eval. Story 131."
       },
-      "known_gaps": ["Dense table structure not fully preserved", "Column alignment lost on some pages"],
+      "known_gaps": ["Handwritten annotations sometimes missed", "Alma chapter scores 0.921 (below 0.95 individually)"],
       "graduated": false
     },
     {
@@ -111,10 +111,10 @@
       ],
       "scores": {
         "text_fidelity": 0.93,
-        "structure_preservation": 0.80,
+        "structure_preservation": 0.95,
         "illustration_extraction": 0.856,
-        "measured": "2026-02-20",
-        "notes": "Same quality as PDF path since images are the intermediate format anyway."
+        "measured": "2026-03-10",
+        "notes": "Same quality as PDF path since images are the intermediate format anyway. Updated with Story 131 results."
       },
       "known_gaps": [],
       "graduated": false

@@ -122,6 +122,103 @@ evals:
       - condition: new-subject-model
         note: "Models with native table understanding may eliminate rescue pass"
 
+  - id: onward-table-fidelity
+    name: Onward Genealogy Table Fidelity
+    type: quality
+    description: >
+      Multi-page genealogy table OCR fidelity for Onward to the Unknown.
+      Tests cell-level accuracy against hand-validated golden references
+      using LCS sequence alignment to match rows.
+    pipeline_stage: ocr
+    runner: promptfoo
+    command: "cd benchmarks && promptfoo eval -c tasks/onward-table-fidelity.yaml --no-cache -j 2"
+    config: benchmarks/tasks/onward-table-fidelity.yaml
+    scorer: benchmarks/scorers/html_table_diff.py
+    golden: benchmarks/golden/onward/
+    spec_compromise: C1
+    golden_verified: true  # Hand-validated 100% correct against scans
+
+    target:
+      metric: structure_preservation
+      value: 0.95
+
+    ranking:
+      quality_winner: "Claude Opus 4.6"
+      balanced_winner: "Claude Sonnet 4.6"
+      value_winner: null  # No model is 2x cheaper AND within quality window
+      note: >
+        Sonnet is 41% cheaper ($0.18 vs $0.31/call), 10% faster, and only 0.7%
+        lower quality. Balanced winner for production use. Opus for max quality.
+      applied: >
+        AnthropicVisionClient added to pipeline. Onward recipe OCR stage updated
+        from gemini-3-pro-preview to claude-sonnet-4-6 (balanced winner).
+
+    scores:
+      - model: "Claude Opus 4.6"
+        metrics:
+          structure_preservation: 0.952
+          alma: 0.921
+          arthur: 0.963
+          marie_louise: 0.973
+        latency_ms: 123200
+        cost_usd: 0.3125
+        cost_estimated: true
+        measured: 2026-03-10
+        note: "Quality winner. Meets 0.95 target. Weak on alma (handwritten annotations)."
+      - model: "Claude Sonnet 4.6"
+        metrics:
+          structure_preservation: 0.946
+          alma: 0.919
+          arthur: 0.978
+          marie_louise: 0.939
+        latency_ms: 110100
+        cost_usd: 0.1841
+        cost_estimated: true
+        measured: 2026-03-10
+        note: "Balanced winner (3-part: 0.9673). Beats Opus on arthur. 41% cheaper."
+      - model: "GPT-4o"
+        metrics:
+          structure_preservation: 0.855
+        latency_ms: 688500
+        cost_usd: 0.1104
+        cost_estimated: true
+        measured: 2026-03-10
+        note: "Decent but slow (689s avg). Not competitive with Claude."
+      - model: "GPT-5.1"
+        metrics:
+          structure_preservation: 0.847
+        latency_ms: 91200
+        cost_usd: 0.1155
+        cost_estimated: true
+        measured: 2026-03-10
+        note: "Fastest and cheapest, but merges continuation rows. Below Claude models."
+      - model: "Gemini 2.5 Pro"
+        metrics:
+          structure_preservation: 0.577
+        latency_ms: 97000
+        cost_usd: 0.1480
+        cost_estimated: true
+        measured: 2026-03-10
+        note: "Merges BOY/GIRL columns despite instructions. Disqualified."
+
+    attempts:
+      - id: "001"
+        date: 2026-03-10
+        status: succeeded
+        approach: "5-model sweep with alignment-based scorer and iterative prompt tuning"
+        score_before: null
+        score_after: 0.952
+        note: >
+          Started with broken scorer (strict positional comparison), 0.57 avg.
+          Fixed scorer with LCS alignment → 0.916. Fixed prompt for section headers → 0.952.
+          Key wins: (1) alignment scorer, (2) explicit section header separation, (3) Claude Opus model.
+
+    retry_when:
+      - condition: new-subject-model
+        note: "Future Claude/Gemini models may improve alma score past 0.95"
+      - condition: cheaper-subject-model
+        note: "Sonnet 4.6 at 0.946 is very close — future Sonnet may cross 0.95 and become quality+value winner"
+
   # ── Compromise Detection Evals ───────────────────────────────────────────
 
   - id: single-model-crop-detection

@@ -147,7 +147,7 @@ This index tracks stories in `/docs/stories/` for the codex-forge pipeline.
 |||| 128 | Onward Table Fidelity Verification | High | Done | /docs/stories/story-128-onward-table-fidelity-verification.md |
 |||| 129 | Onward HTML Output Polish | Medium | To Do | /docs/stories/story-129-onward-html-output-polish.md |
 |||| 130 | Book Website Template Module | Medium | To Do | /docs/stories/story-130-onward-book-website-template.md |
-|||| 131 | Onward Table Structure Fidelity | High | In Progress | /docs/stories/story-131-onward-table-structure-fidelity.md |
+|||| 131 | Onward Table Structure Fidelity | High | Done | /docs/stories/story-131-onward-table-structure-fidelity.md |
 
 ## Notes
 - Status "Done" reflects current working state in codex-forge. "To Do" items are planned next steps aligned with `docs/requirements.md` and `snapshot.md`.

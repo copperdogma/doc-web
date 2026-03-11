@@ -15,8 +15,8 @@ Machine-readable source: `tests/fixtures/formats/_coverage-matrix.json`
 | Format | Family | Intake Module | Text Fidelity | Structure | Illustrations | Fixtures | Notes |
 |--------|--------|---------------|--------------|-----------|---------------|----------|-------|
 | Scanned PDF (prose) | scanned-pdf | `extract_pdf_images_fast_v1` → `ocr_ai_gpt51_v1` | 0.97 | 0.95 | 0.856 | 1 | Primary pipeline. FF gamebook. |
-| Scanned PDF (tables) | scanned-pdf | images → OCR → `table_rescue_html_loop_v1` | 0.93 | 0.80 | 0.856 | 1 | Tables are the weak point. |
-| Image directory | image-directory | `images_dir_to_manifest_v1` → `ocr_ai_gpt51_v1` | 0.93 | 0.80 | 0.856 | 1 | Same quality as PDF path. |
+| Scanned PDF (tables) | scanned-pdf | images → OCR → `table_rescue_html_loop_v1` | 0.93 | 0.95 | 0.856 | 1 | Claude Opus 4.6 single-call. Story 131. |
+| Image directory | image-directory | `images_dir_to_manifest_v1` → `ocr_ai_gpt51_v1` | 0.93 | 0.95 | 0.856 | 1 | Same quality as PDF path. |
 | Plain text | plain-text | `extract_text_v1` | 1.0 | — | — | 0 | Passthrough, no OCR. |
 | Markdown | markdown | `extract_text_v1` | 1.0 | — | — | 0 | Passthrough. |
 | HTML | html | `extract_text_v1` | 1.0 | — | — | 0 | Passthrough. |
@@ -55,22 +55,14 @@ Every format is measured on four dimensions:
 
 ## Known Gaps (Prioritized)
 
-### Gap 1: Table Structure Preservation — scanned-pdf-tables
-- **Score:** 0.80 structure preservation
-- **Root cause:** OCR loses column alignment on dense genealogy tables. `table_rescue_html_loop_v1` partially recovers.
-- **Fix category:** Pipeline improvement — better table-aware OCR or VLM-based table extraction.
-- **Estimated lift:** +0.15 structure preservation
-- **Story:** —
-- **Status:** Diagnosed
-
-### Gap 2: Illustration Crop Quality — all image formats
+### Gap 1: Illustration Crop Quality — all image formats
 - **Score:** 0.856 (eval: `image-crop-extraction`)
 - **Root cause:** Two-stage detector+validator (spec compromise C4). VLM bounding boxes absorb nearby text.
 - **Fix category:** Model improvement — waiting for single-model ≥0.95
 - **Story:** Tracked in eval registry
 - **Status:** Blocked on better models
 
-### Gap 3: Born-Digital PDF Text Extraction
+### Gap 2: Born-Digital PDF Text Extraction
 - **Score:** N/A (untested)
 - **Root cause:** No pipeline. Currently runs through OCR which is wasteful and lossy for born-digital PDFs.
 - **Fix category:** New intake module — extract embedded text + images directly.
@@ -78,7 +70,7 @@ Every format is measured on four dimensions:
 - **Story:** —
 - **Status:** Needs story
 
-### Gap 4: Office Document Support (DOCX/XLSX/PPTX)
+### Gap 3: Office Document Support (DOCX/XLSX/PPTX)
 - **Score:** N/A (untested)
 - **Root cause:** No pipeline. Most common format for Storybook user uploads.
 - **Fix category:** New intake modules.
@@ -86,7 +78,7 @@ Every format is measured on four dimensions:
 - **Story:** —
 - **Status:** Needs story
 
-### Gap 5: Handwritten Document Transcription
+### Gap 4: Handwritten Document Transcription
 - **Score:** N/A (untested)
 - **Root cause:** No pipeline. VLMs can transcribe handwriting but no intake module exists.
 - **Fix category:** New intake module using VLM transcription.
@@ -96,7 +88,11 @@ Every format is measured on four dimensions:
 
 ## Resolved Gaps
 
-(none yet)
+### Resolved Gap: Table Structure Preservation — scanned-pdf-tables (Story 131)
+- **Score:** 0.80 → 0.952 (Claude Opus 4.6)
+- **Root cause was:** OCR lost column alignment on dense genealogy tables.
+- **Fix:** LCS-aligned scorer, prompt engineering (section header separation, continuation row rules), model selection (Claude Opus 4.6).
+- **Resolved:** 2026-03-10
 
 ## Graduation Criteria
 
