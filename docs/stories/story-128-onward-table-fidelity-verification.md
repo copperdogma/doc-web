@@ -1,6 +1,6 @@
 # Story 128: Onward Table Fidelity Verification
 
-**Status**: In Progress (Golden References & Baseline Eval Complete)
+**Status**: Done (Golden references, promptfoo eval, and verification checklist complete. Pipeline improvement work continues in Story 131.)
 
 ---
 **Depends On**: story-026 (Onward to the Unknown pipeline)
