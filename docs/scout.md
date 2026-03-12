@@ -7,3 +7,4 @@ Scouting log for external sources researched for ideas to adopt. See `/scout` sk
 | 001 | [dossier](/docs/scout/scout-001-dossier-patterns.md) | 2026-03-10 | Skills, docs, AGENTS.md, evals, runbooks | 8 | 8 | — | Complete |
 | 002 | [cine-forge](/docs/scout/scout-002-cine-forge-patterns.md) | 2026-03-10 | Skills, docs, AGENTS.md, eval registry, lifecycle | 8 | 7 | — | Complete |
 | 003 | [storybook](/docs/scout/scout-003-storybook-patterns.md) | 2026-03-10 | Skills, AGENTS.md, Ideal-First, story discipline | 10 | 9 | — | Complete |
+| 004 | [dossier triage](/docs/scout/scout-004-dossier-triage-skills.md) | 2026-03-12 | triage-inbox, triage-stories skills | 4 | 2 | — | Complete |

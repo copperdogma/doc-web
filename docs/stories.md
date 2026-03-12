@@ -19,7 +19,7 @@ Guiding priorities: **development stability first**, then **quality definitions*
 14. **038 — Agentic Pipeline Coordinator**: Fundamental shift toward autonomous quality monitoring, sanity checking, and self-healing artifacts.
 15. **098 — Late-Stage Section Validation and Reachability Analysis**: Final integrity pass to ensure 100% graph connectivity across all extracted gameplay mechanics.
 16. DONE: **083 — Game-Ready Validation Checklist**: Establishes the formal quality bar for "authoritative" artifacts before declaring the FF phase complete.
-17. **009 — Layout-preserving extractor**: Prerequisite capability for handling non-narrative (tabular/complex) book layouts in the next phase.
+17. **009 — Spatial Layout Understanding**: Intelligent placement of images, tables, and figures when linearizing complex multi-column layouts to single-column HTML.
 18. **026 — Onward to the Unknown — Arthur L'Heureux pilot**: First end-to-end testbed for genealogy/complex layouts; depends on 009.
 19. **099 — Remove dev-only backcompat disclaimer**: Final milestone marking the entire pipeline as stable and production-ready.
 
@@ -38,7 +38,7 @@ This index tracks stories in `/docs/stories/` for the codex-forge pipeline.
 || 006 | Enrichment pass (choices/combat/items/endings) | High | Done | /docs/stories/story-006-enrichment.md |
 || 007 | Turn-to validator (CYOA cross-refs) | Medium | Done | /docs/stories/story-007-turn-validator.md |
 || 008 | Image cropper/mapper | Medium | Done | /docs/stories/story-008-image-cropper.md |
-|| 009 | Layout-preserving extractor | Medium | To Do | /docs/stories/story-009-layout-preserve.md |
+|| 009 | Spatial Layout Understanding for Content Linearization | High | To Do | /docs/stories/story-009-layout-preserve.md |
 || 010 | Coarse+fine portionizer & continuation merge | Medium | Done | /docs/stories/story-010-coarse-fine-merge.md |
 || 011 | AI planner to assemble pipelines | Medium | To Do | /docs/stories/story-011-ai-planner.md |
 || 012 | Automation wrapper (single driver + config snapshots) | Medium | Done | /docs/stories/story-012-driver-automation.md |

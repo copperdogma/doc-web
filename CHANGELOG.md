@@ -1,3 +1,16 @@
+## [2026-03-12-02] - Triage skills + Story 009 reframe (Scout 004)
+
+### Added
+- `/triage-inbox` skill — process inbox items against the Ideal into stories, spec updates, or discard
+- `/triage-stories` skill — evaluate story backlog with mandatory Ideal alignment check, rank candidates
+- Scout 004 expedition doc (`docs/scout/scout-004-dossier-triage-skills.md`)
+- Gemini command wrappers for both triage skills
+
+### Changed
+- Story 009 reframed from vague "layout-preserving extractor" to "Spatial Layout Understanding for Content Linearization" — focuses on intelligent placement of images/tables/figures when linearizing complex multi-column layouts to single-column HTML
+- Story 009 priority raised from Medium to High
+- Scout index updated with expedition 004
+
 ## [2026-03-12-01] - OCR pipeline speed & cost optimization (Story 134)
 
 ### Added
