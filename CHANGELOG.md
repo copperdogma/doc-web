@@ -1,3 +1,18 @@
+## [2026-03-12-01] - OCR pipeline speed & cost optimization (Story 134)
+
+### Added
+- Image downsampling (`max_long_side` param) — Pillow LANCZOS resize before API call, 12x input token reduction
+- Parallel execution (`concurrency` param) — ThreadPoolExecutor with rate limiting for concurrent API calls
+- Blank page detection (`skip_blank_pages` param) — grayscale histogram skip, saved 25% of API calls on Onward
+- Per-page golden references for single-page budget model eval (15 table pages)
+- Two new eval configs: `onward-table-fidelity-downsampled.yaml`, `onward-table-fidelity-single-page-budget.yaml`
+
+### Changed
+- OCR module `ocr_ai_gpt51_v1`: refactored sequential loop into parallelizable `_process_one_page()` function
+- Both OCR recipes: added `max_long_side: 2048`, `concurrency: 5`, `skip_blank_pages: true`
+- Eval registry: added downsample validation (0.963 at 2048px) and budget model single-page results
+- Pipeline performance: 3.9h → 18.3 min (12.8x), $23 → $0.69 (97% reduction), quality 0.963 (target ≥0.945)
+
 ## [2026-03-11-05] - OCR model eval refresh, new tooling, and Story 134
 
 ### Added

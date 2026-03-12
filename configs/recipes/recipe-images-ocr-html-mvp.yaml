@@ -20,6 +20,9 @@ stages:
     out: pages_html.jsonl
     params:
       model: gpt-5.1
+      max_long_side: 2048
+      concurrency: 5
+      skip_blank_pages: true
       ocr_hints: |
         - Preserve text exactly as printed; do not correct spelling or normalize punctuation.
         - Preserve line breaks and paragraph structure as seen in the image.

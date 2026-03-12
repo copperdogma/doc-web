@@ -280,6 +280,41 @@ evals:
         note: "Future models may improve alma score (weakest across all models due to handwritten annotations)"
       - condition: cheaper-subject-model
         note: "Gemini Flash at 0.886 is close — prompt tuning or future Flash versions may cross 0.95"
+      - condition: downsampling-sweep
+        note: "Story 134 validated 2048px. Test 1500px/1024px for further cost reduction if needed."
+
+    # --- 2026-03-12 Story 134 optimization validations ---
+    downsample_validation:
+      - resolution: "2048px (1582x2048 from 5100x6600)"
+        model: "Gemini 3.1 Pro"
+        metrics:
+          structure_preservation: 0.963
+          alma: 0.930
+          arthur: 0.980
+          marie_louise: 0.980
+        measured: 2026-03-12
+        note: >
+          Story 134 A1 validation. Downsampled from 34MP to ~3.2MP (10.6x fewer pixels).
+          Quality delta: -0.006 vs full-res baseline (0.969). Within VLM non-determinism.
+          Validates max_long_side=2048 as safe default for OCR pipeline.
+
+    single_page_budget_eval:
+      - model: "Gemini 2.5 Flash"
+        metrics: { single_page_avg: 0.257 }
+        measured: 2026-03-12
+        note: "Story 134 A7. Per-page table quality vs Gemini 3.1 Pro golden. Not viable for table content."
+      - model: "Gemini 3 Flash"
+        metrics: { single_page_avg: 0.103 }
+        measured: 2026-03-12
+        note: "Worst performer. 2 pages produced no tables at all."
+      - model: "Gemini 3.1 Flash-Lite"
+        metrics: { single_page_avg: 0.271 }
+        measured: 2026-03-12
+        note: "Similar to 2.5 Flash. Budget models genuinely worse at table OCR, not just truncation-limited."
+      - model: "GPT-5 Mini"
+        metrics: { single_page_avg: 0.272 }
+        measured: 2026-03-12
+        note: "OpenAI budget model. Same quality tier as Gemini Flash-Lite."
 
   # ── Compromise Detection Evals ───────────────────────────────────────────
 

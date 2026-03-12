@@ -1,0 +1,23 @@
+description: "Onward Genealogy Table Fidelity — Downsampled to 2048px (Story 134)"
+prompts:
+  - file://../prompts/onward_ocr.js
+providers:
+  - id: google:gemini-3.1-pro-preview
+    label: "Gemini 3.1 Pro (2048px)"
+    config:
+      maxOutputTokens: 65536
+      temperature: 0.0
+defaultTest:
+  assert:
+    - type: python
+      value: file://../scorers/html_table_diff.py
+tests:
+  - vars:
+      image_list: "../../input/onward-to-the-unknown-images-2048/Image022.jpg,../../input/onward-to-the-unknown-images-2048/Image023.jpg,../../input/onward-to-the-unknown-images-2048/Image024.jpg,../../input/onward-to-the-unknown-images-2048/Image025.jpg"
+      golden_path: "golden/onward/alma.html"
+  - vars:
+      image_list: "../../input/onward-to-the-unknown-images-2048/Image029.jpg,../../input/onward-to-the-unknown-images-2048/Image030.jpg,../../input/onward-to-the-unknown-images-2048/Image031.jpg,../../input/onward-to-the-unknown-images-2048/Image032.jpg,../../input/onward-to-the-unknown-images-2048/Image033.jpg,../../input/onward-to-the-unknown-images-2048/Image034.jpg"
+      golden_path: "golden/onward/arthur.html"
+  - vars:
+      image_list: "../../input/onward-to-the-unknown-images-2048/Image079.jpg,../../input/onward-to-the-unknown-images-2048/Image080.jpg,../../input/onward-to-the-unknown-images-2048/Image081.jpg,../../input/onward-to-the-unknown-images-2048/Image082.jpg,../../input/onward-to-the-unknown-images-2048/Image083.jpg"
+      golden_path: "golden/onward/marie_louise.html"

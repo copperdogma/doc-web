@@ -1,13 +1,22 @@
 import argparse
 import base64
+import io
 import os
 import re
+import threading
+import time
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from datetime import datetime
 from html.parser import HTMLParser
 from pathlib import Path
 from typing import List, Optional
 
 from modules.common.utils import read_jsonl, ensure_dir, append_jsonl, ProgressLogger
+
+try:
+    from PIL import Image
+except Exception:  # pragma: no cover - optional dependency
+    Image = None
 
 try:
     from modules.common.openai_client import OpenAI
@@ -88,6 +97,36 @@ def build_system_prompt(hints: Optional[str]) -> str:
     if not hints:
         return SYSTEM_PROMPT
     return SYSTEM_PROMPT + "\n\nRecipe hints:\n" + hints.strip() + "\n"
+
+
+def _resize_image_bytes(image_bytes: bytes, max_long_side: int, mime: str) -> tuple:
+    """Resize image if either dimension exceeds max_long_side. Returns (bytes, mime, resized_flag)."""
+    if Image is None or max_long_side <= 0:
+        return image_bytes, mime, False
+    img = Image.open(io.BytesIO(image_bytes))
+    w, h = img.size
+    long_side = max(w, h)
+    if long_side <= max_long_side:
+        return image_bytes, mime, False
+    scale = max_long_side / long_side
+    new_w = int(w * scale)
+    new_h = int(h * scale)
+    img = img.resize((new_w, new_h), Image.LANCZOS)
+    buf = io.BytesIO()
+    img.save(buf, format="JPEG", quality=85)
+    return buf.getvalue(), "image/jpeg", True
+
+
+def _is_blank_page(image_bytes: bytes, threshold: float = 0.99) -> bool:
+    """Check if an image is mostly blank (near-white pixels exceed threshold)."""
+    if Image is None:
+        return False
+    img = Image.open(io.BytesIO(image_bytes)).convert("L")
+    pixels = list(img.getdata())
+    if not pixels:
+        return True
+    white_count = sum(1 for p in pixels if p > 240)
+    return (white_count / len(pixels)) >= threshold
 
 
 def _utc() -> str:
@@ -277,6 +316,17 @@ def main() -> None:
     parser.add_argument("--allow-empty", dest="allow_empty", action="store_true")
     parser.add_argument("--ocr-hints", dest="ocr_hints", help="Recipe-level OCR hints text")
     parser.add_argument("--ocr_hints", dest="ocr_hints", help="Recipe-level OCR hints text")
+    parser.add_argument("--max-long-side", dest="max_long_side", type=int, default=0,
+                        help="Downsample images so longest side <= N pixels (0=disabled)")
+    parser.add_argument("--max_long_side", dest="max_long_side", type=int, default=0)
+    parser.add_argument("--concurrency", type=int, default=1,
+                        help="Number of parallel API calls (1=sequential)")
+    parser.add_argument("--skip-blank-pages", dest="skip_blank_pages", action="store_true",
+                        help="Skip near-white pages without API call")
+    parser.add_argument("--skip_blank_pages", dest="skip_blank_pages", action="store_true")
+    parser.add_argument("--blank-threshold", dest="blank_threshold", type=float, default=0.99,
+                        help="Fraction of near-white pixels to consider blank")
+    parser.add_argument("--blank_threshold", dest="blank_threshold", type=float, default=0.99)
     parser.add_argument("--force", action="store_true", help="Overwrite existing output")
     parser.add_argument("--resume", action="store_true", help="Skip pages already written (default)")
     parser.set_defaults(resume=True)
@@ -348,38 +398,52 @@ def main() -> None:
             except Exception:
                 completed_pages = set()
 
-        for idx, page in enumerate(rows, start=1):
+        # --- Per-page processing function (called sequentially or in parallel) ---
+        def _process_one_page(page, idx):
+            """Process a single page and return the output row dict."""
             image_path = page.get("image")
             if not image_path or not os.path.exists(image_path):
                 raise SystemExit(f"Missing image for page: {page}")
 
             page_number = page.get("page_number")
-            if page_number in completed_pages:
-                logger.log(
-                    "extract",
-                    "running",
-                    current=idx,
-                    total=total,
-                    message=f"Skipping page {page_number} (already completed)",
-                    artifact=str(out_path),
-                    module_id="ocr_ai_gpt51_v1",
-                    schema_version="page_html_v1",
-                )
-                continue
+            image_bytes = Path(image_path).read_bytes()
 
+            # A6: Blank page detection
+            if args.skip_blank_pages and _is_blank_page(image_bytes, args.blank_threshold):
+                return {
+                    "schema_version": "page_html_v1",
+                    "module_id": "ocr_ai_gpt51_v1",
+                    "run_id": args.run_id,
+                    "source": page.get("source"),
+                    "created_at": _utc(),
+                    "page": page.get("page"),
+                    "page_number": page_number,
+                    "original_page_number": page.get("original_page_number"),
+                    "image": image_path,
+                    "spread_side": page.get("spread_side"),
+                    "html": "",
+                    "raw_html": "",
+                    "ocr_empty": True,
+                    "ocr_empty_reason": "blank_page_detected",
+                }
+
+            # A1: Image downsampling
             mime = "image/jpeg" if image_path.lower().endswith((".jpg", ".jpeg")) else "image/png"
-            b64 = base64.b64encode(Path(image_path).read_bytes()).decode("utf-8")
+            if args.max_long_side > 0:
+                image_bytes, mime, _resized = _resize_image_bytes(image_bytes, args.max_long_side, mime)
+
+            b64 = base64.b64encode(image_bytes).decode("utf-8")
+            data_uri = f"data:{mime};base64,{b64}"
 
             raw = ""
             usage = None
             request_id = None
             meta = {}
             meta_tag = None
+            meta_warning = None
             cleaned = ""
             user_text = "Return HTML only. FIRST line MUST be: <meta name=\"ocr-metadata\" data-ocr-quality=\"0.0-1.0\" data-ocr-integrity=\"0.0-1.0\" data-continuation-risk=\"0.0-1.0\">"
-            data_uri = f"data:{mime};base64,{b64}"
 
-            # Retry once if the model returns empty HTML.
             for attempt in range(2):
                 try:
                     if use_anthropic:
@@ -420,8 +484,8 @@ def main() -> None:
                             ],
                         )
                         raw = resp.output_text or ""
-                        usage = getattr(resp, "usage", None)
-                        request_id = getattr(resp, "id", None)
+                        _usage = getattr(resp, "usage", None)  # noqa: F841 — logged by client wrapper
+                        _request_id = getattr(resp, "id", None)  # noqa: F841
                     else:
                         resp = client.chat.completions.create(
                             model=args.model,
@@ -439,39 +503,20 @@ def main() -> None:
                             ],
                         )
                         raw = resp.choices[0].message.content or ""
-                        usage = getattr(resp, "usage", None)
-                        request_id = getattr(resp, "id", None)
+                        _usage = getattr(resp, "usage", None)  # noqa: F841 — logged by client wrapper
+                        _request_id = getattr(resp, "id", None)  # noqa: F841
                 except Exception as exc:
-                    logger.log(
-                        "extract",
-                        "failed",
-                        current=idx,
-                        total=total,
-                        message=f"OCR failed on page {page_number}: {exc}",
-                        artifact=str(out_path),
-                        module_id="ocr_ai_gpt51_v1",
-                        schema_version="page_html_v1",
-                    )
-                    raise
+                    raise RuntimeError(f"OCR failed on page {page_number}: {exc}") from exc
                 raw = _extract_code_fence(raw)
                 raw, meta, meta_tag, meta_warning = _extract_ocr_metadata(raw)
                 cleaned = sanitize_html(raw)
                 if cleaned.strip():
                     break
+
             empty_msg = None
             if not cleaned.strip():
-                empty_msg = f"Empty HTML output for page {page.get('page_number')}"
+                empty_msg = f"Empty HTML output for page {page_number}"
                 cleaned = ""
-                logger.log(
-                    "extract",
-                    "warning",
-                    current=idx,
-                    total=total,
-                    message=empty_msg + (" (meta tag present)" if meta_tag else ""),
-                    artifact=str(out_path),
-                    module_id="ocr_ai_gpt51_v1",
-                    schema_version="page_html_v1",
-                )
 
             row = {
                 "schema_version": "page_html_v1",
@@ -480,7 +525,7 @@ def main() -> None:
                 "source": page.get("source"),
                 "created_at": _utc(),
                 "page": page.get("page"),
-                "page_number": page.get("page_number"),
+                "page_number": page_number,
                 "original_page_number": page.get("original_page_number"),
                 "image": image_path,
                 "spread_side": page.get("spread_side"),
@@ -495,7 +540,6 @@ def main() -> None:
                 row["ocr_metadata_missing"] = True
             row["html"] = cleaned
 
-            # Extract image metadata from img tags (alt text and count)
             images = extract_image_metadata(cleaned)
             if images:
                 row["images"] = images
@@ -504,31 +548,88 @@ def main() -> None:
                 row["ocr_empty"] = True
                 row["ocr_empty_reason"] = empty_msg
             row["raw_html"] = raw
+            return row
 
-            append_jsonl(str(out_path), row)
-
-            logger.log(
-                "extract",
-                "running",
-                current=idx,
-                total=total,
-                message=f"OCR HTML for page {page.get('page_number')}",
-                artifact=str(out_path),
-                module_id="ocr_ai_gpt51_v1",
-                schema_version="page_html_v1",
-            )
-
-            if idx % 25 == 0:
+        # --- Build work list (skip completed pages) ---
+        work = []
+        for idx, page in enumerate(rows, start=1):
+            page_number = page.get("page_number")
+            if page_number in completed_pages:
                 logger.log(
-                    "extract",
-                    "running",
-                    current=idx,
-                    total=total,
-                    message=f"Heartbeat: {idx}/{total} pages processed",
-                    artifact=str(out_path),
-                    module_id="ocr_ai_gpt51_v1",
+                    "extract", "running", current=idx, total=total,
+                    message=f"Skipping page {page_number} (already completed)",
+                    artifact=str(out_path), module_id="ocr_ai_gpt51_v1",
                     schema_version="page_html_v1",
                 )
+                continue
+            work.append((idx, page))
+
+        # --- Execute: parallel or sequential ---
+        concurrency = max(1, args.concurrency)
+        write_lock = threading.Lock()
+        completed_count = total - len(work)  # already-done pages
+
+        if concurrency <= 1:
+            # Sequential (original behavior)
+            for idx, page in work:
+                row = _process_one_page(page, idx)
+                append_jsonl(str(out_path), row)
+                completed_count += 1
+                logger.log(
+                    "extract", "running", current=completed_count, total=total,
+                    message=f"OCR HTML for page {page.get('page_number')}"
+                    + (" [blank]" if row.get("ocr_empty_reason") == "blank_page_detected" else ""),
+                    artifact=str(out_path), module_id="ocr_ai_gpt51_v1",
+                    schema_version="page_html_v1",
+                )
+        else:
+            # A2: Parallel execution
+            results = []
+            errors = []
+
+            def _submit_with_delay(executor, fn, items, delay_ms):
+                """Submit work items with optional delay between submissions for rate limiting."""
+                futures = {}
+                for i, (idx, page) in enumerate(items):
+                    f = executor.submit(fn, page, idx)
+                    futures[f] = (idx, page)
+                    if delay_ms > 0 and i < len(items) - 1:
+                        time.sleep(delay_ms / 1000.0)
+                return futures
+
+            rate_delay_ms = 200 if concurrency > 5 else 0
+            with ThreadPoolExecutor(max_workers=concurrency) as executor:
+                futures = _submit_with_delay(executor, _process_one_page, work, rate_delay_ms)
+                for future in as_completed(futures):
+                    idx, page = futures[future]
+                    try:
+                        row = future.result()
+                        results.append((idx, row))
+                        with write_lock:
+                            completed_count += 1
+                            logger.log(
+                                "extract", "running", current=completed_count, total=total,
+                                message=f"OCR HTML for page {page.get('page_number')}"
+                                + (" [blank]" if row.get("ocr_empty_reason") == "blank_page_detected" else ""),
+                                artifact=str(out_path), module_id="ocr_ai_gpt51_v1",
+                                schema_version="page_html_v1",
+                            )
+                    except Exception as exc:
+                        errors.append((page.get("page_number"), str(exc)))
+                        logger.log(
+                            "extract", "failed", current=idx, total=total,
+                            message=f"OCR failed on page {page.get('page_number')}: {exc}",
+                            artifact=str(out_path), module_id="ocr_ai_gpt51_v1",
+                            schema_version="page_html_v1",
+                        )
+
+            if errors:
+                raise RuntimeError(f"OCR failed on {len(errors)} page(s): {errors}")
+
+            # Write results sorted by original page order
+            results.sort(key=lambda x: x[0])
+            for _idx, row in results:
+                append_jsonl(str(out_path), row)
 
         logger.log(
             "extract",

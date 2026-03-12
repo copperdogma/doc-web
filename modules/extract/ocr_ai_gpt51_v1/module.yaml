@@ -9,6 +9,10 @@ default_params:
   temperature: 0.0
   allow_empty: false
   save_raw: false
+  max_long_side: 0
+  concurrency: 1
+  skip_blank_pages: false
+  blank_threshold: 0.99
 param_schema:
   properties:
     model:
@@ -26,5 +30,22 @@ param_schema:
       type: boolean
     ocr_hints:
       type: string
+    max_long_side:
+      type: integer
+      minimum: 0
+      description: "Downsample images so longest side <= N pixels (0=disabled)"
+    concurrency:
+      type: integer
+      minimum: 1
+      maximum: 20
+      description: "Number of parallel API calls (1=sequential)"
+    skip_blank_pages:
+      type: boolean
+      description: "Skip near-white pages without making an API call"
+    blank_threshold:
+      type: number
+      minimum: 0
+      maximum: 1
+      description: "Fraction of near-white pixels to consider a page blank"
   required: [model]
-notes: "GPT-5.1 vision OCR to per-page HTML. Consumes page_image_v1 manifest."
+notes: "Vision OCR to per-page HTML. Supports image downsampling (max_long_side), parallel execution (concurrency), and blank page detection (skip_blank_pages)."
