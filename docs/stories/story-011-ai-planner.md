@@ -1,6 +1,9 @@
 # Story: AI planner to assemble pipelines
 
-**Status**: To Do
+**Status**: Won't Do
+**Closed**: 2026-03-12
+
+**Won't Do Reason**: The project's purpose has evolved to be the intake R&D lab for Dossier (see docs/ideal.md). Auto-planning and pipeline assembly is a product-level feature that belongs in Dossier, not in the R&D lab. Codex-forge's job is to prove converters and graduate them — manual recipe selection (Compromise C2) is acceptable here.
 
 ---
 

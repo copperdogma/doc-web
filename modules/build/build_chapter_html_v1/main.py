@@ -6,6 +6,7 @@ Produces proper HTML5 documents with embedded CSS, semantic structure
 (<figure>/<figcaption>), chapter navigation, and responsive styling.
 """
 import argparse
+import re
 import sys
 from datetime import datetime
 from html import escape as html_escape
@@ -278,11 +279,55 @@ def _group_manifest_by_page(manifest_path: str) -> Dict[int, List[Dict[str, Any]
     return grouped
 
 
+_MAX_CAPTION_WORDS = 30
+
+# Patterns that strongly suggest a caption (names, dates, descriptive labels)
+_CAPTION_PATTERNS = re.compile(
+    r"""
+    \b\d{4}\b                              # year (1920, 2024)
+    | \b[Cc]irca\b                         # "circa 1920"
+    | \b[Aa]bout\s+\d{4}\b                # "about 1910"
+    | \b(?:[Bb]ack|[Ff]ront|[Ll]eft|[Rr]ight)\s+[Rr]ow\b  # "Back Row:"
+    | \b[Ll]eft\s+to\s+[Rr]ight\b         # "Left to right:"
+    """,
+    re.VERBOSE,
+)
+
+
+def _is_likely_caption(text: str) -> bool:
+    """Heuristic: short text near an image is likely a caption.
+
+    Captions typically contain proper nouns (names), dates, or descriptive labels.
+    Generic short prose ("More text.", "He walked on.") should not be absorbed.
+    """
+    text = text.strip()
+    if not text:
+        return False
+    words = text.split()
+    if len(words) > _MAX_CAPTION_WORDS:
+        return False
+    # Must have caption-like content (names, dates, descriptive labels)
+    if _CAPTION_PATTERNS.search(text):
+        return True
+    # Short text with multiple capitalized words (proper nouns, not sentence-start)
+    # e.g., "Moise and Sophie's Family" but not "More text."
+    if len(words) <= 8:
+        caps = [w for w in words if w and w[0].isupper() and len(w) > 1]
+        if len(caps) >= 2:
+            return True
+    return False
+
+
 def _attach_images(html: str, crops: List[Dict[str, Any]], rel_src: str) -> str:
     """Attach cropped images to <img> placeholders with <figure>/<figcaption> wrapping.
 
+    Handles two OCR output formats:
+    - New format: <figure><img alt="..."><figcaption>...</figcaption></figure>
+      → just sets src/alt/data-crop-filename on the existing structure.
+    - Old format: <img alt="..."> followed optionally by a caption <p>
+      → wraps in <figure>, detects adjacent caption <p> and converts to <figcaption>.
+
     Matching: sequential by position (crops sorted by y-position, img tags in document order).
-    Handles count mismatches gracefully — matches what it can, logs warnings.
     """
     if not html or not crops:
         return html
@@ -303,22 +348,96 @@ def _attach_images(html: str, crops: List[Dict[str, Any]], rel_src: str) -> str:
         if not filename:
             continue
 
-        # T4: Rich alt text — prefer VLM image_description over OCR alt
+        # Rich alt text — prefer VLM image_description over OCR alt
         alt = crop.get("image_description") or crop.get("alt") or ""
         tag["src"] = f"{rel_src}/{filename}"
         tag["alt"] = alt
         tag["data-crop-filename"] = filename
 
-        # T5: Wrap in <figure>, add <figcaption> if caption text exists
-        figure = soup.new_tag("figure")
-        tag.wrap(figure)
-        caption_text = crop.get("caption_text")
-        if caption_text:
-            figcaption = soup.new_tag("figcaption")
-            figcaption.string = caption_text
-            figure.append(figcaption)
+        parent = tag.parent
+        already_in_figure = parent and parent.name == "figure"
+
+        if already_in_figure:
+            # New OCR format: <figure> already wraps the <img>.
+            # Add crop metadata; leave existing <figcaption> intact.
+            figure = parent
+            figure["data-placement"] = "ocr-figure"
+            existing_figcap = figure.find("figcaption")
+            caption_text = crop.get("caption_text")
+            if existing_figcap:
+                figure["data-caption-source"] = "ocr"
+            elif caption_text:
+                figcaption = soup.new_tag("figcaption")
+                figcaption.string = caption_text
+                figure.append(figcaption)
+                figure["data-caption-source"] = "crop-pipeline"
+        else:
+            # Old OCR format: bare <img> — wrap in <figure>.
+            figure = soup.new_tag("figure")
+            tag.wrap(figure)
+            figure["data-placement"] = "ocr-inline"
+
+            # Try to find a caption: crop pipeline caption or adjacent <p>
+            caption_text = crop.get("caption_text")
+            if caption_text:
+                figcaption = soup.new_tag("figcaption")
+                figcaption.string = caption_text
+                figure.append(figcaption)
+                figure["data-caption-source"] = "crop-pipeline"
+            else:
+                # Heuristic: check next sibling(s) for caption-like <p> tags
+                if _absorb_caption_siblings(figure, soup):
+                    figure["data-caption-source"] = "heuristic"
 
     return soup.decode_contents()
+
+
+def _absorb_caption_siblings(figure, soup) -> bool:
+    """Move short caption-like <p> siblings after a <figure> into <figcaption>.
+
+    Absorbs one or two consecutive short <p> tags (e.g., a title line
+    followed by a "Back Row: ..." list). Stops at the first non-caption.
+
+    Returns True if any captions were absorbed.
+    """
+    from bs4 import NavigableString
+
+    absorbed = []
+    sibling = figure.next_sibling
+
+    # Skip whitespace text nodes
+    while isinstance(sibling, NavigableString) and not sibling.strip():
+        sibling = sibling.next_sibling
+
+    # Check up to 2 consecutive caption-like <p> tags
+    for _ in range(2):
+        if sibling is None or sibling.name != "p":
+            break
+        text = sibling.get_text(strip=True)
+        if not _is_likely_caption(text):
+            break
+        absorbed.append(sibling)
+        next_sib = sibling.next_sibling
+        # Skip whitespace
+        while isinstance(next_sib, NavigableString) and not next_sib.strip():
+            next_sib = next_sib.next_sibling
+        sibling = next_sib
+
+    if not absorbed:
+        return False
+
+    figcaption = soup.new_tag("figcaption")
+    for p_tag in absorbed:
+        # Move content into figcaption (preserve <br> etc.)
+        for child in list(p_tag.children):
+            figcaption.append(child.extract())
+        # Add line break between absorbed paragraphs
+        if p_tag is not absorbed[-1]:
+            figcaption.append(soup.new_tag("br"))
+        p_tag.decompose()
+
+    figure.append(figcaption)
+    return True
 
 
 # ---------------------------------------------------------------------------
@@ -435,6 +554,7 @@ def main() -> None:
 
     # ── Build fallback pages (uncovered by chapters) ────────────────────
     fallback_entries = []
+    fallback_page_files: List[Dict[str, Any]] = []
     fallback_count = 0
     for page in pages_sorted:
         printed_num = page.get("printed_page_number")
@@ -468,7 +588,7 @@ def main() -> None:
             "printed_page_number_text": printed_text,
         })
 
-        chapter_files.append({
+        fallback_page_files.append({
             "filename": filename,
             "title": title,
             "body_html": body_html,
@@ -477,6 +597,9 @@ def main() -> None:
             "kind": "page",
             "chapter_index": None,
         })
+
+    # Front matter pages come before chapters in navigation order
+    chapter_files = fallback_page_files + chapter_files
 
     # ── Write all files with navigation ─────────────────────────────────
     for i, entry in enumerate(chapter_files):

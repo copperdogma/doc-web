@@ -10,6 +10,7 @@ from bs4 import BeautifulSoup
 
 from modules.build.build_chapter_html_v1.main import (
     _attach_images,
+    _is_likely_caption,
     _html5_wrap,
     _add_table_scope,
     _build_nav,
@@ -103,6 +104,104 @@ class TestFigureWrapping:
         captions = soup.find_all("figcaption")
         assert len(captions) == 1
         assert captions[0].string == "Cap A"
+
+
+# ---------------------------------------------------------------------------
+# Caption heuristic detection (Story 009)
+# ---------------------------------------------------------------------------
+
+class TestCaptionHeuristic:
+    """Test _is_likely_caption for identifying caption text near images."""
+
+    def test_name_with_date(self):
+        assert _is_likely_caption("Moise and Sophie L'Heureux about 1910")
+
+    def test_anniversary_caption(self):
+        assert _is_likely_caption("Henry and Alma Alain on their 50th wedding anniversary in 1957.")
+
+    def test_family_name(self):
+        assert _is_likely_caption("Moise and Sophie's Family")
+
+    def test_row_label(self):
+        assert _is_likely_caption("Back Row: George, Marie Louise, Father Cochin")
+
+    def test_circa(self):
+        assert _is_likely_caption("Arthur L'Heureux, circa 1942")
+
+    def test_left_to_right(self):
+        assert _is_likely_caption("Left to right: Arthur, Marie, Sophie")
+
+    def test_generic_prose_rejected(self):
+        assert not _is_likely_caption("More text.")
+
+    def test_narrative_opener_rejected(self):
+        assert not _is_likely_caption("The family moved west in the spring of that year.")
+
+    def test_long_text_rejected(self):
+        assert not _is_likely_caption("This is a very long paragraph that goes on and on "
+                                      "and on with many many words exceeding the caption limit "
+                                      "which should not be treated as a caption")
+
+    def test_empty_string(self):
+        assert not _is_likely_caption("")
+
+    def test_single_lowercase_word(self):
+        assert not _is_likely_caption("hello")
+
+
+class TestCaptionAbsorption:
+    """Test that _attach_images absorbs adjacent caption <p> tags."""
+
+    def test_absorbs_caption_with_date(self):
+        html = '<img alt="Photo"><p>Moise and Sophie about 1910</p><p>Regular paragraph.</p>'
+        crops = [_crop("img.jpg")]
+        result = _attach_images(html, crops, "images")
+        soup = BeautifulSoup(result, "html.parser")
+        figcaption = soup.find("figcaption")
+        assert figcaption is not None
+        assert "1910" in figcaption.get_text()
+        # Regular paragraph should NOT be absorbed
+        remaining_p = soup.find_all("p")
+        assert any("Regular paragraph" in p.get_text() for p in remaining_p)
+
+    def test_does_not_absorb_narrative(self):
+        html = '<img alt="Photo"><p>The family moved west after the war.</p>'
+        crops = [_crop("img.jpg")]
+        result = _attach_images(html, crops, "images")
+        soup = BeautifulSoup(result, "html.parser")
+        assert soup.find("figcaption") is None
+
+    def test_crop_caption_takes_priority(self):
+        """When crop pipeline provides caption_text, use it over heuristic."""
+        html = '<img alt="Photo"><p>Moise L\'Heureux 1910</p>'
+        crops = [_crop("img.jpg", caption_text="VLM-provided caption")]
+        result = _attach_images(html, crops, "images")
+        soup = BeautifulSoup(result, "html.parser")
+        figcaption = soup.find("figcaption")
+        assert figcaption is not None
+        assert figcaption.string == "VLM-provided caption"
+
+    def test_existing_figure_preserved(self):
+        """New OCR format: <figure> already wraps <img>. Don't double-wrap."""
+        html = '<figure><img alt="Photo"><figcaption>Existing caption</figcaption></figure>'
+        crops = [_crop("img.jpg")]
+        result = _attach_images(html, crops, "images")
+        soup = BeautifulSoup(result, "html.parser")
+        figures = soup.find_all("figure")
+        assert len(figures) == 1
+        figcaption = soup.find("figcaption")
+        assert figcaption is not None
+        assert "Existing caption" in figcaption.get_text()
+
+    def test_existing_figure_gets_crop_caption(self):
+        """<figure> without <figcaption> gets caption from crop pipeline."""
+        html = '<figure><img alt="Photo"></figure>'
+        crops = [_crop("img.jpg", caption_text="From crop pipeline")]
+        result = _attach_images(html, crops, "images")
+        soup = BeautifulSoup(result, "html.parser")
+        figcaption = soup.find("figcaption")
+        assert figcaption is not None
+        assert figcaption.string == "From crop pipeline"
 
 
 # ---------------------------------------------------------------------------

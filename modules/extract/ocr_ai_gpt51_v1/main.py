@@ -48,6 +48,7 @@ def _is_anthropic_model(model: str) -> bool:
 ALLOWED_TAGS = {
     "h1", "h2", "h3", "p", "strong", "em", "ol", "ul", "li",
     "table", "thead", "tbody", "tr", "th", "td", "caption",
+    "figure", "figcaption",
     "img", "dl", "dt", "dd", "a", "br",
 }
 
@@ -65,7 +66,7 @@ Allowed tags (only):
 - Tables: <table>, <thead>, <tbody>, <tr>, <th>, <td>, <caption>
 - Navigation: <a href="#123"> (use for explicit navigation choices like 'turn to 123')
 - Running head / page number: <p class="running-head">, <p class="page-number">
-- Images: <img alt="..." data-count="N"> (placeholder only, no src; N = number of distinct illustrations if multiple on page, default 1)
+- Figures: <figure>, <figcaption>, <img alt="..." data-count="N"> (placeholder only, no src)
 - Metadata: <meta name="ocr-metadata" data-ocr-quality="0.0-1.0" data-ocr-integrity="0.0-1.0" data-continuation-risk="0.0-1.0">
 
 Rules:
@@ -77,7 +78,9 @@ Rules:
 - Use <h1> only for true page titles/headings.
 - Use <dl> with <dt>/<dd> for inline label/value blocks (e.g., creature name + SKILL/STAMINA).
 - Do not invent <section>, <div>, or <span>.
-- Use <img alt="..."> when an illustration appears. Provide a short, factual description in alt. If there are multiple distinct illustrations on the page, add data-count="N" where N is the count (e.g., <img alt="..." data-count="2"> for 2 images). Omit data-count for single images.
+- When an illustration appears, wrap it in <figure> with <img alt="..."> and <figcaption> if a caption is visible. Place the <figure> at the semantically correct position in the reading flow (near the text it relates to). Example:
+  <figure><img alt="Portrait of John Smith"><figcaption>John Smith, circa 1920</figcaption></figure>
+  If there are multiple distinct illustrations on the page, use separate <figure> elements or add data-count="N" to the <img> (e.g., data-count="2" for 2 images grouped together). Omit data-count for single images. If no caption is visible, omit <figcaption>.
 - Tables must be represented as a single <table> with headers/rows (no splitting).
 - If uncertain, default to <p> with plain text.
 

@@ -1,8 +1,11 @@
 # Story: Agentic Pipeline Coordinator
 
-**Status**: To Do  
-**Created**: 2025-01-27  
+**Status**: Won't Do
+**Created**: 2025-01-27
+**Closed**: 2026-03-12
 **Priority**: Medium
+
+**Won't Do Reason**: The project's purpose has evolved to be the intake R&D lab for Dossier (see docs/ideal.md). An agentic coordinator is a product-level feature that belongs in Dossier, not in the R&D lab. Codex-forge's job is to prove converters and graduate them — not to build autonomous orchestration infrastructure.
 
 ---
 

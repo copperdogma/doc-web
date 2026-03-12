@@ -26,3 +26,15 @@ def test_sanitize_html_allows_only_whitelisted_tags():
     assert '<table>' in clean
     assert '<td>Cell</td>' in clean
     assert '<img alt="Illustration">' in clean
+
+
+def test_sanitize_html_allows_figure_and_figcaption():
+    """Story 009: <figure>/<figcaption> pass through the sanitizer."""
+    raw = '<figure><img alt="Portrait"><figcaption>John Smith, 1920</figcaption></figure>'
+    clean = sanitize_html(raw)
+    assert '<figure>' in clean
+    assert '</figure>' in clean
+    assert '<figcaption>' in clean
+    assert '</figcaption>' in clean
+    assert '<img alt="Portrait">' in clean
+    assert 'John Smith, 1920' in clean

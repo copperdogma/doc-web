@@ -11,6 +11,27 @@
 - Upgraded story and scout scaffolding with stronger decision checks, redundancy planning, and re-scout behavior
 - Tightened `.gitignore` so only the intended tracked `.cursor` files are included
 
+## [2026-03-12-05] - Layout linearization with captions and provenance (Story 009)
+
+### Added
+- Caption association: `<figure>/<figcaption>` wrapping with heuristic detection (names, dates, row labels) and OCR prompt enhancement for native `<figure>` output
+- Placement provenance: `data-placement` (ocr-inline, ocr-figure) and `data-caption-source` (ocr, heuristic, crop-pipeline) on all `<figure>` elements
+- Layout quality scorer (`benchmarks/scorers/layout_linearization_scorer.py`)
+- 18 new unit tests for caption heuristic, caption absorption, figure handling, and sanitizer
+- Stories 135 (multi-image crop detection) and 136 (pipeline stage parallelism) created from pipeline run findings
+
+### Changed
+- OCR system prompt now instructs `<figure>/<figcaption>` with semantic placement (92% caption rate on full Onward run)
+- `build_chapter_html_v1` handles both old (bare `<img>`) and new (`<figure>`) OCR formats with dual-path `_attach_images`
+- HTML sanitizer allows `<figure>` and `<figcaption>` tags
+- Front matter pages now correctly ordered before chapters in prev/next navigation
+
+### Fixed
+- Navigation links between front matter pages and chapter 1 were broken (page-009 had no "next", chapter-001 had no "prev")
+
+### Declined
+- Stories 011, 038, 066, 111 marked Won't Do — product-level or FF-specific work that doesn't align with Ideal
+
 ## [2026-03-12-03] - Close Story 026 (Onward to the Unknown)
 
 ### Changed

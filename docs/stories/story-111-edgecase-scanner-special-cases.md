@@ -1,6 +1,9 @@
 # Story: Edge-Case Scanner — Special-Case Detection Patterns
 
-**Status**: To Do
+**Status**: Won't Do
+**Closed**: 2026-03-12
+
+**Won't Do Reason**: FF-specific enrichment patterns. The project's mission has evolved to be the intake R&D lab for Dossier (see docs/ideal.md). Building more FF-specific detection machinery moves away from the Ideal's "graduate, don't accumulate" principle. FF work is functionally complete.
 
 ---
 

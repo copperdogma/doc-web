@@ -1,8 +1,11 @@
 # Story: FF Pipeline Accel + Accuracy Guardrails
 
-**Status**: To Do  
-**Created**: 2025-12-04  
+**Status**: Won't Do
+**Created**: 2025-12-04
+**Closed**: 2026-03-12
 **Depends On**: story-035 (FF Pipeline Optimization must complete quality targets first)
+
+**Won't Do Reason**: FF-specific optimization that entrenches work the Ideal says should graduate. Model costs are dropping naturally (Compromise C6), making cost/speed optimizations here premature — the limitation is shrinking on its own. The project's mission is intake R&D for Dossier, not maintaining FF-specific pipelines.
 
 ## Goal
 Speed up the **GPT‑5.1 HTML‑first** Fighting Fantasy pipeline with profiling and cost guardrails (not OCR ensemble/clean_llm). Maintain or improve section recall, text integrity, and choice completeness.
