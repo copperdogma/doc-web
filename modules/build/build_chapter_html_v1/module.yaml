@@ -3,7 +3,7 @@ stage: build
 entrypoint: modules/build/build_chapter_html_v1/main.py
 input_schema: null
 output_schema: null
-description: "Build per-chapter HTML files from pages + TOC-derived portion hypotheses."
+description: "Build per-chapter HTML5 documents from pages + TOC-derived portion hypotheses. Includes embedded CSS, semantic structure (<figure>/<figcaption>), chapter navigation, responsive styling, and rich image alt text."
 params:
   - name: output_dir
     type: str
@@ -14,4 +14,10 @@ params:
   - name: images_subdir
     type: str
     default: images
-notes: "Removes running heads and page numbers from final HTML; preserves printed_page_number in JSON."
+  - name: book_title
+    type: str
+    default: ""
+  - name: book_author
+    type: str
+    default: ""
+notes: "Produces self-contained HTML5 documents. Images wrapped in <figure> with <figcaption> from VLM caption text. Alt text uses VLM image_description."

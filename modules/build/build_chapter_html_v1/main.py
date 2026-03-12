@@ -1,12 +1,14 @@
 #!/usr/bin/env python3
 """
 Build chapter HTML files from pages and TOC-derived portions.
-Removes running heads and page numbers from final HTML output.
+
+Produces proper HTML5 documents with embedded CSS, semantic structure
+(<figure>/<figcaption>), chapter navigation, and responsive styling.
 """
 import argparse
-import json
-import os
+import sys
 from datetime import datetime
+from html import escape as html_escape
 from pathlib import Path
 from typing import Any, Dict, List, Optional
 
@@ -27,6 +29,191 @@ def _resolve_run_dir(out_path: Path) -> Path:
     return cur
 
 
+# ---------------------------------------------------------------------------
+# CSS
+# ---------------------------------------------------------------------------
+
+_CSS = """
+/* Reset */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+/* Typography */
+:root {
+  --font-body: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --font-serif: Georgia, "Times New Roman", serif;
+  --max-width: 52rem;
+  --color-bg: #fff;
+  --color-text: #222;
+  --color-muted: #666;
+  --color-border: #ddd;
+  --color-link: #1a5276;
+  --color-nav-bg: #f8f8f8;
+}
+
+html { font-size: 100%; }
+body {
+  font-family: var(--font-serif);
+  color: var(--color-text);
+  background: var(--color-bg);
+  line-height: 1.7;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 1.5rem 1rem;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-body);
+  line-height: 1.3;
+  margin-top: 1.5em;
+  margin-bottom: 0.5em;
+}
+h1 { font-size: 1.8rem; }
+h2 { font-size: 1.4rem; }
+h3 { font-size: 1.2rem; }
+
+p { margin-bottom: 0.8em; }
+a { color: var(--color-link); }
+
+/* Navigation */
+nav.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.6rem 0;
+  border-bottom: 1px solid var(--color-border);
+  margin-bottom: 1.5rem;
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+}
+nav.chapter-nav.bottom {
+  border-bottom: none;
+  border-top: 1px solid var(--color-border);
+  margin-top: 2rem;
+  margin-bottom: 0;
+}
+nav.chapter-nav a { text-decoration: none; }
+nav.chapter-nav .nav-placeholder { min-width: 4rem; }
+
+/* Tables */
+table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 1em 0;
+  font-size: 0.95rem;
+  overflow-x: auto;
+  display: block;
+}
+th, td {
+  border: 1px solid var(--color-border);
+  padding: 0.4rem 0.6rem;
+  text-align: left;
+  vertical-align: top;
+}
+th {
+  background: var(--color-nav-bg);
+  font-weight: 600;
+  font-family: var(--font-body);
+}
+tr:nth-child(even) td { background: #fafafa; }
+
+/* Images / Figures */
+figure {
+  margin: 1.5em 0;
+  text-align: center;
+}
+figure img {
+  max-width: 100%;
+  height: auto;
+  display: inline-block;
+}
+figcaption {
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  color: var(--color-muted);
+  margin-top: 0.4em;
+  font-style: italic;
+}
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Index page */
+.book-header { margin-bottom: 2rem; }
+.book-header h1 { margin-top: 0; }
+.book-header .author { color: var(--color-muted); font-size: 1.1rem; }
+.toc-list { list-style: none; padding: 0; }
+.toc-list li {
+  padding: 0.4rem 0;
+  border-bottom: 1px solid var(--color-border);
+}
+.toc-list li:last-child { border-bottom: none; }
+.toc-list a { text-decoration: none; font-family: var(--font-body); }
+.toc-list .page-range {
+  color: var(--color-muted);
+  font-size: 0.85rem;
+  margin-left: 0.5em;
+}
+
+/* Article */
+article { margin-bottom: 2rem; }
+
+/* Print */
+@media print {
+  body { max-width: none; padding: 0; }
+  nav.chapter-nav { display: none; }
+  table { display: table; }
+  figure { break-inside: avoid; }
+}
+""".strip()
+
+
+# ---------------------------------------------------------------------------
+# HTML5 document wrapper
+# ---------------------------------------------------------------------------
+
+def _html5_wrap(body_html: str, title: str, nav_html_top: str = "",
+                nav_html_bottom: str = "") -> str:
+    """Wrap body content in a proper HTML5 document."""
+    title_esc = html_escape(title)
+    return f"""<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{title_esc}</title>
+<style>
+{_CSS}
+</style>
+</head>
+<body>
+{nav_html_top}
+<article>
+{body_html}
+</article>
+{nav_html_bottom}
+</body>
+</html>
+"""
+
+
+# ---------------------------------------------------------------------------
+# Navigation
+# ---------------------------------------------------------------------------
+
+def _build_nav(prev_file: Optional[str], prev_title: Optional[str],
+               next_file: Optional[str], next_title: Optional[str],
+               is_bottom: bool = False) -> str:
+    cls = 'chapter-nav bottom' if is_bottom else 'chapter-nav'
+    prev_link = f'<a href="{prev_file}">&larr; {html_escape(prev_title or "Prev")}</a>' if prev_file else '<span class="nav-placeholder"></span>'
+    next_link = f'<a href="{next_file}">{html_escape(next_title or "Next")} &rarr;</a>' if next_file else '<span class="nav-placeholder"></span>'
+    return f'<nav class="{cls}">{prev_link}<a href="index.html">Index</a>{next_link}</nav>'
+
+
+# ---------------------------------------------------------------------------
+# Post-processing helpers
+# ---------------------------------------------------------------------------
+
 def _strip_headers_and_numbers(html: str) -> str:
     if not html:
         return ""
@@ -35,9 +222,34 @@ def _strip_headers_and_numbers(html: str) -> str:
         tag.decompose()
     for tag in soup.find_all(class_="running-head"):
         tag.decompose()
-    # Return inner HTML without wrapping <html>/<body>
     return soup.decode_contents()
 
+
+def _add_table_scope(html: str) -> str:
+    """Add scope attributes to <th> elements for accessibility."""
+    if "<th" not in html:
+        return html
+    soup = BeautifulSoup(html, "html.parser")
+    for table in soup.find_all("table"):
+        rows = table.find_all("tr")
+        if not rows:
+            continue
+        # First row with <th> gets scope="col"
+        first_row = rows[0]
+        for th in first_row.find_all("th"):
+            if not th.get("scope"):
+                th["scope"] = "col"
+        # Remaining rows: first <th> in each row gets scope="row"
+        for row in rows[1:]:
+            ths = row.find_all("th")
+            if ths and not ths[0].get("scope"):
+                ths[0]["scope"] = "row"
+    return soup.decode_contents()
+
+
+# ---------------------------------------------------------------------------
+# Image attachment (T3, T4, T5)
+# ---------------------------------------------------------------------------
 
 def _page_sort_key(row: Dict[str, Any]) -> tuple:
     pn = row.get("printed_page_number")
@@ -66,24 +278,52 @@ def _group_manifest_by_page(manifest_path: str) -> Dict[int, List[Dict[str, Any]
     return grouped
 
 
-def _attach_img_src(html: str, crops: List[Dict[str, Any]], rel_src: str) -> str:
+def _attach_images(html: str, crops: List[Dict[str, Any]], rel_src: str) -> str:
+    """Attach cropped images to <img> placeholders with <figure>/<figcaption> wrapping.
+
+    Matching: sequential by position (crops sorted by y-position, img tags in document order).
+    Handles count mismatches gracefully — matches what it can, logs warnings.
+    """
     if not html or not crops:
         return html
     soup = BeautifulSoup(html, "html.parser")
     img_tags = soup.find_all("img")
+
+    n_tags = len(img_tags)
+    n_crops = len(crops)
+    if n_tags != n_crops:
+        print(f"  [build] Warning: {n_tags} <img> tags vs {n_crops} crops on page — matching by position",
+              file=sys.stderr)
+
     for idx, tag in enumerate(img_tags):
-        if idx >= len(crops):
+        if idx >= n_crops:
             break
         crop = crops[idx]
         filename = crop.get("filename")
         if not filename:
             continue
+
+        # T4: Rich alt text — prefer VLM image_description over OCR alt
+        alt = crop.get("image_description") or crop.get("alt") or ""
         tag["src"] = f"{rel_src}/{filename}"
+        tag["alt"] = alt
         tag["data-crop-filename"] = filename
-        if not tag.get("alt"):
-            tag["alt"] = crop.get("alt") or ""
+
+        # T5: Wrap in <figure>, add <figcaption> if caption text exists
+        figure = soup.new_tag("figure")
+        tag.wrap(figure)
+        caption_text = crop.get("caption_text")
+        if caption_text:
+            figcaption = soup.new_tag("figcaption")
+            figcaption.string = caption_text
+            figure.append(figcaption)
+
     return soup.decode_contents()
 
+
+# ---------------------------------------------------------------------------
+# Main
+# ---------------------------------------------------------------------------
 
 def main() -> None:
     parser = argparse.ArgumentParser(description="Build per-chapter HTML files from pages + portions.")
@@ -96,6 +336,10 @@ def main() -> None:
                         help="Optional illustration_manifest.jsonl to attach img src tags")
     parser.add_argument("--images-subdir", dest="images_subdir", default="images",
                         help="Subdir under output/html for cropped images (default: images)")
+    parser.add_argument("--book-title", dest="book_title", default="",
+                        help="Book title for index page and HTML <title>")
+    parser.add_argument("--book-author", dest="book_author", default="",
+                        help="Book author for index page")
     parser.add_argument("--run-id", dest="run_id", default=None, help="Run ID for progress logging")
     parser.add_argument("--state-file", dest="state_file", default=None, help="Pipeline state JSON path")
     parser.add_argument("--progress-file", dest="progress_file", default=None, help="Pipeline progress JSONL path")
@@ -108,12 +352,16 @@ def main() -> None:
     if not portions:
         raise SystemExit(f"Input portions empty: {args.portions}")
 
+    book_title = args.book_title or "Book"
+    book_author = args.book_author or ""
+
     out_path = Path(args.out)
     run_dir = _resolve_run_dir(out_path)
     html_dir = Path(args.output_dir) if args.output_dir else (run_dir / "output" / "html")
     ensure_dir(str(html_dir))
     images_dir = html_dir / args.images_subdir
 
+    # Load illustration manifest and copy image files
     crops_by_page: Dict[int, List[Dict[str, Any]]] = {}
     if args.illustration_manifest:
         crops_by_page = _group_manifest_by_page(args.illustration_manifest)
@@ -139,6 +387,9 @@ def main() -> None:
     covered_pages = set()
     chapters_by_start = {}
 
+    # ── Build chapters ──────────────────────────────────────────────────
+    chapter_files: List[Dict[str, Any]] = []  # For navigation pass
+
     for idx, portion in enumerate(portions, start=1):
         page_start = portion.get("page_start")
         page_end = portion.get("page_end") or page_start
@@ -162,31 +413,27 @@ def main() -> None:
             page_num = page.get("page_number") or page.get("page")
             crops = crops_by_page.get(page_num, []) if isinstance(page_num, int) else []
             if crops:
-                html = _attach_img_src(html, crops, args.images_subdir.rstrip("/"))
-            combined_html.append(_strip_headers_and_numbers(html))
+                html = _attach_images(html, crops, args.images_subdir.rstrip("/"))
+            html = _strip_headers_and_numbers(html)
+            html = _add_table_scope(html)
+            combined_html.append(html)
         body_html = "\n".join([h for h in combined_html if h])
 
         filename = f"chapter-{idx:03d}.html"
         toc_entries.append({"title": title, "file": filename, "page_start": page_start, "page_end": page_end})
         chapters_by_start[page_start] = {"title": title, "file": filename, "page_start": page_start, "page_end": page_end}
-        chapter_path = html_dir / filename
-        with chapter_path.open("w", encoding="utf-8") as f:
-            f.write('<p><a href="index.html">Index</a></p>\n')
-            f.write(body_html)
 
-        manifest_rows.append({
-            "schema_version": "chapter_html_manifest_v1",
-            "module_id": "build_chapter_html_v1",
-            "run_id": args.run_id,
-            "created_at": _utc(),
-            "chapter_index": idx,
+        chapter_files.append({
+            "filename": filename,
             "title": title,
+            "body_html": body_html,
             "page_start": page_start,
             "page_end": page_end,
-            "file": str(chapter_path),
             "kind": "chapter",
+            "chapter_index": idx,
         })
 
+    # ── Build fallback pages (uncovered by chapters) ────────────────────
     fallback_entries = []
     fallback_count = 0
     for page in pages_sorted:
@@ -198,8 +445,7 @@ def main() -> None:
         fallback_count += 1
         filename = f"page-{fallback_count:03d}.html"
         if printed_text:
-            label = printed_text
-            title = f"Page {label}"
+            title = f"Page {printed_text}"
         elif isinstance(printed_num, int):
             title = f"Page {printed_num}"
         elif page_num is not None:
@@ -210,12 +456,10 @@ def main() -> None:
         page_num = page.get("page_number") or page.get("page")
         crops = crops_by_page.get(page_num, []) if isinstance(page_num, int) else []
         if crops:
-            html = _attach_img_src(html, crops, args.images_subdir.rstrip("/"))
+            html = _attach_images(html, crops, args.images_subdir.rstrip("/"))
         body_html = _strip_headers_and_numbers(html)
-        page_path = html_dir / filename
-        with page_path.open("w", encoding="utf-8") as f:
-            f.write('<p><a href="index.html">Index</a></p>\n')
-            f.write(body_html)
+        body_html = _add_table_scope(body_html)
+
         fallback_entries.append({
             "title": title,
             "file": filename,
@@ -223,20 +467,46 @@ def main() -> None:
             "printed_page_number": printed_num,
             "printed_page_number_text": printed_text,
         })
+
+        chapter_files.append({
+            "filename": filename,
+            "title": title,
+            "body_html": body_html,
+            "page_start": printed_num if isinstance(printed_num, int) else None,
+            "page_end": printed_num if isinstance(printed_num, int) else None,
+            "kind": "page",
+            "chapter_index": None,
+        })
+
+    # ── Write all files with navigation ─────────────────────────────────
+    for i, entry in enumerate(chapter_files):
+        prev_file = chapter_files[i - 1]["filename"] if i > 0 else None
+        prev_title = chapter_files[i - 1]["title"] if i > 0 else None
+        next_file = chapter_files[i + 1]["filename"] if i < len(chapter_files) - 1 else None
+        next_title = chapter_files[i + 1]["title"] if i < len(chapter_files) - 1 else None
+
+        nav_top = _build_nav(prev_file, prev_title, next_file, next_title)
+        nav_bottom = _build_nav(prev_file, prev_title, next_file, next_title, is_bottom=True)
+        page_title = f"{entry['title']} — {book_title}" if book_title else entry["title"]
+
+        full_html = _html5_wrap(entry["body_html"], page_title, nav_top, nav_bottom)
+        file_path = html_dir / entry["filename"]
+        file_path.write_text(full_html, encoding="utf-8")
+
         manifest_rows.append({
             "schema_version": "chapter_html_manifest_v1",
             "module_id": "build_chapter_html_v1",
             "run_id": args.run_id,
             "created_at": _utc(),
-            "chapter_index": None,
-            "title": title,
-            "page_start": printed_num if isinstance(printed_num, int) else None,
-            "page_end": printed_num if isinstance(printed_num, int) else None,
-            "file": str(page_path),
-            "kind": "page",
+            "chapter_index": entry["chapter_index"],
+            "title": entry["title"],
+            "page_start": entry["page_start"],
+            "page_end": entry["page_end"],
+            "file": str(file_path),
+            "kind": entry["kind"],
         })
 
-    # Build index in physical order: insert chapters at their start page; include uncovered pages inline.
+    # ── Build index page ────────────────────────────────────────────────
     index_entries = []
     emitted_chapters = set()
     fallback_by_page = {}
@@ -250,27 +520,33 @@ def main() -> None:
         page_num = page.get("page_number") or page.get("page")
         if isinstance(printed_num, int) and printed_num in chapters_by_start and printed_num not in emitted_chapters:
             entry = chapters_by_start[printed_num]
-            label = f"{entry['title']} (p. {entry['page_start']})"
-            index_entries.append({"label": label, "file": entry["file"]})
+            label = entry["title"]
+            page_range = f"p. {entry['page_start']}" if entry["page_start"] == entry["page_end"] else f"p. {entry['page_start']}&ndash;{entry['page_end']}"
+            index_entries.append({"label": label, "file": entry["file"], "page_range": page_range})
             emitted_chapters.add(printed_num)
-        # Add fallback page if not covered by any chapter range.
         if not (isinstance(printed_num, int) and printed_num in covered_pages):
             fe = fallback_by_page.get(page_num)
             if fe:
-                label = fe["title"]
-                filename = fe["file"]
-            else:
-                label = "Page"
-                filename = None
-            if filename:
-                index_entries.append({"label": label, "file": filename})
+                index_entries.append({"label": fe["title"], "file": fe["file"], "page_range": ""})
 
+    # Build index body
+    author_line = f'<p class="author">{html_escape(book_author)}</p>' if book_author else ""
+    toc_items = []
+    for entry in index_entries:
+        range_span = f' <span class="page-range">({entry["page_range"]})</span>' if entry.get("page_range") else ""
+        toc_items.append(f'  <li><a href="{entry["file"]}">{html_escape(entry["label"])}</a>{range_span}</li>')
+    index_body = f"""<div class="book-header">
+<h1>{html_escape(book_title)}</h1>
+{author_line}
+</div>
+<h2>Contents</h2>
+<ul class="toc-list">
+{chr(10).join(toc_items)}
+</ul>
+"""
+    index_html = _html5_wrap(index_body, book_title or "Index")
     index_path = html_dir / "index.html"
-    with index_path.open("w", encoding="utf-8") as f:
-        f.write("<h1>Index</h1>\n<ul>\n")
-        for entry in index_entries:
-            f.write(f'  <li><a href="{entry["file"]}">{entry["label"]}</a></li>\n')
-        f.write("</ul>\n")
+    index_path.write_text(index_html, encoding="utf-8")
 
     save_jsonl(args.out, manifest_rows)
     logger = ProgressLogger(state_path=args.state_file, progress_path=args.progress_file, run_id=args.run_id)

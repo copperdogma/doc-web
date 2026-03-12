@@ -72,8 +72,13 @@ stages:
   - id: build_chapters
     stage: build
     module: build_chapter_html_v1
-    needs: [extract_page_numbers, portionize_toc]
+    needs: [extract_page_numbers, portionize_toc, crop_illustrations]
     inputs:
       pages: extract_page_numbers
       portions: portionize_toc
+      illustration_manifest: crop_illustrations
     out: chapters_manifest.jsonl
+    params:
+      images_subdir: images
+      book_title: ""
+      book_author: ""
