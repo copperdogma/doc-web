@@ -4,13 +4,19 @@ description: Evaluate the story backlog and recommend what to work on next
 user-invocable: true
 ---
 
-# /triage-stories
+# /triage-stories [story-number]
+
+> Decision check: If this task affects backlog policy, workflow, or cross-cutting project behavior, read relevant runbooks, scout docs, or notes before choosing an approach. If none apply, say so explicitly.
 
 Evaluate the story backlog and recommend the best next stories to work on.
 
+## Arguments
+
+- `[story-number]` — optional. If provided, assess that specific story's readiness instead of doing a full backlog scan.
+
 ## Steps
 
-1. **Read project state** — Load `docs/stories.md` (the full story index). Identify all stories by status:
+1. **Read project state** — Load `docs/stories.md`. Identify all stories by status:
    - **To Do / Draft** — scoped but may need detailed ACs and tasks before building
    - **Pending** — fully detailed, ready to build
    - **In Progress** — currently being worked on
@@ -18,57 +24,44 @@ Evaluate the story backlog and recommend the best next stories to work on.
    - **Won't Do** — decided against
    - **Blocked** — waiting on dependency or decision
 
-   Both **Draft/To Do** and **Pending** stories with all dependencies met are candidates
-   for recommendation. Do not treat incomplete scoping as a disqualifier — priority and
-   Ideal alignment matter more. `/build-story` will flesh out ACs and tasks before
-   touching code regardless of starting status.
+   Both **Draft/To Do** and **Pending** stories with all dependencies met are candidates for recommendation.
 
-2. **Read the Ideal** — Load `docs/ideal.md`. Identify the concrete requirements and
-   vision-level preferences. These are the scoring rubric — every story is evaluated
-   against them.
+2. **Read the Ideal** — Load `docs/ideal.md`. This is the scoring rubric.
 
-3. **Read candidate stories** — For every candidate story, read the actual story file
-   to understand its goal, acceptance criteria, dependencies, and scope. Don't just go
-   by titles.
+3. **Handle focused mode if requested** — If `[story-number]` was provided:
+   - Read that story file
+   - Assess whether it has clear acceptance criteria, tasks, workflow gates, and satisfied dependencies
+   - Report whether it is ready for `/build-story`, needs promotion, or needs more scoping
+   - Stop after the readiness assessment
 
-4. **Ideal alignment check (mandatory)** — For each candidate story, answer:
-   - **Does it close an Ideal gap?** Compare current pipeline capabilities against
-     Ideal requirements. Stories that close a gap rank highest.
-   - **Does it move AWAY from the Ideal?** Stories that reduce completeness, add
-     complexity the Ideal wants eliminated, or optimize a compromise rather than
-     closing a gap should be flagged for trashing. A story that entrenches a
-     compromise (e.g., "extract less to save money" when the Ideal says "fidelity
-     to source") is moving the wrong direction regardless of its priority label.
-   - **Does it optimize a limitation that's shrinking on its own?** Model costs
-     drop, context windows grow, capabilities improve. If a story builds machinery
-     to work around a limitation that may resolve itself, flag it as premature.
-   - **Is it building for stages that don't exist yet?** Optimizing downstream
-     processing that hasn't been built is speculative engineering. Flag as premature.
+4. **Read candidate stories** — For every candidate story, read the actual story file to understand its goal, acceptance criteria, dependencies, and scope. Do not rank by title alone.
 
-5. **Check spec compromises** — Read `docs/spec.md`. For each active compromise, check
-   if any candidate story's value proposition depends on the compromise persisting. If
-   the compromise's detection eval might now pass (new models, recent improvements),
-   recommend re-running the eval before building the story.
+5. **Ideal alignment check** — For each candidate, answer:
+   - Does it close an Ideal gap?
+   - Does it move away from the Ideal?
+   - Does it optimize a limitation that may be shrinking on its own?
+   - Is it building for stages or infrastructure that do not yet exist?
 
-6. **Score and rank** — Evaluate each surviving candidate on:
-   - **Ideal gap severity**: How far is the current pipeline from the Ideal on this dimension?
-   - **Dependency readiness**: Are all upstream stories Done?
-   - **Blocking power**: How many other stories depend on this one?
-   - **Phase coherence**: Does it continue the current phase or require a context switch?
-   - **Momentum**: Does it build on recently completed work?
-   - **Complexity vs. payoff**: Is the effort proportional to the value?
-   - **Measure-first candidates**: Stories addressing problems that may already be solved
-     by recent work should recommend re-measurement before building.
+6. **Check spec compromises** — Read `docs/spec.md`. If a candidate story depends on a compromise persisting, consider whether the compromise's detection eval should be re-run before building the story.
 
-7. **Present recommendations** — Ranked top 3-5 with rationale and caveats.
+7. **Score and rank** — Evaluate each surviving candidate on:
+   - Ideal gap severity
+   - Dependency readiness
+   - Blocking power
+   - Phase coherence
+   - Momentum
+   - Complexity versus payoff
+   - Whether re-measurement should happen before implementation
 
-8. **Flag concerns** — Stale stories, missing dependencies, bottlenecked chains.
-   Explicitly recommend trashing stories that move away from the Ideal.
+8. **Present recommendations** — Ranked top 3-5 with rationale and caveats.
 
-9. **User decides** — Wait for the user to pick. Do NOT start building.
+9. **Flag concerns** — Surface stale stories, missing dependencies, bottlenecked chains, and stories that probably should be discarded.
+
+10. **User decides** — Wait for the user to pick. Do not start building.
 
 ## Guardrails
 
 - This is a read-only, advisory skill — do not modify any files
 - Always read the actual story files, not just the index titles
 - If the backlog is empty or everything is blocked, say so clearly
+- If a specific story ID was provided, answer that readiness question directly instead of forcing a full backlog scan

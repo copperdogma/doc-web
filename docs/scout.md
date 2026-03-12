@@ -8,3 +8,4 @@ Scouting log for external sources researched for ideas to adopt. See `/scout` sk
 | 002 | [cine-forge](/docs/scout/scout-002-cine-forge-patterns.md) | 2026-03-10 | Skills, docs, AGENTS.md, eval registry, lifecycle | 8 | 7 | — | Complete |
 | 003 | [storybook](/docs/scout/scout-003-storybook-patterns.md) | 2026-03-10 | Skills, AGENTS.md, Ideal-First, story discipline | 10 | 9 | — | Complete |
 | 004 | [dossier triage](/docs/scout/scout-004-dossier-triage-skills.md) | 2026-03-12 | triage-inbox, triage-stories skills | 4 | 2 | — | Complete |
+| 005 | [cine-forge](/docs/scout/scout-005-cine-forge-agent-infra-sync.md) | 2026-03-12 | Recent agent-infra delta: skills, AGENTS hardening, wrappers, runbooks | 9 | 8 | — | Complete |

@@ -3,7 +3,8 @@
 **Priority**: PRIORITY
 **Status**: Draft
 **Ideal Refs**: {ideal.md requirements}
-**Spec Refs**: {spec.md compromises}
+**Spec Refs**: {spec.md sections or compromises}
+**Decision Refs**: {runbooks, scout docs, notes, or "None found after search"}
 **Depends On**: {story IDs}
 
 ## Goal
@@ -28,6 +29,8 @@
 - **AI-only**: {Could an LLM call handle this? Cost per run?}
 - **Hybrid**: {Cheap detection + AI judgment? Where's the split?}
 - **Pure code**: {Only if strictly orchestration/plumbing with no reasoning.}
+- **Repo constraints / prior decisions**: {What existing runbooks, scout findings, notes, or patterns constrain the choice?}
+- **Existing patterns to reuse**: {Which helpers, modules, or prior stories should this extend instead of duplicating?}
 - **Eval**: {What test distinguishes the approaches? Does it exist yet?}
 
 ## Tasks
@@ -35,9 +38,13 @@
 - [ ] {Implementation task 1}
 - [ ] {Implementation task 2}
 - [ ] {Implementation task 3}
-- [ ] Run required checks:
-  - [ ] `python -m pytest tests/`
-  - [ ] `python -m ruff check modules/ tests/`
+- [ ] Check whether the chosen implementation makes any existing code, helper paths, or docs redundant; remove them or create a concrete follow-up
+- [ ] Run required checks for touched scope:
+  - [ ] Default Python checks: `make test`
+  - [ ] Default Python lint: `make lint`
+  - [ ] If pipeline behavior changed: clear stale `*.pyc`, run through `driver.py` or `make smoke`, verify artifacts in `output/runs/`, and manually inspect sample JSON/JSONL data
+  - [ ] If agent tooling changed: `make skills-check`
+- [ ] If evals or goldens changed: run `/verify-eval` and update `docs/evals/registry.yaml`
 - [ ] Search all docs and update any related to what we touched
 - [ ] Verify Central Tenets:
   - [ ] T0 — Traceability: every output traces to source page, OCR engine, confidence, processing step
@@ -47,9 +54,26 @@
   - [ ] T4 — Modular: new recipe not new code; no hardcoded book assumptions
   - [ ] T5 — Inspect Artifacts: visually verified outputs, not just checked logs
 
+## Workflow Gates
+
+- [ ] Build complete: implementation finished, required checks run, and summary shared
+- [ ] Validation complete or explicitly skipped by user
+- [ ] Story marked done via `/mark-story-done`
+
+## Architectural Fit
+
+- **Owning module / area**: {Which stage, module, script, or doc area should own this?}
+- **Data contracts / schemas**: {What schemas or artifact definitions change? If new fields cross artifact boundaries, they must be added to `schemas.py` first.}
+- **File sizes**: {Current line count of each file to be modified. Run `make check-size` when relevant. Flag any file >500 lines.}
+- **Decision context**: {Which runbooks, scout docs, notes, or decision docs were reviewed? If none apply, say why.}
+
 ## Files to Modify
 
-- {path/to/file} — {what changes}
+- {path/to/file} — {what changes} ({current line count})
+
+## Redundancy / Removal Targets
+
+- {old path, helper, abstraction, or docs likely to become redundant if this lands}
 
 ## Notes
 
@@ -57,7 +81,7 @@
 
 ## Plan
 
-{Written by build-story Phase 2 — per-task file changes, impact analysis, approval blockers}
+{Written by build-story Phase 2 — per-task file changes, impact analysis, repo-fit evidence, approval blockers}
 
 ## Work Log
 

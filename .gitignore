@@ -5,7 +5,11 @@ output/
 models/
 **/__pycache__/
 .venv/
-.cursor/
+.cursor/*
+!.cursor/skills
+!.cursor/rules/
+.cursor/rules/*
+!.cursor/rules/README.md
 .DS_Store
 .env
 

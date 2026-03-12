@@ -1,3 +1,16 @@
+## [2026-03-12-04] - Agent workflow hardening and hygiene scouting
+
+### Added
+- `/codebase-improvement-scout` skill with report templates, bootstrap script, and supporting runbook for deterministic repo-hygiene scans
+- Scout 005 expedition doc covering the cine-forge agent-infrastructure sync
+- Cursor project support files and Gemini MCP settings for explicit cross-CLI agent setup
+
+### Changed
+- Hardened story lifecycle skills to use explicit build, validate, and mark-done handoffs instead of collapsing completion into `/build-story`
+- Expanded `/check-in-diff` into a safer worktree-aware landing workflow with companion runbook guidance
+- Upgraded story and scout scaffolding with stronger decision checks, redundancy planning, and re-scout behavior
+- Tightened `.gitignore` so only the intended tracked `.cursor` files are included
+
 ## [2026-03-12-03] - Close Story 026 (Onward to the Unknown)
 
 ### Changed

@@ -6,6 +6,8 @@ user-invocable: true
 
 # /verify-eval
 
+> Decision check: If this task affects golden conventions, scoring rules, or cross-cutting evaluation policy, read relevant runbooks, scout docs, or notes before choosing an approach. If none apply, say so explicitly.
+
 Investigate every mismatch between model output and golden reference after an eval
 run. Classify each as model-wrong, golden-wrong, or ambiguous. Fix the golden when
 it's wrong, re-run the eval, and report verified scores.
@@ -95,6 +97,15 @@ If any golden-wrong findings:
 
 If no golden-wrong findings, skip to Phase 5.
 
+### Cost Discipline for Re-runs
+
+Eval runs cost real money. Minimize waste:
+
+1. **Use cached model outputs when only the scorer or golden changed.** If the prompt and provider set are unchanged, reuse cache so only judges or scorers rerun.
+2. **Drop the LLM judge during iteration when possible.** While tuning scorers or goldens, prefer deterministic assertions first and restore the expensive judge for the final verification run.
+3. **Filter to relevant providers when debugging one model.** Do not rerun a full matrix if only one provider is under investigation.
+4. **Reserve `--no-cache` for prompt changes or the final verification run.** Intermediate iterations should usually use cache.
+
 ## Phase 5: Report
 
 Write a verification summary in the story work log (or return it to the caller):
@@ -126,6 +137,8 @@ Write a verification summary in the story work log (or return it to the caller):
 - {metric}: {raw} → {verified}
 ```
 
+Update `docs/evals/registry.yaml` with the verified scores, `git_sha`, and date.
+
 ## Guardrails
 
 - Never skip a mismatch — every one must be classified
@@ -135,4 +148,5 @@ Write a verification summary in the story work log (or return it to the caller):
 - If golden fixes change >5% of test cases, flag for user review before proceeding
 - If mismatches reveal a code bug, document it and return to the calling story —
   this skill fixes goldens, not pipeline code
+- Always update `docs/evals/registry.yaml` after verified re-runs
 - Do not commit or push without explicit user request

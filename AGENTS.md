@@ -30,9 +30,13 @@ Read this file at the start of every session.
 - **ACTIVE PROJECT — NO BACKWARDS COMPAT**: Zero external users. Change things directly. No migration paths, no deprecation shims.
 - **Critical Pushback Required**: Push back when an idea is worse than what exists. Sycophantic agreement is harmful.
 - **No Implicit Commits**: NEVER commit or push unless explicitly requested.
+- **Bundled Permission Counts**: A single user request can authorize multiple sequential steps (for example: validate, mark done, and check in). Do not create artificial stopping points once approval is explicit unless a real blocker appears.
 - **Security First**: NEVER stage secrets, API keys, or credentials.
 - **Verify, Don't Assume**: Check files and dependencies exist before using them.
+- **Decision Discipline**: Before changing architecture, workflow, schemas, or cross-cutting agent behavior, search relevant prior guidance in `docs/runbooks/`, `docs/scout/`, `docs/notes/`, and any future decision-doc directories. If no prior guidance exists, say so explicitly instead of hand-waving.
 - **Eval-First Engineering**: Test the simplest AI approach first. If SOTA succeeds in one call, there's nothing to build. Never conclude "AI can't do this" from a cheap model's failure.
+- **Prompt-First Before Model Escalation**: Before escalating to a more expensive model, first strengthen the prompt. Add completeness contracts, grounding language, or explicit verification instructions, then measure again. Treat model escalation as a measured cost decision, not the default fix.
+- **Workflow Gate Discipline**: `/build-story` stops at implementation handoff, `/validate` records validation status, and only `/mark-story-done` closes a story. Do not collapse the lifecycle just because the work looks clean.
 - **The Definition of Done:** A story or task is **NOT complete** until:
     1. It runs successfully through `driver.py` in a real (or partial resume) pipeline.
     2. Produced artifacts exist in `output/runs/`.
@@ -55,6 +59,14 @@ Read this file at the start of every session.
 
 **Guidelines:** Parallelize independent work. Opus orchestrates, delegates, reviews — never blindly trusts. Use subagents for large-output tasks to protect main context. Fail fast: bad subagent output → adjust approach, don't retry same prompt.
 
+## Architecture Rules
+
+- **Run `make check-size` before finalizing multi-file implementation plans.** If a touched file is already large, call it out in the story plan instead of pretending size does not matter.
+- **Files over ~500 lines need explicit justification before they grow further.** Prefer extraction or decomposition before adding more logic.
+- **Functions or methods over ~100 lines should be extracted before adding more behavior.** Oversized control flow is a bug farm.
+- **Schema-first for new artifact fields.** Any new field that crosses an artifact boundary must be added to `schemas.py` before downstream code relies on it.
+- **Remove or track redundancy.** When new code, prompts, or docs supersede an old path, remove the old path or create a concrete follow-up. Do not silently accumulate parallel systems.
+
 ## Skills
 
 Canonical location: `.agents/skills/` — works across Claude Code, Cursor, Gemini CLI.
@@ -76,6 +88,11 @@ Canonical location: `.agents/skills/` — works across Claude Code, Cursor, Gemi
 
 **Workflow:** `/create-story` → `/build-story` → `/validate` → `/mark-story-done`
 
+**Workflow Gates:** Active stories should carry these checkboxes so handoff state is explicit:
+- `Build complete`
+- `Validation complete or explicitly skipped by user`
+- `Story marked done via /mark-story-done`
+
 **Central Tenet Verification** — Every story includes a tenet checklist (T0-T5). Must be verified before marking Done.
 
 ## Docs
@@ -87,6 +104,7 @@ Canonical location: `.agents/skills/` — works across Claude Code, Cursor, Gemi
 - `docs/stories.md` — Story index (130+ stories)
 - `docs/stories/` — Individual story files with ACs, tasks, work logs
 - `docs/scout.md` — Scout expedition index
+- `docs/reports/` — Generated hygiene and research reports
 - `docs/ai-learning-log.md` — AI self-improvement log (patterns, pitfalls, lessons)
 - `docs/format-registry.md` — Format conversion status, gaps, graduation tracking
 - `tests/fixtures/formats/_coverage-matrix.json` — Machine-readable format inventory (16 formats)

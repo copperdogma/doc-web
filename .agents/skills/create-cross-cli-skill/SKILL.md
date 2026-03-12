@@ -1,6 +1,6 @@
 ---
 name: create-cross-cli-skill
-description: Create a new project skill in canonical format and sync it for Claude, Cursor, and Gemini CLI.
+description: Create a new project skill in canonical format and sync it for Codex, Claude, Cursor, and Gemini CLI.
 user-invocable: true
 ---
 
@@ -17,14 +17,16 @@ Optional colocated resources:
 - `.agents/skills/<skill-name>/scripts/`
 - `.agents/skills/<skill-name>/templates/`
 - `.agents/skills/<skill-name>/references/`
+- `.agents/skills/<skill-name>/assets/`
 
 ## Rules
 
 1. Use frontmatter with `name`, `description`, and `user-invocable: true` (or `false` for scaffolds not yet ready).
 2. Keep instructions implementation-oriented and testable.
-3. Avoid tool-specific primary sources for skill content.
-4. After creating or changing skills, run: `scripts/sync-agent-skills.sh`
-5. Validate with: `scripts/sync-agent-skills.sh --check`
+3. If the skill affects architecture, workflow, schemas, or cross-cutting agent behavior, include a short decision check telling the agent to consult relevant docs in `docs/runbooks/`, `docs/scout/`, `docs/notes/`, and any future decision-doc directories. If none apply, the skill should say to state that explicitly.
+4. Avoid tool-specific primary sources for skill content.
+5. After creating or changing skills, run: `scripts/sync-agent-skills.sh`
+6. Validate with: `scripts/sync-agent-skills.sh --check`
 
 ## Validation Checklist
 

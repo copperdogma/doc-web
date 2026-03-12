@@ -1,173 +1,117 @@
 ---
 name: validate
-description: Validate work against requirements using git diff analysis and graded scoring
+description: Assess implementation quality against story requirements and local diffs
 user-invocable: true
 ---
 
-# Validate Work Against Requirements
+# /validate [story-number]
 
-Thoroughly analyze what was done and how it compares to the original instructions using git diff and file analysis.
+> Decision check: If this task affects architecture, workflow, schemas, or cross-cutting project behavior, read relevant runbooks, scout docs, or notes before choosing an approach. If none apply, say so explicitly.
 
-## Analysis Process
+Assess whether a story's implementation meets its requirements.
 
-1. **Review Changes**
-  Please review ALL local changes, including untracked files.
-  Use these commands and include them in your analysis:
+## Steps
 
-  git status --short
-  git diff --stat
-  git diff
-  git ls-files --others --exclude-standard
+1. **Collect local delta first:**
+   - `git status --short`
+   - `git diff --stat`
+   - `git diff`
+   - `git ls-files --others --exclude-standard`
 
-  For any untracked files, open them and include them in the review. Treat untracked files as part of the change set.
+2. **Read the story** — Load `docs/stories/story-{NNN}-*.md`. Note the acceptance criteria, tasks, workflow gates, and work-log evidence.
 
-2. **Examine Modified Files**
-   - Open each changed file to understand what was implemented
-   - Compare against original requirements/story/documentation
-   - Check for completeness, quality, and adherence to specifications
+3. **Check workflow gates** — If the story is missing `Workflow Gates` because it predates the newer template, add equivalent gates before continuing so the handoff state is explicit.
 
-2.5 **If there is a known story/ticket, validate against it**
-   - **When a story is "known"**: the user provided a story path/ID/title, or a single story file is clearly in-scope (e.g., `docs/stories/story-*.md`) for the work being validated.
-   - Open the story/ticket doc and extract:
-     - `## Success Criteria` / `## Acceptance Criteria` / `## Requirements` (as applicable)
-     - `## Tasks` checklist items (look for `- [ ]` / `- [x]`)
-   - In the report, include a **Story Validation** section that:
-     - Lists each story requirement/checklist item as **Met / Partial / Unmet** with evidence.
-     - Explicitly calls out **all Unmet** (and Partial) items as "Remaining Story Gaps" with concrete next steps.
-     - Suggests which story checkboxes appear ready to check off, and asks the user if they want the AI to apply those edits.
+4. **Read context** — Read `docs/ideal.md`, the story's spec refs, and any cited decision refs or relevant runbooks, scout docs, or notes.
 
-3. **Score Each Requirement**
-   - **A**: Fully implemented, high quality, exceeds expectations
-   - **B**: Implemented well, minor improvements possible
-   - **C**: Implemented but has notable issues or missing elements
-   - **D**: Partially implemented or significant problems
-   - **F**: Not implemented or completely incorrect
+5. **Run the full check suite for changed scope:**
+   - Default Python checks:
+     - `make test`
+     - `make lint`
+   - If agent tooling changed:
+     - `make skills-check`
+   - If modules, driver logic, schemas, or recipes changed:
+     - Clear relevant `*.pyc`
+     - Run `make smoke` or the narrowest real `driver.py` path that proves the change
+     - Inspect the resulting artifacts in `output/runs/`
+   - If a command is unavailable, report it explicitly
 
-## Project Validation Checklist
+6. **Review acceptance criteria** — For each criterion:
+   - **Met** — with evidence
+   - **Partial** — what remains
+   - **Unmet** — what is missing or broken
 
-### Architecture & Design
-- [ ] Clear boundaries and responsibilities between modules/services
-- [ ] Data contracts and interfaces documented and followed
-- [ ] Error handling strategy consistent across layers
-- [ ] Observability in place (logging/metrics/tracing) for critical paths
+7. **Review approach quality and code health:**
+   - Does the implementation follow repo patterns and prior guidance?
+   - Is there evidence this was the right approach for this repo, or does the diff look generic?
+   - Are there simpler helpers, modules, or docs that should have been reused?
+   - Did the change leave redundant code or docs behind?
+   - Were `schemas.py` changes made where new artifact fields were required?
+   - If pipeline behavior changed, is there explicit artifact-inspection evidence?
 
-### Code Quality
-- [ ] Code is readable, idiomatic, and follows project style conventions
-- [ ] Dependencies are pinned/approved and minimal
-- [ ] Memory/resource usage reasonable; no obvious leaks
-- [ ] Security practices observed (input validation, secrets handling, authz)
+8. **Eval mismatch investigation** — If the story touched an AI module, scorer, golden, or eval:
+   - Run the relevant evals
+   - Run `/verify-eval`
+   - Unclassified mismatches are a finding and the grade cannot exceed `B`
+   - Ensure `docs/evals/registry.yaml` was updated with verified scores, `git_sha`, and date
 
-### Functionality & UX
-- [ ] Core requirements implemented as specified
-- [ ] User interactions are clear, accessible, and responsive where applicable
-- [ ] Integration between components/services is verified
-- [ ] Edge/error cases handled gracefully with actionable errors
+9. **Check Ideal alignment** — Does the implementation move toward the Ideal or entrench a compromise? If it entrenches a compromise, is the compromise justified and still measured?
 
-### Performance & Reliability
-- [ ] Latency/throughput meets expectations or budgeted limits
-- [ ] Concurrency/race conditions considered; retries/backoff where needed
-- [ ] Start-up/shutdown, migrations, and rollbacks validated
+10. **Update story handoff state:**
+   - Check `Validation complete or explicitly skipped by user` when validation was actually run
+   - Leave `Story marked done via /mark-story-done` unchecked
+   - Add a work-log note summarizing the validation outcome and the recommended next step
 
-### Testing & Validation
-- [ ] Unit/integration/e2e tests cover happy path and key edge cases
-- [ ] CI workflows are green; flaky tests identified or quarantined
-- [ ] Manual validation notes captured where automation lacks coverage
-- [ ] Docs updated (README, ADRs, API docs, changelog)
+11. **Produce report** — Findings must explicitly call out:
+   - unmet acceptance criteria or failed checks
+   - missing artifact inspection for pipeline work
+   - weak or unproven approach selection
+   - redundant code or docs left behind
+   - missing eval verification or stale registry entries
+   - recommended next step (`/mark-story-done` if clean, otherwise fix issues)
+   - By default, stop after the report. If the user already explicitly approved the next step and validation is clean enough to proceed, continue to `/mark-story-done` inline instead of asking again
 
-## Grading Criteria
+```
+## Validation Report — Story {NNN}
 
-### Grade A (90-100%)
-- **Implementation**: Complete, exceeds requirements
-- **Quality**: Excellent code quality, follows best practices
-- **Testing**: Thoroughly tested, handles edge cases
-- **Documentation**: Clear, comprehensive documentation
-- **Innovation**: Shows creative problem-solving
+### Findings
+- [priority: high/medium/low] description
 
-### Grade B (80-89%)
-- **Implementation**: Complete, meets all requirements
-- **Quality**: Good code quality, minor improvements possible
-- **Testing**: Well tested, some edge cases could be better
-- **Documentation**: Good documentation, could be more detailed
-- **Innovation**: Solid implementation, some creative elements
+### Checks
+- make test: PASS/FAIL/NOT RUN
+- make lint: PASS/FAIL/NOT RUN
+- make skills-check: PASS/FAIL/NOT RUN
+- pipeline verification: PASS/FAIL/NOT RUN
+- missing or unavailable checks: [list]
 
-### Grade C (70-79%)
-- **Implementation**: Mostly complete, minor gaps
-- **Quality**: Adequate code quality, some areas need improvement
-- **Testing**: Basic testing, some issues not covered
-- **Documentation**: Basic documentation, could be clearer
-- **Innovation**: Standard implementation, limited creativity
+### Acceptance Criteria
+- [criterion]: Met/Partial/Unmet — evidence
 
-### Grade D (60-69%)
-- **Implementation**: Partially complete, significant gaps
-- **Quality**: Poor code quality, needs major improvements
-- **Testing**: Limited testing, many issues not addressed
-- **Documentation**: Minimal documentation, unclear
-- **Innovation**: Basic implementation, no creative elements
+### Approach Review
+- chosen approach appears justified: yes/no/partial
+- evidence: [repo-specific evidence or lack thereof]
 
-### Grade F (Below 60%)
-- **Implementation**: Incomplete or incorrect
-- **Quality**: Very poor code quality, major problems
-- **Testing**: No testing or completely inadequate
-- **Documentation**: No documentation or completely unclear
-- **Innovation**: No evidence of problem-solving
+### Redundancy Review
+- redundant code or docs left behind: yes/no
+- details: [list]
 
-## Detailed Analysis Template
+### Ideal Alignment
+- moves toward Ideal: yes/no/partial
+- new compromises introduced: [list, with detection-eval status]
 
-For each requirement, provide:
-
-### Requirement: [Description]
-- **Status**: [Implemented/Partially Implemented/Not Implemented]
-- **Grade**: [A/B/C/D/F]
-- **Evidence**: [Specific code/files that demonstrate implementation]
-- **Quality Assessment**: [Code quality, error handling, performance]
-- **Improvement Suggestions**: [If not A grade, specific recommendations]
-
-### Example Analysis
-
-#### Requirement: User authentication and session management
-- **Status**: Implemented
-- **Grade**: B
-- **Evidence**: `services/auth/service.ts` session issuance and renewal; `web/routes/login.ts` form handling
-- **Quality Assessment**: Follows project patterns; session expiry tested, but no CSRF protection on form POST
-- **Improvement Suggestions**:
-  - Add CSRF token validation for form submissions
-  - Add rate limiting for login endpoint
-  - Expand tests to cover password reset and simultaneous session revocation
-
-## Final Scorecard
-
-### Overall Grade: [A/B/C/D/F]
-
-### Summary
-- **Requirements Met**: X of Y requirements fully implemented
-- **If a story/ticket was validated**: include a 1–2 line summary of whether the story is **Done / Not Done**, and name the remaining gaps.
-- **Quality Score**: [High/Medium/Low] code quality
-- **Testing Coverage**: [Comprehensive/Partial/Minimal]
-- **Documentation**: [Excellent/Good/Adequate/Poor]
-
-### Critical Issues (if any)
-1. [Issue 1]: [Description and impact]
-2. [Issue 2]: [Description and impact]
-
-**Note:** If a story/ticket was validated, treat **Unmet** (and important **Partial**) story requirements as critical issues unless explicitly deferred. Critical issues should summarize "where we are", why the story is not done, and include the concrete next step(s) required to close each gap.
-
-### Recommendations for Improvement
-1. [Priority 1]: [Specific actionable improvement]
-2. [Priority 2]: [Specific actionable improvement]
-3. [Priority 3]: [Specific actionable improvement]
+### Grade: A/B/C/D/F
 
 ### Next Steps
-- End with a single numbered plan the user can approve:
-  1) Check off completed work (ask permission; apply if user says "yes")
-  2) Finish partially-met requirements (list concrete steps)
-  3) Start unmet requirements (list concrete steps)
-  4) Run tests/smoke and inspect outputs
-  5) Re-validate
+- [what needs to happen before this can be marked Done]
+```
 
-Ask: "Do you want me to proceed with these next steps?" so the user can reply "yes" to start implementation.
+## Guardrails
 
-
-## ADDITIONAL NOTES FROM USER
-(there may be none)
-
-$ARGUMENTS
+- Never hide gaps or inflate the grade
+- Always report unmet criteria clearly
+- Always include evidence for `Met` ratings
+- Never mark a story `Done` from `/validate`
+- Never give an `A` to pipeline work without explicit artifact-inspection evidence
+- Never ignore redundant code that the new implementation clearly supersedes
+- If the grade is below `B`, list concrete remediation steps
+- Prefer project-native checks over generic templates
