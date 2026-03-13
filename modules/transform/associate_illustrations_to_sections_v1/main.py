@@ -15,8 +15,6 @@ import os
 import re
 import shutil
 from datetime import datetime
-from html.parser import HTMLParser
-from pathlib import Path
 from typing import List, Dict, Any, Optional, Tuple
 
 from modules.common import ensure_dir, read_jsonl
@@ -541,7 +539,7 @@ def associate_illustrations(
         if illustrations:
             # Infer source directory from first illustration filename
             first_illus = illustrations[0]
-            source_file = first_illus.get("filename")
+            first_illus.get("filename")
 
             # Find the source images directory by looking for the manifest
             manifest_dir = os.path.dirname(illustration_manifest)

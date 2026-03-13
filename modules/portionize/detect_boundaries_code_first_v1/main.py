@@ -9,7 +9,6 @@ Elements are filtered to ONLY gameplay pages (excludes frontmatter/endmatter)
 before boundary detection. This eliminates false positives from frontmatter.
 """
 import argparse
-import json
 from collections import defaultdict
 from pathlib import Path
 from typing import Dict, List, Set, Optional, Any, Tuple
@@ -896,10 +895,9 @@ def escalate_with_vision_cache(
         elems_all = sorted(elems_all, key=lambda e: int(e.get("seq") or 0))
         if not elems_all:
             return None
-        id_to_seq_all = {e.get("id"): int(e.get("seq") or 0) for e in elems_all if e.get("id")}
-        id_to_seq_all = {e.get("id"): int(e.get("seq") or 0) for e in elems_all if e.get("id")}
-        id_to_seq_all = {e.get("id"): int(e.get("seq") or 0) for e in elems_all if e.get("id")}
-        id_to_seq_all = {e.get("id"): int(e.get("seq") or 0) for e in elems_all if e.get("id")}
+        id_to_seq = {e.get("id"): int(e.get("seq") or 0) for e in elems_all if e.get("id")}
+        {e.get("id"): int(e.get("seq") or 0) for e in elems_all if e.get("id")}
+        {e.get("id"): int(e.get("seq") or 0) for e in elems_all if e.get("id")}
 
         elems_by_side: Dict[str, List[Dict]] = {"L": [], "R": [], "": []}
         for e in elems_all:
@@ -968,7 +966,7 @@ def escalate_with_vision_cache(
     
     # Extract boundaries from escalation data
     boundaries = []
-    missing_set = set(missing_sections)
+    set(missing_sections)
     
     for page, page_data in escalation_data.items():
         for section_id_str, section_data in page_data.get("sections", {}).items():
@@ -1609,7 +1607,7 @@ def main():
             print(f'  Escalation (AI): {len(flagged_pages)} pages scanned')
             print(f'  Exhausted escalation attempts (scanned all {len(flagged_pages)} suspected pages)')
             print(f'  Suspected missing from source: {final_missing}')
-            print(f'  Note: These sections likely do not exist in the input document (missing/damaged pages)')
+            print('  Note: These sections likely do not exist in the input document (missing/damaged pages)')
         else:
             # We didn't hit the cap - this is a real failure
             logger.log(

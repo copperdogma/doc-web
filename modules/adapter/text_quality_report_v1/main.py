@@ -3,7 +3,7 @@ import json
 import os
 from collections import Counter
 from pathlib import Path
-from typing import Any, Dict, Iterable, List, Optional, Tuple
+from typing import Any, Dict, Iterable, List, Optional
 
 from modules.common.text_quality import spell_garble_metrics
 from modules.common.utils import ensure_dir, save_json, append_jsonl
@@ -136,8 +136,8 @@ def main():
             "char_confusion_mixed_ratio": metrics["char_confusion_mixed_ratio"],
             "char_confusion_examples": metrics["char_confusion_examples"],
             "char_confusion_suspicious_examples": metrics.get("char_confusion_suspicious_examples", []),
-            "char_count": sum(len(l) for l in lines),
-            "line_count": len([l for l in lines if l.strip()]),
+            "char_count": sum(len(line) for line in lines),
+            "line_count": len([line for line in lines if line.strip()]),
             "source_file": os.path.abspath(in_path),
         }
         rows.append(row)

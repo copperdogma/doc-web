@@ -2,8 +2,7 @@ import argparse
 import json
 import os
 from pathlib import Path
-from typing import List, Dict, Optional
-from collections import defaultdict
+from typing import Any, Dict, List, Optional
 
 from modules.common.openai_client import OpenAI
 from tqdm import tqdm

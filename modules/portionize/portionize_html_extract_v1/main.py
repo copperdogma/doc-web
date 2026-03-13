@@ -4,7 +4,6 @@ Extract section text from HTML blocks using section boundaries.
 Outputs enriched_portion_v1 with raw_text suitable for downstream choice extraction.
 """
 import argparse
-import json
 import os
 import re
 from typing import Any, Dict, List, Optional, Tuple

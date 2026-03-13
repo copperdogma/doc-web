@@ -1,5 +1,4 @@
 import argparse
-import json
 from typing import List, Dict
 
 from modules.common.utils import read_jsonl, save_jsonl, ProgressLogger

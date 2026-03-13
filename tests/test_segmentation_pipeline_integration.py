@@ -9,9 +9,8 @@ import json
 import os
 import tempfile
 import unittest
-from pathlib import Path
 
-from modules.common.utils import read_jsonl, save_json, append_jsonl
+from modules.common.utils import append_jsonl
 
 
 class TestSegmentationPipelineIntegration(unittest.TestCase):
@@ -33,7 +32,6 @@ class TestSegmentationPipelineIntegration(unittest.TestCase):
         from modules.portionize.coarse_segment_ff_override_v1.main import main as ff_override_main
         from modules.portionize.coarse_segment_merge_v1.main import main as merge_main
         import sys
-        import argparse
         
         # Create test elements (simplified FF book structure)
         elements_file = os.path.join(self.test_dir, "elements_core_typed.jsonl")
@@ -185,8 +183,6 @@ class TestSegmentationPipelineEdgeCases(unittest.TestCase):
     def test_ff_override_no_background(self):
         """Test FF override when BACKGROUND is not found."""
         from modules.portionize.coarse_segment_ff_override_v1.main import find_background_page
-        import tempfile
-        import os
         
         # Create elements without BACKGROUND
         elements = [
@@ -199,9 +195,6 @@ class TestSegmentationPipelineEdgeCases(unittest.TestCase):
     
     def test_merge_without_ff_override(self):
         """Test merge when FF override is not provided."""
-        import json
-        import tempfile
-        import os
         from modules.portionize.coarse_segment_merge_v1.main import merge_segments
         
         coarse_segments = {

@@ -2,12 +2,6 @@
 """
 Unit tests for turn_to_links extraction in portionize_html_extract_v1.
 """
-import sys
-from pathlib import Path
-
-project_root = Path(__file__).parent.parent
-sys.path.insert(0, str(project_root))
-
 from modules.portionize.portionize_html_extract_v1.main import _extract_turn_to_links
 
 

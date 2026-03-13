@@ -1234,13 +1234,12 @@ def _trim_box_by_layout_text(
     bottom_trim = None
     top_trim = None
     for tb in text_boxes:
-        label = None
         if isinstance(tb, dict):
             try:
                 tx0, ty0, tx1, ty1 = tb["x0"], tb["y0"], tb["x1"], tb["y1"]
             except Exception:
                 continue
-            label = tb.get("label")
+            tb.get("label")
         else:
             if len(tb) != 4:
                 continue

@@ -1,7 +1,6 @@
 import argparse
 import json
 import re
-import os
 from typing import Any, Dict, List, Optional, Tuple
 
 from modules.common.openai_client import OpenAI
@@ -78,9 +77,12 @@ If everything is correct, return {\"removals\": [], \"corrections\": [], \"addit
 
 def normalize_stat(name: str) -> Optional[str]:
     name = name.lower()
-    if "skill" in name: return "skill"
-    if "stamina" in name: return "stamina"
-    if "luck" in name: return "luck"
+    if "skill" in name:
+        return "skill"
+    if "stamina" in name:
+        return "stamina"
+    if "luck" in name:
+        return "luck"
     return None
 
 def _filter_combat_modifier_mods(text: str, mods: List[StatModification]) -> List[StatModification]:
@@ -423,11 +425,6 @@ def audit_stat_modifications_batch(audit_list: List[Dict[str, Any]], model: str,
             response_format={"type": "json_object"}
         )
         
-        usage = {
-            "model": model,
-            "prompt_tokens": response.usage.prompt_tokens,
-            "completion_tokens": response.usage.completion_tokens,
-        }
         return json.loads(response.choices[0].message.content)
     except Exception as e:
         print(f"Global stat modification audit error: {e}")

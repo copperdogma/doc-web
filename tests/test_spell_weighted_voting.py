@@ -1,4 +1,3 @@
-import pytest
 
 
 from modules.extract.extract_ocr_ensemble_v1.main import (

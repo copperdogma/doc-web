@@ -11,7 +11,7 @@ import json
 import os
 import re
 from collections import defaultdict
-from typing import Dict, List, Optional, Any, Tuple
+from typing import Dict, List, Optional, Any
 
 from modules.common.openai_client import OpenAI
 from modules.common.utils import read_jsonl, save_jsonl, ensure_dir, ProgressLogger
@@ -180,7 +180,7 @@ For game sections: Look for standalone numbers (just "1", "42", ":10", etc.) tha
 def create_batch_prompt(elements: List[Dict[str, Any]], cyoa_profile: Dict) -> str:
     """Create user prompt for a batch of elements."""
     # Compact profile - just the essentials
-    macro_sections = ", ".join(cyoa_profile["expected_macro_sections"][:-1])  # Skip "game_sections"
+    ", ".join(cyoa_profile["expected_macro_sections"][:-1])  # Skip "game_sections"
     section_range = f"{cyoa_profile['game_section_hint']['numeric_range'][0]}-{cyoa_profile['game_section_hint']['numeric_range'][1]}"
     
     # Compact JSON for elements (no indentation)
@@ -498,7 +498,7 @@ def main():
     # Backward pass (if redundancy enabled)
     backward_results = []
     if args.redundancy in ["forward_backward", "multiple_calls"]:
-        print(f"Running backward pass for redundancy...")
+        print("Running backward pass for redundancy...")
         # Reverse batches and elements within each batch
         reversed_batches = [list(reversed(batch)) for batch in reversed(batches)]
         

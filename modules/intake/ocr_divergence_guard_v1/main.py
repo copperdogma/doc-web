@@ -1,13 +1,12 @@
 import argparse
 import json
-from pathlib import Path
 
-from modules.common.utils import read_jsonl, save_json
+from modules.common.utils import save_json
 
 
 def load_page_text(path):
     page = json.load(open(path, "r", encoding="utf-8"))
-    text = "\n".join([l.get("text", "") for l in page.get("lines", [])])
+    text = "\n".join([line.get("text", "") for line in page.get("lines", [])])
     return text
 
 

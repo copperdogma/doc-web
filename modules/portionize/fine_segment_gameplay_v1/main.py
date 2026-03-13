@@ -581,7 +581,7 @@ def trace_upstream_artifacts(missing_ids: List[str], pagelines_path: Optional[st
                 if pagelines_path.endswith('.jsonl'):
                     # Direct JSONL file
                     for page_data in read_jsonl(pagelines_path):
-                        text = "\n".join([l.get("text", "") for l in page_data.get("lines", [])])
+                        text = "\n".join([line.get("text", "") for line in page_data.get("lines", [])])
                         for m in num_re.finditer(text):
                             if int(m.group(1)) == sid:
                                 trace["seen_in_pagelines"] = True
@@ -599,7 +599,7 @@ def trace_upstream_artifacts(missing_ids: List[str], pagelines_path: Optional[st
                         try:
                             with open(page_path, "r", encoding="utf-8") as f:
                                 page_data = json.load(f)
-                            text = "\n".join([l.get("text", "") for l in page_data.get("lines", [])])
+                            text = "\n".join([line.get("text", "") for line in page_data.get("lines", [])])
                             for m in num_re.finditer(text):
                                 if int(m.group(1)) == sid:
                                     trace["seen_in_pagelines"] = True

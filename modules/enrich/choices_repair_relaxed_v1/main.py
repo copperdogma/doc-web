@@ -1,6 +1,6 @@
 import argparse
 import json
-from typing import List, Dict, Optional
+from typing import List, Dict
 
 from modules.common.utils import read_jsonl, save_jsonl, ProgressLogger
 from modules.common.html_utils import html_to_text
@@ -197,8 +197,8 @@ def main():
                     }],
                 )
                 raw = resp.output_text or ""
-                usage = getattr(resp, "usage", None)
-                request_id = getattr(resp, "id", None)
+                getattr(resp, "usage", None)
+                getattr(resp, "id", None)
             else:
                 resp = client.chat.completions.create(
                     model=args.model,
@@ -211,8 +211,8 @@ def main():
                                + "\nsuspected_targets: " + json.dumps(suspected_targets)}],
                 )
                 raw = resp.choices[0].message.content
-                usage = getattr(resp, "usage", None)
-                request_id = getattr(resp, "id", None)
+                getattr(resp, "usage", None)
+                getattr(resp, "id", None)
         except Exception as exc:
             repair_errors += 1
             logger.log(

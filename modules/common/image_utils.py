@@ -7,15 +7,13 @@ Spread Detection Strategy (based on ScanTailor/book-scan best practices):
 - Split ALL pages at that position (no per-page flip-flopping)
 - Use L/R naming convention for virtual pages (e.g., 001L, 001R)
 """
+import importlib.util
+
 import numpy as np
 from PIL import Image
 from typing import List, Tuple, Optional, Dict, Any
 
-try:
-    import cv2
-    HAS_OPENCV = True
-except ImportError:
-    HAS_OPENCV = False
+HAS_OPENCV = importlib.util.find_spec("cv2") is not None
 
 
 def detect_skew_angle(image: Image.Image, delta: float = 0.5, limit: float = 2) -> float:

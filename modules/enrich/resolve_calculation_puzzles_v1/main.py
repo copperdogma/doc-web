@@ -10,7 +10,6 @@ calculation puzzles navigable in the game engine.
 """
 import argparse
 import json
-import os
 import re
 from typing import Dict, List, Any, Optional, Set
 
@@ -468,7 +467,7 @@ def resolve_puzzle_with_full_book(
 
     # If filtering was too aggressive, fall back to full path
     if len(relevant_sections) < 5:
-        print(f"    Too few matches, using full path context")
+        print("    Too few matches, using full path context")
         relevant_sections = path_sections
 
     # Extract text from relevant sections only
@@ -762,7 +761,7 @@ def main():
 
         # Phase 2: If standard approach failed, escalate to full-book mode
         if not targets:
-            print(f"  Standard approach failed, trying full-book escalation...")
+            print("  Standard approach failed, trying full-book escalation...")
             full_book_result = resolve_puzzle_with_full_book(client, section_id, section_text, gamebook, args.model)
 
             if full_book_result and full_book_result.get("targets"):

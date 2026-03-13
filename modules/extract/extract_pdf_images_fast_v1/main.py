@@ -482,7 +482,7 @@ def main() -> None:
             # Discard outliers
             typical_measurements = measurements_array[measurements_array <= outlier_threshold]
             tesseract_robust_median = float(np.median(typical_measurements))
-            tesseract_robust_mean = float(np.mean(typical_measurements))
+            float(np.mean(typical_measurements))
 
             # Apply 2.0× correction factor (Tesseract reports ~2× true x-height)
             TESSERACT_CORRECTION_FACTOR = 2.0

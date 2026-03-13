@@ -13,7 +13,6 @@ Outputs refined segment boundaries with evidence from all sources.
 import argparse
 import json
 import re
-from pathlib import Path
 from typing import Dict, List, Any, Optional, Tuple
 
 from modules.common.utils import save_json
@@ -227,12 +226,12 @@ def main():
     # Save output
     save_json(args.out, result)
     
-    print(f"✅ Merged segments:")
+    print("✅ Merged segments:")
     print(f"   Frontmatter: {result['frontmatter_pages']}")
     print(f"   Gameplay: {result['gameplay_pages']}")
     print(f"   Endmatter: {result['endmatter_pages']}")
     if result['override_applied']:
-        print(f"   ⚠️  FF override applied")
+        print("   ⚠️  FF override applied")
     if result['pattern_evidence']:
         print(f"   📊 Pattern evidence: {len(result['pattern_evidence'])} transitions found")
 

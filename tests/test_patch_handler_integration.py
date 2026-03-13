@@ -5,7 +5,6 @@ Tests patch application via driver.py's apply_before/apply_after logic.
 """
 
 import json
-import os
 import tempfile
 import unittest
 from pathlib import Path

@@ -422,11 +422,11 @@ def main():
         
         # 2. SECONDARY: Regex pattern matching on text
         candidates = extract_choice_patterns(text, min_section, max_section)
-        if use_clean_text and html_candidates:
-            anchor_targets = {c.target for c in html_candidates}
-            candidates = [
-                c for c in candidates
-                if not _looks_like_anchor_variant(c.target, anchor_targets)
+        if use_clean_text and html_candidates and candidates:
+            candidate_targets = {c.target for c in candidates}
+            html_candidates = [
+                c for c in html_candidates
+                if not _looks_like_anchor_variant(c.target, candidate_targets)
             ]
         
         # Combine all candidates
@@ -562,7 +562,7 @@ def main():
     )
     
     # Print summary
-    print(f"\n=== Choice Extraction Summary ===")
+    print("\n=== Choice Extraction Summary ===")
     print(f"Total portions: {stats['total_portions']}")
     print(f"Portions with choices: {stats['portions_with_choices']}")
     print(f"Total choices extracted: {stats['total_choices_extracted']}")
@@ -577,15 +577,15 @@ def main():
         print(f"   {sorted(list(orphans))[:20]}")
         if len(orphans) > 20:
             print(f"   ... and {len(orphans) - 20} more")
-        print(f"\n   This indicates missing choices somewhere in the book!")
+        print("\n   This indicates missing choices somewhere in the book!")
         print(f"   Orphaned sections are in {stats_path}")
     else:
-        print(f"\n✅ All sections are reachable (no orphans detected)")
+        print("\n✅ All sections are reachable (no orphans detected)")
 
     if orphans_relaxed and not orphans:
         print(f"\nℹ️ Relaxed scan still has {len(orphans_relaxed)} orphans (diagnostic only).")
     elif not orphans_relaxed and orphans:
-        print(f"\n✅ Relaxed scan references all sections (diagnostic only).")
+        print("\n✅ Relaxed scan references all sections (diagnostic only).")
     
     if stats['missing_count'] > 0:
         print(f"\nMissing sections list in: {stats_path}")

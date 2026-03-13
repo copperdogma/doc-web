@@ -1,6 +1,5 @@
 import argparse
 import hashlib
-import json
 from modules.common.utils import save_json
 
 

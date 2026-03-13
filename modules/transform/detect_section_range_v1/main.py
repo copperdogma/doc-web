@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 import argparse
 import re
-from typing import Dict, Iterable, List, Optional, Set, Tuple
+from typing import Dict, Iterable, List, Optional, Set
 
 from modules.common.utils import read_jsonl, save_json
 

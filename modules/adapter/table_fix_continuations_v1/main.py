@@ -88,7 +88,7 @@ def _fix_table(table) -> int:
         if max(idx_name, idx_spouse, idx_died) >= len(cur_cells):
             continue
 
-        prev_name = prev_cells[idx_name]
+        prev_cells[idx_name]
         prev_died = prev_cells[idx_died]
         cur_name = cur_cells[idx_name]
         cur_spouse = cur_cells[idx_spouse]

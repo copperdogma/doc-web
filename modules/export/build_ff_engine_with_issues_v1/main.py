@@ -892,11 +892,11 @@ def make_sequence(portion: Dict[str, Any], section_id: str) -> List[Dict[str, An
     portion_luck = portion.get("test_luck") or []
     if not isinstance(portion_luck, list):
         portion_luck = [portion_luck]
-    for l in portion_luck:
-        if not isinstance(l, dict):
+    for luck_event in portion_luck:
+        if not isinstance(luck_event, dict):
             continue
-        lucky_target, lucky_terminal = _normalize_target(l.get("lucky_section"))
-        unlucky_target, unlucky_terminal = _normalize_target(l.get("unlucky_section"))
+        lucky_target, lucky_terminal = _normalize_target(luck_event.get("lucky_section"))
+        unlucky_target, unlucky_terminal = _normalize_target(luck_event.get("unlucky_section"))
         event = {"kind": "test_luck"}
         lucky_ref = _outcome_ref(lucky_target, lucky_terminal)
         unlucky_ref = _outcome_ref(unlucky_target, unlucky_terminal)
@@ -1022,7 +1022,6 @@ def build_section(portion: Dict[str, Any], emit_text: bool, emit_provenance_text
 
     html_body = portion.get("raw_html", "")
     text_body = portion.get("raw_text") or html_to_text(html_body)
-    raw_body = text_body
 
     sequence = portion.get("sequence")
     if sequence is None:

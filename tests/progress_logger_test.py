@@ -20,7 +20,7 @@ class ProgressLoggerTests(unittest.TestCase):
                 f.write(json.dumps(baseline) + "\n")
 
             logger = ProgressLogger(state_path=state_path, progress_path=progress_path, run_id="t-run")
-            event = logger.log("extract", "running", current=1, total=2, message="first page",
+            logger.log("extract", "running", current=1, total=2, message="first page",
                                artifact="/tmp/out.jsonl", module_id="mod", schema_version="s_v1")
 
             with open(progress_path, "r", encoding="utf-8") as f:

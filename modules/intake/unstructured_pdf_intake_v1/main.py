@@ -62,7 +62,7 @@ def make_json_serializable(val: Any) -> Any:
             obj_dict = vars(val)
             # Recursively serialize nested objects
             return {k: make_json_serializable(v) for k, v in obj_dict.items()}
-        except:
+        except Exception:
             return str(val)
 
     # For primitives and already-serializable types, return as-is

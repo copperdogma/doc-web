@@ -1,3 +1,4 @@
+# ruff: noqa: E402
 import argparse
 import base64
 import os
@@ -35,7 +36,6 @@ from modules.common.utils import english_wordlist, append_jsonl
 from modules.common.text_quality import spell_garble_metrics
 from modules.common.image_utils import (
     sample_spread_decision, split_spread_at_gutter, deskew_image,
-    detect_spread_and_split,  # kept for backward compatibility
     reduce_noise, should_apply_noise_reduction,
     find_gutter_position,  # for per-page gutter detection
 )
@@ -149,7 +149,7 @@ def _tesseract_line_confidences_for_text(text: str, data: Dict[str, Any]) -> Dic
     return {
         "line_confidences": line_confidences,
         "page_confidence": sum(all_word_confs) / len(all_word_confs),
-        "match_rate": matched / max(1, len([l for l in ocr_lines if l.strip()])),
+        "match_rate": matched / max(1, len([line for line in ocr_lines if line.strip()])),
     }
 
 
@@ -263,7 +263,7 @@ def _tesseract_line_bboxes_for_text(text: str, data: Dict[str, Any], image_w: in
 
     return {
         "line_bboxes": line_bboxes,
-        "match_rate": matched / max(1, len([l for l in ocr_lines if l.strip()])),
+        "match_rate": matched / max(1, len([line for line in ocr_lines if line.strip()])),
     }
 
 
@@ -320,7 +320,7 @@ def _align_bboxes_to_lines(
         else:
             out.append(None)
 
-    denom = max(1, len([l for l in target_lines if (l or "").strip()]))
+    denom = max(1, len([line for line in target_lines if (line or "").strip()]))
     return {"bboxes": out, "match_rate": matched / denom}
 
 
@@ -722,8 +722,8 @@ def compute_enhanced_quality_metrics(lines: List[str], by_engine: Dict[str, Any]
     
     # Check for fragmentation (very short lines indicate missing words)
     # Count lines with < 5 characters (likely fragmented)
-    non_empty_lines = [l for l in lines if l.strip()]
-    very_short_lines = [l for l in non_empty_lines if len(l.strip()) < 5]
+    non_empty_lines = [line for line in lines if line.strip()]
+    very_short_lines = [line for line in non_empty_lines if len(line.strip()) < 5]
     fragmentation_ratio = len(very_short_lines) / max(1, len(non_empty_lines))
     
     # Also check for incomplete words (words that look like fragments)
@@ -749,7 +749,7 @@ def compute_enhanced_quality_metrics(lines: List[str], by_engine: Dict[str, Any]
     # Check for missing content indicators
     # Short pages or pages with very few lines might be missing content
     line_count = len(lines)
-    avg_line_len = sum(len(l) for l in lines) / max(1, line_count)
+    avg_line_len = sum(len(line) for line in lines) / max(1, line_count)
     
     # Missing content indicators:
     # - Very few lines (< 5 for a text page)
@@ -881,7 +881,7 @@ def detect_form_page(lines: List[str], avg_line_len: float = None) -> Dict[str, 
     if not lines:
         return {"is_form": False, "confidence": 0.0, "reasons": []}
 
-    non_empty_lines = [l.strip() for l in lines if l.strip()]
+    non_empty_lines = [line.strip() for line in lines if line.strip()]
     if not non_empty_lines:
         return {"is_form": False, "confidence": 0.0, "reasons": []}
 
@@ -890,7 +890,7 @@ def detect_form_page(lines: List[str], avg_line_len: float = None) -> Dict[str, 
 
     # Calculate average line length if not provided
     if avg_line_len is None:
-        avg_line_len = sum(len(l) for l in non_empty_lines) / len(non_empty_lines)
+        avg_line_len = sum(len(line) for line in non_empty_lines) / len(non_empty_lines)
 
     # Check 1: Very short average line length (< 8 chars suggests form)
     if avg_line_len < 8:
@@ -901,14 +901,14 @@ def detect_form_page(lines: List[str], avg_line_len: float = None) -> Dict[str, 
         reasons.append(f"short_lines (avg {avg_line_len:.1f} chars)")
 
     # Check 2: High density of "=" characters (form fields)
-    equals_count = sum(1 for l in non_empty_lines if '=' in l)
+    equals_count = sum(1 for line in non_empty_lines if '=' in line)
     equals_ratio = equals_count / len(non_empty_lines)
     if equals_ratio > 0.3:
         score += 0.3
         reasons.append(f"equals_pattern ({equals_ratio:.0%} of lines)")
 
     # Check 3: Many all-caps labels (form headers)
-    uppercase_lines = sum(1 for l in non_empty_lines if l.isupper() and len(l) < 20)
+    uppercase_lines = sum(1 for line in non_empty_lines if line.isupper() and len(line) < 20)
     uppercase_ratio = uppercase_lines / len(non_empty_lines)
     if uppercase_ratio > 0.2:
         score += 0.2
@@ -928,7 +928,7 @@ def detect_form_page(lines: List[str], avg_line_len: float = None) -> Dict[str, 
         reasons.append(f"form_keywords: {', '.join(found_keywords[:3])}")
 
     # Check 5: Many lines with just numbers or very short words
-    fragment_lines = sum(1 for l in non_empty_lines if len(l) < 5 and not l.isdigit())
+    fragment_lines = sum(1 for line in non_empty_lines if len(line) < 5 and not line.isdigit())
     fragment_ratio = fragment_lines / len(non_empty_lines)
     if fragment_ratio > 0.4:
         score += 0.2
@@ -962,7 +962,7 @@ def detect_sentence_fragmentation(text: str) -> Dict[str, Any]:
     if not text or not text.strip():
         return {"is_fragmented": False, "confidence": 0.0, "indicators": []}
 
-    lines = [l.strip() for l in text.split('\n') if l.strip()]
+    lines = [line.strip() for line in text.split('\n') if line.strip()]
     if len(lines) < 3:
         return {"is_fragmented": False, "confidence": 0.0, "indicators": []}
 
@@ -1018,7 +1018,7 @@ def detect_sentence_fragmentation(text: str) -> Dict[str, Any]:
         indicators.append(f"mid_sentence_starts: {lowercase_ratio:.0%}")
 
     # Check 3: Very few lines end with proper punctuation
-    lines_with_punct = sum(1 for l in lines if l.rstrip()[-1:] in '.!?')
+    lines_with_punct = sum(1 for line in lines if line.rstrip()[-1:] in '.!?')
     punct_ratio = lines_with_punct / len(lines)
     if punct_ratio < 0.1 and len(lines) > 5:
         score += 0.2
@@ -1209,7 +1209,7 @@ def check_column_split_quality(image, spans, apple_lines_meta=None, tesseract_co
         # STRICTER thresholds: >3% of words are fragments OR >8% of lines end with fragments OR >2 fragment pairs
         if len(words) > 0:
             fragment_ratio = len(very_short_words) / len(words)
-            non_empty_lines = [l for l in lines if l.strip()]
+            non_empty_lines = [line for line in lines if line.strip()]
             lines_ratio = lines_ending_short / max(1, len(non_empty_lines))
 
             if fragment_ratio > 0.03:  # Was 0.05, now stricter
@@ -1248,10 +1248,10 @@ def check_column_split_quality(image, spans, apple_lines_meta=None, tesseract_co
                     # If col1 doesn't end properly and col2 doesn't start properly, likely fragmented
                     if not col1_ends_punct and not col2_starts_cap:
                         # Check if there are many very short lines
-                        col1_lines = [l.strip() for l in col1_text.split('\n') if l.strip()]
-                        col2_lines = [l.strip() for l in col2_text.split('\n') if l.strip()]
-                        short_col1 = sum(1 for l in col1_lines if len(l) < 5)
-                        short_col2 = sum(1 for l in col2_lines if len(l) < 5)
+                        col1_lines = [line.strip() for line in col1_text.split('\n') if line.strip()]
+                        col2_lines = [line.strip() for line in col2_text.split('\n') if line.strip()]
+                        short_col1 = sum(1 for line in col1_lines if len(line) < 5)
+                        short_col2 = sum(1 for line in col2_lines if len(line) < 5)
 
                         # STRICTER: 25% threshold (was 30%)
                         if (len(col1_lines) > 0 and short_col1 > len(col1_lines) * 0.25) or \
@@ -1272,7 +1272,6 @@ def verify_columns_with_projection(image, spans, min_gap_frac=0.05, min_width=10
     """
     if len(spans) <= 1:
         return spans
-    import numpy as np
     gray = image.convert("L")
     arr = np.array(gray)
     mask = arr < 200  # text pixels
@@ -1316,7 +1315,6 @@ def bbox_sanity(image):
     Returns True if bbox density looks sane (not overly sparse).
     Uses simple pixel density; can trigger higher DPI if too sparse.
     """
-    import numpy as np
     gray = image.convert("L")
     arr = np.array(gray)
     mask = arr < 200
@@ -1641,7 +1639,7 @@ def repair_turn_to_phrases(lines: List[str]) -> Tuple[List[str], List[Dict[str, 
         verb = m.group("verb")
         to_tok = m.group("to")
         num = m.group("num")
-        to_norm = to_tok.lower()
+        to_tok.lower()
         needs = verb.lower() == "tum"
         # Fix digit/letter confusions for the "to" token only when it actually looks like OCR noise.
         if not needs:
@@ -1971,7 +1969,7 @@ def filter_fragment_artifacts(lines: List[str], min_fragment_len: int = 4,
         return True
 
     # Mark each line as fragment candidate or not
-    fragment_flags = [is_fragment_candidate(l) for l in lines]
+    fragment_flags = [is_fragment_candidate(line) for line in lines]
 
     # Count trailing fragments (consecutive fragment candidates at end)
     trailing_count = 0
@@ -2512,7 +2510,6 @@ def detect_column_splits(image, min_lines: int = 30, min_spread: float = 0.25):
     - Otherwise fall back to single column.
     Returns list of (x0, x1) normalized fractions.
     """
-    import numpy as np
     gray = image.convert("L")
     arr = np.array(gray)
     # detect text pixels via Otsu-ish threshold
@@ -2828,7 +2825,7 @@ def main():
             # Log per-page gutter diagnostics
             w_px = pil_img.size[0]
             center_px = int(0.5 * w_px)
-            detected_px = int(page_gutter_frac * w_px)
+            int(page_gutter_frac * w_px)
             actual_px = int(actual_gutter * w_px)
             diff_from_center_px = actual_px - center_px
 
@@ -3117,7 +3114,6 @@ def main():
                 part_lines = fused_before_post
             else:
                 col_lines = []
-                import numpy as np
                 w, h = img_obj.size
                 col_fusions = []
                 if apple_text:
@@ -3442,7 +3438,7 @@ def main():
             # - High corruption score (new)
             # - Missing content indicators (new)
             # - Low line count or short lines (original logic)
-            avg_len = sum(len(l) for l in part_lines) / max(1, len(part_lines))
+            avg_len = sum(len(line) for line in part_lines) / max(1, len(part_lines))
             
             # Calculate escalation conditions individually for debugging
             escalation_reasons = compute_escalation_reasons(

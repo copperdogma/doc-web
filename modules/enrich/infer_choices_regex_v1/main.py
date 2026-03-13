@@ -1,7 +1,6 @@
 import argparse
 import json
 import re
-from pathlib import Path
 from typing import Dict, List, Tuple
 
 from modules.common.utils import read_jsonl, save_jsonl, save_json

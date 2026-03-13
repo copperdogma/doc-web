@@ -48,14 +48,13 @@ def main():
     rows.sort(key=key_fn)
 
     # Optional macro sections input
-    macro_front = 1
     macro_main = None
     macro_end = None
     if args.macro:
         macro = json.load(open(args.macro, "r"))
         for sec in macro.get("sections", []):
             if sec.get("section_name") == "frontmatter":
-                macro_front = sec.get("page", 1)
+                sec.get("page", 1)
             elif sec.get("section_name") == "main_content":
                 macro_main = sec.get("page")
             elif sec.get("section_name") == "endmatter":

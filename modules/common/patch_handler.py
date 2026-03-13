@@ -183,10 +183,10 @@ def copy_patch_file_to_run(patch_file: str, run_dir: str) -> str:
             error_msg = "Patch file validation failed:\n" + "\n".join(f"  - {e}" for e in all_errors)
             raise ValueError(error_msg)
         
-    except ValueError as e:
+    except ValueError:
         # Re-raise validation errors
         raise
-    except Exception as e:
+    except Exception:
         # For other errors (file not found, JSON parse error), let load_patches handle it
         # but we'll still try to copy and let it fail later if needed
         pass

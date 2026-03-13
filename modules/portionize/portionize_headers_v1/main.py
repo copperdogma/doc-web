@@ -32,7 +32,7 @@ def format_window(batch: List[Dict[str, Any]]):
     content = []
     for p in batch:
         lines = clean_lines(p.get("clean_text") or p.get("raw_text") or "")
-        snippet = "\n".join([f"{i}:{l}" for i, l in enumerate(lines[:6])])
+        snippet = "\n".join([f"{i}:{line}" for i, line in enumerate(lines[:6])])
         content.append({"type": "text", "text": f"[PAGE {p['page']}]\n{snippet}"})
     return content
 

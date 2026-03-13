@@ -119,7 +119,7 @@ def main():
                 text = page_data.get("raw_text") or ""
             else:
                 text = vision_transcribe(image_path, prompt, args.model, client)
-            lines = [{"text": l, "source": "gpt4v"} for l in split_lines(text)]
+            lines = [{"text": line_text, "source": "gpt4v"} for line_text in split_lines(text)]
             page_data["lines"] = lines
             page_data["disagreement_score"] = 0.0
             page_data["needs_escalation"] = False

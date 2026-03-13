@@ -1,10 +1,9 @@
 import argparse
 import json
-import os
-from typing import Any, Dict, List, Set
+from typing import Any, Dict, Set
 
 from modules.common.utils import read_jsonl, save_json, ProgressLogger
-from schemas import ValidationReport, EnrichedPortion
+from schemas import ValidationReport
 
 def _resolve_template(template: str, value: str, op: str = "", op_value: str = "") -> str:
     base = template.replace("{state}", str(value)) if template else str(value)
@@ -39,24 +38,32 @@ def collect_referenced_sections(portion: Dict[str, Any], state_values: Dict[str,
             
     # 2. Combat
     for combat in portion.get("combat", []):
-        if combat.get("win_section"): referenced.add(str(combat["win_section"]))
-        if combat.get("loss_section"): referenced.add(str(combat["loss_section"]))
-        if combat.get("escape_section"): referenced.add(str(combat["escape_section"]))
+        if combat.get("win_section"):
+            referenced.add(str(combat["win_section"]))
+        if combat.get("loss_section"):
+            referenced.add(str(combat["loss_section"]))
+        if combat.get("escape_section"):
+            referenced.add(str(combat["escape_section"]))
         
     # 3. Stat Checks
     for check in portion.get("stat_checks", []):
-        if check.get("pass_section"): referenced.add(str(check["pass_section"]))
-        if check.get("fail_section"): referenced.add(str(check["fail_section"]))
+        if check.get("pass_section"):
+            referenced.add(str(check["pass_section"]))
+        if check.get("fail_section"):
+            referenced.add(str(check["fail_section"]))
         
     # 4. Test Luck
     for luck in portion.get("test_luck", []):
-        if luck.get("lucky_section"): referenced.add(str(luck["lucky_section"]))
-        if luck.get("unlucky_section"): referenced.add(str(luck["unlucky_section"]))
+        if luck.get("lucky_section"):
+            referenced.add(str(luck["lucky_section"]))
+        if luck.get("unlucky_section"):
+            referenced.add(str(luck["unlucky_section"]))
         
     # 5. Inventory
     inv = portion.get("inventory") or {}
     for check in inv.get("inventory_checks", []):
-        if check.get("target_section"): referenced.add(str(check["target_section"]))
+        if check.get("target_section"):
+            referenced.add(str(check["target_section"]))
 
     # 6. State checks (templated references)
     for check in portion.get("state_checks", []) or []:

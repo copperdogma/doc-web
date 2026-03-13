@@ -1,6 +1,6 @@
 import argparse
 import os
-from typing import Any, Dict, Iterable, List, Optional, Sequence, Set, Tuple
+from typing import Any, Dict, List, Optional, Sequence, Set, Tuple
 
 from modules.common.utils import ensure_dir, ProgressLogger, read_jsonl, save_jsonl
 

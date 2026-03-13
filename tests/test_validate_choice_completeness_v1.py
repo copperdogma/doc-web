@@ -2,12 +2,6 @@
 """
 Unit tests for validate_choice_completeness_v1 target coverage.
 """
-import sys
-from pathlib import Path
-
-project_root = Path(__file__).parent.parent
-sys.path.insert(0, str(project_root))
-
 from modules.validate.validate_choice_completeness_v1.main import validate_section_choices
 
 

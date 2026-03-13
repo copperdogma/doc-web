@@ -11,9 +11,7 @@ Output: pattern_regions.json
 """
 
 import argparse
-import json
 from collections import defaultdict
-from pathlib import Path
 from typing import Dict, List, Any
 
 from modules.common.utils import read_jsonl, save_json

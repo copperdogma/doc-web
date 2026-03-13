@@ -7,7 +7,6 @@ printed_page_number fields already extracted.
 """
 import argparse
 import base64
-import json
 import os
 import re
 from datetime import datetime

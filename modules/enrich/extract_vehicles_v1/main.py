@@ -326,7 +326,6 @@ def _extract_vehicle_llm(text: str, model: str, client: OpenAI) -> Tuple[Optiona
     if not client:
         return None, None
     
-    prompt = f"{SYSTEM_PROMPT}\n\nText to analyze:\n{text}"
     
     try:
         response = client.chat.completions.create(
@@ -377,7 +376,7 @@ def _extract_vehicle_abilities(special_abilities: Optional[str]) -> Tuple[List[D
     
     rules: List[Dict[str, Any]] = []
     modifiers: List[Dict[str, Any]] = []
-    text = special_abilities.lower()
+    special_abilities.lower()
     
     # 1. Escape override rules
     if ESCAPE_OVERRIDE_PATTERN.search(special_abilities):
@@ -412,7 +411,6 @@ def _extract_vehicle_abilities(special_abilities: Optional[str]) -> Tuple[List[D
     
     # 3. Stat modifications (reduce enemy SKILL/stat)
     # Try patterns in order, stop at first match to avoid duplicates
-    skill_reduced = False
     for pattern in [REDUCE_ENEMY_SKILL_PATTERN, REDUCE_ENEMY_SKILL_ALT_PATTERN, REDUCE_ENEMY_SKILL_FLEX_PATTERN]:
         match = pattern.search(special_abilities)
         if match:
@@ -443,7 +441,6 @@ def _extract_vehicle_abilities(special_abilities: Optional[str]) -> Tuple[List[D
                 # Don't add condition - applies to all non-robots
                 pass
             modifiers.append(modifier)
-            skill_reduced = True
             break  # Only match once
     
     # 4. Conditional combat bonus (e.g., "Against flying foes, COMBAT BONUS of +3")

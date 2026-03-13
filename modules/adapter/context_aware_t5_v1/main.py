@@ -1,5 +1,4 @@
 import argparse
-import json
 import logging
 from typing import Any, Dict, List, Optional
 
@@ -11,7 +10,7 @@ except ImportError:  # pragma: no cover
     pipeline = None
     Pipeline = None  # type: ignore
 
-from modules.common.utils import ProgressLogger, log_llm_usage, read_jsonl, save_jsonl
+from modules.common.utils import ProgressLogger, read_jsonl, save_jsonl
 
 MODEL_CACHE: Dict[str, Pipeline] = {}
 logging.basicConfig(level=logging.INFO)
@@ -68,7 +67,7 @@ def main():
 
     rows = load_portions(args.portions)
     pipe = _init_pipeline(args.model)
-    client = OpenAI()
+    OpenAI()
     logger = ProgressLogger(state_path=args.state_file, progress_path=args.progress_file, run_id=args.run_id)
     logger.log("context_t5", "running", current=0, total=len(rows), artifact=args.out,
                module_id="context_aware_t5_v1", message="Running T5 refinements", schema_version="enriched_portion_v1")

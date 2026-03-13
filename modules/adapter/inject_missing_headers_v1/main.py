@@ -14,11 +14,9 @@ Strategy:
 
 import argparse
 import json
-import os
 import re
 from pathlib import Path
 from typing import Dict, List, Set, Optional
-from collections import defaultdict
 
 from modules.common.utils import ensure_dir, save_json, ProgressLogger
 
@@ -83,7 +81,7 @@ def inject_missing_numbers(page_data: Dict, missing_numbers: Set[int], page_num:
             'bbox': None,  # No bbox available
             'conf': 0.9,  # High confidence - we know it's in raw OCR
             'source': 'injected',  # Mark as injected for debugging
-            'injected_reason': f'Found in raw OCR engines but missing from picked output'
+            'injected_reason': 'Found in raw OCR engines but missing from picked output'
         }
         lines.append(new_line)
     
@@ -273,14 +271,14 @@ def main():
         schema_version="page_raw_v1"
     )
     
-    print(f"\n=== Header Injection Summary ===")
+    print("\n=== Header Injection Summary ===")
     print(f"Total headers injected: {total_injected}")
     print(f"Pages modified: {len(injection_log)}")
     print(f"Output index: {index_out_path}")
     print(f"Injection log: {log_path}")
     
     if injection_log:
-        print(f"\nInjected headers by page:")
+        print("\nInjected headers by page:")
         for entry in injection_log[:10]:  # Show first 10
             print(f"  Page {entry['page_key']}: {entry['injected_numbers']}")
         if len(injection_log) > 10:

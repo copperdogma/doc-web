@@ -1,3 +1,19 @@
+## [2026-03-13-04] - Restore repo-wide test and lint baseline
+
+### Changed
+- Realigned driver integration and run-manager expectations with the current `output/runs/<run_id>/config.yaml` contract
+- Cleared the repo-wide Ruff backlog across `modules/` and `tests/` so lint once again enforces a clean shared baseline
+- Added a baseline cleanup issue log under `ai-work/issues/` to record the investigation, root causes, and verification results
+- Repaired `make smoke` to run under the project Python with a stable `smoke-ff` run id and the canonical `output/` validation-report path
+
+### Fixed
+- Restored recipe `input.text_glob` handling in `driver.py` for text-ingest smoke workflows
+- Allowed loader-root recipes to omit top-level input so artifact-seeded smoke and resume flows execute through `driver.py` again
+- Reinstated Python fallback detection for no-choice gameplay sections in `validate_ff_engine_v2`
+- Fixed relaxed choice extraction so repaired clean-text targets win over stale anchor variants during orphan repair
+- Fixed combat extraction fallback inference so trigger-only loss targets no longer force an incorrect `continue` win target
+- Aligned `clean_html_presentation_v1` with the FF builder's declared output schema so FF smoke recipes validate cleanly again
+
 ## [2026-03-13-03] - Triage inbox items into story and benchmark policy
 
 ### Changed

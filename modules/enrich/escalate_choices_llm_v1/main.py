@@ -62,7 +62,7 @@ def main():
         if len(missing_ids) >= args.max_sections:
             break
 
-    missing_set = set(missing_ids)
+    set(missing_ids)
     by_id = {str(r.get("section_id") or r.get("portion_id")): r for r in rows}
 
     for sid in missing_ids:

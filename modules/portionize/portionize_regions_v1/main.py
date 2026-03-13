@@ -28,7 +28,7 @@ PAGE_RE = re.compile(r"^\s*\d{1,3}[–-]\d{1,3}\s*")
 def clean_snippet(text: str) -> str:
     # Drop leading page-number artifacts and duplicate footer fragments
     text = PAGE_RE.sub("", text)
-    lines = [l.strip() for l in text.splitlines() if l.strip()]
+    lines = [line.strip() for line in text.splitlines() if line.strip()]
     # keep only first 3 lines
     lines = lines[:3]
     snippet = " ".join(lines)

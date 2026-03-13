@@ -5,8 +5,6 @@ Reduce elements.jsonl into a compact per-page summary for macro classification
 """
 
 import argparse
-import json
-from pathlib import Path
 
 from modules.common.utils import read_jsonl, save_json
 

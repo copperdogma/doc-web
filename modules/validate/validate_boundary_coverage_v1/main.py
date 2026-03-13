@@ -3,9 +3,8 @@
 Boundary coverage validator: ensures enough section_ids are present and reports missing IDs.
 """
 import argparse
-import json
 import os
-from typing import Dict, Set
+from typing import Set
 
 from modules.common.utils import read_jsonl, save_json, ProgressLogger
 

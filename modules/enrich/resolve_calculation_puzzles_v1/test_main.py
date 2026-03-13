@@ -2,7 +2,7 @@
 Tests for resolve_calculation_puzzles_v1 module
 """
 import unittest
-from unittest.mock import Mock, patch, MagicMock
+from unittest.mock import patch, MagicMock
 import json
 
 from main import (

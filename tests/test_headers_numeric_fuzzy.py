@@ -1,8 +1,6 @@
-import json
 import tempfile
-from modules.portionize.portionize_headers_numeric_v1.main import clean_lines, main as num_main
+from modules.portionize.portionize_headers_numeric_v1.main import main as num_main
 from modules.common.utils import save_jsonl, read_jsonl
-import argparse
 import sys
 from pathlib import Path
 

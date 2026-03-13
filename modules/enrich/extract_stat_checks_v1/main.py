@@ -1,8 +1,7 @@
 import argparse
 import json
 import re
-import os
-from typing import Any, Dict, List, Optional, Tuple
+from typing import Any, Dict, List, Tuple
 
 from modules.common.openai_client import OpenAI
 from modules.common.utils import read_jsonl, save_jsonl, ProgressLogger
@@ -209,11 +208,6 @@ def audit_stat_checks_batch(audit_list: List[Dict[str, Any]], model: str, client
             response_format={"type": "json_object"}
         )
         
-        usage = {
-            "model": model,
-            "prompt_tokens": response.usage.prompt_tokens,
-            "completion_tokens": response.usage.completion_tokens,
-        }
         return json.loads(response.choices[0].message.content)
     except Exception as e:
         print(f"Global stat check audit error: {e}")
@@ -270,8 +264,10 @@ def main():
         
         sid = portion.section_id or portion.portion_id
         section_mechanics = []
-        for i, c in enumerate(checks): section_mechanics.append({"item_index": i, "type": "stat_check", "data": c.model_dump()})
-        for i, l in enumerate(luck_tests): section_mechanics.append({"item_index": i, "type": "test_luck", "data": l.model_dump()})
+        for i, check in enumerate(checks):
+            section_mechanics.append({"item_index": i, "type": "stat_check", "data": check.model_dump()})
+        for i, luck_test in enumerate(luck_tests):
+            section_mechanics.append({"item_index": i, "type": "test_luck", "data": luck_test.model_dump()})
 
         audit_data.append({
             "section_id": sid,
@@ -364,7 +360,7 @@ def main():
                 # Apply removals
                 if sid in removals_map:
                     p.stat_checks = [m for i, m in enumerate(p.stat_checks) if (sid, "stat_check", i) not in removals_set]
-                    p.test_luck = [l for i, l in enumerate(p.test_luck) if (sid, "test_luck", i) not in removals_set]
+                    p.test_luck = [luck_test for i, luck_test in enumerate(p.test_luck) if (sid, "test_luck", i) not in removals_set]
                 
                 # Apply additions
                 if sid in additions_map:

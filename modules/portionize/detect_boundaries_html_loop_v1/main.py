@@ -133,7 +133,7 @@ def _code_repair_html(html: str, expected_ids: List[int]) -> Tuple[str, bool]:
     """
     repaired = html or ""
     changed = False
-    has_any_h2 = bool(re.search(r"<h2>\\s*\\d+\\s*</h2>", repaired, flags=re.IGNORECASE))
+    bool(re.search(r"<h2>\\s*\\d+\\s*</h2>", repaired, flags=re.IGNORECASE))
     expected_set = {str(x) for x in expected_ids}
     h2_numbers = re.findall(r"<h2>\\s*(\\d+)\\s*</h2>", repaired, flags=re.IGNORECASE)
     if len(h2_numbers) == 1 and h2_numbers[0] not in expected_set:

@@ -262,7 +262,7 @@ def check_centering(elem: Dict, pagelines_data: Dict, page: int) -> bool:
     if len(bbox) < 4:
         return False
     
-    x0, y0, x1, y1 = bbox[0], bbox[1], bbox[2], bbox[3]
+    x0, _y0, x1, _y1 = bbox[0], bbox[1], bbox[2], bbox[3]
     candidate_x_center = (x0 + x1) / 2.0
     
     # Calculate average centerpoint of ALL text lines on the page (relative centering)

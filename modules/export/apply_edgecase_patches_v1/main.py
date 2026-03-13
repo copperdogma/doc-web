@@ -5,7 +5,7 @@ import json
 import os
 from copy import deepcopy
 from datetime import datetime
-from typing import Any, Dict, List, Optional, Tuple
+from typing import Any, Dict, List, Tuple
 
 from modules.common.utils import ProgressLogger
 

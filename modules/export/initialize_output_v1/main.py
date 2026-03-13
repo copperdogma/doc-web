@@ -11,7 +11,6 @@ This ensures all stages can rely on output/ existing and having the correct stru
 """
 
 import argparse
-import os
 import shutil
 from pathlib import Path
 from typing import Any, Dict
@@ -141,7 +140,7 @@ def main() -> None:
 
     # Create README
     _write_readme(out_dir / "README.md", validator_stage)
-    logger.log("initialize_output", "running", message=f"Created README.md", module_id="initialize_output_v1")
+    logger.log("initialize_output", "running", message="Created README.md", module_id="initialize_output_v1")
 
     logger.log(
         "initialize_output",

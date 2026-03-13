@@ -43,7 +43,7 @@ def classify_ending_code_first(text: str) -> Optional[Dict]:
     Code-first classification of endings using pattern matching.
     Returns None if no patterns match (should fall back to AI).
     """
-    text_lower = text.lower()
+    text.lower()
     
     # Check if it's an ending at all
     is_ending = any(pattern.search(text) for pattern in ENDING_PATTERNS)

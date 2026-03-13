@@ -1,7 +1,6 @@
 import argparse
-import json
 import os
-from typing import Any, Dict, List
+from typing import Any
 from modules.common.utils import read_jsonl, save_jsonl
 
 def main():
@@ -82,7 +81,7 @@ def _coerce_int(val: Any) -> int:
         return val
     try:
         return int(val)
-    except:
+    except (TypeError, ValueError):
         return 0
 
 if __name__ == "__main__":

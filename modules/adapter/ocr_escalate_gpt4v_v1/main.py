@@ -411,7 +411,7 @@ def main():
     try:
         from modules.common.openai_client import OpenAI
         client = OpenAI()
-    except Exception as e:  # pragma: no cover - defensive
+    except Exception:  # pragma: no cover - defensive
         client = None
         if not args.dry_run:
             raise

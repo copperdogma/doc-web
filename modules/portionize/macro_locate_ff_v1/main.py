@@ -74,7 +74,7 @@ def main():
 
     save_json(args.out, payload)
     logger.log("portionize", "done", current=1, total=1,
-               message=f"Macro sections detected", artifact=args.out, module_id="macro_locate_ff_v1")
+               message="Macro sections detected", artifact=args.out, module_id="macro_locate_ff_v1")
     print(f"Wrote macro sections → {args.out}")
 
 

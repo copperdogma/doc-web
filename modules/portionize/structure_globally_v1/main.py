@@ -10,11 +10,11 @@ Uses strong constraints to ensure proper ordering and conservatively marks uncer
 import argparse
 import json
 import os
-from typing import Dict, List, Optional, Any
+from typing import Dict, List, Any
 
 from modules.common.openai_client import OpenAI
 from modules.common.utils import read_jsonl, save_json, ensure_dir, ProgressLogger
-from schemas import HeaderCandidate, SectionsStructured, MacroSection, GameSectionStructured, ElementCore
+from schemas import HeaderCandidate, SectionsStructured, ElementCore
 from .fixup import normalize_start_seq
 
 # CYOA Document Profile (same as Stage 1)
@@ -236,7 +236,7 @@ def validate_structure(structure: Dict[str, Any], max_seq: int) -> List[str]:
             gs_seq = gs.get("start_seq")
             
             if gs_id is None:
-                errors.append(f"Game section missing 'id' field")
+                errors.append("Game section missing 'id' field")
                 continue
             
             if gs_seq is None:
@@ -473,7 +473,7 @@ def main():
     # Validate structure
     errors = validate_structure(structure, max_seq)
     if errors:
-        print(f"⚠️ Validation errors found:")
+        print("⚠️ Validation errors found:")
         for error in errors:
             print(f"  - {error}")
         # Continue anyway - validation is a warning, not fatal

@@ -11,8 +11,6 @@ These tests ensure the clustering algorithm doesn't regress on known problem cas
 """
 
 import pytest
-from unittest.mock import Mock
-from collections import defaultdict
 
 
 # Test helper functions that mirror the actual implementation

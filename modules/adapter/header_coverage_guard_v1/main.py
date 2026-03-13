@@ -49,7 +49,7 @@ def main():
                 page = json.load(open(path, "r", encoding="utf-8"))
             except Exception:
                 continue
-            text = "\n".join([l.get("text", "") for l in page.get("lines", [])])
+            text = "\n".join([line.get("text", "") for line in page.get("lines", [])])
             for m in num_re.finditer(text):
                 try:
                     sid = int(m.group(1))

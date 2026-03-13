@@ -4,7 +4,6 @@ Validate that extracted choices align with explicit references in section text.
 Scans raw_html for href targets and "turn to" style phrases, compares to choices.
 """
 import argparse
-import json
 import re
 from typing import Dict, List, Set
 

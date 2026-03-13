@@ -2,7 +2,6 @@ import argparse
 import base64
 import hashlib
 import io
-import json
 import os
 import re
 from dataclasses import dataclass
@@ -11,12 +10,11 @@ from pathlib import Path
 from typing import Any, Dict, List, Optional, Tuple
 
 from PIL import Image
+from modules.common.utils import read_jsonl, append_jsonl, ensure_dir, ProgressLogger
+from modules.extract.ocr_ai_gpt51_v1.main import SYSTEM_PROMPT, sanitize_html
 
 # Allow large page images from high-resolution scans.
 Image.MAX_IMAGE_PIXELS = None
-
-from modules.common.utils import read_jsonl, append_jsonl, ensure_dir, ProgressLogger
-from modules.extract.ocr_ai_gpt51_v1.main import SYSTEM_PROMPT, sanitize_html
 
 try:
     from modules.common.openai_client import OpenAI

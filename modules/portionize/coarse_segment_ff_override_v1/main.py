@@ -14,7 +14,6 @@ Output: ff_segment_hints.json
 import argparse
 import json
 import re
-from pathlib import Path
 from typing import Dict, List, Any, Optional
 
 from modules.common.utils import read_jsonl, save_json
@@ -213,7 +212,7 @@ def main():
         print(f"✅ BACKGROUND found on page {background_page}")
         print(f"   Gameplay start: page {result['gameplay_start_page']}")
         if result['override_applied']:
-            print(f"   ⚠️  Override applied (differs from semantic segments)")
+            print("   ⚠️  Override applied (differs from semantic segments)")
     else:
         print("⚠️  BACKGROUND keyword not found. No override applied.")
 

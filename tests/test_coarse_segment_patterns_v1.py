@@ -9,9 +9,8 @@ import json
 import os
 import tempfile
 import unittest
-from pathlib import Path
 
-from modules.common.utils import read_jsonl, save_json
+from modules.common.utils import read_jsonl
 
 
 class TestCoarseSegmentPatternsV1(unittest.TestCase):

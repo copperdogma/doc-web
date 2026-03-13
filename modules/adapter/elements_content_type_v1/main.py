@@ -312,10 +312,9 @@ def classify_element_heuristic(elem: Dict[str, Any]) -> Tuple[str, float, Option
     text = elem.get("text") or ""
     layout = elem.get("layout") or {}
     layout_role = elem.get("layout_role")
-    y = None
     h_align = None
     if isinstance(layout, dict):
-        y = layout.get("y")
+        layout.get("y")
         h_align = layout.get("h_align")
 
     mapped = role_to_doclaynet(layout_role) if layout_role else None
@@ -418,7 +417,7 @@ def get_abstract_position(layout: Dict[str, Any], bbox: Optional[List[float]] = 
     # Heuristic: If y > 0.85 and h_align is left/right (corner), likely inverted
     y_normalized = y
     if bbox and len(bbox) >= 4:
-        y0, y1 = bbox[1], bbox[3]
+        y0, _y1 = bbox[1], bbox[3]
         # If y0 is very high (>0.9) and h_align suggests corner, likely inverted
         # For running headers at top corners, they'll have high y in inverted system
         if y0 > 0.85 and isinstance(h_align, str) and h_align.lower() in ["left", "right"]:
@@ -1082,7 +1081,6 @@ def main():
     
     # Combine results from all segments
     sequential_patterns = all_sequential_patterns
-    matched_indices = all_matched_indices
     other_patterns = all_other_patterns
     
     # Step 4: Apply pattern-based overrides

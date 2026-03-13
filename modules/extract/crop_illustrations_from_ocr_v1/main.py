@@ -8,7 +8,6 @@ for B&W artwork.
 import argparse
 import os
 from datetime import datetime
-from pathlib import Path
 from typing import List, Dict, Any, Optional
 
 import numpy as np

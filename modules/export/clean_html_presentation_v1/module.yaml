@@ -2,7 +2,7 @@ module_id: clean_html_presentation_v1
 stage: export
 description: Cleans HTML in gamebook.json for final presentation (removes running heads, section headers, etc.).
 entrypoint: modules/export/clean_html_presentation_v1/main.py
-input_schema: gamebook_v1
+input_schema: ff_engine_gamebook_v1
 output_schema: gamebook_v1
 params:
   - name: input

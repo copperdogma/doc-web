@@ -2,7 +2,6 @@ import argparse
 import base64
 import json
 import re
-import os
 from typing import Any, Dict, Iterable, List, Optional, Tuple
 
 from modules.common.openai_client import OpenAI
@@ -154,16 +153,37 @@ If no combat is found, return {"combat": []}."""
 
 VISION_HINT = "Use the image as ground truth when text appears incomplete or missing stats."
 
-def _infer_win_from_anchors(raw_html: Optional[str], loss_section: Optional[str], win_section: Optional[str]) -> Optional[str]:
-    if win_section or not raw_html or not loss_section:
+def _reserved_trigger_targets(triggers: Optional[List[Dict[str, Any]]]) -> List[str]:
+    reserved_kinds = {"enemy_attack_strength_total", "enemy_round_win", "no_enemy_round_wins"}
+    reserved: List[str] = []
+    for trigger in triggers or []:
+        if not isinstance(trigger, dict):
+            continue
+        kind = str(trigger.get("kind") or "").lower()
+        if kind not in reserved_kinds:
+            continue
+        outcome = trigger.get("outcome")
+        normalized = _normalize_outcome_ref(outcome)
+        target = normalized.get("targetSection") if normalized else None
+        if target and target not in reserved:
+            reserved.append(target)
+    return reserved
+
+
+def _infer_win_from_anchors(raw_html: Optional[str], blocked_targets: Optional[Iterable[str]], win_section: Optional[str]) -> Optional[str]:
+    if win_section or not raw_html:
+        return win_section
+    blocked = {str(target) for target in (blocked_targets or []) if target is not None}
+    if not blocked:
         return win_section
     anchors = [m.group(1) for m in re.finditer(r'href\s*=\s*["\']#(\d+)["\']', raw_html, flags=re.IGNORECASE)]
     seen = []
     for a in anchors:
         if a not in seen:
             seen.append(a)
-    if loss_section in seen:
-        others = [a for a in seen if a != loss_section]
+    anchor_blocked = [anchor for anchor in seen if anchor in blocked]
+    if anchor_blocked:
+        others = [anchor for anchor in seen if anchor not in blocked]
         if len(others) == 1:
             return others[0]
     return win_section
@@ -259,7 +279,7 @@ def _extract_combat_rules(text: str, enemy_count: int) -> Tuple[Optional[str], L
     mode = None
     rules: List[Dict[str, Any]] = []
     modifiers: List[Dict[str, Any]] = []
-    lower = text.lower()
+    text.lower()
 
     if enemy_count <= 1:
         mode = "single"
@@ -981,14 +1001,16 @@ def extract_combat_regex(text: str, raw_html: Optional[str] = None) -> List[Comb
         return []
 
     # Outcomes
+    triggers = _extract_combat_triggers(text)
     win_section, loss_section, escape_section = _detect_outcomes(text)
-    win_section = _infer_win_from_anchors(raw_html, loss_section, win_section)
+    blocked_targets = [loss_section] if loss_section else []
+    blocked_targets.extend(_reserved_trigger_targets(triggers))
+    win_section = _infer_win_from_anchors(raw_html, blocked_targets, win_section)
     outcomes = _build_outcomes(win_section, loss_section, escape_section)
 
     # Rules/modifiers/mode
     mode, rules, modifiers = _extract_combat_rules(text, len(enemies))
     modifiers = _normalize_modifiers(modifiers)
-    triggers = _extract_combat_triggers(text)
     outcomes = _ensure_win_outcome_from_triggers(outcomes, triggers)
 
     combat = Combat(
@@ -1333,10 +1355,12 @@ def main():
             ai_calls += 1
             if combats_llm:
                 combats = combats_llm
-                win_section, loss_section, escape_section = _detect_outcomes(text)
-                win_section = _infer_win_from_anchors(portion.raw_html, loss_section, win_section)
-                fallback_outcomes = _build_outcomes(win_section, loss_section, escape_section)
                 fallback_triggers = _normalize_triggers(_extract_combat_triggers(text))
+                win_section, loss_section, escape_section = _detect_outcomes(text)
+                blocked_targets = [loss_section] if loss_section else []
+                blocked_targets.extend(_reserved_trigger_targets(fallback_triggers))
+                win_section = _infer_win_from_anchors(portion.raw_html, blocked_targets, win_section)
+                fallback_outcomes = _build_outcomes(win_section, loss_section, escape_section)
                 fallback_mode, fallback_rules, fallback_modifiers = _extract_combat_rules(text, len(combats[0].enemies) if combats else 0)
                 fallback_rules = _merge_rules(None, fallback_rules)
                 fallback_modifiers = _normalize_modifiers(fallback_modifiers)
@@ -1392,8 +1416,11 @@ def main():
             section_id = portion.section_id
             if isinstance(section_id, str) and section_id.isdigit() and pending_section_id is not None:
                 if int(section_id) == pending_section_id + 1:
+                    fallback_triggers = _normalize_triggers(_extract_combat_triggers(text))
                     win_section, loss_section, escape_section = _detect_outcomes(text)
-                    win_section = _infer_win_from_anchors(portion.raw_html, loss_section, win_section)
+                    blocked_targets = [loss_section] if loss_section else []
+                    blocked_targets.extend(_reserved_trigger_targets(fallback_triggers))
+                    win_section = _infer_win_from_anchors(portion.raw_html, blocked_targets, win_section)
                     fallback_outcomes = _build_outcomes(win_section, loss_section, escape_section)
                     if fallback_outcomes:
                         prev = out_portions[pending_idx]
@@ -1419,14 +1446,16 @@ def main():
                         enemies = prev0.get("enemies") or []
                         # outcomes
                         win_section, loss_section, escape_section = _detect_outcomes(text)
-                        win_section = _infer_win_from_anchors(portion.raw_html, loss_section, win_section)
+                        fallback_triggers = _normalize_triggers(_extract_combat_triggers(text))
+                        blocked_targets = [loss_section] if loss_section else []
+                        blocked_targets.extend(_reserved_trigger_targets(fallback_triggers))
+                        win_section = _infer_win_from_anchors(portion.raw_html, blocked_targets, win_section)
                         fallback_outcomes = _build_outcomes(win_section, loss_section, escape_section)
                         if fallback_outcomes:
                             prev0["outcomes"] = _merge_fallback_outcomes(prev0.get("outcomes"), fallback_outcomes)
                         # mode/rules/modifiers/triggers
                         fallback_mode, fallback_rules, fallback_mods = _extract_combat_rules(text, len(enemies) if isinstance(enemies, list) else 0)
                         fallback_mods = _normalize_modifiers(fallback_mods)
-                        fallback_triggers = _normalize_triggers(_extract_combat_triggers(text))
                         prev0["rules"] = _merge_rules(prev0.get("rules"), fallback_rules)
                         prev0["modifiers"] = _merge_modifiers(prev0.get("modifiers"), fallback_mods)
                         prev0["triggers"] = _merge_triggers(prev0.get("triggers"), fallback_triggers)

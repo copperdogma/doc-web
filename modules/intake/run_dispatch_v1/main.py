@@ -2,7 +2,6 @@ import argparse
 import json
 import subprocess
 import sys
-from pathlib import Path
 
 
 def main():

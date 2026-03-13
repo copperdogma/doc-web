@@ -7,10 +7,8 @@ Maps element types to simple categories, extracts layout hints, and normalizes t
 """
 
 import argparse
-import re
 import os
-from datetime import datetime, timezone
-from typing import Dict, List, Optional, Any
+from typing import Dict, Optional, Any
 
 from modules.common.utils import read_jsonl, save_jsonl, ensure_dir, ProgressLogger
 from schemas import UnstructuredElement, ElementCore, ElementLayout
@@ -66,7 +64,6 @@ def extract_layout_info(metadata: Dict[str, Any]) -> Optional[ElementLayout]:
                 # Estimate page width (assume ~600-800px typical)
                 # If element is centered (within 20% margin), mark as center
                 # This is heuristic - can be improved with actual page dimensions
-                center_threshold = 0.2  # 20% margin
                 if width > 0:
                     # Very rough heuristic: if element spans middle region, likely centered
                     # For now, default to "unknown" - can enhance with page width metadata

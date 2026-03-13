@@ -4,7 +4,7 @@ import argparse
 import json
 import os
 from datetime import datetime
-from typing import Any, Dict, Iterable, List, Optional, Tuple
+from typing import Any, Dict, Iterable, List, Tuple
 
 from modules.common.utils import ensure_dir, ProgressLogger
 

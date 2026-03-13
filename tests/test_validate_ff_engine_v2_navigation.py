@@ -5,8 +5,6 @@ Tests for validate_ff_engine_v2 navigation detection.
 Tests that validation correctly identifies sections with navigation,
 including conditional events (stat_check, test_luck, etc.) as choices.
 """
-import json
-import pytest
 from modules.validate.validate_ff_engine_v2.main import validate_gamebook
 
 

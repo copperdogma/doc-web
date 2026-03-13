@@ -245,7 +245,7 @@ def main():
     }
     
     for i, portion in enumerate(portions):
-        section_id = portion.get('section_id', '')
+        portion.get('section_id', '')
         text = portion.get('raw_text', '')
         
         # Extract candidates using pattern matching
@@ -318,7 +318,7 @@ def main():
     )
     
     # Print summary
-    print(f"\n=== Choice Extraction Summary ===")
+    print("\n=== Choice Extraction Summary ===")
     print(f"Total portions: {stats['total_portions']}")
     print(f"Portions with choices: {stats['portions_with_choices']}")
     print(f"Total choices extracted: {stats['total_choices_extracted']}")
@@ -329,10 +329,10 @@ def main():
         print(f"   {sorted(list(orphans))[:20]}")
         if len(orphans) > 20:
             print(f"   ... and {len(orphans) - 20} more")
-        print(f"\n   This indicates missing choices somewhere in the book!")
+        print("\n   This indicates missing choices somewhere in the book!")
         print(f"   Orphaned sections are in {stats_path}")
     else:
-        print(f"\n✅ All sections are reachable (no orphans detected)")
+        print("\n✅ All sections are reachable (no orphans detected)")
     
     print(f"\nStats saved to: {stats_path}")
 

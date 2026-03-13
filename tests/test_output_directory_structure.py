@@ -5,7 +5,6 @@ Tests that output/ is the canonical location for gamebook.json and related artif
 """
 
 import json
-import os
 import tempfile
 import unittest
 from pathlib import Path

@@ -17,7 +17,7 @@ import re
 from pathlib import Path
 from typing import Dict, List, Optional
 
-from modules.common.utils import ensure_dir, save_jsonl, ProgressLogger, read_jsonl
+from modules.common.utils import ensure_dir, ProgressLogger
 
 
 def is_section_header(text: str) -> bool:
@@ -171,16 +171,16 @@ def detect_fragmented_text(lines: List[str]) -> bool:
     if not lines:
         return False
     
-    non_empty = [l.strip() for l in lines if l.strip()]
+    non_empty = [line.strip() for line in lines if line.strip()]
     if len(non_empty) < 5:
         return False  # Too few lines to judge
     
     # Count short lines
-    short_lines = sum(1 for l in non_empty if len(l) < 10)
+    short_lines = sum(1 for line in non_empty if len(line) < 10)
     short_ratio = short_lines / len(non_empty)
     
     # Check average line length
-    avg_len = sum(len(l) for l in non_empty) / len(non_empty)
+    avg_len = sum(len(line) for line in non_empty) / len(non_empty)
     
     # Check for fragment patterns (lines ending without punctuation, starting with lowercase)
     fragment_indicators = 0
@@ -231,8 +231,11 @@ def reconstruct_page_lines(lines: List[Dict]) -> List[Dict]:
         return []
     
     # Check if input is extremely fragmented before processing
-    text_lines = [l.get("text", "").strip() or l.get("post", "").strip() or l.get("raw", "").strip() 
-                  for l in lines if l.get("text", "").strip() or l.get("post", "").strip() or l.get("raw", "").strip()]
+    text_lines = [
+        row.get("text", "").strip() or row.get("post", "").strip() or row.get("raw", "").strip()
+        for row in lines
+        if row.get("text", "").strip() or row.get("post", "").strip() or row.get("raw", "").strip()
+    ]
     is_fragmented = detect_fragmented_text(text_lines)
     
     reconstructed = []
@@ -268,9 +271,9 @@ def reconstruct_page_lines(lines: List[Dict]) -> List[Dict]:
                 # Flush any content before section (shouldn't happen often, but handle it)
                 if current_section_content:
                     merged_text = merge_lines_with_hyphen_handling([
-                        l.get("text", "").strip() or l.get("post", "").strip() or l.get("raw", "").strip()
-                        for l in current_section_content
-                        if (l.get("text", "").strip() or l.get("post", "").strip() or l.get("raw", "").strip())
+                        row.get("text", "").strip() or row.get("post", "").strip() or row.get("raw", "").strip()
+                        for row in current_section_content
+                        if (row.get("text", "").strip() or row.get("post", "").strip() or row.get("raw", "").strip())
                     ])
                     if merged_text:
                         merged_line = current_section_content[0].copy()
@@ -294,9 +297,9 @@ def reconstruct_page_lines(lines: List[Dict]) -> List[Dict]:
             # Flush any previous section content
             if current_section_content:
                 merged_text = merge_lines_with_hyphen_handling([
-                    l.get("text", "").strip() or l.get("post", "").strip() or l.get("raw", "").strip()
-                    for l in current_section_content
-                    if (l.get("text", "").strip() or l.get("post", "").strip() or l.get("raw", "").strip())
+                    row.get("text", "").strip() or row.get("post", "").strip() or row.get("raw", "").strip()
+                    for row in current_section_content
+                    if (row.get("text", "").strip() or row.get("post", "").strip() or row.get("raw", "").strip())
                 ])
                 if merged_text:
                     merged_line = current_section_content[0].copy()
@@ -318,9 +321,9 @@ def reconstruct_page_lines(lines: List[Dict]) -> List[Dict]:
             # Flush current section content
             if current_section_content:
                 merged_text = merge_lines_with_hyphen_handling([
-                    l.get("text", "").strip() or l.get("post", "").strip() or l.get("raw", "").strip()
-                    for l in current_section_content
-                    if (l.get("text", "").strip() or l.get("post", "").strip() or l.get("raw", "").strip())
+                    row.get("text", "").strip() or row.get("post", "").strip() or row.get("raw", "").strip()
+                    for row in current_section_content
+                    if (row.get("text", "").strip() or row.get("post", "").strip() or row.get("raw", "").strip())
                 ])
                 if merged_text:
                     merged_line = current_section_content[0].copy()
@@ -344,9 +347,9 @@ def reconstruct_page_lines(lines: List[Dict]) -> List[Dict]:
     # Flush remaining section content
     if current_section_content:
         merged_text = merge_lines_with_hyphen_handling([
-            l.get("text", "").strip() or l.get("post", "").strip() or l.get("raw", "").strip()
-            for l in current_section_content
-            if (l.get("text", "").strip() or l.get("post", "").strip() or l.get("raw", "").strip())
+            row.get("text", "").strip() or row.get("post", "").strip() or row.get("raw", "").strip()
+            for row in current_section_content
+            if (row.get("text", "").strip() or row.get("post", "").strip() or row.get("raw", "").strip())
         ])
         if merged_text:
             bbox = union_bbox(current_section_content)

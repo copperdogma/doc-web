@@ -5,7 +5,7 @@ import tempfile
 import unittest
 from pathlib import Path
 import hashlib
-from collections import Counter, defaultdict
+from collections import Counter
 
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
@@ -169,7 +169,7 @@ class FF20PageRegressionTests(unittest.TestCase):
                     image = Path(row.get("image", "")).name
                     if images is not None and image not in images:
                         continue
-                    text = "\n".join([l.get("text", "") for l in row.get("lines", [])])
+                    text = "\n".join([line.get("text", "") for line in row.get("lines", [])])
                     fps[image] = hashlib.sha1(text.encode("utf-8")).hexdigest()
             return fps
 
@@ -222,7 +222,7 @@ class FF20PageRegressionTests(unittest.TestCase):
                             continue
                         row = json.loads(line)
                         if Path(row.get("image", "")).name == image_name:
-                            return [l.get("text", "") for l in row.get("lines", [])][:5]
+                            return [line.get("text", "") for line in row.get("lines", [])][:5]
                 return []
             def first_line_diff(g_lines, b_lines):
                 limit = min(len(g_lines), len(b_lines))
@@ -357,7 +357,7 @@ class FF20PageRegressionTests(unittest.TestCase):
                     if not line.strip():
                         continue
                     row = json.loads(line)
-                    text = "\n".join(l.get("text", "") for l in row.get("lines", []))
+                    text = "\n".join(line.get("text", "") for line in row.get("lines", []))
                     lower = text.lower()
                     for token in bad_tokens:
                         if token.lower() in lower:
@@ -383,7 +383,7 @@ class FF20PageRegressionTests(unittest.TestCase):
                     if not line.strip():
                         continue
                     row = json.loads(line)
-                    for t in (l.get("text", "") for l in row.get("lines", [])):
+                    for t in (line.get("text", "") for line in row.get("lines", [])):
                         if len(t) > max_len:
                             max_len = len(t)
                             max_img = Path(row.get("image", "")).name
@@ -406,7 +406,7 @@ class FF20PageRegressionTests(unittest.TestCase):
                     if not line.strip():
                         continue
                     row = json.loads(line)
-                    text = "\n".join(l.get("text", "") for l in row.get("lines", []))
+                    text = "\n".join(line.get("text", "") for line in row.get("lines", []))
                     c += text.lower().count(token)
             return c
 
@@ -426,7 +426,7 @@ class FF20PageRegressionTests(unittest.TestCase):
                         continue
                     row = json.loads(line)
                     img = Path(row.get("image", "")).name
-                    text = "\n".join(l.get("text", "") for l in row.get("lines", []))
+                    text = "\n".join(line.get("text", "") for line in row.get("lines", []))
                     count = text.lower().count("turn to")
                     if count:
                         per_page[img] = per_page.get(img, 0) + count

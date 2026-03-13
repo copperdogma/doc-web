@@ -16,7 +16,7 @@ import argparse
 import json
 import os
 from pathlib import Path
-from typing import Dict, List
+from typing import Dict
 
 from modules.common.utils import ensure_dir, save_json, save_jsonl, ProgressLogger
 

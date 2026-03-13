@@ -29,8 +29,6 @@ import sys
 from typing import Dict, List, Any, Optional
 
 from modules.common.utils import save_json, ensure_dir, ProgressLogger, read_jsonl
-from modules.common.html_utils import html_to_text
-from modules.common.page_numbers import validate_sequential_page_numbers
 from modules.common.patch_handler import get_suppressed_warnings, should_suppress_warning
 from schemas import ValidationReport
 
@@ -172,6 +170,61 @@ def _call_node_validator(
     return result
 
 
+def _sequence_has_navigation(sequence: Any) -> bool:
+    if not isinstance(sequence, list):
+        return False
+    for event in sequence:
+        if not isinstance(event, dict):
+            continue
+        kind = event.get("kind")
+        if kind == "choice":
+            if event.get("targetSection"):
+                return True
+        elif kind == "stat_check":
+            if (event.get("pass") or {}).get("targetSection") or (event.get("fail") or {}).get("targetSection"):
+                return True
+        elif kind == "stat_change":
+            if (event.get("else") or {}).get("targetSection"):
+                return True
+        elif kind == "test_luck":
+            if (event.get("lucky") or {}).get("targetSection") or (event.get("unlucky") or {}).get("targetSection"):
+                return True
+        elif kind in {"item_check", "state_check"}:
+            if (event.get("has") or {}).get("targetSection") or (event.get("missing") or {}).get("targetSection"):
+                return True
+        elif kind == "combat":
+            outcomes = event.get("outcomes") or {}
+            if (
+                (outcomes.get("win") or {}).get("targetSection")
+                or (outcomes.get("lose") or {}).get("targetSection")
+                or (outcomes.get("escape") or {}).get("targetSection")
+            ):
+                return True
+        elif kind == "death":
+            if (event.get("outcome") or {}).get("targetSection"):
+                return True
+        elif event.get("targetSection"):
+            return True
+    return False
+
+
+def _fallback_no_choice_sections(gamebook: Dict[str, Any]) -> List[str]:
+    flagged: List[str] = []
+    for key, section in (gamebook.get("sections") or {}).items():
+        if not isinstance(section, dict):
+            continue
+        if not section.get("isGameplaySection"):
+            continue
+        if section.get("end_game"):
+            continue
+        provenance = section.get("provenance") or {}
+        if isinstance(provenance, dict) and provenance.get("stub"):
+            continue
+        if not _sequence_has_navigation(section.get("sequence") or []):
+            flagged.append(str(key))
+    return flagged
+
+
 def validate_gamebook(
     gamebook: Dict[str, Any],
     expected_range_start: int,
@@ -207,16 +260,19 @@ def validate_gamebook(
     # If Node validator result not provided, validation must be done in main()
     # This path is for backward compatibility only
     if node_validator_result is None:
-        # Return minimal report - main() will populate from Node validator
+        sections_with_no_choices = _fallback_no_choice_sections(gamebook)
         return ValidationReport(
             total_sections=len(sections),
             missing_sections=[],
             duplicate_sections=[],
             sections_with_no_text=[],
-            sections_with_no_choices=[],
+            sections_with_no_choices=sections_with_no_choices,
             unreachable_sections=[],
             is_valid=True,
-            warnings=[],
+            warnings=[
+                f'Gameplay section "{sid}" has no choices (potential dead end)'
+                for sid in sections_with_no_choices
+            ],
             errors=[],
         )
 
@@ -402,17 +458,16 @@ def main():
         elements = load_optional_jsonl(elements_path)
         elements_core = load_optional_jsonl(elements_core_path)
         portions = load_optional_jsonl(portions_path)
-        pages_clean = load_optional_jsonl(pages_clean_path)
-        pages_raw = load_optional_jsonl(pages_raw_path)
-        unresolved_ids = []
+        load_optional_jsonl(pages_clean_path)
+        load_optional_jsonl(pages_raw_path)
         if unresolved_path and os.path.exists(unresolved_path):
             try:
                 with open(unresolved_path, "r", encoding="utf-8") as f:
                     maybe = json.load(f)
                     if isinstance(maybe, list):
-                        unresolved_ids = [str(x) for x in maybe]
+                        [str(x) for x in maybe]
             except Exception:
-                unresolved_ids = []
+                pass
 
         flattened_elements = []
         for row in (elements_core or elements):
@@ -430,12 +485,13 @@ def main():
             else:
                 flattened_elements.append(row)
 
-        elem_by_id = {e.get("id"): e for e in flattened_elements}
+        {e.get("id"): e for e in flattened_elements}
         bound_by_sid = {b.get("section_id"): b for b in boundaries}
         portion_by_sid = {str(p.get("section_id") or p.get("portion_id")): p for p in portions}
 
         def span_meta(b):
-            if not b: return None
+            if not b:
+                return None
             
             # Find all elements associated with this section by searching flattened_elements
             # This is more robust than a seq range which fails across page boundaries

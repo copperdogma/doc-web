@@ -8,7 +8,6 @@ LLM call to classify macro sections and output page ranges.
 import argparse
 import json
 import os
-from pathlib import Path
 from typing import Dict, List, Optional, Tuple
 
 from modules.common.openai_client import OpenAI

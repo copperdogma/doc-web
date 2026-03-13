@@ -1,8 +1,6 @@
 import argparse
 import json
-import os
-import re
-from typing import Any, Dict, List, Optional
+from typing import Dict
 from bs4 import BeautifulSoup
 from modules.common.utils import save_json, ProgressLogger
 

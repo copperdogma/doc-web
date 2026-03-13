@@ -4,7 +4,7 @@ import sys
 from pathlib import Path
 
 from modules.adapter.missing_header_resolver_v1.main import main as resolver_main
-from modules.common.utils import save_json, save_jsonl, read_jsonl
+from modules.common.utils import save_json, save_jsonl
 
 
 def make_headers(path):

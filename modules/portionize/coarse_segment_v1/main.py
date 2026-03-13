@@ -9,7 +9,6 @@ LLM call to classify macro sections (frontmatter/gameplay/endmatter) and output 
 import argparse
 import json
 import os
-from pathlib import Path
 from typing import List, Dict, Optional, Tuple
 
 from modules.common.openai_client import OpenAI
@@ -238,7 +237,7 @@ def validate_ranges(result: Dict, total_pages: int) -> Tuple[bool, List[str]]:
         else:
             # For string page IDs, just check format, not numeric range
             start_num = parse_page_id(front[0])
-            end_num = parse_page_id(front[1])
+            parse_page_id(front[1])
             if start_num and start_num < 1:
                 errors.append(f"frontmatter_pages start < 1: {front}")
 

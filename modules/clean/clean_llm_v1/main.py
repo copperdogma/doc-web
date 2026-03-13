@@ -2,7 +2,7 @@ import argparse
 import json
 import os
 from base64 import b64encode
-from typing import List, Dict
+from typing import Dict
 from modules.common.openai_client import OpenAI
 from tqdm import tqdm
 

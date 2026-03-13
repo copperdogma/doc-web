@@ -11,7 +11,6 @@ import json
 import os
 import subprocess
 import sys
-import tempfile
 from pathlib import Path
 
 from modules.common.utils import ensure_dir, save_jsonl, ProgressLogger

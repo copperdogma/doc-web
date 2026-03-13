@@ -6,10 +6,9 @@ Provides lazy, cached vision-based escalation for pages where standard OCR fails
 Each page is escalated at most once, capturing boundaries + text for downstream use.
 """
 import json
-import os
 from datetime import datetime
 from pathlib import Path
-from typing import Dict, List, Optional, Any
+from typing import Dict, List, Optional
 import base64
 
 from modules.common.utils import ensure_dir, ProgressLogger

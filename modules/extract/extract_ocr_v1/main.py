@@ -1,5 +1,4 @@
 import argparse
-import json
 import os
 
 from modules.common import render_pdf, run_ocr

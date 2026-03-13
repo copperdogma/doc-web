@@ -33,7 +33,7 @@ class MergeTests(unittest.TestCase):
             concat_dedupe_jsonl([f1, f2], out, key_field="portion_id")
 
             with open(out, "r", encoding="utf-8") as f:
-                lines = [json.loads(l) for l in f if l.strip()]
+                lines = [json.loads(line) for line in f if line.strip()]
             self.assertEqual([r["portion_id"] for r in lines], ["P1", "P2", "P3"])
             self.assertEqual(len(lines), 3)
 

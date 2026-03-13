@@ -23,7 +23,7 @@ class DriverIntegrationTests(unittest.TestCase):
             recipe = {
                 "run_id": run_id,
                 "input": {"text_glob": str(input_dir / "*.md")},
-                "output_dir": str(tmp_path / "run"),
+                "output_dir": str(tmp_path / "run" / run_id),
                 "stages": [
                     {"id": "extract_text", "stage": "extract", "module": "extract_text_v1"},
                     {"id": "clean_pages", "stage": "clean", "module": "clean_llm_v1", "needs": ["extract_text"]},
@@ -42,7 +42,7 @@ class DriverIntegrationTests(unittest.TestCase):
             result = subprocess.run(cmd, cwd=str(Path(__file__).resolve().parents[1]))
             self.assertEqual(result.returncode, 0)
 
-            run_dir = tmp_path / "run"
+            run_dir = tmp_path / "run" / run_id
             snap_dir = run_dir / "snapshots"
             self.assertTrue((snap_dir / "recipe.yaml").is_file())
             self.assertTrue((snap_dir / "plan.json").is_file())
@@ -74,7 +74,7 @@ class DriverIntegrationTests(unittest.TestCase):
             recipe = {
                 "run_id": run_id,
                 "input": {"text_glob": str(input_dir / "*.md")},
-                "output_dir": str(tmp_path / "run"),
+                "output_dir": str(tmp_path / "run" / run_id),
                 "settings": str(settings_path),
                 "stages": [
                     {"id": "extract_text", "stage": "extract", "module": "extract_text_v1"},
@@ -95,7 +95,7 @@ class DriverIntegrationTests(unittest.TestCase):
             result = subprocess.run(cmd, cwd=str(repo_root))
             self.assertEqual(result.returncode, 0)
 
-            run_dir = tmp_path / "run"
+            run_dir = tmp_path / "run" / run_id
             snap_dir = run_dir / "snapshots"
             settings_copy = snap_dir / "settings.yaml"
             self.assertTrue(settings_copy.is_file())
@@ -133,7 +133,7 @@ class DriverIntegrationTests(unittest.TestCase):
                 "run_id": run_id,
                 "name": "pricing-instrument-snap",
                 "input": {"text_glob": str(input_dir / "*.md")},
-                "output_dir": str(tmp_path / "run"),
+                "output_dir": str(tmp_path / "run" / run_id),
                 "instrumentation": {"enabled": True, "price_table": str(pricing_path)},
                 "stages": [
                     {"id": "extract_text", "stage": "extract", "module": "extract_text_v1"},
@@ -160,7 +160,7 @@ class DriverIntegrationTests(unittest.TestCase):
             result = subprocess.run(cmd, cwd=str(repo_root))
             self.assertEqual(result.returncode, 0)
 
-            run_dir = tmp_path / "run"
+            run_dir = tmp_path / "run" / run_id
             snap_dir = run_dir / "snapshots"
             pricing_copy = snap_dir / "pricing.yaml"
             instr_copy = snap_dir / "instrumentation.json"
@@ -204,6 +204,48 @@ class DriverIntegrationTests(unittest.TestCase):
             result = subprocess.run(cmd, cwd=str(Path(__file__).resolve().parents[1]))
             self.assertNotEqual(result.returncode, 0)
 
+    def test_loader_root_recipe_allows_missing_top_level_input(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            tmp_path = Path(tmp)
+            repo_root = Path(__file__).resolve().parents[1]
+            source_artifact = repo_root / "testdata" / "smoke" / "ff" / "pages_clean.jsonl"
+
+            run_id = f"load-artifact-smoke-{int(time.time() * 1000)}"
+            recipe_path = tmp_path / "recipe_loader_root.yaml"
+            recipe = {
+                "run_id": run_id,
+                "output_dir": str(tmp_path / "run" / run_id),
+                "stages": [
+                    {
+                        "id": "load_blocks",
+                        "stage": "extract",
+                        "module": "load_artifact_v1",
+                        "out": "pages_clean.jsonl",
+                        "params": {
+                            "path": str(source_artifact),
+                            "out": "pages_clean.jsonl",
+                            "schema_version": "clean_page_v1",
+                        },
+                    }
+                ],
+            }
+            recipe_path.write_text(json.dumps(recipe), encoding="utf-8")
+
+            cmd = [
+                sys.executable,
+                "driver.py",
+                "--recipe",
+                str(recipe_path),
+                "--registry",
+                "modules",
+                "--allow-run-id-reuse",
+            ]
+            result = subprocess.run(cmd, capture_output=True, text=True, cwd=str(repo_root))
+            self.assertEqual(result.returncode, 0, msg=result.stderr)
+
+            matches = list((tmp_path / "run" / run_id).glob("*/pages_clean.jsonl"))
+            self.assertEqual(len(matches), 1, f"Expected exactly 1 pages_clean.jsonl, found {len(matches)}: {matches}")
+
     def test_resume_honors_stage_out(self):
         with tempfile.TemporaryDirectory() as tmp:
             tmp_path = Path(tmp)
@@ -216,7 +258,7 @@ class DriverIntegrationTests(unittest.TestCase):
             recipe = {
                 "run_id": "resume-out-test",
                 "input": {"text_glob": str(input_dir / "*.md")},
-                "output_dir": str(tmp_path / "run"),
+                "output_dir": str(tmp_path / "run" / "resume-out-test"),
                 "stages": [
                     {"id": "extract_text", "stage": "extract", "module": "extract_text_v1"},
                     {"id": "clean_pages", "stage": "clean", "module": "clean_llm_v1", "needs": ["extract_text"],
@@ -234,7 +276,7 @@ class DriverIntegrationTests(unittest.TestCase):
             first = subprocess.run(base_cmd + ["--skip-done"], cwd=str(Path(__file__).resolve().parents[1]))
             self.assertEqual(first.returncode, 0)
             # Artifacts live under the per-module folder (see Story 071 output organization).
-            matches = list((tmp_path / "run").glob("*/clean_custom.jsonl"))
+            matches = list((tmp_path / "run" / "resume-out-test").glob("*/clean_custom.jsonl"))
             self.assertEqual(len(matches), 1, f"Expected exactly 1 clean_custom.jsonl, found {len(matches)}: {matches}")
             clean_path = matches[0]
             first_mtime = clean_path.stat().st_mtime

@@ -190,7 +190,7 @@ def validate_portions(result: Dict, frontmatter_pages: List[int]) -> tuple[bool,
     if missing:
         # Page 1 is often a cover/blank page - warn but don't fail
         if missing == {1}:
-            errors.append(f"Page 1 not covered (likely cover/blank page - acceptable)")
+            errors.append("Page 1 not covered (likely cover/blank page - acceptable)")
         else:
             errors.append(f"Pages not covered by any portion: {sorted(missing)}")
     

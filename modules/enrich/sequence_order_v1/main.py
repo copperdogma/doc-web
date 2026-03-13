@@ -1,5 +1,4 @@
 import argparse
-import json
 import re
 from typing import Any, Dict, List, Optional, Tuple
 
@@ -728,11 +727,11 @@ def build_sequence_from_portion(portion: Dict[str, Any], section_id: str) -> Lis
     if not isinstance(portion_luck, list):
         portion_luck = [portion_luck]
     luck_seen: set = set()
-    for l in portion_luck:
-        if not isinstance(l, dict):
+    for luck_event in portion_luck:
+        if not isinstance(luck_event, dict):
             continue
-        lucky_target, lucky_terminal = _normalize_target(l.get("lucky_section") or l.get("luckySection"))
-        unlucky_target, unlucky_terminal = _normalize_target(l.get("unlucky_section") or l.get("unluckySection"))
+        lucky_target, lucky_terminal = _normalize_target(luck_event.get("lucky_section") or luck_event.get("luckySection"))
+        unlucky_target, unlucky_terminal = _normalize_target(luck_event.get("unlucky_section") or luck_event.get("unluckySection"))
         key = (str(lucky_target) if lucky_target is not None else None,
                str(unlucky_target) if unlucky_target is not None else None)
         if key in luck_seen:

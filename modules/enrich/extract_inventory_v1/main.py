@@ -1,7 +1,6 @@
 import argparse
 import json
 import re
-import os
 from typing import Any, Dict, List, Optional, Tuple
 
 from modules.common.openai_client import OpenAI
@@ -557,11 +556,16 @@ def extract_inventory_regex(text: str) -> InventoryEnrichment:
                 raw_match = match.group(0).lower()
                 if "do not have" in raw_match or "have not" in raw_match:
                     condition = "if you do not have"
-                elif "if you have" in raw_match: condition = "if you have"
-                elif "if you possess" in raw_match: condition = "if you possess"
-                elif "if you are carrying" in raw_match: condition = "if you are carrying"
-                elif "is in your backpack" in raw_match: condition = "is in your backpack"
-                else: condition = "item check"
+                elif "if you have" in raw_match:
+                    condition = "if you have"
+                elif "if you possess" in raw_match:
+                    condition = "if you possess"
+                elif "if you are carrying" in raw_match:
+                    condition = "if you are carrying"
+                elif "is in your backpack" in raw_match:
+                    condition = "is in your backpack"
+                else:
+                    condition = "item check"
                 tail = text[match.end():match.end() + 120]
                 target_match = re.search(r"turn\s+to\s+(\d+)", tail, re.IGNORECASE)
                 target_section = target_match.group(1) if target_match else None
@@ -647,7 +651,7 @@ def extract_inventory_regex(text: str) -> InventoryEnrichment:
     if gained:
         gained = [g for g in gained if not _item_only_in_choice_prompt(text, g.item) and not _item_optional_if_wish(text, g.item)]
     if lost:
-        lost = [l for l in lost if not _item_only_in_choice_prompt(text, l.item)]
+        lost = [lost_item for lost_item in lost if not _item_only_in_choice_prompt(text, lost_item.item)]
 
     if not gained and re.search(r"\bput\s+it\s+in\s+your\s+(?:backpack|pack|bag)\b", text, re.IGNORECASE):
         prior = text[:re.search(r"\bput\s+it\s+in\s+your\s+(?:backpack|pack|bag)\b", text, re.IGNORECASE).start()]
@@ -682,7 +686,7 @@ def extract_inventory_regex(text: str) -> InventoryEnrichment:
     
     if inventory_states:
         gained = [g for g in gained if g.item.lower().strip() != "possessions"]
-        lost = [l for l in lost if l.item.lower().strip() != "possessions"]
+        lost = [lost_item for lost_item in lost if lost_item.item.lower().strip() != "possessions"]
         used = [u for u in used if u.item.lower().strip() != "possessions"]
 
     return InventoryEnrichment(
@@ -753,9 +757,12 @@ def extract_inventory_llm(text: str, model: str, client: OpenAI) -> Tuple[Invent
         data = json.loads(content)
         inv_data = data.get("inventory", {})
         def parse_qty(q):
-            if isinstance(q, int): return q
-            if str(q).isdigit(): return int(q)
-            if str(q).lower() == "all": return "all"
+            if isinstance(q, int):
+                return q
+            if str(q).isdigit():
+                return int(q)
+            if str(q).lower() == "all":
+                return "all"
             return 1
         def _maybe_possessions_state(item_name: Optional[str], action: str) -> Optional[InventoryState]:
             if not item_name:
@@ -833,7 +840,7 @@ def extract_inventory_llm(text: str, model: str, client: OpenAI) -> Tuple[Invent
                 inventory_states.append(state)
 
         gained = [g for g in gained if g.item.lower().strip() != "possessions"]
-        lost = [l for l in lost if l.item.lower().strip() != "possessions"]
+        lost = [lost_item for lost_item in lost if lost_item.item.lower().strip() != "possessions"]
         used = [u for u in used if u.item.lower().strip() != "possessions"]
 
         return InventoryEnrichment(
@@ -862,11 +869,6 @@ def audit_inventory_batch(audit_list: List[Dict[str, Any]], model: str, client: 
             response_format={"type": "json_object"}
         )
         
-        usage = {
-            "model": model,
-            "prompt_tokens": response.usage.prompt_tokens,
-            "completion_tokens": response.usage.completion_tokens,
-        }
         return json.loads(response.choices[0].message.content)
     except Exception as e:
         print(f"Global inventory audit error: {e}")
@@ -928,10 +930,14 @@ def main():
         
         sid = portion.section_id or portion.portion_id
         section_items = []
-        for i, item in enumerate(inv.items_gained): section_items.append({"item_index": i, "type": "add", "data": item.model_dump()})
-        for i, item in enumerate(inv.items_lost): section_items.append({"item_index": i, "type": "remove", "data": item.model_dump()})
-        for i, item in enumerate(inv.items_used): section_items.append({"item_index": i, "type": "use", "data": item.model_dump()})
-        for i, item in enumerate(inv.inventory_checks): section_items.append({"item_index": i, "type": "check", "data": item.model_dump()})
+        for i, item in enumerate(inv.items_gained):
+            section_items.append({"item_index": i, "type": "add", "data": item.model_dump()})
+        for i, item in enumerate(inv.items_lost):
+            section_items.append({"item_index": i, "type": "remove", "data": item.model_dump()})
+        for i, item in enumerate(inv.items_used):
+            section_items.append({"item_index": i, "type": "use", "data": item.model_dump()})
+        for i, item in enumerate(inv.inventory_checks):
+            section_items.append({"item_index": i, "type": "check", "data": item.model_dump()})
 
         audit_data.append({
             "section_id": sid,

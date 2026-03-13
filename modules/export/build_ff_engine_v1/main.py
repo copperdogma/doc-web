@@ -910,7 +910,6 @@ def build_section(portion: Dict[str, Any], emit_text: bool, emit_provenance_text
 
     html_body = portion.get("raw_html", "")
     text_body = portion.get("raw_text") or html_to_text(html_body)
-    raw_body = text_body
 
     sequence = portion.get("sequence")
     if sequence is None:

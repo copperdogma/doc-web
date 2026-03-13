@@ -663,6 +663,14 @@ def build_command(entrypoint: str, params: Dict[str, Any], stage_conf: Dict[str,
             cmd += ["--output-dir", module_outdir]; flags_added.add("--output-dir")
             cmd += ["--ocr-manifest", ocr_manifest_path]
             flags_added.add("--ocr-manifest")
+        elif stage_conf["module"] == "extract_text_v1":
+            input_glob = recipe_input.get("text_glob") or params.get("input_glob")
+            if not input_glob:
+                raise SystemExit(f"Stage {stage_conf['id']} missing input.text_glob or input_glob param")
+            module_outdir = os.path.dirname(artifact_path) if not is_final_output else os.path.join(run_dir, "output")
+            cmd += ["--outdir", module_outdir]
+            cmd += ["--input-glob", str(input_glob)]
+            flags_added.update({"--outdir", "--input-glob"})
         else:
             if "pdf" in recipe_input:
                 cmd += ["--pdf", recipe_input["pdf"]]; flags_added.add("--pdf")
@@ -1320,6 +1328,15 @@ def register_run(run_id: str, run_dir: str, recipe: Dict[str, Any], instrumentat
     append_jsonl(manifest_path, entry)
 
 
+def _roots_can_seed_without_recipe_input(stages: List[Dict[str, Any]]) -> bool:
+    """Loader-root recipes can resume from artifacts without top-level input."""
+    root_stages = [stage for stage in stages if not stage.get("needs")]
+    if not root_stages:
+        return False
+    inputless_root_modules = {"load_artifact_v1", "load_stub_v1"}
+    return all(stage.get("module") in inputless_root_modules for stage in root_stages)
+
+
 def main():
     parser = argparse.ArgumentParser(description="Pipeline driver that executes a recipe and module registry.")
     parser.add_argument("--config", help="Path to run configuration YAML")
@@ -1449,13 +1466,20 @@ def main():
     # 3. Input
     # Input is inside 'recipe' dict, but we must check if it's effectively populated.
     input_conf = recipe.get("input") or {}
-    if not input_conf.get("pdf") and not input_conf.get("images"):
+    if (
+        not input_conf.get("pdf")
+        and not input_conf.get("images")
+        and not input_conf.get("text_glob")
+        and not _roots_can_seed_without_recipe_input(recipe.get("stages") or [])
+    ):
         # If we have no input from override AND no input from recipe, we fail.
         print("\n❌ ERROR: No input specified.", file=sys.stderr)
-        print("You must provide an input PDF or images directory via:", file=sys.stderr)
+        print("You must provide an input PDF, images directory, or text glob via:", file=sys.stderr)
         print("  - Configuration YAML (recommended): input_pdf: ...", file=sys.stderr)
         print("  - CLI Override: --input-pdf ...", file=sys.stderr)
         print("  - Recipe (deprecated): input:\n      pdf: ...", file=sys.stderr)
+        print("  - Text smoke recipe: input:\n      text_glob: ...", file=sys.stderr)
+        print("  - Loader-root recipes may omit top-level input when they start from load_artifact/load_stub", file=sys.stderr)
         sys.exit(1)
 
     # Handle run ID reuse logic

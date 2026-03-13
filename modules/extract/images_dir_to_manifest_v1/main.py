@@ -3,7 +3,6 @@
 Build a page_image_v1 manifest from a directory of scanned page images.
 """
 import argparse
-import os
 import re
 from datetime import datetime, timezone
 from pathlib import Path

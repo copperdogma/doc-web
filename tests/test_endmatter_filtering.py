@@ -3,12 +3,6 @@
 Unit tests for endmatter pattern detection in portionize_html_extract_v1.
 Tests generic patterns (not book-specific) that should work across FF books.
 """
-import sys
-from pathlib import Path
-
-# Add project root to path
-project_root = Path(__file__).parent.parent
-sys.path.insert(0, str(project_root))
 
 from modules.portionize.portionize_html_extract_v1.main import (
     _is_endmatter_running_head,

@@ -7,7 +7,7 @@ from modules.common.utils import ensure_dir, save_jsonl, ProgressLogger
 
 
 def join_lines(lines):
-    return "\n".join([l.get("text", "") for l in lines])
+    return "\n".join([line.get("text", "") for line in lines])
 
 
 def main():
@@ -35,14 +35,14 @@ def main():
             text = join_lines(lines)
         else:
             filtered = []
-            for l in lines:
-                t = l.get("text", "")
+            for line in lines:
+                t = line.get("text", "")
                 # Keep numeric-only lines (likely headers) so header detection sees them
                 if t.strip().isdigit():
-                    filtered.append(l)
+                    filtered.append(line)
                     continue
-                filtered.append(l)
-            text = "\n".join([l.get("text", "") for l in filtered])
+                filtered.append(line)
+            text = "\n".join([line.get("text", "") for line in filtered])
         row = {
             "schema_version": "clean_page_v1",
             "module_id": "pagelines_to_clean_v1",

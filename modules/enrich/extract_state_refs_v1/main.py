@@ -7,7 +7,7 @@ from typing import Any, Dict, List, Optional, Tuple
 
 from modules.common.utils import read_jsonl, save_jsonl, ProgressLogger
 from modules.common.html_utils import html_to_text
-from schemas import EnrichedPortion, StateValue, StateCheck
+from schemas import EnrichedPortion
 
 MAP_REFERENCE_VALUE_PAT = re.compile(
     r"\bmap reference is\s+([0-9]{1,3}X{0,2}|[0-9]{1,3})\b",

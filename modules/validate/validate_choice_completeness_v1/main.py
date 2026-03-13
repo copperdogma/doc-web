@@ -18,7 +18,6 @@ import json
 import re
 from modules.common.html_utils import html_to_text
 from typing import Any, Dict, List, Set, Tuple
-from collections import defaultdict
 
 from modules.common.utils import save_json, ProgressLogger
 
@@ -245,13 +244,13 @@ def main():
         schema_version="validation_report_v1"
     )
     
-    print(f"\n=== Choice Completeness Validation ===")
+    print("\n=== Choice Completeness Validation ===")
     print(f"Total sections: {total_sections}")
     print(f"Flagged sections: {len(flagged_sections)}")
     print(f"Valid: {report['is_valid']}")
     
     if flagged_sections:
-        print(f"\n⚠️ Sections with potential missing choices:")
+        print("\n⚠️ Sections with potential missing choices:")
         for sid in flagged_sections[:10]:
             details = all_details[sid]
             print(f"  Section {sid}: Text refs {details['text_references']} "
@@ -260,10 +259,10 @@ def main():
             print(f"  ... and {len(flagged_sections) - 10} more")
         
         print(f"\n❌ VALIDATION FAILED: {len(flagged_sections)} sections need review")
-        print(f"   For 100% game engine accuracy, all choices must be complete.")
+        print("   For 100% game engine accuracy, all choices must be complete.")
         return 1
     else:
-        print(f"\n✅ VALIDATION PASSED: All sections have complete choices")
+        print("\n✅ VALIDATION PASSED: All sections have complete choices")
         return 0
 
 

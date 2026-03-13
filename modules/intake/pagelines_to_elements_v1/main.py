@@ -12,7 +12,7 @@ import argparse
 import json
 import os
 from pathlib import Path
-from typing import List, Dict, Optional
+from typing import List, Dict
 
 from modules.common.utils import ensure_dir, save_jsonl, read_jsonl, ProgressLogger
 from datetime import datetime, timezone
@@ -350,7 +350,7 @@ def main():
             layout = None
             bbox = line.get("bbox")
             if bbox and len(bbox) >= 4:
-                x0, y0, x1, y1 = bbox[0], bbox[1], bbox[2], bbox[3]
+                x0, y0, x1, _y1 = bbox[0], bbox[1], bbox[2], bbox[3]
                 # Normalized y position (top of line, 0=top, 1=bottom)
                 y_pos = y0  # Assume already normalized 0-1
                 

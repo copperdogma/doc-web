@@ -4,11 +4,10 @@ Based on the existing spike_cropper_cv.py approach with added transparency proce
 """
 
 import argparse
-import json
 import os
 from datetime import datetime
 from pathlib import Path
-from typing import List, Dict, Any, Optional, Tuple
+from typing import List, Dict, Any, Optional
 
 import cv2
 import numpy as np

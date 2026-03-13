@@ -8,7 +8,7 @@ Outputs the full portions JSONL with repair_hints annotations.
 """
 
 import argparse
-from typing import Any, Dict, Iterable, List, Optional, Set, Tuple
+from typing import Any, Dict, List, Optional, Set, Tuple
 
 from modules.common.utils import ProgressLogger, read_jsonl, save_jsonl
 

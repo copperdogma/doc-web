@@ -1,7 +1,6 @@
 import argparse
 import json
 import os
-from pathlib import Path
 
 from modules.common.utils import ensure_dir, save_jsonl, read_jsonl, ProgressLogger, save_json
 

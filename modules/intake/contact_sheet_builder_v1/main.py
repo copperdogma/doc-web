@@ -1,12 +1,12 @@
 import argparse
 import json
 import math
-import os
+import subprocess
 from pathlib import Path
 from typing import Dict, List, Any
 
 from PIL import Image, ImageDraw, ImageFont
-import subprocess
+from modules.common.utils import ensure_dir
 
 
 def render_pdf_to_images(pdf: Path, out_dir: Path, dpi: int, image_format: str) -> Path:
@@ -16,8 +16,6 @@ def render_pdf_to_images(pdf: Path, out_dir: Path, dpi: int, image_format: str) 
     cmd = ["pdftoppm", fmt_flag, "-r", str(dpi), str(pdf), str(base)]
     subprocess.run(cmd, check=True)
     return out_dir
-
-from modules.common.utils import ensure_dir
 
 
 def load_font(size: int):

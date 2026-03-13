@@ -1,10 +1,8 @@
 import argparse
 import json
-import string
-from pathlib import Path
 from typing import Any, Dict, Iterable, List
 
-from modules.common.utils import ProgressLogger, read_jsonl, save_jsonl
+from modules.common.utils import ProgressLogger, save_jsonl
 
 PUNCTUATION = set(".!?;""'")
 

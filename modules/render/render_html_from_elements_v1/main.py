@@ -248,7 +248,7 @@ def render_page_to_html(
         filtered.append(elem)
 
     # Render each element
-    html_parts = [f'<div class="page">\n']
+    html_parts = ['<div class="page">\n']
     html_parts.append(f'  <div class="page-number">Page {page_num}</div>\n')
 
     for elem in filtered:

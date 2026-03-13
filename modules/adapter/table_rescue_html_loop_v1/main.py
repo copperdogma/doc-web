@@ -4,7 +4,6 @@ Iterative table rescue loop that re-OCRs pages until table structure is recovere
 """
 import argparse
 import base64
-import json
 import os
 import re
 from dataclasses import dataclass

@@ -8,7 +8,6 @@ Focuses on potential OCR misreads (e.g., 303 read as 103).
 
 import argparse
 import json
-import os
 import re
 from typing import List, Dict, Set, Tuple, Optional
 from dataclasses import dataclass
@@ -409,7 +408,8 @@ def main():
     incoming_map = defaultdict(list)
     for p in portions:
         sid = p.get('section_id')
-        if not sid: continue
+        if not sid:
+            continue
         for idx, choice in enumerate(p.get('choices', [])):
             target = str(choice.get('target'))
             incoming_map[target].append((sid, idx))
@@ -476,7 +476,8 @@ def main():
                 break
                 
             src_p = section_map.get(suspect['source_id'])
-            if not src_p: continue
+            if not src_p:
+                continue
             
             # Get text context
             html = src_p.get('raw_html', '')

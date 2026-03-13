@@ -2,7 +2,7 @@
 import argparse
 import json
 import re
-from typing import Any, Dict, List, Optional
+from typing import Any, Dict, List
 
 from modules.common.utils import read_jsonl, save_json
 from modules.common.combat_styles import COMBAT_STYLE_DEFS

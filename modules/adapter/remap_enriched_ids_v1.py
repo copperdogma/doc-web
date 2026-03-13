@@ -37,7 +37,8 @@ def remap(rows: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
         new_choices = []
         for ch in choices:
             if not isinstance(ch, dict):
-                new_choices.append(ch); continue
+                new_choices.append(ch)
+                continue
             tgt = ch.get("target")
             new_tgt = mapping.get(tgt) or tgt
             ch = dict(ch)
