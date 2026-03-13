@@ -9,7 +9,7 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 from datetime import datetime
 from html.parser import HTMLParser
 from pathlib import Path
-from typing import List, Optional
+from typing import Dict, List, Optional, Tuple
 
 from modules.common.utils import read_jsonl, ensure_dir, append_jsonl, ProgressLogger
 
@@ -121,15 +121,24 @@ def _resize_image_bytes(image_bytes: bytes, max_long_side: int, mime: str) -> tu
 
 
 def _is_blank_page(image_bytes: bytes, threshold: float = 0.99) -> bool:
-    """Check if an image is mostly blank (near-white pixels exceed threshold)."""
+    """Check if an image is blank enough to skip OCR safely.
+
+    The detector is intentionally conservative: sparse-text pages with large
+    white regions should still be OCRed. We therefore evaluate a thumbnail and
+    require both a very high white ratio and almost no dark ink.
+    """
     if Image is None:
         return False
     img = Image.open(io.BytesIO(image_bytes)).convert("L")
+    img.thumbnail((256, 256))
     pixels = list(img.getdata())
     if not pixels:
         return True
-    white_count = sum(1 for p in pixels if p > 240)
-    return (white_count / len(pixels)) >= threshold
+    white_ratio = sum(1 for p in pixels if p >= 245) / len(pixels)
+    if white_ratio < threshold:
+        return False
+    ink_ratio = sum(1 for p in pixels if p <= 220) / len(pixels)
+    return ink_ratio < 0.002
 
 
 def _utc() -> str:
@@ -296,6 +305,144 @@ def extract_image_metadata(html: str) -> List[dict]:
     return images
 
 
+def _call_vision_model(
+    model: str,
+    system_prompt: str,
+    user_text: str,
+    data_uri: str,
+    temperature: float,
+    max_output_tokens: int,
+    *,
+    openai_client=None,
+    gemini_client=None,
+    anthropic_client=None,
+) -> Tuple[str, Optional[object], Optional[str]]:
+    """Run one OCR request against the provider implied by the model name."""
+    if _is_anthropic_model(model):
+        if anthropic_client is None:
+            raise RuntimeError("anthropic package required for Claude models")
+        return anthropic_client.generate_vision(
+            model=model,
+            system_prompt=system_prompt,
+            user_text=user_text,
+            image_data=data_uri,
+            temperature=temperature,
+            max_tokens=max_output_tokens,
+        )
+    if _is_gemini_model(model):
+        if gemini_client is None:
+            raise RuntimeError("google-genai package required for Gemini models")
+        return gemini_client.generate_vision(
+            model=model,
+            system_prompt=system_prompt,
+            user_text=user_text,
+            image_data=data_uri,
+            temperature=temperature,
+            max_tokens=max_output_tokens,
+        )
+    if openai_client is None:
+        raise RuntimeError("openai package required")
+    if hasattr(openai_client, "responses"):
+        resp = openai_client.responses.create(
+            model=model,
+            temperature=temperature,
+            max_output_tokens=max_output_tokens,
+            input=[
+                {
+                    "role": "system",
+                    "content": [{"type": "input_text", "text": system_prompt}],
+                },
+                {
+                    "role": "user",
+                    "content": [
+                        {"type": "input_text", "text": user_text},
+                        {"type": "input_image", "image_url": data_uri},
+                    ],
+                },
+            ],
+        )
+        return resp.output_text or "", getattr(resp, "usage", None), getattr(resp, "id", None)
+    resp = openai_client.chat.completions.create(
+        model=model,
+        temperature=temperature,
+        max_completion_tokens=max_output_tokens,
+        messages=[
+            {"role": "system", "content": system_prompt},
+            {
+                "role": "user",
+                "content": [
+                    {"type": "text", "text": user_text},
+                    {"type": "image_url", "image_url": {"url": data_uri}},
+                ],
+            },
+        ],
+    )
+    return resp.choices[0].message.content or "", getattr(resp, "usage", None), getattr(resp, "id", None)
+
+
+def _ocr_with_fallback(
+    image_bytes: bytes,
+    image_path: str,
+    *,
+    model: str,
+    retry_model: Optional[str],
+    system_prompt: str,
+    user_text: str,
+    temperature: float,
+    max_output_tokens: int,
+    openai_client=None,
+    gemini_client=None,
+    anthropic_client=None,
+) -> Tuple[str, str, Dict[str, float], Optional[str], Optional[str], Optional[str]]:
+    """OCR a page, retrying once on empty output.
+
+    The retry can use either the same model (preserving the legacy second
+    attempt) or a stronger provider-specific model when `retry_model` is set.
+    Returns stripped raw HTML, sanitized HTML, metadata, metadata tag/warning,
+    and the model that produced the kept output.
+    """
+    mime = "image/jpeg" if image_path.lower().endswith((".jpg", ".jpeg")) else "image/png"
+    b64 = base64.b64encode(image_bytes).decode("utf-8")
+    data_uri = f"data:{mime};base64,{b64}"
+
+    model_sequence = [model, retry_model or model]
+    last_raw = ""
+    last_cleaned = ""
+    last_meta: Dict[str, float] = {}
+    last_meta_tag = None
+    last_meta_warning = None
+    last_model_used = None
+
+    for selected_model in model_sequence:
+        try:
+            raw, _usage, _request_id = _call_vision_model(
+                selected_model,
+                system_prompt,
+                user_text,
+                data_uri,
+                temperature,
+                max_output_tokens,
+                openai_client=openai_client,
+                gemini_client=gemini_client,
+                anthropic_client=anthropic_client,
+            )
+        except Exception as exc:
+            raise RuntimeError(f"OCR failed on page image {image_path}: {exc}") from exc
+        raw = _extract_code_fence(raw)
+        raw, meta, meta_tag, meta_warning = _extract_ocr_metadata(raw)
+        cleaned = sanitize_html(raw)
+        last_raw = raw
+        last_cleaned = cleaned
+        last_meta = meta
+        last_meta_tag = meta_tag
+        last_meta_warning = meta_warning
+        last_model_used = selected_model
+        if cleaned.strip():
+            return raw, cleaned, meta, meta_tag, meta_warning, selected_model
+
+    return last_raw, last_cleaned, last_meta, last_meta_tag, last_meta_warning, last_model_used
+
+
 def resolve_manifest_path(args) -> Path:
     if args.pages:
         return Path(args.pages)
@@ -317,6 +464,9 @@ def main() -> None:
     parser.add_argument("--max_output_tokens", dest="max_output_tokens", type=int, default=4096)
     parser.add_argument("--temperature", type=float, default=0.0)
     parser.add_argument("--allow-empty", dest="allow_empty", action="store_true")
+    parser.add_argument("--retry-model", dest="retry_model", default=None,
+                        help="Optional stronger model to retry with when OCR returns empty HTML")
+    parser.add_argument("--retry_model", dest="retry_model", default=None)
     parser.add_argument("--ocr-hints", dest="ocr_hints", help="Recipe-level OCR hints text")
     parser.add_argument("--ocr_hints", dest="ocr_hints", help="Recipe-level OCR hints text")
     parser.add_argument("--max-long-side", dest="max_long_side", type=int, default=0,
@@ -353,10 +503,6 @@ def main() -> None:
         if total == 0:
             raise SystemExit(f"Manifest is empty: {manifest_path}")
 
-        # Preserve stage id for instrumentation; driver sets INSTRUMENT_STAGE to recipe stage id.
-        use_gemini = _is_gemini_model(args.model)
-        use_anthropic = _is_anthropic_model(args.model)
-
         logger = ProgressLogger(state_path=args.state_file, progress_path=args.progress_file, run_id=args.run_id)
         logger.log(
             "extract",
@@ -369,24 +515,31 @@ def main() -> None:
             schema_version="page_html_v1",
         )
 
-        if use_anthropic:
+        needs_anthropic = any(_is_anthropic_model(m) for m in [args.model, args.retry_model] if m)
+        needs_gemini = any(_is_gemini_model(m) for m in [args.model, args.retry_model] if m)
+        needs_openai = any(
+            m and not _is_gemini_model(m) and not _is_anthropic_model(m)
+            for m in [args.model, args.retry_model]
+        )
+
+        if needs_anthropic:
             if AnthropicVisionClient is None:
                 raise RuntimeError("anthropic package required for Claude models") from _ANTHROPIC_IMPORT_ERROR
             anthropic_client = AnthropicVisionClient()
-            gemini_client = None
-            client = None
-        elif use_gemini:
+        else:
+            anthropic_client = None
+        if needs_gemini:
             if GeminiVisionClient is None:
                 raise RuntimeError("google-genai package required for Gemini models") from _GEMINI_IMPORT_ERROR
             gemini_client = GeminiVisionClient()
-            anthropic_client = None
-            client = None
         else:
+            gemini_client = None
+        if needs_openai:
             if OpenAI is None:
                 raise RuntimeError("openai package required") from _OPENAI_IMPORT_ERROR
-            client = OpenAI()
-            gemini_client = None
-            anthropic_client = None
+            openai_client = OpenAI()
+        else:
+            openai_client = None
         system_prompt = build_system_prompt(args.ocr_hints)
         if out_path.exists() and args.force:
             out_path.unlink()
@@ -435,86 +588,24 @@ def main() -> None:
             if args.max_long_side > 0:
                 image_bytes, mime, _resized = _resize_image_bytes(image_bytes, args.max_long_side, mime)
 
-            b64 = base64.b64encode(image_bytes).decode("utf-8")
-            data_uri = f"data:{mime};base64,{b64}"
-
-            raw = ""
-            usage = None
-            request_id = None
             meta = {}
             meta_tag = None
             meta_warning = None
             cleaned = ""
             user_text = "Return HTML only. FIRST line MUST be: <meta name=\"ocr-metadata\" data-ocr-quality=\"0.0-1.0\" data-ocr-integrity=\"0.0-1.0\" data-continuation-risk=\"0.0-1.0\">"
-
-            for attempt in range(2):
-                try:
-                    if use_anthropic:
-                        raw, usage, request_id = anthropic_client.generate_vision(
-                            model=args.model,
-                            system_prompt=system_prompt,
-                            user_text=user_text,
-                            image_data=data_uri,
-                            temperature=args.temperature,
-                            max_tokens=args.max_output_tokens,
-                        )
-                    elif use_gemini:
-                        raw, usage, request_id = gemini_client.generate_vision(
-                            model=args.model,
-                            system_prompt=system_prompt,
-                            user_text=user_text,
-                            image_data=data_uri,
-                            temperature=args.temperature,
-                            max_tokens=args.max_output_tokens,
-                        )
-                    elif hasattr(client, "responses"):
-                        resp = client.responses.create(
-                            model=args.model,
-                            temperature=args.temperature,
-                            max_output_tokens=args.max_output_tokens,
-                            input=[
-                                {
-                                    "role": "system",
-                                    "content": [{"type": "input_text", "text": system_prompt}],
-                                },
-                                {
-                                    "role": "user",
-                                    "content": [
-                                        {"type": "input_text", "text": user_text},
-                                        {"type": "input_image", "image_url": data_uri},
-                                    ],
-                                },
-                            ],
-                        )
-                        raw = resp.output_text or ""
-                        _usage = getattr(resp, "usage", None)  # noqa: F841 — logged by client wrapper
-                        _request_id = getattr(resp, "id", None)  # noqa: F841
-                    else:
-                        resp = client.chat.completions.create(
-                            model=args.model,
-                            temperature=args.temperature,
-                            max_completion_tokens=args.max_output_tokens,
-                            messages=[
-                                {"role": "system", "content": system_prompt},
-                                {
-                                    "role": "user",
-                                    "content": [
-                                        {"type": "text", "text": user_text},
-                                        {"type": "image_url", "image_url": {"url": data_uri}},
-                                    ],
-                                },
-                            ],
-                        )
-                        raw = resp.choices[0].message.content or ""
-                        _usage = getattr(resp, "usage", None)  # noqa: F841 — logged by client wrapper
-                        _request_id = getattr(resp, "id", None)  # noqa: F841
-                except Exception as exc:
-                    raise RuntimeError(f"OCR failed on page {page_number}: {exc}") from exc
-                raw = _extract_code_fence(raw)
-                raw, meta, meta_tag, meta_warning = _extract_ocr_metadata(raw)
-                cleaned = sanitize_html(raw)
-                if cleaned.strip():
-                    break
+            raw, cleaned, meta, meta_tag, meta_warning, _model_used = _ocr_with_fallback(
+                image_bytes,
+                image_path,
+                model=args.model,
+                retry_model=args.retry_model,
+                system_prompt=system_prompt,
+                user_text=user_text,
+                temperature=args.temperature,
+                max_output_tokens=args.max_output_tokens,
+                openai_client=openai_client,
+                gemini_client=gemini_client,
+                anthropic_client=anthropic_client,
+            )
 
             empty_msg = None
             if not cleaned.strip():

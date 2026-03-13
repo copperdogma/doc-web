@@ -20,6 +20,7 @@ stages:
     out: pages_html.jsonl
     params:
       model: gemini-3.1-pro-preview
+      retry_model: gpt-5.1
       max_output_tokens: 65536
       max_long_side: 2048
       concurrency: 5
@@ -145,24 +146,21 @@ stages:
       pages: onward_table_rescue
     out: pages_html_onward_tables_fixed.jsonl
 
-  - id: portionize_headings
+  - id: portionize_toc
     stage: portionize
-    module: portionize_headings_html_v1
-    needs: [table_fix_continuations]
+    module: portionize_toc_html_v1
+    needs: [extract_page_numbers]
     inputs:
-      pages: table_fix_continuations
-    out: portions_headings.jsonl
-    params:
-      heading_tags: h1
-      min_printed_page: 1
+      pages: extract_page_numbers
+    out: portions_toc.jsonl
 
   - id: build_chapters
     stage: build
     module: build_chapter_html_v1
-    needs: [table_fix_continuations, portionize_headings, crop_illustrations]
+    needs: [table_fix_continuations, portionize_toc, crop_illustrations]
     inputs:
       pages: table_fix_continuations
-      portions: portionize_headings
+      portions: portionize_toc
       illustration_manifest: crop_illustrations
     out: chapters_manifest.jsonl
     params:

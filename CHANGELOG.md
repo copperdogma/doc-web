@@ -1,17 +1,17 @@
-## [2026-03-12-04] - Agent workflow hardening and hygiene scouting
+## [2026-03-13-01] - OCR empty-page recovery and TOC coarse boundaries (Story 137)
 
 ### Added
-- `/codebase-improvement-scout` skill with report templates, bootstrap script, and supporting runbook for deterministic repo-hygiene scans
-- Scout 005 expedition doc covering the cine-forge agent-infrastructure sync
-- Cursor project support files and Gemini MCP settings for explicit cross-CLI agent setup
+- Regression coverage for OCR empty-page recovery and TOC-derived coarse boundary selection
 
 ### Changed
-- Hardened story lifecycle skills to use explicit build, validate, and mark-done handoffs instead of collapsing completion into `/build-story`
-- Expanded `/check-in-diff` into a safer worktree-aware landing workflow with companion runbook guidance
-- Upgraded story and scout scaffolding with stronger decision checks, redundancy planning, and re-scout behavior
-- Tightened `.gitignore` so only the intended tracked `.cursor` files are included
+- Story 137 rescoped and marked Done around the slice it actually shipped: generic OCR empty-page recovery plus TOC-first coarse chapter-boundary selection
+- Onward recipe now prefers the existing TOC portionizer over heading-only coarse chapter splits for this TOC-bearing book
 
-## [2026-03-12-05] - Layout linearization with captions and provenance (Story 009)
+### Fixed
+- Sparse nonblank OCR pages are no longer silently dropped in the reviewed Onward run
+- The rebuilt Onward chapter map no longer emits a standalone `Sharon's Family` chapter from an internal heading
+
+## [2026-03-12-04] - Layout linearization with captions and provenance (Story 009)
 
 ### Added
 - Caption association: `<figure>/<figcaption>` wrapping with heuristic detection (names, dates, row labels) and OCR prompt enhancement for native `<figure>` output

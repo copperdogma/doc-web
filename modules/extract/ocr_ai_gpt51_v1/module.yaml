@@ -47,5 +47,8 @@ param_schema:
       minimum: 0
       maximum: 1
       description: "Fraction of near-white pixels to consider a page blank"
+    retry_model:
+      type: string
+      description: "Optional stronger model to retry with when OCR returns empty HTML"
   required: [model]
-notes: "Vision OCR to per-page HTML. Supports image downsampling (max_long_side), parallel execution (concurrency), and blank page detection (skip_blank_pages)."
+notes: "Vision OCR to per-page HTML. Supports image downsampling (max_long_side), parallel execution (concurrency), conservative blank page detection (skip_blank_pages), and a stronger-model retry on empty output."
