@@ -1,3 +1,10 @@
+## [2026-03-13-03] - Triage inbox items into story and benchmark policy
+
+### Changed
+- Folded the Onward line-by-line OCR stepping-stone idea into Story 138 as a fallback experiment inside the existing genealogy-table regression work
+- Added scoped fixture-variant guidance to the golden build runbook so masked or cleaned benchmark inputs stay explicit and do not redefine product requirements
+- Cleared the inbox after routing both accumulated Onward items to their owning docs
+
 ## [2026-03-13-02] - Improve story closure and scope guidance
 
 ### Changed

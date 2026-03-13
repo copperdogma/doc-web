@@ -34,8 +34,19 @@ When `/verify-eval` identifies golden-wrong mismatches:
 - When adding new test cases, include at least one "tricky" case per category
 - Golden changes that affect > 5% of test cases require user approval
 
+## Scoped Fixture Variants
+
+Use masked or cleaned fixture variants only when the eval explicitly scopes some visible source content out of bounds.
+
+- Keep the original source artifact as the primary reference; a masked variant is a benchmark fixture, not a replacement for the real input
+- Document exactly what was removed or ignored and why in the owning story/work log
+- Use this only for content the eval intentionally excludes, such as illegible marginalia that the golden does not score
+- Do not use masking to hide recurring failures on in-scope content or to claim broader pipeline capability than the raw source supports
+- When possible, keep both paths obvious in naming so reviewers can inspect raw vs scoped fixtures side by side
+
 ## Pitfalls
 
 - **Don't assume golden is always right** — models sometimes find real issues the golden missed
 - **Version golden with the code** — golden files are tracked in git, not generated
 - **Document golden conventions** — what counts as an illustration vs. decoration, how to handle partial crops, etc.
+- **Don't turn benchmark scoping into product policy** — masking or cleaning a fixture may make a specific eval fairer, but it does not reduce the product requirement to handle handwritten or noisy real-world inputs

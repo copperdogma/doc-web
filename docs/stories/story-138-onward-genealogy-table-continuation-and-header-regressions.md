@@ -27,6 +27,7 @@ Fix the reviewed Onward genealogy-table regressions that remain in final HTML de
 
 - **Simplification baseline**: Trace the reviewed failing tables through the existing rescued-table artifacts and compare them to final HTML. If the rows already exist upstream, fix the continuation or export stages instead of re-solving OCR.
 - **AI-only**: Re-run only the flagged table pages through a stronger table rescue prompt/model. This is justified only if the table tails are actually missing from upstream rescued HTML.
+- **Literal-row fallback**: If direct image-to-HTML rescue is still model-wrong on the reviewed pages, test a stricter "one visual line = one JSONL row" transcription pass on just the flagged spans, then assemble HTML deterministically. Treat this as a fallback tactic inside this story, not a new default pipeline architecture.
 - **Hybrid**: Use deterministic tracing to find whether the problem is in rescue, continuation fixing, or export; apply targeted AI only to the pages whose table structure is genuinely unresolved.
 - **Pure code**: If the reviewed summary rows exist upstream but are dropped or misaligned later, fix the post-processing/continuation logic deterministically.
 - **Eval**: Reviewed-table fidelity is the gate: the cited headers and terminal count rows must appear in final HTML on the correct family chapter, with no cross-family leakage.
@@ -35,6 +36,7 @@ Fix the reviewed Onward genealogy-table regressions that remain in final HTML de
 
 - [ ] Trace the reviewed table-bleed defects through `table_rescue_onward_tables_v1`, `table_fix_continuations_v1`, chapter portionization, and final HTML to identify the exact failure stage
 - [ ] Diagnose whether each reviewed defect is model-wrong, post-processing-wrong, or export-wrong
+- [ ] If upstream rescue is still model-wrong on the reviewed spans, compare the current direct-HTML prompt against a literal-row JSONL stepping-stone prompt before adding more deterministic cleanup
 - [ ] Fix the highest-leverage root cause for the reviewed header and tail-row regressions
 - [ ] Add regression coverage or eval coverage for the reviewed table tails and header alignment cases
 - [ ] Regenerate and manually verify the reviewed chapters
@@ -93,3 +95,9 @@ Fix the reviewed Onward genealogy-table regressions that remain in final HTML de
   - `output/runs/story137-onward-verify/output/html/chapter-017.html` through `chapter-022.html` show the same bleed pattern again, plus a missing `Antoine L'Heureux` table header
 - **Decision:** Keep this story focused on family-table ownership and tail-row continuity, not just single-page header alignment.
 - **Next:** Build this story from the current `story137-onward-verify` run and trace whether the bleed starts in `table_rescue_onward_tables_v1`, `table_fix_continuations_v1`, or chapter assignment.
+
+### 20260313-1040 — inbox OCR stepping-stone idea folded into story
+- **Result:** Triaged the inbox "two-step line-by-line transcription" idea into this story as a fallback experiment, not a new standalone story.
+- **Evidence:** Story 131 already proved direct table rescue can hit the benchmark gate, but the real-run regressions in `story137-onward-verify` still show cross-family tail bleed and header loss that may warrant a stricter row-presence tactic on flagged spans.
+- **Decision:** First trace whether the defect is post-processing/export. Only if the reviewed rows are genuinely wrong or missing upstream should this story compare direct HTML rescue against a literal-row JSONL stepping-stone pass.
+- **Next:** During build-story execution, use the current reviewed spans to decide whether the fallback earns promotion into regression coverage or can be discarded after diagnosis.
