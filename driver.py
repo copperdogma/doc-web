@@ -21,6 +21,7 @@ from modules.common.patch_handler import (
     discover_patch_file, copy_patch_file_to_run, load_patches, apply_patch,
     get_suppressed_warnings, should_suppress_warning
 )
+from modules.common.run_registry import record_run_health, record_run_manifest
 from validate_artifact import SCHEMA_MAP
 from modules.common.utils import save_jsonl
 from schemas import RunConfig
@@ -1292,40 +1293,13 @@ def mock_consensus(in_path: str, out_path: str, module_id: str, run_id: str):
 
 def register_run(run_id: str, run_dir: str, recipe: Dict[str, Any], instrumentation: Optional[Dict[str, str]] = None,
                  snapshots: Optional[Dict[str, str]] = None):
-    if not run_id:
-        return
-    manifest_path = os.path.join("output", "run_manifest.jsonl")
-    ensure_dir(os.path.dirname(manifest_path))
-    existing = set()
-    if os.path.exists(manifest_path):
-        try:
-            for row in read_jsonl(manifest_path):
-                if row.get("run_id"):
-                    existing.add(row["run_id"])
-        except Exception:
-            existing = set()
-    if run_id in existing:
-        return
-    def _rel(path: Optional[str]) -> Optional[str]:
-        if not path:
-            return None
-        try:
-            return os.path.relpath(path)
-        except Exception:
-            return path
-
-    entry = {
-        "run_id": run_id,
-        "path": run_dir,
-        "created_at": datetime.utcnow().isoformat() + "Z",
-        "recipe": recipe.get("name") or os.path.basename(recipe.get("recipe_path", "")) or None,
-        "input": recipe.get("input", {}),
-    }
-    if instrumentation:
-        entry["instrumentation"] = {k: _rel(v) for k, v in instrumentation.items()}
-    if snapshots:
-        entry["snapshots"] = {k: _rel(v) for k, v in snapshots.items()}
-    append_jsonl(manifest_path, entry)
+    record_run_manifest(
+        run_id,
+        run_dir,
+        recipe,
+        instrumentation=instrumentation,
+        snapshots=snapshots,
+    )
 
 
 def _roots_can_seed_without_recipe_input(stages: List[Dict[str, Any]]) -> bool:
@@ -2270,6 +2244,10 @@ def main():
                         json.dump(state, f, indent=2)
             except Exception:
                 pass
+            try:
+                record_run_health(run_id, run_dir, recipe=recipe, state_path=state_path)
+            except Exception:
+                pass
             raise SystemExit(f"Stage {stage_id} failed with code {result.returncode}")
         # Stamp and validate if schema known
         if out_schema:
@@ -2481,6 +2459,11 @@ def main():
         state["ended_at"] = datetime.utcnow().isoformat(timespec="microseconds") + "Z"
         with open(state_path, "w", encoding="utf-8") as f:
             json.dump(state, f, indent=2)
+    except Exception:
+        pass
+
+    try:
+        record_run_health(run_id, run_dir, recipe=recipe, state_path=state_path)
     except Exception:
         pass
 

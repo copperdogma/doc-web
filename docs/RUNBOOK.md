@@ -107,3 +107,49 @@ Append these after `--` in the wrapper script.
 ### Monitoring
 *   **Tail Logs:** `scripts/monitor_run.sh output/runs/<run_id> output/runs/<run_id>/driver.pid 5`
 *   **Dashboard:** `python -m http.server 8000` -> `http://localhost:8000/docs/pipeline-visibility.html`
+
+## Run Registry
+
+Use the shared output-root registries before reusing an old run for validation or as an upstream.
+
+Registry files:
+*   `output/run_manifest.jsonl`: factual run index
+*   `output/run_health.jsonl`: machine-generated health facts
+*   `output/run_assessments.jsonl`: AI-written review judgments
+
+### Reuse Safety Check
+
+Ask the registry whether a run is safe for a specific scope before citing it as a validation source.
+
+```bash
+python tools/run_registry.py check-reuse \
+  --run-id <run_id> \
+  --scope page_presence
+```
+
+Recommended scopes:
+*   `page_presence`
+*   `chapter_structure`
+*   `page_break_stitching`
+*   `table_fidelity`
+*   `full_book_fidelity`
+
+If `recommendation` is `unsafe`, do not use that run for review even if older notes said it was good.
+
+From a git worktree, omit `--output-root`; the CLI resolves the shared project `output/` root automatically. Only pass `--output-root` when you are intentionally targeting a different output tree.
+
+### Recording Review Notes
+
+When a human reviews a run in conversation, the AI should convert that judgment into a structured assessment entry.
+
+```bash
+python tools/run_registry.py record-assessment \
+  --run-id <run_id> \
+  --scope page_presence \
+  --status unsafe \
+  --summary "Missing printed pages 6 and 8 in source page HTML." \
+  --finding "Pages 6 and 8 are empty in extract_page_numbers_html output." \
+  --evidence output/runs/<run_id>/05_extract_page_numbers_html_v1/pages_html.jsonl
+```
+
+Assessments are scope-specific. A run can be safe for one scope and unsafe for another.

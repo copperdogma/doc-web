@@ -26,6 +26,7 @@ Steps 1-2 are universal across all document types. Steps 3-4 vary by domain (gam
 - `configs/recipes/`: YAML files defining pipeline stages (logic).
 - `configs/presets/`: YAML files defining model/cost settings (parameters).
 - `output/runs/`: All pipeline artifacts and logs.
+- `output/run_*.jsonl`: Shared run registries for manifest, health, and AI review assessments.
 - `docs/`: Documentation and story tracking.
 - `benchmarks/`: Model evaluation workspace.
 

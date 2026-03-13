@@ -155,7 +155,7 @@ This index tracks stories in `/docs/stories/` for the codex-forge pipeline.
 |||| 136 | Parallelize Crop Detection and Table Rescue Stages | High | Draft | /docs/stories/story-136-pipeline-stage-parallelism.md |
 |||| 137 | Onward OCR Empty-Page Recovery and TOC Coarse Boundary Selection | High | Done | /docs/stories/story-137-onward-missing-content-and-chapter-boundary-gaps.md |
 |||| 138 | Onward Genealogy Table Continuation and Header Regressions | High | Pending | /docs/stories/story-138-onward-genealogy-table-continuation-and-header-regressions.md |
-|||| 139 | Partial-TOC Section Splitting and Page-Break Continuation | High | Pending | /docs/stories/story-139-partial-toc-section-splitting-and-page-break-continuation.md |
+|||| 139 | Partial-TOC Section Splitting and Page-Break Continuation | High | Done | /docs/stories/story-139-partial-toc-section-splitting-and-page-break-continuation.md |
 
 ## Notes
 - Status "Done" reflects current working state in codex-forge. "To Do" items are planned next steps aligned with `docs/requirements.md` and `snapshot.md`.

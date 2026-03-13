@@ -9,6 +9,7 @@ import argparse
 import re
 import sys
 from datetime import datetime
+from difflib import SequenceMatcher
 from html import escape as html_escape
 from pathlib import Path
 from typing import Any, Dict, List, Optional
@@ -259,6 +260,229 @@ def _page_sort_key(row: Dict[str, Any]) -> tuple:
     return (int(pn), int(row.get("page_number") or row.get("page") or 0))
 
 
+def _normalize_ws(text: str) -> str:
+    return re.sub(r"\s+", " ", (text or "").strip())
+
+
+def _title_tokens(text: str) -> List[str]:
+    normalized = _normalize_ws(text).casefold()
+    normalized = normalized.replace("’", "'").replace("`", "'")
+    normalized = re.sub(r"[^\w\s]", " ", normalized)
+    return [tok for tok in normalized.split() if tok]
+
+
+def _titles_related(a: Optional[str], b: Optional[str]) -> bool:
+    tokens_a = _title_tokens(a or "")
+    tokens_b = _title_tokens(b or "")
+    if not tokens_a or not tokens_b:
+        return False
+
+    def _tokens_match(left: str, right: str) -> bool:
+        if left == right:
+            return True
+        if left.startswith(right) or right.startswith(left):
+            return True
+        return SequenceMatcher(a=left, b=right).ratio() >= 0.83
+
+    def _all_tokens_match(shorter: List[str], longer: List[str]) -> bool:
+        return all(any(_tokens_match(token, candidate) for candidate in longer) for token in shorter)
+
+    if len(tokens_a) <= len(tokens_b):
+        return _all_tokens_match(tokens_a, tokens_b)
+    return _all_tokens_match(tokens_b, tokens_a)
+
+
+_NON_OWNER_HEADING_MARKERS = (
+    "family",
+    "grandchildren",
+    "great grandchildren",
+    "great great grandchildren",
+    "descendants",
+)
+
+
+def _is_strong_owner_heading(text: str) -> bool:
+    normalized = _normalize_ws(text)
+    if not normalized or len(normalized) < 3 or len(normalized) > 160:
+        return False
+    lowered = normalized.casefold()
+    if any(marker in lowered for marker in _NON_OWNER_HEADING_MARKERS):
+        return False
+    letters = sum(1 for ch in normalized if ch.isalpha())
+    if letters / max(1, len(normalized)) < 0.3:
+        return False
+    return True
+
+
+def _normalize_heading_breaks(html: str) -> str:
+    if "<br" not in html:
+        return html
+    soup = BeautifulSoup(html, "html.parser")
+    for heading in soup.find_all(re.compile(r"^h[1-6]$")):
+        if not heading.find("br"):
+            continue
+        text = _normalize_ws(heading.get_text(" ", strip=True))
+        heading.clear()
+        heading.append(text)
+    return soup.decode_contents()
+
+
+def _first_strong_owner_heading(html: str) -> Optional[str]:
+    soup = BeautifulSoup(html or "", "html.parser")
+    for heading in soup.find_all("h1"):
+        text = _normalize_ws(heading.get_text(" ", strip=True))
+        if _is_strong_owner_heading(text):
+            return text
+    return None
+
+
+def _starts_with_strong_h1(html: str, heading: Optional[str]) -> bool:
+    if not heading:
+        return False
+    soup = BeautifulSoup(html or "", "html.parser")
+    first = _first_significant_tag(soup)
+    if not first or first.name != "h1":
+        return False
+    text = _normalize_ws(first.get_text(" ", strip=True))
+    return text == heading
+
+
+def _first_significant_tag(soup: BeautifulSoup):
+    for child in soup.contents:
+        name = getattr(child, "name", None)
+        if name:
+            return child
+    return None
+
+
+def _last_significant_tag(soup: BeautifulSoup):
+    for child in reversed(soup.contents):
+        name = getattr(child, "name", None)
+        if name:
+            return child
+    return None
+
+
+_DANGLING_END_WORDS = {
+    "a", "after", "and", "as", "at", "be", "because", "before", "for", "from",
+    "if", "in", "into", "near", "of", "on", "or", "our", "the", "their", "to",
+    "was", "with",
+}
+_SENTENCE_END_RE = re.compile(r"[.!?\"')\]]$")
+
+
+def _should_stitch_page_break(prev_text: str, next_text: str) -> bool:
+    prev_norm = _normalize_ws(prev_text)
+    next_norm = _normalize_ws(next_text)
+    if not prev_norm or not next_norm:
+        return False
+    if _SENTENCE_END_RE.search(prev_norm):
+        return False
+    if next_norm[:1].islower():
+        return True
+    prev_tokens = _title_tokens(prev_norm)
+    if prev_tokens and prev_tokens[-1] in _DANGLING_END_WORDS:
+        return True
+    return False
+
+
+def _append_paragraph_children(dst, src) -> None:
+    dst.append(" ")
+    while src.contents:
+        dst.append(src.contents[0].extract())
+
+
+def _stitch_page_breaks(page_htmls: List[str]) -> str:
+    soups = [BeautifulSoup(html or "", "html.parser") for html in page_htmls if html]
+    if not soups:
+        return ""
+    for idx in range(1, len(soups)):
+        prev = soups[idx - 1]
+        current = soups[idx]
+        prev_last = _last_significant_tag(prev)
+        current_first = _first_significant_tag(current)
+        if not prev_last or not current_first:
+            continue
+        if prev_last.name != "p" or current_first.name != "p":
+            continue
+        prev_text = prev_last.get_text(" ", strip=True)
+        current_text = current_first.get_text(" ", strip=True)
+        if _should_stitch_page_break(prev_text, current_text):
+            _append_paragraph_children(prev_last, current_first)
+            current_first.decompose()
+    return "\n".join(soup.decode_contents() for soup in soups if soup.decode_contents().strip())
+
+
+def _refine_chapter_segments(
+    portion_title: str,
+    portion_page_start: int,
+    prepared_pages: List[Dict[str, Any]],
+    candidate_titles: List[str],
+) -> List[Dict[str, Any]]:
+    if not prepared_pages:
+        return []
+
+    segments: List[Dict[str, Any]] = []
+    current_pages: List[Dict[str, Any]] = []
+    current_title = portion_title
+    current_heading = None
+
+    for page in prepared_pages:
+        heading = page.get("owner_heading")
+        heading_matches_known_title = bool(
+            heading and any(_titles_related(heading, title) for title in candidate_titles)
+        )
+        heading_starts_page = _starts_with_strong_h1(page.get("html") or "", heading)
+        if (
+            heading
+            and heading_matches_known_title
+            and current_pages
+            and current_heading
+            and not _titles_related(heading, current_heading)
+        ):
+            segments.append({
+                "title": current_title,
+                "page_start": current_pages[0]["printed_page_number"],
+                "page_end": current_pages[-1]["printed_page_number"],
+                "source_pages": [p["page_number"] for p in current_pages if isinstance(p.get("page_number"), int)],
+                "source_printed_pages": [
+                    p["printed_page_number"]
+                    for p in current_pages
+                    if isinstance(p.get("printed_page_number"), int)
+                ],
+                "body_html": _stitch_page_breaks([p["html"] for p in current_pages]),
+                "source_portion_title": portion_title,
+                "source_portion_page_start": portion_page_start,
+            })
+            current_pages = []
+            current_title = heading
+            current_heading = heading
+
+        if heading and current_heading is None and (heading_matches_known_title or (not current_pages and heading_starts_page)):
+            current_title = heading
+            current_heading = heading
+
+        current_pages.append(page)
+
+    if current_pages:
+        segments.append({
+            "title": current_title,
+            "page_start": current_pages[0]["printed_page_number"],
+            "page_end": current_pages[-1]["printed_page_number"],
+            "source_pages": [p["page_number"] for p in current_pages if isinstance(p.get("page_number"), int)],
+            "source_printed_pages": [
+                p["printed_page_number"]
+                for p in current_pages
+                if isinstance(p.get("printed_page_number"), int)
+            ],
+            "body_html": _stitch_page_breaks([p["html"] for p in current_pages]),
+            "source_portion_title": portion_title,
+            "source_portion_page_start": portion_page_start,
+        })
+
+    return segments
+
+
 def _group_manifest_by_page(manifest_path: str) -> Dict[int, List[Dict[str, Any]]]:
     grouped: Dict[int, List[Dict[str, Any]]] = {}
     for row in read_jsonl(manifest_path):
@@ -505,14 +729,16 @@ def main() -> None:
     toc_entries = []
     covered_pages = set()
     chapters_by_start = {}
+    portion_titles = [p.get("title") or p.get("portion_id") or "" for p in portions]
 
     # ── Build chapters ──────────────────────────────────────────────────
     chapter_files: List[Dict[str, Any]] = []  # For navigation pass
 
-    for idx, portion in enumerate(portions, start=1):
+    chapter_counter = 0
+    for portion_idx, portion in enumerate(portions):
         page_start = portion.get("page_start")
         page_end = portion.get("page_end") or page_start
-        title = portion.get("title") or portion.get("portion_id") or f"Chapter {idx}"
+        title = portion.get("title") or portion.get("portion_id") or f"Chapter {portion_idx + 1}"
         if not isinstance(page_start, int):
             continue
         if not isinstance(page_end, int):
@@ -526,7 +752,7 @@ def main() -> None:
         for p in chapter_pages:
             covered_pages.add(p.get("printed_page_number"))
 
-        combined_html = []
+        prepared_pages = []
         for page in chapter_pages:
             html = page.get("html") or page.get("raw_html") or ""
             page_num = page.get("page_number") or page.get("page")
@@ -535,22 +761,46 @@ def main() -> None:
                 html = _attach_images(html, crops, args.images_subdir.rstrip("/"))
             html = _strip_headers_and_numbers(html)
             html = _add_table_scope(html)
-            combined_html.append(html)
-        body_html = "\n".join([h for h in combined_html if h])
+            html = _normalize_heading_breaks(html)
+            prepared_pages.append({
+                "html": html,
+                "page_number": page_num,
+                "printed_page_number": page.get("printed_page_number"),
+                "owner_heading": _first_strong_owner_heading(html),
+            })
 
-        filename = f"chapter-{idx:03d}.html"
-        toc_entries.append({"title": title, "file": filename, "page_start": page_start, "page_end": page_end})
-        chapters_by_start[page_start] = {"title": title, "file": filename, "page_start": page_start, "page_end": page_end}
+        candidate_titles = portion_titles[portion_idx:]
+        refined_segments = _refine_chapter_segments(title, page_start, prepared_pages, candidate_titles)
 
-        chapter_files.append({
-            "filename": filename,
-            "title": title,
-            "body_html": body_html,
-            "page_start": page_start,
-            "page_end": page_end,
-            "kind": "chapter",
-            "chapter_index": idx,
-        })
+        for segment in refined_segments:
+            chapter_counter += 1
+            filename = f"chapter-{chapter_counter:03d}.html"
+            toc_entries.append({
+                "title": segment["title"],
+                "file": filename,
+                "page_start": segment["page_start"],
+                "page_end": segment["page_end"],
+            })
+            chapters_by_start[segment["page_start"]] = {
+                "title": segment["title"],
+                "file": filename,
+                "page_start": segment["page_start"],
+                "page_end": segment["page_end"],
+            }
+
+            chapter_files.append({
+                "filename": filename,
+                "title": segment["title"],
+                "body_html": segment["body_html"],
+                "page_start": segment["page_start"],
+                "page_end": segment["page_end"],
+                "kind": "chapter",
+                "chapter_index": chapter_counter,
+                "source_pages": segment["source_pages"],
+                "source_printed_pages": segment["source_printed_pages"],
+                "source_portion_title": segment["source_portion_title"],
+                "source_portion_page_start": segment["source_portion_page_start"],
+            })
 
     # ── Build fallback pages (uncovered by chapters) ────────────────────
     fallback_entries = []
@@ -627,6 +877,10 @@ def main() -> None:
             "page_end": entry["page_end"],
             "file": str(file_path),
             "kind": entry["kind"],
+            "source_pages": entry.get("source_pages"),
+            "source_printed_pages": entry.get("source_printed_pages"),
+            "source_portion_title": entry.get("source_portion_title"),
+            "source_portion_page_start": entry.get("source_portion_page_start"),
         })
 
     # ── Build index page ────────────────────────────────────────────────

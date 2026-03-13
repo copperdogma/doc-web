@@ -14,7 +14,10 @@ from modules.build.build_chapter_html_v1.main import (
     _html5_wrap,
     _add_table_scope,
     _build_nav,
+    _normalize_heading_breaks,
+    _refine_chapter_segments,
     _strip_headers_and_numbers,
+    _stitch_page_breaks,
 )
 
 
@@ -367,6 +370,132 @@ class TestStripHeaders:
 
     def test_empty_html(self):
         assert _strip_headers_and_numbers("") == ""
+
+
+# ---------------------------------------------------------------------------
+# Structure refinement
+# ---------------------------------------------------------------------------
+
+class TestStructureRefinement:
+    def test_normalizes_cosmetic_heading_breaks(self):
+        html = "<h1>JOSEPHINE<br>(L'HEUREUX ) ALAIN</h1>"
+        result = _normalize_heading_breaks(html)
+        assert "<br" not in result
+        assert "JOSEPHINE (L'HEUREUX ) ALAIN" in result
+
+    def test_refines_coarse_span_into_multiple_owner_segments(self):
+        pages = [
+            {
+                "html": "<h1>JOSEPHINE (L'HEUREUX ) ALAIN</h1><p>Josephine text.</p>",
+                "page_number": 48,
+                "printed_page_number": 48,
+                "owner_heading": "JOSEPHINE (L'HEUREUX ) ALAIN",
+            },
+            {
+                "html": "<h1>Josephine L'Heureux Alain</h1><p>More Josephine.</p>",
+                "page_number": 49,
+                "printed_page_number": 49,
+                "owner_heading": "Josephine L'Heureux Alain",
+            },
+            {
+                "html": "<h1>PAUL L'HEUREUX</h1><p>Paul text.</p>",
+                "page_number": 50,
+                "printed_page_number": 50,
+                "owner_heading": "PAUL L'HEUREUX",
+            },
+        ]
+        segments = _refine_chapter_segments("Leonidas", 37, pages, ["Leonidas", "Josephine", "Paul", "George"])
+        assert [segment["title"] for segment in segments] == [
+            "JOSEPHINE (L'HEUREUX ) ALAIN",
+            "PAUL L'HEUREUX",
+        ]
+        assert segments[0]["page_start"] == 48
+        assert segments[0]["page_end"] == 49
+        assert segments[1]["page_start"] == 50
+
+    def test_retitles_stale_coarse_span_from_first_visible_owner(self):
+        pages = [
+            {
+                "html": "<p>Blank spacer page.</p>",
+                "page_number": 107,
+                "printed_page_number": 98,
+                "owner_heading": None,
+            },
+            {
+                "html": "<h1>PIERRE L'HEUREUX</h1><p>Pierre text.</p>",
+                "page_number": 108,
+                "printed_page_number": 99,
+                "owner_heading": "PIERRE L'HEUREUX",
+            },
+        ]
+        segments = _refine_chapter_segments("Wilfred", 98, pages, ["Wilfred", "Pierre", "Antoine"])
+        assert len(segments) == 1
+        assert segments[0]["title"] == "PIERRE L'HEUREUX"
+        assert segments[0]["page_start"] == 98
+        assert segments[0]["page_end"] == 99
+
+    def test_accepts_minor_title_spelling_drift(self):
+        pages = [
+            {
+                "html": "<h1>Wilfrid L'Heureux</h1><p>Wilfrid text.</p>",
+                "page_number": 102,
+                "printed_page_number": 93,
+                "owner_heading": "Wilfrid L'Heureux",
+            },
+        ]
+        segments = _refine_chapter_segments("Wilfred", 93, pages, ["Wilfred", "Pierre", "Antoine"])
+        assert len(segments) == 1
+        assert segments[0]["title"] == "Wilfrid L'Heureux"
+
+    def test_retitles_from_first_page_heading_even_when_not_in_toc(self):
+        pages = [
+            {
+                "html": "<h1><strong><em>I WISH</em></strong></h1><p>Closing page.</p>",
+                "page_number": 118,
+                "printed_page_number": 109,
+                "owner_heading": "I WISH",
+            },
+        ]
+        segments = _refine_chapter_segments("Antoine", 109, pages, ["Antoine"])
+        assert len(segments) == 1
+        assert segments[0]["title"] == "I WISH"
+
+    def test_does_not_split_on_non_toc_family_heading(self):
+        pages = [
+            {
+                "html": "<h1>ARTHUR L'HEUREUX</h1><p>Arthur text.</p>",
+                "page_number": 26,
+                "printed_page_number": 26,
+                "owner_heading": "ARTHUR L'HEUREUX",
+            },
+            {
+                "html": "<h1>NOEL'S FAMILY</h1><p>Subfamily table.</p>",
+                "page_number": 27,
+                "printed_page_number": 27,
+                "owner_heading": "NOEL'S FAMILY",
+            },
+        ]
+        segments = _refine_chapter_segments("Arthur", 26, pages, ["Arthur", "Leonidas", "Josephine"])
+        assert len(segments) == 1
+        assert segments[0]["title"] == "ARTHUR L'HEUREUX"
+
+    def test_stitches_page_break_continuations(self):
+        result = _stitch_page_breaks([
+            "<p>Dad sold the land and put up an addition to</p>",
+            "<p>be the store and post office.</p>",
+        ])
+        soup = BeautifulSoup(result, "html.parser")
+        paragraphs = soup.find_all("p")
+        assert len(paragraphs) == 1
+        assert "addition to be the store and post office." in paragraphs[0].get_text(" ", strip=True)
+
+    def test_keeps_distinct_paragraphs_when_sentence_is_complete(self):
+        result = _stitch_page_breaks([
+            "<p>Dad sold the land and moved home.</p>",
+            "<p>He later opened the store.</p>",
+        ])
+        soup = BeautifulSoup(result, "html.parser")
+        assert len(soup.find_all("p")) == 2
 
 
 # ---------------------------------------------------------------------------

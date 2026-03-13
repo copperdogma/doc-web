@@ -145,7 +145,7 @@ PYTHONPATH=. python modules/<stage>/<module_id>/main.py \
 
 **Partial reruns (default behavior):** When using `--start-from`, driver.py **invalidates downstream outputs** by default (removes later stage artifacts and state entries) and re-runs everything after the start stage. Use `--keep-downstream` only when you explicitly intend to reuse downstream artifacts.
 
-**Artifact reuse policy**: You MAY reuse artifacts from a previous run (e.g., expensive OCR results) to save time/cost using a resume recipe or `load_artifact_v1`. However, you MUST ensure that the reused IDs and schemas are consistent with the current run to prevent "megasection" or "mismatch" failures.
+**Artifact reuse policy**: You MAY reuse artifacts from a previous run (e.g., expensive OCR results) to save time/cost using a resume recipe or `load_artifact_v1`. However, you MUST ensure that the reused IDs and schemas are consistent with the current run to prevent "megasection" or "mismatch" failures. Before treating an older run as a trusted upstream or review source, check `output/run_health.jsonl` and `output/run_assessments.jsonl` (or `python tools/run_registry.py check-reuse --run-id <run_id> --scope <scope>`). The CLI auto-detects the shared project `output/` root from the current repo/worktree; only pass `--output-root` when you need to override that default. A run is never globally "known good"; trust must be scope-specific.
 
 ```bash
 # Completion testing - must succeed for work to be "done"

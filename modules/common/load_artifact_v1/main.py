@@ -3,6 +3,7 @@ import json
 import shutil
 import os
 from datetime import datetime
+from pathlib import Path
 
 
 def _stamp_envelope(path: str, run_id: str) -> None:
@@ -28,6 +29,21 @@ def _stamp_envelope(path: str, run_id: str) -> None:
         pass  # Not a valid JSONL file; skip stamping
 
 
+def _copy_sibling_dirs(source_artifact: str, out_path: str, sibling_dirs: list[str]) -> None:
+    source_parent = Path(source_artifact).parent
+    dest_parent = Path(out_path).parent
+    for sibling in sibling_dirs:
+        name = (sibling or "").strip().strip("/\\")
+        if not name:
+            continue
+        src_dir = source_parent / name
+        if not src_dir.is_dir():
+            continue
+        dst_dir = dest_parent / name
+        shutil.copytree(src_dir, dst_dir, dirs_exist_ok=True)
+        print(f"Copied sibling directory {src_dir} to {dst_dir}")
+
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--path", required=True)
@@ -35,6 +51,8 @@ def main():
     parser.add_argument("--outdir")
     parser.add_argument("--schema-version", dest="schema_version")
     parser.add_argument("--schema_version", dest="schema_version")
+    parser.add_argument("--copy-sibling-dir", dest="copy_sibling_dirs", action="append", default=[],
+                        help="Optional sibling directory beside the source artifact to copy beside the output artifact; repeatable.")
     parser.add_argument("--run-id")
     parser.add_argument("--state-file")
     parser.add_argument("--progress-file")
@@ -62,6 +80,9 @@ def main():
         print(f"Copied {args.path} to {out_path}")
     else:
         print(f"Artifact already at {out_path}")
+
+    if args.copy_sibling_dirs:
+        _copy_sibling_dirs(args.path, out_path, args.copy_sibling_dirs)
 
     # Stamp current run's envelope on copied JSONL records
     _stamp_envelope(out_path, args.run_id)

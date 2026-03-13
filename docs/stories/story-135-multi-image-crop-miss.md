@@ -73,6 +73,10 @@ The guiding rule for this story is: **in single-column HTML, images should appea
 - Round-2 verification findings that stay in this story:
   - `chapter-010.html` in `story137-onward-verify` still inserts an image mid-sentence (`...made into <img> colorful bedspreads.`)
   - `chapter-021.html` in `story137-onward-verify` still has the reviewed swapped image pair
+ - `story139-onward-full127-composite-validate` review:
+   - `chapter-003.html` is missing the `Celebrate Saskatchewan` logo at the top; the seal is placed at the top instead of below beside the signature
+   - `chapter-011.html`, `chapter-014.html`, and `chapter-024.html` still place images mid-sentence in single-column reading order
+   - `chapter-011.html` and `chapter-028.html` still show swapped image/caption pairing
 - The historical page-21 crop miss may already be fixed in current code; if so, this story should focus on locking in the fix and addressing the remaining placement/caption defects.
 - Placement policy for this story: prefer image blocks between paragraphs over literal cross-column interleaving when linearizing into single-column HTML.
 
@@ -106,3 +110,12 @@ The guiding rule for this story is: **in single-column HTML, images should appea
   - `output/runs/story137-onward-verify/output/html/chapter-021.html` still has the reviewed swapped image pair
 - **Decision:** Keep this story focused on the paragraph-boundary image-placement rule plus image/caption pairing. Do not bury these defects inside section-splitting or table stories.
 - **Next:** Build this story against the current `story137-onward-verify` artifacts rather than the older `onward-story009-full` run.
+
+### 20260313-1238 — Story 139 review confirms image-order and placement defects persist on the safe artifact set
+- **Result:** Manual review of the page-safe `story139-onward-full127-composite-validate` run shows the image story is still open even after the Story 139 boundary repair and the validation-asset copy fix.
+- **Evidence:**
+  - `/Users/cam/Documents/Projects/codex-forge/output/runs/story139-onward-full127-composite-validate/output/html/chapter-003.html` still mis-orders the frontmatter logo/seal imagery
+  - `/Users/cam/Documents/Projects/codex-forge/output/runs/story139-onward-full127-composite-validate/output/html/chapter-011.html`, `chapter-014.html`, and `chapter-024.html` still inject figures into the middle of sentences
+  - `/Users/cam/Documents/Projects/codex-forge/output/runs/story139-onward-full127-composite-validate/output/html/chapter-011.html` and `chapter-028.html` still appear to have swapped image/caption pairing
+- **Important distinction:** the earlier broken-image issue in this run was fixed by improving `load_artifact_v1` to copy sibling `images/` directories during artifact reuse. That validation plumbing issue is closed; the remaining defects are true placement/order/caption problems and belong in this story.
+- **Next:** When building Story 135, use `story139-onward-full127-composite-validate` as the primary reviewed artifact set instead of the older unsafe `onward-story009-full` run.

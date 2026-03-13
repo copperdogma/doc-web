@@ -12,3 +12,6 @@ params:
   - name: schema_version
     desc: "Schema version to stamp artifact with"
     required: false
+  - name: copy_sibling_dir
+    desc: "Optional sibling directory beside the source artifact to copy beside the output artifact; repeat for multiple directories"
+    required: false

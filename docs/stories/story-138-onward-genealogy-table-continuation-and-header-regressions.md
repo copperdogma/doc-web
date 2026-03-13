@@ -75,6 +75,13 @@ Fix the reviewed Onward genealogy-table regressions that remain in final HTML de
     - `chapter-018.html` loses the bottom total/living/deceased counts into the next family page
     - `chapter-021.html` cuts off Pierre L'Heureux’s table into `chapter-022.html`
     - `chapter-022.html` starts with the prior family’s tail and is missing the `Antoine L'Heureux` table header
+  - `story139-onward-full127-composite-validate` review:
+    - `chapter-010.html` ends with a genealogy-table tail that begins `chapter-011.html`
+    - `chapter-013.html` ends with a genealogy-table tail that begins `chapter-014.html`
+    - `chapter-014.html`, `chapter-016.html`, `chapter-018.html`, `chapter-020.html`, and `chapter-024.html` each lose the family genealogy table into the next chapter
+    - `chapter-022.html` leaves the last quarter of the genealogy outside table structure
+    - `chapter-025.html` is only the middle of the prior family’s genealogy and itself continues again on the next page
+    - `chapter-026.html`, `chapter-028.html`, and `chapter-029.html` begin with the prior family’s leftover table rows
 - Story 131 proved high benchmark fidelity on the golden tables. This story exists because real-run HTML still shows reviewed regressions that the benchmark set did not catch.
 
 ## Plan
@@ -101,3 +108,13 @@ Fix the reviewed Onward genealogy-table regressions that remain in final HTML de
 - **Evidence:** Story 131 already proved direct table rescue can hit the benchmark gate, but the real-run regressions in `story137-onward-verify` still show cross-family tail bleed and header loss that may warrant a stricter row-presence tactic on flagged spans.
 - **Decision:** First trace whether the defect is post-processing/export. Only if the reviewed rows are genuinely wrong or missing upstream should this story compare direct HTML rescue against a literal-row JSONL stepping-stone pass.
 - **Next:** During build-story execution, use the current reviewed spans to decide whether the fallback earns promotion into regression coverage or can be discarded after diagnosis.
+
+### 20260313-1238 — Story 139 review confirms the table-continuation story remains the dominant Onward fidelity gap
+- **Result:** Manual review of the page-safe `story139-onward-full127-composite-validate` run shows Story 139 fixed the chapter-boundary/title issues it targeted, but genealogy-table continuation is still repeatedly wrong in final HTML.
+- **Evidence:**
+  - `/Users/cam/Documents/Projects/codex-forge/output/runs/story139-onward-full127-composite-validate/output/html/chapter-010.html` and `chapter-011.html` still split one family table across two chapters
+  - `/Users/cam/Documents/Projects/codex-forge/output/runs/story139-onward-full127-composite-validate/output/html/chapter-013.html` through `chapter-029.html` repeat the same spill pattern across multiple families
+  - `/Users/cam/Documents/Projects/codex-forge/output/runs/story139-onward-full127-composite-validate/output/html/chapter-022.html` adds a new failure mode where the last quarter of the genealogy is no longer table-structured
+  - `/Users/cam/Documents/Projects/codex-forge/output/runs/story139-onward-full127-composite-validate/output/html/chapter-025.html` is mostly detached middle-table content, not a self-contained family chapter
+- **Decision:** These findings stay in Story 138. They are not evidence that Story 139 failed; they are confirmation that table ownership/continuation is still the next Onward bottleneck after boundary repair.
+- **Next:** When building Story 138, use `story139-onward-full127-composite-validate` as the primary reviewed artifact set instead of the older unsafe `onward-story009-full` run.

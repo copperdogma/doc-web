@@ -21,6 +21,18 @@
 - Added scoped fixture-variant guidance to the golden build runbook so masked or cleaned benchmark inputs stay explicit and do not redefine product requirements
 - Cleared the inbox after routing both accumulated Onward items to their owning docs
 
+## [2026-03-13-05] - Story 139 closure and shared run-registry resolution
+
+### Added
+- Shared run-registry health/assessment workflow coverage for git-worktree resolution and relative `--output-root output` CLI usage
+
+### Changed
+- Story 139 marked Done around the validated slice it actually shipped: generic chapter refinement, title ownership repair, and conservative page-break stitching
+- Run-registry guidance now tells agents to rely on shared-output auto-detection from the current repo/worktree by default
+
+### Fixed
+- `tools/run_registry.py` now resolves the shared project `output/` root correctly from git worktrees instead of falling back to worktree-local registry files when the shared run already exists
+
 ## [2026-03-13-02] - Improve story closure and scope guidance
 
 ### Changed

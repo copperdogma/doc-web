@@ -19,7 +19,7 @@ _AI-first, modular book-to-structured-data pipeline_
 4) **Portionization**: sliding-window LLM with priors; multimodal; emits spans with type/title/confidence/continuation hints; configurable window/stride/range; append-only hypotheses.
 5) **Consensus & Resolution**: global consensus; min confidence; force range coverage; dedupe/normalize IDs; resolve overlaps; fill gaps.
 6) **Assembly**: per-portion JSON with page spans, source images, confidence, orig IDs, concatenated text (prefers clean_text).
-7) **Outputs & State**: run dir `output/runs/<run_id>/` (images/, ocr/, pages_raw/clean, hypotheses, locked/normalized/resolved, final JSON, pipeline_state); run manifest `output/run_manifest.jsonl`.
+7) **Outputs & State**: run dir `output/runs/<run_id>/` (images/, ocr/, pages_raw/clean, hypotheses, locked/normalized/resolved, final JSON, pipeline_state); shared run registries at `output/run_manifest.jsonl`, `output/run_health.jsonl`, and `output/run_assessments.jsonl`.
 8) **Configuration**: CLI/YAML for models, windows, strides, thresholds, ranges, run_id, priors, DPI/psm/oem/lang; sensible defaults.
 9) **Validation**: structural checks; pluggable validators (e.g., turn-to cross-refs for CYOA) optional.
 10) **Traceability**: keep spans, source images, confidences; retain JSONL artifacts for audit/rerun.
@@ -42,7 +42,7 @@ _AI-first, modular book-to-structured-data pipeline_
 
 ## Repository & Structure
 - Root: scripts/modules; `docs/`; `snapshot.md`; `output/` (git-ignored); configs.
-- Outputs: `output/runs/<run_id>/`; manifest at `output/run_manifest.jsonl`.
+- Outputs: `output/runs/<run_id>/`; registries at `output/run_manifest.jsonl`, `output/run_health.jsonl`, and `output/run_assessments.jsonl`.
 - Ignore `.venv/`, `__pycache__/`, `output/`.
 
 ## Acceptance Criteria (MVP)
