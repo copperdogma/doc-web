@@ -60,6 +60,13 @@ These are not compromises — they are permanent architectural commitments:
 **Limitation:** Economics — API calls cost money and take time.
 **Evolution path:** Cost decreases as models commoditize. When <$0.001/page at current quality, remove cost-conservation workflows.
 
+### C7: Page-Scope Extraction with Document-Level Consistency Planning
+**Ideal:** One source-aware extraction pass emits faithful, globally consistent structure across a whole document, so repeated pattern families naturally render the same way everywhere.
+**Compromise:** Extract page-level HTML first, then emit document-level `pattern_inventory`, `consistency_plan`, and `conformance_report` artifacts and use them to guide selective reruns or downstream repair.
+**Limitation:** AI capability + cost — blind page-by-page extraction still produces representation drift, while full-document source-aware extraction is not yet the default cost/latency envelope for every recipe.
+**Detection:** On at least 3 repeated-structure documents, the strongest practical one-pass extractor produces internally consistent repeated structures without needing a downstream consistency plan or selective reruns, while preserving provenance and manual-review quality.
+**When it resolves:** Delete the document-consistency planning layer for that recipe and collapse back to direct extraction plus final validation.
+
 ---
 
 ## Retired Compromises (from v1 book processing era)
@@ -78,3 +85,4 @@ These are engineering decisions tied to specific compromises. They die when thei
 - **C1:** Prefer code-first extraction for speed/cost; use AI only for flagged pages.
 - **C4:** Gemini 3 Pro is the current winning detector; Flash is the cheapest reliable validator.
 - **C6:** Treat OCR as expensive and single-run. Iterate downstream by reusing artifacts.
+- **C7:** Keep consistency conventions explicit and inspectable. Emit document-local `pattern_inventory`, `consistency_plan`, and `conformance_report` artifacts instead of hiding normalization policy in prompts.

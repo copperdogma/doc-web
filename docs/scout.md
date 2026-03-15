@@ -10,3 +10,4 @@ Scouting log for external sources researched for ideas to adopt. See `/scout` sk
 | 004 | [dossier triage](/docs/scout/scout-004-dossier-triage-skills.md) | 2026-03-12 | triage-inbox, triage-stories skills | 4 | 2 | — | Complete |
 | 005 | [cine-forge](/docs/scout/scout-005-cine-forge-agent-infra-sync.md) | 2026-03-12 | Recent agent-infra delta: skills, AGENTS hardening, wrappers, runbooks | 9 | 8 | — | Complete |
 | 006 | [storybook ADR skills](/docs/scout/scout-006-storybook-adr-skills.md) | 2026-03-14 | ADR package plus ADR-aware skill surface: create-adr, templates, runbook, decisions scaffolding, skill/docs integration | 4 | 4 | — | Complete |
+| 007 | [storybook ADR follow-ups](/docs/scout/scout-007-storybook-adr-followups.md) | 2026-03-15 | Missing ADR-adjacent follow-ups: reflect skill, deep-research runbook, and ADR lifecycle wiring | 4 | 3 | — | Complete |

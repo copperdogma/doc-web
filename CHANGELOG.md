@@ -1,3 +1,52 @@
+## [2026-03-15-01] - Ship document-level genealogy consistency planning (Story 144)
+
+### Added
+- Added `plan_onward_document_consistency_v1`, a story-scoped reuse recipe, focused regression coverage, and a new runbook for document consistency planning with explicit `pattern_inventory`, `consistency_plan`, and `conformance_report` artifacts
+- Added a new manual eval entry for document-level planning quality on Onward genealogy chapters
+
+### Changed
+- Story 144 is now done after corrected real-pipeline validation run `story144-onward-document-consistency-plan-r7`, which emitted inspectable planning artifacts, surfaced the previously missed manual format-failure chapters `011/012/013/014/018/019/020`, kept `chapter-009.html` out of the pure format-drift summary buckets, and restored `chapter-023.html` to conformant baseline status
+- ADR-001, `docs/spec.md`, and `AGENTS.md` now treat document-local consistency artifacts as the preferred workflow boundary for adaptive normalization work instead of hidden prompt state
+
+### Fixed
+- The planner now uses a compact dossier rather than raw whole-document HTML, reads modern OpenAI `responses` output safely, lowers reasoning effort for `gpt-5`, and falls back to `gpt-4.1` when the primary planner returns empty or malformed structured output
+- Row-semantic note detection no longer misclassifies ordinary death dates as note-placement problems, which keeps `chapter-009.html` in the intended row-semantic bucket without spraying false row-semantic warnings across the whole document
+- Document-level conformance summaries now split pure format drift from mixed issue chapters, and the planner drops unsupported AI issue types that are not backed by dossier signals before stamping the final report
+
+## [2026-03-14-05] - Ship Onward schema-frozen genealogy reruns (Story 143)
+
+### Added
+- Added `rerun_onward_genealogy_consistency_v1`, a story-scoped rerun validation recipe, and focused regression coverage for source-aware genealogy reruns with provenance-preserving decision reports and fallback behavior
+- Added Story 144, later widened into document-level consistency planning, to track the remaining genealogy consistency follow-up after Story 143
+
+### Changed
+- Story 143 is now done after a real reused-artifact run targeted bounded coarse suspect pages `30,31,32,33,34,35,56,57,62,63,64,67,68,69`, accepted `13/14`, and reduced the final consistency report from `8` flagged chapters to `5`
+- ADR-001 now records that direct HTML reruns are strong enough for most reviewed Onward genealogy pages, with mixed context/family-heading pages remaining the main representation-risk example
+
+### Fixed
+- The Onward rerun adapter now applies deterministic normalization before spending OCR budget, widens cleanly from strong pages to justified bounded adjacent pages, and rejects structurally worse candidates while preserving the original page HTML fallback
+
+## [2026-03-14-04] - Ship Onward genealogy consistency gating (Story 142)
+
+### Added
+- Added `validate_onward_genealogy_consistency_v1`, a story-scoped validation recipe, and focused regression coverage to score chapter-level genealogy drift and narrow culprit source pages without rewriting HTML
+
+### Changed
+- Marked Story 142 Done as ADR-001's first implementation slice after a real-pipeline validation run confirmed the reviewed bad/good chapter split and measured `strong_rerun_candidate_page_coverage=0.1607`
+- Updated `Makefile` to prefer the active environment Python interpreter with a `python3` fallback so `make test` and `make lint` run against the installed project environment by default
+
+### Fixed
+- Removed the stale hardcoded unreachable-section count from the FF Node-validator integration test so repo-wide pytest now checks wrapper parity against the current shared fixture instead of a drifting fixture total
+
+## [2026-03-14-03] - Close Story 141 around consistency investigation handoff
+
+### Added
+- Drafted Story 142 as the first concrete Onward implementation slice under ADR-001, focused on consistency detection and rerun gating before any automated source-aware reruns
+
+### Changed
+- Rescoped and marked Story 141 Done around the work it actually delivered: artifact investigation, bounded AI-first baselines, and the ADR handoff into a broader source-aware consistency strategy
+- Updated ADR-001 to point implementation follow-up at Story 142 instead of treating Story 141 as the future build target
+
 ## [2026-03-14-02] - Add ADR workflow support and document Story 141 direction
 
 ### Added

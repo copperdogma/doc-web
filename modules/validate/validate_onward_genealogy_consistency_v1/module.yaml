@@ -1,0 +1,7 @@
+module_id: validate_onward_genealogy_consistency_v1
+stage: validate
+entrypoint: modules/validate/validate_onward_genealogy_consistency_v1/main.py
+input_schema: null
+output_schema: pipeline_issues_v1
+notes: "Read-only Onward genealogy consistency report over built chapter HTML plus source page HTML."
+

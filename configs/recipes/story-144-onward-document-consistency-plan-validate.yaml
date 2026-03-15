@@ -1,0 +1,33 @@
+stages:
+  - id: load_story143_pages
+    stage: extract
+    module: load_artifact_v1
+    out: pages_html_onward_genealogy_rerun.jsonl
+    params:
+      path: output/runs/story143-onward-genealogy-reruns-r1/06_rerun_onward_genealogy_consistency_v1/pages_html_onward_genealogy_rerun.jsonl
+      out: pages_html_onward_genealogy_rerun.jsonl
+      schema_version: page_html_v1
+
+  - id: load_story143_chapters
+    stage: extract
+    module: load_artifact_v1
+    out: chapters_manifest_after_rerun.jsonl
+    params:
+      path: output/runs/story143-onward-genealogy-reruns-r1/07_build_chapter_html_v1/chapters_manifest_after_rerun.jsonl
+      out: chapters_manifest_after_rerun.jsonl
+      schema_version: chapter_html_manifest_v1
+
+  - id: plan_document_consistency
+    stage: validate
+    module: plan_onward_document_consistency_v1
+    needs: [load_story143_pages, load_story143_chapters]
+    inputs:
+      pages: load_story143_pages
+      chapters: load_story143_chapters
+    out: document_consistency_report.jsonl
+    params:
+      model: gpt-5
+      pattern_inventory: pattern_inventory.json
+      consistency_plan: consistency_plan.json
+      conformance_report: conformance_report.json
+      dossier_report: document_consistency_dossier.json

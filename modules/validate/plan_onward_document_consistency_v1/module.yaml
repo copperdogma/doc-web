@@ -1,0 +1,6 @@
+module_id: plan_onward_document_consistency_v1
+stage: validate
+entrypoint: modules/validate/plan_onward_document_consistency_v1/main.py
+input_schema: null
+output_schema: pipeline_issues_v1
+notes: "Document-level consistency planner for Onward genealogy chapters. Emits pattern_inventory, consistency_plan, conformance_report, and a compact dossier sidecar."

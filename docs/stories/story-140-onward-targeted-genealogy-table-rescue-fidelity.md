@@ -350,3 +350,10 @@ The problem is no longer "which chapter owns this table." The current evidence s
   - **Pipeline-scope impact:** No new behavior changes were introduced after the rescope/registry edits; the validated code path is unchanged and still green.
   - **Evidence:** `python -m pytest tests/ -q` → `580 passed, 6 skipped`; `python -m ruff check modules/ tests/` → clean; `python driver.py --recipe configs/recipes/recipe-ff-smoke.yaml --run-id smoke-ff --output-dir output/runs --allow-run-id-reuse --force` → `Recipe complete.`; `/Users/cam/Documents/Projects/codex-forge/output/runs/story140-onward-targeted-rescue-r19/output/html/chapter-010.html`; `/Users/cam/Documents/Projects/codex-forge/output/runs/story140-onward-targeted-rescue-r19/output/html/chapter-018.html`; `/Users/cam/Documents/Projects/codex-forge/output/runs/story140-onward-targeted-rescue-r19/output/html/chapter-020.html`
   - **Next:** Commit the current Story 140 + Story 141 handoff slice and land it onto `main`.
+20260314-1946 — follow-up redirect: Story 141 closed as the investigation/ADR handoff slice, and the actual implementation now lives in Story 142 under ADR-001
+- **Result:** Added a final redirect note so future readers do not treat closed Story 141 as the active implementation target for broader genealogy consistency work.
+- **Impact:**
+  - **Story-scope impact:** Story 140 stays historically accurate while the live follow-up path now points at `docs/decisions/adr-001-source-aware-consistency-strategy/adr.md` and Story 142.
+  - **Pipeline-scope impact:** No behavior change; this is documentation hygiene to keep the genealogy handoff chain accurate.
+  - **Evidence:** `/Users/cam/.codex/worktrees/72eb/codex-forge/docs/stories/story-141-onward-genealogy-table-consistency-pass.md`, `/Users/cam/.codex/worktrees/72eb/codex-forge/docs/stories/story-142-onward-source-aware-genealogy-consistency-first-slice.md`
+  - **Next:** Research ADR-001, then build Story 142.

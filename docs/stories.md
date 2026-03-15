@@ -157,7 +157,10 @@ This index tracks stories in `/docs/stories/` for the codex-forge pipeline.
 |||| 138 | Onward Genealogy Table Whole-Table Continuation and Header Regressions | High | Done | /docs/stories/story-138-onward-genealogy-table-continuation-and-header-regressions.md |
 |||| 139 | Partial-TOC Section Splitting and Page-Break Continuation | High | Done | /docs/stories/story-139-partial-toc-section-splitting-and-page-break-continuation.md |
 |||| 140 | Onward Targeted Genealogy Table Rescue Fidelity | High | Done | /docs/stories/story-140-onward-targeted-genealogy-table-rescue-fidelity.md |
-|||| 141 | Onward Genealogy Table Consistency Pass | High | In Progress | /docs/stories/story-141-onward-genealogy-table-consistency-pass.md |
+|||| 141 | Onward Genealogy Consistency Investigation and ADR Handoff | High | Done | /docs/stories/story-141-onward-genealogy-table-consistency-pass.md |
+|||| 142 | Onward Genealogy Consistency Detection and Rerun Gating | High | Done | /docs/stories/story-142-onward-source-aware-genealogy-consistency-first-slice.md |
+|||| 143 | Onward Schema-Frozen Genealogy Reruns | High | Done | /docs/stories/story-143-onward-schema-frozen-genealogy-reruns.md |
+|||| 144 | Onward Document-Level Genealogy Consistency Planning | High | Done | /docs/stories/story-144-onward-document-level-genealogy-consistency-planning.md |
 
 ## Notes
 - Status "Done" reflects current working state in codex-forge. "To Do" items are planned next steps aligned with `docs/requirements.md` and `snapshot.md`.

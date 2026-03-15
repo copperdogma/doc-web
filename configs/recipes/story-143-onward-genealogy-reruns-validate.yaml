@@ -1,0 +1,103 @@
+stages:
+  - id: load_pages
+    stage: extract
+    module: load_artifact_v1
+    out: pages_html_onward_tables_fixed.jsonl
+    params:
+      path: output/runs/story140-onward-targeted-rescue-r19/01_load_artifact_v1/pages_html_onward_tables_fixed.jsonl
+      out: pages_html_onward_tables_fixed.jsonl
+      schema_version: page_html_v1
+
+  - id: load_portions
+    stage: extract
+    module: load_artifact_v1
+    out: portions_toc.jsonl
+    params:
+      path: output/runs/story140-onward-targeted-rescue-r19/02_load_artifact_v1/portions_toc.jsonl
+      out: portions_toc.jsonl
+      schema_version: portion_hyp_v1
+
+  - id: load_crops
+    stage: extract
+    module: load_artifact_v1
+    out: illustration_manifest.jsonl
+    params:
+      path: output/runs/story140-onward-targeted-rescue-r19/03_load_artifact_v1/illustration_manifest.jsonl
+      out: illustration_manifest.jsonl
+      copy_sibling_dir: images
+
+  - id: build_initial_chapters
+    stage: build
+    module: build_chapter_html_v1
+    needs: [load_pages, load_portions, load_crops]
+    inputs:
+      pages: load_pages
+      portions: load_portions
+      illustration_manifest: load_crops
+    out: chapters_manifest_initial.jsonl
+    params:
+      images_subdir: images
+      book_title: "Onward to the Unknown"
+      book_author: ""
+      merge_contiguous_genealogy_tables: true
+
+  - id: validate_initial_consistency
+    stage: validate
+    module: validate_onward_genealogy_consistency_v1
+    needs: [build_initial_chapters, load_pages]
+    inputs:
+      chapters: build_initial_chapters
+      pages: load_pages
+    out: genealogy_consistency_report_initial.jsonl
+    params:
+      detail_report: genealogy_consistency_detail_initial.json
+      flag_threshold: 25
+      warning_band: 0.25
+      redesign_band: 0.30
+
+  - id: rerun_genealogy_pages
+    stage: adapter
+    module: rerun_onward_genealogy_consistency_v1
+    needs: [load_pages, validate_initial_consistency]
+    inputs:
+      pages: load_pages
+      consistency: validate_initial_consistency
+    out: pages_html_onward_genealogy_rerun.jsonl
+    params:
+      model: gpt-5
+      target_mode: coarse
+      chapter_allowlist: chapter-010.html,chapter-013.html,chapter-014.html,chapter-015.html
+      page_allowlist: 30,31,32,33,34,35,56,57,62,63,64,67,68,69
+      page_context_window: 1
+      max_pages: 14
+      report: rerun_onward_genealogy_report.jsonl
+      summary_report: rerun_onward_genealogy_summary.json
+
+  - id: rebuild_chapters
+    stage: build
+    module: build_chapter_html_v1
+    needs: [rerun_genealogy_pages, load_portions, load_crops]
+    inputs:
+      pages: rerun_genealogy_pages
+      portions: load_portions
+      illustration_manifest: load_crops
+    out: chapters_manifest_after_rerun.jsonl
+    params:
+      images_subdir: images
+      book_title: "Onward to the Unknown"
+      book_author: ""
+      merge_contiguous_genealogy_tables: true
+
+  - id: validate_final_consistency
+    stage: validate
+    module: validate_onward_genealogy_consistency_v1
+    needs: [rebuild_chapters, rerun_genealogy_pages]
+    inputs:
+      chapters: rebuild_chapters
+      pages: rerun_genealogy_pages
+    out: genealogy_consistency_report_after_rerun.jsonl
+    params:
+      detail_report: genealogy_consistency_detail_after_rerun.json
+      flag_threshold: 25
+      warning_band: 0.25
+      redesign_band: 0.30

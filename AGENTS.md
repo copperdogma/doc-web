@@ -43,6 +43,7 @@ Read this file at the start of every session.
 - **Inspect outputs, not just logs:** A green or non-crashing run is not evidence of correctness. Always manually open produced artifacts and check for logical errors (e.g., garbled text, broken tables, missing data, incorrect values).
 - **Precompute context for readers:** Prefer computing metrics (e.g., costs/usage/quality signals) at the stage that produces them and write them into artifacts/logs (e.g., `instrumentation.json`) instead of relying on downstream recomputation.
 - **Graduate, don't accumulate:** When a converter is stable and proven, plan its migration to Dossier. Codex-forge stays focused on unsolved problems.
+- **Consistency policy must be explicit:** When solving document-consistency or normalization problems, emit inspectable policy artifacts (for example `pattern_inventory`, `consistency_plan`, `conformance_report`) instead of hiding conventions in prompts. See `docs/runbooks/document-consistency-planning.md`.
 
 ## Subagent Strategy
 

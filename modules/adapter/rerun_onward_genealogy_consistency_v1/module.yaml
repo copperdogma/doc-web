@@ -1,0 +1,53 @@
+module_id: rerun_onward_genealogy_consistency_v1
+stage: adapter
+entrypoint: modules/adapter/rerun_onward_genealogy_consistency_v1/main.py
+input_schema: null
+output_schema: page_html_v1
+description: "Selective source-aware reruns for Onward genealogy consistency targets identified by the chapter-first validator."
+params:
+  - name: model
+    type: str
+    default: gpt-5
+  - name: max_output_tokens
+    type: int
+    default: 32768
+  - name: timeout_seconds
+    type: float
+    default: 120.0
+  - name: temperature
+    type: float
+    default: 0.0
+  - name: max_context_chars
+    type: int
+    default: 6000
+  - name: page_context_window
+    type: int
+    default: 1
+  - name: min_score_gain
+    type: int
+    default: 15
+  - name: min_token_recall
+    type: float
+    default: 0.75
+  - name: min_text_ratio
+    type: float
+    default: 0.65
+  - name: target_mode
+    type: str
+    default: strong
+  - name: chapter_allowlist
+    type: str
+    default: ""
+  - name: page_allowlist
+    type: str
+    default: ""
+  - name: max_pages
+    type: int
+    default: 10
+  - name: report
+    type: str
+    default: rerun_onward_genealogy_report.jsonl
+  - name: summary_report
+    type: str
+    default: rerun_onward_genealogy_summary.json
+notes: "Consumes page_html_v1 plus pipeline_issues_v1, reruns only the selected pages from source images, and emits a new page_html_v1 artifact plus decision reports."

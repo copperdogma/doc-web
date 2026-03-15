@@ -176,3 +176,17 @@ stages:
       book_title: "Onward to the Unknown"
       book_author: ""
       merge_contiguous_genealogy_tables: true
+
+  - id: validate_genealogy_consistency
+    stage: validate
+    module: validate_onward_genealogy_consistency_v1
+    needs: [build_chapters, table_fix_continuations]
+    inputs:
+      chapters: build_chapters
+      pages: table_fix_continuations
+    out: genealogy_consistency_report.jsonl
+    params:
+      detail_report: genealogy_consistency_detail.json
+      flag_threshold: 25
+      warning_band: 0.25
+      redesign_band: 0.30
