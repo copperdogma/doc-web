@@ -1,3 +1,8 @@
+## [2026-03-15-05] - Add external ingestion system eval candidates
+
+### Added
+- Added a codex-forge inbox item to evaluate promising external document-ingestion systems and components, prioritizing `Docling`, `OCRmyPDF`, `Surya`/`Marker`, and `GROBID` as potential sources of reusable intake, OCR, layout, and structured-output patterns.
+
 ## [2026-03-15-04] - Fix Onward image placement and caption fidelity (Story 135)
 
 ### Changed
