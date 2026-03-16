@@ -1,3 +1,22 @@
+## [2026-03-15-06] - Ship plan-aware genealogy reruns (Story 146)
+
+### Added
+- Added planner-aware target selection, decision reporting, and focused regression coverage to `rerun_onward_genealogy_consistency_v1`, plus the story-scoped validation recipe `configs/recipes/story-146-onward-plan-aware-genealogy-reruns-validate.yaml`
+- Added the build-map operating rule to clear the quality bar first and then schedule an explicit complexity-collapse pass, with Story 147 as the first tracked follow-up for the stabilized Onward genealogy seam
+
+### Changed
+- Story 146 is now done after real reused-artifact validation run `story146-onward-plan-aware-genealogy-reruns-r1`, which consumed Story 144 planning sidecars inside the rerun loop, targeted `18` planner-selected pages across the `12` pure-format drift chapters, accepted `11/18`, and preserved `chapter-009.html` as mixed plus `chapter-023.html` as conformant
+- Follow-up validation run `story146-onward-plan-aware-genealogy-reruns-r2-page112-fast` confirmed the same Story 146 seam can now repair the reviewed page-112 / `chapter-022.html` residual without OCR, leaving the deterministic validator focused on `chapter-010.html`, `chapter-016.html`, `chapter-017.html`, and `chapter-021.html`
+- Focused rebuild/validate run `story146-onward-build-stitch-r3` confirmed the remaining `chapter-010.html` through `chapter-015.html` fragmentation was mostly page-break continuity, not new OCR drift: the reviewed chapters now collapse to one main genealogy table plus the totals table, and the deterministic genealogy validator reports no flagged chapters in that slice
+- Follow-up focused rebuild/validate run `story146-onward-build-stitch-r5` confirmed the remaining reviewed defects were row-shape issues, not table continuity: the bad `Richard -> , 1956` death placement is corrected, the reviewed Sharon heading is no longer emitted as one concatenated row, and the reviewed subgroup rows in chapters `017/018/019/020/022` now span the full table width while the deterministic genealogy validator remains clean on the slice
+
+### Fixed
+- `rerun_onward_genealogy_consistency_v1` now consumes `pattern_inventory`, `consistency_plan`, and `conformance_report`, records pattern/rule/reason provenance in rerun reports, interleaves bounded planner targets by chapter before applying `max_pages`, and deterministically derives fallback page clusters for the old `chapter-013/014/015` empty-`relevant_pages` planner output
+- The Story 146 validation loop lowered remaining pure-format issue-type count from `21` to `19`, removing `fragmented_multi_table_chapter` from `chapter-018.html` and `chapter-019.html` plus `missing_subgroup_rows` from `chapter-017.html` even though the pure-format chapter set itself did not shrink
+- `table_rescue_onward_tables_v1` now rewrites malformed genealogy headers that embed family labels inside thead cells into canonical genealogy headers plus subgroup rows, which fixes the reviewed `SANDRA’S FAMILY` / page-112 header-shape defect and removes literal `BOY/GIRL` headers from the rebuilt `chapter-022.html`
+- `build_chapter_html_v1` now treats direct-adjacent same-schema genealogy tables as page-break continuations when the next table still looks like genealogy content, converts heading-followed name-list tails into continuation tables before merge, keeps totals tables separate, and re-applies the merge at final write time so later carry-back stitching cannot reintroduce fragmentation
+- `build_chapter_html_v1` now normalizes residual merged genealogy row defects after stitching: left-column-only heading rows become full-width subgroup rows, flattened multi-line generation-context rows are split into separate subgroup headings, and death-looking values are shifted out of the `GIRL` column into `DIED` when a padded canonical row would otherwise misplace them
+
 ## [2026-03-15-05] - Add external ingestion system eval candidates
 
 ### Added

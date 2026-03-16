@@ -456,3 +456,63 @@ def test_normalize_rescue_html_promotes_contextual_thead_rows_before_splitting_t
         thead_rows = table.find("thead").find_all("tr", recursive=False)
         assert len(thead_rows) == 1
         assert "SIMONE'S FAMILY" not in thead_rows[0].get_text(" ", strip=True)
+
+
+def test_normalize_rescue_html_rewrites_embedded_family_header_into_subgroup_rows():
+    html = """
+    <table>
+      <thead>
+        <tr>
+          <th>NAME</th><th>BORN</th><th colspan="2">SANDRA’S FAMILY</th><th>BOY/GIRL</th><th>DIED</th>
+        </tr>
+        <tr>
+          <th></th><th></th><th>MARRIED</th><th>SPOUSE</th><th></th><th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Ryan</td><td>Aug. 21, 1982</td><td></td><td></td><td></td><td></td></tr>
+        <tr><td>Andrew</td><td>Jan. 18, 1986</td><td></td><td></td><td></td><td></td></tr>
+        <tr><td colspan="6"><strong>CHRISTINE’S FAMILY</strong></td></tr>
+        <tr><td>Tamara</td><td>Jan. 13, 1986</td><td></td><td></td><td></td><td></td></tr>
+        <tr><td>Frances</td><td>Nov. 9, 1956</td><td>, 1978</td><td>Mark Girard</td><td>0 2</td><td></td></tr>
+      </tbody>
+    </table>
+    """
+
+    cleaned = _normalize_rescue_html(html)
+    soup = BeautifulSoup(cleaned, "html.parser")
+
+    table = soup.find("table")
+    assert table is not None
+    header_cells = table.find("thead").find("tr", recursive=False).find_all("th", recursive=False)
+    assert [cell.get_text(" ", strip=True) for cell in header_cells] == [
+        "NAME",
+        "BORN",
+        "MARRIED",
+        "SPOUSE",
+        "BOY",
+        "GIRL",
+        "DIED",
+    ]
+
+    subgroup_rows = [
+        row.get_text("\n", strip=True)
+        for row in table.find("tbody").find_all("tr", class_="genealogy-subgroup-heading", recursive=False)
+    ]
+    assert subgroup_rows[0] == "SANDRA’S FAMILY"
+    assert "CHRISTINE’S FAMILY" in table.get_text(" ", strip=True)
+
+    frances_row = next(
+        row for row in table.find("tbody").find_all("tr", recursive=False)
+        if "Frances" in row.get_text(" ", strip=True)
+    )
+    frances_cells = frances_row.find_all("td", recursive=False)
+    assert [cell.get_text(" ", strip=True) for cell in frances_cells] == [
+        "Frances",
+        "Nov. 9, 1956",
+        ", 1978",
+        "Mark Girard",
+        "0",
+        "2",
+        "",
+    ]

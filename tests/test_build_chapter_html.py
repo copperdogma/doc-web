@@ -894,6 +894,159 @@ class TestGenealogyMerging:
         assert "Kari Lou" in tables[0].get_text(" ", strip=True)
         assert "TOTAL DESCENDANTS" in tables[1].get_text(" ", strip=True)
 
+    def test_merge_contiguous_genealogy_tables_converts_name_list_paragraphs(self):
+        html = """
+        <h1>ARTHUR</h1>
+        <table>
+          <thead>
+            <tr><th>NAME</th><th>BORN</th><th>MARRIED</th><th>SPOUSE</th><th>BOY/GIRL</th><th>DIED</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Noel</td><td>Jan. 1, 1940</td><td></td><td></td><td>2 1</td><td></td></tr>
+          </tbody>
+        </table>
+        <h2>ULRIC'S FAMILY</h2>
+        <p>Claire<br/>Duffy<br/>Robin</p>
+        <h2>RENE'S FAMILY</h2>
+        <table>
+          <tbody>
+            <tr><td>Barbara Jean</td><td>Sept. 28, 1949</td></tr>
+          </tbody>
+        </table>
+        """
+
+        result = _merge_contiguous_genealogy_tables(html)
+        soup = BeautifulSoup(result, "html.parser")
+        tables = soup.find_all("table")
+
+        assert len(tables) == 1
+        assert not any("Claire" in paragraph.get_text(" ", strip=True) for paragraph in soup.find_all("p"))
+        subgroup_rows = [
+            row.get_text(" ", strip=True)
+            for row in tables[0].find("tbody").find_all("tr", recursive=False)
+            if "genealogy-subgroup-heading" in (row.get("class") or [])
+        ]
+        assert "ULRIC'S FAMILY" in subgroup_rows
+        assert "RENE'S FAMILY" in subgroup_rows
+
+    def test_merge_contiguous_genealogy_tables_stitches_direct_adjacent_continuations(self):
+        html = """
+        <h1>ARTHUR</h1>
+        <table>
+          <thead>
+            <tr><th>NAME</th><th>BORN</th><th>MARRIED</th><th>SPOUSE</th><th>BOY</th><th>GIRL</th><th>DIED</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Alice</td><td>Jan. 1, 1930</td><td></td><td></td><td>1</td><td>0</td><td></td></tr>
+          </tbody>
+        </table>
+        <table>
+          <thead>
+            <tr><th>NAME</th><th>BORN</th><th>MARRIED</th><th>SPOUSE</th><th>BOY</th><th>GIRL</th><th>DIED</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Bob</td><td>Feb. 2, 1932</td><td></td><td></td><td>0</td><td>1</td><td></td></tr>
+          </tbody>
+        </table>
+        <table>
+          <tbody>
+            <tr><td>TOTAL DESCENDANTS</td><td>2</td></tr>
+          </tbody>
+        </table>
+        """
+
+        result = _merge_contiguous_genealogy_tables(html)
+        soup = BeautifulSoup(result, "html.parser")
+        tables = soup.find_all("table")
+
+        assert len(tables) == 2
+        main_rows = tables[0].find("tbody").find_all("tr", recursive=False)
+        assert [row.get_text(" ", strip=True) for row in main_rows] == [
+            "Alice Jan. 1, 1930 1 0",
+            "Bob Feb. 2, 1932 0 1",
+        ]
+        assert "TOTAL DESCENDANTS" in tables[1].get_text(" ", strip=True)
+
+    def test_merge_contiguous_genealogy_tables_rewrites_left_column_heading_rows(self):
+        html = """
+        <table>
+          <thead>
+            <tr><th>NAME</th><th>BORN</th><th>MARRIED</th><th>SPOUSE</th><th>BOY</th><th>GIRL</th><th>DIED</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Alice</td><td>Jan. 1, 1930</td><td></td><td></td><td>1</td><td>0</td><td></td></tr>
+            <tr><th><strong>Leonidas’ Great Great Grandchildren<br/>Alma’s Great Grandchildren<br/>Dolly’s Grandchildren<br/>SHARON’S FAMILY</strong></th><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+            <tr><td>Blaine</td><td>Aug. 16, 1971</td><td></td><td></td><td></td><td></td><td></td></tr>
+          </tbody>
+        </table>
+        """
+
+        result = _merge_contiguous_genealogy_tables(html)
+        soup = BeautifulSoup(result, "html.parser")
+        rows = soup.find("tbody").find_all("tr", recursive=False)
+
+        assert [row.get_text(" ", strip=True) for row in rows[1:5]] == [
+            "Leonidas’ Great Great Grandchildren",
+            "Alma’s Great Grandchildren",
+            "Dolly’s Grandchildren",
+            "SHARON’S FAMILY",
+        ]
+        for row in rows[1:5]:
+            assert "genealogy-subgroup-heading" in (row.get("class") or [])
+            cells = row.find_all(["th", "td"], recursive=False)
+            assert len(cells) == 1
+            assert cells[0].get("colspan") == "7"
+
+    def test_merge_contiguous_genealogy_tables_splits_flattened_generation_context_rows(self):
+        html = """
+        <table>
+          <thead>
+            <tr><th>NAME</th><th>BORN</th><th>MARRIED</th><th>SPOUSE</th><th>BOY</th><th>GIRL</th><th>DIED</th></tr>
+          </thead>
+          <tbody>
+            <tr><th>Leonidas’ Great Great Grandchildren Alma’s Great Grandchildren Dolly’s Grandchildren SHARON’S FAMILY</th><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+            <tr><td>Blaine</td><td>Aug. 16, 1971</td><td></td><td></td><td></td><td></td><td></td></tr>
+          </tbody>
+        </table>
+        """
+
+        result = _merge_contiguous_genealogy_tables(html)
+        soup = BeautifulSoup(result, "html.parser")
+        rows = soup.find("tbody").find_all("tr", recursive=False)
+
+        assert [row.get_text(" ", strip=True) for row in rows[:4]] == [
+            "Leonidas’ Great Great Grandchildren",
+            "Alma’s Great Grandchildren",
+            "Dolly’s Grandchildren",
+            "SHARON’S FAMILY",
+        ]
+        assert rows[4].get_text(" ", strip=True) == "Blaine Aug. 16, 1971"
+
+    def test_merge_contiguous_genealogy_tables_moves_death_value_out_of_girl_column(self):
+        html = """
+        <table>
+          <thead>
+            <tr><th>NAME</th><th>BORN</th><th>MARRIED</th><th>SPOUSE</th><th>BOY</th><th>GIRL</th><th>DIED</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Richard</td><td>, 1951</td><td></td><td></td><td></td><td>, 1956</td><td></td></tr>
+          </tbody>
+        </table>
+        """
+
+        result = _merge_contiguous_genealogy_tables(html)
+        soup = BeautifulSoup(result, "html.parser")
+        cells = soup.find("tbody").find("tr").find_all("td", recursive=False)
+        assert [cell.get_text(" ", strip=True) for cell in cells] == [
+            "Richard",
+            ", 1951",
+            "",
+            "",
+            "",
+            "",
+            ", 1956",
+        ]
+
 
 # ---------------------------------------------------------------------------
 # Integration: full pipeline via CLI

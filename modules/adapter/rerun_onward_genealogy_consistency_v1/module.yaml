@@ -3,7 +3,7 @@ stage: adapter
 entrypoint: modules/adapter/rerun_onward_genealogy_consistency_v1/main.py
 input_schema: null
 output_schema: page_html_v1
-description: "Selective source-aware reruns for Onward genealogy consistency targets identified by the chapter-first validator."
+description: "Selective source-aware reruns for Onward genealogy consistency targets identified by the chapter-first validator or the Story 144 document-consistency planner."
 params:
   - name: model
     type: str
@@ -50,4 +50,16 @@ params:
   - name: summary_report
     type: str
     default: rerun_onward_genealogy_summary.json
-notes: "Consumes page_html_v1 plus pipeline_issues_v1, reruns only the selected pages from source images, and emits a new page_html_v1 artifact plus decision reports."
+  - name: pattern_inventory
+    type: str
+    default: pattern_inventory.json
+  - name: consistency_plan
+    type: str
+    default: consistency_plan.json
+  - name: conformance_report
+    type: str
+    default: conformance_report.json
+  - name: planner_status_allowlist
+    type: str
+    default: format_drift
+notes: "Consumes page_html_v1 plus pipeline_issues_v1, reruns only the selected pages from source images, and emits a new page_html_v1 artifact plus decision reports. When the input report comes from Story 144 planning, it resolves `pattern_inventory`, `consistency_plan`, and `conformance_report` sidecars relative to the planner output and records explicit fallback or unresolved decisions."

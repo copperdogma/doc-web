@@ -366,6 +366,22 @@ evals:
           routed `chapter-009.html` into a mixed row-semantic-containing bucket
           instead of pure format drift, and restored `chapter-023.html` to
           conformant baseline status.
+      - model: "Story 146 planner-guided rerun loop (gpt-5 rerun stage)"
+        metrics:
+          missed_manual_format_coverage: 1.0
+          chapter_009_not_pure_format: 1.0
+          remaining_format_issue_count: 19
+          remaining_format_issue_delta: -2
+        measured: 2026-03-15
+        note: >
+          Story 146 validation run `story146-onward-plan-aware-genealogy-reruns-r1`
+          consumed `pattern_inventory`, `consistency_plan`, and `conformance_report`
+          inside the rerun loop, accepted `11/18` targeted pages, preserved
+          `chapter-009.html` as mixed and `chapter-023.html` as conformant, and
+          lowered remaining pure-format issue-type count from `21` to `19` by
+          clearing `fragmented_multi_table_chapter` from `chapter-018.html` and
+          `chapter-019.html` plus `missing_subgroup_rows` from `chapter-017.html`,
+          although the pure-format chapter set itself did not shrink.
 
     attempts:
       - id: "001"
@@ -386,12 +402,22 @@ evals:
           missed-format coverage while removing `chapter-009.html` from pure-format
           summary buckets and preventing unsupported AI issue-type hallucinations
           from flagging clean `chapter-023.html`.
+      - id: "003"
+        date: 2026-03-15
+        status: partial
+        approach: "Story 146 plan-aware reruns consume planning sidecars and re-plan after bounded source-aware rereads"
+        note: >
+          Driver run `story146-onward-plan-aware-genealogy-reruns-r1` proved the
+          emitted planning artifacts are actionable input to the rerun stage and
+          preserved the mixed/conformant guardrails, but direct-HTML reruns only
+          reduced remaining pure-format issue-type count (`21 -> 19`) instead of
+          shrinking the pure-format chapter set.
 
     retry_when:
       - condition: new-approach
-        note: "Use a second repeated-structure document to verify the planner generalizes beyond Onward."
+        note: "Direct-HTML plan-aware reruns plateaued on Onward; the next experiment is a structured/row-oriented repair target or a second repeated-structure document."
       - condition: architecture-change
-        note: "Re-evaluate once plan-guided reruns consume the emitted consistency_plan."
+        note: "If the structured repair target lands, re-measure whether the remaining pure-format chapter set can finally shrink instead of only lowering issue severity."
 
   # ── Compromise Detection Evals ───────────────────────────────────────────
 

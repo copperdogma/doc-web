@@ -602,6 +602,72 @@ def _split_boy_girl_cells(table: BeautifulSoup) -> None:
             cells[girl_idx].append(nums[1])
 
 
+def _rewrite_embedded_family_header_tables(table: Any, soup: BeautifulSoup) -> None:
+    thead = table.find("thead", recursive=False)
+    if thead is None:
+        return
+
+    header_rows = thead.find_all("tr", recursive=False)
+    if len(header_rows) < 2:
+        return
+
+    first_row, second_row = header_rows[:2]
+    first_cells = first_row.find_all(["th", "td"], recursive=False)
+    second_cells = second_row.find_all(["th", "td"], recursive=False)
+    if len(first_cells) < 4 or len(second_cells) < 4:
+        return
+
+    first_tokens = [_normalize_token(cell.get_text(" ", strip=True)) for cell in first_cells]
+    second_tokens = [_normalize_token(cell.get_text(" ", strip=True)) for cell in second_cells]
+    if first_tokens[:2] != ["name", "born"]:
+        return
+    if "married" not in second_tokens or "spouse" not in second_tokens:
+        return
+    if "died" not in first_tokens:
+        return
+    if not any("boy" in token and "girl" in token for token in first_tokens):
+        return
+
+    family_idx = None
+    heading_lines: List[str] = []
+    for idx, cell in enumerate(first_cells):
+        lines = _heading_lines_from_tag(cell)
+        if not lines:
+            continue
+        if not any(_extract_family_labels(line) for line in lines):
+            continue
+        if not all(_extract_family_labels(line) or _is_generation_context_text(line) for line in lines):
+            continue
+        family_idx = idx
+        heading_lines = lines
+        break
+
+    if family_idx != 2 or not heading_lines:
+        return
+
+    new_thead = soup.new_tag("thead")
+    new_header_row = soup.new_tag("tr")
+    for label in ["NAME", "BORN", "MARRIED", "SPOUSE", "BOY/GIRL", "DIED"]:
+        cell = soup.new_tag("th")
+        cell.string = label
+        new_header_row.append(cell)
+    new_thead.append(new_header_row)
+    thead.replace_with(new_thead)
+
+    tbody = table.find("tbody", recursive=False)
+    if tbody is None:
+        tbody = soup.new_tag("tbody")
+        table.append(tbody)
+
+    first_body_row = tbody.find("tr", recursive=False)
+    for line in reversed(heading_lines):
+        subgroup_row = _build_subgroup_heading_row(line, len(EXPECTED_HEADERS), soup)
+        if first_body_row is not None:
+            first_body_row.insert_before(subgroup_row)
+        else:
+            tbody.append(subgroup_row)
+
+
 def _pad_expected_genealogy_columns(table: BeautifulSoup, soup: BeautifulSoup) -> None:
     header_row = None
     thead = table.find("thead")
@@ -1021,6 +1087,7 @@ def _strip_page_markers(html: str) -> str:
         return ""
     soup = BeautifulSoup(html, "html.parser")
     for table in soup.find_all("table"):
+        _rewrite_embedded_family_header_tables(table, soup)
         _split_boy_girl_headers(table, soup)
         _split_table_row_br(table, soup)
         _split_boy_girl_cells(table)

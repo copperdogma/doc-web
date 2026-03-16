@@ -1,0 +1,101 @@
+stages:
+  - id: load_story143_pages
+    stage: extract
+    module: load_artifact_v1
+    out: pages_html_onward_genealogy_rerun.jsonl
+    params:
+      path: output/runs/story143-onward-genealogy-reruns-r1/06_rerun_onward_genealogy_consistency_v1/pages_html_onward_genealogy_rerun.jsonl
+      out: pages_html_onward_genealogy_rerun.jsonl
+      schema_version: page_html_v1
+
+  - id: load_story143_chapters
+    stage: extract
+    module: load_artifact_v1
+    out: chapters_manifest_after_rerun.jsonl
+    params:
+      path: output/runs/story143-onward-genealogy-reruns-r1/07_build_chapter_html_v1/chapters_manifest_after_rerun.jsonl
+      out: chapters_manifest_after_rerun.jsonl
+      schema_version: chapter_html_manifest_v1
+
+  - id: load_portions
+    stage: extract
+    module: load_artifact_v1
+    out: portions_toc.jsonl
+    params:
+      path: output/runs/story140-onward-targeted-rescue-r19/02_load_artifact_v1/portions_toc.jsonl
+      out: portions_toc.jsonl
+      schema_version: portion_hyp_v1
+
+  - id: load_crops
+    stage: extract
+    module: load_artifact_v1
+    out: illustration_manifest.jsonl
+    params:
+      path: output/runs/story140-onward-targeted-rescue-r19/03_load_artifact_v1/illustration_manifest.jsonl
+      out: illustration_manifest.jsonl
+      copy_sibling_dir: images
+
+  - id: plan_document_consistency_before
+    stage: validate
+    module: plan_onward_document_consistency_v1
+    needs: [load_story143_pages, load_story143_chapters]
+    inputs:
+      pages: load_story143_pages
+      chapters: load_story143_chapters
+    out: document_consistency_report_before.jsonl
+    params:
+      model: gpt-5
+      pattern_inventory: pattern_inventory_before.json
+      consistency_plan: consistency_plan_before.json
+      conformance_report: conformance_report_before.json
+      dossier_report: document_consistency_dossier_before.json
+
+  - id: rerun_genealogy_pages
+    stage: adapter
+    module: rerun_onward_genealogy_consistency_v1
+    needs: [load_story143_pages, plan_document_consistency_before]
+    inputs:
+      pages: load_story143_pages
+      consistency: plan_document_consistency_before
+    out: pages_html_onward_plan_aware_rerun.jsonl
+    params:
+      model: gpt-5
+      target_mode: strong
+      page_context_window: 1
+      max_pages: 28
+      planner_status_allowlist: format_drift,mixed
+      pattern_inventory: pattern_inventory_before.json
+      consistency_plan: consistency_plan_before.json
+      conformance_report: conformance_report_before.json
+      report: rerun_onward_genealogy_report.jsonl
+      summary_report: rerun_onward_genealogy_summary.json
+
+  - id: rebuild_chapters_after_rerun
+    stage: build
+    module: build_chapter_html_v1
+    needs: [rerun_genealogy_pages, load_portions, load_crops]
+    inputs:
+      pages: rerun_genealogy_pages
+      portions: load_portions
+      illustration_manifest: load_crops
+    out: chapters_manifest_after_plan_rerun.jsonl
+    params:
+      images_subdir: images
+      book_title: "Onward to the Unknown"
+      book_author: ""
+      merge_contiguous_genealogy_tables: true
+
+  - id: plan_document_consistency_after
+    stage: validate
+    module: plan_onward_document_consistency_v1
+    needs: [rerun_genealogy_pages, rebuild_chapters_after_rerun]
+    inputs:
+      pages: rerun_genealogy_pages
+      chapters: rebuild_chapters_after_rerun
+    out: document_consistency_report_after.jsonl
+    params:
+      model: gpt-5
+      pattern_inventory: pattern_inventory_after.json
+      consistency_plan: consistency_plan_after.json
+      conformance_report: conformance_report_after.json
+      dossier_report: document_consistency_dossier_after.json

@@ -162,6 +162,8 @@ This index tracks stories in `/docs/stories/` for the codex-forge pipeline.
 |||| 143 | Onward Schema-Frozen Genealogy Reruns | High | Done | /docs/stories/story-143-onward-schema-frozen-genealogy-reruns.md |
 |||| 144 | Onward Document-Level Genealogy Consistency Planning | High | Done | /docs/stories/story-144-onward-document-level-genealogy-consistency-planning.md |
 |||| 145 | Storybook ADR-019 Agent Workflow Convergence | High | Done | /docs/stories/story-145-storybook-adr-019-agent-workflow-convergence.md |
+|||| 146 | Onward Plan-Aware Genealogy Selective Reruns | High | Done | /docs/stories/story-146-onward-plan-aware-genealogy-reruns.md |
+|||| 147 | Quality Bar Then Complexity Collapse | High | Pending | /docs/stories/story-147-quality-bar-then-complexity-collapse.md |
 
 ## Notes
 - Status "Done" reflects current working state in codex-forge. "To Do" items are planned next steps aligned with `docs/requirements.md` and `snapshot.md`.

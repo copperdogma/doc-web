@@ -216,6 +216,28 @@ lives.
 **ADR Refs:** None yet
 **Dependencies:** None
 
+#### Operating Rule — Quality First, Then Complexity Collapse
+
+When an active converter or repair seam is still failing manual review, the next
+job is to raise quality with the smallest coherent changes needed to clear that
+bar. Once the reviewed output is acceptable, the next planned step should not
+be another unbounded layer of workaround logic by default. It should be a
+**complexity collapse** pass: inventory the active workaround stack, name the
+deletion / merge targets, and define the evidence needed to simplify without
+reopening the quality gap.
+
+**Acceptable-quality bar:** a real `driver.py` validation run, artifacts in
+`output/runs/`, manual inspection on the known hard cases, and no known
+reviewed defects in the active slice. At that point remaining work should look
+like semantic cleanup, broader fixture coverage, or deliberate architecture
+simplification, not emergency structural repair.
+
+**First tracked candidate:** the Onward scanned genealogy table path after Story
+146 and run `story146-onward-build-stitch-r5`. That seam now has manually
+accepted reviewed outputs on the previously failing table-continuity and
+row-shape cases, so the next strategic step is a collapse / simplification
+story rather than another opportunistic repair layer. See Story 147.
+
 ---
 
 ## Input Coverage
@@ -346,11 +368,13 @@ A converter is ready to graduate to Dossier when:
 
 ## Next Actions
 
-1. Create the born-digital PDF intake story.
-2. Create the DOCX intake story, then decide whether XLSX/PPTX should split or
+1. Build Story 147 so the quality-bar-then-collapse rule becomes explicit
+   project direction instead of staying implicit in Story 146's work log.
+2. Create the born-digital PDF intake story.
+3. Create the DOCX intake story, then decide whether XLSX/PPTX should split or
    stay together.
-3. Create the handwriting-transcription story.
-4. Expand fixture breadth for already-passing formats so graduation decisions
+4. Create the handwriting-transcription story.
+5. Expand fixture breadth for already-passing formats so graduation decisions
    can be trusted.
-5. Re-run stale capability measurements where the code changed but the benchmark
+6. Re-run stale capability measurements where the code changed but the benchmark
    signal did not.

@@ -39,8 +39,10 @@ _GENEALOGY_GENERATION_CONTEXT_RE = re.compile(
     re.IGNORECASE,
 )
 _GENEALOGY_CONTEXT_LINE_RE = re.compile(
-    r"(?:[A-Z][\w'’\-]*\s+)*?[A-Z][\w'’\-]*['’](?:s)?\s+(?:Great\s+Grandchildren|Grandchildren|Children)\b"
+    r"(?:[A-Z][\w.\-]*\s+)*[A-Z][\w.\-]*['’](?:s)?\s+"
+    r"(?:Great\s+Great\s+Grandchildren|Great\s+Grandchildren|Grandchildren|Children)\b"
 )
+_GENEALOGY_SUMMARY_LABELS = ("TOTAL DESCENDANTS", "LIVING", "DECEASED")
 
 
 def _utc() -> str:
@@ -280,9 +282,13 @@ def _normalize_genealogy_token(text: str) -> str:
 def _genealogy_heading_lines(tag: Any) -> List[str]:
     if tag is None:
         return []
+    return _genealogy_heading_lines_from_text(tag.get_text("\n", strip=True))
+
+
+def _genealogy_heading_lines_from_text(text: str) -> List[str]:
     raw_lines = [
         line.strip()
-        for line in tag.get_text("\n", strip=True).split("\n")
+        for line in (text or "").split("\n")
         if line.strip()
     ]
     lines: List[str] = []
@@ -401,6 +407,31 @@ def _is_compatible_genealogy_table(table: Any, expected_cols: int) -> bool:
     return saw_cells
 
 
+def _looks_like_genealogy_continuation_table(table: Any) -> bool:
+    if _is_genealogy_table_header(table):
+        return True
+
+    tbody = table.find("tbody", recursive=False)
+    rows = tbody.find_all("tr", recursive=False) if tbody is not None else table.find_all("tr", recursive=False)
+    for row in rows:
+        cells = row.find_all(["th", "td"], recursive=False)
+        if not cells:
+            continue
+        texts = [_normalize_ws(cell.get_text(" ", strip=True)) for cell in cells]
+        non_empty = [text for text in texts if text]
+        if not non_empty:
+            continue
+        if len(cells) == 1:
+            text = non_empty[0]
+            if _extract_genealogy_family_labels(text) or _is_genealogy_generation_context(text):
+                return True
+            continue
+        if any(label in non_empty[0].upper() for label in _GENEALOGY_SUMMARY_LABELS):
+            continue
+        return True
+    return False
+
+
 def _next_significant_sibling(node: Any) -> Any:
     sibling = node.next_sibling
     while sibling is not None:
@@ -410,6 +441,165 @@ def _next_significant_sibling(node: Any) -> Any:
             return sibling
         sibling = sibling.next_sibling
     return None
+
+
+def _is_genealogy_name_list_paragraph(tag: Any) -> bool:
+    if getattr(tag, "name", None) != "p" or tag.find_parent("table") is not None:
+        return False
+    if tag.find(["table", "img", "figure"]) is not None:
+        return False
+
+    lines = [
+        line.strip()
+        for line in tag.get_text("\n", strip=True).split("\n")
+        if line.strip()
+    ]
+    if not lines or len(lines) > 8:
+        return False
+
+    for line in lines:
+        normalized = _normalize_ws(line)
+        if not normalized or any(ch.isdigit() for ch in normalized):
+            return False
+        if _extract_genealogy_family_labels(normalized) or _is_genealogy_generation_context(normalized):
+            return False
+        tokens = normalized.replace("’", "'").split()
+        if len(tokens) > 3:
+            return False
+        if not all(re.fullmatch(r"[A-Za-z][A-Za-z'’.\-]*", token) for token in tokens):
+            return False
+    return True
+
+
+def _convert_genealogy_name_list_paragraphs_to_tables(soup: BeautifulSoup) -> None:
+    for heading in list(soup.find_all(["h1", "h2", "h3"])):
+        heading_lines = _genealogy_heading_lines(heading)
+        if not heading_lines or not _extract_genealogy_family_labels(heading_lines[-1]):
+            continue
+
+        paragraph = _next_significant_sibling(heading)
+        if not _is_genealogy_name_list_paragraph(paragraph):
+            continue
+
+        follow = _next_significant_sibling(paragraph)
+        if getattr(follow, "name", None) not in {"h1", "h2", "h3", "table"}:
+            continue
+
+        table = soup.new_tag("table")
+        tbody = soup.new_tag("tbody")
+        table.append(tbody)
+        for line in [
+            line.strip()
+            for line in paragraph.get_text("\n", strip=True).split("\n")
+            if line.strip()
+        ]:
+            row = soup.new_tag("tr")
+            cell = soup.new_tag("td")
+            cell.string = line
+            row.append(cell)
+            tbody.append(row)
+
+        paragraph.replace_with(table)
+
+
+def _row_genealogy_heading_lines(row: Any) -> List[str]:
+    cells = row.find_all(["th", "td"], recursive=False)
+    if not cells:
+        return []
+
+    non_empty_indices = [
+        idx
+        for idx, cell in enumerate(cells)
+        if _normalize_ws(cell.get_text(" ", strip=True))
+    ]
+    if non_empty_indices != [0]:
+        return []
+
+    lines = _genealogy_heading_lines_from_text(cells[0].get_text("\n", strip=True))
+    if not lines:
+        return []
+    if not all(
+        _extract_genealogy_family_labels(line) or _is_genealogy_generation_context(line)
+        for line in lines
+    ):
+        return []
+    return lines
+
+
+def _looks_like_death_value(text: str) -> bool:
+    normalized = _normalize_ws(text)
+    if not normalized:
+        return False
+    upper = normalized.upper()
+    if upper == "DECEASED" or "MONTH" in upper or "YEAR" in upper:
+        return True
+    if re.search(r"\b(?:JAN|FEB|MAR|APR|MAY|JUN|JUL|AUG|SEP|SEPT|OCT|NOV|DEC)[A-Z.]*\b", upper):
+        return True
+    if re.fullmatch(r",?\s*\d{4}", normalized):
+        return True
+    return bool(re.search(r"\d{4}", normalized) and not re.fullmatch(r"\d+", normalized))
+
+
+def _normalize_genealogy_body_rows(table: Any, soup: BeautifulSoup) -> None:
+    tbody = table.find("tbody", recursive=False)
+    rows = list(tbody.find_all("tr", recursive=False)) if tbody is not None else list(table.find_all("tr", recursive=False))
+    if not rows:
+        return
+
+    col_count = _genealogy_table_column_count(table)
+    header_tokens = _genealogy_table_header_tokens(table)
+    canonical_seven_col = header_tokens[:7] == ["name", "born", "married", "spouse", "boy", "girl", "died"]
+
+    for row in rows:
+        if row.parent is None:
+            continue
+
+        heading_lines = _row_genealogy_heading_lines(row)
+        if heading_lines:
+            new_rows = [
+                _build_genealogy_subgroup_row(line, col_count, soup)
+                for line in heading_lines
+            ]
+            for new_row in new_rows[::-1]:
+                row.insert_after(new_row)
+            row.decompose()
+            continue
+
+        if "genealogy-subgroup-heading" in (row.get("class") or []):
+            cells = row.find_all(["th", "td"], recursive=False)
+            if len(cells) == 1:
+                cells[0]["colspan"] = str(col_count)
+            continue
+
+        if not canonical_seven_col:
+            continue
+
+        cells = row.find_all(["td", "th"], recursive=False)
+        if len(cells) < 7:
+            continue
+
+        boy_cell = cells[4]
+        girl_cell = cells[5]
+        died_cell = cells[6]
+        boy_text = _normalize_ws(boy_cell.get_text(" ", strip=True))
+        girl_text = _normalize_ws(girl_cell.get_text(" ", strip=True))
+        died_text = _normalize_ws(died_cell.get_text(" ", strip=True))
+
+        if boy_text and not girl_text and not died_text:
+            nums = re.findall(r"\d+", boy_text)
+            if len(nums) >= 2:
+                boy_cell.clear()
+                boy_cell.append(nums[0])
+                girl_cell.clear()
+                girl_cell.append(nums[1])
+                boy_text = nums[0]
+                girl_text = nums[1]
+                died_text = ""
+
+        if girl_text and not died_text and _looks_like_death_value(girl_text):
+            girl_cell.clear()
+            died_cell.clear()
+            died_cell.append(girl_text)
 
 
 def _build_genealogy_subgroup_row(line: str, colspan: int, soup: BeautifulSoup) -> Any:
@@ -485,6 +675,7 @@ def _merge_contiguous_genealogy_tables(html: str) -> str:
         normalized = _normalize_genealogy_rescue_html(normalized)
 
     soup = BeautifulSoup(normalized, "html.parser")
+    _convert_genealogy_name_list_paragraphs_to_tables(soup)
     for base_table in list(soup.find_all("table")):
         if base_table.parent is None or not _is_genealogy_table_header(base_table):
             continue
@@ -501,6 +692,16 @@ def _merge_contiguous_genealogy_tables(html: str) -> str:
                 pending_headings.append(next_node)
                 cursor = next_node
                 continue
+            if (
+                getattr(next_node, "name", None) == "table"
+                and not pending_headings
+                and _is_compatible_genealogy_table(next_node, expected_cols)
+                and _looks_like_genealogy_continuation_table(next_node)
+            ):
+                _append_genealogy_heading_and_rows(base_table, [], next_node, soup)
+                next_node.decompose()
+                cursor = base_table
+                continue
             if getattr(next_node, "name", None) == "table" and pending_headings and _is_compatible_genealogy_table(next_node, expected_cols):
                 _append_genealogy_heading_and_rows(base_table, pending_headings, next_node, soup)
                 for heading in pending_headings:
@@ -510,6 +711,10 @@ def _merge_contiguous_genealogy_tables(html: str) -> str:
                 cursor = base_table
                 continue
             break
+
+    for table in soup.find_all("table"):
+        if _is_genealogy_table_header(table):
+            _normalize_genealogy_body_rows(table, soup)
 
     return _preserve_figure_and_image_attrs(html, soup.decode_contents())
 
@@ -1524,8 +1729,12 @@ def main() -> None:
         nav_top = _build_nav(prev_file, prev_title, next_file, next_title)
         nav_bottom = _build_nav(prev_file, prev_title, next_file, next_title, is_bottom=True)
         page_title = f"{entry['title']} — {book_title}" if book_title else entry["title"]
+        body_html = entry["body_html"]
+        if args.merge_contiguous_genealogy_tables:
+            body_html = _merge_contiguous_genealogy_tables(body_html)
+            entry["body_html"] = body_html
 
-        full_html = _html5_wrap(entry["body_html"], page_title, nav_top, nav_bottom)
+        full_html = _html5_wrap(body_html, page_title, nav_top, nav_bottom)
         file_path = html_dir / entry["filename"]
         file_path.write_text(full_html, encoding="utf-8")
 

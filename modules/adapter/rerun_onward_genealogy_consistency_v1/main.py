@@ -8,10 +8,11 @@ selected culprit pages from source images, applies conservative acceptance
 checks, and preserves the original page artifact as the fallback.
 """
 import argparse
+import json
 import os
 import re
 from copy import deepcopy
-from dataclasses import asdict, dataclass
+from dataclasses import asdict, dataclass, field
 from datetime import datetime
 from pathlib import Path
 from typing import Any, Dict, Iterable, List, Optional, Set, Tuple
@@ -35,6 +36,13 @@ from modules.extract.ocr_ai_gpt51_v1.main import (
     sanitize_html,
 )
 from modules.validate.validate_onward_genealogy_consistency_v1.main import analyze_page_row
+
+try:
+    from modules.build.build_chapter_html_v1.main import (
+        _merge_contiguous_genealogy_tables as _merge_genealogy_layout_html,
+    )
+except Exception:  # pragma: no cover - optional downstream reuse
+    _merge_genealogy_layout_html = None
 
 
 RERUN_HINTS = """
@@ -63,6 +71,10 @@ STOP_TOKENS = {
     "DIED",
 }
 
+VALIDATOR_ISSUE_TYPE = "onward_genealogy_consistency_drift"
+PLANNER_ISSUE_TYPE = "document_consistency_planning_issue"
+CHAPTER_BASENAME_RE = re.compile(r"chapter-(\d+)\.html$", re.IGNORECASE)
+
 
 @dataclass
 class RerunTarget:
@@ -73,6 +85,44 @@ class RerunTarget:
     issue_reasons: List[str]
     source_pages: List[int]
     context_pages: List[int]
+    target_source: str = "validator"
+    issue_types: List[str] = field(default_factory=list)
+    pattern_id: str = ""
+    pattern_label: str = ""
+    planner_status: str = ""
+    planner_why: str = ""
+    repair_priority: str = ""
+    target_selection_notes: List[str] = field(default_factory=list)
+    plan_rule_summary: List[str] = field(default_factory=list)
+    plan_rule_details: Dict[str, Any] = field(default_factory=dict)
+    surfaced_new_vs_current_detector: bool = False
+
+
+@dataclass
+class UnresolvedChapter:
+    chapter_basename: str
+    chapter_title: str
+    source_pages: List[int]
+    issue_reasons: List[str]
+    issue_types: List[str] = field(default_factory=list)
+    pattern_id: str = ""
+    pattern_label: str = ""
+    planner_status: str = ""
+    planner_why: str = ""
+    repair_priority: str = ""
+    target_source: str = "planner_unresolved"
+    target_selection_notes: List[str] = field(default_factory=list)
+    plan_rule_summary: List[str] = field(default_factory=list)
+    plan_rule_details: Dict[str, Any] = field(default_factory=dict)
+    surfaced_new_vs_current_detector: bool = False
+
+
+@dataclass
+class TargetSelection:
+    targets: List[RerunTarget]
+    unresolved_chapters: List[UnresolvedChapter] = field(default_factory=list)
+    selection_mode: str = "validator"
+    artifact_paths: Dict[str, str] = field(default_factory=dict)
 
 
 @dataclass
@@ -106,6 +156,27 @@ def _parse_csv_strings(raw: str) -> Optional[Set[str]]:
         return None
     values = {token.strip() for token in raw.split(",") if token.strip()}
     return values or None
+
+
+def _load_json(path: str) -> Dict[str, Any]:
+    with open(path, encoding="utf-8") as handle:
+        return json.load(handle)
+
+
+def _resolve_consistency_sidecar_path(report_path: str, raw_path: str) -> str:
+    candidate = Path(raw_path)
+    if candidate.is_absolute():
+        return str(candidate)
+    return str((Path(report_path).resolve().parent / candidate).resolve())
+
+
+def _header_hint_token(value: Any) -> str:
+    return re.sub(r"[^a-z0-9]+", "", str(value or "").lower())
+
+
+def _schema_hint_from_headers(headers: Iterable[Any]) -> str:
+    tokens = [_header_hint_token(value) for value in headers]
+    return "|".join(token for token in tokens if token)
 
 
 def _jsonl_schema_version(path: str) -> Optional[str]:
@@ -174,8 +245,7 @@ def _iter_consistency_issues(report_path: str) -> Iterable[Dict[str, Any]]:
         if row.get("schema_version") != "pipeline_issues_v1":
             continue
         for issue in row.get("issues") or []:
-            if issue.get("type") == "onward_genealogy_consistency_drift":
-                yield issue
+            yield issue
 
 
 def _derive_context_pages(source_pages: List[int], page_number: int, window: int) -> List[int]:
@@ -188,17 +258,389 @@ def _derive_context_pages(source_pages: List[int], page_number: int, window: int
     ]
 
 
-def load_targets(
-    report_path: str,
+def _planner_rule_summary(plan_entry: Dict[str, Any]) -> List[str]:
+    rules: List[str] = []
+    canonical_headers = [str(value).strip() for value in (plan_entry.get("canonical_headers") or []) if str(value).strip()]
+    if canonical_headers:
+        rules.append(f"Canonical headers: {' | '.join(canonical_headers)}")
+
+    allowed_variants = [str(value).strip() for value in (plan_entry.get("allowed_variants") or []) if str(value).strip()]
+    if allowed_variants:
+        rules.append(f"Allowed variants: {', '.join(allowed_variants)}")
+
+    conventions = plan_entry.get("document_local_conventions") or {}
+    labels = {
+        "subgroup_context_rows": "Subgroup/context rows",
+        "table_fragmentation": "Table fragmentation",
+        "summary_rows": "Summary rows",
+        "marginal_or_handwritten_notes": "Notes policy",
+    }
+    for key, label in labels.items():
+        value = str(conventions.get(key) or "").strip()
+        if value:
+            rules.append(f"{label}: {value}")
+    return rules
+
+
+def _cluster_consecutive_pages(page_numbers: Iterable[int]) -> List[List[int]]:
+    clusters: List[List[int]] = []
+    current: List[int] = []
+    for page_number in sorted(set(page_numbers)):
+        if not current or page_number == current[-1] + 1:
+            current.append(page_number)
+            continue
+        clusters.append(current)
+        current = [page_number]
+    if current:
+        clusters.append(current)
+    return clusters
+
+
+def _chapter_sort_key(chapter_basename: str) -> Tuple[int, str]:
+    match = CHAPTER_BASENAME_RE.search(chapter_basename or "")
+    if match:
+        try:
+            return int(match.group(1)), chapter_basename
+        except ValueError:
+            pass
+    return 10_000, chapter_basename or ""
+
+
+def _interleave_targets_by_chapter(targets: List[RerunTarget]) -> List[RerunTarget]:
+    ordered: Dict[str, List[RerunTarget]] = {}
+    for target in sorted(targets, key=lambda item: (_chapter_sort_key(item.chapter_basename), item.page_number)):
+        ordered.setdefault(target.chapter_basename, []).append(target)
+
+    result: List[RerunTarget] = []
+    chapter_order = sorted(ordered, key=_chapter_sort_key)
+    index = 0
+    while True:
+        added = False
+        for chapter_basename in chapter_order:
+            chapter_targets = ordered[chapter_basename]
+            if index >= len(chapter_targets):
+                continue
+            result.append(chapter_targets[index])
+            added = True
+        if not added:
+            break
+        index += 1
+    return result
+
+
+def _planner_page_issue_score(metrics: Any, issue_types: List[str]) -> Tuple[int, List[str]]:
+    score = 0
+    reasons: List[str] = []
+    issues = set(issue_types or [])
+
+    if "fragmented_multi_table_chapter" in issues:
+        if metrics.table_count > 0:
+            score += metrics.table_count * 20
+            reasons.append(f"table_count={metrics.table_count}")
+        if metrics.table_count >= 2:
+            score += 40
+            reasons.append("multi_table_cluster")
+
+    if "external_family_headings" in issues and metrics.external_family_heading_count > 0:
+        score += metrics.external_family_heading_count * 50
+        reasons.append("external_family_headings")
+
+    if {"residual_boygirl_headers", "fused_boygirl_headers"} & issues and metrics.residual_boygirl_header_count > 0:
+        score += metrics.residual_boygirl_header_count * 60
+        reasons.append("residual_boygirl_headers")
+
+    if {"left_column_only_family_rows", "concatenated_subgroup_context_rows"} & issues and metrics.table_count > 0:
+        score += 15 + (metrics.table_count * 5)
+        reasons.append("table_page_for_context_fix")
+
+    if score == 0 and issues and metrics.table_count > 0:
+        score += metrics.table_count * 5
+        reasons.append("fallback_table_page")
+
+    return score, reasons
+
+
+def _pick_best_planner_cluster(scored_pages: List[Dict[str, Any]], *, target_mode: str) -> List[int]:
+    if not scored_pages:
+        return []
+    page_map = {item["page_number"]: item for item in scored_pages}
+    table_pages = [item["page_number"] for item in scored_pages if item["metrics"].table_count > 0]
+    if not table_pages:
+        positive = [item["page_number"] for item in scored_pages if item["score"] > 0]
+        if target_mode == "coarse":
+            return sorted(set(positive))
+        if not positive:
+            return []
+        best_score = max(page_map[page]["score"] for page in positive)
+        return sorted(page for page in positive if page_map[page]["score"] == best_score)
+
+    clusters = _cluster_consecutive_pages(table_pages)
+    if target_mode == "coarse":
+        return sorted({page for cluster in clusters for page in cluster})
+
+    def _cluster_rank(cluster: List[int]) -> Tuple[int, int, int, int]:
+        scores = [page_map[page]["score"] for page in cluster]
+        return (max(scores), sum(scores), len(cluster), -cluster[0])
+
+    best_cluster = max(clusters, key=_cluster_rank)
+    return sorted(best_cluster)
+
+
+def _score_planner_source_pages(
+    *,
+    source_pages: List[int],
+    page_rows: Dict[int, Dict[str, Any]],
+    issue_types: List[str],
+) -> Tuple[List[Dict[str, Any]], List[int]]:
+    scored_pages: List[Dict[str, Any]] = []
+    missing_pages: List[int] = []
+    for page_number in source_pages:
+        page_row = page_rows.get(page_number)
+        if page_row is None:
+            missing_pages.append(page_number)
+            continue
+        metrics = analyze_page_row(page_row)
+        score, reasons = _planner_page_issue_score(metrics, issue_types)
+        if score > 0 or metrics.table_count > 0:
+            scored_pages.append({
+                "page_number": page_number,
+                "metrics": metrics,
+                "score": score,
+                "reasons": reasons,
+            })
+    return scored_pages, missing_pages
+
+
+def _describe_selected_scored_pages(
+    selected_pages: List[int],
+    *,
+    scored_pages: List[Dict[str, Any]],
+) -> List[str]:
+    score_map = {item["page_number"]: item for item in scored_pages}
+    return [
+        f"{page}(score={score_map[page]['score']}; reasons={','.join(score_map[page]['reasons']) or 'table_page'})"
+        for page in selected_pages
+        if page in score_map
+    ]
+
+
+def _augment_explicit_planner_pages(
+    explicit_pages: List[int],
+    *,
+    source_pages: List[int],
+    page_rows: Dict[int, Dict[str, Any]],
+    issue_types: List[str],
+    target_mode: str,
+) -> Tuple[List[int], List[str]]:
+    scored_pages, missing_pages = _score_planner_source_pages(
+        source_pages=source_pages,
+        page_rows=page_rows,
+        issue_types=issue_types,
+    )
+    if not scored_pages:
+        notes: List[str] = []
+        if missing_pages:
+            notes.append(f"Source pages missing from current page_html artifact: {', '.join(str(value) for value in missing_pages)}")
+        return explicit_pages, notes
+
+    best_cluster = _pick_best_planner_cluster(scored_pages, target_mode=target_mode)
+    explicit_set = set(explicit_pages)
+    if explicit_set.intersection(best_cluster):
+        notes = []
+        if missing_pages:
+            notes.append(f"Source pages missing from current page_html artifact: {', '.join(str(value) for value in missing_pages)}")
+        return explicit_pages, notes
+
+    extras = [page for page in best_cluster if page not in explicit_set]
+    if not extras:
+        notes = []
+        if missing_pages:
+            notes.append(f"Source pages missing from current page_html artifact: {', '.join(str(value) for value in missing_pages)}")
+        return explicit_pages, notes
+
+    combined = sorted(set(explicit_pages + extras))
+    notes = [
+        "Planner relevant_pages were augmented with source-page signals from the same chapter to catch nearby fragmentation the planner only cited indirectly.",
+        f"Added pages: {', '.join(_describe_selected_scored_pages(extras, scored_pages=scored_pages))}",
+    ]
+    if missing_pages:
+        notes.append(f"Source pages missing from current page_html artifact: {', '.join(str(value) for value in missing_pages)}")
+    return combined, notes
+
+
+def _build_planner_context(
+    *,
+    pattern_inventory: Dict[str, Any],
+    consistency_plan: Dict[str, Any],
+    chapter: Dict[str, Any],
+    issue: Dict[str, Any],
+) -> Dict[str, Any]:
+    pattern_id = str(chapter.get("pattern_id") or issue.get("pattern_id") or "")
+    pattern_by_id = {
+        str(item.get("pattern_id") or ""): item
+        for item in (pattern_inventory.get("pattern_families") or [])
+        if item.get("pattern_id")
+    }
+    plan_by_id = {
+        str(item.get("pattern_id") or ""): item
+        for item in (consistency_plan.get("pattern_conventions") or [])
+        if item.get("pattern_id")
+    }
+    pattern_entry = pattern_by_id.get(pattern_id, {})
+    plan_entry = plan_by_id.get(pattern_id, {})
+    label = str(plan_entry.get("label") or pattern_entry.get("label") or "")
+    canonical_headers = plan_entry.get("canonical_headers") or pattern_entry.get("canonical_headers") or []
+    plan_rule_details = {
+        "pattern_description": str(pattern_entry.get("description") or ""),
+        "baseline_chapters": list(pattern_entry.get("baseline_chapters") or []),
+        "canonical_headers": list(canonical_headers),
+        "canonical_signals": list(plan_entry.get("canonical_signals") or pattern_entry.get("canonical_signals") or []),
+        "allowed_variants": list(plan_entry.get("allowed_variants") or pattern_entry.get("allowed_variants") or []),
+        "document_local_conventions": dict(plan_entry.get("document_local_conventions") or pattern_entry.get("document_local_conventions") or {}),
+    }
+    return {
+        "pattern_id": pattern_id,
+        "pattern_label": label,
+        "schema_hint": _schema_hint_from_headers(canonical_headers),
+        "plan_rule_summary": _planner_rule_summary(plan_rule_details),
+        "plan_rule_details": plan_rule_details,
+    }
+
+
+def _derive_planner_pages(
+    *,
+    chapter: Dict[str, Any],
+    issue: Dict[str, Any],
+    page_rows: Optional[Dict[int, Dict[str, Any]]],
+    page_allowlist: Optional[Set[int]],
+    target_mode: str,
+) -> Tuple[List[int], str, List[str]]:
+    explicit_pages = []
+    for value in chapter.get("relevant_pages") or issue.get("relevant_pages") or []:
+        try:
+            explicit_pages.append(int(value))
+        except (TypeError, ValueError):
+            continue
+    explicit_pages = sorted(set(explicit_pages))
+    if explicit_pages:
+        if page_allowlist is not None:
+            explicit_pages = [page for page in explicit_pages if page in page_allowlist]
+        notes = ["Planner relevant_pages supplied the rerun targets directly."]
+        if not explicit_pages:
+            return [], "planner_relevant_pages_filtered_out", notes + ["Page allowlist removed every planner-selected page."]
+        issue_types = [str(value) for value in (chapter.get("issue_types") or issue.get("issue_types") or []) if value]
+        source_pages = []
+        for value in chapter.get("source_pages") or []:
+            try:
+                source_pages.append(int(value))
+            except (TypeError, ValueError):
+                continue
+        source_pages = sorted(set(source_pages))
+        if page_allowlist is not None:
+            source_pages = [page for page in source_pages if page in page_allowlist]
+        if page_rows and source_pages:
+            explicit_pages, expansion_notes = _augment_explicit_planner_pages(
+                explicit_pages,
+                source_pages=source_pages,
+                page_rows=page_rows,
+                issue_types=issue_types,
+                target_mode=target_mode,
+            )
+            notes.extend(expansion_notes)
+            if expansion_notes:
+                return explicit_pages, "planner_relevant_pages_augmented", notes
+        return explicit_pages, "planner_relevant_pages", notes
+
+    if not page_rows:
+        return [], "planner_missing_page_rows_for_fallback", [
+            "Planner omitted relevant_pages and no page_html rows were available for deterministic fallback.",
+        ]
+
+    issue_types = [str(value) for value in (chapter.get("issue_types") or issue.get("issue_types") or []) if value]
+    source_pages = []
+    for value in chapter.get("source_pages") or []:
+        try:
+            source_pages.append(int(value))
+        except (TypeError, ValueError):
+            continue
+    source_pages = sorted(set(source_pages))
+    if page_allowlist is not None:
+        source_pages = [page for page in source_pages if page in page_allowlist]
+    if not source_pages:
+        return [], "planner_no_source_pages_for_fallback", [
+            "Planner omitted relevant_pages and no source_pages remained after filtering.",
+        ]
+
+    scored_pages, missing_pages = _score_planner_source_pages(
+        source_pages=source_pages,
+        page_rows=page_rows,
+        issue_types=issue_types,
+    )
+
+    if not scored_pages:
+        notes = [
+            "Planner omitted relevant_pages and deterministic fallback found no source page with table or issue signals.",
+        ]
+        if missing_pages:
+            notes.append(f"Missing page rows for source pages: {', '.join(str(value) for value in missing_pages)}")
+        return [], "planner_fallback_no_candidate_pages", notes
+
+    selected_pages = _pick_best_planner_cluster(scored_pages, target_mode=target_mode)
+    if not selected_pages:
+        return [], "planner_fallback_no_candidate_pages", [
+            "Planner omitted relevant_pages and deterministic fallback could not justify any bounded source-page target.",
+        ]
+
+    notes = [
+        "Planner omitted relevant_pages; derived rerun targets from chapter source_pages plus current page_html metrics.",
+        f"Selected pages: {', '.join(_describe_selected_scored_pages(selected_pages, scored_pages=scored_pages))}",
+    ]
+    if missing_pages:
+        notes.append(f"Source pages missing from current page_html artifact: {', '.join(str(value) for value in missing_pages)}")
+    return selected_pages, "planner_source_pages_fallback", notes
+
+
+def _merge_target(existing: RerunTarget, candidate: RerunTarget) -> None:
+    existing.issue_reasons = list(dict.fromkeys(existing.issue_reasons + candidate.issue_reasons))
+    existing.issue_types = list(dict.fromkeys(existing.issue_types + candidate.issue_types))
+    existing.context_pages = sorted(set(existing.context_pages + candidate.context_pages))
+    existing.source_pages = sorted(set(existing.source_pages + candidate.source_pages))
+    existing.target_selection_notes = list(dict.fromkeys(existing.target_selection_notes + candidate.target_selection_notes))
+    existing.plan_rule_summary = list(dict.fromkeys(existing.plan_rule_summary + candidate.plan_rule_summary))
+    if not existing.schema_hint and candidate.schema_hint:
+        existing.schema_hint = candidate.schema_hint
+    if not existing.pattern_id and candidate.pattern_id:
+        existing.pattern_id = candidate.pattern_id
+    if not existing.pattern_label and candidate.pattern_label:
+        existing.pattern_label = candidate.pattern_label
+    if not existing.planner_status and candidate.planner_status:
+        existing.planner_status = candidate.planner_status
+    if not existing.planner_why and candidate.planner_why:
+        existing.planner_why = candidate.planner_why
+    if not existing.repair_priority and candidate.repair_priority:
+        existing.repair_priority = candidate.repair_priority
+    if existing.target_source == "validator" and candidate.target_source != "validator":
+        existing.target_source = candidate.target_source
+    if not existing.plan_rule_details and candidate.plan_rule_details:
+        existing.plan_rule_details = candidate.plan_rule_details
+    existing.surfaced_new_vs_current_detector = (
+        existing.surfaced_new_vs_current_detector or candidate.surfaced_new_vs_current_detector
+    )
+
+
+def _load_validator_targets(
+    issues: List[Dict[str, Any]],
     *,
     target_mode: str,
     page_context_window: int,
     chapter_allowlist: Optional[Set[str]],
     page_allowlist: Optional[Set[int]],
     max_pages: int,
-) -> List[RerunTarget]:
+) -> TargetSelection:
     targets: Dict[int, RerunTarget] = {}
-    for issue in _iter_consistency_issues(report_path):
+    for issue in issues:
+        if issue.get("type") != VALIDATOR_ISSUE_TYPE:
+            continue
         chapter_basename = issue.get("chapter_basename") or ""
         if chapter_allowlist and chapter_basename not in chapter_allowlist:
             continue
@@ -212,30 +654,237 @@ def load_targets(
 
         for page_number in candidate_pages:
             context_pages = _derive_context_pages(source_pages, page_number, page_context_window)
+            candidate = RerunTarget(
+                page_number=page_number,
+                chapter_basename=chapter_basename,
+                chapter_title=issue.get("chapter_title") or "",
+                schema_hint=issue.get("schema_hint") or "",
+                issue_reasons=list(issue.get("reasons") or []),
+                source_pages=source_pages,
+                context_pages=context_pages,
+            )
             existing = targets.get(page_number)
             if existing is None:
-                targets[page_number] = RerunTarget(
-                    page_number=page_number,
-                    chapter_basename=chapter_basename,
-                    chapter_title=issue.get("chapter_title") or "",
-                    schema_hint=issue.get("schema_hint") or "",
-                    issue_reasons=list(issue.get("reasons") or []),
-                    source_pages=source_pages,
-                    context_pages=context_pages,
-                )
-                continue
-
-            reasons = list(dict.fromkeys(existing.issue_reasons + list(issue.get("reasons") or [])))
-            existing.issue_reasons = reasons
-            existing.context_pages = sorted(set(existing.context_pages + context_pages))
-            existing.source_pages = sorted(set(existing.source_pages + source_pages))
-            if not existing.schema_hint and issue.get("schema_hint"):
-                existing.schema_hint = issue["schema_hint"]
+                targets[page_number] = candidate
+            else:
+                _merge_target(existing, candidate)
 
     target_list = sorted(targets.values(), key=lambda item: item.page_number)
     if max_pages > 0:
         target_list = target_list[:max_pages]
-    return target_list
+    return TargetSelection(targets=target_list, selection_mode="validator")
+
+
+def _load_planner_targets(
+    issues: List[Dict[str, Any]],
+    *,
+    report_path: str,
+    page_rows: Optional[Dict[int, Dict[str, Any]]],
+    target_mode: str,
+    page_context_window: int,
+    chapter_allowlist: Optional[Set[str]],
+    page_allowlist: Optional[Set[int]],
+    max_pages: int,
+    pattern_inventory_path: str,
+    consistency_plan_path: str,
+    conformance_report_path: str,
+    planner_status_allowlist: Optional[Set[str]],
+) -> TargetSelection:
+    resolved_pattern_inventory_path = _resolve_consistency_sidecar_path(report_path, pattern_inventory_path)
+    resolved_consistency_plan_path = _resolve_consistency_sidecar_path(report_path, consistency_plan_path)
+    resolved_conformance_report_path = _resolve_consistency_sidecar_path(report_path, conformance_report_path)
+    pattern_inventory = _load_json(resolved_pattern_inventory_path)
+    consistency_plan = _load_json(resolved_consistency_plan_path)
+    conformance_report = _load_json(resolved_conformance_report_path)
+    chapters_by_basename = {
+        str(chapter.get("chapter_basename") or ""): chapter
+        for chapter in (conformance_report.get("chapters") or [])
+        if chapter.get("chapter_basename")
+    }
+
+    targets: Dict[int, RerunTarget] = {}
+    unresolved: List[UnresolvedChapter] = []
+
+    for issue in issues:
+        if issue.get("type") != PLANNER_ISSUE_TYPE:
+            continue
+        chapter_basename = issue.get("chapter_basename") or ""
+        if chapter_allowlist and chapter_basename not in chapter_allowlist:
+            continue
+        chapter = chapters_by_basename.get(chapter_basename)
+        if chapter is None:
+            unresolved.append(
+                UnresolvedChapter(
+                    chapter_basename=chapter_basename,
+                    chapter_title=issue.get("chapter_title") or "",
+                    source_pages=[],
+                    issue_reasons=["missing_conformance_chapter"],
+                    issue_types=list(issue.get("issue_types") or []),
+                    planner_status=str(issue.get("status") or ""),
+                    target_selection_notes=["Primary planner report referenced a chapter absent from conformance_report.json."],
+                )
+            )
+            continue
+
+        planner_status = str(chapter.get("status") or issue.get("status") or "")
+        if planner_status_allowlist and planner_status not in planner_status_allowlist:
+            continue
+
+        planner_context = _build_planner_context(
+            pattern_inventory=pattern_inventory,
+            consistency_plan=consistency_plan,
+            chapter=chapter,
+            issue=issue,
+        )
+        candidate_pages, target_source, selection_notes = _derive_planner_pages(
+            chapter=chapter,
+            issue=issue,
+            page_rows=page_rows,
+            page_allowlist=page_allowlist,
+            target_mode=target_mode,
+        )
+        source_pages = [int(page) for page in (chapter.get("source_pages") or [])]
+        issue_types = [str(value) for value in (chapter.get("issue_types") or issue.get("issue_types") or []) if value]
+        issue_reasons = issue_types or [planner_status or "planner_issue"]
+
+        if not candidate_pages:
+            unresolved.append(
+                UnresolvedChapter(
+                    chapter_basename=chapter_basename,
+                    chapter_title=chapter.get("chapter_title") or issue.get("chapter_title") or "",
+                    source_pages=source_pages,
+                    issue_reasons=issue_reasons,
+                    issue_types=issue_types,
+                    pattern_id=planner_context["pattern_id"],
+                    pattern_label=planner_context["pattern_label"],
+                    planner_status=planner_status,
+                    planner_why=str(chapter.get("why") or ""),
+                    repair_priority=str(chapter.get("repair_priority") or ""),
+                    target_source=target_source,
+                    target_selection_notes=selection_notes,
+                    plan_rule_summary=planner_context["plan_rule_summary"],
+                    plan_rule_details=planner_context["plan_rule_details"],
+                    surfaced_new_vs_current_detector=bool(chapter.get("surfaced_new_vs_current_detector")),
+                )
+            )
+            continue
+
+        for page_number in candidate_pages:
+            if page_rows is not None and page_number not in page_rows:
+                unresolved.append(
+                    UnresolvedChapter(
+                        chapter_basename=chapter_basename,
+                        chapter_title=chapter.get("chapter_title") or issue.get("chapter_title") or "",
+                        source_pages=source_pages,
+                        issue_reasons=issue_reasons,
+                        issue_types=issue_types,
+                        pattern_id=planner_context["pattern_id"],
+                        pattern_label=planner_context["pattern_label"],
+                        planner_status=planner_status,
+                        planner_why=str(chapter.get("why") or ""),
+                        repair_priority=str(chapter.get("repair_priority") or ""),
+                        target_source="planner_missing_selected_page",
+                        target_selection_notes=selection_notes + [f"Selected page {page_number} is absent from the current page_html artifact."],
+                        plan_rule_summary=planner_context["plan_rule_summary"],
+                        plan_rule_details=planner_context["plan_rule_details"],
+                        surfaced_new_vs_current_detector=bool(chapter.get("surfaced_new_vs_current_detector")),
+                    )
+                )
+                continue
+            context_pages = _derive_context_pages(source_pages, page_number, page_context_window)
+            candidate = RerunTarget(
+                page_number=page_number,
+                chapter_basename=chapter_basename,
+                chapter_title=chapter.get("chapter_title") or issue.get("chapter_title") or "",
+                schema_hint=planner_context["schema_hint"],
+                issue_reasons=issue_reasons,
+                source_pages=source_pages,
+                context_pages=context_pages,
+                target_source=target_source,
+                issue_types=issue_types,
+                pattern_id=planner_context["pattern_id"],
+                pattern_label=planner_context["pattern_label"],
+                planner_status=planner_status,
+                planner_why=str(chapter.get("why") or ""),
+                repair_priority=str(chapter.get("repair_priority") or ""),
+                target_selection_notes=selection_notes,
+                plan_rule_summary=planner_context["plan_rule_summary"],
+                plan_rule_details=planner_context["plan_rule_details"],
+                surfaced_new_vs_current_detector=bool(chapter.get("surfaced_new_vs_current_detector")),
+            )
+            existing = targets.get(page_number)
+            if existing is None:
+                targets[page_number] = candidate
+            else:
+                _merge_target(existing, candidate)
+
+    target_list = _interleave_targets_by_chapter(list(targets.values()))
+    if max_pages > 0:
+        target_list = target_list[:max_pages]
+    return TargetSelection(
+        targets=target_list,
+        unresolved_chapters=unresolved,
+        selection_mode="planner",
+        artifact_paths={
+            "consistency_report": report_path,
+            "pattern_inventory": resolved_pattern_inventory_path,
+            "consistency_plan": resolved_consistency_plan_path,
+            "conformance_report": resolved_conformance_report_path,
+        },
+    )
+
+
+def load_targets(
+    report_path: str,
+    *,
+    page_rows: Optional[Dict[int, Dict[str, Any]]] = None,
+    target_mode: str,
+    page_context_window: int,
+    chapter_allowlist: Optional[Set[str]],
+    page_allowlist: Optional[Set[int]],
+    max_pages: int,
+    pattern_inventory_path: str = "pattern_inventory.json",
+    consistency_plan_path: str = "consistency_plan.json",
+    conformance_report_path: str = "conformance_report.json",
+    planner_status_allowlist: Optional[Set[str]] = None,
+    return_selection: bool = False,
+) -> Any:
+    issues = list(_iter_consistency_issues(report_path))
+    issue_types = {str(issue.get("type") or "") for issue in issues}
+    if PLANNER_ISSUE_TYPE in issue_types:
+        selection = _load_planner_targets(
+            issues,
+            report_path=report_path,
+            page_rows=page_rows,
+            target_mode=target_mode,
+            page_context_window=page_context_window,
+            chapter_allowlist=chapter_allowlist,
+            page_allowlist=page_allowlist,
+            max_pages=max_pages,
+            pattern_inventory_path=pattern_inventory_path,
+            consistency_plan_path=consistency_plan_path,
+            conformance_report_path=conformance_report_path,
+            planner_status_allowlist=planner_status_allowlist or {"format_drift"},
+        )
+    else:
+        selection = _load_validator_targets(
+            issues,
+            target_mode=target_mode,
+            page_context_window=page_context_window,
+            chapter_allowlist=chapter_allowlist,
+            page_allowlist=page_allowlist,
+            max_pages=max_pages,
+        )
+    return selection if return_selection else selection.targets
+
+
+def _best_effort_normalize_html(html: str) -> str:
+    cleaned = sanitize_html(html or "")
+    if _merge_genealogy_layout_html is not None:
+        cleaned = _merge_genealogy_layout_html(cleaned)
+    else:
+        cleaned = _normalize_rescue_html(cleaned)
+    return _restore_subgroup_row_markers(cleaned)
 
 
 def _html_text(html: str) -> str:
@@ -464,6 +1113,22 @@ def build_user_text(
         parts.append(f"Frozen schema hint: {target.schema_hint}")
     if target.issue_reasons:
         parts.append(f"Consistency reasons: {', '.join(target.issue_reasons)}")
+    if target.pattern_label:
+        pattern_text = target.pattern_label
+        if target.pattern_id:
+            pattern_text += f" ({target.pattern_id})"
+        parts.append(f"Pattern family: {pattern_text}")
+    if target.planner_status:
+        parts.append(f"Planner status: {target.planner_status}")
+    if target.issue_types:
+        parts.append(f"Planner issue types: {', '.join(target.issue_types)}")
+    if target.planner_why:
+        parts.append(f"Planner conformance reason: {target.planner_why}")
+    if target.plan_rule_summary:
+        parts.append("Consistency plan guidance:")
+        parts.extend(f"- {rule}" for rule in target.plan_rule_summary[:5])
+    if target.target_selection_notes:
+        parts.append(f"Target selection notes: {' | '.join(target.target_selection_notes[:3])}")
 
     parts.append("\nCurrent extracted HTML for the target page (may be structurally wrong):\n")
     parts.append(current_html[:max_context_chars])
@@ -543,6 +1208,9 @@ def run_reruns(
     page_rows: Dict[int, Dict[str, Any]],
     targets: List[RerunTarget],
     *,
+    unresolved_chapters: Optional[List[UnresolvedChapter]] = None,
+    selection_mode: str = "validator",
+    planner_artifact_paths: Optional[Dict[str, str]] = None,
     report_path: str,
     summary_path: str,
     pages_artifact_path: str,
@@ -564,6 +1232,8 @@ def run_reruns(
     target_map = {target.page_number: target for target in targets}
     report_rows: List[Dict[str, Any]] = []
     out_rows: List[Dict[str, Any]] = []
+    unresolved_chapters = list(unresolved_chapters or [])
+    planner_artifact_paths = dict(planner_artifact_paths or {})
 
     logger = ProgressLogger(state_path=state_file, progress_path=progress_file, run_id=run_id)
     logger.log(
@@ -575,12 +1245,50 @@ def run_reruns(
         artifact=out_path,
         module_id="rerun_onward_genealogy_consistency_v1",
         schema_version="page_html_v1",
-        extra={"consistency_report": consistency_report_path},
+        extra={
+            "consistency_report": consistency_report_path,
+            "selection_mode": selection_mode,
+            **planner_artifact_paths,
+        },
     )
 
     processed_targets = 0
     accepted_count = 0
+    deterministic_normalized_count = 0
+    deterministic_normalized_pages: List[int] = []
     rejection_reasons: Dict[str, int] = {}
+    target_sources: Dict[str, int] = {}
+
+    for unresolved in unresolved_chapters:
+        report_rows.append({
+            "page_number": None,
+            "chapter_basename": unresolved.chapter_basename,
+            "chapter_title": unresolved.chapter_title,
+            "schema_hint": "",
+            "issue_reasons": unresolved.issue_reasons,
+            "issue_types": unresolved.issue_types,
+            "pattern_id": unresolved.pattern_id or None,
+            "pattern_label": unresolved.pattern_label or None,
+            "planner_status": unresolved.planner_status or None,
+            "planner_why": unresolved.planner_why or None,
+            "repair_priority": unresolved.repair_priority or None,
+            "plan_rule_summary": unresolved.plan_rule_summary,
+            "plan_rule_details": unresolved.plan_rule_details,
+            "source_pages": unresolved.source_pages,
+            "context_pages": [],
+            "target_source": unresolved.target_source,
+            "target_selection_notes": unresolved.target_selection_notes,
+            "surfaced_new_vs_current_detector": unresolved.surfaced_new_vs_current_detector,
+            "targeted": False,
+            "accepted": False,
+            "decision_reason": unresolved.target_source,
+            "unresolved": True,
+            "input_pages_artifact_path": pages_artifact_path,
+            "output_pages_artifact_path": out_path,
+            "consistency_report_artifact_path": consistency_report_path,
+            "selection_mode": selection_mode,
+            **planner_artifact_paths,
+        })
 
     for row in rows:
         page_number = _coerce_page_number(row)
@@ -589,8 +1297,72 @@ def run_reruns(
         if run_id:
             new_row["run_id"] = run_id
         new_row["created_at"] = _utc()
+        existing_html = row.get("html") or row.get("raw_html") or ""
+        normalized_existing = _best_effort_normalize_html(existing_html)
+        normalized_eval = None
+        if normalized_existing != existing_html:
+            normalized_eval = _evaluate_candidate(
+                existing_html,
+                normalized_existing,
+                min_score_gain=min_score_gain,
+                min_token_recall=min_token_recall,
+                min_text_ratio=min_text_ratio,
+            )
+
         target = target_map.get(page_number or -1)
         if target is None:
+            if normalized_eval and normalized_eval["accepted"]:
+                deterministic_normalized_count += 1
+                deterministic_normalized_pages.append(page_number)
+                new_row["html"] = normalized_existing
+                report_rows.append({
+                    "page_number": page_number,
+                    "chapter_basename": None,
+                    "chapter_title": None,
+                    "schema_hint": "",
+                    "issue_reasons": [],
+                    "issue_types": [],
+                    "pattern_id": None,
+                    "pattern_label": None,
+                    "planner_status": None,
+                    "planner_why": None,
+                    "repair_priority": None,
+                    "plan_rule_summary": [],
+                    "plan_rule_details": {},
+                    "source_pages": [],
+                    "context_pages": [],
+                    "target_source": "deterministic_normalization",
+                    "target_selection_notes": [
+                        "Applied deterministic genealogy normalization because the existing page HTML improved without requiring OCR.",
+                    ],
+                    "surfaced_new_vs_current_detector": False,
+                    "targeted": False,
+                    "accepted": True,
+                    "decision_reason": "deterministic_normalization_accepted",
+                    "request_id": None,
+                    "usage": None,
+                    "existing_html": existing_html,
+                    "normalized_existing_html": normalized_existing,
+                    "normalized_existing_changed": True,
+                    "normalized_existing_accepted": True,
+                    "normalized_existing_decision_reason": normalized_eval["decision_reason"],
+                    "normalized_existing_quality": normalized_eval["candidate_quality"],
+                    "normalized_existing_retention_metrics": normalized_eval["retention_metrics"],
+                    "normalized_existing_page_metrics": normalized_eval["candidate_page_metrics"],
+                    "existing_quality": normalized_eval["existing_quality"],
+                    "candidate_quality": normalized_eval["candidate_quality"],
+                    "retention_metrics": normalized_eval["retention_metrics"],
+                    "existing_page_metrics": normalized_eval["existing_page_metrics"],
+                    "candidate_page_metrics": normalized_eval["candidate_page_metrics"],
+                    "page_drift_reason": normalized_eval["page_drift_reason"],
+                    "candidate_html": normalized_existing,
+                    "final_html": normalized_existing,
+                    "input_pages_artifact_path": pages_artifact_path,
+                    "output_pages_artifact_path": out_path,
+                    "consistency_report_artifact_path": consistency_report_path,
+                    "selection_mode": selection_mode,
+                    **planner_artifact_paths,
+                })
             out_rows.append(new_row)
             continue
 
@@ -602,15 +1374,29 @@ def run_reruns(
             "chapter_title": target.chapter_title,
             "schema_hint": target.schema_hint,
             "issue_reasons": target.issue_reasons,
+            "issue_types": target.issue_types,
+            "pattern_id": target.pattern_id or None,
+            "pattern_label": target.pattern_label or None,
+            "planner_status": target.planner_status or None,
+            "planner_why": target.planner_why or None,
+            "repair_priority": target.repair_priority or None,
+            "plan_rule_summary": target.plan_rule_summary,
+            "plan_rule_details": target.plan_rule_details,
             "source_pages": target.source_pages,
             "context_pages": target.context_pages,
+            "target_source": target.target_source,
+            "target_selection_notes": target.target_selection_notes,
+            "surfaced_new_vs_current_detector": target.surfaced_new_vs_current_detector,
             "source_image": image_path,
             "input_pages_artifact_path": pages_artifact_path,
             "output_pages_artifact_path": out_path,
             "consistency_report_artifact_path": consistency_report_path,
             "model": model,
             "existing_html": row.get("html") or row.get("raw_html") or "",
+            "selection_mode": selection_mode,
+            **planner_artifact_paths,
         }
+        target_sources[target.target_source] = target_sources.get(target.target_source, 0) + 1
 
         logger.log(
             "adapter",
@@ -634,18 +1420,9 @@ def run_reruns(
             out_rows.append(new_row)
             continue
 
-        existing_html = row.get("html") or row.get("raw_html") or ""
-        normalized_existing = _restore_subgroup_row_markers(_normalize_rescue_html(existing_html))
         report_record["normalized_existing_html"] = normalized_existing
         report_record["normalized_existing_changed"] = normalized_existing != existing_html
-        if normalized_existing != existing_html:
-            normalized_eval = _evaluate_candidate(
-                existing_html,
-                normalized_existing,
-                min_score_gain=min_score_gain,
-                min_token_recall=min_token_recall,
-                min_text_ratio=min_text_ratio,
-            )
+        if normalized_eval is not None:
             report_record.update({
                 "normalized_existing_accepted": normalized_eval["accepted"],
                 "normalized_existing_decision_reason": normalized_eval["decision_reason"],
@@ -702,9 +1479,7 @@ def run_reruns(
 
         raw_response = _extract_code_fence(raw_response)
         cleaned_raw, meta, meta_tag, meta_warning = _extract_ocr_metadata(raw_response)
-        normalized_candidate = _restore_subgroup_row_markers(
-            _normalize_rescue_html(sanitize_html(cleaned_raw))
-        )
+        normalized_candidate = _best_effort_normalize_html(cleaned_raw)
         candidate_eval = _evaluate_candidate(
             existing_html,
             normalized_candidate,
@@ -749,10 +1524,17 @@ def run_reruns(
         "output_pages_artifact_path": out_path,
         "targeted_page_count": len(target_map),
         "targeted_pages": sorted(target_map),
+        "selection_mode": selection_mode,
+        "target_sources": target_sources,
         "accepted_page_count": accepted_count,
         "rejected_page_count": len(target_map) - accepted_count,
+        "deterministic_normalized_page_count": deterministic_normalized_count,
+        "deterministic_normalized_pages": sorted(page for page in deterministic_normalized_pages if page is not None),
         "rejection_reasons": rejection_reasons,
         "chapters": sorted({target.chapter_basename for target in targets}),
+        "unresolved_chapter_count": len(unresolved_chapters),
+        "unresolved_chapters": [chapter.chapter_basename for chapter in unresolved_chapters],
+        **planner_artifact_paths,
     }
 
     save_jsonl(out_path, out_rows)
@@ -781,6 +1563,14 @@ def main() -> None:
     parser.add_argument("--report", default="rerun_onward_genealogy_report.jsonl")
     parser.add_argument("--summary-report", dest="summary_report", default="rerun_onward_genealogy_summary.json")
     parser.add_argument("--summary_report", dest="summary_report", default="rerun_onward_genealogy_summary.json")
+    parser.add_argument("--pattern-inventory", dest="pattern_inventory", default="pattern_inventory.json")
+    parser.add_argument("--pattern_inventory", dest="pattern_inventory", default="pattern_inventory.json")
+    parser.add_argument("--consistency-plan", dest="consistency_plan", default="consistency_plan.json")
+    parser.add_argument("--consistency_plan", dest="consistency_plan", default="consistency_plan.json")
+    parser.add_argument("--conformance-report", dest="conformance_report", default="conformance_report.json")
+    parser.add_argument("--conformance_report", dest="conformance_report", default="conformance_report.json")
+    parser.add_argument("--planner-status-allowlist", dest="planner_status_allowlist", default="format_drift")
+    parser.add_argument("--planner_status_allowlist", dest="planner_status_allowlist", default="format_drift")
     parser.add_argument("--model", default="gpt-5")
     parser.add_argument("--temperature", type=float, default=0.0)
     parser.add_argument("--max-output-tokens", dest="max_output_tokens", type=int, default=32768)
@@ -832,20 +1622,29 @@ def main() -> None:
     summary_path = _report_path(out_path, args.summary_report)
 
     rows, page_rows = _load_pages(pages_path)
-    targets = load_targets(
+    selection = load_targets(
         consistency_path,
+        page_rows=page_rows,
         target_mode=args.target_mode,
         page_context_window=args.page_context_window,
         chapter_allowlist=_parse_csv_strings(args.chapter_allowlist),
         page_allowlist=_parse_csv_ints(args.page_allowlist),
         max_pages=args.max_pages,
+        pattern_inventory_path=args.pattern_inventory,
+        consistency_plan_path=args.consistency_plan,
+        conformance_report_path=args.conformance_report,
+        planner_status_allowlist=_parse_csv_strings(args.planner_status_allowlist),
+        return_selection=True,
     )
     prompt = _build_prompt(args.rescue_hints)
 
     run_reruns(
         rows,
         page_rows,
-        targets,
+        selection.targets,
+        unresolved_chapters=selection.unresolved_chapters,
+        selection_mode=selection.selection_mode,
+        planner_artifact_paths=selection.artifact_paths,
         report_path=report_path,
         summary_path=summary_path,
         pages_artifact_path=pages_path,
