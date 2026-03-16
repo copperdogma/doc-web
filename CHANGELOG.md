@@ -1,3 +1,12 @@
+## [2026-03-15-04] - Fix Onward image placement and caption fidelity (Story 135)
+
+### Changed
+- `build_chapter_html_v1` now expands OCR `data-count` image placeholders into multiple figure slots, matches crops to OCR image/caption blocks by descriptor text instead of raw order, and stitches paragraph continuations back together when figure runs interrupt a sentence within a page or across a page break
+- Story 135 is now done after final validation artifacts in `story135-onward-image-placement-r2` confirmed the corrected page-12 certificate imagery alongside the earlier `r1` build-stage placement and pairing fixes
+
+### Fixed
+- Corrected the reviewed swapped image/caption pairs in the Leonidas and Pierre chapters, removed the reviewed mid-sentence figure insertions in the Leonidas, George, and Emilie chapters, and preserved the frontmatter certificate layout while keeping both page-21 and page-127 multi-image pages fully attached
+
 ## [2026-03-15-03] - Converge agent workflow around build-map tracking (Story 145)
 
 ### Added

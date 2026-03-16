@@ -30,6 +30,16 @@ from modules.build.build_chapter_html_v1.main import (
 SAMPLE_PAGE_HTML = '<p>Some text.</p><img alt="Photo"><p>More text.</p>'
 SAMPLE_PAGE_HTML_MULTI = '<p>Text.</p><img alt="A"><img alt="B"><p>End.</p>'
 SAMPLE_PAGE_HTML_NO_IMG = '<p>Just text, no images here.</p>'
+SAMPLE_PAGE_HTML_COUNTED = '<img alt="Two photographs" data-count="2"><p>More text.</p>'
+SAMPLE_PAGE_HTML_SWAPPED = (
+    "<p>The ten pound bags were dyed into different colors which were then cut "
+    "into squares and made into</p>"
+    "<img alt=\"Photo of Leonidas and Josephine L'Heureux seated together\">"
+    "<p><em>Leonidas and Josephine (second wife) L'Heureux.</em></p>"
+    "<img alt=\"Oval portrait of Laetitia L'Heureux\">"
+    "<p><em>Mrs. Leonidas L'Heureux (Laetitia - first wife).</em></p>"
+    "<p>colorful bedspreads.</p>"
+)
 
 
 def _crop(filename: str, alt: str = "", image_description: str = "",
@@ -248,6 +258,70 @@ class TestImageMatching:
         img = soup.find("img")
         assert img["src"] == "images/photo.jpg"
         assert img["data-crop-filename"] == "photo.jpg"
+
+    def test_expands_data_count_placeholders(self):
+        crops = [_crop("a.jpg"), _crop("b.jpg")]
+        result = _attach_images(SAMPLE_PAGE_HTML_COUNTED, crops, "images")
+        soup = BeautifulSoup(result, "html.parser")
+        imgs = soup.find_all("img")
+        assert len(imgs) == 2
+        assert imgs[0]["src"] == "images/a.jpg"
+        assert imgs[1]["src"] == "images/b.jpg"
+
+    def test_matches_crops_by_descriptor_not_manifest_order(self):
+        crops = [
+            _crop(
+                "single.jpg",
+                alt="Photo of Leonidas and Josephine L'Heureux seated together",
+                image_description="Oval portrait of Laetitia L'Heureux",
+            ),
+            _crop(
+                "couple.jpg",
+                alt="Oval portrait of Laetitia L'Heureux",
+                image_description="Photo of Leonidas and Josephine L'Heureux seated together",
+            ),
+        ]
+        result = _attach_images(SAMPLE_PAGE_HTML_SWAPPED, crops, "images")
+        soup = BeautifulSoup(result, "html.parser")
+        figures = soup.find_all("figure")
+        assert len(figures) == 2
+        assert figures[0].find("img")["src"] == "images/couple.jpg"
+        assert "Leonidas and Josephine" in figures[0].find("figcaption").get_text()
+        assert figures[1].find("img")["src"] == "images/single.jpg"
+        assert "Laetitia" in figures[1].find("figcaption").get_text()
+
+
+class TestFigurePlacementNormalization:
+    def test_stitches_sentence_split_by_figure_run(self):
+        crops = [
+            _crop(
+                "single.jpg",
+                alt="Photo of Leonidas and Josephine L'Heureux seated together",
+                image_description="Oval portrait of Laetitia L'Heureux",
+            ),
+            _crop(
+                "couple.jpg",
+                alt="Oval portrait of Laetitia L'Heureux",
+                image_description="Photo of Leonidas and Josephine L'Heureux seated together",
+            ),
+        ]
+        result = _attach_images(SAMPLE_PAGE_HTML_SWAPPED, crops, "images")
+        soup = BeautifulSoup(result, "html.parser")
+        paragraphs = soup.find_all("p")
+        assert paragraphs[0].get_text(" ", strip=True) == (
+            "The ten pound bags were dyed into different colors which were then "
+            "cut into squares and made into colorful bedspreads."
+        )
+        assert len(paragraphs) == 1
+
+    def test_keeps_figure_between_complete_paragraphs(self):
+        crops = [_crop("photo.jpg")]
+        result = _attach_images(SAMPLE_PAGE_HTML, crops, "images")
+        soup = BeautifulSoup(result, "html.parser")
+        paragraphs = soup.find_all("p")
+        assert len(paragraphs) == 2
+        assert paragraphs[0].get_text(" ", strip=True) == "Some text."
+        assert paragraphs[1].get_text(" ", strip=True) == "More text."
 
 
 # ---------------------------------------------------------------------------
@@ -670,6 +744,19 @@ class TestStructureRefinement:
         ])
         soup = BeautifulSoup(result, "html.parser")
         assert len(soup.find_all("p")) == 2
+
+    def test_stitches_page_break_when_figure_run_ends_page(self):
+        result = _stitch_page_breaks([
+            (
+                "<p>In 1931, after his father passed away, George bought his ranch "
+                "and used his Twin City tractor and 51</p>"
+                "<figure><img alt=\"Mrs. George\"></figure>"
+            ),
+            "<p>steel wheels. Around 1940, a salesman came by.</p>",
+        ])
+        soup = BeautifulSoup(result, "html.parser")
+        paragraphs = soup.find_all("p")
+        assert "Twin City tractor and 51 steel wheels." in paragraphs[0].get_text(" ", strip=True)
 
 
 class TestGenealogyMerging:

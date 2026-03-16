@@ -11,6 +11,7 @@ import sys
 from copy import deepcopy
 from datetime import datetime
 from difflib import SequenceMatcher
+from functools import lru_cache
 from html import escape as html_escape
 from pathlib import Path
 from typing import Any, Dict, List, Optional
@@ -658,6 +659,20 @@ def _append_paragraph_children(dst, src) -> None:
         dst.append(src.contents[0].extract())
 
 
+def _trailing_paragraph_before_figures(soup) -> Optional[Any]:
+    last = _last_significant_tag(soup)
+    if not last or last.name != "figure":
+        return None
+    first = last
+    prev = _previous_significant_tag(first)
+    while getattr(prev, "name", None) == "figure":
+        first = prev
+        prev = _previous_significant_tag(first)
+    if getattr(prev, "name", None) == "p":
+        return prev
+    return None
+
+
 def _stitch_page_breaks(page_htmls: List[str]) -> str:
     soups = [BeautifulSoup(html or "", "html.parser") for html in page_htmls if html]
     if not soups:
@@ -667,14 +682,19 @@ def _stitch_page_breaks(page_htmls: List[str]) -> str:
         current = soups[idx]
         prev_last = _last_significant_tag(prev)
         current_first = _first_significant_tag(current)
-        if not prev_last or not current_first:
+        if not current_first or current_first.name != "p":
             continue
-        if prev_last.name != "p" or current_first.name != "p":
+        prev_anchor = None
+        if prev_last and prev_last.name == "p":
+            prev_anchor = prev_last
+        elif prev_last and prev_last.name == "figure":
+            prev_anchor = _trailing_paragraph_before_figures(prev)
+        if not prev_anchor:
             continue
-        prev_text = prev_last.get_text(" ", strip=True)
+        prev_text = prev_anchor.get_text(" ", strip=True)
         current_text = current_first.get_text(" ", strip=True)
         if _should_stitch_page_break(prev_text, current_text):
-            _append_paragraph_children(prev_last, current_first)
+            _append_paragraph_children(prev_anchor, current_first)
             current_first.decompose()
     return "\n".join(soup.decode_contents() for soup in soups if soup.decode_contents().strip())
 
@@ -953,6 +973,198 @@ def _is_likely_caption(text: str) -> bool:
     return False
 
 
+def _peek_caption_siblings(node) -> List[str]:
+    """Return caption-like <p> sibling text without mutating the tree."""
+    from bs4 import NavigableString
+
+    texts: List[str] = []
+    sibling = node.next_sibling
+
+    while isinstance(sibling, NavigableString) and not sibling.strip():
+        sibling = sibling.next_sibling
+
+    for _ in range(2):
+        if sibling is None or sibling.name != "p":
+            break
+        text = sibling.get_text(" ", strip=True)
+        if not _is_likely_caption(text):
+            break
+        texts.append(text)
+        sibling = sibling.next_sibling
+        while isinstance(sibling, NavigableString) and not sibling.strip():
+            sibling = sibling.next_sibling
+
+    return texts
+
+
+def _crop_match_texts(crop: Dict[str, Any]) -> List[str]:
+    """Prefer crop-pipeline descriptions; fall back to OCR alt only if needed."""
+    texts = []
+    image_description = _normalize_ws(crop.get("image_description") or "")
+    caption_text = _normalize_ws(crop.get("caption_text") or "")
+    alt = _normalize_ws(crop.get("alt") or "")
+    if image_description:
+        texts.append(image_description)
+    if caption_text:
+        texts.append(caption_text)
+    if not texts and alt:
+        texts.append(alt)
+    return texts
+
+
+def _block_match_texts(tag) -> List[str]:
+    texts = []
+    alt = _normalize_ws(tag.get("alt") or "")
+    if alt:
+        texts.append(alt)
+    parent = tag.parent
+    if parent and parent.name == "figure":
+        figcaption = parent.find("figcaption")
+        if figcaption:
+            caption = _normalize_ws(figcaption.get_text(" ", strip=True))
+            if caption:
+                texts.append(caption)
+    else:
+        texts.extend(_peek_caption_siblings(tag))
+    return texts
+
+
+def _descriptor_similarity(a: str, b: str) -> float:
+    a_norm = _normalize_ws(a).casefold()
+    b_norm = _normalize_ws(b).casefold()
+    if not a_norm or not b_norm:
+        return 0.0
+    if a_norm == b_norm:
+        return 1.0
+    ratio = SequenceMatcher(None, a_norm, b_norm).ratio()
+    tokens_a = set(_title_tokens(a_norm))
+    tokens_b = set(_title_tokens(b_norm))
+    overlap = 0.0
+    if tokens_a and tokens_b:
+        overlap = len(tokens_a & tokens_b) / max(len(tokens_a), len(tokens_b))
+    return max(ratio, overlap)
+
+
+def _match_crops_to_img_tags(img_tags, crops: List[Dict[str, Any]]) -> Dict[int, int]:
+    """Match crops to OCR image/caption blocks using descriptor similarity."""
+    n_tags = len(img_tags)
+    n_crops = len(crops)
+    if not n_tags or not n_crops:
+        return {}
+    if max(n_tags, n_crops) > 8:
+        return {idx: idx for idx in range(min(n_tags, n_crops))}
+
+    block_texts = [_block_match_texts(tag) for tag in img_tags]
+    crop_texts = [_crop_match_texts(crop) for crop in crops]
+    scores: List[List[float]] = []
+    for crop_idx, texts in enumerate(crop_texts):
+        row = []
+        for block_idx, block in enumerate(block_texts):
+            best = 0.0
+            for crop_text in texts:
+                for block_text in block:
+                    best = max(best, _descriptor_similarity(crop_text, block_text))
+            if crop_idx == block_idx:
+                best += 0.05
+            row.append(best)
+        scores.append(row)
+
+    @lru_cache(maxsize=None)
+    def solve(block_idx: int, used_mask: int):
+        if block_idx >= n_tags:
+            return 0.0, ()
+        best_score, best_assignment = solve(block_idx + 1, used_mask)
+        best_tuple = (-1,) + best_assignment
+        for crop_idx in range(n_crops):
+            if used_mask & (1 << crop_idx):
+                continue
+            score = scores[crop_idx][block_idx]
+            tail_score, tail_assignment = solve(block_idx + 1, used_mask | (1 << crop_idx))
+            total = score + tail_score
+            if total > best_score:
+                best_score = total
+                best_tuple = (crop_idx,) + tail_assignment
+        return best_score, best_tuple
+
+    _, assignment = solve(0, 0)
+    return {
+        block_idx: crop_idx
+        for block_idx, crop_idx in enumerate(assignment)
+        if isinstance(crop_idx, int) and 0 <= crop_idx < n_crops
+    }
+
+
+def _previous_significant_tag(node):
+    from bs4 import NavigableString
+
+    sibling = node.previous_sibling
+    while sibling is not None:
+        if isinstance(sibling, NavigableString):
+            if sibling.strip():
+                return None
+            sibling = sibling.previous_sibling
+            continue
+        return sibling
+    return None
+
+
+def _next_significant_tag(node):
+    from bs4 import NavigableString
+
+    sibling = node.next_sibling
+    while sibling is not None:
+        if isinstance(sibling, NavigableString):
+            if sibling.strip():
+                return None
+            sibling = sibling.next_sibling
+            continue
+        return sibling
+    return None
+
+
+def _stitch_figure_interruptions(soup) -> None:
+    """Merge prose fragments split only by a run of figures."""
+    for figure in list(soup.find_all("figure")):
+        if not figure.parent:
+            continue
+        prev_sig = _previous_significant_tag(figure)
+        if getattr(prev_sig, "name", None) == "figure":
+            continue
+        last = figure
+        next_sig = _next_significant_tag(last)
+        while getattr(next_sig, "name", None) == "figure":
+            last = next_sig
+            next_sig = _next_significant_tag(last)
+        if getattr(prev_sig, "name", None) != "p" or getattr(next_sig, "name", None) != "p":
+            continue
+        prev_text = prev_sig.get_text(" ", strip=True)
+        next_text = next_sig.get_text(" ", strip=True)
+        if not _should_stitch_page_break(prev_text, next_text):
+            continue
+        _append_paragraph_children(prev_sig, next_sig)
+        next_sig.decompose()
+
+
+def _expand_multi_count_img_tags(soup) -> None:
+    """Expand OCR placeholders like <img data-count="2"> into multiple tags."""
+    for tag in list(soup.find_all("img")):
+        try:
+            count = int(tag.get("data-count") or 1)
+        except (TypeError, ValueError):
+            count = 1
+        if count <= 1:
+            tag.attrs.pop("data-count", None)
+            continue
+        tag.attrs.pop("data-count", None)
+        anchor = tag
+        for _ in range(count - 1):
+            clone = deepcopy(tag)
+            clone.attrs.pop("src", None)
+            clone.attrs.pop("data-crop-filename", None)
+            anchor.insert_after(clone)
+            anchor = clone
+
+
 def _attach_images(html: str, crops: List[Dict[str, Any]], rel_src: str) -> str:
     """Attach cropped images to <img> placeholders with <figure>/<figcaption> wrapping.
 
@@ -962,23 +1174,27 @@ def _attach_images(html: str, crops: List[Dict[str, Any]], rel_src: str) -> str:
     - Old format: <img alt="..."> followed optionally by a caption <p>
       → wraps in <figure>, detects adjacent caption <p> and converts to <figcaption>.
 
-    Matching: sequential by position (crops sorted by y-position, img tags in document order).
+    Matching: descriptor-based against OCR alt/caption context, with positional
+    fallback when the page is too large or descriptors are insufficient.
     """
     if not html or not crops:
         return html
     soup = BeautifulSoup(html, "html.parser")
+    _expand_multi_count_img_tags(soup)
     img_tags = soup.find_all("img")
+    crop_matches = _match_crops_to_img_tags(img_tags, crops)
 
     n_tags = len(img_tags)
     n_crops = len(crops)
     if n_tags != n_crops:
-        print(f"  [build] Warning: {n_tags} <img> tags vs {n_crops} crops on page — matching by position",
+        print(f"  [build] Warning: {n_tags} <img> tags vs {n_crops} crops on page — matching by descriptors with fallback",
               file=sys.stderr)
 
     for idx, tag in enumerate(img_tags):
-        if idx >= n_crops:
-            break
-        crop = crops[idx]
+        crop_idx = crop_matches.get(idx)
+        if crop_idx is None:
+            continue
+        crop = crops[crop_idx]
         filename = crop.get("filename")
         if not filename:
             continue
@@ -1024,6 +1240,7 @@ def _attach_images(html: str, crops: List[Dict[str, Any]], rel_src: str) -> str:
                 if _absorb_caption_siblings(figure, soup):
                     figure["data-caption-source"] = "heuristic"
 
+    _stitch_figure_interruptions(soup)
     return soup.decode_contents()
 
 
