@@ -1,3 +1,18 @@
+## [2026-03-17-01] - ADR-021 migration: dual-ideal, category spec, phase governance (Story 148)
+
+### Added
+- `docs/ideal.md` gains an Execution Ideal section describing the zero-limitation build process
+- `docs/spec.md` reorganized into 9 categories (`spec:1`–`spec:9`) with hierarchical `spec:N.N` section IDs, per-category constraint blocks (C1-C7), and build-process compromise tables (B1-B10 in spec:8 and spec:9)
+- `docs/build-map.md` reorganized into 9 matching categories with substrate status, phase governance (climb/hold/converge), product/tech need, and Absorbs traceability for all 8 old systems
+- Triage skills (`triage-stories`, `triage-evals`, `triage`, `align`) now consume substrate readiness and phase coherence from the build map
+
+### Changed
+- 15 story files (131-148) updated with `spec:N.N` IDs in Spec Refs
+- ADR-001 updated with Storybook ADR-021 cross-reference
+- AGENTS.md Docs section updated with dual-ideal, unified spec, and phase governance descriptions
+- Old Optimize/Eliminate dual-tracking in build-map replaced with phase governance
+- Old Compromise-Level Preferences section in spec dissolved into per-category constraint blocks
+
 ## [2026-03-15-06] - Ship plan-aware genealogy reruns (Story 146)
 
 ### Added

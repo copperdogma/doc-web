@@ -3,7 +3,7 @@
 **Priority**: High
 **Status**: Done
 **Ideal Refs**: Requirement #3 (Extract), Requirement #6 (Validate), Fidelity to Source
-**Spec Refs**: C1 (Multi-Stage OCR Pipeline), C3 (Heuristic + AI Layout Detection), C6 (Expensive OCR for Quality)
+**Spec Refs**: spec:2.1 C1 (Multi-Stage OCR Pipeline), spec:3.1 C3 (Heuristic + AI Layout Detection), spec:2.2 C6 (Expensive OCR for Quality)
 **Decision Refs**: Story 128 work log, Story 131 eval results, Story 138 residual review evidence; none found after search in `docs/runbooks/`, `docs/scout/`, or `docs/notes/`
 **Depends On**: Story 138, Story 131
 

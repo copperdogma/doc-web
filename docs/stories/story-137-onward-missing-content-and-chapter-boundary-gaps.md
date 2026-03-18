@@ -3,7 +3,7 @@
 **Priority**: High
 **Status**: Done
 **Ideal Refs**: Requirement #3 (Extract), Requirement #5 (Structure), Requirement #6 (Validate), Fidelity to Source
-**Spec Refs**: C3 (layout detection)
+**Spec Refs**: spec:3.1 C3 (layout detection)
 **Depends On**: Story 009 (layout linearization), Story 129 (HTML output polish)
 
 ## Goal

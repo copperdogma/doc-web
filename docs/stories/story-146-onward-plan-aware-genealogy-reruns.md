@@ -3,7 +3,7 @@
 **Priority**: High
 **Status**: Done
 **Ideal Refs**: Requirement #3 (Extract), Requirement #5 (Structure), Requirement #6 (Validate), Fidelity to Source, Transparency over Magic, Dossier-ready output
-**Spec Refs**: C1 (Multi-Stage OCR Pipeline), C6 (Expensive OCR for Quality), C7 (Page-Scope Extraction with Document-Level Consistency Planning)
+**Spec Refs**: spec:2.1 C1 (Multi-Stage OCR Pipeline), spec:2.2 C6 (Expensive OCR for Quality), spec:5.1 C7 (Page-Scope Extraction with Document-Level Consistency Planning)
 **Decision Refs**: `docs/decisions/adr-001-source-aware-consistency-strategy/adr.md`, `docs/runbooks/document-consistency-planning.md`, Story 143 work log, Story 144 work log, `docs/build-map.md`
 **Depends On**: Story 144
 

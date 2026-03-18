@@ -172,7 +172,7 @@ Cons:
 - [x] **Related stories** — update `Decision Refs` and add any new tasks or constraints
 - [x] **AGENTS.md** — update if this changes workflow, conventions, or agent guardrails
 - [x] **Runbooks / supporting docs** — update any operational docs affected by the decision
-- [x] **Other ADRs / decision docs** — no other ADRs currently require cross-references
+- [x] **Other ADRs / decision docs** — Storybook ADR-021 reorganized spec/build-map into category structure with `spec:N.N` IDs (Story 148). C7 constraint block is now at `spec:5.1`.
 - [x] **Audit** — verify each decision is reflected in the right project artifact
 
 ## Remaining Work

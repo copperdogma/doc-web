@@ -3,7 +3,7 @@
 **Priority**: High
 **Status**: Done
 **Ideal Refs**: Requirement #3 (Extract), Requirement #5 (Structure), Requirement #6 (Validate), Fidelity to Source, Dossier-ready output
-**Spec Refs**: C1 (Multi-Stage OCR Pipeline), C2 (Format-Specific Conversion Recipes), C6 (Expensive OCR for Quality)
+**Spec Refs**: spec:2.1 C1 (Multi-Stage OCR Pipeline), spec:1.1 C2 (Format-Specific Conversion Recipes), spec:2.2 C6 (Expensive OCR for Quality)
 **Decision Refs**: `docs/decisions/adr-001-source-aware-consistency-strategy/adr.md`, `docs/runbooks/golden-build.md`, `docs/scout/scout-003-storybook-patterns.md`, Story 140 work log and `story140-onward-targeted-rescue-r19` review evidence
 **Depends On**: Story 140
 

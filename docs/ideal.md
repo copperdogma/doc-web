@@ -16,6 +16,21 @@ The output is perfect. Not "good enough" — perfect. Every word matches the sou
 
 And it's instant. A 400-page scanned book processes before you finish your coffee. Cost is negligible. You batch-convert an entire archive without thinking about budgets.
 
+## The Execution Ideal
+
+> What building this product should be like if there were no limitations.
+> Perfect AI tools, unlimited context, flawless reasoning. No process overhead.
+
+You describe what you want. The AI builds it. It presents options — sometimes
+delighting you with approaches you hadn't considered. You have a conversation
+about what you see, what you like, what to change. It iterates. You never make
+a technical decision, manage a backlog, or think about architecture. You provide
+the ideal, your preferences, and your reactions. Everything else is the AI's job.
+
+Even with perfect AI, this is genuinely iterative — you don't fully know what
+you want until you see options. The AI fills in blanks, proposes solutions, and
+refines through conversation. That iteration is the ideal, not a compromise.
+
 ## Mission
 
 Codex-forge is the **intake R&D lab for Dossier**. It solves the hard format conversion problems — scanned PDFs, images, weird document formats — one at a time. Each converter is perfected here, then graduated into Dossier when Dossier is ready to accept it. Codex-forge is where messy real-world inputs become clean structured data.

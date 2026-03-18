@@ -3,7 +3,7 @@
 **Priority**: High
 **Status**: Done
 **Ideal Refs**: Req 3 (Extract — clean, accurate text), Vision "instant" and "cost negligible"
-**Spec Refs**: C1 (OCR quality), Story 082 (large-image cost optimization — prior art)
+**Spec Refs**: spec:2.1 C1 (OCR quality), spec:2.2 C6 (OCR cost), Story 082 (large-image cost optimization — prior art)
 **Depends On**: None (builds on existing `ocr_ai_gpt51_v1` module)
 
 ## Goal

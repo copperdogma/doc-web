@@ -56,7 +56,14 @@ Check whether recorded `retry_when` conditions are now actionable:
 Use recent git history, current stories, current docs, and verified model
 availability to judge whether the trigger is actually met.
 
-### 3. Deletion-gate health
+### 3. Phase-aware assessment
+
+Read the build-map phase for each eval's compromise category:
+- `climb` → focus on quality (better prompts, better golden fixtures)
+- `hold` → focus on efficiency (cheaper, faster, simpler)
+- `converge` → recommend deleting the compromise
+
+### 4. Deletion-gate health
 
 For compromise-detection evals:
 
@@ -64,8 +71,9 @@ For compromise-detection evals:
 - did it already pass while the compromise still lingers in docs?
 - is a compromise missing an eval entirely?
 - does `docs/build-map.md` still match the registry?
+- does the build-map category's `spec:N.N` constraint block match the eval's target?
 
-### 4. General eval hygiene
+### 5. General eval hygiene
 
 Look for:
 

@@ -3,7 +3,7 @@
 **Priority**: High
 **Status**: Done
 **Ideal Refs**: Fidelity to Source (every table preserves its structure), Extract (layout preserved where it carries meaning — tables), Validate (prove output is correct)
-**Spec Refs**: C1 (OCR accuracy), format-registry scanned-pdf-tables structure_preservation: 0.80
+**Spec Refs**: spec:2.1 C1 (OCR accuracy), format-registry scanned-pdf-tables structure_preservation: 0.80
 **Depends On**: Story 128 (golden references and eval infrastructure)
 **Blocks**: Story 129 (HTML output polish), Story 130 (book website template)
 

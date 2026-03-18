@@ -40,8 +40,9 @@ This skill is read-only.
 3. **Read candidate stories**
    For every candidate story with met dependencies, read the actual story file.
    Do not rank by title alone. If a candidate touches inputs, filetypes,
-   artifacts, or channels, also read the relevant row(s) in the Input Coverage
-   section of `docs/build-map.md`.
+   artifacts, or channels, also read the relevant category (spec:N) and Input
+   Coverage section of `docs/build-map.md`. Note the category's substrate
+   status and phase.
 
 4. **Score and rank**
    Evaluate each candidate on:
@@ -50,7 +51,13 @@ This skill is read-only.
    - Ideal alignment
    - stage leverage
    - simplification leverage
-   - phase coherence
+   - **substrate readiness** — read the build-map category's substrate status;
+     don't recommend stories when substrate is `missing` unless the story creates it
+   - **phase coherence** — read the category's phase from the build map:
+     - `climb`: recommend quality-improvement work
+     - `hold`: recommend efficiency/simplification work
+     - `converge`: recommend deletion work
+     - Work that fights the phase is lower priority
    - momentum
    - convergence value
    - complexity vs payoff

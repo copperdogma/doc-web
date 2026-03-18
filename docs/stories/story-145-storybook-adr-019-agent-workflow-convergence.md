@@ -3,7 +3,7 @@
 **Priority**: High
 **Status**: Done
 **Ideal Refs**: Requirement #6 (Validate), Transparency over Magic, Graduate, Don't Accumulate
-**Spec Refs**: Active Compromises C1-C7 (detection + deletion workflow), especially the Detection / When it resolves clauses and Compromise-Level Preferences
+**Spec Refs**: spec:1–spec:7 Active Compromises C1-C7 (detection + deletion workflow), especially the constraint blocks and resolution paths
 **Decision Refs**: Storybook ADR-019 migration guide (sibling `storybook` repo), `docs/scout/scout-004-dossier-triage-skills.md`, `docs/scout/scout-006-storybook-adr-skills.md`, `docs/scout/scout-007-storybook-adr-followups.md`, `docs/runbooks/adr-creation.md`, `docs/runbooks/deep-research.md`
 **Depends On**: None
 

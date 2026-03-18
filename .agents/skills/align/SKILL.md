@@ -36,16 +36,21 @@ Use this after changes that may ripple across core project guidance:
 ## What To Check
 
 ### Ideal
-- did this reveal a new ideal that is not explicit yet?
+- did this reveal a new product ideal that is not explicit yet?
+- did this reveal an execution ideal gap (build process limitation)?
 - did it sharpen an existing central tenet or requirement?
 
 ### Spec / Requirements
 - does this add, remove, or change a compromise?
 - does it change a detection mechanism or evolution path?
 - should any existing compromise now be re-evaluated?
+- are `spec:N.N` constraint blocks consistent with the change?
+- do build-process compromises (spec:8, spec:9) need updating?
 
 ### Build Map
-- does this change system scope, dependency order, or compromise progress?
+- does this change category scope, dependency order, or compromise progress?
+- does a category's substrate status need to change (`exists`/`partial`/`missing`)?
+- does a category's phase need to change (`climb`/`hold`/`converge`)?
 - does input coverage, graduation tracking, or known-gap prioritization need to move?
 
 ### Stories

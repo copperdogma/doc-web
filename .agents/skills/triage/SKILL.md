@@ -61,6 +61,8 @@ When invoked with no scope:
    - Ideal alignment
    - blocking power / dependency leverage
    - compromise-elimination leverage
+   - phase coherence (climb/hold/converge alignment across categories)
+   - substrate readiness
    - urgency / staleness
    - momentum from recent work
    - operator cost

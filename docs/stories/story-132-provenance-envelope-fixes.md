@@ -3,7 +3,7 @@
 **Priority**: High
 **Status**: Done
 **Ideal Refs**: Ideal line 15 ("Every piece of output traces back to its source page and processing step"), Ideal line 31 (Central Tenet T0 — "Traceability is the product")
-**Spec Refs**: Non-Negotiable Design Principle #1 ("Traceability end-to-end")
+**Spec Refs**: spec:6 Non-Negotiable Design Principle #1 ("Traceability end-to-end")
 **Depends On**: None
 
 ## Goal

@@ -1,222 +1,216 @@
-# Build Map — System Structure + Compromise Progress
+# Build Map
 
-> This file combines system structure, compromise convergence tracking, input
-> coverage, and graduation readiness into one browsable map.
-> It is the human-readable source of truth for what codex-forge currently owns,
-> where active compromises still live, and which format gaps remain open.
+> Central dashboard for system progress. Organized by category matching
+> `spec.md` (spec:1–spec:9). Each category tracks: product need, tech need,
+> substrate status, story coverage, and compromise phase.
+>
 > See `docs/spec.md` for compromise definitions and `docs/evals/registry.yaml`
-> for current eval signals.
-> Converged with Storybook ADR-019 via Story 145.
+> for current eval signals. Converged with Storybook ADR-019 via Story 145;
+> reorganized to ADR-021 category/phase structure via Story 148.
 
-## How to Read Compromise Progress
+## How to Read This Map
 
-Each system that carries a spec compromise has a **Compromise Progress**
-subsection with two parts:
-
-- **Optimize** — improve the current workaround while the limitation still
-  exists
-- **Eliminate** — track the signal that tells us the workaround can be deleted
-
-Systems without active compromises still appear here so the whole repo stays
-mapped in one place.
+- **Product need** — what the category delivers to the user
+- **Tech need** — what architectural substrate must exist in code
+- **Substrate** — `exists` / `partial` / `missing` / `unplanned`
+- **Phase** — `climb` (below target) / `hold` (at target) / `converge` (deletion gate passes)
 
 ---
 
-## 1. Intake & Format Routing
-- [x] Stories cover this system
+## 1. Intake & Format Routing                                            `spec:1`
 
-**Summary:** Accept source material in multiple formats, normalize it into a
-pipeline-ready manifest, and route it into the right recipe/module chain.
-Today this still depends on explicit recipes and format-specific intake paths.
+**Product need:** Accept source material in multiple formats and route it into the right pipeline.
+**Tech need:** Format detection, manifest normalization, recipe selection, contact-sheet routing.
+**Substrate:** partial
 
-**Spec Sections:** C2
+**Story coverage:** [x] complete
+**Spec:** spec:1 (spec:1.1)
 **ADR Refs:** None yet
-**Dependencies:** None
+**Absorbs:** Intake & Format Routing (old 1)
 
-#### Compromise Progress
+### Compromise Progress
 
-**C2 — Format-Specific Conversion Recipes** (Limitation: AI capability)
-- **Optimize**: Keep the recipe surface explicit, expand input coverage one
-  format family at a time, and use lightweight routing helpers such as contact
-  sheets or manifest-based intake when they reduce operator ambiguity.
-- **Eliminate**: Eval `auto-book-type-detection` — target: `accuracy = 1.0`
-  across 10 diverse PDFs. Latest: no scores recorded. Retry when:
-  `new-approach` (contact sheet + VLM classification). When it passes: manual
-  recipe selection stops being the default operator step.
+- **C2: Format-Specific Conversion Recipes** (AI capability) — **climb**
+  - Current: User selects a YAML recipe. Lightweight routing helpers (contact sheets, manifest-based intake) reduce ambiguity.
+  - Target: Auto-detect replaces manual recipe selection for 10 diverse documents.
+  - Eval: `auto-book-type-detection` — no scores recorded. **no eval.** Retry when: `new-approach` (contact sheet + VLM classification).
 
 ---
 
-## 2. OCR & Text Extraction
-- [x] Stories cover this system
+## 2. OCR & Text Extraction                                              `spec:2`
 
-**Summary:** Turn scanned pages and page images into faithful text/HTML.
-Current best quality comes from AI-first OCR plus targeted downstream rescue for
-hard layouts such as dense genealogy tables.
+**Product need:** Turn scanned pages and page images into faithful text/HTML.
+**Tech need:** AI-first OCR, targeted downstream rescue for hard layouts, artifact reuse workflows.
+**Substrate:** exists
 
-**Spec Sections:** C1, C6
+**Story coverage:** [x] complete
+**Spec:** spec:2 (spec:2.1, spec:2.2)
 **ADR Refs:** None yet
-**Dependencies:** Intake & Format Routing
+**Absorbs:** OCR & Text Extraction (old 2)
 
-#### Compromise Progress
+### Compromise Progress
 
-**C1 — Multi-Stage OCR Pipeline** (Limitation: AI capability)
-- **Optimize**: Use AI-first OCR as the default, then apply targeted rescue or
-  rerun loops only where the first pass demonstrably fails. Current strong
-  signals come from Stories 127, 131, 140, and 144.
-- **Eliminate**: No dedicated compromise-detection eval is recorded yet.
-  Closest signals: `ocr-model-genealogy` at `character_accuracy = 0.97`
-  (measured 2026-02-20, target `0.99`) and `onward-table-fidelity` at
-  `structure_preservation = 0.969` (measured 2026-03-11, target `0.95` for that
-  narrower benchmark). Retry when: `new-subject-model` or
-  `architecture-change`. When it passes at mixed-format book scope: collapse
-  the ensemble/escalation architecture into one extract pass.
+- **C1: Multi-Stage OCR Pipeline** (AI capability) — **climb**
+  - Current: AI-first OCR as default, targeted rescue/rerun loops for failures. Strong signals from Stories 127, 131, 140, 144.
+  - Target: Single-model OCR of a 400-page mixed-format book at ≥99% character accuracy, layout preserved, <$2 total cost.
+  - Eval: No dedicated compromise-detection eval. Closest: `ocr-model-genealogy` at `character_accuracy = 0.97` (2026-02-20, target 0.99), `onward-table-fidelity` at `structure_preservation = 0.969` (2026-03-11, target 0.95). **FAIL** on deletion gate. Retry when: `new-subject-model` or `architecture-change`.
 
-**C6 — Expensive OCR for Quality** (Limitation: Economics)
-- **Optimize**: Treat OCR as expensive and single-run, reuse artifacts
-  downstream, and keep high-resolution reads only where they still pay for
-  themselves. Story 134 validated 2048px downsampling as the safe default for
-  the Onward OCR path.
-- **Eliminate**: No deletion eval is recorded. The spec trigger is economic:
-  current-quality OCR below `< $0.001/page`. When that threshold is sustained:
-  remove the reuse-first workflows that exist mainly to avoid re-running OCR.
+- **C6: Expensive OCR for Quality** (Economics) — **hold**
+  - Current: GPT-5.1 AI OCR at ~$0.01/page. Artifact reuse workflows minimize re-runs. Story 134 validated 2048px downsampling as safe default.
+  - Target: Current-quality OCR below $0.001/page sustained.
+  - Eval: No deletion eval recorded. Trigger is economic, not model-quality. **hold** — acceptable cost, waiting on market.
 
 ---
 
-## 3. Layout & Structure Understanding
-- [x] Stories cover this system
+## 3. Layout & Structure Understanding                                   `spec:3`
 
-**Summary:** Detect boundaries, headings, tables, multi-column structure, and
-other layout cues needed to turn raw OCR into coherent structured artifacts.
-Today this remains a hybrid of deterministic code and AI escalation.
+**Product need:** Detect boundaries, headings, tables, multi-column structure, and layout cues.
+**Tech need:** Deterministic detectors, VLM escalation, section splitting, boundary ordering.
+**Substrate:** exists
 
-**Spec Sections:** C3
+**Story coverage:** [x] complete
+**Spec:** spec:3 (spec:3.1)
 **ADR Refs:** None yet
-**Dependencies:** OCR & Text Extraction
+**Absorbs:** Layout & Structure Understanding (old 3)
 
-#### Compromise Progress
+### Compromise Progress
 
-**C3 — Heuristic + AI Layout Detection** (Limitation: AI capability)
-- **Optimize**: Keep deterministic detectors for cheap, stable cases and use AI
-  escalation only where ambiguity is real. Existing stories already pushed a
-  lot of the old brittle failure surface out of the way, but the system still
-  depends on heuristics for stability and cost.
-- **Eliminate**: No dedicated deletion eval is recorded yet. Target from
-  `docs/spec.md`: VLM-only layout detection reaches `100%` accuracy on a
-  diverse 5-document benchmark with no heuristic fallbacks. Latest: no scores
-  recorded. Retry when: a layout benchmark exists or a new subject model makes
-  a VLM-first path credible. When it passes: delete the pattern-matching
-  fallbacks.
+- **C3: Heuristic + AI Layout Detection** (AI capability) — **climb**
+  - Current: Deterministic detectors for cheap/stable cases, AI escalation for ambiguity. System still depends on heuristics for stability and cost.
+  - Target: VLM-only layout detection at 100% accuracy on a diverse 5-document benchmark with no heuristic fallbacks.
+  - Eval: No dedicated deletion eval recorded. **no eval.** Retry when: layout benchmark exists or new subject model makes VLM-first credible.
 
 ---
 
-## 4. Illustration Extraction
-- [x] Stories cover this system
+## 4. Illustration Extraction                                            `spec:4`
 
-**Summary:** Detect illustrations, crop them cleanly, keep text out of the
-boxes, and preserve their relationship to the source document.
+**Product need:** Detect illustrations, crop them cleanly, exclude text, preserve source relationship.
+**Tech need:** VLM crop detection, validator models, OCR-driven text trimming, retry logic.
+**Substrate:** exists
 
-**Spec Sections:** C4, C5
+**Story coverage:** [x] complete
+**Spec:** spec:4 (spec:4.1, spec:4.2)
 **ADR Refs:** None yet
-**Dependencies:** Intake & Format Routing, OCR & Text Extraction
+**Absorbs:** Illustration Extraction (old 4)
 
-#### Compromise Progress
+### Compromise Progress
 
-**C4 — Two-Stage Image Crop Detection** (Limitation: AI capability)
-- **Optimize**: Current best production path is still a detector + validator
-  architecture with retry-on-count-mismatch. Story 133 improved the quality/cost
-  balance substantially by moving to Gemini 3 Flash with a
-  conservative-count prompt.
-- **Eliminate**: Eval `single-model-crop-detection` — target:
-  `overall >= 0.95`, `pass_rate >= 0.95`. Latest:
-  `overall = 0.856`, `pass_rate = 0.77` (measured 2026-01-25). Retry when:
-  `new-subject-model`. When it passes: remove the validator stage and count
-  retry loop.
+- **C4: Two-Stage Image Crop Detection** (AI capability) — **climb**
+  - Current: Detector + validator architecture with retry-on-count-mismatch. Story 133 improved quality/cost with Gemini 3 Flash conservative-count prompt.
+  - Target: Single-model crop detection ≥0.95 overall, ≥0.95 pass rate.
+  - Eval: `single-model-crop-detection` — `overall = 0.856`, `pass_rate = 0.77` (2026-01-25). **FAIL.** Retry when: `new-subject-model`.
 
-**C5 — Layout Text Trim Heuristics for Crops** (Limitation: AI capability)
-- **Optimize**: Keep OCR-driven text trimming conservative and inspectable so it
-  only removes obvious text contamination around otherwise-correct boxes.
-- **Eliminate**: No dedicated text-exclusion deletion eval is recorded yet.
-  Closest signal: `image-crop-extraction` at `overall = 0.900`,
-  `pass_rate = 0.923` (measured 2026-03-11, target `0.95`). Retry when:
-  `new-subject-model` or a dedicated text-exclusion benchmark exists. When it
-  passes: delete `_trim_box_by_layout_text` and related cleanup heuristics.
+- **C5: Layout Text Trim Heuristics for Crops** (AI capability) — **climb**
+  - Current: OCR-driven text trimming, conservative and inspectable.
+  - Target: VLM crop detection excludes all non-illustration content on a 50-page benchmark.
+  - Eval: No dedicated text-exclusion eval. Closest: `image-crop-extraction` at `overall = 0.900`, `pass_rate = 0.923` (2026-03-11, target 0.95). **FAIL.** Retry when: `new-subject-model` or dedicated text-exclusion benchmark.
 
 ---
 
-## 5. Document Consistency Planning
-- [x] Stories cover this system
+## 5. Document Consistency Planning                                      `spec:5`
 
-**Summary:** Detect repeated structure drift across a document, emit explicit
-policy artifacts (`pattern_inventory`, `consistency_plan`,
-`conformance_report`), and use them to guide selective reruns or repair.
+**Product need:** Ensure repeated structures render consistently across a whole document.
+**Tech need:** Pattern discovery, consistency plan emission, plan-aware selective reruns, conformance reporting.
+**Substrate:** exists
 
-**Spec Sections:** C7
-**ADR Refs:** ADR-001
-**Dependencies:** OCR & Text Extraction, Layout & Structure Understanding
+**Story coverage:** [x] complete
+**Spec:** spec:5 (spec:5.1)
+**ADR Refs:** ADR-001 (source-aware consistency strategy)
+**Absorbs:** Document Consistency Planning (old 5)
 
-#### Compromise Progress
+### Compromise Progress
 
-**C7 — Page-Scope Extraction with Document-Level Consistency Planning**
-(Limitation: AI capability + cost)
-- **Optimize**: Keep document-level planning explicit and inspectable, then use
-  plan-aware reruns instead of hiding normalization policy inside prompts.
-  Stories 141-144 established the current pattern.
-- **Eliminate**: Closest signal is `onward-document-consistency-planning` with
-  `missed_manual_format_coverage = 1.0` (measured 2026-03-15), but that eval
-  proves the planning layer works; it does not yet prove the compromise is
-  deletable. Retry when: `new-approach` (second repeated-structure document) or
-  `architecture-change` (plan-guided reruns fully consume the planning layer).
-  When the broader detection condition in `docs/spec.md` is met: remove the
-  extra planning layer for that recipe.
+- **C7: Page-Scope Extraction with Document-Level Consistency Planning** (AI capability + cost) — **climb**
+  - Current: Document-level planning explicit and inspectable. Plan-aware reruns instead of hidden normalization. Stories 141-146 established the pattern.
+  - Target: On 3+ repeated-structure documents, one-pass extractor produces internally consistent structures without planning layer.
+  - Eval: `onward-document-consistency-planning` at `missed_manual_format_coverage = 1.0` (2026-03-15) — proves planning layer works, not yet deletable. **FAIL** on deletion gate. Retry when: `new-approach` (second repeated-structure document) or `architecture-change`.
 
 ---
 
-## 6. Validation, Provenance & Export
-- [x] Stories cover this system
+## 6. Validation, Provenance & Export                                    `spec:6`
 
-**Summary:** Validate artifacts structurally and semantically, measure
-provenance completeness, surface run health, and emit Dossier-ready output with
-full traceability.
+**Product need:** Prove output is correct and Dossier-ready with full traceability.
+**Tech need:** Schema validation, provenance stamping, run health, export formatting.
+**Substrate:** exists
 
-**Spec Sections:** Non-Negotiable Design Principles #1-4
+**Story coverage:** [x] complete
+**Spec:** spec:6
 **ADR Refs:** None yet
-**Dependencies:** All upstream extraction systems
+**Absorbs:** Validation, Provenance & Export (old 6)
 
-**Current health:** Provenance completeness for the verified scanned/image
-pipelines is now `1.0` after Story 132's envelope fixes. Validation and run
-health remain active cross-cutting responsibilities, not one-off stories.
+No active compromises. Obligations flow from Non-Negotiable Design Principles #1-4.
 
----
-
-## 7. Graduation & Dossier Handoff
-- [ ] Stories cover this system
-
-**Summary:** Mature converters should move into Dossier once they are stable,
-well-measured, and no longer active R&D. This remains a mission-level system,
-but it does not yet have explicit story coverage.
-
-**Spec Sections:** Mission, Non-Negotiable Design Principle #5
-**ADR Refs:** None yet
-**Dependencies:** Intake & Format Routing, OCR & Text Extraction, Validation,
-Provenance & Export
-
-**Current state:** `0` formats are graduated today. The build map tracks which
-ones are closest, but no explicit migration story has landed yet.
+Provenance completeness for verified scanned/image pipelines is `1.0` after
+Story 132's envelope fixes. Validation and run health remain active cross-cutting
+responsibilities.
 
 ---
 
-## 8. Project Operating System
-- [x] Stories cover this system
+## 7. Graduation & Dossier Handoff                                      `spec:7`
 
-**Summary:** Stories, ADRs, evals, skills, runbooks, and this build map form
-the repo's operating system. This is where convergence work like Story 145
-lives.
+**Product need:** Migrate mature converters into Dossier so codex-forge stays lean.
+**Tech need:** Graduation criteria, Dossier intake surface readiness, fixture breadth.
+**Substrate:** missing
 
-**Spec Sections:** None (cross-cutting workflow surface)
+**Story coverage:** [ ] stories needed
+**Spec:** spec:7
 **ADR Refs:** None yet
-**Dependencies:** None
+**Absorbs:** Graduation & Dossier Handoff (old 7)
 
-#### Operating Rule — Quality First, Then Complexity Collapse
+No active product compromises. Obligations flow from Non-Negotiable Design
+Principle #5 (Graduate to Dossier) and the Mission. `0` formats graduated today.
+
+---
+
+## 8. AI Harnesses & Tooling                                            `spec:8`
+
+**Product need:** (execution category — no direct user-facing product need)
+**Tech need:** Eval framework, prompt engineering, pipeline orchestration, schema validation, artifact inspection.
+**Substrate:** exists
+
+**Story coverage:** [x] complete
+**Spec:** spec:8 (B1–B6)
+**ADR Refs:** None yet
+**Absorbs:** Project Operating System (old 8) — AI/tooling half
+
+### Compromise Progress
+
+Build-process compromises tracked in `spec:8`:
+
+| ID | Process Element | Phase | Notes |
+|---|---|---|---|
+| B1 | Eval framework (promptfoo) | hold | Working; used actively for quality and deletion gates |
+| B2 | Prompt engineering | hold | Prompts are stable for current pipelines |
+| B3 | Pipeline orchestration (driver.py) | hold | Mature; handles recipes, stages, artifact management |
+| B4 | Schema stamping & validation | hold | Working; catches structural drift |
+| B5 | Manual artifact inspection | climb | Still required for every story completion |
+| B6 | Escalation loops & retry caps | climb | Active in OCR, crop detection, consistency planning |
+
+---
+
+## 9. Planning Infrastructure                                           `spec:9`
+
+**Product need:** (execution category — no direct user-facing product need)
+**Tech need:** Stories, ADRs, build map, triage skills, runbooks.
+**Substrate:** exists
+
+**Story coverage:** [x] complete
+**Spec:** spec:9 (B7–B10)
+**ADR Refs:** None yet
+**Absorbs:** Project Operating System (old 8) — planning half
+
+### Compromise Progress
+
+Build-process compromises tracked in `spec:9`:
+
+| ID | Process Element | Phase | Notes |
+|---|---|---|---|
+| B7 | Story/backlog system | hold | Working; 148 stories tracked |
+| B8 | Build map & phase tracking | hold | This document; reorganized per ADR-021 |
+| B9 | ADR process | hold | 1 accepted ADR; process established |
+| B10 | YAML recipe configuration | climb | Overlaps with C2; manual config still required |
+
+### Operating Rule — Quality First, Then Complexity Collapse
 
 When an active converter or repair seam is still failing manual review, the next
 job is to raise quality with the smallest coherent changes needed to clear that
@@ -242,9 +236,8 @@ story rather than another opportunistic repair layer. See Story 147.
 
 ## Input Coverage
 
-This section absorbs the former human-readable format registry.
-
-**Machine-readable source:** `tests/fixtures/formats/_coverage-matrix.json`
+> Cross-cutting section spanning multiple categories. Machine-readable source:
+> `tests/fixtures/formats/_coverage-matrix.json`
 
 ### Current Status
 
@@ -300,7 +293,7 @@ None yet.
 - **Current signal:** `image-crop-extraction` is at `0.900` overall against a
   `0.95` target, and the true deletion gate `single-model-crop-detection`
   remains at `0.856 / 0.77`.
-- **Root cause:** C4 and C5 still hold. Single-stage crop detection is not good
+- **Root cause:** C4 (spec:4.1) and C5 (spec:4.2) still hold. Single-stage crop detection is not good
   enough to remove validator + trim heuristics.
 - **Fix category:** Model-selection / compromise-detection.
 - **Status:** Still open; blocked on better single-model performance or a
@@ -309,14 +302,14 @@ None yet.
 ### Gap 2 — Born-digital PDF native text extraction
 
 - **Current signal:** No pipeline, no fixture, no eval.
-- **Root cause:** Intake still assumes scanned/OCR-first processing.
+- **Root cause:** Intake (spec:1) still assumes scanned/OCR-first processing.
 - **Fix category:** New intake module.
 - **Status:** High-value missing capability.
 
 ### Gap 3 — Office document intake (DOCX/XLSX/PPTX)
 
 - **Current signal:** No pipeline family exists for office documents.
-- **Root cause:** Intake coverage is still heavily skewed toward PDFs and image
+- **Root cause:** Intake coverage (spec:1) is still heavily skewed toward PDFs and image
   directories.
 - **Fix category:** New intake modules / routing.
 - **Status:** High-value missing capability, especially for Storybook-adjacent
@@ -326,13 +319,13 @@ None yet.
 
 - **Current signal:** No tested handwriting path exists.
 - **Root cause:** No fixture set and no dedicated VLM transcription flow.
-- **Fix category:** New intake/extraction path.
+- **Fix category:** New intake/extraction path (spec:1, spec:2).
 - **Status:** High-value missing capability for personal archives.
 
 ### Gap 5 — Fixture breadth and graduation confidence
 
 - **Current signal:** Passing formats still rely on very few fixtures, and no
-  format meets the "3 diverse fixtures" graduation bar yet.
+  format meets the "3 diverse fixtures" graduation bar (spec:7) yet.
 - **Root cause:** Capability coverage grew faster than repeatable benchmark
   breadth.
 - **Fix category:** Fixture expansion and rerun discipline.
@@ -358,7 +351,7 @@ None yet.
 
 ## Graduation Criteria
 
-A converter is ready to graduate to Dossier when:
+A converter is ready to graduate to Dossier (spec:7) when:
 
 1. Text fidelity is `>= 0.99` on all test fixtures for that format
 2. Structure preservation is `>= 0.95` where structure matters

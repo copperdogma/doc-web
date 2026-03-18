@@ -89,14 +89,14 @@ Canonical location: `.agents/skills/` — works across Claude Code, Cursor, Gemi
 
 ## Docs
 
-- `docs/ideal.md` — The Ideal: zero-limitation north star
-- `docs/build-map.md` — System structure, compromise progress, input coverage, graduation tracking
-- `docs/spec.md` — Active compromises with detection evals
+- `docs/ideal.md` — Dual ideal: product (zero-limitation north star) + execution (zero-limitation build process)
+- `docs/spec.md` — Unified spec with 9 categories (`spec:1`–`spec:9`), hierarchical `spec:N.N` section IDs, per-category constraint blocks (C1-C7 product, B1-B10 build-process), and Non-Negotiable Design Principles
+- `docs/build-map.md` — Central triage dashboard: 9 categories matching spec, substrate status (`exists`/`partial`/`missing`), phase governance (`climb`/`hold`/`converge`), input coverage, graduation tracking
 - `docs/decisions/` — ADRs for hard-to-reverse architecture, workflow, schema, and cross-cutting project decisions
 - `docs/evals/registry.yaml` — Eval scores, targets, attempt history
 - `docs/requirements.md` — Functional requirements
-- `docs/stories.md` — Story index (130+ stories)
-- `docs/stories/` — Individual story files with ACs, tasks, work logs
+- `docs/stories.md` — Story index (148+ stories)
+- `docs/stories/` — Individual story files with ACs, tasks, work logs. Spec Refs use `spec:N.N` IDs.
 - `docs/scout.md` — Scout expedition index
 - `docs/ai-learning-log.md` — AI self-improvement log (patterns, pitfalls, lessons)
 - `tests/fixtures/formats/_coverage-matrix.json` — Machine-readable format inventory (16 formats)

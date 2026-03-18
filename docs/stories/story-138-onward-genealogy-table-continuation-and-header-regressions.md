@@ -3,7 +3,7 @@
 **Priority**: High
 **Status**: Done
 **Ideal Refs**: Requirement #3 (Extract), Requirement #6 (Validate), Fidelity to Source
-**Spec Refs**: C1 (OCR quality), C3 (layout detection)
+**Spec Refs**: spec:2.1 C1 (OCR quality), spec:3.1 C3 (layout detection)
 **Depends On**: Story 131 (table structure fidelity), Story 129 (HTML output polish)
 
 ## Goal

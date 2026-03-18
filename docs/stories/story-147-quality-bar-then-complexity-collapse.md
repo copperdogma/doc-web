@@ -3,7 +3,7 @@
 **Priority**: High
 **Status**: Pending
 **Ideal Refs**: Requirement #3 (Extract), Requirement #6 (Validate), Fidelity to the source, Transparency over magic, Graduate, don't accumulate
-**Spec Refs**: `docs/spec.md` intro (compromises get deleted when resolved), C1, C3, C7
+**Spec Refs**: `docs/spec.md` intro (compromises get deleted when resolved), spec:2.1 C1, spec:3.1 C3, spec:5.1 C7
 **Decision Refs**: `docs/build-map.md`, `docs/spec.md`, `docs/ideal.md`, Story 145 work log, Story 146 work log, `docs/decisions/adr-001-source-aware-consistency-strategy/adr.md`
 **Depends On**: Story 145, Story 146
 

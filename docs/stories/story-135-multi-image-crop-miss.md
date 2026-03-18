@@ -3,7 +3,7 @@
 **Priority**: High
 **Status**: Done
 **Ideal Refs**: Requirement #4 (Illustrate), Requirement #5 (Structure), Fidelity to Source
-**Spec Refs**: C3 (layout detection), C4 (two-stage crop detection), C5 (layout text trim heuristics)
+**Spec Refs**: spec:3.1 C3 (layout detection), spec:4.1 C4 (two-stage crop detection), spec:4.2 C5 (layout text trim heuristics)
 **Depends On**: Story 126 (crop detection pipeline), Story 129 (HTML output polish)
 
 ## Goal
