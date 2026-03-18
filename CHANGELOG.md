@@ -11,6 +11,15 @@
 - Marked the old Story 146 rerun validation recipe as historical-only now that the smaller Story 149 build/validate regression bundle is the maintained guardrail
 - `load_artifact_v1` now resolves reused `output/runs/...` artifacts against the shared project output root, so the maintained Story 149 regression recipe and older reuse recipes run correctly from worktrees instead of only the main checkout
 
+## [2026-03-18-04] - Add finish-and-push skill
+
+### Added
+- Added the `finish-and-push` skill and generated Gemini wrapper so agents can close a completed story and run the full check-in and push-to-main flow through the existing leaf skills
+- Added Scout 009 documenting the cross-repo skill sync request and the dossier import decision
+
+### Changed
+- Updated `docs/scout.md` with the new cross-repo skill-sync expedition and recorded that the existing `discover-models` skill was already in sync with cine-forge
+
 ## [2026-03-18-02] - Add model discovery skill and GPT-5.4 screens
 
 ### Added
