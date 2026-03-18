@@ -1,3 +1,18 @@
+## [2026-03-18-02] - Add model discovery skill and GPT-5.4 screens
+
+### Added
+- Added the `discover-models` skill, generated Gemini wrapper, and `scripts/discover-models.py` so agents can query live OpenAI, Anthropic, and Google model inventories against the eval registry
+- Added Scout 008 documenting the cine-forge import and the codex-forge-specific matcher adaptation
+- Added focused GPT-5.4 Mini/Nano benchmark screen tasks for image crops and single-page Onward OCR follow-up work
+
+### Changed
+- Expanded the existing crop and single-page budget OCR benchmark configs to include GPT-5.4 Mini/Nano candidates and normalized the OpenAI provider IDs in the OCR budget task
+- Updated Story 133 and Story 134 work logs with the March 18 GPT-5.4 screening evidence and the resulting non-adoption decisions
+- Updated `docs/scout.md` with the new cine-forge model-skill expedition
+
+### Fixed
+- Tightened `discover-models` registry matching so human-readable eval labels resolve to canonical model families without falsely marking untested variants as already covered
+
 ## [2026-03-18-01] - Document quality-bar complexity-collapse roadmap (Story 147)
 
 ### Added

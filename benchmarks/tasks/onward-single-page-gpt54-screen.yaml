@@ -1,0 +1,32 @@
+description: "Onward single-page OCR screen for GPT-5.4 Mini/Nano"
+
+prompts:
+  - file://../prompts/onward_ocr.js
+
+providers:
+  - id: openai:chat:gpt-5.4-mini
+    label: "GPT-5.4 Mini"
+    config:
+      temperature: 0.0
+      max_tokens: 8192
+  - id: openai:chat:gpt-5.4-nano
+    label: "GPT-5.4 Nano"
+    config:
+      temperature: 0.0
+      max_tokens: 8192
+
+defaultTest:
+  assert:
+    - type: python
+      value: file://../scorers/html_table_diff.py
+
+tests:
+  - vars:
+      image_list: "../../input/onward-to-the-unknown-images-2048/Image024.jpg"
+      golden_path: "golden/onward/per_page/page_024.html"
+  - vars:
+      image_list: "../../input/onward-to-the-unknown-images-2048/Image030.jpg"
+      golden_path: "golden/onward/per_page/page_030.html"
+  - vars:
+      image_list: "../../input/onward-to-the-unknown-images-2048/Image080.jpg"
+      golden_path: "golden/onward/per_page/page_080.html"
