@@ -4,6 +4,15 @@
 - Renamed the current project identity from `codex-forge` to `doc-forge` across live repo surfaces including core docs, agent guidance, runbooks, active stories, and helper metadata
 - Normalized accepted ADR and active planning/story docs to the new name while preserving intentionally historical references in archived notes, changelog history, research artifacts, and provenance-bearing fixtures
 
+## [2026-03-19-02] - Bootstrap doc-web runtime planning surface
+
+### Added
+- Added ADR-002 research materials, the standalone runtime extraction note, and Stories 151-154 so `doc-web` starts with the accepted boundary, contract, extraction, and Dossier-handoff planning context
+
+### Changed
+- Reframed the top-level README, spec, build map, and affected story references around `doc-web` as the structural website runtime instead of leaving those decisions implicit in copied codex-forge docs
+- Marked the in-repo book website template story as out of scope and redirected downstream references toward semantic HTML plus the `doc-web` handoff contract
+
 ## [2026-03-18-05] - Reconcile fresh Onward audit lane with reviewed slice (Story 150)
 
 ### Added

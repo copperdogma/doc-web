@@ -1,5 +1,12 @@
-# doc-forge
-AI-first, modular pipeline for turning scanned books into structured JSON with full traceability.
+# doc-web
+AI-first runtime for turning scanned books, PDFs, and images into structural, provenance-rich HTML website bundles for Dossier and related downstream consumers.
+
+## Current Role
+- Own the structural website contract: semantic HTML pages, reading order, minimal navigation, manifests, and provenance sidecars.
+- Provide the versioned runtime boundary Dossier can consume without pulling in codex-forge's research and workflow overhead.
+- Evolve the proven codex-forge ingestion path into a reusable runtime while keeping polished presentation and publication UX outside this repo.
+
+`doc-web` intentionally owns structural output, not the final themed website experience. Presentation-layer website generation remains outside this repo's scope.
 
 ## 📚 Documentation
 - **[Runbook & Operations Guide](docs/RUNBOOK.md)**: **START HERE** for running the pipeline, resuming runs, and troubleshooting.
