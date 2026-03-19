@@ -1,3 +1,9 @@
+## [2026-03-19-04] - Close extracted doc-web bundle emitter seam (Story 153)
+
+### Changed
+- Marked Story 153 done after validation narrowed its claim to the proof actually achieved: the extracted seam enforces the frozen Story 152 bundle/provenance contract at the live `codex-forge` boundary and preserves the current maintained Onward reuse lane without new emitter-specific regression
+- Updated Story 153 and the story index so the completion record now matches the maintained regression evidence instead of over-claiming broader structural health
+
 ## [2026-03-19-03] - Freeze doc-web bundle contract (Story 152)
 
 ### Added
