@@ -1047,6 +1047,54 @@ class TestGenealogyMerging:
             ", 1956",
         ]
 
+    def test_merge_contiguous_genealogy_tables_drops_repeated_body_header_rows(self):
+        html = """
+        <table>
+          <thead>
+            <tr><th>NAME</th><th>BORN</th><th>MARRIED</th><th>SPOUSE</th><th>BOY</th><th>GIRL</th><th>DIED</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Reginald</td><td>Apr. 3, 1953</td><td>June 29, 1974</td><td>Judy O'Keefe</td><td>2</td><td></td><td></td></tr>
+          </tbody>
+        </table>
+        <table>
+          <tbody>
+            <tr><td><strong>Arthur's Great Grandchildren<br/>Alphonse's Grandchildren<br/>ROGER'S FAMILY</strong></td></tr>
+            <tr><th>NAME</th><th>BORN</th><th>MARRIED</th><th>SPOUSE</th><th>BOY/GIRL</th><th>DIED</th><td></td></tr>
+            <tr><td>Danial</td><td>Mar. 3, 1973</td><td></td><td></td><td></td><td></td><td></td></tr>
+            <tr><td>Diane</td><td>July 19, 1976</td><td></td><td></td><td></td><td></td><td></td></tr>
+          </tbody>
+        </table>
+        """
+
+        result = _merge_contiguous_genealogy_tables(html)
+        soup = BeautifulSoup(result, "html.parser")
+        tables = soup.find_all("table")
+
+        assert len(tables) == 1
+        assert result.count("BOY/GIRL") == 0
+        assert result.count("BOY</th><th>GIRL") == 1
+
+        repeated_headers = [
+            row
+            for row in tables[0].find("tbody").find_all("tr", recursive=False)
+            if [cell.get_text(" ", strip=True) for cell in row.find_all(["th", "td"], recursive=False)][:6]
+            == ["NAME", "BORN", "MARRIED", "SPOUSE", "BOY/GIRL", "DIED"]
+        ]
+        assert repeated_headers == []
+
+        subgroup_rows = [
+            row.get_text(" ", strip=True)
+            for row in tables[0].find("tbody").find_all("tr", class_="genealogy-subgroup-heading", recursive=False)
+        ]
+        assert subgroup_rows == [
+            "Arthur's Great Grandchildren",
+            "Alphonse's Grandchildren",
+            "ROGER'S FAMILY",
+        ]
+        assert "Danial" in tables[0].get_text(" ", strip=True)
+        assert "Diane" in tables[0].get_text(" ", strip=True)
+
 
 # ---------------------------------------------------------------------------
 # Integration: full pipeline via CLI
@@ -1156,6 +1204,54 @@ class TestCLIIntegration:
         assert len(manifest) >= 1
         assert manifest[0]["kind"] == "chapter"
         assert manifest[0]["title"] == "Introduction"
+
+    def test_overwrites_stale_published_image_on_rerun(self):
+        pages_path = self.tmpdir / "pages.jsonl"
+        portions_path = self.tmpdir / "portions.jsonl"
+        out_path = self.tmpdir / "manifest.jsonl"
+        html_dir = self.tmpdir / "html"
+
+        self._write_jsonl(pages_path, [
+            {"page_number": 1, "printed_page_number": 1, "html": '<p>Page one.</p><img alt="Photo">'},
+        ])
+        self._write_jsonl(portions_path, [
+            {"title": "Introduction", "page_start": 1, "page_end": 1},
+        ])
+
+        illust_dir = self.tmpdir / "illustrations"
+        illust_images_dir = illust_dir / "images"
+        illust_images_dir.mkdir(parents=True)
+        source_bytes = b"fresh-image-bytes"
+        stale_bytes = b"stale-image-bytes"
+        (illust_images_dir / "photo.jpg").write_bytes(source_bytes)
+        illust_path = illust_dir / "illustration_manifest.jsonl"
+        self._write_jsonl(illust_path, [
+            {
+                "source_page": 1,
+                "filename": "photo.jpg",
+                "alt": "Photo",
+                "image_description": "Fresh image",
+                "caption_text": None,
+                "bbox": {"x0": 100, "y0": 200, "x1": 400, "y1": 500},
+            },
+        ])
+
+        (html_dir / "images").mkdir(parents=True)
+        (html_dir / "images" / "photo.jpg").write_bytes(stale_bytes)
+
+        cmd = [
+            sys.executable, "-m", "modules.build.build_chapter_html_v1.main",
+            "--pages", str(pages_path),
+            "--portions", str(portions_path),
+            "--out", str(out_path),
+            "--output-dir", str(html_dir),
+            "--illustration-manifest", str(illust_path),
+            "--book-title", "Test Book",
+        ]
+        result = subprocess.run(cmd, capture_output=True, text=True, cwd=str(Path(__file__).resolve().parent.parent))
+        assert result.returncode == 0, f"STDERR: {result.stderr}"
+
+        assert (html_dir / "images" / "photo.jpg").read_bytes() == source_bytes
 
     def test_merges_stale_duplicate_tail_into_previous_chapter(self):
         pages_path = self.tmpdir / "pages.jsonl"

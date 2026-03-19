@@ -1,4 +1,5 @@
 from modules.adapter.table_rescue_onward_tables_v1.main import (
+    _normalize_rescue_html_for_chapter_merge,
     _normalize_rescue_html,
     _page_rescue_quality,
     _should_apply_normalized_existing,
@@ -55,6 +56,32 @@ ARTHUR_WITH_CHILD_ROWS = f"""
 <h2>VIVIAN'S FAMILY</h2>
 <table>
   {HEADER}
+  <tr><td>Ralph</td><td>July 7, 1973</td><td></td><td></td><td></td><td></td><td></td></tr>
+  <tr><td>Lisa</td><td>Nov. 6, 1975</td><td></td><td></td><td></td><td></td><td></td></tr>
+  <tr><td>Tanya</td><td>Dec. 13, 1976</td><td></td><td></td><td></td><td></td><td></td></tr>
+</table>
+<table>
+  <tr><td>TOTAL DESCENDANTS</td><td>54</td></tr>
+  <tr><td>LIVING</td><td>49</td></tr>
+  <tr><td>DECEASED</td><td>5</td></tr>
+</table>
+"""
+
+
+ARTHUR_WITH_SUBGROUP_ROWS = f"""
+<table>
+  {HEADER}
+  <tr><td>Linda</td><td>Dec. 21, 1947</td><td>Oct. 22, 1966</td><td>Eric Breidford</td><td>3</td><td>0</td><td></td></tr>
+  <tr><td>Richard</td><td>Sept. 23, 1949</td><td>May 19, 1973</td><td>Patricia Vercuellen</td><td>2</td><td>0</td><td></td></tr>
+  <tr><td>Paul</td><td>July 7, 1951</td><td>June 10, 1977</td><td>Fern Holmgren</td><td>3</td><td>0</td><td></td></tr>
+  <tr class="genealogy-subgroup-heading"><th colspan="7">RICHARD'S FAMILY</th></tr>
+  <tr><td>Brent</td><td>Feb. 9, 1975</td><td></td><td></td><td></td><td></td><td></td></tr>
+  <tr><td>Jeffery</td><td>Feb. 20, 1977</td><td></td><td></td><td></td><td></td><td></td></tr>
+  <tr class="genealogy-subgroup-heading"><th colspan="7">PAUL'S FAMILY</th></tr>
+  <tr><td>Steven (adpt)</td><td>Sept. 1, 1969</td><td></td><td></td><td></td><td></td><td></td></tr>
+  <tr><td>Richard (adpt)</td><td>Sept. 10, 1973</td><td></td><td></td><td></td><td></td><td></td></tr>
+  <tr><td>Shane (adpt)</td><td>July 17, 1978</td><td></td><td></td><td></td><td></td><td></td></tr>
+  <tr class="genealogy-subgroup-heading"><th colspan="7">VIVIAN'S FAMILY</th></tr>
   <tr><td>Ralph</td><td>July 7, 1973</td><td></td><td></td><td></td><td></td><td></td></tr>
   <tr><td>Lisa</td><td>Nov. 6, 1975</td><td></td><td></td><td></td><td></td><td></td></tr>
   <tr><td>Tanya</td><td>Dec. 13, 1976</td><td></td><td></td><td></td><td></td><td></td></tr>
@@ -192,7 +219,7 @@ ALMA_INLINE_FAMILY_ROWS = """
 def test_accepts_candidate_when_family_child_rows_are_recovered():
     accepted, reason, existing_quality, candidate_quality = _should_accept_rescue(
         ARTHUR_HEADING_ONLY,
-        ARTHUR_WITH_CHILD_ROWS,
+        ARTHUR_WITH_SUBGROUP_ROWS,
         0.8,
         15,
     )
@@ -200,6 +227,19 @@ def test_accepts_candidate_when_family_child_rows_are_recovered():
     assert accepted is True
     assert reason in {"candidate_score_improved", "candidate_recovered_header_table"}
     assert candidate_quality.row_count > existing_quality.row_count
+
+
+def test_rejects_candidate_that_explodes_structured_genealogy_page_into_external_heading_tables():
+    accepted, reason, existing_quality, candidate_quality = _should_accept_rescue(
+        ARTHUR_HEADING_ONLY,
+        ARTHUR_WITH_CHILD_ROWS,
+        0.8,
+        15,
+    )
+
+    assert accepted is False
+    assert reason == "candidate_worsened_external_family_heading_drift"
+    assert candidate_quality.header_table_count > existing_quality.header_table_count
 
 
 def test_accepts_candidate_when_paragraph_tail_becomes_table():
@@ -225,7 +265,11 @@ def test_rejects_candidate_that_drops_structure_and_merges_counts():
     )
 
     assert accepted is False
-    assert reason in {"candidate_lost_header_table", "candidate_score_not_improved"}
+    assert reason in {
+        "candidate_lost_header_table",
+        "candidate_score_not_improved",
+        "candidate_worsened_boygirl_headers",
+    }
     assert candidate_quality.score < existing_quality.score
 
 
@@ -293,3 +337,12 @@ def test_applies_normalized_existing_when_it_splits_inline_family_rows_into_tabl
     assert normalized_quality.header_table_count > existing_quality.header_table_count
     assert normalized_quality.inline_family_heading_count == 0
     assert _should_apply_normalized_existing(existing_quality, normalized_quality) is True
+
+
+def test_chapter_merge_normalizer_keeps_inline_family_rows_inside_genealogy_table():
+    chapter_safe = _normalize_rescue_html_for_chapter_merge(ALMA_INLINE_FAMILY_ROWS)
+    chapter_safe_quality = _page_rescue_quality(chapter_safe, 0.8)
+
+    assert chapter_safe_quality.table_count == 1
+    assert chapter_safe_quality.inline_family_heading_count == 2
+    assert "<h2>" not in chapter_safe

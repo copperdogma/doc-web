@@ -33,6 +33,7 @@ from modules.extract.ocr_ai_gpt51_v1.main import (
     _extract_ocr_metadata,
     extract_image_metadata,
 )
+from modules.validate.validate_onward_genealogy_consistency_v1.main import analyze_page_row
 
 
 EXPECTED_HEADERS = ["name", "born", "married", "spouse", "boy", "girl", "died"]
@@ -468,11 +469,26 @@ def _should_accept_rescue(existing_html: str, candidate_html: str, threshold: fl
                           min_score_gain: int) -> Tuple[bool, str, RescueQuality, RescueQuality]:
     existing_quality = _page_rescue_quality(existing_html, threshold)
     candidate_quality = _page_rescue_quality(candidate_html, threshold)
+    existing_metrics = analyze_page_row({"html": existing_html})
+    candidate_metrics = analyze_page_row({"html": candidate_html})
 
     if candidate_quality.header_table_count == 0 and existing_quality.header_table_count > 0:
         return False, "candidate_lost_header_table", existing_quality, candidate_quality
     if existing_quality.header_table_count == 0 and candidate_quality.header_table_count > 0:
         return True, "candidate_recovered_header_table", existing_quality, candidate_quality
+    # Do not accept candidates that only "improve" by exploding an already-structured
+    # genealogy page into more tables with more external family headings but no new
+    # in-table subgroup structure. That proxy was the root cause of the Arthur page-35
+    # regression on the fresh full-run audit path.
+    if (
+        existing_quality.header_table_count > 0
+        and candidate_metrics.external_family_heading_count > existing_metrics.external_family_heading_count
+        and candidate_metrics.subgroup_row_count <= existing_metrics.subgroup_row_count
+        and candidate_metrics.table_count >= existing_metrics.table_count
+    ):
+        return False, "candidate_worsened_external_family_heading_drift", existing_quality, candidate_quality
+    if candidate_metrics.residual_boygirl_header_count > existing_metrics.residual_boygirl_header_count:
+        return False, "candidate_worsened_boygirl_headers", existing_quality, candidate_quality
     if candidate_quality.score >= existing_quality.score + min_score_gain:
         return True, "candidate_score_improved", existing_quality, candidate_quality
     return False, "candidate_score_not_improved", existing_quality, candidate_quality
@@ -1082,7 +1098,7 @@ def _merge_genealogy_table_runs(soup: BeautifulSoup) -> None:
             next_table.decompose()
 
 
-def _strip_page_markers(html: str) -> str:
+def _strip_page_markers(html: str, *, split_inline_family_tables: bool = True) -> str:
     if not html:
         return ""
     soup = BeautifulSoup(html, "html.parser")
@@ -1093,7 +1109,8 @@ def _strip_page_markers(html: str) -> str:
         _split_boy_girl_cells(table)
     for table in soup.find_all("table"):
         _promote_contextual_thead_rows(table, soup)
-    _split_inline_family_tables(soup)
+    if split_inline_family_tables:
+        _split_inline_family_tables(soup)
     _merge_trailing_context_rows_into_next_heading(soup)
     for table in soup.find_all("table"):
         _pad_expected_genealogy_columns(table, soup)
@@ -1127,6 +1144,19 @@ def _enforce_boy_girl_split(html: str) -> str:
 def _normalize_rescue_html(html: str) -> str:
     cleaned = sanitize_html(html or "")
     cleaned = _strip_page_markers(cleaned)
+    cleaned = _enforce_boy_girl_split(cleaned)
+    cleaned = re.sub(
+        r"<td>\s*(\d+)\s+(\d+)\s*</td>\s*<td>\s*</td>",
+        r"<td>\1</td><td>\2</td>",
+        cleaned,
+        flags=re.IGNORECASE,
+    )
+    return cleaned
+
+
+def _normalize_rescue_html_for_chapter_merge(html: str) -> str:
+    cleaned = sanitize_html(html or "")
+    cleaned = _strip_page_markers(cleaned, split_inline_family_tables=False)
     cleaned = _enforce_boy_girl_split(cleaned)
     cleaned = re.sub(
         r"<td>\s*(\d+)\s+(\d+)\s*</td>\s*<td>\s*</td>",

@@ -14,7 +14,7 @@ from bs4 import BeautifulSoup
 
 try:
     from modules.adapter.table_rescue_onward_tables_v1.main import (
-        _normalize_rescue_html as _normalize_genealogy_rescue_html,
+        _normalize_rescue_html_for_chapter_merge as _normalize_genealogy_rescue_html,
     )
 except Exception:  # pragma: no cover - optional adapter reuse
     _normalize_genealogy_rescue_html = None
@@ -130,10 +130,23 @@ def _genealogy_table_header_tokens(table: Any) -> List[str]:
         header_row = table.find("tr", recursive=False)
     if header_row is None:
         return []
-    return [
+    return _genealogy_row_header_tokens(header_row)
+
+
+def _genealogy_row_header_tokens(row: Any) -> List[str]:
+    if row is None:
+        return []
+    tokens = [
         _normalize_genealogy_token(cell.get_text(" ", strip=True))
-        for cell in header_row.find_all(["th", "td"], recursive=False)
+        for cell in row.find_all(["th", "td"], recursive=False)
     ]
+    while tokens and not tokens[-1]:
+        tokens.pop()
+    return tokens
+
+
+def _is_genealogy_header_row(row: Any) -> bool:
+    return tuple(_genealogy_row_header_tokens(row)) in _GENEALOGY_HEADER_TOKEN_SETS
 
 
 def _is_genealogy_table_header(table: Any) -> bool:
@@ -320,6 +333,11 @@ def _normalize_genealogy_body_rows(table: Any, soup: BeautifulSoup) -> None:
         if row.parent is None:
             continue
 
+        if _is_genealogy_header_row(row):
+            if table.find("thead", recursive=False) is not None or row is not rows[0]:
+                row.decompose()
+                continue
+
         heading_lines = _row_genealogy_heading_lines(row)
         if heading_lines:
             new_rows = [
@@ -486,4 +504,3 @@ def merge_contiguous_genealogy_tables(html: str, *, rescue_normalizer: Optional[
             _normalize_genealogy_body_rows(table, soup)
 
     return _preserve_figure_and_image_attrs(html, soup.decode_contents())
-

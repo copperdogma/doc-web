@@ -1095,8 +1095,9 @@ def main() -> None:
                 if not src_path.exists():
                     continue
                 dst_path = images_dir / filename
-                if not dst_path.exists():
-                    dst_path.write_bytes(src_path.read_bytes())
+                # Resume runs must refresh published crops so stale output/html images
+                # do not survive after an upstream crop fix.
+                dst_path.write_bytes(src_path.read_bytes())
 
     pages_sorted = sorted(pages, key=_page_sort_key)
     pages_scan = sorted(pages, key=lambda r: int(r.get("page_number") or r.get("page") or 0))

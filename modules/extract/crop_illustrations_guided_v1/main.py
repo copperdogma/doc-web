@@ -796,6 +796,16 @@ def _apply_caption_box(box: Dict[str, int], margin_px: int, max_gap_ratio: float
     if cx1 <= cx0 or cy1 <= cy0:
         return box
     box = dict(box)
+    overlap_x0 = max(box["x0"], cx0)
+    overlap_x1 = min(box["x1"], cx1)
+    overlap_w = max(0, overlap_x1 - overlap_x0)
+    coverage_ratio = overlap_w / float(max(1, box["width"]))
+    # Only trim the full box when the caption spans most of the crop width.
+    # Partial-width captions under one side of an irregular image block (for example,
+    # a seal on the left with signatures/caption on the right) otherwise slice off
+    # valid image content on the untouched side.
+    if coverage_ratio < 0.7:
+        return box
     applied = False
     max_gap = int(max_gap_ratio * max(1, box["height"]))
     # If caption is below the image box (or overlaps), trim to caption start.

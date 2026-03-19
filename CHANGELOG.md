@@ -1,3 +1,17 @@
+## [2026-03-18-05] - Reconcile fresh Onward audit lane with reviewed slice (Story 150)
+
+### Added
+- Added Story 150 investigation records for the fresh full-source Onward audit lane, including the issue log and story evidence tying Arthur genealogy drift and the chapter-003 seal crop to their actual owning seams
+- Added focused regression coverage for chapter-safe genealogy merge normalization, rescue-candidate rejection on Arthur-style external-heading drift, partial-width caption trimming, and stale published-image overwrite behavior
+
+### Changed
+- Story 150 is now done after revalidating `onward-full-audit-20260318-r1` as a true source-image audit lane that preserves chapter-003 image health and keeps the reviewed genealogy slice stable without collapsing the documented trust split with the fast reuse lane
+
+### Fixed
+- `table_rescue_onward_tables_v1` no longer accepts Arthur-style rescue candidates that only improve score by exploding structured genealogy pages into more external family-heading tables
+- Shared genealogy chapter merge now uses the chapter-safe rescue normalizer and drops repeated body-level genealogy header rows
+- `crop_illustrations_guided_v1` no longer clips irregular mixed-width image blocks against partial-width caption boxes, and `build_chapter_html_v1` now refreshes published illustration assets on resume rebuilds so fixed crops actually reach final HTML
+
 ## [2026-03-18-03] - Land first Onward genealogy collapse and reviewed golden slice (Story 149)
 
 ### Added
