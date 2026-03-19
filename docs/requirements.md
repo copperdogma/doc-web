@@ -1,4 +1,4 @@
-# Codex-Forge Requirements
+# Doc-Forge Requirements
 _AI-first, modular book-to-structured-data pipeline_
 
 ## Purpose & Goals

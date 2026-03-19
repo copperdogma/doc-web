@@ -1,4 +1,4 @@
-# codex-forge Benchmarks
+# doc-forge Benchmarks
 
 Systematic evaluation of AI models/prompts for pipeline tasks using [promptfoo](https://www.promptfoo.dev/).
 

@@ -1,4 +1,4 @@
-# Story: Market Discovery for codex-forge
+# Story: Market Discovery for doc-forge
 
 **Status**: In Progress
 
@@ -6,13 +6,13 @@
 
 ## Acceptance Criteria
 - Surface at least four active communities or channels where document/OCR/LLM pipeline users congregate.
-- Capture evidence of recent (≤12 months) interest or pain points that align with codex-forge capabilities.
+- Capture evidence of recent (≤12 months) interest or pain points that align with doc-forge capabilities.
 - Propose concrete posting angles and next steps for outreach (what to share, where, and why it’s relevant).
 - Log research sources and decisions in the work log.
 
 ## Tasks
 - [x] Scan public forums and discussion hubs for adjacent projects and active threads.
-- [x] Summarize signals of interest/pain that codex-forge can address.
+- [x] Summarize signals of interest/pain that doc-forge can address.
 - [ ] Draft tailored outreach posts (per channel) and get review.
 - [ ] Pilot one post and collect engagement/feedback metrics.
 
@@ -20,7 +20,7 @@
 - **DIYBookScanner forum** remains active with thousands of posts and recent activity (Aug–Sep 2025); software and R&D sections discuss OCR tooling and layout detection, suggesting a niche of power users who already scan books and need better pipelines. citeturn0search0
 - **Reddit /r/deeplearning + /r/computervision** hosted April 2025 threads showcasing open-source OCR pipelines that emit structured Markdown/JSON for ML datasets; commenters requested features like vector extraction and gave positive feedback, indicating appetite for end-to-end, LLM-enhanced pipelines. citeturn1reddit12turn1reddit13
 - **Reddit /r/ObsidianMD** July 2025 thread asks how to integrate Docling into personal knowledge workflows (RAG, Markdown export), showing demand from PKM users for cleaner structured outputs and automation hooks. citeturn1reddit20
-- **Reddit /r/RAG** July 2025 thread reports long runtimes and quality issues when using Docling across formats, highlighting pain points (speed, image OCR quality) that codex-forge’s modular stages could address. citeturn1reddit18
+- **Reddit /r/RAG** July 2025 thread reports long runtimes and quality issues when using Docling across formats, highlighting pain points (speed, image OCR quality) that doc-forge’s modular stages could address. citeturn1reddit18
 - **Docling momentum**: the January 2025 Docling toolkit paper notes it hit ~10k GitHub stars and trended globally in Nov 2024, evidencing broad interest in open document-conversion stacks—an adjacent audience likely receptive to alternative pipelines. citeturn0academia14
 
 ## Where to Post + Angles

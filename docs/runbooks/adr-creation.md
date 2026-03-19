@@ -1,6 +1,6 @@
 # Runbook: ADR Creation
 
-Operational lifecycle for Architecture Decision Records in codex-forge.
+Operational lifecycle for Architecture Decision Records in doc-forge.
 
 Use an ADR when a decision affects architecture, workflow, schemas, cross-cutting module behavior, or a project-level constraint that future sessions should not relitigate from scratch.
 
@@ -101,7 +101,7 @@ Discussion should capture more than the synthesis verdict:
 
 An ADR is not `ACCEPTED` until its integration checklist is done.
 
-Typical integration targets in codex-forge:
+Typical integration targets in doc-forge:
 
 - `docs/spec.md`, `docs/ideal.md`, or `docs/requirements.md`
 - relevant story files, especially `Decision Refs` and task constraints

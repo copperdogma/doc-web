@@ -1,4 +1,4 @@
-# Project Stories — codex-forge
+# Project Stories — doc-forge
 
 ## Recommended Order (next up)
 Guiding priorities: **development stability first**, then **quality definitions**, followed by **core gameplay enrichment**. Finish Fighting Fantasy to 100% "game-ready" status before scaling optimizations or starting the genealogy pilot.
@@ -25,7 +25,7 @@ Guiding priorities: **development stability first**, then **quality definitions*
 
 
 
-This index tracks stories in `/docs/stories/` for the codex-forge pipeline.
+This index tracks stories in `/docs/stories/` for the doc-forge pipeline.
 
 ## Story List
 | Story ID | Title | Priority | Status | Link |
@@ -56,7 +56,7 @@ This index tracks stories in `/docs/stories/` for the codex-forge pipeline.
 || 025 | Module pruning & registry hygiene | Medium | Done | /docs/stories/story-025-module-prune.md |
 || 026 | Onward to the Unknown — Arthur L'Heureux pilot | Medium | Done | /docs/stories/story-026-onward-unknown-arthur-lheureux.md |
 || 027 | Contact-sheet intake for automatic book type planning | Medium | Done | /docs/stories/story-027-contact-sheet-auto-intake.md |
-|| 028 | Market Discovery for codex-forge | Medium | In Progress | /docs/stories/story-028-market-discovery.md |
+|| 028 | Market Discovery for doc-forge | Medium | In Progress | /docs/stories/story-028-market-discovery.md |
 || 029 | Audit model lineup vs latest OpenAI sheets | Medium | Obsolete | /docs/stories/story-029-model-audit-openai.md |
 || 030 | Fighting Fantasy Engine format export | High | Done | /docs/stories/story-030-ff-engine-format.md |
 || 031 | Fighting Fantasy output refinement | High | Done | /docs/stories/story-031-ff-output-refinement.md |
@@ -169,5 +169,5 @@ This index tracks stories in `/docs/stories/` for the codex-forge pipeline.
 |||| 150 | Onward Full-Run Audit Reconciliation | High | Done | /docs/stories/story-150-onward-full-run-audit-reconciliation.md |
 
 ## Notes
-- Status "Done" reflects current working state in codex-forge. "To Do" items are planned next steps aligned with `docs/requirements.md` and `snapshot.md`.
+- Status "Done" reflects current working state in doc-forge. "To Do" items are planned next steps aligned with `docs/requirements.md` and `snapshot.md`.
 - Use existing files in `/docs/stories/` as templates for structure when creating these story documents.

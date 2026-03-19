@@ -19,7 +19,7 @@ Write out very succinctly:
 
 IMPORTANT: If you feel there you added critical net good code that should be kept, explain what code should be kept and why. If so, be clear about what code should be kept and what should be reverted.
 
-## Codex-Forge Context
+## Doc-Forge Context
 
 When writing advice, consider:
 - Pipeline stages and artifacts (pages_raw/clean, hypotheses, resolved portions, manifests).

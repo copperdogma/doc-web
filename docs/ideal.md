@@ -1,4 +1,4 @@
-# Codex-Forge — The Ideal
+# Doc-Forge — The Ideal
 
 > What the system should be if there were no limitations of any kind.
 > Perfect AI, zero cost, instant everything. No configuration, no workarounds,
@@ -33,11 +33,11 @@ refines through conversation. That iteration is the ideal, not a compromise.
 
 ## Mission
 
-Codex-forge is the **intake R&D lab for Dossier**. It solves the hard format conversion problems — scanned PDFs, images, weird document formats — one at a time. Each converter is perfected here, then graduated into Dossier when Dossier is ready to accept it. Codex-forge is where messy real-world inputs become clean structured data.
+Doc-forge is the **intake R&D lab for Dossier**. It solves the hard format conversion problems — scanned PDFs, images, weird document formats — one at a time. Each converter is perfected here, then graduated into Dossier when Dossier is ready to accept it. Doc-forge is where messy real-world inputs become clean structured data.
 
-**Relationship to Dossier:** Dossier is the library that processes structured documents into knowledge. Codex-forge handles the step before — turning physical and unstructured media into the structured format Dossier expects. As converters mature, they migrate to Dossier. Codex-forge always has the next hard problem to solve.
+**Relationship to Dossier:** Dossier is the library that processes structured documents into knowledge. Doc-forge handles the step before — turning physical and unstructured media into the structured format Dossier expects. As converters mature, they migrate to Dossier. Doc-forge always has the next hard problem to solve.
 
-**Relationship to Storybook:** Storybook users will provide documents in unpredictable formats. Codex-forge builds and proves the converters that handle those formats before they become Dossier capabilities.
+**Relationship to Storybook:** Storybook users will provide documents in unpredictable formats. Doc-forge builds and proves the converters that handle those formats before they become Dossier capabilities.
 
 ## Vision-Level Preferences
 
@@ -49,7 +49,7 @@ These qualities persist regardless of implementation. They survive even when eve
 - **Zero configuration.** The user's job is to provide a document. Everything else — format detection, pipeline selection, quality validation — is the system's job.
 - **Dossier-ready output.** The output format serves Dossier's ingestion requirements. Structure, provenance, and metadata are first-class. The converter's job ends when Dossier can consume the output without transformation.
 - **Transparency over magic.** When something goes wrong, the system shows you exactly what happened: which page, which module, which decision, what confidence.
-- **Graduate, don't accumulate.** Converters that are proven and stable should move to Dossier. Codex-forge stays lean — it's always working on the next unsolved problem, not maintaining solved ones.
+- **Graduate, don't accumulate.** Converters that are proven and stable should move to Dossier. Doc-forge stays lean — it's always working on the next unsolved problem, not maintaining solved ones.
 
 ## Requirements
 

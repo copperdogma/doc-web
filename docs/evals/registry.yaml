@@ -1,4 +1,4 @@
-# Codex-Forge Eval Registry
+# Doc-Forge Eval Registry
 # Central source of truth for all evals, their scores, and improvement attempts.
 # Updated by AI agents whenever evals are run. See AGENTS.md for protocol.
 #

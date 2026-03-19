@@ -677,7 +677,7 @@ class IntakePlan(BaseModel):
 
 class CodexMetadata(BaseModel):
     """
-    Codex-forge metadata namespace for provenance and internal tracking.
+    Doc-forge metadata namespace for provenance and internal tracking.
 
     This is added to each Unstructured element to track our pipeline metadata
     without polluting the Unstructured fields.
@@ -694,7 +694,7 @@ class UnstructuredElement(BaseModel):
     """
     Wrapper for Unstructured element serialized to JSON.
 
-    This is the core Document IR format for codex-forge. We preserve Unstructured's
+    This is the core Document IR format for doc-forge. We preserve Unstructured's
     native element structure (type, text, metadata) and add a 'codex' namespace
     for our provenance tracking.
 
@@ -728,7 +728,7 @@ class UnstructuredElement(BaseModel):
     # Unstructured metadata (preserve all fields as-is)
     metadata: Dict[str, Any] = Field(default_factory=dict)
 
-    # Codex-forge namespace for our tracking (aliased to '_codex' in JSON)
+    # Doc-forge namespace for our tracking (aliased to '_codex' in JSON)
     codex: CodexMetadata = Field(default_factory=CodexMetadata, alias="_codex")
 
     class Config:

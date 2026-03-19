@@ -1,12 +1,12 @@
 {
   "version": "1.0",
   "generated": "2026-03-15",
-  "description": "Format coverage matrix tracking which input formats codex-forge can convert, how well, and what test fixtures exist. Agents query this to find untested formats and prioritize work.",
+  "description": "Format coverage matrix tracking which input formats doc-forge can convert, how well, and what test fixtures exist. Agents query this to find untested formats and prioritize work.",
   "statuses": {
     "untested": "Format identified but no test fixtures or pipeline support",
     "has-fixture": "Test document exists but pipeline not yet built or passing",
     "passing": "Pipeline converts this format with acceptable accuracy",
-    "graduated": "Converter migrated to Dossier — codex-forge no longer the primary owner"
+    "graduated": "Converter migrated to Dossier — doc-forge no longer the primary owner"
   },
   "accuracy_dimensions": {
     "text_fidelity": "Character-level accuracy of extracted text vs source (0.0-1.0)",

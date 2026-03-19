@@ -1,14 +1,14 @@
-# AGENTS.md — codex-forge
+# AGENTS.md — doc-forge
 
-Source of truth for all AI agents working on codex-forge (Claude Code, Cursor, Gemini CLI).
+Source of truth for all AI agents working on doc-forge (Claude Code, Cursor, Gemini CLI).
 Read this file at the start of every session.
 
-> **Mission:** Codex-forge is the **intake R&D lab for Dossier**. It solves hard
+> **Mission:** Doc-forge is the **intake R&D lab for Dossier**. It solves hard
 > format conversion problems — scanned PDFs, images, weird document formats — one
 > at a time. Each converter is perfected here, then graduated into Dossier when ready.
 >
 > **The Ideal (`docs/ideal.md`) is the most important document in this project.**
-> It defines what codex-forge should be with zero limitations. Every compromise
+> It defines what doc-forge should be with zero limitations. Every compromise
 > in `docs/spec.md` carries a detection mechanism for when it's no longer needed.
 > When in doubt: "Does this move us toward the Ideal?"
 >
@@ -42,7 +42,7 @@ Read this file at the start of every session.
 - **Estimate in relative effort, not human time:** Unless the user explicitly asks for calendar estimates, express effort as relative size (`XS`, `S`, `M`, `L`, `XL` or equivalent), not hours/days. Optimize scope decisions for what an AI can implement and validate coherently, not for human sprint capacity.
 - **Inspect outputs, not just logs:** A green or non-crashing run is not evidence of correctness. Always manually open produced artifacts and check for logical errors (e.g., garbled text, broken tables, missing data, incorrect values).
 - **Precompute context for readers:** Prefer computing metrics (e.g., costs/usage/quality signals) at the stage that produces them and write them into artifacts/logs (e.g., `instrumentation.json`) instead of relying on downstream recomputation.
-- **Graduate, don't accumulate:** When a converter is stable and proven, plan its migration to Dossier. Codex-forge stays focused on unsolved problems.
+- **Graduate, don't accumulate:** When a converter is stable and proven, plan its migration to Dossier. Doc-forge stays focused on unsolved problems.
 - **Consistency policy must be explicit:** When solving document-consistency or normalization problems, emit inspectable policy artifacts (for example `pattern_inventory`, `consistency_plan`, `conformance_report`) instead of hiding conventions in prompts. See `docs/runbooks/document-consistency-planning.md`.
 
 ## Subagent Strategy

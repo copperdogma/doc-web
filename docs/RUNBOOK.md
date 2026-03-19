@@ -1,7 +1,7 @@
 # Pipeline Operations Runbook
 
 **Audience:** AI Agents & Engineering Operators
-**Scope:** Execution, Recovery, and Configuration of the Codex Forge pipeline.
+**Scope:** Execution, Recovery, and Configuration of the Doc Forge pipeline.
 
 ## 🛑 Critical Safety Rules
 1.  **NEVER use `--force` when resuming.** It deletes the entire run directory.

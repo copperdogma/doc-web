@@ -9,9 +9,9 @@
 
 ## Goal
 
-Migrate codex-forge's project management docs to the ADR-021 structure from the Storybook AI: dual-ideal (product + execution), category-aligned spec with hierarchical `spec:N.N` section IDs and constraint blocks, phase-governed build map (climb/hold/converge), and execution compromise tracking. This gives the project stable cross-references, phase-aware triage, and explicit tracking of build-process compromises alongside product compromises.
+Migrate doc-forge's project management docs to the ADR-021 structure from the Storybook AI: dual-ideal (product + execution), category-aligned spec with hierarchical `spec:N.N` section IDs and constraint blocks, phase-governed build map (climb/hold/converge), and execution compromise tracking. This gives the project stable cross-references, phase-aware triage, and explicit tracking of build-process compromises alongside product compromises.
 
-This is a documentation reorganization — no code, no new evals, no new stories beyond this one. All existing content is preserved and reorganized with provenance. The migration guide is the authoritative playbook; this story adapts each phase to codex-forge's specific structure.
+This is a documentation reorganization — no code, no new evals, no new stories beyond this one. All existing content is preserved and reorganized with provenance. The migration guide is the authoritative playbook; this story adapts each phase to doc-forge's specific structure.
 
 ## Acceptance Criteria
 
@@ -36,9 +36,9 @@ This is a documentation reorganization — no code, no new evals, no new stories
 - Restructuring code, schemas, or pipeline modules
 - Changing any ADR decisions — only adding cross-references
 - Deleting any content — only reorganizing and adding provenance
-- Creating a `docs/retrofit-gaps.md` (codex-forge never had one; compromises are already in spec.md)
-- Creating a `docs/methodology-*.md` (codex-forge uses AGENTS.md for this)
-- Creating a `docs/coverage.md` (codex-forge uses build-map Input Coverage instead)
+- Creating a `docs/retrofit-gaps.md` (doc-forge never had one; compromises are already in spec.md)
+- Creating a `docs/methodology-*.md` (doc-forge uses AGENTS.md for this)
+- Creating a `docs/coverage.md` (doc-forge uses build-map Input Coverage instead)
 
 ## Approach Evaluation
 
@@ -101,7 +101,7 @@ This is a documentation reorganization — no code, no new evals, no new stories
   *Ideal:* ... *Compromise:* ... *Detection:* ... *Resolves:* ...
   ```
   Each constraint block must include: limitation type (`AI capability`, `Ecosystem`, `Economics`), residual form (`deletion`, `evolution`), and the full detection/resolution text from the current spec.
-- [ ] **3f — Add build-process categories**: Create 1-2 categories for execution compromises using the table format. Inventory codex-forge's build-process compromises:
+- [ ] **3f — Add build-process categories**: Create 1-2 categories for execution compromises using the table format. Inventory doc-forge's build-process compromises:
   - B1: Eval framework (promptfoo) — AI can't self-assess output quality → deletion when reliable self-assessment
   - B2: Prompt engineering — models need carefully designed prompts → deletion when robust to naive prompts
   - B3: Story/backlog infrastructure — AI can't autonomously scope and sequence work → deletion when autonomous project planning
@@ -110,7 +110,7 @@ This is a documentation reorganization — no code, no new evals, no new stories
   - B6: Manual artifact inspection — AI can't reliably self-verify output quality → deletion when reliable self-verification
   - B7: YAML recipe system — AI can't auto-configure processing → partial deletion (C2 product compromise also covers this)
   - Decide which of these are worth tracking explicitly vs. which are too granular
-- [ ] **3g — Absorb retrofit-gaps.md**: N/A — codex-forge has no `retrofit-gaps.md`. All compromises are already in spec.md. Note this explicitly in the work log.
+- [ ] **3g — Absorb retrofit-gaps.md**: N/A — doc-forge has no `retrofit-gaps.md`. All compromises are already in spec.md. Note this explicitly in the work log.
 - [ ] **3h — Verify completeness**:
   - [ ] Every section from old spec has a home in the new structure
   - [ ] Every compromise ID (C1-C7) is present in a constraint block
@@ -196,7 +196,7 @@ This is a documentation reorganization — no code, no new evals, no new stories
   - `story-146` — C1, C6, C7
   - `story-147` — C1, C3, C7
   - Earlier stories (pre-130) likely have spec refs too — do a full grep and update all
-- [ ] **5b — Coverage docs**: N/A — codex-forge has no `docs/coverage.md`. Input Coverage is in build-map.md and will be updated in Phase 4.
+- [ ] **5b — Coverage docs**: N/A — doc-forge has no `docs/coverage.md`. Input Coverage is in build-map.md and will be updated in Phase 4.
 - [ ] **5c — ADR files**: Check `docs/decisions/adr-001-source-aware-consistency-strategy/adr.md` for spec references. Update any `C7` references to include `spec:5.1`. Add an ADR-021 cross-reference note if ADR-001 mentions the spec or build-map structure.
 - [ ] **5d — Verify no stale references remain**: Grep all `docs/` for bare compromise references that lack `spec:N.N` IDs. Intentional exceptions: this story's migration notes, retired compromise descriptions.
 
@@ -233,9 +233,9 @@ This is a documentation reorganization — no code, no new evals, no new stories
   - Build map as central triage dashboard with substrate status and phase governance
   - Phase governance: climb / hold / converge
   - Do NOT rewrite the whole file — surgical additions only
-- [ ] **7b — Methodology doc**: N/A — codex-forge doesn't have a standalone methodology doc. AGENTS.md serves this purpose.
-- [ ] **7c — Cross-references**: Add ADR-021 cross-reference in ADR-001's adr.md (ADR-001 established consistency planning; ADR-021 restructures how compromises are tracked). Note: codex-forge doesn't have its own ADR-021 — this migration implements the Storybook's ADR-021 structure locally.
-- [ ] **7d — Consider creating a local ADR**: Decide whether codex-forge needs its own ADR documenting the adoption of the dual-ideal/category/phase structure, or whether a work-log entry citing the Storybook ADR-021 is sufficient. Recommendation: a brief ADR or decision note is appropriate since this changes how all future triage, stories, and specs are written.
+- [ ] **7b — Methodology doc**: N/A — doc-forge doesn't have a standalone methodology doc. AGENTS.md serves this purpose.
+- [ ] **7c — Cross-references**: Add ADR-021 cross-reference in ADR-001's adr.md (ADR-001 established consistency planning; ADR-021 restructures how compromises are tracked). Note: doc-forge doesn't have its own ADR-021 — this migration implements the Storybook's ADR-021 structure locally.
+- [ ] **7d — Consider creating a local ADR**: Decide whether doc-forge needs its own ADR documenting the adoption of the dual-ideal/category/phase structure, or whether a work-log entry citing the Storybook ADR-021 is sufficient. Recommendation: a brief ADR or decision note is appropriate since this changes how all future triage, stories, and specs are written.
 
 ### Phase 8: Final Audit
 
@@ -279,7 +279,7 @@ This is a documentation reorganization — no code, no new evals, no new stories
 - **Owning module / area**: `docs/` — project management documentation layer
 - **Data contracts / schemas**: No schema changes. No code changes. Pure documentation reorganization.
 - **File sizes**: `docs/ideal.md` (62 lines), `docs/spec.md` (88 lines → will grow to ~200-250 with constraint blocks and build-process tables), `docs/build-map.md` (380 lines → will change shape but stay similar size), `AGENTS.md` (400 lines — surgical additions only), triage skills (~100 lines each — surgical additions)
-- **Decision context**: Reviewed Storybook ADR-021 migration guide, ADR-001, Story 145 (established current build-map), Story 147 (quality-bar-then-collapse rule in build map). No existing codex-forge ADR covers documentation structure — this migration establishes the pattern.
+- **Decision context**: Reviewed Storybook ADR-021 migration guide, ADR-001, Story 145 (established current build-map), Story 147 (quality-bar-then-collapse rule in build map). No existing doc-forge ADR covers documentation structure — this migration establishes the pattern.
 
 ## Files to Modify
 
@@ -307,7 +307,7 @@ This is a documentation reorganization — no code, no new evals, no new stories
 
 - **Content preservation is the #1 risk.** The spec is only 88 lines and the build map is 380 lines, so manual diff review is feasible. But the build map has extensive prose in compromise progress sections that must not be lost.
 - **The category structure maps nearly 1:1 to the existing 8 systems.** The main structural change is splitting "Project Operating System" (old 8) into AI Harnesses & Tooling + Planning Infrastructure, and adding the new build-process compromise tables.
-- **No retrofit-gaps.md exists.** Codex-forge tracks compromises directly in spec.md. Phase 3g of the migration guide is N/A.
+- **No retrofit-gaps.md exists.** Doc-forge tracks compromises directly in spec.md. Phase 3g of the migration guide is N/A.
 - **No methodology doc exists.** AGENTS.md serves this purpose. Phase 7 methodology updates go into AGENTS.md.
 - **No coverage.md exists.** Input Coverage is tracked in build-map.md and stays there.
 - **No old-style L### line-number references exist in stories.** Phase 5 is about enriching existing `C1`-style refs with `spec:N.N` IDs, not replacing line numbers.
@@ -320,7 +320,7 @@ To be written during `/build-story` — will detail exact file changes per phase
 
 ## Work Log
 
-20260317-2100 — story created: analyzed Storybook ADR-021 migration guide against codex-forge's current docs structure (ideal.md 62L, spec.md 88L with 7 compromises, build-map.md 380L with 8 systems, 4 triage skills, 1 ADR); confirmed no retrofit-gaps.md, no methodology doc, no coverage.md, no L### refs in stories; proposed 9-category mapping that splits old system 8 into AI Harnesses + Planning Infrastructure; next step is `/build-story 148` when ready to execute
+20260317-2100 — story created: analyzed Storybook ADR-021 migration guide against doc-forge's current docs structure (ideal.md 62L, spec.md 88L with 7 compromises, build-map.md 380L with 8 systems, 4 triage skills, 1 ADR); confirmed no retrofit-gaps.md, no methodology doc, no coverage.md, no L### refs in stories; proposed 9-category mapping that splits old system 8 into AI Harnesses + Planning Infrastructure; next step is `/build-story 148` when ready to execute
 
 20260317-2130 — migration executed across all 8 phases:
   - Phase 1: Added Execution Ideal to `docs/ideal.md` (universal build-process ideal text)

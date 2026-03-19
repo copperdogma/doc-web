@@ -4,9 +4,9 @@ description: Autonomously pick the most impactful next task and start working on
 user-invocable: true
 ---
 
-# You Pick Next Task (codex-forge)
+# You Pick Next Task (doc-forge)
 
-Think about what we need to do to progress codex-forge.
+Think about what we need to do to progress doc-forge.
 
 When you've picked the most impactful next task, start working on it.
 

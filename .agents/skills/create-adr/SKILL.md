@@ -69,7 +69,7 @@ Create a new ADR with proper structure and research scaffolding.
 - Never commit or push without explicit user request
 - The research prompt must stand alone
 - Do not assume Storybook-specific docs or product surfaces exist here
-- Do not assume deep-research CLI default filenames match codex-forge's ADR research naming convention
+- Do not assume deep-research CLI default filenames match doc-forge's ADR research naming convention
 - Do not let recurring patterns live only inside one ADR; once the direction is accepted, distill it into reusable repo guidance
 
 ## Notes

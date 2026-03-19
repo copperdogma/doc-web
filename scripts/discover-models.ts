@@ -11,7 +11,7 @@
  * Or with Node 22+ (no tsx needed):
  *   node --experimental-strip-types scripts/discover-models.ts --check-new
  *
- * Adapted from storybook/scripts/discover-models.ts for codex-forge.
+ * Adapted from storybook/scripts/discover-models.ts for doc-forge.
  */
 
 import { readFileSync } from "fs";

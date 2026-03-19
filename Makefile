@@ -1,4 +1,4 @@
-# Makefile for codex-forge
+# Makefile for doc-forge
 # Prefer the active environment's Python so `make test`/`make lint` use the
 # same interpreter the repo dependencies were installed into.
 PYTHON ?= $(shell command -v python 2>/dev/null || command -v python3 2>/dev/null)

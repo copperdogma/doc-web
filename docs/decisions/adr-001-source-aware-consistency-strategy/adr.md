@@ -8,7 +8,7 @@
 
 ## Context
 
-Codex-forge relies on AI-first extraction from source documents, often at page scope. That compromise gets strong raw extraction quality, but it also creates representation drift: the same underlying source pattern can emerge as different HTML structures across adjacent pages or chapters.
+Doc-forge relies on AI-first extraction from source documents, often at page scope. That compromise gets strong raw extraction quality, but it also creates representation drift: the same underlying source pattern can emerge as different HTML structures across adjacent pages or chapters.
 
 Story 141 surfaced the issue sharply in the Onward genealogy converter. In one reviewed run, the same genealogy structure appears as:
 - a canonical table with split `BOY` / `GIRL` columns;
@@ -24,7 +24,7 @@ At first glance this looks like an HTML normalization problem. That framing is t
 Local repo evidence already points toward a strong constraint: when extraction quality is poor or inconsistent, the strongest available source-aware model usually beats post-extraction cleanup. That suggests the default response to inconsistency should probably be "go back to source with better context," not "repair mediocre HTML."
 
 This ADR therefore settles the architectural strategy for consistency:
-- should codex-forge treat inconsistency as a trigger for selective, context-aware re-extraction from source;
+- should doc-forge treat inconsistency as a trigger for selective, context-aware re-extraction from source;
 - should some recipes move to broader run-aware extraction from the start;
 - what role should deterministic/statistical analysis play in detection, clustering, acceptance, and provenance;
 - when is HTML-only normalization still justified as a secondary or fallback tool;
@@ -158,7 +158,7 @@ Cons:
 <!-- Final decisions with rationale. Use "Settled — DO NOT suggest alternatives" for key calls. -->
 - Settled — consistency should be treated as a document-wide pattern-discovery and conformance problem, not only as chapter-local drift detection. Chapter/run scope remains important for repair targeting and validation, but the policy source should be the whole document.
 - Settled — each consistency-capable recipe should aim to emit three inspectable document-local artifacts: `pattern_inventory`, `consistency_plan`, and `conformance_report`.
-- Settled — `consistency_plan` is document-local and may be generated fresh per document by AI. Codex-forge should not require a rigid cross-document formatting rulebook for every structure class.
+- Settled — `consistency_plan` is document-local and may be generated fresh per document by AI. Doc-forge should not require a rigid cross-document formatting rulebook for every structure class.
 - Settled — a single document may contain multiple legitimate pattern families. The engine may choose different conventions for different families, but those choices must be made explicit in the emitted plan.
 - Settled — repair and rerun passes must be guided by the emitted `consistency_plan` and either conform to it or explicitly revise it. The policy must not drift invisibly across later passes.
 - Settled — global invariants remain fixed even when the plan is adaptive: preserve source content, avoid semantic corruption, preserve provenance, and maximize internal consistency rather than forcing global sameness.
@@ -199,4 +199,4 @@ Cons:
 - 20260315-1027 — ADR reframed again after manual artifact inspection and follow-up design discussion: chapter-level gating is now explicitly treated as an early seam, while the intended architecture becomes document-wide pattern discovery plus explicit `pattern_inventory`, `consistency_plan`, and `conformance_report` artifacts for later repair passes and debugging.
 - 20260315-1758 — Story 144 completed with validated document-level planning artifacts. Driver run `story144-onward-document-consistency-plan-r5` emitted `pattern_inventory`, `consistency_plan`, and `conformance_report` sidecars that surfaced the previously missed manual format-failure chapters (`011/012/013/014/018/019/020`), kept `chapter-009.html` in a row-semantic-containing bucket instead of pure format drift, and established the current chapter-first validator as an upstream signal producer rather than the policy source.
 - 20260315-1231 — Story 144 validation hardening: a `/validate` follow-up exposed two normalization bugs in the first planning slice, so the planner now splits pure format-drift summaries from mixed issue summaries and rejects unsupported AI issue types that are not backed by dossier signals. Revalidation run `story144-onward-document-consistency-plan-r7` preserved the missed-format coverage, kept `chapter-009.html` out of pure-format summary buckets, and restored clean `chapter-023.html` to conformant status.
-- 20260315-1347 — ADR accepted: Stories 142–144 resolved the major architecture questions. Codex-forge now treats document-wide consistency planning plus plan-aware selective reruns as the default strategy, adopts direct HTML as the next repair target by default, and reserves a structured intermediate for evidence-driven escalation rather than speculative upfront design.
+- 20260315-1347 — ADR accepted: Stories 142–144 resolved the major architecture questions. Doc-forge now treats document-wide consistency planning plus plan-aware selective reruns as the default strategy, adopts direct HTML as the next repair target by default, and reserves a structured intermediate for evidence-driven escalation rather than speculative upfront design.

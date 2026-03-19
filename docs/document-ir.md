@@ -10,7 +10,7 @@
 
 ## Overview
 
-The **Document IR** is the canonical intermediate representation for all document content in codex-forge. It is based on **Unstructured's native element format**, serialized to JSON with minimal wrapping to add codex-forge provenance metadata.
+The **Document IR** is the canonical intermediate representation for all document content in doc-forge. It is based on **Unstructured's native element format**, serialized to JSON with minimal wrapping to add doc-forge provenance metadata.
 
 Document IR is:
 - **Unstructured-native:** Preserves Unstructured's rich element types and metadata
@@ -24,7 +24,7 @@ Think of Document IR as **Unstructured elements serialized to JSONL** — the co
 
 ## Pipeline Architecture
 
-Codex-forge follows a 5-stage model:
+Doc-forge follows a 5-stage model:
 
 1. **Intake → IR (generic)**: PDF → Unstructured elements (elements.jsonl)
 2. **Verify IR (generic)**: QA on completeness, page coverage
@@ -84,7 +84,7 @@ class UnstructuredElement(BaseModel):
     # Unstructured metadata (all fields preserved)
     metadata: Dict[str, Any] = {}
 
-    # Codex-forge namespace (serialized as '_codex' in JSON)
+    # Doc-forge namespace (serialized as '_codex' in JSON)
     codex: CodexMetadata = Field(alias="_codex")
 ```
 
@@ -132,7 +132,7 @@ Elements are serialized to JSON with `by_alias=True` to get `_codex` in the outp
 
 Unstructured provides a rich type vocabulary. Common types include:
 
-| Type | Description | Use in Codex-forge |
+| Type | Description | Use in Doc-forge |
 |------|-------------|-------------------|
 | `Title` | Document/section titles | Main headings |
 | `NarrativeText` | Body paragraphs | Main content |
@@ -327,7 +327,7 @@ When portions reference elements by ID instead of embedding text:
 
 ## API Stability
 
-**IMPORTANT:** Codex-forge is greenfield with no external users.
+**IMPORTANT:** Doc-forge is greenfield with no external users.
 
 - ❌ **No stability guarantees** for element schema or format
 - ✅ **Free to change** as we learn what works

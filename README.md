@@ -1,4 +1,4 @@
-# codex-forge
+# doc-forge
 AI-first, modular pipeline for turning scanned books into structured JSON with full traceability.
 
 ## 📚 Documentation

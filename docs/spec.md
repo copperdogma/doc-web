@@ -1,4 +1,4 @@
-# Codex-Forge — Spec
+# Doc-Forge — Spec
 
 > Every entry here exists because of a named limitation. When the limitation
 > resolves, the compromise gets deleted and the system simplifies.
@@ -17,7 +17,7 @@ These are not compromises — they are permanent architectural commitments:
 2. **Modular pipeline** — YAML recipes compose modules. New document types = new recipes, not new code.
 3. **Append-only artifacts** — Intermediate outputs preserved for audit. No silent overwrites.
 4. **Validation is mandatory** — Every run ends with structural and semantic validation.
-5. **Graduate to Dossier** — Proven converters migrate to Dossier. Codex-forge stays lean.
+5. **Graduate to Dossier** — Proven converters migrate to Dossier. Doc-forge stays lean.
 
 ---
 
@@ -147,7 +147,7 @@ Non-Negotiable Design Principles (#1 Traceability, #2 Modular pipeline,
 
 ## spec:7 — Graduation & Dossier Handoff
 
-> Product need: migrate mature converters into Dossier so codex-forge stays lean.
+> Product need: migrate mature converters into Dossier so doc-forge stays lean.
 > Tech substrate: graduation criteria, Dossier intake surface readiness, fixture breadth.
 
 This category carries no active product compromises. Its obligations flow from

@@ -12,7 +12,7 @@
 
 ## Ideal Alignment
 
-{If technology had no limits, what would the ideal solution look like? How does this decision move codex-forge toward docs/ideal.md?}
+{If technology had no limits, what would the ideal solution look like? How does this decision move doc-forge toward docs/ideal.md?}
 
 ## Options
 

@@ -148,7 +148,7 @@ responsibilities.
 
 ## 7. Graduation & Dossier Handoff                                      `spec:7`
 
-**Product need:** Migrate mature converters into Dossier so codex-forge stays lean.
+**Product need:** Migrate mature converters into Dossier so doc-forge stays lean.
 **Tech need:** Graduation criteria, Dossier intake surface readiness, fixture breadth.
 **Substrate:** missing
 
