@@ -24,6 +24,19 @@ The first slice should prove the boundary with the smallest coherent seam:
 
 This is intentionally smaller than "move the whole pipeline."
 
+## Published Dossier Handoff Package
+
+Story 154 publishes the downstream handoff package that Dossier should build
+against:
+
+- handoff contract doc: `docs/dossier-doc-web-handoff.md`
+- first consumer fixture pack:
+  `benchmarks/golden/onward/dossier-doc-web-handoff-v1/`
+
+This package is downstream-facing. It does not replace the canonical contract in
+`docs/doc-web-bundle-contract.md`; it turns that contract into one explicit
+consumer target with versioning and upgrade-test rules.
+
 ## Migrate As-Is Candidates Later
 
 These look broadly reusable and may later move into `doc-web` once the
@@ -78,7 +91,7 @@ Keep as cold storage or selective reference, not as runtime dependencies:
 
 - Story 152 — `doc-web` bundle and provenance contract
 - Story 153 — Extract `doc-web` bundle emitter
-- Story 154 — Dossier `doc-web` semantic HTML handoff
+- Story 154 — Dossier `doc-web` semantic HTML handoff (publishes the Dossier-facing contract doc and first contract-test pack)
 - Story 155 — Repo mission alignment cleanup and legacy surface removal
 
 ## Open Questions

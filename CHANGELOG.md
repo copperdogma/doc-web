@@ -1,3 +1,14 @@
+## [2026-03-19-05] - Publish Dossier doc-web semantic HTML handoff (Story 154)
+
+### Added
+- Added `docs/dossier-doc-web-handoff.md` as the Dossier-facing `doc-web` consumer contract and committed the first compatibility pack at `benchmarks/golden/onward/dossier-doc-web-handoff-v1/`
+
+### Changed
+- Extended `tests/test_doc_web_bundle_contract.py`, updated the standalone Dossier intake note, README, Story 154, and the story index so the downstream handoff and contract-test pack are explicit and discoverable
+
+### Fixed
+- Replaced machine-specific lineage text in the committed handoff-pack README with repo-portable source provenance
+
 ## [2026-03-19-04] - Close extracted doc-web bundle emitter seam (Story 153)
 
 ### Changed

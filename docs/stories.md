@@ -170,7 +170,7 @@ This index tracks stories in `/docs/stories/` for the doc-forge pipeline.
 |||| 151 | Define `doc-web` as the Standalone Dossier Intake Runtime | High | Pending | /docs/stories/story-151-name-and-define-standalone-dossier-intake-runtime.md |
 |||| 152 | `doc-web` Bundle and Provenance Contract | High | Done | /docs/stories/story-152-doc-web-bundle-and-provenance-contract.md |
 |||| 153 | Extract `doc-web` Bundle Emitter | High | Done | /docs/stories/story-153-extract-doc-web-bundle-emitter.md |
-|||| 154 | Dossier `doc-web` Semantic HTML Handoff | High | Pending | /docs/stories/story-154-dossier-doc-web-semantic-html-handoff.md |
+|||| 154 | Dossier `doc-web` Semantic HTML Handoff | High | Done | /docs/stories/story-154-dossier-doc-web-semantic-html-handoff.md |
 |||| 155 | Repo Mission Alignment Cleanup and Legacy Surface Removal | High | Pending | /docs/stories/story-155-repo-mission-alignment-cleanup-and-legacy-surface-removal.md |
 
 ## Notes

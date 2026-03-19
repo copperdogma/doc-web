@@ -1,0 +1,179 @@
+{
+  "schema_version": "doc_web_bundle_manifest_v1",
+  "module_id": "build_chapter_html_v1",
+  "run_id": "story154-dossier-doc-web-handoff-v1",
+  "created_at": "2026-03-19T20:49:12.399578Z",
+  "document_id": "onward-to-the-unknown-hardcase-slice",
+  "title": "Onward to the Unknown — Dossier Handoff Hard-Case Slice",
+  "creator": null,
+  "source_artifact": "story153-doc-web-bundle-emitter-r1/output/html (derived hard-case subset; see README.md)",
+  "index_path": "index.html",
+  "entries": [
+    {
+      "entry_id": "chapter-010",
+      "kind": "chapter",
+      "title": "ARTHUR L'HEUREUX",
+      "path": "chapter-010.html",
+      "order": 1,
+      "prev_entry_id": null,
+      "next_entry_id": "chapter-011",
+      "source_pages": [
+        28,
+        29,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36,
+        37
+      ],
+      "printed_pages": [
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28
+      ],
+      "printed_page_start": 19,
+      "printed_page_end": 28
+    },
+    {
+      "entry_id": "chapter-011",
+      "kind": "chapter",
+      "title": "LEONIDAS L'HEUREUX",
+      "path": "chapter-011.html",
+      "order": 2,
+      "prev_entry_id": "chapter-010",
+      "next_entry_id": "chapter-017",
+      "source_pages": [
+        38,
+        39,
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46,
+        47
+      ],
+      "printed_pages": [
+        29,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36,
+        37,
+        38
+      ],
+      "printed_page_start": 29,
+      "printed_page_end": 38
+    },
+    {
+      "entry_id": "chapter-017",
+      "kind": "chapter",
+      "title": "MARIE-LOUISE (L'HEUREUX) LaCLARE",
+      "path": "chapter-017.html",
+      "order": 3,
+      "prev_entry_id": "chapter-011",
+      "next_entry_id": "chapter-022",
+      "source_pages": [
+        78,
+        79,
+        80,
+        81,
+        82,
+        83,
+        84,
+        85
+      ],
+      "printed_pages": [
+        69,
+        70,
+        71,
+        72,
+        73,
+        74,
+        75,
+        76
+      ],
+      "printed_page_start": 69,
+      "printed_page_end": 76
+    },
+    {
+      "entry_id": "chapter-022",
+      "kind": "chapter",
+      "title": "PIERRE L'HEUREUX",
+      "path": "chapter-022.html",
+      "order": 4,
+      "prev_entry_id": "chapter-017",
+      "next_entry_id": "chapter-023",
+      "source_pages": [
+        108,
+        109,
+        110,
+        111,
+        112,
+        113,
+        114,
+        115
+      ],
+      "printed_pages": [
+        99,
+        100,
+        101,
+        102,
+        103,
+        104,
+        105,
+        106
+      ],
+      "printed_page_start": 99,
+      "printed_page_end": 106
+    },
+    {
+      "entry_id": "chapter-023",
+      "kind": "chapter",
+      "title": "ANTOINE L'HEUREUX",
+      "path": "chapter-023.html",
+      "order": 5,
+      "prev_entry_id": "chapter-022",
+      "next_entry_id": null,
+      "source_pages": [
+        116,
+        117,
+        118,
+        119
+      ],
+      "printed_pages": [
+        107,
+        108,
+        109,
+        110
+      ],
+      "printed_page_start": 107,
+      "printed_page_end": 110
+    }
+  ],
+  "reading_order": [
+    "chapter-010",
+    "chapter-011",
+    "chapter-017",
+    "chapter-022",
+    "chapter-023"
+  ],
+  "asset_roots": [
+    "images"
+  ],
+  "provenance_path": "provenance/blocks.jsonl"
+}

@@ -3,6 +3,7 @@ import subprocess
 import sys
 from copy import deepcopy
 from pathlib import Path
+import re
 
 import pytest
 
@@ -22,6 +23,13 @@ GOLDEN_DIR = (
     / "onward"
     / "reviewed_html_slice"
     / "story149-onward-build-regression-r1"
+)
+DOSSIER_HANDOFF_DIR = (
+    REPO_ROOT
+    / "benchmarks"
+    / "golden"
+    / "onward"
+    / "dossier-doc-web-handoff-v1"
 )
 VALIDATOR = REPO_ROOT / "validate_artifact.py"
 
@@ -88,6 +96,10 @@ DOC_WEB_PROVENANCE_BLOCK_EXAMPLE = [
 def _load_jsonl(path: Path):
     with path.open("r", encoding="utf-8") as f:
         return [json.loads(line) for line in f if line.strip()]
+
+
+def _load_json(path: Path):
+    return json.loads(path.read_text(encoding="utf-8"))
 
 
 def test_chapter_html_manifest_schema_validates_committed_golden_slice():
@@ -212,3 +224,71 @@ def test_validate_artifact_cli_accepts_jsonl_provenance_blocks(tmp_path: Path):
 
     assert proc.returncode == 0, proc.stdout
     assert "Validation OK" in proc.stdout
+
+
+def test_dossier_handoff_pack_validates_against_frozen_contract():
+    manifest = DocWebBundleManifest(**_load_json(DOSSIER_HANDOFF_DIR / "manifest.json"))
+    blocks = [
+        DocWebProvenanceBlock(**row)
+        for row in _load_jsonl(DOSSIER_HANDOFF_DIR / "provenance" / "blocks.jsonl")
+    ]
+
+    assert manifest.document_id == "onward-to-the-unknown-hardcase-slice"
+    assert manifest.reading_order == [
+        "chapter-010",
+        "chapter-011",
+        "chapter-017",
+        "chapter-022",
+        "chapter-023",
+    ]
+    assert len(manifest.entries) == 5
+    assert len(blocks) == 134
+
+
+def test_dossier_handoff_pack_html_and_assets_match_manifest_and_provenance():
+    manifest = _load_json(DOSSIER_HANDOFF_DIR / "manifest.json")
+    blocks = _load_jsonl(DOSSIER_HANDOFF_DIR / "provenance" / "blocks.jsonl")
+    blocks_by_entry = {}
+    for row in blocks:
+        blocks_by_entry.setdefault(row["entry_id"], []).append(row)
+
+    for entry in manifest["entries"]:
+        html_path = DOSSIER_HANDOFF_DIR / entry["path"]
+        assert html_path.exists(), entry["path"]
+
+        html_text = html_path.read_text(encoding="utf-8")
+        dom_ids = set(re.findall(r'id="([^"]+)"', html_text))
+        block_ids = {row["block_id"] for row in blocks_by_entry[entry["entry_id"]]}
+        assert block_ids <= dom_ids
+
+        image_refs = set(re.findall(r'src="(images/[^"]+)"', html_text))
+        for image_ref in image_refs:
+            assert (DOSSIER_HANDOFF_DIR / image_ref).exists(), image_ref
+
+
+def test_dossier_handoff_pack_preserves_sample_citation_mappings():
+    rows = {
+        row["block_id"]: row
+        for row in _load_jsonl(DOSSIER_HANDOFF_DIR / "provenance" / "blocks.jsonl")
+    }
+
+    assert rows["blk-chapter-010-0002"] == {
+        "schema_version": "doc_web_provenance_block_v1",
+        "module_id": "build_chapter_html_v1",
+        "run_id": "story154-dossier-doc-web-handoff-v1",
+        "created_at": rows["blk-chapter-010-0002"]["created_at"],
+        "block_id": "blk-chapter-010-0002",
+        "entry_id": "chapter-010",
+        "block_kind": "paragraph",
+        "source_page_number": 28,
+        "source_element_ids": ["p028-b2"],
+        "source_printed_page_number": 19,
+        "source_printed_page_label": "19",
+        "text_quote": "Although weddings are meant to be happy occasions, Arthur's marriage to Lucille Lambert on May 29, 1906 in Jackfish Lake, Saskatchewan was marred by the fact that Arthur was very ill and had recieved the Last Sacrament of the Roman Catholic Faith. However, he recovered and raised a family of fifteen.",
+    }
+    assert rows["blk-chapter-011-0006"]["block_kind"] == "figure"
+    assert rows["blk-chapter-011-0006"]["source_element_ids"] == ["p038-b6"]
+    assert rows["blk-chapter-017-0003"]["source_page_number"] == 78
+    assert rows["blk-chapter-017-0003"]["source_printed_page_number"] == 69
+    assert rows["blk-chapter-022-0004"]["source_element_ids"] == ["p108-b4"]
+    assert rows["blk-chapter-023-0001"]["text_quote"] == "ANTOINE L'HEUREUX"
