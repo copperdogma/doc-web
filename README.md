@@ -11,6 +11,7 @@ AI-first runtime for turning scanned books, PDFs, and images into structural, pr
 ## 📚 Documentation
 - **[Runbook & Operations Guide](docs/RUNBOOK.md)**: **START HERE** for running the pipeline, resuming runs, and troubleshooting.
 - **[Agent Guide](AGENTS.md)**: Guidelines for AI agents and developers contributing to the codebase.
+- **[doc-web Bundle Contract](docs/doc-web-bundle-contract.md)**: Frozen v1 structural website bundle and provenance contract for the `doc-web` runtime boundary.
 - **[Benchmarks](benchmarks/README.md)**: Systematic model evaluation using `promptfoo`.
 
 ## Pipeline Architecture

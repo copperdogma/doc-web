@@ -18,7 +18,7 @@ document-to-website runtime into `doc-web`.
 
 The first slice should prove the boundary with the smallest coherent seam:
 
-- generic bundle contract (`manifest.json`, provenance sidecar, reading order)
+- generic bundle contract (`manifest.json`, `doc_web_bundle_manifest_v1`, `provenance/blocks.jsonl`)
 - generic HTML or website emitter split from `build_chapter_html_v1`
 - minimal golden fixtures validating the bundle and provenance contract
 
@@ -47,9 +47,10 @@ candidates after the `doc-web` bundle contract is stable.
   - should be split into a generic bundle emitter plus optional presentation
     wrapper behavior
 - `schemas.py`
-  - currently lacks dedicated `chapter_html_manifest_v1` bundle schema classes
-  - needs explicit `doc-web` bundle/provenance contract classes before the
-    runtime boundary is trustworthy
+  - `chapter_html_manifest_v1` should be treated as a transitional build-local
+    manifest, not the final runtime boundary
+  - the trustworthy runtime boundary is `doc_web_bundle_manifest_v1` plus
+    `doc_web_provenance_block_v1`
 - `configs/recipes/recipe-onward-images-html-mvp.yaml`
   - useful as evidence and fixture source, but not itself the runtime contract
 
@@ -78,6 +79,7 @@ Keep as cold storage or selective reference, not as runtime dependencies:
 - Story 152 — `doc-web` bundle and provenance contract
 - Story 153 — Extract `doc-web` bundle emitter
 - Story 154 — Dossier `doc-web` semantic HTML handoff
+- Story 155 — Repo mission alignment cleanup and legacy surface removal
 
 ## Open Questions
 

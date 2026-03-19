@@ -4,7 +4,7 @@
 **Status**: Pending
 **Ideal Refs**: Requirement #6 (Validate), Requirement #7 (Export), Dossier-ready output, Traceability is the Product
 **Spec Refs**: spec:6 (Validation, Provenance & Export), spec:7 (Graduation & Dossier Handoff)
-**Decision Refs**: `docs/decisions/adr-002-doc-web-runtime-boundary/adr.md`, Story 152, Story 153
+**Decision Refs**: `docs/decisions/adr-002-doc-web-runtime-boundary/adr.md`, `docs/doc-web-bundle-contract.md`, Story 152, Story 153
 **Depends On**: Story 152, Story 153
 
 ## Goal

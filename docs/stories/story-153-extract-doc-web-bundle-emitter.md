@@ -4,7 +4,7 @@
 **Status**: Pending
 **Ideal Refs**: Requirement #5 (Structure), Requirement #7 (Export), Dossier-ready output, Graduate, don't accumulate
 **Spec Refs**: spec:6 (Validation, Provenance & Export), spec:7 (Graduation & Dossier Handoff)
-**Decision Refs**: `docs/decisions/adr-002-doc-web-runtime-boundary/adr.md`, `docs/notes/standalone-dossier-intake-runtime-plan.md`, Story 152
+**Decision Refs**: `docs/decisions/adr-002-doc-web-runtime-boundary/adr.md`, `docs/doc-web-bundle-contract.md`, `docs/notes/standalone-dossier-intake-runtime-plan.md`, Story 152
 **Depends On**: Story 152
 
 ## Goal

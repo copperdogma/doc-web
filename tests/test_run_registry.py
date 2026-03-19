@@ -156,7 +156,7 @@ def test_build_run_health_entry_summarizes_page_health_and_chapter_counts(tmp_pa
                 "build_chapter_html": {
                     "status": "done",
                     "artifact": "output/runs/health-smoke/09_build_chapter_html_v1/chapters_manifest.jsonl",
-                    "schema_version": "chapter_manifest_v1",
+                    "schema_version": "chapter_html_manifest_v1",
                 },
             },
         },

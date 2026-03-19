@@ -1,3 +1,17 @@
+## [2026-03-19-03] - Freeze doc-web bundle contract (Story 152)
+
+### Added
+- Added `docs/doc-web-bundle-contract.md` as the frozen v1 `doc-web` bundle and provenance contract, plus focused contract regression coverage in `tests/test_doc_web_bundle_contract.py`
+- Added Story 155 to track the broader repo mission-alignment and legacy-surface cleanup follow-up discovered during Story 152 work
+
+### Changed
+- Formalized `chapter_html_manifest_v1` as a transitional validated surface and added `doc_web_bundle_manifest_v1` plus `doc_web_provenance_block_v1` to `schemas.py` and `validate_artifact.py`
+- Updated the standalone extraction inventory note, README, Story 152, Story 153, Story 154, and the story index so the frozen contract is the explicit reference point for the next `doc-web` extraction and Dossier handoff work
+
+### Fixed
+- Tightened bundle-manifest validation so absolute paths, non-contiguous entry order, and navigation links that disagree with reading order now fail schema validation instead of passing silently
+- Updated run-health fixture coverage to reference the actual `chapter_html_manifest_v1` schema name
+
 ## [2026-03-19-01] - Rename live project surfaces to doc-forge
 
 ### Changed

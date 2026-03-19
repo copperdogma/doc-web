@@ -168,9 +168,10 @@ This index tracks stories in `/docs/stories/` for the doc-forge pipeline.
 |||| 149 | Onward Scanned-Genealogy Collapse Implementation | High | Done | /docs/stories/story-149-onward-scanned-genealogy-collapse-implementation.md |
 |||| 150 | Onward Full-Run Audit Reconciliation | High | Done | /docs/stories/story-150-onward-full-run-audit-reconciliation.md |
 |||| 151 | Define `doc-web` as the Standalone Dossier Intake Runtime | High | Pending | /docs/stories/story-151-name-and-define-standalone-dossier-intake-runtime.md |
-|||| 152 | `doc-web` Bundle and Provenance Contract | High | Pending | /docs/stories/story-152-doc-web-bundle-and-provenance-contract.md |
+|||| 152 | `doc-web` Bundle and Provenance Contract | High | Done | /docs/stories/story-152-doc-web-bundle-and-provenance-contract.md |
 |||| 153 | Extract `doc-web` Bundle Emitter | High | Pending | /docs/stories/story-153-extract-doc-web-bundle-emitter.md |
 |||| 154 | Dossier `doc-web` Semantic HTML Handoff | High | Pending | /docs/stories/story-154-dossier-doc-web-semantic-html-handoff.md |
+|||| 155 | Repo Mission Alignment Cleanup and Legacy Surface Removal | High | Pending | /docs/stories/story-155-repo-mission-alignment-cleanup-and-legacy-surface-removal.md |
 
 ## Notes
 - Status "Done" reflects current working state in doc-forge. "To Do" items are planned next steps aligned with `docs/requirements.md` and `snapshot.md`.
