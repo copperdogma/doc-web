@@ -86,6 +86,8 @@ Keep as cold storage or selective reference, not as runtime dependencies:
 - full historical `output/runs/` evidence
 - broad codex-forge golden slices beyond the minimal `doc-web` contract fixtures
 - superseded R&D notes and legacy FF-oriented planning surfaces
+- the cleanup inventory and historical story/changelog record for removed FF
+  surfaces; treat them as evidence, not active defaults
 
 ## Follow-Up Stories
 

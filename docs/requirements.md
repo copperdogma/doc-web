@@ -1,51 +1,45 @@
 # Doc-Forge Requirements
-_AI-first, modular book-to-structured-data pipeline_
+_AI-first intake runtime for provenance-rich structural website bundles_
 
 ## Purpose & Goals
-- Provide a reusable pipeline to convert scanned or born-digital books into structured JSON artifacts with full traceability.
-- Support multiple book types (CYOA/gamebooks and non-CYOA) by swapping modules (OCR, cleaning, portionization, validation, enrichment, layout preservation).
-- Enable AI-guided setup: the system should help users choose modules and configure runs based on their goals (e.g., preserve layout, validate cross-references).
+- Convert hard document inputs into Dossier-ready structural HTML bundles with full provenance.
+- Keep the active runtime focused on reusable intake, OCR, structure, and validation seams rather than legacy game/runtime exports.
+- Preserve enough intermediate evidence that every downstream defect can be traced back to a concrete page, crop, OCR decision, or repair stage.
 
-## Scope (MVP)
-- Input: PDF or page images.
-- Output: Structured portions with cleaned text, page spans, source image refs, confidence, and trace IDs; intermediate artifacts kept for audit.
-- Baseline modules: OCR → page cleaning → portionization → consensus/dedupe/normalize → overlap resolution → final text assembly.
-- Batch-friendly and restartable: allow partial runs, overlapping reruns, and global recompute of consensus.
+## Scope (Current Mission)
+- Input: PDFs, scanned page-image directories, and adjacent document families that can be normalized into page-level extraction inputs.
+- Output: structural HTML chapters/pages, bundle manifests, navigation metadata, and provenance sidecars for `doc-web` and Dossier.
+- Baseline stages: intake → OCR/HTML extraction → targeted repair loops → portionization/structure → chapter/build output → validation.
+- Runs remain restartable and artifact-driven so expensive upstream work can be reused while downstream structure iterates quickly.
 
 ## Functional Requirements
-1) **Ingestion**: accept PDF or image dirs; render to images (configurable DPI) if PDF.
-2) **OCR**: per-page raw text + image path, page numbers.
-3) **Cleaning**: multimodal LLM fixes OCR; outputs clean_text + confidence; keep raw_text; auto boost if low confidence.
-4) **Portionization**: sliding-window LLM with priors; multimodal; emits spans with type/title/confidence/continuation hints; configurable window/stride/range; append-only hypotheses.
-5) **Consensus & Resolution**: global consensus; min confidence; force range coverage; dedupe/normalize IDs; resolve overlaps; fill gaps.
-6) **Assembly**: per-portion JSON with page spans, source images, confidence, orig IDs, concatenated text (prefers clean_text).
-7) **Outputs & State**: run dir `output/runs/<run_id>/` (images/, ocr/, pages_raw/clean, hypotheses, locked/normalized/resolved, final JSON, pipeline_state); shared run registries at `output/run_manifest.jsonl`, `output/run_health.jsonl`, and `output/run_assessments.jsonl`.
-8) **Configuration**: CLI/YAML for models, windows, strides, thresholds, ranges, run_id, priors, DPI/psm/oem/lang; sensible defaults.
-9) **Validation**: structural checks; pluggable validators (e.g., turn-to cross-refs for CYOA) optional.
-10) **Traceability**: keep spans, source images, confidences; retain JSONL artifacts for audit/rerun.
+1. **Ingestion**: accept PDF or image-directory inputs and normalize them into page manifests with stable identifiers.
+2. **Extraction**: produce page-level HTML or equivalent structured text with explicit provenance to source page/image artifacts.
+3. **Repair**: run targeted table, layout, and continuity rescue loops where extraction quality drops below the acceptance bar.
+4. **Structure**: identify document sections/chapters and preserve reading order, boundaries, and page coverage.
+5. **Illustrations**: detect, crop, and publish illustrations with references that downstream HTML can consume.
+6. **Validation**: emit inspectable reports that prove page coverage, structural consistency, and downstream bundle readiness.
+7. **Bundle Output**: build structural HTML plus manifests and provenance blocks that Dossier can ingest without bespoke repo-local knowledge.
+8. **Configuration**: support CLI and YAML-driven recipe selection, model overrides, retry limits, and resume controls without code edits.
+9. **Traceability**: retain intermediate JSON/JSONL artifacts, module provenance envelopes, and run registries for audit and replay.
+10. **Operational Reuse**: support partial reruns, artifact loading, and no-AI regression recipes for active maintained seams.
 
 ## Non-Functional Requirements
-- Modularity: swappable modules, easy addition of new ones.
-- Resilience: partial runs recoverable; append-only hypotheses; rerunnable consensus.
-- Portability: JSON/JSONL only; no DB; offline except LLM calls.
-- Performance: batching with overlaps; coarse+fine option; cost-conscious.
-- Transparency: confidences/notes preserved; no silent merges.
-- Versioning: record model/config per run (config snapshot recommended).
+- Modularity: new document families should prefer recipe/module composition over code forks.
+- Transparency: validation and repair decisions must be inspectable from committed artifacts, not hidden in prompts alone.
+- Cost discipline: expensive OCR/intake work should be reusable; downstream iteration should avoid unnecessary recomputation.
+- Portability: local files and JSON/JSONL artifacts remain the primary operating model; no database dependency.
+- Reliability: active paths must have maintained tests or recipe-backed regression coverage.
 
-## Future Modules / Extensions
-- Enrichment (`portions_enriched.jsonl`): extract choices, targets, combat, items, endings; produce app-ready `data.json` for interactive use.
-- Turn-to validator for CYOA; skip for non-CYOA.
-- Layout-preserving extractor (bounding boxes, typography).
-- Image cropper/mapper for illustrations.
-- Coarse+fine portionizer; continuation-merge pass.
-- AI planner: gather user goals, emit pipeline config, suggest new modules when needed.
+## Active Repository Structure
+- `modules/`: intake, extraction, transform, adapter, build, and validate stages.
+- `configs/recipes/`: active recipes for `doc-web` and maintained regression paths.
+- `docs/`: mission docs, runbooks, stories, ADRs, and bundle contracts.
+- `output/runs/<run_id>/`: pipeline artifacts, manifests, and validation outputs.
+- `output/run_manifest.jsonl`, `output/run_health.jsonl`, `output/run_assessments.jsonl`: shared run registries.
 
-## Repository & Structure
-- Root: scripts/modules; `docs/`; `snapshot.md`; `output/` (git-ignored); configs.
-- Outputs: `output/runs/<run_id>/`; registries at `output/run_manifest.jsonl`, `output/run_health.jsonl`, and `output/run_assessments.jsonl`.
-- Ignore `.venv/`, `__pycache__/`, `output/`.
-
-## Acceptance Criteria (MVP)
-- Given a PDF/input images, produce a run folder with: `pages_raw.jsonl`, `pages_clean.jsonl`, `window_hypotheses.jsonl`, `portions_resolved.jsonl`, `portions_final_raw.json`, `pipeline_state.json`, manifest entry.
-- Can rerun portionize on a sub-range and recompute consensus without data loss.
-- Models/windows/thresholds configurable via CLI/config without code changes.
+## Acceptance Criteria
+- Given a real PDF or image-directory input, the repo can produce a run with page-level extraction artifacts, structural build artifacts, validation output, and shared registry entries.
+- A downstream reviewer can inspect any chapter/page output and trace it back to source artifacts without guesswork.
+- Active recipes can be resumed or rerun by changed scope without redoing unrelated expensive stages.
+- Mission-facing docs and defaults point to the maintained intake + `doc-web` path rather than retired legacy exports.

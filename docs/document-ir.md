@@ -30,7 +30,7 @@ Doc-forge follows a 5-stage model:
 2. **Verify IR (generic)**: QA on completeness, page coverage
 3. **Portionize (domain-specific)**: Identify portions (sections, chapters) that reference elements by ID
 4. **Augment (domain-specific)**: Add domain data (choices for CYOA, relationships for genealogy)
-5. **Export (format-specific)**: Build output (FF Engine JSON, HTML, Markdown) using elements + portions
+5. **Export (format-specific)**: Build output (structural HTML, manifests, Markdown) using elements + portions
 
 **The IR (elements.jsonl) remains unchanged throughout the pipeline.** Portionization and augmentation create separate artifacts that reference elements by ID rather than transforming them.
 
@@ -207,7 +207,7 @@ stages:
       output_filename: genealogy.html
 ```
 
-### Example 2: Fighting Fantasy Pipeline (Future)
+### Example 2: Generic Structured Export
 
 Portions reference elements by ID:
 
@@ -221,13 +221,13 @@ stages:
     needs: [unstructured_intake]
     # Reads elements.jsonl, creates portions that reference element IDs
 
-  - id: export_ff
-    module: build_ff_engine_v1
+  - id: build_bundle
+    module: build_chapter_html_v1
     needs: [portionize]
     # Reads both elements.jsonl (for text) and portions.jsonl (for structure)
 ```
 
-**Note:** The FF pipeline updates are TODO; current portionize modules still use pages_raw.jsonl.
+**Note:** The active `doc-web` path currently centers page-image OCR plus HTML build recipes; IR-driven exports remain a valid design seam, not the default maintained runtime.
 
 ---
 
@@ -392,8 +392,7 @@ no_headers = [e for e in elements if e["type"] not in ("Header", "Footer")]
 - **Schema definition:** `schemas.py:334-400` (UnstructuredElement, CodexMetadata)
 - **Intake module:** `modules/intake/unstructured_pdf_intake_v1/`
 - **Render module:** `modules/render/render_html_from_elements_v1/`
-- **Genealogy recipe:** `configs/recipes/recipe-genealogy-html.yaml`
-- **FF recipe (TODO):** `configs/recipes/recipe-ff-unstructured.yaml`
+- **Current maintained recipes:** `configs/recipes/recipe-images-ocr-html-mvp.yaml`, `configs/recipes/recipe-onward-images-html-mvp.yaml`
 - **Story:** `docs/stories/story-032-unstructured-intake-and-document-ir-adoption.md`
 - **Unstructured library:** https://unstructured.io/
 

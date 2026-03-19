@@ -17,15 +17,14 @@ AI-first runtime for turning scanned books, PDFs, and images into structural, pr
 
 ## Pipeline Architecture
 
-The pipeline follows a 5-stage model:
+The active repo path is format-aware intake plus structural website output for
+`doc-web` and Dossier. A typical active flow looks like:
 
-1. **Intake → IR (generic)**: PDF/images → structured elements (Unstructured library provides rich IR with text, types, coordinates, tables)
-2. **Verify IR (generic)**: QA checks on completeness, page coverage, element quality
-3. **Portionize (domain-specific)**: Identify logical portions (CYOA sections, genealogy chapters, textbook problems) and reference IR elements
-4. **Augment (domain-specific)**: Enrich portions with domain data (choices/combat for CYOA, relationships for genealogy)
-5. **Export (format-specific)**: Output to target format (FF Engine JSON, HTML, Markdown) using IR + augmentations
-
-Steps 1-2 are universal across all document types. Steps 3-4 vary by domain (gamebooks vs genealogies vs textbooks). Step 5 is tied to output requirements.
+1. **Intake / normalize (generic)**: PDF, page images, or other source material → page manifests and normalized extraction inputs
+2. **Extract + verify (generic)**: OCR/HTML extraction plus completeness and quality checks with provenance preserved
+3. **Portionize / structure (format-aware)**: identify logical sections, repeated patterns, and ordering for the document family
+4. **Repair + validate (format-aware)**: handle consistency, table rescue, and other targeted recovery loops where needed
+5. **Build bundle + handoff (active export path)**: emit structural HTML pages, manifests, navigation, and provenance sidecars for Dossier / `doc-web`
 
 **Reusability goal:** Keep upstream intake/OCR modules as generic as possible. Prefer pushing booktype-specific heuristics/normalization downstream into booktype-aware modules.
 
@@ -33,6 +32,7 @@ Steps 1-2 are universal across all document types. Steps 3-4 vary by domain (gam
 - `driver.py`: Main orchestration script.
 - `modules/`: Pipeline stages (`extract`, `transform`, `adapter`, etc.).
 - `configs/recipes/`: YAML files defining pipeline stages (logic).
+- `configs/recipes/legacy/`: Archived or reference-only recipes kept for historical reruns.
 - `configs/presets/`: YAML files defining model/cost settings (parameters).
 - `output/runs/`: All pipeline artifacts and logs.
 - `output/run_*.jsonl`: Shared run registries for manifest, health, and AI review assessments.
@@ -63,8 +63,14 @@ If using the deprecated legacy pipeline with local OCR:
 
 ### Unit Tests
 ```bash
-python -m unittest discover -s tests -p "driver_*test.py"
+make test
+make lint
 ```
+
+### Pipeline Verification
+Use the narrowest real recipe-specific `driver.py` or monitored run path from
+`docs/RUNBOOK.md`. There is no generic `make smoke` default for the active
+mission.
 
 ### Dashboard
 View pipeline progress and artifacts visually:

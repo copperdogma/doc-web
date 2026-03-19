@@ -77,8 +77,8 @@ For B&W illustrations, the transparency feature:
 Typical pipeline flow:
 1. **OCR**: `ocr_ai_gpt51_v1` detects illustrations and adds bounding boxes to HTML output
 2. **Crop**: `crop_illustrations_from_ocr_v1` extracts cropped images
-3. **Associate**: Section association module maps illustrations to gamebook sections
-4. **Build**: Build stage populates `images[]` arrays in gamebook.json
+3. **Associate**: A downstream sectioning module maps illustrations to document sections
+4. **Build**: A downstream build stage emits the final image references in the output bundle
 
 ## Advantages
 

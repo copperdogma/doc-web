@@ -2,7 +2,7 @@
 """
 Detect section boundaries from HTML block streams.
 
-Legacy review notes (carry-overs from detect_boundaries_code_first_v1):
+Review notes carried into the HTML boundary detector:
 - Filter to gameplay pages using coarse_segments (avoid frontmatter false positives).
 - Prefer true section headers with body text following (drop header-only spans).
 - Deduplicate same section_id by picking the candidate with strongest follow-text score.

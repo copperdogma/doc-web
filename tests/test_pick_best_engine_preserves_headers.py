@@ -13,7 +13,7 @@ def test_build_chosen_lines_preserves_numeric_headers_across_engines():
     pagelines_final.jsonl. Otherwise section starts silently disappear and
     boundary detection/portionize will never see them.
 
-    This test simulates the Deathtrap Dungeon page 17R pattern where:
+    This test simulates a scanned spread page where:
     - page_data['lines'] contains '6-8', '6', '7', '8' plus body text lines
     - engines_raw['apple'] contains '6-8' and body text but not the standalone digits
     """
@@ -93,4 +93,3 @@ def test_build_chosen_lines_extracts_standalone_headers_from_other_engines():
     assert "Body for 6" in texts
     assert "Death at 7" in texts
     assert "Death at 8" in texts
-

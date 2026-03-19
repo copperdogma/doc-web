@@ -25,8 +25,7 @@ def create_run(name: str):
     config = RunConfig(
         run_id=os.path.splitext(name)[0],
         output_dir=run_dir,
-        recipe="configs/recipes/recipe-ff.yaml",
-        input_pdf="input/06 deathtrap dungeon.pdf",
+        recipe="configs/recipes/recipe-images-ocr-html-mvp.yaml",
         execution=ExecutionConfig(skip_done=True),
         options=OptionsConfig(allow_run_id_reuse=True),
         instrumentation=InstrumentationConfig(enabled=True)

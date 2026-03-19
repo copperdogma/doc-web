@@ -12,12 +12,15 @@
 
 ## 🚀 Standard Execution
 
-### Canonical Production Run
-Use this for full book processing (e.g., Fighting Fantasy, Genealogy).
+There is no single default recipe for the active mission. Choose the narrowest
+recipe that matches the document family you are validating.
+
+### Structural Website / `doc-web` Runs
+Use these when validating the active structural HTML bundle path.
 
 ```bash
 scripts/run_driver_monitored.sh \
-  --recipe configs/recipes/recipe-ff-ai-ocr-gpt51.yaml \
+  --recipe <active_recipe> \
   --run-id <run_id> \
   --output-dir output/runs \
   -- --instrument --force
@@ -25,17 +28,25 @@ scripts/run_driver_monitored.sh \
 *   `--instrument`: Enables cost/timing tracking (Required for production).
 *   `--force`: **DELETES** `<run_id>` dir if it exists. Use only for fresh starts.
 
+Active recipe examples:
+- `configs/recipes/recipe-images-ocr-html-mvp.yaml`
+- `configs/recipes/recipe-onward-images-html-mvp.yaml`
+- `configs/recipes/onward-genealogy-build-regression.yaml` (artifact-reuse path; requires the referenced Story 140 / 143 artifacts under `output/`)
+
 ### Smoke Test (Verification)
-Run a cheap subset (e.g., first 20 pages) to verify config/code.
+Use the same recipe you are actually touching, but narrow the run to the
+smallest real slice that still exercises the changed seam.
 
 ```bash
-python driver.py \
-  --recipe configs/recipes/recipe-ff-ai-ocr-gpt51.yaml \
-  --settings configs/settings.ff-ai-ocr-gpt51-smoke-20.yaml \
-  --run-id smoke-test-v1 \
-  --output-dir /tmp/smoke-test-v1 \
-  --force
+scripts/run_driver_monitored.sh \
+  --recipe <active_recipe> \
+  --run-id <smoke_run_id> \
+  --output-dir output/runs \
+  -- --instrument --max-pages <N> --force
 ```
+
+- There is no generic `make smoke` target for the active intake / `doc-web`
+  path.
 
 ---
 
@@ -69,8 +80,9 @@ scripts/run_driver_monitored.sh \
 ### Recipes (`configs/recipes/`)
 | Recipe | Purpose |
 | :--- | :--- |
-| `recipe-ff-ai-ocr-gpt51.yaml` | **Default.** High-quality OCR (GPT-5.1/Gemini). HTML output. |
+| `recipe-images-ocr-html-mvp.yaml` | Active structural HTML bundle path for image-directory inputs. |
 | `recipe-onward-images-html-mvp.yaml` | **Genealogy.** Specialized for *Onward* tables. |
+| `onward-genealogy-build-regression.yaml` | No-AI artifact-reuse regression path that rebuilds chapters and genealogy validation from accepted Onward artifacts already present under the shared `output/` root. |
 
 ### Presets (`configs/presets/`)
 | Preset | Usage |

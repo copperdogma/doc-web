@@ -51,7 +51,7 @@ def _to_title_case(text: str) -> str:
     
     Python's .title() method converts to title case (first letter of each word
     capitalized, rest lowercase). This works well for book titles like
-    "DEATHTRAP DUNGEON" -> "Deathtrap Dungeon".
+    "THE HIDDEN ARCHIVE" -> "The Hidden Archive".
     """
     return text.title()
 
@@ -217,7 +217,7 @@ def extract_metadata(pages: List[Dict[str, Any]], use_ai_fallback: bool = False)
                 author = parts[0].strip()
                 title_clean = parts[1].strip()
         
-        # Convert title to title case (e.g., "DEATHTRAP DUNGEON" -> "Deathtrap Dungeon")
+        # Convert title to title case (e.g., "THE HIDDEN ARCHIVE" -> "The Hidden Archive")
         title_clean = _to_title_case(title_clean)
         
         result['title'] = title_clean

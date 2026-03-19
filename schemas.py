@@ -994,16 +994,16 @@ class UnstructuredElement(BaseModel):
 
 
 # ────────────────────────────────────────────────────────────────
-# Fighting Fantasy AI Pipeline Schemas
+# Numbered Section Pipeline Schemas
 # ────────────────────────────────────────────────────────────────
 
 
 class SectionBoundary(BaseModel):
     """
-    AI-detected section boundary in Fighting Fantasy book.
+    AI-detected section boundary in a numbered-section document.
 
     This schema represents a single gameplay section detected by AI analysis.
-    The AI scans elements to find section numbers (1-400) and identifies the
+    The AI scans elements to find numbered section headers and identifies the
     start/end element IDs that bound each section's content.
     """
     schema_version: str = "section_boundary_v1"
@@ -1011,7 +1011,7 @@ class SectionBoundary(BaseModel):
     run_id: Optional[str] = None
     created_at: Optional[str] = None
 
-    section_id: str  # "1", "2", "3", etc. (Fighting Fantasy section numbers)
+    section_id: str  # "1", "2", "3", etc. (numbered section headers)
     start_element_id: str  # ID of first element in this section
     end_element_id: Optional[str] = None  # ID of last element (None if extends to next section)
     # Optional provenance helpers (code-first + vision escalation modules may emit these)
@@ -1052,14 +1052,10 @@ class BoundaryVerificationReport(BaseModel):
 
 class ValidationReport(BaseModel):
     """
-    Validation report for Fighting Fantasy Engine output.
+    Validation report for final structured document output.
 
-    This schema captures quality checks on the final gamebook.json output,
+    This schema captures quality checks on the final artifact payload,
     including missing sections, duplicates, and structural issues.
-    
-    Note: Reachability analysis (unreachable_sections) is performed by the
-    canonical Node validator (validate_ff_engine_node_v1) and merged into
-    this report for consistency.
     """
     schema_version: str = "validation_report_v1"
     run_id: Optional[str] = None

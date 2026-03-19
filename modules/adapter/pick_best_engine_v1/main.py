@@ -8,6 +8,8 @@ from modules.common.text_quality import spell_garble_metrics
 from modules.common.utils import ensure_dir, save_json, append_jsonl, ProgressLogger
 from modules.adapter.reconstruct_text_v1.main import is_section_header
 
+_MAX_STANDALONE_HEADER_NUMBER = 400
+
 
 def load_index(index_path: str) -> Dict[str, str]:
     data = json.load(open(index_path, "r", encoding="utf-8"))
@@ -99,16 +101,16 @@ def build_chosen_lines(page_data: Dict[str, Any], engine: str) -> List[Dict[str,
                     eng_lines = split_lines(eng_text)
                     for eng_line in eng_lines:
                         txt = eng_line.strip()
-                        # If this is a standalone numeric header we haven't seen yet, add it
-                        # Also validate it's a reasonable section number (1-400 range)
+                        # If this is a standalone numeric header we haven't seen yet, add it.
+                        # Keep a conservative ceiling so page-number noise is less likely to
+                        # be mistaken for a true section header.
                         if is_section_header(txt) and txt not in seen_texts:
                             # Extract numeric value (handle cases like "16." -> 16)
                             try:
                                 num_str = txt.replace('.', '').strip()
                                 if num_str.isdigit():
                                     num_val = int(num_str)
-                                    # Only include valid section numbers (1-400 for Fighting Fantasy)
-                                    if 1 <= num_val <= 400:
+                                    if 1 <= num_val <= _MAX_STANDALONE_HEADER_NUMBER:
                                         chosen_lines.append({"text": txt, "source": eng_name})
                                         seen_texts.add(txt)
                             except (ValueError, AttributeError):
@@ -135,13 +137,13 @@ def build_chosen_lines(page_data: Dict[str, Any], engine: str) -> List[Dict[str,
             for eng_line in eng_lines:
                 txt = eng_line.strip()
                 if is_section_header(txt) and txt not in seen_texts:
-                    # Validate it's a reasonable section number (1-400 range)
+                    # Apply the same conservative ceiling when recovering missing
+                    # standalone headers from alternate engines.
                     try:
                         num_str = txt.replace('.', '').strip()
                         if num_str.isdigit():
                             num_val = int(num_str)
-                            # Only include valid section numbers (1-400 for Fighting Fantasy)
-                            if 1 <= num_val <= 400:
+                            if 1 <= num_val <= _MAX_STANDALONE_HEADER_NUMBER:
                                 result_lines.append({"text": txt, "source": eng_name})
                                 seen_texts.add(txt)
                     except (ValueError, AttributeError):

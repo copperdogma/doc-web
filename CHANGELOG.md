@@ -1,3 +1,41 @@
+## [2026-03-19-08] - Remove remaining legacy gamebook runtime seams (Story 155)
+
+### Changed
+- Removed the last live `gamebook`-specific driver branches and stale deleted-module compatibility paths so active stage wiring now follows the maintained generic intake/doc-web contract
+- Generalized surviving numbered-section prompts, schema comments, and OCR helper wording away from Fighting Fantasy/gamebook framing
+- Tightened the Story 155 closeout records so the cleanup inventory and retained codebase-improvement scan clearly distinguish final state from intentional historical references and superseded mid-story findings
+
+### Removed
+- Deleted dead legacy adapters `report_pipeline_issues_v1`, `context_aware_post_process_v1`, and `context_aware_t5_v1`, plus the last direct test and stale module-catalog entry that kept those surfaces looking active
+
+### Tested
+- `make lint`
+- `make test`
+- `python driver.py --recipe /tmp/story155-docweb-fixture/recipe.yaml --registry modules --allow-run-id-reuse --force`
+- `python validate_artifact.py --schema chapter_html_manifest_v1 --file output/runs/story155-docweb-fixture-build-r2/04_build_chapter_html_v1/chapters_manifest_fixture.jsonl`
+
+## [2026-03-19-07] - Remove legacy FF runtime and sample-book residue (Story 155)
+
+### Changed
+- Repointed `tools/run_manager.py`, current docs, the coverage matrix, and the pipeline visibility hinting logic to the maintained intake + `doc-web` path instead of retained FF defaults or sample-book references
+- Rewrote `docs/requirements.md` and the live portions of `docs/document-ir.md` around the active structural HTML/runtime mission
+
+### Removed
+- Deleted the top-level and legacy FF/gamebook recipe family, the FF export/validator/edgecase module stack, and the dedicated scripts/tests/fixtures that only existed to support that retired runtime
+- Deleted sample-book analysis/docs residue including `snapshot.md`, OCR bench assets, FF smoke settings, old prompts/examples, and robot/gamebook helper notes that no longer serve the repo mission
+
+## [2026-03-19-06] - Align repo mission surfaces and quarantine legacy FF defaults (Story 155)
+
+### Added
+- Added `docs/notes/repo-mission-alignment-cleanup-inventory.md` with evidence-backed `keep` / `remove now` / `archive/reference only` / `blocked` classifications and explicit follow-up actions
+
+### Changed
+- Reframed mission and execution guidance across `README.md`, `docs/ideal.md`, `docs/stories.md`, `AGENTS.md`, `docs/RUNBOOK.md`, `docs/runbooks/check-in-worktree-landing.md`, `docs/notes/standalone-dossier-intake-runtime-plan.md`, `docs/pipeline/ff-specificity-audit.md`, `scripts/run_driver_monitored.sh`, and `tests/fixtures/formats/_coverage-matrix.json` around the active intake + `doc-web` direction
+- Relabeled top-level FF recipes and `docs/examples/gamebook-example.json` as legacy/reference-only surfaces instead of active defaults
+
+### Fixed
+- Replaced the generic `make smoke` FF default with explicit guidance plus `make smoke-legacy-ff`, and removed broken `scripts/smoke-ff-engine.sh` so the repo no longer points to missing `recipe-ff-engine.yaml` surfaces
+
 ## [2026-03-19-05] - Publish Dossier doc-web semantic HTML handoff (Story 154)
 
 ### Added

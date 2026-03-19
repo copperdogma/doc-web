@@ -1601,7 +1601,7 @@ def post_edit_token(token: str) -> str:
 
 def repair_turn_to_phrases(lines: List[str]) -> Tuple[List[str], List[Dict[str, Any]]]:
     """
-    Ultra-conservative phrase repair for classic gamebook instructions.
+    Ultra-conservative phrase repair for classic numbered-section instructions.
 
     Rationale: when only one engine contributes a line, spell-weighted voting has no
     alternate candidate to prefer. This mirrors SOTA "lexicon-aware decoding" behavior

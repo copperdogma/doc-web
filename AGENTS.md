@@ -94,7 +94,7 @@ Canonical location: `.agents/skills/` — works across Claude Code, Cursor, Gemi
 - `docs/build-map.md` — Central triage dashboard: 9 categories matching spec, substrate status (`exists`/`partial`/`missing`), phase governance (`climb`/`hold`/`converge`), input coverage, graduation tracking
 - `docs/decisions/` — ADRs for hard-to-reverse architecture, workflow, schema, and cross-cutting project decisions
 - `docs/evals/registry.yaml` — Eval scores, targets, attempt history
-- `docs/requirements.md` — Functional requirements
+- `docs/requirements.md` — Mission-aligned functional requirements for intake + `doc-web`
 - `docs/stories.md` — Story index (148+ stories)
 - `docs/stories/` — Individual story files with ACs, tasks, work logs. Spec Refs use `spec:N.N` IDs.
 - `docs/scout.md` — Scout expedition index
@@ -227,12 +227,6 @@ When a first-pass run leaves quality gaps, escalate in a controlled, data-driven
 5. **Verify artifacts**: Spot-check the repaired items and confirm warnings/errors are cleared.
 Avoid manual text edits; use this loop to stay generic, reproducible, and format-agnostic (see “Generality & Non-Overfitting”).
 
-## Patching System (Last Resort)
-When a document strongly defies conventions and generic/escalation passes still fail, use `*.patch.json` files to override specific outputs. Patches are applied by `driver.py` outside modules, keyed by `apply_before`/`apply_after` with a module_id. Rules:
-- Patches must be minimal, scoped, and documented in the story work log.
-- Preserve provenance; do not hand-edit artifacts outside the pipeline.
-- Patch failures emit warnings (not errors) in `pipeline_events.jsonl`.
-
 ## Repo Map
 - `modules/<stage>/<module_id>/` — `module.yaml` + `main.py` (no registry file)
 - `driver.py` — pipeline orchestrator; `schemas.py` — data schemas; `validate_artifact.py` — schema validator
@@ -266,7 +260,7 @@ When a document strongly defies conventions and generic/escalation passes still 
 
 ### Key Developer Commands
 - **Resume a run:** `scripts/run_driver_monitored.sh ... --start-from <stage>`
-- **Smoke Test:** `make smoke`
+- **Recipe-specific validation:** use the narrowest real `driver.py` path from `docs/RUNBOOK.md` and inspect produced artifacts
 
 ## Model Benchmarking (promptfoo)
 

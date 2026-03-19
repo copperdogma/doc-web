@@ -71,7 +71,7 @@ These qualities persist regardless of implementation. They survive even when eve
 
 The threshold below which the product doesn't solve anyone's problem:
 
-- Given a scanned PDF gamebook, produce a structured JSON artifact with clean text, correct section boundaries, working cross-references, and extracted game mechanics (choices, combat, inventory).
-- Illustrations extracted and linked to their sections.
-- A human spot-checking the output should find zero errors in any random 10-section sample.
-- Processing a 400-page book should complete in under 30 minutes at reasonable cost (< $5).
+- Given a scanned PDF or page-image directory from a real document, produce a provenance-rich, Dossier-ready structural artifact with faithful text, preserved reading order, and no missing pages.
+- Tables, repeated structures, and illustrations are preserved or explicitly flagged for targeted repair instead of being silently flattened away.
+- A human spot-checking any random 10 blocks, sections, or pages should find zero transcription or source-mapping errors.
+- Processing a 400-page scanned document should complete in under 30 minutes at reasonable cost (< $5).

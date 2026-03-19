@@ -271,9 +271,10 @@ The committed reviewed slice for this baseline now lives under
   chapter-local continuity assembly that calls the shared helper instead of
   privately owning that normalization logic.
 - `configs/recipes/onward-genealogy-build-regression.yaml` is the smaller
-  permanent build/validate regression bundle for this seam; the old Story 146
-  proof recipe is historical evidence only, not a maintained second operating
-  path.
+  artifact-reuse build/validate regression bundle for this seam; it remains the
+  maintained reuse lane when the Story 140 / 143 artifacts are present under
+  the shared `output/` root. The old Story 146 proof recipe is historical
+  evidence only, not a maintained second operating path.
 
 **Candidate deletion / merge targets:**
 - Collapse planner-guided rerun targeting and late build-stage repair into

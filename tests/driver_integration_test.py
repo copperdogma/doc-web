@@ -208,7 +208,25 @@ class DriverIntegrationTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as tmp:
             tmp_path = Path(tmp)
             repo_root = Path(__file__).resolve().parents[1]
-            source_artifact = repo_root / "testdata" / "smoke" / "ff" / "pages_clean.jsonl"
+            source_artifact = tmp_path / "pages_clean.jsonl"
+            source_artifact.write_text(
+                json.dumps(
+                    {
+                        "schema_version": "clean_page_v1",
+                        "module_id": "fixture",
+                        "run_id": "fixture",
+                        "created_at": "2026-03-19T00:00:00Z",
+                        "page": 1,
+                        "page_number": 1,
+                        "original_page_number": 1,
+                        "image": None,
+                        "spread_side": None,
+                        "text": "Sample cleaned page.",
+                    }
+                )
+                + "\n",
+                encoding="utf-8",
+            )
 
             run_id = f"load-artifact-smoke-{int(time.time() * 1000)}"
             recipe_path = tmp_path / "recipe_loader_root.yaml"

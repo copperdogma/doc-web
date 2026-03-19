@@ -9,7 +9,7 @@ ocr:
   lang: eng
 paths:
   tesseract_cmd: null   # override if tesseract binary not on PATH
-  pdf: ../06 deathtrap dungeon.pdf
+  pdf: ../input/document.pdf
   images: ../images      # optional; if present, skip rendering
   out_dir: output
 range:

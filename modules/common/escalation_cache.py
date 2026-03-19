@@ -281,11 +281,11 @@ class EscalationCache:
             image_data = base64.b64encode(f.read()).decode('utf-8')
         
         # Vision prompt (boundaries + text only, NO feature extraction)
-        prompt = """You are reading a page from a Fighting Fantasy gamebook.
+        prompt = """You are reading a scanned book page that may contain numbered sections.
 
 Find ALL section headers on this page. Section headers are:
-- Large bold numbers (1-400) on their own line
-- Mark the start of a new game section
+- Large bold numbers on their own line
+- Mark the start of a new numbered section
 
 For each section you find:
 1. Section number (the bold number)
@@ -306,7 +306,7 @@ IMPORTANT:
 - Extract ALL sections on the page, not just specific ones
 - Include the COMPLETE text for each section
 - Do NOT interpret or summarize - preserve exact text
-- Do NOT extract choices, stats, or other features - just the raw text
+- Do NOT extract downstream features - just the raw text
 - Return ONLY the JSON, no markdown formatting or explanation"""
 
         # Make API call

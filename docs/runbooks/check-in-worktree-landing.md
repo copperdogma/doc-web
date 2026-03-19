@@ -48,7 +48,7 @@ This is the operational companion to `/check-in-diff`. It is optimized for one t
 5. **[script] Validate by changed scope**
    - Python code: `make test` and `make lint`
    - Agent tooling: `make skills-check`
-   - Pipeline behavior: `make smoke` or the narrowest real `driver.py` path, then inspect produced artifacts
+   - Pipeline behavior: the narrowest real recipe-specific `driver.py` path, then inspect produced artifacts
 
 6. **[script] Land onto `main`**
    - If the validated branch is `main`, push updated `main`

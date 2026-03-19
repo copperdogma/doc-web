@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "generated": "2026-03-15",
+  "generated": "2026-03-19",
   "description": "Format coverage matrix tracking which input formats doc-forge can convert, how well, and what test fixtures exist. Agents query this to find untested formats and prioritize work.",
   "statuses": {
     "untested": "Format identified but no test fixtures or pipeline support",
@@ -44,29 +44,14 @@
     {
       "id": "scanned-pdf-prose",
       "format_family": "scanned-pdf",
-      "status": "passing",
+      "status": "untested",
       "description": "Scanned PDF with primarily prose content",
-      "pipeline_recipe": "legacy/recipe-ff-ai-ocr-gpt51.yaml",
-      "intake_module": "extract_pdf_images_fast_v1 → ocr_ai_gpt51_v1",
+      "pipeline_recipe": null,
+      "intake_module": null,
       "complexity": ["simple-prose"],
-      "fixtures": [
-        {
-          "id": "ff-deathtrap-dungeon",
-          "source": "input/06 deathtrap dungeon.pdf",
-          "pages": 400,
-          "notes": "Fighting Fantasy gamebook. Primary test document for scanned PDF pipeline."
-        }
-      ],
-      "scores": {
-        "text_fidelity": 0.97,
-        "structure_preservation": 0.95,
-        "illustration_extraction": 0.9,
-        "provenance_completeness": 1.0,
-        "measured": "2026-03-11",
-        "provenance_measured": "2026-03-11",
-        "notes": "Text fidelity signal still comes from Story 127 OCR eval, but the composite format status was refreshed after the 2026-03-11 crop eval (0.900) and Story 132 provenance verification (1.0 completeness)."
-      },
-      "known_gaps": ["Illustration extraction still sits below the 0.95 graduation target and still depends on validator + trim heuristics."],
+      "fixtures": [],
+      "scores": null,
+      "known_gaps": ["No maintained scanned-PDF prose fixture remains after the legacy FF cleanup; current checked-in coverage is image-directory and table-heavy document families."],
       "graduated": false
     },
     {

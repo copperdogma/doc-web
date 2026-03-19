@@ -22,7 +22,7 @@ Current local evidence:
   - a chapter manifest containing page ranges and source-page lists
 - Dossier's actual product need is stronger than "return HTML." It must preserve provenance back to the original uploaded artifact so downstream systems such as Storybook can cite a fact and open the original source at the relevant page, paragraph, or region.
 - The current HTML manifest is helpful but still coarse. It tracks chapter/page-level provenance fields such as `source_pages`, `source_printed_pages`, and source portion metadata, but it does not yet define a block-level citation contract. Also, no dedicated schema class for `chapter_html_manifest_v1` is currently defined in `schemas.py`.
-- `docs/pipeline/ff-specificity-audit.md` shows that this repo still contains substantial Fighting Fantasy and gamebook-specific logic that Dossier should not inherit as part of a generic intake runtime.
+- `docs/notes/repo-mission-alignment-cleanup-inventory.md` inventories the legacy FF/gamebook surfaces that were removed or explicitly left behind so they do not leak into a generic intake runtime.
 
 That leaves three realistic directions:
 
@@ -122,7 +122,7 @@ Cons:
 - `modules/build/build_chapter_html_v1` already emits `index.html`, chapter/page HTML files, basic navigation, and a manifest. That is evidence that the current runtime output is already website-shaped in a structural sense.
 - `schemas.py` already preserves provenance-rich `UnstructuredElement` and `_codex` metadata, but the final HTML bundle contract is not yet formalized at block-level granularity.
 - `configs/recipes/recipe-onward-images-html-mvp.yaml` shows the currently working narrow path from images to semantic HTML for the Onward book.
-- `docs/pipeline/ff-specificity-audit.md` inventories where gamebook/FF logic lives and is the current best internal source for deciding what should not move into a generic runtime.
+- `docs/notes/repo-mission-alignment-cleanup-inventory.md` is the current inventory of removed and leave-behind FF/gamebook surfaces that should not move into a generic runtime.
 - ADR-001 is relevant as background for provenance-preserving, source-aware extraction strategy but does not settle runtime ownership or the Dossier handoff contract.
 
 ## Dependencies

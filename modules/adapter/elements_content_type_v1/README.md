@@ -7,7 +7,7 @@ Text-first DocLayNet-style content type tagging for `element_core_v1` (`elements
 Reads `elements_core.jsonl` and emits an enriched `element_core_v1` JSONL with:
 - `content_type` (DocLayNet label)
 - `content_type_confidence` (0-1)
-- `content_subtype` (optional small dict; currently used for numeric section header `number`, `form_field`, FF `combat_stats`, and `key_value` pairs)
+- `content_subtype` (optional small dict; currently used for numeric section headers, form-field patterns, combat-stat lines, and `key_value` pairs)
 
 It also optionally emits a per-page debug JSONL with label counts and a few low-confidence examples.
 
@@ -23,14 +23,14 @@ Notes:
 - When high-precision patterns match, `content_subtype.key_value` is attached as a small dict like:
   - `{"pairs":[{"key":"SKILL","value":11},{"key":"STAMINA","value":11}],"entity":"MANTICORE"}`
 
-## Driver usage (canonical FF recipe)
+## Driver usage
 
-The canonical FF recipe inserts this stage after `pagelines_to_elements_v1` and rewires downstream stages to use `elements_core_typed.jsonl`.
+Insert this stage after `pagelines_to_elements_v1` in any recipe that wants richer text-first layout typing.
 
 ## CLI usage
 
 Example (direct):
-- `python -m modules.adapter.elements_content_type_v1.main --inputs testdata/ff-20-pages/elements_core.jsonl --out /tmp/elements_core_typed.jsonl --debug_out /tmp/elements_content_type_debug.jsonl`
+- `python -m modules.adapter.elements_content_type_v1.main --inputs /path/to/elements_core.jsonl --out /tmp/elements_core_typed.jsonl --debug_out /tmp/elements_content_type_debug.jsonl`
 
 Key flags:
 - `--out` (required): output JSONL path

@@ -28,7 +28,7 @@ Current local repo evidence:
   - a chapter manifest with source page and source portion metadata
 - The current output is therefore already website-shaped in a structural sense, not just a bag of HTML fragments.
 - Provenance is present but still coarse. The current manifest tracks chapter/page-level provenance such as `source_pages`, `source_printed_pages`, and portion metadata, but it does not yet define a block-level citation contract suitable for exact fact citations.
-- `docs/pipeline/ff-specificity-audit.md` shows that codex-forge contains substantial Fighting Fantasy and gamebook-specific logic that should not automatically move into a generic runtime.
+- `docs/notes/repo-mission-alignment-cleanup-inventory.md` summarizes the FF/gamebook surfaces that were removed or intentionally left behind so they do not automatically move into a generic runtime.
 
 The architectural question is which ownership and contract model is best:
 

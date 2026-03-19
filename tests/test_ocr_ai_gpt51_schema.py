@@ -1,3 +1,4 @@
+import json
 from html.parser import HTMLParser
 from pathlib import Path
 
@@ -45,12 +46,18 @@ class HtmlSchemaValidator(HTMLParser):
             self.errors.append(f"{tag} has unexpected attrs: {list(attrs_dict.keys())}")
 
 
-def test_gold_html_conforms_to_schema():
-    base = Path("testdata/ocr-gold/ai-ocr-simplification")
-    files = sorted(base.glob("*.html"))
-    assert files, "no gold HTML fixtures found"
+def test_fixture_html_conforms_to_schema():
+    fixture_path = Path("testdata/html-blocks-fixtures/pages_html.jsonl")
+    assert fixture_path.exists(), f"missing fixture: {fixture_path}"
 
-    for path in files:
+    rows = [
+        json.loads(line)
+        for line in fixture_path.read_text(encoding="utf-8").splitlines()
+        if line.strip()
+    ]
+    assert rows, "no HTML fixture rows found"
+
+    for row in rows:
         parser = HtmlSchemaValidator()
-        parser.feed(path.read_text(encoding="utf-8"))
-        assert not parser.errors, f"{path}: {parser.errors}"
+        parser.feed(row["html"])
+        assert not parser.errors, f"page {row.get('page')}: {parser.errors}"

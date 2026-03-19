@@ -1,6 +1,9 @@
-# Permanent build/validate regression bundle for the reviewed Onward genealogy seam.
-# Reuses the accepted Story 143 page artifact set so we can verify chapter build
-# and consistency validation without re-running OCR or the old story-scoped proof loop.
+# Artifact-reuse build/validate regression bundle for the reviewed Onward
+# genealogy seam. Reuses the accepted Story 140 / 143 artifact set so we can
+# verify chapter build and consistency validation without re-running OCR or the
+# old story-scoped proof loop. This recipe is not self-contained in a fresh
+# worktree; the referenced `output/runs/...` artifacts must exist in the shared
+# project output root.
 
 stages:
   - id: load_pages

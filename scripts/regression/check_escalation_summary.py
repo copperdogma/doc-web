@@ -2,7 +2,7 @@
 """
 Check escalation coverage for an OCR run.
 
-Given a run directory (e.g. /private/tmp/ff-full-070-center-bias-test or output/runs/ff-canonical-...),
+Given a run directory (e.g. /private/tmp/sample-run or output/runs/example-run),
 this script will:
 
 - Locate the extract_ocr_ensemble_v1 ocr_ensemble outputs
@@ -67,7 +67,7 @@ def main() -> None:
     parser.add_argument(
         "--run-dir",
         required=True,
-        help="Path to the run directory (e.g. output/runs/ff-canonical-... or /tmp/...)",
+        help="Path to the run directory (e.g. output/runs/example-run or /tmp/...)",
     )
     args = parser.parse_args()
 
@@ -139,6 +139,5 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
-
 
 

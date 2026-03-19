@@ -27,9 +27,10 @@ def test_create_run(cleanup_runs):
     assert os.path.exists(expected_path)
     
     with open(expected_path, "r") as f:
-        content = f.read()
-        assert "recipe: configs/recipes/recipe-ff.yaml" in content
-        assert f"run_id: {run_name}" in content
+        config_data = yaml.safe_load(f)
+    assert config_data["recipe"] == "configs/recipes/recipe-images-ocr-html-mvp.yaml"
+    assert config_data["run_id"] == run_name
+    assert "input_pdf" not in config_data
 
 def test_execute_run_dry_run(cleanup_runs, tmp_path):
     run_name = f"exec-test-{uuid.uuid4().hex[:8]}"
