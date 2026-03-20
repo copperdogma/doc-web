@@ -13,7 +13,63 @@ AI-first runtime for turning scanned books, PDFs, and images into structural, pr
 - **[Agent Guide](AGENTS.md)**: Guidelines for AI agents and developers contributing to the codebase.
 - **[doc-web Bundle Contract](docs/doc-web-bundle-contract.md)**: Frozen v1 structural website bundle and provenance contract for the `doc-web` runtime boundary.
 - **[Dossier Handoff](docs/dossier-doc-web-handoff.md)**: The downstream-facing contract, fixture pack, and versioning expectations Dossier should implement against.
+- **[Dossier Readiness Gap Analysis](docs/notes/doc-web-dossier-readiness-gap-analysis.md)**: Current blocker inventory and the split between repo-side and Dossier-side work.
 - **[Benchmarks](benchmarks/README.md)**: Systematic model evaluation using `promptfoo`.
+
+## Pinned Consumer Surface
+
+`doc-web` now exposes the minimal pinned-runtime surface Dossier should depend on:
+
+```bash
+python -m pip install .
+doc-web contract --json
+```
+
+The contract preflight returns:
+
+- package/runtime version
+- required Python version
+- supported bundle schema versions
+- a schema fingerprint Dossier can use to block incompatible upgrades
+
+The recommended downstream operating model mirrors Storybook's pinned-Dossier
+pattern:
+
+- Dossier owns a repo-local pin manifest such as `doc-web-runtime.json`
+- the pinned install root lives under `.runtime/doc-web-pinned/`
+- Dossier defaults to the pinned install and only allows a local override
+  explicitly for co-development
+- every pin bump reruns the committed `doc-web` contract smoke lane before merge
+
+## For Dossier Consumers
+
+If you want to adopt `doc-web` as a component, use this README as the entry
+point, then follow the two downstream-facing docs it points to:
+
+- Start here in `README.md` for the install shape, pinned-runtime model, and
+  runtime preflight command
+- Read [Dossier Handoff](docs/dossier-doc-web-handoff.md) for the exact bundle
+  contract, pinning expectations, and Dossier-side adapter responsibilities
+- Use [Runbook & Operations Guide](docs/RUNBOOK.md) for the concrete smoke and
+  validation commands that prove a pinned `doc-web` version is still compatible
+
+Recommended first-pass adoption loop:
+
+```bash
+python -m pip install .
+doc-web contract --json
+python driver.py \
+  --recipe configs/recipes/doc-web-fixture-bundle-smoke.yaml \
+  --run-id <run_id> \
+  --allow-run-id-reuse \
+  --force
+python validate_artifact.py \
+  --schema doc_web_bundle_manifest_v1 \
+  --file output/runs/<run_id>/output/html/manifest.json
+python validate_artifact.py \
+  --schema doc_web_provenance_block_v1 \
+  --file output/runs/<run_id>/output/html/provenance/blocks.jsonl
+```
 
 ## Pipeline Architecture
 
@@ -65,6 +121,11 @@ If using the deprecated legacy pipeline with local OCR:
 ```bash
 make test
 make lint
+```
+
+### Runtime Preflight
+```bash
+doc-web contract --json
 ```
 
 ### Pipeline Verification

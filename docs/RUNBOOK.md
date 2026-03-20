@@ -15,6 +15,17 @@
 There is no single default recipe for the active mission. Choose the narrowest
 recipe that matches the document family you are validating.
 
+### Runtime Preflight
+
+Use this before downstream pin bumps or consumer integration work:
+
+```bash
+doc-web contract --json
+```
+
+This is the machine-readable compatibility surface Dossier should check before
+accepting a new pinned `doc-web` version.
+
 ### Structural Website / `doc-web` Runs
 Use these when validating the active structural HTML bundle path.
 
@@ -32,6 +43,7 @@ Active recipe examples:
 - `configs/recipes/recipe-images-ocr-html-mvp.yaml`
 - `configs/recipes/recipe-onward-images-html-mvp.yaml`
 - `configs/recipes/onward-genealogy-build-regression.yaml` (artifact-reuse path; requires the referenced Story 140 / 143 artifacts under `output/`)
+- `configs/recipes/doc-web-fixture-bundle-smoke.yaml` (repo-owned contract smoke lane; emits `manifest.json`, `provenance/blocks.jsonl`, one chapter HTML file, one fallback page HTML file, and bundle-local image assets)
 
 ### Smoke Test (Verification)
 Use the same recipe you are actually touching, but narrow the run to the
@@ -47,6 +59,33 @@ scripts/run_driver_monitored.sh \
 
 - There is no generic `make smoke` target for the active intake / `doc-web`
   path.
+
+### Repo-Owned `doc-web` Contract Smoke
+
+Use this lane when you need a cheap real-run proof that the active repo still
+emits the Dossier-facing bundle contract:
+
+```bash
+python driver.py \
+  --recipe configs/recipes/doc-web-fixture-bundle-smoke.yaml \
+  --run-id <run_id> \
+  --allow-run-id-reuse \
+  --force
+python validate_artifact.py \
+  --schema doc_web_bundle_manifest_v1 \
+  --file output/runs/<run_id>/output/html/manifest.json
+python validate_artifact.py \
+  --schema doc_web_provenance_block_v1 \
+  --file output/runs/<run_id>/output/html/provenance/blocks.jsonl
+```
+
+Expected bundle outputs:
+
+- `output/runs/<run_id>/output/html/index.html`
+- `output/runs/<run_id>/output/html/chapter-001.html`
+- `output/runs/<run_id>/output/html/page-001.html`
+- `output/runs/<run_id>/output/html/manifest.json`
+- `output/runs/<run_id>/output/html/provenance/blocks.jsonl`
 
 ---
 

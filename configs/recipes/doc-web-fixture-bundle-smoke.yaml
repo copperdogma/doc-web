@@ -1,0 +1,38 @@
+stages:
+  - id: load_pages
+    stage: extract
+    module: load_artifact_v1
+    out: pages_html_fixture.jsonl
+    params:
+      path: tests/fixtures/doc_web_bundle_smoke/pages_html_fixture.jsonl
+
+  - id: load_portions
+    stage: extract
+    module: load_artifact_v1
+    needs: [load_pages]
+    out: portions_fixture.jsonl
+    params:
+      path: tests/fixtures/doc_web_bundle_smoke/portions_fixture.jsonl
+
+  - id: load_illustrations
+    stage: extract
+    module: load_artifact_v1
+    needs: [load_pages]
+    out: illustration_manifest_fixture.jsonl
+    params:
+      path: tests/fixtures/doc_web_bundle_smoke/illustration_manifest_fixture.jsonl
+      copy_sibling_dir: images
+
+  - id: build_html
+    stage: build
+    module: build_chapter_html_v1
+    needs: [load_pages, load_portions, load_illustrations]
+    inputs:
+      pages: load_pages
+      portions: load_portions
+      illustration_manifest: load_illustrations
+    out: chapters_manifest_fixture.jsonl
+    params:
+      images_subdir: images
+      book_title: Fixture Book
+      book_author: Fixture Author

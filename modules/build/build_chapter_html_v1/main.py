@@ -21,7 +21,7 @@ from bs4 import BeautifulSoup
 from modules.common.onward_genealogy_html import (
     merge_contiguous_genealogy_tables as _merge_contiguous_genealogy_tables,
 )
-from modules.common.utils import read_jsonl, save_jsonl, ensure_dir, ProgressLogger
+from modules.common.utils import read_jsonl, save_jsonl, save_json, ensure_dir, ProgressLogger
 
 
 def _utc() -> str:
@@ -34,6 +34,32 @@ def _resolve_run_dir(out_path: Path) -> Path:
         if (parent / "pipeline_state.json").exists():
             return parent
     return cur
+
+
+def _coerce_int(value: Any) -> Optional[int]:
+    if isinstance(value, bool):
+        return None
+    if isinstance(value, int):
+        return value
+    if isinstance(value, str):
+        cleaned = value.strip()
+        if cleaned.isdigit():
+            return int(cleaned)
+    return None
+
+
+def _slugify(value: str) -> str:
+    normalized = re.sub(r"[^a-z0-9]+", "-", (value or "").casefold()).strip("-")
+    return normalized or "document"
+
+
+def _display_path(path: str, run_dir: Path) -> str:
+    raw = Path(path).resolve(strict=False)
+    base = run_dir.resolve(strict=False)
+    try:
+        return str(raw.relative_to(base))
+    except ValueError:
+        return str(path)
 
 
 # ---------------------------------------------------------------------------
@@ -254,15 +280,196 @@ def _add_table_scope(html: str) -> str:
     return soup.decode_contents()
 
 
+_PROVENANCE_TEXT_KINDS = {"heading", "paragraph", "list_item", "caption", "page_marker", "other"}
+
+
+def _block_kind_for_tag(tag_name: str) -> str:
+    lowered = (tag_name or "").lower()
+    if lowered in {"h1", "h2", "h3", "h4", "h5", "h6"}:
+        return "heading"
+    if lowered == "p":
+        return "paragraph"
+    if lowered == "li":
+        return "list_item"
+    if lowered == "table":
+        return "table"
+    if lowered == "figure":
+        return "figure"
+    if lowered in {"caption", "figcaption"}:
+        return "caption"
+    if lowered == "span":
+        return "page_marker"
+    return "other"
+
+
+def _iter_provenance_tags(node):
+    for child in getattr(node, "children", []):
+        name = getattr(child, "name", None)
+        if not name:
+            continue
+        lowered = name.lower()
+        if lowered in {"figure", "table", "p", "li", "caption", "figcaption", "blockquote", "pre"}:
+            yield child
+            continue
+        if lowered in {"h1", "h2", "h3", "h4", "h5", "h6"}:
+            yield child
+            continue
+        if lowered in {"article", "section", "div", "ul", "ol", "dl", "tbody", "thead", "tfoot", "tr"}:
+            yield from _iter_provenance_tags(child)
+            continue
+        if child.get_text(" ", strip=True):
+            yield child
+
+
+def _text_quote_for_tag(tag, block_kind: str) -> Optional[str]:
+    if block_kind not in _PROVENANCE_TEXT_KINDS:
+        return None
+    text = _normalize_ws(tag.get_text(" ", strip=True))
+    return text or None
+
+
+def _should_emit_provenance_tag(tag) -> bool:
+    kind = _block_kind_for_tag(tag.name)
+    if kind in _PROVENANCE_TEXT_KINDS:
+        return bool(_text_quote_for_tag(tag, kind))
+    return True
+
+
+def _build_source_descriptors(pages: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
+    descriptors: List[Dict[str, Any]] = []
+    for page in pages:
+        soup = BeautifulSoup(page.get("html") or "", "html.parser")
+        page_number = _coerce_int(page.get("page_number") or page.get("page"))
+        printed_page_number = _coerce_int(page.get("printed_page_number"))
+        printed_page_label = page.get("printed_page_number_text") or (
+            str(printed_page_number) if printed_page_number is not None else None
+        )
+        ordinal = 0
+        for tag in _iter_provenance_tags(soup):
+            if not _should_emit_provenance_tag(tag):
+                continue
+            ordinal += 1
+            block_kind = _block_kind_for_tag(tag.name)
+            descriptors.append(
+                {
+                    "block_kind": block_kind,
+                    "page_number": page_number or 1,
+                    "printed_page_number": printed_page_number,
+                    "printed_page_label": printed_page_label,
+                    "element_id": f"p{(page_number or 0):03d}-b{ordinal}",
+                    "text_quote": _text_quote_for_tag(tag, block_kind),
+                }
+            )
+    return descriptors
+
+
+def _match_source_descriptor(tag, source_descriptors: List[Dict[str, Any]], start_idx: int):
+    if start_idx >= len(source_descriptors):
+        return None, start_idx
+
+    final_kind = _block_kind_for_tag(tag.name)
+    final_text = _text_quote_for_tag(tag, final_kind) or ""
+
+    found_idx = start_idx
+    window_end = min(len(source_descriptors), start_idx + 8)
+    while found_idx < window_end and source_descriptors[found_idx]["block_kind"] != final_kind:
+        found_idx += 1
+    if found_idx >= len(source_descriptors):
+        return None, start_idx
+    if found_idx >= window_end:
+        found_idx = start_idx
+
+    matched = dict(source_descriptors[found_idx])
+    consumed_end = found_idx + 1
+    source_element_ids = [matched["element_id"]]
+
+    if final_kind in _PROVENANCE_TEXT_KINDS and final_text:
+        combined_text = matched.get("text_quote") or ""
+        while (
+            combined_text
+            and final_text != combined_text
+            and final_text.startswith(combined_text)
+            and consumed_end < len(source_descriptors)
+            and source_descriptors[consumed_end]["block_kind"] == final_kind
+        ):
+            next_descriptor = source_descriptors[consumed_end]
+            next_text = next_descriptor.get("text_quote") or ""
+            candidate_text = _normalize_ws(f"{combined_text} {next_text}")
+            if not candidate_text or not final_text.startswith(candidate_text):
+                break
+            combined_text = candidate_text
+            source_element_ids.append(next_descriptor["element_id"])
+            consumed_end += 1
+        matched["text_quote"] = final_text
+
+    matched["source_element_ids"] = source_element_ids
+    return matched, consumed_end
+
+
+def _tag_entry_body(entry: Dict[str, Any], *, run_id: Optional[str], created_at: str):
+    entry_id = Path(entry["filename"]).stem
+    soup = BeautifulSoup(entry["body_html"] or "", "html.parser")
+    source_descriptors = _build_source_descriptors(entry.get("prepared_pages") or [])
+    source_idx = 0
+    provenance_rows: List[Dict[str, Any]] = []
+
+    final_tags = [tag for tag in _iter_provenance_tags(soup) if _should_emit_provenance_tag(tag)]
+    fallback_source_page = (
+        entry.get("source_pages", [None])[0]
+        if entry.get("source_pages")
+        else _coerce_int(entry.get("page_number"))
+    )
+    fallback_printed_page = (
+        entry.get("source_printed_pages", [None])[0]
+        if entry.get("source_printed_pages")
+        else _coerce_int(entry.get("page_start"))
+    )
+    fallback_printed_label = str(fallback_printed_page) if fallback_printed_page is not None else None
+
+    for ordinal, tag in enumerate(final_tags, start=1):
+        block_id = f"blk-{entry_id}-{ordinal:04d}"
+        tag["id"] = block_id
+        matched, source_idx = _match_source_descriptor(tag, source_descriptors, source_idx)
+        block_kind = _block_kind_for_tag(tag.name)
+        text_quote = _text_quote_for_tag(tag, block_kind)
+        if matched is None:
+            matched = {
+                "page_number": fallback_source_page or 1,
+                "printed_page_number": fallback_printed_page,
+                "printed_page_label": fallback_printed_label,
+                "source_element_ids": [f"{entry_id}-b{ordinal:04d}"],
+            }
+
+        provenance_rows.append(
+            {
+                "schema_version": "doc_web_provenance_block_v1",
+                "module_id": "build_chapter_html_v1",
+                "run_id": run_id,
+                "created_at": created_at,
+                "block_id": block_id,
+                "entry_id": entry_id,
+                "block_kind": block_kind,
+                "source_page_number": matched["page_number"],
+                "source_element_ids": matched["source_element_ids"],
+                "source_printed_page_number": matched.get("printed_page_number"),
+                "source_printed_page_label": matched.get("printed_page_label"),
+                "text_quote": text_quote,
+            }
+        )
+
+    return soup.decode_contents(), provenance_rows
+
+
 # ---------------------------------------------------------------------------
 # Image attachment (T3, T4, T5)
 # ---------------------------------------------------------------------------
 
 def _page_sort_key(row: Dict[str, Any]) -> tuple:
-    pn = row.get("printed_page_number")
-    if pn is None:
-        pn = row.get("page_number") or row.get("page") or 0
-    return (int(pn), int(row.get("page_number") or row.get("page") or 0))
+    page_num = _coerce_int(row.get("page_number") or row.get("page")) or 0
+    printed_num = _coerce_int(row.get("printed_page_number"))
+    if printed_num is None:
+        printed_num = page_num
+    return (printed_num, page_num)
 
 
 def _normalize_ws(text: str) -> str:
@@ -471,6 +678,7 @@ def _build_segment(
         "source_portion_page_start": portion_page_start,
         "source_portion_titles": [portion_title],
         "source_portion_page_starts": [portion_page_start],
+        "prepared_pages": [dict(page) for page in pages],
         "carry_back": carry_back,
     }
 
@@ -639,6 +847,7 @@ def _merge_carry_back_segment(entry: Dict[str, Any], segment: Dict[str, Any]) ->
     entry["body_html"] = _stitch_page_breaks([entry.get("body_html") or "", segment.get("body_html") or ""])
     if segment.get("page_end") is not None:
         entry["page_end"] = segment["page_end"]
+    entry["prepared_pages"] = list(entry.get("prepared_pages") or []) + list(segment.get("prepared_pages") or [])
     entry["source_pages"] = _extend_unique(entry.get("source_pages"), segment.get("source_pages"))
     entry["source_printed_pages"] = _extend_unique(
         entry.get("source_printed_pages"),
@@ -1078,6 +1287,7 @@ def main() -> None:
     html_dir = Path(args.output_dir) if args.output_dir else (run_dir / "output" / "html")
     ensure_dir(str(html_dir))
     images_dir = html_dir / args.images_subdir
+    emitted_asset_roots: List[str] = []
 
     # Load illustration manifest and copy image files
     crops_by_page: Dict[int, List[Dict[str, Any]]] = {}
@@ -1098,10 +1308,14 @@ def main() -> None:
                 # Resume runs must refresh published crops so stale output/html images
                 # do not survive after an upstream crop fix.
                 dst_path.write_bytes(src_path.read_bytes())
+        if any(images_dir.iterdir()):
+            emitted_asset_roots = [args.images_subdir.rstrip("/")]
 
     pages_sorted = sorted(pages, key=_page_sort_key)
-    pages_scan = sorted(pages, key=lambda r: int(r.get("page_number") or r.get("page") or 0))
+    pages_scan = sorted(pages, key=lambda r: _coerce_int(r.get("page_number") or r.get("page")) or 0)
     manifest_rows = []
+    bundle_entries = []
+    provenance_rows = []
     toc_entries = []
     covered_pages = set()
     chapters_by_start = {}
@@ -1112,8 +1326,8 @@ def main() -> None:
 
     chapter_counter = 0
     for portion_idx, portion in enumerate(portions):
-        page_start = portion.get("page_start")
-        page_end = portion.get("page_end") or page_start
+        page_start = _coerce_int(portion.get("page_start"))
+        page_end = _coerce_int(portion.get("page_end")) or page_start
         title = portion.get("title") or portion.get("portion_id") or f"Chapter {portion_idx + 1}"
         if not isinstance(page_start, int):
             continue
@@ -1122,16 +1336,19 @@ def main() -> None:
 
         chapter_pages = [
             p for p in pages_sorted
-            if isinstance(p.get("printed_page_number"), int)
-            and page_start <= p["printed_page_number"] <= page_end
+            if isinstance(_coerce_int(p.get("printed_page_number")), int)
+            and page_start <= _coerce_int(p.get("printed_page_number")) <= page_end
         ]
         for p in chapter_pages:
-            covered_pages.add(p.get("printed_page_number"))
+            printed_number = _coerce_int(p.get("printed_page_number"))
+            if printed_number is not None:
+                covered_pages.add(printed_number)
 
         prepared_pages = []
         for page in chapter_pages:
             html = page.get("html") or page.get("raw_html") or ""
-            page_num = page.get("page_number") or page.get("page")
+            page_num = _coerce_int(page.get("page_number") or page.get("page"))
+            printed_page_number = _coerce_int(page.get("printed_page_number"))
             crops = crops_by_page.get(page_num, []) if isinstance(page_num, int) else []
             if crops:
                 html = _attach_images(html, crops, args.images_subdir.rstrip("/"))
@@ -1141,7 +1358,10 @@ def main() -> None:
             prepared_pages.append({
                 "html": html,
                 "page_number": page_num,
-                "printed_page_number": page.get("printed_page_number"),
+                "printed_page_number": printed_page_number,
+                "printed_page_number_text": page.get("printed_page_number_text") or (
+                    str(printed_page_number) if printed_page_number is not None else None
+                ),
                 "owner_heading": _first_strong_owner_heading(html),
             })
 
@@ -1192,6 +1412,7 @@ def main() -> None:
                 "filename": filename,
                 "title": segment["title"],
                 "body_html": body_html,
+                "prepared_pages": segment.get("prepared_pages") or [],
                 "page_start": segment["page_start"],
                 "page_end": segment["page_end"],
                 "kind": "chapter",
@@ -1209,9 +1430,9 @@ def main() -> None:
     fallback_page_files: List[Dict[str, Any]] = []
     fallback_count = 0
     for page in pages_sorted:
-        printed_num = page.get("printed_page_number")
+        printed_num = _coerce_int(page.get("printed_page_number"))
         printed_text = page.get("printed_page_number_text")
-        page_num = page.get("page_number") or page.get("page")
+        page_num = _coerce_int(page.get("page_number") or page.get("page"))
         if isinstance(printed_num, int) and printed_num in covered_pages:
             continue
         fallback_count += 1
@@ -1246,14 +1467,35 @@ def main() -> None:
             "filename": filename,
             "title": title,
             "body_html": body_html,
+            "prepared_pages": [
+                {
+                    "html": body_html,
+                    "page_number": page_num,
+                    "printed_page_number": printed_num,
+                    "printed_page_number_text": printed_text or (
+                        str(printed_num) if printed_num is not None else None
+                    ),
+                }
+            ],
             "page_start": printed_num if isinstance(printed_num, int) else None,
             "page_end": printed_num if isinstance(printed_num, int) else None,
             "kind": "page",
             "chapter_index": None,
+            "page_number": page_num,
+            "source_pages": [page_num] if isinstance(page_num, int) else [],
+            "source_printed_pages": [printed_num] if isinstance(printed_num, int) else [],
         })
 
-    # Front matter pages come before chapters in navigation order
-    chapter_files = fallback_page_files + chapter_files
+    chapter_files = sorted(
+        fallback_page_files + chapter_files,
+        key=lambda entry: (
+            _coerce_int(entry.get("page_start"))
+            if _coerce_int(entry.get("page_start")) is not None
+            else (_coerce_int((entry.get("source_pages") or [None])[0]) or 0),
+            0 if entry.get("kind") == "page" else 1,
+        ),
+    )
+    bundle_created_at = _utc()
 
     # ── Write all files with navigation ─────────────────────────────────
     for i, entry in enumerate(chapter_files):
@@ -1269,16 +1511,19 @@ def main() -> None:
         if args.merge_contiguous_genealogy_tables:
             body_html = _merge_contiguous_genealogy_tables(body_html)
             entry["body_html"] = body_html
+        body_html, entry_provenance_rows = _tag_entry_body(entry, run_id=args.run_id, created_at=bundle_created_at)
+        entry["body_html"] = body_html
 
         full_html = _html5_wrap(body_html, page_title, nav_top, nav_bottom)
         file_path = html_dir / entry["filename"]
         file_path.write_text(full_html, encoding="utf-8")
+        provenance_rows.extend(entry_provenance_rows)
 
         manifest_rows.append({
             "schema_version": "chapter_html_manifest_v1",
             "module_id": "build_chapter_html_v1",
             "run_id": args.run_id,
-            "created_at": _utc(),
+            "created_at": bundle_created_at,
             "chapter_index": entry["chapter_index"],
             "title": entry["title"],
             "page_start": entry["page_start"],
@@ -1292,6 +1537,21 @@ def main() -> None:
             "source_portion_titles": entry.get("source_portion_titles"),
             "source_portion_page_starts": entry.get("source_portion_page_starts"),
         })
+        bundle_entries.append(
+            {
+                "entry_id": Path(entry["filename"]).stem,
+                "kind": entry["kind"],
+                "title": entry["title"],
+                "path": entry["filename"],
+                "order": i + 1,
+                "prev_entry_id": Path(prev_file).stem if prev_file else None,
+                "next_entry_id": Path(next_file).stem if next_file else None,
+                "source_pages": entry.get("source_pages") or [],
+                "printed_pages": entry.get("source_printed_pages") or [],
+                "printed_page_start": entry.get("page_start"),
+                "printed_page_end": entry.get("page_end"),
+            }
+        )
 
     # ── Build index page ────────────────────────────────────────────────
     index_entries = []
@@ -1303,8 +1563,8 @@ def main() -> None:
             fallback_by_page[key] = entry
 
     for page in pages_scan:
-        printed_num = page.get("printed_page_number")
-        page_num = page.get("page_number") or page.get("page")
+        printed_num = _coerce_int(page.get("printed_page_number"))
+        page_num = _coerce_int(page.get("page_number") or page.get("page"))
         if isinstance(printed_num, int) and printed_num in chapters_by_start and printed_num not in emitted_chapters:
             entry = chapters_by_start[printed_num]
             label = entry["title"]
@@ -1334,6 +1594,27 @@ def main() -> None:
     index_html = _html5_wrap(index_body, book_title or "Index")
     index_path = html_dir / "index.html"
     index_path.write_text(index_html, encoding="utf-8")
+
+    provenance_path = html_dir / "provenance" / "blocks.jsonl"
+    save_jsonl(str(provenance_path), provenance_rows)
+    save_json(
+        str(html_dir / "manifest.json"),
+        {
+            "schema_version": "doc_web_bundle_manifest_v1",
+            "module_id": "build_chapter_html_v1",
+            "run_id": args.run_id,
+            "created_at": bundle_created_at,
+            "document_id": _slugify(book_title),
+            "title": book_title,
+            "creator": book_author or None,
+            "source_artifact": _display_path(args.pages, run_dir),
+            "index_path": "index.html",
+            "entries": bundle_entries,
+            "reading_order": [entry["entry_id"] for entry in bundle_entries],
+            "asset_roots": emitted_asset_roots,
+            "provenance_path": "provenance/blocks.jsonl",
+        },
+    )
 
     save_jsonl(args.out, manifest_rows)
     logger = ProgressLogger(state_path=args.state_file, progress_path=args.progress_file, run_id=args.run_id)

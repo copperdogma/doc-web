@@ -10,10 +10,10 @@ test:
 	$(PYTHON) -m pytest tests/
 
 lint:
-	$(PYTHON) -m ruff check modules/ tests/
+	$(PYTHON) -m ruff check doc_web/ modules/ tests/
 
 format:
-	$(PYTHON) -m ruff format modules/ tests/
+	$(PYTHON) -m ruff format doc_web/ modules/ tests/
 
 # ── Smoke Tests ───────────────────────────────────────────────────────
 smoke:
@@ -31,4 +31,4 @@ skills-check:
 # ── Code Health ───────────────────────────────────────────────────────
 check-size:
 	@echo "Python source files over 400 lines:"
-	@find modules -name "*.py" -exec wc -l {} \; | sort -rn | awk '$$1 > 400 {print "  LARGE: " $$1 " lines — " $$2}'
+	@find doc_web modules -name "*.py" -exec wc -l {} \; | sort -rn | awk '$$1 > 400 {print "  LARGE: " $$1 " lines — " $$2}'

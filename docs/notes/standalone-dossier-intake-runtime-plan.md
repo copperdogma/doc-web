@@ -6,6 +6,21 @@
 This note records the current inventory for graduating codex-forge's mature
 document-to-website runtime into `doc-web`.
 
+## Current State After Story 156
+
+The first runtime boundary is now executable, not just documented:
+
+- repo packaging exists via `pyproject.toml`
+- `doc-web` exposes `doc-web contract --json`
+- the live `build_chapter_html_v1` path emits `manifest.json`,
+  `provenance/blocks.jsonl`, and HTML files with matching `blk-*` anchors
+- `configs/recipes/doc-web-fixture-bundle-smoke.yaml` provides a repo-owned
+  real-run contract smoke lane
+
+What remains is primarily downstream adoption work inside Dossier: pin
+management, install/check-upstream/bump scripts, and the `doc_web_bundle_v1`
+adapter.
+
 ## Accepted Boundary
 
 - `codex-forge` remains the ingestion R&D lab.
@@ -19,7 +34,8 @@ document-to-website runtime into `doc-web`.
 The first slice should prove the boundary with the smallest coherent seam:
 
 - generic bundle contract (`manifest.json`, `doc_web_bundle_manifest_v1`, `provenance/blocks.jsonl`)
-- generic HTML or website emitter split from `build_chapter_html_v1`
+- installable runtime preflight (`doc-web contract --json`)
+- live bundle emission from `build_chapter_html_v1`
 - minimal golden fixtures validating the bundle and provenance contract
 
 This is intentionally smaller than "move the whole pipeline."

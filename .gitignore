@@ -5,6 +5,8 @@ output/
 models/
 **/__pycache__/
 .venv/
+/build/
+/*.egg-info/
 .cursor/*
 !.cursor/skills
 !.cursor/rules/

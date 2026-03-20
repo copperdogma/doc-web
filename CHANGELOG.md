@@ -1,3 +1,22 @@
+## [2026-03-20-01] - Make doc-web consumable as a pinned Dossier component (Story 156)
+
+### Added
+- Added an installable `doc-web` package surface, runtime preflight CLI, and a repo-owned fixture-backed bundle smoke lane so Dossier can consume a narrow pinned component instead of a sibling checkout
+
+### Changed
+- Extended the live bundle builder to emit `manifest.json`, `provenance/blocks.jsonl`, stable `blk-*` anchors, and bundle reading order aligned with the published `doc-web` contract
+- Updated README, runbook, handoff, readiness, and migration docs so Dossier consumers can start from the README, then follow the explicit contract and smoke instructions
+
+### Fixed
+- Tightened the clean-venv install smoke and ignored generated packaging residue so routine package validation no longer overstates dependency resolution or leave accidental build outputs in the landing set
+
+### Tested
+- `make lint`
+- `make test`
+- `python driver.py --recipe configs/recipes/doc-web-fixture-bundle-smoke.yaml --run-id story156-docweb-fixture-bundle-r2 --allow-run-id-reuse --force`
+- `python validate_artifact.py --schema doc_web_bundle_manifest_v1 --file output/runs/story156-docweb-fixture-bundle-r2/output/html/manifest.json`
+- `python validate_artifact.py --schema doc_web_provenance_block_v1 --file output/runs/story156-docweb-fixture-bundle-r2/output/html/provenance/blocks.jsonl`
+
 ## [2026-03-19-08] - Remove remaining legacy gamebook runtime seams (Story 155)
 
 ### Changed

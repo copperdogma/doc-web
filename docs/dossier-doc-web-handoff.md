@@ -84,6 +84,55 @@ Upgrade must be blocked if any of the following occur:
 - Patch-version upgrades are acceptable only if this handoff pack stays green and
   no consumer-visible contract field changes.
 
+`doc-web` now exposes the machine-readable preflight Dossier should use before a
+pin bump proceeds:
+
+```bash
+doc-web contract --json
+```
+
+The payload includes:
+
+- `runtime_version`
+- `requires_python`
+- `supported_bundle_schema_versions`
+- `schema_fingerprint`
+
+Treat a changed `schema_fingerprint` or changed supported schema version as an
+upgrade block until the Dossier adapter explicitly accepts the change.
+
+## Recommended Pinned Consumer Shape
+
+Mirror Storybook's pinned-Dossier model in Dossier with a repo-owned manifest
+such as `doc-web-runtime.json`:
+
+```json
+{
+  "repoUrl": "<doc-web git url>",
+  "ref": "<exact tag or commit>",
+  "packageVersion": "0.1.0",
+  "pythonVersion": "3.11",
+  "requiresPython": ">=3.11",
+  "runtimeRoot": ".runtime/doc-web-pinned"
+}
+```
+
+Recommended downstream commands:
+
+- `doc-web:install`
+- `doc-web:check-upstream`
+- `doc-web:bump`
+
+Recommended policy:
+
+- pinned install is the default runtime source
+- local checkout use is allowed only behind an explicit override for
+  co-development
+- Docker/deploy builds rebuild from a pinned source snapshot, not a fresh git
+  clone at image-build time
+- every bump reruns both `doc-web contract --json` and this handoff pack
+  validation before merge
+
 ## First Compatibility-Test Pack
 
 The first Dossier contract-test pack is:

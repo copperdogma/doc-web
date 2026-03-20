@@ -1,0 +1,23 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "doc-web"
+dynamic = ["version"]
+description = "Pinned contract and bundle preflight surface for Dossier-facing doc-web bundles."
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+  "pydantic>=2.9,<3",
+]
+
+[project.scripts]
+doc-web = "doc_web.cli:main"
+
+[tool.setuptools]
+packages = ["doc_web"]
+py-modules = ["schemas"]
+
+[tool.setuptools.dynamic]
+version = { attr = "doc_web.__version__" }

@@ -1,5 +1,6 @@
 """Tests for build_chapter_html_v1 — HTML5 structure, image integration, navigation."""
 import json
+import re
 import shutil
 import subprocess
 import sys
@@ -7,6 +8,7 @@ import tempfile
 from pathlib import Path
 
 from bs4 import BeautifulSoup
+from schemas import DocWebBundleManifest, DocWebProvenanceBlock
 
 from modules.build.build_chapter_html_v1.main import (
     _attach_images,
@@ -1204,6 +1206,20 @@ class TestCLIIntegration:
         assert len(manifest) >= 1
         assert manifest[0]["kind"] == "chapter"
         assert manifest[0]["title"] == "Introduction"
+
+        bundle_manifest = DocWebBundleManifest.model_validate_json((html_dir / "manifest.json").read_text())
+        provenance_rows = [
+            DocWebProvenanceBlock.model_validate_json(line)
+            for line in (html_dir / "provenance" / "blocks.jsonl").read_text().strip().splitlines()
+        ]
+        assert bundle_manifest.entries[0].entry_id == "chapter-001"
+        assert bundle_manifest.reading_order == ["chapter-001"]
+        assert bundle_manifest.asset_roots == ["images"]
+        assert provenance_rows[0].block_id == "blk-chapter-001-0001"
+        assert provenance_rows[0].block_kind == "paragraph"
+        assert provenance_rows[-1].block_kind == "figure"
+        dom_ids = set(re.findall(r'id="([^"]+)"', chapter))
+        assert {row.block_id for row in provenance_rows} <= dom_ids
 
     def test_overwrites_stale_published_image_on_rerun(self):
         pages_path = self.tmpdir / "pages.jsonl"
