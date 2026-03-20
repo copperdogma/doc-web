@@ -1,7 +1,7 @@
 # Story 148 — ADR-021 Migration: Dual-Ideal, Category Spec, Phase Governance
 
 **Priority**: High
-**Status**: In Progress
+**Status**: Done
 **Ideal Refs**: All requirements (R1-R7), all Vision-Level Preferences — this restructures how the project tracks progress toward the Ideal
 **Spec Refs**: spec:1–spec:9 (all categories), all active compromises C1-C7, Non-Negotiable Design Principles, build-process compromises B1-B10
 **Decision Refs**: ADR-001 (consistency strategy — will gain spec:N.N cross-ref), Storybook ADR-021 migration guide (`/Users/cam/Documents/Projects/Storybook/storybook/docs/decisions/adr-021-execution-ideal-build-constraints/migration.md`), Story 145 (ADR-019 convergence — established current build-map structure)
@@ -15,19 +15,19 @@ This is a documentation reorganization — no code, no new evals, no new stories
 
 ## Acceptance Criteria
 
-- [ ] `docs/ideal.md` has a new `## The Execution Ideal` section after the product ideal, describing the zero-limitation build process
-- [ ] `docs/spec.md` is reorganized into ~8-9 category sections with `spec:N` tags, hierarchical `spec:N.N` subsection IDs, and constraint blocks per category
-- [ ] Every active compromise (C1-C7) appears in a constraint block with: limitation type, ideal, compromise, detection mechanism, and resolution path
-- [ ] 1-2 build-process categories exist in spec.md with execution compromise tables (eval framework, prompt engineering, story infrastructure, etc.)
-- [ ] `docs/build-map.md` is reorganized to match spec categories 1:1 — same names, same `spec:N` tags
-- [ ] Every build-map category has: product need, tech need, substrate status (`exists`/`partial`/`missing`/`unplanned`), phase (`climb`/`hold`/`converge`/`unplanned`)
-- [ ] Every old build-map system number (1-8) appears in exactly one category's `Absorbs` line for migration traceability
-- [ ] Story Spec Refs in existing story files are updated from bare `C1`, `C2` etc. to include `spec:N.N` IDs where applicable
-- [ ] Triage skills (`triage-stories`, `triage-evals`, `triage` orchestrator) are updated to consume substrate status and phase from build map
-- [ ] `/align` skill references the new structure
-- [ ] `AGENTS.md` methodology section mentions dual-ideal, unified spec with N categories, build map as central dashboard, and phase governance
-- [ ] No content is lost — every section from old spec and build map has a home in the new structure
-- [ ] All cross-references between spec, build map, stories, and ADR-001 use the new `spec:N.N` IDs
+- [x] `docs/ideal.md` has a new `## The Execution Ideal` section after the product ideal, describing the zero-limitation build process
+- [x] `docs/spec.md` is reorganized into ~8-9 category sections with `spec:N` tags, hierarchical `spec:N.N` subsection IDs, and constraint blocks per category
+- [x] Every active compromise (C1-C7) appears in a constraint block with: limitation type, ideal, compromise, detection mechanism, and resolution path
+- [x] 1-2 build-process categories exist in spec.md with execution compromise tables (eval framework, prompt engineering, story infrastructure, etc.)
+- [x] `docs/build-map.md` is reorganized to match spec categories 1:1 — same names, same `spec:N` tags
+- [x] Every build-map category has: product need, tech need, substrate status (`exists`/`partial`/`missing`/`unplanned`), phase (`climb`/`hold`/`converge`/`unplanned`)
+- [x] Every old build-map system number (1-8) appears in exactly one category's `Absorbs` line for migration traceability
+- [x] Story Spec Refs in existing story files are updated from bare `C1`, `C2` etc. to include `spec:N.N` IDs where applicable
+- [x] Triage skills (`triage-stories`, `triage-evals`, `triage` orchestrator) are updated to consume substrate status and phase from build map
+- [x] `/align` skill references the new structure
+- [x] `AGENTS.md` methodology section mentions dual-ideal, unified spec with N categories, build map as central dashboard, and phase governance
+- [x] No content is lost — every section from old spec and build map has a home in the new structure
+- [x] All cross-references between spec, build map, stories, and ADR-001 use the new `spec:N.N` IDs
 
 ## Out of Scope
 
@@ -270,9 +270,9 @@ This is a documentation reorganization — no code, no new evals, no new stories
 
 ## Workflow Gates
 
-- [ ] Build complete: implementation finished, required checks run, and summary shared
-- [ ] Validation complete or explicitly skipped by user
-- [ ] Story marked done via `/mark-story-done`
+- [x] Build complete: implementation finished, required checks run, and summary shared
+- [x] Validation complete or explicitly skipped by user
+- [x] Story marked done via `/mark-story-done`
 
 ## Architectural Fit
 
@@ -333,3 +333,5 @@ To be written during `/build-story` — will detail exact file changes per phase
   - Phase 8: Final audit — 9 spec categories, 9 build-map categories, names match 1:1, all 7 C-constraints present, all old systems absorbed, all phases assigned, all story refs updated, skills-check passes.
   - Evidence: `grep '^## spec:' docs/spec.md` → 9 categories. `grep '^## [0-9]\.' docs/build-map.md` → 9 categories. `grep 'Absorbs:' docs/build-map.md` → all old 1-8 present. All story Spec Refs contain `spec:N.N` IDs.
   - Decision: deferred local ADR creation (adr-002) — the migration is documented in this story's work log and the Storybook ADR-021 is the authoritative source. Can create if future sessions need a local decision record.
+
+20260320-0921 — status drift corrected: the story had already been completed in content and git history (`c43d9a3`), but the story file and index still showed it as active. Updated the story status, acceptance criteria, workflow gates, and index/build-map references to match the delivered migration state.

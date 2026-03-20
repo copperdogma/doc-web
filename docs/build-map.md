@@ -152,7 +152,7 @@ responsibilities.
 **Tech need:** Graduation criteria, `doc-web` bundle/provenance contract, Dossier intake surface readiness, release discipline, fixture breadth.
 **Substrate:** partial
 
-**Story coverage:** [x] active stories: 151-154
+**Story coverage:** [x] complete (Stories 151-156 landed; Dossier adoption remains downstream)
 **Spec:** spec:7
 **ADR Refs:** ADR-002 (`doc-web` runtime boundary)
 **Absorbs:** Graduation & Dossier Handoff (old 7)

@@ -150,16 +150,19 @@ This index tracks stories in `/docs/stories/` for the doc-forge pipeline.
 |||| 145 | Storybook ADR-019 Agent Workflow Convergence | High | Done | /docs/stories/story-145-storybook-adr-019-agent-workflow-convergence.md |
 |||| 146 | Onward Plan-Aware Genealogy Selective Reruns | High | Done | /docs/stories/story-146-onward-plan-aware-genealogy-reruns.md |
 |||| 147 | Quality Bar Then Complexity Collapse | High | Done | /docs/stories/story-147-quality-bar-then-complexity-collapse.md |
-|||| 148 | ADR-021 Migration: Dual-Ideal, Category Spec, Phase Governance | High | In Progress | /docs/stories/story-148-adr-021-migration-dual-ideal-category-spec-phase-governance.md |
+|||| 148 | ADR-021 Migration: Dual-Ideal, Category Spec, Phase Governance | High | Done | /docs/stories/story-148-adr-021-migration-dual-ideal-category-spec-phase-governance.md |
 |||| 149 | Onward Scanned-Genealogy Collapse Implementation | High | Done | /docs/stories/story-149-onward-scanned-genealogy-collapse-implementation.md |
 |||| 150 | Onward Full-Run Audit Reconciliation | High | Done | /docs/stories/story-150-onward-full-run-audit-reconciliation.md |
-|||| 151 | Define `doc-web` as the Standalone Dossier Intake Runtime | High | Pending | /docs/stories/story-151-name-and-define-standalone-dossier-intake-runtime.md |
+|||| 151 | Define `doc-web` as the Standalone Dossier Intake Runtime | High | Done | /docs/stories/story-151-name-and-define-standalone-dossier-intake-runtime.md |
 |||| 152 | `doc-web` Bundle and Provenance Contract | High | Done | /docs/stories/story-152-doc-web-bundle-and-provenance-contract.md |
 |||| 153 | Extract `doc-web` Bundle Emitter | High | Done | /docs/stories/story-153-extract-doc-web-bundle-emitter.md |
 |||| 154 | Dossier `doc-web` Semantic HTML Handoff | High | Done | /docs/stories/story-154-dossier-doc-web-semantic-html-handoff.md |
 |||| 155 | Repo Mission Alignment Cleanup and Legacy Surface Removal | High | Done | /docs/stories/story-155-repo-mission-alignment-cleanup-and-legacy-surface-removal.md |
 |||| 156 | Adopt Storybook-Style Pinned `doc-web` Runtime Pattern and Close Dossier Readiness Gaps | High | Done | /docs/stories/story-156-pinned-doc-web-runtime-adoption-and-dossier-readiness.md |
 |||| 157 | PDF Intake Parity with Image-Directory Inputs | High | Pending | /docs/stories/story-157-pdf-intake-parity-with-image-directory-inputs.md |
+|||| 158 | Evaluate `Docling` as a Full Replacement Candidate for `doc-web` | High | In Progress | /docs/stories/story-158-docling-doc-web-replacement-evaluation.md |
+|||| 159 | Tune `Docling` on the Onward Hard Case and Rank the Path to 100% Fidelity | High | Done | /docs/stories/story-159-docling-onward-tuning-sweep.md |
+|||| 160 | Generalize Tier 2 `Docling` Hybrid Repair on the Onward Lane | High | Pending | /docs/stories/story-160-docling-tier2-onward-hybrid-generalization.md |
 
 ## Notes
 - Status "Done" reflects current working state in doc-forge. "To Do" items are planned next steps aligned with `docs/ideal.md`, `docs/spec.md`, and `docs/build-map.md`.

@@ -6,6 +6,21 @@
 ### Changed
 - Updated the story index to track Story 157 as a pending follow-up in the active `doc-web` intake roadmap
 
+## [2026-03-20-04] - Add Docling evaluation package and close Onward tuning slice
+
+### Added
+- Added Scout 011 plus ADR-003 research scaffolding to evaluate `Docling` as a possible replacement or upstream substrate for the current `doc-web` handoff path
+- Added Stories 158-160 and the supporting Docling spike scripts for local pilot runs, Onward tuning, Arthur-lane parity scoring, VLM probes, Tier 1 closure probing, and the explicit Tier 2 follow-up
+
+### Changed
+- Closed Story 159 with explicit spike-only acceptance criteria, checked workflow gates, and synced the ADR-003 and Onward tuning findings surfaces around the measured Tier 1 closure result
+- Recorded that the measured next move is signal-driven Tier 2 generalization rather than more broad official-only `Docling` probing
+- Corrected status drift for Stories 148 and 151, marked the `spec:7` story-coverage lane complete in the build map, indexed Scout 011, and cleared the processed inbox items
+
+### Tested
+- `python -m pytest tests/`
+- `python -m ruff check modules/ tests/`
+
 ## [2026-03-20-02] - Port Dossier and Storybook workflow upgrades
 
 ### Added

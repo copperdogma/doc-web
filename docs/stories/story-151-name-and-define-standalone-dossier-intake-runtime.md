@@ -1,7 +1,7 @@
 # Story 151 — Define `doc-web` as the Standalone Dossier Intake Runtime
 
 **Priority**: High
-**Status**: Pending
+**Status**: Done
 **Ideal Refs**: Requirement #5 (Structure), Requirement #6 (Validate), Requirement #7 (Export), Traceability is the Product, Dossier-ready output, Graduate, don't accumulate
 **Spec Refs**: spec:5.1 C7 (Page-Scope Extraction with Document-Level Consistency Planning), spec:6 (Validation, Provenance & Export), spec:7 (Graduation & Dossier Handoff)
 **Decision Refs**: `README.md`, `docs/ideal.md`, `docs/spec.md`, `docs/build-map.md`, `docs/pipeline/ff-specificity-audit.md`, `docs/decisions/adr-002-doc-web-runtime-boundary/adr.md`
@@ -13,11 +13,11 @@ Codex-forge is no longer the right place to grow a polished website layer, but t
 
 ## Acceptance Criteria
 
-- [ ] A new ADR or equivalent decision record names `doc-web` as the extracted runtime, explains why it should be a separate runtime repo instead of `codex-forge`-as-dependency or a direct one-off Dossier port, and lists the rename/update surfaces that follow from that choice.
-- [ ] The current codex-forge surface is inventoried into `migrate as-is`, `refactor before migrate`, `leave behind`, and `archive only`, with exact modules, schemas, recipes, fixtures, and docs called out.
-- [ ] The output contract is specified precisely enough for Dossier and Storybook citation needs: semantic HTML bundle, minimal TOC/prev-next navigation, stable DOM or block IDs, document/chapter manifests, and block-level provenance back to the original uploaded artifact page and source element.
-- [ ] The Dossier integration contract is specified: dependency/versioning model, HTML-only stop point, and how downstream consumers resolve citations back to the original artifact.
-- [ ] Concrete follow-up implementation slices are identified for:
+- [x] A new ADR or equivalent decision record names `doc-web` as the extracted runtime, explains why it should be a separate runtime repo instead of `codex-forge`-as-dependency or a direct one-off Dossier port, and lists the rename/update surfaces that follow from that choice.
+- [x] The current codex-forge surface is inventoried into `migrate as-is`, `refactor before migrate`, `leave behind`, and `archive only`, with exact modules, schemas, recipes, fixtures, and docs called out.
+- [x] The output contract is specified precisely enough for Dossier and Storybook citation needs: semantic HTML bundle, minimal TOC/prev-next navigation, stable DOM or block IDs, document/chapter manifests, and block-level provenance back to the original uploaded artifact page and source element.
+- [x] The Dossier integration contract is specified: dependency/versioning model, HTML-only stop point, and how downstream consumers resolve citations back to the original artifact.
+- [x] Concrete follow-up implementation slices are identified for:
   - runtime repo bootstrap/extraction
   - provenance contract upgrades that the current `chapter_html_manifest_v1` does not yet cover
   - Dossier integration
@@ -87,9 +87,9 @@ Codex-forge is no longer the right place to grow a polished website layer, but t
 
 ## Workflow Gates
 
-- [ ] Build complete: implementation finished, required checks run, and summary shared
-- [ ] Validation complete or explicitly skipped by user
-- [ ] Story marked done via `/mark-story-done`
+- [x] Build complete: implementation finished, required checks run, and summary shared
+- [x] Validation complete or explicitly skipped by user
+- [x] Story marked done via `/mark-story-done`
 
 ## Architectural Fit
 
@@ -123,7 +123,7 @@ Codex-forge is no longer the right place to grow a polished website layer, but t
 
 ## Plan
 
-Pending — `/build-story` should first decide whether the extracted runtime can extend the current HTML bundle and manifest with a stricter provenance sidecar, or whether the contract needs a new bundle schema from scratch. The implementation order should be: ADR and name, artifact inspection, extraction inventory, Dossier integration surface, then follow-up implementation slices.
+Completed — ADR-002 settled the boundary, the extraction inventory landed in `docs/notes/standalone-dossier-intake-runtime-plan.md`, and follow-up stories 152-154 captured contract, emitter-seam, and Dossier handoff work.
 
 ## Work Log
 
@@ -133,3 +133,4 @@ Pending — `/build-story` should first decide whether the extracted runtime can
 20260318-2308 — research scaffolding prepared: added ADR-local provider report stubs (`openai`, `gemini`, `opus`, `xai`) and wired the synthesis file to those sources. This reduces setup friction for the next step, which is the actual multi-provider research pass on ownership model, bundle contract, provenance granularity, and Dossier integration.
 20260318-2329 — multi-provider synthesis landed: xAI and Opus manual reports plus OpenAI and Gemini automated runs now converge on the same core direction. `doc-web` should be a standalone runtime, not a `codex-forge` dependency; its contract should be a structural website bundle with stronger block-level provenance; and extraction should start with the bundle-emission seam rather than a big-bang repo move. The remaining practical decision is packaging intensity on day one, with the synthesis recommending tagged SemVer releases plus contract tests before adding private registry infrastructure.
 20260318-2337 — direction accepted and propagated: user approved the synthesized direction, ADR-002 moved to `ACCEPTED`, core docs now name `doc-web` as the graduation target, the extraction inventory note was added, and follow-up stories 152-154 were created. Remaining work is implementation and handoff, not architecture.
+20260320-0921 — status drift corrected: the architecture decision package was already complete and had already spawned the delivered follow-up stories, but the story file and index still showed it as pending. Updated the story status and workflow fields to reflect the accepted ADR-002 state and completed planning handoff.
