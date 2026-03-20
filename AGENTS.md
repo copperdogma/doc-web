@@ -16,6 +16,28 @@ Read this file at the start of every session.
 > persist across all implementations. Compromise-level preferences die when their
 > compromise is eliminated. Know which level you're working at.
 
+## Ideal-First Methodology
+
+**Dual-ideal structure:** `docs/ideal.md` carries both the product ideal and the
+execution ideal. `docs/spec.md` records the active product and build-process
+constraints against those ideals. `docs/build-map.md` is the central planning
+dashboard for those constraints: category coverage, substrate status, phase
+governance, input coverage, and graduation tracking.
+
+**Operating rule:** planning and triage start from `docs/build-map.md`.
+Implementation starts from the active story, but you must read the relevant
+build-map category and linked `spec:N` sections first. Do not treat the build
+map as optional context.
+
+**Pending is not proof of buildability.** A story marked `Pending` is a planning
+claim, not evidence that the required substrate exists. Before recommending or
+building it, verify the critical code, schema, artifact, or workflow substrate
+in the repo itself.
+
+**Canonical bootstrap / refresh surface:** `/setup-methodology` installs or
+refreshes the methodology package for this repo: the methodology reference,
+setup checklist, eval-surface docs, and AGENTS wiring.
+
 ## Central Tenets (Vision-Level Preferences)
 
 0. **Traceability is the Product** — Every piece of extracted text traces back to source page, OCR engine, confidence score, and processing step. Without provenance, output is noise.
@@ -33,6 +55,7 @@ Read this file at the start of every session.
 - **Security First**: NEVER stage secrets, API keys, or credentials.
 - **Verify, Don't Assume**: Check files and dependencies exist before using them.
 - **Eval-First Engineering**: Test the simplest AI approach first. If SOTA succeeds in one call, there's nothing to build. Never conclude "AI can't do this" from a cheap model's failure.
+- **Fresh Verification Required**: Never claim something is fixed, passing, or done unless the current state was verified in this pass by commands, artifact inspection, or both. If you did not re-run it, say it is not freshly verified.
 - **The Definition of Done:** A story or task is **NOT complete** until:
     1. It runs successfully through `driver.py` in a real (or partial resume) pipeline.
     2. Produced artifacts exist in `output/runs/`.
@@ -66,6 +89,7 @@ Canonical location: `.agents/skills/` — works across Claude Code, Cursor, Gemi
 - `.gemini/commands/*.toml` are generated wrappers — run `scripts/sync-agent-skills.sh` after changes
 - Use `/align` for post-change methodology sweeps across the Ideal, spec, build map, stories, and evals
 - Use `/triage` for read-only full sweeps or scoped backlog / inbox / eval triage
+- Use `/setup-methodology` to install or refresh the methodology package and canonical setup docs
 - To create a new skill: `/create-cross-cli-skill`
 
 ## Story Lifecycle
@@ -76,6 +100,13 @@ Canonical location: `.agents/skills/` — works across Claude Code, Cursor, Gemi
 - **In Progress** — Active work.
 - **Done** — All checks pass, work log current, CHANGELOG updated, eval registry updated if applicable.
 - **Blocked** — Waiting on dependency or decision.
+
+Active stories should carry the workflow gates `Build complete`, `Validation complete or explicitly skipped by user`, and `Story marked done via /mark-story-done`.
+
+`Pending` means "detailed enough to consider building," not "substrate already
+verified." `/build-story` and `/triage-stories` must still confirm the critical
+runtime/schema/workflow substrate in code before treating the story as
+honestly buildable.
 
 **Story IDs are identifiers, not sequence numbers.** New stories get max+1. Order via `Depends On`, not ID. Never use letter suffixes.
 
@@ -90,9 +121,12 @@ Canonical location: `.agents/skills/` — works across Claude Code, Cursor, Gemi
 ## Docs
 
 - `docs/ideal.md` — Dual ideal: product (zero-limitation north star) + execution (zero-limitation build process)
+- `docs/methodology-ideal-spec-compromise.md` — Methodology reference for the Ideal → Spec → Build Map graph and compromise deletion model
 - `docs/spec.md` — Unified spec with 9 categories (`spec:1`–`spec:9`), hierarchical `spec:N.N` section IDs, per-category constraint blocks (C1-C7 product, B1-B10 build-process), and Non-Negotiable Design Principles
 - `docs/build-map.md` — Central triage dashboard: 9 categories matching spec, substrate status (`exists`/`partial`/`missing`), phase governance (`climb`/`hold`/`converge`), input coverage, graduation tracking
+- `docs/setup-checklist.md` — Working checklist for methodology bootstrap or refresh runs
 - `docs/decisions/` — ADRs for hard-to-reverse architecture, workflow, schema, and cross-cutting project decisions
+- `docs/evals/README.md` — Eval registry protocol, attempt logging rules, and baseline evidence expectations
 - `docs/evals/registry.yaml` — Eval scores, targets, attempt history
 - `docs/requirements.md` — Mission-aligned functional requirements for intake + `doc-web`
 - `docs/stories.md` — Story index (148+ stories)

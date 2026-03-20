@@ -27,14 +27,20 @@ Thoroughly analyze what was done and how it compares to the original instruction
    - Open each changed file to understand what was implemented
    - Compare against original requirements/story/documentation
    - Check for completeness, quality, and adherence to specifications
+   - Treat every positive status claim as provisional until it is backed by
+     fresh commands, artifact inspection, or both from this validation pass
 
 2.5 **If there is a known story/ticket, validate against it**
    - **When a story is "known"**: the user provided a story path/ID/title, or a single story file is clearly in-scope (e.g., `docs/stories/story-*.md`) for the work being validated.
    - Open the story/ticket doc and extract:
      - `## Success Criteria` / `## Acceptance Criteria` / `## Requirements` (as applicable)
      - `## Tasks` checklist items (look for `- [ ]` / `- [x]`)
+     - `## Workflow Gates` when present
    - In the report, include a **Story Validation** section that:
      - Lists each story requirement/checklist item as **Met / Partial / Unmet** with evidence.
+     - Reports the current workflow-gate state when the story has gates
+       (`Build complete`, `Validation complete or explicitly skipped by user`,
+       `Story marked done via /mark-story-done`).
      - Explicitly calls out **all Unmet** (and Partial) items as "Remaining Story Gaps" with concrete next steps.
      - Suggests which story checkboxes appear ready to check off, and asks the user if they want the AI to apply those edits.
      - If the delivered slice is coherent but the remaining gaps have clearly been split into other stories, explicitly say whether the current story should be:
@@ -189,6 +195,12 @@ Ask one direct question:
 Default behavior:
 - If the implemented slice is coherent and the remaining gaps are explicitly moved to follow-up stories, prefer **`Rescope then close`** over leaving the story hanging in `In Progress`.
 - Never silently weaken requirements. The report must say exactly what would be rescoped and why.
+
+Fresh-verification rule:
+- Do not say something is fixed, passing, or done unless that claim is backed
+  by commands, artifact reads, or both from this validation pass
+- If something was not re-run or re-opened now, label it explicitly as not
+  freshly verified instead of implying current confidence
 
 
 ## ADDITIONAL NOTES FROM USER

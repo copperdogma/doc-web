@@ -18,9 +18,17 @@ Close a completed story after validation.
 
 1. **Resolve story file** — Read `docs/stories/story-{NNN}-*.md`.
 
-2. **Validate completeness:**
+2. **Check workflow gates first:**
+   - [ ] `Build complete` is checked
+   - [ ] `Validation complete or explicitly skipped by user` is checked, or the
+     user explicitly instructed you to skip validation in this close-out request
+   - [ ] `Story marked done via /mark-story-done` is still unchecked
+   - If the story predates `Workflow Gates`, add the section and backfill
+     equivalent state before continuing
+
+3. **Validate completeness:**
    - [ ] All task checkboxes checked
-   - [ ] All acceptance criteria met (with evidence)
+   - [ ] All acceptance criteria met (with fresh current-state evidence)
    - [ ] Work log is current (no dangling "Next Steps" without resolution)
    - [ ] Dependencies addressed (if depends on other stories, are they done?)
    - [ ] If `Decision Refs` cite ADRs or ADR open items: check the parent ADR `Remaining Work` and note whether this story resolves any item enough for that ADR to move toward `ACCEPTED`
@@ -32,7 +40,7 @@ Close a completed story after validation.
    - [ ] If pipeline modules changed: tested through `driver.py` with artifacts inspected
    - [ ] If evals were run: mismatches classified, `docs/evals/registry.yaml` updated with verified scores
 
-3. **Produce completion report:**
+4. **Produce completion report:**
 
    **Story: [ID] - [Title]**
    - Tasks: [X/Y] complete
@@ -66,9 +74,13 @@ Never silently weaken requirements or hide newly discovered defects.
 If complete (or user approves remaining gaps):
 
 1. Set story file status to `Done`.
-2. Update corresponding row in `docs/stories.md` to `Done`.
-3. Append completion note to story work log with date and evidence.
-4. Update CHANGELOG.md:
+2. Check `Story marked done via /mark-story-done`.
+3. If validation was explicitly skipped by the user, record that decision in
+   the work log and check `Validation complete or explicitly skipped by user`.
+4. Update corresponding row in `docs/stories.md` to `Done`.
+5. Append completion note to story work log with date and evidence. End the
+   note with the recommended next step: `/check-in-diff`.
+6. Update CHANGELOG.md:
    - Search CHANGELOG.md for the story number (e.g., `Story 001`)
    - If an entry already exists, skip — do not duplicate
    - If no entry exists, prepend a new entry:
@@ -97,6 +109,10 @@ If not complete and the user has **not** approved a closure recommendation, stop
 ## Guardrails
 
 - Never hide gaps — always report unmet criteria explicitly
+- Never treat old notes or stale passing logs as proof for the current story
+  state; if something was not re-verified now, say it is not freshly verified
+- Never describe the story as complete, ready, or validated without fresh
+  close-out evidence or an explicitly cited prior validation result
 - Ask for confirmation when unresolved items remain
 - Do not duplicate CHANGELOG.md entries — always check before writing
 - Never mark Done without running the full check suite

@@ -37,12 +37,20 @@ This skill is read-only.
    Load `docs/ideal.md` and score against what the system should become, not
    just what is locally convenient.
 
-3. **Read candidate stories**
+3. **Read candidate stories and build-map context**
    For every candidate story with met dependencies, read the actual story file.
-   Do not rank by title alone. If a candidate touches inputs, filetypes,
-   artifacts, or channels, also read the relevant category (spec:N) and Input
-   Coverage section of `docs/build-map.md`. Note the category's substrate
-   status and phase.
+   Do not rank by title alone. For each candidate, also read the matching
+   build-map category and note:
+   - **Substrate status** (`exists`/`partial`/`missing`) — a story whose
+     category substrate is `missing` should not be recommended unless the story
+     itself creates that substrate
+   - **Phase** (`climb`/`hold`/`converge`) — this determines what kind of work
+     is highest leverage
+   - **Input Coverage** state when the story touches inputs, filetypes,
+     artifacts, or channels
+   If a candidate depends on upstream architecture, schema, runtime, or
+   artifact substrate, inspect the repo to verify that substrate exists in code
+   and is not just asserted in story text.
 
 4. **Score and rank**
    Evaluate each candidate on:
@@ -52,7 +60,9 @@ This skill is read-only.
    - stage leverage
    - simplification leverage
    - **substrate readiness** — read the build-map category's substrate status;
-     don't recommend stories when substrate is `missing` unless the story creates it
+     don't recommend stories when substrate is `missing` unless the story creates it.
+     For architecture-dependent stories, prefer code-verified substrate over
+     paper status alone
    - **phase coherence** — read the category's phase from the build map:
      - `climb`: recommend quality-improvement work
      - `hold`: recommend efficiency/simplification work
@@ -66,6 +76,8 @@ This skill is read-only.
 5. **Flag concerns**
    Surface issues such as:
    - stories marked Draft/Pending that are actually blocked
+   - stories whose documented prerequisites exist in build-map or decision docs
+     but not yet in code, schemas, runtime wiring, tests, or artifacts
    - stale or superseded stories
    - claimed scope that disagrees with `docs/build-map.md`
    - bottlenecked dependency chains
@@ -98,6 +110,7 @@ doing a full backlog scan. Report:
 - dependency status
 - blocking power
 - build readiness
+- verified substrate readiness where relevant
 - concerns / missing prerequisites
 
 ## Guardrails
@@ -107,4 +120,6 @@ doing a full backlog scan. Report:
 - If the backlog is empty or everything is blocked, say so clearly
 - Do not recommend stories that depend on unfinished work unless the dependency
   is trivially close to done
+- Do not recommend architecture-dependent stories as build-ready on story text
+  alone when the critical substrate has not been verified in the repo
 - Keep the report compact enough for `/triage` to synthesize with other leaf reports

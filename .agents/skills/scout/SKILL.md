@@ -10,6 +10,12 @@ user-invocable: true
 
 Research external sources for patterns, ideas, and approaches worth adopting. Produces a persistent scout document tracking what was found, what was adopted, and the verification evidence.
 
+When a finding is a concrete reusable pattern worth porting, treat it as a
+**gene transfusion**: capture the source exemplar, the invariant worth
+preserving, the local adaptation, and the proof target. Do not force this for
+every finding. Use it only when there is a real pattern transfer, not just an
+inspiration or a skip.
+
 ## Inputs
 
 - **source** (required): One of:
@@ -56,6 +62,12 @@ This creates the expedition file under `docs/scout/` and prints the path.
    - Whether it simplifies or removes a compromise in `docs/spec.md`
    - Value: HIGH, MEDIUM, or LOW
    - Effort: inline or story-sized
+   - If it is a real pattern-transfer candidate, add a short gene-transfusion
+     note:
+     - **Exemplar** — the concrete source pattern being copied
+     - **Invariant** — the behavior or principle that must survive locally
+     - **Adaptation** — what changes in doc-forge because the local context differs
+     - **Proof target** — what will show the transfusion actually worked
 
 4. **Fill in the scout document** created in Phase 0 with the findings.
 
@@ -85,6 +97,8 @@ After implementation:
 
 1. Re-read every modified file
 2. Fill in evidence for each approved item in the scout doc
+   - For gene-transfusion items, explicitly confirm whether the proof target
+     was met and where that evidence lives
 3. Run the relevant checks
 4. Update the scout doc's final status
 5. Update `docs/scout.md` with the new expedition row

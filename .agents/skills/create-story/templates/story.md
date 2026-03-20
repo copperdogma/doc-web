@@ -4,6 +4,7 @@
 **Status**: Draft
 **Ideal Refs**: {ideal.md requirements}
 **Spec Refs**: {spec.md sections or compromises}
+**Build Map Refs**: {relevant category, current substrate/phase, and input-coverage row(s) if applicable}
 **Decision Refs**: {ADRs, runbooks, scout docs, notes, or "None found after search"}
 **Depends On**: {story IDs}
 
@@ -38,6 +39,7 @@
 - [ ] {Implementation task 1}
 - [ ] {Implementation task 2}
 - [ ] {Implementation task 3}
+- [ ] If this story changes documented format coverage or graduation reality: update `docs/build-map.md` and record the before/after state honestly
 - [ ] Check whether the chosen implementation makes any existing code, helper paths, or docs redundant; remove them or create a concrete follow-up
 - [ ] Run required checks for touched scope:
   - [ ] Default Python checks: `make test`
@@ -63,6 +65,8 @@
 ## Architectural Fit
 
 - **Owning module / area**: {Which stage, module, script, or doc area should own this?}
+- **Build-map reality**: {Which build-map category owns this? What are the current substrate and phase? Which Input Coverage row(s) are relevant?}
+- **Substrate evidence**: {Which files, schemas, modules, artifacts, or tests prove the dependency exists? If it is missing or partial, say so explicitly.}
 - **Data contracts / schemas**: {What schemas or artifact definitions change? If new fields cross artifact boundaries, they must be added to `schemas.py` first.}
 - **File sizes**: {Current line count of each file to be modified. Run `make check-size` when relevant. Flag any file >500 lines.}
 - **Decision context**: {Which ADRs, runbooks, scout docs, notes, or other decision docs were reviewed? If none apply, say why.}

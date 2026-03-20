@@ -113,6 +113,8 @@ Companion runbook: `docs/runbooks/check-in-worktree-landing.md`
    - If Python code changed: `make test` and `make lint`
    - If agent tooling changed: `make skills-check`
    - If pipeline behavior changed: run `make smoke` or the narrowest real `driver.py` path that proves the change, then inspect artifacts
+   - Do not report anything as passing unless it was verified on the current
+     execution-branch tip. If a check was skipped, say it is not freshly verified
    - If validation fails, stop and report
 
 13. **Land the validated branch tip onto `main`:**
@@ -132,7 +134,8 @@ Companion runbook: `docs/runbooks/check-in-worktree-landing.md`
    - whether rebase or merge-from-main was used
    - whether conflicts occurred
    - which files had conflicts, if any
-   - whether tests, lint, skills checks, or pipeline smoke passed
+   - whether tests, lint, skills checks, or pipeline smoke passed on the current
+     tip, or were not freshly verified
    - whether `main` was fast-forwarded and pushed
    - whether branch or worktree cleanup was performed
 

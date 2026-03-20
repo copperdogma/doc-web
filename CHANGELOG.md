@@ -1,3 +1,15 @@
+## [2026-03-20-02] - Port Dossier and Storybook workflow upgrades
+
+### Added
+- Added the canonical `/setup-methodology` skill package, methodology reference, refresh checklist, and eval-surface docs so methodology bootstrap and refresh now live behind one documented public surface
+
+### Changed
+- Upgraded AGENTS and the story-planning skill chain to use build-map-first routing, substrate reality checks, explicit workflow gates, and fresh-verification language aligned with the current Dossier and Storybook patterns
+- Upgraded `/scout` and the scout expedition template to capture auditable cross-repo pattern transfers with transfusion notes plus dedicated verification and evidence sections
+
+### Fixed
+- Rechecked the local ports against the Dossier and Storybook source repos and corrected the remaining fidelity gaps in `create-story`, `triage-stories`, `validate`, and `mark-story-done` before landing
+
 ## [2026-03-20-01] - Make doc-web consumable as a pinned Dossier component (Story 156)
 
 ### Added
