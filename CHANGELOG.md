@@ -1,3 +1,11 @@
+## [2026-03-20-03] - Add scanned-PDF intake parity story
+
+### Added
+- Added Story 157 to scope maintained scanned-PDF intake parity with the active image-directory runtime path, including durable PDF smoke coverage, Onward PDF validation, and documentation truth reconciliation
+
+### Changed
+- Updated the story index to track Story 157 as a pending follow-up in the active `doc-web` intake roadmap
+
 ## [2026-03-20-02] - Port Dossier and Storybook workflow upgrades
 
 ### Added

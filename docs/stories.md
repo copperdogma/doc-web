@@ -159,6 +159,7 @@ This index tracks stories in `/docs/stories/` for the doc-forge pipeline.
 |||| 154 | Dossier `doc-web` Semantic HTML Handoff | High | Done | /docs/stories/story-154-dossier-doc-web-semantic-html-handoff.md |
 |||| 155 | Repo Mission Alignment Cleanup and Legacy Surface Removal | High | Done | /docs/stories/story-155-repo-mission-alignment-cleanup-and-legacy-surface-removal.md |
 |||| 156 | Adopt Storybook-Style Pinned `doc-web` Runtime Pattern and Close Dossier Readiness Gaps | High | Done | /docs/stories/story-156-pinned-doc-web-runtime-adoption-and-dossier-readiness.md |
+|||| 157 | PDF Intake Parity with Image-Directory Inputs | High | Pending | /docs/stories/story-157-pdf-intake-parity-with-image-directory-inputs.md |
 
 ## Notes
 - Status "Done" reflects current working state in doc-forge. "To Do" items are planned next steps aligned with `docs/ideal.md`, `docs/spec.md`, and `docs/build-map.md`.
