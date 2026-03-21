@@ -1,11 +1,11 @@
 # Story 158 — Evaluate `Docling` as a Full Replacement Candidate for `doc-web`
 
 **Priority**: High
-**Status**: In Progress
+**Status**: Done
 **Ideal Refs**: Requirement #1 (Ingest), Requirement #2 (Detect), Requirement #3 (Extract), Requirement #5 (Structure), Requirement #6 (Validate), Requirement #7 (Export), Any format, any condition, Zero configuration, Dossier-ready output, Traceability is the Product, Graduate, don't accumulate
 **Spec Refs**: spec:1.1 C2 (Format-Specific Conversion Recipes), spec:2.1 C1 (Multi-Stage OCR Pipeline), spec:3.1 C3 (Heuristic + AI Layout Detection), spec:5.1 C7 (Page-Scope Extraction with Document-Level Consistency Planning), spec:6 (Validation, Provenance & Export), spec:7 (Graduation & Dossier Handoff)
 **Build Map Refs**: spec:1 Intake & Routing — substrate partial, `C2` climb; spec:2 OCR & Text Extraction — substrate exists, `C1` climb; spec:3 Layout & Structure Understanding — substrate exists, `C3` climb; spec:5 Consistency & Normalization — substrate exists, `C7` climb; spec:7 Graduation & Dossier Handoff — substrate partial, accepted `doc-web` direction; Input Coverage rows: `scanned-pdf-prose`, `scanned-pdf-tables`, and `image-directory-scans` are the incumbent passing lanes, while `born-digital-pdf` and `docx` remain high-priority untested gaps that a stronger external substrate might close faster
-**Decision Refs**: `docs/decisions/adr-002-doc-web-runtime-boundary/adr.md`, `docs/decisions/adr-003-doclingdocument-doc-web-boundary/adr.md`, `docs/scout/scout-011-external-document-ingestion-systems.md`, `docs/doc-web-bundle-contract.md`, `docs/dossier-doc-web-handoff.md`, `docs/notes/doc-web-dossier-readiness-gap-analysis.md`, `docs/stories/story-151-name-and-define-standalone-dossier-intake-runtime.md`, `docs/stories/story-156-pinned-doc-web-runtime-adoption-and-dossier-readiness.md`
+**Decision Refs**: `docs/decisions/adr-002-doc-web-runtime-boundary/adr.md`, `docs/decisions/adr-003-doclingdocument-doc-web-boundary/adr.md`, `docs/scout/scout-011-external-document-ingestion-systems.md`, `docs/doc-web-bundle-contract.md`, `docs/dossier-doc-web-handoff.md`, `docs/notes/doc-web-dossier-readiness-gap-analysis.md`, `docs/stories/story-151-name-and-define-standalone-dossier-intake-runtime.md`, `docs/stories/story-156-pinned-doc-web-runtime-adoption-and-dossier-readiness.md`, `docs/stories/story-159-docling-onward-tuning-sweep.md`, `docs/stories/story-160-docling-tier2-onward-hybrid-generalization.md`, `docs/stories/story-161-integrate-generalized-docling-hybrid-into-maintained-onward-path.md`
 **Depends On**: Story 156
 
 ## Goal
@@ -14,20 +14,23 @@ Determine whether `Docling` can replace `doc-web` as the Dossier-facing intake b
 
 ## Acceptance Criteria
 
-- [ ] `docs/decisions/adr-003-doclingdocument-doc-web-boundary/adr.md` contains a researched comparison of three end states:
+- [x] `docs/decisions/adr-003-doclingdocument-doc-web-boundary/adr.md` contains a researched comparison of three end states:
   - keep `doc-web` as the incumbent Dossier contract
   - adopt a hybrid `Docling` upstream + thin adapter/handoff layer
   - let Dossier ingest native `DoclingDocument` output and retire or sharply narrow `doc-web`
-- [ ] A local comparison corpus and scorecard exist before any adapter code is written, covering at minimum:
+- [x] A local comparison corpus and scorecard exist before any adapter code is written, covering at minimum:
   - one incumbent `doc-web` bundle smoke lane
   - one scanned-prose or image-directory input
   - one repeated-structure/table-heavy input such as the Onward genealogy path
   - explicit pass/fail checks for provenance, reading order, table fidelity, repeated-structure consistency, and Dossier/Storybook integration fit
   - if a required hard-case source is missing from the current worktree, the story first establishes a durable local comparison input by either adding a repo-owned/publicly licensable fixture or pinning an ADR-local external-source procedure before interpreting the replacement result
-- [ ] The story leaves an explicit next state, backed by artifact evidence and manual inspection:
+- [x] The story leaves an explicit next state, backed by artifact evidence and manual inspection:
   - keep `doc-web`
   - pursue a hybrid adapter
   - or supersede ADR-002
+  - if `hybrid` remains the leading recommendation, the write-up incorporates
+    Story 160's broader Tier 2 generalization result rather than relying only
+    on the Arthur-local proof
   And the write-up names the removal or supersession targets that follow from that choice
 
 ## Out of Scope
@@ -40,7 +43,12 @@ Determine whether `Docling` can replace `doc-web` as the Dossier-facing intake b
 
 ## Approach Evaluation
 
-- **Simplification baseline**: Run stock `Docling` first on representative local documents and inspect its native `DoclingDocument` plus built-in export surfaces before writing any adapter logic. If those artifacts are already good enough for Dossier, custom code should approach zero. Scout 011 says `Docling` is the strongest first benchmark, but no local pilot artifacts exist yet.
+- **Simplification baseline**: Story 158 now has stock `Docling` pilot
+  artifacts on a clean control document and the pinned Onward hard-case slice,
+  plus the bounded Story 159 / Story 160 follow-ups. The evaluation still
+  starts from native `DoclingDocument` plus built-in export surfaces before any
+  adapter code; the current question is no longer "does local evidence exist?"
+  but "does the proven hybrid shape justify deeper ownership?"
 - **AI-only**: An LLM can compare contracts and synthesize migration options, but it cannot prove whether native `Docling` outputs satisfy provenance, repeated-structure, and Dossier-fit requirements on this repo's actual documents.
 - **Hybrid**: Treat the current `doc-web` bundle as the incumbent acceptance bar, then compare three concrete end states with evidence: incumbent `doc-web`, hybrid `Docling` plus thin adapter, and native `DoclingDocument` ingestion. This is the leading candidate because it keeps the decision grounded in deletion power instead of repo loyalty.
 - **Pure code**: Start translating `doc-web` concepts into `Docling`-shaped adapters before measuring stock `Docling`, or keep extending `doc-web` because it already exists. Both approaches bias the result and violate the "measure before building" rule.
@@ -73,17 +81,37 @@ Determine whether `Docling` can replace `doc-web` as the Dossier-facing intake b
   - update ADR-003 `Research Summary`, `Discussion`, and recommendation
   - if native `DoclingDocument` or the hybrid path wins, name the surfaces that would supersede ADR-002 and the `doc-web` contract docs
   - if `doc-web` remains incumbent, record why and demote `Docling` to benchmark/reference status instead of leaving the question half-open
-- [ ] If this story changes documented graduation reality: update `docs/build-map.md`, `docs/spec.md`, `docs/requirements.md`, and any handoff docs with the before/after state honestly
-- [ ] Check whether the chosen implementation makes any existing code, helper paths, or docs redundant; remove them or create a concrete follow-up
-- [ ] Run required checks for touched scope:
+- [x] This story did not earn a change to accepted graduation reality, so
+  `docs/spec.md`, `docs/requirements.md`, and the incumbent handoff docs remain
+  unchanged; the only required direction updates were the ADR-003 / synthesis
+  surfaces and the Story 160 build-map candidate block
+- [x] Fold Story 160's Tier 2 generalization result back into this umbrella
+  decision surface before closure:
+  - sync the keep / hybrid / replace read with ADR-003 and Story 160
+  - update any newly justified removal, retention, or supersession targets
+  - propagate broader project-direction changes only if the generalized result
+    actually earns them
+- [x] Check whether the chosen implementation makes any existing code, helper
+  paths, or docs redundant; remove them or create a concrete follow-up
+  - Created Story 161 as the concrete maintained-path follow-up so this story
+    can close on the evaluation slice it actually delivered
+- [x] Run required checks for touched scope:
   - [x] If this remains docs/ADR plus pilot-artifact work only: verify story/ADR links, cited artifact paths, and any repo-owned comparison fixtures
-  - [ ] If code, recipes, or adapters are added: `make test`
-  - [ ] If code, recipes, or adapters are added: `make lint`
-  - [ ] If pipeline or adapter behavior changes: clear stale `*.pyc`, run the relevant `driver.py` lane and/or native `Docling` pilot commands, verify artifacts under `output/runs/` or ADR-local research outputs, and manually inspect sample JSON/JSONL/HTML/`DoclingDocument` data
-  - [ ] If agent tooling changed: `make skills-check`
-- [ ] If a durable benchmark or eval artifact is added: run `/improve-eval` and update `docs/evals/registry.yaml`, or explicitly record why the comparison remains manual research only
+  - [x] No code, recipes, or adapters were added in this story's final
+    delivered slice, so story-scope `make test` was not required; close-out
+    validation still ran `python -m pytest tests/`
+  - [x] No code, recipes, or adapters were added in this story's final
+    delivered slice, so story-scope `make lint` was not required; close-out
+    validation still ran `python -m ruff check modules/ tests/`
+  - [x] No maintained pipeline or adapter path was added here; the evaluated
+    native `Docling` pilot commands plus Story 159 / Story 160 artifact runs
+    were already executed and inspected manually
+  - [x] Agent tooling unchanged; `make skills-check` not required
+- [x] The comparison remains manual research only; no durable eval artifact was
+  added, so `/improve-eval` and `docs/evals/registry.yaml` updates were not
+  required
 - [x] Search all docs and update any related to what we touched
-- [ ] Verify Central Tenets:
+- [x] Verify Central Tenets:
   - [x] T0 — Traceability: any candidate replacement still proves source page, element, and provenance mapping rather than collapsing to a black-box document blob
   - [x] T1 — AI-First: stock `Docling` is measured before building new deterministic glue
   - [x] T2 — Eval Before Build: the replacement decision is made from inspected outputs and an explicit scorecard, not vibes
@@ -94,34 +122,49 @@ Determine whether `Docling` can replace `doc-web` as the Dossier-facing intake b
 ## Workflow Gates
 
 - [x] Build complete: implementation finished, required checks run, and summary shared
-- [ ] Validation complete or explicitly skipped by user
-- [ ] Story marked done via `/mark-story-done`
+- [x] Validation complete or explicitly skipped by user
+- [x] Story marked done via `/mark-story-done`
 
 ## Architectural Fit
 
 - **Owning module / area**: This is a cross-cutting evaluation story spanning decision docs, the current `doc-web` runtime boundary, and any thin comparison harness or pilot recipe needed to inspect `Docling` output honestly. Ownership starts in the docs/decision layer, not in `modules/build/`.
 - **Build-map reality**: `spec:7` currently says `doc-web` is the accepted graduation target, while `C1`, `C2`, `C3`, and `C7` remain active `climb` seams. That means the incumbent handoff boundary is real, but the intake substrate beneath it is still unsettled enough that a stronger external system could justify reopening the boundary.
-- **Substrate evidence**: Verified local incumbent substrate exists in `docs/doc-web-bundle-contract.md`, `docs/dossier-doc-web-handoff.md`, `doc_web/runtime_contract.py`, `tests/test_doc_web_bundle_contract.py`, `tests/test_doc_web_cli_contract.py`, `configs/recipes/doc-web-fixture-bundle-smoke.yaml`, and Story 156's published readiness note. Missing or intentionally unverified substrate: no local `Docling` pilot outputs live in this repo yet, and there is no native Dossier `DoclingDocument` intake surface here today. This story exists to decide whether those missing pieces are worth building.
+- **Substrate evidence**: Verified local incumbent substrate exists in
+  `docs/doc-web-bundle-contract.md`, `docs/dossier-doc-web-handoff.md`,
+  `doc_web/runtime_contract.py`, `tests/test_doc_web_bundle_contract.py`,
+  `tests/test_doc_web_cli_contract.py`,
+  `configs/recipes/doc-web-fixture-bundle-smoke.yaml`, and Story 156's
+  published readiness note. Verified challenger evidence now also exists in
+  this repo's shared `output/`: Story 158 pilot outputs under
+  `output/runs/story157-docling-pilot-r1/docling/`, Story 159 tuning and thin
+  proof outputs, and Story 160 broader generalization outputs. The intentionally
+  missing substrate is the native Dossier `DoclingDocument` intake surface and
+  any maintained `driver.py` hybrid path; this story's job is to decide whether
+  those are worth building.
 - **Data contracts / schemas**: The incumbent downstream contract is still `doc_web_bundle_manifest_v1` plus `doc_web_provenance_block_v1`. This story should not mutate that contract early. If the decision later favors `DoclingDocument`, the new or superseded contract surface must be made explicit in ADR-003 before code changes spread.
 - **File sizes**: `docs/stories.md` is 165 lines; `docs/scout/scout-011-external-document-ingestion-systems.md` is 97 lines; `docs/doc-web-bundle-contract.md` is 218 lines; `docs/dossier-doc-web-handoff.md` is 197 lines; `docs/notes/doc-web-dossier-readiness-gap-analysis.md` is 148 lines; `doc_web/runtime_contract.py` is 53 lines; `tests/test_doc_web_bundle_contract.py` is 294 lines; `tests/test_doc_web_cli_contract.py` is 79 lines. Avoid touching `modules/build/build_chapter_html_v1/main.py` (1626 lines) unless the evidence truly requires a comparison adapter inside the current runtime.
 - **Decision context**: Reviewed `docs/ideal.md`, `docs/spec.md`, `docs/build-map.md`, ADR-002, Scout 011, Story 151, Story 156, `docs/doc-web-bundle-contract.md`, `docs/dossier-doc-web-handoff.md`, and `docs/notes/doc-web-dossier-readiness-gap-analysis.md`. ADR-003 is the correct place to track the reopened architecture question rather than hiding it in a build-story plan.
 
 ## Files to Modify
 
-- /Users/cam/.codex/worktrees/eb88/doc-web/docs/stories/story-158-docling-doc-web-replacement-evaluation.md — track the evaluation scope, acceptance bar, and evidence trail (new file)
-- /Users/cam/.codex/worktrees/eb88/doc-web/docs/stories.md — index the new story and keep backlog visibility honest (165 lines)
-- /Users/cam/.codex/worktrees/eb88/doc-web/docs/decisions/adr-003-doclingdocument-doc-web-boundary/adr.md — track the replacement decision and eventual supersession path (69 lines)
-- /Users/cam/.codex/worktrees/eb88/doc-web/docs/decisions/adr-003-doclingdocument-doc-web-boundary/research/research-prompt.md — make the research question stand alone (23 lines)
-- /Users/cam/.codex/worktrees/eb88/doc-web/docs/decisions/adr-003-doclingdocument-doc-web-boundary/research/final-synthesis.md — collect the recommendation once evidence exists (11 lines)
-- /Users/cam/.codex/worktrees/eb88/doc-web/docs/decisions/adr-003-doclingdocument-doc-web-boundary/research/local-pilot-scorecard.md — pin the local corpus, scoring dimensions, and manual inspection bar for the `Docling` replacement pilot (new file)
-- /Users/cam/.codex/worktrees/eb88/doc-web/docs/decisions/adr-003-doclingdocument-doc-web-boundary/research/local-pilot-findings.md — record inspected native `Docling` artifacts, observed gaps, and the provisional architecture read (new file)
-- /Users/cam/.codex/worktrees/eb88/doc-web/docs/scout/scout-011-external-document-ingestion-systems.md — tighten recommendations if the local pilot materially changes the external-research conclusion (97 lines)
-- /Users/cam/.codex/worktrees/eb88/doc-web/docs/doc-web-bundle-contract.md — incumbent contract reference; only update if the decision actually changes the public boundary (218 lines)
-- /Users/cam/.codex/worktrees/eb88/doc-web/docs/dossier-doc-web-handoff.md — incumbent Dossier handoff surface; only update if the recommendation changes the consumer contract (197 lines)
-- /Users/cam/.codex/worktrees/eb88/doc-web/docs/notes/doc-web-dossier-readiness-gap-analysis.md — compare the current ready-to-present `doc-web` baseline against the `Docling` alternative (148 lines)
-- /Users/cam/.codex/worktrees/eb88/doc-web/doc_web/runtime_contract.py — only if a thin adapter or compatibility comparison needs code-backed contract metadata (53 lines)
-- /Users/cam/.codex/worktrees/eb88/doc-web/tests/test_doc_web_bundle_contract.py — only if the comparison formalizes a new or superseding contract gate (294 lines)
-- /Users/cam/.codex/worktrees/eb88/doc-web/tests/test_doc_web_cli_contract.py — only if the comparison adds runtime-level contract compatibility checks (79 lines)
+- `docs/stories/story-158-docling-doc-web-replacement-evaluation.md` — track the umbrella evaluation scope, acceptance bar, and evidence trail
+- `docs/stories/story-159-docling-onward-tuning-sweep.md` — preserve the bounded stock-tuning and Arthur-lane parity evidence already folded into this decision
+- `docs/stories/story-160-docling-tier2-onward-hybrid-generalization.md` — fold the broader Tier 2 generalization result back into the umbrella keep / hybrid / replace call
+- `docs/stories/story-161-integrate-generalized-docling-hybrid-into-maintained-onward-path.md` — concrete maintained-path follow-up if the evaluation recommends `hybrid` but keeps `doc-web` incumbent for now
+- `docs/stories.md` — update story status / backlog metadata only if the index entry changes
+- `docs/decisions/adr-003-doclingdocument-doc-web-boundary/adr.md` — track the replacement decision and eventual supersession path
+- `docs/decisions/adr-003-doclingdocument-doc-web-boundary/research/research-prompt.md` — make the research question stand alone
+- `docs/decisions/adr-003-doclingdocument-doc-web-boundary/research/final-synthesis.md` — collect the recommendation once evidence exists
+- `docs/decisions/adr-003-doclingdocument-doc-web-boundary/research/local-pilot-scorecard.md` — pin the local corpus, scoring dimensions, and manual inspection bar for the `Docling` replacement pilot
+- `docs/decisions/adr-003-doclingdocument-doc-web-boundary/research/local-pilot-findings.md` — record inspected native `Docling` artifacts, observed gaps, and the provisional architecture read
+- `docs/decisions/adr-003-doclingdocument-doc-web-boundary/research/onward-tuning-findings.md` — keep the Story 159 and Story 160 Tier 1 / Tier 2 findings synchronized with the umbrella recommendation
+- `docs/scout/scout-011-external-document-ingestion-systems.md` — tighten recommendations if local evidence materially changes the external-research conclusion
+- `docs/doc-web-bundle-contract.md` — incumbent contract reference; only update if the decision actually changes the public boundary
+- `docs/dossier-doc-web-handoff.md` — incumbent Dossier handoff surface; only update if the recommendation changes the consumer contract
+- `docs/notes/doc-web-dossier-readiness-gap-analysis.md` — compare the current ready-to-present `doc-web` baseline against the `Docling` alternative
+- `doc_web/runtime_contract.py` — only if a thin adapter or compatibility comparison needs code-backed contract metadata
+- `tests/test_doc_web_bundle_contract.py` — only if the comparison formalizes a new or superseding contract gate
+- `tests/test_doc_web_cli_contract.py` — only if the comparison adds runtime-level contract compatibility checks
 
 ## Redundancy / Removal Targets
 
@@ -135,6 +178,12 @@ Determine whether `Docling` can replace `doc-web` as the Dossier-facing intake b
 - The user explicitly prefers the strongest ingestion engine for Storybook/Dossier over preserving `doc-web` for sunk-cost reasons.
 - The key question is deletion power: if `DoclingDocument` lets Dossier delete more custom runtime code than it adds while preserving provenance and hard-document quality, the repo should be willing to supersede ADR-002.
 - The current `doc-web` work is still useful even if it loses. It defines the incumbent acceptance bar and the exact surfaces a replacement must meet or beat.
+- Current result: Story 158 now leaves a formal `hybrid`-first recommendation,
+  not an open-ended benchmark. Native `DoclingDocument` replacement is still
+  not justified, `doc-web` remains the incumbent Dossier-facing boundary, and
+  Story 161 owns the next proof: whether the generalized Tier 2 shape can be
+ translated into a maintained path without regrowing the current workaround
+  stack.
 
 ## Plan
 
@@ -188,3 +237,33 @@ Impact and risk notes:
 20260320-1058 — pilot corpus pinned and `Docling` environment corrected: located the real local Onward source corpus under `/Users/cam/Documents/Projects/Onward to the Unknown Book Scan/`, confirmed that `Optimized Image Output.pdf` is image-only (`pdftotext` returns blank pages), and extracted the exact incumbent hard-case slice into `output/runs/story157-docling-pilot-r1/input/onward-hardcase-slice-imageonly.pdf` using the source-page ranges from the committed Dossier handoff pack (`28-47`, `78-85`, `108-119`). Wrote the reproducible corpus manifest to `output/runs/story157-docling-pilot-r1/input/source_manifest.json` and the explicit pass/fail rubric to `docs/decisions/adr-003-doclingdocument-doc-web-boundary/research/local-pilot-scorecard.md`, so the comparison now has a fixed source set and scorecard instead of ad hoc judgement. `Docling` install investigation also produced a concrete operational finding: the first attempt used an x86_64 Python 3.12 interpreter and fell into a slow local `docling-parse` source build, but a quick wheel check showed `docling-parse==5.6.0` has a native `cp314 macOS arm64` wheel on this machine. Pivoted to `.venv-story157-docling-arm64`, installed `docling==2.80.0` successfully there, and started the first control conversion on `testdata/tbotb-mini.pdf`. That control run is still warming models and has not yet emitted inspectable artifacts, so no quality claim is made yet. Next step: let the control export finish, inspect the native JSON/HTML/Markdown outputs, then run the same harness on the 40-page Onward hard-case slice and compare against the incumbent `doc-web` handoff pack.
 20260320-1058 — native `Docling` pilot artifacts inspected: the control run on `testdata/tbotb-mini.pdf` completed successfully in `67.87s` and emitted coherent markdown plus a native JSON structure with page-aware provenance (`prov[].page_no` + `prov[].bbox`) under `output/runs/story157-docling-pilot-r1/docling/tbotb-mini/`. The image-only Onward hard-case slice also completed successfully in `68.248s` under `output/runs/story157-docling-pilot-r1/docling/onward-hardcase-slice/` and produced `40` pages, `312` text items, `20` tables, and `7` pictures. Manual inspection shows `Docling` is a real contender, not a gimmick: the Arthur opening paragraph is close to the incumbent `doc-web` paragraph in `benchmarks/golden/onward/dossier-doc-web-handoff-v1/chapter-010.html`, and the native JSON contains real table cell structures with page/bbox provenance. But the gaps are concrete too. The Arthur family section still flattens the first large genealogy block into prose before the first recovered table, subgroup headings leak into table cells, and the built-in export surface is not Dossier-ready: HTML emits `0` `<img>` tags and `0` `id=` anchors, while markdown emits `7` `<!-- image -->` placeholders instead of bundle-local image references. A targeted OCR-backed Arthur follow-up under `output/runs/story157-docling-pilot-r1/docling/onward-arthur-split-ocr/` did not rescue the main table onset; in this case the raw image-only slice actually produced more usable table recovery (`20` tables on the slice vs `5` on the OCR-backed chapter). I recorded the inspected artifacts and provisional interpretation in `docs/decisions/adr-003-doclingdocument-doc-web-boundary/research/local-pilot-findings.md`. Current read: `Docling` looks strong enough to justify a hybrid or upstream-improvement path, but its native document/export surface does not yet beat the current Dossier-facing `doc-web` contract.
 20260320-1058 — decision package updated: promoted ADR-003 to `DISCUSSING`, filled `research/final-synthesis.md` with the current architecture read, and turned the pilot evidence into a concrete provisional recommendation. Recommended choice is now `hybrid`: keep `Docling` as the leading upstream substrate candidate, but do not recommend native `DoclingDocument` replacement yet because the built-in export surface still misses stable block anchors, bundle-local image exports, and clean enough repeated-structure segmentation. Runner-up remains `keep doc-web` if the next adapter proof turns out not to be materially thinner than the current boundary. Next step: run `/validate` on this story package, then either create the thin hybrid adapter proof story or explicitly freeze the question with `doc-web` remaining incumbent.
+20260320-1607 — align follow-up: tightened the umbrella story so it cannot
+close on Arthur-local hybrid evidence alone. Story 160 is now an explicit
+decision input, and if `hybrid` remains the leading path this story must fold
+the broader Tier 2 generalization result back into the keep / hybrid / replace
+recommendation, removal targets, and any warranted methodology updates before
+closure.
+20260320-1656 — Story 160 result folded back into the umbrella read. The
+signal-driven Tier 2 harness now generalizes beyond the Arthur-local proof on a
+broader Onward slice: Arthur `[3, 4]` scores `97.3 / 100` on the frozen lane,
+and Pierre `[4, 5, 6]` restores the later repeated-structure spill to the
+reviewed incumbent's coarse structure (`2` tables, `37` subgroup rows, `0`
+heading leaks). This materially strengthens `hybrid` while still stopping short
+of native `replace`: the new evidence makes `table_rescue_onward_tables_v1` the
+first realistic deletion target if a maintained driver path can absorb the new
+shape, but `doc-web` remains the incumbent contract until that broader
+production-path proof exists.
+20260320-1856 — `/mark-story-done` rescope-and-close: Story 158 now closes on
+the evaluation slice it actually delivered. Fresh close-out validation passed
+on the current tree: `python -m pytest tests/` (`353 passed`) and
+`python -m ruff check modules/ tests/` (`All checks passed!`). The story's
+acceptance bar is now fully met by inspected local artifacts and the formal
+decision package: pinned corpus and scorecard in ADR-003 research, native
+`Docling` pilot outputs under `output/runs/story157-docling-pilot-r1/docling/`,
+Story 159 and Story 160 follow-up evidence, and the synchronized ADR-003 /
+final-synthesis recommendation to pursue `hybrid` first while keeping `doc-web`
+incumbent. Remaining work was not left dangling here: Story 161 now owns the
+maintained-path proof needed to justify any real simplification of the Onward
+workaround stack. This resolves ADR-003's "formal recommendation" item enough
+to move that ADR closer to `ACCEPTED`, but not all the way there because the
+maintained-path gate is still open. Next step: `/check-in-diff`.

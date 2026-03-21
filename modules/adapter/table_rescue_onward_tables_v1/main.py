@@ -17,14 +17,7 @@ from typing import Any, Dict, List, Optional, Tuple
 
 from bs4 import BeautifulSoup
 
-try:
-    from modules.common.openai_client import OpenAI
-except Exception as exc:  # pragma: no cover - environment dependency
-    OpenAI = None
-    _OPENAI_IMPORT_ERROR = exc
-else:
-    _OPENAI_IMPORT_ERROR = None
-
+from modules.common.onward_openai_ocr import call_ocr as _call_ocr
 from modules.common.utils import read_jsonl, save_jsonl, ensure_dir, ProgressLogger
 from modules.extract.ocr_ai_gpt51_v1.main import (
     build_system_prompt,
@@ -100,62 +93,6 @@ def _encode_image(path: str) -> str:
         b64 = base64.b64encode(f.read()).decode("utf-8")
     ext = os.path.splitext(path)[1].lower().lstrip(".") or "jpeg"
     return f"data:image/{ext};base64,{b64}"
-
-
-def _supports_temperature(model: str) -> bool:
-    return not (model or "").casefold().startswith("gpt-5")
-
-
-def _call_ocr(model: str, prompt: str, image_data: str, temperature: float, max_tokens: int,
-              timeout_seconds: Optional[float], user_text: Optional[str] = None) -> Tuple[str, Optional[Any], Optional[str]]:
-    if OpenAI is None:  # pragma: no cover
-        raise RuntimeError("openai package required") from _OPENAI_IMPORT_ERROR
-    client = OpenAI(timeout=timeout_seconds) if timeout_seconds else OpenAI()
-    raw = ""
-    usage = None
-    request_id = None
-    request_kwargs: Dict[str, Any] = {
-        "model": model,
-    }
-    if _supports_temperature(model):
-        request_kwargs["temperature"] = temperature
-    user_text = (user_text or "Return only HTML.").strip()
-    if hasattr(client, "responses"):
-        resp = client.responses.create(
-            **request_kwargs,
-            max_output_tokens=max_tokens,
-            input=[
-                {"role": "system", "content": [{"type": "input_text", "text": prompt}]},
-                {
-                    "role": "user",
-                    "content": [
-                        {"type": "input_text", "text": user_text},
-                        {"type": "input_image", "image_url": image_data},
-                    ],
-                },
-            ],
-        )
-        raw = resp.output_text or ""
-        usage = getattr(resp, "usage", None)
-        request_id = getattr(resp, "id", None)
-    else:
-        resp = client.chat.completions.create(
-            **request_kwargs,
-            max_completion_tokens=max_tokens,
-            messages=[
-                {"role": "system", "content": prompt},
-                {
-                    "role": "user",
-                    "content": [
-                        {"type": "text", "text": user_text},
-                        {"type": "image_url", "image_url": {"url": image_data}},
-                    ],
-                },
-            ],
-        )
-        raw = resp.choices[0].message.content or ""
-    return raw, usage, request_id
-
 
 def _normalize_token(text: str) -> str:
     return re.sub(r"[^a-z]", "", (text or "").lower())

@@ -20,13 +20,13 @@ from typing import Any, Dict, Iterable, List, Optional, Set, Tuple
 from bs4 import BeautifulSoup
 
 from modules.adapter.table_rescue_onward_tables_v1.main import (
-    _call_ocr,
     _encode_image,
     _extract_family_labels,
     _is_generation_context_text,
     _normalize_rescue_html,
     _should_accept_rescue,
 )
+from modules.common.onward_openai_ocr import call_ocr as _call_ocr
 from modules.common.onward_genealogy_html import merge_contiguous_genealogy_tables
 from modules.common.utils import ProgressLogger, ensure_dir, read_jsonl, save_json, save_jsonl
 from modules.extract.ocr_ai_gpt51_v1.main import (

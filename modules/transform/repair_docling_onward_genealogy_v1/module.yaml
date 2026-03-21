@@ -1,0 +1,29 @@
+module_id: repair_docling_onward_genealogy_v1
+stage: transform
+entrypoint: modules/transform/repair_docling_onward_genealogy_v1/main.py
+input_schema: null
+output_schema: null
+description: "Recipe-driven maintained replacement path for the Story 160 Docling genealogy repair proof. Reuses stock baseline artifacts, rereads only signal-selected pages, and emits repaired HTML plus inspectable repair summaries."
+params:
+  - name: lane_id
+    type: str
+    required: true
+  - name: document_title
+    type: str
+    required: true
+  - name: profile
+    type: str
+    required: true
+  - name: gold_html
+    type: str
+    required: false
+  - name: model
+    type: str
+    default: gpt-4.1
+  - name: max_output_tokens
+    type: int
+    default: 12000
+  - name: timeout_seconds
+    type: float
+    default: 180.0
+notes: "Consumes copied baseline summary/html/json artifacts from load_artifact_v1 stages. Defaults to gpt-4.1 because the Story 160 evidence showed gpt-5 over-reasoning on this seam. Writes per-page clues/raw/clean HTML, merged excerpt/full candidate HTML, summary JSON/Markdown, and a JSONL manifest row for the maintained proof lane."

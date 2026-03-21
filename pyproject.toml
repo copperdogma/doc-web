@@ -15,8 +15,12 @@ dependencies = [
 [project.scripts]
 doc-web = "doc_web.cli:main"
 
+[project.entry-points.docling]
+onward_layout_v1 = "docling_plugins.onward_layout_plugin"
+onward_table_structure_v1 = "docling_plugins.onward_table_structure_plugin"
+
 [tool.setuptools]
-packages = ["doc_web"]
+packages = ["doc_web", "docling_plugins"]
 py-modules = ["schemas"]
 
 [tool.setuptools.dynamic]

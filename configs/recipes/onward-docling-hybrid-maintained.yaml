@@ -1,0 +1,215 @@
+# Maintained replacement-path proof for the Story 160 Docling hybrid shape.
+# Reuses current-pass stock Docling baseline artifacts and runs bounded repair
+# lanes through driver.py so the proof lives under the normal recipe/module
+# surface instead of a standalone spike script.
+
+stages:
+  - id: load_arthur_baseline_summary
+    stage: extract
+    module: load_artifact_v1
+    out: arthur_baseline_summary.json
+    params:
+      path: output/runs/story160-docling-baseline-arthur-r1/summary.json
+      out: arthur_baseline_summary.json
+
+  - id: load_arthur_baseline_html
+    stage: extract
+    module: load_artifact_v1
+    out: arthur_baseline.html
+    params:
+      path: output/runs/story160-docling-baseline-arthur-r1/docling/baseline-images/05 ARTHUR L'HEUREUX.html
+      out: arthur_baseline.html
+      copy_sibling_dir: images
+
+  - id: load_arthur_baseline_json
+    stage: extract
+    module: load_artifact_v1
+    out: arthur_baseline.json
+    params:
+      path: output/runs/story160-docling-baseline-arthur-r1/docling/baseline-images/05 ARTHUR L'HEUREUX.json
+      out: arthur_baseline.json
+
+  - id: repair_arthur_docling_genealogy
+    stage: transform
+    module: repair_docling_onward_genealogy_v1
+    needs: [load_arthur_baseline_summary, load_arthur_baseline_html, load_arthur_baseline_json]
+    inputs:
+      baseline_summary: load_arthur_baseline_summary
+      baseline_html: load_arthur_baseline_html
+      baseline_json: load_arthur_baseline_json
+    out: repair_arthur_docling_genealogy.jsonl
+    params:
+      lane_id: arthur
+      document_title: "Arthur L'Heureux"
+      profile: onset_before_first_table
+      gold_html: benchmarks/golden/onward/arthur.html
+      model: gpt-4.1
+      max_output_tokens: 8000
+
+  - id: load_pierre_baseline_summary
+    stage: extract
+    module: load_artifact_v1
+    out: pierre_baseline_summary.json
+    params:
+      path: output/runs/story160-docling-baseline-pierre-r1/summary.json
+      out: pierre_baseline_summary.json
+
+  - id: load_pierre_baseline_html
+    stage: extract
+    module: load_artifact_v1
+    out: pierre_baseline.html
+    params:
+      path: output/runs/story160-docling-baseline-pierre-r1/docling/baseline-images/17 PIERRE L'HEUREUX.html
+      out: pierre_baseline.html
+      copy_sibling_dir: images
+
+  - id: load_pierre_baseline_json
+    stage: extract
+    module: load_artifact_v1
+    out: pierre_baseline.json
+    params:
+      path: output/runs/story160-docling-baseline-pierre-r1/docling/baseline-images/17 PIERRE L'HEUREUX.json
+      out: pierre_baseline.json
+
+  - id: repair_pierre_docling_genealogy
+    stage: transform
+    module: repair_docling_onward_genealogy_v1
+    needs: [load_pierre_baseline_summary, load_pierre_baseline_html, load_pierre_baseline_json]
+    inputs:
+      baseline_summary: load_pierre_baseline_summary
+      baseline_html: load_pierre_baseline_html
+      baseline_json: load_pierre_baseline_json
+    out: repair_pierre_docling_genealogy.jsonl
+    params:
+      lane_id: pierre
+      document_title: "Pierre L'Heureux"
+      profile: later_spill_after_leaky_tables
+      gold_html: benchmarks/golden/onward/reviewed_html_slice/story149-onward-build-regression-r1/chapter-022.html
+      model: gpt-4.1
+      max_output_tokens: 8000
+
+  - id: load_leonidas_baseline_summary
+    stage: extract
+    module: load_artifact_v1
+    out: leonidas_baseline_summary.json
+    params:
+      path: output/runs/story162-docling-baseline-leonidas-r1/summary.json
+      out: leonidas_baseline_summary.json
+
+  - id: load_leonidas_baseline_html
+    stage: extract
+    module: load_artifact_v1
+    out: leonidas_baseline.html
+    params:
+      path: output/runs/story162-docling-baseline-leonidas-r1/docling/baseline-images/06 LEONIDAS L'HEUREUX.html
+      out: leonidas_baseline.html
+      copy_sibling_dir: images
+
+  - id: load_leonidas_baseline_json
+    stage: extract
+    module: load_artifact_v1
+    out: leonidas_baseline.json
+    params:
+      path: output/runs/story162-docling-baseline-leonidas-r1/docling/baseline-images/06 LEONIDAS L'HEUREUX.json
+      out: leonidas_baseline.json
+
+  - id: repair_leonidas_docling_genealogy
+    stage: transform
+    module: repair_docling_onward_genealogy_v1
+    needs: [load_leonidas_baseline_summary, load_leonidas_baseline_html, load_leonidas_baseline_json]
+    inputs:
+      baseline_summary: load_leonidas_baseline_summary
+      baseline_html: load_leonidas_baseline_html
+      baseline_json: load_leonidas_baseline_json
+    out: repair_leonidas_docling_genealogy.jsonl
+    params:
+      lane_id: leonidas
+      document_title: "Leonidas L'Heureux"
+      profile: wide_genealogy_block_from_first_table
+      gold_html: benchmarks/golden/onward/reviewed_html_slice/story149-onward-build-regression-r1/chapter-011.html
+      model: gpt-4.1
+      max_output_tokens: 8000
+
+  - id: load_marie_louise_baseline_summary
+    stage: extract
+    module: load_artifact_v1
+    out: marie_louise_baseline_summary.json
+    params:
+      path: output/runs/story162-docling-baseline-marie-louise-r1/summary.json
+      out: marie_louise_baseline_summary.json
+
+  - id: load_marie_louise_baseline_html
+    stage: extract
+    module: load_artifact_v1
+    out: marie_louise_baseline.html
+    params:
+      path: output/runs/story162-docling-baseline-marie-louise-r1/docling/baseline-images/12 MARIE-LOUISE (L'HEUREUX) LaCLARE.html
+      out: marie_louise_baseline.html
+      copy_sibling_dir: images
+
+  - id: load_marie_louise_baseline_json
+    stage: extract
+    module: load_artifact_v1
+    out: marie_louise_baseline.json
+    params:
+      path: output/runs/story162-docling-baseline-marie-louise-r1/docling/baseline-images/12 MARIE-LOUISE (L'HEUREUX) LaCLARE.json
+      out: marie_louise_baseline.json
+
+  - id: repair_marie_louise_docling_genealogy
+    stage: transform
+    module: repair_docling_onward_genealogy_v1
+    needs: [load_marie_louise_baseline_summary, load_marie_louise_baseline_html, load_marie_louise_baseline_json]
+    inputs:
+      baseline_summary: load_marie_louise_baseline_summary
+      baseline_html: load_marie_louise_baseline_html
+      baseline_json: load_marie_louise_baseline_json
+    out: repair_marie_louise_docling_genealogy.jsonl
+    params:
+      lane_id: marie_louise
+      document_title: "Marie-Louise (L'Heureux) LaClare"
+      profile: wide_genealogy_block_from_first_table
+      gold_html: benchmarks/golden/onward/reviewed_html_slice/story149-onward-build-regression-r1/chapter-017.html
+      model: gpt-4.1
+      max_output_tokens: 8000
+
+  - id: load_antoine_baseline_summary
+    stage: extract
+    module: load_artifact_v1
+    out: antoine_baseline_summary.json
+    params:
+      path: output/runs/story162-docling-baseline-antoine-r1/summary.json
+      out: antoine_baseline_summary.json
+
+  - id: load_antoine_baseline_html
+    stage: extract
+    module: load_artifact_v1
+    out: antoine_baseline.html
+    params:
+      path: output/runs/story162-docling-baseline-antoine-r1/docling/baseline-images/18 ANTOINE L'HEUREUX.html
+      out: antoine_baseline.html
+      copy_sibling_dir: images
+
+  - id: load_antoine_baseline_json
+    stage: extract
+    module: load_artifact_v1
+    out: antoine_baseline.json
+    params:
+      path: output/runs/story162-docling-baseline-antoine-r1/docling/baseline-images/18 ANTOINE L'HEUREUX.json
+      out: antoine_baseline.json
+
+  - id: repair_antoine_docling_genealogy
+    stage: transform
+    module: repair_docling_onward_genealogy_v1
+    needs: [load_antoine_baseline_summary, load_antoine_baseline_html, load_antoine_baseline_json]
+    inputs:
+      baseline_summary: load_antoine_baseline_summary
+      baseline_html: load_antoine_baseline_html
+      baseline_json: load_antoine_baseline_json
+    out: repair_antoine_docling_genealogy.jsonl
+    params:
+      lane_id: antoine
+      document_title: "Antoine L'Heureux"
+      profile: wide_genealogy_block_from_first_table
+      gold_html: benchmarks/golden/onward/reviewed_html_slice/story149-onward-build-regression-r1/chapter-023.html
+      model: gpt-4.1
+      max_output_tokens: 8000

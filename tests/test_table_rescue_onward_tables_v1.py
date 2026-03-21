@@ -30,7 +30,7 @@ class _DummyOpenAI:
 
 def test_call_ocr_omits_temperature_for_gpt5_models(monkeypatch):
     monkeypatch.setattr(
-        "modules.adapter.table_rescue_onward_tables_v1.main.OpenAI",
+        "modules.common.onward_openai_ocr.OpenAI",
         _DummyOpenAI,
     )
 
@@ -51,7 +51,7 @@ def test_call_ocr_omits_temperature_for_gpt5_models(monkeypatch):
 
 def test_call_ocr_keeps_temperature_for_non_gpt5_models(monkeypatch):
     monkeypatch.setattr(
-        "modules.adapter.table_rescue_onward_tables_v1.main.OpenAI",
+        "modules.common.onward_openai_ocr.OpenAI",
         _DummyOpenAI,
     )
 
@@ -72,7 +72,7 @@ def test_call_ocr_keeps_temperature_for_non_gpt5_models(monkeypatch):
 
 def test_call_ocr_includes_custom_user_text(monkeypatch):
     monkeypatch.setattr(
-        "modules.adapter.table_rescue_onward_tables_v1.main.OpenAI",
+        "modules.common.onward_openai_ocr.OpenAI",
         _DummyOpenAI,
     )
 

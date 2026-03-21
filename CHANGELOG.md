@@ -1,10 +1,89 @@
-## [2026-03-20-03] - Add scanned-PDF intake parity story
-
-### Added
-- Added Story 157 to scope maintained scanned-PDF intake parity with the active image-directory runtime path, including durable PDF smoke coverage, Onward PDF validation, and documentation truth reconciliation
+## [2026-03-20-10] - Close Story 163 and sync external-tool tracking
 
 ### Changed
-- Updated the story index to track Story 157 as a pending follow-up in the active `doc-web` intake roadmap
+- Closed Story 163 after the widened official `Docling` plugin proof stayed negative on Leonidas and Marie-Louise, and synced the story index/workflow gates to reflect the final result
+- Extended Scout 011 into the durable external-systems tracker so `Docling`, `OCRmyPDF`, `Surya`, `Marker`, and `GROBID` now carry explicit status, current read, and next-proof guidance in one place
+
+### Tested
+- `python -m pytest tests/`
+- `python -m ruff check modules/ tests/`
+- `git diff --check`
+
+## [2026-03-20-09] - Widen coordinated Docling plugin reopen test (Story 163)
+
+### Added
+- Added the repo-owned `Docling` plugin packages `docling_plugins/onward_layout_plugin.py` and `docling_plugins/onward_table_structure_plugin.py` plus the widened kill-test harness `scripts/spikes/docling_onward_plugin_kill_test.py`
+- Added focused plugin registration coverage in `tests/test_docling_plugin_registration.py`
+
+### Changed
+- Reopened Story 163 in-place and widened it from a single `table_structure` plugin to a coordinated `layout + table_structure` official plugin stack on current-pass evidence from `output/runs/story163-docling-plugin-killtest-r2/`
+- Updated ADR-003, the Onward tuning findings, the build map, and the final synthesis so the repo now treats the broadened documented plugin path as explicitly tested and still negative on this lane
+
+### Tested
+- `make lint`
+- `make test`
+- `python -m pytest tests/test_docling_plugin_registration.py`
+- `python -m ruff check docling_plugins scripts/spikes/docling_onward_plugin_kill_test.py tests/test_docling_plugin_registration.py`
+- `.venv-story160-docling-arm64/bin/python scripts/spikes/docling_onward_plugin_kill_test.py`
+- `git diff --check`
+
+## [2026-03-20-08] - Close final Docling boundary decision on reviewed Onward slice (Story 162)
+
+### Added
+- Added the shared OpenAI vision OCR helper `modules/common/onward_openai_ocr.py` so the maintained `Docling` repair path, rerun lane, and incumbent rescue path no longer hide that ownership inside `table_rescue_onward_tables_v1`
+
+### Changed
+- Closed Story 162 on widened maintained-path evidence from `output/runs/story162-docling-maintained-r1/`, including Arthur and Pierre holding strong while Leonidas, Marie-Louise, and Antoine still miss the reviewed replacement bar in distinct ways
+- Updated ADR-003, the Onward build-map candidate block, and the final synthesis so the repo now treats `doc-web` as the accepted boundary on this seam and demotes the maintained `Docling` recipe/module path to benchmark/reference status instead of a forward adoption path
+
+### Tested
+- `python -m ruff check modules/ tests/`
+- `python -m pytest tests/`
+- `python driver.py --recipe configs/recipes/onward-docling-hybrid-maintained.yaml --run-id story162-docling-maintained-r1 --force`
+- `git diff --check`
+
+## [2026-03-20-07] - Land maintained Docling hybrid path proof (Story 161)
+
+### Added
+- Added the maintained `Docling` hybrid recipe at `configs/recipes/onward-docling-hybrid-maintained.yaml` and the bounded repair module `modules/transform/repair_docling_onward_genealogy_v1/` so the generalized Tier 2 shape now runs through the normal `driver.py` path instead of a story-local spike script
+- Added focused test coverage for the maintained repair seam in `tests/test_repair_docling_onward_genealogy_v1.py`
+
+### Changed
+- Closed Story 161 on fresh maintained-path evidence from `output/runs/story161-docling-maintained-r2/`, including Arthur parity held at `97.3 / 100` and Pierre restoration of the `JACQUELINE'S FAMILY` through `ANTONIO'S FAMILY` sequence plus descendants summary table
+- Updated the Onward build-map candidate block and ADR-003 synthesis so the repo now treats `hybrid` as the measured next path on a maintained seam, while keeping `table_rescue_onward_tables_v1` and the planner/rerun stack as narrowing targets rather than claiming broad deletions yet
+
+### Tested
+- `make lint`
+- `make test`
+- `python driver.py --recipe configs/recipes/onward-docling-hybrid-maintained.yaml --run-id story161-docling-maintained-r2 --force`
+- `python scripts/spikes/docling_onward_parity_score.py --outdir output/runs/story161-docling-arthur-parity-r1 --candidate maintained-r2=output/runs/story161-docling-maintained-r2/07_repair_docling_onward_genealogy_v1/full-candidate.html`
+- `git diff --check`
+
+## [2026-03-20-06] - Close Docling replacement evaluation and split maintained-path proof (Story 158)
+
+### Added
+- Added Story 161 to own the maintained `Docling` hybrid path proof on the Onward lane, including the simplification gate against the active workaround stack
+
+### Changed
+- Closed Story 158 on a formal `hybrid`-first recommendation backed by the pinned local pilot corpus, Story 159 tuning evidence, and Story 160 broader Tier 2 generalization results
+- Updated ADR-003 and the replacement-evaluation synthesis so `doc-web` remains the incumbent boundary for now while the maintained-path proof moves into Story 161
+
+### Tested
+- `python -m pytest tests/`
+- `python -m ruff check modules/ tests/`
+
+## [2026-03-20-05] - Close Story 160 Tier 2 generalization spike (Story 160)
+
+### Added
+- Added the signal-driven `Docling` Tier 2 generalization harness in `scripts/spikes/docling_onward_hybrid_generalization.py` plus current-pass Arthur and Pierre spike evidence under `output/runs/story160-docling-generalization-r1/`
+
+### Changed
+- Closed Story 160 on fresh artifact evidence, including regenerated stock `baseline-images` baselines, Arthur parity improvement to `97.3 / 100`, and Pierre later-spill recovery to the incumbent chapter's coarse structure
+- Updated ADR-003 research, synthesis, and decision notes plus the Onward build-map candidate block so the repo now treats Tier 2 generalization as proven enough to continue, with maintained-path integration as the next question
+
+### Tested
+- `python -m pytest tests/`
+- `python -m ruff check modules/ tests/`
 
 ## [2026-03-20-04] - Add Docling evaluation package and close Onward tuning slice
 
@@ -20,6 +99,14 @@
 ### Tested
 - `python -m pytest tests/`
 - `python -m ruff check modules/ tests/`
+
+## [2026-03-20-03] - Add scanned-PDF intake parity story
+
+### Added
+- Added Story 157 to scope maintained scanned-PDF intake parity with the active image-directory runtime path, including durable PDF smoke coverage, Onward PDF validation, and documentation truth reconciliation
+
+### Changed
+- Updated the story index to track Story 157 as a pending follow-up in the active `doc-web` intake roadmap
 
 ## [2026-03-20-02] - Port Dossier and Storybook workflow upgrades
 

@@ -160,9 +160,12 @@ This index tracks stories in `/docs/stories/` for the doc-forge pipeline.
 |||| 155 | Repo Mission Alignment Cleanup and Legacy Surface Removal | High | Done | /docs/stories/story-155-repo-mission-alignment-cleanup-and-legacy-surface-removal.md |
 |||| 156 | Adopt Storybook-Style Pinned `doc-web` Runtime Pattern and Close Dossier Readiness Gaps | High | Done | /docs/stories/story-156-pinned-doc-web-runtime-adoption-and-dossier-readiness.md |
 |||| 157 | PDF Intake Parity with Image-Directory Inputs | High | Pending | /docs/stories/story-157-pdf-intake-parity-with-image-directory-inputs.md |
-|||| 158 | Evaluate `Docling` as a Full Replacement Candidate for `doc-web` | High | In Progress | /docs/stories/story-158-docling-doc-web-replacement-evaluation.md |
+|||| 158 | Evaluate `Docling` as a Full Replacement Candidate for `doc-web` | High | Done | /docs/stories/story-158-docling-doc-web-replacement-evaluation.md |
 |||| 159 | Tune `Docling` on the Onward Hard Case and Rank the Path to 100% Fidelity | High | Done | /docs/stories/story-159-docling-onward-tuning-sweep.md |
-|||| 160 | Generalize Tier 2 `Docling` Hybrid Repair on the Onward Lane | High | Pending | /docs/stories/story-160-docling-tier2-onward-hybrid-generalization.md |
+|||| 160 | Generalize Tier 2 `Docling` Hybrid Repair on the Onward Lane | High | Done | /docs/stories/story-160-docling-tier2-onward-hybrid-generalization.md |
+|||| 161 | Integrate Generalized `Docling` Hybrid into a Maintained Onward Path | High | Done | /docs/stories/story-161-integrate-generalized-docling-hybrid-into-maintained-onward-path.md |
+|||| 162 | Reach Final `Docling` Boundary Decision on Widened Onward Hard Cases | High | Done | /docs/stories/story-162-docling-final-boundary-decision-onward-high-cases.md |
+|||| 163 | Probe Coordinated Official `Docling` Plugin Paths Against the Onward 100% Golden Bar | High | Done | /docs/stories/story-163-docling-plugin-onward-golden-kill-test.md |
 
 ## Notes
 - Status "Done" reflects current working state in doc-forge. "To Do" items are planned next steps aligned with `docs/ideal.md`, `docs/spec.md`, and `docs/build-map.md`.

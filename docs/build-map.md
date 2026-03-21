@@ -276,33 +276,96 @@ The committed reviewed slice for this baseline now lives under
   the shared `output/` root. The old Story 146 proof recipe is historical
   evidence only, not a maintained second operating path.
 
-**Candidate deletion / merge targets:**
-- Collapse planner-guided rerun targeting and late build-stage repair into
-  fewer layers once one upstream seam can preserve subgroup rows, table
-  continuity, and row shape by default.
-- Delete or narrow deterministic normalization that only exists to compensate
-  for weak upstream extraction once the stronger seam proves stable on the
-  reviewed hard cases.
-- Keep the permanent regression bundle small and evidence-backed; do not promote
-  the historical Story 146 proof recipe back into the maintained operating path
-  unless the smaller guardrail stops covering the reviewed slice.
+**Current Tier 2 evidence:** Story 160 supplied the broader spike proof under
+`output/runs/story160-docling-generalization-r1/`, Story 161 translated that
+shape into the first maintained recipe/module path under
+`configs/recipes/onward-docling-hybrid-maintained.yaml` and
+`modules/transform/repair_docling_onward_genealogy_v1/`, and Story 162 widened
+that maintained path across the full reviewed hard-case slice under
+`output/runs/story162-docling-maintained-r1/`.
 
-**Proof needed before simplification:**
-- A real `driver.py` run on the maintained Onward path or a clearly proposed
-  replacement path, not only the story-scoped validation recipe.
-- Manual review on the previously failing chapters covered by
-  `story146-onward-build-stitch-r5`.
-- No reopened fragmentation, subgroup-row, or row-shape defects in the reviewed
-  slice.
-- A file-level mapping showing which late repair step becomes redundant, which
-  step absorbs any still-necessary logic, and why provenance / inspectability
-  stay intact.
+The widened maintained proof is informative but negative as a final replacement
+decision:
+- Arthur keeps the repaired onset shape and the frozen parity lane still holds
+  at `97.3 / 100`.
+- Pierre reaches the reviewed target shape cleanly: `2` tables,
+  `37` subgroup rows, `0` heading leaks, `0` combined `BOY/GIRL` headers, and
+  `coarse_suspect=false`.
+- Antoine is close but still not fully at the reviewed shape: the maintained
+  candidate clears heading leaks and restores `16` subgroup rows, but keeps the
+  descendants summary inside the main genealogy table (`1` table) instead of
+  the reviewed `2`-table shape.
+- Leonidas improves materially (`54 -> 9` table-heading leaks,
+  `7 -> 0` combined `BOY/GIRL` headers, `0 -> 74` subgroup rows), but it still
+  finishes at `12` tables with `coarse_suspect=true` and
+  `external_family_heading_count=8`; the reviewed target is `2` tables,
+  `104` subgroup rows, and no leak signal.
+- Marie-Louise also improves materially (`39 -> 17` table-heading leaks,
+  `4 -> 0` combined headers, `0 -> 42` subgroup rows), but it still lands at
+  `4` tables vs the reviewed `2`, preserves a pre-genealogy name-list block
+  outside the repaired section, and remains structurally short of the reviewed
+  target (`73` subgroup rows).
+- Re-running the widened Leonidas and Marie-Louise excerpts through the
+  retained chapter-merge normalizer does not materially rescue those lanes, so
+  the remaining gap is not a small omitted merge setting.
 
-**Non-goal:** this does not claim that C7, C1, or C3 are resolved. It is the
-inspectable roadmap for deciding what can be deleted or merged next.
+The widened maintained path therefore does not earn simplification or
+replacement on this seam. It is maintained benchmark evidence, not a promoted
+replacement direction. `doc-web` remains the accepted boundary.
 
-**Tracking model:** this build-map section is the high-level dashboard for the
-Onward seam: plan, current phase, trusted slice, and next simplification move.
+**Current Tier 1 plugin evidence:** Story 163 widened the documented external
+plugin seam into a coordinated official plugin stack under
+`output/runs/story163-docling-plugin-killtest-r2/`. The repo now has
+repo-owned `layout_engines` and `table_structure_engines` plugins registering
+cleanly through the official `docling` entrypoint group and loading only when
+`allow_external_plugins=True`, so the seam is real rather than hypothetical.
+The coordinated pass remains negative as a reopen candidate:
+- Leonidas does not materially move. `layout+table` still ends at `7` tables,
+  `55` heading leaks, `5` combined `BOY/GIRL` headers, and `0` subgroup rows.
+  The HTML remains page-bounded across pages `[2] [3] [4] [5] [6] [7] [8]`.
+- Marie-Louise improves only narrowly. `layout` can merge the same-page split
+  from `6 -> 5` tables and restore `MARIE LOUISE'S FAMILY`, while
+  `layout+table` keeps combined headers at `2`, but the lane still ends with
+  `49` heading leaks, `0` subgroup rows, and page-bounded tables on
+  `[3] [4] [5] [6] [7]`.
+- The local runtime still exposes no official serializer or document-level
+  merge plugin seam, so the remaining gap is not an honest OCR follow-up. The
+  coordinated plugin stack still underperforms the already-negative Story 162
+  maintained path on the structural signal that matters most (`0` subgroup rows
+  here versus `74` / `42` in the maintained benchmark lanes).
+- Result: even the broadened official plugin path does not reopen the Onward
+  boundary decision.
+
+**Ownership read after Story 162:**
+- Explicitly narrowed shared helper that survived honestly:
+  `modules/common/onward_openai_ocr.py` now owns the shared OpenAI vision OCR
+  request path used by rescue, rerun, and the `Docling` repair lane.
+- Still-justified incumbent owners:
+  `table_rescue_onward_tables_v1` for page-level deterministic normalization,
+  `plan_onward_document_consistency_v1`,
+  `rerun_onward_genealogy_consistency_v1`,
+  `modules/common/onward_genealogy_html.py`, and
+  `build_chapter_html_v1 --merge_contiguous_genealogy_tables`.
+- Not promoted to deletion or adoption targets:
+  `configs/recipes/onward-docling-hybrid-maintained.yaml` plus
+  `modules/transform/repair_docling_onward_genealogy_v1`.
+  Keep them as benchmark/reference surfaces, not as the forward Onward
+  boundary.
+
+**Reopen conditions:** only reopen the `Docling` replacement question on this
+lane if a materially different documented official seam or demonstrably thinner
+hybrid path appears that can clear Leonidas and Marie-Louise without regrowing
+the current rescue ownership. The current coordinated official plugin path
+(`layout` + `table_structure`) has now been tested and does not satisfy that
+condition.
+
+**Non-goal:** this does not claim that C7, C1, or C3 are resolved. It records
+that the current `Docling` replacement path failed to earn the final
+simplification/deletion proof on the reviewed Onward slice.
+
+**Tracking model:** this build-map section remains the high-level dashboard for
+the Onward seam: trusted slice, active workaround ownership, and the current
+reason the replacement question is closed.
 The detailed operational truth lives elsewhere:
 - `output/run_assessments.jsonl` is the trust ledger for blessed runs and
   scopes (`known_good`, `partial`, `unsafe`, `superseded`).

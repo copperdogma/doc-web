@@ -19,11 +19,12 @@ synthesized: ""
 
 ## Recommended Choice
 
-Pursue `hybrid` first.
+Keep `doc-web` as the accepted boundary.
 
-Current evidence says `Docling` is strong enough to justify ownership as an
-upstream intake substrate, but not yet strong enough to replace the current
-`doc-web` Dossier boundary with its native exports.
+Current evidence says `Docling` is strong enough to remain a serious benchmark
+and research substrate, but not strong enough to replace the current `doc-web`
+boundary on the reviewed Onward hard-case slice without still wanting too much
+of the incumbent rescue behavior.
 
 ## Ownership Ladder
 
@@ -59,6 +60,42 @@ The recommended path is tiered, not flat:
   `baseline-images` substrate, a two-page OCR rescue removed the flattened
   Arthur pre-table onset and the page-4 `ALICE'S FAMILY Barbara Hodges` leak
   while preserving the surrounding genealogy-table run.
+- Story 160's broader Tier 2 pass strengthens that result beyond the Arthur
+  two-page proof. A new signal-driven harness under
+  `scripts/spikes/docling_onward_hybrid_generalization.py` now derives repair
+  targets from stock `Docling` page/block signals, lifts the Arthur full
+  candidate to `97.3 / 100`, and restores the later Pierre spill to the
+  incumbent chapter's coarse structure without reintroducing heading leaks.
+- Story 162 closes the remaining question by widening the maintained path across
+  the full reviewed Story 149 slice in
+  `output/runs/story162-docling-maintained-r1/`.
+  The result is mixed, not adoption-grade:
+  - Arthur remains strong.
+  - Pierre reaches the reviewed target shape.
+  - Antoine is close, but still keeps the descendants summary inside the main
+    genealogy table instead of matching the reviewed two-table shape.
+  - Leonidas and Marie-Louise both improve materially, but still remain
+    structurally short of the reviewed target shape.
+    Leonidas finishes with `12` tables and `coarse_suspect=true`;
+    Marie-Louise finishes with `4` tables, `17` residual heading leaks, and
+    retained pre-genealogy name-list artifacts before the repaired block.
+- Story 163 then widened the documented external plugin seam into a coordinated
+  official plugin stack under `output/runs/story163-docling-plugin-killtest-r2/`.
+  The result is still negative:
+  - the repo-owned `layout` and `table-structure` plugins both register cleanly
+    through `allow_external_plugins=True` with no `Docling` source edits;
+  - Leonidas still finishes at `7` tables with `55` heading leaks and
+    `0` subgroup rows;
+  - Marie-Louise improves only from `6 -> 5` tables, but still finishes with
+    `49` heading leaks and `0` subgroup rows;
+  - the only material gain beyond the earlier table-only pass is one same-page
+    merge on Marie-Louise plus cleaner header/label cleanup, which is not
+    enough to threaten the accepted boundary or even beat the widened
+    maintained Tier 2 path on the structural signal that matters.
+- The one clearly honest shared extraction that survived Story 162 is the
+  OpenAI vision OCR request path in `modules/common/onward_openai_ocr.py`.
+  The remaining normalization gap still points back toward broader incumbent
+  rescue behavior rather than a clearly smaller adopted wrapper.
 - The same pilot and tuning sweep still show concrete native-surface gaps against the accepted
   `doc-web` bar:
   - no stable block anchors in HTML;
@@ -71,12 +108,11 @@ The recommended path is tiered, not flat:
 
 ## Runner-Up
 
-Keep `doc-web` as the incumbent boundary while treating `Docling` as a benchmark
-and upstream research substrate.
+Pursue `hybrid` first.
 
-Choose this if the next hybrid proof shows that preserving provenance, stable
-anchors, and image export would force an adapter that is effectively as large as
-the current `doc-web` surface.
+That was the right intermediate move through Stories 158–161, and it produced
+useful evidence. Story 162 is what closes it off: the widened maintained proof
+does not stay thin enough while also clearing the reviewed slice.
 
 ## Avoid
 
@@ -87,29 +123,14 @@ consumer surface still misses contract features Dossier already relies on.
 
 ## Next Step
 
-The direct source-image Tier 1 closure pass is now negative. In this local
-environment:
+Close the active `Docling` replacement track on this seam.
 
-- raw source-image `image-default` and `image-ocrmac` fail on the actual Onward
-  page scale before usable output is emitted;
-- the surviving source-image official VLM candidate scores `15.0 / 100`, which
-  is worse than the already-poor stock PDF baseline and far below the current
-  `89.0 / 100` hybrid control.
-
-That means the default next move is now Tier 2, not another broad Tier 1
-probe. Only reopen Tier 1 if a concrete documented `Docling` extension seam
-appears that is materially different from the seams already tested.
-
-The next question is therefore whether the now-proven hybrid shape generalizes
-cleanly:
-
-- can the page-local repair-target selection be derived from inspectable signals
-  instead of being hard-coded to Arthur pages 3-4;
-- can the same repair path preserve provenance/citation requirements cleanly;
-- can the adapter stay thin once stable anchors and Storybook-facing packaging
-  are added.
-
-If that generalized path stays thin, `hybrid` becomes the serious replacement
-path. If it starts recreating most of `doc-web`, keep `doc-web` as the accepted
-boundary and record `Docling` as a strong upstream benchmark rather than a
-replacement.
+- Keep `doc-web` as the accepted boundary direction.
+- Treat the maintained `Docling` recipe/module path as benchmark/reference
+  evidence only.
+- Do not continue slicing follow-up adoption stories from this proof chain.
+- Only reopen the question if a materially different documented official seam
+  or demonstrably thinner hybrid path appears that can clear Leonidas and
+  Marie-Louise without regrowing the incumbent rescue ownership. Story 163 has
+  now falsified the currently most plausible coordinated documented external
+  plugin seam on this lane.

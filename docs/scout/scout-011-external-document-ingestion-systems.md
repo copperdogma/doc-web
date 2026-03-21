@@ -44,23 +44,41 @@
    Adaptation: Keep doc-forge's YAML recipe/build-map governance, but remember `GROBID`'s flavor pattern if recipe families start multiplying.
    Proof target: If a future story introduces recipe-family specialization, it should carry visible routing plus per-structure coordinates/evidence rather than hidden one-off logic.
 
+## Tracking Ledger
+
+This section is the durable tracker for the five external systems evaluated in
+Scout 011. Stories own execution, ADRs own architecture-level decisions, and
+this scout owns the portfolio view: current standing, linked proof, and what
+would justify more work.
+
+| System | Role Hypothesis | Status | Current Tracking | Current Read | Next Proof Needed |
+|---|---|---|---|---|---|
+| `Docling` | Strongest external benchmark; possible upstream substrate or replacement candidate | Benchmarked; decision made | [ADR-003](/Users/cam/.codex/worktrees/c09a/doc-web/docs/decisions/adr-003-doclingdocument-doc-web-boundary/adr.md), [Stories 158-163](/Users/cam/.codex/worktrees/c09a/doc-web/docs/stories.md#L163) | Fully explored on the hard Onward seam. Keep `doc-web` as the accepted boundary; keep `Docling` as benchmark/reference and pattern source, not the forward replacement path on this lane. | Only reopen if a materially different documented seam appears or if `Docling` is used as an optional upstream substrate for a different document family with a new proof surface. |
+| `OCRmyPDF` | Narrow pre-OCR PDF conditioning and normalization seam | Parked | This scout only | Not a replacement candidate. Useful only if scan cleanup, deskew, rotation, or PDF conditioning is the actual bottleneck. | Run a narrow preprocessing spike only when artifact inspection proves source-PDF conditioning, not OCR/layout/consistency, is the dominant failure source. |
+| `Surya` | Component benchmark for stronger OCR/layout/reading-order/table recognition | Queued | This scout only | Most plausible next external component benchmark if we want to poach a lower-level engine rather than replace the pipeline. Licensing/packaging still need explicit scrutiny. | Story-sized benchmark on one or two active seams where layout/order/table quality is the current limiter, with explicit licensing review up front. |
+| `Marker` | End-to-end external comparator for schema-guided extraction and multi-format breadth | Queued behind `Surya` | This scout only | Strong comparator, but benchmark-first rather than adoption-first. Provenance and licensing posture are materially less attractive than `Docling`. | Only benchmark if `Surya`/other component options are insufficient or if a new multi-format comparison becomes high leverage. |
+| `GROBID` | Design reference for flavor-based specialization and coordinate-rich structured output | Parked design reference | This scout only | Not relevant to the active genealogy/intake seams right now. Valuable mainly for architectural transfusion if recipe families proliferate or scholarly PDFs become active. | No benchmarking now. Revisit only if technical/scientific PDFs or recipe-family specialization become active roadmap items. |
+
 ## Recommendation
 
-1. Approve a story-sized `Docling` pilot first. This is the only source in the set that directly pressures `C1`, `C2`, `C3`, and `C7` at once while keeping provenance and inspectability in scope.
-2. Keep `OCRmyPDF` as an `XS` or `S` preprocessing experiment only if scan cleanup or PDF normalization is proven to be the bottleneck on a target document.
-3. Defer `Surya` and `Marker` until after the `Docling` pilot. Use `Marker` for end-to-end external comparison and `Surya` for component-level rescue benchmarking if `Docling` under-delivers.
-4. Skip `GROBID` for now. Its main value in this repo is architectural inspiration, not immediate benchmark leverage.
+1. Treat the `Docling` track as resolved for the reviewed Onward seam. The repo now has enough evidence to keep `Docling` as benchmark/reference and pattern source rather than continuing replacement-driven probing on this lane.
+2. If external-system exploration resumes, `Surya` is the strongest next benchmark because it pressures the component seams that still matter if we want to keep `doc-web` as the canonical pipeline and poach better lower-level engines.
+3. Keep `OCRmyPDF` as a narrow preprocessing experiment only when artifact inspection shows PDF conditioning is the actual blocker.
+4. Keep `Marker` behind `Surya` as a secondary end-to-end comparator, not a first adoption candidate.
+5. Keep `GROBID` parked as a design reference unless the active roadmap shifts toward scholarly/technical PDFs or explicit recipe-family specialization.
 
 ## Approved
 
 - [x] 1. Bootstrap Scout 011 and preserve the Docling-first evaluation order — Landed as the inbox routing artifact
 - [x] 2. Run the actual external-systems scout and produce adopt/skip recommendations — Completed as a research-only comparison against official sources and local `C1`/`C2`/`C3`/`C7` seams; no implementation items approved in this pass
+- [x] 3. Execute the recommended `Docling` follow-up as the first full external benchmark chain — Completed later through [ADR-003](/Users/cam/.codex/worktrees/c09a/doc-web/docs/decisions/adr-003-doclingdocument-doc-web-boundary/adr.md) and [Stories 158-163](/Users/cam/.codex/worktrees/c09a/doc-web/docs/stories.md#L163); result: negative as a replacement path on the reviewed Onward seam, positive as benchmark/reference and pattern source
 
 ## Skipped / Rejected
 
 - Row-structured fallback experiment — not part of this scout; already tracked as a deferred `C7` follow-up in `story-146` and `docs/evals/registry.yaml`
 - Direct adoption of `OCRmyPDF`, `Surya`, `Marker`, or `GROBID` in this pass — this scout stayed research-only; any implementation or benchmarking follow-up still needs explicit approval
 - Treating any external system as a drop-in replacement for doc-forge provenance — rejected; every candidate would still need artifact-level proof against traceability and inspection requirements
+- Treating `Docling` as the forward replacement boundary on the reviewed Onward lane — rejected later by [ADR-003](/Users/cam/.codex/worktrees/c09a/doc-web/docs/decisions/adr-003-doclingdocument-doc-web-boundary/adr.md) after the full story chain (`158-163`) failed to clear the accepted bar honestly
 
 ## Verification
 
@@ -72,6 +90,14 @@
   - `Marker`: official README
   - `GROBID`: official README plus documentation for coordinates and specialized processes
 - No code or benchmark runs were executed in this pass; this was a research-only scout
+- Follow-up proof now exists for the top recommendation:
+  - [ADR-003](/Users/cam/.codex/worktrees/c09a/doc-web/docs/decisions/adr-003-doclingdocument-doc-web-boundary/adr.md)
+  - [Story 158](/Users/cam/.codex/worktrees/c09a/doc-web/docs/stories/story-158-docling-doc-web-replacement-evaluation.md)
+  - [Story 159](/Users/cam/.codex/worktrees/c09a/doc-web/docs/stories/story-159-docling-onward-tuning-sweep.md)
+  - [Story 160](/Users/cam/.codex/worktrees/c09a/doc-web/docs/stories/story-160-docling-tier2-onward-hybrid-generalization.md)
+  - [Story 161](/Users/cam/.codex/worktrees/c09a/doc-web/docs/stories/story-161-integrate-generalized-docling-hybrid-into-maintained-onward-path.md)
+  - [Story 162](/Users/cam/.codex/worktrees/c09a/doc-web/docs/stories/story-162-docling-final-boundary-decision-onward-high-cases.md)
+  - [Story 163](/Users/cam/.codex/worktrees/c09a/doc-web/docs/stories/story-163-docling-plugin-onward-golden-kill-test.md)
 
 ## Evidence
 

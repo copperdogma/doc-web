@@ -12,7 +12,8 @@ pilot-run-id: "story158-docling-tuning-r1"
 
 First stock sweep complete. Thin hybrid proof complete. Arthur-lane parity
 surface complete. Official VLM lane follow-up complete. Tier 1 source-image
-closure pass complete.
+closure pass complete. Tier 2 broader generalization pass complete. Official
+plugin follow-up complete.
 
 ## Output Root
 
@@ -23,6 +24,12 @@ closure pass complete.
 - [story158-docling-parity-r3](/Users/cam/.codex/worktrees/eb88/doc-web/output/runs/story158-docling-parity-r3)
 - [story158-docling-tier1-lane-r1](/Users/cam/.codex/worktrees/eb88/doc-web/output/runs/story158-docling-tier1-lane-r1)
 - [story158-docling-parity-r4](/Users/cam/.codex/worktrees/eb88/doc-web/output/runs/story158-docling-parity-r4)
+- [story160-docling-baseline-arthur-r1](/Users/cam/.codex/worktrees/c09a/doc-web/output/runs/story160-docling-baseline-arthur-r1)
+- [story160-docling-baseline-pierre-r1](/Users/cam/.codex/worktrees/c09a/doc-web/output/runs/story160-docling-baseline-pierre-r1)
+- [story160-docling-generalization-r1](/Users/cam/.codex/worktrees/c09a/doc-web/output/runs/story160-docling-generalization-r1)
+- [story160-docling-generalization-r1/arthur-parity](/Users/cam/.codex/worktrees/c09a/doc-web/output/runs/story160-docling-generalization-r1/arthur-parity)
+- [story163-docling-plugin-killtest-r1](/Users/cam/.codex/worktrees/c09a/doc-web/output/runs/story163-docling-plugin-killtest-r1)
+- [story163-docling-plugin-killtest-r2](/Users/cam/.codex/worktrees/c09a/doc-web/output/runs/story163-docling-plugin-killtest-r2)
 
 ## Notes
 
@@ -35,6 +42,22 @@ closure pass complete.
   - Parity scorer: [docling_onward_parity_score.py](/Users/cam/.codex/worktrees/eb88/doc-web/scripts/spikes/docling_onward_parity_score.py)
   - Official VLM lane probe: [docling_onward_vlm_lane_probe.py](/Users/cam/.codex/worktrees/eb88/doc-web/scripts/spikes/docling_onward_vlm_lane_probe.py)
   - Tier 1 image-lane probe: [docling_onward_tier1_lane_probe.py](/Users/cam/.codex/worktrees/eb88/doc-web/scripts/spikes/docling_onward_tier1_lane_probe.py)
+- Story 160 runtime refresh:
+  - Runtime: `.venv-story160-docling-arm64`
+  - `Docling`: `2.80.0`
+  - repo-helper compatibility additions: `openai==1.52.2`, `pdf2image`,
+    `pytesseract`, `httpx<0.28`
+  - Generalization harness:
+    [docling_onward_hybrid_generalization.py](/Users/cam/.codex/worktrees/c09a/doc-web/scripts/spikes/docling_onward_hybrid_generalization.py)
+- Story 163 official plugin follow-up:
+  - Runtime: `.venv-story160-docling-arm64`
+  - `Docling`: `2.80.0`
+  - repo-owned plugin package:
+    [onward_layout_plugin.py](/Users/cam/.codex/worktrees/c09a/doc-web/docling_plugins/onward_layout_plugin.py)
+    and
+    [onward_table_structure_plugin.py](/Users/cam/.codex/worktrees/c09a/doc-web/docling_plugins/onward_table_structure_plugin.py)
+  - harness:
+    [docling_onward_plugin_kill_test.py](/Users/cam/.codex/worktrees/c09a/doc-web/scripts/spikes/docling_onward_plugin_kill_test.py)
 - Session summary: [summary.json](/Users/cam/.codex/worktrees/eb88/doc-web/output/runs/story158-docling-tuning-r1/summary.json) and [summary.md](/Users/cam/.codex/worktrees/eb88/doc-web/output/runs/story158-docling-tuning-r1/summary.md)
 - Hybrid proof summary: [summary.json](/Users/cam/.codex/worktrees/eb88/doc-web/output/runs/story158-docling-hybrid-proof-r1/summary.json) and [summary.md](/Users/cam/.codex/worktrees/eb88/doc-web/output/runs/story158-docling-hybrid-proof-r1/summary.md)
 - Arthur-lane parity summary: [summary.json](/Users/cam/.codex/worktrees/eb88/doc-web/output/runs/story158-docling-parity-r1/summary.json) and [summary.md](/Users/cam/.codex/worktrees/eb88/doc-web/output/runs/story158-docling-parity-r1/summary.md)
@@ -258,6 +281,92 @@ Evidence:
 Evidence:
 
 - [Tier 1 image summary](/Users/cam/.codex/worktrees/eb88/doc-web/output/runs/story158-docling-tier1-lane-r1/summary.md)
+
+### 10. Tier 2 broader generalization pass
+
+- Story 160 rebuilt the missing current-pass Docling substrate and then
+  generalized the thin hybrid proof beyond the Arthur-local two-page slice.
+  The new story-local harness starts from stock `baseline-images` artifacts,
+  derives repair targets from Docling page/block signals instead of hard-coded
+  page numbers or family labels, and emits inspectable repair plans plus merged
+  HTML candidates under `output/runs/story160-docling-generalization-r1/`.
+- The broader pass now covers two distinct Onward failure classes on current
+  source artifacts:
+  - Arthur onset collapse: selected pages `[3, 4]`
+  - Pierre later repeated-structure spill: selected pages `[4, 5, 6]`
+- Arthur result:
+  - repaired excerpt moved from `3` pre-table paragraphs to `0`
+  - repaired excerpt moved from `0` subgroup rows to `28`
+  - frozen Arthur-lane parity moved from `22.1 / 100` on the regenerated stock
+    baseline to `97.3 / 100` on the generalized full candidate
+  - all seven checkpoint pairs now pass on the generalized candidate
+- Manual inspection of the repaired Arthur excerpt confirms the generalized
+  layer restores the expected local subgroup run in
+  `output/runs/story160-docling-generalization-r1/arthur/merged-excerpt.html`,
+  including:
+  - `ARTHUR'S FAMILY`
+  - `DORILLA'S FAMILY`
+  - `IRENE'S FAMILY`
+  - `RAYMOND'S FAMILY`
+  - `THEODORE'S FAMILY`
+  - `ODELIE'S FAMILY`
+  - `ALICE'S FAMILY`
+  - `PAUL'S FAMILY`
+  - `YVETTE'S FAMILY`
+  - `JOE'S FAMILY`
+  - `ROBERT'S FAMILY`
+- Arthur residuals are now narrower and explicit:
+  - the generalized candidate is still not `100 / 100`
+  - the remaining Arthur gap sits outside the original onset window: the first
+    30-subgroup parity window is still missing `Joe's Grandchildren` and
+    `MARIE'S FAMILY`
+  - later Arthur pages beyond the repaired onset still leak subgroup headings
+    and combined headers, so this is not yet full-Onward closure
+- Pierre result:
+  - baseline later region had `18` table-heading leaks, `0` subgroup rows, and
+    `2` residual combined `BOY/GIRL` headers
+  - repaired full candidate now has `0` heading leaks, `37` subgroup rows, and
+    `0` combined `BOY/GIRL` headers
+  - repaired full candidate now matches the incumbent reviewed chapter's coarse
+    structure exactly on the tracked signals: `table_count 2`,
+    `subgroup_row_count 37`, `external_family_heading_count 0`,
+    `residual_boygirl_header_count 0`
+- Manual inspection of
+  `output/runs/story160-docling-generalization-r1/pierre/full-candidate.html`
+  confirms the later repeated-structure region is back inside a coherent table
+  and includes the expected subgroup sequence:
+  - `JACQUELINE'S FAMILY (adopted by Jack Cameron)`
+  - `Jacqueline's Grandchildren`
+  - `DAVID'S FAMILY`
+  - `JAMES' FAMILY`
+  - `ANTONIO'S FAMILY`
+  - plus a separate descendants summary table:
+    `TOTAL DESCENDANTS 101`, `LIVING 95`, `DECEASED 6`
+- Thinness read: continue Tier 2. The generalized layer is still materially
+  smaller than the current Onward workaround stack because it remains
+  story-local, page-scoped, and signal-driven instead of recreating the
+  planner/rerun/build runtime. Current file-level mapping from the broader pass:
+  - first plausible delete/replace target if this shape graduates:
+    `table_rescue_onward_tables_v1`
+  - likely narrowing targets, not clean deletions:
+    `plan_onward_document_consistency_v1` and
+    `rerun_onward_genealogy_consistency_v1`
+  - likely retained shared seam for now:
+    `modules/common/onward_genealogy_html.py` plus
+    `build_chapter_html_v1 --merge_contiguous_genealogy_tables`
+- The broader pass therefore answers the open Tier 2 question from Story 159:
+  the hybrid path no longer looks Arthur-only or obviously as large as
+  `doc-web`, but it still needs a maintained `driver.py` path before any
+  production simplification claim is honest.
+
+Evidence:
+
+- [Arthur generalized summary](/Users/cam/.codex/worktrees/c09a/doc-web/output/runs/story160-docling-generalization-r1/arthur/summary.md)
+- [Arthur parity summary](/Users/cam/.codex/worktrees/c09a/doc-web/output/runs/story160-docling-generalization-r1/arthur-parity/summary.md)
+- [Arthur merged excerpt](/Users/cam/.codex/worktrees/c09a/doc-web/output/runs/story160-docling-generalization-r1/arthur/merged-excerpt.html)
+- [Pierre generalized summary](/Users/cam/.codex/worktrees/c09a/doc-web/output/runs/story160-docling-generalization-r1/pierre/summary.md)
+- [Pierre full candidate](/Users/cam/.codex/worktrees/c09a/doc-web/output/runs/story160-docling-generalization-r1/pierre/full-candidate.html)
+- [Story 160 run summary](/Users/cam/.codex/worktrees/c09a/doc-web/output/runs/story160-docling-generalization-r1/summary.json)
 - [Smoldocling source-image merged HTML](/Users/cam/.codex/worktrees/eb88/doc-web/output/runs/story158-docling-tier1-lane-r1/image-smoldocling-transformers/merged.html)
 - [Parity closure summary](/Users/cam/.codex/worktrees/eb88/doc-web/output/runs/story158-docling-parity-r4/summary.md)
 
@@ -281,15 +390,56 @@ Evidence:
 - The `granite_docling` MLX path is not runnable in this local environment
   without extra dependency work; the local error was
   `ImportError: mlx-vlm is not installed. Please install it via pip install mlx-vlm`.
-- Local package inspection did not surface an obvious
-  `allow_external_plugins`-style registration seam, so the official seams
-  exercised in this pass were stock OCR/table options plus bounded page-range
-  VLM presets.
+- The later Story 163 follow-up verified that the official plugin seam is real
+  in this local install: external packages can register through the `docling`
+  entrypoint group and are loaded only when `allow_external_plugins=True`.
+  The seam is therefore no longer hypothetical; it is now measured and
+  decision-negative on the Onward reviewed lanes.
 - For the hybrid proof, `gpt-5` was not used in the final scripted path because
   the first page-3 attempt exhausted an `8000` token output budget on reasoning
   without returning HTML. `gpt-4.1` returned usable page-local HTML for both
   page 3 and page 4 with no reasoning-token overrun and is the model recorded
   in the scripted artifact summary.
+
+### 10. Official plugin kill test
+
+- Story 163 first tested the most plausible documented official seam that
+  remained after Story 162: `table_structure_engines` via
+  `allow_external_plugins=True`, then widened the same story into a coordinated
+  `layout + table_structure` stack when the first pass was only partially
+  helpful.
+- The seam is operationally real in the local runtime:
+  - the repo-owned kinds `onward_layout_v1` and
+    `onward_table_structure_v1` are discoverable only with external plugins
+    enabled;
+  - the widened harness produces inspectable HTML/JSON/image artifacts for
+    Leonidas and Marie-Louise under
+    `output/runs/story163-docling-plugin-killtest-r2/`.
+- The quality result is still negative as a reopen candidate:
+  - Leonidas is effectively flat under `layout+table`: `7` tables,
+    `55` table-heading leaks, `5` combined `BOY/GIRL` headers, and
+    `0` subgroup rows;
+  - Marie-Louise improves only narrowly: `layout` merges the same-page split
+    from `6 -> 5` tables and restores `MARIE LOUISE'S FAMILY`, but
+    `layout+table` still lands at `49` table-heading leaks, `2` combined
+    headers, and `0` subgroup rows;
+  - manual HTML/JSON inspection confirms the coordinated stack remains
+    page-bounded (`[2]..[8]` on Leonidas, `[3]..[7]` on Marie-Louise) and far
+    from the reviewed two-table gold shape.
+- The widened plugin result is still weaker than the widened maintained Tier 2
+  path from Story 162 on the structural signal that matters (`0` subgroup rows
+  here versus `74` / `42` in the maintained lanes), so this official seam does
+  not reopen the replacement race.
+- The local runtime exposes no official serializer or document-level merge
+  plugin seam, which means the remaining page-bounded continuation gap is not a
+  sensible OCR follow-up inside the current documented plugin surface.
+
+Evidence:
+
+- [Leonidas coordinated plugin summary](/Users/cam/.codex/worktrees/c09a/doc-web/output/runs/story163-docling-plugin-killtest-r2/leonidas/docling/plugin-onward-layout-table-v1/summary.json)
+- [Marie-Louise coordinated plugin summary](/Users/cam/.codex/worktrees/c09a/doc-web/output/runs/story163-docling-plugin-killtest-r2/marie-louise/docling/plugin-onward-layout-table-v1/summary.json)
+- [Leonidas coordinated plugin HTML](/Users/cam/.codex/worktrees/c09a/doc-web/output/runs/story163-docling-plugin-killtest-r2/leonidas/docling/plugin-onward-layout-table-v1/06%20LEONIDAS%20L'HEUREUX.html)
+- [Marie-Louise coordinated plugin HTML](/Users/cam/.codex/worktrees/c09a/doc-web/output/runs/story163-docling-plugin-killtest-r2/marie-louise/docling/plugin-onward-layout-table-v1/12%20MARIE-LOUISE%20(L'HEUREUX)%20LaCLARE.html)
 
 ## Ranked Recommendation
 
@@ -317,16 +467,32 @@ Evidence:
    Reason: the direct source-image closure pass failed to reopen the race:
    `image-default` and `image-ocrmac` die on the raw Onward image scale, and
    `image-smoldocling-transformers` only reached `15.0 / 100`.
-8. Use the hybrid proof as the current control path while keeping custom logic
+8. Do not reopen the question on the current official plugin seam.
+   Reason: Story 163 proved the seam is operational even as a coordinated
+   `layout + table_structure` stack, but Leonidas still lands at
+   `7` tables / `55` heading leaks / `0` subgroup rows and Marie-Louise still
+   lands at `5` tables / `49` heading leaks / `0` subgroup rows, which is
+   weaker than the maintained Tier 2 evidence on the structural signal that
+   matters and nowhere near the reviewed gold bar.
+9. Use the hybrid proof as the current control path while keeping custom logic
    thin and measured.
    Reason: the best measured result is still `baseline-images` plus a
    page-scoped repair layer at `89.0 / 100`, which materially outperforms both
    stock PDF tuning and the official VLM follow-up.
-9. If more official `Docling` work is justified, constrain it to clearly
-   discoverable, evidence-backed seams.
-   Reason: the current local install did not expose an obvious plugin
-   registration seam, so further effort should target specific documented hooks
-   or stop and accept that the remaining gap is repo-owned repair work.
+10. If more official `Docling` work is justified, constrain it to materially
+    different, evidence-backed seams.
+    Reason: the current local install does expose a plugin registration seam,
+    and Story 163 still failed to reopen the race even after widening to the
+    most credible coordinated plugin stack. Further official-only effort should
+    therefore target only a different documented seam with a sharper
+    hypothesis, or stop and accept that the remaining gap is repo-owned repair
+    work.
+11. Continue Tier 2 on the broader Onward slice rather than reverting to
+    Arthur-local proof or broad Tier 1 curiosity.
+    Reason: Story 160 generalized the same thin shape to Arthur and Pierre from
+    stock `baseline-images`, lifted Arthur to `97.3 / 100`, and restored the
+    Pierre later spill to the incumbent chapter's coarse structure without
+    growing a second runtime boundary.
 
 ## Bottom Line
 
@@ -340,13 +506,23 @@ Arthur lane, and the residual gap is now a specific subgroup-ordering window,
 not a general table-collapse problem. The best evidence-backed next step is
 therefore no longer "prove a hybrid path exists"; it is "use the hybrid path as
 the control, and only keep probing official `Docling` levers when a concrete
-discoverable seam might credibly close the remaining 11-point gap." The bounded
-official VLM follow-up did not do that here: `smoldocling-transformers` scored
-`17.9 / 100`, and `granite-vision-transformers` did not finish cleanly enough
-to count as a viable narrow-lane answer. The later direct source-image closure
-pass tightened the read further rather than weakening it: `image-default` and
-`image-ocrmac` fail immediately on the raw Onward image scale, and the only
-surviving source-image Tier 1 candidate (`image-smoldocling-transformers`)
-scored `15.0 / 100`. On the Arthur lane, the currently discoverable locally
-real Tier 1 seams are therefore materially exhausted unless a new documented
-extension point appears.
+discoverable seam might credibly close the remaining gap." Story 160 then
+answered the next question too: the generalized signal-driven repair path stays
+thin enough to continue on a broader Onward slice. Arthur now reaches
+`97.3 / 100` on the frozen lane, and the same story-local harness restores the
+later Pierre repeated-structure spill to the reviewed incumbent's coarse
+structure. The bounded official VLM follow-up did not do that here:
+`smoldocling-transformers` scored `17.9 / 100`, and
+`granite-vision-transformers` did not finish cleanly enough to count as a
+viable narrow-lane answer. The later direct source-image closure pass tightened
+the read further rather than weakening it: `image-default` and `image-ocrmac`
+fail immediately on the raw Onward image scale, and the only surviving
+source-image Tier 1 candidate (`image-smoldocling-transformers`) scored
+`15.0 / 100`. On the Arthur lane, the currently discoverable locally real Tier
+1 seams are therefore materially exhausted unless a new documented extension
+point appears. Story 163 then widened the most plausible documented extension
+that remained, the external plugin seam, into a coordinated `layout + table`
+stack and still found only narrow same-page cleanup instead of a real reopen.
+The measured next step is therefore no longer any form of broad official-only
+probing. It is to keep `doc-web` as the accepted boundary on this seam unless a
+materially different documented seam appears.

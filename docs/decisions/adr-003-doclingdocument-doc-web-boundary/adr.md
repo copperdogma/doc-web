@@ -1,6 +1,6 @@
 # ADR-003: Whether `DoclingDocument` Should Replace the `doc-web` Bundle Boundary
 
-**Status:** DISCUSSING — stock tuning and a thin local hybrid proof now exist; `hybrid` currently leads, native replacement is not yet justified
+**Status:** ACCEPTED — keep `doc-web` as the accepted boundary; `Docling` remains benchmark/reference, not the forward replacement path on the reviewed Onward slice
 
 <!-- Status lifecycle: PENDING → RESEARCHING → DISCUSSING → ACCEPTED -->
 <!-- Alternatives: REJECTED / DEFERRED / SUPERSEDED -->
@@ -109,7 +109,7 @@ Cons:
 - ADR-002 is the accepted incumbent. This ADR does not erase it; it evaluates whether ADR-002 should stand, narrow, or be superseded.
 - Story 156 provides a real executable incumbent baseline: installable `doc_web` package surface, `doc-web contract --json`, repo-owned smoke fixtures, and published handoff docs.
 - Scout 011 is the current external-research baseline and ranks `Docling` as the strongest first replacement candidate.
-- Local `Docling` pilot outputs now live under `output/runs/story157-docling-pilot-r1/docling/`. The replacement case is no longer hypothetical, but the final keep / hybrid / replace decision is still open.
+- Local `Docling` pilot outputs now live under `output/runs/story157-docling-pilot-r1/docling/`. The replacement case is no longer hypothetical, and the current final decision is to keep `doc-web` as the accepted boundary on the reviewed Onward slice.
 
 ## Dependencies
 
@@ -126,9 +126,17 @@ Cons:
 - The local pilot corpus is now pinned. Story 158 located the real Onward source corpus under `/Users/cam/Documents/Projects/Onward to the Unknown Book Scan/`, extracted the exact incumbent hard-case source-page slice (`28-47`, `78-85`, `108-119`) into `output/runs/story157-docling-pilot-r1/input/onward-hardcase-slice-imageonly.pdf`, and recorded the corpus plus baseline references in `output/runs/story157-docling-pilot-r1/input/source_manifest.json`.
 - The explicit local scoring rubric now lives in `docs/decisions/adr-003-doclingdocument-doc-web-boundary/research/local-pilot-scorecard.md`, which fixes the pass/fail bar before native `Docling` outputs are interpreted.
 - Story 158 now has inspected native `Docling` outputs on the pinned corpus in `output/runs/story157-docling-pilot-r1/docling/`, and the first-pass findings are recorded in `docs/decisions/adr-003-doclingdocument-doc-web-boundary/research/local-pilot-findings.md`.
-- The current missing piece is the final decision posture: whether the observed gaps justify keeping `doc-web`, recommending a thin hybrid adapter, or scheduling a second pilot to prove that the adapter/upstream-improvement path is genuinely thinner than the current boundary.
+- Story 158 now leaves a formal decision posture rather than an open-ended comparison: pursue `hybrid` first, keep `doc-web` as the incumbent Dossier-facing boundary for now, and treat maintained-path proof as the remaining gate before any supersession call.
 - Story 159 now adds a bounded Onward stock-tuning sweep under `output/runs/story158-docling-tuning-r1/`. That sweep proves image export is largely a stock configuration issue, but also shows that realistic OCR/table tuning still does not eliminate the decisive Onward genealogy-structure failure.
 - Story 159 also now has a real hybrid proof under `output/runs/story158-docling-hybrid-proof-r1/`. That proof starts from the stock `baseline-images` artifact, rescues only pages 3 and 4 of the Arthur onset, and demonstrates that the remaining failure class can be repaired locally without rebuilding the whole boundary.
+- Story 160 now broadens that Tier 2 proof under
+  `output/runs/story160-docling-generalization-r1/`. The new signal-driven
+  harness re-establishes stock `baseline-images` artifacts in the current
+  environment, selects Arthur `[3, 4]` and Pierre `[4, 5, 6]` from inspectable
+  page/block signals, lifts the Arthur full candidate to `97.3 / 100` on the
+  frozen parity lane, and restores Pierre's later repeated-structure failure to
+  the incumbent chapter's coarse structure while keeping the repair logic
+  story-local and bounded.
 
 ## Discussion
 
@@ -140,14 +148,19 @@ Cons:
 - 20260320-1308 — The thin hybrid path is now locally demonstrated instead of hypothetical. `scripts/spikes/docling_onward_hybrid_repair_proof.py` starts from the stock `baseline-images` chapter HTML, rescues page 3 and page 4 with targeted `gpt-4.1` OCR, splices those two repaired fragments back into the chapter, and reruns the shared genealogy merger. The repaired Arthur excerpt in `output/runs/story158-docling-hybrid-proof-r1/summary.json` moves from `8` pre-table paragraphs and `0` subgroup rows to `0` pre-table paragraphs and `46` subgroup rows, and the specific page-4 leak `ALICE'S FAMILY Barbara Hodges` is removed from the repaired excerpt. This materially strengthens `hybrid`, but it does not yet settle the ADR because the proof remains local to the Arthur two-page slice and later Onward defects still survive outside that repaired window.
 - 20260320-1604 — The desired decision discipline is now clearer than it was at ADR creation time. The user explicitly wants a tiered path to `100%` Onward parity that optimizes for cheap future `Docling` upgrades: first exhaust official config, built-in pipelines, and documented extension seams; only then accept upstream-compatible deeper work such as a thin repair layer or upstream PRs; and only then consider long-lived source divergence like a fork. This means the ADR is not just deciding keep / hybrid / replace. It is also deciding what level of ownership is justified for getting `Docling` over the bar.
 - 20260320-1742 — Story 159's Tier 1 closure pass tightened the current read rather than reopening it. Direct source-image input is a real official seam in this install through `ImageFormatOption`, but it does not help on the Arthur lane. `image-default` and `image-ocrmac` both fail immediately on the raw Onward page images because Pillow rejects the `302940000`-pixel source pages as decompression-bomb scale. The only surviving source-image official candidate, `image-smoldocling-transformers`, completed in `88.894s` but scored only `15.0 / 100` on the Arthur parity surface, worse than the already-poor `16.9 / 100` stock PDF baseline and far below the `89.0 / 100` hybrid proof. This materially weakens the remaining Tier 1 case in the current local environment unless a new documented extension seam is found.
+- 20260320-1656 — Story 160 completed the broader Tier 2 generalization pass in the current checkout. The rebuilt arm-native `Docling 2.80.0` runtime regenerated stock Arthur and Pierre `baseline-images` artifacts, then a new signal-driven harness reread only the selected failure pages. Arthur moved from `22.1 / 100` baseline to `97.3 / 100` on the frozen parity lane, and Pierre's later spill now matches the incumbent chapter's coarse table structure (`2` tables, `37` subgroup rows, `0` heading leaks). The remaining open defect class is narrower now: Arthur still has later repeated-structure errors outside the repaired onset window, so the next decision is maintained-path integration, not whether Tier 2 can generalize at all.
+- 20260320-2154 — Story 163 widened the only newly documented Tier 1 reopen candidate on this seam into a coordinated official plugin stack and still closed it negatively. The repo now has real local plugin packages for both `layout_engines` and `table_structure_engines` (`docling_plugins/onward_layout_plugin.py`, `docling_plugins/onward_table_structure_plugin.py`) registered through the official `docling` entrypoint group, and the widened kill-test harness under `output/runs/story163-docling-plugin-killtest-r2/` proves the coordinated seam is operational without patching source. But the coordinated stack still does not materially threaten the incumbent. Leonidas stays at `7` tables with `55` heading leaks and `0` subgroup rows; Marie-Louise improves only from `6 -> 5` tables but still ends at `49` heading leaks and `0` subgroup rows. The remaining gap is page-bounded multi-page table continuation, and the current local runtime exposes no official serializer or document-level merge plugin seam to own that honestly. Result: even the broadened official plugin path underperforms the already-negative Story 162 maintained path and does not justify reopening the accepted `doc-web` boundary.
 
 ## Decisions
 
 <!-- Final decisions with rationale. Use "Settled — DO NOT suggest alternatives" for key calls. -->
-- Provisional — `hybrid` is the current leading option. Stock `Docling` appears strong enough to justify an upstream-substrate role, but its native export surface does not yet satisfy the accepted Dossier-facing `doc-web` contract requirements.
-- Provisional — stock configuration is enough to recover usable image export, so the remaining justification for any adapter or repair layer is now primarily stable anchors plus repeated-structure fidelity, not basic image preservation.
-- Provisional — the thinnest currently demonstrated hybrid shape is page-local OCR rescue plus shared HTML normalization, not a full new runtime. That shape is now proven on the Arthur onset / page-4 continuation slice.
-- Provisional — adopt a tiered ownership ladder for this decision:
+- Settled — Option A wins on the reviewed Onward hard-case slice. Keep
+  `doc-web` as the accepted Dossier-facing boundary. ADR-002 is not superseded.
+- Settled — `Docling` remains a strong benchmark and research substrate, but it
+  is not the forward replacement path for this seam. Do not advance the
+  maintained `Docling` hybrid recipe/module path as the adoption direction.
+- Settled — the tiered ownership ladder remains the right evaluation rule for
+  any future reopening:
   1. Tier 1: official `Docling` surfaces only
      - stock configuration
      - built-in OCR / VLM / export options
@@ -164,14 +177,53 @@ Cons:
      - maintained fork
      - invasive long-lived patch stack
      - only justified when lower tiers cannot honestly reach the bar
-- Provisional — on the Arthur lane, the currently discoverable locally real
-  Tier 1 seams are materially exhausted.
+- Settled — on the Arthur lane, the currently discoverable locally real Tier 1
+  seams are materially exhausted.
   - raw source-image input fails operationally on the actual Onward page scale
   - the surviving source-image VLM path performs worse than the stock PDF baseline
   - further Tier 1 work should only continue if a specific documented extension
     seam is surfaced, not by repeating broad stock probes
-- Open — whether the proven thin hybrid shape can stay thin when generalized beyond the Arthur two-page slice, or whether the adapter starts growing back into most of `doc-web`.
-- Open — whether any still-untried documented `Docling` extension seam can move the Arthur lane materially closer to `100%`; absent that, Tier 2 ownership is now the measured default path.
+- Settled — the currently most plausible documented external plugin seam has
+  now been tested negatively on the reviewed replacement lanes.
+  - Story 163's repo-owned `layout_engines` and `table_structure_engines`
+    plugins register cleanly through `allow_external_plugins=True` with no
+    `Docling` source edits.
+  - The coordinated stack meaningfully improves only a narrow slice of the
+    failure class: one same-page merge on Marie-Louise plus cleaner
+    `BOY/GIRL` headers and canonicalized family-label rows.
+  - It does not materially reduce the decisive replacement metrics on the
+    reviewed HTML surface:
+    Leonidas remains `7` tables / `55` heading leaks / `0` subgroup rows and
+    Marie-Louise remains `5` tables / `49` heading leaks / `0` subgroup rows,
+    both far from the reviewed `2`-table gold targets.
+  - The local runtime exposes no official serializer/document merge seam, so
+    the remaining page-bounded gap is not an honest OCR follow-up.
+  - This broadened official plugin path therefore does not reopen the boundary
+    question.
+- Settled — the widened Tier 2 maintained proof fails to clear the reviewed
+  slice strongly enough to replace the incumbent.
+  - Story 161's maintained proof was real and positive on Arthur/Pierre.
+  - Story 162 widened that same maintained path across Arthur, Leonidas,
+    Marie-Louise, Pierre, and Antoine under
+    `output/runs/story162-docling-maintained-r1/`.
+  - Arthur remains strong and Pierre reaches the reviewed target shape.
+  - Antoine is close, but still collapses the descendants summary into the main
+    genealogy table instead of matching the reviewed two-table shape.
+  - Leonidas and Marie-Louise remain materially below the reviewed target even
+    after broad-block rereads:
+    Leonidas ends at `12` tables with `coarse_suspect=true` and residual
+    family-heading leakage; Marie-Louise ends at `4` tables with residual
+    heading leakage and retained pre-genealogy name-list artifacts.
+  - Re-running those widened excerpts through the retained chapter-merge
+    normalizer still does not rescue Leonidas or Marie-Louise.
+  - The shared OpenAI vision OCR request path was extracted cleanly into
+    `modules/common/onward_openai_ocr.py`, but the remaining normalization
+    behavior needed to push farther still points back toward the incumbent
+    rescue stack rather than a clearly smaller adopted wrapper.
+- Settled — close the active `Docling` replacement track on this seam. Only
+  reopen it if a materially different documented official seam or demonstrably
+  thinner hybrid path appears that can clear the reviewed Leonidas and
+  Marie-Louise cases without regrowing current rescue ownership.
 
 ## Integration Checklist
 
@@ -184,11 +236,11 @@ Cons:
 
 ## Remaining Work
 
-- Convert the current pilot findings into a formal keep / hybrid / replace recommendation that also names the justified ownership tier
-- Only reopen Tier 1 on the Arthur lane if a specific documented official extension seam is surfaced that is meaningfully different from the seams already tested
-- Generalize or falsify the now-proven Tier 2 hybrid repair shape on a broader Onward slice without letting it regrow into most of `doc-web`; Story 160 now tracks that follow-up explicitly
-- Decide whether the next local pilot should focus on generalized target selection / acceptance or on a broader multi-page repair lane
-- Run `/align` after the ADR reaches `DISCUSSING` or `ACCEPTED` and changes project direction
+- No active `Docling` adoption work remains on this seam.
+- Only reopen Tier 1 or Tier 2 if a materially different documented seam
+  appears and is strong enough to threaten the current accepted boundary.
+- Run `/align` after this accepted-direction update to keep the methodology
+  graph honest.
 
 ## Work Log
 
@@ -198,3 +250,7 @@ Cons:
 - 20260320-1308 — Story 159 now also has the first scripted thin hybrid proof. The new run under `output/runs/story158-docling-hybrid-proof-r1/` shows that a two-page targeted OCR rescue can convert the Arthur onset from flattened prose into a real genealogy table and remove the page-4 `ALICE'S FAMILY Barbara Hodges` leak, all while keeping the stock `baseline-images` Docling output as the substrate. That is the strongest evidence so far for `hybrid`. The open question is no longer "can a thin hybrid layer work at all?" but "does the proven two-page shape stay thin when generalized?"
 - 20260320-1604 — The user clarified the preferred migration discipline: this ADR should optimize first for the path that keeps `Docling` easiest to upgrade. I recorded that as a tiered ownership ladder in the ADR itself. Tier 1 is official-only `Docling` usage, Tier 2 is upstream-compatible deeper ownership, and Tier 3 is source divergence. This does not change the current measured winner, which is still a thin hybrid path, but it raises the bar for when deeper ownership is acceptable: each lower tier now needs explicit falsification of the higher one.
 - 20260320-1742 — Story 159 closed the remaining direct source-image Tier 1 question for the Arthur lane. The result did not rescue the official-only path. Standard source-image input and OcrMac both fail on the raw Onward page scale before producing usable artifacts, and the surviving source-image SmolDocling VLM path performs worse than the stock PDF baseline on the parity surface. This does not mathematically prove every possible future Tier 1 seam is impossible, but it is strong enough to change the default next move: unless a concrete documented extension seam appears, the measured path forward is now Tier 2 hybrid generalization rather than more broad Tier 1 probing.
+- 20260320-1656 — Story 160 refreshed the missing local Tier 2 substrate and closed the immediate generalization question. A rebuilt isolated `Docling 2.80.0` runtime plus regenerated Arthur/Pierre `baseline-images` artifacts produced new broader-pass evidence in `output/runs/story160-docling-generalization-r1/`. The signal-driven harness repaired Arthur and Pierre from stock page/block clues instead of hard-coded family names, Arthur scored `97.3 / 100` on the frozen parity lane, and Pierre's later spill regained the incumbent chapter's coarse structure. The practical next question has now moved downstream: can this same generalized shape replace enough of the maintained Onward workaround stack on a real `driver.py` path to justify continuing toward `hybrid`?
+- 20260320-2340 — Story 161 answered the first maintained-path question positively. The repo now has a real maintained replacement path in `configs/recipes/onward-docling-hybrid-maintained.yaml` plus `modules/transform/repair_docling_onward_genealogy_v1`, and the fresh run `output/runs/story161-docling-maintained-r2/` keeps the core Story 160 gains on that path. Arthur retains `97.3 / 100` on the frozen parity lane (`output/runs/story161-docling-arthur-parity-r1/summary.json`), Pierre restores the `JACQUELINE'S FAMILY` through `ANTONIO'S FAMILY` sequence plus the descendants summary table, and the lane summaries keep per-page provenance via copied image paths, baseline refs, and OCR request IDs. This is enough to keep `hybrid` as the measured next path, but not enough to claim broad deletions yet: `table_rescue_onward_tables_v1` and planner/rerun layers are now narrowing targets, while the shared genealogy merge helper remains retained.
+- 20260321-0031 — Story 162 closed the remaining boundary question on the reviewed Onward slice. Fresh widened stock baselines were generated for Leonidas, Marie-Louise, and Antoine; the maintained recipe was widened and run under `output/runs/story162-docling-maintained-r1/`; and manual artifact inspection plus lane summaries now make the final call clear. Arthur remains strong and Pierre reaches the reviewed target shape, but Leonidas still lands at `12` tables with `coarse_suspect=true` and residual family-heading leakage, Marie-Louise still lands at `4` tables with `17` heading leaks plus retained pre-genealogy name-list artifacts, and Antoine still collapses the descendants summary into the main genealogy table instead of matching the reviewed two-table shape. A small honest helper extraction did land (`modules/common/onward_openai_ocr.py` now owns the shared vision OCR request path), but the remaining gap is not rescued by the retained chapter-merge normalizer and still points back toward broader incumbent rescue behavior. Final decision: keep `doc-web` as the accepted boundary, demote `Docling` to benchmark/reference status for this seam, and do not continue the active replacement track unless a materially different documented seam appears.
+- 20260320-2154 — Story 163 then widened that official seam into a coordinated plugin stack. The repo-owned `layout` plugin merges same-page genealogy fragments before the existing table plugin runs, and the widened harness now compares `table-only`, `layout-only`, and `layout+table` under `output/runs/story163-docling-plugin-killtest-r2/`. Manual inspection confirmed a narrow real gain on Marie-Louise: the same-page split collapses from `6 -> 5` tables and the opening family heading reads more honestly as `MARIE LOUISE'S FAMILY`. But the measured replacement result remains negative. Leonidas is effectively flat at `7` tables / `55` heading leaks / `0` subgroup rows, Marie-Louise still ends at `5` tables / `49` heading leaks / `0` subgroup rows, and both lanes remain page-bounded rather than matching the reviewed two-table gold shape. The local runtime still exposes no official serializer or document-level merge plugin seam, so the remaining gap is not a sensible OCR follow-up. Result: even the broadened documented plugin path is now falsified as a reopen path for the accepted boundary decision.
