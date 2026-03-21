@@ -44,6 +44,46 @@
    Adaptation: Keep doc-forge's YAML recipe/build-map governance, but remember `GROBID`'s flavor pattern if recipe families start multiplying.
    Proof target: If a future story introduces recipe-family specialization, it should carry visible routing plus per-structure coordinates/evidence rather than hidden one-off logic.
 
+## Deepened Decision Surface
+
+This section closes the remaining ambiguity after the `Docling` chain. The
+question is no longer "what do these tools do?" but "what kind of ownership do
+they imply inside doc-forge, and what is the smallest honest proof worth
+running next?"
+
+### `OCRmyPDF`
+
+- **Best-fit seam:** `C1` only, and only when source-PDF conditioning is the real problem.
+- **Most credible local use:** a child-process preprocessing step that deskews, rotates, normalizes to PDF/A when useful, and optionally emits a sidecar OCR text file for audit comparison.
+- **Why not more:** the official docs are explicit that it rasterizes for OCR, adds an OCR layer back into the original PDF, and inherits Tesseract's inability to infer reading order, paragraphs, or headings. That makes it a scan-conditioning tool, not a structure engine.
+- **Operational shape:** viable as a subprocess or narrow recipe module. The official Python API exists, but the docs recommend process isolation because the library spawns workers, uses subprocesses, and is not thread-safe for parallel runs in one interpreter.
+- **Spend rule:** only spike this when manual artifact review shows skew, rotation, damaged PDFs, or text-layer conditioning are the dominant blocker. Do not use it to chase layout/table/document-consistency problems.
+
+### `Surya`
+
+- **Best-fit seam:** `C1` and `C3`, with possible pressure on `C2` if stronger reading order reduces routing ambiguity.
+- **Most credible local use:** a bounded component benchmark against current OCR/layout/table surfaces, not a repo-wide replatform. Story 164 confirmed that this needs to start from an explicitly pinned runtime and repo-local reviewed artifacts, not from aspirational "latest package" or missing input paths.
+- **Why it is the strongest next candidate:** the official README covers OCR, line detection, layout analysis, reading-order detection, and table recognition in one toolkit, which maps directly onto the parts of doc-forge we still own heavily.
+- **Main blocker:** licensing and packaging. The public repo is GPL, the weights have a modified Open Rail-style license, and the project itself advertises managed API / on-prem commercial options. That means the legal posture must be explicit before we adopt code rather than merely benchmark it.
+- **Measured result on the active seam:** Story 164 ran the first honest local benchmark at `output/runs/story164-surya-benchmark-r1/` using the pinned `surya-ocr==0.4.5` runtime. On the overlapping Marie-Louise hard-lane subset, Surya cleanly avoided false positives but only detected `3 / 4` gold table pages (`table_page_recall = 0.75`) and missed `page_080` entirely. Current upstream `surya-ocr==0.17.1` remains locally blocked in practice on this machine, so the table-capable runtime is not yet a real substrate here.
+- **Spend rule:** do not spend more Onward-seam effort on Surya unless a runnable current-package table-capable runtime appears or a different document family makes page-routing-only wins worth adopting.
+
+### `Marker`
+
+- **Best-fit seam:** `C2`/`C3`/`C7` as a comparator, especially when we want to pressure-test schema-guided extraction and multi-format breadth quickly.
+- **Most credible local use:** an end-to-end benchmark on a non-Onward document family where "good enough structured export" matters more than provenance-perfect genealogy repair.
+- **Why it is not ahead of `Surya`:** the official README is attractive on breadth and output formats, but it is still GPL, uses restricted model weights for broader commercial use, and leans on optional LLM mode to do things like merge tables across pages. That makes it less attractive than `Surya` if the real goal is to poach one lower-level capability into `doc-web`.
+- **Key read:** `Marker` is useful when we want a whole-pipeline comparator or a quick breadth check; it is not the cleanest source for a narrow substrate transplant.
+- **Spend rule:** keep it behind `Surya`. Only benchmark it next if we specifically want to compare "full external converter breadth" rather than improve one owned seam.
+
+### `GROBID`
+
+- **Best-fit seam:** not the active scanned-book path. Its value is architectural transfusion: flavor-based specialization and coordinate-rich structured output.
+- **Most credible local use:** design reference for future scientific/technical PDF work or for strengthening our own recipe-family governance and provenance model.
+- **Why not now:** the official docs and README stay focused on technical/scientific publications and TEI/XML output. That is a different document family from the active genealogy/intake problems.
+- **What is still worth stealing:** explicit `flavor=` routing and inspectable coordinate payloads are strong patterns for doc-forge if we later grow multiple specialized document families.
+- **Spend rule:** no benchmark story unless the roadmap shifts toward scientific/technical PDFs or we need a concrete flavor-governance model for new recipe families.
+
 ## Tracking Ledger
 
 This section is the durable tracker for the five external systems evaluated in
@@ -54,18 +94,19 @@ would justify more work.
 | System | Role Hypothesis | Status | Current Tracking | Current Read | Next Proof Needed |
 |---|---|---|---|---|---|
 | `Docling` | Strongest external benchmark; possible upstream substrate or replacement candidate | Benchmarked; decision made | [ADR-003](/Users/cam/.codex/worktrees/c09a/doc-web/docs/decisions/adr-003-doclingdocument-doc-web-boundary/adr.md), [Stories 158-163](/Users/cam/.codex/worktrees/c09a/doc-web/docs/stories.md#L163) | Fully explored on the hard Onward seam. Keep `doc-web` as the accepted boundary; keep `Docling` as benchmark/reference and pattern source, not the forward replacement path on this lane. | Only reopen if a materially different documented seam appears or if `Docling` is used as an optional upstream substrate for a different document family with a new proof surface. |
-| `OCRmyPDF` | Narrow pre-OCR PDF conditioning and normalization seam | Parked | This scout only | Not a replacement candidate. Useful only if scan cleanup, deskew, rotation, or PDF conditioning is the actual bottleneck. | Run a narrow preprocessing spike only when artifact inspection proves source-PDF conditioning, not OCR/layout/consistency, is the dominant failure source. |
-| `Surya` | Component benchmark for stronger OCR/layout/reading-order/table recognition | Queued | This scout only | Most plausible next external component benchmark if we want to poach a lower-level engine rather than replace the pipeline. Licensing/packaging still need explicit scrutiny. | Story-sized benchmark on one or two active seams where layout/order/table quality is the current limiter, with explicit licensing review up front. |
-| `Marker` | End-to-end external comparator for schema-guided extraction and multi-format breadth | Queued behind `Surya` | This scout only | Strong comparator, but benchmark-first rather than adoption-first. Provenance and licensing posture are materially less attractive than `Docling`. | Only benchmark if `Surya`/other component options are insufficient or if a new multi-format comparison becomes high leverage. |
-| `GROBID` | Design reference for flavor-based specialization and coordinate-rich structured output | Parked design reference | This scout only | Not relevant to the active genealogy/intake seams right now. Valuable mainly for architectural transfusion if recipe families proliferate or scholarly PDFs become active. | No benchmarking now. Revisit only if technical/scientific PDFs or recipe-family specialization become active roadmap items. |
+| `OCRmyPDF` | Narrow pre-OCR PDF conditioning and normalization seam | Parked | This scout only | Viable only as a child-process preprocessing seam for scan cleanup, rotation, PDF/A normalization, and sidecar text comparisons. Not a structure engine and not a replacement candidate. | Run a narrow preprocessing spike only when artifact inspection proves source-PDF conditioning, not OCR/layout/consistency, is the dominant failure source. |
+| `Surya` | Component benchmark for stronger OCR/layout/reading-order/table recognition | Benchmarked negative on active Onward seam | [Story 164](/Users/cam/.codex/worktrees/c09a/doc-web/docs/stories/story-164-surya-component-benchmark-for-layout-and-table-seams.md) | Story 164 proved the bounded runtime and benchmark shape, then came back negative for immediate adoption on the active Onward seam: pinned `0.4.5` layout avoids false positives but only reaches `0.75` table-page recall on Marie-Louise, and the current-package table-capable runtime is still locally blocked. | Only reopen if a runnable current-package substrate exists or if a different document family has a narrower routing/layout problem where page-level table detection alone would be enough value. |
+| `Marker` | End-to-end external comparator for schema-guided extraction and multi-format breadth | Queued behind `Surya` | This scout only | Best kept as a breadth comparator, not a first adoption target. Strong on formats and outputs, weaker on provenance fit and licensing posture. | Only benchmark if `Surya`/other component options are insufficient or if a new multi-format comparison becomes high leverage. |
+| `GROBID` | Design reference for flavor-based specialization and coordinate-rich structured output | Parked design reference | This scout only | Still not relevant to the active genealogy/intake seams. Valuable mainly as a future pattern source for recipe families and coordinate-rich export on scientific/technical PDFs. | No benchmarking now. Revisit only if technical/scientific PDFs or recipe-family specialization become active roadmap items. |
 
 ## Recommendation
 
 1. Treat the `Docling` track as resolved for the reviewed Onward seam. The repo now has enough evidence to keep `Docling` as benchmark/reference and pattern source rather than continuing replacement-driven probing on this lane.
-2. If external-system exploration resumes, `Surya` is the strongest next benchmark because it pressures the component seams that still matter if we want to keep `doc-web` as the canonical pipeline and poach better lower-level engines.
-3. Keep `OCRmyPDF` as a narrow preprocessing experiment only when artifact inspection shows PDF conditioning is the actual blocker.
-4. Keep `Marker` behind `Surya` as a secondary end-to-end comparator, not a first adoption candidate.
-5. Keep `GROBID` parked as a design reference unless the active roadmap shifts toward scholarly/technical PDFs or explicit recipe-family specialization.
+2. Consider the scouting phase effectively complete for these five tools. The next work should be bounded spikes, not more desk research, unless one of the upstream projects changes materially.
+3. `Surya` is no longer just queued on the active Onward seam. Story 164 measured it and came back negative for immediate adoption there, so further Surya work should wait for a runnable current-package substrate or a different document family.
+4. Keep `OCRmyPDF` as a narrow preprocessing experiment only when artifact inspection shows PDF conditioning is the actual blocker.
+5. `Marker` is now the next unbenchmarked broad comparator, but still not an automatic next story; only pull it forward if we want a breadth comparison rather than a lower-level substrate transplant.
+6. Keep `GROBID` parked as a design reference unless the active roadmap shifts toward scholarly/technical PDFs or explicit recipe-family specialization.
 
 ## Approved
 
@@ -79,6 +120,7 @@ would justify more work.
 - Direct adoption of `OCRmyPDF`, `Surya`, `Marker`, or `GROBID` in this pass — this scout stayed research-only; any implementation or benchmarking follow-up still needs explicit approval
 - Treating any external system as a drop-in replacement for doc-forge provenance — rejected; every candidate would still need artifact-level proof against traceability and inspection requirements
 - Treating `Docling` as the forward replacement boundary on the reviewed Onward lane — rejected later by [ADR-003](/Users/cam/.codex/worktrees/c09a/doc-web/docs/decisions/adr-003-doclingdocument-doc-web-boundary/adr.md) after the full story chain (`158-163`) failed to clear the accepted bar honestly
+- Treating desk research itself as the next bottleneck after this update — rejected; for `OCRmyPDF`, `Surya`, `Marker`, and `GROBID`, the next useful evidence is now implementation- or benchmark-level, not more high-level reading
 
 ## Verification
 
@@ -89,6 +131,11 @@ would justify more work.
   - `Surya`: official README
   - `Marker`: official README
   - `GROBID`: official README plus documentation for coordinates and specialized processes
+- Re-read the primary sources after closing the `Docling` chain to finish the remaining scouting ambiguity:
+  - `OCRmyPDF`: current stable introduction/API/cookbook/plugin docs (`17.3.0`) for PDF/A defaults, sidecar caveats, process-isolation guidance, and plugin seams
+  - `Surya`: current README / repository metadata for OCR/layout/order/table scope, installation/runtime shape, and GPL + model-license posture
+  - `Marker`: current README / repository metadata for supported formats, LLM hybrid mode, structured extraction, and GPL + model-license posture
+  - `GROBID`: current README plus flavor and coordinate docs for TEI focus, `flavor=` routing, and coordinate-bearing JSON/TEI surfaces
 - No code or benchmark runs were executed in this pass; this was a research-only scout
 - Follow-up proof now exists for the top recommendation:
   - [ADR-003](/Users/cam/.codex/worktrees/c09a/doc-web/docs/decisions/adr-003-doclingdocument-doc-web-boundary/adr.md)
@@ -98,6 +145,8 @@ would justify more work.
   - [Story 161](/Users/cam/.codex/worktrees/c09a/doc-web/docs/stories/story-161-integrate-generalized-docling-hybrid-into-maintained-onward-path.md)
   - [Story 162](/Users/cam/.codex/worktrees/c09a/doc-web/docs/stories/story-162-docling-final-boundary-decision-onward-high-cases.md)
   - [Story 163](/Users/cam/.codex/worktrees/c09a/doc-web/docs/stories/story-163-docling-plugin-onward-golden-kill-test.md)
+- Follow-up proof now also exists for the strongest post-Docling component candidate:
+  - [Story 164](/Users/cam/.codex/worktrees/c09a/doc-web/docs/stories/story-164-surya-component-benchmark-for-layout-and-table-seams.md)
 
 ## Evidence
 
@@ -121,3 +170,4 @@ would justify more work.
   - `https://github.com/grobidOrg/grobid`
   - `https://grobid.readthedocs.io/en/latest/Principles/`
   - `https://grobid.readthedocs.io/en/latest/Grobid-specialized-processes/`
+  - `https://grobid.readthedocs.io/en/latest/Coordinates-in-PDF/`

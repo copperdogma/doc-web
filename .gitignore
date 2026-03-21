@@ -5,6 +5,7 @@ output/
 models/
 **/__pycache__/
 .venv/
+.venv-story*/
 /build/
 /*.egg-info/
 .cursor/*

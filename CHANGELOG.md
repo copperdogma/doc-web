@@ -1,3 +1,19 @@
+## [2026-03-21-01] - Close Surya component benchmark on Onward seam (Story 164)
+
+### Added
+- Added the bounded Surya benchmark harness `scripts/spikes/surya_component_benchmark.py` to measure page-level layout/table detection on repo-local Onward artifacts using the pinned working Surya runtime
+
+### Changed
+- Closed Story 164 after the first honest local Surya benchmark came back negative for immediate adoption on the active Onward Marie-Louise seam
+- Updated Scout 011 and the Onward build-map section so `Surya` is now tracked as benchmarked-negative on this seam instead of still queued
+- Ignored story-local Surya virtualenvs via `.gitignore` so local benchmark environments no longer pollute the worktree change set
+
+### Tested
+- `python -m pytest tests/`
+- `python -m ruff check modules/ tests/`
+- `python scripts/spikes/surya_component_benchmark.py`
+- `git diff --check`
+
 ## [2026-03-20-10] - Close Story 163 and sync external-tool tracking
 
 ### Changed

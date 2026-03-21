@@ -336,6 +336,25 @@ The coordinated pass remains negative as a reopen candidate:
 - Result: even the broadened official plugin path does not reopen the Onward
   boundary decision.
 
+**Current external component benchmark evidence:** Story 164 tested `Surya` as
+the next lower-level component candidate under
+`output/runs/story164-surya-benchmark-r1/`. The first honest local substrate is
+the pinned `surya-ocr==0.4.5` runtime, which exposes layout/order/OCR CLIs but
+not the newer `surya_table` CLI. On the overlapping Marie-Louise reviewed
+subset, the layout benchmark stays negative for immediate adoption:
+- `page_079` is a clean non-table true negative.
+- `page_081`, `page_082`, and `page_083` each receive one or more large `Table`
+  boxes (`largest_table_area_ratio` `0.3848`, `0.6176`, and `0.5447`).
+- `page_080` is a hard false negative: the gold page contains the onset
+  genealogy table, but Surya emits only `Text` boxes and no `Table` box there.
+- Net result: `table_page_recall = 0.75`, `large_table_recall = 0.75`,
+  `false_positive_pages = 0`.
+
+That is not a clean enough routing/layout win to justify even a narrow
+integration probe on this seam, especially because the current-package
+table-capable runtime (`surya-ocr==0.17.1`) is still locally blocked on this
+machine. Story 164 therefore closes as negative for immediate Onward adoption.
+
 **Ownership read after Story 162:**
 - Explicitly narrowed shared helper that survived honestly:
   `modules/common/onward_openai_ocr.py` now owns the shared OpenAI vision OCR

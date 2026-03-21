@@ -166,6 +166,7 @@ This index tracks stories in `/docs/stories/` for the doc-forge pipeline.
 |||| 161 | Integrate Generalized `Docling` Hybrid into a Maintained Onward Path | High | Done | /docs/stories/story-161-integrate-generalized-docling-hybrid-into-maintained-onward-path.md |
 |||| 162 | Reach Final `Docling` Boundary Decision on Widened Onward Hard Cases | High | Done | /docs/stories/story-162-docling-final-boundary-decision-onward-high-cases.md |
 |||| 163 | Probe Coordinated Official `Docling` Plugin Paths Against the Onward 100% Golden Bar | High | Done | /docs/stories/story-163-docling-plugin-onward-golden-kill-test.md |
+|||| 164 | Benchmark `Surya` as a Component Candidate for Layout and Table Seams | High | Done | /docs/stories/story-164-surya-component-benchmark-for-layout-and-table-seams.md |
 
 ## Notes
 - Status "Done" reflects current working state in doc-forge. "To Do" items are planned next steps aligned with `docs/ideal.md`, `docs/spec.md`, and `docs/build-map.md`.
