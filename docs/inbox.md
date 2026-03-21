@@ -4,4 +4,4 @@ This file captures ideas, insights, and potential architectural improvements dis
 
 ## Untriaged
 
-- None currently.
+- need document section splitting, not just to make processing more parallizable/modular, but to help with provenance: knowing a story came from chapter 8 of a book is important
