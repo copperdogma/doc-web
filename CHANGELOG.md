@@ -1,3 +1,20 @@
+## [2026-03-26-01] - Close Marker born-digital comparator and split thin-seam follow-up (Story 165)
+
+### Added
+- Added the Story 165 benchmark harness `scripts/spikes/marker_breadth_benchmark.py`, including the thinner Marker-internals `lite_api` path and the local `doc-web` baseline summary in the canonical benchmark artifact
+- Added the follow-on Draft Story 166 (`docs/stories/story-166-marker-internals-born-digital-pdf-substrate.md`) to carry the narrower Marker-internals substrate question without leaving Story 165 open-ended
+
+### Changed
+- Closed Story 165 on fresh `tbotb-mini.pdf` evidence showing that stock `Marker` is too heavy for direct adoption, while the thinner Marker-internals path is promising enough to justify a scoped born-digital follow-on
+- Updated Scout 011 and the build map so `Marker` is no longer tracked as a vague future comparator; it is now recorded as negative for stock adoption and positive enough for the narrow Story 166 substrate seam
+
+### Tested
+- `make lint`
+- `make test`
+- `make skills-check`
+- `python scripts/spikes/marker_breadth_benchmark.py --mode lite_api --skip-run`
+- `git diff --check`
+
 ## [2026-03-21-01] - Close Surya component benchmark on Onward seam (Story 164)
 
 ### Added

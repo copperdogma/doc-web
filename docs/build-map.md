@@ -355,6 +355,31 @@ integration probe on this seam, especially because the current-package
 table-capable runtime (`surya-ocr==0.17.1`) is still locally blocked on this
 machine. Story 164 therefore closes as negative for immediate Onward adoption.
 
+**Current external breadth benchmark evidence:** Story 165 tested `Marker` on
+the repo-owned `born-digital-pdf` fixture under
+`output/runs/story165-marker-benchmark-r1/` and reached a split result that
+matters for the input-coverage roadmap:
+- Stock `Marker` CLI is not an honest adoption candidate here. On this machine
+  it still drags in a multi-gigabyte model stack even for `--disable_ocr`, and
+  the code/model license posture remains materially awkward for the maintained
+  runtime.
+- The thinner Marker-internals path is materially more interesting than the
+  product-level CLI. On `testdata/tbotb-mini.pdf`, the `lite_api` benchmark
+  preserves all tracked headings and `1.0` token coverage versus `pdftotext`,
+  while also emitting `page_stats` and `table_of_contents` metadata under
+  `output/runs/story165-marker-benchmark-r1/tbotb-mini/marker-v1102/`.
+- The current local baseline remains wastefully OCR-routed on the same born-
+  digital fixture. `output/runs/story165-docweb-baseline-r1/ocr_ensemble/ocr_source_histogram.json`
+  shows all `3` pages sourced from `tesseract` even though `pdftext_text_pct`
+  is `1.0`, and page `3` still triggers escalation with a duplicated terminal
+  line in `ocr_ensemble/pages/page-003.json`.
+
+That is not enough to mark `born-digital-pdf` as passing, because the repo
+still lacks a maintained runtime path and Marker's outputs do not yet meet the
+accepted provenance/runtime boundary. But it is enough to change the next-step
+read: the credible follow-on is now a thin Marker-internals substrate for
+born-digital PDFs, not stock Marker adoption.
+
 **Ownership read after Story 162:**
 - Explicitly narrowed shared helper that survived honestly:
   `modules/common/onward_openai_ocr.py` now owns the shared OpenAI vision OCR
@@ -434,7 +459,7 @@ None currently.
 
 | Format | ID | Family | Complexity | Priority | Notes |
 |---|---|---|---|---|---|
-| Born-digital PDF | `born-digital-pdf` | `born-digital-pdf` | prose, tables, illustrations | High | Currently wastefully routed through OCR. Needs embedded-text extraction. |
+| Born-digital PDF | `born-digital-pdf` | `born-digital-pdf` | prose, tables, illustrations | High | Current maintained path is still wastefully OCR-routed. Story 165 proved a promising Marker-internals substrate on `tbotb-mini.pdf`, but stock Marker adoption is blocked by runtime/license/provenance costs and the row remains unshipped. |
 | Word (.docx) | `docx` | `docx` | prose, tables, illustrations | High | Common Storybook/Dossier-adjacent upload format. |
 | Excel (.xlsx) | `xlsx` | `xlsx` | tables | Medium | Structured family-history data often starts here. |
 | PowerPoint (.pptx) | `pptx` | `pptx` | mixed-layout, illustrations | Low | Lower-frequency, but still plausible archive input. |
