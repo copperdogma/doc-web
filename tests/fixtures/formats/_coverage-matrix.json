@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "generated": "2026-03-19",
+  "generated": "2026-03-27",
   "description": "Format coverage matrix tracking which input formats doc-forge can convert, how well, and what test fixtures exist. Agents query this to find untested formats and prioritize work.",
   "statuses": {
     "untested": "Format identified but no test fixtures or pipeline support",
@@ -46,12 +46,12 @@
       "format_family": "scanned-pdf",
       "status": "untested",
       "description": "Scanned PDF with primarily prose content",
-      "pipeline_recipe": null,
-      "intake_module": null,
+      "pipeline_recipe": "recipe-pdf-ocr-html-mvp.yaml",
+      "intake_module": "extract_pdf_images_fast_v1 → ocr_ai_gpt51_v1",
       "complexity": ["simple-prose"],
       "fixtures": [],
       "scores": null,
-      "known_gaps": ["No maintained scanned-PDF prose fixture remains after the legacy FF cleanup; current checked-in coverage is image-directory and table-heavy document families."],
+      "known_gaps": ["No maintained scanned-PDF prose fixture remains after the legacy FF cleanup; Story 157 restored maintained PDF entry wiring but not dedicated scanned-prose quality evidence."],
       "graduated": false
     },
     {
@@ -59,15 +59,15 @@
       "format_family": "scanned-pdf",
       "status": "passing",
       "description": "Scanned PDF with dense tables (genealogy, reference books)",
-      "pipeline_recipe": "recipe-onward-images-html-mvp.yaml",
-      "intake_module": "images_dir_to_manifest_v1 → ocr_ai_gpt51_v1 → table_rescue_html_loop_v1",
+      "pipeline_recipe": "recipe-onward-pdf-html-mvp.yaml",
+      "intake_module": "extract_pdf_images_fast_v1 → ocr_ai_gpt51_v1 → table_rescue_html_loop_v1",
       "complexity": ["tables", "multi-column"],
       "fixtures": [
         {
           "id": "onward-to-the-unknown",
-          "source": "input/onward-to-the-unknown-images/",
-          "pages": 129,
-          "notes": "Genealogy book with dense tables. Currently being processed by Dossier as well."
+          "source": "input/Onward to the Unknown.pdf",
+          "pages": 127,
+          "notes": "Shared local scanned PDF for the maintained Onward table-heavy lane. Matches the 127-page shared image-directory source."
         }
       ],
       "scores": {
@@ -76,8 +76,8 @@
         "illustration_extraction": 0.9,
         "provenance_completeness": 1.0,
         "measured": "2026-03-11",
-        "provenance_measured": "2026-03-11",
-        "notes": "Structure quality comes from Story 131 / the 2026-03-11 onward-table-fidelity refresh, illustration quality uses the 2026-03-11 crop eval (0.900), and provenance completeness was verified at 1.0 in Story 132."
+        "provenance_measured": "2026-03-27",
+        "notes": "Structure quality comes from Story 131 / the 2026-03-11 onward-table-fidelity refresh, illustration quality uses the 2026-03-11 crop eval (0.900), and Story 157 restored maintained PDF-backed entry plus fresh provenance verification on the shared Onward PDF."
       },
       "known_gaps": ["Handwritten annotations still weaken some table pages.", "Illustration extraction remains below the 0.95 graduation target."],
       "graduated": false
@@ -94,7 +94,7 @@
         {
           "id": "onward-images",
           "source": "input/onward-to-the-unknown-images/",
-          "pages": 129,
+          "pages": 127,
           "notes": "Same book as scanned-pdf-tables but ingested as pre-extracted images."
         }
       ],
@@ -170,14 +170,21 @@
     {
       "id": "born-digital-pdf",
       "format_family": "born-digital-pdf",
-      "status": "untested",
+      "status": "has-fixture",
       "description": "PDFs with embedded text (no OCR needed), possibly with complex layouts",
-      "pipeline_recipe": null,
-      "intake_module": null,
+      "pipeline_recipe": "recipe-pdf-ocr-html-mvp.yaml",
+      "intake_module": "extract_pdf_images_fast_v1 → ocr_ai_gpt51_v1",
       "complexity": ["simple-prose", "tables", "illustrations"],
-      "fixtures": [],
+      "fixtures": [
+        {
+          "id": "tbotb-mini",
+          "source": "testdata/tbotb-mini.pdf",
+          "pages": 3,
+          "notes": "Repo-owned smoke fixture used to verify maintained PDF-entry wiring only. This is not evidence of a native embedded-text path."
+        }
+      ],
       "scores": null,
-      "known_gaps": ["No native text extraction — currently runs through OCR path which is wasteful"],
+      "known_gaps": ["No native text extraction — current maintained support is a PDF-entry smoke path that still routes through OCR."],
       "graduated": false
     },
     {

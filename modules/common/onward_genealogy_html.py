@@ -125,7 +125,15 @@ def _is_genealogy_heading_tag(tag: Any) -> bool:
 
 def _genealogy_table_header_tokens(table: Any) -> List[str]:
     thead = table.find("thead", recursive=False)
-    header_row = thead.find("tr", recursive=False) if thead is not None else None
+    header_row = None
+    if thead is not None:
+        for row in thead.find_all("tr", recursive=False):
+            tokens = _genealogy_row_header_tokens(row)
+            if tuple(tokens) in _GENEALOGY_HEADER_TOKEN_SETS:
+                header_row = row
+                break
+    if header_row is None and thead is not None:
+        header_row = thead.find("tr", recursive=False)
     if header_row is None:
         header_row = table.find("tr", recursive=False)
     if header_row is None:
@@ -220,6 +228,39 @@ def _next_significant_sibling(node: Any) -> Any:
             return sibling
         sibling = sibling.next_sibling
     return None
+
+
+def _previous_significant_sibling(node: Any) -> Any:
+    sibling = node.previous_sibling
+    while sibling is not None:
+        if getattr(sibling, "name", None) is not None:
+            return sibling
+        if str(sibling).strip():
+            return sibling
+        sibling = sibling.previous_sibling
+    return None
+
+
+def _genealogy_heading_lines_from_node(node: Any) -> List[str]:
+    if node is None:
+        return []
+    tag_name = getattr(node, "name", None)
+    if tag_name == "h1":
+        return []
+    if tag_name is not None:
+        if not _is_genealogy_heading_tag(node):
+            return []
+        return _genealogy_heading_lines(node)
+
+    lines = _genealogy_heading_lines_from_text(str(node))
+    if not lines:
+        return []
+    if not all(
+        _extract_genealogy_family_labels(line) or _is_genealogy_generation_context(line)
+        for line in lines
+    ):
+        return []
+    return lines
 
 
 def _is_genealogy_name_list_paragraph(tag: Any) -> bool:
@@ -409,17 +450,114 @@ def _clone_genealogy_row(row: Any, col_count: int, soup: BeautifulSoup) -> Any:
     return cloned
 
 
+def _prepend_genealogy_subgroup_rows(table: Any, lines: List[str], soup: BeautifulSoup) -> None:
+    if not lines:
+        return
+    tbody = table.find("tbody", recursive=False)
+    if tbody is None:
+        tbody = soup.new_tag("tbody")
+        table.append(tbody)
+    first_row = tbody.find("tr", recursive=False)
+    col_count = _genealogy_table_column_count(table)
+    for line in lines:
+        row = _build_genealogy_subgroup_row(line, col_count, soup)
+        if first_row is not None:
+            first_row.insert_before(row)
+        else:
+            tbody.append(row)
+
+
+def _split_combined_boygirl_header(row: Any, soup: BeautifulSoup) -> None:
+    cells = row.find_all(["th", "td"], recursive=False)
+    if len(cells) != 6:
+        return
+    tokens = [_normalize_genealogy_token(cell.get_text(" ", strip=True)) for cell in cells]
+    if tuple(tokens) != ("name", "born", "married", "spouse", "boygirl", "died"):
+        return
+    combined = cells[4]
+    tag_name = getattr(combined, "name", None) or "th"
+    boy = soup.new_tag(tag_name)
+    boy.string = "BOY"
+    girl = soup.new_tag(tag_name)
+    girl.string = "GIRL"
+    combined.insert_before(boy)
+    combined.insert_before(girl)
+    combined.decompose()
+
+
+def _normalize_genealogy_table_head(table: Any, soup: BeautifulSoup) -> None:
+    thead = table.find("thead", recursive=False)
+    if thead is None:
+        return
+
+    rows = thead.find_all("tr", recursive=False)
+    canonical_row = None
+    canonical_index = None
+    for idx, row in enumerate(rows):
+        tokens = _genealogy_row_header_tokens(row)
+        if tuple(tokens) in _GENEALOGY_HEADER_TOKEN_SETS:
+            canonical_row = row
+            canonical_index = idx
+            break
+    if canonical_row is None:
+        return
+
+    _split_combined_boygirl_header(canonical_row, soup)
+
+    if canonical_index is None or canonical_index == 0:
+        return
+
+    heading_lines: List[str] = []
+    for row in rows[:canonical_index]:
+        lines = _row_genealogy_heading_lines(row)
+        if not lines:
+            continue
+        heading_lines.extend(lines)
+        row.decompose()
+    _prepend_genealogy_subgroup_rows(table, heading_lines, soup)
+
+
+def _absorb_leading_genealogy_headings(base_table: Any, soup: BeautifulSoup) -> None:
+    nodes_and_lines: List[Any] = []
+    cursor = base_table
+    while True:
+        prev = _previous_significant_sibling(cursor)
+        if prev is None:
+            break
+        lines = _genealogy_heading_lines_from_node(prev)
+        if not lines:
+            break
+        nodes_and_lines.append((prev, lines))
+        cursor = prev
+
+    if not nodes_and_lines:
+        return
+
+    all_lines: List[str] = []
+    for node, lines in reversed(nodes_and_lines):
+        all_lines.extend(lines)
+        node.extract()
+    _prepend_genealogy_subgroup_rows(base_table, all_lines, soup)
+
+
 def _append_genealogy_heading_and_rows(base_table: Any, heading_tags: List[Any], source_table: Any,
                                        soup: BeautifulSoup) -> None:
+    heading_lines: List[str] = []
+    for tag in heading_tags:
+        heading_lines.extend(_genealogy_heading_lines(tag))
+    _append_genealogy_heading_lines_and_rows(base_table, heading_lines, source_table, soup)
+
+
+def _append_genealogy_heading_lines_and_rows(base_table: Any, heading_lines: List[str], source_table: Any,
+                                             soup: BeautifulSoup) -> None:
     base_tbody = base_table.find("tbody", recursive=False)
     if base_tbody is None:
         base_tbody = soup.new_tag("tbody")
         base_table.append(base_tbody)
 
     col_count = _genealogy_table_column_count(base_table)
-    for tag in heading_tags:
-        for line in _genealogy_heading_lines(tag):
-            base_tbody.append(_build_genealogy_subgroup_row(line, col_count, soup))
+    for line in heading_lines:
+        base_tbody.append(_build_genealogy_subgroup_row(line, col_count, soup))
 
     source_tbody = source_table.find("tbody", recursive=False)
     rows = source_tbody.find_all("tr", recursive=False) if source_tbody is not None else source_table.find_all("tr", recursive=False)
@@ -463,25 +601,34 @@ def merge_contiguous_genealogy_tables(html: str, *, rescue_normalizer: Optional[
 
     soup = BeautifulSoup(normalized, "html.parser")
     _convert_genealogy_name_list_paragraphs_to_tables(soup)
+    for table in list(soup.find_all("table")):
+        _normalize_genealogy_table_head(table, soup)
     for base_table in list(soup.find_all("table")):
         if base_table.parent is None or not _is_genealogy_table_header(base_table):
             continue
 
+        _absorb_leading_genealogy_headings(base_table, soup)
         expected_cols = _genealogy_table_column_count(base_table)
         cursor = base_table
-        pending_headings: List[Any] = []
+        pending_heading_nodes: List[Any] = []
+        pending_heading_lines: List[str] = []
 
         while True:
             next_node = _next_significant_sibling(cursor)
             if next_node is None:
                 break
-            if _is_genealogy_heading_tag(next_node):
-                pending_headings.append(next_node)
+            if getattr(next_node, "name", None) == "h1" and _is_genealogy_heading_tag(next_node):
+                cursor = next_node
+                continue
+            lines = _genealogy_heading_lines_from_node(next_node)
+            if lines:
+                pending_heading_nodes.append(next_node)
+                pending_heading_lines.extend(lines)
                 cursor = next_node
                 continue
             if (
                 getattr(next_node, "name", None) == "table"
-                and not pending_headings
+                and not pending_heading_lines
                 and _is_compatible_genealogy_table(next_node, expected_cols)
                 and _looks_like_genealogy_continuation_table(next_node)
             ):
@@ -489,11 +636,12 @@ def merge_contiguous_genealogy_tables(html: str, *, rescue_normalizer: Optional[
                 next_node.decompose()
                 cursor = base_table
                 continue
-            if getattr(next_node, "name", None) == "table" and pending_headings and _is_compatible_genealogy_table(next_node, expected_cols):
-                _append_genealogy_heading_and_rows(base_table, pending_headings, next_node, soup)
-                for heading in pending_headings:
-                    heading.decompose()
-                pending_headings = []
+            if getattr(next_node, "name", None) == "table" and pending_heading_lines and _is_compatible_genealogy_table(next_node, expected_cols):
+                _append_genealogy_heading_lines_and_rows(base_table, pending_heading_lines, next_node, soup)
+                for heading in pending_heading_nodes:
+                    heading.extract()
+                pending_heading_nodes = []
+                pending_heading_lines = []
                 next_node.decompose()
                 cursor = base_table
                 continue

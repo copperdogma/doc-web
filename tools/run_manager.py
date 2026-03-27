@@ -10,7 +10,11 @@ if "tools" in os.path.dirname(__file__):
 
 from schemas import RunConfig, ExecutionConfig, OptionsConfig, InstrumentationConfig
 
-def create_run(name: str):
+DEFAULT_IMAGE_RECIPE = "configs/recipes/recipe-images-ocr-html-mvp.yaml"
+DEFAULT_PDF_RECIPE = "configs/recipes/recipe-pdf-ocr-html-mvp.yaml"
+
+
+def create_run(name: str, pdf: Optional[str] = None, recipe: Optional[str] = None):
     """Generates a template run config file."""
     run_dir = os.path.join("output", "runs", name)
     if not os.path.exists(run_dir):
@@ -22,14 +26,17 @@ def create_run(name: str):
         sys.exit(1)
         
     # Create a default RunConfig with some placeholders/examples
+    selected_recipe = recipe or (DEFAULT_PDF_RECIPE if pdf else DEFAULT_IMAGE_RECIPE)
     config = RunConfig(
         run_id=os.path.splitext(name)[0],
         output_dir=run_dir,
-        recipe="configs/recipes/recipe-images-ocr-html-mvp.yaml",
+        recipe=selected_recipe,
         execution=ExecutionConfig(skip_done=True),
         options=OptionsConfig(allow_run_id_reuse=True),
         instrumentation=InstrumentationConfig(enabled=True)
     )
+    if pdf:
+        config.input_pdf = pdf
     
     # We want to dump it in a clean YAML format
     # Pydantic's dict() followed by yaml.dump is easiest
@@ -90,6 +97,14 @@ def main():
     # create-run
     create_parser = subparsers.add_parser("create-run", help="Create a new run configuration template.")
     create_parser.add_argument("name", help="Name of the run (e.g., smoke-test)")
+    create_parser.add_argument(
+        "--pdf",
+        help="Seed the run as a PDF-backed config and set input_pdf to this path.",
+    )
+    create_parser.add_argument(
+        "--recipe",
+        help="Override the default recipe template. Defaults to the maintained PDF recipe when --pdf is provided.",
+    )
     
     # execute-run
     exec_parser = subparsers.add_parser("execute-run", help="Execute a run configuration.")
@@ -100,7 +115,7 @@ def main():
     args = parser.parse_args()
     
     if args.command == "create-run":
-        create_run(args.name)
+        create_run(args.name, pdf=args.pdf, recipe=args.recipe)
     elif args.command == "execute-run":
         execute_run(args.name, args.extra)
     else:

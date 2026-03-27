@@ -71,6 +71,30 @@ python validate_artifact.py \
   --file output/runs/<run_id>/output/html/provenance/blocks.jsonl
 ```
 
+## Maintained Intake Recipes
+
+The active maintained entry surfaces are explicit recipes, not hidden routing:
+
+- `configs/recipes/recipe-images-ocr-html-mvp.yaml` for image-directory scans
+- `configs/recipes/recipe-pdf-ocr-html-mvp.yaml` for generic PDF-backed intake
+- `configs/recipes/recipe-onward-images-html-mvp.yaml` for the image-backed Onward genealogy lane
+- `configs/recipes/recipe-onward-pdf-html-mvp.yaml` for the PDF-backed Onward genealogy lane
+
+To seed a maintained PDF-backed run config explicitly:
+
+```bash
+python tools/run_manager.py create-run smoke-pdf \
+  --pdf /absolute/path/to/document.pdf
+```
+
+For an Onward-specific PDF-backed run, keep recipe selection explicit:
+
+```bash
+python tools/run_manager.py create-run onward-pdf \
+  --pdf /absolute/path/to/Onward.pdf \
+  --recipe configs/recipes/recipe-onward-pdf-html-mvp.yaml
+```
+
 ## Pipeline Architecture
 
 The active repo path is format-aware intake plus structural website output for

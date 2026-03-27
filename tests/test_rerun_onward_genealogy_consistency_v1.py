@@ -745,6 +745,43 @@ def test_best_effort_normalize_html_rewrites_embedded_family_header_tables():
     assert subgroup_rows == ["SANDRA'S FAMILY"]
 
 
+def test_best_effort_normalize_html_converts_genealogy_definition_lists_into_tables():
+    html = """
+    <table>
+      <thead>
+        <tr><th>NAME</th><th>BORN</th><th>MARRIED</th><th>SPOUSE</th><th>BOY</th><th>GIRL</th><th>DIED</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>George</td><td>Oct. 8, 1949</td><td></td><td></td><td>2</td><td>1</td><td></td></tr>
+      </tbody>
+    </table>
+    <h2>George's Great Grandchildren</h2>
+    <h3>JEAN'S FAMILY</h3>
+    <dl>
+      <dt>Robbie</dt><dd>Jan. 6, 1976</dd>
+      <dt>Rena (step)</dt><dd>Sept. 1, 1975</dd>
+    </dl>
+    """
+
+    normalized = _best_effort_normalize_html(html)
+    soup = BeautifulSoup(normalized, "html.parser")
+
+    assert not soup.find_all("dl")
+    tables = soup.find_all("table")
+    assert len(tables) == 1
+    subgroup_rows = [
+        row.get_text(" ", strip=True)
+        for row in tables[0].find("tbody").find_all("tr", class_="genealogy-subgroup-heading", recursive=False)
+    ]
+    assert subgroup_rows[:2] == [
+        "George's Great Grandchildren",
+        "JEAN'S FAMILY",
+    ]
+    text = tables[0].get_text(" ", strip=True)
+    assert "Robbie" in text
+    assert "Rena (step)" in text
+
+
 def test_run_reruns_accepts_candidate_and_preserves_untouched_pages(tmp_path: Path, monkeypatch):
     rows, page_map = _fixture_rows(tmp_path)
     report_path = _fixture_report(tmp_path)

@@ -75,3 +75,66 @@ def test_toc_portionizer_uses_book_authored_boundaries(tmp_path: Path) -> None:
     assert rows[0]["page_end"] == 36
     assert rows[1]["page_start"] == 37
     assert rows[1]["page_end"] == 40
+
+
+def test_toc_portionizer_accepts_heading_plus_table_index(tmp_path: Path) -> None:
+    pages_path = tmp_path / "pages-table.jsonl"
+    out_path = tmp_path / "portions-table.jsonl"
+
+    _write_jsonl(
+        pages_path,
+        [
+            {
+                "page_number": 8,
+                "printed_page_number": None,
+                "html": (
+                    "<h1>INDEX</h1>"
+                    "<table><tbody>"
+                    "<tr><td>First Chapter</td><td>10</td></tr>"
+                    "<tr><td>Second Chapter</td><td>20</td></tr>"
+                    "</tbody></table>"
+                ),
+            },
+            {
+                "page_number": 10,
+                "printed_page_number": 10,
+                "html": "<h1>FIRST CHAPTER</h1><p>Start.</p>",
+            },
+            {
+                "page_number": 20,
+                "printed_page_number": 20,
+                "html": "<h1>SECOND CHAPTER</h1><p>Next start.</p>",
+            },
+            {
+                "page_number": 24,
+                "printed_page_number": 24,
+                "html": "<p>Tail page.</p>",
+            },
+        ],
+    )
+
+    cmd = [
+        sys.executable,
+        "-m",
+        "modules.portionize.portionize_toc_html_v1.main",
+        "--pages",
+        str(pages_path),
+        "--out",
+        str(out_path),
+        "--min-entries",
+        "2",
+    ]
+    result = subprocess.run(
+        cmd,
+        capture_output=True,
+        text=True,
+        cwd=str(Path(__file__).resolve().parent.parent),
+    )
+    assert result.returncode == 0, result.stderr
+
+    rows = [json.loads(line) for line in out_path.read_text(encoding="utf-8").splitlines() if line.strip()]
+    assert [row["title"] for row in rows] == ["First Chapter", "Second Chapter"]
+    assert rows[0]["page_start"] == 10
+    assert rows[0]["page_end"] == 19
+    assert rows[1]["page_start"] == 20
+    assert rows[1]["page_end"] == 24

@@ -839,6 +839,36 @@ class TestGenealogyMerging:
             "NORBERT'S FAMILY",
         ]
 
+    def test_merge_contiguous_genealogy_tables_absorbs_leading_headings_before_first_table(self):
+        html = """
+        <h1>ALMA</h1>
+        <h2>Edithe's Great Grandchildren</h2>
+        <h3>Wayne's Grandchildren</h3>
+        SHONNA'S FAMILY
+        <table>
+          <thead>
+            <tr><th>NAME</th><th>BORN</th><th>MARRIED</th><th>SPOUSE</th><th>BOY</th><th>GIRL</th><th>DIED</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Nicole</td><td>Jan. 18, 1983</td><td></td><td></td><td></td><td></td><td></td></tr>
+          </tbody>
+        </table>
+        """
+
+        result = _merge_contiguous_genealogy_tables(html)
+        soup = BeautifulSoup(result, "html.parser")
+
+        assert [h.get_text(" ", strip=True) for h in soup.find_all(["h1", "h2", "h3"])] == ["ALMA"]
+        subgroup_rows = [
+            row.get_text(" ", strip=True)
+            for row in soup.find("tbody").find_all("tr", class_="genealogy-subgroup-heading", recursive=False)
+        ]
+        assert subgroup_rows[:3] == [
+            "Edithe's Great Grandchildren",
+            "Wayne's Grandchildren",
+            "SHONNA'S FAMILY",
+        ]
+
     def test_merge_contiguous_genealogy_tables_collapses_heading_table_runs(self):
         html = """
         <h1>ALMA</h1>
@@ -1096,6 +1126,49 @@ class TestGenealogyMerging:
         ]
         assert "Danial" in tables[0].get_text(" ", strip=True)
         assert "Diane" in tables[0].get_text(" ", strip=True)
+
+    def test_merge_contiguous_genealogy_tables_normalizes_thead_heading_rows(self):
+        html = """
+        <table>
+          <thead>
+            <tr><th><strong>Arthur's Great Grandchildren</strong><br/><strong>Agnes' Grandchildren</strong><br/><strong>LAWRENCE'S FAMILY</strong></th></tr>
+            <tr><th>NAME</th><th>BORN</th><th>MARRIED</th><th>SPOUSE</th><th>BOY/GIRL</th><th>DIED</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Rene</td><td>Jan. 25, 1972</td><td></td><td></td><td></td><td></td></tr>
+            <tr><th><strong>BERNICE'S FAMILY</strong></th></tr>
+            <tr><td>Susan</td><td>Sept. 5, 1968</td><td></td><td></td><td></td><td></td></tr>
+          </tbody>
+        </table>
+        """
+
+        result = _merge_contiguous_genealogy_tables(html)
+        soup = BeautifulSoup(result, "html.parser")
+        table = soup.find("table")
+        assert table is not None
+        assert "BOY/GIRL" not in result
+
+        header_row = table.find("thead").find("tr")
+        assert [cell.get_text(" ", strip=True) for cell in header_row.find_all("th", recursive=False)] == [
+            "NAME",
+            "BORN",
+            "MARRIED",
+            "SPOUSE",
+            "BOY",
+            "GIRL",
+            "DIED",
+        ]
+
+        subgroup_rows = [
+            row.get_text(" ", strip=True)
+            for row in table.find("tbody").find_all("tr", class_="genealogy-subgroup-heading", recursive=False)
+        ]
+        assert subgroup_rows[:4] == [
+            "Arthur's Great Grandchildren",
+            "Agnes' Grandchildren",
+            "LAWRENCE'S FAMILY",
+            "BERNICE'S FAMILY",
+        ]
 
 
 # ---------------------------------------------------------------------------

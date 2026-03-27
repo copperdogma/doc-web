@@ -159,7 +159,7 @@ This index tracks stories in `/docs/stories/` for the doc-forge pipeline.
 |||| 154 | Dossier `doc-web` Semantic HTML Handoff | High | Done | /docs/stories/story-154-dossier-doc-web-semantic-html-handoff.md |
 |||| 155 | Repo Mission Alignment Cleanup and Legacy Surface Removal | High | Done | /docs/stories/story-155-repo-mission-alignment-cleanup-and-legacy-surface-removal.md |
 |||| 156 | Adopt Storybook-Style Pinned `doc-web` Runtime Pattern and Close Dossier Readiness Gaps | High | Done | /docs/stories/story-156-pinned-doc-web-runtime-adoption-and-dossier-readiness.md |
-|||| 157 | PDF Intake Parity with Image-Directory Inputs | High | Pending | /docs/stories/story-157-pdf-intake-parity-with-image-directory-inputs.md |
+|||| 157 | PDF Intake Parity with Image-Directory Inputs | High | Done | /docs/stories/story-157-pdf-intake-parity-with-image-directory-inputs.md |
 |||| 158 | Evaluate `Docling` as a Full Replacement Candidate for `doc-web` | High | Done | /docs/stories/story-158-docling-doc-web-replacement-evaluation.md |
 |||| 159 | Tune `Docling` on the Onward Hard Case and Rank the Path to 100% Fidelity | High | Done | /docs/stories/story-159-docling-onward-tuning-sweep.md |
 |||| 160 | Generalize Tier 2 `Docling` Hybrid Repair on the Onward Lane | High | Done | /docs/stories/story-160-docling-tier2-onward-hybrid-generalization.md |
@@ -169,6 +169,7 @@ This index tracks stories in `/docs/stories/` for the doc-forge pipeline.
 |||| 164 | Benchmark `Surya` as a Component Candidate for Layout and Table Seams | High | Done | /docs/stories/story-164-surya-component-benchmark-for-layout-and-table-seams.md |
 |||| 165 | Benchmark `Marker` as a Breadth Comparator on the `born-digital-pdf` Gap | High | Done | /docs/stories/story-165-marker-breadth-comparator-born-digital-pdf.md |
 |||| 166 | Use Marker Internals as a Thin Born-Digital PDF Substrate | High | Draft | /docs/stories/story-166-marker-internals-born-digital-pdf-substrate.md |
+|||| 167 | Repo-Owned Scanned-Prose PDF Fixture | High | Pending | /docs/stories/story-167-repo-owned-scanned-prose-pdf-fixture.md |
 
 ## Notes
 - Status "Done" reflects current working state in doc-forge. "To Do" items are planned next steps aligned with `docs/ideal.md`, `docs/spec.md`, and `docs/build-map.md`.

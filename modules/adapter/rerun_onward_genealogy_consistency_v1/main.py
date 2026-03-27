@@ -872,8 +872,50 @@ def load_targets(
     return selection if return_selection else selection.targets
 
 
+def _convert_definition_lists_to_tables(html: str) -> str:
+    soup = BeautifulSoup(html or "", "html.parser")
+    changed = False
+    for dl in list(soup.find_all("dl")):
+        pairs: List[Tuple[str, str]] = []
+        current_term: Optional[str] = None
+        for child in dl.find_all(["dt", "dd"], recursive=False):
+            text = re.sub(r"\s+", " ", child.get_text(" ", strip=True)).strip()
+            if not text:
+                continue
+            if child.name == "dt":
+                if current_term is not None:
+                    pairs.append((current_term, ""))
+                current_term = text
+            else:
+                if current_term is None:
+                    continue
+                pairs.append((current_term, text))
+                current_term = None
+        if current_term is not None:
+            pairs.append((current_term, ""))
+        if not pairs:
+            continue
+
+        table = soup.new_tag("table")
+        tbody = soup.new_tag("tbody")
+        table.append(tbody)
+        for term, value in pairs:
+            row = soup.new_tag("tr")
+            term_cell = soup.new_tag("td")
+            term_cell.string = term
+            row.append(term_cell)
+            value_cell = soup.new_tag("td")
+            value_cell.string = value
+            row.append(value_cell)
+            tbody.append(row)
+        dl.replace_with(table)
+        changed = True
+    return str(soup) if changed else (html or "")
+
+
 def _best_effort_normalize_html(html: str) -> str:
     cleaned = sanitize_html(html or "")
+    cleaned = _convert_definition_lists_to_tables(cleaned)
     cleaned = merge_contiguous_genealogy_tables(
         cleaned,
         rescue_normalizer=_normalize_rescue_html,

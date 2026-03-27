@@ -41,7 +41,9 @@ scripts/run_driver_monitored.sh \
 
 Active recipe examples:
 - `configs/recipes/recipe-images-ocr-html-mvp.yaml`
+- `configs/recipes/recipe-pdf-ocr-html-mvp.yaml`
 - `configs/recipes/recipe-onward-images-html-mvp.yaml`
+- `configs/recipes/recipe-onward-pdf-html-mvp.yaml`
 - `configs/recipes/onward-genealogy-build-regression.yaml` (artifact-reuse path; requires the referenced Story 140 / 143 artifacts under `output/`)
 - `configs/recipes/doc-web-fixture-bundle-smoke.yaml` (repo-owned contract smoke lane; emits `manifest.json`, `provenance/blocks.jsonl`, one chapter HTML file, one fallback page HTML file, and bundle-local image assets)
 
@@ -87,6 +89,26 @@ Expected bundle outputs:
 - `output/runs/<run_id>/output/html/manifest.json`
 - `output/runs/<run_id>/output/html/provenance/blocks.jsonl`
 
+### Repo-Owned PDF Intake Smoke
+
+Use this when you need a cheap real-run proof that the maintained PDF entry
+surface still emits a stamped `page_image_v1` manifest from a checked-in PDF:
+
+```bash
+python driver.py \
+  --recipe configs/recipes/recipe-pdf-ocr-html-mvp.yaml \
+  --input-pdf testdata/tbotb-mini.pdf \
+  --run-id <run_id> \
+  --allow-run-id-reuse \
+  --end-at pdf_to_images
+```
+
+Expected extractor outputs:
+
+- `output/runs/<run_id>/01_extract_pdf_images_fast_v1/pages_images_manifest.jsonl`
+- `output/runs/<run_id>/01_extract_pdf_images_fast_v1/extraction_report.jsonl`
+- `output/runs/<run_id>/01_extract_pdf_images_fast_v1/extraction_summary.json`
+
 ---
 
 ## 🔄 Recovery & Resume (The "Happy Path")
@@ -120,7 +142,9 @@ scripts/run_driver_monitored.sh \
 | Recipe | Purpose |
 | :--- | :--- |
 | `recipe-images-ocr-html-mvp.yaml` | Active structural HTML bundle path for image-directory inputs. |
+| `recipe-pdf-ocr-html-mvp.yaml` | Active structural HTML bundle path for generic PDF-backed inputs. |
 | `recipe-onward-images-html-mvp.yaml` | **Genealogy.** Specialized for *Onward* tables. |
+| `recipe-onward-pdf-html-mvp.yaml` | **Genealogy.** PDF-backed maintained Onward lane with the same downstream table-repair flow. |
 | `onward-genealogy-build-regression.yaml` | No-AI artifact-reuse regression path that rebuilds chapters and genealogy validation from accepted Onward artifacts already present under the shared `output/` root. |
 
 ### Presets (`configs/presets/`)
@@ -134,6 +158,7 @@ scripts/run_driver_monitored.sh \
 Append these after `--` in the wrapper script.
 
 *   `--model <name>`: Global model override.
+*   `--input-pdf <path>`: Override `input.pdf` on maintained PDF-backed recipes.
 *   `--max-pages <N>`: Stop after N pages.
 *   `--start-from <stage>`: Resume point.
 *   `--end-at <stage>`: Halt point.

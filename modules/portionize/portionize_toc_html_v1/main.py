@@ -47,14 +47,14 @@ def _extract_entry_from_line(text: str) -> Optional[Dict[str, Any]]:
     return {"title": title, "page_start": page_num}
 
 
-def _is_toc_page(lines: List[str], min_entries: int) -> bool:
+def _is_toc_page(lines: List[str], min_entries: int, table_entry_count: int = 0) -> bool:
     if not lines:
-        return False
+        return table_entry_count >= max(1, min_entries)
     for line in lines[:5]:
         if _normalize_ws(line).lower() in TOC_TITLE_PATTERNS:
             return True
     entry_count = sum(1 for line in lines if _looks_like_toc_entry(line))
-    return entry_count >= max(1, min_entries)
+    return entry_count >= max(1, min_entries) or table_entry_count >= max(1, min_entries)
 
 
 def _extract_table_entries(soup: BeautifulSoup) -> List[Dict[str, Any]]:
@@ -114,14 +114,15 @@ def main() -> None:
     for row in rows:
         html = row.get("html") or row.get("raw_html") or ""
         soup = BeautifulSoup(html, "html.parser")
-        lines = [p.get_text(" ", strip=True) for p in soup.find_all("p")]
-        if not _is_toc_page(lines, args.min_entries):
+        lines = [tag.get_text(" ", strip=True) for tag in soup.find_all(["h1", "h2", "h3", "p"])]
+        table_entries = _extract_table_entries(soup)
+        if not _is_toc_page(lines, args.min_entries, table_entry_count=len(table_entries)):
             continue
         for line in lines:
             ent = _extract_entry_from_line(line)
             if ent:
                 entries.append(ent)
-        entries.extend(_extract_table_entries(soup))
+        entries.extend(table_entries)
 
     entries = _dedupe_entries(entries)
     entries = [e for e in entries if isinstance(e.get("page_start"), int)]

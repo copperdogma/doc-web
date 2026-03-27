@@ -438,14 +438,13 @@ empty dedicated section until a second candidate exists.
 
 ### Current Status
 
-**6 formats passing** | **0 graduated** | **10 untested** | **16 total tracked**
+**5 formats passing** | **1 has fixture** | **10 untested** | **0 graduated** | **16 total tracked**
 
 ### Passing
 
 | Format | ID | Family | Current Pipeline | Text | Structure | Illustration | Provenance | Notes |
 |---|---|---|---|---:|---:|---:|---:|---|
-| Scanned PDF (prose) | `scanned-pdf-prose` | `scanned-pdf` | `extract_pdf_images_fast_v1 -> ocr_ai_gpt51_v1` | 0.97 | 0.95 | 0.900 | 1.00 | Primary scanned-PDF path. Illustration score uses the 2026-03-11 crop eval refresh; provenance uses Story 132 verification. |
-| Scanned PDF (tables) | `scanned-pdf-tables` | `scanned-pdf` | `images -> ocr_ai_gpt51_v1 -> table_rescue_html_loop_v1` | 0.93 | 0.95 | 0.900 | 1.00 | Onward-style genealogy path. Structure quality comes from the 2026-03-11 table eval winner. |
+| Scanned PDF (tables) | `scanned-pdf-tables` | `scanned-pdf` | `extract_pdf_images_fast_v1 -> ocr_ai_gpt51_v1 -> table_rescue_html_loop_v1` | 0.93 | 0.95 | 0.900 | 1.00 | Onward-style genealogy path. Story 157 restored a maintained PDF-backed entry recipe; the shared Onward PDF and image-directory source are both 127 pages. |
 | Image directory | `image-directory-scans` | `image-directory` | `images_dir_to_manifest_v1 -> ocr_ai_gpt51_v1` | 0.93 | 0.95 | 0.900 | 1.00 | Same source quality as the scanned-PDF image path once pages are extracted. |
 | Plain text | `plain-text` | `plain-text` | `extract_text_v1` | 1.00 | - | - | - | Passthrough, no OCR. |
 | Markdown | `markdown` | `markdown` | `extract_text_v1` | 1.00 | - | - | - | Passthrough. |
@@ -453,13 +452,15 @@ empty dedicated section until a second candidate exists.
 
 ### Has Fixture (pipeline not yet passing)
 
-None currently.
+| Format | ID | Family | Fixture / Current Pipeline | Priority | Notes |
+|---|---|---|---|---|---|
+| Born-digital PDF | `born-digital-pdf` | `born-digital-pdf` | `testdata/tbotb-mini.pdf` via `recipe-pdf-ocr-html-mvp.yaml` | High | Story 157 adds a maintained PDF-entry smoke lane, but the shipped path is still wastefully OCR-routed and should not be treated as native-text support. |
 
 ### Untested
 
 | Format | ID | Family | Complexity | Priority | Notes |
 |---|---|---|---|---|---|
-| Born-digital PDF | `born-digital-pdf` | `born-digital-pdf` | prose, tables, illustrations | High | Current maintained path is still wastefully OCR-routed. Story 165 proved a promising Marker-internals substrate on `tbotb-mini.pdf`, but stock Marker adoption is blocked by runtime/license/provenance costs and the row remains unshipped. |
+| Scanned PDF (prose) | `scanned-pdf-prose` | `scanned-pdf` | simple-prose | High | Maintained PDF entry now exists, but the repo still lacks a dedicated scanned-prose fixture and fresh quality evidence after the legacy cleanup. |
 | Word (.docx) | `docx` | `docx` | prose, tables, illustrations | High | Common Storybook/Dossier-adjacent upload format. |
 | Excel (.xlsx) | `xlsx` | `xlsx` | tables | Medium | Structured family-history data often starts here. |
 | PowerPoint (.pptx) | `pptx` | `pptx` | mixed-layout, illustrations | Low | Lower-frequency, but still plausible archive input. |

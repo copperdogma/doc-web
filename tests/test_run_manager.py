@@ -1,6 +1,7 @@
 import os
 import shutil
 import subprocess
+import sys
 import uuid
 import pytest
 import yaml
@@ -20,7 +21,7 @@ def cleanup_runs():
 
 def test_create_run(cleanup_runs):
     run_name = f"integration-test-run-{uuid.uuid4().hex[:8]}"
-    subprocess.run(["python", RUN_MANAGER, "create-run", run_name], check=True)
+    subprocess.run([sys.executable, RUN_MANAGER, "create-run", run_name], check=True)
     
     expected_path = os.path.join(RUNS_DIR, run_name, "config.yaml")
     cleanup_runs.append(os.path.join(RUNS_DIR, run_name))
@@ -40,7 +41,7 @@ def test_execute_run_dry_run(cleanup_runs, tmp_path):
     with open(dummy_recipe, "w") as f:
         f.write("name: dummy-recipe\n")
     
-    subprocess.run(["python", RUN_MANAGER, "create-run", run_name], check=True)
+    subprocess.run([sys.executable, RUN_MANAGER, "create-run", run_name], check=True)
     cleanup_runs.append(os.path.join(RUNS_DIR, run_name))
     
     # Update the created run config to point to our dummy recipe
@@ -54,7 +55,7 @@ def test_execute_run_dry_run(cleanup_runs, tmp_path):
     # We use --dry-run so driver.py doesn't actually do anything 
     # and we can check if it invoked correctly.
     result = subprocess.run(
-        ["python", RUN_MANAGER, "execute-run", run_name, "--dry-run"],
+        [sys.executable, RUN_MANAGER, "execute-run", run_name, "--dry-run"],
         capture_output=True,
         text=True
     )
@@ -64,3 +65,21 @@ def test_execute_run_dry_run(cleanup_runs, tmp_path):
     assert "driver.py --config" in result.stdout
     assert f"output/runs/{run_name}/config.yaml" in result.stdout
     assert "--dry-run" in result.stdout
+
+
+def test_create_run_with_pdf_seed(cleanup_runs):
+    run_name = f"pdf-run-{uuid.uuid4().hex[:8]}"
+    subprocess.run(
+        [sys.executable, RUN_MANAGER, "create-run", run_name, "--pdf", "testdata/tbotb-mini.pdf"],
+        check=True,
+    )
+
+    expected_path = os.path.join(RUNS_DIR, run_name, "config.yaml")
+    cleanup_runs.append(os.path.join(RUNS_DIR, run_name))
+    assert os.path.exists(expected_path)
+
+    with open(expected_path, "r") as f:
+        config_data = yaml.safe_load(f)
+    assert config_data["recipe"] == "configs/recipes/recipe-pdf-ocr-html-mvp.yaml"
+    assert config_data["run_id"] == run_name
+    assert config_data["input_pdf"] == "testdata/tbotb-mini.pdf"

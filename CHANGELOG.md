@@ -1,3 +1,19 @@
+## [2026-03-27-01] - Close maintained PDF intake parity and split scanned-prose fixture follow-up (Story 157)
+
+### Added
+- Added Story 167 (`docs/stories/story-167-repo-owned-scanned-prose-pdf-fixture.md`) to carry the repo-owned scanned-prose fixture gap without leaving Story 157 open-ended
+
+### Changed
+- Closed Story 157 on fresh maintained-PDF evidence, including explicit PDF recipes, PDF-aware run seeding, updated truth surfaces, and the story index/workflow-gate sync
+
+### Fixed
+- Cleared stale run-level `status_reason` after successful resume and verified the maintained Onward PDF proof run now ends cleanly
+- Reduced the remaining Onward genealogy warning path to a story-scoped rerun recipe with fresh zero-warning validation output
+
+### Tested
+- `make lint`
+- `make test`
+
 ## [2026-03-26-01] - Close Marker born-digital comparator and split thin-seam follow-up (Story 165)
 
 ### Added

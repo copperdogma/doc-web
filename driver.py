@@ -566,6 +566,22 @@ def update_state(state_path: str, progress_path: str, stage_name: str, status: s
                       schema_version=schema_version, stage_description=stage_description)
 
 
+def finalize_run_state(state_path: str, *, run_validation_failed: bool) -> None:
+    state = {}
+    if os.path.exists(state_path):
+        with open(state_path, "r", encoding="utf-8") as f:
+            state = json.load(f)
+    if run_validation_failed:
+        state["status"] = "failed"
+        state["status_reason"] = "game_ready_validation_failed"
+    else:
+        state["status"] = "done"
+        state.pop("status_reason", None)
+    state["ended_at"] = datetime.utcnow().isoformat(timespec="microseconds") + "Z"
+    with open(state_path, "w", encoding="utf-8") as f:
+        json.dump(state, f, indent=2)
+
+
 def build_command(entrypoint: str, params: Dict[str, Any], stage_conf: Dict[str, Any], run_dir: str,
                   recipe_input: Dict[str, Any], state_path: str, progress_path: str, run_id: str,
                   artifact_inputs: Dict[str, str], artifact_index: Dict[str, Any] = None,
@@ -2144,18 +2160,7 @@ def main():
 
     # Stamp top-level run status for dashboards/monitors.
     try:
-        state = {}
-        if os.path.exists(state_path):
-            with open(state_path, "r", encoding="utf-8") as f:
-                state = json.load(f)
-        if run_validation_failed:
-            state["status"] = "failed"
-            state["status_reason"] = "game_ready_validation_failed"
-        else:
-            state["status"] = "done"
-        state["ended_at"] = datetime.utcnow().isoformat(timespec="microseconds") + "Z"
-        with open(state_path, "w", encoding="utf-8") as f:
-            json.dump(state, f, indent=2)
+        finalize_run_state(state_path, run_validation_failed=run_validation_failed)
     except Exception:
         pass
 
