@@ -15,6 +15,7 @@ models/
 !.cursor/rules/README.md
 .DS_Store
 .env
+.cache/
 
 
 # Local pip cache

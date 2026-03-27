@@ -1,3 +1,26 @@
+## [2026-03-27-03] - Close Marker internals born-digital substrate spike (Story 166)
+
+### Added
+- Added the Story 166 prototype normalizer `scripts/spikes/marker_page_html_prototype.py` plus focused regression coverage in `tests/test_marker_page_html_prototype.py`
+- Added Story 168 (`docs/stories/story-168-marker-lite-maintained-born-digital-pdf-path.md`) as the exact maintained follow-on for the remaining heading and paragraph normalization work
+
+### Changed
+- Closed Story 166 on fresh repo-local proof that the Marker-lite seam can normalize into `page_html_v1` plus accepted `doc-web` bundle/provenance artifacts without crossing the maintained runtime boundary
+- Updated Story 166, the story index, Scout 011, and the build map so the born-digital PDF gap now reflects the real state: bounded spike positive, maintained native-text path still pending
+
+### Fixed
+- Reworked the Marker benchmark bootstrap so the spike can rebuild from a repo-local cached image instead of depending on a stale worktree-bound Docker container
+- Corrected the benchmark decision summary so the current pagelines baseline is treated as OCR-routed whenever it still falls back to OCR or escalation
+- Ignored repo-local benchmark cache directories in `.gitignore` so the bootstrap does not leave untracked runtime noise
+
+### Tested
+- `python -m ruff check modules/ tests/`
+- `python -m pytest tests/`
+- `python scripts/spikes/marker_breadth_benchmark.py --container-name story165-marker-cpu-9f4f --bootstrap-from-container story165-marker-cpu-missing --bootstrap-image doc-web/story165-marker-cpu:9f4f --mode lite_api --formats json --out-root output/runs/story166-marker-probe-r2 --skip-run --docweb-baseline-root output/runs/story166-docweb-pagelines-baseline-r1`
+- `python validate_artifact.py --schema page_html_v1 --file output/runs/story166-marker-page-html-r2/tbotb-mini/marker-v1102/lite-api/pages_html.jsonl`
+- `python validate_artifact.py --schema doc_web_bundle_manifest_v1 --file output/runs/story166-marker-page-html-r2/tbotb-mini/marker-v1102/lite-api/doc_web_bundle/manifest.json`
+- `python validate_artifact.py --schema doc_web_provenance_block_v1 --file output/runs/story166-marker-page-html-r2/tbotb-mini/marker-v1102/lite-api/doc_web_bundle/provenance/blocks.jsonl`
+
 ## [2026-03-27-02] - Add repo-owned scanned-prose PDF fixture proof (Story 167)
 
 ### Added

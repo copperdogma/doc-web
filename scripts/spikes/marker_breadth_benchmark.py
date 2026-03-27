@@ -15,9 +15,10 @@ In both modes, it runs Marker in three output modes (markdown/json/html),
 captures logs, and summarizes the result against the source text layer
 extracted directly from the PDF.
 
-The script does not try to own Marker installation. It assumes the named
-container already exists and has `marker-pdf` installed, because Story 165 is
-still deciding whether that runtime/model footprint is acceptable at all.
+The script does not try to install Marker from scratch. It can, however,
+recreate a repo-local benchmark container for the current worktree by
+snapshotting a previously-provisioned seed container when the old long-lived
+container is mounted to a different checkout.
 """
 
 from __future__ import annotations
@@ -33,7 +34,13 @@ from pathlib import Path
 from typing import Any
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
-DEFAULT_CONTAINER = "story165-marker-cpu"
+WORKTREE_ID = REPO_ROOT.parent.name
+DEFAULT_CONTAINER = f"story165-marker-cpu-{WORKTREE_ID}"
+DEFAULT_BOOTSTRAP_FROM_CONTAINER = "story165-marker-cpu"
+DEFAULT_BOOTSTRAP_IMAGE = f"doc-web/story165-marker-cpu:{WORKTREE_ID}"
+DEFAULT_PIP_CACHE_DIR = REPO_ROOT / ".cache" / "marker-benchmark-pip"
+DEFAULT_DATALAB_CACHE_DIR = REPO_ROOT / ".cache" / "marker-benchmark-datalab"
+DEFAULT_BASE_IMAGE = "python:3.12-slim-bookworm"
 DEFAULT_INPUT_PDF = REPO_ROOT / "testdata" / "tbotb-mini.pdf"
 DEFAULT_OUT_ROOT = REPO_ROOT / "output" / "runs" / "story165-marker-benchmark-r1"
 DEFAULT_DOCWEB_BASELINE_ROOT = REPO_ROOT / "output" / "runs" / "story165-docweb-baseline-r1"
@@ -61,6 +68,20 @@ def _run(cmd: list[str], *, cwd: Path | None = None) -> subprocess.CompletedProc
     )
 
 
+def _run_optional(
+    cmd: list[str],
+    *,
+    cwd: Path | None = None,
+) -> subprocess.CompletedProcess[str]:
+    return subprocess.run(
+        cmd,
+        cwd=str(cwd) if cwd else None,
+        check=False,
+        text=True,
+        capture_output=True,
+    )
+
+
 def _read_text(path: Path) -> str:
     return path.read_text(encoding="utf-8")
 
@@ -81,6 +102,296 @@ def _output_ext(output_format: str) -> str:
 def _container_path(path: Path) -> str:
     rel = path.resolve().relative_to(REPO_ROOT.resolve())
     return f"/work/{rel.as_posix()}"
+
+
+def _docker_inspect(name: str) -> dict[str, Any] | None:
+    proc = _run_optional(["docker", "inspect", name])
+    if proc.returncode != 0:
+        return None
+    payload = json.loads(proc.stdout)
+    return payload[0] if payload else None
+
+
+def _docker_image_exists(image: str) -> bool:
+    return _run_optional(["docker", "image", "inspect", image]).returncode == 0
+
+
+def _work_mount_source(container_info: dict[str, Any]) -> Path | None:
+    for mount in container_info.get("Mounts", []):
+        if mount.get("Destination") == "/work" and mount.get("Source"):
+            return Path(str(mount["Source"])).resolve()
+    return None
+
+
+def _mount_source(container_info: dict[str, Any], destination: str) -> Path | None:
+    for mount in container_info.get("Mounts", []):
+        if mount.get("Destination") == destination and mount.get("Source"):
+            return Path(str(mount["Source"])).resolve()
+    return None
+
+
+def _marker_probe(container_name: str) -> subprocess.CompletedProcess[str]:
+    return _run_optional(
+        [
+            "docker",
+            "exec",
+            container_name,
+            "sh",
+            "-lc",
+            (
+                "python - <<'PY'\n"
+                "import importlib.metadata as m\n"
+                "print(m.version('marker-pdf'))\n"
+                "PY"
+            ),
+        ]
+    )
+
+
+def _seed_repo_local_cache_from_container(
+    container_name: str,
+    *,
+    host_cache_dir: Path,
+    notes: list[str],
+) -> None:
+    host_cache_dir.mkdir(parents=True, exist_ok=True)
+    if any(host_cache_dir.iterdir()):
+        return
+    copy_proc = _run_optional(
+        ["docker", "cp", f"{container_name}:/root/.cache/datalab/.", str(host_cache_dir)]
+    )
+    if copy_proc.returncode == 0:
+        notes.append(f"seeded repo-local model cache from {container_name!r}")
+        return
+    stderr = copy_proc.stderr.strip() or copy_proc.stdout.strip()
+    notes.append(
+        f"repo-local model cache seed from {container_name!r} unavailable: {stderr or 'no datalab cache present'}"
+    )
+
+
+def _start_repo_local_container(
+    container_name: str,
+    *,
+    image: str,
+    pip_cache_dir: Path,
+    datalab_cache_dir: Path,
+) -> None:
+    _run(
+        [
+            "docker",
+            "run",
+            "-d",
+            "--name",
+            container_name,
+            "--workdir",
+            "/work",
+            "--mount",
+            f"type=bind,src={REPO_ROOT.resolve()},dst=/work",
+            "--mount",
+            f"type=bind,src={pip_cache_dir.resolve()},dst=/root/.cache/pip",
+            "--mount",
+            f"type=bind,src={datalab_cache_dir.resolve()},dst=/root/.cache/datalab",
+            image,
+            "sleep",
+            "infinity",
+        ]
+    )
+
+
+def _provision_repo_local_runtime(
+    container_name: str,
+    *,
+    base_image: str,
+    bootstrap_image: str,
+    pip_cache_dir: Path,
+    datalab_cache_dir: Path,
+    notes: list[str],
+) -> dict[str, Any]:
+    pip_cache_dir.mkdir(parents=True, exist_ok=True)
+    datalab_cache_dir.mkdir(parents=True, exist_ok=True)
+    _run(["docker", "pull", base_image])
+    _start_repo_local_container(
+        container_name,
+        image=base_image,
+        pip_cache_dir=pip_cache_dir,
+        datalab_cache_dir=datalab_cache_dir,
+    )
+    install_proc = _run_optional(
+        [
+            "docker",
+            "exec",
+            container_name,
+            "sh",
+            "-lc",
+            (
+                "python -m pip install --disable-pip-version-check --root-user-action ignore "
+                "--upgrade pip==26.0.1 && "
+                "python -m pip install --disable-pip-version-check --root-user-action ignore "
+                "--extra-index-url https://download.pytorch.org/whl/cpu "
+                "'marker-pdf==1.10.2'"
+            ),
+        ]
+    )
+    if install_proc.returncode != 0:
+        raise RuntimeError(
+            "Fresh Marker runtime provisioning failed: "
+            f"{install_proc.stderr.strip() or install_proc.stdout.strip()}"
+        )
+    commit_proc = _run_optional(["docker", "commit", container_name, bootstrap_image])
+    if commit_proc.returncode == 0:
+        notes.append(f"committed repo-local runtime snapshot to {bootstrap_image!r}")
+    else:
+        notes.append(
+            "repo-local runtime snapshot commit skipped: "
+            f"{commit_proc.stderr.strip() or commit_proc.stdout.strip()}"
+        )
+    return {
+        "container_name": container_name,
+        "action": "provisioned_from_base_image",
+        "seed_container": None,
+        "seed_image": base_image,
+        "cached_image": bootstrap_image,
+        "work_mount_source": str(REPO_ROOT.resolve()),
+        "pip_cache_dir": str(pip_cache_dir.resolve()),
+        "datalab_cache_dir": str(datalab_cache_dir.resolve()),
+        "notes": notes,
+    }
+
+
+def _ensure_runtime_container(
+    container_name: str,
+    *,
+    bootstrap_from_container: str,
+    bootstrap_image: str,
+    pip_cache_dir: Path,
+    datalab_cache_dir: Path,
+    base_image: str,
+    allow_bootstrap: bool,
+) -> dict[str, Any]:
+    target_info = _docker_inspect(container_name)
+    bootstrap_notes: list[str] = []
+
+    if target_info and not target_info.get("State", {}).get("Running"):
+        _run(["docker", "start", container_name])
+        target_info = _docker_inspect(container_name)
+        bootstrap_notes.append("started existing target container")
+
+    if target_info:
+        mount_source = _work_mount_source(target_info)
+        pip_mount_source = _mount_source(target_info, "/root/.cache/pip")
+        datalab_mount_source = _mount_source(target_info, "/root/.cache/datalab")
+        probe = _marker_probe(container_name) if mount_source == REPO_ROOT.resolve() else None
+        if (
+            mount_source == REPO_ROOT.resolve()
+            and pip_mount_source == pip_cache_dir.resolve()
+            and datalab_mount_source == datalab_cache_dir.resolve()
+            and probe
+            and probe.returncode == 0
+        ):
+            return {
+                "container_name": container_name,
+                "action": "reused_existing_container",
+                "seed_container": None,
+                "seed_image": target_info.get("Config", {}).get("Image"),
+                "work_mount_source": str(mount_source),
+                "pip_cache_dir": str(pip_cache_dir.resolve()),
+                "datalab_cache_dir": str(datalab_cache_dir.resolve()),
+                "notes": bootstrap_notes,
+            }
+        bootstrap_notes.append(
+            "target container was present but not usable from this worktree"
+        )
+
+    if not allow_bootstrap:
+        raise RuntimeError(
+            f"Container {container_name!r} is not usable from {REPO_ROOT} and --no-bootstrap was set."
+        )
+
+    if target_info:
+        _seed_repo_local_cache_from_container(
+            container_name,
+            host_cache_dir=datalab_cache_dir,
+            notes=bootstrap_notes,
+        )
+
+    seed_name = bootstrap_from_container
+    if container_name == seed_name:
+        seed_name = f"{bootstrap_from_container}-seed"
+        bootstrap_notes.append(
+            f"seed container name matched the target; using {seed_name!r} as the rebuilt target instead"
+        )
+        container_name = seed_name
+
+    seed_info = _docker_inspect(bootstrap_from_container)
+    if _docker_inspect(container_name):
+        _run(["docker", "rm", "-f", container_name])
+        bootstrap_notes.append("removed stale target container before rebuild")
+
+    pip_cache_dir.mkdir(parents=True, exist_ok=True)
+    datalab_cache_dir.mkdir(parents=True, exist_ok=True)
+    if _docker_image_exists(bootstrap_image):
+        _start_repo_local_container(
+            container_name,
+            image=bootstrap_image,
+            pip_cache_dir=pip_cache_dir,
+            datalab_cache_dir=datalab_cache_dir,
+        )
+        probe = _marker_probe(container_name)
+        if probe.returncode != 0:
+            raise RuntimeError(
+                "Rebuilt Marker runtime from cached image failed probe for "
+                f"{container_name!r}: {probe.stderr.strip() or probe.stdout.strip()}"
+            )
+        bootstrap_notes.append(f"recreated target container from cached image {bootstrap_image!r}")
+        return {
+            "container_name": container_name,
+            "action": "rebuilt_from_cached_image",
+            "seed_container": None,
+            "seed_image": bootstrap_image,
+            "cached_image": bootstrap_image,
+            "work_mount_source": str(REPO_ROOT.resolve()),
+            "pip_cache_dir": str(pip_cache_dir.resolve()),
+            "datalab_cache_dir": str(datalab_cache_dir.resolve()),
+            "notes": bootstrap_notes,
+        }
+    if seed_info is None:
+        return _provision_repo_local_runtime(
+            container_name,
+            base_image=base_image,
+            bootstrap_image=bootstrap_image,
+            pip_cache_dir=pip_cache_dir,
+            datalab_cache_dir=datalab_cache_dir,
+            notes=bootstrap_notes,
+        )
+
+    _seed_repo_local_cache_from_container(
+        bootstrap_from_container,
+        host_cache_dir=datalab_cache_dir,
+        notes=bootstrap_notes,
+    )
+    _run(["docker", "commit", bootstrap_from_container, bootstrap_image])
+    _start_repo_local_container(
+        container_name,
+        image=bootstrap_image,
+        pip_cache_dir=pip_cache_dir,
+        datalab_cache_dir=datalab_cache_dir,
+    )
+    probe = _marker_probe(container_name)
+    if probe.returncode != 0:
+        raise RuntimeError(
+            "Rebuilt Marker runtime failed probe for "
+            f"{container_name!r}: {probe.stderr.strip() or probe.stdout.strip()}"
+        )
+    return {
+        "container_name": container_name,
+        "action": "rebuilt_from_seed_container",
+        "seed_container": bootstrap_from_container,
+        "seed_image": bootstrap_image,
+        "work_mount_source": str(REPO_ROOT.resolve()),
+        "pip_cache_dir": str(pip_cache_dir.resolve()),
+        "datalab_cache_dir": str(datalab_cache_dir.resolve()),
+        "notes": bootstrap_notes,
+    }
 
 
 def _extract_headings() -> list[str]:
@@ -593,9 +904,19 @@ def _decision(
     baseline_signals = (docweb_baseline or {}).get("signals", {})
     baseline_histogram = baseline_signals.get("source_histogram", {})
     baseline_engine_coverage = baseline_signals.get("engine_coverage", {})
+    baseline_pdftext_pct = float(baseline_engine_coverage.get("pdftext_text_pct") or 0.0)
+    baseline_ocr_source_count = sum(
+        count
+        for engine, count in baseline_histogram.items()
+        if engine in {"tesseract", "easyocr", "apple"}
+    )
     baseline_is_still_ocr_routed = (
-        baseline_histogram.get("tesseract") == baseline_signals.get("page_count")
-        and baseline_engine_coverage.get("pdftext_text_pct") == 1.0
+        baseline_signals.get("page_count", 0) > 0
+        and (
+            baseline_pdftext_pct < 1.0
+            or baseline_ocr_source_count > 0
+            or bool(baseline_signals.get("pages_needing_escalation"))
+        )
     )
     adoption_blockers = [
         "GPL-3.0-or-later code license",
@@ -609,8 +930,8 @@ def _decision(
             status = "candidate_for_follow_on_story"
             read = (
                 "Marker's thinner internals path preserved born-digital text and document structure "
-                "more usefully than the current local baseline, which still routed all pages through "
-                "tesseract despite full embedded-text coverage."
+                "more usefully than the current local baseline, which still routes this fixture through "
+                "OCR instead of staying a clean native-text path."
             )
             next_step = (
                 "Create a follow-on story for a thin Marker-internals born-digital substrate, while "
@@ -650,6 +971,38 @@ def _decision(
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--container-name", default=DEFAULT_CONTAINER)
+    parser.add_argument(
+        "--bootstrap-from-container",
+        default=DEFAULT_BOOTSTRAP_FROM_CONTAINER,
+        help="Existing provisioned container to snapshot when the repo-local target container is missing or stale.",
+    )
+    parser.add_argument(
+        "--bootstrap-image",
+        default=DEFAULT_BOOTSTRAP_IMAGE,
+        help="Local image tag to create from the bootstrap container snapshot.",
+    )
+    parser.add_argument(
+        "--pip-cache-dir",
+        type=Path,
+        default=DEFAULT_PIP_CACHE_DIR,
+        help="Host pip cache directory to mount into the repo-local benchmark container.",
+    )
+    parser.add_argument(
+        "--datalab-cache-dir",
+        type=Path,
+        default=DEFAULT_DATALAB_CACHE_DIR,
+        help="Host Marker model cache directory to mount into the repo-local benchmark container.",
+    )
+    parser.add_argument(
+        "--base-image",
+        default=DEFAULT_BASE_IMAGE,
+        help="Base Docker image to provision from scratch when no seed container exists.",
+    )
+    parser.add_argument(
+        "--no-bootstrap",
+        action="store_true",
+        help="Fail instead of rebuilding a repo-local benchmark container when the target is missing or stale.",
+    )
     parser.add_argument("--input-pdf", type=Path, default=DEFAULT_INPUT_PDF)
     parser.add_argument("--out-root", type=Path, default=DEFAULT_OUT_ROOT)
     parser.add_argument("--docweb-baseline-root", type=Path, default=DEFAULT_DOCWEB_BASELINE_ROOT)
@@ -688,7 +1041,17 @@ def main() -> int:
     pdftotext_path = _pdftotext_source(args.input_pdf, out_dir)
     source_text = _read_text(pdftotext_path)
 
-    runtime = _runtime_metadata(args.container_name)
+    runtime_bootstrap = _ensure_runtime_container(
+        args.container_name,
+        bootstrap_from_container=args.bootstrap_from_container,
+        bootstrap_image=args.bootstrap_image,
+        pip_cache_dir=args.pip_cache_dir,
+        datalab_cache_dir=args.datalab_cache_dir,
+        base_image=args.base_image,
+        allow_bootstrap=not args.no_bootstrap,
+    )
+    runtime = _runtime_metadata(runtime_bootstrap["container_name"])
+    runtime["bootstrap"] = runtime_bootstrap
     docweb_baseline = _docweb_baseline_summary(
         args.docweb_baseline_root,
         headings=headings,

@@ -455,7 +455,7 @@ empty dedicated section until a second candidate exists.
 
 | Format | ID | Family | Fixture / Current Pipeline | Priority | Notes |
 |---|---|---|---|---|---|
-| Born-digital PDF | `born-digital-pdf` | `born-digital-pdf` | `testdata/tbotb-mini.pdf` via `recipe-pdf-ocr-html-mvp.yaml` | High | Story 157 adds a maintained PDF-entry smoke lane, but the shipped path is still wastefully OCR-routed and should not be treated as native-text support. |
+| Born-digital PDF | `born-digital-pdf` | `born-digital-pdf` | `testdata/tbotb-mini.pdf` via `recipe-pdf-ocr-html-mvp.yaml` | High | Story 157 adds a maintained PDF-entry smoke lane, and Story 166 now proves a repo-local Marker-lite -> `page_html_v1` prototype on the same fixture, but the maintained path is still OCR-routed and should not yet be treated as native-text support. |
 
 ### Untested
 
@@ -499,10 +499,10 @@ None yet.
 
 ### Gap 2 — Born-digital PDF native text extraction
 
-- **Current signal:** No pipeline, no fixture, no eval.
-- **Root cause:** Intake (spec:1) still assumes scanned/OCR-first processing.
-- **Fix category:** New intake module.
-- **Status:** High-value missing capability.
+- **Current signal:** The repo now has a fixture, a maintained OCR-entry lane, a fresh current pagelines baseline, and a Story 166 Marker-lite prototype that emits accepted `doc-web` bundle/provenance proof on `testdata/tbotb-mini.pdf`, but it still lacks a maintained native-text path.
+- **Root cause:** Intake (spec:1) still defaults to OCR-first processing in maintained recipes, and the Story 166 prototype still needs maintained normalization for heading hierarchy and paragraph splitting before it can replace the OCR-routed path honestly.
+- **Fix category:** New intake/normalization module plus maintained routing work.
+- **Status:** High-value missing capability; prototype and exact follow-on story exist (`Story 168`), maintained path does not.
 
 ### Gap 3 — Office document intake (DOCX/XLSX/PPTX)
 
