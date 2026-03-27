@@ -438,12 +438,13 @@ empty dedicated section until a second candidate exists.
 
 ### Current Status
 
-**5 formats passing** | **1 has fixture** | **10 untested** | **0 graduated** | **16 total tracked**
+**6 formats passing** | **1 has fixture** | **9 untested** | **0 graduated** | **16 total tracked**
 
 ### Passing
 
 | Format | ID | Family | Current Pipeline | Text | Structure | Illustration | Provenance | Notes |
 |---|---|---|---|---:|---:|---:|---:|---|
+| Scanned PDF (prose) | `scanned-pdf-prose` | `scanned-pdf` | `extract_pdf_images_fast_v1 -> ocr_ai_gpt51_v1` | 1.00 | 1.00 | - | 1.00 | Story 167 adds `testdata/scanned-prose-mini.pdf`, a repo-owned image-only simple-prose fixture. Fresh `driver.py` proof plus source-text comparison on 2026-03-27 matched the checked-in source text exactly after normalization; broader noisy scanned-prose quality remains a separate question. |
 | Scanned PDF (tables) | `scanned-pdf-tables` | `scanned-pdf` | `extract_pdf_images_fast_v1 -> ocr_ai_gpt51_v1 -> table_rescue_html_loop_v1` | 0.93 | 0.95 | 0.900 | 1.00 | Onward-style genealogy path. Story 157 restored a maintained PDF-backed entry recipe; the shared Onward PDF and image-directory source are both 127 pages. |
 | Image directory | `image-directory-scans` | `image-directory` | `images_dir_to_manifest_v1 -> ocr_ai_gpt51_v1` | 0.93 | 0.95 | 0.900 | 1.00 | Same source quality as the scanned-PDF image path once pages are extracted. |
 | Plain text | `plain-text` | `plain-text` | `extract_text_v1` | 1.00 | - | - | - | Passthrough, no OCR. |
@@ -460,7 +461,6 @@ empty dedicated section until a second candidate exists.
 
 | Format | ID | Family | Complexity | Priority | Notes |
 |---|---|---|---|---|---|
-| Scanned PDF (prose) | `scanned-pdf-prose` | `scanned-pdf` | simple-prose | High | Maintained PDF entry now exists, but the repo still lacks a dedicated scanned-prose fixture and fresh quality evidence after the legacy cleanup. |
 | Word (.docx) | `docx` | `docx` | prose, tables, illustrations | High | Common Storybook/Dossier-adjacent upload format. |
 | Excel (.xlsx) | `xlsx` | `xlsx` | tables | Medium | Structured family-history data often starts here. |
 | PowerPoint (.pptx) | `pptx` | `pptx` | mixed-layout, illustrations | Low | Lower-frequency, but still plausible archive input. |

@@ -1,3 +1,19 @@
+## [2026-03-27-02] - Add repo-owned scanned-prose PDF fixture proof (Story 167)
+
+### Added
+- Added the repo-owned scanned simple-prose fixture set: `testdata/scanned-prose-mini.md`, `testdata/scanned-prose-mini.pdf`, and `testdata/generate_scanned_prose_fixture.py`
+- Added a maintained scanned-prose extract/provenance smoke alongside the born-digital PDF smoke in `tests/test_pdf_intake_recipe.py`
+
+### Changed
+- Updated the build map, coverage matrix, runbook, fixture docs, and story records so `scanned-pdf-prose` now has repo-owned passing evidence on the maintained generic PDF recipe
+- Closed Story 167 with fresh validation evidence and synced the story index/workflow gates
+
+### Tested
+- `python -m pytest tests/test_pdf_intake_recipe.py -q`
+- `python driver.py --recipe configs/recipes/recipe-pdf-ocr-html-mvp.yaml --input-pdf testdata/scanned-prose-mini.pdf --run-id story167-scanned-prose-proof --output-dir output/runs/story167-scanned-prose-proof --allow-run-id-reuse --force --end-at ocr_ai`
+- `make lint`
+- `make test`
+
 ## [2026-03-27-01] - Close maintained PDF intake parity and split scanned-prose fixture follow-up (Story 157)
 
 ### Added

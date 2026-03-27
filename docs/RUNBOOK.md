@@ -95,9 +95,18 @@ Use this when you need a cheap real-run proof that the maintained PDF entry
 surface still emits a stamped `page_image_v1` manifest from a checked-in PDF:
 
 ```bash
+# Born-digital entry smoke
 python driver.py \
   --recipe configs/recipes/recipe-pdf-ocr-html-mvp.yaml \
   --input-pdf testdata/tbotb-mini.pdf \
+  --run-id <run_id> \
+  --allow-run-id-reuse \
+  --end-at pdf_to_images
+
+# Image-only scanned-prose fixture smoke
+python driver.py \
+  --recipe configs/recipes/recipe-pdf-ocr-html-mvp.yaml \
+  --input-pdf testdata/scanned-prose-mini.pdf \
   --run-id <run_id> \
   --allow-run-id-reuse \
   --end-at pdf_to_images
@@ -108,6 +117,11 @@ Expected extractor outputs:
 - `output/runs/<run_id>/01_extract_pdf_images_fast_v1/pages_images_manifest.jsonl`
 - `output/runs/<run_id>/01_extract_pdf_images_fast_v1/extraction_report.jsonl`
 - `output/runs/<run_id>/01_extract_pdf_images_fast_v1/extraction_summary.json`
+
+Notes:
+
+- `testdata/tbotb-mini.pdf` proves maintained PDF entry wiring only for a small born-digital PDF.
+- `testdata/scanned-prose-mini.pdf` is a repo-owned image-only simple-prose scanned fixture. Story 167 proved the maintained lane through `ocr_ai` and matched the checked-in source text exactly after normalization on 2026-03-27; broader noisy scanned-prose quality still needs separate validation.
 
 ---
 

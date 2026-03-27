@@ -2,6 +2,7 @@
 
 - `tbotb-mini.md` / `tbotb-mini.pdf`: 8-section micro branch adapted from **To Be or Not To Be** by Ryan North (2013). Licensed **CC BY-NC 3.0**; used here for non-commercial smoke testing. Source PDF: `input/Ryan North - To Be or Not To Be.pdf` (not modified).
 - Story 157 uses `tbotb-mini.pdf` as the repo-owned maintained PDF-entry smoke fixture. It proves PDF-backed recipe wiring and extractor provenance, but it is not evidence that `scanned-pdf-prose` or native `born-digital-pdf` support is complete.
+- `scanned-prose-mini.md` / `scanned-prose-mini.pdf`: original repo-owned prose source plus a generated image-only PDF fixture for `scanned-pdf-prose`. Story 167 uses it to prove maintained scanned-PDF entry, `page_image_v1` provenance, and a clean simple-prose OCR lane without relying on a shared local asset. This is passing evidence for the repo-owned simple-prose fixture, not a blanket claim about degraded or noisy scanned prose.
 
 Regeneration:
 - PDF (requires `fpdf2`: `python -m pip install fpdf2` or use vendored `testdata/vendor`):  
@@ -37,3 +38,16 @@ Regeneration:
   PY
   ```
 - Optional images: `pdftoppm -png testdata/tbotb-mini.pdf testdata/tbotb-mini`
+- Image-only scanned prose PDF:
+  ```bash
+  python testdata/generate_scanned_prose_fixture.py
+  ```
+- Optional image-only verification:
+  ```bash
+  python - <<'PY'
+  from pypdf import PdfReader
+
+  reader = PdfReader('testdata/scanned-prose-mini.pdf')
+  print([len((page.extract_text() or '').strip()) for page in reader.pages])
+  PY
+  ```

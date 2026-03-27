@@ -44,14 +44,31 @@
     {
       "id": "scanned-pdf-prose",
       "format_family": "scanned-pdf",
-      "status": "untested",
+      "status": "passing",
       "description": "Scanned PDF with primarily prose content",
       "pipeline_recipe": "recipe-pdf-ocr-html-mvp.yaml",
       "intake_module": "extract_pdf_images_fast_v1 → ocr_ai_gpt51_v1",
       "complexity": ["simple-prose"],
-      "fixtures": [],
-      "scores": null,
-      "known_gaps": ["No maintained scanned-PDF prose fixture remains after the legacy FF cleanup; Story 157 restored maintained PDF entry wiring but not dedicated scanned-prose quality evidence."],
+      "fixtures": [
+        {
+          "id": "scanned-prose-mini",
+          "source": "testdata/scanned-prose-mini.pdf",
+          "pages": 4,
+          "notes": "Repo-owned image-only prose PDF generated from checked-in source text. Story 167 adds maintained extractor-provenance smoke plus a fresh OCR proof whose normalized output matches the checked-in source text exactly."
+        }
+      ],
+      "scores": {
+        "text_fidelity": 1.0,
+        "structure_preservation": 1.0,
+        "illustration_extraction": null,
+        "provenance_completeness": 1.0,
+        "measured": "2026-03-27",
+        "provenance_measured": "2026-03-27",
+        "notes": "Measured against the checked-in `scanned-prose-mini.md` source after Story 167's fresh `driver.py` proof. This is a clean repo-owned simple-prose scanned lane, not a proxy for degraded or noisy scans."
+      },
+      "known_gaps": [
+        "Current evidence is a clean synthetic scanned fixture only; broader noisy real-world scanned-prose quality remains unmeasured."
+      ],
       "graduated": false
     },
     {
