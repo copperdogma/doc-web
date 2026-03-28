@@ -21,7 +21,7 @@
 
 **Product need:** Accept source material in multiple formats and route it into the right pipeline.
 **Tech need:** Format detection, manifest normalization, recipe selection, contact-sheet routing.
-**Substrate:** partial
+**Substrate:** exists
 
 **Story coverage:** [x] complete
 **Spec:** spec:1 (spec:1.1)
@@ -31,9 +31,9 @@
 ### Compromise Progress
 
 - **C2: Format-Specific Conversion Recipes** (AI capability) — **climb**
-  - Current: User selects a YAML recipe. Lightweight routing helpers (contact sheets, manifest-based intake) reduce ambiguity.
+  - Current: A maintained recommendation-only intake recipe now emits `intake_plan_v1` across image-directory, scanned-PDF, and born-digital-PDF inputs; the operator still confirms and launches the explicit recipe manually.
   - Target: Auto-detect replaces manual recipe selection for 10 diverse documents.
-  - Eval: `auto-book-type-detection` — no scores recorded. **no eval.** Retry when: `new-approach` (contact sheet + VLM classification).
+  - Eval: `auto-book-type-detection` — `accuracy = 1.0`, `overall = 1.0`, `pass_rate = 1.0` on 2026-03-28 via Story 169's repo-owned maintained-intake harness over 10 documents. Detection quality now clears the benchmark, but the compromise stays `climb` because the workflow still stops at recommendation / confirmation instead of replacing manual recipe selection. Retry when: `new-input-family` or workflow changes that alter the final routing handoff.
 
 ---
 

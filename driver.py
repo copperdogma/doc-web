@@ -625,7 +625,7 @@ def build_command(entrypoint: str, params: Dict[str, Any], stage_conf: Dict[str,
     flags_added = set()
 
     # Standard parameter conveniences by stage
-    if stage_conf["stage"] in ("intake", "extract"):
+    if stage_conf["stage"] == "extract":
         if stage_conf["module"] == "crop_illustrations_guided_v1":
             # crop_illustrations_guided_v1 expects --ocr-manifest instead of --pages
             # It doesn't need --pdf (it gets page images from the OCR manifest's image_native field)
@@ -665,6 +665,27 @@ def build_command(entrypoint: str, params: Dict[str, Any], stage_conf: Dict[str,
                     if "inputs" in (params or {}):
                         params = dict(params or {})
                         del params["inputs"]
+    elif stage_conf["stage"] == "intake":
+        if "pdf" in recipe_input:
+            cmd += ["--pdf", recipe_input["pdf"]]
+            flags_added.add("--pdf")
+        if "images" in recipe_input:
+            cmd += ["--images", recipe_input["images"]]
+            flags_added.add("--images")
+        module_outdir = os.path.dirname(artifact_path)
+        cmd += ["--outdir", module_outdir]
+        flags_added.add("--outdir")
+        for key, val in artifact_inputs.items():
+            flag = "--" + key.replace("_", "-")
+            if flag in flags_added:
+                continue
+            if isinstance(val, list):
+                cmd += [flag, *[str(item) for item in val]]
+            else:
+                cmd += [flag, str(val)]
+            flags_added.add(flag)
+        cmd += ["--out", artifact_path]
+        flags_added.add("--out")
     elif stage_conf["stage"] == "clean":
         # Handle repair_candidates_v1 specially - needs pagelines param
         if stage_conf["module"] == "repair_candidates_v1":
@@ -1242,6 +1263,7 @@ def main():
     # Apply CLI overrides for smoke/testing convenience
     if args.input_pdf_override:
         recipe.setdefault("input", {})
+        recipe["input"].pop("images", None)
         recipe["input"]["pdf"] = args.input_pdf_override
 
     instr_conf = recipe.get("instrumentation", {}) or {}

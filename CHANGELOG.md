@@ -1,3 +1,22 @@
+## [2026-03-28-01] - Close maintained contact-sheet intake benchmark path (Story 169)
+
+### Added
+- Added the maintained recommendation-only intake recipe `configs/recipes/recipe-intake-contact-sheet.yaml`, the shared helper `modules/intake/intake_plan_utils.py`, and the repo-owned `auto-book-type-detection` benchmark harness under `benchmarks/`
+
+### Changed
+- Closed Story 169 on fresh `driver.py` proofs for image-directory, scanned-PDF, and born-digital-PDF intake plus a recorded first `auto-book-type-detection` score in `docs/evals/registry.yaml`
+- Updated the build map, Story 027, the story index, and the legacy intake recipe so Category 1 now reflects the maintained recommendation-only intake lane rather than a legacy-only path
+
+### Fixed
+- Removed the stale legacy placeholder recipe recommendations from the overview/zoom intake chain and repaired the intake tests so they no longer depend on the missing repo-local `input/` tree
+
+### Tested
+- `make lint`
+- `make test`
+- `python driver.py --recipe configs/recipes/recipe-intake-contact-sheet.yaml --registry modules --run-id validate169-images --force`
+- `python driver.py --recipe configs/recipes/recipe-intake-contact-sheet.yaml --registry modules --input-pdf testdata/scanned-prose-mini.pdf --run-id validate169-scanned --force`
+- `python driver.py --recipe configs/recipes/recipe-intake-contact-sheet.yaml --registry modules --input-pdf testdata/tbotb-mini.pdf --run-id validate169-born --force`
+
 ## [2026-03-27-04] - Close maintained Marker-lite born-digital path (Story 168)
 
 ### Added

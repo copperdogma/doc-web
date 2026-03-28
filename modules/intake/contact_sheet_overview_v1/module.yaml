@@ -4,8 +4,8 @@ entrypoint: modules/intake/contact_sheet_overview_v1/main.py
 input_schema: contact_sheet_manifest_v1
 output_schema: intake_plan_v1
 default_params:
-  model: gpt-4o
-  boost_model: gpt-4o
+  model: gpt-4.1-mini
+  boost_model: gpt-5
   max_sheets: 0
   vision_detail: low
   mock_output: ""
@@ -16,8 +16,8 @@ param_schema:
     required: true
   sheets_dir:
     type: string
-    description: Directory containing contact sheet images.
-    required: true
+    description: Optional directory containing contact sheet images; inferred from manifest when omitted.
+    required: false
   out:
     type: string
     description: Path to write draft intake_plan_v1 JSON.
@@ -42,4 +42,4 @@ param_schema:
     type: string
     description: Optional path to JSON to return instead of calling the LLM (for tests/offline).
     required: false
-notes: "Classify book type from contact sheets only (no web), propose sections and zoom requests, and output draft intake_plan_v1."
+notes: "Classify document family from contact sheets only (no web), emit signal evidence and optional zoom requests, and draft a maintained recommendation-only intake_plan_v1."

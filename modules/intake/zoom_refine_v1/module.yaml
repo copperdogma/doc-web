@@ -5,9 +5,9 @@ input_schema: intake_plan_v1
 output_schema: intake_plan_v1
 default_params:
   max_zoom_pages: 5
-  model: gpt-4.1
+  model: gpt-4.1-mini
   vision_detail: low
-  source_images_dir: input/onward-to-the-unknown-images
+  source_images_dir: ""
   mock_output: ""
 param_schema:
   plan_in:
@@ -38,4 +38,4 @@ param_schema:
     type: string
     description: Optional path to JSON to use instead of calling the LLM.
     required: false
-notes: "Stub zoom refinement: copies plan, caps zoom_requests, and heuristically sets recommended_recipe based on signals/book_type."
+notes: "Refine draft intake classification with optional page zooms, then emit a maintained recommendation-only intake_plan_v1."

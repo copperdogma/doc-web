@@ -2,6 +2,12 @@
 
 **Status**: Done
 
+> 2026-03-28 maintenance note (Story 169): the active maintained recipe now
+> lives at `configs/recipes/recipe-intake-contact-sheet.yaml`. The current lane
+> is recommendation-only and ends at `confirm_plan_v1`; dispatch / planner
+> references below are historical notes from the original story, not the current
+> maintained behavior.
+
 ---
 
 ## Acceptance Criteria
@@ -26,21 +32,22 @@
 - [x] Pilot on `input/onward-to-the-unknown-images/` (full book) for intake-only classification.
 
 ## Usage (intake recipe)
-- Default generic run: `python driver.py --recipe configs/recipes/recipe-intake-contact-sheet.yaml --run-id intake-mybook --output-dir output/runs/intake-mybook --force`
-- Override inputs: set `input.images_dir` in the recipe or pass `--input.images_dir <dir>` if supported by runner (else edit recipe before running).
-- Artifacts land under `output/runs/<run_id>/` (contact sheets, manifest, overview/zoom/gap/final plan JSONL). No downstream dispatch is performed.
-- Planner (Story 011) should read `overview_plan_final.jsonl`, chat with the user, then decide whether to run an existing recipe or propose new modules/recipes based on capability gaps.
+- Default maintained run: `python driver.py --recipe configs/recipes/recipe-intake-contact-sheet.yaml --registry modules --run-id intake-mybook --force`
+- Override a PDF input with `--input-pdf <pdf>`. For image-directory inputs, edit `input.images` in a copied recipe or run-local recipe file.
+- Artifacts land under `output/runs/<run_id>/` (contact sheets, manifest, overview/zoom/gap/final plan JSONL). The maintained lane does not dispatch downstream recipes.
+- The operator or a future planner surface should read `overview_plan_final.jsonl`, inspect `capability_gaps`, and explicitly choose any downstream recipe.
 
 ## Safe commands & validation
 - Validate manifest: `python validate_artifact.py --schema contact_sheet_manifest_v1 --file output/runs/<run_id>/build_contact_sheets.jsonl`
 - Validate plan: `python validate_artifact.py --schema intake_plan_v1 --file output/runs/<run_id>/overview_plan_final.jsonl`
-- Re-run intake with force: `python driver.py --recipe configs/recipes/recipe-intake-contact-sheet.yaml --run-id intake-<book> --output-dir output/runs/intake-<book> --force`
+- Re-run intake with force: `python driver.py --recipe configs/recipes/recipe-intake-contact-sheet.yaml --registry modules --run-id intake-<book> --force`
 
 ## Notes
 - No web lookup; rely solely on local contact sheets and optional zooms.
 - Goal: avoid missing late content (tables/appendices) and reduce cost by sampling the whole book at low resolution.
 - Contact sheets must preserve ordering and page identifiers to enable targeted zoom requests.
 - User confirmation is required before running the chosen recipe.
+- Story 169 later restored the maintained recipe path, removed the legacy placeholder recipe mapping, and added the first scored `auto-book-type-detection` benchmark. Historical dispatch experiments in the work log below are retained for context only.
 
 ## Draft Design
 - **Contact sheets**

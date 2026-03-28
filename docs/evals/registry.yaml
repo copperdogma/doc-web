@@ -451,19 +451,59 @@ evals:
     name: "C2 Detection: Auto Book Type Detection"
     type: compromise
     description: >
-      Can the system auto-detect book type from PDF alone?
-      Tests 10 diverse PDFs with no metadata hints.
+      Can the maintained recommendation-only intake lane auto-detect book type
+      and recommend the right maintained explicit recipe with no metadata hints?
+      Tests 10 diverse documents via the final `intake_plan_v1` artifact.
     spec_compromise: C2
     runner: manual
 
     target:
       metric: accuracy
       value: 1.0
-      note: "Must correctly classify all 10 test PDFs"
+      note: "Must correctly classify all 10 benchmark documents"
 
-    scores: []
-    attempts: []
+    scores:
+      - model: "Story 169 maintained intake harness (gpt-4.1-mini overview/zoom)"
+        metrics:
+          accuracy: 1.0
+          overall: 1.0
+          pass_rate: 1.0
+        measured: 2026-03-28
+        note: >
+          Story 169 added the repo-owned harness
+          `benchmarks/scripts/run_auto_book_type_detection_eval.py` plus a
+          10-document corpus and scored the final `intake_plan_v1` artifacts.
+          The maintained recommendation-only chain classified all 10 documents
+          correctly and recommended the expected maintained explicit recipe in
+          every case. Result file:
+          `benchmarks/results/auto-book-type-detection-story169.json`.
+
+    attempts:
+      - id: "001"
+        date: 2026-03-28
+        status: failed
+        approach: "Story 169 pre-fix baseline on the legacy-drifting intake chain"
+        note: >
+          Baseline harness run on 10 documents completed end-to-end but failed
+          the actual C2 job: `10/10` rows collapsed to `book_type: mixed`,
+          `10/10` recommended `configs/recipes/legacy/recipe-ocr.yaml`, and
+          `4/10` emitted no `signal_evidence`. Evidence:
+          `output/runs/story169-baseline-current-chain/baseline_summary.json`.
+      - id: "002"
+        date: 2026-03-28
+        status: succeeded
+        approach: "Story 169 maintained recommendation-only intake harness on the locked 10-document corpus"
+        note: >
+          Fresh rerun via
+          `python benchmarks/scripts/run_auto_book_type_detection_eval.py --output benchmarks/results/auto-book-type-detection-story169.json`
+          finished `10/10` docs with `accuracy = 1.0`, `overall = 1.0`, and
+          `pass_rate = 1.0`. Sample passing artifacts include
+          `output/runs/auto-book-type-detection/tbotb-mini/overview_plan_final.jsonl`,
+          `output/runs/auto-book-type-detection/onward-unknown/overview_plan_final.jsonl`,
+          and `output/runs/auto-book-type-detection/rfp/overview_plan_final.jsonl`.
 
     retry_when:
-      - condition: new-approach
-        note: "Contact sheet + VLM classification is a promising approach (Story 027)"
+      - condition: new-input-family
+        note: >
+          Expand or rerun when a new maintained intake family lands, or when
+          routing changes could regress the final `intake_plan_v1` surface.

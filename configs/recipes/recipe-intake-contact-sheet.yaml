@@ -1,5 +1,6 @@
-## Legacy alias retained for historical paths. Mirrors the maintained
-## recommendation-only intake lane from configs/recipes/recipe-intake-contact-sheet.yaml.
+# Maintained recommendation-only intake lane. Produces contact sheets plus intake_plan_v1
+# and stops at plan confirmation; it never dispatches downstream recipes.
+
 input:
   images: /Users/cam/Documents/Projects/doc-web/input/onward-to-the-unknown-images
 

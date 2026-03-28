@@ -2,7 +2,10 @@
   "book_type": "genealogy",
   "type_confidence": 0.8,
   "signals": ["tables","images"],
-  "recommended_recipe": "configs/recipes/recipe-genealogy.yaml",
+  "signal_evidence": [
+    {"signal": "tables", "pages": ["1", "2"], "reason": "Structured rows remain visible after zoom."},
+    {"signal": "images", "pages": ["3"], "reason": "Illustration remains visible after zoom."}
+  ],
   "zoom_requests": ["Image029.jpg","Image030.jpg"],
   "warnings": []
 }

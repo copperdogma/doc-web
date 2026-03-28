@@ -2,6 +2,10 @@
   "book_type": "genealogy",
   "type_confidence": 0.72,
   "signals": ["tables", "images"],
+  "signal_evidence": [
+    {"signal": "tables", "pages": ["1", "2"], "reason": "Structured family rows are visible."},
+    {"signal": "images", "pages": ["3"], "reason": "Portrait-style illustrations are visible."}
+  ],
   "zoom_requests": ["Image029.jpg", "Image030.jpg"],
   "warnings": []
 }

@@ -1,0 +1,16 @@
+Classify a document from its contact sheets and page map.
+
+Return JSON with:
+- book_type
+- type_confidence
+- signals
+- signal_evidence
+- zoom_requests
+- warnings
+
+Rules:
+- book_type must be one of: novel, cyoa, genealogy, textbook, mixed, other
+- use mixed only when the document clearly combines incompatible families
+- use other for forms, letters, invitations, cards, programs, proposals, manuals, and other non-book families
+- signal_evidence must use display-number page references from the contact-sheet tile map
+- prefer a low-confidence answer over an ungrounded mixed classification

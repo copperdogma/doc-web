@@ -20,6 +20,12 @@ modules:
   - id: contact_sheet_builder_v1
     stage: intake
     capabilities: ["overview", "images"]
+  - id: contact_sheet_overview_v1
+    stage: intake
+    capabilities: ["overview"]
+  - id: zoom_refine_v1
+    stage: intake
+    capabilities: ["overview"]
   - id: ocr_escalate_gpt4v_v1
     stage: adapter
     capabilities: ["images"]
@@ -29,14 +35,20 @@ modules:
   - id: escalate_gpt4v_iter_v1
     stage: adapter
     capabilities: ["images"]
+  - id: table_rescue_html_loop_v1
+    stage: adapter
+    capabilities: ["tables"]
+  - id: table_rescue_onward_tables_v1
+    stage: adapter
+    capabilities: ["tables"]
 capabilities:
   - name: formulas
     modules: []
   - name: tables
-    modules: []
+    modules: ["table_rescue_html_loop_v1", "table_rescue_onward_tables_v1"]
   - name: images
     modules: ["image_cropper_v1", "contact_sheet_builder_v1", "extract_ocr_ensemble_v1", "ocr_escalate_gpt4v_v1", "escalate_gpt4v_iter_v1", "pagelines_to_clean_v1"]
   - name: genealogy
     modules: []
   - name: overview
-    modules: ["contact_sheet_builder_v1"]
+    modules: ["contact_sheet_builder_v1", "contact_sheet_overview_v1", "zoom_refine_v1"]

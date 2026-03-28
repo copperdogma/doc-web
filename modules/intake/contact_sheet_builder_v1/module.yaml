@@ -9,6 +9,7 @@ default_params:
   grid_rows: 4
   pad: 10
   number_overlay: true
+  output_dir: contact-sheets
   pdf: ""
   dpi: 300
   image_format: jpeg
@@ -35,8 +36,8 @@ param_schema:
     required: false
   output_dir:
     type: string
-    description: Directory to write contact sheets and manifest.
-    required: true
+    description: Directory to write contact sheets and manifest when not using driver-managed --outdir.
+    required: false
   max_width:
     type: integer
     description: Max width of each thumb tile.

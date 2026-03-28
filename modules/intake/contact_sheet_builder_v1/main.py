@@ -6,7 +6,9 @@ from pathlib import Path
 from typing import Dict, List, Any
 
 from PIL import Image, ImageDraw, ImageFont
-from modules.common.utils import ensure_dir
+
+from modules.common.text_quality import spell_garble_metrics
+from modules.common.utils import ensure_dir, save_json
 
 
 def render_pdf_to_images(pdf: Path, out_dir: Path, dpi: int, image_format: str) -> Path:
@@ -23,6 +25,25 @@ def load_font(size: int):
         return ImageFont.truetype("DejaVuSans.ttf", size)
     except Exception:
         return ImageFont.load_default()
+
+
+def probe_pdf_text_layer(pdf: Path) -> bool | None:
+    try:
+        output = subprocess.check_output(
+            ["pdftotext", "-f", "1", "-l", "3", str(pdf), "-"],
+            text=True,
+            stderr=subprocess.DEVNULL,
+        )
+    except Exception:
+        return None
+    normalized = " ".join(output.split())
+    if not normalized:
+        return False
+    alpha_ratio = sum(char.isalpha() for char in normalized) / max(len(normalized), 1)
+    metrics = spell_garble_metrics(output.splitlines())
+    total_words = metrics.get("dictionary_total_words", 0)
+    oov_ratio = metrics.get("dictionary_oov_ratio", 1.0)
+    return bool(alpha_ratio >= 0.6 and total_words >= 80 and oov_ratio <= 0.25)
 
 
 def make_contact_sheets(
@@ -98,13 +119,45 @@ def make_contact_sheets(
     }
 
 
+def resolve_output_dir(output_dir: str | None, outdir: str | None, out: str | None) -> Path:
+    if outdir:
+        return Path(outdir) / "contact-sheets"
+    if output_dir:
+        resolved = Path(output_dir)
+        if not resolved.is_absolute() and out:
+            return Path(out).parent / resolved
+        return resolved
+    if out:
+        return Path(out).parent / "contact-sheets"
+    raise SystemExit("Must provide --output_dir/--output-dir or --outdir")
+
+
+def write_build_meta(
+    output_dir: Path,
+    input_kind: str,
+    source_images_dir: Path,
+    source_pdf: Path | None = None,
+) -> None:
+    meta = {
+        "input_kind": input_kind,
+        "source_images_dir": str(source_images_dir),
+    }
+    if source_pdf:
+        meta["source_pdf"] = str(source_pdf)
+        meta["has_extractable_text"] = probe_pdf_text_layer(source_pdf)
+        meta["rendered_pages_dir"] = str(source_images_dir)
+    save_json(output_dir / "contact_sheet_build_meta.json", meta)
+
+
 def main():
     parser = argparse.ArgumentParser(description="Build contact sheets for intake overview.")
     parser.add_argument("--input_dir", required=False)
+    parser.add_argument("--images", required=False)
     parser.add_argument("--pdf", required=False)
     parser.add_argument("--dpi", type=int, default=300)
     parser.add_argument("--image_format", default="jpeg", choices=["jpeg", "png"])
-    parser.add_argument("--output_dir", required=True)
+    parser.add_argument("--output_dir", "--output-dir", required=False)
+    parser.add_argument("--outdir", required=False)
     parser.add_argument("--out", required=False, help="Optional path to write manifest for driver stamping")
     parser.add_argument("--max_width", type=int, default=200)
     parser.add_argument("--grid_cols", type=int, default=5)
@@ -114,24 +167,30 @@ def main():
     parser.add_argument("--no-number-overlay", action="store_true", help="Disable numbering overlays on tiles")
     args, _unknown = parser.parse_known_args()
 
-    ensure_dir(args.output_dir)
+    output_dir = resolve_output_dir(args.output_dir, args.outdir, args.out)
+    ensure_dir(str(output_dir))
 
-    images_dir = args.input_dir
+    images_dir = args.input_dir or args.images
+    input_kind = "images_dir"
+    source_pdf = None
     if not images_dir:
         if not args.pdf:
-            raise SystemExit("Must provide --input_dir or --pdf")
-        images_dir = str(Path(args.output_dir) / "rendered_pages")
+            raise SystemExit("Must provide --input_dir/--images or --pdf")
+        source_pdf = Path(args.pdf)
+        input_kind = "pdf"
+        images_dir = str(output_dir / "rendered_pages")
         render_pdf_to_images(Path(args.pdf), Path(images_dir), args.dpi, args.image_format)
 
     result = make_contact_sheets(
         Path(images_dir),
-        Path(args.output_dir),
+        output_dir,
         max_width=args.max_width,
         grid_cols=args.grid_cols,
         grid_rows=args.grid_rows,
         pad=args.pad,
         number_overlay=False if args.no_number_overlay else True,
     )
+    write_build_meta(output_dir, input_kind=input_kind, source_images_dir=Path(images_dir), source_pdf=source_pdf)
     if args.out:
         # write a manifest copy for driver stamping
         manifest_src = Path(result["manifest_path"])

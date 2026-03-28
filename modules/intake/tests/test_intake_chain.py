@@ -4,6 +4,8 @@ import sys
 import subprocess
 from pathlib import Path
 
+import yaml
+
 
 def load_validate_artifact():
     sys.path.append(str(Path(".").resolve()))
@@ -46,3 +48,16 @@ def test_validate_artifact_cli_plan(fixtures_dir=Path("modules/intake/tests/fixt
     cmd = [sys.executable, "validate_artifact.py", "--schema", "intake_plan_v1", "--file", str(plan)]
     res = subprocess.run(cmd, capture_output=True, text=True)
     assert res.returncode == 0, res.stdout + res.stderr
+
+
+def test_active_contact_sheet_recipe_exists():
+    recipe_path = Path("configs/recipes/recipe-intake-contact-sheet.yaml")
+    assert recipe_path.exists()
+    recipe = yaml.safe_load(recipe_path.read_text())
+    assert [stage["id"] for stage in recipe["stages"]] == [
+        "build_contact_sheets",
+        "overview_plan",
+        "zoom_refine",
+        "gap_analysis",
+        "confirm_plan",
+    ]

@@ -1,0 +1,10 @@
+description: "Repo-owned harness for C2 auto-book-type detection. Scores final intake_plan_v1 artifacts, not prompt-only outputs."
+runner: "python benchmarks/scripts/run_auto_book_type_detection_eval.py"
+corpus: "benchmarks/golden/auto-book-type-detection/corpus.json"
+scorer: "benchmarks/scorers/auto_book_type_detection.py"
+artifacts:
+  - intake_plan_v1
+  - contact_sheet_manifest_v1
+notes:
+  - "This benchmark measures the maintained recommendation-only intake surface."
+  - "The score is computed from final book_type, recommended_recipe, and required major signals."
