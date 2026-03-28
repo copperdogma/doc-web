@@ -1,3 +1,24 @@
+## [2026-03-27-04] - Close maintained Marker-lite born-digital path (Story 168)
+
+### Added
+- Added the maintained born-digital Marker-lite extract module under `modules/extract/extract_pdf_marker_lite_html_v1/` plus shared runtime/normalization helpers in `modules/common/marker_lite_runtime.py` and `modules/common/marker_page_html.py`
+- Added the explicit maintained native-text recipe `configs/recipes/recipe-born-digital-pdf-marker-lite-html-mvp.yaml` and focused regression coverage in `tests/test_extract_pdf_marker_lite_html_v1.py`
+
+### Changed
+- Closed Story 168 on fresh maintained `driver.py` proof that the bounded Marker-lite seam can run end-to-end on `testdata/tbotb-mini.pdf` while emitting accepted `doc_web_bundle` and provenance sidecars
+- Updated the build map, Scout 011, and story records so `born-digital-pdf` now reflects a bounded maintained optional native-text lane rather than a prototype-only gap
+- Reduced `scripts/spikes/marker_page_html_prototype.py` to a thin wrapper over the shared maintained normalization path
+
+### Fixed
+- Normalized the known Story 166 defects in the maintained Marker lane: page-2 section heading levels are now consistent and page 3's merged choice prompt is split into two blocks without text-loss signals
+- Reworked the runtime transport so the maintained Marker path copies PDFs into container-local `/tmp/marker-lite-*` paths and copies outputs back out, avoiding stale cached-image `/work` bind contamination
+
+### Tested
+- `make lint`
+- `make test`
+- `python driver.py --recipe configs/recipes/recipe-born-digital-pdf-marker-lite-html-mvp.yaml --input-pdf testdata/tbotb-mini.pdf --run-id story168-marker-lite-proof-r4 --output-dir output/runs/story168-marker-lite-proof-r4 --allow-run-id-reuse --force`
+- `python driver.py --recipe configs/recipes/recipe-pdf-ocr-html-mvp.yaml --input-pdf testdata/tbotb-mini.pdf --run-id story168-ocr-baseline-r1 --output-dir output/runs/story168-ocr-baseline-r1 --allow-run-id-reuse --force`
+
 ## [2026-03-27-03] - Close Marker internals born-digital substrate spike (Story 166)
 
 ### Added

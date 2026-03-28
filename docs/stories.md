@@ -170,7 +170,7 @@ This index tracks stories in `/docs/stories/` for the doc-forge pipeline.
 |||| 165 | Benchmark `Marker` as a Breadth Comparator on the `born-digital-pdf` Gap | High | Done | /docs/stories/story-165-marker-breadth-comparator-born-digital-pdf.md |
 |||| 166 | Use Marker Internals as a Thin Born-Digital PDF Substrate | High | Done | /docs/stories/story-166-marker-internals-born-digital-pdf-substrate.md |
 |||| 167 | Repo-Owned Scanned-Prose PDF Fixture | High | Done | /docs/stories/story-167-repo-owned-scanned-prose-pdf-fixture.md |
-|||| 168 | Maintain a `Marker`-Lite Born-Digital PDF Path | High | Draft | /docs/stories/story-168-marker-lite-maintained-born-digital-pdf-path.md |
+|||| 168 | Maintain a `Marker`-Lite Born-Digital PDF Path | High | Done | /docs/stories/story-168-marker-lite-maintained-born-digital-pdf-path.md |
 
 ## Notes
 - Status "Done" reflects current working state in doc-forge. "To Do" items are planned next steps aligned with `docs/ideal.md`, `docs/spec.md`, and `docs/build-map.md`.

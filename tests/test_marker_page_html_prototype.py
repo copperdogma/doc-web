@@ -111,6 +111,7 @@ def test_marker_page_html_prototype_resolves_content_refs(tmp_path: Path) -> Non
     pages_path = outdir / "pages_html.jsonl"
     blocks_path = outdir / "marker_blocks.jsonl"
     summary_path = outdir / "summary.json"
+    normalization_report_path = outdir / "normalization_report.json"
     bundle_manifest_path = outdir / "doc_web_bundle" / "manifest.json"
     bundle_page_path = outdir / "doc_web_bundle" / "page-001.html"
     bundle_provenance_path = outdir / "doc_web_bundle" / "provenance" / "blocks.jsonl"
@@ -118,6 +119,7 @@ def test_marker_page_html_prototype_resolves_content_refs(tmp_path: Path) -> Non
 
     page_rows = [json.loads(line) for line in pages_path.read_text(encoding="utf-8").splitlines()]
     block_rows = [json.loads(line) for line in blocks_path.read_text(encoding="utf-8").splitlines()]
+    normalization_report = json.loads(normalization_report_path.read_text(encoding="utf-8"))
     bundle_manifest = json.loads(bundle_manifest_path.read_text(encoding="utf-8"))
     bundle_provenance = [
         json.loads(line) for line in bundle_provenance_path.read_text(encoding="utf-8").splitlines()
@@ -146,6 +148,7 @@ def test_marker_page_html_prototype_resolves_content_refs(tmp_path: Path) -> Non
     assert summary["output_artifacts"]["pages_html"] == str(pages_path)
     assert summary["signals"]["doc_web_bundle_entry_count"] == 1
     assert summary["signals"]["doc_web_provenance_block_count"] == 2
+    assert normalization_report["pages_changed"] == []
 
     assert bundle_manifest["schema_version"] == "doc_web_bundle_manifest_v1"
     assert bundle_manifest["reading_order"] == ["page-001"]
@@ -158,3 +161,147 @@ def test_marker_page_html_prototype_resolves_content_refs(tmp_path: Path) -> Non
     assert bundle_provenance[0]["confidence"] == 1.0
 
     assert runtime_trace[0]["text_extraction_method"] == "pdftext"
+
+
+def test_marker_page_html_prototype_normalizes_heading_levels_and_choice_splits(tmp_path: Path) -> None:
+    marker_json = tmp_path / "marker.json"
+    marker_meta = tmp_path / "marker_meta.json"
+    pdftotext = tmp_path / "source.txt"
+    input_pdf = tmp_path / "sample.pdf"
+    outdir = tmp_path / "out"
+
+    marker_json.write_text(
+        json.dumps(
+            {
+                "block_type": "Document",
+                "children": [
+                    {
+                        "id": "/page/0/Page/1",
+                        "block_type": "Page",
+                        "html": (
+                            "<content-ref src='/page/0/SectionHeader/0'></content-ref>"
+                            "<content-ref src='/page/0/SectionHeader/1'></content-ref>"
+                            "<content-ref src='/page/0/SectionHeader/2'></content-ref>"
+                        ),
+                        "bbox": [0, 0, 100, 100],
+                        "children": [
+                            {
+                                "id": "/page/0/SectionHeader/0",
+                                "block_type": "SectionHeader",
+                                "html": "<h4>Section 1</h4>",
+                                "bbox": [1, 1, 2, 2],
+                                "children": None,
+                                "section_hierarchy": {"1": "/page/0/SectionHeader/0"},
+                            },
+                            {
+                                "id": "/page/0/SectionHeader/1",
+                                "block_type": "SectionHeader",
+                                "html": "<h3>Section 2</h3>",
+                                "bbox": [3, 3, 4, 4],
+                                "children": None,
+                                "section_hierarchy": {"1": "/page/0/SectionHeader/1"},
+                            },
+                            {
+                                "id": "/page/0/SectionHeader/2",
+                                "block_type": "SectionHeader",
+                                "html": "<h2>Section 3</h2>",
+                                "bbox": [5, 5, 6, 6],
+                                "children": None,
+                                "section_hierarchy": {"1": "/page/0/SectionHeader/2"},
+                            },
+                        ],
+                        "section_hierarchy": {},
+                    },
+                    {
+                        "id": "/page/1/Page/1",
+                        "block_type": "Page",
+                        "html": "<content-ref src='/page/1/Text/0'></content-ref>",
+                        "bbox": [0, 0, 100, 100],
+                        "children": [
+                            {
+                                "id": "/page/1/Text/0",
+                                "block_type": "Text",
+                                "html": (
+                                    "<p>If you <strong>swap the foils</strong>, turn to <strong>8</strong>. "
+                                    "If you <strong>accept the match</strong>, turn to <strong>6</strong>.</p>"
+                                ),
+                                "bbox": [1, 1, 50, 50],
+                                "children": None,
+                                "section_hierarchy": {},
+                            }
+                        ],
+                        "section_hierarchy": {},
+                    },
+                ],
+            }
+        ),
+        encoding="utf-8",
+    )
+    marker_meta.write_text(
+        json.dumps(
+            {
+                "page_stats": [
+                    {
+                        "page_id": 0,
+                        "text_extraction_method": "pdftext",
+                        "block_metadata": {"llm_request_count": 0},
+                    },
+                    {
+                        "page_id": 1,
+                        "text_extraction_method": "pdftext",
+                        "block_metadata": {"llm_request_count": 0},
+                    },
+                ]
+            }
+        ),
+        encoding="utf-8",
+    )
+    pdftotext.write_text(
+        "Section 1 Section 2 Section 3 If you swap the foils turn to 8 If you accept the match turn to 6",
+        encoding="utf-8",
+    )
+    input_pdf.write_bytes(b"%PDF-1.4\n")
+
+    proc = subprocess.run(
+        [
+            sys.executable,
+            str(SCRIPT),
+            "--input-pdf",
+            str(input_pdf),
+            "--marker-json",
+            str(marker_json),
+            "--marker-meta",
+            str(marker_meta),
+            "--pdftotext",
+            str(pdftotext),
+            "--outdir",
+            str(outdir),
+            "--run-id",
+            "marker-page-html-normalization-test",
+        ],
+        check=True,
+        text=True,
+        capture_output=True,
+    )
+
+    assert "Summary written to" in proc.stdout
+
+    page_rows = [
+        json.loads(line)
+        for line in (outdir / "pages_html.jsonl").read_text(encoding="utf-8").splitlines()
+        if line.strip()
+    ]
+    normalization_report = json.loads((outdir / "normalization_report.json").read_text(encoding="utf-8"))
+    summary = json.loads((outdir / "summary.json").read_text(encoding="utf-8"))
+
+    assert "<h4>" not in page_rows[0]["html"]
+    assert "<h3>" not in page_rows[0]["html"]
+    assert page_rows[0]["html"].count("<h2") == 3
+    assert page_rows[1]["html"].count("<p") == 2
+    assert "swap the foils" in page_rows[1]["html"]
+    assert "accept the match" in page_rows[1]["html"]
+    assert normalization_report["heading_level_normalization"]["adjusted_heading_count"] == 2
+    assert normalization_report["choice_paragraph_split"]["paragraphs_split"] == 1
+    assert normalization_report["pages_changed"] == [1, 2]
+    assert normalization_report["text_mismatch_pages"] == []
+    assert summary["signals"]["token_coverage_vs_pdftotext"] == 1.0

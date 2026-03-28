@@ -1,0 +1,26 @@
+module_id: extract_pdf_marker_lite_html_v1
+stage: extract
+entrypoint: modules/extract/extract_pdf_marker_lite_html_v1/main.py
+input_schema: null
+output_schema: page_html_v1
+description: "Born-digital PDF extract path that reuses the bounded Marker-lite runtime seam, normalizes the result into page_html_v1, and emits doc-web bundle/provenance sidecars for inspection."
+params:
+  - name: out
+    type: str
+    default: pages_html.jsonl
+  - name: container_name
+    type: str
+    default: null
+  - name: bootstrap_from_container
+    type: str
+    default: story165-marker-cpu
+  - name: bootstrap_image
+    type: str
+    default: null
+  - name: base_image
+    type: str
+    default: python:3.12-slim-bookworm
+  - name: allow_bootstrap
+    type: bool
+    default: true
+notes: "Keeps Marker runtime/bootstrap explicit: this stage depends on Docker plus a repo-local cached Marker runtime or bootstrap source. The main artifact is page_html_v1; sidecars preserve raw Marker JSON/meta, runtime bootstrap info, normalization decisions, and a contract-aligned doc_web_bundle proof."

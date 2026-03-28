@@ -374,11 +374,26 @@ matters for the input-coverage roadmap:
   is `1.0`, and page `3` still triggers escalation with a duplicated terminal
   line in `ocr_ensemble/pages/page-003.json`.
 
-That is not enough to mark `born-digital-pdf` as passing, because the repo
-still lacks a maintained runtime path and Marker's outputs do not yet meet the
-accepted provenance/runtime boundary. But it is enough to change the next-step
-read: the credible follow-on is now a thin Marker-internals substrate for
-born-digital PDFs, not stock Marker adoption.
+Story 168 now converts that proof into a maintained optional lane under
+`output/runs/story168-marker-lite-proof-r4/`:
+- the explicit recipe `recipe-born-digital-pdf-marker-lite-html-mvp.yaml`
+  drives a maintained `extract_pdf_marker_lite_html_v1` stage through
+  `driver.py`
+- the fresh run emits stamped `page_html_v1`, a `doc_web_bundle` manifest, and
+  `doc_web_bundle/provenance/blocks.jsonl` inside the accepted `doc-web`
+  boundary
+- the known normalization defects are fixed on the repo-owned fixture:
+  page-2 section headings normalize consistently and page 3's merged choice
+  prompt is split into two blocks, while `token_coverage_vs_pdftotext` remains
+  `1.0`
+
+That is still not enough to mark `born-digital-pdf` as passing. The evidence is
+still one tiny fixture, the maintained native-text lane remains optional rather
+than default, and the runtime cost is materially heavier than the OCR baseline
+(`521.44s` cold extract for the Marker-lite run versus `11.84s` for the OCR
+stage on the same fixture). The current read therefore changes from "missing
+maintained native-text path" to "bounded maintained path exists, but broader
+coverage and operator discipline are still missing."
 
 **Ownership read after Story 162:**
 - Explicitly narrowed shared helper that survived honestly:
@@ -455,7 +470,7 @@ empty dedicated section until a second candidate exists.
 
 | Format | ID | Family | Fixture / Current Pipeline | Priority | Notes |
 |---|---|---|---|---|---|
-| Born-digital PDF | `born-digital-pdf` | `born-digital-pdf` | `testdata/tbotb-mini.pdf` via `recipe-pdf-ocr-html-mvp.yaml` | High | Story 157 adds a maintained PDF-entry smoke lane, and Story 166 now proves a repo-local Marker-lite -> `page_html_v1` prototype on the same fixture, but the maintained path is still OCR-routed and should not yet be treated as native-text support. |
+| Born-digital PDF | `born-digital-pdf` | `born-digital-pdf` | `testdata/tbotb-mini.pdf` via `recipe-pdf-ocr-html-mvp.yaml` and `recipe-born-digital-pdf-marker-lite-html-mvp.yaml` | High | Story 157 keeps the maintained OCR-entry lane, and Story 168 now adds an explicit maintained optional Marker-lite native-text recipe on the same fixture with accepted `doc_web_bundle` / provenance sidecars. The family still stays `has fixture`, not passing: the new lane is bounded to one tiny fixture, depends on Docker plus a cached GPL/model-license-constrained runtime, and is materially slower on cold start than the OCR baseline. |
 
 ### Untested
 
@@ -499,10 +514,10 @@ None yet.
 
 ### Gap 2 — Born-digital PDF native text extraction
 
-- **Current signal:** The repo now has a fixture, a maintained OCR-entry lane, a fresh current pagelines baseline, and a Story 166 Marker-lite prototype that emits accepted `doc-web` bundle/provenance proof on `testdata/tbotb-mini.pdf`, but it still lacks a maintained native-text path.
-- **Root cause:** Intake (spec:1) still defaults to OCR-first processing in maintained recipes, and the Story 166 prototype still needs maintained normalization for heading hierarchy and paragraph splitting before it can replace the OCR-routed path honestly.
-- **Fix category:** New intake/normalization module plus maintained routing work.
-- **Status:** High-value missing capability; prototype and exact follow-on story exist (`Story 168`), maintained path does not.
+- **Current signal:** Story 168 now provides a maintained optional native-text lane on `testdata/tbotb-mini.pdf` via `recipe-born-digital-pdf-marker-lite-html-mvp.yaml`, with fresh artifact proof under `output/runs/story168-marker-lite-proof-r4/`. The run emits accepted `doc_web_bundle` / provenance sidecars and fixes the Story 166 heading-level and merged-choice defects without text-loss signals. The current OCR baseline under `output/runs/story168-ocr-baseline-r1/` remains much faster and lighter to operate on the same fixture.
+- **Root cause:** The "no maintained path" blocker is gone, but the family still has only one tiny reviewed fixture and the optional native-text lane carries explicit Docker + cached Marker runtime burden, GPL/model-license constraints, and a heavy cold-start path. Maintained default routing therefore still cannot switch away from the OCR-first lane honestly.
+- **Fix category:** Validation + widening work on the new lane, plus runtime/cost discipline; not first-path invention anymore.
+- **Status:** Gap narrowed from missing capability to bounded optional capability. Keep `born-digital-pdf` in `has fixture` until the maintained native-text path is validated more broadly and earns a stronger operator story.
 
 ### Gap 3 — Office document intake (DOCX/XLSX/PPTX)
 
