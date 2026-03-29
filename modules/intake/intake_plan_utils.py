@@ -44,6 +44,16 @@ BOOK_TYPE_ALIASES = {
     "report": "other",
 }
 
+PDF_RECIPE_BOOK_TYPES = {
+    "cyoa",
+    "genealogy",
+    "textbook",
+}
+
+PDF_RECIPE_STRUCTURAL_SIGNALS = {
+    "tables",
+}
+
 
 def normalize_book_type(raw_value: Any, fallback: str = "other") -> str:
     value = (str(raw_value or "")).strip().lower().replace("-", "_").replace(" ", "_")
@@ -116,6 +126,23 @@ def choose_maintained_recipe(plan: Dict[str, Any]) -> Optional[str]:
     if input_kind == "images_dir":
         return MAINTAINED_RECIPES["images_dir"]
     if input_kind == "pdf":
+        book_type = normalize_book_type((plan or {}).get("book_type"), fallback="other")
+        signals = {
+            str(signal).strip().lower()
+            for signal in (plan or {}).get("signals", [])
+            if str(signal).strip()
+        }
+        tile_count = (((plan or {}).get("meta") or {}).get("summary") or {}).get("tile_count") or 0
+        # The maintained PDF HTML recipes still assume a multi-section/book-like
+        # document. Short flat PDFs should surface no-recipe-needed until a
+        # non-TOC maintained lane exists.
+        supports_html_recipe = (
+            book_type in PDF_RECIPE_BOOK_TYPES
+            or ("cyoa" in signals)
+            or (int(tile_count) >= 5 and bool(signals & PDF_RECIPE_STRUCTURAL_SIGNALS))
+        )
+        if not supports_html_recipe:
+            return None
         if source_input.get("has_extractable_text") is True:
             return MAINTAINED_RECIPES["born_digital_pdf"]
         return MAINTAINED_RECIPES["scanned_pdf"]

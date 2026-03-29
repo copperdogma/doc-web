@@ -31,9 +31,9 @@
 ### Compromise Progress
 
 - **C2: Format-Specific Conversion Recipes** (AI capability) — **climb**
-  - Current: A maintained recommendation-only intake recipe now emits `intake_plan_v1` across image-directory, scanned-PDF, and born-digital-PDF inputs; the operator still confirms and launches the explicit recipe manually.
+  - Current: A maintained recommendation-only intake recipe now emits `intake_plan_v1` across image-directory and PDF inputs, but it now returns `no-recipe-needed` for short flat PDFs whose current maintained full HTML recipes are not honest. The operator still confirms and launches the explicit recipe manually.
   - Target: Auto-detect replaces manual recipe selection for 10 diverse documents.
-  - Eval: `auto-book-type-detection` — `accuracy = 1.0`, `overall = 1.0`, `pass_rate = 1.0` on 2026-03-28 via Story 169's repo-owned maintained-intake harness over 10 documents. Detection quality now clears the benchmark, but the compromise stays `climb` because the workflow still stops at recommendation / confirmation instead of replacing manual recipe selection. Retry when: `new-input-family` or workflow changes that alter the final routing handoff.
+  - Eval: `auto-book-type-detection` — `accuracy = 1.0`, `overall = 1.0`, `pass_rate = 1.0` on 2026-03-29 via Story 170's refreshed maintained-intake harness over 10 documents. Detection quality still clears the benchmark after narrowing flat/non-book PDF recommendations to `no-recipe-needed`, but the compromise stays `climb` because the workflow still stops at recommendation / confirmation instead of replacing manual recipe selection. Retry when: `new-input-family` or workflow changes that alter the final routing handoff.
 
 ---
 
@@ -470,7 +470,7 @@ empty dedicated section until a second candidate exists.
 
 | Format | ID | Family | Fixture / Current Pipeline | Priority | Notes |
 |---|---|---|---|---|---|
-| Born-digital PDF | `born-digital-pdf` | `born-digital-pdf` | `testdata/tbotb-mini.pdf` via `recipe-pdf-ocr-html-mvp.yaml` and `recipe-born-digital-pdf-marker-lite-html-mvp.yaml` | High | Story 157 keeps the maintained OCR-entry lane, and Story 168 now adds an explicit maintained optional Marker-lite native-text recipe on the same fixture with accepted `doc_web_bundle` / provenance sidecars. The family still stays `has fixture`, not passing: the new lane is bounded to one tiny fixture, depends on Docker plus a cached GPL/model-license-constrained runtime, and is materially slower on cold start than the OCR baseline. |
+| Born-digital PDF | `born-digital-pdf` | `born-digital-pdf` | `testdata/tbotb-mini.pdf` via `recipe-pdf-ocr-html-mvp.yaml` and `recipe-born-digital-pdf-marker-lite-html-mvp.yaml`; Story 170 validation assets `rfp` and `release-forms` | High | Story 157 keeps the maintained OCR-entry lane, and Story 168 adds an explicit maintained optional Marker-lite native-text recipe on the repo-owned book-like fixture. Story 170 widens the validation surface with `rfp` and `release-forms`: both maintained full PDF recipes reach `page_html_v1` but then fail at `portionize_toc`, so intake now returns `no-recipe-needed` for short flat born-digital PDFs instead of silently over-recommending a full HTML lane. The family still stays `has fixture`, not passing: the native-text path is bounded to the reviewed book-like slice, depends on Docker plus a cached GPL/model-license-constrained runtime, and is materially slower on cold start than the OCR baseline. |
 
 ### Untested
 
@@ -514,10 +514,10 @@ None yet.
 
 ### Gap 2 — Born-digital PDF native text extraction
 
-- **Current signal:** Story 168 now provides a maintained optional native-text lane on `testdata/tbotb-mini.pdf` via `recipe-born-digital-pdf-marker-lite-html-mvp.yaml`, with fresh artifact proof under `output/runs/story168-marker-lite-proof-r4/`. The run emits accepted `doc_web_bundle` / provenance sidecars and fixes the Story 166 heading-level and merged-choice defects without text-loss signals. The current OCR baseline under `output/runs/story168-ocr-baseline-r1/` remains much faster and lighter to operate on the same fixture.
-- **Root cause:** The "no maintained path" blocker is gone, but the family still has only one tiny reviewed fixture and the optional native-text lane carries explicit Docker + cached Marker runtime burden, GPL/model-license constraints, and a heavy cold-start path. Maintained default routing therefore still cannot switch away from the OCR-first lane honestly.
-- **Fix category:** Validation + widening work on the new lane, plus runtime/cost discipline; not first-path invention anymore.
-- **Status:** Gap narrowed from missing capability to bounded optional capability. Keep `born-digital-pdf` in `has fixture` until the maintained native-text path is validated more broadly and earns a stronger operator story.
+- **Current signal:** Story 168 still provides the maintained optional native-text lane on `testdata/tbotb-mini.pdf` via `recipe-born-digital-pdf-marker-lite-html-mvp.yaml`, with accepted `doc_web_bundle` / provenance sidecars and no inspected text-loss signal on that reviewed fixture. Story 170 reran the maintained Marker-lite and OCR PDF recipes on wider born-digital assets (`rfp`, `release-forms`) and found that both lanes extract `page_html_v1` successfully but fail later at `portionize_toc`, while Marker remains materially slower on cold start (`story170-marker-tbotb-r1` took `163.07s` for 3 pages versus `8.96s` OCR on `story170-ocr-tbotb-r1`).
+- **Root cause:** The "no maintained path" blocker is gone, but the maintained full PDF HTML recipes are still book-contract-shaped: they need multi-section / TOC-bearing structure. The repo therefore cannot honestly recommend those recipes for short flat born-digital PDFs, and the optional native-text lane still carries explicit Docker + cached Marker runtime burden plus a heavy cold-start path.
+- **Fix category:** Validation + widening work on the new lane, plus routing honesty and runtime/cost discipline; not first-path invention anymore.
+- **Status:** Gap narrowed from missing capability to bounded optional capability. Keep `born-digital-pdf` in `has fixture` until the maintained native-text path is validated beyond the current book-like slice or a maintained non-TOC PDF lane exists.
 
 ### Gap 3 — Office document intake (DOCX/XLSX/PPTX)
 
@@ -574,7 +574,7 @@ A converter is ready to graduate to Dossier (spec:7) when:
 
 ## Next Actions
 
-1. Create the born-digital PDF intake story.
+1. Create the born-digital PDF non-TOC follow-up story so short flat PDFs stop ending in `no-recipe-needed`.
 2. Create the DOCX intake story, then decide whether XLSX/PPTX should split or
    stay together.
 3. Create the handwriting-transcription story.

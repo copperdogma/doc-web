@@ -189,19 +189,34 @@
       "format_family": "born-digital-pdf",
       "status": "has-fixture",
       "description": "PDFs with embedded text (no OCR needed), possibly with complex layouts",
-      "pipeline_recipe": "recipe-pdf-ocr-html-mvp.yaml",
-      "intake_module": "extract_pdf_images_fast_v1 → ocr_ai_gpt51_v1",
+      "pipeline_recipe": "recipe-born-digital-pdf-marker-lite-html-mvp.yaml (bounded book-like lane); otherwise no-recipe-needed",
+      "intake_module": "extract_pdf_marker_lite_html_v1 / extract_pdf_images_fast_v1 → ocr_ai_gpt51_v1 (comparison only)",
       "complexity": ["simple-prose", "tables", "illustrations"],
       "fixtures": [
         {
           "id": "tbotb-mini",
           "source": "testdata/tbotb-mini.pdf",
           "pages": 3,
-          "notes": "Repo-owned smoke fixture used to verify maintained PDF-entry wiring only. This is not evidence of a native embedded-text path."
+          "notes": "Repo-owned reviewed book-like fixture. Story 168 proved the bounded maintained Marker-lite native-text lane here, and Story 170 reverified it against the OCR baseline."
+        },
+        {
+          "id": "rfp",
+          "source": "/Users/cam/Documents/Projects/Cantos Music Foundation Website/Bid/Request for Proposal.pdf",
+          "pages": 2,
+          "notes": "Story 170 widened the validation surface with this short flat born-digital PDF. Both maintained full recipes reached page_html_v1 but failed later at portionize_toc, so intake now returns no-recipe-needed here."
+        },
+        {
+          "id": "release-forms",
+          "source": "/Users/cam/Documents/Projects/Aria/Summer Camps/ACKNOWLEDGMENT and RELEASE FORMS (for 2005) electronic.pdf",
+          "pages": 2,
+          "notes": "Story 170 widened the validation surface with this form-heavy born-digital PDF. Both maintained full recipes reached page_html_v1 but failed later at portionize_toc, so intake now returns no-recipe-needed here."
         }
       ],
       "scores": null,
-      "known_gaps": ["No native text extraction — current maintained support is a PDF-entry smoke path that still routes through OCR."],
+      "known_gaps": [
+        "The maintained Marker-lite native-text lane is still bounded to the reviewed book-like slice; short flat born-digital PDFs now intentionally return no-recipe-needed because the current full HTML recipes require TOC-bearing structure.",
+        "Marker remains materially slower on cold start than the OCR baseline."
+      ],
       "graduated": false
     },
     {

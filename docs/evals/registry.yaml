@@ -463,6 +463,19 @@ evals:
       note: "Must correctly classify all 10 benchmark documents"
 
     scores:
+      - model: "Story 170 maintained intake harness (gpt-4.1-mini overview/zoom)"
+        metrics:
+          accuracy: 1.0
+          overall: 1.0
+          pass_rate: 1.0
+        measured: 2026-03-29
+        note: >
+          Story 170 reran the repo-owned
+          `benchmarks/scripts/run_auto_book_type_detection_eval.py` harness
+          after narrowing the maintained PDF recommendation surface so short
+          flat PDFs now return `no-recipe-needed` instead of silently pointing
+          at full HTML recipes that fail later at `portionize_toc`. Result
+          file: `benchmarks/results/auto-book-type-detection-story170.json`.
       - model: "Story 169 maintained intake harness (gpt-4.1-mini overview/zoom)"
         metrics:
           accuracy: 1.0
@@ -501,6 +514,21 @@ evals:
           `output/runs/auto-book-type-detection/tbotb-mini/overview_plan_final.jsonl`,
           `output/runs/auto-book-type-detection/onward-unknown/overview_plan_final.jsonl`,
           and `output/runs/auto-book-type-detection/rfp/overview_plan_final.jsonl`.
+      - id: "003"
+        date: 2026-03-29
+        status: succeeded
+        approach: "Story 170 rerun after narrowing flat/non-book PDF recommendations to no-recipe-needed"
+        note: >
+          Fresh rerun via
+          `python benchmarks/scripts/run_auto_book_type_detection_eval.py --output benchmarks/results/auto-book-type-detection-story170.json`
+          again finished `10/10` docs with `accuracy = 1.0`, `overall = 1.0`,
+          and `pass_rate = 1.0`. Sample passing artifacts include
+          `output/runs/auto-book-type-detection/scanned-prose-mini/overview_plan_final.jsonl`
+          (`novel` -> `no-recipe-needed`),
+          `output/runs/auto-book-type-detection/rfp/overview_plan_final.jsonl`
+          (`other` -> `no-recipe-needed`), and
+          `output/runs/auto-book-type-detection/astrosmash-manual/overview_plan_final.jsonl`
+          (`other` + `tables/images` -> `configs/recipes/recipe-pdf-ocr-html-mvp.yaml`).
 
     retry_when:
       - condition: new-input-family

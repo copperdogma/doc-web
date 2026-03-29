@@ -1,3 +1,21 @@
+## [2026-03-29-01] - Close born-digital PDF routing narrowing on widened proof (Story 170)
+
+### Added
+- Added `tests/test_intake_plan_utils.py` to pin the maintained PDF recommendation boundary and refreshed the widened born-digital expectations in `benchmarks/golden/auto-book-type-detection/corpus.json`
+
+### Changed
+- Closed Story 170 on widened `driver.py` proof showing the `Marker`-lite path remains a bounded optional book-like lane while short flat PDFs now surface `no-recipe-needed`
+- Updated `docs/build-map.md`, Scout 011, the eval registry, the coverage matrix, and the story records so the born-digital PDF truth surfaces reflect the widened negative result honestly
+
+### Fixed
+- Narrowed `modules/intake/intake_plan_utils.py` so flat and non-book PDFs no longer route into maintained full HTML recipes that later fail at `portionize_toc`
+
+### Tested
+- `python -m ruff check modules/ tests/`
+- `python -m pytest tests/`
+- `python -m pytest tests/test_extract_pdf_marker_lite_html_v1.py tests/test_pdf_intake_recipe.py tests/test_intake_plan_utils.py -q`
+- `python benchmarks/scripts/run_auto_book_type_detection_eval.py --output benchmarks/results/auto-book-type-detection-story170.json`
+
 ## [2026-03-28-01] - Close maintained contact-sheet intake benchmark path (Story 169)
 
 ### Added

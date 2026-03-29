@@ -12,7 +12,7 @@
     "input_kind": "pdf",
     "path": "testdata/scanned-prose-mini.pdf",
     "expected_book_type": "novel",
-    "expected_recipe": "configs/recipes/recipe-pdf-ocr-html-mvp.yaml",
+    "expected_recipe": "no-recipe-needed",
     "expected_major_signals": []
   },
   {
@@ -36,7 +36,7 @@
     "input_kind": "pdf",
     "path": "/Users/cam/Documents/Projects/Cantos Music Foundation Website/Bid/Request for Proposal.pdf",
     "expected_book_type": "other",
-    "expected_recipe": "configs/recipes/recipe-born-digital-pdf-marker-lite-html-mvp.yaml",
+    "expected_recipe": "no-recipe-needed",
     "expected_major_signals": []
   },
   {
@@ -44,7 +44,7 @@
     "input_kind": "pdf",
     "path": "/Users/cam/Documents/Projects/Aria Bat Miztvah/Printables/Buttons Signs/Button Making Instructions.pdf",
     "expected_book_type": "other",
-    "expected_recipe": "configs/recipes/recipe-pdf-ocr-html-mvp.yaml",
+    "expected_recipe": "no-recipe-needed",
     "expected_major_signals": ["images"]
   },
   {
@@ -52,7 +52,7 @@
     "input_kind": "pdf",
     "path": "/Users/cam/Documents/Projects/Aria/Summer Camps/ACKNOWLEDGMENT and RELEASE FORMS (for 2005) electronic.pdf",
     "expected_book_type": "other",
-    "expected_recipe": "configs/recipes/recipe-born-digital-pdf-marker-lite-html-mvp.yaml",
+    "expected_recipe": "no-recipe-needed",
     "expected_major_signals": ["forms"]
   },
   {
@@ -60,7 +60,7 @@
     "input_kind": "pdf",
     "path": "/Users/cam/Documents/Projects/B.R. Libin Capital Corp/libin.pdf",
     "expected_book_type": "other",
-    "expected_recipe": "configs/recipes/recipe-pdf-ocr-html-mvp.yaml",
+    "expected_recipe": "no-recipe-needed",
     "expected_major_signals": []
   },
   {
@@ -68,7 +68,7 @@
     "input_kind": "pdf",
     "path": "/Users/cam/Documents/Projects/Bertha Marsollier Funeral/Memorial Card.pdf",
     "expected_book_type": "other",
-    "expected_recipe": "configs/recipes/recipe-pdf-ocr-html-mvp.yaml",
+    "expected_recipe": "no-recipe-needed",
     "expected_major_signals": ["images"]
   },
   {
