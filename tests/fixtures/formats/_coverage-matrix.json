@@ -230,14 +230,25 @@
     {
       "id": "docx",
       "format_family": "docx",
-      "status": "untested",
+      "status": "has-fixture",
       "description": "Microsoft Word documents (.docx)",
-      "pipeline_recipe": null,
-      "intake_module": null,
+      "pipeline_recipe": "recipe-docx-html-mvp.yaml",
+      "intake_module": "unstructured_docx_intake_v1 → docx_elements_to_bundle_v1",
       "complexity": ["simple-prose", "tables", "illustrations"],
-      "fixtures": [],
+      "fixtures": [
+        {
+          "id": "docx-mini",
+          "source": "testdata/docx-mini.docx",
+          "pages": null,
+          "notes": "Repo-owned DOCX fixture generated from checked-in source JSON. Story 172 proved the maintained lane on the narrow supported slice: document title, heading-based sections, prose, simple bullet lists, and a simple table. Provenance is anchor-based rather than page-based."
+        }
+      ],
       "scores": null,
-      "known_gaps": [],
+      "known_gaps": [
+        "Current proof is only a single repo-owned DOCX fixture on a narrow structure slice.",
+        "The maintained lane does not yet claim tracked changes, comments, text boxes, embedded charts, or other advanced Word features.",
+        "Pageless DOCX provenance currently relies on stable source element ids rather than page-linked open-original behavior."
+      ],
       "graduated": false
     },
     {

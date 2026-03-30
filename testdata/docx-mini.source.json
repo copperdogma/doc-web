@@ -1,0 +1,28 @@
+{
+  "title": "DOCX Mini Fixture",
+  "sections": [
+    {
+      "heading": "Family Snapshot",
+      "paragraphs": [
+        "The DOCX fixture exercises the maintained lane on simple structured prose with heading boundaries, bullet lists, and a table."
+      ],
+      "bullets": [
+        "Parents: Ada and Lin",
+        "Home region: Foothills County"
+      ],
+      "table": {
+        "headers": ["Name", "Role"],
+        "rows": [
+          ["Ada", "Researcher"],
+          ["Lin", "Archivist"]
+        ]
+      }
+    },
+    {
+      "heading": "Notes",
+      "paragraphs": [
+        "This second section confirms that structure resumes correctly after the table and that block-level provenance anchors survive into the final bundle."
+      ]
+    }
+  ]
+}

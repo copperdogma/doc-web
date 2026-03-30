@@ -574,7 +574,7 @@ class DocWebProvenanceBlock(BaseModel):
         "page_marker",
         "other",
     ]
-    source_page_number: int
+    source_page_number: Optional[int] = None
     source_element_ids: List[str]
     source_printed_page_number: Optional[int] = None
     source_printed_page_label: Optional[str] = None
@@ -598,7 +598,9 @@ class DocWebProvenanceBlock(BaseModel):
 
     @field_validator("source_page_number")
     @classmethod
-    def validate_source_page_number(cls, value: int) -> int:
+    def validate_source_page_number(cls, value: Optional[int]) -> Optional[int]:
+        if value is None:
+            return value
         if value < 1:
             raise ValueError("source_page_number must be >= 1")
         return value
@@ -1208,6 +1210,7 @@ class RunConfig(BaseModel):
     registry: str = "modules"
     settings: Optional[str] = None
     input_pdf: Optional[str] = None
+    input_docx: Optional[str] = None
     output_dir: Optional[str] = None
     
     execution: ExecutionConfig = Field(default_factory=ExecutionConfig)

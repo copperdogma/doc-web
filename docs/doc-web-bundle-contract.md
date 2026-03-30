@@ -113,11 +113,11 @@ Required fields:
 - `block_id`
 - `entry_id`
 - `block_kind`
-- `source_page_number`
 - `source_element_ids`
 
 Optional fields:
 
+- `source_page_number`
 - `source_printed_page_number`
 - `source_printed_page_label`
 - `source_bbox`
@@ -149,11 +149,11 @@ Required in v1:
 
 - bundle-level `source_artifact` in `manifest.json`
 - block-level `entry_id`
-- block-level `source_page_number`
 - block-level `source_element_ids`
 
 Optional but recommended when available:
 
+- `source_page_number` for page-native sources such as PDFs and image directories
 - `source_printed_page_number` for user-facing labels
 - `source_bbox` to highlight the exact region on open-original
 - `confidence` for downstream ranking or audit surfaces
@@ -161,7 +161,8 @@ Optional but recommended when available:
 
 Why this split:
 
-- page-level open-original is possible with the required fields
+- page-level open-original is possible when `source_page_number` is available
+- pageless sources such as DOCX still satisfy the contract via stable block anchors in `source_element_ids`
 - region highlighting improves the experience, but Story 152 does not force fake
   coordinates where the current emitter does not yet produce them
 

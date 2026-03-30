@@ -1,3 +1,26 @@
+## [2026-03-29-03] - Close maintained DOCX intake lane (Story 172)
+
+### Added
+- Added the maintained DOCX recipe `configs/recipes/recipe-docx-html-mvp.yaml`, the new `unstructured_docx_intake_v1` and `docx_elements_to_bundle_v1` modules, the repo-owned `testdata/docx-mini.docx` fixture plus its source/generator, and focused DOCX recipe coverage in `tests/test_docx_intake_recipe.py`
+
+### Changed
+- Closed Story 172 on fresh `driver.py` proof that the maintained DOCX lane emits accepted `doc_web_bundle` output plus pageless block provenance for the checked-in heading/prose/list/table slice
+- Updated the build map, runbook, coverage matrix, testdata docs, story records, and the public bundle contract so DOCX now honestly sits at `has fixture` with stable source-anchor provenance instead of the prior `untested` gap
+- Clarified the `/validate` skill so close-out bookkeeping owned by `/mark-story-done` or `/finish-and-push` is reported separately from implementation completeness
+
+### Fixed
+- Corrected unstructured element serialization to preserve DOCX categories instead of flattening them to `Unknown`
+- Allowed the `doc_web` provenance contract to represent pageless sources without fabricating page numbers while still requiring stable `source_element_ids`
+
+### Tested
+- `make lint`
+- `make test`
+- `make skills-check`
+- `python -m pytest tests/test_docx_intake_recipe.py tests/test_doc_web_bundle_contract.py -q`
+- `python driver.py --recipe configs/recipes/recipe-docx-html-mvp.yaml --input-docx testdata/docx-mini.docx --run-id story172-validate-r1 --force`
+- `python validate_artifact.py --schema doc_web_bundle_manifest_v1 --file output/runs/story172-validate-r1/output/html/manifest.json`
+- `python validate_artifact.py --schema doc_web_provenance_block_v1 --file output/runs/story172-validate-r1/output/html/provenance/blocks.jsonl`
+
 ## [2026-03-29-02] - Close maintained non-TOC born-digital lane (Story 171)
 
 ### Added

@@ -88,7 +88,7 @@ def serialize_element(
     """
     # Extract core fields
     element_id = getattr(element, "id", None) or str(uuid.uuid4())
-    element_type = getattr(element, "type", "Unknown")
+    element_type = getattr(element, "category", None) or getattr(element, "type", "Unknown")
     text = getattr(element, "text", "") or ""
 
     # Extract metadata as dict

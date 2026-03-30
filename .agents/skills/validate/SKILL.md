@@ -36,12 +36,20 @@ Thoroughly analyze what was done and how it compares to the original instruction
      - `## Success Criteria` / `## Acceptance Criteria` / `## Requirements` (as applicable)
      - `## Tasks` checklist items (look for `- [ ]` / `- [x]`)
      - `## Workflow Gates` when present
+   - Separate **implementation completeness** from **close-out bookkeeping**.
+   - Missing close-out items owned by `/mark-story-done` or `/finish-and-push` do **not** count against the story by themselves. This includes items such as:
+     - story/status/index flips
+     - `CHANGELOG.md`
+     - `Story marked done via /mark-story-done`
+     - commit/push/PR or other landing hygiene
+   - If implementation is complete and only those close-out items remain, treat the story as implementation-complete and recommend **`Close now`** rather than calling the story incomplete.
    - In the report, include a **Story Validation** section that:
      - Lists each story requirement/checklist item as **Met / Partial / Unmet** with evidence.
      - Reports the current workflow-gate state when the story has gates
        (`Build complete`, `Validation complete or explicitly skipped by user`,
        `Story marked done via /mark-story-done`).
-     - Explicitly calls out **all Unmet** (and Partial) items as "Remaining Story Gaps" with concrete next steps.
+     - Explicitly calls out **all Unmet** (and Partial) implementation items as "Remaining Story Gaps" with concrete next steps.
+     - Separately notes close-out bookkeeping that belongs to `/mark-story-done` or `/finish-and-push` without scoring it as an implementation failure.
      - Suggests which story checkboxes appear ready to check off, and asks the user if they want the AI to apply those edits.
      - If the delivered slice is coherent but the remaining gaps have clearly been split into other stories, explicitly say whether the current story should be:
        - **Rescoped then closed**
@@ -90,7 +98,7 @@ Thoroughly analyze what was done and how it compares to the original instruction
 - [ ] Unit/integration/e2e tests cover happy path and key edge cases
 - [ ] CI workflows are green; flaky tests identified or quarantined
 - [ ] Manual validation notes captured where automation lacks coverage
-- [ ] Docs updated (README, ADRs, API docs, changelog)
+- [ ] Docs updated for touched behavior/contracts (README, ADRs, API docs, runbooks, contracts as applicable). Do not score repo close-out bookkeeping like `CHANGELOG.md` or story-status/index updates here; note them separately as follow-up owned by close-out skills.
 
 ## Grading Criteria
 
@@ -158,7 +166,7 @@ For each requirement, provide:
 
 ### Summary
 - **Requirements Met**: X of Y requirements fully implemented
-- **If a story/ticket was validated**: include a 1–2 line summary of whether the story is **Done / Not Done**, and name the remaining gaps.
+- **If a story/ticket was validated**: include a 1–2 line summary of whether the story implementation is **Done / Not Done**, and name any remaining implementation gaps separately from close-out follow-up.
 - **If a story/ticket was validated**: include a one-line **Closure Recommendation**:
   - `Close now`
   - `Rescope then close`
@@ -173,6 +181,7 @@ For each requirement, provide:
 2. [Issue 2]: [Description and impact]
 
 **Note:** If a story/ticket was validated, treat **Unmet** (and important **Partial**) story requirements as critical issues unless explicitly deferred. Critical issues should summarize "where we are", why the story is not done, and include the concrete next step(s) required to close each gap.
+Do **not** treat close-out bookkeeping owned by `/mark-story-done` or `/finish-and-push` as a critical issue by itself.
 
 ### Recommendations for Improvement
 1. [Priority 1]: [Specific actionable improvement]
@@ -193,6 +202,7 @@ Ask one direct question:
 - If recommending more implementation first: `"Do you want me to proceed with these next steps?"`
 
 Default behavior:
+- If implementation is complete and the only remaining work is close-out bookkeeping owned by `/mark-story-done` or `/finish-and-push`, prefer **`Close now`**.
 - If the implemented slice is coherent and the remaining gaps are explicitly moved to follow-up stories, prefer **`Rescope then close`** over leaving the story hanging in `In Progress`.
 - Never silently weaken requirements. The report must say exactly what would be rescoped and why.
 

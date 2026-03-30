@@ -42,6 +42,7 @@ scripts/run_driver_monitored.sh \
 Active recipe examples:
 - `configs/recipes/recipe-images-ocr-html-mvp.yaml`
 - `configs/recipes/recipe-pdf-ocr-html-mvp.yaml`
+- `configs/recipes/recipe-docx-html-mvp.yaml`
 - `configs/recipes/recipe-onward-images-html-mvp.yaml`
 - `configs/recipes/recipe-onward-pdf-html-mvp.yaml`
 - `configs/recipes/onward-genealogy-build-regression.yaml` (artifact-reuse path; requires the referenced Story 140 / 143 artifacts under `output/`)
@@ -123,6 +124,36 @@ Notes:
 - `testdata/tbotb-mini.pdf` proves maintained PDF entry wiring only for a small born-digital PDF.
 - `testdata/scanned-prose-mini.pdf` is a repo-owned image-only simple-prose scanned fixture. Story 167 proved the maintained lane through `ocr_ai` and matched the checked-in source text exactly after normalization on 2026-03-27; broader noisy scanned-prose quality still needs separate validation.
 
+### Repo-Owned DOCX Intake Smoke
+
+Use this when you need a cheap real-run proof that the maintained DOCX lane
+still emits a final `doc-web` bundle plus pageless block provenance from the
+checked-in DOCX fixture:
+
+```bash
+python driver.py \
+  --recipe configs/recipes/recipe-docx-html-mvp.yaml \
+  --input-docx testdata/docx-mini.docx \
+  --run-id <run_id> \
+  --allow-run-id-reuse
+python validate_artifact.py \
+  --schema doc_web_bundle_manifest_v1 \
+  --file output/runs/<run_id>/output/html/manifest.json
+python validate_artifact.py \
+  --schema doc_web_provenance_block_v1 \
+  --file output/runs/<run_id>/output/html/provenance/blocks.jsonl
+```
+
+Expected bundle outputs:
+
+- `output/runs/<run_id>/01_unstructured_docx_intake_v1/elements.jsonl`
+- `output/runs/<run_id>/02_docx_elements_to_bundle_v1/docx_bundle_report.json`
+- `output/runs/<run_id>/output/html/index.html`
+- `output/runs/<run_id>/output/html/chapter-001.html`
+- `output/runs/<run_id>/output/html/chapter-002.html`
+- `output/runs/<run_id>/output/html/manifest.json`
+- `output/runs/<run_id>/output/html/provenance/blocks.jsonl`
+
 ---
 
 ## 🔄 Recovery & Resume (The "Happy Path")
@@ -157,6 +188,7 @@ scripts/run_driver_monitored.sh \
 | :--- | :--- |
 | `recipe-images-ocr-html-mvp.yaml` | Active structural HTML bundle path for image-directory inputs. |
 | `recipe-pdf-ocr-html-mvp.yaml` | Active structural HTML bundle path for generic PDF-backed inputs. |
+| `recipe-docx-html-mvp.yaml` | Maintained DOCX structural bundle path for the narrow checked-in heading/prose/list/table fixture slice. |
 | `recipe-onward-images-html-mvp.yaml` | **Genealogy.** Specialized for *Onward* tables. |
 | `recipe-onward-pdf-html-mvp.yaml` | **Genealogy.** PDF-backed maintained Onward lane with the same downstream table-repair flow. |
 | `onward-genealogy-build-regression.yaml` | No-AI artifact-reuse regression path that rebuilds chapters and genealogy validation from accepted Onward artifacts already present under the shared `output/` root. |
@@ -173,6 +205,7 @@ Append these after `--` in the wrapper script.
 
 *   `--model <name>`: Global model override.
 *   `--input-pdf <path>`: Override `input.pdf` on maintained PDF-backed recipes.
+*   `--input-docx <path>`: Override `input.docx` on maintained DOCX-backed recipes.
 *   `--max-pages <N>`: Stop after N pages.
 *   `--start-from <stage>`: Resume point.
 *   `--end-at <stage>`: Halt point.

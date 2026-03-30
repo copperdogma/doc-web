@@ -1,0 +1,30 @@
+module_id: unstructured_docx_intake_v1
+stage: extract
+entrypoint: modules/extract/unstructured_docx_intake_v1/main.py
+input_schema: null
+output_schema: unstructured_element_v1
+default_params:
+  infer_table_structure: true
+  include_page_breaks: true
+  starting_page_number: 1
+  strategy: null
+  save_raw: false
+param_schema:
+  properties:
+    infer_table_structure:
+      type: boolean
+      description: "Extract DOCX table structure and HTML"
+    include_page_breaks:
+      type: boolean
+      description: "Preserve explicit DOCX page break markers when present"
+    starting_page_number:
+      type: integer
+      minimum: 1
+      description: "Starting page number used for explicit page-break markers"
+    strategy:
+      type: string
+      description: "Optional Unstructured DOCX partition strategy"
+    save_raw:
+      type: boolean
+      description: "Save raw Unstructured output for debugging"
+notes: "Partition DOCX with Unstructured into elements.jsonl while preserving DOCX-native categories and metadata."

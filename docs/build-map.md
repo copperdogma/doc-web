@@ -471,12 +471,12 @@ empty dedicated section until a second candidate exists.
 | Format | ID | Family | Fixture / Current Pipeline | Priority | Notes |
 |---|---|---|---|---|---|
 | Born-digital PDF | `born-digital-pdf` | `born-digital-pdf` | `testdata/tbotb-mini.pdf` via `recipe-pdf-ocr-html-mvp.yaml` and `recipe-born-digital-pdf-marker-lite-html-mvp.yaml`; `testdata/flat-born-digital-mini.pdf` via `recipe-born-digital-pdf-non-toc-html-mvp.yaml`; Story 171 validation assets `rfp` and `release-forms` | High | Story 157 keeps the maintained OCR-entry lane, Story 168 adds an explicit maintained optional Marker-lite native-text recipe on the repo-owned book-like fixture, and Story 171 adds an explicit maintained non-TOC sibling recipe for flat born-digital PDFs. Fresh `driver.py` proof now exists on the repo-owned `flat-born-digital-mini.pdf` plus the local `rfp` and `release-forms` comparison assets: all three produce stamped `page_html_v1`, non-empty portion artifacts, final `doc_web_bundle` manifests, and page-linked provenance under the new lane. The family still stays `has fixture`, not passing: proof breadth is still small, some form-heavy outputs remain visually rough, the lane still depends on Docker plus a cached GPL/model-license-constrained Marker runtime, and cold-start cost remains materially higher than the OCR baseline. |
+| Word (.docx) | `docx` | `docx` | `testdata/docx-mini.docx` via `recipe-docx-html-mvp.yaml` | High | Story 172 adds the first maintained explicit DOCX lane on a repo-owned fixture. Fresh `driver.py` proof on 2026-03-29 produced a final `doc_web_bundle` manifest plus block-level provenance with stable `source_element_ids` and no fabricated page numbers. The family remains `has fixture`, not passing: evidence is still a single narrow slice (document title, heading-based sections, prose, simple bullet lists, simple table), and advanced Word features plus broader fixtures remain unproven. |
 
 ### Untested
 
 | Format | ID | Family | Complexity | Priority | Notes |
 |---|---|---|---|---|---|
-| Word (.docx) | `docx` | `docx` | prose, tables, illustrations | High | Common Storybook/Dossier-adjacent upload format. |
 | Excel (.xlsx) | `xlsx` | `xlsx` | tables | Medium | Structured family-history data often starts here. |
 | PowerPoint (.pptx) | `pptx` | `pptx` | mixed-layout, illustrations | Low | Lower-frequency, but still plausible archive input. |
 | EPUB | `epub` | `epub` | prose, illustrations | Medium | Zipped HTML + image intake remains unbuilt. |
@@ -519,14 +519,12 @@ None yet.
 - **Fix category:** Fixture widening, output-polish follow-up, and runtime/cost discipline on the maintained native-text lane.
 - **Status:** Gap narrowed from bounded optional capability to a maintained split lane with limited proof breadth. Keep `born-digital-pdf` in `has fixture` until the non-TOC lane is validated across more diverse flat born-digital inputs and the runtime burden is reduced or accepted.
 
-### Gap 3 — Office document intake (DOCX/XLSX/PPTX)
+### Gap 3 — Office document intake beyond the first DOCX slice
 
-- **Current signal:** No pipeline family exists for office documents.
-- **Root cause:** Intake coverage (spec:1) is still heavily skewed toward PDFs and image
-  directories.
-- **Fix category:** New intake modules / routing.
-- **Status:** High-value missing capability, especially for Storybook-adjacent
-  uploads.
+- **Current signal:** Story 172 now provides a maintained explicit DOCX lane on the repo-owned `testdata/docx-mini.docx` fixture via `recipe-docx-html-mvp.yaml`. The lane emits a final `doc_web_bundle` manifest plus pageless block provenance with stable `source_element_ids`, but only for a narrow heading-based prose/list/simple-table slice.
+- **Root cause:** Intake coverage (spec:1) is still heavily skewed toward PDFs and image directories, and the new office-document coverage is only a single DOCX proof slice. There is still no maintained `xlsx` or `pptx` family, and the DOCX lane has not yet been widened across more diverse Word features.
+- **Fix category:** Fixture widening, DOCX proof expansion, and new intake modules / routing for the remaining office families.
+- **Status:** Gap narrowed from "missing family" to "first DOCX fixture-backed lane exists, but broader office coverage is still missing."
 
 ### Gap 4 — Handwritten document transcription
 
@@ -574,8 +572,7 @@ A converter is ready to graduate to Dossier (spec:7) when:
 
 ## Next Actions
 
-1. Create the DOCX intake story, then decide whether XLSX/PPTX should split or
-   stay together.
+1. Widen DOCX proof beyond the current repo-owned fixture and then decide whether XLSX/PPTX should split or stay together.
 2. Widen flat born-digital proof beyond the current 2-page fixture/forms slice and decide whether oversized in-body headings need a dedicated cleanup follow-up.
 3. Create the handwriting-transcription story.
 4. Expand fixture breadth for already-passing formats so graduation decisions

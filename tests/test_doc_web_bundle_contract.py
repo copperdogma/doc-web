@@ -93,6 +93,16 @@ DOC_WEB_PROVENANCE_BLOCK_EXAMPLE = [
 ]
 
 
+DOC_WEB_PROVENANCE_PAGELESS_BLOCK_EXAMPLE = {
+    "schema_version": "doc_web_provenance_block_v1",
+    "block_id": "blk-chapter-001-0001",
+    "entry_id": "chapter-001",
+    "block_kind": "heading",
+    "source_element_ids": ["docx-paragraph-001"],
+    "text_quote": "Family Snapshot",
+}
+
+
 def _load_jsonl(path: Path):
     with path.open("r", encoding="utf-8") as f:
         return [json.loads(line) for line in f if line.strip()]
@@ -160,6 +170,13 @@ def test_doc_web_provenance_blocks_roundtrip_via_schema_map():
     assert blocks[1].confidence == pytest.approx(0.94)
 
 
+def test_doc_web_provenance_allows_pageless_source_blocks():
+    block = DocWebProvenanceBlock(**DOC_WEB_PROVENANCE_PAGELESS_BLOCK_EXAMPLE)
+
+    assert block.source_page_number is None
+    assert block.source_element_ids == ["docx-paragraph-001"]
+
+
 def test_doc_web_provenance_rejects_invalid_block_id():
     with pytest.raises(ValueError):
         DocWebProvenanceBlock(
@@ -214,6 +231,24 @@ def test_validate_artifact_cli_accepts_jsonl_provenance_blocks(tmp_path: Path):
     with blocks_path.open("w", encoding="utf-8") as f:
         for row in DOC_WEB_PROVENANCE_BLOCK_EXAMPLE:
             f.write(json.dumps(row, ensure_ascii=False) + "\n")
+
+    proc = subprocess.run(
+        [sys.executable, str(VALIDATOR), "--schema", "doc_web_provenance_block_v1", "--file", str(blocks_path)],
+        stdout=subprocess.PIPE,
+        stderr=subprocess.STDOUT,
+        text=True,
+    )
+
+    assert proc.returncode == 0, proc.stdout
+    assert "Validation OK" in proc.stdout
+
+
+def test_validate_artifact_cli_accepts_pageless_jsonl_provenance_blocks(tmp_path: Path):
+    blocks_path = tmp_path / "docx-blocks.jsonl"
+    blocks_path.write_text(
+        json.dumps(DOC_WEB_PROVENANCE_PAGELESS_BLOCK_EXAMPLE, ensure_ascii=False) + "\n",
+        encoding="utf-8",
+    )
 
     proc = subprocess.run(
         [sys.executable, str(VALIDATOR), "--schema", "doc_web_provenance_block_v1", "--file", str(blocks_path)],
