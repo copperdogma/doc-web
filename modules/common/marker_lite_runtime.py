@@ -6,7 +6,7 @@ import shutil
 import subprocess
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Any
+from typing import Any, Callable
 from uuid import uuid4
 
 
@@ -29,6 +29,23 @@ class FormatArtifact:
     main_output: Path
     meta_output: Path
     log_output: Path
+
+
+ProgressCallback = Callable[[str, dict[str, Any]], None]
+
+
+def _emit_progress(
+    progress: ProgressCallback | None,
+    message: str,
+    *,
+    substep: str,
+    extra: dict[str, Any] | None = None,
+) -> None:
+    if progress is None:
+        return
+    payload = dict(extra or {})
+    payload.setdefault("substep", substep)
+    progress(message, payload)
 
 
 def _run(cmd: list[str], *, cwd: Path | None = None) -> subprocess.CompletedProcess[str]:
@@ -248,10 +265,17 @@ def _provision_repo_local_runtime(
     datalab_cache_dir: Path,
     tmp_dir: Path,
     notes: list[str],
+    progress: ProgressCallback | None = None,
 ) -> dict[str, Any]:
     pip_cache_dir.mkdir(parents=True, exist_ok=True)
     datalab_cache_dir.mkdir(parents=True, exist_ok=True)
     tmp_dir.mkdir(parents=True, exist_ok=True)
+    _emit_progress(
+        progress,
+        "Ensuring base image is available for repo-local Marker-lite runtime",
+        substep="container.bootstrap.base_image",
+        extra={"base_image": base_image},
+    )
     if _docker_image_exists(base_image):
         notes.append(f"reused local base image {base_image!r}")
     else:
@@ -262,6 +286,12 @@ def _provision_repo_local_runtime(
         pip_cache_dir=pip_cache_dir,
         datalab_cache_dir=datalab_cache_dir,
         tmp_dir=tmp_dir,
+    )
+    _emit_progress(
+        progress,
+        "Installing marker-pdf into the repo-local Marker-lite runtime container",
+        substep="container.bootstrap.install",
+        extra={"container_name": container_name},
     )
     install_proc = _run_optional(
         [
@@ -284,6 +314,12 @@ def _provision_repo_local_runtime(
             "Fresh Marker runtime provisioning failed: "
             f"{install_proc.stderr.strip() or install_proc.stdout.strip()}"
         )
+    _emit_progress(
+        progress,
+        "Saving repo-local Marker-lite runtime snapshot for future reuse",
+        substep="container.bootstrap.snapshot",
+        extra={"bootstrap_image": bootstrap_image},
+    )
     commit_proc = _run_optional(["docker", "commit", container_name, bootstrap_image])
     if commit_proc.returncode == 0:
         notes.append(f"committed repo-local runtime snapshot to {bootstrap_image!r}")
@@ -316,17 +352,36 @@ def ensure_runtime_container(
     tmp_dir: Path = DEFAULT_TMP_DIR,
     base_image: str = DEFAULT_BASE_IMAGE,
     allow_bootstrap: bool = True,
+    progress: ProgressCallback | None = None,
 ) -> dict[str, Any]:
+    _emit_progress(
+        progress,
+        "Inspecting repo-local Marker-lite runtime container",
+        substep="container.inspect",
+        extra={"container_name": container_name},
+    )
     target_info = _docker_inspect(container_name)
     bootstrap_notes: list[str] = []
 
     if target_info and not target_info.get("State", {}).get("Running"):
+        _emit_progress(
+            progress,
+            "Starting existing repo-local Marker-lite runtime container",
+            substep="container.start",
+            extra={"container_name": container_name},
+        )
         _run(["docker", "start", container_name])
         target_info = _docker_inspect(container_name)
         bootstrap_notes.append("started existing target container")
 
     if target_info:
         mount_source = _work_mount_source(target_info)
+        _emit_progress(
+            progress,
+            "Probing existing repo-local Marker-lite runtime container",
+            substep="container.probe",
+            extra={"container_name": container_name},
+        )
         probe = _marker_probe(container_name)
         if (
             _container_mounts_match(
@@ -336,6 +391,12 @@ def ensure_runtime_container(
             )
             and probe.returncode == 0
         ):
+            _emit_progress(
+                progress,
+                "Reusing existing repo-local Marker-lite runtime container",
+                substep="container.reuse",
+                extra={"container_name": container_name},
+            )
             return {
                 "container_name": container_name,
                 "action": "reused_existing_container",
@@ -348,6 +409,12 @@ def ensure_runtime_container(
                 "notes": bootstrap_notes,
             }
         bootstrap_notes.append("target container was present but not usable from this worktree")
+        _emit_progress(
+            progress,
+            "Existing Marker-lite runtime was not reusable from this worktree; rebuilding a clean repo-local container",
+            substep="container.rebuild_needed",
+            extra={"container_name": container_name},
+        )
 
     if not allow_bootstrap:
         raise RuntimeError(
@@ -355,6 +422,12 @@ def ensure_runtime_container(
         )
 
     if target_info:
+        _emit_progress(
+            progress,
+            "Seeding repo-local Marker-lite cache from the existing runtime container",
+            substep="container.bootstrap.cache_seed",
+            extra={"container_name": container_name},
+        )
         _seed_repo_local_cache_from_container(
             container_name,
             host_cache_dir=datalab_cache_dir,
@@ -380,6 +453,12 @@ def ensure_runtime_container(
 
     cached_bootstrap_image = _discover_cached_bootstrap_image(bootstrap_image)
     if cached_bootstrap_image:
+        _emit_progress(
+            progress,
+            "Rebuilding repo-local Marker-lite runtime from a cached image",
+            substep="container.bootstrap.cached_image",
+            extra={"cached_image": cached_bootstrap_image},
+        )
         _start_repo_local_container(
             container_name,
             image=cached_bootstrap_image,
@@ -435,8 +514,15 @@ def ensure_runtime_container(
             datalab_cache_dir=datalab_cache_dir,
             tmp_dir=tmp_dir,
             notes=bootstrap_notes,
+            progress=progress,
         )
 
+    _emit_progress(
+        progress,
+        "Seeding repo-local Marker-lite cache from the bootstrap container",
+        substep="container.bootstrap.cache_seed",
+        extra={"seed_container": bootstrap_from_container},
+    )
     _seed_repo_local_cache_from_container(
         bootstrap_from_container,
         host_cache_dir=datalab_cache_dir,
@@ -453,6 +539,7 @@ def ensure_runtime_container(
         datalab_cache_dir=datalab_cache_dir,
         tmp_dir=tmp_dir,
         notes=bootstrap_notes,
+        progress=progress,
     )
 
 
@@ -569,6 +656,7 @@ def run_lite_api(
     input_pdf: Path,
     output_dir: Path,
     output_format: str = "json",
+    progress: ProgressCallback | None = None,
 ) -> FormatArtifact:
     if output_dir.exists():
         shutil.rmtree(output_dir)
@@ -584,6 +672,12 @@ def run_lite_api(
     container_output_dir = f"{container_root}/output"
     container_input_pdf = f"{container_input_dir}/{input_pdf.name}"
 
+    _emit_progress(
+        progress,
+        "Preparing Marker-lite temp workspace inside the runtime container",
+        substep="marker.temp_workspace",
+        extra={"container_name": container_name},
+    )
     mkdir_proc = _run_optional(
         [
             "docker",
@@ -603,6 +697,12 @@ def run_lite_api(
             f"{mkdir_proc.stderr.strip() or mkdir_proc.stdout.strip()}"
         )
 
+    _emit_progress(
+        progress,
+        "Copying PDF into the Marker-lite runtime container",
+        substep="marker.copy_in",
+        extra={"input_pdf": str(input_pdf)},
+    )
     copy_in_proc = _run_optional(
         ["docker", "cp", str(input_pdf), f"{container_name}:{container_input_pdf}"]
     )
@@ -618,6 +718,12 @@ def run_lite_api(
         output_dir=container_output_dir,
         output_format=output_format,
     )
+    _emit_progress(
+        progress,
+        "Running Marker lite_api inside the runtime container",
+        substep="marker.execute",
+        extra={"output_format": output_format},
+    )
     proc = subprocess.run(
         ["docker", "exec", "-i", container_name, "python", "-"],
         input=script,
@@ -626,6 +732,12 @@ def run_lite_api(
     )
     copy_out_proc: subprocess.CompletedProcess[str] | None = None
     if proc.returncode == 0:
+        _emit_progress(
+            progress,
+            "Copying Marker-lite outputs back to the repo workspace",
+            substep="marker.copy_out",
+            extra={"output_dir": str(output_dir)},
+        )
         copy_out_proc = _run_optional(
             ["docker", "cp", f"{container_name}:{container_output_dir}/.", str(output_dir)]
         )
@@ -655,6 +767,12 @@ def run_lite_api(
         ),
         encoding="utf-8",
     )
+    _emit_progress(
+        progress,
+        "Cleaning up temporary Marker-lite files inside the runtime container",
+        substep="marker.cleanup",
+        extra={"container_name": container_name},
+    )
     _run_optional(["docker", "exec", container_name, "rm", "-rf", container_root])
     if proc.returncode != 0:
         raise RuntimeError(f"Marker lite_api failed for format={output_format}; see log at {log_output}")
@@ -675,9 +793,20 @@ def run_lite_api(
     )
 
 
-def extract_pdftotext_source(pdf_path: Path, out_dir: Path) -> Path:
+def extract_pdftotext_source(
+    pdf_path: Path,
+    out_dir: Path,
+    *,
+    progress: ProgressCallback | None = None,
+) -> Path:
     out_dir.mkdir(parents=True, exist_ok=True)
     out_path = out_dir / f"{pdf_path.stem}.pdftotext.txt"
+    _emit_progress(
+        progress,
+        "Running pdftotext sidecar extraction for normalization coverage",
+        substep="pdftotext",
+        extra={"input_pdf": str(pdf_path), "output_text": str(out_path)},
+    )
     _run(["pdftotext", str(pdf_path), str(out_path)])
     return out_path
 

@@ -1,7 +1,7 @@
 import json
 import os
 import yaml
-from datetime import datetime
+from datetime import datetime, timezone
 from typing import Any, Dict, Optional, Tuple
 from pathlib import Path
 from functools import lru_cache
@@ -64,8 +64,14 @@ def read_jsonl(path: str):
                 yield json.loads(line)
 
 
+def utc_now(*, timespec: str | None = None) -> str:
+    now = datetime.now(timezone.utc)
+    rendered = now.isoformat(timespec=timespec) if timespec else now.isoformat()
+    return rendered.replace("+00:00", "Z")
+
+
 def _utc() -> str:
-    return datetime.utcnow().isoformat() + "Z"
+    return utc_now()
 
 
 def _type_ok(val: Any, allowed: Tuple[type, ...]) -> bool:

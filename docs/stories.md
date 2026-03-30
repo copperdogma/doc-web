@@ -175,6 +175,7 @@ This index tracks stories in `/docs/stories/` for the doc-forge pipeline.
 |||| 170 | Widen Born-Digital PDF Native-Text Validation and Routing Decision | High | Done | /docs/stories/story-170-born-digital-pdf-native-text-widening-and-routing-decision.md |
 |||| 171 | Maintain a Non-TOC Born-Digital PDF Lane | High | Done | /docs/stories/story-171-maintained-non-toc-born-digital-pdf-lane.md |
 |||| 172 | Establish a Maintained DOCX Intake Lane | High | Done | /docs/stories/story-172-maintained-docx-intake-lane.md |
+|||| 173 | Harden `doc-web` After the First Dossier Adoption Trial | High | Done | /docs/stories/story-173-dossier-doc-web-adoption-hardening.md |
 
 ## Notes
 - Status "Done" reflects current working state in doc-forge. "To Do" items are planned next steps aligned with `docs/ideal.md`, `docs/spec.md`, and `docs/build-map.md`.

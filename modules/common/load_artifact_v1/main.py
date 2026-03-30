@@ -3,13 +3,13 @@ import json
 import os
 import shutil
 import sys
-from datetime import datetime
 from pathlib import Path
 
 if __package__ in (None, ""):
     sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..", "..")))
 
 from modules.common.run_registry import resolve_output_root
+from modules.common.utils import utc_now
 
 
 def _stamp_envelope(path: str, run_id: str) -> None:
@@ -26,7 +26,7 @@ def _stamp_envelope(path: str, run_id: str) -> None:
                 row = json.loads(line)
                 if run_id:
                     row["run_id"] = run_id
-                row["created_at"] = datetime.utcnow().isoformat() + "Z"
+                row["created_at"] = utc_now()
                 rows.append(row)
         with open(path, "w", encoding="utf-8") as f:
             for row in rows:

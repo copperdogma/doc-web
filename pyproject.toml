@@ -12,6 +12,12 @@ dependencies = [
   "pydantic>=2.9,<3",
 ]
 
+[project.optional-dependencies]
+driver = [
+  "beautifulsoup4>=4.12,<5",
+  "PyYAML>=6,<7",
+]
+
 [project.scripts]
 doc-web = "doc_web.cli:main"
 

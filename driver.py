@@ -16,7 +16,7 @@ except ImportError:  # pragma: no cover - resource not on Windows
 
 import yaml
 
-from modules.common.utils import ensure_dir, ProgressLogger, append_jsonl, read_jsonl, save_json
+from modules.common.utils import ensure_dir, ProgressLogger, append_jsonl, read_jsonl, save_json, utc_now
 from modules.common.run_registry import record_run_health, record_run_manifest
 from validate_artifact import SCHEMA_MAP
 from modules.common.utils import save_jsonl
@@ -577,7 +577,7 @@ def finalize_run_state(state_path: str, *, run_validation_failed: bool) -> None:
     else:
         state["status"] = "done"
         state.pop("status_reason", None)
-    state["ended_at"] = datetime.utcnow().isoformat(timespec="microseconds") + "Z"
+    state["ended_at"] = utc_now(timespec="microseconds")
     with open(state_path, "w", encoding="utf-8") as f:
         json.dump(state, f, indent=2)
 
@@ -1024,11 +1024,7 @@ def stamp_artifact(artifact_path: str, schema_name: str, module_id: str, run_id:
     if schema_name not in SCHEMA_MAP:
         return
     model_cls = SCHEMA_MAP[schema_name]
-    allowed_keys = set()
-    if hasattr(model_cls, "__fields__"):
-        allowed_keys = set(model_cls.__fields__.keys())
-    elif hasattr(model_cls, "model_fields"):
-        allowed_keys = set(model_cls.model_fields.keys())
+    allowed_keys = set(model_cls.model_fields.keys())
     rows = []
     dropped_keys = set()
     for row in read_jsonl(artifact_path):
@@ -1045,8 +1041,8 @@ def stamp_artifact(artifact_path: str, schema_name: str, module_id: str, run_id:
             if not row.get("run_id"):
                 row["run_id"] = run_id
             if not row.get("created_at"):
-                row["created_at"] = datetime.utcnow().isoformat() + "Z"
-            rows.append(model_cls(**row).dict())
+                row["created_at"] = utc_now()
+            rows.append(model_cls(**row).model_dump())
         except Exception as e:
             print(f"[stamp-skip] skipping row due to validation error: {e}")
     save_jsonl(artifact_path, rows)
@@ -1106,7 +1102,7 @@ def mock_clean(pages_path: str, out_path: str, module_id: str, run_id: str):
             "schema_version": "clean_page_v1",
             "module_id": module_id,
             "run_id": run_id,
-            "created_at": datetime.utcnow().isoformat() + "Z",
+            "created_at": utc_now(),
             "page": row["page"],
             "image": row.get("image"),
             "raw_text": row.get("text", ""),
@@ -1127,7 +1123,7 @@ def mock_portionize(pages_path: str, out_path: str, module_id: str, run_id: str)
             "schema_version": "portion_hyp_v1",
             "module_id": module_id,
             "run_id": run_id,
-            "created_at": datetime.utcnow().isoformat() + "Z",
+            "created_at": utc_now(),
             "portion_id": f"P{page:03d}",
             "page_start": page,
             "page_end": page,
@@ -1153,7 +1149,7 @@ def mock_consensus(in_path: str, out_path: str, module_id: str, run_id: str):
             "schema_version": "locked_portion_v1",
             "module_id": module_id,
             "run_id": run_id,
-            "created_at": datetime.utcnow().isoformat() + "Z",
+            "created_at": utc_now(),
             "portion_id": row.get("portion_id") or f"P{row['page_start']:03d}",
             "page_start": row["page_start"],
             "page_end": row["page_end"],
@@ -1450,7 +1446,7 @@ def main():
 
     register_run(run_id, run_dir, recipe, instrumentation=instrumentation_paths, snapshots=snapshots)
 
-    run_started_at = datetime.utcnow().isoformat() + "Z"
+    run_started_at = utc_now()
     run_wall_start = time.perf_counter()
     run_cpu_start = _get_cpu_times()
 
@@ -1590,7 +1586,7 @@ def main():
         if not instrument_enabled:
             return
         ingest_sink_events()
-        ended_at = datetime.utcnow().isoformat() + "Z"
+        ended_at = utc_now()
         wall_seconds = round(time.perf_counter() - stage_wall_start, 6)
         cpu_user = cpu_sys = None
         end_cpu = _get_cpu_times()
@@ -1681,7 +1677,7 @@ def main():
         entrypoint = node["entrypoint"]
         out_schema = node.get("output_schema")
         stage_description = node.get("description")
-        stage_started_at = datetime.utcnow().isoformat() + "Z"
+        stage_started_at = utc_now()
         stage_wall_start = time.perf_counter()
         stage_cpu_start = _get_cpu_times()
 
@@ -2021,7 +2017,7 @@ def main():
                         state = json.load(f)
                     state["status"] = "failed"
                     state["status_reason"] = f"stage {stage_id} failed"
-                    state["ended_at"] = datetime.utcnow().isoformat(timespec="microseconds") + "Z"
+                    state["ended_at"] = utc_now(timespec="microseconds")
                     with open(state_path, "w", encoding="utf-8") as f:
                         json.dump(state, f, indent=2)
             except Exception:
@@ -2090,7 +2086,7 @@ def main():
             break
 
     if instrument_enabled and instrumentation_run:
-        instrumentation_run["ended_at"] = datetime.utcnow().isoformat() + "Z"
+        instrumentation_run["ended_at"] = utc_now()
         instrumentation_run["wall_seconds"] = round(time.perf_counter() - run_wall_start, 6)
         if run_cpu_start:
             end_cpu_run = _get_cpu_times()

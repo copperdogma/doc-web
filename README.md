@@ -18,11 +18,15 @@ AI-first runtime for turning scanned books, PDFs, and images into structural, pr
 
 ## Pinned Consumer Surface
 
-`doc-web` now exposes the minimal pinned-runtime surface Dossier should depend on:
+`doc-web` now exposes two explicit pinned-runtime surfaces Dossier can depend on:
 
 ```bash
+# Contract preflight only
 python -m pip install .
 doc-web contract --json
+
+# Repo-owned driver smoke lanes from this checkout
+python -m pip install '.[driver]'
 ```
 
 The contract preflight returns:
@@ -31,6 +35,11 @@ The contract preflight returns:
 - required Python version
 - supported bundle schema versions
 - a schema fingerprint Dossier can use to block incompatible upgrades
+
+The `driver` extra keeps the base package small while making the repo-owned
+smoke lanes installable. It covers the maintained proof lanes in this README
+and the runbook that need YAML parsing plus HTML bundle building, without
+claiming that the base package alone can run `driver.py`.
 
 The recommended downstream operating model mirrors Storybook's pinned-Dossier
 pattern:
@@ -56,8 +65,12 @@ point, then follow the two downstream-facing docs it points to:
 Recommended first-pass adoption loop:
 
 ```bash
+# Cheap compatibility preflight
 python -m pip install .
 doc-web contract --json
+
+# Repo-owned smoke lane from this checkout
+python -m pip install '.[driver]'
 python driver.py \
   --recipe configs/recipes/doc-web-fixture-bundle-smoke.yaml \
   --run-id <run_id> \
@@ -70,6 +83,12 @@ python validate_artifact.py \
   --schema doc_web_provenance_block_v1 \
   --file output/runs/<run_id>/output/html/provenance/blocks.jsonl
 ```
+
+For the maintained non-TOC born-digital proof lane, keep the same `.[driver]`
+install and add the non-Python runtime prerequisites up front:
+
+- Docker available on `PATH`
+- `pdftotext` available on `PATH`
 
 ## Maintained Intake Recipes
 
@@ -126,6 +145,12 @@ The active repo path is format-aware intake plus structural website output for
   ```bash
   pip install --no-cache-dir -r requirements.txt
   ```
+
+### Dossier-Facing Install Shapes
+- `python -m pip install .` supports the machine-readable contract preflight only.
+- `python -m pip install '.[driver]'` supports the repo-owned `driver.py` smoke lanes documented in this README and [docs/RUNBOOK.md](docs/RUNBOOK.md).
+- The maintained born-digital non-TOC lane also requires Docker and `pdftotext`.
+- OCR-heavy recipes still rely on the fuller repo runtime from `requirements.txt`.
 
 ### API Keys
 Set the following environment variables:

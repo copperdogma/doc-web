@@ -86,7 +86,11 @@ def test_extract_pdf_marker_lite_html_writes_contract_sidecars(tmp_path: Path, m
         "ensure_runtime_container",
         lambda **_: {"container_name": "story168-marker-test", "action": "rebuilt_from_cached_image", "notes": []},
     )
-    monkeypatch.setattr(module_main, "extract_pdftotext_source", lambda pdf_path, out_dir: pdftotext)
+    monkeypatch.setattr(
+        module_main,
+        "extract_pdftotext_source",
+        lambda pdf_path, out_dir, progress=None: pdftotext,
+    )
     monkeypatch.setattr(
         module_main,
         "run_lite_api",

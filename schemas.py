@@ -1,6 +1,6 @@
 import re
 from typing import Any, Dict, List, Optional, Literal, Union
-from pydantic import BaseModel, Field, field_validator, model_validator
+from pydantic import BaseModel, ConfigDict, Field, field_validator, model_validator
 
 
 class Choice(BaseModel):
@@ -987,12 +987,12 @@ class UnstructuredElement(BaseModel):
 
     # Doc-forge namespace for our tracking (aliased to '_codex' in JSON)
     codex: CodexMetadata = Field(default_factory=CodexMetadata, alias="_codex")
-
-    class Config:
+    model_config = ConfigDict(
         # Allow extra fields for forward compatibility
-        extra = "allow"
+        extra="allow",
         # Support both 'codex' and '_codex' when parsing
-        populate_by_name = True
+        populate_by_name=True,
+    )
 
 
 # ────────────────────────────────────────────────────────────────
@@ -1026,9 +1026,7 @@ class SectionBoundary(BaseModel):
     header_position: Optional[str] = None  # "top" | "middle" | "bottom" | "unknown"
     confidence: float  # 0.0-1.0, AI's confidence this is a real section boundary
     evidence: Optional[str] = None  # Why AI thinks this is a section boundary
-
-    class Config:
-        extra = "allow"
+    model_config = ConfigDict(extra="allow")
 
 
 class BoundaryIssue(BaseModel):

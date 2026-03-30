@@ -1,3 +1,28 @@
+## [2026-03-30-01] - Harden Dossier `doc-web` adoption flow (Story 173)
+
+### Added
+- Added an explicit `.[driver]` optional dependency surface and clean-venv smoke coverage for the documented repo-owned `driver.py` fixture lane
+- Added bounded Marker-lite substep progress events for the maintained non-TOC born-digital proof lane
+
+### Changed
+- Split the published consumer install story so `python -m pip install .` is contract-preflight only and `python -m pip install '.[driver]'` is the supported repo-owned smoke install shape
+- Updated the README, runbook, downstream handoff doc, readiness note, and story records to match the hardened Dossier-facing runtime boundary
+
+### Fixed
+- Removed the maintained `driver.py` Pydantic stamping deprecations and timezone-naive UTC helpers exercised by the documented proof lanes
+- Removed the maintained `schemas.py` class-config deprecations surfaced during Python 3.12 proof-lane reruns
+
+### Tested
+- `make test`
+- `make lint`
+- `python validate_artifact.py --schema doc_web_bundle_manifest_v1 --file output/runs/story173-docweb-smoke-r2/output/html/manifest.json`
+- `python validate_artifact.py --schema doc_web_provenance_block_v1 --file output/runs/story173-docweb-smoke-r2/output/html/provenance/blocks.jsonl`
+- `python validate_artifact.py --schema doc_web_bundle_manifest_v1 --file output/runs/story173-nontoc-r2/output/html/manifest.json`
+- `python validate_artifact.py --schema doc_web_provenance_block_v1 --file output/runs/story173-nontoc-r2/output/html/provenance/blocks.jsonl`
+- `python3.12 -m venv /tmp/story173-py312-1b6Olu/venv`
+- `/tmp/story173-py312-1b6Olu/venv/bin/python -W default driver.py --recipe configs/recipes/doc-web-fixture-bundle-smoke.yaml --run-id validate173-py312-fixture --allow-run-id-reuse --force --output-dir /tmp/story173-py312-1b6Olu/runs`
+- `/tmp/story173-py312-1b6Olu/venv/bin/python -W default driver.py --recipe configs/recipes/recipe-born-digital-pdf-non-toc-html-mvp.yaml --input-pdf testdata/flat-born-digital-mini.pdf --run-id validate173-py312-nontoc --allow-run-id-reuse --force --output-dir /tmp/story173-py312-1b6Olu/runs`
+
 ## [2026-03-29-03] - Close maintained DOCX intake lane (Story 172)
 
 ### Added

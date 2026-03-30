@@ -6,12 +6,11 @@ fallback for flat/non-TOC inputs.
 """
 import argparse
 import re
-from datetime import datetime
 from typing import Any, Dict, List, Optional
 
 from bs4 import BeautifulSoup
 
-from modules.common.utils import read_jsonl, save_jsonl, ProgressLogger
+from modules.common.utils import read_jsonl, save_jsonl, ProgressLogger, utc_now
 
 
 def _normalize_ws(text: str) -> str:
@@ -168,7 +167,7 @@ def main() -> None:
 
     portions: List[Dict[str, Any]] = []
     slug_counts: Dict[str, int] = {}
-    created_at = datetime.utcnow().isoformat() + "Z"
+    created_at = utc_now()
 
     if boundaries:
         deduped_boundaries: List[Dict[str, Any]] = []

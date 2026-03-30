@@ -1,23 +1,27 @@
 # `doc-web` Dossier Readiness Gap Analysis
 
-**Date:** 2026-03-19  
+**Date:** 2026-03-29
 **Purpose:** assess what still blocks `doc-web` from being presented to Dossier as a usable pinned component, using Storybook's Dossier dependency model as the reference pattern.
 
 ## Bottom Line
 
-`doc-web` is now ready to present to Dossier as a usable pinned component.
+`doc-web` is ready to present to Dossier as a usable pinned component, but only
+with an explicit split between contract preflight and repo-owned `driver.py`
+smoke lanes.
 
-The repo-side blockers that previously kept this boundary aspirational are
-closed:
+The repo-side blockers that previously kept this boundary aspirational are now
+closed in this more precise shape:
 
 - installable package metadata exists in `pyproject.toml`
 - `doc-web` exposes a machine-readable runtime preflight via
   `doc-web contract --json`
+- the supported repo-owned `driver.py` smoke surface is explicit as
+  `python -m pip install '.[driver]'`, not implied by the base package alone
 - the live current-repo builder emits `manifest.json`,
   `provenance/blocks.jsonl`, and matching `blk-*` anchors
 - a repo-owned real-run smoke lane exists at
   `configs/recipes/doc-web-fixture-bundle-smoke.yaml`
-- clean-venv install smoke and contract tests exist in
+- clean-venv contract and `.[driver]` smoke tests exist in
   `tests/test_doc_web_cli_contract.py`
 
 What remains is downstream adoption work inside Dossier, not readiness work in
@@ -58,8 +62,11 @@ Evidence:
 
 Result:
 
-- `python -m pip install .` is now valid package-install input
+- `python -m pip install .` is the supported contract-preflight install shape
 - the installed console script exposes `doc-web`
+- `python -m pip install '.[driver]'` is the supported repo-owned smoke shape
+- lazy OCR imports keep the fixture smoke lane from requiring `pdf2image` /
+  `pytesseract` at import time when it never executes OCR
 
 ### Machine-readable runtime preflight
 
@@ -101,6 +108,7 @@ Result:
 
 - the active bundle seam can be rebuilt without relying on ignored `/tmp`
   recipes or historical `output/runs/` artifacts
+- the supported install shape for that smoke lane is now explicit and test-backed
 
 ## Gaps Closed In Story 156
 
@@ -110,7 +118,7 @@ These were the repo-side blockers before Story 156 and are no longer open:
 2. No machine-readable runtime preflight
 3. Live current-repo build did not prove the published Dossier contract
 4. Release/version policy was documented but not executable
-5. No install-smoke proving the packaged runtime shape
+5. No install-smoke proving the packaged runtime shape honestly
 
 ## Remaining Dossier-Only Work
 
@@ -140,6 +148,7 @@ These matter, but they are not blockers on Dossier adopting the component:
 `doc-web` now meets the repo-side ready-to-present bar:
 
 - a tagged ref can be installed as a package
+- the repo-owned smoke lanes have an explicit `.[driver]` install surface
 - the installed runtime exposes a machine-readable contract preflight
 - the live current-repo bundle build reproduces the published contract
 - the docs tell Dossier how to pin, smoke, and upgrade it

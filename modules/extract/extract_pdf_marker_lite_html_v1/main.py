@@ -68,6 +68,16 @@ def main() -> None:
     outdir = Path(args.outdir)
     pdf_path = Path(args.pdf).resolve()
 
+    def emit_progress(message: str, extra: dict[str, object]) -> None:
+        logger.log(
+            "extract",
+            "running",
+            message=message,
+            module_id=MODULE_ID,
+            schema_version=SCHEMA_VERSION,
+            extra=extra,
+        )
+
     logger.log(
         "extract",
         "running",
@@ -83,18 +93,28 @@ def main() -> None:
             bootstrap_image=args.bootstrap_image,
             base_image=args.base_image,
             allow_bootstrap=args.allow_bootstrap,
+            progress=emit_progress,
         )
         container_name = str(runtime_bootstrap["container_name"])
         marker_raw_dir = outdir / "marker_raw" / "json"
         pdftotext_dir = outdir / "marker_raw"
-        pdftotext_path = extract_pdftotext_source(pdf_path, pdftotext_dir)
+        pdftotext_path = extract_pdftotext_source(
+            pdf_path,
+            pdftotext_dir,
+            progress=emit_progress,
+        )
         marker_artifact = run_lite_api(
             container_name=container_name,
             input_pdf=pdf_path,
             output_dir=marker_raw_dir,
             output_format="json",
+            progress=emit_progress,
         )
         created_at = utc_now()
+        emit_progress(
+            "Normalizing Marker-lite output into page_html rows and provenance blocks",
+            {"substep": "normalize", "marker_json": str(marker_artifact.main_output)},
+        )
         page_rows, block_rows, bundle, runtime_trace, summary, normalization_report = normalize_marker_document(
             read_json(marker_artifact.main_output),
             input_pdf=pdf_path,
@@ -107,6 +127,10 @@ def main() -> None:
             processing_step=f"{MODULE_ID}.page_html_v1",
         )
 
+        emit_progress(
+            "Writing normalized Marker-lite artifacts and runtime metadata",
+            {"substep": "write", "output_dir": str(outdir)},
+        )
         output_artifacts = write_marker_outputs(
             outdir,
             artifact_name=args.out,

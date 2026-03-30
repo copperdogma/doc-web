@@ -20,11 +20,23 @@ recipe that matches the document family you are validating.
 Use this before downstream pin bumps or consumer integration work:
 
 ```bash
+python -m pip install .
 doc-web contract --json
 ```
 
 This is the machine-readable compatibility surface Dossier should check before
 accepting a new pinned `doc-web` version.
+
+If you also need to run the repo-owned `driver.py` proof lanes from this
+checkout, install the explicit driver extra first:
+
+```bash
+python -m pip install '.[driver]'
+```
+
+That extra covers the maintained fixture bundle smoke and the maintained
+born-digital non-TOC proof lane. OCR-heavy recipes still use the broader repo
+runtime from `requirements.txt`.
 
 ### Structural Website / `doc-web` Runs
 Use these when validating the active structural HTML bundle path.
@@ -69,6 +81,7 @@ Use this lane when you need a cheap real-run proof that the active repo still
 emits the Dossier-facing bundle contract:
 
 ```bash
+python -m pip install '.[driver]'
 python driver.py \
   --recipe configs/recipes/doc-web-fixture-bundle-smoke.yaml \
   --run-id <run_id> \
@@ -89,6 +102,30 @@ Expected bundle outputs:
 - `output/runs/<run_id>/output/html/page-001.html`
 - `output/runs/<run_id>/output/html/manifest.json`
 - `output/runs/<run_id>/output/html/provenance/blocks.jsonl`
+
+This smoke lane does not require the local OCR stack after install, but it does
+require the `driver` extra because `driver.py` and the bundle builder depend on
+YAML parsing plus HTML bundle tooling.
+
+### Maintained Born-Digital Non-TOC Smoke
+
+Use this when you need a maintained proof run of the non-TOC born-digital PDF
+lane that emits substep progress throughout the long Marker-lite stage:
+
+```bash
+python -m pip install '.[driver]'
+python driver.py \
+  --recipe configs/recipes/recipe-born-digital-pdf-non-toc-html-mvp.yaml \
+  --input-pdf testdata/flat-born-digital-mini.pdf \
+  --run-id <run_id> \
+  --allow-run-id-reuse \
+  --force
+```
+
+Additional non-Python requirements for this lane:
+
+- Docker on `PATH`
+- `pdftotext` on `PATH`
 
 ### Repo-Owned PDF Intake Smoke
 

@@ -1,11 +1,10 @@
 import hashlib
 import os
 import subprocess
-from datetime import datetime
 from pathlib import Path
 from typing import Any, Dict, List, Optional, Sequence, Tuple
 
-from modules.common.utils import append_jsonl, read_jsonl
+from modules.common.utils import append_jsonl, read_jsonl, utc_now
 
 
 RUN_MANIFEST_FILENAME = "run_manifest.jsonl"
@@ -14,7 +13,7 @@ RUN_ASSESSMENTS_FILENAME = "run_assessments.jsonl"
 
 
 def _utc() -> str:
-    return datetime.utcnow().isoformat() + "Z"
+    return utc_now()
 
 
 def _git_common_output_root(cwd: Path) -> Optional[Path]:

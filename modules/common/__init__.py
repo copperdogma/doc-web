@@ -1,3 +1,7 @@
+from __future__ import annotations
+
+from typing import Any
+
 from .utils import (
     load_settings,
     ensure_dir,
@@ -10,7 +14,22 @@ from .utils import (
     PROGRESS_STATUS_VALUES,
     validate_progress_event,
 )
-from .ocr import render_pdf, run_ocr, run_ocr_with_word_data
+
+_OCR_EXPORTS = {
+    "render_pdf",
+    "run_ocr",
+    "run_ocr_with_word_data",
+}
+
+
+def __getattr__(name: str) -> Any:
+    if name in _OCR_EXPORTS:
+        from . import ocr as _ocr
+
+        value = getattr(_ocr, name)
+        globals()[name] = value
+        return value
+    raise AttributeError(f"module {__name__!r} has no attribute {name!r}")
 
 __all__ = [
     "load_settings",

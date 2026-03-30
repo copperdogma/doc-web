@@ -88,6 +88,7 @@ Upgrade must be blocked if any of the following occur:
 pin bump proceeds:
 
 ```bash
+python -m pip install .
 doc-web contract --json
 ```
 
@@ -128,6 +129,9 @@ Recommended policy:
 - pinned install is the default runtime source
 - local checkout use is allowed only behind an explicit override for
   co-development
+- use `python -m pip install .` for compatibility preflight and add
+  `python -m pip install '.[driver]'` only when Dossier wants to run the
+  repo-owned `driver.py` smoke lanes from a checkout
 - Docker/deploy builds rebuild from a pinned source snapshot, not a fresh git
   clone at image-build time
 - every bump reruns both `doc-web contract --json` and this handoff pack

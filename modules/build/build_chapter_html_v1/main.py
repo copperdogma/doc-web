@@ -9,7 +9,6 @@ import argparse
 import re
 import sys
 from copy import deepcopy
-from datetime import datetime
 from difflib import SequenceMatcher
 from functools import lru_cache
 from html import escape as html_escape
@@ -21,11 +20,11 @@ from bs4 import BeautifulSoup
 from modules.common.onward_genealogy_html import (
     merge_contiguous_genealogy_tables as _merge_contiguous_genealogy_tables,
 )
-from modules.common.utils import read_jsonl, save_jsonl, save_json, ensure_dir, ProgressLogger
+from modules.common.utils import read_jsonl, save_jsonl, save_json, ensure_dir, ProgressLogger, utc_now
 
 
 def _utc() -> str:
-    return datetime.utcnow().isoformat() + "Z"
+    return utc_now()
 
 
 def _resolve_run_dir(out_path: Path) -> Path:
