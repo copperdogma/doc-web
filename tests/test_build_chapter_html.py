@@ -1477,3 +1477,68 @@ class TestCLIIntegration:
         assert chapters[1]["title"] == "JOE (JOSEPH) L'HEUREUX"
         assert chapters[1]["page_start"] == 5
         assert chapters[1]["page_end"] == 5
+
+    def test_builds_chapter_from_source_page_portion_when_printed_numbers_missing(self):
+        pages_path = self.tmpdir / "pages.jsonl"
+        portions_path = self.tmpdir / "portions.jsonl"
+        out_path = self.tmpdir / "manifest.jsonl"
+        html_dir = self.tmpdir / "html"
+
+        self._write_jsonl(
+            pages_path,
+            [
+                {"page_number": 1, "printed_page_number": None, "html": "<p>Flat page one.</p>"},
+                {"page_number": 2, "printed_page_number": None, "html": "<p>Flat page two.</p>"},
+            ],
+        )
+        self._write_jsonl(
+            portions_path,
+            [
+                {
+                    "title": "Document",
+                    "page_start": 1,
+                    "page_end": 2,
+                    "source_pages": [1, 2],
+                }
+            ],
+        )
+
+        cmd = [
+            sys.executable,
+            "-m",
+            "modules.build.build_chapter_html_v1.main",
+            "--pages",
+            str(pages_path),
+            "--portions",
+            str(portions_path),
+            "--out",
+            str(out_path),
+            "--output-dir",
+            str(html_dir),
+            "--book-title",
+            "Flat Document",
+        ]
+        result = subprocess.run(cmd, capture_output=True, text=True, cwd=str(Path(__file__).resolve().parent.parent))
+        assert result.returncode == 0, f"STDERR: {result.stderr}"
+
+        manifest = [json.loads(line) for line in out_path.read_text().strip().split("\n")]
+        assert [row["kind"] for row in manifest] == ["chapter"]
+        assert manifest[0]["title"] == "Document"
+        assert manifest[0]["page_start"] == 1
+        assert manifest[0]["page_end"] == 2
+        assert manifest[0]["source_pages"] == [1, 2]
+
+        chapter = (html_dir / "chapter-001.html").read_text()
+        index_html = (html_dir / "index.html").read_text()
+        assert "Flat page one." in chapter
+        assert "Flat page two." in chapter
+        assert "Document" in index_html
+        assert "(p. 1)" not in index_html
+        assert not (html_dir / "page-001.html").exists()
+
+        bundle_manifest = DocWebBundleManifest.model_validate_json((html_dir / "manifest.json").read_text())
+        assert bundle_manifest.reading_order == ["chapter-001"]
+        assert bundle_manifest.entries[0].printed_pages == []
+        assert bundle_manifest.entries[0].printed_page_start is None
+        assert bundle_manifest.entries[0].printed_page_end is None
+        assert bundle_manifest.entries[0].source_pages == [1, 2]

@@ -1,3 +1,23 @@
+## [2026-03-29-02] - Close maintained non-TOC born-digital lane (Story 171)
+
+### Added
+- Added the explicit maintained non-TOC born-digital recipe `configs/recipes/recipe-born-digital-pdf-non-toc-html-mvp.yaml`, the repo-owned flat fixture `testdata/flat-born-digital-mini.md` / `testdata/flat-born-digital-mini.pdf`, its generator `testdata/generate_flat_born_digital_fixture.py`, and focused non-TOC portionize/build regression coverage
+
+### Changed
+- Closed Story 171 on fresh `driver.py` proof that flat born-digital PDFs can now reach accepted `doc_web_bundle` output through the maintained non-TOC lane while keeping the book-like Marker-lite lane separate
+- Updated the build map, eval registry, coverage matrix, story records, and locked intake benchmark corpus so the born-digital PDF truth surfaces reflect the widened maintained routing slice honestly
+
+### Fixed
+- Routed the proven short flat born-digital slice to the new maintained recipe instead of `no-recipe-needed`
+- Corrected the final bundle/index output so unnumbered documents no longer mislabel source-page fallback as printed-page ranges
+
+### Tested
+- `python -m ruff check modules/ tests/`
+- `python -m pytest tests/`
+- `python driver.py --recipe configs/recipes/recipe-born-digital-pdf-non-toc-html-mvp.yaml --run-id finish-story171-flat-r1 --force`
+- `python validate_artifact.py --schema doc_web_bundle_manifest_v1 --file output/runs/finish-story171-flat-r1/output/html/manifest.json`
+- `python validate_artifact.py --schema doc_web_provenance_block_v1 --file output/runs/finish-story171-flat-r1/output/html/provenance/blocks.jsonl`
+
 ## [2026-03-29-01] - Close born-digital PDF routing narrowing on widened proof (Story 170)
 
 ### Added

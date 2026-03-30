@@ -5,8 +5,10 @@ import uuid
 from pathlib import Path
 
 from pypdf import PdfReader
+import yaml
 
 PDF_RECIPE = "configs/recipes/recipe-pdf-ocr-html-mvp.yaml"
+BORN_DIGITAL_NON_TOC_RECIPE = "configs/recipes/recipe-born-digital-pdf-non-toc-html-mvp.yaml"
 BORN_DIGITAL_FIXTURE = "testdata/tbotb-mini.pdf"
 SCANNED_PROSE_FIXTURE = "testdata/scanned-prose-mini.pdf"
 
@@ -60,3 +62,19 @@ def test_scanned_prose_pdf_recipe_extract_only_smoke(tmp_path):
     assert all(len((page.extract_text() or "").strip()) == 0 for page in reader.pages)
 
     _run_pdf_recipe_extract_only_smoke(tmp_path, SCANNED_PROSE_FIXTURE)
+
+
+def test_born_digital_non_toc_recipe_wiring():
+    data = yaml.safe_load(Path(BORN_DIGITAL_NON_TOC_RECIPE).read_text(encoding="utf-8"))
+
+    assert data["input"]["pdf"] == "testdata/flat-born-digital-mini.pdf"
+    stages = data["stages"]
+    assert [stage["module"] for stage in stages] == [
+        "extract_pdf_marker_lite_html_v1",
+        "extract_page_numbers_html_v1",
+        "portionize_headings_html_v1",
+        "build_chapter_html_v1",
+    ]
+    portionize_stage = stages[2]
+    assert portionize_stage["params"]["allow_unnumbered"] is True
+    assert portionize_stage["params"]["fallback_mode"] == "single-document"

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Build chapter HTML files from pages and TOC-derived portions.
+Build chapter HTML files from pages and portion hypotheses.
 
 Produces proper HTML5 documents with embedded CSS, semantic structure
 (<figure>/<figcaption>), chapter navigation, and responsive styling.
@@ -46,6 +46,10 @@ def _coerce_int(value: Any) -> Optional[int]:
         if cleaned.isdigit():
             return int(cleaned)
     return None
+
+
+def _source_page_number(row: Dict[str, Any]) -> Optional[int]:
+    return _coerce_int(row.get("page_number") or row.get("page"))
 
 
 def _slugify(value: str) -> str:
@@ -465,11 +469,46 @@ def _tag_entry_body(entry: Dict[str, Any], *, run_id: Optional[str], created_at:
 # ---------------------------------------------------------------------------
 
 def _page_sort_key(row: Dict[str, Any]) -> tuple:
-    page_num = _coerce_int(row.get("page_number") or row.get("page")) or 0
+    page_num = _source_page_number(row) or 0
     printed_num = _coerce_int(row.get("printed_page_number"))
     if printed_num is None:
         printed_num = page_num
     return (printed_num, page_num)
+
+
+def _select_pages_for_portion(portion: Dict[str, Any], pages_sorted: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
+    page_start = _coerce_int(portion.get("page_start"))
+    page_end = _coerce_int(portion.get("page_end")) or page_start
+
+    if isinstance(page_start, int):
+        printed_matches = [
+            page
+            for page in pages_sorted
+            if isinstance(_coerce_int(page.get("printed_page_number")), int)
+            and page_start <= _coerce_int(page.get("printed_page_number")) <= page_end
+        ]
+        if printed_matches:
+            return printed_matches
+
+    source_pages = {
+        page_num
+        for page_num in (
+            _coerce_int(value)
+            for value in (portion.get("source_pages") or [])
+        )
+        if page_num is not None
+    }
+    if source_pages:
+        return [page for page in pages_sorted if _source_page_number(page) in source_pages]
+
+    if isinstance(page_start, int):
+        return [
+            page
+            for page in pages_sorted
+            if isinstance(_source_page_number(page), int)
+            and page_start <= _source_page_number(page) <= page_end
+        ]
+    return []
 
 
 def _normalize_ws(text: str) -> str:
@@ -663,16 +702,20 @@ def _build_segment(
     *,
     carry_back: bool = False,
 ) -> Dict[str, Any]:
+    source_pages = [p["page_number"] for p in pages if isinstance(p.get("page_number"), int)]
+    source_printed_pages = [
+        p["printed_page_number"]
+        for p in pages
+        if isinstance(p.get("printed_page_number"), int)
+    ]
+    page_start = source_printed_pages[0] if source_printed_pages else (source_pages[0] if source_pages else None)
+    page_end = source_printed_pages[-1] if source_printed_pages else (source_pages[-1] if source_pages else page_start)
     return {
         "title": title,
-        "page_start": pages[0]["printed_page_number"],
-        "page_end": pages[-1]["printed_page_number"],
-        "source_pages": [p["page_number"] for p in pages if isinstance(p.get("page_number"), int)],
-        "source_printed_pages": [
-            p["printed_page_number"]
-            for p in pages
-            if isinstance(p.get("printed_page_number"), int)
-        ],
+        "page_start": page_start,
+        "page_end": page_end,
+        "source_pages": source_pages,
+        "source_printed_pages": source_printed_pages,
         "body_html": _stitch_page_breaks([p["html"] for p in pages]),
         "source_portion_title": portion_title,
         "source_portion_page_start": portion_page_start,
@@ -1317,7 +1360,8 @@ def main() -> None:
     bundle_entries = []
     provenance_rows = []
     toc_entries = []
-    covered_pages = set()
+    covered_printed_pages = set()
+    covered_source_pages = set()
     chapters_by_start = {}
     portion_titles = [p.get("title") or p.get("portion_id") or "" for p in portions]
 
@@ -1334,15 +1378,14 @@ def main() -> None:
         if not isinstance(page_end, int):
             page_end = page_start
 
-        chapter_pages = [
-            p for p in pages_sorted
-            if isinstance(_coerce_int(p.get("printed_page_number")), int)
-            and page_start <= _coerce_int(p.get("printed_page_number")) <= page_end
-        ]
+        chapter_pages = _select_pages_for_portion(portion, pages_sorted)
         for p in chapter_pages:
             printed_number = _coerce_int(p.get("printed_page_number"))
             if printed_number is not None:
-                covered_pages.add(printed_number)
+                covered_printed_pages.add(printed_number)
+            source_number = _source_page_number(p)
+            if source_number is not None:
+                covered_source_pages.add(source_number)
 
         prepared_pages = []
         for page in chapter_pages:
@@ -1386,6 +1429,7 @@ def main() -> None:
                 prev_toc = chapters_by_start.get(prev_entry["page_start"])
                 if prev_toc:
                     prev_toc["page_end"] = prev_entry["page_end"]
+                    prev_toc["source_printed_pages"] = prev_entry.get("source_printed_pages") or []
                 if toc_entries:
                     toc_entries[-1]["page_end"] = prev_entry["page_end"]
                 continue
@@ -1401,12 +1445,14 @@ def main() -> None:
                 "page_start": segment["page_start"],
                 "page_end": segment["page_end"],
             })
-            chapters_by_start[segment["page_start"]] = {
-                "title": segment["title"],
-                "file": filename,
-                "page_start": segment["page_start"],
-                "page_end": segment["page_end"],
-            }
+            if segment["page_start"] is not None:
+                chapters_by_start[segment["page_start"]] = {
+                    "title": segment["title"],
+                    "file": filename,
+                    "page_start": segment["page_start"],
+                    "page_end": segment["page_end"],
+                    "source_printed_pages": segment["source_printed_pages"],
+                }
 
             chapter_files.append({
                 "filename": filename,
@@ -1432,8 +1478,10 @@ def main() -> None:
     for page in pages_sorted:
         printed_num = _coerce_int(page.get("printed_page_number"))
         printed_text = page.get("printed_page_number_text")
-        page_num = _coerce_int(page.get("page_number") or page.get("page"))
-        if isinstance(printed_num, int) and printed_num in covered_pages:
+        page_num = _source_page_number(page)
+        if (isinstance(printed_num, int) and printed_num in covered_printed_pages) or (
+            isinstance(page_num, int) and page_num in covered_source_pages
+        ):
             continue
         fallback_count += 1
         filename = f"page-{fallback_count:03d}.html"
@@ -1519,6 +1567,8 @@ def main() -> None:
         file_path.write_text(full_html, encoding="utf-8")
         provenance_rows.extend(entry_provenance_rows)
 
+        printed_pages = entry.get("source_printed_pages") or []
+
         manifest_rows.append({
             "schema_version": "chapter_html_manifest_v1",
             "module_id": "build_chapter_html_v1",
@@ -1547,9 +1597,9 @@ def main() -> None:
                 "prev_entry_id": Path(prev_file).stem if prev_file else None,
                 "next_entry_id": Path(next_file).stem if next_file else None,
                 "source_pages": entry.get("source_pages") or [],
-                "printed_pages": entry.get("source_printed_pages") or [],
-                "printed_page_start": entry.get("page_start"),
-                "printed_page_end": entry.get("page_end"),
+                "printed_pages": printed_pages,
+                "printed_page_start": printed_pages[0] if printed_pages else None,
+                "printed_page_end": printed_pages[-1] if printed_pages else None,
             }
         )
 
@@ -1565,13 +1615,23 @@ def main() -> None:
     for page in pages_scan:
         printed_num = _coerce_int(page.get("printed_page_number"))
         page_num = _coerce_int(page.get("page_number") or page.get("page"))
-        if isinstance(printed_num, int) and printed_num in chapters_by_start and printed_num not in emitted_chapters:
-            entry = chapters_by_start[printed_num]
+        anchor_page = printed_num if isinstance(printed_num, int) else page_num
+        if isinstance(anchor_page, int) and anchor_page in chapters_by_start and anchor_page not in emitted_chapters:
+            entry = chapters_by_start[anchor_page]
             label = entry["title"]
-            page_range = f"p. {entry['page_start']}" if entry["page_start"] == entry["page_end"] else f"p. {entry['page_start']}&ndash;{entry['page_end']}"
+            chapter_printed_pages = entry.get("source_printed_pages") or []
+            if chapter_printed_pages:
+                page_start = chapter_printed_pages[0]
+                page_end = chapter_printed_pages[-1]
+                page_range = f"p. {page_start}" if page_start == page_end else f"p. {page_start}&ndash;{page_end}"
+            else:
+                page_range = ""
             index_entries.append({"label": label, "file": entry["file"], "page_range": page_range})
-            emitted_chapters.add(printed_num)
-        if not (isinstance(printed_num, int) and printed_num in covered_pages):
+            emitted_chapters.add(anchor_page)
+        if not (
+            (isinstance(printed_num, int) and printed_num in covered_printed_pages)
+            or (isinstance(page_num, int) and page_num in covered_source_pages)
+        ):
             fe = fallback_by_page.get(page_num)
             if fe:
                 index_entries.append({"label": fe["title"], "file": fe["file"], "page_range": ""})

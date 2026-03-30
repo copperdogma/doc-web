@@ -463,6 +463,20 @@ evals:
       note: "Must correctly classify all 10 benchmark documents"
 
     scores:
+      - model: "Story 171 maintained intake harness (gpt-4.1-mini overview/zoom)"
+        metrics:
+          accuracy: 1.0
+          overall: 1.0
+          pass_rate: 1.0
+        measured: 2026-03-29
+        note: >
+          Story 171 reran the repo-owned
+          `benchmarks/scripts/run_auto_book_type_detection_eval.py` harness
+          after adding the maintained non-TOC born-digital PDF recipe and
+          updating the locked 10-document corpus expectations for `rfp` and
+          `release-forms`. Detection quality still clears the benchmark after
+          widening the maintained routing surface. Result file:
+          `benchmarks/results/auto-book-type-detection-story171.json`.
       - model: "Story 170 maintained intake harness (gpt-4.1-mini overview/zoom)"
         metrics:
           accuracy: 1.0
@@ -529,6 +543,35 @@ evals:
           (`other` -> `no-recipe-needed`), and
           `output/runs/auto-book-type-detection/astrosmash-manual/overview_plan_final.jsonl`
           (`other` + `tables/images` -> `configs/recipes/recipe-pdf-ocr-html-mvp.yaml`).
+      - id: "004"
+        date: 2026-03-29
+        status: failed
+        approach: "Story 171 pre-golden rerun after adding the maintained non-TOC born-digital recipe"
+        note: >
+          Fresh rerun via
+          `python benchmarks/scripts/run_auto_book_type_detection_eval.py --output benchmarks/results/auto-book-type-detection-story171-preupdate.json`
+          finished `10/10` docs with no runtime failures but scored only
+          `accuracy = 0.8`, `overall = 0.9167`, and `pass_rate = 0.8`
+          because the locked corpus still expected `rfp` and `release-forms`
+          to recommend `no-recipe-needed`. Mismatch classification:
+          **golden-wrong**. The maintained intake chain now correctly
+          recommends `configs/recipes/recipe-born-digital-pdf-non-toc-html-mvp.yaml`
+          for those two flat born-digital PDFs after Story 171's new lane.
+      - id: "005"
+        date: 2026-03-29
+        status: succeeded
+        approach: "Story 171 rerun after widening the locked corpus to the maintained non-TOC born-digital lane"
+        note: >
+          Fresh rerun via
+          `python benchmarks/scripts/run_auto_book_type_detection_eval.py --output benchmarks/results/auto-book-type-detection-story171.json`
+          again finished `10/10` docs with `accuracy = 1.0`, `overall = 1.0`,
+          and `pass_rate = 1.0`. Sample passing artifacts include
+          `output/runs/auto-book-type-detection/tbotb-mini/overview_plan_final.jsonl`
+          (`cyoa` -> `configs/recipes/recipe-born-digital-pdf-marker-lite-html-mvp.yaml`),
+          `output/runs/auto-book-type-detection/rfp/overview_plan_final.jsonl`
+          (`other` -> `configs/recipes/recipe-born-digital-pdf-non-toc-html-mvp.yaml`), and
+          `output/runs/auto-book-type-detection/release-forms/overview_plan_final.jsonl`
+          (`other` + `forms` -> `configs/recipes/recipe-born-digital-pdf-non-toc-html-mvp.yaml`).
 
     retry_when:
       - condition: new-input-family

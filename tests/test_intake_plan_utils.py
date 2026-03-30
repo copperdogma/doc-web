@@ -42,7 +42,7 @@ def test_choose_maintained_recipe_keeps_proven_born_digital_cyoa_lane():
     )
 
 
-def test_choose_maintained_recipe_withholds_short_flat_born_digital_pdf():
+def test_choose_maintained_recipe_routes_short_flat_born_digital_pdf_to_non_toc_lane():
     assert (
         choose_maintained_recipe(
             _plan(
@@ -52,7 +52,7 @@ def test_choose_maintained_recipe_withholds_short_flat_born_digital_pdf():
                 tile_count=2,
             )
         )
-        is None
+        == "configs/recipes/recipe-born-digital-pdf-non-toc-html-mvp.yaml"
     )
 
 

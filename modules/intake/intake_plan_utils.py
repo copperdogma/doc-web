@@ -18,6 +18,7 @@ MAINTAINED_RECIPES = {
     "images_dir": "configs/recipes/recipe-images-ocr-html-mvp.yaml",
     "scanned_pdf": "configs/recipes/recipe-pdf-ocr-html-mvp.yaml",
     "born_digital_pdf": "configs/recipes/recipe-born-digital-pdf-marker-lite-html-mvp.yaml",
+    "born_digital_pdf_non_toc": "configs/recipes/recipe-born-digital-pdf-non-toc-html-mvp.yaml",
 }
 
 BOOK_TYPE_ALIASES = {
@@ -133,18 +134,17 @@ def choose_maintained_recipe(plan: Dict[str, Any]) -> Optional[str]:
             if str(signal).strip()
         }
         tile_count = (((plan or {}).get("meta") or {}).get("summary") or {}).get("tile_count") or 0
-        # The maintained PDF HTML recipes still assume a multi-section/book-like
-        # document. Short flat PDFs should surface no-recipe-needed until a
-        # non-TOC maintained lane exists.
         supports_html_recipe = (
             book_type in PDF_RECIPE_BOOK_TYPES
             or ("cyoa" in signals)
             or (int(tile_count) >= 5 and bool(signals & PDF_RECIPE_STRUCTURAL_SIGNALS))
         )
+        if source_input.get("has_extractable_text") is True:
+            if not supports_html_recipe:
+                return MAINTAINED_RECIPES["born_digital_pdf_non_toc"]
+            return MAINTAINED_RECIPES["born_digital_pdf"]
         if not supports_html_recipe:
             return None
-        if source_input.get("has_extractable_text") is True:
-            return MAINTAINED_RECIPES["born_digital_pdf"]
         return MAINTAINED_RECIPES["scanned_pdf"]
     return None
 

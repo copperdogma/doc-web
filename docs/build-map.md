@@ -31,9 +31,9 @@
 ### Compromise Progress
 
 - **C2: Format-Specific Conversion Recipes** (AI capability) — **climb**
-  - Current: A maintained recommendation-only intake recipe now emits `intake_plan_v1` across image-directory and PDF inputs, but it now returns `no-recipe-needed` for short flat PDFs whose current maintained full HTML recipes are not honest. The operator still confirms and launches the explicit recipe manually.
+  - Current: A maintained recommendation-only intake recipe now emits `intake_plan_v1` across image-directory and PDF inputs, preserves the reviewed book-like born-digital lane, and can now recommend an explicit maintained non-TOC born-digital recipe for the proven flat slice. The operator still confirms and launches the explicit recipe manually.
   - Target: Auto-detect replaces manual recipe selection for 10 diverse documents.
-  - Eval: `auto-book-type-detection` — `accuracy = 1.0`, `overall = 1.0`, `pass_rate = 1.0` on 2026-03-29 via Story 170's refreshed maintained-intake harness over 10 documents. Detection quality still clears the benchmark after narrowing flat/non-book PDF recommendations to `no-recipe-needed`, but the compromise stays `climb` because the workflow still stops at recommendation / confirmation instead of replacing manual recipe selection. Retry when: `new-input-family` or workflow changes that alter the final routing handoff.
+  - Eval: `auto-book-type-detection` — `accuracy = 1.0`, `overall = 1.0`, `pass_rate = 1.0` on 2026-03-29 via Story 171's refreshed maintained-intake harness over 10 documents. Detection quality still clears the benchmark after expanding the born-digital recommendation surface to include the new explicit non-TOC recipe for `rfp` and `release-forms`, but the compromise stays `climb` because the workflow still stops at recommendation / confirmation instead of replacing manual recipe selection. Retry when: `new-input-family` or workflow changes that alter the final routing handoff.
 
 ---
 
@@ -470,7 +470,7 @@ empty dedicated section until a second candidate exists.
 
 | Format | ID | Family | Fixture / Current Pipeline | Priority | Notes |
 |---|---|---|---|---|---|
-| Born-digital PDF | `born-digital-pdf` | `born-digital-pdf` | `testdata/tbotb-mini.pdf` via `recipe-pdf-ocr-html-mvp.yaml` and `recipe-born-digital-pdf-marker-lite-html-mvp.yaml`; Story 170 validation assets `rfp` and `release-forms` | High | Story 157 keeps the maintained OCR-entry lane, and Story 168 adds an explicit maintained optional Marker-lite native-text recipe on the repo-owned book-like fixture. Story 170 widens the validation surface with `rfp` and `release-forms`: both maintained full PDF recipes reach `page_html_v1` but then fail at `portionize_toc`, so intake now returns `no-recipe-needed` for short flat born-digital PDFs instead of silently over-recommending a full HTML lane. The family still stays `has fixture`, not passing: the native-text path is bounded to the reviewed book-like slice, depends on Docker plus a cached GPL/model-license-constrained runtime, and is materially slower on cold start than the OCR baseline. |
+| Born-digital PDF | `born-digital-pdf` | `born-digital-pdf` | `testdata/tbotb-mini.pdf` via `recipe-pdf-ocr-html-mvp.yaml` and `recipe-born-digital-pdf-marker-lite-html-mvp.yaml`; `testdata/flat-born-digital-mini.pdf` via `recipe-born-digital-pdf-non-toc-html-mvp.yaml`; Story 171 validation assets `rfp` and `release-forms` | High | Story 157 keeps the maintained OCR-entry lane, Story 168 adds an explicit maintained optional Marker-lite native-text recipe on the repo-owned book-like fixture, and Story 171 adds an explicit maintained non-TOC sibling recipe for flat born-digital PDFs. Fresh `driver.py` proof now exists on the repo-owned `flat-born-digital-mini.pdf` plus the local `rfp` and `release-forms` comparison assets: all three produce stamped `page_html_v1`, non-empty portion artifacts, final `doc_web_bundle` manifests, and page-linked provenance under the new lane. The family still stays `has fixture`, not passing: proof breadth is still small, some form-heavy outputs remain visually rough, the lane still depends on Docker plus a cached GPL/model-license-constrained Marker runtime, and cold-start cost remains materially higher than the OCR baseline. |
 
 ### Untested
 
@@ -514,10 +514,10 @@ None yet.
 
 ### Gap 2 — Born-digital PDF native text extraction
 
-- **Current signal:** Story 168 still provides the maintained optional native-text lane on `testdata/tbotb-mini.pdf` via `recipe-born-digital-pdf-marker-lite-html-mvp.yaml`, with accepted `doc_web_bundle` / provenance sidecars and no inspected text-loss signal on that reviewed fixture. Story 170 reran the maintained Marker-lite and OCR PDF recipes on wider born-digital assets (`rfp`, `release-forms`) and found that both lanes extract `page_html_v1` successfully but fail later at `portionize_toc`, while Marker remains materially slower on cold start (`story170-marker-tbotb-r1` took `163.07s` for 3 pages versus `8.96s` OCR on `story170-ocr-tbotb-r1`).
-- **Root cause:** The "no maintained path" blocker is gone, but the maintained full PDF HTML recipes are still book-contract-shaped: they need multi-section / TOC-bearing structure. The repo therefore cannot honestly recommend those recipes for short flat born-digital PDFs, and the optional native-text lane still carries explicit Docker + cached Marker runtime burden plus a heavy cold-start path.
-- **Fix category:** Validation + widening work on the new lane, plus routing honesty and runtime/cost discipline; not first-path invention anymore.
-- **Status:** Gap narrowed from missing capability to bounded optional capability. Keep `born-digital-pdf` in `has fixture` until the maintained native-text path is validated beyond the current book-like slice or a maintained non-TOC PDF lane exists.
+- **Current signal:** Story 168 still provides the maintained optional native-text lane on `testdata/tbotb-mini.pdf` via `recipe-born-digital-pdf-marker-lite-html-mvp.yaml`, with accepted `doc_web_bundle` / provenance sidecars and no inspected text-loss signal on that reviewed fixture. Story 171 adds `recipe-born-digital-pdf-non-toc-html-mvp.yaml` plus a repo-owned flat fixture (`testdata/flat-born-digital-mini.pdf`) and fresh local validation on `rfp` / `release-forms`; all three now complete through `build_chapter_html_v1` with stamped `page_html_v1`, non-empty `portion_hyp_v1`, final bundle manifests, and inspected provenance sidecars. Marker still remains materially slower on cold start (`story170-marker-tbotb-r1` took `163.07s` for 3 pages versus `8.96s` OCR on `story170-ocr-tbotb-r1`).
+- **Root cause:** The missing maintained path is no longer the blocker. The remaining limitations are breadth and polish: proof still covers only a small set of flat born-digital PDFs, some form-heavy outputs carry oversized in-body headings from the native-text extractor, and the optional native-text lane still carries explicit Docker + cached Marker runtime burden plus a heavy cold-start path.
+- **Fix category:** Fixture widening, output-polish follow-up, and runtime/cost discipline on the maintained native-text lane.
+- **Status:** Gap narrowed from bounded optional capability to a maintained split lane with limited proof breadth. Keep `born-digital-pdf` in `has fixture` until the non-TOC lane is validated across more diverse flat born-digital inputs and the runtime burden is reduced or accepted.
 
 ### Gap 3 — Office document intake (DOCX/XLSX/PPTX)
 
@@ -574,9 +574,9 @@ A converter is ready to graduate to Dossier (spec:7) when:
 
 ## Next Actions
 
-1. Create the born-digital PDF non-TOC follow-up story so short flat PDFs stop ending in `no-recipe-needed`.
-2. Create the DOCX intake story, then decide whether XLSX/PPTX should split or
+1. Create the DOCX intake story, then decide whether XLSX/PPTX should split or
    stay together.
+2. Widen flat born-digital proof beyond the current 2-page fixture/forms slice and decide whether oversized in-body headings need a dedicated cleanup follow-up.
 3. Create the handwriting-transcription story.
 4. Expand fixture breadth for already-passing formats so graduation decisions
    can be trusted.

@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "generated": "2026-03-27",
+  "generated": "2026-03-29",
   "description": "Format coverage matrix tracking which input formats doc-forge can convert, how well, and what test fixtures exist. Agents query this to find untested formats and prioritize work.",
   "statuses": {
     "untested": "Format identified but no test fixtures or pipeline support",
@@ -189,7 +189,7 @@
       "format_family": "born-digital-pdf",
       "status": "has-fixture",
       "description": "PDFs with embedded text (no OCR needed), possibly with complex layouts",
-      "pipeline_recipe": "recipe-born-digital-pdf-marker-lite-html-mvp.yaml (bounded book-like lane); otherwise no-recipe-needed",
+      "pipeline_recipe": "recipe-born-digital-pdf-marker-lite-html-mvp.yaml (book-like lane) and recipe-born-digital-pdf-non-toc-html-mvp.yaml (flat/non-TOC lane)",
       "intake_module": "extract_pdf_marker_lite_html_v1 / extract_pdf_images_fast_v1 → ocr_ai_gpt51_v1 (comparison only)",
       "complexity": ["simple-prose", "tables", "illustrations"],
       "fixtures": [
@@ -200,21 +200,29 @@
           "notes": "Repo-owned reviewed book-like fixture. Story 168 proved the bounded maintained Marker-lite native-text lane here, and Story 170 reverified it against the OCR baseline."
         },
         {
+          "id": "flat-born-digital-mini",
+          "source": "testdata/flat-born-digital-mini.pdf",
+          "pages": 2,
+          "notes": "Repo-owned reproducible flat born-digital fixture generated from checked-in source text. Story 171 proved the maintained non-TOC lane here with accepted `page_html_v1`, portion, bundle, and provenance artifacts."
+        },
+        {
           "id": "rfp",
           "source": "/Users/cam/Documents/Projects/Cantos Music Foundation Website/Bid/Request for Proposal.pdf",
           "pages": 2,
-          "notes": "Story 170 widened the validation surface with this short flat born-digital PDF. Both maintained full recipes reached page_html_v1 but failed later at portionize_toc, so intake now returns no-recipe-needed here."
+          "notes": "Story 170 first exposed this short flat born-digital PDF as a downstream structure failure. Story 171 reran it through the maintained non-TOC recipe and produced an accepted single-document bundle with page-linked provenance."
         },
         {
           "id": "release-forms",
           "source": "/Users/cam/Documents/Projects/Aria/Summer Camps/ACKNOWLEDGMENT and RELEASE FORMS (for 2005) electronic.pdf",
           "pages": 2,
-          "notes": "Story 170 widened the validation surface with this form-heavy born-digital PDF. Both maintained full recipes reached page_html_v1 but failed later at portionize_toc, so intake now returns no-recipe-needed here."
+          "notes": "Story 170 first exposed this form-heavy born-digital PDF as a downstream structure failure. Story 171 reran it through the maintained non-TOC recipe and produced an accepted single-document bundle with page-linked provenance."
         }
       ],
       "scores": null,
       "known_gaps": [
-        "The maintained Marker-lite native-text lane is still bounded to the reviewed book-like slice; short flat born-digital PDFs now intentionally return no-recipe-needed because the current full HTML recipes require TOC-bearing structure.",
+        "Support still rests on a small proof surface: one repo-owned flat fixture plus two shared local flat PDFs. This is enough for `has-fixture`, not for broad passing/graduation claims.",
+        "Some form-heavy flat PDFs still surface oversized in-body headings from the native-text extractor, so the lane is functionally maintained but not yet polished.",
+        "Image-heavy or otherwise unproven flat born-digital PDFs can still honestly return `no-recipe-needed` when intake evidence does not justify the non-TOC lane.",
         "Marker remains materially slower on cold start than the OCR baseline."
       ],
       "graduated": false
