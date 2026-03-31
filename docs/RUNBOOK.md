@@ -38,6 +38,16 @@ That extra covers the maintained fixture bundle smoke and the maintained
 born-digital non-TOC proof lane. OCR-heavy recipes still use the broader repo
 runtime from `requirements.txt`.
 
+For the maintained DOCX lane, add the explicit DOCX extra:
+
+```bash
+python -m pip install '.[driver,docx]'
+```
+
+The fuller repo runtime from `requirements.txt` also now includes DOCX support,
+but it is currently validated on Python 3.11/3.12 because the pinned
+`unstructured==0.16.9` dependency does not resolve on Python 3.14.
+
 ### Structural Website / `doc-web` Runs
 Use these when validating the active structural HTML bundle path.
 
@@ -168,6 +178,7 @@ still emits a final `doc-web` bundle plus pageless block provenance from the
 checked-in DOCX fixture:
 
 ```bash
+python -m pip install '.[driver,docx]'
 python driver.py \
   --recipe configs/recipes/recipe-docx-html-mvp.yaml \
   --input-docx testdata/docx-mini.docx \
@@ -190,6 +201,10 @@ Expected bundle outputs:
 - `output/runs/<run_id>/output/html/chapter-002.html`
 - `output/runs/<run_id>/output/html/manifest.json`
 - `output/runs/<run_id>/output/html/provenance/blocks.jsonl`
+
+Alternative supported install shape for this lane:
+
+- `python -m pip install -r requirements.txt` on Python 3.11/3.12
 
 ---
 

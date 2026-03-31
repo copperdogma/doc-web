@@ -65,8 +65,11 @@ Result:
 - `python -m pip install .` is the supported contract-preflight install shape
 - the installed console script exposes `doc-web`
 - `python -m pip install '.[driver]'` is the supported repo-owned smoke shape
+- `python -m pip install '.[driver,docx]'` is the supported maintained DOCX smoke shape
 - lazy OCR imports keep the fixture smoke lane from requiring `pdf2image` /
   `pytesseract` at import time when it never executes OCR
+- the fuller repo runtime from `requirements.txt` now includes DOCX support, but
+  that path is currently validated on Python 3.11/3.12 rather than Python 3.14
 
 ### Machine-readable runtime preflight
 
@@ -79,7 +82,8 @@ Evidence:
 Result:
 
 - Dossier can cheaply inspect `runtime_version`, `requires_python`,
-  supported schema versions, and `schema_fingerprint` before accepting a bump
+  supported schema versions, `schema_fingerprint`, and the published
+  compatibility policy before accepting a bump
 
 ### Live bundle contract emission from current repo code
 

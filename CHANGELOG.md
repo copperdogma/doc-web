@@ -1,3 +1,24 @@
+## [2026-03-30-02] - Harden DOCX runtime surface and contract signaling (Story 174)
+
+### Added
+- Added an explicit `.[docx]` optional dependency surface for the maintained DOCX recipe and published a machine-readable `compatibility_policy` in `doc-web contract --json`
+
+### Changed
+- Expanded the broader repo runtime surface in `requirements.txt` to install DOCX support and updated the README, runbook, contract docs, handoff docs, build map, and readiness note to describe the explicit DOCX install story and compatibility policy
+
+### Fixed
+- Fixed the maintained DOCX recipe so the repo-supported runtime surface no longer fails on missing DOCX dependencies
+- Fixed the downstream contract guidance so pageless provenance remains valid and consumers do not overinterpret `contract_version` as the sole compatibility gate
+
+### Tested
+- `python -m pytest tests/`
+- `python -m ruff check modules/ tests/`
+- `python validate_artifact.py --schema doc_web_bundle_manifest_v1 --file output/runs/story174-docx-r1/output/html/manifest.json`
+- `python validate_artifact.py --schema doc_web_provenance_block_v1 --file output/runs/story174-docx-r1/output/html/provenance/blocks.jsonl`
+- `python validate_artifact.py --schema doc_web_bundle_manifest_v1 --file /tmp/story174-req-verify-6FWnFT/output/story174-req312-r1/output/html/manifest.json`
+- `python validate_artifact.py --schema doc_web_provenance_block_v1 --file /tmp/story174-req-verify-6FWnFT/output/story174-req312-r1/output/html/provenance/blocks.jsonl`
+- `python -m doc_web contract --json`
+
 ## [2026-03-30-01] - Harden Dossier `doc-web` adoption flow (Story 173)
 
 ### Added

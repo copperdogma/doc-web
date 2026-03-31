@@ -12,6 +12,13 @@ CONTRACT_NAME = "doc-web"
 CONTRACT_VERSION = "1"
 REQUIRES_PYTHON = ">=3.11"
 FINGERPRINT_ALGORITHM = "sha256"
+COMPATIBILITY_POLICY = {
+    "contract_version_role": "coarse-runtime-boundary-family",
+    "consumer_gate_fields": [
+        "schema_fingerprint",
+        "supported_bundle_schema_versions",
+    ],
+}
 
 
 def _schema_fingerprint() -> str:
@@ -44,6 +51,7 @@ def build_runtime_contract() -> Dict[str, Any]:
             "manifest": manifest_schema_version,
             "provenance": provenance_schema_version,
         },
+        "compatibility_policy": COMPATIBILITY_POLICY,
         "bundle_layout": {
             "index_path": "index.html",
             "provenance_path": "provenance/blocks.jsonl",

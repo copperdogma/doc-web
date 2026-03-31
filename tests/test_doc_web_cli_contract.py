@@ -4,6 +4,8 @@ import sys
 import venv
 from pathlib import Path
 
+import pytest
+
 from doc_web.runtime_contract import build_runtime_contract
 
 
@@ -14,6 +16,45 @@ def _venv_bin(venv_dir: Path, name: str) -> Path:
     if sys.platform.startswith("win"):
         return venv_dir / "Scripts" / f"{name}.exe"
     return venv_dir / "bin" / name
+
+
+def _validate_bundle_outputs(python_bin: Path, run_dir: Path) -> None:
+    manifest_path = run_dir / "output" / "html" / "manifest.json"
+    provenance_path = run_dir / "output" / "html" / "provenance" / "blocks.jsonl"
+    assert manifest_path.exists()
+    assert provenance_path.exists()
+
+    manifest_validation = subprocess.run(
+        [
+            str(python_bin),
+            "validate_artifact.py",
+            "--schema",
+            "doc_web_bundle_manifest_v1",
+            "--file",
+            str(manifest_path),
+        ],
+        cwd=str(REPO_ROOT),
+        stdout=subprocess.PIPE,
+        stderr=subprocess.STDOUT,
+        text=True,
+    )
+    assert manifest_validation.returncode == 0, manifest_validation.stdout
+
+    provenance_validation = subprocess.run(
+        [
+            str(python_bin),
+            "validate_artifact.py",
+            "--schema",
+            "doc_web_provenance_block_v1",
+            "--file",
+            str(provenance_path),
+        ],
+        cwd=str(REPO_ROOT),
+        stdout=subprocess.PIPE,
+        stderr=subprocess.STDOUT,
+        text=True,
+    )
+    assert provenance_validation.returncode == 0, provenance_validation.stdout
 
 
 def test_runtime_contract_payload_has_required_fields():
@@ -29,6 +70,13 @@ def test_runtime_contract_payload_has_required_fields():
         "provenance": "doc_web_provenance_block_v1",
     }
     assert payload["schema_fingerprint"].startswith("sha256:")
+    assert payload["compatibility_policy"] == {
+        "contract_version_role": "coarse-runtime-boundary-family",
+        "consumer_gate_fields": [
+            "schema_fingerprint",
+            "supported_bundle_schema_versions",
+        ],
+    }
 
 
 def test_doc_web_module_cli_emits_machine_readable_contract_json():
@@ -123,39 +171,73 @@ def test_driver_extra_supports_repo_owned_doc_web_fixture_smoke(tmp_path: Path):
     )
     assert smoke.returncode == 0, smoke.stdout
 
+    _validate_bundle_outputs(python_bin, run_dir)
+
+    manifest_path = run_dir / "output" / "html" / "manifest.json"
+    payload = json.loads(manifest_path.read_text(encoding="utf-8"))
+    assert payload["reading_order"] == ["chapter-001", "page-001"]
+
+
+def test_docx_extra_supports_repo_owned_docx_smoke(tmp_path: Path):
+    if sys.version_info >= (3, 13):
+        pytest.skip("Maintained DOCX runtime smoke is validated on Python 3.11/3.12.")
+
+    venv_dir = tmp_path / "venv"
+    venv.EnvBuilder(with_pip=True, system_site_packages=False).create(venv_dir)
+    python_bin = _venv_bin(venv_dir, "python")
+    output_root = tmp_path / "runs"
+    run_id = "venv-docx-smoke"
+    run_dir = output_root / run_id
+
+    install = subprocess.run(
+        [
+            str(python_bin),
+            "-m",
+            "pip",
+            "install",
+            "--disable-pip-version-check",
+            f"{REPO_ROOT}[driver,docx]",
+        ],
+        cwd=str(REPO_ROOT),
+        stdout=subprocess.PIPE,
+        stderr=subprocess.STDOUT,
+        text=True,
+    )
+    assert install.returncode == 0, install.stdout
+
+    smoke = subprocess.run(
+        [
+            str(python_bin),
+            "driver.py",
+            "--recipe",
+            "configs/recipes/recipe-docx-html-mvp.yaml",
+            "--input-docx",
+            "testdata/docx-mini.docx",
+            "--run-id",
+            run_id,
+            "--allow-run-id-reuse",
+            "--force",
+            "--output-dir",
+            str(output_root),
+        ],
+        cwd=str(REPO_ROOT),
+        stdout=subprocess.PIPE,
+        stderr=subprocess.STDOUT,
+        text=True,
+    )
+    assert smoke.returncode == 0, smoke.stdout
+
+    _validate_bundle_outputs(python_bin, run_dir)
+
     manifest_path = run_dir / "output" / "html" / "manifest.json"
     provenance_path = run_dir / "output" / "html" / "provenance" / "blocks.jsonl"
-    assert manifest_path.exists(), smoke.stdout
-    assert provenance_path.exists(), smoke.stdout
+    manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+    blocks = [
+        json.loads(line)
+        for line in provenance_path.read_text(encoding="utf-8").splitlines()
+        if line.strip()
+    ]
 
-    manifest_validation = subprocess.run(
-        [
-            str(python_bin),
-            "validate_artifact.py",
-            "--schema",
-            "doc_web_bundle_manifest_v1",
-            "--file",
-            str(manifest_path),
-        ],
-        cwd=str(REPO_ROOT),
-        stdout=subprocess.PIPE,
-        stderr=subprocess.STDOUT,
-        text=True,
-    )
-    assert manifest_validation.returncode == 0, manifest_validation.stdout
-
-    provenance_validation = subprocess.run(
-        [
-            str(python_bin),
-            "validate_artifact.py",
-            "--schema",
-            "doc_web_provenance_block_v1",
-            "--file",
-            str(provenance_path),
-        ],
-        cwd=str(REPO_ROOT),
-        stdout=subprocess.PIPE,
-        stderr=subprocess.STDOUT,
-        text=True,
-    )
-    assert provenance_validation.returncode == 0, provenance_validation.stdout
+    assert manifest["reading_order"] == ["chapter-001", "chapter-002"]
+    assert blocks
+    assert all(block.get("source_page_number") is None for block in blocks)

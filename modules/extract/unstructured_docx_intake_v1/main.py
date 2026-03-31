@@ -31,7 +31,10 @@ def partition_docx_with_unstructured(
     except ImportError as e:
         raise SystemExit(
             "Unstructured DOCX support is not installed. "
-            f"Run: pip install -r requirements.txt\n{e}"
+            "Run one of:\n"
+            "  python -m pip install '.[driver,docx]'\n"
+            "  python -m pip install -r requirements.txt\n"
+            f"{e}"
         )
 
     kwargs = {

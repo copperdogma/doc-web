@@ -27,6 +27,9 @@ doc-web contract --json
 
 # Repo-owned driver smoke lanes from this checkout
 python -m pip install '.[driver]'
+
+# Maintained DOCX lane from this checkout
+python -m pip install '.[driver,docx]'
 ```
 
 The contract preflight returns:
@@ -35,11 +38,16 @@ The contract preflight returns:
 - required Python version
 - supported bundle schema versions
 - a schema fingerprint Dossier can use to block incompatible upgrades
+- explicit compatibility-policy guidance for interpreting those fields
 
 The `driver` extra keeps the base package small while making the repo-owned
 smoke lanes installable. It covers the maintained proof lanes in this README
 and the runbook that need YAML parsing plus HTML bundle building, without
 claiming that the base package alone can run `driver.py`.
+
+The `docx` extra adds the narrow DOCX partition dependency needed by the
+maintained DOCX recipe without turning the default `driver` install into the
+full OCR/runtime stack.
 
 The recommended downstream operating model mirrors Storybook's pinned-Dossier
 pattern:
@@ -90,12 +98,25 @@ install and add the non-Python runtime prerequisites up front:
 - Docker available on `PATH`
 - `pdftotext` available on `PATH`
 
+For the maintained DOCX proof lane, install the explicit DOCX extra:
+
+```bash
+python -m pip install '.[driver,docx]'
+python driver.py \
+  --recipe configs/recipes/recipe-docx-html-mvp.yaml \
+  --input-docx testdata/docx-mini.docx \
+  --run-id <run_id> \
+  --allow-run-id-reuse \
+  --force
+```
+
 ## Maintained Intake Recipes
 
 The active maintained entry surfaces are explicit recipes, not hidden routing:
 
 - `configs/recipes/recipe-images-ocr-html-mvp.yaml` for image-directory scans
 - `configs/recipes/recipe-pdf-ocr-html-mvp.yaml` for generic PDF-backed intake
+- `configs/recipes/recipe-docx-html-mvp.yaml` for the maintained DOCX fixture-backed lane
 - `configs/recipes/recipe-onward-images-html-mvp.yaml` for the image-backed Onward genealogy lane
 - `configs/recipes/recipe-onward-pdf-html-mvp.yaml` for the PDF-backed Onward genealogy lane
 
@@ -149,8 +170,9 @@ The active repo path is format-aware intake plus structural website output for
 ### Dossier-Facing Install Shapes
 - `python -m pip install .` supports the machine-readable contract preflight only.
 - `python -m pip install '.[driver]'` supports the repo-owned `driver.py` smoke lanes documented in this README and [docs/RUNBOOK.md](docs/RUNBOOK.md).
+- `python -m pip install '.[driver,docx]'` supports the maintained DOCX lane from this checkout.
 - The maintained born-digital non-TOC lane also requires Docker and `pdftotext`.
-- OCR-heavy recipes still rely on the fuller repo runtime from `requirements.txt`.
+- The fuller repo runtime from `requirements.txt` now also includes DOCX support, but it is currently validated on Python 3.11/3.12 because the pinned `unstructured==0.16.9` line does not resolve on Python 3.14.
 
 ### API Keys
 Set the following environment variables:

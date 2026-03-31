@@ -57,7 +57,9 @@ Before Dossier accepts a bundle, it should enforce all of the following:
 - every provenance row `block_id` exists as a matching DOM `id` in the referenced
   HTML file.
 - every provenance row contains at least:
-  `block_id`, `entry_id`, `block_kind`, `source_page_number`, and `source_element_ids`.
+  `block_id`, `entry_id`, `block_kind`, and `source_element_ids`.
+- `source_page_number` remains required only for page-native sources that can
+  honestly provide one; pageless sources such as DOCX may leave it `null`.
 - every bundle-local image reference resolves inside `images/`.
 
 Upgrade must be blocked if any of the following occur:
@@ -67,7 +69,8 @@ Upgrade must be blocked if any of the following occur:
 - required files are missing
 - manifest reading order drifts from HTML navigation assumptions
 - `block_id` anchors disappear from the HTML
-- provenance rows no longer identify source page and source element lineage
+- provenance rows no longer identify source element lineage, or stop identifying
+  source page for page-native sources that previously exposed it
 - asset paths become absolute or escape the bundle root
 
 ## Versioning Expectations
@@ -98,9 +101,17 @@ The payload includes:
 - `requires_python`
 - `supported_bundle_schema_versions`
 - `schema_fingerprint`
+- `compatibility_policy`
 
-Treat a changed `schema_fingerprint` or changed supported schema version as an
-upgrade block until the Dossier adapter explicitly accepts the change.
+Compatibility policy:
+
+- `contract_version` is a coarse runtime-boundary family marker, not a
+  stand-alone schema compatibility key.
+- Treat a changed `schema_fingerprint` or changed supported schema version as an
+  upgrade block until the Dossier adapter explicitly accepts the change.
+- Treat a changed `contract_version` as a broader boundary change, but do not
+  treat an unchanged `contract_version` as proof that the manifest/provenance
+  contract is unchanged.
 
 ## Recommended Pinned Consumer Shape
 

@@ -34,6 +34,21 @@ Explicitly out of scope for v1:
 - sentence-level or token-level provenance by default
 - codex-forge-internal planning metadata as part of the public runtime boundary
 
+## Compatibility Signaling
+
+The bundle/provenance contract is exposed to downstream consumers through
+`doc-web contract --json`.
+
+Compatibility policy for that payload:
+
+- `contract_version` is the coarse runtime-boundary family marker for `doc-web`
+  v1.
+- `supported_bundle_schema_versions` and `schema_fingerprint` are the
+  consumer-facing compatibility gates for the manifest/provenance contract.
+- A stable `contract_version` does not guarantee a stable schema fingerprint.
+  Downstream adopters must treat fingerprint or supported-schema drift as a
+  review-and-accept boundary even when `contract_version` is unchanged.
+
 ## Bundle Layout
 
 The first contract keeps a flat bundle root:
