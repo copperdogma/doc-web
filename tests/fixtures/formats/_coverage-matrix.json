@@ -234,19 +234,32 @@
       "description": "Microsoft Word documents (.docx)",
       "pipeline_recipe": "recipe-docx-html-mvp.yaml",
       "intake_module": "unstructured_docx_intake_v1 → docx_elements_to_bundle_v1",
-      "complexity": ["simple-prose", "tables", "illustrations"],
+      "complexity": ["simple-prose", "simple-lists", "tables", "manual-page-breaks"],
       "fixtures": [
         {
           "id": "docx-mini",
           "source": "testdata/docx-mini.docx",
           "pages": null,
           "notes": "Repo-owned DOCX fixture generated from checked-in source JSON. Story 172 proved the maintained lane on the narrow supported slice: document title, heading-based sections, prose, simple bullet lists, and a simple table. Provenance is anchor-based rather than page-based."
+        },
+        {
+          "id": "docx-structured",
+          "source": "testdata/docx-structured.docx",
+          "pages": null,
+          "notes": "Repo-owned widened DOCX fixture generated from checked-in source JSON. Story 175 re-measures the maintained lane on a broader but still claimed slice: longer prose, repeated heading-based sections, simple bullet lists, and repeated simple tables."
+        },
+        {
+          "id": "docx-page-break",
+          "source": "testdata/docx-page-break.docx",
+          "pages": null,
+          "notes": "Repo-owned boundary DOCX fixture with a manual page break between sections. Story 175 uses it as observed-only evidence: the lane still builds final bundle/provenance outputs, but page breaks are not yet promoted into trustworthy page-linked semantics."
         }
       ],
       "scores": null,
       "known_gaps": [
-        "Current proof is only a single repo-owned DOCX fixture on a narrow structure slice.",
+        "Current proof is now three repo-owned DOCX fixtures, but the claimed maintained slice is still narrow: heading-based sections, longer prose, simple bullet lists, and simple tables.",
         "The maintained lane does not yet claim tracked changes, comments, text boxes, embedded charts, or other advanced Word features.",
+        "Explicit DOCX page breaks remain observed-only; the maintained lane still uses stable source element ids instead of page-linked open-original behavior.",
         "Pageless DOCX provenance currently relies on stable source element ids rather than page-linked open-original behavior."
       ],
       "graduated": false

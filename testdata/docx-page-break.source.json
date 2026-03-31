@@ -1,0 +1,22 @@
+{
+  "title": "DOCX Page Break Fixture",
+  "sections": [
+    {
+      "heading": "Front Sheet",
+      "paragraphs": [
+        "This boundary fixture introduces an explicit Word-authored page break between sections so the maintained lane can prove that it still emits stable block anchors and final bundle output without pretending that pageless DOCX has trustworthy page-linked provenance."
+      ],
+      "page_break_after": true
+    },
+    {
+      "heading": "Second Sheet",
+      "paragraphs": [
+        "The section after the manual page break remains reviewable in the final DOCX bundle, but the break itself is still an observed authoring signal rather than a maintained open-original page contract."
+      ],
+      "bullets": [
+        "Observed: final HTML and provenance artifacts still build cleanly.",
+        "Not yet claimed: page-level provenance derived from DOCX page breaks alone."
+      ]
+    }
+  ]
+}

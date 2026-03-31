@@ -4,6 +4,7 @@ import sys
 import uuid
 from pathlib import Path
 
+import pytest
 import yaml
 
 from schemas import DocWebBundleManifest, DocWebProvenanceBlock
@@ -11,6 +12,41 @@ from schemas import DocWebBundleManifest, DocWebProvenanceBlock
 
 DOCX_RECIPE = "configs/recipes/recipe-docx-html-mvp.yaml"
 DOCX_FIXTURE = "testdata/docx-mini.docx"
+DOCX_CASES = (
+    {
+        "fixture": "testdata/docx-mini.docx",
+        "title": "DOCX Mini Fixture",
+        "reading_order": ["chapter-001", "chapter-002"],
+        "expected_entry_count": 2,
+        "expected_provenance_rows": 7,
+        "required_html_snippets": [
+            'id="blk-chapter-001-0003"',
+            '<table id="blk-chapter-001-0005">',
+        ],
+    },
+    {
+        "fixture": "testdata/docx-structured.docx",
+        "title": "DOCX Structured Fixture",
+        "reading_order": ["chapter-001", "chapter-002", "chapter-003"],
+        "expected_entry_count": 3,
+        "expected_provenance_rows": 15,
+        "required_html_snippets": [
+            'id="blk-chapter-001-0002"',
+            '<table id="blk-chapter-003-0006">',
+        ],
+    },
+    {
+        "fixture": "testdata/docx-page-break.docx",
+        "title": "DOCX Page Break Fixture",
+        "reading_order": ["chapter-001", "chapter-002"],
+        "expected_entry_count": 2,
+        "expected_provenance_rows": 6,
+        "required_html_snippets": [
+            'id="blk-chapter-001-0002"',
+            'id="blk-chapter-002-0003"',
+        ],
+    },
+)
 
 
 def _load_jsonl(path: Path):
@@ -32,9 +68,11 @@ def test_docx_recipe_wiring():
     ]
 
 
-def test_docx_recipe_smoke(tmp_path: Path):
+@pytest.mark.parametrize("case", DOCX_CASES, ids=[case["title"] for case in DOCX_CASES])
+def test_docx_recipe_smoke(tmp_path: Path, case: dict[str, object]):
     run_id = f"docx-intake-smoke-{uuid.uuid4().hex[:8]}"
     run_dir = tmp_path / run_id
+    fixture = str(case["fixture"])
 
     result = subprocess.run(
         [
@@ -43,7 +81,7 @@ def test_docx_recipe_smoke(tmp_path: Path):
             "--recipe",
             DOCX_RECIPE,
             "--input-docx",
-            DOCX_FIXTURE,
+            fixture,
             "--run-id",
             run_id,
             "--output-dir",
@@ -68,14 +106,17 @@ def test_docx_recipe_smoke(tmp_path: Path):
     report = json.loads(report_path.read_text(encoding="utf-8"))
     manifest = DocWebBundleManifest(**json.loads(manifest_path.read_text(encoding="utf-8")))
     blocks = [DocWebProvenanceBlock(**row) for row in _load_jsonl(blocks_path)]
-    chapter_html = chapter_path.read_text(encoding="utf-8")
+    all_html = "\n".join(
+        (run_dir / "output" / "html" / entry.path).read_text(encoding="utf-8")
+        for entry in manifest.entries
+    )
 
-    assert report["entry_count"] == 2
-    assert report["provenance_row_count"] == 7
-    assert manifest.title == "DOCX Mini Fixture"
-    assert manifest.reading_order == ["chapter-001", "chapter-002"]
+    assert report["entry_count"] == case["expected_entry_count"]
+    assert report["provenance_row_count"] == case["expected_provenance_rows"]
+    assert manifest.title == case["title"]
+    assert manifest.reading_order == case["reading_order"]
     assert manifest.entries[0].source_pages == []
     assert all(block.source_page_number is None for block in blocks)
     assert all(block.source_element_ids for block in blocks)
-    assert 'id="blk-chapter-001-0003"' in chapter_html
-    assert '<table id="blk-chapter-001-0005">' in chapter_html
+    for snippet in case["required_html_snippets"]:
+        assert snippet in all_html

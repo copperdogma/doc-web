@@ -5,6 +5,8 @@
 - `flat-born-digital-mini.md` / `flat-born-digital-mini.pdf`: repo-owned flat born-digital prose packet with no TOC and no printed page numbers. Story 171 uses it to prove the maintained non-TOC born-digital PDF lane can emit a final `doc-web` bundle without relying only on local user assets.
 - `scanned-prose-mini.md` / `scanned-prose-mini.pdf`: original repo-owned prose source plus a generated image-only PDF fixture for `scanned-pdf-prose`. Story 167 uses it to prove maintained scanned-PDF entry, `page_image_v1` provenance, and a clean simple-prose OCR lane without relying on a shared local asset. This is passing evidence for the repo-owned simple-prose fixture, not a blanket claim about degraded or noisy scanned prose.
 - `docx-mini.source.json` / `docx-mini.docx`: repo-owned DOCX fixture generated from checked-in structured source data. Story 172 uses it to prove the first maintained DOCX lane on the narrow supported slice: document title, heading-based sections, prose, simple bullet lists, and a simple table. Provenance is block-anchor based rather than page-based because DOCX is pageless in this lane.
+- `docx-structured.source.json` / `docx-structured.docx`: repo-owned widened DOCX fixture for the currently claimed maintained slice. Story 175 uses it to prove the lane still holds on a broader heading-based document with longer prose, repeated simple lists, and repeated simple tables.
+- `docx-page-break.source.json` / `docx-page-break.docx`: repo-owned DOCX boundary fixture with an explicit manual page break between sections. Story 175 uses it to confirm the lane still builds clean final artifacts with pageless block provenance, while keeping page-break semantics outside the maintained claim.
 
 Regeneration:
 - PDF (requires `fpdf2`: `python -m pip install fpdf2` or use vendored `testdata/vendor`):  
@@ -51,6 +53,8 @@ Regeneration:
 - DOCX fixture:
   ```bash
   python testdata/generate_docx_fixture.py
+  python testdata/generate_docx_fixture.py --source testdata/docx-structured.source.json --output testdata/docx-structured.docx
+  python testdata/generate_docx_fixture.py --source testdata/docx-page-break.source.json --output testdata/docx-page-break.docx
   ```
 - Optional image-only verification:
   ```bash

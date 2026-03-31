@@ -177,6 +177,9 @@ This index tracks stories in `/docs/stories/` for the doc-forge pipeline.
 |||| 172 | Establish a Maintained DOCX Intake Lane | High | Done | /docs/stories/story-172-maintained-docx-intake-lane.md |
 |||| 173 | Harden `doc-web` After the First Dossier Adoption Trial | High | Done | /docs/stories/story-173-dossier-doc-web-adoption-hardening.md |
 |||| 174 | Harden Maintained DOCX Runtime Surface and Clarify `doc-web` Contract Compatibility Signaling | High | Done | /docs/stories/story-174-docx-runtime-surface-and-contract-compatibility-signaling.md |
+|||| 175 | Widen Maintained DOCX Proof and Decide Office Intake Sequencing | High | Done | /docs/stories/story-175-docx-proof-widening-and-office-sequencing.md |
+|||| 176 | Establish a Maintained XLSX Intake Lane | High | Draft | /docs/stories/story-176-maintained-xlsx-intake-lane.md |
+|||| 177 | Restore PPTX Runtime Substrate and Choose a Maintained Slide Intake Path | Medium | Draft | /docs/stories/story-177-pptx-runtime-substrate-and-slide-intake-path.md |
 
 ## Notes
 - Status "Done" reflects current working state in doc-forge. "To Do" items are planned next steps aligned with `docs/ideal.md`, `docs/spec.md`, and `docs/build-map.md`.

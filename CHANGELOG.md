@@ -1,3 +1,24 @@
+## [2026-03-31-01] - Widen maintained DOCX proof and split office follow-ups (Story 175)
+
+### Added
+- Added the repo-owned widened DOCX fixtures `testdata/docx-structured.docx` and `testdata/docx-page-break.docx` plus their checked-in source JSON files
+- Added explicit draft follow-up stories for the split office queue: `story-176` for `xlsx` and `story-177` for `pptx`
+
+### Changed
+- Expanded the DOCX fixture generator and recipe smoke coverage so the maintained lane now proves three repo-owned DOCX shapes instead of only `docx-mini`
+- Updated the build map, coverage matrix, testdata docs, and story records to keep the maintained DOCX claim honest: broader simple structure is in-bounds, explicit page-break semantics remain observed-only, and the remaining office work is now split instead of implied
+
+### Tested
+- `python -m pytest tests/test_docx_intake_recipe.py -q`
+- `python -m pytest tests/test_doc_web_cli_contract.py -q -k docx_extra_supports_repo_owned_docx_smoke`
+- `make lint`
+- `make test`
+- `python driver.py --recipe configs/recipes/recipe-docx-html-mvp.yaml --input-docx testdata/docx-mini.docx --run-id validate-story175-docx-mini-r1 --force`
+- `python driver.py --recipe configs/recipes/recipe-docx-html-mvp.yaml --input-docx testdata/docx-structured.docx --run-id validate-story175-docx-structured-r1 --force`
+- `python driver.py --recipe configs/recipes/recipe-docx-html-mvp.yaml --input-docx testdata/docx-page-break.docx --run-id validate-story175-docx-page-break-r1 --force`
+- `python validate_artifact.py --schema doc_web_bundle_manifest_v1 --file output/runs/validate-story175-docx-structured-r1/output/html/manifest.json`
+- `python validate_artifact.py --schema doc_web_provenance_block_v1 --file output/runs/validate-story175-docx-page-break-r1/output/html/provenance/blocks.jsonl`
+
 ## [2026-03-30-02] - Harden DOCX runtime surface and contract signaling (Story 174)
 
 ### Added

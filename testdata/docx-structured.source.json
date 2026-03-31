@@ -1,0 +1,50 @@
+{
+  "title": "DOCX Structured Fixture",
+  "sections": [
+    {
+      "heading": "Household Overview",
+      "paragraphs": [
+        "This wider DOCX fixture keeps the maintained claim inside heading-based sections, longer prose blocks, simple bullet lists, and straightforward tables so the lane is measured on more than one narrow content arrangement."
+      ],
+      "bullets": [
+        "Primary household: Ada, Lin, and June",
+        "Archive region: Foothills County",
+        "Review status: ready for maintained-lane proof"
+      ],
+      "table": {
+        "headers": ["Name", "Role", "Focus"],
+        "rows": [
+          ["Ada", "Research lead", "Household interviews"],
+          ["Lin", "Archivist", "Photo indexing"],
+          ["June", "Editor", "Narrative cleanup"]
+        ]
+      }
+    },
+    {
+      "heading": "Archive Notes",
+      "paragraphs": [
+        "A second section confirms that the DOCX lane still preserves prose after a table and that block-level provenance remains stable across a different narrative shape than the original mini fixture.",
+        "The maintained claim here is intentionally modest: repeated section headings, longer paragraphs, simple list items, and reviewable table HTML without invented page numbers."
+      ]
+    },
+    {
+      "heading": "Processing Checks",
+      "paragraphs": [
+        "The final section adds a second simple table so the widened proof checks that table handling is not a one-off property of the original fixture."
+      ],
+      "bullets": [
+        "Manifest should list three chapter entries.",
+        "Provenance rows should keep non-empty source element ids.",
+        "Final bundle should remain pageless."
+      ],
+      "table": {
+        "headers": ["Check", "Expected"],
+        "rows": [
+          ["Reading order", "chapter-001, chapter-002, chapter-003"],
+          ["Source pages", "[] for every entry"],
+          ["Provenance", "block anchors only"]
+        ]
+      }
+    }
+  ]
+}
