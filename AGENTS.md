@@ -305,6 +305,7 @@ We use [promptfoo](https://www.promptfoo.dev/) for evaluating AI model/prompt qu
 - **promptfoo** installed globally: `npm install -g promptfoo` (v0.120.24+).
 - Shell sessions need nvm loaded: `source ~/.nvm/nvm.sh && nvm use 24`.
 - API keys: `OPENAI_API_KEY`, `ANTHROPIC_API_KEY`, and `GEMINI_API_KEY` must be set.
+- If you want a freshness delay for the global `promptfoo` install, configure it at the user level (`~/.npmrc`). npm added `min-release-age` in `11.10.0`; a repo-local file cannot reliably enforce it for global installs.
 
 ### Workspace Structure
 ```

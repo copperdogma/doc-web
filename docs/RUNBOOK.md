@@ -27,6 +27,19 @@ doc-web contract --json
 This is the machine-readable compatibility surface Dossier should check before
 accepting a new pinned `doc-web` version.
 
+If you want the repo's 7-day freshness gate on Python package resolution, run
+the same installs through the repo wrapper instead of raw `pip`:
+
+```bash
+./scripts/install_with_age_gate.py .
+./scripts/install_with_age_gate.py '.[driver]'
+./scripts/install_with_age_gate.py '.[driver,docx]'
+./scripts/install_with_age_gate.py -r requirements.txt
+```
+
+The wrapper prefers `uv pip install --exclude-newer ...` and falls back to
+`pip install --uploaded-prior-to ...` when your pip version supports it.
+
 If you also need to run the repo-owned `driver.py` proof lanes from this
 checkout, install the explicit driver extra first:
 

@@ -17,6 +17,10 @@ export ANTHROPIC_API_KEY=...
 export GEMINI_API_KEY=...
 ```
 
+If you want a freshness delay for the global `promptfoo` install, set it in your
+user-level npm config. npm added `min-release-age` in `11.10.0`, and this repo
+cannot enforce it for a global install from inside the checkout.
+
 ## Workspace Layout
 
 ```

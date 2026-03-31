@@ -167,6 +167,18 @@ The active repo path is format-aware intake plus structural website output for
   pip install --no-cache-dir -r requirements.txt
   ```
 
+### Supply-Chain Freshness Gate
+- `pyproject.toml` now sets `tool.uv.exclude-newer = "7 days"` for repo-local `uv` project workflows.
+- For the current pip-style install paths, use the repo-owned wrapper to reject packages published within the last 7 days:
+  ```bash
+  ./scripts/install_with_age_gate.py .
+  ./scripts/install_with_age_gate.py '.[driver]'
+  ./scripts/install_with_age_gate.py '.[driver,docx]'
+  ./scripts/install_with_age_gate.py -r requirements.txt
+  ```
+- The wrapper prefers `uv pip install --exclude-newer ...` and falls back to `pip install --uploaded-prior-to ...` when your pip supports it.
+- This is a delay-based mitigation, not a complete supply-chain defense. It does not replace lockfiles, dependency review, or artifact provenance checks.
+
 ### Dossier-Facing Install Shapes
 - `python -m pip install .` supports the machine-readable contract preflight only.
 - `python -m pip install '.[driver]'` supports the repo-owned `driver.py` smoke lanes documented in this README and [docs/RUNBOOK.md](docs/RUNBOOK.md).
@@ -193,6 +205,8 @@ If using the deprecated legacy pipeline with local OCR:
 make test
 make lint
 ```
+
+If you are installing or updating Python dependencies locally, prefer the age-gated wrapper above over raw `pip install` commands.
 
 ### Runtime Preflight
 ```bash

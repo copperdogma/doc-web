@@ -1,3 +1,17 @@
+## [2026-03-31-01] - Add dependency freshness gates for repo installs
+
+### Added
+- Added a repo-owned `scripts/install_with_age_gate.py` wrapper plus unit coverage so pip-style installs can reject package releases newer than 7 days
+
+### Changed
+- Added a project-level `tool.uv.exclude-newer = "7 days"` policy and updated the README/runbook to document the hardened install path
+- Clarified the benchmark/npm setup docs so the global `promptfoo` install only claims cooldown protection when the user's npm actually supports `min-release-age`
+
+### Tested
+- `python -m pytest tests/test_install_with_age_gate.py -q`
+- `python scripts/install_with_age_gate.py --dry-run .`
+- `python scripts/install_with_age_gate.py --dry-run -r requirements.txt`
+
 ## [2026-03-30-02] - Harden DOCX runtime surface and contract signaling (Story 174)
 
 ### Added

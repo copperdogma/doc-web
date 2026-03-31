@@ -34,3 +34,6 @@ py-modules = ["schemas"]
 
 [tool.setuptools.dynamic]
 version = { attr = "doc_web.__version__" }
+
+[tool.uv]
+exclude-newer = "7 days"
