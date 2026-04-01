@@ -241,3 +241,66 @@ def test_docx_extra_supports_repo_owned_docx_smoke(tmp_path: Path):
     assert manifest["reading_order"] == ["chapter-001", "chapter-002"]
     assert blocks
     assert all(block.get("source_page_number") is None for block in blocks)
+
+
+def test_xlsx_extra_supports_repo_owned_xlsx_smoke(tmp_path: Path):
+    venv_dir = tmp_path / "venv"
+    venv.EnvBuilder(with_pip=True, system_site_packages=False).create(venv_dir)
+    python_bin = _venv_bin(venv_dir, "python")
+    output_root = tmp_path / "runs"
+    run_id = "venv-xlsx-smoke"
+    run_dir = output_root / run_id
+
+    install = subprocess.run(
+        [
+            str(python_bin),
+            "-m",
+            "pip",
+            "install",
+            "--disable-pip-version-check",
+            f"{REPO_ROOT}[driver,xlsx]",
+        ],
+        cwd=str(REPO_ROOT),
+        stdout=subprocess.PIPE,
+        stderr=subprocess.STDOUT,
+        text=True,
+    )
+    assert install.returncode == 0, install.stdout
+
+    smoke = subprocess.run(
+        [
+            str(python_bin),
+            "driver.py",
+            "--recipe",
+            "configs/recipes/recipe-xlsx-html-mvp.yaml",
+            "--input-xlsx",
+            "testdata/xlsx-mini.xlsx",
+            "--run-id",
+            run_id,
+            "--allow-run-id-reuse",
+            "--force",
+            "--output-dir",
+            str(output_root),
+        ],
+        cwd=str(REPO_ROOT),
+        stdout=subprocess.PIPE,
+        stderr=subprocess.STDOUT,
+        text=True,
+    )
+    assert smoke.returncode == 0, smoke.stdout
+
+    _validate_bundle_outputs(python_bin, run_dir)
+
+    manifest_path = run_dir / "output" / "html" / "manifest.json"
+    provenance_path = run_dir / "output" / "html" / "provenance" / "blocks.jsonl"
+    manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+    blocks = [
+        json.loads(line)
+        for line in provenance_path.read_text(encoding="utf-8").splitlines()
+        if line.strip()
+    ]
+
+    assert manifest["reading_order"] == ["page-001", "page-002"]
+    assert [entry["title"] for entry in manifest["entries"]] == ["Roster", "Visits"]
+    assert blocks
+    assert all(block.get("source_page_number") is None for block in blocks)

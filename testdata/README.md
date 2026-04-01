@@ -4,7 +4,9 @@
 - Story 157 uses `tbotb-mini.pdf` as the repo-owned maintained PDF-entry smoke fixture. It proves PDF-backed recipe wiring and extractor provenance, but it is not evidence that `scanned-pdf-prose` or native `born-digital-pdf` support is complete.
 - `flat-born-digital-mini.md` / `flat-born-digital-mini.pdf`: repo-owned flat born-digital prose packet with no TOC and no printed page numbers. Story 171 uses it to prove the maintained non-TOC born-digital PDF lane can emit a final `doc-web` bundle without relying only on local user assets.
 - `scanned-prose-mini.md` / `scanned-prose-mini.pdf`: original repo-owned prose source plus a generated image-only PDF fixture for `scanned-pdf-prose`. Story 167 uses it to prove maintained scanned-PDF entry, `page_image_v1` provenance, and a clean simple-prose OCR lane without relying on a shared local asset. This is passing evidence for the repo-owned simple-prose fixture, not a blanket claim about degraded or noisy scanned prose.
-- `docx-mini.source.json` / `docx-mini.docx`: repo-owned DOCX fixture generated from checked-in structured source data. Story 172 uses it to prove the first maintained DOCX lane on the narrow supported slice: document title, heading-based sections, prose, simple bullet lists, and a simple table. Provenance is block-anchor based rather than page-based because DOCX is pageless in this lane.
+- `docx-mini.source.json` / `docx-mini.docx`, `docx-sections-mini.source.json` / `docx-sections-mini.docx`, and `docx-nested-mini.source.json` / `docx-nested-mini.docx`: repo-owned DOCX fixture set generated from checked-in structured source data. Story 175 widens the maintained DOCX lane to three repo-owned fixtures on the supported slice: heading-based sections, prose, nested subheadings, simple bullet lists, and a simple table. Provenance remains block-anchor based rather than page-based because DOCX is pageless in this lane.
+- `xlsx-mini.source.json` / `xlsx-mini.xlsx`: repo-owned XLSX workbook fixture with two simple table sheets (`Roster`, `Visits`). Story 175 uses it to prove the first maintained XLSX lane on the narrow supported slice: sheet-named entries, HTML table preservation, and anchor-based provenance with no fabricated page numbers.
+- `pptx-mini.md` / `pptx-mini.pptx`: reproducible PPTX seam-probe fixture generated from checked-in markdown via `pandoc`. Story 175 uses it to make the current PPTX defer explicit: the probe file is repo-owned, but `unstructured.partition.pptx` still fails in this checkout because `python-pptx` is not installed.
 
 Regeneration:
 - PDF (requires `fpdf2`: `python -m pip install fpdf2` or use vendored `testdata/vendor`):  
@@ -48,9 +50,19 @@ Regeneration:
   ```bash
   python testdata/generate_scanned_prose_fixture.py
   ```
-- DOCX fixture:
+- DOCX fixtures:
   ```bash
   python testdata/generate_docx_fixture.py
+  python testdata/generate_docx_fixture.py --source testdata/docx-sections-mini.source.json --output testdata/docx-sections-mini.docx
+  python testdata/generate_docx_fixture.py --source testdata/docx-nested-mini.source.json --output testdata/docx-nested-mini.docx
+  ```
+- XLSX fixture:
+  ```bash
+  python testdata/generate_xlsx_fixture.py
+  ```
+- PPTX probe fixture (requires `pandoc`):
+  ```bash
+  python testdata/generate_pptx_fixture.py
   ```
 - Optional image-only verification:
   ```bash

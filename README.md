@@ -1,5 +1,5 @@
 # doc-web
-AI-first runtime for turning scanned books, PDFs, and images into structural, provenance-rich HTML website bundles for Dossier and related downstream consumers.
+AI-first runtime for turning scanned books, PDFs, office documents, and images into structural, provenance-rich HTML website bundles for Dossier and related downstream consumers.
 
 ## Current Role
 - Own the structural website contract: semantic HTML pages, reading order, minimal navigation, manifests, and provenance sidecars.
@@ -18,7 +18,7 @@ AI-first runtime for turning scanned books, PDFs, and images into structural, pr
 
 ## Pinned Consumer Surface
 
-`doc-web` now exposes two explicit pinned-runtime surfaces Dossier can depend on:
+`doc-web` now exposes explicit pinned-runtime install shapes Dossier can depend on:
 
 ```bash
 # Contract preflight only
@@ -30,6 +30,9 @@ python -m pip install '.[driver]'
 
 # Maintained DOCX lane from this checkout
 python -m pip install '.[driver,docx]'
+
+# Maintained XLSX lane from this checkout
+python -m pip install '.[driver,xlsx]'
 ```
 
 The contract preflight returns:
@@ -45,9 +48,9 @@ smoke lanes installable. It covers the maintained proof lanes in this README
 and the runbook that need YAML parsing plus HTML bundle building, without
 claiming that the base package alone can run `driver.py`.
 
-The `docx` extra adds the narrow DOCX partition dependency needed by the
-maintained DOCX recipe without turning the default `driver` install into the
-full OCR/runtime stack.
+The `docx` and `xlsx` extras add the narrow office-document partition
+dependencies needed by the maintained office-native recipes without turning the
+default `driver` install into the full OCR/runtime stack.
 
 The recommended downstream operating model mirrors Storybook's pinned-Dossier
 pattern:
@@ -110,6 +113,22 @@ python driver.py \
   --force
 ```
 
+Story 175 widened the DOCX proof surface to three repo-owned fixtures on the
+supported slice: `testdata/docx-mini.docx`,
+`testdata/docx-sections-mini.docx`, and `testdata/docx-nested-mini.docx`.
+
+For the maintained XLSX proof lane, install the explicit XLSX extra:
+
+```bash
+python -m pip install '.[driver,xlsx]'
+python driver.py \
+  --recipe configs/recipes/recipe-xlsx-html-mvp.yaml \
+  --input-xlsx testdata/xlsx-mini.xlsx \
+  --run-id <run_id> \
+  --allow-run-id-reuse \
+  --force
+```
+
 ## Maintained Intake Recipes
 
 The active maintained entry surfaces are explicit recipes, not hidden routing:
@@ -117,6 +136,7 @@ The active maintained entry surfaces are explicit recipes, not hidden routing:
 - `configs/recipes/recipe-images-ocr-html-mvp.yaml` for image-directory scans
 - `configs/recipes/recipe-pdf-ocr-html-mvp.yaml` for generic PDF-backed intake
 - `configs/recipes/recipe-docx-html-mvp.yaml` for the maintained DOCX fixture-backed lane
+- `configs/recipes/recipe-xlsx-html-mvp.yaml` for the maintained XLSX workbook-table lane
 - `configs/recipes/recipe-onward-images-html-mvp.yaml` for the image-backed Onward genealogy lane
 - `configs/recipes/recipe-onward-pdf-html-mvp.yaml` for the PDF-backed Onward genealogy lane
 
@@ -174,6 +194,7 @@ The active repo path is format-aware intake plus structural website output for
   ./scripts/install_with_age_gate.py .
   ./scripts/install_with_age_gate.py '.[driver]'
   ./scripts/install_with_age_gate.py '.[driver,docx]'
+  ./scripts/install_with_age_gate.py '.[driver,xlsx]'
   ./scripts/install_with_age_gate.py -r requirements.txt
   ```
 - The wrapper prefers `uv pip install --exclude-newer ...` and falls back to `pip install --uploaded-prior-to ...` when your pip supports it.
@@ -183,8 +204,9 @@ The active repo path is format-aware intake plus structural website output for
 - `python -m pip install .` supports the machine-readable contract preflight only.
 - `python -m pip install '.[driver]'` supports the repo-owned `driver.py` smoke lanes documented in this README and [docs/RUNBOOK.md](docs/RUNBOOK.md).
 - `python -m pip install '.[driver,docx]'` supports the maintained DOCX lane from this checkout.
+- `python -m pip install '.[driver,xlsx]'` supports the maintained XLSX lane from this checkout.
 - The maintained born-digital non-TOC lane also requires Docker and `pdftotext`.
-- The fuller repo runtime from `requirements.txt` now also includes DOCX support, but it is currently validated on Python 3.11/3.12 because the pinned `unstructured==0.16.9` line does not resolve on Python 3.14.
+- The fuller repo runtime from `requirements.txt` now also includes DOCX and XLSX support, but it is currently validated on Python 3.11/3.12 because the pinned `unstructured==0.16.9` line does not resolve on Python 3.14.
 
 ### API Keys
 Set the following environment variables:

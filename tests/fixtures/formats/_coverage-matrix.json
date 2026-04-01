@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "generated": "2026-03-29",
+  "generated": "2026-04-01",
   "description": "Format coverage matrix tracking which input formats doc-forge can convert, how well, and what test fixtures exist. Agents query this to find untested formats and prioritize work.",
   "statuses": {
     "untested": "Format identified but no test fixtures or pipeline support",
@@ -230,7 +230,7 @@
     {
       "id": "docx",
       "format_family": "docx",
-      "status": "has-fixture",
+      "status": "passing",
       "description": "Microsoft Word documents (.docx)",
       "pipeline_recipe": "recipe-docx-html-mvp.yaml",
       "intake_module": "unstructured_docx_intake_v1 → docx_elements_to_bundle_v1",
@@ -240,12 +240,24 @@
           "id": "docx-mini",
           "source": "testdata/docx-mini.docx",
           "pages": null,
-          "notes": "Repo-owned DOCX fixture generated from checked-in source JSON. Story 172 proved the maintained lane on the narrow supported slice: document title, heading-based sections, prose, simple bullet lists, and a simple table. Provenance is anchor-based rather than page-based."
+          "notes": "Repo-owned DOCX fixture generated from checked-in source JSON. Story 172 proved the first maintained lane; Story 175 re-verified it under the widened three-fixture proof surface."
+        },
+        {
+          "id": "docx-sections-mini",
+          "source": "testdata/docx-sections-mini.docx",
+          "pages": null,
+          "notes": "Repo-owned DOCX fixture with simple multi-section prose that previously surfaced false chapter splits when Unstructured promoted sentence-like body text to top-level `Title`."
+        },
+        {
+          "id": "docx-nested-mini",
+          "source": "testdata/docx-nested-mini.docx",
+          "pages": null,
+          "notes": "Repo-owned DOCX fixture with nested subheadings plus bullets. Story 175 used it to prove the widened maintained slice can keep nested heading content inside the parent chapter rather than inventing extra chapters."
         }
       ],
       "scores": null,
       "known_gaps": [
-        "Current proof is only a single repo-owned DOCX fixture on a narrow structure slice.",
+        "Passing evidence is still bounded to the supported slice reviewed in Story 175: heading-based sections, prose, nested subheadings, simple bullet lists, and a simple table.",
         "The maintained lane does not yet claim tracked changes, comments, text boxes, embedded charts, or other advanced Word features.",
         "Pageless DOCX provenance currently relies on stable source element ids rather than page-linked open-original behavior."
       ],
@@ -254,27 +266,49 @@
     {
       "id": "xlsx",
       "format_family": "xlsx",
-      "status": "untested",
+      "status": "has-fixture",
       "description": "Microsoft Excel spreadsheets (.xlsx)",
-      "pipeline_recipe": null,
-      "intake_module": null,
+      "pipeline_recipe": "recipe-xlsx-html-mvp.yaml",
+      "intake_module": "unstructured_xlsx_intake_v1 → xlsx_elements_to_bundle_v1",
       "complexity": ["tables"],
-      "fixtures": [],
+      "fixtures": [
+        {
+          "id": "xlsx-mini",
+          "source": "testdata/xlsx-mini.xlsx",
+          "pages": null,
+          "notes": "Repo-owned XLSX workbook generated from checked-in source JSON. Story 175 used it to prove the first maintained XLSX slice: simple table sheets become one HTML page per sheet with anchor-based provenance."
+        }
+      ],
       "scores": null,
-      "known_gaps": [],
+      "known_gaps": [
+        "Current proof is only one repo-owned workbook on the narrow simple-table slice.",
+        "The maintained lane does not yet claim formulas, charts, merged cells, images, comments, or cell-level open-original behavior.",
+        "Workbook provenance currently relies on stable source element ids and sheet-named entries rather than cell-address anchors."
+      ],
       "graduated": false
     },
     {
       "id": "pptx",
       "format_family": "pptx",
-      "status": "untested",
+      "status": "has-fixture",
       "description": "Microsoft PowerPoint presentations (.pptx)",
       "pipeline_recipe": null,
       "intake_module": null,
       "complexity": ["mixed-layout", "illustrations"],
-      "fixtures": [],
+      "fixtures": [
+        {
+          "id": "pptx-mini",
+          "source": "testdata/pptx-mini.pptx",
+          "pages": null,
+          "notes": "Reproducible PPTX seam-probe fixture generated from checked-in markdown via `pandoc`. Story 175 used it to make the current PPTX runtime block explicit."
+        }
+      ],
       "scores": null,
-      "known_gaps": [],
+      "known_gaps": [
+        "The local PPTX seam is still blocked in this checkout: `unstructured.partition.pptx` fails on missing `python-pptx`.",
+        "No maintained PPTX recipe or provenance mapping exists yet.",
+        "Slide reading order, mixed-layout ownership, speaker notes, and embedded media remain unproven."
+      ],
       "graduated": false
     },
     {

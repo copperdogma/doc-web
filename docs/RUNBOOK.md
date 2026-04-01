@@ -34,6 +34,7 @@ the same installs through the repo wrapper instead of raw `pip`:
 ./scripts/install_with_age_gate.py .
 ./scripts/install_with_age_gate.py '.[driver]'
 ./scripts/install_with_age_gate.py '.[driver,docx]'
+./scripts/install_with_age_gate.py '.[driver,xlsx]'
 ./scripts/install_with_age_gate.py -r requirements.txt
 ```
 
@@ -57,7 +58,13 @@ For the maintained DOCX lane, add the explicit DOCX extra:
 python -m pip install '.[driver,docx]'
 ```
 
-The fuller repo runtime from `requirements.txt` also now includes DOCX support,
+For the maintained XLSX lane, add the explicit XLSX extra:
+
+```bash
+python -m pip install '.[driver,xlsx]'
+```
+
+The fuller repo runtime from `requirements.txt` also now includes DOCX and XLSX support,
 but it is currently validated on Python 3.11/3.12 because the pinned
 `unstructured==0.16.9` dependency does not resolve on Python 3.14.
 
@@ -78,6 +85,7 @@ Active recipe examples:
 - `configs/recipes/recipe-images-ocr-html-mvp.yaml`
 - `configs/recipes/recipe-pdf-ocr-html-mvp.yaml`
 - `configs/recipes/recipe-docx-html-mvp.yaml`
+- `configs/recipes/recipe-xlsx-html-mvp.yaml`
 - `configs/recipes/recipe-onward-images-html-mvp.yaml`
 - `configs/recipes/recipe-onward-pdf-html-mvp.yaml`
 - `configs/recipes/onward-genealogy-build-regression.yaml` (artifact-reuse path; requires the referenced Story 140 / 143 artifacts under `output/`)
@@ -188,7 +196,7 @@ Notes:
 
 Use this when you need a cheap real-run proof that the maintained DOCX lane
 still emits a final `doc-web` bundle plus pageless block provenance from the
-checked-in DOCX fixture:
+checked-in DOCX fixtures:
 
 ```bash
 python -m pip install '.[driver,docx]'
@@ -205,6 +213,13 @@ python validate_artifact.py \
   --file output/runs/<run_id>/output/html/provenance/blocks.jsonl
 ```
 
+Story 175 widened the maintained DOCX proof surface to three repo-owned
+fixtures on the same supported slice:
+
+- `testdata/docx-mini.docx`
+- `testdata/docx-sections-mini.docx`
+- `testdata/docx-nested-mini.docx`
+
 Expected bundle outputs:
 
 - `output/runs/<run_id>/01_unstructured_docx_intake_v1/elements.jsonl`
@@ -212,6 +227,41 @@ Expected bundle outputs:
 - `output/runs/<run_id>/output/html/index.html`
 - `output/runs/<run_id>/output/html/chapter-001.html`
 - `output/runs/<run_id>/output/html/chapter-002.html`
+- `output/runs/<run_id>/output/html/manifest.json`
+- `output/runs/<run_id>/output/html/provenance/blocks.jsonl`
+
+Alternative supported install shape for this lane:
+
+- `python -m pip install -r requirements.txt` on Python 3.11/3.12
+
+### Repo-Owned XLSX Intake Smoke
+
+Use this when you need a cheap real-run proof that the maintained XLSX lane
+still emits a final `doc-web` bundle plus sheet-anchored provenance from the
+checked-in workbook fixture:
+
+```bash
+python -m pip install '.[driver,xlsx]'
+python driver.py \
+  --recipe configs/recipes/recipe-xlsx-html-mvp.yaml \
+  --input-xlsx testdata/xlsx-mini.xlsx \
+  --run-id <run_id> \
+  --allow-run-id-reuse
+python validate_artifact.py \
+  --schema doc_web_bundle_manifest_v1 \
+  --file output/runs/<run_id>/output/html/manifest.json
+python validate_artifact.py \
+  --schema doc_web_provenance_block_v1 \
+  --file output/runs/<run_id>/output/html/provenance/blocks.jsonl
+```
+
+Expected bundle outputs:
+
+- `output/runs/<run_id>/01_unstructured_xlsx_intake_v1/elements.jsonl`
+- `output/runs/<run_id>/02_xlsx_elements_to_bundle_v1/xlsx_bundle_report.json`
+- `output/runs/<run_id>/output/html/index.html`
+- `output/runs/<run_id>/output/html/page-001.html`
+- `output/runs/<run_id>/output/html/page-002.html`
 - `output/runs/<run_id>/output/html/manifest.json`
 - `output/runs/<run_id>/output/html/provenance/blocks.jsonl`
 
@@ -253,7 +303,8 @@ scripts/run_driver_monitored.sh \
 | :--- | :--- |
 | `recipe-images-ocr-html-mvp.yaml` | Active structural HTML bundle path for image-directory inputs. |
 | `recipe-pdf-ocr-html-mvp.yaml` | Active structural HTML bundle path for generic PDF-backed inputs. |
-| `recipe-docx-html-mvp.yaml` | Maintained DOCX structural bundle path for the narrow checked-in heading/prose/list/table fixture slice. |
+| `recipe-docx-html-mvp.yaml` | Maintained DOCX structural bundle path for the repo-owned heading/prose/list/table slice, widened to three checked-in fixtures. |
+| `recipe-xlsx-html-mvp.yaml` | Maintained XLSX structural bundle path for simple workbook tables, with one HTML page per sheet and anchor-based provenance. |
 | `recipe-onward-images-html-mvp.yaml` | **Genealogy.** Specialized for *Onward* tables. |
 | `recipe-onward-pdf-html-mvp.yaml` | **Genealogy.** PDF-backed maintained Onward lane with the same downstream table-repair flow. |
 | `onward-genealogy-build-regression.yaml` | No-AI artifact-reuse regression path that rebuilds chapters and genealogy validation from accepted Onward artifacts already present under the shared `output/` root. |
@@ -271,6 +322,7 @@ Append these after `--` in the wrapper script.
 *   `--model <name>`: Global model override.
 *   `--input-pdf <path>`: Override `input.pdf` on maintained PDF-backed recipes.
 *   `--input-docx <path>`: Override `input.docx` on maintained DOCX-backed recipes.
+*   `--input-xlsx <path>`: Override `input.xlsx` on maintained XLSX-backed recipes.
 *   `--max-pages <N>`: Stop after N pages.
 *   `--start-from <stage>`: Resume point.
 *   `--end-at <stage>`: Halt point.

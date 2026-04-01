@@ -650,6 +650,8 @@ def build_command(entrypoint: str, params: Dict[str, Any], stage_conf: Dict[str,
                 cmd += ["--pdf", recipe_input["pdf"]]; flags_added.add("--pdf")
             if "docx" in recipe_input:
                 cmd += ["--docx", recipe_input["docx"]]; flags_added.add("--docx")
+            if "xlsx" in recipe_input:
+                cmd += ["--xlsx", recipe_input["xlsx"]]; flags_added.add("--xlsx")
             if "images" in recipe_input:
                 cmd += ["--images", recipe_input["images"]]; flags_added.add("--images")
             # Use module folder as outdir for intake/extract stages so artifacts go to module folder
@@ -674,6 +676,9 @@ def build_command(entrypoint: str, params: Dict[str, Any], stage_conf: Dict[str,
         if "docx" in recipe_input:
             cmd += ["--docx", recipe_input["docx"]]
             flags_added.add("--docx")
+        if "xlsx" in recipe_input:
+            cmd += ["--xlsx", recipe_input["xlsx"]]
+            flags_added.add("--xlsx")
         if "images" in recipe_input:
             cmd += ["--images", recipe_input["images"]]
             flags_added.add("--images")
@@ -1205,6 +1210,7 @@ def main():
     parser.add_argument("--output-dir", dest="output_dir_override", help="Override output_dir from recipe (useful for smoke runs / temp dirs)")
     parser.add_argument("--input-pdf", dest="input_pdf_override", help="Override input.pdf from recipe (useful for smoke fixtures)")
     parser.add_argument("--input-docx", dest="input_docx_override", help="Override input.docx from recipe (useful for DOCX smoke fixtures)")
+    parser.add_argument("--input-xlsx", dest="input_xlsx_override", help="Override input.xlsx from recipe (useful for XLSX smoke fixtures)")
     parser.add_argument("--start-from", dest="start_from", help="Start executing at this stage id (requires upstream artifacts present in state)")
     parser.add_argument("--keep-downstream", action="store_true",
                         help="When resuming with --start-from, keep downstream artifacts instead of invalidating them (not recommended)")
@@ -1223,6 +1229,7 @@ def main():
         args.settings = args.settings or config.settings
         args.input_pdf_override = args.input_pdf_override or config.input_pdf
         args.input_docx_override = args.input_docx_override or config.input_docx
+        args.input_xlsx_override = args.input_xlsx_override or config.input_xlsx
         args.run_id_override = args.run_id_override or config.run_id
         args.output_dir_override = args.output_dir_override or config.output_dir
         
@@ -1273,8 +1280,16 @@ def main():
         recipe.setdefault("input", {})
         recipe["input"].pop("pdf", None)
         recipe["input"].pop("images", None)
+        recipe["input"].pop("xlsx", None)
         recipe["input"].pop("text_glob", None)
         recipe["input"]["docx"] = args.input_docx_override
+    if args.input_xlsx_override:
+        recipe.setdefault("input", {})
+        recipe["input"].pop("pdf", None)
+        recipe["input"].pop("docx", None)
+        recipe["input"].pop("images", None)
+        recipe["input"].pop("text_glob", None)
+        recipe["input"]["xlsx"] = args.input_xlsx_override
 
     instr_conf = recipe.get("instrumentation", {}) or {}
     instrument_enabled = bool(instr_conf.get("enabled") or args.instrument)
@@ -1326,19 +1341,23 @@ def main():
     if (
         not input_conf.get("pdf")
         and not input_conf.get("docx")
+        and not input_conf.get("xlsx")
         and not input_conf.get("images")
         and not input_conf.get("text_glob")
         and not _roots_can_seed_without_recipe_input(recipe.get("stages") or [])
     ):
         # If we have no input from override AND no input from recipe, we fail.
         print("\n❌ ERROR: No input specified.", file=sys.stderr)
-        print("You must provide an input PDF, DOCX, images directory, or text glob via:", file=sys.stderr)
+        print("You must provide an input PDF, DOCX, XLSX, images directory, or text glob via:", file=sys.stderr)
         print("  - Configuration YAML (recommended): input_pdf: ...", file=sys.stderr)
         print("  - CLI Override: --input-pdf ...", file=sys.stderr)
         print("  - Configuration YAML (recommended): input_docx: ...", file=sys.stderr)
         print("  - CLI Override: --input-docx ...", file=sys.stderr)
+        print("  - Configuration YAML (recommended): input_xlsx: ...", file=sys.stderr)
+        print("  - CLI Override: --input-xlsx ...", file=sys.stderr)
         print("  - Recipe (deprecated): input:\n      pdf: ...", file=sys.stderr)
         print("  - Recipe (deprecated): input:\n      docx: ...", file=sys.stderr)
+        print("  - Recipe (deprecated): input:\n      xlsx: ...", file=sys.stderr)
         print("  - Text smoke recipe: input:\n      text_glob: ...", file=sys.stderr)
         print("  - Loader-root recipes may omit top-level input when they start from load_artifact/load_stub", file=sys.stderr)
         sys.exit(1)

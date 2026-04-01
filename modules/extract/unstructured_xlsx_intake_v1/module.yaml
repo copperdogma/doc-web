@@ -1,0 +1,17 @@
+module_id: unstructured_xlsx_intake_v1
+stage: extract
+entrypoint: modules/extract/unstructured_xlsx_intake_v1/main.py
+input_schema: null
+output_schema: unstructured_element_v1
+default_params:
+  infer_table_structure: true
+  save_raw: false
+param_schema:
+  properties:
+    infer_table_structure:
+      type: boolean
+      description: "Extract XLSX table structure and HTML"
+    save_raw:
+      type: boolean
+      description: "Save raw Unstructured output for debugging"
+notes: "Partition XLSX with Unstructured into elements.jsonl while preserving workbook sheet metadata and HTML table structure."

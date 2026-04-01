@@ -1,3 +1,23 @@
+## [2026-03-31-02] - Widen office document proof and add maintained XLSX lane (Story 175)
+
+### Added
+- Added a shared office-native bundle emitter, a maintained XLSX recipe plus intake/transform modules, and repo-owned XLSX/PPTX probe fixtures alongside two new DOCX proof fixtures
+
+### Changed
+- Widened the maintained DOCX proof surface to three repo-owned fixtures and updated the README, runbook, build map, coverage matrix, testdata docs, and story records to reflect the current office-document reality
+
+### Fixed
+- Fixed DOCX bundle splitting so sentence-like top-level `Title` misclassifications no longer create false chapters on the widened supported slice
+- Fixed the maintained runtime surface so XLSX is exposed through explicit `driver.py` / `RunConfig` input plumbing instead of hidden recipe-only params
+
+### Tested
+- `make lint`
+- `make test`
+- `python validate_artifact.py --schema doc_web_bundle_manifest_v1 --file output/runs/story175-docx-sections-r2/output/html/manifest.json`
+- `python validate_artifact.py --schema doc_web_provenance_block_v1 --file output/runs/story175-docx-sections-r2/output/html/provenance/blocks.jsonl`
+- `python validate_artifact.py --schema doc_web_bundle_manifest_v1 --file output/runs/story175-xlsx-mini-r2/output/html/manifest.json`
+- `python validate_artifact.py --schema doc_web_provenance_block_v1 --file output/runs/story175-xlsx-mini-r2/output/html/provenance/blocks.jsonl`
+
 ## [2026-03-31-01] - Add dependency freshness gates for repo installs
 
 ### Added

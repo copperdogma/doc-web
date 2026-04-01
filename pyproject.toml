@@ -20,6 +20,9 @@ driver = [
 docx = [
   "unstructured[docx]==0.16.9",
 ]
+xlsx = [
+  "unstructured[xlsx]==0.16.9",
+]
 
 [project.scripts]
 doc-web = "doc_web.cli:main"

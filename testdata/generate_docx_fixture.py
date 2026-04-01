@@ -15,6 +15,36 @@ DEFAULT_SOURCE = ROOT / "docx-mini.source.json"
 DEFAULT_OUTPUT = ROOT / "docx-mini.docx"
 
 
+def _add_table(document: Document, table_payload: dict) -> None:
+    headers = table_payload["headers"]
+    rows = table_payload["rows"]
+    table = document.add_table(rows=1, cols=len(headers))
+    table.style = "Table Grid"
+    for idx, header in enumerate(headers):
+        table.cell(0, idx).text = header
+    for row in rows:
+        cells = table.add_row().cells
+        for idx, value in enumerate(row):
+            cells[idx].text = str(value)
+
+
+def _render_block(document: Document, block: dict) -> None:
+    block_type = block["type"]
+    if block_type == "heading":
+        document.add_heading(block["text"], level=int(block.get("level", 2)))
+        return
+    if block_type == "paragraph":
+        document.add_paragraph(block["text"])
+        return
+    if block_type == "bullet":
+        document.add_paragraph(block["text"], style="List Bullet")
+        return
+    if block_type == "table":
+        _add_table(document, block)
+        return
+    raise ValueError(f"Unsupported DOCX fixture block type: {block_type}")
+
+
 def build_fixture(source_path: Path, output_path: Path) -> None:
     payload = json.loads(source_path.read_text(encoding="utf-8"))
     document = Document()
@@ -22,22 +52,18 @@ def build_fixture(source_path: Path, output_path: Path) -> None:
 
     for section in payload["sections"]:
         document.add_heading(section["heading"], level=1)
+        if section.get("blocks"):
+            for block in section["blocks"]:
+                _render_block(document, block)
+            continue
+
         for paragraph in section.get("paragraphs", []):
             document.add_paragraph(paragraph)
         for bullet in section.get("bullets", []):
             document.add_paragraph(bullet, style="List Bullet")
         table_payload = section.get("table")
         if table_payload:
-            headers = table_payload["headers"]
-            rows = table_payload["rows"]
-            table = document.add_table(rows=1, cols=len(headers))
-            table.style = "Table Grid"
-            for idx, header in enumerate(headers):
-                table.cell(0, idx).text = header
-            for row in rows:
-                cells = table.add_row().cells
-                for idx, value in enumerate(row):
-                    cells[idx].text = value
+            _add_table(document, table_payload)
 
     output_path.parent.mkdir(parents=True, exist_ok=True)
     document.save(output_path)

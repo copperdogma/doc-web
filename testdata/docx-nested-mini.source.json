@@ -1,0 +1,37 @@
+{
+  "title": "DOCX Nested Fixture",
+  "sections": [
+    {
+      "heading": "Overview",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "Top-level context paragraph."
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Subsection A"
+        },
+        {
+          "type": "paragraph",
+          "text": "Nested heading content should stay attached to Overview if parent ids exist."
+        },
+        {
+          "type": "bullet",
+          "text": "First bullet"
+        },
+        {
+          "type": "bullet",
+          "text": "Second bullet"
+        }
+      ]
+    },
+    {
+      "heading": "Appendix",
+      "paragraphs": [
+        "Closing section."
+      ]
+    }
+  ]
+}

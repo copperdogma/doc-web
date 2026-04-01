@@ -1,0 +1,19 @@
+{
+  "title": "DOCX Sections Fixture",
+  "sections": [
+    {
+      "heading": "Overview",
+      "paragraphs": [
+        "A simple maintained DOCX with two top-level sections.",
+        "The wider proof should keep both paragraphs inside the same section instead of inventing a new chapter boundary."
+      ]
+    },
+    {
+      "heading": "Roster",
+      "paragraphs": [
+        "Ada keeps the records.",
+        "Lin verifies the shipments."
+      ]
+    }
+  ]
+}

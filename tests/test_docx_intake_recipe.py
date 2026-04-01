@@ -4,6 +4,7 @@ import sys
 import uuid
 from pathlib import Path
 
+import pytest
 import yaml
 
 from schemas import DocWebBundleManifest, DocWebProvenanceBlock
@@ -11,6 +12,29 @@ from schemas import DocWebBundleManifest, DocWebProvenanceBlock
 
 DOCX_RECIPE = "configs/recipes/recipe-docx-html-mvp.yaml"
 DOCX_FIXTURE = "testdata/docx-mini.docx"
+DOCX_FIXTURES = [
+    {
+        "fixture": "testdata/docx-mini.docx",
+        "title": "DOCX Mini Fixture",
+        "reading_order": ["chapter-001", "chapter-002"],
+        "entry_titles": ["Family Snapshot", "Notes"],
+        "provenance_rows": 7,
+    },
+    {
+        "fixture": "testdata/docx-sections-mini.docx",
+        "title": "DOCX Sections Fixture",
+        "reading_order": ["chapter-001", "chapter-002"],
+        "entry_titles": ["Overview", "Roster"],
+        "provenance_rows": 6,
+    },
+    {
+        "fixture": "testdata/docx-nested-mini.docx",
+        "title": "DOCX Nested Fixture",
+        "reading_order": ["chapter-001", "chapter-002"],
+        "entry_titles": ["Overview", "Appendix"],
+        "provenance_rows": 8,
+    },
+]
 
 
 def _load_jsonl(path: Path):
@@ -32,7 +56,8 @@ def test_docx_recipe_wiring():
     ]
 
 
-def test_docx_recipe_smoke(tmp_path: Path):
+@pytest.mark.parametrize("case", DOCX_FIXTURES, ids=lambda case: Path(case["fixture"]).stem)
+def test_docx_recipe_smoke(tmp_path: Path, case: dict):
     run_id = f"docx-intake-smoke-{uuid.uuid4().hex[:8]}"
     run_dir = tmp_path / run_id
 
@@ -43,7 +68,7 @@ def test_docx_recipe_smoke(tmp_path: Path):
             "--recipe",
             DOCX_RECIPE,
             "--input-docx",
-            DOCX_FIXTURE,
+            case["fixture"],
             "--run-id",
             run_id,
             "--output-dir",
@@ -70,12 +95,20 @@ def test_docx_recipe_smoke(tmp_path: Path):
     blocks = [DocWebProvenanceBlock(**row) for row in _load_jsonl(blocks_path)]
     chapter_html = chapter_path.read_text(encoding="utf-8")
 
-    assert report["entry_count"] == 2
-    assert report["provenance_row_count"] == 7
-    assert manifest.title == "DOCX Mini Fixture"
-    assert manifest.reading_order == ["chapter-001", "chapter-002"]
+    assert report["entry_count"] == len(case["reading_order"])
+    assert report["provenance_row_count"] == case["provenance_rows"]
+    assert manifest.title == case["title"]
+    assert manifest.reading_order == case["reading_order"]
+    assert [entry.title for entry in manifest.entries] == case["entry_titles"]
     assert manifest.entries[0].source_pages == []
     assert all(block.source_page_number is None for block in blocks)
     assert all(block.source_element_ids for block in blocks)
-    assert 'id="blk-chapter-001-0003"' in chapter_html
-    assert '<table id="blk-chapter-001-0005">' in chapter_html
+    assert 'id="blk-chapter-001-0001"' in chapter_html
+
+    if case["fixture"].endswith("docx-mini.docx"):
+        assert '<table id="blk-chapter-001-0005">' in chapter_html
+    if case["fixture"].endswith("docx-sections-mini.docx"):
+        assert "The wider proof should keep both paragraphs inside the same section" in chapter_html
+    if case["fixture"].endswith("docx-nested-mini.docx"):
+        assert "Subsection A" in chapter_html
+        assert "Top-level context paragraph." in chapter_html

@@ -453,7 +453,7 @@ empty dedicated section until a second candidate exists.
 
 ### Current Status
 
-**6 formats passing** | **1 has fixture** | **9 untested** | **0 graduated** | **16 total tracked**
+**7 formats passing** | **3 have fixture** | **6 untested** | **0 graduated** | **16 total tracked**
 
 ### Passing
 
@@ -465,20 +465,20 @@ empty dedicated section until a second candidate exists.
 | Plain text | `plain-text` | `plain-text` | `extract_text_v1` | 1.00 | - | - | - | Passthrough, no OCR. |
 | Markdown | `markdown` | `markdown` | `extract_text_v1` | 1.00 | - | - | - | Passthrough. |
 | HTML | `html-files` | `html` | `extract_text_v1` | 1.00 | - | - | - | Passthrough. |
+| Word (.docx) | `docx` | `docx` | `testdata/docx-mini.docx`, `testdata/docx-sections-mini.docx`, and `testdata/docx-nested-mini.docx` via `recipe-docx-html-mvp.yaml` | - | - | - | 1.00 | Story 175 widens the maintained DOCX lane to three repo-owned fixtures on the supported slice: heading-based sections, prose, nested subheadings, simple bullet lists, and a simple table. Fresh `driver.py` proof on 2026-04-01 produced final `doc_web_bundle` manifests plus pageless block provenance for all three fixtures. The lane now normalizes sentence-like stray top-level `Title` elements before chapter splitting so wider prose fixtures do not invent false chapters. Advanced Word features such as tracked changes, comments, text boxes, and embedded charts remain unproven. |
 
 ### Has Fixture (pipeline not yet passing)
 
 | Format | ID | Family | Fixture / Current Pipeline | Priority | Notes |
 |---|---|---|---|---|---|
 | Born-digital PDF | `born-digital-pdf` | `born-digital-pdf` | `testdata/tbotb-mini.pdf` via `recipe-pdf-ocr-html-mvp.yaml` and `recipe-born-digital-pdf-marker-lite-html-mvp.yaml`; `testdata/flat-born-digital-mini.pdf` via `recipe-born-digital-pdf-non-toc-html-mvp.yaml`; Story 171 validation assets `rfp` and `release-forms` | High | Story 157 keeps the maintained OCR-entry lane, Story 168 adds an explicit maintained optional Marker-lite native-text recipe on the repo-owned book-like fixture, and Story 171 adds an explicit maintained non-TOC sibling recipe for flat born-digital PDFs. Fresh `driver.py` proof now exists on the repo-owned `flat-born-digital-mini.pdf` plus the local `rfp` and `release-forms` comparison assets: all three produce stamped `page_html_v1`, non-empty portion artifacts, final `doc_web_bundle` manifests, and page-linked provenance under the new lane. The family still stays `has fixture`, not passing: proof breadth is still small, some form-heavy outputs remain visually rough, the lane still depends on Docker plus a cached GPL/model-license-constrained Marker runtime, and cold-start cost remains materially higher than the OCR baseline. |
-| Word (.docx) | `docx` | `docx` | `testdata/docx-mini.docx` via `recipe-docx-html-mvp.yaml` | High | Story 172 adds the first maintained explicit DOCX lane on a repo-owned fixture. Fresh `driver.py` proof on 2026-03-29 produced a final `doc_web_bundle` manifest plus block-level provenance with stable `source_element_ids` and no fabricated page numbers. Story 174 hardens the install story: the maintained DOCX checkout lane now uses `python -m pip install '.[driver,docx]'`, and the fuller repo runtime from `requirements.txt` includes DOCX support on the currently validated Python 3.11/3.12 surface. The family remains `has fixture`, not passing: evidence is still a single narrow slice (document title, heading-based sections, prose, simple bullet lists, simple table), and advanced Word features plus broader fixtures remain unproven. |
+| Excel (.xlsx) | `xlsx` | `xlsx` | `testdata/xlsx-mini.xlsx` via `recipe-xlsx-html-mvp.yaml` | Medium | Story 175 adds the first maintained explicit XLSX lane on a repo-owned two-sheet workbook. Fresh `driver.py` proof on 2026-04-01 produced a final `doc_web_bundle` manifest with one HTML page per sheet (`Roster`, `Visits`) plus anchor-based provenance rows for each table. The family still stays `has fixture`, not passing: only the simple-table workbook slice is reviewed, and formulas, charts, merged cells, images, comments, and cell-address anchors remain unproven. |
+| PowerPoint (.pptx) | `pptx` | `pptx` | `testdata/pptx-mini.pptx` reproducible seam-probe fixture | Low | Story 175 adds a reproducible PPTX probe fixture, but there is still no maintained lane. The current local seam remains blocked: `unstructured.partition.pptx` fails in this checkout on missing `python-pptx`, so PPTX now has an explicit measured defer reason instead of vague backlog residue. |
 
 ### Untested
 
 | Format | ID | Family | Complexity | Priority | Notes |
 |---|---|---|---|---|---|
-| Excel (.xlsx) | `xlsx` | `xlsx` | tables | Medium | Structured family-history data often starts here. |
-| PowerPoint (.pptx) | `pptx` | `pptx` | mixed-layout, illustrations | Low | Lower-frequency, but still plausible archive input. |
 | EPUB | `epub` | `epub` | prose, illustrations | Medium | Zipped HTML + image intake remains unbuilt. |
 | Email (.eml) | `email-eml` | `email` | prose | Medium | Personal correspondence import path still missing. |
 | Email archive (.mbox) | `email-mbox` | `email` | prose | Medium | Bulk archive support still missing. |
@@ -521,10 +521,10 @@ None yet.
 
 ### Gap 3 — Office document intake beyond the first DOCX slice
 
-- **Current signal:** Story 172 now provides a maintained explicit DOCX lane on the repo-owned `testdata/docx-mini.docx` fixture via `recipe-docx-html-mvp.yaml`. The lane emits a final `doc_web_bundle` manifest plus pageless block provenance with stable `source_element_ids`, but only for a narrow heading-based prose/list/simple-table slice.
-- **Root cause:** Intake coverage (spec:1) is still heavily skewed toward PDFs and image directories, and the new office-document coverage is only a single DOCX proof slice. There is still no maintained `xlsx` or `pptx` family, and the DOCX lane has not yet been widened across more diverse Word features.
-- **Fix category:** Fixture widening, DOCX proof expansion, and new intake modules / routing for the remaining office families.
-- **Status:** Gap narrowed from "missing family" to "first DOCX fixture-backed lane exists, but broader office coverage is still missing."
+- **Current signal:** Story 175 resolves the original "single DOCX slice" framing. DOCX now has three repo-owned passing fixtures on the supported slice via `recipe-docx-html-mvp.yaml`, and XLSX now has a first maintained explicit lane on `testdata/xlsx-mini.xlsx` via `recipe-xlsx-html-mvp.yaml`. PPTX is no longer vague; `testdata/pptx-mini.pptx` exists as a reproducible seam-probe fixture, and the current block is explicit (`python-pptx` missing in this checkout).
+- **Root cause:** Intake coverage (spec:1) is still skewed toward PDFs and image directories at family breadth. Office coverage is now real, but uneven: DOCX is passing on a bounded slice, XLSX is only a first fixture-backed maintained lane, and PPTX still has no honest runtime substrate.
+- **Fix category:** XLSX breadth expansion only if demand warrants it, plus an explicit PPTX runtime / provenance decision when slide support becomes worth the cost.
+- **Status:** Gap narrowed substantially. The repo now has passing DOCX and a first maintained XLSX slice, with PPTX reduced to an explicit measured defer instead of an ambiguous missing family.
 
 ### Gap 4 — Handwritten document transcription
 
@@ -535,12 +535,13 @@ None yet.
 
 ### Gap 5 — Fixture breadth and graduation confidence
 
-- **Current signal:** Passing formats still rely on very few fixtures, and no
-  format meets the "3 diverse fixtures" graduation bar (spec:7) yet.
+- **Current signal:** Story 175 gives DOCX three diverse repo-owned passing
+  fixtures on its supported slice, but most other active families still rely on
+  one narrow repo-owned fixture plus a small set of local comparison assets.
 - **Root cause:** Capability coverage grew faster than repeatable benchmark
   breadth.
 - **Fix category:** Fixture expansion and rerun discipline.
-- **Status:** Open cross-cutting quality gap.
+- **Status:** Open cross-cutting quality gap, but narrower now that DOCX has crossed the three-fixture proof bar.
 
 ## Resolved Gaps
 
@@ -572,10 +573,10 @@ A converter is ready to graduate to Dossier (spec:7) when:
 
 ## Next Actions
 
-1. Widen DOCX proof beyond the current repo-owned fixture and then decide whether XLSX/PPTX should split or stay together.
-2. Widen flat born-digital proof beyond the current 2-page fixture/forms slice and decide whether oversized in-body headings need a dedicated cleanup follow-up.
-3. Create the handwriting-transcription story.
-4. Expand fixture breadth for already-passing formats so graduation decisions
+1. Widen flat born-digital proof beyond the current 2-page fixture/forms slice and decide whether oversized in-body headings need a dedicated cleanup follow-up.
+2. Create the handwriting-transcription story.
+3. Expand fixture breadth for already-passing formats so graduation decisions
    can be trusted.
+4. Decide whether PPTX should remain explicitly deferred or gain a maintained runtime surface once `python-pptx` and slide-provenance expectations are worth absorbing.
 5. Re-run stale capability measurements where the code changed but the benchmark
    signal did not.
