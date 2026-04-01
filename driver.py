@@ -1208,6 +1208,7 @@ def main():
     parser.add_argument("--allow-run-id-reuse", action="store_true",
                         help="Allow reusing the run_id/output_dir from the recipe; default is to auto-generate a fresh one to avoid stale artifacts.")
     parser.add_argument("--output-dir", dest="output_dir_override", help="Override output_dir from recipe (useful for smoke runs / temp dirs)")
+    parser.add_argument("--input-images", dest="input_images_override", help="Override input.images from recipe (useful for image-directory smoke fixtures)")
     parser.add_argument("--input-pdf", dest="input_pdf_override", help="Override input.pdf from recipe (useful for smoke fixtures)")
     parser.add_argument("--input-docx", dest="input_docx_override", help="Override input.docx from recipe (useful for DOCX smoke fixtures)")
     parser.add_argument("--input-xlsx", dest="input_xlsx_override", help="Override input.xlsx from recipe (useful for XLSX smoke fixtures)")
@@ -1227,6 +1228,7 @@ def main():
         args.recipe = args.recipe or config.recipe
         args.registry = config.registry or args.registry
         args.settings = args.settings or config.settings
+        args.input_images_override = args.input_images_override or config.input_images
         args.input_pdf_override = args.input_pdf_override or config.input_pdf
         args.input_docx_override = args.input_docx_override or config.input_docx
         args.input_xlsx_override = args.input_xlsx_override or config.input_xlsx
@@ -1271,10 +1273,25 @@ def main():
 
     # Apply CLI overrides for smoke/testing convenience
     # Apply CLI overrides for smoke/testing convenience
+    if args.input_images_override:
+        recipe.setdefault("input", {})
+        recipe["input"].pop("pdf", None)
+        recipe["input"].pop("docx", None)
+        recipe["input"].pop("xlsx", None)
+        recipe["input"].pop("text_glob", None)
+        recipe["input"]["images"] = args.input_images_override
+        for stage in recipe.get("stages", []) or []:
+            params = stage.get("params") or {}
+            if "input_dir" in params:
+                params["input_dir"] = args.input_images_override
+            if "images" in params:
+                params["images"] = args.input_images_override
     if args.input_pdf_override:
         recipe.setdefault("input", {})
         recipe["input"].pop("docx", None)
         recipe["input"].pop("images", None)
+        recipe["input"].pop("xlsx", None)
+        recipe["input"].pop("text_glob", None)
         recipe["input"]["pdf"] = args.input_pdf_override
     if args.input_docx_override:
         recipe.setdefault("input", {})
@@ -1349,6 +1366,8 @@ def main():
         # If we have no input from override AND no input from recipe, we fail.
         print("\n❌ ERROR: No input specified.", file=sys.stderr)
         print("You must provide an input PDF, DOCX, XLSX, images directory, or text glob via:", file=sys.stderr)
+        print("  - Configuration YAML (recommended): input_images: ...", file=sys.stderr)
+        print("  - CLI Override: --input-images ...", file=sys.stderr)
         print("  - Configuration YAML (recommended): input_pdf: ...", file=sys.stderr)
         print("  - CLI Override: --input-pdf ...", file=sys.stderr)
         print("  - Configuration YAML (recommended): input_docx: ...", file=sys.stderr)

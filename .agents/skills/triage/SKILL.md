@@ -67,6 +67,10 @@ When invoked with no scope:
    - momentum from recent work
    - operator cost
 
+   The recommended action must be phrased so it can be executed directly on the
+   next turn. A bare `yes` from the user should be enough to authorize that one
+   action without needing a follow-up clarification.
+
 5. **Return the compact report**
 
 ```markdown
@@ -89,6 +93,10 @@ When invoked with no scope:
 
 ### Health Flags
 - {blocked story / stale inbox / stale eval / pending ADR}
+
+### Decision
+- Reply `yes` to proceed with: {repeat the one recommended action verbatim}
+- Reply `no` to stay in triage or ask for a different recommendation
 ```
 
 ## Guardrails
@@ -97,5 +105,6 @@ When invoked with no scope:
 - Full-sweep mode is read-only.
 - Use parallel leaf sweeps when feasible.
 - Return one recommendation, not a vague list.
+- End with a clear yes/no decision prompt. Do not leave the report open-ended.
 - Respect leaf-skill boundaries: `/triage inbox` may modify files; unscoped
   `/triage` may not.

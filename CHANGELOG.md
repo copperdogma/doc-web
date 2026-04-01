@@ -1,3 +1,26 @@
+## [2026-04-01-01] - Close confirmed intake handoff lane (Story 176)
+
+### Added
+- Added a maintained confirmed-handoff intake recipe plus stamped `intake_handoff_v1` artifacts for approved plan launches into explicit recipes
+- Added the manual `approved-intake-handoff` proof surface and focused coverage for handoff generation, recipe wiring, and `RunConfig.input_images`
+
+### Changed
+- Changed `run_dispatch_v1` to consume approved plans directly, record launch metadata, and launch supported image-directory/PDF explicit recipes without manual recipe-path retyping
+- Changed `driver.py` and `RunConfig` so image-directory runs now support explicit `--input-images` / `input_images` overrides, including the hardcoded first-stage image-manifest params
+- Changed the build map, eval registry, story records, and the `triage` skill so C2 truth reflects the maintained handoff lane and `/triage` ends with a yes/no decision prompt
+
+### Fixed
+- Fixed the old dispatch seam by removing `dispatch_hint_v1` and the previous recipe-only launch path that dropped source-input trace
+- Fixed missing-recipe, unsupported-input, and missing-source cases so they now emit inspectable non-launch outcomes instead of shelling broken downstream runs
+
+### Tested
+- `pytest -q tests/test_intake_plan_utils.py modules/intake/tests/test_intake_chain_e2e.py tests/test_run_config.py tests/test_pdf_intake_recipe.py`
+- `make lint`
+- `make test`
+- `python validate_artifact.py --schema intake_handoff_v1 --file output/runs/story176-image-proof/06_run_dispatch_v1/intake_handoff.jsonl`
+- `python validate_artifact.py --schema intake_handoff_v1 --file output/runs/story176-scanned-proof/06_run_dispatch_v1/intake_handoff.jsonl`
+- `python validate_artifact.py --schema intake_handoff_v1 --file output/runs/story176-born-proof/06_run_dispatch_v1/intake_handoff.jsonl`
+
 ## [2026-03-31-02] - Widen office document proof and add maintained XLSX lane (Story 175)
 
 ### Added

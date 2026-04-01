@@ -1,0 +1,59 @@
+# Maintained intake lane with explicit plan approval followed by a stamped
+# downstream launch into the approved maintained explicit recipe.
+
+input:
+  images: /Users/cam/Documents/Projects/doc-web/input/onward-to-the-unknown-images
+
+stages:
+  - id: build_contact_sheets
+    stage: intake
+    module: contact_sheet_builder_v1
+    out: build_contact_sheets.jsonl
+    params:
+      max_width: 200
+      grid_cols: 5
+      grid_rows: 4
+
+  - id: overview_plan
+    stage: intake
+    module: contact_sheet_overview_v1
+    needs: [build_contact_sheets]
+    inputs:
+      manifest: build_contact_sheets
+    out: overview_plan.jsonl
+
+  - id: zoom_refine
+    stage: intake
+    module: zoom_refine_v1
+    needs: [overview_plan]
+    inputs:
+      plan_in: overview_plan
+    out: overview_plan_zoom.jsonl
+    params:
+      max_zoom_pages: 5
+
+  - id: gap_analysis
+    stage: intake
+    module: gap_analyzer_v1
+    needs: [zoom_refine]
+    inputs:
+      plan_in: zoom_refine
+    out: overview_plan_gap.jsonl
+    params:
+      catalog_path: modules/module_catalog.yaml
+
+  - id: confirm_plan
+    stage: intake
+    module: confirm_plan_v1
+    needs: [gap_analysis]
+    inputs:
+      plan: gap_analysis
+    out: overview_plan_final.jsonl
+
+  - id: confirmed_handoff
+    stage: intake
+    module: run_dispatch_v1
+    needs: [confirm_plan]
+    inputs:
+      plan: confirm_plan
+    out: intake_handoff.jsonl

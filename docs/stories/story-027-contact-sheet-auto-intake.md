@@ -178,6 +178,10 @@
   - Ran intake on `input/06 deathtrap dungeon.pdf` to validate: classified CYOA, signals images/cyoa/forms; gap: forms (page 11). No downstream run executed.
 - **Notes:** LLM models switched to `gpt-4.1`; vision prompts use data URLs. Dispatch removed per AI-human flow.
 - **Next:** Pilot on `input/onward-to-the-unknown-images/` (Arthur L'Heureux), add docs/usage, and keep AI-driven recipe selection.
+### 20260401-1655 — Story 176 confirmed-handoff lane replaces the old hint+dispatch stub
+- **Result:** The maintained intake surface now has an explicit sibling recipe, `configs/recipes/recipe-intake-contact-sheet-confirmed-handoff.yaml`, that keeps human approval at `confirm_plan_v1` and then launches the approved maintained explicit recipe through `run_dispatch_v1`. The old `dispatch_hint_v1` stub was removed; `run_dispatch_v1` now consumes the approved plan directly, writes a stamped `intake_handoff_v1` artifact, and records the resolved source-input launch command plus downstream run outcome.
+- **Notes:** The original recommendation-only intake recipe still exists and remains the lightweight scored detection surface. Confirmed handoff is now the maintained workflow seam for supported image-directory and PDF plans.
+- **Next:** If C2 proof breadth needs to move beyond the current representative supported slice, widen the confirmed-handoff proof surface from the three reviewed driver-backed cases to a broader locked corpus.
 ### 20251127-?? — Intake pilot on full Onward to the Unknown (images)
 - **Result:**
   - Ran intake on all images (`input/onward-to-the-unknown-images/`); plan saved to `output/runs/intake-onward/plan.json` with sheets/manifest alongside.

@@ -927,6 +927,25 @@ class IntakePlan(BaseModel):
         return v
 
 
+class IntakeHandoff(BaseModel):
+    schema_version: str = "intake_handoff_v1"
+    plan_path: str
+    plan_run_id: Optional[str] = None
+    recommended_recipe: Optional[str] = None
+    source_input: Dict[str, Any] = Field(default_factory=dict)
+    launch_input_flag: Optional[str] = None
+    launch_input_path: Optional[str] = None
+    driver_command: List[str] = Field(default_factory=list)
+    downstream_run_id: Optional[str] = None
+    downstream_output_dir: Optional[str] = None
+    terminal_outcome: Literal["launched", "skipped", "blocked", "failed"]
+    terminal_reason: Optional[str] = None
+    exit_code: Optional[int] = None
+    run_id: Optional[str] = None
+    module_id: Optional[str] = None
+    created_at: Optional[str] = None
+
+
 # ────────────────────────────────────────────────────────────────
 # Document IR – Unstructured-native element representation
 # ────────────────────────────────────────────────────────────────
@@ -1208,6 +1227,7 @@ class RunConfig(BaseModel):
     registry: str = "modules"
     settings: Optional[str] = None
     input_pdf: Optional[str] = None
+    input_images: Optional[str] = None
     input_docx: Optional[str] = None
     input_xlsx: Optional[str] = None
     output_dir: Optional[str] = None

@@ -578,3 +578,67 @@ evals:
         note: >
           Expand or rerun when a new maintained intake family lands, or when
           routing changes could regress the final `intake_plan_v1` surface.
+
+  - id: approved-intake-handoff
+    name: "C2 Proof: Approved Intake Handoff"
+    type: compromise
+    description: >
+      After `confirm_plan_v1` approves an `intake_plan_v1`, can the maintained
+      confirmed-handoff path launch the exact approved explicit recipe without
+      manually retyping the recipe path or source input? Driver-backed proof on
+      one image-directory input, one scanned PDF input, and one born-digital
+      PDF input; each proof inspects the stamped `intake_handoff_v1` artifact
+      plus the first downstream stamped artifact.
+    spec_compromise: C2
+    runner: manual
+
+    target:
+      metric: pass_rate
+      value: 1.0
+      note: "All 3 representative confirmed-handoff proofs must launch and stamp the expected downstream artifact."
+
+    scores:
+      - model: "Story 176 confirmed-handoff driver proof"
+        metrics:
+          pass_rate: 1.0
+          launched: 3
+          failed_runs: 0
+        measured: 2026-04-01
+        note: >
+          Story 176 added `configs/recipes/recipe-intake-contact-sheet-confirmed-handoff.yaml`
+          plus `intake_handoff_v1` and reran fresh `driver.py` proofs on the
+          supported slice with narrow downstream `--end-at` bounds to inspect
+          the first launched artifact. Evidence inspected manually:
+          `output/runs/story176-image-proof/06_run_dispatch_v1/intake_handoff.jsonl`
+          plus
+          `output/runs/story176-image-proof-recipe-images-ocr-html-mvp/01_images_dir_to_manifest_v1/pages_images_manifest.jsonl`,
+          `output/runs/story176-scanned-proof/06_run_dispatch_v1/intake_handoff.jsonl`
+          plus
+          `output/runs/story176-scanned-proof-recipe-pdf-ocr-html-mvp/01_extract_pdf_images_fast_v1/pages_images_manifest.jsonl`,
+          and
+          `output/runs/story176-born-proof/06_run_dispatch_v1/intake_handoff.jsonl`
+          plus
+          `output/runs/story176-born-proof-recipe-born-digital-pdf-marker-lite-html-mvp/01_extract_pdf_marker_lite_html_v1/pages_html.jsonl`.
+
+    attempts:
+      - id: "001"
+        date: 2026-04-01
+        status: succeeded
+        approach: "Story 176 driver-backed confirmed-handoff proofs on supported image-directory and PDF inputs"
+        note: >
+          Fresh runs via the maintained confirmed-handoff recipe launched the
+          expected explicit recipe on the reviewed image-directory slice
+          (`onward-to-the-unknown-images` -> `recipe-images-ocr-html-mvp.yaml`),
+          the reviewed scanned-PDF slice (`Onward to the Unknown.pdf` ->
+          `recipe-pdf-ocr-html-mvp.yaml`), and the reviewed book-like
+          born-digital slice (`testdata/tbotb-mini.pdf` ->
+          `recipe-born-digital-pdf-marker-lite-html-mvp.yaml`). Each run wrote
+          a stamped `intake_handoff_v1` row with the resolved launch flag/path,
+          downstream `run_id`, and `terminal_outcome = launched`, then produced
+          the first expected downstream stamped artifact.
+
+    retry_when:
+      - condition: workflow-change
+        note: >
+          Rerun when `run_dispatch_v1`, supported input families, or the driver
+          input-override plumbing changes.
