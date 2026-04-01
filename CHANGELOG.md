@@ -1,3 +1,23 @@
+## [2026-04-01-02] - Close flat born-digital proof lane and heading polish (Story 177)
+
+### Added
+- Added the repo-owned `flat-born-digital-form-mini` fixture pair and focused fixture coverage so the maintained non-TOC born-digital lane no longer rests on a single repo-owned flat mini PDF
+
+### Changed
+- Updated the born-digital build map, coverage matrix, testdata docs, story records, and triage skill wording to reflect the widened proof surface and the single-acceptance prompt
+
+### Fixed
+- Fixed flat born-digital final HTML so repeated short in-body headings are demoted after the primary chapter heading and pathological long warning blocks are flattened into emphasis paragraphs on the proven slice
+
+### Tested
+- `pytest -q tests/test_build_chapter_html.py tests/test_pdf_intake_recipe.py`
+- `make lint`
+- `make test`
+- `make skills-check`
+- `python driver.py --recipe configs/recipes/recipe-born-digital-pdf-non-toc-html-mvp.yaml --input-pdf testdata/flat-born-digital-form-mini.pdf --run-id story177-closeout-form-r2 --output-dir output/runs --force`
+- `python validate_artifact.py --schema doc_web_bundle_manifest_v1 --file output/runs/story177-closeout-form-r2/output/html/manifest.json`
+- `python validate_artifact.py --schema doc_web_provenance_block_v1 --file output/runs/story177-closeout-form-r2/output/html/provenance/blocks.jsonl`
+
 ## [2026-04-01-01] - Close confirmed intake handoff lane (Story 176)
 
 ### Added

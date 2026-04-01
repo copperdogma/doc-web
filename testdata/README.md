@@ -3,6 +3,7 @@
 - `tbotb-mini.md` / `tbotb-mini.pdf`: 8-section micro branch adapted from **To Be or Not To Be** by Ryan North (2013). Licensed **CC BY-NC 3.0**; used here for non-commercial smoke testing. Source PDF: `input/Ryan North - To Be or Not To Be.pdf` (not modified).
 - Story 157 uses `tbotb-mini.pdf` as the repo-owned maintained PDF-entry smoke fixture. It proves PDF-backed recipe wiring and extractor provenance, but it is not evidence that `scanned-pdf-prose` or native `born-digital-pdf` support is complete.
 - `flat-born-digital-mini.md` / `flat-born-digital-mini.pdf`: repo-owned flat born-digital prose packet with no TOC and no printed page numbers. Story 171 uses it to prove the maintained non-TOC born-digital PDF lane can emit a final `doc-web` bundle without relying only on local user assets.
+- `flat-born-digital-form-mini.md` / `flat-born-digital-form-mini.pdf`: repo-owned flat born-digital form-like packet with short label-style sections and an all-caps warning block. Story 177 uses it to widen the repeatable proof surface beyond the original prose-only mini fixture and to measure whether oversized in-body headings are a generic rough edge on the maintained non-TOC lane.
 - `scanned-prose-mini.md` / `scanned-prose-mini.pdf`: original repo-owned prose source plus a generated image-only PDF fixture for `scanned-pdf-prose`. Story 167 uses it to prove maintained scanned-PDF entry, `page_image_v1` provenance, and a clean simple-prose OCR lane without relying on a shared local asset. This is passing evidence for the repo-owned simple-prose fixture, not a blanket claim about degraded or noisy scanned prose.
 - `docx-mini.source.json` / `docx-mini.docx`, `docx-sections-mini.source.json` / `docx-sections-mini.docx`, and `docx-nested-mini.source.json` / `docx-nested-mini.docx`: repo-owned DOCX fixture set generated from checked-in structured source data. Story 175 widens the maintained DOCX lane to three repo-owned fixtures on the supported slice: heading-based sections, prose, nested subheadings, simple bullet lists, and a simple table. Provenance remains block-anchor based rather than page-based because DOCX is pageless in this lane.
 - `xlsx-mini.source.json` / `xlsx-mini.xlsx`: repo-owned XLSX workbook fixture with two simple table sheets (`Roster`, `Visits`). Story 175 uses it to prove the first maintained XLSX lane on the narrow supported slice: sheet-named entries, HTML table preservation, and anchor-based provenance with no fabricated page numbers.
@@ -45,6 +46,7 @@ Regeneration:
 - Flat born-digital text PDF:
   ```bash
   python testdata/generate_flat_born_digital_fixture.py
+  python testdata/generate_flat_born_digital_fixture.py --source testdata/flat-born-digital-form-mini.md --output testdata/flat-born-digital-form-mini.pdf
   ```
 - Image-only scanned prose PDF:
   ```bash

@@ -108,6 +108,10 @@ h2 { font-size: 1.4rem; }
 h3 { font-size: 1.2rem; }
 
 p { margin-bottom: 0.8em; }
+p.flattened-heading {
+  font-family: var(--font-body);
+  font-weight: 600;
+}
 a { color: var(--color-link); }
 
 /* Navigation */
@@ -576,6 +580,44 @@ def _normalize_heading_breaks(html: str) -> str:
         text = _normalize_ws(heading.get_text(" ", strip=True))
         heading.clear()
         heading.append(text)
+    return soup.decode_contents()
+
+
+_FLAT_HEADING_SENTENCE_RE = re.compile(r"[.!?](?=\s|$)")
+
+
+def _looks_oversized_flat_heading(text: str) -> bool:
+    normalized = _normalize_ws(text)
+    if not normalized:
+        return False
+    if len(normalized) >= 180:
+        return True
+    if len(_FLAT_HEADING_SENTENCE_RE.findall(normalized)) >= 2:
+        return True
+    return False
+
+
+def _polish_flat_chapter_headings(html: str, title: str) -> str:
+    soup = BeautifulSoup(html or "", "html.parser")
+    primary_heading_seen = False
+
+    for heading in soup.find_all(re.compile(r"^h[1-6]$")):
+        text = _normalize_ws(heading.get_text(" ", strip=True))
+        if not text:
+            continue
+        if not primary_heading_seen and _titles_related(text, title):
+            primary_heading_seen = True
+            continue
+        if _looks_oversized_flat_heading(text):
+            heading.name = "p"
+            classes = list(heading.get("class") or [])
+            if "flattened-heading" not in classes:
+                classes.append("flattened-heading")
+            heading["class"] = classes
+            continue
+        if primary_heading_seen and heading.name in {"h1", "h2"}:
+            heading.name = "h3"
+
     return soup.decode_contents()
 
 
@@ -1557,6 +1599,11 @@ def main() -> None:
         body_html = entry["body_html"]
         if args.merge_contiguous_genealogy_tables:
             body_html = _merge_contiguous_genealogy_tables(body_html)
+            entry["body_html"] = body_html
+        if entry.get("kind") == "chapter" and (entry.get("source_pages") or []) and not (
+            entry.get("source_printed_pages") or []
+        ):
+            body_html = _polish_flat_chapter_headings(body_html, entry["title"])
             entry["body_html"] = body_html
         body_html, entry_provenance_rows = _tag_entry_body(entry, run_id=args.run_id, created_at=bundle_created_at)
         entry["body_html"] = body_html

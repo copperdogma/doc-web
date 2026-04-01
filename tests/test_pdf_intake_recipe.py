@@ -10,6 +10,7 @@ import yaml
 PDF_RECIPE = "configs/recipes/recipe-pdf-ocr-html-mvp.yaml"
 BORN_DIGITAL_NON_TOC_RECIPE = "configs/recipes/recipe-born-digital-pdf-non-toc-html-mvp.yaml"
 BORN_DIGITAL_FIXTURE = "testdata/tbotb-mini.pdf"
+FLAT_FORM_FIXTURE = "testdata/flat-born-digital-form-mini.pdf"
 SCANNED_PROSE_FIXTURE = "testdata/scanned-prose-mini.pdf"
 
 
@@ -62,6 +63,12 @@ def test_scanned_prose_pdf_recipe_extract_only_smoke(tmp_path):
     assert all(len((page.extract_text() or "").strip()) == 0 for page in reader.pages)
 
     _run_pdf_recipe_extract_only_smoke(tmp_path, SCANNED_PROSE_FIXTURE)
+
+
+def test_repo_owned_flat_form_fixture_has_extractable_text():
+    reader = PdfReader(FLAT_FORM_FIXTURE)
+    assert len(reader.pages) == 1
+    assert any(len((page.extract_text() or "").strip()) > 0 for page in reader.pages)
 
 
 def test_born_digital_non_toc_recipe_wiring():

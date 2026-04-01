@@ -96,7 +96,6 @@ When invoked with no scope:
 
 ### Decision
 - Reply `yes` to proceed with: {repeat the one recommended action verbatim}
-- Reply `no` to stay in triage or ask for a different recommendation
 ```
 
 ## Guardrails
@@ -105,6 +104,6 @@ When invoked with no scope:
 - Full-sweep mode is read-only.
 - Use parallel leaf sweeps when feasible.
 - Return one recommendation, not a vague list.
-- End with a clear yes/no decision prompt. Do not leave the report open-ended.
+- End with a clear acceptance prompt that the user can approve with `yes`.
 - Respect leaf-skill boundaries: `/triage inbox` may modify files; unscoped
   `/triage` may not.

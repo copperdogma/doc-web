@@ -1542,3 +1542,127 @@ class TestCLIIntegration:
         assert bundle_manifest.entries[0].printed_page_start is None
         assert bundle_manifest.entries[0].printed_page_end is None
         assert bundle_manifest.entries[0].source_pages == [1, 2]
+
+    def test_demotes_in_body_heading_levels_for_source_page_chapter(self):
+        pages_path = self.tmpdir / "pages.jsonl"
+        portions_path = self.tmpdir / "portions.jsonl"
+        out_path = self.tmpdir / "manifest.jsonl"
+        html_dir = self.tmpdir / "html"
+
+        self._write_jsonl(
+            pages_path,
+            [
+                {
+                    "page_number": 1,
+                    "printed_page_number": None,
+                    "html": (
+                        "<h2>Packet title</h2>"
+                        "<h1>Document</h1>"
+                        "<p>Lead paragraph.</p>"
+                        "<h1>Budget notes:</h1>"
+                        "<p>Budget paragraph.</p>"
+                        "<h2>Signature block:</h2>"
+                        "<p>Signature paragraph.</p>"
+                    ),
+                }
+            ],
+        )
+        self._write_jsonl(
+            portions_path,
+            [
+                {
+                    "title": "Document",
+                    "page_start": 1,
+                    "page_end": 1,
+                    "source_pages": [1],
+                }
+            ],
+        )
+
+        cmd = [
+            sys.executable,
+            "-m",
+            "modules.build.build_chapter_html_v1.main",
+            "--pages",
+            str(pages_path),
+            "--portions",
+            str(portions_path),
+            "--out",
+            str(out_path),
+            "--output-dir",
+            str(html_dir),
+            "--book-title",
+            "Flat Document",
+        ]
+        result = subprocess.run(cmd, capture_output=True, text=True, cwd=str(Path(__file__).resolve().parent.parent))
+        assert result.returncode == 0, f"STDERR: {result.stderr}"
+
+        soup = BeautifulSoup((html_dir / "chapter-001.html").read_text(), "html.parser")
+        headings = [(tag.name, tag.get_text(" ", strip=True)) for tag in soup.find_all(re.compile(r"^h[1-6]$"))]
+        assert ("h2", "Packet title") in headings
+        assert ("h1", "Document") in headings
+        assert ("h3", "Budget notes:") in headings
+        assert ("h3", "Signature block:") in headings
+        assert ("h1", "Budget notes:") not in headings
+        assert ("h2", "Signature block:") not in headings
+
+    def test_flattens_oversized_flat_heading_block_into_emphasis_paragraph(self):
+        pages_path = self.tmpdir / "pages.jsonl"
+        portions_path = self.tmpdir / "portions.jsonl"
+        out_path = self.tmpdir / "manifest.jsonl"
+        html_dir = self.tmpdir / "html"
+
+        self._write_jsonl(
+            pages_path,
+            [
+                {
+                    "page_number": 1,
+                    "printed_page_number": None,
+                    "html": (
+                        "<h2>Document</h2>"
+                        "<h2>WARNING: THIS AGREEMENT WILL AFFECT YOUR LEGAL RIGHTS. "
+                        "READ IT CAREFULLY! Every person must read and understand this waiver "
+                        "before participating in riding activities.</h2>"
+                        "<p>Body paragraph.</p>"
+                    ),
+                }
+            ],
+        )
+        self._write_jsonl(
+            portions_path,
+            [
+                {
+                    "title": "Document",
+                    "page_start": 1,
+                    "page_end": 1,
+                    "source_pages": [1],
+                }
+            ],
+        )
+
+        cmd = [
+            sys.executable,
+            "-m",
+            "modules.build.build_chapter_html_v1.main",
+            "--pages",
+            str(pages_path),
+            "--portions",
+            str(portions_path),
+            "--out",
+            str(out_path),
+            "--output-dir",
+            str(html_dir),
+            "--book-title",
+            "Flat Document",
+        ]
+        result = subprocess.run(cmd, capture_output=True, text=True, cwd=str(Path(__file__).resolve().parent.parent))
+        assert result.returncode == 0, f"STDERR: {result.stderr}"
+
+        soup = BeautifulSoup((html_dir / "chapter-001.html").read_text(), "html.parser")
+        flattened = soup.find("p", class_="flattened-heading")
+        assert flattened is not None
+        assert "WARNING: THIS AGREEMENT WILL AFFECT YOUR LEGAL RIGHTS." in flattened.get_text(" ", strip=True)
+        assert not any(
+            tag.name == "h2" and "WARNING: THIS AGREEMENT WILL AFFECT YOUR LEGAL RIGHTS." in tag.get_text(" ", strip=True)
+            for tag in soup.find_all(re.compile(r"^h[1-6]$"))
+        )

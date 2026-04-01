@@ -206,6 +206,12 @@
           "notes": "Repo-owned reproducible flat born-digital fixture generated from checked-in source text. Story 171 proved the maintained non-TOC lane here with accepted `page_html_v1`, portion, bundle, and provenance artifacts."
         },
         {
+          "id": "flat-born-digital-form-mini",
+          "source": "testdata/flat-born-digital-form-mini.pdf",
+          "pages": 1,
+          "notes": "Repo-owned reproducible flat born-digital form-like fixture generated from checked-in source text. Story 177 uses it to widen the repeatable proof surface beyond the original prose-only mini fixture and to verify bounded heading polish on short label-style sections."
+        },
+        {
           "id": "rfp",
           "source": "/Users/cam/Documents/Projects/Cantos Music Foundation Website/Bid/Request for Proposal.pdf",
           "pages": 2,
@@ -220,8 +226,8 @@
       ],
       "scores": null,
       "known_gaps": [
-        "Support still rests on a small proof surface: one repo-owned flat fixture plus two shared local flat PDFs. This is enough for `has-fixture`, not for broad passing/graduation claims.",
-        "Some form-heavy flat PDFs still surface oversized in-body headings from the native-text extractor, so the lane is functionally maintained but not yet polished.",
+        "Support still rests on a small proof surface: two repo-owned flat fixtures plus two shared local flat PDFs. This is enough for `has-fixture`, not for broad passing/graduation claims.",
+        "Story 177 absorbs bounded final-HTML heading polish on the proven slice: repeated short in-body h1/h2 labels are demoted and pathological long heading blocks are flattened into emphasis paragraphs, but `page_html_v1` still reflects raw Marker heading guesses before build-time cleanup.",
         "Image-heavy or otherwise unproven flat born-digital PDFs can still honestly return `no-recipe-needed` when intake evidence does not justify the non-TOC lane.",
         "Marker remains materially slower on cold start than the OCR baseline."
       ],

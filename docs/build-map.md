@@ -471,7 +471,7 @@ empty dedicated section until a second candidate exists.
 
 | Format | ID | Family | Fixture / Current Pipeline | Priority | Notes |
 |---|---|---|---|---|---|
-| Born-digital PDF | `born-digital-pdf` | `born-digital-pdf` | `testdata/tbotb-mini.pdf` via `recipe-pdf-ocr-html-mvp.yaml` and `recipe-born-digital-pdf-marker-lite-html-mvp.yaml`; `testdata/flat-born-digital-mini.pdf` via `recipe-born-digital-pdf-non-toc-html-mvp.yaml`; Story 171 validation assets `rfp` and `release-forms` | High | Story 157 keeps the maintained OCR-entry lane, Story 168 adds an explicit maintained optional Marker-lite native-text recipe on the repo-owned book-like fixture, and Story 171 adds an explicit maintained non-TOC sibling recipe for flat born-digital PDFs. Fresh `driver.py` proof now exists on the repo-owned `flat-born-digital-mini.pdf` plus the local `rfp` and `release-forms` comparison assets: all three produce stamped `page_html_v1`, non-empty portion artifacts, final `doc_web_bundle` manifests, and page-linked provenance under the new lane. Story 176 adds a confirmed-handoff proof from intake approval into the reviewed Marker-lite book-like lane on `testdata/tbotb-mini.pdf`, with inspected `intake_handoff_v1` plus downstream `page_html_v1` artifacts under `story176-born-proof*`. The family still stays `has fixture`, not passing: proof breadth is still small, some form-heavy outputs remain visually rough, the lane still depends on Docker plus a cached GPL/model-license-constrained Marker runtime, and cold-start cost remains materially higher than the OCR baseline. |
+| Born-digital PDF | `born-digital-pdf` | `born-digital-pdf` | `testdata/tbotb-mini.pdf` via `recipe-pdf-ocr-html-mvp.yaml` and `recipe-born-digital-pdf-marker-lite-html-mvp.yaml`; `testdata/flat-born-digital-mini.pdf` and `testdata/flat-born-digital-form-mini.pdf` via `recipe-born-digital-pdf-non-toc-html-mvp.yaml`; Story 171 validation assets `rfp` and `release-forms` | High | Story 157 keeps the maintained OCR-entry lane, Story 168 adds an explicit maintained optional Marker-lite native-text recipe on the repo-owned book-like fixture, and Story 171 adds an explicit maintained non-TOC sibling recipe for flat born-digital PDFs. Story 177 widens the repo-owned flat proof surface to `flat-born-digital-mini.pdf` plus `flat-born-digital-form-mini.pdf`, and fresh `driver.py` proof now exists on those two repo-owned fixtures plus the local `rfp` and `release-forms` comparison assets under `story177-*`: all four produce stamped `page_html_v1`, non-empty portion artifacts, final `doc_web_bundle` manifests, and page-linked provenance. Story 177 also absorbs a bounded final-HTML polish on the proven slice: repeated short in-body `h1`/`h2` labels are demoted to calmer subheads, and the pathological long warning block on `release-forms` is flattened into an emphasis paragraph. Story 176 adds a confirmed-handoff proof from intake approval into the reviewed Marker-lite book-like lane on `testdata/tbotb-mini.pdf`, with inspected `intake_handoff_v1` plus downstream `page_html_v1` artifacts under `story176-born-proof*`. The family still stays `has fixture`, not passing: proof breadth is still small, the lane still depends on Docker plus a cached GPL/model-license-constrained Marker runtime, and cold-start cost remains materially higher than the OCR baseline. |
 | Excel (.xlsx) | `xlsx` | `xlsx` | `testdata/xlsx-mini.xlsx` via `recipe-xlsx-html-mvp.yaml` | Medium | Story 175 adds the first maintained explicit XLSX lane on a repo-owned two-sheet workbook. Fresh `driver.py` proof on 2026-04-01 produced a final `doc_web_bundle` manifest with one HTML page per sheet (`Roster`, `Visits`) plus anchor-based provenance rows for each table. The family still stays `has fixture`, not passing: only the simple-table workbook slice is reviewed, and formulas, charts, merged cells, images, comments, and cell-address anchors remain unproven. |
 | PowerPoint (.pptx) | `pptx` | `pptx` | `testdata/pptx-mini.pptx` reproducible seam-probe fixture | Low | Story 175 adds a reproducible PPTX probe fixture, but there is still no maintained lane. The current local seam remains blocked: `unstructured.partition.pptx` fails in this checkout on missing `python-pptx`, so PPTX now has an explicit measured defer reason instead of vague backlog residue. |
 
@@ -514,10 +514,10 @@ None yet.
 
 ### Gap 2 — Born-digital PDF native text extraction
 
-- **Current signal:** Story 168 still provides the maintained optional native-text lane on `testdata/tbotb-mini.pdf` via `recipe-born-digital-pdf-marker-lite-html-mvp.yaml`, with accepted `doc_web_bundle` / provenance sidecars and no inspected text-loss signal on that reviewed fixture. Story 171 adds `recipe-born-digital-pdf-non-toc-html-mvp.yaml` plus a repo-owned flat fixture (`testdata/flat-born-digital-mini.pdf`) and fresh local validation on `rfp` / `release-forms`; all three now complete through `build_chapter_html_v1` with stamped `page_html_v1`, non-empty `portion_hyp_v1`, final bundle manifests, and inspected provenance sidecars. Marker still remains materially slower on cold start (`story170-marker-tbotb-r1` took `163.07s` for 3 pages versus `8.96s` OCR on `story170-ocr-tbotb-r1`).
-- **Root cause:** The missing maintained path is no longer the blocker. The remaining limitations are breadth and polish: proof still covers only a small set of flat born-digital PDFs, some form-heavy outputs carry oversized in-body headings from the native-text extractor, and the optional native-text lane still carries explicit Docker + cached Marker runtime burden plus a heavy cold-start path.
-- **Fix category:** Fixture widening, output-polish follow-up, and runtime/cost discipline on the maintained native-text lane.
-- **Status:** Gap narrowed from bounded optional capability to a maintained split lane with limited proof breadth. Keep `born-digital-pdf` in `has fixture` until the non-TOC lane is validated across more diverse flat born-digital inputs and the runtime burden is reduced or accepted.
+- **Current signal:** Story 168 still provides the maintained optional native-text lane on `testdata/tbotb-mini.pdf` via `recipe-born-digital-pdf-marker-lite-html-mvp.yaml`, with accepted `doc_web_bundle` / provenance sidecars and no inspected text-loss signal on that reviewed fixture. Story 171 adds `recipe-born-digital-pdf-non-toc-html-mvp.yaml` plus the first repo-owned flat fixture (`testdata/flat-born-digital-mini.pdf`). Story 177 widens that flat proof surface to a second repo-owned fixture (`testdata/flat-born-digital-form-mini.pdf`) and reruns the same maintained lane on local `rfp` / `release-forms`; all four now complete through `build_chapter_html_v1` with stamped `page_html_v1`, non-empty `portion_hyp_v1`, final bundle manifests, and inspected provenance sidecars. Story 177 also absorbs bounded final-HTML polish on the proven slice: repeated short in-body `h1` / `h2` labels are demoted to calmer subheads, and the pathological long warning block on `release-forms` is flattened into an emphasis paragraph. Runtime burden remains real: the first fresh Story 177 rerun (`story177-flat-baseline-r1`) took `176.0s` for 2 pages after the worktree-local Marker runtime had to rebuild, even though warm reruns dropped into the `24s`-`28s` range on the local comparison PDFs.
+- **Root cause:** The missing maintained path and the immediate heading-cleanup follow-up are no longer the blockers on the proven slice. The remaining limitations are breadth and runtime: proof still covers only two repo-owned flat fixtures plus two local comparison PDFs, and the optional native-text lane still carries explicit Docker + cached Marker runtime burden plus a heavy cold-start path.
+- **Fix category:** Further fixture widening plus runtime/cost discipline on the maintained native-text lane.
+- **Status:** Gap narrowed again from "maintained lane with limited proof breadth and visible heading roughness" to "maintained lane with limited proof breadth and explicit runtime burden." Keep `born-digital-pdf` in `has fixture` until the non-TOC lane is validated across more diverse flat born-digital inputs and the runtime burden is reduced or accepted.
 
 ### Gap 3 — Office document intake beyond the first DOCX slice
 
@@ -536,12 +536,14 @@ None yet.
 ### Gap 5 — Fixture breadth and graduation confidence
 
 - **Current signal:** Story 175 gives DOCX three diverse repo-owned passing
-  fixtures on its supported slice, but most other active families still rely on
-  one narrow repo-owned fixture plus a small set of local comparison assets.
+  fixtures on its supported slice, and Story 177 gives born-digital PDF a
+  second repo-owned flat fixture plus a fresh four-asset proof surface on the
+  maintained non-TOC lane. Most other active families still rely on at most two
+  repo-owned fixtures and/or a small set of local comparison assets.
 - **Root cause:** Capability coverage grew faster than repeatable benchmark
   breadth.
 - **Fix category:** Fixture expansion and rerun discipline.
-- **Status:** Open cross-cutting quality gap, but narrower now that DOCX has crossed the three-fixture proof bar.
+- **Status:** Open cross-cutting quality gap, but narrower now that DOCX has crossed the three-fixture proof bar and born-digital flat proof no longer rests on a single repo-owned mini fixture.
 
 ## Resolved Gaps
 
@@ -573,10 +575,12 @@ A converter is ready to graduate to Dossier (spec:7) when:
 
 ## Next Actions
 
-1. Widen flat born-digital proof beyond the current 2-page fixture/forms slice and decide whether oversized in-body headings need a dedicated cleanup follow-up.
-2. Create the handwriting-transcription story.
-3. Expand fixture breadth for already-passing formats so graduation decisions
+1. Create the handwriting-transcription story.
+2. Expand fixture breadth for already-passing formats so graduation decisions
    can be trusted.
+3. Widen born-digital proof beyond the current repo-owned prose + form mini
+   fixtures if the family becomes a near-term graduation target, or explicitly
+   accept the native-text runtime burden instead of leaving it implicit.
 4. Decide whether PPTX should remain explicitly deferred or gain a maintained runtime surface once `python-pptx` and slide-provenance expectations are worth absorbing.
 5. Re-run stale capability measurements where the code changed but the benchmark
    signal did not.
