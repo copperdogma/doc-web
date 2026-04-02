@@ -462,6 +462,7 @@ empty dedicated section until a second candidate exists.
 | Scanned PDF (prose) | `scanned-pdf-prose` | `scanned-pdf` | `extract_pdf_images_fast_v1 -> ocr_ai_gpt51_v1` | 1.00 | 1.00 | - | 1.00 | Story 167 adds `testdata/scanned-prose-mini.pdf`, a repo-owned image-only simple-prose fixture. Fresh `driver.py` proof plus source-text comparison on 2026-03-27 matched the checked-in source text exactly after normalization; broader noisy scanned-prose quality remains a separate question. |
 | Scanned PDF (tables) | `scanned-pdf-tables` | `scanned-pdf` | `extract_pdf_images_fast_v1 -> ocr_ai_gpt51_v1 -> table_rescue_html_loop_v1` | 0.93 | 0.95 | 0.900 | 1.00 | Onward-style genealogy path. Story 157 restored a maintained PDF-backed entry recipe; the shared Onward PDF and image-directory source are both 127 pages. Story 176 adds a fresh confirmed-handoff proof from intake approval into `recipe-pdf-ocr-html-mvp.yaml`, with inspected `intake_handoff_v1` plus downstream `page_image_v1` manifest artifacts under `story176-scanned-proof*`. |
 | Image directory | `image-directory-scans` | `image-directory` | `images_dir_to_manifest_v1 -> ocr_ai_gpt51_v1` | 0.93 | 0.95 | 0.900 | 1.00 | Same source quality as the scanned-PDF image path once pages are extracted. Story 176 adds a fresh confirmed-handoff proof from intake approval into `recipe-images-ocr-html-mvp.yaml`, with inspected `intake_handoff_v1` plus downstream `page_image_v1` manifest artifacts under `story176-image-proof*`. |
+| Handwritten notes | `handwritten-notes` | `handwritten` | `images_dir_to_manifest_v1 -> ocr_ai_gpt51_v1` | 1.00 | 1.00 | - | 1.00 | Story 179 adds `testdata/handwritten-notes-mini-images/` plus the image-only wrapper `testdata/handwritten-notes-mini.pdf`. Fresh `driver.py` proof on 2026-04-01 matched the checked-in transcript exactly after normalization on both maintained generic image-directory and PDF OCR lanes, and `benchmarks/scripts/run_handwritten_notes_eval.py` now reruns that bounded proof surface. This is passing only for the narrow highly legible synthetic slice; messy cursive and degraded handwriting remain unproven. |
 | Plain text | `plain-text` | `plain-text` | `extract_text_v1` | 1.00 | - | - | - | Passthrough, no OCR. |
 | Markdown | `markdown` | `markdown` | `extract_text_v1` | 1.00 | - | - | - | Passthrough. |
 | HTML | `html-files` | `html` | `extract_text_v1` | 1.00 | - | - | - | Passthrough. |
@@ -483,7 +484,6 @@ empty dedicated section until a second candidate exists.
 | Email (.eml) | `email-eml` | `email` | prose | Medium | Personal correspondence import path still missing. |
 | Email archive (.mbox) | `email-mbox` | `email` | prose | Medium | Bulk archive support still missing. |
 | Web page | `web-page` | `web-page` | mixed-layout, illustrations | Medium | Online sources remain a routing/intake gap. |
-| Handwritten notes | `handwritten-notes` | `handwritten` | handwritten, degraded | High | Valuable but still unproven VLM-transcription path. |
 | Mixed archive | `mixed-archive` | `mixed-archive` | mixed | Low | Needs auto-routing plus multi-format unpacking. |
 
 ### Graduated
@@ -528,10 +528,10 @@ None yet.
 
 ### Gap 4 — Handwritten document transcription
 
-- **Current signal:** No tested handwriting path exists.
-- **Root cause:** No fixture set and no dedicated VLM transcription flow.
-- **Fix category:** New intake/extraction path (spec:1, spec:2).
-- **Status:** High-value missing capability for personal archives.
+- **Current signal:** Story 179 adds a repo-owned synthetic handwritten-notes fixture and `benchmarks/scripts/run_handwritten_notes_eval.py`; the maintained generic image-directory and PDF OCR seams now score `1.0` on that bounded slice with image-only PDF verification (`[0, 0]` extract-text lengths).
+- **Root cause:** The "no handwriting path" gap is closed for one narrow highly legible synthetic slice, but breadth is still thin: the repo has no permissively licensed real handwriting fixture and no evidence yet on messier cursive or degraded note scans.
+- **Fix category:** Fixture expansion and eval widening, not a new runtime path.
+- **Status:** Narrowed from missing capability to bounded breadth gap.
 
 ### Gap 5 — Fixture breadth and graduation confidence
 
@@ -575,7 +575,7 @@ A converter is ready to graduate to Dossier (spec:7) when:
 
 ## Next Actions
 
-1. Create the handwriting-transcription story.
+1. Expand handwritten fixture breadth beyond the first synthetic, highly legible slice before treating the family as broadly supported.
 2. Expand fixture breadth for already-passing formats so graduation decisions
    can be trusted.
 3. Widen born-digital proof beyond the current repo-owned prose + form mini

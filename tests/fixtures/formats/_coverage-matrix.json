@@ -372,14 +372,37 @@
     {
       "id": "handwritten-notes",
       "format_family": "handwritten",
-      "status": "untested",
+      "status": "passing",
       "description": "Photos of handwritten notes, letters, diaries",
-      "pipeline_recipe": null,
-      "intake_module": null,
+      "pipeline_recipe": "recipe-images-ocr-html-mvp.yaml",
+      "intake_module": "images_dir_to_manifest_v1 → ocr_ai_gpt51_v1",
       "complexity": ["handwritten", "degraded-quality"],
-      "fixtures": [],
-      "scores": null,
-      "known_gaps": [],
+      "fixtures": [
+        {
+          "id": "handwritten-notes-mini-images",
+          "source": "testdata/handwritten-notes-mini-images/",
+          "pages": 2,
+          "notes": "Repo-owned synthetic handwritten note image directory generated from checked-in transcript text. Story 179 proved the maintained generic image-directory OCR lane on this narrow highly legible slice."
+        },
+        {
+          "id": "handwritten-notes-mini-pdf",
+          "source": "testdata/handwritten-notes-mini.pdf",
+          "pages": 2,
+          "notes": "Image-only PDF wrapper around the same synthetic handwritten pages. Story 179 verified `pypdf` extract-text lengths `[0, 0]` and matched the checked-in transcript exactly after normalization on the maintained generic PDF OCR lane."
+        }
+      ],
+      "scores": {
+        "text_fidelity": 1.0,
+        "structure_preservation": 1.0,
+        "illustration_extraction": null,
+        "provenance_completeness": 1.0,
+        "measured": "2026-04-01",
+        "provenance_measured": "2026-04-01",
+        "notes": "Measured by `benchmarks/scripts/run_handwritten_notes_eval.py` on the repo-owned synthetic handwritten fixture. Both maintained generic image-directory and PDF OCR paths matched the checked-in transcript exactly after normalization. This is a passing claim only for the narrow highly legible synthetic slice."
+      },
+      "known_gaps": [
+        "Current evidence covers one synthetic highly legible handwritten fixture only; messy cursive, degraded notes, and broader handwriting collections remain unmeasured."
+      ],
       "graduated": false
     },
     {

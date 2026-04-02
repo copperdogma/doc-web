@@ -181,6 +181,7 @@ This index tracks stories in `/docs/stories/` for the doc-forge pipeline.
 |||| 176 | Confirmed Intake Handoff to Explicit Recipe Runs | High | Done | /docs/stories/story-176-confirmed-intake-handoff-to-explicit-recipe-runs.md |
 |||| 177 | Widen Flat Born-Digital Proof and Decide Oversized Heading Cleanup | High | Done | /docs/stories/story-177-born-digital-flat-proof-and-heading-cleanup.md |
 |||| 178 | Corpus-Wide Approved Intake Handoff Benchmark | High | Done | /docs/stories/story-178-corpus-wide-approved-intake-handoff-benchmark.md |
+|||| 179 | Repo-Owned Handwritten Notes Fixture and Baseline Transcription | High | Done | /docs/stories/story-179-repo-owned-handwritten-notes-fixture-and-baseline-transcription.md |
 
 ## Notes
 - Status "Done" reflects current working state in doc-forge. "To Do" items are planned next steps aligned with `docs/ideal.md`, `docs/spec.md`, and `docs/build-map.md`.

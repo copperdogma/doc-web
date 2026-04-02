@@ -1,3 +1,18 @@
+## [2026-04-01-04] - Close handwritten-notes proof surface (Story 179)
+
+### Added
+- Added the repo-owned synthetic handwritten-notes fixture set, including the checked-in transcript, generator, image-directory assets, and image-only PDF wrapper
+- Added a focused handwritten transcription scorer and rerun helper plus cheap image-directory/PDF scan-entry smoke coverage
+
+### Changed
+- Updated the build map, eval registry, coverage matrix, testdata docs, and story records so `handwritten-notes` now reflects the bounded synthetic passing slice on the maintained generic OCR lanes
+
+### Tested
+- `make lint`
+- `make test`
+- `python -m pytest tests/test_pdf_intake_recipe.py tests/test_image_directory_intake_recipe.py -q`
+- `python benchmarks/scripts/run_handwritten_notes_eval.py --output benchmarks/results/handwritten-notes-validate.json`
+
 ## [2026-04-01-03] - Close corpus-wide approved intake handoff proof (Story 178)
 
 ### Added

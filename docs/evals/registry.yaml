@@ -154,6 +154,70 @@ evals:
       - condition: new-subject-model
         note: "Models with native table understanding may eliminate rescue pass"
 
+  - id: handwritten-notes-transcription
+    name: Handwritten Notes Transcription
+    type: quality
+    description: >
+      Repo-owned synthetic handwritten-note transcription fidelity on the
+      bounded maintained image-directory and PDF OCR lanes. Measures normalized
+      text fidelity against the checked-in transcript for the narrow highly
+      legible handwritten fixture added in Story 179.
+    pipeline_stage: ocr
+    runner: manual
+    command: "python benchmarks/scripts/run_handwritten_notes_eval.py --output benchmarks/results/handwritten-notes-story179.json"
+    scorer: benchmarks/scorers/handwritten_notes_transcription.py
+    golden: testdata/handwritten-notes-mini.txt
+
+    target:
+      metric: overall_ratio
+      value: 0.99
+      note: "Passing is limited to the narrow synthetic, highly legible handwritten slice."
+
+    scores:
+      - model: "Maintained generic OCR lanes (recipe-images-ocr-html-mvp.yaml + recipe-pdf-ocr-html-mvp.yaml)"
+        metrics:
+          overall_ratio: 1.0
+          page_min_ratio: 1.0
+          pass_rate: 1.0
+          image_overall_ratio: 1.0
+          pdf_overall_ratio: 1.0
+        measured: 2026-04-01
+        note: >
+          Story 179 added `testdata/handwritten-notes-mini-images/`, the
+          image-only wrapper `testdata/handwritten-notes-mini.pdf`, and the
+          focused regression helper
+          `benchmarks/scripts/run_handwritten_notes_eval.py`. Fresh rerun via
+          that helper wrote
+          `benchmarks/results/handwritten-notes-story179.json` with
+          `pass_rate = 1.0`, `overall_min_ratio = 1.0`, and
+          `page_min_ratio = 1.0`; the helper also verified the PDF wrapper
+          stayed image-only (`[0, 0]` extract-text lengths). Manual artifact
+          inspection in the same pass confirmed exact normalized transcript
+          matches at
+          `output/runs/story179-image-generic/02_ocr_ai_gpt51_v1/pages_html.jsonl`
+          and
+          `output/runs/story179-pdf-generic/02_ocr_ai_gpt51_v1/pages_html.jsonl`.
+
+    attempts:
+      - id: "001"
+        date: 2026-04-01
+        status: succeeded
+        approach: "Story 179 repo-owned synthetic handwritten fixture through the maintained generic image-directory and PDF OCR lanes"
+        score_before: null
+        score_after: 1.0
+        note: >
+          Added the first repo-owned handwritten-notes fixture and a focused
+          scoring helper instead of a new runtime module. The checked-in
+          synthetic render proved legible enough that the maintained generic OCR
+          seam already cleared the narrow slice, so no handwritten-only recipe
+          was introduced.
+
+    retry_when:
+      - condition: golden-fix
+        note: "If the checked-in transcript or render helper changes, rerun to refresh the narrow-slice score."
+      - condition: new-subject-model
+        note: "Retry when broader real or degraded handwritten fixtures are added or when a better model might clear them without a new runtime seam."
+
   - id: onward-table-fidelity
     name: Onward Genealogy Table Fidelity
     type: quality
