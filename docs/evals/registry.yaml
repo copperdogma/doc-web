@@ -586,39 +586,46 @@ evals:
       After `confirm_plan_v1` approves an `intake_plan_v1`, can the maintained
       confirmed-handoff path launch the exact approved explicit recipe without
       manually retyping the recipe path or source input? Driver-backed proof on
-      one image-directory input, one scanned PDF input, and one born-digital
-      PDF input; each proof inspects the stamped `intake_handoff_v1` artifact
-      plus the first downstream stamped artifact.
+      the locked 10-document maintained intake PDF corpus now inspects the
+      stamped `intake_handoff_v1` artifact for all 10 cases and the first
+      downstream stamped artifact for the 6 launchable maintained-recipe cases.
+      Image-directory proof remains representative via Story 176 and is not yet
+      part of the locked corpus-wide handoff surface.
     spec_compromise: C2
     runner: manual
 
     target:
       metric: pass_rate
       value: 1.0
-      note: "All 3 representative confirmed-handoff proofs must launch and stamp the expected downstream artifact."
+      note: "All 10 locked-corpus cases must stamp the expected handoff outcome; the 6 launch cases must also stamp the expected first downstream artifact."
 
     scores:
-      - model: "Story 176 confirmed-handoff driver proof"
+      - model: "Story 178 corpus-wide confirmed-handoff harness"
         metrics:
           pass_rate: 1.0
-          launched: 3
+          launched: 6
+          skipped: 4
           failed_runs: 0
-        measured: 2026-04-01
+        measured: 2026-04-02
         note: >
-          Story 176 added `configs/recipes/recipe-intake-contact-sheet-confirmed-handoff.yaml`
-          plus `intake_handoff_v1` and reran fresh `driver.py` proofs on the
-          supported slice with narrow downstream `--end-at` bounds to inspect
-          the first launched artifact. Evidence inspected manually:
-          `output/runs/story176-image-proof/06_run_dispatch_v1/intake_handoff.jsonl`
+          Story 178 added a dedicated corpus-wide approved-handoff harness and
+          reran the locked 10-document maintained intake corpus via
+          `python benchmarks/scripts/run_approved_intake_handoff_eval.py --output benchmarks/results/approved-intake-handoff-story178.json --run-root output/runs/story178-approved-intake-handoff`.
+          All 10 cases wrote stamped `intake_handoff_v1` rows; the 6 maintained
+          launch cases also stamped the expected first downstream artifact with
+          bounded `--end-at` execution. Evidence inspected manually includes
+          `output/runs/story178-approved-intake-handoff/tbotb-mini/intake_handoff.jsonl`
           plus
-          `output/runs/story176-image-proof-recipe-images-ocr-html-mvp/01_images_dir_to_manifest_v1/pages_images_manifest.jsonl`,
-          `output/runs/story176-scanned-proof/06_run_dispatch_v1/intake_handoff.jsonl`
+          `output/runs/story178-approved-intake-handoff-tbotb-mini-recipe-born-digital-pdf-marker-lite-html-mvp/01_extract_pdf_marker_lite_html_v1/pages_html.jsonl`,
+          `output/runs/story178-approved-intake-handoff/onward-unknown/intake_handoff.jsonl`
           plus
-          `output/runs/story176-scanned-proof-recipe-pdf-ocr-html-mvp/01_extract_pdf_images_fast_v1/pages_images_manifest.jsonl`,
-          and
-          `output/runs/story176-born-proof/06_run_dispatch_v1/intake_handoff.jsonl`
+          `output/runs/story178-approved-intake-handoff-onward-unknown-recipe-pdf-ocr-html-mvp/01_extract_pdf_images_fast_v1/pages_images_manifest.jsonl`,
+          `output/runs/story178-approved-intake-handoff/rfp/intake_handoff.jsonl`
           plus
-          `output/runs/story176-born-proof-recipe-born-digital-pdf-marker-lite-html-mvp/01_extract_pdf_marker_lite_html_v1/pages_html.jsonl`.
+          `output/runs/story178-approved-intake-handoff-rfp-recipe-born-digital-pdf-non-toc-html-mvp/01_extract_pdf_marker_lite_html_v1/pages_html.jsonl`,
+          and representative explicit non-launch rows such as
+          `output/runs/story178-approved-intake-handoff/scanned-prose-mini/intake_handoff.jsonl`
+          and `output/runs/story178-approved-intake-handoff/memorial-card/intake_handoff.jsonl`.
 
     attempts:
       - id: "001"
@@ -636,6 +643,21 @@ evals:
           a stamped `intake_handoff_v1` row with the resolved launch flag/path,
           downstream `run_id`, and `terminal_outcome = launched`, then produced
           the first expected downstream stamped artifact.
+      - id: "002"
+        date: 2026-04-02
+        status: succeeded
+        approach: "Story 178 corpus-wide approved-handoff harness across the locked 10-document maintained intake PDF corpus"
+        note: >
+          Fresh corpus-wide run via
+          `python benchmarks/scripts/run_approved_intake_handoff_eval.py --output benchmarks/results/approved-intake-handoff-story178.json --run-root output/runs/story178-approved-intake-handoff`
+          completed `10/10` cases with `pass_rate = 1.0`, `overall = 1.0`,
+          `launched = 6`, `skipped = 4`, and `failed_runs = 0`. The 6
+          maintained launch cases stamped `intake_handoff_v1` plus the expected
+          first downstream artifact under `output/runs/`; the 4
+          `no-recipe-needed` cases stamped explicit skipped handoff rows with
+          `terminal_reason = no_recipe_needed`. Image-directory remains covered
+          only by Story 176's representative proof and is still outside this
+          locked corpus-wide surface.
 
     retry_when:
       - condition: workflow-change

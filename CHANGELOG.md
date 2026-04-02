@@ -1,3 +1,18 @@
+## [2026-04-01-03] - Close corpus-wide approved intake handoff proof (Story 178)
+
+### Added
+- Added a dedicated corpus-wide approved-handoff benchmark harness and scorer that carry the locked maintained intake corpus through `run_dispatch_v1` and record launch versus explicit non-launch outcomes with first-stage artifact paths
+- Added focused benchmark coverage for recipe-first-stage derivation and approved-handoff launch/skip scoring
+
+### Changed
+- Updated the C2 eval registry, build map, and story records so the locked 10-document maintained intake PDF corpus now has corpus-wide approved-handoff evidence while image-directory remains an explicit representative residual
+
+### Tested
+- `python -m pytest tests/`
+- `python -m ruff check modules/ tests/`
+- `python -m ruff check benchmarks/scorers/approved_intake_handoff.py benchmarks/scripts/run_approved_intake_handoff_eval.py tests/test_approved_intake_handoff_benchmark.py`
+- `python benchmarks/scripts/run_approved_intake_handoff_eval.py --output benchmarks/results/approved-intake-handoff-story178.json --run-root output/runs/story178-approved-intake-handoff`
+
 ## [2026-04-01-02] - Close flat born-digital proof lane and heading polish (Story 177)
 
 ### Added
