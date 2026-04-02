@@ -650,20 +650,49 @@ evals:
       After `confirm_plan_v1` approves an `intake_plan_v1`, can the maintained
       confirmed-handoff path launch the exact approved explicit recipe without
       manually retyping the recipe path or source input? Driver-backed proof on
-      the locked 10-document maintained intake PDF corpus now inspects the
-      stamped `intake_handoff_v1` artifact for all 10 cases and the first
-      downstream stamped artifact for the 6 launchable maintained-recipe cases.
-      Image-directory proof remains representative via Story 176 and is not yet
-      part of the locked corpus-wide handoff surface.
+      a dedicated 11-case approved-handoff corpus now inspects the stamped
+      `intake_handoff_v1` artifact for all 11 cases and the first downstream
+      stamped artifact for the 7 launchable maintained-recipe cases. The
+      recommendation-only `auto-book-type-detection` corpus stays locked at 10
+      PDF cases; this surface adds one repo-owned image-directory launch case
+      (`testdata/handwritten-notes-mini-images`) without widening that separate
+      benchmark.
     spec_compromise: C2
     runner: manual
+    command: "python benchmarks/scripts/run_approved_intake_handoff_eval.py --output benchmarks/results/approved-intake-handoff-story180.json --run-root output/runs/story180-approved-intake-handoff"
+    golden: benchmarks/golden/approved-intake-handoff/corpus.json
 
     target:
       metric: pass_rate
       value: 1.0
-      note: "All 10 locked-corpus cases must stamp the expected handoff outcome; the 6 launch cases must also stamp the expected first downstream artifact."
+      note: "All 11 approved-handoff corpus cases must stamp the expected handoff outcome; the 7 launch cases must also stamp the expected first downstream artifact."
 
     scores:
+      - model: "Story 180 dedicated approved-handoff corpus"
+        metrics:
+          pass_rate: 1.0
+          launched: 7
+          skipped: 4
+          failed_runs: 0
+        measured: 2026-04-02
+        note: >
+          Story 180 split approved handoff onto its own corpus file
+          (`benchmarks/golden/approved-intake-handoff/corpus.json`) and reran
+          the widened 11-case surface via
+          `python benchmarks/scripts/run_approved_intake_handoff_eval.py --output benchmarks/results/approved-intake-handoff-story180.json --run-root output/runs/story180-approved-intake-handoff`.
+          All 11 cases wrote stamped `intake_handoff_v1` rows; the 7 maintained
+          launch cases also stamped the expected first downstream artifact under
+          bounded `--end-at` execution. Manual inspection in the same pass
+          confirmed the new repo-owned image-directory row at
+          `output/runs/story180-approved-intake-handoff/handwritten-notes-mini-images/intake_handoff.jsonl`
+          plus
+          `output/runs/story180-approved-intake-handoff-handwritten-notes-mini-images-recipe-images-ocr-html-mvp/01_images_dir_to_manifest_v1/pages_images_manifest.jsonl`,
+          a representative launched PDF row at
+          `output/runs/story180-approved-intake-handoff/tbotb-mini/intake_handoff.jsonl`
+          plus
+          `output/runs/story180-approved-intake-handoff-tbotb-mini-recipe-born-digital-pdf-marker-lite-html-mvp/01_extract_pdf_marker_lite_html_v1/pages_html.jsonl`,
+          and a representative explicit skip at
+          `output/runs/story180-approved-intake-handoff/scanned-prose-mini/intake_handoff.jsonl`.
       - model: "Story 178 corpus-wide confirmed-handoff harness"
         metrics:
           pass_rate: 1.0
@@ -722,6 +751,23 @@ evals:
           `terminal_reason = no_recipe_needed`. Image-directory remains covered
           only by Story 176's representative proof and is still outside this
           locked corpus-wide surface.
+      - id: "003"
+        date: 2026-04-02
+        status: succeeded
+        approach: "Story 180 widened approved handoff in place via a dedicated approved-handoff corpus plus one repo-owned image-directory case"
+        note: >
+          Split `run_approved_intake_handoff_eval.py` onto
+          `benchmarks/golden/approved-intake-handoff/corpus.json` so
+          `auto-book-type-detection` could stay on its locked 10-case
+          recommendation-only PDF corpus. Fresh rerun via
+          `python benchmarks/scripts/run_approved_intake_handoff_eval.py --output benchmarks/results/approved-intake-handoff-story180.json --run-root output/runs/story180-approved-intake-handoff`
+          completed `11/11` cases with `pass_rate = 1.0`, `overall = 1.0`,
+          `launched = 7`, `skipped = 4`, and `failed_runs = 0`. The added
+          repo-owned image-directory case launched
+          `configs/recipes/recipe-images-ocr-html-mvp.yaml` with
+          `launch_input_flag = --input-images` and stamped
+          `01_images_dir_to_manifest_v1/pages_images_manifest.jsonl`; the prior
+          launched and skipped PDF paths remained green on the same run.
 
     retry_when:
       - condition: workflow-change

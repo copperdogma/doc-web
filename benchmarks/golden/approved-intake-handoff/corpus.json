@@ -1,0 +1,90 @@
+[
+  {
+    "id": "tbotb-mini",
+    "input_kind": "pdf",
+    "path": "testdata/tbotb-mini.pdf",
+    "expected_book_type": "cyoa",
+    "expected_recipe": "configs/recipes/recipe-born-digital-pdf-marker-lite-html-mvp.yaml",
+    "expected_major_signals": []
+  },
+  {
+    "id": "scanned-prose-mini",
+    "input_kind": "pdf",
+    "path": "testdata/scanned-prose-mini.pdf",
+    "expected_book_type": "novel",
+    "expected_recipe": "no-recipe-needed",
+    "expected_major_signals": []
+  },
+  {
+    "id": "onward-unknown",
+    "input_kind": "pdf",
+    "path": "/Users/cam/Documents/Projects/doc-web/input/Onward to the Unknown.pdf",
+    "expected_book_type": "genealogy",
+    "expected_recipe": "configs/recipes/recipe-pdf-ocr-html-mvp.yaml",
+    "expected_major_signals": ["tables", "images"]
+  },
+  {
+    "id": "astrosmash-manual",
+    "input_kind": "pdf",
+    "path": "/Users/cam/Documents/Projects/Astrosmash/Astrosmash_-_Manual_-_INT.pdf",
+    "expected_book_type": "other",
+    "expected_recipe": "configs/recipes/recipe-pdf-ocr-html-mvp.yaml",
+    "expected_major_signals": ["tables", "images"]
+  },
+  {
+    "id": "rfp",
+    "input_kind": "pdf",
+    "path": "/Users/cam/Documents/Projects/Cantos Music Foundation Website/Bid/Request for Proposal.pdf",
+    "expected_book_type": "other",
+    "expected_recipe": "configs/recipes/recipe-born-digital-pdf-non-toc-html-mvp.yaml",
+    "expected_major_signals": []
+  },
+  {
+    "id": "button-instructions",
+    "input_kind": "pdf",
+    "path": "/Users/cam/Documents/Projects/Aria Bat Miztvah/Printables/Buttons Signs/Button Making Instructions.pdf",
+    "expected_book_type": "other",
+    "expected_recipe": "no-recipe-needed",
+    "expected_major_signals": ["images"]
+  },
+  {
+    "id": "release-forms",
+    "input_kind": "pdf",
+    "path": "/Users/cam/Documents/Projects/Aria/Summer Camps/ACKNOWLEDGMENT and RELEASE FORMS (for 2005) electronic.pdf",
+    "expected_book_type": "other",
+    "expected_recipe": "configs/recipes/recipe-born-digital-pdf-non-toc-html-mvp.yaml",
+    "expected_major_signals": ["forms"]
+  },
+  {
+    "id": "libin-letter",
+    "input_kind": "pdf",
+    "path": "/Users/cam/Documents/Projects/B.R. Libin Capital Corp/libin.pdf",
+    "expected_book_type": "other",
+    "expected_recipe": "no-recipe-needed",
+    "expected_major_signals": []
+  },
+  {
+    "id": "memorial-card",
+    "input_kind": "pdf",
+    "path": "/Users/cam/Documents/Projects/Bertha Marsollier Funeral/Memorial Card.pdf",
+    "expected_book_type": "other",
+    "expected_recipe": "no-recipe-needed",
+    "expected_major_signals": ["images"]
+  },
+  {
+    "id": "collection-checklist",
+    "input_kind": "pdf",
+    "path": "/Users/cam/Documents/Projects/Cantos Music Foundation Website/site images/CollectionChecklist.pdf",
+    "expected_book_type": "other",
+    "expected_recipe": "configs/recipes/recipe-pdf-ocr-html-mvp.yaml",
+    "expected_major_signals": ["tables"]
+  },
+  {
+    "id": "handwritten-notes-mini-images",
+    "input_kind": "images_dir",
+    "path": "testdata/handwritten-notes-mini-images",
+    "expected_book_type": "other",
+    "expected_recipe": "configs/recipes/recipe-images-ocr-html-mvp.yaml",
+    "expected_major_signals": []
+  }
+]

@@ -16,7 +16,7 @@ if str(ROOT) not in sys.path:
 from benchmarks.scorers.approved_intake_handoff import score_case, summarize_results  # noqa: E402
 
 
-DEFAULT_CORPUS = ROOT / "benchmarks/golden/auto-book-type-detection/corpus.json"
+DEFAULT_CORPUS = ROOT / "benchmarks/golden/approved-intake-handoff/corpus.json"
 
 
 def resolve_input_path(raw_path: str) -> Path:

@@ -31,9 +31,9 @@
 ### Compromise Progress
 
 - **C2: Format-Specific Conversion Recipes** (AI capability) — **climb**
-  - Current: The maintained intake surface now has two explicit lanes: the recommendation-only recipe still emits `intake_plan_v1` across image-directory and PDF inputs, and the confirmed-handoff proof now carries the locked 10-document maintained intake PDF corpus through `run_dispatch_v1` into stamped `intake_handoff_v1` rows. The locked corpus now has corpus-wide workflow evidence: `6` maintained launch cases stamp the expected first downstream artifact under bounded `--end-at` execution, and `4` `no-recipe-needed` cases stamp explicit skipped handoff rows. Manual recipe-path retyping is removed for that locked PDF corpus, while image-directory still relies on Story 176's representative proof rather than the locked corpus-wide handoff surface.
+  - Current: The maintained intake surface now has two explicit lanes: the recommendation-only recipe still emits `intake_plan_v1` across image-directory and PDF inputs, and the confirmed-handoff proof now carries a dedicated 11-case approved-handoff corpus through `run_dispatch_v1` into stamped `intake_handoff_v1` rows. That surface includes the locked 10-document maintained intake PDF corpus plus one repo-owned image-directory case (`testdata/handwritten-notes-mini-images`): `7` maintained launch cases stamp the expected first downstream artifact under bounded `--end-at` execution, and `4` `no-recipe-needed` cases stamp explicit skipped handoff rows. Manual recipe-path retyping is removed for that measured slice; the remaining gap is breadth, not absence of repo-owned image-directory proof.
   - Target: Auto-detect replaces manual recipe selection for 10 diverse documents.
-  - Eval: `auto-book-type-detection` — `accuracy = 1.0`, `overall = 1.0`, `pass_rate = 1.0` on 2026-03-29 via Story 171's refreshed maintained-intake harness over 10 documents; and `approved-intake-handoff` — `pass_rate = 1.0`, `launched = 6`, `skipped = 4`, `failed_runs = 0` on 2026-04-02 via Story 178's driver-backed corpus-wide confirmed-handoff harness over the locked 10-document maintained intake PDF corpus. The compromise stays `climb` because image-directory is still outside the locked corpus-wide handoff surface, unsupported families still require manual recipe choice/config, and broader non-PDF/new-family intake remains unproven. Retry when: `new-input-family` or workflow changes that alter the final routing handoff.
+  - Eval: `auto-book-type-detection` — `accuracy = 1.0`, `overall = 1.0`, `pass_rate = 1.0` on 2026-03-29 via Story 171's refreshed maintained-intake harness over the locked 10-document PDF recommendation corpus; and `approved-intake-handoff` — `pass_rate = 1.0`, `launched = 7`, `skipped = 4`, `failed_runs = 0` on 2026-04-02 via Story 180's driver-backed dedicated approved-handoff corpus over those same 10 PDF cases plus one repo-owned image-directory case. The compromise stays `climb` because only one bounded repo-owned image-directory case is measured so far, unsupported families still require manual recipe choice/config, and broader non-PDF/new-family intake remains unproven. Retry when: `new-input-family` or workflow changes that alter the final routing handoff.
 
 ---
 
@@ -211,7 +211,7 @@ Build-process compromises tracked in `spec:9`:
 | B7 | Story/backlog system | hold | Working; 148 stories tracked |
 | B8 | Build map & phase tracking | hold | This document; reorganized per ADR-021 |
 | B9 | ADR process | hold | 1 accepted ADR; process established |
-| B10 | YAML recipe configuration | climb | Overlaps with C2; Story 176 removes manual recipe-path retyping for supported image-directory/PDF handoff, but unsupported/custom flows still rely on explicit YAML/configuration |
+| B10 | YAML recipe configuration | climb | Overlaps with C2; Stories 176 and 180 remove manual recipe-path retyping for the supported measured PDF plus repo-owned image-directory handoff slice, but unsupported/custom flows still rely on explicit YAML/configuration |
 
 ### Operating Rule — Quality First, Then Complexity Collapse
 

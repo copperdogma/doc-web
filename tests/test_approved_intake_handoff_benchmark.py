@@ -15,11 +15,29 @@ def test_load_first_stage_spec_for_pdf_ocr_recipe():
     }
 
 
+def test_load_first_stage_spec_for_images_recipe():
+    stage = load_first_stage_spec("configs/recipes/recipe-images-ocr-html-mvp.yaml")
+
+    assert stage == {
+        "stage_id": "images_to_manifest",
+        "module": "images_dir_to_manifest_v1",
+        "out": "pages_images_manifest.jsonl",
+    }
+
+
 def test_build_first_downstream_artifact_path_for_marker_recipe():
     stage = load_first_stage_spec("configs/recipes/recipe-born-digital-pdf-marker-lite-html-mvp.yaml")
 
     assert build_first_downstream_artifact_path("story178-born", stage) == (
         "output/runs/story178-born/01_extract_pdf_marker_lite_html_v1/pages_html.jsonl"
+    )
+
+
+def test_build_first_downstream_artifact_path_for_images_recipe():
+    stage = load_first_stage_spec("configs/recipes/recipe-images-ocr-html-mvp.yaml")
+
+    assert build_first_downstream_artifact_path("story180-images", stage) == (
+        "output/runs/story180-images/01_images_dir_to_manifest_v1/pages_images_manifest.jsonl"
     )
 
 

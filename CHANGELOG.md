@@ -1,3 +1,18 @@
+## [2026-04-02-01] - Close repo-owned image-directory handoff proof (Story 180)
+
+### Added
+- Added a dedicated approved-intake-handoff corpus that preserves the locked 10-case recommendation-only PDF surface while adding one repo-owned image-directory proof case
+- Added focused benchmark coverage for the image-directory recipe's first downstream artifact expectations
+
+### Changed
+- Changed the approved-intake-handoff harness default to the dedicated corpus and updated the eval registry, build map, and story records so C2/B10 now reflect one repo-owned measured image-directory handoff case
+
+### Tested
+- `make lint`
+- `python -m pytest tests/test_approved_intake_handoff_benchmark.py -q`
+- `make test`
+- `python benchmarks/scripts/run_approved_intake_handoff_eval.py --output benchmarks/results/approved-intake-handoff-story180-validation.json --run-root output/runs/story180-approved-intake-handoff-validation`
+
 ## [2026-04-01-04] - Close handwritten-notes proof surface (Story 179)
 
 ### Added
