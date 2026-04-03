@@ -1,3 +1,17 @@
+## [2026-04-03-01] - Close handwritten synthetic corpus proof surface (Story 182)
+
+### Added
+- Added a second rough synthetic handwritten-notes fixture, corpus metadata, and focused corpus test coverage so the maintained handwritten proof surface no longer rests on one easy synthetic note
+
+### Changed
+- Changed the handwritten eval helper to run a multi-fixture corpus with fixture-specific run IDs and updated the build map, eval registry, coverage matrix, testdata docs, and story records to reflect the broader but still synthetic handwritten claim
+
+### Tested
+- `pytest tests/test_handwritten_notes_eval.py tests/test_image_directory_intake_recipe.py tests/test_pdf_intake_recipe.py -q`
+- `python benchmarks/scripts/run_handwritten_notes_eval.py --output benchmarks/results/handwritten-notes-validate-20260403.json`
+- `make lint`
+- `make test`
+
 ## [2026-04-02-02] - Close maintained layout benchmark proof surface (Story 181)
 
 ### Added

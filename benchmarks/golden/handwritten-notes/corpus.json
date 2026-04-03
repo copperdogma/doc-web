@@ -1,0 +1,22 @@
+{
+  "fixtures": [
+    {
+      "id": "handwritten-notes-mini",
+      "label": "Highly legible synthetic note",
+      "difficulty": "legible",
+      "source_type": "synthetic",
+      "transcript": "testdata/handwritten-notes-mini.txt",
+      "images": "testdata/handwritten-notes-mini-images",
+      "pdf": "testdata/handwritten-notes-mini.pdf"
+    },
+    {
+      "id": "handwritten-notes-rough",
+      "label": "Rougher synthetic note",
+      "difficulty": "rough",
+      "source_type": "synthetic",
+      "transcript": "testdata/handwritten-notes-rough.txt",
+      "images": "testdata/handwritten-notes-rough-images",
+      "pdf": "testdata/handwritten-notes-rough.pdf"
+    }
+  ]
+}

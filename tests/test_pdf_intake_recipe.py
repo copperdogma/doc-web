@@ -13,6 +13,7 @@ BORN_DIGITAL_FIXTURE = "testdata/tbotb-mini.pdf"
 FLAT_FORM_FIXTURE = "testdata/flat-born-digital-form-mini.pdf"
 SCANNED_PROSE_FIXTURE = "testdata/scanned-prose-mini.pdf"
 HANDWRITTEN_NOTES_FIXTURE = "testdata/handwritten-notes-mini.pdf"
+HANDWRITTEN_ROUGH_FIXTURE = "testdata/handwritten-notes-rough.pdf"
 
 
 def _run_pdf_recipe_extract_only_smoke(tmp_path, pdf_fixture: str):
@@ -72,6 +73,14 @@ def test_handwritten_notes_pdf_recipe_extract_only_smoke(tmp_path):
     assert all(len((page.extract_text() or "").strip()) == 0 for page in reader.pages)
 
     _run_pdf_recipe_extract_only_smoke(tmp_path, HANDWRITTEN_NOTES_FIXTURE)
+
+
+def test_handwritten_rough_pdf_recipe_extract_only_smoke(tmp_path):
+    reader = PdfReader(HANDWRITTEN_ROUGH_FIXTURE)
+    assert len(reader.pages) == 3
+    assert all(len((page.extract_text() or "").strip()) == 0 for page in reader.pages)
+
+    _run_pdf_recipe_extract_only_smoke(tmp_path, HANDWRITTEN_ROUGH_FIXTURE)
 
 
 def test_repo_owned_flat_form_fixture_has_extractable_text():

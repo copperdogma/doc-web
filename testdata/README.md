@@ -5,7 +5,8 @@
 - `flat-born-digital-mini.md` / `flat-born-digital-mini.pdf`: repo-owned flat born-digital prose packet with no TOC and no printed page numbers. Story 171 uses it to prove the maintained non-TOC born-digital PDF lane can emit a final `doc-web` bundle without relying only on local user assets.
 - `flat-born-digital-form-mini.md` / `flat-born-digital-form-mini.pdf`: repo-owned flat born-digital form-like packet with short label-style sections and an all-caps warning block. Story 177 uses it to widen the repeatable proof surface beyond the original prose-only mini fixture and to measure whether oversized in-body headings are a generic rough edge on the maintained non-TOC lane.
 - `scanned-prose-mini.md` / `scanned-prose-mini.pdf`: original repo-owned prose source plus a generated image-only PDF fixture for `scanned-pdf-prose`. Story 167 uses it to prove maintained scanned-PDF entry, `page_image_v1` provenance, and a clean simple-prose OCR lane without relying on a shared local asset. This is passing evidence for the repo-owned simple-prose fixture, not a blanket claim about degraded or noisy scanned prose.
-- `handwritten-notes-mini.txt` / `handwritten-notes-mini-images/` / `handwritten-notes-mini.pdf`: repo-owned synthetic handwritten-notes fixture generated from a checked-in transcript via `generate_handwritten_notes_fixture.py`. Story 179 uses it to prove the narrow, highly legible handwritten-note slice on the maintained generic image-directory and PDF OCR lanes. This is passing evidence only for that synthetic legible slice, not for messy cursive, degraded diaries, or broader real-world handwriting.
+- `handwritten-notes-mini.txt` / `handwritten-notes-mini-images/` / `handwritten-notes-mini.pdf`: repo-owned synthetic handwritten-notes fixture generated from a checked-in transcript via `generate_handwritten_notes_fixture.py`. Story 179 uses it to prove the first narrow, highly legible handwritten-note slice on the maintained generic image-directory and PDF OCR lanes.
+- `handwritten-notes-rough.txt` / `handwritten-notes-rough-images/` / `handwritten-notes-rough.pdf`: repo-owned synthetic handwritten-notes fixture generated from a checked-in transcript via `generate_handwritten_notes_fixture.py --preset rough`. Story 182 widens the maintained handwritten proof surface to two synthetic fixtures: one highly legible slice plus one rougher synthetic note on the same generic image-directory and PDF OCR lanes. This is still bounded synthetic evidence, not a claim about messy cursive, degraded diaries, or broader real-world handwriting.
 - `docx-mini.source.json` / `docx-mini.docx`, `docx-sections-mini.source.json` / `docx-sections-mini.docx`, and `docx-nested-mini.source.json` / `docx-nested-mini.docx`: repo-owned DOCX fixture set generated from checked-in structured source data. Story 175 widens the maintained DOCX lane to three repo-owned fixtures on the supported slice: heading-based sections, prose, nested subheadings, simple bullet lists, and a simple table. Provenance remains block-anchor based rather than page-based because DOCX is pageless in this lane.
 - `xlsx-mini.source.json` / `xlsx-mini.xlsx`: repo-owned XLSX workbook fixture with two simple table sheets (`Roster`, `Visits`). Story 175 uses it to prove the first maintained XLSX lane on the narrow supported slice: sheet-named entries, HTML table preservation, and anchor-based provenance with no fabricated page numbers.
 - `pptx-mini.md` / `pptx-mini.pptx`: reproducible PPTX seam-probe fixture generated from checked-in markdown via `pandoc`. Story 175 uses it to make the current PPTX defer explicit: the probe file is repo-owned, but `unstructured.partition.pptx` still fails in this checkout because `python-pptx` is not installed.
@@ -53,9 +54,10 @@ Regeneration:
   ```bash
   python testdata/generate_scanned_prose_fixture.py
   ```
-- Synthetic handwritten-notes fixture:
+- Synthetic handwritten-notes fixtures:
   ```bash
   python testdata/generate_handwritten_notes_fixture.py
+  python testdata/generate_handwritten_notes_fixture.py --preset rough --transcript testdata/handwritten-notes-rough.txt --images-dir testdata/handwritten-notes-rough-images --pdf testdata/handwritten-notes-rough.pdf
   ```
 - DOCX fixtures:
   ```bash
@@ -80,4 +82,4 @@ Regeneration:
   print([len((page.extract_text() or '').strip()) for page in reader.pages])
   PY
   ```
-  The same check should print `[0, 0]` for `testdata/handwritten-notes-mini.pdf`.
+  The same check should print `[0, 0]` for `testdata/handwritten-notes-mini.pdf` and `[0, 0, 0]` for `testdata/handwritten-notes-rough.pdf`.
