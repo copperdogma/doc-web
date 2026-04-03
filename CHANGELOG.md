@@ -4,11 +4,14 @@
 - Added a focused crop benchmark guardrail so repo checks fail if the maintained `image-crop-extraction` task drops the `conservative-count` prompt again
 
 ### Changed
-- Changed the maintained C4 crop benchmark task, eval registry, build map, runbook, benchmark README, and story record so the official detector surface again includes the winning `conservative-count` prompt and reports the refreshed maintained-task score of `0.910` overall / `1.0` pass rate
+- Changed the maintained C4 crop benchmark task, eval registry, build map, runbook, benchmark README, and story record so the official detector surface again includes the winning `conservative-count` prompt and reports the refreshed maintained-task score of `0.918` overall / `1.0` pass rate
 
 ### Tested
 - `python -m pytest tests/test_crop_benchmark_substrate.py -q`
 - `cd benchmarks && promptfoo eval -c tasks/image-crop-extraction.yaml --no-cache --filter-providers 'google:gemini-3-flash-preview' --filter-prompts 'conservative-count' --output results/image-crop-extraction-g3flash-conservative-count-20260403.json -j 1`
+- `make lint`
+- `make test`
+- `cd benchmarks && promptfoo eval -c tasks/image-crop-extraction.yaml --no-cache --filter-providers 'google:gemini-3-flash-preview' --filter-prompts 'conservative-count' --output results/image-crop-extraction-g3flash-conservative-count-20260403-mainlanding.json -j 1`
 
 ## [2026-04-03-02] - Close crop benchmark substrate and C5 validation surface (Story 183)
 

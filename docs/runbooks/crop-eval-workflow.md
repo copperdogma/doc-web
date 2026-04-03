@@ -41,7 +41,7 @@ View results: `promptfoo view`
   - `image-crop-extraction` — page-level detector-quality surface linked to `C4`
   - `crop-validation` — dedicated bounded text-exclusion / crop-quality surface linked to `C5`
 - **Maintained detector prompt set**: `baseline`, `strict-exclude`, `two-step`, `conservative-count`
-- **Current detector score**: `image-crop-extraction` best recorded result is `0.910` overall / `1.0` pass rate (Gemini 3 Flash conservative-count prompt on the maintained task, measured 2026-04-03 at git `97d41f6`)
+- **Current detector score**: `image-crop-extraction` best recorded result is `0.918` overall / `1.0` pass rate (Gemini 3 Flash conservative-count prompt on the maintained task, measured 2026-04-03)
 - **Current dedicated C5-linked score**: `crop-validation` is `1.0` overall / `1.0` pass rate on the checked-in 40-crop corpus (Gemini 3.1 Flash Lite + `caption-focus`, measured 2026-04-03)
 - **Spec compromises**:
   - `C4` — Two-Stage Image Crop Detection
