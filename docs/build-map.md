@@ -78,7 +78,7 @@
 - **C3: Heuristic + AI Layout Detection** (AI capability) — **climb**
   - Current: Deterministic detectors for cheap/stable cases, AI escalation for ambiguity. System still depends on heuristics for stability and cost.
   - Target: VLM-only layout detection at 100% accuracy on a diverse 5-document benchmark with no heuristic fallbacks.
-  - Eval: No dedicated deletion eval recorded. **no eval.** Retry when: layout benchmark exists or new subject model makes VLM-first credible.
+  - Eval: Dedicated bounded maintained layout benchmark now exists via `benchmarks/scripts/run_layout_section_splitting_eval.py`. Story 181 scored `pass_rate = 1.0` and `overall = 1.0` on the repo-owned 5-case DOCX + flat born-digital corpus, while the thinner representative challengers stayed non-competitive (`challenger_real_competitors = 0`, `challenger_overall = 0.6`). C3 stays in `climb` because this surface proves the current maintained seam, not a heuristic-free VLM-only replacement. Retry when: a thinner or model-led challenger can clear the same corpus, or the corpus expands.
 
 ---
 

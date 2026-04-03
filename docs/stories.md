@@ -183,6 +183,7 @@ This index tracks stories in `/docs/stories/` for the doc-forge pipeline.
 |||| 178 | Corpus-Wide Approved Intake Handoff Benchmark | High | Done | /docs/stories/story-178-corpus-wide-approved-intake-handoff-benchmark.md |
 |||| 179 | Repo-Owned Handwritten Notes Fixture and Baseline Transcription | High | Done | /docs/stories/story-179-repo-owned-handwritten-notes-fixture-and-baseline-transcription.md |
 |||| 180 | Widen Approved Intake Handoff to Repo-Owned Image-Directory Proof | High | Done | /docs/stories/story-180-widen-approved-intake-handoff-image-directory-proof.md |
+|||| 181 | Establish a Maintained Layout Benchmark and Provenance-Focused Section-Splitting Proof Surface | High | Done | /docs/stories/story-181-maintained-layout-benchmark-and-section-splitting-proof.md |
 
 ## Notes
 - Status "Done" reflects current working state in doc-forge. "To Do" items are planned next steps aligned with `docs/ideal.md`, `docs/spec.md`, and `docs/build-map.md`.

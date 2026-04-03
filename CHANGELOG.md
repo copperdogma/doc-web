@@ -1,3 +1,16 @@
+## [2026-04-02-02] - Close maintained layout benchmark proof surface (Story 181)
+
+### Added
+- Added the first maintained layout section-splitting benchmark corpus, scorer, runner, and focused benchmark test coverage for the repo-owned DOCX and flat born-digital proof slice
+
+### Changed
+- Changed the C3 truth surface in the eval registry, build map, story records, and inbox so Category 3 now has a bounded maintained quality benchmark with challenger comparison instead of an unmeasured planning claim
+
+### Tested
+- `python -m pytest tests/`
+- `python -m ruff check modules/ tests/`
+- `python benchmarks/scripts/run_layout_section_splitting_eval.py --output benchmarks/results/layout-section-splitting-story181.json --run-root output/runs/story181-layout-benchmark`
+
 ## [2026-04-02-01] - Close repo-owned image-directory handoff proof (Story 180)
 
 ### Added

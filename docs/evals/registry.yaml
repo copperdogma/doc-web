@@ -774,3 +774,82 @@ evals:
         note: >
           Rerun when `run_dispatch_v1`, supported input families, or the driver
           input-override plumbing changes.
+
+  - id: layout-section-splitting
+    name: "C3 Proof: Maintained Layout Section Splitting"
+    type: quality
+    description: >
+      Repo-owned 5-document benchmark for the bounded maintained C3 slice:
+      3 DOCX fixtures plus 2 flat born-digital PDFs. Scores the accepted final
+      `doc_web_bundle_manifest_v1` / `doc_web_provenance_block_v1` outputs
+      against checked-in section-order, non-split HTML, and provenance
+      assertions, and also records one thinner challenger per family to keep
+      pressure on the current seam.
+    spec_compromise: C3
+    runner: manual
+    command: "python benchmarks/scripts/run_layout_section_splitting_eval.py --output benchmarks/results/layout-section-splitting-story181.json --run-root output/runs/story181-layout-benchmark"
+    scorer: benchmarks/scorers/layout_section_splitting.py
+    golden: benchmarks/golden/layout-section-splitting/corpus.json
+
+    target:
+      metric: pass_rate
+      value: 1.0
+      note: >
+        All 5 bounded maintained cases must clear the checked-in section-order,
+        non-split HTML, and provenance assertions. Challenger rows are tracked
+        as comparison evidence rather than part of the pass gate.
+
+    scores:
+      - model: "Story 181 maintained layout benchmark (quality + challenger comparison)"
+        metrics:
+          pass_rate: 1.0
+          overall: 1.0
+          docs: 5
+          failed_runs: 0
+          challenger_cases: 2
+          challenger_real_competitors: 0
+          challenger_overall: 0.6
+        measured: 2026-04-02
+        note: >
+          Story 181 added
+          `benchmarks/golden/layout-section-splitting/corpus.json`,
+          `benchmarks/scorers/layout_section_splitting.py`, and
+          `benchmarks/scripts/run_layout_section_splitting_eval.py`, then reran
+          the bounded maintained corpus via
+          `python benchmarks/scripts/run_layout_section_splitting_eval.py --output benchmarks/results/layout-section-splitting-story181.json --run-root output/runs/story181-layout-benchmark`.
+          All 5 repo-owned cases passed on fresh `driver.py` outputs. Manual
+          inspection in the same pass covered
+          `output/runs/story181-layout-benchmark-docx-mini/output/html/manifest.json`,
+          `output/runs/story181-layout-benchmark-docx-nested/output/html/chapter-001.html`,
+          `output/runs/story181-layout-benchmark-flat-born-digital-mini/output/html/provenance/blocks.jsonl`,
+          and
+          `output/runs/story181-layout-benchmark-flat-born-digital-form-mini/output/html/chapter-001.html`.
+          Classification: quality benchmark with challenger comparison. The two
+          thinner representative challengers stayed non-competitive on the same
+          bounded slice: the DOCX single-entry baseline derived from
+          `01_unstructured_docx_intake_v1/elements.jsonl` misses required
+          splits, and the flat extract-stage `doc_web_bundle` preserves
+          page-level provenance but fails the checked-in section expectations.
+
+    attempts:
+      - id: "001"
+        date: 2026-04-02
+        status: succeeded
+        approach: "Story 181 first maintained layout benchmark on the repo-owned DOCX + flat born-digital slice"
+        note: >
+          Fresh run via
+          `python benchmarks/scripts/run_layout_section_splitting_eval.py --output benchmarks/results/layout-section-splitting-story181.json --run-root output/runs/story181-layout-benchmark`
+          completed all 5 bounded corpus cases with `pass_rate = 1.0`,
+          `overall = 1.0`, and `failed_runs = 0`. Representative challenge
+          rows also ran in the same pass and remained non-competitive
+          (`challenger_real_competitors = 0`, `challenger_overall = 0.6`).
+
+    retry_when:
+      - condition: new-subject-model
+        note: >
+          Rerun when a model-only or thinner challenger for DOCX or flat
+          section ownership looks credible on the same bounded corpus.
+      - condition: new-input-family
+        note: >
+          Expand or rerun when a new maintained section-bearing input family
+          lands, or when the bounded corpus itself changes.

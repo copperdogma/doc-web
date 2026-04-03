@@ -1,0 +1,204 @@
+[
+  {
+    "id": "docx-mini",
+    "family": "docx",
+    "input_kind": "docx",
+    "path": "testdata/docx-mini.docx",
+    "recipe": "configs/recipes/recipe-docx-html-mvp.yaml",
+    "expected_manifest_title": "DOCX Mini Fixture",
+    "provenance_mode": "pageless",
+    "expected_entry_titles": ["Family Snapshot", "Notes"],
+    "html_assertions": [
+      {
+        "entry_title": "Family Snapshot",
+        "snippets": [
+          "Parents: Ada and Lin",
+          "Home region: Foothills County",
+          "Ada</td><td>Researcher"
+        ]
+      },
+      {
+        "entry_title": "Notes",
+        "snippets": [
+          "block-level provenance anchors survive into the final bundle"
+        ]
+      }
+    ],
+    "provenance_assertions": [
+      {
+        "entry_title": "Family Snapshot",
+        "block_kind": "table",
+        "text_quote_contains": "Ada Researcher"
+      },
+      {
+        "entry_title": "Notes",
+        "block_kind": "paragraph",
+        "text_quote_contains": "block-level provenance anchors survive"
+      }
+    ]
+  },
+  {
+    "id": "docx-sections",
+    "family": "docx",
+    "input_kind": "docx",
+    "path": "testdata/docx-sections-mini.docx",
+    "recipe": "configs/recipes/recipe-docx-html-mvp.yaml",
+    "expected_manifest_title": "DOCX Sections Fixture",
+    "provenance_mode": "pageless",
+    "expected_entry_titles": ["Overview", "Roster"],
+    "html_assertions": [
+      {
+        "entry_title": "Overview",
+        "snippets": [
+          "A simple maintained DOCX with two top-level sections.",
+          "The wider proof should keep both paragraphs inside the same section"
+        ]
+      },
+      {
+        "entry_title": "Roster",
+        "snippets": [
+          "Ada keeps the records.",
+          "Lin verifies the shipments."
+        ]
+      }
+    ],
+    "provenance_assertions": [
+      {
+        "entry_title": "Overview",
+        "block_kind": "paragraph",
+        "text_quote_contains": "two top-level sections"
+      },
+      {
+        "entry_title": "Roster",
+        "block_kind": "paragraph",
+        "text_quote_contains": "Lin verifies the shipments"
+      }
+    ]
+  },
+  {
+    "id": "docx-nested",
+    "family": "docx",
+    "input_kind": "docx",
+    "path": "testdata/docx-nested-mini.docx",
+    "recipe": "configs/recipes/recipe-docx-html-mvp.yaml",
+    "expected_manifest_title": "DOCX Nested Fixture",
+    "provenance_mode": "pageless",
+    "expected_entry_titles": ["Overview", "Appendix"],
+    "html_assertions": [
+      {
+        "entry_title": "Overview",
+        "snippets": [
+          "Subsection A",
+          "Nested heading content should stay attached to Overview",
+          "First bullet"
+        ]
+      },
+      {
+        "entry_title": "Appendix",
+        "snippets": [
+          "Closing section."
+        ]
+      }
+    ],
+    "provenance_assertions": [
+      {
+        "entry_title": "Overview",
+        "block_kind": "heading",
+        "text_quote_contains": "Subsection A"
+      },
+      {
+        "entry_title": "Appendix",
+        "block_kind": "paragraph",
+        "text_quote_contains": "Closing section."
+      }
+    ],
+    "challenger": {
+      "kind": "docx_first_title_only",
+      "artifact": "01_unstructured_docx_intake_v1/elements.jsonl"
+    }
+  },
+  {
+    "id": "flat-born-digital-mini",
+    "family": "born-digital-pdf",
+    "input_kind": "pdf",
+    "path": "testdata/flat-born-digital-mini.pdf",
+    "recipe": "configs/recipes/recipe-born-digital-pdf-non-toc-html-mvp.yaml",
+    "provenance_mode": "paged",
+    "expected_entry_titles": ["Requested information:", "Accessibility notes:"],
+    "html_assertions": [
+      {
+        "entry_title": "Requested information:",
+        "snippets": [
+          "Budget notes:",
+          "Review notes:",
+          "Submission checklist:",
+          "Operational details:"
+        ]
+      },
+      {
+        "entry_title": "Accessibility notes:",
+        "snippets": [
+          "Communications notes:",
+          "Archival notes:",
+          "Final reminder:"
+        ]
+      }
+    ],
+    "provenance_assertions": [
+      {
+        "entry_title": "Requested information:",
+        "block_kind": "heading",
+        "source_page_number": 1,
+        "source_element_prefix": "p001-",
+        "text_quote_contains": "Requested information:"
+      },
+      {
+        "entry_title": "Accessibility notes:",
+        "block_kind": "heading",
+        "source_page_number": 2,
+        "source_element_prefix": "p002-",
+        "text_quote_contains": "Accessibility notes:"
+      }
+    ],
+    "challenger": {
+      "kind": "extract_stage_doc_web_bundle",
+      "bundle_subdir": "01_extract_pdf_marker_lite_html_v1/doc_web_bundle"
+    }
+  },
+  {
+    "id": "flat-born-digital-form-mini",
+    "family": "born-digital-pdf",
+    "input_kind": "pdf",
+    "path": "testdata/flat-born-digital-form-mini.pdf",
+    "recipe": "configs/recipes/recipe-born-digital-pdf-non-toc-html-mvp.yaml",
+    "provenance_mode": "paged",
+    "expected_entry_titles": ["Participant information:"],
+    "html_assertions": [
+      {
+        "entry_title": "Participant information:",
+        "snippets": [
+          "Emergency contact:",
+          "Accessibility checklist:",
+          "Required acknowledgments:",
+          "Signature block:"
+        ]
+      }
+    ],
+    "provenance_assertions": [
+      {
+        "entry_title": "Participant information:",
+        "block_kind": "heading",
+        "source_page_number": 1,
+        "source_element_prefix": "p001-",
+        "text_quote_contains": "Participant information:"
+      },
+      {
+        "entry_title": "Participant information:",
+        "block_kind": "heading",
+        "source_page_number": 1,
+        "source_element_prefix": "p001-",
+        "text_quote_contains": "Required acknowledgments:"
+      }
+    ]
+  }
+]
