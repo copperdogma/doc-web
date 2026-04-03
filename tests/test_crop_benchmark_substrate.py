@@ -43,6 +43,16 @@ def test_image_crop_extraction_task_assets_exist_and_match_golden_keys():
     assert sorted(seen_keys) == sorted(golden.keys())
 
 
+def test_image_crop_extraction_task_keeps_conservative_count_prompt():
+    task_name = "image-crop-extraction.yaml"
+    task = _load_task(task_name)
+
+    prompt_labels = {prompt["label"] for prompt in task["prompts"]}
+    assert "conservative-count" in prompt_labels, (
+        f"{task_name}: maintained detector surface drifted; missing conservative-count prompt"
+    )
+
+
 def test_crop_validation_task_assets_exist_and_match_golden_keys():
     task_name = "crop-validation.yaml"
     task = _load_task(task_name)

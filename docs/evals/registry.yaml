@@ -53,10 +53,10 @@ evals:
     scores:
       - model: "Gemini 3 Flash (conservative-count prompt)"
         metrics:
-          overall: 0.900
-          pass_rate: 0.923
-        measured: 2026-03-11
-        note: "Story 133. 5.7x cheaper than Pro ($0.22 vs $1.25/book). Axis-swap fix + conservative-count prompt."
+          overall: 0.910
+          pass_rate: 1.0
+        measured: 2026-04-03
+        note: "Fresh rerun on the repaired maintained C4 surface at git `97d41f6` after restoring `conservative-count` to `tasks/image-crop-extraction.yaml`."
       - model: "Gemini 3 Pro (detector) + Gemini 2.5 Flash (validator)"
         metrics:
           overall: 0.856
@@ -118,6 +118,26 @@ evals:
           pass did not record a new comparable detector leaderboard score; the
           fresh current-pass recorded crop score landed on the dedicated
           `crop-validation` surface instead.
+      - id: "005"
+        date: 2026-04-03
+        status: succeeded
+        approach: "Follow-up `/improve-eval image-crop-extraction`: restore `conservative-count` to the maintained task and rerun Gemini 3 Flash on the repaired C4 surface"
+        score_before: 0.900
+        score_after: 0.910
+        note: >
+          Classification: task-config wrong, not golden-wrong. The maintained
+          `image-crop-extraction` task had drifted to a three-prompt surface
+          even though the registry/runbook claimed the winning
+          `conservative-count` prompt was current. Fresh drifted-task baseline
+          at git `97d41f6`: `baseline = 0.848 / 0.769`, `strict-exclude = 0.915
+          / 0.846`, `two-step = 0.827 / 0.769` (overall / pass_rate). After
+          restoring `conservative-count`, `cd benchmarks && promptfoo eval -c
+          tasks/image-crop-extraction.yaml --no-cache --filter-providers
+          'google:gemini-3-flash-preview' --filter-prompts
+          'conservative-count' --output
+          results/image-crop-extraction-g3flash-conservative-count-20260403.json
+          -j 1` scored `0.910 / 1.0` on the maintained 13-page corpus, with
+          manual inspection of `Image000`, `Image001`, and `Image011`.
 
     retry_when:
       - condition: new-subject-model

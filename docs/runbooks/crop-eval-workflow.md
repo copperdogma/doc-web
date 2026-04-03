@@ -40,7 +40,8 @@ View results: `promptfoo view`
 - **Registry entries**:
   - `image-crop-extraction` — page-level detector-quality surface linked to `C4`
   - `crop-validation` — dedicated bounded text-exclusion / crop-quality surface linked to `C5`
-- **Current detector score**: `image-crop-extraction` best recorded result is `0.900` overall / `0.923` pass rate (Gemini 3 Flash conservative-count prompt, measured 2026-03-11)
+- **Maintained detector prompt set**: `baseline`, `strict-exclude`, `two-step`, `conservative-count`
+- **Current detector score**: `image-crop-extraction` best recorded result is `0.910` overall / `1.0` pass rate (Gemini 3 Flash conservative-count prompt on the maintained task, measured 2026-04-03 at git `97d41f6`)
 - **Current dedicated C5-linked score**: `crop-validation` is `1.0` overall / `1.0` pass rate on the checked-in 40-crop corpus (Gemini 3.1 Flash Lite + `caption-focus`, measured 2026-04-03)
 - **Spec compromises**:
   - `C4` — Two-Stage Image Crop Detection
@@ -91,3 +92,7 @@ Only verified scores are recorded in the registry.
 - **The `.b64.txt` fixtures are canonical**: the maintained crop fixtures are
   downscaled benchmark inputs, not trivial wrappers around raw JPEGs. Repointing
   the task configs to raw images changes the eval surface.
+- **Keep the maintained prompt set honest**: the registry and runbook assume
+  `tasks/image-crop-extraction.yaml` contains the winning `conservative-count`
+  prompt. If that prompt drifts back out of the maintained task, the C4 surface
+  becomes misleading even if the sidecar prompt-comparison task still exists.

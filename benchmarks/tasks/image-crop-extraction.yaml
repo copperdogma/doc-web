@@ -5,7 +5,7 @@ defaultTest:
   options:
     provider: anthropic:messages:claude-opus-4-6
 
-# Three prompt variants (JS functions adapt image format per provider)
+# Four prompt variants (JS functions adapt image format per provider)
 prompts:
   - id: "file://../prompts/crop-baseline.js"
     label: "baseline"
@@ -13,6 +13,8 @@ prompts:
     label: "strict-exclude"
   - id: "file://../prompts/crop-two-step.js"
     label: "two-step"
+  - id: "file://../prompts/crop-conservative-count.js"
+    label: "conservative-count"
 
 # Vision-capable models from all three providers
 providers:
