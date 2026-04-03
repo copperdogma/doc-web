@@ -1,3 +1,18 @@
+## [2026-04-03-02] - Close crop benchmark substrate and C5 validation surface (Story 183)
+
+### Added
+- Added tracked crop benchmark input fixtures plus focused substrate-integrity test coverage so the maintained crop promptfoo surfaces now run from this repo checkout instead of an external recovery path
+
+### Changed
+- Changed the crop truth-surface docs and registry so `crop-validation` is the dedicated bounded C5-linked surface, while `image-crop-extraction` remains the page-level detector-quality surface for C4
+
+### Tested
+- `python -m pytest tests/test_crop_benchmark_substrate.py -q`
+- `python -m ruff check modules/ tests/`
+- `make lint`
+- `make test`
+- `cd benchmarks && promptfoo eval -c tasks/crop-validation.yaml --no-cache --filter-first-n 1 -j 1 --no-write`
+
 ## [2026-04-03-01] - Close handwritten synthetic corpus proof surface (Story 182)
 
 ### Added

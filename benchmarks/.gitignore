@@ -2,8 +2,9 @@
 results/*.json
 results/visual-comparison/
 
-# Source page images (copies from input/)
-input/source-pages-b64/
+# Maintained crop benchmark fixtures live under input/source-pages-b64/ and
+# input/crop-validation-b64/. Keep any ad hoc raw source-page copies ignored.
+input/source-pages/
 
 # Golden crop images (large binaries)
 golden/crops/

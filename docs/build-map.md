@@ -103,7 +103,7 @@
 - **C5: Layout Text Trim Heuristics for Crops** (AI capability) — **climb**
   - Current: OCR-driven text trimming, conservative and inspectable.
   - Target: VLM crop detection excludes all non-illustration content on a 50-page benchmark.
-  - Eval: No dedicated text-exclusion eval. Closest: `image-crop-extraction` at `overall = 0.900`, `pass_rate = 0.923` (2026-03-11, target 0.95). **FAIL.** Retry when: `new-subject-model` or dedicated text-exclusion benchmark.
+  - Eval: `crop-validation` — dedicated crop text-exclusion / crop-quality surface on the checked-in 40-crop corpus at `overall = 1.0`, `pass_rate = 1.0` (2026-04-03, Gemini 3.1 Flash Lite + caption-focus). **PASS on the bounded current corpus.** This is now the official C5-linked signal, but it is still not the broader 50-page deletion gate. Retry when: `new-subject-model`, `new-approach`, or corpus/golden changes.
 
 ---
 
@@ -504,13 +504,16 @@ None yet.
 ### Gap 1 — Illustration crop quality on image-bearing formats
 
 - **Current signal:** `image-crop-extraction` is at `0.900` overall against a
-  `0.95` target, and the true deletion gate `single-model-crop-detection`
-  remains at `0.856 / 0.77`.
-- **Root cause:** C4 (spec:4.1) and C5 (spec:4.2) still hold. Single-stage crop detection is not good
-  enough to remove validator + trim heuristics.
+  `0.95` target, the true deletion gate `single-model-crop-detection`
+  remains at `0.856 / 0.77`, and the dedicated bounded `crop-validation`
+  surface now passes at `1.0 / 1.0` on the checked-in 40-crop corpus.
+- **Root cause:** C4 (spec:4.1) still blocks single-stage detector deletion.
+  C5 (spec:4.2) now has a dedicated truth surface again, but that bounded crop
+  validation corpus is not yet the broader page-level deletion benchmark.
 - **Fix category:** Model-selection / compromise-detection.
-- **Status:** Still open; blocked on better single-model performance or a
-  stronger benchmark signal.
+- **Status:** Still open on detector quality. Benchmark substrate drift is
+  repaired and C5 now has a dedicated tracked signal, but the single-stage
+  detector bar is still below target.
 
 ### Gap 2 — Born-digital PDF native text extraction
 

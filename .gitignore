@@ -1,4 +1,6 @@
 input/
+!benchmarks/input/
+!benchmarks/input/**
 output/
 .pip-packages/
 .pip-packages.bak/

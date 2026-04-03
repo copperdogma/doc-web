@@ -30,11 +30,18 @@ benchmarks/
 ├── golden/             # Hand-crafted reference data for scoring
 │   └── crops/          # Manually cropped reference images
 ├── input/
-│   └── source-pages/   # Source page images for evaluation
+│   ├── source-pages-b64/      # Tracked page fixtures as data-URI text payloads
+│   └── crop-validation-b64/   # Tracked crop fixtures as data-URI text payloads
 ├── scorers/            # Python scoring scripts (get_assert interface)
 ├── results/            # JSON output from eval runs
 └── scripts/            # Analysis helpers
 ```
+
+For the maintained crop surfaces, the checked-in `.b64.txt` fixtures under
+`input/` are part of the benchmark contract. Do not casually swap these tasks
+to raw image files: promptfoo's `file://` path is safe for the text-based
+data-URI fixtures but not for raw binary JPEG interpolation in these
+multi-provider vision prompts.
 
 ## Running Evals
 
@@ -44,8 +51,19 @@ cd benchmarks/
 # Run an eval (no cache for reproducibility)
 promptfoo eval -c tasks/image-crop-extraction.yaml --no-cache -j 3
 
+# Smoke-check the maintained crop surfaces from a clean checkout
+promptfoo eval -c tasks/image-crop-extraction.yaml --no-cache --filter-first-n 1 -j 1 --no-write
+promptfoo eval -c tasks/crop-validation.yaml --no-cache --filter-first-n 1 -j 1 --no-write
+
 # Save results
 promptfoo eval -c tasks/image-crop-extraction.yaml --no-cache --output results/image-crop-run1.json
+
+# Current maintained dedicated C5-linked surface
+promptfoo eval -c tasks/crop-validation.yaml --no-cache \
+  --filter-providers 'google:gemini-3.1-flash-lite-preview' \
+  --filter-prompts 'caption-focus' \
+  --output results/crop-validation-story183-g31-caption-focus.json \
+  -j 1
 
 # View results in web UI leaderboard
 promptfoo view
@@ -58,24 +76,49 @@ Quick reference for all promptfoo eval setups. Re-run any eval when new models c
 ### 1. Image Crop Extraction (Story 125)
 
 **Task**: Extract photo/illustration bounding boxes from scanned book pages.
-**Winner**: Gemini 3 Pro (0.856 avg score, 77% pass rate)
+**Best recorded result**: Gemini 3 Flash conservative-count prompt (`0.900` avg score, `92.3%` pass rate)
 **Config**: `tasks/image-crop-extraction.yaml`
 **Scorer**: `scorers/image_crop_scorer.py` — IoU + coverage metrics
 **Prompts**: 3 variants (baseline, strict-exclude, two-step)
-**Test set**: 13 pages from *Onward to the Unknown* with diverse image content
+**Test set**: 13 tracked downscaled page fixtures from *Onward to the Unknown*
 
 ```bash
 cd benchmarks && source ~/.zshrc && promptfoo eval -c tasks/image-crop-extraction.yaml --no-cache
 ```
 
-**Key findings** (Feb 2026):
-- Gemini 3 Pro best for bbox accuracy, lowest hallucination rate
-- GPT-5.1 baseline: decent but over-crops (includes text regions)
-- `strict-exclude` prompt marginally better than baseline across all models
+**Key findings**:
+- The maintained page-level detector surface is still `tasks/image-crop-extraction.yaml`.
+- The best recorded detector result came from Story 133's focused Gemini 3 Flash prompt comparison (`tasks/image-crop-g3flash-prompts.yaml`) with the `conservative-count` prompt.
+- The detector seam still pressures `C4`; a clean dedicated text-exclusion surface now lives separately in `crop-validation`.
 
 ---
 
-### 2. OCR Model Eval — Genealogy Pages (Story 127)
+### 2. Crop Validation (Story 126 + Story 183)
+
+**Task**: Judge whether an extracted crop should pass or fail based on external page text, excessive blank space, or obvious wrong-region crops.
+**Current maintained result**: Gemini 3.1 Flash Lite + `caption-focus` (`1.0` overall, `1.0` pass rate, `40/40` on 2026-04-03)
+**Config**: `tasks/crop-validation.yaml`
+**Scorer**: `scorers/crop_validation_scorer.py` — pass/fail classification against checked labels
+**Golden**: `golden/crop-validation.json`
+**Test set**: 40 tracked downscaled crop fixtures with 4 explicit fail cases
+
+```bash
+cd benchmarks && source ~/.nvm/nvm.sh && nvm use 24 >/dev/null 2>&1 && \
+promptfoo eval -c tasks/crop-validation.yaml --no-cache \
+  --filter-providers 'google:gemini-3.1-flash-lite-preview' \
+  --filter-prompts 'caption-focus' \
+  --output results/crop-validation-story183-g31-caption-focus.json \
+  -j 1
+```
+
+**Key findings**:
+- This is the dedicated current C5-linked text-exclusion / crop-quality surface.
+- The repaired local benchmark substrate now makes this surface runnable from a clean checkout.
+- Passing this bounded 40-crop corpus does not by itself delete C5; the broader page-level deletion benchmark is still a separate step.
+
+---
+
+### 3. OCR Model Eval — Genealogy Pages (Story 127)
 
 **Task**: Single-pass VLM OCR — model sees raw page image, outputs structured HTML with `<table>` elements and `<img>` placeholders.
 **Winner**: Gemini 3 Pro + table-strict (0.877 avg score, 100% pass rate)
@@ -107,7 +150,7 @@ cd benchmarks && source ~/.zshrc && promptfoo eval -c tasks/ocr-genealogy-tables
 
 ## Adding a New Eval
 
-1. Copy test inputs to `input/`
+1. Copy or generate test inputs under `input/`
 2. Create golden references in `golden/` (hand-crafted, expert-validated)
 3. Write prompt template in `prompts/` (use `{{var}}` placeholders)
 4. Write Python scorer in `scorers/` (implement `get_assert(output, context)`)

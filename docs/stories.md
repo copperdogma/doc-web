@@ -185,6 +185,7 @@ This index tracks stories in `/docs/stories/` for the doc-forge pipeline.
 |||| 180 | Widen Approved Intake Handoff to Repo-Owned Image-Directory Proof | High | Done | /docs/stories/story-180-widen-approved-intake-handoff-image-directory-proof.md |
 |||| 181 | Establish a Maintained Layout Benchmark and Provenance-Focused Section-Splitting Proof Surface | High | Done | /docs/stories/story-181-maintained-layout-benchmark-and-section-splitting-proof.md |
 |||| 182 | Widen Handwritten Notes Fixture Breadth Beyond the First Synthetic Slice | High | Done | /docs/stories/story-182-widen-handwritten-notes-fixture-breadth.md |
+|||| 183 | Repair Crop Benchmark Substrate and Promote C5 Validation Surface | High | Done | /docs/stories/story-183-crop-benchmark-substrate-and-c5-validation-surface.md |
 
 ## Notes
 - Status "Done" reflects current working state in doc-forge. "To Do" items are planned next steps aligned with `docs/ideal.md`, `docs/spec.md`, and `docs/build-map.md`.

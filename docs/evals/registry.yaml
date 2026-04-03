@@ -101,12 +101,111 @@ evals:
         score_before: 0.856
         score_after: 0.900
         note: "5.7x cost reduction ($1.25→$0.22/book). 20/20 golden crops in production pipeline."
+      - id: "004"
+        date: 2026-04-03
+        status: partial
+        approach: "Story 183 restored the checked-in crop promptfoo fixture corpus and reran a clean-checkout detector smoke"
+        note: >
+          Restored the canonical local `.b64.txt` fixtures under
+          `benchmarks/input/source-pages-b64/` and
+          `benchmarks/input/crop-validation-b64/`, then added focused
+          substrate integrity coverage in
+          `tests/test_crop_benchmark_substrate.py`. Fresh clean-checkout smoke
+          via `cd benchmarks && promptfoo eval -c tasks/image-crop-extraction.yaml
+          --no-cache --filter-first-n 1 -j 1 --no-write` progressed past the
+          old missing-file failure and entered provider execution, which is
+          enough to prove the benchmark substrate is now locally runnable. This
+          pass did not record a new comparable detector leaderboard score; the
+          fresh current-pass recorded crop score landed on the dedicated
+          `crop-validation` surface instead.
 
     retry_when:
       - condition: new-subject-model
         note: "Gemini 4 or equivalent may push past 0.95 target"
       - condition: golden-fix
         note: "Golden references cover limited page types; add table-heavy pages"
+
+  - id: crop-validation
+    name: Crop Validation
+    type: quality
+    description: >
+      Dedicated crop text-exclusion / crop-quality surface for the maintained
+      40-crop corpus from the Onward illustration lane. Scores pass/fail crop
+      judgments against checked-in labels for external page text, excessive
+      blank space, and obvious wrong-region crops.
+    pipeline_stage: crop_illustrations
+    runner: promptfoo
+    command: "cd benchmarks && promptfoo eval -c tasks/crop-validation.yaml --no-cache --filter-providers 'google:gemini-3.1-flash-lite-preview' --filter-prompts 'caption-focus' --output results/crop-validation-story183-g31-caption-focus.json -j 1"
+    config: benchmarks/tasks/crop-validation.yaml
+    scorer: benchmarks/scorers/crop_validation_scorer.py
+    golden: benchmarks/golden/crop-validation.json
+    spec_compromise: C5
+
+    target:
+      metric: pass_rate
+      value: 1.0
+      overall: 1.0
+      note: >
+        This is the dedicated current C5-linked truth surface for the checked-in
+        40-crop corpus. Passing here does not by itself delete C5; the spec
+        still calls for broader page-level evidence before the trim heuristics
+        can be removed.
+
+    scores:
+      - model: "Gemini 3.1 Flash Lite (caption-focus prompt)"
+        metrics:
+          overall: 1.0
+          pass_rate: 1.0
+          cases_total: 40
+          latency_ms: 3021
+        measured: 2026-04-03
+        note: >
+          Story 183 repaired the tracked crop benchmark substrate by restoring
+          the canonical local `.b64.txt` fixtures under
+          `benchmarks/input/source-pages-b64/` and
+          `benchmarks/input/crop-validation-b64/`, then reran the full 40-crop
+          dedicated validation surface via
+          `cd benchmarks && promptfoo eval -c tasks/crop-validation.yaml
+          --no-cache --filter-providers 'google:gemini-3.1-flash-lite-preview'
+          --filter-prompts 'caption-focus' --output
+          results/crop-validation-story183-g31-caption-focus.json -j 1`.
+          The repaired local benchmark completed `40/40` with `0` failures,
+          `0` errors, `120833 ms` total duration, and `59087` total tokens.
+          Manual inspection in the same pass confirmed the 4 checked fail cases
+          (`page-018-000`, `page-092-000`, `page-122-000`, `page-126-000`)
+          still returned `{"verdict": "fail", ...}` while integral-text pass
+          case `page-012-000` still returned `{"verdict": "pass", ...}` in
+          `benchmarks/results/crop-validation-story183-g31-caption-focus.json`.
+
+    attempts:
+      - id: "001"
+        date: 2026-04-03
+        status: succeeded
+        approach: "Story 183 repaired the local crop fixture corpus, added integrity coverage, and reran the dedicated C5-linked crop-validation surface on Gemini 3.1 Flash Lite + caption-focus"
+        score_before: null
+        score_after: 1.0
+        note: >
+          Before the repair, a clean-checkout smoke failed before any provider
+          call because `tasks/crop-validation.yaml` could not resolve
+          `../input/crop-validation-b64/page-001-000.b64.txt`. After restoring
+          the canonical tracked fixtures and adding
+          `tests/test_crop_benchmark_substrate.py`, the same surface completed
+          the full 40-crop corpus with `40/40` correct pass/fail judgments and
+          no provider-side errors.
+
+    retry_when:
+      - condition: new-subject-model
+        note: >
+          Rerun when a new validator model or prompt looks strong enough to
+          widen or replace the current bounded C5-linked truth surface.
+      - condition: new-approach
+        note: >
+          Broaden or redesign this surface when the project is ready to measure
+          the spec's wider page-level text-exclusion deletion gate instead of
+          only the current 40-crop corpus.
+      - condition: golden-fix
+        note: >
+          Rerun if the checked-in crop labels or fail reasons change.
 
   # ── Quality Evals (OCR) ──────────────────────────────────────────────────
 
