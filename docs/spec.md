@@ -100,11 +100,11 @@ These are not compromises — they are permanent architectural commitments:
 
 **C4: Two-Stage Image Crop Detection** [AI capability → deletion]
 *Ideal:* One call detects and crops every illustration perfectly.
-*Compromise:* Detector model (Gemini 3 Pro) proposes bounding boxes → Validator model (Gemini 2.5 Flash) checks for text contamination → Auto-retry on count mismatch.
-*Limitation:* AI capability — no single model reliably detects all illustrations AND avoids text contamination in one pass.
-*Detection:* Single-model crop detection scores ≥0.95 on the image-crop-extraction eval with zero text contamination false positives. Current score: 0.856 (77% pass rate).
-*Resolves:* Delete validator stage, retry logic. Single detect call.
-*Preference:* Gemini 3 Pro is the current winning detector; Flash is the cheapest reliable validator.
+*Compromise:* The maintained Onward lane is now Flash-first on the bounded slice, but the broader crop module still carries historical validator / retry / refine machinery and the maintained recipe still keeps a bounded caption-assist pass plus layout-text trim because some text-bearing crops regress without them.
+*Limitation:* Single-model detection now clears the bounded maintained quality bar, but broader text-exclusion and residue deletion are not yet proven across a wider truth surface.
+*Detection:* Single-model crop detection scores ≥0.95 on the maintained `image-crop-extraction` surface. Current score: 0.9678 overall / 1.0 pass rate (Gemini 3 Flash conservative-count heading-safe revision, measured 2026-04-03).
+*Resolves:* Delete validator stage, retry logic, and refine loop on the maintained path; remaining caption/layout assist deletion moves to C5 once broader proof exists.
+*Preference:* Gemini 3 Flash conservative-count is the current winning maintained detector. Caption assist plus layout trim remain bounded residue until wider artifact proof says they can be removed honestly.
 
 **C5: Layout Text Trim Heuristics for Crops** [AI capability → deletion]
 *Ideal:* Crop detection understands page layout and excludes text automatically.

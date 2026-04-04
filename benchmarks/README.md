@@ -76,7 +76,7 @@ Quick reference for all promptfoo eval setups. Re-run any eval when new models c
 ### 1. Image Crop Extraction (Story 125)
 
 **Task**: Extract photo/illustration bounding boxes from scanned book pages.
-**Best recorded result**: Gemini 3 Flash conservative-count prompt (`0.918` avg score, `100%` pass rate, refreshed 2026-04-03)
+**Best recorded result**: Gemini 3 Flash conservative-count prompt with the heading-safe revision (`0.9678` avg score, `100%` pass rate, refreshed 2026-04-03)
 **Config**: `tasks/image-crop-extraction.yaml`
 **Scorer**: `scorers/image_crop_scorer.py` — IoU + coverage metrics
 **Prompts**: 4 variants (baseline, strict-exclude, two-step, conservative-count)
@@ -88,8 +88,8 @@ cd benchmarks && source ~/.zshrc && promptfoo eval -c tasks/image-crop-extractio
 
 **Key findings**:
 - The maintained page-level detector surface is `tasks/image-crop-extraction.yaml`, and it now includes the `conservative-count` prompt that previously only lived in the focused Gemini 3 Flash comparison task.
-- Story 133 introduced the winning Gemini 3 Flash `conservative-count` detector prompt; the 2026-04-03 follow-up rerun refreshed that result on the maintained task at `0.918` overall / `1.0` pass rate.
-- The detector seam still pressures `C4`; a clean dedicated text-exclusion surface now lives separately in `crop-validation`.
+- Story 133 introduced the winning Gemini 3 Flash `conservative-count` detector prompt; the 2026-04-03 follow-up tightened that prompt to exclude ordinary heading-style display text while keeping standalone text-as-art, which raised the maintained task to `0.9678` overall / `1.0` pass rate.
+- The bounded C4 deletion gate now passes on the maintained single-stage Gemini 3 Flash surface; the remaining crop question is broader C5 text-exclusion proof and runtime simplification, not detector selection.
 
 ---
 

@@ -95,10 +95,10 @@
 
 ### Compromise Progress
 
-- **C4: Two-Stage Image Crop Detection** (AI capability) — **climb**
-  - Current: Detector + validator architecture with retry-on-count-mismatch. Story 133 improved quality/cost with Gemini 3 Flash conservative-count prompt, and the maintained `image-crop-extraction` surface now refreshes that prompt at `0.918` overall / `1.0` pass rate (2026-04-03).
+- **C4: Two-Stage Image Crop Detection** (AI capability) — **converge**
+  - Current: The maintained Onward proof lane is now Flash-first rather than detector+validator. Story 133 improved quality/cost with Gemini 3 Flash conservative-count prompt, the 2026-04-03 prompt-contract refinement brought the maintained `image-crop-extraction` surface to `0.968` overall / `1.0` pass rate, and Story 184 then removed validator/retry/refine runtime loops on the reviewed Onward run root while proving the published artifact surface still held. The maintained lane still keeps a bounded caption-assist pass plus `trim_layout_text`; the reviewed certificate/seal page widens and duplicates nearby text if those assists are removed.
   - Target: Single-model crop detection ≥0.95 overall, ≥0.95 pass rate.
-  - Eval: `single-model-crop-detection` — `overall = 0.856`, `pass_rate = 0.77` (2026-01-25). **FAIL.** Retry when: `new-subject-model`.
+  - Eval: `single-model-crop-detection` — `overall = 0.968`, `pass_rate = 1.0` (2026-04-03, Gemini 3 Flash conservative-count with heading-safe prompt revision on the maintained task). **PASS** on the bounded deletion gate. Bounded runtime simplification is now proven on the maintained Onward slice: validator/retry/refine are removed, while caption assist and layout trim remain as the still-honest residue.
 
 - **C5: Layout Text Trim Heuristics for Crops** (AI capability) — **climb**
   - Current: OCR-driven text trimming, conservative and inspectable.
@@ -460,8 +460,8 @@ empty dedicated section until a second candidate exists.
 | Format | ID | Family | Current Pipeline | Text | Structure | Illustration | Provenance | Notes |
 |---|---|---|---|---:|---:|---:|---:|---|
 | Scanned PDF (prose) | `scanned-pdf-prose` | `scanned-pdf` | `extract_pdf_images_fast_v1 -> ocr_ai_gpt51_v1` | 1.00 | 1.00 | - | 1.00 | Story 167 adds `testdata/scanned-prose-mini.pdf`, a repo-owned image-only simple-prose fixture. Fresh `driver.py` proof plus source-text comparison on 2026-03-27 matched the checked-in source text exactly after normalization; broader noisy scanned-prose quality remains a separate question. |
-| Scanned PDF (tables) | `scanned-pdf-tables` | `scanned-pdf` | `extract_pdf_images_fast_v1 -> ocr_ai_gpt51_v1 -> table_rescue_html_loop_v1` | 0.93 | 0.95 | 0.918 | 1.00 | Onward-style genealogy path. Story 157 restored a maintained PDF-backed entry recipe; the shared Onward PDF and image-directory source are both 127 pages. Story 176 adds a fresh confirmed-handoff proof from intake approval into `recipe-pdf-ocr-html-mvp.yaml`, with inspected `intake_handoff_v1` plus downstream `page_image_v1` manifest artifacts under `story176-scanned-proof*`. |
-| Image directory | `image-directory-scans` | `image-directory` | `images_dir_to_manifest_v1 -> ocr_ai_gpt51_v1` | 0.93 | 0.95 | 0.918 | 1.00 | Same source quality as the scanned-PDF image path once pages are extracted. Story 176 adds a fresh confirmed-handoff proof from intake approval into `recipe-images-ocr-html-mvp.yaml`, with inspected `intake_handoff_v1` plus downstream `page_image_v1` manifest artifacts under `story176-image-proof*`. |
+| Scanned PDF (tables) | `scanned-pdf-tables` | `scanned-pdf` | `extract_pdf_images_fast_v1 -> ocr_ai_gpt51_v1 -> table_rescue_html_loop_v1` | 0.93 | 0.95 | 0.968 | 1.00 | Onward-style genealogy path. Story 157 restored a maintained PDF-backed entry recipe; the shared Onward PDF and image-directory source are both 127 pages. Story 176 adds a fresh confirmed-handoff proof from intake approval into `recipe-pdf-ocr-html-mvp.yaml`, with inspected `intake_handoff_v1` plus downstream `page_image_v1` manifest artifacts under `story176-scanned-proof*`. |
+| Image directory | `image-directory-scans` | `image-directory` | `images_dir_to_manifest_v1 -> ocr_ai_gpt51_v1` | 0.93 | 0.95 | 0.968 | 1.00 | Same source quality as the scanned-PDF image path once pages are extracted. Story 176 adds a fresh confirmed-handoff proof from intake approval into `recipe-images-ocr-html-mvp.yaml`, with inspected `intake_handoff_v1` plus downstream `page_image_v1` manifest artifacts under `story176-image-proof*`. |
 | Handwritten notes | `handwritten-notes` | `handwritten` | `images_dir_to_manifest_v1 -> ocr_ai_gpt51_v1` | 1.00 | 1.00 | - | 1.00 | Story 179 adds `testdata/handwritten-notes-mini-images/` plus the image-only wrapper `testdata/handwritten-notes-mini.pdf`, and Story 182 adds `testdata/handwritten-notes-rough-images/` plus `testdata/handwritten-notes-rough.pdf` and widens `benchmarks/scripts/run_handwritten_notes_eval.py` into a two-fixture corpus proof surface. Fresh `driver.py` proof on 2026-04-03 matched the checked-in transcripts exactly after normalization on both maintained generic image-directory and PDF OCR lanes for all four cases, with image-only PDF verification of `[0, 0]` and `[0, 0, 0]`. The family is now passing on a broader but still synthetic handwritten slice; real messy cursive and degraded handwriting remain unproven. |
 | Plain text | `plain-text` | `plain-text` | `extract_text_v1` | 1.00 | - | - | - | Passthrough, no OCR. |
 | Markdown | `markdown` | `markdown` | `extract_text_v1` | 1.00 | - | - | - | Passthrough. |
@@ -501,20 +501,25 @@ None yet.
 
 ## Known Gaps (Prioritized)
 
-### Gap 1 — Illustration crop quality on image-bearing formats
+### Gap 1 — Illustration crop simplification and text-exclusion breadth
 
-- **Current signal:** `image-crop-extraction` is at `0.918` overall /
-  `1.0` pass rate against a `0.95` overall target, the true deletion gate
-  `single-model-crop-detection` remains at `0.856 / 0.77`, and the dedicated
-  bounded `crop-validation` surface now passes at `1.0 / 1.0` on the checked-in
-  40-crop corpus.
-- **Root cause:** C4 (spec:4.1) still blocks single-stage detector deletion.
-  C5 (spec:4.2) now has a dedicated truth surface again, but that bounded crop
-  validation corpus is not yet the broader page-level deletion benchmark.
-- **Fix category:** Model-selection / compromise-detection.
-- **Status:** Still open on detector quality. Benchmark substrate drift is
-  repaired and C5 now has a dedicated tracked signal, but the single-stage
-  detector bar is still below target.
+- **Current signal:** `image-crop-extraction` is at `0.968` overall /
+  `1.0` pass rate, `single-model-crop-detection` now also passes at
+  `0.968 / 1.0` on the maintained 13-page corpus, and the dedicated bounded
+  `crop-validation` surface passes at `1.0 / 1.0` on the checked-in 40-crop
+  corpus.
+- **Root cause:** Detector quality is no longer the blocker on the bounded C4
+  surface. Story 184 already collapsed the maintained Onward lane away from
+  validator/retry/refine, so the open work is now (a) widening C5 beyond the
+  current bounded crop-validation corpus to the broader page-level
+  text-exclusion gate, and (b) deleting the remaining caption/layout assists
+  only when a broader honest proof says they are no longer needed.
+- **Fix category:** Simplification / broader C5 benchmark.
+- **Status:** Flash-first runtime simplification landed on the bounded C4
+  maintained lane. The remaining illustration gap is no longer "find a model
+  that clears the bar"; it is "widen the text-exclusion truth surface and
+  delete the remaining caption/layout assists only when the broader artifact
+  proof stays clean."
 
 ### Gap 2 — Born-digital PDF native text extraction
 

@@ -41,7 +41,14 @@ View results: `promptfoo view`
   - `image-crop-extraction` — page-level detector-quality surface linked to `C4`
   - `crop-validation` — dedicated bounded text-exclusion / crop-quality surface linked to `C5`
 - **Maintained detector prompt set**: `baseline`, `strict-exclude`, `two-step`, `conservative-count`
-- **Current detector score**: `image-crop-extraction` best recorded result is `0.918` overall / `1.0` pass rate (Gemini 3 Flash conservative-count prompt on the maintained task, measured 2026-04-03)
+- **Current detector score**: `image-crop-extraction` best recorded result is `0.9678` overall / `1.0` pass rate (Gemini 3 Flash conservative-count prompt with the heading-safe revision on the maintained task, measured 2026-04-03)
+- **Current C4 deletion-gate score**: `single-model-crop-detection` is `0.9678` overall / `1.0` pass rate on that same maintained single-stage run, so the bounded deletion gate now passes.
+- **Maintained runtime note**: Story 184 proved the reviewed Onward lane can
+  drop `rescue_validate_crops`, `rescue_retry_on_*`, and `rescue_refine_boxes`
+  without regressing the published crop/build surface. The maintained recipe
+  still keeps `rescue_caption_second_pass` plus `trim_layout_text`; removing
+  them widened the certificate/seal crop on page 12 and duplicated nearby text
+  in the final HTML.
 - **Current dedicated C5-linked score**: `crop-validation` is `1.0` overall / `1.0` pass rate on the checked-in 40-crop corpus (Gemini 3.1 Flash Lite + `caption-focus`, measured 2026-04-03)
 - **Spec compromises**:
   - `C4` — Two-Stage Image Crop Detection

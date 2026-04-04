@@ -9,7 +9,8 @@ const PROMPT_TEXT = `Analyze this scanned book page. Find distinct photographs, 
 
 Rules:
 - Only count MAJOR visual elements (photos, illustrations, logos, seals)
-- Stylized title text, decorative logos, or text in artistic/display fonts that differ from body text ARE visual elements — include them
+- Stylized title text, decorative logos, or text in artistic/display fonts that function as standalone artwork ARE visual elements — include them
+- Do NOT count ordinary section headings, person-name headings, certificate/body title lines, or other display text that is part of the document's reading flow rather than a standalone visual
 - Do NOT count small decorative elements, horizontal rules, or text formatting
 - When in doubt whether something is a separate image, group it with the nearest image
 - A cover page or title page with decorative art = ONE image covering the full visual area

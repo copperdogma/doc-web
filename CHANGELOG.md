@@ -1,3 +1,18 @@
+## [2026-04-03-04] - Close bounded crop runtime simplification (Story 184)
+
+### Added
+- Added a maintained-recipe contract test so the bounded Onward lane cannot silently drift back to retry, refine, or validator crop runtime settings
+
+### Changed
+- Changed the maintained Onward crop recipe to remove validator, retry, and refine loops from the bounded slice while retaining caption assist and layout trim where the reviewed seal page still needs them
+- Changed the crop methodology docs, including the spec, build map, runbook, and story records, so C4 now reflects the current bounded Flash-first state and the passing `0.9678 / 1.0` maintained deletion gate
+
+### Tested
+- `python -m pytest tests/`
+- `python -m ruff check modules/ tests/`
+- `scripts/run_driver_monitored.sh --recipe configs/recipes/recipe-onward-images-html-mvp.yaml --run-id onward-full-audit-20260318-r1 --output-dir /Users/cam/Documents/Projects/codex-forge/output/runs -- --instrument --allow-run-id-reuse --input-images /Users/cam/Documents/Projects/codex-forge/input/onward-to-the-unknown-images --start-from crop_illustrations --end-at crop_illustrations --keep-downstream`
+- `scripts/run_driver_monitored.sh --recipe configs/recipes/recipe-onward-images-html-mvp.yaml --run-id onward-full-audit-20260318-r1 --output-dir /Users/cam/Documents/Projects/codex-forge/output/runs -- --instrument --allow-run-id-reuse --input-images /Users/cam/Documents/Projects/codex-forge/input/onward-to-the-unknown-images --start-from build_chapters`
+
 ## [2026-04-03-03] - Repair maintained crop detector truth surface
 
 ### Added
