@@ -7,6 +7,7 @@ import sys
 import tempfile
 from pathlib import Path
 
+import modules.build.build_chapter_html_v1.main as build_main
 from bs4 import BeautifulSoup
 from schemas import DocWebBundleManifest, DocWebProvenanceBlock
 
@@ -219,6 +220,47 @@ class TestCaptionAbsorption:
         figcaption = soup.find("figcaption")
         assert figcaption is not None
         assert figcaption.string == "From crop pipeline"
+
+    def test_suppresses_adjacent_duplicate_paragraphs_for_text_bearing_crop(self, monkeypatch):
+        html = (
+            '<figure><img alt="Official Seal"></figure>'
+            '<p>Hon. Gordon MacMurchy<br>Minister of Agriculture</p>'
+            '<p>Hon. Ed Tchorzewski<br>Minister-in-charge of<br>Celebrate Saskatchewan</p>'
+            '<p>Regular paragraph.</p>'
+        )
+        crops = [{
+            **_crop("img.jpg", alt="Official Seal"),
+            "contains_text": True,
+            "_source_path": "/tmp/fake-crop.jpg",
+        }]
+        monkeypatch.setattr(
+            build_main,
+            "_ocr_crop_text",
+            lambda _: (
+                "Hon. Gordon MacMurchy Minister of Agriculture "
+                "Hon. Ed Tchorzewski Minister-in-charge of Celebrate Saskatchewan"
+            ),
+        )
+        result = _attach_images(html, crops, "images")
+        soup = BeautifulSoup(result, "html.parser")
+        paragraphs = [p.get_text(" ", strip=True) for p in soup.find_all("p")]
+        assert paragraphs == ["Regular paragraph."]
+        figure = soup.find("figure")
+        assert figure is not None
+        assert figure["data-text-dedup-source"] == "crop-ocr"
+
+    def test_keeps_adjacent_paragraph_when_crop_ocr_does_not_match(self, monkeypatch):
+        html = '<figure><img alt="Official Seal"></figure><p>Hon. Gordon MacMurchy<br>Minister of Agriculture</p>'
+        crops = [{
+            **_crop("img.jpg", alt="Official Seal"),
+            "contains_text": True,
+            "_source_path": "/tmp/fake-crop.jpg",
+        }]
+        monkeypatch.setattr(build_main, "_ocr_crop_text", lambda _: "Official seal only")
+        result = _attach_images(html, crops, "images")
+        soup = BeautifulSoup(result, "html.parser")
+        paragraphs = [p.get_text(" ", strip=True) for p in soup.find_all("p")]
+        assert paragraphs == ["Hon. Gordon MacMurchy Minister of Agriculture"]
 
 
 # ---------------------------------------------------------------------------

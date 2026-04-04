@@ -1062,6 +1062,72 @@ def _block_match_texts(tag) -> List[str]:
     return texts
 
 
+def _text_overlap_ratio(text: str, crop_tokens: set[str]) -> float:
+    tokens = [
+        token
+        for token in _title_tokens(text)
+        if len(token) > 1
+    ]
+    if not tokens or not crop_tokens:
+        return 0.0
+    matched = sum(1 for token in tokens if token in crop_tokens)
+    return matched / float(len(tokens))
+
+
+@lru_cache(maxsize=256)
+def _ocr_crop_text(image_path: str) -> str:
+    if not image_path:
+        return ""
+    try:
+        import pytesseract
+        from PIL import Image
+    except Exception:
+        return ""
+    try:
+        with Image.open(image_path) as img:
+            return _normalize_ws(pytesseract.image_to_string(img))
+    except Exception:
+        return ""
+
+
+def _suppress_duplicate_text_after_figure(figure, crop: Dict[str, Any]) -> bool:
+    if not crop.get("contains_text"):
+        return False
+    image_path = crop.get("_source_path") or ""
+    crop_text = _ocr_crop_text(str(image_path))
+    crop_tokens = {
+        token
+        for token in _title_tokens(crop_text)
+        if len(token) > 1
+    }
+    if not crop_tokens:
+        return False
+
+    removed_any = False
+    sibling = _next_significant_tag(figure)
+    while getattr(sibling, "name", None) == "p":
+        paragraph_text = _normalize_ws(sibling.get_text(" ", strip=True))
+        paragraph_lines = [
+            _normalize_ws(line)
+            for line in sibling.get_text("\n", strip=True).split("\n")
+            if _normalize_ws(line)
+        ]
+        if not paragraph_text or not paragraph_lines:
+            break
+        overall_overlap = _text_overlap_ratio(paragraph_text, crop_tokens)
+        line_overlaps = [_text_overlap_ratio(line, crop_tokens) for line in paragraph_lines]
+        if overall_overlap < 0.6 or min(line_overlaps) < 0.5 or max(line_overlaps) < 0.8:
+            break
+        next_sibling = _next_significant_tag(sibling)
+        sibling.decompose()
+        sibling = next_sibling
+        removed_any = True
+
+    if removed_any:
+        figure["data-text-dedup-source"] = "crop-ocr"
+    return removed_any
+
+
 def _descriptor_similarity(a: str, b: str) -> float:
     a_norm = _normalize_ws(a).casefold()
     b_norm = _normalize_ws(b).casefold()
@@ -1273,6 +1339,8 @@ def _attach_images(html: str, crops: List[Dict[str, Any]], rel_src: str) -> str:
                 if _absorb_caption_siblings(figure, soup):
                     figure["data-caption-source"] = "heuristic"
 
+        _suppress_duplicate_text_after_figure(figure, crop)
+
     _stitch_figure_interruptions(soup)
     return soup.decode_contents()
 
@@ -1388,6 +1456,7 @@ def main() -> None:
                 src_path = crops_dir / filename
                 if not src_path.exists():
                     continue
+                row["_source_path"] = str(src_path)
                 dst_path = images_dir / filename
                 # Resume runs must refresh published crops so stale output/html images
                 # do not survive after an upstream crop fix.

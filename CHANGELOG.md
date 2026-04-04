@@ -6,10 +6,12 @@
 ### Changed
 - Changed the maintained Onward crop recipe to remove validator, retry, and refine loops from the bounded slice while retaining caption assist and layout trim where the reviewed seal page still needs them
 - Changed the crop methodology docs, including the spec, build map, runbook, and story records, so C4 now reflects the current bounded Flash-first state and the passing `0.9678 / 1.0` maintained deletion gate
+- Changed chapter building so text-bearing crops suppress immediately adjacent duplicate OCR paragraphs when the crop's own OCR already carries that text in the published figure
 
 ### Tested
 - `python -m pytest tests/`
 - `python -m ruff check modules/ tests/`
+- `python -m pytest tests/test_build_chapter_html.py -q`
 - `scripts/run_driver_monitored.sh --recipe configs/recipes/recipe-onward-images-html-mvp.yaml --run-id onward-full-audit-20260318-r1 --output-dir /Users/cam/Documents/Projects/codex-forge/output/runs -- --instrument --allow-run-id-reuse --input-images /Users/cam/Documents/Projects/codex-forge/input/onward-to-the-unknown-images --start-from crop_illustrations --end-at crop_illustrations --keep-downstream`
 - `scripts/run_driver_monitored.sh --recipe configs/recipes/recipe-onward-images-html-mvp.yaml --run-id onward-full-audit-20260318-r1 --output-dir /Users/cam/Documents/Projects/codex-forge/output/runs -- --instrument --allow-run-id-reuse --input-images /Users/cam/Documents/Projects/codex-forge/input/onward-to-the-unknown-images --start-from build_chapters`
 
