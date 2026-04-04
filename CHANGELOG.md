@@ -1,3 +1,23 @@
+## [2026-04-04-03] - Close bounded handwritten Barney rescue seam (Story 189)
+
+### Added
+- Added bounded maintained handwritten rescue recipes for Barney image-directory and PDF entry, plus handwritten eval-helper instrumentation capture for per-case latency and cost evidence
+
+### Changed
+- Changed the maintained handwritten truth surface to record the Gemini rescue seam, the fresh current-tip generic Barney baseline, and the current family status of `has-fixture` instead of broad handwritten `passing`
+- Changed the handwritten coverage matrix, generated methodology graph, generated story index, and story record so recipe ownership and validation state now match the inspected Barney rescue evidence
+
+### Tested
+- `python benchmarks/scripts/run_handwritten_notes_eval.py --image-recipe configs/recipes/recipe-images-ocr-html-handwritten-notes-gemini-rescue.yaml --pdf-recipe configs/recipes/recipe-pdf-ocr-html-handwritten-notes-gemini-rescue.yaml --image-case-id image-handwritten-rescue --pdf-case-id pdf-handwritten-rescue --instrument --output benchmarks/results/handwritten-notes-story189-handwritten-rescue.json`
+- `python benchmarks/scripts/run_handwritten_notes_eval.py --transcript testdata/handwritten-notes-barney-real.txt --images testdata/handwritten-notes-barney-real-images --pdf testdata/handwritten-notes-barney-real.pdf --instrument --output benchmarks/results/story189-barney-generic-current.json`
+- `python -m pytest tests/test_handwritten_notes_eval.py tests/test_image_directory_intake_recipe.py tests/test_pdf_intake_recipe.py`
+- `python -m ruff check benchmarks/scripts/run_handwritten_notes_eval.py tests/test_handwritten_notes_eval.py tests/test_image_directory_intake_recipe.py tests/test_pdf_intake_recipe.py`
+- `make methodology-compile`
+- `make methodology-check`
+- `make skills-check`
+- `make lint`
+- `make test`
+
 ## [2026-04-04-02] - Backfill legacy methodology metadata (Story 188)
 
 ### Added

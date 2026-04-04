@@ -341,14 +341,15 @@ evals:
     type: quality
     description: >
       Repo-owned handwritten-note transcription fidelity on the bounded
-      maintained image-directory and PDF OCR lanes. Measures normalized text
-      fidelity against the checked-in transcripts for the current handwritten
-      corpus: the highly legible mini fixture from Story 179, the faded
-      synthetic variant from Story 185, the rougher synthetic variant from
-      Story 182, and the first real LOC Barney spread from Story 186.
+      maintained handwritten rescue image-directory and PDF OCR lanes.
+      Measures normalized text fidelity against the checked-in transcripts for
+      the current handwritten corpus: the highly legible mini fixture from
+      Story 179, the faded synthetic variant from Story 185, the rougher
+      synthetic variant from Story 182, and the first real LOC Barney spread
+      from Story 186.
     pipeline_stage: ocr
     runner: manual
-    command: "python benchmarks/scripts/run_handwritten_notes_eval.py --output benchmarks/results/handwritten-notes-story186-real-fixture.json"
+    command: "python benchmarks/scripts/run_handwritten_notes_eval.py --image-recipe configs/recipes/recipe-images-ocr-html-handwritten-notes-gemini-rescue.yaml --pdf-recipe configs/recipes/recipe-pdf-ocr-html-handwritten-notes-gemini-rescue.yaml --image-case-id image-handwritten-rescue --pdf-case-id pdf-handwritten-rescue --instrument --output benchmarks/results/handwritten-notes-story189-handwritten-rescue.json"
     scorer: benchmarks/scorers/handwritten_notes_transcription.py
     golden: benchmarks/golden/handwritten-notes/corpus.json
 
@@ -358,6 +359,93 @@ evals:
       note: "The target still marks the desired passing bar, but the widened default corpus now includes one real handwritten fixture that the maintained generic seam does not clear."
 
     scores:
+      - model: "Maintained handwritten rescue OCR lanes (gemini-2.5-pro via handwritten-notes rescue recipes)"
+        metrics:
+          overall_min_ratio: 0.883604
+          page_min_ratio: 0.883604
+          pass_rate: 0.75
+          cases_total: 8
+          fixture_count: 4
+          fixtures_passing: 3
+          latency_ms: 18366.581
+          cost_usd: 0.006059
+          cost_estimated: true
+        measured: 2026-04-04
+        note: >
+          Story 189 landed the bounded maintained handwritten rescue recipes
+          `configs/recipes/recipe-images-ocr-html-handwritten-notes-gemini-rescue.yaml`
+          and
+          `configs/recipes/recipe-pdf-ocr-html-handwritten-notes-gemini-rescue.yaml`,
+          plus eval-helper instrumentation capture in
+          `benchmarks/scripts/run_handwritten_notes_eval.py`. Fresh rerun via
+          `python benchmarks/scripts/run_handwritten_notes_eval.py --image-recipe configs/recipes/recipe-images-ocr-html-handwritten-notes-gemini-rescue.yaml --pdf-recipe configs/recipes/recipe-pdf-ocr-html-handwritten-notes-gemini-rescue.yaml --image-case-id image-handwritten-rescue --pdf-case-id pdf-handwritten-rescue --instrument --output benchmarks/results/handwritten-notes-story189-handwritten-rescue.json`
+          wrote
+          `benchmarks/results/handwritten-notes-story189-handwritten-rescue.json`
+          with `pass_rate = 0.75`, `overall_min_ratio = 0.883604`,
+          `page_min_ratio = 0.883604`, `cases_total = 8`, and
+          `fixtures_passing = 3`. The six synthetic rescue cases still scored
+          `1.0`, while the real Barney slice improved materially to
+          `0.883604` on image entry and `0.884339` on PDF entry at
+          `output/runs/handwritten-handwritten-notes-barney-real-image-handwritten-rescue/02_ocr_ai_gpt51_v1/pages_html.jsonl`
+          and
+          `output/runs/handwritten-handwritten-notes-barney-real-pdf-handwritten-rescue/02_ocr_ai_gpt51_v1/pages_html.jsonl`.
+          Instrumented OCR-stage averages were `18366.581 ms` and
+          `$0.006059` per case from the run-local `instrumentation.json`
+          files. Manual inspection confirmed the rescue path now preserves
+          harder Barney phrases like `real sorrow`, `father had gone to see
+          him`, and the second-paragraph tents / cedar-brush passage, while
+          still drifting on names and words such as `Harlen`, `genesee`,
+          `Welthy gone`, and `med of cloth`. The family therefore remains
+          `has-fixture`, not `passing`.
+      - model: "Maintained generic OCR lanes (single-fixture Barney current-tip rerun via recipe-images-ocr-html-mvp.yaml + recipe-pdf-ocr-html-mvp.yaml)"
+        metrics:
+          overall_min_ratio: 0.105378
+          page_min_ratio: 0.105378
+          pass_rate: 0.0
+          cases_total: 2
+          fixture_count: 1
+          fixtures_passing: 0
+          latency_ms: 8058.037
+          cost_usd: 0.00483
+          cost_estimated: true
+        measured: 2026-04-04
+        note: >
+          After OpenAI credit was restored, Story 189 reran the maintained
+          generic Barney baseline on the current tip via
+          `python benchmarks/scripts/run_handwritten_notes_eval.py --transcript testdata/handwritten-notes-barney-real.txt --images testdata/handwritten-notes-barney-real-images --pdf testdata/handwritten-notes-barney-real.pdf --instrument --output benchmarks/results/story189-barney-generic-current.json`,
+          which wrote `benchmarks/results/story189-barney-generic-current.json`
+          with `pass_rate = 0.0`, `overall_min_ratio = 0.105378`, and
+          `page_min_ratio = 0.105378`. The fresh generic image-entry rerun
+          reached `0.111437` at
+          `output/runs/handwritten-single-fixture-image-generic/02_ocr_ai_gpt51_v1/pages_html.jsonl`
+          and the fresh generic PDF-entry rerun reached `0.105378` at
+          `output/runs/handwritten-single-fixture-pdf-generic/02_ocr_ai_gpt51_v1/pages_html.jsonl`.
+          Instrumented OCR-stage averages were `8058.037 ms` and `$0.00483`
+          per case from the run-local `instrumentation.json` files. Manual
+          inspection confirmed the same dominant failure pattern as Story 186:
+          semantically wrong rewrites like `the combat`, `old home town is all
+          gone`, and `wife of Harlow`, which keeps the maintained generic seam
+          far below the bounded rescue path.
+      - model: "Bounded direct real-fixture comparison (gemini-2.5-pro on the Barney spread)"
+        metrics:
+          overall_min_ratio: 0.864029
+          page_min_ratio: 0.864029
+          pass_rate: 0.0
+          cases_total: 2
+          fixture_count: 1
+        measured: 2026-04-04
+        note: >
+          Story 189 reran the bounded direct current-tip Barney comparison on
+          the checked-in image and PDF manifests using `gemini-2.5-pro` plus
+          handwritten-focused hints via
+          `PYTHONPATH=. python modules/extract/ocr_ai_gpt51_v1/main.py ...`.
+          The direct image-manifest result scored `0.864029` at
+          `output/runs/story189-barney-direct-gemini-image/01_ocr_ai_gpt51_v1/pages_html.jsonl`
+          and the direct PDF-manifest result scored `0.894151` at
+          `output/runs/story189-barney-direct-gemini-pdf/01_ocr_ai_gpt51_v1/pages_html.jsonl`.
+          This established Gemini as the strongest currently runnable
+          single-call candidate before the bounded maintained rescue recipe was
+          introduced.
       - model: "Maintained generic OCR lanes (four-fixture mixed corpus via recipe-images-ocr-html-mvp.yaml + recipe-pdf-ocr-html-mvp.yaml)"
         metrics:
           overall_min_ratio: 0.102602
@@ -392,7 +480,11 @@ evals:
           `output/runs/handwritten-handwritten-notes-barney-real-pdf-generic/02_ocr_ai_gpt51_v1/pages_html.jsonl`
           showed coherent-looking but semantically wrong substitutions such as
           `Wm H. Harlow` / `the combat`, so the widened family no longer
-          qualifies as a blanket handwritten passing claim.
+          qualifies as a blanket handwritten passing claim. Story 189 tried to
+          rerun this maintained generic baseline on 2026-04-04, but the
+          current checkout hit OpenAI `insufficient_quota` before OCR output,
+          so this low-0.1 entry remains the freshest inspected generic-baseline
+          reference while the quota blocker is active.
       - model: "Bounded direct real-fixture comparison (claude-opus-4-6 on the Barney spread)"
         metrics:
           overall_min_ratio: 0.725708
@@ -531,6 +623,39 @@ evals:
           content instead of punctuation-only loss. The final four-case corpus
           rerun passed cleanly at `1.0`, so the maintained generic seam now has
           broader but still synthetic support.
+      - id: "003"
+        date: 2026-04-04
+        status: succeeded
+        approach: "Story 189 bounded handwritten rescue recipes with Gemini plus current-pass Barney decision-surface instrumentation"
+        score_before: 0.102602
+        score_after: 0.883604
+        note: >
+          First current-pass action was a fresh rerun attempt of the maintained
+          generic Barney baseline, but
+          `python benchmarks/scripts/run_handwritten_notes_eval.py --transcript testdata/handwritten-notes-barney-real.txt --images testdata/handwritten-notes-barney-real-images --pdf testdata/handwritten-notes-barney-real.pdf --output benchmarks/results/story189-barney-baseline.json`
+          failed with OpenAI `insufficient_quota`, so the direct decision
+          surface shifted to current-pass Gemini/Claude comparisons on the same
+          Barney manifests. That evidence justified a bounded maintained rescue
+          seam instead of deterministic handwriting heuristics or a generic OCR
+          recipe change. Story 189 then added handwritten-specific Gemini
+          rescue recipes plus helper instrumentation capture and reran the full
+          four-fixture corpus, improving the maintained real-slice floor from
+          `0.102602` to `0.883604` while preserving six synthetic cases at
+          `1.0`. The rescue seam still misses the repo's `0.99` bar on Barney,
+          so the family remains `has-fixture`.
+      - id: "004"
+        date: 2026-04-04
+        status: succeeded
+        approach: "Fresh current-tip maintained generic Barney rerun after OpenAI quota restoration"
+        score_before: 0.102602
+        score_after: 0.105378
+        note: >
+          Once additional OpenAI credit was available, Story 189 reran the
+          maintained generic Barney baseline with instrumentation via
+          `python benchmarks/scripts/run_handwritten_notes_eval.py --transcript testdata/handwritten-notes-barney-real.txt --images testdata/handwritten-notes-barney-real-images --pdf testdata/handwritten-notes-barney-real.pdf --instrument --output benchmarks/results/story189-barney-generic-current.json`.
+          The generic seam stayed in the same low-0.1 band on the current tip
+          (`0.111437` image, `0.105378` pdf), so the bounded Gemini rescue
+          decision was confirmed rather than overturned.
 
     retry_when:
       - condition: golden-fix

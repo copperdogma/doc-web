@@ -123,7 +123,8 @@
           "180",
           "182",
           "185",
-          "186"
+          "186",
+          "189"
         ],
         "adr_ids": [
           "ADR-001",
@@ -181,7 +182,8 @@
           "179",
           "182",
           "185",
-          "186"
+          "186",
+          "189"
         ],
         "adr_ids": [
           "ADR-001",
@@ -427,7 +429,8 @@
           "185",
           "186",
           "187",
-          "188"
+          "188",
+          "189"
         ],
         "adr_ids": [
           "ADR-002"
@@ -5325,6 +5328,55 @@
       "legacy_build_map_refs": "",
       "metadata_source": "frontmatter",
       "missing_frontmatter_keys": []
+    },
+    {
+      "id": "189",
+      "title": "Improve Real Handwritten Fidelity on the Barney Fixture",
+      "path": "docs/stories/story-189-improve-real-handwritten-barney-fidelity.md",
+      "status": "Done",
+      "priority": "High",
+      "ideal_refs": [
+        "Requirement #1 (Ingest), Requirement #2 (Detect), Requirement #3 (Extract), Any format, any condition, Fidelity to the source, Minimum Viable Floor"
+      ],
+      "spec_refs": [
+        "spec:1",
+        "spec:1.1",
+        "spec:2",
+        "spec:2.1",
+        "spec:2.2",
+        "spec:8"
+      ],
+      "decision_refs": [
+        "`docs/decisions/adr-002-doc-web-runtime-boundary/adr.md`, `docs/runbooks/golden-build.md`, `docs/stories/story-179-repo-owned-handwritten-notes-fixture-and-baseline-transcription.md`, `docs/stories/story-182-widen-handwritten-notes-fixture-breadth.md`, `docs/stories/story-185-widen-handwritten-proof-beyond-synthetic-pair.md`, `docs/stories/story-186-real-handwritten-fixture-proof-surface.md`, `docs/evals/registry.yaml`, `tests/fixtures/formats/_coverage-matrix.json`, and `None found after search in docs/decisions/`, `docs/runbooks/`, `docs/scout/`, and `docs/notes/` for a narrower handwritten-rescue ADR or runbook"
+      ],
+      "adr_ids": [],
+      "depends_on": [
+        "186"
+      ],
+      "category_refs": [
+        "spec:1",
+        "spec:2",
+        "spec:8"
+      ],
+      "compromise_refs": [
+        "B1",
+        "B5",
+        "C1",
+        "C2",
+        "C6"
+      ],
+      "input_coverage_refs": [
+        "handwritten-notes"
+      ],
+      "architecture_domains": [
+        "ocr_and_extraction"
+      ],
+      "roadmap_tags": [
+        "campaign:maintained-intake-honesty"
+      ],
+      "legacy_build_map_refs": "",
+      "metadata_source": "frontmatter",
+      "missing_frontmatter_keys": []
     }
   ],
   "adrs": [
@@ -5500,14 +5552,15 @@
       "id": "handwritten-notes-transcription",
       "name": "Handwritten Notes Transcription",
       "type": "quality",
-      "command": "python benchmarks/scripts/run_handwritten_notes_eval.py --output benchmarks/results/handwritten-notes-story186-real-fixture.json",
+      "command": "python benchmarks/scripts/run_handwritten_notes_eval.py --image-recipe configs/recipes/recipe-images-ocr-html-handwritten-notes-gemini-rescue.yaml --pdf-recipe configs/recipes/recipe-pdf-ocr-html-handwritten-notes-gemini-rescue.yaml --image-case-id image-handwritten-rescue --pdf-case-id pdf-handwritten-rescue --instrument --output benchmarks/results/handwritten-notes-story189-handwritten-rescue.json",
       "path": "docs/evals/registry.yaml",
       "spec_refs": [],
       "story_refs": [
         "179",
         "182",
         "185",
-        "186"
+        "186",
+        "189"
       ],
       "compromise_refs": [],
       "category_refs": [
@@ -6016,7 +6069,7 @@
         "format_family": "handwritten",
         "status": "has-fixture",
         "description": "Photos of handwritten notes, letters, diaries",
-        "pipeline_recipe": "recipe-images-ocr-html-mvp.yaml",
+        "pipeline_recipe": "recipe-images-ocr-html-handwritten-notes-gemini-rescue.yaml / recipe-pdf-ocr-html-handwritten-notes-gemini-rescue.yaml",
         "intake_module": "images_dir_to_manifest_v1 \u2192 ocr_ai_gpt51_v1",
         "complexity": [
           "handwritten",
@@ -6063,19 +6116,19 @@
             "id": "handwritten-notes-barney-real-images",
             "source": "testdata/handwritten-notes-barney-real-images/",
             "pages": 1,
-            "notes": "Repo-owned real handwritten fixture derived from Library of Congress item `https://www.loc.gov/pictures/item/2023637825/`, using the checked-in `LC-DIG-ppmsca-86618` pages 2-3 spread. Story 186 proved maintained image-directory provenance on this real slice, but the generic OCR lane stayed only in the low-0.1 range on reruns, so the family no longer claims blanket handwritten passing."
+            "notes": "Repo-owned real handwritten fixture derived from Library of Congress item `https://www.loc.gov/pictures/item/2023637825/`, using the checked-in `LC-DIG-ppmsca-86618` pages 2-3 spread. Story 186 proved maintained image-directory provenance on this real slice, but the generic OCR lane stayed only in the low-0.1 range on reruns. Story 189 added a bounded handwritten rescue recipe and improved the maintained image-entry Barney score to `0.883604`, while keeping the family below the repo's passing bar."
           },
           {
             "id": "handwritten-notes-barney-real-pdf",
             "source": "testdata/handwritten-notes-barney-real.pdf",
             "pages": 1,
-            "notes": "Image-only PDF wrapper around the same real LOC Barney spread. Story 186 verified `pypdf` extract-text lengths `[0]` and reran the maintained generic PDF OCR lane, which also stayed only in the low-0.1 range on the checked-in transcript excerpt. A bounded non-maintained direct comparison using `claude-opus-4-6` improved the same real slice to roughly `0.73`, still below the repo's passing bar."
+            "notes": "Image-only PDF wrapper around the same real LOC Barney spread. Story 186 verified `pypdf` extract-text lengths `[0]` and reran the maintained generic PDF OCR lane, which also stayed only in the low-0.1 range on the checked-in transcript excerpt. Story 189 added a bounded handwritten rescue recipe and improved the maintained PDF-entry Barney score to `0.884339`, still below the repo's passing bar."
           }
         ],
         "scores": null,
         "known_gaps": [
-          "The three repo-owned synthetic handwritten fixtures still pass exactly after normalization across six maintained image-directory and PDF OCR cases, but the first real LOC Barney spread drops the widened default corpus to `pass_rate = 0.75` and keeps the real-slice score in the low-0.1 range.",
-          "The maintained generic OCR seam is weak on the checked-in real Barney spread; the bounded direct `claude-opus-4-6` comparison improves that slice materially to roughly `0.73` but still does not clear the repo's `0.99` target.",
+          "The three repo-owned synthetic handwritten fixtures still pass exactly after normalization across six maintained handwritten-rescue image-directory and PDF OCR cases, but the first real LOC Barney spread keeps the widened corpus at `pass_rate = 0.75` because the maintained rescue seam only reaches `0.883604` / `0.884339` on that slice.",
+          "The bounded handwritten Gemini rescue seam is materially better than the historical generic low-0.1 Barney baseline, but it still drifts on names and words such as `Harlen`, `genesee`, `Welthy gone`, and `med of cloth`, so the family still does not clear the repo's `0.99` target.",
           "Messy cursive, degraded notes, and broader real-world handwriting collections remain unproven."
         ],
         "graduated": false
@@ -6250,7 +6303,8 @@
           "story_refs": [
             "176",
             "180",
-            "186"
+            "186",
+            "189"
           ],
           "notes": "Keep format claims tied to current fixture/eval evidence instead of widening through prose drift."
         },

@@ -59,7 +59,7 @@
       {
         "id": "maintained-intake-honesty",
         "status": "active",
-        "story_refs": ["176", "180", "186"],
+        "story_refs": ["176", "180", "186", "189"],
         "notes": "Keep format claims tied to current fixture/eval evidence instead of widening through prose drift."
       },
       {

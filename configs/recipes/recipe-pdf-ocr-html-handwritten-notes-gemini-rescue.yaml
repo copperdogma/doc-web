@@ -1,0 +1,92 @@
+# Bounded handwritten-note OCR rescue path for PDF entry.
+# Keeps the generic PDF intake/build shape, but scopes OCR to a stronger
+# handwritten-focused Gemini path instead of widening the generic OCR recipe
+# claim.
+
+input:
+  pdf: testdata/handwritten-notes-barney-real.pdf  # override via run config / --input-pdf
+
+stages:
+  - id: pdf_to_images
+    stage: extract
+    module: extract_pdf_images_fast_v1
+    out: pages_images_manifest.jsonl
+    params:
+      out: pages_images_manifest.jsonl
+      no_normalize: true
+
+  - id: ocr_ai
+    stage: extract
+    module: ocr_ai_gpt51_v1
+    needs: [pdf_to_images]
+    inputs:
+      pages: pdf_to_images
+    out: pages_html.jsonl
+    params:
+      model: gemini-2.5-pro
+      max_long_side: 2048
+      concurrency: 2
+      skip_blank_pages: true
+      ocr_hints: |
+        - This page is handwritten historical correspondence or diary-style prose.
+        - Preserve wording exactly as written, including misspellings, grammar, and punctuation.
+        - Do not normalize names into more common spellings.
+        - If a word is uncertain, prefer the most literal plausible reading over an invented confident substitution.
+        - Use plain paragraph HTML unless stronger structure is explicitly visible.
+
+  - id: crop_illustrations
+    stage: extract
+    module: crop_illustrations_guided_v1
+    needs: [ocr_ai]
+    inputs:
+      ocr_manifest: ocr_ai
+    out: illustration_manifest.jsonl
+    params:
+      transparency: true
+
+  - id: table_rescue
+    stage: adapter
+    module: table_rescue_html_loop_v1
+    needs: [ocr_ai]
+    inputs:
+      pages: ocr_ai
+    out: pages_html_rescued.jsonl
+    params:
+      model: gpt-5.1
+      max_passes: 3
+      max_pages: 50
+      fail_on_unresolved: true
+      rescue_hints: |
+        - Preserve row/column boundaries exactly; do not reflow text.
+        - Use <br> for multiple entries inside a single cell.
+        - Do not add or remove words.
+
+  - id: extract_page_numbers
+    stage: transform
+    module: extract_page_numbers_html_v1
+    needs: [table_rescue]
+    inputs:
+      pages: table_rescue
+    out: pages_html_with_page_numbers.jsonl
+
+  - id: portionize_toc
+    stage: portionize
+    module: portionize_toc_html_v1
+    needs: [extract_page_numbers]
+    inputs:
+      pages: extract_page_numbers
+    out: portions_toc.jsonl
+
+  - id: build_chapters
+    stage: build
+    module: build_chapter_html_v1
+    needs: [extract_page_numbers, portionize_toc, crop_illustrations]
+    inputs:
+      pages: extract_page_numbers
+      portions: portionize_toc
+      illustration_manifest: crop_illustrations
+    out: chapters_manifest.jsonl
+    params:
+      images_subdir: images
+      book_title: ""
+      book_author: ""

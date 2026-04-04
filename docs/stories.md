@@ -11,7 +11,7 @@ Use `docs/methodology/graph.json`, `docs/methodology/state.yaml`, the active `do
 ## Active Focus
 
 - Active categories: spec:1, spec:2, spec:7, spec:9
-- Campaign `maintained-intake-honesty` (active; stories: 176, 180, 186) — Keep format claims tied to current fixture/eval evidence instead of widening through prose drift.
+- Campaign `maintained-intake-honesty` (active; stories: 176, 180, 186, 189) — Keep format claims tied to current fixture/eval evidence instead of widening through prose drift.
 - Campaign `methodology-graph-state-migration` (active; stories: 187, 188) — Migrate methodology consumers onto state + graph + coverage-matrix truth and retire the live hand-authored build map.
 
 ## Index
@@ -48,6 +48,7 @@ Grouped by primary `spec:N` category. Stories without category refs remain in an
 | 182 | Widen Handwritten Notes Fixture Breadth Beyond the First Synthetic Slice | High | Done | 179 | [story-182](stories/story-182-widen-handwritten-notes-fixture-breadth.md) |
 | 185 | Widen Handwritten Proof Beyond the Synthetic Pair | High | Done | 182 | [story-185](stories/story-185-widen-handwritten-proof-beyond-synthetic-pair.md) |
 | 186 | Add First Reproducible Real Handwritten Fixture Proof Surface | High | Done | 185 | [story-186](stories/story-186-real-handwritten-fixture-proof-surface.md) |
+| 189 | Improve Real Handwritten Fidelity on the Barney Fixture | High | Done | 186 | [story-189](stories/story-189-improve-real-handwritten-barney-fidelity.md) |
 
 ### spec:2 — OCR & Text Extraction
 

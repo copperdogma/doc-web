@@ -8,6 +8,7 @@ from pypdf import PdfReader
 import yaml
 
 PDF_RECIPE = "configs/recipes/recipe-pdf-ocr-html-mvp.yaml"
+HANDWRITTEN_RESCUE_PDF_RECIPE = "configs/recipes/recipe-pdf-ocr-html-handwritten-notes-gemini-rescue.yaml"
 BORN_DIGITAL_NON_TOC_RECIPE = "configs/recipes/recipe-born-digital-pdf-non-toc-html-mvp.yaml"
 BORN_DIGITAL_FIXTURE = "testdata/tbotb-mini.pdf"
 FLAT_FORM_FIXTURE = "testdata/flat-born-digital-form-mini.pdf"
@@ -101,6 +102,50 @@ def test_handwritten_barney_real_pdf_recipe_extract_only_smoke(tmp_path):
     _run_pdf_recipe_extract_only_smoke(tmp_path, HANDWRITTEN_BARNEY_REAL_FIXTURE)
 
 
+def test_handwritten_rescue_pdf_recipe_extract_only_smoke(tmp_path):
+    reader = PdfReader(HANDWRITTEN_BARNEY_REAL_FIXTURE)
+    assert len(reader.pages) == 1
+    assert all(len((page.extract_text() or "").strip()) == 0 for page in reader.pages)
+
+    run_id = f"pdf-intake-smoke-{uuid.uuid4().hex[:8]}"
+    run_dir = tmp_path / run_id
+
+    result = subprocess.run(
+        [
+            sys.executable,
+            "driver.py",
+            "--recipe",
+            HANDWRITTEN_RESCUE_PDF_RECIPE,
+            "--input-pdf",
+            HANDWRITTEN_BARNEY_REAL_FIXTURE,
+            "--run-id",
+            run_id,
+            "--output-dir",
+            str(run_dir),
+            "--end-at",
+            "pdf_to_images",
+        ],
+        capture_output=True,
+        text=True,
+    )
+
+    assert result.returncode == 0, result.stdout + result.stderr
+
+    manifest_path = run_dir / "01_extract_pdf_images_fast_v1" / "pages_images_manifest.jsonl"
+    assert manifest_path.exists()
+
+    rows = [
+        json.loads(line)
+        for line in manifest_path.read_text(encoding="utf-8").splitlines()
+        if line.strip()
+    ]
+    assert len(rows) == 1
+
+    fixture_abs = str(Path(HANDWRITTEN_BARNEY_REAL_FIXTURE).resolve())
+    assert all(row["source"] == [fixture_abs] for row in rows)
+    assert all(Path(row["image"]).exists() for row in rows)
+
+
 def test_repo_owned_flat_form_fixture_has_extractable_text():
     reader = PdfReader(FLAT_FORM_FIXTURE)
     assert len(reader.pages) == 1
@@ -121,3 +166,23 @@ def test_born_digital_non_toc_recipe_wiring():
     portionize_stage = stages[2]
     assert portionize_stage["params"]["allow_unnumbered"] is True
     assert portionize_stage["params"]["fallback_mode"] == "single-document"
+
+
+def test_handwritten_rescue_pdf_recipe_wiring():
+    data = yaml.safe_load(Path(HANDWRITTEN_RESCUE_PDF_RECIPE).read_text(encoding="utf-8"))
+
+    assert data["input"]["pdf"] == HANDWRITTEN_BARNEY_REAL_FIXTURE
+    stages = data["stages"]
+    assert [stage["module"] for stage in stages] == [
+        "extract_pdf_images_fast_v1",
+        "ocr_ai_gpt51_v1",
+        "crop_illustrations_guided_v1",
+        "table_rescue_html_loop_v1",
+        "extract_page_numbers_html_v1",
+        "portionize_toc_html_v1",
+        "build_chapter_html_v1",
+    ]
+    ocr_stage = stages[1]
+    assert ocr_stage["params"]["model"] == "gemini-2.5-pro"
+    assert ocr_stage["params"]["concurrency"] == 2
+    assert "handwritten historical correspondence" in ocr_stage["params"]["ocr_hints"]

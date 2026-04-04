@@ -374,7 +374,7 @@
       "format_family": "handwritten",
       "status": "has-fixture",
       "description": "Photos of handwritten notes, letters, diaries",
-      "pipeline_recipe": "recipe-images-ocr-html-mvp.yaml",
+      "pipeline_recipe": "recipe-images-ocr-html-handwritten-notes-gemini-rescue.yaml / recipe-pdf-ocr-html-handwritten-notes-gemini-rescue.yaml",
       "intake_module": "images_dir_to_manifest_v1 → ocr_ai_gpt51_v1",
       "complexity": ["handwritten", "degraded-quality"],
       "fixtures": [
@@ -418,19 +418,19 @@
           "id": "handwritten-notes-barney-real-images",
           "source": "testdata/handwritten-notes-barney-real-images/",
           "pages": 1,
-          "notes": "Repo-owned real handwritten fixture derived from Library of Congress item `https://www.loc.gov/pictures/item/2023637825/`, using the checked-in `LC-DIG-ppmsca-86618` pages 2-3 spread. Story 186 proved maintained image-directory provenance on this real slice, but the generic OCR lane stayed only in the low-0.1 range on reruns, so the family no longer claims blanket handwritten passing."
+          "notes": "Repo-owned real handwritten fixture derived from Library of Congress item `https://www.loc.gov/pictures/item/2023637825/`, using the checked-in `LC-DIG-ppmsca-86618` pages 2-3 spread. Story 186 proved maintained image-directory provenance on this real slice, but the generic OCR lane stayed only in the low-0.1 range on reruns. Story 189 added a bounded handwritten rescue recipe and improved the maintained image-entry Barney score to `0.883604`, while keeping the family below the repo's passing bar."
         },
         {
           "id": "handwritten-notes-barney-real-pdf",
           "source": "testdata/handwritten-notes-barney-real.pdf",
           "pages": 1,
-          "notes": "Image-only PDF wrapper around the same real LOC Barney spread. Story 186 verified `pypdf` extract-text lengths `[0]` and reran the maintained generic PDF OCR lane, which also stayed only in the low-0.1 range on the checked-in transcript excerpt. A bounded non-maintained direct comparison using `claude-opus-4-6` improved the same real slice to roughly `0.73`, still below the repo's passing bar."
+          "notes": "Image-only PDF wrapper around the same real LOC Barney spread. Story 186 verified `pypdf` extract-text lengths `[0]` and reran the maintained generic PDF OCR lane, which also stayed only in the low-0.1 range on the checked-in transcript excerpt. Story 189 added a bounded handwritten rescue recipe and improved the maintained PDF-entry Barney score to `0.884339`, still below the repo's passing bar."
         }
       ],
       "scores": null,
       "known_gaps": [
-        "The three repo-owned synthetic handwritten fixtures still pass exactly after normalization across six maintained image-directory and PDF OCR cases, but the first real LOC Barney spread drops the widened default corpus to `pass_rate = 0.75` and keeps the real-slice score in the low-0.1 range.",
-        "The maintained generic OCR seam is weak on the checked-in real Barney spread; the bounded direct `claude-opus-4-6` comparison improves that slice materially to roughly `0.73` but still does not clear the repo's `0.99` target.",
+        "The three repo-owned synthetic handwritten fixtures still pass exactly after normalization across six maintained handwritten-rescue image-directory and PDF OCR cases, but the first real LOC Barney spread keeps the widened corpus at `pass_rate = 0.75` because the maintained rescue seam only reaches `0.883604` / `0.884339` on that slice.",
+        "The bounded handwritten Gemini rescue seam is materially better than the historical generic low-0.1 Barney baseline, but it still drifts on names and words such as `Harlen`, `genesee`, `Welthy gone`, and `med of cloth`, so the family still does not clear the repo's `0.99` target.",
         "Messy cursive, degraded notes, and broader real-world handwriting collections remain unproven."
       ],
       "graduated": false

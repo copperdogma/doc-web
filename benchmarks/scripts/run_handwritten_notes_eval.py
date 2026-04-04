@@ -3,6 +3,7 @@ import json
 import os
 import subprocess
 import sys
+import time
 from datetime import datetime
 from pathlib import Path
 from typing import Any
@@ -14,7 +15,7 @@ ROOT = Path(__file__).resolve().parents[2]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
-from benchmarks.scorers.handwritten_notes_transcription import score_page_html_artifact
+from benchmarks.scorers.handwritten_notes_transcription import score_page_html_artifact  # noqa: E402
 
 
 DEFAULT_TRANSCRIPT = ROOT / "testdata/handwritten-notes-mini.txt"
@@ -23,18 +24,22 @@ DEFAULT_PDF = ROOT / "testdata/handwritten-notes-mini.pdf"
 DEFAULT_CORPUS = ROOT / "benchmarks" / "golden" / "handwritten-notes" / "corpus.json"
 DEFAULT_IMAGE_RECIPE = "configs/recipes/recipe-images-ocr-html-mvp.yaml"
 DEFAULT_PDF_RECIPE = "configs/recipes/recipe-pdf-ocr-html-mvp.yaml"
+DEFAULT_IMAGE_CASE_ID = "image-generic"
+DEFAULT_PDF_CASE_ID = "pdf-generic"
 
 
-def run_command(cmd: list[str]) -> subprocess.CompletedProcess[str]:
+def run_command(cmd: list[str]) -> tuple[subprocess.CompletedProcess[str], float]:
     env = dict(os.environ)
     env["PYTHONPATH"] = str(ROOT)
-    return subprocess.run(
+    started = time.perf_counter()
+    result = subprocess.run(
         cmd,
         cwd=ROOT,
         env=env,
         text=True,
         capture_output=True,
     )
+    return result, round(time.perf_counter() - started, 6)
 
 
 def _resolve_path(path_str: str | Path) -> Path:
@@ -46,6 +51,25 @@ def _resolve_path(path_str: str | Path) -> Path:
 
 def build_run_id(fixture_id: str, case_id: str) -> str:
     return f"handwritten-{fixture_id}-{case_id}"
+
+
+def load_case_instrumentation(run_id: str) -> dict[str, Any] | None:
+    path = ROOT / "output" / "runs" / run_id / "instrumentation.json"
+    if not path.exists():
+        return None
+
+    payload = json.loads(path.read_text(encoding="utf-8"))
+    ocr_stage = next((stage for stage in payload.get("stages", []) if stage.get("id") == "ocr_ai"), None)
+
+    return {
+        "path": str(path),
+        "run_totals": payload.get("totals", {}),
+        "ocr_stage": {
+            "wall_seconds": (ocr_stage or {}).get("wall_seconds"),
+            "llm_totals": (ocr_stage or {}).get("llm_totals", {}),
+            "per_model": ((ocr_stage or {}).get("extra") or {}).get("per_model", {}),
+        },
+    }
 
 
 def load_fixture_specs(
@@ -95,7 +119,16 @@ def load_fixture_specs(
     return fixtures
 
 
-def run_driver_case(fixture_id: str, case_id: str, recipe: str, input_flag: str, input_path: Path) -> dict[str, Any]:
+def run_driver_case(
+    fixture_id: str,
+    case_id: str,
+    recipe: str,
+    input_flag: str,
+    input_path: Path,
+    *,
+    instrument: bool = False,
+    price_table: str | None = None,
+) -> dict[str, Any]:
     run_id = build_run_id(fixture_id, case_id)
     cmd = [
         sys.executable,
@@ -111,22 +144,33 @@ def run_driver_case(fixture_id: str, case_id: str, recipe: str, input_flag: str,
         "--end-at",
         "ocr_ai",
     ]
-    result = run_command(cmd)
+    if instrument:
+        cmd.append("--instrument")
+    if price_table:
+        cmd.extend(["--price-table", price_table])
+
+    result, wall_seconds = run_command(cmd)
     if result.returncode != 0:
         raise RuntimeError(result.stdout + "\n" + result.stderr)
     artifact_path = ROOT / "output" / "runs" / run_id / "02_ocr_ai_gpt51_v1" / "pages_html.jsonl"
     if not artifact_path.exists():
         raise RuntimeError(f"Expected artifact missing: {artifact_path}")
-    return {
+    payload = {
         "fixture_id": fixture_id,
         "case_id": case_id,
         "recipe": recipe,
+        "recipe_name": Path(recipe).name,
         "input_flag": input_flag,
         "input_path": str(input_path),
         "run_id": run_id,
         "artifact_path": str(artifact_path),
+        "wall_seconds": wall_seconds,
         "stdout_tail": "\n".join((result.stdout or "").splitlines()[-20:]),
     }
+    instrumentation = load_case_instrumentation(run_id)
+    if instrumentation:
+        payload["instrumentation"] = instrumentation
+    return payload
 
 
 def main() -> None:
@@ -137,6 +181,10 @@ def main() -> None:
     parser.add_argument("--pdf", default=None)
     parser.add_argument("--image-recipe", default=DEFAULT_IMAGE_RECIPE)
     parser.add_argument("--pdf-recipe", default=DEFAULT_PDF_RECIPE)
+    parser.add_argument("--image-case-id", default=DEFAULT_IMAGE_CASE_ID)
+    parser.add_argument("--pdf-case-id", default=DEFAULT_PDF_CASE_ID)
+    parser.add_argument("--instrument", action="store_true")
+    parser.add_argument("--price-table", default=None)
     parser.add_argument("--output", default=None)
     args = parser.parse_args()
 
@@ -153,8 +201,24 @@ def main() -> None:
 
     for fixture in fixtures:
         cases = [
-            run_driver_case(fixture["id"], "image-generic", args.image_recipe, "--input-images", fixture["images_path"]),
-            run_driver_case(fixture["id"], "pdf-generic", args.pdf_recipe, "--input-pdf", fixture["pdf_path"]),
+            run_driver_case(
+                fixture["id"],
+                args.image_case_id,
+                args.image_recipe,
+                "--input-images",
+                fixture["images_path"],
+                instrument=args.instrument,
+                price_table=args.price_table,
+            ),
+            run_driver_case(
+                fixture["id"],
+                args.pdf_case_id,
+                args.pdf_recipe,
+                "--input-pdf",
+                fixture["pdf_path"],
+                instrument=args.instrument,
+                price_table=args.price_table,
+            ),
         ]
         for case in cases:
             metrics = score_page_html_artifact(fixture["transcript_path"], case["artifact_path"])
@@ -203,6 +267,12 @@ def main() -> None:
     payload = {
         "measured_at": local_now.date().isoformat(),
         "corpus_path": str(_resolve_path(args.corpus)) if args.transcript is None else None,
+        "image_recipe": args.image_recipe,
+        "pdf_recipe": args.pdf_recipe,
+        "image_case_id": args.image_case_id,
+        "pdf_case_id": args.pdf_case_id,
+        "instrument": args.instrument,
+        "price_table": args.price_table,
         "fixtures": fixture_results,
         "cases": scored_cases,
         "summary": summary,
