@@ -117,6 +117,97 @@ def test_parse_story_frontmatter_wins_over_legacy_headers(tmp_path):
     assert story["adr_ids"] == []
 
 
+def test_parse_story_extracts_blocker_sections(tmp_path):
+    module = load_module()
+    module.ROOT = tmp_path
+    story_path = tmp_path / "stories" / "story-001-blocked.md"
+    story_path.parent.mkdir()
+    story_path.write_text(
+        textwrap.dedent(
+            """\
+            ---
+            title: Blocked Story
+            status: Blocked
+            priority: High
+            ideal_refs: []
+            spec_refs: []
+            adr_refs: []
+            depends_on: []
+            category_refs: []
+            compromise_refs: []
+            input_coverage_refs: []
+            architecture_domains: []
+            roadmap_tags: []
+            ---
+
+            # Story 001 — Blocked Story
+
+            ## Blocker Summary
+
+            Missing upstream workflow seam.
+
+            ## Blocker Evidence
+
+            - Checked the target skill and compiler surface.
+            - No blocking hook exists yet.
+
+            ## Unblock Condition
+
+            Land the shared workflow seam first.
+            """
+        ),
+        encoding="utf-8",
+    )
+
+    story = module.parse_story(story_path)
+
+    assert story["blocker_summary"] == "Missing upstream workflow seam."
+    assert "No blocking hook exists yet." in story["blocker_evidence"]
+    assert story["unblock_condition"] == "Land the shared workflow seam first."
+
+
+def test_validate_graph_requires_blocker_sections_for_blocked_story():
+    module = load_module()
+    stories = [
+        {
+            "id": "001",
+            "title": "Blocked Story",
+            "path": "docs/stories/story-001-blocked.md",
+            "status": "Blocked",
+            "priority": "High",
+            "ideal_refs": [],
+            "spec_refs": [],
+            "decision_refs": [],
+            "adr_ids": [],
+            "depends_on": [],
+            "category_refs": [],
+            "compromise_refs": [],
+            "input_coverage_refs": [],
+            "architecture_domains": [],
+            "roadmap_tags": [],
+            "blocker_summary": "",
+            "blocker_evidence": "Checked the repo and the blocker is real.",
+            "unblock_condition": "",
+            "legacy_build_map_refs": "",
+            "metadata_source": "frontmatter",
+            "missing_frontmatter_keys": [],
+        }
+    ]
+
+    validation = module.validate_graph(
+        state={"categories": {}, "roadmap": {}, "architecture_audits": {"domains": {}, "cadence": {}}},
+        spec={"categories": [], "compromises": []},
+        stories=stories,
+        adrs=[],
+        evals=[],
+        coverage={"formats": []},
+    )
+
+    assert validation["errors"] == [
+        "story 001 is Blocked but missing sections: Blocker Summary, Unblock Condition"
+    ]
+
+
 def test_parse_adr_frontmatter_wins_over_body_inference(tmp_path):
     module = load_module()
     module.ROOT = tmp_path

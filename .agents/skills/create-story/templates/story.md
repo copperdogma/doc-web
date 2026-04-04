@@ -79,6 +79,18 @@ legacy_system: ""
 - [ ] Validation complete or explicitly skipped by user
 - [ ] Story marked done via `/mark-story-done`
 
+## Blocker Summary
+
+N/A
+
+## Blocker Evidence
+
+N/A
+
+## Unblock Condition
+
+N/A
+
 ## Architectural Fit
 
 - **Owning module / area**: {Which stage, module, script, or doc area should own this?}

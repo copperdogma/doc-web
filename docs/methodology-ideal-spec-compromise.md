@@ -201,6 +201,13 @@ strategic context:
 architecture-dependent work, the substrate must still be verified in code,
 schemas, artifacts, or tests before the story is treated as honestly ready.
 
+Stories are execution packaging, not priority votes. Triage should rank the
+highest-leverage problem first, preserve continuity for active unresolved work
+lines, and treat same-subsystem / same-validation-boundary / same-success-surface
+work as one story by default. If a story is `Blocked`, the blocker summary,
+evidence, and unblock condition should be inspectable in the story artifact and
+in any graph/compiler surface that feeds triage.
+
 ## Daily Use
 
 The methodology is most useful as a filter.

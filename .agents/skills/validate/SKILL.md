@@ -55,6 +55,9 @@ Thoroughly analyze what was done and how it compares to the original instruction
        - **Rescoped then closed**
        - **Kept open**
        - **Marked blocked**
+       - Same subsystem + same validation boundary + same success surface
+         should normally stay **`Keep open`** even if follow-up story shells
+         already exist
      - Do not end in an ambiguous "not done" state without a firm recommendation.
 
 2.75 **Read decision context when relevant**
@@ -203,7 +206,14 @@ Ask one direct question:
 
 Default behavior:
 - If implementation is complete and the only remaining work is close-out bookkeeping owned by `/mark-story-done` or `/finish-and-push`, prefer **`Close now`**.
-- If the implemented slice is coherent and the remaining gaps are explicitly moved to follow-up stories, prefer **`Rescope then close`** over leaving the story hanging in `In Progress`.
+- If the remaining work still belongs to the same subsystem, validation
+  boundary, and success surface, prefer **`Keep open`** even if follow-up
+  stories were already created.
+- If the implemented slice is coherent and the remaining gaps are genuinely
+  separate and explicitly moved to follow-up stories, prefer
+  **`Rescope then close`**.
+- If the story cannot honestly proceed because of a dependency or decision,
+  prefer **`Mark blocked`**.
 - Never silently weaken requirements. The report must say exactly what would be rescoped and why.
 
 Fresh-verification rule:

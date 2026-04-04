@@ -12,7 +12,10 @@ Execute a development story through implementation handoff.
 
 ## Phase 1 — Explore (story-file edits allowed, code changes forbidden)
 
-1. **Resolve story** — Read `docs/stories/story-{NNN}-*.md` (or resolve from `docs/methodology/graph.json`). Verify status is Pending or In Progress. If status is **Draft**, STOP — it needs detailed acceptance criteria and tasks before it can be built. Tell the user to promote it to Pending first.
+1. **Resolve story** — Read `docs/stories/story-{NNN}-*.md` (or resolve from `docs/methodology/graph.json`). Verify status is Draft, Pending, or In Progress.
+   - If status is **Draft**, do not stop yet. Continue through the required-section and substrate checks first.
+   - If the Draft story is still skeletal or unverified after those checks, STOP and recommend keeping it `Draft`.
+   - If the Draft story is already detailed enough and substrate-verified, record that it should be promoted and continue.
 
 2. **Verify required sections** — Ensure the story has:
    - Goal
@@ -55,8 +58,9 @@ Execute a development story through implementation handoff.
      tightly coupled delta or a real prerequisite
    - If the substrate is missing such that the story cannot honestly satisfy
      its acceptance criteria, STOP treating the story as build-ready. Record
-     the evidence, update the story with the blocker or new dependency, and
-     bring that recommendation back to the user before implementation planning
+     the evidence, update the story with the blocker or new dependency, mark it
+     `Blocked` when the blocker is real and named, and bring that
+     recommendation back to the user before implementation planning
 
 7. **Identify scope deltas** — If exploration reveals important work that is missing from the story but is necessary to actually solve the story's goal:
    - **Small, coherent delta** → expand the story automatically. Update the story's tasks, acceptance criteria, and work log so the real scope is visible.
@@ -103,11 +107,13 @@ Execute a development story through implementation handoff.
 ## Phase 3 — Implement
 
 12. **Implement** — Work through tasks in order:
+    - If the story status is `Draft` and the exploration proved it honestly buildable, first promote it to `Pending` and regenerate the graph/index so the status matches reality
     - If the story status is `Pending`, set it to `In Progress` in the story file and regenerate the graph/index before implementation starts
     - Mark task in progress in story file
     - Do the work
     - Run relevant checks after meaningful changes
     - Mark task complete with brief evidence
+    - If implementation or deeper exploration proves a real blocker instead, record it, set the story to `Blocked`, regenerate the graph/index, and stop
 
 13. **Verification** — Run the project's validation:
     - `make test`
@@ -157,6 +163,8 @@ Entries should be verbose. Capture decisions, failures, solutions, and learnings
 
 - **Never write implementation code before the human gate (step 11)**
 - Never treat `Pending` as proof that the critical substrate already exists
+- Never let a stale `Draft` label block obviously buildable work when the story
+  is already detailed enough and substrate-verified; promote it explicitly
 - When important adjacent work is required to actually satisfy the story, default to expanding the current story modestly instead of pretending it is out of scope
 - For larger expansions, recommend the scope change explicitly before implementing
 - Use relative effort estimates only; never present hours/days unless the user explicitly asks for calendar-style estimates

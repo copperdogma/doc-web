@@ -100,18 +100,35 @@ Canonical location: `.agents/skills/` — works across Claude Code, Cursor, Gemi
 ## Story Lifecycle
 
 **Statuses:** Draft → Pending → In Progress → Done | Blocked
-- **Draft** — Skeleton with goal/notes. NOT buildable. Needs detailed ACs and tasks before `/build-story`.
-- **Pending** — Fully detailed (ACs, tasks, files to modify). Ready for `/build-story`.
+- **Draft** — Worth preserving, but still incomplete, underspecified, or not yet substrate-verified enough to claim build-readiness. `/build-story` may promote a sufficiently detailed Draft when the status lags reality.
+- **Pending** — Fully detailed and honestly buildable now.
 - **In Progress** — Active work.
 - **Done** — All checks pass, work log current, CHANGELOG updated, eval registry updated if applicable.
-- **Blocked** — Waiting on dependency or decision.
+- **Blocked** — Sufficiently specified to preserve, but cannot proceed because of a named blocker with explicit evidence and an unblock condition.
 
 Active stories should carry the workflow gates `Build complete`, `Validation complete or explicitly skipped by user`, and `Story marked done via /mark-story-done`.
+
+`/create-story` should choose `Draft`, `Pending`, or `Blocked` from actual repo
+reality instead of defaulting to paperwork. A story shell is execution
+packaging, not a priority signal by itself.
 
 `Pending` means "detailed enough to consider building," not "substrate already
 verified." `/build-story` and `/triage-stories` must still confirm the critical
 runtime/schema/workflow substrate in code before treating the story as
 honestly buildable.
+
+`/triage` and `/triage-stories` rank problems first, then choose the right
+vehicle. Existing `Draft` / `Pending` stories help with packaging and
+continuity, but should not carry major intrinsic priority just because they
+exist.
+
+Same subsystem + same validation boundary + same success surface stays in one
+story by default. Split only when the work becomes materially distinct, crosses
+into a new ownership/runtime seam, or would make validation unclear.
+
+If a capability needs an operator or end-user UI to be honestly usable or
+inspectable, the story should include that UI slice unless it explicitly
+records why the UI is intentionally deferred or owned elsewhere.
 
 **Story IDs are identifiers, not sequence numbers.** New stories get max+1. Order via `Depends On`, not ID. Never use letter suffixes.
 

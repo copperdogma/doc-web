@@ -64,6 +64,11 @@ MANUAL_STORIES_INDEX_RE = re.compile(
     re.IGNORECASE,
 )
 ALLOWED_GENERATED_INDEX_CONTEXT_RE = re.compile(r"generated|compile|drift|archive|historical", re.IGNORECASE)
+EMPTY_STORY_SECTION_RE = re.compile(
+    r"^(?:n/?a|none|not blocked|not currently blocked)(?:[\s.:;-].*)?$",
+    re.IGNORECASE | re.DOTALL,
+)
+PLACEHOLDER_SECTION_RE = re.compile(r"^\{.+\}$", re.DOTALL)
 VALID_STORY_STATUSES = {
     "Draft",
     "Pending",
@@ -167,6 +172,25 @@ def split_loose_refs(value: str | None) -> list[str]:
     if not value:
         return []
     return [part.strip() for part in re.split(r"\s*(?:\||;)\s*", value) if part.strip()]
+
+
+def normalize_story_section(value: str) -> str:
+    cleaned = value.strip()
+    if not cleaned:
+        return ""
+    if EMPTY_STORY_SECTION_RE.match(cleaned):
+        return ""
+    if PLACEHOLDER_SECTION_RE.match(cleaned):
+        return ""
+    return cleaned
+
+
+def extract_markdown_section(body: str, heading: str) -> str:
+    pattern = re.compile(rf"^##\s+{re.escape(heading)}\s*\n(.*?)(?=^##\s+|\Z)", re.MULTILINE | re.DOTALL)
+    match = pattern.search(body)
+    if not match:
+        return ""
+    return normalize_story_section(match.group(1))
 
 
 def extract_story_ids(text: str) -> list[str]:
@@ -284,6 +308,9 @@ def parse_story(path: Path) -> dict[str, Any]:
         title_match = re.match(r"^#+\s+Story(?:\s+\d+)?\s*[—:-]\s+(.+)$", heading[1])
         title = title_match.group(1).strip() if title_match else re.sub(r"^#+\s*", "", heading[1]).strip()
     missing = sorted(REQUIRED_STORY_FRONTMATTER_KEYS - set(frontmatter)) if has_frontmatter else []
+    blocker_summary = extract_markdown_section(body, "Blocker Summary")
+    blocker_evidence = extract_markdown_section(body, "Blocker Evidence")
+    unblock_condition = extract_markdown_section(body, "Unblock Condition")
     return {
         "id": file_match.group(1),
         "title": title or path.stem,
@@ -300,6 +327,9 @@ def parse_story(path: Path) -> dict[str, Any]:
         "input_coverage_refs": unique_sorted(frontmatter_list(frontmatter, "input_coverage_refs")),
         "architecture_domains": unique_sorted(frontmatter_list(frontmatter, "architecture_domains")),
         "roadmap_tags": unique_sorted(frontmatter_list(frontmatter, "roadmap_tags")),
+        "blocker_summary": blocker_summary,
+        "blocker_evidence": blocker_evidence,
+        "unblock_condition": unblock_condition,
         "legacy_build_map_refs": fields.get("Build Map Refs", ""),
         "metadata_source": "frontmatter" if has_frontmatter else "legacy",
         "missing_frontmatter_keys": missing,
@@ -514,6 +544,20 @@ def validate_graph(
             errors.append(f"story {story['id']} frontmatter missing keys: {', '.join(story['missing_frontmatter_keys'])}")
         if story["status"] not in VALID_STORY_STATUSES:
             nonstandard_statuses.append(f"{story['id']}:{story['status']}")
+        if story["status"] == "Blocked":
+            missing_blocker_fields = [
+                label
+                for key, label in [
+                    ("blocker_summary", "Blocker Summary"),
+                    ("blocker_evidence", "Blocker Evidence"),
+                    ("unblock_condition", "Unblock Condition"),
+                ]
+                if not story.get(key)
+            ]
+            if missing_blocker_fields:
+                errors.append(
+                    f"story {story['id']} is Blocked but missing sections: {', '.join(missing_blocker_fields)}"
+                )
         if story["metadata_source"] == "legacy":
             legacy_story_ids.append(story["id"])
         for spec_ref in story["spec_refs"]:

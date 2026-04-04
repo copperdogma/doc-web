@@ -14,7 +14,7 @@ Canonical story-backlog triage leaf skill. Direct invocation is allowed, and
 ## What This Skill Produces
 
 A short advisory report:
-- ranked story recommendations
+- ranked problem-line recommendations
 - bottlenecks / concerns
 - one recommended next command
 
@@ -25,23 +25,33 @@ This skill is read-only.
 1. **Read project state**
    Load `docs/methodology/graph.json` (and the generated `docs/stories.md` if
    helpful) and identify all stories by status:
-   - Draft
-   - Pending
    - In Progress
-   - Done
+   - Pending
+   - Draft
    - Blocked
+   - Done
 
-   Both Draft and Pending stories with met dependencies are candidates. Draft
-   stories are recommendable but not yet buildable until promoted to `Pending`.
+   Candidate work lines are not just backlog shells. Read:
+   - active `In Progress` stories with unresolved work
+   - `Pending` stories with met dependencies
+   - `Draft` stories that appear detailed enough to be promoted soon
+   - `Blocked` stories only when unblocking them may be the highest-leverage move
+
+   Draft/Pending existence alone does not make a story high priority.
 
 2. **Read the Ideal**
    Load `docs/ideal.md` and score against what the system should become, not
    just what is locally convenient.
 
 3. **Read candidate stories and graph/state context**
-   For every candidate story with met dependencies, read the actual story file.
-   Do not rank by title alone. For each candidate, also read the matching
-   graph/state category and note:
+   For every candidate with met dependencies or strong continuity relevance,
+   read the actual story file. Do not rank by title alone. When multiple recent
+   stories touch the same subsystem, validation boundary, and success surface,
+   treat them as one problem line first and ask whether the honest next move is
+   to continue, reopen, expand, or consolidate that line instead of treating
+   each story shell as a separate vote.
+
+   For each candidate, also read the matching graph/state category and note:
    - **Substrate status** (`exists`/`partial`/`missing`) — a story whose
      category substrate is `missing` should not be recommended unless the story
      itself creates that substrate
@@ -55,9 +65,10 @@ This skill is read-only.
 
 4. **Score and rank**
    Evaluate each candidate on:
+   - Ideal alignment
+   - real problem pressure
    - dependency readiness
    - blocking power
-   - Ideal alignment
    - stage leverage
    - simplification leverage
    - **substrate readiness** — read the graph/state category's substrate status;
@@ -70,13 +81,18 @@ This skill is read-only.
      - `converge`: recommend deletion work
      - Work that fights the phase is lower priority
    - momentum
+   - continuity for active unresolved work lines
    - convergence value
    - complexity vs payoff
    - user impact
+   - existing story-shell presence only as packaging / tie-break context
 
 5. **Flag concerns**
    Surface issues such as:
+   - same-surface work accidentally split across multiple stories that should
+     likely stay one line
    - stories marked Draft/Pending that are actually blocked
+   - blocked stories with weak or missing blocker evidence / unblock conditions
    - stories whose documented prerequisites exist in build-map or decision docs
      but not yet in code, schemas, runtime wiring, tests, or artifacts
    - stale or superseded stories
@@ -90,8 +106,8 @@ This skill is read-only.
    ```markdown
    ## Triage Stories
 
-   ### Ranked Candidates
-   - Story NNN — {title} ({Draft|Pending}) — {why}
+   ### Ranked Problem Lines
+   - Story NNN — {title} ({Status}) — recommended action: {continue|reopen|expand|consolidate|create} — {why}
 
    ### Bottlenecks / Concerns
    - {issue}
@@ -121,6 +137,10 @@ doing a full backlog scan. Report:
 - If the backlog is empty or everything is blocked, say so clearly
 - Do not recommend stories that depend on unfinished work unless the dependency
   is trivially close to done
+- Do not recommend a new story when continuing, reopening, expanding, or
+  consolidating the current problem line is the more honest move
 - Do not recommend architecture-dependent stories as build-ready on story text
   alone when the critical substrate has not been verified in the repo
+- Treat `Blocked` stories as candidates only when the unblock path is itself the
+  highest-leverage next move
 - Keep the report compact enough for `/triage` to synthesize with other leaf reports

@@ -109,6 +109,7 @@ Grouped by primary `spec:N` category. Stories without category refs remain in an
 |---|---|---|---|---|---|
 | 187 | Methodology Graph + State Migration | High | Done | 148 | [story-187](stories/story-187-methodology-graph-state-migration.md) |
 | 188 | Legacy Methodology Metadata Backfill | High | Done | 187 | [story-188](stories/story-188-legacy-methodology-metadata-backfill.md) |
+| 190 | Fix Story Progression and Anti-Fragmentation Workflow | High | Done | 187, 188 | [story-190](stories/story-190-fix-story-progression-and-anti-fragmentation-workflow.md) |
 
 ### Legacy / Uncategorized Stories
 

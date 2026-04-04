@@ -54,12 +54,17 @@ Close a completed story after validation.
 
 Do **not** stop at raw blockers only. Classify the unmet items and make a firm recommendation:
 
-1. **Still belongs to this story** → recommend **`Keep open`**
-2. **Moved to explicit follow-up story/stories** and the delivered slice is coherent → recommend **`Rescope then close`**
-3. **Waiting on an external dependency/decision** → recommend **`Mark blocked`**
+1. **Still belongs to this story** because it remains in the same subsystem,
+   validation boundary, and success surface → recommend **`Keep open`**
+2. **Waiting on an external dependency/decision** → recommend **`Mark blocked`**
+3. **Moved to explicit follow-up story/stories** and the remaining work is
+   genuinely separate from the shipped slice → recommend **`Rescope then close`**
 
 Default preference:
-- If the current story delivered a coherent slice and the remaining gaps are already tracked in follow-up stories, prefer **`Rescope then close`** over leaving the story hanging in `In Progress`.
+- If the remaining work is still same-surface, prefer **`Keep open`** even if
+  follow-up stories were already created by mistake.
+- Use **`Rescope then close`** only when the remaining work is genuinely
+  separate and validation will stay clear after narrowing the story.
 
 If recommending **`Rescope then close`**, propose these edits explicitly:
 1. Narrow the title/goal/acceptance criteria/tasks to the shipped slice
@@ -118,6 +123,8 @@ If not complete and the user has **not** approved a closure recommendation, stop
 - Do not duplicate CHANGELOG.md entries — always check before writing
 - Never mark Done without running the full check suite
 - Never mark a Draft story as Done — it must be promoted to Pending and built via `/build-story` first
+- Never treat the existence of a follow-up story by itself as a reason to close
+  the current one
 - If evals were run during the story: verified scores must be recorded in `docs/evals/registry.yaml` before closing
 - Never commit or push without explicit user request
 - When incomplete, never end with "can't mark done" alone. Always include a firm recommendation: **`Rescope then close`**, **`Keep open`**, or **`Mark blocked`**.

@@ -1,3 +1,22 @@
+## [2026-04-04-04] - Close problem-first story workflow repair (Story 190)
+
+### Added
+- Added a cross-repo migration runbook for problem-first triage, honest story-state transitions, blocked-story recording, and anti-fragmentation workflow adoption
+
+### Changed
+- Changed the story-lifecycle skills, repo policy, and methodology reference so triage ranks problems before story shells, `/create-story` can stop on same-line work instead of minting a new ID, `/build-story` can promote or block from evidence, and close-out keeps same-surface work together by default
+- Changed the story template, methodology compiler, generated graph, and generated story index so blocked-story truth is canonical and inspectable in both authored story artifacts and compiled planning surfaces
+
+### Tested
+- `make lint`
+- `make test`
+- `make methodology-compile`
+- `make methodology-check`
+- `make skills-check`
+- `python -m pytest tests/test_methodology_graph.py -q`
+- `python -m ruff check scripts/methodology_graph.py tests/test_methodology_graph.py`
+- `git diff --check`
+
 ## [2026-04-04-03] - Close bounded handwritten Barney rescue seam (Story 189)
 
 ### Added

@@ -63,15 +63,21 @@ When invoked with no scope:
    - whether the recommendation is read-only or action-taking
 
 4. **Synthesize one cross-domain recommendation**
+   Rank the problem first, then choose the vehicle that best advances it
+   (continue an active story, expand/reopen a story, create a story, run an
+   eval, do architecture work, or no-op).
+
    Choose the next action with the strongest combined signal across:
-   - Ideal alignment
+   - movement toward the Ideal
+   - real problem pressure
    - blocking power / dependency leverage
    - compromise-elimination leverage
    - phase coherence (climb/hold/converge alignment across categories)
    - substrate readiness
+   - continuity from active or recently advanced unresolved work lines
    - urgency / staleness
-   - momentum from recent work
    - operator cost
+   - existing story shells only as packaging / tie-break context, not as value by themselves
 
    The recommended action must be phrased so it can be executed directly on the
    next turn. A bare `yes` from the user should be enough to authorize that one
@@ -113,3 +119,7 @@ When invoked with no scope:
 - End with a clear acceptance prompt that the user can approve with `yes`.
 - Respect leaf-skill boundaries: `/triage inbox` may modify files; unscoped
   `/triage` may not.
+- Do not overweight `Draft` / `Pending` story presence. Story shells are
+  packaging, not priority signals.
+- Preserve continuity for active unresolved work lines when leverage is
+  otherwise comparable.
