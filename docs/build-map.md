@@ -462,7 +462,7 @@ empty dedicated section until a second candidate exists.
 | Scanned PDF (prose) | `scanned-pdf-prose` | `scanned-pdf` | `extract_pdf_images_fast_v1 -> ocr_ai_gpt51_v1` | 1.00 | 1.00 | - | 1.00 | Story 167 adds `testdata/scanned-prose-mini.pdf`, a repo-owned image-only simple-prose fixture. Fresh `driver.py` proof plus source-text comparison on 2026-03-27 matched the checked-in source text exactly after normalization; broader noisy scanned-prose quality remains a separate question. |
 | Scanned PDF (tables) | `scanned-pdf-tables` | `scanned-pdf` | `extract_pdf_images_fast_v1 -> ocr_ai_gpt51_v1 -> table_rescue_html_loop_v1` | 0.93 | 0.95 | 0.968 | 1.00 | Onward-style genealogy path. Story 157 restored a maintained PDF-backed entry recipe; the shared Onward PDF and image-directory source are both 127 pages. Story 176 adds a fresh confirmed-handoff proof from intake approval into `recipe-pdf-ocr-html-mvp.yaml`, with inspected `intake_handoff_v1` plus downstream `page_image_v1` manifest artifacts under `story176-scanned-proof*`. |
 | Image directory | `image-directory-scans` | `image-directory` | `images_dir_to_manifest_v1 -> ocr_ai_gpt51_v1` | 0.93 | 0.95 | 0.968 | 1.00 | Same source quality as the scanned-PDF image path once pages are extracted. Story 176 adds a fresh confirmed-handoff proof from intake approval into `recipe-images-ocr-html-mvp.yaml`, with inspected `intake_handoff_v1` plus downstream `page_image_v1` manifest artifacts under `story176-image-proof*`. |
-| Handwritten notes | `handwritten-notes` | `handwritten` | `images_dir_to_manifest_v1 -> ocr_ai_gpt51_v1` | 1.00 | 1.00 | - | 1.00 | Story 179 adds `testdata/handwritten-notes-mini-images/` plus the image-only wrapper `testdata/handwritten-notes-mini.pdf`, and Story 182 adds `testdata/handwritten-notes-rough-images/` plus `testdata/handwritten-notes-rough.pdf` and widens `benchmarks/scripts/run_handwritten_notes_eval.py` into a two-fixture corpus proof surface. Fresh `driver.py` proof on 2026-04-03 matched the checked-in transcripts exactly after normalization on both maintained generic image-directory and PDF OCR lanes for all four cases, with image-only PDF verification of `[0, 0]` and `[0, 0, 0]`. The family is now passing on a broader but still synthetic handwritten slice; real messy cursive and degraded handwriting remain unproven. |
+| Handwritten notes | `handwritten-notes` | `handwritten` | `images_dir_to_manifest_v1 -> ocr_ai_gpt51_v1` | 1.00 | 1.00 | - | 1.00 | Story 179 adds `testdata/handwritten-notes-mini-images/` plus the image-only wrapper `testdata/handwritten-notes-mini.pdf`, Story 182 adds `testdata/handwritten-notes-rough-images/` plus `testdata/handwritten-notes-rough.pdf`, and Story 185 adds `testdata/handwritten-notes-faded-images/` plus `testdata/handwritten-notes-faded.pdf`, widening `benchmarks/scripts/run_handwritten_notes_eval.py` into a three-fixture corpus proof surface. Fresh `driver.py` proof on 2026-04-03 matched the checked-in transcripts exactly after normalization on both maintained generic image-directory and PDF OCR lanes for all six cases, with image-only PDF verification of `[0, 0]`, `[0, 0]`, and `[0, 0, 0]` for the mini, faded, and rough fixtures respectively. The family is now passing on a wider but still synthetic handwritten slice; real handwritten samples, messy cursive, and degraded archival handwriting remain unproven. |
 | Plain text | `plain-text` | `plain-text` | `extract_text_v1` | 1.00 | - | - | - | Passthrough, no OCR. |
 | Markdown | `markdown` | `markdown` | `extract_text_v1` | 1.00 | - | - | - | Passthrough. |
 | HTML | `html-files` | `html` | `extract_text_v1` | 1.00 | - | - | - | Passthrough. |
@@ -537,24 +537,23 @@ None yet.
 
 ### Gap 4 — Handwritten document transcription
 
-- **Current signal:** Story 182 widens the repo-owned handwritten proof surface to two synthetic fixtures via `benchmarks/scripts/run_handwritten_notes_eval.py`: the original highly legible mini note plus a rougher synthetic variant. The maintained generic image-directory and PDF OCR seams now score `1.0` across four current-pass cases, with image-only PDF verification of `[0, 0]` for the mini fixture and `[0, 0, 0]` for the rough fixture.
-- **Root cause:** The missing-handwriting-path gap is closed for a broader synthetic slice, but breadth is still bounded: the repo still has no permissively licensed real handwriting fixture and no measured evidence on messy cursive, degraded note scans, or wider handwriting collections.
-- **Fix category:** Fixture expansion and eval widening, not a new runtime path.
-- **Status:** Narrowed again from a one-fixture breadth gap to a broader but still synthetic breadth gap.
+- **Current signal:** Story 185 widens the repo-owned handwritten proof surface to three synthetic fixtures via `benchmarks/scripts/run_handwritten_notes_eval.py`: the original highly legible mini note, a new faded variant, and the rougher synthetic note from Story 182. The maintained generic image-directory and PDF OCR seams now score `1.0` across six current-pass cases, with image-only PDF verification of `[0, 0]` for the mini fixture, `[0, 0]` for the faded fixture, and `[0, 0, 0]` for the rough fixture.
+- **Root cause:** The missing-handwriting-path gap is closed for a wider synthetic slice, but breadth is still bounded: the repo still has no reproducible permissively licensed real handwriting fixture and no measured evidence on messy cursive, degraded note scans, or wider handwriting collections.
+- **Fix category:** Real-fixture expansion and eval widening, not a new runtime path.
+- **Status:** Narrowed again from a two-fixture synthetic breadth gap to a three-fixture synthetic breadth gap.
 
 ### Gap 5 — Fixture breadth and graduation confidence
 
 - **Current signal:** Story 175 gives DOCX three diverse repo-owned passing
   fixtures on its supported slice, Story 177 gives born-digital PDF a
   second repo-owned flat fixture plus a fresh four-asset proof surface on the
-  maintained non-TOC lane, and Story 182 widens handwritten notes from one
-  easy synthetic fixture to a two-fixture synthetic corpus. Most other active
-  families still rely on at most two repo-owned fixtures and/or a small set of
-  local comparison assets.
+  maintained non-TOC lane, and Story 185 widens handwritten notes to a
+  three-fixture synthetic corpus. Most other active families still rely on at
+  most two repo-owned fixtures and/or a small set of local comparison assets.
 - **Root cause:** Capability coverage grew faster than repeatable benchmark
   breadth and real-world diversity.
 - **Fix category:** Fixture expansion and rerun discipline.
-- **Status:** Open cross-cutting quality gap, but narrower now that DOCX has crossed the three-fixture proof bar and handwritten notes no longer rest on a single easy synthetic fixture.
+- **Status:** Open cross-cutting quality gap, but narrower now that DOCX has crossed the three-fixture proof bar and handwritten notes no longer rest on only one or two easy synthetic fixtures.
 
 ## Resolved Gaps
 
@@ -586,7 +585,7 @@ A converter is ready to graduate to Dossier (spec:7) when:
 
 ## Next Actions
 
-1. Add a real or more degraded handwritten fixture beyond the current two synthetic notes before treating the family as broadly supported.
+1. Add one reproducible permissively licensed real handwritten fixture before treating `handwritten-notes` as broadly supported or near graduation.
 2. Expand fixture breadth for already-passing formats so graduation decisions
    can be trusted.
 3. Widen born-digital proof beyond the current repo-owned prose + form mini

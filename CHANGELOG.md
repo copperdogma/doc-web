@@ -1,3 +1,17 @@
+## [2026-04-03-05] - Close widened handwritten proof slice (Story 185)
+
+### Added
+- Added a third repo-owned handwritten fixture, `handwritten-notes-faded`, plus focused image-directory/PDF smoke coverage so the maintained handwritten proof surface no longer rests on only two synthetic notes
+
+### Changed
+- Changed the handwritten fixture generator, corpus metadata, testdata docs, build map, eval registry, coverage matrix, and story records so `handwritten-notes` now reflects a wider but still synthetic three-fixture proof claim
+
+### Tested
+- `pytest -q tests/test_handwritten_notes_eval.py tests/test_image_directory_intake_recipe.py tests/test_pdf_intake_recipe.py`
+- `python benchmarks/scripts/run_handwritten_notes_eval.py --output benchmarks/results/handwritten-notes-story185-widened.json`
+- `make lint`
+- `make test`
+
 ## [2026-04-03-04] - Close bounded crop runtime simplification (Story 184)
 
 ### Added

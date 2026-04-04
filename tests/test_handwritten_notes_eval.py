@@ -8,7 +8,11 @@ def test_handwritten_notes_eval_default_corpus_loads_unique_fixtures():
     fixtures = load_fixture_specs()
 
     ids = [fixture["id"] for fixture in fixtures]
-    assert ids == ["handwritten-notes-mini", "handwritten-notes-rough"]
+    assert ids == [
+        "handwritten-notes-mini",
+        "handwritten-notes-faded",
+        "handwritten-notes-rough",
+    ]
     assert len(ids) == len(set(ids))
     assert all(fixture["transcript_path"].exists() for fixture in fixtures)
     assert all(fixture["images_path"].exists() for fixture in fixtures)
@@ -38,6 +42,7 @@ def test_handwritten_notes_eval_supports_single_fixture_override(tmp_path):
 
 def test_handwritten_notes_eval_builds_fixture_specific_run_ids():
     assert build_run_id("handwritten-notes-mini", "image-generic") == "handwritten-handwritten-notes-mini-image-generic"
+    assert build_run_id("handwritten-notes-faded", "image-generic") == "handwritten-handwritten-notes-faded-image-generic"
     assert build_run_id("handwritten-notes-rough", "pdf-generic") == "handwritten-handwritten-notes-rough-pdf-generic"
 
 
@@ -46,4 +51,4 @@ def test_handwritten_notes_eval_corpus_json_is_well_formed():
     payload = json.loads(corpus_path.read_text(encoding="utf-8"))
 
     assert "fixtures" in payload
-    assert len(payload["fixtures"]) >= 2
+    assert len(payload["fixtures"]) >= 3

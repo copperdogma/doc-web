@@ -64,6 +64,22 @@ class RenderPreset:
 
 PRESETS = {
     "legible": RenderPreset(name="legible"),
+    "faded": RenderPreset(
+        name="faded",
+        margin_x=165,
+        margin_y=145,
+        line_gap=10,
+        blank_line_gap=18,
+        font_size=50,
+        background=232,
+        ink=92,
+        x_jitter=26,
+        y_jitter=8,
+        paragraph_gap=2,
+        noise_alpha=0.08,
+        blur_radius=0.7,
+        rotate_degrees=1.8,
+    ),
     "rough": RenderPreset(
         name="rough",
         margin_x=175,

@@ -10,6 +10,15 @@
       "pdf": "testdata/handwritten-notes-mini.pdf"
     },
     {
+      "id": "handwritten-notes-faded",
+      "label": "Faded synthetic note",
+      "difficulty": "faded",
+      "source_type": "synthetic",
+      "transcript": "testdata/handwritten-notes-faded.txt",
+      "images": "testdata/handwritten-notes-faded-images",
+      "pdf": "testdata/handwritten-notes-faded.pdf"
+    },
+    {
       "id": "handwritten-notes-rough",
       "label": "Rougher synthetic note",
       "difficulty": "rough",

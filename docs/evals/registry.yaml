@@ -343,20 +343,58 @@ evals:
       Repo-owned synthetic handwritten-note transcription fidelity on the
       bounded maintained image-directory and PDF OCR lanes. Measures normalized
       text fidelity against the checked-in transcripts for the current
-      handwritten corpus: the highly legible mini fixture from Story 179 plus
-      the rougher synthetic variant added in Story 182.
+      handwritten corpus: the highly legible mini fixture from Story 179, the
+      faded synthetic variant from Story 185, and the rougher synthetic variant
+      from Story 182.
     pipeline_stage: ocr
     runner: manual
-    command: "python benchmarks/scripts/run_handwritten_notes_eval.py --output benchmarks/results/handwritten-notes-story182.json"
+    command: "python benchmarks/scripts/run_handwritten_notes_eval.py --output benchmarks/results/handwritten-notes-story185-widened.json"
     scorer: benchmarks/scorers/handwritten_notes_transcription.py
     golden: benchmarks/golden/handwritten-notes/corpus.json
 
     target:
       metric: overall_min_ratio
       value: 0.99
-      note: "Passing is limited to the current two-fixture synthetic handwritten slice."
+      note: "Passing is limited to the current three-fixture synthetic handwritten slice."
 
     scores:
+      - model: "Maintained generic OCR lanes (recipe-images-ocr-html-mvp.yaml + recipe-pdf-ocr-html-mvp.yaml)"
+        metrics:
+          overall_min_ratio: 1.0
+          page_min_ratio: 1.0
+          pass_rate: 1.0
+          cases_total: 6
+          fixture_count: 3
+        measured: 2026-04-03
+        note: >
+          Story 185 added `testdata/handwritten-notes-faded-images/`, the
+          image-only wrapper `testdata/handwritten-notes-faded.pdf`, the
+          transcript `testdata/handwritten-notes-faded.txt`, and widened the
+          maintained corpus at
+          `benchmarks/golden/handwritten-notes/corpus.json` to three fixtures.
+          Fresh rerun via
+          `python benchmarks/scripts/run_handwritten_notes_eval.py --output benchmarks/results/handwritten-notes-story185-widened.json`
+          wrote `benchmarks/results/handwritten-notes-story185-widened.json`
+          with `pass_rate = 1.0`, `overall_min_ratio = 1.0`,
+          `page_min_ratio = 1.0`, `cases_total = 6`, `fixture_count = 3`,
+          and image-only PDF verification of `[0, 0]` for
+          `handwritten-notes-mini`, `[0, 0]` for
+          `handwritten-notes-faded`, and `[0, 0, 0]` for
+          `handwritten-notes-rough`. Manual artifact inspection in the same
+          pass confirmed stamped manifest provenance at
+          `output/runs/handwritten-handwritten-notes-mini-image-generic/01_images_dir_to_manifest_v1/pages_images_manifest.jsonl`,
+          `output/runs/handwritten-handwritten-notes-faded-image-generic/01_images_dir_to_manifest_v1/pages_images_manifest.jsonl`,
+          `output/runs/handwritten-handwritten-notes-rough-image-generic/01_images_dir_to_manifest_v1/pages_images_manifest.jsonl`,
+          `output/runs/handwritten-handwritten-notes-mini-pdf-generic/01_extract_pdf_images_fast_v1/pages_images_manifest.jsonl`,
+          `output/runs/handwritten-handwritten-notes-faded-pdf-generic/01_extract_pdf_images_fast_v1/pages_images_manifest.jsonl`,
+          and `output/runs/handwritten-handwritten-notes-rough-pdf-generic/01_extract_pdf_images_fast_v1/pages_images_manifest.jsonl`,
+          plus normalized transcript matches in
+          `output/runs/handwritten-handwritten-notes-faded-image-generic/02_ocr_ai_gpt51_v1/pages_html.jsonl`
+          and
+          `output/runs/handwritten-handwritten-notes-faded-pdf-generic/02_ocr_ai_gpt51_v1/pages_html.jsonl`,
+          where page 2 preserved the harder snippet
+          "The parcel for J. Mercer should include 3 seals, one wax cord, and the note from April 8."
+          without loss on both maintained lanes.
       - model: "Maintained generic OCR lanes (recipe-images-ocr-html-mvp.yaml + recipe-pdf-ocr-html-mvp.yaml)"
         metrics:
           overall_min_ratio: 1.0

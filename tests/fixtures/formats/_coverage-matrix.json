@@ -391,6 +391,18 @@
           "notes": "Image-only PDF wrapper around the same synthetic handwritten pages. Story 179 verified `pypdf` extract-text lengths `[0, 0]` and matched the checked-in transcript exactly after normalization on the maintained generic PDF OCR lane."
         },
         {
+          "id": "handwritten-notes-faded-images",
+          "source": "testdata/handwritten-notes-faded-images/",
+          "pages": 2,
+          "notes": "Repo-owned faded synthetic handwritten note image directory generated from a checked-in transcript via `generate_handwritten_notes_fixture.py --preset faded`. Story 185 widened the maintained generic image-directory OCR lane to a third synthetic handwritten slice with smaller, lighter, more jittered text."
+        },
+        {
+          "id": "handwritten-notes-faded-pdf",
+          "source": "testdata/handwritten-notes-faded.pdf",
+          "pages": 2,
+          "notes": "Image-only PDF wrapper around the faded synthetic handwritten pages. Story 185 verified `pypdf` extract-text lengths `[0, 0]` and matched the checked-in transcript exactly after normalization on the maintained generic PDF OCR lane."
+        },
+        {
           "id": "handwritten-notes-rough-images",
           "source": "testdata/handwritten-notes-rough-images/",
           "pages": 3,
@@ -410,10 +422,10 @@
         "provenance_completeness": 1.0,
         "measured": "2026-04-03",
         "provenance_measured": "2026-04-03",
-        "notes": "Measured by `benchmarks/scripts/run_handwritten_notes_eval.py` on a two-fixture repo-owned synthetic handwritten corpus. Both maintained generic image-directory and PDF OCR paths matched the checked-in transcripts exactly after normalization across four cases. This is a passing claim only for the current synthetic corpus: one highly legible note and one rougher synthetic note."
+        "notes": "Measured by `benchmarks/scripts/run_handwritten_notes_eval.py` on a three-fixture repo-owned synthetic handwritten corpus. Both maintained generic image-directory and PDF OCR paths matched the checked-in transcripts exactly after normalization across six cases. This is a passing claim only for the current synthetic corpus: one highly legible note, one faded synthetic note, and one rougher synthetic note."
       },
       "known_gaps": [
-        "Current evidence covers two repo-owned synthetic handwritten fixtures only; real handwritten samples, messy cursive, degraded notes, and broader handwriting collections remain unmeasured."
+        "Current evidence covers three repo-owned synthetic handwritten fixtures only; real handwritten samples, messy cursive, degraded notes, and broader handwriting collections remain unmeasured."
       ],
       "graduated": false
     },
