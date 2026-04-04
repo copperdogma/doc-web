@@ -345,20 +345,60 @@ evals:
       Measures normalized text fidelity against the checked-in transcripts for
       the current handwritten corpus: the highly legible mini fixture from
       Story 179, the faded synthetic variant from Story 185, the rougher
-      synthetic variant from Story 182, and the first real LOC Barney spread
-      from Story 186.
+      synthetic variant from Story 182, the first real LOC Barney spread from
+      Story 186, and the second real LOC Alverson front page added during
+      Story 189 close-out.
     pipeline_stage: ocr
     runner: manual
-    command: "python benchmarks/scripts/run_handwritten_notes_eval.py --image-recipe configs/recipes/recipe-images-ocr-html-handwritten-notes-gemini-rescue.yaml --pdf-recipe configs/recipes/recipe-pdf-ocr-html-handwritten-notes-gemini-rescue.yaml --image-case-id image-handwritten-rescue --pdf-case-id pdf-handwritten-rescue --instrument --output benchmarks/results/handwritten-notes-story189-handwritten-rescue.json"
+    command: "python benchmarks/scripts/run_handwritten_notes_eval.py --image-recipe configs/recipes/recipe-images-ocr-html-handwritten-notes-gemini-rescue.yaml --pdf-recipe configs/recipes/recipe-pdf-ocr-html-handwritten-notes-gemini-rescue.yaml --image-case-id image-handwritten-rescue --pdf-case-id pdf-handwritten-rescue --instrument --output benchmarks/results/handwritten-notes-story189-real-expanded.json"
     scorer: benchmarks/scorers/handwritten_notes_transcription.py
     golden: benchmarks/golden/handwritten-notes/corpus.json
 
     target:
       metric: overall_min_ratio
       value: 0.99
-      note: "The target still marks the desired passing bar, but the widened default corpus now includes one real handwritten fixture that the maintained generic seam does not clear."
+      note: "The target still marks the desired passing bar, but the widened default corpus now includes two real handwritten fixtures that the maintained rescue seam does not clear."
 
     scores:
+      - model: "Maintained handwritten rescue OCR lanes (gemini-2.5-pro via handwritten-notes rescue recipes)"
+        metrics:
+          overall_min_ratio: 0.499136
+          page_min_ratio: 0.499136
+          pass_rate: 0.6
+          cases_total: 10
+          fixture_count: 5
+          fixtures_passing: 3
+          latency_ms: 17388.9
+          cost_usd: 0.005563
+          cost_estimated: true
+        measured: 2026-04-04
+        note: >
+          Story 191 reran the maintained rescue seam on the current tip via
+          `python benchmarks/scripts/run_handwritten_notes_eval.py --image-recipe configs/recipes/recipe-images-ocr-html-handwritten-notes-gemini-rescue.yaml --pdf-recipe configs/recipes/recipe-pdf-ocr-html-handwritten-notes-gemini-rescue.yaml --image-case-id image-handwritten-rescue --pdf-case-id pdf-handwritten-rescue --output benchmarks/results/handwritten-notes-story191-baseline-20260404.json`,
+          which wrote
+          `benchmarks/results/handwritten-notes-story191-baseline-20260404.json`
+          with `pass_rate = 0.6`, `overall_min_ratio = 0.499136`,
+          `page_min_ratio = 0.499136`, `cases_total = 10`, and
+          `fixtures_passing = 3`. The six synthetic rescue cases still scored
+          `1.0`, but the real fixtures kept the family below bar: Barney
+          reached `0.895587` on image entry and `0.756036` on PDF entry at
+          `output/runs/handwritten-handwritten-notes-barney-real-image-handwritten-rescue/02_ocr_ai_gpt51_v1/pages_html.jsonl`
+          and
+          `output/runs/handwritten-handwritten-notes-barney-real-pdf-handwritten-rescue/02_ocr_ai_gpt51_v1/pages_html.jsonl`,
+          while Alverson reached `0.499136` on image entry and `0.500647` on
+          PDF entry at
+          `output/runs/handwritten-handwritten-notes-alverson-real-image-handwritten-rescue/02_ocr_ai_gpt51_v1/pages_html.jsonl`
+          and
+          `output/runs/handwritten-handwritten-notes-alverson-real-pdf-handwritten-rescue/02_ocr_ai_gpt51_v1/pages_html.jsonl`.
+          Story 191 then measured fresh direct `gpt-5` and
+          `claude-opus-4-6` probes and still found no winner. Manual source
+          review in the same pass also changed the Alverson interpretation:
+          the checked-in front-page image itself visibly ends at the same
+          `...exceptable and` boundary where OCR stops, while the LOC source
+          record exposes separate front/back images. That makes the current
+          Alverson truth surface at least partially a source/transcript
+          alignment problem rather than a pure OCR runtime miss. The
+          handwritten family therefore stays `has-fixture`, not `passing`.
       - model: "Maintained handwritten rescue OCR lanes (gemini-2.5-pro via handwritten-notes rescue recipes)"
         metrics:
           overall_min_ratio: 0.883604
@@ -656,12 +696,42 @@ evals:
           The generic seam stayed in the same low-0.1 band on the current tip
           (`0.111437` image, `0.105378` pdf), so the bounded Gemini rescue
           decision was confirmed rather than overturned.
+      - id: "005"
+        date: 2026-04-04
+        status: blocked
+        approach: "Story 191 final handwritten-arc close attempt: rerun maintained baseline, compare fresh stronger direct-model probes, and inspect the LOC source assets"
+        score_before: 0.496975
+        score_after: 0.499136
+        note: >
+          Story 191 first reran the maintained rescue seam on the current tip
+          via
+          `python benchmarks/scripts/run_handwritten_notes_eval.py --image-recipe configs/recipes/recipe-images-ocr-html-handwritten-notes-gemini-rescue.yaml --pdf-recipe configs/recipes/recipe-pdf-ocr-html-handwritten-notes-gemini-rescue.yaml --image-case-id image-handwritten-rescue --pdf-case-id pdf-handwritten-rescue --output benchmarks/results/handwritten-notes-story191-baseline-20260404.json`,
+          which stayed below bar at `0.499136 / 0.499136 / 0.6`
+          (overall_min / page_min / pass_rate). Fresh direct `gpt-5` probes at
+          `output/runs/story191-barney-image-gpt5-direct/02_ocr_ai_gpt51_v1/pages_html.jsonl`,
+          `output/runs/story191-barney-pdf-gpt5-direct/02_ocr_ai_gpt51_v1/pages_html.jsonl`,
+          `output/runs/story191-alverson-image-gpt5-direct/02_ocr_ai_gpt51_v1/pages_html.jsonl`,
+          and
+          `output/runs/story191-alverson-pdf-gpt5-direct/02_ocr_ai_gpt51_v1/pages_html.jsonl`
+          were materially worse (`0.192010`, `0.010297`, `0.221929`,
+          `0.362143`), and direct `claude-opus-4-6` image probes at
+          `output/runs/story191-barney-image-claude-direct/02_ocr_ai_gpt51_v1/pages_html.jsonl`
+          and
+          `output/runs/story191-alverson-image-claude-direct/02_ocr_ai_gpt51_v1/pages_html.jsonl`
+          also stayed below bar (`0.725708`, `0.193325`). Manual source review
+          of `testdata/handwritten-notes-alverson-real-images/page-001.jpg`
+          plus the LOC source record `https://www.loc.gov/pictures/item/2023637835/`
+          showed that the checked-in front-page image itself ends at the same
+          `...exceptable and` boundary where OCR stops and that the LOC item
+          exposes separate front/back images. Result: Story 191 was blocked
+          honestly instead of landing speculative OCR glue against a misaligned
+          truth surface.
 
     retry_when:
       - condition: golden-fix
-        note: "If the checked-in transcripts, corpus metadata, or render helper change, rerun to refresh the current synthetic-corpus score."
+        note: "If the checked-in real-fixture transcripts or source assets are corrected, rerun to refresh the real handwritten score honestly."
       - condition: new-subject-model
-        note: "Retry when broader real or degraded handwritten fixtures are added or when a better model might broaden beyond the current synthetic corpus without a new runtime seam."
+        note: "Retry only when a materially stronger model or OCR substrate appears that could plausibly clear Barney and a corrected Alverson truth surface."
 
   - id: onward-table-fidelity
     name: Onward Genealogy Table Fidelity

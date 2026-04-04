@@ -124,7 +124,8 @@
           "182",
           "185",
           "186",
-          "189"
+          "189",
+          "191"
         ],
         "adr_ids": [
           "ADR-001",
@@ -183,7 +184,8 @@
           "182",
           "185",
           "186",
-          "189"
+          "189",
+          "191"
         ],
         "adr_ids": [
           "ADR-001",
@@ -431,7 +433,8 @@
           "187",
           "188",
           "189",
-          "190"
+          "190",
+          "191"
         ],
         "adr_ids": [
           "ADR-002"
@@ -5858,7 +5861,7 @@
     },
     {
       "id": "189",
-      "title": "Improve Real Handwritten Fidelity on the Barney Fixture",
+      "title": "Finish Real Handwritten Proof on the Maintained Rescue Seam",
       "path": "docs/stories/story-189-improve-real-handwritten-barney-fidelity.md",
       "status": "Done",
       "priority": "High",
@@ -5948,6 +5951,58 @@
       "blocker_summary": "",
       "blocker_evidence": "",
       "unblock_condition": "",
+      "legacy_build_map_refs": "",
+      "metadata_source": "frontmatter",
+      "missing_frontmatter_keys": []
+    },
+    {
+      "id": "191",
+      "title": "Finish Real Handwritten OCR on the LOC Fixture Pair",
+      "path": "docs/stories/story-191-finish-real-handwritten-ocr-on-the-loc-fixture-pair.md",
+      "status": "Blocked",
+      "priority": "High",
+      "ideal_refs": [
+        "Requirement #1 (Ingest), Requirement #2 (Detect), Requirement #3 (Extract), Any format, any condition, Fidelity to the source, Minimum Viable Floor"
+      ],
+      "spec_refs": [
+        "spec:1",
+        "spec:1.1",
+        "spec:2",
+        "spec:2.1",
+        "spec:2.2",
+        "spec:8"
+      ],
+      "decision_refs": [
+        "`docs/ideal.md`, `docs/spec.md`, `docs/methodology/state.yaml`, `docs/methodology/graph.json`, `docs/decisions/adr-002-doc-web-runtime-boundary/adr.md`, `docs/runbooks/golden-build.md`, `docs/stories/story-179-repo-owned-handwritten-notes-fixture-and-baseline-transcription.md`, `docs/stories/story-182-widen-handwritten-notes-fixture-breadth.md`, `docs/stories/story-185-widen-handwritten-proof-beyond-synthetic-pair.md`, `docs/stories/story-186-real-handwritten-fixture-proof-surface.md`, `docs/stories/story-189-improve-real-handwritten-barney-fidelity.md`, `docs/stories/story-190-fix-story-progression-and-anti-fragmentation-workflow.md`, `docs/evals/registry.yaml`, `tests/fixtures/formats/_coverage-matrix.json`, and `None found after search in docs/decisions/`, `docs/runbooks/`, `docs/scout/`, and `docs/notes/` for a narrower handwritten full-page rescue ADR or runbook"
+      ],
+      "adr_ids": [],
+      "depends_on": [
+        "189"
+      ],
+      "category_refs": [
+        "spec:1",
+        "spec:2",
+        "spec:8"
+      ],
+      "compromise_refs": [
+        "B1",
+        "B5",
+        "C1",
+        "C2",
+        "C6"
+      ],
+      "input_coverage_refs": [
+        "handwritten-notes"
+      ],
+      "architecture_domains": [
+        "ocr_and_extraction"
+      ],
+      "roadmap_tags": [
+        "campaign:maintained-intake-honesty"
+      ],
+      "blocker_summary": "The current checked-in LOC handwritten proof pair cannot honestly clear the `0.99` handwritten bar in this repo state because two blockers are now explicit: Barney remains below bar across the maintained rescue seam and the fresh stronger direct-model probes, and the checked-in Alverson front-page source/transcript pair is not source-faithful enough to serve as a clean OCR target for the continuation text Story 189/191 had been treating as \u201cmissing lower-page content.\u201d",
+      "blocker_evidence": "- Fresh maintained baseline rerun on current tip wrote `benchmarks/results/handwritten-notes-story191-baseline-20260404.json` with `pass_rate = 0.6`, `overall_min_ratio = 0.499136`, and `page_min_ratio = 0.499136`. The six synthetic rescue cases still passed at `1.0`, but the real fixtures stayed below bar: Barney scored `0.895587` on image entry and `0.756036` on PDF entry, while Alverson scored `0.499136` on image entry and `0.500647` on PDF entry.\n- Fresh direct stronger-model probes in this pass did not overturn that result. `gpt-5` direct runs at `output/runs/story191-barney-image-gpt5-direct/02_ocr_ai_gpt51_v1/pages_html.jsonl`, `output/runs/story191-barney-pdf-gpt5-direct/02_ocr_ai_gpt51_v1/pages_html.jsonl`, `output/runs/story191-alverson-image-gpt5-direct/02_ocr_ai_gpt51_v1/pages_html.jsonl`, and `output/runs/story191-alverson-pdf-gpt5-direct/02_ocr_ai_gpt51_v1/pages_html.jsonl` scored `0.192010`, `0.010297`, `0.221929`, and `0.362143`. `claude-opus-4-6` direct image probes at `output/runs/story191-barney-image-claude-direct/02_ocr_ai_gpt51_v1/pages_html.jsonl` and `output/runs/story191-alverson-image-claude-direct/02_ocr_ai_gpt51_v1/pages_html.jsonl` scored `0.725708` and `0.193325`.\n- Manual source review changed the interpretation of the Alverson failure. The checked-in source image `testdata/handwritten-notes-alverson-real-images/page-001.jpg` visibly ends on the same line where the current OCR stops (`...exceptable and`). The current checked-in asset also matches the LOC front-page large JPEG dimensions (`638x1024`). Meanwhile the LOC source record for item `2023637835` presents separate `Front` and `Back` images, so the continuation text that the transcript carries after that boundary is not recoverable from the checked-in front-page image alone. This means the current Alverson truth surface is at least partially a source/transcript alignment problem, not just an OCR runtime problem.\n- Additional one-off local window and enhancement probes in this pass did not reveal a bounded maintained rescue shape that could rescue the lane honestly. Cropped-window rereads and contrast/upscale variants still failed to recover the missing Alverson continuation from the front-page image and did not demonstrate a reliable Barney improvement strong enough to justify landing new runtime logic.",
+      "unblock_condition": "Unblock this story only when both halves are true:\n\n1. The Alverson truth surface is corrected so the checked-in source assets and transcript actually match the intended OCR target, for example by trimming the transcript to the visible front-page content or by replacing the fixture with a source-faithful front/back pair plus page-separated transcript.\n2. A materially different OCR substrate then clears the real pair, not just the synthetic fixtures. That can be a new model, a better source asset, or a genuinely stronger recovery seam, but it must produce fresh current-pass `driver.py` artifacts that bring Barney and the corrected Alverson fixture to `overall_min_ratio >= 0.99`, `page_min_ratio >= 0.99`, and `pass_rate = 1.0`.",
       "legacy_build_map_refs": "",
       "metadata_source": "frontmatter",
       "missing_frontmatter_keys": []
@@ -6126,7 +6181,7 @@
       "id": "handwritten-notes-transcription",
       "name": "Handwritten Notes Transcription",
       "type": "quality",
-      "command": "python benchmarks/scripts/run_handwritten_notes_eval.py --image-recipe configs/recipes/recipe-images-ocr-html-handwritten-notes-gemini-rescue.yaml --pdf-recipe configs/recipes/recipe-pdf-ocr-html-handwritten-notes-gemini-rescue.yaml --image-case-id image-handwritten-rescue --pdf-case-id pdf-handwritten-rescue --instrument --output benchmarks/results/handwritten-notes-story189-handwritten-rescue.json",
+      "command": "python benchmarks/scripts/run_handwritten_notes_eval.py --image-recipe configs/recipes/recipe-images-ocr-html-handwritten-notes-gemini-rescue.yaml --pdf-recipe configs/recipes/recipe-pdf-ocr-html-handwritten-notes-gemini-rescue.yaml --image-case-id image-handwritten-rescue --pdf-case-id pdf-handwritten-rescue --instrument --output benchmarks/results/handwritten-notes-story189-real-expanded.json",
       "path": "docs/evals/registry.yaml",
       "spec_refs": [],
       "story_refs": [
@@ -6134,7 +6189,8 @@
         "182",
         "185",
         "186",
-        "189"
+        "189",
+        "191"
       ],
       "compromise_refs": [],
       "category_refs": [
@@ -6690,19 +6746,32 @@
             "id": "handwritten-notes-barney-real-images",
             "source": "testdata/handwritten-notes-barney-real-images/",
             "pages": 1,
-            "notes": "Repo-owned real handwritten fixture derived from Library of Congress item `https://www.loc.gov/pictures/item/2023637825/`, using the checked-in `LC-DIG-ppmsca-86618` pages 2-3 spread. Story 186 proved maintained image-directory provenance on this real slice, but the generic OCR lane stayed only in the low-0.1 range on reruns. Story 189 added a bounded handwritten rescue recipe and improved the maintained image-entry Barney score to `0.883604`, while keeping the family below the repo's passing bar."
+            "notes": "Repo-owned real handwritten fixture derived from Library of Congress item `https://www.loc.gov/pictures/item/2023637825/`, using the checked-in `LC-DIG-ppmsca-86618` pages 2-3 spread. Story 186 proved maintained image-directory provenance on this real slice, but the generic OCR lane stayed only in the low-0.1 range on reruns. Story 189 added a bounded handwritten rescue recipe; the fresh Story 191 maintained-baseline rerun still only reached `0.895587` on image entry, and stronger direct-model probes in the same pass still stayed below bar, so Barney remains a real-slice OCR failure even after the rescue seam."
           },
           {
             "id": "handwritten-notes-barney-real-pdf",
             "source": "testdata/handwritten-notes-barney-real.pdf",
             "pages": 1,
-            "notes": "Image-only PDF wrapper around the same real LOC Barney spread. Story 186 verified `pypdf` extract-text lengths `[0]` and reran the maintained generic PDF OCR lane, which also stayed only in the low-0.1 range on the checked-in transcript excerpt. Story 189 added a bounded handwritten rescue recipe and improved the maintained PDF-entry Barney score to `0.884339`, still below the repo's passing bar."
+            "notes": "Image-only PDF wrapper around the same real LOC Barney spread. Story 186 verified `pypdf` extract-text lengths `[0]` and reran the maintained generic PDF OCR lane, which also stayed only in the low-0.1 range on the checked-in transcript excerpt. Story 189 added a bounded handwritten rescue recipe, but the fresh Story 191 maintained-baseline rerun only reached `0.756036` on PDF entry, which is still well below bar."
+          },
+          {
+            "id": "handwritten-notes-alverson-real-images",
+            "source": "testdata/handwritten-notes-alverson-real-images/",
+            "pages": 1,
+            "notes": "Second repo-owned real handwritten fixture derived from Library of Congress item `https://www.loc.gov/pictures/item/2023637835/`, using the checked-in front page (`LC-DIG-cwpb-08756`). Story 189 widened the real handwritten proof surface with this page; the fresh Story 191 maintained-baseline rerun only reached `0.499136` on image entry. Story 191 then verified a truth-surface blocker: the checked-in front-page image visibly ends at the same `...exceptable and` boundary where OCR stops, while the LOC source record exposes separate front/back images, so the current transcript appears to extend beyond the visible front-page source."
+          },
+          {
+            "id": "handwritten-notes-alverson-real-pdf",
+            "source": "testdata/handwritten-notes-alverson-real.pdf",
+            "pages": 1,
+            "notes": "Image-only PDF wrapper around the same real LOC Alverson front page. Story 189 verified `pypdf` extract-text lengths `[0]`; the fresh Story 191 maintained-baseline rerun reached only `0.500647` on PDF entry. Story 191 also confirmed that the continuation text missing from the current OCR output is not present in the checked-in front-page source asset, so this fixture is blocked by source/transcript misalignment as well as OCR quality."
           }
         ],
         "scores": null,
         "known_gaps": [
-          "The three repo-owned synthetic handwritten fixtures still pass exactly after normalization across six maintained handwritten-rescue image-directory and PDF OCR cases, but the first real LOC Barney spread keeps the widened corpus at `pass_rate = 0.75` because the maintained rescue seam only reaches `0.883604` / `0.884339` on that slice.",
-          "The bounded handwritten Gemini rescue seam is materially better than the historical generic low-0.1 Barney baseline, but it still drifts on names and words such as `Harlen`, `genesee`, `Welthy gone`, and `med of cloth`, so the family still does not clear the repo's `0.99` target.",
+          "The three repo-owned synthetic handwritten fixtures still pass exactly after normalization across six maintained handwritten-rescue image-directory and PDF OCR cases, but the fresh Story 191 five-fixture corpus rerun still falls to `pass_rate = 0.6` because Barney misses on both entry seams (`0.895587` image / `0.756036` pdf) and the checked-in Alverson front-page fixture remains below bar (`0.499136` image / `0.500647` pdf).",
+          "The bounded handwritten Gemini rescue seam is materially better than the historical generic low-0.1 Barney baseline, but it is not stable or general enough: Barney still drifts on names and words such as `Harlen`, `genesee`, and `father has had gone`, and fresh current-pass `gpt-5` / `claude-opus-4-6` direct probes also stayed below bar.",
+          "Story 191 found a truth-surface blocker on Alverson: the checked-in front-page image itself ends at the same `...exceptable and` boundary where OCR stops, while the current transcript continues beyond that visible source and the LOC source record exposes separate front/back images. The handwritten lane therefore remains blocked on both OCR capability and source/transcript alignment.",
           "Messy cursive, degraded notes, and broader real-world handwriting collections remain unproven."
         ],
         "graduated": false

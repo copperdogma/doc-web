@@ -1,8 +1,13 @@
 import io
+from types import SimpleNamespace
 
 import pytest
 
-from modules.extract.ocr_ai_gpt51_v1.main import _is_blank_page, _ocr_with_fallback
+from modules.extract.ocr_ai_gpt51_v1.main import (
+    _call_vision_model,
+    _is_blank_page,
+    _ocr_with_fallback,
+)
 
 
 def _image_bytes(draw_fn=None) -> bytes:
@@ -103,3 +108,58 @@ def test_ocr_with_fallback_stops_after_first_nonempty_result(monkeypatch) -> Non
     assert meta_tag is None
     assert meta_warning is None
     assert model_used == "gpt-5.1"
+
+
+class _DummyResponses:
+    def __init__(self) -> None:
+        self.calls = []
+
+    def create(self, **kwargs):
+        self.calls.append(kwargs)
+        return SimpleNamespace(output_text="<p>ok</p>", usage=None, id="resp_test")
+
+
+class _DummyOpenAI:
+    def __init__(self) -> None:
+        self.responses = _DummyResponses()
+
+
+def test_call_vision_model_omits_temperature_for_gpt5_openai_responses() -> None:
+    client = _DummyOpenAI()
+
+    raw, usage, request_id = _call_vision_model(
+        "gpt-5",
+        "system prompt",
+        "user prompt",
+        "data:image/jpeg;base64,abc",
+        0.0,
+        512,
+        openai_client=client,
+    )
+
+    call = client.responses.calls[0]
+    assert raw == "<p>ok</p>"
+    assert usage is None
+    assert request_id == "resp_test"
+    assert call["model"] == "gpt-5"
+    assert call["max_output_tokens"] == 512
+    assert "temperature" not in call
+
+
+def test_call_vision_model_keeps_temperature_for_non_gpt5_openai_responses() -> None:
+    client = _DummyOpenAI()
+
+    _call_vision_model(
+        "gpt-4.1",
+        "system prompt",
+        "user prompt",
+        "data:image/jpeg;base64,abc",
+        0.0,
+        512,
+        openai_client=client,
+    )
+
+    call = client.responses.calls[0]
+    assert call["model"] == "gpt-4.1"
+    assert call["temperature"] == 0.0
+    assert call["max_output_tokens"] == 512

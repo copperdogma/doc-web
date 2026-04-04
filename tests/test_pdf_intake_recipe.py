@@ -17,6 +17,7 @@ HANDWRITTEN_NOTES_FIXTURE = "testdata/handwritten-notes-mini.pdf"
 HANDWRITTEN_FADED_FIXTURE = "testdata/handwritten-notes-faded.pdf"
 HANDWRITTEN_ROUGH_FIXTURE = "testdata/handwritten-notes-rough.pdf"
 HANDWRITTEN_BARNEY_REAL_FIXTURE = "testdata/handwritten-notes-barney-real.pdf"
+HANDWRITTEN_ALVERSON_REAL_FIXTURE = "testdata/handwritten-notes-alverson-real.pdf"
 
 
 def _run_pdf_recipe_extract_only_smoke(tmp_path, pdf_fixture: str):
@@ -100,6 +101,14 @@ def test_handwritten_barney_real_pdf_recipe_extract_only_smoke(tmp_path):
     assert all(len((page.extract_text() or "").strip()) == 0 for page in reader.pages)
 
     _run_pdf_recipe_extract_only_smoke(tmp_path, HANDWRITTEN_BARNEY_REAL_FIXTURE)
+
+
+def test_handwritten_alverson_real_pdf_recipe_extract_only_smoke(tmp_path):
+    reader = PdfReader(HANDWRITTEN_ALVERSON_REAL_FIXTURE)
+    assert len(reader.pages) == 1
+    assert all(len((page.extract_text() or "").strip()) == 0 for page in reader.pages)
+
+    _run_pdf_recipe_extract_only_smoke(tmp_path, HANDWRITTEN_ALVERSON_REAL_FIXTURE)
 
 
 def test_handwritten_rescue_pdf_recipe_extract_only_smoke(tmp_path):

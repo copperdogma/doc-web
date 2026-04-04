@@ -2,7 +2,11 @@ import json
 from pathlib import Path
 
 from benchmarks.scripts import run_handwritten_notes_eval as handwritten_eval
-from benchmarks.scripts.run_handwritten_notes_eval import build_run_id, load_fixture_specs
+from benchmarks.scripts.run_handwritten_notes_eval import (
+    build_run_id,
+    derive_single_fixture_id,
+    load_fixture_specs,
+)
 
 
 def test_handwritten_notes_eval_default_corpus_loads_unique_fixtures():
@@ -14,6 +18,7 @@ def test_handwritten_notes_eval_default_corpus_loads_unique_fixtures():
         "handwritten-notes-faded",
         "handwritten-notes-rough",
         "handwritten-notes-barney-real",
+        "handwritten-notes-alverson-real",
     ]
     assert len(ids) == len(set(ids))
     assert all(fixture["transcript_path"].exists() for fixture in fixtures)
@@ -36,10 +41,57 @@ def test_handwritten_notes_eval_supports_single_fixture_override(tmp_path):
     )
 
     assert len(fixtures) == 1
-    assert fixtures[0]["id"] == "single-fixture"
+    assert fixtures[0]["id"] == derive_single_fixture_id(transcript, images, pdf)
     assert fixtures[0]["transcript_path"] == transcript
     assert fixtures[0]["images_path"] == images
     assert fixtures[0]["pdf_path"] == pdf
+
+
+def test_handwritten_notes_eval_supports_explicit_single_fixture_id(tmp_path):
+    transcript = tmp_path / "note.txt"
+    transcript.write_text("Page one", encoding="utf-8")
+    images = tmp_path / "images"
+    images.mkdir()
+    pdf = tmp_path / "note.pdf"
+    pdf.write_bytes(b"%PDF-1.4")
+
+    fixtures = load_fixture_specs(
+        transcript=str(transcript),
+        images=str(images),
+        pdf=str(pdf),
+        fixture_id="Barney Large Probe",
+    )
+
+    assert fixtures[0]["id"] == "barney-large-probe"
+
+
+def test_handwritten_notes_eval_derives_distinct_ids_for_distinct_single_fixtures(tmp_path):
+    transcript_a = tmp_path / "a.txt"
+    transcript_a.write_text("A", encoding="utf-8")
+    images_a = tmp_path / "images-a"
+    images_a.mkdir()
+    pdf_a = tmp_path / "a.pdf"
+    pdf_a.write_bytes(b"%PDF-1.4")
+
+    transcript_b = tmp_path / "b.txt"
+    transcript_b.write_text("B", encoding="utf-8")
+    images_b = tmp_path / "images-b"
+    images_b.mkdir()
+    pdf_b = tmp_path / "b.pdf"
+    pdf_b.write_bytes(b"%PDF-1.4")
+
+    fixture_a = load_fixture_specs(
+        transcript=str(transcript_a),
+        images=str(images_a),
+        pdf=str(pdf_a),
+    )[0]["id"]
+    fixture_b = load_fixture_specs(
+        transcript=str(transcript_b),
+        images=str(images_b),
+        pdf=str(pdf_b),
+    )[0]["id"]
+
+    assert fixture_a != fixture_b
 
 
 def test_handwritten_notes_eval_builds_fixture_specific_run_ids():
@@ -55,7 +107,7 @@ def test_handwritten_notes_eval_corpus_json_is_well_formed():
     payload = json.loads(corpus_path.read_text(encoding="utf-8"))
 
     assert "fixtures" in payload
-    assert len(payload["fixtures"]) >= 4
+    assert len(payload["fixtures"]) >= 5
 
 
 def test_handwritten_notes_eval_loads_case_instrumentation(monkeypatch, tmp_path):

@@ -1,3 +1,37 @@
+## [2026-04-04-06] - Block handwritten LOC closeout on truth-surface evidence
+
+### Changed
+- Changed the handwritten eval registry, coverage matrix, fixture docs, generated methodology graph, generated story index, and Story 191 record so the real handwritten lane now blocks honestly instead of implying that another OCR tweak would finish it
+- Changed the handwritten story state so Story 191 closes as `Blocked` with explicit blocker evidence: Barney still stays below bar on fresh maintained and stronger direct-model probes, and the checked-in Alverson front-page fixture is now recorded as a source/transcript alignment blocker rather than a clean lower-page OCR miss
+
+### Tested
+- `python benchmarks/scripts/run_handwritten_notes_eval.py --image-recipe configs/recipes/recipe-images-ocr-html-handwritten-notes-gemini-rescue.yaml --pdf-recipe configs/recipes/recipe-pdf-ocr-html-handwritten-notes-gemini-rescue.yaml --image-case-id image-handwritten-rescue --pdf-case-id pdf-handwritten-rescue --output benchmarks/results/handwritten-notes-story191-baseline-20260404.json`
+- `python driver.py --recipe configs/recipes/recipe-images-ocr-html-handwritten-notes-gemini-rescue.yaml --settings /tmp/story191-gpt5-direct-settings.yaml --input-images testdata/handwritten-notes-barney-real-images --run-id story191-barney-image-gpt5-direct --allow-run-id-reuse --force --end-at ocr_ai`
+- `python driver.py --recipe configs/recipes/recipe-pdf-ocr-html-handwritten-notes-gemini-rescue.yaml --settings /tmp/story191-gpt5-direct-settings.yaml --input-pdf testdata/handwritten-notes-barney-real.pdf --run-id story191-barney-pdf-gpt5-direct --allow-run-id-reuse --force --end-at ocr_ai`
+- `python driver.py --recipe configs/recipes/recipe-images-ocr-html-handwritten-notes-gemini-rescue.yaml --settings /tmp/story191-gpt5-direct-settings.yaml --input-images testdata/handwritten-notes-alverson-real-images --run-id story191-alverson-image-gpt5-direct --allow-run-id-reuse --force --end-at ocr_ai`
+- `python driver.py --recipe configs/recipes/recipe-pdf-ocr-html-handwritten-notes-gemini-rescue.yaml --settings /tmp/story191-gpt5-direct-settings.yaml --input-pdf testdata/handwritten-notes-alverson-real.pdf --run-id story191-alverson-pdf-gpt5-direct --allow-run-id-reuse --force --end-at ocr_ai`
+- `python driver.py --recipe configs/recipes/recipe-images-ocr-html-handwritten-notes-gemini-rescue.yaml --settings /tmp/story191-claude-direct-settings.yaml --input-images testdata/handwritten-notes-barney-real-images --run-id story191-barney-image-claude-direct --allow-run-id-reuse --force --end-at ocr_ai`
+- `python driver.py --recipe configs/recipes/recipe-images-ocr-html-handwritten-notes-gemini-rescue.yaml --settings /tmp/story191-claude-direct-settings.yaml --input-images testdata/handwritten-notes-alverson-real-images --run-id story191-alverson-image-claude-direct --allow-run-id-reuse --force --end-at ocr_ai`
+- `make methodology-compile`
+- `make methodology-check`
+- `git diff --check`
+
+## [2026-04-04-05] - Finish widened real handwritten proof surface in Story 189
+
+### Added
+- Added the second repo-owned real handwritten fixture, `handwritten-notes-alverson-real`, plus widened handwritten corpus and smoke coverage so the maintained rescue seam is measured against two real LOC letter pages instead of one
+
+### Changed
+- Changed `ocr_ai_gpt51_v1` so direct OpenAI `gpt-5` vision probes omit unsupported `temperature`, keeping the shared OCR module usable for bounded model comparison work
+- Changed the handwritten eval registry, coverage matrix, fixture docs, and story record so the family now closes honestly on the widened five-fixture corpus result: `pass_rate = 0.6`, `overall_min_ratio = 0.496975`, and status remains `has-fixture`
+
+### Tested
+- `python -m pytest tests/test_ocr_ai_gpt51_empty_page_recovery.py tests/test_handwritten_notes_eval.py -q`
+- `python -m pytest tests/test_handwritten_notes_eval.py tests/test_image_directory_intake_recipe.py tests/test_pdf_intake_recipe.py -q`
+- `python -m ruff check modules/extract/ocr_ai_gpt51_v1/main.py tests/test_ocr_ai_gpt51_empty_page_recovery.py tests/test_handwritten_notes_eval.py benchmarks/scripts/run_handwritten_notes_eval.py`
+- `python -m ruff check benchmarks/scripts/run_handwritten_notes_eval.py tests/test_handwritten_notes_eval.py tests/test_image_directory_intake_recipe.py tests/test_pdf_intake_recipe.py modules/extract/ocr_ai_gpt51_v1/main.py tests/test_ocr_ai_gpt51_empty_page_recovery.py`
+- `python benchmarks/scripts/run_handwritten_notes_eval.py --image-recipe configs/recipes/recipe-images-ocr-html-handwritten-notes-gemini-rescue.yaml --pdf-recipe configs/recipes/recipe-pdf-ocr-html-handwritten-notes-gemini-rescue.yaml --image-case-id image-handwritten-rescue --pdf-case-id pdf-handwritten-rescue --instrument --output benchmarks/results/handwritten-notes-story189-real-expanded.json`
+
 ## [2026-04-04-04] - Close problem-first story workflow repair (Story 190)
 
 ### Added

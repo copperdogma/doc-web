@@ -1,6 +1,8 @@
 import argparse
+import hashlib
 import json
 import os
+import re
 import subprocess
 import sys
 import time
@@ -28,6 +30,11 @@ DEFAULT_IMAGE_CASE_ID = "image-generic"
 DEFAULT_PDF_CASE_ID = "pdf-generic"
 
 
+def _slugify(value: str) -> str:
+    slug = re.sub(r"[^a-z0-9]+", "-", value.lower()).strip("-")
+    return slug or "fixture"
+
+
 def run_command(cmd: list[str]) -> tuple[subprocess.CompletedProcess[str], float]:
     env = dict(os.environ)
     env["PYTHONPATH"] = str(ROOT)
@@ -47,6 +54,25 @@ def _resolve_path(path_str: str | Path) -> Path:
     if not path.is_absolute():
         path = ROOT / path
     return path
+
+
+def derive_single_fixture_id(
+    transcript_path: str | Path,
+    images_path: str | Path,
+    pdf_path: str | Path,
+    *,
+    fixture_id: str | None = None,
+) -> str:
+    if fixture_id:
+        return _slugify(fixture_id)
+
+    transcript_resolved = _resolve_path(transcript_path)
+    images_resolved = _resolve_path(images_path)
+    pdf_resolved = _resolve_path(pdf_path)
+    seed = f"{transcript_resolved}|{images_resolved}|{pdf_resolved}"
+    digest = hashlib.sha1(seed.encode("utf-8")).hexdigest()[:8]
+    label = _slugify(images_resolved.name or pdf_resolved.stem or transcript_resolved.stem)
+    return f"single-fixture-{label[:40]}-{digest}"
 
 
 def build_run_id(fixture_id: str, case_id: str) -> str:
@@ -78,13 +104,19 @@ def load_fixture_specs(
     transcript: str | None = None,
     images: str | None = None,
     pdf: str | None = None,
+    fixture_id: str | None = None,
 ) -> list[dict[str, Any]]:
     if any(value is not None for value in (transcript, images, pdf)):
         if not all(value is not None for value in (transcript, images, pdf)):
             raise ValueError("Single-fixture mode requires --transcript, --images, and --pdf together")
         return [
             {
-                "id": "single-fixture",
+                "id": derive_single_fixture_id(
+                    transcript,
+                    images,
+                    pdf,
+                    fixture_id=fixture_id,
+                ),
                 "label": "Ad hoc handwritten fixture",
                 "difficulty": "custom",
                 "source_type": "custom",
@@ -179,6 +211,7 @@ def main() -> None:
     parser.add_argument("--transcript", default=None)
     parser.add_argument("--images", default=None)
     parser.add_argument("--pdf", default=None)
+    parser.add_argument("--fixture-id", default=None)
     parser.add_argument("--image-recipe", default=DEFAULT_IMAGE_RECIPE)
     parser.add_argument("--pdf-recipe", default=DEFAULT_PDF_RECIPE)
     parser.add_argument("--image-case-id", default=DEFAULT_IMAGE_CASE_ID)
@@ -193,6 +226,7 @@ def main() -> None:
         transcript=args.transcript,
         images=args.images,
         pdf=args.pdf,
+        fixture_id=args.fixture_id,
     )
 
     scored_cases = []

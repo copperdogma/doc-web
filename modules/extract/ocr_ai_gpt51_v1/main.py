@@ -45,6 +45,10 @@ def _is_anthropic_model(model: str) -> bool:
     return model.startswith("claude-")
 
 
+def _openai_supports_temperature(model: str) -> bool:
+    return not (model or "").casefold().startswith("gpt-5")
+
+
 ALLOWED_TAGS = {
     "h1", "h2", "h3", "p", "strong", "em", "ol", "ul", "li",
     "table", "thead", "tbody", "tr", "th", "td", "caption",
@@ -343,11 +347,10 @@ def _call_vision_model(
     if openai_client is None:
         raise RuntimeError("openai package required")
     if hasattr(openai_client, "responses"):
-        resp = openai_client.responses.create(
-            model=model,
-            temperature=temperature,
-            max_output_tokens=max_output_tokens,
-            input=[
+        request_kwargs = {
+            "model": model,
+            "max_output_tokens": max_output_tokens,
+            "input": [
                 {
                     "role": "system",
                     "content": [{"type": "input_text", "text": system_prompt}],
@@ -360,7 +363,10 @@ def _call_vision_model(
                     ],
                 },
             ],
-        )
+        }
+        if _openai_supports_temperature(model):
+            request_kwargs["temperature"] = temperature
+        resp = openai_client.responses.create(**request_kwargs)
         return resp.output_text or "", getattr(resp, "usage", None), getattr(resp, "id", None)
     resp = openai_client.chat.completions.create(
         model=model,

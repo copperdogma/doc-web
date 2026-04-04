@@ -22,6 +22,7 @@ Grouped by primary `spec:N` category. Stories without category refs remain in an
 
 | ID | Title | Priority | Status | Depends On | Link |
 |---|---|---|---|---|---|
+| 191 | Finish Real Handwritten OCR on the LOC Fixture Pair | High | Blocked | 189 | [story-191](stories/story-191-finish-real-handwritten-ocr-on-the-loc-fixture-pair.md) |
 | 141 | Onward Genealogy Consistency Investigation and ADR Handoff | High | Done | 140 | [story-141](stories/story-141-onward-genealogy-table-consistency-pass.md) |
 | 142 | Onward Genealogy Consistency Detection and Rerun Gating | High | Done | 140, 141 | [story-142](stories/story-142-onward-source-aware-genealogy-consistency-first-slice.md) |
 | 143 | Onward Schema-Frozen Genealogy Reruns | High | Done | 142 | [story-143](stories/story-143-onward-schema-frozen-genealogy-reruns.md) |
@@ -48,7 +49,7 @@ Grouped by primary `spec:N` category. Stories without category refs remain in an
 | 182 | Widen Handwritten Notes Fixture Breadth Beyond the First Synthetic Slice | High | Done | 179 | [story-182](stories/story-182-widen-handwritten-notes-fixture-breadth.md) |
 | 185 | Widen Handwritten Proof Beyond the Synthetic Pair | High | Done | 182 | [story-185](stories/story-185-widen-handwritten-proof-beyond-synthetic-pair.md) |
 | 186 | Add First Reproducible Real Handwritten Fixture Proof Surface | High | Done | 185 | [story-186](stories/story-186-real-handwritten-fixture-proof-surface.md) |
-| 189 | Improve Real Handwritten Fidelity on the Barney Fixture | High | Done | 186 | [story-189](stories/story-189-improve-real-handwritten-barney-fidelity.md) |
+| 189 | Finish Real Handwritten Proof on the Maintained Rescue Seam | High | Done | 186 | [story-189](stories/story-189-improve-real-handwritten-barney-fidelity.md) |
 
 ### spec:2 — OCR & Text Extraction
 

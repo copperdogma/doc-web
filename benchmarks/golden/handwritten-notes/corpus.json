@@ -37,6 +37,17 @@
       "transcript": "testdata/handwritten-notes-barney-real.txt",
       "images": "testdata/handwritten-notes-barney-real-images",
       "pdf": "testdata/handwritten-notes-barney-real.pdf"
+    },
+    {
+      "id": "handwritten-notes-alverson-real",
+      "label": "Real LOC Civil War letter front page",
+      "difficulty": "real-archival",
+      "source_type": "real",
+      "source_url": "https://www.loc.gov/pictures/item/2023637835/",
+      "rights_note": "No known restrictions on publication.",
+      "transcript": "testdata/handwritten-notes-alverson-real.txt",
+      "images": "testdata/handwritten-notes-alverson-real-images",
+      "pdf": "testdata/handwritten-notes-alverson-real.pdf"
     }
   ]
 }
