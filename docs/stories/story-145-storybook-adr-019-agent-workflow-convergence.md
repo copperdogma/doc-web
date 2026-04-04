@@ -1,3 +1,29 @@
+---
+title: Storybook ADR-019 Agent Workflow Convergence
+status: Done
+priority: High
+ideal_refs:
+- 'Requirement #6 (Validate), Transparency over Magic, Graduate, Don''t Accumulate'
+spec_refs:
+- spec:1
+- spec:7
+adr_refs: []
+depends_on: []
+category_refs:
+- spec:1
+- spec:2
+- spec:5
+- spec:7
+compromise_refs:
+- C1
+- C7
+input_coverage_refs: []
+architecture_domains:
+- methodology_tooling
+roadmap_tags: []
+legacy_system: ''
+---
+
 # Story 145 — Storybook ADR-019 Agent Workflow Convergence
 
 **Priority**: High

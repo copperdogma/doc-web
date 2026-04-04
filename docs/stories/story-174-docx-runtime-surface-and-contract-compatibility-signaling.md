@@ -1,3 +1,37 @@
+---
+title: Harden Maintained DOCX Runtime Surface and Clarify `doc-web` Contract Compatibility
+  Signaling
+status: Done
+priority: High
+ideal_refs:
+- 'Requirement #1 (Ingest), Requirement #6 (Validate), Requirement #7 (Export), Any
+  format, any condition, Dossier-ready output, Transparency over magic'
+spec_refs:
+- spec:1
+- spec:1.1
+- spec:6
+- spec:7
+- spec:8
+adr_refs: []
+depends_on:
+- '156'
+- '172'
+- '173'
+category_refs:
+- spec:1
+- spec:6
+- spec:7
+- spec:8
+compromise_refs:
+- C2
+input_coverage_refs:
+- docx
+architecture_domains:
+- doc_web_runtime
+roadmap_tags: []
+legacy_system: ''
+---
+
 # Story 174 — Harden Maintained DOCX Runtime Surface and Clarify `doc-web` Contract Compatibility Signaling
 
 **Priority**: High

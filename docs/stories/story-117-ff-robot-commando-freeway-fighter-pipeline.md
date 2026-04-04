@@ -1,3 +1,19 @@
+---
+title: FF Robot Commando + Freeway Fighter Pipeline Bring-Up
+status: Done
+priority: Unknown
+ideal_refs: []
+spec_refs: []
+adr_refs: []
+depends_on: []
+category_refs: []
+compromise_refs: []
+input_coverage_refs: []
+architecture_domains: []
+roadmap_tags: []
+legacy_system: ''
+---
+
 # Story: FF Robot Commando + Freeway Fighter Pipeline Bring-Up
 
 **Status**: Done

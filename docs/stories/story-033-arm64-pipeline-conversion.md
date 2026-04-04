@@ -1,4 +1,20 @@
-## Story: ARM64-native pipeline environment & performance
+---
+title: ARM64-native pipeline environment & performance
+status: Done
+priority: Unknown
+ideal_refs: []
+spec_refs: []
+adr_refs: []
+depends_on: []
+category_refs: []
+compromise_refs: []
+input_coverage_refs: []
+architecture_domains: []
+roadmap_tags: []
+legacy_system: ''
+---
+
+# Story 033 — ARM64-native pipeline environment & performance
 
 **Status**: Done  
 **Created**: 2025-11-29  

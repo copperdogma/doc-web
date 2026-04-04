@@ -1,3 +1,38 @@
+---
+title: Repo-Owned Handwritten Notes Fixture and Baseline Transcription
+status: Done
+priority: High
+ideal_refs:
+- 'Requirement #1 (Ingest), Requirement #2 (Detect), Requirement #3 (Extract), Any
+  format, any condition, Minimum Viable Floor'
+spec_refs:
+- spec:1
+- spec:1.1
+- spec:2
+- spec:2.1
+- spec:2.2
+- spec:8
+adr_refs: []
+depends_on:
+- '157'
+- '167'
+category_refs:
+- spec:1
+- spec:2
+- spec:8
+compromise_refs:
+- B1
+- B5
+- C1
+- C2
+- C6
+input_coverage_refs:
+- handwritten-notes
+architecture_domains: []
+roadmap_tags: []
+legacy_system: ''
+---
+
 # Story 179 — Repo-Owned Handwritten Notes Fixture and Baseline Transcription
 
 **Priority**: High

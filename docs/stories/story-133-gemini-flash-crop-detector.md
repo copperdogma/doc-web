@@ -1,3 +1,22 @@
+---
+title: Gemini 3 Flash as Cost-Optimized Crop Detector
+status: Done
+priority: High
+ideal_refs:
+- "Req 4 \u2014 Illustrate (detect, crop, catalog every illustration with precision)"
+spec_refs: []
+adr_refs: []
+depends_on:
+- '125'
+- '126'
+category_refs: []
+compromise_refs: []
+input_coverage_refs: []
+architecture_domains: []
+roadmap_tags: []
+legacy_system: ''
+---
+
 # Story 133 — Gemini 3 Flash as Cost-Optimized Crop Detector
 
 **Priority**: High

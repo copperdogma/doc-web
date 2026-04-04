@@ -1,3 +1,22 @@
+## [2026-04-04-02] - Backfill legacy methodology metadata (Story 188)
+
+### Added
+- Added explicit frontmatter to the remaining canonical legacy story records so the repo's methodology graph now reads authored metadata instead of legacy headers
+- Added regression coverage for canonical story discovery and frontmatter-first story/ADR parsing in the methodology compiler tests
+
+### Changed
+- Changed the methodology compiler to ignore non-canonical story companion docs and to treat frontmatter as the source of truth for structured story and ADR metadata
+- Changed the methodology graph, generated story index, and methodology state to record the completed legacy-metadata cleanup pass alongside the existing graph/state migration campaign
+
+### Tested
+- `make methodology-compile`
+- `make methodology-check`
+- `python -m pytest tests/test_methodology_graph.py -q`
+- `python -m ruff check scripts/methodology_graph.py tests/test_methodology_graph.py`
+- `python -m pytest tests/`
+- `python -m ruff check modules/ tests/`
+- `git diff --check`
+
 ## [2026-04-04-01] - Close methodology graph and state migration (Story 187)
 
 ### Added

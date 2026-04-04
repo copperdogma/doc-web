@@ -1,3 +1,22 @@
+---
+title: Parallelize Crop Detection and Table Rescue Stages
+status: Draft
+priority: High
+ideal_refs:
+- "Ideal \"instant\" processing \u2014 \"A 400-page scanned book processes before\
+  \ you finish your coffee\""
+- MVF "under 30 minutes at reasonable cost"
+spec_refs: []
+adr_refs: []
+depends_on: []
+category_refs: []
+compromise_refs: []
+input_coverage_refs: []
+architecture_domains: []
+roadmap_tags: []
+legacy_system: ''
+---
+
 # Story 136 — Parallelize Crop Detection and Table Rescue Stages
 
 **Priority**: High

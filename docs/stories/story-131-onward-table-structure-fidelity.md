@@ -1,3 +1,25 @@
+---
+title: Onward Table Structure Fidelity
+status: Done
+priority: High
+ideal_refs:
+- "Fidelity to Source (every table preserves its structure), Extract (layout preserved\
+  \ where it carries meaning \u2014 tables), Validate (prove output is correct)"
+spec_refs:
+- spec:2.1
+adr_refs: []
+depends_on:
+- '128'
+category_refs:
+- spec:2
+compromise_refs:
+- C1
+input_coverage_refs: []
+architecture_domains: []
+roadmap_tags: []
+legacy_system: ''
+---
+
 # Story 131 — Onward Table Structure Fidelity
 
 **Priority**: High

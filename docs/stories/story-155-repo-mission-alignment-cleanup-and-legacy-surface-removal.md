@@ -1,3 +1,30 @@
+---
+title: Repo Mission Alignment Cleanup and Legacy Surface Removal
+status: Done
+priority: High
+ideal_refs:
+- 'Requirement #1 (Ingest), Requirement #5 (Structure), Requirement #6 (Validate),
+  Requirement #7 (Export), Dossier-ready output, Graduate, don''t accumulate'
+spec_refs:
+- spec:6
+- spec:7
+- spec:8
+- spec:9
+adr_refs: []
+depends_on:
+- '152'
+category_refs:
+- spec:6
+- spec:7
+- spec:8
+- spec:9
+compromise_refs: []
+input_coverage_refs: []
+architecture_domains: []
+roadmap_tags: []
+legacy_system: ''
+---
+
 # Story 155 — Repo Mission Alignment Cleanup and Legacy Surface Removal
 
 **Priority**: High

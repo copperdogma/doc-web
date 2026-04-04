@@ -1,3 +1,19 @@
+---
+title: Unstructured intake & Document IR adoption
+status: Done
+priority: Unknown
+ideal_refs: []
+spec_refs: []
+adr_refs: []
+depends_on: []
+category_refs: []
+compromise_refs: []
+input_coverage_refs: []
+architecture_domains: []
+roadmap_tags: []
+legacy_system: ''
+---
+
 # Story: Unstructured intake & Document IR adoption
 
 **Status**: ✅ **COMPLETE** — Unstructured intake and FF pipeline validated end-to-end

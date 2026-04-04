@@ -1,3 +1,19 @@
+---
+title: "Validation Inconsistency \u2014 Reachability Analysis"
+status: Done
+priority: High
+ideal_refs: []
+spec_refs: []
+adr_refs: []
+depends_on: []
+category_refs: []
+compromise_refs: []
+input_coverage_refs: []
+architecture_domains: []
+roadmap_tags: []
+legacy_system: ''
+---
+
 # Story 120: Validation Inconsistency — Reachability Analysis
 
 **Status**: Done  

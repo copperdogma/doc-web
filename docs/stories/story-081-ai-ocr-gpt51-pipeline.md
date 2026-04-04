@@ -1,3 +1,19 @@
+---
+title: "GPT\u20115.1 AI\u2011First OCR Pipeline (HTML\u2011First)"
+status: Done
+priority: High
+ideal_refs: []
+spec_refs: []
+adr_refs: []
+depends_on: []
+category_refs: []
+compromise_refs: []
+input_coverage_refs: []
+architecture_domains: []
+roadmap_tags: []
+legacy_system: ''
+---
+
 # Story: GPT‑5.1 AI‑First OCR Pipeline (HTML‑First)
 
 **Status**: Done  

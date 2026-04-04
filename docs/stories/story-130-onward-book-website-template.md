@@ -1,3 +1,20 @@
+---
+title: Book Website Template Module
+status: Won't Do
+priority: Unknown
+ideal_refs: []
+spec_refs: []
+adr_refs: []
+depends_on:
+- '129'
+category_refs: []
+compromise_refs: []
+input_coverage_refs: []
+architecture_domains: []
+roadmap_tags: []
+legacy_system: ''
+---
+
 # Story 130: Book Website Template Module
 
 **Status**: Won't Do

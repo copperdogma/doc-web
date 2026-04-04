@@ -12,11 +12,11 @@ Use `docs/methodology/graph.json`, `docs/methodology/state.yaml`, the active `do
 
 - Active categories: spec:1, spec:2, spec:7, spec:9
 - Campaign `maintained-intake-honesty` (active; stories: 176, 180, 186) — Keep format claims tied to current fixture/eval evidence instead of widening through prose drift.
-- Campaign `methodology-graph-state-migration` (active; stories: 187) — Migrate methodology consumers onto state + graph + coverage-matrix truth and retire the live hand-authored build map.
+- Campaign `methodology-graph-state-migration` (active; stories: 187, 188) — Migrate methodology consumers onto state + graph + coverage-matrix truth and retire the live hand-authored build map.
 
 ## Index
 
-Grouped by primary `spec:N` category. Stories with no derived category refs remain in a legacy bucket until their metadata is backfilled.
+Grouped by primary `spec:N` category. Stories without category refs remain in an explicit historical bucket when no current category mapping is honest.
 
 ### spec:1 — Intake & Format Routing
 
@@ -107,12 +107,14 @@ Grouped by primary `spec:N` category. Stories with no derived category refs rema
 | ID | Title | Priority | Status | Depends On | Link |
 |---|---|---|---|---|---|
 | 187 | Methodology Graph + State Migration | High | Done | 148 | [story-187](stories/story-187-methodology-graph-state-migration.md) |
+| 188 | Legacy Methodology Metadata Backfill | High | Done | 187 | [story-188](stories/story-188-legacy-methodology-metadata-backfill.md) |
 
 ### Legacy / Uncategorized Stories
 
 | ID | Title | Priority | Status | Link |
 |---|---|---|---|---|
 | 104 | Gamebook Output File Tweaks | High | In Progress | [story-104](stories/story-104-gamebook-output-tweaks.md) |
+| 021 | Pipeline dashboard UI polish (highlighting & pane layout) | Unknown | In Progress | [story-021](stories/story-021-dashboard-ui-polish.md) |
 | 028 | Market Discovery for doc-forge | Unknown | In Progress | [story-028](stories/story-028-market-discovery.md) |
 | 058 | Post-OCR Text Quality & Error Correction | Unknown | In Progress | [story-058](stories/story-058-post-ocr-text-quality.md) |
 | 136 | Parallelize Crop Detection and Table Rescue Stages | High | Draft | [story-136](stories/story-136-pipeline-stage-parallelism.md) |
@@ -125,6 +127,7 @@ Grouped by primary `spec:N` category. Stories with no derived category refs rema
 | 085 | Table Rescue OCR Pass | High | Done | [story-085](stories/story-085-table-rescue-ocr.md) |
 | 086 | Preserve HTML Through Final Gamebook | High | Done | [story-086](stories/story-086-preserve-html-final-output.md) |
 | 088 | Choice Parsing Enhancements (HTML + Linking) | High | Done | [story-088](stories/story-088-choice-parsing-enhancements.md) |
+| 089 | Pristine Book Parity (Missing Sections + Robustness) | High | Done | [story-089](stories/story-089-pristine-book-parity.md) |
 | 091 | Orphaned Section Mitigation | High | Done | [story-091](stories/story-091-orphaned-section-mitigation.md) |
 | 092 | HTML Presentation Cleanup | High | Done | [story-092](stories/story-092-html-presentation-cleanup.md) |
 | 093 | Coarse Portionizer Endmatter Filter | High | Done | [story-093](stories/story-093-coarse-portionizer-endmatter-filter.md) |
@@ -171,9 +174,16 @@ Grouped by primary `spec:N` category. Stories with no derived category refs rema
 | 026 | Onward to the Unknown — image-only → chapter-linked HTML | Unknown | Done | [story-026](stories/story-026-onward-unknown-arthur-lheureux.md) |
 | 027 | Contact-sheet intake for automatic book type planning | Unknown | Done | [story-027](stories/story-027-contact-sheet-auto-intake.md) |
 | 030 | Fighting Fantasy Engine format export | Unknown | Done | [story-030](stories/story-030-ff-engine-format.md) |
-| 033 | ## Story: ARM64-native pipeline environment & performance | Unknown | Done | [story-033](stories/story-033-arm64-pipeline-conversion.md) |
+| 031 | Fighting Fantasy output refinement | Unknown | Done | [story-031](stories/story-031-ff-output-refinement.md) |
+| 032 | Unstructured intake & Document IR adoption | Unknown | Done | [story-032](stories/story-032-unstructured-intake-and-document-ir-adoption.md) |
+| 033 | ARM64-native pipeline environment & performance | Unknown | Done | [story-033](stories/story-033-arm64-pipeline-conversion.md) |
+| 034 | FF Unstructured follow-ups (elements, helpers, graph quality) | Unknown | Done | [story-034](stories/story-034-ff-unstructured-followups.md) |
+| 035 | Fighting Fantasy Pipeline Optimization | Unknown | Done | [story-035](stories/story-035-ff-pipeline-optimization.md) |
 | 036 | Fighting Fantasy OCR Recovery & Text Repair | Unknown | Done | [story-036](stories/story-036-ff-ocr-recovery-and-text-repair.md) |
+| 037 | Fighting Fantasy OCR Ensemble with BetterOCR | Unknown | Done | [story-037](stories/story-037-ocr-ensemble-with-betterocr.md) |
+| 050 | FF Ending Detection Verification | Unknown | Done | [story-050](stories/story-050-ff-ending-detection.md) |
 | 051 | Text Quality Evaluation & Repair | Unknown | Done | [story-051](stories/story-051-text-quality-eval.md) |
+| 052 | Evaluate Apple Vision OCR Integration | Unknown | Done | [story-052](stories/story-052-apple-ocr-integration.md) |
 | 053 | Pipeline Smoke Test (Static Sample, No External Calls) | Unknown | Done | [story-053](stories/story-053-smoke-test-pipeline.md) |
 | 054 | Canonical FF Recipe Consolidation | Unknown | Done | [story-054](stories/story-054-canonical-ff-recipe.md) |
 | 056 | Validation Forensics Automation | Unknown | Done | [story-056](stories/story-056-validation-forensics.md) |
@@ -184,8 +194,11 @@ Grouped by primary `spec:N` category. Stories with no derived category refs rema
 | 062 | OCR Content Type Detection Module | Unknown | Done | [story-062](stories/story-062-ocr-content-type-detection.md) |
 | 063 | OCR Ensemble Three-Engine Voting | Unknown | Done | [story-063](stories/story-063-ocr-ensemble-three-engine.md) |
 | 064 | Apple Vision OCR (VNRecognizeTextRequest) Adapter | Unknown | Done | [story-064](stories/story-064-apple-vision-ocr.md) |
+| 065 | Stabilize EasyOCR as a Third OCR Engine | Unknown | Done | [story-065](stories/story-065-easyocr-reliability.md) |
 | 067 | GPU Acceleration for OCR Pipeline | Unknown | Done | [story-067](stories/story-067-gpu-acceleration-ocr.md) |
+| 068 | Fighting Fantasy Boundary Detection Improvements | Unknown | Done | [story-068](stories/story-068-ff-boundary-detection.md) |
 | 069 | PDF Text Extraction Engine for OCR Ensemble | Unknown | Done | [story-069](stories/story-069-pdf-text-extraction-engine.md) |
+| 070 | OCR Split Refinement — Zero Bad Slices | Unknown | Done | [story-070](stories/story-070-ocr-split-refinement.md) |
 | 071 | Output Artifact Organization | Unknown | Done | [story-071](stories/story-071-output-artifact-organization.md) |
 | 073 | 100% Section Detection — Segmentation Architecture | Unknown | Done | [story-073](stories/story-073-100-percent-section-detection.md) |
 | 074 | Missing Sections Investigation — Complete 100% Coverage | Unknown | Done | [story-074](stories/story-074-missing-sections-investigation.md) |
@@ -195,11 +208,15 @@ Grouped by primary `spec:N` category. Stories with no derived category refs rema
 | 110 | Edge-Case Scanner + Patch Module (Post-Extraction) | Unknown | Done | [story-110](stories/story-110-edgecase-scanner-and-patch-module.md) |
 | 112 | Run Configuration Simplification | Unknown | Done | [story-112](stories/story-112-run-configuration-simplification.md) |
 | 113 | Make output/ Canonical Location for gamebook.json | Unknown | Done | [story-113](stories/story-113-gamebook-canonical-output-location.md) |
+| 114 | Decouple Execution Context from Recipes | Unknown | Done | [story-114](stories/story-114-decouple-recipes.md) |
+| 115 | Configuration Cleanup and Standardization | Unknown | Done | [story-115](stories/story-115-config-cleanup.md) |
 | 116 | Fighting Fantasy Split Pages Quality Issues | Unknown | Done | [story-116](stories/story-116-ff-split-pages-quality-issues.md) |
 | 117 | FF Robot Commando + Freeway Fighter Pipeline Bring-Up | Unknown | Done | [story-117](stories/story-117-ff-robot-commando-freeway-fighter-pipeline.md) |
+| 123 | Patch File Support for Manual Corrections | Unknown | Done | [story-123](stories/story-123-patch-file-support.md) |
 | 125 | Image Extraction Evaluation with promptfoo | Unknown | Done | [story-125](stories/story-125-image-extraction-eval-promptfoo.md) |
 | 126 | Crop Quality — Text Validation Loop & OCR Image Detection | Unknown | Done | [story-126](stories/story-126-crop-quality-text-validation-loop.md) |
 | 127 | OCR Model Eval for Genealogy / Table-Heavy Books | Unknown | Done | [story-127](stories/story-127-ocr-model-eval-genealogy.md) |
+| 128 | Onward Table Fidelity Verification | Unknown | Done | [story-128](stories/story-128-onward-table-fidelity-verification.md) |
 | 129 | HTML Output Polish + Image Integration | Unknown | Done | [story-129](stories/story-129-onward-html-output-polish.md) |
 | 077 | AI OCR Radical Simplification — Challenging the Escalation Assumption | High | To Do | [story-077](stories/story-077-ai-ocr-simplification.md) |
 | 015 | Modular pipeline & module registry | Unknown | To Do | [story-015](stories/story-015-modular-pipeline.md) |
@@ -215,24 +232,3 @@ Grouped by primary `spec:N` category. Stories with no derived category refs rema
 | 130 | Book Website Template Module | Unknown | Won't Do | [story-130](stories/story-130-onward-book-website-template.md) |
 | 029 | Audit model lineup vs latest OpenAI sheets | Unknown | Obsolete | [story-029](stories/story-029-model-audit-openai.md) |
 | 072 | OCR Spell-Weighted Voting Enhancement | Unknown | Obsolete | [story-072](stories/story-072-ocr-spell-weighted-voting.md) |
-| 089 | Pristine Book Parity (Missing Sections + Robustness) | High | ✅ Done | [story-089](stories/story-089-pristine-book-parity.md) |
-| 021 | Pipeline dashboard UI polish (highlighting & pane layout) | Unknown | In Progress (partially complete) | [story-021](stories/story-021-dashboard-ui-polish.md) |
-| 031 | Fighting Fantasy output refinement | Unknown | ✅ **COMPLETE** - Pipeline redesign implemented and validated | [story-031](stories/story-031-ff-output-refinement.md) |
-| 032 | Unstructured intake & Document IR adoption | Unknown | ✅ **COMPLETE** — Unstructured intake and FF pipeline validated end-to-end Created: 2025-11-28 Updated: 2025-11-29 05:47 | [story-032](stories/story-032-unstructured-intake-and-document-ir-adoption.md) |
-| 034 | FF Unstructured follow-ups (elements, helpers, graph quality) | Unknown | Unknown | [story-034](stories/story-034-ff-unstructured-followups.md) |
-| 035 | Fighting Fantasy Pipeline Optimization | Unknown | Done (User-approved completion despite deferred tasks) | [story-035](stories/story-035-ff-pipeline-optimization.md) |
-| 037 | Fighting Fantasy OCR Ensemble with BetterOCR | Unknown | Unknown | [story-037](stories/story-037-ocr-ensemble-with-betterocr.md) |
-| 050 | FF Ending Detection Verification | Unknown | ✅ COMPLETE | [story-050](stories/story-050-ff-ending-detection.md) |
-| 052 | Evaluate Apple Vision OCR Integration | Unknown | Open | [story-052](stories/story-052-apple-ocr-integration.md) |
-| 062 | OCR Content Type Detection Research Notes | Unknown | Unknown | [story-062](stories/story-062-ocr-content-type-detection.research.md) |
-| 065 | Stabilize EasyOCR as a Third OCR Engine | Unknown | Done (2025-12-12) | [story-065](stories/story-065-easyocr-reliability.md) |
-| 068 | Fighting Fantasy Boundary Detection Improvements | Unknown | ✅ COMPLETE - 100% Coverage Achieved | [story-068](stories/story-068-ff-boundary-detection.md) |
-| 070 | OCR Split Refinement — Zero Bad Slices | Unknown | COMPLETE ✅ (Per-page gutter detection with vertical continuity + center-biased conservative split) | [story-070](stories/story-070-ocr-split-refinement.md) |
-| 084 | Fast PDF Extraction - Deployment Guide | Unknown | Unknown | [story-084](stories/story-084-DEPLOYMENT.md) |
-| 084 | Fast PDF Image Extraction - Summary | Unknown | Unknown | [story-084](stories/story-084-SUMMARY.md) |
-| 084 | OCR Quality Validation Plan | Unknown | Unknown | [story-084](stories/story-084-VALIDATION-PLAN.md) |
-| 084 | Phase 2 Validation Results | Unknown | Unknown | [story-084](stories/story-084-VALIDATION-RESULTS.md) |
-| 114 | Decouple Execution Context from Recipes | Unknown | Unknown | [story-114](stories/story-114-decouple-recipes.md) |
-| 115 | Configuration Cleanup and Standardization | Unknown | Unknown | [story-115](stories/story-115-config-cleanup.md) |
-| 123 | Patch File Support for Manual Corrections | Unknown | Unknown | [story-123](stories/story-123-patch-file-support.md) |
-| 128 | Onward Table Fidelity Verification | Unknown | Done (Golden references, promptfoo eval, and verification checklist complete. Pipeline improvement work continues in Story 131.) | [story-128](stories/story-128-onward-table-fidelity-verification.md) |

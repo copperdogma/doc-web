@@ -1,3 +1,19 @@
+---
+title: Section Detection & Boundary Improvements
+status: Done
+priority: Unknown
+ideal_refs: []
+spec_refs: []
+adr_refs: []
+depends_on: []
+category_refs: []
+compromise_refs: []
+input_coverage_refs: []
+architecture_domains: []
+roadmap_tags: []
+legacy_system: ''
+---
+
 # Story: Section Detection & Boundary Improvements
 
 **Status**: Done

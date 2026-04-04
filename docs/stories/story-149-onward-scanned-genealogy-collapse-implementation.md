@@ -1,3 +1,32 @@
+---
+title: Onward Scanned-Genealogy Collapse Implementation
+status: Done
+priority: High
+ideal_refs:
+- 'Requirement #3 (Extract), Requirement #5 (Structure), Requirement #6 (Validate),
+  Fidelity to Source, Transparency over Magic, Graduate, don''t accumulate'
+spec_refs:
+- spec:2.1
+- spec:3.1
+- spec:5.1
+adr_refs: []
+depends_on:
+- '146'
+- '147'
+category_refs:
+- spec:2
+- spec:3
+- spec:5
+compromise_refs:
+- C1
+- C3
+- C7
+input_coverage_refs: []
+architecture_domains: []
+roadmap_tags: []
+legacy_system: ''
+---
+
 # Story 149 — Onward Scanned-Genealogy Collapse Implementation
 
 **Priority**: High

@@ -1,3 +1,41 @@
+---
+title: Benchmark `Surya` as a Component Candidate for Layout and Table Seams
+status: Done
+priority: High
+ideal_refs:
+- 'Requirement #1 (Ingest), Requirement #3 (Extract), Requirement #5 (Structure),
+  Requirement #6 (Validate), Traceability is the Product, Fidelity to the source,
+  Any format, any condition, Dossier-ready output'
+spec_refs:
+- spec:2
+- spec:2.1
+- spec:3
+- spec:3.1
+- spec:5
+- spec:5.1
+- spec:6
+adr_refs: []
+depends_on:
+- '127'
+- '131'
+- '149'
+- '163'
+category_refs:
+- spec:2
+- spec:3
+- spec:5
+- spec:6
+compromise_refs:
+- C1
+- C3
+- C7
+input_coverage_refs:
+- scanned-pdf-tables
+architecture_domains: []
+roadmap_tags: []
+legacy_system: ''
+---
+
 # Story 164 — Benchmark `Surya` as a Component Candidate for Layout and Table Seams
 
 **Priority**: High

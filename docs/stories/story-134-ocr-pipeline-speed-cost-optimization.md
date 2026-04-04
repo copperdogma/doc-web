@@ -1,3 +1,25 @@
+---
+title: OCR Pipeline Speed & Cost Optimization
+status: Done
+priority: High
+ideal_refs:
+- "Req 3 (Extract \u2014 clean, accurate text), Vision \"instant\" and \"cost negligible\""
+spec_refs:
+- spec:2.1
+- spec:2.2
+adr_refs: []
+depends_on: []
+category_refs:
+- spec:2
+compromise_refs:
+- C1
+- C6
+input_coverage_refs: []
+architecture_domains: []
+roadmap_tags: []
+legacy_system: ''
+---
+
 # Story 134 — OCR Pipeline Speed & Cost Optimization
 
 **Priority**: High

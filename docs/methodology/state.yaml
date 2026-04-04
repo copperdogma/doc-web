@@ -65,7 +65,7 @@
       {
         "id": "methodology-graph-state-migration",
         "status": "active",
-        "story_refs": ["187"],
+        "story_refs": ["187", "188"],
         "notes": "Migrate methodology consumers onto state + graph + coverage-matrix truth and retire the live hand-authored build map."
       }
     ]
@@ -90,9 +90,9 @@
         "manual_priority": "medium",
         "last_audited_at": "2026-04-04",
         "stories_since_audit": 0,
-        "recent_story_refs": ["145", "148", "187"],
+        "recent_story_refs": ["145", "148", "187", "188"],
         "open_findings": [],
-        "notes": "Methodology graph/state migration is the active audit lane."
+        "notes": "Methodology graph/state migration and legacy metadata backfill are the active audit lane."
       },
       "intake_and_routing": {
         "label": "Intake and Routing",

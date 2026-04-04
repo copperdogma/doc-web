@@ -1,3 +1,19 @@
+---
+title: Pipeline dashboard UI polish (highlighting & pane layout)
+status: In Progress
+priority: Unknown
+ideal_refs: []
+spec_refs: []
+adr_refs: []
+depends_on: []
+category_refs: []
+compromise_refs: []
+input_coverage_refs: []
+architecture_domains: []
+roadmap_tags: []
+legacy_system: ''
+---
+
 # Story: Pipeline dashboard UI polish (highlighting & pane layout)
 
 **Status**: In Progress (partially complete)

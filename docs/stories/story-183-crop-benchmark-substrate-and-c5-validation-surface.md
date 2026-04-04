@@ -1,3 +1,36 @@
+---
+title: Repair Crop Benchmark Substrate and Promote C5 Validation Surface
+status: Done
+priority: High
+ideal_refs:
+- 'Requirement #4 (Illustrate), Requirement #6 (Validate), Traceability is the product,
+  Fidelity to the source, Transparency over magic'
+spec_refs:
+- spec:4
+- spec:4.1
+- spec:4.2
+- spec:8
+adr_refs: []
+depends_on:
+- '125'
+- '126'
+- '133'
+category_refs:
+- spec:4
+- spec:8
+compromise_refs:
+- B1
+- C4
+- C5
+input_coverage_refs:
+- image-directory-scans
+- scanned-pdf-tables
+architecture_domains:
+- document_structure_and_consistency
+roadmap_tags: []
+legacy_system: ''
+---
+
 # Story 183 — Repair Crop Benchmark Substrate and Promote C5 Validation Surface
 
 **Priority**: High

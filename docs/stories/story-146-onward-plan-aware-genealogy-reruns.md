@@ -1,3 +1,30 @@
+---
+title: Onward Plan-Aware Genealogy Selective Reruns
+status: Done
+priority: High
+ideal_refs:
+- 'Requirement #3 (Extract), Requirement #5 (Structure), Requirement #6 (Validate),
+  Fidelity to Source, Transparency over Magic, Dossier-ready output'
+spec_refs:
+- spec:2.1
+- spec:2.2
+- spec:5.1
+adr_refs: []
+depends_on:
+- '144'
+category_refs:
+- spec:2
+- spec:5
+compromise_refs:
+- C1
+- C6
+- C7
+input_coverage_refs: []
+architecture_domains: []
+roadmap_tags: []
+legacy_system: ''
+---
+
 # Story 146 — Onward Plan-Aware Genealogy Selective Reruns
 
 **Priority**: High

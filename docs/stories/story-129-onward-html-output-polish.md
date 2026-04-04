@@ -1,3 +1,20 @@
+---
+title: HTML Output Polish + Image Integration
+status: Done
+priority: Unknown
+ideal_refs: []
+spec_refs: []
+adr_refs: []
+depends_on:
+- '128'
+category_refs: []
+compromise_refs: []
+input_coverage_refs: []
+architecture_domains: []
+roadmap_tags: []
+legacy_system: ''
+---
+
 # Story 129: HTML Output Polish + Image Integration
 
 **Status**: Done

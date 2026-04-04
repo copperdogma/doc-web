@@ -1,3 +1,20 @@
+---
+title: FF Pipeline Accel + Accuracy Guardrails
+status: Won't Do
+priority: Unknown
+ideal_refs: []
+spec_refs: []
+adr_refs: []
+depends_on:
+- '035'
+category_refs: []
+compromise_refs: []
+input_coverage_refs: []
+architecture_domains: []
+roadmap_tags: []
+legacy_system: ''
+---
+
 # Story: FF Pipeline Accel + Accuracy Guardrails
 
 **Status**: Won't Do

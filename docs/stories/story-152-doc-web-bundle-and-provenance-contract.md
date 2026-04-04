@@ -1,3 +1,26 @@
+---
+title: '`doc-web` Bundle and Provenance Contract'
+status: Done
+priority: High
+ideal_refs:
+- 'Requirement #5 (Structure), Requirement #6 (Validate), Requirement #7 (Export),
+  Traceability is the Product, Dossier-ready output'
+spec_refs:
+- spec:6
+- spec:7
+adr_refs: []
+depends_on:
+- '151'
+category_refs:
+- spec:6
+- spec:7
+compromise_refs: []
+input_coverage_refs: []
+architecture_domains: []
+roadmap_tags: []
+legacy_system: ''
+---
+
 # Story 152 — `doc-web` Bundle and Provenance Contract
 
 **Priority**: High

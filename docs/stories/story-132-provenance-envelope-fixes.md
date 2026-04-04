@@ -1,3 +1,24 @@
+---
+title: Fix provenance envelope gaps to reach 1.0 completeness
+status: Done
+priority: High
+ideal_refs:
+- "Ideal line 15 (\"Every piece of output traces back to its source page and processing\
+  \ step\"), Ideal line 31 (Central Tenet T0 \u2014 \"Traceability is the product\"\
+  )"
+spec_refs:
+- spec:6
+adr_refs: []
+depends_on: []
+category_refs:
+- spec:6
+compromise_refs: []
+input_coverage_refs: []
+architecture_domains: []
+roadmap_tags: []
+legacy_system: ''
+---
+
 # Story 132 — Fix provenance envelope gaps to reach 1.0 completeness
 
 **Priority**: High

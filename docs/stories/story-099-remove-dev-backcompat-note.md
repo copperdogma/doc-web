@@ -1,3 +1,19 @@
+---
+title: Remove dev-only backcompat disclaimer once production-ready
+status: To Do
+priority: Unknown
+ideal_refs: []
+spec_refs: []
+adr_refs: []
+depends_on: []
+category_refs: []
+compromise_refs: []
+input_coverage_refs: []
+architecture_domains: []
+roadmap_tags: []
+legacy_system: ''
+---
+
 # Story: Remove dev-only backcompat disclaimer once production-ready
 
 **Status**: To Do

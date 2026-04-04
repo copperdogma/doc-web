@@ -1,3 +1,27 @@
+---
+title: Dossier `doc-web` Semantic HTML Handoff
+status: Done
+priority: High
+ideal_refs:
+- 'Requirement #6 (Validate), Requirement #7 (Export), Dossier-ready output, Traceability
+  is the Product'
+spec_refs:
+- spec:6
+- spec:7
+adr_refs: []
+depends_on:
+- '152'
+- '153'
+category_refs:
+- spec:6
+- spec:7
+compromise_refs: []
+input_coverage_refs: []
+architecture_domains: []
+roadmap_tags: []
+legacy_system: ''
+---
+
 # Story 154 — Dossier `doc-web` Semantic HTML Handoff
 
 **Priority**: High

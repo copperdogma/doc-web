@@ -1,3 +1,19 @@
+---
+title: Market Discovery for doc-forge
+status: In Progress
+priority: Unknown
+ideal_refs: []
+spec_refs: []
+adr_refs: []
+depends_on: []
+category_refs: []
+compromise_refs: []
+input_coverage_refs: []
+architecture_domains: []
+roadmap_tags: []
+legacy_system: ''
+---
+
 # Story: Market Discovery for doc-forge
 
 **Status**: In Progress

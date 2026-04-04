@@ -1,3 +1,19 @@
+---
+title: "OCR Split Refinement \u2014 Zero Bad Slices"
+status: Done
+priority: Unknown
+ideal_refs: []
+spec_refs: []
+adr_refs: []
+depends_on: []
+category_refs: []
+compromise_refs: []
+input_coverage_refs: []
+architecture_domains: []
+roadmap_tags: []
+legacy_system: ''
+---
+
 # Story: OCR Split Refinement — Zero Bad Slices
 
 **Status**: COMPLETE ✅ (Per-page gutter detection with vertical continuity + center-biased conservative split)

@@ -53,6 +53,7 @@ ADR_ID_RE = re.compile(r"\bADR-\d{3}\b")
 COMPROMISE_ID_RE = re.compile(r"\b(?:C|B)\d+\b")
 STORY_ID_INLINE_RE = re.compile(r"\b(?:Story\s+|story[- ])(\d{3})\b", re.IGNORECASE)
 STORY_FILE_RE = re.compile(r"story-(\d{3})-")
+CANONICAL_STORY_FILE_RE = re.compile(r"^story-(\d{3})-[a-z0-9-]+\.md$")
 ALLOWED_LEGACY_CONTEXT_RE = re.compile(
     r"legacy|historical|archive|archived|retired|replaced|previous|stub|final hand-authored",
     re.IGNORECASE,
@@ -250,41 +251,52 @@ def parse_story(path: Path) -> dict[str, Any]:
     fields = parse_legacy_fields(body)
     lines = body.splitlines()
     heading = first_non_empty_line(lines)
-    file_match = STORY_FILE_RE.search(path.name)
+    file_match = CANONICAL_STORY_FILE_RE.match(path.name)
     if not file_match:
         raise ValueError(f"Unable to derive story id from {to_rel(path)}")
-    title = str(frontmatter.get("title") or "")
-    if not title and heading:
-        title_match = re.match(r"^#\s+Story(?:\s+\d+)?\s*[—:-]\s+(.+)$", heading[1])
-        title = title_match.group(1).strip() if title_match else heading[1].removeprefix("# ").strip()
     spec_text = " ".join(
         part
         for part in [fields.get("Spec Refs", ""), fields.get("Build Map Refs", ""), fields.get("Decision Refs", "")]
         if part
     )
+    legacy_decision_refs = split_loose_refs(fields.get("Decision Refs") or fields.get("ADR Refs"))
+    frontmatter_adr_refs = unique_sorted(frontmatter_list(frontmatter, "adr_refs"))
+    if has_frontmatter:
+        status = str(frontmatter.get("status") or "Unknown")
+        priority = str(frontmatter.get("priority") or "Unknown")
+        ideal_refs = unique_sorted(frontmatter_list(frontmatter, "ideal_refs"))
+        spec_refs = unique_sorted(frontmatter_list(frontmatter, "spec_refs"))
+        adr_ids = unique_sorted(ADR_ID_RE.findall(" ".join(frontmatter_adr_refs)))
+        depends_on = unique_sorted([re.sub(r"\D", "", value) for value in frontmatter_list(frontmatter, "depends_on")])
+        compromise_refs = unique_sorted(frontmatter_list(frontmatter, "compromise_refs"))
+    else:
+        status = str(fields.get("Status") or "Unknown")
+        priority = str(fields.get("Priority") or "Unknown")
+        ideal_refs = unique_sorted(split_loose_refs(fields.get("Ideal Refs")))
+        spec_refs = unique_sorted(SPEC_REF_RE.findall(spec_text))
+        adr_ids = unique_sorted(
+            ADR_ID_RE.findall(fields.get("Decision Refs", "")) or ADR_ID_RE.findall(fields.get("ADR Refs", ""))
+        )
+        depends_on = unique_sorted(re.findall(r"\b\d{3}\b", fields.get("Depends On", "")))
+        compromise_refs = unique_sorted(COMPROMISE_ID_RE.findall(spec_text))
+    title = str(frontmatter.get("title") or "")
+    if not title and heading:
+        title_match = re.match(r"^#+\s+Story(?:\s+\d+)?\s*[—:-]\s+(.+)$", heading[1])
+        title = title_match.group(1).strip() if title_match else re.sub(r"^#+\s*", "", heading[1]).strip()
     missing = sorted(REQUIRED_STORY_FRONTMATTER_KEYS - set(frontmatter)) if has_frontmatter else []
     return {
         "id": file_match.group(1),
         "title": title or path.stem,
         "path": to_rel(path),
-        "status": str(frontmatter.get("status") or fields.get("Status") or "Unknown"),
-        "priority": str(frontmatter.get("priority") or fields.get("Priority") or "Unknown"),
-        "ideal_refs": unique_sorted(frontmatter_list(frontmatter, "ideal_refs") or split_loose_refs(fields.get("Ideal Refs"))),
-        "spec_refs": unique_sorted(frontmatter_list(frontmatter, "spec_refs") or SPEC_REF_RE.findall(spec_text)),
-        "decision_refs": unique_sorted(
-            frontmatter_list(frontmatter, "adr_refs")
-            or split_loose_refs(fields.get("Decision Refs") or fields.get("ADR Refs"))
-        ),
-        "adr_ids": unique_sorted(
-            ADR_ID_RE.findall(" ".join(frontmatter_list(frontmatter, "adr_refs")) or fields.get("Decision Refs", ""))
-            or ADR_ID_RE.findall(fields.get("ADR Refs", ""))
-        ),
-        "depends_on": unique_sorted(
-            [re.sub(r"\D", "", value) for value in frontmatter_list(frontmatter, "depends_on")]
-            or re.findall(r"\b\d{3}\b", fields.get("Depends On", ""))
-        ),
+        "status": status,
+        "priority": priority,
+        "ideal_refs": ideal_refs,
+        "spec_refs": spec_refs,
+        "decision_refs": unique_sorted(frontmatter_adr_refs + legacy_decision_refs),
+        "adr_ids": adr_ids,
+        "depends_on": depends_on,
         "category_refs": unique_sorted(frontmatter_list(frontmatter, "category_refs")),
-        "compromise_refs": unique_sorted(frontmatter_list(frontmatter, "compromise_refs") or COMPROMISE_ID_RE.findall(spec_text)),
+        "compromise_refs": compromise_refs,
         "input_coverage_refs": unique_sorted(frontmatter_list(frontmatter, "input_coverage_refs")),
         "architecture_domains": unique_sorted(frontmatter_list(frontmatter, "architecture_domains")),
         "roadmap_tags": unique_sorted(frontmatter_list(frontmatter, "roadmap_tags")),
@@ -295,7 +307,7 @@ def parse_story(path: Path) -> dict[str, Any]:
 
 
 def parse_stories() -> list[dict[str, Any]]:
-    return [parse_story(path) for path in sorted(STORIES_DIR.glob("story-*.md"))]
+    return [parse_story(path) for path in sorted(STORIES_DIR.glob("story-*.md")) if CANONICAL_STORY_FILE_RE.match(path.name)]
 
 
 def parse_adr(path: Path) -> dict[str, Any]:
@@ -309,7 +321,16 @@ def parse_adr(path: Path) -> dict[str, Any]:
         raise ValueError(f"Unable to parse ADR heading in {to_rel(path)}")
     text = body
     missing = sorted(REQUIRED_ADR_FRONTMATTER_KEYS - set(frontmatter)) if has_frontmatter else []
-    spec_refs = unique_sorted(frontmatter_list(frontmatter, "spec_refs") or SPEC_REF_RE.findall(text))
+    if has_frontmatter:
+        spec_refs = unique_sorted(frontmatter_list(frontmatter, "spec_refs"))
+        story_refs = unique_sorted([re.sub(r"\D", "", value) for value in frontmatter_list(frontmatter, "story_refs")])
+        compromise_refs = unique_sorted(frontmatter_list(frontmatter, "compromise_refs"))
+        related_adrs = unique_sorted(frontmatter_list(frontmatter, "related_adrs"))
+    else:
+        spec_refs = unique_sorted(SPEC_REF_RE.findall(text))
+        story_refs = unique_sorted(extract_story_ids(text))
+        compromise_refs = unique_sorted(COMPROMISE_ID_RE.findall(text))
+        related_adrs = unique_sorted(ADR_ID_RE.findall(text))
     return {
         "id": title_match.group(1),
         "title": str(frontmatter.get("title") or title_match.group(2).strip()),
@@ -317,11 +338,9 @@ def parse_adr(path: Path) -> dict[str, Any]:
         "status": str(frontmatter.get("status") or ""),
         "ideal_refs": unique_sorted(frontmatter_list(frontmatter, "ideal_refs")),
         "spec_refs": spec_refs,
-        "story_refs": unique_sorted(
-            [re.sub(r"\D", "", value) for value in frontmatter_list(frontmatter, "story_refs")] or extract_story_ids(text)
-        ),
-        "compromise_refs": unique_sorted(frontmatter_list(frontmatter, "compromise_refs") or COMPROMISE_ID_RE.findall(text)),
-        "related_adrs": unique_sorted(frontmatter_list(frontmatter, "related_adrs") or ADR_ID_RE.findall(text)),
+        "story_refs": story_refs,
+        "compromise_refs": compromise_refs,
+        "related_adrs": related_adrs,
         "metadata_source": "frontmatter" if has_frontmatter else "legacy",
         "missing_frontmatter_keys": missing,
     }
@@ -401,7 +420,10 @@ def build_graph() -> dict[str, Any]:
                 [coverage_id for coverage_id in coverage_ids if coverage_id in story["legacy_build_map_refs"]]
             )
         story["category_refs"] = sorted(category_refs)
-        story["adr_ids"] = unique_sorted(story["adr_ids"] + [match for ref in story["decision_refs"] for match in ADR_ID_RE.findall(ref)])
+        if story["metadata_source"] == "legacy":
+            story["adr_ids"] = unique_sorted(
+                story["adr_ids"] + [match for ref in story["decision_refs"] for match in ADR_ID_RE.findall(ref)]
+            )
     story_map = {story["id"]: story for story in stories}
     for adr in adrs:
         category_refs = {category_for_spec_ref(ref) for ref in adr["spec_refs"] if category_for_spec_ref(ref)}
@@ -479,7 +501,6 @@ def validate_graph(
     adr_ids = {adr["id"] for adr in adrs}
     coverage_ids = {entry["id"] for entry in coverage.get("formats", [])}
     legacy_story_ids: list[str] = []
-    uncategorized_story_ids: list[str] = []
     nonstandard_statuses: list[str] = []
     legacy_adr_ids: list[str] = []
     for category_id in state.get("categories", {}):
@@ -495,18 +516,15 @@ def validate_graph(
             nonstandard_statuses.append(f"{story['id']}:{story['status']}")
         if story["metadata_source"] == "legacy":
             legacy_story_ids.append(story["id"])
-        if not story["category_refs"]:
-            uncategorized_story_ids.append(story["id"])
         for spec_ref in story["spec_refs"]:
             if spec_ref.startswith("spec:") and spec_ref not in category_ids and spec_ref not in spec_section_ids:
                 errors.append(f"story {story['id']} references missing spec ref {spec_ref}")
         for dependency in story["depends_on"]:
             if dependency not in story_ids:
-                target = warnings if story["metadata_source"] == "legacy" else errors
-                target.append(f"story {story['id']} depends_on missing story {dependency}")
+                errors.append(f"story {story['id']} depends_on missing story {dependency}")
         for adr_id in story["adr_ids"]:
             if adr_id not in adr_ids:
-                warnings.append(f"story {story['id']} references ADR with no local adr.md: {adr_id}")
+                errors.append(f"story {story['id']} references ADR with no local adr.md: {adr_id}")
         for compromise in story["compromise_refs"]:
             if compromise not in compromise_ids:
                 errors.append(f"story {story['id']} references missing compromise {compromise}")
@@ -564,19 +582,15 @@ def validate_graph(
     if overdue:
         warnings.append(f"architecture audit domains due: {', '.join(sorted(overdue))}")
     if legacy_story_ids:
-        warnings.append(
+        errors.append(
             f"stories still on legacy metadata: {len(legacy_story_ids)} ({', '.join(legacy_story_ids[:8])}{' ...' if len(legacy_story_ids) > 8 else ''})"
-        )
-    if uncategorized_story_ids:
-        warnings.append(
-            f"stories with no derived category refs: {len(uncategorized_story_ids)} ({', '.join(uncategorized_story_ids[:8])}{' ...' if len(uncategorized_story_ids) > 8 else ''})"
         )
     if nonstandard_statuses:
         warnings.append(
             f"stories with non-standard statuses: {len(nonstandard_statuses)} ({', '.join(nonstandard_statuses[:8])}{' ...' if len(nonstandard_statuses) > 8 else ''})"
         )
     if legacy_adr_ids:
-        warnings.append(
+        errors.append(
             f"ADRs still on legacy metadata only: {len(legacy_adr_ids)} ({', '.join(legacy_adr_ids)})"
         )
     return {"errors": errors, "warnings": warnings}
@@ -619,7 +633,7 @@ def render_stories_index(graph: dict[str, Any]) -> str:
         [
             "## Index",
             "",
-            "Grouped by primary `spec:N` category. Stories with no derived category refs remain in a legacy bucket until their metadata is backfilled.",
+            "Grouped by primary `spec:N` category. Stories without category refs remain in an explicit historical bucket when no current category mapping is honest.",
             "",
         ]
     )

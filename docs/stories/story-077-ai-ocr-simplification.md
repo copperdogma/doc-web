@@ -1,3 +1,19 @@
+---
+title: "AI OCR Radical Simplification \u2014 Challenging the Escalation Assumption"
+status: To Do
+priority: High
+ideal_refs: []
+spec_refs: []
+adr_refs: []
+depends_on: []
+category_refs: []
+compromise_refs: []
+input_coverage_refs: []
+architecture_domains: []
+roadmap_tags: []
+legacy_system: ''
+---
+
 # Story: AI OCR Radical Simplification — Challenging the Escalation Assumption
 
 **Status**: To Do  

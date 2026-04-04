@@ -426,7 +426,8 @@
           "184",
           "185",
           "186",
-          "187"
+          "187",
+          "188"
         ],
         "adr_ids": [
           "ADR-002"
@@ -455,7 +456,8 @@
           "178",
           "180",
           "181",
-          "187"
+          "187",
+          "188"
         ],
         "adr_ids": [],
         "eval_ids": [
@@ -587,7 +589,7 @@
       "architecture_domains": [],
       "roadmap_tags": [],
       "legacy_build_map_refs": "",
-      "metadata_source": "legacy",
+      "metadata_source": "frontmatter",
       "missing_frontmatter_keys": []
     },
     {
@@ -607,7 +609,7 @@
       "architecture_domains": [],
       "roadmap_tags": [],
       "legacy_build_map_refs": "",
-      "metadata_source": "legacy",
+      "metadata_source": "frontmatter",
       "missing_frontmatter_keys": []
     },
     {
@@ -627,7 +629,7 @@
       "architecture_domains": [],
       "roadmap_tags": [],
       "legacy_build_map_refs": "",
-      "metadata_source": "legacy",
+      "metadata_source": "frontmatter",
       "missing_frontmatter_keys": []
     },
     {
@@ -647,7 +649,7 @@
       "architecture_domains": [],
       "roadmap_tags": [],
       "legacy_build_map_refs": "",
-      "metadata_source": "legacy",
+      "metadata_source": "frontmatter",
       "missing_frontmatter_keys": []
     },
     {
@@ -667,7 +669,7 @@
       "architecture_domains": [],
       "roadmap_tags": [],
       "legacy_build_map_refs": "",
-      "metadata_source": "legacy",
+      "metadata_source": "frontmatter",
       "missing_frontmatter_keys": []
     },
     {
@@ -687,7 +689,7 @@
       "architecture_domains": [],
       "roadmap_tags": [],
       "legacy_build_map_refs": "",
-      "metadata_source": "legacy",
+      "metadata_source": "frontmatter",
       "missing_frontmatter_keys": []
     },
     {
@@ -707,7 +709,7 @@
       "architecture_domains": [],
       "roadmap_tags": [],
       "legacy_build_map_refs": "",
-      "metadata_source": "legacy",
+      "metadata_source": "frontmatter",
       "missing_frontmatter_keys": []
     },
     {
@@ -727,7 +729,7 @@
       "architecture_domains": [],
       "roadmap_tags": [],
       "legacy_build_map_refs": "",
-      "metadata_source": "legacy",
+      "metadata_source": "frontmatter",
       "missing_frontmatter_keys": []
     },
     {
@@ -747,7 +749,7 @@
       "architecture_domains": [],
       "roadmap_tags": [],
       "legacy_build_map_refs": "",
-      "metadata_source": "legacy",
+      "metadata_source": "frontmatter",
       "missing_frontmatter_keys": []
     },
     {
@@ -767,7 +769,7 @@
       "architecture_domains": [],
       "roadmap_tags": [],
       "legacy_build_map_refs": "",
-      "metadata_source": "legacy",
+      "metadata_source": "frontmatter",
       "missing_frontmatter_keys": []
     },
     {
@@ -787,7 +789,7 @@
       "architecture_domains": [],
       "roadmap_tags": [],
       "legacy_build_map_refs": "",
-      "metadata_source": "legacy",
+      "metadata_source": "frontmatter",
       "missing_frontmatter_keys": []
     },
     {
@@ -807,7 +809,7 @@
       "architecture_domains": [],
       "roadmap_tags": [],
       "legacy_build_map_refs": "",
-      "metadata_source": "legacy",
+      "metadata_source": "frontmatter",
       "missing_frontmatter_keys": []
     },
     {
@@ -827,7 +829,7 @@
       "architecture_domains": [],
       "roadmap_tags": [],
       "legacy_build_map_refs": "",
-      "metadata_source": "legacy",
+      "metadata_source": "frontmatter",
       "missing_frontmatter_keys": []
     },
     {
@@ -847,7 +849,7 @@
       "architecture_domains": [],
       "roadmap_tags": [],
       "legacy_build_map_refs": "",
-      "metadata_source": "legacy",
+      "metadata_source": "frontmatter",
       "missing_frontmatter_keys": []
     },
     {
@@ -867,7 +869,7 @@
       "architecture_domains": [],
       "roadmap_tags": [],
       "legacy_build_map_refs": "",
-      "metadata_source": "legacy",
+      "metadata_source": "frontmatter",
       "missing_frontmatter_keys": []
     },
     {
@@ -887,7 +889,7 @@
       "architecture_domains": [],
       "roadmap_tags": [],
       "legacy_build_map_refs": "",
-      "metadata_source": "legacy",
+      "metadata_source": "frontmatter",
       "missing_frontmatter_keys": []
     },
     {
@@ -907,7 +909,7 @@
       "architecture_domains": [],
       "roadmap_tags": [],
       "legacy_build_map_refs": "",
-      "metadata_source": "legacy",
+      "metadata_source": "frontmatter",
       "missing_frontmatter_keys": []
     },
     {
@@ -927,7 +929,7 @@
       "architecture_domains": [],
       "roadmap_tags": [],
       "legacy_build_map_refs": "",
-      "metadata_source": "legacy",
+      "metadata_source": "frontmatter",
       "missing_frontmatter_keys": []
     },
     {
@@ -947,14 +949,14 @@
       "architecture_domains": [],
       "roadmap_tags": [],
       "legacy_build_map_refs": "",
-      "metadata_source": "legacy",
+      "metadata_source": "frontmatter",
       "missing_frontmatter_keys": []
     },
     {
       "id": "021",
       "title": "Pipeline dashboard UI polish (highlighting & pane layout)",
       "path": "docs/stories/story-021-dashboard-ui-polish.md",
-      "status": "In Progress (partially complete)",
+      "status": "In Progress",
       "priority": "Unknown",
       "ideal_refs": [],
       "spec_refs": [],
@@ -967,7 +969,7 @@
       "architecture_domains": [],
       "roadmap_tags": [],
       "legacy_build_map_refs": "",
-      "metadata_source": "legacy",
+      "metadata_source": "frontmatter",
       "missing_frontmatter_keys": []
     },
     {
@@ -987,7 +989,7 @@
       "architecture_domains": [],
       "roadmap_tags": [],
       "legacy_build_map_refs": "",
-      "metadata_source": "legacy",
+      "metadata_source": "frontmatter",
       "missing_frontmatter_keys": []
     },
     {
@@ -1007,7 +1009,7 @@
       "architecture_domains": [],
       "roadmap_tags": [],
       "legacy_build_map_refs": "",
-      "metadata_source": "legacy",
+      "metadata_source": "frontmatter",
       "missing_frontmatter_keys": []
     },
     {
@@ -1027,7 +1029,7 @@
       "architecture_domains": [],
       "roadmap_tags": [],
       "legacy_build_map_refs": "",
-      "metadata_source": "legacy",
+      "metadata_source": "frontmatter",
       "missing_frontmatter_keys": []
     },
     {
@@ -1047,7 +1049,7 @@
       "architecture_domains": [],
       "roadmap_tags": [],
       "legacy_build_map_refs": "",
-      "metadata_source": "legacy",
+      "metadata_source": "frontmatter",
       "missing_frontmatter_keys": []
     },
     {
@@ -1067,7 +1069,7 @@
       "architecture_domains": [],
       "roadmap_tags": [],
       "legacy_build_map_refs": "",
-      "metadata_source": "legacy",
+      "metadata_source": "frontmatter",
       "missing_frontmatter_keys": []
     },
     {
@@ -1087,7 +1089,7 @@
       "architecture_domains": [],
       "roadmap_tags": [],
       "legacy_build_map_refs": "",
-      "metadata_source": "legacy",
+      "metadata_source": "frontmatter",
       "missing_frontmatter_keys": []
     },
     {
@@ -1107,7 +1109,7 @@
       "architecture_domains": [],
       "roadmap_tags": [],
       "legacy_build_map_refs": "",
-      "metadata_source": "legacy",
+      "metadata_source": "frontmatter",
       "missing_frontmatter_keys": []
     },
     {
@@ -1127,7 +1129,7 @@
       "architecture_domains": [],
       "roadmap_tags": [],
       "legacy_build_map_refs": "",
-      "metadata_source": "legacy",
+      "metadata_source": "frontmatter",
       "missing_frontmatter_keys": []
     },
     {
@@ -1147,14 +1149,14 @@
       "architecture_domains": [],
       "roadmap_tags": [],
       "legacy_build_map_refs": "",
-      "metadata_source": "legacy",
+      "metadata_source": "frontmatter",
       "missing_frontmatter_keys": []
     },
     {
       "id": "031",
       "title": "Fighting Fantasy output refinement",
       "path": "docs/stories/story-031-ff-output-refinement.md",
-      "status": "\u2705 **COMPLETE** - Pipeline redesign implemented and validated",
+      "status": "Done",
       "priority": "Unknown",
       "ideal_refs": [],
       "spec_refs": [],
@@ -1167,14 +1169,14 @@
       "architecture_domains": [],
       "roadmap_tags": [],
       "legacy_build_map_refs": "",
-      "metadata_source": "legacy",
+      "metadata_source": "frontmatter",
       "missing_frontmatter_keys": []
     },
     {
       "id": "032",
       "title": "Unstructured intake & Document IR adoption",
       "path": "docs/stories/story-032-unstructured-intake-and-document-ir-adoption.md",
-      "status": "\u2705 **COMPLETE** \u2014 Unstructured intake and FF pipeline validated end-to-end Created: 2025-11-28 Updated: 2025-11-29 05:47",
+      "status": "Done",
       "priority": "Unknown",
       "ideal_refs": [],
       "spec_refs": [],
@@ -1187,12 +1189,12 @@
       "architecture_domains": [],
       "roadmap_tags": [],
       "legacy_build_map_refs": "",
-      "metadata_source": "legacy",
+      "metadata_source": "frontmatter",
       "missing_frontmatter_keys": []
     },
     {
       "id": "033",
-      "title": "## Story: ARM64-native pipeline environment & performance",
+      "title": "ARM64-native pipeline environment & performance",
       "path": "docs/stories/story-033-arm64-pipeline-conversion.md",
       "status": "Done",
       "priority": "Unknown",
@@ -1207,14 +1209,14 @@
       "architecture_domains": [],
       "roadmap_tags": [],
       "legacy_build_map_refs": "",
-      "metadata_source": "legacy",
+      "metadata_source": "frontmatter",
       "missing_frontmatter_keys": []
     },
     {
       "id": "034",
       "title": "FF Unstructured follow-ups (elements, helpers, graph quality)",
       "path": "docs/stories/story-034-ff-unstructured-followups.md",
-      "status": "Unknown",
+      "status": "Done",
       "priority": "Unknown",
       "ideal_refs": [],
       "spec_refs": [],
@@ -1227,14 +1229,14 @@
       "architecture_domains": [],
       "roadmap_tags": [],
       "legacy_build_map_refs": "",
-      "metadata_source": "legacy",
+      "metadata_source": "frontmatter",
       "missing_frontmatter_keys": []
     },
     {
       "id": "035",
       "title": "Fighting Fantasy Pipeline Optimization",
       "path": "docs/stories/story-035-ff-pipeline-optimization.md",
-      "status": "Done (User-approved completion despite deferred tasks)",
+      "status": "Done",
       "priority": "Unknown",
       "ideal_refs": [],
       "spec_refs": [],
@@ -1247,7 +1249,7 @@
       "architecture_domains": [],
       "roadmap_tags": [],
       "legacy_build_map_refs": "",
-      "metadata_source": "legacy",
+      "metadata_source": "frontmatter",
       "missing_frontmatter_keys": []
     },
     {
@@ -1267,14 +1269,14 @@
       "architecture_domains": [],
       "roadmap_tags": [],
       "legacy_build_map_refs": "",
-      "metadata_source": "legacy",
+      "metadata_source": "frontmatter",
       "missing_frontmatter_keys": []
     },
     {
       "id": "037",
       "title": "Fighting Fantasy OCR Ensemble with BetterOCR",
       "path": "docs/stories/story-037-ocr-ensemble-with-betterocr.md",
-      "status": "Unknown",
+      "status": "Done",
       "priority": "Unknown",
       "ideal_refs": [],
       "spec_refs": [],
@@ -1287,7 +1289,7 @@
       "architecture_domains": [],
       "roadmap_tags": [],
       "legacy_build_map_refs": "",
-      "metadata_source": "legacy",
+      "metadata_source": "frontmatter",
       "missing_frontmatter_keys": []
     },
     {
@@ -1307,14 +1309,14 @@
       "architecture_domains": [],
       "roadmap_tags": [],
       "legacy_build_map_refs": "",
-      "metadata_source": "legacy",
+      "metadata_source": "frontmatter",
       "missing_frontmatter_keys": []
     },
     {
       "id": "050",
       "title": "FF Ending Detection Verification",
       "path": "docs/stories/story-050-ff-ending-detection.md",
-      "status": "\u2705 COMPLETE",
+      "status": "Done",
       "priority": "Unknown",
       "ideal_refs": [],
       "spec_refs": [],
@@ -1327,7 +1329,7 @@
       "architecture_domains": [],
       "roadmap_tags": [],
       "legacy_build_map_refs": "",
-      "metadata_source": "legacy",
+      "metadata_source": "frontmatter",
       "missing_frontmatter_keys": []
     },
     {
@@ -1347,14 +1349,14 @@
       "architecture_domains": [],
       "roadmap_tags": [],
       "legacy_build_map_refs": "",
-      "metadata_source": "legacy",
+      "metadata_source": "frontmatter",
       "missing_frontmatter_keys": []
     },
     {
       "id": "052",
       "title": "Evaluate Apple Vision OCR Integration",
       "path": "docs/stories/story-052-apple-ocr-integration.md",
-      "status": "Open",
+      "status": "Done",
       "priority": "Unknown",
       "ideal_refs": [],
       "spec_refs": [],
@@ -1367,7 +1369,7 @@
       "architecture_domains": [],
       "roadmap_tags": [],
       "legacy_build_map_refs": "",
-      "metadata_source": "legacy",
+      "metadata_source": "frontmatter",
       "missing_frontmatter_keys": []
     },
     {
@@ -1387,7 +1389,7 @@
       "architecture_domains": [],
       "roadmap_tags": [],
       "legacy_build_map_refs": "",
-      "metadata_source": "legacy",
+      "metadata_source": "frontmatter",
       "missing_frontmatter_keys": []
     },
     {
@@ -1407,7 +1409,7 @@
       "architecture_domains": [],
       "roadmap_tags": [],
       "legacy_build_map_refs": "",
-      "metadata_source": "legacy",
+      "metadata_source": "frontmatter",
       "missing_frontmatter_keys": []
     },
     {
@@ -1427,7 +1429,7 @@
       "architecture_domains": [],
       "roadmap_tags": [],
       "legacy_build_map_refs": "",
-      "metadata_source": "legacy",
+      "metadata_source": "frontmatter",
       "missing_frontmatter_keys": []
     },
     {
@@ -1447,7 +1449,7 @@
       "architecture_domains": [],
       "roadmap_tags": [],
       "legacy_build_map_refs": "",
-      "metadata_source": "legacy",
+      "metadata_source": "frontmatter",
       "missing_frontmatter_keys": []
     },
     {
@@ -1467,7 +1469,7 @@
       "architecture_domains": [],
       "roadmap_tags": [],
       "legacy_build_map_refs": "",
-      "metadata_source": "legacy",
+      "metadata_source": "frontmatter",
       "missing_frontmatter_keys": []
     },
     {
@@ -1487,7 +1489,7 @@
       "architecture_domains": [],
       "roadmap_tags": [],
       "legacy_build_map_refs": "",
-      "metadata_source": "legacy",
+      "metadata_source": "frontmatter",
       "missing_frontmatter_keys": []
     },
     {
@@ -1507,7 +1509,7 @@
       "architecture_domains": [],
       "roadmap_tags": [],
       "legacy_build_map_refs": "",
-      "metadata_source": "legacy",
+      "metadata_source": "frontmatter",
       "missing_frontmatter_keys": []
     },
     {
@@ -1527,7 +1529,7 @@
       "architecture_domains": [],
       "roadmap_tags": [],
       "legacy_build_map_refs": "",
-      "metadata_source": "legacy",
+      "metadata_source": "frontmatter",
       "missing_frontmatter_keys": []
     },
     {
@@ -1547,27 +1549,7 @@
       "architecture_domains": [],
       "roadmap_tags": [],
       "legacy_build_map_refs": "",
-      "metadata_source": "legacy",
-      "missing_frontmatter_keys": []
-    },
-    {
-      "id": "062",
-      "title": "OCR Content Type Detection Research Notes",
-      "path": "docs/stories/story-062-ocr-content-type-detection.research.md",
-      "status": "Unknown",
-      "priority": "Unknown",
-      "ideal_refs": [],
-      "spec_refs": [],
-      "decision_refs": [],
-      "adr_ids": [],
-      "depends_on": [],
-      "category_refs": [],
-      "compromise_refs": [],
-      "input_coverage_refs": [],
-      "architecture_domains": [],
-      "roadmap_tags": [],
-      "legacy_build_map_refs": "",
-      "metadata_source": "legacy",
+      "metadata_source": "frontmatter",
       "missing_frontmatter_keys": []
     },
     {
@@ -1581,7 +1563,6 @@
       "decision_refs": [],
       "adr_ids": [],
       "depends_on": [
-        "055",
         "065"
       ],
       "category_refs": [],
@@ -1590,7 +1571,7 @@
       "architecture_domains": [],
       "roadmap_tags": [],
       "legacy_build_map_refs": "",
-      "metadata_source": "legacy",
+      "metadata_source": "frontmatter",
       "missing_frontmatter_keys": []
     },
     {
@@ -1610,14 +1591,14 @@
       "architecture_domains": [],
       "roadmap_tags": [],
       "legacy_build_map_refs": "",
-      "metadata_source": "legacy",
+      "metadata_source": "frontmatter",
       "missing_frontmatter_keys": []
     },
     {
       "id": "065",
       "title": "Stabilize EasyOCR as a Third OCR Engine",
       "path": "docs/stories/story-065-easyocr-reliability.md",
-      "status": "Done (2025-12-12)",
+      "status": "Done",
       "priority": "Unknown",
       "ideal_refs": [],
       "spec_refs": [],
@@ -1630,7 +1611,7 @@
       "architecture_domains": [],
       "roadmap_tags": [],
       "legacy_build_map_refs": "",
-      "metadata_source": "legacy",
+      "metadata_source": "frontmatter",
       "missing_frontmatter_keys": []
     },
     {
@@ -1652,7 +1633,7 @@
       "architecture_domains": [],
       "roadmap_tags": [],
       "legacy_build_map_refs": "",
-      "metadata_source": "legacy",
+      "metadata_source": "frontmatter",
       "missing_frontmatter_keys": []
     },
     {
@@ -1672,14 +1653,14 @@
       "architecture_domains": [],
       "roadmap_tags": [],
       "legacy_build_map_refs": "",
-      "metadata_source": "legacy",
+      "metadata_source": "frontmatter",
       "missing_frontmatter_keys": []
     },
     {
       "id": "068",
       "title": "Fighting Fantasy Boundary Detection Improvements",
       "path": "docs/stories/story-068-ff-boundary-detection.md",
-      "status": "\u2705 COMPLETE - 100% Coverage Achieved",
+      "status": "Done",
       "priority": "Unknown",
       "ideal_refs": [],
       "spec_refs": [],
@@ -1692,7 +1673,7 @@
       "architecture_domains": [],
       "roadmap_tags": [],
       "legacy_build_map_refs": "",
-      "metadata_source": "legacy",
+      "metadata_source": "frontmatter",
       "missing_frontmatter_keys": []
     },
     {
@@ -1712,14 +1693,14 @@
       "architecture_domains": [],
       "roadmap_tags": [],
       "legacy_build_map_refs": "",
-      "metadata_source": "legacy",
+      "metadata_source": "frontmatter",
       "missing_frontmatter_keys": []
     },
     {
       "id": "070",
       "title": "OCR Split Refinement \u2014 Zero Bad Slices",
       "path": "docs/stories/story-070-ocr-split-refinement.md",
-      "status": "COMPLETE \u2705 (Per-page gutter detection with vertical continuity + center-biased conservative split)",
+      "status": "Done",
       "priority": "Unknown",
       "ideal_refs": [],
       "spec_refs": [],
@@ -1732,7 +1713,7 @@
       "architecture_domains": [],
       "roadmap_tags": [],
       "legacy_build_map_refs": "",
-      "metadata_source": "legacy",
+      "metadata_source": "frontmatter",
       "missing_frontmatter_keys": []
     },
     {
@@ -1752,7 +1733,7 @@
       "architecture_domains": [],
       "roadmap_tags": [],
       "legacy_build_map_refs": "",
-      "metadata_source": "legacy",
+      "metadata_source": "frontmatter",
       "missing_frontmatter_keys": []
     },
     {
@@ -1772,7 +1753,7 @@
       "architecture_domains": [],
       "roadmap_tags": [],
       "legacy_build_map_refs": "",
-      "metadata_source": "legacy",
+      "metadata_source": "frontmatter",
       "missing_frontmatter_keys": []
     },
     {
@@ -1792,7 +1773,7 @@
       "architecture_domains": [],
       "roadmap_tags": [],
       "legacy_build_map_refs": "",
-      "metadata_source": "legacy",
+      "metadata_source": "frontmatter",
       "missing_frontmatter_keys": []
     },
     {
@@ -1812,7 +1793,7 @@
       "architecture_domains": [],
       "roadmap_tags": [],
       "legacy_build_map_refs": "",
-      "metadata_source": "legacy",
+      "metadata_source": "frontmatter",
       "missing_frontmatter_keys": []
     },
     {
@@ -1832,7 +1813,7 @@
       "architecture_domains": [],
       "roadmap_tags": [],
       "legacy_build_map_refs": "",
-      "metadata_source": "legacy",
+      "metadata_source": "frontmatter",
       "missing_frontmatter_keys": []
     },
     {
@@ -1852,7 +1833,7 @@
       "architecture_domains": [],
       "roadmap_tags": [],
       "legacy_build_map_refs": "",
-      "metadata_source": "legacy",
+      "metadata_source": "frontmatter",
       "missing_frontmatter_keys": []
     },
     {
@@ -1872,7 +1853,7 @@
       "architecture_domains": [],
       "roadmap_tags": [],
       "legacy_build_map_refs": "",
-      "metadata_source": "legacy",
+      "metadata_source": "frontmatter",
       "missing_frontmatter_keys": []
     },
     {
@@ -1892,7 +1873,7 @@
       "architecture_domains": [],
       "roadmap_tags": [],
       "legacy_build_map_refs": "",
-      "metadata_source": "legacy",
+      "metadata_source": "frontmatter",
       "missing_frontmatter_keys": []
     },
     {
@@ -1912,7 +1893,7 @@
       "architecture_domains": [],
       "roadmap_tags": [],
       "legacy_build_map_refs": "",
-      "metadata_source": "legacy",
+      "metadata_source": "frontmatter",
       "missing_frontmatter_keys": []
     },
     {
@@ -1932,7 +1913,7 @@
       "architecture_domains": [],
       "roadmap_tags": [],
       "legacy_build_map_refs": "",
-      "metadata_source": "legacy",
+      "metadata_source": "frontmatter",
       "missing_frontmatter_keys": []
     },
     {
@@ -1952,7 +1933,7 @@
       "architecture_domains": [],
       "roadmap_tags": [],
       "legacy_build_map_refs": "",
-      "metadata_source": "legacy",
+      "metadata_source": "frontmatter",
       "missing_frontmatter_keys": []
     },
     {
@@ -1972,7 +1953,7 @@
       "architecture_domains": [],
       "roadmap_tags": [],
       "legacy_build_map_refs": "",
-      "metadata_source": "legacy",
+      "metadata_source": "frontmatter",
       "missing_frontmatter_keys": []
     },
     {
@@ -1992,87 +1973,7 @@
       "architecture_domains": [],
       "roadmap_tags": [],
       "legacy_build_map_refs": "",
-      "metadata_source": "legacy",
-      "missing_frontmatter_keys": []
-    },
-    {
-      "id": "084",
-      "title": "Fast PDF Extraction - Deployment Guide",
-      "path": "docs/stories/story-084-DEPLOYMENT.md",
-      "status": "Unknown",
-      "priority": "Unknown",
-      "ideal_refs": [],
-      "spec_refs": [],
-      "decision_refs": [],
-      "adr_ids": [],
-      "depends_on": [],
-      "category_refs": [],
-      "compromise_refs": [],
-      "input_coverage_refs": [],
-      "architecture_domains": [],
-      "roadmap_tags": [],
-      "legacy_build_map_refs": "",
-      "metadata_source": "legacy",
-      "missing_frontmatter_keys": []
-    },
-    {
-      "id": "084",
-      "title": "Fast PDF Image Extraction - Summary",
-      "path": "docs/stories/story-084-SUMMARY.md",
-      "status": "Unknown",
-      "priority": "Unknown",
-      "ideal_refs": [],
-      "spec_refs": [],
-      "decision_refs": [],
-      "adr_ids": [],
-      "depends_on": [],
-      "category_refs": [],
-      "compromise_refs": [],
-      "input_coverage_refs": [],
-      "architecture_domains": [],
-      "roadmap_tags": [],
-      "legacy_build_map_refs": "",
-      "metadata_source": "legacy",
-      "missing_frontmatter_keys": []
-    },
-    {
-      "id": "084",
-      "title": "OCR Quality Validation Plan",
-      "path": "docs/stories/story-084-VALIDATION-PLAN.md",
-      "status": "Unknown",
-      "priority": "Unknown",
-      "ideal_refs": [],
-      "spec_refs": [],
-      "decision_refs": [],
-      "adr_ids": [],
-      "depends_on": [],
-      "category_refs": [],
-      "compromise_refs": [],
-      "input_coverage_refs": [],
-      "architecture_domains": [],
-      "roadmap_tags": [],
-      "legacy_build_map_refs": "",
-      "metadata_source": "legacy",
-      "missing_frontmatter_keys": []
-    },
-    {
-      "id": "084",
-      "title": "Phase 2 Validation Results",
-      "path": "docs/stories/story-084-VALIDATION-RESULTS.md",
-      "status": "Unknown",
-      "priority": "Unknown",
-      "ideal_refs": [],
-      "spec_refs": [],
-      "decision_refs": [],
-      "adr_ids": [],
-      "depends_on": [],
-      "category_refs": [],
-      "compromise_refs": [],
-      "input_coverage_refs": [],
-      "architecture_domains": [],
-      "roadmap_tags": [],
-      "legacy_build_map_refs": "",
-      "metadata_source": "legacy",
+      "metadata_source": "frontmatter",
       "missing_frontmatter_keys": []
     },
     {
@@ -2092,7 +1993,7 @@
       "architecture_domains": [],
       "roadmap_tags": [],
       "legacy_build_map_refs": "",
-      "metadata_source": "legacy",
+      "metadata_source": "frontmatter",
       "missing_frontmatter_keys": []
     },
     {
@@ -2112,7 +2013,7 @@
       "architecture_domains": [],
       "roadmap_tags": [],
       "legacy_build_map_refs": "",
-      "metadata_source": "legacy",
+      "metadata_source": "frontmatter",
       "missing_frontmatter_keys": []
     },
     {
@@ -2132,7 +2033,7 @@
       "architecture_domains": [],
       "roadmap_tags": [],
       "legacy_build_map_refs": "",
-      "metadata_source": "legacy",
+      "metadata_source": "frontmatter",
       "missing_frontmatter_keys": []
     },
     {
@@ -2152,7 +2053,7 @@
       "architecture_domains": [],
       "roadmap_tags": [],
       "legacy_build_map_refs": "",
-      "metadata_source": "legacy",
+      "metadata_source": "frontmatter",
       "missing_frontmatter_keys": []
     },
     {
@@ -2172,14 +2073,14 @@
       "architecture_domains": [],
       "roadmap_tags": [],
       "legacy_build_map_refs": "",
-      "metadata_source": "legacy",
+      "metadata_source": "frontmatter",
       "missing_frontmatter_keys": []
     },
     {
       "id": "089",
       "title": "Pristine Book Parity (Missing Sections + Robustness)",
       "path": "docs/stories/story-089-pristine-book-parity.md",
-      "status": "\u2705 Done",
+      "status": "Done",
       "priority": "High",
       "ideal_refs": [],
       "spec_refs": [],
@@ -2192,7 +2093,7 @@
       "architecture_domains": [],
       "roadmap_tags": [],
       "legacy_build_map_refs": "",
-      "metadata_source": "legacy",
+      "metadata_source": "frontmatter",
       "missing_frontmatter_keys": []
     },
     {
@@ -2212,7 +2113,7 @@
       "architecture_domains": [],
       "roadmap_tags": [],
       "legacy_build_map_refs": "",
-      "metadata_source": "legacy",
+      "metadata_source": "frontmatter",
       "missing_frontmatter_keys": []
     },
     {
@@ -2232,7 +2133,7 @@
       "architecture_domains": [],
       "roadmap_tags": [],
       "legacy_build_map_refs": "",
-      "metadata_source": "legacy",
+      "metadata_source": "frontmatter",
       "missing_frontmatter_keys": []
     },
     {
@@ -2252,7 +2153,7 @@
       "architecture_domains": [],
       "roadmap_tags": [],
       "legacy_build_map_refs": "",
-      "metadata_source": "legacy",
+      "metadata_source": "frontmatter",
       "missing_frontmatter_keys": []
     },
     {
@@ -2272,7 +2173,7 @@
       "architecture_domains": [],
       "roadmap_tags": [],
       "legacy_build_map_refs": "",
-      "metadata_source": "legacy",
+      "metadata_source": "frontmatter",
       "missing_frontmatter_keys": []
     },
     {
@@ -2292,7 +2193,7 @@
       "architecture_domains": [],
       "roadmap_tags": [],
       "legacy_build_map_refs": "",
-      "metadata_source": "legacy",
+      "metadata_source": "frontmatter",
       "missing_frontmatter_keys": []
     },
     {
@@ -2312,7 +2213,7 @@
       "architecture_domains": [],
       "roadmap_tags": [],
       "legacy_build_map_refs": "",
-      "metadata_source": "legacy",
+      "metadata_source": "frontmatter",
       "missing_frontmatter_keys": []
     },
     {
@@ -2332,7 +2233,7 @@
       "architecture_domains": [],
       "roadmap_tags": [],
       "legacy_build_map_refs": "",
-      "metadata_source": "legacy",
+      "metadata_source": "frontmatter",
       "missing_frontmatter_keys": []
     },
     {
@@ -2352,7 +2253,7 @@
       "architecture_domains": [],
       "roadmap_tags": [],
       "legacy_build_map_refs": "",
-      "metadata_source": "legacy",
+      "metadata_source": "frontmatter",
       "missing_frontmatter_keys": []
     },
     {
@@ -2372,7 +2273,7 @@
       "architecture_domains": [],
       "roadmap_tags": [],
       "legacy_build_map_refs": "",
-      "metadata_source": "legacy",
+      "metadata_source": "frontmatter",
       "missing_frontmatter_keys": []
     },
     {
@@ -2392,7 +2293,7 @@
       "architecture_domains": [],
       "roadmap_tags": [],
       "legacy_build_map_refs": "",
-      "metadata_source": "legacy",
+      "metadata_source": "frontmatter",
       "missing_frontmatter_keys": []
     },
     {
@@ -2412,7 +2313,7 @@
       "architecture_domains": [],
       "roadmap_tags": [],
       "legacy_build_map_refs": "",
-      "metadata_source": "legacy",
+      "metadata_source": "frontmatter",
       "missing_frontmatter_keys": []
     },
     {
@@ -2432,7 +2333,7 @@
       "architecture_domains": [],
       "roadmap_tags": [],
       "legacy_build_map_refs": "",
-      "metadata_source": "legacy",
+      "metadata_source": "frontmatter",
       "missing_frontmatter_keys": []
     },
     {
@@ -2452,7 +2353,7 @@
       "architecture_domains": [],
       "roadmap_tags": [],
       "legacy_build_map_refs": "",
-      "metadata_source": "legacy",
+      "metadata_source": "frontmatter",
       "missing_frontmatter_keys": []
     },
     {
@@ -2472,7 +2373,7 @@
       "architecture_domains": [],
       "roadmap_tags": [],
       "legacy_build_map_refs": "",
-      "metadata_source": "legacy",
+      "metadata_source": "frontmatter",
       "missing_frontmatter_keys": []
     },
     {
@@ -2492,7 +2393,7 @@
       "architecture_domains": [],
       "roadmap_tags": [],
       "legacy_build_map_refs": "",
-      "metadata_source": "legacy",
+      "metadata_source": "frontmatter",
       "missing_frontmatter_keys": []
     },
     {
@@ -2512,7 +2413,7 @@
       "architecture_domains": [],
       "roadmap_tags": [],
       "legacy_build_map_refs": "",
-      "metadata_source": "legacy",
+      "metadata_source": "frontmatter",
       "missing_frontmatter_keys": []
     },
     {
@@ -2532,7 +2433,7 @@
       "architecture_domains": [],
       "roadmap_tags": [],
       "legacy_build_map_refs": "",
-      "metadata_source": "legacy",
+      "metadata_source": "frontmatter",
       "missing_frontmatter_keys": []
     },
     {
@@ -2552,7 +2453,7 @@
       "architecture_domains": [],
       "roadmap_tags": [],
       "legacy_build_map_refs": "",
-      "metadata_source": "legacy",
+      "metadata_source": "frontmatter",
       "missing_frontmatter_keys": []
     },
     {
@@ -2572,7 +2473,7 @@
       "architecture_domains": [],
       "roadmap_tags": [],
       "legacy_build_map_refs": "",
-      "metadata_source": "legacy",
+      "metadata_source": "frontmatter",
       "missing_frontmatter_keys": []
     },
     {
@@ -2592,7 +2493,7 @@
       "architecture_domains": [],
       "roadmap_tags": [],
       "legacy_build_map_refs": "",
-      "metadata_source": "legacy",
+      "metadata_source": "frontmatter",
       "missing_frontmatter_keys": []
     },
     {
@@ -2612,7 +2513,7 @@
       "architecture_domains": [],
       "roadmap_tags": [],
       "legacy_build_map_refs": "",
-      "metadata_source": "legacy",
+      "metadata_source": "frontmatter",
       "missing_frontmatter_keys": []
     },
     {
@@ -2632,7 +2533,7 @@
       "architecture_domains": [],
       "roadmap_tags": [],
       "legacy_build_map_refs": "",
-      "metadata_source": "legacy",
+      "metadata_source": "frontmatter",
       "missing_frontmatter_keys": []
     },
     {
@@ -2652,7 +2553,7 @@
       "architecture_domains": [],
       "roadmap_tags": [],
       "legacy_build_map_refs": "",
-      "metadata_source": "legacy",
+      "metadata_source": "frontmatter",
       "missing_frontmatter_keys": []
     },
     {
@@ -2672,14 +2573,14 @@
       "architecture_domains": [],
       "roadmap_tags": [],
       "legacy_build_map_refs": "",
-      "metadata_source": "legacy",
+      "metadata_source": "frontmatter",
       "missing_frontmatter_keys": []
     },
     {
       "id": "114",
       "title": "Decouple Execution Context from Recipes",
       "path": "docs/stories/story-114-decouple-recipes.md",
-      "status": "Unknown",
+      "status": "Done",
       "priority": "Unknown",
       "ideal_refs": [],
       "spec_refs": [],
@@ -2692,14 +2593,14 @@
       "architecture_domains": [],
       "roadmap_tags": [],
       "legacy_build_map_refs": "",
-      "metadata_source": "legacy",
+      "metadata_source": "frontmatter",
       "missing_frontmatter_keys": []
     },
     {
       "id": "115",
       "title": "Configuration Cleanup and Standardization",
       "path": "docs/stories/story-115-config-cleanup.md",
-      "status": "Unknown",
+      "status": "Done",
       "priority": "Unknown",
       "ideal_refs": [],
       "spec_refs": [],
@@ -2712,7 +2613,7 @@
       "architecture_domains": [],
       "roadmap_tags": [],
       "legacy_build_map_refs": "",
-      "metadata_source": "legacy",
+      "metadata_source": "frontmatter",
       "missing_frontmatter_keys": []
     },
     {
@@ -2732,7 +2633,7 @@
       "architecture_domains": [],
       "roadmap_tags": [],
       "legacy_build_map_refs": "",
-      "metadata_source": "legacy",
+      "metadata_source": "frontmatter",
       "missing_frontmatter_keys": []
     },
     {
@@ -2752,7 +2653,7 @@
       "architecture_domains": [],
       "roadmap_tags": [],
       "legacy_build_map_refs": "",
-      "metadata_source": "legacy",
+      "metadata_source": "frontmatter",
       "missing_frontmatter_keys": []
     },
     {
@@ -2772,7 +2673,7 @@
       "architecture_domains": [],
       "roadmap_tags": [],
       "legacy_build_map_refs": "",
-      "metadata_source": "legacy",
+      "metadata_source": "frontmatter",
       "missing_frontmatter_keys": []
     },
     {
@@ -2792,7 +2693,7 @@
       "architecture_domains": [],
       "roadmap_tags": [],
       "legacy_build_map_refs": "",
-      "metadata_source": "legacy",
+      "metadata_source": "frontmatter",
       "missing_frontmatter_keys": []
     },
     {
@@ -2812,7 +2713,7 @@
       "architecture_domains": [],
       "roadmap_tags": [],
       "legacy_build_map_refs": "",
-      "metadata_source": "legacy",
+      "metadata_source": "frontmatter",
       "missing_frontmatter_keys": []
     },
     {
@@ -2832,7 +2733,7 @@
       "architecture_domains": [],
       "roadmap_tags": [],
       "legacy_build_map_refs": "",
-      "metadata_source": "legacy",
+      "metadata_source": "frontmatter",
       "missing_frontmatter_keys": []
     },
     {
@@ -2852,14 +2753,14 @@
       "architecture_domains": [],
       "roadmap_tags": [],
       "legacy_build_map_refs": "",
-      "metadata_source": "legacy",
+      "metadata_source": "frontmatter",
       "missing_frontmatter_keys": []
     },
     {
       "id": "123",
       "title": "Patch File Support for Manual Corrections",
       "path": "docs/stories/story-123-patch-file-support.md",
-      "status": "Unknown",
+      "status": "Done",
       "priority": "Unknown",
       "ideal_refs": [],
       "spec_refs": [],
@@ -2872,7 +2773,7 @@
       "architecture_domains": [],
       "roadmap_tags": [],
       "legacy_build_map_refs": "",
-      "metadata_source": "legacy",
+      "metadata_source": "frontmatter",
       "missing_frontmatter_keys": []
     },
     {
@@ -2892,7 +2793,7 @@
       "architecture_domains": [],
       "roadmap_tags": [],
       "legacy_build_map_refs": "",
-      "metadata_source": "legacy",
+      "metadata_source": "frontmatter",
       "missing_frontmatter_keys": []
     },
     {
@@ -2914,7 +2815,7 @@
       "architecture_domains": [],
       "roadmap_tags": [],
       "legacy_build_map_refs": "",
-      "metadata_source": "legacy",
+      "metadata_source": "frontmatter",
       "missing_frontmatter_keys": []
     },
     {
@@ -2937,7 +2838,7 @@
       "architecture_domains": [],
       "roadmap_tags": [],
       "legacy_build_map_refs": "",
-      "metadata_source": "legacy",
+      "metadata_source": "frontmatter",
       "missing_frontmatter_keys": []
     },
     {
@@ -2957,14 +2858,14 @@
       "architecture_domains": [],
       "roadmap_tags": [],
       "legacy_build_map_refs": "",
-      "metadata_source": "legacy",
+      "metadata_source": "frontmatter",
       "missing_frontmatter_keys": []
     },
     {
       "id": "128",
       "title": "Onward Table Fidelity Verification",
       "path": "docs/stories/story-128-onward-table-fidelity-verification.md",
-      "status": "Done (Golden references, promptfoo eval, and verification checklist complete. Pipeline improvement work continues in Story 131.)",
+      "status": "Done",
       "priority": "Unknown",
       "ideal_refs": [],
       "spec_refs": [],
@@ -2979,7 +2880,7 @@
       "architecture_domains": [],
       "roadmap_tags": [],
       "legacy_build_map_refs": "",
-      "metadata_source": "legacy",
+      "metadata_source": "frontmatter",
       "missing_frontmatter_keys": []
     },
     {
@@ -3001,7 +2902,7 @@
       "architecture_domains": [],
       "roadmap_tags": [],
       "legacy_build_map_refs": "",
-      "metadata_source": "legacy",
+      "metadata_source": "frontmatter",
       "missing_frontmatter_keys": []
     },
     {
@@ -3023,7 +2924,7 @@
       "architecture_domains": [],
       "roadmap_tags": [],
       "legacy_build_map_refs": "",
-      "metadata_source": "legacy",
+      "metadata_source": "frontmatter",
       "missing_frontmatter_keys": []
     },
     {
@@ -3053,7 +2954,7 @@
       "architecture_domains": [],
       "roadmap_tags": [],
       "legacy_build_map_refs": "",
-      "metadata_source": "legacy",
+      "metadata_source": "frontmatter",
       "missing_frontmatter_keys": []
     },
     {
@@ -3079,7 +2980,7 @@
       "architecture_domains": [],
       "roadmap_tags": [],
       "legacy_build_map_refs": "",
-      "metadata_source": "legacy",
+      "metadata_source": "frontmatter",
       "missing_frontmatter_keys": []
     },
     {
@@ -3104,7 +3005,7 @@
       "architecture_domains": [],
       "roadmap_tags": [],
       "legacy_build_map_refs": "",
-      "metadata_source": "legacy",
+      "metadata_source": "frontmatter",
       "missing_frontmatter_keys": []
     },
     {
@@ -3134,7 +3035,7 @@
       "architecture_domains": [],
       "roadmap_tags": [],
       "legacy_build_map_refs": "",
-      "metadata_source": "legacy",
+      "metadata_source": "frontmatter",
       "missing_frontmatter_keys": []
     },
     {
@@ -3170,7 +3071,7 @@
       "architecture_domains": [],
       "roadmap_tags": [],
       "legacy_build_map_refs": "",
-      "metadata_source": "legacy",
+      "metadata_source": "frontmatter",
       "missing_frontmatter_keys": []
     },
     {
@@ -3193,7 +3094,7 @@
       "architecture_domains": [],
       "roadmap_tags": [],
       "legacy_build_map_refs": "",
-      "metadata_source": "legacy",
+      "metadata_source": "frontmatter",
       "missing_frontmatter_keys": []
     },
     {
@@ -3224,7 +3125,7 @@
       "architecture_domains": [],
       "roadmap_tags": [],
       "legacy_build_map_refs": "",
-      "metadata_source": "legacy",
+      "metadata_source": "frontmatter",
       "missing_frontmatter_keys": []
     },
     {
@@ -3258,7 +3159,7 @@
       "architecture_domains": [],
       "roadmap_tags": [],
       "legacy_build_map_refs": "",
-      "metadata_source": "legacy",
+      "metadata_source": "frontmatter",
       "missing_frontmatter_keys": []
     },
     {
@@ -3289,7 +3190,7 @@
       "architecture_domains": [],
       "roadmap_tags": [],
       "legacy_build_map_refs": "",
-      "metadata_source": "legacy",
+      "metadata_source": "frontmatter",
       "missing_frontmatter_keys": []
     },
     {
@@ -3328,7 +3229,7 @@
       "architecture_domains": [],
       "roadmap_tags": [],
       "legacy_build_map_refs": "",
-      "metadata_source": "legacy",
+      "metadata_source": "frontmatter",
       "missing_frontmatter_keys": []
     },
     {
@@ -3365,7 +3266,7 @@
       "architecture_domains": [],
       "roadmap_tags": [],
       "legacy_build_map_refs": "",
-      "metadata_source": "legacy",
+      "metadata_source": "frontmatter",
       "missing_frontmatter_keys": []
     },
     {
@@ -3403,7 +3304,7 @@
       "architecture_domains": [],
       "roadmap_tags": [],
       "legacy_build_map_refs": "",
-      "metadata_source": "legacy",
+      "metadata_source": "frontmatter",
       "missing_frontmatter_keys": []
     },
     {
@@ -3440,7 +3341,7 @@
       "architecture_domains": [],
       "roadmap_tags": [],
       "legacy_build_map_refs": "",
-      "metadata_source": "legacy",
+      "metadata_source": "frontmatter",
       "missing_frontmatter_keys": []
     },
     {
@@ -3477,7 +3378,7 @@
       "architecture_domains": [],
       "roadmap_tags": [],
       "legacy_build_map_refs": "",
-      "metadata_source": "legacy",
+      "metadata_source": "frontmatter",
       "missing_frontmatter_keys": []
     },
     {
@@ -3496,9 +3397,7 @@
       "decision_refs": [
         "Storybook ADR-019 migration guide (sibling `storybook` repo), `docs/scout/scout-004-dossier-triage-skills.md`, `docs/scout/scout-006-storybook-adr-skills.md`, `docs/scout/scout-007-storybook-adr-followups.md`, `docs/runbooks/adr-creation.md`, `docs/runbooks/deep-research.md`"
       ],
-      "adr_ids": [
-        "ADR-019"
-      ],
+      "adr_ids": [],
       "depends_on": [],
       "category_refs": [
         "spec:1",
@@ -3511,10 +3410,12 @@
         "C7"
       ],
       "input_coverage_refs": [],
-      "architecture_domains": [],
+      "architecture_domains": [
+        "methodology_tooling"
+      ],
       "roadmap_tags": [],
       "legacy_build_map_refs": "",
-      "metadata_source": "legacy",
+      "metadata_source": "frontmatter",
       "missing_frontmatter_keys": []
     },
     {
@@ -3551,7 +3452,7 @@
       "architecture_domains": [],
       "roadmap_tags": [],
       "legacy_build_map_refs": "",
-      "metadata_source": "legacy",
+      "metadata_source": "frontmatter",
       "missing_frontmatter_keys": []
     },
     {
@@ -3590,7 +3491,7 @@
       "architecture_domains": [],
       "roadmap_tags": [],
       "legacy_build_map_refs": "",
-      "metadata_source": "legacy",
+      "metadata_source": "frontmatter",
       "missing_frontmatter_keys": []
     },
     {
@@ -3607,12 +3508,11 @@
         "spec:9"
       ],
       "decision_refs": [
+        "ADR-001",
         "ADR-001 (consistency strategy \u2014 will gain spec:N.N cross-ref), Storybook ADR-021 migration guide (`/Users/cam/Documents/Projects/Storybook/storybook/docs/decisions/adr-021-execution-ideal-build-constraints/migration.md`), Story 145 (ADR-019 convergence \u2014 established current build-map structure)"
       ],
       "adr_ids": [
-        "ADR-001",
-        "ADR-019",
-        "ADR-021"
+        "ADR-001"
       ],
       "depends_on": [
         "145"
@@ -3631,10 +3531,12 @@
         "C7"
       ],
       "input_coverage_refs": [],
-      "architecture_domains": [],
+      "architecture_domains": [
+        "methodology_tooling"
+      ],
       "roadmap_tags": [],
       "legacy_build_map_refs": "",
-      "metadata_source": "legacy",
+      "metadata_source": "frontmatter",
       "missing_frontmatter_keys": []
     },
     {
@@ -3673,7 +3575,7 @@
       "architecture_domains": [],
       "roadmap_tags": [],
       "legacy_build_map_refs": "",
-      "metadata_source": "legacy",
+      "metadata_source": "frontmatter",
       "missing_frontmatter_keys": []
     },
     {
@@ -3713,7 +3615,7 @@
       "architecture_domains": [],
       "roadmap_tags": [],
       "legacy_build_map_refs": "",
-      "metadata_source": "legacy",
+      "metadata_source": "frontmatter",
       "missing_frontmatter_keys": []
     },
     {
@@ -3747,7 +3649,7 @@
       "architecture_domains": [],
       "roadmap_tags": [],
       "legacy_build_map_refs": "",
-      "metadata_source": "legacy",
+      "metadata_source": "frontmatter",
       "missing_frontmatter_keys": []
     },
     {
@@ -3779,7 +3681,7 @@
       "architecture_domains": [],
       "roadmap_tags": [],
       "legacy_build_map_refs": "",
-      "metadata_source": "legacy",
+      "metadata_source": "frontmatter",
       "missing_frontmatter_keys": []
     },
     {
@@ -3811,7 +3713,7 @@
       "architecture_domains": [],
       "roadmap_tags": [],
       "legacy_build_map_refs": "",
-      "metadata_source": "legacy",
+      "metadata_source": "frontmatter",
       "missing_frontmatter_keys": []
     },
     {
@@ -3844,7 +3746,7 @@
       "architecture_domains": [],
       "roadmap_tags": [],
       "legacy_build_map_refs": "",
-      "metadata_source": "legacy",
+      "metadata_source": "frontmatter",
       "missing_frontmatter_keys": []
     },
     {
@@ -3880,7 +3782,7 @@
       "architecture_domains": [],
       "roadmap_tags": [],
       "legacy_build_map_refs": "",
-      "metadata_source": "legacy",
+      "metadata_source": "frontmatter",
       "missing_frontmatter_keys": []
     },
     {
@@ -3916,7 +3818,7 @@
       "architecture_domains": [],
       "roadmap_tags": [],
       "legacy_build_map_refs": "",
-      "metadata_source": "legacy",
+      "metadata_source": "frontmatter",
       "missing_frontmatter_keys": []
     },
     {
@@ -3965,7 +3867,7 @@
       "architecture_domains": [],
       "roadmap_tags": [],
       "legacy_build_map_refs": "Category 1 Intake & Format Routing (`partial`, `climb`); Category 2 OCR & Text Extraction (`exists`, C1 `climb`, C6 `hold`); Input Coverage rows `scanned-pdf-prose` (`untested`), `scanned-pdf-tables` (`passing`), `image-directory-scans` (`passing`), `born-digital-pdf` (`has-fixture`)",
-      "metadata_source": "legacy",
+      "metadata_source": "frontmatter",
       "missing_frontmatter_keys": []
     },
     {
@@ -4020,7 +3922,7 @@
       "architecture_domains": [],
       "roadmap_tags": [],
       "legacy_build_map_refs": "spec:1 Intake & Routing \u2014 substrate partial, `C2` climb; spec:2 OCR & Text Extraction \u2014 substrate exists, `C1` climb; spec:3 Layout & Structure Understanding \u2014 substrate exists, `C3` climb; spec:5 Consistency & Normalization \u2014 substrate exists, `C7` climb; spec:7 Graduation & Dossier Handoff \u2014 substrate partial, accepted `doc-web` direction; Input Coverage rows: `scanned-pdf-prose`, `scanned-pdf-tables`, and `image-directory-scans` are the incumbent passing lanes, while `born-digital-pdf` and `docx` remain high-priority untested gaps that a stronger external substrate might close faster",
-      "metadata_source": "legacy",
+      "metadata_source": "frontmatter",
       "missing_frontmatter_keys": []
     },
     {
@@ -4067,7 +3969,7 @@
       "architecture_domains": [],
       "roadmap_tags": [],
       "legacy_build_map_refs": "spec:2 OCR & Text Extraction \u2014 substrate exists, `C1` climb; spec:3 Layout & Structure Understanding \u2014 substrate exists, `C3` climb; spec:5 Document Consistency Planning \u2014 substrate exists, `C7` climb; spec:6 Validation, Provenance & Export \u2014 provenance/export bar is active; spec:7 Graduation & Dossier Handoff \u2014 accepted `doc-web` direction remains incumbent; Input Coverage row `scanned-pdf-tables` is the primary hard-case lane",
-      "metadata_source": "legacy",
+      "metadata_source": "frontmatter",
       "missing_frontmatter_keys": []
     },
     {
@@ -4114,7 +4016,7 @@
       "architecture_domains": [],
       "roadmap_tags": [],
       "legacy_build_map_refs": "spec:2 OCR & Text Extraction \u2014 substrate exists, `C1` climb; spec:3 Layout & Structure Understanding \u2014 substrate exists, `C3` climb; spec:5 Document Consistency Planning \u2014 substrate exists, `C7` climb; spec:6 Validation, Provenance & Export \u2014 provenance/export bar is active; spec:7 Graduation & Dossier Handoff \u2014 `doc-web` remains incumbent until a separate net-gain decision is earned; Input Coverage row `scanned-pdf-tables` remains the active hard-case lane; the Onward scanned genealogy simplification candidate block in `docs/build-map.md` remains the authoritative active workaround inventory and collapse proof bar",
-      "metadata_source": "legacy",
+      "metadata_source": "frontmatter",
       "missing_frontmatter_keys": []
     },
     {
@@ -4162,7 +4064,7 @@
       "architecture_domains": [],
       "roadmap_tags": [],
       "legacy_build_map_refs": "spec:2 OCR & Text Extraction \u2014 substrate exists, maintained `Docling` path missing; spec:3 Layout & Structure Understanding \u2014 substrate exists, `Docling` table/onset repair remains an active seam; spec:5 Document Consistency Planning \u2014 substrate exists, Onward simplification candidate block remains active; spec:6 Validation, Provenance & Export \u2014 provenance/export bar still governs any replacement path; spec:7 Graduation & Dossier Handoff \u2014 `doc-web` remains the incumbent until a maintained path proves net gain; Input Coverage row `scanned-pdf-tables` remains the hard-case lane",
-      "metadata_source": "legacy",
+      "metadata_source": "frontmatter",
       "missing_frontmatter_keys": []
     },
     {
@@ -4213,7 +4115,7 @@
       "architecture_domains": [],
       "roadmap_tags": [],
       "legacy_build_map_refs": "spec:2 OCR & Text Extraction \u2014 substrate exists, maintained `Docling` path now exists; spec:3 Layout & Structure Understanding \u2014 substrate exists, `Docling` repair seam remains active; spec:5 Document Consistency Planning \u2014 substrate exists, Onward simplification candidate block remains the decision scoreboard; spec:6 Validation, Provenance & Export \u2014 provenance/export bar still governs any replacement path; spec:7 Graduation & Dossier Handoff \u2014 `doc-web` remains the incumbent until a final net-gain decision is earned; Input Coverage row `scanned-pdf-tables` remains the decisive hard-case lane",
-      "metadata_source": "legacy",
+      "metadata_source": "frontmatter",
       "missing_frontmatter_keys": []
     },
     {
@@ -4265,7 +4167,7 @@
       "architecture_domains": [],
       "roadmap_tags": [],
       "legacy_build_map_refs": "spec:2 OCR & Text Extraction \u2014 active `scanned-pdf-tables` climb; spec:3 Layout & Structure Understanding \u2014 active climb on repeated-structure genealogy failures; spec:5 Document Consistency Planning \u2014 Onward simplification candidate block remains the incumbent scoreboard; spec:6 Validation, Provenance & Export \u2014 provenance/export bar still governs any reopened `Docling` work; spec:7 Graduation & Dossier Handoff \u2014 `doc-web` remains the accepted boundary unless a materially different official seam earns reopening",
-      "metadata_source": "legacy",
+      "metadata_source": "frontmatter",
       "missing_frontmatter_keys": []
     },
     {
@@ -4313,7 +4215,7 @@
       "architecture_domains": [],
       "roadmap_tags": [],
       "legacy_build_map_refs": "Category 2 OCR & Text Extraction (`exists`, C1 `climb`); Category 3 Layout & Structure Understanding (`exists`, C3 `climb`); Category 5 Document Consistency Planning (`exists`, C7 `climb`) as the downstream scoreboard; Input Coverage row `scanned-pdf-tables` is the active hard-case lane to pressure first",
-      "metadata_source": "legacy",
+      "metadata_source": "frontmatter",
       "missing_frontmatter_keys": []
     },
     {
@@ -4357,7 +4259,7 @@
       "architecture_domains": [],
       "roadmap_tags": [],
       "legacy_build_map_refs": "Category 1 Intake & Format Routing (`partial`, C2 `climb`); Category 3 Layout & Structure Understanding (`exists`, C3 `climb`); Category 7 Graduation & Dossier Handoff (`partial`); Input Coverage row `born-digital-pdf` is currently high-priority untested and is the first honest breadth seam for `Marker`",
-      "metadata_source": "legacy",
+      "metadata_source": "frontmatter",
       "missing_frontmatter_keys": []
     },
     {
@@ -4401,7 +4303,7 @@
       "architecture_domains": [],
       "roadmap_tags": [],
       "legacy_build_map_refs": "Category 1 Intake & Format Routing (`partial`, C2 `climb`); Category 3 Layout & Structure Understanding (`exists`, C3 `climb`); Category 7 Graduation & Dossier Handoff (`partial`); Input Coverage row `born-digital-pdf` remains high-priority untested",
-      "metadata_source": "legacy",
+      "metadata_source": "frontmatter",
       "missing_frontmatter_keys": []
     },
     {
@@ -4444,7 +4346,7 @@
       "architecture_domains": [],
       "roadmap_tags": [],
       "legacy_build_map_refs": "Category 1 Intake & Format Routing (`partial`, `climb`); Category 2 OCR & Text Extraction (`exists`, C1 `climb`, C6 `hold`); Input Coverage row `scanned-pdf-prose` now has repo-owned passing evidence on the maintained simple-prose PDF lane.",
-      "metadata_source": "legacy",
+      "metadata_source": "frontmatter",
       "missing_frontmatter_keys": []
     },
     {
@@ -4487,7 +4389,7 @@
       "architecture_domains": [],
       "roadmap_tags": [],
       "legacy_build_map_refs": "Category 1 Intake & Format Routing (`partial`, C2 `climb`); Category 3 Layout & Structure Understanding (`exists`, C3 `climb`); Category 7 Graduation & Dossier Handoff (`partial`); Input Coverage row `born-digital-pdf` remains `has-fixture`",
-      "metadata_source": "legacy",
+      "metadata_source": "frontmatter",
       "missing_frontmatter_keys": []
     },
     {
@@ -4532,7 +4434,7 @@
       "architecture_domains": [],
       "roadmap_tags": [],
       "legacy_build_map_refs": "Category 1 Intake & Format Routing (`exists`, C2 `climb`); Category 8 AI Harnesses & Tooling (`exists`, B1 `hold`, B2 `hold`); Input Coverage rows `scanned-pdf-prose` (`passing`), `scanned-pdf-tables` (`passing`), `image-directory-scans` (`passing`), `born-digital-pdf` (`has fixture`)",
-      "metadata_source": "legacy",
+      "metadata_source": "frontmatter",
       "missing_frontmatter_keys": []
     },
     {
@@ -4582,7 +4484,7 @@
       "architecture_domains": [],
       "roadmap_tags": [],
       "legacy_build_map_refs": "Category 1 Intake & Format Routing (`exists`, C2 `climb`); Category 3 Layout & Structure Understanding (`exists`, C3 `climb`); Category 7 Graduation & Dossier Handoff (`partial`); Category 8 AI Harnesses & Tooling (`exists`, B1 `hold`); Input Coverage row `born-digital-pdf` (`has fixture`); Gap 2 \u2014 Born-digital PDF native text extraction",
-      "metadata_source": "legacy",
+      "metadata_source": "frontmatter",
       "missing_frontmatter_keys": []
     },
     {
@@ -4631,7 +4533,7 @@
       "architecture_domains": [],
       "roadmap_tags": [],
       "legacy_build_map_refs": "Category 1 Intake & Format Routing (`exists`, C2 `climb`); Category 3 Layout & Structure Understanding (`exists`, C3 `climb`); Category 7 Graduation & Dossier Handoff (`partial`); Category 8 AI Harnesses & Tooling (`exists`, B1 `hold`); Input Coverage row `born-digital-pdf` (`has fixture`); Gap 2 \u2014 Born-digital PDF native text extraction",
-      "metadata_source": "legacy",
+      "metadata_source": "frontmatter",
       "missing_frontmatter_keys": []
     },
     {
@@ -4676,7 +4578,7 @@
       "architecture_domains": [],
       "roadmap_tags": [],
       "legacy_build_map_refs": "Category 1 Intake & Format Routing (`exists`, C2 `climb`); Category 6 Validation, Provenance & Export (`exists`); Category 7 Graduation & Dossier Handoff (`partial`); Input Coverage row `docx` (`has fixture`); Gap 3 \u2014 Office document intake beyond the first DOCX slice",
-      "metadata_source": "legacy",
+      "metadata_source": "frontmatter",
       "missing_frontmatter_keys": []
     },
     {
@@ -4716,10 +4618,12 @@
       "input_coverage_refs": [
         "born-digital-pdf"
       ],
-      "architecture_domains": [],
+      "architecture_domains": [
+        "doc_web_runtime"
+      ],
       "roadmap_tags": [],
       "legacy_build_map_refs": "Category 3 Layout & Structure Understanding (`exists`, C3 `climb`); Category 7 Graduation & Dossier Handoff (`partial`); Category 8 AI Harnesses & Tooling (`exists`, B3/B4 `hold`); Input Coverage row `born-digital-pdf` (`has fixture`)",
-      "metadata_source": "legacy",
+      "metadata_source": "frontmatter",
       "missing_frontmatter_keys": []
     },
     {
@@ -4759,10 +4663,12 @@
       "input_coverage_refs": [
         "docx"
       ],
-      "architecture_domains": [],
+      "architecture_domains": [
+        "doc_web_runtime"
+      ],
       "roadmap_tags": [],
       "legacy_build_map_refs": "Category 1 Intake & Format Routing (`exists`, C2 `climb`); Category 6 Validation, Provenance & Export (`exists`); Category 7 Graduation & Dossier Handoff (`partial`); Input Coverage row `docx` (`has fixture`); Gap 3 \u2014 Office document intake beyond the first DOCX slice",
-      "metadata_source": "legacy",
+      "metadata_source": "frontmatter",
       "missing_frontmatter_keys": []
     },
     {
@@ -4808,10 +4714,12 @@
         "pptx",
         "xlsx"
       ],
-      "architecture_domains": [],
+      "architecture_domains": [
+        "doc_web_runtime"
+      ],
       "roadmap_tags": [],
       "legacy_build_map_refs": "Category 1 Intake & Format Routing (`exists`, C2 `climb`); Category 6 Validation, Provenance & Export (`exists`); Category 7 Graduation & Dossier Handoff (`partial`); Category 8 AI Harnesses & Tooling (`exists`, B1 `hold`); Input Coverage rows `docx` (`passing`), `xlsx` (`has fixture`), `pptx` (`has fixture`); Gap 3 \u2014 Office-document widening beyond the first DOCX slice; Gap 5 \u2014 Fixture breadth and graduation confidence",
-      "metadata_source": "legacy",
+      "metadata_source": "frontmatter",
       "missing_frontmatter_keys": []
     },
     {
@@ -4855,10 +4763,14 @@
         "scanned-pdf-prose",
         "scanned-pdf-tables"
       ],
-      "architecture_domains": [],
-      "roadmap_tags": [],
+      "architecture_domains": [
+        "intake_and_routing"
+      ],
+      "roadmap_tags": [
+        "campaign:maintained-intake-honesty"
+      ],
       "legacy_build_map_refs": "Category 1 Intake & Format Routing (`exists`, C2 `climb`); Category 8 AI Harnesses & Tooling (`exists`, B1 `hold`); Category 9 Planning Infrastructure (`exists`, B10 `climb`); Input Coverage rows `image-directory-scans` (`passing`), `scanned-pdf-prose` (`passing`), `scanned-pdf-tables` (`passing`), `born-digital-pdf` (`has fixture`)",
-      "metadata_source": "legacy",
+      "metadata_source": "frontmatter",
       "missing_frontmatter_keys": []
     },
     {
@@ -4906,7 +4818,7 @@
       "architecture_domains": [],
       "roadmap_tags": [],
       "legacy_build_map_refs": "Category 1 Intake & Format Routing (`exists`, C2 `climb`); Category 3 Layout & Structure Understanding (`exists`, C3 `climb`); Category 7 Graduation & Dossier Handoff (`partial`); Category 8 AI Harnesses & Tooling (`exists`, B1 `hold`); Input Coverage row `born-digital-pdf` (`has fixture`); Gap 2 \u2014 Born-digital PDF native text extraction; Gap 5 \u2014 Fixture breadth and graduation confidence",
-      "metadata_source": "legacy",
+      "metadata_source": "frontmatter",
       "missing_frontmatter_keys": []
     },
     {
@@ -4950,10 +4862,12 @@
         "scanned-pdf-prose",
         "scanned-pdf-tables"
       ],
-      "architecture_domains": [],
+      "architecture_domains": [
+        "intake_and_routing"
+      ],
       "roadmap_tags": [],
       "legacy_build_map_refs": "Category 1 Intake & Format Routing (`exists`, C2 `climb`); Category 8 AI Harnesses & Tooling (`exists`, B1 `hold`); Category 9 Planning Infrastructure (`exists`, B10 `climb`); Input Coverage rows `scanned-pdf-prose` (`passing`), `scanned-pdf-tables` (`passing`), `born-digital-pdf` (`has fixture`), and `image-directory-scans` (`passing`, representative proof only unless corpus widens)",
-      "metadata_source": "legacy",
+      "metadata_source": "frontmatter",
       "missing_frontmatter_keys": []
     },
     {
@@ -4999,7 +4913,7 @@
       "architecture_domains": [],
       "roadmap_tags": [],
       "legacy_build_map_refs": "Category 1 Intake & Format Routing (`exists`, C2 `climb`); Category 2 OCR & Text Extraction (`exists`, C1 `climb`, C6 `hold`); Category 8 AI Harnesses & Tooling (`exists`, B1 `hold`, B5 `climb`); Input Coverage row `handwritten-notes` now has bounded synthetic `passing` proof on the maintained generic image-directory and PDF OCR lanes",
-      "metadata_source": "legacy",
+      "metadata_source": "frontmatter",
       "missing_frontmatter_keys": []
     },
     {
@@ -5040,10 +4954,14 @@
         "handwritten-notes",
         "image-directory-scans"
       ],
-      "architecture_domains": [],
-      "roadmap_tags": [],
+      "architecture_domains": [
+        "intake_and_routing"
+      ],
+      "roadmap_tags": [
+        "campaign:maintained-intake-honesty"
+      ],
       "legacy_build_map_refs": "Category 1 Intake & Format Routing (`exists`, C2 `climb`); Category 8 AI Harnesses & Tooling (`exists`, B1 `hold`); Category 9 Planning Infrastructure (`exists`, B10 `climb`); Input Coverage rows `image-directory-scans` (`passing`, approved-handoff surface now includes one repo-owned bounded case but broader family breadth remains unproven) and `handwritten-notes` (bounded synthetic `passing` on the maintained generic image-directory and PDF OCR lanes)",
-      "metadata_source": "legacy",
+      "metadata_source": "frontmatter",
       "missing_frontmatter_keys": []
     },
     {
@@ -5085,10 +5003,12 @@
         "born-digital-pdf",
         "docx"
       ],
-      "architecture_domains": [],
+      "architecture_domains": [
+        "document_structure_and_consistency"
+      ],
       "roadmap_tags": [],
       "legacy_build_map_refs": "Category 3 Layout & Structure Understanding (`exists`, C3 `climb`); Category 6 Validation, Provenance & Export (`exists`); Category 8 AI Harnesses & Tooling (`exists`, B1 `hold`); Category 9 Planning Infrastructure (`exists`, B8 `hold`); Input Coverage rows `docx` (`passing` on a bounded supported slice) and `born-digital-pdf` (`has fixture`)",
-      "metadata_source": "legacy",
+      "metadata_source": "frontmatter",
       "missing_frontmatter_keys": []
     },
     {
@@ -5130,10 +5050,12 @@
       "input_coverage_refs": [
         "handwritten-notes"
       ],
-      "architecture_domains": [],
+      "architecture_domains": [
+        "ocr_and_extraction"
+      ],
       "roadmap_tags": [],
       "legacy_build_map_refs": "Category 1 Intake & Format Routing (`exists`, C2 `climb`); Category 2 OCR & Text Extraction (`exists`, C1 `climb`, C6 `hold`); Category 8 AI Harnesses & Tooling (`exists`, B1 `hold`, B5 `climb`); Input Coverage row `handwritten-notes` (`passing` on a broader but still synthetic two-fixture slice); Gap 4 \u2014 Handwritten document transcription; Gap 5 \u2014 Fixture breadth and graduation confidence; Next Actions 1 and 2",
-      "metadata_source": "legacy",
+      "metadata_source": "frontmatter",
       "missing_frontmatter_keys": []
     },
     {
@@ -5173,10 +5095,12 @@
         "image-directory-scans",
         "scanned-pdf-tables"
       ],
-      "architecture_domains": [],
+      "architecture_domains": [
+        "document_structure_and_consistency"
+      ],
       "roadmap_tags": [],
       "legacy_build_map_refs": "Category 4 Illustration Extraction (`exists`, C4/C5 `climb`); Category 8 AI Harnesses & Tooling (`exists`, B1 `hold`); Input Coverage rows `scanned-pdf-tables` and `image-directory-scans` (shared `illustration = 0.918` detector signal today; `crop-validation` is now the dedicated bounded C5-linked truth surface)",
-      "metadata_source": "legacy",
+      "metadata_source": "frontmatter",
       "missing_frontmatter_keys": []
     },
     {
@@ -5216,10 +5140,12 @@
         "image-directory-scans",
         "scanned-pdf-tables"
       ],
-      "architecture_domains": [],
+      "architecture_domains": [
+        "document_structure_and_consistency"
+      ],
       "roadmap_tags": [],
       "legacy_build_map_refs": "Category 4 Illustration Extraction (`exists`; C4 `converge`, C5 `climb`); Gap 1 \u201cIllustration crop simplification and text-exclusion breadth\u201d; Input Coverage rows `scanned-pdf-tables` and `image-directory-scans` now both inherit `illustration = 0.968`",
-      "metadata_source": "legacy",
+      "metadata_source": "frontmatter",
       "missing_frontmatter_keys": []
     },
     {
@@ -5261,10 +5187,12 @@
       "input_coverage_refs": [
         "handwritten-notes"
       ],
-      "architecture_domains": [],
+      "architecture_domains": [
+        "ocr_and_extraction"
+      ],
       "roadmap_tags": [],
       "legacy_build_map_refs": "Category 1 Intake & Format Routing (`exists`, C2 `climb`); Category 2 OCR & Text Extraction (`exists`, C1 `climb`, C6 `hold`); Category 8 AI Harnesses & Tooling (`exists`, B1 `hold`, B5 `climb`); Input Coverage row `handwritten-notes` (`passing` on a wider but still synthetic three-fixture slice); Gap 4 \u2014 Handwritten document transcription; Gap 5 \u2014 Fixture breadth and graduation confidence; Next Actions 1 and 2",
-      "metadata_source": "legacy",
+      "metadata_source": "frontmatter",
       "missing_frontmatter_keys": []
     },
     {
@@ -5306,10 +5234,14 @@
       "input_coverage_refs": [
         "handwritten-notes"
       ],
-      "architecture_domains": [],
-      "roadmap_tags": [],
+      "architecture_domains": [
+        "ocr_and_extraction"
+      ],
+      "roadmap_tags": [
+        "campaign:maintained-intake-honesty"
+      ],
       "legacy_build_map_refs": "Category 1 Intake & Format Routing (`exists`, C2 `climb`); Category 2 OCR & Text Extraction (`exists`, C1 `climb`, C6 `hold`); Category 8 AI Harnesses & Tooling (`exists`, B1 `hold`, B5 `climb`); Input Coverage row `handwritten-notes` (`passing` on a wider but still synthetic three-fixture slice); Gap 4 \u2014 Handwritten document transcription; Gap 5 \u2014 Fixture breadth and graduation confidence; Next Actions 1 and 2",
-      "metadata_source": "legacy",
+      "metadata_source": "frontmatter",
       "missing_frontmatter_keys": []
     },
     {
@@ -5351,6 +5283,48 @@
       "legacy_build_map_refs": "",
       "metadata_source": "frontmatter",
       "missing_frontmatter_keys": []
+    },
+    {
+      "id": "188",
+      "title": "Legacy Methodology Metadata Backfill",
+      "path": "docs/stories/story-188-legacy-methodology-metadata-backfill.md",
+      "status": "Done",
+      "priority": "High",
+      "ideal_refs": [
+        "The Execution Ideal",
+        "Traceability is the product.",
+        "Transparency over magic."
+      ],
+      "spec_refs": [
+        "spec:8",
+        "spec:9"
+      ],
+      "decision_refs": [
+        "`docs/methodology-artifact-audit-and-migration.md`, Story 187, `/Users/cam/Documents/Projects/Storybook/storybook/docs/runbooks/migrate-methodology-to-graph-state.md`, `/Users/cam/Documents/Projects/Storybook/storybook/docs/stories/story-079-methodology-artifact-audit-and-graph-design.md`, `/Users/cam/Documents/Projects/Storybook/storybook/docs/stories/story-081-legacy-metadata-backfill.md`, `/Users/cam/Documents/Projects/Storybook/storybook/docs/methodology-ideal-spec-compromise.md`, `None found after search in docs/decisions/ for a repo-local ADR that already resolves the metadata backfill itself`"
+      ],
+      "adr_ids": [],
+      "depends_on": [
+        "187"
+      ],
+      "category_refs": [
+        "spec:8",
+        "spec:9"
+      ],
+      "compromise_refs": [
+        "B7",
+        "B8",
+        "B9"
+      ],
+      "input_coverage_refs": [],
+      "architecture_domains": [
+        "methodology_tooling"
+      ],
+      "roadmap_tags": [
+        "campaign:methodology-graph-state-migration"
+      ],
+      "legacy_build_map_refs": "",
+      "metadata_source": "frontmatter",
+      "missing_frontmatter_keys": []
     }
   ],
   "adrs": [
@@ -5377,10 +5351,7 @@
       "compromise_refs": [
         "C7"
       ],
-      "related_adrs": [
-        "ADR-001",
-        "ADR-021"
-      ],
+      "related_adrs": [],
       "metadata_source": "frontmatter",
       "missing_frontmatter_keys": [],
       "category_refs": [
@@ -5412,10 +5383,7 @@
         "175"
       ],
       "compromise_refs": [],
-      "related_adrs": [
-        "ADR-001",
-        "ADR-002"
-      ],
+      "related_adrs": [],
       "metadata_source": "frontmatter",
       "missing_frontmatter_keys": [],
       "category_refs": [
@@ -6290,7 +6258,8 @@
           "id": "methodology-graph-state-migration",
           "status": "active",
           "story_refs": [
-            "187"
+            "187",
+            "188"
           ],
           "notes": "Migrate methodology consumers onto state + graph + coverage-matrix truth and retire the live hand-authored build map."
         }
@@ -6319,10 +6288,11 @@
           "recent_story_refs": [
             "145",
             "148",
-            "187"
+            "187",
+            "188"
           ],
           "open_findings": [],
-          "notes": "Methodology graph/state migration is the active audit lane."
+          "notes": "Methodology graph/state migration and legacy metadata backfill are the active audit lane."
         },
         "intake_and_routing": {
           "label": "Intake and Routing",
@@ -6388,14 +6358,6 @@
   },
   "validation": {
     "errors": [],
-    "warnings": [
-      "story 063 depends_on missing story 055",
-      "story 145 references ADR with no local adr.md: ADR-019",
-      "story 148 references ADR with no local adr.md: ADR-019",
-      "story 148 references ADR with no local adr.md: ADR-021",
-      "stories still on legacy metadata: 178 (001, 002, 003, 004, 005, 006, 007, 008 ...)",
-      "stories with no derived category refs: 124 (001, 002, 003, 004, 005, 006, 007, 008 ...)",
-      "stories with non-standard statuses: 21 (021:In Progress (partially complete), 031:\u2705 **COMPLETE** - Pipeline redesign implemented and validated, 032:\u2705 **COMPLETE** \u2014 Unstructured intake and FF pipeline validated end-to-end Created: 2025-11-28 Updated: 2025-11-29 05:47, 034:Unknown, 035:Done (User-approved completion despite deferred tasks), 037:Unknown, 050:\u2705 COMPLETE, 052:Open ...)"
-    ]
+    "warnings": []
   }
 }

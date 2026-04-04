@@ -1,3 +1,35 @@
+---
+title: Repo-Owned Scanned-Prose PDF Fixture
+status: Done
+priority: High
+ideal_refs:
+- 'Requirement #1 (Ingest), Requirement #3 (Extract), Any format, any condition, Minimum
+  Viable Floor'
+spec_refs:
+- spec:1
+- spec:1.1
+- spec:2
+- spec:2.1
+- spec:2.2
+- spec:7
+adr_refs: []
+depends_on:
+- '157'
+category_refs:
+- spec:1
+- spec:2
+- spec:7
+compromise_refs:
+- C1
+- C2
+- C6
+input_coverage_refs:
+- scanned-pdf-prose
+architecture_domains: []
+roadmap_tags: []
+legacy_system: ''
+---
+
 # Story 167 — Repo-Owned Scanned-Prose PDF Fixture
 
 **Priority**: High

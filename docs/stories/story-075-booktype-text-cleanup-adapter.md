@@ -1,3 +1,19 @@
+---
+title: Booktype Text Cleanup Adapter (Downstream Normalization)
+status: Won't Do
+priority: Low
+ideal_refs: []
+spec_refs: []
+adr_refs: []
+depends_on: []
+category_refs: []
+compromise_refs: []
+input_coverage_refs: []
+architecture_domains: []
+roadmap_tags: []
+legacy_system: ''
+---
+
 # Story: Booktype Text Cleanup Adapter (Downstream Normalization)
 
 **Status**: Won't Do  

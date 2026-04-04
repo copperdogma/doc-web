@@ -1,3 +1,33 @@
+---
+title: Onward Full-Run Audit Reconciliation
+status: Done
+priority: High
+ideal_refs:
+- 'Requirement #3 (Extract), Requirement #4 (Illustrate), Requirement #5 (Structure),
+  Requirement #6 (Validate), Fidelity to Source, Transparency over Magic'
+spec_refs:
+- spec:2.1
+- spec:3.1
+- spec:5.1
+- spec:6
+adr_refs: []
+depends_on:
+- '149'
+category_refs:
+- spec:2
+- spec:3
+- spec:5
+- spec:6
+compromise_refs:
+- C1
+- C3
+- C7
+input_coverage_refs: []
+architecture_domains: []
+roadmap_tags: []
+legacy_system: ''
+---
+
 # Story 150 — Onward Full-Run Audit Reconciliation
 
 **Priority**: High

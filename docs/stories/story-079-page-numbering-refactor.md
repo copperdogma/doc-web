@@ -1,3 +1,19 @@
+---
+title: "Sequential Page Numbering Refactor \u2014 Dual-Field Provenance"
+status: Done
+priority: High
+ideal_refs: []
+spec_refs: []
+adr_refs: []
+depends_on: []
+category_refs: []
+compromise_refs: []
+input_coverage_refs: []
+architecture_domains: []
+roadmap_tags: []
+legacy_system: ''
+---
+
 # Story: Sequential Page Numbering Refactor — Dual-Field Provenance
 
 **Status**: Done  

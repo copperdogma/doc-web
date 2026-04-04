@@ -1,3 +1,43 @@
+---
+title: Widen Office Document Proof and Decide XLSX/PPTX Lane Strategy
+status: Done
+priority: High
+ideal_refs:
+- 'Requirement #1 (Ingest), Requirement #5 (Structure), Requirement #6 (Validate),
+  Requirement #7 (Export), Any format, any condition, Dossier-ready output, Traceability
+  is the product'
+spec_refs:
+- spec:1
+- spec:1.1
+- spec:3
+- spec:3.1
+- spec:6
+- spec:7
+- spec:8
+adr_refs: []
+depends_on:
+- '172'
+- '174'
+category_refs:
+- spec:1
+- spec:3
+- spec:6
+- spec:7
+- spec:8
+compromise_refs:
+- B1
+- C2
+- C3
+input_coverage_refs:
+- docx
+- pptx
+- xlsx
+architecture_domains:
+- doc_web_runtime
+roadmap_tags: []
+legacy_system: ''
+---
+
 # Story 175 — Widen Office Document Proof and Decide XLSX/PPTX Lane Strategy
 
 **Priority**: High

@@ -1,3 +1,31 @@
+---
+title: Adopt Storybook-Style Pinned `doc-web` Runtime Pattern and Close Dossier Readiness
+  Gaps
+status: Done
+priority: High
+ideal_refs:
+- 'Requirement #5 (Structure), Requirement #6 (Validate), Requirement #7 (Export),
+  Traceability is the Product, Dossier-ready output, Graduate, don''t accumulate'
+spec_refs:
+- spec:6
+- spec:7
+adr_refs: []
+depends_on:
+- '151'
+- '152'
+- '153'
+- '154'
+- '155'
+category_refs:
+- spec:6
+- spec:7
+compromise_refs: []
+input_coverage_refs: []
+architecture_domains: []
+roadmap_tags: []
+legacy_system: ''
+---
+
 # Story 156 — Adopt Storybook-Style Pinned `doc-web` Runtime Pattern and Close Dossier Readiness Gaps
 
 **Priority**: High

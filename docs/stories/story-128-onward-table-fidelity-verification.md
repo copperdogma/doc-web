@@ -1,3 +1,20 @@
+---
+title: Onward Table Fidelity Verification
+status: Done
+priority: Unknown
+ideal_refs: []
+spec_refs: []
+adr_refs: []
+depends_on:
+- '026'
+category_refs: []
+compromise_refs: []
+input_coverage_refs: []
+architecture_domains: []
+roadmap_tags: []
+legacy_system: ''
+---
+
 # Story 128: Onward Table Fidelity Verification
 
 **Status**: Done (Golden references, promptfoo eval, and verification checklist complete. Pipeline improvement work continues in Story 131.)

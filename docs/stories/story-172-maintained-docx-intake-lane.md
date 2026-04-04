@@ -1,3 +1,38 @@
+---
+title: Establish a Maintained DOCX Intake Lane
+status: Done
+priority: High
+ideal_refs:
+- 'Requirement #1 (Ingest), Requirement #5 (Structure), Requirement #6 (Validate),
+  Requirement #7 (Export), Any format, any condition, Dossier-ready output, Traceability
+  is the product'
+spec_refs:
+- spec:1
+- spec:1.1
+- spec:6
+- spec:7
+- spec:8
+adr_refs: []
+depends_on:
+- '153'
+- '154'
+- '167'
+- '169'
+category_refs:
+- spec:1
+- spec:6
+- spec:7
+- spec:8
+compromise_refs:
+- B1
+- C2
+input_coverage_refs:
+- docx
+architecture_domains: []
+roadmap_tags: []
+legacy_system: ''
+---
+
 # Story 172 — Establish a Maintained DOCX Intake Lane
 
 **Priority**: High

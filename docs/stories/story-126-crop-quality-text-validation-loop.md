@@ -1,3 +1,21 @@
+---
+title: "Crop Quality \u2014 Text Validation Loop & OCR Image Detection"
+status: Done
+priority: Unknown
+ideal_refs: []
+spec_refs: []
+adr_refs: []
+depends_on:
+- '026'
+- '125'
+category_refs: []
+compromise_refs: []
+input_coverage_refs: []
+architecture_domains: []
+roadmap_tags: []
+legacy_system: ''
+---
+
 # Story: Crop Quality — Text Validation Loop & OCR Image Detection
 
 **Status**: Done

@@ -1,3 +1,40 @@
+---
+title: Tune `Docling` on the Onward Hard Case and Rank the Path to 100% Fidelity
+status: Done
+priority: High
+ideal_refs:
+- 'Requirement #3 (Extract), Requirement #5 (Structure), Requirement #6 (Validate),
+  Requirement #7 (Export), Fidelity to the source, Traceability is the Product, Dossier-ready
+  output, Any format, any condition'
+spec_refs:
+- spec:2
+- spec:2.1
+- spec:3
+- spec:3.1
+- spec:5
+- spec:5.1
+- spec:6
+- spec:7
+adr_refs: []
+depends_on:
+- '158'
+category_refs:
+- spec:2
+- spec:3
+- spec:5
+- spec:6
+- spec:7
+compromise_refs:
+- C1
+- C3
+- C7
+input_coverage_refs:
+- scanned-pdf-tables
+architecture_domains: []
+roadmap_tags: []
+legacy_system: ''
+---
+
 # Story 159 — Tune `Docling` on the Onward Hard Case and Rank the Path to 100% Fidelity
 
 **Priority**: High

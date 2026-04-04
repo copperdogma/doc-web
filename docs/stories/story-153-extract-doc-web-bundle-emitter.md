@@ -1,3 +1,26 @@
+---
+title: Extract `doc-web` Bundle Emitter
+status: Done
+priority: High
+ideal_refs:
+- 'Requirement #5 (Structure), Requirement #7 (Export), Dossier-ready output, Graduate,
+  don''t accumulate'
+spec_refs:
+- spec:6
+- spec:7
+adr_refs: []
+depends_on:
+- '152'
+category_refs:
+- spec:6
+- spec:7
+compromise_refs: []
+input_coverage_refs: []
+architecture_domains: []
+roadmap_tags: []
+legacy_system: ''
+---
+
 # Story 153 — Extract `doc-web` Bundle Emitter
 
 **Priority**: High

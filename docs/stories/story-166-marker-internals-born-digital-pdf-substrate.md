@@ -1,3 +1,36 @@
+---
+title: Use Marker Internals as a Thin Born-Digital PDF Substrate
+status: Done
+priority: High
+ideal_refs:
+- 'Requirement #1 (Ingest), Requirement #3 (Extract), Requirement #5 (Structure),
+  Requirement #6 (Validate), Any format, any condition, Traceability is the Product'
+spec_refs:
+- spec:1
+- spec:1.1
+- spec:3
+- spec:3.1
+- spec:6
+- spec:7
+adr_refs: []
+depends_on:
+- '157'
+- '165'
+category_refs:
+- spec:1
+- spec:3
+- spec:6
+- spec:7
+compromise_refs:
+- C2
+- C3
+input_coverage_refs:
+- born-digital-pdf
+architecture_domains: []
+roadmap_tags: []
+legacy_system: ''
+---
+
 # Story 166 — Use Marker Internals as a Thin Born-Digital PDF Substrate
 
 **Priority**: High

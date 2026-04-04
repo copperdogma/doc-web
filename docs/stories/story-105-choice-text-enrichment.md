@@ -1,3 +1,19 @@
+---
+title: Choice Text Enrichment (Spec Only)
+status: Done
+priority: Medium
+ideal_refs: []
+spec_refs: []
+adr_refs: []
+depends_on: []
+category_refs: []
+compromise_refs: []
+input_coverage_refs: []
+architecture_domains: []
+roadmap_tags: []
+legacy_system: ''
+---
+
 # Story: Choice Text Enrichment (Spec Only)
 
 **Status**: Done  

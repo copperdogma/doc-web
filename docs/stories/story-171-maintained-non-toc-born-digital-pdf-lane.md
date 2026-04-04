@@ -1,3 +1,41 @@
+---
+title: Maintain a Non-TOC Born-Digital PDF Lane
+status: Done
+priority: High
+ideal_refs:
+- 'Requirement #1 (Ingest), Requirement #3 (Extract), Requirement #6 (Validate), Zero
+  configuration, Any format, any condition, Traceability is the Product'
+spec_refs:
+- spec:1
+- spec:1.1
+- spec:3
+- spec:3.1
+- spec:6
+- spec:7
+- spec:8
+adr_refs: []
+depends_on:
+- '157'
+- '168'
+- '169'
+- '170'
+category_refs:
+- spec:1
+- spec:3
+- spec:6
+- spec:7
+- spec:8
+compromise_refs:
+- B1
+- C2
+- C3
+input_coverage_refs:
+- born-digital-pdf
+architecture_domains: []
+roadmap_tags: []
+legacy_system: ''
+---
+
 # Story 171 — Maintain a Non-TOC Born-Digital PDF Lane
 
 **Priority**: High

@@ -1,3 +1,19 @@
+---
+title: Player Vehicle/Robot Extraction (Secondary Stats)
+status: Done
+priority: High
+ideal_refs: []
+spec_refs: []
+adr_refs: []
+depends_on: []
+category_refs: []
+compromise_refs: []
+input_coverage_refs: []
+architecture_domains: []
+roadmap_tags: []
+legacy_system: ''
+---
+
 # Story: Player Vehicle/Robot Extraction (Secondary Stats)
 
 **Status**: Done

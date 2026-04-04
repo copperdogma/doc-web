@@ -1,3 +1,30 @@
+---
+title: Onward Image Placement and Caption Fidelity
+status: Done
+priority: High
+ideal_refs:
+- 'Requirement #4 (Illustrate), Requirement #5 (Structure), Fidelity to Source'
+spec_refs:
+- spec:3.1
+- spec:4.1
+- spec:4.2
+adr_refs: []
+depends_on:
+- '126'
+- '129'
+category_refs:
+- spec:3
+- spec:4
+compromise_refs:
+- C3
+- C4
+- C5
+input_coverage_refs: []
+architecture_domains: []
+roadmap_tags: []
+legacy_system: ''
+---
+
 # Story 135 — Onward Image Placement and Caption Fidelity
 
 **Priority**: High

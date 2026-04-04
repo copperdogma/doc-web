@@ -1,3 +1,49 @@
+---
+title: Evaluate `Docling` as a Full Replacement Candidate for `doc-web`
+status: Done
+priority: High
+ideal_refs:
+- 'Requirement #1 (Ingest), Requirement #2 (Detect), Requirement #3 (Extract), Requirement
+  #5 (Structure), Requirement #6 (Validate), Requirement #7 (Export), Any format,
+  any condition, Zero configuration, Dossier-ready output, Traceability is the Product,
+  Graduate, don''t accumulate'
+spec_refs:
+- spec:1
+- spec:1.1
+- spec:2
+- spec:2.1
+- spec:3
+- spec:3.1
+- spec:5
+- spec:5.1
+- spec:6
+- spec:7
+adr_refs: []
+depends_on:
+- '156'
+category_refs:
+- spec:1
+- spec:2
+- spec:3
+- spec:5
+- spec:6
+- spec:7
+compromise_refs:
+- C1
+- C2
+- C3
+- C7
+input_coverage_refs:
+- born-digital-pdf
+- docx
+- image-directory-scans
+- scanned-pdf-prose
+- scanned-pdf-tables
+architecture_domains: []
+roadmap_tags: []
+legacy_system: ''
+---
+
 # Story 158 — Evaluate `Docling` as a Full Replacement Candidate for `doc-web`
 
 **Priority**: High

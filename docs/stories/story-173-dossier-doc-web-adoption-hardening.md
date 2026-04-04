@@ -1,3 +1,36 @@
+---
+title: Harden `doc-web` After the First Dossier Adoption Trial
+status: Done
+priority: High
+ideal_refs:
+- 'Requirement #3 (Extract), Requirement #6 (Validate), Requirement #7 (Export), Dossier-ready
+  output, Transparency over magic, Graduate, don''t accumulate'
+spec_refs:
+- spec:3
+- spec:3.1
+- spec:7
+- spec:8
+adr_refs: []
+depends_on:
+- '156'
+- '168'
+- '171'
+category_refs:
+- spec:3
+- spec:7
+- spec:8
+compromise_refs:
+- B3
+- B4
+- C3
+input_coverage_refs:
+- born-digital-pdf
+architecture_domains:
+- doc_web_runtime
+roadmap_tags: []
+legacy_system: ''
+---
+
 # Story 173 — Harden `doc-web` After the First Dossier Adoption Trial
 
 **Priority**: High

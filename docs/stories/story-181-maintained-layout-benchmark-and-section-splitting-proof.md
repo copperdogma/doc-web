@@ -1,3 +1,40 @@
+---
+title: Establish a Maintained Layout Benchmark and Provenance-Focused Section-Splitting
+  Proof Surface
+status: Done
+priority: High
+ideal_refs:
+- 'Requirement #3 (Extract), Requirement #5 (Structure), Requirement #6 (Validate),
+  Requirement #7 (Export), Traceability is the product, Fidelity to the source, Transparency
+  over magic'
+spec_refs:
+- spec:3
+- spec:3.1
+- spec:6
+- spec:8
+- spec:9
+adr_refs: []
+depends_on:
+- '172'
+- '177'
+category_refs:
+- spec:3
+- spec:6
+- spec:8
+- spec:9
+compromise_refs:
+- B1
+- B8
+- C3
+input_coverage_refs:
+- born-digital-pdf
+- docx
+architecture_domains:
+- document_structure_and_consistency
+roadmap_tags: []
+legacy_system: ''
+---
+
 # Story 181 — Establish a Maintained Layout Benchmark and Provenance-Focused Section-Splitting Proof Surface
 
 **Priority**: High

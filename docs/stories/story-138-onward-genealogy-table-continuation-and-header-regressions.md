@@ -1,3 +1,28 @@
+---
+title: Onward Genealogy Table Whole-Table Continuation and Header Regressions
+status: Done
+priority: High
+ideal_refs:
+- 'Requirement #3 (Extract), Requirement #6 (Validate), Fidelity to Source'
+spec_refs:
+- spec:2.1
+- spec:3.1
+adr_refs: []
+depends_on:
+- '129'
+- '131'
+category_refs:
+- spec:2
+- spec:3
+compromise_refs:
+- C1
+- C3
+input_coverage_refs: []
+architecture_domains: []
+roadmap_tags: []
+legacy_system: ''
+---
+
 # Story 138 — Onward Genealogy Table Whole-Table Continuation and Header Regressions
 
 **Priority**: High

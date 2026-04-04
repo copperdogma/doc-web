@@ -1,3 +1,35 @@
+---
+title: 'ADR-021 Migration: Dual-Ideal, Category Spec, Phase Governance'
+status: Done
+priority: High
+ideal_refs:
+- "All requirements (R1-R7), all Vision-Level Preferences \u2014 this restructures\
+  \ how the project tracks progress toward the Ideal"
+spec_refs:
+- spec:1
+- spec:9
+adr_refs:
+- ADR-001
+depends_on:
+- '145'
+category_refs:
+- spec:1
+- spec:2
+- spec:5
+- spec:8
+- spec:9
+compromise_refs:
+- B1
+- B10
+- C1
+- C7
+input_coverage_refs: []
+architecture_domains:
+- methodology_tooling
+roadmap_tags: []
+legacy_system: ''
+---
+
 # Story 148 — ADR-021 Migration: Dual-Ideal, Category Spec, Phase Governance
 
 **Priority**: High

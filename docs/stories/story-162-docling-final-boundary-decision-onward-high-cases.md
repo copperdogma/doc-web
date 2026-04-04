@@ -1,3 +1,44 @@
+---
+title: Reach Final `Docling` Boundary Decision on Widened Onward Hard Cases
+status: Done
+priority: High
+ideal_refs:
+- 'Requirement #3 (Extract), Requirement #5 (Structure), Requirement #6 (Validate),
+  Requirement #7 (Export), Traceability is the Product, Fidelity to the source, Dossier-ready
+  output, Graduate, don''t accumulate'
+spec_refs:
+- spec:2
+- spec:2.1
+- spec:3
+- spec:3.1
+- spec:5
+- spec:5.1
+- spec:6
+- spec:7
+adr_refs: []
+depends_on:
+- '149'
+- '158'
+- '159'
+- '160'
+- '161'
+category_refs:
+- spec:2
+- spec:3
+- spec:5
+- spec:6
+- spec:7
+compromise_refs:
+- C1
+- C3
+- C7
+input_coverage_refs:
+- scanned-pdf-tables
+architecture_domains: []
+roadmap_tags: []
+legacy_system: ''
+---
+
 # Story 162 — Reach Final `Docling` Boundary Decision on Widened Onward Hard Cases
 
 **Priority**: High

@@ -1,3 +1,30 @@
+---
+title: Onward Genealogy Consistency Investigation and ADR Handoff
+status: Done
+priority: High
+ideal_refs:
+- 'Requirement #3 (Extract), Requirement #5 (Structure), Requirement #6 (Validate),
+  Fidelity to Source, Dossier-ready output'
+spec_refs:
+- spec:1.1
+- spec:2.1
+- spec:2.2
+adr_refs: []
+depends_on:
+- '140'
+category_refs:
+- spec:1
+- spec:2
+compromise_refs:
+- C1
+- C2
+- C6
+input_coverage_refs: []
+architecture_domains: []
+roadmap_tags: []
+legacy_system: ''
+---
+
 # Story 141 — Onward Genealogy Consistency Investigation and ADR Handoff
 
 **Priority**: High

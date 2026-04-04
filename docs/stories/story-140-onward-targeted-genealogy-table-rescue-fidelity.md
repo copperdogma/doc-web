@@ -1,3 +1,30 @@
+---
+title: Onward Targeted Genealogy Table Rescue Fidelity
+status: Done
+priority: High
+ideal_refs:
+- 'Requirement #3 (Extract), Requirement #6 (Validate), Fidelity to Source'
+spec_refs:
+- spec:2.1
+- spec:2.2
+- spec:3.1
+adr_refs: []
+depends_on:
+- '131'
+- '138'
+category_refs:
+- spec:2
+- spec:3
+compromise_refs:
+- C1
+- C3
+- C6
+input_coverage_refs: []
+architecture_domains: []
+roadmap_tags: []
+legacy_system: ''
+---
+
 # Story 140 — Onward Targeted Genealogy Table Rescue Fidelity
 
 **Priority**: High

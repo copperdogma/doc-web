@@ -1,3 +1,19 @@
+---
+title: "AI Vision Engine Evaluation \u2014 Best Value for Pipeline"
+status: Done
+priority: Medium
+ideal_refs: []
+spec_refs: []
+adr_refs: []
+depends_on: []
+category_refs: []
+compromise_refs: []
+input_coverage_refs: []
+architecture_domains: []
+roadmap_tags: []
+legacy_system: ''
+---
+
 # Story: AI Vision Engine Evaluation — Best Value for Pipeline
 
 **Status**: Done  

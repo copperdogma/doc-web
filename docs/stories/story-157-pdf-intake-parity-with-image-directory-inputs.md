@@ -1,3 +1,41 @@
+---
+title: PDF Intake Parity with Image-Directory Inputs
+status: Done
+priority: High
+ideal_refs:
+- 'Requirement #1 (Ingest), Requirement #3 (Extract), Any format, any condition, Zero
+  configuration, Minimum Viable Floor'
+spec_refs:
+- spec:1
+- spec:1.1
+- spec:2
+- spec:2.1
+- spec:2.2
+- spec:7
+adr_refs: []
+depends_on:
+- 084
+- '102'
+- '155'
+- '156'
+category_refs:
+- spec:1
+- spec:2
+- spec:7
+compromise_refs:
+- C1
+- C2
+- C6
+input_coverage_refs:
+- born-digital-pdf
+- image-directory-scans
+- scanned-pdf-prose
+- scanned-pdf-tables
+architecture_domains: []
+roadmap_tags: []
+legacy_system: ''
+---
+
 # Story 157 — PDF Intake Parity with Image-Directory Inputs
 
 **Priority**: High

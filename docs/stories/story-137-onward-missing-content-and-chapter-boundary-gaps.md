@@ -1,3 +1,26 @@
+---
+title: Onward OCR Empty-Page Recovery and TOC Coarse Boundary Selection
+status: Done
+priority: High
+ideal_refs:
+- 'Requirement #3 (Extract), Requirement #5 (Structure), Requirement #6 (Validate),
+  Fidelity to Source'
+spec_refs:
+- spec:3.1
+adr_refs: []
+depends_on:
+- 009
+- '129'
+category_refs:
+- spec:3
+compromise_refs:
+- C3
+input_coverage_refs: []
+architecture_domains: []
+roadmap_tags: []
+legacy_system: ''
+---
+
 # Story 137 — Onward OCR Empty-Page Recovery and TOC Coarse Boundary Selection
 
 **Priority**: High

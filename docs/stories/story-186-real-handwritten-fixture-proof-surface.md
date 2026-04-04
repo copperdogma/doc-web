@@ -1,3 +1,39 @@
+---
+title: Add First Reproducible Real Handwritten Fixture Proof Surface
+status: Done
+priority: High
+ideal_refs:
+- 'Requirement #1 (Ingest), Requirement #2 (Detect), Requirement #3 (Extract), Any
+  format, any condition, Fidelity to the source, Minimum Viable Floor'
+spec_refs:
+- spec:1
+- spec:1.1
+- spec:2
+- spec:2.1
+- spec:2.2
+- spec:8
+adr_refs: []
+depends_on:
+- '185'
+category_refs:
+- spec:1
+- spec:2
+- spec:8
+compromise_refs:
+- B1
+- B5
+- C1
+- C2
+- C6
+input_coverage_refs:
+- handwritten-notes
+architecture_domains:
+- ocr_and_extraction
+roadmap_tags:
+- campaign:maintained-intake-honesty
+legacy_system: ''
+---
+
 # Story 186 — Add First Reproducible Real Handwritten Fixture Proof Surface
 
 **Priority**: High

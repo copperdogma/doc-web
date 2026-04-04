@@ -1,3 +1,28 @@
+---
+title: Define `doc-web` as the Standalone Dossier Intake Runtime
+status: Done
+priority: High
+ideal_refs:
+- 'Requirement #5 (Structure), Requirement #6 (Validate), Requirement #7 (Export),
+  Traceability is the Product, Dossier-ready output, Graduate, don''t accumulate'
+spec_refs:
+- spec:5.1
+- spec:6
+- spec:7
+adr_refs: []
+depends_on: []
+category_refs:
+- spec:5
+- spec:6
+- spec:7
+compromise_refs:
+- C7
+input_coverage_refs: []
+architecture_domains: []
+roadmap_tags: []
+legacy_system: ''
+---
+
 # Story 151 — Define `doc-web` as the Standalone Dossier Intake Runtime
 
 **Priority**: High

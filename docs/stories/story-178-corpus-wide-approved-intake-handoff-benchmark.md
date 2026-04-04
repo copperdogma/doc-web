@@ -1,3 +1,40 @@
+---
+title: Corpus-Wide Approved Intake Handoff Benchmark
+status: Done
+priority: High
+ideal_refs:
+- 'Requirement #1 (Ingest), Requirement #2 (Detect), Zero configuration, Transparency
+  over magic'
+spec_refs:
+- spec:1
+- spec:1.1
+- spec:8
+- spec:9
+adr_refs: []
+depends_on:
+- '169'
+- '170'
+- '171'
+- '176'
+category_refs:
+- spec:1
+- spec:8
+- spec:9
+compromise_refs:
+- B1
+- B10
+- C2
+input_coverage_refs:
+- born-digital-pdf
+- image-directory-scans
+- scanned-pdf-prose
+- scanned-pdf-tables
+architecture_domains:
+- intake_and_routing
+roadmap_tags: []
+legacy_system: ''
+---
+
 # Story 178 — Corpus-Wide Approved Intake Handoff Benchmark
 
 **Priority**: High

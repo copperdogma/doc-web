@@ -1,3 +1,19 @@
+---
+title: ARM64 Environment Cleanup Investigation
+status: Done
+priority: Medium
+ideal_refs: []
+spec_refs: []
+adr_refs: []
+depends_on: []
+category_refs: []
+compromise_refs: []
+input_coverage_refs: []
+architecture_domains: []
+roadmap_tags: []
+legacy_system: ''
+---
+
 # Story: ARM64 Environment Cleanup Investigation
 
 **Status**: Done  

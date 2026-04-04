@@ -1,3 +1,19 @@
+---
+title: OCR Model Eval for Genealogy / Table-Heavy Books
+status: Done
+priority: Unknown
+ideal_refs: []
+spec_refs: []
+adr_refs: []
+depends_on: []
+category_refs: []
+compromise_refs: []
+input_coverage_refs: []
+architecture_domains: []
+roadmap_tags: []
+legacy_system: ''
+---
+
 # Story: OCR Model Eval for Genealogy / Table-Heavy Books
 
 **Status**: Done
