@@ -1,3 +1,15 @@
+## [2026-04-03-06] - Close first real handwritten fixture proof surface (Story 186)
+
+### Added
+- Added the first repo-owned real handwritten fixture, `handwritten-notes-barney-real`, with its checked-in Barney image, transcript excerpt, PDF wrapper, and focused image-directory/PDF smoke coverage
+
+### Changed
+- Changed the handwritten corpus, build map, eval registry, coverage matrix, testdata docs, and story records so `handwritten-notes` now distinguishes the still-passing synthetic slice from the first weak real handwritten checkpoint and remains `has fixture` rather than `passing`
+
+### Tested
+- `python -m pytest tests/`
+- `python -m ruff check modules/ tests/`
+
 ## [2026-04-03-05] - Close widened handwritten proof slice (Story 185)
 
 ### Added

@@ -188,6 +188,7 @@ This index tracks stories in `/docs/stories/` for the doc-forge pipeline.
 |||| 183 | Repair Crop Benchmark Substrate and Promote C5 Validation Surface | High | Done | /docs/stories/story-183-crop-benchmark-substrate-and-c5-validation-surface.md |
 |||| 184 | Collapse Bounded Crop Runtime to Flash-First Simplification | High | Done | /docs/stories/story-184-collapse-bounded-crop-runtime-to-single-stage-flash.md |
 |||| 185 | Widen Handwritten Proof Beyond the Synthetic Pair | High | Done | /docs/stories/story-185-widen-handwritten-proof-beyond-synthetic-pair.md |
+|||| 186 | Add First Reproducible Real Handwritten Fixture Proof Surface | High | Done | /docs/stories/story-186-real-handwritten-fixture-proof-surface.md |
 
 ## Notes
 - Status "Done" reflects current working state in doc-forge. "To Do" items are planned next steps aligned with `docs/ideal.md`, `docs/spec.md`, and `docs/build-map.md`.

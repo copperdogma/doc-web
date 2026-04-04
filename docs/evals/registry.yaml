@@ -340,24 +340,80 @@ evals:
     name: Handwritten Notes Transcription
     type: quality
     description: >
-      Repo-owned synthetic handwritten-note transcription fidelity on the
-      bounded maintained image-directory and PDF OCR lanes. Measures normalized
-      text fidelity against the checked-in transcripts for the current
-      handwritten corpus: the highly legible mini fixture from Story 179, the
-      faded synthetic variant from Story 185, and the rougher synthetic variant
-      from Story 182.
+      Repo-owned handwritten-note transcription fidelity on the bounded
+      maintained image-directory and PDF OCR lanes. Measures normalized text
+      fidelity against the checked-in transcripts for the current handwritten
+      corpus: the highly legible mini fixture from Story 179, the faded
+      synthetic variant from Story 185, the rougher synthetic variant from
+      Story 182, and the first real LOC Barney spread from Story 186.
     pipeline_stage: ocr
     runner: manual
-    command: "python benchmarks/scripts/run_handwritten_notes_eval.py --output benchmarks/results/handwritten-notes-story185-widened.json"
+    command: "python benchmarks/scripts/run_handwritten_notes_eval.py --output benchmarks/results/handwritten-notes-story186-real-fixture.json"
     scorer: benchmarks/scorers/handwritten_notes_transcription.py
     golden: benchmarks/golden/handwritten-notes/corpus.json
 
     target:
       metric: overall_min_ratio
       value: 0.99
-      note: "Passing is limited to the current three-fixture synthetic handwritten slice."
+      note: "The target still marks the desired passing bar, but the widened default corpus now includes one real handwritten fixture that the maintained generic seam does not clear."
 
     scores:
+      - model: "Maintained generic OCR lanes (four-fixture mixed corpus via recipe-images-ocr-html-mvp.yaml + recipe-pdf-ocr-html-mvp.yaml)"
+        metrics:
+          overall_min_ratio: 0.102602
+          page_min_ratio: 0.102602
+          pass_rate: 0.75
+          cases_total: 8
+          fixture_count: 4
+          fixtures_passing: 3
+        measured: 2026-04-03
+        note: >
+          Story 186 added the first repo-owned real handwritten fixture:
+          `testdata/handwritten-notes-barney-real-images/`,
+          `testdata/handwritten-notes-barney-real.pdf`, and
+          `testdata/handwritten-notes-barney-real.txt`, derived from Library
+          of Congress item `https://www.loc.gov/pictures/item/2023637825/`
+          with source rights note `No known restrictions on publication.`.
+          Fresh rerun via
+          `python benchmarks/scripts/run_handwritten_notes_eval.py --output benchmarks/results/handwritten-notes-story186-real-fixture.json`
+          wrote `benchmarks/results/handwritten-notes-story186-real-fixture.json`;
+          subsequent reruns stayed in the same low-0.1 range on the real
+          Barney slice while preserving `pass_rate = 0.75` for the mixed
+          four-fixture corpus. Image-only PDF verification stayed `[0]` for
+          `handwritten-notes-barney-real` alongside the still-passing synthetic
+          fixtures `[0, 0]`, `[0, 0]`, and `[0, 0, 0]`. Manual artifact
+          inspection confirmed stamped manifest provenance at
+          `output/runs/handwritten-handwritten-notes-barney-real-image-generic/01_images_dir_to_manifest_v1/pages_images_manifest.jsonl`
+          and
+          `output/runs/handwritten-handwritten-notes-barney-real-pdf-generic/01_extract_pdf_images_fast_v1/pages_images_manifest.jsonl`,
+          while the OCR artifacts at
+          `output/runs/handwritten-handwritten-notes-barney-real-image-generic/02_ocr_ai_gpt51_v1/pages_html.jsonl`
+          and
+          `output/runs/handwritten-handwritten-notes-barney-real-pdf-generic/02_ocr_ai_gpt51_v1/pages_html.jsonl`
+          showed coherent-looking but semantically wrong substitutions such as
+          `Wm H. Harlow` / `the combat`, so the widened family no longer
+          qualifies as a blanket handwritten passing claim.
+      - model: "Bounded direct real-fixture comparison (claude-opus-4-6 on the Barney spread)"
+        metrics:
+          overall_min_ratio: 0.725708
+          page_min_ratio: 0.725708
+          pass_rate: 0.0
+          cases_total: 1
+          fixture_count: 1
+        measured: 2026-04-03
+        note: >
+          Per Story 186's comparison gate, a one-off non-maintained direct
+          transcription rerun on the same real Barney spread used
+          `PYTHONPATH=. python modules/extract/ocr_ai_gpt51_v1/main.py --pages output/runs/handwritten-handwritten-notes-barney-real-image-generic/01_images_dir_to_manifest_v1/pages_images_manifest.jsonl --outdir output/runs/story186-barney-direct-claude-opus/01_ocr_ai_gpt51_v1 --out pages_html.jsonl --model claude-opus-4-6 ...`
+          and then scored the result with
+          `benchmarks/scorers/handwritten_notes_transcription.py`. The bounded
+          comparison improved the real-slice score materially to roughly
+          `0.73` at
+          `output/runs/story186-barney-direct-claude-opus/01_ocr_ai_gpt51_v1/pages_html.jsonl`,
+          preserving harder real details like `Alvira and Welington` and
+          `real sorrow`, but it still missed the repo's `0.99` passing bar and
+          therefore does not justify a maintained handwritten runtime change by
+          itself.
       - model: "Maintained generic OCR lanes (recipe-images-ocr-html-mvp.yaml + recipe-pdf-ocr-html-mvp.yaml)"
         metrics:
           overall_min_ratio: 1.0

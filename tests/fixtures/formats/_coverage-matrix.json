@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "generated": "2026-04-01",
+  "generated": "2026-04-03",
   "description": "Format coverage matrix tracking which input formats doc-forge can convert, how well, and what test fixtures exist. Agents query this to find untested formats and prioritize work.",
   "statuses": {
     "untested": "Format identified but no test fixtures or pipeline support",
@@ -372,7 +372,7 @@
     {
       "id": "handwritten-notes",
       "format_family": "handwritten",
-      "status": "passing",
+      "status": "has-fixture",
       "description": "Photos of handwritten notes, letters, diaries",
       "pipeline_recipe": "recipe-images-ocr-html-mvp.yaml",
       "intake_module": "images_dir_to_manifest_v1 → ocr_ai_gpt51_v1",
@@ -413,19 +413,25 @@
           "source": "testdata/handwritten-notes-rough.pdf",
           "pages": 3,
           "notes": "Image-only PDF wrapper around the rough synthetic handwritten pages. Story 182 verified `pypdf` extract-text lengths `[0, 0, 0]` and matched the checked-in transcript exactly after normalization on the maintained generic PDF OCR lane."
+        },
+        {
+          "id": "handwritten-notes-barney-real-images",
+          "source": "testdata/handwritten-notes-barney-real-images/",
+          "pages": 1,
+          "notes": "Repo-owned real handwritten fixture derived from Library of Congress item `https://www.loc.gov/pictures/item/2023637825/`, using the checked-in `LC-DIG-ppmsca-86618` pages 2-3 spread. Story 186 proved maintained image-directory provenance on this real slice, but the generic OCR lane stayed only in the low-0.1 range on reruns, so the family no longer claims blanket handwritten passing."
+        },
+        {
+          "id": "handwritten-notes-barney-real-pdf",
+          "source": "testdata/handwritten-notes-barney-real.pdf",
+          "pages": 1,
+          "notes": "Image-only PDF wrapper around the same real LOC Barney spread. Story 186 verified `pypdf` extract-text lengths `[0]` and reran the maintained generic PDF OCR lane, which also stayed only in the low-0.1 range on the checked-in transcript excerpt. A bounded non-maintained direct comparison using `claude-opus-4-6` improved the same real slice to roughly `0.73`, still below the repo's passing bar."
         }
       ],
-      "scores": {
-        "text_fidelity": 1.0,
-        "structure_preservation": 1.0,
-        "illustration_extraction": null,
-        "provenance_completeness": 1.0,
-        "measured": "2026-04-03",
-        "provenance_measured": "2026-04-03",
-        "notes": "Measured by `benchmarks/scripts/run_handwritten_notes_eval.py` on a three-fixture repo-owned synthetic handwritten corpus. Both maintained generic image-directory and PDF OCR paths matched the checked-in transcripts exactly after normalization across six cases. This is a passing claim only for the current synthetic corpus: one highly legible note, one faded synthetic note, and one rougher synthetic note."
-      },
+      "scores": null,
       "known_gaps": [
-        "Current evidence covers three repo-owned synthetic handwritten fixtures only; real handwritten samples, messy cursive, degraded notes, and broader handwriting collections remain unmeasured."
+        "The three repo-owned synthetic handwritten fixtures still pass exactly after normalization across six maintained image-directory and PDF OCR cases, but the first real LOC Barney spread drops the widened default corpus to `pass_rate = 0.75` and keeps the real-slice score in the low-0.1 range.",
+        "The maintained generic OCR seam is weak on the checked-in real Barney spread; the bounded direct `claude-opus-4-6` comparison improves that slice materially to roughly `0.73` but still does not clear the repo's `0.99` target.",
+        "Messy cursive, degraded notes, and broader real-world handwriting collections remain unproven."
       ],
       "graduated": false
     },

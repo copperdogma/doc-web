@@ -26,6 +26,17 @@
       "transcript": "testdata/handwritten-notes-rough.txt",
       "images": "testdata/handwritten-notes-rough-images",
       "pdf": "testdata/handwritten-notes-rough.pdf"
+    },
+    {
+      "id": "handwritten-notes-barney-real",
+      "label": "Real LOC Civil War letter spread",
+      "difficulty": "real-archival",
+      "source_type": "real",
+      "source_url": "https://www.loc.gov/pictures/item/2023637825/",
+      "rights_note": "No known restrictions on publication.",
+      "transcript": "testdata/handwritten-notes-barney-real.txt",
+      "images": "testdata/handwritten-notes-barney-real-images",
+      "pdf": "testdata/handwritten-notes-barney-real.pdf"
     }
   ]
 }
