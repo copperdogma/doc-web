@@ -22,9 +22,10 @@ This skill is read-only and advisory. It never runs evals automatically.
 
 1. `docs/evals/registry.yaml`
 2. `docs/spec.md`
-3. `docs/build-map.md`
-4. relevant ADRs under `docs/decisions/`
-5. recent `git log --oneline -20`
+3. `docs/methodology/state.yaml`
+4. `docs/methodology/graph.json`
+5. relevant ADRs under `docs/decisions/`
+6. recent `git log --oneline -20`
 
 If a recommendation depends on model availability, pricing, or a newly released
 provider capability, verify it with current official docs or a fresh web search
@@ -58,7 +59,7 @@ availability to judge whether the trigger is actually met.
 
 ### 3. Phase-aware assessment
 
-Read the build-map phase for each eval's compromise category:
+Read the methodology-state phase for each eval's compromise category:
 - `climb` → focus on quality (better prompts, better golden fixtures)
 - `hold` → focus on efficiency (cheaper, faster, simpler)
 - `converge` → recommend deleting the compromise
@@ -70,8 +71,8 @@ For compromise-detection evals:
 - is the last score close to the threshold?
 - did it already pass while the compromise still lingers in docs?
 - is a compromise missing an eval entirely?
-- does `docs/build-map.md` still match the registry?
-- does the build-map category's `spec:N.N` constraint block match the eval's target?
+- does `docs/methodology/state.yaml` still match the registry?
+- does the compiled graph's category/compromise linkage match the eval's target?
 
 ### 5. General eval hygiene
 
@@ -110,7 +111,7 @@ Recommend the smallest correct next step:
 - `/improve-eval <id>` when an eval should be investigated or rerun
 - current model-availability research when the trigger depends on new releases
 - `/create-story` when the issue is an implementation gap, not just eval staleness
-- edit `docs/build-map.md` or `docs/spec.md` when the docs drifted from a passing gate
+- update `docs/methodology/state.yaml`, `tests/fixtures/formats/_coverage-matrix.json`, or `docs/spec.md` when the truth surfaces drift from a passing gate
 
 Do not auto-run expensive evals. Present cost/time implications and let the
 user decide.

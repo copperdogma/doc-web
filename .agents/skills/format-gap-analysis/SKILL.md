@@ -15,7 +15,7 @@ stories. It never runs pipelines or modifies code.
 Before diagnosing, verify the data is fresh:
 
 1. Read `tests/fixtures/formats/_coverage-matrix.json` — the machine-readable format inventory.
-2. Read `docs/build-map.md` — the human-readable status document, especially `## Input Coverage`, `## Known Gaps (Prioritized)`, and `## Graduation Criteria`.
+2. Read `docs/methodology/state.yaml`, `docs/methodology/graph.json`, and `docs/spec.md` for the current category/phase context.
 3. For each format with `status: "passing"`:
    - Check `scores.measured` date. Flag if older than 30 days.
    - Check if pipeline recipe or intake module has changed since last measurement (git log on the recipe file).
@@ -45,7 +45,7 @@ For each format (or the single `--format` target):
    - What's the estimated effort to build a pipeline?
 
 4. **Graduation check** — For passing formats, check if ALL graduation criteria are met
-   (see `docs/build-map.md` § Graduation Criteria). Flag candidates.
+   according to the current coverage truth plus active spec obligations. Flag candidates.
 
 For each gap found, identify:
 - **Root cause**: Why is the score low or the pipeline missing?
@@ -80,7 +80,7 @@ Group into tiers:
 For each prioritized gap:
 
 1. Draft a story proposal (title, goal, key ACs) — do NOT create stories directly.
-2. Map to existing gaps in `docs/build-map.md` (update if new gaps found).
+2. Map to existing gaps in the graph/state and coverage truth surfaces.
 3. Check `docs/evals/registry.yaml` for relevant eval history.
 
 ## Phase 5 — Report
@@ -103,7 +103,7 @@ Present findings in this structure:
 ### 2. ...
 
 ## Graduation Candidates
-- [Formats meeting all graduation criteria from docs/build-map.md]
+- [Formats meeting all graduation criteria from current coverage/state/spec truth]
 
 ## Regressions
 - [Any scores that dropped since last measurement]

@@ -1,0 +1,195 @@
+# Project Stories — doc-forge
+
+## Recommended Order (next up)
+Guiding priorities: keep the active intake + `doc-web` path honest, improve
+validation and provenance, expand reusable format coverage, and retire or
+quarantine legacy FF/gamebook surfaces that no longer belong in the default
+roadmap.
+
+Use the build map, active `doc-web` stories, and `/triage` output for current
+sequencing. Historical Fighting Fantasy/gamebook stories remain in the index
+below as project record and reference evidence, not as the default mission
+queue.
+
+This index tracks stories in `/docs/stories/` for the doc-forge pipeline.
+
+## Story List
+| Story ID | Title | Priority | Status | Link |
+|----------|-------|----------|---------|------|
+|| 001 | Establish run layout & manifests | High | Done | /docs/stories/story-001-run-layout-and-manifest.md |
+|| 002 | Page cleaning module (multimodal) | High | Done | /docs/stories/story-002-page-cleaning.md |
+|| 003 | Portionization with priors & overlaps | High | Done | /docs/stories/story-003-portionization-priors.md |
+|| 004 | Consensus/dedupe/normalize/resolve pipeline | High | Done | /docs/stories/story-004-consensus-resolve.md |
+|| 005 | Final assembly (portions_final_raw.json) | High | Done | /docs/stories/story-005-final-assembly.md |
+|| 006 | Enrichment pass (choices/combat/items/endings) | High | Done | /docs/stories/story-006-enrichment.md |
+|| 007 | Turn-to validator (CYOA cross-refs) | Medium | Done | /docs/stories/story-007-turn-validator.md |
+|| 008 | Image cropper/mapper | Medium | Done | /docs/stories/story-008-image-cropper.md |
+|| 009 | Spatial Layout Understanding for Content Linearization | High | Done | /docs/stories/story-009-layout-preserve.md |
+|| 010 | Coarse+fine portionizer & continuation merge | Medium | Done | /docs/stories/story-010-coarse-fine-merge.md |
+|| 011 | AI planner to assemble pipelines | Medium | Won't Do | /docs/stories/story-011-ai-planner.md |
+|| 012 | Automation wrapper (single driver + config snapshots) | Medium | Done | /docs/stories/story-012-driver-automation.md |
+|| 013 | Cost/perf benchmarking and presets | Low | Done | /docs/stories/story-013-cost-perf.md |
+|| 015 | Modular pipeline & module registry | High | Done | /docs/stories/story-015-modular-pipeline.md |
+|| 016 | Driver DAG & schema compatibility | High | Done | /docs/stories/story-016-driver-dag-schema.md |
+|| 017 | Module UX polish (params & outputs) | Medium | Done | /docs/stories/story-017-module-ux.md |
+|| 018 | Enrichment & alt modules | High | Done | /docs/stories/story-018-enrichment-alt-mods.md |
+|| 019 | Pipeline visibility dashboard | Medium | Done | /docs/stories/story-019-pipeline-visibility.md |
+|| 020 | Module encapsulation & shared common | Medium | Done | /docs/stories/story-020-module-encapsulation.md |
+|| 021 | Dashboard UI polish (highlighting & pane) | Medium | In Progress | /docs/stories/story-021-dashboard-ui-polish.md |
+|| 022 | Pipeline instrumentation (timing & cost) | High | Done | /docs/stories/story-022-instrumentation.md |
+|| 023 | Consolidate section target adapters | Medium | Done | /docs/stories/story-023-section-target-guard.md |
+|| 024 | Image cropper follow-up | Medium | Done | /docs/stories/story-024-image-cropper-followup.md |
+|| 025 | Module pruning & registry hygiene | Medium | Done | /docs/stories/story-025-module-prune.md |
+|| 026 | Onward to the Unknown — Arthur L'Heureux pilot | Medium | Done | /docs/stories/story-026-onward-unknown-arthur-lheureux.md |
+|| 027 | Contact-sheet intake for automatic book type planning | Medium | Done | /docs/stories/story-027-contact-sheet-auto-intake.md |
+|| 028 | Market Discovery for doc-forge | Medium | In Progress | /docs/stories/story-028-market-discovery.md |
+|| 029 | Audit model lineup vs latest OpenAI sheets | Medium | Obsolete | /docs/stories/story-029-model-audit-openai.md |
+|| 030 | Fighting Fantasy Engine format export | High | Done | /docs/stories/story-030-ff-engine-format.md |
+|| 031 | Fighting Fantasy output refinement | High | Done | /docs/stories/story-031-ff-output-refinement.md |
+|| 032 | Unstructured intake & Document IR adoption | Medium | Done | /docs/stories/story-032-unstructured-intake-and-document-ir-adoption.md |
+|| 033 | ARM64-native pipeline environment & perforecipe-pagelines-repair-choices.yamlrmance | Medium | Done | /docs/stories/story-033-arm64-pipeline-conversion.md |
+|| 034 | FF Unstructured follow-ups (elements, helpers, graph quality) | High | Done | /docs/stories/story-034-ff-unstructured-followups.md |
+|| 035 | Fighting Fantasy Pipeline Optimization | High | Done | /docs/stories/story-035-ff-pipeline-optimization.md |
+|| 036 | FF OCR Recovery & Text Repair | High | Done | /docs/stories/story-036-ff-ocr-recovery-and-text-repair.md |
+|| 037 | FF OCR Ensemble with BetterOCR | High | Done | /docs/stories/story-037-ocr-ensemble-with-betterocr.md |
+|| 038 | Agentic Pipeline Coordinator | Medium | Won't Do | /docs/stories/story-038-agentic-pipeline-coordinator.md |
+|| 050 | FF Ending Detection Verification | Medium | Done | /docs/stories/story-050-ff-ending-detection.md |
+|| 051 | Text Quality Evaluation & Repair | High | Done | /docs/stories/story-051-text-quality-eval.md |
+|| 052 | Evaluate Apple Vision OCR Integration | Medium | Done | /docs/stories/story-052-apple-ocr-integration.md |
+|| 053 | Pipeline Smoke Test (Static Sample, No External Calls) | High | Done | /docs/stories/story-053-smoke-test-pipeline.md |
+|| 054 | Canonical FF Recipe Consolidation | High | Done | /docs/stories/story-054-canonical-ff-recipe.md |
+|| 056 | Validation Forensics Automation | High | Done | /docs/stories/story-056-validation-forensics.md |
+|| 057 | OCR Quality & Column Detection Improvements | High | Done | /docs/stories/story-057-ocr-quality-column-detection.md |
+|| 058 | Post-OCR Text Quality & Error Correction | High | Done | /docs/stories/story-058-post-ocr-text-quality.md |
+|| 059 | Section Detection & Boundary Improvements | High | Done | /docs/stories/story-059-section-detection-boundaries.md |
+|| 060 | Pipeline Regression Testing Suite | High | Done | /docs/stories/story-060-pipeline-regression-testing.md |
+|| 061 | OCR Ensemble Fusion Improvements | High | Done | /docs/stories/story-061-ocr-ensemble-fusion.md |
+|| 062 | OCR Content Type Detection Module | Medium | Done | /docs/stories/story-062-ocr-content-type-detection.md |
+|| 063 | OCR Ensemble Three-Engine Voting | High | Done | /docs/stories/story-063-ocr-ensemble-three-engine.md |
+|| 064 | Apple Vision OCR (VNRecognizeTextRequest) Adapter | Medium | Done | /docs/stories/story-064-apple-vision-ocr.md |
+|| 065 | Stabilize EasyOCR as a Third OCR Engine | High | Done | /docs/stories/story-065-easyocr-reliability.md |
+|| 066 | FF Pipeline Accel + Accuracy Guardrails | High | Won't Do | /docs/stories/story-066-ff-pipeline-accel-accuracy.md |
+|| 067 | GPU Acceleration for OCR Pipeline | High | Done | /docs/stories/story-067-gpu-acceleration-ocr.md |
+|| 068 | Fighting Fantasy Boundary Detection Improvements | High | Done | /docs/stories/story-068-ff-boundary-detection.md |
+|| 069 | PDF Text Extraction Engine for OCR Ensemble | Medium | Done | /docs/stories/story-069-pdf-text-extraction-engine.md |
+|| 070 | OCR Split Refinement — Zero Bad Slices | High | Done | /docs/stories/story-070-ocr-split-refinement.md |
+|| 071 | Output Artifact Organization | Medium | Done | /docs/stories/story-071-output-artifact-organization.md |
+|| 072 | OCR Spell-Weighted Voting Enhancement | Medium | Obsolete | /docs/stories/story-072-ocr-spell-weighted-voting.md |
+|| 073 | 100% Section Detection — Segmentation Architecture | High | Done | /docs/stories/story-073-100-percent-section-detection.md |
+|| 074 | Missing Sections Investigation — Complete 100% Coverage | High | Done | /docs/stories/story-074-missing-sections-investigation.md |
+|| 075 | Booktype Text Cleanup Adapter (Downstream Normalization) | Medium | Won't Do | /docs/stories/story-075-booktype-text-cleanup-adapter.md |
+|| 076 | AI Vision Engine Evaluation — Best Value for Pipeline | Medium | Done | /docs/stories/story-076-ai-vision-engine-evaluation.md |
+|| 077 | AI OCR Radical Simplification — Challenging the Escalation Assumption | High | Done | /docs/stories/story-077-ai-ocr-simplification.md |
+|| 078 | Boundary Ordering Guard + Targeted Escalation | High | Done | /docs/stories/story-078-boundary-ordering-escalation.md |
+|| 079 | Sequential Page Numbering Refactor — Dual-Field Provenance | High | Done | /docs/stories/story-079-page-numbering-refactor.md |
+|| 080 | Central Escalation Cache (Premium OCR Overlay) | High | Won't Do | /docs/stories/story-080-central-escalation-cache.md |
+|| 081 | GPT‑5.1 AI‑First OCR Pipeline (HTML‑First) | High | Done | /docs/stories/story-081-ai-ocr-gpt51-pipeline.md |
+|| 082 | Large-Image PDF Cost Optimization | High | Done | /docs/stories/story-082-large-image-pdf-cost-optimization.md |
+|| 083 | Game-Ready Validation Checklist | High | Done | /docs/stories/story-083-game-ready-validation-checklist.md |
+|| 084 | Fast PDF Image Extraction (Embedded Streams) | High | Done | /docs/stories/story-084-fast-pdf-image-extraction.md |
+|| 085 | Table Rescue OCR Pass | High | Done | /docs/stories/story-085-table-rescue-ocr.md |
+|| 086 | Preserve HTML Through Final Gamebook | High | Done | /docs/stories/story-086-preserve-html-final-output.md |
+|| 087 | Retire Legacy OCR-Only Recipe | Medium | Done | /docs/stories/story-087-retire-legacy-ocr-recipe.md |
+|| 088 | Choice Parsing Enhancements | High | Done | /docs/stories/story-088-choice-parsing-enhancements.md |
+|| 089 | Pristine Book Parity (Missing Sections + Robustness) | High | Done | /docs/stories/story-089-pristine-book-parity.md |
+|| 090 | Run Summary UX (Missing Sections + Stage Metrics) | Medium | Done | /docs/stories/story-090-run-summary-and-missing-section-signal.md |
+|| 091 | Orphaned Section Mitigation | High | Done | /docs/stories/story-091-orphaned-section-mitigation.md |
+|| 092 | HTML Presentation Cleanup | High | Done | /docs/stories/story-092-html-presentation-cleanup.md |
+|| 093 | Coarse Portionizer Endmatter Filter | High | Done | /docs/stories/story-093-coarse-portionizer-endmatter-filter.md |
+|| 094 | Inventory Parsing and Extraction | High | Done | /docs/stories/story-094-inventory-parsing.md |
+|| 095 | Combat and Enemy Extraction | High | Done | /docs/stories/story-095-combat-enemy-extraction.md |
+|| 096 | Stat Check Extraction (Skill, Luck, and Dice Rolls) | High | Done | /docs/stories/story-096-stat-check-extraction.md |
+|| 097 | Stat Modification Extraction (Skill, Stamina, Luck Changes) | High | Done | /docs/stories/story-097-stat-modification-extraction.md |
+|| 098 | Late-Stage Section Validation and Reachability Analysis | High | Done | /docs/stories/story-098-late-stage-section-validation.md |
+|| 099 | Remove dev-only backcompat disclaimer | Low | To Do | /docs/stories/story-099-remove-dev-backcompat-note.md |
+||| 100 | Pipeline Visibility Cost Display Enhancement | Medium | Done | /docs/stories/story-100-pipeline-visibility-cost-display.md |
+||| 101 | ARM64 Environment Cleanup Investigation | Medium | Done | /docs/stories/story-101-arm64-environment-cleanup.md |
+||| 102 | X-Height Measurement and Target Investigation | High | Done | /docs/stories/story-102-x-height-measurement-and-target-investigation.md |
+||| 103 | Pipeline Dashboard Validation Report Integration | Medium | Done | /docs/stories/story-103-pipeline-dashboard-validation-integration.md |
+||| 104 | Gamebook Output File Tweaks | High | In Progress | /docs/stories/story-104-gamebook-output-tweaks.md |
+||| 105 | Choice Text Enrichment (Spec Only) | Medium | To Do | /docs/stories/story-105-choice-text-enrichment.md |
+|||| 106 | Gamebook Schema Navigation Improvements | Medium | Done | /docs/stories/story-106-gamebook-schema-navigation-improvements.md |
+|||| 107 | Shared Validator Unification (Node/AJV Canonical) | High | Done | /docs/stories/story-107-shared-validator-unification.md |
+|||| 108 | Game-Ready Output Package | High | Done | /docs/stories/story-108-game-ready-output-package.md |
+|||| 109 | Combat Outcome Enhancements | High | Done | /docs/stories/story-109-combat-outcome-enhancements.md |
+|||| 110 | Edge-Case Scanner + Patch Module (Post-Extraction) | Medium | Done | /docs/stories/story-110-edgecase-scanner-and-patch-module.md |
+|||| 111 | Edge-Case Scanner — Special-Case Detection Patterns | Medium | Won't Do | /docs/stories/story-111-edgecase-scanner-special-cases.md |
+|||| 112 | Run Configuration Simplification | High | Done | /docs/stories/story-112-run-configuration-simplification.md |
+|||| 113 | Make output/ Canonical Location for gamebook.json | Medium | Done | /docs/stories/story-113-gamebook-canonical-output-location.md |
+|||| 114 | Decouple Execution Context from Recipes | High | Done | /docs/stories/story-114-decouple-recipes.md |
+|||| 115 | Configuration Cleanup and Standardization | High | Done | /docs/stories/story-115-config-cleanup.md |
+|||| 116 | Fighting Fantasy Split Pages Quality Issues | High | Done | /docs/stories/story-116-ff-split-pages-quality-issues.md |
+|| 117 | FF Robot Commando + Freeway Fighter Pipeline Bring-Up | High | Done | /docs/stories/story-117-ff-robot-commando-freeway-fighter-pipeline.md |
+|| 118 | Fix Hardcoded Book Title Bug | High | Done | /docs/stories/story-118-fix-hardcoded-book-title.md |
+||| 119 | Robot Commando Missing Choices Investigation | High | Done | /docs/stories/story-119-robot-commando-missing-choices-investigation.md |
+||| 120 | Validation Inconsistency — Reachability Analysis | High | Done | /docs/stories/story-120-validation-inconsistency-reachability.md |
+|||| 121 | Robot Commando Unreachable Sections Investigation | High | Done | /docs/stories/story-121-robot-commando-unreachable-sections-investigation.md |
+|||| 122 | Refactor Python Validator into Forensics Wrapper | Medium | Done | /docs/stories/story-122-refactor-python-validator-forensics-wrapper.md |
+|||| 123 | Patch File Support for Manual Corrections | Medium | Done | /docs/stories/story-123-patch-file-support.md |
+|||| 124 | Player Vehicle/Robot Extraction (Secondary Stats) | High | Done | /docs/stories/story-124-player-vehicle-robot-extraction.md |
+|||| 125 | Image Extraction Evaluation with promptfoo | High | Done | /docs/stories/story-125-image-extraction-eval-promptfoo.md |
+|||| 126 | Crop Quality — Text Validation Loop | High | Done | /docs/stories/story-126-crop-quality-text-validation-loop.md |
+|||| 127 | OCR Model Eval for Genealogy / Table-Heavy Books | High | Done | /docs/stories/story-127-ocr-model-eval-genealogy.md |
+|||| 128 | Onward Table Fidelity Verification | High | Done | /docs/stories/story-128-onward-table-fidelity-verification.md |
+|||| 129 | HTML Output Polish + Image Integration | Medium | Done | /docs/stories/story-129-onward-html-output-polish.md |
+|||| 130 | Book Website Template Module | Medium | Won't Do | /docs/stories/story-130-onward-book-website-template.md |
+|||| 131 | Onward Table Structure Fidelity | High | Done | /docs/stories/story-131-onward-table-structure-fidelity.md |
+|||| 132 | Fix Provenance Envelope Gaps | High | Done | /docs/stories/story-132-provenance-envelope-fixes.md |
+|||| 133 | Gemini 3 Flash as Cost-Optimized Crop Detector | High | Done | /docs/stories/story-133-gemini-flash-crop-detector.md |
+|||| 134 | OCR Pipeline Speed & Cost Optimization | High | Done | /docs/stories/story-134-ocr-pipeline-speed-cost-optimization.md |
+|||| 135 | Onward Image Placement and Caption Fidelity | High | Done | /docs/stories/story-135-multi-image-crop-miss.md |
+|||| 136 | Parallelize Crop Detection and Table Rescue Stages | High | Draft | /docs/stories/story-136-pipeline-stage-parallelism.md |
+|||| 137 | Onward OCR Empty-Page Recovery and TOC Coarse Boundary Selection | High | Done | /docs/stories/story-137-onward-missing-content-and-chapter-boundary-gaps.md |
+|||| 138 | Onward Genealogy Table Whole-Table Continuation and Header Regressions | High | Done | /docs/stories/story-138-onward-genealogy-table-continuation-and-header-regressions.md |
+|||| 139 | Partial-TOC Section Splitting and Page-Break Continuation | High | Done | /docs/stories/story-139-partial-toc-section-splitting-and-page-break-continuation.md |
+|||| 140 | Onward Targeted Genealogy Table Rescue Fidelity | High | Done | /docs/stories/story-140-onward-targeted-genealogy-table-rescue-fidelity.md |
+|||| 141 | Onward Genealogy Consistency Investigation and ADR Handoff | High | Done | /docs/stories/story-141-onward-genealogy-table-consistency-pass.md |
+|||| 142 | Onward Genealogy Consistency Detection and Rerun Gating | High | Done | /docs/stories/story-142-onward-source-aware-genealogy-consistency-first-slice.md |
+|||| 143 | Onward Schema-Frozen Genealogy Reruns | High | Done | /docs/stories/story-143-onward-schema-frozen-genealogy-reruns.md |
+|||| 144 | Onward Document-Level Genealogy Consistency Planning | High | Done | /docs/stories/story-144-onward-document-level-genealogy-consistency-planning.md |
+|||| 145 | Storybook ADR-019 Agent Workflow Convergence | High | Done | /docs/stories/story-145-storybook-adr-019-agent-workflow-convergence.md |
+|||| 146 | Onward Plan-Aware Genealogy Selective Reruns | High | Done | /docs/stories/story-146-onward-plan-aware-genealogy-reruns.md |
+|||| 147 | Quality Bar Then Complexity Collapse | High | Done | /docs/stories/story-147-quality-bar-then-complexity-collapse.md |
+|||| 148 | ADR-021 Migration: Dual-Ideal, Category Spec, Phase Governance | High | Done | /docs/stories/story-148-adr-021-migration-dual-ideal-category-spec-phase-governance.md |
+|||| 149 | Onward Scanned-Genealogy Collapse Implementation | High | Done | /docs/stories/story-149-onward-scanned-genealogy-collapse-implementation.md |
+|||| 150 | Onward Full-Run Audit Reconciliation | High | Done | /docs/stories/story-150-onward-full-run-audit-reconciliation.md |
+|||| 151 | Define `doc-web` as the Standalone Dossier Intake Runtime | High | Done | /docs/stories/story-151-name-and-define-standalone-dossier-intake-runtime.md |
+|||| 152 | `doc-web` Bundle and Provenance Contract | High | Done | /docs/stories/story-152-doc-web-bundle-and-provenance-contract.md |
+|||| 153 | Extract `doc-web` Bundle Emitter | High | Done | /docs/stories/story-153-extract-doc-web-bundle-emitter.md |
+|||| 154 | Dossier `doc-web` Semantic HTML Handoff | High | Done | /docs/stories/story-154-dossier-doc-web-semantic-html-handoff.md |
+|||| 155 | Repo Mission Alignment Cleanup and Legacy Surface Removal | High | Done | /docs/stories/story-155-repo-mission-alignment-cleanup-and-legacy-surface-removal.md |
+|||| 156 | Adopt Storybook-Style Pinned `doc-web` Runtime Pattern and Close Dossier Readiness Gaps | High | Done | /docs/stories/story-156-pinned-doc-web-runtime-adoption-and-dossier-readiness.md |
+|||| 157 | PDF Intake Parity with Image-Directory Inputs | High | Done | /docs/stories/story-157-pdf-intake-parity-with-image-directory-inputs.md |
+|||| 158 | Evaluate `Docling` as a Full Replacement Candidate for `doc-web` | High | Done | /docs/stories/story-158-docling-doc-web-replacement-evaluation.md |
+|||| 159 | Tune `Docling` on the Onward Hard Case and Rank the Path to 100% Fidelity | High | Done | /docs/stories/story-159-docling-onward-tuning-sweep.md |
+|||| 160 | Generalize Tier 2 `Docling` Hybrid Repair on the Onward Lane | High | Done | /docs/stories/story-160-docling-tier2-onward-hybrid-generalization.md |
+|||| 161 | Integrate Generalized `Docling` Hybrid into a Maintained Onward Path | High | Done | /docs/stories/story-161-integrate-generalized-docling-hybrid-into-maintained-onward-path.md |
+|||| 162 | Reach Final `Docling` Boundary Decision on Widened Onward Hard Cases | High | Done | /docs/stories/story-162-docling-final-boundary-decision-onward-high-cases.md |
+|||| 163 | Probe Coordinated Official `Docling` Plugin Paths Against the Onward 100% Golden Bar | High | Done | /docs/stories/story-163-docling-plugin-onward-golden-kill-test.md |
+|||| 164 | Benchmark `Surya` as a Component Candidate for Layout and Table Seams | High | Done | /docs/stories/story-164-surya-component-benchmark-for-layout-and-table-seams.md |
+|||| 165 | Benchmark `Marker` as a Breadth Comparator on the `born-digital-pdf` Gap | High | Done | /docs/stories/story-165-marker-breadth-comparator-born-digital-pdf.md |
+|||| 166 | Use Marker Internals as a Thin Born-Digital PDF Substrate | High | Done | /docs/stories/story-166-marker-internals-born-digital-pdf-substrate.md |
+|||| 167 | Repo-Owned Scanned-Prose PDF Fixture | High | Done | /docs/stories/story-167-repo-owned-scanned-prose-pdf-fixture.md |
+|||| 168 | Maintain a `Marker`-Lite Born-Digital PDF Path | High | Done | /docs/stories/story-168-marker-lite-maintained-born-digital-pdf-path.md |
+|||| 169 | Restore Maintained Contact-Sheet Intake and Benchmark Auto Book-Type Detection | High | Done | /docs/stories/story-169-restore-contact-sheet-intake-and-benchmark-auto-book-type-detection.md |
+|||| 170 | Widen Born-Digital PDF Native-Text Validation and Routing Decision | High | Done | /docs/stories/story-170-born-digital-pdf-native-text-widening-and-routing-decision.md |
+|||| 171 | Maintain a Non-TOC Born-Digital PDF Lane | High | Done | /docs/stories/story-171-maintained-non-toc-born-digital-pdf-lane.md |
+|||| 172 | Establish a Maintained DOCX Intake Lane | High | Done | /docs/stories/story-172-maintained-docx-intake-lane.md |
+|||| 173 | Harden `doc-web` After the First Dossier Adoption Trial | High | Done | /docs/stories/story-173-dossier-doc-web-adoption-hardening.md |
+|||| 174 | Harden Maintained DOCX Runtime Surface and Clarify `doc-web` Contract Compatibility Signaling | High | Done | /docs/stories/story-174-docx-runtime-surface-and-contract-compatibility-signaling.md |
+|||| 175 | Widen Office Document Proof and Decide XLSX/PPTX Lane Strategy | High | Done | /docs/stories/story-175-office-document-proof-widening-and-xlsx-pptx-lane-decision.md |
+|||| 176 | Confirmed Intake Handoff to Explicit Recipe Runs | High | Done | /docs/stories/story-176-confirmed-intake-handoff-to-explicit-recipe-runs.md |
+|||| 177 | Widen Flat Born-Digital Proof and Decide Oversized Heading Cleanup | High | Done | /docs/stories/story-177-born-digital-flat-proof-and-heading-cleanup.md |
+|||| 178 | Corpus-Wide Approved Intake Handoff Benchmark | High | Done | /docs/stories/story-178-corpus-wide-approved-intake-handoff-benchmark.md |
+|||| 179 | Repo-Owned Handwritten Notes Fixture and Baseline Transcription | High | Done | /docs/stories/story-179-repo-owned-handwritten-notes-fixture-and-baseline-transcription.md |
+|||| 180 | Widen Approved Intake Handoff to Repo-Owned Image-Directory Proof | High | Done | /docs/stories/story-180-widen-approved-intake-handoff-image-directory-proof.md |
+|||| 181 | Establish a Maintained Layout Benchmark and Provenance-Focused Section-Splitting Proof Surface | High | Done | /docs/stories/story-181-maintained-layout-benchmark-and-section-splitting-proof.md |
+|||| 182 | Widen Handwritten Notes Fixture Breadth Beyond the First Synthetic Slice | High | Done | /docs/stories/story-182-widen-handwritten-notes-fixture-breadth.md |
+|||| 183 | Repair Crop Benchmark Substrate and Promote C5 Validation Surface | High | Done | /docs/stories/story-183-crop-benchmark-substrate-and-c5-validation-surface.md |
+|||| 184 | Collapse Bounded Crop Runtime to Flash-First Simplification | High | Done | /docs/stories/story-184-collapse-bounded-crop-runtime-to-single-stage-flash.md |
+|||| 185 | Widen Handwritten Proof Beyond the Synthetic Pair | High | Done | /docs/stories/story-185-widen-handwritten-proof-beyond-synthetic-pair.md |
+|||| 186 | Add First Reproducible Real Handwritten Fixture Proof Surface | High | Done | /docs/stories/story-186-real-handwritten-fixture-proof-surface.md |
+
+## Notes
+- Status "Done" reflects current working state in doc-forge. "To Do" items are planned next steps aligned with `docs/ideal.md`, `docs/spec.md`, and `docs/build-map.md`.
+- Use existing files in `/docs/stories/` as templates for structure when creating these story documents.

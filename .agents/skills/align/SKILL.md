@@ -1,6 +1,6 @@
 ---
 name: align
-description: Check alignment of the methodology graph after a change — Ideal, ADRs, Spec, Build Map, Stories, Evals — and propose corrections
+description: Check alignment of the methodology graph after a change — Ideal, ADRs, Spec, State, Graph, Stories, Coverage, Evals — and propose corrections
 user-invocable: true
 ---
 
@@ -17,7 +17,7 @@ Use this after changes that may ripple across core project guidance:
 
 - an ADR is accepted or materially redirected
 - `docs/ideal.md`, `docs/spec.md`, or `docs/requirements.md` changes
-- `docs/build-map.md` changes
+- `docs/methodology/state.yaml` or `docs/methodology/graph.json` changes
 - an eval newly passes and may delete a compromise
 - a story reveals a new repo-level lesson
 - a new model, tool, or external constraint may invalidate current guidance
@@ -26,12 +26,14 @@ Use this after changes that may ripple across core project guidance:
 
 1. `docs/ideal.md`
 2. `docs/spec.md`
-3. `docs/build-map.md`
-4. `docs/requirements.md`
-5. `docs/stories.md` plus directly affected story files
-6. relevant ADRs under `docs/decisions/`
-7. `docs/evals/registry.yaml`
-8. `AGENTS.md` if workflow or guardrails may be affected
+3. `docs/methodology/state.yaml`
+4. `docs/methodology/graph.json`
+5. `tests/fixtures/formats/_coverage-matrix.json`
+6. `docs/requirements.md`
+7. `docs/stories.md` plus directly affected story files
+8. relevant ADRs under `docs/decisions/`
+9. `docs/evals/registry.yaml`
+10. `AGENTS.md` if workflow or guardrails may be affected
 
 ## What To Check
 
@@ -47,11 +49,11 @@ Use this after changes that may ripple across core project guidance:
 - are `spec:N.N` constraint blocks consistent with the change?
 - do build-process compromises (spec:8, spec:9) need updating?
 
-### Build Map
+### State / Graph / Coverage
 - does this change category scope, dependency order, or compromise progress?
 - does a category's substrate status need to change (`exists`/`partial`/`missing`)?
 - does a category's phase need to change (`climb`/`hold`/`converge`)?
-- does input coverage, graduation tracking, or known-gap prioritization need to move?
+- does coverage truth, graduation tracking, or known-gap prioritization need to move?
 
 ### Stories
 - are any Draft, Pending, or In Progress stories affected?
@@ -78,7 +80,7 @@ Use this after changes that may ripple across core project guidance:
 ### Spec / Requirements
 - {impact or "Aligned"}
 
-### Build Map
+### State / Graph / Coverage
 - {impact or "Aligned"}
 
 ### Stories

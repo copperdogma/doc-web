@@ -12,17 +12,20 @@
 ## Canonical Surface
 
 - [ ] `/setup-methodology` is the canonical setup or refresh entrypoint
-- [ ] `AGENTS.md` advertises the methodology package and build-map-first operating rule
+- [ ] `AGENTS.md` advertises the methodology package and graph/state operating rule
 - [ ] `docs/runbooks/setup-methodology.md` exists and matches the skill
 - [ ] `docs/setup-checklist.md` exists as the working checklist
 
 ## Methodology Graph
 
 - [ ] `docs/ideal.md` contains both product and execution ideals
-- [ ] `docs/spec.md` is category-aligned and matches the build map
-- [ ] `docs/build-map.md` is the central planning / triage dashboard
+- [ ] `docs/spec.md` is category-aligned and matches the methodology state
+- [ ] `docs/methodology/state.yaml` exists and owns mutable methodology state
+- [ ] `tests/fixtures/formats/_coverage-matrix.json` remains the canonical machine-readable input-coverage source
+- [ ] `docs/methodology/graph.json` compiles cleanly from canon + state
+- [ ] `docs/stories.md` is generated from the methodology graph
 - [ ] `docs/methodology-ideal-spec-compromise.md` documents the graph and deletion model
-- [ ] Story planning surfaces reference build-map context and substrate checks
+- [ ] Story planning surfaces reference graph/state context and substrate checks
 
 ## Baseline Evidence Setup
 
@@ -34,14 +37,17 @@
 
 ## Story / Planning Setup
 
-- [ ] Story drafting is anchored to ideal + spec + build-map + decision context
+- [ ] Story drafting is anchored to ideal + spec + state/graph + decision context
 - [ ] Story build guidance verifies substrate before treating `Pending` as buildable
 - [ ] Validation / close-out guidance distinguishes fresh verification from stale confidence
 - [ ] Scout surfaces capture proof for real cross-repo pattern transfers
+- [ ] Architecture-audit lane exists with bounded domains and current state memory
 
 ## Validation
 
 - [ ] Reference audit completed (`rg` for stale setup or methodology promotions)
+- [ ] `make methodology-compile`
+- [ ] `make methodology-check`
 - [ ] Skill sync completed (`scripts/sync-agent-skills.sh`)
 - [ ] Skill sync check completed (`scripts/sync-agent-skills.sh --check`)
 - [ ] Eval-surface audit completed

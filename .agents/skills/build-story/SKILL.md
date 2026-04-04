@@ -6,13 +6,13 @@ user-invocable: true
 
 # /build-story [story-number]
 
-> Alignment check: Before choosing an approach, verify it aligns with `docs/ideal.md`, `docs/build-map.md`, and relevant decision records in `docs/decisions/`. If this work touches a known compromise in `docs/spec.md`, respect its limitation type and evolution path. If none apply, say so explicitly.
+> Alignment check: Before choosing an approach, verify it aligns with `docs/ideal.md`, `docs/methodology/state.yaml`, `docs/methodology/graph.json`, and relevant decision records in `docs/decisions/`. If this work touches a known compromise in `docs/spec.md`, respect its limitation type and evolution path. If none apply, say so explicitly.
 
 Execute a development story through implementation handoff.
 
 ## Phase 1 — Explore (story-file edits allowed, code changes forbidden)
 
-1. **Resolve story** — Read `docs/stories/story-{NNN}-*.md` (or resolve from `docs/stories.md`). Verify status is Pending or In Progress. If status is **Draft**, STOP — it needs detailed acceptance criteria and tasks before it can be built. Tell the user to promote it to Pending first.
+1. **Resolve story** — Read `docs/stories/story-{NNN}-*.md` (or resolve from `docs/methodology/graph.json`). Verify status is Pending or In Progress. If status is **Draft**, STOP — it needs detailed acceptance criteria and tasks before it can be built. Tell the user to promote it to Pending first.
 
 2. **Verify required sections** — Ensure the story has:
    - Goal
@@ -24,11 +24,11 @@ Execute a development story through implementation handoff.
 
 3. **Read context** — Read `docs/ideal.md` first, then:
    - all `Spec Refs`
-   - the relevant categories in `docs/build-map.md`
+   - the relevant categories in `docs/methodology/graph.json` and `docs/methodology/state.yaml`
    - any dependency stories
    - referenced ADRs / decision docs
    If the story touches inputs, formats, or artifacts, also read the relevant
-   rows in the `Input Coverage` section of `docs/build-map.md`. If the story
+   rows in `tests/fixtures/formats/_coverage-matrix.json`. If the story
    does not cite an ADR and the work affects architecture, workflow, schemas,
    or cross-cutting project behavior, search `docs/decisions/` before assuming
    none exist.
@@ -69,8 +69,8 @@ Execute a development story through implementation handoff.
    - Files that will change
    - Files at risk
    - ADRs / decision docs consulted
-   - Relevant build-map category and current substrate/phase
-   - Relevant input-coverage rows when applicable
+   - Relevant graph/state category and current substrate/phase
+   - Relevant coverage-matrix rows when applicable
    - Critical substrate verified versus missing, with file evidence
    - Patterns to follow
    - Potential redundant code or docs to remove
@@ -88,7 +88,7 @@ Execute a development story through implementation handoff.
 10. **Write the implementation plan** — Add a `## Plan` section to the story with:
    - For each task: which files change, what changes, in what order
    - Impact analysis: what tests are affected, what could break
-   - Relevant build-map context and any input-coverage movement expected
+   - Relevant graph/state context and any coverage-matrix movement expected
    - Structural health notes (file sizes, schema-boundary risks, redundancy plan)
    - Human-approval blockers (new dependencies, schema changes)
    - Any recommended scope adjustments discovered during exploration
@@ -103,7 +103,7 @@ Execute a development story through implementation handoff.
 ## Phase 3 — Implement
 
 12. **Implement** — Work through tasks in order:
-    - If the story status is `Pending`, set it to `In Progress` in both the story file and `docs/stories.md` before implementation starts
+    - If the story status is `Pending`, set it to `In Progress` in the story file and regenerate the graph/index before implementation starts
     - Mark task in progress in story file
     - Do the work
     - Run relevant checks after meaningful changes
@@ -119,7 +119,8 @@ Execute a development story through implementation handoff.
 
 14. **Update docs** — Search all docs and update anything related to what was touched.
     - If the story changed documented format coverage or graduation readiness,
-      update `docs/build-map.md` in the same slice and keep the row honest
+      update `tests/fixtures/formats/_coverage-matrix.json` and any relevant
+      methodology state in the same slice and keep the truth surfaces honest
       about current reality
 
 15. **Verify Central Tenets** — Check each tenet in the story:

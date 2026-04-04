@@ -1,3 +1,24 @@
+---
+title: "`doc-web` Runtime Boundary, Output Contract, and Dossier Handoff Model"
+status: "ACCEPTED"
+ideal_refs:
+  - "Mission"
+  - "Vision-Level Preferences"
+spec_refs:
+  - "spec:6"
+  - "spec:7"
+story_refs:
+  - "151"
+  - "152"
+  - "153"
+  - "154"
+  - "156"
+  - "173"
+  - "175"
+compromise_refs: []
+related_adrs: []
+---
+
 # ADR-002: `doc-web` Runtime Boundary, Output Contract, and Dossier Handoff Model
 
 **Status:** ACCEPTED — standalone `doc-web` runtime, structural website contract, and seam-first extraction adopted

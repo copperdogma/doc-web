@@ -36,7 +36,7 @@ Canonical inbox triage leaf skill. Direct invocation is allowed, and
    - `docs/decisions/` — is there an ADR that already addresses this?
    - `docs/spec.md` — is this already captured in the spec?
    - `docs/stories/` — is there already a story covering this?
-   - `docs/build-map.md` — is this already mapped to a system?
+   - `docs/methodology/graph.json` and `docs/methodology/state.yaml` — is this already mapped to a category or campaign?
    - recent git log — was this implemented recently?
 
    Classify each item:
@@ -45,7 +45,7 @@ Canonical inbox triage leaf skill. Direct invocation is allowed, and
    - **LIVE** — not yet addressed anywhere
 
 3. **Prioritize live items**
-   - Read `docs/stories.md` and recent git log to understand what's in flight
+   - Read `docs/methodology/graph.json`, `docs/stories.md`, and recent git log to understand what's in flight
    - Group items by theme if natural clusters exist
    - Recommend a top 3-5 to process first
    - Flag obvious defer/discard candidates
@@ -79,8 +79,8 @@ Canonical inbox triage leaf skill. Direct invocation is allowed, and
    After the user confirms the order, discuss each item:
    - does this move toward the Ideal or away from it?
    - if it serves a compromise, does the detection eval still fail?
-   - if it touches an input, artifact, or channel, read the Input Coverage
-     section of `docs/build-map.md` and identify the real stage gap
+   - if it touches an input, artifact, or channel, read
+     `tests/fixtures/formats/_coverage-matrix.json` and identify the real stage gap
    - is this a signal that a compromise can be deleted?
    - what if we do not create a dedicated story?
    - is there already a natural home in an existing draft or pending story?

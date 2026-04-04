@@ -77,7 +77,8 @@ If complete (or user approves remaining gaps):
 2. Check `Story marked done via /mark-story-done`.
 3. If validation was explicitly skipped by the user, record that decision in
    the work log and check `Validation complete or explicitly skipped by user`.
-4. Update corresponding row in `docs/stories.md` to `Done`.
+4. Regenerate `docs/stories.md` and `docs/methodology/graph.json` so the story
+   index and graph reflect `Done`.
 5. Append completion note to story work log with date and evidence. End the
    note with the recommended next step: `/check-in-diff`.
 6. Update CHANGELOG.md:

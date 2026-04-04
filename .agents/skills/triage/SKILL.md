@@ -4,7 +4,7 @@ description: Orchestrate the triage leaf skills and synthesize the highest-value
 user-invocable: true
 ---
 
-# /triage [stories|inbox|evals] [sub-arg]
+# /triage [stories|inbox|evals|architecture] [sub-arg]
 
 > Alignment check: Before choosing an approach, verify it aligns with `docs/ideal.md` and relevant decision records in `docs/decisions/`. If this work touches a known compromise in `docs/spec.md`, respect its limitation type and evolution path. If none apply, say so explicitly.
 
@@ -23,6 +23,8 @@ recommended next action.
 | `/triage inbox scan` | Delegate to `/triage-inbox scan` (read-only mode) |
 | `/triage evals` | Delegate to `/triage-evals` |
 | `/triage evals image-crop-extraction` | Delegate to `/triage-evals image-crop-extraction` |
+| `/triage architecture` | Delegate to `/triage-architecture` |
+| `/triage architecture methodology_tooling` | Delegate to `/triage-architecture methodology_tooling` |
 
 When a scope is provided, hand off completely to the leaf skill. Do not
 maintain duplicate logic here.
@@ -32,6 +34,7 @@ maintain duplicate logic here.
 - `/triage-stories` — backlog prioritization, readiness, dependency bottlenecks
 - `/triage-inbox` — inbox scan or processing
 - `/triage-evals` — eval health, rerun candidates, compromise deletion signals
+- `/triage-architecture` — bounded structural simplification / cleanup lane
 
 ## Full-Sweep Mode
 
@@ -40,7 +43,9 @@ When invoked with no scope:
 1. **Read the shared frame**
    - `docs/ideal.md`
    - `docs/spec.md`
-   - `docs/build-map.md`
+   - `docs/methodology/state.yaml`
+   - `docs/methodology/graph.json`
+   - `tests/fixtures/formats/_coverage-matrix.json`
    - relevant ADRs under `docs/decisions/`
    - recent `git log --oneline -20`
 
@@ -48,6 +53,7 @@ When invoked with no scope:
    - `/triage-stories`
    - `/triage-inbox scan`
    - `/triage-evals`
+   - `/triage-architecture`
 
 3. **Collect leaf reports**
    Each report should return:

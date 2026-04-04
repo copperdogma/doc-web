@@ -10,10 +10,11 @@ Instead of writing a spec from requirements alone, you first describe:
   perfect reasoning, perfect memory, and zero friction
 
 Then you document every place where reality forces a compromise. Those
-compromises live in `docs/spec.md`. `docs/build-map.md` tracks where those
-compromises live in the codebase, whether their substrate exists yet, and
-whether each one is still climbing, merely being held, or ready to converge
-away.
+compromises live in `docs/spec.md`. Mutable planning state lives in
+`docs/methodology/state.yaml`, the canonical machine-readable input-coverage
+inventory lives in `tests/fixtures/formats/_coverage-matrix.json`, and
+`docs/methodology/graph.json` compiles those sources together with stories,
+ADRs, and evals.
 
 The architecture is supposed to collapse as the limitations disappear.
 
@@ -26,14 +27,22 @@ The methodology produces one connected graph of artifacts:
 2. **Spec** — `docs/spec.md`
    Active product constraints and build-process constraints with stable
    `spec:N` / `spec:N.N` identifiers
-3. **Build Map** — `docs/build-map.md`
-   Central planning dashboard: category scope, substrate status, phase
-   governance, input coverage, and graduation readiness
-4. **Decision Records** — `docs/decisions/`
+3. **Structured Methodology State** — `docs/methodology/state.yaml`
+   Mutable planning truth: category substrate status, compromise phase,
+   sequencing bias, architecture-audit memory, archive pointers
+4. **Coverage Matrix** — `tests/fixtures/formats/_coverage-matrix.json`
+   Canonical machine-readable input coverage, fixture inventory, and format
+   truth surface
+5. **Compiled Graph** — `docs/methodology/graph.json`
+   Deterministic joins across authored canon, state, stories, evals, ADRs, and
+   coverage matrix
+6. **Generated Views** — `docs/stories.md`
+   Generated indexes or operator views derived from the graph
+7. **Decision Records** — `docs/decisions/`
    Hard-to-reverse architecture, workflow, schema, and cross-cutting choices
-5. **Stories** — `docs/stories/`
+8. **Stories** — `docs/stories/`
    Build slices under the build-map categories and spec refs
-6. **Evals** — `docs/evals/registry.yaml` plus benchmark assets
+9. **Evals** — `docs/evals/registry.yaml` plus benchmark assets
    Quality signals, compromise-deletion gates, and attempt history
 
 ## The Core Idea
@@ -134,26 +143,30 @@ Doc-forge currently organizes the graph into nine categories:
 8. AI Harnesses & Tooling
 9. Planning Infrastructure
 
-## The Build Map
+## State, Coverage Matrix, and Graph
 
 The spec says what the active constraints are.
-The build map answers the operational questions:
+The structured methodology state and compiled graph answer the operational
+questions:
 
 - where does this category live?
 - does the substrate actually exist?
-- which stories cover it?
+- which stories, ADRs, and evals cover it?
 - is the current job to improve quality, hold the floor, or delete complexity?
-- how much format coverage or graduation confidence do we really have?
+- what does the machine-readable coverage matrix say about real input support?
 
-Every category tracks:
+`docs/methodology/state.yaml` owns the mutable state:
 
-- product need
-- tech need
-- substrate status
-- story coverage
-- spec refs
-- ADR refs
-- absorbed legacy scope
+- category substrate status
+- compromise phase
+- roadmap focus and sequencing bias
+- architecture-audit cadence and findings
+
+`tests/fixtures/formats/_coverage-matrix.json` owns the canonical input
+coverage truth.
+
+`docs/methodology/graph.json` joins the authored canon plus those state surfaces
+into one inspectable machine-readable graph.
 
 ### Phase Governance
 
@@ -170,13 +183,14 @@ phase:
 - in `hold`, simplification or cost reduction is usually higher leverage
 - in `converge`, adding more workaround logic is usually the wrong move
 
-## Build-Map-First Operating Rule
+## Graph-First Operating Rule
 
-Planning and triage start from `docs/build-map.md`.
+Planning and triage start from `docs/methodology/state.yaml`,
+`docs/methodology/graph.json`, and the coverage matrix.
 
 Implementation starts from the active story, but the story is not enough on its
-own. The build-map category and linked `spec:N` sections supply the strategic
-context:
+own. The relevant graph category and linked `spec:N` sections supply the
+strategic context:
 
 - what category owns this work
 - whether the substrate is `exists`, `partial`, or `missing`

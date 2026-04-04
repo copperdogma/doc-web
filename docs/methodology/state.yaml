@@ -1,0 +1,142 @@
+{
+  "version": 1,
+  "format": "json-compatible-yaml",
+  "seeded_at": "2026-04-04",
+  "seeded_from": [
+    "docs/build-map.md",
+    "docs/stories.md",
+    "docs/methodology-artifact-audit-and-migration.md",
+    "tests/fixtures/formats/_coverage-matrix.json"
+  ],
+  "categories": {
+    "spec:1": { "substrate": "exists", "last_reviewed": "2026-04-04" },
+    "spec:2": { "substrate": "exists", "last_reviewed": "2026-04-04" },
+    "spec:3": { "substrate": "exists", "last_reviewed": "2026-04-04" },
+    "spec:4": { "substrate": "exists", "last_reviewed": "2026-04-04" },
+    "spec:5": { "substrate": "exists", "last_reviewed": "2026-04-04" },
+    "spec:6": { "substrate": "exists", "last_reviewed": "2026-04-04" },
+    "spec:7": { "substrate": "partial", "last_reviewed": "2026-04-04" },
+    "spec:8": { "substrate": "exists", "last_reviewed": "2026-04-04" },
+    "spec:9": { "substrate": "exists", "last_reviewed": "2026-04-04" }
+  },
+  "compromises": {
+    "C1": { "phase": "climb", "last_reviewed": "2026-04-04" },
+    "C2": { "phase": "climb", "last_reviewed": "2026-04-04" },
+    "C3": { "phase": "climb", "last_reviewed": "2026-04-04" },
+    "C4": { "phase": "converge", "last_reviewed": "2026-04-04" },
+    "C5": { "phase": "climb", "last_reviewed": "2026-04-04" },
+    "C6": { "phase": "hold", "last_reviewed": "2026-04-04" },
+    "C7": { "phase": "climb", "last_reviewed": "2026-04-04" },
+    "B1": { "phase": "hold", "last_reviewed": "2026-04-04" },
+    "B2": { "phase": "hold", "last_reviewed": "2026-04-04" },
+    "B3": { "phase": "hold", "last_reviewed": "2026-04-04" },
+    "B4": { "phase": "hold", "last_reviewed": "2026-04-04" },
+    "B5": { "phase": "climb", "last_reviewed": "2026-04-04" },
+    "B6": { "phase": "climb", "last_reviewed": "2026-04-04" },
+    "B7": { "phase": "hold", "last_reviewed": "2026-04-04" },
+    "B8": { "phase": "hold", "last_reviewed": "2026-04-04" },
+    "B9": { "phase": "hold", "last_reviewed": "2026-04-04" },
+    "B10": { "phase": "climb", "last_reviewed": "2026-04-04" }
+  },
+  "coverage_matrix": {
+    "path": "tests/fixtures/formats/_coverage-matrix.json",
+    "last_reviewed": "2026-04-04",
+    "notes": "Canonical machine-readable input-coverage surface. The methodology compiler reads this directly instead of duplicating its rows inside state.yaml."
+  },
+  "roadmap": {
+    "active_focus": ["spec:1", "spec:2", "spec:7", "spec:9"],
+    "sequencing_bias": [
+      {
+        "target": "campaign:maintained-intake-honesty",
+        "reason": "Keep the active intake and doc-web path honest before widening new format promises."
+      },
+      {
+        "target": "campaign:methodology-graph-state-migration",
+        "reason": "Replace the live hand-authored build-map/index surfaces with structured state, compiled graph, and generated views."
+      }
+    ],
+    "campaigns": [
+      {
+        "id": "maintained-intake-honesty",
+        "status": "active",
+        "story_refs": ["176", "180", "186"],
+        "notes": "Keep format claims tied to current fixture/eval evidence instead of widening through prose drift."
+      },
+      {
+        "id": "methodology-graph-state-migration",
+        "status": "active",
+        "story_refs": ["187"],
+        "notes": "Migrate methodology consumers onto state + graph + coverage-matrix truth and retire the live hand-authored build map."
+      }
+    ]
+  },
+  "stories_index": {
+    "sections": [
+      {
+        "id": "recommended-order",
+        "title": "Recommended Order",
+        "markdown": "Guiding priorities: keep the active intake + `doc-web` path honest, improve validation and provenance, expand reusable format coverage, and retire or quarantine legacy FF/gamebook surfaces that no longer belong in the default roadmap.\n\nUse `docs/methodology/graph.json`, `docs/methodology/state.yaml`, the active `doc-web` stories, and `/triage` output for current sequencing. Historical Fighting Fantasy/gamebook stories remain in the index below as project record and reference evidence, not as the default mission queue."
+      }
+    ],
+    "uncategorized_label": "Legacy / Uncategorized Stories"
+  },
+  "architecture_audits": {
+    "cadence": {
+      "target_story_interval": 6
+    },
+    "domains": {
+      "methodology_tooling": {
+        "label": "Methodology Tooling",
+        "manual_priority": "medium",
+        "last_audited_at": "2026-04-04",
+        "stories_since_audit": 0,
+        "recent_story_refs": ["145", "148", "187"],
+        "open_findings": [],
+        "notes": "Methodology graph/state migration is the active audit lane."
+      },
+      "intake_and_routing": {
+        "label": "Intake and Routing",
+        "manual_priority": "medium",
+        "last_audited_at": "2026-04-02",
+        "stories_since_audit": 3,
+        "recent_story_refs": ["176", "178", "180"],
+        "open_findings": [],
+        "notes": "Maintained intake handoff and routing honesty."
+      },
+      "ocr_and_extraction": {
+        "label": "OCR and Extraction",
+        "manual_priority": "medium",
+        "last_audited_at": "2026-04-03",
+        "stories_since_audit": 1,
+        "recent_story_refs": ["182", "185", "186"],
+        "open_findings": [],
+        "notes": "Recent handwritten-fixture work widened evidence but did not trigger a structural cleanup story yet."
+      },
+      "document_structure_and_consistency": {
+        "label": "Document Structure and Consistency",
+        "manual_priority": "medium",
+        "last_audited_at": "2026-04-03",
+        "stories_since_audit": 2,
+        "recent_story_refs": ["181", "183", "184"],
+        "open_findings": [],
+        "notes": "Layout benchmark and crop/runtime simplification recently moved; next audit should look for deletable residue."
+      },
+      "doc_web_runtime": {
+        "label": "doc-web Runtime",
+        "manual_priority": "medium",
+        "last_audited_at": "2026-04-01",
+        "stories_since_audit": 2,
+        "recent_story_refs": ["173", "174", "175"],
+        "open_findings": [],
+        "notes": "Stable runtime boundary with follow-up width still mostly in fixture/coverage work."
+      }
+    }
+  },
+  "archives": {
+    "build_map": "docs/archive/build-map-hand-authored-2026-04-04.md",
+    "stories_index": "docs/archive/stories-index-hand-authored-2026-04-04.md"
+  },
+  "story_overrides": {
+    "category_refs": {}
+  }
+}

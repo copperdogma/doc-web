@@ -1,3 +1,21 @@
+## [2026-04-04-01] - Close methodology graph and state migration (Story 187)
+
+### Added
+- Added repo-specific methodology graph migration assets, including structured methodology state, a deterministic graph compiler, a generated story index, archived hand-authored planning snapshots, and the bounded `triage-architecture` lane
+
+### Changed
+- Changed AGENTS, methodology docs, setup surfaces, ADR/story templates, and the main planning skills to use graph/state plus the canonical coverage matrix instead of the live hand-authored build map
+- Changed the methodology lint contract and certification record so the active-surface checks now cover the full audited consumer set and the phase proof matches the actual migration phases
+
+### Tested
+- `make methodology-compile`
+- `make methodology-check`
+- `make skills-check`
+- `python -m pytest tests/test_methodology_graph.py -q`
+- `python -m ruff check scripts/methodology_graph.py tests/test_methodology_graph.py`
+- `python -m pytest tests/`
+- `python -m ruff check modules/ tests/`
+
 ## [2026-04-03-06] - Close first real handwritten fixture proof surface (Story 186)
 
 ### Added

@@ -1,3 +1,30 @@
+---
+title: "Whether `DoclingDocument` Should Replace the `doc-web` Bundle Boundary"
+status: "ACCEPTED"
+ideal_refs:
+  - "Mission"
+  - "Vision-Level Preferences"
+spec_refs:
+  - "spec:7"
+story_refs:
+  - "156"
+  - "158"
+  - "159"
+  - "160"
+  - "161"
+  - "162"
+  - "163"
+  - "164"
+  - "165"
+compromise_refs:
+  - "C1"
+  - "C2"
+  - "C3"
+  - "C7"
+related_adrs:
+  - "ADR-002"
+---
+
 # ADR-003: Whether `DoclingDocument` Should Replace the `doc-web` Bundle Boundary
 
 **Status:** ACCEPTED — keep `doc-web` as the accepted boundary; `Docling` remains benchmark/reference, not the forward replacement path on the reviewed Onward slice

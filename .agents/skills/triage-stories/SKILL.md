@@ -23,7 +23,8 @@ This skill is read-only.
 ## Steps
 
 1. **Read project state**
-   Load `docs/stories.md` and identify all stories by status:
+   Load `docs/methodology/graph.json` (and the generated `docs/stories.md` if
+   helpful) and identify all stories by status:
    - Draft
    - Pending
    - In Progress
@@ -37,16 +38,16 @@ This skill is read-only.
    Load `docs/ideal.md` and score against what the system should become, not
    just what is locally convenient.
 
-3. **Read candidate stories and build-map context**
+3. **Read candidate stories and graph/state context**
    For every candidate story with met dependencies, read the actual story file.
    Do not rank by title alone. For each candidate, also read the matching
-   build-map category and note:
+   graph/state category and note:
    - **Substrate status** (`exists`/`partial`/`missing`) — a story whose
      category substrate is `missing` should not be recommended unless the story
      itself creates that substrate
    - **Phase** (`climb`/`hold`/`converge`) — this determines what kind of work
      is highest leverage
-   - **Input Coverage** state when the story touches inputs, filetypes,
+   - **Coverage matrix** state when the story touches inputs, filetypes,
      artifacts, or channels
    If a candidate depends on upstream architecture, schema, runtime, or
    artifact substrate, inspect the repo to verify that substrate exists in code
@@ -59,11 +60,11 @@ This skill is read-only.
    - Ideal alignment
    - stage leverage
    - simplification leverage
-   - **substrate readiness** — read the build-map category's substrate status;
+   - **substrate readiness** — read the graph/state category's substrate status;
      don't recommend stories when substrate is `missing` unless the story creates it.
      For architecture-dependent stories, prefer code-verified substrate over
      paper status alone
-   - **phase coherence** — read the category's phase from the build map:
+   - **phase coherence** — read the category's phase from methodology state:
      - `climb`: recommend quality-improvement work
      - `hold`: recommend efficiency/simplification work
      - `converge`: recommend deletion work
@@ -79,7 +80,7 @@ This skill is read-only.
    - stories whose documented prerequisites exist in build-map or decision docs
      but not yet in code, schemas, runtime wiring, tests, or artifacts
    - stale or superseded stories
-   - claimed scope that disagrees with `docs/build-map.md`
+   - claimed scope that disagrees with the compiled graph/state reality
    - bottlenecked dependency chains
 
 6. **Return the report**

@@ -6,7 +6,7 @@ user-invocable: true
 
 # /create-story [title]
 
-> Alignment check: Before choosing an approach, verify it aligns with `docs/ideal.md`, `docs/build-map.md`, and relevant decision records in `docs/decisions/`. If this work touches a known compromise in `docs/spec.md`, respect its limitation type and evolution path. If none apply, say so explicitly.
+> Alignment check: Before choosing an approach, verify it aligns with `docs/ideal.md`, `docs/methodology/state.yaml`, `docs/methodology/graph.json`, and relevant decision records in `docs/decisions/`. If this work touches a known compromise in `docs/spec.md`, respect its limitation type and evolution path. If none apply, say so explicitly.
 
 Create a new story in `docs/stories/` with consistent format.
 
@@ -37,8 +37,8 @@ Create a new story in `docs/stories/` with consistent format.
    - Title (replace the slug with human-readable title)
    - Goal, acceptance criteria, out of scope, tasks, files to modify
    - Ideal refs, spec refs, decision refs, and dependencies
-   - Build-map context: relevant category, current substrate, current phase,
-     and any relevant `Input Coverage` rows if the story touches formats or artifacts
+   - Graph/state context: relevant category, current substrate, current phase,
+     and any relevant coverage-matrix rows if the story touches formats or artifacts
    - Approach evaluation: candidate approaches, repo constraints, existing patterns to reuse, and what eval distinguishes them
    - Workflow Gates
    - Redundancy or removal targets
@@ -54,21 +54,22 @@ Create a new story in `docs/stories/` with consistent format.
    - Does it only optimize a compromise without closing a gap? → flag as low-value, confirm with user
    - If introducing a new AI compromise: note whether a detection eval exists
 
-4. **Build-map reality check** — Before marking a story `Pending`:
-   - Read the relevant category in `docs/build-map.md`
-   - If the story touches formats or artifacts, read the relevant rows under
-     `## Input Coverage`
+4. **Graph/state reality check** — Before marking a story `Pending`:
+   - Read the relevant category in `docs/methodology/graph.json` and
+     `docs/methodology/state.yaml`
+   - If the story touches formats or artifacts, read the relevant rows in
+     `tests/fixtures/formats/_coverage-matrix.json`
    - Confirm whether the substrate the story depends on actually exists in the repo
    - If the substrate is unverified or missing, keep the story as `Draft` or
      add the prerequisite instead of treating paper readiness as real readiness
 
-5. **Update story index** — Add a row to the story table in `docs/stories.md`:
-   `| NNN | Title | Priority | Draft | /docs/stories/story-NNN-slug.md |`
-   Match the existing table format and nearby ordering conventions. Do not rewrite the entire index.
+5. **Regenerate generated views** — After the story file is ready, run
+   `make methodology-compile` so `docs/stories.md` and
+   `docs/methodology/graph.json` reflect the new story.
 
 6. **Verify** — Confirm the file exists, the new story ID is unique and uses
-   the next available number (`max + 1`), and the `docs/stories.md` row is
-   correct.
+   the next available number (`max + 1`), and the generated graph/index include
+   the new story.
 
 ## Story Statuses
 
@@ -87,15 +88,16 @@ Create a new story in `docs/stories/` with consistent format.
   If critical substrate is unverified or missing, use `Draft` or add an
   explicit prerequisite.
 - **Simplification baseline gate**: Every story involving new logic must answer: "Can a single LLM call already do this?" If untested, first task = measure the baseline.
-- Search `docs/build-map.md`, `docs/decisions/`, `docs/runbooks/`, `docs/scout/`, and `docs/notes/` for prior decisions or constraints while drafting. If none apply, say so explicitly.
+- Search `docs/methodology/state.yaml`, `docs/methodology/graph.json`, `tests/fixtures/formats/_coverage-matrix.json`, `docs/decisions/`, `docs/runbooks/`, `docs/scout/`, and `docs/notes/` for prior decisions or constraints while drafting. If none apply, say so explicitly.
 - If the story raises a new unresolved architecture, workflow, or schema question, either cite the missing ADR need explicitly or recommend creating one before implementation starts.
 - If the story touches input formats, format families, or output artifacts, use
-  the current `docs/build-map.md` `Input Coverage` reality when writing the
-  goal, acceptance criteria, tasks, and notes.
+  the current coverage-matrix truth when writing the goal, acceptance criteria,
+  tasks, and notes.
 - Filetype-aware stories should usually include:
   - the current coverage row or gap they address
   - the target change in coverage or graduation readiness
-  - a task to update `docs/build-map.md` if shipped behavior changes the documented reality
+  - a task to update `tests/fixtures/formats/_coverage-matrix.json` and any
+    relevant methodology state if shipped behavior changes the documented reality
 - If the story changes pipeline, module, driver, schema, or recipe behavior, include a task for real `driver.py` verification and artifact inspection in `output/runs/`.
 - If the story changes agent tooling or project instructions, include `make skills-check` in the task list.
 - If the story will run evals, include a task to run `/improve-eval` and update `docs/evals/registry.yaml`.

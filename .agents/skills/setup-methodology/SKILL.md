@@ -6,18 +6,19 @@ user-invocable: true
 
 # /setup-methodology [greenfield|retrofit|adr-021-migration|refresh]
 
-> Alignment check: Before choosing an approach, verify it aligns with `docs/ideal.md`, `docs/build-map.md`, and relevant decision records in `docs/decisions/`. If this work touches a known compromise in `docs/spec.md`, respect its limitation type and evolution path. If none apply, say so explicitly.
+> Alignment check: Before choosing an approach, verify it aligns with `docs/ideal.md`, `docs/methodology/state.yaml`, and relevant decision records in `docs/decisions/`. If this work touches a known compromise in `docs/spec.md`, respect its limitation type and evolution path. If none apply, say so explicitly.
 
 Use this skill as the canonical bootstrap or refresh entrypoint for doc-forge's
 Ideal-first methodology package.
 
 ## What This Skill Owns
 
-- `docs/ideal.md` / `docs/spec.md` / `docs/build-map.md` alignment
+- `docs/ideal.md` / `docs/spec.md` / `docs/methodology/state.yaml` alignment
+- `docs/methodology/graph.json` compilation
 - `docs/methodology-ideal-spec-compromise.md` as the methodology reference
 - `docs/setup-checklist.md` working-copy generation from the bundled template
 - eval-surface bootstrap docs under `docs/evals/`
-- `AGENTS.md` methodology wiring and build-map-first operating rules
+- `AGENTS.md` methodology wiring and graph/state operating rules
 - cross-CLI skill sync via `scripts/sync-agent-skills.sh`
 
 Use the bundled checklist template at
@@ -39,8 +40,8 @@ surface onto the canonical package.
 
 ### `adr-021-migration`
 
-For repos that already use Ideal-first but still need the dual-ideal,
-category-aligned, build-map-centered shape.
+For repos that already use Ideal-first but still need the graph+state physical
+artifact model around the authored canon.
 
 ### `refresh`
 
@@ -53,9 +54,10 @@ without redoing the whole bootstrap conversation.
 1. **Create or refresh the checklist first.** Copy the bundled template to
    `docs/setup-checklist.md` if it is missing or if the existing file is stale.
    Work from that file and check items off as the run proceeds.
-2. **Build-map-first operating rule:** planning and triage start from
-   `docs/build-map.md`. Implementation starts from the active story, but must
-   read the relevant build-map category and linked `spec:N` sections first.
+2. **Graph/state operating rule:** planning and triage start from
+   `docs/methodology/state.yaml`, `docs/methodology/graph.json`, and the
+   coverage matrix. Implementation starts from the active story, but must read
+   the relevant category/state slice and linked `spec:N` sections first.
 3. **Baseline evidence surfaces are part of setup.** Setup is incomplete until
    the repo has documented eval conventions, registry protocol, and benchmark /
    golden guidance.
@@ -74,6 +76,7 @@ without redoing the whole bootstrap conversation.
 2. **Read the canonical references**:
    - `docs/runbooks/setup-methodology.md`
    - `docs/methodology-ideal-spec-compromise.md`
+   - `docs/methodology/state.yaml` if it exists
    - relevant ADRs in `docs/decisions/`
    - `AGENTS.md`
    - `docs/evals/README.md`
@@ -85,6 +88,8 @@ without redoing the whole bootstrap conversation.
 
 4. **Install or refresh the methodology package**:
    - `docs/methodology-ideal-spec-compromise.md`
+   - `docs/methodology/state.yaml`
+   - `docs/methodology/graph.json` via compiler
    - `docs/runbooks/setup-methodology.md`
    - `docs/setup-checklist.md`
    - `docs/evals/README.md`
@@ -99,9 +104,10 @@ without redoing the whole bootstrap conversation.
    - ensure the recurring eval-improvement path is documented honestly
 
 6. **Normalize the planning surface**:
-   - planning skills and templates point to `docs/build-map.md`
+   - planning skills and templates point to the graph/state package
    - story drafting and story building treat substrate verification as required
    - workflow guidance distinguishes implementation handoff from validation and close-out
+   - `docs/stories.md` is generated, not hand-maintained
 
 7. **Normalize the public skill surface**:
    - `/setup-methodology` is discoverable in `AGENTS.md`
@@ -118,6 +124,7 @@ without redoing the whole bootstrap conversation.
 - Canonical setup skill surface installed
 - Working `docs/setup-checklist.md`
 - Methodology reference + runbook aligned to the same package
+- `docs/methodology/graph.json` compiled and checked
 - Eval-surface docs aligned to current repo reality
 - Cross-CLI wrappers regenerated and checked
 

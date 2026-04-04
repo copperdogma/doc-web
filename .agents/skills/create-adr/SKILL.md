@@ -60,7 +60,7 @@ Create a new ADR with proper structure and research scaffolding.
 7. **Show the created files** to the user for review
 
 8. **After the ADR matures, run `/align`**
-   - Once research or implementation changes the project direction, use `/align` to propagate implications across `docs/ideal.md`, `docs/spec.md`, `docs/build-map.md`, `docs/requirements.md`, stories, ADRs, and evals
+   - Once research or implementation changes the project direction, use `/align` to propagate implications across `docs/ideal.md`, `docs/spec.md`, `docs/methodology/state.yaml`, `docs/methodology/graph.json`, `docs/requirements.md`, stories, ADRs, coverage truth, and evals
 
 ## Guardrails
 

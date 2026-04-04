@@ -1,3 +1,23 @@
+---
+title: "Document-Wide Consistency Planning and Source-Aware Re-Extraction Strategy"
+status: "ACCEPTED"
+ideal_refs:
+  - "Vision-Level Preferences"
+  - "Execution Ideal"
+spec_refs:
+  - "spec:5"
+  - "spec:5.1"
+story_refs:
+  - "141"
+  - "142"
+  - "143"
+  - "144"
+  - "146"
+compromise_refs:
+  - "C7"
+related_adrs: []
+---
+
 # ADR-001: Document-Wide Consistency Planning and Source-Aware Re-Extraction Strategy
 
 **Status:** ACCEPTED — Document-wide consistency planning and plan-aware selective reruns adopted

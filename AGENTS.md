@@ -18,16 +18,20 @@ Read this file at the start of every session.
 
 ## Ideal-First Methodology
 
-**Dual-ideal structure:** `docs/ideal.md` carries both the product ideal and the
-execution ideal. `docs/spec.md` records the active product and build-process
-constraints against those ideals. `docs/build-map.md` is the central planning
-dashboard for those constraints: category coverage, substrate status, phase
-governance, input coverage, and graduation tracking.
+**Graph + state structure:** `docs/ideal.md` carries both the product ideal and
+the execution ideal. `docs/spec.md` records the active product and build-process
+constraints against those ideals. `docs/methodology/state.yaml` owns mutable
+methodology state, `tests/fixtures/formats/_coverage-matrix.json` owns the
+machine-readable input-coverage inventory, and `docs/methodology/graph.json`
+compiles those sources together with stories, ADRs, and evals. `docs/stories.md`
+is a generated view from that graph.
 
-**Operating rule:** planning and triage start from `docs/build-map.md`.
-Implementation starts from the active story, but you must read the relevant
-build-map category and linked `spec:N` sections first. Do not treat the build
-map as optional context.
+**Operating rule:** planning and triage start from
+`docs/methodology/state.yaml`, `docs/methodology/graph.json`, and
+`tests/fixtures/formats/_coverage-matrix.json`. Implementation starts from the
+active story, but you must read the relevant category/state slice and linked
+`spec:N` sections first. Do not treat the compiled methodology graph as optional
+context.
 
 **Pending is not proof of buildability.** A story marked `Pending` is a planning
 claim, not evidence that the required substrate exists. Before recommending or
@@ -36,7 +40,7 @@ in the repo itself.
 
 **Canonical bootstrap / refresh surface:** `/setup-methodology` installs or
 refreshes the methodology package for this repo: the methodology reference,
-setup checklist, eval-surface docs, and AGENTS wiring.
+state/graph workflow, setup checklist, eval-surface docs, and AGENTS wiring.
 
 ## Central Tenets (Vision-Level Preferences)
 
@@ -87,8 +91,9 @@ Canonical location: `.agents/skills/` — works across Claude Code, Cursor, Gemi
 - `.claude/skills` and `.cursor/skills` are symlinks to `.agents/skills`
 - `skills/` at repo root is a symlink for backwards compatibility
 - `.gemini/commands/*.toml` are generated wrappers — run `scripts/sync-agent-skills.sh` after changes
-- Use `/align` for post-change methodology sweeps across the Ideal, spec, build map, stories, and evals
+- Use `/align` for post-change methodology sweeps across the Ideal, spec, state, graph, stories, coverage matrix, and evals
 - Use `/triage` for read-only full sweeps or scoped backlog / inbox / eval triage
+- Use `/triage-architecture` when a bounded architecture-audit lane is the right next move
 - Use `/setup-methodology` to install or refresh the methodology package and canonical setup docs
 - To create a new skill: `/create-cross-cli-skill`
 
@@ -123,17 +128,19 @@ honestly buildable.
 - `docs/ideal.md` — Dual ideal: product (zero-limitation north star) + execution (zero-limitation build process)
 - `docs/methodology-ideal-spec-compromise.md` — Methodology reference for the Ideal → Spec → Build Map graph and compromise deletion model
 - `docs/spec.md` — Unified spec with 9 categories (`spec:1`–`spec:9`), hierarchical `spec:N.N` section IDs, per-category constraint blocks (C1-C7 product, B1-B10 build-process), and Non-Negotiable Design Principles
-- `docs/build-map.md` — Central triage dashboard: 9 categories matching spec, substrate status (`exists`/`partial`/`missing`), phase governance (`climb`/`hold`/`converge`), input coverage, graduation tracking
+- `docs/methodology/state.yaml` — Mutable methodology state: substrate status, compromise phase, roadmap focus, architecture-audit memory, archive pointers
+- `docs/methodology/graph.json` — Compiled methodology graph joining the authored canon, state, stories, evals, ADRs, and coverage matrix
+- `docs/build-map.md` — Archived historical redirect to the final hand-authored build map body under `docs/archive/`
 - `docs/setup-checklist.md` — Working checklist for methodology bootstrap or refresh runs
 - `docs/decisions/` — ADRs for hard-to-reverse architecture, workflow, schema, and cross-cutting project decisions
 - `docs/evals/README.md` — Eval registry protocol, attempt logging rules, and baseline evidence expectations
 - `docs/evals/registry.yaml` — Eval scores, targets, attempt history
 - `docs/requirements.md` — Mission-aligned functional requirements for intake + `doc-web`
-- `docs/stories.md` — Story index (148+ stories)
+- `docs/stories.md` — Generated story index
 - `docs/stories/` — Individual story files with ACs, tasks, work logs. Spec Refs use `spec:N.N` IDs.
 - `docs/scout.md` — Scout expedition index
 - `docs/ai-learning-log.md` — AI self-improvement log (patterns, pitfalls, lessons)
-- `tests/fixtures/formats/_coverage-matrix.json` — Machine-readable format inventory (16 formats)
+- `tests/fixtures/formats/_coverage-matrix.json` — Canonical machine-readable format inventory (16 formats)
 - `docs/runbooks/` — Operational runbooks for repeatable workflows
 - `CHANGELOG.md` — Release history (CalVer `YYYY-MM-DD-NN` format)
 

@@ -1,3 +1,17 @@
+# YAML frontmatter is recommended for new ADRs:
+#
+# ---
+# title: "TITLE"
+# status: "PENDING"
+# ideal_refs:
+#   - "Execution Ideal"
+# spec_refs:
+#   - "spec:N"
+# story_refs: []
+# compromise_refs: []
+# related_adrs: []
+# ---
+#
 # ADR-NNN: TITLE
 
 **Status:** PENDING — Needs research
@@ -54,6 +68,7 @@
 ## Integration Checklist
 
 - [ ] **docs/spec.md / docs/ideal.md / docs/requirements.md** — update any project direction or compromise implications
+- [ ] **docs/methodology/state.yaml / docs/methodology/graph.json / coverage matrix** — update any methodology state, generated-view, or coverage-truth implications
 - [ ] **Related stories** — update `Decision Refs` and add any new tasks or constraints
 - [ ] **AGENTS.md** — update if this changes workflow, conventions, or agent guardrails
 - [ ] **Runbooks / supporting docs** — update any operational docs affected by the decision

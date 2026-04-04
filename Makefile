@@ -3,17 +3,17 @@
 # same interpreter the repo dependencies were installed into.
 PYTHON ?= $(shell command -v python 2>/dev/null || command -v python3 2>/dev/null)
 
-.PHONY: test lint format smoke skills-sync skills-check check-size
+.PHONY: test lint format smoke skills-sync skills-check check-size methodology-compile methodology-check
 
 # ── Testing & Linting ─────────────────────────────────────────────────
 test:
 	$(PYTHON) -m pytest tests/
 
 lint:
-	$(PYTHON) -m ruff check doc_web/ modules/ tests/
+	$(PYTHON) -m ruff check doc_web/ modules/ tests/ scripts/methodology_graph.py
 
 format:
-	$(PYTHON) -m ruff format doc_web/ modules/ tests/
+	$(PYTHON) -m ruff format doc_web/ modules/ tests/ scripts/methodology_graph.py
 
 # ── Smoke Tests ───────────────────────────────────────────────────────
 smoke:
@@ -27,6 +27,13 @@ skills-sync:
 
 skills-check:
 	./scripts/sync-agent-skills.sh --check
+
+# ── Methodology ────────────────────────────────────────────────────────
+methodology-compile:
+	$(PYTHON) scripts/methodology_graph.py build
+
+methodology-check:
+	$(PYTHON) scripts/methodology_graph.py check
 
 # ── Code Health ───────────────────────────────────────────────────────
 check-size:

@@ -109,7 +109,7 @@ Typical integration targets in doc-forge:
 - relevant runbooks or scout docs
 - other ADRs or decision records if cross-references are needed
 
-After major ADR discussion or implementation outcomes, run `/align` or perform an equivalent manual impact sweep so downstream doc, story, build-map, and eval implications are not missed.
+After major ADR discussion or implementation outcomes, run `/align` or perform an equivalent manual impact sweep so downstream doc, story, state/graph, coverage, and eval implications are not missed.
 
 If the ADR establishes a reusable workflow, evaluation pattern, or architectural heuristic that future sessions should not rediscover from scratch, distill it into one of:
 

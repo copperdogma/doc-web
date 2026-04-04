@@ -20,7 +20,7 @@ Use when the repo already has meaningful docs, code, stories, or ADRs.
 ## `adr-021-migration`
 
 Use when the repo already uses Ideal-first but not the dual-ideal,
-category-aligned, build-map-centered structure.
+category-aligned, graph+state structure.
 
 - Add execution ideal
 - Reshape spec + build map around shared categories
