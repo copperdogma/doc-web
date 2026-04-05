@@ -1,3 +1,21 @@
+## [2026-04-04-07] - Repair handwritten Alverson truth surface (Story 192)
+
+### Added
+- Added a focused handwritten transcript-scope regression in `tests/test_handwritten_notes_eval.py` so the repo-owned Alverson fixture cannot silently widen past the checked-in front page again
+
+### Changed
+- Changed the Alverson handwritten transcript and fixture docs so the repo-owned benchmark now scores only the visible LOC front page instead of an over-scoped transcript that continued onto the unowned back page
+- Changed the handwritten eval registry, coverage matrix, Story 191 blocker record, generated methodology graph, and generated story index so the real handwritten lane is now blocked honestly on OCR quality against the corrected corpus, not on a live source/transcript mismatch
+
+### Tested
+- `python benchmarks/scripts/run_handwritten_notes_eval.py --transcript testdata/handwritten-notes-alverson-real.txt --images testdata/handwritten-notes-alverson-real-images --pdf testdata/handwritten-notes-alverson-real.pdf --fixture-id alverson-truth-frontpage --image-recipe configs/recipes/recipe-images-ocr-html-handwritten-notes-gemini-rescue.yaml --pdf-recipe configs/recipes/recipe-pdf-ocr-html-handwritten-notes-gemini-rescue.yaml --image-case-id image-handwritten-rescue --pdf-case-id pdf-handwritten-rescue --output /tmp/alverson-truth-frontpage.json`
+- `python benchmarks/scripts/run_handwritten_notes_eval.py --image-recipe configs/recipes/recipe-images-ocr-html-handwritten-notes-gemini-rescue.yaml --pdf-recipe configs/recipes/recipe-pdf-ocr-html-handwritten-notes-gemini-rescue.yaml --image-case-id image-handwritten-rescue --pdf-case-id pdf-handwritten-rescue --output benchmarks/results/handwritten-notes-story192-alverson-frontpage.json`
+- `make test`
+- `make lint`
+- `make methodology-compile`
+- `make methodology-check`
+- `git diff --check`
+
 ## [2026-04-04-06] - Block handwritten LOC closeout on truth-surface evidence
 
 ### Changed

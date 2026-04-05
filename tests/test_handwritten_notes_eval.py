@@ -110,6 +110,15 @@ def test_handwritten_notes_eval_corpus_json_is_well_formed():
     assert len(payload["fixtures"]) >= 5
 
 
+def test_alverson_real_transcript_matches_front_page_scope():
+    transcript = Path("testdata/handwritten-notes-alverson-real.txt").read_text(encoding="utf-8")
+
+    assert transcript.strip().endswith("exceptable and")
+    assert "Your son" not in transcript
+    assert "By Flag of Truce" not in transcript
+    assert "Molasses, a little dried fruit" not in transcript
+
+
 def test_handwritten_notes_eval_loads_case_instrumentation(monkeypatch, tmp_path):
     run_id = "handwritten-demo-image-handwritten-rescue"
     run_dir = tmp_path / "output" / "runs" / run_id

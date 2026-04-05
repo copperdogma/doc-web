@@ -50,6 +50,7 @@ Grouped by primary `spec:N` category. Stories without category refs remain in an
 | 185 | Widen Handwritten Proof Beyond the Synthetic Pair | High | Done | 182 | [story-185](stories/story-185-widen-handwritten-proof-beyond-synthetic-pair.md) |
 | 186 | Add First Reproducible Real Handwritten Fixture Proof Surface | High | Done | 185 | [story-186](stories/story-186-real-handwritten-fixture-proof-surface.md) |
 | 189 | Finish Real Handwritten Proof on the Maintained Rescue Seam | High | Done | 186 | [story-189](stories/story-189-improve-real-handwritten-barney-fidelity.md) |
+| 192 | Repair Alverson Handwritten Truth Surface and Rebaseline the Handwritten Corpus | High | Done | — | [story-192](stories/story-192-alverson-handwritten-truth-surface-repair.md) |
 
 ### spec:2 — OCR & Text Extraction
 

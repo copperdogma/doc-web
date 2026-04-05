@@ -347,7 +347,8 @@ evals:
       Story 179, the faded synthetic variant from Story 185, the rougher
       synthetic variant from Story 182, the first real LOC Barney spread from
       Story 186, and the second real LOC Alverson front page added during
-      Story 189 close-out.
+      Story 189 close-out and corrected to the visible front-page boundary in
+      Story 192.
     pipeline_stage: ocr
     runner: manual
     command: "python benchmarks/scripts/run_handwritten_notes_eval.py --image-recipe configs/recipes/recipe-images-ocr-html-handwritten-notes-gemini-rescue.yaml --pdf-recipe configs/recipes/recipe-pdf-ocr-html-handwritten-notes-gemini-rescue.yaml --image-case-id image-handwritten-rescue --pdf-case-id pdf-handwritten-rescue --instrument --output benchmarks/results/handwritten-notes-story189-real-expanded.json"
@@ -360,6 +361,42 @@ evals:
       note: "The target still marks the desired passing bar, but the widened default corpus now includes two real handwritten fixtures that the maintained rescue seam does not clear."
 
     scores:
+      - model: "Maintained handwritten rescue OCR lanes (gemini-2.5-pro via handwritten-notes rescue recipes)"
+        metrics:
+          overall_min_ratio: 0.677267
+          page_min_ratio: 0.677267
+          pass_rate: 0.6
+          cases_total: 10
+          fixture_count: 5
+          fixtures_passing: 3
+        measured: 2026-04-04
+        note: >
+          Story 192 corrected the Alverson transcript to the exact visible
+          front-page boundary of the checked-in LOC source image and reran the
+          maintained rescue seam via
+          `python benchmarks/scripts/run_handwritten_notes_eval.py --image-recipe configs/recipes/recipe-images-ocr-html-handwritten-notes-gemini-rescue.yaml --pdf-recipe configs/recipes/recipe-pdf-ocr-html-handwritten-notes-gemini-rescue.yaml --image-case-id image-handwritten-rescue --pdf-case-id pdf-handwritten-rescue --output benchmarks/results/handwritten-notes-story192-alverson-frontpage.json`,
+          which wrote
+          `benchmarks/results/handwritten-notes-story192-alverson-frontpage.json`
+          with `pass_rate = 0.6`, `overall_min_ratio = 0.677267`,
+          `page_min_ratio = 0.677267`, `cases_total = 10`, and
+          `fixtures_passing = 3`. The six synthetic rescue cases still scored
+          `1.0`; Barney remained below bar at `0.908567` on image entry and
+          `0.886568` on PDF entry at
+          `output/runs/handwritten-handwritten-notes-barney-real-image-handwritten-rescue/02_ocr_ai_gpt51_v1/pages_html.jsonl`
+          and
+          `output/runs/handwritten-handwritten-notes-barney-real-pdf-handwritten-rescue/02_ocr_ai_gpt51_v1/pages_html.jsonl`;
+          the corrected Alverson front-page fixture now scores `0.677267` on
+          image entry and `0.681952` on PDF entry at
+          `output/runs/handwritten-handwritten-notes-alverson-real-image-handwritten-rescue/02_ocr_ai_gpt51_v1/pages_html.jsonl`
+          and
+          `output/runs/handwritten-handwritten-notes-alverson-real-pdf-handwritten-rescue/02_ocr_ai_gpt51_v1/pages_html.jsonl`.
+          Manual artifact inspection in the same pass confirmed the prior
+          `0.499136` floor was partially golden-wrong rather than a pure OCR
+          miss: the transcript/source mismatch is repaired, but the maintained
+          rescue seam still misreads visible Alverson text (`nothing`,
+          `Battle of Chickamauga`, `lates novels`, `excepatable`) and still
+          drifts semantically on Barney. The handwritten family therefore
+          remains `has-fixture`, not `passing`.
       - model: "Maintained handwritten rescue OCR lanes (gemini-2.5-pro via handwritten-notes rescue recipes)"
         metrics:
           overall_min_ratio: 0.499136
@@ -399,6 +436,9 @@ evals:
           Alverson truth surface at least partially a source/transcript
           alignment problem rather than a pure OCR runtime miss. The
           handwritten family therefore stays `has-fixture`, not `passing`.
+          Story 192 later corrected that transcript boundary and remeasured
+          the corpus, so this entry is historical pre-fix evidence rather than
+          the current baseline.
       - model: "Maintained handwritten rescue OCR lanes (gemini-2.5-pro via handwritten-notes rescue recipes)"
         metrics:
           overall_min_ratio: 0.883604
@@ -726,12 +766,31 @@ evals:
           exposes separate front/back images. Result: Story 191 was blocked
           honestly instead of landing speculative OCR glue against a misaligned
           truth surface.
+      - id: "006"
+        date: 2026-04-04
+        status: succeeded
+        approach: "Story 192 corrected the Alverson transcript to the visible front-page boundary, reran the maintained handwritten corpus, and reclassified the prior floor as partially golden-wrong"
+        score_before: 0.499136
+        score_after: 0.677267
+        note: >
+          Story 192 first verified that the checked-in Alverson image is a
+          single front page that visibly ends at `...exceptable and` while the
+          LOC item `https://www.loc.gov/pictures/item/2023637835/` exposes a
+          separate back page. It then trimmed
+          `testdata/handwritten-notes-alverson-real.txt` to that visible
+          boundary, added a focused scope test, reran a single-fixture probe,
+          and finally reran the full maintained corpus via
+          `benchmarks/results/handwritten-notes-story192-alverson-frontpage.json`.
+          Verified result: the corpus floor improved from `0.499136` to
+          `0.677267` without any OCR runtime change, which classifies the
+          previous floor as partially **test-wrong / golden-wrong**. The
+          remaining failure is now clearly **model-wrong** on the corrected
+          real fixtures, especially Barney (`0.908567` / `0.886568`) and the
+          visible Alverson front page (`0.677267` / `0.681952`).
 
     retry_when:
-      - condition: golden-fix
-        note: "If the checked-in real-fixture transcripts or source assets are corrected, rerun to refresh the real handwritten score honestly."
       - condition: new-subject-model
-        note: "Retry only when a materially stronger model or OCR substrate appears that could plausibly clear Barney and a corrected Alverson truth surface."
+        note: "Retry only when a materially stronger model or OCR substrate appears that could plausibly clear Barney and the corrected Alverson front-page truth surface."
 
   - id: onward-table-fidelity
     name: Onward Genealogy Table Fidelity
