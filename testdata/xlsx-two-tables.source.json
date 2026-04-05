@@ -1,0 +1,16 @@
+{
+  "sheets": [
+    {
+      "name": "Roster",
+      "rows": [
+        ["Name", "Role"],
+        ["Ada", "Researcher"],
+        ["Lin", "Archivist"],
+        [],
+        ["Year", "Visits"],
+        [2024, 3],
+        [2025, 4]
+      ]
+    }
+  ]
+}

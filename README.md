@@ -129,6 +129,19 @@ python driver.py \
   --force
 ```
 
+Story 193 widened the maintained XLSX proof surface to three repo-owned
+fixtures on the supported slice:
+
+- `testdata/xlsx-mini.xlsx`
+- `testdata/xlsx-multi-sheet.xlsx`
+- `testdata/xlsx-two-tables.xlsx`
+
+That supported slice is still intentionally narrow: simple table-only sheets,
+including multiple table regions on one sheet, with sheet-named entries and
+anchor-based provenance. `testdata/xlsx-merged-formula.xlsx` remains a bounded
+unsupported probe because merged-title / formula-summary structure is currently
+promoted into heading blocks instead of staying inside the table.
+
 ## Maintained Intake Recipes
 
 The active maintained entry surfaces are explicit recipes, not hidden routing:
@@ -136,7 +149,7 @@ The active maintained entry surfaces are explicit recipes, not hidden routing:
 - `configs/recipes/recipe-images-ocr-html-mvp.yaml` for image-directory scans
 - `configs/recipes/recipe-pdf-ocr-html-mvp.yaml` for generic PDF-backed intake
 - `configs/recipes/recipe-docx-html-mvp.yaml` for the maintained DOCX fixture-backed lane
-- `configs/recipes/recipe-xlsx-html-mvp.yaml` for the maintained XLSX workbook-table lane
+- `configs/recipes/recipe-xlsx-html-mvp.yaml` for the maintained XLSX workbook-table lane on the verified simple-table slice
 - `configs/recipes/recipe-onward-images-html-mvp.yaml` for the image-backed Onward genealogy lane
 - `configs/recipes/recipe-onward-pdf-html-mvp.yaml` for the PDF-backed Onward genealogy lane
 

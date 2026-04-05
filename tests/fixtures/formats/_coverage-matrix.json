@@ -272,7 +272,7 @@
     {
       "id": "xlsx",
       "format_family": "xlsx",
-      "status": "has-fixture",
+      "status": "passing",
       "description": "Microsoft Excel spreadsheets (.xlsx)",
       "pipeline_recipe": "recipe-xlsx-html-mvp.yaml",
       "intake_module": "unstructured_xlsx_intake_v1 → xlsx_elements_to_bundle_v1",
@@ -282,14 +282,32 @@
           "id": "xlsx-mini",
           "source": "testdata/xlsx-mini.xlsx",
           "pages": null,
-          "notes": "Repo-owned XLSX workbook generated from checked-in source JSON. Story 175 used it to prove the first maintained XLSX slice: simple table sheets become one HTML page per sheet with anchor-based provenance."
+          "notes": "Supported. Repo-owned XLSX workbook generated from checked-in source JSON. Story 175 proved the first maintained XLSX slice here; Story 193 rechecked it and kept the same simple table-sheet behavior with sheet-named entries and anchor-based provenance."
+        },
+        {
+          "id": "xlsx-multi-sheet",
+          "source": "testdata/xlsx-multi-sheet.xlsx",
+          "pages": null,
+          "notes": "Supported. Repo-owned XLSX workbook with two simple table sheets (`Summary`, `Regions`). Story 193 used it to widen the maintained slice beyond `xlsx-mini` while keeping one HTML entry per supported sheet."
+        },
+        {
+          "id": "xlsx-two-tables",
+          "source": "testdata/xlsx-two-tables.xlsx",
+          "pages": null,
+          "notes": "Supported. Repo-owned XLSX workbook with two separate table regions on one sheet. Story 193 verified that the maintained lane preserves both table blocks inside one sheet-named HTML entry."
+        },
+        {
+          "id": "xlsx-merged-formula",
+          "source": "testdata/xlsx-merged-formula.xlsx",
+          "pages": null,
+          "notes": "Bounded unsupported probe. Story 193 reran it to mark the current boundary: Unstructured emitted `Budget Notes` and `Total` as heading blocks around the main table instead of preserving the merged-title / formula-summary structure as table content."
         }
       ],
       "scores": null,
       "known_gaps": [
-        "Current proof is only one repo-owned workbook on the narrow simple-table slice.",
-        "The maintained lane does not yet claim formulas, charts, merged cells, images, comments, or cell-level open-original behavior.",
-        "Workbook provenance currently relies on stable source element ids and sheet-named entries rather than cell-address anchors."
+        "Passing evidence is still bounded to the verified simple-table slice from Story 193: table-only sheets, sheet-named entries, and multiple table regions on one sheet.",
+        "The maintained lane does not yet claim formulas, charts, images, comments, cell-level open-original behavior, or merged-title / formula-summary structures like `xlsx-merged-formula.xlsx`.",
+        "Workbook provenance currently relies on stable source element ids and sheet-named entries rather than cell-address anchors or explicit page-number fields."
       ],
       "graduated": false
     },
@@ -306,12 +324,12 @@
           "id": "pptx-mini",
           "source": "testdata/pptx-mini.pptx",
           "pages": null,
-          "notes": "Reproducible PPTX seam-probe fixture generated from checked-in markdown via `pandoc`. Story 175 used it to make the current PPTX runtime block explicit."
+          "notes": "Reproducible PPTX seam-probe fixture generated from checked-in markdown via `pandoc`. Story 193 rechecked the current checkout and kept PPTX blocked at the import seam."
         }
       ],
       "scores": null,
       "known_gaps": [
-        "The local PPTX seam is still blocked in this checkout: `unstructured.partition.pptx` fails on missing `python-pptx`.",
+        "Fresh Story 193 recheck: `python - <<'PY' ... from unstructured.partition.pptx import partition_pptx ... PY` still fails in this checkout with `ModuleNotFoundError: No module named 'pptx'`.",
         "No maintained PPTX recipe or provenance mapping exists yet.",
         "Slide reading order, mixed-layout ownership, speaker notes, and embedded media remain unproven."
       ],

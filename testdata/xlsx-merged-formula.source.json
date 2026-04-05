@@ -1,0 +1,15 @@
+{
+  "sheets": [
+    {
+      "name": "Budget",
+      "merged_ranges": ["A1:C1"],
+      "rows": [
+        ["Budget Notes"],
+        ["Item", "Count", "Cost"],
+        ["Boxes", 3, 10],
+        ["Folders", 5, 2],
+        ["Total", "=SUM(B3:B4)", "=SUM(C3:C4)"]
+      ]
+    }
+  ]
+}

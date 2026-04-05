@@ -238,7 +238,7 @@ Alternative supported install shape for this lane:
 
 Use this when you need a cheap real-run proof that the maintained XLSX lane
 still emits a final `doc-web` bundle plus sheet-anchored provenance from the
-checked-in workbook fixture:
+checked-in workbook fixtures on the supported slice:
 
 ```bash
 python -m pip install '.[driver,xlsx]'
@@ -255,13 +255,27 @@ python validate_artifact.py \
   --file output/runs/<run_id>/output/html/provenance/blocks.jsonl
 ```
 
+Story 193 widened the maintained XLSX proof surface to three supported
+checked-in fixtures on the same slice:
+
+- `testdata/xlsx-mini.xlsx`
+- `testdata/xlsx-multi-sheet.xlsx`
+- `testdata/xlsx-two-tables.xlsx`
+
+The maintained claim is still bounded to simple table-only sheets, including
+multiple table regions on one sheet, with sheet-named entries and
+`source_element_ids` provenance. `testdata/xlsx-merged-formula.xlsx` is a
+checked-in boundary probe, not a supported smoke fixture: in the fresh Story
+193 recheck, Unstructured split the merged title and `Total` summary into
+heading blocks instead of preserving that summary row as table content.
+
 Expected bundle outputs:
 
 - `output/runs/<run_id>/01_unstructured_xlsx_intake_v1/elements.jsonl`
 - `output/runs/<run_id>/02_xlsx_elements_to_bundle_v1/xlsx_bundle_report.json`
 - `output/runs/<run_id>/output/html/index.html`
 - `output/runs/<run_id>/output/html/page-001.html`
-- `output/runs/<run_id>/output/html/page-002.html`
+- `output/runs/<run_id>/output/html/page-00N.html` for any additional supported sheet/entry
 - `output/runs/<run_id>/output/html/manifest.json`
 - `output/runs/<run_id>/output/html/provenance/blocks.jsonl`
 
@@ -304,7 +318,7 @@ scripts/run_driver_monitored.sh \
 | `recipe-images-ocr-html-mvp.yaml` | Active structural HTML bundle path for image-directory inputs. |
 | `recipe-pdf-ocr-html-mvp.yaml` | Active structural HTML bundle path for generic PDF-backed inputs. |
 | `recipe-docx-html-mvp.yaml` | Maintained DOCX structural bundle path for the repo-owned heading/prose/list/table slice, widened to three checked-in fixtures. |
-| `recipe-xlsx-html-mvp.yaml` | Maintained XLSX structural bundle path for simple workbook tables, with one HTML page per sheet and anchor-based provenance. |
+| `recipe-xlsx-html-mvp.yaml` | Maintained XLSX structural bundle path for the verified simple-table slice: one HTML page per supported sheet/entry, including multiple table regions on one sheet, with anchor-based provenance. |
 | `recipe-onward-images-html-mvp.yaml` | **Genealogy.** Specialized for *Onward* tables. |
 | `recipe-onward-pdf-html-mvp.yaml` | **Genealogy.** PDF-backed maintained Onward lane with the same downstream table-repair flow. |
 | `onward-genealogy-build-regression.yaml` | No-AI artifact-reuse regression path that rebuilds chapters and genealogy validation from accepted Onward artifacts already present under the shared `output/` root. |

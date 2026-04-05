@@ -51,6 +51,7 @@ Grouped by primary `spec:N` category. Stories without category refs remain in an
 | 186 | Add First Reproducible Real Handwritten Fixture Proof Surface | High | Done | 185 | [story-186](stories/story-186-real-handwritten-fixture-proof-surface.md) |
 | 189 | Finish Real Handwritten Proof on the Maintained Rescue Seam | High | Done | 186 | [story-189](stories/story-189-improve-real-handwritten-barney-fidelity.md) |
 | 192 | Repair Alverson Handwritten Truth Surface and Rebaseline the Handwritten Corpus | High | Done | — | [story-192](stories/story-192-alverson-handwritten-truth-surface-repair.md) |
+| 193 | Widen Maintained XLSX Proof and Recheck PPTX Runtime Seam | High | Done | 175 | [story-193](stories/story-193-widen-xlsx-proof-and-recheck-pptx-runtime-seam.md) |
 
 ### spec:2 — OCR & Text Extraction
 

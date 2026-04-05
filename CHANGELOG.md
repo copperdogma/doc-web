@@ -1,3 +1,20 @@
+## [2026-04-04-09] - Widen XLSX proof slice and refresh PPTX blocker (Story 193)
+
+### Added
+- Added two supported repo-owned XLSX fixtures (`xlsx-multi-sheet`, `xlsx-two-tables`) plus a bounded unsupported merged-title / formula probe, and widened XLSX smoke coverage across the supported slice
+
+### Changed
+- Changed the XLSX coverage matrix, repo docs, generated methodology graph, and generated story index so `xlsx` now records a bounded passing slice while `pptx` cites a fresh blocked import seam on the current checkout
+
+### Fixed
+- Fixed XLSX fixture generation so merged-range probes serialize faithfully from checked-in source JSON before the boundary probe is used as canonical evidence
+
+### Tested
+- `python -m pytest tests/`
+- `python -m ruff check modules/ tests/`
+- `python driver.py --recipe configs/recipes/recipe-xlsx-html-mvp.yaml --input-xlsx testdata/xlsx-merged-formula.xlsx --run-id story193-xlsx-merged-formula-probe-20260404 --allow-run-id-reuse --force`
+- `make methodology-compile`
+
 ## [2026-04-04-08] - Stop triage from reopening blocked lines
 
 ### Changed

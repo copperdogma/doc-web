@@ -24,6 +24,8 @@ def build_fixture(source_path: Path, output_path: Path) -> None:
         worksheet = workbook.create_sheet(title=sheet["name"])
         for row in sheet["rows"]:
             worksheet.append(row)
+        for merged_range in sheet.get("merged_ranges", []):
+            worksheet.merge_cells(merged_range)
 
     output_path.parent.mkdir(parents=True, exist_ok=True)
     workbook.save(output_path)
