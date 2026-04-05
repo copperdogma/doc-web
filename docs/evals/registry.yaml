@@ -787,6 +787,48 @@ evals:
           remaining failure is now clearly **model-wrong** on the corrected
           real fixtures, especially Barney (`0.908567` / `0.886568`) and the
           visible Alverson front page (`0.677267` / `0.681952`).
+      - id: "007"
+        date: 2026-04-05
+        status: failed
+        approach: "Bounded new-subject-model screen on the corrected real-fixture pair after verifying current model availability"
+        score_before: 0.677267
+        score_after: 0.677267
+        note: >
+          Per `/improve-eval handwritten-notes-transcription`, I first
+          verified current provider availability with
+          `python scripts/discover-models.py --check-new`, which showed fresh
+          callable frontier candidates including `gpt-5.4-pro` and the Gemini
+          3.x family in this checkout with all three API keys present. I then
+          reran the maintained handwritten rescue baseline on the corrected
+          real fixtures via
+          `python benchmarks/scripts/run_handwritten_notes_eval.py --transcript testdata/handwritten-notes-barney-real.txt --images testdata/handwritten-notes-barney-real-images --pdf testdata/handwritten-notes-barney-real.pdf --fixture-id handwritten-notes-barney-real --image-recipe configs/recipes/recipe-images-ocr-html-handwritten-notes-gemini-rescue.yaml --pdf-recipe configs/recipes/recipe-pdf-ocr-html-handwritten-notes-gemini-rescue.yaml --image-case-id image-handwritten-rescue --pdf-case-id pdf-handwritten-rescue --output benchmarks/results/handwritten-notes-improve-eval-20260405-barney-baseline.json`
+          and
+          `python benchmarks/scripts/run_handwritten_notes_eval.py --transcript testdata/handwritten-notes-alverson-real.txt --images testdata/handwritten-notes-alverson-real-images --pdf testdata/handwritten-notes-alverson-real.pdf --fixture-id handwritten-notes-alverson-real --image-recipe configs/recipes/recipe-images-ocr-html-handwritten-notes-gemini-rescue.yaml --pdf-recipe configs/recipes/recipe-pdf-ocr-html-handwritten-notes-gemini-rescue.yaml --image-case-id image-handwritten-rescue --pdf-case-id pdf-handwritten-rescue --output benchmarks/results/handwritten-notes-improve-eval-20260405-alverson-baseline.json`.
+          Those fresh recipe-path reruns reproduced the current maintained
+          blocker exactly: Barney stayed at `0.883604` image /
+          `0.756036` pdf and corrected-scope Alverson stayed at `0.677267`
+          image / `0.681952` pdf. I then screened the fresh subject-model
+          candidates on the real image-entry pair only via
+          `benchmarks/results/handwritten-notes-improve-eval-20260405-image-screen.json`.
+          `gpt-5.4-pro` produced empty `page_html_v1` artifacts on both real
+          fixtures at
+          `output/runs/eval-barney-image-gpt-5-4-pro/01_ocr_ai_gpt51_v1/pages_html.jsonl`
+          and
+          `output/runs/eval-alverson-image-gpt-5-4-pro/01_ocr_ai_gpt51_v1/pages_html.jsonl`
+          (`overall_ratio = 0.0` both), which is current
+          **prompt/pipeline-wrong / integration-wrong** evidence rather than a
+          usable OCR win. `gemini-3.1-pro-preview` stayed below the maintained
+          rescue lane on both corrected real fixtures: Barney reached only
+          `0.843434` at
+          `output/runs/eval-barney-image-gemini-3-1-pro-preview/01_ocr_ai_gpt51_v1/pages_html.jsonl`,
+          and corrected-scope Alverson stayed at `0.262102` at
+          `output/runs/eval-alverson-image-gemini-3-1-pro-preview/01_ocr_ai_gpt51_v1/pages_html.jsonl`,
+          with the same visible-source failure class (`nothing`, `Battle of
+          Chickamauga`, etc.). Because no fresh model materially beat both real
+          fixtures, I did not promote any candidate to a PDF-entry or full
+          five-fixture rerun. Result: the `new-subject-model` retry condition
+          was exercised honestly, but no current candidate justifies reopening
+          Story 191.
 
     retry_when:
       - condition: new-subject-model

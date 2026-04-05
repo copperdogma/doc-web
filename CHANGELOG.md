@@ -1,3 +1,16 @@
+## [2026-04-05-01] - Record failed handwritten subject-model retry
+
+### Changed
+- Changed the handwritten eval registry, Story 191 blocker evidence, and generated methodology graph so the fresh 2026-04-05 bounded `new-subject-model` retry is recorded explicitly instead of remaining as unpublished terminal evidence
+- Changed the handwritten blocker record to keep Story 191 honestly `Blocked`: fresh maintained rescue reruns reproduced the current Barney and corrected-scope Alverson floor, `gpt-5.4-pro` produced empty OCR artifacts on the current path, and `gemini-3.1-pro-preview` did not beat the maintained rescue lane on both real fixtures
+
+### Tested
+- `python scripts/discover-models.py --check-new`
+- `python benchmarks/scripts/run_handwritten_notes_eval.py --transcript testdata/handwritten-notes-barney-real.txt --images testdata/handwritten-notes-barney-real-images --pdf testdata/handwritten-notes-barney-real.pdf --fixture-id handwritten-notes-barney-real --image-recipe configs/recipes/recipe-images-ocr-html-handwritten-notes-gemini-rescue.yaml --pdf-recipe configs/recipes/recipe-pdf-ocr-html-handwritten-notes-gemini-rescue.yaml --image-case-id image-handwritten-rescue --pdf-case-id pdf-handwritten-rescue --output benchmarks/results/handwritten-notes-improve-eval-20260405-barney-baseline.json`
+- `python benchmarks/scripts/run_handwritten_notes_eval.py --transcript testdata/handwritten-notes-alverson-real.txt --images testdata/handwritten-notes-alverson-real-images --pdf testdata/handwritten-notes-alverson-real.pdf --fixture-id handwritten-notes-alverson-real --image-recipe configs/recipes/recipe-images-ocr-html-handwritten-notes-gemini-rescue.yaml --pdf-recipe configs/recipes/recipe-pdf-ocr-html-handwritten-notes-gemini-rescue.yaml --image-case-id image-handwritten-rescue --pdf-case-id pdf-handwritten-rescue --output benchmarks/results/handwritten-notes-improve-eval-20260405-alverson-baseline.json`
+- `make methodology-compile`
+- `make methodology-check`
+
 ## [2026-04-04-07] - Repair handwritten Alverson truth surface (Story 192)
 
 ### Added
