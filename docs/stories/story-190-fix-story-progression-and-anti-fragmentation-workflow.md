@@ -113,6 +113,8 @@ readiness obvious.
         blocker
   - [x] `/triage` favors continuity on an active unresolved work line over an
         unrelated backlog shell when leverage is otherwise comparable
+  - [x] `/triage` does not recommend reopening a blocked active line when the
+        current pass does not satisfy that story's unblock condition
   - [x] `/validate` recommends `Keep open` for coherent same-surface remaining
         work instead of defaulting to `Rescope then close`
   - [x] `/mark-story-done` only recommends `Rescope then close` when the
@@ -451,6 +453,13 @@ readiness obvious.
   `.agents/skills/triage-stories/SKILL.md` now rank problems first, preserve
   active-line continuity, and demote story-shell existence to packaging /
   tie-break context.
+- [x] Blocked active line stays parked until the unblock condition is met
+  Evidence: `.agents/skills/triage/SKILL.md`,
+  `.agents/skills/triage-stories/SKILL.md`, and
+  `docs/stories/story-191-finish-real-handwritten-ocr-on-the-loc-fixture-pair.md`
+  now all say the same thing: blocked continuity is a health flag, not a
+  reopen recommendation, unless the current pass has fresh evidence that meets
+  the unblock condition.
 - [x] Same-line request avoids new story ID
   Evidence: `.agents/skills/create-story/SKILL.md` now stops before running the
   bootstrap script when the requested work still belongs to an existing story's
@@ -678,3 +687,24 @@ and `git diff --check`; all passed, with only the pre-existing
 now formally `Done`, the workflow gates reflect the completed validation and
 close-out path, and the archived story text no longer carries stale present-tense
 notes about the intermediate graph state. Next: `/check-in-diff`.
+20260404-2238 - post-closeout regression patch: tightened the workflow after a
+real `/triage` regression showed that continuity bias could still pull the repo
+back onto a blocked active line. Patched `.agents/skills/triage/SKILL.md`,
+`.agents/skills/triage-stories/SKILL.md`, and
+`.agents/skills/triage-evals/SKILL.md` so blocked stories and recently consumed
+retry triggers no longer masquerade as actionable next moves without fresh
+unblock evidence. Also updated the cross-repo migration runbook and Story 191
+to remove the stale pre-block implementation plan that was contradicting its
+blocker record. Impact: the framework now distinguishes "important blocked
+problem" from "recommended next action" instead of letting continuity override
+an unmet unblock condition. Next: rebuild the methodology surfaces and rerun
+the tooling checks.
+20260404-2245 - regression-fix verification: reran `make methodology-compile`,
+`make methodology-check`, `make skills-check`, and `git diff --check`; all
+passed in this pass. I also re-read
+`docs/stories/story-191-finish-real-handwritten-ocr-on-the-loc-fixture-pair.md`
+to confirm the stale "Proceed with..." implementation plan is gone and that the
+story now tells triage to treat the line as parked until its unblock condition
+is met. Impact: the blocked-line cooling rule is now both documented and
+freshly verified in the local workflow surfaces. Next: port the same patch to
+the sibling repos with the copy-paste prompt in the migration runbook.

@@ -55,7 +55,10 @@ Check whether recorded `retry_when` conditions are now actionable:
 - `dependency-available`
 
 Use recent git history, current stories, current docs, and verified model
-availability to judge whether the trigger is actually met.
+availability to judge whether the trigger is actually met. If the same trigger
+was already exercised in the latest attempt and failed without changing the
+decision surface, do not recommend the same rerun again until there is another
+material trigger.
 
 ### 3. Phase-aware assessment
 
@@ -121,5 +124,8 @@ user decide.
 - Read-only and advisory
 - Be explicit when a recommendation depends on verified current model availability
 - Do not confuse runtime benchmarks with capability gates or deletion gates
+- Do not recommend the same retry trigger repeatedly when the latest recorded
+  attempt already exercised it and no new model, approach, golden, or
+  architecture change has appeared since
 - If no eval action is justified, say so clearly
 - Keep the report compact enough for `/triage` to synthesize with other leaf reports

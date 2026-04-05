@@ -79,6 +79,11 @@ When invoked with no scope:
    - operator cost
    - existing story shells only as packaging / tie-break context, not as value by themselves
 
+   If the strongest problem line is explicitly `Blocked`, verify whether its
+   unblock condition is actually met in the current pass. If not, surface that
+   line as a health flag and recommend a different actionable move or an honest
+   `no-op`; do not turn blocked continuity into a reopen recommendation.
+
    The recommended action must be phrased so it can be executed directly on the
    next turn. A bare `yes` from the user should be enough to authorize that one
    action without needing a follow-up clarification.
@@ -123,3 +128,5 @@ When invoked with no scope:
   packaging, not priority signals.
 - Preserve continuity for active unresolved work lines when leverage is
   otherwise comparable.
+- Do not recommend reopening a blocked line unless the current pass can point
+  to fresh evidence that satisfies the story's unblock condition.

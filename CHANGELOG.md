@@ -1,3 +1,15 @@
+## [2026-04-04-08] - Stop triage from reopening blocked lines
+
+### Changed
+- Changed `/triage` and `/triage-stories` so blocked active lines with unmet unblock conditions downgrade to health flags instead of resurfacing as recommended next actions on continuity alone
+- Changed `/triage-evals`, Story 190, Story 191, and the migration runbook so consumed retry triggers stay exhausted, stale pre-block implementation plans no longer override blocker evidence, and sibling repos have a copy-paste prompt for the same regression
+
+### Tested
+- `make methodology-compile`
+- `make methodology-check`
+- `make skills-check`
+- `git diff --check`
+
 ## [2026-04-05-01] - Record failed handwritten subject-model retry
 
 ### Changed

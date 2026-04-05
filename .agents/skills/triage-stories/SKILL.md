@@ -37,6 +37,12 @@ This skill is read-only.
    - `Draft` stories that appear detailed enough to be promoted soon
    - `Blocked` stories only when unblocking them may be the highest-leverage move
 
+   For `Blocked` stories, do not stop at the status label. Read the blocker
+   summary, blocker evidence, and unblock condition. A blocked story only stays
+   in the candidate set when the current pass has fresh evidence that the
+   unblock condition is now met or is immediately satisfiable by the proposed
+   next action. Otherwise treat it as a health flag, not as a ranked next move.
+
    Draft/Pending existence alone does not make a story high priority.
 
 2. **Read the Ideal**
@@ -50,6 +56,10 @@ This skill is read-only.
    treat them as one problem line first and ask whether the honest next move is
    to continue, reopen, expand, or consolidate that line instead of treating
    each story shell as a separate vote.
+
+   If the current problem line is `Blocked`, verify whether the blocker still
+   stands. A stale implementation plan inside the story does not override newer
+   blocker evidence or an unmet unblock condition.
 
    For each candidate, also read the matching graph/state category and note:
    - **Substrate status** (`exists`/`partial`/`missing`) — a story whose
@@ -80,6 +90,9 @@ This skill is read-only.
      - `hold`: recommend efficiency/simplification work
      - `converge`: recommend deletion work
      - Work that fights the phase is lower priority
+   - **blocked-state honesty** — a blocked line with an unmet unblock condition
+     should lose to an actionable line even if continuity and problem pressure
+     are high
    - momentum
    - continuity for active unresolved work lines
    - convergence value
@@ -93,6 +106,8 @@ This skill is read-only.
      likely stay one line
    - stories marked Draft/Pending that are actually blocked
    - blocked stories with weak or missing blocker evidence / unblock conditions
+   - blocked stories whose older plan text or stale assumptions still imply a
+     ready next move even though the current blocker says not to reopen yet
    - stories whose documented prerequisites exist in build-map or decision docs
      but not yet in code, schemas, runtime wiring, tests, or artifacts
    - stale or superseded stories
@@ -143,4 +158,7 @@ doing a full backlog scan. Report:
   alone when the critical substrate has not been verified in the repo
 - Treat `Blocked` stories as candidates only when the unblock path is itself the
   highest-leverage next move
+- Do not recommend reopening a blocked story when the current pass only repeats
+  previously failed evidence or when the story's own unblock condition is still
+  unmet
 - Keep the report compact enough for `/triage` to synthesize with other leaf reports

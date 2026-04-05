@@ -156,108 +156,20 @@ Unblock this story only when a materially different OCR substrate or maintained 
 
 ## Plan
 
-### Recommendation
+This section is intentionally no longer an active implementation plan.
 
-Proceed with a bounded hybrid implementation inside the maintained OCR module first, not a new staged schema. The evidence from fresh current-tip artifacts says the handwritten failure is split across two generic classes: Barney is mostly a fidelity/drift problem on a dense wide spread, while Alverson is a coverage/truncation problem on a tall full-page letter. The smallest honest path is to keep the final artifact contract at `page_html_v1`, add an opt-in handwritten recovery seam behind recipe params, and support it with a small helper file rather than expanding into a new intermediate manifest/schema unless this first bounded attempt fails.
+The earlier `/build-story` recommendation to add a bounded handwritten recovery
+helper was superseded by the blocker closeout and the later bounded
+`/improve-eval` retry. The current authoritative guidance for triage is the
+blocker record above:
 
-### Baseline And Candidate Gate
+- this story remains `Blocked`
+- it should not reopen on the same evidence again
+- it only becomes actionable when the `Unblock Condition` is met in a fresh pass
 
-1. **Freeze the maintained baseline and record exact failure artifacts** (`XS`)
-   - **Files**: no code changes required; baseline artifact is `benchmarks/results/handwritten-notes-story191-baseline-20260404.json`; inspected real-failure artifacts are `output/runs/handwritten-handwritten-notes-barney-real-image-handwritten-rescue/02_ocr_ai_gpt51_v1/pages_html.jsonl`, `output/runs/handwritten-handwritten-notes-barney-real-pdf-handwritten-rescue/02_ocr_ai_gpt51_v1/pages_html.jsonl`, `output/runs/handwritten-handwritten-notes-alverson-real-image-handwritten-rescue/02_ocr_ai_gpt51_v1/pages_html.jsonl`, and `output/runs/handwritten-handwritten-notes-alverson-real-pdf-handwritten-rescue/02_ocr_ai_gpt51_v1/pages_html.jsonl`.
-   - **What changes**: none; this is the frozen comparison point.
-   - **Impact / risk**: gives Story 191 a fresh current-tip baseline. The real risk surfaced here is that the module's own OCR metadata overstates completeness on Alverson (`ocr_integrity` near `0.95-0.98` while the actual transcription still stops at `...acceptable and`), so the implementation cannot trust self-reported metadata alone.
-   - **Done looks like**: baseline score and dominant failure modes are recorded in the work log and cited in the user-facing plan.
-
-2. **Re-run the simplest no-code candidates before building new logic** (`S`)
-   - **Files**: likely no file edits; only `docs/stories/story-191-finish-real-handwritten-ocr-on-the-loc-fixture-pair.md` work-log updates unless result logging proves insufficient.
-   - **What changes**: use the existing handwritten eval harness in single-fixture mode to re-check a very small direct-call candidate set on the real pair before coding. The default candidate order is:
-     - current maintained Gemini rescue baseline (already frozen)
-     - one direct full-page stronger-model probe using the existing OCR module and current prompt contract
-     - only if the direct probe materially improves both real fixtures, rerun that candidate against the synthetic regression set before touching runtime code
-   - **Impact / risk**: this is the explicit `Eval Before Build` gate. It challenges the story's preselected hybrid instinct without reopening a broad model sweep. If a direct-call candidate unexpectedly passes, Story 191 should stay small and avoid new logic.
-   - **Human-approval blocker**: none, unless the no-code candidate requires a provider/model not already supported in the repo/runtime.
-   - **Done looks like**: the work log names the compared candidate(s), exact run IDs / artifact paths, ratios, and whether the mismatch is still model-wrong versus architecture-wrong.
-
-### Recommended Implementation Slice
-
-3. **Add a bounded handwritten recovery helper inside `ocr_ai_gpt51_v1`** (`M`)
-   - **Files**:
-     - `modules/extract/ocr_ai_gpt51_v1/main.py`
-     - `modules/extract/ocr_ai_gpt51_v1/module.yaml`
-     - likely new helper file under `modules/extract/ocr_ai_gpt51_v1/` for page-window planning, trigger detection, and overlap merge
-   - **What changes**:
-     - keep `ocr_ai_gpt51_v1` as the maintained stage owner and keep the final output on `page_html_v1`
-     - factor the rescue-specific logic into a small helper instead of further ballooning `main.py`
-     - implement an opt-in handwritten recovery path that:
-       - runs the normal full-page OCR first
-       - evaluates whether the result looks coverage-risky using generic signals, not fixture-specific strings
-       - when triggered, rereads targeted overlapping windows from the same source image and merges them back into one `page_html_v1` row with provenance-safe `raw_html` / `html` handling
-   - **Recommended trigger signals**:
-     - page-shape signal from the source image (for example, unusually tall or otherwise non-standard aspect ratio)
-     - text-tail truncation signal from the OCR output (for example, abrupt ending, conjunction-style tail, or continuation-like stop)
-     - optional image bottom-ink or line-presence signal so that pages with visible lower content can trigger a rescue even when the model self-rates integrity highly
-   - **Recommended merge discipline**:
-     - prefer paragraph/text overlap merge using conservative `SequenceMatcher`-style suffix/prefix alignment
-     - preserve full-page reading order as the primary backbone, then only splice in missing window text
-     - do not introduce deterministic word correction or fixture-specific substitutions
-   - **Impact / risk**:
-     - this is the smallest path that can plausibly fix Alverson's lower-page omission without a new stage boundary
-     - it may also improve Barney if denser local rereads reduce name drift, but Barney is the higher-risk lane because its failure is semantic rather than pure truncation
-     - main file size is already high (`758` lines), so helper extraction is structural hygiene, not optional polish
-   - **Structural health note**:
-     - avoid a new intermediate schema on the first pass. `schemas.py` already stamps `page_html_v1`, and adding undeclared intermediate fields to the final artifact would be brittle and likely dropped. Only escalate to a new staged artifact if the bounded in-module rescue cannot be made inspectable enough.
-   - **Done looks like**: handwritten recipes can opt into the rescue via params, the helper remains bounded and generic, and no final-output schema change is required.
-
-4. **Wire the maintained handwritten recipes onto the opt-in rescue path** (`S`)
-   - **Files**:
-     - `configs/recipes/recipe-images-ocr-html-handwritten-notes-gemini-rescue.yaml`
-     - `configs/recipes/recipe-pdf-ocr-html-handwritten-notes-gemini-rescue.yaml`
-   - **What changes**:
-     - add the smallest set of handwritten-only params needed to enable the bounded recovery seam
-     - keep image-entry and PDF-entry ownership symmetric unless a proven real difference forces divergence
-   - **Impact / risk**:
-     - keeps the behavior explicitly recipe-scoped per `spec:1.1`
-     - limits blast radius to the handwritten lane instead of widening the generic OCR promise prematurely
-   - **Done looks like**: both maintained handwritten recipes point at the same bounded recovery behavior, and no other maintained format recipe changes behavior accidentally.
-
-5. **Add focused tests for trigger selection, merge behavior, and recipe wiring** (`S`)
-   - **Files**:
-     - likely new unit test file for the rescue helper
-     - `tests/test_image_directory_intake_recipe.py`
-     - `tests/test_pdf_intake_recipe.py`
-     - `tests/test_handwritten_notes_eval.py` only if helper/eval metadata changes
-   - **What changes**:
-     - unit coverage for the rescue trigger and overlap-merge rules
-     - recipe wiring assertions for any new OCR params
-     - preserve the existing synthetic handwritten regression surface as the minimal safety net
-   - **Impact / risk**:
-     - prevents silent regressions on the synthetic fixtures while the handwritten real-fixture logic changes
-     - avoids forcing the full expensive eval to catch simple merge bugs
-   - **Done looks like**: new helper logic is covered by deterministic tests, and recipe smoke/wiring tests still pass.
-
-### Validation And Truth-Surface Decision
-
-6. **Run narrow real proofs, then the full handwritten eval, then decide Done vs Blocked** (`M`)
-   - **Files**:
-     - runtime artifacts under `output/runs/`
-     - `docs/evals/registry.yaml` if the maintained result changes
-     - `tests/fixtures/formats/_coverage-matrix.json` only if the lane actually clears the bar
-     - `docs/stories/story-191-finish-real-handwritten-ocr-on-the-loc-fixture-pair.md`
-   - **What changes**:
-     - clear stale `*.pyc`
-     - run narrow real `driver.py` proofs for Barney and Alverson on both image-directory and PDF entry
-     - manually inspect the repaired `page_html_v1` artifacts, especially the Alverson lower body / postscript and Barney name-heavy phrases
-     - rerun the full five-fixture handwritten eval
-   - **Impact / risk**:
-     - this is the truth gate for Story 191
-     - if the rescue improves Alverson but leaves Barney below `0.99`, the story is still not Done
-     - if the bounded helper fails and a new staged schema becomes necessary, that becomes the explicit decision point before expanding scope further
-   - **Expected truth-surface movement**:
-     - if the full five-fixture corpus clears `pass_rate = 1.0` with both `overall_min_ratio` and `page_min_ratio` at `>= 0.99`, update the handwritten coverage row from `has-fixture` to `passing` and record the new eval score
-     - if not, keep the handwritten row honest at `has-fixture` and convert this story to `Blocked` with named blocker evidence; do not create another same-surface handwritten story
-   - **Done looks like**:
-     - passing path: fresh artifacts prove both real fixtures on both entry seams, full eval passes, coverage/eval docs update honestly
-     - blocked path: blocker summary/evidence/unblock condition are written here, and no false promotion lands in coverage or registry
+If future exploration finds a materially different OCR substrate or recovery
+seam, reopen from the `Unblock Condition`, not from the stale pre-block
+implementation sketch that used to live here.
 
 ### Scope Adjustment From Exploration
 
@@ -274,3 +186,4 @@ Proceed with a bounded hybrid implementation inside the maintained OCR module fi
 20260404-1826 — blocked closeout + truth-surface sync: updated the handwritten truth surfaces instead of landing runtime code. Changes in this pass: `docs/evals/registry.yaml` now records the fresh Story 191 maintained baseline (`0.499136 / 0.499136 / 0.6`) plus the blocked direct `gpt-5` / `claude-opus-4-6` comparison attempt; `tests/fixtures/formats/_coverage-matrix.json` now records the fresh Barney ratios and the Alverson source/transcript blocker explicitly; `testdata/README.md` now stops claiming that `handwritten-notes-alverson-real.txt` is a clean front-page transcript aligned to the visible page. Regenerated `docs/methodology/graph.json` and `docs/stories.md`, which now show Story 191 as `Blocked`. Narrow validation in the same pass: `make methodology-check` passed and `git diff --check` passed. No runtime/module code was changed because the blocker evidence removed the case for speculative implementation.
 20260404-2018 — Story 192 follow-up reclassified the blocker surface: after Story 192 trimmed `testdata/handwritten-notes-alverson-real.txt` to the visible front-page boundary and reran `benchmarks/results/handwritten-notes-story192-alverson-frontpage.json`, the handwritten floor rose from `0.499136` to `0.677267` without any OCR runtime change. Updated this blocked story so it no longer claims a live source/transcript mismatch inside the checked-in Alverson fixture. Fresh evidence now points at OCR-only remaining failures on the corrected corpus: Barney still scores `0.908567` / `0.886568`, corrected-scope Alverson still scores `0.677267` / `0.681952`, and manual artifact inspection shows visible-page OCR errors rather than hidden continuation text. Next step: keep this story blocked until a materially stronger OCR substrate is ready to rerun against the corrected corpus.
 20260405-0349 — bounded `/improve-eval handwritten-notes-transcription` retry-ready subject-model screen completed and did not justify reopening the story. First, I verified current provider availability with `python scripts/discover-models.py --check-new`, which confirmed fresh callable candidates including `gpt-5.4-pro` and Gemini 3.x in this checkout. I then re-ran the maintained handwritten rescue baseline on the corrected real pair: `benchmarks/results/handwritten-notes-improve-eval-20260405-barney-baseline.json` reproduced Barney at `0.883604` image / `0.756036` pdf, and `benchmarks/results/handwritten-notes-improve-eval-20260405-alverson-baseline.json` reproduced corrected-scope Alverson at `0.677267` image / `0.681952` pdf. With that baseline re-verified, I screened the fresh image-entry candidates under `benchmarks/results/handwritten-notes-improve-eval-20260405-image-screen.json`. `gpt-5.4-pro` returned empty `page_html_v1` artifacts on both fixtures (`overall_ratio = 0.0` at `output/runs/eval-barney-image-gpt-5-4-pro/01_ocr_ai_gpt51_v1/pages_html.jsonl` and `output/runs/eval-alverson-image-gpt-5-4-pro/01_ocr_ai_gpt51_v1/pages_html.jsonl`), which is current integration/pipeline-wrong evidence rather than a usable OCR win. `gemini-3.1-pro-preview` improved Barney only to `0.843434` at `output/runs/eval-barney-image-gemini-3-1-pro-preview/01_ocr_ai_gpt51_v1/pages_html.jsonl` and left corrected-scope Alverson at `0.262102` at `output/runs/eval-alverson-image-gemini-3-1-pro-preview/01_ocr_ai_gpt51_v1/pages_html.jsonl`, still with visible-source misreads such as the spurious leading `nothing` / `Battle of Chickamauga` pattern. Because no fresh subject model materially beat both corrected real fixtures, I did not promote any candidate to a PDF-entry or full five-fixture rerun, and Story 191 remains honestly `Blocked`.
+20260404-2238 — stale-plan cleanup: removed the pre-block implementation plan from this story after it started biasing `/triage` back toward handwriting even though the current blocker evidence and unblock condition say the line should stay parked. Result: the story now carries one consistent instruction surface for future triage passes. Next step: keep the line as a health flag only until a fresh pass can honestly satisfy the unblock condition.

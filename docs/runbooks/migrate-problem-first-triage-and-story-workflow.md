@@ -228,6 +228,11 @@ Update both the story leaf and the meta-synthesizer:
   shell
 - `triage` should weight real leverage and continuity above mere backlog-shell
   existence
+- blocked stories should only be recommendable when the current pass has fresh
+  evidence that satisfies their unblock condition; otherwise they should appear
+  as health flags, not as the recommended next move
+- stale plan text inside a blocked story must never override newer blocker
+  evidence or an unmet unblock condition
 
 ### 7. Patch close-out
 
@@ -327,6 +332,13 @@ behavior of the workflow against concrete scenarios.
    - Expected result: it stops before bootstrapping a new story and returns the
      existing story to expand or reopen instead
 
+11. Blocked active line stays parked until its unblock condition is met
+   - Input: the strongest continuity line is a recent `Blocked` story whose
+     blocker evidence explicitly says not to reopen yet
+   - Expected result: triage surfaces it as a health flag, not as the
+     recommended action, unless the current pass has fresh evidence that meets
+     the unblock condition
+
 ### Evidence to record
 
 For each repo that lands this migration, record:
@@ -338,7 +350,7 @@ For each repo that lands this migration, record:
 
 ## Doc-Forge Certification Evidence
 
-Story 190 certifies all ten required scenarios in doc-forge with direct local
+Story 190 certifies all eleven required scenarios in doc-forge with direct local
 evidence:
 
 - Rough idea -> `Draft`: `.agents/skills/create-story/SKILL.md`
@@ -353,6 +365,10 @@ evidence:
   `.agents/skills/build-story/SKILL.md`
 - Continuity beats unrelated shell:
   `.agents/skills/triage/SKILL.md` and `.agents/skills/triage-stories/SKILL.md`
+- Blocked active line stays parked until its unblock condition is met:
+  `.agents/skills/triage/SKILL.md`,
+  `.agents/skills/triage-stories/SKILL.md`, and
+  `docs/stories/story-191-finish-real-handwritten-ocr-on-the-loc-fixture-pair.md`
 - User-facing functionality -> UI-complete story:
   `.agents/skills/create-story/SKILL.md` and `AGENTS.md`
 - Validation keeps coherent work together:
@@ -371,6 +387,8 @@ evidence:
 - continuity bias for active work lines
 - blocked-story evidence requirements
 - anti-fragmentation defaults
+- "blocked but important" must degrade to a health flag until the unblock
+  condition is met; do not let continuity alone reopen it
 
 ### Adapt per repo
 
@@ -397,6 +415,64 @@ This section should only record landed or explicitly locked steps from Story
   `/mark-story-done`, the story template, `AGENTS.md`, the methodology
   reference, and the graph/test surfaces so blocked-story truth is now
   inspectable and the workflow is problem-first end-to-end.
-- 2026-04-04: added doc-forge certification evidence mapping each of the nine
-  required scenarios to the landed local files so other repos can port and
+- 2026-04-04: added doc-forge certification evidence mapping the required
+  scenarios to the landed local files so other repos can port and
   verify the migration without replaying Story 190.
+- 2026-04-04: patched the first post-closeout regression. Blocked active lines
+  now stay parked until their unblock condition is met, stale pre-block plans
+  are removed from blocked stories, and repeated retry-trigger recommendations
+  are suppressed until a genuinely new trigger appears.
+
+## Copy-Paste Prompt
+
+Use this prompt when another repo on the same framework starts repeatedly
+recommending the same blocked line:
+
+```text
+Analyze the last 10-15 commits plus this repo's triage, story-lifecycle, eval,
+and tracking surfaces to find why `/triage` keeps recommending the same blocked
+or recently exhausted work line over and over.
+
+I need you to fix the workflow, not just describe it.
+
+Requirements:
+1. Read the active methodology/tracking surfaces first: the repo's AGENTS
+   instructions, triage skill(s), story-lifecycle skill(s), generated graph or
+   story index if present, current state/roadmap file, eval registry, and the
+   specific blocked story or exhausted eval that keeps resurfacing.
+2. Identify the exact feedback loop. Look for cases where:
+   - continuity bias outweighs blocked-state truth
+   - a blocked story's unblock condition is being ignored
+   - stale implementation-plan text still says "proceed" even though newer
+     blocker evidence says "do not reopen yet"
+   - the same eval retry trigger was already exercised and failed, but triage
+     still treats it as newly actionable
+   - the current tracking surfaces make one blocked line the only categorized
+     non-done mission story, so it wins by default
+3. Patch the framework so blocked lines with unmet unblock conditions downgrade
+   to health flags instead of recommended next actions.
+4. Remove or rewrite any stale plan text inside the blocked story or eval notes
+   that contradicts the current blocker evidence.
+5. Update the cross-repo migration/runbook docs so this regression case is part
+   of the documented framework, not a one-off local fix.
+6. Add or extend certification coverage for this exact scenario:
+   "A blocked active line with an unmet unblock condition must not be
+   recommended by triage just because it has continuity or recent commits."
+7. If the eval framework is part of the loop, make triage-evals treat an
+   already-consumed retry trigger as exhausted until a materially new trigger
+   appears.
+
+Output requirements:
+- Findings first, with file references and the specific feedback loop.
+- Then implement the fixes directly.
+- Then summarize what changed, why it breaks the loop, and what still remains
+  manual.
+
+Validation requirements:
+- Rebuild any generated methodology surfaces that depend on the edited docs or
+  stories.
+- Run the repo's relevant workflow/tooling checks (for example methodology
+  check, skills check, targeted tests, and diff check).
+- In the final summary, state explicitly whether the blocked line is now a
+  health flag rather than the recommended next move.
+```
