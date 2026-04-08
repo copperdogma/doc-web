@@ -15,7 +15,7 @@
 
 2. **AGENTS.md (339 lines) with AI Learning Log** — HIGH value
    What: Central Tenets (vision-level + compromise-level), model selection by task type, code conventions (200-600 line files, max 3 layers), session protocol, Known Pitfalls, AI Learning Log (Effective Patterns + Known Pitfalls discovered across sessions).
-   Us: No AGENTS.md. The AI Learning Log is unique to storybook — institutional memory for AI sessions.
+   Us (at scout time): No AGENTS.md. The AI Learning Log was unique to storybook — institutional memory for AI sessions.
    Recommendation: Create story — use storybook's AI Learning Log pattern in codex-forge's AGENTS.md
 
 3. **Ideal-First Methodology (most mature)** — HIGH value

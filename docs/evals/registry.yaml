@@ -18,6 +18,12 @@
 #   cost_usd        — avg per-call cost in USD (REQUIRED if model has pricing)
 #   cost_estimated  — present+true when cost was computed from tokens, not promptfoo
 #
+# Explicit lineage fields:
+#   story_refs       — canonical story linkage for the eval
+#   category_refs    — explicit category ownership when the eval spans categories
+#   compromise_refs  — explicit compromise linkage
+#   spec_refs        — optional direct `spec:N` / `spec:N.N` refs when needed
+#
 # retry_when conditions:
 #   new-worker-model     — A smarter orchestrating AI might succeed
 #   new-subject-model    — A better pipeline model might pass without code changes
@@ -43,6 +49,9 @@ evals:
     config: benchmarks/tasks/image-crop-extraction.yaml
     scorer: benchmarks/scorers/image_crop_scorer.py
     golden: benchmarks/golden/
+    story_refs: ["133", "183"]
+    category_refs: ["spec:4", "spec:8"]
+    compromise_refs: ["C4"]
     spec_compromise: C4
 
     target:
@@ -222,6 +231,9 @@ evals:
     config: benchmarks/tasks/crop-validation.yaml
     scorer: benchmarks/scorers/crop_validation_scorer.py
     golden: benchmarks/golden/crop-validation.json
+    story_refs: ["183"]
+    category_refs: ["spec:4", "spec:8"]
+    compromise_refs: ["C5"]
     spec_compromise: C5
 
     target:
@@ -300,6 +312,9 @@ evals:
       Tests text accuracy, table structure preservation, and column alignment.
     pipeline_stage: ocr
     runner: manual
+    story_refs: ["127", "140"]
+    category_refs: ["spec:2", "spec:3"]
+    compromise_refs: ["C1"]
     spec_compromise: C1
 
     target:
@@ -354,6 +369,9 @@ evals:
     command: "python benchmarks/scripts/run_handwritten_notes_eval.py --image-recipe configs/recipes/recipe-images-ocr-html-handwritten-notes-gemini-rescue.yaml --pdf-recipe configs/recipes/recipe-pdf-ocr-html-handwritten-notes-gemini-rescue.yaml --image-case-id image-handwritten-rescue --pdf-case-id pdf-handwritten-rescue --instrument --output benchmarks/results/handwritten-notes-story189-real-expanded.json"
     scorer: benchmarks/scorers/handwritten_notes_transcription.py
     golden: benchmarks/golden/handwritten-notes/corpus.json
+    story_refs: ["179", "182", "185", "186", "189", "191", "192"]
+    category_refs: ["spec:1", "spec:2", "spec:8"]
+    compromise_refs: []
 
     target:
       metric: overall_min_ratio
@@ -847,6 +865,9 @@ evals:
     config: benchmarks/tasks/onward-table-fidelity.yaml
     scorer: benchmarks/scorers/html_table_diff.py
     golden: benchmarks/golden/onward/
+    story_refs: ["134"]
+    category_refs: ["spec:2"]
+    compromise_refs: ["C1"]
     spec_compromise: C1
     golden_verified: true  # Hand-validated 100% correct against scans
 
@@ -1025,6 +1046,9 @@ evals:
       and keeps row-semantic issues distinct from pure format drift.
     pipeline_stage: validate
     runner: manual
+    story_refs: ["144", "146"]
+    category_refs: ["spec:1", "spec:2", "spec:5"]
+    compromise_refs: ["C7"]
     spec_compromise: C7
 
     target:
@@ -1107,6 +1131,9 @@ evals:
     description: >
       Can a single model replace the two-stage detector+validator?
       Tests whether one call achieves ≥0.95 with zero text contamination.
+    story_refs: []
+    category_refs: ["spec:4"]
+    compromise_refs: ["C4"]
     spec_compromise: C4
     runner: promptfoo
 
@@ -1196,6 +1223,9 @@ evals:
       Maintained direct-entry `docx` / `xlsx` / `pptx` lanes sit outside this
       recommendation-only automation surface and are measured separately with
       `benchmarks/input/office-intake-boundary-corpus.json`.
+    story_refs: ["169", "170", "171", "194", "197"]
+    category_refs: ["spec:1", "spec:3", "spec:6", "spec:7", "spec:8", "spec:9"]
+    compromise_refs: ["C2"]
     spec_compromise: C2
     runner: manual
 
@@ -1376,6 +1406,9 @@ evals:
       benchmark. Maintained direct-entry `docx` / `xlsx` / `pptx` lanes remain
       outside this automation surface and are measured
       separately with `benchmarks/input/office-intake-boundary-corpus.json`.
+    story_refs: ["176", "178", "180", "194", "197"]
+    category_refs: ["spec:1", "spec:3", "spec:6", "spec:7", "spec:8", "spec:9"]
+    compromise_refs: ["C2"]
     spec_compromise: C2
     runner: manual
     command: "python benchmarks/scripts/run_approved_intake_handoff_eval.py --output benchmarks/results/approved-intake-handoff-story180.json --run-root output/runs/story180-approved-intake-handoff"
@@ -1542,6 +1575,9 @@ evals:
       against checked-in section-order, non-split HTML, and provenance
       assertions, and also records one thinner challenger per family to keep
       pressure on the current seam.
+    story_refs: ["181"]
+    category_refs: ["spec:3", "spec:6", "spec:8", "spec:9"]
+    compromise_refs: ["C3"]
     spec_compromise: C3
     runner: manual
     command: "python benchmarks/scripts/run_layout_section_splitting_eval.py --output benchmarks/results/layout-section-splitting-story181.json --run-root output/runs/story181-layout-benchmark"
@@ -1629,6 +1665,9 @@ evals:
     command: "python benchmarks/scripts/run_born_digital_pdf_eval.py --output benchmarks/results/born-digital-pdf-story196.json --run-root output/runs/story196-born-digital-benchmark"
     scorer: benchmarks/scorers/born_digital_pdf.py
     golden: benchmarks/golden/born-digital-pdf/corpus.json
+    story_refs: ["196"]
+    category_refs: ["spec:1", "spec:3", "spec:6", "spec:7", "spec:8"]
+    compromise_refs: ["C3"]
 
     target:
       metric: pass_rate

@@ -1,13 +1,12 @@
 # Eval Registry System
 
-Central tracking for doc-forge's evaluation metrics, improvement attempts, and
-compromise-deletion signals.
+Central tracking for eval metrics, verified attempts, and compromise-deletion
+signals.
 
-Baseline eval-surface setup now belongs to `/setup-methodology`. Once that
-package exists:
+Baseline eval-surface setup belongs to `/setup-methodology`.
 
-- use `/improve-eval` to iterate on existing evals
-- use this README plus the attempt template when a new eval must be scaffolded
+- Use `/improve-eval` to iterate on existing evals.
+- Use this README plus the attempt template when a new eval must be scaffolded.
 
 ## Structure
 
@@ -39,6 +38,27 @@ result.
 A score is stale if the code or benchmark surface changed materially after the
 recorded `git_sha`. When in doubt, re-measure.
 
+## Explicit Lineage Contract
+
+Every eval record must carry explicit lineage in `docs/evals/registry.yaml`.
+Do not rely on prose mentions inside notes to recover ownership later.
+
+Required fields for a new eval:
+
+- `story_refs` — story IDs that created, widened, or now own the surface
+- `category_refs` — owning `spec:N` categories when the eval spans categories
+- `compromise_refs` — linked compromise IDs when the eval is a deletion gate or
+  compromise pressure surface
+
+Optional field:
+
+- `spec_refs` — direct `spec:N` or `spec:N.N` refs when category linkage alone
+  is too coarse
+
+Use empty lists only when a field is intentionally not applicable. The registry
+entry must still carry enough explicit lineage to answer "why does this eval
+exist and who owns it?" without scraping narrative notes.
+
 ## Improvement Attempts
 
 ### Creating an attempt note
@@ -58,8 +78,9 @@ Doc-forge does not yet have a dedicated eval-creation skill. Until it does:
 
 1. add the new benchmark assets and scorer/config in the repo
 2. add the eval entry to `docs/evals/registry.yaml`
-3. record the baseline score
-4. reference the eval from the relevant story, spec compromise, or build-map gap
+3. fill the explicit lineage fields (`story_refs`, `category_refs`,
+   `compromise_refs`, and `spec_refs` when needed)
+4. record the baseline score
 
 Use `/improve-eval` only after the eval already exists.
 
@@ -97,7 +118,7 @@ attempts:
 ## Compromise Evals
 
 Compromise evals test whether a spec compromise can be eliminated. They should
-link back to the relevant spec section and build-map category.
+link back through explicit registry lineage, not narrative references.
 
 When a compromise eval passes consistently, the compromise should be revisited
 for simplification or deletion.

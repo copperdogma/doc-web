@@ -111,7 +111,7 @@ Once the package exists, ongoing work moves to:
 ### Greenfield
 
 1. Capture the ideal
-2. Create the category-aligned spec and build map
+2. Create the category-aligned spec plus the initial state/graph package
 3. Install the methodology reference and checklist
 4. Install eval-surface docs
 5. Normalize AGENTS and skill sync

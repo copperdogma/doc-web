@@ -14,8 +14,8 @@
    Recommendation: Adopt inline — port the skill, adapting references to match codex-forge's doc structure.
 
 2. **`/triage-stories` — Evaluate Story Backlog** — HIGH value
-   What: Read-only advisory skill that loads the full story index + `docs/ideal.md`, reads all Draft/Pending candidate stories, scores each on Ideal gap severity, dependency readiness, blocking power, phase coherence, momentum, and complexity vs. payoff. Flags stories that move AWAY from the Ideal for trashing. Presents ranked top 3-5 with rationale. User picks, then runs `/build-story`. Key patterns: Draft stories are candidates too (build-story fleshes them out), measure-first for recently-completed work, check for new SOTA models that may obsolete workarounds.
-   Us: We have `docs/stories.md` with 130+ stories and `docs/ideal.md`. Story selection is ad-hoc — no structured evaluation against Ideal alignment, no systematic flagging of stale/misaligned stories.
+   What: Read-only advisory skill that loads the generated story index (`docs/stories.md`) + `docs/ideal.md`, reads all Draft/Pending candidate stories, scores each on Ideal gap severity, dependency readiness, blocking power, phase coherence, momentum, and complexity vs. payoff. Flags stories that move AWAY from the Ideal for trashing. Presents ranked top 3-5 with rationale. User picks, then runs `/build-story`. Key patterns: Draft stories are candidates too (build-story fleshes them out), measure-first for recently-completed work, check for new SOTA models that may obsolete workarounds.
+   Us (at scout time): We had `docs/stories.md` as the generated story index plus `docs/ideal.md`, but story selection was still ad-hoc — no structured evaluation against Ideal alignment, no systematic flagging of stale/misaligned stories.
    Recommendation: Adopt inline — port the skill, adapting for codex-forge's story statuses and structure.
 
 3. **Ideal Alignment Gate** — HIGH value (comes free with both skills)

@@ -5,6 +5,7 @@
 **Worker Model:** {AI model doing the improvement work}
 **Subject Model / Surface:** {model, prompt, or pipeline surface under test}
 **Mission:** Improve {metric} from {current} to {target}
+**Registry Lineage:** {copy the eval's `story_refs`, `category_refs`, `compromise_refs`, and any `spec_refs` from `docs/evals/registry.yaml`}
 
 ## Prior Attempts
 
@@ -48,6 +49,7 @@ retried without new evidence.}
 ## Definition of Done
 
 - [ ] Read the target eval's prior attempts first
+- [ ] Confirm the eval's explicit lineage fields in `docs/evals/registry.yaml`
 - [ ] Measured a before state or confirmed the current recorded baseline
 - [ ] Recorded after-state metrics
 - [ ] Updated `docs/evals/registry.yaml`

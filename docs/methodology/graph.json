@@ -463,7 +463,8 @@
           "195",
           "196",
           "197",
-          "198"
+          "198",
+          "199"
         ],
         "adr_ids": [
           "ADR-002"
@@ -498,7 +499,8 @@
           "190",
           "194",
           "195",
-          "197"
+          "197",
+          "199"
         ],
         "adr_ids": [],
         "eval_ids": [
@@ -595,7 +597,7 @@
       },
       {
         "id": "B8",
-        "title": "Build map & phase tracking",
+        "title": "Methodology state & phase tracking",
         "category_id": "spec:9",
         "source": "table"
       },
@@ -6393,6 +6395,51 @@
       "legacy_build_map_refs": "",
       "metadata_source": "frontmatter",
       "missing_frontmatter_keys": []
+    },
+    {
+      "id": "199",
+      "title": "Methodology Hardening Follow-up",
+      "path": "docs/stories/story-199-methodology-hardening-followup.md",
+      "status": "Done",
+      "priority": "High",
+      "ideal_refs": [
+        "The Execution Ideal",
+        "Transparency over magic."
+      ],
+      "spec_refs": [
+        "spec:8",
+        "spec:9"
+      ],
+      "decision_refs": [
+        "`docs/ideal.md`, `docs/spec.md`, `docs/methodology/state.yaml`, `docs/methodology/graph.json`, `docs/methodology-artifact-audit-and-migration.md`, `docs/runbooks/setup-methodology.md`, `docs/runbooks/migrate-problem-first-triage-and-story-workflow.md`, `docs/scout/scout-012-dossier-methodology-hardening-audit.md`, Stories `187`, `188`, and `195`, and `None found after search in docs/decisions/ for a repo-local ADR that already resolves this post-migration hardening pass`"
+      ],
+      "adr_ids": [],
+      "depends_on": [
+        "188",
+        "195"
+      ],
+      "category_refs": [
+        "spec:8",
+        "spec:9"
+      ],
+      "compromise_refs": [
+        "B7",
+        "B8",
+        "B9"
+      ],
+      "input_coverage_refs": [],
+      "architecture_domains": [
+        "methodology_tooling"
+      ],
+      "roadmap_tags": [
+        "campaign:methodology-graph-state-migration"
+      ],
+      "blocker_summary": "",
+      "blocker_evidence": "",
+      "unblock_condition": "",
+      "legacy_build_map_refs": "",
+      "metadata_source": "frontmatter",
+      "missing_frontmatter_keys": []
     }
   ],
   "adrs": [
@@ -6525,7 +6572,8 @@
       "category_refs": [
         "spec:4",
         "spec:8"
-      ]
+      ],
+      "explicit_lineage": true
     },
     {
       "id": "crop-validation",
@@ -6543,7 +6591,8 @@
       "category_refs": [
         "spec:4",
         "spec:8"
-      ]
+      ],
+      "explicit_lineage": true
     },
     {
       "id": "ocr-model-genealogy",
@@ -6562,7 +6611,8 @@
       "category_refs": [
         "spec:2",
         "spec:3"
-      ]
+      ],
+      "explicit_lineage": true
     },
     {
       "id": "handwritten-notes-transcription",
@@ -6585,7 +6635,8 @@
         "spec:1",
         "spec:2",
         "spec:8"
-      ]
+      ],
+      "explicit_lineage": true
     },
     {
       "id": "onward-table-fidelity",
@@ -6602,7 +6653,8 @@
       ],
       "category_refs": [
         "spec:2"
-      ]
+      ],
+      "explicit_lineage": true
     },
     {
       "id": "onward-document-consistency-planning",
@@ -6622,7 +6674,8 @@
         "spec:1",
         "spec:2",
         "spec:5"
-      ]
+      ],
+      "explicit_lineage": true
     },
     {
       "id": "single-model-crop-detection",
@@ -6637,7 +6690,8 @@
       ],
       "category_refs": [
         "spec:4"
-      ]
+      ],
+      "explicit_lineage": true
     },
     {
       "id": "auto-book-type-detection",
@@ -6663,7 +6717,8 @@
         "spec:7",
         "spec:8",
         "spec:9"
-      ]
+      ],
+      "explicit_lineage": true
     },
     {
       "id": "approved-intake-handoff",
@@ -6689,7 +6744,8 @@
         "spec:7",
         "spec:8",
         "spec:9"
-      ]
+      ],
+      "explicit_lineage": true
     },
     {
       "id": "layout-section-splitting",
@@ -6709,7 +6765,8 @@
         "spec:6",
         "spec:8",
         "spec:9"
-      ]
+      ],
+      "explicit_lineage": true
     },
     {
       "id": "born-digital-pdf-quality-surface",
@@ -6730,7 +6787,8 @@
         "spec:6",
         "spec:7",
         "spec:8"
-      ]
+      ],
+      "explicit_lineage": true
     }
   ],
   "coverage": {

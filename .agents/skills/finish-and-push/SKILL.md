@@ -46,7 +46,7 @@ appears.
    - If the story cannot be resolved unambiguously, stop and ask.
 
 2. **Run `/mark-story-done` first**
-   - Reuse that skill's workflow gates, validation requirements, `docs/stories.md`
+   - Reuse that skill's workflow gates, validation requirements, generated `docs/stories.md`
      update, and `CHANGELOG.md` behavior.
    - Do not skip it and jump straight to git check-in.
 

@@ -30,7 +30,7 @@ Use this after changes that may ripple across core project guidance:
 4. `docs/methodology/graph.json`
 5. `tests/fixtures/formats/_coverage-matrix.json`
 6. `docs/requirements.md`
-7. `docs/stories.md` plus directly affected story files
+7. generated `docs/stories.md` plus directly affected story files
 8. relevant ADRs under `docs/decisions/`
 9. `docs/evals/registry.yaml`
 10. `AGENTS.md` if workflow or guardrails may be affected

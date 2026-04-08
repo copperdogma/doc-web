@@ -30,6 +30,8 @@ inspiration or a skip.
 ### Resolve ambiguous source references
 
 Before doing anything else, read `docs/scout.md` and the scout doc for each previous expedition to build a source registry. Users often give shorthand names instead of full paths or URLs.
+Treat previous scout findings as historical baselines, not as current-state
+proof, unless you re-verify the relevant claims in this pass.
 
 When the input does not look like a path, URL, or file:
 1. Search scout history for previous expeditions matching the name

@@ -118,6 +118,7 @@ Grouped by primary `spec:N` category. Stories without category refs remain in an
 | 188 | Legacy Methodology Metadata Backfill | High | Done | 187 | [story-188](stories/story-188-legacy-methodology-metadata-backfill.md) |
 | 190 | Fix Story Progression and Anti-Fragmentation Workflow | High | Done | 187, 188 | [story-190](stories/story-190-fix-story-progression-and-anti-fragmentation-workflow.md) |
 | 195 | Clean Up Legacy Active Story Drift and Refresh Audit Memory | High | Done | 190 | [story-195](stories/story-195-legacy-active-story-cleanup-and-audit-memory-refresh.md) |
+| 199 | Methodology Hardening Follow-up | High | Done | 188, 195 | [story-199](stories/story-199-methodology-hardening-followup.md) |
 
 ### Legacy / Uncategorized Stories
 

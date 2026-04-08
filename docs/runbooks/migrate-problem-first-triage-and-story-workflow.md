@@ -437,8 +437,8 @@ I need you to fix the workflow, not just describe it.
 
 Requirements:
 1. Read the active methodology/tracking surfaces first: the repo's AGENTS
-   instructions, triage skill(s), story-lifecycle skill(s), generated graph or
-   story index if present, current state/roadmap file, eval registry, and the
+   instructions, triage skill(s), story-lifecycle skill(s), generated graph,
+   generated `docs/stories.md`, methodology state, eval registry, and the
    specific blocked story or exhausted eval that keeps resurfacing.
 2. Identify the exact feedback loop. Look for cases where:
    - continuity bias outweighs blocked-state truth

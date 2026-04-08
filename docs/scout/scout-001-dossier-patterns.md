@@ -10,12 +10,12 @@
 
 1. **AGENTS.md as Operational Codec** — HIGH value
    What: 266-line directive covering core mandates, eval-first discipline, architecture limits, subagent strategy, memory log. Living document updated as lessons accumulate.
-   Us: No AGENTS.md. Institutional knowledge lives in sparse MEMORY.md only.
+   Us (at scout time): No AGENTS.md. Institutional knowledge lived in sparse MEMORY.md only.
    Recommendation: Create story — adapt dossier's structure for codex-forge (4-5 hours)
 
 2. **Ideal-First Methodology (ideal.md + spec.md)** — HIGH value
    What: `docs/ideal.md` (153 lines) defines "what would this be with perfect AI?", `docs/spec.md` (435 lines) tracks current compromises with detection evals that signal when compromises can be eliminated.
-   Us: No ideal.md or spec.md. Compromises undocumented.
+   Us (at scout time): No ideal.md or spec.md. Compromises were undocumented.
    Recommendation: Create story — draft ideal.md + spec.md for crop detection / OCR (6-8 hours)
 
 3. **Eval Registry (docs/evals/registry.yaml)** — HIGH value
@@ -28,9 +28,9 @@
    Us: VLM eval exists but not systematized as a build gate.
    Recommendation: Adopt inline when porting build-story skill
 
-5. **Story Numbering + Index (docs/stories.md)** — MEDIUM value
-   What: `docs/stories/story-NNN-slug.md` format with central index tracking ID/Title/Priority/Status. 60+ stories indexed.
-   Us: Stories exist but no central numbered index.
+5. **Story Numbering + Generated Index (`docs/stories.md`)** — MEDIUM value
+   What: `docs/stories/story-NNN-slug.md` format with a generated central index tracking ID/Title/Priority/Status. 60+ stories indexed.
+   Us (at scout time): Stories existed but there was no central numbered index.
    Recommendation: Create story — number existing stories, create index (2-3 hours)
 
 6. **27 Skills Ecosystem** — MEDIUM value
@@ -40,7 +40,7 @@
 
 7. **Runbooks (docs/runbooks/)** — MEDIUM value
    What: Procedural guides for repeatable processes (golden-build, benchmark-gap-loop, etc.) with steps, boundaries, troubleshooting, lessons.
-   Us: No runbooks directory. Process knowledge in memory only.
+   Us (at scout time): No runbooks directory. Process knowledge lived in memory only.
    Recommendation: Create story — start with crop eval and golden build runbooks
 
 8. **Cross-CLI Skill Automation** — LOW value (already have it)

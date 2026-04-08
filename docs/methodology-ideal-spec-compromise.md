@@ -41,7 +41,7 @@ The methodology produces one connected graph of artifacts:
 7. **Decision Records** — `docs/decisions/`
    Hard-to-reverse architecture, workflow, schema, and cross-cutting choices
 8. **Stories** — `docs/stories/`
-   Build slices under the build-map categories and spec refs
+   Build slices under the graph/state categories and spec refs
 9. **Evals** — `docs/evals/registry.yaml` plus benchmark assets
    Quality signals, compromise-deletion gates, and attempt history
 
@@ -90,7 +90,7 @@ Doc-forge examples:
 
 - eval registry and benchmark workspace
 - story / backlog system
-- build map and phase tracking
+- methodology state and phase tracking
 - ADR process
 - manual artifact inspection
 - setup / methodology docs and cross-CLI skill sync
@@ -126,7 +126,7 @@ The spec is organized by shared categories, not by an unstructured list of
 
 Why that matters:
 
-- the spec and build map align 1:1
+- the spec, methodology state, and compiled graph align on the same categories
 - stable IDs survive heading-name edits
 - product and build constraints get explicit homes
 - triage can reason by category instead of by scattered notes
@@ -243,8 +243,8 @@ Reality says the repo still needs:
 - targeted downstream rescue for hard layouts
 - artifact reuse so iteration does not re-spend the expensive stage
 
-That is why `spec:2` exists, and why the build map still shows `C1` as
-`climb` rather than `converge`.
+That is why `spec:2` exists, and why the current methodology state still keeps
+`C1` in `climb` rather than `converge`.
 
 ### Example 2 — Document consistency planning
 
@@ -269,7 +269,7 @@ The ideal says you should describe what you want and the AI should build it.
 Reality says the repo still needs:
 
 - stories
-- build-map tracking
+- state/graph tracking
 - ADRs
 - scout records
 - eval registry discipline
@@ -285,7 +285,7 @@ front door.
 
 The setup package is not only:
 
-- ideal/spec/build-map alignment
+- ideal/spec/state/graph alignment
 
 It also includes:
 
@@ -302,6 +302,6 @@ Once the package exists, recurring work moves to `/improve-eval`, `/align`,
 - Not a roadmap
 - Not a guarantee that every compromise will delete quickly
 - Not a license to under-build current compromises
-- Not a second planning system beside stories and the build map
+- Not a second planning system beside stories and the state/graph package
 - Not a reason to cargo-cult another repo's setup surface when doc-forge's
   local runtime, benchmarks, or workflows differ

@@ -1,3 +1,24 @@
+## [2026-04-08-05] - Harden methodology graph/state contract (Story 199)
+
+### Changed
+- Changed the methodology compiler, regression tests, eval registry, live runbooks, skills, wrappers, and scout/history docs so the repo now uses one explicit state/graph methodology contract instead of stale build-map/manual-index guidance or heuristic eval-lineage scraping
+- Changed Story 187 and the migration audit record so their remaining-warning language is explicitly historical rather than a false current-state claim
+
+### Fixed
+- Fixed all 11 current eval records to carry explicit lineage metadata (`story_refs`, `category_refs`, `compromise_refs`) consumed directly by the compiler
+- Fixed active-surface drift across AGENTS, setup/eval runbooks, cross-CLI skill wrappers, helper scripts, ADRs 001-003, and the named scout-history surfaces so the current methodology package compiles cleanly under the widened guardrail
+
+### Tested
+- `./scripts/sync-agent-skills.sh`
+- `make methodology-compile`
+- `make methodology-check`
+- `python -m pytest tests/test_methodology_graph.py -q`
+- `python -m ruff check scripts/methodology_graph.py tests/test_methodology_graph.py`
+- `make skills-check`
+- `git diff --check`
+- `make lint`
+- `make test`
+
 ## [2026-04-08-04] - Remove stale crop/build image residue on reused run roots (Story 198)
 
 ### Changed

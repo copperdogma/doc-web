@@ -108,7 +108,7 @@ This skill is read-only.
    - blocked stories with weak or missing blocker evidence / unblock conditions
    - blocked stories whose older plan text or stale assumptions still imply a
      ready next move even though the current blocker says not to reopen yet
-   - stories whose documented prerequisites exist in build-map or decision docs
+   - stories whose documented prerequisites exist in decision docs or older planning notes
      but not yet in code, schemas, runtime wiring, tests, or artifacts
    - stale or superseded stories
    - claimed scope that disagrees with the compiled graph/state reality

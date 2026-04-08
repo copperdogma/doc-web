@@ -47,8 +47,8 @@ Execute a development story through implementation handoff.
    - Find every file that will change and every file that could break
    - Identify existing patterns and conventions to match
    - Identify existing helpers, modules, or docs this change could reuse or make redundant
-   - Verify that any claimed upstream substrate actually exists in code, tests,
-     schemas, artifacts, or wiring, not just in stories or build-map prose
+  - Verify that any claimed upstream substrate actually exists in code, tests,
+    schemas, artifacts, or wiring, not just in stories or stale planning prose
    - Note schema, config, or migration concerns
 
 6. **Substrate reality check** — If the story depends on upstream architecture,

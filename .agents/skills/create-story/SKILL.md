@@ -1,6 +1,6 @@
 ---
 name: create-story
-description: Create a new story when warranted and update the story index
+description: Create a new story when warranted and regenerate the generated views
 user-invocable: true
 ---
 
@@ -94,7 +94,7 @@ on the same problem line, do that instead of minting a new ID.
      mark it `Blocked` instead of treating paper readiness as real readiness
 
 6. **Regenerate generated views** — After the story file is ready, run
-   `make methodology-compile` so `docs/stories.md` and
+   `make methodology-compile` so generated `docs/stories.md` and
    `docs/methodology/graph.json` reflect the new story.
 
 7. **Verify** — Confirm the file exists, the new story ID is unique and uses

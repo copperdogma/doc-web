@@ -5,9 +5,10 @@
 > See `docs/ideal.md` for what this system should be with zero limitations.
 >
 > **Organization:** Sections are organized by category (`spec:1` through `spec:9`),
-> matching the build map structure. Each category may contain product constraints,
-> build constraints, or both. Hierarchical section IDs (e.g., `spec:2.1`) provide
-> stable cross-references across stories, ADRs, and the build map.
+> matching the methodology graph/state structure. Each category may contain
+> product constraints, build constraints, or both. Hierarchical section IDs
+> (e.g., `spec:2.1`) provide stable cross-references across stories, ADRs, and
+> the compiled methodology graph.
 
 ## Non-Negotiable Design Principles
 
@@ -184,7 +185,7 @@ instead of depending directly on codex-forge.
 | ID | Process Element | AI Limitation | Residual | Detection |
 |---|---|---|---|---|
 | B7 | Story/backlog system | Can't autonomously scope, sequence, and validate work | Deletion | Autonomous project planning with self-correction |
-| B8 | Build map & phase tracking | Can't maintain strategic awareness across sessions | Deletion | Persistent strategic reasoning across sessions |
+| B8 | Methodology state & phase tracking | Can't maintain strategic awareness across sessions | Deletion | Persistent strategic reasoning across sessions |
 | B9 | ADR process | Can't make and record hard-to-reverse decisions with full context | Deletion | Reliable autonomous architectural decision-making |
 | B10 | YAML recipe configuration | Manual pipeline config; overlaps with C2 product compromise | Partial deletion | Auto-configuration eliminates manual recipe selection |
 

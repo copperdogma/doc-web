@@ -150,7 +150,7 @@ Cons:
 
 - Story 151 — this ADR is the primary decision artifact required by that story.
 - ADR-001 (`docs/decisions/adr-001-source-aware-consistency-strategy/adr.md`) — relevant prior architectural direction for source-aware extraction and inspectable planning artifacts.
-- Likely affects: `README.md`, `docs/spec.md`, `docs/build-map.md`, Story 151, and any follow-up migration or Dossier-handoff stories.
+- Likely affects: `README.md`, `docs/spec.md`, historical `docs/build-map.md`, Story 151, and any follow-up migration or Dossier-handoff stories.
 
 ## Research Summary
 
@@ -185,8 +185,8 @@ Cons:
 - [x] **Related stories** — Story 151 updated; follow-up stories 152-154 created for contract, extraction, and Dossier handoff
 - [x] **AGENTS.md** — reviewed; no workflow or guardrail change required from this ADR
 - [x] **Runbooks / supporting docs** — existing ADR/deep-research runbooks remain valid; added `docs/notes/standalone-dossier-intake-runtime-plan.md` for the extraction inventory
-- [x] **Other ADRs / decision docs** — build map now references ADR-002; ADR-001 remains background only
-- [x] **Audit** — README, spec, build map, Story 151, follow-up stories, and ADR-local research artifacts now reflect the accepted direction
+- [x] **Other ADRs / decision docs** — the then-live build map referenced ADR-002; ADR-001 remains background only
+- [x] **Audit** — README, spec, historical build map, Story 151, follow-up stories, and ADR-local research artifacts now reflect the accepted direction
 
 ## Remaining Work
 
@@ -205,4 +205,4 @@ Cons:
 - 20260318-2300 — ADR created: scoped the `doc-web` decision around runtime ownership, structural website contract, provenance granularity, and Dossier handoff. Evidence: `README.md` mission change, Story 151, `build_chapter_html_v1` structural site output, and the FF specificity audit. Next: fill the stand-alone research prompt and cross-link Story 151.
 - 20260318-2308 — research scaffold prepared: filled `research/research-prompt.md`, wired `research/final-synthesis.md` to the expected provider report files, and created OpenAI, Gemini, Opus, and xAI stub report files so the ADR can move straight into a multi-provider research pass without more setup.
 - 20260318-2329 — research and synthesis completed: pasted xAI and Opus manual reports, ran OpenAI and Gemini automated research, normalized the generated files into the repo's canonical report names, and synthesized the four reports into one recommendation. Result: strong convergence on standalone `doc-web`, structural website output, stronger provenance, and seam-first extraction; the main unresolved decision is only how much release infrastructure to adopt on day one.
-- 20260318-2337 — ADR accepted: user approved the synthesized direction. Propagated the accepted `doc-web` handoff model into `README.md`, `docs/spec.md`, `docs/build-map.md`, the new extraction-plan note, and the follow-up story set. The remaining work is now implementation, not architecture.
+- 20260318-2337 — ADR accepted: user approved the synthesized direction. Propagated the accepted `doc-web` handoff model into `README.md`, `docs/spec.md`, the then-live `docs/build-map.md`, the new extraction-plan note, and the follow-up story set. The remaining work is now implementation, not architecture.

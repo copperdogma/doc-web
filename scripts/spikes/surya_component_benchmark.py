@@ -244,7 +244,7 @@ def _decision(page_summaries: dict[str, Any]) -> dict[str, Any]:
             "Surya layout does not show a clean enough page-routing win to justify even a narrow "
             "integration probe on this seam."
         )
-        next_step = "Stop after updating scout/build-map surfaces."
+        next_step = "Stop after updating scout and methodology-surfaces notes."
     return {
         "decision": decision,
         "table_page_recall": round(table_recall, 4),

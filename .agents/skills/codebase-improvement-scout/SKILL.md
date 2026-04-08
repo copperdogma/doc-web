@@ -45,7 +45,7 @@ This creates:
    - `docs/spec.md`
    - relevant ADRs for likely hotspots
    - relevant runbooks, scout docs, and notes for likely hotspots
-   - `docs/stories.md`
+   - generated `docs/stories.md`
    - `docs/reports/codebase-improvement/_state.yaml` if it exists
 
 ## Phase 1 — Deterministic Discovery
@@ -123,7 +123,7 @@ Also update `docs/reports/codebase-improvement/_state.yaml`:
 
 If `--create-story` is set or the user explicitly approves:
 
-1. Search `docs/stories.md` and existing story files for overlap.
+1. Search generated `docs/stories.md` and existing story files for overlap.
 2. If an equivalent story already exists, link it in the report instead of creating a duplicate.
 3. Otherwise create exactly one story for the highest-value non-mechanical improvement.
 4. Default to `Draft` if the scope is still fuzzy; use `Pending` only when acceptance criteria and tasks are concrete.

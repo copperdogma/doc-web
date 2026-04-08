@@ -23,12 +23,29 @@ ADRS_DIR = ROOT / "docs/decisions"
 COVERAGE_MATRIX_PATH = ROOT / "tests/fixtures/formats/_coverage-matrix.json"
 ACTIVE_SURFACE_PATHS = [
     ROOT / "AGENTS.md",
+    ROOT / "docs/ideal.md",
+    ROOT / "docs/spec.md",
     ROOT / "docs/methodology-ideal-spec-compromise.md",
+    ROOT / "docs/methodology-artifact-audit-and-migration.md",
     ROOT / "docs/decisions/README.md",
+    ROOT / "docs/decisions/adr-001-source-aware-consistency-strategy/adr.md",
+    ROOT / "docs/decisions/adr-002-doc-web-runtime-boundary/adr.md",
+    ROOT / "docs/decisions/adr-003-doclingdocument-doc-web-boundary/adr.md",
     ROOT / "docs/runbooks/codebase-improvement-scout.md",
+    ROOT / "docs/runbooks/deep-research.md",
+    ROOT / "docs/runbooks/golden-build.md",
+    ROOT / "docs/runbooks/migrate-problem-first-triage-and-story-workflow.md",
     ROOT / "docs/runbooks/setup-methodology.md",
     ROOT / "docs/runbooks/adr-creation.md",
     ROOT / "docs/runbooks/triage-architecture.md",
+    ROOT / "docs/evals/README.md",
+    ROOT / "docs/evals/attempt-template.md",
+    ROOT / "docs/scout.md",
+    ROOT / "docs/scout/scout-001-dossier-patterns.md",
+    ROOT / "docs/scout/scout-003-storybook-patterns.md",
+    ROOT / "docs/scout/scout-004-dossier-triage-skills.md",
+    ROOT / "docs/scout/scout-010-dossier-storybook-upgrades.md",
+    ROOT / "docs/scout/scout-011-external-document-ingestion-systems.md",
     ROOT / "docs/setup-checklist.md",
     ROOT / ".agents/skills/align/SKILL.md",
     ROOT / ".agents/skills/build-story/SKILL.md",
@@ -39,14 +56,18 @@ ACTIVE_SURFACE_PATHS = [
     ROOT / ".agents/skills/create-story/templates/story.md",
     ROOT / ".agents/skills/finish-and-push/SKILL.md",
     ROOT / ".agents/skills/format-gap-analysis/SKILL.md",
+    ROOT / ".agents/skills/improve-eval/SKILL.md",
     ROOT / ".agents/skills/mark-story-done/SKILL.md",
+    ROOT / ".agents/skills/scout/SKILL.md",
     ROOT / ".agents/skills/setup-methodology/SKILL.md",
+    ROOT / ".agents/skills/setup-methodology/references/modes.md",
     ROOT / ".agents/skills/setup-methodology/templates/setup-checklist.md",
     ROOT / ".agents/skills/triage/SKILL.md",
     ROOT / ".agents/skills/triage-evals/SKILL.md",
     ROOT / ".agents/skills/triage-inbox/SKILL.md",
     ROOT / ".agents/skills/triage-stories/SKILL.md",
     ROOT / ".agents/skills/validate/SKILL.md",
+    ROOT / ".gemini/commands/create-story.toml",
 ]
 SPEC_REF_RE = re.compile(r"\bspec:\d+(?:\.\d+)*\b")
 ADR_ID_RE = re.compile(r"\bADR-\d{3}\b")
@@ -55,15 +76,19 @@ STORY_ID_INLINE_RE = re.compile(r"\b(?:Story\s+|story[- ])(\d{3})\b", re.IGNOREC
 STORY_FILE_RE = re.compile(r"story-(\d{3})-")
 CANONICAL_STORY_FILE_RE = re.compile(r"^story-(\d{3})-[a-z0-9-]+\.md$")
 ALLOWED_LEGACY_CONTEXT_RE = re.compile(
-    r"legacy|historical|archive|archived|retired|replaced|previous|stub|final hand-authored",
+    r"legacy|historical|archive|archived|retired|replaced|previous|stub|final hand-authored|baseline|then-live|then-current|at the time|when written|superseded",
     re.IGNORECASE,
 )
-LIVE_BUILD_MAP_RE = re.compile(r"docs/build-map\.md|build-map-first|build-map-centered", re.IGNORECASE)
+LIVE_BUILD_MAP_RE = re.compile(r"docs/build-map\.md|build[- ]map(?:-first|-centered)?|\bbuild map\b", re.IGNORECASE)
 MANUAL_STORIES_INDEX_RE = re.compile(
     r"add a row to .*docs/stories\.md|update corresponding row in .*docs/stories\.md|edit .*docs/stories\.md",
     re.IGNORECASE,
 )
-ALLOWED_GENERATED_INDEX_CONTEXT_RE = re.compile(r"generated|compile|drift|archive|historical", re.IGNORECASE)
+STORIES_INDEX_RE = re.compile(r"docs/stories\.md|story index", re.IGNORECASE)
+ALLOWED_GENERATED_INDEX_CONTEXT_RE = re.compile(
+    r"generated|compile|compiled|drift|archive|historical|read-only|projection",
+    re.IGNORECASE,
+)
 EMPTY_STORY_SECTION_RE = re.compile(
     r"^(?:n/?a|none|not blocked|not currently blocked)(?:[\s.:;-].*)?$",
     re.IGNORECASE | re.DOTALL,
@@ -117,6 +142,16 @@ def unique_sorted(values: list[str] | set[str]) -> list[str]:
     return sorted({value for value in values if value}, key=lambda value: (value.lower(), value))
 
 
+def list_field(value: Any) -> list[str]:
+    if value is None:
+        return []
+    if isinstance(value, str):
+        return [value.strip()] if value.strip() else []
+    if isinstance(value, list):
+        return [str(item).strip() for item in value if str(item).strip()]
+    return []
+
+
 def first_non_empty_line(lines: list[str]) -> tuple[int, str] | None:
     for index, line in enumerate(lines):
         if line.strip():
@@ -137,14 +172,7 @@ def parse_frontmatter_document(text: str, path: Path) -> tuple[dict[str, Any], s
 
 
 def frontmatter_list(frontmatter: dict[str, Any], key: str) -> list[str]:
-    value = frontmatter.get(key)
-    if value is None:
-        return []
-    if isinstance(value, str):
-        return [value.strip()] if value.strip() else []
-    if isinstance(value, list):
-        return [str(item).strip() for item in value if str(item).strip()]
-    return []
+    return list_field(frontmatter.get(key))
 
 
 def parse_legacy_fields(body: str) -> dict[str, str]:
@@ -384,13 +412,10 @@ def parse_eval_registry() -> list[dict[str, Any]]:
     payload = yaml.safe_load(read_text(EVALS_PATH)) or {}
     records = []
     for raw in payload.get("evals", []):
-        blob = json.dumps(raw, default=str)
-        spec_refs = unique_sorted([str(item) for item in raw.get("spec_refs", [])] + SPEC_REF_RE.findall(blob))
-        compromise = raw.get("spec_compromise")
-        compromise_refs = []
-        if isinstance(compromise, str) and compromise.strip():
-            compromise_refs.append(compromise.strip())
-        compromise_refs.extend(COMPROMISE_ID_RE.findall(blob))
+        spec_refs = unique_sorted(list_field(raw.get("spec_refs")))
+        story_refs = unique_sorted([re.sub(r"\D", "", value) for value in list_field(raw.get("story_refs"))])
+        compromise_refs = unique_sorted(list_field(raw.get("compromise_refs")))
+        category_refs = unique_sorted(list_field(raw.get("category_refs")))
         records.append(
             {
                 "id": str(raw["id"]),
@@ -399,8 +424,13 @@ def parse_eval_registry() -> list[dict[str, Any]]:
                 "command": str(raw.get("command") or ""),
                 "path": to_rel(EVALS_PATH),
                 "spec_refs": spec_refs,
-                "story_refs": extract_story_ids(blob),
-                "compromise_refs": unique_sorted(compromise_refs),
+                "story_refs": story_refs,
+                "compromise_refs": compromise_refs,
+                "category_refs": category_refs,
+                "explicit_lineage": any(
+                    raw.get(key) not in (None, [], "")
+                    for key in ("spec_refs", "story_refs", "compromise_refs", "category_refs")
+                ),
             }
         )
     return records
@@ -593,12 +623,20 @@ def validate_graph(
             if compromise not in compromise_ids:
                 errors.append(f"ADR {adr['id']} references missing compromise {compromise}")
     for entry in evals:
+        if not entry.get("explicit_lineage"):
+            errors.append(f"eval {entry['id']} missing explicit lineage refs")
+        for spec_ref in entry["spec_refs"]:
+            if spec_ref.startswith("spec:") and spec_ref not in category_ids and spec_ref not in spec_section_ids:
+                errors.append(f"eval {entry['id']} references missing spec ref {spec_ref}")
         for story_id in entry["story_refs"]:
             if story_id not in story_ids:
                 errors.append(f"eval {entry['id']} references missing story {story_id}")
         for compromise in entry["compromise_refs"]:
             if compromise not in compromise_ids:
                 errors.append(f"eval {entry['id']} references missing compromise {compromise}")
+        for category in entry.get("category_refs", []):
+            if category not in category_ids:
+                errors.append(f"eval {entry['id']} references missing category {category}")
     for campaign in state.get("roadmap", {}).get("campaigns", []):
         for story_ref in campaign.get("story_refs", []):
             if str(story_ref) not in story_ids:
@@ -615,6 +653,8 @@ def validate_graph(
                 errors.append(f"{to_rel(active_path)}:{lineno} still treats build-map language as live")
             if MANUAL_STORIES_INDEX_RE.search(line) and not ALLOWED_GENERATED_INDEX_CONTEXT_RE.search(line):
                 errors.append(f"{to_rel(active_path)}:{lineno} still treats docs/stories.md as hand-maintained")
+            if STORIES_INDEX_RE.search(line) and not ALLOWED_GENERATED_INDEX_CONTEXT_RE.search(line):
+                errors.append(f"{to_rel(active_path)}:{lineno} references docs/stories.md without generated-view framing")
     overdue = []
     cadence = state.get("architecture_audits", {}).get("cadence", {}).get("target_story_interval")
     for domain_id, domain in state.get("architecture_audits", {}).get("domains", {}).items():

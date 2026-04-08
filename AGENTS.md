@@ -143,7 +143,7 @@ records why the UI is intentionally deferred or owned elsewhere.
 ## Docs
 
 - `docs/ideal.md` — Dual ideal: product (zero-limitation north star) + execution (zero-limitation build process)
-- `docs/methodology-ideal-spec-compromise.md` — Methodology reference for the Ideal → Spec → Build Map graph and compromise deletion model
+- `docs/methodology-ideal-spec-compromise.md` — Methodology reference for the Ideal → Spec → state/graph model and compromise deletion model
 - `docs/spec.md` — Unified spec with 9 categories (`spec:1`–`spec:9`), hierarchical `spec:N.N` section IDs, per-category constraint blocks (C1-C7 product, B1-B10 build-process), and Non-Negotiable Design Principles
 - `docs/methodology/state.yaml` — Mutable methodology state: substrate status, compromise phase, roadmap focus, architecture-audit memory, archive pointers
 - `docs/methodology/graph.json` — Compiled methodology graph joining the authored canon, state, stories, evals, ADRs, and coverage matrix

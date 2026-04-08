@@ -117,7 +117,7 @@ without redoing the whole bootstrap conversation.
 8. **Audit and summarize**:
    - reference audit for stale setup-language drift
    - eval-surface audit
-   - methodology-graph alignment sweep across Ideal / Spec / Build Map / Stories / Evals / ADRs / AGENTS
+   - methodology-graph alignment sweep across Ideal / Spec / State / Graph / Stories / Evals / ADRs / AGENTS
 
 ## Outputs
 

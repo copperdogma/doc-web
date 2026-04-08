@@ -5,7 +5,7 @@
 **Scope:** Compare external document-ingestion systems for reusable patterns or components relevant to intake routing, OCR/layout, and document-consistency work (`C1`, `C2`, `C3`, `C7`), with evaluation order `Docling` → `OCRmyPDF` → `Surya`/`Marker` → `GROBID`
 **Previous:** ADR-001 research notes only (`xai-research-stub`, `opus-research-stub`, `openai-research-report`)
 **Status:** Complete
-**Alignment:** Created from inbox triage after checking `docs/ideal.md`, `docs/spec.md`, `docs/build-map.md`, `docs/evals/registry.yaml`, and ADRs 001-002. This scout targets active `climb` seams rather than the already-landed `doc-web` boundary work.
+**Alignment:** Created from inbox triage after checking `docs/ideal.md`, `docs/spec.md`, the then-live `docs/build-map.md`, `docs/evals/registry.yaml`, and ADRs 001-002. This scout targets active `climb` seams rather than the already-landed `doc-web` boundary work.
 
 ## Findings
 
@@ -41,7 +41,7 @@
    Transfusion:
    Exemplar: `GROBID` flavors plus coordinate-enriched TEI.
    Invariant: Format-specific variants should stay explicit and inspectable, not turn into hidden prompt branches.
-   Adaptation: Keep doc-forge's YAML recipe/build-map governance, but remember `GROBID`'s flavor pattern if recipe families start multiplying.
+   Adaptation: Keep doc-forge's YAML recipe/governance model, but remember `GROBID`'s flavor pattern if recipe families start multiplying.
    Proof target: If a future story introduces recipe-family specialization, it should carry visible routing plus per-structure coordinates/evidence rather than hidden one-off logic.
 
 ## Deepened Decision Surface
@@ -93,7 +93,7 @@ would justify more work.
 
 | System | Role Hypothesis | Status | Current Tracking | Current Read | Next Proof Needed |
 |---|---|---|---|---|---|
-| `Docling` | Strongest external benchmark; possible upstream substrate or replacement candidate | Benchmarked; decision made | [ADR-003](/Users/cam/.codex/worktrees/c09a/doc-web/docs/decisions/adr-003-doclingdocument-doc-web-boundary/adr.md), [Stories 158-163](/Users/cam/.codex/worktrees/c09a/doc-web/docs/stories.md#L163) | Fully explored on the hard Onward seam. Keep `doc-web` as the accepted boundary; keep `Docling` as benchmark/reference and pattern source, not the forward replacement path on this lane. | Only reopen if a materially different documented seam appears or if `Docling` is used as an optional upstream substrate for a different document family with a new proof surface. |
+| `Docling` | Strongest external benchmark; possible upstream substrate or replacement candidate | Benchmarked; decision made | ADR-003 and Stories 158-163 | Fully explored on the hard Onward seam. Keep `doc-web` as the accepted boundary; keep `Docling` as benchmark/reference and pattern source, not the forward replacement path on this lane. | Only reopen if a materially different documented seam appears or if `Docling` is used as an optional upstream substrate for a different document family with a new proof surface. |
 | `OCRmyPDF` | Narrow pre-OCR PDF conditioning and normalization seam | Parked | This scout only | Viable only as a child-process preprocessing seam for scan cleanup, rotation, PDF/A normalization, and sidecar text comparisons. Not a structure engine and not a replacement candidate. | Run a narrow preprocessing spike only when artifact inspection proves source-PDF conditioning, not OCR/layout/consistency, is the dominant failure source. |
 | `Surya` | Component benchmark for stronger OCR/layout/reading-order/table recognition | Benchmarked negative on active Onward seam | [Story 164](/Users/cam/.codex/worktrees/c09a/doc-web/docs/stories/story-164-surya-component-benchmark-for-layout-and-table-seams.md) | Story 164 proved the bounded runtime and benchmark shape, then came back negative for immediate adoption on the active Onward seam: pinned `0.4.5` layout avoids false positives but only reaches `0.75` table-page recall on Marie-Louise, and the current-package table-capable runtime is still locally blocked. | Only reopen if a runnable current-package substrate exists or if a different document family has a narrower routing/layout problem where page-level table detection alone would be enough value. |
 | `Marker` | End-to-end comparator first; selected internals as a possible born-digital PDF substrate second | Benchmarked; maintained optional path remains bounded | [Story 165](/Users/cam/.codex/worktrees/29e2/doc-web/docs/stories/story-165-marker-breadth-comparator-born-digital-pdf.md), [Story 166](/Users/cam/.codex/worktrees/29e2/doc-web/docs/stories/story-166-marker-internals-born-digital-pdf-substrate.md), [Story 168](/Users/cam/.codex/worktrees/29e2/doc-web/docs/stories/story-168-marker-lite-maintained-born-digital-pdf-path.md), [Story 170](/Users/cam/.codex/worktrees/29e2/doc-web/docs/stories/story-170-born-digital-pdf-native-text-widening-and-routing-decision.md) | Story 165 closed the broad comparator question, Story 166 proved the `lite_api` seam, Story 168 landed a maintained optional native-text recipe that runs through `driver.py` and emits accepted `doc_web_bundle` / provenance proof on `testdata/tbotb-mini.pdf`, and Story 170 widened that proof to `rfp` and `release-forms`. The widened result stayed negative for broader adoption: Marker still produces sane `page_html_v1`, but the maintained full recipe remains book-contract-shaped and fails later at `portionize_toc` on short flat / non-book PDFs. Stock `Marker` CLI remains unattractive because of GPL/model-license posture and multi-gigabyte weight loading, so the honest standing is a bounded optional book-like lane rather than default-ready born-digital routing. | Either prove a maintained non-TOC born-digital lane, or broaden validation across more book-like native-text PDFs before making any broader routing or default-path claim. |
@@ -112,7 +112,7 @@ would justify more work.
 
 - [x] 1. Bootstrap Scout 011 and preserve the Docling-first evaluation order — Landed as the inbox routing artifact
 - [x] 2. Run the actual external-systems scout and produce adopt/skip recommendations — Completed as a research-only comparison against official sources and local `C1`/`C2`/`C3`/`C7` seams; no implementation items approved in this pass
-- [x] 3. Execute the recommended `Docling` follow-up as the first full external benchmark chain — Completed later through [ADR-003](/Users/cam/.codex/worktrees/c09a/doc-web/docs/decisions/adr-003-doclingdocument-doc-web-boundary/adr.md) and [Stories 158-163](/Users/cam/.codex/worktrees/c09a/doc-web/docs/stories.md#L163); result: negative as a replacement path on the reviewed Onward seam, positive as benchmark/reference and pattern source
+- [x] 3. Execute the recommended `Docling` follow-up as the first full external benchmark chain — Completed later through ADR-003 and Stories 158-163; result: negative as a replacement path on the reviewed Onward seam, positive as benchmark/reference and pattern source
 - [x] 4. Create the next bounded external benchmark story for `Marker` once the `Surya` result was known — completed as [Story 165](/Users/cam/.codex/worktrees/c09a/doc-web/docs/stories/story-165-marker-breadth-comparator-born-digital-pdf.md), anchored to the `born-digital-pdf` gap and repo-owned `tbotb-mini.pdf` fixture
 
 ## Skipped / Rejected
@@ -125,7 +125,7 @@ would justify more work.
 
 ## Verification
 
-- Read local methodology and seam context: `docs/inbox.md`, `docs/ideal.md`, `docs/spec.md`, `docs/build-map.md`, `docs/evals/registry.yaml`, `docs/stories/story-027-contact-sheet-auto-intake.md`, `docs/stories/story-028-market-discovery.md`, `docs/stories/story-146-onward-plan-aware-genealogy-reruns.md`, `docs/stories/story-149-onward-scanned-genealogy-collapse-implementation.md`, `modules/intake/contact_sheet_overview_v1/main.py`, `modules/intake/contact_sheet_builder_v1/module.yaml`, `modules/extract/ocr_ai_gpt51_v1/module.yaml`, and `modules/adapter/table_rescue_onward_tables_v1/module.yaml`
+- Read local methodology and seam context: `docs/inbox.md`, `docs/ideal.md`, `docs/spec.md`, the then-live `docs/build-map.md`, `docs/evals/registry.yaml`, `docs/stories/story-027-contact-sheet-auto-intake.md`, `docs/stories/story-028-market-discovery.md`, `docs/stories/story-146-onward-plan-aware-genealogy-reruns.md`, `docs/stories/story-149-onward-scanned-genealogy-collapse-implementation.md`, `modules/intake/contact_sheet_overview_v1/main.py`, `modules/intake/contact_sheet_builder_v1/module.yaml`, `modules/extract/ocr_ai_gpt51_v1/module.yaml`, and `modules/adapter/table_rescue_onward_tables_v1/module.yaml`
 - Read primary-source docs for each candidate:
   - `Docling`: architecture, `DoclingDocument`, supported formats, confidence scores, visual grounding, and `SuryaOCR` integration docs
   - `OCRmyPDF`: introduction, cookbook, API, plugin system, and advanced-feature docs
@@ -154,7 +154,7 @@ would justify more work.
 ## Evidence
 
 - Local seam evidence:
-  - `docs/build-map.md` still shows `C2`, `C1`, `C3`, and `C7` in `climb`
+  - At the time of the scout, `docs/build-map.md` still showed `C2`, `C1`, `C3`, and `C7` in `climb`
   - `docs/evals/registry.yaml` still shows `auto-book-type-detection` with no scores and `onward-document-consistency-planning` waiting on a `new-approach`
   - `modules/intake/contact_sheet_overview_v1/main.py` still advertises an intake overview classifier as a stub
 - Primary sources reviewed:

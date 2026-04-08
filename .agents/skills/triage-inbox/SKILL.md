@@ -45,7 +45,7 @@ Canonical inbox triage leaf skill. Direct invocation is allowed, and
    - **LIVE** — not yet addressed anywhere
 
 3. **Prioritize live items**
-   - Read `docs/methodology/graph.json`, `docs/stories.md`, and recent git log to understand what's in flight
+   - Read `docs/methodology/graph.json`, generated `docs/stories.md`, and recent git log to understand what's in flight
    - Group items by theme if natural clusters exist
    - Recommend a top 3-5 to process first
    - Flag obvious defer/discard candidates

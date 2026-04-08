@@ -23,7 +23,7 @@ Use when the repo already uses Ideal-first but not the dual-ideal,
 category-aligned, graph+state structure.
 
 - Add execution ideal
-- Reshape spec + build map around shared categories
+- Reshape spec plus methodology state/graph around shared categories
 - Normalize the public setup surface around `/setup-methodology`
 
 ## `refresh`

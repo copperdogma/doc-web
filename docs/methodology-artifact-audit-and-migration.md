@@ -1,22 +1,23 @@
-# Methodology Artifact Audit and Migration Plan
+# Methodology Artifact Audit and Migration Record
 
 > Story 187 audit artifact.
-> Purpose: capture what doc-forge's current methodology surfaces actually own,
-> define the graph+state replacement model without losing responsibilities, and
-> leave a certification matrix that can drive the migration safely.
+> Purpose: capture what the pre-migration methodology surfaces owned, define the
+> graph+state replacement model that landed, and leave the certification matrix
+> that drove the migration safely.
 
 ## Executive Summary
 
-Doc-forge already has a strong authored methodology spine, but the physical
-artifact model still mixes canonical truth with mutable operational state:
+Doc-forge already had a strong authored methodology spine, but the historical
+artifact model mixed canonical truth with mutable operational state:
 
-- `docs/build-map.md` carries category taxonomy, substrate state, compromise
+- historical `docs/build-map.md` carried category taxonomy, substrate state, compromise
   phase, input-coverage reporting, gap prioritization, and skill-routing
   assumptions
-- `docs/stories.md` mixes a generated-index role with mutable sequencing prose
+- generated `docs/stories.md` mixed a generated-index role with mutable sequencing prose
   and a status registry
 - the machine-readable coverage matrix already exists, but the live planning
-  workflow still teaches humans and agents to read the markdown build map first
+  workflow at the time still taught humans and agents to read the historical
+  historical markdown build map first
 - skills, runbooks, and close-out guidance still depend on those drifting
   markdown surfaces as if they were canonical
 
@@ -28,7 +29,7 @@ copy of Storybook:
 3. treat `tests/fixtures/formats/_coverage-matrix.json` as the canonical
    machine-readable input-coverage source instead of duplicating it
 4. compile a methodology graph from canonical sources plus state
-5. generate `docs/stories.md`
+5. generate the generated `docs/stories.md` view
 6. archive the hand-authored build map and replace its path with a historical
    stub
 7. add hard linting so old live surfaces cannot quietly drift back in
@@ -59,19 +60,19 @@ The migration must not create a parallel registry that duplicates those truths.
 | Artifact | Type Today | Responsibilities It Actually Owns | Migration Outcome |
 |---|---|---|---|
 | `docs/ideal.md` | Canonical authored source | Product ideal, execution ideal, mission, and vision-level preferences | Keep canonical. Parse requirements/preferences into the graph only. |
-| `docs/methodology-ideal-spec-compromise.md` | Explanatory reference | Explains the methodology contract and currently teaches the build-map-centered physical model | Keep, but rewrite around state + coverage matrix + compiled graph. |
+| `docs/methodology-ideal-spec-compromise.md` | Explanatory reference | Explained the methodology contract and taught the historical build-map-centered physical model | Keep, but rewrite around state + coverage matrix + compiled graph. |
 | `docs/spec.md` | Canonical authored source | Category structure, constraint IDs, compromise semantics, and execution-compromise taxonomy | Keep canonical. Parse IDs/compromises into the graph. |
-| `docs/build-map.md` | Hand-authored dashboard + mutable operational state | Category substrate status, phase governance, input-coverage reporting, gap prioritization, graduation notes, and workflow routing assumptions | Retire as a live authored surface. Archive the last hand-authored body and replace the path with a historical stub. Re-home mutable state into `docs/methodology/state.yaml`; keep input coverage canonical in the coverage matrix. |
-| `docs/stories.md` | Manual index + sequencing prose | Story status registry, discovery/indexing, recommended-order narrative | Replace with a generated index. Move sequencing prose into structured methodology state. |
+| historical `docs/build-map.md` | Hand-authored dashboard + mutable operational state | Category substrate status, phase governance, input-coverage reporting, gap prioritization, graduation notes, and workflow routing assumptions | Retire as a live authored surface. Archive the last hand-authored body and replace the path with a historical stub. Re-home mutable state into `docs/methodology/state.yaml`; keep input coverage canonical in the coverage matrix. |
+| generated `docs/stories.md` | Manual index + sequencing prose | Story status registry, discovery/indexing, recommended-order narrative | Replace with a generated index. Move sequencing prose into structured methodology state. |
 | Story files | Canonical authored source | Goal, ACs, work log, dependencies, decision links, validation evidence | Keep canonical. New stories should carry strict frontmatter; legacy stories remain readable with warnings until backfilled. |
-| Story template + `/create-story` | Workflow substrate | Defines story metadata shape and previously assumed manual `docs/stories.md` editing | Update to emit graph-friendly frontmatter and regenerate the index instead of editing it manually. |
+| Story template + `/create-story` | Workflow substrate | Defines story metadata shape and previously assumed manual generated-`docs/stories.md` editing | Update to emit graph-friendly frontmatter and regenerate the index instead of editing it manually. |
 | `docs/evals/registry.yaml` | Canonical authored source | Eval IDs, scores, compromise links, retry conditions | Keep canonical. Parse into the graph and lint for missing links. |
 | `tests/fixtures/formats/_coverage-matrix.json` | Canonical machine-readable state | Input families, statuses, fixtures, scores, and known gaps | Keep canonical. Read directly from the compiler instead of restating its rows inside methodology state. |
 | `docs/setup-checklist.md` | Generated working checklist | Current methodology-package working copy | Keep, but regenerate around the graph+state package. |
-| `docs/runbooks/setup-methodology.md` + `/setup-methodology` | Bootstrap/runbook surface | Teaches the current package shape and public entrypoint | Keep, but rewrite around state/graph/coverage-matrix compilation and archival build-map handling. |
-| `/triage`, `/align`, `/build-story`, `/validate`, `/mark-story-done`, `/create-story`, `/triage-*` | Workflow surfaces | Consume `build-map.md` and `docs/stories.md` as live planning truth | Migrate to `docs/methodology/state.yaml`, `docs/methodology/graph.json`, and the coverage matrix. |
-| ADR tooling docs/templates | Workflow substrate | Teach cross-linking and post-decision propagation, still naming the build map | Keep, but point them at the compiled graph/state model. |
-| `AGENTS.md` | Repo-wide operating contract | Teaches the methodology hierarchy and planning workflow | Keep canonical, but rewrite the operating rule around graph/state instead of the hand-authored build map. |
+| `docs/runbooks/setup-methodology.md` + `/setup-methodology` | Bootstrap/runbook surface | Teaches the current package shape and public entrypoint | Keep, but rewrite around state/graph/coverage-matrix compilation and historical archived-build-map handling. |
+| `/triage`, `/align`, `/build-story`, `/validate`, `/mark-story-done`, `/create-story`, `/triage-*` | Workflow surfaces | Consumed historical `build-map.md` and generated `docs/stories.md` as live planning truth | Migrate to `docs/methodology/state.yaml`, `docs/methodology/graph.json`, and the coverage matrix. |
+| ADR tooling docs/templates | Workflow substrate | Taught cross-linking and post-decision propagation, still naming the historical build map | Keep, but point them at the compiled graph/state model. |
+| `AGENTS.md` | Repo-wide operating contract | Taught the methodology hierarchy and planning workflow around the historical hand-authored build map | Keep canonical, but rewrite the operating rule around graph/state instead. |
 
 ## Consumer Hotspots
 
@@ -110,7 +111,7 @@ legacy markdown planning surfaces are live:
 
 ## Key Findings
 
-### 1. `docs/build-map.md` is overloaded
+### 1. Historical `docs/build-map.md` was overloaded
 
 It is not just a dashboard. Today it owns:
 
@@ -125,7 +126,7 @@ It is not just a dashboard. Today it owns:
 Deleting it without re-homing each of those roles would definitely lose
 responsibility.
 
-### 2. `docs/stories.md` is not honest as a hand-maintained source
+### 2. Generated `docs/stories.md` was not honest as a hand-maintained source
 
 The current file mixes:
 
@@ -190,7 +191,7 @@ already own:
 
 It should explicitly not duplicate:
 
-- build-map prose
+- historical build-map prose
 - story work logs
 - spec prose
 - ADR rationale
@@ -239,11 +240,11 @@ The graph is compiled only. It is never hand-edited.
 
 Required generated view:
 
-- `docs/stories.md`
+- generated `docs/stories.md`
 
 Optional/historical view:
 
-- `docs/build-map.md` becomes a short archival redirect, not a live source
+- historical `docs/build-map.md` becomes a short archived redirect, not a live source
 
 ## 6. Architecture-Audit Lane
 
@@ -274,17 +275,16 @@ carrying open findings.
 - invalid or missing `spec:*` refs
 - state category/compromise keys that do not map to spec
 - stories, ADRs, or coverage rows that reference missing linked artifacts
+- stories still on legacy metadata only
+- ADRs still on legacy metadata only
 - generated `docs/stories.md` drift
 - generated `docs/methodology/graph.json` drift
 - live skill/runbook/AGENTS surfaces that still instruct agents to use
-  `docs/build-map.md` as an active source
-- active surfaces that still describe `docs/stories.md` as hand-maintained
+  historical `docs/build-map.md` as an active source
+- active surfaces that still describe generated `docs/stories.md` as hand-maintained
 
 ### Warning lints
 
-- legacy story metadata with no frontmatter
-- stories with no derived category refs
-- ADRs with legacy-only metadata
 - stories with non-standard status values
 - architecture domains that are overdue or carry open findings
 
@@ -311,7 +311,7 @@ carrying open findings.
 
 ### Phase 2 — Generated index and templates
 
-- [x] Generate `docs/stories.md`
+- [x] Generate generated `docs/stories.md`
 - [x] Update story and ADR templates to emit strict metadata
 - [x] Keep legacy-story support explicit via warnings rather than silent failure
 
@@ -337,8 +337,8 @@ carrying open findings.
 - Do not duplicate the coverage matrix inside `state.yaml`.
 - Do not require bulk backfill of 178 historical story files before the graph
   can compile; warn instead.
-- Do not silently keep `docs/build-map.md` live while claiming the migration is
-  complete.
+- Do not silently re-activate historical `docs/build-map.md` while claiming the
+  migration is complete.
 
 ## Certification Matrix
 
@@ -347,7 +347,7 @@ carrying open findings.
 | 0. Audit | Story + audit artifact exist and match repo reality | Story 187 + this file present | No ownerless responsibility remains in the matrix | All phases |
 | 1. State | `state.yaml` exists and maps current mutable state | Compiler reads valid state | No duplicate coverage truth added to state | Phases 1-5 |
 | 2. Graph | `graph.json` compiles cleanly | `make methodology-compile` writes graph | No validation errors | Phases 2-5 |
-| 3. Views | `docs/stories.md` is generated | Compiler writes the index | `make methodology-check` reports no drift | Phases 3-5 |
+| 3. Views | generated `docs/stories.md` is current | Compiler writes the index | `make methodology-check` reports no drift | Phases 3-5 |
 | 4. Consumers | Skills/runbooks/AGENTS use graph/state/coverage matrix | Target files updated, skill sync passes | No active-surface build-map language remains without legacy framing | Phases 4-5 |
 | 5. Retirement | build-map path is archival only | `docs/build-map.md` becomes a redirect stub | No active consumer still depends on it | Phase 5 + end-to-end sweep |
 
@@ -362,7 +362,7 @@ carrying open findings.
   without duplicating the coverage-matrix rows inside `state.yaml`.
 - 20260404-phase2 — added `scripts/methodology_graph.py` and
   `tests/test_methodology_graph.py`, generated the first
-  `docs/methodology/graph.json` and `docs/stories.md`, and updated the story
+  `docs/methodology/graph.json` and generated `docs/stories.md`, and updated the story
   and ADR templates so new metadata is graph-friendly while legacy stories stay
   explicit warning cases instead of silent failures.
 - 20260404-phase3 — migrated AGENTS, setup docs, planning skills, and related

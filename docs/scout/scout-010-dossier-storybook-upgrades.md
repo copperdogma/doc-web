@@ -19,18 +19,18 @@
    Adaptation: Keep doc-forge's stronger local decision-check framing and existing scout workflow, but add the transfusion and proof surfaces only where there is a real transfer.
    Proof target: Doc-forge's scout skill and expedition template support transfusion notes plus dedicated verification/evidence sections, and this scout uses that shape.
 
-2. **Storybook now treats the build map as the mandatory planning surface, not optional context** — HIGH value
-   What: Storybook's AGENTS and planning skills now make the methodology graph operational: planning/triage start from `docs/build-map.md`; `create-story` and `build-story` must read the relevant build-map category, capture current input-coverage stage when applicable, and verify critical substrate in code before treating `Pending` as honestly buildable.
-   Us: Doc-forge already has the dual-ideal/build-map structure and phase-aware triage, but the core planning path is still weaker. `AGENTS.md` documents the build map, yet it does not state the build-map-first operating rule. `.agents/skills/build-story/SKILL.md` and `.agents/skills/create-story/SKILL.md` still anchor mainly on the story/spec/ADR surface and do not force a substrate reality check before assuming `Pending` means buildable in implemented reality.
+2. **Storybook then treated the historical build map as the mandatory planning surface, not optional context** — HIGH value
+   What: Storybook's AGENTS and planning skills then made the methodology graph operational by starting planning/triage from the then-live `docs/build-map.md`; `create-story` and `build-story` had to read the relevant historical build-map category, capture current input-coverage stage when applicable, and verify critical substrate in code before treating `Pending` as honestly buildable.
+   Us (at scout time): Doc-forge already had the dual-ideal / historical-build-map structure and phase-aware triage, but the core planning path was still weaker. `AGENTS.md` documented the historical build map, yet it did not state the current graph/state operating rule. `.agents/skills/build-story/SKILL.md` and `.agents/skills/create-story/SKILL.md` still anchored mainly on the story/spec/ADR surface and did not force a substrate reality check before assuming `Pending` meant buildable in implemented reality.
    Recommendation: Adopt inline with a doc-forge-specific workflow update.
    Transfusion:
-   Exemplar: Storybook's AGENTS plus `create-story` / `build-story` / `triage-stories` surfaces, where build-map-first planning and code-verified substrate reality are mandatory.
-   Invariant: Build-map context and substrate reality must shape planning decisions before implementation starts; `Pending` alone is not enough.
-   Adaptation: Keep the doc-forge pipeline-centric workflow and remove Storybook's app-specific UI gates, while carrying over build-map-first routing, input-coverage awareness, and substrate verification.
-   Proof target: Doc-forge's AGENTS and planning skills now explicitly require build-map context and code-level substrate checks before recommending or building work.
+   Exemplar: Storybook's AGENTS plus `create-story` / `build-story` / `triage-stories` surfaces, where historical build-map-first planning and code-verified substrate reality were mandatory.
+   Invariant: Planning context and substrate reality must shape decisions before implementation starts; `Pending` alone is not enough.
+   Adaptation: Keep the doc-forge pipeline-centric workflow and remove Storybook's app-specific UI gates, while carrying over input-coverage awareness and substrate verification without keeping the historical build-map surface live.
+   Proof target: Doc-forge's AGENTS and planning skills now explicitly require graph/state context and code-level substrate checks before recommending or building work.
 
 3. **Storybook's `setup-methodology` package is the missing public bootstrap/refresh surface here** — HIGH value
-   What: Storybook consolidated the methodology bootstrap into one public entrypoint: `.agents/skills/setup-methodology/` plus `docs/runbooks/setup-methodology.md`, `docs/setup-checklist.md`, and `docs/methodology-ideal-spec-compromise.md`. The package treats ideal/spec/build-map alignment, eval/golden baseline setup, story bootstrap, AGENTS wiring, and skill sync as one coherent install/refresh operation instead of scattered tribal knowledge.
+   What: Storybook consolidated the methodology bootstrap into one public entrypoint: `.agents/skills/setup-methodology/` plus `docs/runbooks/setup-methodology.md`, `docs/setup-checklist.md`, and `docs/methodology-ideal-spec-compromise.md`. The package treats ideal/spec plus then-live build-map alignment, eval/golden baseline setup, story bootstrap, AGENTS wiring, and skill sync as one coherent install/refresh operation instead of scattered tribal knowledge.
    Us: Doc-forge already absorbed most of the underlying ADR-021 methodology shape, but it does not have a canonical refresh package. There is no `setup-methodology` skill, no methodology reference doc, no working `docs/setup-checklist.md`, and no local eval bootstrap doc surface like `docs/evals/README.md` / `docs/evals/attempt-template.md`. Porting this cleanly would require a doc-forge-specific adaptation, likely `refresh`-first rather than full greenfield bootstrap.
    Recommendation: Adopt inline with a doc-forge-specific package adaptation.
    Transfusion:
@@ -53,7 +53,7 @@
 
 - [x] 1. `/scout` transfusion + verification/evidence upgrade — Adopted inline
   Evidence: updated `.agents/skills/scout/SKILL.md` and `.agents/skills/scout/templates/scout-expedition.md` to add optional gene-transfusion capture plus dedicated `Verification` / `Evidence` sections.
-- [x] 2. Build-map-first planning + substrate reality checks — Adopted inline
+- [x] 2. Historical build-map-first planning + substrate reality checks — Adopted inline
   Evidence: updated `AGENTS.md`, `.agents/skills/build-story/SKILL.md`, `.agents/skills/create-story/SKILL.md`, `.agents/skills/create-story/templates/story.md`, and `.agents/skills/triage-stories/SKILL.md`.
 - [x] 3. `setup-methodology` package adaptation — Adopted inline
   Evidence: added `.agents/skills/setup-methodology/SKILL.md`, `.agents/skills/setup-methodology/references/modes.md`, `.agents/skills/setup-methodology/templates/setup-checklist.md`, `docs/runbooks/setup-methodology.md`, `docs/methodology-ideal-spec-compromise.md`, `docs/setup-checklist.md`, `docs/evals/README.md`, and `docs/evals/attempt-template.md`.
@@ -69,7 +69,7 @@
 ## Verification
 
 - Re-read the modified workflow files and new setup-methodology package files after editing
-- Compared the adopted surfaces against `/Users/cam/Documents/Projects/dossier` and `/Users/cam/Documents/Projects/Storybook/storybook`, then patched the remaining fidelity gaps (`create-story` story-id rule, `triage-stories` build-map read path, and workflow-gate checks in `AGENTS.md`, `mark-story-done`, and `validate`)
+- Compared the adopted surfaces against `/Users/cam/Documents/Projects/dossier` and `/Users/cam/Documents/Projects/Storybook/storybook`, then patched the remaining fidelity gaps (`create-story` story-id rule, the historical `triage-stories` build-map read path, and workflow-gate checks in `AGENTS.md`, `mark-story-done`, and `validate`)
 - Ran `./scripts/sync-agent-skills.sh`
 - Ran `./scripts/sync-agent-skills.sh --check`
 - Ran `make skills-check`
@@ -80,6 +80,6 @@
 ## Evidence
 
 - Canonical methodology refresh surface now exists under `.agents/skills/setup-methodology/` and is wired into AGENTS plus `.gemini/commands/setup-methodology.toml`
-- Build-map-first planning guidance now appears in `AGENTS.md`, `.agents/skills/build-story/SKILL.md`, `.agents/skills/create-story/SKILL.md`, and `.agents/skills/triage-stories/SKILL.md`, with `create-story` and `triage-stories` rechecked against Storybook's current source wording
+- Graph/state planning guidance now appears in `AGENTS.md`, `.agents/skills/build-story/SKILL.md`, `.agents/skills/create-story/SKILL.md`, and `.agents/skills/triage-stories/SKILL.md`, with `create-story` and `triage-stories` rechecked against Storybook's current source wording
 - Eval bootstrap docs now exist at `docs/evals/README.md` and `docs/evals/attempt-template.md`, with `docs/setup-checklist.md` tracking the package state for refresh runs
 - Fresh-verification trust language now exists in `AGENTS.md`, `.agents/skills/build-story/SKILL.md`, `.agents/skills/validate/SKILL.md`, `.agents/skills/mark-story-done/SKILL.md`, and `.agents/skills/check-in-diff/SKILL.md`, with workflow-gate checks tightened to match the Dossier close-out pattern more closely

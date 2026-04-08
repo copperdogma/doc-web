@@ -219,12 +219,14 @@ and verified the final migration with fresh checks: `make methodology-compile`,
 `make methodology-check`, `make skills-check`, `python -m ruff check
 scripts/methodology_graph.py tests/test_methodology_graph.py`, `make lint`,
 `python -m pytest tests/test_methodology_graph.py -q`, and `python -m pytest
-tests/` (`445 passed, 4 warnings`). Remaining non-blocking graph warnings are
-explicit legacy debt rather than migration failures: 178 historical story files
-still use legacy metadata, 124 of those still lack derived category refs, 21
-have non-standard historical statuses, Story 063 still names missing legacy
-dependency `055`, and Stories 145/148 still cite external Storybook ADR-019 /
-ADR-021 with no local ADR file. Next: `/mark-story-done` if you want the
+tests/` (`445 passed, 4 warnings`). At that certification point, the remaining
+non-blocking graph warnings were explicit legacy debt rather than migration
+failures: 178 historical story files still used legacy metadata, 124 of those
+still lacked derived category refs, 21 had non-standard historical statuses,
+Story 063 still named missing legacy dependency `055`, and Stories 145/148
+still cited external Storybook ADR-019 / ADR-021 with no local ADR file. Later
+hardening work may legitimately shrink or eliminate that warning set without
+changing the migration result. Next: `/mark-story-done` if you want the
 migration story itself closed formally.
 20260404-phase-sweep — re-ran the migration phase certification against the
 runbook instead of trusting the earlier summary. Found and fixed two contract
@@ -245,3 +247,9 @@ documented non-blocking historical debt items already called out in the story
 and audit artifact. Result: acceptance criteria, tasks, workflow gates, and
 central-tenet checks are all complete, and the story is now formally closed.
 Next: `/check-in-diff`.
+20260408-hardening-followup — Story 199 later reopened the long-tail
+methodology-package hardening that sat beyond the migration cutover itself:
+explicit eval lineage, wider active-surface lint coverage, and stale
+current-state wording in scout/history docs. This does not reopen the migration
+result; it clarifies that the warning list quoted above was certification-time
+context, not a forever-current graph state claim.

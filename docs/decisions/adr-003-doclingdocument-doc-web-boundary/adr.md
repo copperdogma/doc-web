@@ -132,7 +132,7 @@ Cons:
 ## Repo Constraints / Existing Context
 
 - `docs/ideal.md` says the system should accept any document with zero configuration and emit provenance-rich, Dossier-ready output.
-- `docs/spec.md` and `docs/build-map.md` currently say `doc-web` is the accepted graduation target under `spec:7`, while `C1`, `C2`, `C3`, and `C7` remain active `climb` seams that a broader external substrate could pressure.
+- `docs/spec.md` and the then-live `docs/build-map.md` said `doc-web` was the accepted graduation target under `spec:7`, while `C1`, `C2`, `C3`, and `C7` remained active `climb` seams that a broader external substrate could pressure.
 - ADR-002 is the accepted incumbent. This ADR does not erase it; it evaluates whether ADR-002 should stand, narrow, or be superseded.
 - Story 156 provides a real executable incumbent baseline: installable `doc_web` package surface, `doc-web contract --json`, repo-owned smoke fixtures, and published handoff docs.
 - Scout 011 is the current external-research baseline and ranks `Docling` as the strongest first replacement candidate.

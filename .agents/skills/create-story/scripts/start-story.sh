@@ -19,7 +19,6 @@ fi
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/../../../../" && pwd)"
 SKILL_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 STORIES_DIR="$ROOT/docs/stories"
-INDEX="$ROOT/docs/stories.md"
 
 # Bootstrap directory if missing
 mkdir -p "$STORIES_DIR"

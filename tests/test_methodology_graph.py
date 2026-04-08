@@ -241,3 +241,122 @@ def test_parse_adr_frontmatter_wins_over_body_inference(tmp_path):
     assert adr["spec_refs"] == ["spec:8"]
     assert adr["story_refs"] == ["123"]
     assert adr["related_adrs"] == []
+
+
+def test_parse_eval_registry_uses_explicit_lineage_fields_only(tmp_path):
+    module = load_module()
+    module.ROOT = tmp_path
+    module.EVALS_PATH = tmp_path / "docs" / "evals" / "registry.yaml"
+    module.EVALS_PATH.parent.mkdir(parents=True)
+    module.EVALS_PATH.write_text(
+        textwrap.dedent(
+            """\
+            evals:
+              - id: explicit-lineage
+                name: Explicit Lineage
+                type: quality
+                command: python -m example
+                spec_refs:
+                  - spec:8
+                story_refs:
+                  - "123"
+                compromise_refs:
+                  - B8
+                category_refs:
+                  - spec:9
+                note: "Body mentions Story 999, spec:1, and C1 but those should not be parsed."
+            """
+        ),
+        encoding="utf-8",
+    )
+
+    records = module.parse_eval_registry()
+
+    assert len(records) == 1
+    assert records[0]["spec_refs"] == ["spec:8"]
+    assert records[0]["story_refs"] == ["123"]
+    assert records[0]["compromise_refs"] == ["B8"]
+    assert records[0]["category_refs"] == ["spec:9"]
+    assert records[0]["explicit_lineage"] is True
+
+
+def test_validate_graph_requires_explicit_eval_lineage():
+    module = load_module()
+
+    validation = module.validate_graph(
+        state={"categories": {}, "roadmap": {}, "architecture_audits": {"domains": {}, "cadence": {}}},
+        spec={
+            "categories": [{"id": "spec:8", "sections": []}],
+            "compromises": [{"id": "B8", "category_id": "spec:8"}],
+        },
+        stories=[],
+        adrs=[],
+        evals=[
+            {
+                "id": "missing-lineage",
+                "spec_refs": [],
+                "story_refs": [],
+                "compromise_refs": [],
+                "category_refs": [],
+                "explicit_lineage": False,
+            }
+        ],
+        coverage={"formats": []},
+    )
+
+    assert validation["errors"] == ["eval missing-lineage missing explicit lineage refs"]
+
+
+def test_validate_graph_flags_live_build_map_language_in_active_surface(tmp_path):
+    module = load_module()
+    module.ROOT = tmp_path
+    active_path = tmp_path / "docs" / "example.md"
+    active_path.parent.mkdir(parents=True)
+    active_path.write_text("Use the build map as the current planning surface.\n", encoding="utf-8")
+    module.ACTIVE_SURFACE_PATHS = [active_path]
+
+    validation = module.validate_graph(
+        state={"categories": {}, "roadmap": {}, "architecture_audits": {"domains": {}, "cadence": {}}},
+        spec={"categories": [], "compromises": []},
+        stories=[],
+        adrs=[],
+        evals=[],
+        coverage={"formats": []},
+    )
+
+    assert validation["errors"] == ["docs/example.md:1 still treats build-map language as live"]
+
+
+def test_validate_graph_flags_unqualified_generated_view_language_in_active_surface(tmp_path):
+    module = load_module()
+    module.ROOT = tmp_path
+    active_path = tmp_path / "docs" / "example.md"
+    active_path.parent.mkdir(parents=True)
+    active_path.write_text("Read docs/stories.md to decide what is in flight.\n", encoding="utf-8")
+    module.ACTIVE_SURFACE_PATHS = [active_path]
+
+    validation = module.validate_graph(
+        state={"categories": {}, "roadmap": {}, "architecture_audits": {"domains": {}, "cadence": {}}},
+        spec={"categories": [], "compromises": []},
+        stories=[],
+        adrs=[],
+        evals=[],
+        coverage={"formats": []},
+    )
+
+    assert validation["errors"] == [
+        "docs/example.md:1 references docs/stories.md without generated-view framing"
+    ]
+
+
+def test_active_surface_paths_cover_methodology_hardening_surfaces():
+    module = load_module()
+    root = Path(__file__).resolve().parents[1]
+    rel_paths = {path.relative_to(root).as_posix() for path in module.ACTIVE_SURFACE_PATHS}
+
+    assert "docs/ideal.md" in rel_paths
+    assert "docs/spec.md" in rel_paths
+    assert "docs/evals/README.md" in rel_paths
+    assert "docs/methodology-artifact-audit-and-migration.md" in rel_paths
+    assert ".agents/skills/setup-methodology/references/modes.md" in rel_paths
+    assert ".gemini/commands/create-story.toml" in rel_paths
