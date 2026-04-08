@@ -48,9 +48,9 @@ checkout, install the explicit driver extra first:
 python -m pip install '.[driver]'
 ```
 
-That extra covers the maintained fixture bundle smoke and the maintained
-born-digital non-TOC proof lane. OCR-heavy recipes still use the broader repo
-runtime from `requirements.txt`.
+That extra covers the maintained fixture bundle smoke plus the maintained
+book-like and non-TOC born-digital proof lanes. OCR-heavy recipes still use
+the broader repo runtime from `requirements.txt`.
 
 For the maintained DOCX lane, add the explicit DOCX extra:
 
@@ -138,6 +138,26 @@ This smoke lane does not require the local OCR stack after install, but it does
 require the `driver` extra because `driver.py` and the bundle builder depend on
 YAML parsing plus HTML bundle tooling.
 
+### Maintained Born-Digital Book-Like Smoke
+
+Use this when you need a maintained proof run of the bounded book-like
+born-digital PDF lane on the repo-owned supported slice:
+
+```bash
+python -m pip install '.[driver]'
+python driver.py \
+  --recipe configs/recipes/recipe-born-digital-pdf-marker-lite-html-mvp.yaml \
+  --input-pdf testdata/born-digital-handbook-mini.pdf \
+  --run-id <run_id> \
+  --allow-run-id-reuse \
+  --force
+```
+
+Additional non-Python requirements for this lane:
+
+- Docker on `PATH`
+- `pdftotext` on `PATH`
+
 ### Maintained Born-Digital Non-TOC Smoke
 
 Use this when you need a maintained proof run of the non-TOC born-digital PDF
@@ -157,6 +177,24 @@ Additional non-Python requirements for this lane:
 
 - Docker on `PATH`
 - `pdftotext` on `PATH`
+
+### Maintained Born-Digital Benchmark
+
+Use this when you need the maintained born-digital comparison surface across
+the passing repo-owned slice plus the optional shared local comparison PDFs:
+
+```bash
+python -m pip install '.[driver]'
+python benchmarks/scripts/run_born_digital_pdf_eval.py \
+  --output benchmarks/results/born-digital-pdf-story196.json \
+  --run-root output/runs/story196-born-digital-benchmark
+```
+
+This benchmark measures four repo-owned supported fixtures across both
+maintained lanes (`tbotb-mini`, `born-digital-handbook-mini`,
+`flat-born-digital-mini`, `flat-born-digital-form-mini`) and also reruns the
+two shared local comparison-only PDFs (`rfp`, `release-forms`) when they are
+available on disk.
 
 ### Repo-Owned PDF Intake Smoke
 

@@ -1,0 +1,306 @@
+[
+  {
+    "id": "tbotb-mini",
+    "classification": "supported",
+    "required": true,
+    "lane": "book-like",
+    "input_kind": "pdf",
+    "path": "testdata/tbotb-mini.pdf",
+    "recipe": "configs/recipes/recipe-born-digital-pdf-marker-lite-html-mvp.yaml",
+    "portion_artifact": "03_portionize_toc_html_v1/portions_toc.jsonl",
+    "expected_pages_html_rows": 3,
+    "expected_page_numbers": [1, 2, 3],
+    "expected_portion_rows": 5,
+    "expected_portion_titles": [
+      "- How to Fight in Elsinore",
+      "- Equipment and Potions",
+      "- Hints on Play",
+      "- Background",
+      "- Sections (1-8)"
+    ],
+    "expected_manifest_title": "Book",
+    "provenance_mode": "paged",
+    "min_provenance_rows": 20,
+    "expected_entry_titles": [
+      "Image 1",
+      "- How to Fight in Elsinore",
+      "- Equipment and Potions"
+    ],
+    "html_assertions": [
+      {
+        "entry_title": "Image 1",
+        "snippets": [
+          "Cover Blurb",
+          "How to Fight in Elsinore",
+          "Equipment and Potions"
+        ]
+      },
+      {
+        "entry_title": "- How to Fight in Elsinore",
+        "snippets": [
+          "Baron Claudius now rules Elsinore",
+          "If you **challenge Claudius now**",
+          "Section 5"
+        ]
+      },
+      {
+        "entry_title": "- Equipment and Potions",
+        "snippets": [
+          "You act with cold preparation",
+          "**YOU SURVIVE**"
+        ]
+      }
+    ],
+    "provenance_assertions": [
+      {
+        "entry_title": "Image 1",
+        "block_kind": "heading",
+        "source_page_number": 1,
+        "source_element_prefix": "p001-",
+        "text_quote_contains": "Cover Blurb"
+      },
+      {
+        "entry_title": "- How to Fight in Elsinore",
+        "block_kind": "paragraph",
+        "source_page_number": 2,
+        "source_element_prefix": "p002-",
+        "text_quote_contains": "Baron Claudius now rules Elsinore"
+      },
+      {
+        "entry_title": "- Equipment and Potions",
+        "block_kind": "paragraph",
+        "source_page_number": 3,
+        "source_element_prefix": "p003-",
+        "text_quote_contains": "You act with cold preparation"
+      }
+    ]
+  },
+  {
+    "id": "born-digital-handbook-mini",
+    "classification": "supported",
+    "required": true,
+    "lane": "book-like",
+    "input_kind": "pdf",
+    "path": "testdata/born-digital-handbook-mini.pdf",
+    "recipe": "configs/recipes/recipe-born-digital-pdf-marker-lite-html-mvp.yaml",
+    "portion_artifact": "03_portionize_toc_html_v1/portions_toc.jsonl",
+    "expected_pages_html_rows": 5,
+    "expected_page_numbers": [1, 2, 3, 4, 5],
+    "expected_portion_rows": 4,
+    "expected_portion_titles": [
+      "Preparing the interview kit",
+      "Running the session",
+      "Logging the archive copy",
+      "Publishing notes"
+    ],
+    "expected_manifest_title": "Book",
+    "provenance_mode": "paged",
+    "min_provenance_rows": 20,
+    "expected_entry_titles": [
+      "Image 1",
+      "Preparing the interview kit",
+      "Running the session",
+      "Logging the archive copy",
+      "Publishing notes"
+    ],
+    "html_assertions": [
+      {
+        "entry_title": "Image 1",
+        "snippets": [
+          "Cover Blurb",
+          "Preparing the interview kit ........ 2",
+          "Publishing notes ................... 5"
+        ]
+      },
+      {
+        "entry_title": "Preparing the interview kit",
+        "snippets": [
+          "simple paper folder for each narrator",
+          "Bring two pencils, not one"
+        ]
+      },
+      {
+        "entry_title": "Publishing notes",
+        "snippets": [
+          "pull quote still makes sense",
+          "Repeatable close-out is not glamorous"
+        ]
+      }
+    ],
+    "provenance_assertions": [
+      {
+        "entry_title": "Image 1",
+        "block_kind": "heading",
+        "source_page_number": 1,
+        "source_element_prefix": "p001-",
+        "text_quote_contains": "Contents"
+      },
+      {
+        "entry_title": "Preparing the interview kit",
+        "block_kind": "heading",
+        "source_page_number": 2,
+        "source_element_prefix": "p002-",
+        "text_quote_contains": "Preparing the interview kit"
+      },
+      {
+        "entry_title": "Publishing notes",
+        "block_kind": "paragraph",
+        "source_page_number": 5,
+        "source_element_prefix": "p005-",
+        "text_quote_contains": "Repeatable close-out is not glamorous"
+      }
+    ]
+  },
+  {
+    "id": "flat-born-digital-mini",
+    "classification": "supported",
+    "required": true,
+    "lane": "flat-non-toc",
+    "input_kind": "pdf",
+    "path": "testdata/flat-born-digital-mini.pdf",
+    "recipe": "configs/recipes/recipe-born-digital-pdf-non-toc-html-mvp.yaml",
+    "portion_artifact": "03_portionize_headings_html_v1/portions_non_toc.jsonl",
+    "expected_pages_html_rows": 2,
+    "expected_page_numbers": [1, 2],
+    "expected_portion_rows": 2,
+    "expected_portion_titles": [
+      "Requested information:",
+      "Accessibility notes:"
+    ],
+    "expected_manifest_title": "Book",
+    "provenance_mode": "paged",
+    "min_provenance_rows": 20,
+    "expected_entry_titles": [
+      "Requested information:",
+      "Accessibility notes:"
+    ],
+    "html_assertions": [
+      {
+        "entry_title": "Requested information:",
+        "snippets": [
+          "Budget notes:",
+          "Review notes:",
+          "Submission checklist:",
+          "Operational details:"
+        ]
+      },
+      {
+        "entry_title": "Accessibility notes:",
+        "snippets": [
+          "Communications notes:",
+          "Archival notes:",
+          "Final reminder:"
+        ]
+      }
+    ],
+    "provenance_assertions": [
+      {
+        "entry_title": "Requested information:",
+        "block_kind": "heading",
+        "source_page_number": 1,
+        "source_element_prefix": "p001-",
+        "text_quote_contains": "Requested information:"
+      },
+      {
+        "entry_title": "Accessibility notes:",
+        "block_kind": "heading",
+        "source_page_number": 2,
+        "source_element_prefix": "p002-",
+        "text_quote_contains": "Accessibility notes:"
+      }
+    ]
+  },
+  {
+    "id": "flat-born-digital-form-mini",
+    "classification": "supported",
+    "required": true,
+    "lane": "flat-non-toc",
+    "input_kind": "pdf",
+    "path": "testdata/flat-born-digital-form-mini.pdf",
+    "recipe": "configs/recipes/recipe-born-digital-pdf-non-toc-html-mvp.yaml",
+    "portion_artifact": "03_portionize_headings_html_v1/portions_non_toc.jsonl",
+    "expected_pages_html_rows": 1,
+    "expected_page_numbers": [1],
+    "expected_portion_rows": 1,
+    "expected_portion_titles": [
+      "Participant information:"
+    ],
+    "expected_manifest_title": "Book",
+    "provenance_mode": "paged",
+    "min_provenance_rows": 12,
+    "expected_entry_titles": [
+      "Participant information:"
+    ],
+    "html_assertions": [
+      {
+        "entry_title": "Participant information:",
+        "snippets": [
+          "Emergency contact:",
+          "Accessibility checklist:",
+          "Required acknowledgments:",
+          "Signature block:"
+        ]
+      }
+    ],
+    "provenance_assertions": [
+      {
+        "entry_title": "Participant information:",
+        "block_kind": "heading",
+        "source_page_number": 1,
+        "source_element_prefix": "p001-",
+        "text_quote_contains": "Participant information:"
+      },
+      {
+        "entry_title": "Participant information:",
+        "block_kind": "heading",
+        "source_page_number": 1,
+        "source_element_prefix": "p001-",
+        "text_quote_contains": "Required acknowledgments:"
+      }
+    ]
+  },
+  {
+    "id": "rfp",
+    "classification": "comparison-only",
+    "required": false,
+    "input_optional": true,
+    "lane": "flat-non-toc",
+    "input_kind": "pdf",
+    "path": "/Users/cam/Documents/Projects/Cantos Music Foundation Website/Bid/Request for Proposal.pdf",
+    "recipe": "configs/recipes/recipe-born-digital-pdf-non-toc-html-mvp.yaml",
+    "portion_artifact": "03_portionize_headings_html_v1/portions_non_toc.jsonl",
+    "expected_pages_html_rows": 2,
+    "expected_page_numbers": [1, 2],
+    "expected_portion_rows": 1,
+    "expected_portion_titles": [
+      "REQUEST FOR PROPOSAL: WEBSITE DEVELOPMENT"
+    ],
+    "expected_manifest_title": "Book",
+    "expected_entry_titles": [
+      "REQUEST FOR PROPOSAL: WEBSITE DEVELOPMENT"
+    ],
+    "min_provenance_rows": 35
+  },
+  {
+    "id": "release-forms",
+    "classification": "comparison-only",
+    "required": false,
+    "input_optional": true,
+    "lane": "flat-non-toc",
+    "input_kind": "pdf",
+    "path": "/Users/cam/Documents/Projects/Aria/Summer Camps/ACKNOWLEDGMENT and RELEASE FORMS (for 2005) electronic.pdf",
+    "recipe": "configs/recipes/recipe-born-digital-pdf-non-toc-html-mvp.yaml",
+    "portion_artifact": "03_portionize_headings_html_v1/portions_non_toc.jsonl",
+    "expected_pages_html_rows": 2,
+    "expected_page_numbers": [1, 2],
+    "expected_portion_rows": 1,
+    "expected_portion_titles": [
+      "ACKNOWLEDGMENT OF RISK AND RELEASE OF LIABILITY (AR-0103)"
+    ],
+    "expected_manifest_title": "Book",
+    "expected_entry_titles": [
+      "ACKNOWLEDGMENT OF RISK AND RELEASE OF LIABILITY (AR-0103)"
+    ],
+    "min_provenance_rows": 70
+  }
+]

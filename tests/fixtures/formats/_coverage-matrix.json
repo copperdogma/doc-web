@@ -187,7 +187,7 @@
     {
       "id": "born-digital-pdf",
       "format_family": "born-digital-pdf",
-      "status": "has-fixture",
+      "status": "passing",
       "description": "PDFs with embedded text (no OCR needed), possibly with complex layouts",
       "pipeline_recipe": "recipe-born-digital-pdf-marker-lite-html-mvp.yaml (book-like lane) and recipe-born-digital-pdf-non-toc-html-mvp.yaml (flat/non-TOC lane)",
       "intake_module": "extract_pdf_marker_lite_html_v1 / extract_pdf_images_fast_v1 → ocr_ai_gpt51_v1 (comparison only)",
@@ -197,38 +197,45 @@
           "id": "tbotb-mini",
           "source": "testdata/tbotb-mini.pdf",
           "pages": 3,
-          "notes": "Repo-owned reviewed book-like fixture. Story 168 proved the bounded maintained Marker-lite native-text lane here, and Story 170 reverified it against the OCR baseline."
+          "notes": "Supported. Repo-owned reviewed book-like fixture. Story 168 proved the bounded maintained Marker-lite native-text lane here, Story 170 reverified it against the OCR baseline, and Story 196 kept it inside the maintained four-case benchmark."
+        },
+        {
+          "id": "born-digital-handbook-mini",
+          "source": "testdata/born-digital-handbook-mini.pdf",
+          "pages": 5,
+          "notes": "Supported. Repo-owned reproducible book-like handbook fixture generated from checked-in markdown via `testdata/generate_book_like_born_digital_fixture.py`. Story 196 added it to widen the maintained book-like proof surface beyond `tbotb-mini` and verified TOC-derived chapters with page-linked provenance."
         },
         {
           "id": "flat-born-digital-mini",
           "source": "testdata/flat-born-digital-mini.pdf",
           "pages": 2,
-          "notes": "Repo-owned reproducible flat born-digital fixture generated from checked-in source text. Story 171 proved the maintained non-TOC lane here with accepted `page_html_v1`, portion, bundle, and provenance artifacts."
+          "notes": "Supported. Repo-owned reproducible flat born-digital fixture generated from checked-in source text. Story 171 proved the maintained non-TOC lane here with accepted `page_html_v1`, portion, bundle, and provenance artifacts; Story 196 kept it in the passing supported slice."
         },
         {
           "id": "flat-born-digital-form-mini",
           "source": "testdata/flat-born-digital-form-mini.pdf",
           "pages": 1,
-          "notes": "Repo-owned reproducible flat born-digital form-like fixture generated from checked-in source text. Story 177 uses it to widen the repeatable proof surface beyond the original prose-only mini fixture and to verify bounded heading polish on short label-style sections."
+          "notes": "Supported. Repo-owned reproducible flat born-digital form-like fixture generated from checked-in source text. Story 177 widened the repeatable proof surface beyond the original prose-only mini fixture, and Story 196 kept it in the passing supported slice."
         },
         {
           "id": "rfp",
           "source": "/Users/cam/Documents/Projects/Cantos Music Foundation Website/Bid/Request for Proposal.pdf",
           "pages": 2,
-          "notes": "Story 170 first exposed this short flat born-digital PDF as a downstream structure failure. Story 171 reran it through the maintained non-TOC recipe and produced an accepted single-document bundle with page-linked provenance."
+          "notes": "Comparison-only local flat born-digital PDF. Story 170 first exposed this short flat born-digital PDF as a downstream structure failure. Stories 171 and 196 reran it through the maintained non-TOC recipe and produced an accepted single-document bundle with page-linked provenance, but Story 196 keeps it outside the bounded passing gate because it is not repo-owned."
         },
         {
           "id": "release-forms",
           "source": "/Users/cam/Documents/Projects/Aria/Summer Camps/ACKNOWLEDGMENT and RELEASE FORMS (for 2005) electronic.pdf",
           "pages": 2,
-          "notes": "Story 170 first exposed this form-heavy born-digital PDF as a downstream structure failure. Story 171 reran it through the maintained non-TOC recipe and produced an accepted single-document bundle with page-linked provenance."
+          "notes": "Comparison-only local form-heavy born-digital PDF. Story 170 first exposed this form-heavy born-digital PDF as a downstream structure failure. Stories 171 and 196 reran it through the maintained non-TOC recipe and produced an accepted single-document bundle with page-linked provenance, but Story 196 keeps it outside the bounded passing gate because it is not repo-owned."
         }
       ],
       "scores": null,
       "known_gaps": [
-        "Support still rests on a small proof surface: two repo-owned flat fixtures plus two shared local flat PDFs. This is enough for `has-fixture`, not for broad passing/graduation claims.",
+        "Passing evidence is bounded to the Story 196 supported slice: two repo-owned book-like fixtures (`tbotb-mini`, `born-digital-handbook-mini`) plus two repo-owned flat/non-TOC fixtures (`flat-born-digital-mini`, `flat-born-digital-form-mini`).",
+        "The two shared local flat PDFs (`rfp`, `release-forms`) still rerun cleanly on the maintained non-TOC lane, but they are comparison-only evidence rather than part of the passing gate.",
         "Story 177 absorbs bounded final-HTML heading polish on the proven slice: repeated short in-body h1/h2 labels are demoted and pathological long heading blocks are flattened into emphasis paragraphs, but `page_html_v1` still reflects raw Marker heading guesses before build-time cleanup.",
-        "Image-heavy or otherwise unproven flat born-digital PDFs can still honestly return `no-recipe-needed` when intake evidence does not justify the non-TOC lane.",
+        "Image-heavy or otherwise unproven born-digital PDFs can still honestly return `no-recipe-needed` when intake evidence does not justify the maintained book-like or non-TOC lanes.",
         "Marker remains materially slower on cold start than the OCR baseline."
       ],
       "graduated": false

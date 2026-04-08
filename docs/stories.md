@@ -53,6 +53,7 @@ Grouped by primary `spec:N` category. Stories without category refs remain in an
 | 192 | Repair Alverson Handwritten Truth Surface and Rebaseline the Handwritten Corpus | High | Done | — | [story-192](stories/story-192-alverson-handwritten-truth-surface-repair.md) |
 | 193 | Widen Maintained XLSX Proof and Recheck PPTX Runtime Seam | High | Done | 175 | [story-193](stories/story-193-widen-xlsx-proof-and-recheck-pptx-runtime-seam.md) |
 | 194 | Decide Maintained Office Intake Recommendation and Handoff Boundary | High | Done | 169, 175, 176, 178, 180, 193 | [story-194](stories/story-194-office-intake-recommendation-and-handoff-boundary.md) |
+| 196 | Widen Born-Digital PDF Proof and Add a Maintained Quality Surface | High | Done | 168, 171, 177 | [story-196](stories/story-196-widen-born-digital-pdf-proof-and-quality-surface.md) |
 
 ### spec:2 — OCR & Text Extraction
 

@@ -128,7 +128,8 @@
           "191",
           "192",
           "193",
-          "194"
+          "194",
+          "196"
         ],
         "adr_ids": [
           "ADR-001",
@@ -139,7 +140,8 @@
           "handwritten-notes-transcription",
           "onward-document-consistency-planning",
           "auto-book-type-detection",
-          "approved-intake-handoff"
+          "approved-intake-handoff",
+          "born-digital-pdf-quality-surface"
         ]
       },
       {
@@ -239,7 +241,8 @@
           "173",
           "175",
           "177",
-          "181"
+          "181",
+          "196"
         ],
         "adr_ids": [
           "ADR-002",
@@ -248,7 +251,8 @@
         "eval_ids": [
           "ocr-model-genealogy",
           "auto-book-type-detection",
-          "layout-section-splitting"
+          "layout-section-splitting",
+          "born-digital-pdf-quality-surface"
         ]
       },
       {
@@ -352,7 +356,8 @@
           "175",
           "177",
           "181",
-          "193"
+          "193",
+          "196"
         ],
         "adr_ids": [
           "ADR-002",
@@ -360,7 +365,8 @@
         ],
         "eval_ids": [
           "auto-book-type-detection",
-          "layout-section-splitting"
+          "layout-section-splitting",
+          "born-digital-pdf-quality-surface"
         ]
       },
       {
@@ -397,14 +403,16 @@
           "174",
           "175",
           "177",
-          "193"
+          "193",
+          "196"
         ],
         "adr_ids": [
           "ADR-002",
           "ADR-003"
         ],
         "eval_ids": [
-          "auto-book-type-detection"
+          "auto-book-type-detection",
+          "born-digital-pdf-quality-surface"
         ]
       },
       {
@@ -444,7 +452,8 @@
           "192",
           "193",
           "194",
-          "195"
+          "195",
+          "196"
         ],
         "adr_ids": [
           "ADR-002"
@@ -455,7 +464,8 @@
           "handwritten-notes-transcription",
           "auto-book-type-detection",
           "approved-intake-handoff",
-          "layout-section-splitting"
+          "layout-section-splitting",
+          "born-digital-pdf-quality-surface"
         ]
       },
       {
@@ -6213,6 +6223,61 @@
       "legacy_build_map_refs": "",
       "metadata_source": "frontmatter",
       "missing_frontmatter_keys": []
+    },
+    {
+      "id": "196",
+      "title": "Widen Born-Digital PDF Proof and Add a Maintained Quality Surface",
+      "path": "docs/stories/story-196-widen-born-digital-pdf-proof-and-quality-surface.md",
+      "status": "Done",
+      "priority": "High",
+      "ideal_refs": [
+        "Requirement #1 (Ingest), Requirement #3 (Extract), Requirement #6 (Validate), Requirement #7 (Export), Zero configuration, Any format, any condition, Dossier-ready output, Traceability is the product"
+      ],
+      "spec_refs": [
+        "spec:1",
+        "spec:1.1",
+        "spec:3",
+        "spec:3.1",
+        "spec:6",
+        "spec:7",
+        "spec:8"
+      ],
+      "decision_refs": [
+        "`docs/ideal.md`, `docs/spec.md`, `docs/methodology/state.yaml`, `docs/methodology/graph.json`, `docs/decisions/adr-002-doc-web-runtime-boundary/adr.md`, `docs/stories/story-168-marker-lite-maintained-born-digital-pdf-path.md`, `docs/stories/story-170-born-digital-pdf-native-text-widening-and-routing-decision.md`, `docs/stories/story-171-maintained-non-toc-born-digital-pdf-lane.md`, `docs/stories/story-177-born-digital-flat-proof-and-heading-cleanup.md`, `docs/stories/story-178-corpus-wide-approved-intake-handoff-benchmark.md`, `docs/stories/story-180-widen-approved-intake-handoff-image-directory-proof.md`, `docs/evals/registry.yaml`, `tests/fixtures/formats/_coverage-matrix.json`, `docs/RUNBOOK.md`, `docs/scout/scout-011-external-document-ingestion-systems.md` (historical context only), and `None found after search in docs/decisions/ for a narrower born-digital proof-widening or quality-harness ADR, or in docs/runbooks/ and docs/notes/ for a dedicated born-digital quality-harness workflow beyond the smoke commands in docs/RUNBOOK.md`"
+      ],
+      "adr_ids": [],
+      "depends_on": [
+        "168",
+        "171",
+        "177"
+      ],
+      "category_refs": [
+        "spec:1",
+        "spec:3",
+        "spec:6",
+        "spec:7",
+        "spec:8"
+      ],
+      "compromise_refs": [
+        "B1",
+        "C2",
+        "C3"
+      ],
+      "input_coverage_refs": [
+        "born-digital-pdf"
+      ],
+      "architecture_domains": [
+        "doc_web_runtime"
+      ],
+      "roadmap_tags": [
+        "campaign:maintained-intake-honesty"
+      ],
+      "blocker_summary": "",
+      "blocker_evidence": "",
+      "unblock_condition": "",
+      "legacy_build_map_refs": "",
+      "metadata_source": "frontmatter",
+      "missing_frontmatter_keys": []
     }
   ],
   "adrs": [
@@ -6525,6 +6590,27 @@
         "spec:8",
         "spec:9"
       ]
+    },
+    {
+      "id": "born-digital-pdf-quality-surface",
+      "name": "C3 Proof: Maintained Born-Digital PDF Quality Surface",
+      "type": "quality",
+      "command": "python benchmarks/scripts/run_born_digital_pdf_eval.py --output benchmarks/results/born-digital-pdf-story196.json --run-root output/runs/story196-born-digital-benchmark",
+      "path": "docs/evals/registry.yaml",
+      "spec_refs": [],
+      "story_refs": [
+        "196"
+      ],
+      "compromise_refs": [
+        "C3"
+      ],
+      "category_refs": [
+        "spec:1",
+        "spec:3",
+        "spec:6",
+        "spec:7",
+        "spec:8"
+      ]
     }
   ],
   "coverage": {
@@ -6700,7 +6786,7 @@
       {
         "id": "born-digital-pdf",
         "format_family": "born-digital-pdf",
-        "status": "has-fixture",
+        "status": "passing",
         "description": "PDFs with embedded text (no OCR needed), possibly with complex layouts",
         "pipeline_recipe": "recipe-born-digital-pdf-marker-lite-html-mvp.yaml (book-like lane) and recipe-born-digital-pdf-non-toc-html-mvp.yaml (flat/non-TOC lane)",
         "intake_module": "extract_pdf_marker_lite_html_v1 / extract_pdf_images_fast_v1 \u2192 ocr_ai_gpt51_v1 (comparison only)",
@@ -6714,38 +6800,45 @@
             "id": "tbotb-mini",
             "source": "testdata/tbotb-mini.pdf",
             "pages": 3,
-            "notes": "Repo-owned reviewed book-like fixture. Story 168 proved the bounded maintained Marker-lite native-text lane here, and Story 170 reverified it against the OCR baseline."
+            "notes": "Supported. Repo-owned reviewed book-like fixture. Story 168 proved the bounded maintained Marker-lite native-text lane here, Story 170 reverified it against the OCR baseline, and Story 196 kept it inside the maintained four-case benchmark."
+          },
+          {
+            "id": "born-digital-handbook-mini",
+            "source": "testdata/born-digital-handbook-mini.pdf",
+            "pages": 5,
+            "notes": "Supported. Repo-owned reproducible book-like handbook fixture generated from checked-in markdown via `testdata/generate_book_like_born_digital_fixture.py`. Story 196 added it to widen the maintained book-like proof surface beyond `tbotb-mini` and verified TOC-derived chapters with page-linked provenance."
           },
           {
             "id": "flat-born-digital-mini",
             "source": "testdata/flat-born-digital-mini.pdf",
             "pages": 2,
-            "notes": "Repo-owned reproducible flat born-digital fixture generated from checked-in source text. Story 171 proved the maintained non-TOC lane here with accepted `page_html_v1`, portion, bundle, and provenance artifacts."
+            "notes": "Supported. Repo-owned reproducible flat born-digital fixture generated from checked-in source text. Story 171 proved the maintained non-TOC lane here with accepted `page_html_v1`, portion, bundle, and provenance artifacts; Story 196 kept it in the passing supported slice."
           },
           {
             "id": "flat-born-digital-form-mini",
             "source": "testdata/flat-born-digital-form-mini.pdf",
             "pages": 1,
-            "notes": "Repo-owned reproducible flat born-digital form-like fixture generated from checked-in source text. Story 177 uses it to widen the repeatable proof surface beyond the original prose-only mini fixture and to verify bounded heading polish on short label-style sections."
+            "notes": "Supported. Repo-owned reproducible flat born-digital form-like fixture generated from checked-in source text. Story 177 widened the repeatable proof surface beyond the original prose-only mini fixture, and Story 196 kept it in the passing supported slice."
           },
           {
             "id": "rfp",
             "source": "/Users/cam/Documents/Projects/Cantos Music Foundation Website/Bid/Request for Proposal.pdf",
             "pages": 2,
-            "notes": "Story 170 first exposed this short flat born-digital PDF as a downstream structure failure. Story 171 reran it through the maintained non-TOC recipe and produced an accepted single-document bundle with page-linked provenance."
+            "notes": "Comparison-only local flat born-digital PDF. Story 170 first exposed this short flat born-digital PDF as a downstream structure failure. Stories 171 and 196 reran it through the maintained non-TOC recipe and produced an accepted single-document bundle with page-linked provenance, but Story 196 keeps it outside the bounded passing gate because it is not repo-owned."
           },
           {
             "id": "release-forms",
             "source": "/Users/cam/Documents/Projects/Aria/Summer Camps/ACKNOWLEDGMENT and RELEASE FORMS (for 2005) electronic.pdf",
             "pages": 2,
-            "notes": "Story 170 first exposed this form-heavy born-digital PDF as a downstream structure failure. Story 171 reran it through the maintained non-TOC recipe and produced an accepted single-document bundle with page-linked provenance."
+            "notes": "Comparison-only local form-heavy born-digital PDF. Story 170 first exposed this form-heavy born-digital PDF as a downstream structure failure. Stories 171 and 196 reran it through the maintained non-TOC recipe and produced an accepted single-document bundle with page-linked provenance, but Story 196 keeps it outside the bounded passing gate because it is not repo-owned."
           }
         ],
         "scores": null,
         "known_gaps": [
-          "Support still rests on a small proof surface: two repo-owned flat fixtures plus two shared local flat PDFs. This is enough for `has-fixture`, not for broad passing/graduation claims.",
+          "Passing evidence is bounded to the Story 196 supported slice: two repo-owned book-like fixtures (`tbotb-mini`, `born-digital-handbook-mini`) plus two repo-owned flat/non-TOC fixtures (`flat-born-digital-mini`, `flat-born-digital-form-mini`).",
+          "The two shared local flat PDFs (`rfp`, `release-forms`) still rerun cleanly on the maintained non-TOC lane, but they are comparison-only evidence rather than part of the passing gate.",
           "Story 177 absorbs bounded final-HTML heading polish on the proven slice: repeated short in-body h1/h2 labels are demoted and pathological long heading blocks are flattened into emphasis paragraphs, but `page_html_v1` still reflects raw Marker heading guesses before build-time cleanup.",
-          "Image-heavy or otherwise unproven flat born-digital PDFs can still honestly return `no-recipe-needed` when intake evidence does not justify the non-TOC lane.",
+          "Image-heavy or otherwise unproven born-digital PDFs can still honestly return `no-recipe-needed` when intake evidence does not justify the maintained book-like or non-TOC lanes.",
           "Marker remains materially slower on cold start than the OCR baseline."
         ],
         "graduated": false

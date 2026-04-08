@@ -95,11 +95,29 @@ python validate_artifact.py \
   --file output/runs/<run_id>/output/html/provenance/blocks.jsonl
 ```
 
-For the maintained non-TOC born-digital proof lane, keep the same `.[driver]`
+For the maintained born-digital PDF proof lanes, keep the same `.[driver]`
 install and add the non-Python runtime prerequisites up front:
 
 - Docker available on `PATH`
 - `pdftotext` available on `PATH`
+
+Story 196 widened the bounded maintained born-digital slice to four repo-owned
+fixtures across both explicit lanes:
+
+- Book-like: `testdata/tbotb-mini.pdf`, `testdata/born-digital-handbook-mini.pdf`
+- Flat / non-TOC: `testdata/flat-born-digital-mini.pdf`, `testdata/flat-born-digital-form-mini.pdf`
+
+The repeatable comparison surface for that slice now lives at:
+
+```bash
+python benchmarks/scripts/run_born_digital_pdf_eval.py \
+  --output benchmarks/results/born-digital-pdf-story196.json \
+  --run-root output/runs/story196-born-digital-benchmark
+```
+
+That maintained benchmark also reruns the two shared local comparison-only
+PDFs (`rfp`, `release-forms`) when they are present, but the passing gate
+rests on the four repo-owned supported cases above.
 
 For the maintained DOCX proof lane, install the explicit DOCX extra:
 
@@ -155,6 +173,8 @@ The active maintained entry surfaces are explicit recipes, not hidden routing:
 
 - `configs/recipes/recipe-images-ocr-html-mvp.yaml` for image-directory scans
 - `configs/recipes/recipe-pdf-ocr-html-mvp.yaml` for generic PDF-backed intake
+- `configs/recipes/recipe-born-digital-pdf-marker-lite-html-mvp.yaml` for the bounded maintained book-like born-digital PDF slice
+- `configs/recipes/recipe-born-digital-pdf-non-toc-html-mvp.yaml` for the bounded maintained flat/non-TOC born-digital PDF slice
 - `configs/recipes/recipe-docx-html-mvp.yaml` for the maintained DOCX fixture-backed lane
 - `configs/recipes/recipe-xlsx-html-mvp.yaml` for the maintained XLSX workbook-table lane on the verified simple-table slice
 - `configs/recipes/recipe-onward-images-html-mvp.yaml` for the image-backed Onward genealogy lane
@@ -230,7 +250,7 @@ The active repo path is format-aware intake plus structural website output for
 - `python -m pip install '.[driver]'` supports the repo-owned `driver.py` smoke lanes documented in this README and [docs/RUNBOOK.md](docs/RUNBOOK.md).
 - `python -m pip install '.[driver,docx]'` supports the maintained DOCX lane from this checkout.
 - `python -m pip install '.[driver,xlsx]'` supports the maintained XLSX lane from this checkout.
-- The maintained born-digital non-TOC lane also requires Docker and `pdftotext`.
+- The maintained born-digital PDF lanes also require Docker and `pdftotext`.
 - The fuller repo runtime from `requirements.txt` now also includes DOCX and XLSX support, but it is currently validated on Python 3.11/3.12 because the pinned `unstructured==0.16.9` line does not resolve on Python 3.14.
 
 ### API Keys

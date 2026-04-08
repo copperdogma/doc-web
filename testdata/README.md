@@ -1,7 +1,8 @@
 # Test Data Fixtures
 
 - `tbotb-mini.md` / `tbotb-mini.pdf`: 8-section micro branch adapted from **To Be or Not To Be** by Ryan North (2013). Licensed **CC BY-NC 3.0**; used here for non-commercial smoke testing. Source PDF: `input/Ryan North - To Be or Not To Be.pdf` (not modified).
-- Story 157 uses `tbotb-mini.pdf` as the repo-owned maintained PDF-entry smoke fixture. It proves PDF-backed recipe wiring and extractor provenance, but it is not evidence that `scanned-pdf-prose` or native `born-digital-pdf` support is complete.
+- Story 157 uses `tbotb-mini.pdf` as the repo-owned maintained PDF-entry smoke fixture. Stories 168 and 196 also use it as one bounded book-like `born-digital-pdf` proof item inside the passing Story 196 supported slice; it is still not blanket evidence that all native `born-digital-pdf` inputs are solved.
+- `born-digital-handbook-mini.md` / `born-digital-handbook-mini.pdf`: repo-owned reproducible book-like born-digital handbook fixture generated from checked-in markdown via `generate_book_like_born_digital_fixture.py`. Story 196 uses it to widen the maintained book-like proof surface beyond `tbotb-mini` with an explicit TOC page plus four page-linked chapter pages.
 - `flat-born-digital-mini.md` / `flat-born-digital-mini.pdf`: repo-owned flat born-digital prose packet with no TOC and no printed page numbers. Story 171 uses it to prove the maintained non-TOC born-digital PDF lane can emit a final `doc-web` bundle without relying only on local user assets.
 - `flat-born-digital-form-mini.md` / `flat-born-digital-form-mini.pdf`: repo-owned flat born-digital form-like packet with short label-style sections and an all-caps warning block. Story 177 uses it to widen the repeatable proof surface beyond the original prose-only mini fixture and to measure whether oversized in-body headings are a generic rough edge on the maintained non-TOC lane.
 - `scanned-prose-mini.md` / `scanned-prose-mini.pdf`: original repo-owned prose source plus a generated image-only PDF fixture for `scanned-pdf-prose`. Story 167 uses it to prove maintained scanned-PDF entry, `page_image_v1` provenance, and a clean simple-prose OCR lane without relying on a shared local asset. This is passing evidence for the repo-owned simple-prose fixture, not a blanket claim about degraded or noisy scanned prose.
@@ -53,6 +54,10 @@ Regeneration:
   ```bash
   python testdata/generate_flat_born_digital_fixture.py
   python testdata/generate_flat_born_digital_fixture.py --source testdata/flat-born-digital-form-mini.md --output testdata/flat-born-digital-form-mini.pdf
+  ```
+- Book-like born-digital handbook PDF:
+  ```bash
+  python testdata/generate_book_like_born_digital_fixture.py
   ```
 - Image-only scanned prose PDF:
   ```bash

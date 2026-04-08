@@ -1,3 +1,23 @@
+## [2026-04-08-02] - Widen born-digital PDF proof surface (Story 196)
+
+### Added
+- Added a maintained born-digital benchmark corpus, scorer, runner, and focused tests so the repo can rerun the bounded passing slice and comparison-only local cases from one checked-in harness
+- Added a reproducible repo-owned book-like handbook fixture plus a generator so the maintained book-like born-digital lane is no longer proved only by `tbotb-mini`
+
+### Changed
+- Changed the `born-digital-pdf` coverage row, eval registry, runbook, README, testdata docs, methodology graph, and story index so the family now records a bounded `passing` surface across four repo-owned maintained cases
+
+### Fixed
+- Fixed the born-digital benchmark test to load its corpus through the checked-in runner default instead of a machine-specific absolute checkout path
+
+### Tested
+- `pytest tests/test_born_digital_pdf_benchmark.py -q`
+- `python benchmarks/scripts/run_born_digital_pdf_eval.py --output benchmarks/results/born-digital-pdf-story196-validate-20260408b.json --run-root output/runs/story196-born-digital-benchmark-validate-20260408b`
+- `make lint`
+- `make methodology-compile`
+- `make methodology-check`
+- `make test`
+
 ## [2026-04-08-01] - Clean legacy story drift and audit memory (Story 195)
 
 ### Added

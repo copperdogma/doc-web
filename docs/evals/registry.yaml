@@ -1580,3 +1580,85 @@ evals:
         note: >
           Expand or rerun when a new maintained section-bearing input family
           lands, or when the bounded corpus itself changes.
+
+  - id: born-digital-pdf-quality-surface
+    name: "C3 Proof: Maintained Born-Digital PDF Quality Surface"
+    type: quality
+    description: >
+      Repo-backed 6-case benchmark for the bounded maintained born-digital PDF
+      surface. The passing gate is the four repo-owned supported cases across
+      both explicit lanes: two book-like fixtures (`tbotb-mini`,
+      `born-digital-handbook-mini`) plus two flat/non-TOC fixtures
+      (`flat-born-digital-mini`, `flat-born-digital-form-mini`). The two
+      shared local PDFs (`rfp`, `release-forms`) rerun as optional
+      comparison-only evidence on the same harness when they are available.
+      The scorer checks stamped `page_html_v1` row counts, portion artifacts,
+      final bundle ordering/titles, HTML snippets, and block provenance.
+    spec_compromise: C3
+    runner: manual
+    command: "python benchmarks/scripts/run_born_digital_pdf_eval.py --output benchmarks/results/born-digital-pdf-story196.json --run-root output/runs/story196-born-digital-benchmark"
+    scorer: benchmarks/scorers/born_digital_pdf.py
+    golden: benchmarks/golden/born-digital-pdf/corpus.json
+
+    target:
+      metric: pass_rate
+      value: 1.0
+      note: >
+        All 4 repo-owned supported cases must clear the checked-in born-digital
+        benchmark. Optional comparison-only local cases are reported, not part
+        of the passing gate.
+
+    scores:
+      - model: "Story 196 maintained born-digital benchmark"
+        metrics:
+          pass_rate: 1.0
+          overall: 1.0
+          docs: 6
+          supported_docs: 4
+          comparison_docs: 2
+          comparison_pass_rate: 1.0
+          failed_runs: 0
+        measured: 2026-04-08
+        note: >
+          Story 196 added
+          `benchmarks/golden/born-digital-pdf/corpus.json`,
+          `benchmarks/scorers/born_digital_pdf.py`, and
+          `benchmarks/scripts/run_born_digital_pdf_eval.py`, then reran the
+          maintained born-digital corpus via
+          `python benchmarks/scripts/run_born_digital_pdf_eval.py --output benchmarks/results/born-digital-pdf-story196.json --run-root output/runs/story196-born-digital-benchmark`.
+          The result file
+          `benchmarks/results/born-digital-pdf-story196.json` recorded
+          `docs = 6`, `supported_docs = 4`, `comparison_docs = 2`,
+          `pass_rate = 1.0`, `overall = 1.0`, `comparison_pass_rate = 1.0`,
+          and `failed_runs = 0`. Manual inspection in the same pass covered
+          `output/runs/story196-born-digital-benchmark-born-digital-handbook-mini/output/html/manifest.json`,
+          `output/runs/story196-born-digital-benchmark-born-digital-handbook-mini/output/html/chapter-001.html`,
+          `output/runs/story196-born-digital-benchmark-flat-born-digital-mini/output/html/provenance/blocks.jsonl`,
+          `output/runs/story196-born-digital-benchmark-rfp/output/html/manifest.json`,
+          and
+          `output/runs/story196-born-digital-benchmark-release-forms/output/html/chapter-001.html`.
+
+    attempts:
+      - id: "001"
+        date: 2026-04-08
+        status: succeeded
+        approach: "Story 196 first maintained born-digital benchmark on the widened repo-owned supported slice plus optional comparison-only local PDFs"
+        note: >
+          Fresh run via
+          `python benchmarks/scripts/run_born_digital_pdf_eval.py --output benchmarks/results/born-digital-pdf-story196.json --run-root output/runs/story196-born-digital-benchmark`
+          completed all 6 present cases with `pass_rate = 1.0`,
+          `comparison_pass_rate = 1.0`, `overall = 1.0`, and
+          `failed_runs = 0`. The bounded passing gate is the 4 repo-owned
+          supported cases; the 2 shared local comparison-only PDFs also reran
+          cleanly on the same harness in this environment.
+
+    retry_when:
+      - condition: workflow-change
+        note: >
+          Rerun when either maintained born-digital recipe, the Marker-lite
+          extract stage, or the bundle/provenance build path changes.
+      - condition: corpus-change
+        note: >
+          Rerun when the supported repo-owned born-digital corpus changes, when
+          new comparison-only PDFs are added, or when a currently optional local
+          comparison case becomes repo-owned enough to join the passing gate.
