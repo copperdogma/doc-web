@@ -1,6 +1,6 @@
 ---
 title: Consolidate section target adapters
-status: To Do
+status: Done
 priority: Unknown
 ideal_refs: []
 spec_refs: []
@@ -16,7 +16,7 @@ legacy_system: ''
 
 # Story: Consolidate section target adapters
 
-**Status**: To Do
+**Status**: Done
 
 ---
 
@@ -75,3 +75,7 @@ legacy_system: ''
 - **Result:** Added per-page dedupe in `portionize_sections_v1` to drop duplicate ids while retaining header/inline coverage. Re-ran full recipe: guard still passes (section_count 400, targets_count 384, missing_count 0) with reduced portions (1057). Updated AGENTS.md to note legacy map/backfill adapters are obsolete; prefer `section_target_guard_v1`.
 - **Notes:** Tests re-run (`python -m pytest`) all pass. Older stories now reference guard as the preferred path; historical mentions remain for context.
 - **Next:** None; doc cleanup complete.
+### 20260407-2346 — Reclassified as Done during Story 195 cleanup
+- **Result:** Marked Done so the story status matches the implemented adapter state.
+- **Notes:** Fresh current-pass repo evidence still includes `modules/adapter/section_target_guard_v1/main.py`, `modules/adapter/section_target_guard_v1/module.yaml`, and `tests/section_target_guard_test.py`. The story tasks were already fully checked, so the lingering `To Do` status was pure metadata drift.
+- **Next:** Track any future section-target changes in new stories only if the adapter contract changes again.

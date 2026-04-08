@@ -1,6 +1,6 @@
 ---
 title: Modular pipeline & module registry
-status: To Do
+status: Done
 priority: Unknown
 ideal_refs: []
 spec_refs: []
@@ -16,7 +16,7 @@ legacy_system: ''
 
 # Story: Modular pipeline & module registry
 
-**Status**: To Do
+**Status**: Done
 
 ---
 
@@ -123,3 +123,7 @@ legacy_system: ''
 - **Result:** Created per-module folders under `modules/<stage>/<module_id>/` with `module.yaml`; driver now scans modules dir to build registry and merges default params; recipes still function. Dry-run of text recipe confirms commands (no duplicate flags).
 - **Notes:** Legacy registry still present; modules now self-contained manifests pointing to existing scripts. README unchanged (still valid).
 - **Next:** Consider moving prompts/helpers into module folders later; story focus satisfied.
+### 20260407-2346 — Reclassified as Done during Story 195 cleanup
+- **Result:** Marked Done so the story index matches the current repo reality.
+- **Notes:** Fresh current-pass evidence still shows the modular pipeline substrate exists in the maintained codebase: `driver.py`, `validate_artifact.py`, plugin-scanned module folders under `modules/<stage>/<module_id>/`, and `modules/extract/extract_text_v1/` are all present. The earlier wrap-up log already recorded that enrichment moved to follow-up stories, so the stale `To Do` status was queue drift rather than active missing work.
+- **Next:** Treat future driver/module-architecture changes as new stories instead of reviving this legacy shell.

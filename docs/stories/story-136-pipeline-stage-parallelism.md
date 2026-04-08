@@ -1,6 +1,6 @@
 ---
 title: Parallelize Crop Detection and Table Rescue Stages
-status: Draft
+status: Obsolete
 priority: High
 ideal_refs:
 - "Ideal \"instant\" processing \u2014 \"A 400-page scanned book processes before\
@@ -20,7 +20,7 @@ legacy_system: ''
 # Story 136 — Parallelize Crop Detection and Table Rescue Stages
 
 **Priority**: High
-**Status**: Draft
+**Status**: Obsolete
 **Ideal Refs**: Ideal "instant" processing — "A 400-page scanned book processes before you finish your coffee"; MVF "under 30 minutes at reasonable cost"
 **Spec Refs**: None
 **Depends On**: None
@@ -96,3 +96,8 @@ The Onward pipeline takes 51 minutes. OCR (13.7m) is already parallelized via `-
 ## Work Log
 
 {Entries added during implementation}
+
+### 20260407-2346 — Reclassified as Obsolete during Story 195 cleanup
+- **Result:** Marked Obsolete so this old draft no longer reads like build-ready active work.
+- **Notes:** Fresh current-pass repo review shows the relevant runtime/performance lane later closed through a different simplification path: `docs/stories/story-184-collapse-bounded-crop-runtime-to-single-stage-flash.md` exists and is `Done`. Leaving this uncategorized draft open would misstate the current performance roadmap.
+- **Next:** Open a fresh performance story only if a maintained runtime still shows a concrete bottleneck after the later simplification work.

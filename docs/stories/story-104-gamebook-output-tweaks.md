@@ -1,6 +1,6 @@
 ---
 title: Gamebook Output File Tweaks
-status: In Progress
+status: Obsolete
 priority: High
 ideal_refs: []
 spec_refs: []
@@ -16,7 +16,7 @@ legacy_system: ''
 
 # Story: Gamebook Output File Tweaks
 
-**Status**: In Progress  
+**Status**: Obsolete
 **Created**: 2025-01-27  
 **Priority**: High  
 **Parent Story**: story-030 (Fighting Fantasy Engine format export), story-031 (Fighting Fantasy output refinement)
@@ -189,6 +189,10 @@ The gamebook output has been validated against the schema, but real-world engine
 - **Result**: Success; marked broad format/missing/data quality placeholders complete and left engine-testing items deferred to story‑107.
 - **Notes**: Engine‑runtime validation remains out‑of‑scope for story‑104.
 - **Next**: Finish validator unification in story‑107 if engine validation is required.
+### 20260407-2346 — Reclassified as Obsolete during Story 195 cleanup
+- **Result**: Marked Obsolete instead of leaving this uncategorized gamebook cleanup story active.
+- **Notes**: Fresh current-pass repo evidence confirms the remaining follow-up path already moved to Story 107, which is present with status `Done`, while the old proof artifacts cited by this story (`output/runs/ff-ai-ocr-gpt51-pristine-fast-full/gamebook.json` and `.../08_html_to_blocks_v1/page_blocks_repaired.jsonl`) are not present in the current workspace. Without fresh artifact proof, `Done` would overstate the current repo state, and `In Progress` would overstate queue relevance.
+- **Next**: Start a new story only if the legacy FF engine/output lane becomes active again with fresh artifacts.
 
 ---
 

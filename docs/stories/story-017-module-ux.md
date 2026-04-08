@@ -1,6 +1,6 @@
 ---
 title: Module UX polish (params & outputs)
-status: Complete
+status: Done
 priority: Unknown
 ideal_refs: []
 spec_refs: []
@@ -16,7 +16,7 @@ legacy_system: ''
 
 # Story: Module UX polish (params & outputs)
 
-**Status**: Complete
+**Status**: Done
 
 ---
 
@@ -75,3 +75,7 @@ legacy_system: ''
 - **Result:** Success.
 - **Notes:** All acceptance criteria satisfied: param_schema validation in driver + manifests, per-stage out overrides with resume support, docs updated, tests added (plan+integration, including resume/custom out). Status marked Complete.
 - **Next:** None; ready to merge.
+### 20260407-2346 — Normalized legacy status during Story 195 cleanup
+- **Result:** Changed the non-canonical legacy status `Complete` to canonical `Done`.
+- **Notes:** Fresh current-pass repo review confirms the story's substrate still exists in `driver.py`, module manifests, and the documented close-out log; the only remaining problem was that `Complete` is not part of the current methodology status set, so the graph treated this closed story as still active.
+- **Next:** Keep future workflow/status changes on the canonical `Draft` / `Pending` / `In Progress` / `Done` / `Blocked` / `Obsolete` / `Won't Do` set only.

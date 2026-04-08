@@ -443,7 +443,8 @@
           "191",
           "192",
           "193",
-          "194"
+          "194",
+          "195"
         ],
         "adr_ids": [
           "ADR-002"
@@ -475,7 +476,8 @@
           "187",
           "188",
           "190",
-          "194"
+          "194",
+          "195"
         ],
         "adr_ids": [],
         "eval_ids": [
@@ -894,7 +896,7 @@
       "id": "015",
       "title": "Modular pipeline & module registry",
       "path": "docs/stories/story-015-modular-pipeline.md",
-      "status": "To Do",
+      "status": "Done",
       "priority": "Unknown",
       "ideal_refs": [],
       "spec_refs": [],
@@ -940,7 +942,7 @@
       "id": "017",
       "title": "Module UX polish (params & outputs)",
       "path": "docs/stories/story-017-module-ux.md",
-      "status": "Complete",
+      "status": "Done",
       "priority": "Unknown",
       "ideal_refs": [],
       "spec_refs": [],
@@ -963,7 +965,7 @@
       "id": "018",
       "title": "Enrichment & alternate modules",
       "path": "docs/stories/story-018-enrichment-alt-mods.md",
-      "status": "To Do",
+      "status": "Obsolete",
       "priority": "Unknown",
       "ideal_refs": [],
       "spec_refs": [],
@@ -1032,7 +1034,7 @@
       "id": "021",
       "title": "Pipeline dashboard UI polish (highlighting & pane layout)",
       "path": "docs/stories/story-021-dashboard-ui-polish.md",
-      "status": "In Progress",
+      "status": "Done",
       "priority": "Unknown",
       "ideal_refs": [],
       "spec_refs": [],
@@ -1078,7 +1080,7 @@
       "id": "023",
       "title": "Consolidate section target adapters",
       "path": "docs/stories/story-023-section-target-guard.md",
-      "status": "To Do",
+      "status": "Done",
       "priority": "Unknown",
       "ideal_refs": [],
       "spec_refs": [],
@@ -1193,7 +1195,7 @@
       "id": "028",
       "title": "Market Discovery for doc-forge",
       "path": "docs/stories/story-028-market-discovery.md",
-      "status": "In Progress",
+      "status": "Won't Do",
       "priority": "Unknown",
       "ideal_refs": [],
       "spec_refs": [],
@@ -1607,7 +1609,7 @@
       "id": "058",
       "title": "Post-OCR Text Quality & Error Correction",
       "path": "docs/stories/story-058-post-ocr-text-quality.md",
-      "status": "In Progress",
+      "status": "Obsolete",
       "priority": "Unknown",
       "ideal_refs": [],
       "spec_refs": [],
@@ -2048,7 +2050,7 @@
       "id": "077",
       "title": "AI OCR Radical Simplification \u2014 Challenging the Escalation Assumption",
       "path": "docs/stories/story-077-ai-ocr-simplification.md",
-      "status": "To Do",
+      "status": "Done",
       "priority": "High",
       "ideal_refs": [],
       "spec_refs": [],
@@ -2554,7 +2556,7 @@
       "id": "099",
       "title": "Remove dev-only backcompat disclaimer once production-ready",
       "path": "docs/stories/story-099-remove-dev-backcompat-note.md",
-      "status": "To Do",
+      "status": "Won't Do",
       "priority": "Unknown",
       "ideal_refs": [],
       "spec_refs": [],
@@ -2669,7 +2671,7 @@
       "id": "104",
       "title": "Gamebook Output File Tweaks",
       "path": "docs/stories/story-104-gamebook-output-tweaks.md",
-      "status": "In Progress",
+      "status": "Obsolete",
       "priority": "High",
       "ideal_refs": [],
       "spec_refs": [],
@@ -3463,7 +3465,7 @@
       "id": "136",
       "title": "Parallelize Crop Detection and Table Rescue Stages",
       "path": "docs/stories/story-136-pipeline-stage-parallelism.md",
-      "status": "Draft",
+      "status": "Obsolete",
       "priority": "High",
       "ideal_refs": [
         "Ideal \"instant\" processing \u2014 \"A 400-page scanned book processes before you finish your coffee\"",
@@ -6168,6 +6170,49 @@
       "legacy_build_map_refs": "",
       "metadata_source": "frontmatter",
       "missing_frontmatter_keys": []
+    },
+    {
+      "id": "195",
+      "title": "Clean Up Legacy Active Story Drift and Refresh Audit Memory",
+      "path": "docs/stories/story-195-legacy-active-story-cleanup-and-audit-memory-refresh.md",
+      "status": "Done",
+      "priority": "High",
+      "ideal_refs": [
+        "The Execution Ideal",
+        "Transparency over magic."
+      ],
+      "spec_refs": [
+        "spec:8",
+        "spec:9"
+      ],
+      "decision_refs": [
+        "`AGENTS.md`, `docs/ideal.md`, `docs/spec.md`, `docs/methodology/state.yaml`, `docs/methodology/graph.json`, `docs/stories.md`, `docs/runbooks/migrate-problem-first-triage-and-story-workflow.md`, `docs/stories/story-190-fix-story-progression-and-anti-fragmentation-workflow.md`, `docs/stories/story-193-widen-xlsx-proof-and-recheck-pptx-runtime-seam.md`, `docs/stories/story-194-office-intake-recommendation-and-handoff-boundary.md`, and `None found after search in docs/decisions/ for a repo-local ADR that already resolves legacy-story quarantine or architecture-audit memory refresh`"
+      ],
+      "adr_ids": [],
+      "depends_on": [
+        "190"
+      ],
+      "category_refs": [
+        "spec:8",
+        "spec:9"
+      ],
+      "compromise_refs": [
+        "B7",
+        "B8"
+      ],
+      "input_coverage_refs": [],
+      "architecture_domains": [
+        "methodology_tooling"
+      ],
+      "roadmap_tags": [
+        "campaign:methodology-workflow-repair"
+      ],
+      "blocker_summary": "",
+      "blocker_evidence": "",
+      "unblock_condition": "",
+      "legacy_build_map_refs": "",
+      "metadata_source": "frontmatter",
+      "missing_frontmatter_keys": []
     }
   ],
   "adrs": [
@@ -7164,29 +7209,29 @@
         "methodology_tooling": {
           "label": "Methodology Tooling",
           "manual_priority": "medium",
-          "last_audited_at": "2026-04-04",
+          "last_audited_at": "2026-04-07",
           "stories_since_audit": 0,
           "recent_story_refs": [
-            "145",
-            "148",
             "187",
-            "188"
+            "188",
+            "190",
+            "195"
           ],
           "open_findings": [],
-          "notes": "Methodology graph/state migration and legacy metadata backfill are the active audit lane."
+          "notes": "Story 190 reset workflow semantics and Story 195 cleaned legacy active-story drift; no additional methodology-tooling restructure is due beyond keeping the truth surfaces honest."
         },
         "intake_and_routing": {
           "label": "Intake and Routing",
           "manual_priority": "medium",
-          "last_audited_at": "2026-04-02",
-          "stories_since_audit": 3,
+          "last_audited_at": "2026-04-07",
+          "stories_since_audit": 0,
           "recent_story_refs": [
-            "176",
             "178",
-            "180"
+            "180",
+            "194"
           ],
           "open_findings": [],
-          "notes": "Maintained intake handoff and routing honesty."
+          "notes": "Story 194 refreshed the office recommendation and approved-handoff boundary: recommendation-only intake stays explicitly limited to `pdf` and `images_dir`, while office lanes remain direct explicit-recipe entry points."
         },
         "ocr_and_extraction": {
           "label": "OCR and Extraction",
@@ -7217,15 +7262,15 @@
         "doc_web_runtime": {
           "label": "doc-web Runtime",
           "manual_priority": "medium",
-          "last_audited_at": "2026-04-01",
-          "stories_since_audit": 2,
+          "last_audited_at": "2026-04-07",
+          "stories_since_audit": 0,
           "recent_story_refs": [
-            "173",
             "174",
-            "175"
+            "175",
+            "193"
           ],
           "open_findings": [],
-          "notes": "Stable runtime boundary with follow-up width still mostly in fixture/coverage work."
+          "notes": "Story 193 widened XLSX proof and rechecked the PPTX seam; the maintained office runtime boundary is currently honest, with PPTX still blocked rather than silently widened."
         }
       }
     },

@@ -1,3 +1,21 @@
+## [2026-04-08-01] - Clean legacy story drift and audit memory (Story 195)
+
+### Added
+- Added Story 195 to record the methodology cleanup that retired stale legacy active-story drift and refreshed architecture-audit memory
+
+### Changed
+- Changed legacy story metadata so stale uncategorized FF/gamebook stories no longer appear as active default-queue work, including normalizing Story 017 from the non-canonical `Complete` status to `Done`
+- Changed methodology audit-memory notes and recent-story references for methodology tooling, intake and routing, and doc-web runtime so the current office-line truth surfaces reflect Stories 193 through 195
+
+### Fixed
+- Fixed the generated methodology graph and story index so they no longer report any uncategorized non-done stories after the cleanup
+
+### Tested
+- `make methodology-compile`
+- `make methodology-check`
+- `make lint`
+- `make test`
+
 ## [2026-04-07-01] - Make office intake boundary explicit (Story 194)
 
 ### Added

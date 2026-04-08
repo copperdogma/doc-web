@@ -1,6 +1,6 @@
 ---
 title: Remove dev-only backcompat disclaimer once production-ready
-status: To Do
+status: "Won't Do"
 priority: Unknown
 ideal_refs: []
 spec_refs: []
@@ -16,7 +16,7 @@ legacy_system: ''
 
 # Story: Remove dev-only backcompat disclaimer once production-ready
 
-**Status**: To Do
+**Status**: Won't Do
 
 ---
 
@@ -44,3 +44,7 @@ legacy_system: ''
 - **Result:** No readiness decision yet.
 - **Notes:** Production readiness evidence not available in current session; need recent full-run results, stability criteria, and stakeholder approval. No changes made.
 - **Next:** Collect latest run reports and validation summaries, confirm acceptance criteria for “production-ready,” then proceed to remove disclaimer and update docs once approved.
+### 20260407-2346 — Reclassified as Won't Do during Story 195 cleanup
+- **Result:** Marked Won't Do so the backlog no longer implies a production-readiness transition is underway.
+- **Notes:** Fresh current-pass repo evidence shows `AGENTS.md` still intentionally carries the active-project mandate `ACTIVE PROJECT — NO BACKWARDS COMPAT`, and no current methodology state says the system is production-ready. This story was a placeholder for a future state that the project has not reached.
+- **Next:** Open a new readiness story if the repo ever genuinely transitions out of active-project mode.

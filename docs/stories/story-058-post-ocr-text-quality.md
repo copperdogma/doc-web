@@ -1,6 +1,6 @@
 ---
 title: Post-OCR Text Quality & Error Correction
-status: In Progress
+status: Obsolete
 priority: Unknown
 ideal_refs: []
 spec_refs: []
@@ -16,7 +16,7 @@ legacy_system: ''
 
 # Story: Post-OCR Text Quality & Error Correction
 
-**Status**: In Progress  
+**Status**: Obsolete
 **Created**: 2025-12-09  
 **Parent Story**: story-054 (canonical recipe - COMPLETE)
 
@@ -467,8 +467,10 @@ Improve post-OCR text quality by adding spell-check, character confusion detecti
 - **Result:** Story 058 validated against the 20-page canonical smoke; the repair table, regression script, and validator outputs are captured and documented, and we accept the remaining warnings as faithful artefacts of the source.
 - **Evidence:** `output/runs/story-058-canonical-ocr20-tess-bestpick8/repair_table.md`, `section_number_warnings_manual.jsonl` (portion 3), and `truncation_warnings_manual.jsonl` (reports truncated front-matter/gameplay snippets) plus the latest story log entries (20251213-0035/0043/0050/0105) showing the loop ran as expected.
 - **Next:** Continue rerunning the automation/regression after each smoke for traceability, but no further action is required right now—this story is finalized unless future scans change substantially.
-
-
+### 20260407-2346 — Reclassified as Obsolete during Story 195 cleanup
+- **Result:** Marked Obsolete rather than Done.
+- **Notes:** Fresh current-pass verification could not reproduce the story's cited proof surface from the current workspace: `output/runs/story-058-canonical-ocr20-tess-bestpick8/repair_table.md`, `section_number_warnings_manual.jsonl`, and `truncation_warnings_manual.jsonl` are not present under `output/runs/`. With the legacy FF OCR lane no longer in the maintained default mission and the fresh artifact proof missing, keeping this uncategorized story active would be less honest than retiring it.
+- **Next:** If post-OCR text-quality repair becomes active again on a maintained lane, start a new story with fresh run artifacts instead of reviving this historical shell.
 
 
 

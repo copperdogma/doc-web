@@ -88,20 +88,20 @@
       "methodology_tooling": {
         "label": "Methodology Tooling",
         "manual_priority": "medium",
-        "last_audited_at": "2026-04-04",
+        "last_audited_at": "2026-04-07",
         "stories_since_audit": 0,
-        "recent_story_refs": ["145", "148", "187", "188"],
+        "recent_story_refs": ["187", "188", "190", "195"],
         "open_findings": [],
-        "notes": "Methodology graph/state migration and legacy metadata backfill are the active audit lane."
+        "notes": "Story 190 reset workflow semantics and Story 195 cleaned legacy active-story drift; no additional methodology-tooling restructure is due beyond keeping the truth surfaces honest."
       },
       "intake_and_routing": {
         "label": "Intake and Routing",
         "manual_priority": "medium",
-        "last_audited_at": "2026-04-02",
-        "stories_since_audit": 3,
-        "recent_story_refs": ["176", "178", "180"],
+        "last_audited_at": "2026-04-07",
+        "stories_since_audit": 0,
+        "recent_story_refs": ["178", "180", "194"],
         "open_findings": [],
-        "notes": "Maintained intake handoff and routing honesty."
+        "notes": "Story 194 refreshed the office recommendation and approved-handoff boundary: recommendation-only intake stays explicitly limited to `pdf` and `images_dir`, while office lanes remain direct explicit-recipe entry points."
       },
       "ocr_and_extraction": {
         "label": "OCR and Extraction",
@@ -124,11 +124,11 @@
       "doc_web_runtime": {
         "label": "doc-web Runtime",
         "manual_priority": "medium",
-        "last_audited_at": "2026-04-01",
-        "stories_since_audit": 2,
-        "recent_story_refs": ["173", "174", "175"],
+        "last_audited_at": "2026-04-07",
+        "stories_since_audit": 0,
+        "recent_story_refs": ["174", "175", "193"],
         "open_findings": [],
-        "notes": "Stable runtime boundary with follow-up width still mostly in fixture/coverage work."
+        "notes": "Story 193 widened XLSX proof and rechecked the PPTX seam; the maintained office runtime boundary is currently honest, with PPTX still blocked rather than silently widened."
       }
     }
   },

@@ -114,17 +114,14 @@ Grouped by primary `spec:N` category. Stories without category refs remain in an
 | 187 | Methodology Graph + State Migration | High | Done | 148 | [story-187](stories/story-187-methodology-graph-state-migration.md) |
 | 188 | Legacy Methodology Metadata Backfill | High | Done | 187 | [story-188](stories/story-188-legacy-methodology-metadata-backfill.md) |
 | 190 | Fix Story Progression and Anti-Fragmentation Workflow | High | Done | 187, 188 | [story-190](stories/story-190-fix-story-progression-and-anti-fragmentation-workflow.md) |
+| 195 | Clean Up Legacy Active Story Drift and Refresh Audit Memory | High | Done | 190 | [story-195](stories/story-195-legacy-active-story-cleanup-and-audit-memory-refresh.md) |
 
 ### Legacy / Uncategorized Stories
 
 | ID | Title | Priority | Status | Link |
 |---|---|---|---|---|
-| 104 | Gamebook Output File Tweaks | High | In Progress | [story-104](stories/story-104-gamebook-output-tweaks.md) |
-| 021 | Pipeline dashboard UI polish (highlighting & pane layout) | Unknown | In Progress | [story-021](stories/story-021-dashboard-ui-polish.md) |
-| 028 | Market Discovery for doc-forge | Unknown | In Progress | [story-028](stories/story-028-market-discovery.md) |
-| 058 | Post-OCR Text Quality & Error Correction | Unknown | In Progress | [story-058](stories/story-058-post-ocr-text-quality.md) |
-| 136 | Parallelize Crop Detection and Table Rescue Stages | High | Draft | [story-136](stories/story-136-pipeline-stage-parallelism.md) |
 | 009 | Spatial Layout Understanding for Content Linearization | High | Done | [story-009](stories/story-009-layout-preserve.md) |
+| 077 | AI OCR Radical Simplification — Challenging the Escalation Assumption | High | Done | [story-077](stories/story-077-ai-ocr-simplification.md) |
 | 079 | Sequential Page Numbering Refactor — Dual-Field Provenance | High | Done | [story-079](stories/story-079-page-numbering-refactor.md) |
 | 081 | GPT‑5.1 AI‑First OCR Pipeline (HTML‑First) | High | Done | [story-081](stories/story-081-ai-ocr-gpt51-pipeline.md) |
 | 082 | Large-Image PDF Cost Optimization | High | Done | [story-082](stories/story-082-large-image-pdf-cost-optimization.md) |
@@ -170,11 +167,14 @@ Grouped by primary `spec:N` category. Stories without category refs remain in an
 | 010 | Coarse+fine portionizer & continuation merge | Unknown | Done | [story-010](stories/story-010-coarse-fine-merge.md) |
 | 012 | Automation wrapper (driver + config snapshots) | Unknown | Done | [story-012](stories/story-012-driver-automation.md) |
 | 013 | Cost/perf benchmarking and presets | Unknown | Done | [story-013](stories/story-013-cost-perf.md) |
+| 015 | Modular pipeline & module registry | Unknown | Done | [story-015](stories/story-015-modular-pipeline.md) |
 | 016 | Driver DAG & schema compatibility | Unknown | Done | [story-016](stories/story-016-driver-dag-schema.md) |
-| 017 | Module UX polish (params & outputs) | Unknown | Complete | [story-017](stories/story-017-module-ux.md) |
+| 017 | Module UX polish (params & outputs) | Unknown | Done | [story-017](stories/story-017-module-ux.md) |
 | 019 | Pipeline visibility dashboard | Unknown | Done | [story-019](stories/story-019-pipeline-visibility.md) |
 | 020 | Module encapsulation & shared common | Unknown | Done | [story-020](stories/story-020-module-encapsulation.md) |
+| 021 | Pipeline dashboard UI polish (highlighting & pane layout) | Unknown | Done | [story-021](stories/story-021-dashboard-ui-polish.md) |
 | 022 | Pipeline instrumentation (timing & cost) | Unknown | Done | [story-022](stories/story-022-instrumentation.md) |
+| 023 | Consolidate section target adapters | Unknown | Done | [story-023](stories/story-023-section-target-guard.md) |
 | 024 | Image Extraction & Section Association | Unknown | Done | [story-024](stories/story-024-image-cropper-followup.md) |
 | 025 | Module pruning & registry hygiene | Unknown | Done | [story-025](stories/story-025-module-prune.md) |
 | 026 | Onward to the Unknown — image-only → chapter-linked HTML | Unknown | Done | [story-026](stories/story-026-onward-unknown-arthur-lheureux.md) |
@@ -224,17 +224,18 @@ Grouped by primary `spec:N` category. Stories without category refs remain in an
 | 127 | OCR Model Eval for Genealogy / Table-Heavy Books | Unknown | Done | [story-127](stories/story-127-ocr-model-eval-genealogy.md) |
 | 128 | Onward Table Fidelity Verification | Unknown | Done | [story-128](stories/story-128-onward-table-fidelity-verification.md) |
 | 129 | HTML Output Polish + Image Integration | Unknown | Done | [story-129](stories/story-129-onward-html-output-polish.md) |
-| 077 | AI OCR Radical Simplification — Challenging the Escalation Assumption | High | To Do | [story-077](stories/story-077-ai-ocr-simplification.md) |
-| 015 | Modular pipeline & module registry | Unknown | To Do | [story-015](stories/story-015-modular-pipeline.md) |
-| 018 | Enrichment & alternate modules | Unknown | To Do | [story-018](stories/story-018-enrichment-alt-mods.md) |
-| 023 | Consolidate section target adapters | Unknown | To Do | [story-023](stories/story-023-section-target-guard.md) |
-| 099 | Remove dev-only backcompat disclaimer once production-ready | Unknown | To Do | [story-099](stories/story-099-remove-dev-backcompat-note.md) |
 | 075 | Booktype Text Cleanup Adapter (Downstream Normalization) | Low | Won't Do | [story-075](stories/story-075-booktype-text-cleanup-adapter.md) |
 | 080 | Central Escalation Cache (Premium OCR Overlay) | Low | Won't Do | [story-080](stories/story-080-central-escalation-cache.md) |
 | 038 | Agentic Pipeline Coordinator | Medium | Won't Do | [story-038](stories/story-038-agentic-pipeline-coordinator.md) |
 | 011 | AI planner to assemble pipelines | Unknown | Won't Do | [story-011](stories/story-011-ai-planner.md) |
+| 028 | Market Discovery for doc-forge | Unknown | Won't Do | [story-028](stories/story-028-market-discovery.md) |
 | 066 | FF Pipeline Accel + Accuracy Guardrails | Unknown | Won't Do | [story-066](stories/story-066-ff-pipeline-accel-accuracy.md) |
+| 099 | Remove dev-only backcompat disclaimer once production-ready | Unknown | Won't Do | [story-099](stories/story-099-remove-dev-backcompat-note.md) |
 | 111 | Edge-Case Scanner — Special-Case Detection Patterns | Unknown | Won't Do | [story-111](stories/story-111-edgecase-scanner-special-cases.md) |
 | 130 | Book Website Template Module | Unknown | Won't Do | [story-130](stories/story-130-onward-book-website-template.md) |
+| 104 | Gamebook Output File Tweaks | High | Obsolete | [story-104](stories/story-104-gamebook-output-tweaks.md) |
+| 136 | Parallelize Crop Detection and Table Rescue Stages | High | Obsolete | [story-136](stories/story-136-pipeline-stage-parallelism.md) |
+| 018 | Enrichment & alternate modules | Unknown | Obsolete | [story-018](stories/story-018-enrichment-alt-mods.md) |
 | 029 | Audit model lineup vs latest OpenAI sheets | Unknown | Obsolete | [story-029](stories/story-029-model-audit-openai.md) |
+| 058 | Post-OCR Text Quality & Error Correction | Unknown | Obsolete | [story-058](stories/story-058-post-ocr-text-quality.md) |
 | 072 | OCR Spell-Weighted Voting Enhancement | Unknown | Obsolete | [story-072](stories/story-072-ocr-spell-weighted-voting.md) |

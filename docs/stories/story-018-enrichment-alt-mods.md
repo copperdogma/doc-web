@@ -1,6 +1,6 @@
 ---
 title: Enrichment & alternate modules
-status: To Do
+status: Obsolete
 priority: Unknown
 ideal_refs: []
 spec_refs: []
@@ -16,7 +16,7 @@ legacy_system: ''
 
 # Story: Enrichment & alternate modules
 
-**Status**: To Do
+**Status**: Obsolete
 
 ---
 
@@ -92,3 +92,7 @@ legacy_system: ''
 - **Result:** Documentation update.
 - **Notes:** `enrich_struct_v1`, `portionize_page_v1`, `consensus_spanfill_v1`, and related alt recipes were removed in Story 025. Core pipeline remains; reintroduce via new story if enrichment alt path is needed again.
 - **Next:** Consider new enrichment design if requirements return; otherwise treat this story as historical context.
+### 20260407-2346 — Reclassified as Obsolete during Story 195 cleanup
+- **Result:** Marked Obsolete so the active queue no longer implies this alternate enrichment lane still exists.
+- **Notes:** Fresh current-pass repo review confirms the story's experimental modules and recipes were later pruned, matching the existing 20251126-1127 note. No maintained `doc-web` or intake story depends on restoring `enrich_struct_v1`, `portionize_page_v1`, `consensus_spanfill_v1`, or the related alt recipes.
+- **Next:** Open a new scoped story if an alternate enrichment path becomes worth rebuilding under current requirements.

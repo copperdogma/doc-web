@@ -1,6 +1,6 @@
 ---
 title: Market Discovery for doc-forge
-status: In Progress
+status: "Won't Do"
 priority: Unknown
 ideal_refs: []
 spec_refs: []
@@ -16,7 +16,7 @@ legacy_system: ''
 
 # Story: Market Discovery for doc-forge
 
-**Status**: In Progress
+**Status**: Won't Do
 
 ---
 
@@ -55,3 +55,7 @@ legacy_system: ''
 ### 20251126-1200 — Community scan and opportunity mapping
 - **Result:** Collected five active channels (DIYBookScanner, three Reddit niches, Docling momentum) with concrete pain/interest signals; mapped posting angles. No outreach launched yet.
 - **Next:** Prepare demo artifact + tailored blurbs; schedule first post on DIYBookScanner forum.
+### 20260407-2346 — Reclassified as Won't Do during Story 195 cleanup
+- **Result:** Marked Won't Do so the planning surface stops implying outreach is an active mission lane.
+- **Notes:** The story produced research notes only; no posting or feedback loop was ever launched. The maintained methodology surfaces now center on intake/runtime honesty for `doc-web`, not go-to-market work, so leaving this uncategorized story `In Progress` was misleading.
+- **Next:** Create a fresh outreach story only if distribution work becomes an explicit current priority.

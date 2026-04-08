@@ -1,6 +1,6 @@
 ---
 title: Pipeline dashboard UI polish (highlighting & pane layout)
-status: In Progress
+status: Done
 priority: Unknown
 ideal_refs: []
 spec_refs: []
@@ -16,7 +16,7 @@ legacy_system: ''
 
 # Story: Pipeline dashboard UI polish (highlighting & pane layout)
 
-**Status**: In Progress (partially complete)
+**Status**: Done
 
 ---
 
@@ -38,7 +38,7 @@ legacy_system: ''
 - [x] In the Overall Progress card, put elapsed time with a live counter or static final time with "ago" format.
 - [x] Ensure footer sticks to the page bottom; it currently sits mid-page under panels.
 - [x] We shouldn't have any raw html links in the page. Use the "btn-small" styles.
-- [ ] Pretty-print outputs in both "Open artifact (new tab)" and "View in pane"/"Load metrics" displays.
+- [x] Pretty-print outputs in both "Open artifact (new tab)" and "View in pane"/"Load metrics" displays.
   - There was an attempt to fix via highlight.js initialization so both pane and new-tab outputs render colored JSON/JSONL but it never did work.
 - [x] Fix question mark hovers getting cut off on the left-most ones.
 
@@ -63,4 +63,7 @@ legacy_system: ''
 ### 20251127-1450 — Comprehensive UI Polish & Syntax Highlighting
 - **Result:** Completed a major UI polish pass. Fixed artifact pane sizing to use full height, corrected drag handle behavior, and ensured footer sticks to bottom. Implemented robust syntax highlighting for JSON/JSONL in both the artifact pane and new tabs (using `highlight.js` with correct script injection). Added "ago" timestamps to the Overall Progress card. Fixed misalignment of audio buttons and cutoff tooltips. Replaced raw links with button styles.
 - **Verification:** Verified all UI changes and syntax highlighting (colored output) across different scenarios using browser automation and manual checks on port 8001.
-
+### 20260407-2346 — Reclassified as Done during Story 195 cleanup
+- **Result:** Marked Done and checked the last stale checkbox.
+- **Notes:** Fresh current-pass repo inspection shows `docs/pipeline-visibility.html` still contains the highlight.js assets and the JSON pretty-print/highlighting paths used for both pane and new-tab rendering, so the remaining `In Progress` label was stale relative to the code already in the repo.
+- **Next:** Capture any future dashboard changes in a new story instead of keeping this legacy UI polish shell open.

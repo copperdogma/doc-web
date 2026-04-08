@@ -1,6 +1,6 @@
 ---
 title: "AI OCR Radical Simplification \u2014 Challenging the Escalation Assumption"
-status: To Do
+status: Done
 priority: High
 ideal_refs: []
 spec_refs: []
@@ -16,7 +16,7 @@ legacy_system: ''
 
 # Story: AI OCR Radical Simplification — Challenging the Escalation Assumption
 
-**Status**: To Do  
+**Status**: Done
 **Created**: 2025-12-17  
 **Updated**: 2025-12-18 (Added Mistral OCR 3)
 **Priority**: High
@@ -441,3 +441,7 @@ Return your findings in a concise, structured report suitable for engineering de
 - **Result:** Success; remaining Success Criteria and Tasks marked as moved to Story 081.
 - **Notes:** Story 077 is now complete; pipeline design continues in Story 081.
 - **Next:** Proceed with Story 081 implementation.
+### 20260407-2346 — Reclassified as Done during Story 195 cleanup
+- **Result:** Marked Done so the story index matches the already-closed benchmarking lane.
+- **Notes:** Fresh current-pass repo evidence still shows the successor path exists and is closed: `docs/stories/story-081-ai-ocr-gpt51-pipeline.md` is present with status `Done`. The lingering `To Do` status on Story 077 conflicted with its own final work-log entry and with the completed follow-on story.
+- **Next:** Treat any new AI-first OCR investigation as a separate current story.
