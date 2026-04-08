@@ -364,8 +364,6 @@ def _call_vlm_boxes(
                 except Exception:
                     continue
                 box = {"x0": x0, "y0": y0, "x1": x1, "y1": y1}
-                if schema_mode:
-                    box["_caption_schema"] = True
                 if isinstance(cap_box, dict):
                     try:
                         cx0 = float(cap_box.get("x0"))
@@ -505,233 +503,6 @@ def _call_vlm_caption_boxes(
     except Exception:
         boxes = []
     return boxes, usage, request_id, raw
-
-
-def _refine_boxes_with_vlm(
-    page_img: Image.Image,
-    boxes: List[Dict[str, int]],
-    model: str,
-    temperature: float,
-    max_tokens: int,
-    timeout_seconds: Optional[float],
-    min_area_ratio: float,
-) -> List[Dict[str, int]]:
-    refined = []
-    for box in boxes:
-        x0, y0, x1, y1 = box["x0"], box["y0"], box["x1"], box["y1"]
-        if x1 <= x0 or y1 <= y0:
-            refined.append(box)
-            continue
-        crop = page_img.crop((x0, y0, x1, y1))
-        try:
-            import tempfile
-            with tempfile.TemporaryDirectory() as tmpdir:
-                tmp_path = Path(tmpdir) / "crop.jpg"
-                crop.save(tmp_path, format="JPEG", quality=92)
-                image_data = _encode_image(str(tmp_path))
-        except Exception:
-            refined.append(box)
-            continue
-        try:
-            vlm_boxes, _, _, _ = _call_vlm_boxes(
-                model,
-                image_data,
-                expected_count=1,
-                alt_hints=None,
-                temperature=temperature,
-                max_tokens=max_tokens,
-                timeout_seconds=timeout_seconds,
-                extra_instructions=(
-                    "This is a cropped image. Return ONE tight box around the image content only. "
-                    "Exclude any caption or text. If no image content remains, return []."
-                ),
-            )
-        except Exception:
-            refined.append(box)
-            continue
-        if not vlm_boxes:
-            refined.append(box)
-            continue
-        w, h = crop.size
-        px = _normalize_box(vlm_boxes[0], w, h)
-        if not px:
-            refined.append(box)
-            continue
-        new_w = px["x1"] - px["x0"]
-        new_h = px["y1"] - px["y0"]
-        old_area = max(1, (x1 - x0) * (y1 - y0))
-        new_area = new_w * new_h
-        if new_area / float(old_area) < min_area_ratio:
-            refined.append(box)
-            continue
-        new_box = {
-            "x0": x0 + px["x0"],
-            "y0": y0 + px["y0"],
-            "x1": x0 + px["x1"],
-            "y1": y0 + px["y1"],
-            "width": new_w,
-            "height": new_h,
-        }
-        _copy_detector_meta(box, new_box)
-        refined.append(new_box)
-    return refined
-
-
-_VALIDATE_CROP_PROMPT_BASE = """This is a cropped illustration extracted from a SCANNED HISTORICAL BOOK (genealogy, early 1900s-1980s). Evaluate crop quality.
-
-Return JSON: {"verdict": "pass" or "fail", "reason": "brief explanation"}
-
-IMPORTANT CONTEXT — these are scanned pages from old books. The following are NORMAL and should NOT cause a fail:
-- Portrait photos cropped at the chest, waist, or knees (standard portrait composition)
-- Group photos where some people at edges are partially visible (natural group photo framing)
-- White corners around oval or round portrait photos
-- White/light backgrounds in line drawings, sketches, or illustrations
-- Landscape photos with sky, grass, or other natural "empty" areas
-- Handwritten annotations, stamps, or dates ON the original photograph
-- Faint page numbers at the very edge/corner from the book scan
-- Halftone dot patterns or grain from the printing/scanning process
-- Historical text printed directly ON a photograph (e.g. "Smith family, 1920")
-
-FAIL ONLY for these CLEAR crop errors:
-1. EXTERNAL PAGE TEXT: Printed body text, italic captions, or typed text from the BOOK PAGE (not from the photo itself) is visible in the crop
-2. MASSIVE BLANK SPACE: More than 30% of the crop is empty white with no image content at all (not counting photo backgrounds or drawing backgrounds)
-3. OBVIOUS WRONG CROP: The crop clearly contains the wrong region (e.g., mostly text with a tiny image fragment)
-
-When in doubt, PASS. A slightly imperfect crop is better than rejecting a valid image."""
-
-
-def _build_validate_prompt(box: dict) -> str:
-    """Build a validation prompt with detector context injected."""
-    parts = [_VALIDATE_CROP_PROMPT_BASE]
-
-    context_lines = []
-    desc = box.get("_description", "")
-    if desc:
-        context_lines.append(f"DETECTOR DESCRIPTION: {desc}")
-    if box.get("_contains_text"):
-        reason = box.get("_text_reason", "inherent to the image")
-        context_lines.append(
-            f"DETECTOR SAYS TEXT IS EXPECTED: {reason}. "
-            "Do NOT fail this crop for containing that text — it is part of the image."
-        )
-    issues = box.get("_source_issues", "")
-    if issues:
-        context_lines.append(
-            f"SOURCE PHOTO ISSUES: {issues}. "
-            "These are defects in the original photo, NOT crop errors. Do NOT fail for these."
-        )
-
-    if context_lines:
-        parts.append("")
-        parts.append("DETECTOR CONTEXT (from the model that identified this image):")
-        parts.extend(context_lines)
-
-    parts.append("")
-    parts.append("Return ONLY valid JSON.")
-    return "\n".join(parts)
-
-
-def _validate_crop_with_vlm(
-    page_img: Image.Image,
-    boxes: List[Dict[str, int]],
-    model: str,
-    temperature: float,
-    max_tokens: int,
-    timeout_seconds: Optional[float],
-) -> List[Dict[str, int]]:
-    """Validate crops with a VLM quality gate. Returns only boxes that pass."""
-    import json as _json
-    import re as _re
-    validated = []
-    for box in boxes:
-        x0, y0, x1, y1 = box["x0"], box["y0"], box["x1"], box["y1"]
-        if x1 <= x0 or y1 <= y0:
-            validated.append(box)
-            continue
-        crop = page_img.crop((x0, y0, x1, y1))
-        try:
-            import tempfile
-            with tempfile.TemporaryDirectory() as tmpdir:
-                tmp_path = Path(tmpdir) / "crop.jpg"
-                crop.save(tmp_path, format="JPEG", quality=92)
-                image_data = _encode_image(str(tmp_path))
-        except Exception:
-            validated.append(box)
-            continue
-        prompt = _build_validate_prompt(box)
-        try:
-            if _is_gemini_model(model):
-                if GeminiVisionClient is None:
-                    raise RuntimeError("google-genai package required")
-                gclient = GeminiVisionClient()
-                raw, _, _ = gclient.generate_vision(
-                    model=model,
-                    system_prompt=prompt,
-                    user_text="Evaluate this crop.",
-                    image_data=image_data,
-                    temperature=temperature,
-                    max_tokens=max_tokens,
-                )
-            else:
-                if OpenAI is None:
-                    raise RuntimeError("openai package required")
-                client = OpenAI(timeout=timeout_seconds) if timeout_seconds else OpenAI()
-                if hasattr(client, "responses"):
-                    resp = client.responses.create(
-                        model=model,
-                        temperature=temperature,
-                        max_output_tokens=max_tokens,
-                        input=[
-                            {"role": "system", "content": [{"type": "input_text", "text": prompt}]},
-                            {"role": "user", "content": [
-                                {"type": "input_text", "text": "Evaluate this crop."},
-                                {"type": "input_image", "image_url": image_data},
-                            ]},
-                        ],
-                    )
-                    raw = resp.output_text or ""
-                else:
-                    resp = client.chat.completions.create(
-                        model=model,
-                        temperature=temperature,
-                        max_tokens=max_tokens,
-                        messages=[
-                            {"role": "system", "content": prompt},
-                            {"role": "user", "content": [
-                                {"type": "text", "text": "Evaluate this crop."},
-                                {"type": "image_url", "image_url": {"url": image_data}},
-                            ]},
-                        ],
-                    )
-                    raw = resp.choices[0].message.content or ""
-        except Exception as exc:
-            _log(f"    Validate VLM error: {exc}")
-            validated.append(box)
-            continue
-        # Parse verdict
-        verdict = "pass"
-        reason = ""
-        try:
-            text = raw.strip()
-            if "```" in text:
-                parts = text.split("```")
-                if len(parts) >= 2:
-                    text = parts[1]
-                    if text.startswith("json"):
-                        text = text[4:]
-            parsed = _json.loads(text.strip())
-            verdict = parsed.get("verdict", "pass").lower()
-            reason = parsed.get("reason", "")
-        except Exception:
-            m = _re.search(r'"verdict"\s*:\s*"(pass|fail)"', raw, _re.IGNORECASE)
-            if m:
-                verdict = m.group(1).lower()
-        if verdict == "fail":
-            _log(f"    Validate: REJECT ({x0},{y0})-({x1},{y1}): {reason}")
-        else:
-            _log(f"    Validate: pass  ({x0},{y0})-({x1},{y1})")
-            validated.append(box)
-    return validated
 
 
 def _normalize_box(box: Dict[str, float], w: int, h: int) -> Optional[Dict[str, int]]:
@@ -1805,6 +1576,38 @@ def _log(message: str):
     print(message, flush=True)
 
 
+def _prune_stale_crop_images(
+    images_dir: str,
+    *,
+    page_numbers: Optional[Set[int]] = None,
+    keep_filenames: Optional[Set[str]] = None,
+) -> int:
+    """Remove stale crop image files after targeted or full reruns."""
+    images_path = Path(images_dir)
+    if not images_path.exists():
+        return 0
+
+    removed = 0
+    if page_numbers is not None:
+        for page_num in page_numbers:
+            for old_file in images_path.glob(f"page-{page_num:03d}-*"):
+                if not old_file.is_file():
+                    continue
+                old_file.unlink()
+                removed += 1
+        return removed
+
+    keep = keep_filenames or set()
+    for old_file in images_path.iterdir():
+        if not old_file.is_file():
+            continue
+        if old_file.name in keep:
+            continue
+        old_file.unlink()
+        removed += 1
+    return removed
+
+
 def _is_bw_image(img: Image.Image) -> bool:
     """Check if image is black & white (grayscale or near-grayscale).
     
@@ -2496,19 +2299,8 @@ def crop_illustrations_guided(
     rescue_timeout_seconds: Optional[float] = None,
     rescue_include_alt: bool = False,
     rescue_always: bool = False,
-    rescue_retry_on_overlap: bool = False,
-    rescue_retry_on_missing: bool = False,
-    rescue_retry_max: int = 1,
-    rescue_require_caption_schema: bool = False,
-    rescue_retry_on_text: bool = False,
     rescue_caption_second_pass: bool = False,
     rescue_caption_max_tokens: int = 400,
-    rescue_refine_boxes: bool = False,
-    rescue_refine_max_tokens: int = 400,
-    rescue_refine_min_area_ratio: float = 0.05,
-    rescue_validate_crops: bool = False,
-    rescue_validate_model: Optional[str] = None,
-    rescue_validate_max_tokens: int = 300,
     refine_with_nonwhite: bool = False,
     refine_close_kernel: int = 5,
     refine_close_iterations: int = 1,
@@ -2689,11 +2481,9 @@ def crop_illustrations_guided(
         _log(f"--only-pages: filtered to {len(pages_with_images)} pages {sorted(only_pages_set)}")
 
         # Clean up old crop images for targeted pages so stale files don't linger
-        for pn in only_pages_set:
-            pattern = os.path.join(images_dir, f"page-{pn:03d}-*")
-            import glob as _glob
-            for old_file in _glob.glob(pattern):
-                os.remove(old_file)
+        removed = _prune_stale_crop_images(images_dir, page_numbers=only_pages_set)
+        if removed:
+            _log(f"Removed {removed} stale crop images for targeted pages")
 
     rescue_used = 0
     for page_rec in pages_with_images:
@@ -2883,7 +2673,6 @@ def crop_illustrations_guided(
             )
 
         image_data = None
-        cv_boxes_backup = [dict(b) for b in boxes]  # save CV boxes for fallback if VLM boxes all fail validation
         if rescue_model and rescue_used < rescue_max_pages and (rescue_always or len(boxes) < expected_count):
             try:
                 img = cv2.imread(str(source_image_path), cv2.IMREAD_GRAYSCALE)
@@ -2905,8 +2694,6 @@ def crop_illustrations_guided(
                 # Fix Gemini's axis-swap tendency: [y,x,y,x] → [x,y,x,y]
                 if _is_gemini_model(rescue_model) and vlm_boxes:
                     vlm_boxes = _auto_fix_axis_swap(vlm_boxes, w, h)
-                has_caption_schema = any(b.get("_caption_schema") for b in vlm_boxes)
-                _log(f"    VLM rescue: caption schema returned={has_caption_schema}")
                 debug_dir = os.environ.get("CROP_VLM_DEBUG_DIR")
                 if debug_dir:
                     ensure_dir(debug_dir)
@@ -2939,80 +2726,9 @@ def crop_illustrations_guided(
                     px["area_ratio"] = round(area_ratio, 4)
                     normalized.append(px)
                 if normalized:
-                    retry = False
-                    deduped = _dedupe_boxes(normalized, iou_threshold=0.9, center_threshold=8, size_ratio_threshold=0.03)
-                    if rescue_retry_on_overlap and len(deduped) < len(normalized) and len(deduped) < expected_count:
-                        retry = True
-                    if rescue_retry_on_missing and len(normalized) < expected_count:
-                        retry = True
-                    if rescue_require_caption_schema and not has_caption_schema:
-                        retry = True
-                    if rescue_retry_on_text:
-                        edge_ratio = text_edge_max_ratio if text_edge_max_ratio > 0 else 0.2
-                        for box in normalized:
-                            if _box_has_text_band(img, box, white_threshold, edge_ratio):
-                                retry = True
-                                break
-                    if retry and rescue_retry_max > 0:
-                        _log("    VLM rescue: retrying due to overlap/missing boxes")
-                        retry_instructions = (
-                            f"The page may contain multiple separate images. "
-                            f"Return up to {expected_count} distinct boxes. "
-                            "Do not return overlapping boxes. "
-                            "If images are stacked vertically, return one box per image. "
-                            "Exclude captions and all text."
-                        )
-                        vlm_boxes, usage, request_id, vlm_raw = _call_vlm_boxes(
-                            rescue_model,
-                            image_data,
-                            expected_count,
-                            alt_hints,
-                            rescue_temperature,
-                            rescue_max_tokens,
-                            rescue_timeout_seconds,
-                            extra_instructions=retry_instructions,
-                        )
-                        # Fix Gemini's axis-swap tendency on retry too
-                        if _is_gemini_model(rescue_model) and vlm_boxes:
-                            vlm_boxes = _auto_fix_axis_swap(vlm_boxes, w, h)
-                        has_caption_schema = any(b.get("_caption_schema") for b in vlm_boxes)
-                        debug_dir = os.environ.get("CROP_VLM_DEBUG_DIR")
-                        if debug_dir:
-                            ensure_dir(debug_dir)
-                            debug_path = os.path.join(debug_dir, f"page-{page_num:03d}-vlm-retry.json")
-                            with open(debug_path, "w", encoding="utf-8") as f:
-                                json.dump(
-                                    {
-                                        "page_number": page_num,
-                                        "expected_count": expected_count,
-                                        "alt_hints": alt_hints or [],
-                                        "raw": vlm_raw,
-                                    },
-                                    f,
-                                    ensure_ascii=True,
-                                    indent=2,
-                                )
-                        normalized = []
-                        for box in vlm_boxes:
-                            px = _normalize_box(box, w, h)
-                            if not px:
-                                continue
-                            cap_box = box.get("caption_box")
-                            if isinstance(cap_box, dict):
-                                cap_px = _normalize_box(cap_box, w, h)
-                                if cap_px:
-                                    px["caption_box"] = cap_px
-                            px["_from_vlm"] = True
-                            _copy_detector_meta(box, px)
-                            area_ratio = (px["width"] * px["height"]) / float(w * h)
-                            px["area_ratio"] = round(area_ratio, 4)
-                            normalized.append(px)
-                    if normalized:
-                        boxes = normalized[:expected_count]
-                        rescue_used += 1
-                        _log(f"    VLM rescue: using {len(boxes)} box(es) (request {request_id})")
-                    else:
-                        _log("    VLM rescue: no valid boxes parsed")
+                    boxes = normalized[:expected_count]
+                    rescue_used += 1
+                    _log(f"    VLM rescue: using {len(boxes)} box(es) (request {request_id})")
                 else:
                     _log("    VLM rescue: no valid boxes parsed")
             except Exception as exc:
@@ -3265,143 +2981,6 @@ def crop_illustrations_guided(
                         _log(f"    Trimmed caption: page {page_num} box {idx} y1 {box.get('y1')} -> {new_box.get('y1')}")
                     trimmed.append(new_box)
                 boxes_sorted = trimmed
-
-        if rescue_refine_boxes and rescue_model and boxes_sorted:
-            try:
-                if page_img is None:
-                    page_img = Image.open(source_image_path)
-                boxes_sorted = _refine_boxes_with_vlm(
-                    page_img,
-                    boxes_sorted,
-                    model=rescue_model,
-                    temperature=rescue_temperature,
-                    max_tokens=rescue_refine_max_tokens,
-                    timeout_seconds=rescue_timeout_seconds,
-                    min_area_ratio=rescue_refine_min_area_ratio,
-                )
-            except Exception as exc:
-                _log(f"    VLM refine failed: {exc}")
-
-        validate_model = rescue_validate_model or rescue_model
-        if rescue_validate_crops and validate_model and boxes_sorted:
-            pre_count = len(boxes_sorted)
-            try:
-                if page_img is None:
-                    page_img = Image.open(source_image_path)
-                boxes_sorted = _validate_crop_with_vlm(
-                    page_img,
-                    boxes_sorted,
-                    model=validate_model,
-                    temperature=rescue_temperature,
-                    max_tokens=rescue_validate_max_tokens,
-                    timeout_seconds=rescue_timeout_seconds,
-                )
-                rejected = pre_count - len(boxes_sorted)
-                if rejected:
-                    _log(f"    Validation: {rejected}/{pre_count} crops rejected by {validate_model}")
-                    # Fallback: if ALL VLM boxes were rejected, revert to CV-detected boxes
-                    if not boxes_sorted and cv_boxes_backup:
-                        boxes_sorted = sorted(cv_boxes_backup, key=lambda b: (b["y0"], b["x0"]))
-                        _log(f"    Validation fallback: using {len(boxes_sorted)} CV-detected box(es)")
-                else:
-                    _log(f"    Validation: {pre_count}/{pre_count} crops passed ({validate_model})")
-            except Exception as exc:
-                _log(f"    VLM validate failed: {exc}")
-
-        # Auto-retry: if post-validation crop count != expected, retry VLM detection.
-        # VLM non-determinism means a second call often returns different (better) boxes.
-        if (rescue_validate_crops and validate_model and rescue_model and
-                len(boxes_sorted) != expected_count):
-            _log(f"    Auto-retry: {len(boxes_sorted)}/{expected_count} crops after validation, re-running VLM")
-            if image_data is None:
-                image_data = _encode_image(source_image_path)
-            retry_instructions = (
-                f"IMPORTANT: This page contains exactly {expected_count} distinct images. "
-                f"Return exactly {expected_count} tight bounding boxes. "
-                "Each box must tightly enclose ONE image only — do not include surrounding body text. "
-                "Do not combine multiple images into one box."
-            )
-            try:
-                retry_vlm_boxes, _, retry_req_id, _ = _call_vlm_boxes(
-                    rescue_model, image_data, expected_count,
-                    ocr_descriptions if rescue_include_alt else None,
-                    rescue_temperature, rescue_max_tokens, rescue_timeout_seconds,
-                    extra_instructions=retry_instructions,
-                )
-                # Fix Gemini's axis-swap tendency on auto-retry
-                if _is_gemini_model(rescue_model) and retry_vlm_boxes:
-                    retry_vlm_boxes = _auto_fix_axis_swap(retry_vlm_boxes, img_w, img_h)
-                retry_normalized = []
-                for rbox in retry_vlm_boxes:
-                    rpx = _normalize_box(rbox, img_w, img_h)
-                    if not rpx:
-                        continue
-                    cap_box = rbox.get("caption_box")
-                    if isinstance(cap_box, dict):
-                        cap_px = _normalize_box(cap_box, img_w, img_h)
-                        if cap_px:
-                            rpx["caption_box"] = cap_px
-                    rpx["_from_vlm"] = True
-                    _copy_detector_meta(rbox, rpx)
-                    rpx["area_ratio"] = round(
-                        (rpx["width"] * rpx["height"]) / float(img_w * img_h), 4
-                    )
-                    retry_normalized.append(rpx)
-                if retry_normalized:
-                    retry_boxes = sorted(retry_normalized[:expected_count], key=lambda b: (b["y0"], b["x0"]))
-                    # Apply layout text trim
-                    if trim_layout_text and layout_engine is not None:
-                        cached_lb = layout_text_cache.get(page_num)
-                        if cached_lb:
-                            retry_boxes = [
-                                _trim_box_by_layout_text(
-                                    rb, cached_lb,
-                                    max_gap_ratio=layout_text_max_gap_ratio,
-                                    bottom_band_ratio=layout_text_bottom_band_ratio,
-                                    top_band_ratio=layout_text_top_band_ratio,
-                                    margin_px=layout_text_margin_px,
-                                    min_width_ratio=layout_text_min_width_ratio,
-                                    max_height_ratio=layout_text_max_height_ratio,
-                                ) for rb in retry_boxes
-                            ]
-                    # Apply caption boxes
-                    retry_boxes = [_apply_caption_box(b, caption_margin_px, caption_relax_max_gap_ratio) for b in retry_boxes]
-                    # Refine boxes
-                    if rescue_refine_boxes:
-                        try:
-                            if page_img is None:
-                                page_img = Image.open(source_image_path)
-                            retry_boxes = _refine_boxes_with_vlm(
-                                page_img, retry_boxes,
-                                model=rescue_model, temperature=rescue_temperature,
-                                max_tokens=rescue_refine_max_tokens,
-                                timeout_seconds=rescue_timeout_seconds,
-                                min_area_ratio=rescue_refine_min_area_ratio,
-                            )
-                        except Exception:
-                            pass
-                    # Validate
-                    if page_img is None:
-                        page_img = Image.open(source_image_path)
-                    retry_validated = _validate_crop_with_vlm(
-                        page_img, retry_boxes,
-                        model=validate_model, temperature=rescue_temperature,
-                        max_tokens=rescue_validate_max_tokens,
-                        timeout_seconds=rescue_timeout_seconds,
-                    )
-                    _log(f"    Auto-retry: {len(retry_validated)}/{len(retry_normalized)} passed validation (request {retry_req_id})")
-                    # Use retry result if closer to expected count
-                    if abs(len(retry_validated) - expected_count) < abs(len(boxes_sorted) - expected_count):
-                        boxes_sorted = sorted(retry_validated, key=lambda b: (b["y0"], b["x0"]))
-                        _log(f"    Auto-retry: improved to {len(boxes_sorted)}/{expected_count} crops")
-                    elif len(retry_validated) == len(boxes_sorted) and len(retry_validated) > 0:
-                        _log(f"    Auto-retry: same count ({len(retry_validated)}), keeping original")
-                    else:
-                        _log(f"    Auto-retry: no improvement ({len(retry_validated)} vs {len(boxes_sorted)}), keeping original")
-                else:
-                    _log("    Auto-retry: VLM returned no valid boxes, keeping original")
-            except Exception as exc:
-                _log(f"    Auto-retry VLM failed: {exc}")
 
         for box in boxes_sorted:
             if "area_ratio" not in box:
@@ -3702,32 +3281,6 @@ def main():
         help="Always use rescue model on image pages (overrides CV boxes)"
     )
     parser.add_argument(
-        "--rescue-retry-on-overlap",
-        action="store_true",
-        help="Retry VLM once if returned boxes overlap heavily"
-    )
-    parser.add_argument(
-        "--rescue-retry-on-missing",
-        action="store_true",
-        help="Retry VLM once if returned box count is below expected"
-    )
-    parser.add_argument(
-        "--rescue-retry-on-text",
-        action="store_true",
-        help="Retry VLM once if detected text bands remain inside crops"
-    )
-    parser.add_argument(
-        "--rescue-retry-max",
-        type=int,
-        default=1,
-        help="Maximum number of VLM retries (default 1)"
-    )
-    parser.add_argument(
-        "--rescue-require-caption-schema",
-        action="store_true",
-        help="Require VLM to return image_box/caption_box schema (retry if not)"
-    )
-    parser.add_argument(
         "--rescue-caption-second-pass",
         action="store_true",
         help="Run a second VLM pass to locate caption boxes"
@@ -3737,38 +3290,6 @@ def main():
         type=int,
         default=400,
         help="Max tokens for VLM caption pass (default 400)"
-    )
-    parser.add_argument(
-        "--rescue-refine-boxes",
-        action="store_true",
-        help="Refine each crop with a second VLM call on the crop"
-    )
-    parser.add_argument(
-        "--rescue-refine-max-tokens",
-        type=int,
-        default=400,
-        help="Max tokens for VLM refine pass (default 400)"
-    )
-    parser.add_argument(
-        "--rescue-refine-min-area-ratio",
-        type=float,
-        default=0.05,
-        help="Minimum area ratio vs original crop to accept VLM refine (default 0.05)"
-    )
-    parser.add_argument(
-        "--rescue-validate-crops",
-        action="store_true",
-        help="Validate each crop with VLM quality gate (reject bad crops)"
-    )
-    parser.add_argument(
-        "--rescue-validate-model",
-        help="Vision model for crop validation (defaults to rescue_model)"
-    )
-    parser.add_argument(
-        "--rescue-validate-max-tokens",
-        type=int,
-        default=300,
-        help="Max tokens for VLM validate pass (default 300)"
     )
     parser.add_argument(
         "--cover-pages",
@@ -4066,19 +3587,8 @@ def main():
         rescue_timeout_seconds=args.rescue_timeout_seconds,
         rescue_include_alt=args.rescue_include_alt,
         rescue_always=args.rescue_always,
-        rescue_retry_on_overlap=args.rescue_retry_on_overlap,
-        rescue_retry_on_missing=args.rescue_retry_on_missing,
-        rescue_retry_max=args.rescue_retry_max,
-        rescue_require_caption_schema=args.rescue_require_caption_schema,
-        rescue_retry_on_text=args.rescue_retry_on_text,
         rescue_caption_second_pass=args.rescue_caption_second_pass,
         rescue_caption_max_tokens=args.rescue_caption_max_tokens,
-        rescue_refine_boxes=args.rescue_refine_boxes,
-        rescue_refine_max_tokens=args.rescue_refine_max_tokens,
-        rescue_refine_min_area_ratio=args.rescue_refine_min_area_ratio,
-        rescue_validate_crops=args.rescue_validate_crops,
-        rescue_validate_model=args.rescue_validate_model,
-        rescue_validate_max_tokens=args.rescue_validate_max_tokens,
         refine_with_nonwhite=args.refine_with_nonwhite,
         refine_close_kernel=args.refine_close_kernel,
         refine_close_iterations=args.refine_close_iterations,
@@ -4146,6 +3656,17 @@ def main():
         _log(f"Merged {len(manifest)} new + {len(merged) - len(manifest)} existing = {len(merged)} total records")
     else:
         save_jsonl(manifest_path, manifest)
+        keep_filenames = {
+            str(row["filename"])
+            for row in manifest
+            if row.get("filename")
+        }
+        removed = _prune_stale_crop_images(
+            os.path.join(args.output_dir, "images"),
+            keep_filenames=keep_filenames,
+        )
+        if removed:
+            _log(f"Removed {removed} stale crop images not present in the refreshed manifest")
 
     _log(f"Manifest: {manifest_path}")
     _log(f"Images: {os.path.join(args.output_dir, 'images')}")

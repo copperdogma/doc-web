@@ -1,4 +1,7 @@
-from modules.extract.crop_illustrations_guided_v1.main import _apply_caption_box
+from modules.extract.crop_illustrations_guided_v1.main import (
+    _apply_caption_box,
+    _prune_stale_crop_images,
+)
 
 
 def test_apply_caption_box_keeps_partial_width_caption_from_clipping_irregular_image():
@@ -46,3 +49,21 @@ def test_apply_caption_box_trims_when_caption_spans_most_of_crop_width():
     assert result["y1"] == 946
     assert result["height"] == 746
     assert result["_caption_applied"] is True
+
+
+def test_prune_stale_crop_images_removes_unmanifested_files_on_full_rerun(tmp_path):
+    images_dir = tmp_path / "images"
+    images_dir.mkdir()
+    keep = images_dir / "page-122-000.jpg"
+    stale = images_dir / "page-122-002.jpg"
+    keep.write_bytes(b"keep")
+    stale.write_bytes(b"stale")
+
+    removed = _prune_stale_crop_images(
+        str(images_dir),
+        keep_filenames={"page-122-000.jpg"},
+    )
+
+    assert removed == 1
+    assert keep.exists()
+    assert not stale.exists()

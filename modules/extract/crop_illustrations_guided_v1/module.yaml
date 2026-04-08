@@ -200,31 +200,6 @@ parameters:
     default: false
     description: Always use rescue model on image pages (overrides CV boxes)
 
-  - name: rescue_retry_on_overlap
-    type: boolean
-    default: false
-    description: Retry VLM when returned boxes overlap heavily
-
-  - name: rescue_retry_on_missing
-    type: boolean
-    default: false
-    description: Retry VLM when returned count is below expected
-
-  - name: rescue_retry_on_text
-    type: boolean
-    default: false
-    description: Retry VLM when crops still include detectable text bands
-
-  - name: rescue_retry_max
-    type: integer
-    default: 1
-    description: Maximum number of VLM retries
-
-  - name: rescue_require_caption_schema
-    type: boolean
-    default: false
-    description: Require VLM to return image_box/caption_box schema
-
   - name: rescue_caption_second_pass
     type: boolean
     default: false
@@ -234,36 +209,6 @@ parameters:
     type: integer
     default: 400
     description: Max tokens for VLM caption pass
-
-  - name: rescue_refine_boxes
-    type: boolean
-    default: false
-    description: Refine each crop with a second VLM call on the crop
-
-  - name: rescue_refine_max_tokens
-    type: integer
-    default: 400
-    description: Max tokens for VLM refine pass
-
-  - name: rescue_refine_min_area_ratio
-    type: float
-    default: 0.05
-    description: Minimum area ratio vs original crop to accept VLM refine
-
-  - name: rescue_validate_crops
-    type: boolean
-    default: false
-    description: Validate each crop with VLM quality gate (reject bad crops)
-
-  - name: rescue_validate_model
-    type: string
-    default: null
-    description: Vision model for crop validation (defaults to rescue_model)
-
-  - name: rescue_validate_max_tokens
-    type: integer
-    default: 300
-    description: Max tokens for VLM validate pass
 
   - name: refine_with_nonwhite
     type: boolean
@@ -523,19 +468,8 @@ command: |
     {rescue_timeout_seconds:+--rescue-timeout-seconds {rescue_timeout_seconds}} \
     {rescue_include_alt:+--rescue-include-alt} \
     {rescue_always:+--rescue-always} \
-    {rescue_retry_on_overlap:+--rescue-retry-on-overlap} \
-    {rescue_retry_on_missing:+--rescue-retry-on-missing} \
-    {rescue_retry_on_text:+--rescue-retry-on-text} \
-    --rescue-retry-max={rescue_retry_max} \
-    {rescue_require_caption_schema:+--rescue-require-caption-schema} \
     {rescue_caption_second_pass:+--rescue-caption-second-pass} \
     --rescue-caption-max-tokens={rescue_caption_max_tokens} \
-    {rescue_refine_boxes:+--rescue-refine-boxes} \
-    --rescue-refine-max-tokens={rescue_refine_max_tokens} \
-    --rescue-refine-min-area-ratio={rescue_refine_min_area_ratio} \
-    {rescue_validate_crops:+--rescue-validate-crops} \
-    {rescue_validate_model:+--rescue-validate-model {rescue_validate_model}} \
-    --rescue-validate-max-tokens={rescue_validate_max_tokens} \
     {refine_with_nonwhite:+--refine-with-nonwhite} \
     --refine-close-kernel={refine_close_kernel} \
     --refine-close-iterations={refine_close_iterations} \

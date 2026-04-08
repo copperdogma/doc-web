@@ -43,12 +43,13 @@ View results: `promptfoo view`
 - **Maintained detector prompt set**: `baseline`, `strict-exclude`, `two-step`, `conservative-count`
 - **Current detector score**: `image-crop-extraction` best recorded result is `0.9678` overall / `1.0` pass rate (Gemini 3 Flash conservative-count prompt with the heading-safe revision on the maintained task, measured 2026-04-03)
 - **Current C4 deletion-gate score**: `single-model-crop-detection` is `0.9678` overall / `1.0` pass rate on that same maintained single-stage run, so the bounded deletion gate now passes.
-- **Maintained runtime note**: Story 184 proved the reviewed Onward lane can
-  drop `rescue_validate_crops`, `rescue_retry_on_*`, and `rescue_refine_boxes`
-  without regressing the published crop/build surface. The maintained recipe
-  still keeps `rescue_caption_second_pass` plus `trim_layout_text`; removing
-  them widened the certificate/seal crop on page 12 and duplicated nearby text
-  in the final HTML.
+- **Maintained runtime note**: Stories 184 and 198 proved the reviewed Onward
+  lane can delete the retired retry / refine / validate surface from both the
+  maintained recipe and the shared runtime without regressing the published
+  crop/build seam. The maintained recipe still keeps
+  `rescue_caption_second_pass` plus `trim_layout_text`; removing them widened
+  the certificate/seal crop on page 12 and duplicated nearby text in the final
+  HTML.
 - **Current dedicated C5-linked score**: `crop-validation` is `1.0` overall / `1.0` pass rate on the checked-in 40-crop corpus (Gemini 3.1 Flash Lite + `caption-focus`, measured 2026-04-03)
 - **Spec compromises**:
   - `C4` — Two-Stage Image Crop Detection
@@ -93,7 +94,7 @@ Only verified scores are recorded in the registry.
 
 ## Pitfalls
 
-- **VLM non-determinism**: Gemini at temperature=0.0 still varies. Auto-retry on count mismatch leverages this.
+- **VLM non-determinism**: Gemini at temperature=0.0 still varies. Re-run evals with `--no-cache` and inspect artifacts instead of depending on retired runtime auto-retry behavior.
 - **promptfoo provider formats**: OpenAI, Anthropic, and Google each need different image payload formats. Use JS prompt functions with `provider.id` detection.
 - **Bbox format**: Gemini returns `[x0, y0, x1, y1]` (array), not `{x0, y0, x1, y1}` (dict). Parser handles both.
 - **The `.b64.txt` fixtures are canonical**: the maintained crop fixtures are

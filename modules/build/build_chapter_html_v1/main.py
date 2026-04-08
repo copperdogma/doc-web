@@ -13,7 +13,7 @@ from difflib import SequenceMatcher
 from functools import lru_cache
 from html import escape as html_escape
 from pathlib import Path
-from typing import Any, Dict, List, Optional
+from typing import Any, Dict, List, Optional, Set
 
 from bs4 import BeautifulSoup
 
@@ -967,6 +967,38 @@ def _group_manifest_by_page(manifest_path: str) -> Dict[int, List[Dict[str, Any]
     return grouped
 
 
+def _refresh_published_illustration_images(
+    crops_by_page: Dict[int, List[Dict[str, Any]]],
+    crops_dir: Path,
+    images_dir: Path,
+) -> Set[str]:
+    """Copy current illustration assets and prune files not in the current manifest."""
+    ensure_dir(str(images_dir))
+    copied_filenames: Set[str] = set()
+    for rows in crops_by_page.values():
+        for row in rows:
+            filename = row.get("filename")
+            if not filename:
+                continue
+            src_path = crops_dir / filename
+            if not src_path.exists():
+                row.pop("_source_path", None)
+                continue
+            row["_source_path"] = str(src_path)
+            dst_path = images_dir / filename
+            dst_path.write_bytes(src_path.read_bytes())
+            copied_filenames.add(filename)
+
+    for old_path in images_dir.iterdir():
+        if not old_path.is_file():
+            continue
+        if old_path.name in copied_filenames:
+            continue
+        old_path.unlink()
+
+    return copied_filenames
+
+
 _MAX_CAPTION_WORDS = 30
 
 # Patterns that strongly suggest a caption (names, dates, descriptive labels)
@@ -1445,23 +1477,10 @@ def main() -> None:
     crops_by_page: Dict[int, List[Dict[str, Any]]] = {}
     if args.illustration_manifest:
         crops_by_page = _group_manifest_by_page(args.illustration_manifest)
-        ensure_dir(str(images_dir))
         manifest_dir = Path(args.illustration_manifest).parent
         crops_dir = manifest_dir / "images"
-        for rows in crops_by_page.values():
-            for row in rows:
-                filename = row.get("filename")
-                if not filename:
-                    continue
-                src_path = crops_dir / filename
-                if not src_path.exists():
-                    continue
-                row["_source_path"] = str(src_path)
-                dst_path = images_dir / filename
-                # Resume runs must refresh published crops so stale output/html images
-                # do not survive after an upstream crop fix.
-                dst_path.write_bytes(src_path.read_bytes())
-        if any(images_dir.iterdir()):
+        copied_filenames = _refresh_published_illustration_images(crops_by_page, crops_dir, images_dir)
+        if copied_filenames:
             emitted_asset_roots = [args.images_subdir.rstrip("/")]
 
     pages_sorted = sorted(pages, key=_page_sort_key)

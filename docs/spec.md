@@ -90,7 +90,7 @@ These are not compromises — they are permanent architectural commitments:
 ## spec:4 — Illustration Extraction
 
 > Product need: detect illustrations, crop them cleanly, exclude text, preserve source relationship.
-> Tech substrate: VLM crop detection, validator models, OCR-driven text trimming.
+> Tech substrate: VLM crop detection, caption assist, OCR-driven text trimming.
 
 ### spec:4.1 — Two-Stage Image Crop Detection
 
@@ -100,10 +100,10 @@ These are not compromises — they are permanent architectural commitments:
 
 **C4: Two-Stage Image Crop Detection** [AI capability → deletion]
 *Ideal:* One call detects and crops every illustration perfectly.
-*Compromise:* The maintained Onward lane is now Flash-first on the bounded slice, but the broader crop module still carries historical validator / retry / refine machinery and the maintained recipe still keeps a bounded caption-assist pass plus layout-text trim because some text-bearing crops regress without them.
-*Limitation:* Single-model detection now clears the bounded maintained quality bar, but broader text-exclusion and residue deletion are not yet proven across a wider truth surface.
+*Compromise:* The maintained Onward lane is now Flash-first on the bounded slice, and the shared crop runtime has dropped the retired validator / retry / refine residue. The remaining bounded residue is a caption-assist pass plus layout-text trim because some text-bearing crops still regress without them.
+*Limitation:* Single-model detection now clears the maintained detector bar, but caption-aware exclusion still needs bounded helper passes on the reviewed truth surface.
 *Detection:* Single-model crop detection scores ≥0.95 on the maintained `image-crop-extraction` surface. Current score: 0.9678 overall / 1.0 pass rate (Gemini 3 Flash conservative-count heading-safe revision, measured 2026-04-03).
-*Resolves:* Delete validator stage, retry logic, and refine loop on the maintained path; remaining caption/layout assist deletion moves to C5 once broader proof exists.
+*Resolves:* Delete caption-assist pass once detector outputs clean caption-free crops on the maintained truth surface; layout-text trim deletion still moves through C5.
 *Preference:* Gemini 3 Flash conservative-count is the current winning maintained detector. Caption assist plus layout trim remain bounded residue until wider artifact proof says they can be removed honestly.
 
 **C5: Layout Text Trim Heuristics for Crops** [AI capability → deletion]

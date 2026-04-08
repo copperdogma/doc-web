@@ -1,3 +1,22 @@
+## [2026-04-08-04] - Remove stale crop/build image residue on reused run roots (Story 198)
+
+### Changed
+- Changed the guided crop runtime and HTML publisher so full reruns now prune image files that are no longer present in the refreshed illustration manifest
+- Changed Story 198, the generated methodology graph, and the story index to record the same-seam stale-file fix and close the deletion story honestly
+
+### Fixed
+- Fixed reused Onward crop/build runs leaving stale `page-<n>-*.jpg` files in both `03_crop_illustrations_guided_v1/images/` and `output/html/images/` after the manifest stopped referencing them
+- Fixed regression coverage so resumed crop/build runs now fail tests if unmanifested image files survive
+
+### Tested
+- `python -m py_compile modules/extract/crop_illustrations_guided_v1/main.py modules/build/build_chapter_html_v1/main.py`
+- `python -m pytest tests/test_crop_runtime_recipe_contract.py tests/test_crop_illustrations_guided_v1.py tests/test_build_chapter_html.py -q`
+- `make lint`
+- `make test`
+- `find modules/extract/crop_illustrations_guided_v1 modules/build/build_chapter_html_v1 -name "*.pyc" -delete`
+- `scripts/run_driver_monitored.sh --recipe configs/recipes/recipe-onward-images-html-mvp.yaml --run-id onward-full-audit-20260318-r1 --output-dir /Users/cam/Documents/Projects/codex-forge/output/runs -- --instrument --allow-run-id-reuse --input-images /Users/cam/Documents/Projects/codex-forge/input/onward-to-the-unknown-images --start-from crop_illustrations --end-at crop_illustrations --keep-downstream`
+- `scripts/run_driver_monitored.sh --recipe configs/recipes/recipe-onward-images-html-mvp.yaml --run-id onward-full-audit-20260318-r1 --output-dir /Users/cam/Documents/Projects/codex-forge/output/runs -- --instrument --allow-run-id-reuse --input-images /Users/cam/Documents/Projects/codex-forge/input/onward-to-the-unknown-images --start-from build_chapters`
+
 ## [2026-04-08-03] - Establish bounded PPTX direct-entry seam (Story 197)
 
 ### Added

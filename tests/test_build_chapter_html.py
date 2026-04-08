@@ -1384,6 +1384,55 @@ class TestCLIIntegration:
 
         assert (html_dir / "images" / "photo.jpg").read_bytes() == source_bytes
 
+    def test_removes_stale_published_image_not_in_current_manifest(self):
+        pages_path = self.tmpdir / "pages.jsonl"
+        portions_path = self.tmpdir / "portions.jsonl"
+        out_path = self.tmpdir / "manifest.jsonl"
+        html_dir = self.tmpdir / "html"
+
+        self._write_jsonl(pages_path, [
+            {"page_number": 1, "printed_page_number": 1, "html": '<p>Page one.</p><img alt="Photo">'},
+        ])
+        self._write_jsonl(portions_path, [
+            {"title": "Introduction", "page_start": 1, "page_end": 1},
+        ])
+
+        illust_dir = self.tmpdir / "illustrations"
+        illust_images_dir = illust_dir / "images"
+        illust_images_dir.mkdir(parents=True)
+        (illust_images_dir / "photo.jpg").write_bytes(b"fresh-image-bytes")
+        illust_path = illust_dir / "illustration_manifest.jsonl"
+        self._write_jsonl(illust_path, [
+            {
+                "source_page": 1,
+                "filename": "photo.jpg",
+                "alt": "Photo",
+                "image_description": "Fresh image",
+                "caption_text": None,
+                "bbox": {"x0": 100, "y0": 200, "x1": 400, "y1": 500},
+            },
+        ])
+
+        (html_dir / "images").mkdir(parents=True)
+        (html_dir / "images" / "photo.jpg").write_bytes(b"stale-current-bytes")
+        stale_extra = html_dir / "images" / "page-122-002.jpg"
+        stale_extra.write_bytes(b"stale-extra-bytes")
+
+        cmd = [
+            sys.executable, "-m", "modules.build.build_chapter_html_v1.main",
+            "--pages", str(pages_path),
+            "--portions", str(portions_path),
+            "--out", str(out_path),
+            "--output-dir", str(html_dir),
+            "--illustration-manifest", str(illust_path),
+            "--book-title", "Test Book",
+        ]
+        result = subprocess.run(cmd, capture_output=True, text=True, cwd=str(Path(__file__).resolve().parent.parent))
+        assert result.returncode == 0, f"STDERR: {result.stderr}"
+
+        assert (html_dir / "images" / "photo.jpg").read_bytes() == b"fresh-image-bytes"
+        assert not stale_extra.exists()
+
     def test_merges_stale_duplicate_tail_into_previous_chapter(self):
         pages_path = self.tmpdir / "pages.jsonl"
         portions_path = self.tmpdir / "portions.jsonl"

@@ -67,17 +67,10 @@ stages:
       rescue_max_tokens: 8192  # Gemini Flash uses thinking tokens that eat into output budget; 8192 prevents truncation on ambiguous pages
       rescue_max_pages: 20
       rescue_include_alt: true
-      # Bounded C4 simplification: remove retry/refine/validator loops, retain caption assist plus layout trim.
+      # Maintained crop path: single Flash detection plus caption assist and layout trim.
       rescue_always: true
-      rescue_retry_on_overlap: false
-      rescue_retry_on_missing: false
-      rescue_retry_max: 1
-      rescue_require_caption_schema: true
-      rescue_retry_on_text: false
       rescue_caption_second_pass: true
       rescue_caption_max_tokens: 400
-      rescue_refine_boxes: false
-      rescue_validate_crops: false
       refine_with_textlines: false
       trim_layout_text: true
       layout_text_model: PP-DocLayout_plus-L

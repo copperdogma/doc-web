@@ -278,7 +278,8 @@
         "story_ids": [
           "135",
           "183",
-          "184"
+          "184",
+          "198"
         ],
         "adr_ids": [],
         "eval_ids": [
@@ -461,7 +462,8 @@
           "194",
           "195",
           "196",
-          "197"
+          "197",
+          "198"
         ],
         "adr_ids": [
           "ADR-002"
@@ -6333,6 +6335,54 @@
       ],
       "architecture_domains": [
         "doc_web_runtime"
+      ],
+      "roadmap_tags": [
+        "campaign:maintained-intake-honesty"
+      ],
+      "blocker_summary": "",
+      "blocker_evidence": "",
+      "unblock_condition": "",
+      "legacy_build_map_refs": "",
+      "metadata_source": "frontmatter",
+      "missing_frontmatter_keys": []
+    },
+    {
+      "id": "198",
+      "title": "Delete Retired Crop Retry/Validator Residue from Guided Runtime",
+      "path": "docs/stories/story-198-delete-crop-runtime-validator-retry-residue.md",
+      "status": "Done",
+      "priority": "High",
+      "ideal_refs": [
+        "Requirement #4 (Illustrate), Requirement #6 (Validate), Fidelity to the source, Transparency over magic, Graduate, don't accumulate"
+      ],
+      "spec_refs": [
+        "spec:4",
+        "spec:4.1",
+        "spec:4.2",
+        "spec:8"
+      ],
+      "decision_refs": [
+        "`docs/ideal.md`, `docs/spec.md`, `docs/methodology/state.yaml`, `docs/methodology/graph.json`, `docs/runbooks/crop-eval-workflow.md`, `docs/stories/story-133-gemini-flash-crop-detector.md`, `docs/stories/story-183-crop-benchmark-substrate-and-c5-validation-surface.md`, `docs/stories/story-184-collapse-bounded-crop-runtime-to-single-stage-flash.md`, `configs/recipes/recipe-onward-images-html-mvp.yaml`, `tests/test_crop_runtime_recipe_contract.py`, and `None found after search in docs/decisions/`, `docs/scout/`, and `docs/notes/` for a narrower crop-runtime deletion ADR"
+      ],
+      "adr_ids": [],
+      "depends_on": [
+        "184"
+      ],
+      "category_refs": [
+        "spec:4",
+        "spec:8"
+      ],
+      "compromise_refs": [
+        "B1",
+        "C4",
+        "C5"
+      ],
+      "input_coverage_refs": [
+        "image-directory-scans",
+        "scanned-pdf-tables"
+      ],
+      "architecture_domains": [
+        "document_structure_and_consistency"
       ],
       "roadmap_tags": [
         "campaign:maintained-intake-honesty"

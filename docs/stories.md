@@ -91,6 +91,7 @@ Grouped by primary `spec:N` category. Stories without category refs remain in an
 |---|---|---|---|---|---|
 | 183 | Repair Crop Benchmark Substrate and Promote C5 Validation Surface | High | Done | 125, 126, 133 | [story-183](stories/story-183-crop-benchmark-substrate-and-c5-validation-surface.md) |
 | 184 | Collapse Bounded Crop Runtime to Flash-First Simplification | High | Done | 133, 150, 183 | [story-184](stories/story-184-collapse-bounded-crop-runtime-to-single-stage-flash.md) |
+| 198 | Delete Retired Crop Retry/Validator Residue from Guided Runtime | High | Done | 184 | [story-198](stories/story-198-delete-crop-runtime-validator-retry-residue.md) |
 
 ### spec:5 — Document Consistency Planning
 
