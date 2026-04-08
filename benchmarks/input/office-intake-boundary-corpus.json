@@ -1,0 +1,28 @@
+[
+  {
+    "id": "docx-mini",
+    "input_kind": "docx",
+    "path": "testdata/docx-mini.docx",
+    "expected_book_type": "other",
+    "expected_recipe": "configs/recipes/recipe-docx-html-mvp.yaml",
+    "expected_major_signals": []
+  },
+  {
+    "id": "xlsx-mini",
+    "input_kind": "xlsx",
+    "path": "testdata/xlsx-mini.xlsx",
+    "expected_book_type": "other",
+    "expected_recipe": "configs/recipes/recipe-xlsx-html-mvp.yaml",
+    "expected_major_signals": [
+      "tables"
+    ]
+  },
+  {
+    "id": "pptx-mini",
+    "input_kind": "pptx",
+    "path": "testdata/pptx-mini.pptx",
+    "expected_book_type": "other",
+    "expected_recipe": "unsupported",
+    "expected_major_signals": []
+  }
+]

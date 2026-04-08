@@ -1,3 +1,5 @@
+import pytest
+
 from modules.intake.intake_plan_utils import (
     choose_maintained_recipe,
     prepare_confirmed_handoff,
@@ -231,3 +233,36 @@ def test_prepare_confirmed_handoff_blocks_unsupported_input_kind(tmp_path):
     assert command == []
     assert row["terminal_outcome"] == "blocked"
     assert row["terminal_reason"] == "unsupported_input_kind:docx"
+
+
+@pytest.mark.parametrize(
+    ("input_kind", "recipe", "filename"),
+    [
+        ("docx", "configs/recipes/recipe-docx-html-mvp.yaml", "sample.docx"),
+        ("xlsx", "configs/recipes/recipe-xlsx-html-mvp.yaml", "sample.xlsx"),
+    ],
+)
+def test_prepare_confirmed_handoff_blocks_direct_entry_office_recipes_with_explicit_reason(
+    tmp_path,
+    input_kind,
+    recipe,
+    filename,
+):
+    source_path = tmp_path / filename
+    source_path.write_text("stub", encoding="utf-8")
+    plan = _plan(
+        input_kind=input_kind,
+        recommended_recipe=recipe,
+    )
+    plan["meta"]["source_input"][f"source_{input_kind}"] = str(source_path)
+
+    row, command, should_launch = prepare_confirmed_handoff(
+        plan,
+        plan_path=tmp_path / "overview_plan_final.jsonl",
+        upstream_run_id=f"story194-{input_kind}",
+    )
+
+    assert should_launch is False
+    assert command == []
+    assert row["terminal_outcome"] == "blocked"
+    assert row["terminal_reason"] == f"direct_entry_recipe_outside_confirmed_handoff_scope:{input_kind}"

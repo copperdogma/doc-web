@@ -142,6 +142,13 @@ anchor-based provenance. `testdata/xlsx-merged-formula.xlsx` remains a bounded
 unsupported probe because merged-title / formula-summary structure is currently
 promoted into heading blocks instead of staying inside the table.
 
+Those maintained office lanes are still direct explicit-recipe entry points.
+Story 194 did not widen the recommendation-only intake or approved-handoff
+automation to office files: `auto-book-type-detection` remains a PDF-only
+surface, `approved-intake-handoff` remains limited to `pdf` and `images_dir`,
+and office boundary probes now fail explicitly instead of crashing inside the
+contact-sheet builder.
+
 ## Maintained Intake Recipes
 
 The active maintained entry surfaces are explicit recipes, not hidden routing:
@@ -152,6 +159,11 @@ The active maintained entry surfaces are explicit recipes, not hidden routing:
 - `configs/recipes/recipe-xlsx-html-mvp.yaml` for the maintained XLSX workbook-table lane on the verified simple-table slice
 - `configs/recipes/recipe-onward-images-html-mvp.yaml` for the image-backed Onward genealogy lane
 - `configs/recipes/recipe-onward-pdf-html-mvp.yaml` for the PDF-backed Onward genealogy lane
+
+Recommendation-only intake automation is intentionally narrower than that full
+list: maintained `docx` and `xlsx` support currently starts with explicit
+`driver.py --recipe ... --input-docx/--input-xlsx` entry, not the
+recommendation-only contact-sheet flow or approved-handoff automation.
 
 To seed a maintained PDF-backed run config explicitly:
 

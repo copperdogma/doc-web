@@ -1,3 +1,24 @@
+## [2026-04-07-01] - Make office intake boundary explicit (Story 194)
+
+### Added
+- Added a rerunnable office-boundary probe corpus plus shared scope-blocking helper coverage for the maintained recommendation-only and approved-handoff intake harnesses
+
+### Changed
+- Changed the maintained intake benchmark and approved-handoff harnesses so `docx`, `xlsx`, and `pptx` boundary probes now return explicit scope rows instead of failing later inside the contact-sheet builder
+- Changed the story, methodology graph, story index, README, runbook, and eval registry so maintained office support is documented honestly as direct explicit-recipe entry outside recommendation-only intake automation
+
+### Fixed
+- Fixed confirmed handoff for direct-entry office recipes to report `direct_entry_recipe_outside_confirmed_handoff_scope:*` instead of the generic `unsupported_recommended_recipe:*` bucket
+
+### Tested
+- `make lint`
+- `pytest tests/test_auto_book_type_detection_benchmark.py tests/test_approved_intake_handoff_benchmark.py tests/test_intake_plan_utils.py`
+- `make test`
+- `python benchmarks/scripts/run_auto_book_type_detection_eval.py --corpus benchmarks/input/office-intake-boundary-corpus.json --output benchmarks/results/auto-book-type-detection-story194-office-boundary.json --run-root output/runs/story194-auto-book-type-detection-office-boundary`
+- `python benchmarks/scripts/run_approved_intake_handoff_eval.py --corpus benchmarks/input/office-intake-boundary-corpus.json --output benchmarks/results/approved-intake-handoff-story194-office-boundary.json --run-root output/runs/story194-approved-intake-handoff-office-boundary`
+- `make methodology-compile`
+- `make methodology-check`
+
 ## [2026-04-04-09] - Widen XLSX proof slice and refresh PPTX blocker (Story 193)
 
 ### Added

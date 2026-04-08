@@ -21,6 +21,10 @@ MAINTAINED_RECIPES = {
     "born_digital_pdf": "configs/recipes/recipe-born-digital-pdf-marker-lite-html-mvp.yaml",
     "born_digital_pdf_non_toc": "configs/recipes/recipe-born-digital-pdf-non-toc-html-mvp.yaml",
 }
+DIRECT_ENTRY_ONLY_RECIPES = {
+    "docx": "configs/recipes/recipe-docx-html-mvp.yaml",
+    "xlsx": "configs/recipes/recipe-xlsx-html-mvp.yaml",
+}
 
 BOOK_TYPE_ALIASES = {
     "booklet": "other",
@@ -58,6 +62,7 @@ PDF_RECIPE_STRUCTURAL_SIGNALS = {
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
 MAINTAINED_RECIPE_PATHS = set(MAINTAINED_RECIPES.values())
+DIRECT_ENTRY_ONLY_RECIPE_TO_KIND = {path: kind for kind, path in DIRECT_ENTRY_ONLY_RECIPES.items()}
 
 
 def normalize_book_type(raw_value: Any, fallback: str = "other") -> str:
@@ -211,6 +216,10 @@ def prepare_confirmed_handoff(
     if recipe == "no-recipe-needed":
         row["terminal_outcome"] = "skipped"
         row["terminal_reason"] = "no_recipe_needed"
+        return row, [], False
+    direct_entry_kind = DIRECT_ENTRY_ONLY_RECIPE_TO_KIND.get(recipe)
+    if direct_entry_kind:
+        row["terminal_reason"] = f"direct_entry_recipe_outside_confirmed_handoff_scope:{direct_entry_kind}"
         return row, [], False
     if recipe not in MAINTAINED_RECIPE_PATHS:
         row["terminal_reason"] = f"unsupported_recommended_recipe:{recipe}"

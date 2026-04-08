@@ -1192,7 +1192,11 @@ evals:
     description: >
       Can the maintained recommendation-only intake lane auto-detect book type
       and recommend the right maintained explicit recipe with no metadata hints?
-      Tests 10 diverse documents via the final `intake_plan_v1` artifact.
+      Tests 10 diverse PDF documents via the final `intake_plan_v1` artifact.
+      Maintained direct-entry `docx` / `xlsx` lanes and the current blocked
+      `pptx` probe sit outside this recommendation-only automation surface and
+      are measured separately with
+      `benchmarks/input/office-intake-boundary-corpus.json`.
     spec_compromise: C2
     runner: manual
 
@@ -1311,6 +1315,30 @@ evals:
           (`other` -> `configs/recipes/recipe-born-digital-pdf-non-toc-html-mvp.yaml`), and
           `output/runs/auto-book-type-detection/release-forms/overview_plan_final.jsonl`
           (`other` + `forms` -> `configs/recipes/recipe-born-digital-pdf-non-toc-html-mvp.yaml`).
+      - id: "006"
+        date: 2026-04-07
+        status: succeeded
+        approach: "Story 194 office-family boundary probe on repo-owned DOCX/XLSX/PPTX fixtures"
+        note: >
+          Story 194 first reran a temporary 3-case office corpus through
+          `python benchmarks/scripts/run_auto_book_type_detection_eval.py`
+          and confirmed the old failure mode: all three rows (`docx-mini`,
+          `xlsx-mini`, `pptx-mini`) died at `failure_step = builder` with
+          `NotADirectoryError` because the recommendation-only harness still
+          treated non-PDF inputs as image directories. The story then added an
+          explicit scope boundary plus the rerunnable probe corpus
+          `benchmarks/input/office-intake-boundary-corpus.json` and reran
+          `python benchmarks/scripts/run_auto_book_type_detection_eval.py --corpus benchmarks/input/office-intake-boundary-corpus.json --output benchmarks/results/auto-book-type-detection-story194-office-boundary.json --run-root output/runs/story194-auto-book-type-detection-office-boundary`.
+          The fresh result file
+          `benchmarks/results/auto-book-type-detection-story194-office-boundary.json`
+          now records three inspectable blocked rows with `failure_step =
+          scope`: `docx` and `xlsx` report
+          `scope_policy = direct_explicit_recipe_only`, while `pptx` reports
+          `scope_policy = runtime_blocked`. Sample evidence inspected in the
+          same pass includes the `docx-mini` row with
+          `boundary_reason = outside_recommendation_only_intake:docx:direct_explicit_recipe_only`
+          and the `pptx-mini` row with
+          `boundary_reason = outside_recommendation_only_intake:pptx:runtime_blocked`.
 
     retry_when:
       - condition: new-input-family
@@ -1331,7 +1359,9 @@ evals:
       recommendation-only `auto-book-type-detection` corpus stays locked at 10
       PDF cases; this surface adds one repo-owned image-directory launch case
       (`testdata/handwritten-notes-mini-images`) without widening that separate
-      benchmark.
+      benchmark. Maintained direct-entry `docx` / `xlsx` lanes and the blocked
+      `pptx` probe remain outside this automation surface and are measured
+      separately with `benchmarks/input/office-intake-boundary-corpus.json`.
     spec_compromise: C2
     runner: manual
     command: "python benchmarks/scripts/run_approved_intake_handoff_eval.py --output benchmarks/results/approved-intake-handoff-story180.json --run-root output/runs/story180-approved-intake-handoff"
@@ -1443,6 +1473,28 @@ evals:
           `launch_input_flag = --input-images` and stamped
           `01_images_dir_to_manifest_v1/pages_images_manifest.jsonl`; the prior
           launched and skipped PDF paths remained green on the same run.
+      - id: "004"
+        date: 2026-04-07
+        status: succeeded
+        approach: "Story 194 office-family handoff boundary probe on repo-owned DOCX/XLSX/PPTX fixtures"
+        note: >
+          Story 194 kept the official approved-handoff corpus unchanged at the
+          maintained `pdf` / `images_dir` scope, then added the rerunnable
+          probe corpus `benchmarks/input/office-intake-boundary-corpus.json`
+          plus explicit scope blocking in the harness and a clearer
+          direct-entry-office rejection reason in
+          `modules/intake/intake_plan_utils.py`. Fresh rerun via
+          `python benchmarks/scripts/run_approved_intake_handoff_eval.py --corpus benchmarks/input/office-intake-boundary-corpus.json --output benchmarks/results/approved-intake-handoff-story194-office-boundary.json --run-root output/runs/story194-approved-intake-handoff-office-boundary`
+          produced three inspectable blocked rows in
+          `benchmarks/results/approved-intake-handoff-story194-office-boundary.json`
+          with `failure_step = scope`: `docx` and `xlsx` report
+          `scope_policy = direct_explicit_recipe_only`, and `pptx` reports
+          `scope_policy = runtime_blocked`. Additional same-pass dry-run
+          evidence from `prepare_confirmed_handoff(...)` now reports
+          `direct_entry_recipe_outside_confirmed_handoff_scope:docx` and
+          `direct_entry_recipe_outside_confirmed_handoff_scope:xlsx` for the
+          maintained direct-entry office recipes instead of the older generic
+          `unsupported_recommended_recipe:*` bucket.
 
     retry_when:
       - condition: workflow-change

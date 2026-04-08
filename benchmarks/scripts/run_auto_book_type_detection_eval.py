@@ -12,9 +12,11 @@ if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
 from benchmarks.scorers.auto_book_type_detection import score_case, summarize_results
+from benchmarks.scripts.intake_scope import build_scope_blocked_row
 
 
 DEFAULT_CORPUS = ROOT / "benchmarks/golden/auto-book-type-detection/corpus.json"
+SUPPORTED_INPUT_KINDS = frozenset({"pdf"})
 
 
 def resolve_input_path(raw_path: str) -> Path:
@@ -44,6 +46,14 @@ def is_transient_failure(output: str) -> bool:
 
 def run_case(case: dict, run_root: Path) -> dict:
     input_path = resolve_input_path(case["path"])
+    if case.get("input_kind") not in SUPPORTED_INPUT_KINDS:
+        return build_scope_blocked_row(
+            case,
+            input_path,
+            surface_key="recommendation_only_intake",
+            surface_label="recommendation-only intake automation",
+            supported_input_kinds=SUPPORTED_INPUT_KINDS,
+        )
     if not input_path.exists():
         return {
             "id": case["id"],

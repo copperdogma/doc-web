@@ -283,6 +283,36 @@ Alternative supported install shape for this lane:
 
 - `python -m pip install -r requirements.txt` on Python 3.11/3.12
 
+These maintained office-native lanes are still direct explicit-recipe entry
+points. They are not part of the recommendation-only contact-sheet benchmark or
+the approved-handoff automation surface.
+
+### Office Intake Boundary Probe
+
+Use this when you need a cheap rerunnable proof that office files remain
+outside recommendation-only intake automation and approved handoff while the
+direct DOCX/XLSX smoke lanes above stay maintained separately:
+
+```bash
+python benchmarks/scripts/run_auto_book_type_detection_eval.py \
+  --corpus benchmarks/input/office-intake-boundary-corpus.json \
+  --output benchmarks/results/auto-book-type-detection-story194-office-boundary.json \
+  --run-root output/runs/story194-auto-book-type-detection-office-boundary
+
+python benchmarks/scripts/run_approved_intake_handoff_eval.py \
+  --corpus benchmarks/input/office-intake-boundary-corpus.json \
+  --output benchmarks/results/approved-intake-handoff-story194-office-boundary.json \
+  --run-root output/runs/story194-approved-intake-handoff-office-boundary
+```
+
+Expected outcome:
+
+- `docx` and `xlsx` return explicit blocked scope rows that point back to the
+  maintained direct explicit-recipe office lanes
+- `pptx` returns an explicit blocked scope row because the runtime substrate is
+  still not maintained
+- no office probe should crash inside `contact_sheet_builder_v1`
+
 ---
 
 ## 🔄 Recovery & Resume (The "Happy Path")

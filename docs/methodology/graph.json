@@ -127,7 +127,8 @@
           "189",
           "191",
           "192",
-          "193"
+          "193",
+          "194"
         ],
         "adr_ids": [
           "ADR-001",
@@ -441,7 +442,8 @@
           "190",
           "191",
           "192",
-          "193"
+          "193",
+          "194"
         ],
         "adr_ids": [
           "ADR-002"
@@ -472,10 +474,12 @@
           "181",
           "187",
           "188",
-          "190"
+          "190",
+          "194"
         ],
         "adr_ids": [],
         "eval_ids": [
+          "auto-book-type-detection",
           "approved-intake-handoff",
           "layout-section-splitting"
         ]
@@ -6109,6 +6113,61 @@
       "legacy_build_map_refs": "",
       "metadata_source": "frontmatter",
       "missing_frontmatter_keys": []
+    },
+    {
+      "id": "194",
+      "title": "Decide Maintained Office Intake Recommendation and Handoff Boundary",
+      "path": "docs/stories/story-194-office-intake-recommendation-and-handoff-boundary.md",
+      "status": "Done",
+      "priority": "High",
+      "ideal_refs": [
+        "Requirement #1 (Ingest), Requirement #2 (Detect), Zero configuration, Transparency over magic, Dossier-ready output"
+      ],
+      "spec_refs": [
+        "spec:1",
+        "spec:1.1",
+        "spec:8",
+        "spec:9"
+      ],
+      "decision_refs": [
+        "`docs/ideal.md`, `docs/spec.md`, `docs/methodology/state.yaml`, `docs/methodology/graph.json`, `docs/decisions/adr-002-doc-web-runtime-boundary/adr.md`, `docs/decisions/adr-003-doclingdocument-doc-web-boundary/adr.md`, `docs/stories/story-169-restore-contact-sheet-intake-and-benchmark-auto-book-type-detection.md`, `docs/stories/story-175-office-document-proof-widening-and-xlsx-pptx-lane-decision.md`, `docs/stories/story-176-confirmed-intake-handoff-to-explicit-recipe-runs.md`, `docs/stories/story-178-corpus-wide-approved-intake-handoff-benchmark.md`, `docs/stories/story-180-widen-approved-intake-handoff-image-directory-proof.md`, `docs/stories/story-193-widen-xlsx-proof-and-recheck-pptx-runtime-seam.md`, `tests/fixtures/formats/_coverage-matrix.json`, `benchmarks/golden/auto-book-type-detection/corpus.json`, `benchmarks/golden/approved-intake-handoff/corpus.json`, `docs/scout/scout-011-external-document-ingestion-systems.md` (stale benchmark context only), and `None found after search in docs/runbooks/ and docs/notes/ for a narrower office-intake routing ADR or runbook`"
+      ],
+      "adr_ids": [],
+      "depends_on": [
+        "169",
+        "175",
+        "176",
+        "178",
+        "180",
+        "193"
+      ],
+      "category_refs": [
+        "spec:1",
+        "spec:8",
+        "spec:9"
+      ],
+      "compromise_refs": [
+        "B1",
+        "B10",
+        "C2"
+      ],
+      "input_coverage_refs": [
+        "docx",
+        "pptx",
+        "xlsx"
+      ],
+      "architecture_domains": [
+        "intake_and_routing"
+      ],
+      "roadmap_tags": [
+        "campaign:maintained-intake-honesty"
+      ],
+      "blocker_summary": "",
+      "blocker_evidence": "",
+      "unblock_condition": "",
+      "legacy_build_map_refs": "",
+      "metadata_source": "frontmatter",
+      "missing_frontmatter_keys": []
     }
   ],
   "adrs": [
@@ -6365,7 +6424,8 @@
       "story_refs": [
         "169",
         "170",
-        "171"
+        "171",
+        "194"
       ],
       "compromise_refs": [
         "C2"
@@ -6375,7 +6435,8 @@
         "spec:3",
         "spec:6",
         "spec:7",
-        "spec:8"
+        "spec:8",
+        "spec:9"
       ]
     },
     {
@@ -6388,7 +6449,8 @@
       "story_refs": [
         "176",
         "178",
-        "180"
+        "180",
+        "194"
       ],
       "compromise_refs": [
         "C2"

@@ -14,9 +14,11 @@ if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
 from benchmarks.scorers.approved_intake_handoff import score_case, summarize_results  # noqa: E402
+from benchmarks.scripts.intake_scope import build_scope_blocked_row  # noqa: E402
 
 
 DEFAULT_CORPUS = ROOT / "benchmarks/golden/approved-intake-handoff/corpus.json"
+SUPPORTED_INPUT_KINDS = frozenset({"pdf", "images_dir"})
 
 
 def resolve_input_path(raw_path: str) -> Path:
@@ -184,6 +186,14 @@ def run_intake_steps(case: dict, case_dir: Path) -> tuple[dict, dict]:
 
 def run_case(case: dict, run_root: Path) -> dict:
     input_path = resolve_input_path(case["path"])
+    if case.get("input_kind") not in SUPPORTED_INPUT_KINDS:
+        return build_scope_blocked_row(
+            case,
+            input_path,
+            surface_key="approved_intake_handoff",
+            surface_label="approved intake handoff automation",
+            supported_input_kinds=SUPPORTED_INPUT_KINDS,
+        )
     if not input_path.exists():
         return {
             "id": case["id"],
