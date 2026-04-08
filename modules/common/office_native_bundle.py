@@ -154,6 +154,7 @@ def provenance_row(
     entry_id: str,
     block_kind: str,
     source_element_id: str,
+    source_page_number: Optional[int],
     rendered_text: str,
 ) -> dict[str, Any]:
     row = DocWebProvenanceBlock(
@@ -164,6 +165,7 @@ def provenance_row(
         block_id=block_id,
         entry_id=entry_id,
         block_kind=block_kind,
+        source_page_number=source_page_number,
         source_element_ids=[source_element_id],
         text_quote=text_quote(rendered_text),
     )
@@ -176,6 +178,7 @@ def render_entry(
     module_id: str,
     run_id: Optional[str],
     created_at: str,
+    include_source_page_numbers: bool = False,
 ) -> tuple[str, list[dict[str, Any]]]:
     parts: list[str] = []
     provenance_rows: list[dict[str, Any]] = []
@@ -201,6 +204,7 @@ def render_entry(
             while idx < len(elements) and elements[idx].get("type") in {"ListItem", "BulletedText"}:
                 list_element = elements[idx]
                 list_text = list_element.get("text", "") or ""
+                list_metadata = list_element.get("metadata", {}) or {}
                 list_block_id = f'blk-{entry["entry_id"]}-{block_ordinal:04d}'
                 list_element_id = str(
                     list_element.get("id") or f'{entry["entry_id"]}-source-{block_ordinal:04d}'
@@ -217,6 +221,11 @@ def render_entry(
                         entry_id=entry["entry_id"],
                         block_kind="list_item",
                         source_element_id=list_element_id,
+                        source_page_number=(
+                            list_metadata.get("page_number")
+                            if include_source_page_numbers and isinstance(list_metadata.get("page_number"), int)
+                            else None
+                        ),
                         rendered_text=list_text,
                     )
                 )
@@ -261,6 +270,11 @@ def render_entry(
                     entry_id=entry["entry_id"],
                     block_kind=block_kind,
                     source_element_id=source_element_id,
+                    source_page_number=(
+                        metadata.get("page_number")
+                        if include_source_page_numbers and isinstance(metadata.get("page_number"), int)
+                        else None
+                    ),
                     rendered_text=rendered_text,
                 )
             )
@@ -280,6 +294,7 @@ def write_bundle(
     run_id: Optional[str],
     document_title: str,
     creator: str = "",
+    include_source_page_numbers: bool = False,
 ) -> dict[str, Any]:
     run_dir = out_path.resolve().parents[1]
     html_dir = run_dir / "output" / "html"
@@ -301,6 +316,7 @@ def write_bundle(
             module_id=module_id,
             run_id=run_id,
             created_at=created_at,
+            include_source_page_numbers=include_source_page_numbers,
         )
         provenance_rows.extend(entry_rows)
         filename = f'{entry["entry_id"]}.html'
@@ -320,7 +336,7 @@ def write_bundle(
                 "order": index,
                 "prev_entry_id": prev_entry_id,
                 "next_entry_id": next_entry_id,
-                "source_pages": [],
+                "source_pages": entry.get("source_pages", []),
                 "printed_pages": [],
             }
         )

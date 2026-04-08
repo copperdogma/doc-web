@@ -23,6 +23,9 @@ docx = [
 xlsx = [
   "unstructured[xlsx]==0.16.9",
 ]
+pptx = [
+  "unstructured[pptx]==0.16.9",
+]
 
 [project.scripts]
 doc-web = "doc_web.cli:main"

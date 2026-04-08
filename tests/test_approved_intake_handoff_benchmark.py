@@ -128,8 +128,8 @@ def test_approved_intake_handoff_corpus_stays_within_supported_scope():
         (
             "pptx",
             "testdata/pptx-mini.pptx",
-            "outside_approved_intake_handoff:pptx:runtime_blocked",
-            "runtime_blocked",
+            "outside_approved_intake_handoff:pptx:direct_explicit_recipe_only",
+            "direct_explicit_recipe_only",
         ),
     ],
 )

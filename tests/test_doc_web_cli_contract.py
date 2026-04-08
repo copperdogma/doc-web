@@ -18,6 +18,11 @@ def _venv_bin(venv_dir: Path, name: str) -> Path:
     return venv_dir / "bin" / name
 
 
+def _skip_if_office_runtime_pin_unsupported() -> None:
+    if sys.version_info >= (3, 13):
+        pytest.skip("Maintained office runtime smokes are validated on Python 3.11/3.12.")
+
+
 def _validate_bundle_outputs(python_bin: Path, run_dir: Path) -> None:
     manifest_path = run_dir / "output" / "html" / "manifest.json"
     provenance_path = run_dir / "output" / "html" / "provenance" / "blocks.jsonl"
@@ -179,8 +184,7 @@ def test_driver_extra_supports_repo_owned_doc_web_fixture_smoke(tmp_path: Path):
 
 
 def test_docx_extra_supports_repo_owned_docx_smoke(tmp_path: Path):
-    if sys.version_info >= (3, 13):
-        pytest.skip("Maintained DOCX runtime smoke is validated on Python 3.11/3.12.")
+    _skip_if_office_runtime_pin_unsupported()
 
     venv_dir = tmp_path / "venv"
     venv.EnvBuilder(with_pip=True, system_site_packages=False).create(venv_dir)
@@ -244,6 +248,8 @@ def test_docx_extra_supports_repo_owned_docx_smoke(tmp_path: Path):
 
 
 def test_xlsx_extra_supports_repo_owned_xlsx_smoke(tmp_path: Path):
+    _skip_if_office_runtime_pin_unsupported()
+
     venv_dir = tmp_path / "venv"
     venv.EnvBuilder(with_pip=True, system_site_packages=False).create(venv_dir)
     python_bin = _venv_bin(venv_dir, "python")
@@ -304,3 +310,107 @@ def test_xlsx_extra_supports_repo_owned_xlsx_smoke(tmp_path: Path):
     assert [entry["title"] for entry in manifest["entries"]] == ["Roster", "Visits"]
     assert blocks
     assert all(block.get("source_page_number") is None for block in blocks)
+
+
+def test_pptx_extra_supports_repo_owned_pptx_smoke(tmp_path: Path):
+    _skip_if_office_runtime_pin_unsupported()
+
+    venv_dir = tmp_path / "venv"
+    venv.EnvBuilder(with_pip=True, system_site_packages=False).create(venv_dir)
+    python_bin = _venv_bin(venv_dir, "python")
+    output_root = tmp_path / "runs"
+    run_id = "venv-pptx-smoke"
+    run_dir = output_root / run_id
+
+    install = subprocess.run(
+        [
+            str(python_bin),
+            "-m",
+            "pip",
+            "install",
+            "--disable-pip-version-check",
+            f"{REPO_ROOT}[driver,pptx]",
+        ],
+        cwd=str(REPO_ROOT),
+        stdout=subprocess.PIPE,
+        stderr=subprocess.STDOUT,
+        text=True,
+    )
+    assert install.returncode == 0, install.stdout
+
+    smoke = subprocess.run(
+        [
+            str(python_bin),
+            "driver.py",
+            "--recipe",
+            "configs/recipes/recipe-pptx-html-mvp.yaml",
+            "--input-pptx",
+            "testdata/pptx-mini.pptx",
+            "--run-id",
+            run_id,
+            "--allow-run-id-reuse",
+            "--force",
+            "--output-dir",
+            str(output_root),
+        ],
+        cwd=str(REPO_ROOT),
+        stdout=subprocess.PIPE,
+        stderr=subprocess.STDOUT,
+        text=True,
+    )
+    assert smoke.returncode == 0, smoke.stdout
+
+    _validate_bundle_outputs(python_bin, run_dir)
+
+    manifest_path = run_dir / "output" / "html" / "manifest.json"
+    provenance_path = run_dir / "output" / "html" / "provenance" / "blocks.jsonl"
+    manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+    blocks = [
+        json.loads(line)
+        for line in provenance_path.read_text(encoding="utf-8").splitlines()
+        if line.strip()
+    ]
+
+    assert manifest["reading_order"] == ["page-001", "page-002", "page-003"]
+    assert [entry["source_pages"] for entry in manifest["entries"]] == [[1], [2], [3]]
+    assert blocks
+    assert all(block.get("source_page_number") in {1, 2, 3} for block in blocks)
+
+
+def test_requirements_txt_supports_pptx_import_on_supported_python(tmp_path: Path):
+    _skip_if_office_runtime_pin_unsupported()
+
+    venv_dir = tmp_path / "venv"
+    venv.EnvBuilder(with_pip=True, system_site_packages=False).create(venv_dir)
+    python_bin = _venv_bin(venv_dir, "python")
+
+    install = subprocess.run(
+        [
+            str(python_bin),
+            "-m",
+            "pip",
+            "install",
+            "--disable-pip-version-check",
+            "-r",
+            "requirements.txt",
+        ],
+        cwd=str(REPO_ROOT),
+        stdout=subprocess.PIPE,
+        stderr=subprocess.STDOUT,
+        text=True,
+    )
+    assert install.returncode == 0, install.stdout
+
+    probe = subprocess.run(
+        [
+            str(python_bin),
+            "-c",
+            "from unstructured.partition.pptx import partition_pptx; print(partition_pptx.__name__)",
+        ],
+        cwd=str(REPO_ROOT),
+        stdout=subprocess.PIPE,
+        stderr=subprocess.STDOUT,
+        text=True,
+    )
+    assert probe.returncode == 0, probe.stdout
+    assert "partition_pptx" in probe.stdout

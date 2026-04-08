@@ -1193,9 +1193,8 @@ evals:
       Can the maintained recommendation-only intake lane auto-detect book type
       and recommend the right maintained explicit recipe with no metadata hints?
       Tests 10 diverse PDF documents via the final `intake_plan_v1` artifact.
-      Maintained direct-entry `docx` / `xlsx` lanes and the current blocked
-      `pptx` probe sit outside this recommendation-only automation surface and
-      are measured separately with
+      Maintained direct-entry `docx` / `xlsx` / `pptx` lanes sit outside this
+      recommendation-only automation surface and are measured separately with
       `benchmarks/input/office-intake-boundary-corpus.json`.
     spec_compromise: C2
     runner: manual
@@ -1339,6 +1338,21 @@ evals:
           `boundary_reason = outside_recommendation_only_intake:docx:direct_explicit_recipe_only`
           and the `pptx-mini` row with
           `boundary_reason = outside_recommendation_only_intake:pptx:runtime_blocked`.
+      - id: "007"
+        date: 2026-04-08
+        status: succeeded
+        approach: "Story 197 office-family boundary probe rerun after the maintained PPTX direct-entry lane landed"
+        note: >
+          Story 197 added the maintained PPTX extra, runtime wiring, and
+          bounded `recipe-pptx-html-mvp.yaml` lane, then reran
+          `python benchmarks/scripts/run_auto_book_type_detection_eval.py --corpus benchmarks/input/office-intake-boundary-corpus.json --output benchmarks/results/auto-book-type-detection-story197-office-boundary.json --run-root output/runs/story197-auto-book-type-detection-office-boundary`.
+          The fresh result file
+          `benchmarks/results/auto-book-type-detection-story197-office-boundary.json`
+          now records three inspectable blocked rows with `failure_step =
+          scope`, and all three office kinds (`docx`, `xlsx`, `pptx`) now
+          report `scope_policy = direct_explicit_recipe_only`. Sample evidence
+          inspected in the same pass includes the `pptx-mini` row with
+          `boundary_reason = outside_recommendation_only_intake:pptx:direct_explicit_recipe_only`.
 
     retry_when:
       - condition: new-input-family
@@ -1359,8 +1373,8 @@ evals:
       recommendation-only `auto-book-type-detection` corpus stays locked at 10
       PDF cases; this surface adds one repo-owned image-directory launch case
       (`testdata/handwritten-notes-mini-images`) without widening that separate
-      benchmark. Maintained direct-entry `docx` / `xlsx` lanes and the blocked
-      `pptx` probe remain outside this automation surface and are measured
+      benchmark. Maintained direct-entry `docx` / `xlsx` / `pptx` lanes remain
+      outside this automation surface and are measured
       separately with `benchmarks/input/office-intake-boundary-corpus.json`.
     spec_compromise: C2
     runner: manual
@@ -1495,6 +1509,22 @@ evals:
           `direct_entry_recipe_outside_confirmed_handoff_scope:xlsx` for the
           maintained direct-entry office recipes instead of the older generic
           `unsupported_recommended_recipe:*` bucket.
+      - id: "005"
+        date: 2026-04-08
+        status: succeeded
+        approach: "Story 197 office-family handoff boundary probe rerun after the maintained PPTX direct-entry lane landed"
+        note: >
+          Story 197 added the maintained PPTX direct-entry recipe plus
+          `DIRECT_ENTRY_ONLY_RECIPES` wiring, then reran
+          `python benchmarks/scripts/run_approved_intake_handoff_eval.py --corpus benchmarks/input/office-intake-boundary-corpus.json --output benchmarks/results/approved-intake-handoff-story197-office-boundary.json --run-root output/runs/story197-approved-intake-handoff-office-boundary`.
+          The fresh result file
+          `benchmarks/results/approved-intake-handoff-story197-office-boundary.json`
+          now records three inspectable blocked rows with `failure_step =
+          scope`, and all three office kinds (`docx`, `xlsx`, `pptx`) report
+          `scope_policy = direct_explicit_recipe_only`. Same-pass helper checks
+          now also route the maintained PPTX recipe through
+          `direct_entry_recipe_outside_confirmed_handoff_scope:pptx`, keeping
+          the confirmed-handoff boundary aligned with the direct-entry runtime.
 
     retry_when:
       - condition: workflow-change

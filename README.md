@@ -33,6 +33,9 @@ python -m pip install '.[driver,docx]'
 
 # Maintained XLSX lane from this checkout
 python -m pip install '.[driver,xlsx]'
+
+# Maintained PPTX lane from this checkout
+python -m pip install '.[driver,pptx]'
 ```
 
 The contract preflight returns:
@@ -48,7 +51,7 @@ smoke lanes installable. It covers the maintained proof lanes in this README
 and the runbook that need YAML parsing plus HTML bundle building, without
 claiming that the base package alone can run `driver.py`.
 
-The `docx` and `xlsx` extras add the narrow office-document partition
+The `docx`, `xlsx`, and `pptx` extras add the narrow office-document partition
 dependencies needed by the maintained office-native recipes without turning the
 default `driver` install into the full OCR/runtime stack.
 
@@ -160,6 +163,28 @@ anchor-based provenance. `testdata/xlsx-merged-formula.xlsx` remains a bounded
 unsupported probe because merged-title / formula-summary structure is currently
 promoted into heading blocks instead of staying inside the table.
 
+For the maintained PPTX proof lane, install the explicit PPTX extra:
+
+```bash
+python -m pip install '.[driver,pptx]'
+python driver.py \
+  --recipe configs/recipes/recipe-pptx-html-mvp.yaml \
+  --input-pptx testdata/pptx-mini.pptx \
+  --run-id <run_id> \
+  --allow-run-id-reuse \
+  --force
+```
+
+Story 197 established the first bounded maintained PPTX slice on the checked-in
+`testdata/pptx-mini.pptx` fixture. The supported claim is intentionally narrow:
+
+- one title slide plus simple slide-title/list/prose slides
+- slide-number provenance via `source_page_number` and manifest `source_pages`
+- direct explicit-recipe entry only
+
+Speaker notes, embedded media, animations, charts, and broader mixed-layout
+PowerPoint ownership remain unproven.
+
 Those maintained office lanes are still direct explicit-recipe entry points.
 Story 194 did not widen the recommendation-only intake or approved-handoff
 automation to office files: `auto-book-type-detection` remains a PDF-only
@@ -176,13 +201,14 @@ The active maintained entry surfaces are explicit recipes, not hidden routing:
 - `configs/recipes/recipe-born-digital-pdf-marker-lite-html-mvp.yaml` for the bounded maintained book-like born-digital PDF slice
 - `configs/recipes/recipe-born-digital-pdf-non-toc-html-mvp.yaml` for the bounded maintained flat/non-TOC born-digital PDF slice
 - `configs/recipes/recipe-docx-html-mvp.yaml` for the maintained DOCX fixture-backed lane
+- `configs/recipes/recipe-pptx-html-mvp.yaml` for the maintained PPTX slide-backed lane on the verified bounded probe slice
 - `configs/recipes/recipe-xlsx-html-mvp.yaml` for the maintained XLSX workbook-table lane on the verified simple-table slice
 - `configs/recipes/recipe-onward-images-html-mvp.yaml` for the image-backed Onward genealogy lane
 - `configs/recipes/recipe-onward-pdf-html-mvp.yaml` for the PDF-backed Onward genealogy lane
 
 Recommendation-only intake automation is intentionally narrower than that full
-list: maintained `docx` and `xlsx` support currently starts with explicit
-`driver.py --recipe ... --input-docx/--input-xlsx` entry, not the
+list: maintained `docx`, `xlsx`, and `pptx` support currently starts with explicit
+`driver.py --recipe ... --input-docx/--input-xlsx/--input-pptx` entry, not the
 recommendation-only contact-sheet flow or approved-handoff automation.
 
 To seed a maintained PDF-backed run config explicitly:
@@ -239,6 +265,7 @@ The active repo path is format-aware intake plus structural website output for
   ./scripts/install_with_age_gate.py .
   ./scripts/install_with_age_gate.py '.[driver]'
   ./scripts/install_with_age_gate.py '.[driver,docx]'
+  ./scripts/install_with_age_gate.py '.[driver,pptx]'
   ./scripts/install_with_age_gate.py '.[driver,xlsx]'
   ./scripts/install_with_age_gate.py -r requirements.txt
   ```
@@ -249,9 +276,10 @@ The active repo path is format-aware intake plus structural website output for
 - `python -m pip install .` supports the machine-readable contract preflight only.
 - `python -m pip install '.[driver]'` supports the repo-owned `driver.py` smoke lanes documented in this README and [docs/RUNBOOK.md](docs/RUNBOOK.md).
 - `python -m pip install '.[driver,docx]'` supports the maintained DOCX lane from this checkout.
+- `python -m pip install '.[driver,pptx]'` supports the maintained PPTX lane from this checkout.
 - `python -m pip install '.[driver,xlsx]'` supports the maintained XLSX lane from this checkout.
 - The maintained born-digital PDF lanes also require Docker and `pdftotext`.
-- The fuller repo runtime from `requirements.txt` now also includes DOCX and XLSX support, but it is currently validated on Python 3.11/3.12 because the pinned `unstructured==0.16.9` line does not resolve on Python 3.14.
+- The fuller repo runtime from `requirements.txt` now also includes DOCX, XLSX, and PPTX support, but it is currently validated on Python 3.11/3.12 because the pinned `unstructured==0.16.9` line is limited to that range.
 
 ### API Keys
 Set the following environment variables:

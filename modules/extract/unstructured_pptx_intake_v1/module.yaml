@@ -1,0 +1,34 @@
+module_id: unstructured_pptx_intake_v1
+stage: extract
+entrypoint: modules/extract/unstructured_pptx_intake_v1/main.py
+input_schema: null
+output_schema: unstructured_element_v1
+default_params:
+  include_page_breaks: true
+  include_slide_notes: false
+  infer_table_structure: true
+  starting_page_number: 1
+  strategy: fast
+  save_raw: false
+param_schema:
+  properties:
+    include_page_breaks:
+      type: boolean
+      description: "Preserve explicit slide-break markers when Unstructured exposes them"
+    include_slide_notes:
+      type: boolean
+      description: "Include speaker notes in the bounded PPTX intake slice"
+    infer_table_structure:
+      type: boolean
+      description: "Extract PPTX table structure and HTML when Unstructured exposes it"
+    starting_page_number:
+      type: integer
+      minimum: 1
+      description: "Starting slide number for explicit page-break markers"
+    strategy:
+      type: string
+      description: "Unstructured PPTX partition strategy"
+    save_raw:
+      type: boolean
+      description: "Save raw Unstructured output for debugging"
+notes: "Partition PPTX with Unstructured into elements.jsonl while preserving slide-number metadata and native element categories."

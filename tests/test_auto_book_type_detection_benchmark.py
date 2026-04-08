@@ -33,8 +33,8 @@ def test_auto_book_type_detection_corpus_stays_pdf_only():
         (
             "pptx",
             "testdata/pptx-mini.pptx",
-            "outside_recommendation_only_intake:pptx:runtime_blocked",
-            "runtime_blocked",
+            "outside_recommendation_only_intake:pptx:direct_explicit_recipe_only",
+            "direct_explicit_recipe_only",
         ),
     ],
 )

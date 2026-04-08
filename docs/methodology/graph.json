@@ -129,7 +129,8 @@
           "192",
           "193",
           "194",
-          "196"
+          "196",
+          "197"
         ],
         "adr_ids": [
           "ADR-001",
@@ -242,7 +243,8 @@
           "175",
           "177",
           "181",
-          "196"
+          "196",
+          "197"
         ],
         "adr_ids": [
           "ADR-002",
@@ -251,6 +253,7 @@
         "eval_ids": [
           "ocr-model-genealogy",
           "auto-book-type-detection",
+          "approved-intake-handoff",
           "layout-section-splitting",
           "born-digital-pdf-quality-surface"
         ]
@@ -357,7 +360,8 @@
           "177",
           "181",
           "193",
-          "196"
+          "196",
+          "197"
         ],
         "adr_ids": [
           "ADR-002",
@@ -365,6 +369,7 @@
         ],
         "eval_ids": [
           "auto-book-type-detection",
+          "approved-intake-handoff",
           "layout-section-splitting",
           "born-digital-pdf-quality-surface"
         ]
@@ -404,7 +409,8 @@
           "175",
           "177",
           "193",
-          "196"
+          "196",
+          "197"
         ],
         "adr_ids": [
           "ADR-002",
@@ -412,6 +418,7 @@
         ],
         "eval_ids": [
           "auto-book-type-detection",
+          "approved-intake-handoff",
           "born-digital-pdf-quality-surface"
         ]
       },
@@ -453,7 +460,8 @@
           "193",
           "194",
           "195",
-          "196"
+          "196",
+          "197"
         ],
         "adr_ids": [
           "ADR-002"
@@ -487,7 +495,8 @@
           "188",
           "190",
           "194",
-          "195"
+          "195",
+          "197"
         ],
         "adr_ids": [],
         "eval_ids": [
@@ -6278,6 +6287,62 @@
       "legacy_build_map_refs": "",
       "metadata_source": "frontmatter",
       "missing_frontmatter_keys": []
+    },
+    {
+      "id": "197",
+      "title": "Establish the First Honest PPTX Direct-Entry Seam",
+      "path": "docs/stories/story-197-establish-pptx-direct-entry-seam.md",
+      "status": "Done",
+      "priority": "High",
+      "ideal_refs": [
+        "Requirement #1 (Ingest), Requirement #5 (Structure), Requirement #6 (Validate), Requirement #7 (Export), Any format, any condition, Dossier-ready output, Transparency over magic"
+      ],
+      "spec_refs": [
+        "spec:1",
+        "spec:1.1",
+        "spec:3",
+        "spec:3.1",
+        "spec:6",
+        "spec:7",
+        "spec:8",
+        "spec:9"
+      ],
+      "decision_refs": [
+        "`docs/ideal.md`, `docs/spec.md`, `docs/methodology/state.yaml`, `docs/methodology/graph.json`, `docs/decisions/adr-002-doc-web-runtime-boundary/adr.md`, `docs/decisions/adr-003-doclingdocument-doc-web-boundary/adr.md`, `docs/stories/story-175-office-document-proof-widening-and-xlsx-pptx-lane-decision.md`, `docs/stories/story-193-widen-xlsx-proof-and-recheck-pptx-runtime-seam.md`, `docs/stories/story-194-office-intake-recommendation-and-handoff-boundary.md`, `tests/fixtures/formats/_coverage-matrix.json`, `README.md`, `docs/RUNBOOK.md`, `testdata/README.md`, `pyproject.toml`, and `None found after search in docs/decisions/`, `docs/runbooks/`, `docs/scout/`, and `docs/notes/` for a narrower PPTX direct-entry ADR or runbook"
+      ],
+      "adr_ids": [],
+      "depends_on": [
+        "193"
+      ],
+      "category_refs": [
+        "spec:1",
+        "spec:3",
+        "spec:6",
+        "spec:7",
+        "spec:8",
+        "spec:9"
+      ],
+      "compromise_refs": [
+        "B1",
+        "B10",
+        "C2",
+        "C3"
+      ],
+      "input_coverage_refs": [
+        "pptx"
+      ],
+      "architecture_domains": [
+        "doc_web_runtime"
+      ],
+      "roadmap_tags": [
+        "campaign:maintained-intake-honesty"
+      ],
+      "blocker_summary": "",
+      "blocker_evidence": "",
+      "unblock_condition": "",
+      "legacy_build_map_refs": "",
+      "metadata_source": "frontmatter",
+      "missing_frontmatter_keys": []
     }
   ],
   "adrs": [
@@ -6535,7 +6600,8 @@
         "169",
         "170",
         "171",
-        "194"
+        "194",
+        "197"
       ],
       "compromise_refs": [
         "C2"
@@ -6560,13 +6626,17 @@
         "176",
         "178",
         "180",
-        "194"
+        "194",
+        "197"
       ],
       "compromise_refs": [
         "C2"
       ],
       "category_refs": [
         "spec:1",
+        "spec:3",
+        "spec:6",
+        "spec:7",
         "spec:8",
         "spec:9"
       ]
@@ -6615,7 +6685,7 @@
   ],
   "coverage": {
     "path": "tests/fixtures/formats/_coverage-matrix.json",
-    "generated": "2026-04-03",
+    "generated": "2026-04-08",
     "formats": [
       {
         "id": "scanned-pdf-prose",
@@ -6930,10 +7000,10 @@
       {
         "id": "pptx",
         "format_family": "pptx",
-        "status": "has-fixture",
+        "status": "passing",
         "description": "Microsoft PowerPoint presentations (.pptx)",
-        "pipeline_recipe": null,
-        "intake_module": null,
+        "pipeline_recipe": "recipe-pptx-html-mvp.yaml",
+        "intake_module": "unstructured_pptx_intake_v1 \u2192 pptx_elements_to_bundle_v1",
         "complexity": [
           "mixed-layout",
           "illustrations"
@@ -6943,14 +7013,14 @@
             "id": "pptx-mini",
             "source": "testdata/pptx-mini.pptx",
             "pages": null,
-            "notes": "Reproducible PPTX seam-probe fixture generated from checked-in markdown via `pandoc`. Story 193 rechecked the current checkout and kept PPTX blocked at the import seam."
+            "notes": "Supported on the bounded maintained slice. Story 197 established the first PPTX direct-entry lane here: one title slide plus simple slide-title/list/prose slides, emitted as one HTML entry per slide with slide-number provenance."
           }
         ],
         "scores": null,
         "known_gaps": [
-          "Fresh Story 193 recheck: `python - <<'PY' ... from unstructured.partition.pptx import partition_pptx ... PY` still fails in this checkout with `ModuleNotFoundError: No module named 'pptx'`.",
-          "No maintained PPTX recipe or provenance mapping exists yet.",
-          "Slide reading order, mixed-layout ownership, speaker notes, and embedded media remain unproven."
+          "Passing evidence is still bounded to the verified Story 197 probe slice: one title slide plus simple slide-title/list/prose slides emitted as one HTML entry per slide.",
+          "The maintained lane does not yet claim speaker notes, embedded media, charts, animations, or broader mixed-layout PowerPoint ownership.",
+          "PPTX provenance currently relies on stable source element ids plus slide-number anchors, not slide-object open-original behavior or richer layout anchoring."
         ],
         "graduated": false
       },

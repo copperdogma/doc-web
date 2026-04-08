@@ -1,0 +1,28 @@
+# Maintained PPTX native-structure lane for bounded slide-based decks.
+
+input:
+  pptx: testdata/pptx-mini.pptx  # override via run config / --input-pptx
+
+stages:
+  - id: pptx_intake
+    stage: extract
+    module: unstructured_pptx_intake_v1
+    out: elements.jsonl
+    params:
+      include_page_breaks: true
+      include_slide_notes: false
+      infer_table_structure: true
+      starting_page_number: 1
+      strategy: fast
+      save_raw: false
+
+  - id: pptx_bundle
+    stage: transform
+    module: pptx_elements_to_bundle_v1
+    needs: [pptx_intake]
+    inputs:
+      input: pptx_intake
+    out: pptx_bundle_report.json
+    params:
+      book_title: ""
+      book_author: ""

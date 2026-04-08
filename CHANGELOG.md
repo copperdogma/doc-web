@@ -1,3 +1,24 @@
+## [2026-04-08-03] - Establish bounded PPTX direct-entry seam (Story 197)
+
+### Added
+- Added a maintained PPTX direct-entry runtime lane with a checked-in recipe, new intake and bundle modules, and focused recipe smoke coverage on the repo-owned `pptx-mini` fixture
+- Added clean-venv install proofs for the `.[driver,pptx]` extra and the supported `requirements.txt` runtime path
+
+### Changed
+- Changed the CLI, run config, office-native bundle helpers, coverage matrix, runbook, README, eval registry, and generated methodology surfaces so PPTX is now documented honestly as a bounded maintained direct explicit-recipe lane
+- Changed office-boundary helpers and benchmark expectations so `docx`, `xlsx`, and `pptx` all block at scope with the same `direct_explicit_recipe_only` policy instead of leaving PPTX as a runtime-seam special case
+
+### Fixed
+- Fixed stale install guidance by aligning `requirements.txt`, runtime error messaging, and docs with the actual maintained PPTX dependency surface
+
+### Tested
+- `python -m pytest tests/`
+- `python -m ruff check modules/ tests/`
+- `python -m pytest -q tests/test_doc_web_cli_contract.py -k "extra_supports_repo_owned or requirements_txt_supports_pptx"`
+- `python -m pytest -q tests/test_pptx_intake_recipe.py`
+- `python validate_artifact.py --schema doc_web_bundle_manifest_v1 --file output/runs/story197-pptx-proof-20260408/output/html/manifest.json`
+- `python validate_artifact.py --schema doc_web_provenance_block_v1 --file output/runs/story197-pptx-proof-20260408/output/html/provenance/blocks.jsonl`
+
 ## [2026-04-08-02] - Widen born-digital PDF proof surface (Story 196)
 
 ### Added

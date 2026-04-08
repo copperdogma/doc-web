@@ -239,6 +239,7 @@ def test_prepare_confirmed_handoff_blocks_unsupported_input_kind(tmp_path):
     ("input_kind", "recipe", "filename"),
     [
         ("docx", "configs/recipes/recipe-docx-html-mvp.yaml", "sample.docx"),
+        ("pptx", "configs/recipes/recipe-pptx-html-mvp.yaml", "sample.pptx"),
         ("xlsx", "configs/recipes/recipe-xlsx-html-mvp.yaml", "sample.xlsx"),
     ],
 )

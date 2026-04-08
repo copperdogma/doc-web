@@ -2,7 +2,7 @@ from pathlib import Path
 from typing import Iterable
 
 
-OFFICE_DIRECT_ENTRY_INPUT_KINDS = frozenset({"docx", "xlsx"})
+OFFICE_DIRECT_ENTRY_INPUT_KINDS = frozenset({"docx", "pptx", "xlsx"})
 
 
 def describe_scope_boundary(input_kind: str, *, surface_key: str, surface_label: str) -> dict[str, str]:
@@ -14,15 +14,6 @@ def describe_scope_boundary(input_kind: str, *, surface_key: str, surface_label:
             "error": (
                 f"Input kind '{kind}' is outside {surface_label} because maintained {kind.upper()} "
                 "support is a direct explicit-recipe entry lane, not part of this automation surface."
-            ),
-        }
-    if kind == "pptx":
-        return {
-            "scope_policy": "runtime_blocked",
-            "boundary_reason": f"outside_{surface_key}:pptx:runtime_blocked",
-            "error": (
-                f"Input kind 'pptx' is outside {surface_label} because the repo still lacks maintained "
-                "PPTX runtime substrate."
             ),
         }
     return {
