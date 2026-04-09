@@ -34,6 +34,7 @@ the same installs through the repo wrapper instead of raw `pip`:
 ./scripts/install_with_age_gate.py .
 ./scripts/install_with_age_gate.py '.[driver]'
 ./scripts/install_with_age_gate.py '.[driver,docx]'
+./scripts/install_with_age_gate.py '.[driver,email]'
 ./scripts/install_with_age_gate.py '.[driver,epub]'
 ./scripts/install_with_age_gate.py '.[driver,pptx]'
 ./scripts/install_with_age_gate.py '.[driver,xlsx]'
@@ -79,9 +80,15 @@ is available on `PATH`:
 python -m pip install '.[driver,epub]'
 ```
 
+For the maintained plain-text `.eml` lane, add the explicit email extra:
+
+```bash
+python -m pip install '.[driver,email]'
+```
+
 The fuller repo runtime from `requirements.txt` also now includes DOCX, EPUB,
-XLSX, and PPTX support, but it is currently validated on Python 3.11/3.12 because
-the pinned `unstructured==0.16.9` dependency is limited to that range.
+XLSX, PPTX, and `.eml` support, but it is currently validated on Python 3.11/3.12
+because the pinned `unstructured==0.16.9` dependency is limited to that range.
 
 ### Structural Website / `doc-web` Runs
 Use these when validating the active structural HTML bundle path.
@@ -100,6 +107,7 @@ Active recipe examples:
 - `configs/recipes/recipe-images-ocr-html-mvp.yaml`
 - `configs/recipes/recipe-pdf-ocr-html-mvp.yaml`
 - `configs/recipes/recipe-docx-html-mvp.yaml`
+- `configs/recipes/recipe-email-eml-html-mvp.yaml`
 - `configs/recipes/recipe-epub-html-mvp.yaml`
 - `configs/recipes/recipe-pptx-html-mvp.yaml`
 - `configs/recipes/recipe-xlsx-html-mvp.yaml`
@@ -425,6 +433,48 @@ Alternative supported install shape for this lane:
 
 - `python -m pip install -r requirements.txt` on Python 3.11/3.12, with `pandoc` on `PATH`
 
+### Repo-Owned EML Intake Smoke
+
+Use this when you need a cheap real-run proof that the maintained bounded
+plain-text `.eml` lane still emits a final `doc-web` bundle plus pageless
+provenance from the checked-in single-message fixture:
+
+```bash
+python -m pip install '.[driver,email]'
+python driver.py \
+  --recipe configs/recipes/recipe-email-eml-html-mvp.yaml \
+  --input-eml testdata/email-eml-mini.eml \
+  --run-id <run_id> \
+  --allow-run-id-reuse
+python validate_artifact.py \
+  --schema doc_web_bundle_manifest_v1 \
+  --file output/runs/<run_id>/output/html/manifest.json
+python validate_artifact.py \
+  --schema doc_web_provenance_block_v1 \
+  --file output/runs/<run_id>/output/html/provenance/blocks.jsonl
+```
+
+Story 202 established the first maintained `.eml` slice on
+`testdata/email-eml-mini.eml`. The current maintained claim is intentionally
+bounded to one plain-text single-message fixture with subject/from/to metadata
+preserved in `elements.jsonl` and the bundle report, plus pageless provenance
+via `source_element_ids`. Multipart HTML emails, quoted-thread cleanup,
+attachments, `.msg`, `.mbox`, and broader mailbox/thread ownership remain out
+of scope for this lane.
+
+Expected bundle outputs:
+
+- `output/runs/<run_id>/01_unstructured_email_intake_v1/elements.jsonl`
+- `output/runs/<run_id>/02_email_elements_to_bundle_v1/email_bundle_report.json`
+- `output/runs/<run_id>/output/html/index.html`
+- `output/runs/<run_id>/output/html/page-001.html`
+- `output/runs/<run_id>/output/html/manifest.json`
+- `output/runs/<run_id>/output/html/provenance/blocks.jsonl`
+
+Alternative supported install shape for this lane:
+
+- `python -m pip install -r requirements.txt` on Python 3.11/3.12
+
 ### Repo-Owned Web-Page Intake Smoke
 
 Use this when you need a cheap real-run proof that the maintained bounded
@@ -466,7 +516,7 @@ Expected bundle outputs:
 - `output/runs/<run_id>/output/html/manifest.json`
 - `output/runs/<run_id>/output/html/provenance/blocks.jsonl`
 
-These maintained DOCX/XLSX/PPTX/EPUB direct-entry lanes plus the bounded
+These maintained DOCX/XLSX/PPTX/EPUB/EML direct-entry lanes plus the bounded
 web-page lane are still direct explicit-recipe entry points. They are not part
 of the recommendation-only contact-sheet benchmark or the approved-handoff
 automation surface.
@@ -491,7 +541,7 @@ python benchmarks/scripts/run_approved_intake_handoff_eval.py \
 
 Expected outcome:
 
-- `docx`, `epub`, `xlsx`, and `pptx` return explicit blocked scope rows that point
+- `docx`, `email-eml`, `epub`, `xlsx`, and `pptx` return explicit blocked scope rows that point
   back to the maintained direct explicit-recipe lanes
 - no office probe should crash inside `contact_sheet_builder_v1`
 
@@ -530,6 +580,7 @@ scripts/run_driver_monitored.sh \
 | `recipe-images-ocr-html-mvp.yaml` | Active structural HTML bundle path for image-directory inputs. |
 | `recipe-pdf-ocr-html-mvp.yaml` | Active structural HTML bundle path for generic PDF-backed inputs. |
 | `recipe-docx-html-mvp.yaml` | Maintained DOCX structural bundle path for the repo-owned heading/prose/list/table slice, widened to three checked-in fixtures. |
+| `recipe-email-eml-html-mvp.yaml` | Maintained plain-text `.eml` structural bundle path for one verified single-message slice with pageless provenance. |
 | `recipe-epub-html-mvp.yaml` | Maintained EPUB structural bundle path for the verified bounded chapter-first prose slice with pageless provenance. |
 | `recipe-pptx-html-mvp.yaml` | Maintained PPTX structural bundle path for the verified bounded slide slice: one HTML page per supported slide entry with slide-number provenance. |
 | `recipe-web-page-html-mvp.yaml` | Maintained checked-HTML web-page path for one repo-owned static snapshot that reuses the existing `page_html_v1` to `doc-web` chain. |
@@ -551,6 +602,7 @@ Append these after `--` in the wrapper script.
 *   `--model <name>`: Global model override.
 *   `--input-pdf <path>`: Override `input.pdf` on maintained PDF-backed recipes.
 *   `--input-docx <path>`: Override `input.docx` on maintained DOCX-backed recipes.
+*   `--input-eml <path>`: Override `input.eml` on maintained plain-text `.eml` recipes.
 *   `--input-epub <path>`: Override `input.epub` on maintained EPUB-backed recipes.
 *   `--input-pptx <path>`: Override `input.pptx` on maintained PPTX-backed recipes.
 *   `--input-html <path>`: Override `input.html` on maintained checked-HTML web-page recipes.

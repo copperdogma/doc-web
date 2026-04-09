@@ -1,0 +1,12 @@
+{
+  "title": "Email EML Mini Fixture",
+  "source_type": "repo-authored plain-text email",
+  "generated_at": "2026-04-09",
+  "capture_note": "Repo-owned plain-text .eml probe used to prove the first bounded email direct-entry seam without attachments, thread handling, or mailbox integration.",
+  "supported_scope": [
+    "plain-text .eml",
+    "single message",
+    "subject/from/to metadata",
+    "no attachments"
+  ]
+}

@@ -120,6 +120,12 @@ def test_approved_intake_handoff_corpus_stays_within_supported_scope():
             "direct_explicit_recipe_only",
         ),
         (
+            "email-eml",
+            "testdata/email-eml-mini.eml",
+            "outside_approved_intake_handoff:email-eml:direct_explicit_recipe_only",
+            "direct_explicit_recipe_only",
+        ),
+        (
             "epub",
             "testdata/epub-mini.epub",
             "outside_approved_intake_handoff:epub:direct_explicit_recipe_only",

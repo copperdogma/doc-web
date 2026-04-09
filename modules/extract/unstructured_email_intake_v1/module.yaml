@@ -1,0 +1,21 @@
+module_id: unstructured_email_intake_v1
+stage: extract
+entrypoint: modules/extract/unstructured_email_intake_v1/main.py
+input_schema: null
+output_schema: unstructured_element_v1
+default_params:
+  content_source: text/plain
+  process_attachments: false
+  save_raw: false
+param_schema:
+  properties:
+    content_source:
+      type: string
+      description: "Preferred body representation for the bounded `.eml` slice (`text/plain` for the maintained fixture lane)."
+    process_attachments:
+      type: boolean
+      description: "Whether to recurse into attachments. Keep false for the maintained plain-text `.eml` lane."
+    save_raw:
+      type: boolean
+      description: "Save raw Unstructured email output for debugging"
+notes: "Partition plain-text `.eml` files with Unstructured into elements.jsonl while normalizing subject/from/to metadata into inspectable JSON primitives and keeping provenance pageless."

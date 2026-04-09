@@ -1,3 +1,23 @@
+## [2026-04-09-03] - Add bounded EML direct-entry seam (Story 202)
+
+### Added
+- Added a maintained plain-text `.eml` direct-entry runtime lane with a checked-in recipe, new intake and bundle modules, one repo-owned fixture pair, and focused recipe smoke coverage for the first honest `email-eml` slice
+- Added clean-venv install proof for the `.[driver,email]` extra on the supported single-message `.eml` lane
+
+### Changed
+- Changed `driver.py`, `RunConfig`, direct-entry boundary helpers, the coverage matrix, README, runbook, and testdata docs so `email-eml` is documented honestly as a bounded maintained direct explicit-recipe lane
+- Changed generated methodology surfaces and Story 202 metadata so the completed seam closes against ADR-002 instead of leaving the decision link implicit
+
+### Fixed
+- Fixed the packaging/runtime gap for `.eml` partitioning by exposing an explicit repo-local `email` extra and preserving subject/from/to metadata through the bounded pageless `doc-web` bundle path without fabricated page anchors
+
+### Tested
+- `make test`
+- `make lint`
+- `make methodology-check`
+- `git diff --check`
+- `python driver.py --recipe configs/recipes/recipe-email-eml-html-mvp.yaml --input-eml testdata/email-eml-mini.eml --run-id validate-story202-eml --allow-run-id-reuse --force`
+
 ## [2026-04-09-02] - Port Storybook blocked-story lifecycle hardening
 
 ### Changed

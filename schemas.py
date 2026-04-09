@@ -1233,6 +1233,7 @@ class RunConfig(BaseModel):
     input_pptx: Optional[str] = None
     input_epub: Optional[str] = None
     input_html: Optional[str] = None
+    input_eml: Optional[str] = None
     output_dir: Optional[str] = None
     
     execution: ExecutionConfig = Field(default_factory=ExecutionConfig)

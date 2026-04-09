@@ -253,6 +253,67 @@ def test_docx_extra_supports_repo_owned_docx_smoke(tmp_path: Path):
     assert all(block.get("source_page_number") is None for block in blocks)
 
 
+def test_email_extra_supports_repo_owned_eml_smoke(tmp_path: Path):
+    _skip_if_office_runtime_pin_unsupported()
+
+    venv_dir = tmp_path / "venv"
+    venv.EnvBuilder(with_pip=True, system_site_packages=False).create(venv_dir)
+    python_bin = _venv_bin(venv_dir, "python")
+    output_root = tmp_path / "runs"
+    run_id = "venv-email-smoke"
+    run_dir = output_root / run_id
+
+    install = subprocess.run(
+        [
+            str(python_bin),
+            "-m",
+            "pip",
+            "install",
+            "--disable-pip-version-check",
+            f"{REPO_ROOT}[driver,email]",
+        ],
+        cwd=str(REPO_ROOT),
+        stdout=subprocess.PIPE,
+        stderr=subprocess.STDOUT,
+        text=True,
+    )
+    assert install.returncode == 0, install.stdout
+
+    smoke = subprocess.run(
+        [
+            str(python_bin),
+            "driver.py",
+            "--recipe",
+            "configs/recipes/recipe-email-eml-html-mvp.yaml",
+            "--input-eml",
+            "testdata/email-eml-mini.eml",
+            "--run-id",
+            run_id,
+            "--allow-run-id-reuse",
+            "--force",
+            "--output-dir",
+            str(output_root),
+        ],
+        cwd=str(REPO_ROOT),
+        stdout=subprocess.PIPE,
+        stderr=subprocess.STDOUT,
+        text=True,
+    )
+    assert smoke.returncode == 0, smoke.stdout
+
+    _validate_bundle_outputs(python_bin, run_dir)
+
+    manifest_path = run_dir / "output" / "html" / "manifest.json"
+    report_path = run_dir / "02_email_elements_to_bundle_v1" / "email_bundle_report.json"
+    manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+    report = json.loads(report_path.read_text(encoding="utf-8"))
+
+    assert manifest["reading_order"] == ["page-001"]
+    assert report["message_metadata"]["subject"] == "Fixture Subject"
+    assert report["message_metadata"]["sent_from"] == ["Alice Example <alice@example.com>"]
+    assert report["message_metadata"]["sent_to"] == ["Bob Example <bob@example.com>"]
+
+
 def test_xlsx_extra_supports_repo_owned_xlsx_smoke(tmp_path: Path):
     _skip_if_office_runtime_pin_unsupported()
 

@@ -17,6 +17,7 @@ registry: custom_modules
 input_images: tests/fixtures/doc_web_bundle_smoke/images
 input_epub: testdata/epub-mini.epub
 input_html: testdata/web-page-mini.html
+input_eml: testdata/email-eml-mini.eml
 execution:
   start_from: stage1
   force: true
@@ -31,6 +32,7 @@ instrumentation:
     assert config.input_images == "tests/fixtures/doc_web_bundle_smoke/images"
     assert config.input_epub == "testdata/epub-mini.epub"
     assert config.input_html == "testdata/web-page-mini.html"
+    assert config.input_eml == "testdata/email-eml-mini.eml"
     assert config.execution.start_from == "stage1"
     assert config.execution.force is True
     assert config.options.mock is True

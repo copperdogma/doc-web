@@ -369,14 +369,25 @@
     {
       "id": "email-eml",
       "format_family": "email",
-      "status": "untested",
-      "description": "Email messages (.eml) with headers, body, and attachments",
-      "pipeline_recipe": null,
-      "intake_module": null,
+      "status": "passing",
+      "description": "Plain-text email messages (.eml) with subject/from/to headers and one message body",
+      "pipeline_recipe": "recipe-email-eml-html-mvp.yaml",
+      "intake_module": "unstructured_email_intake_v1 \u2192 email_elements_to_bundle_v1",
       "complexity": ["simple-prose"],
-      "fixtures": [],
+      "fixtures": [
+        {
+          "id": "email-eml-mini",
+          "source": "testdata/email-eml-mini.eml",
+          "pages": null,
+          "notes": "Supported on the bounded maintained slice. Story 202 established the first `.eml` direct-entry lane on one repo-owned plain-text message with subject/from/to metadata, one pageless HTML entry, and provenance via `source_element_ids` only."
+        }
+      ],
       "scores": null,
-      "known_gaps": [],
+      "known_gaps": [
+        "Passing evidence is still bounded to one checked-in plain-text `.eml` fixture with one simple message body and no attachments.",
+        "The maintained lane does not yet claim multipart HTML normalization, quoted-thread cleanup, attachment extraction, `.msg` parity, mailbox/thread ownership, or broader email automation support.",
+        "EML provenance currently relies on stable source element ids plus message metadata such as `subject`, `sent_from`, and `sent_to`; it does not claim printed page numbers, thread/message relationship graphs, or attachment-native anchors."
+      ],
       "graduated": false
     },
     {

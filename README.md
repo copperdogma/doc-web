@@ -1,5 +1,5 @@
 # doc-web
-AI-first runtime for turning scanned books, PDFs, office documents, checked HTML snapshots, and images into structural, provenance-rich HTML website bundles for Dossier and related downstream consumers.
+AI-first runtime for turning scanned books, PDFs, office documents, plain-text email messages, checked HTML snapshots, and images into structural, provenance-rich HTML website bundles for Dossier and related downstream consumers.
 
 ## Current Role
 - Own the structural website contract: semantic HTML pages, reading order, minimal navigation, manifests, and provenance sidecars.
@@ -39,6 +39,9 @@ python -m pip install '.[driver,pptx]'
 
 # Maintained EPUB lane from this checkout (requires pandoc on PATH)
 python -m pip install '.[driver,epub]'
+
+# Maintained plain-text EML lane from this checkout
+python -m pip install '.[driver,email]'
 ```
 
 The contract preflight returns:
@@ -56,10 +59,14 @@ claiming that the base package alone can run `driver.py`.
 
 The `docx`, `xlsx`, and `pptx` extras add the narrow office-document partition
 dependencies needed by the maintained office-native recipes without turning the
-default `driver` install into the full OCR/runtime stack. The `epub` extra adds
-the bounded EPUB partition dependencies for the first maintained ebook lane;
-that lane also requires system `pandoc` on `PATH` because Unstructured's EPUB
-support converts EPUB to HTML through Pandoc before partitioning.
+default `driver` install into the full OCR/runtime stack. The `email` extra adds
+the bounded plain-text `.eml` partition dependency path for the first maintained
+email lane; upstream does not provide a dedicated `unstructured[email]` extra,
+so this repo exposes the base `unstructured==0.16.9` pin explicitly. The `epub`
+extra adds the bounded EPUB partition dependencies for the first maintained
+ebook lane; that lane also requires system `pandoc` on `PATH` because
+Unstructured's EPUB support converts EPUB to HTML through Pandoc before
+partitioning.
 
 The recommended downstream operating model mirrors Storybook's pinned-Dossier
 pattern:
@@ -216,6 +223,30 @@ intentionally narrow:
 Image-only EPUBs, embedded media, complex navigation, footnotes, scripting,
 and broader ebook ownership remain unproven.
 
+For the maintained EML proof lane, install the explicit email extra:
+
+```bash
+python -m pip install '.[driver,email]'
+python driver.py \
+  --recipe configs/recipes/recipe-email-eml-html-mvp.yaml \
+  --input-eml testdata/email-eml-mini.eml \
+  --run-id <run_id> \
+  --allow-run-id-reuse \
+  --force
+```
+
+Story 202 established the first bounded maintained `.eml` slice on the
+repo-owned `testdata/email-eml-mini.eml` fixture. The supported claim is
+intentionally narrow:
+
+- one checked-in plain-text single-message `.eml` fixture
+- subject/from/to metadata preserved in `elements.jsonl` and the bundle report
+- pageless provenance via `source_element_ids` only
+- direct explicit-recipe entry only
+
+Multipart HTML emails, quoted-thread cleanup, attachments, `.msg`, `.mbox`,
+and broader mailbox/thread ownership remain unproven.
+
 For the maintained web-page proof lane, the base driver install is enough:
 
 ```bash
@@ -240,11 +271,11 @@ Live URL fetch, JavaScript-rendered pages, multi-page crawling, boilerplate
 cleanup across arbitrary sites, and approved-handoff / recommendation-only
 automation support remain outside this lane.
 
-Those maintained DOCX/XLSX/PPTX/EPUB lanes plus the bounded web-page lane are
-still direct explicit-recipe entry points. Story 194 did not widen the
+Those maintained DOCX/XLSX/PPTX/EPUB/EML lanes plus the bounded web-page lane
+are still direct explicit-recipe entry points. Story 194 did not widen the
 recommendation-only intake or approved-handoff automation to office files, and
-Story 200/201 likewise keep web pages and EPUB outside those automation
-surfaces: `auto-book-type-detection` remains a PDF-only surface,
+Stories 200/201/202 likewise keep web pages, EPUB, and `.eml` outside those
+automation surfaces: `auto-book-type-detection` remains a PDF-only surface,
 `approved-intake-handoff` remains limited to `pdf` and `images_dir`, and
 direct-entry-only boundary probes now fail explicitly instead of drifting into
 unsupported or live-fetch behavior.
@@ -258,6 +289,7 @@ The active maintained entry surfaces are explicit recipes, not hidden routing:
 - `configs/recipes/recipe-born-digital-pdf-marker-lite-html-mvp.yaml` for the bounded maintained book-like born-digital PDF slice
 - `configs/recipes/recipe-born-digital-pdf-non-toc-html-mvp.yaml` for the bounded maintained flat/non-TOC born-digital PDF slice
 - `configs/recipes/recipe-docx-html-mvp.yaml` for the maintained DOCX fixture-backed lane
+- `configs/recipes/recipe-email-eml-html-mvp.yaml` for the maintained plain-text `.eml` single-message lane on the verified bounded probe slice
 - `configs/recipes/recipe-epub-html-mvp.yaml` for the maintained EPUB chapter-first lane on the verified bounded probe slice
 - `configs/recipes/recipe-pptx-html-mvp.yaml` for the maintained PPTX slide-backed lane on the verified bounded probe slice
 - `configs/recipes/recipe-web-page-html-mvp.yaml` for the maintained checked-HTML web-page lane on the verified bounded probe slice
@@ -266,8 +298,9 @@ The active maintained entry surfaces are explicit recipes, not hidden routing:
 - `configs/recipes/recipe-onward-pdf-html-mvp.yaml` for the PDF-backed Onward genealogy lane
 
 Recommendation-only intake automation is intentionally narrower than that full
-list: maintained `docx`, `epub`, `xlsx`, `pptx`, and `web-page` support
-currently starts with explicit `driver.py --recipe ... --input-docx/--input-epub/--input-xlsx/--input-pptx/--input-html`
+list: maintained `docx`, `email-eml`, `epub`, `xlsx`, `pptx`, and `web-page`
+support currently starts with explicit
+`driver.py --recipe ... --input-docx/--input-eml/--input-epub/--input-xlsx/--input-pptx/--input-html`
 entry, not the recommendation-only contact-sheet flow or approved-handoff
 automation.
 
@@ -325,6 +358,7 @@ The active repo path is format-aware intake plus structural website output for
   ./scripts/install_with_age_gate.py .
   ./scripts/install_with_age_gate.py '.[driver]'
   ./scripts/install_with_age_gate.py '.[driver,docx]'
+  ./scripts/install_with_age_gate.py '.[driver,email]'
   ./scripts/install_with_age_gate.py '.[driver,epub]'
   ./scripts/install_with_age_gate.py '.[driver,pptx]'
   ./scripts/install_with_age_gate.py '.[driver,xlsx]'
@@ -337,6 +371,7 @@ The active repo path is format-aware intake plus structural website output for
 - `python -m pip install .` supports the machine-readable contract preflight only.
 - `python -m pip install '.[driver]'` supports the repo-owned `driver.py` smoke lanes documented in this README and [docs/RUNBOOK.md](docs/RUNBOOK.md).
 - `python -m pip install '.[driver,docx]'` supports the maintained DOCX lane from this checkout.
+- `python -m pip install '.[driver,email]'` supports the maintained plain-text `.eml` lane from this checkout on the bounded single-message slice.
 - `python -m pip install '.[driver,epub]'` supports the maintained EPUB lane from this checkout when `pandoc` is available on `PATH`.
 - `python -m pip install '.[driver,pptx]'` supports the maintained PPTX lane from this checkout.
 - `python -m pip install '.[driver,xlsx]'` supports the maintained XLSX lane from this checkout.

@@ -17,6 +17,9 @@ driver = [
   "beautifulsoup4>=4.12,<5",
   "PyYAML>=6,<7",
 ]
+email = [
+  "unstructured==0.16.9",
+]
 docx = [
   "unstructured[docx]==0.16.9",
 ]
