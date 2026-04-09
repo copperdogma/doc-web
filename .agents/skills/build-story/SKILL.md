@@ -12,10 +12,17 @@ Execute a development story through implementation handoff.
 
 ## Phase 1 — Explore (story-file edits allowed, code changes forbidden)
 
-1. **Resolve story** — Read `docs/stories/story-{NNN}-*.md` (or resolve from `docs/methodology/graph.json`). Verify status is Draft, Pending, or In Progress.
+1. **Resolve story** — Read `docs/stories/story-{NNN}-*.md` (or resolve from `docs/methodology/graph.json`). Verify status is Draft, Pending, In Progress, or Blocked.
    - If status is **Draft**, do not stop yet. Continue through the required-section and substrate checks first.
    - If the Draft story is still skeletal or unverified after those checks, STOP and recommend keeping it `Draft`.
    - If the Draft story is already detailed enough and substrate-verified, record that it should be promoted and continue.
+   - If status is **Blocked**, read `Blocker Summary`, `Blocker Evidence`,
+     `Unblock Condition`, the latest work log, and `## Plan` first. STOP
+     unless the user explicitly asked to reassess the blocker.
+   - When reassessing a blocked story, continue only if there is fresh evidence
+     that the unblock condition is now met. If it is still unmet, rewrite any
+     stale plan text that still reads as "proceed" or "build now" so the story
+     matches blocker truth, then stop and report the line as a health flag.
 
 2. **Verify required sections** — Ensure the story has:
    - Goal
@@ -61,6 +68,9 @@ Execute a development story through implementation handoff.
      the evidence, update the story with the blocker or new dependency, mark it
      `Blocked` when the blocker is real and named, and bring that
      recommendation back to the user before implementation planning
+   - When a story becomes `Blocked`, clear or rewrite any stale `## Plan` text
+     that still implies immediate implementation. The visible next move should
+     be the unblock condition, not the invalidated build plan.
 
 7. **Identify scope deltas** — If exploration reveals important work that is missing from the story but is necessary to actually solve the story's goal:
    - **Small, coherent delta** → expand the story automatically. Update the story's tasks, acceptance criteria, and work log so the real scope is visible.
@@ -171,6 +181,8 @@ Entries should be verbose. Capture decisions, failures, solutions, and learnings
 - Never skip acceptance criteria verification
 - Never claim something is fixed, passing, or done without fresh current-pass evidence
 - Never continue planning or implementation if the critical substrate reality check shows the story is not honestly buildable yet
+- Never trust or preserve stale blocked-story plan text that contradicts the
+  current blocker evidence
 - Never mark Done if any check fails
 - Never mark a story `Done` from `/build-story`
 - Never mark Done without inspecting produced artifacts (not just checking logs)

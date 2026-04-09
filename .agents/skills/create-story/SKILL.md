@@ -124,6 +124,9 @@ on the same problem line, do that instead of minting a new ID.
   crosses a new runtime / ownership seam, or would make validation unclear.
 - If a story is `Blocked`, fill the canonical `Blocker Summary`,
   `Blocker Evidence`, and `Unblock Condition` sections with repo-backed truth.
+- If a story starts `Blocked`, the visible `## Plan` should describe the
+  unblock path or blocker reassessment work, not stale implementation steps
+  that assume the story can proceed immediately.
 - If a feature needs a UI to be honestly usable or inspectable, include that UI
   slice in the story unless the story explicitly records why the UI is deferred
   or owned elsewhere.

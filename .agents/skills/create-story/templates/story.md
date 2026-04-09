@@ -25,6 +25,12 @@ legacy_system: ""
 **Decision Refs**: {ADRs, runbooks, scout docs, notes, or "None found after search"}
 **Depends On**: {story IDs}
 
+> If this story is `Blocked`, replace `N/A` in `Blocker Summary`, `Blocker
+> Evidence`, and `Unblock Condition` with repo-backed truth, and make the
+> visible `## Plan` describe the unblock path or blocker reassessment work
+> instead of stale "proceed now" steps. Leave those sections as `N/A`
+> otherwise.
+
 ## Goal
 
 {One paragraph describing what this story accomplishes and why it matters.}
@@ -114,7 +120,7 @@ N/A
 
 ## Plan
 
-{Written by build-story Phase 2 — per-task file changes, impact analysis, repo-fit evidence, approval blockers}
+{Written by build-story Phase 2 — per-task file changes, impact analysis, repo-fit evidence, approval blockers. If the story is currently `Blocked`, replace stale "proceed now" language with blocker truth and the unblock path instead.}
 
 ## Work Log
 

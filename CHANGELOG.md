@@ -1,3 +1,16 @@
+## [2026-04-09-02] - Port Storybook blocked-story lifecycle hardening
+
+### Changed
+- Changed `create-story`, `build-story`, and the story template so blocked stories now explicitly keep the visible `## Plan` aligned with the unblock path or blocker reassessment work instead of stale "proceed now" prose
+- Changed the local scout history to record Storybook commits `6d1b5a6` and `ccdda3f` plus the doc-web-specific adaptation decision to keep canonical blocker truth in story body sections rather than migrate it into frontmatter
+
+### Tested
+- `make methodology-compile`
+- `make methodology-check`
+- `make skills-check`
+- `python -m pytest tests/test_methodology_graph.py -q`
+- `git diff --check`
+
 ## [2026-04-09-01] - Add bounded EPUB direct-entry seam (Story 201)
 
 ### Added
