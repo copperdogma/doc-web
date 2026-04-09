@@ -4,15 +4,13 @@
 
 ## Recommended Order
 
-Guiding priorities: keep the active intake + `doc-web` path honest, improve validation and provenance, expand reusable format coverage, and retire or quarantine legacy FF/gamebook surfaces that no longer belong in the default roadmap.
+Guiding priorities: keep bounded intake + `doc-web` claims honest and widen reusable format coverage only when substrate and proof exist.
 
-Use `docs/methodology/graph.json`, `docs/methodology/state.yaml`, the active `doc-web` stories, and `/triage` output for current sequencing. Historical Fighting Fantasy/gamebook stories remain in the index below as project record and reference evidence, not as the default mission queue.
+Use `docs/methodology/graph.json`, `docs/methodology/state.yaml`, and `/triage` output for current sequencing. Story `204` refreshed the planning surfaces on 2026-04-09; the only remaining live line is blocked Story `191`, which should be treated as a health flag rather than evidence of a currently buildable OCR lane. Historical Fighting Fantasy/gamebook stories remain in the index below as project record and reference evidence, not as the default mission queue.
 
 ## Active Focus
 
-- Active categories: spec:1, spec:2, spec:7, spec:9
-- Campaign `maintained-intake-honesty` (active; stories: 176, 180, 186, 189) — Keep format claims tied to current fixture/eval evidence instead of widening through prose drift.
-- Campaign `methodology-graph-state-migration` (active; stories: 187, 188) — Migrate methodology consumers onto state + graph + coverage-matrix truth and retire the live hand-authored build map.
+- Campaign `maintained-intake-honesty` (active; stories: 191, 196, 197, 200, 201, 202, 203) — Recent bounded proof and direct-entry expansions are done; the only still-open line here is blocked Story 191, so current work is honesty maintenance and blocked-handwriting visibility rather than a buildable widening push.
 
 ## Index
 
@@ -123,6 +121,7 @@ Grouped by primary `spec:N` category. Stories without category refs remain in an
 | 190 | Fix Story Progression and Anti-Fragmentation Workflow | High | Done | 187, 188 | [story-190](stories/story-190-fix-story-progression-and-anti-fragmentation-workflow.md) |
 | 195 | Clean Up Legacy Active Story Drift and Refresh Audit Memory | High | Done | 190 | [story-195](stories/story-195-legacy-active-story-cleanup-and-audit-memory-refresh.md) |
 | 199 | Methodology Hardening Follow-up | High | Done | 188, 195 | [story-199](stories/story-199-methodology-hardening-followup.md) |
+| 204 | Refresh Methodology Roadmap Truth and Audit Memory | High | Done | 195, 199 | [story-204](stories/story-204-methodology-roadmap-truth-refresh.md) |
 
 ### Legacy / Uncategorized Stories
 

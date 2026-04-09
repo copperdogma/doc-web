@@ -307,6 +307,77 @@ def test_validate_graph_requires_explicit_eval_lineage():
     assert validation["errors"] == ["eval missing-lineage missing explicit lineage refs"]
 
 
+def test_validate_graph_rejects_active_campaign_with_only_terminal_story_refs():
+    module = load_module()
+    stories = [
+        {
+            "id": "001",
+            "title": "Finished Story",
+            "path": "docs/stories/story-001-finished.md",
+            "status": "Done",
+            "priority": "High",
+            "ideal_refs": [],
+            "spec_refs": [],
+            "decision_refs": [],
+            "adr_ids": [],
+            "depends_on": [],
+            "category_refs": [],
+            "compromise_refs": [],
+            "input_coverage_refs": [],
+            "architecture_domains": [],
+            "roadmap_tags": [],
+            "blocker_summary": "",
+            "blocker_evidence": "",
+            "unblock_condition": "",
+            "legacy_build_map_refs": "",
+            "metadata_source": "frontmatter",
+            "missing_frontmatter_keys": [],
+        },
+        {
+            "id": "002",
+            "title": "Superseded Story",
+            "path": "docs/stories/story-002-superseded.md",
+            "status": "Obsolete",
+            "priority": "High",
+            "ideal_refs": [],
+            "spec_refs": [],
+            "decision_refs": [],
+            "adr_ids": [],
+            "depends_on": [],
+            "category_refs": [],
+            "compromise_refs": [],
+            "input_coverage_refs": [],
+            "architecture_domains": [],
+            "roadmap_tags": [],
+            "blocker_summary": "",
+            "blocker_evidence": "",
+            "unblock_condition": "",
+            "legacy_build_map_refs": "",
+            "metadata_source": "frontmatter",
+            "missing_frontmatter_keys": [],
+        },
+    ]
+
+    validation = module.validate_graph(
+        state={
+            "categories": {},
+            "roadmap": {
+                "campaigns": [{"id": "stale-campaign", "status": "active", "story_refs": ["001", "002"]}]
+            },
+            "architecture_audits": {"domains": {}, "cadence": {}},
+        },
+        spec={"categories": [], "compromises": []},
+        stories=stories,
+        adrs=[],
+        evals=[],
+        coverage={"formats": []},
+    )
+
+    assert validation["errors"] == [
+        "state.roadmap.campaign stale-campaign is active but only references terminal stories: 001, 002"
+    ]
+
+
 def test_validate_graph_flags_live_build_map_language_in_active_surface(tmp_path):
     module = load_module()
     module.ROOT = tmp_path

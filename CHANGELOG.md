@@ -1,3 +1,12 @@
+## [2026-04-09-05] - Refresh methodology roadmap truth surfaces (Story 204)
+
+### Changed
+- Changed the authored methodology roadmap, active-focus framing, generated story index, and compiled graph so the current planning surfaces reflect the real open lines instead of stale active campaigns and stale audit-memory state
+- Changed the methodology story closeout record so Story 204 closes against the refreshed state/graph/index truth model with explicit validation evidence
+
+### Fixed
+- Fixed methodology validation drift by rejecting any active roadmap campaign that only references terminal-status stories, with focused regression coverage for that guardrail
+
 ## [2026-04-09-04] - Add bounded MBOX direct-entry seam (Story 203)
 
 ### Added

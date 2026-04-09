@@ -445,7 +445,7 @@
         "sections": [],
         "state": {
           "substrate": "exists",
-          "last_reviewed": "2026-04-04"
+          "last_reviewed": "2026-04-09"
         },
         "story_ids": [
           "148",
@@ -484,7 +484,8 @@
           "200",
           "201",
           "202",
-          "203"
+          "203",
+          "204"
         ],
         "adr_ids": [
           "ADR-002"
@@ -505,7 +506,7 @@
         "sections": [],
         "state": {
           "substrate": "exists",
-          "last_reviewed": "2026-04-04"
+          "last_reviewed": "2026-04-09"
         },
         "story_ids": [
           "148",
@@ -524,7 +525,8 @@
           "200",
           "201",
           "202",
-          "203"
+          "203",
+          "204"
         ],
         "adr_ids": [],
         "eval_ids": [
@@ -6688,6 +6690,50 @@
       "legacy_build_map_refs": "",
       "metadata_source": "frontmatter",
       "missing_frontmatter_keys": []
+    },
+    {
+      "id": "204",
+      "title": "Refresh Methodology Roadmap Truth and Audit Memory",
+      "path": "docs/stories/story-204-methodology-roadmap-truth-refresh.md",
+      "status": "Done",
+      "priority": "High",
+      "ideal_refs": [
+        "The Execution Ideal",
+        "Transparency over magic."
+      ],
+      "spec_refs": [
+        "spec:8",
+        "spec:9"
+      ],
+      "decision_refs": [
+        "`AGENTS.md`, `docs/ideal.md`, `docs/spec.md`, `docs/methodology/state.yaml`, `docs/methodology/graph.json`, `docs/stories.md`, `docs/evals/registry.yaml`, `docs/runbooks/migrate-problem-first-triage-and-story-workflow.md`, `docs/stories/story-191-finish-real-handwritten-ocr-on-the-loc-fixture-pair.md`, `docs/stories/story-195-legacy-active-story-cleanup-and-audit-memory-refresh.md`, `docs/stories/story-199-methodology-hardening-followup.md`, `docs/stories/story-196-widen-born-digital-pdf-proof-and-quality-surface.md`, `docs/stories/story-197-establish-pptx-direct-entry-seam.md`, `docs/stories/story-200-web-page-direct-entry-seam.md`, `docs/stories/story-201-epub-direct-entry-seam.md`, `docs/stories/story-202-eml-direct-entry-seam.md`, `docs/stories/story-203-mbox-archive-seam.md`, `tests/fixtures/formats/_coverage-matrix.json`, and `None found after search in docs/decisions/ for a narrower roadmap-refresh ADR or audit-memory policy doc`"
+      ],
+      "adr_ids": [],
+      "depends_on": [
+        "195",
+        "199"
+      ],
+      "category_refs": [
+        "spec:8",
+        "spec:9"
+      ],
+      "compromise_refs": [
+        "B7",
+        "B8"
+      ],
+      "input_coverage_refs": [],
+      "architecture_domains": [
+        "methodology_tooling"
+      ],
+      "roadmap_tags": [
+        "campaign:methodology-graph-state-migration"
+      ],
+      "blocker_summary": "",
+      "blocker_evidence": "",
+      "unblock_condition": "",
+      "legacy_build_map_refs": "",
+      "metadata_source": "frontmatter",
+      "missing_frontmatter_keys": []
     }
   ],
   "adrs": [
@@ -7631,11 +7677,11 @@
       },
       "spec:8": {
         "substrate": "exists",
-        "last_reviewed": "2026-04-04"
+        "last_reviewed": "2026-04-09"
       },
       "spec:9": {
         "substrate": "exists",
-        "last_reviewed": "2026-04-04"
+        "last_reviewed": "2026-04-09"
       }
     },
     "compromises": {
@@ -7693,11 +7739,11 @@
       },
       "B7": {
         "phase": "hold",
-        "last_reviewed": "2026-04-04"
+        "last_reviewed": "2026-04-09"
       },
       "B8": {
         "phase": "hold",
-        "last_reviewed": "2026-04-04"
+        "last_reviewed": "2026-04-09"
       },
       "B9": {
         "phase": "hold",
@@ -7714,20 +7760,11 @@
       "notes": "Canonical machine-readable input-coverage surface. The methodology compiler reads this directly instead of duplicating its rows inside state.yaml."
     },
     "roadmap": {
-      "active_focus": [
-        "spec:1",
-        "spec:2",
-        "spec:7",
-        "spec:9"
-      ],
+      "active_focus": [],
       "sequencing_bias": [
         {
           "target": "campaign:maintained-intake-honesty",
-          "reason": "Keep the active intake and doc-web path honest before widening new format promises."
-        },
-        {
-          "target": "campaign:methodology-graph-state-migration",
-          "reason": "Replace the live hand-authored build-map/index surfaces with structured state, compiled graph, and generated views."
+          "reason": "Keep the bounded intake and doc-web claims honest while the remaining handwritten line stays an explicit blocked health flag instead of a silent roadmap promise."
         }
       ],
       "campaigns": [
@@ -7735,21 +7772,15 @@
           "id": "maintained-intake-honesty",
           "status": "active",
           "story_refs": [
-            "176",
-            "180",
-            "186",
-            "189"
+            "191",
+            "196",
+            "197",
+            "200",
+            "201",
+            "202",
+            "203"
           ],
-          "notes": "Keep format claims tied to current fixture/eval evidence instead of widening through prose drift."
-        },
-        {
-          "id": "methodology-graph-state-migration",
-          "status": "active",
-          "story_refs": [
-            "187",
-            "188"
-          ],
-          "notes": "Migrate methodology consumers onto state + graph + coverage-matrix truth and retire the live hand-authored build map."
+          "notes": "Recent bounded proof and direct-entry expansions are done; the only still-open line here is blocked Story 191, so current work is honesty maintenance and blocked-handwriting visibility rather than a buildable widening push."
         }
       ]
     },
@@ -7758,7 +7789,7 @@
         {
           "id": "recommended-order",
           "title": "Recommended Order",
-          "markdown": "Guiding priorities: keep the active intake + `doc-web` path honest, improve validation and provenance, expand reusable format coverage, and retire or quarantine legacy FF/gamebook surfaces that no longer belong in the default roadmap.\n\nUse `docs/methodology/graph.json`, `docs/methodology/state.yaml`, the active `doc-web` stories, and `/triage` output for current sequencing. Historical Fighting Fantasy/gamebook stories remain in the index below as project record and reference evidence, not as the default mission queue."
+          "markdown": "Guiding priorities: keep bounded intake + `doc-web` claims honest and widen reusable format coverage only when substrate and proof exist.\n\nUse `docs/methodology/graph.json`, `docs/methodology/state.yaml`, and `/triage` output for current sequencing. Story `204` refreshed the planning surfaces on 2026-04-09; the only remaining live line is blocked Story `191`, which should be treated as a health flag rather than evidence of a currently buildable OCR lane. Historical Fighting Fantasy/gamebook stories remain in the index below as project record and reference evidence, not as the default mission queue."
         }
       ],
       "uncategorized_label": "Legacy / Uncategorized Stories"
@@ -7771,68 +7802,70 @@
         "methodology_tooling": {
           "label": "Methodology Tooling",
           "manual_priority": "medium",
-          "last_audited_at": "2026-04-07",
+          "last_audited_at": "2026-04-09",
           "stories_since_audit": 0,
           "recent_story_refs": [
-            "187",
-            "188",
             "190",
-            "195"
+            "195",
+            "199",
+            "204"
           ],
           "open_findings": [],
-          "notes": "Story 190 reset workflow semantics and Story 195 cleaned legacy active-story drift; no additional methodology-tooling restructure is due beyond keeping the truth surfaces honest."
+          "notes": "Stories 199 and 204 are the current methodology line: compiler hardening is done, and the remaining work is keeping state, graph, and generated-index truth aligned with later repo changes."
         },
         "intake_and_routing": {
           "label": "Intake and Routing",
           "manual_priority": "medium",
-          "last_audited_at": "2026-04-07",
+          "last_audited_at": "2026-04-09",
           "stories_since_audit": 0,
           "recent_story_refs": [
-            "178",
-            "180",
-            "194"
+            "194",
+            "200"
           ],
           "open_findings": [],
-          "notes": "Story 194 refreshed the office recommendation and approved-handoff boundary: recommendation-only intake stays explicitly limited to `pdf` and `images_dir`, while office lanes remain direct explicit-recipe entry points."
+          "notes": "Story 194 fixed the office recommendation boundary and Story 200 added the first web-page direct-entry seam. No new routing cleanup is due until a fresh substrate such as mixed-archive routing or broader recommendation proof exists."
         },
         "ocr_and_extraction": {
           "label": "OCR and Extraction",
           "manual_priority": "medium",
-          "last_audited_at": "2026-04-03",
-          "stories_since_audit": 1,
+          "last_audited_at": "2026-04-09",
+          "stories_since_audit": 0,
           "recent_story_refs": [
-            "182",
-            "185",
-            "186"
+            "189",
+            "191",
+            "192"
           ],
           "open_findings": [],
-          "notes": "Recent handwritten-fixture work widened evidence but did not trigger a structural cleanup story yet."
+          "notes": "The real handwritten line is now an explicit OCR-capability blocker: Story 192 corrected the Alverson truth surface, and Story 191 remains parked until a materially stronger OCR substrate appears."
         },
         "document_structure_and_consistency": {
           "label": "Document Structure and Consistency",
           "manual_priority": "medium",
-          "last_audited_at": "2026-04-03",
-          "stories_since_audit": 2,
+          "last_audited_at": "2026-04-09",
+          "stories_since_audit": 0,
           "recent_story_refs": [
-            "181",
             "183",
-            "184"
+            "184",
+            "198"
           ],
           "open_findings": [],
-          "notes": "Layout benchmark and crop/runtime simplification recently moved; next audit should look for deletable residue."
+          "notes": "Story 198 deleted retired crop retry and validator residue after the bounded crop simplification line; no additional structure/runtime cleanup is currently due in this domain."
         },
         "doc_web_runtime": {
           "label": "doc-web Runtime",
           "manual_priority": "medium",
-          "last_audited_at": "2026-04-07",
+          "last_audited_at": "2026-04-09",
           "stories_since_audit": 0,
           "recent_story_refs": [
-            "174",
-            "175",
-            "193"
+            "193",
+            "196",
+            "197",
+            "201",
+            "202",
+            "203"
           ],
           "open_findings": [],
-          "notes": "Story 193 widened XLSX proof and rechecked the PPTX seam; the maintained office runtime boundary is currently honest, with PPTX still blocked rather than silently widened."
+          "notes": "Recent bounded runtime work widened maintained proof across XLSX, born-digital PDF, PPTX, EPUB, EML, and MBOX. The runtime boundary is currently honest; future cleanup should wait for a new cross-format seam rather than re-auditing the just-landed direct-entry slices."
         }
       }
     },

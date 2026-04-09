@@ -105,6 +105,7 @@ VALID_STORY_STATUSES = {
     "Won't Do",
     "Obsolete",
 }
+TERMINAL_STORY_STATUSES = {"Done", "Complete", "Won't Do", "Obsolete"}
 REQUIRED_STORY_FRONTMATTER_KEYS = {
     "title",
     "status",
@@ -558,6 +559,7 @@ def validate_graph(
     spec_section_ids = {section["id"] for entry in spec["categories"] for section in entry["sections"]}
     compromise_ids = {entry["id"] for entry in spec["compromises"]}
     story_ids = {story["id"] for story in stories}
+    stories_by_id = {story["id"]: story for story in stories}
     adr_ids = {adr["id"] for adr in adrs}
     coverage_ids = {entry["id"] for entry in coverage.get("formats", [])}
     legacy_story_ids: list[str] = []
@@ -638,9 +640,22 @@ def validate_graph(
             if category not in category_ids:
                 errors.append(f"eval {entry['id']} references missing category {category}")
     for campaign in state.get("roadmap", {}).get("campaigns", []):
+        resolved_story_refs: list[str] = []
         for story_ref in campaign.get("story_refs", []):
-            if str(story_ref) not in story_ids:
+            story_id = str(story_ref)
+            if story_id not in story_ids:
                 errors.append(f"state.roadmap.campaign {campaign.get('id')} references missing story {story_ref}")
+                continue
+            resolved_story_refs.append(story_id)
+        if campaign.get("status") == "active":
+            if not resolved_story_refs:
+                errors.append(f"state.roadmap.campaign {campaign.get('id')} is active but has no story refs")
+            elif all(stories_by_id[story_id]["status"] in TERMINAL_STORY_STATUSES for story_id in resolved_story_refs):
+                errors.append(
+                    "state.roadmap.campaign "
+                    f"{campaign.get('id')} is active but only references terminal stories: "
+                    f"{', '.join(resolved_story_refs)}"
+                )
     for domain_id, domain in state.get("architecture_audits", {}).get("domains", {}).items():
         for story_ref in domain.get("recent_story_refs", []):
             if str(story_ref) not in story_ids:
