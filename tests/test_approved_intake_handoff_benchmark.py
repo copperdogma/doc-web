@@ -131,9 +131,15 @@ def test_approved_intake_handoff_corpus_stays_within_supported_scope():
             "outside_approved_intake_handoff:pptx:direct_explicit_recipe_only",
             "direct_explicit_recipe_only",
         ),
+        (
+            "web-page",
+            "testdata/web-page-mini.html",
+            "outside_approved_intake_handoff:web-page:direct_explicit_recipe_only",
+            "direct_explicit_recipe_only",
+        ),
     ],
 )
-def test_approved_intake_handoff_blocks_office_inputs_with_explicit_scope_reason(
+def test_approved_intake_handoff_blocks_direct_entry_only_inputs_with_explicit_scope_reason(
     tmp_path,
     input_kind,
     path,

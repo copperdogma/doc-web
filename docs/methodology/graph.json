@@ -130,7 +130,8 @@
           "193",
           "194",
           "196",
-          "197"
+          "197",
+          "200"
         ],
         "adr_ids": [
           "ADR-001",
@@ -244,7 +245,8 @@
           "177",
           "181",
           "196",
-          "197"
+          "197",
+          "200"
         ],
         "adr_ids": [
           "ADR-002",
@@ -362,7 +364,8 @@
           "181",
           "193",
           "196",
-          "197"
+          "197",
+          "200"
         ],
         "adr_ids": [
           "ADR-002",
@@ -411,7 +414,8 @@
           "177",
           "193",
           "196",
-          "197"
+          "197",
+          "200"
         ],
         "adr_ids": [
           "ADR-002",
@@ -464,7 +468,8 @@
           "196",
           "197",
           "198",
-          "199"
+          "199",
+          "200"
         ],
         "adr_ids": [
           "ADR-002"
@@ -500,7 +505,8 @@
           "194",
           "195",
           "197",
-          "199"
+          "199",
+          "200"
         ],
         "adr_ids": [],
         "eval_ids": [
@@ -6440,6 +6446,60 @@
       "legacy_build_map_refs": "",
       "metadata_source": "frontmatter",
       "missing_frontmatter_keys": []
+    },
+    {
+      "id": "200",
+      "title": "Establish the First Honest Web-Page Direct-Entry Seam",
+      "path": "docs/stories/story-200-web-page-direct-entry-seam.md",
+      "status": "Done",
+      "priority": "High",
+      "ideal_refs": [
+        "Requirement #1 (Ingest), Requirement #5 (Structure), Requirement #6 (Validate), Requirement #7 (Export), Any format, any condition, Zero configuration, Dossier-ready output, Transparency over magic"
+      ],
+      "spec_refs": [
+        "spec:1",
+        "spec:1.1",
+        "spec:3",
+        "spec:3.1",
+        "spec:6",
+        "spec:7",
+        "spec:8",
+        "spec:9"
+      ],
+      "decision_refs": [
+        "`docs/ideal.md`, `docs/spec.md`, `docs/methodology/state.yaml`, `docs/methodology/graph.json`, `docs/decisions/adr-002-doc-web-runtime-boundary/adr.md`, `docs/stories/story-169-restore-contact-sheet-intake-and-benchmark-auto-book-type-detection.md`, `docs/stories/story-180-widen-approved-intake-handoff-image-directory-proof.md`, `docs/stories/story-194-office-intake-recommendation-and-handoff-boundary.md`, `docs/stories/story-197-establish-pptx-direct-entry-seam.md`, `tests/fixtures/formats/_coverage-matrix.json`, `benchmarks/scripts/run_auto_book_type_detection_eval.py`, `benchmarks/scripts/run_approved_intake_handoff_eval.py`, `benchmarks/scripts/intake_scope.py`, `README.md`, `docs/RUNBOOK.md`, and `None found after search in docs/decisions/`, `docs/runbooks/`, `docs/scout/`, and `docs/notes/` for a narrower web-page direct-entry ADR or runbook`"
+      ],
+      "adr_ids": [],
+      "depends_on": [],
+      "category_refs": [
+        "spec:1",
+        "spec:3",
+        "spec:6",
+        "spec:7",
+        "spec:8",
+        "spec:9"
+      ],
+      "compromise_refs": [
+        "B1",
+        "B10",
+        "C2",
+        "C3"
+      ],
+      "input_coverage_refs": [
+        "web-page"
+      ],
+      "architecture_domains": [
+        "intake_and_routing"
+      ],
+      "roadmap_tags": [
+        "campaign:maintained-intake-honesty"
+      ],
+      "blocker_summary": "",
+      "blocker_evidence": "",
+      "unblock_condition": "",
+      "legacy_build_map_refs": "",
+      "metadata_source": "frontmatter",
+      "missing_frontmatter_keys": []
     }
   ],
   "adrs": [
@@ -7181,17 +7241,28 @@
       {
         "id": "web-page",
         "format_family": "web-page",
-        "status": "untested",
-        "description": "Web pages (URL \u2192 structured content)",
-        "pipeline_recipe": null,
-        "intake_module": null,
+        "status": "passing",
+        "description": "Checked HTML page snapshots (.html \u2192 structured content)",
+        "pipeline_recipe": "recipe-web-page-html-mvp.yaml",
+        "intake_module": "web_page_html_intake_v1 \u2192 extract_page_numbers_html_v1 \u2192 portionize_headings_html_v1 \u2192 build_chapter_html_v1",
         "complexity": [
           "mixed-layout",
           "illustrations"
         ],
-        "fixtures": [],
+        "fixtures": [
+          {
+            "id": "web-page-mini",
+            "source": "testdata/web-page-mini.html",
+            "pages": 1,
+            "notes": "Supported on the bounded maintained slice. Story 200 established the first web-page direct-entry lane on a repo-owned checked HTML snapshot captured from `https://example.com/`: one `page_html_v1` row, one heading-derived chapter, and accepted `doc-web` bundle/provenance artifacts. This remains direct explicit-recipe entry only, not live URL automation."
+          }
+        ],
         "scores": null,
-        "known_gaps": [],
+        "known_gaps": [
+          "Passing evidence is still bounded to one checked-in static HTML snapshot with clear heading/prose structure.",
+          "The maintained lane does not yet claim live URL fetch, JavaScript-rendered pages, multi-page crawling, authenticated pages, or generic boilerplate stripping across arbitrary websites.",
+          "Web-page provenance currently relies on the accepted `doc-web` block-anchor surface plus one synthetic source page anchor; it does not claim printed pages or browser-native open-original anchors."
+        ],
         "graduated": false
       },
       {

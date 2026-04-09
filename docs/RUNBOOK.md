@@ -370,9 +370,51 @@ Alternative supported install shape for this lane:
 
 - `python -m pip install -r requirements.txt` on Python 3.11/3.12
 
-These maintained office-native lanes are still direct explicit-recipe entry
-points. They are not part of the recommendation-only contact-sheet benchmark or
-the approved-handoff automation surface.
+### Repo-Owned Web-Page Intake Smoke
+
+Use this when you need a cheap real-run proof that the maintained bounded
+web-page lane still emits a stamped `page_html_v1` artifact plus a final
+`doc-web` bundle from the checked-in HTML snapshot:
+
+```bash
+python -m pip install '.[driver]'
+python driver.py \
+  --recipe configs/recipes/recipe-web-page-html-mvp.yaml \
+  --input-html testdata/web-page-mini.html \
+  --run-id <run_id> \
+  --allow-run-id-reuse
+python validate_artifact.py \
+  --schema page_html_v1 \
+  --file output/runs/<run_id>/01_web_page_html_intake_v1/pages_html.jsonl
+python validate_artifact.py \
+  --schema doc_web_bundle_manifest_v1 \
+  --file output/runs/<run_id>/output/html/manifest.json
+python validate_artifact.py \
+  --schema doc_web_provenance_block_v1 \
+  --file output/runs/<run_id>/output/html/provenance/blocks.jsonl
+```
+
+Story 200 established the first maintained web-page slice on
+`testdata/web-page-mini.html`, a checked-in static HTML snapshot captured from
+`https://example.com/`. The maintained claim is intentionally narrow: one
+repo-owned HTML snapshot with clear heading/prose structure, routed through the
+existing `page_html_v1` to `doc-web` chain. Live URL fetch, JavaScript-rendered
+pages, multi-page crawling, and broader website cleanup remain out of scope.
+
+Expected bundle outputs:
+
+- `output/runs/<run_id>/01_web_page_html_intake_v1/pages_html.jsonl`
+- `output/runs/<run_id>/02_extract_page_numbers_html_v1/pages_html_with_page_numbers.jsonl`
+- `output/runs/<run_id>/03_portionize_headings_html_v1/portions_non_toc.jsonl`
+- `output/runs/<run_id>/output/html/index.html`
+- `output/runs/<run_id>/output/html/chapter-001.html`
+- `output/runs/<run_id>/output/html/manifest.json`
+- `output/runs/<run_id>/output/html/provenance/blocks.jsonl`
+
+These maintained office-native lanes plus the bounded web-page lane are still
+direct explicit-recipe entry points. They are not part of the
+recommendation-only contact-sheet benchmark or the approved-handoff automation
+surface.
 
 ### Office Intake Boundary Probe
 
@@ -434,6 +476,7 @@ scripts/run_driver_monitored.sh \
 | `recipe-pdf-ocr-html-mvp.yaml` | Active structural HTML bundle path for generic PDF-backed inputs. |
 | `recipe-docx-html-mvp.yaml` | Maintained DOCX structural bundle path for the repo-owned heading/prose/list/table slice, widened to three checked-in fixtures. |
 | `recipe-pptx-html-mvp.yaml` | Maintained PPTX structural bundle path for the verified bounded slide slice: one HTML page per supported slide entry with slide-number provenance. |
+| `recipe-web-page-html-mvp.yaml` | Maintained checked-HTML web-page path for one repo-owned static snapshot that reuses the existing `page_html_v1` to `doc-web` chain. |
 | `recipe-xlsx-html-mvp.yaml` | Maintained XLSX structural bundle path for the verified simple-table slice: one HTML page per supported sheet/entry, including multiple table regions on one sheet, with anchor-based provenance. |
 | `recipe-onward-images-html-mvp.yaml` | **Genealogy.** Specialized for *Onward* tables. |
 | `recipe-onward-pdf-html-mvp.yaml` | **Genealogy.** PDF-backed maintained Onward lane with the same downstream table-repair flow. |
@@ -453,6 +496,7 @@ Append these after `--` in the wrapper script.
 *   `--input-pdf <path>`: Override `input.pdf` on maintained PDF-backed recipes.
 *   `--input-docx <path>`: Override `input.docx` on maintained DOCX-backed recipes.
 *   `--input-pptx <path>`: Override `input.pptx` on maintained PPTX-backed recipes.
+*   `--input-html <path>`: Override `input.html` on maintained checked-HTML web-page recipes.
 *   `--input-xlsx <path>`: Override `input.xlsx` on maintained XLSX-backed recipes.
 *   `--max-pages <N>`: Stop after N pages.
 *   `--start-from <stage>`: Resume point.

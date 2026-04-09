@@ -1,0 +1,13 @@
+module_id: web_page_html_intake_v1
+stage: extract
+entrypoint: modules/extract/web_page_html_intake_v1/main.py
+input_schema: null
+output_schema: page_html_v1
+default_params:
+  source_metadata: null
+param_schema:
+  properties:
+    source_metadata:
+      type: string
+      description: "Optional JSON sidecar describing the captured source URL and notes"
+notes: "Wrap a checked HTML snapshot into one page_html_v1 row for the bounded web-page direct-entry lane."

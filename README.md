@@ -1,5 +1,5 @@
 # doc-web
-AI-first runtime for turning scanned books, PDFs, office documents, and images into structural, provenance-rich HTML website bundles for Dossier and related downstream consumers.
+AI-first runtime for turning scanned books, PDFs, office documents, checked HTML snapshots, and images into structural, provenance-rich HTML website bundles for Dossier and related downstream consumers.
 
 ## Current Role
 - Own the structural website contract: semantic HTML pages, reading order, minimal navigation, manifests, and provenance sidecars.
@@ -185,12 +185,37 @@ Story 197 established the first bounded maintained PPTX slice on the checked-in
 Speaker notes, embedded media, animations, charts, and broader mixed-layout
 PowerPoint ownership remain unproven.
 
-Those maintained office lanes are still direct explicit-recipe entry points.
-Story 194 did not widen the recommendation-only intake or approved-handoff
-automation to office files: `auto-book-type-detection` remains a PDF-only
-surface, `approved-intake-handoff` remains limited to `pdf` and `images_dir`,
-and office boundary probes now fail explicitly instead of crashing inside the
-contact-sheet builder.
+For the maintained web-page proof lane, the base driver install is enough:
+
+```bash
+python -m pip install '.[driver]'
+python driver.py \
+  --recipe configs/recipes/recipe-web-page-html-mvp.yaml \
+  --input-html testdata/web-page-mini.html \
+  --run-id <run_id> \
+  --allow-run-id-reuse \
+  --force
+```
+
+Story 200 established the first bounded maintained web-page slice on the
+checked-in `testdata/web-page-mini.html` snapshot captured from
+`https://example.com/`. The supported claim is intentionally narrow:
+
+- one repo-owned static HTML snapshot with clear heading/prose structure
+- one `page_html_v1` intake artifact flowing through the existing HTML/`doc-web` path
+- direct explicit-recipe entry only
+
+Live URL fetch, JavaScript-rendered pages, multi-page crawling, boilerplate
+cleanup across arbitrary sites, and approved-handoff / recommendation-only
+automation support remain outside this lane.
+
+Those maintained office lanes plus the bounded web-page lane are still direct
+explicit-recipe entry points. Story 194 did not widen the recommendation-only
+intake or approved-handoff automation to office files, and Story 200 likewise
+keeps web pages outside those automation surfaces: `auto-book-type-detection`
+remains a PDF-only surface, `approved-intake-handoff` remains limited to `pdf`
+and `images_dir`, and direct-entry-only boundary probes now fail explicitly
+instead of drifting into unsupported or live-fetch behavior.
 
 ## Maintained Intake Recipes
 
@@ -202,14 +227,16 @@ The active maintained entry surfaces are explicit recipes, not hidden routing:
 - `configs/recipes/recipe-born-digital-pdf-non-toc-html-mvp.yaml` for the bounded maintained flat/non-TOC born-digital PDF slice
 - `configs/recipes/recipe-docx-html-mvp.yaml` for the maintained DOCX fixture-backed lane
 - `configs/recipes/recipe-pptx-html-mvp.yaml` for the maintained PPTX slide-backed lane on the verified bounded probe slice
+- `configs/recipes/recipe-web-page-html-mvp.yaml` for the maintained checked-HTML web-page lane on the verified bounded probe slice
 - `configs/recipes/recipe-xlsx-html-mvp.yaml` for the maintained XLSX workbook-table lane on the verified simple-table slice
 - `configs/recipes/recipe-onward-images-html-mvp.yaml` for the image-backed Onward genealogy lane
 - `configs/recipes/recipe-onward-pdf-html-mvp.yaml` for the PDF-backed Onward genealogy lane
 
 Recommendation-only intake automation is intentionally narrower than that full
-list: maintained `docx`, `xlsx`, and `pptx` support currently starts with explicit
-`driver.py --recipe ... --input-docx/--input-xlsx/--input-pptx` entry, not the
-recommendation-only contact-sheet flow or approved-handoff automation.
+list: maintained `docx`, `xlsx`, `pptx`, and `web-page` support currently starts
+with explicit `driver.py --recipe ... --input-docx/--input-xlsx/--input-pptx/--input-html`
+entry, not the recommendation-only contact-sheet flow or approved-handoff
+automation.
 
 To seed a maintained PDF-backed run config explicitly:
 

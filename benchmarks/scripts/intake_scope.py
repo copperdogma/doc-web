@@ -2,17 +2,17 @@ from pathlib import Path
 from typing import Iterable
 
 
-OFFICE_DIRECT_ENTRY_INPUT_KINDS = frozenset({"docx", "pptx", "xlsx"})
+DIRECT_ENTRY_ONLY_INPUT_KINDS = frozenset({"docx", "pptx", "web-page", "xlsx"})
 
 
 def describe_scope_boundary(input_kind: str, *, surface_key: str, surface_label: str) -> dict[str, str]:
     kind = str(input_kind or "").strip()
-    if kind in OFFICE_DIRECT_ENTRY_INPUT_KINDS:
+    if kind in DIRECT_ENTRY_ONLY_INPUT_KINDS:
         return {
             "scope_policy": "direct_explicit_recipe_only",
             "boundary_reason": f"outside_{surface_key}:{kind}:direct_explicit_recipe_only",
             "error": (
-                f"Input kind '{kind}' is outside {surface_label} because maintained {kind.upper()} "
+                f"Input kind '{kind}' is outside {surface_label} because maintained {kind} "
                 "support is a direct explicit-recipe entry lane, not part of this automation surface."
             ),
         }

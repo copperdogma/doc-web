@@ -36,9 +36,15 @@ def test_auto_book_type_detection_corpus_stays_pdf_only():
             "outside_recommendation_only_intake:pptx:direct_explicit_recipe_only",
             "direct_explicit_recipe_only",
         ),
+        (
+            "web-page",
+            "testdata/web-page-mini.html",
+            "outside_recommendation_only_intake:web-page:direct_explicit_recipe_only",
+            "direct_explicit_recipe_only",
+        ),
     ],
 )
-def test_auto_book_type_detection_blocks_office_inputs_with_explicit_scope_reason(
+def test_auto_book_type_detection_blocks_direct_entry_only_inputs_with_explicit_scope_reason(
     tmp_path,
     input_kind,
     path,

@@ -240,10 +240,11 @@ def test_prepare_confirmed_handoff_blocks_unsupported_input_kind(tmp_path):
     [
         ("docx", "configs/recipes/recipe-docx-html-mvp.yaml", "sample.docx"),
         ("pptx", "configs/recipes/recipe-pptx-html-mvp.yaml", "sample.pptx"),
+        ("web-page", "configs/recipes/recipe-web-page-html-mvp.yaml", "sample.html"),
         ("xlsx", "configs/recipes/recipe-xlsx-html-mvp.yaml", "sample.xlsx"),
     ],
 )
-def test_prepare_confirmed_handoff_blocks_direct_entry_office_recipes_with_explicit_reason(
+def test_prepare_confirmed_handoff_blocks_direct_entry_only_recipes_with_explicit_reason(
     tmp_path,
     input_kind,
     recipe,

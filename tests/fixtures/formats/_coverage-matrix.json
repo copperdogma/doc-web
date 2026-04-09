@@ -384,14 +384,25 @@
     {
       "id": "web-page",
       "format_family": "web-page",
-      "status": "untested",
-      "description": "Web pages (URL → structured content)",
-      "pipeline_recipe": null,
-      "intake_module": null,
+      "status": "passing",
+      "description": "Checked HTML page snapshots (.html → structured content)",
+      "pipeline_recipe": "recipe-web-page-html-mvp.yaml",
+      "intake_module": "web_page_html_intake_v1 → extract_page_numbers_html_v1 → portionize_headings_html_v1 → build_chapter_html_v1",
       "complexity": ["mixed-layout", "illustrations"],
-      "fixtures": [],
+      "fixtures": [
+        {
+          "id": "web-page-mini",
+          "source": "testdata/web-page-mini.html",
+          "pages": 1,
+          "notes": "Supported on the bounded maintained slice. Story 200 established the first web-page direct-entry lane on a repo-owned checked HTML snapshot captured from `https://example.com/`: one `page_html_v1` row, one heading-derived chapter, and accepted `doc-web` bundle/provenance artifacts. This remains direct explicit-recipe entry only, not live URL automation."
+        }
+      ],
       "scores": null,
-      "known_gaps": [],
+      "known_gaps": [
+        "Passing evidence is still bounded to one checked-in static HTML snapshot with clear heading/prose structure.",
+        "The maintained lane does not yet claim live URL fetch, JavaScript-rendered pages, multi-page crawling, authenticated pages, or generic boilerplate stripping across arbitrary websites.",
+        "Web-page provenance currently relies on the accepted `doc-web` block-anchor surface plus one synthetic source page anchor; it does not claim printed pages or browser-native open-original anchors."
+      ],
       "graduated": false
     },
     {

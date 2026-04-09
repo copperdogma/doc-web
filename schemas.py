@@ -1231,6 +1231,7 @@ class RunConfig(BaseModel):
     input_docx: Optional[str] = None
     input_xlsx: Optional[str] = None
     input_pptx: Optional[str] = None
+    input_html: Optional[str] = None
     output_dir: Optional[str] = None
     
     execution: ExecutionConfig = Field(default_factory=ExecutionConfig)

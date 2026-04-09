@@ -1,3 +1,25 @@
+## [2026-04-08-06] - Add bounded web-page direct-entry seam (Story 200)
+
+### Added
+- Added a maintained checked-HTML web-page recipe, intake module, snapshot fixture pair, and focused smoke coverage for the first honest `web-page` direct-entry slice
+
+### Changed
+- Changed `driver.py`, `RunConfig`, the coverage matrix, README, runbook, and generated methodology surfaces so `web-page` is now documented honestly as a bounded maintained direct explicit-recipe lane
+- Changed intake-boundary helpers and tests so recommendation-only intake and approved handoff block `web-page` explicitly at scope instead of treating it as a vague unsupported family
+
+### Fixed
+- Fixed the intake/runtime gap for checked HTML snapshots by reusing the existing `page_html_v1` to `doc-web` path instead of leaving `web-page` unowned in the coverage inventory
+
+### Tested
+- `make test`
+- `make lint`
+- `python driver.py --recipe configs/recipes/recipe-web-page-html-mvp.yaml --input-html testdata/web-page-mini.html --run-id story200-web-page-validate --allow-run-id-reuse --force`
+- `python validate_artifact.py --schema page_html_v1 --file output/runs/story200-web-page-validate/01_web_page_html_intake_v1/pages_html.jsonl`
+- `python validate_artifact.py --schema doc_web_bundle_manifest_v1 --file output/runs/story200-web-page-validate/output/html/manifest.json`
+- `python validate_artifact.py --schema doc_web_provenance_block_v1 --file output/runs/story200-web-page-validate/output/html/provenance/blocks.jsonl`
+- `python benchmarks/scripts/run_auto_book_type_detection_eval.py --corpus /tmp/story200-validate-web-page-boundary-corpus.json --output /tmp/story200-validate-auto-book-type-web-page.json --run-root /tmp/story200-validate-auto-book-type-run`
+- `python benchmarks/scripts/run_approved_intake_handoff_eval.py --corpus /tmp/story200-validate-web-page-boundary-corpus.json --output /tmp/story200-validate-approved-handoff-web-page.json --run-root /tmp/story200-validate-approved-handoff-run`
+
 ## [2026-04-08-05] - Harden methodology graph/state contract (Story 199)
 
 ### Changed

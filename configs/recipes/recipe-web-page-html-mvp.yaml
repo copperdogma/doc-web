@@ -1,0 +1,44 @@
+# Maintained checked-HTML web-page lane for the first bounded direct-entry probe.
+
+input:
+  html: testdata/web-page-mini.html  # override via run config / --input-html
+
+stages:
+  - id: web_page_intake
+    stage: extract
+    module: web_page_html_intake_v1
+    out: pages_html.jsonl
+
+  - id: extract_page_numbers
+    stage: transform
+    module: extract_page_numbers_html_v1
+    needs: [web_page_intake]
+    inputs:
+      pages: web_page_intake
+    out: pages_html_with_page_numbers.jsonl
+
+  - id: portionize_headings
+    stage: portionize
+    module: portionize_headings_html_v1
+    needs: [extract_page_numbers]
+    inputs:
+      pages: extract_page_numbers
+    out: portions_non_toc.jsonl
+    params:
+      heading_tags: h1,h2,h3
+      allow_unnumbered: true
+      fallback_mode: single-document
+      fallback_title: Document
+
+  - id: build_chapters
+    stage: build
+    module: build_chapter_html_v1
+    needs: [extract_page_numbers, portionize_headings]
+    inputs:
+      pages: extract_page_numbers
+      portions: portionize_headings
+    out: chapters_manifest.jsonl
+    params:
+      images_subdir: images
+      book_title: ""
+      book_author: ""
