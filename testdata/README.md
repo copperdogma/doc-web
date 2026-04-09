@@ -15,6 +15,7 @@
 - `xlsx-mini.source.json` / `xlsx-mini.xlsx`, `xlsx-multi-sheet.source.json` / `xlsx-multi-sheet.xlsx`, and `xlsx-two-tables.source.json` / `xlsx-two-tables.xlsx`: repo-owned XLSX fixture set generated from checked-in structured source data. Story 193 widened the maintained XLSX proof surface to three supported fixtures on one coherent slice: simple table-only sheets, one HTML entry per supported sheet/entry, multiple sheets, and multiple table regions on one sheet. Provenance remains anchor-based via `source_element_ids`; this lane still does not claim fabricated page numbers or cell-address precision.
 - `xlsx-merged-formula.source.json` / `xlsx-merged-formula.xlsx`: repo-owned XLSX boundary probe generated from checked-in structured source data. Story 193 keeps it explicitly `bounded unsupported`: the fresh recheck showed Unstructured emitting `Budget Notes` and `Total` as heading blocks around the main table instead of preserving the merged-title / formula-summary structure inside the table.
 - `pptx-mini.md` / `pptx-mini.pptx`: reproducible PPTX fixture generated from checked-in markdown via `pandoc`. Story 197 established the first bounded maintained PPTX direct-entry lane on this probe: one title slide plus simple slide-title/list/prose slides, with `recipe-pptx-html-mvp.yaml`, `unstructured_pptx_intake_v1`, `pptx_elements_to_bundle_v1`, and slide-number provenance (`source_page_number` / manifest `source_pages`). This is still bounded evidence, not a claim about speaker notes, embedded media, charts, animations, or broader mixed-layout PowerPoint support.
+- `epub-mini.md` / `epub-mini.source.json` / `epub-mini.epub`: repo-owned EPUB probe generated from checked-in markdown via `pandoc`. Story 201 established the first bounded maintained EPUB direct-entry lane on this fixture through `recipe-epub-html-mvp.yaml`, `unstructured_epub_intake_v1`, and `epub_elements_to_bundle_v1`: chapter-first prose with one short list, package-title/package-author metadata, and pageless provenance via `source_element_ids` only. This is still bounded evidence, not a claim about image-only EPUBs, embedded media, scripted content, footnotes, or arbitrary ebook layouts.
 - `web-page-mini.source.json` / `web-page-mini.html`: checked-in static HTML snapshot captured from [example.com](https://example.com/) for the first bounded maintained web-page lane. Story 200 proves this direct explicit-recipe slice through `recipe-web-page-html-mvp.yaml`, `web_page_html_intake_v1`, `extract_page_numbers_html_v1`, `portionize_headings_html_v1`, and `build_chapter_html_v1`. The supported claim is intentionally narrow: one repo-owned HTML snapshot with clear heading/prose structure, `page_html_v1` intake evidence, and final `doc-web` bundle/provenance output. It is not evidence for live URL fetch, browser automation, JavaScript-rendered pages, or broader website ingestion.
 
 Regeneration:
@@ -94,6 +95,10 @@ Regeneration:
 - PPTX probe fixture (requires `pandoc`):
   ```bash
   python testdata/generate_pptx_fixture.py
+  ```
+- EPUB probe fixture (requires `pandoc`):
+  ```bash
+  python testdata/generate_epub_fixture.py
   ```
 - Web-page snapshot refresh (only when intentionally re-capturing the bounded probe):
   ```bash

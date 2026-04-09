@@ -15,6 +15,7 @@ run_id: my-run
 recipe: configs/recipes/smoke.yaml
 registry: custom_modules
 input_images: tests/fixtures/doc_web_bundle_smoke/images
+input_epub: testdata/epub-mini.epub
 input_html: testdata/web-page-mini.html
 execution:
   start_from: stage1
@@ -28,6 +29,7 @@ instrumentation:
     config = RunConfig(**data)
     assert config.run_id == "my-run"
     assert config.input_images == "tests/fixtures/doc_web_bundle_smoke/images"
+    assert config.input_epub == "testdata/epub-mini.epub"
     assert config.input_html == "testdata/web-page-mini.html"
     assert config.execution.start_from == "stage1"
     assert config.execution.force is True

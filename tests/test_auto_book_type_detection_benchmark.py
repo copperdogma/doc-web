@@ -25,6 +25,12 @@ def test_auto_book_type_detection_corpus_stays_pdf_only():
             "direct_explicit_recipe_only",
         ),
         (
+            "epub",
+            "testdata/epub-mini.epub",
+            "outside_recommendation_only_intake:epub:direct_explicit_recipe_only",
+            "direct_explicit_recipe_only",
+        ),
+        (
             "xlsx",
             "testdata/xlsx-mini.xlsx",
             "outside_recommendation_only_intake:xlsx:direct_explicit_recipe_only",

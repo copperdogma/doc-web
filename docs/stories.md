@@ -56,6 +56,7 @@ Grouped by primary `spec:N` category. Stories without category refs remain in an
 | 196 | Widen Born-Digital PDF Proof and Add a Maintained Quality Surface | High | Done | 168, 171, 177 | [story-196](stories/story-196-widen-born-digital-pdf-proof-and-quality-surface.md) |
 | 197 | Establish the First Honest PPTX Direct-Entry Seam | High | Done | 193 | [story-197](stories/story-197-establish-pptx-direct-entry-seam.md) |
 | 200 | Establish the First Honest Web-Page Direct-Entry Seam | High | Done | — | [story-200](stories/story-200-web-page-direct-entry-seam.md) |
+| 201 | Establish the First Honest EPUB Direct-Entry Seam | High | Done | — | [story-201](stories/story-201-epub-direct-entry-seam.md) |
 
 ### spec:2 — OCR & Text Extraction
 

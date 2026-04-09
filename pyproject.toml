@@ -26,6 +26,9 @@ xlsx = [
 pptx = [
   "unstructured[pptx]==0.16.9",
 ]
+epub = [
+  "unstructured[epub]==0.16.9",
+]
 
 [project.scripts]
 doc-web = "doc_web.cli:main"

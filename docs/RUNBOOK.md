@@ -34,6 +34,7 @@ the same installs through the repo wrapper instead of raw `pip`:
 ./scripts/install_with_age_gate.py .
 ./scripts/install_with_age_gate.py '.[driver]'
 ./scripts/install_with_age_gate.py '.[driver,docx]'
+./scripts/install_with_age_gate.py '.[driver,epub]'
 ./scripts/install_with_age_gate.py '.[driver,pptx]'
 ./scripts/install_with_age_gate.py '.[driver,xlsx]'
 ./scripts/install_with_age_gate.py -r requirements.txt
@@ -71,8 +72,15 @@ For the maintained PPTX lane, add the explicit PPTX extra:
 python -m pip install '.[driver,pptx]'
 ```
 
-The fuller repo runtime from `requirements.txt` also now includes DOCX, XLSX,
-and PPTX support, but it is currently validated on Python 3.11/3.12 because
+For the maintained EPUB lane, add the explicit EPUB extra and ensure `pandoc`
+is available on `PATH`:
+
+```bash
+python -m pip install '.[driver,epub]'
+```
+
+The fuller repo runtime from `requirements.txt` also now includes DOCX, EPUB,
+XLSX, and PPTX support, but it is currently validated on Python 3.11/3.12 because
 the pinned `unstructured==0.16.9` dependency is limited to that range.
 
 ### Structural Website / `doc-web` Runs
@@ -92,6 +100,7 @@ Active recipe examples:
 - `configs/recipes/recipe-images-ocr-html-mvp.yaml`
 - `configs/recipes/recipe-pdf-ocr-html-mvp.yaml`
 - `configs/recipes/recipe-docx-html-mvp.yaml`
+- `configs/recipes/recipe-epub-html-mvp.yaml`
 - `configs/recipes/recipe-pptx-html-mvp.yaml`
 - `configs/recipes/recipe-xlsx-html-mvp.yaml`
 - `configs/recipes/recipe-onward-images-html-mvp.yaml`
@@ -370,6 +379,52 @@ Alternative supported install shape for this lane:
 
 - `python -m pip install -r requirements.txt` on Python 3.11/3.12
 
+### Repo-Owned EPUB Intake Smoke
+
+Use this when you need a cheap real-run proof that the maintained EPUB lane
+still emits a final `doc-web` bundle plus pageless provenance from the
+checked-in bounded probe fixture:
+
+```bash
+python -m pip install '.[driver,epub]'
+python driver.py \
+  --recipe configs/recipes/recipe-epub-html-mvp.yaml \
+  --input-epub testdata/epub-mini.epub \
+  --run-id <run_id> \
+  --allow-run-id-reuse
+python validate_artifact.py \
+  --schema doc_web_bundle_manifest_v1 \
+  --file output/runs/<run_id>/output/html/manifest.json
+python validate_artifact.py \
+  --schema doc_web_provenance_block_v1 \
+  --file output/runs/<run_id>/output/html/provenance/blocks.jsonl
+```
+
+Additional non-Python requirement for this lane:
+
+- `pandoc` on `PATH`
+
+Story 201 established the first maintained EPUB slice on
+`testdata/epub-mini.epub`. The current maintained claim is intentionally
+bounded to chapter-first prose with one short list, package metadata carried
+through as document title/creator, and pageless provenance via
+`source_element_ids`. Image-only EPUBs, embedded media, footnotes, scripted
+content, and broader ebook ownership remain out of scope for this lane.
+
+Expected bundle outputs:
+
+- `output/runs/<run_id>/01_unstructured_epub_intake_v1/elements.jsonl`
+- `output/runs/<run_id>/02_epub_elements_to_bundle_v1/epub_bundle_report.json`
+- `output/runs/<run_id>/output/html/index.html`
+- `output/runs/<run_id>/output/html/chapter-001.html`
+- `output/runs/<run_id>/output/html/chapter-002.html`
+- `output/runs/<run_id>/output/html/manifest.json`
+- `output/runs/<run_id>/output/html/provenance/blocks.jsonl`
+
+Alternative supported install shape for this lane:
+
+- `python -m pip install -r requirements.txt` on Python 3.11/3.12, with `pandoc` on `PATH`
+
 ### Repo-Owned Web-Page Intake Smoke
 
 Use this when you need a cheap real-run proof that the maintained bounded
@@ -411,16 +466,16 @@ Expected bundle outputs:
 - `output/runs/<run_id>/output/html/manifest.json`
 - `output/runs/<run_id>/output/html/provenance/blocks.jsonl`
 
-These maintained office-native lanes plus the bounded web-page lane are still
-direct explicit-recipe entry points. They are not part of the
-recommendation-only contact-sheet benchmark or the approved-handoff automation
-surface.
+These maintained DOCX/XLSX/PPTX/EPUB direct-entry lanes plus the bounded
+web-page lane are still direct explicit-recipe entry points. They are not part
+of the recommendation-only contact-sheet benchmark or the approved-handoff
+automation surface.
 
 ### Office Intake Boundary Probe
 
-Use this when you need a cheap rerunnable proof that office files remain
+Use this when you need a cheap rerunnable proof that direct-entry files remain
 outside recommendation-only intake automation and approved handoff while the
-direct DOCX/XLSX/PPTX smoke lanes above stay maintained separately:
+direct DOCX/XLSX/PPTX/EPUB smoke lanes above stay maintained separately:
 
 ```bash
 python benchmarks/scripts/run_auto_book_type_detection_eval.py \
@@ -436,8 +491,8 @@ python benchmarks/scripts/run_approved_intake_handoff_eval.py \
 
 Expected outcome:
 
-- `docx`, `xlsx`, and `pptx` return explicit blocked scope rows that point
-  back to the maintained direct explicit-recipe office lanes
+- `docx`, `epub`, `xlsx`, and `pptx` return explicit blocked scope rows that point
+  back to the maintained direct explicit-recipe lanes
 - no office probe should crash inside `contact_sheet_builder_v1`
 
 ---
@@ -475,6 +530,7 @@ scripts/run_driver_monitored.sh \
 | `recipe-images-ocr-html-mvp.yaml` | Active structural HTML bundle path for image-directory inputs. |
 | `recipe-pdf-ocr-html-mvp.yaml` | Active structural HTML bundle path for generic PDF-backed inputs. |
 | `recipe-docx-html-mvp.yaml` | Maintained DOCX structural bundle path for the repo-owned heading/prose/list/table slice, widened to three checked-in fixtures. |
+| `recipe-epub-html-mvp.yaml` | Maintained EPUB structural bundle path for the verified bounded chapter-first prose slice with pageless provenance. |
 | `recipe-pptx-html-mvp.yaml` | Maintained PPTX structural bundle path for the verified bounded slide slice: one HTML page per supported slide entry with slide-number provenance. |
 | `recipe-web-page-html-mvp.yaml` | Maintained checked-HTML web-page path for one repo-owned static snapshot that reuses the existing `page_html_v1` to `doc-web` chain. |
 | `recipe-xlsx-html-mvp.yaml` | Maintained XLSX structural bundle path for the verified simple-table slice: one HTML page per supported sheet/entry, including multiple table regions on one sheet, with anchor-based provenance. |
@@ -495,6 +551,7 @@ Append these after `--` in the wrapper script.
 *   `--model <name>`: Global model override.
 *   `--input-pdf <path>`: Override `input.pdf` on maintained PDF-backed recipes.
 *   `--input-docx <path>`: Override `input.docx` on maintained DOCX-backed recipes.
+*   `--input-epub <path>`: Override `input.epub` on maintained EPUB-backed recipes.
 *   `--input-pptx <path>`: Override `input.pptx` on maintained PPTX-backed recipes.
 *   `--input-html <path>`: Override `input.html` on maintained checked-HTML web-page recipes.
 *   `--input-xlsx <path>`: Override `input.xlsx` on maintained XLSX-backed recipes.

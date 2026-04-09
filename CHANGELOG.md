@@ -1,3 +1,24 @@
+## [2026-04-09-01] - Add bounded EPUB direct-entry seam (Story 201)
+
+### Added
+- Added a maintained EPUB direct-entry runtime lane with a checked-in recipe, new intake and bundle modules, a repo-owned fixture set, and focused recipe smoke coverage for the first honest `epub` slice
+- Added clean-venv install proofs for the `.[driver,epub]` extra and the supported `requirements.txt` runtime path
+
+### Changed
+- Changed `driver.py`, `RunConfig`, the coverage matrix, methodology state/graph surfaces, README, runbook, and testdata docs so EPUB is documented honestly as a bounded maintained direct explicit-recipe lane
+- Changed intake-boundary helpers and tests so recommendation-only intake and approved handoff block EPUB explicitly at scope instead of treating it as an unknown or unsupported family
+
+### Fixed
+- Fixed the runtime/install gap for EPUB partitioning by pinning the maintained `unstructured[epub]` dependency surface, documenting the `pandoc` precondition, and preserving the first chapter through an EPUB-specific bundle transform instead of reusing the DOCX title split
+
+### Tested
+- `make test`
+- `python -m ruff check modules/ tests/`
+- `python -m pytest tests/test_run_config.py tests/test_intake_plan_utils.py tests/test_auto_book_type_detection_benchmark.py tests/test_approved_intake_handoff_benchmark.py`
+- `python -m pytest tests/test_epub_intake_recipe.py tests/test_doc_web_cli_contract.py -k 'epub'`
+- `make lint`
+- `python driver.py --recipe configs/recipes/recipe-epub-html-mvp.yaml --input-epub testdata/epub-mini.epub --run-id story201-epub-mini --allow-run-id-reuse --force`
+
 ## [2026-04-08-06] - Add bounded web-page direct-entry seam (Story 200)
 
 ### Added

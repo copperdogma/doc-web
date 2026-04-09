@@ -345,14 +345,25 @@
     {
       "id": "epub",
       "format_family": "epub",
-      "status": "untested",
+      "status": "passing",
       "description": "EPUB e-books",
-      "pipeline_recipe": null,
-      "intake_module": null,
-      "complexity": ["simple-prose", "illustrations"],
-      "fixtures": [],
+      "pipeline_recipe": "recipe-epub-html-mvp.yaml",
+      "intake_module": "unstructured_epub_intake_v1 \u2192 epub_elements_to_bundle_v1",
+      "complexity": ["simple-prose"],
+      "fixtures": [
+        {
+          "id": "epub-mini",
+          "source": "testdata/epub-mini.epub",
+          "pages": null,
+          "notes": "Supported on the bounded maintained slice. Story 201 established the first EPUB direct-entry lane here: one repo-owned chapter-first prose fixture with package-title/package-author metadata, two emitted HTML chapters, and pageless provenance via source element ids only."
+        }
+      ],
       "scores": null,
-      "known_gaps": [],
+      "known_gaps": [
+        "Passing evidence is still bounded to the verified Story 201 probe slice: chapter-first prose with one short list on the checked-in `epub-mini.epub` fixture.",
+        "The maintained lane does not yet claim image-only or scanned EPUBs, embedded media, footnotes, scripted content, complex navigation, or broader ebook-layout ownership.",
+        "EPUB provenance currently relies on stable source element ids plus package metadata; it does not claim printed page numbers, page-linked open-original behavior, or richer spine/item anchors."
+      ],
       "graduated": false
     },
     {

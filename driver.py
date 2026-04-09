@@ -654,6 +654,8 @@ def build_command(entrypoint: str, params: Dict[str, Any], stage_conf: Dict[str,
                 cmd += ["--xlsx", recipe_input["xlsx"]]; flags_added.add("--xlsx")
             if "pptx" in recipe_input:
                 cmd += ["--pptx", recipe_input["pptx"]]; flags_added.add("--pptx")
+            if "epub" in recipe_input:
+                cmd += ["--epub", recipe_input["epub"]]; flags_added.add("--epub")
             if "html" in recipe_input:
                 cmd += ["--html", recipe_input["html"]]; flags_added.add("--html")
             if "images" in recipe_input:
@@ -686,6 +688,9 @@ def build_command(entrypoint: str, params: Dict[str, Any], stage_conf: Dict[str,
         if "pptx" in recipe_input:
             cmd += ["--pptx", recipe_input["pptx"]]
             flags_added.add("--pptx")
+        if "epub" in recipe_input:
+            cmd += ["--epub", recipe_input["epub"]]
+            flags_added.add("--epub")
         if "html" in recipe_input:
             cmd += ["--html", recipe_input["html"]]
             flags_added.add("--html")
@@ -1223,6 +1228,7 @@ def main():
     parser.add_argument("--input-docx", dest="input_docx_override", help="Override input.docx from recipe (useful for DOCX smoke fixtures)")
     parser.add_argument("--input-xlsx", dest="input_xlsx_override", help="Override input.xlsx from recipe (useful for XLSX smoke fixtures)")
     parser.add_argument("--input-pptx", dest="input_pptx_override", help="Override input.pptx from recipe (useful for PPTX smoke fixtures)")
+    parser.add_argument("--input-epub", dest="input_epub_override", help="Override input.epub from recipe (useful for EPUB smoke fixtures)")
     parser.add_argument("--input-html", dest="input_html_override", help="Override input.html from recipe (useful for checked HTML snapshot smoke fixtures)")
     parser.add_argument("--start-from", dest="start_from", help="Start executing at this stage id (requires upstream artifacts present in state)")
     parser.add_argument("--keep-downstream", action="store_true",
@@ -1245,6 +1251,7 @@ def main():
         args.input_docx_override = args.input_docx_override or config.input_docx
         args.input_xlsx_override = args.input_xlsx_override or config.input_xlsx
         args.input_pptx_override = args.input_pptx_override or config.input_pptx
+        args.input_epub_override = args.input_epub_override or config.input_epub
         args.input_html_override = args.input_html_override or config.input_html
         args.run_id_override = args.run_id_override or config.run_id
         args.output_dir_override = args.output_dir_override or config.output_dir
@@ -1293,6 +1300,7 @@ def main():
         recipe["input"].pop("docx", None)
         recipe["input"].pop("xlsx", None)
         recipe["input"].pop("pptx", None)
+        recipe["input"].pop("epub", None)
         recipe["input"].pop("html", None)
         recipe["input"].pop("text_glob", None)
         recipe["input"]["images"] = args.input_images_override
@@ -1308,6 +1316,7 @@ def main():
         recipe["input"].pop("images", None)
         recipe["input"].pop("xlsx", None)
         recipe["input"].pop("pptx", None)
+        recipe["input"].pop("epub", None)
         recipe["input"].pop("html", None)
         recipe["input"].pop("text_glob", None)
         recipe["input"]["pdf"] = args.input_pdf_override
@@ -1317,6 +1326,7 @@ def main():
         recipe["input"].pop("images", None)
         recipe["input"].pop("xlsx", None)
         recipe["input"].pop("pptx", None)
+        recipe["input"].pop("epub", None)
         recipe["input"].pop("html", None)
         recipe["input"].pop("text_glob", None)
         recipe["input"]["docx"] = args.input_docx_override
@@ -1326,6 +1336,7 @@ def main():
         recipe["input"].pop("docx", None)
         recipe["input"].pop("images", None)
         recipe["input"].pop("pptx", None)
+        recipe["input"].pop("epub", None)
         recipe["input"].pop("html", None)
         recipe["input"].pop("text_glob", None)
         recipe["input"]["xlsx"] = args.input_xlsx_override
@@ -1335,9 +1346,20 @@ def main():
         recipe["input"].pop("docx", None)
         recipe["input"].pop("images", None)
         recipe["input"].pop("xlsx", None)
+        recipe["input"].pop("epub", None)
         recipe["input"].pop("html", None)
         recipe["input"].pop("text_glob", None)
         recipe["input"]["pptx"] = args.input_pptx_override
+    if args.input_epub_override:
+        recipe.setdefault("input", {})
+        recipe["input"].pop("pdf", None)
+        recipe["input"].pop("docx", None)
+        recipe["input"].pop("images", None)
+        recipe["input"].pop("xlsx", None)
+        recipe["input"].pop("pptx", None)
+        recipe["input"].pop("html", None)
+        recipe["input"].pop("text_glob", None)
+        recipe["input"]["epub"] = args.input_epub_override
     if args.input_html_override:
         recipe.setdefault("input", {})
         recipe["input"].pop("pdf", None)
@@ -1345,6 +1367,7 @@ def main():
         recipe["input"].pop("images", None)
         recipe["input"].pop("xlsx", None)
         recipe["input"].pop("pptx", None)
+        recipe["input"].pop("epub", None)
         recipe["input"].pop("text_glob", None)
         recipe["input"]["html"] = args.input_html_override
 
@@ -1400,6 +1423,7 @@ def main():
         and not input_conf.get("docx")
         and not input_conf.get("xlsx")
         and not input_conf.get("pptx")
+        and not input_conf.get("epub")
         and not input_conf.get("html")
         and not input_conf.get("images")
         and not input_conf.get("text_glob")
@@ -1407,7 +1431,7 @@ def main():
     ):
         # If we have no input from override AND no input from recipe, we fail.
         print("\n❌ ERROR: No input specified.", file=sys.stderr)
-        print("You must provide an input PDF, DOCX, XLSX, PPTX, HTML snapshot, images directory, or text glob via:", file=sys.stderr)
+        print("You must provide an input PDF, DOCX, XLSX, PPTX, EPUB, HTML snapshot, images directory, or text glob via:", file=sys.stderr)
         print("  - Configuration YAML (recommended): input_images: ...", file=sys.stderr)
         print("  - CLI Override: --input-images ...", file=sys.stderr)
         print("  - Configuration YAML (recommended): input_pdf: ...", file=sys.stderr)
@@ -1418,12 +1442,15 @@ def main():
         print("  - CLI Override: --input-xlsx ...", file=sys.stderr)
         print("  - Configuration YAML (recommended): input_pptx: ...", file=sys.stderr)
         print("  - CLI Override: --input-pptx ...", file=sys.stderr)
+        print("  - Configuration YAML (recommended): input_epub: ...", file=sys.stderr)
+        print("  - CLI Override: --input-epub ...", file=sys.stderr)
         print("  - Configuration YAML (recommended): input_html: ...", file=sys.stderr)
         print("  - CLI Override: --input-html ...", file=sys.stderr)
         print("  - Recipe (deprecated): input:\n      pdf: ...", file=sys.stderr)
         print("  - Recipe (deprecated): input:\n      docx: ...", file=sys.stderr)
         print("  - Recipe (deprecated): input:\n      xlsx: ...", file=sys.stderr)
         print("  - Recipe (deprecated): input:\n      pptx: ...", file=sys.stderr)
+        print("  - Recipe (deprecated): input:\n      epub: ...", file=sys.stderr)
         print("  - Recipe (deprecated): input:\n      html: ...", file=sys.stderr)
         print("  - Text smoke recipe: input:\n      text_glob: ...", file=sys.stderr)
         print("  - Loader-root recipes may omit top-level input when they start from load_artifact/load_stub", file=sys.stderr)

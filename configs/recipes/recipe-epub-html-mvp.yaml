@@ -1,0 +1,23 @@
+# Maintained EPUB native-structure lane for bounded chapter-first prose ebooks.
+
+input:
+  epub: testdata/epub-mini.epub  # override via run config / --input-epub
+
+stages:
+  - id: epub_intake
+    stage: extract
+    module: unstructured_epub_intake_v1
+    out: elements.jsonl
+    params:
+      save_raw: false
+
+  - id: epub_bundle
+    stage: transform
+    module: epub_elements_to_bundle_v1
+    needs: [epub_intake]
+    inputs:
+      input: epub_intake
+    out: epub_bundle_report.json
+    params:
+      book_title: ""
+      book_author: ""

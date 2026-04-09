@@ -2,7 +2,7 @@ from pathlib import Path
 from typing import Iterable
 
 
-DIRECT_ENTRY_ONLY_INPUT_KINDS = frozenset({"docx", "pptx", "web-page", "xlsx"})
+DIRECT_ENTRY_ONLY_INPUT_KINDS = frozenset({"docx", "epub", "pptx", "web-page", "xlsx"})
 
 
 def describe_scope_boundary(input_kind: str, *, surface_key: str, surface_label: str) -> dict[str, str]:

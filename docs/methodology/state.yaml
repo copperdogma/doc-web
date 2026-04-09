@@ -40,7 +40,7 @@
   },
   "coverage_matrix": {
     "path": "tests/fixtures/formats/_coverage-matrix.json",
-    "last_reviewed": "2026-04-04",
+    "last_reviewed": "2026-04-09",
     "notes": "Canonical machine-readable input-coverage surface. The methodology compiler reads this directly instead of duplicating its rows inside state.yaml."
   },
   "roadmap": {

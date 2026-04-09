@@ -1,0 +1,18 @@
+module_id: epub_elements_to_bundle_v1
+stage: transform
+entrypoint: modules/transform/epub_elements_to_bundle_v1/main.py
+input_schema: unstructured_element_v1
+output_schema: null
+default_params:
+  book_title: ""
+  book_author: ""
+param_schema:
+  properties:
+    book_title:
+      type: string
+      description: "Optional EPUB title override for the emitted bundle"
+    book_author:
+      type: string
+      description: "Optional EPUB author override for the emitted bundle"
+  required: []
+notes: "Emit a final doc-web bundle plus pageless EPUB-native provenance directly from EPUB Unstructured elements."

@@ -23,6 +23,7 @@ MAINTAINED_RECIPES = {
 }
 DIRECT_ENTRY_ONLY_RECIPES = {
     "docx": "configs/recipes/recipe-docx-html-mvp.yaml",
+    "epub": "configs/recipes/recipe-epub-html-mvp.yaml",
     "pptx": "configs/recipes/recipe-pptx-html-mvp.yaml",
     "web-page": "configs/recipes/recipe-web-page-html-mvp.yaml",
     "xlsx": "configs/recipes/recipe-xlsx-html-mvp.yaml",

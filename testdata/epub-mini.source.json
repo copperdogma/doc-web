@@ -1,0 +1,7 @@
+{
+  "title": "EPUB Mini Fixture",
+  "source_markdown": "testdata/epub-mini.md",
+  "generator": "testdata/generate_epub_fixture.py",
+  "generated_at": "2026-04-09",
+  "capture_note": "Repo-owned EPUB probe generated from checked-in markdown via pandoc for the first bounded EPUB direct-entry seam."
+}
