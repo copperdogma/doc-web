@@ -393,14 +393,25 @@
     {
       "id": "email-mbox",
       "format_family": "email",
-      "status": "untested",
+      "status": "passing",
       "description": "Email archives (.mbox) containing multiple messages",
-      "pipeline_recipe": null,
-      "intake_module": null,
+      "pipeline_recipe": "recipe-email-mbox-html-mvp.yaml",
+      "intake_module": "mailbox_mbox_intake_v1 \u2192 mbox_elements_to_bundle_v1",
       "complexity": ["simple-prose"],
-      "fixtures": [],
+      "fixtures": [
+        {
+          "id": "email-mbox-mini",
+          "source": "testdata/email-mbox-mini.mbox",
+          "pages": null,
+          "notes": "Supported on the bounded maintained slice. Story 203 established the first `.mbox` direct-entry lane on one repo-owned two-message plain-text archive with stdlib `mailbox.mbox` splitting, one pageless HTML entry per message in archive order, and provenance via `source_element_ids` only."
+        }
+      ],
       "scores": null,
-      "known_gaps": [],
+      "known_gaps": [
+        "Passing evidence is still bounded to one checked-in plain-text `.mbox` fixture with two simple message bodies and no attachments.",
+        "The maintained lane does not yet claim quoted-thread cleanup, multipart HTML normalization, attachment extraction, `.msg` parity, mixed-archive routing, mailbox connector workflows, or broader mailbox/thread ownership.",
+        "MBOX provenance currently relies on stable source element ids plus per-message metadata such as archive order, `subject`, `sent_from`, and `sent_to`; it does not claim printed page numbers, mailbox graph semantics, or attachment-native anchors."
+      ],
       "graduated": false
     },
     {

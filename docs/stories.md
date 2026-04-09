@@ -58,6 +58,7 @@ Grouped by primary `spec:N` category. Stories without category refs remain in an
 | 200 | Establish the First Honest Web-Page Direct-Entry Seam | High | Done | — | [story-200](stories/story-200-web-page-direct-entry-seam.md) |
 | 201 | Establish the First Honest EPUB Direct-Entry Seam | High | Done | — | [story-201](stories/story-201-epub-direct-entry-seam.md) |
 | 202 | Establish the First Honest EML Direct-Entry Seam | High | Done | — | [story-202](stories/story-202-eml-direct-entry-seam.md) |
+| 203 | Establish the First Honest MBOX Archive Seam | High | Done | 202 | [story-203](stories/story-203-mbox-archive-seam.md) |
 
 ### spec:2 — OCR & Text Extraction
 

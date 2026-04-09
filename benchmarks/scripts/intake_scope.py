@@ -2,10 +2,14 @@ from pathlib import Path
 from typing import Iterable
 
 
-DIRECT_ENTRY_ONLY_INPUT_KINDS = frozenset({"docx", "email-eml", "epub", "pptx", "web-page", "xlsx"})
+DIRECT_ENTRY_ONLY_INPUT_KINDS = frozenset(
+    {"docx", "email-eml", "email-mbox", "epub", "pptx", "web-page", "xlsx"}
+)
 
 
-def describe_scope_boundary(input_kind: str, *, surface_key: str, surface_label: str) -> dict[str, str]:
+def describe_scope_boundary(
+    input_kind: str, *, surface_key: str, surface_label: str
+) -> dict[str, str]:
     kind = str(input_kind or "").strip()
     if kind in DIRECT_ENTRY_ONLY_INPUT_KINDS:
         return {

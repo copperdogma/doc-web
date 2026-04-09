@@ -19,6 +19,7 @@ class CombatEnemy(BaseModel):
 
 class Vehicle(BaseModel):
     """Player vehicle/robot with secondary stats (ARMOUR, FIREPOWER, SPEED, COMBAT BONUS)"""
+
     name: str
     type: Optional[str] = None  # "robot", "vehicle", "mech", etc.
     armour: Optional[int] = None
@@ -26,8 +27,12 @@ class Vehicle(BaseModel):
     speed: Optional[str] = None  # "Slow", "Medium", "Fast", "Very Fast", etc.
     combat_bonus: Optional[int] = None  # May be positive or negative
     special_abilities: Optional[str] = None  # Full text description
-    rules: Optional[List[Dict[str, Any]]] = None  # Parsed structured rules (similar to combat.rules)
-    modifiers: Optional[List[Dict[str, Any]]] = None  # Parsed stat modifiers (similar to combat.modifiers)
+    rules: Optional[List[Dict[str, Any]]] = (
+        None  # Parsed structured rules (similar to combat.rules)
+    )
+    modifiers: Optional[List[Dict[str, Any]]] = (
+        None  # Parsed stat modifiers (similar to combat.modifiers)
+    )
     confidence: float = 1.0
 
 
@@ -335,8 +340,12 @@ class TurnToUnclaimedReport(BaseModel):
 class PageLine(BaseModel):
     text: str
     source: Optional[str] = None  # e.g., "betterocr", "gpt4v", "llm_reconcile"
-    meta: Optional[Dict[str, Any]] = None  # engine-level details, confidences, alignment notes
-    bbox: Optional[List[float]] = None  # Optional normalized bbox [x0,y0,x1,y1] when available (0-1)
+    meta: Optional[Dict[str, Any]] = (
+        None  # engine-level details, confidences, alignment notes
+    )
+    bbox: Optional[List[float]] = (
+        None  # Optional normalized bbox [x0,y0,x1,y1] when available (0-1)
+    )
 
 
 class PageLines(BaseModel):
@@ -483,7 +492,9 @@ class DocWebBundleEntry(BaseModel):
             and self.printed_page_end is not None
             and self.printed_page_start > self.printed_page_end
         ):
-            raise ValueError("printed_page_start cannot be greater than printed_page_end")
+            raise ValueError(
+                "printed_page_start cannot be greater than printed_page_end"
+            )
         return self
 
 
@@ -527,14 +538,20 @@ class DocWebBundleManifest(BaseModel):
             raise ValueError("entries must appear in contiguous reading order 1..N")
 
         if self.reading_order != entry_ids:
-            raise ValueError("reading_order must list each entry exactly once in entry order")
+            raise ValueError(
+                "reading_order must list each entry exactly once in entry order"
+            )
 
         id_set = set(entry_ids)
         for index, entry in enumerate(self.entries):
             if entry.prev_entry_id and entry.prev_entry_id not in id_set:
-                raise ValueError(f"prev_entry_id '{entry.prev_entry_id}' not found in entries")
+                raise ValueError(
+                    f"prev_entry_id '{entry.prev_entry_id}' not found in entries"
+                )
             if entry.next_entry_id and entry.next_entry_id not in id_set:
-                raise ValueError(f"next_entry_id '{entry.next_entry_id}' not found in entries")
+                raise ValueError(
+                    f"next_entry_id '{entry.next_entry_id}' not found in entries"
+                )
 
             expected_prev = entry_ids[index - 1] if index > 0 else None
             expected_next = entry_ids[index + 1] if index + 1 < len(entry_ids) else None
@@ -609,7 +626,9 @@ class DocWebProvenanceBlock(BaseModel):
     @classmethod
     def validate_source_element_ids(cls, value: List[str]) -> List[str]:
         if not value:
-            raise ValueError("source_element_ids must contain at least one upstream element id")
+            raise ValueError(
+                "source_element_ids must contain at least one upstream element id"
+            )
         return value
 
     @field_validator("confidence")
@@ -960,6 +979,7 @@ class CodexMetadata(BaseModel):
 
     Note: This is serialized as '_codex' in JSON (see UnstructuredElement.model_dump).
     """
+
     run_id: Optional[str] = None
     module_id: Optional[str] = None
     sequence: Optional[int] = None  # Order within document (for stable sorting)
@@ -996,6 +1016,7 @@ class UnstructuredElement(BaseModel):
     Note: When serializing to JSON, use model_dump(by_alias=True) to get '_codex'
     instead of 'codex' in the output.
     """
+
     # Core Unstructured fields
     id: str  # Element ID from Unstructured or generated UUID
     type: str  # Unstructured element type (Title, NarrativeText, Table, etc.)
@@ -1027,6 +1048,7 @@ class SectionBoundary(BaseModel):
     The AI scans elements to find numbered section headers and identifies the
     start/end element IDs that bound each section's content.
     """
+
     schema_version: str = "section_boundary_v1"
     module_id: Optional[str] = None
     run_id: Optional[str] = None
@@ -1034,14 +1056,18 @@ class SectionBoundary(BaseModel):
 
     section_id: str  # "1", "2", "3", etc. (numbered section headers)
     start_element_id: str  # ID of first element in this section
-    end_element_id: Optional[str] = None  # ID of last element (None if extends to next section)
+    end_element_id: Optional[str] = (
+        None  # ID of last element (None if extends to next section)
+    )
     # Optional provenance helpers (code-first + vision escalation modules may emit these)
     start_page: Optional[int] = None
     start_line_idx: Optional[int] = None
     end_page: Optional[int] = None
     macro_section: Optional[str] = None  # frontmatter | gameplay | endmatter
     method: Optional[str] = None  # "code_filter" | "vision_escalation" | ...
-    source: Optional[str] = None  # "content_type_classification" | "escalation_cache" | ...
+    source: Optional[str] = (
+        None  # "content_type_classification" | "escalation_cache" | ...
+    )
     header_position: Optional[str] = None  # "top" | "middle" | "bottom" | "unknown"
     confidence: float  # 0.0-1.0, AI's confidence this is a real section boundary
     evidence: Optional[str] = None  # Why AI thinks this is a section boundary
@@ -1050,6 +1076,7 @@ class SectionBoundary(BaseModel):
 
 class BoundaryIssue(BaseModel):
     """Single boundary issue discovered during verification."""
+
     section_id: str
     severity: Literal["error", "warning"]
     message: str
@@ -1060,6 +1087,7 @@ class BoundaryIssue(BaseModel):
 
 class BoundaryVerificationReport(BaseModel):
     """Report produced by verify_boundaries_v1."""
+
     schema_version: str = "boundary_verification_v1"
     run_id: Optional[str] = None
     checked: int
@@ -1076,18 +1104,29 @@ class ValidationReport(BaseModel):
     This schema captures quality checks on the final artifact payload,
     including missing sections, duplicates, and structural issues.
     """
+
     schema_version: str = "validation_report_v1"
     run_id: Optional[str] = None
     created_at: Optional[str] = None
 
     total_sections: int
-    missing_sections: List[str] = Field(default_factory=list)  # Section IDs that should exist but don't
-    duplicate_sections: List[str] = Field(default_factory=list)  # Section IDs appearing multiple times
+    missing_sections: List[str] = Field(
+        default_factory=list
+    )  # Section IDs that should exist but don't
+    duplicate_sections: List[str] = Field(
+        default_factory=list
+    )  # Section IDs appearing multiple times
     sections_with_no_text: List[str] = Field(default_factory=list)
     sections_with_no_choices: List[str] = Field(default_factory=list)
-    unreachable_sections: List[str] = Field(default_factory=list)  # Sections unreachable from startSection (from Node validator)
-    unreachable_entry_points: List[str] = Field(default_factory=list)  # Entry points: unreachable sections not referenced by other unreachable sections
-    manual_navigation_sections: List[str] = Field(default_factory=list)  # Sections reachable via manual "turn to X" instructions (not code-extractable)
+    unreachable_sections: List[str] = Field(
+        default_factory=list
+    )  # Sections unreachable from startSection (from Node validator)
+    unreachable_entry_points: List[str] = Field(
+        default_factory=list
+    )  # Entry points: unreachable sections not referenced by other unreachable sections
+    manual_navigation_sections: List[str] = Field(
+        default_factory=list
+    )  # Sections reachable via manual "turn to X" instructions (not code-extractable)
 
     is_valid: bool  # True if no critical errors
     warnings: List[str] = Field(default_factory=list)
@@ -1102,6 +1141,7 @@ class ValidationReport(BaseModel):
 
 class ElementLayout(BaseModel):
     """Layout information for an element (simplified from Unstructured metadata)."""
+
     h_align: str = "unknown"  # "left" | "center" | "right" | "unknown"
     y: Optional[float] = None  # Normalized vertical position 0-1 on page
 
@@ -1109,15 +1149,15 @@ class ElementLayout(BaseModel):
 class ElementCore(BaseModel):
     """
     Minimal internal IR schema for all AI operations.
-    
+
     This schema reduces Unstructured's verbose IR to only the essential fields
     needed for section detection and boundary identification. All subsequent
     AI work depends only on elements_core.jsonl plus derived artifacts.
-    
+
     Per pipeline redesign spec: {id, seq, page, kind, text, layout}
     No metadata fields (schema_version, module_id, run_id, created_at) to minimize
     AI workload and improve readability. Metadata lives in pipeline state/manifests.
-    
+
     Derived from UnstructuredElement by:
     - Preserving id, text, page
     - Adding seq (0-based reading order index, preserved from original)
@@ -1125,6 +1165,7 @@ class ElementCore(BaseModel):
     - Extracting layout hints (alignment, vertical position)
     - Filtering out empty elements (text.strip() == "")
     """
+
     id: str  # Original element ID from Unstructured
     seq: int  # Global reading-order index (0-based, preserved from original elements_full)
     page: int  # Page number as reported by Unstructured (1-based)
@@ -1133,34 +1174,48 @@ class ElementCore(BaseModel):
     kind: str  # "text" | "image" | "table" | "other"
     text: str  # Raw text, normalized whitespace only (non-empty after filtering)
     layout: Optional[ElementLayout] = None  # Layout hints if available
-    layout_role: Optional[str] = None  # Optional upstream-provided role hint (e.g., TITLE, HEADER, FOOTER)
-    content_type: Optional[str] = None  # DocLayNet label (or compatible), when available
+    layout_role: Optional[str] = (
+        None  # Optional upstream-provided role hint (e.g., TITLE, HEADER, FOOTER)
+    )
+    content_type: Optional[str] = (
+        None  # DocLayNet label (or compatible), when available
+    )
     content_type_confidence: Optional[float] = None  # 0.0-1.0
-    content_subtype: Optional[Dict[str, Any]] = None  # Small optional subtype payload (e.g., heading_level)
+    content_subtype: Optional[Dict[str, Any]] = (
+        None  # Small optional subtype payload (e.g., heading_level)
+    )
 
 
 class HeaderCandidate(BaseModel):
     """
     AI-classified header candidate from element-level analysis.
-    
+
     This schema represents the output of Stage 1 (Header Classification), where AI
     analyzes each element to identify if it's a macro section header or game section header.
     This stage labels candidates only - it does not decide final section mapping.
-    
+
     Per pipeline redesign spec v2: header_candidates.jsonl contains all elements with
     their classification results, not just positives, for downstream context.
     """
+
     seq: int  # Element sequence number (from elements_core)
     page: int  # Page number (from elements_core)
-    macro_header: str = "none"  # "none" | "cover" | "title_page" | "rules" | "introduction" | ...
-    game_section_header: bool = False  # True if this is a numbered gameplay section header
-    claimed_section_number: Optional[int] = None  # Section number (1-400) if game_section_header is true
+    macro_header: str = (
+        "none"  # "none" | "cover" | "title_page" | "rules" | "introduction" | ...
+    )
+    game_section_header: bool = (
+        False  # True if this is a numbered gameplay section header
+    )
+    claimed_section_number: Optional[int] = (
+        None  # Section number (1-400) if game_section_header is true
+    )
     confidence: float  # 0.0-1.0, AI's confidence in this classification
     text: Optional[str] = None  # Text content from elements_core (for verification)
 
 
 class MacroSection(BaseModel):
     """Macro section (front_matter, game_sections region, etc.)"""
+
     id: str  # "front_matter", "game_sections", etc.
     start_seq: int  # Starting sequence number
     end_seq: int  # Ending sequence number
@@ -1169,27 +1224,35 @@ class MacroSection(BaseModel):
 
 class GameSectionStructured(BaseModel):
     """Game section with structured metadata from global analysis"""
+
     id: int  # Section number (1-400)
     start_seq: Optional[int] = None  # Starting sequence number (null if uncertain)
     status: Literal["certain", "uncertain"] = "certain"  # Status of this section
     confidence: float  # 0.0-1.0
-    text: Optional[str] = None  # Full text content from start_seq until next section (for verification)
+    text: Optional[str] = (
+        None  # Full text content from start_seq until next section (for verification)
+    )
     text_length: Optional[int] = None  # Length of text in characters
 
 
 class SectionsStructured(BaseModel):
     """
     Global structured view of document sections from Stage 2.
-    
+
     This schema represents the output of Stage 2 (Global Structuring), where a single
     AI call analyzes header candidates to create a coherent global structure with
     macro sections and game sections.
-    
+
     Per pipeline redesign spec v2: sections_structured.json contains macro sections
     (front_matter, game_sections) and game sections with strict ordering constraints.
     """
-    macro_sections: List[MacroSection]  # Macro sections (front_matter, game_sections region)
-    game_sections: List[GameSectionStructured]  # Game sections with status (certain/uncertain)
+
+    macro_sections: List[
+        MacroSection
+    ]  # Macro sections (front_matter, game_sections region)
+    game_sections: List[
+        GameSectionStructured
+    ]  # Game sections with status (certain/uncertain)
 
 
 # ────────────────────────────────────────────────────────────────
@@ -1222,6 +1285,7 @@ class RunConfig(BaseModel):
     Structured configuration for a pipeline run.
     Captures all parameters previously passed as CLI arguments to driver.py.
     """
+
     run_id: Optional[str] = None
     recipe: str
     registry: str = "modules"
@@ -1234,8 +1298,11 @@ class RunConfig(BaseModel):
     input_epub: Optional[str] = None
     input_html: Optional[str] = None
     input_eml: Optional[str] = None
+    input_mbox: Optional[str] = None
     output_dir: Optional[str] = None
-    
+
     execution: ExecutionConfig = Field(default_factory=ExecutionConfig)
     options: OptionsConfig = Field(default_factory=OptionsConfig)
-    instrumentation: InstrumentationConfig = Field(default_factory=InstrumentationConfig)
+    instrumentation: InstrumentationConfig = Field(
+        default_factory=InstrumentationConfig
+    )

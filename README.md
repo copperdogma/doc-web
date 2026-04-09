@@ -40,7 +40,7 @@ python -m pip install '.[driver,pptx]'
 # Maintained EPUB lane from this checkout (requires pandoc on PATH)
 python -m pip install '.[driver,epub]'
 
-# Maintained plain-text EML lane from this checkout
+# Maintained plain-text EML / MBOX email lanes from this checkout
 python -m pip install '.[driver,email]'
 ```
 
@@ -60,11 +60,12 @@ claiming that the base package alone can run `driver.py`.
 The `docx`, `xlsx`, and `pptx` extras add the narrow office-document partition
 dependencies needed by the maintained office-native recipes without turning the
 default `driver` install into the full OCR/runtime stack. The `email` extra adds
-the bounded plain-text `.eml` partition dependency path for the first maintained
-email lane; upstream does not provide a dedicated `unstructured[email]` extra,
-so this repo exposes the base `unstructured==0.16.9` pin explicitly. The `epub`
-extra adds the bounded EPUB partition dependencies for the first maintained
-ebook lane; that lane also requires system `pandoc` on `PATH` because
+the bounded plain-text `.eml` and `.mbox` partition dependency path for the
+maintained email lanes; upstream does not provide a dedicated
+`unstructured[email]` extra, so this repo exposes the base
+`unstructured==0.16.9` pin explicitly. The `epub` extra adds the bounded EPUB
+partition dependencies for the first maintained ebook lane; that lane also
+requires system `pandoc` on `PATH` because
 Unstructured's EPUB support converts EPUB to HTML through Pandoc before
 partitioning.
 
@@ -244,8 +245,32 @@ intentionally narrow:
 - pageless provenance via `source_element_ids` only
 - direct explicit-recipe entry only
 
-Multipart HTML emails, quoted-thread cleanup, attachments, `.msg`, `.mbox`,
-and broader mailbox/thread ownership remain unproven.
+Multipart HTML emails, quoted-thread cleanup, attachments, `.msg`, and broader
+mailbox/thread ownership remain unproven for the `.eml` lane.
+
+For the maintained MBOX proof lane, the same explicit email extra applies:
+
+```bash
+python -m pip install '.[driver,email]'
+python driver.py \
+  --recipe configs/recipes/recipe-email-mbox-html-mvp.yaml \
+  --input-mbox testdata/email-mbox-mini.mbox \
+  --run-id <run_id> \
+  --allow-run-id-reuse \
+  --force
+```
+
+Story 203 established the first bounded maintained `.mbox` slice on the
+repo-owned `testdata/email-mbox-mini.mbox` fixture. The supported claim is
+intentionally narrow:
+
+- one checked-in plain-text multi-message `.mbox` fixture
+- stdlib `mailbox.mbox` splitting plus Unstructured per-message parsing
+- one pageless HTML bundle entry per message in archive order
+- direct explicit-recipe entry only
+
+Quoted-thread cleanup, attachments, multipart HTML normalization, `.msg`,
+mixed-archive routing, and broader mailbox/thread ownership remain unproven.
 
 For the maintained web-page proof lane, the base driver install is enough:
 
@@ -290,6 +315,7 @@ The active maintained entry surfaces are explicit recipes, not hidden routing:
 - `configs/recipes/recipe-born-digital-pdf-non-toc-html-mvp.yaml` for the bounded maintained flat/non-TOC born-digital PDF slice
 - `configs/recipes/recipe-docx-html-mvp.yaml` for the maintained DOCX fixture-backed lane
 - `configs/recipes/recipe-email-eml-html-mvp.yaml` for the maintained plain-text `.eml` single-message lane on the verified bounded probe slice
+- `configs/recipes/recipe-email-mbox-html-mvp.yaml` for the maintained plain-text `.mbox` multi-message archive lane on the verified bounded probe slice
 - `configs/recipes/recipe-epub-html-mvp.yaml` for the maintained EPUB chapter-first lane on the verified bounded probe slice
 - `configs/recipes/recipe-pptx-html-mvp.yaml` for the maintained PPTX slide-backed lane on the verified bounded probe slice
 - `configs/recipes/recipe-web-page-html-mvp.yaml` for the maintained checked-HTML web-page lane on the verified bounded probe slice
@@ -298,9 +324,9 @@ The active maintained entry surfaces are explicit recipes, not hidden routing:
 - `configs/recipes/recipe-onward-pdf-html-mvp.yaml` for the PDF-backed Onward genealogy lane
 
 Recommendation-only intake automation is intentionally narrower than that full
-list: maintained `docx`, `email-eml`, `epub`, `xlsx`, `pptx`, and `web-page`
-support currently starts with explicit
-`driver.py --recipe ... --input-docx/--input-eml/--input-epub/--input-xlsx/--input-pptx/--input-html`
+list: maintained `docx`, `email-eml`, `email-mbox`, `epub`, `xlsx`, `pptx`,
+and `web-page` support currently starts with explicit
+`driver.py --recipe ... --input-docx/--input-eml/--input-mbox/--input-epub/--input-xlsx/--input-pptx/--input-html`
 entry, not the recommendation-only contact-sheet flow or approved-handoff
 automation.
 

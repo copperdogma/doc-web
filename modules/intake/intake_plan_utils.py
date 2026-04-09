@@ -24,6 +24,7 @@ MAINTAINED_RECIPES = {
 DIRECT_ENTRY_ONLY_RECIPES = {
     "docx": "configs/recipes/recipe-docx-html-mvp.yaml",
     "email-eml": "configs/recipes/recipe-email-eml-html-mvp.yaml",
+    "email-mbox": "configs/recipes/recipe-email-mbox-html-mvp.yaml",
     "epub": "configs/recipes/recipe-epub-html-mvp.yaml",
     "pptx": "configs/recipes/recipe-pptx-html-mvp.yaml",
     "web-page": "configs/recipes/recipe-web-page-html-mvp.yaml",
@@ -66,7 +67,9 @@ PDF_RECIPE_STRUCTURAL_SIGNALS = {
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
 MAINTAINED_RECIPE_PATHS = set(MAINTAINED_RECIPES.values())
-DIRECT_ENTRY_ONLY_RECIPE_TO_KIND = {path: kind for kind, path in DIRECT_ENTRY_ONLY_RECIPES.items()}
+DIRECT_ENTRY_ONLY_RECIPE_TO_KIND = {
+    path: kind for kind, path in DIRECT_ENTRY_ONLY_RECIPES.items()
+}
 
 
 def normalize_book_type(raw_value: Any, fallback: str = "other") -> str:
@@ -78,7 +81,9 @@ def normalize_book_type(raw_value: Any, fallback: str = "other") -> str:
     return fallback
 
 
-def normalize_signal_evidence(rows: Optional[Iterable[Dict[str, Any]]]) -> list[dict[str, Any]]:
+def normalize_signal_evidence(
+    rows: Optional[Iterable[Dict[str, Any]]],
+) -> list[dict[str, Any]]:
     normalized = []
     for row in rows or []:
         if not isinstance(row, dict):
@@ -86,7 +91,9 @@ def normalize_signal_evidence(rows: Optional[Iterable[Dict[str, Any]]]) -> list[
         signal = str((row or {}).get("signal") or "").strip()
         if not signal:
             continue
-        pages = [str(page) for page in (row or {}).get("pages", []) if str(page).strip()]
+        pages = [
+            str(page) for page in (row or {}).get("pages", []) if str(page).strip()
+        ]
         normalized.append(
             {
                 "signal": signal,
@@ -110,7 +117,9 @@ def merge_unique_strings(*values: Iterable[str]) -> list[str]:
     return merged
 
 
-def load_contact_sheet_build_meta(manifest_path: Path, sheets_dir: Optional[Path] = None) -> Dict[str, Any]:
+def load_contact_sheet_build_meta(
+    manifest_path: Path, sheets_dir: Optional[Path] = None
+) -> Dict[str, Any]:
     candidates = []
     if sheets_dir:
         candidates.append(Path(sheets_dir) / "contact_sheet_build_meta.json")
@@ -119,7 +128,9 @@ def load_contact_sheet_build_meta(manifest_path: Path, sheets_dir: Optional[Path
     except Exception:
         first_row = None
     if first_row and first_row.get("sheet_path"):
-        candidates.append(Path(first_row["sheet_path"]).parent / "contact_sheet_build_meta.json")
+        candidates.append(
+            Path(first_row["sheet_path"]).parent / "contact_sheet_build_meta.json"
+        )
     candidates.append(Path(manifest_path).parent / "contact_sheet_build_meta.json")
 
     seen = set()
@@ -161,13 +172,24 @@ def normalize_source_input(plan: Dict[str, Any]) -> Dict[str, Any]:
 
 def default_downstream_run_id(recipe_path: str, upstream_run_id: Optional[str]) -> str:
     recipe_stem = Path(recipe_path).stem
-    safe_recipe_stem = "".join(ch if ch.isalnum() else "-" for ch in recipe_stem).strip("-").lower()
-    safe_upstream = "".join(ch if ch.isalnum() else "-" for ch in (upstream_run_id or "confirmed-handoff")).strip("-").lower()
+    safe_recipe_stem = (
+        "".join(ch if ch.isalnum() else "-" for ch in recipe_stem).strip("-").lower()
+    )
+    safe_upstream = (
+        "".join(
+            ch if ch.isalnum() else "-"
+            for ch in (upstream_run_id or "confirmed-handoff")
+        )
+        .strip("-")
+        .lower()
+    )
     combined = f"{safe_upstream}-{safe_recipe_stem}".strip("-")
     return combined[:120] or "confirmed-handoff"
 
 
-def resolve_confirmed_handoff_source_input(plan: Dict[str, Any]) -> tuple[Optional[str], Optional[Path], Optional[str]]:
+def resolve_confirmed_handoff_source_input(
+    plan: Dict[str, Any],
+) -> tuple[Optional[str], Optional[Path], Optional[str]]:
     source_input = normalize_source_input(plan)
     input_kind = source_input.get("input_kind")
     if input_kind == "images_dir":
@@ -223,7 +245,9 @@ def prepare_confirmed_handoff(
         return row, [], False
     direct_entry_kind = DIRECT_ENTRY_ONLY_RECIPE_TO_KIND.get(recipe)
     if direct_entry_kind:
-        row["terminal_reason"] = f"direct_entry_recipe_outside_confirmed_handoff_scope:{direct_entry_kind}"
+        row["terminal_reason"] = (
+            f"direct_entry_recipe_outside_confirmed_handoff_scope:{direct_entry_kind}"
+        )
         return row, [], False
     if recipe not in MAINTAINED_RECIPE_PATHS:
         row["terminal_reason"] = f"unsupported_recommended_recipe:{recipe}"
@@ -234,7 +258,9 @@ def prepare_confirmed_handoff(
         row["terminal_reason"] = f"recommended_recipe_not_found:{recipe}"
         return row, [], False
 
-    launch_flag, launch_path, source_error = resolve_confirmed_handoff_source_input(plan)
+    launch_flag, launch_path, source_error = resolve_confirmed_handoff_source_input(
+        plan
+    )
     if source_error:
         row["terminal_reason"] = source_error
         return row, [], False
@@ -242,7 +268,9 @@ def prepare_confirmed_handoff(
         row["terminal_reason"] = f"source_input_not_found:{launch_path}"
         return row, [], False
 
-    resolved_downstream_run_id = downstream_run_id or default_downstream_run_id(recipe, upstream_run_id)
+    resolved_downstream_run_id = downstream_run_id or default_downstream_run_id(
+        recipe, upstream_run_id
+    )
     driver_command = [
         sys.executable,
         str(REPO_ROOT / "driver.py"),
@@ -262,7 +290,9 @@ def prepare_confirmed_handoff(
     row["launch_input_path"] = str(launch_path)
     row["driver_command"] = driver_command
     row["downstream_run_id"] = resolved_downstream_run_id
-    row["downstream_output_dir"] = str(REPO_ROOT / "output" / "runs" / resolved_downstream_run_id)
+    row["downstream_output_dir"] = str(
+        REPO_ROOT / "output" / "runs" / resolved_downstream_run_id
+    )
 
     if dry_run:
         row["terminal_outcome"] = "skipped"
@@ -284,7 +314,9 @@ def choose_maintained_recipe(plan: Dict[str, Any]) -> Optional[str]:
             for signal in (plan or {}).get("signals", [])
             if str(signal).strip()
         }
-        tile_count = (((plan or {}).get("meta") or {}).get("summary") or {}).get("tile_count") or 0
+        tile_count = (((plan or {}).get("meta") or {}).get("summary") or {}).get(
+            "tile_count"
+        ) or 0
         supports_html_recipe = (
             book_type in PDF_RECIPE_BOOK_TYPES
             or ("cyoa" in signals)
@@ -300,7 +332,9 @@ def choose_maintained_recipe(plan: Dict[str, Any]) -> Optional[str]:
     return None
 
 
-def resolve_source_images_dir(plan: Dict[str, Any], explicit_dir: Optional[str]) -> Optional[Path]:
+def resolve_source_images_dir(
+    plan: Dict[str, Any], explicit_dir: Optional[str]
+) -> Optional[Path]:
     if explicit_dir:
         return Path(explicit_dir)
     source_input = ((plan or {}).get("meta") or {}).get("source_input") or {}

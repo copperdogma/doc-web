@@ -1,0 +1,21 @@
+module_id: mailbox_mbox_intake_v1
+stage: extract
+entrypoint: modules/extract/mailbox_mbox_intake_v1/main.py
+input_schema: null
+output_schema: unstructured_element_v1
+default_params:
+  content_source: text/plain
+  process_attachments: false
+  save_raw: false
+param_schema:
+  properties:
+    content_source:
+      type: string
+      description: "Preferred body representation for the bounded `.mbox` slice (`text/plain` for the maintained fixture lane)."
+    process_attachments:
+      type: boolean
+      description: "Whether to recurse into attachments. Keep false for the maintained `.mbox` archive lane."
+    save_raw:
+      type: boolean
+      description: "Save raw per-message Unstructured output for debugging"
+notes: "Split plain-text `.mbox` archives with stdlib mailbox.mbox, partition each message with Unstructured, and preserve archive/message metadata in stamped elements.jsonl."

@@ -297,6 +297,50 @@ Alternative supported install shape for this lane:
 
 - `python -m pip install -r requirements.txt` on Python 3.11/3.12
 
+### Repo-Owned MBOX Intake Smoke
+
+Use this when you need a cheap real-run proof that the maintained bounded
+plain-text `.mbox` lane still emits a final `doc-web` bundle plus pageless
+provenance from the checked-in two-message archive fixture:
+
+```bash
+python -m pip install '.[driver,email]'
+python driver.py \
+  --recipe configs/recipes/recipe-email-mbox-html-mvp.yaml \
+  --input-mbox testdata/email-mbox-mini.mbox \
+  --run-id <run_id> \
+  --allow-run-id-reuse
+python validate_artifact.py \
+  --schema doc_web_bundle_manifest_v1 \
+  --file output/runs/<run_id>/output/html/manifest.json
+python validate_artifact.py \
+  --schema doc_web_provenance_block_v1 \
+  --file output/runs/<run_id>/output/html/provenance/blocks.jsonl
+```
+
+Story 203 established the first maintained `.mbox` slice on
+`testdata/email-mbox-mini.mbox`. The current maintained claim is intentionally
+bounded to one plain-text multi-message fixture with stdlib `mailbox.mbox`
+splitting, subject/from/to metadata preserved per message in `elements.jsonl`
+and the bundle report, one HTML entry per message in archive order, and
+pageless provenance via `source_element_ids`. Quoted-thread cleanup,
+attachments, multipart HTML normalization, `.msg`, mixed-archive routing, and
+broader mailbox/thread ownership remain out of scope for this lane.
+
+Expected bundle outputs:
+
+- `output/runs/<run_id>/01_mailbox_mbox_intake_v1/elements.jsonl`
+- `output/runs/<run_id>/02_mbox_elements_to_bundle_v1/email_archive_bundle_report.json`
+- `output/runs/<run_id>/output/html/index.html`
+- `output/runs/<run_id>/output/html/page-001.html`
+- `output/runs/<run_id>/output/html/page-002.html`
+- `output/runs/<run_id>/output/html/manifest.json`
+- `output/runs/<run_id>/output/html/provenance/blocks.jsonl`
+
+Alternative supported install shape for this lane:
+
+- `python -m pip install -r requirements.txt` on Python 3.11/3.12
+
 ### Repo-Owned XLSX Intake Smoke
 
 Use this when you need a cheap real-run proof that the maintained XLSX lane
@@ -459,8 +503,8 @@ Story 202 established the first maintained `.eml` slice on
 bounded to one plain-text single-message fixture with subject/from/to metadata
 preserved in `elements.jsonl` and the bundle report, plus pageless provenance
 via `source_element_ids`. Multipart HTML emails, quoted-thread cleanup,
-attachments, `.msg`, `.mbox`, and broader mailbox/thread ownership remain out
-of scope for this lane.
+attachments, `.msg`, and broader mailbox/thread ownership remain out of scope
+for this lane.
 
 Expected bundle outputs:
 
@@ -541,7 +585,7 @@ python benchmarks/scripts/run_approved_intake_handoff_eval.py \
 
 Expected outcome:
 
-- `docx`, `email-eml`, `epub`, `xlsx`, and `pptx` return explicit blocked scope rows that point
+- `docx`, `email-eml`, `email-mbox`, `epub`, `xlsx`, and `pptx` return explicit blocked scope rows that point
   back to the maintained direct explicit-recipe lanes
 - no office probe should crash inside `contact_sheet_builder_v1`
 
@@ -581,6 +625,7 @@ scripts/run_driver_monitored.sh \
 | `recipe-pdf-ocr-html-mvp.yaml` | Active structural HTML bundle path for generic PDF-backed inputs. |
 | `recipe-docx-html-mvp.yaml` | Maintained DOCX structural bundle path for the repo-owned heading/prose/list/table slice, widened to three checked-in fixtures. |
 | `recipe-email-eml-html-mvp.yaml` | Maintained plain-text `.eml` structural bundle path for one verified single-message slice with pageless provenance. |
+| `recipe-email-mbox-html-mvp.yaml` | Maintained plain-text `.mbox` structural bundle path for one verified two-message archive slice with one HTML entry per message and pageless provenance. |
 | `recipe-epub-html-mvp.yaml` | Maintained EPUB structural bundle path for the verified bounded chapter-first prose slice with pageless provenance. |
 | `recipe-pptx-html-mvp.yaml` | Maintained PPTX structural bundle path for the verified bounded slide slice: one HTML page per supported slide entry with slide-number provenance. |
 | `recipe-web-page-html-mvp.yaml` | Maintained checked-HTML web-page path for one repo-owned static snapshot that reuses the existing `page_html_v1` to `doc-web` chain. |
@@ -603,6 +648,7 @@ Append these after `--` in the wrapper script.
 *   `--input-pdf <path>`: Override `input.pdf` on maintained PDF-backed recipes.
 *   `--input-docx <path>`: Override `input.docx` on maintained DOCX-backed recipes.
 *   `--input-eml <path>`: Override `input.eml` on maintained plain-text `.eml` recipes.
+*   `--input-mbox <path>`: Override `input.mbox` on maintained plain-text `.mbox` recipes.
 *   `--input-epub <path>`: Override `input.epub` on maintained EPUB-backed recipes.
 *   `--input-pptx <path>`: Override `input.pptx` on maintained PPTX-backed recipes.
 *   `--input-html <path>`: Override `input.html` on maintained checked-HTML web-page recipes.

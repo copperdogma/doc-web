@@ -31,6 +31,12 @@ def test_auto_book_type_detection_corpus_stays_pdf_only():
             "direct_explicit_recipe_only",
         ),
         (
+            "email-mbox",
+            "testdata/email-mbox-mini.mbox",
+            "outside_recommendation_only_intake:email-mbox:direct_explicit_recipe_only",
+            "direct_explicit_recipe_only",
+        ),
+        (
             "epub",
             "testdata/epub-mini.epub",
             "outside_recommendation_only_intake:epub:direct_explicit_recipe_only",

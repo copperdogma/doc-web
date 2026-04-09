@@ -21,7 +21,9 @@ def _venv_bin(venv_dir: Path, name: str) -> Path:
 
 def _skip_if_office_runtime_pin_unsupported() -> None:
     if sys.version_info >= (3, 13):
-        pytest.skip("Maintained unstructured runtime smokes are validated on Python 3.11/3.12.")
+        pytest.skip(
+            "Maintained unstructured runtime smokes are validated on Python 3.11/3.12."
+        )
 
 
 def _skip_if_pandoc_missing() -> None:
@@ -304,14 +306,87 @@ def test_email_extra_supports_repo_owned_eml_smoke(tmp_path: Path):
     _validate_bundle_outputs(python_bin, run_dir)
 
     manifest_path = run_dir / "output" / "html" / "manifest.json"
-    report_path = run_dir / "02_email_elements_to_bundle_v1" / "email_bundle_report.json"
+    report_path = (
+        run_dir / "02_email_elements_to_bundle_v1" / "email_bundle_report.json"
+    )
     manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
     report = json.loads(report_path.read_text(encoding="utf-8"))
 
     assert manifest["reading_order"] == ["page-001"]
     assert report["message_metadata"]["subject"] == "Fixture Subject"
-    assert report["message_metadata"]["sent_from"] == ["Alice Example <alice@example.com>"]
+    assert report["message_metadata"]["sent_from"] == [
+        "Alice Example <alice@example.com>"
+    ]
     assert report["message_metadata"]["sent_to"] == ["Bob Example <bob@example.com>"]
+
+
+def test_email_extra_supports_repo_owned_mbox_smoke(tmp_path: Path):
+    _skip_if_office_runtime_pin_unsupported()
+
+    venv_dir = tmp_path / "venv"
+    venv.EnvBuilder(with_pip=True, system_site_packages=False).create(venv_dir)
+    python_bin = _venv_bin(venv_dir, "python")
+    output_root = tmp_path / "runs"
+    run_id = "venv-mbox-smoke"
+    run_dir = output_root / run_id
+
+    install = subprocess.run(
+        [
+            str(python_bin),
+            "-m",
+            "pip",
+            "install",
+            "--disable-pip-version-check",
+            f"{REPO_ROOT}[driver,email]",
+        ],
+        cwd=str(REPO_ROOT),
+        stdout=subprocess.PIPE,
+        stderr=subprocess.STDOUT,
+        text=True,
+    )
+    assert install.returncode == 0, install.stdout
+
+    smoke = subprocess.run(
+        [
+            str(python_bin),
+            "driver.py",
+            "--recipe",
+            "configs/recipes/recipe-email-mbox-html-mvp.yaml",
+            "--input-mbox",
+            "testdata/email-mbox-mini.mbox",
+            "--run-id",
+            run_id,
+            "--allow-run-id-reuse",
+            "--force",
+            "--output-dir",
+            str(output_root),
+        ],
+        cwd=str(REPO_ROOT),
+        stdout=subprocess.PIPE,
+        stderr=subprocess.STDOUT,
+        text=True,
+    )
+    assert smoke.returncode == 0, smoke.stdout
+
+    _validate_bundle_outputs(python_bin, run_dir)
+
+    manifest_path = run_dir / "output" / "html" / "manifest.json"
+    report_path = (
+        run_dir / "02_mbox_elements_to_bundle_v1" / "email_archive_bundle_report.json"
+    )
+    manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+    report = json.loads(report_path.read_text(encoding="utf-8"))
+
+    assert manifest["reading_order"] == ["page-001", "page-002"]
+    assert [entry["title"] for entry in manifest["entries"]] == [
+        "Fixture Subject",
+        "Fixture Follow-up",
+    ]
+    assert report["archive_metadata"] == {"format": "mbox", "message_count": 2}
+    assert [message["subject"] for message in report["messages"]] == [
+        "Fixture Subject",
+        "Fixture Follow-up",
+    ]
 
 
 def test_xlsx_extra_supports_repo_owned_xlsx_smoke(tmp_path: Path):
@@ -506,7 +581,10 @@ def test_epub_extra_supports_repo_owned_epub_smoke(tmp_path: Path):
 
     assert manifest["title"] == "EPUB Mini Fixture"
     assert manifest["reading_order"] == ["chapter-001", "chapter-002"]
-    assert [entry["title"] for entry in manifest["entries"]] == ["Chapter One", "Chapter Two"]
+    assert [entry["title"] for entry in manifest["entries"]] == [
+        "Chapter One",
+        "Chapter Two",
+    ]
     assert [entry["source_pages"] for entry in manifest["entries"]] == [[], []]
     assert blocks
     assert all(block.get("source_page_number") is None for block in blocks)

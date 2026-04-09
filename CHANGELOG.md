@@ -1,3 +1,23 @@
+## [2026-04-09-04] - Add bounded MBOX direct-entry seam (Story 203)
+
+### Added
+- Added a maintained plain-text `.mbox` direct-entry runtime lane with a checked-in recipe, new intake and bundle modules, a repo-owned two-message fixture pair, and focused recipe smoke coverage for the first honest `email-mbox` slice
+- Added provenance regression coverage that proves repeated message text no longer collides across archive messages and still maps one-to-one back to inspected intake rows
+
+### Changed
+- Changed `driver.py`, `RunConfig`, direct-entry boundary helpers, the coverage matrix, README, runbook, and testdata docs so `email-mbox` is documented honestly as a bounded maintained direct explicit-recipe lane
+- Changed generated methodology surfaces and Story 203 metadata so the validated `.mbox` seam closes cleanly against ADR-002 without widening into attachments, threading, `.msg`, or mixed archives
+
+### Fixed
+- Fixed the archive provenance ambiguity in the `.mbox` lane by replacing repeated upstream element ids with deterministic archive-scoped ids while preserving the native Unstructured id in metadata for debugging
+
+### Tested
+- `python -m pytest tests/test_email_mbox_intake_recipe.py tests/test_email_intake_recipe.py tests/test_doc_web_cli_contract.py -q -k 'email or mbox_smoke'`
+- `make lint`
+- `make methodology-check`
+- `make test`
+- `python driver.py --recipe configs/recipes/recipe-email-mbox-html-mvp.yaml --input-mbox testdata/email-mbox-mini.mbox --run-id validate-story203-mbox-pass4 --allow-run-id-reuse --force`
+
 ## [2026-04-09-03] - Add bounded EML direct-entry seam (Story 202)
 
 ### Added

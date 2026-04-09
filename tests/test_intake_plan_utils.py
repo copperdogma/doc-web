@@ -39,7 +39,10 @@ def _plan(
 
 
 def test_choose_maintained_recipe_keeps_image_directory_lane():
-    assert choose_maintained_recipe(_plan(input_kind="images_dir")) == "configs/recipes/recipe-images-ocr-html-mvp.yaml"
+    assert (
+        choose_maintained_recipe(_plan(input_kind="images_dir"))
+        == "configs/recipes/recipe-images-ocr-html-mvp.yaml"
+    )
 
 
 def test_choose_maintained_recipe_keeps_proven_born_digital_cyoa_lane():
@@ -240,6 +243,11 @@ def test_prepare_confirmed_handoff_blocks_unsupported_input_kind(tmp_path):
     [
         ("docx", "configs/recipes/recipe-docx-html-mvp.yaml", "sample.docx"),
         ("email-eml", "configs/recipes/recipe-email-eml-html-mvp.yaml", "sample.eml"),
+        (
+            "email-mbox",
+            "configs/recipes/recipe-email-mbox-html-mvp.yaml",
+            "sample.mbox",
+        ),
         ("epub", "configs/recipes/recipe-epub-html-mvp.yaml", "sample.epub"),
         ("pptx", "configs/recipes/recipe-pptx-html-mvp.yaml", "sample.pptx"),
         ("web-page", "configs/recipes/recipe-web-page-html-mvp.yaml", "sample.html"),
@@ -269,4 +277,7 @@ def test_prepare_confirmed_handoff_blocks_direct_entry_only_recipes_with_explici
     assert should_launch is False
     assert command == []
     assert row["terminal_outcome"] == "blocked"
-    assert row["terminal_reason"] == f"direct_entry_recipe_outside_confirmed_handoff_scope:{input_kind}"
+    assert (
+        row["terminal_reason"]
+        == f"direct_entry_recipe_outside_confirmed_handoff_scope:{input_kind}"
+    )

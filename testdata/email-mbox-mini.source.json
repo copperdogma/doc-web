@@ -1,0 +1,14 @@
+{
+  "title": "Email MBOX Mini Fixture",
+  "source_type": "repo-authored plain-text mailbox archive",
+  "generated_at": "2026-04-09",
+  "capture_note": "Repo-owned two-message .mbox probe used to prove the first bounded mailbox direct-entry seam without attachments, thread cleanup, or connector integration.",
+  "generation_note": "Generated from two repo-authored plain-text messages using Python stdlib mailbox.mbox so archive order is deterministic and inspectable in-repo.",
+  "supported_scope": [
+    "plain-text .mbox",
+    "two ordered messages",
+    "subject/from/to metadata",
+    "one HTML entry per message",
+    "no attachments"
+  ]
+}

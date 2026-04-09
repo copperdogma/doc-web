@@ -4,6 +4,7 @@ import sys
 import uuid
 from pathlib import Path
 
+import pytest
 import yaml
 
 from schemas import DocWebBundleManifest, DocWebProvenanceBlock
@@ -21,6 +22,15 @@ def _load_jsonl(path: Path):
     ]
 
 
+def _skip_if_unstructured_email_missing() -> None:
+    try:
+        from unstructured.partition.email import partition_email  # noqa: F401
+    except ImportError:
+        pytest.skip(
+            "Unstructured email support is not installed in this test environment."
+        )
+
+
 def test_email_recipe_wiring():
     data = yaml.safe_load(Path(EML_RECIPE).read_text(encoding="utf-8"))
 
@@ -33,6 +43,8 @@ def test_email_recipe_wiring():
 
 
 def test_email_recipe_smoke(tmp_path: Path):
+    _skip_if_unstructured_email_missing()
+
     run_id = f"email-intake-smoke-{uuid.uuid4().hex[:8]}"
     run_dir = tmp_path / run_id
 
@@ -56,7 +68,9 @@ def test_email_recipe_smoke(tmp_path: Path):
     assert result.returncode == 0, result.stdout + result.stderr
 
     elements_path = run_dir / "01_unstructured_email_intake_v1" / "elements.jsonl"
-    report_path = run_dir / "02_email_elements_to_bundle_v1" / "email_bundle_report.json"
+    report_path = (
+        run_dir / "02_email_elements_to_bundle_v1" / "email_bundle_report.json"
+    )
     manifest_path = run_dir / "output" / "html" / "manifest.json"
     blocks_path = run_dir / "output" / "html" / "provenance" / "blocks.jsonl"
     page_path = run_dir / "output" / "html" / "page-001.html"
@@ -69,7 +83,9 @@ def test_email_recipe_smoke(tmp_path: Path):
 
     elements = _load_jsonl(elements_path)
     report = json.loads(report_path.read_text(encoding="utf-8"))
-    manifest = DocWebBundleManifest(**json.loads(manifest_path.read_text(encoding="utf-8")))
+    manifest = DocWebBundleManifest(
+        **json.loads(manifest_path.read_text(encoding="utf-8"))
+    )
     blocks = [DocWebProvenanceBlock(**row) for row in _load_jsonl(blocks_path)]
 
     assert elements[0]["metadata"]["subject"] == "Fixture Subject"
@@ -98,6 +114,9 @@ def test_email_recipe_smoke(tmp_path: Path):
     assert all(block.source_element_ids for block in blocks)
 
     page_html = page_path.read_text(encoding="utf-8")
-    assert "This fixture exists to prove the first honest .eml direct-entry seam." in page_html
+    assert (
+        "This fixture exists to prove the first honest .eml direct-entry seam."
+        in page_html
+    )
     assert ">Regards,<" in page_html
     assert ">Alice<" in page_html

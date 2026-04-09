@@ -33,7 +33,9 @@ def test_load_first_stage_spec_for_images_recipe():
 
 
 def test_build_first_downstream_artifact_path_for_marker_recipe():
-    stage = load_first_stage_spec("configs/recipes/recipe-born-digital-pdf-marker-lite-html-mvp.yaml")
+    stage = load_first_stage_spec(
+        "configs/recipes/recipe-born-digital-pdf-marker-lite-html-mvp.yaml"
+    )
 
     assert build_first_downstream_artifact_path("story178-born", stage) == (
         "output/runs/story178-born/01_extract_pdf_marker_lite_html_v1/pages_html.jsonl"
@@ -123,6 +125,12 @@ def test_approved_intake_handoff_corpus_stays_within_supported_scope():
             "email-eml",
             "testdata/email-eml-mini.eml",
             "outside_approved_intake_handoff:email-eml:direct_explicit_recipe_only",
+            "direct_explicit_recipe_only",
+        ),
+        (
+            "email-mbox",
+            "testdata/email-mbox-mini.mbox",
+            "outside_approved_intake_handoff:email-mbox:direct_explicit_recipe_only",
             "direct_explicit_recipe_only",
         ),
         (
