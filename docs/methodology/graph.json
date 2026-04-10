@@ -135,7 +135,8 @@
           "201",
           "202",
           "203",
-          "205"
+          "205",
+          "208"
         ],
         "adr_ids": [
           "ADR-001",
@@ -144,6 +145,7 @@
         ],
         "eval_ids": [
           "handwritten-notes-transcription",
+          "onward-table-fidelity",
           "onward-document-consistency-planning",
           "auto-book-type-detection",
           "approved-intake-handoff",
@@ -198,7 +200,8 @@
           "189",
           "191",
           "192",
-          "206"
+          "206",
+          "208"
         ],
         "adr_ids": [
           "ADR-001",
@@ -496,7 +499,8 @@
           "203",
           "204",
           "205",
-          "207"
+          "207",
+          "208"
         ],
         "adr_ids": [
           "ADR-002"
@@ -505,6 +509,7 @@
           "image-crop-extraction",
           "crop-validation",
           "handwritten-notes-transcription",
+          "onward-table-fidelity",
           "single-model-crop-detection",
           "auto-book-type-detection",
           "approved-intake-handoff",
@@ -704,7 +709,8 @@
           "189",
           "191",
           "192",
-          "206"
+          "206",
+          "208"
         ],
         "eval_ids": [
           "ocr-model-genealogy",
@@ -712,21 +718,23 @@
         ],
         "actionability": {
           "source_kind": "eval",
-          "source_id": "ocr-model-genealogy",
+          "source_id": "onward-table-fidelity",
           "source_path": "docs/evals/registry.yaml",
           "recommended_now": false,
           "posture": "wait-for-trigger",
           "retry_trigger_status": "waiting",
           "retry_when": [
+            "cheaper-subject-model",
+            "downsampling-sweep",
             "new-subject-model"
           ],
-          "why_now": "Models with native table understanding may eliminate rescue pass",
+          "why_now": "Future models may improve alma score (weakest across all models due to handwritten annotations) Gemini Flash at 0.886 is close \u2014 prompt tuning or future Flash versions may cross 0.95 Story 134 validated 2048px. Test 1...",
           "last_relevant_action": {
-            "date": "2026-03-14",
+            "date": "2026-04-10",
             "source_type": "eval-attempt",
             "source": "docs/evals/registry.yaml",
-            "source_id": "002",
-            "summary": "Added hand-verified page goldens `page-089`, `page-097`, and `page-098` to `benchmarks/tasks/ocr-genealogy-tables.yaml` and `benchmarks/tasks/ocr-genealogy-tables-gpt-only.yaml`. Story 140 validated those pages by dir..."
+            "source_id": "003",
+            "summary": "Story 208 did not rerun the full multi-chapter promptfoo sweep. Instead it used the existing `benchmarks/scorers/html_table_diff.py` surface on the explicit Marie-Louise table-heavy seam (`Image080.jpg` through `Image..."
           },
           "story_ids": [
             "131",
@@ -759,7 +767,8 @@
             "189",
             "191",
             "192",
-            "206"
+            "206",
+            "208"
           ],
           "eval_ids": [
             "ocr-model-genealogy",
@@ -791,7 +800,8 @@
           "185",
           "186",
           "189",
-          "191"
+          "191",
+          "208"
         ],
         "eval_ids": [],
         "actionability": {
@@ -822,7 +832,8 @@
             "185",
             "186",
             "189",
-            "191"
+            "191",
+            "208"
           ],
           "eval_ids": []
         }
@@ -1142,7 +1153,8 @@
           "201",
           "202",
           "203",
-          "207"
+          "207",
+          "208"
         ],
         "eval_ids": [],
         "actionability": {
@@ -1188,7 +1200,8 @@
             "201",
             "202",
             "203",
-            "207"
+            "207",
+            "208"
           ],
           "eval_ids": []
         }
@@ -10963,6 +10976,77 @@
           "summary": "`/mark-story-done` close-out completed. Re-validated Story 207 against the current repo state: all tasks, acceptance criteria, and tenet checks remain satisfied; dependency stories 183 and 198 are both `Done`; and no..."
         }
       }
+    },
+    {
+      "id": "208",
+      "title": "Benchmark GLM-OCR on the Handwritten Blocker and a Table-Heavy Scanned Seam",
+      "path": "docs/stories/story-208-glm-ocr-benchmark-for-handwritten-and-table-heavy-seams.md",
+      "status": "Done",
+      "priority": "High",
+      "ideal_refs": [
+        "Requirement #1 (Ingest), Requirement #3 (Extract), Requirement #6 (Validate), Any format, any condition, Fidelity to the source, Traceability is the product"
+      ],
+      "spec_refs": [
+        "spec:1",
+        "spec:1.1",
+        "spec:2",
+        "spec:2.1",
+        "spec:2.2",
+        "spec:8"
+      ],
+      "decision_refs": [
+        "`docs/ideal.md`, `docs/spec.md`, `docs/methodology/state.yaml`, `docs/methodology/graph.json`, `docs/stories/story-191-finish-real-handwritten-ocr-on-the-loc-fixture-pair.md`, `docs/stories/story-192-alverson-handwritten-truth-surface-repair.md`, `docs/stories/story-206-onward-full-book-regression-recovery.md`, `docs/stories/story-164-surya-component-benchmark-for-layout-and-table-seams.md`, `docs/inbox.md`, `CHANGELOG.md`, official GLM-OCR sources (`https://huggingface.co/zai-org/GLM-OCR`, `https://huggingface.co/docs/transformers/main/model_doc/glm_ocr`, `https://arxiv.org/abs/2603.10910`), and `None found after search in docs/decisions/`, `docs/runbooks/`, `docs/scout/`, and `docs/notes/` for a narrower GLM-OCR benchmark or handwritten-unblock decision doc"
+      ],
+      "adr_ids": [],
+      "depends_on": [
+        "192",
+        "206"
+      ],
+      "category_refs": [
+        "spec:1",
+        "spec:2",
+        "spec:8"
+      ],
+      "compromise_refs": [
+        "B1",
+        "C1",
+        "C6"
+      ],
+      "input_coverage_refs": [
+        "handwritten-notes",
+        "scanned-pdf-tables"
+      ],
+      "architecture_domains": [
+        "ocr_and_extraction"
+      ],
+      "roadmap_tags": [
+        "campaign:maintained-intake-honesty"
+      ],
+      "blocker_summary": "",
+      "blocker_evidence": "",
+      "unblock_condition": "",
+      "last_work_log_entry": {
+        "timestamp": "20260410-1948",
+        "date": "2026-04-10",
+        "summary": "mark-story-done closeout: recorded Story 208's bounded current-pass benchmark evidence in `docs/evals/registry.yaml` under both `handwritten-notes-transcription` and `onward-table-fidelity`, updated the mutable method..."
+      },
+      "legacy_build_map_refs": "",
+      "metadata_source": "frontmatter",
+      "missing_frontmatter_keys": [],
+      "actionability": {
+        "source_kind": "story",
+        "source_id": "208",
+        "source_path": "docs/stories/story-208-glm-ocr-benchmark-for-handwritten-and-table-heavy-seams.md",
+        "recommended_now": false,
+        "posture": "completed",
+        "why_now": "mark-story-done closeout: recorded Story 208's bounded current-pass benchmark evidence in `docs/evals/registry.yaml` under both `handwritten-notes-transcription` and `onward-table-fidelity`, updated the mutable method...",
+        "last_relevant_action": {
+          "date": "2026-04-10",
+          "source_type": "story-work-log",
+          "source": "docs/stories/story-208-glm-ocr-benchmark-for-handwritten-and-table-heavy-seams.md",
+          "summary": "mark-story-done closeout: recorded Story 208's bounded current-pass benchmark evidence in `docs/evals/registry.yaml` under both `handwritten-notes-transcription` and `onward-table-fidelity`, updated the mutable method..."
+        }
+      }
     }
   ],
   "adrs": [
@@ -11461,7 +11545,8 @@
         "186",
         "189",
         "191",
-        "192"
+        "192",
+        "208"
       ],
       "compromise_refs": [],
       "category_refs": [
@@ -11674,6 +11759,14 @@
           "approach": "Bounded new-subject-model screen on the corrected real-fixture pair after verifying current model availability",
           "note": "Per `/improve-eval handwritten-notes-transcription`, I first verified current provider availability with `python scripts/discover-models.py --check-new`, which showed fresh callable frontier candidates including `gpt-5.4-pro` and the Gemini 3.x family in this checkout with all three API keys present. I then reran the maintained handwritten rescue baseline on the corrected real fixtures via `python benchmarks/scripts/run_handwritten_notes_eval.py --transcript testdata/handwritten-notes-barney-real.txt --images testdata/handwritten-notes-barney-real-images --pdf testdata/handwritten-notes-barney-real.pdf --fixture-id handwritten-notes-barney-real --image-recipe configs/recipes/recipe-images-ocr-html-handwritten-notes-gemini-rescue.yaml --pdf-recipe configs/recipes/recipe-pdf-ocr-html-handwritten-notes-gemini-rescue.yaml --image-case-id image-handwritten-rescue --pdf-case-id pdf-handwritten-rescue --output benchmarks/results/handwritten-notes-improve-eval-20260405-barney-baseline.json` and `python benchmarks/scripts/run_handwritten_notes_eval.py --transcript testdata/handwritten-notes-alverson-real.txt --images testdata/handwritten-notes-alverson-real-images --pdf testdata/handwritten-notes-alverson-real.pdf --fixture-id handwritten-notes-alverson-real --image-recipe configs/recipes/recipe-images-ocr-html-handwritten-notes-gemini-rescue.yaml --pdf-recipe configs/recipes/recipe-pdf-ocr-html-handwritten-notes-gemini-rescue.yaml --image-case-id image-handwritten-rescue --pdf-case-id pdf-handwritten-rescue --output benchmarks/results/handwritten-notes-improve-eval-20260405-alverson-baseline.json`. Those fresh recipe-path reruns reproduced the current maintained blocker exactly: Barney stayed at `0.883604` image / `0.756036` pdf and corrected-scope Alverson stayed at `0.677267` image / `0.681952` pdf. I then screened the fresh subject-model candidates on the real image-entry pair only via `benchmarks/results/handwritten-notes-improve-eval-20260405-image-screen.json`. `gpt-5.4-pro` produced empty `page_html_v1` artifacts on both real fixtures at `output/runs/eval-barney-image-gpt-5-4-pro/01_ocr_ai_gpt51_v1/pages_html.jsonl` and `output/runs/eval-alverson-image-gpt-5-4-pro/01_ocr_ai_gpt51_v1/pages_html.jsonl` (`overall_ratio = 0.0` both), which is current **prompt/pipeline-wrong / integration-wrong** evidence rather than a usable OCR win. `gemini-3.1-pro-preview` stayed below the maintained rescue lane on both corrected real fixtures: Barney reached only `0.843434` at `output/runs/eval-barney-image-gemini-3-1-pro-preview/01_ocr_ai_gpt51_v1/pages_html.jsonl`, and corrected-scope Alverson stayed at `0.262102` at `output/runs/eval-alverson-image-gemini-3-1-pro-preview/01_ocr_ai_gpt51_v1/pages_html.jsonl`, with the same visible-source failure class (`nothing`, `Battle of Chickamauga`, etc.). Because no fresh model materially beat both real fixtures, I did not promote any candidate to a PDF-entry or full five-fixture rerun. Result: the `new-subject-model` retry condition was exercised honestly, but no current candidate justifies reopening Story 191.\n",
           "retry_when": []
+        },
+        {
+          "id": "008",
+          "date": "2026-04-10",
+          "status": "failed",
+          "approach": "Story 208 bounded GLM-OCR benchmark on the corrected Barney/Alverson pair before any handwritten reopen claim",
+          "note": "Story 208 benchmarked the current GLM-OCR candidate as a materially different OCR substrate instead of assuming handwriting wins from leaderboard framing. The bounded harness in `scripts/spikes/glm_ocr_benchmark.py` called local `ollama` `glm-ocr` directly on the corrected Barney and Alverson real-fixture pair and scored the outputs with `benchmarks/scorers/handwritten_notes_transcription.py`. Fresh story-local artifacts under `output/runs/story208-glm-ocr-benchmark-r1/handwritten/` recorded `pass_rate = 0.0`, `overall_min_ratio = 0.097473`, and `page_min_ratio = 0.097473` across the four entry cases (`barney-image = 0.283231`, `barney-pdf = 0.283231`, `alverson-image = 0.097473`, `alverson-pdf = 0.292624`). Manual artifact inspection in the same pass confirmed visible-source drift and hallucination rather than a narrow scoring quirk at `output/runs/story208-glm-ocr-benchmark-r1/handwritten/barney-image/pages_html.jsonl` and `output/runs/story208-glm-ocr-benchmark-r1/handwritten/alverson-pdf/pages_html.jsonl`. Result: GLM-OCR is current **new-substrate-wrong** evidence on the corrected handwritten blocker surface and does not justify reopening Story 191.\n",
+          "retry_when": []
         }
       ],
       "retry_when": [
@@ -11695,11 +11788,11 @@
         ],
         "why_now": "Retry only when a materially stronger model or OCR substrate appears that could plausibly clear Barney and the corrected Alverson front-page truth surface.",
         "last_relevant_action": {
-          "date": "2026-04-05",
+          "date": "2026-04-10",
           "source_type": "eval-attempt",
           "source": "docs/evals/registry.yaml",
-          "source_id": "007",
-          "summary": "Per `/improve-eval handwritten-notes-transcription`, I first verified current provider availability with `python scripts/discover-models.py --check-new`, which showed fresh callable frontier candidates including `gpt-..."
+          "source_id": "008",
+          "summary": "Story 208 benchmarked the current GLM-OCR candidate as a materially different OCR substrate instead of assuming handwriting wins from leaderboard framing. The bounded harness in `scripts/spikes/glm_ocr_benchmark.py` c..."
         }
       }
     },
@@ -11712,13 +11805,16 @@
       "description": "Multi-page genealogy table OCR fidelity for Onward to the Unknown. Tests cell-level accuracy against hand-validated golden references using LCS sequence alignment to match rows.\n",
       "spec_refs": [],
       "story_refs": [
-        "134"
+        "134",
+        "208"
       ],
       "compromise_refs": [
         "C1"
       ],
       "category_refs": [
-        "spec:2"
+        "spec:1",
+        "spec:2",
+        "spec:8"
       ],
       "scores": [
         {
@@ -11853,6 +11949,14 @@
           "approach": "8-model refresh: GPT-5.4, GPT-5.2 Pro, Gemini 3.1 Pro, Gemini budget models (Flash, Flash-Lite) + re-run previous winners",
           "note": "Gemini 3.1 Pro jumped from 0.115 \u2192 0.969 after fixing maxOutputTokens (16384\u219265536). Reasoning tokens were consuming output budget, truncating tables. GPT-5.4 matched Opus quality at 3x lower cost. GPT-5.2 Pro is not a chat model (404). Budget Gemini models (Flash, Flash-Lite) scored 0.72-0.89 but truncation-limited on longer tables. Created enrich-eval-results.py for cost/latency/quality analysis. Created discover-models.ts for model discovery across providers.\n",
           "retry_when": []
+        },
+        {
+          "id": "003",
+          "date": "2026-04-10",
+          "status": "failed",
+          "approach": "Story 208 bounded GLM-OCR Marie-Louise seam check using the existing page-level scorer and a native-arm64 SDK control on page 080",
+          "note": "Story 208 did not rerun the full multi-chapter promptfoo sweep. Instead it used the existing `benchmarks/scorers/html_table_diff.py` surface on the explicit Marie-Louise table-heavy seam (`Image080.jpg` through `Image083.jpg`) to test whether GLM-OCR was even locally competitive before any adoption claim. The bounded direct benchmark artifacts under `output/runs/story208-glm-ocr-benchmark-r1/onward-marie-louise/` scored `glm_average_score = 0.318375`, `glm_min_score = 0.1689`, and `0/4` passing pages against the committed per-page goldens, versus incumbent scores `0.93075` average and `0.7489` minimum from `/Users/cam/Documents/Projects/codex-forge/output/runs/onward-full-audit-20260318-r1/02_ocr_ai_gpt51_v1/pages_html.jsonl`. Story 208 then proved the fuller official `glmocr` self-hosted SDK path in a native arm64 Python 3.14 env and rescored page 080 via `output/runs/story208-glm-ocr-sdk-page080-r1/summary.json`; that control still landed at `0.1689`, identical to the direct model-only page-080 result. This attempt is intentionally **not directly comparable** to the registry's full `structure_preservation` leaderboard because it is a bounded Marie-Louise seam check, but it is verified negative evidence that GLM-OCR is not a credible next Onward table candidate on the tested hard lane.\n",
+          "retry_when": []
         }
       ],
       "retry_when": [
@@ -11880,11 +11984,11 @@
         ],
         "why_now": "Future models may improve alma score (weakest across all models due to handwritten annotations) Gemini Flash at 0.886 is close \u2014 prompt tuning or future Flash versions may cross 0.95 Story 134 validated 2048px. Test 1...",
         "last_relevant_action": {
-          "date": "2026-03-11",
+          "date": "2026-04-10",
           "source_type": "eval-attempt",
           "source": "docs/evals/registry.yaml",
-          "source_id": "002",
-          "summary": "Gemini 3.1 Pro jumped from 0.115 \u2192 0.969 after fixing maxOutputTokens (16384\u219265536). Reasoning tokens were consuming output budget, truncating tables. GPT-5.4 matched Opus quality at 3x lower cost. GPT-5.2 Pro is not..."
+          "source_id": "003",
+          "summary": "Story 208 did not rerun the full multi-chapter promptfoo sweep. Instead it used the existing `benchmarks/scorers/html_table_diff.py` surface on the explicit Marie-Louise table-heavy seam (`Image080.jpg` through `Image..."
         }
       }
     },
@@ -13349,9 +13453,10 @@
             "201",
             "202",
             "203",
-            "205"
+            "205",
+            "208"
           ],
-          "notes": "Recent bounded proof and direct-entry expansions are done; Story 205 closed the first ZIP-only mixed-archive routing seam as bounded maintained evidence, so the only current live line here is blocked Story 191 on handwritten OCR. Keep Story 191 as a health flag until a materially stronger OCR substrate appears, and treat Story 205 as proof for one explicit archive-member routing slice rather than broad archive ownership."
+          "notes": "Recent bounded proof and direct-entry expansions are done; Story 205 closed the first ZIP-only mixed-archive routing seam as bounded maintained evidence, and Story 208 closed the bounded stronger-OCR benchmark line for the handwritten blocker with negative evidence. Keep Story 191 blocked until a later pass produces fresh current-pass evidence for a materially stronger OCR substrate, and treat Story 205 as proof for one explicit archive-member routing slice rather than broad archive ownership."
         }
       ]
     },
@@ -13360,7 +13465,7 @@
         {
           "id": "recommended-order",
           "title": "Recommended Order",
-          "markdown": "Guiding priorities: keep bounded intake + `doc-web` claims honest and widen reusable format coverage only when substrate and proof exist.\n\nUse `docs/methodology/graph.json`, `docs/methodology/state.yaml`, and `/triage` output for current sequencing. Story `205` now stands as the completed bounded proof for the first `mixed-archive` ZIP seam; use it as evidence for archive-member manifest/member-route behavior on the checked-in fixture, not as a blanket archive-support claim. Story `191` remains blocked and should still be treated as a health flag rather than evidence of a currently buildable OCR lane. Historical Fighting Fantasy/gamebook stories remain in the index below as project record and reference evidence, not as the default mission queue."
+          "markdown": "Guiding priorities: keep bounded intake + `doc-web` claims honest and widen reusable format coverage only when substrate and proof exist.\n\nUse `docs/methodology/graph.json`, `docs/methodology/state.yaml`, and `/triage` output for current sequencing. Story `205` now stands as the completed bounded proof for the first `mixed-archive` ZIP seam; use it as evidence for archive-member manifest/member-route behavior on the checked-in fixture, not as a blanket archive-support claim. Story `208` closed the bounded stronger-OCR benchmark line for the handwritten blocker with negative evidence, so Story `191` remains blocked until a later pass proves a materially stronger OCR substrate. Historical Fighting Fantasy/gamebook stories remain in the index below as project record and reference evidence, not as the default mission queue."
         }
       ],
       "uncategorized_label": "Legacy / Uncategorized Stories"
@@ -13401,14 +13506,14 @@
           "label": "OCR and Extraction",
           "manual_priority": "medium",
           "last_audited_at": "2026-04-09",
-          "stories_since_audit": 0,
+          "stories_since_audit": 1,
           "recent_story_refs": [
-            "189",
             "191",
-            "192"
+            "192",
+            "208"
           ],
           "open_findings": [],
-          "notes": "The real handwritten line is now an explicit OCR-capability blocker: Story 192 corrected the Alverson truth surface, and Story 191 remains parked until a materially stronger OCR substrate appears."
+          "notes": "The real handwritten line is now an explicit OCR-capability blocker: Story 192 corrected the Alverson truth surface, Story 208 closed the bounded GLM-OCR benchmark line with negative evidence on both the corrected handwritten pair and the Marie-Louise seam, and Story 191 remains parked until a materially stronger OCR substrate appears."
         },
         "document_structure_and_consistency": {
           "label": "Document Structure and Consistency",

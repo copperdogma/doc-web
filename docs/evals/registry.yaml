@@ -407,7 +407,7 @@ evals:
     command: "python benchmarks/scripts/run_handwritten_notes_eval.py --image-recipe configs/recipes/recipe-images-ocr-html-handwritten-notes-gemini-rescue.yaml --pdf-recipe configs/recipes/recipe-pdf-ocr-html-handwritten-notes-gemini-rescue.yaml --image-case-id image-handwritten-rescue --pdf-case-id pdf-handwritten-rescue --instrument --output benchmarks/results/handwritten-notes-story189-real-expanded.json"
     scorer: benchmarks/scorers/handwritten_notes_transcription.py
     golden: benchmarks/golden/handwritten-notes/corpus.json
-    story_refs: ["179", "182", "185", "186", "189", "191", "192"]
+    story_refs: ["179", "182", "185", "186", "189", "191", "192", "208"]
     category_refs: ["spec:1", "spec:2", "spec:8"]
     compromise_refs: []
 
@@ -885,6 +885,34 @@ evals:
           five-fixture rerun. Result: the `new-subject-model` retry condition
           was exercised honestly, but no current candidate justifies reopening
           Story 191.
+      - id: "008"
+        date: 2026-04-10
+        status: failed
+        approach: "Story 208 bounded GLM-OCR benchmark on the corrected Barney/Alverson pair before any handwritten reopen claim"
+        score_before: 0.677267
+        score_after: 0.097473
+        note: >
+          Story 208 benchmarked the current GLM-OCR candidate as a materially
+          different OCR substrate instead of assuming handwriting wins from
+          leaderboard framing. The bounded harness in
+          `scripts/spikes/glm_ocr_benchmark.py` called local `ollama`
+          `glm-ocr` directly on the corrected Barney and Alverson real-fixture
+          pair and scored the outputs with
+          `benchmarks/scorers/handwritten_notes_transcription.py`. Fresh
+          story-local artifacts under
+          `output/runs/story208-glm-ocr-benchmark-r1/handwritten/` recorded
+          `pass_rate = 0.0`, `overall_min_ratio = 0.097473`, and
+          `page_min_ratio = 0.097473` across the four entry cases
+          (`barney-image = 0.283231`, `barney-pdf = 0.283231`,
+          `alverson-image = 0.097473`, `alverson-pdf = 0.292624`). Manual
+          artifact inspection in the same pass confirmed visible-source drift
+          and hallucination rather than a narrow scoring quirk at
+          `output/runs/story208-glm-ocr-benchmark-r1/handwritten/barney-image/pages_html.jsonl`
+          and
+          `output/runs/story208-glm-ocr-benchmark-r1/handwritten/alverson-pdf/pages_html.jsonl`.
+          Result: GLM-OCR is current **new-substrate-wrong** evidence on the
+          corrected handwritten blocker surface and does not justify reopening
+          Story 191.
 
     retry_when:
       - condition: new-subject-model
@@ -903,7 +931,7 @@ evals:
     config: benchmarks/tasks/onward-table-fidelity.yaml
     scorer: benchmarks/scorers/html_table_diff.py
     golden: benchmarks/golden/onward/
-    story_refs: ["134"]
+    story_refs: ["134", "208"]
     category_refs: ["spec:2"]
     compromise_refs: ["C1"]
     spec_compromise: C1
@@ -1032,6 +1060,33 @@ evals:
           (Flash, Flash-Lite) scored 0.72-0.89 but truncation-limited on longer tables.
           Created enrich-eval-results.py for cost/latency/quality analysis.
           Created discover-models.ts for model discovery across providers.
+      - id: "003"
+        date: 2026-04-10
+        status: failed
+        approach: "Story 208 bounded GLM-OCR Marie-Louise seam check using the existing page-level scorer and a native-arm64 SDK control on page 080"
+        score_before: null
+        score_after: 0.318375
+        note: >
+          Story 208 did not rerun the full multi-chapter promptfoo sweep.
+          Instead it used the existing `benchmarks/scorers/html_table_diff.py`
+          surface on the explicit Marie-Louise table-heavy seam
+          (`Image080.jpg` through `Image083.jpg`) to test whether GLM-OCR was
+          even locally competitive before any adoption claim. The bounded
+          direct benchmark artifacts under
+          `output/runs/story208-glm-ocr-benchmark-r1/onward-marie-louise/`
+          scored `glm_average_score = 0.318375`, `glm_min_score = 0.1689`,
+          and `0/4` passing pages against the committed per-page goldens,
+          versus incumbent scores `0.93075` average and `0.7489` minimum from
+          `/Users/cam/Documents/Projects/codex-forge/output/runs/onward-full-audit-20260318-r1/02_ocr_ai_gpt51_v1/pages_html.jsonl`.
+          Story 208 then proved the fuller official `glmocr` self-hosted SDK
+          path in a native arm64 Python 3.14 env and rescored page 080 via
+          `output/runs/story208-glm-ocr-sdk-page080-r1/summary.json`; that
+          control still landed at `0.1689`, identical to the direct
+          model-only page-080 result. This attempt is intentionally **not
+          directly comparable** to the registry's full `structure_preservation`
+          leaderboard because it is a bounded Marie-Louise seam check, but it
+          is verified negative evidence that GLM-OCR is not a credible next
+          Onward table candidate on the tested hard lane.
 
     retry_when:
       - condition: new-subject-model

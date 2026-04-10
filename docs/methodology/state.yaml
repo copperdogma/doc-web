@@ -55,8 +55,8 @@
       {
         "id": "maintained-intake-honesty",
         "status": "active",
-        "story_refs": ["191", "196", "197", "200", "201", "202", "203", "205"],
-        "notes": "Recent bounded proof and direct-entry expansions are done; Story 205 closed the first ZIP-only mixed-archive routing seam as bounded maintained evidence, so the only current live line here is blocked Story 191 on handwritten OCR. Keep Story 191 as a health flag until a materially stronger OCR substrate appears, and treat Story 205 as proof for one explicit archive-member routing slice rather than broad archive ownership."
+        "story_refs": ["191", "196", "197", "200", "201", "202", "203", "205", "208"],
+        "notes": "Recent bounded proof and direct-entry expansions are done; Story 205 closed the first ZIP-only mixed-archive routing seam as bounded maintained evidence, and Story 208 closed the bounded stronger-OCR benchmark line for the handwritten blocker with negative evidence. Keep Story 191 blocked until a later pass produces fresh current-pass evidence for a materially stronger OCR substrate, and treat Story 205 as proof for one explicit archive-member routing slice rather than broad archive ownership."
       }
     ]
   },
@@ -65,7 +65,7 @@
       {
         "id": "recommended-order",
         "title": "Recommended Order",
-        "markdown": "Guiding priorities: keep bounded intake + `doc-web` claims honest and widen reusable format coverage only when substrate and proof exist.\n\nUse `docs/methodology/graph.json`, `docs/methodology/state.yaml`, and `/triage` output for current sequencing. Story `205` now stands as the completed bounded proof for the first `mixed-archive` ZIP seam; use it as evidence for archive-member manifest/member-route behavior on the checked-in fixture, not as a blanket archive-support claim. Story `191` remains blocked and should still be treated as a health flag rather than evidence of a currently buildable OCR lane. Historical Fighting Fantasy/gamebook stories remain in the index below as project record and reference evidence, not as the default mission queue."
+        "markdown": "Guiding priorities: keep bounded intake + `doc-web` claims honest and widen reusable format coverage only when substrate and proof exist.\n\nUse `docs/methodology/graph.json`, `docs/methodology/state.yaml`, and `/triage` output for current sequencing. Story `205` now stands as the completed bounded proof for the first `mixed-archive` ZIP seam; use it as evidence for archive-member manifest/member-route behavior on the checked-in fixture, not as a blanket archive-support claim. Story `208` closed the bounded stronger-OCR benchmark line for the handwritten blocker with negative evidence, so Story `191` remains blocked until a later pass proves a materially stronger OCR substrate. Historical Fighting Fantasy/gamebook stories remain in the index below as project record and reference evidence, not as the default mission queue."
       }
     ],
     "uncategorized_label": "Legacy / Uncategorized Stories"
@@ -97,10 +97,10 @@
         "label": "OCR and Extraction",
         "manual_priority": "medium",
         "last_audited_at": "2026-04-09",
-        "stories_since_audit": 0,
-        "recent_story_refs": ["189", "191", "192"],
+        "stories_since_audit": 1,
+        "recent_story_refs": ["191", "192", "208"],
         "open_findings": [],
-        "notes": "The real handwritten line is now an explicit OCR-capability blocker: Story 192 corrected the Alverson truth surface, and Story 191 remains parked until a materially stronger OCR substrate appears."
+        "notes": "The real handwritten line is now an explicit OCR-capability blocker: Story 192 corrected the Alverson truth surface, Story 208 closed the bounded GLM-OCR benchmark line with negative evidence on both the corrected handwritten pair and the Marie-Louise seam, and Story 191 remains parked until a materially stronger OCR substrate appears."
       },
       "document_structure_and_consistency": {
         "label": "Document Structure and Consistency",

@@ -6,11 +6,11 @@
 
 Guiding priorities: keep bounded intake + `doc-web` claims honest and widen reusable format coverage only when substrate and proof exist.
 
-Use `docs/methodology/graph.json`, `docs/methodology/state.yaml`, and `/triage` output for current sequencing. Story `205` now stands as the completed bounded proof for the first `mixed-archive` ZIP seam; use it as evidence for archive-member manifest/member-route behavior on the checked-in fixture, not as a blanket archive-support claim. Story `191` remains blocked and should still be treated as a health flag rather than evidence of a currently buildable OCR lane. Historical Fighting Fantasy/gamebook stories remain in the index below as project record and reference evidence, not as the default mission queue.
+Use `docs/methodology/graph.json`, `docs/methodology/state.yaml`, and `/triage` output for current sequencing. Story `205` now stands as the completed bounded proof for the first `mixed-archive` ZIP seam; use it as evidence for archive-member manifest/member-route behavior on the checked-in fixture, not as a blanket archive-support claim. Story `208` closed the bounded stronger-OCR benchmark line for the handwritten blocker with negative evidence, so Story `191` remains blocked until a later pass proves a materially stronger OCR substrate. Historical Fighting Fantasy/gamebook stories remain in the index below as project record and reference evidence, not as the default mission queue.
 
 ## Active Focus
 
-- Campaign `maintained-intake-honesty` (active; stories: 191, 196, 197, 200, 201, 202, 203, 205) — Recent bounded proof and direct-entry expansions are done; Story 205 closed the first ZIP-only mixed-archive routing seam as bounded maintained evidence, so the only current live line here is blocked Story 191 on handwritten OCR. Keep Story 191 as a health flag until a materially stronger OCR substrate appears, and treat Story 205 as proof for one explicit archive-member routing slice rather than broad archive ownership.
+- Campaign `maintained-intake-honesty` (active; stories: 191, 196, 197, 200, 201, 202, 203, 205, 208) — Recent bounded proof and direct-entry expansions are done; Story 205 closed the first ZIP-only mixed-archive routing seam as bounded maintained evidence, and Story 208 closed the bounded stronger-OCR benchmark line for the handwritten blocker with negative evidence. Keep Story 191 blocked until a later pass produces fresh current-pass evidence for a materially stronger OCR substrate, and treat Story 205 as proof for one explicit archive-member routing slice rather than broad archive ownership.
 
 ## Index
 
@@ -58,6 +58,7 @@ Grouped by primary `spec:N` category. Stories without category refs remain in an
 | 202 | Establish the First Honest EML Direct-Entry Seam | High | Done | — | [story-202](stories/story-202-eml-direct-entry-seam.md) |
 | 203 | Establish the First Honest MBOX Archive Seam | High | Done | 202 | [story-203](stories/story-203-mbox-archive-seam.md) |
 | 205 | Establish the First Honest Mixed-Archive Intake/Routing Seam | High | Done | — | [story-205](stories/story-205-mixed-archive-intake-routing-seam.md) |
+| 208 | Benchmark GLM-OCR on the Handwritten Blocker and a Table-Heavy Scanned Seam | High | Done | 192, 206 | [story-208](stories/story-208-glm-ocr-benchmark-for-handwritten-and-table-heavy-seams.md) |
 
 ### spec:2 — OCR & Text Extraction
 

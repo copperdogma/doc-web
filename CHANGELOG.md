@@ -1,3 +1,20 @@
+## [2026-04-10-11] - Close GLM-OCR benchmark line (Story 208)
+
+### Added
+- Added the bounded Story 208 GLM-OCR benchmark harness and story-local benchmark artifacts for the corrected handwritten blocker pair plus the Marie-Louise table-heavy seam
+
+### Changed
+- Changed Story 208, the eval registry, and the methodology state/generated views so the GLM-OCR benchmark is recorded as completed negative evidence rather than an open stronger-OCR lead
+
+### Fixed
+- Fixed the earlier over-broad runtime claim by distinguishing the repo's Rosetta `x86_64` Python limitation from the host's native `arm64` SDK path, then proving the fuller official SDK control still does not beat the incumbent seam
+
+### Tested
+- `make test`
+- `make lint`
+- `make methodology-compile`
+- `make methodology-check`
+
 ## [2026-04-10-10] - Compile triage actionability into methodology graph
 
 ### Added
