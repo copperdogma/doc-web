@@ -13,6 +13,7 @@ from schemas import DocWebBundleManifest, DocWebProvenanceBlock
 
 from modules.build.build_chapter_html_v1.main import (
     _attach_images,
+    _finalize_genealogy_body_html,
     _is_likely_caption,
     _html5_wrap,
     _add_table_scope,
@@ -913,6 +914,49 @@ class TestGenealogyMerging:
             "SHONNA'S FAMILY",
         ]
 
+    def test_merge_contiguous_genealogy_tables_absorbs_generation_h1_runs(self):
+        html = """
+        <h1>LEONIDAS</h1>
+        <table>
+          <thead>
+            <tr><th>NAME</th><th>BORN</th><th>MARRIED</th><th>SPOUSE</th><th>BOY</th><th>GIRL</th><th>DIED</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Leonidas</td><td>1885</td><td></td><td></td><td></td><td></td><td></td></tr>
+          </tbody>
+        </table>
+        <h1>Leonidas' Great Grandchildren</h1>
+        <h2>Alma's Grandchildren</h2>
+        <h3>SHARON'S FAMILY</h3>
+        <table>
+          <tbody>
+            <tr><td>Blaine</td><td>Aug. 16, 1971</td><td></td><td></td><td></td><td></td><td></td></tr>
+          </tbody>
+        </table>
+        <table>
+          <tbody>
+            <tr><td>TOTAL DESCENDANTS</td><td>280</td></tr>
+          </tbody>
+        </table>
+        """
+
+        result = _merge_contiguous_genealogy_tables(html)
+        soup = BeautifulSoup(result, "html.parser")
+        tables = soup.find_all("table")
+
+        assert len(tables) == 2
+        assert [h.get_text(" ", strip=True) for h in soup.find_all(["h1", "h2", "h3"])] == ["LEONIDAS"]
+        subgroup_rows = [
+            row.get_text(" ", strip=True)
+            for row in tables[0].find("tbody").find_all("tr", class_="genealogy-subgroup-heading", recursive=False)
+        ]
+        assert subgroup_rows == [
+            "Leonidas' Great Grandchildren",
+            "Alma's Grandchildren",
+            "SHARON'S FAMILY",
+        ]
+        assert "TOTAL DESCENDANTS" in tables[1].get_text(" ", strip=True)
+
     def test_merge_contiguous_genealogy_tables_collapses_heading_table_runs(self):
         html = """
         <h1>ALMA</h1>
@@ -1214,8 +1258,9 @@ class TestGenealogyMerging:
             "BERNICE'S FAMILY",
         ]
 
-    def test_merge_genealogy_tables_preserving_headings_keeps_h2_boundaries_and_converts_summary_dl(self):
+    def test_merge_genealogy_tables_preserving_headings_absorbs_generation_headings_and_converts_summary_dl(self):
         html = """
+        <h1>MARIE LOUISE</h1>
         <h1>Marie Louise's Great Grandchildren</h1>
         <h2>Mabel's Grandchildren</h2>
         <h3>CLEMENCE'S FAMILY</h3>
@@ -1257,23 +1302,63 @@ class TestGenealogyMerging:
 
         result = _merge_genealogy_tables_preserving_headings(html)
         soup = BeautifulSoup(result, "html.parser")
-        headings = [heading.get_text(" ", strip=True) for heading in soup.find_all(["h1", "h2"])]
+        headings = [heading.get_text(" ", strip=True) for heading in soup.find_all(["h1", "h2", "h3"])]
         tables = soup.find_all("table")
 
-        assert headings == [
-            "Marie Louise's Great Grandchildren",
-            "Mabel's Grandchildren",
-            "Marie Louise's Grandchildren",
-            "Marie Louise's Great Grandchildren",
-            "Gilbert's Grandchildren",
-        ]
-        assert len(tables) == 4
+        assert headings == ["MARIE LOUISE"]
+        assert len(tables) == 2
         subgroup_rows = [
             row.get_text(" ", strip=True)
             for row in tables[0].find("tbody").find_all("tr", class_="genealogy-subgroup-heading", recursive=False)
         ]
-        assert subgroup_rows == ["CLEMENCE'S FAMILY", "BERNADETTE'S FAMILY"]
+        assert subgroup_rows == [
+            "Marie Louise's Great Grandchildren",
+            "Mabel's Grandchildren",
+            "CLEMENCE'S FAMILY",
+            "BERNADETTE'S FAMILY",
+            "Marie Louise's Grandchildren",
+            "GILBERT'S FAMILY",
+            "Marie Louise's Great Grandchildren",
+            "Gilbert's Grandchildren",
+            "LAURENT'S FAMILY",
+        ]
         assert "TOTAL DESCENDANTS" in tables[-1].get_text(" ", strip=True)
+
+    def test_finalize_genealogy_body_html_merges_cross_page_genealogy_runs(self):
+        body_html = _stitch_page_breaks([
+            (
+                "<h1>ALMA</h1>"
+                "<table><thead><tr><th>NAME</th><th>BORN</th><th>MARRIED</th><th>SPOUSE</th><th>BOY/GIRL</th><th>DIED</th></tr></thead>"
+                "<tbody><tr><td>Alma</td><td>July 31, 1883</td><td>Apr. 8, 1907</td><td>Henry Alain</td><td>4 4</td><td>Dec. 15, 1982</td></tr></tbody></table>"
+            ),
+            (
+                "<h1>Alma's Grandchildren</h1><h2>MARY PAULE'S FAMILY</h2>"
+                "<table><tbody><tr><td>Ronald</td><td>Jan. 24, 1933</td><td>July 20, 1963</td><td>Jean Bailey</td><td>1</td><td>1</td></tr></tbody></table>"
+                "<p><strong>Alma's Great Grandchildren<br/>Mary Paule's Grandchildren<br/>RONALD'S FAMILY</strong></p>"
+                "<table><tbody><tr><td>Kari Lou</td><td>Oct. 30, 1964</td></tr></tbody></table>"
+                "<table><tbody><tr><td>TOTAL DESCENDANTS</td><td>83</td></tr></tbody></table>"
+            ),
+        ])
+
+        result = _finalize_genealogy_body_html(body_html, enabled=True)
+        soup = BeautifulSoup(result, "html.parser")
+        article_bits = [heading.get_text(" ", strip=True) for heading in soup.find_all(["h1", "h2", "h3"])]
+        tables = soup.find_all("table")
+
+        assert article_bits == ["ALMA"]
+        assert len(tables) == 2
+        subgroup_rows = [
+            row.get_text(" ", strip=True)
+            for row in tables[0].find("tbody").find_all("tr", class_="genealogy-subgroup-heading", recursive=False)
+        ]
+        assert subgroup_rows == [
+            "Alma's Grandchildren",
+            "MARY PAULE'S FAMILY",
+            "Alma's Great Grandchildren",
+            "Mary Paule's Grandchildren",
+            "RONALD'S FAMILY",
+        ]
+        assert "TOTAL DESCENDANTS" in tables[1].get_text(" ", strip=True)
 
     def test_rebalance_repeated_generation_h1s_demotes_later_generation_headings(self):
         html = """
@@ -1603,17 +1688,23 @@ class TestCLIIntegration:
         soup = BeautifulSoup(chapter, "html.parser")
         article = soup.find("article")
         tables = article.find_all("table")
-        assert len(tables) == 3
-        assert [heading.get_text(" ", strip=True) for heading in article.find_all(["h1", "h2"])] == [
+        assert len(tables) == 1
+        assert [heading.get_text(" ", strip=True) for heading in article.find_all(["h1", "h2", "h3"])] == [
             "ALMA",
+        ]
+        subgroup_rows = [
+            row.get_text(" ", strip=True)
+            for row in tables[0].find("tbody").find_all("tr", class_="genealogy-subgroup-heading", recursive=False)
+        ]
+        assert subgroup_rows == [
             "Alma's Grandchildren",
-        ]
-        assert [heading.get_text(" ", strip=True) for heading in article.find_all("h3")] == [
             "MARY PAULE'S FAMILY",
+            "Alma's Great Grandchildren",
+            "Mary Paule's Grandchildren",
+            "RONALD'S FAMILY",
         ]
-        assert "RONALD'S FAMILY" in article.get_text(" ", strip=True)
 
-    def test_cli_preserves_page_boundary_between_genealogy_tables_when_merge_enabled(self):
+    def test_cli_merges_cross_page_genealogy_continuations_when_enabled(self):
         pages_path = self.tmpdir / "pages.jsonl"
         portions_path = self.tmpdir / "portions.jsonl"
         out_path = self.tmpdir / "manifest.jsonl"
@@ -1658,8 +1749,12 @@ class TestCLIIntegration:
         soup = BeautifulSoup(chapter, "html.parser")
         tables = soup.find("article").find_all("table")
 
-        assert len(tables) == 2
-        assert "SANDRA'S FAMILY" in tables[1].get_text(" ", strip=True)
+        assert len(tables) == 1
+        subgroup_rows = [
+            row.get_text(" ", strip=True)
+            for row in tables[0].find("tbody").find_all("tr", class_="genealogy-subgroup-heading", recursive=False)
+        ]
+        assert subgroup_rows == ["SANDRA'S FAMILY"]
 
     def test_merges_same_family_prefix_into_previous_chapter(self):
         pages_path = self.tmpdir / "pages.jsonl"

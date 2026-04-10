@@ -527,3 +527,45 @@ because the story repaired the maintained `scanned-pdf-tables` claim instead of
 changing the claimed support surface. Result: Story 206 now closes honestly as
 the maintained Onward full-book regression recovery plus widened guardrail
 surface. Next step: `/check-in-diff`.
+
+20260410-1147 — post-close correction + fresh proof: Story 206 had been closed
+too early. Manual inspection after close-out proved
+`output/runs/story206-onward-proof-r7/output/html/chapter-011.html` was still
+fragmented, and the then-current validator had masked that debt by only
+flagging reviewed-golden drift in the "fewer tables/headings" direction.
+Follow-up work fixed three coupled seams: `modules/common/onward_genealogy_html.py`
+now absorbs generic genealogy `h1/h2/h3` runs into subgroup rows, 
+`modules/build/build_chapter_html_v1/main.py` now finalizes chapter bodies
+through that shared genealogy merge before writeout (the real staging gap that
+left written chapter HTML more fragmented than helper-level results), and
+`modules/validate/validate_onward_genealogy_consistency_v1/main.py` now still
+catches over-fragmentation but no longer flags high-similarity structural
+simplification against the dossier handoff pack as drift. Regression coverage
+expanded in `tests/test_build_chapter_html.py`,
+`tests/test_validate_onward_genealogy_consistency_v1.py`,
+`tests/test_rerun_onward_genealogy_consistency_v1.py`, and
+`tests/test_pdf_intake_recipe.py`. Fresh targeted validation now passes with
+`python -m pytest tests/test_build_chapter_html.py tests/test_validate_onward_genealogy_consistency_v1.py tests/test_rerun_onward_genealogy_consistency_v1.py tests/test_pdf_intake_recipe.py -q`
+(`139 passed`) plus fresh `python -m ruff check` on the touched files. Fresh
+real-pipeline evidence is the maintained proof
+`output/runs/story206-onward-proof-r10/`: a resumed current-code
+`validate_final` pass via
+`python driver.py --recipe /tmp/story206-onward-proof.yaml --run-id story206-onward-proof-r10 --allow-run-id-reuse --start-from validate_final --force`
+reports `flagged_genealogy_chapters: 0`,
+`reviewed_golden_flagged_chapter_count: 0`, and
+`duplicate_portion_page_start_count: 0` in
+`09_validate_onward_genealogy_consistency_v1/genealogy_consistency_report_after_rerun.jsonl`.
+Manual artifact inspection on the same fresh proof reconfirms the early replay
+surface stays fixed in
+`08_build_chapter_html_v1/chapters_manifest_after_rerun.jsonl`
+(`chapter-001.html` -> `[10]`, `chapter-002.html` -> `[11]`,
+`chapter-003.html` -> `[12]`, `chapter-004.html` -> `[13]`) and that the
+reviewed hard cases now render as coherent flat tables rather than broken
+multi-table fragments:
+`chapter-010.html` -> `2` tables / `107` subgroup rows,
+`chapter-011.html` -> `2` / `104`,
+`chapter-017.html` -> `2` / `73`,
+`chapter-022.html` -> `2` / `37`,
+`chapter-023.html` -> `2` / `16`.
+Result: the user-visible Leonidas/full-slice regression is now actually fixed
+on current code, not just papered over by the earlier validator.

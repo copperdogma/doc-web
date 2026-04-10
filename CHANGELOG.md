@@ -1,3 +1,18 @@
+## [2026-04-10-04] - Repair remaining Onward genealogy fragmentation (Story 206)
+
+### Changed
+- Changed the shared Onward genealogy merge and final chapter build path so reviewed hard-case generation headings are absorbed into subgroup rows and the final written chapter HTML receives the same genealogy normalization as the helper-level path
+- Changed the reviewed-golden validator and rerun fallback rules so over-fragmented regressions are flagged, while high-similarity structural simplifications no longer force the pipeline back toward noisier handoff shapes
+
+### Fixed
+- Fixed the remaining Story 206 regression where `chapter-011.html` and related reviewed hard-case chapters could still ship as many fragmented tables even after the earlier maintained-proof lane passed
+- Fixed the validator blind spot that allowed reviewed-golden over-fragmentation to pass silently on the maintained Onward proof
+
+### Tested
+- `make lint`
+- `make test`
+- `python driver.py --recipe /tmp/story206-onward-proof.yaml --run-id story206-onward-proof-r10 --allow-run-id-reuse --start-from validate_final --force`
+
 ## [2026-04-10-02] - Land inbox capture with validated close-out work
 
 ### Changed

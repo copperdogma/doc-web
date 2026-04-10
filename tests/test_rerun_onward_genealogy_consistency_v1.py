@@ -1454,3 +1454,76 @@ def test_run_reruns_rejects_normalized_fallback_on_ocr_error_when_reviewed_golde
     assert report_rows[0]["accepted"] is False
     assert report_rows[0]["decision_reason"] == "ocr_error"
     assert report_rows[0]["normalized_existing_fallback_allowed"] is False
+
+
+def test_run_reruns_rejects_normalized_fallback_on_ocr_error_when_reviewed_golden_is_over_fragmented(
+    tmp_path: Path, monkeypatch
+):
+    image_path = tmp_path / "41.jpg"
+    image_path.write_bytes(b"fake-image-41")
+    rows = [
+        {
+            "schema_version": "page_html_v1",
+            "page": 41,
+            "page_number": 41,
+            "image": str(image_path),
+            "printed_page_number": 32,
+            "html": NORMALIZE_ONLY_EXISTING_HTML,
+        }
+    ]
+    page_map = {41: rows[0]}
+    targets = [
+        RerunTarget(
+            page_number=41,
+            chapter_basename="chapter-011.html",
+            chapter_title="Leonidas",
+            schema_hint="name|born|married|spouse|boy|girl|died",
+            issue_reasons=["more_tables_than_reviewed_golden"],
+            source_pages=[41, 43, 45],
+            context_pages=[40, 42],
+            target_source="validator_reviewed_golden",
+        )
+    ]
+    monkeypatch.setattr(
+        "modules.adapter.rerun_onward_genealogy_consistency_v1.main._call_ocr",
+        lambda *args, **kwargs: (_ for _ in ()).throw(RuntimeError("quota")),
+    )
+    monkeypatch.setattr(
+        "modules.adapter.rerun_onward_genealogy_consistency_v1.main._encode_image",
+        lambda path: f"encoded:{Path(path).name}",
+    )
+
+    out_path = tmp_path / "pages_rerun.jsonl"
+    report_out = tmp_path / "rerun_report.jsonl"
+    summary_out = tmp_path / "rerun_summary.json"
+
+    run_reruns(
+        rows,
+        page_map,
+        targets,
+        report_path=str(report_out),
+        summary_path=str(summary_out),
+        pages_artifact_path=str(tmp_path / "pages.jsonl"),
+        consistency_report_path=str(tmp_path / "consistency.jsonl"),
+        out_path=str(out_path),
+        model="gpt-5",
+        temperature=0.0,
+        max_output_tokens=32000,
+        timeout_seconds=30.0,
+        max_context_chars=4000,
+        min_score_gain=15,
+        min_token_recall=0.75,
+        min_text_ratio=0.65,
+        prompt="prompt",
+        run_id="story206-test",
+        progress_file=None,
+        state_file=None,
+    )
+
+    out_rows = [json.loads(line) for line in out_path.read_text(encoding="utf-8").splitlines() if line.strip()]
+    report_rows = [json.loads(line) for line in report_out.read_text(encoding="utf-8").splitlines() if line.strip()]
+
+    assert out_rows[0]["html"] == NORMALIZE_ONLY_EXISTING_HTML
+    assert report_rows[0]["accepted"] is False
+    assert report_rows[0]["decision_reason"] == "ocr_error"
+    assert report_rows[0]["normalized_existing_fallback_allowed"] is False

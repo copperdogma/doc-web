@@ -1075,9 +1075,12 @@ def _page_drift_gate(existing_html: str, candidate_html: str) -> Tuple[bool, str
     return True, "candidate_drift_not_worsened", existing_dict, candidate_dict
 
 
-_REVIEWED_GOLDEN_HEADING_REASONS = {
+_REVIEWED_GOLDEN_STRUCTURAL_REASONS = {
+    "more_tables_than_reviewed_golden",
     "fewer_h2_than_reviewed_golden",
+    "more_h2_than_reviewed_golden",
     "fewer_h3_than_reviewed_golden",
+    "more_h3_than_reviewed_golden",
 }
 
 
@@ -1086,7 +1089,7 @@ def _allow_normalized_existing_fallback(target: RerunTarget, normalized_eval: Op
         return False
     if target.target_source != "validator_reviewed_golden":
         return True
-    return not any(reason in _REVIEWED_GOLDEN_HEADING_REASONS for reason in target.issue_reasons)
+    return not any(reason in _REVIEWED_GOLDEN_STRUCTURAL_REASONS for reason in target.issue_reasons)
 
 
 def _allow_untargeted_deterministic_normalization(normalized_eval: Optional[Dict[str, Any]]) -> bool:

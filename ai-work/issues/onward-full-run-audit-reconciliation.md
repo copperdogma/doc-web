@@ -4,24 +4,25 @@
 ## Current State
 
 **Domain Overview:**
-The Onward pipeline still has two distinct validation lanes, but the fresh full-source audit lane now clears the reviewed hard-case slice and keeps the chapter-003 seal asset intact through resume rebuilds. The fast reuse lane remains the committed reviewed genealogy golden path from Story 149, while the fresh audit lane now independently preserves `chapter-003.html` image health, refreshes published crops after upstream fixes, and rebuilds `chapter-010.html` without the Arthur fragmentation or residual mid-table header drift that reuse had been masking. The trust split remains explicit: this resolves the audited slice, not the entire book as a canonical golden.
+The Onward audit lane now has a fresh maintained proof at `output/runs/story206-onward-proof-r10` that clears both the early TOC replay regression and the reviewed genealogy hard-case guardrail on the current code. The shared genealogy merge now rebuilds the flat reviewed shape from the reused Onward page artifacts, the chapter build path actually applies that final merge before writeout, and the validator no longer treats high-similarity structural simplification as drift. The trust split still remains explicit: this is a maintained reviewed-slice proof, not a committed full-book canonical golden.
 
 **Subsystems / Components:**
-- Full-source Onward audit lane — Working — fresh source-image reruns now keep chapter 003 healthy and clear the reviewed genealogy hard-case validator.
-- Targeted Onward table rescue — Working — page 35 no longer accepts the external-family-heading explosion candidate.
-- Shared genealogy chapter merge — Working — chapter merge now skips the stale rescue splitter and drops repeated body header rows that caused Arthur drift.
+- Story 206 maintained proof lane — Working — `story206-onward-proof-r10` now ends with `reviewed_golden_flagged_chapter_count: 0` after rerun on the current validator/build path.
+- Shared genealogy chapter merge — Working — generic genealogy `h1/h2/h3` runs are absorbed into subgroup rows and the final chapter body merge now runs before writeout.
+- Onward reviewed-golden validator — Working — over-fragmentation is still caught, but high-similarity simplifications no longer fail just because the handoff pack uses more tables/headings.
 - Illustration crop and publish path — Working — partial-width caption boxes no longer clip the chapter-003 seal crop, and published images refresh on resume rebuilds.
-- Reviewed genealogy golden slice — Working — Story 149 remains a valid reuse-based trust anchor for the reviewed slice only.
+- Reviewed genealogy golden slice — Working — both the reviewed slice and the dossier handoff guardrail now agree on the repaired `story206-onward-proof-r10` output after rerun.
 
 **Active Issue:** None
 **Status:** Resolved
-**Last Updated:** 20260318-1750
-**Next Step:** Optional follow-up: widen fresh audit inspection beyond the reviewed slice before considering any broader Onward blessing.
+**Last Updated:** 20260410-1147
+**Next Step:** Optional follow-up: decide whether to preserve a committed fresh full-book proof artifact instead of relying on regenerated run outputs.
 
 **Open Issues (latest first):**
 - None
 
 **Recently Resolved (last 5):**
+- 20260410-1147 — Story 206 post-close Leonidas/full-slice drift — validator blind spot, final-build staging gap, and stale CLI expectations repaired
 - 20260318-1750 — Chapter 003 seal crop clipped on fresh audit reruns — partial-width caption trimming and stale published-image overwrite fixed
 - 20260318-1712 — Arthur genealogy regression on fresh full-source Onward runs — stale rescue acceptance plus chapter-merge header drift repaired
 <!-- CURRENT_STATE_END -->
@@ -225,3 +226,102 @@ Fix:
 Preventive Actions:
 - Keep crop trimming aware of caption geometry instead of assuming the caption spans the full image width.
 - Always refresh published assets on rebuild when the source artifact is the intended truth.
+
+## 20260410-1147: NEW ISSUE: Story 206 closed with Leonidas still fragmented and the validator missed it
+
+**Description:**
+- After Story 206 had already been closed and pushed, manual inspection of `output/runs/story206-onward-proof-r7/output/html/chapter-011.html` showed Leonidas was still fragmented into many small tables.
+- The earlier close-out had been wrong in two ways: the reviewed-golden validator was blind to over-fragmentation in one direction, and the build path was not actually applying the final chapter-level genealogy merge to the written chapter HTML.
+- Goal: fix the real remaining regression on the maintained proof lane, prove it on fresh artifacts, and leave a guardrail that catches future drift instead of masking it.
+
+### Step 1 (20260410-1047): Verified the false close-out and traced the first remaining blind spot
+**Action**:
+- Compared `output/runs/story206-onward-proof-r7/output/html/chapter-011.html` against both `benchmarks/golden/onward/reviewed_html_slice/story149-onward-build-regression-r1/chapter-011.html` and the dossier handoff pack.
+- Inspected `output/runs/story206-onward-proof-r7/09_validate_onward_genealogy_consistency_v1/genealogy_consistency_detail_after_rerun.json` and the validator logic in `modules/validate/validate_onward_genealogy_consistency_v1/main.py`.
+- Added focused validator/rerun tests so reviewed-golden over-fragmentation would no longer pass silently.
+**Result**:
+- Leonidas in `r7` still had `25` tables, `19` `h2`, and `8` `h3`, while the reviewed slice chapter had `2` tables and no `h2`/`h3`.
+- The validator only flagged reviewed-golden drift when the current chapter had fewer tables/headings than the golden; it did not flag the "too many fragments" direction.
+- A fresh proof attempt `story206-onward-proof-r8` immediately surfaced the hidden debt honestly at `validate_initial`: `reviewed_golden_flagged_chapter_count: 4`.
+**Notes**:
+- This proved the earlier zero-flag report was not trustworthy evidence of correctness for Leonidas or the rest of the late reviewed slice.
+- Fixing the validator alone was not sufficient; it only made the remaining debt visible.
+
+**Next Steps**: Determine whether rerun alone can repair the reviewed slice or whether the owning seam is still in the shared genealogy build path.
+
+### Step 2 (20260410-1108): Proved the shared merge helper could recover the reviewed shape and found the real build staging gap
+**Action**:
+- Replayed the current page artifacts for `chapter-010`, `011`, `017`, `022`, and `023` through `modules/common/onward_genealogy_html.py` locally.
+- Patched the shared merge so generic genealogy `h1` headings are absorbed into subgroup rows, then updated build tests around generation-heading absorption and summary conversion.
+- Compared that helper-level result to the actual written chapter HTML from `story206-onward-proof-r9`.
+**Result**:
+- On the real reused page artifacts, the repaired helper rebuilt all five reviewed hard cases into the flat shape again: `2` tables, `0` `h2`, `0` `h3`.
+- The written `r9` chapters were still too fragmented because `build_chapter_html_v1` only merged genealogy tables during page prep; the final chapter-body write path merely rebalanced `h1`s and never reran the final body-level genealogy merge.
+- Existing CLI tests were still asserting the fragmented cross-page behavior, so the stale staging bug had a test harness protecting it.
+**Notes**:
+- This isolated the remaining owner cleanly: the shared merge primitive was no longer the blocker; the chapter-builder staging path was.
+- The right fix was to make final body normalization explicit and test it directly.
+
+**Next Steps**: Patch `build_chapter_html_v1` so final chapter bodies run through the shared genealogy merge before writeout, then rerun the maintained proof.
+
+### Step 3 (20260410-1147): Fixed the final build staging path, relaxed the reviewed-golden guardrail for high-similarity simplification, and revalidated on a fresh proof
+**Action**:
+- Added `_finalize_genealogy_body_html()` in `modules/build/build_chapter_html_v1/main.py` and used it for chapter creation, fallback pages, and final writeout so the body-level merge now runs on the actual written chapter HTML.
+- Updated `tests/test_build_chapter_html.py` CLI expectations to the repaired cross-page behavior and added a direct final-body regression test.
+- Extended `modules/validate/validate_onward_genealogy_consistency_v1/main.py` so reviewed-golden comparisons still flag over-fragmentation, but stop flagging pure `fewer_*` structural simplifications when chapter text remains highly similar to the handoff golden.
+- Re-ran focused checks:
+  - `python -m pytest tests/test_build_chapter_html.py tests/test_validate_onward_genealogy_consistency_v1.py tests/test_rerun_onward_genealogy_consistency_v1.py tests/test_pdf_intake_recipe.py -q`
+  - `python -m ruff check modules/common/onward_genealogy_html.py modules/build/build_chapter_html_v1/main.py modules/validate/validate_onward_genealogy_consistency_v1/main.py modules/adapter/rerun_onward_genealogy_consistency_v1/main.py tests/test_build_chapter_html.py tests/test_validate_onward_genealogy_consistency_v1.py tests/test_rerun_onward_genealogy_consistency_v1.py tests/test_pdf_intake_recipe.py`
+- Revalidated the real proof lane with:
+  - `python driver.py --recipe /tmp/story206-onward-proof.yaml --run-id story206-onward-proof-r10 --force`
+  - `python driver.py --recipe /tmp/story206-onward-proof.yaml --run-id story206-onward-proof-r10 --allow-run-id-reuse --start-from validate_final --force`
+**Result**:
+- Focused checks passed fresh: `139 passed` and `ruff` clean on all touched files.
+- The maintained proof now ends cleanly on current code:
+  - `output/runs/story206-onward-proof-r10/09_validate_onward_genealogy_consistency_v1/genealogy_consistency_report_after_rerun.jsonl` reports `flagged_genealogy_chapters: 0`, `reviewed_golden_flagged_chapter_count: 0`, and `duplicate_portion_page_start_count: 0`.
+- Manual artifact inspection confirms the early replay fix still holds in `output/runs/story206-onward-proof-r10/08_build_chapter_html_v1/chapters_manifest_after_rerun.jsonl`:
+  - `chapter-001.html` -> source page `[10]`
+  - `chapter-002.html` -> `[11]`
+  - `chapter-003.html` -> `[12]`
+  - `chapter-004.html` -> `[13]`
+- Manual reviewed hard-case inspection confirms the table fragmentation is gone in the current proof output:
+  - `chapter-010.html` -> `2` tables, `2` `h1`, `107` subgroup rows
+  - `chapter-011.html` -> `2` tables, `2` `h1`, `104` subgroup rows
+  - `chapter-017.html` -> `2` tables, `2` `h1`, `73` subgroup rows
+  - `chapter-022.html` -> `2` tables, `2` `h1`, `37` subgroup rows
+  - `chapter-023.html` -> `2` tables, `2` `h1`, `16` subgroup rows
+**Notes**:
+- The post-close Leonidas complaint was valid. The repaired proof now matches the user-visible quality goal and the current maintained validator.
+- The dossier handoff pack still contains a more fragmented structure for some reviewed chapters; the validator now treats that as acceptable simplification only when the chapter text remains highly similar, instead of forcing the build back into the broken-table shape the user objected to.
+
+**Next Steps**: Keep this issue resolved and only open a new lane if we decide to promote `story206-onward-proof-r10` into a committed fresh full-book proof artifact.
+
+## Resolution
+
+Issue "Story 206 closed with Leonidas still fragmented and the validator missed it" Resolved (20260410-1147)
+
+Symptoms:
+- Story 206 had already been closed and pushed, but `chapter-011.html` in the maintained proof still had badly fragmented genealogy tables.
+
+Timeline:
+- Verified the false close-out by comparing Leonidas against the reviewed slice and exposing the validator's missing over-fragmentation signal.
+- Proved the repaired shared merge helper could already reconstruct the correct shape from the existing page artifacts.
+- Traced the remaining live regression to the chapter-builder staging path, which was not applying the final body-level merge before writeout.
+- Updated the build path, corrected the CLI test expectations, tightened the validator to tolerate only high-similarity simplification, and reran the maintained proof lane to a zero-flag finish.
+
+Root Cause:
+- Three separate seams combined into the false green:
+  - the validator initially missed reviewed-golden over-fragmentation,
+  - the build path only merged genealogy tables during page prep and skipped the final chapter-body merge before writeout,
+  - the CLI regression tests still expected the fragmented cross-page chapter shape
+
+Fix:
+- Shared genealogy merge now absorbs generic genealogy `h1/h2/h3` runs into subgroup rows.
+- `build_chapter_html_v1` now finalizes chapter bodies through the genealogy merge before writeout.
+- Reviewed-golden validation still flags worse fragmentation, but no longer fails high-similarity simplifications just because the handoff pack has more tables/headings.
+- The maintained proof run `story206-onward-proof-r10` and its resumed `validate_final` pass both clear with zero reviewed-golden flags.
+
+Preventive Actions:
+- Keep validator drift checks directional: flag true fragmentation regressions, but do not force the pipeline back toward structurally noisier shapes when text and subgroup content are preserved.
+- Keep a build-path regression test on the final chapter-body merge, not just the lower-level helper.
+- Treat any future Onward claim of “100%” as invalid until the actual HTML artifact for the cited chapter has been reopened and checked visually.

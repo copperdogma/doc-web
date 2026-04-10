@@ -758,6 +758,14 @@ def _stitch_page_breaks(page_htmls: List[str]) -> str:
     return "\n".join(soup.decode_contents() for soup in soups if soup.decode_contents().strip())
 
 
+def _finalize_genealogy_body_html(html: str, *, enabled: bool) -> str:
+    if not enabled:
+        return html
+    html = _merge_genealogy_tables_preserving_headings(html)
+    html = _rebalance_repeated_generation_h1s(html)
+    return html
+
+
 def _related_title_index(heading: Optional[str], titles: List[str]) -> Optional[int]:
     if not heading:
         return None
@@ -1609,8 +1617,10 @@ def main() -> None:
             chapter_counter += 1
             filename = f"chapter-{chapter_counter:03d}.html"
             body_html = segment["body_html"]
-            if args.merge_contiguous_genealogy_tables:
-                body_html = _rebalance_repeated_generation_h1s(body_html)
+            body_html = _finalize_genealogy_body_html(
+                body_html,
+                enabled=args.merge_contiguous_genealogy_tables,
+            )
             toc_entries.append({
                 "title": segment["title"],
                 "file": filename,
@@ -1672,9 +1682,10 @@ def main() -> None:
             html = _attach_images(html, crops, args.images_subdir.rstrip("/"))
         body_html = _strip_headers_and_numbers(html)
         body_html = _add_table_scope(body_html)
-        if args.merge_contiguous_genealogy_tables:
-            body_html = _merge_genealogy_tables_preserving_headings(body_html)
-            body_html = _rebalance_repeated_generation_h1s(body_html)
+        body_html = _finalize_genealogy_body_html(
+            body_html,
+            enabled=args.merge_contiguous_genealogy_tables,
+        )
 
         fallback_entries.append({
             "title": title,
@@ -1729,9 +1740,11 @@ def main() -> None:
         nav_bottom = _build_nav(prev_file, prev_title, next_file, next_title, is_bottom=True)
         page_title = f"{entry['title']} — {book_title}" if book_title else entry["title"]
         body_html = entry["body_html"]
-        if args.merge_contiguous_genealogy_tables:
-            body_html = _rebalance_repeated_generation_h1s(body_html)
-            entry["body_html"] = body_html
+        body_html = _finalize_genealogy_body_html(
+            body_html,
+            enabled=args.merge_contiguous_genealogy_tables,
+        )
+        entry["body_html"] = body_html
         if entry.get("kind") == "chapter" and (entry.get("source_pages") or []) and not (
             entry.get("source_printed_pages") or []
         ):

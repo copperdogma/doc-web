@@ -12,6 +12,7 @@ import re
 from collections import Counter, defaultdict
 from dataclasses import asdict, dataclass
 from datetime import datetime
+from difflib import SequenceMatcher
 from pathlib import Path
 from typing import Any, Dict, Iterable, List, Optional, Tuple
 
@@ -264,6 +265,38 @@ def _chapter_structure_snapshot(html_path: str) -> Optional[Dict[str, Any]]:
     }
 
 
+def _chapter_structure_text(html_path: str) -> str:
+    if not html_path or not os.path.exists(html_path):
+        return ""
+    soup = BeautifulSoup(Path(html_path).read_text(encoding="utf-8"), "html.parser")
+    article = soup.find("article") or soup
+    return _normalize_text(article.get_text(" ", strip=True))
+
+
+def _structure_text_similarity(current_path: str, golden_path: str) -> Optional[float]:
+    current_text = _chapter_structure_text(current_path)
+    golden_text = _chapter_structure_text(golden_path)
+    if not current_text or not golden_text:
+        return None
+    sequence_ratio = SequenceMatcher(a=current_text, b=golden_text).ratio()
+    current_tokens = set(current_text.split())
+    golden_tokens = set(golden_text.split())
+    token_overlap = 0.0
+    if current_tokens and golden_tokens:
+        token_overlap = len(current_tokens & golden_tokens) / max(len(current_tokens), len(golden_tokens))
+    return round(max(sequence_ratio, token_overlap), 4)
+
+
+def _should_accept_simplified_reviewed_shape(
+    reasons: List[str],
+    *,
+    text_similarity: Optional[float],
+) -> bool:
+    if not reasons or text_similarity is None or text_similarity < 0.98:
+        return False
+    return all(reason.startswith("fewer_") for reason in reasons)
+
+
 def _load_reviewed_golden_snapshots(golden_dir: Optional[str]) -> Dict[str, Dict[str, Any]]:
     if not golden_dir or not os.path.isdir(golden_dir):
         return {}
@@ -272,6 +305,7 @@ def _load_reviewed_golden_snapshots(golden_dir: Optional[str]) -> Dict[str, Dict
         snapshot = _chapter_structure_snapshot(str(path))
         if not snapshot or not snapshot["title"]:
             continue
+        snapshot["html_path"] = str(path)
         snapshots[snapshot["title"]] = snapshot
     return snapshots
 
@@ -502,13 +536,29 @@ def build_report(
         if golden_snapshot:
             current_snapshot = _chapter_structure_snapshot(chapter.chapter_file)
             reasons: List[str] = []
+            reviewed_text_similarity = None
             if current_snapshot is not None:
                 if current_snapshot["table_count"] < golden_snapshot["table_count"]:
                     reasons.append("fewer_tables_than_reviewed_golden")
+                if current_snapshot["table_count"] > golden_snapshot["table_count"]:
+                    reasons.append("more_tables_than_reviewed_golden")
                 if current_snapshot["h2_count"] < golden_snapshot["h2_count"]:
                     reasons.append("fewer_h2_than_reviewed_golden")
+                if current_snapshot["h2_count"] > golden_snapshot["h2_count"]:
+                    reasons.append("more_h2_than_reviewed_golden")
                 if current_snapshot["h3_count"] < golden_snapshot["h3_count"]:
                     reasons.append("fewer_h3_than_reviewed_golden")
+                if current_snapshot["h3_count"] > golden_snapshot["h3_count"]:
+                    reasons.append("more_h3_than_reviewed_golden")
+                reviewed_text_similarity = _structure_text_similarity(
+                    chapter.chapter_file,
+                    golden_snapshot.get("html_path") or "",
+                )
+                if _should_accept_simplified_reviewed_shape(
+                    reasons,
+                    text_similarity=reviewed_text_similarity,
+                ):
+                    reasons = []
             golden_focus_pages = [
                 page_number
                 for page_number in reviewed_golden_focus_pages.get(chapter.chapter_title, [])
@@ -524,6 +574,7 @@ def build_report(
                 "golden": golden_snapshot,
                 "reasons": reasons,
                 "flagged": bool(reasons),
+                "reviewed_text_similarity": reviewed_text_similarity,
                 "source_pages": chapter.source_pages,
                 "coarse_suspect_pages": rerun_pages,
                 "strong_rerun_candidate_pages": strong_rerun_pages,

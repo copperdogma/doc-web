@@ -285,8 +285,6 @@ def _genealogy_heading_lines_from_node(node: Any) -> List[str]:
     if node is None:
         return []
     tag_name = getattr(node, "name", None)
-    if tag_name == "h1":
-        return []
     if tag_name is not None:
         if not _is_genealogy_heading_tag(node):
             return []
@@ -657,9 +655,6 @@ def merge_contiguous_genealogy_tables(html: str, *, rescue_normalizer: Optional[
             next_node = _next_significant_sibling(cursor)
             if next_node is None:
                 break
-            if getattr(next_node, "name", None) == "h1" and _is_genealogy_heading_tag(next_node):
-                cursor = next_node
-                continue
             lines = _genealogy_heading_lines_from_node(next_node)
             if lines:
                 pending_heading_nodes.append(next_node)
@@ -695,33 +690,16 @@ def merge_contiguous_genealogy_tables(html: str, *, rescue_normalizer: Optional[
 
 
 def merge_genealogy_tables_preserving_headings(html: str) -> str:
-    """Merge fragmented genealogy tables within a local section while preserving h1/h2 context."""
+    """Merge fragmented genealogy tables after normalizing summary blocks.
+
+    The older fragment-preserving behavior kept generic generation headings
+    (`Grandchildren`, `Great Grandchildren`, `... FAMILY`) outside the merged
+    table, which regressed the reviewed Onward goldens into many small tables.
+    Keep the build entrypoint stable, but delegate to the contiguous merge so
+    those headings become inspectable subgroup rows inside the final table.
+    """
     if "<table" not in (html or "").lower() and "<dl" not in (html or "").lower():
         return html or ""
 
     normalized = _convert_definition_lists_to_tables(html or "")
-    soup = BeautifulSoup(normalized, "html.parser")
-    result = BeautifulSoup("", "html.parser")
-    fragment_nodes: List[Any] = []
-
-    def _flush_fragment() -> None:
-        nonlocal fragment_nodes
-        if not fragment_nodes:
-            return
-        fragment_html = "".join(str(node) for node in fragment_nodes)
-        merged_html = merge_contiguous_genealogy_tables(fragment_html)
-        fragment_soup = BeautifulSoup(merged_html, "html.parser")
-        for child in list(fragment_soup.contents):
-            result.append(child.extract())
-        fragment_nodes = []
-
-    for child in list(soup.contents):
-        tag_name = getattr(child, "name", None)
-        if tag_name in {"h1", "h2"} and _is_genealogy_heading_tag(child):
-            _flush_fragment()
-            result.append(child.extract())
-            continue
-        fragment_nodes.append(child.extract())
-
-    _flush_fragment()
-    return _preserve_figure_and_image_attrs(normalized, result.decode_contents())
+    return merge_contiguous_genealogy_tables(normalized)
