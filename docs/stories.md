@@ -77,6 +77,7 @@ Grouped by primary `spec:N` category. Stories without category refs remain in an
 | 162 | Reach Final `Docling` Boundary Decision on Widened Onward Hard Cases | High | Done | 149, 158, 159, 160, 161 | [story-162](stories/story-162-docling-final-boundary-decision-onward-high-cases.md) |
 | 163 | Probe Coordinated Official `Docling` Plugin Paths Against the Onward 100% Golden Bar | High | Done | 149, 158, 159, 160, 161, 162 | [story-163](stories/story-163-docling-plugin-onward-golden-kill-test.md) |
 | 164 | Benchmark `Surya` as a Component Candidate for Layout and Table Seams | High | Done | 127, 131, 149, 163 | [story-164](stories/story-164-surya-component-benchmark-for-layout-and-table-seams.md) |
+| 206 | Restore Maintained Onward Full-Book Fidelity and Regression Guardrails | High | Done | 149, 157 | [story-206](stories/story-206-onward-full-book-regression-recovery.md) |
 
 ### spec:3 — Layout & Structure Understanding
 

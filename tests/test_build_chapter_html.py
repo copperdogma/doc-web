@@ -17,8 +17,10 @@ from modules.build.build_chapter_html_v1.main import (
     _html5_wrap,
     _add_table_scope,
     _build_nav,
+    _merge_genealogy_tables_preserving_headings,
     _merge_contiguous_genealogy_tables,
     _normalize_heading_breaks,
+    _rebalance_repeated_generation_h1s,
     _refine_chapter_segments,
     _strip_headers_and_numbers,
     _stitch_page_breaks,
@@ -1212,6 +1214,81 @@ class TestGenealogyMerging:
             "BERNICE'S FAMILY",
         ]
 
+    def test_merge_genealogy_tables_preserving_headings_keeps_h2_boundaries_and_converts_summary_dl(self):
+        html = """
+        <h1>Marie Louise's Great Grandchildren</h1>
+        <h2>Mabel's Grandchildren</h2>
+        <h3>CLEMENCE'S FAMILY</h3>
+        <table>
+          <thead>
+            <tr><th>NAME</th><th>BORN</th><th>MARRIED</th><th>SPOUSE</th><th>BOY/GIRL</th><th>DIED</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Shelly</td><td>Dec. 14, 1966</td><td></td><td></td><td></td><td></td></tr>
+          </tbody>
+        </table>
+        <h3>BERNADETTE'S FAMILY</h3>
+        <table>
+          <tbody>
+            <tr><td>Leanne</td><td>Apr. 2, 1967</td><td></td><td></td><td></td><td></td></tr>
+          </tbody>
+        </table>
+        <h1>Marie Louise's Grandchildren</h1>
+        <h3>GILBERT'S FAMILY</h3>
+        <table>
+          <tbody>
+            <tr><td>Laurent</td><td>July 30, 1948</td><td>July 18, 1970</td><td>Sharon Moore</td><td>1</td><td>1</td></tr>
+          </tbody>
+        </table>
+        <h1>Marie Louise's Great Grandchildren</h1>
+        <h2>Gilbert's Grandchildren</h2>
+        <h3>LAURENT'S FAMILY</h3>
+        <table>
+          <tbody>
+            <tr><td>Shane</td><td>Oct. 29, 1971</td><td></td><td></td><td></td><td></td></tr>
+          </tbody>
+        </table>
+        <dl>
+          <dt>TOTAL DESCENDANTS</dt><dd>215</dd>
+          <dt>LIVING</dt><dd>209</dd>
+          <dt>DECEASED</dt><dd>6</dd>
+        </dl>
+        """
+
+        result = _merge_genealogy_tables_preserving_headings(html)
+        soup = BeautifulSoup(result, "html.parser")
+        headings = [heading.get_text(" ", strip=True) for heading in soup.find_all(["h1", "h2"])]
+        tables = soup.find_all("table")
+
+        assert headings == [
+            "Marie Louise's Great Grandchildren",
+            "Mabel's Grandchildren",
+            "Marie Louise's Grandchildren",
+            "Marie Louise's Great Grandchildren",
+            "Gilbert's Grandchildren",
+        ]
+        assert len(tables) == 4
+        subgroup_rows = [
+            row.get_text(" ", strip=True)
+            for row in tables[0].find("tbody").find_all("tr", class_="genealogy-subgroup-heading", recursive=False)
+        ]
+        assert subgroup_rows == ["CLEMENCE'S FAMILY", "BERNADETTE'S FAMILY"]
+        assert "TOTAL DESCENDANTS" in tables[-1].get_text(" ", strip=True)
+
+    def test_rebalance_repeated_generation_h1s_demotes_later_generation_headings(self):
+        html = """
+        <h1>MARIE-LOUISE</h1>
+        <h1>Marie Louise L'Heureux LaClare</h1>
+        <h1>Marie Louise's Great Grandchildren</h1>
+        <h1>Marie Louise's Grandchildren</h1>
+        <h1>Marie Louise's Great Grandchildren</h1>
+        """
+
+        result = _rebalance_repeated_generation_h1s(html)
+        soup = BeautifulSoup(result, "html.parser")
+
+        assert [heading.name for heading in soup.find_all(["h1", "h2"])] == ["h1", "h1", "h1", "h2", "h2"]
+
 
 # ---------------------------------------------------------------------------
 # Integration: full pipeline via CLI
@@ -1524,10 +1601,65 @@ class TestCLIIntegration:
 
         chapter = (html_dir / "chapter-001.html").read_text()
         soup = BeautifulSoup(chapter, "html.parser")
+        article = soup.find("article")
+        tables = article.find_all("table")
+        assert len(tables) == 3
+        assert [heading.get_text(" ", strip=True) for heading in article.find_all(["h1", "h2"])] == [
+            "ALMA",
+            "Alma's Grandchildren",
+        ]
+        assert [heading.get_text(" ", strip=True) for heading in article.find_all("h3")] == [
+            "MARY PAULE'S FAMILY",
+        ]
+        assert "RONALD'S FAMILY" in article.get_text(" ", strip=True)
+
+    def test_cli_preserves_page_boundary_between_genealogy_tables_when_merge_enabled(self):
+        pages_path = self.tmpdir / "pages.jsonl"
+        portions_path = self.tmpdir / "portions.jsonl"
+        out_path = self.tmpdir / "manifest.jsonl"
+        html_dir = self.tmpdir / "html"
+
+        self._write_jsonl(pages_path, [
+            {
+                "page_number": 1,
+                "printed_page_number": 1,
+                "html": (
+                    "<h1>PIERRE</h1>"
+                    "<table><thead><tr><th>NAME</th><th>BORN</th><th>MARRIED</th><th>SPOUSE</th><th>BOY/GIRL</th><th>DIED</th></tr></thead>"
+                    "<tbody><tr><td>Pierre</td><td>1901</td><td></td><td></td><td>1 1</td><td></td></tr></tbody></table>"
+                ),
+            },
+            {
+                "page_number": 2,
+                "printed_page_number": 2,
+                "html": (
+                    "<table><thead><tr><th>NAME</th><th>BORN</th><th>MARRIED</th><th>SPOUSE</th><th>BOY/GIRL</th><th>DIED</th></tr></thead>"
+                    "<tbody><tr><td><strong>SANDRA'S FAMILY</strong></td></tr><tr><td>Ryan</td><td>1982</td><td></td><td></td><td></td><td></td></tr></tbody></table>"
+                ),
+            },
+        ])
+        self._write_jsonl(portions_path, [
+            {"title": "Pierre", "page_start": 1, "page_end": 2},
+        ])
+
+        cmd = [
+            sys.executable, "-m", "modules.build.build_chapter_html_v1.main",
+            "--pages", str(pages_path),
+            "--portions", str(portions_path),
+            "--out", str(out_path),
+            "--output-dir", str(html_dir),
+            "--book-title", "Test Book",
+            "--merge-contiguous-genealogy-tables",
+        ]
+        result = subprocess.run(cmd, capture_output=True, text=True, cwd=str(Path(__file__).resolve().parent.parent))
+        assert result.returncode == 0, f"STDERR: {result.stderr}"
+
+        chapter = (html_dir / "chapter-001.html").read_text()
+        soup = BeautifulSoup(chapter, "html.parser")
         tables = soup.find("article").find_all("table")
-        assert len(tables) == 1
-        assert "MARY PAULE'S FAMILY" in tables[0].get_text(" ", strip=True)
-        assert "RONALD'S FAMILY" in tables[0].get_text(" ", strip=True)
+
+        assert len(tables) == 2
+        assert "SANDRA'S FAMILY" in tables[1].get_text(" ", strip=True)
 
     def test_merges_same_family_prefix_into_previous_chapter(self):
         pages_path = self.tmpdir / "pages.jsonl"
@@ -1568,6 +1700,57 @@ class TestCLIIntegration:
         assert chapters[1]["title"] == "JOE (JOSEPH) L'HEUREUX"
         assert chapters[1]["page_start"] == 5
         assert chapters[1]["page_end"] == 5
+
+    def test_skips_replayed_same_page_portions_once_page_is_already_covered(self):
+        pages_path = self.tmpdir / "pages.jsonl"
+        portions_path = self.tmpdir / "portions.jsonl"
+        out_path = self.tmpdir / "manifest.jsonl"
+        html_dir = self.tmpdir / "html"
+
+        self._write_jsonl(pages_path, [
+            {
+                "page_number": 10,
+                "printed_page_number": 1,
+                "html": "<h1>The Ancestral Lineage of Moïse and Sophie</h1><p>One clean source page.</p>",
+            },
+            {
+                "page_number": 11,
+                "printed_page_number": 2,
+                "html": "<h1>The First L'Heureux's in Canada</h1><p>Next chapter.</p>",
+            },
+        ])
+        self._write_jsonl(portions_path, [
+            {"title": "Ancestral Lineage", "page_start": 1, "page_end": 1},
+            {"title": "Lawrence", "page_start": 1, "page_end": 1},
+            {"title": "Edith", "page_start": 1, "page_end": 1},
+            {"title": "The First L'Heureux's in Canada", "page_start": 2, "page_end": 2},
+        ])
+
+        cmd = [
+            sys.executable, "-m", "modules.build.build_chapter_html_v1.main",
+            "--pages", str(pages_path),
+            "--portions", str(portions_path),
+            "--out", str(out_path),
+            "--output-dir", str(html_dir),
+            "--book-title", "Test Book",
+        ]
+        result = subprocess.run(cmd, capture_output=True, text=True, cwd=str(Path(__file__).resolve().parent.parent))
+        assert result.returncode == 0, f"STDERR: {result.stderr}"
+
+        manifest = [json.loads(line) for line in out_path.read_text().strip().split("\n")]
+        chapters = [row for row in manifest if row["kind"] == "chapter"]
+        assert len(chapters) == 2
+        assert [row["title"] for row in chapters] == [
+            "The Ancestral Lineage of Moïse and Sophie",
+            "The First L'Heureux's in Canada",
+        ]
+        assert chapters[0]["source_pages"] == [10]
+        assert chapters[0]["source_portion_titles"] == ["Ancestral Lineage"]
+
+        chapter_one = (html_dir / "chapter-001.html").read_text()
+        assert chapter_one.count("One clean source page.") == 1
+        assert "Lawrence" not in chapter_one
+        assert "Edith" not in chapter_one
 
     def test_builds_chapter_from_source_page_portion_when_printed_numbers_missing(self):
         pages_path = self.tmpdir / "pages.jsonl"

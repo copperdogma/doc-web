@@ -96,6 +96,7 @@ def _write_manifest_and_pages(tmp_path: Path):
     ]
     pages = [
         {"schema_version": "page_html_v1", "page_number": 24, "printed_page_number": 15, "html": "<h2>MESSY FAMILY</h2><table><thead><tr><th>NAME</th><th>BORN</th><th>MARRIED</th><th>SPOUSE</th><th>BOY/GIRL</th><th>DIED</th></tr></thead></table><table></table>"},
+        {"schema_version": "page_html_v1", "page_number": 25, "printed_page_number": 16, "html": "<table><thead><tr><th>NAME</th><th>BORN</th><th>MARRIED</th><th>SPOUSE</th><th>BOY/GIRL</th><th>DIED</th></tr></thead></table><table></table>"},
         {"schema_version": "page_html_v1", "page_number": 34, "printed_page_number": 25, "html": "<h2>LAWRENCE'S FAMILY</h2><table></table><table></table>"},
         {"schema_version": "page_html_v1", "page_number": 35, "printed_page_number": 26, "html": "<h2>BERNICE'S FAMILY</h2><table></table><table></table>"},
         {"schema_version": "page_html_v1", "page_number": 56, "printed_page_number": 47, "html": "<table><thead><tr><th>NAME</th><th>BORN</th><th>MARRIED</th><th>SPOUSE</th><th>BOY/GIRL</th><th>DIED</th></tr></thead></table>"},
@@ -119,8 +120,8 @@ def test_analyze_chapter_row_distinguishes_good_and_bad(tmp_path: Path):
     bad_boygirl = analyze_chapter_row(manifest_rows[2], flag_threshold=25)
 
     assert good is not None and not good.flagged
-    assert bad_external is not None and bad_external.flagged
-    assert "external_family_headings" in bad_external.reasons
+    assert bad_external is not None and not bad_external.flagged
+    assert "missing_subgroup_rows" in bad_external.reasons
     assert bad_boygirl is not None and bad_boygirl.flagged
     assert "residual_boygirl_headers" in bad_boygirl.reasons
 
@@ -144,18 +145,114 @@ def test_build_report_keeps_good_chapter_unflagged_even_with_messy_pages(tmp_pat
         page_rows_by_number,
         chapters_path=str(manifest_path),
         pages_path=str(pages_path),
+        portions_path=None,
+        reviewed_golden_dir=None,
         flag_threshold=25,
         warning_band=0.25,
         redesign_band=0.30,
     )
 
-    assert primary_report["summary"]["flagged_chapters"] == ["chapter-010.html", "chapter-013.html"]
-    assert primary_report["summary"]["strong_rerun_candidate_page_count"] == 3
+    assert primary_report["summary"]["flagged_chapters"] == ["chapter-013.html"]
+    assert primary_report["summary"]["strong_rerun_candidate_page_count"] == 1
     assert primary_report["summary"]["recommendation"] == "targeted_reruns_justified"
 
     good_detail = next(chapter for chapter in detail_report["chapters"] if chapter["chapter_basename"] == "chapter-009.html")
     assert not good_detail["flagged"]
     assert good_detail["coarse_suspect_pages"] == []
+
+
+def test_build_report_flags_duplicate_portion_starts_and_reviewed_golden_regressions(tmp_path: Path):
+    manifest_rows, page_rows_by_number, manifest_path, pages_path = _write_manifest_and_pages(tmp_path)
+
+    portions_path = tmp_path / "portions.jsonl"
+    portions_rows = [
+        {"title": "One", "page_start": 12, "page_end": 12},
+        {"title": "Two", "page_start": 12, "page_end": 12},
+        {"title": "Three", "page_start": 20, "page_end": 20},
+    ]
+    with portions_path.open("w", encoding="utf-8") as handle:
+        for row in portions_rows:
+            handle.write(json.dumps(row) + "\n")
+
+    golden_dir = tmp_path / "golden"
+    golden_dir.mkdir()
+    (golden_dir / "chapter-001.html").write_text(
+        (
+            "<html><body><h1>Good</h1>"
+            "<h2>Expected heading</h2>"
+            "<table></table><table></table><table></table>"
+            "</body></html>"
+        ),
+        encoding="utf-8",
+    )
+    (golden_dir / "manifest.json").write_text(
+        json.dumps(
+            {
+                "entries": [
+                    {
+                        "entry_id": "chapter-001",
+                        "title": "Good",
+                        "path": "chapter-001.html",
+                    }
+                ]
+            }
+        ),
+        encoding="utf-8",
+    )
+    provenance_dir = golden_dir / "provenance"
+    provenance_dir.mkdir()
+    with (provenance_dir / "blocks.jsonl").open("w", encoding="utf-8") as handle:
+        for row in [
+            {
+                "entry_id": "chapter-001",
+                "source_page_number": 24,
+                "block_kind": "heading",
+            },
+            {
+                "entry_id": "chapter-001",
+                "source_page_number": 24,
+                "block_kind": "table",
+            },
+            {
+                "entry_id": "chapter-001",
+                "source_page_number": 25,
+                "block_kind": "table",
+            },
+            {
+                "entry_id": "chapter-001",
+                "source_page_number": 25,
+                "block_kind": "table",
+            },
+        ]:
+            handle.write(json.dumps(row) + "\n")
+
+    primary_report, detail_report = build_report(
+        manifest_rows,
+        page_rows_by_number,
+        chapters_path=str(manifest_path),
+        pages_path=str(pages_path),
+        portions_path=str(portions_path),
+        reviewed_golden_dir=str(golden_dir),
+        flag_threshold=25,
+        warning_band=0.25,
+        redesign_band=0.30,
+    )
+
+    assert primary_report["summary"]["duplicate_portion_page_start_count"] == 1
+    assert primary_report["summary"]["duplicate_portion_page_starts"] == [12]
+    assert primary_report["summary"]["reviewed_golden_flagged_chapter_count"] == 1
+    assert primary_report["summary"]["reviewed_golden_flagged_chapters"] == ["Good"]
+    issues_by_type = {issue["type"]: issue for issue in primary_report["issues"]}
+    issue_types = set(issues_by_type)
+    assert "onward_duplicate_portion_page_start" in issue_types
+    assert "onward_reviewed_golden_structure_regression" in issue_types
+    golden_issue = issues_by_type["onward_reviewed_golden_structure_regression"]
+    assert golden_issue["source_pages"] == [22, 23, 24, 25, 26, 27]
+    assert golden_issue["coarse_suspect_pages"] == [25]
+    assert golden_issue["strong_rerun_candidate_pages"] == [25]
+    assert golden_issue["target_selection_basis"] == "reviewed_golden_provenance_focus_pages"
+    assert detail_report["duplicate_portion_page_starts"][0]["page_start"] == 12
+    assert detail_report["reviewed_golden_comparisons"][0]["flagged"]
 
 
 def test_cli_smoke_writes_summary_and_detail_report(tmp_path: Path):
@@ -188,4 +285,4 @@ def test_cli_smoke_writes_summary_and_detail_report(tmp_path: Path):
     assert len(summary_rows) == 1
     assert summary_rows[0]["schema_version"] == "pipeline_issues_v1"
     assert detail["schema_version"] == "onward_genealogy_consistency_report_v1"
-    assert detail["summary"]["flagged_genealogy_chapters"] == 2
+    assert detail["summary"]["flagged_genealogy_chapters"] == 1

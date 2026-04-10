@@ -6,6 +6,21 @@
 - Changed `/finish-and-push` so normal inbox capture rides along with the
   validated landing set by default unless the user explicitly excludes it
 
+## [2026-04-10-03] - Restore maintained Onward full-book fidelity (Story 206)
+
+### Changed
+- Changed the maintained Onward PDF recipe, TOC portionizer, chapter builder, genealogy validator, and rerun lane so the shared full-book proof no longer replays early pages from dense same-page TOC entries and the reviewed-golden hard cases are validated against the real maintained structural bar
+- Changed Story 206 and the generated methodology views so the regression recovery now closes against fresh repo-wide checks and a current shared-PDF proof run instead of a partially closed implementation note
+
+### Fixed
+- Fixed the TOC/build seam that misclassified ordinary genealogy tables as TOC pages and replayed the same early source page across multiple generated chapters
+- Fixed the genealogy-table merge and rerun fallback behavior that was collapsing reviewed-golden heading/table structure across later Onward chapters while still passing the old validator
+
+### Tested
+- `make test`
+- `make lint`
+- `python driver.py --recipe /tmp/story206-onward-proof.yaml --run-id story206-onward-proof-r7 --force`
+
 ## [2026-04-10-01] - Add bounded mixed-archive ZIP seam (Story 205)
 
 ### Added

@@ -65,7 +65,10 @@ STOP_TOKENS = {
     "DIED",
 }
 
-VALIDATOR_ISSUE_TYPE = "onward_genealogy_consistency_drift"
+VALIDATOR_ISSUE_TYPES = {
+    "onward_genealogy_consistency_drift",
+    "onward_reviewed_golden_structure_regression",
+}
 PLANNER_ISSUE_TYPE = "document_consistency_planning_issue"
 CHAPTER_BASENAME_RE = re.compile(r"chapter-(\d+)\.html$", re.IGNORECASE)
 
@@ -633,7 +636,8 @@ def _load_validator_targets(
 ) -> TargetSelection:
     targets: Dict[int, RerunTarget] = {}
     for issue in issues:
-        if issue.get("type") != VALIDATOR_ISSUE_TYPE:
+        issue_type = str(issue.get("type") or "")
+        if issue_type not in VALIDATOR_ISSUE_TYPES:
             continue
         chapter_basename = issue.get("chapter_basename") or ""
         if chapter_allowlist and chapter_basename not in chapter_allowlist:
@@ -656,6 +660,11 @@ def _load_validator_targets(
                 issue_reasons=list(issue.get("reasons") or []),
                 source_pages=source_pages,
                 context_pages=context_pages,
+                target_source=(
+                    "validator_reviewed_golden"
+                    if issue_type == "onward_reviewed_golden_structure_regression"
+                    else "validator"
+                ),
             )
             existing = targets.get(page_number)
             if existing is None:
@@ -1066,6 +1075,27 @@ def _page_drift_gate(existing_html: str, candidate_html: str) -> Tuple[bool, str
     return True, "candidate_drift_not_worsened", existing_dict, candidate_dict
 
 
+_REVIEWED_GOLDEN_HEADING_REASONS = {
+    "fewer_h2_than_reviewed_golden",
+    "fewer_h3_than_reviewed_golden",
+}
+
+
+def _allow_normalized_existing_fallback(target: RerunTarget, normalized_eval: Optional[Dict[str, Any]]) -> bool:
+    if normalized_eval is None or not normalized_eval.get("accepted"):
+        return False
+    if target.target_source != "validator_reviewed_golden":
+        return True
+    return not any(reason in _REVIEWED_GOLDEN_HEADING_REASONS for reason in target.issue_reasons)
+
+
+def _allow_untargeted_deterministic_normalization(normalized_eval: Optional[Dict[str, Any]]) -> bool:
+    if normalized_eval is None or not normalized_eval.get("accepted"):
+        return False
+    existing_page_metrics = normalized_eval.get("existing_page_metrics") or {}
+    return (existing_page_metrics.get("external_family_heading_count") or 0) == 0
+
+
 def _evaluate_candidate(
     existing_html: str,
     candidate_html: str,
@@ -1347,7 +1377,7 @@ def run_reruns(
 
         target = target_map.get(page_number or -1)
         if target is None:
-            if normalized_eval and normalized_eval["accepted"]:
+            if _allow_untargeted_deterministic_normalization(normalized_eval):
                 deterministic_normalized_count += 1
                 deterministic_normalized_pages.append(page_number)
                 new_row["html"] = normalized_existing
@@ -1458,6 +1488,8 @@ def run_reruns(
 
         report_record["normalized_existing_html"] = normalized_existing
         report_record["normalized_existing_changed"] = normalized_existing != existing_html
+        force_ocr_attempt = target.target_source == "validator_reviewed_golden"
+        allow_normalized_fallback = _allow_normalized_existing_fallback(target, normalized_eval)
         if normalized_eval is not None:
             report_record.update({
                 "normalized_existing_accepted": normalized_eval["accepted"],
@@ -1466,7 +1498,10 @@ def run_reruns(
                 "normalized_existing_retention_metrics": normalized_eval["retention_metrics"],
                 "normalized_existing_page_metrics": normalized_eval["candidate_page_metrics"],
             })
-            if normalized_eval["accepted"]:
+            if normalized_eval["accepted"] and force_ocr_attempt:
+                report_record["normalized_existing_forced_to_ocr"] = True
+                report_record["normalized_existing_fallback_allowed"] = allow_normalized_fallback
+            elif normalized_eval["accepted"]:
                 accepted_count += 1
                 new_row["html"] = normalized_existing
                 report_record.update({
@@ -1502,13 +1537,32 @@ def run_reruns(
                 user_text=user_text,
             )
         except Exception as exc:  # pragma: no cover - network/environment dependent
-            report_record.update({
-                "targeted": True,
-                "accepted": False,
-                "decision_reason": "ocr_error",
-                "error": str(exc),
-            })
-            rejection_reasons["ocr_error"] = rejection_reasons.get("ocr_error", 0) + 1
+            if allow_normalized_fallback:
+                accepted_count += 1
+                new_row["html"] = normalized_existing
+                report_record.update({
+                    "targeted": True,
+                    "accepted": True,
+                    "decision_reason": "ocr_error_normalized_existing_fallback",
+                    "error": str(exc),
+                    "existing_quality": normalized_eval["existing_quality"],
+                    "candidate_quality": normalized_eval["candidate_quality"],
+                    "retention_metrics": normalized_eval["retention_metrics"],
+                    "existing_page_metrics": normalized_eval["existing_page_metrics"],
+                    "candidate_page_metrics": normalized_eval["candidate_page_metrics"],
+                    "page_drift_reason": normalized_eval["page_drift_reason"],
+                    "candidate_html": normalized_existing,
+                    "final_html": new_row.get("html") or new_row.get("raw_html") or "",
+                    "normalized_existing_fallback_used": True,
+                })
+            else:
+                report_record.update({
+                    "targeted": True,
+                    "accepted": False,
+                    "decision_reason": "ocr_error",
+                    "error": str(exc),
+                })
+                rejection_reasons["ocr_error"] = rejection_reasons.get("ocr_error", 0) + 1
             report_rows.append(report_record)
             out_rows.append(new_row)
             continue
@@ -1524,10 +1578,16 @@ def run_reruns(
             min_text_ratio=min_text_ratio,
         )
         accepted = candidate_eval["accepted"]
+        fallback_to_normalized_existing = force_ocr_attempt and allow_normalized_fallback
         if accepted:
             accepted_count += 1
             _apply_candidate(new_row, raw_response, normalized_candidate, meta, meta_tag, meta_warning)
             decision_reason = candidate_eval["decision_reason"]
+        elif fallback_to_normalized_existing:
+            accepted = True
+            accepted_count += 1
+            new_row["html"] = normalized_existing
+            decision_reason = "ocr_rejected_normalized_existing_fallback"
         else:
             decision_reason = candidate_eval["decision_reason"]
             rejection_reasons[decision_reason] = rejection_reasons.get(decision_reason, 0) + 1
@@ -1547,6 +1607,8 @@ def run_reruns(
             "candidate_html": normalized_candidate,
             "final_html": new_row.get("html") or new_row.get("raw_html") or "",
         })
+        if fallback_to_normalized_existing:
+            report_record["normalized_existing_fallback_used"] = accepted and decision_reason == "ocr_rejected_normalized_existing_fallback"
         report_rows.append(report_record)
         out_rows.append(new_row)
 

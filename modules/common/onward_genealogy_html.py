@@ -219,6 +219,46 @@ def _looks_like_genealogy_continuation_table(table: Any) -> bool:
     return False
 
 
+def _convert_definition_lists_to_tables(html: str) -> str:
+    soup = BeautifulSoup(html or "", "html.parser")
+    changed = False
+    for dl in list(soup.find_all("dl")):
+        pairs = []
+        current_term = None
+        for child in dl.children:
+            name = getattr(child, "name", None)
+            if name == "dt":
+                if current_term is not None:
+                    pairs.append((current_term, ""))
+                current_term = _normalize_ws(child.get_text(" ", strip=True))
+            elif name == "dd":
+                text = _normalize_ws(child.get_text(" ", strip=True))
+                if current_term is None:
+                    continue
+                pairs.append((current_term, text))
+                current_term = None
+        if current_term is not None:
+            pairs.append((current_term, ""))
+        if not pairs:
+            continue
+
+        table = soup.new_tag("table")
+        tbody = soup.new_tag("tbody")
+        table.append(tbody)
+        for term, value in pairs:
+            row = soup.new_tag("tr")
+            term_cell = soup.new_tag("td")
+            term_cell.string = term
+            row.append(term_cell)
+            value_cell = soup.new_tag("td")
+            value_cell.string = value
+            row.append(value_cell)
+            tbody.append(row)
+        dl.replace_with(table)
+        changed = True
+    return str(soup) if changed else (html or "")
+
+
 def _next_significant_sibling(node: Any) -> Any:
     sibling = node.next_sibling
     while sibling is not None:
@@ -652,3 +692,36 @@ def merge_contiguous_genealogy_tables(html: str, *, rescue_normalizer: Optional[
             _normalize_genealogy_body_rows(table, soup)
 
     return _preserve_figure_and_image_attrs(html, soup.decode_contents())
+
+
+def merge_genealogy_tables_preserving_headings(html: str) -> str:
+    """Merge fragmented genealogy tables within a local section while preserving h1/h2 context."""
+    if "<table" not in (html or "").lower() and "<dl" not in (html or "").lower():
+        return html or ""
+
+    normalized = _convert_definition_lists_to_tables(html or "")
+    soup = BeautifulSoup(normalized, "html.parser")
+    result = BeautifulSoup("", "html.parser")
+    fragment_nodes: List[Any] = []
+
+    def _flush_fragment() -> None:
+        nonlocal fragment_nodes
+        if not fragment_nodes:
+            return
+        fragment_html = "".join(str(node) for node in fragment_nodes)
+        merged_html = merge_contiguous_genealogy_tables(fragment_html)
+        fragment_soup = BeautifulSoup(merged_html, "html.parser")
+        for child in list(fragment_soup.contents):
+            result.append(child.extract())
+        fragment_nodes = []
+
+    for child in list(soup.contents):
+        tag_name = getattr(child, "name", None)
+        if tag_name in {"h1", "h2"} and _is_genealogy_heading_tag(child):
+            _flush_fragment()
+            result.append(child.extract())
+            continue
+        fragment_nodes.append(child.extract())
+
+    _flush_fragment()
+    return _preserve_figure_and_image_attrs(normalized, result.decode_contents())

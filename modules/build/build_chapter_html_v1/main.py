@@ -18,7 +18,8 @@ from typing import Any, Dict, List, Optional, Set
 from bs4 import BeautifulSoup
 
 from modules.common.onward_genealogy_html import (
-    merge_contiguous_genealogy_tables as _merge_contiguous_genealogy_tables,
+    merge_genealogy_tables_preserving_headings as _merge_genealogy_tables_preserving_headings,
+    merge_contiguous_genealogy_tables as _merge_contiguous_genealogy_tables,  # noqa: F401
 )
 from modules.common.utils import read_jsonl, save_jsonl, save_json, ensure_dir, ProgressLogger, utc_now
 
@@ -514,6 +515,20 @@ def _select_pages_for_portion(portion: Dict[str, Any], pages_sorted: List[Dict[s
     return []
 
 
+def _page_already_covered(
+    page: Dict[str, Any],
+    *,
+    covered_printed_pages: set[int],
+    covered_source_pages: set[int],
+) -> bool:
+    printed_number = _coerce_int(page.get("printed_page_number"))
+    source_number = _source_page_number(page)
+    return (
+        (printed_number is not None and printed_number in covered_printed_pages)
+        or (source_number is not None and source_number in covered_source_pages)
+    )
+
+
 def _normalize_ws(text: str) -> str:
     return re.sub(r"\s+", " ", (text or "").strip())
 
@@ -618,6 +633,23 @@ def _polish_flat_chapter_headings(html: str, title: str) -> str:
         if primary_heading_seen and heading.name in {"h1", "h2"}:
             heading.name = "h3"
 
+    return soup.decode_contents()
+
+
+def _rebalance_repeated_generation_h1s(html: str) -> str:
+    soup = BeautifulSoup(html or "", "html.parser")
+    generation_h1_seen = False
+    for heading in soup.find_all("h1"):
+        text = _normalize_ws(heading.get_text(" ", strip=True))
+        if not text or _is_strong_owner_heading(text):
+            continue
+        lowered = text.casefold()
+        if not any(marker in lowered for marker in _NON_OWNER_HEADING_MARKERS):
+            continue
+        if not generation_h1_seen:
+            generation_h1_seen = True
+            continue
+        heading.name = "h2"
     return soup.decode_contents()
 
 
@@ -1508,6 +1540,15 @@ def main() -> None:
             page_end = page_start
 
         chapter_pages = _select_pages_for_portion(portion, pages_sorted)
+        if chapter_pages and all(
+            _page_already_covered(
+                page,
+                covered_printed_pages=covered_printed_pages,
+                covered_source_pages=covered_source_pages,
+            )
+            for page in chapter_pages
+        ):
+            continue
         for p in chapter_pages:
             printed_number = _coerce_int(p.get("printed_page_number"))
             if printed_number is not None:
@@ -1527,6 +1568,8 @@ def main() -> None:
             html = _strip_headers_and_numbers(html)
             html = _add_table_scope(html)
             html = _normalize_heading_breaks(html)
+            if args.merge_contiguous_genealogy_tables:
+                html = _merge_genealogy_tables_preserving_headings(html)
             prepared_pages.append({
                 "html": html,
                 "page_number": page_num,
@@ -1567,7 +1610,7 @@ def main() -> None:
             filename = f"chapter-{chapter_counter:03d}.html"
             body_html = segment["body_html"]
             if args.merge_contiguous_genealogy_tables:
-                body_html = _merge_contiguous_genealogy_tables(body_html)
+                body_html = _rebalance_repeated_generation_h1s(body_html)
             toc_entries.append({
                 "title": segment["title"],
                 "file": filename,
@@ -1630,7 +1673,8 @@ def main() -> None:
         body_html = _strip_headers_and_numbers(html)
         body_html = _add_table_scope(body_html)
         if args.merge_contiguous_genealogy_tables:
-            body_html = _merge_contiguous_genealogy_tables(body_html)
+            body_html = _merge_genealogy_tables_preserving_headings(body_html)
+            body_html = _rebalance_repeated_generation_h1s(body_html)
 
         fallback_entries.append({
             "title": title,
@@ -1686,7 +1730,7 @@ def main() -> None:
         page_title = f"{entry['title']} — {book_title}" if book_title else entry["title"]
         body_html = entry["body_html"]
         if args.merge_contiguous_genealogy_tables:
-            body_html = _merge_contiguous_genealogy_tables(body_html)
+            body_html = _rebalance_repeated_generation_h1s(body_html)
             entry["body_html"] = body_html
         if entry.get("kind") == "chapter" and (entry.get("source_pages") or []) and not (
             entry.get("source_printed_pages") or []

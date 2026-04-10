@@ -8,6 +8,7 @@ from pypdf import PdfReader
 import yaml
 
 PDF_RECIPE = "configs/recipes/recipe-pdf-ocr-html-mvp.yaml"
+ONWARD_PDF_RECIPE = "configs/recipes/recipe-onward-pdf-html-mvp.yaml"
 HANDWRITTEN_RESCUE_PDF_RECIPE = "configs/recipes/recipe-pdf-ocr-html-handwritten-notes-gemini-rescue.yaml"
 BORN_DIGITAL_NON_TOC_RECIPE = "configs/recipes/recipe-born-digital-pdf-non-toc-html-mvp.yaml"
 BORN_DIGITAL_FIXTURE = "testdata/tbotb-mini.pdf"
@@ -195,3 +196,22 @@ def test_handwritten_rescue_pdf_recipe_wiring():
     assert ocr_stage["params"]["model"] == "gemini-2.5-pro"
     assert ocr_stage["params"]["concurrency"] == 2
     assert "handwritten historical correspondence" in ocr_stage["params"]["ocr_hints"]
+
+
+def test_onward_pdf_recipe_includes_genealogy_rerun_lane():
+    data = yaml.safe_load(Path(ONWARD_PDF_RECIPE).read_text(encoding="utf-8"))
+
+    stages = data["stages"]
+    stage_ids = [stage["id"] for stage in stages]
+
+    assert stage_ids[-4:] == [
+        "validate_genealogy_consistency_initial",
+        "rerun_genealogy_pages",
+        "rebuild_chapters",
+        "validate_genealogy_consistency",
+    ]
+
+    rerun_stage = next(stage for stage in stages if stage["id"] == "rerun_genealogy_pages")
+    assert rerun_stage["module"] == "rerun_onward_genealogy_consistency_v1"
+    assert rerun_stage["params"]["target_mode"] == "coarse"
+    assert rerun_stage["params"]["page_context_window"] == 1

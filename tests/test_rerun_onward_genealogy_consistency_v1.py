@@ -194,6 +194,33 @@ def _fixture_report(tmp_path: Path) -> Path:
     return report_path
 
 
+def _fixture_reviewed_golden_report(tmp_path: Path) -> Path:
+    report_path = tmp_path / "reviewed_golden_consistency.jsonl"
+    _write_jsonl(
+        report_path,
+        [
+            {
+                "schema_version": "pipeline_issues_v1",
+                "module_id": "validate_onward_genealogy_consistency_v1",
+                "summary": {},
+                "issues": [
+                    {
+                        "type": "onward_reviewed_golden_structure_regression",
+                        "chapter_basename": "chapter-017.html",
+                        "chapter_title": "Marie-Louise",
+                        "schema_hint": "name|born|married|spouse|boy|girl|died",
+                        "reasons": ["fewer_tables_than_reviewed_golden"],
+                        "source_pages": [80, 81, 82, 83, 84],
+                        "coarse_suspect_pages": [81, 84],
+                        "strong_rerun_candidate_pages": [81, 84],
+                    }
+                ],
+            }
+        ],
+    )
+    return report_path
+
+
 def _fixture_planner_pages(tmp_path: Path) -> Path:
     rows = []
     for page_number, html in [
@@ -468,6 +495,24 @@ def test_load_targets_can_expand_to_coarse_pages_with_allowlist(tmp_path: Path):
     assert [target.page_number for target in targets] == [34, 35]
     assert targets[0].context_pages == [33, 35]
     assert targets[1].context_pages == [34]
+
+
+def test_load_targets_can_consume_reviewed_golden_regression_pages(tmp_path: Path):
+    report_path = _fixture_reviewed_golden_report(tmp_path)
+
+    targets = load_targets(
+        str(report_path),
+        target_mode="coarse",
+        page_context_window=1,
+        chapter_allowlist={"chapter-017.html"},
+        page_allowlist=None,
+        max_pages=10,
+    )
+
+    assert [target.page_number for target in targets] == [81, 84]
+    assert targets[0].target_source == "validator_reviewed_golden"
+    assert targets[0].context_pages == [80, 82]
+    assert targets[1].context_pages == [83]
 
 
 def test_load_targets_can_consume_planner_relevant_pages(tmp_path: Path):
@@ -903,6 +948,57 @@ def test_run_reruns_applies_deterministic_normalization_to_untargeted_pages(tmp_
     assert summary["deterministic_normalized_pages"] == [120]
 
 
+def test_run_reruns_skips_deterministic_normalization_for_untargeted_external_heading_pages(tmp_path: Path):
+    image_path = tmp_path / "121.jpg"
+    image_path.write_bytes(b"fake-image-121")
+    rows = [
+        {
+            "schema_version": "page_html_v1",
+            "page": 121,
+            "page_number": 121,
+            "image": str(image_path),
+            "printed_page_number": 112,
+            "html": NAME_LIST_EXISTING_HTML,
+        }
+    ]
+    page_map = {121: rows[0]}
+    out_path = tmp_path / "pages_rerun.jsonl"
+    report_out = tmp_path / "rerun_report.jsonl"
+    summary_out = tmp_path / "rerun_summary.json"
+
+    run_reruns(
+        rows,
+        page_map,
+        [],
+        report_path=str(report_out),
+        summary_path=str(summary_out),
+        pages_artifact_path=str(tmp_path / "pages.jsonl"),
+        consistency_report_path=str(tmp_path / "consistency.jsonl"),
+        out_path=str(out_path),
+        model="gpt-5",
+        temperature=0.0,
+        max_output_tokens=32000,
+        timeout_seconds=30.0,
+        max_context_chars=4000,
+        min_score_gain=15,
+        min_token_recall=0.75,
+        min_text_ratio=0.65,
+        prompt="prompt",
+        run_id="story206-test",
+        progress_file=None,
+        state_file=None,
+    )
+
+    out_rows = [json.loads(line) for line in out_path.read_text(encoding="utf-8").splitlines() if line.strip()]
+    report_rows = [json.loads(line) for line in report_out.read_text(encoding="utf-8").splitlines() if line.strip()]
+    summary = json.loads(summary_out.read_text(encoding="utf-8"))
+
+    assert out_rows[0]["html"] == NAME_LIST_EXISTING_HTML
+    assert report_rows == []
+    assert summary["deterministic_normalized_page_count"] == 0
+    assert summary["deterministic_normalized_pages"] == []
+
+
 def test_run_reruns_records_planner_context_and_unresolved_chapters(tmp_path: Path, monkeypatch):
     pages_path = _fixture_planner_pages(tmp_path)
     rows = [json.loads(line) for line in pages_path.read_text(encoding="utf-8").splitlines() if line.strip()]
@@ -1133,3 +1229,228 @@ def test_run_reruns_accepts_normalized_existing_without_ocr(tmp_path: Path, monk
     assert report_rows[0]["decision_reason"] == "normalized_existing_accepted"
     assert report_rows[0]["accepted"] is True
     assert report_rows[0]["normalized_existing_accepted"] is True
+
+
+def test_run_reruns_forces_ocr_for_reviewed_golden_targets(tmp_path: Path, monkeypatch):
+    image_path = tmp_path / "81.jpg"
+    image_path.write_bytes(b"fake-image-81")
+    rows = [
+        {
+            "schema_version": "page_html_v1",
+            "page": 81,
+            "page_number": 81,
+            "image": str(image_path),
+            "printed_page_number": 72,
+            "html": NORMALIZE_ONLY_EXISTING_HTML,
+        }
+    ]
+    page_map = {81: rows[0]}
+    targets = [
+        RerunTarget(
+            page_number=81,
+            chapter_basename="chapter-017.html",
+            chapter_title="Marie-Louise",
+            schema_hint="name|born|married|spouse|boy|girl|died",
+            issue_reasons=["fewer_tables_than_reviewed_golden"],
+            source_pages=[80, 81, 82],
+            context_pages=[80, 82],
+            target_source="validator_reviewed_golden",
+        )
+    ]
+    ocr_calls = {"count": 0}
+
+    def _call_ocr_stub(*args, **kwargs):
+        ocr_calls["count"] += 1
+        return ACCEPTED_CANDIDATE_HTML, SimpleNamespace(prompt_tokens=11, completion_tokens=22), "req_accept"
+
+    monkeypatch.setattr(
+        "modules.adapter.rerun_onward_genealogy_consistency_v1.main._call_ocr",
+        _call_ocr_stub,
+    )
+    monkeypatch.setattr(
+        "modules.adapter.rerun_onward_genealogy_consistency_v1.main._encode_image",
+        lambda path: f"encoded:{Path(path).name}",
+    )
+
+    out_path = tmp_path / "pages_rerun.jsonl"
+    report_out = tmp_path / "rerun_report.jsonl"
+    summary_out = tmp_path / "rerun_summary.json"
+
+    run_reruns(
+        rows,
+        page_map,
+        targets,
+        report_path=str(report_out),
+        summary_path=str(summary_out),
+        pages_artifact_path=str(tmp_path / "pages.jsonl"),
+        consistency_report_path=str(tmp_path / "consistency.jsonl"),
+        out_path=str(out_path),
+        model="gpt-5",
+        temperature=0.0,
+        max_output_tokens=32000,
+        timeout_seconds=30.0,
+        max_context_chars=4000,
+        min_score_gain=15,
+        min_token_recall=0.75,
+        min_text_ratio=0.65,
+        prompt="prompt",
+        run_id="story206-test",
+        progress_file=None,
+        state_file=None,
+    )
+
+    out_rows = [json.loads(line) for line in out_path.read_text(encoding="utf-8").splitlines() if line.strip()]
+    report_rows = [json.loads(line) for line in report_out.read_text(encoding="utf-8").splitlines() if line.strip()]
+
+    assert ocr_calls["count"] == 1
+    assert out_rows[0]["html"] != NORMALIZE_ONLY_EXISTING_HTML
+    assert report_rows[0]["decision_reason"] != "normalized_existing_accepted"
+    assert report_rows[0]["accepted"] is True
+    assert report_rows[0]["normalized_existing_accepted"] is True
+    assert report_rows[0]["normalized_existing_forced_to_ocr"] is True
+
+
+def test_run_reruns_uses_normalized_fallback_on_ocr_error_for_table_only_reviewed_golden_target(
+    tmp_path: Path, monkeypatch
+):
+    image_path = tmp_path / "117.jpg"
+    image_path.write_bytes(b"fake-image-117")
+    rows = [
+        {
+            "schema_version": "page_html_v1",
+            "page": 117,
+            "page_number": 117,
+            "image": str(image_path),
+            "printed_page_number": 108,
+            "html": NORMALIZE_ONLY_EXISTING_HTML,
+        }
+    ]
+    page_map = {117: rows[0]}
+    targets = [
+        RerunTarget(
+            page_number=117,
+            chapter_basename="chapter-023.html",
+            chapter_title="Antoine",
+            schema_hint="name|born|married|spouse|boy|girl|died",
+            issue_reasons=["fewer_tables_than_reviewed_golden"],
+            source_pages=[116, 117, 118],
+            context_pages=[116, 118],
+            target_source="validator_reviewed_golden",
+        )
+    ]
+    monkeypatch.setattr(
+        "modules.adapter.rerun_onward_genealogy_consistency_v1.main._call_ocr",
+        lambda *args, **kwargs: (_ for _ in ()).throw(RuntimeError("quota")),
+    )
+    monkeypatch.setattr(
+        "modules.adapter.rerun_onward_genealogy_consistency_v1.main._encode_image",
+        lambda path: f"encoded:{Path(path).name}",
+    )
+
+    out_path = tmp_path / "pages_rerun.jsonl"
+    report_out = tmp_path / "rerun_report.jsonl"
+    summary_out = tmp_path / "rerun_summary.json"
+
+    run_reruns(
+        rows,
+        page_map,
+        targets,
+        report_path=str(report_out),
+        summary_path=str(summary_out),
+        pages_artifact_path=str(tmp_path / "pages.jsonl"),
+        consistency_report_path=str(tmp_path / "consistency.jsonl"),
+        out_path=str(out_path),
+        model="gpt-5",
+        temperature=0.0,
+        max_output_tokens=32000,
+        timeout_seconds=30.0,
+        max_context_chars=4000,
+        min_score_gain=15,
+        min_token_recall=0.75,
+        min_text_ratio=0.65,
+        prompt="prompt",
+        run_id="story206-test",
+        progress_file=None,
+        state_file=None,
+    )
+
+    out_rows = [json.loads(line) for line in out_path.read_text(encoding="utf-8").splitlines() if line.strip()]
+    report_rows = [json.loads(line) for line in report_out.read_text(encoding="utf-8").splitlines() if line.strip()]
+
+    assert out_rows[0]["html"] != NORMALIZE_ONLY_EXISTING_HTML
+    assert report_rows[0]["accepted"] is True
+    assert report_rows[0]["decision_reason"] == "ocr_error_normalized_existing_fallback"
+    assert report_rows[0]["normalized_existing_fallback_used"] is True
+
+
+def test_run_reruns_rejects_normalized_fallback_on_ocr_error_when_reviewed_golden_needs_headings(
+    tmp_path: Path, monkeypatch
+):
+    image_path = tmp_path / "81.jpg"
+    image_path.write_bytes(b"fake-image-81")
+    rows = [
+        {
+            "schema_version": "page_html_v1",
+            "page": 81,
+            "page_number": 81,
+            "image": str(image_path),
+            "printed_page_number": 72,
+            "html": NORMALIZE_ONLY_EXISTING_HTML,
+        }
+    ]
+    page_map = {81: rows[0]}
+    targets = [
+        RerunTarget(
+            page_number=81,
+            chapter_basename="chapter-017.html",
+            chapter_title="Marie-Louise",
+            schema_hint="name|born|married|spouse|boy|girl|died",
+            issue_reasons=["fewer_h2_than_reviewed_golden"],
+            source_pages=[80, 81, 82],
+            context_pages=[80, 82],
+            target_source="validator_reviewed_golden",
+        )
+    ]
+    monkeypatch.setattr(
+        "modules.adapter.rerun_onward_genealogy_consistency_v1.main._call_ocr",
+        lambda *args, **kwargs: (_ for _ in ()).throw(RuntimeError("quota")),
+    )
+    monkeypatch.setattr(
+        "modules.adapter.rerun_onward_genealogy_consistency_v1.main._encode_image",
+        lambda path: f"encoded:{Path(path).name}",
+    )
+
+    out_path = tmp_path / "pages_rerun.jsonl"
+    report_out = tmp_path / "rerun_report.jsonl"
+    summary_out = tmp_path / "rerun_summary.json"
+
+    run_reruns(
+        rows,
+        page_map,
+        targets,
+        report_path=str(report_out),
+        summary_path=str(summary_out),
+        pages_artifact_path=str(tmp_path / "pages.jsonl"),
+        consistency_report_path=str(tmp_path / "consistency.jsonl"),
+        out_path=str(out_path),
+        model="gpt-5",
+        temperature=0.0,
+        max_output_tokens=32000,
+        timeout_seconds=30.0,
+        max_context_chars=4000,
+        min_score_gain=15,
+        min_token_recall=0.75,
+        min_text_ratio=0.65,
+        prompt="prompt",
+        run_id="story206-test",
+        progress_file=None,
+        state_file=None,
+    )
+
+    out_rows = [json.loads(line) for line in out_path.read_text(encoding="utf-8").splitlines() if line.strip()]
+    report_rows = [json.loads(line) for line in report_out.read_text(encoding="utf-8").splitlines() if line.strip()]
+
+    assert out_rows[0]["html"] == NORMALIZE_ONLY_EXISTING_HTML
+    assert report_rows[0]["accepted"] is False
+    assert report_rows[0]["decision_reason"] == "ocr_error"
+    assert report_rows[0]["normalized_existing_fallback_allowed"] is False

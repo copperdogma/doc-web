@@ -138,3 +138,70 @@ def test_toc_portionizer_accepts_heading_plus_table_index(tmp_path: Path) -> Non
     assert rows[0]["page_end"] == 19
     assert rows[1]["page_start"] == 20
     assert rows[1]["page_end"] == 24
+
+
+def test_toc_portionizer_rejects_non_toc_tables_without_heading(tmp_path: Path) -> None:
+    pages_path = tmp_path / "pages-mixed.jsonl"
+    out_path = tmp_path / "portions-mixed.jsonl"
+
+    _write_jsonl(
+        pages_path,
+        [
+            {
+                "page_number": 8,
+                "printed_page_number": None,
+                "html": (
+                    "<h1>INDEX</h1>"
+                    "<table><tbody>"
+                    "<tr><td>Arthur</td><td>26</td></tr>"
+                    "<tr><td>Leonidas</td><td>37</td></tr>"
+                    "</tbody></table>"
+                ),
+            },
+            {
+                "page_number": 26,
+                "printed_page_number": 26,
+                "html": (
+                    "<h1>Arthur's Grandchildren</h1>"
+                    "<table><tbody>"
+                    "<tr><td>Crystal</td><td>Sept. 18, 1974</td></tr>"
+                    "<tr><td>Michel</td><td>Apr. 28, 1976</td></tr>"
+                    "<tr><td>Joel</td><td>Sept. 8, 1981</td></tr>"
+                    "</tbody></table>"
+                ),
+            },
+            {
+                "page_number": 37,
+                "printed_page_number": 37,
+                "html": "<h1>LEONIDAS L'HEUREUX</h1><p>Next start.</p>",
+            },
+            {
+                "page_number": 45,
+                "printed_page_number": 45,
+                "html": "<p>Tail page.</p>",
+            },
+        ],
+    )
+
+    cmd = [
+        sys.executable,
+        "-m",
+        "modules.portionize.portionize_toc_html_v1.main",
+        "--pages",
+        str(pages_path),
+        "--out",
+        str(out_path),
+        "--min-entries",
+        "2",
+    ]
+    result = subprocess.run(
+        cmd,
+        capture_output=True,
+        text=True,
+        cwd=str(Path(__file__).resolve().parent.parent),
+    )
+    assert result.returncode == 0, result.stderr
+
+    rows = [json.loads(line) for line in out_path.read_text(encoding="utf-8").splitlines() if line.strip()]
+    assert [row["title"] for row in rows] == ["Arthur", "Leonidas"]
+    assert all(row["page_start"] < 100 for row in rows)

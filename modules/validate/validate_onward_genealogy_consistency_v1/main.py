@@ -6,9 +6,10 @@ The detector scores structural drift on final chapter HTML first, then narrows
 flagged chapters back to source page HTML so later stories can target reruns.
 """
 import argparse
+import json
 import os
 import re
-from collections import Counter
+from collections import Counter, defaultdict
 from dataclasses import asdict, dataclass
 from datetime import datetime
 from pathlib import Path
@@ -123,10 +124,6 @@ def _score_chapter(
         score += 35 if residual_boygirl_header_count > 1 else 25
         reasons.append("residual_boygirl_headers")
 
-    if external_family_heading_count > 0:
-        score += 25
-        reasons.append("external_family_headings")
-
     page_count = max(1, source_page_count)
     table_density = genealogy_table_count / page_count
     if genealogy_table_count >= 5 and table_density >= 1.25:
@@ -218,12 +215,10 @@ def analyze_page_row(page_row: Dict[str, Any]) -> PageMetrics:
     reasons: List[str] = []
     if residual_boygirl_header_count > 0:
         reasons.append("residual_boygirl_headers")
-    if external_family_heading_count > 0:
-        reasons.append("external_family_headings")
     if table_count >= 2 and subgroup_row_count == 0:
         reasons.append("fragmented_multi_table_page")
 
-    strong_rerun_candidate = "external_family_headings" in reasons or "fragmented_multi_table_page" in reasons
+    strong_rerun_candidate = "fragmented_multi_table_page" in reasons
     coarse_suspect = strong_rerun_candidate or "residual_boygirl_headers" in reasons
 
     return PageMetrics(
@@ -248,6 +243,97 @@ def _load_page_rows(path: str) -> Dict[int, Dict[str, Any]]:
         except (TypeError, ValueError):
             continue
     return page_rows
+
+
+def _load_optional_jsonl(path: Optional[str]) -> List[Dict[str, Any]]:
+    if not path or not os.path.exists(path):
+        return []
+    return list(read_jsonl(path))
+
+
+def _chapter_structure_snapshot(html_path: str) -> Optional[Dict[str, Any]]:
+    if not html_path or not os.path.exists(html_path):
+        return None
+    soup = BeautifulSoup(Path(html_path).read_text(encoding="utf-8"), "html.parser")
+    title_tag = soup.find("h1")
+    return {
+        "title": title_tag.get_text(" ", strip=True) if title_tag else "",
+        "table_count": len(soup.find_all("table")),
+        "h2_count": len(soup.find_all("h2")),
+        "h3_count": len(soup.find_all("h3")),
+    }
+
+
+def _load_reviewed_golden_snapshots(golden_dir: Optional[str]) -> Dict[str, Dict[str, Any]]:
+    if not golden_dir or not os.path.isdir(golden_dir):
+        return {}
+    snapshots: Dict[str, Dict[str, Any]] = {}
+    for path in sorted(Path(golden_dir).glob("chapter-*.html")):
+        snapshot = _chapter_structure_snapshot(str(path))
+        if not snapshot or not snapshot["title"]:
+            continue
+        snapshots[snapshot["title"]] = snapshot
+    return snapshots
+
+
+def _load_reviewed_golden_focus_pages(golden_dir: Optional[str]) -> Dict[str, List[int]]:
+    if not golden_dir or not os.path.isdir(golden_dir):
+        return {}
+
+    manifest_path = Path(golden_dir) / "manifest.json"
+    provenance_path = Path(golden_dir) / "provenance" / "blocks.jsonl"
+    if not manifest_path.exists() or not provenance_path.exists():
+        return {}
+
+    try:
+        manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+    except Exception:
+        return {}
+
+    title_by_entry: Dict[str, str] = {}
+    for entry in manifest.get("entries") or []:
+        title = str(entry.get("title") or "").strip()
+        if not title:
+            continue
+        entry_id = str(entry.get("entry_id") or "").strip()
+        if entry_id:
+            title_by_entry[entry_id] = title
+        entry_path = str(entry.get("path") or "").strip()
+        if entry_path:
+            title_by_entry[Path(entry_path).stem] = title
+
+    counts_by_title: Dict[str, Dict[int, Counter[str]]] = defaultdict(lambda: defaultdict(Counter))
+    for row in read_jsonl(str(provenance_path)):
+        entry_id = str(row.get("entry_id") or "").strip()
+        chapter_title = title_by_entry.get(entry_id)
+        if not chapter_title:
+            continue
+        try:
+            source_page_number = int(row.get("source_page_number"))
+        except (TypeError, ValueError):
+            continue
+        block_kind = str(row.get("block_kind") or "").strip()
+        if block_kind not in {"heading", "table"}:
+            continue
+        counts_by_title[chapter_title][source_page_number][block_kind] += 1
+
+    focus_pages_by_title: Dict[str, List[int]] = {}
+    for chapter_title, page_counts in counts_by_title.items():
+        focus_pages = [
+            page_number
+            for page_number, counts in sorted(page_counts.items())
+            if counts["table"] > 1 or counts["heading"] > 1
+        ]
+        if not focus_pages:
+            focus_pages = [
+                page_number
+                for page_number, counts in sorted(page_counts.items())
+                if counts["table"] > 0 and counts["heading"] > 0 and (counts["table"] + counts["heading"]) >= 3
+            ]
+        if focus_pages:
+            focus_pages_by_title[chapter_title] = focus_pages
+
+    return focus_pages_by_title
 
 
 def _group_runs(chapters: Iterable[ChapterMetrics]) -> List[Dict[str, Any]]:
@@ -294,17 +380,67 @@ def _issue_for_chapter(run_lookup: Dict[str, Dict[str, Any]], chapter: ChapterMe
     }
 
 
+def _issue_for_reviewed_golden_regression(
+    chapter: ChapterMetrics,
+    current_snapshot: Dict[str, Any],
+    golden_snapshot: Dict[str, Any],
+    reasons: List[str],
+    *,
+    coarse_suspect_pages: List[int],
+    strong_rerun_candidate_pages: List[int],
+    target_selection_basis: str,
+) -> Dict[str, Any]:
+    return {
+        "type": "onward_reviewed_golden_structure_regression",
+        "severity": "warning",
+        "chapter_file": chapter.chapter_file,
+        "chapter_basename": chapter.chapter_basename,
+        "chapter_title": chapter.chapter_title,
+        "schema_hint": chapter.dominant_signature or "",
+        "reasons": reasons,
+        "source_pages": chapter.source_pages,
+        "coarse_suspect_pages": coarse_suspect_pages,
+        "strong_rerun_candidate_pages": strong_rerun_candidate_pages,
+        "target_selection_basis": target_selection_basis,
+        "current_table_count": current_snapshot["table_count"],
+        "golden_table_count": golden_snapshot["table_count"],
+        "current_h2_count": current_snapshot["h2_count"],
+        "golden_h2_count": golden_snapshot["h2_count"],
+        "current_h3_count": current_snapshot["h3_count"],
+        "golden_h3_count": golden_snapshot["h3_count"],
+    }
+
+
+def _issue_for_duplicate_portion_page_start(
+    page_start: int,
+    titles: List[str],
+    portions_path: str,
+) -> Dict[str, Any]:
+    return {
+        "type": "onward_duplicate_portion_page_start",
+        "severity": "warning",
+        "page_start": page_start,
+        "portion_titles": titles,
+        "artifact_path": portions_path,
+    }
+
+
 def build_report(
     manifest_rows: List[Dict[str, Any]],
     page_rows_by_number: Dict[int, Dict[str, Any]],
     *,
     chapters_path: str,
     pages_path: str,
+    portions_path: Optional[str],
+    reviewed_golden_dir: Optional[str],
     flag_threshold: int,
     warning_band: float,
     redesign_band: float,
 ) -> Tuple[Dict[str, Any], Dict[str, Any]]:
     chapter_metrics = [metric for metric in (analyze_chapter_row(row, flag_threshold) for row in manifest_rows) if metric]
+    portions_rows = _load_optional_jsonl(portions_path)
+    reviewed_golden_snapshots = _load_reviewed_golden_snapshots(reviewed_golden_dir)
+    reviewed_golden_focus_pages = _load_reviewed_golden_focus_pages(reviewed_golden_dir)
     run_summaries = _group_runs(chapter_metrics)
     run_lookup = {run["run_id"]: run for run in run_summaries}
     run_id_by_chapter = {
@@ -319,14 +455,14 @@ def build_report(
     total_flagged_pages = 0
     total_coarse_pages = 0
     total_strong_pages = 0
+    reviewed_golden_details: List[Dict[str, Any]] = []
 
     for chapter in sorted(chapter_metrics, key=lambda item: (item.chapter_number or 0, item.chapter_basename)):
         source_page_details: List[Dict[str, Any]] = []
         coarse_pages: List[int] = []
         strong_pages: List[int] = []
-
-        if chapter.flagged:
-            total_flagged_pages += chapter.source_page_count
+        golden_snapshot = reviewed_golden_snapshots.get(chapter.chapter_title)
+        if chapter.flagged or golden_snapshot is not None:
             for page_number in chapter.source_pages:
                 page_row = page_rows_by_number.get(page_number)
                 if not page_row:
@@ -344,6 +480,9 @@ def build_report(
                         "metrics": asdict(page_metrics),
                     }
                 )
+
+        if chapter.flagged:
+            total_flagged_pages += chapter.source_page_count
             total_coarse_pages += len(coarse_pages)
             total_strong_pages += len(strong_pages)
 
@@ -360,12 +499,84 @@ def build_report(
         if chapter.flagged:
             issues.append(_issue_for_chapter(run_lookup, chapter, detail))
 
+        if golden_snapshot:
+            current_snapshot = _chapter_structure_snapshot(chapter.chapter_file)
+            reasons: List[str] = []
+            if current_snapshot is not None:
+                if current_snapshot["table_count"] < golden_snapshot["table_count"]:
+                    reasons.append("fewer_tables_than_reviewed_golden")
+                if current_snapshot["h2_count"] < golden_snapshot["h2_count"]:
+                    reasons.append("fewer_h2_than_reviewed_golden")
+                if current_snapshot["h3_count"] < golden_snapshot["h3_count"]:
+                    reasons.append("fewer_h3_than_reviewed_golden")
+            golden_focus_pages = [
+                page_number
+                for page_number in reviewed_golden_focus_pages.get(chapter.chapter_title, [])
+                if page_number in chapter.source_pages
+            ]
+            rerun_pages = golden_focus_pages or coarse_pages
+            strong_rerun_pages = golden_focus_pages or strong_pages or rerun_pages
+            reviewed_detail = {
+                "chapter_title": chapter.chapter_title,
+                "chapter_file": chapter.chapter_file,
+                "golden_dir": reviewed_golden_dir,
+                "current": current_snapshot,
+                "golden": golden_snapshot,
+                "reasons": reasons,
+                "flagged": bool(reasons),
+                "source_pages": chapter.source_pages,
+                "coarse_suspect_pages": rerun_pages,
+                "strong_rerun_candidate_pages": strong_rerun_pages,
+                "target_selection_basis": (
+                    "reviewed_golden_provenance_focus_pages"
+                    if golden_focus_pages
+                    else "current_page_signals_fallback"
+                ),
+            }
+            reviewed_golden_details.append(reviewed_detail)
+            if reasons and current_snapshot is not None:
+                issues.append(
+                    _issue_for_reviewed_golden_regression(
+                        chapter,
+                        current_snapshot,
+                        golden_snapshot,
+                        reasons,
+                        coarse_suspect_pages=rerun_pages,
+                        strong_rerun_candidate_pages=strong_rerun_pages,
+                        target_selection_basis=reviewed_detail["target_selection_basis"],
+                    )
+                )
+
+    duplicate_portion_page_starts: List[Dict[str, Any]] = []
+    if portions_rows and portions_path:
+        titles_by_start: Dict[int, List[str]] = defaultdict(list)
+        for row in portions_rows:
+            page_start = row.get("page_start")
+            if isinstance(page_start, int):
+                titles_by_start[page_start].append(row.get("title") or row.get("portion_id") or "")
+        for page_start, titles in sorted(titles_by_start.items()):
+            if len(titles) <= 1:
+                continue
+            duplicate_portion_page_starts.append(
+                {
+                    "page_start": page_start,
+                    "titles": titles,
+                    "count": len(titles),
+                }
+            )
+            issues.append(_issue_for_duplicate_portion_page_start(page_start, titles, portions_path))
+
     flagged_chapter_count = sum(1 for chapter in chapter_metrics if chapter.flagged)
+    reviewed_golden_flagged = [detail for detail in reviewed_golden_details if detail["flagged"]]
     strong_coverage = (total_strong_pages / total_flagged_pages) if total_flagged_pages else 0.0
     coarse_coverage = (total_coarse_pages / total_flagged_pages) if total_flagged_pages else 0.0
     candidate_coverage = (total_strong_pages / total_candidate_pages) if total_candidate_pages else 0.0
 
-    if strong_coverage >= redesign_band:
+    if duplicate_portion_page_starts:
+        recommendation = "portion_replay_regression_detected"
+    elif reviewed_golden_flagged:
+        recommendation = "reviewed_golden_structure_regression"
+    elif strong_coverage >= redesign_band:
         recommendation = "broader_extraction_granularity"
     elif strong_coverage >= warning_band:
         recommendation = "targeted_reruns_warning_band"
@@ -388,6 +599,11 @@ def build_report(
         "coarse_suspect_page_coverage": round(coarse_coverage, 4),
         "strong_rerun_candidate_page_coverage": round(strong_coverage, 4),
         "candidate_genealogy_page_coverage": round(candidate_coverage, 4),
+        "duplicate_portion_page_start_count": len(duplicate_portion_page_starts),
+        "duplicate_portion_page_starts": [detail["page_start"] for detail in duplicate_portion_page_starts],
+        "reviewed_golden_chapter_count": len(reviewed_golden_details),
+        "reviewed_golden_flagged_chapter_count": len(reviewed_golden_flagged),
+        "reviewed_golden_flagged_chapters": [detail["chapter_title"] for detail in reviewed_golden_flagged],
         "recommendation": recommendation,
     }
 
@@ -404,6 +620,8 @@ def build_report(
         "summary": summary,
         "runs": run_summaries,
         "chapters": chapter_details,
+        "duplicate_portion_page_starts": duplicate_portion_page_starts,
+        "reviewed_golden_comparisons": reviewed_golden_details,
     }
     return primary_report, detail_report
 
@@ -412,9 +630,21 @@ def main() -> None:
     parser = argparse.ArgumentParser(description="Validate structural consistency of Onward genealogy chapters.")
     parser.add_argument("--chapters", required=True, help="chapters_manifest.jsonl from build_chapter_html_v1")
     parser.add_argument("--pages", required=True, help="page_html_v1 JSONL used to build the chapters")
+    parser.add_argument("--portions", help="Optional portion_hyp_v1 JSONL for duplicate page-start checks")
     parser.add_argument("--out", required=True, help="Output JSONL path for pipeline_issues_v1 summary")
     parser.add_argument("--detail-report", dest="detail_report", default="genealogy_consistency_detail.json")
     parser.add_argument("--detail_report", dest="detail_report", default="genealogy_consistency_detail.json")
+    parser.add_argument(
+        "--reviewed-golden-dir",
+        dest="reviewed_golden_dir",
+        default="benchmarks/golden/onward/dossier-doc-web-handoff-v1",
+        help="Optional reviewed-golden HTML directory to compare against by chapter title",
+    )
+    parser.add_argument(
+        "--reviewed_golden_dir",
+        dest="reviewed_golden_dir",
+        default="benchmarks/golden/onward/dossier-doc-web-handoff-v1",
+    )
     parser.add_argument("--flag-threshold", dest="flag_threshold", type=int, default=25)
     parser.add_argument("--flag_threshold", dest="flag_threshold", type=int, default=25)
     parser.add_argument("--warning-band", dest="warning_band", type=float, default=0.25)
@@ -456,6 +686,8 @@ def main() -> None:
         page_rows_by_number,
         chapters_path=args.chapters,
         pages_path=args.pages,
+        portions_path=args.portions,
+        reviewed_golden_dir=args.reviewed_golden_dir,
         flag_threshold=args.flag_threshold,
         warning_band=args.warning_band,
         redesign_band=args.redesign_band,
@@ -475,7 +707,8 @@ def main() -> None:
         message=(
             f"Onward genealogy consistency report complete: "
             f"flagged={primary_report['summary']['flagged_genealogy_chapters']}, "
-            f"strong_pages={primary_report['summary']['strong_rerun_candidate_page_count']}"
+            f"golden_flags={primary_report['summary']['reviewed_golden_flagged_chapter_count']}, "
+            f"duplicate_portion_starts={primary_report['summary']['duplicate_portion_page_start_count']}"
         ),
         artifact=out_path,
         module_id="validate_onward_genealogy_consistency_v1",

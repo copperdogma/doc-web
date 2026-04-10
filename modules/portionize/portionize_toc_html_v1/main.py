@@ -47,14 +47,18 @@ def _extract_entry_from_line(text: str) -> Optional[Dict[str, Any]]:
     return {"title": title, "page_start": page_num}
 
 
-def _is_toc_page(lines: List[str], min_entries: int, table_entry_count: int = 0) -> bool:
-    if not lines:
-        return table_entry_count >= max(1, min_entries)
+def _has_toc_title(lines: List[str]) -> bool:
     for line in lines[:5]:
         if _normalize_ws(line).lower() in TOC_TITLE_PATTERNS:
             return True
+    return False
+
+
+def _is_toc_page(lines: List[str], min_entries: int, table_entry_count: int = 0) -> bool:
     entry_count = sum(1 for line in lines if _looks_like_toc_entry(line))
-    return entry_count >= max(1, min_entries) or table_entry_count >= max(1, min_entries)
+    if _has_toc_title(lines):
+        return entry_count + table_entry_count >= max(1, min_entries)
+    return entry_count >= max(1, min_entries)
 
 
 def _extract_table_entries(soup: BeautifulSoup) -> List[Dict[str, Any]]:

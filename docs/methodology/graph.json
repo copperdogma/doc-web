@@ -197,7 +197,8 @@
           "186",
           "189",
           "191",
-          "192"
+          "192",
+          "206"
         ],
         "adr_ids": [
           "ADR-001",
@@ -253,7 +254,8 @@
           "200",
           "201",
           "202",
-          "203"
+          "203",
+          "206"
         ],
         "adr_ids": [
           "ADR-002",
@@ -324,7 +326,8 @@
           "161",
           "162",
           "163",
-          "164"
+          "164",
+          "206"
         ],
         "adr_ids": [
           "ADR-001",
@@ -376,7 +379,8 @@
           "201",
           "202",
           "203",
-          "205"
+          "205",
+          "206"
         ],
         "adr_ids": [
           "ADR-002",
@@ -430,7 +434,8 @@
           "201",
           "202",
           "203",
-          "205"
+          "205",
+          "206"
         ],
         "adr_ids": [
           "ADR-002",
@@ -6781,6 +6786,64 @@
       ],
       "architecture_domains": [
         "intake_and_routing"
+      ],
+      "roadmap_tags": [
+        "campaign:maintained-intake-honesty"
+      ],
+      "blocker_summary": "",
+      "blocker_evidence": "",
+      "unblock_condition": "",
+      "legacy_build_map_refs": "",
+      "metadata_source": "frontmatter",
+      "missing_frontmatter_keys": []
+    },
+    {
+      "id": "206",
+      "title": "Restore Maintained Onward Full-Book Fidelity and Regression Guardrails",
+      "path": "docs/stories/story-206-onward-full-book-regression-recovery.md",
+      "status": "Done",
+      "priority": "High",
+      "ideal_refs": [
+        "Requirement #3 (Extract), Requirement #5 (Structure), Requirement #6 (Validate), Requirement #7 (Export), Traceability is the product, Fidelity to source"
+      ],
+      "spec_refs": [
+        "spec:2",
+        "spec:3",
+        "spec:5",
+        "spec:6",
+        "spec:7"
+      ],
+      "decision_refs": [
+        "`docs/ideal.md`, `docs/spec.md`, `docs/methodology/state.yaml`, `docs/methodology/graph.json`, `docs/decisions/adr-001-source-aware-consistency-strategy/adr.md`, `docs/decisions/adr-002-doc-web-runtime-boundary/adr.md`, `docs/runbooks/golden-build.md`, `docs/stories/story-149-onward-scanned-genealogy-collapse-implementation.md`, `docs/stories/story-154-dossier-doc-web-semantic-html-handoff.md`, `docs/stories/story-155-repo-mission-alignment-cleanup-and-legacy-surface-removal.md`, `docs/stories/story-157-pdf-intake-parity-with-image-directory-inputs.md`, `docs/notes/repo-mission-alignment-cleanup-inventory.md`, `tests/fixtures/formats/_coverage-matrix.json`, `benchmarks/golden/onward/reviewed_html_slice/README.md`, `benchmarks/golden/onward/dossier-doc-web-handoff-v1/README.md`, and `None found after search in docs/scout/ for a narrower maintained full-book Onward regression owner`",
+        "ADR-001",
+        "ADR-002"
+      ],
+      "adr_ids": [
+        "ADR-001",
+        "ADR-002"
+      ],
+      "depends_on": [
+        "149",
+        "157"
+      ],
+      "category_refs": [
+        "spec:2",
+        "spec:3",
+        "spec:5",
+        "spec:6",
+        "spec:7"
+      ],
+      "compromise_refs": [
+        "C1",
+        "C3",
+        "C7"
+      ],
+      "input_coverage_refs": [
+        "scanned-pdf-tables"
+      ],
+      "architecture_domains": [
+        "doc_web_runtime",
+        "document_structure_and_consistency"
       ],
       "roadmap_tags": [
         "campaign:maintained-intake-honesty"
