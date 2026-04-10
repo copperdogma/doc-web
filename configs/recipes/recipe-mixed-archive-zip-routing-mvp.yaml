@@ -1,0 +1,20 @@
+# Maintained ZIP-only mixed-archive routing lane for one bounded repo-owned fixture.
+
+input:
+  zip: testdata/mixed-archive-mini.zip  # override via run config / --input-zip
+
+stages:
+  - id: archive_unpack
+    stage: extract
+    module: archive_unpack_manifest_v1
+    out: archive_members_manifest.jsonl
+
+  - id: archive_route
+    stage: intake
+    module: archive_route_members_v1
+    needs: [archive_unpack]
+    inputs:
+      manifest: archive_unpack
+    out: archive_member_routes.jsonl
+    params:
+      allow_run_id_reuse: false

@@ -1,0 +1,237 @@
+#!/usr/bin/env python3
+"""
+Archive Route Members Module v1
+
+Routes bounded ZIP members into existing maintained direct-entry recipes or
+explicit blocked outcomes and records one archive_member_route_v1 row per
+member.
+"""
+
+from __future__ import annotations
+
+import argparse
+import subprocess
+from pathlib import Path
+from typing import Optional
+
+import yaml
+
+from modules.common.utils import ProgressLogger, read_jsonl, save_jsonl, utc_now
+from modules.intake.intake_plan_utils import (
+    archive_member_recipe_for_input_kind,
+    build_explicit_recipe_driver_command,
+    default_downstream_run_id,
+)
+
+
+MODULE_ID = "archive_route_members_v1"
+SCHEMA_VERSION = "archive_member_route_v1"
+REPO_ROOT = Path(__file__).resolve().parents[3]
+DEFAULT_OUT = "archive_member_routes.jsonl"
+
+
+def parse_args() -> argparse.Namespace:
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--manifest", required=True, help="Input archive member manifest JSONL")
+    parser.add_argument("--zip", default=None, help="Optional original ZIP path for driver compatibility")
+    parser.add_argument("--outdir", required=True, help="Output directory")
+    parser.add_argument("--out", default=DEFAULT_OUT, help="Output route artifact path")
+    parser.add_argument("--downstream-end-at", dest="downstream_end_at", default=None)
+    parser.add_argument("--allow-run-id-reuse", action="store_true")
+    parser.add_argument("--dry-run", action="store_true")
+    parser.add_argument("--progress-file", help="Path to pipeline_events.jsonl")
+    parser.add_argument("--state-file", help="Path to pipeline_state.json")
+    parser.add_argument("--run-id", help="Run identifier for logging")
+    return parser.parse_args()
+
+
+def _load_first_stage_spec(recipe_path: str) -> Optional[dict]:
+    data = yaml.safe_load((REPO_ROOT / recipe_path).read_text(encoding="utf-8")) or {}
+    stages = data.get("stages") or []
+    if not stages:
+        return None
+    first_stage = stages[0]
+    return {
+        "module": first_stage.get("module"),
+        "out": first_stage.get("out"),
+    }
+
+
+def _first_downstream_artifact(output_root: Path, downstream_run_id: str, recipe_path: str) -> Optional[str]:
+    first_stage = _load_first_stage_spec(recipe_path)
+    if not first_stage:
+        return None
+    module_id = str(first_stage.get("module") or "").strip()
+    out_name = str(first_stage.get("out") or "").strip()
+    if not module_id or not out_name:
+        return None
+    return str(output_root / downstream_run_id / f"01_{module_id}" / out_name)
+
+
+def _blocked_reason_for_member(row: dict) -> str:
+    kind = row.get("detected_input_kind")
+    if kind == "pdf":
+        return "pdf_member_outside_bounded_mixed_archive_slice"
+    extension = str(row.get("file_extension") or "").strip() or "missing"
+    if kind:
+        return f"archive_member_input_kind_outside_bounded_slice:{kind}"
+    return f"unsupported_archive_member_suffix:{extension}"
+
+
+def _resolve_output_path(outdir: str, out: str) -> Path:
+    out_path = Path(out)
+    if out_path.is_absolute():
+        return out_path
+    if out_path.parent != Path("."):
+        return out_path
+    return Path(outdir) / out_path.name
+
+
+def main() -> None:
+    args = parse_args()
+    logger = ProgressLogger(
+        state_path=args.state_file,
+        progress_path=args.progress_file,
+        run_id=args.run_id,
+    )
+
+    manifest_rows = list(read_jsonl(args.manifest))
+    if not manifest_rows:
+        raise SystemExit("No archive member manifest rows found; cannot route archive members")
+
+    out_path = _resolve_output_path(args.outdir, args.out)
+    output_root = Path(args.outdir).resolve().parent.parent
+
+    logger.log(
+        "archive_route",
+        "running",
+        current=0,
+        total=len(manifest_rows),
+        message=f"Routing {len(manifest_rows)} bounded ZIP members",
+        module_id=MODULE_ID,
+        schema_version=SCHEMA_VERSION,
+    )
+
+    route_rows: list[dict] = []
+    failed_launches = 0
+
+    for row in manifest_rows:
+        member_id = str(row["member_id"])
+        input_kind = row.get("detected_input_kind")
+        recipe_path = archive_member_recipe_for_input_kind(input_kind)
+        extracted_path = Path(str(row["extracted_path"]))
+        route_row = {
+            "schema_version": SCHEMA_VERSION,
+            "archive_format": row.get("archive_format") or "zip",
+            "archive_path": row["archive_path"],
+            "member_id": member_id,
+            "member_index": row["member_index"],
+            "member_path": row["member_path"],
+            "extracted_path": str(extracted_path),
+            "filename": row["filename"],
+            "file_extension": row.get("file_extension"),
+            "detected_input_kind": input_kind,
+            "recommended_recipe": recipe_path,
+            "launch_input_flag": None,
+            "launch_input_path": None,
+            "driver_command": [],
+            "downstream_run_id": None,
+            "downstream_output_dir": None,
+            "first_downstream_artifact": None,
+            "terminal_outcome": "blocked",
+            "terminal_reason": None,
+            "exit_code": None,
+            "module_id": MODULE_ID,
+            "run_id": args.run_id,
+            "created_at": utc_now(),
+        }
+
+        if not extracted_path.exists():
+            route_row["terminal_reason"] = f"extracted_member_not_found:{extracted_path}"
+            route_rows.append(route_row)
+            failed_launches += 1
+            continue
+
+        if not recipe_path:
+            route_row["terminal_reason"] = _blocked_reason_for_member(row)
+            route_rows.append(route_row)
+            continue
+
+        downstream_run_id = default_downstream_run_id(
+            recipe_path,
+            f"{args.run_id or 'mixed-archive'}-{member_id}",
+        )
+        downstream_output_dir = output_root / downstream_run_id
+        first_downstream_artifact = _first_downstream_artifact(
+            output_root,
+            downstream_run_id,
+            recipe_path,
+        )
+        command = build_explicit_recipe_driver_command(
+            recipe_path,
+            input_kind=input_kind,
+            source_path=extracted_path,
+            downstream_run_id=downstream_run_id,
+            downstream_output_dir=output_root,
+            downstream_end_at=args.downstream_end_at,
+            allow_run_id_reuse=args.allow_run_id_reuse,
+        )
+
+        route_row["launch_input_flag"] = command[4]
+        route_row["launch_input_path"] = str(extracted_path)
+        route_row["driver_command"] = command
+        route_row["downstream_run_id"] = downstream_run_id
+        route_row["downstream_output_dir"] = str(downstream_output_dir)
+        route_row["first_downstream_artifact"] = first_downstream_artifact
+
+        if args.dry_run:
+            route_row["terminal_outcome"] = "skipped"
+            route_row["terminal_reason"] = "dry_run"
+            route_rows.append(route_row)
+            continue
+
+        result = subprocess.run(command, cwd=str(REPO_ROOT))
+        route_row["exit_code"] = result.returncode
+        if result.returncode != 0:
+            route_row["terminal_outcome"] = "failed"
+            route_row["terminal_reason"] = f"downstream_exit_{result.returncode}"
+            route_rows.append(route_row)
+            failed_launches += 1
+            continue
+
+        if first_downstream_artifact and not Path(first_downstream_artifact).exists():
+            route_row["terminal_outcome"] = "failed"
+            route_row["terminal_reason"] = "first_downstream_artifact_missing"
+            route_rows.append(route_row)
+            failed_launches += 1
+            continue
+
+        route_row["terminal_outcome"] = "launched"
+        route_rows.append(route_row)
+
+    save_jsonl(str(out_path), route_rows)
+
+    launched = sum(1 for row in route_rows if row["terminal_outcome"] == "launched")
+    blocked = sum(1 for row in route_rows if row["terminal_outcome"] == "blocked")
+    skipped = sum(1 for row in route_rows if row["terminal_outcome"] == "skipped")
+    failed = sum(1 for row in route_rows if row["terminal_outcome"] == "failed")
+    logger.log(
+        "archive_route",
+        "done" if failed == 0 else "failed",
+        current=len(route_rows),
+        total=len(route_rows),
+        message=(
+            f"Archive routing complete: launched={launched}, blocked={blocked}, "
+            f"skipped={skipped}, failed={failed}"
+        ),
+        artifact=str(out_path),
+        module_id=MODULE_ID,
+        schema_version=SCHEMA_VERSION,
+    )
+
+    if failed_launches:
+        raise SystemExit(1)
+
+
+if __name__ == "__main__":
+    main()

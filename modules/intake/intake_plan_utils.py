@@ -70,6 +70,29 @@ MAINTAINED_RECIPE_PATHS = set(MAINTAINED_RECIPES.values())
 DIRECT_ENTRY_ONLY_RECIPE_TO_KIND = {
     path: kind for kind, path in DIRECT_ENTRY_ONLY_RECIPES.items()
 }
+ARCHIVE_MEMBER_INPUT_KIND_BY_SUFFIX = {
+    ".docx": "docx",
+    ".eml": "email-eml",
+    ".epub": "epub",
+    ".htm": "web-page",
+    ".html": "web-page",
+    ".mbox": "email-mbox",
+    ".pdf": "pdf",
+    ".pptx": "pptx",
+    ".xlsx": "xlsx",
+}
+DRIVER_INPUT_FLAGS = {
+    "docx": "--input-docx",
+    "email-eml": "--input-eml",
+    "email-mbox": "--input-mbox",
+    "epub": "--input-epub",
+    "images_dir": "--input-images",
+    "pdf": "--input-pdf",
+    "pptx": "--input-pptx",
+    "web-page": "--input-html",
+    "xlsx": "--input-xlsx",
+    "zip": "--input-zip",
+}
 
 
 def normalize_book_type(raw_value: Any, fallback: str = "other") -> str:
@@ -187,6 +210,62 @@ def default_downstream_run_id(recipe_path: str, upstream_run_id: Optional[str]) 
     return combined[:120] or "confirmed-handoff"
 
 
+def infer_archive_member_input_kind(raw_path: str | Path | None) -> Optional[str]:
+    if raw_path is None:
+        return None
+    suffix = Path(str(raw_path)).suffix.lower()
+    if not suffix:
+        return None
+    return ARCHIVE_MEMBER_INPUT_KIND_BY_SUFFIX.get(suffix)
+
+
+def archive_member_recipe_for_input_kind(input_kind: str | None) -> Optional[str]:
+    kind = str(input_kind or "").strip()
+    if not kind:
+        return None
+    return DIRECT_ENTRY_ONLY_RECIPES.get(kind)
+
+
+def driver_input_flag_for_input_kind(input_kind: str | None) -> Optional[str]:
+    kind = str(input_kind or "").strip()
+    if not kind:
+        return None
+    return DRIVER_INPUT_FLAGS.get(kind)
+
+
+def build_explicit_recipe_driver_command(
+    recipe_path: str,
+    *,
+    input_kind: str,
+    source_path: str | Path,
+    downstream_run_id: str,
+    downstream_output_dir: str | Path | None = None,
+    downstream_end_at: Optional[str] = None,
+    allow_run_id_reuse: bool = False,
+) -> list[str]:
+    input_flag = driver_input_flag_for_input_kind(input_kind)
+    if not input_flag:
+        raise ValueError(f"No driver input flag defined for input kind: {input_kind}")
+
+    command = [
+        sys.executable,
+        str(REPO_ROOT / "driver.py"),
+        "--recipe",
+        recipe_path,
+        input_flag,
+        str(source_path),
+        "--run-id",
+        downstream_run_id,
+    ]
+    if downstream_output_dir is not None:
+        command.extend(["--output-dir", str(downstream_output_dir)])
+    if allow_run_id_reuse:
+        command.append("--allow-run-id-reuse")
+    if downstream_end_at:
+        command.extend(["--end-at", downstream_end_at])
+    return command
+
+
 def resolve_confirmed_handoff_source_input(
     plan: Dict[str, Any],
 ) -> tuple[Optional[str], Optional[Path], Optional[str]]:
@@ -271,20 +350,15 @@ def prepare_confirmed_handoff(
     resolved_downstream_run_id = downstream_run_id or default_downstream_run_id(
         recipe, upstream_run_id
     )
-    driver_command = [
-        sys.executable,
-        str(REPO_ROOT / "driver.py"),
-        "--recipe",
+    input_kind = normalize_source_input(plan).get("input_kind")
+    driver_command = build_explicit_recipe_driver_command(
         recipe,
-        launch_flag,
-        str(launch_path),
-        "--run-id",
-        resolved_downstream_run_id,
-    ]
-    if allow_run_id_reuse:
-        driver_command.append("--allow-run-id-reuse")
-    if downstream_end_at:
-        driver_command.extend(["--end-at", downstream_end_at])
+        input_kind=input_kind,
+        source_path=launch_path,
+        downstream_run_id=resolved_downstream_run_id,
+        downstream_end_at=downstream_end_at,
+        allow_run_id_reuse=allow_run_id_reuse,
+    )
 
     row["launch_input_flag"] = launch_flag
     row["launch_input_path"] = str(launch_path)

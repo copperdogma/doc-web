@@ -409,7 +409,7 @@
       "scores": null,
       "known_gaps": [
         "Passing evidence is still bounded to one checked-in plain-text `.mbox` fixture with two simple message bodies and no attachments.",
-        "The maintained lane does not yet claim quoted-thread cleanup, multipart HTML normalization, attachment extraction, `.msg` parity, mixed-archive routing, mailbox connector workflows, or broader mailbox/thread ownership.",
+        "The maintained lane does not yet claim quoted-thread cleanup, multipart HTML normalization, attachment extraction, `.msg` parity, broader mixed-archive ownership beyond the separate ZIP seam, mailbox connector workflows, or broader mailbox/thread ownership.",
         "MBOX provenance currently relies on stable source element ids plus per-message metadata such as archive order, `subject`, `sent_from`, and `sent_to`; it does not claim printed page numbers, mailbox graph semantics, or attachment-native anchors."
       ],
       "graduated": false
@@ -520,14 +520,25 @@
     {
       "id": "mixed-archive",
       "format_family": "mixed-archive",
-      "status": "untested",
-      "description": "ZIP or folder containing multiple file types that need format detection and routing",
-      "pipeline_recipe": null,
-      "intake_module": null,
+      "status": "passing",
+      "description": "ZIP archives containing a bounded mix of direct-entry file types routed member-by-member",
+      "pipeline_recipe": "recipe-mixed-archive-zip-routing-mvp.yaml",
+      "intake_module": "archive_unpack_manifest_v1 → archive_route_members_v1",
       "complexity": ["mixed-layout"],
-      "fixtures": [],
+      "fixtures": [
+        {
+          "id": "mixed-archive-mini",
+          "source": "testdata/mixed-archive-mini.zip",
+          "pages": null,
+          "notes": "Supported on the first bounded maintained mixed-archive slice. Story 205 established a ZIP-only lane on one repo-owned four-member fixture with nested DOCX, plain-text `.eml`, checked HTML snapshot, and one intentionally unsupported `.txt` member. The lane emits archive/member manifest rows, launches the supported members through existing maintained direct-entry recipes, and records an explicit blocked route row for the unsupported member instead of flattening the archive into one synthetic document."
+        }
+      ],
       "scores": null,
-      "known_gaps": [],
+      "known_gaps": [
+        "Passing evidence is still bounded to one checked-in ZIP fixture with three launchable direct-entry members and one explicitly blocked unsupported member.",
+        "The maintained lane does not yet claim direct folder input, PDF-member routing, grouped image-member interpretation, nested archives, attachment extraction, ambiguous AI-assisted route decisions, or broad heterogeneous archive ownership.",
+        "Mixed-archive provenance currently relies on archive-relative `member_path` / `member_id`, extracted member paths, and downstream run ids or artifact paths; it does not flatten members into one combined bundle or claim archive-level page anchors."
+      ],
       "graduated": false
     }
   ]

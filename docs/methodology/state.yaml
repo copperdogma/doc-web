@@ -55,8 +55,8 @@
       {
         "id": "maintained-intake-honesty",
         "status": "active",
-        "story_refs": ["191", "196", "197", "200", "201", "202", "203"],
-        "notes": "Recent bounded proof and direct-entry expansions are done; the only still-open line here is blocked Story 191, so current work is honesty maintenance and blocked-handwriting visibility rather than a buildable widening push."
+        "story_refs": ["191", "196", "197", "200", "201", "202", "203", "205"],
+        "notes": "Recent bounded proof and direct-entry expansions are done; Story 205 closed the first ZIP-only mixed-archive routing seam as bounded maintained evidence, so the only current live line here is blocked Story 191 on handwritten OCR. Keep Story 191 as a health flag until a materially stronger OCR substrate appears, and treat Story 205 as proof for one explicit archive-member routing slice rather than broad archive ownership."
       }
     ]
   },
@@ -65,7 +65,7 @@
       {
         "id": "recommended-order",
         "title": "Recommended Order",
-        "markdown": "Guiding priorities: keep bounded intake + `doc-web` claims honest and widen reusable format coverage only when substrate and proof exist.\n\nUse `docs/methodology/graph.json`, `docs/methodology/state.yaml`, and `/triage` output for current sequencing. Story `204` refreshed the planning surfaces on 2026-04-09; the only remaining live line is blocked Story `191`, which should be treated as a health flag rather than evidence of a currently buildable OCR lane. Historical Fighting Fantasy/gamebook stories remain in the index below as project record and reference evidence, not as the default mission queue."
+        "markdown": "Guiding priorities: keep bounded intake + `doc-web` claims honest and widen reusable format coverage only when substrate and proof exist.\n\nUse `docs/methodology/graph.json`, `docs/methodology/state.yaml`, and `/triage` output for current sequencing. Story `205` now stands as the completed bounded proof for the first `mixed-archive` ZIP seam; use it as evidence for archive-member manifest/member-route behavior on the checked-in fixture, not as a blanket archive-support claim. Story `191` remains blocked and should still be treated as a health flag rather than evidence of a currently buildable OCR lane. Historical Fighting Fantasy/gamebook stories remain in the index below as project record and reference evidence, not as the default mission queue."
       }
     ],
     "uncategorized_label": "Legacy / Uncategorized Stories"
@@ -88,10 +88,10 @@
         "label": "Intake and Routing",
         "manual_priority": "medium",
         "last_audited_at": "2026-04-09",
-        "stories_since_audit": 0,
-        "recent_story_refs": ["194", "200"],
+        "stories_since_audit": 1,
+        "recent_story_refs": ["194", "200", "205"],
         "open_findings": [],
-        "notes": "Story 194 fixed the office recommendation boundary and Story 200 added the first web-page direct-entry seam. No new routing cleanup is due until a fresh substrate such as mixed-archive routing or broader recommendation proof exists."
+        "notes": "Story 194 fixed the office recommendation boundary, Story 200 added the first web-page direct-entry seam, and Story 205 closed the first ZIP-only mixed-archive routing slice. The bounded archive/member manifest plus direct-entry dispatch substrate now exists for one checked-in ZIP fixture, while direct folder input and broader archive semantics remain intentionally out of scope until separately proven."
       },
       "ocr_and_extraction": {
         "label": "OCR and Extraction",

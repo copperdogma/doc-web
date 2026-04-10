@@ -324,8 +324,9 @@ bounded to one plain-text multi-message fixture with stdlib `mailbox.mbox`
 splitting, subject/from/to metadata preserved per message in `elements.jsonl`
 and the bundle report, one HTML entry per message in archive order, and
 pageless provenance via `source_element_ids`. Quoted-thread cleanup,
-attachments, multipart HTML normalization, `.msg`, mixed-archive routing, and
-broader mailbox/thread ownership remain out of scope for this lane.
+attachments, multipart HTML normalization, `.msg`, broader mixed-archive
+ownership beyond the separate ZIP seam, and broader mailbox/thread ownership
+remain out of scope for this lane.
 
 Expected bundle outputs:
 
@@ -565,6 +566,51 @@ web-page lane are still direct explicit-recipe entry points. They are not part
 of the recommendation-only contact-sheet benchmark or the approved-handoff
 automation surface.
 
+### Repo-Owned Mixed-Archive ZIP Intake Smoke
+
+Use this when you need a cheap real-run proof that the first bounded
+mixed-archive lane still emits an archive/member manifest, archive-member route
+rows, nested downstream runs for supported members, and explicit blocked rows
+for unsupported members:
+
+```bash
+python -m pip install '.[driver,docx,email]'
+find modules -name "*.pyc" -delete
+python driver.py \
+  --recipe configs/recipes/recipe-mixed-archive-zip-routing-mvp.yaml \
+  --input-zip testdata/mixed-archive-mini.zip \
+  --run-id <run_id> \
+  --allow-run-id-reuse
+python validate_artifact.py \
+  --schema archive_member_manifest_v1 \
+  --file output/runs/<run_id>/01_archive_unpack_manifest_v1/archive_members_manifest.jsonl
+python validate_artifact.py \
+  --schema archive_member_route_v1 \
+  --file output/runs/<run_id>/02_archive_route_members_v1/archive_member_routes.jsonl
+```
+
+Story 205 established the first maintained mixed-archive slice on the checked-in
+`testdata/mixed-archive-mini.zip` fixture. The maintained claim is intentionally
+narrow: one repo-owned ZIP archive with nested DOCX, plain-text `.eml`, and
+static HTML members plus one intentionally unsupported `.txt` member; a stamped
+archive/member manifest; member-level route rows with archive-relative
+provenance; nested `driver.py` launches into existing maintained direct-entry
+recipes for the supported members; and an explicit blocked row for the
+unsupported member. Direct folder input, PDF/image-member routing, nested
+archives, attachment extraction, and broad heterogeneous archive normalization
+remain out of scope.
+
+Expected outputs:
+
+- `output/runs/<run_id>/01_archive_unpack_manifest_v1/archive_members_manifest.jsonl`
+- `output/runs/<run_id>/02_archive_route_members_v1/archive_member_routes.jsonl`
+- `output/runs/<member_run_id>/output/html/manifest.json` for each launched supported member run referenced from `archive_member_routes.jsonl`
+
+These maintained DOCX/XLSX/PPTX/EPUB/EML direct-entry lanes plus the bounded
+web-page and mixed-archive ZIP lanes are still explicit-recipe entry points.
+They are not part of the recommendation-only contact-sheet benchmark or the
+approved-handoff automation surface.
+
 ### Office Intake Boundary Probe
 
 Use this when you need a cheap rerunnable proof that direct-entry files remain
@@ -627,6 +673,7 @@ scripts/run_driver_monitored.sh \
 | `recipe-email-eml-html-mvp.yaml` | Maintained plain-text `.eml` structural bundle path for one verified single-message slice with pageless provenance. |
 | `recipe-email-mbox-html-mvp.yaml` | Maintained plain-text `.mbox` structural bundle path for one verified two-message archive slice with one HTML entry per message and pageless provenance. |
 | `recipe-epub-html-mvp.yaml` | Maintained EPUB structural bundle path for the verified bounded chapter-first prose slice with pageless provenance. |
+| `recipe-mixed-archive-zip-routing-mvp.yaml` | Maintained ZIP-only mixed-archive path that manifests archive members, routes supported members into existing direct-entry recipes, and records blocked members explicitly. |
 | `recipe-pptx-html-mvp.yaml` | Maintained PPTX structural bundle path for the verified bounded slide slice: one HTML page per supported slide entry with slide-number provenance. |
 | `recipe-web-page-html-mvp.yaml` | Maintained checked-HTML web-page path for one repo-owned static snapshot that reuses the existing `page_html_v1` to `doc-web` chain. |
 | `recipe-xlsx-html-mvp.yaml` | Maintained XLSX structural bundle path for the verified simple-table slice: one HTML page per supported sheet/entry, including multiple table regions on one sheet, with anchor-based provenance. |
@@ -650,6 +697,7 @@ Append these after `--` in the wrapper script.
 *   `--input-eml <path>`: Override `input.eml` on maintained plain-text `.eml` recipes.
 *   `--input-mbox <path>`: Override `input.mbox` on maintained plain-text `.mbox` recipes.
 *   `--input-epub <path>`: Override `input.epub` on maintained EPUB-backed recipes.
+*   `--input-zip <path>`: Override `input.zip` on the maintained ZIP-only mixed-archive recipe.
 *   `--input-pptx <path>`: Override `input.pptx` on maintained PPTX-backed recipes.
 *   `--input-html <path>`: Override `input.html` on maintained checked-HTML web-page recipes.
 *   `--input-xlsx <path>`: Override `input.xlsx` on maintained XLSX-backed recipes.

@@ -1,0 +1,43 @@
+{
+  "title": "Mixed Archive ZIP Mini Fixture",
+  "source_type": "repo-owned mixed archive",
+  "generated_at": "2026-04-09",
+  "archive_format": "zip",
+  "capture_note": "Checked-in ZIP probe for Story 205. It packages one maintained DOCX fixture, one maintained plain-text .eml fixture, one maintained static HTML snapshot, and one intentionally unsupported plain-text member so the first mixed-archive lane can prove archive-member manifesting, bounded suffix routing, nested driver launches, and explicit blocked outcomes without claiming generic archive support.",
+  "members": [
+    {
+      "member_path": "docs/reference.docx",
+      "source": "testdata/docx-mini.docx",
+      "expected_route": "recipe-docx-html-mvp.yaml"
+    },
+    {
+      "member_path": "mail/message.eml",
+      "source": "testdata/email-eml-mini.eml",
+      "expected_route": "recipe-email-eml-html-mvp.yaml"
+    },
+    {
+      "member_path": "web/snapshot.html",
+      "source": "testdata/web-page-mini.html",
+      "expected_route": "recipe-web-page-html-mvp.yaml",
+      "notes": "The ZIP keeps only the HTML member so the bounded probe exercises one blocked unsupported file rather than counting an extra `.source.json` sidecar member."
+    },
+    {
+      "member_path": "notes/readme.txt",
+      "source": "repo-authored member embedded only in the ZIP fixture",
+      "expected_route": "blocked",
+      "notes": "This unsupported text member exists to prove explicit blocked routing on the bounded mixed-archive slice."
+    }
+  ],
+  "supported_scope": [
+    "ZIP-only entry",
+    "archive-relative member manifest",
+    "suffix-based routing into existing maintained direct-entry recipes",
+    "explicit blocked rows for unsupported members"
+  ],
+  "known_gaps": [
+    "No direct folder input",
+    "No PDF or grouped image-member routing",
+    "No nested archives or attachment extraction",
+    "No broad mixed-archive normalization into a single combined bundle"
+  ]
+}

@@ -134,7 +134,8 @@
           "200",
           "201",
           "202",
-          "203"
+          "203",
+          "205"
         ],
         "adr_ids": [
           "ADR-001",
@@ -374,7 +375,8 @@
           "200",
           "201",
           "202",
-          "203"
+          "203",
+          "205"
         ],
         "adr_ids": [
           "ADR-002",
@@ -427,7 +429,8 @@
           "200",
           "201",
           "202",
-          "203"
+          "203",
+          "205"
         ],
         "adr_ids": [
           "ADR-002",
@@ -485,7 +488,8 @@
           "201",
           "202",
           "203",
-          "204"
+          "204",
+          "205"
         ],
         "adr_ids": [
           "ADR-002"
@@ -526,7 +530,8 @@
           "201",
           "202",
           "203",
-          "204"
+          "204",
+          "205"
         ],
         "adr_ids": [],
         "eval_ids": [
@@ -6734,6 +6739,58 @@
       "legacy_build_map_refs": "",
       "metadata_source": "frontmatter",
       "missing_frontmatter_keys": []
+    },
+    {
+      "id": "205",
+      "title": "Establish the First Honest Mixed-Archive Intake/Routing Seam",
+      "path": "docs/stories/story-205-mixed-archive-intake-routing-seam.md",
+      "status": "Done",
+      "priority": "High",
+      "ideal_refs": [
+        "Requirement #1 (Ingest), Requirement #2 (Detect), Requirement #6 (Validate), Any format, any condition, Transparency over magic"
+      ],
+      "spec_refs": [
+        "spec:1",
+        "spec:1.1",
+        "spec:6",
+        "spec:7",
+        "spec:8",
+        "spec:9"
+      ],
+      "decision_refs": [
+        "`docs/ideal.md`, `docs/spec.md`, `docs/methodology/state.yaml`, `docs/methodology/graph.json`, `docs/decisions/adr-002-doc-web-runtime-boundary/adr.md`, `docs/stories/story-194-office-intake-recommendation-and-handoff-boundary.md`, `docs/stories/story-200-web-page-direct-entry-seam.md`, `docs/stories/story-202-eml-direct-entry-seam.md`, `docs/stories/story-203-mbox-archive-seam.md`, `tests/fixtures/formats/_coverage-matrix.json`, `README.md`, `docs/RUNBOOK.md`, `modules/intake/intake_plan_utils.py`, `modules/intake/run_dispatch_v1/main.py`, `benchmarks/scripts/intake_scope.py`, and `None found after search in docs/decisions/`, `docs/runbooks/`, `docs/scout/`, and `docs/notes/` for a narrower mixed-archive routing ADR or runbook",
+        "ADR-002"
+      ],
+      "adr_ids": [
+        "ADR-002"
+      ],
+      "depends_on": [],
+      "category_refs": [
+        "spec:1",
+        "spec:6",
+        "spec:7",
+        "spec:8",
+        "spec:9"
+      ],
+      "compromise_refs": [
+        "B10",
+        "C2"
+      ],
+      "input_coverage_refs": [
+        "mixed-archive"
+      ],
+      "architecture_domains": [
+        "intake_and_routing"
+      ],
+      "roadmap_tags": [
+        "campaign:maintained-intake-honesty"
+      ],
+      "blocker_summary": "",
+      "blocker_evidence": "",
+      "unblock_condition": "",
+      "legacy_build_map_refs": "",
+      "metadata_source": "frontmatter",
+      "missing_frontmatter_keys": []
     }
   ],
   "adrs": [
@@ -7499,7 +7556,7 @@
         "scores": null,
         "known_gaps": [
           "Passing evidence is still bounded to one checked-in plain-text `.mbox` fixture with two simple message bodies and no attachments.",
-          "The maintained lane does not yet claim quoted-thread cleanup, multipart HTML normalization, attachment extraction, `.msg` parity, mixed-archive routing, mailbox connector workflows, or broader mailbox/thread ownership.",
+          "The maintained lane does not yet claim quoted-thread cleanup, multipart HTML normalization, attachment extraction, `.msg` parity, broader mixed-archive ownership beyond the separate ZIP seam, mailbox connector workflows, or broader mailbox/thread ownership.",
           "MBOX provenance currently relies on stable source element ids plus per-message metadata such as archive order, `subject`, `sent_from`, and `sent_to`; it does not claim printed page numbers, mailbox graph semantics, or attachment-native anchors."
         ],
         "graduated": false
@@ -7616,16 +7673,27 @@
       {
         "id": "mixed-archive",
         "format_family": "mixed-archive",
-        "status": "untested",
-        "description": "ZIP or folder containing multiple file types that need format detection and routing",
-        "pipeline_recipe": null,
-        "intake_module": null,
+        "status": "passing",
+        "description": "ZIP archives containing a bounded mix of direct-entry file types routed member-by-member",
+        "pipeline_recipe": "recipe-mixed-archive-zip-routing-mvp.yaml",
+        "intake_module": "archive_unpack_manifest_v1 \u2192 archive_route_members_v1",
         "complexity": [
           "mixed-layout"
         ],
-        "fixtures": [],
+        "fixtures": [
+          {
+            "id": "mixed-archive-mini",
+            "source": "testdata/mixed-archive-mini.zip",
+            "pages": null,
+            "notes": "Supported on the first bounded maintained mixed-archive slice. Story 205 established a ZIP-only lane on one repo-owned four-member fixture with nested DOCX, plain-text `.eml`, checked HTML snapshot, and one intentionally unsupported `.txt` member. The lane emits archive/member manifest rows, launches the supported members through existing maintained direct-entry recipes, and records an explicit blocked route row for the unsupported member instead of flattening the archive into one synthetic document."
+          }
+        ],
         "scores": null,
-        "known_gaps": [],
+        "known_gaps": [
+          "Passing evidence is still bounded to one checked-in ZIP fixture with three launchable direct-entry members and one explicitly blocked unsupported member.",
+          "The maintained lane does not yet claim direct folder input, PDF-member routing, grouped image-member interpretation, nested archives, attachment extraction, ambiguous AI-assisted route decisions, or broad heterogeneous archive ownership.",
+          "Mixed-archive provenance currently relies on archive-relative `member_path` / `member_id`, extracted member paths, and downstream run ids or artifact paths; it does not flatten members into one combined bundle or claim archive-level page anchors."
+        ],
         "graduated": false
       }
     ],
@@ -7778,9 +7846,10 @@
             "200",
             "201",
             "202",
-            "203"
+            "203",
+            "205"
           ],
-          "notes": "Recent bounded proof and direct-entry expansions are done; the only still-open line here is blocked Story 191, so current work is honesty maintenance and blocked-handwriting visibility rather than a buildable widening push."
+          "notes": "Recent bounded proof and direct-entry expansions are done; Story 205 closed the first ZIP-only mixed-archive routing seam as bounded maintained evidence, so the only current live line here is blocked Story 191 on handwritten OCR. Keep Story 191 as a health flag until a materially stronger OCR substrate appears, and treat Story 205 as proof for one explicit archive-member routing slice rather than broad archive ownership."
         }
       ]
     },
@@ -7789,7 +7858,7 @@
         {
           "id": "recommended-order",
           "title": "Recommended Order",
-          "markdown": "Guiding priorities: keep bounded intake + `doc-web` claims honest and widen reusable format coverage only when substrate and proof exist.\n\nUse `docs/methodology/graph.json`, `docs/methodology/state.yaml`, and `/triage` output for current sequencing. Story `204` refreshed the planning surfaces on 2026-04-09; the only remaining live line is blocked Story `191`, which should be treated as a health flag rather than evidence of a currently buildable OCR lane. Historical Fighting Fantasy/gamebook stories remain in the index below as project record and reference evidence, not as the default mission queue."
+          "markdown": "Guiding priorities: keep bounded intake + `doc-web` claims honest and widen reusable format coverage only when substrate and proof exist.\n\nUse `docs/methodology/graph.json`, `docs/methodology/state.yaml`, and `/triage` output for current sequencing. Story `205` now stands as the completed bounded proof for the first `mixed-archive` ZIP seam; use it as evidence for archive-member manifest/member-route behavior on the checked-in fixture, not as a blanket archive-support claim. Story `191` remains blocked and should still be treated as a health flag rather than evidence of a currently buildable OCR lane. Historical Fighting Fantasy/gamebook stories remain in the index below as project record and reference evidence, not as the default mission queue."
         }
       ],
       "uncategorized_label": "Legacy / Uncategorized Stories"
@@ -7817,13 +7886,14 @@
           "label": "Intake and Routing",
           "manual_priority": "medium",
           "last_audited_at": "2026-04-09",
-          "stories_since_audit": 0,
+          "stories_since_audit": 1,
           "recent_story_refs": [
             "194",
-            "200"
+            "200",
+            "205"
           ],
           "open_findings": [],
-          "notes": "Story 194 fixed the office recommendation boundary and Story 200 added the first web-page direct-entry seam. No new routing cleanup is due until a fresh substrate such as mixed-archive routing or broader recommendation proof exists."
+          "notes": "Story 194 fixed the office recommendation boundary, Story 200 added the first web-page direct-entry seam, and Story 205 closed the first ZIP-only mixed-archive routing slice. The bounded archive/member manifest plus direct-entry dispatch substrate now exists for one checked-in ZIP fixture, while direct folder input and broader archive semantics remain intentionally out of scope until separately proven."
         },
         "ocr_and_extraction": {
           "label": "OCR and Extraction",

@@ -1,3 +1,22 @@
+## [2026-04-10-01] - Add bounded mixed-archive ZIP seam (Story 205)
+
+### Added
+- Added a maintained ZIP-only mixed-archive routing lane with a checked-in recipe, two new intake modules, a repo-owned fixture pair, and focused regression coverage for the first honest `mixed-archive` slice
+- Added stamped archive-member manifest and route schemas so archive-relative member identity, downstream run ids, and blocked outcomes stay inspectable end to end
+
+### Changed
+- Changed `driver.py`, `RunConfig`, shared intake routing helpers, the coverage matrix, README, runbook, story metadata, and methodology state so the repo now documents the exact bounded `input_zip` support surface honestly
+- Changed Story 205 close-out records so the landed ZIP seam is treated as completed bounded evidence rather than an active roadmap promise
+
+### Fixed
+- Fixed the archive-route output-path bug that surfaced in the first real proof run by resolving driver-style relative artifact paths correctly before stamping
+
+### Tested
+- `make lint`
+- `make methodology-check`
+- `make test`
+- `python driver.py --recipe configs/recipes/recipe-mixed-archive-zip-routing-mvp.yaml --input-zip testdata/mixed-archive-mini.zip --run-id validate-story205-mixed-archive-zip --allow-run-id-reuse --force`
+
 ## [2026-04-09-05] - Refresh methodology roadmap truth surfaces (Story 204)
 
 ### Changed

@@ -6,11 +6,11 @@
 
 Guiding priorities: keep bounded intake + `doc-web` claims honest and widen reusable format coverage only when substrate and proof exist.
 
-Use `docs/methodology/graph.json`, `docs/methodology/state.yaml`, and `/triage` output for current sequencing. Story `204` refreshed the planning surfaces on 2026-04-09; the only remaining live line is blocked Story `191`, which should be treated as a health flag rather than evidence of a currently buildable OCR lane. Historical Fighting Fantasy/gamebook stories remain in the index below as project record and reference evidence, not as the default mission queue.
+Use `docs/methodology/graph.json`, `docs/methodology/state.yaml`, and `/triage` output for current sequencing. Story `205` now stands as the completed bounded proof for the first `mixed-archive` ZIP seam; use it as evidence for archive-member manifest/member-route behavior on the checked-in fixture, not as a blanket archive-support claim. Story `191` remains blocked and should still be treated as a health flag rather than evidence of a currently buildable OCR lane. Historical Fighting Fantasy/gamebook stories remain in the index below as project record and reference evidence, not as the default mission queue.
 
 ## Active Focus
 
-- Campaign `maintained-intake-honesty` (active; stories: 191, 196, 197, 200, 201, 202, 203) — Recent bounded proof and direct-entry expansions are done; the only still-open line here is blocked Story 191, so current work is honesty maintenance and blocked-handwriting visibility rather than a buildable widening push.
+- Campaign `maintained-intake-honesty` (active; stories: 191, 196, 197, 200, 201, 202, 203, 205) — Recent bounded proof and direct-entry expansions are done; Story 205 closed the first ZIP-only mixed-archive routing seam as bounded maintained evidence, so the only current live line here is blocked Story 191 on handwritten OCR. Keep Story 191 as a health flag until a materially stronger OCR substrate appears, and treat Story 205 as proof for one explicit archive-member routing slice rather than broad archive ownership.
 
 ## Index
 
@@ -57,6 +57,7 @@ Grouped by primary `spec:N` category. Stories without category refs remain in an
 | 201 | Establish the First Honest EPUB Direct-Entry Seam | High | Done | — | [story-201](stories/story-201-epub-direct-entry-seam.md) |
 | 202 | Establish the First Honest EML Direct-Entry Seam | High | Done | — | [story-202](stories/story-202-eml-direct-entry-seam.md) |
 | 203 | Establish the First Honest MBOX Archive Seam | High | Done | 202 | [story-203](stories/story-203-mbox-archive-seam.md) |
+| 205 | Establish the First Honest Mixed-Archive Intake/Routing Seam | High | Done | — | [story-205](stories/story-205-mixed-archive-intake-routing-seam.md) |
 
 ### spec:2 — OCR & Text Extraction
 

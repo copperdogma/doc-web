@@ -270,7 +270,8 @@ intentionally narrow:
 - direct explicit-recipe entry only
 
 Quoted-thread cleanup, attachments, multipart HTML normalization, `.msg`,
-mixed-archive routing, and broader mailbox/thread ownership remain unproven.
+broader mixed-archive ownership beyond the separate ZIP seam, and broader
+mailbox/thread ownership remain unproven.
 
 For the maintained web-page proof lane, the base driver install is enough:
 
@@ -296,11 +297,38 @@ Live URL fetch, JavaScript-rendered pages, multi-page crawling, boilerplate
 cleanup across arbitrary sites, and approved-handoff / recommendation-only
 automation support remain outside this lane.
 
-Those maintained DOCX/XLSX/PPTX/EPUB/EML lanes plus the bounded web-page lane
-are still direct explicit-recipe entry points. Story 194 did not widen the
-recommendation-only intake or approved-handoff automation to office files, and
-Stories 200/201/202 likewise keep web pages, EPUB, and `.eml` outside those
-automation surfaces: `auto-book-type-detection` remains a PDF-only surface,
+For the maintained mixed-archive ZIP proof lane, install the base driver plus
+the explicit extras needed by the nested member families in the checked-in
+probe:
+
+```bash
+python -m pip install '.[driver,docx,email]'
+python driver.py \
+  --recipe configs/recipes/recipe-mixed-archive-zip-routing-mvp.yaml \
+  --input-zip testdata/mixed-archive-mini.zip \
+  --run-id <run_id> \
+  --allow-run-id-reuse \
+  --force
+```
+
+Story 205 established the first bounded maintained mixed-archive slice on the
+repo-owned `testdata/mixed-archive-mini.zip` fixture. The supported claim is
+intentionally narrow:
+
+- one checked-in ZIP fixture with nested DOCX, plain-text `.eml`, and static HTML members plus one intentionally unsupported `.txt` member
+- archive-relative member manifest and route rows that stay inspectable end to end
+- nested `driver.py` launches into the existing maintained direct-entry DOCX, `.eml`, and web-page lanes
+- explicit blocked routing for unsupported members instead of hidden skips or a fabricated combined bundle
+
+Direct folder input, PDF/image-member routing, nested archives, attachments,
+and broad heterogeneous archive normalization remain unproven.
+
+Those maintained DOCX/XLSX/PPTX/EPUB/EML lanes plus the bounded web-page and
+mixed-archive ZIP lanes are still explicit recipe entry points. Story 194 did
+not widen the recommendation-only intake or approved-handoff automation to
+office files, and Stories 200/201/202/205 likewise keep web pages, EPUB,
+`.eml`, and mixed archives outside those automation surfaces:
+`auto-book-type-detection` remains a PDF-only surface,
 `approved-intake-handoff` remains limited to `pdf` and `images_dir`, and
 direct-entry-only boundary probes now fail explicitly instead of drifting into
 unsupported or live-fetch behavior.
@@ -317,6 +345,7 @@ The active maintained entry surfaces are explicit recipes, not hidden routing:
 - `configs/recipes/recipe-email-eml-html-mvp.yaml` for the maintained plain-text `.eml` single-message lane on the verified bounded probe slice
 - `configs/recipes/recipe-email-mbox-html-mvp.yaml` for the maintained plain-text `.mbox` multi-message archive lane on the verified bounded probe slice
 - `configs/recipes/recipe-epub-html-mvp.yaml` for the maintained EPUB chapter-first lane on the verified bounded probe slice
+- `configs/recipes/recipe-mixed-archive-zip-routing-mvp.yaml` for the maintained ZIP-only mixed-archive routing lane on the verified bounded four-member probe slice
 - `configs/recipes/recipe-pptx-html-mvp.yaml` for the maintained PPTX slide-backed lane on the verified bounded probe slice
 - `configs/recipes/recipe-web-page-html-mvp.yaml` for the maintained checked-HTML web-page lane on the verified bounded probe slice
 - `configs/recipes/recipe-xlsx-html-mvp.yaml` for the maintained XLSX workbook-table lane on the verified simple-table slice
@@ -325,8 +354,8 @@ The active maintained entry surfaces are explicit recipes, not hidden routing:
 
 Recommendation-only intake automation is intentionally narrower than that full
 list: maintained `docx`, `email-eml`, `email-mbox`, `epub`, `xlsx`, `pptx`,
-and `web-page` support currently starts with explicit
-`driver.py --recipe ... --input-docx/--input-eml/--input-mbox/--input-epub/--input-xlsx/--input-pptx/--input-html`
+`web-page`, and `mixed-archive` support currently starts with explicit
+`driver.py --recipe ... --input-docx/--input-eml/--input-mbox/--input-epub/--input-xlsx/--input-pptx/--input-html/--input-zip`
 entry, not the recommendation-only contact-sheet flow or approved-handoff
 automation.
 

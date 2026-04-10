@@ -1,4 +1,5 @@
 import re
+from pathlib import PurePosixPath
 from typing import Any, Dict, List, Optional, Literal, Union
 from pydantic import BaseModel, ConfigDict, Field, field_validator, model_validator
 
@@ -965,6 +966,68 @@ class IntakeHandoff(BaseModel):
     created_at: Optional[str] = None
 
 
+def _validate_archive_member_path(value: str) -> str:
+    rendered = str(value or "").strip()
+    normalized = PurePosixPath(rendered)
+    if not rendered:
+        raise ValueError("archive member path must not be empty")
+    if normalized.is_absolute():
+        raise ValueError("archive member path must be archive-relative")
+    if any(part == ".." for part in normalized.parts):
+        raise ValueError("archive member path must not escape the archive root")
+    if "." in normalized.parts:
+        raise ValueError("archive member path must be normalized")
+    return str(normalized)
+
+
+class ArchiveMemberManifest(BaseModel):
+    schema_version: str = "archive_member_manifest_v1"
+    archive_format: str = "zip"
+    archive_path: str
+    member_id: str
+    member_index: int = Field(ge=1)
+    member_path: str
+    extracted_path: str
+    filename: str
+    file_extension: Optional[str] = None
+    detected_input_kind: Optional[str] = None
+    file_size_bytes: int = Field(ge=0)
+    sha256: Optional[str] = None
+    module_id: Optional[str] = None
+    run_id: Optional[str] = None
+    created_at: Optional[str] = None
+
+    _member_path_relative = field_validator("member_path")(_validate_archive_member_path)
+
+
+class ArchiveMemberRoute(BaseModel):
+    schema_version: str = "archive_member_route_v1"
+    archive_format: str = "zip"
+    archive_path: str
+    member_id: str
+    member_index: int = Field(ge=1)
+    member_path: str
+    extracted_path: str
+    filename: str
+    file_extension: Optional[str] = None
+    detected_input_kind: Optional[str] = None
+    recommended_recipe: Optional[str] = None
+    launch_input_flag: Optional[str] = None
+    launch_input_path: Optional[str] = None
+    driver_command: List[str] = Field(default_factory=list)
+    downstream_run_id: Optional[str] = None
+    downstream_output_dir: Optional[str] = None
+    first_downstream_artifact: Optional[str] = None
+    terminal_outcome: Literal["launched", "skipped", "blocked", "failed"]
+    terminal_reason: Optional[str] = None
+    exit_code: Optional[int] = None
+    module_id: Optional[str] = None
+    run_id: Optional[str] = None
+    created_at: Optional[str] = None
+
+    _member_path_relative = field_validator("member_path")(_validate_archive_member_path)
+
+
 # ────────────────────────────────────────────────────────────────
 # Document IR – Unstructured-native element representation
 # ────────────────────────────────────────────────────────────────
@@ -1299,6 +1362,7 @@ class RunConfig(BaseModel):
     input_html: Optional[str] = None
     input_eml: Optional[str] = None
     input_mbox: Optional[str] = None
+    input_zip: Optional[str] = None
     output_dir: Optional[str] = None
 
     execution: ExecutionConfig = Field(default_factory=ExecutionConfig)

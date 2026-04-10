@@ -1,7 +1,12 @@
+import sys
+from pathlib import Path
+
 import pytest
 
 from modules.intake.intake_plan_utils import (
+    build_explicit_recipe_driver_command,
     choose_maintained_recipe,
+    infer_archive_member_input_kind,
     prepare_confirmed_handoff,
 )
 
@@ -281,3 +286,47 @@ def test_prepare_confirmed_handoff_blocks_direct_entry_only_recipes_with_explici
         row["terminal_reason"]
         == f"direct_entry_recipe_outside_confirmed_handoff_scope:{input_kind}"
     )
+
+
+@pytest.mark.parametrize(
+    ("member_path", "expected_kind"),
+    [
+        ("nested/document.docx", "docx"),
+        ("mail/message.eml", "email-eml"),
+        ("site/page.html", "web-page"),
+        ("site/page.htm", "web-page"),
+        ("slides/deck.pptx", "pptx"),
+        ("tables/workbook.xlsx", "xlsx"),
+        ("books/mini.epub", "epub"),
+        ("mail/archive.mbox", "email-mbox"),
+        ("pdf/source.pdf", "pdf"),
+        ("notes/readme.txt", None),
+    ],
+)
+def test_infer_archive_member_input_kind_routes_by_suffix(member_path, expected_kind):
+    assert infer_archive_member_input_kind(member_path) == expected_kind
+
+
+def test_build_explicit_recipe_driver_command_for_web_page(tmp_path):
+    source_path = tmp_path / "snapshot.html"
+    source_path.write_text("<html><body><h1>Example</h1></body></html>", encoding="utf-8")
+    output_root = tmp_path / "runs"
+
+    command = build_explicit_recipe_driver_command(
+        "configs/recipes/recipe-web-page-html-mvp.yaml",
+        input_kind="web-page",
+        source_path=source_path,
+        downstream_run_id="mixed-archive-member-001",
+        downstream_output_dir=output_root,
+        allow_run_id_reuse=True,
+    )
+
+    assert command[:6] == [
+        sys.executable,
+        str((Path(__file__).resolve().parents[1] / "driver.py")),
+        "--recipe",
+        "configs/recipes/recipe-web-page-html-mvp.yaml",
+        "--input-html",
+        str(source_path),
+    ]
+    assert command[-3:] == ["--output-dir", str(output_root), "--allow-run-id-reuse"]

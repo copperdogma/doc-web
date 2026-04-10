@@ -6,6 +6,8 @@ from pydantic import BaseModel, ValidationError
 
 from modules.common.utils import read_jsonl
 from schemas import (
+    ArchiveMemberManifest,
+    ArchiveMemberRoute,
     ChapterHtmlManifestEntry,
     SectionBoundary,
     PortionHypothesis,
@@ -39,6 +41,8 @@ from schemas import (
 
 
 SCHEMA_MAP: Dict[str, Type[BaseModel]] = {
+    "archive_member_manifest_v1": ArchiveMemberManifest,
+    "archive_member_route_v1": ArchiveMemberRoute,
     "chapter_html_manifest_v1": ChapterHtmlManifestEntry,
     "page_doc_v1": PageDoc,
     "clean_page_v1": CleanPage,

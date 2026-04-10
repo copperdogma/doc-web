@@ -1,0 +1,19 @@
+module_id: archive_route_members_v1
+stage: intake
+entrypoint: modules/intake/archive_route_members_v1/main.py
+input_schema: archive_member_manifest_v1
+output_schema: archive_member_route_v1
+default_params:
+  allow_run_id_reuse: false
+param_schema:
+  properties:
+    downstream_end_at:
+      type: string
+      description: "Optional downstream stage id to stop after for each launched member."
+    allow_run_id_reuse:
+      type: boolean
+      description: "Forward --allow-run-id-reuse to downstream driver invocations."
+    dry_run:
+      type: boolean
+      description: "Write the route artifact without launching downstream recipes."
+notes: "Route bounded ZIP members into existing maintained direct-entry recipes or explicit blocked outcomes while preserving archive-relative provenance."
