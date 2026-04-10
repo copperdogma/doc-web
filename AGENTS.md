@@ -33,6 +33,12 @@ active story, but you must read the relevant category/state slice and linked
 `spec:N` sections first. Do not treat the compiled methodology graph as optional
 context.
 
+**Quick routing:**
+- If the user says **"prioritize X"**, update or inspect `docs/methodology/state.yaml` first. That is where category ownership, current phase, and methodology notes live. If the priority changes execution, create or update the owning story too.
+- If the user says **"build/fix X"**, the execution slice belongs in a story under `docs/stories/`.
+- If the user says **"measure/benchmark/improve X"**, create or update the owning eval entry in `docs/evals/registry.yaml`.
+- `docs/stories.md` is a generated view. Never treat it as the writable source of truth.
+
 **Pending is not proof of buildability.** A story marked `Pending` is a planning
 claim, not evidence that the required substrate exists. Before recommending or
 building it, verify the critical code, schema, artifact, or workflow substrate

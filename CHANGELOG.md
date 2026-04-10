@@ -1,3 +1,11 @@
+## [2026-04-10-05] - Add AGENTS quick routing guidance
+
+### Changed
+- Added a concise AGENTS quick-route block so common requests like
+  `prioritize`, `build/fix`, and `measure/benchmark/improve` now point directly
+  to `docs/methodology/state.yaml`, `docs/stories/`, and
+  `docs/evals/registry.yaml`.
+
 ## [2026-04-10-04] - Repair remaining Onward genealogy fragmentation (Story 206)
 
 ### Changed
