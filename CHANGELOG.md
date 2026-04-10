@@ -1,3 +1,15 @@
+## [2026-04-10-10] - Compile triage actionability into methodology graph
+
+### Added
+- Added methodology-graph regression coverage that proves eval descriptions and explicit `retry_when` metadata survive compilation into the generated graph.
+
+### Changed
+- Changed triage guidance plus Gemini triage wrappers to rely on compiled actionability metadata instead of ad hoc retry inference when deciding what is actionable now.
+- Changed the methodology graph compiler and generated graph so stories, evals, and compromises now expose reusable actionability summaries and retry posture for triage.
+
+### Fixed
+- Fixed methodology graph coverage so eval descriptions and structured retry metadata are preserved consistently in the compiled output.
+
 ## [2026-04-10-08] - Record GLM-OCR scout handoff
 
 ### Changed

@@ -94,6 +94,23 @@ EMPTY_STORY_SECTION_RE = re.compile(
     re.IGNORECASE | re.DOTALL,
 )
 PLACEHOLDER_SECTION_RE = re.compile(r"^\{.+\}$", re.DOTALL)
+WORK_LOG_ENTRY_RE = re.compile(r"^(?P<stamp>\d{8}-\d{4})\s+—\s+(?P<summary>.+)$")
+ISO_DATE_RE = re.compile(r"\b(\d{4}-\d{2}-\d{2})\b")
+COMPACT_DATE_RE = re.compile(r"\b(\d{8})-\d{4}\b")
+TRIGGER_EXHAUSTED_RE = re.compile(
+    r"already (?:exercised|checked|spent|consumed)|exhausted|stay dormant|stays dormant|retry only when|plateaued|remains blocked until|stays blocked until|materially stronger",
+    re.IGNORECASE,
+)
+RETRY_TRIGGER_HINTS = [
+    ("new-worker-model", re.compile(r"\bnew worker model\b", re.IGNORECASE)),
+    ("new-subject-model", re.compile(r"\bnew subject model\b|\bstronger model\b", re.IGNORECASE)),
+    ("cheaper-subject-model", re.compile(r"\bcheaper\b", re.IGNORECASE)),
+    ("faster-subject-model", re.compile(r"\bfaster\b", re.IGNORECASE)),
+    ("new-approach", re.compile(r"\bnew approach\b|\bredesign\b|\brework\b", re.IGNORECASE)),
+    ("golden-fix", re.compile(r"\bgolden\b|\blabel\b|\bfixture\b", re.IGNORECASE)),
+    ("architecture-change", re.compile(r"\barchitecture\b|\bseam\b|\bsubstrate\b", re.IGNORECASE)),
+    ("dependency-available", re.compile(r"\bdependency\b|\bavailable\b", re.IGNORECASE)),
+]
 VALID_STORY_STATUSES = {
     "Draft",
     "Pending",
@@ -340,6 +357,7 @@ def parse_story(path: Path) -> dict[str, Any]:
     blocker_summary = extract_markdown_section(body, "Blocker Summary")
     blocker_evidence = extract_markdown_section(body, "Blocker Evidence")
     unblock_condition = extract_markdown_section(body, "Unblock Condition")
+    work_log = extract_markdown_section(body, "Work Log")
     return {
         "id": file_match.group(1),
         "title": title or path.stem,
@@ -359,6 +377,7 @@ def parse_story(path: Path) -> dict[str, Any]:
         "blocker_summary": blocker_summary,
         "blocker_evidence": blocker_evidence,
         "unblock_condition": unblock_condition,
+        "last_work_log_entry": extract_last_work_log_entry(work_log),
         "legacy_build_map_refs": fields.get("Build Map Refs", ""),
         "metadata_source": "frontmatter" if has_frontmatter else "legacy",
         "missing_frontmatter_keys": missing,
@@ -417,6 +436,49 @@ def parse_eval_registry() -> list[dict[str, Any]]:
         story_refs = unique_sorted([re.sub(r"\D", "", value) for value in list_field(raw.get("story_refs"))])
         compromise_refs = unique_sorted(list_field(raw.get("compromise_refs")))
         category_refs = unique_sorted(list_field(raw.get("category_refs")))
+        raw_retry_when = raw.get("retry_when") or []
+        retry_when: list[str] = []
+        retry_when_notes: list[str] = []
+        for item in raw_retry_when:
+            if isinstance(item, dict):
+                condition = str(item.get("condition") or "").strip()
+                note = str(item.get("note") or "").strip()
+            else:
+                condition = str(item).strip()
+                note = ""
+            if condition:
+                retry_when.append(condition)
+            if note:
+                retry_when_notes.append(note)
+        attempts = []
+        for raw_attempt in raw.get("attempts") or []:
+            attempt_retry_when = []
+            for item in raw_attempt.get("retry_when") or []:
+                if isinstance(item, dict):
+                    condition = str(item.get("condition") or "").strip()
+                else:
+                    condition = str(item).strip()
+                if condition:
+                    attempt_retry_when.append(condition)
+            attempts.append(
+                {
+                    "id": str(raw_attempt.get("id") or ""),
+                    "date": str(raw_attempt.get("date") or ""),
+                    "status": str(raw_attempt.get("status") or ""),
+                    "approach": str(raw_attempt.get("approach") or ""),
+                    "note": str(raw_attempt.get("note") or ""),
+                    "retry_when": unique_sorted(attempt_retry_when),
+                }
+            )
+        scores = json.loads(json.dumps(raw.get("scores") or [], default=str))
+        latest_score = (
+            max(
+                scores,
+                key=lambda score: (str(score.get("measured") or ""), str(score.get("model") or "")),
+            )
+            if scores
+            else None
+        )
         records.append(
             {
                 "id": str(raw["id"]),
@@ -424,11 +486,16 @@ def parse_eval_registry() -> list[dict[str, Any]]:
                 "type": str(raw.get("type") or "unknown"),
                 "command": str(raw.get("command") or ""),
                 "path": to_rel(EVALS_PATH),
+                "description": str(raw.get("description") or ""),
                 "spec_refs": spec_refs,
                 "story_refs": story_refs,
                 "compromise_refs": compromise_refs,
                 "category_refs": category_refs,
-                "scores": json.loads(json.dumps(raw.get("scores") or [], default=str)),
+                "scores": scores,
+                "latest_score": latest_score,
+                "attempts": attempts,
+                "retry_when": unique_sorted(retry_when),
+                "retry_when_notes": retry_when_notes,
                 "explicit_lineage": any(
                     raw.get(key) not in (None, [], "")
                     for key in ("spec_refs", "story_refs", "compromise_refs", "category_refs")
@@ -436,6 +503,195 @@ def parse_eval_registry() -> list[dict[str, Any]]:
             }
         )
     return records
+
+
+def compact_date_to_iso(value: str) -> str:
+    return f"{value[0:4]}-{value[4:6]}-{value[6:8]}"
+
+
+def extract_date_from_text(text: str | None) -> str | None:
+    if not text:
+        return None
+    iso_match = ISO_DATE_RE.search(text)
+    if iso_match:
+        return iso_match.group(1)
+    compact_match = COMPACT_DATE_RE.search(text)
+    if compact_match:
+        return compact_date_to_iso(compact_match.group(1))
+    return None
+
+
+def summarize_text(text: str | None, limit: int = 220) -> str:
+    if not text:
+        return ""
+    normalized = " ".join(text.split())
+    if len(normalized) <= limit:
+        return normalized
+    return normalized[: limit - 3].rstrip() + "..."
+
+
+def extract_last_work_log_entry(work_log: str) -> dict[str, str] | None:
+    matches = [WORK_LOG_ENTRY_RE.match(line.strip()) for line in work_log.splitlines()]
+    entries = [match for match in matches if match]
+    if not entries:
+        return None
+    last_entry = entries[-1]
+    timestamp = last_entry.group("stamp")
+    return {
+        "timestamp": timestamp,
+        "date": compact_date_to_iso(timestamp[:8]),
+        "summary": summarize_text(last_entry.group("summary")),
+    }
+
+
+def summarize_story_actionability(story: dict[str, Any]) -> dict[str, Any]:
+    posture_map = {
+        "In Progress": "in-progress",
+        "Pending": "ready-now",
+        "Blocked": "blocked",
+        "Draft": "draft",
+        "Done": "completed",
+        "Complete": "completed",
+    }
+    posture = posture_map.get(story["status"], "unknown")
+    last_action = story.get("last_work_log_entry") or {
+        "date": None,
+        "summary": "",
+    }
+    return {
+        "source_kind": "story",
+        "source_id": story["id"],
+        "source_path": story["path"],
+        "recommended_now": posture in {"in-progress", "ready-now"},
+        "posture": posture,
+        "why_now": summarize_text(last_action.get("summary")),
+        "last_relevant_action": {
+            "date": last_action.get("date"),
+            "source_type": "story-work-log" if story.get("last_work_log_entry") else "story-status",
+            "source": story["path"],
+            "summary": last_action.get("summary", ""),
+        },
+    }
+
+
+def latest_item(items: list[dict[str, Any]], date_key: str, fallback_key: str) -> dict[str, Any] | None:
+    if not items:
+        return None
+    return max(
+        items,
+        key=lambda item: (str(item.get(date_key) or ""), str(item.get(fallback_key) or "")),
+    )
+
+
+def infer_retry_when_from_text(*texts: str) -> list[str]:
+    joined = "\n".join(text for text in texts if text)
+    return [trigger for trigger, pattern in RETRY_TRIGGER_HINTS if pattern.search(joined)]
+
+
+def summarize_eval_actionability(entry: dict[str, Any]) -> dict[str, Any]:
+    latest_attempt = latest_item(entry.get("attempts", []), "date", "id")
+    latest_score = entry.get("latest_score")
+    retry_when = list(latest_attempt.get("retry_when", [])) if latest_attempt else []
+    if not retry_when:
+        retry_when = list(entry.get("retry_when", []))
+    if not retry_when:
+        retry_when = infer_retry_when_from_text(
+            entry.get("description", ""),
+            latest_attempt.get("note", "") if latest_attempt else "",
+            latest_attempt.get("approach", "") if latest_attempt else "",
+            latest_score.get("note", "") if latest_score else "",
+            "\n".join(entry.get("retry_when_notes", [])),
+        )
+    trigger_text = "\n".join(
+        text
+        for text in [
+            latest_attempt.get("note", "") if latest_attempt else "",
+            latest_attempt.get("approach", "") if latest_attempt else "",
+            latest_score.get("note", "") if latest_score else "",
+            "\n".join(entry.get("retry_when_notes", [])),
+        ]
+        if text
+    )
+    if TRIGGER_EXHAUSTED_RE.search(trigger_text):
+        trigger_status = "exhausted"
+    elif retry_when:
+        trigger_status = "waiting"
+    else:
+        trigger_status = "none"
+
+    if latest_attempt:
+        last_action = {
+            "date": latest_attempt.get("date"),
+            "source_type": "eval-attempt",
+            "source": entry["path"],
+            "source_id": latest_attempt.get("id"),
+            "summary": summarize_text(latest_attempt.get("note") or latest_attempt.get("approach")),
+        }
+    else:
+        last_action = {
+            "date": latest_score.get("measured") if latest_score else None,
+            "source_type": "eval-score",
+            "source": entry["path"],
+            "summary": summarize_text(latest_score.get("note")) if latest_score else "",
+        }
+
+    posture_map = {
+        "waiting": "wait-for-trigger",
+        "exhausted": "trigger-exhausted",
+        "none": "no-trigger-recorded",
+    }
+    why_now = summarize_text(" ".join(entry.get("retry_when_notes", [])))
+    return {
+        "source_kind": "eval",
+        "source_id": entry["id"],
+        "source_path": entry["path"],
+        "recommended_now": False,
+        "posture": posture_map[trigger_status],
+        "retry_trigger_status": trigger_status,
+        "retry_when": retry_when,
+        "why_now": why_now,
+        "last_relevant_action": last_action,
+    }
+
+
+def select_story_by_posture(stories: list[dict[str, Any]], posture_rank: dict[str, int]) -> dict[str, Any]:
+    return max(
+        stories,
+        key=lambda story: (
+            -posture_rank.get(story["actionability"]["posture"], 99),
+            str(story["actionability"]["last_relevant_action"].get("date") or ""),
+            story["id"],
+        ),
+    )
+
+
+def select_compromise_actionability(
+    stories: list[dict[str, Any]], evals: list[dict[str, Any]]
+) -> dict[str, Any] | None:
+    actionable_stories = [
+        story for story in stories if story.get("actionability", {}).get("recommended_now")
+    ]
+    if actionable_stories:
+        posture_rank = {"in-progress": 0, "ready-now": 1}
+        selected = dict(select_story_by_posture(actionable_stories, posture_rank)["actionability"])
+    elif evals:
+        selected_eval = max(
+            evals,
+            key=lambda entry: (
+                str(entry["actionability"]["last_relevant_action"].get("date") or ""),
+                entry["id"],
+            ),
+        )
+        selected = dict(selected_eval["actionability"])
+    elif stories:
+        posture_rank = {"blocked": 0, "draft": 1, "completed": 2, "unknown": 3}
+        selected = dict(select_story_by_posture(stories, posture_rank)["actionability"])
+    else:
+        return None
+
+    selected["story_ids"] = [story["id"] for story in stories]
+    selected["eval_ids"] = [entry["id"] for entry in evals]
+    return selected
 
 
 def parse_state() -> dict[str, Any]:
@@ -498,6 +754,7 @@ def build_graph() -> dict[str, Any]:
             story["adr_ids"] = unique_sorted(
                 story["adr_ids"] + [match for ref in story["decision_refs"] for match in ADR_ID_RE.findall(ref)]
             )
+        story["actionability"] = summarize_story_actionability(story)
     story_map = {story["id"]: story for story in stories}
     for adr in adrs:
         category_refs = {category_for_spec_ref(ref) for ref in adr["spec_refs"] if category_for_spec_ref(ref)}
@@ -517,6 +774,7 @@ def build_graph() -> dict[str, Any]:
         for story_id in entry["story_refs"]:
             category_refs.update(story_map.get(story_id, {}).get("category_refs", []))
         entry["category_refs"] = sorted(category_refs)
+        entry["actionability"] = summarize_eval_actionability(entry)
     validation = validate_graph(state, spec, stories, adrs, evals, coverage)
     categories = []
     for category in spec["categories"]:
@@ -528,6 +786,20 @@ def build_graph() -> dict[str, Any]:
                 "story_ids": [story["id"] for story in stories if category_id in story["category_refs"]],
                 "adr_ids": [adr["id"] for adr in adrs if category_id in adr.get("category_refs", [])],
                 "eval_ids": [entry["id"] for entry in evals if category_id in entry.get("category_refs", [])],
+            }
+        )
+    compromises = []
+    for compromise in spec["compromises"]:
+        compromise_id = compromise["id"]
+        compromise_stories = [story for story in stories if compromise_id in story["compromise_refs"]]
+        compromise_evals = [entry for entry in evals if compromise_id in entry["compromise_refs"]]
+        compromises.append(
+            {
+                **compromise,
+                "state": state.get("compromises", {}).get(compromise_id),
+                "story_ids": [story["id"] for story in compromise_stories],
+                "eval_ids": [entry["id"] for entry in compromise_evals],
+                "actionability": select_compromise_actionability(compromise_stories, compromise_evals),
             }
         )
     return {
@@ -543,7 +815,7 @@ def build_graph() -> dict[str, Any]:
             "coverage_matrix": to_rel(COVERAGE_MATRIX_PATH),
         },
         "ideal": ideal,
-        "spec": {"path": spec["path"], "categories": categories, "compromises": spec["compromises"]},
+        "spec": {"path": spec["path"], "categories": categories, "compromises": compromises},
         "stories": stories,
         "adrs": adrs,
         "evals": evals,

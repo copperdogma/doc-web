@@ -20,6 +20,8 @@ def test_build_graph_has_no_validation_errors():
     assert graph["validation"]["errors"] == []
     assert graph["validation"]["warnings"] == []
     assert graph["spec"]["categories"]
+    assert graph["spec"]["compromises"][0]["actionability"] is not None
+    assert "actionability" in graph["stories"][0]
     assert graph["coverage"]["path"] == "tests/fixtures/formats/_coverage-matrix.json"
     assert any(story["id"] == "187" for story in graph["stories"])
 
@@ -164,6 +166,101 @@ def test_parse_story_extracts_blocker_sections(tmp_path):
     assert story["blocker_summary"] == "Missing upstream workflow seam."
     assert "No blocking hook exists yet." in story["blocker_evidence"]
     assert story["unblock_condition"] == "Land the shared workflow seam first."
+
+
+def test_extract_last_work_log_entry_returns_latest_entry():
+    module = load_module()
+
+    entry = module.extract_last_work_log_entry(
+        textwrap.dedent(
+            """\
+            20260408-1000 — initial pass on the workflow seam.
+            20260410-1415 — close out the bounded follow-on after revalidation.
+            """
+        )
+    )
+
+    assert entry == {
+        "timestamp": "20260410-1415",
+        "date": "2026-04-10",
+        "summary": "close out the bounded follow-on after revalidation.",
+    }
+
+
+def test_summarize_eval_actionability_uses_retry_when_notes():
+    module = load_module()
+
+    actionability = module.summarize_eval_actionability(
+        {
+            "id": "sample-eval",
+            "path": "docs/evals/registry.yaml",
+            "description": "Detector for a bounded quality seam.",
+            "retry_when": ["new-subject-model"],
+            "retry_when_notes": ["Retry only when a materially stronger model appears."],
+            "attempts": [
+                {
+                    "id": "001",
+                    "date": "2026-04-01",
+                    "status": "partial",
+                    "approach": "Ran the bounded detector once",
+                    "note": "Current model still misses the handwritten edge case.",
+                    "retry_when": [],
+                }
+            ],
+            "latest_score": {"measured": "2026-04-01", "note": "Still below the target."},
+        }
+    )
+
+    assert actionability["posture"] == "trigger-exhausted"
+    assert actionability["retry_trigger_status"] == "exhausted"
+    assert actionability["retry_when"] == ["new-subject-model"]
+    assert actionability["last_relevant_action"]["date"] == "2026-04-01"
+
+
+def test_select_compromise_actionability_prefers_actionable_story():
+    module = load_module()
+
+    selected = module.select_compromise_actionability(
+        [
+            {
+                "id": "191",
+                "actionability": {
+                    "source_kind": "story",
+                    "source_id": "191",
+                    "recommended_now": False,
+                    "posture": "blocked",
+                    "last_relevant_action": {"date": "2026-04-09"},
+                },
+            },
+            {
+                "id": "205",
+                "actionability": {
+                    "source_kind": "story",
+                    "source_id": "205",
+                    "recommended_now": True,
+                    "posture": "in-progress",
+                    "last_relevant_action": {"date": "2026-04-10"},
+                },
+            },
+        ],
+        [
+            {
+                "id": "mixed-archive-routing",
+                "actionability": {
+                    "source_kind": "eval",
+                    "source_id": "mixed-archive-routing",
+                    "recommended_now": False,
+                    "posture": "wait-for-trigger",
+                    "last_relevant_action": {"date": "2026-04-08"},
+                },
+            }
+        ],
+    )
+
+    assert selected["source_kind"] == "story"
+    assert selected["source_id"] == "205"
+    assert selected["story_ids"] == ["191", "205"]
+    assert selected["eval_ids"] == ["mixed-archive-routing"]
 
 
 def test_validate_graph_requires_blocker_sections_for_blocked_story():

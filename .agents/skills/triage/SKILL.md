@@ -1,6 +1,6 @@
 ---
 name: triage
-description: Orchestrate the triage leaf skills and synthesize the highest-value next action
+description: Identify the highest-leverage repo gap, then recommend the strongest actionable next move
 user-invocable: true
 ---
 
@@ -11,6 +11,15 @@ user-invocable: true
 `/triage` is the meta-skill. It does not own the backlog, inbox, or eval logic
 itself. It routes to the leaf skills and, in full-sweep mode, synthesizes one
 recommended next action.
+
+Important is not enough by itself. `/triage` must answer both:
+
+- what gap matters most?
+- why is this the right thing to do now?
+
+A primary gap can stay primary while still being the wrong recommended action
+if nothing materially changed since the last attempt, recommendation, or
+measurement pass.
 
 ## Routing
 
@@ -45,6 +54,11 @@ When invoked with no scope:
    - `docs/spec.md`
    - `docs/methodology/state.yaml`
    - `docs/methodology/graph.json`
+   - Prefer the compiled actionability surfaces in
+     `graph["spec"]["compromises"][*]["actionability"]`,
+     `graph["stories"][*]["actionability"]`, and
+     `graph["evals"][*]["actionability"]` before re-deriving the same facts
+     from story prose and eval notes.
    - `tests/fixtures/formats/_coverage-matrix.json`
    - relevant ADRs under `docs/decisions/`
    - recent `git log --oneline -20`
@@ -62,7 +76,20 @@ When invoked with no scope:
    - health flags / bottlenecks
    - whether the recommendation is read-only or action-taking
 
-4. **Synthesize one cross-domain recommendation**
+4. **Run the why-now / actionability gate**
+   Before recommending work under the strongest problem line, answer:
+   - what was the last meaningful action on this line?
+   - on what date did it happen?
+   - what artifact, story, eval, or recommendation proves that?
+   - what materially changed since then?
+
+   Treat these as non-actionable until new evidence appears:
+   - blocked stories whose unblock condition is still unmet
+   - eval lines whose current retry trigger is exhausted or still missing
+   - stale notes that still say "do this next" even though newer blocker or
+     retry evidence says "not yet"
+
+5. **Synthesize one cross-domain recommendation**
    Rank the problem first, then choose the vehicle that best advances it
    (continue an active story, expand/reopen a story, create a story, run an
    eval, do architecture work, or no-op).
@@ -88,10 +115,15 @@ When invoked with no scope:
    next turn. A bare `yes` from the user should be enough to authorize that one
    action without needing a follow-up clarification.
 
-5. **Return the compact report**
+6. **Return the compact report**
 
 ```markdown
 ## Triage
+
+### Actionability
+- Last relevant action: {date + story/eval/artifact}
+- Why now: {materially new trigger or "none"}
+- If "none": {why the primary gap is not the recommended action today}
 
 ### Recommended Action
 - {one next action}
@@ -130,3 +162,8 @@ When invoked with no scope:
   otherwise comparable.
 - Do not recommend reopening a blocked line unless the current pass can point
   to fresh evidence that satisfies the story's unblock condition.
+- Do not recommend repeating a line just because it is still the biggest open
+  gap; cite the last attempt and the current why-now trigger explicitly.
+- A primary gap with no materially new trigger may stay primary, but it should
+  usually move to `Health Flags` or `Runner-Ups` rather than become the
+  recommended action.

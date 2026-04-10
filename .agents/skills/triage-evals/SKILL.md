@@ -1,6 +1,6 @@
 ---
 name: triage-evals
-description: Evaluate eval health, deletion gates, and rerun candidates
+description: Diagnose which eval work is actually actionable now for the current repo gap
 user-invocable: true
 ---
 
@@ -18,12 +18,19 @@ Canonical eval-health triage leaf skill. Direct invocation is allowed, and
 
 This skill is read-only and advisory. It never runs evals automatically.
 
+The core filter is actionability, not abstract importance. A red or stale eval
+line is not recommendable unless the diagnosis can name why that line should be
+revisited now.
+
 ## Read First
 
 1. `docs/evals/registry.yaml`
 2. `docs/spec.md`
 3. `docs/methodology/state.yaml`
 4. `docs/methodology/graph.json`
+   - Prefer `graph["evals"][*]["actionability"]` and
+     `graph["spec"]["compromises"][*]["actionability"]` for last-action,
+     retry-posture, and "why now" reads before reconstructing them manually.
 5. relevant ADRs under `docs/decisions/`
 6. recent `git log --oneline -20`
 
@@ -60,6 +67,11 @@ was already exercised in the latest attempt and failed without changing the
 decision surface, do not recommend the same rerun again until there is another
 material trigger.
 
+Also capture:
+- the last meaningful action on the line
+- the date of that action
+- what materially changed since then
+
 ### 3. Phase-aware assessment
 
 Read the methodology-state phase for each eval's compromise category:
@@ -93,6 +105,7 @@ Look for:
 
 ### Rerun Candidates
 - {eval-id} — {why now}
+  - Last relevant action: {date + attempt/story/evidence}
 
 ### Deletion Candidates
 - {compromise / eval-id} — {why the compromise may now be deletable}
@@ -127,5 +140,7 @@ user decide.
 - Do not recommend the same retry trigger repeatedly when the latest recorded
   attempt already exercised it and no new model, approach, golden, or
   architecture change has appeared since
+- Do not convert "big gap" or "red line" into "do this now" without naming a
+  concrete why-now trigger or a genuinely new unanswered question.
 - If no eval action is justified, say so clearly
 - Keep the report compact enough for `/triage` to synthesize with other leaf reports
