@@ -1,3 +1,11 @@
+## [2026-04-10-02] - Land inbox capture with validated close-out work
+
+### Changed
+- Changed `/check-in-diff` so `docs/inbox.md` is treated as expected user
+  capture during audit and staging instead of being flagged as unrelated drift
+- Changed `/finish-and-push` so normal inbox capture rides along with the
+  validated landing set by default unless the user explicitly excludes it
+
 ## [2026-04-10-01] - Add bounded mixed-archive ZIP seam (Story 205)
 
 ### Added
