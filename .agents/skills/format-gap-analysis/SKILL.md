@@ -1,3 +1,9 @@
+---
+name: format-gap-analysis
+description: Diagnose format conversion quality gaps and prioritize what to build next.
+user-invocable: true
+---
+
 # /format-gap-analysis [--format <id>] [--force-benchmark]
 
 Diagnose format conversion quality gaps and prioritize what to build next.

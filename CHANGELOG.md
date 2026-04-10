@@ -1,3 +1,13 @@
+## [2026-04-10-07] - Harden skill sync wrapper checks
+
+### Changed
+- Tightened `scripts/sync-agent-skills.sh` so wrapper sync now fails on missing
+  `user-invocable` frontmatter, mismatched Gemini wrapper content, or stale
+  extra wrappers instead of only checking wrapper presence.
+- Declared `format-gap-analysis` as an explicit invocable skill so its Gemini
+  wrapper description comes from the skill's real frontmatter instead of the
+  fallback placeholder text.
+
 ## [2026-04-10-05] - Add AGENTS quick routing guidance
 
 ### Changed
