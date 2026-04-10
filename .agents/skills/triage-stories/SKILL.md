@@ -45,6 +45,11 @@ This skill is read-only.
 
    Draft/Pending existence alone does not make a story high priority.
 
+   If the backlog shells are quiet but the methodology state still has active
+   `converge`, `climb`, or meaningful `hold` pressure, do not stop at "no open
+   stories." Identify the strongest problem line and consider whether the
+   honest recommendation is to create a new story shell for it.
+
 2. **Read the Ideal**
    Load `docs/ideal.md` and score against what the system should become, not
    just what is locally convenient.
@@ -86,10 +91,14 @@ This skill is read-only.
      For architecture-dependent stories, prefer code-verified substrate over
      paper status alone
    - **phase coherence** — read the category's phase from methodology state:
-     - `climb`: recommend quality-improvement work
-     - `hold`: recommend efficiency/simplification work
-     - `converge`: recommend deletion work
+     - `converge`: default pressure to delete, simplify, or collapse residue
+     - `climb`: default pressure to improve quality, widen proof, or land the
+       next advancement toward `hold`
+     - `hold`: lower but still real pressure for efficiency, simplification,
+       thinner ownership, or operational hardening when stronger lines are not
+       actionable
      - Work that fights the phase is lower priority
+     - Lack of a fresh bug report does not zero out a phase-aligned candidate
    - **blocked-state honesty** — a blocked line with an unmet unblock condition
      should lose to an actionable line even if continuity and problem pressure
      are high
@@ -154,6 +163,9 @@ doing a full backlog scan. Report:
   is trivially close to done
 - Do not recommend a new story when continuing, reopening, expanding, or
   consolidating the current problem line is the more honest move
+- Do not say the backlog is effectively empty when the methodology state still
+  shows a bounded actionable `converge`/`climb` pressure line that simply lacks
+  a story shell; recommend creating the story instead.
 - Do not recommend architecture-dependent stories as build-ready on story text
   alone when the critical substrate has not been verified in the repo
 - Treat `Blocked` stories as candidates only when the unblock path is itself the
@@ -161,4 +173,7 @@ doing a full backlog scan. Report:
 - Do not recommend reopening a blocked story when the current pass only repeats
   previously failed evidence or when the story's own unblock condition is still
   unmet
+- `No actionable story` is only honest when every plausible phase-aligned move
+  is blocked, exhausted, or not yet specific enough to package as a bounded
+  story.
 - Keep the report compact enough for `/triage` to synthesize with other leaf reports

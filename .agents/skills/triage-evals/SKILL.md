@@ -75,9 +75,16 @@ Also capture:
 ### 3. Phase-aware assessment
 
 Read the methodology-state phase for each eval's compromise category:
-- `climb` → focus on quality (better prompts, better golden fixtures)
-- `hold` → focus on efficiency (cheaper, faster, simpler)
-- `converge` → recommend deleting the compromise
+- `converge` → default pressure to prove the compromise can be deleted or to
+  remove the smallest remaining residue
+- `climb` → default pressure to improve quality, widen proof, or test the next
+  credible stronger approach until the line can move toward `hold`
+- `hold` → lower but real pressure to make the current line cheaper, faster,
+  thinner, or easier to operate when higher-pressure lines are not actionable
+
+Phase is enough to justify an eval recommendation when there is a bounded,
+falsifiable next move. A line does not need a new external announcement or a
+fresh inbox item before it becomes worth improving again.
 
 ### 4. Deletion-gate health
 
@@ -129,6 +136,11 @@ Recommend the smallest correct next step:
 - `/create-story` when the issue is an implementation gap, not just eval staleness
 - update `docs/methodology/state.yaml`, `tests/fixtures/formats/_coverage-matrix.json`, or `docs/spec.md` when the truth surfaces drift from a passing gate
 
+Prefer a concrete next move over `no action` whenever a phase-aligned,
+bounded experiment or proof refresh still exists. Reserve `no action` for lines
+that are truly blocked on external capability, just retried on the same
+premise, or missing a falsifiable next experiment.
+
 Do not auto-run expensive evals. Present cost/time implications and let the
 user decide.
 
@@ -142,5 +154,10 @@ user decide.
   architecture change has appeared since
 - Do not convert "big gap" or "red line" into "do this now" without naming a
   concrete why-now trigger or a genuinely new unanswered question.
+- Do not treat "no newly released model" as sufficient reason for no action
+  when a bounded prompt, golden, proof-refresh, or architecture-linked eval
+  move still exists.
+- If a `converge` or `climb` line still has a bounded falsifiable next move,
+  prefer recommending it over `no action`.
 - If no eval action is justified, say so clearly
 - Keep the report compact enough for `/triage` to synthesize with other leaf reports

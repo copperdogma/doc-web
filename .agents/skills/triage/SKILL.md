@@ -89,7 +89,24 @@ When invoked with no scope:
    - stale notes that still say "do this next" even though newer blocker or
      retry evidence says "not yet"
 
-5. **Synthesize one cross-domain recommendation**
+5. **Apply phase-pressure defaults**
+   Phase is not tie-break metadata. It creates default pressure to keep moving
+   the repo toward the Ideal:
+   - `converge` → prefer the smallest honest deletion, simplification, or
+     residue-removal move that could retire the compromise or prove why it
+     cannot be retired yet
+   - `climb` → prefer the strongest bounded improvement move that could
+     advance the line toward `hold` (quality, proof widening, substrate
+     hardening, or a more capable approach)
+   - `hold` → prefer thinner / cheaper / faster / simpler / easier-to-operate
+     work when no stronger actionable `converge` or `climb` line wins
+
+   A line does not need a new bug report, inbox item, or external prompt to be
+   actionable. If phase plus current repo evidence suggests a bounded,
+   falsifiable next move, that is enough unless recent evidence says the same
+   move is currently blocked, exhausted, or not worth repeating.
+
+6. **Synthesize one cross-domain recommendation**
    Rank the problem first, then choose the vehicle that best advances it
    (continue an active story, expand/reopen a story, create a story, run an
    eval, do architecture work, or no-op).
@@ -97,6 +114,8 @@ When invoked with no scope:
    Choose the next action with the strongest combined signal across:
    - movement toward the Ideal
    - real problem pressure
+   - phase pressure (`converge` > actionable `climb` > actionable `hold`,
+     unless recency/blocker evidence says otherwise)
    - blocking power / dependency leverage
    - compromise-elimination leverage
    - phase coherence (climb/hold/converge alignment across categories)
@@ -111,11 +130,16 @@ When invoked with no scope:
    line as a health flag and recommend a different actionable move or an honest
    `no-op`; do not turn blocked continuity into a reopen recommendation.
 
+   `No-op` is the last resort, not the default safe answer. It is only honest
+   when every plausible phase-aligned move is blocked by missing external
+   capability, was just retried on the same premise without a new trigger, or
+   lacks a bounded falsifiable next step.
+
    The recommended action must be phrased so it can be executed directly on the
    next turn. A bare `yes` from the user should be enough to authorize that one
    action without needing a follow-up clarification.
 
-6. **Return the compact report**
+7. **Return the compact report**
 
 ```markdown
 ## Triage
@@ -167,3 +191,10 @@ When invoked with no scope:
 - A primary gap with no materially new trigger may stay primary, but it should
   usually move to `Health Flags` or `Runner-Ups` rather than become the
   recommended action.
+- Do not treat lack of a fresh external trigger as sufficient reason for
+  `no-op` when a bounded phase-aligned improvement move still exists.
+- Prefer recommending the best next attempt, simplification, or new story shell
+  over `no-op` unless the repo is genuinely out of actionable phase-aligned
+  moves.
+- `Converge` means "try to delete or collapse residue," not "wait until
+  something else happens."

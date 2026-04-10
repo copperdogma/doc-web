@@ -1,3 +1,12 @@
+## [2026-04-10-12] - Make triage phase-driven by default
+
+### Changed
+- Changed the main `triage`, `triage-stories`, and `triage-evals` skills so methodology phase now creates default action pressure instead of defaulting to `no-op` when the repo still has a bounded `converge`, `climb`, or meaningful `hold` move available.
+- Changed triage guidance so `converge` explicitly targets residue deletion or simplification, `climb` targets bounded advancement toward `hold`, and `no-op` is reserved for lines that are truly blocked, exhausted, or not yet falsifiable.
+
+### Tested
+- `make skills-check`
+
 ## [2026-04-10-11] - Close GLM-OCR benchmark line (Story 208)
 
 ### Added
