@@ -6,6 +6,18 @@
   to `docs/methodology/state.yaml`, `docs/stories/`, and
   `docs/evals/registry.yaml`.
 
+## [2026-04-10-06] - Refresh C2 intake eval truth surfaces
+
+### Changed
+- Changed the C2 eval registry records for `auto-book-type-detection` and `approved-intake-handoff` so both surfaces now point at fresh 2026-04-10 reruns on current `HEAD`, with updated story linkage and explicit notes that newer direct-entry families remain outside the recommendation-only and approved-handoff automation lanes
+
+### Fixed
+- Fixed stale eval-truth drift where the registry still reflected pre-`web-page` / `epub` / `email-eml` / `email-mbox` evidence even though the direct-entry seams and boundary helpers had already moved on
+
+### Tested
+- `python benchmarks/scripts/run_auto_book_type_detection_eval.py --output benchmarks/results/auto-book-type-detection-improve-eval-20260410.json --run-root output/runs/auto-book-type-detection-improve-eval-20260410`
+- `python benchmarks/scripts/run_approved_intake_handoff_eval.py --output benchmarks/results/approved-intake-handoff-improve-eval-20260410.json --run-root output/runs/approved-intake-handoff-improve-eval-20260410`
+
 ## [2026-04-10-04] - Repair remaining Onward genealogy fragmentation (Story 206)
 
 ### Changed

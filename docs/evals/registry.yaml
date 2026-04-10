@@ -1220,10 +1220,13 @@ evals:
       Can the maintained recommendation-only intake lane auto-detect book type
       and recommend the right maintained explicit recipe with no metadata hints?
       Tests 10 diverse PDF documents via the final `intake_plan_v1` artifact.
-      Maintained direct-entry `docx` / `xlsx` / `pptx` lanes sit outside this
-      recommendation-only automation surface and are measured separately with
-      `benchmarks/input/office-intake-boundary-corpus.json`.
-    story_refs: ["169", "170", "171", "194", "197"]
+      Maintained direct-entry `docx` / `xlsx` / `pptx` / `web-page` / `epub`
+      / `email-eml` / `email-mbox` lanes sit outside this recommendation-only
+      automation surface. The office-family direct-entry boundary is measured
+      with `benchmarks/input/office-intake-boundary-corpus.json`; newer
+      non-office direct-entry lanes are verified through explicit scope-blocked
+      recommendation-only probe rows.
+    story_refs: ["169", "170", "171", "194", "197", "200", "201", "202", "203"]
     category_refs: ["spec:1", "spec:3", "spec:6", "spec:7", "spec:8", "spec:9"]
     compromise_refs: ["C2"]
     spec_compromise: C2
@@ -1235,6 +1238,31 @@ evals:
       note: "Must correctly classify all 10 benchmark documents"
 
     scores:
+      - model: "Current-head recommendation-only intake rerun after direct-entry surface refresh"
+        metrics:
+          accuracy: 1.0
+          overall: 1.0
+          pass_rate: 1.0
+        measured: 2026-04-10
+        git_sha: 601353b
+        note: >
+          Fresh rerun via
+          `python benchmarks/scripts/run_auto_book_type_detection_eval.py --output benchmarks/results/auto-book-type-detection-improve-eval-20260410.json --run-root output/runs/auto-book-type-detection-improve-eval-20260410`
+          kept the locked 10-case recommendation-only PDF corpus green on
+          current `HEAD` (`601353b`): `accuracy = 1.0`, `overall = 1.0`, and
+          `pass_rate = 1.0`. Manual inspection in the same pass reconfirmed a
+          representative launchable `cyoa` row at
+          `output/runs/auto-book-type-detection-improve-eval-20260410/tbotb-mini/overview_plan_final.jsonl`,
+          a representative explicit `no-recipe-needed` novel row at
+          `output/runs/auto-book-type-detection-improve-eval-20260410/scanned-prose-mini/overview_plan_final.jsonl`,
+          and the maintained genealogy route at
+          `output/runs/auto-book-type-detection-improve-eval-20260410/onward-unknown/overview_plan_final.jsonl`.
+          Additional temporary boundary probing wrote
+          `benchmarks/results/auto-book-type-detection-direct-entry-boundary-20260410.json`,
+          confirming that `web-page`, `epub`, `email-eml`, and `email-mbox`
+          still block with `scope_policy = direct_explicit_recipe_only`
+          instead of silently widening the recommendation-only automation
+          surface.
       - model: "Story 171 maintained intake harness (gpt-4.1-mini overview/zoom)"
         metrics:
           accuracy: 1.0
@@ -1383,6 +1411,24 @@ evals:
           report `scope_policy = direct_explicit_recipe_only`. Sample evidence
           inspected in the same pass includes the `pptx-mini` row with
           `boundary_reason = outside_recommendation_only_intake:pptx:direct_explicit_recipe_only`.
+      - id: "008"
+        date: 2026-04-10
+        status: succeeded
+        approach: "Current-head recommendation-only intake refresh after Stories 200-203 widened direct-entry families"
+        score_before: 1.0
+        score_after: 1.0
+        note: >
+          Fresh rerun via
+          `python benchmarks/scripts/run_auto_book_type_detection_eval.py --output benchmarks/results/auto-book-type-detection-improve-eval-20260410.json --run-root output/runs/auto-book-type-detection-improve-eval-20260410`
+          completed the locked 10-case PDF corpus with `accuracy = 1.0`,
+          `overall = 1.0`, `pass_rate = 1.0`, and `failed_runs = 0` on
+          `601353b`. The newer direct-entry families remained outside the
+          automation surface by design: temporary boundary probing in
+          `benchmarks/results/auto-book-type-detection-direct-entry-boundary-20260410.json`
+          confirmed `web-page`, `epub`, `email-eml`, and `email-mbox` all
+          return `failure_step = scope` with
+          `scope_policy = direct_explicit_recipe_only`, so no golden or scorer
+          change was needed.
 
     retry_when:
       - condition: new-input-family
@@ -1403,15 +1449,18 @@ evals:
       recommendation-only `auto-book-type-detection` corpus stays locked at 10
       PDF cases; this surface adds one repo-owned image-directory launch case
       (`testdata/handwritten-notes-mini-images`) without widening that separate
-      benchmark. Maintained direct-entry `docx` / `xlsx` / `pptx` lanes remain
-      outside this automation surface and are measured
-      separately with `benchmarks/input/office-intake-boundary-corpus.json`.
-    story_refs: ["176", "178", "180", "194", "197"]
+      benchmark. Maintained direct-entry `docx` / `xlsx` / `pptx` / `web-page`
+      / `epub` / `email-eml` / `email-mbox` lanes remain outside this
+      automation surface. The office-family direct-entry boundary is measured
+      with `benchmarks/input/office-intake-boundary-corpus.json`; newer
+      non-office direct-entry lanes are verified through explicit scope-blocked
+      approved-handoff probe rows.
+    story_refs: ["176", "178", "180", "194", "197", "200", "201", "202", "203", "205"]
     category_refs: ["spec:1", "spec:3", "spec:6", "spec:7", "spec:8", "spec:9"]
     compromise_refs: ["C2"]
     spec_compromise: C2
     runner: manual
-    command: "python benchmarks/scripts/run_approved_intake_handoff_eval.py --output benchmarks/results/approved-intake-handoff-story180.json --run-root output/runs/story180-approved-intake-handoff"
+    command: "python benchmarks/scripts/run_approved_intake_handoff_eval.py --output benchmarks/results/approved-intake-handoff-improve-eval-20260410.json --run-root output/runs/approved-intake-handoff-improve-eval-20260410"
     golden: benchmarks/golden/approved-intake-handoff/corpus.json
 
     target:
@@ -1420,6 +1469,35 @@ evals:
       note: "All 11 approved-handoff corpus cases must stamp the expected handoff outcome; the 7 launch cases must also stamp the expected first downstream artifact."
 
     scores:
+      - model: "Current-head approved-handoff corpus rerun after direct-entry surface refresh"
+        metrics:
+          pass_rate: 1.0
+          launched: 7
+          skipped: 4
+          failed_runs: 0
+        measured: 2026-04-10
+        git_sha: 601353b
+        note: >
+          Fresh rerun via
+          `python benchmarks/scripts/run_approved_intake_handoff_eval.py --output benchmarks/results/approved-intake-handoff-improve-eval-20260410.json --run-root output/runs/approved-intake-handoff-improve-eval-20260410`
+          kept the maintained 11-case surface green on current `HEAD`
+          (`601353b`): `pass_rate = 1.0`, `overall = 1.0`, `launched = 7`,
+          `skipped = 4`, and `failed_runs = 0`. Manual inspection in the same
+          pass reconfirmed a representative launched PDF row at
+          `output/runs/approved-intake-handoff-improve-eval-20260410/tbotb-mini/intake_handoff.jsonl`
+          plus
+          `output/runs/approved-intake-handoff-improve-eval-20260410-tbotb-mini-recipe-born-digital-pdf-marker-lite-html-mvp/01_extract_pdf_marker_lite_html_v1/pages_html.jsonl`,
+          a representative explicit skip at
+          `output/runs/approved-intake-handoff-improve-eval-20260410/scanned-prose-mini/intake_handoff.jsonl`,
+          and the repo-owned image-directory launch at
+          `output/runs/approved-intake-handoff-improve-eval-20260410/handwritten-notes-mini-images/intake_handoff.jsonl`
+          plus
+          `output/runs/approved-intake-handoff-improve-eval-20260410-handwritten-notes-mini-images-recipe-images-ocr-html-mvp/01_images_dir_to_manifest_v1/pages_images_manifest.jsonl`.
+          Additional temporary boundary probing wrote
+          `benchmarks/results/approved-intake-handoff-direct-entry-boundary-20260410.json`,
+          confirming that `web-page`, `epub`, `email-eml`, and `email-mbox`
+          still block with `scope_policy = direct_explicit_recipe_only`
+          instead of silently widening the automation surface.
       - model: "Story 180 dedicated approved-handoff corpus"
         metrics:
           pass_rate: 1.0
@@ -1558,6 +1636,24 @@ evals:
           now also route the maintained PPTX recipe through
           `direct_entry_recipe_outside_confirmed_handoff_scope:pptx`, keeping
           the confirmed-handoff boundary aligned with the direct-entry runtime.
+      - id: "006"
+        date: 2026-04-10
+        status: succeeded
+        approach: "Current-head approved-handoff corpus refresh after Stories 200-205 widened direct-entry and driver input surfaces"
+        score_before: 1.0
+        score_after: 1.0
+        note: >
+          Fresh rerun via
+          `python benchmarks/scripts/run_approved_intake_handoff_eval.py --output benchmarks/results/approved-intake-handoff-improve-eval-20260410.json --run-root output/runs/approved-intake-handoff-improve-eval-20260410`
+          completed `11/11` maintained corpus cases with `pass_rate = 1.0`,
+          `overall = 1.0`, `launched = 7`, `skipped = 4`, and `failed_runs =
+          0` on `601353b`. The newer direct-entry families remained outside
+          the automation surface by design: temporary boundary probing in
+          `benchmarks/results/approved-intake-handoff-direct-entry-boundary-20260410.json`
+          confirmed `web-page`, `epub`, `email-eml`, and `email-mbox` all
+          return `failure_step = scope` with
+          `scope_policy = direct_explicit_recipe_only`, so no golden or scorer
+          change was needed.
 
     retry_when:
       - condition: workflow-change
