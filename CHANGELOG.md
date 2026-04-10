@@ -1,3 +1,8 @@
+## [2026-04-10-08] - Record GLM-OCR scout handoff
+
+### Changed
+- Changed `docs/inbox.md` to preserve the Conductor Scout 018 GLM-OCR follow-up locally, including the date-corrected benchmark framing and the recommendation to test it first against Story 191's LOC handwritten pair plus one table-heavy scanned-page seam.
+
 ## [2026-04-10-07] - Harden skill sync wrapper checks
 
 ### Changed
