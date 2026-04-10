@@ -307,6 +307,58 @@ def test_validate_graph_requires_explicit_eval_lineage():
     assert validation["errors"] == ["eval missing-lineage missing explicit lineage refs"]
 
 
+def test_validate_graph_rejects_coverage_score_source_drift():
+    module = load_module()
+
+    validation = module.validate_graph(
+        state={"categories": {}, "roadmap": {}, "architecture_audits": {"domains": {}, "cadence": {}}},
+        spec={
+            "categories": [{"id": "spec:4", "sections": []}],
+            "compromises": [{"id": "C4", "category_id": "spec:4"}],
+        },
+        stories=[],
+        adrs=[],
+        evals=[
+            {
+                "id": "image-crop-extraction",
+                "spec_refs": ["spec:4"],
+                "story_refs": [],
+                "compromise_refs": ["C4"],
+                "category_refs": ["spec:4"],
+                "explicit_lineage": True,
+                "scores": [
+                    {
+                        "metrics": {"overall": 0.9703, "pass_rate": 1.0},
+                        "measured": "2026-04-10",
+                    }
+                ],
+            }
+        ],
+        coverage={
+            "formats": [
+                {
+                    "id": "image-directory-scans",
+                    "scores": {
+                        "illustration_extraction": 0.9,
+                        "measured": "2026-03-11",
+                    },
+                    "score_sources": {
+                        "illustration_extraction": {
+                            "eval_id": "image-crop-extraction",
+                            "metric": "overall",
+                        }
+                    },
+                }
+            ]
+        },
+    )
+
+    assert validation["errors"] == [
+        "coverage row image-directory-scans score illustration_extraction=0.9000 drifts from eval image-crop-extraction.overall=0.9703",
+        "coverage row image-directory-scans measured date 2026-03-11 drifts from eval image-crop-extraction measured date 2026-04-10",
+    ]
+
+
 def test_validate_graph_rejects_active_campaign_with_only_terminal_story_refs():
     module = load_module()
     stories = [

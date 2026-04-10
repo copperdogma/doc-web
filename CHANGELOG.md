@@ -12,6 +12,25 @@
 - Declared `format-gap-analysis` as an explicit invocable skill so its Gemini
   wrapper description comes from the skill's real frontmatter instead of the
   fallback placeholder text.
+ 
+## [2026-04-10-09] - Refresh crop proof truth surfaces (Story 207)
+
+### Added
+- Added a tracked crop-proof refresh note under `docs/evals/attempts/` so the canonical C4 references now point at durable in-repo evidence instead of an ignored local promptfoo result file
+
+### Changed
+- Changed the crop coverage matrix, eval registry, runbook, and spec so `scanned-pdf-tables` and `image-directory-scans` now share one honest maintained `illustration_extraction` contract anchored to the fresh `0.9703` proof refresh
+- Changed Story 207 and the generated methodology views so the crop proof-surface reconciliation is recorded as completed with current repo-wide validation
+
+### Fixed
+- Fixed the stale `0.9` versus `0.9678` crop-proof drift across the canonical truth surfaces
+- Fixed the methodology compiler blind spot by validating coverage-row `score_sources` against their eval score and measured date
+
+### Tested
+- `python -m pytest tests/`
+- `python -m ruff check modules/ tests/`
+- `make methodology-compile`
+- `make methodology-check`
 
 ## [2026-04-10-05] - Add AGENTS quick routing guidance
 

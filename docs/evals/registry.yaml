@@ -49,7 +49,7 @@ evals:
     config: benchmarks/tasks/image-crop-extraction.yaml
     scorer: benchmarks/scorers/image_crop_scorer.py
     golden: benchmarks/golden/
-    story_refs: ["133", "183"]
+    story_refs: ["133", "183", "207"]
     category_refs: ["spec:4", "spec:8"]
     compromise_refs: ["C4"]
     spec_compromise: C4
@@ -60,6 +60,25 @@ evals:
       pass_rate: 0.90
 
     scores:
+      - model: "Gemini 3 Flash (conservative-count prompt, maintained rerun)"
+        metrics:
+          overall: 0.9703
+          pass_rate: 1.0
+        measured: 2026-04-10
+        git_sha: d074136
+        note: >
+          Story 207 reran the maintained detector surface via
+          `promptfoo eval -c tasks/image-crop-extraction.yaml --no-cache
+          --filter-providers 'google:gemini-3-flash-preview'
+          --filter-prompts 'conservative-count' --output
+          results/story207-image-crop-baseline.json -j 1`.
+          The JSON output recorded `13/13` scorer passes with `0` failures and
+          `0` errors; recomputing the mean from the per-case scores yielded
+          `0.9703 / 1.0` (overall / pass_rate), average latency about `7878 ms`
+          per page, and total eval cost about `$0.059`. The portable tracked
+          proof anchor is now
+          `docs/evals/attempts/001-image-crop-extraction-story207-proof-refresh.md`;
+          the raw promptfoo JSON remains a local regenerable artifact.
       - model: "Gemini 3 Flash (conservative-count prompt, heading-safe revision)"
         metrics:
           overall: 0.9678
@@ -210,6 +229,25 @@ evals:
           `benchmarks/results/single-model-crop-detection-g3flash-20260403-promptfix.json`
           with `0.9678 / 1.0`, clearing both the maintained quality surface and
           the C4 deletion gate without any golden edits.
+      - id: "008"
+        date: 2026-04-10
+        status: succeeded
+        approach: "Story 207: rerun the maintained detector surface and refresh the canonical coverage rows from current-pass proof"
+        score_before: 0.9678
+        score_after: 0.9703
+        note: >
+          Fresh current-pass rerun via `promptfoo eval -c
+          tasks/image-crop-extraction.yaml --no-cache --filter-providers
+          'google:gemini-3-flash-preview' --filter-prompts
+          'conservative-count' --output
+          results/story207-image-crop-baseline.json -j 1` completed with
+          `13/13` scorer passes, `0` failures, `0` errors, average latency
+          about `7878 ms` per page, and total eval cost about `$0.059`.
+          Recomputing the mean from the per-case scores yielded `0.9703 / 1.0`
+          (overall / pass_rate). `Image000` remains the weakest case at
+          `0.8164`, but the maintained aggregate still clears the crop gate and
+          now anchors the canonical coverage-matrix rows. Portable tracked proof:
+          `docs/evals/attempts/001-image-crop-extraction-story207-proof-refresh.md`.
 
     retry_when:
       - condition: new-subject-model
@@ -1131,7 +1169,7 @@ evals:
     description: >
       Can a single model replace the two-stage detector+validator?
       Tests whether one call achieves ≥0.95 with zero text contamination.
-    story_refs: []
+    story_refs: ["207"]
     category_refs: ["spec:4"]
     compromise_refs: ["C4"]
     spec_compromise: C4
@@ -1143,6 +1181,21 @@ evals:
       pass_rate: 0.95
 
     scores:
+      - model: "Gemini 3 Flash (conservative-count prompt, maintained rerun)"
+        metrics:
+          overall: 0.9703
+          pass_rate: 1.0
+        measured: 2026-04-10
+        git_sha: d074136
+        note: >
+          Story 207 reran the maintained single-stage candidate through the
+          same filtered `image-crop-extraction` surface and wrote
+          `benchmarks/results/story207-image-crop-baseline.json`. The rerun
+          again cleared `13/13` scorer passes, and recomputing the mean from
+          the per-case scores yielded `0.9703 / 1.0`
+          (overall / pass_rate). The portable tracked proof anchor is
+          `docs/evals/attempts/001-image-crop-extraction-story207-proof-refresh.md`;
+          this is now the current canonical C4 deletion-gate proof.
       - model: "Gemini 3 Flash (conservative-count prompt, heading-safe revision)"
         metrics:
           overall: 0.9678
@@ -1208,6 +1261,24 @@ evals:
           `pass_rate = 1.0`, average latency about `6441 ms` per page, and
           total eval cost about `$0.050`. The remaining weak case is
           `Image000`, but the deletion gate now passes on the maintained corpus.
+
+      - id: "003"
+        date: 2026-04-10
+        status: succeeded
+        approach: "Story 207: rerun the maintained single-stage candidate so the canonical C4 proof no longer depends on missing older result files"
+        score_before: 0.9678
+        score_after: 0.9703
+        note: >
+          Fresh current-pass rerun reused the maintained filtered task and wrote
+          `benchmarks/results/story207-image-crop-baseline.json`. The run
+          completed with `13/13` scorer passes, `0` failures, `0` errors,
+          average latency about `7878 ms` per page, and total eval cost about
+          `$0.059`; recomputing the mean from the per-case scores yielded
+          `overall = 0.9703` and `pass_rate = 1.0`. `Image000` remains the
+          lone materially weak case, but the maintained aggregate improves
+          slightly while keeping the same honest prompt/golden contract. Portable
+          tracked proof:
+          `docs/evals/attempts/001-image-crop-extraction-story207-proof-refresh.md`.
 
     retry_when:
       - condition: new-subject-model

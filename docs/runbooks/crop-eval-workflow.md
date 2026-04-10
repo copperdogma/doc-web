@@ -41,8 +41,8 @@ View results: `promptfoo view`
   - `image-crop-extraction` — page-level detector-quality surface linked to `C4`
   - `crop-validation` — dedicated bounded text-exclusion / crop-quality surface linked to `C5`
 - **Maintained detector prompt set**: `baseline`, `strict-exclude`, `two-step`, `conservative-count`
-- **Current detector score**: `image-crop-extraction` best recorded result is `0.9678` overall / `1.0` pass rate (Gemini 3 Flash conservative-count prompt with the heading-safe revision on the maintained task, measured 2026-04-03)
-- **Current C4 deletion-gate score**: `single-model-crop-detection` is `0.9678` overall / `1.0` pass rate on that same maintained single-stage run, so the bounded deletion gate now passes.
+- **Current detector score**: `image-crop-extraction` best recorded result is `0.9703` overall / `1.0` pass rate (Gemini 3 Flash `conservative-count` on the maintained task, rerun on 2026-04-10; tracked proof note: `docs/evals/attempts/001-image-crop-extraction-story207-proof-refresh.md`)
+- **Current C4 deletion-gate score**: `single-model-crop-detection` is `0.9703` overall / `1.0` pass rate on that same maintained single-stage rerun, so the bounded deletion gate still passes. Use the same tracked proof note above as the portable summary; the raw promptfoo JSON remains a local regenerable artifact.
 - **Maintained runtime note**: Stories 184 and 198 proved the reviewed Onward
   lane can delete the retired retry / refine / validate surface from both the
   maintained recipe and the shared runtime without regressing the published

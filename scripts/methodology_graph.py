@@ -428,6 +428,7 @@ def parse_eval_registry() -> list[dict[str, Any]]:
                 "story_refs": story_refs,
                 "compromise_refs": compromise_refs,
                 "category_refs": category_refs,
+                "scores": json.loads(json.dumps(raw.get("scores") or [], default=str)),
                 "explicit_lineage": any(
                     raw.get(key) not in (None, [], "")
                     for key in ("spec_refs", "story_refs", "compromise_refs", "category_refs")
@@ -446,6 +447,18 @@ def parse_state() -> dict[str, Any]:
 
 def parse_coverage_matrix() -> dict[str, Any]:
     return json.loads(read_text(COVERAGE_MATRIX_PATH))
+
+
+def float_or_none(value: Any) -> float | None:
+    if isinstance(value, (int, float)):
+        return float(value)
+    return None
+
+
+def string_or_none(value: Any) -> str | None:
+    if value in (None, ""):
+        return None
+    return str(value)
 
 
 def category_for_spec_ref(spec_ref: str) -> str | None:
@@ -562,6 +575,7 @@ def validate_graph(
     stories_by_id = {story["id"]: story for story in stories}
     adr_ids = {adr["id"] for adr in adrs}
     coverage_ids = {entry["id"] for entry in coverage.get("formats", [])}
+    evals_by_id = {entry["id"]: entry for entry in evals}
     legacy_story_ids: list[str] = []
     nonstandard_statuses: list[str] = []
     legacy_adr_ids: list[str] = []
@@ -639,6 +653,72 @@ def validate_graph(
         for category in entry.get("category_refs", []):
             if category not in category_ids:
                 errors.append(f"eval {entry['id']} references missing category {category}")
+    for coverage_entry in coverage.get("formats", []):
+        coverage_id = str(coverage_entry.get("id") or "")
+        score_sources = coverage_entry.get("score_sources") or {}
+        if not score_sources:
+            continue
+        if not isinstance(score_sources, dict):
+            errors.append(f"coverage row {coverage_id} has non-mapping score_sources")
+            continue
+        row_scores = coverage_entry.get("scores") or {}
+        if not isinstance(row_scores, dict):
+            errors.append(f"coverage row {coverage_id} has non-mapping scores")
+            continue
+        for dimension, source in score_sources.items():
+            if dimension not in row_scores:
+                errors.append(
+                    f"coverage row {coverage_id} declares score source for missing score {dimension}"
+                )
+                continue
+            if not isinstance(source, dict):
+                errors.append(
+                    f"coverage row {coverage_id} score source for {dimension} must be a mapping"
+                )
+                continue
+            eval_id = str(source.get("eval_id") or "").strip()
+            metric = str(source.get("metric") or "overall").strip()
+            if not eval_id:
+                errors.append(
+                    f"coverage row {coverage_id} score source for {dimension} is missing eval_id"
+                )
+                continue
+            eval_entry = evals_by_id.get(eval_id)
+            if not eval_entry:
+                errors.append(
+                    f"coverage row {coverage_id} score source for {dimension} references missing eval {eval_id}"
+                )
+                continue
+            eval_scores = eval_entry.get("scores") or []
+            if not eval_scores:
+                errors.append(
+                    f"coverage row {coverage_id} score source for {dimension} references eval {eval_id} with no scores"
+                )
+                continue
+            latest_score = eval_scores[0]
+            metrics = latest_score.get("metrics") or {}
+            if metric not in metrics:
+                errors.append(
+                    f"coverage row {coverage_id} score source for {dimension} references missing metric {metric} on eval {eval_id}"
+                )
+                continue
+            coverage_value = float_or_none(row_scores.get(dimension))
+            eval_value = float_or_none(metrics.get(metric))
+            if coverage_value is None or eval_value is None:
+                errors.append(
+                    f"coverage row {coverage_id} score source for {dimension} requires numeric coverage and eval values"
+                )
+                continue
+            if abs(coverage_value - eval_value) > 0.00005:
+                errors.append(
+                    f"coverage row {coverage_id} score {dimension}={coverage_value:.4f} drifts from eval {eval_id}.{metric}={eval_value:.4f}"
+                )
+            coverage_measured = string_or_none(row_scores.get("measured"))
+            eval_measured = string_or_none(latest_score.get("measured"))
+            if coverage_measured and eval_measured and coverage_measured != eval_measured:
+                errors.append(
+                    f"coverage row {coverage_id} measured date {coverage_measured} drifts from eval {eval_id} measured date {eval_measured}"
+                )
     for campaign in state.get("roadmap", {}).get("campaigns", []):
         resolved_story_refs: list[str] = []
         for story_ref in campaign.get("story_refs", []):

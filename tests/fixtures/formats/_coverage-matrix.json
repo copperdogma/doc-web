@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "generated": "2026-04-08",
+  "generated": "2026-04-10",
   "description": "Format coverage matrix tracking which input formats doc-forge can convert, how well, and what test fixtures exist. Agents query this to find untested formats and prioritize work.",
   "statuses": {
     "untested": "Format identified but no test fixtures or pipeline support",
@@ -90,13 +90,19 @@
       "scores": {
         "text_fidelity": 0.93,
         "structure_preservation": 0.95,
-        "illustration_extraction": 0.9,
+        "illustration_extraction": 0.9703,
         "provenance_completeness": 1.0,
-        "measured": "2026-03-11",
+        "measured": "2026-04-10",
         "provenance_measured": "2026-03-27",
-        "notes": "Structure quality comes from Story 131 / the 2026-03-11 onward-table-fidelity refresh, illustration quality uses the 2026-03-11 crop eval (0.900), and Story 157 restored maintained PDF-backed entry plus fresh provenance verification on the shared Onward PDF."
+        "notes": "Structure quality comes from Story 131 / the 2026-03-11 onward-table-fidelity refresh. Story 207 refreshed illustration quality against the maintained `image-crop-extraction` detector surface to `0.9703` on 2026-04-10, then rechecked the reviewed Onward publication seam from Stories 184 and 198 before promoting the canonical row. Story 157 restored maintained PDF-backed entry plus fresh provenance verification on the shared Onward PDF."
       },
-      "known_gaps": ["Handwritten annotations still weaken some table pages.", "Illustration extraction remains below the 0.95 graduation target."],
+      "score_sources": {
+        "illustration_extraction": {
+          "eval_id": "image-crop-extraction",
+          "metric": "overall"
+        }
+      },
+      "known_gaps": ["Handwritten annotations still weaken some table pages."],
       "graduated": false
     },
     {
@@ -118,13 +124,19 @@
       "scores": {
         "text_fidelity": 0.93,
         "structure_preservation": 0.95,
-        "illustration_extraction": 0.9,
+        "illustration_extraction": 0.9703,
         "provenance_completeness": 1.0,
-        "measured": "2026-03-11",
+        "measured": "2026-04-10",
         "provenance_measured": "2026-03-11",
-        "notes": "Shares the current scanned-image quality envelope: table structure at 0.95, illustration extraction at 0.900, and provenance completeness at 1.0 after Story 132 verification."
+        "notes": "Shares the current scanned-image quality envelope: table structure at 0.95, illustration extraction now follows Story 207's fresh maintained `image-crop-extraction` rerun at `0.9703` on 2026-04-10, and provenance completeness remains 1.0 after Story 132 verification. Stories 184 and 198 still provide the reviewed Onward publication seam for this crop score."
       },
-      "known_gaps": ["Illustration extraction remains below the 0.95 graduation target."],
+      "score_sources": {
+        "illustration_extraction": {
+          "eval_id": "image-crop-extraction",
+          "metric": "overall"
+        }
+      },
+      "known_gaps": [],
       "graduated": false
     },
     {

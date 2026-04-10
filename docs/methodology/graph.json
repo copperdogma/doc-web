@@ -290,7 +290,8 @@
           "135",
           "183",
           "184",
-          "198"
+          "198",
+          "207"
         ],
         "adr_ids": [],
         "eval_ids": [
@@ -494,7 +495,8 @@
           "202",
           "203",
           "204",
-          "205"
+          "205",
+          "207"
         ],
         "adr_ids": [
           "ADR-002"
@@ -503,6 +505,7 @@
           "image-crop-extraction",
           "crop-validation",
           "handwritten-notes-transcription",
+          "single-model-crop-detection",
           "auto-book-type-detection",
           "approved-intake-handoff",
           "layout-section-splitting",
@@ -536,10 +539,13 @@
           "202",
           "203",
           "204",
-          "205"
+          "205",
+          "207"
         ],
         "adr_ids": [],
         "eval_ids": [
+          "image-crop-extraction",
+          "single-model-crop-detection",
           "auto-book-type-detection",
           "approved-intake-handoff",
           "layout-section-splitting"
@@ -6854,6 +6860,56 @@
       "legacy_build_map_refs": "",
       "metadata_source": "frontmatter",
       "missing_frontmatter_keys": []
+    },
+    {
+      "id": "207",
+      "title": "Refresh Crop C4 Proof and Coverage Truth Surfaces",
+      "path": "docs/stories/story-207-refresh-crop-c4-proof-and-coverage-truth-surfaces.md",
+      "status": "Done",
+      "priority": "High",
+      "ideal_refs": [
+        "Requirement #4 (Illustrate), Requirement #6 (Validate), Traceability is the product, Fidelity to the source, Transparency over magic"
+      ],
+      "spec_refs": [
+        "spec:4",
+        "spec:4.1",
+        "spec:4.2",
+        "spec:8",
+        "spec:9"
+      ],
+      "decision_refs": [
+        "`docs/ideal.md`, `docs/spec.md`, `docs/methodology/state.yaml`, `docs/methodology/graph.json`, `docs/evals/registry.yaml`, `tests/fixtures/formats/_coverage-matrix.json`, `docs/runbooks/crop-eval-workflow.md`, `docs/stories/story-183-crop-benchmark-substrate-and-c5-validation-surface.md`, `docs/stories/story-184-collapse-bounded-crop-runtime-to-single-stage-flash.md`, `docs/stories/story-198-delete-crop-runtime-validator-retry-residue.md`, `docs/stories/story-204-methodology-roadmap-truth-refresh.md`, and `None found after search in docs/decisions/`, `docs/scout/`, and `docs/notes/` for a narrower crop-proof or proof-surface-alignment ADR"
+      ],
+      "adr_ids": [],
+      "depends_on": [
+        "183",
+        "198"
+      ],
+      "category_refs": [
+        "spec:4",
+        "spec:8",
+        "spec:9"
+      ],
+      "compromise_refs": [
+        "B1",
+        "B8",
+        "C4",
+        "C5"
+      ],
+      "input_coverage_refs": [
+        "image-directory-scans",
+        "scanned-pdf-tables"
+      ],
+      "architecture_domains": [
+        "methodology_tooling"
+      ],
+      "roadmap_tags": [],
+      "blocker_summary": "",
+      "blocker_evidence": "",
+      "unblock_condition": "",
+      "legacy_build_map_refs": "",
+      "metadata_source": "frontmatter",
+      "missing_frontmatter_keys": []
     }
   ],
   "adrs": [
@@ -6978,14 +7034,90 @@
       "spec_refs": [],
       "story_refs": [
         "133",
-        "183"
+        "183",
+        "207"
       ],
       "compromise_refs": [
         "C4"
       ],
       "category_refs": [
         "spec:4",
-        "spec:8"
+        "spec:8",
+        "spec:9"
+      ],
+      "scores": [
+        {
+          "model": "Gemini 3 Flash (conservative-count prompt, maintained rerun)",
+          "metrics": {
+            "overall": 0.9703,
+            "pass_rate": 1.0
+          },
+          "measured": "2026-04-10",
+          "git_sha": "d074136",
+          "note": "Story 207 reran the maintained detector surface via `promptfoo eval -c tasks/image-crop-extraction.yaml --no-cache --filter-providers 'google:gemini-3-flash-preview' --filter-prompts 'conservative-count' --output results/story207-image-crop-baseline.json -j 1`. The JSON output recorded `13/13` scorer passes with `0` failures and `0` errors; recomputing the mean from the per-case scores yielded `0.9703 / 1.0` (overall / pass_rate), average latency about `7878 ms` per page, and total eval cost about `$0.059`. The portable tracked proof anchor is now `docs/evals/attempts/001-image-crop-extraction-story207-proof-refresh.md`; the raw promptfoo JSON remains a local regenerable artifact.\n"
+        },
+        {
+          "model": "Gemini 3 Flash (conservative-count prompt, heading-safe revision)",
+          "metrics": {
+            "overall": 0.9678,
+            "pass_rate": 1.0
+          },
+          "measured": "2026-04-03",
+          "git_sha": "b1a9964",
+          "note": "After tightening `crop-conservative-count.js` to exclude ordinary heading-style display text while still allowing standalone text-as-art, a fresh rerun via `benchmarks/results/single-model-crop-detection-g3flash-20260403-promptfix.json` reached `13/13` scorer passes and `0.9678 / 1.0` (overall / pass_rate). The previously ambiguous mixed photo/title pages now align with the maintained goldens; the only materially weak remaining case is `Image000`, where the full-cover crop is still slightly inset but above the deletion-gate aggregate.\n"
+        },
+        {
+          "model": "Gemini 3 Flash (conservative-count prompt)",
+          "metrics": {
+            "overall": 0.9321,
+            "pass_rate": 1.0
+          },
+          "measured": "2026-04-03",
+          "git_sha": "b1a9964",
+          "note": "Fresh rerun of the maintained task filtered to `google:gemini-3-flash-preview` + `conservative-count` wrote `benchmarks/results/single-model-crop-detection-g3flash-20260403.json` with `13/13` scorer passes and `0.9321 / 1.0` (overall / pass_rate). Weak cases cluster around extra stylized-title crops on `Image011`, `Image013`, `Image021`, `Image037`, and `Image059`; those were classified as ambiguous prompt/golden tension, while `Image000` remains model-wrong on full-cover coverage.\n"
+        },
+        {
+          "model": "Gemini 3 Flash (conservative-count prompt)",
+          "metrics": {
+            "overall": 0.918,
+            "pass_rate": 1.0
+          },
+          "measured": "2026-04-03",
+          "note": "Fresh rerun on the repaired maintained C4 surface after restoring `conservative-count` to `tasks/image-crop-extraction.yaml`."
+        },
+        {
+          "model": "Gemini 3 Pro (detector) + Gemini 2.5 Flash (validator)",
+          "metrics": {
+            "overall": 0.856,
+            "pass_rate": 0.77
+          },
+          "measured": "2026-01-25",
+          "note": "Previous winner. Two-stage detector-validator with auto-retry on count mismatch."
+        },
+        {
+          "model": "Gemini 2.5 Pro",
+          "metrics": {
+            "overall": 0.78
+          },
+          "measured": "2026-01-24",
+          "note": "Baseline eval before model sweep"
+        },
+        {
+          "model": "Claude Sonnet 4.5",
+          "metrics": {
+            "overall": 0.72
+          },
+          "measured": "2026-01-24",
+          "note": "Struggled with multi-illustration pages"
+        },
+        {
+          "model": "GPT-5.1",
+          "metrics": {
+            "overall": 0.68
+          },
+          "measured": "2026-01-24",
+          "note": "Poor bounding box precision"
+        }
       ],
       "explicit_lineage": true
     },
@@ -7006,6 +7138,19 @@
         "spec:4",
         "spec:8"
       ],
+      "scores": [
+        {
+          "model": "Gemini 3.1 Flash Lite (caption-focus prompt)",
+          "metrics": {
+            "overall": 1.0,
+            "pass_rate": 1.0,
+            "cases_total": 40,
+            "latency_ms": 3021
+          },
+          "measured": "2026-04-03",
+          "note": "Story 183 repaired the tracked crop benchmark substrate by restoring the canonical local `.b64.txt` fixtures under `benchmarks/input/source-pages-b64/` and `benchmarks/input/crop-validation-b64/`, then reran the full 40-crop dedicated validation surface via `cd benchmarks && promptfoo eval -c tasks/crop-validation.yaml --no-cache --filter-providers 'google:gemini-3.1-flash-lite-preview' --filter-prompts 'caption-focus' --output results/crop-validation-story183-g31-caption-focus.json -j 1`. The repaired local benchmark completed `40/40` with `0` failures, `0` errors, `120833 ms` total duration, and `59087` total tokens. Manual inspection in the same pass confirmed the 4 checked fail cases (`page-018-000`, `page-092-000`, `page-122-000`, `page-126-000`) still returned `{\"verdict\": \"fail\", ...}` while integral-text pass case `page-012-000` still returned `{\"verdict\": \"pass\", ...}` in `benchmarks/results/crop-validation-story183-g31-caption-focus.json`.\n"
+        }
+      ],
       "explicit_lineage": true
     },
     {
@@ -7025,6 +7170,16 @@
       "category_refs": [
         "spec:2",
         "spec:3"
+      ],
+      "scores": [
+        {
+          "model": "GPT-5.1 (AI-first OCR)",
+          "metrics": {
+            "character_accuracy": 0.97
+          },
+          "measured": "2026-02-20",
+          "note": "Story 127 \u2014 good for prose, struggles with dense tables"
+        }
       ],
       "explicit_lineage": true
     },
@@ -7050,6 +7205,142 @@
         "spec:2",
         "spec:8"
       ],
+      "scores": [
+        {
+          "model": "Maintained handwritten rescue OCR lanes (gemini-2.5-pro via handwritten-notes rescue recipes)",
+          "metrics": {
+            "overall_min_ratio": 0.677267,
+            "page_min_ratio": 0.677267,
+            "pass_rate": 0.6,
+            "cases_total": 10,
+            "fixture_count": 5,
+            "fixtures_passing": 3
+          },
+          "measured": "2026-04-04",
+          "note": "Story 192 corrected the Alverson transcript to the exact visible front-page boundary of the checked-in LOC source image and reran the maintained rescue seam via `python benchmarks/scripts/run_handwritten_notes_eval.py --image-recipe configs/recipes/recipe-images-ocr-html-handwritten-notes-gemini-rescue.yaml --pdf-recipe configs/recipes/recipe-pdf-ocr-html-handwritten-notes-gemini-rescue.yaml --image-case-id image-handwritten-rescue --pdf-case-id pdf-handwritten-rescue --output benchmarks/results/handwritten-notes-story192-alverson-frontpage.json`, which wrote `benchmarks/results/handwritten-notes-story192-alverson-frontpage.json` with `pass_rate = 0.6`, `overall_min_ratio = 0.677267`, `page_min_ratio = 0.677267`, `cases_total = 10`, and `fixtures_passing = 3`. The six synthetic rescue cases still scored `1.0`; Barney remained below bar at `0.908567` on image entry and `0.886568` on PDF entry at `output/runs/handwritten-handwritten-notes-barney-real-image-handwritten-rescue/02_ocr_ai_gpt51_v1/pages_html.jsonl` and `output/runs/handwritten-handwritten-notes-barney-real-pdf-handwritten-rescue/02_ocr_ai_gpt51_v1/pages_html.jsonl`; the corrected Alverson front-page fixture now scores `0.677267` on image entry and `0.681952` on PDF entry at `output/runs/handwritten-handwritten-notes-alverson-real-image-handwritten-rescue/02_ocr_ai_gpt51_v1/pages_html.jsonl` and `output/runs/handwritten-handwritten-notes-alverson-real-pdf-handwritten-rescue/02_ocr_ai_gpt51_v1/pages_html.jsonl`. Manual artifact inspection in the same pass confirmed the prior `0.499136` floor was partially golden-wrong rather than a pure OCR miss: the transcript/source mismatch is repaired, but the maintained rescue seam still misreads visible Alverson text (`nothing`, `Battle of Chickamauga`, `lates novels`, `excepatable`) and still drifts semantically on Barney. The handwritten family therefore remains `has-fixture`, not `passing`.\n"
+        },
+        {
+          "model": "Maintained handwritten rescue OCR lanes (gemini-2.5-pro via handwritten-notes rescue recipes)",
+          "metrics": {
+            "overall_min_ratio": 0.499136,
+            "page_min_ratio": 0.499136,
+            "pass_rate": 0.6,
+            "cases_total": 10,
+            "fixture_count": 5,
+            "fixtures_passing": 3,
+            "latency_ms": 17388.9,
+            "cost_usd": 0.005563,
+            "cost_estimated": true
+          },
+          "measured": "2026-04-04",
+          "note": "Story 191 reran the maintained rescue seam on the current tip via `python benchmarks/scripts/run_handwritten_notes_eval.py --image-recipe configs/recipes/recipe-images-ocr-html-handwritten-notes-gemini-rescue.yaml --pdf-recipe configs/recipes/recipe-pdf-ocr-html-handwritten-notes-gemini-rescue.yaml --image-case-id image-handwritten-rescue --pdf-case-id pdf-handwritten-rescue --output benchmarks/results/handwritten-notes-story191-baseline-20260404.json`, which wrote `benchmarks/results/handwritten-notes-story191-baseline-20260404.json` with `pass_rate = 0.6`, `overall_min_ratio = 0.499136`, `page_min_ratio = 0.499136`, `cases_total = 10`, and `fixtures_passing = 3`. The six synthetic rescue cases still scored `1.0`, but the real fixtures kept the family below bar: Barney reached `0.895587` on image entry and `0.756036` on PDF entry at `output/runs/handwritten-handwritten-notes-barney-real-image-handwritten-rescue/02_ocr_ai_gpt51_v1/pages_html.jsonl` and `output/runs/handwritten-handwritten-notes-barney-real-pdf-handwritten-rescue/02_ocr_ai_gpt51_v1/pages_html.jsonl`, while Alverson reached `0.499136` on image entry and `0.500647` on PDF entry at `output/runs/handwritten-handwritten-notes-alverson-real-image-handwritten-rescue/02_ocr_ai_gpt51_v1/pages_html.jsonl` and `output/runs/handwritten-handwritten-notes-alverson-real-pdf-handwritten-rescue/02_ocr_ai_gpt51_v1/pages_html.jsonl`. Story 191 then measured fresh direct `gpt-5` and `claude-opus-4-6` probes and still found no winner. Manual source review in the same pass also changed the Alverson interpretation: the checked-in front-page image itself visibly ends at the same `...exceptable and` boundary where OCR stops, while the LOC source record exposes separate front/back images. That makes the current Alverson truth surface at least partially a source/transcript alignment problem rather than a pure OCR runtime miss. The handwritten family therefore stays `has-fixture`, not `passing`. Story 192 later corrected that transcript boundary and remeasured the corpus, so this entry is historical pre-fix evidence rather than the current baseline.\n"
+        },
+        {
+          "model": "Maintained handwritten rescue OCR lanes (gemini-2.5-pro via handwritten-notes rescue recipes)",
+          "metrics": {
+            "overall_min_ratio": 0.883604,
+            "page_min_ratio": 0.883604,
+            "pass_rate": 0.75,
+            "cases_total": 8,
+            "fixture_count": 4,
+            "fixtures_passing": 3,
+            "latency_ms": 18366.581,
+            "cost_usd": 0.006059,
+            "cost_estimated": true
+          },
+          "measured": "2026-04-04",
+          "note": "Story 189 landed the bounded maintained handwritten rescue recipes `configs/recipes/recipe-images-ocr-html-handwritten-notes-gemini-rescue.yaml` and `configs/recipes/recipe-pdf-ocr-html-handwritten-notes-gemini-rescue.yaml`, plus eval-helper instrumentation capture in `benchmarks/scripts/run_handwritten_notes_eval.py`. Fresh rerun via `python benchmarks/scripts/run_handwritten_notes_eval.py --image-recipe configs/recipes/recipe-images-ocr-html-handwritten-notes-gemini-rescue.yaml --pdf-recipe configs/recipes/recipe-pdf-ocr-html-handwritten-notes-gemini-rescue.yaml --image-case-id image-handwritten-rescue --pdf-case-id pdf-handwritten-rescue --instrument --output benchmarks/results/handwritten-notes-story189-handwritten-rescue.json` wrote `benchmarks/results/handwritten-notes-story189-handwritten-rescue.json` with `pass_rate = 0.75`, `overall_min_ratio = 0.883604`, `page_min_ratio = 0.883604`, `cases_total = 8`, and `fixtures_passing = 3`. The six synthetic rescue cases still scored `1.0`, while the real Barney slice improved materially to `0.883604` on image entry and `0.884339` on PDF entry at `output/runs/handwritten-handwritten-notes-barney-real-image-handwritten-rescue/02_ocr_ai_gpt51_v1/pages_html.jsonl` and `output/runs/handwritten-handwritten-notes-barney-real-pdf-handwritten-rescue/02_ocr_ai_gpt51_v1/pages_html.jsonl`. Instrumented OCR-stage averages were `18366.581 ms` and `$0.006059` per case from the run-local `instrumentation.json` files. Manual inspection confirmed the rescue path now preserves harder Barney phrases like `real sorrow`, `father had gone to see him`, and the second-paragraph tents / cedar-brush passage, while still drifting on names and words such as `Harlen`, `genesee`, `Welthy gone`, and `med of cloth`. The family therefore remains `has-fixture`, not `passing`.\n"
+        },
+        {
+          "model": "Maintained generic OCR lanes (single-fixture Barney current-tip rerun via recipe-images-ocr-html-mvp.yaml + recipe-pdf-ocr-html-mvp.yaml)",
+          "metrics": {
+            "overall_min_ratio": 0.105378,
+            "page_min_ratio": 0.105378,
+            "pass_rate": 0.0,
+            "cases_total": 2,
+            "fixture_count": 1,
+            "fixtures_passing": 0,
+            "latency_ms": 8058.037,
+            "cost_usd": 0.00483,
+            "cost_estimated": true
+          },
+          "measured": "2026-04-04",
+          "note": "After OpenAI credit was restored, Story 189 reran the maintained generic Barney baseline on the current tip via `python benchmarks/scripts/run_handwritten_notes_eval.py --transcript testdata/handwritten-notes-barney-real.txt --images testdata/handwritten-notes-barney-real-images --pdf testdata/handwritten-notes-barney-real.pdf --instrument --output benchmarks/results/story189-barney-generic-current.json`, which wrote `benchmarks/results/story189-barney-generic-current.json` with `pass_rate = 0.0`, `overall_min_ratio = 0.105378`, and `page_min_ratio = 0.105378`. The fresh generic image-entry rerun reached `0.111437` at `output/runs/handwritten-single-fixture-image-generic/02_ocr_ai_gpt51_v1/pages_html.jsonl` and the fresh generic PDF-entry rerun reached `0.105378` at `output/runs/handwritten-single-fixture-pdf-generic/02_ocr_ai_gpt51_v1/pages_html.jsonl`. Instrumented OCR-stage averages were `8058.037 ms` and `$0.00483` per case from the run-local `instrumentation.json` files. Manual inspection confirmed the same dominant failure pattern as Story 186: semantically wrong rewrites like `the combat`, `old home town is all gone`, and `wife of Harlow`, which keeps the maintained generic seam far below the bounded rescue path.\n"
+        },
+        {
+          "model": "Bounded direct real-fixture comparison (gemini-2.5-pro on the Barney spread)",
+          "metrics": {
+            "overall_min_ratio": 0.864029,
+            "page_min_ratio": 0.864029,
+            "pass_rate": 0.0,
+            "cases_total": 2,
+            "fixture_count": 1
+          },
+          "measured": "2026-04-04",
+          "note": "Story 189 reran the bounded direct current-tip Barney comparison on the checked-in image and PDF manifests using `gemini-2.5-pro` plus handwritten-focused hints via `PYTHONPATH=. python modules/extract/ocr_ai_gpt51_v1/main.py ...`. The direct image-manifest result scored `0.864029` at `output/runs/story189-barney-direct-gemini-image/01_ocr_ai_gpt51_v1/pages_html.jsonl` and the direct PDF-manifest result scored `0.894151` at `output/runs/story189-barney-direct-gemini-pdf/01_ocr_ai_gpt51_v1/pages_html.jsonl`. This established Gemini as the strongest currently runnable single-call candidate before the bounded maintained rescue recipe was introduced.\n"
+        },
+        {
+          "model": "Maintained generic OCR lanes (four-fixture mixed corpus via recipe-images-ocr-html-mvp.yaml + recipe-pdf-ocr-html-mvp.yaml)",
+          "metrics": {
+            "overall_min_ratio": 0.102602,
+            "page_min_ratio": 0.102602,
+            "pass_rate": 0.75,
+            "cases_total": 8,
+            "fixture_count": 4,
+            "fixtures_passing": 3
+          },
+          "measured": "2026-04-03",
+          "note": "Story 186 added the first repo-owned real handwritten fixture: `testdata/handwritten-notes-barney-real-images/`, `testdata/handwritten-notes-barney-real.pdf`, and `testdata/handwritten-notes-barney-real.txt`, derived from Library of Congress item `https://www.loc.gov/pictures/item/2023637825/` with source rights note `No known restrictions on publication.`. Fresh rerun via `python benchmarks/scripts/run_handwritten_notes_eval.py --output benchmarks/results/handwritten-notes-story186-real-fixture.json` wrote `benchmarks/results/handwritten-notes-story186-real-fixture.json`; subsequent reruns stayed in the same low-0.1 range on the real Barney slice while preserving `pass_rate = 0.75` for the mixed four-fixture corpus. Image-only PDF verification stayed `[0]` for `handwritten-notes-barney-real` alongside the still-passing synthetic fixtures `[0, 0]`, `[0, 0]`, and `[0, 0, 0]`. Manual artifact inspection confirmed stamped manifest provenance at `output/runs/handwritten-handwritten-notes-barney-real-image-generic/01_images_dir_to_manifest_v1/pages_images_manifest.jsonl` and `output/runs/handwritten-handwritten-notes-barney-real-pdf-generic/01_extract_pdf_images_fast_v1/pages_images_manifest.jsonl`, while the OCR artifacts at `output/runs/handwritten-handwritten-notes-barney-real-image-generic/02_ocr_ai_gpt51_v1/pages_html.jsonl` and `output/runs/handwritten-handwritten-notes-barney-real-pdf-generic/02_ocr_ai_gpt51_v1/pages_html.jsonl` showed coherent-looking but semantically wrong substitutions such as `Wm H. Harlow` / `the combat`, so the widened family no longer qualifies as a blanket handwritten passing claim. Story 189 tried to rerun this maintained generic baseline on 2026-04-04, but the current checkout hit OpenAI `insufficient_quota` before OCR output, so this low-0.1 entry remains the freshest inspected generic-baseline reference while the quota blocker is active.\n"
+        },
+        {
+          "model": "Bounded direct real-fixture comparison (claude-opus-4-6 on the Barney spread)",
+          "metrics": {
+            "overall_min_ratio": 0.725708,
+            "page_min_ratio": 0.725708,
+            "pass_rate": 0.0,
+            "cases_total": 1,
+            "fixture_count": 1
+          },
+          "measured": "2026-04-03",
+          "note": "Per Story 186's comparison gate, a one-off non-maintained direct transcription rerun on the same real Barney spread used `PYTHONPATH=. python modules/extract/ocr_ai_gpt51_v1/main.py --pages output/runs/handwritten-handwritten-notes-barney-real-image-generic/01_images_dir_to_manifest_v1/pages_images_manifest.jsonl --outdir output/runs/story186-barney-direct-claude-opus/01_ocr_ai_gpt51_v1 --out pages_html.jsonl --model claude-opus-4-6 ...` and then scored the result with `benchmarks/scorers/handwritten_notes_transcription.py`. The bounded comparison improved the real-slice score materially to roughly `0.73` at `output/runs/story186-barney-direct-claude-opus/01_ocr_ai_gpt51_v1/pages_html.jsonl`, preserving harder real details like `Alvira and Welington` and `real sorrow`, but it still missed the repo's `0.99` passing bar and therefore does not justify a maintained handwritten runtime change by itself.\n"
+        },
+        {
+          "model": "Maintained generic OCR lanes (recipe-images-ocr-html-mvp.yaml + recipe-pdf-ocr-html-mvp.yaml)",
+          "metrics": {
+            "overall_min_ratio": 1.0,
+            "page_min_ratio": 1.0,
+            "pass_rate": 1.0,
+            "cases_total": 6,
+            "fixture_count": 3
+          },
+          "measured": "2026-04-03",
+          "note": "Story 185 added `testdata/handwritten-notes-faded-images/`, the image-only wrapper `testdata/handwritten-notes-faded.pdf`, the transcript `testdata/handwritten-notes-faded.txt`, and widened the maintained corpus at `benchmarks/golden/handwritten-notes/corpus.json` to three fixtures. Fresh rerun via `python benchmarks/scripts/run_handwritten_notes_eval.py --output benchmarks/results/handwritten-notes-story185-widened.json` wrote `benchmarks/results/handwritten-notes-story185-widened.json` with `pass_rate = 1.0`, `overall_min_ratio = 1.0`, `page_min_ratio = 1.0`, `cases_total = 6`, `fixture_count = 3`, and image-only PDF verification of `[0, 0]` for `handwritten-notes-mini`, `[0, 0]` for `handwritten-notes-faded`, and `[0, 0, 0]` for `handwritten-notes-rough`. Manual artifact inspection in the same pass confirmed stamped manifest provenance at `output/runs/handwritten-handwritten-notes-mini-image-generic/01_images_dir_to_manifest_v1/pages_images_manifest.jsonl`, `output/runs/handwritten-handwritten-notes-faded-image-generic/01_images_dir_to_manifest_v1/pages_images_manifest.jsonl`, `output/runs/handwritten-handwritten-notes-rough-image-generic/01_images_dir_to_manifest_v1/pages_images_manifest.jsonl`, `output/runs/handwritten-handwritten-notes-mini-pdf-generic/01_extract_pdf_images_fast_v1/pages_images_manifest.jsonl`, `output/runs/handwritten-handwritten-notes-faded-pdf-generic/01_extract_pdf_images_fast_v1/pages_images_manifest.jsonl`, and `output/runs/handwritten-handwritten-notes-rough-pdf-generic/01_extract_pdf_images_fast_v1/pages_images_manifest.jsonl`, plus normalized transcript matches in `output/runs/handwritten-handwritten-notes-faded-image-generic/02_ocr_ai_gpt51_v1/pages_html.jsonl` and `output/runs/handwritten-handwritten-notes-faded-pdf-generic/02_ocr_ai_gpt51_v1/pages_html.jsonl`, where page 2 preserved the harder snippet \"The parcel for J. Mercer should include 3 seals, one wax cord, and the note from April 8.\" without loss on both maintained lanes.\n"
+        },
+        {
+          "model": "Maintained generic OCR lanes (recipe-images-ocr-html-mvp.yaml + recipe-pdf-ocr-html-mvp.yaml)",
+          "metrics": {
+            "overall_min_ratio": 1.0,
+            "page_min_ratio": 1.0,
+            "pass_rate": 1.0,
+            "cases_total": 4,
+            "fixture_count": 2
+          },
+          "measured": "2026-04-03",
+          "note": "Story 182 added `testdata/handwritten-notes-rough-images/`, the image-only wrapper `testdata/handwritten-notes-rough.pdf`, corpus metadata at `benchmarks/golden/handwritten-notes/corpus.json`, and widened `benchmarks/scripts/run_handwritten_notes_eval.py` to emit fixture-specific run IDs. Fresh rerun via that helper wrote `benchmarks/results/handwritten-notes-story182.json` with `pass_rate = 1.0`, `overall_min_ratio = 1.0`, `page_min_ratio = 1.0`, `cases_total = 4`, and image-only PDF verification of `[0, 0]` for `handwritten-notes-mini` plus `[0, 0, 0]` for `handwritten-notes-rough`. Manual artifact inspection in the same pass confirmed normalized transcript matches at `output/runs/handwritten-handwritten-notes-mini-image-generic/02_ocr_ai_gpt51_v1/pages_html.jsonl`, `output/runs/handwritten-handwritten-notes-mini-pdf-generic/02_ocr_ai_gpt51_v1/pages_html.jsonl`, `output/runs/handwritten-handwritten-notes-rough-image-generic/02_ocr_ai_gpt51_v1/pages_html.jsonl`, and `output/runs/handwritten-handwritten-notes-rough-pdf-generic/02_ocr_ai_gpt51_v1/pages_html.jsonl`.\n"
+        },
+        {
+          "model": "Maintained generic OCR lanes (recipe-images-ocr-html-mvp.yaml + recipe-pdf-ocr-html-mvp.yaml)",
+          "metrics": {
+            "overall_ratio": 1.0,
+            "page_min_ratio": 1.0,
+            "pass_rate": 1.0,
+            "image_overall_ratio": 1.0,
+            "pdf_overall_ratio": 1.0
+          },
+          "measured": "2026-04-01",
+          "note": "Story 179 added `testdata/handwritten-notes-mini-images/`, the image-only wrapper `testdata/handwritten-notes-mini.pdf`, and the focused regression helper `benchmarks/scripts/run_handwritten_notes_eval.py`. Fresh rerun via that helper wrote `benchmarks/results/handwritten-notes-story179.json` with `pass_rate = 1.0`, `overall_min_ratio = 1.0`, and `page_min_ratio = 1.0`; the helper also verified the PDF wrapper stayed image-only (`[0, 0]` extract-text lengths). Manual artifact inspection in the same pass confirmed exact normalized transcript matches at `output/runs/story179-image-generic/02_ocr_ai_gpt51_v1/pages_html.jsonl` and `output/runs/story179-pdf-generic/02_ocr_ai_gpt51_v1/pages_html.jsonl`.\n"
+        }
+      ],
       "explicit_lineage": true
     },
     {
@@ -7067,6 +7358,109 @@
       ],
       "category_refs": [
         "spec:2"
+      ],
+      "scores": [
+        {
+          "model": "Gemini 3.1 Pro",
+          "metrics": {
+            "structure_preservation": 0.969,
+            "alma": 0.923,
+            "arthur": 0.989,
+            "marie_louise": 0.995
+          },
+          "latency_ms": 207500,
+          "cost_usd": 0.0903,
+          "cost_estimated": true,
+          "measured": "2026-03-11",
+          "note": "New quality winner. maxOutputTokens=65536 required (reasoning eats budget). Slowest but cheapest of quality tier."
+        },
+        {
+          "model": "Claude Opus 4.6",
+          "metrics": {
+            "structure_preservation": 0.953,
+            "alma": 0.923,
+            "arthur": 0.964,
+            "marie_louise": 0.973
+          },
+          "latency_ms": 123118,
+          "cost_usd": 0.3175,
+          "measured": "2026-03-11",
+          "note": "Stable vs prior run (+0.001). 3.5x more expensive than Gemini 3.1 Pro."
+        },
+        {
+          "model": "GPT-5.4",
+          "metrics": {
+            "structure_preservation": 0.952,
+            "alma": 0.907,
+            "arthur": 0.976,
+            "marie_louise": 0.972
+          },
+          "latency_ms": 102571,
+          "cost_usd": 0.1067,
+          "cost_estimated": true,
+          "measured": "2026-03-11",
+          "note": "New. Fastest model that meets 0.95 target. Value winner \u2014 Opus quality at Sonnet price."
+        },
+        {
+          "model": "Claude Sonnet 4.6",
+          "metrics": {
+            "structure_preservation": 0.945,
+            "alma": 0.918,
+            "arthur": 0.978,
+            "marie_louise": 0.939
+          },
+          "latency_ms": 110051,
+          "cost_usd": 0.1842,
+          "measured": "2026-03-11",
+          "note": "Stable vs prior run (-0.001). No longer balanced winner \u2014 GPT-5.4 is cheaper and higher quality."
+        },
+        {
+          "model": "Gemini 2.5 Flash",
+          "metrics": {
+            "structure_preservation": 0.886,
+            "alma": 0.839,
+            "arthur": 0.918,
+            "marie_louise": 0.9
+          },
+          "latency_ms": 84000,
+          "cost_usd": 0.0555,
+          "cost_estimated": true,
+          "measured": "2026-03-11",
+          "note": "Best budget model. Below 0.95 target but fast and cheap. May improve with prompt tuning."
+        },
+        {
+          "model": "GPT-4o",
+          "metrics": {
+            "structure_preservation": 0.855
+          },
+          "latency_ms": 688500,
+          "cost_usd": 0.1104,
+          "cost_estimated": true,
+          "measured": "2026-03-10",
+          "note": "Decent but slow (689s avg). Not competitive with Claude or GPT-5.4."
+        },
+        {
+          "model": "GPT-5.1",
+          "metrics": {
+            "structure_preservation": 0.847
+          },
+          "latency_ms": 91200,
+          "cost_usd": 0.1155,
+          "cost_estimated": true,
+          "measured": "2026-03-10",
+          "note": "Merges continuation rows. Superseded by GPT-5.4."
+        },
+        {
+          "model": "Gemini 2.5 Pro",
+          "metrics": {
+            "structure_preservation": 0.577
+          },
+          "latency_ms": 97000,
+          "cost_usd": 0.148,
+          "cost_estimated": true,
+          "measured": "2026-03-10",
+          "note": "Merges BOY/GIRL columns despite instructions. Superseded by Gemini 3.1 Pro."
+        }
       ],
       "explicit_lineage": true
     },
@@ -7089,6 +7483,28 @@
         "spec:2",
         "spec:5"
       ],
+      "scores": [
+        {
+          "model": "Story 144 planner (gpt-5 primary, gpt-4.1 fallback)",
+          "metrics": {
+            "missed_manual_format_coverage": 1.0,
+            "chapter_009_not_pure_format": 1.0
+          },
+          "measured": "2026-03-15",
+          "note": "Story 144 revalidated on `story144-onward-document-consistency-plan-r7` after hardening mixed-summary bucketing and dossier-supported issue-type normalization. The `conformance_report` surfaced the previously missed manual format-failure chapters `011/012/013/014/018/019/020`, kept `chapter-010.html` flagged, routed `chapter-009.html` into a mixed row-semantic-containing bucket instead of pure format drift, and restored `chapter-023.html` to conformant baseline status.\n"
+        },
+        {
+          "model": "Story 146 planner-guided rerun loop (gpt-5 rerun stage)",
+          "metrics": {
+            "missed_manual_format_coverage": 1.0,
+            "chapter_009_not_pure_format": 1.0,
+            "remaining_format_issue_count": 19,
+            "remaining_format_issue_delta": -2
+          },
+          "measured": "2026-03-15",
+          "note": "Story 146 validation run `story146-onward-plan-aware-genealogy-reruns-r1` consumed `pattern_inventory`, `consistency_plan`, and `conformance_report` inside the rerun loop, accepted `11/18` targeted pages, preserved `chapter-009.html` as mixed and `chapter-023.html` as conformant, and lowered remaining pure-format issue-type count from `21` to `19` by clearing `fragmented_multi_table_chapter` from `chapter-018.html` and `chapter-019.html` plus `missing_subgroup_rows` from `chapter-017.html`, although the pure-format chapter set itself did not shrink.\n"
+        }
+      ],
       "explicit_lineage": true
     },
     {
@@ -7098,12 +7514,57 @@
       "command": "",
       "path": "docs/evals/registry.yaml",
       "spec_refs": [],
-      "story_refs": [],
+      "story_refs": [
+        "207"
+      ],
       "compromise_refs": [
         "C4"
       ],
       "category_refs": [
-        "spec:4"
+        "spec:4",
+        "spec:8",
+        "spec:9"
+      ],
+      "scores": [
+        {
+          "model": "Gemini 3 Flash (conservative-count prompt, maintained rerun)",
+          "metrics": {
+            "overall": 0.9703,
+            "pass_rate": 1.0
+          },
+          "measured": "2026-04-10",
+          "git_sha": "d074136",
+          "note": "Story 207 reran the maintained single-stage candidate through the same filtered `image-crop-extraction` surface and wrote `benchmarks/results/story207-image-crop-baseline.json`. The rerun again cleared `13/13` scorer passes, and recomputing the mean from the per-case scores yielded `0.9703 / 1.0` (overall / pass_rate). The portable tracked proof anchor is `docs/evals/attempts/001-image-crop-extraction-story207-proof-refresh.md`; this is now the current canonical C4 deletion-gate proof.\n"
+        },
+        {
+          "model": "Gemini 3 Flash (conservative-count prompt, heading-safe revision)",
+          "metrics": {
+            "overall": 0.9678,
+            "pass_rate": 1.0
+          },
+          "measured": "2026-04-03",
+          "git_sha": "b1a9964",
+          "note": "Fresh verified rerun after tightening the maintained `conservative-count` prompt to exclude heading-style display text that belongs to the reading flow. Result file: `benchmarks/results/single-model-crop-detection-g3flash-20260403-promptfix.json`. This clears the C4 deletion gate on the maintained 13-page corpus.\n"
+        },
+        {
+          "model": "Gemini 3 Flash (conservative-count prompt, single-stage)",
+          "metrics": {
+            "overall": 0.9321,
+            "pass_rate": 1.0
+          },
+          "measured": "2026-04-03",
+          "git_sha": "b1a9964",
+          "note": "Fresh comparable rerun on the maintained single-stage candidate via `benchmarks/results/single-model-crop-detection-g3flash-20260403.json`. The run cleared `13/13` scorer passes and improved the stale C4 gate materially, but it still missed the `0.95` overall threshold because `Image000` undercovers the full cover and five mixed photo/title pages remain ambiguous under the current prompt/golden contract.\n"
+        },
+        {
+          "model": "Gemini 3 Pro (single-stage, no validator)",
+          "metrics": {
+            "overall": 0.856,
+            "pass_rate": 0.77
+          },
+          "measured": "2026-01-25",
+          "note": "Not yet passing \u2014 validator still needed"
+        }
       ],
       "explicit_lineage": true
     },
@@ -7119,7 +7580,11 @@
         "170",
         "171",
         "194",
-        "197"
+        "197",
+        "200",
+        "201",
+        "202",
+        "203"
       ],
       "compromise_refs": [
         "C2"
@@ -7131,6 +7596,49 @@
         "spec:7",
         "spec:8",
         "spec:9"
+      ],
+      "scores": [
+        {
+          "model": "Current-head recommendation-only intake rerun after direct-entry surface refresh",
+          "metrics": {
+            "accuracy": 1.0,
+            "overall": 1.0,
+            "pass_rate": 1.0
+          },
+          "measured": "2026-04-10",
+          "git_sha": "601353b",
+          "note": "Fresh rerun via `python benchmarks/scripts/run_auto_book_type_detection_eval.py --output benchmarks/results/auto-book-type-detection-improve-eval-20260410.json --run-root output/runs/auto-book-type-detection-improve-eval-20260410` kept the locked 10-case recommendation-only PDF corpus green on current `HEAD` (`601353b`): `accuracy = 1.0`, `overall = 1.0`, and `pass_rate = 1.0`. Manual inspection in the same pass reconfirmed a representative launchable `cyoa` row at `output/runs/auto-book-type-detection-improve-eval-20260410/tbotb-mini/overview_plan_final.jsonl`, a representative explicit `no-recipe-needed` novel row at `output/runs/auto-book-type-detection-improve-eval-20260410/scanned-prose-mini/overview_plan_final.jsonl`, and the maintained genealogy route at `output/runs/auto-book-type-detection-improve-eval-20260410/onward-unknown/overview_plan_final.jsonl`. Additional temporary boundary probing wrote `benchmarks/results/auto-book-type-detection-direct-entry-boundary-20260410.json`, confirming that `web-page`, `epub`, `email-eml`, and `email-mbox` still block with `scope_policy = direct_explicit_recipe_only` instead of silently widening the recommendation-only automation surface.\n"
+        },
+        {
+          "model": "Story 171 maintained intake harness (gpt-4.1-mini overview/zoom)",
+          "metrics": {
+            "accuracy": 1.0,
+            "overall": 1.0,
+            "pass_rate": 1.0
+          },
+          "measured": "2026-03-29",
+          "note": "Story 171 reran the repo-owned `benchmarks/scripts/run_auto_book_type_detection_eval.py` harness after adding the maintained non-TOC born-digital PDF recipe and updating the locked 10-document corpus expectations for `rfp` and `release-forms`. Detection quality still clears the benchmark after widening the maintained routing surface. Result file: `benchmarks/results/auto-book-type-detection-story171.json`.\n"
+        },
+        {
+          "model": "Story 170 maintained intake harness (gpt-4.1-mini overview/zoom)",
+          "metrics": {
+            "accuracy": 1.0,
+            "overall": 1.0,
+            "pass_rate": 1.0
+          },
+          "measured": "2026-03-29",
+          "note": "Story 170 reran the repo-owned `benchmarks/scripts/run_auto_book_type_detection_eval.py` harness after narrowing the maintained PDF recommendation surface so short flat PDFs now return `no-recipe-needed` instead of silently pointing at full HTML recipes that fail later at `portionize_toc`. Result file: `benchmarks/results/auto-book-type-detection-story170.json`.\n"
+        },
+        {
+          "model": "Story 169 maintained intake harness (gpt-4.1-mini overview/zoom)",
+          "metrics": {
+            "accuracy": 1.0,
+            "overall": 1.0,
+            "pass_rate": 1.0
+          },
+          "measured": "2026-03-28",
+          "note": "Story 169 added the repo-owned harness `benchmarks/scripts/run_auto_book_type_detection_eval.py` plus a 10-document corpus and scored the final `intake_plan_v1` artifacts. The maintained recommendation-only chain classified all 10 documents correctly and recommended the expected maintained explicit recipe in every case. Result file: `benchmarks/results/auto-book-type-detection-story169.json`.\n"
+        }
       ],
       "explicit_lineage": true
     },
@@ -7138,7 +7646,7 @@
       "id": "approved-intake-handoff",
       "name": "C2 Proof: Approved Intake Handoff",
       "type": "compromise",
-      "command": "python benchmarks/scripts/run_approved_intake_handoff_eval.py --output benchmarks/results/approved-intake-handoff-story180.json --run-root output/runs/story180-approved-intake-handoff",
+      "command": "python benchmarks/scripts/run_approved_intake_handoff_eval.py --output benchmarks/results/approved-intake-handoff-improve-eval-20260410.json --run-root output/runs/approved-intake-handoff-improve-eval-20260410",
       "path": "docs/evals/registry.yaml",
       "spec_refs": [],
       "story_refs": [
@@ -7146,7 +7654,12 @@
         "178",
         "180",
         "194",
-        "197"
+        "197",
+        "200",
+        "201",
+        "202",
+        "203",
+        "205"
       ],
       "compromise_refs": [
         "C2"
@@ -7158,6 +7671,42 @@
         "spec:7",
         "spec:8",
         "spec:9"
+      ],
+      "scores": [
+        {
+          "model": "Current-head approved-handoff corpus rerun after direct-entry surface refresh",
+          "metrics": {
+            "pass_rate": 1.0,
+            "launched": 7,
+            "skipped": 4,
+            "failed_runs": 0
+          },
+          "measured": "2026-04-10",
+          "git_sha": "601353b",
+          "note": "Fresh rerun via `python benchmarks/scripts/run_approved_intake_handoff_eval.py --output benchmarks/results/approved-intake-handoff-improve-eval-20260410.json --run-root output/runs/approved-intake-handoff-improve-eval-20260410` kept the maintained 11-case surface green on current `HEAD` (`601353b`): `pass_rate = 1.0`, `overall = 1.0`, `launched = 7`, `skipped = 4`, and `failed_runs = 0`. Manual inspection in the same pass reconfirmed a representative launched PDF row at `output/runs/approved-intake-handoff-improve-eval-20260410/tbotb-mini/intake_handoff.jsonl` plus `output/runs/approved-intake-handoff-improve-eval-20260410-tbotb-mini-recipe-born-digital-pdf-marker-lite-html-mvp/01_extract_pdf_marker_lite_html_v1/pages_html.jsonl`, a representative explicit skip at `output/runs/approved-intake-handoff-improve-eval-20260410/scanned-prose-mini/intake_handoff.jsonl`, and the repo-owned image-directory launch at `output/runs/approved-intake-handoff-improve-eval-20260410/handwritten-notes-mini-images/intake_handoff.jsonl` plus `output/runs/approved-intake-handoff-improve-eval-20260410-handwritten-notes-mini-images-recipe-images-ocr-html-mvp/01_images_dir_to_manifest_v1/pages_images_manifest.jsonl`. Additional temporary boundary probing wrote `benchmarks/results/approved-intake-handoff-direct-entry-boundary-20260410.json`, confirming that `web-page`, `epub`, `email-eml`, and `email-mbox` still block with `scope_policy = direct_explicit_recipe_only` instead of silently widening the automation surface.\n"
+        },
+        {
+          "model": "Story 180 dedicated approved-handoff corpus",
+          "metrics": {
+            "pass_rate": 1.0,
+            "launched": 7,
+            "skipped": 4,
+            "failed_runs": 0
+          },
+          "measured": "2026-04-02",
+          "note": "Story 180 split approved handoff onto its own corpus file (`benchmarks/golden/approved-intake-handoff/corpus.json`) and reran the widened 11-case surface via `python benchmarks/scripts/run_approved_intake_handoff_eval.py --output benchmarks/results/approved-intake-handoff-story180.json --run-root output/runs/story180-approved-intake-handoff`. All 11 cases wrote stamped `intake_handoff_v1` rows; the 7 maintained launch cases also stamped the expected first downstream artifact under bounded `--end-at` execution. Manual inspection in the same pass confirmed the new repo-owned image-directory row at `output/runs/story180-approved-intake-handoff/handwritten-notes-mini-images/intake_handoff.jsonl` plus `output/runs/story180-approved-intake-handoff-handwritten-notes-mini-images-recipe-images-ocr-html-mvp/01_images_dir_to_manifest_v1/pages_images_manifest.jsonl`, a representative launched PDF row at `output/runs/story180-approved-intake-handoff/tbotb-mini/intake_handoff.jsonl` plus `output/runs/story180-approved-intake-handoff-tbotb-mini-recipe-born-digital-pdf-marker-lite-html-mvp/01_extract_pdf_marker_lite_html_v1/pages_html.jsonl`, and a representative explicit skip at `output/runs/story180-approved-intake-handoff/scanned-prose-mini/intake_handoff.jsonl`.\n"
+        },
+        {
+          "model": "Story 178 corpus-wide confirmed-handoff harness",
+          "metrics": {
+            "pass_rate": 1.0,
+            "launched": 6,
+            "skipped": 4,
+            "failed_runs": 0
+          },
+          "measured": "2026-04-02",
+          "note": "Story 178 added a dedicated corpus-wide approved-handoff harness and reran the locked 10-document maintained intake corpus via `python benchmarks/scripts/run_approved_intake_handoff_eval.py --output benchmarks/results/approved-intake-handoff-story178.json --run-root output/runs/story178-approved-intake-handoff`. All 10 cases wrote stamped `intake_handoff_v1` rows; the 6 maintained launch cases also stamped the expected first downstream artifact with bounded `--end-at` execution. Evidence inspected manually includes `output/runs/story178-approved-intake-handoff/tbotb-mini/intake_handoff.jsonl` plus `output/runs/story178-approved-intake-handoff-tbotb-mini-recipe-born-digital-pdf-marker-lite-html-mvp/01_extract_pdf_marker_lite_html_v1/pages_html.jsonl`, `output/runs/story178-approved-intake-handoff/onward-unknown/intake_handoff.jsonl` plus `output/runs/story178-approved-intake-handoff-onward-unknown-recipe-pdf-ocr-html-mvp/01_extract_pdf_images_fast_v1/pages_images_manifest.jsonl`, `output/runs/story178-approved-intake-handoff/rfp/intake_handoff.jsonl` plus `output/runs/story178-approved-intake-handoff-rfp-recipe-born-digital-pdf-non-toc-html-mvp/01_extract_pdf_marker_lite_html_v1/pages_html.jsonl`, and representative explicit non-launch rows such as `output/runs/story178-approved-intake-handoff/scanned-prose-mini/intake_handoff.jsonl` and `output/runs/story178-approved-intake-handoff/memorial-card/intake_handoff.jsonl`.\n"
+        }
       ],
       "explicit_lineage": true
     },
@@ -7179,6 +7728,22 @@
         "spec:6",
         "spec:8",
         "spec:9"
+      ],
+      "scores": [
+        {
+          "model": "Story 181 maintained layout benchmark (quality + challenger comparison)",
+          "metrics": {
+            "pass_rate": 1.0,
+            "overall": 1.0,
+            "docs": 5,
+            "failed_runs": 0,
+            "challenger_cases": 2,
+            "challenger_real_competitors": 0,
+            "challenger_overall": 0.6
+          },
+          "measured": "2026-04-02",
+          "note": "Story 181 added `benchmarks/golden/layout-section-splitting/corpus.json`, `benchmarks/scorers/layout_section_splitting.py`, and `benchmarks/scripts/run_layout_section_splitting_eval.py`, then reran the bounded maintained corpus via `python benchmarks/scripts/run_layout_section_splitting_eval.py --output benchmarks/results/layout-section-splitting-story181.json --run-root output/runs/story181-layout-benchmark`. All 5 repo-owned cases passed on fresh `driver.py` outputs. Manual inspection in the same pass covered `output/runs/story181-layout-benchmark-docx-mini/output/html/manifest.json`, `output/runs/story181-layout-benchmark-docx-nested/output/html/chapter-001.html`, `output/runs/story181-layout-benchmark-flat-born-digital-mini/output/html/provenance/blocks.jsonl`, and `output/runs/story181-layout-benchmark-flat-born-digital-form-mini/output/html/chapter-001.html`. Classification: quality benchmark with challenger comparison. The two thinner representative challengers stayed non-competitive on the same bounded slice: the DOCX single-entry baseline derived from `01_unstructured_docx_intake_v1/elements.jsonl` misses required splits, and the flat extract-stage `doc_web_bundle` preserves page-level provenance but fails the checked-in section expectations.\n"
+        }
       ],
       "explicit_lineage": true
     },
@@ -7202,12 +7767,28 @@
         "spec:7",
         "spec:8"
       ],
+      "scores": [
+        {
+          "model": "Story 196 maintained born-digital benchmark",
+          "metrics": {
+            "pass_rate": 1.0,
+            "overall": 1.0,
+            "docs": 6,
+            "supported_docs": 4,
+            "comparison_docs": 2,
+            "comparison_pass_rate": 1.0,
+            "failed_runs": 0
+          },
+          "measured": "2026-04-08",
+          "note": "Story 196 added `benchmarks/golden/born-digital-pdf/corpus.json`, `benchmarks/scorers/born_digital_pdf.py`, and `benchmarks/scripts/run_born_digital_pdf_eval.py`, then reran the maintained born-digital corpus via `python benchmarks/scripts/run_born_digital_pdf_eval.py --output benchmarks/results/born-digital-pdf-story196.json --run-root output/runs/story196-born-digital-benchmark`. The result file `benchmarks/results/born-digital-pdf-story196.json` recorded `docs = 6`, `supported_docs = 4`, `comparison_docs = 2`, `pass_rate = 1.0`, `overall = 1.0`, `comparison_pass_rate = 1.0`, and `failed_runs = 0`. Manual inspection in the same pass covered `output/runs/story196-born-digital-benchmark-born-digital-handbook-mini/output/html/manifest.json`, `output/runs/story196-born-digital-benchmark-born-digital-handbook-mini/output/html/chapter-001.html`, `output/runs/story196-born-digital-benchmark-flat-born-digital-mini/output/html/provenance/blocks.jsonl`, `output/runs/story196-born-digital-benchmark-rfp/output/html/manifest.json`, and `output/runs/story196-born-digital-benchmark-release-forms/output/html/chapter-001.html`.\n"
+        }
+      ],
       "explicit_lineage": true
     }
   ],
   "coverage": {
     "path": "tests/fixtures/formats/_coverage-matrix.json",
-    "generated": "2026-04-08",
+    "generated": "2026-04-10",
     "formats": [
       {
         "id": "scanned-pdf-prose",
@@ -7263,15 +7844,20 @@
         "scores": {
           "text_fidelity": 0.93,
           "structure_preservation": 0.95,
-          "illustration_extraction": 0.9,
+          "illustration_extraction": 0.9703,
           "provenance_completeness": 1.0,
-          "measured": "2026-03-11",
+          "measured": "2026-04-10",
           "provenance_measured": "2026-03-27",
-          "notes": "Structure quality comes from Story 131 / the 2026-03-11 onward-table-fidelity refresh, illustration quality uses the 2026-03-11 crop eval (0.900), and Story 157 restored maintained PDF-backed entry plus fresh provenance verification on the shared Onward PDF."
+          "notes": "Structure quality comes from Story 131 / the 2026-03-11 onward-table-fidelity refresh. Story 207 refreshed illustration quality against the maintained `image-crop-extraction` detector surface to `0.9703` on 2026-04-10, then rechecked the reviewed Onward publication seam from Stories 184 and 198 before promoting the canonical row. Story 157 restored maintained PDF-backed entry plus fresh provenance verification on the shared Onward PDF."
+        },
+        "score_sources": {
+          "illustration_extraction": {
+            "eval_id": "image-crop-extraction",
+            "metric": "overall"
+          }
         },
         "known_gaps": [
-          "Handwritten annotations still weaken some table pages.",
-          "Illustration extraction remains below the 0.95 graduation target."
+          "Handwritten annotations still weaken some table pages."
         ],
         "graduated": false
       },
@@ -7297,15 +7883,19 @@
         "scores": {
           "text_fidelity": 0.93,
           "structure_preservation": 0.95,
-          "illustration_extraction": 0.9,
+          "illustration_extraction": 0.9703,
           "provenance_completeness": 1.0,
-          "measured": "2026-03-11",
+          "measured": "2026-04-10",
           "provenance_measured": "2026-03-11",
-          "notes": "Shares the current scanned-image quality envelope: table structure at 0.95, illustration extraction at 0.900, and provenance completeness at 1.0 after Story 132 verification."
+          "notes": "Shares the current scanned-image quality envelope: table structure at 0.95, illustration extraction now follows Story 207's fresh maintained `image-crop-extraction` rerun at `0.9703` on 2026-04-10, and provenance completeness remains 1.0 after Story 132 verification. Stories 184 and 198 still provide the reviewed Onward publication seam for this crop score."
         },
-        "known_gaps": [
-          "Illustration extraction remains below the 0.95 graduation target."
-        ],
+        "score_sources": {
+          "illustration_extraction": {
+            "eval_id": "image-crop-extraction",
+            "metric": "overall"
+          }
+        },
+        "known_gaps": [],
         "graduated": false
       },
       {
