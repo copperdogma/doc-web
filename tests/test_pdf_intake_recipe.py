@@ -14,6 +14,7 @@ BORN_DIGITAL_NON_TOC_RECIPE = "configs/recipes/recipe-born-digital-pdf-non-toc-h
 BORN_DIGITAL_FIXTURE = "testdata/tbotb-mini.pdf"
 FLAT_FORM_FIXTURE = "testdata/flat-born-digital-form-mini.pdf"
 SCANNED_PROSE_FIXTURE = "testdata/scanned-prose-mini.pdf"
+SCANNED_PROSE_DEGRADED_FIXTURE = "testdata/scanned-prose-degraded.pdf"
 HANDWRITTEN_NOTES_FIXTURE = "testdata/handwritten-notes-mini.pdf"
 HANDWRITTEN_FADED_FIXTURE = "testdata/handwritten-notes-faded.pdf"
 HANDWRITTEN_ROUGH_FIXTURE = "testdata/handwritten-notes-rough.pdf"
@@ -70,6 +71,14 @@ def test_scanned_prose_pdf_recipe_extract_only_smoke(tmp_path):
     assert all(len((page.extract_text() or "").strip()) == 0 for page in reader.pages)
 
     _run_pdf_recipe_extract_only_smoke(tmp_path, SCANNED_PROSE_FIXTURE)
+
+
+def test_scanned_prose_degraded_pdf_recipe_extract_only_smoke(tmp_path):
+    reader = PdfReader(SCANNED_PROSE_DEGRADED_FIXTURE)
+    assert len(reader.pages) == 4
+    assert all(len((page.extract_text() or "").strip()) == 0 for page in reader.pages)
+
+    _run_pdf_recipe_extract_only_smoke(tmp_path, SCANNED_PROSE_DEGRADED_FIXTURE)
 
 
 def test_handwritten_notes_pdf_recipe_extract_only_smoke(tmp_path):

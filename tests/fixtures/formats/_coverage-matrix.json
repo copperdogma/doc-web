@@ -48,26 +48,33 @@
       "description": "Scanned PDF with primarily prose content",
       "pipeline_recipe": "recipe-pdf-ocr-html-mvp.yaml",
       "intake_module": "extract_pdf_images_fast_v1 → ocr_ai_gpt51_v1",
-      "complexity": ["simple-prose"],
+      "complexity": ["simple-prose", "degraded-quality"],
       "fixtures": [
         {
           "id": "scanned-prose-mini",
           "source": "testdata/scanned-prose-mini.pdf",
           "pages": 4,
           "notes": "Repo-owned image-only prose PDF generated from checked-in source text. Story 167 adds maintained extractor-provenance smoke plus a fresh OCR proof whose normalized output matches the checked-in source text exactly."
+        },
+        {
+          "id": "scanned-prose-degraded",
+          "source": "testdata/scanned-prose-degraded.pdf",
+          "pages": 4,
+          "notes": "Repo-owned image-only degraded/noisy synthetic prose PDF generated from the same checked-in `scanned-prose-mini.md` source via `generate_scanned_prose_fixture.py --preset degraded`. The current preset is intentionally visibly rougher than the clean slice: softer text, lower contrast, added scan noise, mild skew, and faint edge shadow. Story 210 re-proved the maintained generic PDF OCR lane on 2026-04-10 with page-level `ocr_quality` `0.94-0.96`, full `page_image_v1` provenance, and normalized text ratio `0.996038`."
         }
       ],
       "scores": {
-        "text_fidelity": 1.0,
-        "structure_preservation": 1.0,
+        "text_fidelity": 0.996038,
+        "structure_preservation": 0.99,
         "illustration_extraction": null,
         "provenance_completeness": 1.0,
-        "measured": "2026-03-27",
-        "provenance_measured": "2026-03-27",
-        "notes": "Measured against the checked-in `scanned-prose-mini.md` source after Story 167's fresh `driver.py` proof. This is a clean repo-owned simple-prose scanned lane, not a proxy for degraded or noisy scans."
+        "measured": "2026-04-10",
+        "provenance_measured": "2026-04-10",
+        "notes": "Story 167 proved the clean repo-owned simple-prose scanned lane as an exact normalized match. Story 210 widened the bounded support slice to one repo-owned synthetic degraded/noisy variant on the same checked-in source text. After strengthening the degraded preset to be visibly rougher, the fresh `driver.py` proof on 2026-04-10 still preserved the prose with normalized text ratio `0.996038` and full provenance, while page-level `ocr_quality` fell to `0.94-0.96` and minor page-boundary section headings still degraded to paragraph tags on some pages. This remains synthetic evidence, not a blanket claim about real-world degraded scanned prose."
       },
       "known_gaps": [
-        "Current evidence is a clean synthetic scanned fixture only; broader noisy real-world scanned-prose quality remains unmeasured."
+        "Current degraded/noisy evidence is still synthetic and simple-prose only; broader real-world degraded scanned-prose quality remains unmeasured.",
+        "Some section-transition headings still degrade to paragraph tags at page boundaries on the degraded synthetic fixture."
       ],
       "graduated": false
     },

@@ -1,3 +1,20 @@
+## [2026-04-10-14] - Widen degraded scanned-prose proof surface (Story 210)
+
+### Added
+- Added a repo-owned visibly degraded synthetic scanned-prose fixture at `testdata/scanned-prose-degraded.pdf` plus deterministic degraded rendering controls in `testdata/generate_scanned_prose_fixture.py`
+
+### Changed
+- Changed the scanned-prose smoke coverage, testdata docs, runbook guidance, coverage matrix, and story/methodology views so the bounded `scanned-pdf-prose` claim now includes one rougher synthetic degraded slice instead of only the pristine clean fixture
+
+### Fixed
+- Fixed the earlier over-strong degraded-fixture claim by strengthening the synthetic preset until the committed asset actually looks degraded, then re-proving the OCR lane against that rougher file instead of preserving the old metrics by inertia
+
+### Tested
+- `python -m pytest tests/`
+- `make lint`
+- `make methodology-compile`
+- `make methodology-check`
+
 ## [2026-04-10-13] - Add page-context crop deletion gate (Story 209)
 
 ### Added

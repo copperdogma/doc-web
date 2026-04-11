@@ -136,7 +136,8 @@
           "202",
           "203",
           "205",
-          "208"
+          "208",
+          "210"
         ],
         "adr_ids": [
           "ADR-001",
@@ -201,7 +202,9 @@
           "191",
           "192",
           "206",
-          "208"
+          "208",
+          "210",
+          "211"
         ],
         "adr_ids": [
           "ADR-001",
@@ -503,7 +506,9 @@
           "205",
           "207",
           "208",
-          "209"
+          "209",
+          "210",
+          "211"
         ],
         "adr_ids": [
           "ADR-002"
@@ -606,7 +611,8 @@
           "201",
           "202",
           "203",
-          "205"
+          "205",
+          "210"
         ],
         "eval_ids": [
           "auto-book-type-detection",
@@ -665,7 +671,8 @@
             "201",
             "202",
             "203",
-            "205"
+            "205",
+            "210"
           ],
           "eval_ids": [
             "auto-book-type-detection",
@@ -714,31 +721,26 @@
           "191",
           "192",
           "206",
-          "208"
+          "208",
+          "210",
+          "211"
         ],
         "eval_ids": [
           "ocr-model-genealogy",
           "onward-table-fidelity"
         ],
         "actionability": {
-          "source_kind": "eval",
-          "source_id": "onward-table-fidelity",
-          "source_path": "docs/evals/registry.yaml",
-          "recommended_now": false,
-          "posture": "wait-for-trigger",
-          "retry_trigger_status": "waiting",
-          "retry_when": [
-            "cheaper-subject-model",
-            "downsampling-sweep",
-            "new-subject-model"
-          ],
-          "why_now": "Future models may improve alma score (weakest across all models due to handwritten annotations) Gemini Flash at 0.886 is close \u2014 prompt tuning or future Flash versions may cross 0.95 Story 134 validated 2048px. Test 1...",
+          "source_kind": "story",
+          "source_id": "211",
+          "source_path": "docs/stories/story-211-scout-degraded-handwriting-and-historical-script-eval-sources.md",
+          "recommended_now": true,
+          "posture": "ready-now",
+          "why_now": "story created after Story 210 close-out prep and a fresh review of the blocked handwritten line. Evidence reviewed in this pass: `docs/ideal.md`, `docs/spec.md`, `docs/methodology/state.yaml`, `docs/methodology/graph....",
           "last_relevant_action": {
             "date": "2026-04-10",
-            "source_type": "eval-attempt",
-            "source": "docs/evals/registry.yaml",
-            "source_id": "003",
-            "summary": "Story 208 did not rerun the full multi-chapter promptfoo sweep. Instead it used the existing `benchmarks/scorers/html_table_diff.py` surface on the explicit Marie-Louise table-heavy seam (`Image080.jpg` through `Image..."
+            "source_type": "story-work-log",
+            "source": "docs/stories/story-211-scout-degraded-handwriting-and-historical-script-eval-sources.md",
+            "summary": "story created after Story 210 close-out prep and a fresh review of the blocked handwritten line. Evidence reviewed in this pass: `docs/ideal.md`, `docs/spec.md`, `docs/methodology/state.yaml`, `docs/methodology/graph...."
           },
           "story_ids": [
             "131",
@@ -772,7 +774,9 @@
             "191",
             "192",
             "206",
-            "208"
+            "208",
+            "210",
+            "211"
           ],
           "eval_ids": [
             "ocr-model-genealogy",
@@ -805,7 +809,8 @@
           "186",
           "189",
           "191",
-          "208"
+          "208",
+          "210"
         ],
         "eval_ids": [],
         "actionability": {
@@ -837,7 +842,8 @@
             "186",
             "189",
             "191",
-            "208"
+            "208",
+            "210"
           ],
           "eval_ids": []
         }
@@ -1165,21 +1171,23 @@
           "203",
           "207",
           "208",
-          "209"
+          "209",
+          "210",
+          "211"
         ],
         "eval_ids": [],
         "actionability": {
           "source_kind": "story",
-          "source_id": "191",
-          "source_path": "docs/stories/story-191-finish-real-handwritten-ocr-on-the-loc-fixture-pair.md",
-          "recommended_now": false,
-          "posture": "blocked",
-          "why_now": "stale-plan cleanup: removed the pre-block implementation plan from this story after it started biasing `/triage` back toward handwriting even though the current blocker evidence and unblock condition say the line shou...",
+          "source_id": "211",
+          "source_path": "docs/stories/story-211-scout-degraded-handwriting-and-historical-script-eval-sources.md",
+          "recommended_now": true,
+          "posture": "ready-now",
+          "why_now": "story created after Story 210 close-out prep and a fresh review of the blocked handwritten line. Evidence reviewed in this pass: `docs/ideal.md`, `docs/spec.md`, `docs/methodology/state.yaml`, `docs/methodology/graph....",
           "last_relevant_action": {
-            "date": "2026-04-04",
+            "date": "2026-04-10",
             "source_type": "story-work-log",
-            "source": "docs/stories/story-191-finish-real-handwritten-ocr-on-the-loc-fixture-pair.md",
-            "summary": "stale-plan cleanup: removed the pre-block implementation plan from this story after it started biasing `/triage` back toward handwriting even though the current blocker evidence and unblock condition say the line shou..."
+            "source": "docs/stories/story-211-scout-degraded-handwriting-and-historical-script-eval-sources.md",
+            "summary": "story created after Story 210 close-out prep and a fresh review of the blocked handwritten line. Evidence reviewed in this pass: `docs/ideal.md`, `docs/spec.md`, `docs/methodology/state.yaml`, `docs/methodology/graph...."
           },
           "story_ids": [
             "148",
@@ -1213,7 +1221,9 @@
             "203",
             "207",
             "208",
-            "209"
+            "209",
+            "210",
+            "211"
           ],
           "eval_ids": []
         }
@@ -11126,6 +11136,139 @@
           "summary": "mark-story-done: reran `make lint` (`ruff check` clean) and `make test` (`554 passed, 4 warnings in 652.05s`) on the current branch tip, with the same unrelated pre-existing Pydantic deprecation warnings still limited..."
         }
       }
+    },
+    {
+      "id": "210",
+      "title": "Widen Scanned-Prose Proof Beyond the Clean Synthetic Fixture",
+      "path": "docs/stories/story-210-degraded-scanned-prose-proof-lane.md",
+      "status": "Done",
+      "priority": "High",
+      "ideal_refs": [
+        "Requirement #1 (Ingest), Requirement #3 (Extract), Requirement #6 (Validate), Any format, any condition, Fidelity to the source, Minimum Viable Floor"
+      ],
+      "spec_refs": [
+        "spec:1",
+        "spec:1.1",
+        "spec:2",
+        "spec:2.1",
+        "spec:2.2",
+        "spec:8"
+      ],
+      "decision_refs": [
+        "`docs/ideal.md`, `docs/spec.md`, `docs/methodology/state.yaml`, `docs/methodology/graph.json`, `docs/RUNBOOK.md`, `docs/runbooks/golden-build.md`, `tests/fixtures/formats/_coverage-matrix.json`, `docs/stories/story-157-pdf-intake-parity-with-image-directory-inputs.md`, `docs/stories/story-167-repo-owned-scanned-prose-pdf-fixture.md`, and `None found after search in docs/decisions/`, `docs/scout/`, and `docs/notes/` for a narrower degraded-scanned-prose proof ADR or note"
+      ],
+      "adr_ids": [],
+      "depends_on": [
+        "167"
+      ],
+      "category_refs": [
+        "spec:1",
+        "spec:2",
+        "spec:8"
+      ],
+      "compromise_refs": [
+        "B1",
+        "C1",
+        "C2",
+        "C6"
+      ],
+      "input_coverage_refs": [
+        "scanned-pdf-prose"
+      ],
+      "architecture_domains": [
+        "ocr_and_extraction"
+      ],
+      "roadmap_tags": [],
+      "blocker_summary": "",
+      "blocker_evidence": "",
+      "unblock_condition": "",
+      "last_work_log_entry": {
+        "timestamp": "20260411-0008",
+        "date": "2026-04-11",
+        "summary": "story closed via `/mark-story-done`: reran the full validation surface after the stronger degraded preset so the close-out rests on current evidence, not the earlier milder asset. Fresh close-out checks in this pass:..."
+      },
+      "legacy_build_map_refs": "",
+      "metadata_source": "frontmatter",
+      "missing_frontmatter_keys": [],
+      "actionability": {
+        "source_kind": "story",
+        "source_id": "210",
+        "source_path": "docs/stories/story-210-degraded-scanned-prose-proof-lane.md",
+        "recommended_now": false,
+        "posture": "completed",
+        "why_now": "story closed via `/mark-story-done`: reran the full validation surface after the stronger degraded preset so the close-out rests on current evidence, not the earlier milder asset. Fresh close-out checks in this pass:...",
+        "last_relevant_action": {
+          "date": "2026-04-11",
+          "source_type": "story-work-log",
+          "source": "docs/stories/story-210-degraded-scanned-prose-proof-lane.md",
+          "summary": "story closed via `/mark-story-done`: reran the full validation surface after the stronger degraded preset so the close-out rests on current evidence, not the earlier milder asset. Fresh close-out checks in this pass:..."
+        }
+      }
+    },
+    {
+      "id": "211",
+      "title": "Scout Degraded-Handwriting and Historical-Script Eval Sources",
+      "path": "docs/stories/story-211-scout-degraded-handwriting-and-historical-script-eval-sources.md",
+      "status": "Pending",
+      "priority": "High",
+      "ideal_refs": [
+        "Requirement #2 (Detect), Requirement #3 (Extract), Requirement #6 (Validate), Any format, any condition, Fidelity to the source, Traceability is the product"
+      ],
+      "spec_refs": [
+        "spec:2",
+        "spec:2.1",
+        "spec:2.2",
+        "spec:8"
+      ],
+      "decision_refs": [
+        "`docs/ideal.md`, `docs/spec.md`, `docs/methodology/state.yaml`, `docs/methodology/graph.json`, `docs/scout.md`, `docs/scout/scout-011-external-document-ingestion-systems.md`, `docs/evals/README.md`, `docs/evals/registry.yaml`, `tests/fixtures/formats/_coverage-matrix.json`, `docs/stories/story-191-finish-real-handwritten-ocr-on-the-loc-fixture-pair.md`, `docs/stories/story-208-glm-ocr-benchmark-for-handwritten-and-table-heavy-seams.md`, and `None found after search in docs/decisions/`, `docs/runbooks/`, `docs/scout/`, and `docs/notes/` for a narrower handwriting-eval-source ADR or prior scout focused on degraded historical-script corpora"
+      ],
+      "adr_ids": [],
+      "depends_on": [
+        "208"
+      ],
+      "category_refs": [
+        "spec:2",
+        "spec:8"
+      ],
+      "compromise_refs": [
+        "B1",
+        "C1"
+      ],
+      "input_coverage_refs": [
+        "handwritten-notes"
+      ],
+      "architecture_domains": [
+        "ocr_and_extraction"
+      ],
+      "roadmap_tags": [
+        "campaign:maintained-intake-honesty"
+      ],
+      "blocker_summary": "",
+      "blocker_evidence": "",
+      "unblock_condition": "",
+      "last_work_log_entry": {
+        "timestamp": "20260410-2359",
+        "date": "2026-04-10",
+        "summary": "story created after Story 210 close-out prep and a fresh review of the blocked handwritten line. Evidence reviewed in this pass: `docs/ideal.md`, `docs/spec.md`, `docs/methodology/state.yaml`, `docs/methodology/graph...."
+      },
+      "legacy_build_map_refs": "",
+      "metadata_source": "frontmatter",
+      "missing_frontmatter_keys": [],
+      "actionability": {
+        "source_kind": "story",
+        "source_id": "211",
+        "source_path": "docs/stories/story-211-scout-degraded-handwriting-and-historical-script-eval-sources.md",
+        "recommended_now": true,
+        "posture": "ready-now",
+        "why_now": "story created after Story 210 close-out prep and a fresh review of the blocked handwritten line. Evidence reviewed in this pass: `docs/ideal.md`, `docs/spec.md`, `docs/methodology/state.yaml`, `docs/methodology/graph....",
+        "last_relevant_action": {
+          "date": "2026-04-10",
+          "source_type": "story-work-log",
+          "source": "docs/stories/story-211-scout-degraded-handwriting-and-historical-script-eval-sources.md",
+          "summary": "story created after Story 210 close-out prep and a fresh review of the blocked handwritten line. Evidence reviewed in this pass: `docs/ideal.md`, `docs/spec.md`, `docs/methodology/state.yaml`, `docs/methodology/graph...."
+        }
+      }
     }
   ],
   "adrs": [
@@ -12947,7 +13090,8 @@
         "pipeline_recipe": "recipe-pdf-ocr-html-mvp.yaml",
         "intake_module": "extract_pdf_images_fast_v1 \u2192 ocr_ai_gpt51_v1",
         "complexity": [
-          "simple-prose"
+          "simple-prose",
+          "degraded-quality"
         ],
         "fixtures": [
           {
@@ -12955,19 +13099,26 @@
             "source": "testdata/scanned-prose-mini.pdf",
             "pages": 4,
             "notes": "Repo-owned image-only prose PDF generated from checked-in source text. Story 167 adds maintained extractor-provenance smoke plus a fresh OCR proof whose normalized output matches the checked-in source text exactly."
+          },
+          {
+            "id": "scanned-prose-degraded",
+            "source": "testdata/scanned-prose-degraded.pdf",
+            "pages": 4,
+            "notes": "Repo-owned image-only degraded/noisy synthetic prose PDF generated from the same checked-in `scanned-prose-mini.md` source via `generate_scanned_prose_fixture.py --preset degraded`. The current preset is intentionally visibly rougher than the clean slice: softer text, lower contrast, added scan noise, mild skew, and faint edge shadow. Story 210 re-proved the maintained generic PDF OCR lane on 2026-04-10 with page-level `ocr_quality` `0.94-0.96`, full `page_image_v1` provenance, and normalized text ratio `0.996038`."
           }
         ],
         "scores": {
-          "text_fidelity": 1.0,
-          "structure_preservation": 1.0,
+          "text_fidelity": 0.996038,
+          "structure_preservation": 0.99,
           "illustration_extraction": null,
           "provenance_completeness": 1.0,
-          "measured": "2026-03-27",
-          "provenance_measured": "2026-03-27",
-          "notes": "Measured against the checked-in `scanned-prose-mini.md` source after Story 167's fresh `driver.py` proof. This is a clean repo-owned simple-prose scanned lane, not a proxy for degraded or noisy scans."
+          "measured": "2026-04-10",
+          "provenance_measured": "2026-04-10",
+          "notes": "Story 167 proved the clean repo-owned simple-prose scanned lane as an exact normalized match. Story 210 widened the bounded support slice to one repo-owned synthetic degraded/noisy variant on the same checked-in source text. After strengthening the degraded preset to be visibly rougher, the fresh `driver.py` proof on 2026-04-10 still preserved the prose with normalized text ratio `0.996038` and full provenance, while page-level `ocr_quality` fell to `0.94-0.96` and minor page-boundary section headings still degraded to paragraph tags on some pages. This remains synthetic evidence, not a blanket claim about real-world degraded scanned prose."
         },
         "known_gaps": [
-          "Current evidence is a clean synthetic scanned fixture only; broader noisy real-world scanned-prose quality remains unmeasured."
+          "Current degraded/noisy evidence is still synthetic and simple-prose only; broader real-world degraded scanned-prose quality remains unmeasured.",
+          "Some section-transition headings still degrade to paragraph tags at page boundaries on the degraded synthetic fixture."
         ],
         "graduated": false
       },

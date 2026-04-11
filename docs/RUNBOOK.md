@@ -242,6 +242,14 @@ python driver.py \
   --run-id <run_id> \
   --allow-run-id-reuse \
   --end-at pdf_to_images
+
+# Degraded synthetic scanned-prose OCR proof
+python driver.py \
+  --recipe configs/recipes/recipe-pdf-ocr-html-mvp.yaml \
+  --input-pdf testdata/scanned-prose-degraded.pdf \
+  --run-id <run_id> \
+  --allow-run-id-reuse \
+  --end-at ocr_ai
 ```
 
 Expected extractor outputs:
@@ -254,6 +262,7 @@ Notes:
 
 - `testdata/tbotb-mini.pdf` proves maintained PDF entry wiring only for a small born-digital PDF.
 - `testdata/scanned-prose-mini.pdf` is a repo-owned image-only simple-prose scanned fixture. Story 167 proved the maintained lane through `ocr_ai` and matched the checked-in source text exactly after normalization on 2026-03-27; broader noisy scanned-prose quality still needs separate validation.
+- `testdata/scanned-prose-degraded.pdf` is a repo-owned image-only degraded/noisy synthetic scanned fixture generated from the same checked-in source text. The current preset is intentionally visibly rougher than the clean scanned-prose slice: softer text, lower contrast, added noise, mild skew, and faint edge shadow. Story 210 widened the bounded support slice on 2026-04-10 with fresh `ocr_ai` proof (`ocr_quality` `0.94-0.96`, normalized text ratio `0.996038`) while still leaving broader real-world degraded scanned-prose quality unclaimed.
 
 ### Repo-Owned DOCX Intake Smoke
 

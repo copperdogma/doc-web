@@ -59,11 +59,13 @@ Grouped by primary `spec:N` category. Stories without category refs remain in an
 | 203 | Establish the First Honest MBOX Archive Seam | High | Done | 202 | [story-203](stories/story-203-mbox-archive-seam.md) |
 | 205 | Establish the First Honest Mixed-Archive Intake/Routing Seam | High | Done | — | [story-205](stories/story-205-mixed-archive-intake-routing-seam.md) |
 | 208 | Benchmark GLM-OCR on the Handwritten Blocker and a Table-Heavy Scanned Seam | High | Done | 192, 206 | [story-208](stories/story-208-glm-ocr-benchmark-for-handwritten-and-table-heavy-seams.md) |
+| 210 | Widen Scanned-Prose Proof Beyond the Clean Synthetic Fixture | High | Done | 167 | [story-210](stories/story-210-degraded-scanned-prose-proof-lane.md) |
 
 ### spec:2 — OCR & Text Extraction
 
 | ID | Title | Priority | Status | Depends On | Link |
 |---|---|---|---|---|---|
+| 211 | Scout Degraded-Handwriting and Historical-Script Eval Sources | High | Pending | 208 | [story-211](stories/story-211-scout-degraded-handwriting-and-historical-script-eval-sources.md) |
 | 131 | Onward Table Structure Fidelity | High | Done | 128 | [story-131](stories/story-131-onward-table-structure-fidelity.md) |
 | 134 | OCR Pipeline Speed & Cost Optimization | High | Done | — | [story-134](stories/story-134-ocr-pipeline-speed-cost-optimization.md) |
 | 138 | Onward Genealogy Table Whole-Table Continuation and Header Regressions | High | Done | 129, 131 | [story-138](stories/story-138-onward-genealogy-table-continuation-and-header-regressions.md) |
