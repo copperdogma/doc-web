@@ -1,3 +1,19 @@
+## [2026-04-11-04] - Fix non-TOC front-matter replay (Story 213)
+
+### Changed
+- Changed non-TOC chapter assembly so source-only front-matter heading portions resolve by `source_pages` and remain fallback pages in mixed paginated documents instead of claiming the first printed chapter page
+
+### Fixed
+- Fixed memoir-style duplicate opening replay in `doc-web` chapter output and preserved the full opening continuation paragraph once
+
+### Tested
+- `python -m pytest tests/`
+- `python -m ruff check modules/ tests/`
+- `make lint`
+- `make methodology-compile`
+- `make methodology-check`
+- `python driver.py --recipe /tmp/story213-memoir-non-toc.yaml --run-id rolland-alain-memoir-r01 --allow-run-id-reuse --start-from portionize_headings`
+
 ## [2026-04-11-03] - Add loop-verify coordination skill
 
 ### Added

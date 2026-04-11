@@ -483,6 +483,19 @@ def _page_sort_key(row: Dict[str, Any]) -> tuple:
 def _select_pages_for_portion(portion: Dict[str, Any], pages_sorted: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
     page_start = _coerce_int(portion.get("page_start"))
     page_end = _coerce_int(portion.get("page_end")) or page_start
+    source_pages = {
+        page_num
+        for page_num in (
+            _coerce_int(value)
+            for value in (portion.get("source_pages") or [])
+        )
+        if page_num is not None
+    }
+    source_matches = [page for page in pages_sorted if _source_page_number(page) in source_pages]
+
+    # Source-only heading portions carry source-page coordinates, not printed-page ones.
+    if portion.get("notes") == "heading-derived-source-pages" and source_matches:
+        return source_matches
 
     if isinstance(page_start, int):
         printed_matches = [
@@ -494,16 +507,8 @@ def _select_pages_for_portion(portion: Dict[str, Any], pages_sorted: List[Dict[s
         if printed_matches:
             return printed_matches
 
-    source_pages = {
-        page_num
-        for page_num in (
-            _coerce_int(value)
-            for value in (portion.get("source_pages") or [])
-        )
-        if page_num is not None
-    }
-    if source_pages:
-        return [page for page in pages_sorted if _source_page_number(page) in source_pages]
+    if source_matches:
+        return source_matches
 
     if isinstance(page_start, int):
         return [
@@ -1525,6 +1530,10 @@ def main() -> None:
 
     pages_sorted = sorted(pages, key=_page_sort_key)
     pages_scan = sorted(pages, key=lambda r: _coerce_int(r.get("page_number") or r.get("page")) or 0)
+    document_has_printed_pages = any(
+        isinstance(_coerce_int(page.get("printed_page_number")), int)
+        for page in pages_sorted
+    )
     manifest_rows = []
     bundle_entries = []
     provenance_rows = []
@@ -1548,6 +1557,16 @@ def main() -> None:
             page_end = page_start
 
         chapter_pages = _select_pages_for_portion(portion, pages_sorted)
+        if (
+            document_has_printed_pages
+            and portion.get("notes") == "heading-derived-source-pages"
+            and chapter_pages
+            and not any(
+                isinstance(_coerce_int(page.get("printed_page_number")), int)
+                for page in chapter_pages
+            )
+        ):
+            continue
         if chapter_pages and all(
             _page_already_covered(
                 page,

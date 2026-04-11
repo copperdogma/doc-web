@@ -82,6 +82,7 @@ Grouped by primary `spec:N` category. Stories without category refs remain in an
 | 206 | Restore Maintained Onward Full-Book Fidelity and Regression Guardrails | High | Done | 149, 157 | [story-206](stories/story-206-onward-full-book-regression-recovery.md) |
 | 211 | Scout Degraded-Handwriting and Historical-Script Eval Sources | High | Done | 208 | [story-211](stories/story-211-scout-degraded-handwriting-and-historical-script-eval-sources.md) |
 | 212 | Establish a Bounded DiEm HTR Historical-Handwriting Benchmark Slice | High | Done | 211 | [story-212](stories/story-212-diem-htr-historical-handwriting-benchmark-slice.md) |
+| 213 | Fix Source-Only Front Matter Replay in Non-TOC HTML Build | High | Done | — | [story-213](stories/story-213-fix-source-only-front-matter-replay-in-non-toc-html-build.md) |
 
 ### spec:3 — Layout & Structure Understanding
 

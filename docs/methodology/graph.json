@@ -205,7 +205,8 @@
           "208",
           "210",
           "211",
-          "212"
+          "212",
+          "213"
         ],
         "adr_ids": [
           "ADR-001",
@@ -262,7 +263,8 @@
           "201",
           "202",
           "203",
-          "206"
+          "206",
+          "213"
         ],
         "adr_ids": [
           "ADR-002",
@@ -390,7 +392,8 @@
           "202",
           "203",
           "205",
-          "206"
+          "206",
+          "213"
         ],
         "adr_ids": [
           "ADR-002",
@@ -445,7 +448,8 @@
           "202",
           "203",
           "205",
-          "206"
+          "206",
+          "213"
         ],
         "adr_ids": [
           "ADR-002",
@@ -726,7 +730,8 @@
           "208",
           "210",
           "211",
-          "212"
+          "212",
+          "213"
         ],
         "eval_ids": [
           "ocr-model-genealogy",
@@ -787,7 +792,8 @@
             "208",
             "210",
             "211",
-            "212"
+            "212",
+            "213"
           ],
           "eval_ids": [
             "ocr-model-genealogy",
@@ -899,7 +905,8 @@
           "201",
           "202",
           "203",
-          "206"
+          "206",
+          "213"
         ],
         "eval_ids": [
           "layout-section-splitting",
@@ -955,7 +962,8 @@
             "201",
             "202",
             "203",
-            "206"
+            "206",
+            "213"
           ],
           "eval_ids": [
             "layout-section-splitting",
@@ -11345,6 +11353,74 @@
           "source_type": "story-work-log",
           "source": "docs/stories/story-212-diem-htr-historical-handwriting-benchmark-slice.md",
           "summary": "/mark-story-done closeout: re-checked the completed Story 212 slice against the current repo state, including the image-only DiEm benchmark artifacts under `output/runs/story212-diem-htr-benchmark-r1/`, helper help te..."
+        }
+      }
+    },
+    {
+      "id": "213",
+      "title": "Fix Source-Only Front Matter Replay in Non-TOC HTML Build",
+      "path": "docs/stories/story-213-fix-source-only-front-matter-replay-in-non-toc-html-build.md",
+      "status": "Done",
+      "priority": "High",
+      "ideal_refs": [
+        "Requirement #3 (Extract), Requirement #5 (Structure), Requirement #6 (Validate), Requirement #7 (Export), Traceability is the product, Fidelity to the source"
+      ],
+      "spec_refs": [
+        "spec:2",
+        "spec:3",
+        "spec:6",
+        "spec:7"
+      ],
+      "decision_refs": [
+        "`docs/ideal.md`, `docs/spec.md`, `docs/methodology/state.yaml`, `docs/methodology/graph.json`, `docs/decisions/adr-002-doc-web-runtime-boundary/adr.md`, `docs/stories/story-206-onward-full-book-regression-recovery.md`, `tests/fixtures/formats/_coverage-matrix.json`, and `None found after search in docs/decisions/ and docs/runbooks/ for a narrower non-TOC front-matter replay owner`",
+        "ADR-002"
+      ],
+      "adr_ids": [
+        "ADR-002"
+      ],
+      "depends_on": [],
+      "category_refs": [
+        "spec:2",
+        "spec:3",
+        "spec:6",
+        "spec:7"
+      ],
+      "compromise_refs": [
+        "C1",
+        "C3"
+      ],
+      "input_coverage_refs": [
+        "scanned-pdf-prose"
+      ],
+      "architecture_domains": [
+        "doc_web_runtime"
+      ],
+      "roadmap_tags": [
+        "campaign:maintained-intake-honesty"
+      ],
+      "blocker_summary": "",
+      "blocker_evidence": "",
+      "unblock_condition": "",
+      "last_work_log_entry": {
+        "timestamp": "20260411-1556",
+        "date": "2026-04-11",
+        "summary": "/mark-story-done closeout: re-ran the full required checks on the current story tip: `python -m pytest tests/` (`564 passed, 4 warnings in 0:10:41`), `python -m ruff check modules/ tests/`, `make lint`, `make methodol..."
+      },
+      "legacy_build_map_refs": "",
+      "metadata_source": "frontmatter",
+      "missing_frontmatter_keys": [],
+      "actionability": {
+        "source_kind": "story",
+        "source_id": "213",
+        "source_path": "docs/stories/story-213-fix-source-only-front-matter-replay-in-non-toc-html-build.md",
+        "recommended_now": false,
+        "posture": "completed",
+        "why_now": "/mark-story-done closeout: re-ran the full required checks on the current story tip: `python -m pytest tests/` (`564 passed, 4 warnings in 0:10:41`), `python -m ruff check modules/ tests/`, `make lint`, `make methodol...",
+        "last_relevant_action": {
+          "date": "2026-04-11",
+          "source_type": "story-work-log",
+          "source": "docs/stories/story-213-fix-source-only-front-matter-replay-in-non-toc-html-build.md",
+          "summary": "/mark-story-done closeout: re-ran the full required checks on the current story tip: `python -m pytest tests/` (`564 passed, 4 warnings in 0:10:41`), `python -m ruff check modules/ tests/`, `make lint`, `make methodol..."
         }
       }
     }

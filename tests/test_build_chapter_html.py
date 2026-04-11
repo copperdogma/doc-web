@@ -1912,6 +1912,87 @@ class TestCLIIntegration:
         assert bundle_manifest.entries[0].printed_page_end is None
         assert bundle_manifest.entries[0].source_pages == [1, 2]
 
+    def test_leaves_source_only_front_matter_as_fallback_when_paginated_chapter_starts_at_same_number(self):
+        pages_path = self.tmpdir / "pages.jsonl"
+        portions_path = self.tmpdir / "portions.jsonl"
+        out_path = self.tmpdir / "manifest.jsonl"
+        html_dir = self.tmpdir / "html"
+
+        self._write_jsonl(
+            pages_path,
+            [
+                {
+                    "page_number": 1,
+                    "printed_page_number": None,
+                    "html": "<h1>Memoires de Rolland Alain</h1>",
+                },
+                {
+                    "page_number": 2,
+                    "printed_page_number": 1,
+                    "html": (
+                        "<p>March 7th 1985</p>"
+                        "<h1>Memoires of Rolland Alain from birth 1913 to 71st year 1985</h1>"
+                        "<p>I was born in Delmas Sask.</p>"
+                    ),
+                },
+                {
+                    "page_number": 3,
+                    "printed_page_number": 2,
+                    "html": "<p>A few miles south of Delmas lived a bachelor.</p>",
+                },
+            ],
+        )
+        self._write_jsonl(
+            portions_path,
+            [
+                {
+                    "title": "Memoires de Rolland Alain",
+                    "page_start": 1,
+                    "page_end": 1,
+                    "source_pages": [1],
+                    "notes": "heading-derived-source-pages",
+                },
+                {
+                    "title": "Memoires of Rolland Alain from birth 1913 to 71st year 1985",
+                    "page_start": 1,
+                    "page_end": 2,
+                    "source_pages": [2, 3],
+                    "notes": "heading-derived",
+                },
+            ],
+        )
+
+        cmd = [
+            sys.executable, "-m", "modules.build.build_chapter_html_v1.main",
+            "--pages", str(pages_path),
+            "--portions", str(portions_path),
+            "--out", str(out_path),
+            "--output-dir", str(html_dir),
+            "--book-title", "Test Book",
+        ]
+        result = subprocess.run(cmd, capture_output=True, text=True, cwd=str(Path(__file__).resolve().parent.parent))
+        assert result.returncode == 0, f"STDERR: {result.stderr}"
+
+        manifest = [json.loads(line) for line in out_path.read_text().strip().split("\n")]
+        entries = [(row["kind"], row["title"]) for row in manifest]
+        assert entries == [
+            ("page", "Image 1"),
+            ("chapter", "Memoires of Rolland Alain from birth 1913 to 71st year 1985"),
+        ]
+
+        page_one = (html_dir / "page-001.html").read_text()
+        assert "Memoires de Rolland Alain" in page_one
+
+        chapter_one = (html_dir / "chapter-001.html").read_text()
+        soup = BeautifulSoup(chapter_one, "html.parser")
+        article = soup.find("article")
+        assert article is not None
+        article_html = article.decode_contents()
+        assert article_html.count("March 7th 1985") == 1
+        assert article_html.count("Memoires of Rolland Alain from birth 1913 to 71st year 1985") == 1
+        assert article_html.count("I was born in Delmas Sask.") == 1
+        assert "A few miles south of Delmas lived a bachelor." in chapter_one
+
     def test_demotes_in_body_heading_levels_for_source_page_chapter(self):
         pages_path = self.tmpdir / "pages.jsonl"
         portions_path = self.tmpdir / "portions.jsonl"
