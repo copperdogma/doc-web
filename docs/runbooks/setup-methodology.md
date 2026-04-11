@@ -17,6 +17,7 @@ that canon:
 - methodology reference doc
 - structured methodology state
 - compiled methodology graph
+- archived `docs/build-map.md` redirect for historical links only
 - generated story index
 - working setup checklist
 - eval-surface docs
@@ -39,7 +40,8 @@ instead of drifting as tribal memory.
 `docs/methodology/state.yaml`, `docs/methodology/graph.json`, and
 `tests/fixtures/formats/_coverage-matrix.json`. Implementation starts from the
 active story, but must read the relevant graph/state category and linked
-`spec:N` sections first.
+`spec:N` sections first. `docs/build-map.md` remains only as an archived
+redirect for historical links, not as a writable planning surface.
 
 ## Public Surface
 

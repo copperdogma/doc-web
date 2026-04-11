@@ -24,7 +24,8 @@ constraints against those ideals. `docs/methodology/state.yaml` owns mutable
 methodology state, `tests/fixtures/formats/_coverage-matrix.json` owns the
 machine-readable input-coverage inventory, and `docs/methodology/graph.json`
 compiles those sources together with stories, ADRs, and evals. `docs/stories.md`
-is a generated view from that graph.
+is a generated view from that graph, and `docs/build-map.md` is an archived
+historical redirect rather than live planning authority.
 
 **Operating rule:** planning and triage start from
 `docs/methodology/state.yaml`, `docs/methodology/graph.json`, and
@@ -37,6 +38,7 @@ context.
 - If the user says **"prioritize X"**, update or inspect `docs/methodology/state.yaml` first. That is where category ownership, current phase, and methodology notes live. If the priority changes execution, create or update the owning story too.
 - If the user says **"build/fix X"**, the execution slice belongs in a story under `docs/stories/`.
 - If the user says **"measure/benchmark/improve X"**, create or update the owning eval entry in `docs/evals/registry.yaml`.
+- `docs/build-map.md` is an archived redirect. Never treat it as writable planning authority.
 - `docs/stories.md` is a generated view. Never treat it as the writable source of truth.
 
 **Pending is not proof of buildability.** A story marked `Pending` is a planning
