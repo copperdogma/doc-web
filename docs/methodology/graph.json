@@ -733,17 +733,24 @@
           "onward-table-fidelity"
         ],
         "actionability": {
-          "source_kind": "story",
-          "source_id": "212",
-          "source_path": "docs/stories/story-212-diem-htr-historical-handwriting-benchmark-slice.md",
-          "recommended_now": true,
-          "posture": "ready-now",
-          "why_now": "create-story: created Story 212 from Scout 014 after verifying that a new ID is honest. Evidence reviewed in this pass: `docs/ideal.md`, `docs/spec.md`, `docs/methodology/state.yaml`, `docs/methodology/graph.json`, `d...",
+          "source_kind": "eval",
+          "source_id": "onward-table-fidelity",
+          "source_path": "docs/evals/registry.yaml",
+          "recommended_now": false,
+          "posture": "wait-for-trigger",
+          "retry_trigger_status": "waiting",
+          "retry_when": [
+            "cheaper-subject-model",
+            "downsampling-sweep",
+            "new-subject-model"
+          ],
+          "why_now": "Future models may improve alma score (weakest across all models due to handwritten annotations) Gemini Flash at 0.886 is close \u2014 prompt tuning or future Flash versions may cross 0.95 Story 134 validated 2048px. Test 1...",
           "last_relevant_action": {
-            "date": "2026-04-11",
-            "source_type": "story-work-log",
-            "source": "docs/stories/story-212-diem-htr-historical-handwriting-benchmark-slice.md",
-            "summary": "create-story: created Story 212 from Scout 014 after verifying that a new ID is honest. Evidence reviewed in this pass: `docs/ideal.md`, `docs/spec.md`, `docs/methodology/state.yaml`, `docs/methodology/graph.json`, `d..."
+            "date": "2026-04-10",
+            "source_type": "eval-attempt",
+            "source": "docs/evals/registry.yaml",
+            "source_id": "003",
+            "summary": "Story 208 did not rerun the full multi-chapter promptfoo sweep. Instead it used the existing `benchmarks/scorers/html_table_diff.py` surface on the explicit Marie-Louise table-heavy seam (`Image080.jpg` through `Image..."
           },
           "story_ids": [
             "131",
@@ -1183,16 +1190,16 @@
         "eval_ids": [],
         "actionability": {
           "source_kind": "story",
-          "source_id": "212",
-          "source_path": "docs/stories/story-212-diem-htr-historical-handwriting-benchmark-slice.md",
-          "recommended_now": true,
-          "posture": "ready-now",
-          "why_now": "create-story: created Story 212 from Scout 014 after verifying that a new ID is honest. Evidence reviewed in this pass: `docs/ideal.md`, `docs/spec.md`, `docs/methodology/state.yaml`, `docs/methodology/graph.json`, `d...",
+          "source_id": "191",
+          "source_path": "docs/stories/story-191-finish-real-handwritten-ocr-on-the-loc-fixture-pair.md",
+          "recommended_now": false,
+          "posture": "blocked",
+          "why_now": "stale-plan cleanup: removed the pre-block implementation plan from this story after it started biasing `/triage` back toward handwriting even though the current blocker evidence and unblock condition say the line shou...",
           "last_relevant_action": {
-            "date": "2026-04-11",
+            "date": "2026-04-04",
             "source_type": "story-work-log",
-            "source": "docs/stories/story-212-diem-htr-historical-handwriting-benchmark-slice.md",
-            "summary": "create-story: created Story 212 from Scout 014 after verifying that a new ID is honest. Evidence reviewed in this pass: `docs/ideal.md`, `docs/spec.md`, `docs/methodology/state.yaml`, `docs/methodology/graph.json`, `d..."
+            "source": "docs/stories/story-191-finish-real-handwritten-ocr-on-the-loc-fixture-pair.md",
+            "summary": "stale-plan cleanup: removed the pre-block implementation plan from this story after it started biasing `/triage` back toward handwriting even though the current blocker evidence and unblock condition say the line shou..."
           },
           "story_ids": [
             "148",
@@ -11280,7 +11287,7 @@
       "id": "212",
       "title": "Establish a Bounded DiEm HTR Historical-Handwriting Benchmark Slice",
       "path": "docs/stories/story-212-diem-htr-historical-handwriting-benchmark-slice.md",
-      "status": "Pending",
+      "status": "Done",
       "priority": "High",
       "ideal_refs": [
         "Requirement #2 (Detect), Requirement #3 (Extract), Requirement #6 (Validate), Any format, any condition, Fidelity to the source, Traceability is the product"
@@ -11319,9 +11326,9 @@
       "blocker_evidence": "",
       "unblock_condition": "",
       "last_work_log_entry": {
-        "timestamp": "20260411-0130",
+        "timestamp": "20260411-1304",
         "date": "2026-04-11",
-        "summary": "create-story: created Story 212 from Scout 014 after verifying that a new ID is honest. Evidence reviewed in this pass: `docs/ideal.md`, `docs/spec.md`, `docs/methodology/state.yaml`, `docs/methodology/graph.json`, `d..."
+        "summary": "/mark-story-done closeout: re-checked the completed Story 212 slice against the current repo state, including the image-only DiEm benchmark artifacts under `output/runs/story212-diem-htr-benchmark-r1/`, helper help te..."
       },
       "legacy_build_map_refs": "",
       "metadata_source": "frontmatter",
@@ -11330,14 +11337,14 @@
         "source_kind": "story",
         "source_id": "212",
         "source_path": "docs/stories/story-212-diem-htr-historical-handwriting-benchmark-slice.md",
-        "recommended_now": true,
-        "posture": "ready-now",
-        "why_now": "create-story: created Story 212 from Scout 014 after verifying that a new ID is honest. Evidence reviewed in this pass: `docs/ideal.md`, `docs/spec.md`, `docs/methodology/state.yaml`, `docs/methodology/graph.json`, `d...",
+        "recommended_now": false,
+        "posture": "completed",
+        "why_now": "/mark-story-done closeout: re-checked the completed Story 212 slice against the current repo state, including the image-only DiEm benchmark artifacts under `output/runs/story212-diem-htr-benchmark-r1/`, helper help te...",
         "last_relevant_action": {
           "date": "2026-04-11",
           "source_type": "story-work-log",
           "source": "docs/stories/story-212-diem-htr-historical-handwriting-benchmark-slice.md",
-          "summary": "create-story: created Story 212 from Scout 014 after verifying that a new ID is honest. Evidence reviewed in this pass: `docs/ideal.md`, `docs/spec.md`, `docs/methodology/state.yaml`, `docs/methodology/graph.json`, `d..."
+          "summary": "/mark-story-done closeout: re-checked the completed Story 212 slice against the current repo state, including the image-only DiEm benchmark artifacts under `output/runs/story212-diem-htr-benchmark-r1/`, helper help te..."
         }
       }
     }

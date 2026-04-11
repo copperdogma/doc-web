@@ -1,3 +1,23 @@
+## [2026-04-11-02] - Benchmark bounded DiEm handwriting slice (Story 212)
+
+### Added
+- Added a story-local `scripts/spikes/diem_htr_benchmark.py` helper that fetches a bounded `DiEm HTR` slice, materializes PAGE/ALTO-backed truth artifacts under `output/runs/`, and reruns the maintained image-entry handwritten rescue recipe as comparison-only evidence
+- Added targeted regression coverage for the DiEm helper's XML extraction, retry detection, env policy, and image-only default
+
+### Changed
+- Changed Story 212 and the generated methodology/story views so the handwritten benchmark line now records the exact DiEm slice, current negative benchmark outcome, and the explicit `Washington Database` follow-up
+
+### Fixed
+- Fixed the helper/story contract drift by documenting that the canonical DiEm decision surface is image-entry OCR by default and that the helper requires local `huggingface_hub`, parquet, `Pillow`, and `pypdf` support
+
+### Tested
+- `python scripts/spikes/diem_htr_benchmark.py --help`
+- `pytest -q tests/test_diem_htr_benchmark.py`
+- `make lint`
+- `make test`
+- `make methodology-compile`
+- `make methodology-check`
+
 ## [2026-04-11-01] - Scout historical handwriting eval sources (Story 211)
 
 ### Added

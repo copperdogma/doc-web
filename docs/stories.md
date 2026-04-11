@@ -65,7 +65,6 @@ Grouped by primary `spec:N` category. Stories without category refs remain in an
 
 | ID | Title | Priority | Status | Depends On | Link |
 |---|---|---|---|---|---|
-| 212 | Establish a Bounded DiEm HTR Historical-Handwriting Benchmark Slice | High | Pending | 211 | [story-212](stories/story-212-diem-htr-historical-handwriting-benchmark-slice.md) |
 | 131 | Onward Table Structure Fidelity | High | Done | 128 | [story-131](stories/story-131-onward-table-structure-fidelity.md) |
 | 134 | OCR Pipeline Speed & Cost Optimization | High | Done | — | [story-134](stories/story-134-ocr-pipeline-speed-cost-optimization.md) |
 | 138 | Onward Genealogy Table Whole-Table Continuation and Header Regressions | High | Done | 129, 131 | [story-138](stories/story-138-onward-genealogy-table-continuation-and-header-regressions.md) |
@@ -82,6 +81,7 @@ Grouped by primary `spec:N` category. Stories without category refs remain in an
 | 164 | Benchmark `Surya` as a Component Candidate for Layout and Table Seams | High | Done | 127, 131, 149, 163 | [story-164](stories/story-164-surya-component-benchmark-for-layout-and-table-seams.md) |
 | 206 | Restore Maintained Onward Full-Book Fidelity and Regression Guardrails | High | Done | 149, 157 | [story-206](stories/story-206-onward-full-book-regression-recovery.md) |
 | 211 | Scout Degraded-Handwriting and Historical-Script Eval Sources | High | Done | 208 | [story-211](stories/story-211-scout-degraded-handwriting-and-historical-script-eval-sources.md) |
+| 212 | Establish a Bounded DiEm HTR Historical-Handwriting Benchmark Slice | High | Done | 211 | [story-212](stories/story-212-diem-htr-historical-handwriting-benchmark-slice.md) |
 
 ### spec:3 — Layout & Structure Understanding
 
