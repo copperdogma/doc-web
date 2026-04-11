@@ -204,7 +204,8 @@
           "206",
           "208",
           "210",
-          "211"
+          "211",
+          "212"
         ],
         "adr_ids": [
           "ADR-001",
@@ -508,7 +509,8 @@
           "208",
           "209",
           "210",
-          "211"
+          "211",
+          "212"
         ],
         "adr_ids": [
           "ADR-002"
@@ -723,7 +725,8 @@
           "206",
           "208",
           "210",
-          "211"
+          "211",
+          "212"
         ],
         "eval_ids": [
           "ocr-model-genealogy",
@@ -731,16 +734,16 @@
         ],
         "actionability": {
           "source_kind": "story",
-          "source_id": "211",
-          "source_path": "docs/stories/story-211-scout-degraded-handwriting-and-historical-script-eval-sources.md",
+          "source_id": "212",
+          "source_path": "docs/stories/story-212-diem-htr-historical-handwriting-benchmark-slice.md",
           "recommended_now": true,
           "posture": "ready-now",
-          "why_now": "story created after Story 210 close-out prep and a fresh review of the blocked handwritten line. Evidence reviewed in this pass: `docs/ideal.md`, `docs/spec.md`, `docs/methodology/state.yaml`, `docs/methodology/graph....",
+          "why_now": "create-story: created Story 212 from Scout 014 after verifying that a new ID is honest. Evidence reviewed in this pass: `docs/ideal.md`, `docs/spec.md`, `docs/methodology/state.yaml`, `docs/methodology/graph.json`, `d...",
           "last_relevant_action": {
-            "date": "2026-04-10",
+            "date": "2026-04-11",
             "source_type": "story-work-log",
-            "source": "docs/stories/story-211-scout-degraded-handwriting-and-historical-script-eval-sources.md",
-            "summary": "story created after Story 210 close-out prep and a fresh review of the blocked handwritten line. Evidence reviewed in this pass: `docs/ideal.md`, `docs/spec.md`, `docs/methodology/state.yaml`, `docs/methodology/graph...."
+            "source": "docs/stories/story-212-diem-htr-historical-handwriting-benchmark-slice.md",
+            "summary": "create-story: created Story 212 from Scout 014 after verifying that a new ID is honest. Evidence reviewed in this pass: `docs/ideal.md`, `docs/spec.md`, `docs/methodology/state.yaml`, `docs/methodology/graph.json`, `d..."
           },
           "story_ids": [
             "131",
@@ -776,7 +779,8 @@
             "206",
             "208",
             "210",
-            "211"
+            "211",
+            "212"
           ],
           "eval_ids": [
             "ocr-model-genealogy",
@@ -1173,21 +1177,22 @@
           "208",
           "209",
           "210",
-          "211"
+          "211",
+          "212"
         ],
         "eval_ids": [],
         "actionability": {
           "source_kind": "story",
-          "source_id": "211",
-          "source_path": "docs/stories/story-211-scout-degraded-handwriting-and-historical-script-eval-sources.md",
+          "source_id": "212",
+          "source_path": "docs/stories/story-212-diem-htr-historical-handwriting-benchmark-slice.md",
           "recommended_now": true,
           "posture": "ready-now",
-          "why_now": "story created after Story 210 close-out prep and a fresh review of the blocked handwritten line. Evidence reviewed in this pass: `docs/ideal.md`, `docs/spec.md`, `docs/methodology/state.yaml`, `docs/methodology/graph....",
+          "why_now": "create-story: created Story 212 from Scout 014 after verifying that a new ID is honest. Evidence reviewed in this pass: `docs/ideal.md`, `docs/spec.md`, `docs/methodology/state.yaml`, `docs/methodology/graph.json`, `d...",
           "last_relevant_action": {
-            "date": "2026-04-10",
+            "date": "2026-04-11",
             "source_type": "story-work-log",
-            "source": "docs/stories/story-211-scout-degraded-handwriting-and-historical-script-eval-sources.md",
-            "summary": "story created after Story 210 close-out prep and a fresh review of the blocked handwritten line. Evidence reviewed in this pass: `docs/ideal.md`, `docs/spec.md`, `docs/methodology/state.yaml`, `docs/methodology/graph...."
+            "source": "docs/stories/story-212-diem-htr-historical-handwriting-benchmark-slice.md",
+            "summary": "create-story: created Story 212 from Scout 014 after verifying that a new ID is honest. Evidence reviewed in this pass: `docs/ideal.md`, `docs/spec.md`, `docs/methodology/state.yaml`, `docs/methodology/graph.json`, `d..."
           },
           "story_ids": [
             "148",
@@ -1223,7 +1228,8 @@
             "208",
             "209",
             "210",
-            "211"
+            "211",
+            "212"
           ],
           "eval_ids": []
         }
@@ -11209,7 +11215,7 @@
       "id": "211",
       "title": "Scout Degraded-Handwriting and Historical-Script Eval Sources",
       "path": "docs/stories/story-211-scout-degraded-handwriting-and-historical-script-eval-sources.md",
-      "status": "Pending",
+      "status": "Done",
       "priority": "High",
       "ideal_refs": [
         "Requirement #2 (Detect), Requirement #3 (Extract), Requirement #6 (Validate), Any format, any condition, Fidelity to the source, Traceability is the product"
@@ -11248,9 +11254,9 @@
       "blocker_evidence": "",
       "unblock_condition": "",
       "last_work_log_entry": {
-        "timestamp": "20260410-2359",
-        "date": "2026-04-10",
-        "summary": "story created after Story 210 close-out prep and a fresh review of the blocked handwritten line. Evidence reviewed in this pass: `docs/ideal.md`, `docs/spec.md`, `docs/methodology/state.yaml`, `docs/methodology/graph...."
+        "timestamp": "20260411-1047",
+        "date": "2026-04-11",
+        "summary": "/mark-story-done closeout: confirmed Story 211 is implementation-complete on the current tip, then checked the validation and completion workflow gates, updated the generated story/methodology views, and prepared the..."
       },
       "legacy_build_map_refs": "",
       "metadata_source": "frontmatter",
@@ -11259,14 +11265,79 @@
         "source_kind": "story",
         "source_id": "211",
         "source_path": "docs/stories/story-211-scout-degraded-handwriting-and-historical-script-eval-sources.md",
-        "recommended_now": true,
-        "posture": "ready-now",
-        "why_now": "story created after Story 210 close-out prep and a fresh review of the blocked handwritten line. Evidence reviewed in this pass: `docs/ideal.md`, `docs/spec.md`, `docs/methodology/state.yaml`, `docs/methodology/graph....",
+        "recommended_now": false,
+        "posture": "completed",
+        "why_now": "/mark-story-done closeout: confirmed Story 211 is implementation-complete on the current tip, then checked the validation and completion workflow gates, updated the generated story/methodology views, and prepared the...",
         "last_relevant_action": {
-          "date": "2026-04-10",
+          "date": "2026-04-11",
           "source_type": "story-work-log",
           "source": "docs/stories/story-211-scout-degraded-handwriting-and-historical-script-eval-sources.md",
-          "summary": "story created after Story 210 close-out prep and a fresh review of the blocked handwritten line. Evidence reviewed in this pass: `docs/ideal.md`, `docs/spec.md`, `docs/methodology/state.yaml`, `docs/methodology/graph...."
+          "summary": "/mark-story-done closeout: confirmed Story 211 is implementation-complete on the current tip, then checked the validation and completion workflow gates, updated the generated story/methodology views, and prepared the..."
+        }
+      }
+    },
+    {
+      "id": "212",
+      "title": "Establish a Bounded DiEm HTR Historical-Handwriting Benchmark Slice",
+      "path": "docs/stories/story-212-diem-htr-historical-handwriting-benchmark-slice.md",
+      "status": "Pending",
+      "priority": "High",
+      "ideal_refs": [
+        "Requirement #2 (Detect), Requirement #3 (Extract), Requirement #6 (Validate), Any format, any condition, Fidelity to the source, Traceability is the product"
+      ],
+      "spec_refs": [
+        "spec:2",
+        "spec:2.1",
+        "spec:2.2",
+        "spec:8"
+      ],
+      "decision_refs": [
+        "`docs/ideal.md`, `docs/spec.md`, `docs/methodology/state.yaml`, `docs/methodology/graph.json`, `docs/evals/README.md`, `docs/evals/registry.yaml`, `docs/scout/scout-014-degraded-handwriting-eval-sources.md`, `tests/fixtures/formats/_coverage-matrix.json`, `docs/stories/story-191-finish-real-handwritten-ocr-on-the-loc-fixture-pair.md`, `docs/stories/story-211-scout-degraded-handwriting-and-historical-script-eval-sources.md`, and `None found after search in docs/decisions/`, `docs/runbooks/`, `docs/scout/`, and `docs/notes/` for a narrower ADR or runbook governing external historical-handwriting benchmark adoption beyond the scout result"
+      ],
+      "adr_ids": [],
+      "depends_on": [
+        "211"
+      ],
+      "category_refs": [
+        "spec:2",
+        "spec:8"
+      ],
+      "compromise_refs": [
+        "B1",
+        "C1"
+      ],
+      "input_coverage_refs": [
+        "handwritten-notes"
+      ],
+      "architecture_domains": [
+        "ocr_and_extraction"
+      ],
+      "roadmap_tags": [
+        "campaign:maintained-intake-honesty"
+      ],
+      "blocker_summary": "",
+      "blocker_evidence": "",
+      "unblock_condition": "",
+      "last_work_log_entry": {
+        "timestamp": "20260411-0130",
+        "date": "2026-04-11",
+        "summary": "create-story: created Story 212 from Scout 014 after verifying that a new ID is honest. Evidence reviewed in this pass: `docs/ideal.md`, `docs/spec.md`, `docs/methodology/state.yaml`, `docs/methodology/graph.json`, `d..."
+      },
+      "legacy_build_map_refs": "",
+      "metadata_source": "frontmatter",
+      "missing_frontmatter_keys": [],
+      "actionability": {
+        "source_kind": "story",
+        "source_id": "212",
+        "source_path": "docs/stories/story-212-diem-htr-historical-handwriting-benchmark-slice.md",
+        "recommended_now": true,
+        "posture": "ready-now",
+        "why_now": "create-story: created Story 212 from Scout 014 after verifying that a new ID is honest. Evidence reviewed in this pass: `docs/ideal.md`, `docs/spec.md`, `docs/methodology/state.yaml`, `docs/methodology/graph.json`, `d...",
+        "last_relevant_action": {
+          "date": "2026-04-11",
+          "source_type": "story-work-log",
+          "source": "docs/stories/story-212-diem-htr-historical-handwriting-benchmark-slice.md",
+          "summary": "create-story: created Story 212 from Scout 014 after verifying that a new ID is honest. Evidence reviewed in this pass: `docs/ideal.md`, `docs/spec.md`, `docs/methodology/state.yaml`, `docs/methodology/graph.json`, `d..."
         }
       }
     }

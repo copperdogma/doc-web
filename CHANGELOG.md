@@ -1,3 +1,18 @@
+## [2026-04-11-01] - Scout historical handwriting eval sources (Story 211)
+
+### Added
+- Added Scout 014 for degraded-handwriting and historical-script eval sources, with a primary-source comparison of `DiEm HTR`, `Digital Peter`, `Saint Gall`, `Washington`, and `HTR-United`
+- Added Story 212 as the bounded follow-up benchmark slice for `DiEm HTR`
+
+### Changed
+- Changed Story 211, `docs/scout.md`, and the generated methodology/story views so the blocked handwritten line now has one explicit next benchmark move instead of an open-ended “find more sources” note
+
+### Tested
+- `make methodology-compile`
+- `make methodology-check`
+- `make lint`
+- `make test`
+
 ## [2026-04-10-14] - Widen degraded scanned-prose proof surface (Story 210)
 
 ### Added
