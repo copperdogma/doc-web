@@ -154,9 +154,15 @@ Execute a development story through implementation handoff.
     - Leave `Validation complete or explicitly skipped by user` unchecked
     - Leave `Story marked done via /mark-story-done` unchecked
     - Leave the story status as `In Progress`
-    - Give the user a concise implementation summary, highlight residual risks,
-      recommend `/validate` as the next step, and include a short `Where to verify`
-      note whenever there is a concrete path for the user to inspect the result
+    - Give the user a concise implementation summary, briefly explain the
+      practical impact in plain language (what improved, what the operator or
+      end user should notice, or what risk got smaller), highlight residual
+      risks, recommend `/validate` as the next step, and include a short
+      `Where to verify` note whenever there is a concrete path for the user to
+      inspect the result
+    - Phrase the recommended next step so the user can approve it with a simple
+      `yes`. Prefer the explicit form: Reply `yes` to proceed with:
+      `/validate <story-id>` when that is the one clear next move.
     - Do not describe anything as fixed, passing, or done unless that claim is
       backed by fresh checks or artifact inspection from the current pass. If
       something was not re-run, label it as not freshly verified

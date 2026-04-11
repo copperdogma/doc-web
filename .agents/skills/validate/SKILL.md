@@ -175,6 +175,7 @@ For each requirement, provide:
   - `Rescope then close`
   - `Keep open`
   - `Mark blocked`
+- **Impact**: Add 1–2 plain-language lines on what improved for the operator or end user, what practical risk got smaller, or what they should notice now.
 - **Quality Score**: [High/Medium/Low] code quality
 - **Testing Coverage**: [Comprehensive/Partial/Minimal]
 - **Documentation**: [Excellent/Good/Adequate/Poor]
@@ -192,7 +193,8 @@ Do **not** treat close-out bookkeeping owned by `/mark-story-done` or `/finish-a
 3. [Priority 3]: [Specific actionable improvement]
 
 ### Next Steps
-- End with a single numbered plan the user can approve.
+- End with a single numbered plan phrased so the user can approve the
+  recommended path with a simple `yes`.
 - When a story is not ready to close, the plan must start with the **recommended disposition** of the story:
   1) `Rescope then close`, `Keep open`, or `Mark blocked`
   2) Concrete edits needed to support that recommendation
@@ -200,9 +202,10 @@ Do **not** treat close-out bookkeeping owned by `/mark-story-done` or `/finish-a
   4) Run tests/smoke and inspect outputs
   5) Re-validate or close
 
-Ask one direct question:
-- If recommending closure: `"Do you want me to apply that recommendation?"`
-- If recommending more implementation first: `"Do you want me to proceed with these next steps?"`
+Finish with one direct yes-ready line:
+- Prefer the explicit form: Reply `yes` to proceed with: ... when there is one clear next move.
+- If there is no honest next step, say that directly instead of asking a
+  generic confirmation question.
 
 Default behavior:
 - If implementation is complete and the only remaining work is close-out bookkeeping owned by `/mark-story-done` or `/finish-and-push`, prefer **`Close now`**.

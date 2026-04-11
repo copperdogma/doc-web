@@ -442,7 +442,9 @@ When a new AI-powered module needs tuning:
     - **Pipeline-scope impact:** What got measurably better downstream (coverage, fewer escalations, fewer bad tokens, cleaner boundaries, etc.).
     - **Evidence:** 1–3 concrete artifact paths checked and what you saw there.
     - **Next:** The next highest-leverage step and what would falsify success.
+  - When the work is technical, add 1–2 plain-language lines on what the operator or end user should notice, or what practical risk/annoyance got smaller.
   - If results are mixed, say so explicitly and name the remaining failure mode(s).
+- **Yes-ready handoffs (required):** End most completed-task handoffs with one recommended next step phrased so the user can approve it with a simple `yes`. Prefer the explicit form: Reply `yes` to proceed with: ... when there is one clear next move. If there is no honest next step, say so directly.
 - **Debugging discipline:** when diagnosing issues, inspect the actual data/artifacts at each stage before changing code. Prefer evidence-driven plans (e.g., grep/rg on outputs, view JSONL samples) over guess-and-edit loops. Document what was observed and the decision that follows.
 - **Reuse working patterns first:** before inventing a new solution, look for an existing working pattern in this repo (code, UX, helper). Read it, understand it, and adapt with minimal changes.
 - **Preferred workflow (diagnostic loop):** diagnose → write tests → fix → run tests → update `config.yaml` inside an existing run to re-run **only** the necessary modules, reusing prior successful artifacts for faster validation.
