@@ -259,17 +259,17 @@ evals:
     name: Crop Validation
     type: quality
     description: >
-      Dedicated crop text-exclusion / crop-quality surface for the maintained
-      40-crop corpus from the Onward illustration lane. Scores pass/fail crop
-      judgments against checked-in labels for external page text, excessive
-      blank space, and obvious wrong-region crops.
+      Dedicated bounded crop-only text-exclusion / crop-quality surface for the
+      maintained 40-crop corpus from the Onward illustration lane. Scores
+      pass/fail crop judgments against checked-in labels for external page
+      text, excessive blank space, and obvious wrong-region crops.
     pipeline_stage: crop_illustrations
     runner: promptfoo
     command: "cd benchmarks && promptfoo eval -c tasks/crop-validation.yaml --no-cache --filter-providers 'google:gemini-3.1-flash-lite-preview' --filter-prompts 'caption-focus' --output results/crop-validation-story183-g31-caption-focus.json -j 1"
     config: benchmarks/tasks/crop-validation.yaml
     scorer: benchmarks/scorers/crop_validation_scorer.py
     golden: benchmarks/golden/crop-validation.json
-    story_refs: ["183"]
+    story_refs: ["183", "209"]
     category_refs: ["spec:4", "spec:8"]
     compromise_refs: ["C5"]
     spec_compromise: C5
@@ -285,6 +285,26 @@ evals:
         can be removed.
 
     scores:
+      - model: "Gemini 3.1 Flash Lite (caption-focus prompt, story209 baseline rerun)"
+        metrics:
+          overall: 1.0
+          pass_rate: 1.0
+          cases_total: 40
+          latency_ms: 3150
+        measured: 2026-04-11
+        note: >
+          Story 209 reran the maintained bounded crop-only surface via
+          `cd benchmarks && promptfoo eval -c tasks/crop-validation.yaml
+          --no-cache --filter-providers 'google:gemini-3.1-flash-lite-preview'
+          --filter-prompts 'caption-focus' --output
+          results/story209-crop-validation-baseline.json -j 1`.
+          The rerun completed `40/40` with `0` failures, `0` errors, duration
+          about `126000 ms`, and total tokens `59086`. Manual inspection in the
+          same pass reconfirmed that `page-012-001` still labels as a clean
+          pass for integral seal text while `page-122-000` still labels as a
+          fail for caption leakage. Story 209 keeps this surface explicitly
+          bounded and adds the new page-context deletion gate for the broader
+          C5 question.
       - model: "Gemini 3.1 Flash Lite (caption-focus prompt)"
         metrics:
           overall: 1.0
@@ -325,6 +345,18 @@ evals:
           `tests/test_crop_benchmark_substrate.py`, the same surface completed
           the full 40-crop corpus with `40/40` correct pass/fail judgments and
           no provider-side errors.
+      - id: "002"
+        date: 2026-04-11
+        status: succeeded
+        approach: "Story 209 baseline rerun of the bounded crop-only surface before adding the broader page-context deletion gate"
+        score_before: 1.0
+        score_after: 1.0
+        note: >
+          Fresh current-pass rerun on the maintained `caption-focus` slice
+          completed `40/40` with `0` failures, `0` errors, duration about
+          `126000 ms`, and total tokens `59086`. The result confirmed the
+          existing crop-only surface remained healthy and that the missing
+          truth was broader page context, not a broken bounded validator.
 
     retry_when:
       - condition: new-subject-model
@@ -339,6 +371,103 @@ evals:
       - condition: golden-fix
         note: >
           Rerun if the checked-in crop labels or fail reasons change.
+
+  - id: crop-page-level-deletion-gate
+    name: Crop Page-Level Deletion Gate
+    type: quality
+    description: >
+      Page-context C5 deletion-gate surface for the maintained runtime overlap
+      corpus. Shows the source page plus the extracted crop together and scores
+      pass/fail crop judgments against checked-in labels for external page
+      text, neighboring-visual leakage, excessive blank space, and integral
+      image text.
+    pipeline_stage: crop_illustrations
+    runner: promptfoo
+    command: "cd benchmarks && promptfoo eval -c tasks/crop-page-level-deletion-gate.yaml --no-cache --output results/story209-crop-page-level-deletion-gate-g31-page-context-v2.json -j 1"
+    config: benchmarks/tasks/crop-page-level-deletion-gate.yaml
+    scorer: benchmarks/scorers/crop_validation_scorer.py
+    golden: benchmarks/golden/crop-page-level-deletion-gate.json
+    story_refs: ["209"]
+    category_refs: ["spec:4", "spec:8"]
+    compromise_refs: ["C5"]
+    spec_compromise: C5
+
+    target:
+      metric: pass_rate
+      value: 1.0
+      overall: 1.0
+      note: >
+        This is the current page-context C5 deletion-gate truth surface for the
+        maintained runtime overlap corpus. Passing here means the validator
+        matches human pass/fail labels on `22` checked cases; it does not
+        delete `C5` because that corpus still contains `4` explicit fail-labeled
+        residue cases (`page-018-000`, `page-092-000`, `page-122-000`,
+        `page-126-000`).
+
+    scores:
+      - model: "Gemini 3.1 Flash Lite (page-context prompt)"
+        metrics:
+          overall: 1.0
+          pass_rate: 1.0
+          cases_total: 22
+          pass_labeled: 18
+          fail_labeled: 4
+          latency_ms: 2812
+        measured: 2026-04-11
+        note: >
+          Story 209 added `benchmarks/tasks/crop-page-level-deletion-gate.yaml`
+          plus the supporting overlap corpus and reran the maintained
+          page-context surface via
+          `cd benchmarks && promptfoo eval -c
+          tasks/crop-page-level-deletion-gate.yaml --no-cache --output
+          results/story209-crop-page-level-deletion-gate-g31-page-context-v2.json
+          -j 1`. After one prompt-tightening pass for `page-126-000`, the final
+          rerun completed `22/22` with `0` failures, `0` errors, duration
+          `61863 ms`, and total tokens `56945`. Manual inspection in the same
+          pass confirmed `page-012-001` still labels as a pass for integral
+          seal text while `page-018-000`, `page-122-000`, and `page-126-000`
+          all label as fails for external page-text leakage. Portable tracked
+          proof: `docs/evals/attempts/002-crop-page-level-deletion-gate-story209-proof.md`.
+
+    attempts:
+      - id: "001"
+        date: 2026-04-11
+        status: partial
+        approach: "Story 209 first draft of the page-context prompt on the new 22-case overlap corpus"
+        score_before: null
+        score_after: 0.9545
+        note: >
+          The first full run on the new page-context surface completed `21/22`
+          with a single false negative on `page-126-000`. Classification:
+          prompt-wrong, not golden-wrong. The prompt tolerated “minimal”
+          adjacent plaque-text leakage even though the golden correctly labels
+          that surrounding page text as a fail.
+      - id: "002"
+        date: 2026-04-11
+        status: succeeded
+        approach: "Tighten the page-context prompt to fail surrounding neighboring-visual text leakage, then rerun the page-level C5 gate"
+        score_before: 0.9545
+        score_after: 1.0
+        note: >
+          Tightening `benchmarks/prompts/validate-page-level-crop.js` to fail
+          surrounding page text from adjacent plaques or neighboring figures
+          removed the only false negative. The final rerun reached `22/22`
+          correct labels and left the decision unchanged: C5 residue is still
+          required because the checked corpus still contains `4` explicit fail
+          cases in the current maintained runtime.
+
+    retry_when:
+      - condition: new-subject-model
+        note: >
+          Rerun when a materially stronger validator or detector may reduce the
+          current fail-labeled page-context cases.
+      - condition: runtime-change
+        note: >
+          Rerun after any maintained crop/runtime simplification before claiming
+          `trim_layout_text` or bounded caption assist can be deleted.
+      - condition: golden-fix
+        note: >
+          Rerun if the page-context overlap corpus or fail reasons change.
 
   # ── Quality Evals (OCR) ──────────────────────────────────────────────────
 

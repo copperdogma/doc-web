@@ -39,18 +39,26 @@ function buildImageContent(dataUri, providerId) {
   };
 }
 
+function normalizeDataUris(dataUriOrList) {
+  return Array.isArray(dataUriOrList) ? dataUriOrList : [dataUriOrList];
+}
+
 /**
  * Build a complete message array for a vision prompt.
  * Google uses { parts: [...] }, OpenAI/Anthropic use { content: [...] }.
  */
-function buildMessages(promptText, dataUri, providerId) {
+function buildMessages(promptText, dataUriOrList, providerId) {
+  const imageContents = normalizeDataUris(dataUriOrList).map((dataUri) =>
+    buildImageContent(dataUri, providerId)
+  );
+
   if (providerId.startsWith("google:")) {
     return [
       {
         role: "user",
         parts: [
           { text: promptText },
-          buildImageContent(dataUri, providerId),
+          ...imageContents,
         ],
       },
     ];
@@ -61,7 +69,7 @@ function buildMessages(promptText, dataUri, providerId) {
       role: "user",
       content: [
         { type: "text", text: promptText },
-        buildImageContent(dataUri, providerId),
+        ...imageContents,
       ],
     },
   ];

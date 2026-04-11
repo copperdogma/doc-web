@@ -71,3 +71,28 @@ def test_crop_validation_task_assets_exist_and_match_golden_keys():
 
     assert len(seen_keys) == len(set(seen_keys)), f"{task_name}: duplicate crop keys"
     assert sorted(seen_keys) == golden_keys
+
+
+def test_crop_page_level_deletion_gate_assets_exist_and_match_golden_keys():
+    task_name = "crop-page-level-deletion-gate.yaml"
+    task = _load_task(task_name)
+    golden = _load_json("golden/crop-page-level-deletion-gate.json")
+    golden_keys = sorted(key for key in golden if key != "_meta")
+
+    seen_keys = []
+    for test_case in task["tests"]:
+        page_image_ref = test_case["vars"]["page_image"]
+        crop_image_ref = test_case["vars"]["crop_image"]
+
+        page_asset_path = _resolve_task_file_ref(task_name, page_image_ref)
+        crop_asset_path = _resolve_task_file_ref(task_name, crop_image_ref)
+
+        assert page_asset_path.exists(), f"{task_name}: missing page benchmark asset {page_asset_path}"
+        assert crop_asset_path.exists(), f"{task_name}: missing crop benchmark asset {crop_asset_path}"
+
+        crop_key = test_case["vars"]["crop_key"]
+        assert crop_key in golden, f"{task_name}: missing golden key {crop_key}"
+        seen_keys.append(crop_key)
+
+    assert len(seen_keys) == len(set(seen_keys)), f"{task_name}: duplicate crop keys"
+    assert sorted(seen_keys) == golden_keys

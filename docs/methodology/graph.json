@@ -294,12 +294,14 @@
           "183",
           "184",
           "198",
-          "207"
+          "207",
+          "209"
         ],
         "adr_ids": [],
         "eval_ids": [
           "image-crop-extraction",
           "crop-validation",
+          "crop-page-level-deletion-gate",
           "single-model-crop-detection"
         ]
       },
@@ -500,7 +502,8 @@
           "204",
           "205",
           "207",
-          "208"
+          "208",
+          "209"
         ],
         "adr_ids": [
           "ADR-002"
@@ -508,6 +511,7 @@
         "eval_ids": [
           "image-crop-extraction",
           "crop-validation",
+          "crop-page-level-deletion-gate",
           "handwritten-notes-transcription",
           "onward-table-fidelity",
           "single-model-crop-detection",
@@ -956,7 +960,8 @@
           "183",
           "184",
           "198",
-          "207"
+          "207",
+          "209"
         ],
         "eval_ids": [
           "image-crop-extraction",
@@ -985,7 +990,8 @@
             "183",
             "184",
             "198",
-            "207"
+            "207",
+            "209"
           ],
           "eval_ids": [
             "image-crop-extraction",
@@ -1007,10 +1013,12 @@
           "183",
           "184",
           "198",
-          "207"
+          "207",
+          "209"
         ],
         "eval_ids": [
-          "crop-validation"
+          "crop-validation",
+          "crop-page-level-deletion-gate"
         ],
         "actionability": {
           "source_kind": "eval",
@@ -1026,21 +1034,23 @@
           ],
           "why_now": "Rerun when a new validator model or prompt looks strong enough to widen or replace the current bounded C5-linked truth surface. Broaden or redesign this surface when the project is ready to measure the spec's wider pa...",
           "last_relevant_action": {
-            "date": "2026-04-03",
+            "date": "2026-04-11",
             "source_type": "eval-attempt",
             "source": "docs/evals/registry.yaml",
-            "source_id": "001",
-            "summary": "Before the repair, a clean-checkout smoke failed before any provider call because `tasks/crop-validation.yaml` could not resolve `../input/crop-validation-b64/page-001-000.b64.txt`. After restoring the canonical track..."
+            "source_id": "002",
+            "summary": "Fresh current-pass rerun on the maintained `caption-focus` slice completed `40/40` with `0` failures, `0` errors, duration about `126000 ms`, and total tokens `59086`. The result confirmed the existing crop-only surfa..."
           },
           "story_ids": [
             "135",
             "183",
             "184",
             "198",
-            "207"
+            "207",
+            "209"
           ],
           "eval_ids": [
-            "crop-validation"
+            "crop-validation",
+            "crop-page-level-deletion-gate"
           ]
         }
       },
@@ -1154,7 +1164,8 @@
           "202",
           "203",
           "207",
-          "208"
+          "208",
+          "209"
         ],
         "eval_ids": [],
         "actionability": {
@@ -1201,7 +1212,8 @@
             "202",
             "203",
             "207",
-            "208"
+            "208",
+            "209"
           ],
           "eval_ids": []
         }
@@ -11047,6 +11059,73 @@
           "summary": "mark-story-done closeout: recorded Story 208's bounded current-pass benchmark evidence in `docs/evals/registry.yaml` under both `handwritten-notes-transcription` and `onward-table-fidelity`, updated the mutable method..."
         }
       }
+    },
+    {
+      "id": "209",
+      "title": "Widen C5 Crop Deletion Gate to Page-Level Proof",
+      "path": "docs/stories/story-209-crop-c5-page-level-deletion-gate.md",
+      "status": "Done",
+      "priority": "High",
+      "ideal_refs": [
+        "Requirement #4 (Illustrate), Requirement #6 (Validate), Traceability is the product, Fidelity to the source, Transparency over magic"
+      ],
+      "spec_refs": [
+        "spec:4",
+        "spec:4.1",
+        "spec:4.2",
+        "spec:8"
+      ],
+      "decision_refs": [
+        "`docs/ideal.md`, `docs/spec.md`, `docs/methodology/state.yaml`, `docs/methodology/graph.json`, `docs/evals/registry.yaml`, `docs/runbooks/crop-eval-workflow.md`, `tests/fixtures/formats/_coverage-matrix.json`, `docs/stories/story-183-crop-benchmark-substrate-and-c5-validation-surface.md`, `docs/stories/story-184-collapse-bounded-crop-runtime-to-single-stage-flash.md`, `docs/stories/story-198-delete-crop-runtime-validator-retry-residue.md`, `docs/stories/story-207-refresh-crop-c4-proof-and-coverage-truth-surfaces.md`, and `None found after search in docs/decisions/`, `docs/scout/`, and `docs/notes/` for a narrower crop-specific deletion-gate ADR or runbook"
+      ],
+      "adr_ids": [],
+      "depends_on": [
+        "183",
+        "198",
+        "207"
+      ],
+      "category_refs": [
+        "spec:4",
+        "spec:8"
+      ],
+      "compromise_refs": [
+        "B1",
+        "C4",
+        "C5"
+      ],
+      "input_coverage_refs": [
+        "image-directory-scans",
+        "scanned-pdf-tables"
+      ],
+      "architecture_domains": [
+        "methodology_tooling"
+      ],
+      "roadmap_tags": [],
+      "blocker_summary": "",
+      "blocker_evidence": "",
+      "unblock_condition": "",
+      "last_work_log_entry": {
+        "timestamp": "20260411-0050",
+        "date": "2026-04-11",
+        "summary": "mark-story-done: reran `make lint` (`ruff check` clean) and `make test` (`554 passed, 4 warnings in 652.05s`) on the current branch tip, with the same unrelated pre-existing Pydantic deprecation warnings still limited..."
+      },
+      "legacy_build_map_refs": "",
+      "metadata_source": "frontmatter",
+      "missing_frontmatter_keys": [],
+      "actionability": {
+        "source_kind": "story",
+        "source_id": "209",
+        "source_path": "docs/stories/story-209-crop-c5-page-level-deletion-gate.md",
+        "recommended_now": false,
+        "posture": "completed",
+        "why_now": "mark-story-done: reran `make lint` (`ruff check` clean) and `make test` (`554 passed, 4 warnings in 652.05s`) on the current branch tip, with the same unrelated pre-existing Pydantic deprecation warnings still limited...",
+        "last_relevant_action": {
+          "date": "2026-04-11",
+          "source_type": "story-work-log",
+          "source": "docs/stories/story-209-crop-c5-page-level-deletion-gate.md",
+          "summary": "mark-story-done: reran `make lint` (`ruff check` clean) and `make test` (`554 passed, 4 warnings in 652.05s`) on the current branch tip, with the same unrelated pre-existing Pydantic deprecation warnings still limited..."
+        }
+      }
     }
   ],
   "adrs": [
@@ -11369,10 +11448,11 @@
       "type": "quality",
       "command": "cd benchmarks && promptfoo eval -c tasks/crop-validation.yaml --no-cache --filter-providers 'google:gemini-3.1-flash-lite-preview' --filter-prompts 'caption-focus' --output results/crop-validation-story183-g31-caption-focus.json -j 1",
       "path": "docs/evals/registry.yaml",
-      "description": "Dedicated crop text-exclusion / crop-quality surface for the maintained 40-crop corpus from the Onward illustration lane. Scores pass/fail crop judgments against checked-in labels for external page text, excessive blank space, and obvious wrong-region crops.\n",
+      "description": "Dedicated bounded crop-only text-exclusion / crop-quality surface for the maintained 40-crop corpus from the Onward illustration lane. Scores pass/fail crop judgments against checked-in labels for external page text, excessive blank space, and obvious wrong-region crops.\n",
       "spec_refs": [],
       "story_refs": [
-        "183"
+        "183",
+        "209"
       ],
       "compromise_refs": [
         "C5"
@@ -11382,6 +11462,17 @@
         "spec:8"
       ],
       "scores": [
+        {
+          "model": "Gemini 3.1 Flash Lite (caption-focus prompt, story209 baseline rerun)",
+          "metrics": {
+            "overall": 1.0,
+            "pass_rate": 1.0,
+            "cases_total": 40,
+            "latency_ms": 3150
+          },
+          "measured": "2026-04-11",
+          "note": "Story 209 reran the maintained bounded crop-only surface via `cd benchmarks && promptfoo eval -c tasks/crop-validation.yaml --no-cache --filter-providers 'google:gemini-3.1-flash-lite-preview' --filter-prompts 'caption-focus' --output results/story209-crop-validation-baseline.json -j 1`. The rerun completed `40/40` with `0` failures, `0` errors, duration about `126000 ms`, and total tokens `59086`. Manual inspection in the same pass reconfirmed that `page-012-001` still labels as a clean pass for integral seal text while `page-122-000` still labels as a fail for caption leakage. Story 209 keeps this surface explicitly bounded and adds the new page-context deletion gate for the broader C5 question.\n"
+        },
         {
           "model": "Gemini 3.1 Flash Lite (caption-focus prompt)",
           "metrics": {
@@ -11395,15 +11486,15 @@
         }
       ],
       "latest_score": {
-        "model": "Gemini 3.1 Flash Lite (caption-focus prompt)",
+        "model": "Gemini 3.1 Flash Lite (caption-focus prompt, story209 baseline rerun)",
         "metrics": {
           "overall": 1.0,
           "pass_rate": 1.0,
           "cases_total": 40,
-          "latency_ms": 3021
+          "latency_ms": 3150
         },
-        "measured": "2026-04-03",
-        "note": "Story 183 repaired the tracked crop benchmark substrate by restoring the canonical local `.b64.txt` fixtures under `benchmarks/input/source-pages-b64/` and `benchmarks/input/crop-validation-b64/`, then reran the full 40-crop dedicated validation surface via `cd benchmarks && promptfoo eval -c tasks/crop-validation.yaml --no-cache --filter-providers 'google:gemini-3.1-flash-lite-preview' --filter-prompts 'caption-focus' --output results/crop-validation-story183-g31-caption-focus.json -j 1`. The repaired local benchmark completed `40/40` with `0` failures, `0` errors, `120833 ms` total duration, and `59087` total tokens. Manual inspection in the same pass confirmed the 4 checked fail cases (`page-018-000`, `page-092-000`, `page-122-000`, `page-126-000`) still returned `{\"verdict\": \"fail\", ...}` while integral-text pass case `page-012-000` still returned `{\"verdict\": \"pass\", ...}` in `benchmarks/results/crop-validation-story183-g31-caption-focus.json`.\n"
+        "measured": "2026-04-11",
+        "note": "Story 209 reran the maintained bounded crop-only surface via `cd benchmarks && promptfoo eval -c tasks/crop-validation.yaml --no-cache --filter-providers 'google:gemini-3.1-flash-lite-preview' --filter-prompts 'caption-focus' --output results/story209-crop-validation-baseline.json -j 1`. The rerun completed `40/40` with `0` failures, `0` errors, duration about `126000 ms`, and total tokens `59086`. Manual inspection in the same pass reconfirmed that `page-012-001` still labels as a clean pass for integral seal text while `page-122-000` still labels as a fail for caption leakage. Story 209 keeps this surface explicitly bounded and adds the new page-context deletion gate for the broader C5 question.\n"
       },
       "attempts": [
         {
@@ -11412,6 +11503,14 @@
           "status": "succeeded",
           "approach": "Story 183 repaired the local crop fixture corpus, added integrity coverage, and reran the dedicated C5-linked crop-validation surface on Gemini 3.1 Flash Lite + caption-focus",
           "note": "Before the repair, a clean-checkout smoke failed before any provider call because `tasks/crop-validation.yaml` could not resolve `../input/crop-validation-b64/page-001-000.b64.txt`. After restoring the canonical tracked fixtures and adding `tests/test_crop_benchmark_substrate.py`, the same surface completed the full 40-crop corpus with `40/40` correct pass/fail judgments and no provider-side errors.\n",
+          "retry_when": []
+        },
+        {
+          "id": "002",
+          "date": "2026-04-11",
+          "status": "succeeded",
+          "approach": "Story 209 baseline rerun of the bounded crop-only surface before adding the broader page-context deletion gate",
+          "note": "Fresh current-pass rerun on the maintained `caption-focus` slice completed `40/40` with `0` failures, `0` errors, duration about `126000 ms`, and total tokens `59086`. The result confirmed the existing crop-only surface remained healthy and that the missing truth was broader page context, not a broken bounded validator.\n",
           "retry_when": []
         }
       ],
@@ -11440,11 +11539,108 @@
         ],
         "why_now": "Rerun when a new validator model or prompt looks strong enough to widen or replace the current bounded C5-linked truth surface. Broaden or redesign this surface when the project is ready to measure the spec's wider pa...",
         "last_relevant_action": {
-          "date": "2026-04-03",
+          "date": "2026-04-11",
           "source_type": "eval-attempt",
           "source": "docs/evals/registry.yaml",
-          "source_id": "001",
-          "summary": "Before the repair, a clean-checkout smoke failed before any provider call because `tasks/crop-validation.yaml` could not resolve `../input/crop-validation-b64/page-001-000.b64.txt`. After restoring the canonical track..."
+          "source_id": "002",
+          "summary": "Fresh current-pass rerun on the maintained `caption-focus` slice completed `40/40` with `0` failures, `0` errors, duration about `126000 ms`, and total tokens `59086`. The result confirmed the existing crop-only surfa..."
+        }
+      }
+    },
+    {
+      "id": "crop-page-level-deletion-gate",
+      "name": "Crop Page-Level Deletion Gate",
+      "type": "quality",
+      "command": "cd benchmarks && promptfoo eval -c tasks/crop-page-level-deletion-gate.yaml --no-cache --output results/story209-crop-page-level-deletion-gate-g31-page-context-v2.json -j 1",
+      "path": "docs/evals/registry.yaml",
+      "description": "Page-context C5 deletion-gate surface for the maintained runtime overlap corpus. Shows the source page plus the extracted crop together and scores pass/fail crop judgments against checked-in labels for external page text, neighboring-visual leakage, excessive blank space, and integral image text.\n",
+      "spec_refs": [],
+      "story_refs": [
+        "209"
+      ],
+      "compromise_refs": [
+        "C5"
+      ],
+      "category_refs": [
+        "spec:4",
+        "spec:8"
+      ],
+      "scores": [
+        {
+          "model": "Gemini 3.1 Flash Lite (page-context prompt)",
+          "metrics": {
+            "overall": 1.0,
+            "pass_rate": 1.0,
+            "cases_total": 22,
+            "pass_labeled": 18,
+            "fail_labeled": 4,
+            "latency_ms": 2812
+          },
+          "measured": "2026-04-11",
+          "note": "Story 209 added `benchmarks/tasks/crop-page-level-deletion-gate.yaml` plus the supporting overlap corpus and reran the maintained page-context surface via `cd benchmarks && promptfoo eval -c tasks/crop-page-level-deletion-gate.yaml --no-cache --output results/story209-crop-page-level-deletion-gate-g31-page-context-v2.json -j 1`. After one prompt-tightening pass for `page-126-000`, the final rerun completed `22/22` with `0` failures, `0` errors, duration `61863 ms`, and total tokens `56945`. Manual inspection in the same pass confirmed `page-012-001` still labels as a pass for integral seal text while `page-018-000`, `page-122-000`, and `page-126-000` all label as fails for external page-text leakage. Portable tracked proof: `docs/evals/attempts/002-crop-page-level-deletion-gate-story209-proof.md`.\n"
+        }
+      ],
+      "latest_score": {
+        "model": "Gemini 3.1 Flash Lite (page-context prompt)",
+        "metrics": {
+          "overall": 1.0,
+          "pass_rate": 1.0,
+          "cases_total": 22,
+          "pass_labeled": 18,
+          "fail_labeled": 4,
+          "latency_ms": 2812
+        },
+        "measured": "2026-04-11",
+        "note": "Story 209 added `benchmarks/tasks/crop-page-level-deletion-gate.yaml` plus the supporting overlap corpus and reran the maintained page-context surface via `cd benchmarks && promptfoo eval -c tasks/crop-page-level-deletion-gate.yaml --no-cache --output results/story209-crop-page-level-deletion-gate-g31-page-context-v2.json -j 1`. After one prompt-tightening pass for `page-126-000`, the final rerun completed `22/22` with `0` failures, `0` errors, duration `61863 ms`, and total tokens `56945`. Manual inspection in the same pass confirmed `page-012-001` still labels as a pass for integral seal text while `page-018-000`, `page-122-000`, and `page-126-000` all label as fails for external page-text leakage. Portable tracked proof: `docs/evals/attempts/002-crop-page-level-deletion-gate-story209-proof.md`.\n"
+      },
+      "attempts": [
+        {
+          "id": "001",
+          "date": "2026-04-11",
+          "status": "partial",
+          "approach": "Story 209 first draft of the page-context prompt on the new 22-case overlap corpus",
+          "note": "The first full run on the new page-context surface completed `21/22` with a single false negative on `page-126-000`. Classification: prompt-wrong, not golden-wrong. The prompt tolerated \u201cminimal\u201d adjacent plaque-text leakage even though the golden correctly labels that surrounding page text as a fail.\n",
+          "retry_when": []
+        },
+        {
+          "id": "002",
+          "date": "2026-04-11",
+          "status": "succeeded",
+          "approach": "Tighten the page-context prompt to fail surrounding neighboring-visual text leakage, then rerun the page-level C5 gate",
+          "note": "Tightening `benchmarks/prompts/validate-page-level-crop.js` to fail surrounding page text from adjacent plaques or neighboring figures removed the only false negative. The final rerun reached `22/22` correct labels and left the decision unchanged: C5 residue is still required because the checked corpus still contains `4` explicit fail cases in the current maintained runtime.\n",
+          "retry_when": []
+        }
+      ],
+      "retry_when": [
+        "golden-fix",
+        "new-subject-model",
+        "runtime-change"
+      ],
+      "retry_when_notes": [
+        "Rerun when a materially stronger validator or detector may reduce the current fail-labeled page-context cases.",
+        "Rerun after any maintained crop/runtime simplification before claiming `trim_layout_text` or bounded caption assist can be deleted.",
+        "Rerun if the page-context overlap corpus or fail reasons change."
+      ],
+      "explicit_lineage": true,
+      "actionability": {
+        "source_kind": "eval",
+        "source_id": "crop-page-level-deletion-gate",
+        "source_path": "docs/evals/registry.yaml",
+        "recommended_now": false,
+        "posture": "trigger-exhausted",
+        "retry_trigger_status": "exhausted",
+        "retry_when": [
+          "golden-fix",
+          "new-subject-model",
+          "runtime-change"
+        ],
+        "why_now": "Rerun when a materially stronger validator or detector may reduce the current fail-labeled page-context cases. Rerun after any maintained crop/runtime simplification before claiming `trim_layout_text` or bounded capti...",
+        "last_relevant_action": {
+          "date": "2026-04-11",
+          "source_type": "eval-attempt",
+          "source": "docs/evals/registry.yaml",
+          "source_id": "002",
+          "summary": "Tightening `benchmarks/prompts/validate-page-level-crop.js` to fail surrounding page text from adjacent plaques or neighboring figures removed the only false negative. The final rerun reached `22/22` correct labels an..."
         }
       }
     },

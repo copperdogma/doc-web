@@ -3,8 +3,8 @@
 This directory holds tracked promptfoo image fixtures for the maintained crop
 benchmark surfaces.
 
-- `source-pages-b64/` contains the 13 downscaled page fixtures used by the
-  crop detector benchmarks.
+- `source-pages-b64/` contains the 16 downscaled page fixtures used by the
+  maintained crop detector and page-context deletion-gate benchmarks.
 - `crop-validation-b64/` contains the 40 downscaled crop fixtures used by the
   dedicated crop text-exclusion / crop-quality validation surface.
 

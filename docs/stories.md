@@ -98,6 +98,7 @@ Grouped by primary `spec:N` category. Stories without category refs remain in an
 | 184 | Collapse Bounded Crop Runtime to Flash-First Simplification | High | Done | 133, 150, 183 | [story-184](stories/story-184-collapse-bounded-crop-runtime-to-single-stage-flash.md) |
 | 198 | Delete Retired Crop Retry/Validator Residue from Guided Runtime | High | Done | 184 | [story-198](stories/story-198-delete-crop-runtime-validator-retry-residue.md) |
 | 207 | Refresh Crop C4 Proof and Coverage Truth Surfaces | High | Done | 183, 198 | [story-207](stories/story-207-refresh-crop-c4-proof-and-coverage-truth-surfaces.md) |
+| 209 | Widen C5 Crop Deletion Gate to Page-Level Proof | High | Done | 183, 198, 207 | [story-209](stories/story-209-crop-c5-page-level-deletion-gate.md) |
 
 ### spec:5 — Document Consistency Planning
 

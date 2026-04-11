@@ -13,7 +13,6 @@ Metrics surfaced in reason string:
 import json
 import os
 import re
-from typing import Any
 
 
 def _parse_json(text: str) -> dict | None:
@@ -54,7 +53,8 @@ def get_assert(output: str, context: dict) -> dict:
     crop_key = context["vars"].get("crop_key", "")
     scorer_dir = os.path.dirname(os.path.abspath(__file__))
     benchmarks_dir = os.path.dirname(scorer_dir)
-    golden_path = os.path.join(benchmarks_dir, "golden", "crop-validation.json")
+    golden_relpath = context["vars"].get("golden_relpath", "golden/crop-validation.json")
+    golden_path = os.path.join(benchmarks_dir, golden_relpath)
 
     try:
         with open(golden_path) as f:

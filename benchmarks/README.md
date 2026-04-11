@@ -54,6 +54,7 @@ promptfoo eval -c tasks/image-crop-extraction.yaml --no-cache -j 3
 # Smoke-check the maintained crop surfaces from a clean checkout
 promptfoo eval -c tasks/image-crop-extraction.yaml --no-cache --filter-first-n 1 -j 1 --no-write
 promptfoo eval -c tasks/crop-validation.yaml --no-cache --filter-first-n 1 -j 1 --no-write
+promptfoo eval -c tasks/crop-page-level-deletion-gate.yaml --no-cache --filter-first-n 1 -j 1 --no-write
 
 # Save results
 promptfoo eval -c tasks/image-crop-extraction.yaml --no-cache --output results/image-crop-run1.json
@@ -63,6 +64,11 @@ promptfoo eval -c tasks/crop-validation.yaml --no-cache \
   --filter-providers 'google:gemini-3.1-flash-lite-preview' \
   --filter-prompts 'caption-focus' \
   --output results/crop-validation-story183-g31-caption-focus.json \
+  -j 1
+
+# Current maintained page-context C5 deletion gate
+promptfoo eval -c tasks/crop-page-level-deletion-gate.yaml --no-cache \
+  --output results/story209-crop-page-level-deletion-gate-g31-page-context-v2.json \
   -j 1
 
 # View results in web UI leaderboard
@@ -96,7 +102,7 @@ cd benchmarks && source ~/.zshrc && promptfoo eval -c tasks/image-crop-extractio
 ### 2. Crop Validation (Story 126 + Story 183)
 
 **Task**: Judge whether an extracted crop should pass or fail based on external page text, excessive blank space, or obvious wrong-region crops.
-**Current maintained result**: Gemini 3.1 Flash Lite + `caption-focus` (`1.0` overall, `1.0` pass rate, `40/40` on 2026-04-03)
+**Current maintained result**: Gemini 3.1 Flash Lite + `caption-focus` (`1.0` overall, `1.0` pass rate, `40/40` on 2026-04-11)
 **Config**: `tasks/crop-validation.yaml`
 **Scorer**: `scorers/crop_validation_scorer.py` — pass/fail classification against checked labels
 **Golden**: `golden/crop-validation.json`
@@ -118,7 +124,30 @@ promptfoo eval -c tasks/crop-validation.yaml --no-cache \
 
 ---
 
-### 3. OCR Model Eval — Genealogy Pages (Story 127)
+### 3. Crop Page-Level Deletion Gate (Story 209)
+
+**Task**: Judge the maintained runtime overlap cases with both the source page and the extracted crop in view, so the benchmark can answer the broader C5 deletion question instead of only the crop-only pass/fail question.
+**Current maintained result**: Gemini 3.1 Flash Lite + `page-context` (`1.0` overall, `1.0` pass rate, `22/22` on 2026-04-11)
+**Config**: `tasks/crop-page-level-deletion-gate.yaml`
+**Scorer**: `scorers/crop_validation_scorer.py` — pass/fail classification against checked labels from the page-context golden
+**Golden**: `golden/crop-page-level-deletion-gate.json`
+**Test set**: 22 tracked page/crop overlap cases with 4 explicit fail-labeled residue cases
+
+```bash
+cd benchmarks && source ~/.nvm/nvm.sh && nvm use 24 >/dev/null 2>&1 && \
+promptfoo eval -c tasks/crop-page-level-deletion-gate.yaml --no-cache \
+  --output results/story209-crop-page-level-deletion-gate-g31-page-context-v2.json \
+  -j 1
+```
+
+**Key findings**:
+- This is the broader page-context C5 deletion-gate surface; it complements, but does not replace, the bounded crop-only `crop-validation` task.
+- The checked-in overlap corpus now covers the page-12 seal/text-bearing case, the page-122 caption-leak case, and additional reviewed residue-style examples on the maintained Onward seam.
+- The surface passes cleanly as a judge, but its own golden still includes 4 fail-labeled current-runtime cases, so Story 209's current decision is to keep the surviving C5 residue in place.
+
+---
+
+### 4. OCR Model Eval — Genealogy Pages (Story 127)
 
 **Task**: Single-pass VLM OCR — model sees raw page image, outputs structured HTML with `<table>` elements and `<img>` placeholders.
 **Winner**: Gemini 3 Pro + table-strict (0.877 avg score, 100% pass rate)

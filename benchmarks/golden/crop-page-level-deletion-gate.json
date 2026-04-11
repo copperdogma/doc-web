@@ -1,0 +1,130 @@
+{
+  "_meta": {
+    "description": "Page-context subset of crop-validation goldens for the C5 deletion-gate overlap corpus",
+    "source_golden": "benchmarks/golden/crop-validation.json",
+    "cases_total": 22,
+    "pass_cases": 18,
+    "fail_cases": 4,
+    "notes": "Pairs checked-in full-page fixtures with the maintained crop-validation corpus so the validator can judge crops with source-page context."
+  },
+  "page-001-000": {
+    "verdict": "pass",
+    "reasons": [],
+    "notes": "Gold embossed book cover illustration. Clean crop, no text."
+  },
+  "page-004-000": {
+    "verdict": "pass",
+    "reasons": [],
+    "notes": "Covered wagon drawing. Tight crop, clean."
+  },
+  "page-009-000": {
+    "verdict": "pass",
+    "reasons": [],
+    "notes": "Portrait of Moise and Sophie. Good framing."
+  },
+  "page-012-000": {
+    "verdict": "pass",
+    "reasons": [],
+    "notes": "Celebrate Saskatchewan 1905-1980 logo. Text is integral part of the logo graphic."
+  },
+  "page-012-001": {
+    "verdict": "pass",
+    "reasons": [],
+    "notes": "Official Seal of Saskatchewan. Dark/low contrast but crop is accurate."
+  },
+  "page-014-000": {
+    "verdict": "pass",
+    "reasons": [],
+    "notes": "Portrait of Moise and Sophie L'Heureux c.1910. Good crop."
+  },
+  "page-018-000": {
+    "verdict": "fail",
+    "reasons": [
+      "text_included",
+      "blank_space",
+      "incomplete_crop"
+    ],
+    "notes": "WORST CROP: Only left half of full-width group photo captured (x1=2479 vs ~4700 page width). Caption text visible ('Moise and Sophie's Family / Back Row: George...'). ~40% blank white space at bottom. VLM returned a box that was too narrow and too tall."
+  },
+  "page-021-000": {
+    "verdict": "pass",
+    "reasons": [],
+    "notes": "Aerial view of ranch buildings. Good full-width crop."
+  },
+  "page-021-001": {
+    "verdict": "pass",
+    "reasons": [],
+    "notes": "Ranch house and barn with livestock. Good crop."
+  },
+  "page-022-000": {
+    "verdict": "pass",
+    "reasons": [],
+    "notes": "Henry and Alma Alain 50th anniversary. Good crop."
+  },
+  "page-038-000": {
+    "verdict": "pass",
+    "reasons": [],
+    "notes": "Oval portrait of Mrs. Leonidas (Laetitia). Good tight crop around oval."
+  },
+  "page-038-001": {
+    "verdict": "pass",
+    "reasons": [],
+    "notes": "Portrait of Leonidas and Josephine seated. Good crop."
+  },
+  "page-060-000": {
+    "verdict": "pass",
+    "reasons": [],
+    "notes": "George and Sophranie L'Heureux outdoors in coats. Good crop."
+  },
+  "page-060-001": {
+    "verdict": "pass",
+    "reasons": [],
+    "notes": "Mrs. George L'Heureux (Emilienne) sitting outdoors. Good crop."
+  },
+  "page-092-000": {
+    "verdict": "fail",
+    "reasons": [
+      "text_included"
+    ],
+    "notes": "Portrait of Archie Richard has body paragraph text from both columns of the book page visible on left and right sides. Crop should have excluded surrounding page text."
+  },
+  "page-122-000": {
+    "verdict": "fail",
+    "reasons": [
+      "text_included"
+    ],
+    "notes": "Group reunion photo includes printed caption text at bottom: 'L'Heureux family re-union — July, 1939. Ninety members...' This external caption should have been excluded by the crop."
+  },
+  "page-122-001": {
+    "verdict": "pass",
+    "reasons": [],
+    "notes": "Two side-by-side oval portraits (Moise and brother Edward). Good crop."
+  },
+  "page-125-000": {
+    "verdict": "pass",
+    "reasons": [],
+    "notes": "Sketch of covered wagon with two oxen. Good crop."
+  },
+  "page-126-000": {
+    "verdict": "fail",
+    "reasons": [
+      "text_included"
+    ],
+    "notes": "Monument plaque photo has book page text visible on the left side (names, descriptions from the page layout). The plaque text itself is integral, but external page text was included in the crop."
+  },
+  "page-126-001": {
+    "verdict": "pass",
+    "reasons": [],
+    "notes": "Bronze plaque MOISE & SOPHIE L'HEUREUX 1887-1987. Text is engraved on plaque (integral)."
+  },
+  "page-127-000": {
+    "verdict": "pass",
+    "reasons": [],
+    "notes": "Stone monument with three plaques. Text on plaques is integral to the monument image."
+  },
+  "page-127-001": {
+    "verdict": "pass",
+    "reasons": [],
+    "notes": "Close-up of Canada Post plaque on monument. Text on plaque is integral."
+  }
+}

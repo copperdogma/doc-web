@@ -1,3 +1,20 @@
+## [2026-04-10-13] - Add page-context crop deletion gate (Story 209)
+
+### Added
+- Added a new page-context crop deletion-gate benchmark surface with a tracked 22-case overlap corpus, supporting source-page fixtures, and a portable proof note for Story 209
+
+### Changed
+- Changed the crop benchmark helper, scorer, registry, runbook, benchmark catalog, and story/methodology views so the bounded crop-only C5 surface is distinct from the broader page-context deletion gate
+
+### Fixed
+- Fixed the repo's C5 proof gap by recording an honest current-page-context decision surface instead of implying the 40-crop validator alone justified runtime simplification
+
+### Tested
+- `make lint`
+- `make test`
+- `make methodology-compile`
+- `make methodology-check`
+
 ## [2026-04-10-12] - Make triage phase-driven by default
 
 ### Changed
