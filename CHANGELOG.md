@@ -1,3 +1,11 @@
+## [2026-04-11-03] - Add loop-verify coordination skill
+
+### Added
+- Added a shared `/loop-verify` skill for bounded parallel verify-and-fix loops that rerun the full scope until an entire round returns no more real issues
+
+### Changed
+- Regenerated the synced Gemini command wrapper surface so `loop-verify` is invocable through doc-web's local skill tree
+
 ## [2026-04-11-02] - Benchmark bounded DiEm handwriting slice (Story 212)
 
 ### Added
