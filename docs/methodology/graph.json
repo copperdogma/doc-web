@@ -206,7 +206,9 @@
           "210",
           "211",
           "212",
-          "213"
+          "213",
+          "214",
+          "215"
         ],
         "adr_ids": [
           "ADR-001",
@@ -514,7 +516,9 @@
           "209",
           "210",
           "211",
-          "212"
+          "212",
+          "214",
+          "215"
         ],
         "adr_ids": [
           "ADR-002"
@@ -731,7 +735,9 @@
           "210",
           "211",
           "212",
-          "213"
+          "213",
+          "214",
+          "215"
         ],
         "eval_ids": [
           "ocr-model-genealogy",
@@ -793,7 +799,9 @@
             "210",
             "211",
             "212",
-            "213"
+            "213",
+            "214",
+            "215"
           ],
           "eval_ids": [
             "ocr-model-genealogy",
@@ -1193,21 +1201,23 @@
           "209",
           "210",
           "211",
-          "212"
+          "212",
+          "214",
+          "215"
         ],
         "eval_ids": [],
         "actionability": {
           "source_kind": "story",
-          "source_id": "191",
-          "source_path": "docs/stories/story-191-finish-real-handwritten-ocr-on-the-loc-fixture-pair.md",
+          "source_id": "215",
+          "source_path": "docs/stories/story-215-washington-database-english-longhand-benchmark-slice.md",
           "recommended_now": false,
           "posture": "blocked",
-          "why_now": "stale-plan cleanup: removed the pre-block implementation plan from this story after it started biasing `/triage` back toward handwriting even though the current blocker evidence and unblock condition say the line shou...",
+          "why_now": "landing renumber: while rebasing the Story 214 landing branch onto `origin/main`, a different mainline change had already claimed Story `213`. To preserve unique story identifiers, this blocked Washington benchmark re...",
           "last_relevant_action": {
-            "date": "2026-04-04",
+            "date": "2026-04-12",
             "source_type": "story-work-log",
-            "source": "docs/stories/story-191-finish-real-handwritten-ocr-on-the-loc-fixture-pair.md",
-            "summary": "stale-plan cleanup: removed the pre-block implementation plan from this story after it started biasing `/triage` back toward handwriting even though the current blocker evidence and unblock condition say the line shou..."
+            "source": "docs/stories/story-215-washington-database-english-longhand-benchmark-slice.md",
+            "summary": "landing renumber: while rebasing the Story 214 landing branch onto `origin/main`, a different mainline change had already claimed Story `213`. To preserve unique story identifiers, this blocked Washington benchmark re..."
           },
           "story_ids": [
             "148",
@@ -1244,7 +1254,9 @@
             "209",
             "210",
             "211",
-            "212"
+            "212",
+            "214",
+            "215"
           ],
           "eval_ids": []
         }
@@ -11421,6 +11433,136 @@
           "source_type": "story-work-log",
           "source": "docs/stories/story-213-fix-source-only-front-matter-replay-in-non-toc-html-build.md",
           "summary": "/mark-story-done closeout: re-ran the full required checks on the current story tip: `python -m pytest tests/` (`564 passed, 4 warnings in 0:10:41`), `python -m ruff check modules/ tests/`, `make lint`, `make methodol..."
+        }
+      }
+    },
+    {
+      "id": "214",
+      "title": "Establish a Bounded LOC George Washington Papers Benchmark Slice",
+      "path": "docs/stories/story-214-loc-george-washington-papers-benchmark-slice.md",
+      "status": "Done",
+      "priority": "High",
+      "ideal_refs": [
+        "Requirement #2 (Detect), Requirement #3 (Extract), Requirement #6 (Validate), Any format, any condition, Fidelity to the source, Traceability is the product"
+      ],
+      "spec_refs": [
+        "spec:2",
+        "spec:2.1",
+        "spec:2.2",
+        "spec:8"
+      ],
+      "decision_refs": [
+        "`docs/ideal.md`, `docs/spec.md`, `docs/methodology/state.yaml`, `docs/methodology/graph.json`, `docs/evals/README.md`, `docs/evals/registry.yaml`, `docs/scout/scout-014-degraded-handwriting-eval-sources.md`, `tests/fixtures/formats/_coverage-matrix.json`, `docs/stories/story-191-finish-real-handwritten-ocr-on-the-loc-fixture-pair.md`, `docs/stories/story-211-scout-degraded-handwriting-and-historical-script-eval-sources.md`, `docs/stories/story-212-diem-htr-historical-handwriting-benchmark-slice.md`, `docs/stories/story-215-washington-database-english-longhand-benchmark-slice.md`, and `None found after search in docs/decisions/`, `docs/runbooks/`, `docs/scout/`, and `docs/notes/` for a narrower ADR or runbook governing LOC benchmark adoption beyond the current scout/story chain"
+      ],
+      "adr_ids": [],
+      "depends_on": [
+        "212"
+      ],
+      "category_refs": [
+        "spec:2",
+        "spec:8"
+      ],
+      "compromise_refs": [
+        "B1",
+        "C1"
+      ],
+      "input_coverage_refs": [
+        "handwritten-notes"
+      ],
+      "architecture_domains": [
+        "ocr_and_extraction"
+      ],
+      "roadmap_tags": [
+        "campaign:maintained-intake-honesty"
+      ],
+      "blocker_summary": "",
+      "blocker_evidence": "",
+      "unblock_condition": "",
+      "last_work_log_entry": {
+        "timestamp": "20260411-2356",
+        "date": "2026-04-11",
+        "summary": "validation + close-out: validated Story 214 against the completed implementation and confirmed all tasks, acceptance criteria, tenet checks, and doc updates are satisfied with fresh current-pass evidence. Re-ran repo..."
+      },
+      "legacy_build_map_refs": "",
+      "metadata_source": "frontmatter",
+      "missing_frontmatter_keys": [],
+      "actionability": {
+        "source_kind": "story",
+        "source_id": "214",
+        "source_path": "docs/stories/story-214-loc-george-washington-papers-benchmark-slice.md",
+        "recommended_now": false,
+        "posture": "completed",
+        "why_now": "validation + close-out: validated Story 214 against the completed implementation and confirmed all tasks, acceptance criteria, tenet checks, and doc updates are satisfied with fresh current-pass evidence. Re-ran repo...",
+        "last_relevant_action": {
+          "date": "2026-04-11",
+          "source_type": "story-work-log",
+          "source": "docs/stories/story-214-loc-george-washington-papers-benchmark-slice.md",
+          "summary": "validation + close-out: validated Story 214 against the completed implementation and confirmed all tasks, acceptance criteria, tenet checks, and doc updates are satisfied with fresh current-pass evidence. Re-ran repo..."
+        }
+      }
+    },
+    {
+      "id": "215",
+      "title": "Establish a Bounded Washington Database English-Longhand Benchmark Slice",
+      "path": "docs/stories/story-215-washington-database-english-longhand-benchmark-slice.md",
+      "status": "Blocked",
+      "priority": "High",
+      "ideal_refs": [
+        "Requirement #2 (Detect), Requirement #3 (Extract), Requirement #6 (Validate), Any format, any condition, Fidelity to the source, Traceability is the product"
+      ],
+      "spec_refs": [
+        "spec:2",
+        "spec:2.1",
+        "spec:2.2",
+        "spec:8"
+      ],
+      "decision_refs": [
+        "`docs/ideal.md`, `docs/spec.md`, `docs/methodology/state.yaml`, `docs/methodology/graph.json`, `docs/evals/README.md`, `docs/evals/registry.yaml`, `docs/scout/scout-014-degraded-handwriting-eval-sources.md`, `tests/fixtures/formats/_coverage-matrix.json`, `docs/stories/story-191-finish-real-handwritten-ocr-on-the-loc-fixture-pair.md`, `docs/stories/story-211-scout-degraded-handwriting-and-historical-script-eval-sources.md`, `docs/stories/story-212-diem-htr-historical-handwriting-benchmark-slice.md`, and `None found after search in docs/decisions/`, `docs/runbooks/`, `docs/scout/`, and `docs/notes/` for a narrower ADR or runbook governing Washington benchmark adoption beyond Scout 014 and Story 212"
+      ],
+      "adr_ids": [],
+      "depends_on": [
+        "212"
+      ],
+      "category_refs": [
+        "spec:2",
+        "spec:8"
+      ],
+      "compromise_refs": [
+        "B1",
+        "C1"
+      ],
+      "input_coverage_refs": [
+        "handwritten-notes"
+      ],
+      "architecture_domains": [
+        "ocr_and_extraction"
+      ],
+      "roadmap_tags": [
+        "campaign:maintained-intake-honesty"
+      ],
+      "blocker_summary": "Story 215 is currently blocked on external access, not on missing repo\nbenchmark substrate. The official Washington Database surface requires\nregistration before download, the unauthenticated archive URL redirects to a\nlogin gate instead of serving the dataset, and this repo has no registered\nsession or lawful local cache to inspect. Without the actual archive contents,\nthe story cannot honestly select a bounded slice, verify the benchmark shape,\nor run a comparison-only benchmark.",
+      "blocker_evidence": "- Fresh current-pass primary-source verification on 2026-04-11:\n  `https://fki.tic.heia-fr.ch/databases/washington-database` states that the\n  Washington Database includes `20 pages`, `656 text lines`, and `4,894 word\n  instances`; exposes `binarized and normalized text line images` and\n  `binarized and normalized word images`; provides transcription at\n  `line-level` and `word-level`; and says, \"If not already done, we ask you to\n  register before downloading the database.\"\n- Fresh current-pass primary-source verification on 2026-04-11:\n  `https://fki.tic.heia-fr.ch/register` is a live registration form requiring\n  user-specific fields (`firstname`, `lastname`, `organisation`, `email`,\n  `password`) and repeats the visible terms: \"This database may be used for\n  non-commercial research purpose only.\"\n- Fresh current-pass environment probe on 2026-04-11:\n  unauthenticated `GET https://fki.tic.heia-fr.ch/DBs/iamHistDB/data/washingtondb-v1.0.zip`\n  returns `302` with `Location: http://fki.tic.heia-fr.ch/login` and does not\n  serve dataset bytes. Follow-up attempts from this environment time out at the\n  redirected login host, so the archive is not reachable here without a\n  registered/login-backed path.\n- Local substrate is otherwise present. Verified in this pass that the repo\n  already has a bounded comparison-only benchmark pattern\n  (`scripts/spikes/diem_htr_benchmark.py`), a test surface for that helper\n  (`tests/test_diem_htr_benchmark.py`), and a handwritten eval harness that\n  only needs `transcript`, `images`, and `pdf` fixture paths\n  (`benchmarks/scripts/run_handwritten_notes_eval.py`). That means the blocker\n  is access to Washington assets, not missing local orchestration code.",
+      "unblock_condition": "Unblock this story only when one of these is true:\n\n1. A lawful Washington access path is available in the current environment:\n   a registered/login-backed session or a user-provided local cache of the\n   archive that can be inspected and used under the source's non-commercial\n   terms.\n2. The accessible archive contents are verified in the current pass and shown\n   to support one honest benchmark shape for this repo: direct line-image\n   comparison, word-image comparison, or a documented wrapper path into the\n   existing handwritten harness.\n\nIf neither condition is met, keep this story blocked and prefer another public\nhistorical-handwriting source over forcing a benchmark from metadata alone.",
+      "last_work_log_entry": {
+        "timestamp": "20260412-0012",
+        "date": "2026-04-12",
+        "summary": "landing renumber: while rebasing the Story 214 landing branch onto `origin/main`, a different mainline change had already claimed Story `213`. To preserve unique story identifiers, this blocked Washington benchmark re..."
+      },
+      "legacy_build_map_refs": "",
+      "metadata_source": "frontmatter",
+      "missing_frontmatter_keys": [],
+      "actionability": {
+        "source_kind": "story",
+        "source_id": "215",
+        "source_path": "docs/stories/story-215-washington-database-english-longhand-benchmark-slice.md",
+        "recommended_now": false,
+        "posture": "blocked",
+        "why_now": "landing renumber: while rebasing the Story 214 landing branch onto `origin/main`, a different mainline change had already claimed Story `213`. To preserve unique story identifiers, this blocked Washington benchmark re...",
+        "last_relevant_action": {
+          "date": "2026-04-12",
+          "source_type": "story-work-log",
+          "source": "docs/stories/story-215-washington-database-english-longhand-benchmark-slice.md",
+          "summary": "landing renumber: while rebasing the Story 214 landing branch onto `origin/main`, a different mainline change had already claimed Story `213`. To preserve unique story identifiers, this blocked Washington benchmark re..."
         }
       }
     }

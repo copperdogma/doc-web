@@ -65,6 +65,7 @@ Grouped by primary `spec:N` category. Stories without category refs remain in an
 
 | ID | Title | Priority | Status | Depends On | Link |
 |---|---|---|---|---|---|
+| 215 | Establish a Bounded Washington Database English-Longhand Benchmark Slice | High | Blocked | 212 | [story-215](stories/story-215-washington-database-english-longhand-benchmark-slice.md) |
 | 131 | Onward Table Structure Fidelity | High | Done | 128 | [story-131](stories/story-131-onward-table-structure-fidelity.md) |
 | 134 | OCR Pipeline Speed & Cost Optimization | High | Done | — | [story-134](stories/story-134-ocr-pipeline-speed-cost-optimization.md) |
 | 138 | Onward Genealogy Table Whole-Table Continuation and Header Regressions | High | Done | 129, 131 | [story-138](stories/story-138-onward-genealogy-table-continuation-and-header-regressions.md) |
@@ -83,6 +84,7 @@ Grouped by primary `spec:N` category. Stories without category refs remain in an
 | 211 | Scout Degraded-Handwriting and Historical-Script Eval Sources | High | Done | 208 | [story-211](stories/story-211-scout-degraded-handwriting-and-historical-script-eval-sources.md) |
 | 212 | Establish a Bounded DiEm HTR Historical-Handwriting Benchmark Slice | High | Done | 211 | [story-212](stories/story-212-diem-htr-historical-handwriting-benchmark-slice.md) |
 | 213 | Fix Source-Only Front Matter Replay in Non-TOC HTML Build | High | Done | — | [story-213](stories/story-213-fix-source-only-front-matter-replay-in-non-toc-html-build.md) |
+| 214 | Establish a Bounded LOC George Washington Papers Benchmark Slice | High | Done | 212 | [story-214](stories/story-214-loc-george-washington-papers-benchmark-slice.md) |
 
 ### spec:3 — Layout & Structure Understanding
 

@@ -1,3 +1,24 @@
+## [2026-04-11-05] - Add LOC George Washington benchmark slice (Story 214)
+
+### Added
+- Added a story-local `scripts/spikes/loc_gw_benchmark.py` helper that fetches the public LOC ZIP, materializes the bounded three-asset George Washington slice, and reruns the maintained handwritten rescue recipe as comparison-only evidence
+- Added targeted regression coverage for the LOC helper's dataset selection, transcript normalization, and official-source defaults
+
+### Changed
+- Changed Story 214 and the generated methodology/story views so the blocked handwritten OCR line now carries a public English longhand comparison surface with explicit artifact-backed negative evidence
+- Changed Story 215 and the generated methodology/story views so the Washington Database path is preserved as an explicit access blocker instead of an implied ready follow-up
+
+### Fixed
+- Fixed benchmark packaging drift by recording image-entry OCR as the canonical LOC comparison surface and keeping PDF wrappers opt-in only
+
+### Tested
+- `python scripts/spikes/loc_gw_benchmark.py --instrument --max-attempts 2`
+- `python -m pytest tests/test_loc_gw_benchmark.py -q`
+- `make lint`
+- `make test`
+- `make methodology-compile`
+- `make methodology-check`
+
 ## [2026-04-11-04] - Fix non-TOC front-matter replay (Story 213)
 
 ### Changed
