@@ -1,4 +1,5 @@
 import csv
+import json
 import zipfile
 from pathlib import Path
 
@@ -10,7 +11,10 @@ from scripts.spikes.loc_gw_benchmark import (
     load_loc_dataset_bundle,
     normalize_transcript,
     resolve_story214_slice_rows,
+    should_retry_transient_eval_failure,
+    summarize_case_failure,
 )
+from benchmarks.scorers.handwritten_notes_transcription import score_page_html_artifact
 
 
 def _write_dataset_zip(path: Path) -> Path:
@@ -122,12 +126,51 @@ def test_build_parser_defaults_to_image_only_mode():
 
     args = parser.parse_args([])
 
+    assert args.story_id == "214"
     assert args.include_pdf is False
     assert args.instrument is False
     assert args.max_attempts == 2
+    assert args.retry_sleep_seconds == 20
+    assert args.candidate_model is None
+    assert args.candidate_retry_model is None
     assert args.zip_path is None
 
 
 def test_story214_constants_point_at_official_loc_surface():
     assert DATASET_ITEM_JSON_URL.endswith("/?fo=json")
     assert DATASET_ZIP_URL.endswith("/2020446971.zip")
+
+
+def test_should_retry_transient_eval_failure_handles_demand_spikes_and_skips_quota():
+    assert should_retry_transient_eval_failure("", "503 UNAVAILABLE ... currently experiencing high demand")
+    assert should_retry_transient_eval_failure("", "429 rate limit exceeded")
+    assert not should_retry_transient_eval_failure("", "insufficient_quota")
+
+
+def test_summarize_case_failure_detects_empty_html_and_partial_omission(tmp_path: Path):
+    transcript_path = tmp_path / "transcript.txt"
+    transcript_path.write_text("Line one\nLine two\n", encoding="utf-8")
+
+    empty_artifact = tmp_path / "empty.jsonl"
+    empty_artifact.write_text(
+        json.dumps(
+            {
+                "page_number": 1,
+                "html": "",
+                "ocr_empty": True,
+                "ocr_empty_reason": "Empty HTML output for page 1",
+            }
+        )
+        + "\n",
+        encoding="utf-8",
+    )
+    empty_metrics = score_page_html_artifact(transcript_path, empty_artifact)
+    empty_summary = summarize_case_failure(empty_artifact, empty_metrics)
+    assert empty_summary["dominant_failure_mode"] == "empty_html"
+    assert empty_summary["empty_reasons"] == ["Empty HTML output for page 1"]
+
+    short_artifact = tmp_path / "short.jsonl"
+    short_artifact.write_text(json.dumps({"page_number": 1, "html": "<p>Line one</p>"}) + "\n", encoding="utf-8")
+    short_metrics = score_page_html_artifact(transcript_path, short_artifact)
+    short_summary = summarize_case_failure(short_artifact, short_metrics)
+    assert short_summary["dominant_failure_mode"] == "partial_omission"

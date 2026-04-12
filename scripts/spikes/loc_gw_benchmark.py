@@ -3,9 +3,8 @@
 
 This is a story-local, comparison-only harness. The canonical decision surface
 is the source-native image-entry OCR path; `--include-pdf` adds PDF-entry
-stress only. The helper uses the Python standard library for HTTP, ZIP, and
-CSV handling and reuses the existing handwritten eval/scoring path for OCR
-comparison.
+stress only. The helper uses simple local file/HTTP handling plus the existing
+handwritten eval/scoring path for OCR comparison.
 """
 
 from __future__ import annotations
@@ -18,6 +17,7 @@ import json
 import os
 import subprocess
 import sys
+import time
 import urllib.request
 import zipfile
 from dataclasses import asdict, dataclass
@@ -45,8 +45,11 @@ ROOT = Path(__file__).resolve().parents[2]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
+import yaml  # noqa: E402
+
 from benchmarks.scorers.handwritten_notes_transcription import score_page_html_artifact  # noqa: E402
-from benchmarks.scripts.run_handwritten_notes_eval import build_run_id, load_case_instrumentation  # noqa: E402
+from benchmarks.scripts.run_handwritten_notes_eval import build_run_id  # noqa: E402
+from modules.common.run_registry import resolve_output_root  # noqa: E402
 
 
 DATASET_ITEM_URL = "https://www.loc.gov/item/2020446971/"
@@ -63,6 +66,9 @@ DEFAULT_PDF_RECIPE = "configs/recipes/recipe-pdf-ocr-html-handwritten-notes-gemi
 DEFAULT_IMAGE_CASE_ID = "image-handwritten-rescue"
 DEFAULT_PDF_CASE_ID = "pdf-handwritten-rescue"
 DEFAULT_ZIP_NAME = "2020446971.zip"
+DEFAULT_STORY_ID = "214"
+DEFAULT_RETRY_SLEEP_SECONDS = 20
+DEFAULT_CANDIDATE_MAX_OUTPUT_TOKENS = 16384
 USER_AGENT = "doc-forge-story214-loc-gw-benchmark/1.0"
 CLI_EPILOG = (
     "Default behavior runs the image-entry comparison-only benchmark only. "
@@ -181,8 +187,100 @@ def _save_pdf(image_path: Path, pdf_path: Path) -> None:
 
 
 def should_retry_transient_eval_failure(stdout: str, stderr: str) -> bool:
-    haystack = f"{stdout}\n{stderr}"
-    return "503 UNAVAILABLE" in haystack and "currently experiencing high demand" in haystack
+    haystack = f"{stdout}\n{stderr}".lower()
+    if "insufficient_quota" in haystack:
+        return False
+    return (
+        ("503 unavailable" in haystack and "currently experiencing high demand" in haystack)
+        or ("rate limit" in haystack)
+        or ("too many requests" in haystack)
+    )
+
+
+def _slugify(value: str) -> str:
+    slug = "".join(ch.lower() if ch.isalnum() else "-" for ch in value).strip("-")
+    while "--" in slug:
+        slug = slug.replace("--", "-")
+    return slug or "candidate"
+
+
+def _shared_output_root() -> Path:
+    return Path(resolve_output_root(cwd=str(ROOT))).resolve(strict=False)
+
+
+def _load_case_instrumentation(run_dir: Path) -> dict[str, Any] | None:
+    path = run_dir / "instrumentation.json"
+    if not path.exists():
+        return None
+
+    payload = json.loads(path.read_text(encoding="utf-8"))
+    ocr_stage = next((stage for stage in payload.get("stages", []) if stage.get("id") == "ocr_ai"), None)
+    return {
+        "path": str(path),
+        "run_totals": payload.get("totals", {}),
+        "ocr_stage": {
+            "wall_seconds": (ocr_stage or {}).get("wall_seconds"),
+            "llm_totals": (ocr_stage or {}).get("llm_totals", {}),
+            "per_model": ((ocr_stage or {}).get("extra") or {}).get("per_model", {}),
+        },
+    }
+
+
+def _load_jsonl_rows(path: str | Path) -> list[dict[str, Any]]:
+    rows = []
+    for line in Path(path).read_text(encoding="utf-8").splitlines():
+        if line.strip():
+            rows.append(json.loads(line))
+    return rows
+
+
+def _load_pipeline_stage_status(run_dir: str | Path, stage_id: str) -> str | None:
+    state_path = Path(run_dir) / "pipeline_state.json"
+    if not state_path.exists():
+        return None
+    payload = json.loads(state_path.read_text(encoding="utf-8"))
+    return ((payload.get("stages") or {}).get(stage_id) or {}).get("status")
+
+
+def summarize_case_failure(artifact_path: str | Path, metrics: dict[str, Any]) -> dict[str, Any]:
+    if metrics["overall_ratio"] >= 0.99 and metrics["page_min_ratio"] >= 0.99:
+        return {"dominant_failure_mode": "passing", "empty_reasons": [], "actual_preview": ""}
+
+    rows = _load_jsonl_rows(artifact_path)
+    empty_reasons = [row.get("ocr_empty_reason") for row in rows if row.get("ocr_empty_reason")]
+    if empty_reasons:
+        return {
+            "dominant_failure_mode": "empty_html",
+            "empty_reasons": empty_reasons,
+            "actual_preview": metrics["pages"][0]["actual_preview"] if metrics.get("pages") else "",
+        }
+
+    page_scores = metrics.get("pages") or []
+    if any(
+        page.get("expected_length", 0) > 0
+        and page.get("actual_length", 0) < max(1, int(page["expected_length"] * 0.6))
+        for page in page_scores
+    ):
+        failure_mode = "partial_omission"
+    else:
+        failure_mode = "non_empty_wrong_text"
+    return {
+        "dominant_failure_mode": failure_mode,
+        "empty_reasons": [],
+        "actual_preview": page_scores[0]["actual_preview"] if page_scores else "",
+    }
+
+
+def _sleep_before_retry(attempt: int, retry_sleep_seconds: int) -> int:
+    return retry_sleep_seconds * attempt
+
+
+def _load_ocr_stage_params(recipe_path: str | Path) -> dict[str, Any]:
+    recipe = yaml.safe_load(Path(recipe_path).read_text(encoding="utf-8")) or {}
+    for stage in recipe.get("stages", []):
+        if stage.get("id") == "ocr_ai" and stage.get("module") == "ocr_ai_gpt51_v1":
+            return dict(stage.get("params") or {})
+    raise ValueError(f"Recipe {recipe_path} does not define ocr_ai_gpt51_v1 stage params")
 
 
 def normalize_transcript(text: str) -> str:
@@ -361,6 +459,7 @@ def run_story214_eval(
     *,
     out_root: Path,
     slice_manifest: dict[str, Any],
+    story_id: str,
     image_recipe: str,
     pdf_recipe: str,
     image_case_id: str,
@@ -368,7 +467,10 @@ def run_story214_eval(
     include_pdf: bool,
     max_attempts: int,
     instrument: bool,
+    retry_sleep_seconds: int,
 ) -> dict[str, Any]:
+    shared_output_root = _shared_output_root()
+
     def run_driver_case_with_retries(
         *,
         fixture_id: str,
@@ -380,6 +482,30 @@ def run_story214_eval(
     ) -> dict[str, Any]:
         env = _build_eval_env()
         run_id = build_run_id(fixture_id, case_id)
+        run_dir = shared_output_root / "runs" / run_id
+        artifact_path = run_dir / "02_ocr_ai_gpt51_v1" / "pages_html.jsonl"
+        if artifact_path.exists() and _load_pipeline_stage_status(run_dir, "ocr_ai") == "done":
+            metrics = score_page_html_artifact(transcript_path, artifact_path)
+            failure_summary = summarize_case_failure(artifact_path, metrics)
+            payload = {
+                "fixture_id": fixture_id,
+                "case_id": case_id,
+                "run_id": run_id,
+                "run_dir": str(run_dir),
+                "recipe": recipe,
+                "input_flag": input_flag,
+                "input_path": input_path,
+                "artifact_path": str(artifact_path),
+                "metrics": metrics,
+                "pass": metrics["overall_ratio"] >= 0.99 and metrics["page_min_ratio"] >= 0.99,
+                "failure_summary": failure_summary,
+                "attempts": [],
+                "reused_existing": True,
+            }
+            instrumentation = _load_case_instrumentation(run_dir)
+            if instrumentation:
+                payload["instrumentation"] = instrumentation
+            return payload
         case_attempts: list[dict[str, Any]] = []
         for attempt in range(1, max_attempts + 1):
             cmd = [
@@ -391,6 +517,8 @@ def run_story214_eval(
                 input_path,
                 "--run-id",
                 run_id,
+                "--output-dir",
+                str(run_dir),
                 "--allow-run-id-reuse",
                 "--force",
                 "--end-at",
@@ -416,23 +544,25 @@ def run_story214_eval(
                 }
             )
             if result.returncode == 0:
-                artifact_path = ROOT / "output" / "runs" / run_id / "02_ocr_ai_gpt51_v1" / "pages_html.jsonl"
                 if not artifact_path.exists():
                     raise RuntimeError(f"Expected artifact missing after successful run: {artifact_path}")
                 metrics = score_page_html_artifact(transcript_path, artifact_path)
+                failure_summary = summarize_case_failure(artifact_path, metrics)
                 payload = {
                     "fixture_id": fixture_id,
                     "case_id": case_id,
                     "run_id": run_id,
+                    "run_dir": str(run_dir),
                     "recipe": recipe,
                     "input_flag": input_flag,
                     "input_path": input_path,
                     "artifact_path": str(artifact_path),
                     "metrics": metrics,
                     "pass": metrics["overall_ratio"] >= 0.99 and metrics["page_min_ratio"] >= 0.99,
+                    "failure_summary": failure_summary,
                     "attempts": case_attempts,
                 }
-                instrumentation = load_case_instrumentation(run_id)
+                instrumentation = _load_case_instrumentation(run_dir)
                 if instrumentation:
                     payload["instrumentation"] = instrumentation
                 return payload
@@ -440,6 +570,9 @@ def run_story214_eval(
                 raise RuntimeError(
                     f"Case {fixture_id}/{case_id} failed:\nSTDOUT:\n{result.stdout}\nSTDERR:\n{result.stderr}"
                 )
+            sleep_seconds = _sleep_before_retry(attempt, retry_sleep_seconds)
+            case_attempts[-1]["retry_sleep_seconds_before_next_attempt"] = sleep_seconds
+            time.sleep(sleep_seconds)
         raise RuntimeError(f"Case {fixture_id}/{case_id} exhausted retries without producing an artifact")
 
     fixture_results = []
@@ -497,12 +630,15 @@ def run_story214_eval(
                     "page_min_ratio": min(case["metrics"]["page_min_ratio"] for case in fixture_cases),
                     "cases_passing": sum(1 for case in fixture_cases if case["pass"]),
                     "cases_total": len(fixture_cases),
+                    "dominant_failure_modes": [case["failure_summary"]["dominant_failure_mode"] for case in fixture_cases],
                 },
             }
         )
 
     payload = {
+        "story": story_id,
         "measured_at": datetime.now().astimezone().date().isoformat(),
+        "shared_output_root": str(shared_output_root),
         "corpus_path": slice_manifest["slice"]["corpus_path"],
         "image_recipe": image_recipe,
         "pdf_recipe": pdf_recipe,
@@ -533,12 +669,189 @@ def run_story214_eval(
     return payload
 
 
+def run_image_candidate_screen(
+    *,
+    out_root: Path,
+    slice_manifest: dict[str, Any],
+    story_id: str,
+    baseline_eval: dict[str, Any],
+    image_recipe: str,
+    image_case_id: str,
+    candidate_model: str,
+    candidate_retry_model: str | None,
+    candidate_max_output_tokens: int,
+    max_attempts: int,
+    retry_sleep_seconds: int,
+) -> dict[str, Any]:
+    shared_output_root = _shared_output_root()
+    ocr_params = _load_ocr_stage_params(image_recipe)
+    candidate_slug = _slugify(candidate_model)
+    baseline_cases = {
+        (case["fixture_id"], case["case_id"]): case
+        for case in baseline_eval["cases"]
+        if case["case_id"] == image_case_id
+    }
+    cases: list[dict[str, Any]] = []
+
+    for page in slice_manifest["slice"]["pages"]:
+        fixture_id = page["fixture_id"]
+        baseline_run_id = build_run_id(fixture_id, image_case_id)
+        manifest_path = (
+            shared_output_root
+            / "runs"
+            / baseline_run_id
+            / "01_images_dir_to_manifest_v1"
+            / "pages_images_manifest.jsonl"
+        )
+        if not manifest_path.exists():
+            raise RuntimeError(f"Baseline image manifest missing for candidate screen: {manifest_path}")
+
+        run_id = f"story{story_id}-{fixture_id}-image-{candidate_slug}"
+        run_dir = shared_output_root / "runs" / run_id
+        outdir = run_dir / "01_ocr_ai_gpt51_v1"
+        artifact_path = outdir / "pages_html.jsonl"
+        case_attempts: list[dict[str, Any]] = []
+
+        for attempt in range(1, max_attempts + 1):
+            cmd = [
+                sys.executable,
+                "modules/extract/ocr_ai_gpt51_v1/main.py",
+                "--pages",
+                str(manifest_path),
+                "--outdir",
+                str(outdir),
+                "--out",
+                "pages_html.jsonl",
+                "--run-id",
+                run_id,
+                "--force",
+                "--model",
+                candidate_model,
+                "--max-output-tokens",
+                str(candidate_max_output_tokens),
+            ]
+            if candidate_retry_model:
+                cmd.extend(["--retry-model", candidate_retry_model])
+            if ocr_params.get("ocr_hints"):
+                cmd.extend(["--ocr-hints", str(ocr_params["ocr_hints"])])
+            if ocr_params.get("max_long_side"):
+                cmd.extend(["--max-long-side", str(ocr_params["max_long_side"])])
+            if ocr_params.get("skip_blank_pages"):
+                cmd.append("--skip-blank-pages")
+            if "blank_threshold" in ocr_params:
+                cmd.extend(["--blank-threshold", str(ocr_params["blank_threshold"])])
+
+            result = subprocess.run(
+                cmd,
+                cwd=ROOT,
+                env=_build_eval_env(),
+                text=True,
+                capture_output=True,
+            )
+            retryable = should_retry_transient_eval_failure(result.stdout, result.stderr)
+            case_attempts.append(
+                {
+                    "attempt": attempt,
+                    "returncode": result.returncode,
+                    "stdout": result.stdout,
+                    "stderr": result.stderr,
+                    "retryable": retryable,
+                }
+            )
+            if result.returncode == 0:
+                if not artifact_path.exists():
+                    raise RuntimeError(f"Expected candidate artifact missing: {artifact_path}")
+                metrics = score_page_html_artifact(page["transcript_path"], artifact_path)
+                failure_summary = summarize_case_failure(artifact_path, metrics)
+                baseline_case = baseline_cases[(fixture_id, image_case_id)]
+                cases.append(
+                    {
+                        "fixture_id": fixture_id,
+                        "asset_id": page["asset_id"],
+                        "item_title": page["item_title"],
+                        "case_id": candidate_slug,
+                        "run_id": run_id,
+                        "run_dir": str(run_dir),
+                        "artifact_path": str(artifact_path),
+                        "manifest_path": str(manifest_path),
+                        "transcript_path": page["transcript_path"],
+                        "model": candidate_model,
+                        "retry_model": candidate_retry_model,
+                        "max_output_tokens": candidate_max_output_tokens,
+                        "metrics": metrics,
+                        "pass": metrics["overall_ratio"] >= 0.99 and metrics["page_min_ratio"] >= 0.99,
+                        "failure_summary": failure_summary,
+                        "baseline_case": {
+                            "run_id": baseline_case["run_id"],
+                            "artifact_path": baseline_case["artifact_path"],
+                            "overall_ratio": baseline_case["metrics"]["overall_ratio"],
+                            "page_min_ratio": baseline_case["metrics"]["page_min_ratio"],
+                            "failure_mode": baseline_case["failure_summary"]["dominant_failure_mode"],
+                        },
+                        "delta_overall_ratio": round(
+                            metrics["overall_ratio"] - baseline_case["metrics"]["overall_ratio"], 6
+                        ),
+                        "delta_page_min_ratio": round(
+                            metrics["page_min_ratio"] - baseline_case["metrics"]["page_min_ratio"], 6
+                        ),
+                        "attempts": case_attempts,
+                    }
+                )
+                break
+            if attempt >= max_attempts or not retryable:
+                raise RuntimeError(
+                    f"Candidate {candidate_model} failed for {fixture_id}:\nSTDOUT:\n{result.stdout}\nSTDERR:\n{result.stderr}"
+                )
+            sleep_seconds = _sleep_before_retry(attempt, retry_sleep_seconds)
+            case_attempts[-1]["retry_sleep_seconds_before_next_attempt"] = sleep_seconds
+            time.sleep(sleep_seconds)
+
+    summary = {
+        "story": story_id,
+        "measured_at": datetime.now().astimezone().date().isoformat(),
+        "shared_output_root": str(shared_output_root),
+        "candidate_model": candidate_model,
+        "candidate_retry_model": candidate_retry_model,
+        "candidate_slug": candidate_slug,
+        "candidate_max_output_tokens": candidate_max_output_tokens,
+        "image_recipe": image_recipe,
+        "baseline_image_case_id": image_case_id,
+        "cases": cases,
+        "summary": {
+            "fixture_count": len(cases),
+            "pass_rate": round(sum(1 for case in cases if case["pass"]) / len(cases), 6),
+            "overall_min_ratio": min(case["metrics"]["overall_ratio"] for case in cases),
+            "page_min_ratio": min(case["metrics"]["page_min_ratio"] for case in cases),
+            "cases_passing": sum(1 for case in cases if case["pass"]),
+            "cases_total": len(cases),
+            "receipt_sentinel_asset_id": "367466",
+            "receipt_sentinel_cleared": any(
+                case["asset_id"] == "367466" and case["metrics"]["overall_ratio"] > 0.0 for case in cases
+            ),
+            "material_improvements": [
+                {
+                    "fixture_id": case["fixture_id"],
+                    "asset_id": case["asset_id"],
+                    "delta_overall_ratio": case["delta_overall_ratio"],
+                    "delta_page_min_ratio": case["delta_page_min_ratio"],
+                }
+                for case in cases
+                if case["delta_overall_ratio"] > 0.05 or case["delta_page_min_ratio"] > 0.05
+            ],
+        },
+    }
+    output_path = out_root / f"candidate-screen-{candidate_slug}.json"
+    _write_json(output_path, summary)
+    return summary
+
+
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
         description=__doc__,
         epilog=CLI_EPILOG,
         formatter_class=argparse.RawDescriptionHelpFormatter,
     )
+    parser.add_argument("--story-id", default=DEFAULT_STORY_ID)
     parser.add_argument("--out-root", default=str(DEFAULT_OUT_ROOT))
     parser.add_argument("--zip-path", default=None, help="Optional local path to a previously downloaded LOC dataset ZIP")
     parser.add_argument("--image-recipe", default=DEFAULT_IMAGE_RECIPE)
@@ -548,6 +861,10 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--include-pdf", action="store_true")
     parser.add_argument("--instrument", action="store_true")
     parser.add_argument("--max-attempts", type=int, default=2)
+    parser.add_argument("--retry-sleep-seconds", type=int, default=DEFAULT_RETRY_SLEEP_SECONDS)
+    parser.add_argument("--candidate-model", default=None)
+    parser.add_argument("--candidate-retry-model", default=None)
+    parser.add_argument("--candidate-max-output-tokens", type=int, default=DEFAULT_CANDIDATE_MAX_OUTPUT_TOKENS)
     return parser
 
 
@@ -568,6 +885,7 @@ def main() -> None:
     eval_payload = run_story214_eval(
         out_root=out_root,
         slice_manifest=slice_manifest,
+        story_id=args.story_id,
         image_recipe=args.image_recipe,
         pdf_recipe=args.pdf_recipe,
         image_case_id=args.image_case_id,
@@ -575,11 +893,29 @@ def main() -> None:
         include_pdf=args.include_pdf,
         max_attempts=args.max_attempts,
         instrument=args.instrument,
+        retry_sleep_seconds=args.retry_sleep_seconds,
     )
 
+    candidate_summary = None
+    if args.candidate_model:
+        candidate_summary = run_image_candidate_screen(
+            out_root=out_root,
+            slice_manifest=slice_manifest,
+            story_id=args.story_id,
+            baseline_eval=eval_payload,
+            image_recipe=args.image_recipe,
+            image_case_id=args.image_case_id,
+            candidate_model=args.candidate_model,
+            candidate_retry_model=args.candidate_retry_model,
+            candidate_max_output_tokens=args.candidate_max_output_tokens,
+            max_attempts=args.max_attempts,
+            retry_sleep_seconds=args.retry_sleep_seconds,
+        )
+
     summary = {
-        "story": "214",
+        "story": args.story_id,
         "out_root": str(out_root),
+        "shared_output_root": str(_shared_output_root()),
         "slice_manifest_path": str(out_root / "loc_gw_slice" / "slice_manifest.json"),
         "benchmark_output_path": str(out_root / "handwritten_eval.json"),
         "recipes": {
@@ -590,6 +926,7 @@ def main() -> None:
             "include_pdf": args.include_pdf,
             "instrument": args.instrument,
             "max_attempts": args.max_attempts,
+            "retry_sleep_seconds": args.retry_sleep_seconds,
             "env_policy": "prefer GEMINI_API_KEY when both Gemini env vars are present",
         },
         "dataset": slice_manifest["dataset"],
@@ -608,6 +945,11 @@ def main() -> None:
             for case in eval_payload["cases"]
         ],
     }
+    if candidate_summary:
+        summary["candidate_screen_path"] = str(
+            out_root / f"candidate-screen-{_slugify(args.candidate_model)}.json"
+        )
+        summary["candidate_screen_summary"] = candidate_summary["summary"]
     _write_json(out_root / "benchmark_summary.json", summary)
     print(json.dumps(summary["benchmark_summary"], indent=2))
     print(f"RESULT_PATH {out_root / 'benchmark_summary.json'}")

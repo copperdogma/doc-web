@@ -1,3 +1,23 @@
+## [2026-04-12-01] - Refresh LOC proof and bounded screen (Story 216)
+
+### Added
+- Added shared-output retry/reuse and bounded direct-image challenger support to the LOC George Washington benchmark helper so Story 216 can refresh the fixed three-asset slice and screen one stronger subject model without touching the maintained OCR runtime
+- Added focused regression coverage for the helper's new parser defaults, transient-failure retry classification, and case-failure summaries
+
+### Changed
+- Changed Story 216 and the generated methodology/story views so the handwritten benchmark line now records the refreshed shared-root proof, the bounded `gpt-5.4` screen outcome, and the explicit decision to keep Story 191 blocked
+
+### Fixed
+- Fixed the proof-refresh failure mode where transient provider-demand errors could abort the first shared-root OCR case before any fresh comparison artifacts were written
+
+### Tested
+- `python scripts/spikes/loc_gw_benchmark.py --out-root /Users/cam/Documents/Projects/doc-web/output/runs/story216-loc-gw-proof-refresh-r1 --instrument --max-attempts 2 --candidate-model gpt-5.4 --candidate-retry-model gpt-5.2`
+- `python -m pytest tests/`
+- `python -m ruff check modules/ tests/`
+- `make lint`
+- `make methodology-compile`
+- `make methodology-check`
+
 ## [2026-04-11-05] - Add LOC George Washington benchmark slice (Story 214)
 
 ### Added

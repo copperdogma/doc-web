@@ -208,7 +208,8 @@
           "212",
           "213",
           "214",
-          "215"
+          "215",
+          "216"
         ],
         "adr_ids": [
           "ADR-001",
@@ -518,7 +519,8 @@
           "211",
           "212",
           "214",
-          "215"
+          "215",
+          "216"
         ],
         "adr_ids": [
           "ADR-002"
@@ -737,7 +739,8 @@
           "212",
           "213",
           "214",
-          "215"
+          "215",
+          "216"
         ],
         "eval_ids": [
           "ocr-model-genealogy",
@@ -801,7 +804,8 @@
             "212",
             "213",
             "214",
-            "215"
+            "215",
+            "216"
           ],
           "eval_ids": [
             "ocr-model-genealogy",
@@ -1203,7 +1207,8 @@
           "211",
           "212",
           "214",
-          "215"
+          "215",
+          "216"
         ],
         "eval_ids": [],
         "actionability": {
@@ -1256,7 +1261,8 @@
             "211",
             "212",
             "214",
-            "215"
+            "215",
+            "216"
           ],
           "eval_ids": []
         }
@@ -11563,6 +11569,71 @@
           "source_type": "story-work-log",
           "source": "docs/stories/story-215-washington-database-english-longhand-benchmark-slice.md",
           "summary": "landing renumber: while rebasing the Story 214 landing branch onto `origin/main`, a different mainline change had already claimed Story `213`. To preserve unique story identifiers, this blocked Washington benchmark re..."
+        }
+      }
+    },
+    {
+      "id": "216",
+      "title": "Refresh LOC George Washington Benchmark Proof and Bounded Stronger-Model Screen",
+      "path": "docs/stories/story-216-refresh-loc-gw-benchmark-proof-and-stronger-model-screen.md",
+      "status": "Done",
+      "priority": "High",
+      "ideal_refs": [
+        "Requirement #3 (Extract), Requirement #6 (Validate), Any format, any condition, Fidelity to the source, Traceability is the product"
+      ],
+      "spec_refs": [
+        "spec:2",
+        "spec:2.1",
+        "spec:2.2",
+        "spec:8"
+      ],
+      "decision_refs": [
+        "`docs/ideal.md`, `docs/spec.md`, `docs/methodology/state.yaml`, `docs/methodology/graph.json`, `docs/evals/README.md`, `docs/evals/registry.yaml`, `tests/fixtures/formats/_coverage-matrix.json`, `docs/stories/story-191-finish-real-handwritten-ocr-on-the-loc-fixture-pair.md`, `docs/stories/story-208-glm-ocr-benchmark-for-handwritten-and-table-heavy-seams.md`, `docs/stories/story-212-diem-htr-historical-handwriting-benchmark-slice.md`, `docs/stories/story-214-loc-george-washington-papers-benchmark-slice.md`, `docs/stories/story-215-washington-database-english-longhand-benchmark-slice.md`, `docs/scout/scout-014-degraded-handwriting-eval-sources.md`, `scripts/discover-models.py`, and `None found after search in docs/decisions/`, `docs/runbooks/`, and `docs/notes/` for a narrower LOC proof-refresh or stronger-model-screen ADR/runbook beyond the recent story chain"
+      ],
+      "adr_ids": [],
+      "depends_on": [
+        "214"
+      ],
+      "category_refs": [
+        "spec:2",
+        "spec:8"
+      ],
+      "compromise_refs": [
+        "B1",
+        "C1"
+      ],
+      "input_coverage_refs": [
+        "handwritten-notes"
+      ],
+      "architecture_domains": [
+        "ocr_and_extraction"
+      ],
+      "roadmap_tags": [
+        "campaign:maintained-intake-honesty"
+      ],
+      "blocker_summary": "",
+      "blocker_evidence": "",
+      "unblock_condition": "",
+      "last_work_log_entry": {
+        "timestamp": "20260412-0111",
+        "date": "2026-04-12",
+        "summary": "`/mark-story-done` close-out: revalidated the completed Story 216 slice against `docs/ideal.md`, `spec:2`, `spec:8`, and the existing decision chain. Fresh checks now pass cleanly on the story branch tip: `python -m p..."
+      },
+      "legacy_build_map_refs": "",
+      "metadata_source": "frontmatter",
+      "missing_frontmatter_keys": [],
+      "actionability": {
+        "source_kind": "story",
+        "source_id": "216",
+        "source_path": "docs/stories/story-216-refresh-loc-gw-benchmark-proof-and-stronger-model-screen.md",
+        "recommended_now": false,
+        "posture": "completed",
+        "why_now": "`/mark-story-done` close-out: revalidated the completed Story 216 slice against `docs/ideal.md`, `spec:2`, `spec:8`, and the existing decision chain. Fresh checks now pass cleanly on the story branch tip: `python -m p...",
+        "last_relevant_action": {
+          "date": "2026-04-12",
+          "source_type": "story-work-log",
+          "source": "docs/stories/story-216-refresh-loc-gw-benchmark-proof-and-stronger-model-screen.md",
+          "summary": "`/mark-story-done` close-out: revalidated the completed Story 216 slice against `docs/ideal.md`, `spec:2`, `spec:8`, and the existing decision chain. Fresh checks now pass cleanly on the story branch tip: `python -m p..."
         }
       }
     }

@@ -85,6 +85,7 @@ Grouped by primary `spec:N` category. Stories without category refs remain in an
 | 212 | Establish a Bounded DiEm HTR Historical-Handwriting Benchmark Slice | High | Done | 211 | [story-212](stories/story-212-diem-htr-historical-handwriting-benchmark-slice.md) |
 | 213 | Fix Source-Only Front Matter Replay in Non-TOC HTML Build | High | Done | — | [story-213](stories/story-213-fix-source-only-front-matter-replay-in-non-toc-html-build.md) |
 | 214 | Establish a Bounded LOC George Washington Papers Benchmark Slice | High | Done | 212 | [story-214](stories/story-214-loc-george-washington-papers-benchmark-slice.md) |
+| 216 | Refresh LOC George Washington Benchmark Proof and Bounded Stronger-Model Screen | High | Done | 214 | [story-216](stories/story-216-refresh-loc-gw-benchmark-proof-and-stronger-model-screen.md) |
 
 ### spec:3 — Layout & Structure Understanding
 
