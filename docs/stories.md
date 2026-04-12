@@ -10,7 +10,7 @@ Use `docs/methodology/graph.json`, `docs/methodology/state.yaml`, and `/triage` 
 
 ## Active Focus
 
-- Campaign `maintained-intake-honesty` (active; stories: 191, 196, 197, 200, 201, 202, 203, 205, 208) — Recent bounded proof and direct-entry expansions are done; Story 205 closed the first ZIP-only mixed-archive routing seam as bounded maintained evidence, and Story 208 closed the bounded stronger-OCR benchmark line for the handwritten blocker with negative evidence. Keep Story 191 blocked until a later pass produces fresh current-pass evidence for a materially stronger OCR substrate, and treat Story 205 as proof for one explicit archive-member routing slice rather than broad archive ownership.
+- Campaign `maintained-intake-honesty` (active; stories: 191, 196, 197, 200, 201, 202, 203, 205, 208, 218) — Recent bounded proof and direct-entry expansions are done; Story 205 closed the first ZIP-only mixed-archive routing seam as bounded maintained evidence, Story 218 widened that same seam to one checked-in source-native folder probe, and Story 208 closed the bounded stronger-OCR benchmark line for the handwritten blocker with negative evidence. Keep Story 191 blocked until a later pass produces fresh current-pass evidence for a materially stronger OCR substrate, and treat Stories 205 and 218 as proof for two explicit member-routing entry surfaces rather than broad archive or folder ownership.
 
 ## Index
 
@@ -60,6 +60,7 @@ Grouped by primary `spec:N` category. Stories without category refs remain in an
 | 205 | Establish the First Honest Mixed-Archive Intake/Routing Seam | High | Done | — | [story-205](stories/story-205-mixed-archive-intake-routing-seam.md) |
 | 208 | Benchmark GLM-OCR on the Handwritten Blocker and a Table-Heavy Scanned Seam | High | Done | 192, 206 | [story-208](stories/story-208-glm-ocr-benchmark-for-handwritten-and-table-heavy-seams.md) |
 | 210 | Widen Scanned-Prose Proof Beyond the Clean Synthetic Fixture | High | Done | 167 | [story-210](stories/story-210-degraded-scanned-prose-proof-lane.md) |
+| 218 | Establish the First Honest Mixed-Folder Direct-Entry Seam | High | Done | 205 | [story-218](stories/story-218-mixed-folder-direct-entry-seam.md) |
 
 ### spec:2 — OCR & Text Extraction
 

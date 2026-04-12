@@ -2,7 +2,7 @@
 """
 Archive Route Members Module v1
 
-Routes bounded ZIP members into existing maintained direct-entry recipes or
+Routes bounded archive or folder members into existing maintained direct-entry recipes or
 explicit blocked outcomes and records one archive_member_route_v1 row per
 member.
 """
@@ -33,7 +33,8 @@ DEFAULT_OUT = "archive_member_routes.jsonl"
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--manifest", required=True, help="Input archive member manifest JSONL")
-    parser.add_argument("--zip", default=None, help="Optional original ZIP path for driver compatibility")
+    parser.add_argument("--folder", default=None, help="Optional original folder path for driver compatibility")
+    parser.add_argument("--zip", default=None, help="Optional original ZIP path for backward compatibility")
     parser.add_argument("--outdir", required=True, help="Output directory")
     parser.add_argument("--out", default=DEFAULT_OUT, help="Output route artifact path")
     parser.add_argument("--downstream-end-at", dest="downstream_end_at", default=None)
@@ -107,7 +108,7 @@ def main() -> None:
         "running",
         current=0,
         total=len(manifest_rows),
-        message=f"Routing {len(manifest_rows)} bounded ZIP members",
+        message=f"Routing {len(manifest_rows)} bounded mixed-input members",
         module_id=MODULE_ID,
         schema_version=SCHEMA_VERSION,
     )

@@ -55,8 +55,8 @@
       {
         "id": "maintained-intake-honesty",
         "status": "active",
-        "story_refs": ["191", "196", "197", "200", "201", "202", "203", "205", "208"],
-        "notes": "Recent bounded proof and direct-entry expansions are done; Story 205 closed the first ZIP-only mixed-archive routing seam as bounded maintained evidence, and Story 208 closed the bounded stronger-OCR benchmark line for the handwritten blocker with negative evidence. Keep Story 191 blocked until a later pass produces fresh current-pass evidence for a materially stronger OCR substrate, and treat Story 205 as proof for one explicit archive-member routing slice rather than broad archive ownership."
+        "story_refs": ["191", "196", "197", "200", "201", "202", "203", "205", "208", "218"],
+        "notes": "Recent bounded proof and direct-entry expansions are done; Story 205 closed the first ZIP-only mixed-archive routing seam as bounded maintained evidence, Story 218 widened that same seam to one checked-in source-native folder probe, and Story 208 closed the bounded stronger-OCR benchmark line for the handwritten blocker with negative evidence. Keep Story 191 blocked until a later pass produces fresh current-pass evidence for a materially stronger OCR substrate, and treat Stories 205 and 218 as proof for two explicit member-routing entry surfaces rather than broad archive or folder ownership."
       }
     ]
   },
@@ -88,10 +88,10 @@
         "label": "Intake and Routing",
         "manual_priority": "medium",
         "last_audited_at": "2026-04-09",
-        "stories_since_audit": 1,
-        "recent_story_refs": ["194", "200", "205"],
+        "stories_since_audit": 2,
+        "recent_story_refs": ["194", "200", "205", "218"],
         "open_findings": [],
-        "notes": "Story 194 fixed the office recommendation boundary, Story 200 added the first web-page direct-entry seam, and Story 205 closed the first ZIP-only mixed-archive routing slice. The bounded archive/member manifest plus direct-entry dispatch substrate now exists for one checked-in ZIP fixture, while direct folder input and broader archive semantics remain intentionally out of scope until separately proven."
+        "notes": "Story 194 fixed the office recommendation boundary, Story 200 added the first web-page direct-entry seam, Story 205 closed the first ZIP-only mixed-archive routing slice, and Story 218 widened that same bounded member-routing seam to one checked-in source-native folder fixture. The maintained substrate now covers one ZIP probe plus one direct-folder probe on the same four-member mix, while PDF/image-member routing and broader archive semantics remain intentionally out of scope until separately proven."
       },
       "ocr_and_extraction": {
         "label": "OCR and Extraction",

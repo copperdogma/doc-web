@@ -1,0 +1,17 @@
+From: Alice Example <alice@example.com>
+To: Bob Example <bob@example.com>
+Subject: Fixture Subject
+Date: Thu, 09 Apr 2026 10:00:00 -0600
+Message-ID: <email-eml-mini@example.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+
+Hello Bob,
+
+This fixture exists to prove the first honest .eml direct-entry seam.
+It keeps the supported slice intentionally narrow: one plain-text message,
+one pageless bundle entry, and inspectable source element ids.
+
+Regards,
+Alice

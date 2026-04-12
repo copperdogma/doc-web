@@ -224,11 +224,15 @@ def _looks_like_chapter_manifest(path: str) -> bool:
 def _infer_document_label(input_conf: Dict[str, Any]) -> Optional[str]:
     if not isinstance(input_conf, dict):
         return None
-    for key in ("pdf", "input_pdf", "html", "input_html", "images"):
+    for key in ("pdf", "input_pdf", "html", "input_html", "images", "folder", "input_folder"):
         value = input_conf.get(key)
         if isinstance(value, str) and value.strip():
             path = value.rstrip("/").rstrip("\\")
-            return Path(path).stem if key in {"pdf", "input_pdf", "html", "input_html"} else Path(path).name
+            return (
+                Path(path).stem
+                if key in {"pdf", "input_pdf", "html", "input_html"}
+                else Path(path).name
+            )
     text_glob = input_conf.get("text_glob")
     if isinstance(text_glob, str) and text_glob.strip():
         parent = Path(text_glob).parent

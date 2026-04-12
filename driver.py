@@ -784,6 +784,9 @@ def build_command(
             if "mbox" in recipe_input:
                 cmd += ["--mbox", recipe_input["mbox"]]
                 flags_added.add("--mbox")
+            if "folder" in recipe_input:
+                cmd += ["--folder", recipe_input["folder"]]
+                flags_added.add("--folder")
             if "zip" in recipe_input:
                 cmd += ["--zip", recipe_input["zip"]]
                 flags_added.add("--zip")
@@ -833,6 +836,9 @@ def build_command(
         if "mbox" in recipe_input:
             cmd += ["--mbox", recipe_input["mbox"]]
             flags_added.add("--mbox")
+        if "folder" in recipe_input:
+            cmd += ["--folder", recipe_input["folder"]]
+            flags_added.add("--folder")
         if "zip" in recipe_input:
             cmd += ["--zip", recipe_input["zip"]]
             flags_added.add("--zip")
@@ -1532,6 +1538,11 @@ def main():
         help="Override input.mbox from recipe (useful for bounded `.mbox` smoke fixtures)",
     )
     parser.add_argument(
+        "--input-folder",
+        dest="input_folder_override",
+        help="Override input.folder from recipe (useful for bounded mixed-folder smoke fixtures)",
+    )
+    parser.add_argument(
         "--input-zip",
         dest="input_zip_override",
         help="Override input.zip from recipe (useful for bounded mixed-archive ZIP smoke fixtures)",
@@ -1570,6 +1581,9 @@ def main():
         args.input_html_override = args.input_html_override or config.input_html
         args.input_eml_override = args.input_eml_override or config.input_eml
         args.input_mbox_override = args.input_mbox_override or config.input_mbox
+        args.input_folder_override = (
+            args.input_folder_override or config.input_folder
+        )
         args.input_zip_override = args.input_zip_override or config.input_zip
         args.run_id_override = args.run_id_override or config.run_id
         args.output_dir_override = args.output_dir_override or config.output_dir
@@ -1627,6 +1641,7 @@ def main():
         recipe["input"].pop("html", None)
         recipe["input"].pop("eml", None)
         recipe["input"].pop("mbox", None)
+        recipe["input"].pop("folder", None)
         recipe["input"].pop("zip", None)
         recipe["input"].pop("text_glob", None)
         recipe["input"]["images"] = args.input_images_override
@@ -1646,6 +1661,7 @@ def main():
         recipe["input"].pop("html", None)
         recipe["input"].pop("eml", None)
         recipe["input"].pop("mbox", None)
+        recipe["input"].pop("folder", None)
         recipe["input"].pop("zip", None)
         recipe["input"].pop("text_glob", None)
         recipe["input"]["pdf"] = args.input_pdf_override
@@ -1659,6 +1675,7 @@ def main():
         recipe["input"].pop("html", None)
         recipe["input"].pop("eml", None)
         recipe["input"].pop("mbox", None)
+        recipe["input"].pop("folder", None)
         recipe["input"].pop("zip", None)
         recipe["input"].pop("text_glob", None)
         recipe["input"]["docx"] = args.input_docx_override
@@ -1672,6 +1689,7 @@ def main():
         recipe["input"].pop("html", None)
         recipe["input"].pop("eml", None)
         recipe["input"].pop("mbox", None)
+        recipe["input"].pop("folder", None)
         recipe["input"].pop("zip", None)
         recipe["input"].pop("text_glob", None)
         recipe["input"]["xlsx"] = args.input_xlsx_override
@@ -1685,6 +1703,7 @@ def main():
         recipe["input"].pop("html", None)
         recipe["input"].pop("eml", None)
         recipe["input"].pop("mbox", None)
+        recipe["input"].pop("folder", None)
         recipe["input"].pop("zip", None)
         recipe["input"].pop("text_glob", None)
         recipe["input"]["pptx"] = args.input_pptx_override
@@ -1698,6 +1717,7 @@ def main():
         recipe["input"].pop("html", None)
         recipe["input"].pop("eml", None)
         recipe["input"].pop("mbox", None)
+        recipe["input"].pop("folder", None)
         recipe["input"].pop("zip", None)
         recipe["input"].pop("text_glob", None)
         recipe["input"]["epub"] = args.input_epub_override
@@ -1711,6 +1731,7 @@ def main():
         recipe["input"].pop("epub", None)
         recipe["input"].pop("eml", None)
         recipe["input"].pop("mbox", None)
+        recipe["input"].pop("folder", None)
         recipe["input"].pop("zip", None)
         recipe["input"].pop("text_glob", None)
         recipe["input"]["html"] = args.input_html_override
@@ -1724,6 +1745,7 @@ def main():
         recipe["input"].pop("epub", None)
         recipe["input"].pop("html", None)
         recipe["input"].pop("mbox", None)
+        recipe["input"].pop("folder", None)
         recipe["input"].pop("zip", None)
         recipe["input"].pop("text_glob", None)
         recipe["input"]["eml"] = args.input_eml_override
@@ -1737,9 +1759,24 @@ def main():
         recipe["input"].pop("epub", None)
         recipe["input"].pop("html", None)
         recipe["input"].pop("eml", None)
+        recipe["input"].pop("folder", None)
         recipe["input"].pop("zip", None)
         recipe["input"].pop("text_glob", None)
         recipe["input"]["mbox"] = args.input_mbox_override
+    if args.input_folder_override:
+        recipe.setdefault("input", {})
+        recipe["input"].pop("pdf", None)
+        recipe["input"].pop("docx", None)
+        recipe["input"].pop("images", None)
+        recipe["input"].pop("xlsx", None)
+        recipe["input"].pop("pptx", None)
+        recipe["input"].pop("epub", None)
+        recipe["input"].pop("html", None)
+        recipe["input"].pop("eml", None)
+        recipe["input"].pop("mbox", None)
+        recipe["input"].pop("zip", None)
+        recipe["input"].pop("text_glob", None)
+        recipe["input"]["folder"] = args.input_folder_override
     if args.input_zip_override:
         recipe.setdefault("input", {})
         recipe["input"].pop("pdf", None)
@@ -1751,6 +1788,7 @@ def main():
         recipe["input"].pop("html", None)
         recipe["input"].pop("eml", None)
         recipe["input"].pop("mbox", None)
+        recipe["input"].pop("folder", None)
         recipe["input"].pop("text_glob", None)
         recipe["input"]["zip"] = args.input_zip_override
 
@@ -1816,6 +1854,7 @@ def main():
         and not input_conf.get("html")
         and not input_conf.get("eml")
         and not input_conf.get("mbox")
+        and not input_conf.get("folder")
         and not input_conf.get("zip")
         and not input_conf.get("images")
         and not input_conf.get("text_glob")
@@ -1824,7 +1863,7 @@ def main():
         # If we have no input from override AND no input from recipe, we fail.
         print("\n❌ ERROR: No input specified.", file=sys.stderr)
         print(
-            "You must provide an input PDF, DOCX, XLSX, PPTX, EPUB, HTML snapshot, plain-text EML, plain-text MBOX archive, mixed-archive ZIP, images directory, or text glob via:",
+            "You must provide an input PDF, DOCX, XLSX, PPTX, EPUB, HTML snapshot, plain-text EML, plain-text MBOX archive, mixed-folder directory, mixed-archive ZIP, images directory, or text glob via:",
             file=sys.stderr,
         )
         print(
@@ -1847,6 +1886,11 @@ def main():
         print("  - CLI Override: --input-eml ...", file=sys.stderr)
         print("  - Configuration YAML (recommended): input_mbox: ...", file=sys.stderr)
         print("  - CLI Override: --input-mbox ...", file=sys.stderr)
+        print(
+            "  - Configuration YAML (recommended): input_folder: ...",
+            file=sys.stderr,
+        )
+        print("  - CLI Override: --input-folder ...", file=sys.stderr)
         print("  - Configuration YAML (recommended): input_zip: ...", file=sys.stderr)
         print("  - CLI Override: --input-zip ...", file=sys.stderr)
         print("  - Recipe (deprecated): input:\n      pdf: ...", file=sys.stderr)
@@ -1855,6 +1899,7 @@ def main():
         print("  - Recipe (deprecated): input:\n      pptx: ...", file=sys.stderr)
         print("  - Recipe (deprecated): input:\n      epub: ...", file=sys.stderr)
         print("  - Recipe (deprecated): input:\n      html: ...", file=sys.stderr)
+        print("  - Recipe (deprecated): input:\n      folder: ...", file=sys.stderr)
         print("  - Recipe (deprecated): input:\n      zip: ...", file=sys.stderr)
         print("  - Recipe (deprecated): input:\n      eml: ...", file=sys.stderr)
         print("  - Recipe (deprecated): input:\n      mbox: ...", file=sys.stderr)

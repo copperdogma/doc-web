@@ -21,6 +21,7 @@ input_epub: testdata/epub-mini.epub
 input_html: testdata/web-page-mini.html
 input_eml: testdata/email-eml-mini.eml
 input_mbox: testdata/email-mbox-mini.mbox
+input_folder: testdata/mixed-folder-mini
 input_zip: testdata/mixed-archive-mini.zip
 execution:
   start_from: stage1
@@ -38,6 +39,7 @@ instrumentation:
     assert config.input_html == "testdata/web-page-mini.html"
     assert config.input_eml == "testdata/email-eml-mini.eml"
     assert config.input_mbox == "testdata/email-mbox-mini.mbox"
+    assert config.input_folder == "testdata/mixed-folder-mini"
     assert config.input_zip == "testdata/mixed-archive-mini.zip"
     assert config.execution.start_from == "stage1"
     assert config.execution.force is True

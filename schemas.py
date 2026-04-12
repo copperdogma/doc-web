@@ -1362,6 +1362,7 @@ class RunConfig(BaseModel):
     input_html: Optional[str] = None
     input_eml: Optional[str] = None
     input_mbox: Optional[str] = None
+    input_folder: Optional[str] = None
     input_zip: Optional[str] = None
     output_dir: Optional[str] = None
 

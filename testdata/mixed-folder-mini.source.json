@@ -1,0 +1,41 @@
+{
+  "title": "Mixed Folder Mini Fixture",
+  "source_type": "repo-owned mixed folder",
+  "generated_at": "2026-04-12",
+  "archive_format": "folder",
+  "capture_note": "Checked-in source-native folder probe for Story 218. It mirrors the bounded four-member mix from Story 205 without a ZIP wrapper so the maintained lane can prove deterministic folder inventory, relative member provenance, nested driver launches into existing direct-entry recipes, and explicit blocked outcomes without claiming broad folder or archive support.",
+  "members": [
+    {
+      "member_path": "docs/reference.docx",
+      "source": "testdata/docx-mini.docx",
+      "expected_route": "recipe-docx-html-mvp.yaml"
+    },
+    {
+      "member_path": "mail/message.eml",
+      "source": "testdata/email-eml-mini.eml",
+      "expected_route": "recipe-email-eml-html-mvp.yaml"
+    },
+    {
+      "member_path": "web/snapshot.html",
+      "source": "testdata/web-page-mini.html",
+      "expected_route": "recipe-web-page-html-mvp.yaml"
+    },
+    {
+      "member_path": "notes/readme.txt",
+      "source": "testdata/mixed-folder-mini/notes/readme.txt",
+      "expected_route": "blocked",
+      "notes": "This unsupported text member exists to prove explicit blocked routing on the bounded mixed-folder slice."
+    }
+  ],
+  "supported_scope": [
+    "source-native folder entry",
+    "relative member manifest",
+    "suffix-based routing into existing maintained direct-entry recipes",
+    "explicit blocked rows for unsupported members"
+  ],
+  "known_gaps": [
+    "No PDF or grouped image-member routing",
+    "No nested archives or attachment extraction",
+    "No broad mixed-folder normalization into a single combined bundle"
+  ]
+}

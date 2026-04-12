@@ -137,7 +137,8 @@
           "203",
           "205",
           "208",
-          "210"
+          "210",
+          "218"
         ],
         "adr_ids": [
           "ADR-001",
@@ -397,7 +398,8 @@
           "203",
           "205",
           "206",
-          "213"
+          "213",
+          "218"
         ],
         "adr_ids": [
           "ADR-002",
@@ -453,7 +455,8 @@
           "203",
           "205",
           "206",
-          "213"
+          "213",
+          "218"
         ],
         "adr_ids": [
           "ADR-002",
@@ -522,7 +525,8 @@
           "214",
           "215",
           "216",
-          "217"
+          "217",
+          "218"
         ],
         "adr_ids": [
           "ADR-002"
@@ -568,7 +572,8 @@
           "203",
           "204",
           "205",
-          "207"
+          "207",
+          "218"
         ],
         "adr_ids": [],
         "eval_ids": [
@@ -626,7 +631,8 @@
           "202",
           "203",
           "205",
-          "210"
+          "210",
+          "218"
         ],
         "eval_ids": [
           "auto-book-type-detection",
@@ -686,7 +692,8 @@
             "202",
             "203",
             "205",
-            "210"
+            "210",
+            "218"
           ],
           "eval_ids": [
             "auto-book-type-detection",
@@ -1570,21 +1577,22 @@
           "201",
           "202",
           "203",
-          "205"
+          "205",
+          "218"
         ],
         "eval_ids": [],
         "actionability": {
           "source_kind": "story",
-          "source_id": "205",
-          "source_path": "docs/stories/story-205-mixed-archive-intake-routing-seam.md",
+          "source_id": "218",
+          "source_path": "docs/stories/story-218-mixed-folder-direct-entry-seam.md",
           "recommended_now": false,
           "posture": "completed",
-          "why_now": "`/mark-story-done` close-out: rechecked Story 205 against `docs/ideal.md`, `docs/spec.md`, ADR-002, the updated story body, and the current diff after `/validate`. Fresh evidence used for close-out in this sequence: `...",
+          "why_now": "`/mark-story-done` close-out: confirmed Story 218 is complete on fresh current-pass evidence and applied the close-out bookkeeping. Fresh validation from this pass: `make lint` passed; `make test` passed (`573 passed,...",
           "last_relevant_action": {
-            "date": "2026-04-10",
+            "date": "2026-04-12",
             "source_type": "story-work-log",
-            "source": "docs/stories/story-205-mixed-archive-intake-routing-seam.md",
-            "summary": "`/mark-story-done` close-out: rechecked Story 205 against `docs/ideal.md`, `docs/spec.md`, ADR-002, the updated story body, and the current diff after `/validate`. Fresh evidence used for close-out in this sequence: `..."
+            "source": "docs/stories/story-218-mixed-folder-direct-entry-seam.md",
+            "summary": "`/mark-story-done` close-out: confirmed Story 218 is complete on fresh current-pass evidence and applied the close-out bookkeeping. Fresh validation from this pass: `make lint` passed; `make test` passed (`573 passed,..."
           },
           "story_ids": [
             "148",
@@ -1597,7 +1605,8 @@
             "201",
             "202",
             "203",
-            "205"
+            "205",
+            "218"
           ],
           "eval_ids": []
         }
@@ -11707,6 +11716,79 @@
           "summary": "`/mark-story-done` close-out: revalidated Story 217 against `docs/ideal.md`, `spec:2`, `spec:8`, and the existing handwritten benchmark decision chain before closing it. Fresh close-out evidence in this pass: `python..."
         }
       }
+    },
+    {
+      "id": "218",
+      "title": "Establish the First Honest Mixed-Folder Direct-Entry Seam",
+      "path": "docs/stories/story-218-mixed-folder-direct-entry-seam.md",
+      "status": "Done",
+      "priority": "High",
+      "ideal_refs": [
+        "Requirement #1 (Ingest), Requirement #2 (Detect), Requirement #6 (Validate), Any format, any condition, Transparency over magic"
+      ],
+      "spec_refs": [
+        "spec:1",
+        "spec:1.1",
+        "spec:6",
+        "spec:7",
+        "spec:8",
+        "spec:9"
+      ],
+      "decision_refs": [
+        "`docs/ideal.md`, `docs/spec.md`, `docs/methodology/state.yaml`, `docs/methodology/graph.json`, `docs/decisions/adr-002-doc-web-runtime-boundary/adr.md`, `docs/stories/story-194-office-intake-recommendation-and-handoff-boundary.md`, `docs/stories/story-200-web-page-direct-entry-seam.md`, `docs/stories/story-202-eml-direct-entry-seam.md`, `docs/stories/story-203-mbox-archive-seam.md`, `docs/stories/story-205-mixed-archive-intake-routing-seam.md`, `tests/fixtures/formats/_coverage-matrix.json`, `README.md`, `docs/RUNBOOK.md`, `schemas.py`, `driver.py`, `modules/intake/intake_plan_utils.py`, `modules/intake/archive_unpack_manifest_v1/main.py`, `modules/intake/archive_route_members_v1/main.py`, `tests/test_mixed_archive_zip_recipe.py`, `benchmarks/scripts/intake_scope.py`, and `None found after search in docs/decisions/`, `docs/runbooks/`, `docs/scout/`, and `docs/notes/` for a narrower mixed-folder direct-entry ADR or runbook",
+        "ADR-002"
+      ],
+      "adr_ids": [
+        "ADR-002"
+      ],
+      "depends_on": [
+        "205"
+      ],
+      "category_refs": [
+        "spec:1",
+        "spec:6",
+        "spec:7",
+        "spec:8",
+        "spec:9"
+      ],
+      "compromise_refs": [
+        "B10",
+        "C2"
+      ],
+      "input_coverage_refs": [
+        "mixed-archive"
+      ],
+      "architecture_domains": [
+        "intake_and_routing"
+      ],
+      "roadmap_tags": [
+        "campaign:maintained-intake-honesty"
+      ],
+      "blocker_summary": "",
+      "blocker_evidence": "",
+      "unblock_condition": "",
+      "last_work_log_entry": {
+        "timestamp": "20260412-1458",
+        "date": "2026-04-12",
+        "summary": "`/mark-story-done` close-out: confirmed Story 218 is complete on fresh current-pass evidence and applied the close-out bookkeeping. Fresh validation from this pass: `make lint` passed; `make test` passed (`573 passed,..."
+      },
+      "legacy_build_map_refs": "",
+      "metadata_source": "frontmatter",
+      "missing_frontmatter_keys": [],
+      "actionability": {
+        "source_kind": "story",
+        "source_id": "218",
+        "source_path": "docs/stories/story-218-mixed-folder-direct-entry-seam.md",
+        "recommended_now": false,
+        "posture": "completed",
+        "why_now": "`/mark-story-done` close-out: confirmed Story 218 is complete on fresh current-pass evidence and applied the close-out bookkeeping. Fresh validation from this pass: `make lint` passed; `make test` passed (`573 passed,...",
+        "last_relevant_action": {
+          "date": "2026-04-12",
+          "source_type": "story-work-log",
+          "source": "docs/stories/story-218-mixed-folder-direct-entry-seam.md",
+          "summary": "`/mark-story-done` close-out: confirmed Story 218 is complete on fresh current-pass evidence and applied the close-out bookkeeping. Fresh validation from this pass: `make lint` passed; `make test` passed (`573 passed,..."
+        }
+      }
     }
   ],
   "adrs": [
@@ -14065,9 +14147,9 @@
         "id": "mixed-archive",
         "format_family": "mixed-archive",
         "status": "passing",
-        "description": "ZIP archives containing a bounded mix of direct-entry file types routed member-by-member",
-        "pipeline_recipe": "recipe-mixed-archive-zip-routing-mvp.yaml",
-        "intake_module": "archive_unpack_manifest_v1 \u2192 archive_route_members_v1",
+        "description": "Bounded ZIP archives or source-native folders containing a maintained mix of direct-entry file types routed member-by-member",
+        "pipeline_recipe": "recipe-mixed-archive-zip-routing-mvp.yaml / recipe-mixed-folder-routing-mvp.yaml",
+        "intake_module": "archive_unpack_manifest_v1 or folder_members_manifest_v1 \u2192 archive_route_members_v1",
         "complexity": [
           "mixed-layout"
         ],
@@ -14077,13 +14159,19 @@
             "source": "testdata/mixed-archive-mini.zip",
             "pages": null,
             "notes": "Supported on the first bounded maintained mixed-archive slice. Story 205 established a ZIP-only lane on one repo-owned four-member fixture with nested DOCX, plain-text `.eml`, checked HTML snapshot, and one intentionally unsupported `.txt` member. The lane emits archive/member manifest rows, launches the supported members through existing maintained direct-entry recipes, and records an explicit blocked route row for the unsupported member instead of flattening the archive into one synthetic document."
+          },
+          {
+            "id": "mixed-folder-mini",
+            "source": "testdata/mixed-folder-mini",
+            "pages": null,
+            "notes": "Supported on the first bounded direct-folder continuation of the same mixed-input seam. Story 218 established one repo-owned four-member folder tree with nested DOCX, plain-text `.eml`, checked HTML snapshot, and one intentionally unsupported `.txt` member. The lane emits the same archive/member manifest and route schemas as the ZIP proof, but keeps `extracted_path` source-native instead of copying members into the run."
           }
         ],
         "scores": null,
         "known_gaps": [
-          "Passing evidence is still bounded to one checked-in ZIP fixture with three launchable direct-entry members and one explicitly blocked unsupported member.",
-          "The maintained lane does not yet claim direct folder input, PDF-member routing, grouped image-member interpretation, nested archives, attachment extraction, ambiguous AI-assisted route decisions, or broad heterogeneous archive ownership.",
-          "Mixed-archive provenance currently relies on archive-relative `member_path` / `member_id`, extracted member paths, and downstream run ids or artifact paths; it does not flatten members into one combined bundle or claim archive-level page anchors."
+          "Passing evidence is still bounded to two checked-in four-member probes sharing the same member mix: one ZIP entry surface and one source-native folder entry surface, each with three launchable direct-entry members and one explicitly blocked unsupported member.",
+          "The maintained lane does not yet claim PDF-member routing, grouped image-member interpretation, nested archives, attachment extraction, ambiguous AI-assisted route decisions, or broad heterogeneous archive ownership.",
+          "Mixed-archive provenance currently relies on relative `member_path` / `member_id`, source-native or extracted member file paths depending on the entry surface, and downstream run ids or artifact paths; it does not flatten members into one combined bundle or claim archive-level page anchors."
         ],
         "graduated": false
       }
@@ -14239,9 +14327,10 @@
             "202",
             "203",
             "205",
-            "208"
+            "208",
+            "218"
           ],
-          "notes": "Recent bounded proof and direct-entry expansions are done; Story 205 closed the first ZIP-only mixed-archive routing seam as bounded maintained evidence, and Story 208 closed the bounded stronger-OCR benchmark line for the handwritten blocker with negative evidence. Keep Story 191 blocked until a later pass produces fresh current-pass evidence for a materially stronger OCR substrate, and treat Story 205 as proof for one explicit archive-member routing slice rather than broad archive ownership."
+          "notes": "Recent bounded proof and direct-entry expansions are done; Story 205 closed the first ZIP-only mixed-archive routing seam as bounded maintained evidence, Story 218 widened that same seam to one checked-in source-native folder probe, and Story 208 closed the bounded stronger-OCR benchmark line for the handwritten blocker with negative evidence. Keep Story 191 blocked until a later pass produces fresh current-pass evidence for a materially stronger OCR substrate, and treat Stories 205 and 218 as proof for two explicit member-routing entry surfaces rather than broad archive or folder ownership."
         }
       ]
     },
@@ -14278,14 +14367,15 @@
           "label": "Intake and Routing",
           "manual_priority": "medium",
           "last_audited_at": "2026-04-09",
-          "stories_since_audit": 1,
+          "stories_since_audit": 2,
           "recent_story_refs": [
             "194",
             "200",
-            "205"
+            "205",
+            "218"
           ],
           "open_findings": [],
-          "notes": "Story 194 fixed the office recommendation boundary, Story 200 added the first web-page direct-entry seam, and Story 205 closed the first ZIP-only mixed-archive routing slice. The bounded archive/member manifest plus direct-entry dispatch substrate now exists for one checked-in ZIP fixture, while direct folder input and broader archive semantics remain intentionally out of scope until separately proven."
+          "notes": "Story 194 fixed the office recommendation boundary, Story 200 added the first web-page direct-entry seam, Story 205 closed the first ZIP-only mixed-archive routing slice, and Story 218 widened that same bounded member-routing seam to one checked-in source-native folder fixture. The maintained substrate now covers one ZIP probe plus one direct-folder probe on the same four-member mix, while PDF/image-member routing and broader archive semantics remain intentionally out of scope until separately proven."
         },
         "ocr_and_extraction": {
           "label": "OCR and Extraction",

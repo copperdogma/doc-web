@@ -540,9 +540,9 @@
       "id": "mixed-archive",
       "format_family": "mixed-archive",
       "status": "passing",
-      "description": "ZIP archives containing a bounded mix of direct-entry file types routed member-by-member",
-      "pipeline_recipe": "recipe-mixed-archive-zip-routing-mvp.yaml",
-      "intake_module": "archive_unpack_manifest_v1 → archive_route_members_v1",
+      "description": "Bounded ZIP archives or source-native folders containing a maintained mix of direct-entry file types routed member-by-member",
+      "pipeline_recipe": "recipe-mixed-archive-zip-routing-mvp.yaml / recipe-mixed-folder-routing-mvp.yaml",
+      "intake_module": "archive_unpack_manifest_v1 or folder_members_manifest_v1 → archive_route_members_v1",
       "complexity": ["mixed-layout"],
       "fixtures": [
         {
@@ -550,13 +550,19 @@
           "source": "testdata/mixed-archive-mini.zip",
           "pages": null,
           "notes": "Supported on the first bounded maintained mixed-archive slice. Story 205 established a ZIP-only lane on one repo-owned four-member fixture with nested DOCX, plain-text `.eml`, checked HTML snapshot, and one intentionally unsupported `.txt` member. The lane emits archive/member manifest rows, launches the supported members through existing maintained direct-entry recipes, and records an explicit blocked route row for the unsupported member instead of flattening the archive into one synthetic document."
+        },
+        {
+          "id": "mixed-folder-mini",
+          "source": "testdata/mixed-folder-mini",
+          "pages": null,
+          "notes": "Supported on the first bounded direct-folder continuation of the same mixed-input seam. Story 218 established one repo-owned four-member folder tree with nested DOCX, plain-text `.eml`, checked HTML snapshot, and one intentionally unsupported `.txt` member. The lane emits the same archive/member manifest and route schemas as the ZIP proof, but keeps `extracted_path` source-native instead of copying members into the run."
         }
       ],
       "scores": null,
       "known_gaps": [
-        "Passing evidence is still bounded to one checked-in ZIP fixture with three launchable direct-entry members and one explicitly blocked unsupported member.",
-        "The maintained lane does not yet claim direct folder input, PDF-member routing, grouped image-member interpretation, nested archives, attachment extraction, ambiguous AI-assisted route decisions, or broad heterogeneous archive ownership.",
-        "Mixed-archive provenance currently relies on archive-relative `member_path` / `member_id`, extracted member paths, and downstream run ids or artifact paths; it does not flatten members into one combined bundle or claim archive-level page anchors."
+        "Passing evidence is still bounded to two checked-in four-member probes sharing the same member mix: one ZIP entry surface and one source-native folder entry surface, each with three launchable direct-entry members and one explicitly blocked unsupported member.",
+        "The maintained lane does not yet claim PDF-member routing, grouped image-member interpretation, nested archives, attachment extraction, ambiguous AI-assisted route decisions, or broad heterogeneous archive ownership.",
+        "Mixed-archive provenance currently relies on relative `member_path` / `member_id`, source-native or extracted member file paths depending on the entry surface, and downstream run ids or artifact paths; it does not flatten members into one combined bundle or claim archive-level page anchors."
       ],
       "graduated": false
     }

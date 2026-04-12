@@ -16,4 +16,4 @@ param_schema:
     dry_run:
       type: boolean
       description: "Write the route artifact without launching downstream recipes."
-notes: "Route bounded ZIP members into existing maintained direct-entry recipes or explicit blocked outcomes while preserving archive-relative provenance."
+notes: "Route bounded archive or folder members into existing maintained direct-entry recipes or explicit blocked outcomes while preserving relative member provenance."

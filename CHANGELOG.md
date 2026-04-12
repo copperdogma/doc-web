@@ -1,3 +1,22 @@
+## [2026-04-12-03] - Land mixed-folder direct-entry seam (Story 218)
+
+### Added
+- Added a bounded mixed-folder entry surface with `input_folder` / `--input-folder`, `folder_members_manifest_v1`, `recipe-mixed-folder-routing-mvp.yaml`, and a checked-in four-member fixture that proves source-native member inventory and per-member launch or block outcomes
+- Added focused smoke coverage for the direct-folder seam and fixture metadata for the checked-in mixed-folder probe
+
+### Changed
+- Changed the shared intake routing seam, run labeling, coverage matrix, methodology state, generated story views, and operator docs so the maintained mixed-input proof now includes one explicit source-native folder lane beside the existing ZIP-only lane
+
+### Fixed
+- Fixed the mixed-folder close-out drift by counting Story 218 in the intake/routing audit memory and by documenting that clean repeated proof runs need a fresh parent `run_id` once nested child runs already exist
+
+### Tested
+- `make lint`
+- `make test`
+- `python driver.py --recipe configs/recipes/recipe-mixed-folder-routing-mvp.yaml --input-folder testdata/mixed-folder-mini --run-id story218-mixed-folder-validate-A-20260412 --force`
+- `python validate_artifact.py --schema archive_member_manifest_v1 --file output/runs/story218-mixed-folder-validate-A-20260412/01_folder_members_manifest_v1/archive_members_manifest.jsonl`
+- `python validate_artifact.py --schema archive_member_route_v1 --file output/runs/story218-mixed-folder-validate-A-20260412/02_archive_route_members_v1/archive_member_routes.jsonl`
+
 ## [2026-04-12-02] - Close receipt-only LOC rescue probe (Story 217)
 
 ### Added
