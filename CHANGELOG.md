@@ -1,3 +1,20 @@
+## [2026-04-12-02] - Close receipt-only LOC rescue probe (Story 217)
+
+### Added
+- Added a bounded receipt-only probe summary artifact for LOC asset `367466` so the current-pass baseline, control, and frozen `gpt-5.4` variants are captured with exact params, run ids, ratios, and failure modes
+
+### Changed
+- Changed Story 217 and the generated methodology/story views so the receipt-only LOC seam now records the completed negative decision and keeps Story 191 blocked
+
+### Fixed
+- Fixed the remaining ambiguity from Story 216 by proving that prompt/entry variants on the same receipt image still do not materially clear the handwritten receipt seam
+
+### Tested
+- `python -m pytest tests/`
+- `python -m ruff check modules/ tests/`
+- `make methodology-compile`
+- `make methodology-check`
+
 ## [2026-04-12-01] - Refresh LOC proof and bounded screen (Story 216)
 
 ### Added

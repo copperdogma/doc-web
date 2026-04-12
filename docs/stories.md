@@ -86,6 +86,7 @@ Grouped by primary `spec:N` category. Stories without category refs remain in an
 | 213 | Fix Source-Only Front Matter Replay in Non-TOC HTML Build | High | Done | — | [story-213](stories/story-213-fix-source-only-front-matter-replay-in-non-toc-html-build.md) |
 | 214 | Establish a Bounded LOC George Washington Papers Benchmark Slice | High | Done | 212 | [story-214](stories/story-214-loc-george-washington-papers-benchmark-slice.md) |
 | 216 | Refresh LOC George Washington Benchmark Proof and Bounded Stronger-Model Screen | High | Done | 214 | [story-216](stories/story-216-refresh-loc-gw-benchmark-proof-and-stronger-model-screen.md) |
+| 217 | Probe Receipt-Only Image-Entry Rescue on LOC Asset 367466 | High | Done | 216 | [story-217](stories/story-217-loc-gw-receipt-only-image-entry-rescue-probe.md) |
 
 ### spec:3 — Layout & Structure Understanding
 
