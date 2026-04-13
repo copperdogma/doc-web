@@ -1,0 +1,50 @@
+[
+  {
+    "id": "web-page-mini",
+    "input_kind": "web-page",
+    "path": "testdata/web-page-mini.html",
+    "expected_book_type": "other",
+    "expected_recipe": "configs/recipes/recipe-web-page-html-mvp.yaml",
+    "expected_major_signals": []
+  },
+  {
+    "id": "epub-mini",
+    "input_kind": "epub",
+    "path": "testdata/epub-mini.epub",
+    "expected_book_type": "other",
+    "expected_recipe": "configs/recipes/recipe-epub-html-mvp.yaml",
+    "expected_major_signals": []
+  },
+  {
+    "id": "email-eml-mini",
+    "input_kind": "email-eml",
+    "path": "testdata/email-eml-mini.eml",
+    "expected_book_type": "other",
+    "expected_recipe": "configs/recipes/recipe-email-eml-html-mvp.yaml",
+    "expected_major_signals": []
+  },
+  {
+    "id": "email-mbox-mini",
+    "input_kind": "email-mbox",
+    "path": "testdata/email-mbox-mini.mbox",
+    "expected_book_type": "other",
+    "expected_recipe": "configs/recipes/recipe-email-mbox-html-mvp.yaml",
+    "expected_major_signals": []
+  },
+  {
+    "id": "mixed-archive-mini",
+    "input_kind": "mixed-archive",
+    "path": "testdata/mixed-archive-mini.zip",
+    "expected_book_type": "other",
+    "expected_recipe": "configs/recipes/recipe-mixed-archive-zip-routing-mvp.yaml",
+    "expected_major_signals": []
+  },
+  {
+    "id": "mixed-folder-mini",
+    "input_kind": "mixed-folder",
+    "path": "testdata/mixed-folder-mini",
+    "expected_book_type": "other",
+    "expected_recipe": "configs/recipes/recipe-mixed-folder-routing-mvp.yaml",
+    "expected_major_signals": []
+  }
+]

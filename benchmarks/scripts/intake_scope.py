@@ -3,7 +3,17 @@ from typing import Iterable
 
 
 DIRECT_ENTRY_ONLY_INPUT_KINDS = frozenset(
-    {"docx", "email-eml", "email-mbox", "epub", "pptx", "web-page", "xlsx"}
+    {
+        "docx",
+        "email-eml",
+        "email-mbox",
+        "epub",
+        "mixed-archive",
+        "mixed-folder",
+        "pptx",
+        "web-page",
+        "xlsx",
+    }
 )
 
 

@@ -1,0 +1,46 @@
+{
+  "title": "Mixed Archive PDF Mini Fixture",
+  "source_type": "repo-owned mixed archive",
+  "generated_at": "2026-04-13",
+  "archive_format": "zip",
+  "capture_note": "Checked-in ZIP probe for Story 221. It packages one repo-owned flat born-digital PDF member, one maintained plain-text .eml fixture, one maintained static HTML snapshot, and one intentionally unsupported plain-text member so the first mixed-archive PDF-member slice can prove archive-relative provenance plus a bounded member-local recommendation artifact without silently widening archive-contained PDF automation into unattended final-recipe launch.",
+  "members": [
+    {
+      "member_path": "docs/proposal.pdf",
+      "source": "testdata/flat-born-digital-mini.pdf",
+      "expected_route": "recommendation-only",
+      "notes": "This member is intentionally limited to the maintained recommendation-only intake seam inside archive routing. The route row should point to the emitted intake plan artifact rather than auto-launching the final recommended PDF recipe."
+    },
+    {
+      "member_path": "mail/message.eml",
+      "source": "testdata/email-eml-mini.eml",
+      "expected_route": "recipe-email-eml-html-mvp.yaml"
+    },
+    {
+      "member_path": "web/snapshot.html",
+      "source": "testdata/web-page-mini.html",
+      "expected_route": "recipe-web-page-html-mvp.yaml",
+      "notes": "The ZIP keeps only the HTML member so the bounded probe exercises one blocked unsupported file rather than counting an extra `.source.json` sidecar member."
+    },
+    {
+      "member_path": "notes/readme.txt",
+      "source": "repo-authored member embedded only in the ZIP fixture",
+      "expected_route": "blocked",
+      "notes": "This unsupported text member exists to prove explicit blocked routing on the bounded mixed-archive PDF-member slice."
+    }
+  ],
+  "supported_scope": [
+    "ZIP-only entry",
+    "archive-relative member manifest and route rows",
+    "member-local recommendation-only intake for one repo-owned PDF member",
+    "suffix-based routing into existing maintained direct-entry recipes for the `.eml` and HTML members",
+    "explicit blocked rows for unsupported members"
+  ],
+  "known_gaps": [
+    "No direct-folder PDF-member parity",
+    "No archive-contained approved handoff or final maintained PDF recipe launch",
+    "No grouped image-member routing",
+    "No nested archives or attachment extraction",
+    "No broad mixed-archive normalization into a single combined bundle"
+  ]
+}

@@ -1,3 +1,27 @@
+## [2026-04-13-01] - Land mixed-archive PDF-member seam (Story 221)
+
+### Added
+- Added a checked-in `mixed-archive-pdf-mini` ZIP fixture plus focused route tests for the first bounded ZIP-only PDF-member recommendation continuation on the maintained mixed-archive lane
+- Added a committed non-office direct-entry boundary probe corpus so maintained `mixed-archive` and `mixed-folder` entry kinds stay covered in the recommendation-only and approved-handoff scope harnesses
+
+### Changed
+- Changed `archive_route_members_v1` so ZIP-contained PDF members now launch a nested `recipe-intake-contact-sheet.yaml` run, record the emitted `intake_plan_v1` artifact as `first_downstream_artifact`, and surface the member-local maintained PDF recommendation without widening folder parity or final-recipe auto-launch
+- Changed README, RUNBOOK, fixture metadata, coverage truth, methodology state, generated story views, and eval registry wording so the maintained mixed-input claim now matches the bounded ZIP-only PDF-member recommendation seam and the refreshed direct-entry boundary metadata
+
+### Fixed
+- Fixed non-office direct-entry boundary classification so `mixed-archive` and `mixed-folder` now report `direct_explicit_recipe_only` instead of the stale `unsupported_input_kind` bucket in the maintained benchmark harnesses
+
+### Tested
+- `python -m ruff check modules/ tests/`
+- `python -m pytest tests/`
+- `find modules -name '*.pyc' -delete`
+- `python driver.py --recipe configs/recipes/recipe-mixed-archive-zip-routing-mvp.yaml --input-zip testdata/mixed-archive-pdf-mini.zip --run-id story221-mixed-archive-pdf-mini-close-r1 --allow-run-id-reuse --force`
+- `python validate_artifact.py --schema archive_member_manifest_v1 --file output/runs/story221-mixed-archive-pdf-mini-close-r1/01_archive_unpack_manifest_v1/archive_members_manifest.jsonl`
+- `python validate_artifact.py --schema archive_member_route_v1 --file output/runs/story221-mixed-archive-pdf-mini-close-r1/02_archive_route_members_v1/archive_member_routes.jsonl`
+- `python validate_artifact.py --schema intake_plan_v1 --file output/runs/story221-mixed-archive-pdf-mini-close-r1-member-001-recipe-intake-contact-sheet/05_confirm_plan_v1/overview_plan_final.jsonl`
+- `make methodology-compile`
+- `make methodology-check`
+
 ## [2026-04-12-04] - Clear Onward row-semantic note placement (Story 220)
 
 ### Added

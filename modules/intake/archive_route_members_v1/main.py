@@ -21,6 +21,7 @@ from modules.intake.intake_plan_utils import (
     archive_member_recipe_for_input_kind,
     build_explicit_recipe_driver_command,
     default_downstream_run_id,
+    load_artifact_row,
 )
 
 
@@ -28,6 +29,7 @@ MODULE_ID = "archive_route_members_v1"
 SCHEMA_VERSION = "archive_member_route_v1"
 REPO_ROOT = Path(__file__).resolve().parents[3]
 DEFAULT_OUT = "archive_member_routes.jsonl"
+PDF_MEMBER_RECOMMENDATION_RECIPE = "configs/recipes/recipe-intake-contact-sheet.yaml"
 
 
 def parse_args() -> argparse.Namespace:
@@ -46,27 +48,43 @@ def parse_args() -> argparse.Namespace:
     return parser.parse_args()
 
 
-def _load_first_stage_spec(recipe_path: str) -> Optional[dict]:
+def _load_stage_specs(recipe_path: str) -> list[dict]:
     data = yaml.safe_load((REPO_ROOT / recipe_path).read_text(encoding="utf-8")) or {}
     stages = data.get("stages") or []
-    if not stages:
-        return None
-    first_stage = stages[0]
-    return {
-        "module": first_stage.get("module"),
-        "out": first_stage.get("out"),
-    }
+    stage_specs = []
+    for ordinal, stage in enumerate(stages, start=1):
+        stage_specs.append(
+            {
+                "ordinal": ordinal,
+                "module": stage.get("module"),
+                "out": stage.get("out"),
+            }
+        )
+    return stage_specs
 
 
-def _first_downstream_artifact(output_root: Path, downstream_run_id: str, recipe_path: str) -> Optional[str]:
-    first_stage = _load_first_stage_spec(recipe_path)
-    if not first_stage:
+def _downstream_artifact(
+    output_root: Path,
+    downstream_run_id: str,
+    recipe_path: str,
+    *,
+    stage_position: str = "first",
+) -> Optional[str]:
+    stage_specs = _load_stage_specs(recipe_path)
+    if not stage_specs:
         return None
-    module_id = str(first_stage.get("module") or "").strip()
-    out_name = str(first_stage.get("out") or "").strip()
+    if stage_position == "first":
+        stage_spec = stage_specs[0]
+    elif stage_position == "last":
+        stage_spec = stage_specs[-1]
+    else:
+        raise ValueError(f"Unsupported stage_position: {stage_position}")
+    module_id = str(stage_spec.get("module") or "").strip()
+    out_name = str(stage_spec.get("out") or "").strip()
     if not module_id or not out_name:
         return None
-    return str(output_root / downstream_run_id / f"01_{module_id}" / out_name)
+    ordinal = int(stage_spec["ordinal"])
+    return str(output_root / downstream_run_id / f"{ordinal:02d}_{module_id}" / out_name)
 
 
 def _blocked_reason_for_member(row: dict) -> str:
@@ -86,6 +104,11 @@ def _resolve_output_path(outdir: str, out: str) -> Path:
     if out_path.parent != Path("."):
         return out_path
     return Path(outdir) / out_path.name
+
+
+def _uses_zip_pdf_recommendation(row: dict) -> bool:
+    archive_format = str(row.get("archive_format") or "zip").strip().lower()
+    return archive_format == "zip" and row.get("detected_input_kind") == "pdf"
 
 
 def main() -> None:
@@ -119,7 +142,12 @@ def main() -> None:
     for row in manifest_rows:
         member_id = str(row["member_id"])
         input_kind = row.get("detected_input_kind")
-        recipe_path = archive_member_recipe_for_input_kind(input_kind)
+        use_zip_pdf_recommendation = _uses_zip_pdf_recommendation(row)
+        recipe_path = (
+            PDF_MEMBER_RECOMMENDATION_RECIPE
+            if use_zip_pdf_recommendation
+            else archive_member_recipe_for_input_kind(input_kind)
+        )
         extracted_path = Path(str(row["extracted_path"]))
         route_row = {
             "schema_version": SCHEMA_VERSION,
@@ -132,7 +160,7 @@ def main() -> None:
             "filename": row["filename"],
             "file_extension": row.get("file_extension"),
             "detected_input_kind": input_kind,
-            "recommended_recipe": recipe_path,
+            "recommended_recipe": None if use_zip_pdf_recommendation else recipe_path,
             "launch_input_flag": None,
             "launch_input_path": None,
             "driver_command": [],
@@ -163,10 +191,11 @@ def main() -> None:
             f"{args.run_id or 'mixed-archive'}-{member_id}",
         )
         downstream_output_dir = output_root / downstream_run_id
-        first_downstream_artifact = _first_downstream_artifact(
+        first_downstream_artifact = _downstream_artifact(
             output_root,
             downstream_run_id,
             recipe_path,
+            stage_position="last" if use_zip_pdf_recommendation else "first",
         )
         command = build_explicit_recipe_driver_command(
             recipe_path,
@@ -206,6 +235,12 @@ def main() -> None:
             route_rows.append(route_row)
             failed_launches += 1
             continue
+
+        if use_zip_pdf_recommendation:
+            plan = load_artifact_row(first_downstream_artifact)
+            emitted_recipe = str(plan.get("recommended_recipe") or "").strip()
+            route_row["recommended_recipe"] = emitted_recipe or None
+            route_row["terminal_reason"] = "pdf_member_recommendation_only"
 
         route_row["terminal_outcome"] = "launched"
         route_rows.append(route_row)

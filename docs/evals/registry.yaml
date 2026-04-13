@@ -1584,10 +1584,11 @@ evals:
       and recommend the right maintained explicit recipe with no metadata hints?
       Tests 10 diverse PDF documents via the final `intake_plan_v1` artifact.
       Maintained direct-entry `docx` / `xlsx` / `pptx` / `web-page` / `epub`
-      / `email-eml` / `email-mbox` lanes sit outside this recommendation-only
-      automation surface. The office-family direct-entry boundary is measured
-      with `benchmarks/input/office-intake-boundary-corpus.json`; newer
-      non-office direct-entry lanes are verified through explicit scope-blocked
+      / `email-eml` / `email-mbox` / `mixed-archive` / `mixed-folder` lanes
+      sit outside this recommendation-only automation surface. The office-family
+      direct-entry boundary is measured with
+      `benchmarks/input/office-intake-boundary-corpus.json`; newer non-office
+      direct-entry lanes are verified through explicit scope-blocked
       recommendation-only probe rows.
     story_refs: ["169", "170", "171", "194", "197", "200", "201", "202", "203"]
     category_refs: ["spec:1", "spec:3", "spec:6", "spec:7", "spec:8", "spec:9"]
@@ -1813,17 +1814,18 @@ evals:
       PDF cases; this surface adds one repo-owned image-directory launch case
       (`testdata/handwritten-notes-mini-images`) without widening that separate
       benchmark. Maintained direct-entry `docx` / `xlsx` / `pptx` / `web-page`
-      / `epub` / `email-eml` / `email-mbox` lanes remain outside this
-      automation surface. The office-family direct-entry boundary is measured
-      with `benchmarks/input/office-intake-boundary-corpus.json`; newer
-      non-office direct-entry lanes are verified through explicit scope-blocked
+      / `epub` / `email-eml` / `email-mbox` / `mixed-archive` / `mixed-folder`
+      lanes remain outside this automation surface. The office-family
+      direct-entry boundary is measured with
+      `benchmarks/input/office-intake-boundary-corpus.json`; newer non-office
+      direct-entry lanes are verified through explicit scope-blocked
       approved-handoff probe rows.
-    story_refs: ["176", "178", "180", "194", "197", "200", "201", "202", "203", "205"]
+    story_refs: ["176", "178", "180", "194", "197", "200", "201", "202", "203", "205", "218"]
     category_refs: ["spec:1", "spec:3", "spec:6", "spec:7", "spec:8", "spec:9"]
     compromise_refs: ["C2"]
     spec_compromise: C2
     runner: manual
-    command: "python benchmarks/scripts/run_approved_intake_handoff_eval.py --output benchmarks/results/approved-intake-handoff-improve-eval-20260410.json --run-root output/runs/approved-intake-handoff-improve-eval-20260410"
+    command: "python benchmarks/scripts/run_approved_intake_handoff_eval.py --output benchmarks/results/approved-intake-handoff-improve-eval-20260413.json --run-root output/runs/approved-intake-handoff-improve-eval-20260413"
     golden: benchmarks/golden/approved-intake-handoff/corpus.json
 
     target:
@@ -1832,6 +1834,42 @@ evals:
       note: "All 11 approved-handoff corpus cases must stamp the expected handoff outcome; the 7 launch cases must also stamp the expected first downstream artifact."
 
     scores:
+      - model: "Current-head approved-handoff corpus rerun after Story 218 mixed-folder workflow change"
+        metrics:
+          pass_rate: 1.0
+          launched: 7
+          skipped: 4
+          failed_runs: 0
+        measured: 2026-04-13
+        git_sha: 38c78a8
+        note: >
+          Fresh rerun via
+          `python benchmarks/scripts/run_approved_intake_handoff_eval.py --output benchmarks/results/approved-intake-handoff-improve-eval-20260413.json --run-root output/runs/approved-intake-handoff-improve-eval-20260413`
+          kept the maintained 11-case surface green on current `HEAD`
+          (`38c78a8`): `pass_rate = 1.0`, `overall = 1.0`, `launched = 7`,
+          `skipped = 4`, and `failed_runs = 0`. Manual inspection in the same
+          pass reconfirmed a representative launched PDF row at
+          `output/runs/approved-intake-handoff-improve-eval-20260413/tbotb-mini/intake_handoff.jsonl`
+          plus
+          `output/runs/approved-intake-handoff-improve-eval-20260413-tbotb-mini-recipe-born-digital-pdf-marker-lite-html-mvp/01_extract_pdf_marker_lite_html_v1/pages_html.jsonl`
+          (first row HTML starts with `<h1 ...>The Brass Key`), a
+          representative explicit skip at
+          `output/runs/approved-intake-handoff-improve-eval-20260413/scanned-prose-mini/intake_handoff.jsonl`,
+          and the repo-owned image-directory launch at
+          `output/runs/approved-intake-handoff-improve-eval-20260413/handwritten-notes-mini-images/intake_handoff.jsonl`
+          plus
+          `output/runs/approved-intake-handoff-improve-eval-20260413-handwritten-notes-mini-images-recipe-images-ocr-html-mvp/01_images_dir_to_manifest_v1/pages_images_manifest.jsonl`
+          (first row points at `testdata/handwritten-notes-mini-images/page-001.png`).
+          Additional same-pass boundary probing now uses the committed corpus
+          `benchmarks/input/non-office-direct-entry-boundary-corpus.json` and
+          wrote
+          `benchmarks/results/approved-intake-handoff-direct-entry-boundary-20260413.json`
+          plus
+          `benchmarks/results/auto-book-type-detection-direct-entry-boundary-20260413.json`,
+          confirming that `web-page`, `epub`, `email-eml`, `email-mbox`,
+          `mixed-archive`, and `mixed-folder` all still block with
+          `scope_policy = direct_explicit_recipe_only` instead of silently
+          widening either automation surface.
       - model: "Current-head approved-handoff corpus rerun after direct-entry surface refresh"
         metrics:
           pass_rate: 1.0
@@ -2017,6 +2055,42 @@ evals:
           return `failure_step = scope` with
           `scope_policy = direct_explicit_recipe_only`, so no golden or scorer
           change was needed.
+      - id: "007"
+        date: 2026-04-13
+        status: succeeded
+        approach: "Current-head approved-handoff corpus refresh after Story 218 added mixed-folder input plumbing and a new archive entry surface"
+        score_before: 1.0
+        score_after: 1.0
+        note: >
+          Classification: benchmark-harness-wrong / scope-metadata stale, not
+          golden-wrong. A fresh pre-fix boundary probe on current `HEAD`
+          showed the newly maintained `mixed-archive` and `mixed-folder` entry
+          kinds still returned `scope_policy = unsupported_input_kind` even
+          though Story 205 and Story 218 had already established them as direct
+          explicit-recipe lanes. Fix: extend
+          `benchmarks/scripts/intake_scope.py`, add focused coverage in
+          `tests/test_approved_intake_handoff_benchmark.py` and
+          `tests/test_auto_book_type_detection_benchmark.py`, and commit the
+          reusable probe corpus
+          `benchmarks/input/non-office-direct-entry-boundary-corpus.json`.
+          Fresh rerun via
+          `python benchmarks/scripts/run_approved_intake_handoff_eval.py --output benchmarks/results/approved-intake-handoff-improve-eval-20260413.json --run-root output/runs/approved-intake-handoff-improve-eval-20260413`
+          then completed `11/11` maintained corpus cases with `pass_rate =
+          1.0`, `overall = 1.0`, `launched = 7`, `skipped = 4`, and
+          `failed_runs = 0` on `38c78a8`. Same-pass boundary probing via
+          `benchmarks/results/approved-intake-handoff-direct-entry-boundary-20260413.json`
+          and
+          `benchmarks/results/auto-book-type-detection-direct-entry-boundary-20260413.json`
+          confirmed `web-page`, `epub`, `email-eml`, `email-mbox`,
+          `mixed-archive`, and `mixed-folder` now all report
+          `scope_policy = direct_explicit_recipe_only`. Manual inspection in
+          the same pass covered the launched PDF row
+          `output/runs/approved-intake-handoff-improve-eval-20260413/tbotb-mini/intake_handoff.jsonl`
+          plus its first downstream HTML artifact, the explicit skip row
+          `output/runs/approved-intake-handoff-improve-eval-20260413/scanned-prose-mini/intake_handoff.jsonl`,
+          and the image-directory launch row
+          `output/runs/approved-intake-handoff-improve-eval-20260413/handwritten-notes-mini-images/intake_handoff.jsonl`
+          plus its first downstream image manifest row.
 
     retry_when:
       - condition: workflow-change

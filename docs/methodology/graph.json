@@ -138,7 +138,8 @@
           "205",
           "208",
           "210",
-          "218"
+          "218",
+          "221"
         ],
         "adr_ids": [
           "ADR-001",
@@ -411,7 +412,8 @@
           "213",
           "218",
           "219",
-          "220"
+          "220",
+          "221"
         ],
         "adr_ids": [
           "ADR-002",
@@ -472,7 +474,8 @@
           "213",
           "218",
           "219",
-          "220"
+          "220",
+          "221"
         ],
         "adr_ids": [
           "ADR-002",
@@ -544,7 +547,8 @@
           "215",
           "216",
           "217",
-          "218"
+          "218",
+          "221"
         ],
         "adr_ids": [
           "ADR-002"
@@ -591,7 +595,8 @@
           "204",
           "205",
           "207",
-          "218"
+          "218",
+          "221"
         ],
         "adr_ids": [],
         "eval_ids": [
@@ -650,7 +655,8 @@
           "203",
           "205",
           "210",
-          "218"
+          "218",
+          "221"
         ],
         "eval_ids": [
           "auto-book-type-detection",
@@ -658,21 +664,21 @@
         ],
         "actionability": {
           "source_kind": "eval",
-          "source_id": "auto-book-type-detection",
+          "source_id": "approved-intake-handoff",
           "source_path": "docs/evals/registry.yaml",
           "recommended_now": false,
           "posture": "wait-for-trigger",
           "retry_trigger_status": "waiting",
           "retry_when": [
-            "new-input-family"
+            "workflow-change"
           ],
-          "why_now": "Expand or rerun when a new maintained intake family lands, or when routing changes could regress the final `intake_plan_v1` surface.",
+          "why_now": "Rerun when `run_dispatch_v1`, supported input families, or the driver input-override plumbing changes.",
           "last_relevant_action": {
-            "date": "2026-04-10",
+            "date": "2026-04-13",
             "source_type": "eval-attempt",
             "source": "docs/evals/registry.yaml",
-            "source_id": "008",
-            "summary": "Fresh rerun via `python benchmarks/scripts/run_auto_book_type_detection_eval.py --output benchmarks/results/auto-book-type-detection-improve-eval-20260410.json --run-root output/runs/auto-book-type-detection-improve-e..."
+            "source_id": "007",
+            "summary": "Classification: benchmark-harness-wrong / scope-metadata stale, not golden-wrong. A fresh pre-fix boundary probe on current `HEAD` showed the newly maintained `mixed-archive` and `mixed-folder` entry kinds still retur..."
           },
           "story_ids": [
             "141",
@@ -711,7 +717,8 @@
             "203",
             "205",
             "210",
-            "218"
+            "218",
+            "221"
           ],
           "eval_ids": [
             "auto-book-type-detection",
@@ -1610,21 +1617,22 @@
           "202",
           "203",
           "205",
-          "218"
+          "218",
+          "221"
         ],
         "eval_ids": [],
         "actionability": {
           "source_kind": "story",
-          "source_id": "218",
-          "source_path": "docs/stories/story-218-mixed-folder-direct-entry-seam.md",
+          "source_id": "221",
+          "source_path": "docs/stories/story-221-mixed-archive-pdf-member-routing-seam.md",
           "recommended_now": false,
           "posture": "completed",
-          "why_now": "`/mark-story-done` close-out: confirmed Story 218 is complete on fresh current-pass evidence and applied the close-out bookkeeping. Fresh validation from this pass: `make lint` passed; `make test` passed (`573 passed,...",
+          "why_now": "`/mark-story-done` close-out validation confirmed Story 221 is complete on the current branch and safe to close. Fresh current-pass validation in this close-out step: `python -m pytest tests/` \u2192 `588 passed, 4 warning...",
           "last_relevant_action": {
-            "date": "2026-04-12",
+            "date": "2026-04-13",
             "source_type": "story-work-log",
-            "source": "docs/stories/story-218-mixed-folder-direct-entry-seam.md",
-            "summary": "`/mark-story-done` close-out: confirmed Story 218 is complete on fresh current-pass evidence and applied the close-out bookkeeping. Fresh validation from this pass: `make lint` passed; `make test` passed (`573 passed,..."
+            "source": "docs/stories/story-221-mixed-archive-pdf-member-routing-seam.md",
+            "summary": "`/mark-story-done` close-out validation confirmed Story 221 is complete on the current branch and safe to close. Fresh current-pass validation in this close-out step: `python -m pytest tests/` \u2192 `588 passed, 4 warning..."
           },
           "story_ids": [
             "148",
@@ -1638,7 +1646,8 @@
             "202",
             "203",
             "205",
-            "218"
+            "218",
+            "221"
           ],
           "eval_ids": []
         }
@@ -11970,6 +11979,83 @@
           "summary": "mark-story-done: closed Story 220 on fresh current-pass evidence. Validation reran `python -m ruff check modules/ tests/` (`All checks passed!`), `python -m pytest tests/` (`582 passed, 4 warnings in 664.20s`), and th..."
         }
       }
+    },
+    {
+      "id": "221",
+      "title": "Establish the First Honest Mixed-Archive PDF-Member Routing Seam",
+      "path": "docs/stories/story-221-mixed-archive-pdf-member-routing-seam.md",
+      "status": "Done",
+      "priority": "High",
+      "ideal_refs": [
+        "Requirement #1 (Ingest), Requirement #2 (Detect), Requirement #6 (Validate), Any format, any condition, Transparency over magic"
+      ],
+      "spec_refs": [
+        "spec:1",
+        "spec:1.1",
+        "spec:6",
+        "spec:7",
+        "spec:8",
+        "spec:9"
+      ],
+      "decision_refs": [
+        "`docs/ideal.md`, `docs/spec.md`, `docs/methodology/state.yaml`, `docs/methodology/graph.json`, `docs/decisions/adr-002-doc-web-runtime-boundary/adr.md`, `docs/stories/story-169-restore-contact-sheet-intake-and-benchmark-auto-book-type-detection.md`, `docs/stories/story-180-widen-approved-intake-handoff-image-directory-proof.md`, `docs/stories/story-194-office-intake-recommendation-and-handoff-boundary.md`, `docs/stories/story-196-widen-born-digital-pdf-proof-and-quality-surface.md`, `docs/stories/story-205-mixed-archive-intake-routing-seam.md`, `docs/stories/story-218-mixed-folder-direct-entry-seam.md`, `tests/fixtures/formats/_coverage-matrix.json`, `README.md`, `docs/RUNBOOK.md`, `modules/intake/intake_plan_utils.py`, `modules/intake/archive_route_members_v1/main.py`, `modules/intake/run_dispatch_v1/main.py`, `benchmarks/scripts/run_approved_intake_handoff_eval.py`, `benchmarks/scripts/run_auto_book_type_detection_eval.py`, and `None found after search in docs/decisions/`, `docs/runbooks/`, `docs/scout/`, and `docs/notes/` for a narrower mixed-archive PDF-member routing ADR or runbook`",
+        "ADR-002"
+      ],
+      "adr_ids": [
+        "ADR-002"
+      ],
+      "depends_on": [
+        "169",
+        "180",
+        "196",
+        "205",
+        "218"
+      ],
+      "category_refs": [
+        "spec:1",
+        "spec:6",
+        "spec:7",
+        "spec:8",
+        "spec:9"
+      ],
+      "compromise_refs": [
+        "B10",
+        "C2"
+      ],
+      "input_coverage_refs": [
+        "mixed-archive"
+      ],
+      "architecture_domains": [
+        "intake_and_routing"
+      ],
+      "roadmap_tags": [
+        "campaign:maintained-intake-honesty"
+      ],
+      "blocker_summary": "",
+      "blocker_evidence": "",
+      "unblock_condition": "",
+      "last_work_log_entry": {
+        "timestamp": "20260413-1027",
+        "date": "2026-04-13",
+        "summary": "`/mark-story-done` close-out validation confirmed Story 221 is complete on the current branch and safe to close. Fresh current-pass validation in this close-out step: `python -m pytest tests/` \u2192 `588 passed, 4 warning..."
+      },
+      "legacy_build_map_refs": "",
+      "metadata_source": "frontmatter",
+      "missing_frontmatter_keys": [],
+      "actionability": {
+        "source_kind": "story",
+        "source_id": "221",
+        "source_path": "docs/stories/story-221-mixed-archive-pdf-member-routing-seam.md",
+        "recommended_now": false,
+        "posture": "completed",
+        "why_now": "`/mark-story-done` close-out validation confirmed Story 221 is complete on the current branch and safe to close. Fresh current-pass validation in this close-out step: `python -m pytest tests/` \u2192 `588 passed, 4 warning...",
+        "last_relevant_action": {
+          "date": "2026-04-13",
+          "source_type": "story-work-log",
+          "source": "docs/stories/story-221-mixed-archive-pdf-member-routing-seam.md",
+          "summary": "`/mark-story-done` close-out validation confirmed Story 221 is complete on the current branch and safe to close. Fresh current-pass validation in this close-out step: `python -m pytest tests/` \u2192 `588 passed, 4 warning..."
+        }
+      }
     }
   ],
   "adrs": [
@@ -13382,7 +13468,7 @@
       "type": "compromise",
       "command": "",
       "path": "docs/evals/registry.yaml",
-      "description": "Can the maintained recommendation-only intake lane auto-detect book type and recommend the right maintained explicit recipe with no metadata hints? Tests 10 diverse PDF documents via the final `intake_plan_v1` artifact. Maintained direct-entry `docx` / `xlsx` / `pptx` / `web-page` / `epub` / `email-eml` / `email-mbox` lanes sit outside this recommendation-only automation surface. The office-family direct-entry boundary is measured with `benchmarks/input/office-intake-boundary-corpus.json`; newer non-office direct-entry lanes are verified through explicit scope-blocked recommendation-only probe rows.\n",
+      "description": "Can the maintained recommendation-only intake lane auto-detect book type and recommend the right maintained explicit recipe with no metadata hints? Tests 10 diverse PDF documents via the final `intake_plan_v1` artifact. Maintained direct-entry `docx` / `xlsx` / `pptx` / `web-page` / `epub` / `email-eml` / `email-mbox` / `mixed-archive` / `mixed-folder` lanes sit outside this recommendation-only automation surface. The office-family direct-entry boundary is measured with `benchmarks/input/office-intake-boundary-corpus.json`; newer non-office direct-entry lanes are verified through explicit scope-blocked recommendation-only probe rows.\n",
       "spec_refs": [],
       "story_refs": [
         "169",
@@ -13557,9 +13643,9 @@
       "id": "approved-intake-handoff",
       "name": "C2 Proof: Approved Intake Handoff",
       "type": "compromise",
-      "command": "python benchmarks/scripts/run_approved_intake_handoff_eval.py --output benchmarks/results/approved-intake-handoff-improve-eval-20260410.json --run-root output/runs/approved-intake-handoff-improve-eval-20260410",
+      "command": "python benchmarks/scripts/run_approved_intake_handoff_eval.py --output benchmarks/results/approved-intake-handoff-improve-eval-20260413.json --run-root output/runs/approved-intake-handoff-improve-eval-20260413",
       "path": "docs/evals/registry.yaml",
-      "description": "After `confirm_plan_v1` approves an `intake_plan_v1`, can the maintained confirmed-handoff path launch the exact approved explicit recipe without manually retyping the recipe path or source input? Driver-backed proof on a dedicated 11-case approved-handoff corpus now inspects the stamped `intake_handoff_v1` artifact for all 11 cases and the first downstream stamped artifact for the 7 launchable maintained-recipe cases. The recommendation-only `auto-book-type-detection` corpus stays locked at 10 PDF cases; this surface adds one repo-owned image-directory launch case (`testdata/handwritten-notes-mini-images`) without widening that separate benchmark. Maintained direct-entry `docx` / `xlsx` / `pptx` / `web-page` / `epub` / `email-eml` / `email-mbox` lanes remain outside this automation surface. The office-family direct-entry boundary is measured with `benchmarks/input/office-intake-boundary-corpus.json`; newer non-office direct-entry lanes are verified through explicit scope-blocked approved-handoff probe rows.\n",
+      "description": "After `confirm_plan_v1` approves an `intake_plan_v1`, can the maintained confirmed-handoff path launch the exact approved explicit recipe without manually retyping the recipe path or source input? Driver-backed proof on a dedicated 11-case approved-handoff corpus now inspects the stamped `intake_handoff_v1` artifact for all 11 cases and the first downstream stamped artifact for the 7 launchable maintained-recipe cases. The recommendation-only `auto-book-type-detection` corpus stays locked at 10 PDF cases; this surface adds one repo-owned image-directory launch case (`testdata/handwritten-notes-mini-images`) without widening that separate benchmark. Maintained direct-entry `docx` / `xlsx` / `pptx` / `web-page` / `epub` / `email-eml` / `email-mbox` / `mixed-archive` / `mixed-folder` lanes remain outside this automation surface. The office-family direct-entry boundary is measured with `benchmarks/input/office-intake-boundary-corpus.json`; newer non-office direct-entry lanes are verified through explicit scope-blocked approved-handoff probe rows.\n",
       "spec_refs": [],
       "story_refs": [
         "176",
@@ -13571,7 +13657,8 @@
         "201",
         "202",
         "203",
-        "205"
+        "205",
+        "218"
       ],
       "compromise_refs": [
         "C2"
@@ -13585,6 +13672,18 @@
         "spec:9"
       ],
       "scores": [
+        {
+          "model": "Current-head approved-handoff corpus rerun after Story 218 mixed-folder workflow change",
+          "metrics": {
+            "pass_rate": 1.0,
+            "launched": 7,
+            "skipped": 4,
+            "failed_runs": 0
+          },
+          "measured": "2026-04-13",
+          "git_sha": "38c78a8",
+          "note": "Fresh rerun via `python benchmarks/scripts/run_approved_intake_handoff_eval.py --output benchmarks/results/approved-intake-handoff-improve-eval-20260413.json --run-root output/runs/approved-intake-handoff-improve-eval-20260413` kept the maintained 11-case surface green on current `HEAD` (`38c78a8`): `pass_rate = 1.0`, `overall = 1.0`, `launched = 7`, `skipped = 4`, and `failed_runs = 0`. Manual inspection in the same pass reconfirmed a representative launched PDF row at `output/runs/approved-intake-handoff-improve-eval-20260413/tbotb-mini/intake_handoff.jsonl` plus `output/runs/approved-intake-handoff-improve-eval-20260413-tbotb-mini-recipe-born-digital-pdf-marker-lite-html-mvp/01_extract_pdf_marker_lite_html_v1/pages_html.jsonl` (first row HTML starts with `<h1 ...>The Brass Key`), a representative explicit skip at `output/runs/approved-intake-handoff-improve-eval-20260413/scanned-prose-mini/intake_handoff.jsonl`, and the repo-owned image-directory launch at `output/runs/approved-intake-handoff-improve-eval-20260413/handwritten-notes-mini-images/intake_handoff.jsonl` plus `output/runs/approved-intake-handoff-improve-eval-20260413-handwritten-notes-mini-images-recipe-images-ocr-html-mvp/01_images_dir_to_manifest_v1/pages_images_manifest.jsonl` (first row points at `testdata/handwritten-notes-mini-images/page-001.png`). Additional same-pass boundary probing now uses the committed corpus `benchmarks/input/non-office-direct-entry-boundary-corpus.json` and wrote `benchmarks/results/approved-intake-handoff-direct-entry-boundary-20260413.json` plus `benchmarks/results/auto-book-type-detection-direct-entry-boundary-20260413.json`, confirming that `web-page`, `epub`, `email-eml`, `email-mbox`, `mixed-archive`, and `mixed-folder` all still block with `scope_policy = direct_explicit_recipe_only` instead of silently widening either automation surface.\n"
+        },
         {
           "model": "Current-head approved-handoff corpus rerun after direct-entry surface refresh",
           "metrics": {
@@ -13621,16 +13720,16 @@
         }
       ],
       "latest_score": {
-        "model": "Current-head approved-handoff corpus rerun after direct-entry surface refresh",
+        "model": "Current-head approved-handoff corpus rerun after Story 218 mixed-folder workflow change",
         "metrics": {
           "pass_rate": 1.0,
           "launched": 7,
           "skipped": 4,
           "failed_runs": 0
         },
-        "measured": "2026-04-10",
-        "git_sha": "601353b",
-        "note": "Fresh rerun via `python benchmarks/scripts/run_approved_intake_handoff_eval.py --output benchmarks/results/approved-intake-handoff-improve-eval-20260410.json --run-root output/runs/approved-intake-handoff-improve-eval-20260410` kept the maintained 11-case surface green on current `HEAD` (`601353b`): `pass_rate = 1.0`, `overall = 1.0`, `launched = 7`, `skipped = 4`, and `failed_runs = 0`. Manual inspection in the same pass reconfirmed a representative launched PDF row at `output/runs/approved-intake-handoff-improve-eval-20260410/tbotb-mini/intake_handoff.jsonl` plus `output/runs/approved-intake-handoff-improve-eval-20260410-tbotb-mini-recipe-born-digital-pdf-marker-lite-html-mvp/01_extract_pdf_marker_lite_html_v1/pages_html.jsonl`, a representative explicit skip at `output/runs/approved-intake-handoff-improve-eval-20260410/scanned-prose-mini/intake_handoff.jsonl`, and the repo-owned image-directory launch at `output/runs/approved-intake-handoff-improve-eval-20260410/handwritten-notes-mini-images/intake_handoff.jsonl` plus `output/runs/approved-intake-handoff-improve-eval-20260410-handwritten-notes-mini-images-recipe-images-ocr-html-mvp/01_images_dir_to_manifest_v1/pages_images_manifest.jsonl`. Additional temporary boundary probing wrote `benchmarks/results/approved-intake-handoff-direct-entry-boundary-20260410.json`, confirming that `web-page`, `epub`, `email-eml`, and `email-mbox` still block with `scope_policy = direct_explicit_recipe_only` instead of silently widening the automation surface.\n"
+        "measured": "2026-04-13",
+        "git_sha": "38c78a8",
+        "note": "Fresh rerun via `python benchmarks/scripts/run_approved_intake_handoff_eval.py --output benchmarks/results/approved-intake-handoff-improve-eval-20260413.json --run-root output/runs/approved-intake-handoff-improve-eval-20260413` kept the maintained 11-case surface green on current `HEAD` (`38c78a8`): `pass_rate = 1.0`, `overall = 1.0`, `launched = 7`, `skipped = 4`, and `failed_runs = 0`. Manual inspection in the same pass reconfirmed a representative launched PDF row at `output/runs/approved-intake-handoff-improve-eval-20260413/tbotb-mini/intake_handoff.jsonl` plus `output/runs/approved-intake-handoff-improve-eval-20260413-tbotb-mini-recipe-born-digital-pdf-marker-lite-html-mvp/01_extract_pdf_marker_lite_html_v1/pages_html.jsonl` (first row HTML starts with `<h1 ...>The Brass Key`), a representative explicit skip at `output/runs/approved-intake-handoff-improve-eval-20260413/scanned-prose-mini/intake_handoff.jsonl`, and the repo-owned image-directory launch at `output/runs/approved-intake-handoff-improve-eval-20260413/handwritten-notes-mini-images/intake_handoff.jsonl` plus `output/runs/approved-intake-handoff-improve-eval-20260413-handwritten-notes-mini-images-recipe-images-ocr-html-mvp/01_images_dir_to_manifest_v1/pages_images_manifest.jsonl` (first row points at `testdata/handwritten-notes-mini-images/page-001.png`). Additional same-pass boundary probing now uses the committed corpus `benchmarks/input/non-office-direct-entry-boundary-corpus.json` and wrote `benchmarks/results/approved-intake-handoff-direct-entry-boundary-20260413.json` plus `benchmarks/results/auto-book-type-detection-direct-entry-boundary-20260413.json`, confirming that `web-page`, `epub`, `email-eml`, `email-mbox`, `mixed-archive`, and `mixed-folder` all still block with `scope_policy = direct_explicit_recipe_only` instead of silently widening either automation surface.\n"
       },
       "attempts": [
         {
@@ -13680,6 +13779,14 @@
           "approach": "Current-head approved-handoff corpus refresh after Stories 200-205 widened direct-entry and driver input surfaces",
           "note": "Fresh rerun via `python benchmarks/scripts/run_approved_intake_handoff_eval.py --output benchmarks/results/approved-intake-handoff-improve-eval-20260410.json --run-root output/runs/approved-intake-handoff-improve-eval-20260410` completed `11/11` maintained corpus cases with `pass_rate = 1.0`, `overall = 1.0`, `launched = 7`, `skipped = 4`, and `failed_runs = 0` on `601353b`. The newer direct-entry families remained outside the automation surface by design: temporary boundary probing in `benchmarks/results/approved-intake-handoff-direct-entry-boundary-20260410.json` confirmed `web-page`, `epub`, `email-eml`, and `email-mbox` all return `failure_step = scope` with `scope_policy = direct_explicit_recipe_only`, so no golden or scorer change was needed.\n",
           "retry_when": []
+        },
+        {
+          "id": "007",
+          "date": "2026-04-13",
+          "status": "succeeded",
+          "approach": "Current-head approved-handoff corpus refresh after Story 218 added mixed-folder input plumbing and a new archive entry surface",
+          "note": "Classification: benchmark-harness-wrong / scope-metadata stale, not golden-wrong. A fresh pre-fix boundary probe on current `HEAD` showed the newly maintained `mixed-archive` and `mixed-folder` entry kinds still returned `scope_policy = unsupported_input_kind` even though Story 205 and Story 218 had already established them as direct explicit-recipe lanes. Fix: extend `benchmarks/scripts/intake_scope.py`, add focused coverage in `tests/test_approved_intake_handoff_benchmark.py` and `tests/test_auto_book_type_detection_benchmark.py`, and commit the reusable probe corpus `benchmarks/input/non-office-direct-entry-boundary-corpus.json`. Fresh rerun via `python benchmarks/scripts/run_approved_intake_handoff_eval.py --output benchmarks/results/approved-intake-handoff-improve-eval-20260413.json --run-root output/runs/approved-intake-handoff-improve-eval-20260413` then completed `11/11` maintained corpus cases with `pass_rate = 1.0`, `overall = 1.0`, `launched = 7`, `skipped = 4`, and `failed_runs = 0` on `38c78a8`. Same-pass boundary probing via `benchmarks/results/approved-intake-handoff-direct-entry-boundary-20260413.json` and `benchmarks/results/auto-book-type-detection-direct-entry-boundary-20260413.json` confirmed `web-page`, `epub`, `email-eml`, `email-mbox`, `mixed-archive`, and `mixed-folder` now all report `scope_policy = direct_explicit_recipe_only`. Manual inspection in the same pass covered the launched PDF row `output/runs/approved-intake-handoff-improve-eval-20260413/tbotb-mini/intake_handoff.jsonl` plus its first downstream HTML artifact, the explicit skip row `output/runs/approved-intake-handoff-improve-eval-20260413/scanned-prose-mini/intake_handoff.jsonl`, and the image-directory launch row `output/runs/approved-intake-handoff-improve-eval-20260413/handwritten-notes-mini-images/intake_handoff.jsonl` plus its first downstream image manifest row.\n",
+          "retry_when": []
         }
       ],
       "retry_when": [
@@ -13701,11 +13808,11 @@
         ],
         "why_now": "Rerun when `run_dispatch_v1`, supported input families, or the driver input-override plumbing changes.",
         "last_relevant_action": {
-          "date": "2026-04-10",
+          "date": "2026-04-13",
           "source_type": "eval-attempt",
           "source": "docs/evals/registry.yaml",
-          "source_id": "006",
-          "summary": "Fresh rerun via `python benchmarks/scripts/run_approved_intake_handoff_eval.py --output benchmarks/results/approved-intake-handoff-improve-eval-20260410.json --run-root output/runs/approved-intake-handoff-improve-eval..."
+          "source_id": "007",
+          "summary": "Classification: benchmark-harness-wrong / scope-metadata stale, not golden-wrong. A fresh pre-fix boundary probe on current `HEAD` showed the newly maintained `mixed-archive` and `mixed-folder` entry kinds still retur..."
         }
       }
     },
@@ -14440,7 +14547,7 @@
         "id": "mixed-archive",
         "format_family": "mixed-archive",
         "status": "passing",
-        "description": "Bounded ZIP archives or source-native folders containing a maintained mix of direct-entry file types routed member-by-member",
+        "description": "Bounded ZIP archives or source-native folders containing a maintained mix of direct-entry file types, including one ZIP-only PDF-member recommendation probe, routed member-by-member",
         "pipeline_recipe": "recipe-mixed-archive-zip-routing-mvp.yaml / recipe-mixed-folder-routing-mvp.yaml",
         "intake_module": "archive_unpack_manifest_v1 or folder_members_manifest_v1 \u2192 archive_route_members_v1",
         "complexity": [
@@ -14454,6 +14561,12 @@
             "notes": "Supported on the first bounded maintained mixed-archive slice. Story 205 established a ZIP-only lane on one repo-owned four-member fixture with nested DOCX, plain-text `.eml`, checked HTML snapshot, and one intentionally unsupported `.txt` member. The lane emits archive/member manifest rows, launches the supported members through existing maintained direct-entry recipes, and records an explicit blocked route row for the unsupported member instead of flattening the archive into one synthetic document."
           },
           {
+            "id": "mixed-archive-pdf-mini",
+            "source": "testdata/mixed-archive-pdf-mini.zip",
+            "pages": null,
+            "notes": "Supported on the first bounded ZIP-only PDF-member continuation of the same mixed-input seam. Story 221 established one repo-owned four-member ZIP with a flat born-digital PDF member, plain-text `.eml`, checked HTML snapshot, and one intentionally unsupported `.txt` member. The lane emits archive/member manifest and route rows, launches a nested recommendation-only intake run for the PDF member, records the emitted `intake_plan_v1` artifact as `first_downstream_artifact`, and surfaces the final recommended maintained PDF recipe on the route row without silently auto-launching that final recipe."
+          },
+          {
             "id": "mixed-folder-mini",
             "source": "testdata/mixed-folder-mini",
             "pages": null,
@@ -14462,8 +14575,8 @@
         ],
         "scores": null,
         "known_gaps": [
-          "Passing evidence is still bounded to two checked-in four-member probes sharing the same member mix: one ZIP entry surface and one source-native folder entry surface, each with three launchable direct-entry members and one explicitly blocked unsupported member.",
-          "The maintained lane does not yet claim PDF-member routing, grouped image-member interpretation, nested archives, attachment extraction, ambiguous AI-assisted route decisions, or broad heterogeneous archive ownership.",
+          "Passing evidence is still bounded to three checked-in four-member probes: one ZIP entry surface with direct-entry DOCX / `.eml` / HTML launches, one ZIP PDF-member recommendation surface with `.eml` / HTML launches plus a member-local `intake_plan_v1` artifact for the PDF member, and one source-native folder entry surface on the original DOCX / `.eml` / HTML / `.txt` mix.",
+          "The maintained lane does not yet claim direct-folder PDF-member parity, archive-contained approved handoff or final maintained PDF launch, grouped image-member interpretation, nested archives, attachment extraction, ambiguous AI-assisted route decisions, or broad heterogeneous archive ownership.",
           "Mixed-archive provenance currently relies on relative `member_path` / `member_id`, source-native or extracted member file paths depending on the entry surface, and downstream run ids or artifact paths; it does not flatten members into one combined bundle or claim archive-level page anchors."
         ],
         "graduated": false
@@ -14596,7 +14709,7 @@
     },
     "coverage_matrix": {
       "path": "tests/fixtures/formats/_coverage-matrix.json",
-      "last_reviewed": "2026-04-09",
+      "last_reviewed": "2026-04-13",
       "notes": "Canonical machine-readable input-coverage surface. The methodology compiler reads this directly instead of duplicating its rows inside state.yaml."
     },
     "roadmap": {
@@ -14621,9 +14734,10 @@
             "203",
             "205",
             "208",
-            "218"
+            "218",
+            "221"
           ],
-          "notes": "Recent bounded proof and direct-entry expansions are done; Story 205 closed the first ZIP-only mixed-archive routing seam as bounded maintained evidence, Story 218 widened that same seam to one checked-in source-native folder probe, and Story 208 closed the bounded stronger-OCR benchmark line for the handwritten blocker with negative evidence. Keep Story 191 blocked until a later pass produces fresh current-pass evidence for a materially stronger OCR substrate, and treat Stories 205 and 218 as proof for two explicit member-routing entry surfaces rather than broad archive or folder ownership."
+          "notes": "Recent bounded proof and direct-entry expansions are done; Story 205 closed the first ZIP-only mixed-archive routing seam as bounded maintained evidence, Story 218 widened that same seam to one checked-in source-native folder probe, Story 221 extended the ZIP seam to one checked-in PDF-member recommendation probe, and Story 208 closed the bounded stronger-OCR benchmark line for the handwritten blocker with negative evidence. Keep Story 191 blocked until a later pass produces fresh current-pass evidence for a materially stronger OCR substrate, and treat Stories 205, 218, and 221 as proof for one ZIP direct-entry mix, one source-native folder mix, and one ZIP-only PDF-member recommendation slice rather than broad archive or folder ownership."
         }
       ]
     },
@@ -14632,7 +14746,7 @@
         {
           "id": "recommended-order",
           "title": "Recommended Order",
-          "markdown": "Guiding priorities: keep bounded intake + `doc-web` claims honest and widen reusable format coverage only when substrate and proof exist.\n\nUse `docs/methodology/graph.json`, `docs/methodology/state.yaml`, and `/triage` output for current sequencing. Story `205` now stands as the completed bounded proof for the first `mixed-archive` ZIP seam; use it as evidence for archive-member manifest/member-route behavior on the checked-in fixture, not as a blanket archive-support claim. Story `208` closed the bounded stronger-OCR benchmark line for the handwritten blocker with negative evidence, so Story `191` remains blocked until a later pass proves a materially stronger OCR substrate. Historical Fighting Fantasy/gamebook stories remain in the index below as project record and reference evidence, not as the default mission queue."
+          "markdown": "Guiding priorities: keep bounded intake + `doc-web` claims honest and widen reusable format coverage only when substrate and proof exist.\n\nUse `docs/methodology/graph.json`, `docs/methodology/state.yaml`, and `/triage` output for current sequencing. Story `205` now stands as the completed bounded proof for the first `mixed-archive` ZIP seam, and Story `221` is the bounded ZIP-only PDF-member recommendation continuation on that same archive lane; use both as evidence for the specific checked-in fixtures and emitted member-route artifacts, not as blanket archive-support claims. Story `208` closed the bounded stronger-OCR benchmark line for the handwritten blocker with negative evidence, so Story `191` remains blocked until a later pass proves a materially stronger OCR substrate. Historical Fighting Fantasy/gamebook stories remain in the index below as project record and reference evidence, not as the default mission queue."
         }
       ],
       "uncategorized_label": "Legacy / Uncategorized Stories"
@@ -14660,15 +14774,16 @@
           "label": "Intake and Routing",
           "manual_priority": "medium",
           "last_audited_at": "2026-04-09",
-          "stories_since_audit": 2,
+          "stories_since_audit": 3,
           "recent_story_refs": [
             "194",
             "200",
             "205",
-            "218"
+            "218",
+            "221"
           ],
           "open_findings": [],
-          "notes": "Story 194 fixed the office recommendation boundary, Story 200 added the first web-page direct-entry seam, Story 205 closed the first ZIP-only mixed-archive routing slice, and Story 218 widened that same bounded member-routing seam to one checked-in source-native folder fixture. The maintained substrate now covers one ZIP probe plus one direct-folder probe on the same four-member mix, while PDF/image-member routing and broader archive semantics remain intentionally out of scope until separately proven."
+          "notes": "Story 194 fixed the office recommendation boundary, Story 200 added the first web-page direct-entry seam, Story 205 closed the first ZIP-only mixed-archive routing slice, Story 218 widened that same bounded member-routing seam to one checked-in source-native folder fixture, and Story 221 added one checked-in ZIP-only PDF-member recommendation probe. The maintained substrate now covers one ZIP direct-entry mix, one ZIP PDF-member recommendation mix, and one direct-folder probe; direct-folder PDF-member routing, archive-contained approved handoff or final PDF launch, grouped image-member routing, and broader archive semantics remain intentionally out of scope until separately proven."
         },
         "ocr_and_extraction": {
           "label": "OCR and Extraction",

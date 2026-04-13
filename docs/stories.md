@@ -6,11 +6,11 @@
 
 Guiding priorities: keep bounded intake + `doc-web` claims honest and widen reusable format coverage only when substrate and proof exist.
 
-Use `docs/methodology/graph.json`, `docs/methodology/state.yaml`, and `/triage` output for current sequencing. Story `205` now stands as the completed bounded proof for the first `mixed-archive` ZIP seam; use it as evidence for archive-member manifest/member-route behavior on the checked-in fixture, not as a blanket archive-support claim. Story `208` closed the bounded stronger-OCR benchmark line for the handwritten blocker with negative evidence, so Story `191` remains blocked until a later pass proves a materially stronger OCR substrate. Historical Fighting Fantasy/gamebook stories remain in the index below as project record and reference evidence, not as the default mission queue.
+Use `docs/methodology/graph.json`, `docs/methodology/state.yaml`, and `/triage` output for current sequencing. Story `205` now stands as the completed bounded proof for the first `mixed-archive` ZIP seam, and Story `221` is the bounded ZIP-only PDF-member recommendation continuation on that same archive lane; use both as evidence for the specific checked-in fixtures and emitted member-route artifacts, not as blanket archive-support claims. Story `208` closed the bounded stronger-OCR benchmark line for the handwritten blocker with negative evidence, so Story `191` remains blocked until a later pass proves a materially stronger OCR substrate. Historical Fighting Fantasy/gamebook stories remain in the index below as project record and reference evidence, not as the default mission queue.
 
 ## Active Focus
 
-- Campaign `maintained-intake-honesty` (active; stories: 191, 196, 197, 200, 201, 202, 203, 205, 208, 218) — Recent bounded proof and direct-entry expansions are done; Story 205 closed the first ZIP-only mixed-archive routing seam as bounded maintained evidence, Story 218 widened that same seam to one checked-in source-native folder probe, and Story 208 closed the bounded stronger-OCR benchmark line for the handwritten blocker with negative evidence. Keep Story 191 blocked until a later pass produces fresh current-pass evidence for a materially stronger OCR substrate, and treat Stories 205 and 218 as proof for two explicit member-routing entry surfaces rather than broad archive or folder ownership.
+- Campaign `maintained-intake-honesty` (active; stories: 191, 196, 197, 200, 201, 202, 203, 205, 208, 218, 221) — Recent bounded proof and direct-entry expansions are done; Story 205 closed the first ZIP-only mixed-archive routing seam as bounded maintained evidence, Story 218 widened that same seam to one checked-in source-native folder probe, Story 221 extended the ZIP seam to one checked-in PDF-member recommendation probe, and Story 208 closed the bounded stronger-OCR benchmark line for the handwritten blocker with negative evidence. Keep Story 191 blocked until a later pass produces fresh current-pass evidence for a materially stronger OCR substrate, and treat Stories 205, 218, and 221 as proof for one ZIP direct-entry mix, one source-native folder mix, and one ZIP-only PDF-member recommendation slice rather than broad archive or folder ownership.
 
 ## Index
 
@@ -61,6 +61,7 @@ Grouped by primary `spec:N` category. Stories without category refs remain in an
 | 208 | Benchmark GLM-OCR on the Handwritten Blocker and a Table-Heavy Scanned Seam | High | Done | 192, 206 | [story-208](stories/story-208-glm-ocr-benchmark-for-handwritten-and-table-heavy-seams.md) |
 | 210 | Widen Scanned-Prose Proof Beyond the Clean Synthetic Fixture | High | Done | 167 | [story-210](stories/story-210-degraded-scanned-prose-proof-lane.md) |
 | 218 | Establish the First Honest Mixed-Folder Direct-Entry Seam | High | Done | 205 | [story-218](stories/story-218-mixed-folder-direct-entry-seam.md) |
+| 221 | Establish the First Honest Mixed-Archive PDF-Member Routing Seam | High | Done | 169, 180, 196, 205, 218 | [story-221](stories/story-221-mixed-archive-pdf-member-routing-seam.md) |
 
 ### spec:2 — OCR & Text Extraction
 

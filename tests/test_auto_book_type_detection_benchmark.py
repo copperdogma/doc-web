@@ -37,6 +37,18 @@ def test_auto_book_type_detection_corpus_stays_pdf_only():
             "direct_explicit_recipe_only",
         ),
         (
+            "mixed-archive",
+            "testdata/mixed-archive-mini.zip",
+            "outside_recommendation_only_intake:mixed-archive:direct_explicit_recipe_only",
+            "direct_explicit_recipe_only",
+        ),
+        (
+            "mixed-folder",
+            "testdata/mixed-folder-mini",
+            "outside_recommendation_only_intake:mixed-folder:direct_explicit_recipe_only",
+            "direct_explicit_recipe_only",
+        ),
+        (
             "epub",
             "testdata/epub-mini.epub",
             "outside_recommendation_only_intake:epub:direct_explicit_recipe_only",

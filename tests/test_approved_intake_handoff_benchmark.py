@@ -134,6 +134,18 @@ def test_approved_intake_handoff_corpus_stays_within_supported_scope():
             "direct_explicit_recipe_only",
         ),
         (
+            "mixed-archive",
+            "testdata/mixed-archive-mini.zip",
+            "outside_approved_intake_handoff:mixed-archive:direct_explicit_recipe_only",
+            "direct_explicit_recipe_only",
+        ),
+        (
+            "mixed-folder",
+            "testdata/mixed-folder-mini",
+            "outside_approved_intake_handoff:mixed-folder:direct_explicit_recipe_only",
+            "direct_explicit_recipe_only",
+        ),
+        (
             "epub",
             "testdata/epub-mini.epub",
             "outside_approved_intake_handoff:epub:direct_explicit_recipe_only",
