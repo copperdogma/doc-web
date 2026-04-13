@@ -35,6 +35,10 @@ _GENEALOGY_CONTEXT_LINE_RE = re.compile(
     r"(?:Great\s+Great\s+Grandchildren|Great\s+Grandchildren|Grandchildren|Children)\b"
 )
 _GENEALOGY_SUMMARY_LABELS = ("TOTAL DESCENDANTS", "LIVING", "DECEASED")
+_GENEALOGY_CHILD_NOTE_RE = re.compile(
+    r"\b(?:born|boys?|girls?|child(?:ren)?|was born|to\b|infants?\s+died|\d+\s+(?:months?|years?)\s+old|infant)\b",
+    re.IGNORECASE,
+)
 
 
 def _normalize_ws(text: str) -> str:
@@ -398,6 +402,13 @@ def _looks_like_death_value(text: str) -> bool:
     return bool(re.search(r"\d{4}", normalized) and not re.fullmatch(r"\d+", normalized))
 
 
+def _looks_like_child_note_value(text: str) -> bool:
+    normalized = _normalize_ws(text)
+    if not normalized:
+        return False
+    return bool(_GENEALOGY_CHILD_NOTE_RE.search(normalized) or re.match(r"^\d+\s*[-A-Za-z]", normalized))
+
+
 def _normalize_genealogy_body_rows(table: Any, soup: BeautifulSoup) -> None:
     tbody = table.find("tbody", recursive=False)
     rows = list(tbody.find_all("tr", recursive=False)) if tbody is not None else list(table.find_all("tr", recursive=False))
@@ -458,7 +469,7 @@ def _normalize_genealogy_body_rows(table: Any, soup: BeautifulSoup) -> None:
                 girl_text = nums[1]
                 died_text = ""
 
-        if girl_text and not died_text and _looks_like_death_value(girl_text):
+        if girl_text and not died_text and _looks_like_death_value(girl_text) and not _looks_like_child_note_value(girl_text):
             girl_cell.clear()
             died_cell.clear()
             died_cell.append(girl_text)

@@ -1,3 +1,5 @@
+from bs4 import BeautifulSoup
+
 from modules.adapter.table_rescue_onward_tables_v1.main import (
     _normalize_rescue_html_for_chapter_merge,
     _normalize_rescue_html,
@@ -216,6 +218,14 @@ ALMA_INLINE_FAMILY_ROWS = """
 """
 
 
+THERESE_CHILD_NOTE_IN_GIRL = f"""
+<table>
+  {HEADER}
+  <tr><td>Therese</td><td>, 1925</td><td></td><td></td><td></td><td>6 months old</td><td></td></tr>
+</table>
+"""
+
+
 def test_accepts_candidate_when_family_child_rows_are_recovered():
     accepted, reason, existing_quality, candidate_quality = _should_accept_rescue(
         ARTHUR_HEADING_ONLY,
@@ -346,3 +356,15 @@ def test_chapter_merge_normalizer_keeps_inline_family_rows_inside_genealogy_tabl
     assert chapter_safe_quality.table_count == 1
     assert chapter_safe_quality.inline_family_heading_count == 2
     assert "<h2>" not in chapter_safe
+
+
+def test_chapter_merge_normalizer_keeps_child_note_age_text_out_of_died():
+    chapter_safe = _normalize_rescue_html_for_chapter_merge(THERESE_CHILD_NOTE_IN_GIRL)
+    soup = BeautifulSoup(chapter_safe, "html.parser")
+    row = next(
+        tr for tr in soup.find_all("tr")
+        if "Therese" in tr.get_text(" ", strip=True)
+    )
+    cells = [cell.get_text(" ", strip=True) for cell in row.find_all(["td", "th"], recursive=False)]
+
+    assert cells == ["Therese", ", 1925", "", "", "", "6 months old", ""]

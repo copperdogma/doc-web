@@ -70,6 +70,7 @@ VALIDATOR_ISSUE_TYPES = {
     "onward_reviewed_golden_structure_regression",
 }
 PLANNER_ISSUE_TYPE = "document_consistency_planning_issue"
+ROW_SEMANTIC_CLUSTER_AUGMENT_ISSUES = {"child_note_in_wrong_column"}
 CHAPTER_BASENAME_RE = re.compile(r"chapter-(\d+)\.html$", re.IGNORECASE)
 
 
@@ -442,13 +443,13 @@ def _augment_explicit_planner_pages(
 
     best_cluster = _pick_best_planner_cluster(scored_pages, target_mode=target_mode)
     explicit_set = set(explicit_pages)
-    if explicit_set.intersection(best_cluster):
+    extras = [page for page in best_cluster if page not in explicit_set]
+    if explicit_set.intersection(best_cluster) and not (set(issue_types or []) & ROW_SEMANTIC_CLUSTER_AUGMENT_ISSUES and extras):
         notes = []
         if missing_pages:
             notes.append(f"Source pages missing from current page_html artifact: {', '.join(str(value) for value in missing_pages)}")
         return explicit_pages, notes
 
-    extras = [page for page in best_cluster if page not in explicit_set]
     if not extras:
         notes = []
         if missing_pages:
@@ -456,10 +457,16 @@ def _augment_explicit_planner_pages(
         return explicit_pages, notes
 
     combined = sorted(set(explicit_pages + extras))
-    notes = [
-        "Planner relevant_pages were augmented with source-page signals from the same chapter to catch nearby fragmentation the planner only cited indirectly.",
-        f"Added pages: {', '.join(_describe_selected_scored_pages(extras, scored_pages=scored_pages))}",
-    ]
+    if set(issue_types or []) & ROW_SEMANTIC_CLUSTER_AUGMENT_ISSUES:
+        notes = [
+            "Planner relevant_pages were augmented with neighboring source-page signals because the same row-semantic note-placement defect can continue across the best scored table-page cluster.",
+            f"Added pages: {', '.join(_describe_selected_scored_pages(extras, scored_pages=scored_pages))}",
+        ]
+    else:
+        notes = [
+            "Planner relevant_pages were augmented with source-page signals from the same chapter to catch nearby fragmentation the planner only cited indirectly.",
+            f"Added pages: {', '.join(_describe_selected_scored_pages(extras, scored_pages=scored_pages))}",
+        ]
     if missing_pages:
         notes.append(f"Source pages missing from current page_html artifact: {', '.join(str(value) for value in missing_pages)}")
     return combined, notes

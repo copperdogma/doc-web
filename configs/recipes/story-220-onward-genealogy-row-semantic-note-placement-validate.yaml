@@ -1,0 +1,137 @@
+# Story 220 proof recipe.
+# Reuses the maintained `onward-book-r1` artifacts from the shared project
+# output root, freezes the current row-semantic baseline on the maintained
+# genealogy seam, applies the bounded structured repair harness only to the
+# two live row-semantic chapters, then rebuilds and re-measures the planner.
+
+stages:
+  - id: load_pages
+    stage: extract
+    module: load_artifact_v1
+    out: pages_html_onward_tables.jsonl
+    params:
+      path: output/runs/onward-book-r1/06_table_rescue_onward_tables_v1/pages_html_onward_tables.jsonl
+      out: pages_html_onward_tables.jsonl
+      schema_version: page_html_v1
+
+  - id: load_portions
+    stage: extract
+    module: load_artifact_v1
+    out: portions_toc.jsonl
+    params:
+      path: output/runs/onward-book-r1/07_portionize_toc_html_v1/portions_toc.jsonl
+      out: portions_toc.jsonl
+      schema_version: portion_hyp_v1
+
+  - id: load_crops
+    stage: extract
+    module: load_artifact_v1
+    out: illustration_manifest.jsonl
+    params:
+      path: output/runs/onward-book-r1/03_crop_illustrations_guided_v1/illustration_manifest.jsonl
+      out: illustration_manifest.jsonl
+      copy_sibling_dir: images
+
+  - id: build_chapters_before
+    stage: build
+    module: build_chapter_html_v1
+    needs: [load_pages, load_portions, load_crops]
+    inputs:
+      pages: load_pages
+      portions: load_portions
+      illustration_manifest: load_crops
+    out: chapters_manifest_before.jsonl
+    params:
+      images_subdir: images
+      book_title: "Onward to the Unknown"
+      book_author: ""
+      merge_contiguous_genealogy_tables: true
+
+  - id: plan_document_consistency_before
+    stage: validate
+    module: plan_onward_document_consistency_v1
+    needs: [load_pages, build_chapters_before]
+    inputs:
+      pages: load_pages
+      chapters: build_chapters_before
+    out: document_consistency_report_before.jsonl
+    params:
+      model: gpt-4.1
+      pattern_inventory: pattern_inventory_before.json
+      consistency_plan: consistency_plan_before.json
+      conformance_report: conformance_report_before.json
+      dossier_report: document_consistency_dossier_before.json
+
+  - id: repair_genealogy_pages_structured
+    stage: transform
+    module: repair_onward_genealogy_structured_v1
+    needs: [load_pages, plan_document_consistency_before]
+    inputs:
+      pages: load_pages
+      consistency: plan_document_consistency_before
+    out: pages_html_after_structured_repair.jsonl
+    params:
+      model: gpt-4.1
+      target_mode: strong
+      page_context_window: 1
+      max_pages: 5
+      chapter_allowlist: chapter-009.html,chapter-022.html
+      page_allowlist: 23,24,25,26,111
+      planner_status_allowlist: row_semantic_issue
+      pattern_inventory: pattern_inventory_before.json
+      consistency_plan: consistency_plan_before.json
+      conformance_report: conformance_report_before.json
+      report: structured_onward_genealogy_report.jsonl
+      summary_report: structured_onward_genealogy_summary.json
+      structured_sidecar: structured_onward_genealogy_sidecar.jsonl
+      structured_hints: |
+        - The active issue type is child_note_in_wrong_column.
+        - Never leave child, grandchild, descendant-count, or infant-age notes in the DIED column unless the source explicitly states death or deceased status.
+        - Move child-related notes back into BOY or GIRL when they describe children or descendants, or keep them with the person's BORN or MARRIED cells only when the source clearly presents them as a birth or marriage note for that row.
+        - Preserve exact tokens such as child names, counts, and age phrases while relocating them to the correct semantic cell.
+        - Keep subgroup headings and repeated table structure intact; solve the note-placement defect without flattening the genealogy table.
+
+  - id: build_chapters_after_structured_repair
+    stage: build
+    module: build_chapter_html_v1
+    needs: [repair_genealogy_pages_structured, load_portions, load_crops]
+    inputs:
+      pages: repair_genealogy_pages_structured
+      portions: load_portions
+      illustration_manifest: load_crops
+    out: chapters_manifest_after_structured_repair.jsonl
+    params:
+      images_subdir: images
+      book_title: "Onward to the Unknown"
+      book_author: ""
+      merge_contiguous_genealogy_tables: true
+
+  - id: validate_genealogy_consistency_after_structured_repair
+    stage: validate
+    module: validate_onward_genealogy_consistency_v1
+    needs: [build_chapters_after_structured_repair, repair_genealogy_pages_structured, load_portions]
+    inputs:
+      chapters: build_chapters_after_structured_repair
+      pages: repair_genealogy_pages_structured
+      portions: load_portions
+    out: genealogy_consistency_report_after_structured_repair.jsonl
+    params:
+      detail_report: genealogy_consistency_detail_after_structured_repair.json
+      flag_threshold: 25
+      warning_band: 0.25
+      redesign_band: 0.30
+
+  - id: plan_document_consistency_after_structured_repair
+    stage: validate
+    module: plan_onward_document_consistency_v1
+    needs: [repair_genealogy_pages_structured, build_chapters_after_structured_repair]
+    inputs:
+      pages: repair_genealogy_pages_structured
+      chapters: build_chapters_after_structured_repair
+    out: document_consistency_report_after_structured_repair.jsonl
+    params:
+      model: gpt-4.1
+      pattern_inventory: pattern_inventory_after_structured_repair.json
+      consistency_plan: consistency_plan_after_structured_repair.json
+      conformance_report: conformance_report_after_structured_repair.json
+      dossier_report: document_consistency_dossier_after_structured_repair.json

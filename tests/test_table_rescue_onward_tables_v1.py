@@ -19,13 +19,34 @@ class _DummyResponses:
         return SimpleNamespace(output_text="<p>ok</p>", usage=None, id="resp_test")
 
 
+class _DummyChatCompletions:
+    def __init__(self):
+        self.calls = []
+
+    def create(self, **kwargs):
+        self.calls.append(kwargs)
+        return SimpleNamespace(
+            choices=[SimpleNamespace(message=SimpleNamespace(content="<p>chat ok</p>"))],
+            usage=None,
+            id="chat_test",
+        )
+
+
+class _DummyChat:
+    def __init__(self):
+        self.completions = _DummyChatCompletions()
+
+
 class _DummyOpenAI:
     responses_instance = None
+    chat_instance = None
 
     def __init__(self, timeout=None):
         self.timeout = timeout
         self.responses = _DummyResponses()
+        self.chat = _DummyChat()
         _DummyOpenAI.responses_instance = self.responses
+        _DummyOpenAI.chat_instance = self.chat
 
 
 def test_call_ocr_omits_temperature_for_gpt5_models(monkeypatch):
@@ -64,10 +85,11 @@ def test_call_ocr_keeps_temperature_for_non_gpt5_models(monkeypatch):
         30.0,
     )
 
-    call = _DummyOpenAI.responses_instance.calls[0]
+    assert _DummyOpenAI.responses_instance.calls == []
+    call = _DummyOpenAI.chat_instance.completions.calls[0]
     assert call["model"] == "gpt-4.1"
     assert call["temperature"] == 0.0
-    assert call["max_output_tokens"] == 512
+    assert call["max_tokens"] == 512
 
 
 def test_call_ocr_includes_custom_user_text(monkeypatch):
@@ -86,8 +108,8 @@ def test_call_ocr_includes_custom_user_text(monkeypatch):
         user_text="Return only HTML.\n<current-html><p>broken</p></current-html>",
     )
 
-    call = _DummyOpenAI.responses_instance.calls[0]
-    assert "current-html" in call["input"][1]["content"][0]["text"]
+    call = _DummyOpenAI.chat_instance.completions.calls[0]
+    assert "current-html" in call["messages"][1]["content"][0]["text"]
 
 
 def test_build_user_text_truncates_context():

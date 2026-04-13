@@ -211,7 +211,9 @@
           "214",
           "215",
           "216",
-          "217"
+          "217",
+          "219",
+          "220"
         ],
         "adr_ids": [
           "ADR-001",
@@ -221,7 +223,8 @@
           "ocr-model-genealogy",
           "handwritten-notes-transcription",
           "onward-table-fidelity",
-          "onward-document-consistency-planning"
+          "onward-document-consistency-planning",
+          "onward-genealogy-row-semantic-note-placement"
         ]
       },
       {
@@ -269,7 +272,9 @@
           "202",
           "203",
           "206",
-          "213"
+          "213",
+          "219",
+          "220"
         ],
         "adr_ids": [
           "ADR-002",
@@ -277,6 +282,8 @@
         ],
         "eval_ids": [
           "ocr-model-genealogy",
+          "onward-document-consistency-planning",
+          "onward-genealogy-row-semantic-note-placement",
           "auto-book-type-detection",
           "approved-intake-handoff",
           "layout-section-splitting",
@@ -344,7 +351,9 @@
           "162",
           "163",
           "164",
-          "206"
+          "206",
+          "219",
+          "220"
         ],
         "adr_ids": [
           "ADR-001",
@@ -352,7 +361,8 @@
           "ADR-003"
         ],
         "eval_ids": [
-          "onward-document-consistency-planning"
+          "onward-document-consistency-planning",
+          "onward-genealogy-row-semantic-note-placement"
         ]
       },
       {
@@ -399,13 +409,17 @@
           "205",
           "206",
           "213",
-          "218"
+          "218",
+          "219",
+          "220"
         ],
         "adr_ids": [
           "ADR-002",
           "ADR-003"
         ],
         "eval_ids": [
+          "onward-document-consistency-planning",
+          "onward-genealogy-row-semantic-note-placement",
           "auto-book-type-detection",
           "approved-intake-handoff",
           "layout-section-splitting",
@@ -456,13 +470,17 @@
           "205",
           "206",
           "213",
-          "218"
+          "218",
+          "219",
+          "220"
         ],
         "adr_ids": [
           "ADR-002",
           "ADR-003"
         ],
         "eval_ids": [
+          "onward-document-consistency-planning",
+          "onward-genealogy-row-semantic-note-placement",
           "auto-book-type-detection",
           "approved-intake-handoff",
           "born-digital-pdf-quality-surface"
@@ -750,7 +768,9 @@
           "214",
           "215",
           "216",
-          "217"
+          "217",
+          "219",
+          "220"
         ],
         "eval_ids": [
           "ocr-model-genealogy",
@@ -816,7 +836,9 @@
             "214",
             "215",
             "216",
-            "217"
+            "217",
+            "219",
+            "220"
           ],
           "eval_ids": [
             "ocr-model-genealogy",
@@ -929,7 +951,9 @@
           "202",
           "203",
           "206",
-          "213"
+          "213",
+          "219",
+          "220"
         ],
         "eval_ids": [
           "layout-section-splitting",
@@ -986,7 +1010,9 @@
             "202",
             "203",
             "206",
-            "213"
+            "213",
+            "219",
+            "220"
           ],
           "eval_ids": [
             "layout-section-splitting",
@@ -1126,29 +1152,32 @@
           "162",
           "163",
           "164",
-          "206"
+          "206",
+          "219",
+          "220"
         ],
         "eval_ids": [
-          "onward-document-consistency-planning"
+          "onward-document-consistency-planning",
+          "onward-genealogy-row-semantic-note-placement"
         ],
         "actionability": {
           "source_kind": "eval",
-          "source_id": "onward-document-consistency-planning",
+          "source_id": "onward-genealogy-row-semantic-note-placement",
           "source_path": "docs/evals/registry.yaml",
           "recommended_now": false,
-          "posture": "trigger-exhausted",
-          "retry_trigger_status": "exhausted",
+          "posture": "wait-for-trigger",
+          "retry_trigger_status": "waiting",
           "retry_when": [
             "architecture-change",
             "new-approach"
           ],
-          "why_now": "Direct-HTML plan-aware reruns plateaued on Onward; the next experiment is a structured/row-oriented repair target or a second repeated-structure document. If the structured repair target lands, re-measure whether the...",
+          "why_now": "Retry when a broader maintained row-semantic note class appears that the current subordinate-note policy does not cover. Re-measure if planner issue typing, structured-repair rendering, or the late genealogy HTML norm...",
           "last_relevant_action": {
-            "date": "2026-03-15",
+            "date": "2026-04-13",
             "source_type": "eval-attempt",
             "source": "docs/evals/registry.yaml",
-            "source_id": "003",
-            "summary": "Driver run `story146-onward-plan-aware-genealogy-reruns-r1` proved the emitted planning artifacts are actionable input to the rerun stage and preserved the mixed/conformant guardrails, but direct-HTML reruns only redu..."
+            "source_id": "001",
+            "summary": "Early proof runs exposed three blockers in sequence: OpenAI Responses scopes on `gpt-5`, target truncation after widening the relevant page cluster, and note-placement regressions from structured `DIED` cells plus sha..."
           },
           "story_ids": [
             "145",
@@ -1165,10 +1194,13 @@
             "162",
             "163",
             "164",
-            "206"
+            "206",
+            "219",
+            "220"
           ],
           "eval_ids": [
-            "onward-document-consistency-planning"
+            "onward-document-consistency-planning",
+            "onward-genealogy-row-semantic-note-placement"
           ]
         }
       },
@@ -11789,6 +11821,155 @@
           "summary": "`/mark-story-done` close-out: confirmed Story 218 is complete on fresh current-pass evidence and applied the close-out bookkeeping. Fresh validation from this pass: `make lint` passed; `make test` passed (`573 passed,..."
         }
       }
+    },
+    {
+      "id": "219",
+      "title": "Establish a Structured Onward Genealogy Repair Target",
+      "path": "docs/stories/story-219-onward-structured-genealogy-repair-target.md",
+      "status": "Blocked",
+      "priority": "High",
+      "ideal_refs": [
+        "Requirement #3 (Extract), Requirement #5 (Structure), Requirement #6 (Validate), Requirement #7 (Export), Fidelity to Source, Traceability is the product, Dossier-ready output"
+      ],
+      "spec_refs": [
+        "spec:2.1",
+        "spec:3.1",
+        "spec:5.1"
+      ],
+      "decision_refs": [
+        "`docs/ideal.md`, `docs/spec.md`, `docs/methodology/state.yaml`, `docs/methodology/graph.json`, `docs/decisions/adr-001-source-aware-consistency-strategy/adr.md`, `docs/decisions/adr-002-doc-web-runtime-boundary/adr.md`, `docs/runbooks/document-consistency-planning.md`, `docs/evals/registry.yaml`, `tests/fixtures/formats/_coverage-matrix.json`, `docs/stories/story-144-onward-document-level-genealogy-consistency-planning.md`, `docs/stories/story-146-onward-plan-aware-genealogy-reruns.md`, `docs/stories/story-206-onward-full-book-regression-recovery.md`, and `None found after search in docs/scout/ and docs/notes/ for a narrower structured-repair ADR or runbook beyond ADR-001 and the current Onward story chain`",
+        "ADR-001",
+        "ADR-002"
+      ],
+      "adr_ids": [
+        "ADR-001",
+        "ADR-002"
+      ],
+      "depends_on": [
+        "146",
+        "206"
+      ],
+      "category_refs": [
+        "spec:2",
+        "spec:3",
+        "spec:5",
+        "spec:6",
+        "spec:7"
+      ],
+      "compromise_refs": [
+        "C1",
+        "C3",
+        "C7"
+      ],
+      "input_coverage_refs": [
+        "scanned-pdf-tables"
+      ],
+      "architecture_domains": [
+        "doc_web_runtime",
+        "document_structure_and_consistency"
+      ],
+      "roadmap_tags": [
+        "campaign:maintained-intake-honesty"
+      ],
+      "blocker_summary": "Fresh Story 219 validation on the maintained `onward-book-r1` seam no longer\nexposes any `format_drift` chapters, so the new structured repair lane has zero\nplanner-selected pages to process. The current maintained truth is two\n`row_semantic_issue` chapters (`chapter-009.html`, `chapter-022.html`) plus\n`chapter-023.html` conformant, not the old Story 146 pure-format plateau.",
+      "blocker_evidence": "- `output/runs/story219-onward-structured-repair-r1/05_plan_onward_document_consistency_v1/conformance_report_before.json`\n  reports `format_drift_chapters: []`, `row_semantic_issue_chapters:\n  [\"chapter-009.html\", \"chapter-022.html\"]`, and `chapter-023.html`\n  conformant before any direct-HTML rerun.\n- `output/runs/story219-onward-structured-repair-r1/06_rerun_onward_genealogy_consistency_v1/rerun_onward_genealogy_summary.json`\n  reports `targeted_page_count: 0`, so the direct-HTML control path had no\n  remaining planner-selected format-drift pages either.\n- `output/runs/story219-onward-structured-repair-r1/09_repair_onward_genealogy_structured_v1/structured_onward_genealogy_summary.json`\n  likewise reports `targeted_page_count: 0`, which means the new structured lane\n  is implemented but cannot be exercised honestly on the current maintained seam.\n- Manual artifact inspection confirms the planner's remaining issues are\n  row-semantic, not pure-format:\n  `output/runs/story219-onward-structured-repair-r1/output/html/chapter-022.html`\n  still contains `Therese | , 1925 | ... | 6 months old`, and\n  `output/runs/story219-onward-structured-repair-r1/output/html/chapter-009.html`\n  still contains `Lana ... | 1-Kassandra`, while\n  `output/runs/story219-onward-structured-repair-r1/output/html/chapter-023.html`\n  remains a clean conformant reference chapter.",
+      "unblock_condition": "Only resume this story if a maintained repeated-structure lane again exposes a\nnon-empty `format_drift` chapter set, or if a second repeated-structure\ndocument is packaged with the same planner/conformance surface so the\nstructured repair target has a real C7 target to measure. If the next active\nproblem is row-semantic note placement instead, open a new story/eval for that\nlane instead of forcing it through this C7 format-drift story.",
+      "last_work_log_entry": {
+        "timestamp": "20260412-1744",
+        "date": "2026-04-12",
+        "summary": "implementation and validation: switched the story to active work, added `modules/transform/repair_onward_genealogy_structured_v1/{module.yaml,main.py}`, added story-scoped recipe `configs/recipes/story-219-onward-stru..."
+      },
+      "legacy_build_map_refs": "",
+      "metadata_source": "frontmatter",
+      "missing_frontmatter_keys": [],
+      "actionability": {
+        "source_kind": "story",
+        "source_id": "219",
+        "source_path": "docs/stories/story-219-onward-structured-genealogy-repair-target.md",
+        "recommended_now": false,
+        "posture": "blocked",
+        "why_now": "implementation and validation: switched the story to active work, added `modules/transform/repair_onward_genealogy_structured_v1/{module.yaml,main.py}`, added story-scoped recipe `configs/recipes/story-219-onward-stru...",
+        "last_relevant_action": {
+          "date": "2026-04-12",
+          "source_type": "story-work-log",
+          "source": "docs/stories/story-219-onward-structured-genealogy-repair-target.md",
+          "summary": "implementation and validation: switched the story to active work, added `modules/transform/repair_onward_genealogy_structured_v1/{module.yaml,main.py}`, added story-scoped recipe `configs/recipes/story-219-onward-stru..."
+        }
+      }
+    },
+    {
+      "id": "220",
+      "title": "Repair Onward Genealogy Row-Semantic Note Placement",
+      "path": "docs/stories/story-220-onward-genealogy-row-semantic-note-placement.md",
+      "status": "Done",
+      "priority": "High",
+      "ideal_refs": [
+        "Requirement #3 (Extract), Requirement #5 (Structure), Requirement #6 (Validate), Requirement #7 (Export), Fidelity to Source, Traceability is the product, Dossier-ready output"
+      ],
+      "spec_refs": [
+        "spec:2.1",
+        "spec:3.1",
+        "spec:5.1"
+      ],
+      "decision_refs": [
+        "`docs/ideal.md`, `docs/spec.md`, `docs/methodology/state.yaml`, `docs/methodology/graph.json`, `docs/decisions/adr-001-source-aware-consistency-strategy/adr.md`, `docs/decisions/adr-002-doc-web-runtime-boundary/adr.md`, `docs/runbooks/document-consistency-planning.md`, `docs/evals/registry.yaml`, `tests/fixtures/formats/_coverage-matrix.json`, `docs/stories/story-146-onward-plan-aware-genealogy-reruns.md`, `docs/stories/story-206-onward-full-book-regression-recovery.md`, `docs/stories/story-219-onward-structured-genealogy-repair-target.md`, and `None found after search in docs/scout/ and docs/notes/ for a narrower row-semantic note-placement ADR or runbook beyond ADR-001 and the current Onward story chain`",
+        "ADR-001",
+        "ADR-002"
+      ],
+      "adr_ids": [
+        "ADR-001",
+        "ADR-002"
+      ],
+      "depends_on": [
+        "206"
+      ],
+      "category_refs": [
+        "spec:2",
+        "spec:3",
+        "spec:5",
+        "spec:6",
+        "spec:7"
+      ],
+      "compromise_refs": [
+        "C1",
+        "C3",
+        "C7"
+      ],
+      "input_coverage_refs": [
+        "scanned-pdf-tables"
+      ],
+      "architecture_domains": [
+        "doc_web_runtime",
+        "document_structure_and_consistency"
+      ],
+      "roadmap_tags": [
+        "campaign:maintained-intake-honesty"
+      ],
+      "blocker_summary": "",
+      "blocker_evidence": "",
+      "unblock_condition": "",
+      "last_work_log_entry": {
+        "timestamp": "20260413-0018",
+        "date": "2026-04-13",
+        "summary": "mark-story-done: closed Story 220 on fresh current-pass evidence. Validation reran `python -m ruff check modules/ tests/` (`All checks passed!`), `python -m pytest tests/` (`582 passed, 4 warnings in 664.20s`), and th..."
+      },
+      "legacy_build_map_refs": "",
+      "metadata_source": "frontmatter",
+      "missing_frontmatter_keys": [],
+      "actionability": {
+        "source_kind": "story",
+        "source_id": "220",
+        "source_path": "docs/stories/story-220-onward-genealogy-row-semantic-note-placement.md",
+        "recommended_now": false,
+        "posture": "completed",
+        "why_now": "mark-story-done: closed Story 220 on fresh current-pass evidence. Validation reran `python -m ruff check modules/ tests/` (`All checks passed!`), `python -m pytest tests/` (`582 passed, 4 warnings in 664.20s`), and th...",
+        "last_relevant_action": {
+          "date": "2026-04-13",
+          "source_type": "story-work-log",
+          "source": "docs/stories/story-220-onward-genealogy-row-semantic-note-placement.md",
+          "summary": "mark-story-done: closed Story 220 on fresh current-pass evidence. Validation reran `python -m ruff check modules/ tests/` (`All checks passed!`), `python -m pytest tests/` (`582 passed, 4 warnings in 664.20s`), and th..."
+        }
+      }
     }
   ],
   "adrs": [
@@ -12861,7 +13042,8 @@
       "spec_refs": [],
       "story_refs": [
         "144",
-        "146"
+        "146",
+        "219"
       ],
       "compromise_refs": [
         "C7"
@@ -12869,7 +13051,10 @@
       "category_refs": [
         "spec:1",
         "spec:2",
-        "spec:5"
+        "spec:3",
+        "spec:5",
+        "spec:6",
+        "spec:7"
       ],
       "scores": [
         {
@@ -12891,18 +13076,29 @@
           },
           "measured": "2026-03-15",
           "note": "Story 146 validation run `story146-onward-plan-aware-genealogy-reruns-r1` consumed `pattern_inventory`, `consistency_plan`, and `conformance_report` inside the rerun loop, accepted `11/18` targeted pages, preserved `chapter-009.html` as mixed and `chapter-023.html` as conformant, and lowered remaining pure-format issue-type count from `21` to `19` by clearing `fragmented_multi_table_chapter` from `chapter-018.html` and `chapter-019.html` plus `missing_subgroup_rows` from `chapter-017.html`, although the pure-format chapter set itself did not shrink.\n"
+        },
+        {
+          "model": "Story 219 maintained-lane remeasure + structured repair target (gpt-5 planner/rerun/structured)",
+          "metrics": {
+            "missed_manual_format_coverage": 1.0,
+            "chapter_009_not_pure_format": 1.0,
+            "maintained_format_drift_chapter_count": 0,
+            "maintained_row_semantic_issue_chapter_count": 2
+          },
+          "measured": "2026-04-12",
+          "note": "Story 219 validation run `story219-onward-structured-repair-r1` reused the maintained `onward-book-r1` artifacts, rebuilt chapters, and re-ran the planner before the direct-HTML rerun, after the direct-HTML rerun, and after the new structured repair stage. The current maintained seam already has no `format_drift` chapters before the direct-HTML rerun; only `chapter-009.html` and `chapter-022.html` remain as `row_semantic_issue`, while `chapter-023.html` stays conformant. The structured repair stage landed but received `0` planner-selected pages, so the old Story 146 pure-format plateau is no longer the active maintained-lane truth.\n"
         }
       ],
       "latest_score": {
-        "model": "Story 146 planner-guided rerun loop (gpt-5 rerun stage)",
+        "model": "Story 219 maintained-lane remeasure + structured repair target (gpt-5 planner/rerun/structured)",
         "metrics": {
           "missed_manual_format_coverage": 1.0,
           "chapter_009_not_pure_format": 1.0,
-          "remaining_format_issue_count": 19,
-          "remaining_format_issue_delta": -2
+          "maintained_format_drift_chapter_count": 0,
+          "maintained_row_semantic_issue_chapter_count": 2
         },
-        "measured": "2026-03-15",
-        "note": "Story 146 validation run `story146-onward-plan-aware-genealogy-reruns-r1` consumed `pattern_inventory`, `consistency_plan`, and `conformance_report` inside the rerun loop, accepted `11/18` targeted pages, preserved `chapter-009.html` as mixed and `chapter-023.html` as conformant, and lowered remaining pure-format issue-type count from `21` to `19` by clearing `fragmented_multi_table_chapter` from `chapter-018.html` and `chapter-019.html` plus `missing_subgroup_rows` from `chapter-017.html`, although the pure-format chapter set itself did not shrink.\n"
+        "measured": "2026-04-12",
+        "note": "Story 219 validation run `story219-onward-structured-repair-r1` reused the maintained `onward-book-r1` artifacts, rebuilt chapters, and re-ran the planner before the direct-HTML rerun, after the direct-HTML rerun, and after the new structured repair stage. The current maintained seam already has no `format_drift` chapters before the direct-HTML rerun; only `chapter-009.html` and `chapter-022.html` remain as `row_semantic_issue`, while `chapter-023.html` stays conformant. The structured repair stage landed but received `0` planner-selected pages, so the old Story 146 pure-format plateau is no longer the active maintained-lane truth.\n"
       },
       "attempts": [
         {
@@ -12928,6 +13124,14 @@
           "approach": "Story 146 plan-aware reruns consume planning sidecars and re-plan after bounded source-aware rereads",
           "note": "Driver run `story146-onward-plan-aware-genealogy-reruns-r1` proved the emitted planning artifacts are actionable input to the rerun stage and preserved the mixed/conformant guardrails, but direct-HTML reruns only reduced remaining pure-format issue-type count (`21 -> 19`) instead of shrinking the pure-format chapter set.\n",
           "retry_when": []
+        },
+        {
+          "id": "004",
+          "date": "2026-04-12",
+          "status": "partial",
+          "approach": "Story 219 maintained-lane remeasure plus bounded structured/row-oriented repair target",
+          "note": "Driver run `story219-onward-structured-repair-r1` proved the new structured repair lane can run end-to-end on the maintained seam, but the fresh maintained baseline no longer exposes a pure-format chapter set at all: `format_drift_chapters` stayed empty before and after the direct-HTML rerun, and the structured lane received `0` planner-selected pages. The remaining maintained issues are row-semantic note-placement defects in `chapter-009.html` and `chapter-022.html`, so this eval no longer points to an active C7 format-drift gap on maintained Onward.\n",
+          "retry_when": []
         }
       ],
       "retry_when": [
@@ -12935,8 +13139,8 @@
         "new-approach"
       ],
       "retry_when_notes": [
-        "Direct-HTML plan-aware reruns plateaued on Onward; the next experiment is a structured/row-oriented repair target or a second repeated-structure document.",
-        "If the structured repair target lands, re-measure whether the remaining pure-format chapter set can finally shrink instead of only lowering issue severity."
+        "Only retry this C7 lane if a maintained repeated-structure target exposes `format_drift` again or a second repeated-structure document is packaged with the same planner/conformance surface.",
+        "If we decide to attack row-semantic note placement as the active maintained gap, track it in a separate story/eval instead of reusing this pure-format planning eval."
       ],
       "explicit_lineage": true,
       "actionability": {
@@ -12944,19 +13148,108 @@
         "source_id": "onward-document-consistency-planning",
         "source_path": "docs/evals/registry.yaml",
         "recommended_now": false,
-        "posture": "trigger-exhausted",
-        "retry_trigger_status": "exhausted",
+        "posture": "wait-for-trigger",
+        "retry_trigger_status": "waiting",
         "retry_when": [
           "architecture-change",
           "new-approach"
         ],
-        "why_now": "Direct-HTML plan-aware reruns plateaued on Onward; the next experiment is a structured/row-oriented repair target or a second repeated-structure document. If the structured repair target lands, re-measure whether the...",
+        "why_now": "Only retry this C7 lane if a maintained repeated-structure target exposes `format_drift` again or a second repeated-structure document is packaged with the same planner/conformance surface. If we decide to attack row-...",
         "last_relevant_action": {
-          "date": "2026-03-15",
+          "date": "2026-04-12",
           "source_type": "eval-attempt",
           "source": "docs/evals/registry.yaml",
-          "source_id": "003",
-          "summary": "Driver run `story146-onward-plan-aware-genealogy-reruns-r1` proved the emitted planning artifacts are actionable input to the rerun stage and preserved the mixed/conformant guardrails, but direct-HTML reruns only redu..."
+          "source_id": "004",
+          "summary": "Driver run `story219-onward-structured-repair-r1` proved the new structured repair lane can run end-to-end on the maintained seam, but the fresh maintained baseline no longer exposes a pure-format chapter set at all:..."
+        }
+      }
+    },
+    {
+      "id": "onward-genealogy-row-semantic-note-placement",
+      "name": "Onward Genealogy Row-Semantic Note Placement",
+      "type": "quality",
+      "command": "find modules tests -name \"*.pyc\" -delete && python driver.py --recipe configs/recipes/story-220-onward-genealogy-row-semantic-note-placement-validate.yaml --run-id story220-onward-row-semantic-r7 --allow-run-id-reuse --force",
+      "path": "docs/evals/registry.yaml",
+      "description": "Manual eval for the maintained Onward child-note placement seam. Reuses the maintained `onward-book-r1` artifacts, runs the bounded Story 220 structured-repair recipe, and checks that the maintained `row_semantic_issue` chapters leave that bucket without regressing the clean guardrail chapter.\n",
+      "spec_refs": [
+        "spec:2.1",
+        "spec:3.1",
+        "spec:5.1"
+      ],
+      "story_refs": [
+        "220"
+      ],
+      "compromise_refs": [
+        "C7"
+      ],
+      "category_refs": [
+        "spec:2",
+        "spec:3",
+        "spec:5",
+        "spec:6",
+        "spec:7"
+      ],
+      "scores": [
+        {
+          "model": "Story 220 maintained structured row-semantic repair proof (gpt-4.1 planner/repair)",
+          "metrics": {
+            "pass_rate": 1.0,
+            "row_semantic_issue_chapter_count": 0,
+            "targeted_page_count": 5,
+            "accepted_page_count": 5
+          },
+          "measured": "2026-04-13",
+          "note": "Fresh cache-purged driver run `story220-onward-row-semantic-r7` reused the maintained `onward-book-r1` artifacts, targeted pages `23,24,25,26,111`, and accepted `5/5` structured repairs. The final conformance report `output/runs/story220-onward-row-semantic-r7/09_plan_onward_document_consistency_v1/conformance_report_after_structured_repair.json` left `format_drift_chapters`, `mixed_issue_chapters`, and `row_semantic_issue_chapters` empty. Manual HTML inspection confirmed `chapter-009.html` moved `1-Kassandra`, `born Dec 30/1999`, `Joseph born Feb 4/`, `Tessa born June 2/91 May 15 Chelsea wa`, and `born to Michelle &` into subordinate note rows outside `DIED`; `chapter-022.html` moved `6 months old` out of `DIED`; and `chapter-023.html` preserved `TOTAL DESCENDANTS | 38`.\n"
+        }
+      ],
+      "latest_score": {
+        "model": "Story 220 maintained structured row-semantic repair proof (gpt-4.1 planner/repair)",
+        "metrics": {
+          "pass_rate": 1.0,
+          "row_semantic_issue_chapter_count": 0,
+          "targeted_page_count": 5,
+          "accepted_page_count": 5
+        },
+        "measured": "2026-04-13",
+        "note": "Fresh cache-purged driver run `story220-onward-row-semantic-r7` reused the maintained `onward-book-r1` artifacts, targeted pages `23,24,25,26,111`, and accepted `5/5` structured repairs. The final conformance report `output/runs/story220-onward-row-semantic-r7/09_plan_onward_document_consistency_v1/conformance_report_after_structured_repair.json` left `format_drift_chapters`, `mixed_issue_chapters`, and `row_semantic_issue_chapters` empty. Manual HTML inspection confirmed `chapter-009.html` moved `1-Kassandra`, `born Dec 30/1999`, `Joseph born Feb 4/`, `Tessa born June 2/91 May 15 Chelsea wa`, and `born to Michelle &` into subordinate note rows outside `DIED`; `chapter-022.html` moved `6 months old` out of `DIED`; and `chapter-023.html` preserved `TOTAL DESCENDANTS | 38`.\n"
+      },
+      "attempts": [
+        {
+          "id": "001",
+          "date": "2026-04-13",
+          "status": "succeeded",
+          "approach": "Story 220 gpt-4.1 planner/structured repair with widened page targeting and note-row normalization",
+          "note": "Early proof runs exposed three blockers in sequence: OpenAI Responses scopes on `gpt-5`, target truncation after widening the relevant page cluster, and note-placement regressions from structured `DIED` cells plus shared genealogy HTML normalization. Story 220 switched the proof recipe to `gpt-4.1`, widened the target set to pages `23,24,25,26,111`, augmented planner clusters for `child_note_in_wrong_column`, and normalized non-death note text into subordinate rows. The closing cache-purged run `story220-onward-row-semantic-r7` cleared the maintained seam.\n",
+          "retry_when": []
+        }
+      ],
+      "retry_when": [
+        "architecture-change",
+        "new-approach"
+      ],
+      "retry_when_notes": [
+        "Retry when a broader maintained row-semantic note class appears that the current subordinate-note policy does not cover.",
+        "Re-measure if planner issue typing, structured-repair rendering, or the late genealogy HTML normalization path changes materially."
+      ],
+      "explicit_lineage": true,
+      "actionability": {
+        "source_kind": "eval",
+        "source_id": "onward-genealogy-row-semantic-note-placement",
+        "source_path": "docs/evals/registry.yaml",
+        "recommended_now": false,
+        "posture": "wait-for-trigger",
+        "retry_trigger_status": "waiting",
+        "retry_when": [
+          "architecture-change",
+          "new-approach"
+        ],
+        "why_now": "Retry when a broader maintained row-semantic note class appears that the current subordinate-note policy does not cover. Re-measure if planner issue typing, structured-repair rendering, or the late genealogy HTML norm...",
+        "last_relevant_action": {
+          "date": "2026-04-13",
+          "source_type": "eval-attempt",
+          "source": "docs/evals/registry.yaml",
+          "source_id": "001",
+          "summary": "Early proof runs exposed three blockers in sequence: OpenAI Responses scopes on `gpt-5`, target truncation after widening the relevant page cluster, and note-placement regressions from structured `DIED` cells plus sha..."
         }
       }
     },

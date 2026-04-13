@@ -67,6 +67,7 @@ Grouped by primary `spec:N` category. Stories without category refs remain in an
 | ID | Title | Priority | Status | Depends On | Link |
 |---|---|---|---|---|---|
 | 215 | Establish a Bounded Washington Database English-Longhand Benchmark Slice | High | Blocked | 212 | [story-215](stories/story-215-washington-database-english-longhand-benchmark-slice.md) |
+| 219 | Establish a Structured Onward Genealogy Repair Target | High | Blocked | 146, 206 | [story-219](stories/story-219-onward-structured-genealogy-repair-target.md) |
 | 131 | Onward Table Structure Fidelity | High | Done | 128 | [story-131](stories/story-131-onward-table-structure-fidelity.md) |
 | 134 | OCR Pipeline Speed & Cost Optimization | High | Done | — | [story-134](stories/story-134-ocr-pipeline-speed-cost-optimization.md) |
 | 138 | Onward Genealogy Table Whole-Table Continuation and Header Regressions | High | Done | 129, 131 | [story-138](stories/story-138-onward-genealogy-table-continuation-and-header-regressions.md) |
@@ -88,6 +89,7 @@ Grouped by primary `spec:N` category. Stories without category refs remain in an
 | 214 | Establish a Bounded LOC George Washington Papers Benchmark Slice | High | Done | 212 | [story-214](stories/story-214-loc-george-washington-papers-benchmark-slice.md) |
 | 216 | Refresh LOC George Washington Benchmark Proof and Bounded Stronger-Model Screen | High | Done | 214 | [story-216](stories/story-216-refresh-loc-gw-benchmark-proof-and-stronger-model-screen.md) |
 | 217 | Probe Receipt-Only Image-Entry Rescue on LOC Asset 367466 | High | Done | 216 | [story-217](stories/story-217-loc-gw-receipt-only-image-entry-rescue-probe.md) |
+| 220 | Repair Onward Genealogy Row-Semantic Note Placement | High | Done | 206 | [story-220](stories/story-220-onward-genealogy-row-semantic-note-placement.md) |
 
 ### spec:3 — Layout & Structure Understanding
 

@@ -22,6 +22,10 @@ def _supports_temperature(model: str) -> bool:
     return not (model or "").casefold().startswith("gpt-5")
 
 
+def _supports_responses_api(model: str) -> bool:
+    return (model or "").casefold().startswith("gpt-5")
+
+
 def call_ocr(
     model: str,
     prompt: str,
@@ -43,7 +47,7 @@ def call_ocr(
     if _supports_temperature(model):
         request_kwargs["temperature"] = temperature
     user_text = (user_text or "Return only HTML.").strip()
-    if hasattr(client, "responses"):
+    if _supports_responses_api(model) and hasattr(client, "responses"):
         resp = client.responses.create(
             **request_kwargs,
             max_output_tokens=max_tokens,
@@ -62,10 +66,9 @@ def call_ocr(
         usage = getattr(resp, "usage", None)
         request_id = getattr(resp, "id", None)
     else:
-        resp = client.chat.completions.create(
+        chat_kwargs: Dict[str, Any] = {
             **request_kwargs,
-            max_completion_tokens=max_tokens,
-            messages=[
+            "messages": [
                 {"role": "system", "content": prompt},
                 {
                     "role": "user",
@@ -75,6 +78,11 @@ def call_ocr(
                     ],
                 },
             ],
-        )
+        }
+        if _supports_responses_api(model):
+            chat_kwargs["max_completion_tokens"] = max_tokens
+        else:
+            chat_kwargs["max_tokens"] = max_tokens
+        resp = client.chat.completions.create(**chat_kwargs)
         raw = resp.choices[0].message.content or ""
     return raw, usage, request_id

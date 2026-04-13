@@ -1268,7 +1268,7 @@ evals:
       and keeps row-semantic issues distinct from pure format drift.
     pipeline_stage: validate
     runner: manual
-    story_refs: ["144", "146"]
+    story_refs: ["144", "146", "219"]
     category_refs: ["spec:1", "spec:2", "spec:5"]
     compromise_refs: ["C7"]
     spec_compromise: C7
@@ -1308,6 +1308,24 @@ evals:
           clearing `fragmented_multi_table_chapter` from `chapter-018.html` and
           `chapter-019.html` plus `missing_subgroup_rows` from `chapter-017.html`,
           although the pure-format chapter set itself did not shrink.
+      - model: "Story 219 maintained-lane remeasure + structured repair target (gpt-5 planner/rerun/structured)"
+        metrics:
+          missed_manual_format_coverage: 1.0
+          chapter_009_not_pure_format: 1.0
+          maintained_format_drift_chapter_count: 0
+          maintained_row_semantic_issue_chapter_count: 2
+        measured: 2026-04-12
+        note: >
+          Story 219 validation run `story219-onward-structured-repair-r1`
+          reused the maintained `onward-book-r1` artifacts, rebuilt chapters,
+          and re-ran the planner before the direct-HTML rerun, after the
+          direct-HTML rerun, and after the new structured repair stage.
+          The current maintained seam already has no `format_drift` chapters
+          before the direct-HTML rerun; only `chapter-009.html` and
+          `chapter-022.html` remain as `row_semantic_issue`, while
+          `chapter-023.html` stays conformant. The structured repair stage
+          landed but received `0` planner-selected pages, so the old Story 146
+          pure-format plateau is no longer the active maintained-lane truth.
 
     attempts:
       - id: "001"
@@ -1338,12 +1356,102 @@ evals:
           preserved the mixed/conformant guardrails, but direct-HTML reruns only
           reduced remaining pure-format issue-type count (`21 -> 19`) instead of
           shrinking the pure-format chapter set.
+      - id: "004"
+        date: 2026-04-12
+        status: partial
+        approach: "Story 219 maintained-lane remeasure plus bounded structured/row-oriented repair target"
+        note: >
+          Driver run `story219-onward-structured-repair-r1` proved the new
+          structured repair lane can run end-to-end on the maintained seam, but
+          the fresh maintained baseline no longer exposes a pure-format chapter
+          set at all: `format_drift_chapters` stayed empty before and after the
+          direct-HTML rerun, and the structured lane received `0` planner-selected
+          pages. The remaining maintained issues are row-semantic note-placement
+          defects in `chapter-009.html` and `chapter-022.html`, so this eval no
+          longer points to an active C7 format-drift gap on maintained Onward.
 
     retry_when:
       - condition: new-approach
-        note: "Direct-HTML plan-aware reruns plateaued on Onward; the next experiment is a structured/row-oriented repair target or a second repeated-structure document."
+        note: "Only retry this C7 lane if a maintained repeated-structure target exposes `format_drift` again or a second repeated-structure document is packaged with the same planner/conformance surface."
       - condition: architecture-change
-        note: "If the structured repair target lands, re-measure whether the remaining pure-format chapter set can finally shrink instead of only lowering issue severity."
+        note: "If we decide to attack row-semantic note placement as the active maintained gap, track it in a separate story/eval instead of reusing this pure-format planning eval."
+
+  - id: onward-genealogy-row-semantic-note-placement
+    name: Onward Genealogy Row-Semantic Note Placement
+    type: quality
+    description: >
+      Manual eval for the maintained Onward child-note placement seam.
+      Reuses the maintained `onward-book-r1` artifacts, runs the bounded
+      Story 220 structured-repair recipe, and checks that the maintained
+      `row_semantic_issue` chapters leave that bucket without regressing the
+      clean guardrail chapter.
+    pipeline_stage: validate
+    runner: manual
+    command: "find modules tests -name \"*.pyc\" -delete && python driver.py --recipe configs/recipes/story-220-onward-genealogy-row-semantic-note-placement-validate.yaml --run-id story220-onward-row-semantic-r7 --allow-run-id-reuse --force"
+    story_refs: ["220"]
+    category_refs: ["spec:2", "spec:3", "spec:5", "spec:6", "spec:7"]
+    spec_refs: ["spec:2.1", "spec:3.1", "spec:5.1"]
+    compromise_refs: ["C7"]
+    spec_compromise: C7
+
+    target:
+      metric: pass_rate
+      value: 1.0
+      note: >
+        The maintained row-semantic seam passes only when the final
+        `conformance_report` has empty `row_semantic_issue_chapters`,
+        repaired chapter HTML shows the moved note rows outside `DIED`,
+        and `chapter-023.html` remains conformant.
+
+    scores:
+      - model: "Story 220 maintained structured row-semantic repair proof (gpt-4.1 planner/repair)"
+        metrics:
+          pass_rate: 1.0
+          row_semantic_issue_chapter_count: 0
+          targeted_page_count: 5
+          accepted_page_count: 5
+        measured: 2026-04-13
+        note: >
+          Fresh cache-purged driver run `story220-onward-row-semantic-r7`
+          reused the
+          maintained `onward-book-r1` artifacts, targeted pages
+          `23,24,25,26,111`, and accepted `5/5` structured repairs. The final
+          conformance report
+          `output/runs/story220-onward-row-semantic-r7/09_plan_onward_document_consistency_v1/conformance_report_after_structured_repair.json`
+          left `format_drift_chapters`, `mixed_issue_chapters`, and
+          `row_semantic_issue_chapters` empty. Manual HTML inspection confirmed
+          `chapter-009.html` moved `1-Kassandra`, `born Dec 30/1999`,
+          `Joseph born Feb 4/`, `Tessa born June 2/91 May 15 Chelsea wa`, and
+          `born to Michelle &` into subordinate note rows outside `DIED`;
+          `chapter-022.html` moved `6 months old` out of `DIED`; and
+          `chapter-023.html` preserved `TOTAL DESCENDANTS | 38`.
+
+    attempts:
+      - id: "001"
+        date: 2026-04-13
+        status: succeeded
+        approach: "Story 220 gpt-4.1 planner/structured repair with widened page targeting and note-row normalization"
+        note: >
+          Early proof runs exposed three blockers in sequence: OpenAI Responses
+          scopes on `gpt-5`, target truncation after widening the relevant page
+          cluster, and note-placement regressions from structured `DIED` cells
+          plus shared genealogy HTML normalization. Story 220 switched the proof
+          recipe to `gpt-4.1`, widened the target set to pages
+          `23,24,25,26,111`, augmented planner clusters for
+          `child_note_in_wrong_column`, and normalized non-death note text into
+          subordinate rows. The closing cache-purged run
+          `story220-onward-row-semantic-r7`
+          cleared the maintained seam.
+
+    retry_when:
+      - condition: new-approach
+        note: >
+          Retry when a broader maintained row-semantic note class appears that
+          the current subordinate-note policy does not cover.
+      - condition: architecture-change
+        note: >
+          Re-measure if planner issue typing, structured-repair rendering, or
+          the late genealogy HTML normalization path changes materially.
 
   # ── Compromise Detection Evals ───────────────────────────────────────────
 

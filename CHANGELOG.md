@@ -1,3 +1,23 @@
+## [2026-04-12-04] - Clear Onward row-semantic note placement (Story 220)
+
+### Added
+- Added a story-scoped structured genealogy repair lane, validation recipe, and regression coverage for the maintained Onward row-semantic note-placement seam
+- Added a separate manual eval entry for the maintained row-semantic decision surface so it stays distinct from the stale pure-format consistency-planning eval
+
+### Changed
+- Changed planner target augmentation and shared OCR routing so the bounded repair path can widen the relevant chapter-009 page cluster and use `gpt-4.1` chat completions when `gpt-5` Responses scopes are unavailable
+- Changed Story 219 and Story 220 documentation plus the generated methodology views so the blocked pure-format lane and the now-closed row-semantic follow-up both reflect maintained-lane truth
+
+### Fixed
+- Fixed maintained Onward child-note placement so `chapter-009.html` and `chapter-022.html` no longer leave child-note text in `DIED` while `chapter-023.html` remains conformant
+
+### Tested
+- `python -m ruff check modules/ tests/`
+- `python -m pytest tests/`
+- `python driver.py --recipe configs/recipes/story-220-onward-genealogy-row-semantic-note-placement-validate.yaml --run-id story220-onward-row-semantic-r7 --allow-run-id-reuse --force`
+- `make methodology-compile`
+- `make methodology-check`
+
 ## [2026-04-12-03] - Land mixed-folder direct-entry seam (Story 218)
 
 ### Added

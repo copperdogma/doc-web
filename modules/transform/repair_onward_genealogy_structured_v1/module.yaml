@@ -1,0 +1,71 @@
+module_id: repair_onward_genealogy_structured_v1
+stage: transform
+entrypoint: modules/transform/repair_onward_genealogy_structured_v1/main.py
+input_schema: null
+output_schema: page_html_v1
+description: "Story-scoped structured or row-oriented repair target for the maintained Onward genealogy seam. Consumes planner-selected page_html rows, asks the model for structured genealogy JSON, deterministically renders it back into HTML, and emits inspectable sidecars plus a repaired page_html_v1 artifact."
+params:
+  - name: model
+    type: str
+    default: gpt-5
+  - name: max_output_tokens
+    type: int
+    default: 16384
+  - name: timeout_seconds
+    type: float
+    default: 120.0
+  - name: temperature
+    type: float
+    default: 0.0
+  - name: max_context_chars
+    type: int
+    default: 6000
+  - name: page_context_window
+    type: int
+    default: 1
+  - name: min_score_gain
+    type: int
+    default: 15
+  - name: min_token_recall
+    type: float
+    default: 0.75
+  - name: min_text_ratio
+    type: float
+    default: 0.65
+  - name: target_mode
+    type: str
+    default: strong
+  - name: chapter_allowlist
+    type: str
+    default: ""
+  - name: page_allowlist
+    type: str
+    default: ""
+  - name: max_pages
+    type: int
+    default: 10
+  - name: structured_hints
+    type: str
+    default: ""
+  - name: report
+    type: str
+    default: structured_onward_genealogy_report.jsonl
+  - name: summary_report
+    type: str
+    default: structured_onward_genealogy_summary.json
+  - name: structured_sidecar
+    type: str
+    default: structured_onward_genealogy_sidecar.jsonl
+  - name: pattern_inventory
+    type: str
+    default: pattern_inventory.json
+  - name: consistency_plan
+    type: str
+    default: consistency_plan.json
+  - name: conformance_report
+    type: str
+    default: conformance_report.json
+  - name: planner_status_allowlist
+    type: str
+    default: format_drift
+notes: "Keeps the structured intermediate story-scoped by writing sidecar JSONL beside the page_html_v1 output instead of introducing a new stamped schema boundary. Reuses the existing Story 146 planner target selection logic and acceptance gates so the direct-HTML rerun path remains the measured control. Recipe-scoped structured_hints can bias the model toward bounded issue types such as row-semantic note placement without creating a new runtime."

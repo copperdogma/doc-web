@@ -248,11 +248,19 @@ def _fixture_planner_pages(tmp_path: Path) -> Path:
     return pages_path
 
 
-def _fixture_planner_artifacts(tmp_path: Path, *, relevant_pages, source_pages) -> Path:
+def _fixture_planner_artifacts(
+    tmp_path: Path,
+    *,
+    relevant_pages,
+    source_pages,
+    status: str = "format_drift",
+    issue_types=None,
+) -> Path:
     report_path = tmp_path / "document_consistency_report.jsonl"
     pattern_inventory_path = tmp_path / "pattern_inventory.json"
     consistency_plan_path = tmp_path / "consistency_plan.json"
     conformance_report_path = tmp_path / "conformance_report.json"
+    issue_types = list(issue_types or ["fragmented_multi_table_chapter"])
 
     _write_jsonl(
         report_path,
@@ -266,9 +274,9 @@ def _fixture_planner_artifacts(tmp_path: Path, *, relevant_pages, source_pages) 
                         "type": "document_consistency_planning_issue",
                         "chapter_basename": "chapter-013.html",
                         "chapter_title": "Frank's Family",
-                        "status": "format_drift",
+                        "status": status,
                         "pattern_id": "pattern_1",
-                        "issue_types": ["fragmented_multi_table_chapter"],
+                        "issue_types": issue_types,
                         "relevant_pages": list(relevant_pages),
                         "surfaced_new_vs_current_detector": True,
                         "evidence": [],
@@ -327,8 +335,8 @@ def _fixture_planner_artifacts(tmp_path: Path, *, relevant_pages, source_pages) 
                         "chapter_basename": "chapter-013.html",
                         "chapter_title": "Frank's Family",
                         "pattern_id": "pattern_1",
-                        "status": "format_drift",
-                        "issue_types": ["fragmented_multi_table_chapter"],
+                        "status": status,
+                        "issue_types": issue_types,
                         "why": "Two full genealogy tables plus a separate totals table indicate fragmentation rather than one continuous canonical table.",
                         "relevant_pages": list(relevant_pages),
                         "repair_priority": "high",
@@ -563,6 +571,37 @@ def test_load_targets_augments_planner_relevant_pages_with_source_signals(tmp_pa
     assert [target.page_number for target in selection.targets] == [54, 56, 57]
     assert selection.targets[0].target_source == "planner_relevant_pages_augmented"
     assert "augmented with source-page signals" in " ".join(selection.targets[0].target_selection_notes)
+
+
+def test_load_targets_augments_row_semantic_relevant_pages_with_cluster_extras(tmp_path: Path):
+    pages_path = _fixture_planner_pages(tmp_path)
+    report_path = _fixture_planner_artifacts(
+        tmp_path,
+        relevant_pages=[56],
+        source_pages=[54, 55, 56, 57, 58, 59],
+        status="row_semantic_issue",
+        issue_types=["child_note_in_wrong_column"],
+    )
+    page_rows = {
+        row["page_number"]: row
+        for row in (json.loads(line) for line in pages_path.read_text(encoding="utf-8").splitlines() if line.strip())
+    }
+
+    selection = load_targets(
+        str(report_path),
+        page_rows=page_rows,
+        target_mode="strong",
+        page_context_window=1,
+        chapter_allowlist=None,
+        page_allowlist=None,
+        max_pages=10,
+        planner_status_allowlist={"row_semantic_issue"},
+        return_selection=True,
+    )
+
+    assert [target.page_number for target in selection.targets] == [56, 57]
+    assert selection.targets[0].target_source == "planner_relevant_pages_augmented"
+    assert "row-semantic note-placement defect" in " ".join(selection.targets[0].target_selection_notes)
 
 
 def test_load_targets_derives_fragment_cluster_when_planner_omits_pages(tmp_path: Path):
