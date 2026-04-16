@@ -2,9 +2,9 @@
 """
 Archive Route Members Module v1
 
-Routes bounded archive or folder members into existing maintained direct-entry recipes or
-explicit blocked outcomes and records one archive_member_route_v1 row per
-member.
+Routes bounded archive or folder members into existing maintained direct-entry
+recipes, reuses the maintained recommendation-only PDF intake seam for bounded
+PDF members, and records one archive_member_route_v1 row per member.
 """
 
 from __future__ import annotations
@@ -106,9 +106,9 @@ def _resolve_output_path(outdir: str, out: str) -> Path:
     return Path(outdir) / out_path.name
 
 
-def _uses_zip_pdf_recommendation(row: dict) -> bool:
+def _uses_pdf_member_recommendation(row: dict) -> bool:
     archive_format = str(row.get("archive_format") or "zip").strip().lower()
-    return archive_format == "zip" and row.get("detected_input_kind") == "pdf"
+    return archive_format in {"zip", "folder"} and row.get("detected_input_kind") == "pdf"
 
 
 def main() -> None:
@@ -142,10 +142,10 @@ def main() -> None:
     for row in manifest_rows:
         member_id = str(row["member_id"])
         input_kind = row.get("detected_input_kind")
-        use_zip_pdf_recommendation = _uses_zip_pdf_recommendation(row)
+        use_pdf_member_recommendation = _uses_pdf_member_recommendation(row)
         recipe_path = (
             PDF_MEMBER_RECOMMENDATION_RECIPE
-            if use_zip_pdf_recommendation
+            if use_pdf_member_recommendation
             else archive_member_recipe_for_input_kind(input_kind)
         )
         extracted_path = Path(str(row["extracted_path"]))
@@ -160,7 +160,7 @@ def main() -> None:
             "filename": row["filename"],
             "file_extension": row.get("file_extension"),
             "detected_input_kind": input_kind,
-            "recommended_recipe": None if use_zip_pdf_recommendation else recipe_path,
+            "recommended_recipe": None if use_pdf_member_recommendation else recipe_path,
             "launch_input_flag": None,
             "launch_input_path": None,
             "driver_command": [],
@@ -195,7 +195,7 @@ def main() -> None:
             output_root,
             downstream_run_id,
             recipe_path,
-            stage_position="last" if use_zip_pdf_recommendation else "first",
+            stage_position="last" if use_pdf_member_recommendation else "first",
         )
         command = build_explicit_recipe_driver_command(
             recipe_path,
@@ -236,7 +236,7 @@ def main() -> None:
             failed_launches += 1
             continue
 
-        if use_zip_pdf_recommendation:
+        if use_pdf_member_recommendation:
             plan = load_artifact_row(first_downstream_artifact)
             emitted_recipe = str(plan.get("recommended_recipe") or "").strip()
             route_row["recommended_recipe"] = emitted_recipe or None

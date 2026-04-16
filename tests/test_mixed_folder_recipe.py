@@ -12,6 +12,8 @@ from schemas import ArchiveMemberManifest, ArchiveMemberRoute, DocWebBundleManif
 
 FOLDER_RECIPE = "configs/recipes/recipe-mixed-folder-routing-mvp.yaml"
 FOLDER_FIXTURE = "testdata/mixed-folder-mini"
+FOLDER_PDF_FIXTURE = "testdata/mixed-folder-pdf-mini"
+FOLDER_PDF_FIXTURE_META = "testdata/mixed-folder-pdf-mini.source.json"
 
 
 def _load_jsonl(path: Path):
@@ -40,6 +42,23 @@ def test_mixed_folder_recipe_wiring():
         "folder_members_manifest_v1",
         "archive_route_members_v1",
     ]
+
+
+def test_mixed_folder_pdf_fixture_shape():
+    metadata = json.loads(Path(FOLDER_PDF_FIXTURE_META).read_text(encoding="utf-8"))
+
+    assert metadata["archive_format"] == "folder"
+    assert [member["member_path"] for member in metadata["members"]] == [
+        "docs/proposal.pdf",
+        "mail/message.eml",
+        "web/snapshot.html",
+        "notes/readme.txt",
+    ]
+    assert metadata["members"][0]["expected_route"] == "recommendation-only"
+    assert (Path(FOLDER_PDF_FIXTURE) / "docs" / "proposal.pdf").exists()
+    assert (Path(FOLDER_PDF_FIXTURE) / "mail" / "message.eml").exists()
+    assert (Path(FOLDER_PDF_FIXTURE) / "web" / "snapshot.html").exists()
+    assert (Path(FOLDER_PDF_FIXTURE) / "notes" / "readme.txt").exists()
 
 
 def test_mixed_folder_recipe_smoke(tmp_path: Path):

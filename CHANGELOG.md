@@ -1,3 +1,22 @@
+## [2026-04-16-01] - Land mixed-folder PDF-member seam (Story 222)
+
+### Added
+- Added a checked-in `mixed-folder-pdf-mini` source-native fixture plus focused route and fixture tests for the first bounded direct-folder born-digital PDF-member recommendation continuation on the maintained mixed-input lane
+
+### Changed
+- Changed `archive_route_members_v1` so bounded folder-contained PDF members now launch the same nested `recipe-intake-contact-sheet.yaml` recommendation-only run already proven for ZIP-contained PDF members, recording the emitted `intake_plan_v1` artifact as `first_downstream_artifact` without widening approved handoff or final-recipe auto-launch
+- Changed README, RUNBOOK, fixture metadata, coverage truth, methodology state, generated story views, and Story 222 wording so the maintained mixed-input claim now matches the bounded direct-folder PDF-member recommendation seam
+
+### Tested
+- `python -m ruff check modules/ tests/`
+- `python -m pytest tests/`
+- `find modules -name '*.pyc' -delete`
+- `python driver.py --recipe configs/recipes/recipe-mixed-folder-routing-mvp.yaml --input-folder testdata/mixed-folder-pdf-mini --run-id story222-mixed-folder-pdf-mini-close-r1 --allow-run-id-reuse --force`
+- `python validate_artifact.py --schema archive_member_manifest_v1 --file output/runs/story222-mixed-folder-pdf-mini-close-r1/01_folder_members_manifest_v1/archive_members_manifest.jsonl`
+- `python validate_artifact.py --schema archive_member_route_v1 --file output/runs/story222-mixed-folder-pdf-mini-close-r1/02_archive_route_members_v1/archive_member_routes.jsonl`
+- `python validate_artifact.py --schema intake_plan_v1 --file output/runs/story222-mixed-folder-pdf-mini-close-r1-member-001-recipe-intake-contact-sheet/05_confirm_plan_v1/overview_plan_final.jsonl`
+- `make methodology-compile`
+
 ## [2026-04-13-01] - Land mixed-archive PDF-member seam (Story 221)
 
 ### Added

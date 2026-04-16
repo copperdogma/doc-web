@@ -1,0 +1,45 @@
+{
+  "title": "Mixed Folder PDF Mini Fixture",
+  "source_type": "repo-owned mixed folder",
+  "generated_at": "2026-04-16",
+  "archive_format": "folder",
+  "capture_note": "Checked-in source-native folder probe for Story 222. It mirrors the bounded four-member ZIP PDF probe from Story 221 without a ZIP wrapper so the maintained lane can prove direct-folder PDF-member recommendation parity while keeping relative member provenance, existing `.eml` and HTML launches, and explicit blocked routing for the unsupported `.txt` member.",
+  "members": [
+    {
+      "member_path": "docs/proposal.pdf",
+      "source": "testdata/flat-born-digital-mini.pdf",
+      "expected_route": "recommendation-only",
+      "notes": "This member is intentionally limited to the maintained recommendation-only intake seam inside mixed-folder routing. The route row should point to the emitted intake plan artifact rather than auto-launching the final recommended PDF recipe."
+    },
+    {
+      "member_path": "mail/message.eml",
+      "source": "testdata/email-eml-mini.eml",
+      "expected_route": "recipe-email-eml-html-mvp.yaml"
+    },
+    {
+      "member_path": "web/snapshot.html",
+      "source": "testdata/web-page-mini.html",
+      "expected_route": "recipe-web-page-html-mvp.yaml"
+    },
+    {
+      "member_path": "notes/readme.txt",
+      "source": "testdata/mixed-folder-pdf-mini/notes/readme.txt",
+      "expected_route": "blocked",
+      "notes": "This unsupported text member exists to prove explicit blocked routing on the bounded mixed-folder PDF-member slice."
+    }
+  ],
+  "supported_scope": [
+    "source-native folder entry",
+    "relative member manifest and route rows",
+    "member-local recommendation-only intake for one repo-owned born-digital PDF member",
+    "suffix-based routing into existing maintained direct-entry recipes for the `.eml` and HTML members",
+    "explicit blocked rows for unsupported members"
+  ],
+  "known_gaps": [
+    "No scanned or handwritten direct-folder PDF-member recommendation proof",
+    "No archive-contained approved handoff or final maintained PDF recipe launch",
+    "No grouped image-member routing",
+    "No nested archives or attachment extraction",
+    "No broad mixed-folder normalization into a single combined bundle"
+  ]
+}

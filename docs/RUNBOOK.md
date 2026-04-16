@@ -606,10 +606,11 @@ archive/member manifest; member-level route rows with archive-relative
 provenance; nested `driver.py` launches into existing maintained direct-entry
 recipes for the supported members; and an explicit blocked row for the
 unsupported member. That ZIP lane is now complemented by a separate bounded
-direct-folder proof lane on the same member mix and a separate ZIP-only
-PDF-member recommendation probe; direct-folder PDF-member routing, grouped
-image-member routing, nested archives, attachment extraction, and broad
-heterogeneous archive normalization remain out of scope.
+direct-folder proof lane on the same member mix, a separate ZIP-only
+PDF-member recommendation probe, and a separate direct-folder born-digital
+PDF-member recommendation probe; scanned or handwritten direct-folder
+PDF-member routing, grouped image-member routing, nested archives, attachment
+extraction, and broad heterogeneous archive normalization remain out of scope.
 
 Expected outputs:
 
@@ -677,6 +678,62 @@ automation surface. It starts from explicit `driver.py --recipe ... --input-zip`
 entry and only emits a nested member-local recommendation artifact after the
 archive route stage.
 
+### Repo-Owned Mixed-Folder PDF-Member Recommendation Smoke
+
+Use this when you need a cheap real-run proof that the bounded direct-folder
+PDF-member continuation emits a source-native member route row pointing at an
+inspectable member-local `intake_plan_v1` artifact while the `.eml` and HTML
+members still launch and the unsupported `.txt` member still blocks:
+
+```bash
+python -m pip install '.[driver,email]'
+find modules -name "*.pyc" -delete
+python driver.py \
+  --recipe configs/recipes/recipe-mixed-folder-routing-mvp.yaml \
+  --input-folder testdata/mixed-folder-pdf-mini \
+  --run-id <run_id> \
+  --allow-run-id-reuse \
+  --force
+python validate_artifact.py \
+  --schema archive_member_manifest_v1 \
+  --file output/runs/<run_id>/01_folder_members_manifest_v1/archive_members_manifest.jsonl
+python validate_artifact.py \
+  --schema archive_member_route_v1 \
+  --file output/runs/<run_id>/02_archive_route_members_v1/archive_member_routes.jsonl
+python validate_artifact.py \
+  --schema intake_plan_v1 \
+  --file output/runs/<run_id>-member-001-recipe-intake-contact-sheet/05_confirm_plan_v1/overview_plan_final.jsonl
+```
+
+Story 222 established this bounded continuation on the checked-in
+`testdata/mixed-folder-pdf-mini/` fixture. The maintained claim is
+intentionally narrow: one repo-owned source-native folder tree with a flat
+born-digital PDF member, plain-text `.eml`, static HTML snapshot, and one
+intentionally unsupported `.txt` member; a stamped member manifest that keeps
+`extracted_path` source-native; a PDF member route row with relative
+provenance, `terminal_reason = pdf_member_recommendation_only`, and the emitted
+`05_confirm_plan_v1/overview_plan_final.jsonl` plan artifact recorded as
+`first_downstream_artifact`; existing maintained direct-entry launches for the
+`.eml` and HTML members; and an explicit blocked row for the unsupported
+member. It is not evidence for scanned or handwritten direct-folder
+PDF-member routing, archive-contained approved handoff or final maintained PDF
+launch, grouped image-member routing, nested archives, attachment extraction,
+or broad heterogeneous archive normalization.
+
+Expected outputs:
+
+- `output/runs/<run_id>/01_folder_members_manifest_v1/archive_members_manifest.jsonl`
+- `output/runs/<run_id>/02_archive_route_members_v1/archive_member_routes.jsonl`
+- `output/runs/<run_id>-member-001-recipe-intake-contact-sheet/05_confirm_plan_v1/overview_plan_final.jsonl`
+- `output/runs/<run_id>-member-002-recipe-email-eml-html-mvp/output/html/manifest.json`
+- `output/runs/<run_id>-member-004-recipe-web-page-html-mvp/output/html/manifest.json`
+
+This bounded direct-folder PDF-member continuation still sits outside the
+top-level recommendation-only contact-sheet benchmark and the approved-handoff
+automation surface. It starts from explicit `driver.py --recipe ... --input-folder`
+entry and only emits a nested member-local recommendation artifact after the
+archive route stage.
+
 ### Repo-Owned Mixed-Folder Intake Smoke
 
 Use this when you need a cheap real-run proof that the bounded source-native
@@ -713,7 +770,9 @@ intentionally unsupported `.txt` member; a stamped member manifest that keeps
 `extracted_path` source-native; member-level route rows with relative
 provenance; nested `driver.py` launches into existing maintained direct-entry
 recipes for the supported members; and an explicit blocked row for the
-unsupported member. Direct-folder PDF-member routing, grouped image-member
+unsupported member. Story 222 adds a second bounded direct-folder probe for one
+born-digital PDF member that stops at a member-local recommendation artifact;
+scanned or handwritten direct-folder PDF-member routing, grouped image-member
 routing, nested archives, attachment extraction, and broad heterogeneous
 folder/archive normalization remain out of scope.
 
@@ -725,8 +784,10 @@ Expected outputs:
 
 These maintained DOCX/XLSX/PPTX/EPUB/EML direct-entry lanes plus the bounded
 web-page, mixed-archive ZIP, and mixed-folder lanes are still explicit-recipe
-entry points. They are not part of the recommendation-only contact-sheet
-benchmark or the approved-handoff automation surface.
+entry points. The mixed-archive and mixed-folder PDF-member continuations emit
+only nested member-local recommendation artifacts after explicit entry; they
+are not part of the top-level recommendation-only contact-sheet benchmark or
+the approved-handoff automation surface.
 
 ### Office Intake Boundary Probe
 

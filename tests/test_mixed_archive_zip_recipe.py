@@ -16,6 +16,7 @@ from schemas import ArchiveMemberManifest, ArchiveMemberRoute, DocWebBundleManif
 ZIP_RECIPE = "configs/recipes/recipe-mixed-archive-zip-routing-mvp.yaml"
 ZIP_FIXTURE = "testdata/mixed-archive-mini.zip"
 PDF_ZIP_FIXTURE = "testdata/mixed-archive-pdf-mini.zip"
+FOLDER_PDF_FIXTURE = "testdata/mixed-folder-pdf-mini"
 
 
 def _load_jsonl(path: Path):
@@ -264,15 +265,14 @@ def test_archive_route_zip_pdf_member_launches_recommendation_only_run(
     assert plan.recommended_recipe == row.recommended_recipe
 
 
-def test_archive_route_folder_pdf_member_stays_blocked(
+def test_archive_route_folder_pdf_member_launches_recommendation_only_run(
     tmp_path: Path, monkeypatch: pytest.MonkeyPatch
 ):
-    run_id = "mixed-folder-pdf-boundary"
+    run_id = "mixed-folder-pdf-route"
     output_root = tmp_path / "runs"
     run_dir = output_root / run_id
-    source_pdf = tmp_path / "mixed-folder" / "docs" / "proposal.pdf"
-    source_pdf.parent.mkdir(parents=True, exist_ok=True)
-    shutil.copyfile("testdata/flat-born-digital-mini.pdf", source_pdf)
+    source_pdf = Path(FOLDER_PDF_FIXTURE).resolve() / "docs" / "proposal.pdf"
+    assert source_pdf.exists()
 
     manifest_path = (
         run_dir / "01_folder_members_manifest_v1" / "archive_members_manifest.jsonl"
@@ -283,7 +283,7 @@ def test_archive_route_folder_pdf_member_stays_blocked(
             {
                 "schema_version": "archive_member_manifest_v1",
                 "archive_format": "folder",
-                "archive_path": str((tmp_path / "mixed-folder").resolve()),
+                "archive_path": str(Path(FOLDER_PDF_FIXTURE).resolve()),
                 "member_id": "member-001",
                 "member_index": 1,
                 "member_path": "docs/proposal.pdf",
@@ -299,10 +299,42 @@ def test_archive_route_folder_pdf_member_stays_blocked(
     route_outdir = run_dir / "02_archive_route_members_v1"
     route_outdir.mkdir(parents=True, exist_ok=True)
 
-    def fail_run(*_args, **_kwargs):
-        raise AssertionError("Folder PDF members should stay blocked and never dispatch")
+    def fake_run(cmd: list[str], cwd: str):
+        assert cwd == str(archive_route_module.REPO_ROOT)
+        assert cmd[3] == archive_route_module.PDF_MEMBER_RECOMMENDATION_RECIPE
+        assert cmd[4] == "--input-pdf"
+        assert cmd[5] == str(source_pdf)
+        downstream_run_id = cmd[7]
+        output_dir = Path(cmd[cmd.index("--output-dir") + 1])
+        plan_artifact = (
+            output_dir
+            / downstream_run_id
+            / "05_confirm_plan_v1"
+            / "overview_plan_final.jsonl"
+        )
+        _write_jsonl(
+            plan_artifact,
+            [
+                {
+                    "schema_version": "intake_plan_v1",
+                    "book_type": "other",
+                    "recommended_recipe": "configs/recipes/recipe-born-digital-pdf-non-toc-html-mvp.yaml",
+                    "warnings": ["Missing capabilities: forms"],
+                    "signals": ["forms"],
+                    "capability_gaps": [],
+                    "meta": {
+                        "source_input": {
+                            "input_kind": "pdf",
+                            "source_pdf": str(source_pdf),
+                            "has_extractable_text": True,
+                        }
+                    },
+                }
+            ],
+        )
+        return subprocess.CompletedProcess(cmd, 0)
 
-    monkeypatch.setattr(archive_route_module.subprocess, "run", fail_run)
+    monkeypatch.setattr(archive_route_module.subprocess, "run", fake_run)
     monkeypatch.setattr(
         sys,
         "argv",
@@ -325,8 +357,18 @@ def test_archive_route_folder_pdf_member_stays_blocked(
     row = rows[0]
     assert row.archive_format == "folder"
     assert row.member_path == "docs/proposal.pdf"
-    assert row.terminal_outcome == "blocked"
-    assert row.terminal_reason == "pdf_member_outside_bounded_mixed_archive_slice"
-    assert row.recommended_recipe is None
-    assert row.downstream_run_id is None
-    assert row.first_downstream_artifact is None
+    assert row.terminal_outcome == "launched"
+    assert row.terminal_reason == "pdf_member_recommendation_only"
+    assert (
+        row.recommended_recipe
+        == "configs/recipes/recipe-born-digital-pdf-non-toc-html-mvp.yaml"
+    )
+    assert row.downstream_run_id
+    assert row.first_downstream_artifact
+    assert row.first_downstream_artifact.endswith(
+        "05_confirm_plan_v1/overview_plan_final.jsonl"
+    )
+    assert Path(row.first_downstream_artifact).exists()
+    plan = IntakePlan(**_load_jsonl(Path(row.first_downstream_artifact))[0])
+    assert plan.meta["source_input"]["source_pdf"] == str(source_pdf)
+    assert plan.recommended_recipe == row.recommended_recipe
