@@ -623,12 +623,13 @@ web-page and mixed-archive ZIP lanes are still explicit-recipe entry points.
 They are not part of the recommendation-only contact-sheet benchmark or the
 approved-handoff automation surface.
 
-### Repo-Owned Mixed-Archive ZIP PDF-Member Recommendation Smoke
+### Repo-Owned Mixed-Archive ZIP PDF-Member Approved-Handoff Smoke
 
 Use this when you need a cheap real-run proof that the bounded ZIP-only
 PDF-member continuation emits an archive/member route row pointing at an
-inspectable member-local `intake_plan_v1` artifact while the `.eml` and HTML
-members still launch and the unsupported `.txt` member still blocks:
+inspectable member-local `intake_plan_v1` and `intake_handoff_v1` pair while
+the `.eml` and HTML members still launch and the unsupported `.txt` member
+still blocks:
 
 ```bash
 python -m pip install '.[driver,email]'
@@ -647,21 +648,26 @@ python validate_artifact.py \
 python validate_artifact.py \
   --schema intake_plan_v1 \
   --file output/runs/<run_id>-member-001-recipe-intake-contact-sheet/05_confirm_plan_v1/overview_plan_final.jsonl
+python validate_artifact.py \
+  --schema intake_handoff_v1 \
+  --file output/runs/<run_id>/02_archive_route_members_v1/pdf_member_handoffs/member-001/intake_handoff.jsonl
 ```
 
-Story 221 established this bounded continuation on the checked-in
+Stories 221 and 223 established this bounded continuation on the checked-in
 `testdata/mixed-archive-pdf-mini.zip` fixture. The maintained claim is
 intentionally narrow: one repo-owned ZIP archive with a flat born-digital PDF
 member, plain-text `.eml`, static HTML snapshot, and one intentionally
 unsupported `.txt` member; a stamped archive/member manifest; a PDF member
-route row with archive-relative provenance, `terminal_reason =
-pdf_member_recommendation_only`, and the emitted
+route row with archive-relative provenance, `approval_mode =
+confirm_plan_auto_approve`, `terminal_reason =
+pdf_member_approved_handoff_dry_run`, and the emitted
 `05_confirm_plan_v1/overview_plan_final.jsonl` plan artifact recorded as
-`first_downstream_artifact`; existing maintained direct-entry launches for the
-`.eml` and HTML members; and an explicit blocked row for the unsupported
-member. It is not evidence for direct-folder PDF-member routing,
-archive-contained approved handoff or final maintained PDF launch, grouped
-image-member routing, nested archives, attachment extraction, or broad
+`first_downstream_artifact`; a member-local
+`02_archive_route_members_v1/pdf_member_handoffs/member-001/intake_handoff.jsonl`
+artifact; existing maintained direct-entry launches for the `.eml` and HTML
+members; and an explicit blocked row for the unsupported member. It is not
+evidence for direct-folder PDF-member routing, final maintained PDF launch,
+grouped image-member routing, nested archives, attachment extraction, or broad
 heterogeneous archive normalization.
 
 Expected outputs:
@@ -669,13 +675,14 @@ Expected outputs:
 - `output/runs/<run_id>/01_archive_unpack_manifest_v1/archive_members_manifest.jsonl`
 - `output/runs/<run_id>/02_archive_route_members_v1/archive_member_routes.jsonl`
 - `output/runs/<run_id>-member-001-recipe-intake-contact-sheet/05_confirm_plan_v1/overview_plan_final.jsonl`
+- `output/runs/<run_id>/02_archive_route_members_v1/pdf_member_handoffs/member-001/intake_handoff.jsonl`
 - `output/runs/<run_id>-member-002-recipe-email-eml-html-mvp/output/html/manifest.json`
 - `output/runs/<run_id>-member-003-recipe-web-page-html-mvp/output/html/manifest.json`
 
 This bounded PDF-member continuation still sits outside the top-level
 recommendation-only contact-sheet benchmark and the approved-handoff
 automation surface. It starts from explicit `driver.py --recipe ... --input-zip`
-entry and only emits a nested member-local recommendation artifact after the
+entry and only emits a nested member-local approved-handoff artifact after the
 archive route stage.
 
 ### Repo-Owned Mixed-Folder PDF-Member Recommendation Smoke
@@ -716,9 +723,9 @@ provenance, `terminal_reason = pdf_member_recommendation_only`, and the emitted
 `first_downstream_artifact`; existing maintained direct-entry launches for the
 `.eml` and HTML members; and an explicit blocked row for the unsupported
 member. It is not evidence for scanned or handwritten direct-folder
-PDF-member routing, archive-contained approved handoff or final maintained PDF
-launch, grouped image-member routing, nested archives, attachment extraction,
-or broad heterogeneous archive normalization.
+PDF-member routing, direct-folder PDF-member approved handoff, final
+maintained PDF launch, grouped image-member routing, nested archives,
+attachment extraction, or broad heterogeneous archive normalization.
 
 Expected outputs:
 
@@ -784,10 +791,11 @@ Expected outputs:
 
 These maintained DOCX/XLSX/PPTX/EPUB/EML direct-entry lanes plus the bounded
 web-page, mixed-archive ZIP, and mixed-folder lanes are still explicit-recipe
-entry points. The mixed-archive and mixed-folder PDF-member continuations emit
-only nested member-local recommendation artifacts after explicit entry; they
-are not part of the top-level recommendation-only contact-sheet benchmark or
-the approved-handoff automation surface.
+entry points. The mixed-archive ZIP PDF-member continuation emits a nested
+member-local approved-handoff artifact after explicit entry, while the
+mixed-folder PDF-member continuation still emits only a recommendation
+artifact; neither is part of the top-level recommendation-only contact-sheet
+benchmark or the approved-handoff automation surface.
 
 ### Office Intake Boundary Probe
 

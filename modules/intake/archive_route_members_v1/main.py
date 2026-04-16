@@ -22,6 +22,7 @@ from modules.intake.intake_plan_utils import (
     build_explicit_recipe_driver_command,
     default_downstream_run_id,
     load_artifact_row,
+    prepare_confirmed_handoff,
 )
 
 
@@ -30,6 +31,8 @@ SCHEMA_VERSION = "archive_member_route_v1"
 REPO_ROOT = Path(__file__).resolve().parents[3]
 DEFAULT_OUT = "archive_member_routes.jsonl"
 PDF_MEMBER_RECOMMENDATION_RECIPE = "configs/recipes/recipe-intake-contact-sheet.yaml"
+PDF_MEMBER_APPROVAL_MODE = "confirm_plan_auto_approve"
+PDF_MEMBER_HANDOFF_MODES = {"recommendation_only", "dry_run", "launch"}
 
 
 def parse_args() -> argparse.Namespace:
@@ -40,6 +43,13 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--outdir", required=True, help="Output directory")
     parser.add_argument("--out", default=DEFAULT_OUT, help="Output route artifact path")
     parser.add_argument("--downstream-end-at", dest="downstream_end_at", default=None)
+    parser.add_argument(
+        "--pdf-member-handoff-mode",
+        dest="pdf_member_handoff_mode",
+        default="recommendation_only",
+        choices=sorted(PDF_MEMBER_HANDOFF_MODES),
+        help="How PDF members should continue after the nested approved plan is emitted.",
+    )
     parser.add_argument("--allow-run-id-reuse", action="store_true")
     parser.add_argument("--dry-run", action="store_true")
     parser.add_argument("--progress-file", help="Path to pipeline_events.jsonl")
@@ -111,6 +121,77 @@ def _uses_pdf_member_recommendation(row: dict) -> bool:
     return archive_format in {"zip", "folder"} and row.get("detected_input_kind") == "pdf"
 
 
+def _handoff_artifact_path(outdir: str | Path, member_id: str) -> Path:
+    return Path(outdir) / "pdf_member_handoffs" / member_id / "intake_handoff.jsonl"
+
+
+def _apply_pdf_member_handoff(
+    route_row: dict,
+    *,
+    plan: dict,
+    plan_path: str,
+    member_id: str,
+    args: argparse.Namespace,
+    output_root: Path,
+) -> bool:
+    emitted_recipe = str(plan.get("recommended_recipe") or "").strip()
+    downstream_run_id = default_downstream_run_id(
+        emitted_recipe or "approved-handoff",
+        f"{args.run_id or 'mixed-archive'}-{member_id}-approved-handoff",
+    )
+    handoff_path = _handoff_artifact_path(args.outdir, member_id).resolve()
+    handoff_row, handoff_command, should_launch = prepare_confirmed_handoff(
+        plan,
+        plan_path=plan_path,
+        upstream_run_id=args.run_id,
+        downstream_run_id=downstream_run_id,
+        downstream_output_dir=output_root,
+        downstream_end_at=args.downstream_end_at,
+        dry_run=args.pdf_member_handoff_mode == "dry_run",
+        allow_run_id_reuse=args.allow_run_id_reuse,
+    )
+    handoff_row["module_id"] = MODULE_ID
+    route_row["handoff_artifact_path"] = str(handoff_path)
+    save_jsonl(str(handoff_path), [handoff_row])
+
+    if handoff_row["terminal_outcome"] == "blocked":
+        route_row["terminal_outcome"] = "blocked"
+        route_row["terminal_reason"] = (
+            f"pdf_member_handoff_blocked:{handoff_row['terminal_reason']}"
+        )
+        return False
+
+    if not should_launch:
+        route_row["terminal_outcome"] = handoff_row["terminal_outcome"]
+        if handoff_row["terminal_reason"] == "dry_run":
+            route_row["terminal_reason"] = "pdf_member_approved_handoff_dry_run"
+        else:
+            route_row["terminal_reason"] = (
+                f"pdf_member_handoff_{handoff_row['terminal_outcome']}:"
+                f"{handoff_row['terminal_reason']}"
+            )
+        return True
+
+    result = subprocess.run(handoff_command, cwd=str(REPO_ROOT))
+    handoff_row["exit_code"] = result.returncode
+    if result.returncode != 0:
+        handoff_row["terminal_outcome"] = "failed"
+        handoff_row["terminal_reason"] = f"downstream_exit_{result.returncode}"
+        route_row["terminal_outcome"] = "failed"
+        route_row["terminal_reason"] = (
+            f"pdf_member_handoff_downstream_exit_{result.returncode}"
+        )
+        save_jsonl(str(handoff_path), [handoff_row])
+        return False
+
+    handoff_row["terminal_outcome"] = "launched"
+    handoff_row["terminal_reason"] = None
+    route_row["terminal_outcome"] = "launched"
+    route_row["terminal_reason"] = "pdf_member_launched_from_approved_plan"
+    save_jsonl(str(handoff_path), [handoff_row])
+    return True
+
+
 def main() -> None:
     args = parse_args()
     logger = ProgressLogger(
@@ -167,6 +248,8 @@ def main() -> None:
             "downstream_run_id": None,
             "downstream_output_dir": None,
             "first_downstream_artifact": None,
+            "approval_mode": None,
+            "handoff_artifact_path": None,
             "terminal_outcome": "blocked",
             "terminal_reason": None,
             "exit_code": None,
@@ -240,6 +323,20 @@ def main() -> None:
             plan = load_artifact_row(first_downstream_artifact)
             emitted_recipe = str(plan.get("recommended_recipe") or "").strip()
             route_row["recommended_recipe"] = emitted_recipe or None
+            route_row["approval_mode"] = PDF_MEMBER_APPROVAL_MODE
+            if args.pdf_member_handoff_mode != "recommendation_only":
+                continuation_ok = _apply_pdf_member_handoff(
+                    route_row,
+                    plan=plan,
+                    plan_path=first_downstream_artifact,
+                    member_id=member_id,
+                    args=args,
+                    output_root=output_root,
+                )
+                route_rows.append(route_row)
+                if not continuation_ok:
+                    failed_launches += 1
+                continue
             route_row["terminal_reason"] = "pdf_member_recommendation_only"
 
         route_row["terminal_outcome"] = "launched"

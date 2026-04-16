@@ -1018,6 +1018,8 @@ class ArchiveMemberRoute(BaseModel):
     downstream_run_id: Optional[str] = None
     downstream_output_dir: Optional[str] = None
     first_downstream_artifact: Optional[str] = None
+    approval_mode: Optional[str] = None
+    handoff_artifact_path: Optional[str] = None
     terminal_outcome: Literal["launched", "skipped", "blocked", "failed"]
     terminal_reason: Optional[str] = None
     exit_code: Optional[int] = None

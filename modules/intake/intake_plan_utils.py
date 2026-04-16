@@ -292,6 +292,7 @@ def prepare_confirmed_handoff(
     plan_path: str | Path,
     upstream_run_id: Optional[str] = None,
     downstream_run_id: Optional[str] = None,
+    downstream_output_dir: str | Path | None = None,
     downstream_end_at: Optional[str] = None,
     dry_run: bool = False,
     allow_run_id_reuse: bool = False,
@@ -356,6 +357,7 @@ def prepare_confirmed_handoff(
         input_kind=input_kind,
         source_path=launch_path,
         downstream_run_id=resolved_downstream_run_id,
+        downstream_output_dir=downstream_output_dir,
         downstream_end_at=downstream_end_at,
         allow_run_id_reuse=allow_run_id_reuse,
     )
@@ -364,9 +366,12 @@ def prepare_confirmed_handoff(
     row["launch_input_path"] = str(launch_path)
     row["driver_command"] = driver_command
     row["downstream_run_id"] = resolved_downstream_run_id
-    row["downstream_output_dir"] = str(
-        REPO_ROOT / "output" / "runs" / resolved_downstream_run_id
+    resolved_output_dir = (
+        resolve_repo_path(downstream_output_dir)
+        if downstream_output_dir is not None
+        else (REPO_ROOT / "output" / "runs")
     )
+    row["downstream_output_dir"] = str(resolved_output_dir / resolved_downstream_run_id)
 
     if dry_run:
         row["terminal_outcome"] = "skipped"

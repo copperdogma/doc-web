@@ -10,7 +10,13 @@ import yaml
 
 import modules.intake.archive_route_members_v1.main as archive_route_module
 from modules.intake.archive_route_members_v1.main import _resolve_output_path
-from schemas import ArchiveMemberManifest, ArchiveMemberRoute, DocWebBundleManifest, IntakePlan
+from schemas import (
+    ArchiveMemberManifest,
+    ArchiveMemberRoute,
+    DocWebBundleManifest,
+    IntakeHandoff,
+    IntakePlan,
+)
 
 
 ZIP_RECIPE = "configs/recipes/recipe-mixed-archive-zip-routing-mvp.yaml"
@@ -252,6 +258,8 @@ def test_archive_route_zip_pdf_member_launches_recommendation_only_run(
         row.recommended_recipe
         == "configs/recipes/recipe-born-digital-pdf-non-toc-html-mvp.yaml"
     )
+    assert row.approval_mode == "confirm_plan_auto_approve"
+    assert row.handoff_artifact_path is None
     assert row.launch_input_flag == "--input-pdf"
     assert row.launch_input_path == str(extracted_pdf)
     assert row.driver_command[3] == archive_route_module.PDF_MEMBER_RECOMMENDATION_RECIPE
@@ -263,6 +271,122 @@ def test_archive_route_zip_pdf_member_launches_recommendation_only_run(
     plan = IntakePlan(**_load_jsonl(Path(row.first_downstream_artifact))[0])
     assert plan.meta["source_input"]["source_pdf"] == str(extracted_pdf)
     assert plan.recommended_recipe == row.recommended_recipe
+
+
+def test_archive_route_zip_pdf_member_writes_handoff_artifact_in_dry_run_mode(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+):
+    run_id = "mixed-archive-pdf-handoff"
+    output_root = tmp_path / "runs"
+    run_dir = output_root / run_id
+    extracted_pdf = (
+        run_dir
+        / "01_archive_unpack_manifest_v1"
+        / "extracted_members"
+        / "docs"
+        / "proposal.pdf"
+    )
+    extracted_pdf.parent.mkdir(parents=True, exist_ok=True)
+    shutil.copyfile("testdata/flat-born-digital-mini.pdf", extracted_pdf)
+
+    manifest_path = (
+        run_dir / "01_archive_unpack_manifest_v1" / "archive_members_manifest.jsonl"
+    )
+    _write_jsonl(
+        manifest_path,
+        [
+            {
+                "schema_version": "archive_member_manifest_v1",
+                "archive_format": "zip",
+                "archive_path": str(Path(PDF_ZIP_FIXTURE).resolve()),
+                "member_id": "member-001",
+                "member_index": 1,
+                "member_path": "docs/proposal.pdf",
+                "extracted_path": str(extracted_pdf),
+                "filename": "proposal.pdf",
+                "file_extension": ".pdf",
+                "detected_input_kind": "pdf",
+                "file_size_bytes": extracted_pdf.stat().st_size,
+            }
+        ],
+    )
+
+    route_outdir = run_dir / "02_archive_route_members_v1"
+    route_outdir.mkdir(parents=True, exist_ok=True)
+
+    def fake_run(cmd: list[str], cwd: str):
+        assert cwd == str(archive_route_module.REPO_ROOT)
+        assert cmd[3] == archive_route_module.PDF_MEMBER_RECOMMENDATION_RECIPE
+        assert cmd[4] == "--input-pdf"
+        assert cmd[5] == str(extracted_pdf)
+        downstream_run_id = cmd[7]
+        output_dir = Path(cmd[cmd.index("--output-dir") + 1])
+        plan_artifact = (
+            output_dir / downstream_run_id / "05_confirm_plan_v1" / "overview_plan_final.jsonl"
+        )
+        _write_jsonl(
+            plan_artifact,
+            [
+                {
+                    "schema_version": "intake_plan_v1",
+                    "book_type": "other",
+                    "recommended_recipe": "configs/recipes/recipe-born-digital-pdf-non-toc-html-mvp.yaml",
+                    "warnings": ["Missing capabilities: forms"],
+                    "signals": ["forms"],
+                    "capability_gaps": [],
+                    "meta": {
+                        "source_input": {
+                            "input_kind": "pdf",
+                            "source_pdf": str(extracted_pdf),
+                            "has_extractable_text": True,
+                        }
+                    },
+                }
+            ],
+        )
+        return subprocess.CompletedProcess(cmd, 0)
+
+    monkeypatch.setattr(archive_route_module.subprocess, "run", fake_run)
+    monkeypatch.setattr(
+        sys,
+        "argv",
+        [
+            "archive_route_members_v1",
+            "--manifest",
+            str(manifest_path),
+            "--outdir",
+            str(route_outdir),
+            "--run-id",
+            run_id,
+            "--allow-run-id-reuse",
+            "--pdf-member-handoff-mode",
+            "dry_run",
+        ],
+    )
+
+    archive_route_module.main()
+
+    routes_path = route_outdir / "archive_member_routes.jsonl"
+    rows = [ArchiveMemberRoute(**row) for row in _load_jsonl(routes_path)]
+    assert len(rows) == 1
+    row = rows[0]
+    assert row.archive_format == "zip"
+    assert row.member_path == "docs/proposal.pdf"
+    assert row.terminal_outcome == "skipped"
+    assert row.terminal_reason == "pdf_member_approved_handoff_dry_run"
+    assert row.approval_mode == "confirm_plan_auto_approve"
+    assert row.handoff_artifact_path
+    assert Path(row.handoff_artifact_path).exists()
+    handoff = IntakeHandoff(**_load_jsonl(Path(row.handoff_artifact_path))[0])
+    assert handoff.plan_path == row.first_downstream_artifact
+    assert handoff.launch_input_flag == "--input-pdf"
+    assert handoff.launch_input_path == str(extracted_pdf)
+    assert handoff.terminal_outcome == "skipped"
+    assert handoff.terminal_reason == "dry_run"
+    assert handoff.downstream_output_dir == str(
+        output_root
+        / "mixed-archive-pdf-handoff-member-001-approved-handoff-recipe-born-digital-pdf-non-toc-html-mvp"
+    )
 
 
 def test_archive_route_folder_pdf_member_launches_recommendation_only_run(

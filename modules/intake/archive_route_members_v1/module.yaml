@@ -5,6 +5,7 @@ input_schema: archive_member_manifest_v1
 output_schema: archive_member_route_v1
 default_params:
   allow_run_id_reuse: false
+  pdf_member_handoff_mode: recommendation_only
 param_schema:
   properties:
     downstream_end_at:
@@ -16,4 +17,11 @@ param_schema:
     dry_run:
       type: boolean
       description: "Write the route artifact without launching downstream recipes."
+    pdf_member_handoff_mode:
+      type: string
+      enum:
+        - recommendation_only
+        - dry_run
+        - launch
+      description: "How PDF members should continue after the nested approved plan is emitted."
 notes: "Route bounded archive or folder members into existing maintained direct-entry recipes or explicit blocked outcomes while preserving relative member provenance."

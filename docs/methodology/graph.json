@@ -140,7 +140,8 @@
           "210",
           "218",
           "221",
-          "222"
+          "222",
+          "223"
         ],
         "adr_ids": [
           "ADR-001",
@@ -415,7 +416,8 @@
           "219",
           "220",
           "221",
-          "222"
+          "222",
+          "223"
         ],
         "adr_ids": [
           "ADR-002",
@@ -478,7 +480,8 @@
           "219",
           "220",
           "221",
-          "222"
+          "222",
+          "223"
         ],
         "adr_ids": [
           "ADR-002",
@@ -552,7 +555,8 @@
           "217",
           "218",
           "221",
-          "222"
+          "222",
+          "223"
         ],
         "adr_ids": [
           "ADR-002"
@@ -601,7 +605,8 @@
           "207",
           "218",
           "221",
-          "222"
+          "222",
+          "223"
         ],
         "adr_ids": [],
         "eval_ids": [
@@ -662,7 +667,8 @@
           "210",
           "218",
           "221",
-          "222"
+          "222",
+          "223"
         ],
         "eval_ids": [
           "auto-book-type-detection",
@@ -725,7 +731,8 @@
             "210",
             "218",
             "221",
-            "222"
+            "222",
+            "223"
           ],
           "eval_ids": [
             "auto-book-type-detection",
@@ -1626,21 +1633,22 @@
           "205",
           "218",
           "221",
-          "222"
+          "222",
+          "223"
         ],
         "eval_ids": [],
         "actionability": {
           "source_kind": "story",
-          "source_id": "222",
-          "source_path": "docs/stories/story-222-mixed-folder-pdf-member-routing-seam.md",
+          "source_id": "223",
+          "source_path": "docs/stories/story-223-mixed-archive-pdf-member-approved-handoff-seam.md",
           "recommended_now": false,
           "posture": "completed",
-          "why_now": "`/mark-story-done` close-out validation confirmed Story 222 is",
+          "why_now": "mark-story-done: Story 223 closed after fresh close-out review",
           "last_relevant_action": {
             "date": "2026-04-16",
             "source_type": "story-work-log",
-            "source": "docs/stories/story-222-mixed-folder-pdf-member-routing-seam.md",
-            "summary": "`/mark-story-done` close-out validation confirmed Story 222 is"
+            "source": "docs/stories/story-223-mixed-archive-pdf-member-approved-handoff-seam.md",
+            "summary": "mark-story-done: Story 223 closed after fresh close-out review"
           },
           "story_ids": [
             "148",
@@ -1656,7 +1664,8 @@
             "205",
             "218",
             "221",
-            "222"
+            "222",
+            "223"
           ],
           "eval_ids": []
         }
@@ -12143,6 +12152,83 @@
           "summary": "`/mark-story-done` close-out validation confirmed Story 222 is"
         }
       }
+    },
+    {
+      "id": "223",
+      "title": "Establish the First Honest Mixed-Archive PDF-Member Approved-Handoff Seam",
+      "path": "docs/stories/story-223-mixed-archive-pdf-member-approved-handoff-seam.md",
+      "status": "Done",
+      "priority": "High",
+      "ideal_refs": [
+        "Requirement #1 (Ingest), Requirement #2 (Detect), Requirement #6 (Validate), Zero configuration, Transparency over magic"
+      ],
+      "spec_refs": [
+        "spec:1",
+        "spec:1.1",
+        "spec:6",
+        "spec:7",
+        "spec:8",
+        "spec:9"
+      ],
+      "decision_refs": [
+        "`docs/ideal.md`, `docs/spec.md`, `docs/methodology/state.yaml`, `docs/methodology/graph.json`, `docs/decisions/adr-002-doc-web-runtime-boundary/adr.md`, `docs/stories/story-176-confirmed-intake-handoff-to-explicit-recipe-runs.md`, `docs/stories/story-180-widen-approved-intake-handoff-image-directory-proof.md`, `docs/stories/story-194-office-intake-recommendation-and-handoff-boundary.md`, `docs/stories/story-196-widen-born-digital-pdf-proof-and-quality-surface.md`, `docs/stories/story-205-mixed-archive-intake-routing-seam.md`, `docs/stories/story-221-mixed-archive-pdf-member-routing-seam.md`, `docs/stories/story-222-mixed-folder-pdf-member-routing-seam.md`, `tests/fixtures/formats/_coverage-matrix.json`, `README.md`, `docs/RUNBOOK.md`, `modules/intake/archive_route_members_v1/main.py`, `modules/intake/intake_plan_utils.py`, `modules/intake/run_dispatch_v1/main.py`, `modules/intake/confirm_plan_v1/main.py`, `configs/recipes/recipe-intake-contact-sheet-confirmed-handoff.yaml`, `tests/test_mixed_archive_zip_recipe.py`, and `None found after search in docs/decisions/`, `docs/runbooks/`, `docs/scout/`, and `docs/notes/` for a narrower mixed-archive approved-handoff ADR or runbook`",
+        "ADR-002"
+      ],
+      "adr_ids": [
+        "ADR-002"
+      ],
+      "depends_on": [
+        "176",
+        "180",
+        "196",
+        "205",
+        "221"
+      ],
+      "category_refs": [
+        "spec:1",
+        "spec:6",
+        "spec:7",
+        "spec:8",
+        "spec:9"
+      ],
+      "compromise_refs": [
+        "B10",
+        "C2"
+      ],
+      "input_coverage_refs": [
+        "mixed-archive"
+      ],
+      "architecture_domains": [
+        "intake_and_routing"
+      ],
+      "roadmap_tags": [
+        "campaign:maintained-intake-honesty"
+      ],
+      "blocker_summary": "",
+      "blocker_evidence": "",
+      "unblock_condition": "",
+      "last_work_log_entry": {
+        "timestamp": "20260416-1536",
+        "date": "2026-04-16",
+        "summary": "mark-story-done: Story 223 closed after fresh close-out review"
+      },
+      "legacy_build_map_refs": "",
+      "metadata_source": "frontmatter",
+      "missing_frontmatter_keys": [],
+      "actionability": {
+        "source_kind": "story",
+        "source_id": "223",
+        "source_path": "docs/stories/story-223-mixed-archive-pdf-member-approved-handoff-seam.md",
+        "recommended_now": false,
+        "posture": "completed",
+        "why_now": "mark-story-done: Story 223 closed after fresh close-out review",
+        "last_relevant_action": {
+          "date": "2026-04-16",
+          "source_type": "story-work-log",
+          "source": "docs/stories/story-223-mixed-archive-pdf-member-approved-handoff-seam.md",
+          "summary": "mark-story-done: Story 223 closed after fresh close-out review"
+        }
+      }
     }
   ],
   "adrs": [
@@ -14634,7 +14720,7 @@
         "id": "mixed-archive",
         "format_family": "mixed-archive",
         "status": "passing",
-        "description": "Bounded ZIP archives or source-native folders containing a maintained mix of direct-entry file types, including one ZIP-only and one direct-folder PDF-member recommendation probe, routed member-by-member",
+        "description": "Bounded ZIP archives or source-native folders containing a maintained mix of direct-entry file types, including one ZIP-only PDF-member approved-handoff probe and one direct-folder PDF-member recommendation probe, routed member-by-member",
         "pipeline_recipe": "recipe-mixed-archive-zip-routing-mvp.yaml / recipe-mixed-folder-routing-mvp.yaml",
         "intake_module": "archive_unpack_manifest_v1 or folder_members_manifest_v1 \u2192 archive_route_members_v1",
         "complexity": [
@@ -14651,7 +14737,7 @@
             "id": "mixed-archive-pdf-mini",
             "source": "testdata/mixed-archive-pdf-mini.zip",
             "pages": null,
-            "notes": "Supported on the first bounded ZIP-only PDF-member continuation of the same mixed-input seam. Story 221 established one repo-owned four-member ZIP with a flat born-digital PDF member, plain-text `.eml`, checked HTML snapshot, and one intentionally unsupported `.txt` member. The lane emits archive/member manifest and route rows, launches a nested recommendation-only intake run for the PDF member, records the emitted `intake_plan_v1` artifact as `first_downstream_artifact`, and surfaces the final recommended maintained PDF recipe on the route row without silently auto-launching that final recipe."
+            "notes": "Supported on the first bounded ZIP-only PDF-member approved-handoff continuation of the same mixed-input seam. Story 221 established the nested recommendation substrate on one repo-owned four-member ZIP with a flat born-digital PDF member, plain-text `.eml`, checked HTML snapshot, and one intentionally unsupported `.txt` member, and Story 223 extended that same fixture to a member-local approved-handoff proof. The lane emits archive/member manifest and route rows, launches a nested recommendation intake run for the PDF member, records the emitted approved `intake_plan_v1` artifact as `first_downstream_artifact`, writes a member-local `intake_handoff_v1` sidecar, and still stops before silently auto-launching the final maintained PDF recipe."
           },
           {
             "id": "mixed-folder-mini",
@@ -14668,8 +14754,8 @@
         ],
         "scores": null,
         "known_gaps": [
-          "Passing evidence is still bounded to four checked-in four-member probes: one ZIP entry surface with direct-entry DOCX / `.eml` / HTML launches, one ZIP PDF-member recommendation surface with `.eml` / HTML launches plus a member-local `intake_plan_v1` artifact for the PDF member, one source-native folder entry surface on the original DOCX / `.eml` / HTML / `.txt` mix, and one source-native folder PDF-member recommendation surface on a born-digital PDF / `.eml` / HTML / `.txt` mix.",
-          "The maintained lane does not yet claim scanned or handwritten direct-folder PDF-member recommendation parity, archive-contained approved handoff or final maintained PDF launch, grouped image-member interpretation, nested archives, attachment extraction, ambiguous AI-assisted route decisions, or broad heterogeneous archive ownership.",
+          "Passing evidence is still bounded to four checked-in four-member probes: one ZIP entry surface with direct-entry DOCX / `.eml` / HTML launches, one ZIP PDF-member approved-handoff surface with `.eml` / HTML launches plus member-local `intake_plan_v1` and `intake_handoff_v1` artifacts for the PDF member, one source-native folder entry surface on the original DOCX / `.eml` / HTML / `.txt` mix, and one source-native folder PDF-member recommendation surface on a born-digital PDF / `.eml` / HTML / `.txt` mix.",
+          "The maintained lane does not yet claim scanned or handwritten direct-folder PDF-member recommendation parity, direct-folder PDF-member approved handoff, final maintained PDF launch, grouped image-member interpretation, nested archives, attachment extraction, ambiguous AI-assisted route decisions, or broad heterogeneous archive ownership.",
           "Mixed-archive provenance currently relies on relative `member_path` / `member_id`, source-native or extracted member file paths depending on the entry surface, and downstream run ids or artifact paths; it does not flatten members into one combined bundle or claim archive-level page anchors."
         ],
         "graduated": false
@@ -14829,9 +14915,10 @@
             "208",
             "218",
             "221",
-            "222"
+            "222",
+            "223"
           ],
-          "notes": "Recent bounded proof and direct-entry expansions are done; Story 205 closed the first ZIP-only mixed-archive routing seam as bounded maintained evidence, Story 218 widened that same seam to one checked-in source-native folder probe, Story 221 extended the ZIP seam to one checked-in PDF-member recommendation probe, Story 222 added one checked-in direct-folder born-digital PDF-member recommendation probe, and Story 208 closed the bounded stronger-OCR benchmark line for the handwritten blocker with negative evidence. Keep Story 191 blocked until a later pass produces fresh current-pass evidence for a materially stronger OCR substrate, and treat Stories 205, 218, 221, and 222 as proof for one ZIP direct-entry mix, one source-native folder mix, one ZIP-only PDF-member recommendation slice, and one direct-folder born-digital PDF-member recommendation slice rather than broad archive or folder ownership."
+          "notes": "Recent bounded proof and direct-entry expansions are done; Story 205 closed the first ZIP-only mixed-archive routing seam as bounded maintained evidence, Story 218 widened that same seam to one checked-in source-native folder probe, Story 221 established the ZIP PDF-member recommendation substrate, Story 223 extended that same ZIP fixture to one checked-in PDF-member approved-handoff probe, Story 222 added one checked-in direct-folder born-digital PDF-member recommendation probe, and Story 208 closed the bounded stronger-OCR benchmark line for the handwritten blocker with negative evidence. Keep Story 191 blocked until a later pass produces fresh current-pass evidence for a materially stronger OCR substrate, and treat Stories 205, 218, 223, and 222 as proof for one ZIP direct-entry mix, one source-native folder mix, one ZIP-only PDF-member approved-handoff slice, and one direct-folder born-digital PDF-member recommendation slice rather than broad archive or folder ownership."
         }
       ]
     },
@@ -14840,7 +14927,7 @@
         {
           "id": "recommended-order",
           "title": "Recommended Order",
-          "markdown": "Guiding priorities: keep bounded intake + `doc-web` claims honest and widen reusable format coverage only when substrate and proof exist.\n\nUse `docs/methodology/graph.json`, `docs/methodology/state.yaml`, and `/triage` output for current sequencing. Story `205` now stands as the completed bounded proof for the first `mixed-archive` ZIP seam, Stories `221` and `222` are the bounded ZIP-only and direct-folder PDF-member recommendation continuations on that same archive/folder lane, and Story `218` remains the original non-PDF direct-folder proof; use them as evidence for the specific checked-in fixtures and emitted member-route artifacts, not as blanket archive-support claims. Story `208` closed the bounded stronger-OCR benchmark line for the handwritten blocker with negative evidence, so Story `191` remains blocked until a later pass proves a materially stronger OCR substrate. Historical Fighting Fantasy/gamebook stories remain in the index below as project record and reference evidence, not as the default mission queue."
+          "markdown": "Guiding priorities: keep bounded intake + `doc-web` claims honest and widen reusable format coverage only when substrate and proof exist.\n\nUse `docs/methodology/graph.json`, `docs/methodology/state.yaml`, and `/triage` output for current sequencing. Story `205` now stands as the completed bounded proof for the first `mixed-archive` ZIP seam, Story `223` is the bounded ZIP-only PDF-member approved-handoff continuation on that same archive lane, Story `222` is the bounded direct-folder PDF-member recommendation continuation, and Story `218` remains the original non-PDF direct-folder proof; use them as evidence for the specific checked-in fixtures and emitted member-route artifacts, not as blanket archive-support claims. Story `208` closed the bounded stronger-OCR benchmark line for the handwritten blocker with negative evidence, so Story `191` remains blocked until a later pass proves a materially stronger OCR substrate. Historical Fighting Fantasy/gamebook stories remain in the index below as project record and reference evidence, not as the default mission queue."
         }
       ],
       "uncategorized_label": "Legacy / Uncategorized Stories"
@@ -14875,10 +14962,11 @@
             "205",
             "218",
             "221",
-            "222"
+            "222",
+            "223"
           ],
           "open_findings": [],
-          "notes": "Story 194 fixed the office recommendation boundary, Story 200 added the first web-page direct-entry seam, Story 205 closed the first ZIP-only mixed-archive routing slice, Story 218 widened that same bounded member-routing seam to one checked-in source-native folder fixture, Story 221 added one checked-in ZIP-only PDF-member recommendation probe, and Story 222 added one checked-in direct-folder born-digital PDF-member recommendation probe. The maintained substrate now covers one ZIP direct-entry mix, one ZIP PDF-member recommendation mix, one direct-folder non-PDF probe, and one direct-folder born-digital PDF-member recommendation probe; scanned or handwritten direct-folder PDF-member routing, archive-contained approved handoff or final PDF launch, grouped image-member routing, and broader archive semantics remain intentionally out of scope until separately proven."
+          "notes": "Story 194 fixed the office recommendation boundary, Story 200 added the first web-page direct-entry seam, Story 205 closed the first ZIP-only mixed-archive routing slice, Story 218 widened that same bounded member-routing seam to one checked-in source-native folder fixture, Story 221 established one checked-in ZIP-only PDF-member recommendation probe, Story 223 extended that same ZIP fixture to one checked-in PDF-member approved-handoff probe, and Story 222 added one checked-in direct-folder born-digital PDF-member recommendation probe. The maintained substrate now covers one ZIP direct-entry mix, one ZIP PDF-member approved-handoff mix, one direct-folder non-PDF probe, and one direct-folder born-digital PDF-member recommendation probe; scanned or handwritten direct-folder PDF-member routing, direct-folder PDF-member approved handoff, final PDF launch, grouped image-member routing, and broader archive semantics remain intentionally out of scope until separately proven."
         },
         "ocr_and_extraction": {
           "label": "OCR and Extraction",

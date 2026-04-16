@@ -182,6 +182,34 @@ def test_prepare_confirmed_handoff_forwards_downstream_end_at(tmp_path):
     assert command[-2:] == ["--end-at", "images_to_manifest"]
 
 
+def test_prepare_confirmed_handoff_forwards_downstream_output_dir(tmp_path):
+    pdf_path = tmp_path / "sample.pdf"
+    pdf_path.write_bytes(b"%PDF-1.4\n% story223\n")
+    output_root = tmp_path / "runs"
+    plan = _plan(
+        input_kind="pdf",
+        has_extractable_text=True,
+        recommended_recipe="configs/recipes/recipe-born-digital-pdf-non-toc-html-mvp.yaml",
+        source_pdf=str(pdf_path),
+    )
+
+    row, command, should_launch = prepare_confirmed_handoff(
+        plan,
+        plan_path=tmp_path / "overview_plan_final.jsonl",
+        upstream_run_id="story223-pdf",
+        downstream_output_dir=output_root,
+        dry_run=True,
+    )
+
+    assert should_launch is False
+    assert row["terminal_reason"] == "dry_run"
+    assert row["downstream_output_dir"] == str(
+        output_root / "story223-pdf-recipe-born-digital-pdf-non-toc-html-mvp"
+    )
+    assert "--output-dir" in command
+    assert str(output_root.resolve()) in command
+
+
 def test_prepare_confirmed_handoff_skips_no_recipe_needed(tmp_path):
     plan = _plan(
         input_kind="pdf",

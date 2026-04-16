@@ -1,3 +1,21 @@
+## [2026-04-16-02] - Land mixed-archive approved-handoff seam (Story 223)
+
+### Added
+- Added a bounded ZIP-only PDF-member approved-handoff continuation on the maintained mixed-archive lane, including a member-local `intake_handoff_v1` sidecar and focused fixture coverage for the new route/handoff contract
+
+### Changed
+- Changed `archive_route_members_v1`, shared intake-plan helpers, the mixed-archive ZIP recipe, and `archive_member_route_v1` so ZIP-contained born-digital PDF members now stop at an inspectable approved-handoff artifact instead of only a recommendation artifact, without widening direct-folder parity or final maintained PDF launch claims
+- Changed README, RUNBOOK, fixture metadata, coverage truth, methodology state, generated story views, and Story 223 wording so the maintained mixed-input claim now matches the bounded ZIP-only PDF-member approved-handoff seam
+
+### Tested
+- `make lint`
+- `make test`
+- `python driver.py --recipe configs/recipes/recipe-mixed-archive-zip-routing-mvp.yaml --input-zip testdata/mixed-archive-pdf-mini.zip --run-id story223-impl-r1 --allow-run-id-reuse --output-dir output/runs --force`
+- `python validate_artifact.py --schema archive_member_route_v1 --file output/runs/story223-impl-r1/02_archive_route_members_v1/archive_member_routes.jsonl`
+- `python validate_artifact.py --schema intake_handoff_v1 --file output/runs/story223-impl-r1/02_archive_route_members_v1/pdf_member_handoffs/member-001/intake_handoff.jsonl`
+- `python validate_artifact.py --schema intake_plan_v1 --file output/runs/story223-impl-r1-member-001-recipe-intake-contact-sheet/05_confirm_plan_v1/overview_plan_final.jsonl`
+- `make methodology-compile`
+
 ## [2026-04-16-01] - Land mixed-folder PDF-member seam (Story 222)
 
 ### Added
