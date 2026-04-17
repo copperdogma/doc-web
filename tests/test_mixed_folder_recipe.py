@@ -12,6 +12,8 @@ from schemas import ArchiveMemberManifest, ArchiveMemberRoute, DocWebBundleManif
 
 FOLDER_RECIPE = "configs/recipes/recipe-mixed-folder-routing-mvp.yaml"
 FOLDER_FIXTURE = "testdata/mixed-folder-mini"
+FOLDER_IMAGES_FIXTURE = "testdata/mixed-folder-images-mini"
+FOLDER_IMAGES_FIXTURE_META = "testdata/mixed-folder-images-mini.source.json"
 FOLDER_PDF_FIXTURE = "testdata/mixed-folder-pdf-mini"
 FOLDER_PDF_FIXTURE_META = "testdata/mixed-folder-pdf-mini.source.json"
 
@@ -65,6 +67,28 @@ def test_mixed_folder_pdf_fixture_shape():
     assert (Path(FOLDER_PDF_FIXTURE) / "mail" / "message.eml").exists()
     assert (Path(FOLDER_PDF_FIXTURE) / "web" / "snapshot.html").exists()
     assert (Path(FOLDER_PDF_FIXTURE) / "notes" / "readme.txt").exists()
+
+
+def test_mixed_folder_images_fixture_shape():
+    metadata = json.loads(Path(FOLDER_IMAGES_FIXTURE_META).read_text(encoding="utf-8"))
+
+    assert metadata["archive_format"] == "folder"
+    assert [member["member_path"] for member in metadata["members"]] == [
+        "pages/page-001.png",
+        "pages/page-002.png",
+        "notes/readme.txt",
+    ]
+    assert metadata["members"][0]["expected_route"] == "grouped-images-dir-launch"
+    assert metadata["members"][1]["expected_route"] == "grouped-images-dir-launch"
+    assert metadata["members"][2]["expected_route"] == "blocked"
+    assert any(
+        "grouped image-member route rows" in scope
+        for scope in metadata["supported_scope"]
+    )
+    assert "No direct-folder grouped image-member parity" not in metadata["known_gaps"]
+    assert (Path(FOLDER_IMAGES_FIXTURE) / "pages" / "page-001.png").exists()
+    assert (Path(FOLDER_IMAGES_FIXTURE) / "pages" / "page-002.png").exists()
+    assert (Path(FOLDER_IMAGES_FIXTURE) / "notes" / "readme.txt").exists()
 
 
 def test_mixed_folder_recipe_smoke(tmp_path: Path):
@@ -168,3 +192,103 @@ def test_mixed_folder_recipe_smoke(tmp_path: Path):
             assert manifest.title == "Fixture Subject"
         if member_path == "web/snapshot.html":
             assert manifest.entries[0].title == "Example Domain"
+
+
+def test_mixed_folder_grouped_image_recipe_smoke(tmp_path: Path):
+    run_id = f"mixed-folder-images-smoke-{uuid.uuid4().hex[:8]}"
+    output_root = tmp_path / "runs"
+    run_dir = output_root / run_id
+
+    result = subprocess.run(
+        [
+            sys.executable,
+            "driver.py",
+            "--recipe",
+            FOLDER_RECIPE,
+            "--input-folder",
+            FOLDER_IMAGES_FIXTURE,
+            "--run-id",
+            run_id,
+            "--output-dir",
+            str(output_root),
+        ],
+        capture_output=True,
+        text=True,
+    )
+
+    assert result.returncode == 0, result.stdout + result.stderr
+
+    manifest_path = (
+        run_dir / "01_folder_members_manifest_v1" / "archive_members_manifest.jsonl"
+    )
+    routes_path = run_dir / "02_archive_route_members_v1" / "archive_member_routes.jsonl"
+
+    assert manifest_path.exists()
+    assert routes_path.exists()
+
+    manifest_rows = [
+        ArchiveMemberManifest(**row) for row in _load_jsonl(manifest_path)
+    ]
+    route_rows = [ArchiveMemberRoute(**row) for row in _load_jsonl(routes_path)]
+
+    fixture_abs = str(Path(FOLDER_IMAGES_FIXTURE).resolve())
+    source_pages_dir = str((Path(FOLDER_IMAGES_FIXTURE) / "pages").resolve())
+    assert all(row.archive_format == "folder" for row in manifest_rows)
+    assert all(row.archive_path == fixture_abs for row in manifest_rows)
+    assert [row.member_path for row in manifest_rows] == [
+        "notes/readme.txt",
+        "pages/page-001.png",
+        "pages/page-002.png",
+    ]
+    assert [row.detected_input_kind for row in manifest_rows] == [None, None, None]
+    assert all(Path(row.extracted_path).exists() for row in manifest_rows)
+    assert all(
+        str(Path(row.extracted_path).resolve()).startswith(fixture_abs)
+        for row in manifest_rows
+    )
+    assert all(
+        not str(Path(row.extracted_path).resolve()).startswith(str(run_dir.resolve()))
+        for row in manifest_rows
+    )
+
+    by_member = {row.member_path: row for row in route_rows}
+    assert all(row.archive_format == "folder" for row in route_rows)
+
+    blocked_row = by_member["notes/readme.txt"]
+    assert blocked_row.terminal_outcome == "blocked"
+    assert blocked_row.terminal_reason == "unsupported_archive_member_suffix:.txt"
+    assert blocked_row.group_id is None
+    assert blocked_row.group_key is None
+    assert blocked_row.group_role is None
+    assert blocked_row.group_size is None
+
+    primary_row = by_member["pages/page-001.png"]
+    secondary_row = by_member["pages/page-002.png"]
+    assert primary_row.group_role == "primary"
+    assert secondary_row.group_role == "secondary"
+    assert primary_row.group_id == secondary_row.group_id == "images-dir:pages"
+    assert primary_row.group_key == secondary_row.group_key == "pages"
+    assert primary_row.group_size == secondary_row.group_size == 2
+    assert primary_row.detected_input_kind == secondary_row.detected_input_kind == "images_dir"
+    assert primary_row.recommended_recipe == secondary_row.recommended_recipe
+    assert primary_row.launch_input_flag == secondary_row.launch_input_flag == "--input-images"
+    assert primary_row.launch_input_path == secondary_row.launch_input_path == source_pages_dir
+    assert primary_row.downstream_run_id == secondary_row.downstream_run_id
+    assert primary_row.downstream_output_dir == secondary_row.downstream_output_dir
+    assert primary_row.first_downstream_artifact == secondary_row.first_downstream_artifact
+    assert Path(primary_row.downstream_output_dir).exists()
+    assert Path(primary_row.first_downstream_artifact).exists()
+    assert primary_row.terminal_outcome == secondary_row.terminal_outcome == "launched"
+    assert (
+        primary_row.terminal_reason
+        == secondary_row.terminal_reason
+        == "grouped_image_end_at:images_to_manifest"
+    )
+
+    launched_rows = _load_jsonl(Path(primary_row.first_downstream_artifact))
+    assert [row["image"] for row in launched_rows] == [
+        str(Path(source_pages_dir) / "page-001.png"),
+        str(Path(source_pages_dir) / "page-002.png"),
+    ]
+    assert launched_rows[0]["source"] == [source_pages_dir]
+    assert launched_rows[1]["source"] == [source_pages_dir]

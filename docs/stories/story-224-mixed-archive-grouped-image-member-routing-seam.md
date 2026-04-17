@@ -1,5 +1,5 @@
 ---
-title: "Establish the First Honest Mixed-Archive Grouped Image-Member Routing Seam"
+title: "Expand the First Honest Grouped Image-Member Routing Seam to Direct-Folder Parity"
 status: "Done"
 priority: "High"
 ideal_refs:
@@ -16,6 +16,7 @@ adr_refs:
 depends_on:
   - "180"
   - "205"
+  - "218"
 category_refs:
   - "spec:1"
   - "spec:6"
@@ -35,12 +36,12 @@ roadmap_tags:
 legacy_system: ""
 ---
 
-# Story 224 — Establish the First Honest Mixed-Archive Grouped Image-Member Routing Seam
+# Story 224 — Expand the First Honest Grouped Image-Member Routing Seam to Direct-Folder Parity
 
 **Priority**: High
 **Status**: Done
-**Decision Refs**: `docs/ideal.md`, `docs/spec.md`, `docs/methodology/state.yaml`, `docs/methodology/graph.json`, `docs/decisions/adr-002-doc-web-runtime-boundary/adr.md`, `docs/stories/story-180-widen-approved-intake-handoff-image-directory-proof.md`, `docs/stories/story-205-mixed-archive-intake-routing-seam.md`, `docs/stories/story-218-mixed-folder-direct-entry-seam.md`, `docs/stories/story-221-mixed-archive-pdf-member-routing-seam.md`, `docs/stories/story-223-mixed-archive-pdf-member-approved-handoff-seam.md`, `tests/fixtures/formats/_coverage-matrix.json`, `README.md`, `docs/RUNBOOK.md`, `testdata/README.md`, `schemas.py`, `modules/intake/archive_unpack_manifest_v1/main.py`, `modules/intake/archive_route_members_v1/main.py`, `modules/intake/intake_plan_utils.py`, `modules/extract/images_dir_to_manifest_v1/main.py`, `tests/test_mixed_archive_zip_recipe.py`, `tests/test_image_directory_intake_recipe.py`, and `None found after search in docs/decisions/`, `docs/runbooks/`, `docs/scout/`, and `docs/notes/` for a narrower mixed-archive grouped-image ADR or runbook`
-**Depends On**: Stories `180` and `205`
+**Decision Refs**: `docs/ideal.md`, `docs/spec.md`, `docs/methodology/state.yaml`, `docs/methodology/graph.json`, `docs/decisions/adr-002-doc-web-runtime-boundary/adr.md`, `docs/stories/story-180-widen-approved-intake-handoff-image-directory-proof.md`, `docs/stories/story-205-mixed-archive-intake-routing-seam.md`, `docs/stories/story-218-mixed-folder-direct-entry-seam.md`, `docs/stories/story-223-mixed-archive-pdf-member-approved-handoff-seam.md`, `tests/fixtures/formats/_coverage-matrix.json`, `README.md`, `docs/RUNBOOK.md`, `testdata/README.md`, `schemas.py`, `modules/intake/archive_unpack_manifest_v1/main.py`, `modules/intake/folder_members_manifest_v1/main.py`, `modules/intake/archive_route_members_v1/main.py`, `modules/intake/intake_plan_utils.py`, `modules/extract/images_dir_to_manifest_v1/main.py`, `tests/test_mixed_archive_zip_recipe.py`, `tests/test_mixed_folder_recipe.py`, `tests/test_image_directory_intake_recipe.py`, and `None found after search in docs/decisions/`, `docs/runbooks/`, `docs/scout/`, and `docs/notes/` for a narrower mixed-archive grouped-image ADR or runbook`
+**Depends On**: Stories `180`, `205`, and `218`
 
 > If this story is `Blocked`, replace `N/A` in `Blocker Summary`, `Blocker
 > Evidence`, and `Unblock Condition` with repo-backed truth, and make the
@@ -50,94 +51,107 @@ legacy_system: ""
 
 ## Goal
 
-Stories 205, 218, 221, and 223 now prove the bounded mixed-archive route/module
-line for direct-entry members plus one born-digital PDF-member continuation, but
-the current truth surfaces still explicitly exclude grouped image-member
-routing. The repo already owns a maintained top-level `images_dir` lane and a
-checked-in bounded image-directory proof from Story 180, yet the mixed-archive
-substrate still inventories one file per member and only knows how to launch
-direct-entry families or the PDF special case. This story should close the next
-honest gap on that same line: one repo-owned ZIP probe whose ordered page-image
-members are grouped into a single `images_dir` launch candidate with explicit
-archive-relative provenance, while direct-folder parity, broad photo-album
-semantics, OCR-quality claims, and broader heterogeneous archive ownership stay
+Story 224 already closed the first honest ZIP-only grouped image-member first-
+artifact slice on the mixed-archive route/module seam. The remaining same-line
+delta is direct-folder parity: the repo now has the grouped route-row
+provenance contract, the bounded ZIP probe, and the maintained downstream
+`images_dir` first-artifact proof, but the current direct-folder route still
+stops short because grouped-image candidate detection only considers
+`archive_format == "zip"`. Under the tightened anti-fragmentation rule, this
+next slice belongs here instead of a new story because it stays on the same
+`archive_route_members_v1` owner, same `mixed-archive` coverage row, same
+fixture family, same grouped route contract, and same first downstream
+`page_image_v1` validation boundary. This reopened story should widen the
+grouped image-member proof to one bounded repo-owned source-native folder probe
+while keeping later OCR/HTML continuation, broad folder-of-images semantics,
+handwritten/scanned quality claims, and broader heterogeneous archive ownership
 out of scope.
 
 ## Acceptance Criteria
 
-- [x] A fresh current-pass baseline names the exact grouped image-member gap
-      from repo evidence:
+- [x] This reopened story preserves the completed ZIP-only grouped image-member
+      first-artifact proof and records why the remaining direct-folder parity
+      delta belongs here instead of a new story:
+  - [x] the work log cites that the direct-folder continuation stays on the
+        same `archive_route_members_v1` owner, same `mixed-archive` coverage
+        row, same grouped route-row provenance contract, same first downstream
+        `page_image_v1` artifact boundary, and same operator-facing outcome as
+        the completed ZIP slice
+  - [x] the ZIP-only grouped-image proof remains recorded as completed evidence
+        rather than being silently widened or discarded
+- [x] A fresh current-pass baseline names the exact direct-folder grouped image-
+      member gap from repo evidence:
   - [x] the work log records that
         `tests/fixtures/formats/_coverage-matrix.json`,
         `docs/methodology/state.yaml`, `README.md`, `docs/RUNBOOK.md`, and
-        `testdata/README.md` still exclude grouped image-member routing at
-        story start
+        `testdata/README.md` still exclude direct-folder grouped image-member
+        parity before this reopened implementation pass
   - [x] the work log records that
-        `modules/intake/intake_plan_utils.py` currently maps archive member
-        suffixes only for direct-entry families plus `pdf`, so `.png`, `.jpg`,
-        `.jpeg`, `.tif`, `.tiff`, `.webp`, and `.bmp` members still stay
-        unclassified on the mixed-archive line
-  - [x] the work log records that
-        `modules/intake/archive_route_members_v1/main.py` still special-cases
-        only `pdf` members and otherwise routes through
-        `archive_member_recipe_for_input_kind(...)`, which currently has no
-        grouped `images_dir` path
+        `modules/intake/archive_route_members_v1/main.py` still hard-limits
+        `_grouped_image_candidates(...)` to `archive_format == "zip"` even
+        though source-native folder members already flow through the same route
+        module
   - [x] the work log cites the reusable substrate honestly:
-        `archive_unpack_manifest_v1` preserves archive-relative subdirectories
-        under `extracted_members/`, `MAINTAINED_RECIPES` and
-        `DRIVER_INPUT_FLAGS` already support `images_dir`,
+        `folder_members_manifest_v1` already emits normalized source-native
+        `member_path` / `extracted_path` rows for folder entry,
+        `archive_route_members_v1` plus `schemas.py` already preserve
+        `group_id`, `group_key`, `group_role`, `group_size`,
+        `launch_input_path`, `downstream_run_id`, and
+        `first_downstream_artifact` on the grouped ZIP slice,
+        `MAINTAINED_RECIPES["images_dir"]` and `DRIVER_INPUT_FLAGS["images_dir"]`
+        already support the downstream launch, and
         `images_dir_to_manifest_v1` already emits the expected first downstream
-        `page_image_v1` artifact, and `tests/test_image_directory_intake_recipe.py`
-        already proves that bounded direct-entry first-artifact contract
-- [x] The story lands one bounded ZIP-only grouped image-member slice honestly:
-  - [x] one repo-owned ZIP probe exists under `testdata/` with at least two
-        ordered page-image members under one shared archive-relative parent
-        directory, plus source or generation notes in `testdata/README.md`
-  - [x] the chosen slice groups those image members into one inspectable launch
-        candidate for `configs/recipes/recipe-images-ocr-html-mvp.yaml`
+        `page_image_v1` artifact
+- [x] The story lands one bounded direct-folder grouped image-member slice
+      honestly:
+  - [x] one repo-owned direct-folder probe exists under `testdata/` with at
+        least two ordered page-image members under one shared parent directory,
+        plus source or generation notes in `testdata/README.md`
+  - [x] the chosen slice groups those image members into one inspectable
+        `images_dir` launch candidate on the maintained mixed-folder recipe
         instead of launching one run per file or blocking each file separately
-  - [x] the emitted route evidence keeps the grouped ownership inspectable via
-        route fields or a sibling group artifact that names the grouped
-        `member_id`s or `member_path`s, the grouping key or parent directory,
-        the launch input path, and the downstream `run_id`
+  - [x] the emitted route evidence preserves the same grouped ownership
+        inspectably on folder entry via shared `group_id`, `group_key`,
+        `group_role`, `group_size`, `launch_input_path`, `downstream_run_id`,
+        and `first_downstream_artifact` fields
   - [x] if the probe includes non-image members, they remain explicit separate
         route rows or blocked outcomes rather than being silently folded into
         the image group
-  - [x] a fresh `driver.py` run produces and records the first downstream
-        stamped artifact for the grouped launch under `output/runs/`, and that
-        artifact is manually inspected
-- [x] Grouped image-member provenance stays source-honest on the claimed slice:
-  - [x] archive-relative image member paths, extracted group directory, stable
-        image order, downstream run id, and first downstream artifact remain
-        inspectable end to end
-  - [x] the grouping policy is deterministic and explicit on the bounded slice
-        (for example shared parent directory plus supported page-image suffixes)
-        rather than a hidden second AI routing pass
-  - [x] no claim is introduced for direct-folder grouped-image parity, broad
-        arbitrary photo albums, scanned or handwritten OCR quality improvement,
+  - [x] a fresh `driver.py` run on the folder recipe produces and records the
+        first downstream stamped artifact for the grouped launch under
+        `output/runs/`, and that artifact is manually inspected
+- [x] Direct-folder grouped image-member provenance stays source-honest on the
+      claimed slice:
+  - [x] source-native folder member paths, source-native launch directory,
+        stable image order, downstream run id, and first downstream artifact
+        remain inspectable end to end
+  - [x] the grouping policy stays deterministic and explicit on the bounded
+        slice (for example shared parent directory plus supported page-image
+        suffixes) rather than a hidden second AI routing pass
+  - [x] no claim is introduced for broad folder-of-images ownership, later
+        OCR/HTML continuation, scanned or handwritten quality improvement,
         nested archives, attachment extraction, or broad heterogeneous archive
         ownership
-- [x] Coverage, docs, and eval truth surfaces remain aligned with the outcome:
+- [x] Coverage, docs, and eval truth surfaces remain aligned with the reopened
+      combined outcome:
+  - [x] the ZIP-only grouped-image first-artifact proof remains documented as
+        completed evidence
   - [x] `tests/fixtures/formats/_coverage-matrix.json`,
         `docs/methodology/state.yaml`, `README.md`, `docs/RUNBOOK.md`, and
-        `testdata/README.md` widen only as far as the fresh grouped-image proof
+        `testdata/README.md` widen only as far as the fresh direct-folder proof
         justifies
   - [x] `approved-intake-handoff` and `auto-book-type-detection` remain
-        unchanged unless fresh current-pass evidence proves this grouped
-        mixed-archive slice belongs in one of those top-level automation
-        surfaces
-  - [x] if new grouped route fields or sidecar contracts cross artifact
-        boundaries, they are added to `schemas.py` before stamped artifacts
-        rely on them
+        unchanged unless fresh current-pass evidence proves this grouped folder-
+        entry slice belongs in one of those top-level automation surfaces
 
 ## Out of Scope
 
-- Direct-folder grouped image-member parity unless it falls out with the same
-  truth surface and no additional ambiguity
-- Broad “any folder of images inside any archive” ownership beyond one bounded
-  repo-owned grouped probe
+- Broad “any folder of images inside any archive or source-native folder”
+  ownership beyond one bounded repo-owned grouped probe
 - Arbitrary photo-album clustering, duplicate-image collapse, cover/back-matter
   detection, or other broad image-set semantics
+- Grouped-image continuation beyond the first downstream `page_image_v1`
+  artifact
 - Scanned or handwritten OCR quality improvements beyond the existing
   `image-directory-scans` and `handwritten-notes` proof lines
 - PDF-member launch changes, nested archives, attachments, `.msg`, mailbox
@@ -149,108 +163,119 @@ out of scope.
 
 ## Approach Evaluation
 
-- **Simplification baseline**: first measure whether the existing ZIP extract
-  tree already preserves a shared parent directory that can be passed directly
-  to `--input-images` with no new AI and only the smallest inspectable grouped
-  route contract. A one-file-per-run fallback is not honest for the bounded
-  slice because `recipe-images-ocr-html-mvp.yaml` is the maintained
-  multi-page-directory lane, not a single-image direct-entry recipe.
-- **AI-only**: weak first move. Grouping the first bounded image set by shared
-  parent path, supported suffix, and stable filename order is a deterministic
-  orchestration problem. The AI work already lives downstream in the existing
-  `images_dir` OCR lane.
-- **Hybrid**: keep only as a fallback. If the scratch probe shows that a purely
-  deterministic grouping rule cannot distinguish a page-image set from
-  unrelated images on the bounded candidate fixture, add the smallest possible
-  bounded AI judgment with explicit provenance instead of widening semantics
-  silently.
-- **Pure code**: likely front-runner. The verified missing seam is the grouped
-  route bridge between existing mixed-archive intake and the already-maintained
-  `images_dir` launch path, not image understanding.
+- **Simplification baseline**: first prove the remaining direct-folder gap is
+  only the route bridge, not missing folder substrate or downstream image-dir
+  support. A one-file-per-run fallback is still not honest for this line
+  because `recipe-images-ocr-html-mvp.yaml` is the maintained multi-page
+  directory lane, not a single-image direct-entry recipe.
+- **AI-only**: weak first move. Grouping one bounded page-image set by shared
+  parent path, supported suffix, and stable filename order is still a
+  deterministic orchestration problem. The AI work already lives downstream in
+  the maintained `images_dir` OCR lane.
+- **Hybrid**: keep only as a fallback. If the chosen folder probe reveals real
+  ambiguity that the current shared-parent grouping rule cannot express
+  honestly, add the smallest possible bounded AI judgment with explicit
+  provenance instead of widening semantics silently.
+- **Pure code**: current front-runner. The verified remaining seam is widening
+  the existing grouped route bridge from ZIP-only to source-native folder
+  parity, not adding new image understanding.
 - **Repo constraints / prior decisions**: `spec:1.1` keeps recipe ownership
   explicit under `C2`; ADR-002 keeps the accepted `doc-web` boundary
   inspectable; Story 180 already proved a repo-owned bounded `images_dir`
-  launch into `recipe-images-ocr-html-mvp.yaml`; and Stories 205 / 218 / 221 /
-  223 explicitly kept grouped image-member routing out of scope while proving
-  the adjacent mixed-archive seams.
-- **Existing patterns to reuse**: `modules/intake/archive_unpack_manifest_v1`,
+  launch into `recipe-images-ocr-html-mvp.yaml`; Story 218 proved the folder
+  member-manifest substrate on the same mixed-input line; and Story 224's
+  completed ZIP slice already established the grouped route-row contract.
+- **Existing patterns to reuse**: `modules/intake/folder_members_manifest_v1`,
   `modules/intake/archive_route_members_v1`,
   `modules/intake/intake_plan_utils.py`,
   `modules/extract/images_dir_to_manifest_v1/main.py`,
   `tests/test_mixed_archive_zip_recipe.py`,
+  `tests/test_mixed_folder_recipe.py`,
   `tests/test_image_directory_intake_recipe.py`, and the checked-in
   `testdata/handwritten-notes-mini-images` directory already used by Story 180.
 - **Eval**: the deciding proof surface is a fresh `driver.py` run on one
-  repo-owned ZIP probe plus manual inspection of the grouped route evidence and
-  the first downstream
+  repo-owned direct-folder probe plus manual inspection of the grouped route
+  evidence and the first downstream
   `01_images_dir_to_manifest_v1/pages_images_manifest.jsonl` artifact. If the
-  grouped slice changes top-level automation truth, rerun the owning eval
-  surface and update `docs/evals/registry.yaml`; otherwise keep the work on the
-  explicit mixed-archive recipe line.
+  grouped folder slice changes top-level automation truth, rerun the owning
+  eval surface and update `docs/evals/registry.yaml`; otherwise keep the work
+  on the explicit mixed-folder recipe line.
 
 ## Tasks
 
-- [x] Freeze the current grouped image-member gap from repo reality:
+- [x] Close and preserve the ZIP-only grouped image-member first-artifact slice
+      as completed evidence
+- [x] Freeze the current direct-folder grouped image-member gap from repo
+      reality:
   - [x] verify the `mixed-archive` coverage row and current methodology/docs
-        wording still exclude grouped image-member routing
-  - [x] verify that image suffixes still remain unclassified or blocked on the
-        current mixed-archive line
-  - [x] verify the reusable substrate honestly: preserved ZIP subdirectories,
-        existing `images_dir` maintained recipe/flag, and the current first
-        downstream `page_image_v1` artifact contract
-- [x] Choose one bounded repo-owned grouped-image probe and grouping policy:
-  - [x] default to a ZIP-only probe built from the checked-in
+        wording still exclude direct-folder grouped image-member parity
+  - [x] verify that source-native folder image members still stay ungrouped on
+        the current mixed-folder line because grouped candidate detection is
+        ZIP-only
+  - [x] verify the reusable substrate honestly: current grouped route-row
+        fields, existing folder manifest contract, existing `images_dir`
+        maintained recipe/flag, and the current first downstream
+        `page_image_v1` artifact contract
+- [x] Choose one bounded repo-owned direct-folder grouped-image probe and
+      grouping policy:
+  - [x] default to a folder built from the checked-in
         `testdata/handwritten-notes-mini-images` pages under one shared parent
         directory unless a smaller repo-owned case is discovered
   - [x] decide whether one non-image member belongs in the probe to prove that
         non-image behavior remains unchanged
   - [x] document why the chosen probe is the smallest honest slice
-- [x] Measure the smallest honest baseline before adding new routing logic:
-  - [x] current `archive_route_members_v1` behavior on the chosen grouped-image
-        ZIP probe
-  - [x] direct `--input-images` launch on the extracted group directory if that
-        is needed to prove the downstream reuse path explicitly
+- [x] Measure the smallest honest baseline before changing folder grouping
+      logic:
+  - [x] current `archive_route_members_v1` behavior on the chosen direct-folder
+        grouped-image probe
+  - [x] direct `--input-images` launch on the source-native group directory if
+        that is needed to prove the downstream reuse path explicitly
   - [x] do not introduce a new archive-specific prompt until deterministic
         grouping is shown insufficient
-- [x] Land the smallest coherent grouped-image implementation the baseline
-      justifies:
-  - [x] add the minimum helper, route, and schema changes needed to emit
-        inspectable grouped provenance and launch the existing `images_dir`
-        recipe
-  - [x] preserve existing ZIP direct-entry and PDF-member behavior unchanged
-  - [x] keep ZIP-only as the default shipping surface unless direct-folder
-        parity falls out with the same truth surface and no added ambiguity
-- [x] Add focused fixture-backed coverage for the grouped image-member seam,
-      including grouped provenance expectations and first downstream artifact
-      checks
+- [x] Widen the grouped-image implementation from ZIP-only to direct-folder
+      parity:
+  - [x] keep the existing ZIP grouped contract unchanged
+  - [x] add the minimum route/helper changes needed so folder entry reuses the
+        same grouped provenance fields and the same maintained `images_dir`
+        launch path
+  - [x] keep source-native launch paths inspectable instead of silently copying
+        the folder probe into a second staging tree
+- [x] Add focused fixture-backed coverage for the direct-folder grouped image-
+      member seam, including grouped provenance expectations and first
+      downstream artifact checks
 - [x] If this story changes documented format coverage or graduation reality:
       update `tests/fixtures/formats/_coverage-matrix.json` and any relevant
       methodology state honestly
 - [x] Check whether the chosen implementation makes any existing code, helper
       paths, or docs redundant; remove them or create a concrete follow-up
-- [x] Run required checks for touched scope:
-  - [x] Default Python checks: `make test`
+- [x] Run required checks for the reopened scope:
+  - [x] Targeted regression checks:
+        `pytest -q tests/test_mixed_folder_recipe.py tests/test_mixed_archive_zip_recipe.py tests/test_image_directory_intake_recipe.py`
   - [x] Default Python lint: `make lint`
+  - [x] Default Python checks: `make test`
   - [x] If pipeline behavior changed: clear stale `*.pyc`, run through
-        `driver.py`, verify artifacts in `output/runs/`, and manually inspect
-        grouped route evidence plus sample downstream JSON or JSONL data
-  - [x] If agent tooling changed: `make skills-check` not needed; agent tooling
-        was unchanged in this story
-- [x] Evals or goldens unchanged for this story; `docs/evals/registry.yaml`
-      remains untouched
+        `driver.py` on the folder recipe, verify artifacts in `output/runs/`,
+        and manually inspect grouped route evidence plus sample downstream JSON
+        or JSONL data
+  - [x] If methodology truth surfaces changed: `make methodology-compile` and
+        `make methodology-check`
+  - [x] If agent tooling changed: `make skills-check` not needed unless the
+        reopened work touches skill files
+- [x] Evals or goldens stay unchanged unless the reopened truth surface proves
+      otherwise; `docs/evals/registry.yaml` should remain untouched by default
 - [x] Search all docs and update any related to what we touched
 - [x] Verify Central Tenets:
-  - [x] T0 — Traceability: the grouped image-member claim traces to archive
-        member paths, grouping evidence, launch metadata, and inspected
-        downstream artifacts
+  - [x] T0 — Traceability: the direct-folder grouped image-member claim traces
+        to source-native member paths, grouping evidence, launch metadata, and
+        inspected downstream artifacts
   - [x] T1 — AI-First: do not write grouping logic AI can already solve better,
         but do not add a new AI pass when deterministic routing is sufficient
-  - [x] T2 — Eval Before Build: freeze the current blocked behavior and
-        deterministic grouping baseline before adding new glue
+  - [x] T2 — Eval Before Build: freeze the current direct-folder blocked
+        behavior and deterministic grouping baseline before adding new glue
   - [x] T3 — Fidelity: preserve image order and membership faithfully without
         silently dropping or merging unrelated files
-  - [x] T4 — Modular: reuse the maintained mixed-archive route plus existing
-        `images_dir` recipe instead of inventing a second image-archive stack
+  - [x] T4 — Modular: reuse the maintained mixed-folder route plus existing
+        `images_dir` recipe instead of inventing a second folder-image stack
   - [x] T5 — Inspect Artifacts: manually open the grouped route evidence and
         the first downstream `page_image_v1` artifact, not just the logs
 
@@ -275,47 +300,47 @@ N/A
 ## Architectural Fit
 
 - **Owning module / area**: intake and routing on the existing mixed-archive
-  line. The likely owner is `archive_route_members_v1` plus a small helper in
-  `intake_plan_utils.py` or a narrowly adjacent sibling helper, not a new
-  `doc-web` runtime boundary or a second archive-routing stack.
-- **Methodology reality**: this work belongs primarily to `spec:1`, with
-  supporting ties to `spec:6`, `spec:7`, `spec:8`, and `spec:9`. In the current
-  repo state, `spec:1` substrate exists and `C2` / `B10` remain `climb`; the
-  `mixed-archive` coverage row at story start was already `passing` on four
-  checked-in bounded probes but still explicitly listed grouped image-member
-  routing as a known gap; and `image-directory-scans` was already `passing` on
-  the maintained top-level direct-entry lane. This story began `Pending`
-  because both prerequisite seams already existed in code; the missing piece
-  was the bounded grouping contract that bridges them.
+  line. The likely owner remains `archive_route_members_v1` plus a small helper
+  in `intake_plan_utils.py` only if the current grouped-image predicates need a
+  shared adjustment. This is not a new `doc-web` boundary or a second
+  archive/folder routing stack.
+- **Methodology reality**: this reopened work still belongs primarily to
+  `spec:1`, with supporting ties to `spec:6`, `spec:7`, `spec:8`, and
+  `spec:9`. In the current repo state, `spec:1` substrate exists and `C2` /
+  `B10` remain `climb`; the `mixed-archive` coverage row is already `passing`
+  on five checked-in bounded probes across three behavior classes, but it still
+  explicitly lists direct-folder grouped image-member parity as the next gap.
+  Status is `Pending`, not `Draft`, because the grouped route contract,
+  downstream recipe, and source-native folder manifest substrate already exist
+  in code; the missing piece is one bounded widening of that same contract.
 - **Substrate evidence**: verified in this pass that
-  `modules/intake/archive_unpack_manifest_v1/main.py` preserves ZIP
-  subdirectories and extracted member paths under `extracted_members/`;
-  `modules/intake/folder_members_manifest_v1/main.py` emits the same normalized
-  member-path contract for source-native folder trees; `modules/intake/intake_plan_utils.py`
-  already defines `MAINTAINED_RECIPES["images_dir"]` and
-  `DRIVER_INPUT_FLAGS["images_dir"]`; `modules/extract/images_dir_to_manifest_v1/main.py`
-  already accepts a directory and emits the first downstream `page_image_v1`
-  manifest; and `modules/intake/archive_route_members_v1/main.py` currently
-  stops short of grouped-image routing because it only special-cases `pdf` and
-  otherwise uses the direct-entry-only map. `tests/test_mixed_archive_zip_recipe.py`
-  and `tests/test_image_directory_intake_recipe.py` already prove the adjacent
-  bounded seams.
-- **Data contracts / schemas**: `archive_member_manifest_v1` and
-  `archive_member_route_v1` are currently one-row-per-member contracts and do
-  not yet carry grouped-image provenance. `/build-story` should choose the
-  smallest honest contract: either a minimal extension to
-  `archive_member_route_v1` (for example group key and grouped member paths) or
-  a sibling sidecar artifact plus a representative route row. Any new
-  cross-artifact fields must land in `schemas.py` before stamped artifacts rely
-  on them.
+  `modules/intake/folder_members_manifest_v1/main.py` already emits the same
+  normalized member-path contract for source-native folder trees;
+  `modules/intake/archive_route_members_v1/main.py` already owns the grouped
+  route-row contract and only blocks folder parity because
+  `_grouped_image_candidates(...)` skips non-ZIP rows; `modules/intake/intake_plan_utils.py`
+  already defines the shared grouped-image predicates plus
+  `MAINTAINED_RECIPES["images_dir"]` and `DRIVER_INPUT_FLAGS["images_dir"]`;
+  `modules/extract/images_dir_to_manifest_v1/main.py` already accepts a
+  directory and emits the first downstream `page_image_v1` manifest; and
+  `tests/test_mixed_archive_zip_recipe.py` plus
+  `tests/test_image_directory_intake_recipe.py` already prove the adjacent ZIP
+  grouped-image and direct-entry image-directory seams. The main missing
+  regression surface is folder-specific grouped-image coverage in
+  `tests/test_mixed_folder_recipe.py`.
+- **Data contracts / schemas**: `archive_member_route_v1` already carries the
+  grouped-image provenance fields (`group_id`, `group_key`, `group_role`,
+  `group_size`, `launch_input_path`, `downstream_run_id`, and
+  `first_downstream_artifact`) that this reopened slice wants to reuse. No new
+  schema work is expected unless the folder probe reveals a real provenance gap
+  the current route rows cannot express honestly.
 - **File sizes**: likely touch points are
-  `modules/intake/archive_route_members_v1/main.py` (`371` lines),
-  `modules/intake/intake_plan_utils.py` (`424`),
-  `modules/intake/archive_unpack_manifest_v1/main.py` (`121`) only if a narrow
-  grouping hook is needed,
-  `schemas.py` (`1375`, >500),
-  `tests/test_mixed_archive_zip_recipe.py` (`850`, >500),
-  `tests/test_image_directory_intake_recipe.py` (`276`),
+  `modules/intake/archive_route_members_v1/main.py` (`450` lines),
+  `modules/intake/intake_plan_utils.py` (`470` lines) only if shared helper
+  behavior changes,
+  `tests/test_mixed_folder_recipe.py` (`156` lines),
+  `tests/test_mixed_archive_zip_recipe.py` (`850` lines) only if a shared
+  grouped helper or guardrail must move,
   `README.md` (`538`, >500),
   `docs/RUNBOOK.md` (`979`, >500),
   `tests/fixtures/formats/_coverage-matrix.json` (`582`, >500),
@@ -323,279 +348,438 @@ N/A
   oversized files.
 - **Decision context**: reviewed `docs/ideal.md`, `docs/spec.md`,
   `docs/methodology/state.yaml`, `docs/methodology/graph.json`, ADR-002,
-  Stories 180/205/218/221/223, `tests/fixtures/formats/_coverage-matrix.json`,
+  Stories 180/205/218/223, `tests/fixtures/formats/_coverage-matrix.json`,
   `README.md`, `docs/RUNBOOK.md`, `testdata/README.md`, `schemas.py`,
-  `modules/intake/archive_unpack_manifest_v1/main.py`,
+  `modules/intake/folder_members_manifest_v1/main.py`,
   `modules/intake/archive_route_members_v1/main.py`,
   `modules/intake/intake_plan_utils.py`,
   `modules/extract/images_dir_to_manifest_v1/main.py`,
-  `tests/test_mixed_archive_zip_recipe.py`, and
+  `tests/test_mixed_archive_zip_recipe.py`,
+  `tests/test_mixed_folder_recipe.py`, and
   `tests/test_image_directory_intake_recipe.py`. No narrower grouped-image
   mixed-archive ADR, runbook, scout note, or project note was found after
   search.
 
 ## Files to Modify
 
-- `modules/intake/archive_route_members_v1/main.py` — add the bounded grouped
-  image-member route path and emitted provenance for one `images_dir` launch
-  candidate (`371` lines)
-- `modules/intake/intake_plan_utils.py` — add bounded archive-image
-  suffix or grouping helpers, or a clearly better shared successor (`424`
-  lines)
-- `schemas.py` — add grouped route or sidecar schema fields if the chosen
-  contract crosses artifact boundaries (`1375` lines)
-- `tests/test_mixed_archive_zip_recipe.py` — add fixture-backed grouped
-  image-member routing coverage and first downstream artifact expectations
+- `modules/intake/archive_route_members_v1/main.py` — widen grouped-image
+  candidate detection from ZIP-only to the bounded direct-folder parity slice
+  while preserving the existing grouped provenance contract (`450` lines)
+- `modules/intake/intake_plan_utils.py` — only if the shared grouped-image
+  predicates need a narrow helper adjustment rather than a route-local special
+  case (`470` lines)
+- `tests/test_mixed_folder_recipe.py` — add fixture-backed direct-folder
+  grouped image-member routing coverage and first downstream artifact
+  expectations (`156` lines)
+- `tests/test_mixed_archive_zip_recipe.py` — touch only if the shared grouped
+  helper or ZIP regression surface needs an explicit no-regression assertion
   (`850` lines)
-- `tests/test_image_directory_intake_recipe.py` — extend only if the grouped
-  slice needs a shared ordering or first-artifact assertion (`276` lines)
-- `testdata/<new grouped-image probe>.zip` and
-  `testdata/<new grouped-image probe>.source.json` — repo-owned grouped
-  image-member ZIP fixture and metadata (new files)
-- `testdata/README.md` — record grouped image-member probe provenance and
-  generation notes (`174` lines)
+- `tests/test_image_directory_intake_recipe.py` — extend only if the direct-
+  folder grouped slice needs a shared ordering or first-artifact assertion
+  (`276` lines)
+- `testdata/mixed-folder-images-mini/` and
+  `testdata/mixed-folder-images-mini.source.json` — repo-owned direct-folder
+  grouped image-member probe and metadata (new files)
+- `testdata/README.md` — record direct-folder grouped image-member probe
+  provenance and generation notes (`174` lines)
 - `tests/fixtures/formats/_coverage-matrix.json` — widen the `mixed-archive`
-  row only as far as the shipped grouped-image slice justifies (`582` lines)
+  row only as far as the shipped direct-folder parity slice justifies (`582`
+  lines)
 - `docs/methodology/state.yaml` — replace the current grouped-image gap wording
-  only if the story lands (truth-critical size)
+  only if the reopened story lands (truth-critical size)
 - `README.md` — align supported mixed-archive wording with the exact bounded
-  grouped-image slice if it lands (`538` lines)
-- `docs/RUNBOOK.md` — add the verified grouped image-member smoke command or
-  blocker truth (`979` lines)
-- `modules/intake/archive_unpack_manifest_v1/main.py` — only if the chosen
-  grouped contract needs a narrow extraction-metadata hook beyond current
+  combined grouped-image slice if it lands (`538` lines)
+- `docs/RUNBOOK.md` — add the verified direct-folder grouped image-member smoke
+  command or blocker truth (`979` lines)
+- `schemas.py` — only if the current grouped route-row fields prove
+  insufficient for the source-native folder proof (`1375` lines)
+- `modules/intake/folder_members_manifest_v1/main.py` — only if the chosen
+  probe reveals a narrow source-native metadata hook is missing beyond current
   `member_path` and `extracted_path` (`121` lines)
 
 ## Redundancy / Removal Targets
 
-- Per-file image-member blocked reasoning on the chosen bounded probe if a
-  grouped route row or sidecar cleanly supersedes it
-- Doc wording that treats all mixed-archive image members as categorically out
-  of scope after a bounded grouped-image slice lands
-- Duplicated archive-image grouping logic split across route helpers when one
-  shared helper can own it cleanly
-- Any ad hoc scratch ZIP generation notes once a repo-owned grouped-image probe
-  is checked in under `testdata/`
+- Doc wording that treats direct-folder grouped image-member routing as
+  categorically out of scope after the bounded folder slice lands
+- Duplicated ZIP-vs-folder grouped-image gating logic if one shared helper can
+  own the candidate selection cleanly
+- Any ad hoc scratch folder-probe generation notes once a repo-owned grouped-
+  image folder probe is checked in under `testdata/`
 
 ## Notes
 
-- New story justification: reopening Story 223 would not be honest. Story 223
-  closed a single-member PDF approved-handoff and launch continuation on the
-  existing mixed-archive route/module seam. This follow-up changes the
-  validation boundary from one member → one child run to multiple archive
-  members → one grouped `images_dir` child run with explicit grouped
-  provenance.
-- The default smallest candidate is a ZIP built from
-  `testdata/handwritten-notes-mini-images` under one shared parent directory,
-  because Story 180 already proved that directory as a bounded repo-owned
-  `images_dir` launch surface and the current ZIP extractor already preserves
-  that directory shape.
+- Reopen justification: a new Story 225 would not be honest. The remaining
+  direct-folder grouped-image delta stays on the same owning route module, same
+  grouped route-row provenance contract, same `mixed-archive` coverage row,
+  same fixture family, same downstream `images_dir` recipe, and same first
+  downstream `page_image_v1` validation boundary as the completed ZIP slice.
+- The existing completed ZIP slice remains the baseline evidence for grouped
+  route-row fields and first-artifact validation. This reopened story widens
+  only the entry surface from extracted ZIP members to source-native folder
+  members.
+- The default smallest candidate is `testdata/mixed-folder-images-mini/`,
+  derived from `testdata/handwritten-notes-mini-images` under one shared
+  `pages/` parent directory with one explicit blocked `notes/readme.txt`
+  member, because Story 180 already proved that image directory as a bounded
+  repo-owned `images_dir` launch surface and Story 218 already proved the
+  source-native folder member-manifest seam on the same mixed-input line.
 - Keep the grouping policy deterministic and inspectable by default. Prefer one
-  shared archive-relative parent directory plus supported image suffixes and
-  stable filename order over any new AI route decision unless the baseline
-  falsifies that simpler path.
-- Keep direct-folder grouped-image parity explicitly deferred unless the exact
-  same grouped contract and truth surface fall out without additional
-  ambiguity.
+  shared parent directory plus supported image suffixes and stable filename
+  order over any new AI route decision unless the baseline falsifies that
+  simpler path.
 
 ## Plan
 
 ### Exploration Summary
 
-- **Ideal alignment:** proceed. This story closes a real `spec:1.1` / `C2`
-  gap on the maintained mixed-archive line while reusing the existing
-  `images_dir` direct-entry lane instead of adding a second archive-image
-  runtime or a new AI route pass.
+- **Ideal alignment:** proceed. This reopened story closes a real `spec:1.1` /
+  `C2` gap on the maintained mixed-archive line while reusing the existing
+  grouped route-row contract and maintained `images_dir` direct-entry lane
+  instead of adding a second folder-image runtime or a new AI route pass.
 - **Relevant methodology state:** `docs/methodology/state.yaml` still records
   `spec:1`, `spec:6`, `spec:8`, and `spec:9` substrate as `exists`,
   `spec:7` as `partial`, and `C2` / `B10` as `climb`. The
-  `intake_and_routing` architecture-audit note explicitly names grouped
-  image-member routing as still out of scope after Stories 205 / 218 / 221 /
-  222 / 223.
+  `maintained-intake-honesty` campaign and the `mixed-archive` coverage row now
+  frame this line by behavior class, and both explicitly name direct-folder
+  grouped image-member parity as the remaining bounded grouped-image gap.
 - **Relevant coverage rows:** `image-directory-scans` is already `passing` on
   the maintained top-level `recipe-images-ocr-html-mvp.yaml` lane, while the
-  `mixed-archive` row remains `passing` only on the four checked-in bounded
-  direct-entry / PDF-member probes and still lists grouped image-member
-  routing as a known gap.
+  `mixed-archive` row is already `passing` on five checked-in bounded probes
+  across three behavior classes and still lists direct-folder grouped image-
+  member parity as a known gap.
 - **Decision docs consulted:** `docs/ideal.md`, `docs/spec.md`,
   `docs/methodology/state.yaml`, `docs/methodology/graph.json`, ADR-002,
-  Stories 180 and 205, the current `mixed-archive` and `image-directory-scans`
-  coverage rows, `README.md`, `docs/RUNBOOK.md`, `testdata/README.md`, and the
-  current mixed-archive / image-directory runtime code and tests. No narrower
-  mixed-archive grouped-image ADR, runbook, scout note, or project note was
-  found.
-- **Critical substrate verified in code:**
-  - `archive_unpack_manifest_v1` already preserves ZIP member directories under
-    `extracted_members/<member_path>`, so a shared-parent directory can be
-    passed to `--input-images` without another unpack layer.
-  - `archive_route_members_v1` currently blocks `.png` members because
-    `archive_member_recipe_for_input_kind(...)` only maps direct-entry families
-    and `pdf` is the only special case.
+  Stories 180/205/218/223, the current `mixed-archive` and
+  `image-directory-scans` coverage rows, `README.md`, `docs/RUNBOOK.md`,
+  `testdata/README.md`, and the current mixed-folder / grouped-image runtime
+  code and tests. No narrower mixed-archive grouped-image ADR, runbook, scout
+  note, or project note was found.
+- **Fresh current-pass code evidence:**
+  - `folder_members_manifest_v1` already emits source-native member rows, so
+    the folder entry surface is present.
+  - `archive_route_members_v1` already owns the grouped route-row contract, but
+    `_grouped_image_candidates(...)` still short-circuits on
+    `archive_format != "zip"`.
+  - `tests/test_mixed_folder_recipe.py` currently proves only the direct-entry
+    and PDF-member folder slices; it has no grouped-image probe coverage.
   - `MAINTAINED_RECIPES["images_dir"]`,
     `DRIVER_INPUT_FLAGS["images_dir"]`, and
     `images_dir_to_manifest_v1` already prove the downstream launch target and
     first-artifact contract.
-- **Fresh baseline evidence:** the current mixed-archive line is blocked only
-  at the route bridge, not at ZIP extraction or downstream image intake.
-  - Scratch ZIP baseline run:
-    `python driver.py --recipe configs/recipes/recipe-mixed-archive-zip-routing-mvp.yaml --input-zip /tmp/story224-grouped-images-baseline.zip --run-id story224-baseline-r1 --allow-run-id-reuse --output-dir output/runs --force`
-    emitted
-    `output/runs/story224-baseline-r1/01_archive_unpack_manifest_v1/archive_members_manifest.jsonl`
-    and
-    `output/runs/story224-baseline-r1/02_archive_route_members_v1/archive_member_routes.jsonl`
-    with `launched=0, blocked=3, skipped=0, failed=0`.
-  - Manual artifact inspection showed `pages/page-001.png`,
-    `pages/page-002.png`, and `notes/readme.txt` were all preserved as ZIP
-    members, but both `.png` rows still stamped
-    `terminal_reason = unsupported_archive_member_suffix:.png`.
-  - Direct downstream reuse probe:
-    `python driver.py --recipe configs/recipes/recipe-images-ocr-html-mvp.yaml --input-images output/runs/story224-baseline-r1/01_archive_unpack_manifest_v1/extracted_members/pages --run-id story224-images-direct-r1 --output-dir output/runs --end-at images_to_manifest --allow-run-id-reuse --force`
-    emitted
-    `output/runs/story224-images-direct-r1/01_images_dir_to_manifest_v1/pages_images_manifest.jsonl`
-    with two `page_image_v1` rows sourced from the extracted directory.
-- **Surprises found:** ZIP member order is not stable enough to trust for page
-  order on this seam. The scratch ZIP manifest listed `page-002.png` before
-  `page-001.png`, but `images_dir_to_manifest_v1` re-sorted the extracted
-  directory back to `page-001`, `page-002`. The grouped route should therefore
-  choose a deterministic primary row and rely on the existing directory sort in
-  `images_dir_to_manifest_v1`, not on ZIP member order.
-- **Patterns to follow:** Story 205's eval-first scratch-probe workflow,
-  Story 180's first-downstream-artifact inspection discipline, and the current
-  `archive_member_route_v1` per-member provenance shape.
+- **Fresh current-pass runtime baseline:**
+  - Created a temporary source-native folder probe at
+    `/tmp/story224-folder-baseline-src` with `pages/page-001.png`,
+    `pages/page-002.png`, and `notes/readme.txt`, then ran
+    `python driver.py --recipe configs/recipes/recipe-mixed-folder-routing-mvp.yaml --input-folder /tmp/story224-folder-baseline-src --run-id story224-folder-baseline-r1 --allow-run-id-reuse --output-dir output/runs --force`.
+  - The stamped manifest at
+    `output/runs/story224-folder-baseline-r1/01_folder_members_manifest_v1/archive_members_manifest.jsonl`
+    proves source-native relative ordering and source-native `extracted_path`
+    values for the bounded folder probe.
+  - The stamped route artifact at
+    `output/runs/story224-folder-baseline-r1/02_archive_route_members_v1/archive_member_routes.jsonl`
+    isolates the exact current gap: `launched=0, blocked=3, skipped=0,
+    failed=0`, with both page-image rows still stamped
+    `terminal_reason = unsupported_archive_member_suffix:.png` and no grouped
+    provenance fields populated.
+  - A direct downstream reuse probe on the same source-native page directory —
+    `python driver.py --recipe configs/recipes/recipe-images-ocr-html-mvp.yaml --input-images /tmp/story224-folder-baseline-src/pages --run-id story224-folder-images-direct-r1 --allow-run-id-reuse --output-dir output/runs --end-at images_to_manifest --force`
+    — emitted
+    `output/runs/story224-folder-images-direct-r1/01_images_dir_to_manifest_v1/pages_images_manifest.jsonl`
+    with ordered `page-001.png` then `page-002.png`, proving the remaining gap
+    is the folder route bridge rather than downstream image-directory intake.
+- **Patterns to follow:** Story 218's source-native folder proof discipline,
+  Story 224's completed ZIP grouped-image route-row contract, and Story 180's
+  first-downstream-artifact inspection discipline.
+- **Surprises found:** no maintained recipe wiring change is obviously required
+  for proof. `recipe-mixed-folder-routing-mvp.yaml` already accepts
+  `--input-folder` overrides, so the reopened slice likely needs a new folder
+  fixture and route/test/doc updates, not a new recipe default.
 - **Files likely to change:** `modules/intake/archive_route_members_v1/main.py`,
-  `modules/intake/intake_plan_utils.py`, `schemas.py`,
-  `tests/test_mixed_archive_zip_recipe.py`, new grouped-image fixture files
+  `tests/test_mixed_folder_recipe.py`, new grouped-image folder fixture files
   under `testdata/`, `testdata/README.md`,
   `tests/fixtures/formats/_coverage-matrix.json`, `docs/methodology/state.yaml`,
   `README.md`, and `docs/RUNBOOK.md`.
-- **Files at risk:** `schemas.py` (`1375`), `tests/test_mixed_archive_zip_recipe.py`
-  (`850`), `README.md` (`538`), `docs/RUNBOOK.md` (`979`), and
-  `tests/fixtures/formats/_coverage-matrix.json` (`582`) are the large files in
-  scope; keep edits surgical. Existing mixed-archive PDF-member tests are the
-  main runtime-regression surface.
+- **Files at risk:** `README.md` (`538`), `docs/RUNBOOK.md` (`979`),
+  `tests/fixtures/formats/_coverage-matrix.json` (`582`), and
+  `tests/test_mixed_archive_zip_recipe.py` (`850`) are the large files in
+  scope; keep edits surgical. Existing grouped ZIP and PDF-member tests are the
+  main no-regression surface.
 
 ### Eval-First Gate
 
-- **Baseline result:** current code already proves that a shared extracted
-  image directory is viable downstream and that the only missing seam is the
-  grouped mixed-archive route bridge.
+- **Baseline result:** captured in this pass. The mixed-folder recipe on the
+  temporary source-native probe wrote a stamped route artifact with both image
+  members blocked as `unsupported_archive_member_suffix:.png`, while a direct
+  `--input-images` run on the same `pages/` directory emitted the expected two-
+  row `page_image_v1` manifest. The current direct-folder gap is therefore the
+  grouped route bridge, not folder substrate or downstream image intake.
 - **Approach comparison:**
-  - **AI-only:** rejected. There is no reasoning gap yet; the bounded scratch
-    probe shows a deterministic route is enough.
-  - **Hybrid:** keep only as a fallback if a later probe reveals real ambiguity
-    that shared-parent grouping cannot express honestly.
-  - **Pure code:** current winner. The missing work is explicit grouped
-    provenance plus a single `--input-images` launch bridge.
-- **Recommended contract decision:** use route-row fields, not a new sibling
-  sidecar, for the first bounded slice. Add optional grouped-image provenance
-  fields to `archive_member_route_v1`:
-  `group_id`, `group_key`, `group_role`, and `group_size`.
-  Then emit one route row per grouped image member, with the shared
-  `launch_input_path`, `downstream_run_id`, and `first_downstream_artifact`
-  repeated across the group's rows. This keeps grouped ownership inspectable
-  without introducing another artifact family.
+  - **AI-only:** rejected by default. There is still no reasoning gap in repo
+    evidence; the remaining issue is container-entry parity on an already
+    deterministic grouping rule.
+  - **Hybrid:** keep only as a fallback if the folder probe reveals ambiguity
+    that the current shared-parent rule cannot express honestly.
+  - **Pure code:** current winner. The missing work is widening the existing
+    grouped route bridge to one source-native folder slice.
+- **Recommended contract decision:** reuse the existing route-row grouped
+  provenance fields rather than inventing a new sidecar artifact or schema.
 
 ### Recommended Implementation Plan
 
-- **Recommended path:** ship one ZIP-only grouped-image probe using the
-  existing mixed-archive route plus the maintained `images_dir` recipe.
-  Relative effort: `S`.
+- **Recommended path:** ship one repo-owned direct-folder grouped-image probe
+  using the existing mixed-folder route plus the maintained `images_dir`
+  recipe. Relative effort: `S`.
 
-1. Add one repo-owned grouped-image ZIP probe (`XS`)
-   - Files: new `testdata/mixed-archive-images-mini.zip` and
-     `testdata/mixed-archive-images-mini.source.json`, plus `testdata/README.md`.
+1. Add one repo-owned direct-folder grouped-image probe (`XS`)
+   - Files: new `testdata/mixed-folder-images-mini/` plus
+     `testdata/mixed-folder-images-mini.source.json` and `testdata/README.md`.
    - Shape: start from `testdata/handwritten-notes-mini-images` under a shared
-     `pages/` directory and keep one explicit blocked `notes/readme.txt`
-     member so non-image behavior remains visible.
-   - Done when: the repo owns one checked-in grouped-image ZIP probe with
+     `pages/` directory and optionally keep one explicit blocked
+     `notes/readme.txt` member so non-image behavior remains visible.
+   - Done when: the repo owns one checked-in grouped-image folder probe with
      explicit scope and regeneration notes.
 
-2. Add bounded grouped-image candidate detection and grouping (`S`)
-   - Files: `modules/intake/intake_plan_utils.py`,
-     `modules/intake/archive_route_members_v1/main.py`.
-   - Change: add narrow archive-image helpers, detect grouped image members at
-     route time, and group them by shared parent directory inside
-     `archive_route_members_v1` while stamping `detected_input_kind =
-     images_dir` on the emitted grouped route rows.
-   - Contract: only group members that share the same archive-relative parent
-     directory and supported image suffixes; choose the primary row by sorted
-     `member_path`, not ZIP order; preserve existing direct-entry and PDF-member
-     branches unchanged.
-   - Done when: one grouped image directory launches `--input-images` once and
-     every grouped member row carries the shared group provenance.
+2. Freeze the direct-folder baseline (`XS`)
+   - Files: no planned code changes; produces proof under `output/runs/`.
+   - Command target: a fresh `driver.py` run on the checked-in folder probe
+     before implementation.
+   - Artifact checks:
+     - `output/runs/<run_id>/01_folder_members_manifest_v1/archive_members_manifest.jsonl`
+     - `output/runs/<run_id>/02_archive_route_members_v1/archive_member_routes.jsonl`
+   - Done when: the work log records the exact current folder failure mode and
+     the source-native substrate that already exists.
 
-3. Extend the route schema for grouped provenance (`XS`)
-   - Files: `schemas.py`.
-   - Change: add optional `group_id`, `group_key`, `group_role`, and
-     `group_size` to `ArchiveMemberRoute`.
-   - Rationale: the grouped member list stays reconstructable from the route
-     rows themselves, so a sidecar artifact is not needed for this first slice.
-   - Done when: stamped route artifacts preserve the grouped-image fields.
+3. Widen grouped-image candidate detection to direct-folder parity (`S`)
+   - Files: `modules/intake/archive_route_members_v1/main.py` and
+     `modules/intake/intake_plan_utils.py` only if the shared helper surface
+     actually needs it.
+   - Change: reuse the existing grouped-image predicates and route-row contract
+     for `archive_format in {"zip", "folder"}` while preserving the existing
+     ZIP behavior, deterministic `member_path` sorting, and source-native
+     `launch_input_path` on the folder slice.
+   - Non-goal: do not change the maintained mixed-folder recipe default input
+     unless a later reason emerges; the proof run can override `--input-folder`
+     the same way the current baseline already did.
+   - Done when: one grouped folder directory launches `--input-images` once
+     and every grouped member row carries the same inspectable group
+     provenance as the ZIP proof.
 
 4. Add focused regression coverage (`S`)
-   - Files: `tests/test_mixed_archive_zip_recipe.py`.
-   - Change: add a grouped-image routing contract test that writes two grouped
-     image members plus one blocked `.txt` member, fakes the downstream
-     `recipe-images-ocr-html-mvp.yaml` run, and asserts:
-     - both image rows share one `group_id`
-     - `group_key` matches the shared parent directory
-     - `group_role` is deterministic (`primary` on sorted `page-001.png`)
-     - both image rows carry `launch_input_flag = --input-images`,
-       the shared extracted directory path, the shared downstream run id, and
-       the same first downstream artifact
-     - the `.txt` row remains explicitly blocked
-   - Done when: grouped-image routing is fixture-backed and existing mixed-archive
-     direct-entry / PDF-member tests still pass unchanged.
+   - Files: `tests/test_mixed_folder_recipe.py`, plus
+     `tests/test_mixed_archive_zip_recipe.py` only if a shared no-regression
+     assertion belongs there.
+   - Change: add a folder grouped-image routing contract test that asserts the
+     image rows share one `group_id`, `group_key`, `group_size`, and downstream
+     run while the optional non-image member stays explicitly blocked. Reuse the
+     existing fake grouped-image child-run pattern from
+     `tests/test_mixed_archive_zip_recipe.py` where practical instead of
+     inventing a second fake-launch contract.
+   - Done when: direct-folder grouped-image routing is fixture-backed and the
+     existing ZIP grouped-image tests still pass unchanged.
 
 5. Run narrow real validation and inspect artifacts (`S`)
    - Files: no planned code changes; produces proof under `output/runs/`.
    - Command target: a fresh `driver.py` run on the checked-in grouped-image
-     ZIP probe after implementation.
+     folder probe after implementation.
    - Artifact checks:
-     - `output/runs/<run_id>/01_archive_unpack_manifest_v1/archive_members_manifest.jsonl`
+     - `output/runs/<run_id>/01_folder_members_manifest_v1/archive_members_manifest.jsonl`
      - `output/runs/<run_id>/02_archive_route_members_v1/archive_member_routes.jsonl`
      - `output/runs/<group_run_id>/01_images_dir_to_manifest_v1/pages_images_manifest.jsonl`
-   - Done when: the route rows show one bounded grouped-image launch and the
+   - Done when: the route rows show one bounded grouped-folder launch and the
      downstream first artifact contains the expected ordered page images from
-     the extracted directory.
+     the source-native directory.
 
 6. Update truth surfaces narrowly (`XS`)
    - Files: `tests/fixtures/formats/_coverage-matrix.json`,
      `docs/methodology/state.yaml`, `README.md`, `docs/RUNBOOK.md`,
      `testdata/README.md`, and this story file.
    - Change: widen only the `mixed-archive` bounded support claim to include
-     the checked-in grouped-image ZIP probe. Keep direct-folder grouped-image
-     parity, broad photo albums, OCR-quality claims, and top-level automation
-     surfaces unchanged unless fresh evidence moves them too.
-   - Done when: docs say exactly one bounded grouped-image mixed-archive slice
-     exists and no more.
+     the checked-in grouped-image direct-folder probe. Keep later OCR/HTML
+     continuation, broad folder-of-images ownership, OCR-quality claims, and
+     top-level automation surfaces unchanged unless fresh evidence moves them
+     too.
+   - Done when: docs say exactly one bounded grouped-image ZIP slice and one
+     bounded grouped-image direct-folder slice, and no more.
 
 ### Impact Analysis
 
-- **Primary blast radius:** `archive_route_members_v1` route semantics and
-  `archive_member_route_v1` schema.
-- **Secondary blast radius:** mixed-archive route tests and user-facing support
+- **Primary blast radius:** `archive_route_members_v1` grouped candidate
+  selection on the mixed-folder entry surface.
+- **Secondary blast radius:** mixed-folder route tests and user-facing support
   wording in the coverage matrix, methodology state, README, RUNBOOK, and
   `testdata/README.md`.
-- **What could break:** existing mixed-archive ZIP / folder / PDF-member tests
-  if image-suffix classification intercepts the wrong members; schema stamping
-  if the new grouped fields are not added before artifacts are stamped; route
-  determinism if implementation trusts ZIP order instead of stable sorted
-  `member_path`.
-- **Redundancy plan:** remove per-file blocked image-member wording on the new
-  grouped probe once grouped route rows exist. Do not introduce a sidecar
-  artifact unless the route-row contract proves insufficient during
-  implementation.
-- **Human-approval blockers:** none beyond the route-contract choice itself.
-  Recommended choice: grouped provenance lives directly on
-  `archive_member_route_v1` rows, not in a new sidecar artifact.
+- **What could break:** existing ZIP grouped-image tests if the widened helper
+  regresses the current grouped contract; existing mixed-folder direct-entry or
+  PDF-member tests if folder image grouping intercepts the wrong members; route
+  provenance if the folder slice stops being source-native.
+- **Redundancy plan:** remove wording that treats direct-folder grouped-image
+  routing as categorically out of scope once the bounded folder proof exists.
+- **Human-approval blockers:** none for packaging. Implementation still needs
+  the usual `/build-story` approval before code changes.
 
 ## Work Log
 
-20260417-0021 — create-story bootstrap: created the Story 224 shell with `.agents/skills/create-story/scripts/start-story.sh mixed-archive-grouped-image-member-routing-seam High`; evidence: new `docs/stories/story-224-mixed-archive-grouped-image-member-routing-seam.md`; next step: replace the template with repo-backed grouped-image scope and verify whether a new story ID is honest.
-20260417-0026 — create-story research: verified that `tests/fixtures/formats/_coverage-matrix.json`, `README.md`, `docs/RUNBOOK.md`, `testdata/README.md`, and `docs/methodology/state.yaml` still exclude grouped image-member routing, while `archive_unpack_manifest_v1` already preserves ZIP subdirectories and `intake_plan_utils.py` plus `images_dir_to_manifest_v1` already prove the downstream `images_dir` launch path; next step: finalize the pending story and regenerate generated methodology views.
-20260417-0029 — create-story verify: ran `make methodology-compile` and confirmed Story 224 appears in `docs/stories.md` and `docs/methodology/graph.json`; evidence: generated index row and graph story entry both point at `docs/stories/story-224-mixed-archive-grouped-image-member-routing-seam.md`; next step: use `/build-story` to choose the exact grouped route contract and first repo-owned ZIP probe.
-20260417-0036 — build-story explore: read `docs/ideal.md`, `docs/spec.md`, `docs/methodology/state.yaml`, `docs/methodology/graph.json`, ADR-002, Stories 180 and 205, the `image-directory-scans` and `mixed-archive` coverage rows, and the current mixed-archive / image-directory runtime code and tests. Result: the story is honestly buildable now; the missing seam is the grouped route bridge, not ZIP extraction or downstream image intake. Fresh baseline evidence: `python driver.py --recipe configs/recipes/recipe-mixed-archive-zip-routing-mvp.yaml --input-zip /tmp/story224-grouped-images-baseline.zip --run-id story224-baseline-r1 --allow-run-id-reuse --output-dir output/runs --force` emitted a stamped mixed-archive manifest and route artifact with `launched=0, blocked=3, skipped=0, failed=0`, and manual inspection showed both `.png` members blocked as `unsupported_archive_member_suffix:.png` while the shared `pages/` directory was preserved under `output/runs/story224-baseline-r1/01_archive_unpack_manifest_v1/extracted_members/pages`. A direct downstream reuse probe on that extracted directory — `python driver.py --recipe configs/recipes/recipe-images-ocr-html-mvp.yaml --input-images output/runs/story224-baseline-r1/01_archive_unpack_manifest_v1/extracted_members/pages --run-id story224-images-direct-r1 --output-dir output/runs --end-at images_to_manifest --allow-run-id-reuse --force` — emitted `output/runs/story224-images-direct-r1/01_images_dir_to_manifest_v1/pages_images_manifest.jsonl` with two ordered `page_image_v1` rows, proving the downstream path already works. Surprise: the ZIP manifest listed `page-002.png` before `page-001.png`, but `images_dir_to_manifest_v1` restored stable order, so implementation should rely on sorted `member_path` plus the existing directory sort rather than ZIP order. Files to change: `modules/intake/archive_route_members_v1/main.py`, `modules/intake/intake_plan_utils.py`, `schemas.py`, `tests/test_mixed_archive_zip_recipe.py`, new grouped-image fixture files, and the mixed-archive truth surfaces; next step: present the route-row grouped-provenance plan for approval before implementation.
-20260417-0757 — build-story implement: shipped the bounded ZIP-only grouped image-member route-row contract. Added archive-image grouping helpers in `modules/intake/intake_plan_utils.py`; taught `modules/intake/archive_route_members_v1/main.py` to group supported shared-parent image members on ZIP entry, launch exactly one `--input-images` child run into `recipe-images-ocr-html-mvp.yaml`, and stamp `group_id`, `group_key`, `group_role`, `group_size`, shared `launch_input_path`, shared `downstream_run_id`, and shared `first_downstream_artifact` on each grouped member row while leaving direct-entry and PDF-member paths unchanged; and extended `schemas.py` so the stamped route artifact preserves those grouped fields. Added `testdata/mixed-archive-images-mini.source.json`, checked in `testdata/mixed-archive-images-mini.zip`, and expanded `tests/test_mixed_archive_zip_recipe.py` with grouped-image fixture and route assertions, including the non-stable ZIP-order case. Fresh implementation checks: `python -m ruff check modules/intake/archive_route_members_v1/main.py modules/intake/intake_plan_utils.py schemas.py tests/test_mixed_archive_zip_recipe.py`, `python -m pytest -q tests/test_mixed_archive_zip_recipe.py tests/test_mixed_folder_recipe.py tests/test_image_directory_intake_recipe.py`, `find modules -name '*.pyc' -delete`, `python driver.py --recipe configs/recipes/recipe-mixed-archive-zip-routing-mvp.yaml --input-zip testdata/mixed-archive-images-mini.zip --run-id story224-impl-r2 --allow-run-id-reuse --output-dir output/runs --force`, `python validate_artifact.py --schema archive_member_manifest_v1 --file output/runs/story224-impl-r2/01_archive_unpack_manifest_v1/archive_members_manifest.jsonl`, `python validate_artifact.py --schema archive_member_route_v1 --file output/runs/story224-impl-r2/02_archive_route_members_v1/archive_member_routes.jsonl`, and `python validate_artifact.py --schema page_image_v1 --file output/runs/story224-impl-r2-member-002-grouped-recipe-images-ocr-html-mvp/01_images_dir_to_manifest_v1/pages_images_manifest.jsonl` all passed. Manual artifact inspection confirmed `pages/page-001.png` and `pages/page-002.png` now share `group_id = images-dir:pages`, `group_key = pages`, `group_size = 2`, `launch_input_flag = --input-images`, one grouped child `downstream_run_id`, and `terminal_reason = grouped_image_end_at:images_to_manifest` inside `output/runs/story224-impl-r2/02_archive_route_members_v1/archive_member_routes.jsonl`, while `notes/readme.txt` stays explicitly blocked as `.txt`; the child `output/runs/story224-impl-r2-member-002-grouped-recipe-images-ocr-html-mvp/01_images_dir_to_manifest_v1/pages_images_manifest.jsonl` records ordered `page = 1` / `page = 2` rows with `image` paths ending in `page-001.png` then `page-002.png`. Small scope correction discovered during verification: the unbounded child image recipe fell over later at TOC synthesis on this checked-in two-page probe, so the shipped grouped route now stops at `images_to_manifest` by default and claims only the first downstream stamped `page_image_v1` artifact, not the full later OCR/HTML bundle line. Next step: keep Story 224 `In Progress`, leave the validation and done gates for `/validate` and `/mark-story-done`, and align the mixed-archive truth surfaces with this bounded shipped slice.
-20260417-0918 — build-story verify: aligned the mixed-archive truth surfaces and re-ran the repo-level checks. Updated `tests/fixtures/formats/_coverage-matrix.json`, `docs/methodology/state.yaml`, `README.md`, `docs/RUNBOOK.md`, `testdata/README.md`, and the story checklists/workflow gates so the shipped claim now says the same bounded thing everywhere: one ZIP-only grouped image-member continuation to the first downstream `page_image_v1` artifact, with direct-folder parity and later OCR/HTML stages still out of scope. Fresh verification: `make methodology-compile` rewrote `docs/methodology/graph.json` and `docs/stories.md`; `make lint` passed; and `make test` passed as `596 passed, 4 warnings in 639.49s (0:10:39)`. The warning surface is unchanged and comes from the existing deprecated `dict()` call in `modules/portionize/portionize_headers_numeric_v1/main.py:96`, not from Story 224. Next step: use `/validate` for an explicit validation pass or accept the current build handoff and keep Story 224 open until that validation and `/mark-story-done` happen.
-20260417-1052 — mark-story-done close-out: revalidated Story 224 on the current branch tip and closed it. Fresh evidence this pass: `git status --short`, `git diff --stat`, the full `git diff`, and `git ls-files --others --exclude-standard`; `make lint`; `make test` (`596 passed, 4 warnings in 687.06s (0:11:27)`, with unchanged existing warnings from `modules/portionize/portionize_headers_numeric_v1/main.py:96`); `find modules -name '*.pyc' -delete`; `python driver.py --recipe configs/recipes/recipe-mixed-archive-zip-routing-mvp.yaml --input-zip testdata/mixed-archive-images-mini.zip --run-id story224-validate-r1 --allow-run-id-reuse --output-dir output/runs --force`; `python validate_artifact.py --schema archive_member_manifest_v1 --file output/runs/story224-validate-r1/01_archive_unpack_manifest_v1/archive_members_manifest.jsonl`; `python validate_artifact.py --schema archive_member_route_v1 --file output/runs/story224-validate-r1/02_archive_route_members_v1/archive_member_routes.jsonl`; and `python validate_artifact.py --schema page_image_v1 --file output/runs/story224-validate-r1-member-002-grouped-recipe-images-ocr-html-mvp/01_images_dir_to_manifest_v1/pages_images_manifest.jsonl`. Manual artifact inspection confirmed `pages/page-001.png` and `pages/page-002.png` launch as one grouped `images_dir` child run with shared `group_id = images-dir:pages`, shared `downstream_run_id`, and `terminal_reason = grouped_image_end_at:images_to_manifest`, while `notes/readme.txt` remains explicitly blocked; the child `pages_images_manifest.jsonl` still records `page-001.png` then `page-002.png` in order. Result: all acceptance criteria and tasks remain met, validation is complete, and Story 224 now closes as the bounded ZIP-only grouped image-member first-artifact seam. Next step: `/check-in-diff`.
+20260417-0021 — create-story bootstrap: created Story 224 for the grouped
+image-member seam after verifying a new owner was honest at that time. Evidence
+reviewed: `docs/ideal.md`, `docs/spec.md`, `docs/methodology/state.yaml`,
+`docs/methodology/graph.json`, Stories 180/205/218/221/223, the
+`mixed-archive` and `image-directory-scans` coverage rows, and the current
+mixed-archive runtime code and tests. Next step: finalize the bounded grouped-
+image scope and verify whether the route bridge is buildable now.
+
+20260417-0036 — build-story explore: confirmed the original ZIP slice was
+honestly buildable. Fresh baseline evidence in that pass showed a scratch ZIP
+preserved the shared `pages/` directory while both `.png` members still blocked
+as `unsupported_archive_member_suffix:.png`; a direct downstream reuse probe on
+that extracted directory then emitted ordered `page_image_v1` rows. Result: the
+missing seam was the grouped route bridge, not ZIP extraction or downstream
+image intake.
+
+20260417-0757 — build-story implement: shipped the bounded ZIP-only grouped
+image-member route-row contract. `archive_route_members_v1` now groups one
+shared-parent page-image set on ZIP entry, launches exactly one
+`--input-images` child run into `recipe-images-ocr-html-mvp.yaml`, and stamps
+`group_id`, `group_key`, `group_role`, `group_size`, shared
+`launch_input_path`, shared `downstream_run_id`, and shared
+`first_downstream_artifact` on each grouped member row while leaving direct-
+entry and PDF-member paths unchanged. Added the checked-in ZIP probe plus
+focused grouped-image coverage in `tests/test_mixed_archive_zip_recipe.py`.
+
+20260417-0918 — build-story verify: aligned the mixed-archive truth surfaces
+with the shipped ZIP-only grouped-image slice and reran repo-level checks.
+Evidence from that pass: `make methodology-compile`, `make lint`, and
+`make test` all passed; the shipped claim was narrowed to one ZIP-only grouped
+image-member continuation to the first downstream `page_image_v1` artifact, and
+direct-folder parity remained explicitly out of scope.
+
+20260417-1052 — mark-story-done close-out: revalidated the ZIP-only slice on
+the current branch tip and closed the story as the bounded grouped-image first-
+artifact seam. Fresh evidence from that pass included `make lint`, `make test`,
+a fresh driver run on `testdata/mixed-archive-images-mini.zip`, schema
+validation of the mixed-archive manifest and route artifacts, schema validation
+of the child `pages_images_manifest.jsonl`, and manual artifact inspection
+confirming the two page images share one grouped child run while the `.txt`
+member stays explicitly blocked.
+
+20260417-1135 — anti-fragmentation reopen: reran the grouped-image line under
+the tightened behavior-class rule after triage confirmed the only remaining
+bounded grouped-image gap is direct-folder parity. Fresh repo evidence in this
+pass: `tests/fixtures/formats/_coverage-matrix.json` and
+`docs/methodology/state.yaml` still explicitly exclude direct-folder grouped
+image-member parity; `modules/intake/archive_route_members_v1/main.py` still
+gates `_grouped_image_candidates(...)` behind `archive_format == "zip"`; and
+`modules/intake/folder_members_manifest_v1/main.py` plus
+`tests/test_mixed_folder_recipe.py` confirm the source-native folder substrate
+exists but lacks grouped-image proof. Result: reopened Story 224 as `Pending`,
+expanded its goal/ACs/tasks/plan to one bounded direct-folder grouped-image
+continuation on the same route/module and first-artifact line, and kept the
+completed ZIP slice as prior evidence instead of creating a new story. Next
+step: `/build-story 224` should freeze the direct-folder baseline, add one
+repo-owned folder grouped-image probe, and implement the smallest source-native
+parity change that preserves the existing ZIP contract.
+
+20260417-1440 — build-story explore: froze the direct-folder grouped-image
+baseline with fresh runtime evidence and narrowed the likely implementation
+surface. Created a temporary source-native folder probe at
+`/tmp/story224-folder-baseline-src` with
+`pages/page-001.png`, `pages/page-002.png`, and `notes/readme.txt`, then ran
+`python driver.py --recipe configs/recipes/recipe-mixed-folder-routing-mvp.yaml --input-folder /tmp/story224-folder-baseline-src --run-id story224-folder-baseline-r1 --allow-run-id-reuse --output-dir output/runs --force`.
+The stamped manifest at
+`output/runs/story224-folder-baseline-r1/01_folder_members_manifest_v1/archive_members_manifest.jsonl`
+proved source-native relative ordering and source-native `extracted_path`
+values for the bounded folder probe. The stamped route artifact at
+`output/runs/story224-folder-baseline-r1/02_archive_route_members_v1/archive_member_routes.jsonl`
+isolated the exact current gap: `launched=0, blocked=3, skipped=0, failed=0`,
+with both page-image rows still stamped
+`terminal_reason = unsupported_archive_member_suffix:.png` and no grouped
+provenance fields populated. A direct downstream reuse probe on the same page
+directory —
+`python driver.py --recipe configs/recipes/recipe-images-ocr-html-mvp.yaml --input-images /tmp/story224-folder-baseline-src/pages --run-id story224-folder-images-direct-r1 --allow-run-id-reuse --output-dir output/runs --end-at images_to_manifest --force`
+— emitted
+`output/runs/story224-folder-images-direct-r1/01_images_dir_to_manifest_v1/pages_images_manifest.jsonl`
+with ordered `page-001.png` then `page-002.png`. Impact: the remaining gap is
+the folder route bridge only, not missing folder substrate, schema, or
+downstream image-directory support. The likely coherent implementation slice is
+therefore one new repo-owned folder fixture
+(`testdata/mixed-folder-images-mini/` plus metadata), one route change in
+`archive_route_members_v1` with no recipe default change unless new evidence
+forces it, focused coverage in `tests/test_mixed_folder_recipe.py`, and narrow
+truth-surface updates if the proof lands. Next step: present this plan for user
+approval before writing implementation code.
+
+20260417-1450 — build-story start: user approved the implementation plan, so
+Story 224 is now `In Progress`. Next step: land the bounded direct-folder
+grouped-image parity slice in code, fixtures, tests, and truth surfaces, then
+prove it with a real `driver.py` folder run and artifact inspection.
+
+20260417-1605 — build-story implement: widened the grouped-image route bridge
+from ZIP-only to ZIP-or-folder entry by changing
+`modules/intake/archive_route_members_v1/main.py` so
+`_grouped_image_candidates(...)` now accepts `archive_format in {"zip",
+"folder"}` while leaving the existing ZIP grouped contract untouched. Added the
+repo-owned source-native grouped-image probe under
+`testdata/mixed-folder-images-mini/` plus
+`testdata/mixed-folder-images-mini.source.json`, and extended
+`tests/test_mixed_folder_recipe.py` with fixture-shape and mixed-folder smoke
+coverage that asserts shared `group_id` / `group_key` / `group_role` /
+`group_size`, source-native `launch_input_path`, shared
+`downstream_run_id` / `first_downstream_artifact`, the blocked `.txt` row, and
+the ordered child `page_image_v1` manifest. Fresh checks in this pass:
+`python -m ruff check modules/intake/archive_route_members_v1/main.py tests/test_mixed_folder_recipe.py`,
+`python -m pytest -q tests/test_mixed_folder_recipe.py tests/test_mixed_archive_zip_recipe.py tests/test_image_directory_intake_recipe.py`,
+and a fresh real driver proof after clearing stale bytecode with
+`find modules -name '*.pyc' -delete` then
+`python driver.py --recipe configs/recipes/recipe-mixed-folder-routing-mvp.yaml --input-folder testdata/mixed-folder-images-mini --run-id story224-folder-impl-r2 --allow-run-id-reuse --output-dir output/runs --force`.
+Manual artifact inspection on
+`output/runs/story224-folder-impl-r2/01_folder_members_manifest_v1/archive_members_manifest.jsonl`,
+`output/runs/story224-folder-impl-r2/02_archive_route_members_v1/archive_member_routes.jsonl`,
+and
+`output/runs/story224-folder-impl-r2-member-002-grouped-recipe-images-ocr-html-mvp/01_images_dir_to_manifest_v1/pages_images_manifest.jsonl`
+confirmed one blocked `notes/readme.txt` row, two grouped `pages/page-00N.png`
+rows sharing `group_id = images-dir:pages`, a source-native
+`launch_input_path` pointing at `testdata/mixed-folder-images-mini/pages`, and
+an ordered child manifest that points back to the checked-in source-native
+images. This closes the bounded direct-folder grouped-image parity slice on the
+same route/module and first-artifact line. Next step: rerun methodology plus
+full repo checks, then hand off to `/validate 224` without marking the story
+Done.
+
+20260417-1626 — build-story verify: reran the truth-surface and repo-level
+checks after the implementation patch and left the story in the correct
+handoff state. Fresh evidence in this pass: `make methodology-compile` rewrote
+`docs/methodology/graph.json` and `docs/stories.md`; `make methodology-check`
+confirmed the graph is current; `make lint` passed; and `make test` passed
+fresh at `598 passed, 4 warnings` in `681.32s`. Result: Story 224 now has
+`Build complete` checked while `Validation complete` and `Story marked done`
+stay intentionally unchecked for the next `/validate 224` pass. Practical
+impact: operators can now hand a mixed source-native folder containing one
+shared-parent page-image set plus unrelated blocked members to the maintained
+mixed-folder recipe and get the same inspectable grouped route bridge and first
+downstream `page_image_v1` artifact that previously existed only on the ZIP
+probe. Residual limit: the grouped claim still stops at `images_to_manifest`
+for this bounded fixture and does not widen later OCR/HTML or broader archive
+ownership semantics. Next step: `/validate 224` should re-check the bounded
+claim, artifact quality, and truth-surface alignment without marking the story
+done prematurely.
+
+20260417-1540 — mark-story-done close-out: validated Story 224 complete and
+set the story status to `Done`. Fresh evidence in this pass:
+`python -m pytest tests/` passed at `598 passed, 4 warnings` in `657.21s`;
+`python -m ruff check modules/ tests/` passed; `make skills-check` passed for
+the adjacent agent-guidance edits in the intended landing set; and a fresh real
+proof run —
+`python driver.py --recipe configs/recipes/recipe-mixed-folder-routing-mvp.yaml --input-folder testdata/mixed-folder-images-mini --run-id story224-folder-close-r3 --allow-run-id-reuse --output-dir output/runs --force`
+— emitted
+`output/runs/story224-folder-close-r3/01_folder_members_manifest_v1/archive_members_manifest.jsonl`,
+`output/runs/story224-folder-close-r3/02_archive_route_members_v1/archive_member_routes.jsonl`,
+and
+`output/runs/story224-folder-close-r3-member-002-grouped-recipe-images-ocr-html-mvp/01_images_dir_to_manifest_v1/pages_images_manifest.jsonl`.
+`validate_artifact.py` passed on the parent manifest, parent routes, and child
+`page_image_v1` manifest, and manual inspection confirmed one blocked
+`notes/readme.txt` row plus two grouped source-native page-image rows whose
+shared `launch_input_path` points at
+`testdata/mixed-folder-images-mini/pages` and whose child manifest preserves
+ordered `page-001.png` then `page-002.png`. Updated the existing Story 224
+changelog entry instead of duplicating it. ADR-002 remains `ACCEPTED` with no
+Remaining Work item newly resolved by this close-out. Next step:
+`/check-in-diff`.

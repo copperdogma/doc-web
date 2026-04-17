@@ -211,6 +211,14 @@ create a new ID. If a story is `Blocked`, the blocker summary, evidence, and
 unblock condition should be inspectable in the story artifact and in any
 graph/compiler surface that feeds triage.
 
+Coverage and story packaging should follow behavior classes, not permutation
+matrices. A new story or coverage claim is usually warranted when the repo
+crosses into a materially different routing/provenance seam, downstream
+continuation shape, or validation boundary. It is usually not warranted just
+because an already-supported capability appears through another container,
+entry surface, or representative input permutation that preserves the same
+owning module, artifact contract, and operator-facing outcome.
+
 ## Daily Use
 
 The methodology is most useful as a filter.

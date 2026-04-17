@@ -119,6 +119,10 @@ When invoked with no scope:
    parity, progression to a later state on the same artifact chain, or
    tests/docs/truth-surface codification for behavior that already exists,
    prefer `continue`, `expand`, `reopen`, or `consolidate` instead.
+   Treat pure input/container permutations the same way when the routing,
+   owning module, artifact contract, and operator-facing outcome do not
+   materially change; prefer representative probes or regression checks inside
+   the current class over a new story shell.
 
    Choose the next action with the strongest combined signal across:
    - movement toward the Ideal
@@ -204,6 +208,10 @@ When invoked with no scope:
   later-state progression, or tests/docs/truth-surface codification on current
   behavior unless the repo evidence shows that the runtime seam or validation
   boundary really changed.
+- Do not recommend a new story just because an already-supported capability now
+  appears through another container or entry permutation when the behavior
+  class, routing/provenance seam, and downstream artifact contract are still
+  the same.
 - Do not treat lack of a fresh external trigger as sufficient reason for
   `no-op` when a bounded phase-aligned improvement move still exists.
 - Prefer recommending the best next attempt, simplification, or new story shell

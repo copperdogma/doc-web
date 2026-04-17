@@ -83,6 +83,10 @@ Execute a development story through implementation handoff.
      the split itself. Prefer reopening, expanding, or consolidating the
      recent story instead of polishing the fragment as a standalone backlog
      item.
+   - Apply the same check to pure input/container permutations. If the new
+     slice preserves the same routing/provenance seam, emitted artifact
+     contract, and validation boundary, prefer folding it into the existing
+     behavior-class story and covering it with representative proof.
    - Do not optimize for human sprint sizing. Optimize for a coherent slice that an AI can implement and validate end-to-end.
 
 8. **Record exploration findings** — Write a brief exploration entry in the work log:

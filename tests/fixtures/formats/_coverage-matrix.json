@@ -1,7 +1,7 @@
 {
   "version": "1.0",
   "generated": "2026-04-10",
-  "description": "Format coverage matrix tracking which input formats doc-forge can convert, how well, and what test fixtures exist. Agents query this to find untested formats and prioritize work.",
+  "description": "Format coverage matrix tracking which input capability classes doc-forge can convert, how well, and what representative test fixtures exist. Rows should capture materially different routing, provenance, or validation classes, not every combinatorial entry-surface permutation of the same supported capability. Agents query this to find untested formats and prioritize work.",
   "statuses": {
     "untested": "Format identified but no test fixtures or pipeline support",
     "has-fixture": "Test document exists but pipeline not yet built or passing",
@@ -540,7 +540,7 @@
       "id": "mixed-archive",
       "format_family": "mixed-archive",
       "status": "passing",
-      "description": "Bounded ZIP archives or source-native folders containing a maintained mix of direct-entry file types, including one ZIP-only PDF-member approved-handoff launch probe, one ZIP-only grouped image-member first-artifact probe, and one direct-folder PDF-member approved-handoff launch probe, routed member-by-member or as one shared-parent image group on the bounded ZIP image slice",
+      "description": "Bounded ZIP archives or source-native folders routed by capability class: one generic direct-entry passthrough slice for already-supported member types, one PDF-member approved-handoff launch slice on ZIP and direct-folder entry, and one grouped image-member first-artifact slice on ZIP and direct-folder entry",
       "pipeline_recipe": "recipe-mixed-archive-zip-routing-mvp.yaml / recipe-mixed-folder-routing-mvp.yaml",
       "intake_module": "archive_unpack_manifest_v1 or folder_members_manifest_v1 → archive_route_members_v1",
       "complexity": ["mixed-layout"],
@@ -574,12 +574,19 @@
           "source": "testdata/mixed-folder-pdf-mini",
           "pages": null,
           "notes": "Supported on the first bounded direct-folder PDF-member approved-handoff launch continuation of the same mixed-input seam. Story 222 established the direct-folder recommendation substrate on one repo-owned four-member folder tree with a flat born-digital PDF member, plain-text `.eml`, checked HTML snapshot, and one intentionally unsupported `.txt` member, and Story 223 extends that same fixture through a member-local approved-handoff launch into the maintained born-digital PDF recipe. The lane emits source-native archive/member manifest and route rows, launches a nested intake run for the PDF member, records the emitted approved `intake_plan_v1` artifact as `first_downstream_artifact`, writes a member-local `intake_handoff_v1` sidecar, and launches the recommended born-digital PDF recipe while preserving the existing `.eml` / HTML launches and explicit blocked `.txt` row."
+        },
+        {
+          "id": "mixed-folder-images-mini",
+          "source": "testdata/mixed-folder-images-mini",
+          "pages": 2,
+          "notes": "Supported on the first bounded direct-folder grouped image-member continuation of the same mixed-input seam. Story 224 widened the grouped-image proof to one repo-owned three-member source-native folder tree with two page images under `pages/` plus one intentionally unsupported `.txt` member. The lane emits source-native archive/member manifest rows plus grouped member route rows with shared `group_id`, `group_key`, `group_role`, `group_size`, `launch_input_path`, `downstream_run_id`, and `first_downstream_artifact` fields, launches exactly one grouped `--input-images` child run into the maintained image-directory recipe from the source-native `pages/` directory, records the emitted `01_images_dir_to_manifest_v1/pages_images_manifest.jsonl` artifact, and preserves the explicit blocked `.txt` row."
         }
       ],
       "scores": null,
       "known_gaps": [
-        "Passing evidence is still bounded to five checked-in probes: one ZIP entry surface with direct-entry DOCX / `.eml` / HTML launches, one ZIP PDF-member approved-handoff launch surface with `.eml` / HTML launches plus member-local `intake_plan_v1`, `intake_handoff_v1`, and born-digital PDF artifacts for the PDF member, one ZIP grouped image-member surface that launches one shared-parent `images_dir` child run and records the emitted `page_image_v1` manifest as `first_downstream_artifact`, one source-native folder entry surface on the original DOCX / `.eml` / HTML / `.txt` mix, and one source-native folder PDF-member approved-handoff launch surface on a born-digital PDF / `.eml` / HTML / `.txt` mix.",
-        "The maintained lane does not yet claim scanned or handwritten PDF-member launch parity, direct-folder grouped image-member parity, grouped-image continuation beyond the first downstream `page_image_v1` artifact, nested archives, attachment extraction, ambiguous AI-assisted route decisions, or broad heterogeneous archive ownership.",
+        "Passing evidence is still bounded to six checked-in probes covering three behavior classes: direct-entry passthrough on one ZIP and one source-native folder mix, PDF-member approved-handoff launch on one ZIP and one source-native folder mix, and grouped image-member first-artifact continuation on one ZIP mix plus one source-native folder mix.",
+        "This row models routing/continuation classes rather than every `supported member type × container` permutation. Already-supported direct-entry member types belong to the generic passthrough class unless the container changes routing, provenance, downstream artifact shape, or validation boundaries.",
+        "The maintained lane does not yet claim scanned or handwritten PDF-member launch parity, grouped-image continuation beyond the first downstream `page_image_v1` artifact, nested archives, attachment extraction, ambiguous AI-assisted route decisions, or broad heterogeneous archive ownership.",
         "Mixed-archive provenance currently relies on relative `member_path` / `member_id`, source-native or extracted member file paths depending on the entry surface, and downstream run ids or artifact paths; it does not flatten members into one combined bundle or claim archive-level page anchors."
       ],
       "graduated": false

@@ -328,13 +328,15 @@ claim is intentionally narrow:
 - explicit blocked routing for unsupported members instead of hidden skips or a fabricated combined bundle
 
 That ZIP lane is now complemented by separate bounded direct-folder proof lanes
-on the original DOCX / `.eml` / HTML / `.txt` member mix and on one
+on the original DOCX / `.eml` / HTML / `.txt` member mix, on one
 born-digital PDF / `.eml` / HTML / `.txt` member mix that continues through a
 nested member-local approved-handoff launch into the maintained born-digital
-PDF recipe. Scanned or handwritten PDF-member launch parity, direct-folder
-grouped image-member routing, grouped-image continuation beyond the first
-downstream `page_image_v1` artifact, nested archives, attachments, and broad
-heterogeneous archive normalization remain unproven.
+PDF recipe, and on one grouped page-image / `.txt` member mix that continues
+through the first downstream `page_image_v1` artifact from a source-native
+`pages/` directory. Scanned or handwritten PDF-member launch parity,
+grouped-image continuation beyond the first downstream `page_image_v1`
+artifact, nested archives, attachments, and broad heterogeneous archive
+normalization remain unproven.
 
 For the maintained mixed-folder proof lane, install the same base driver plus
 the explicit extras needed by the nested member families in the checked-in
@@ -371,6 +373,25 @@ also intentionally narrow:
 - the same relative member manifest and route schemas as the ZIP PDF-member proof, but with source-native member paths instead of copied extracts
 - one direct-folder PDF-member continuation that launches a nested `recipe-intake-contact-sheet.yaml` run, records the emitted approved plan as `first_downstream_artifact`, writes a member-local `intake_handoff_v1` artifact, and launches the recommended maintained born-digital PDF recipe on that same member
 - existing maintained direct-entry launches for the `.eml` and HTML members plus explicit blocked routing for the unsupported member
+
+Story 224 also widens the same direct-folder lane to the checked-in
+`testdata/mixed-folder-images-mini/` grouped-image probe. That supported claim
+is intentionally narrow:
+
+- one checked-in source-native folder tree with two page-image members under `pages/` plus one intentionally unsupported `.txt` member
+- the same relative member manifest and route schemas as the ZIP grouped-image proof, but with source-native member paths and a source-native `launch_input_path`
+- one direct-folder grouped image-member continuation that stamps shared `group_id` / `group_key` / `group_role` / `group_size` route provenance, launches exactly one grouped `--input-images` child run into the maintained image-directory recipe, records the emitted `01_images_dir_to_manifest_v1/pages_images_manifest.jsonl` artifact as `first_downstream_artifact`, and leaves the `.txt` member explicitly blocked
+
+To prove that bounded continuation directly, rerun the same recipe with:
+
+```bash
+python driver.py \
+  --recipe configs/recipes/recipe-mixed-folder-routing-mvp.yaml \
+  --input-folder testdata/mixed-folder-images-mini \
+  --run-id <run_id> \
+  --allow-run-id-reuse \
+  --force
+```
 
 To prove that bounded continuation directly, rerun the same recipe with:
 
@@ -409,7 +430,7 @@ The active maintained entry surfaces are explicit recipes, not hidden routing:
 - `configs/recipes/recipe-email-mbox-html-mvp.yaml` for the maintained plain-text `.mbox` multi-message archive lane on the verified bounded probe slice
 - `configs/recipes/recipe-epub-html-mvp.yaml` for the maintained EPUB chapter-first lane on the verified bounded probe slice
 - `configs/recipes/recipe-mixed-archive-zip-routing-mvp.yaml` for the maintained ZIP-only mixed-archive routing lane on the verified bounded probe slices, including one ZIP-only PDF-member approved-handoff launch continuation and one ZIP-only grouped image-member first-artifact continuation
-- `configs/recipes/recipe-mixed-folder-routing-mvp.yaml` for the maintained mixed-folder routing lane on the verified bounded four-member probe slices, including one direct-folder born-digital PDF-member approved-handoff launch continuation
+- `configs/recipes/recipe-mixed-folder-routing-mvp.yaml` for the maintained mixed-folder routing lane on the verified bounded probe slices, including one direct-folder born-digital PDF-member approved-handoff launch continuation and one direct-folder grouped image-member first-artifact continuation
 - `configs/recipes/recipe-pptx-html-mvp.yaml` for the maintained PPTX slide-backed lane on the verified bounded probe slice
 - `configs/recipes/recipe-web-page-html-mvp.yaml` for the maintained checked-HTML web-page lane on the verified bounded probe slice
 - `configs/recipes/recipe-xlsx-html-mvp.yaml` for the maintained XLSX workbook-table lane on the verified simple-table slice
@@ -425,10 +446,11 @@ approved-handoff automation. Stories 221, 222, 223, and 224 add only nested
 member-local continuations after explicit `--input-zip` or `--input-folder`
 entry: Story 223 now proves launched member-local handoff artifacts plus the
 first bounded born-digital PDF child-run artifacts on one ZIP PDF-member slice
-and one direct-folder PDF-member slice, Story 224 proves a ZIP-only grouped
+and one direct-folder PDF-member slice, Story 224 proves grouped
 image-member continuation only through the first downstream `page_image_v1`
-artifact, and Story 222 remains the recommendation substrate beneath the
-direct-folder PDF proof. They do not widen either automation surface.
+artifact on one ZIP slice plus one direct-folder slice, and Story 222 remains
+the recommendation substrate beneath the direct-folder PDF proof. They do not
+widen either automation surface.
 
 To seed a maintained PDF-backed run config explicitly:
 

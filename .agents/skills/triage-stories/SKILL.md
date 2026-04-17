@@ -71,6 +71,9 @@ This skill is read-only.
    operator-facing outcome, then differences like entry-form parity, later-
    state progression, or tests/docs/truth-surface codification are usually
    still the same problem line.
+   Treat pure input/container permutations the same way unless the container
+   introduces a new routing/provenance seam, downstream continuation shape, or
+   validation boundary.
 
    If the current problem line is `Blocked`, verify whether the blocker still
    stands. A stale implementation plan inside the story does not override newer
@@ -178,6 +181,10 @@ doing a full backlog scan. Report:
 - Treat entry-form parity, later-state progression, and tests/docs/truth-
   surface codification on the same module/artifact line as consolidation
   pressure by default, not as automatic new-story evidence
+- Treat new `format × container × entry-surface` permutations on an already-
+  supported module/artifact line as consolidation pressure by default too,
+  unless the repo evidence shows that the container changes the behavior class
+  or validation boundary
 - Do not say the backlog is effectively empty when the methodology state still
   shows a bounded actionable `converge`/`climb` pressure line that simply lacks
   a story shell; recommend creating the story instead.

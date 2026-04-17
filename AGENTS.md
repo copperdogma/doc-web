@@ -138,6 +138,13 @@ workflow/artifact chain, or codification of already-existing behavior do not
 justify a new story by themselves when the owning module, fixture family,
 emitted artifacts, and operator-facing outcome are still the same line.
 
+**Model behavior classes, not permutations.** New stories and coverage claims
+should normally map to a materially different behavior class, routing/provenance
+seam, or validation boundary. Do not create story-sized work for every
+`format × container × entry-surface` permutation when the same owning module,
+artifact contract, and operator-facing outcome already cover it. Prove
+representative cases inside the class and add narrow regression checks instead.
+
 If a capability needs an operator or end-user UI to be honestly usable or
 inspectable, the story should include that UI slice unless it explicitly
 records why the UI is intentionally deferred or owned elsewhere.

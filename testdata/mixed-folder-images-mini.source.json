@@ -1,0 +1,39 @@
+{
+  "title": "Mixed Folder Images Mini Fixture",
+  "source_type": "repo-owned mixed folder",
+  "generated_at": "2026-04-17",
+  "archive_format": "folder",
+  "capture_note": "Checked-in source-native folder probe for Story 224's direct-folder grouped image-member parity slice. It mirrors the bounded ZIP grouped-image probe without a ZIP wrapper so the maintained lane can prove grouped route rows and one grouped `--input-images` launch on source-native folder entry while keeping relative member provenance and explicit blocked routing for the unsupported `.txt` member.",
+  "members": [
+    {
+      "member_path": "pages/page-001.png",
+      "source": "testdata/handwritten-notes-mini-images/page-001.png",
+      "expected_route": "grouped-images-dir-launch",
+      "notes": "This page belongs to the bounded direct-folder grouped image-member slice. The route rows should keep per-member provenance while sharing one grouped `--input-images` launch into `recipe-images-ocr-html-mvp.yaml`."
+    },
+    {
+      "member_path": "pages/page-002.png",
+      "source": "testdata/handwritten-notes-mini-images/page-002.png",
+      "expected_route": "grouped-images-dir-launch",
+      "notes": "This second page proves the bounded shared-parent grouping contract and stable downstream page ordering on the source-native directory."
+    },
+    {
+      "member_path": "notes/readme.txt",
+      "source": "testdata/mixed-folder-images-mini/notes/readme.txt",
+      "expected_route": "blocked",
+      "notes": "This unsupported text member exists to prove non-image members remain explicit blocked rows instead of being silently folded into the grouped image launch."
+    }
+  ],
+  "supported_scope": [
+    "source-native folder entry",
+    "relative member manifest and grouped image-member route rows",
+    "one grouped `--input-images` launch into `recipe-images-ocr-html-mvp.yaml` for a shared-parent page-image set",
+    "explicit blocked rows for unsupported non-image members"
+  ],
+  "known_gaps": [
+    "No grouped-image continuation beyond `images_to_manifest`",
+    "No broad photo-album clustering or arbitrary image-set semantics",
+    "No nested archives or attachment extraction",
+    "No broad mixed-folder normalization into a single combined bundle"
+  ]
+}

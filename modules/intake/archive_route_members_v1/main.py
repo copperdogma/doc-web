@@ -165,7 +165,7 @@ def _grouped_image_candidates(manifest_rows: list[dict]) -> dict[str, dict]:
     grouped_rows: dict[str, list[dict]] = defaultdict(list)
     for row in manifest_rows:
         archive_format = str(row.get("archive_format") or "zip").strip().lower()
-        if archive_format != "zip":
+        if archive_format not in {"zip", "folder"}:
             continue
         group_key = archive_grouped_image_group_key(row.get("member_path"))
         if not group_key:

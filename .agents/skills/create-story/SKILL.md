@@ -39,6 +39,10 @@ on the same problem line, do that instead of minting a new ID.
      operator-facing outcome, then entry-form parity, later-state progression,
      or tests/docs/truth-surface codification usually still belong in the
      existing story line
+   - Apply the same rule to permutations: if the only change is that an
+     already-supported capability appears through another container or entry
+     surface, keep it in the existing line unless the container changes the
+     routing/provenance seam, downstream continuation, or validation boundary
    - If expansion or reopen is the honest move, STOP here. Do not run the
      bootstrap script. Return the existing story to continue, or update that
      story directly when the user explicitly asked to flesh out that same line.
@@ -131,6 +135,10 @@ on the same problem line, do that instead of minting a new ID.
   codification on the same module/artifact line do not justify a new story by
   themselves unless the repo evidence shows a genuinely different runtime seam
   or validation contract.
+- `format × container × entry-surface` permutations on the same behavior class
+  do not justify a new story by themselves either; require evidence that the
+  permutation changes routing, provenance, downstream artifact shape, or
+  validation boundaries.
 - If a story is `Blocked`, fill the canonical `Blocker Summary`,
   `Blocker Evidence`, and `Unblock Condition` sections with repo-backed truth.
 - If a story starts `Blocked`, the visible `## Plan` should describe the
