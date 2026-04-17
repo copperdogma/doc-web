@@ -34,6 +34,11 @@ on the same problem line, do that instead of minting a new ID.
    - If the requested work remains in the same subsystem, validation boundary,
      and success surface as a recent active or just-finished story, default to
      expanding or reopening that story instead of creating a new one
+   - Apply concrete fragment checks before creating a new ID: if the work keeps
+     the same owning module, fixture family, emitted artifact chain, and
+     operator-facing outcome, then entry-form parity, later-state progression,
+     or tests/docs/truth-surface codification usually still belong in the
+     existing story line
    - If expansion or reopen is the honest move, STOP here. Do not run the
      bootstrap script. Return the existing story to continue, or update that
      story directly when the user explicitly asked to flesh out that same line.
@@ -122,6 +127,10 @@ on the same problem line, do that instead of minting a new ID.
 - Same subsystem + same validation boundary + same success surface stays in one
   story by default. Split only when the work becomes materially distinct,
   crosses a new runtime / ownership seam, or would make validation unclear.
+- Entry-form parity, later-state progression, and tests/docs/truth-surface
+  codification on the same module/artifact line do not justify a new story by
+  themselves unless the repo evidence shows a genuinely different runtime seam
+  or validation contract.
 - If a story is `Blocked`, fill the canonical `Blocker Summary`,
   `Blocker Evidence`, and `Unblock Condition` sections with repo-backed truth.
 - If a story starts `Blocked`, the visible `## Plan` should describe the

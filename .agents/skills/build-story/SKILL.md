@@ -77,6 +77,12 @@ Execute a development story through implementation handoff.
    - **Large delta** → do not silently absorb or silently split it out. Add it to the plan as a recommended scope expansion for user approval.
    - Prefer expanding the current story when the new work is tightly coupled, in the same subsystem, and reasonably achievable in the same implementation pass.
    - Prefer a follow-up story only when the new work is materially distinct, changes the story's goal, adds major blast radius, or would make validation unclear.
+   - If exploration shows the current story is mostly entry-form parity,
+     later-state continuation, or tests/docs/truth-surface codification for
+     behavior that already exists on the same module/artifact line, challenge
+     the split itself. Prefer reopening, expanding, or consolidating the
+     recent story instead of polishing the fragment as a standalone backlog
+     item.
    - Do not optimize for human sprint sizing. Optimize for a coherent slice that an AI can implement and validate end-to-end.
 
 8. **Record exploration findings** — Write a brief exploration entry in the work log:

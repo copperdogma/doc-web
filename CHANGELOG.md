@@ -1,3 +1,22 @@
+## [2026-04-16-03] - Finish anti-fragmentation hardening and folder parity close-out (Stories 190, 223)
+
+### Changed
+- Changed the shared story-progression guidance, triage/create/build skill contracts, and methodology reference surfaces so same-surface parity, later-state progression, and codification work now default to expansion or consolidation instead of fragmenting into new stories
+- Changed the maintained mixed-folder routing proof so the direct-folder PDF member now stops at an inspectable approved-handoff dry-run artifact chain, bringing the direct-folder lane up to the same bounded approved-handoff surface already proven for the ZIP lane
+- Changed Story 190 and Story 223 close-out state plus the generated methodology views so the backlog and graph now reflect both completed lines honestly
+
+### Tested
+- `make skills-check`
+- `make methodology-check`
+- `python -m pytest tests/test_methodology_graph.py -q`
+- `make lint`
+- `make test`
+- `python driver.py --recipe configs/recipes/recipe-mixed-folder-routing-mvp.yaml --input-folder testdata/mixed-folder-pdf-mini --run-id validate-story223-mixed-folder-20260416 --allow-run-id-reuse --force`
+- `python validate_artifact.py --schema archive_member_manifest_v1 --file output/runs/validate-story223-mixed-folder-20260416/01_folder_members_manifest_v1/archive_members_manifest.jsonl`
+- `python validate_artifact.py --schema archive_member_route_v1 --file output/runs/validate-story223-mixed-folder-20260416/02_archive_route_members_v1/archive_member_routes.jsonl`
+- `python validate_artifact.py --schema intake_plan_v1 --file output/runs/validate-story223-mixed-folder-20260416-member-001-recipe-intake-contact-sheet/05_confirm_plan_v1/overview_plan_final.jsonl`
+- `python validate_artifact.py --schema intake_handoff_v1 --file output/runs/validate-story223-mixed-folder-20260416/02_archive_route_members_v1/pdf_member_handoffs/member-001/intake_handoff.jsonl`
+
 ## [2026-04-16-02] - Land mixed-archive approved-handoff seam (Story 223)
 
 ### Added

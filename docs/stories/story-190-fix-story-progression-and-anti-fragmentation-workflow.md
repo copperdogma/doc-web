@@ -78,6 +78,10 @@ readiness obvious.
       the same subsystem, same validation boundary, and same success surface
       stays in one story unless it becomes materially distinct, crosses into a
       new runtime seam, or would make validation unclear
+  - [x] the rule explicitly treats parity-only continuation, mode progression,
+        and codification of already-existing behavior on the same
+        module/artifact line as expansion/reopen/consolidation pressure rather
+        than default new-story evidence
 - [x] `/triage` and `triage-stories` use a problem-first weighting model:
   - [x] existing story shells do not carry major intrinsic priority just because
         they exist
@@ -472,6 +476,15 @@ readiness obvious.
   Evidence: `.agents/skills/mark-story-done/SKILL.md` now reserves
   `Rescope then close` for genuinely separate remaining work and prevents
   follow-up-story existence from acting as a closure vote by itself.
+- [x] Parity or later-state progression on the same module/artifact line avoids a new story
+  Evidence: `AGENTS.md`, `.agents/skills/triage/SKILL.md`,
+  `.agents/skills/triage-stories/SKILL.md`,
+  `.agents/skills/create-story/SKILL.md`,
+  `.agents/skills/build-story/SKILL.md`, and
+  `docs/runbooks/migrate-problem-first-triage-and-story-workflow.md` now all
+  explicitly treat entry-form parity, later-state progression, and
+  codification of already-existing behavior on the same module/artifact line as
+  expansion/reopen/consolidation pressure by default.
 
 ## Plan
 
@@ -514,7 +527,7 @@ readiness obvious.
    Files: [story-190-fix-story-progression-and-anti-fragmentation-workflow.md](/Users/cam/.codex/worktrees/ecf0/doc-web/docs/stories/story-190-fix-story-progression-and-anti-fragmentation-workflow.md) and [migrate-problem-first-triage-and-story-workflow.md](/Users/cam/.codex/worktrees/ecf0/doc-web/docs/runbooks/migrate-problem-first-triage-and-story-workflow.md).
    Change: keep the runbook updated only with settled decisions, and complete the certification matrix against the final landed wording and compiler behavior.
    Impact: this is the portability proof for other repos and the regression shield against future drift.
-   Evidence target: after implementation, the repo should be able to demonstrate all 10 certification scenarios directly from the landed skill/docs/template/graph surfaces.
+   Evidence target: after implementation, the repo should be able to demonstrate all 11 certification scenarios directly from the landed skill/docs/template/graph surfaces.
    Done looks like: another repo can port the change set without replaying this investigation, and this story contains the final certification evidence instead of only design intent.
 
 7. **Verification pass after the last functional edit**
@@ -708,3 +721,55 @@ story now tells triage to treat the line as parked until its unblock condition
 is met. Impact: the blocked-line cooling rule is now both documented and
 freshly verified in the local workflow surfaces. Next: port the same patch to
 the sibling repos with the copy-paste prompt in the migration runbook.
+20260416-1602 - anti-fragmentation regression reopen: reopened Story 190 after
+fresh `/triage` behavior repeated the same failure mode on the mixed-archive
+intake line. Evidence from current local history: the recent story chain on the
+same routing/module/artifact surface split entry-form parity, later-state
+progression, and codification work into separate shells even though fresh
+`/build-story` exploration showed the core behavior already existed and the
+remaining work mostly stayed on the same line. Impact: this exposed that the
+old anti-fragmentation rule was still too abstract; it said "same subsystem /
+validation boundary / success surface" but did not explicitly call out these
+generic fragment patterns as default expansion/reopen cases. Next: tighten the
+repo contract and the triage/create-story/build-story skills so those cases
+stop minting story fragments by default.
+20260416-1614 - regression hardening pass: tightened the methodology contract
+and the story-selection skills around the exact escape hatch this pass exposed.
+Patched `AGENTS.md`, `docs/methodology-ideal-spec-compromise.md`,
+`docs/runbooks/migrate-problem-first-triage-and-story-workflow.md`,
+`.agents/skills/triage/SKILL.md`,
+`.agents/skills/triage-stories/SKILL.md`,
+`.agents/skills/create-story/SKILL.md`,
+`.agents/skills/build-story/SKILL.md`, and this story. The new rule is now
+explicit in every live planning surface: entry-form parity, later-state
+progression, and codification of already-existing behavior on the same owning
+module / fixture / artifact line are default reopen/expand/consolidate cases,
+not automatic new-story evidence. I also tightened `/triage` and
+`/triage-stories` so compiled graph actionability is treated as a starting
+signal rather than a free pass to skip fragment review when a `Pending` story
+may be the wrong vehicle. Impact: future triage passes now have both a sharper
+rule and a clearer escape hatch from misleading `recommended_now` story
+shells. Next: rebuild the methodology surfaces, rerun the agent-tooling
+checks, inspect the generated outputs, and hand the story to `/validate`
+instead of reclosing it in this pass.
+20260416-2008 - mark-story-done close-out: revalidated the reopened
+anti-fragmentation repair on the current branch tip and closed Story 190
+again now that the methodology and skill surfaces are aligned. Fresh close-out
+checks in this pass: `make skills-check` → `skills-check: OK`;
+`make methodology-check` → clean;
+`python -m pytest tests/test_methodology_graph.py -q` → `17 passed`;
+`make lint` → clean; `make test` → `592 passed, 4 warnings in 680.10s
+(0:11:20)` with the same pre-existing Pydantic deprecation warnings in
+`modules/portionize/portionize_headers_numeric_v1/main.py`; and
+`git diff --check` → clean. Manual close-out inspection confirmed the generic
+anti-fragmentation rule is now carried consistently in `AGENTS.md`,
+`docs/methodology-ideal-spec-compromise.md`,
+`docs/runbooks/migrate-problem-first-triage-and-story-workflow.md`,
+`.agents/skills/triage/SKILL.md`,
+`.agents/skills/triage-stories/SKILL.md`,
+`.agents/skills/create-story/SKILL.md`, and
+`.agents/skills/build-story/SKILL.md`, and that the generated methodology
+surfaces now reflect the repaired workflow contract. Outcome: the repo now
+defaults to keeping same-surface parity, later-state progression, and
+codification work in one story instead of repeatedly minting fragment stories.
+Next step: `/check-in-diff`.

@@ -689,8 +689,9 @@ archive route stage.
 
 Use this when you need a cheap real-run proof that the bounded direct-folder
 PDF-member continuation emits a source-native member route row pointing at an
-inspectable member-local `intake_plan_v1` artifact while the `.eml` and HTML
-members still launch and the unsupported `.txt` member still blocks:
+inspectable approved `intake_plan_v1` artifact plus a member-local
+`intake_handoff_v1` sidecar while the `.eml` and HTML members still launch and
+the unsupported `.txt` member still blocks:
 
 ```bash
 python -m pip install '.[driver,email]'
@@ -710,28 +711,34 @@ python validate_artifact.py \
 python validate_artifact.py \
   --schema intake_plan_v1 \
   --file output/runs/<run_id>-member-001-recipe-intake-contact-sheet/05_confirm_plan_v1/overview_plan_final.jsonl
+python validate_artifact.py \
+  --schema intake_handoff_v1 \
+  --file output/runs/<run_id>/02_archive_route_members_v1/pdf_member_handoffs/member-001/intake_handoff.jsonl
 ```
 
-Story 222 established this bounded continuation on the checked-in
-`testdata/mixed-folder-pdf-mini/` fixture. The maintained claim is
-intentionally narrow: one repo-owned source-native folder tree with a flat
-born-digital PDF member, plain-text `.eml`, static HTML snapshot, and one
-intentionally unsupported `.txt` member; a stamped member manifest that keeps
-`extracted_path` source-native; a PDF member route row with relative
-provenance, `terminal_reason = pdf_member_recommendation_only`, and the emitted
+Story 222 established the direct-folder recommendation substrate on the
+checked-in `testdata/mixed-folder-pdf-mini/` fixture, and Story 223 extends
+that same fixture to the maintained approved-handoff dry-run continuation. The
+maintained claim is intentionally narrow: one repo-owned source-native folder
+tree with a flat born-digital PDF member, plain-text `.eml`, static HTML
+snapshot, and one intentionally unsupported `.txt` member; a stamped member
+manifest that keeps `extracted_path` source-native; a PDF member route row
+with relative provenance, `terminal_reason = pdf_member_approved_handoff_dry_run`,
+`approval_mode = confirm_plan_auto_approve`, the emitted
 `05_confirm_plan_v1/overview_plan_final.jsonl` plan artifact recorded as
-`first_downstream_artifact`; existing maintained direct-entry launches for the
-`.eml` and HTML members; and an explicit blocked row for the unsupported
-member. It is not evidence for scanned or handwritten direct-folder
-PDF-member routing, direct-folder PDF-member approved handoff, final
-maintained PDF launch, grouped image-member routing, nested archives,
-attachment extraction, or broad heterogeneous archive normalization.
+`first_downstream_artifact`, and a member-local `intake_handoff_v1` sidecar;
+existing maintained direct-entry launches for the `.eml` and HTML members; and
+an explicit blocked row for the unsupported member. It is not evidence for
+scanned or handwritten direct-folder PDF-member routing, final maintained PDF
+launch, grouped image-member routing, nested archives, attachment extraction,
+or broad heterogeneous archive normalization.
 
 Expected outputs:
 
 - `output/runs/<run_id>/01_folder_members_manifest_v1/archive_members_manifest.jsonl`
 - `output/runs/<run_id>/02_archive_route_members_v1/archive_member_routes.jsonl`
 - `output/runs/<run_id>-member-001-recipe-intake-contact-sheet/05_confirm_plan_v1/overview_plan_final.jsonl`
+- `output/runs/<run_id>/02_archive_route_members_v1/pdf_member_handoffs/member-001/intake_handoff.jsonl`
 - `output/runs/<run_id>-member-002-recipe-email-eml-html-mvp/output/html/manifest.json`
 - `output/runs/<run_id>-member-004-recipe-web-page-html-mvp/output/html/manifest.json`
 
@@ -791,11 +798,11 @@ Expected outputs:
 
 These maintained DOCX/XLSX/PPTX/EPUB/EML direct-entry lanes plus the bounded
 web-page, mixed-archive ZIP, and mixed-folder lanes are still explicit-recipe
-entry points. The mixed-archive ZIP PDF-member continuation emits a nested
-member-local approved-handoff artifact after explicit entry, while the
-mixed-folder PDF-member continuation still emits only a recommendation
-artifact; neither is part of the top-level recommendation-only contact-sheet
-benchmark or the approved-handoff automation surface.
+entry points. The mixed-archive ZIP PDF-member continuation and the
+mixed-folder PDF-member continuation both emit nested member-local
+approved-handoff artifacts after explicit entry; neither is part of the
+top-level recommendation-only contact-sheet benchmark or the approved-handoff
+automation surface.
 
 ### Office Intake Boundary Probe
 
@@ -860,7 +867,7 @@ scripts/run_driver_monitored.sh \
 | `recipe-email-mbox-html-mvp.yaml` | Maintained plain-text `.mbox` structural bundle path for one verified two-message archive slice with one HTML entry per message and pageless provenance. |
 | `recipe-epub-html-mvp.yaml` | Maintained EPUB structural bundle path for the verified bounded chapter-first prose slice with pageless provenance. |
 | `recipe-mixed-archive-zip-routing-mvp.yaml` | Maintained ZIP-only mixed-archive path that manifests archive members, routes supported members into existing direct-entry recipes, and records blocked members explicitly. |
-| `recipe-mixed-folder-routing-mvp.yaml` | Maintained source-native mixed-folder path that inventories one bounded folder tree, routes supported members into existing direct-entry recipes, and records blocked members explicitly. |
+| `recipe-mixed-folder-routing-mvp.yaml` | Maintained source-native mixed-folder path that inventories one bounded folder tree, routes supported members into existing direct-entry recipes, and records blocked members explicitly, including one direct-folder PDF-member approved-handoff dry-run continuation. |
 | `recipe-pptx-html-mvp.yaml` | Maintained PPTX structural bundle path for the verified bounded slide slice: one HTML page per supported slide entry with slide-number provenance. |
 | `recipe-web-page-html-mvp.yaml` | Maintained checked-HTML web-page path for one repo-owned static snapshot that reuses the existing `page_html_v1` to `doc-web` chain. |
 | `recipe-xlsx-html-mvp.yaml` | Maintained XLSX structural bundle path for the verified simple-table slice: one HTML page per supported sheet/entry, including multiple table regions on one sheet, with anchor-based provenance. |

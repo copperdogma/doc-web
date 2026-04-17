@@ -58,7 +58,10 @@ When invoked with no scope:
      `graph["spec"]["compromises"][*]["actionability"]`,
      `graph["stories"][*]["actionability"]`, and
      `graph["evals"][*]["actionability"]` before re-deriving the same facts
-     from story prose and eval notes.
+     from story prose and eval notes, but treat them as candidate signals
+     rather than final permission to skip the anti-fragmentation review. A
+     `Pending` or `recommended_now` story can still be the wrong vehicle if it
+     is a same-line fragment.
    - `tests/fixtures/formats/_coverage-matrix.json`
    - relevant ADRs under `docs/decisions/`
    - recent `git log --oneline -20`
@@ -110,6 +113,12 @@ When invoked with no scope:
    Rank the problem first, then choose the vehicle that best advances it
    (continue an active story, expand/reopen a story, create a story, run an
    eval, do architecture work, or no-op).
+
+   Before recommending `create a story`, challenge that choice against the last
+   2-4 stories on the same problem line. If the delta is mostly entry-form
+   parity, progression to a later state on the same artifact chain, or
+   tests/docs/truth-surface codification for behavior that already exists,
+   prefer `continue`, `expand`, `reopen`, or `consolidate` instead.
 
    Choose the next action with the strongest combined signal across:
    - movement toward the Ideal
@@ -191,6 +200,10 @@ When invoked with no scope:
 - A primary gap with no materially new trigger may stay primary, but it should
   usually move to `Health Flags` or `Runner-Ups` rather than become the
   recommended action.
+- Do not recommend a new story for same-line entry-form parity, same-line
+  later-state progression, or tests/docs/truth-surface codification on current
+  behavior unless the repo evidence shows that the runtime seam or validation
+  boundary really changed.
 - Do not treat lack of a fresh external trigger as sufficient reason for
   `no-op` when a bounded phase-aligned improvement move still exists.
 - Prefer recommending the best next attempt, simplification, or new story shell

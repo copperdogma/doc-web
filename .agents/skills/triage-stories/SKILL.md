@@ -37,6 +37,10 @@ This skill is read-only.
    - `Draft` stories that appear detailed enough to be promoted soon
    - `Blocked` stories only when unblocking them may be the highest-leverage move
 
+   Status and graph actionability make a story eligible for review; they do not
+   prove that the story is a distinct problem line rather than a fragment of a
+   recent same-line story.
+
    For `Blocked` stories, do not stop at the status label. Read the blocker
    summary, blocker evidence, and unblock condition. A blocked story only stays
    in the candidate set when the current pass has fresh evidence that the
@@ -61,6 +65,12 @@ This skill is read-only.
    treat them as one problem line first and ask whether the honest next move is
    to continue, reopen, expand, or consolidate that line instead of treating
    each story shell as a separate vote.
+
+   Use concrete fragment checks, not just title similarity. If the work keeps
+   the same owning module, fixture family, emitted artifact chain, and
+   operator-facing outcome, then differences like entry-form parity, later-
+   state progression, or tests/docs/truth-surface codification are usually
+   still the same problem line.
 
    If the current problem line is `Blocked`, verify whether the blocker still
    stands. A stale implementation plan inside the story does not override newer
@@ -113,6 +123,8 @@ This skill is read-only.
    Surface issues such as:
    - same-surface work accidentally split across multiple stories that should
      likely stay one line
+   - recent parity or later-state stories that should have been an
+     expansion/reopen/consolidation of the prior line instead of a new ID
    - stories marked Draft/Pending that are actually blocked
    - blocked stories with weak or missing blocker evidence / unblock conditions
    - blocked stories whose older plan text or stale assumptions still imply a
@@ -163,6 +175,9 @@ doing a full backlog scan. Report:
   is trivially close to done
 - Do not recommend a new story when continuing, reopening, expanding, or
   consolidating the current problem line is the more honest move
+- Treat entry-form parity, later-state progression, and tests/docs/truth-
+  surface codification on the same module/artifact line as consolidation
+  pressure by default, not as automatic new-story evidence
 - Do not say the backlog is effectively empty when the methodology state still
   shows a bounded actionable `converge`/`climb` pressure line that simply lacks
   a story shell; recommend creating the story instead.

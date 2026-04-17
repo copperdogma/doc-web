@@ -132,7 +132,11 @@ exist.
 
 Same subsystem + same validation boundary + same success surface stays in one
 story by default. Split only when the work becomes materially distinct, crosses
-into a new ownership/runtime seam, or would make validation unclear.
+into a new ownership/runtime seam, or would make validation unclear. Differences
+that only reflect entry-form parity, later-state progression on the same
+workflow/artifact chain, or codification of already-existing behavior do not
+justify a new story by themselves when the owning module, fixture family,
+emitted artifacts, and operator-facing outcome are still the same line.
 
 If a capability needs an operator or end-user UI to be honestly usable or
 inspectable, the story should include that UI slice unless it explicitly

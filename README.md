@@ -326,10 +326,10 @@ probe. The supported claim is intentionally narrow:
 That ZIP lane is now complemented by separate bounded direct-folder proof lanes
 on the original DOCX / `.eml` / HTML / `.txt` member mix and on one
 born-digital PDF / `.eml` / HTML / `.txt` member mix that stops at a nested
-member-local recommendation artifact. Scanned or handwritten direct-folder PDF
-parity, direct-folder PDF-member approved handoff, and final maintained PDF launch,
-grouped image-member routing, nested archives, attachments, and broad
-heterogeneous archive normalization remain unproven.
+member-local approved-handoff dry-run artifact. Scanned or handwritten
+direct-folder PDF parity, final maintained PDF launch, grouped image-member
+routing, nested archives, attachments, and broad heterogeneous archive
+normalization remain unproven.
 
 For the maintained mixed-folder proof lane, install the same base driver plus
 the explicit extras needed by the nested member families in the checked-in
@@ -357,13 +357,14 @@ fixture. The supported claim is intentionally narrow:
 - nested `driver.py` launches into the existing maintained direct-entry DOCX, `.eml`, and web-page lanes
 - explicit blocked routing for unsupported members instead of hidden skips or a fabricated combined bundle
 
-Story 222 adds a second bounded direct-folder continuation on the checked-in
-`testdata/mixed-folder-pdf-mini/` fixture. That supported claim is also
-intentionally narrow:
+Story 222 establishes the direct-folder recommendation substrate and Story 223
+extends the same checked-in `testdata/mixed-folder-pdf-mini/` fixture to a
+bounded direct-folder approved-handoff continuation. That supported claim is
+also intentionally narrow:
 
 - one checked-in source-native folder tree with a flat born-digital PDF member, plain-text `.eml`, static HTML snapshot, and one intentionally unsupported `.txt` member
 - the same relative member manifest and route schemas as the ZIP PDF-member proof, but with source-native member paths instead of copied extracts
-- one direct-folder PDF-member continuation that launches a nested `recipe-intake-contact-sheet.yaml` run and stops at an inspectable `overview_plan_final.jsonl` recommendation artifact instead of silently auto-launching the final maintained PDF recipe
+- one direct-folder PDF-member continuation that launches a nested `recipe-intake-contact-sheet.yaml` run, records the emitted approved plan as `first_downstream_artifact`, and writes a member-local `intake_handoff_v1` artifact instead of silently auto-launching the final maintained PDF recipe
 - existing maintained direct-entry launches for the `.eml` and HTML members plus explicit blocked routing for the unsupported member
 
 To prove that bounded continuation directly, rerun the same recipe with:
@@ -386,10 +387,9 @@ outside those top-level automation surfaces:
 `auto-book-type-detection` remains a PDF-only surface,
 `approved-intake-handoff` remains limited to `pdf` and `images_dir`, and
 mixed-input support still starts with explicit `driver.py --recipe ... --input-zip/--input-folder`
-entry even though the bounded ZIP PDF-member probe now emits a nested
-member-local approved-handoff artifact and the bounded direct-folder
-PDF-member probe emits a nested member-local recommendation artifact after
-explicit archive/folder entry.
+entry even though the bounded ZIP PDF-member probe and the bounded
+direct-folder PDF-member probe now emit nested member-local
+approved-handoff artifacts after explicit archive/folder entry.
 
 ## Maintained Intake Recipes
 
@@ -404,7 +404,7 @@ The active maintained entry surfaces are explicit recipes, not hidden routing:
 - `configs/recipes/recipe-email-mbox-html-mvp.yaml` for the maintained plain-text `.mbox` multi-message archive lane on the verified bounded probe slice
 - `configs/recipes/recipe-epub-html-mvp.yaml` for the maintained EPUB chapter-first lane on the verified bounded probe slice
 - `configs/recipes/recipe-mixed-archive-zip-routing-mvp.yaml` for the maintained ZIP-only mixed-archive routing lane on the verified bounded probe slices, including one ZIP-only PDF-member approved-handoff continuation
-- `configs/recipes/recipe-mixed-folder-routing-mvp.yaml` for the maintained mixed-folder routing lane on the verified bounded four-member probe slices, including one direct-folder born-digital PDF-member recommendation continuation
+- `configs/recipes/recipe-mixed-folder-routing-mvp.yaml` for the maintained mixed-folder routing lane on the verified bounded four-member probe slices, including one direct-folder born-digital PDF-member approved-handoff continuation
 - `configs/recipes/recipe-pptx-html-mvp.yaml` for the maintained PPTX slide-backed lane on the verified bounded probe slice
 - `configs/recipes/recipe-web-page-html-mvp.yaml` for the maintained checked-HTML web-page lane on the verified bounded probe slice
 - `configs/recipes/recipe-xlsx-html-mvp.yaml` for the maintained XLSX workbook-table lane on the verified simple-table slice
@@ -416,11 +416,12 @@ list: maintained `docx`, `email-eml`, `email-mbox`, `epub`, `xlsx`, `pptx`,
 `web-page`, `mixed-archive`, and `mixed-folder` support currently starts with
 explicit `driver.py --recipe ... --input-docx/--input-eml/--input-mbox/--input-epub/--input-xlsx/--input-pptx/--input-html/--input-folder/--input-zip`
 entry, not the top-level recommendation-only contact-sheet flow or
-approved-handoff automation. Stories 221 and 222 add only nested member-local
-continuations after explicit `--input-zip` or `--input-folder` entry: Story
-223 adds a ZIP-only approved-handoff artifact and Story 222 remains
-recommendation-only for direct-folder PDF members. They do not widen either
-automation surface.
+approved-handoff automation. Stories 221, 222, and 223 add only nested
+member-local continuations after explicit `--input-zip` or `--input-folder`
+entry: Story 223 now proves approved-handoff artifacts on one ZIP PDF-member
+slice and one direct-folder PDF-member slice, while Story 222 remains the
+recommendation substrate beneath the direct-folder proof. They do not widen
+either automation surface.
 
 To seed a maintained PDF-backed run config explicitly:
 

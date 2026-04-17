@@ -89,6 +89,14 @@ still belongs to the same subsystem, validation boundary, and success surface
 as an existing story, `/create-story` should stop before bootstrapping a new ID
 and return the existing story to expand or reopen instead.
 
+Treat these as default expansion/reopen cases, not new-story triggers, unless
+the repo evidence shows a genuinely new runtime or validation seam:
+
+- entry-form or container parity on the same owning module and fixture family
+- progression to a later state on the same emitted artifact chain
+- tests/docs/coverage-truth-surface codification for behavior that already
+  exists on current code
+
 ### 4. `/build-story` should promote or block based on evidence
 
 `/build-story` should not hard-stop on a detailed Draft story just because the
