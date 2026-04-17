@@ -3,13 +3,13 @@
   "source_type": "repo-owned mixed archive",
   "generated_at": "2026-04-13",
   "archive_format": "zip",
-  "capture_note": "Checked-in ZIP probe for Story 221. It packages one repo-owned flat born-digital PDF member, one maintained plain-text .eml fixture, one maintained static HTML snapshot, and one intentionally unsupported plain-text member so the first mixed-archive PDF-member slice can prove archive-relative provenance plus a bounded member-local recommendation artifact without silently widening archive-contained PDF automation into unattended final-recipe launch.",
+  "capture_note": "Checked-in ZIP probe for Stories 221 and 223. It packages one repo-owned flat born-digital PDF member, one maintained plain-text `.eml` fixture, one maintained static HTML snapshot, and one intentionally unsupported plain-text member so the bounded mixed-archive seam can prove archive-relative provenance plus a member-local approved-handoff launch into the maintained born-digital PDF recipe.",
   "members": [
     {
       "member_path": "docs/proposal.pdf",
       "source": "testdata/flat-born-digital-mini.pdf",
-      "expected_route": "recommendation-only",
-      "notes": "This member is intentionally limited to the maintained recommendation-only intake seam inside archive routing. The route row should point to the emitted intake plan artifact rather than auto-launching the final recommended PDF recipe."
+      "expected_route": "approved-handoff-launch",
+      "notes": "This member now uses the maintained approved-handoff launch seam inside archive routing. The route row should point to the emitted intake plan artifact, write a member-local `intake_handoff_v1` sidecar, and launch the recommended born-digital PDF recipe."
     },
     {
       "member_path": "mail/message.eml",
@@ -32,13 +32,12 @@
   "supported_scope": [
     "ZIP-only entry",
     "archive-relative member manifest and route rows",
-    "member-local recommendation-only intake for one repo-owned PDF member",
+    "member-local approved-handoff launch intake for one repo-owned born-digital PDF member",
     "suffix-based routing into existing maintained direct-entry recipes for the `.eml` and HTML members",
     "explicit blocked rows for unsupported members"
   ],
   "known_gaps": [
-    "No direct-folder PDF-member parity",
-    "No archive-contained approved handoff or final maintained PDF recipe launch",
+    "No scanned or handwritten archive-contained PDF-member launch",
     "No grouped image-member routing",
     "No nested archives or attachment extraction",
     "No broad mixed-archive normalization into a single combined bundle"

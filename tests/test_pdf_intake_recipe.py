@@ -182,6 +182,7 @@ def test_born_digital_non_toc_recipe_wiring():
         "portionize_headings_html_v1",
         "build_chapter_html_v1",
     ]
+    assert "container_name" not in stages[0].get("params", {})
     portionize_stage = stages[2]
     assert portionize_stage["params"]["allow_unnumbered"] is True
     assert portionize_stage["params"]["fallback_mode"] == "single-document"

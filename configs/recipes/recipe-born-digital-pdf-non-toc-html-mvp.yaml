@@ -9,7 +9,6 @@ stages:
     module: extract_pdf_marker_lite_html_v1
     out: pages_html.jsonl
     params:
-      container_name: story168-marker-cpu-3662
       out: pages_html.jsonl
 
   - id: extract_page_numbers

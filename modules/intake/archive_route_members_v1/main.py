@@ -154,7 +154,7 @@ def _apply_pdf_member_handoff(
     route_row["handoff_artifact_path"] = str(handoff_path)
     save_jsonl(str(handoff_path), [handoff_row])
 
-    if handoff_row["terminal_outcome"] == "blocked":
+    if not should_launch and handoff_row["terminal_outcome"] == "blocked":
         route_row["terminal_outcome"] = "blocked"
         route_row["terminal_reason"] = (
             f"pdf_member_handoff_blocked:{handoff_row['terminal_reason']}"
@@ -174,6 +174,7 @@ def _apply_pdf_member_handoff(
 
     result = subprocess.run(handoff_command, cwd=str(REPO_ROOT))
     handoff_row["exit_code"] = result.returncode
+    route_row["exit_code"] = result.returncode
     if result.returncode != 0:
         handoff_row["terminal_outcome"] = "failed"
         handoff_row["terminal_reason"] = f"downstream_exit_{result.returncode}"

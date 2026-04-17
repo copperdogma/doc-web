@@ -540,7 +540,7 @@
       "id": "mixed-archive",
       "format_family": "mixed-archive",
       "status": "passing",
-      "description": "Bounded ZIP archives or source-native folders containing a maintained mix of direct-entry file types, including one ZIP-only PDF-member approved-handoff probe and one direct-folder PDF-member approved-handoff probe, routed member-by-member",
+      "description": "Bounded ZIP archives or source-native folders containing a maintained mix of direct-entry file types, including one ZIP-only PDF-member approved-handoff launch probe and one direct-folder PDF-member approved-handoff launch probe, routed member-by-member",
       "pipeline_recipe": "recipe-mixed-archive-zip-routing-mvp.yaml / recipe-mixed-folder-routing-mvp.yaml",
       "intake_module": "archive_unpack_manifest_v1 or folder_members_manifest_v1 → archive_route_members_v1",
       "complexity": ["mixed-layout"],
@@ -555,7 +555,7 @@
           "id": "mixed-archive-pdf-mini",
           "source": "testdata/mixed-archive-pdf-mini.zip",
           "pages": null,
-          "notes": "Supported on the first bounded ZIP-only PDF-member approved-handoff continuation of the same mixed-input seam. Story 221 established the nested recommendation substrate on one repo-owned four-member ZIP with a flat born-digital PDF member, plain-text `.eml`, checked HTML snapshot, and one intentionally unsupported `.txt` member, and Story 223 extended that same fixture to a member-local approved-handoff proof. The lane emits archive/member manifest and route rows, launches a nested recommendation intake run for the PDF member, records the emitted approved `intake_plan_v1` artifact as `first_downstream_artifact`, writes a member-local `intake_handoff_v1` sidecar, and still stops before silently auto-launching the final maintained PDF recipe."
+          "notes": "Supported on the first bounded ZIP-only PDF-member approved-handoff launch continuation of the same mixed-input seam. Story 221 established the nested recommendation substrate on one repo-owned four-member ZIP with a flat born-digital PDF member, plain-text `.eml`, checked HTML snapshot, and one intentionally unsupported `.txt` member, and Story 223 extended that same fixture through a member-local approved-handoff launch into the maintained born-digital PDF recipe. The lane emits archive/member manifest and route rows, launches a nested recommendation intake run for the PDF member, records the emitted approved `intake_plan_v1` artifact as `first_downstream_artifact`, writes a member-local `intake_handoff_v1` sidecar, and launches the recommended born-digital PDF recipe while preserving the existing `.eml` / HTML launches and explicit blocked `.txt` row."
         },
         {
           "id": "mixed-folder-mini",
@@ -567,13 +567,13 @@
           "id": "mixed-folder-pdf-mini",
           "source": "testdata/mixed-folder-pdf-mini",
           "pages": null,
-          "notes": "Supported on the first bounded direct-folder PDF-member approved-handoff continuation of the same mixed-input seam. Story 222 established the direct-folder recommendation substrate on one repo-owned four-member folder tree with a flat born-digital PDF member, plain-text `.eml`, checked HTML snapshot, and one intentionally unsupported `.txt` member, and Story 223 extends that same fixture to a member-local approved-handoff dry-run proof. The lane emits source-native archive/member manifest and route rows, launches a nested intake run for the PDF member, records the emitted approved `intake_plan_v1` artifact as `first_downstream_artifact`, writes a member-local `intake_handoff_v1` sidecar, and still stops before silently auto-launching the final maintained PDF recipe."
+          "notes": "Supported on the first bounded direct-folder PDF-member approved-handoff launch continuation of the same mixed-input seam. Story 222 established the direct-folder recommendation substrate on one repo-owned four-member folder tree with a flat born-digital PDF member, plain-text `.eml`, checked HTML snapshot, and one intentionally unsupported `.txt` member, and Story 223 extends that same fixture through a member-local approved-handoff launch into the maintained born-digital PDF recipe. The lane emits source-native archive/member manifest and route rows, launches a nested intake run for the PDF member, records the emitted approved `intake_plan_v1` artifact as `first_downstream_artifact`, writes a member-local `intake_handoff_v1` sidecar, and launches the recommended born-digital PDF recipe while preserving the existing `.eml` / HTML launches and explicit blocked `.txt` row."
         }
       ],
       "scores": null,
       "known_gaps": [
-        "Passing evidence is still bounded to four checked-in four-member probes: one ZIP entry surface with direct-entry DOCX / `.eml` / HTML launches, one ZIP PDF-member approved-handoff surface with `.eml` / HTML launches plus member-local `intake_plan_v1` and `intake_handoff_v1` artifacts for the PDF member, one source-native folder entry surface on the original DOCX / `.eml` / HTML / `.txt` mix, and one source-native folder PDF-member approved-handoff surface on a born-digital PDF / `.eml` / HTML / `.txt` mix.",
-        "The maintained lane does not yet claim scanned or handwritten direct-folder PDF-member recommendation parity, final maintained PDF launch, grouped image-member interpretation, nested archives, attachment extraction, ambiguous AI-assisted route decisions, or broad heterogeneous archive ownership.",
+        "Passing evidence is still bounded to four checked-in four-member probes: one ZIP entry surface with direct-entry DOCX / `.eml` / HTML launches, one ZIP PDF-member approved-handoff launch surface with `.eml` / HTML launches plus member-local `intake_plan_v1`, `intake_handoff_v1`, and born-digital PDF artifacts for the PDF member, one source-native folder entry surface on the original DOCX / `.eml` / HTML / `.txt` mix, and one source-native folder PDF-member approved-handoff launch surface on a born-digital PDF / `.eml` / HTML / `.txt` mix.",
+        "The maintained lane does not yet claim scanned or handwritten PDF-member launch parity, grouped image-member interpretation, nested archives, attachment extraction, ambiguous AI-assisted route decisions, or broad heterogeneous archive ownership.",
         "Mixed-archive provenance currently relies on relative `member_path` / `member_id`, source-native or extracted member file paths depending on the entry surface, and downstream run ids or artifact paths; it does not flatten members into one combined bundle or claim archive-level page anchors."
       ],
       "graduated": false

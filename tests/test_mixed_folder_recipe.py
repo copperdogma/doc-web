@@ -42,7 +42,7 @@ def test_mixed_folder_recipe_wiring():
         "folder_members_manifest_v1",
         "archive_route_members_v1",
     ]
-    assert data["stages"][1]["params"]["pdf_member_handoff_mode"] == "dry_run"
+    assert data["stages"][1]["params"]["pdf_member_handoff_mode"] == "launch"
 
 
 def test_mixed_folder_pdf_fixture_shape():
@@ -55,9 +55,9 @@ def test_mixed_folder_pdf_fixture_shape():
         "web/snapshot.html",
         "notes/readme.txt",
     ]
-    assert metadata["members"][0]["expected_route"] == "approved-handoff-dry-run"
+    assert metadata["members"][0]["expected_route"] == "approved-handoff-launch"
     assert any(
-        "member-local approved-handoff dry-run intake" in scope
+        "member-local approved-handoff launch intake" in scope
         for scope in metadata["supported_scope"]
     )
     assert "No direct-folder PDF-member approved handoff proof" not in metadata["known_gaps"]

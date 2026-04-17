@@ -623,13 +623,13 @@ web-page and mixed-archive ZIP lanes are still explicit-recipe entry points.
 They are not part of the recommendation-only contact-sheet benchmark or the
 approved-handoff automation surface.
 
-### Repo-Owned Mixed-Archive ZIP PDF-Member Approved-Handoff Smoke
+### Repo-Owned Mixed-Archive ZIP PDF-Member Approved-Handoff Launch Smoke
 
 Use this when you need a cheap real-run proof that the bounded ZIP-only
 PDF-member continuation emits an archive/member route row pointing at an
-inspectable member-local `intake_plan_v1` and `intake_handoff_v1` pair while
-the `.eml` and HTML members still launch and the unsupported `.txt` member
-still blocks:
+inspectable member-local `intake_plan_v1`, `intake_handoff_v1`, and launched
+born-digital PDF child run while the `.eml` and HTML members still launch and
+the unsupported `.txt` member still blocks:
 
 ```bash
 python -m pip install '.[driver,email]'
@@ -660,14 +660,17 @@ member, plain-text `.eml`, static HTML snapshot, and one intentionally
 unsupported `.txt` member; a stamped archive/member manifest; a PDF member
 route row with archive-relative provenance, `approval_mode =
 confirm_plan_auto_approve`, `terminal_reason =
-pdf_member_approved_handoff_dry_run`, and the emitted
+pdf_member_launched_from_approved_plan`, the emitted
 `05_confirm_plan_v1/overview_plan_final.jsonl` plan artifact recorded as
-`first_downstream_artifact`; a member-local
+`first_downstream_artifact`; a launched member-local
 `02_archive_route_members_v1/pdf_member_handoffs/member-001/intake_handoff.jsonl`
-artifact; existing maintained direct-entry launches for the `.eml` and HTML
-members; and an explicit blocked row for the unsupported member. It is not
-evidence for direct-folder PDF-member routing, final maintained PDF launch,
-grouped image-member routing, nested archives, attachment extraction, or broad
+artifact; a launched
+`output/runs/<run_id>-member-001-approved-handoff-recipe-born-digital-pdf-non-toc-html-mvp/01_extract_pdf_marker_lite_html_v1/pages_html.jsonl`
+artifact from the maintained born-digital PDF lane; existing maintained
+direct-entry launches for the `.eml` and HTML members; and an explicit blocked
+row for the unsupported member. It is not evidence for direct-folder
+PDF-member routing, scanned or handwritten PDF-member launch, grouped
+image-member routing, nested archives, attachment extraction, or broad
 heterogeneous archive normalization.
 
 Expected outputs:
@@ -676,22 +679,25 @@ Expected outputs:
 - `output/runs/<run_id>/02_archive_route_members_v1/archive_member_routes.jsonl`
 - `output/runs/<run_id>-member-001-recipe-intake-contact-sheet/05_confirm_plan_v1/overview_plan_final.jsonl`
 - `output/runs/<run_id>/02_archive_route_members_v1/pdf_member_handoffs/member-001/intake_handoff.jsonl`
+- `output/runs/<run_id>-member-001-approved-handoff-recipe-born-digital-pdf-non-toc-html-mvp/01_extract_pdf_marker_lite_html_v1/pages_html.jsonl`
 - `output/runs/<run_id>-member-002-recipe-email-eml-html-mvp/output/html/manifest.json`
 - `output/runs/<run_id>-member-003-recipe-web-page-html-mvp/output/html/manifest.json`
 
 This bounded PDF-member continuation still sits outside the top-level
 recommendation-only contact-sheet benchmark and the approved-handoff
 automation surface. It starts from explicit `driver.py --recipe ... --input-zip`
-entry and only emits a nested member-local approved-handoff artifact after the
-archive route stage.
+entry and emits a nested approved plan, a launched member-local handoff
+artifact, and a bounded born-digital PDF child run after the archive route
+stage.
 
-### Repo-Owned Mixed-Folder PDF-Member Recommendation Smoke
+### Repo-Owned Mixed-Folder PDF-Member Approved-Handoff Launch Smoke
 
 Use this when you need a cheap real-run proof that the bounded direct-folder
 PDF-member continuation emits a source-native member route row pointing at an
-inspectable approved `intake_plan_v1` artifact plus a member-local
-`intake_handoff_v1` sidecar while the `.eml` and HTML members still launch and
-the unsupported `.txt` member still blocks:
+inspectable approved `intake_plan_v1` artifact, a launched member-local
+`intake_handoff_v1` sidecar, and a launched born-digital PDF child run while
+the `.eml` and HTML members still launch and the unsupported `.txt` member
+still blocks:
 
 ```bash
 python -m pip install '.[driver,email]'
@@ -718,20 +724,22 @@ python validate_artifact.py \
 
 Story 222 established the direct-folder recommendation substrate on the
 checked-in `testdata/mixed-folder-pdf-mini/` fixture, and Story 223 extends
-that same fixture to the maintained approved-handoff dry-run continuation. The
+that same fixture to the maintained approved-handoff launch continuation. The
 maintained claim is intentionally narrow: one repo-owned source-native folder
 tree with a flat born-digital PDF member, plain-text `.eml`, static HTML
 snapshot, and one intentionally unsupported `.txt` member; a stamped member
 manifest that keeps `extracted_path` source-native; a PDF member route row
-with relative provenance, `terminal_reason = pdf_member_approved_handoff_dry_run`,
+with relative provenance, `terminal_reason = pdf_member_launched_from_approved_plan`,
 `approval_mode = confirm_plan_auto_approve`, the emitted
 `05_confirm_plan_v1/overview_plan_final.jsonl` plan artifact recorded as
-`first_downstream_artifact`, and a member-local `intake_handoff_v1` sidecar;
-existing maintained direct-entry launches for the `.eml` and HTML members; and
-an explicit blocked row for the unsupported member. It is not evidence for
-scanned or handwritten direct-folder PDF-member routing, final maintained PDF
-launch, grouped image-member routing, nested archives, attachment extraction,
-or broad heterogeneous archive normalization.
+`first_downstream_artifact`, a launched `intake_handoff_v1` sidecar, and a
+launched
+`output/runs/<run_id>-member-001-approved-handoff-recipe-born-digital-pdf-non-toc-html-mvp/01_extract_pdf_marker_lite_html_v1/pages_html.jsonl`
+artifact; existing maintained direct-entry launches for the `.eml` and HTML
+members; and an explicit blocked row for the unsupported member. It is not
+evidence for scanned or handwritten direct-folder PDF-member launch, grouped
+image-member routing, nested archives, attachment extraction, or broad
+heterogeneous archive normalization.
 
 Expected outputs:
 
@@ -739,14 +747,16 @@ Expected outputs:
 - `output/runs/<run_id>/02_archive_route_members_v1/archive_member_routes.jsonl`
 - `output/runs/<run_id>-member-001-recipe-intake-contact-sheet/05_confirm_plan_v1/overview_plan_final.jsonl`
 - `output/runs/<run_id>/02_archive_route_members_v1/pdf_member_handoffs/member-001/intake_handoff.jsonl`
+- `output/runs/<run_id>-member-001-approved-handoff-recipe-born-digital-pdf-non-toc-html-mvp/01_extract_pdf_marker_lite_html_v1/pages_html.jsonl`
 - `output/runs/<run_id>-member-002-recipe-email-eml-html-mvp/output/html/manifest.json`
 - `output/runs/<run_id>-member-004-recipe-web-page-html-mvp/output/html/manifest.json`
 
 This bounded direct-folder PDF-member continuation still sits outside the
 top-level recommendation-only contact-sheet benchmark and the approved-handoff
 automation surface. It starts from explicit `driver.py --recipe ... --input-folder`
-entry and only emits a nested member-local recommendation artifact after the
-archive route stage.
+entry and emits a nested approved plan, a launched member-local handoff
+artifact, and a bounded born-digital PDF child run after the archive route
+stage.
 
 ### Repo-Owned Mixed-Folder Intake Smoke
 
@@ -785,8 +795,9 @@ intentionally unsupported `.txt` member; a stamped member manifest that keeps
 provenance; nested `driver.py` launches into existing maintained direct-entry
 recipes for the supported members; and an explicit blocked row for the
 unsupported member. Story 222 adds a second bounded direct-folder probe for one
-born-digital PDF member that stops at a member-local recommendation artifact;
-scanned or handwritten direct-folder PDF-member routing, grouped image-member
+born-digital PDF member, and Story 223 extends that same probe through a
+member-local approved-handoff launch into the maintained born-digital PDF
+recipe; scanned or handwritten PDF-member launch, grouped image-member
 routing, nested archives, attachment extraction, and broad heterogeneous
 folder/archive normalization remain out of scope.
 
@@ -867,7 +878,7 @@ scripts/run_driver_monitored.sh \
 | `recipe-email-mbox-html-mvp.yaml` | Maintained plain-text `.mbox` structural bundle path for one verified two-message archive slice with one HTML entry per message and pageless provenance. |
 | `recipe-epub-html-mvp.yaml` | Maintained EPUB structural bundle path for the verified bounded chapter-first prose slice with pageless provenance. |
 | `recipe-mixed-archive-zip-routing-mvp.yaml` | Maintained ZIP-only mixed-archive path that manifests archive members, routes supported members into existing direct-entry recipes, and records blocked members explicitly. |
-| `recipe-mixed-folder-routing-mvp.yaml` | Maintained source-native mixed-folder path that inventories one bounded folder tree, routes supported members into existing direct-entry recipes, and records blocked members explicitly, including one direct-folder PDF-member approved-handoff dry-run continuation. |
+| `recipe-mixed-folder-routing-mvp.yaml` | Maintained source-native mixed-folder path that inventories one bounded folder tree, routes supported members into existing direct-entry recipes, and records blocked members explicitly, including one direct-folder PDF-member approved-handoff launch continuation. |
 | `recipe-pptx-html-mvp.yaml` | Maintained PPTX structural bundle path for the verified bounded slide slice: one HTML page per supported slide entry with slide-number provenance. |
 | `recipe-web-page-html-mvp.yaml` | Maintained checked-HTML web-page path for one repo-owned static snapshot that reuses the existing `page_html_v1` to `doc-web` chain. |
 | `recipe-xlsx-html-mvp.yaml` | Maintained XLSX structural bundle path for the verified simple-table slice: one HTML page per supported sheet/entry, including multiple table regions on one sheet, with anchor-based provenance. |

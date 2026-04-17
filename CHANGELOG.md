@@ -1,3 +1,16 @@
+## [2026-04-16-04] - Launch bounded mixed PDF-member handoff seam (Story 223)
+
+### Added
+- Added focused ZIP and direct-folder regression coverage for the shared approved-handoff launch contract on the bounded mixed-input PDF-member seam
+
+### Changed
+- Changed the maintained mixed-archive and mixed-folder recipes so their checked-in born-digital PDF member probes now launch the bounded born-digital PDF child run after writing the approved plan and handoff artifacts
+- Changed the bounded mixed-input truth surfaces in README, RUNBOOK, methodology state, coverage metadata, fixture metadata, and Story 223 so they now claim the first inspected approved-plan-to-launched-PDF continuation on the checked-in ZIP and direct-folder probes
+
+### Fixed
+- Fixed `archive_route_members_v1` so launchable approved handoffs no longer collapse to `pdf_member_handoff_blocked:None` before the downstream born-digital PDF recipe starts
+- Fixed the maintained born-digital PDF recipe wiring by removing the stale hard-coded Marker container override that still pointed at an old worktree mount
+
 ## [2026-04-16-03] - Finish anti-fragmentation hardening and folder parity close-out (Stories 190, 223)
 
 ### Changed

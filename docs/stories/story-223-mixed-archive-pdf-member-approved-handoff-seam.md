@@ -1,5 +1,5 @@
 ---
-title: "Expand the First Honest PDF-Member Approved-Handoff Seam to Direct-Folder Parity"
+title: "Expand the First Honest PDF-Member Approved-Handoff Seam to Direct-Folder Parity and First Maintained-PDF Launch"
 status: "Done"
 priority: "High"
 ideal_refs:
@@ -38,7 +38,7 @@ roadmap_tags:
 legacy_system: ""
 ---
 
-# Story 223 — Expand the First Honest PDF-Member Approved-Handoff Seam to Direct-Folder Parity
+# Story 223 — Expand the First Honest PDF-Member Approved-Handoff Seam to Direct-Folder Parity and First Maintained-PDF Launch
 
 **Priority**: High
 **Status**: Done
@@ -53,18 +53,21 @@ legacy_system: ""
 
 ## Goal
 
-Story 223 originally closed the first honest ZIP-only PDF-member
-approved-handoff slice on the bounded mixed-archive route/module seam. Under
-the tightened anti-fragmentation rule, the direct-folder continuation on that
-same `archive_route_members_v1` plus member-local
-`overview_plan_final.jsonl` / `intake_handoff_v1` artifact line belongs here
-instead of in a new story. This reopened story should absorb the remaining
-direct-folder parity work on `testdata/mixed-folder-pdf-mini/`: preserve the
-already-completed ZIP proof, reuse the emitted member-local `intake_plan_v1`,
-preserve explicit approval semantics, and prove either a member-local
-`intake_handoff_v1` artifact or an explicit blocker for the source-native
-folder PDF member, without widening final maintained PDF launch,
-scanned/handwritten PDF ownership, or broad archive/folder automation.
+Story 223 already closed the first honest ZIP-only PDF-member approved-handoff
+slice and the direct-folder approved-handoff continuation on the bounded mixed-
+archive route/module seam. The remaining same-line delta is now the shared
+post-handoff launch bug: on the checked-in born-digital PDF member probes, the
+route stage can emit a valid approved plan plus a valid `intake_handoff_v1`
+artifact, but `launch` mode still collapses to `pdf_member_handoff_blocked:None`
+before the final maintained PDF recipe starts. Under the tightened anti-
+fragmentation rule, this first launched-PDF proof belongs here instead of in a
+new story because it stays on the same `archive_route_members_v1` plus
+member-local `overview_plan_final.jsonl` / `intake_handoff_v1` artifact line.
+This reopened story should fix that shared launch-path bug and prove the first
+downstream maintained born-digital PDF launch on the checked-in ZIP and
+direct-folder probes, while keeping scanned/handwritten PDF-member launch
+ownership, broader archive semantics, and top-level automation-surface widening
+out of scope.
 
 ## Acceptance Criteria
 
@@ -168,10 +171,40 @@ scanned/handwritten PDF ownership, or broad archive/folder automation.
         grouped image-member interpretation, nested archives, attachment
         extraction, and broad heterogeneous archive ownership remain explicitly
         out of scope unless fresh evidence justifies a separate expansion
+- [x] A fresh current-pass launch baseline names the exact shared post-handoff
+      bug from repo evidence:
+  - [x] the work log records that the maintained ZIP and direct-folder recipes
+        still shipped `pdf_member_handoff_mode: dry_run` before this expansion
+  - [x] a fresh `launch` probe on the checked-in folder PDF member reproduced
+        `terminal_reason = pdf_member_handoff_blocked:None` on the route row
+        before the fix
+  - [x] the emitted `intake_handoff_v1` artifact from that same probe was
+        manually inspected and shown to contain a valid downstream driver
+        command for the born-digital PDF recipe despite the blocked route row
+- [x] The shared route/handoff seam launches the bounded born-digital PDF
+      member honestly on both checked-in entry surfaces:
+  - [x] the ZIP PDF-member probe reaches a launched route row and a launched
+        `intake_handoff_v1` row
+  - [x] the direct-folder PDF-member probe reaches a launched route row and a
+        launched `intake_handoff_v1` row
+  - [x] each launched probe produces and records at least one inspected first
+        downstream stamped artifact from the born-digital PDF recipe
+- [x] Coverage, docs, and methodology truth surfaces widen only as far as the
+      launched proof justifies:
+  - [x] `tests/fixtures/formats/_coverage-matrix.json`,
+        `docs/methodology/state.yaml`, `README.md`, `docs/RUNBOOK.md`, and
+        `testdata/README.md` move from approved-handoff-only wording to the
+        exact bounded launched-PDF claim if and only if the maintained recipes
+        now ship that behavior
+  - [x] scanned/handwritten PDF-member launch, grouped image-member routing,
+        nested archives, attachments, broad heterogeneous ownership, and the
+        top-level `approved-intake-handoff` eval surface remain unchanged unless
+        fresh current-pass evidence proves they also moved
 
 ## Out of Scope
 
-- Final maintained PDF launch from either entry surface
+- Any PDF-member launch beyond the one checked-in born-digital PDF member on
+  `mixed-archive-pdf-mini.zip` and `mixed-folder-pdf-mini/`
 - Scanned or handwritten PDF-member approval or launch ownership
 - Broad “any PDF inside any archive/folder” auto-approval or auto-dispatch
 - Grouped image-member interpretation, nested archives, attachments, `.msg`,
@@ -318,9 +351,49 @@ scanned/handwritten PDF ownership, or broad archive/folder automation.
       contract handling, and the direct-folder handoff artifact expectations
 - [x] Update `tests/fixtures/formats/_coverage-matrix.json` and relevant
       methodology state honestly for the widened bounded claim
-- [x] Keep the shared launch-path blocker documented but out of scope unless
-      the user explicitly expands this story to first downstream maintained PDF
-      launch
+- [x] Freeze the current shared launch-path bug from repo reality:
+  - [x] verify the maintained ZIP and direct-folder recipes still shipped
+        `pdf_member_handoff_mode: dry_run` before this expansion
+  - [x] capture a fresh current-pass `launch` probe that reproduced
+        `pdf_member_handoff_blocked:None`
+  - [x] inspect the emitted `intake_handoff_v1` artifact from the same probe
+        to confirm the downstream launch command is otherwise valid
+- [x] Land the smallest coherent shared launch fix the baseline justifies:
+  - [x] fix the route-stage handoff/launch logic without widening unrelated
+        archive-member behavior
+  - [x] preserve existing `.eml` / HTML launches and blocked `.txt` behavior
+        unchanged
+  - [x] decide that the maintained mixed-archive and mixed-folder recipes now
+        ship `pdf_member_handoff_mode: launch`
+- [x] Add focused fixture-backed regression coverage for launched ZIP and
+      direct-folder PDF members on the shared route contract
+- [x] Run required checks for the widened launch scope:
+  - [x] targeted pytest for the launch contract
+  - [x] `make lint`
+  - [x] `make test`
+  - [x] clear stale `*.pyc`, run through `driver.py` on both checked-in probes,
+        and inspect the launched artifacts in `output/runs/`
+- [x] Update docs and truth surfaces only as far as the launch proof earns:
+  - [x] refresh recipe defaults plus the exact bounded claim lines in
+        `tests/fixtures/formats/_coverage-matrix.json`,
+        `docs/methodology/state.yaml`, `README.md`, `docs/RUNBOOK.md`, and
+        `testdata/README.md` if launch becomes the maintained default
+  - [x] leave the top-level `approved-intake-handoff` eval surface unchanged
+        unless the nested launch expansion actually changes that maintained
+        boundary
+- [x] Verify Central Tenets for the widened launch slice:
+  - [x] T0 — Traceability: route rows, handoff rows, and first downstream
+        artifacts stay source-linked and inspectable
+  - [x] T1 — AI-First: the change remains plumbing-first and does not add a new
+        AI routing/approval pass
+  - [x] T2 — Eval Before Build: the fresh launch baseline was reproduced before
+        fixing the route logic
+  - [x] T3 — Fidelity: the launched born-digital PDF member preserves the same
+        source file and recipe choice already proven at approved-handoff scope
+  - [x] T4 — Modular: reuse the existing route/handoff/runtime seam rather than
+        inventing a parallel archive launch path
+  - [x] T5 — Inspect Artifacts: manually open the launched route, handoff, and
+        first downstream artifacts for both checked-in probes
 
 ## Workflow Gates
 
@@ -454,13 +527,14 @@ N/A
 ## Notes
 
 - Under the tightened anti-fragmentation rule, the direct-folder approved-
-  handoff continuation is not a separate story. It stays on the same
+  handoff and launch continuation is not a separate story. It stays on the same
   `archive_route_members_v1` route/module, same checked-in mixed fixture
   family, same `overview_plan_final.jsonl` / `intake_handoff_v1` artifact
   chain, and same operator-facing outcome as the completed ZIP slice.
-- The ZIP approved-handoff proof in this story remains completed evidence. The
-  reopened delta is direct-folder parity plus the truth-surface updates needed
-  to claim that bounded slice honestly.
+- The ZIP and direct-folder approved-handoff proofs in this story remain
+  completed evidence. The reopened delta is the first bounded launched-PDF
+  proof plus the truth-surface updates needed to claim that wider slice
+  honestly.
 - Do not widen the top-level `approved-intake-handoff` surface casually. The
   story is about member-local approved-handoff truth inside the bounded
   mixed-archive route/module seam, not about turning every direct-entry family
@@ -469,106 +543,204 @@ N/A
 ## Plan
 
 Reopened scope under the tightened anti-fragmentation rule: keep Story 223 as
-the single owner of the bounded PDF-member approved-handoff line, with the
-completed ZIP slice retained as finished proof and direct-folder parity as the
-remaining current delta.
+the single owner of the bounded born-digital PDF-member line from recommendation
+to approved handoff to first downstream maintained launch, across the checked-in
+ZIP and direct-folder probes on the same route/module seam.
 
 Current baseline evidence:
 
-- The completed ZIP slice already proved member-local approved handoff on
-  `mixed-archive-pdf-mini.zip`.
-- `python driver.py --recipe configs/recipes/recipe-mixed-folder-routing-mvp.yaml --input-folder testdata/mixed-folder-pdf-mini --run-id story224-baseline-r1 --allow-run-id-reuse --force`
-  wrote
-  `output/runs/story224-baseline-r1/02_archive_route_members_v1/archive_member_routes.jsonl`
-  with `docs/proposal.pdf` still ending at
-  `terminal_reason = pdf_member_recommendation_only`.
-- A same-shape `dry_run` probe on the folder fixture wrote
-  `output/runs/story224-dryrun-r1/02_archive_route_members_v1/archive_member_routes.jsonl`
-  plus
-  `output/runs/story224-dryrun-r1/02_archive_route_members_v1/pdf_member_handoffs/member-001/intake_handoff.jsonl`,
-  proving that the bounded direct-folder approved-handoff artifact already
-  exists on current code.
-- A bounded `launch` probe on the same fixture failed before any downstream PDF
-  artifact was produced. The route row at
-  `output/runs/story224-launch-r1/02_archive_route_members_v1/archive_member_routes.jsonl`
-  records `terminal_reason = pdf_member_handoff_blocked:None`, and the emitted
-  handoff row at
-  `output/runs/story224-launch-r1/02_archive_route_members_v1/pdf_member_handoffs/member-001/intake_handoff.jsonl`
-  stayed `terminal_outcome = blocked` with no reason because the shared launch
-  path in `prepare_confirmed_handoff()` leaves the default blocked status in
-  place. That is a separate final-launch/runtime bug, not a blocker for the
-  approved-handoff parity slice.
+- The maintained ZIP and direct-folder recipes still ship
+  `pdf_member_handoff_mode: dry_run`, and the current docs/coverage surfaces
+  still describe those probes as approved-handoff-only slices.
+- The shared dry-run contract is already green in repo tests:
+  `python -m pytest tests/test_mixed_archive_zip_recipe.py -q -k 'handoff or folder_pdf_member_writes_handoff_artifact'`
+  passed `2/2` on the current tip.
+- Fresh current-pass launch reproduction on the checked-in direct-folder probe
+  now exists outside historical story prose. Running
+  `python -m modules.intake.archive_route_members_v1.main --manifest <temp manifest> --outdir <temp route dir> --run-id story223-launch-baseline --allow-run-id-reuse --pdf-member-handoff-mode launch`
+  wrote a route row with `terminal_reason = pdf_member_handoff_blocked:None`
+  while the emitted `intake_handoff_v1` row already contained a valid
+  `driver.py` command for
+  `configs/recipes/recipe-born-digital-pdf-non-toc-html-mvp.yaml`, a concrete
+  downstream run id, and the correct `--input-pdf` source path back to
+  `testdata/mixed-folder-pdf-mini/docs/proposal.pdf`.
 
 Implementation order:
 
-1. Consolidate the planning surface.
-   - Absorb the useful Story 224 exploration evidence into this story's work
-     log and plan.
-   - Remove the standalone fragment shell so the backlog matches the actual
-     story line.
-2. Codify the already-working direct-folder approved-handoff slice.
-   - Extend focused regression coverage so the checked-in folder fixture proves
-     `dry_run` handoff the same way ZIP already does.
-   - Preferred write surface: `tests/test_mixed_archive_zip_recipe.py` for the
-     shared route contract, plus `tests/test_mixed_folder_recipe.py` only if
-     the direct-folder fixture/readme assertions must also move.
-   - Keep `modules/intake/archive_route_members_v1/main.py` unchanged unless
-     the new regression exposes a real mismatch against the current artifacts.
-3. Update only the truth surfaces the direct-folder proof now justifies.
-   - Change the bounded claim in
+1. Fix the shared launch-path bug in the route stage.
+   - Primary owner: `modules/intake/archive_route_members_v1/main.py`.
+   - Keep the change narrow to PDF-member handoff handling; do not redesign the
+     approval artifact contract if the bug is only the route-stage launch
+     decision.
+   - Touch `modules/intake/intake_plan_utils.py` or `modules/intake/run_dispatch_v1/main.py`
+     only if the fresh baseline proves a real metadata gap instead of the
+     current default-state ordering bug.
+2. Decide the maintained shipping surface from fresh proof.
+   - If the shared fix launches cleanly on both checked-in probes and produces
+     inspectable first downstream artifacts, switch the maintained mixed-input
+     recipes from `dry_run` to `launch`.
+   - If a second downstream blocker appears after the launch bug is fixed, keep
+     the maintained recipes at `dry_run`, record the blocker explicitly, and do
+     not widen the truth surfaces beyond approved handoff.
+3. Add focused regression coverage for the widened behavior.
+   - Update `tests/test_mixed_archive_zip_recipe.py` with launch-mode coverage
+     for both ZIP and direct-folder PDF members on the shared route contract.
+   - Update `tests/test_mixed_folder_recipe.py` only if the maintained folder
+     recipe default or fixture metadata claim changes.
+4. Refresh only the truth surfaces the launch proof earns.
+   - If launch becomes the maintained default, update
+     `configs/recipes/recipe-mixed-archive-zip-routing-mvp.yaml`,
+     `configs/recipes/recipe-mixed-folder-routing-mvp.yaml`,
      `tests/fixtures/formats/_coverage-matrix.json`,
      `docs/methodology/state.yaml`, `README.md`, `docs/RUNBOOK.md`, and
-     `testdata/README.md` from “direct-folder approved handoff unproven” to
-     “one checked-in direct-folder PDF-member approved-handoff slice proven”.
-   - Keep final maintained PDF launch, scanned/handwritten folder-PDF
-     approval, and broader archive/folder semantics explicitly out of scope.
-4. Leave the launch-path bug out of scope unless the user explicitly expands
-   this story.
-   - If we stay within the current approved-handoff boundary, record the fresh
-     launch bug as a residual risk / follow-up rather than fixing it here.
-   - If the user wants to absorb it now, that is a scope expansion because it
-     changes the success surface from approved handoff to first downstream
-     maintained PDF launch.
+     `testdata/README.md` to the exact bounded launched-PDF claim.
+   - Keep scanned/handwritten PDF-member launch, grouped image-member routing,
+     nested archives, attachments, and the top-level
+     `approved-intake-handoff` eval surface out of scope unless fresh evidence
+     says otherwise.
 
 Verification and done criteria:
 
-- Targeted pytest for route/handoff contract changes.
-- `make test`
+- Targeted pytest for the route/handoff launch contract.
 - `make lint`
-- Fresh `driver.py` run on
-  `configs/recipes/recipe-mixed-folder-routing-mvp.yaml` with
-  `testdata/mixed-folder-pdf-mini/`
+- `make test`
+- Fresh `driver.py` runs on both:
+  - `configs/recipes/recipe-mixed-archive-zip-routing-mvp.yaml` with
+    `testdata/mixed-archive-pdf-mini.zip`
+  - `configs/recipes/recipe-mixed-folder-routing-mvp.yaml` with
+    `testdata/mixed-folder-pdf-mini/`
 - Manual inspection of:
   - `02_archive_route_members_v1/archive_member_routes.jsonl`
   - nested `05_confirm_plan_v1/overview_plan_final.jsonl`
   - emitted `intake_handoff.jsonl`
-  - and, only if launch succeeds, the first downstream stamped artifact
+  - first downstream stamped artifact from the launched born-digital PDF recipe
 
 Structural health and risk notes:
 
-- `tests/test_mixed_archive_zip_recipe.py` and
-  `tests/test_mixed_folder_recipe.py` are the primary growth points if the
-  already-working folder `dry_run` slice only needs codification. Keep any
-  route-logic branching narrow to PDF-member continuation only.
-- `schemas.py`, `README.md`, `docs/RUNBOOK.md`, the coverage matrix, and the
-  methodology state are already large; edit only the exact lines that describe
-  the bounded mixed-archive claim.
-- The only fresh blocker found in the reopened folder pass is the shared launch
-  path after handoff. A real launch from the direct-folder probe currently
-  fails before any downstream PDF artifact because the helper leaves the
-  default blocked terminal state in place. That is a separate launch/runtime
-  issue, not missing approved-handoff substrate, so the default shipping slice
-  should remain member-local approved handoff unless the story is explicitly
-  expanded.
+- `tests/test_mixed_archive_zip_recipe.py` is already the densest contract file
+  on this seam; keep new assertions flat and fixture-specific instead of
+  building helper abstraction for two probes.
+- `schemas.py`, `README.md`, `docs/RUNBOOK.md`, the coverage matrix, and
+  `docs/methodology/state.yaml` are already large. Edit only the exact claim
+  lines required by the widened bounded slice.
+- The current critical substrate is verified in code: the emitted plan artifact,
+  `prepare_confirmed_handoff(...)`, `run_dispatch_v1`, and the born-digital PDF
+  recipe all already exist. The fresh baseline says this is a route-stage logic
+  bug, not a missing runtime seam.
 
-Human-approval note:
+Approval note:
 
-This reopened plan keeps the default shipping target at the first honest
-member-local approved-handoff artifact, now including direct-folder parity on
-the same line. A final maintained PDF launch remains an optional extra proof
-only if the story is explicitly expanded in the same pass.
+The user explicitly approved this same-story scope expansion on 2026-04-17.
+Proceed with the bounded launch fix and proof; do not spin out another story
+shell for the same route/module line.
 
 ## Work Log
+
+20260417-0038 — launch fix + close-out: completed the reopened launched-PDF
+delta on Story 223 and closed the story again on fresh current-pass evidence.
+Implementation shipped in this pass:
+`modules/intake/archive_route_members_v1/main.py` now only treats a handoff row
+as blocked when `prepare_confirmed_handoff(...)` actually returned a
+non-launchable result and now mirrors the nested launch exit code back onto the
+route row; `configs/recipes/recipe-born-digital-pdf-non-toc-html-mvp.yaml` and
+`configs/recipes/recipe-born-digital-pdf-marker-lite-html-mvp.yaml` no longer
+pin the stale `story168-marker-cpu-3662` runtime container; and both
+`recipe-mixed-archive-zip-routing-mvp.yaml` and
+`recipe-mixed-folder-routing-mvp.yaml` now ship
+`pdf_member_handoff_mode: launch`. Focused regression coverage widened in
+`tests/test_mixed_archive_zip_recipe.py`,
+`tests/test_mixed_folder_recipe.py`, and
+`tests/test_pdf_intake_recipe.py`; fixture metadata moved forward in
+`testdata/mixed-archive-pdf-mini.source.json` and
+`testdata/mixed-folder-pdf-mini.source.json`; and the bounded launched-PDF
+claim was refreshed in `tests/fixtures/formats/_coverage-matrix.json`,
+`docs/methodology/state.yaml`, `README.md`, `docs/RUNBOOK.md`, and
+`testdata/README.md`. Fresh baseline evidence preserved from the reopened
+exploration remains valid: before the fix, a current-pass folder `launch` probe
+reproduced `pdf_member_handoff_blocked:None` while the emitted
+`intake_handoff_v1` artifact already held a valid downstream born-digital PDF
+driver command. Fresh checks in this close-out pass:
+`python -m pytest tests/test_mixed_archive_zip_recipe.py tests/test_mixed_folder_recipe.py tests/test_pdf_intake_recipe.py -q`
+→ `25 passed in 28.27s`; `make methodology-compile` refreshed
+`docs/methodology/graph.json` and `docs/stories.md`; `make lint` passed; and
+`make test` passed at `594 passed, 4 warnings in 680.98s (0:11:20)`, with the
+same pre-existing Pydantic deprecation warnings in
+`modules/portionize/portionize_headers_numeric_v1/main.py`. Fresh real pipeline
+proofs after `find modules -name "*.pyc" -delete`: ZIP launch run
+`story223-launch-zip-r2` completed with `Archive routing complete: launched=3, blocked=1, skipped=0, failed=0`, and direct-folder launch run
+`story223-launch-folder-r1` completed with the same summary. Manual artifact
+inspection in the same fresh pass:
+`output/runs/story223-launch-zip-r2/02_archive_route_members_v1/archive_member_routes.jsonl`
+shows the ZIP PDF member with `recommended_recipe =
+configs/recipes/recipe-born-digital-pdf-non-toc-html-mvp.yaml`,
+`approval_mode = confirm_plan_auto_approve`, `terminal_reason =
+pdf_member_launched_from_approved_plan`, and `handoff_artifact_path` pointing at
+the member-local sidecar; the paired handoff artifact at
+`output/runs/story223-launch-zip-r2/02_archive_route_members_v1/pdf_member_handoffs/member-001/intake_handoff.jsonl`
+records the same source PDF, the launched born-digital child run id, and
+`terminal_outcome = launched`; and the first downstream born-digital artifact at
+`output/runs/story223-launch-zip-r2-member-001-approved-handoff-recipe-born-digital-pdf-non-toc-html-mvp/01_extract_pdf_marker_lite_html_v1/pages_html.jsonl`
+contains clean stamped HTML for both pages, including page 1 heading
+`Acme Community Arts Initiative` and the full non-TOC body text. The matching
+bundle manifest at
+`output/runs/story223-launch-zip-r2-member-001-approved-handoff-recipe-born-digital-pdf-non-toc-html-mvp/output/html/manifest.json`
+shows two chapter entries titled `Requested information:` and
+`Accessibility notes:`. The direct-folder proof matches the same bounded claim:
+`output/runs/story223-launch-folder-r1/02_archive_route_members_v1/archive_member_routes.jsonl`
+shows the source-native PDF member with `terminal_reason =
+pdf_member_launched_from_approved_plan`; the paired handoff artifact at
+`output/runs/story223-launch-folder-r1/02_archive_route_members_v1/pdf_member_handoffs/member-001/intake_handoff.jsonl`
+records `terminal_outcome = launched`; and the first downstream born-digital
+artifact at
+`output/runs/story223-launch-folder-r1-member-001-approved-handoff-recipe-born-digital-pdf-non-toc-html-mvp/01_extract_pdf_marker_lite_html_v1/pages_html.jsonl`
+contains the same clean two-page HTML extraction from the source-native folder
+PDF. Supporting `.eml` / HTML launches and blocked `.txt` routing stayed intact
+on both entry surfaces. Close-out note: the earlier Story 223 changelog entries
+cover the prior bounded slices, and the launched-PDF expansion is recorded
+separately for landing. Outcome: Story 223 now honestly owns and proves the
+first bounded approved-plan-to-launched-PDF continuation on both the checked-in
+ZIP and direct-folder mixed-input probes while leaving scanned/handwritten
+PDF-member launch, grouped image members, nested archives, attachments, and
+top-level automation-surface widening out of scope. Next step:
+`/check-in-diff`.
+
+20260417-0018 — reopen + build-story exploration for launched-PDF expansion:
+re-read `docs/ideal.md`, `docs/spec.md` (`spec:1`, `spec:1.1`, `spec:6`,
+`spec:7`, `spec:8`, `spec:9`), `docs/methodology/state.yaml`,
+`docs/methodology/graph.json`, ADR-002, Stories 176/180/194/196/205/221/222,
+the `mixed-archive` coverage row, `README.md`, `docs/RUNBOOK.md`,
+`testdata/README.md`, `schemas.py`, `modules/intake/archive_route_members_v1/main.py`,
+`modules/intake/intake_plan_utils.py`, `modules/intake/run_dispatch_v1/main.py`,
+`configs/recipes/recipe-mixed-archive-zip-routing-mvp.yaml`,
+`configs/recipes/recipe-mixed-folder-routing-mvp.yaml`,
+`tests/test_mixed_archive_zip_recipe.py`, and `tests/test_mixed_folder_recipe.py`.
+Ideal-alignment result: proceed. This is the smallest honest next deletion of a
+known compromise on the active `maintained-intake-honesty` line, because the
+route/handoff/runtime substrate already exists and the remaining issue is a real
+repo bug, not a missing external trigger. Fresh baseline evidence in this pass:
+the maintained recipes still default to `pdf_member_handoff_mode: dry_run`; the
+current dry-run contract remains green (`python -m pytest tests/test_mixed_archive_zip_recipe.py -q -k 'handoff or folder_pdf_member_writes_handoff_artifact'`
+→ `2 passed`); and a fresh launch-mode module run on the checked-in direct-folder
+probe wrote a route row with `terminal_reason = pdf_member_handoff_blocked:None`
+while the emitted handoff row already contained a valid downstream
+`driver.py --recipe configs/recipes/recipe-born-digital-pdf-non-toc-html-mvp.yaml --input-pdf ...`
+command, a concrete downstream run id, and the correct source PDF path. Critical
+substrate verified versus missing: `archive_route_members_v1`, `prepare_confirmed_handoff(...)`,
+`run_dispatch_v1`, and the born-digital PDF runtime all exist in code and are
+already proven at approved-handoff scope; no new schema boundary is required
+yet; the missing slice is the shared launch-path logic in the route stage. Files
+most likely to change: `modules/intake/archive_route_members_v1/main.py`, both
+mixed-input recipe YAMLs if launch becomes the maintained default,
+`tests/test_mixed_archive_zip_recipe.py`, `tests/test_mixed_folder_recipe.py`,
+and the exact bounded-claim lines in `tests/fixtures/formats/_coverage-matrix.json`,
+`docs/methodology/state.yaml`, `README.md`, `docs/RUNBOOK.md`, and
+`testdata/README.md`. Structural-health note: the large truth surfaces are
+already above the preferred size, so edits there must stay surgical. Scope
+decision: this remains one story under the anti-fragmentation rule because the
+new work stays on the same owning route module, checked-in fixture family,
+artifact chain, and operator-facing outcome. Next step: set Story 223 `In Progress`,
+recompile methodology views, then fix the shared launch-path bug and prove the
+first downstream maintained PDF launch on both checked-in probes.
 
 20260416-1438 — create-story: created Story 223 after `/triage` identified the
 next actionable intake-routing residue and the user approved the recommended

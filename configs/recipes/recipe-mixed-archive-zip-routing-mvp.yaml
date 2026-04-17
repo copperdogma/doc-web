@@ -18,4 +18,4 @@ stages:
     out: archive_member_routes.jsonl
     params:
       allow_run_id_reuse: false
-      pdf_member_handoff_mode: dry_run
+      pdf_member_handoff_mode: launch
