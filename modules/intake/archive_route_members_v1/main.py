@@ -10,6 +10,7 @@ PDF members, and records one archive_member_route_v1 row per member.
 from __future__ import annotations
 
 import argparse
+from collections import defaultdict
 import subprocess
 from pathlib import Path
 from typing import Optional
@@ -18,9 +19,12 @@ import yaml
 
 from modules.common.utils import ProgressLogger, read_jsonl, save_jsonl, utc_now
 from modules.intake.intake_plan_utils import (
+    MAINTAINED_RECIPES,
     archive_member_recipe_for_input_kind,
+    archive_grouped_image_group_key,
     build_explicit_recipe_driver_command,
     default_downstream_run_id,
+    is_archive_grouped_image_member,
     load_artifact_row,
     prepare_confirmed_handoff,
 )
@@ -33,6 +37,7 @@ DEFAULT_OUT = "archive_member_routes.jsonl"
 PDF_MEMBER_RECOMMENDATION_RECIPE = "configs/recipes/recipe-intake-contact-sheet.yaml"
 PDF_MEMBER_APPROVAL_MODE = "confirm_plan_auto_approve"
 PDF_MEMBER_HANDOFF_MODES = {"recommendation_only", "dry_run", "launch"}
+GROUPED_IMAGE_RECIPE = MAINTAINED_RECIPES["images_dir"]
 
 
 def parse_args() -> argparse.Namespace:
@@ -116,13 +121,172 @@ def _resolve_output_path(outdir: str, out: str) -> Path:
     return Path(outdir) / out_path.name
 
 
+def _base_route_row(row: dict, args: argparse.Namespace) -> dict:
+    extracted_path = Path(str(row["extracted_path"]))
+    return {
+        "schema_version": SCHEMA_VERSION,
+        "archive_format": row.get("archive_format") or "zip",
+        "archive_path": row["archive_path"],
+        "member_id": row["member_id"],
+        "member_index": row["member_index"],
+        "member_path": row["member_path"],
+        "extracted_path": str(extracted_path),
+        "filename": row["filename"],
+        "file_extension": row.get("file_extension"),
+        "detected_input_kind": row.get("detected_input_kind"),
+        "recommended_recipe": None,
+        "launch_input_flag": None,
+        "launch_input_path": None,
+        "driver_command": [],
+        "downstream_run_id": None,
+        "downstream_output_dir": None,
+        "first_downstream_artifact": None,
+        "approval_mode": None,
+        "handoff_artifact_path": None,
+        "group_id": None,
+        "group_key": None,
+        "group_role": None,
+        "group_size": None,
+        "terminal_outcome": "blocked",
+        "terminal_reason": None,
+        "exit_code": None,
+        "module_id": MODULE_ID,
+        "run_id": args.run_id,
+        "created_at": utc_now(),
+    }
+
+
 def _uses_pdf_member_recommendation(row: dict) -> bool:
     archive_format = str(row.get("archive_format") or "zip").strip().lower()
     return archive_format in {"zip", "folder"} and row.get("detected_input_kind") == "pdf"
 
 
+def _grouped_image_candidates(manifest_rows: list[dict]) -> dict[str, dict]:
+    grouped_rows: dict[str, list[dict]] = defaultdict(list)
+    for row in manifest_rows:
+        archive_format = str(row.get("archive_format") or "zip").strip().lower()
+        if archive_format != "zip":
+            continue
+        group_key = archive_grouped_image_group_key(row.get("member_path"))
+        if not group_key:
+            continue
+        if not is_archive_grouped_image_member(row.get("member_path")):
+            continue
+        grouped_rows[group_key].append(row)
+
+    candidates: dict[str, dict] = {}
+    for group_key, rows in grouped_rows.items():
+        if len(rows) < 2:
+            continue
+        sorted_rows = sorted(rows, key=lambda row: str(row["member_path"]))
+        primary_row = sorted_rows[0]
+        launch_input_path = Path(str(primary_row["extracted_path"])).resolve().parent
+        if not all(
+            Path(str(row["extracted_path"])).resolve().parent == launch_input_path
+            for row in sorted_rows
+        ):
+            continue
+        group_id = f"images-dir:{group_key}"
+        group_info = {
+            "group_id": group_id,
+            "group_key": group_key,
+            "group_size": len(sorted_rows),
+            "launch_input_path": launch_input_path,
+            "primary_member_id": str(primary_row["member_id"]),
+            "rows": sorted_rows,
+        }
+        for row in sorted_rows:
+            candidates[str(row["member_id"])] = group_info
+    return candidates
+
+
 def _handoff_artifact_path(outdir: str | Path, member_id: str) -> Path:
     return Path(outdir) / "pdf_member_handoffs" / member_id / "intake_handoff.jsonl"
+
+
+def _route_grouped_image_members(
+    group_info: dict,
+    *,
+    args: argparse.Namespace,
+    output_root: Path,
+) -> tuple[list[dict], bool]:
+    group_rows = group_info["rows"]
+    primary_member_id = str(group_info["primary_member_id"])
+    launch_input_path = Path(group_info["launch_input_path"]).resolve()
+
+    route_rows = [_base_route_row(row, args) for row in group_rows]
+    for route_row in route_rows:
+        route_row["detected_input_kind"] = "images_dir"
+        route_row["recommended_recipe"] = GROUPED_IMAGE_RECIPE
+        route_row["group_id"] = group_info["group_id"]
+        route_row["group_key"] = group_info["group_key"]
+        route_row["group_size"] = group_info["group_size"]
+        route_row["group_role"] = (
+            "primary" if route_row["member_id"] == primary_member_id else "secondary"
+        )
+
+    if not launch_input_path.exists():
+        for route_row in route_rows:
+            route_row["terminal_reason"] = (
+                f"grouped_image_input_not_found:{launch_input_path}"
+            )
+        return route_rows, True
+
+    downstream_run_id = default_downstream_run_id(
+        GROUPED_IMAGE_RECIPE,
+        f"{args.run_id or 'mixed-archive'}-{primary_member_id}-grouped",
+    )
+    grouped_image_end_at = args.downstream_end_at or "images_to_manifest"
+    downstream_output_dir = output_root / downstream_run_id
+    first_downstream_artifact = _downstream_artifact(
+        output_root,
+        downstream_run_id,
+        GROUPED_IMAGE_RECIPE,
+        stage_position="first",
+    )
+    command = build_explicit_recipe_driver_command(
+        GROUPED_IMAGE_RECIPE,
+        input_kind="images_dir",
+        source_path=launch_input_path,
+        downstream_run_id=downstream_run_id,
+        downstream_output_dir=output_root,
+        downstream_end_at=grouped_image_end_at,
+        allow_run_id_reuse=args.allow_run_id_reuse,
+    )
+
+    for route_row in route_rows:
+        route_row["launch_input_flag"] = command[4]
+        route_row["launch_input_path"] = str(launch_input_path)
+        route_row["driver_command"] = command
+        route_row["downstream_run_id"] = downstream_run_id
+        route_row["downstream_output_dir"] = str(downstream_output_dir)
+        route_row["first_downstream_artifact"] = first_downstream_artifact
+
+    if args.dry_run:
+        for route_row in route_rows:
+            route_row["terminal_outcome"] = "skipped"
+            route_row["terminal_reason"] = "dry_run"
+        return route_rows, False
+
+    result = subprocess.run(command, cwd=str(REPO_ROOT))
+    if result.returncode != 0:
+        for route_row in route_rows:
+            route_row["exit_code"] = result.returncode
+            route_row["terminal_outcome"] = "failed"
+            route_row["terminal_reason"] = f"downstream_exit_{result.returncode}"
+        return route_rows, True
+
+    if first_downstream_artifact and not Path(first_downstream_artifact).exists():
+        for route_row in route_rows:
+            route_row["terminal_outcome"] = "failed"
+            route_row["terminal_reason"] = "first_downstream_artifact_missing"
+        return route_rows, True
+
+    for route_row in route_rows:
+        route_row["exit_code"] = result.returncode
+        route_row["terminal_outcome"] = "launched"
+        route_row["terminal_reason"] = f"grouped_image_end_at:{grouped_image_end_at}"
+    return route_rows, False
 
 
 def _apply_pdf_member_handoff(
@@ -220,9 +384,27 @@ def main() -> None:
 
     route_rows: list[dict] = []
     failed_launches = 0
+    grouped_image_candidates = _grouped_image_candidates(manifest_rows)
+    processed_group_ids: set[str] = set()
 
     for row in manifest_rows:
         member_id = str(row["member_id"])
+        grouped_image = grouped_image_candidates.get(member_id)
+        if grouped_image:
+            group_id = str(grouped_image["group_id"])
+            if group_id in processed_group_ids:
+                continue
+            processed_group_ids.add(group_id)
+            grouped_route_rows, group_failed = _route_grouped_image_members(
+                grouped_image,
+                args=args,
+                output_root=output_root,
+            )
+            route_rows.extend(grouped_route_rows)
+            if group_failed:
+                failed_launches += 1
+            continue
+
         input_kind = row.get("detected_input_kind")
         use_pdf_member_recommendation = _uses_pdf_member_recommendation(row)
         recipe_path = (
@@ -231,33 +413,10 @@ def main() -> None:
             else archive_member_recipe_for_input_kind(input_kind)
         )
         extracted_path = Path(str(row["extracted_path"]))
-        route_row = {
-            "schema_version": SCHEMA_VERSION,
-            "archive_format": row.get("archive_format") or "zip",
-            "archive_path": row["archive_path"],
-            "member_id": member_id,
-            "member_index": row["member_index"],
-            "member_path": row["member_path"],
-            "extracted_path": str(extracted_path),
-            "filename": row["filename"],
-            "file_extension": row.get("file_extension"),
-            "detected_input_kind": input_kind,
-            "recommended_recipe": None if use_pdf_member_recommendation else recipe_path,
-            "launch_input_flag": None,
-            "launch_input_path": None,
-            "driver_command": [],
-            "downstream_run_id": None,
-            "downstream_output_dir": None,
-            "first_downstream_artifact": None,
-            "approval_mode": None,
-            "handoff_artifact_path": None,
-            "terminal_outcome": "blocked",
-            "terminal_reason": None,
-            "exit_code": None,
-            "module_id": MODULE_ID,
-            "run_id": args.run_id,
-            "created_at": utc_now(),
-        }
+        route_row = _base_route_row(row, args)
+        route_row["recommended_recipe"] = (
+            None if use_pdf_member_recommendation else recipe_path
+        )
 
         if not extracted_path.exists():
             route_row["terminal_reason"] = f"extracted_member_not_found:{extracted_path}"

@@ -1,0 +1,39 @@
+{
+  "title": "Mixed Archive Images Mini Fixture",
+  "source_type": "repo-owned mixed archive",
+  "generated_at": "2026-04-17",
+  "archive_format": "zip",
+  "capture_note": "Checked-in ZIP probe for Story 224. It packages one repo-owned two-page image-directory fixture under a shared `pages/` parent plus one intentionally unsupported plain-text member so the bounded mixed-archive seam can prove grouped image-member routing into the maintained `images_dir` recipe without claiming broad photo-album or heterogeneous archive support.",
+  "members": [
+    {
+      "member_path": "pages/page-001.png",
+      "source": "testdata/handwritten-notes-mini-images/page-001.png",
+      "expected_route": "grouped-images-dir-launch",
+      "notes": "This page belongs to the bounded grouped image-member slice. The route rows should keep per-member provenance while sharing one grouped `--input-images` launch into `recipe-images-ocr-html-mvp.yaml`."
+    },
+    {
+      "member_path": "pages/page-002.png",
+      "source": "testdata/handwritten-notes-mini-images/page-002.png",
+      "expected_route": "grouped-images-dir-launch",
+      "notes": "This second page proves the bounded shared-parent grouping contract and stable downstream page ordering on the extracted directory."
+    },
+    {
+      "member_path": "notes/readme.txt",
+      "source": "repo-authored member embedded only in the ZIP fixture",
+      "expected_route": "blocked",
+      "notes": "This unsupported text member exists to prove non-image members remain explicit blocked rows instead of being silently folded into the grouped image launch."
+    }
+  ],
+  "supported_scope": [
+    "ZIP-only entry",
+    "archive-relative member manifest and grouped image-member route rows",
+    "one grouped `--input-images` launch into `recipe-images-ocr-html-mvp.yaml` for a shared-parent page-image set",
+    "explicit blocked rows for unsupported non-image members"
+  ],
+  "known_gaps": [
+    "No direct-folder grouped image-member parity",
+    "No broad photo-album clustering or arbitrary image-set semantics",
+    "No nested archives or attachment extraction",
+    "No broad mixed-archive normalization into a single combined bundle"
+  ]
+}

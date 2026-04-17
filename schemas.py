@@ -1020,6 +1020,10 @@ class ArchiveMemberRoute(BaseModel):
     first_downstream_artifact: Optional[str] = None
     approval_mode: Optional[str] = None
     handoff_artifact_path: Optional[str] = None
+    group_id: Optional[str] = None
+    group_key: Optional[str] = None
+    group_role: Optional[str] = None
+    group_size: Optional[int] = Field(default=None, ge=1)
     terminal_outcome: Literal["launched", "skipped", "blocked", "failed"]
     terminal_reason: Optional[str] = None
     exit_code: Optional[int] = None

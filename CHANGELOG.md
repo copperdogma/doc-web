@@ -1,3 +1,15 @@
+## [2026-04-17-01] - Land grouped mixed-archive image seam (Story 224)
+
+### Added
+- Added a checked-in `mixed-archive-images-mini` ZIP probe plus focused grouped-image regression coverage for the first bounded shared-parent image-member continuation on the maintained mixed-archive lane
+
+### Changed
+- Changed `archive_route_members_v1`, shared intake helpers, and `archive_member_route_v1` so ZIP-contained grouped image members now launch one bounded `images_dir` child run and preserve inspectable grouped provenance on each route row
+- Changed README, RUNBOOK, fixture metadata, coverage truth, methodology state, generated story views, and Story 224 wording so the maintained mixed-input claim now includes the bounded ZIP-only grouped image-member first-artifact continuation
+
+### Fixed
+- Fixed the bounded mixed-archive image-member dead end where shared-parent `.png` members previously stamped as unsupported instead of launching the maintained `images_dir` lane
+
 ## [2026-04-16-04] - Launch bounded mixed PDF-member handoff seam (Story 223)
 
 ### Added

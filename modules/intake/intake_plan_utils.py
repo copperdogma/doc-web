@@ -1,5 +1,5 @@
 import json
-from pathlib import Path
+from pathlib import Path, PurePosixPath
 import sys
 from typing import Any, Dict, Iterable, Optional
 
@@ -80,6 +80,15 @@ ARCHIVE_MEMBER_INPUT_KIND_BY_SUFFIX = {
     ".pdf": "pdf",
     ".pptx": "pptx",
     ".xlsx": "xlsx",
+}
+ARCHIVE_GROUPED_IMAGE_SUFFIXES = {
+    ".bmp",
+    ".jpeg",
+    ".jpg",
+    ".png",
+    ".tif",
+    ".tiff",
+    ".webp",
 }
 DRIVER_INPUT_FLAGS = {
     "docx": "--input-docx",
@@ -217,6 +226,23 @@ def infer_archive_member_input_kind(raw_path: str | Path | None) -> Optional[str
     if not suffix:
         return None
     return ARCHIVE_MEMBER_INPUT_KIND_BY_SUFFIX.get(suffix)
+
+
+def is_archive_grouped_image_member(raw_path: str | Path | None) -> bool:
+    if raw_path is None:
+        return False
+    suffix = Path(str(raw_path)).suffix.lower()
+    return suffix in ARCHIVE_GROUPED_IMAGE_SUFFIXES
+
+
+def archive_grouped_image_group_key(raw_path: str | Path | None) -> Optional[str]:
+    if not is_archive_grouped_image_member(raw_path):
+        return None
+    normalized = PurePosixPath(str(raw_path).replace("\\", "/").lstrip("/"))
+    parent = normalized.parent
+    if str(parent) in {"", "."}:
+        return None
+    return str(parent)
 
 
 def archive_member_recipe_for_input_kind(input_kind: str | None) -> Optional[str]:

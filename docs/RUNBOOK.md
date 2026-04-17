@@ -607,10 +607,13 @@ provenance; nested `driver.py` launches into existing maintained direct-entry
 recipes for the supported members; and an explicit blocked row for the
 unsupported member. That ZIP lane is now complemented by a separate bounded
 direct-folder proof lane on the same member mix, a separate ZIP-only
-PDF-member recommendation probe, and a separate direct-folder born-digital
-PDF-member recommendation probe; scanned or handwritten direct-folder
-PDF-member routing, grouped image-member routing, nested archives, attachment
-extraction, and broad heterogeneous archive normalization remain out of scope.
+PDF-member approved-handoff launch probe, a separate ZIP-only grouped
+image-member first-artifact probe, and a separate direct-folder born-digital
+PDF-member approved-handoff probe; scanned or handwritten direct-folder
+PDF-member routing, direct-folder grouped image-member routing, grouped-image
+continuation beyond the first downstream `page_image_v1` artifact, nested
+archives, attachment extraction, and broad heterogeneous archive normalization
+remain out of scope.
 
 Expected outputs:
 
@@ -689,6 +692,75 @@ automation surface. It starts from explicit `driver.py --recipe ... --input-zip`
 entry and emits a nested approved plan, a launched member-local handoff
 artifact, and a bounded born-digital PDF child run after the archive route
 stage.
+
+### Repo-Owned Mixed-Archive ZIP Grouped Image-Member Smoke
+
+Use this when you need a cheap real-run proof that the bounded ZIP-only grouped
+image-member continuation emits grouped route rows for a shared-parent page set,
+launches exactly one `--input-images` child run, and records the first
+downstream `page_image_v1` artifact while the unsupported `.txt` member still
+blocks explicitly:
+
+```bash
+python -m pip install '.[driver]'
+find modules -name "*.pyc" -delete
+python driver.py \
+  --recipe configs/recipes/recipe-mixed-archive-zip-routing-mvp.yaml \
+  --input-zip testdata/mixed-archive-images-mini.zip \
+  --run-id <run_id> \
+  --allow-run-id-reuse \
+  --force
+python validate_artifact.py \
+  --schema archive_member_manifest_v1 \
+  --file output/runs/<run_id>/01_archive_unpack_manifest_v1/archive_members_manifest.jsonl
+python validate_artifact.py \
+  --schema archive_member_route_v1 \
+  --file output/runs/<run_id>/02_archive_route_members_v1/archive_member_routes.jsonl
+GROUP_RUN_ID="$(python - <<'PY'
+import json
+from pathlib import Path
+
+rows = Path('output/runs/<run_id>/02_archive_route_members_v1/archive_member_routes.jsonl').read_text().splitlines()
+for line in rows:
+    row = json.loads(line)
+    if row.get('group_role') == 'primary':
+        print(row['downstream_run_id'])
+        break
+PY
+)"
+python validate_artifact.py \
+  --schema page_image_v1 \
+  --file output/runs/$GROUP_RUN_ID/01_images_dir_to_manifest_v1/pages_images_manifest.jsonl
+```
+
+Story 224 established this bounded continuation on the checked-in
+`testdata/mixed-archive-images-mini.zip` fixture. The maintained claim is
+intentionally narrow: one repo-owned ZIP archive with two page-image members
+under `pages/` plus one intentionally unsupported `.txt` member; a stamped
+archive/member manifest; grouped member route rows with archive-relative
+provenance plus shared `group_id`, `group_key`, `group_role`, `group_size`,
+`launch_input_path`, `downstream_run_id`, and `first_downstream_artifact`
+fields; one grouped `--input-images` child run into the maintained
+`recipe-images-ocr-html-mvp.yaml` lane; and an explicit blocked row for the
+unsupported member. The grouped continuation intentionally stops at
+`images_to_manifest` on this probe, because the checked-in two-page image set
+does not claim the later OCR/TOC/HTML bundle surface. It is not evidence for
+direct-folder grouped image-member parity, broad photo-album semantics,
+grouped-image continuation beyond the first downstream `page_image_v1`
+artifact, scanned or handwritten OCR quality changes, nested archives,
+attachment extraction, or broad heterogeneous archive normalization.
+
+Expected outputs:
+
+- `output/runs/<run_id>/01_archive_unpack_manifest_v1/archive_members_manifest.jsonl`
+- `output/runs/<run_id>/02_archive_route_members_v1/archive_member_routes.jsonl`
+- `output/runs/<group_run_id>/01_images_dir_to_manifest_v1/pages_images_manifest.jsonl`
+
+This bounded grouped-image continuation still sits outside the top-level
+recommendation-only contact-sheet benchmark and the approved-handoff
+automation surface. It starts from explicit `driver.py --recipe ... --input-zip`
+entry and proves only the grouped route bridge plus the first downstream
+stamped `page_image_v1` artifact.
 
 ### Repo-Owned Mixed-Folder PDF-Member Approved-Handoff Launch Smoke
 
@@ -797,9 +869,9 @@ recipes for the supported members; and an explicit blocked row for the
 unsupported member. Story 222 adds a second bounded direct-folder probe for one
 born-digital PDF member, and Story 223 extends that same probe through a
 member-local approved-handoff launch into the maintained born-digital PDF
-recipe; scanned or handwritten PDF-member launch, grouped image-member
-routing, nested archives, attachment extraction, and broad heterogeneous
-folder/archive normalization remain out of scope.
+recipe; scanned or handwritten PDF-member launch, direct-folder grouped
+image-member routing, nested archives, attachment extraction, and broad
+heterogeneous folder/archive normalization remain out of scope.
 
 Expected outputs:
 
@@ -809,11 +881,11 @@ Expected outputs:
 
 These maintained DOCX/XLSX/PPTX/EPUB/EML direct-entry lanes plus the bounded
 web-page, mixed-archive ZIP, and mixed-folder lanes are still explicit-recipe
-entry points. The mixed-archive ZIP PDF-member continuation and the
-mixed-folder PDF-member continuation both emit nested member-local
-approved-handoff artifacts after explicit entry; neither is part of the
-top-level recommendation-only contact-sheet benchmark or the approved-handoff
-automation surface.
+entry points. The mixed-archive ZIP PDF-member continuation, the mixed-archive
+ZIP grouped image-member continuation, and the mixed-folder PDF-member
+continuation all emit bounded member-local continuations after explicit entry;
+none is part of the top-level recommendation-only contact-sheet benchmark or
+the approved-handoff automation surface.
 
 ### Office Intake Boundary Probe
 
@@ -877,7 +949,7 @@ scripts/run_driver_monitored.sh \
 | `recipe-email-eml-html-mvp.yaml` | Maintained plain-text `.eml` structural bundle path for one verified single-message slice with pageless provenance. |
 | `recipe-email-mbox-html-mvp.yaml` | Maintained plain-text `.mbox` structural bundle path for one verified two-message archive slice with one HTML entry per message and pageless provenance. |
 | `recipe-epub-html-mvp.yaml` | Maintained EPUB structural bundle path for the verified bounded chapter-first prose slice with pageless provenance. |
-| `recipe-mixed-archive-zip-routing-mvp.yaml` | Maintained ZIP-only mixed-archive path that manifests archive members, routes supported members into existing direct-entry recipes, and records blocked members explicitly. |
+| `recipe-mixed-archive-zip-routing-mvp.yaml` | Maintained ZIP-only mixed-archive path that manifests archive members, routes supported members into existing direct-entry recipes, records blocked members explicitly, and includes bounded ZIP-only PDF-member and grouped image-member continuations on checked-in probes. |
 | `recipe-mixed-folder-routing-mvp.yaml` | Maintained source-native mixed-folder path that inventories one bounded folder tree, routes supported members into existing direct-entry recipes, and records blocked members explicitly, including one direct-folder PDF-member approved-handoff launch continuation. |
 | `recipe-pptx-html-mvp.yaml` | Maintained PPTX structural bundle path for the verified bounded slide slice: one HTML page per supported slide entry with slide-number provenance. |
 | `recipe-web-page-html-mvp.yaml` | Maintained checked-HTML web-page path for one repo-owned static snapshot that reuses the existing `page_html_v1` to `doc-web` chain. |
