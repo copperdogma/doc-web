@@ -128,6 +128,9 @@ def _fake_grouped_image_subprocess_runner(
             / "01_images_dir_to_manifest_v1"
             / "pages_images_manifest.jsonl"
         )
+        ocr_artifact = (
+            output_dir / downstream_run_id / "02_ocr_ai_gpt51_v1" / "pages_html.jsonl"
+        )
         _write_jsonl(
             manifest_artifact,
             [
@@ -146,6 +149,27 @@ def _fake_grouped_image_subprocess_runner(
                     "original_page_number": 2,
                     "image": str(source_dir / "page-002.png"),
                     "source": [str(source_dir)],
+                },
+            ],
+        )
+        _write_jsonl(
+            ocr_artifact,
+            [
+                {
+                    "schema_version": "page_html_v1",
+                    "page": 1,
+                    "page_number": 1,
+                    "original_page_number": 1,
+                    "source": [str(source_dir / "page-001.png")],
+                    "html": "<p>March 3, 1985</p>",
+                },
+                {
+                    "schema_version": "page_html_v1",
+                    "page": 2,
+                    "page_number": 2,
+                    "original_page_number": 2,
+                    "source": [str(source_dir / "page-002.png")],
+                    "html": "<p>The letters from Aunt Elise are tied with green ribbon, not red.</p>",
                 },
             ],
         )
@@ -173,6 +197,7 @@ def test_mixed_archive_zip_recipe_wiring():
         "archive_route_members_v1",
     ]
     assert data["stages"][1]["params"]["pdf_member_handoff_mode"] == "launch"
+    assert data["stages"][1]["params"]["grouped_image_downstream_end_at"] == "ocr_ai"
 
 
 def test_archive_route_output_path_resolution_handles_driver_relative_artifact():
@@ -333,6 +358,7 @@ def test_archive_route_zip_pdf_member_launches_recommendation_only_run(
         assert cmd[3] == archive_route_module.PDF_MEMBER_RECOMMENDATION_RECIPE
         assert cmd[4] == "--input-pdf"
         assert cmd[5] == str(extracted_pdf)
+        assert "--end-at" not in cmd
         downstream_run_id = cmd[7]
         output_dir = Path(cmd[cmd.index("--output-dir") + 1])
         plan_artifact = (
@@ -372,6 +398,8 @@ def test_archive_route_zip_pdf_member_launches_recommendation_only_run(
             str(route_outdir),
             "--run-id",
             run_id,
+            "--grouped-image-downstream-end-at",
+            "ocr_ai",
             "--allow-run-id-reuse",
         ],
     )
@@ -393,6 +421,7 @@ def test_archive_route_zip_pdf_member_launches_recommendation_only_run(
     assert row.launch_input_flag == "--input-pdf"
     assert row.launch_input_path == str(extracted_pdf)
     assert row.driver_command[3] == archive_route_module.PDF_MEMBER_RECOMMENDATION_RECIPE
+    assert "--end-at" not in row.driver_command
     assert row.first_downstream_artifact
     assert row.first_downstream_artifact.endswith(
         "05_confirm_plan_v1/overview_plan_final.jsonl"
@@ -494,6 +523,8 @@ def test_archive_route_zip_grouped_image_members_launch_shared_images_dir_run(
             str(route_outdir),
             "--run-id",
             run_id,
+            "--grouped-image-downstream-end-at",
+            "ocr_ai",
             "--allow-run-id-reuse",
         ],
     )
@@ -533,8 +564,15 @@ def test_archive_route_zip_grouped_image_members_launch_shared_images_dir_run(
     assert (
         primary_row.terminal_reason
         == secondary_row.terminal_reason
-        == "grouped_image_end_at:images_to_manifest"
+        == "grouped_image_end_at:ocr_ai"
     )
+    ocr_artifact = (
+        Path(primary_row.downstream_output_dir) / "02_ocr_ai_gpt51_v1" / "pages_html.jsonl"
+    )
+    assert ocr_artifact.exists()
+    ocr_rows = _load_jsonl(ocr_artifact)
+    assert ocr_rows[0]["html"] == "<p>March 3, 1985</p>"
+    assert "Aunt Elise" in ocr_rows[1]["html"]
 
     assert blocked_row.group_id is None
     assert blocked_row.group_key is None
@@ -547,7 +585,7 @@ def test_archive_route_zip_grouped_image_members_launch_shared_images_dir_run(
     assert calls[0][3] == archive_route_module.GROUPED_IMAGE_RECIPE
     assert calls[0][4] == "--input-images"
     assert calls[0][5] == str(extracted_dir)
-    assert calls[0][-2:] == ["--end-at", "images_to_manifest"]
+    assert calls[0][-2:] == ["--end-at", "ocr_ai"]
 
 
 def test_archive_route_zip_pdf_member_writes_handoff_artifact_in_dry_run_mode(

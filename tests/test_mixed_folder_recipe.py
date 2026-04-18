@@ -45,6 +45,7 @@ def test_mixed_folder_recipe_wiring():
         "archive_route_members_v1",
     ]
     assert data["stages"][1]["params"]["pdf_member_handoff_mode"] == "launch"
+    assert data["stages"][1]["params"]["grouped_image_downstream_end_at"] == "ocr_ai"
 
 
 def test_mixed_folder_pdf_fixture_shape():
@@ -282,7 +283,7 @@ def test_mixed_folder_grouped_image_recipe_smoke(tmp_path: Path):
     assert (
         primary_row.terminal_reason
         == secondary_row.terminal_reason
-        == "grouped_image_end_at:images_to_manifest"
+        == "grouped_image_end_at:ocr_ai"
     )
 
     launched_rows = _load_jsonl(Path(primary_row.first_downstream_artifact))
@@ -292,3 +293,10 @@ def test_mixed_folder_grouped_image_recipe_smoke(tmp_path: Path):
     ]
     assert launched_rows[0]["source"] == [source_pages_dir]
     assert launched_rows[1]["source"] == [source_pages_dir]
+    ocr_artifact = (
+        Path(primary_row.downstream_output_dir) / "02_ocr_ai_gpt51_v1" / "pages_html.jsonl"
+    )
+    assert ocr_artifact.exists()
+    ocr_rows = _load_jsonl(ocr_artifact)
+    assert "March 3, 1985" in ocr_rows[0]["html"]
+    assert "Aunt Elise" in ocr_rows[1]["html"]

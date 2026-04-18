@@ -11,6 +11,9 @@ param_schema:
     downstream_end_at:
       type: string
       description: "Optional downstream stage id to stop after for each launched member."
+    grouped_image_downstream_end_at:
+      type: string
+      description: "Optional downstream stage id to stop after for grouped image-member launches only."
     allow_run_id_reuse:
       type: boolean
       description: "Forward --allow-run-id-reuse to downstream driver invocations."

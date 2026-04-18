@@ -19,3 +19,4 @@ stages:
     params:
       allow_run_id_reuse: false
       pdf_member_handoff_mode: launch
+      grouped_image_downstream_end_at: ocr_ai

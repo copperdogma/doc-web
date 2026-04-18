@@ -697,9 +697,9 @@ stage.
 
 Use this when you need a cheap real-run proof that the bounded ZIP-only grouped
 image-member continuation emits grouped route rows for a shared-parent page set,
-launches exactly one `--input-images` child run, and records the first
-downstream `page_image_v1` artifact while the unsupported `.txt` member still
-blocks explicitly:
+launches exactly one `--input-images` child run, and reaches the first grouped
+`page_html_v1` artifact while the unsupported `.txt` member still blocks
+explicitly:
 
 ```bash
 python -m pip install '.[driver]'
@@ -731,6 +731,9 @@ PY
 python validate_artifact.py \
   --schema page_image_v1 \
   --file output/runs/$GROUP_RUN_ID/01_images_dir_to_manifest_v1/pages_images_manifest.jsonl
+python validate_artifact.py \
+  --schema page_html_v1 \
+  --file output/runs/$GROUP_RUN_ID/02_ocr_ai_gpt51_v1/pages_html.jsonl
 ```
 
 Story 224 established this bounded continuation on the checked-in
@@ -741,12 +744,15 @@ archive/member manifest; grouped member route rows with archive-relative
 provenance plus shared `group_id`, `group_key`, `group_role`, `group_size`,
 `launch_input_path`, `downstream_run_id`, and `first_downstream_artifact`
 fields; one grouped `--input-images` child run into the maintained
-`recipe-images-ocr-html-mvp.yaml` lane; and an explicit blocked row for the
-unsupported member. The grouped continuation intentionally stops at
-`images_to_manifest` on this probe, because the checked-in two-page image set
-does not claim the later OCR/TOC/HTML bundle surface. It is not evidence for
-broad photo-album semantics, grouped-image continuation beyond the first
-downstream `page_image_v1` artifact, scanned or handwritten OCR quality
+`recipe-images-ocr-html-mvp.yaml` lane; the emitted
+`01_images_dir_to_manifest_v1/pages_images_manifest.jsonl` artifact recorded as
+`first_downstream_artifact`; the grouped `02_ocr_ai_gpt51_v1/pages_html.jsonl`
+artifact derived from the shared child run id; and an explicit blocked row for
+the unsupported member. The grouped continuation intentionally stops at
+`ocr_ai` on this probe, because the checked-in two-page image set does not
+claim the later table-rescue / TOC / HTML bundle surface. It is not evidence
+for broad photo-album semantics, grouped-image continuation beyond the first
+downstream `page_html_v1` artifact, scanned or handwritten OCR quality
 changes, nested archives, attachment extraction, or broad heterogeneous
 archive normalization.
 
@@ -755,12 +761,13 @@ Expected outputs:
 - `output/runs/<run_id>/01_archive_unpack_manifest_v1/archive_members_manifest.jsonl`
 - `output/runs/<run_id>/02_archive_route_members_v1/archive_member_routes.jsonl`
 - `output/runs/<group_run_id>/01_images_dir_to_manifest_v1/pages_images_manifest.jsonl`
+- `output/runs/<group_run_id>/02_ocr_ai_gpt51_v1/pages_html.jsonl`
 
 This bounded grouped-image continuation still sits outside the top-level
 recommendation-only contact-sheet benchmark and the approved-handoff
 automation surface. It starts from explicit `driver.py --recipe ... --input-zip`
 entry and proves only the grouped route bridge plus the first downstream
-stamped `page_image_v1` artifact.
+stamped `page_html_v1` artifact.
 
 ### Repo-Owned Mixed-Folder PDF-Member Approved-Handoff Launch Smoke
 
@@ -835,8 +842,8 @@ stage.
 Use this when you need a cheap real-run proof that the bounded direct-folder
 grouped image-member continuation emits grouped route rows for a shared-parent
 page set, launches exactly one source-native `--input-images` child run, and
-records the first downstream `page_image_v1` artifact while the unsupported
-`.txt` member still blocks explicitly:
+reaches the first grouped `page_html_v1` artifact while the unsupported `.txt`
+member still blocks explicitly:
 
 ```bash
 python -m pip install '.[driver]'
@@ -868,6 +875,9 @@ PY
 python validate_artifact.py \
   --schema page_image_v1 \
   --file output/runs/$GROUP_RUN_ID/01_images_dir_to_manifest_v1/pages_images_manifest.jsonl
+python validate_artifact.py \
+  --schema page_html_v1 \
+  --file output/runs/$GROUP_RUN_ID/02_ocr_ai_gpt51_v1/pages_html.jsonl
 ```
 
 Story 224 widened the same grouped-image seam to this checked-in
@@ -879,13 +889,16 @@ unsupported `.txt` member; a stamped member manifest that keeps
 rows with relative provenance plus shared `group_id`, `group_key`,
 `group_role`, `group_size`, `downstream_run_id`, and
 `first_downstream_artifact` fields; one grouped `--input-images` child run
-into the maintained `recipe-images-ocr-html-mvp.yaml` lane; and an explicit
-blocked row for the unsupported member. The grouped continuation
-intentionally stops at `images_to_manifest` on this probe, because the
-checked-in two-page image set does not claim the later OCR/TOC/HTML bundle
-surface. It is not evidence for broad photo-album semantics, grouped-image
-continuation beyond the first downstream `page_image_v1` artifact, scanned or
-handwritten OCR quality changes, nested archives, attachment extraction, or
+into the maintained `recipe-images-ocr-html-mvp.yaml` lane; the emitted
+`01_images_dir_to_manifest_v1/pages_images_manifest.jsonl` artifact recorded as
+`first_downstream_artifact`; the grouped `02_ocr_ai_gpt51_v1/pages_html.jsonl`
+artifact derived from the shared child run id; and an explicit blocked row for
+the unsupported member. The grouped continuation intentionally stops at
+`ocr_ai` on this probe, because the checked-in two-page image set does not
+claim the later table-rescue / TOC / HTML bundle surface. It is not evidence
+for broad photo-album semantics, grouped-image continuation beyond the first
+downstream `page_html_v1` artifact, scanned or handwritten OCR quality
+changes, nested archives, attachment extraction, or
 broad heterogeneous archive normalization.
 
 Expected outputs:
@@ -893,12 +906,13 @@ Expected outputs:
 - `output/runs/<run_id>/01_folder_members_manifest_v1/archive_members_manifest.jsonl`
 - `output/runs/<run_id>/02_archive_route_members_v1/archive_member_routes.jsonl`
 - `output/runs/<group_run_id>/01_images_dir_to_manifest_v1/pages_images_manifest.jsonl`
+- `output/runs/<group_run_id>/02_ocr_ai_gpt51_v1/pages_html.jsonl`
 
 This bounded grouped-image continuation still sits outside the top-level
 recommendation-only contact-sheet benchmark and the approved-handoff
 automation surface. It starts from explicit `driver.py --recipe ... --input-folder`
 entry and proves only the grouped route bridge plus the first downstream
-stamped `page_image_v1` artifact.
+stamped `page_html_v1` artifact.
 
 ### Repo-Owned Mixed-Folder Intake Smoke
 
@@ -941,7 +955,7 @@ born-digital PDF member, and Story 223 extends that same probe through a
 member-local approved-handoff launch into the maintained born-digital PDF
 recipe. Story 224 adds a third bounded direct-folder probe for one grouped
 page-image member set and extends that same route/module line through the
-first downstream `page_image_v1` artifact; scanned or handwritten PDF-member
+first downstream `page_html_v1` artifact; scanned or handwritten PDF-member
 launch, grouped-image continuation beyond that first artifact, nested
 archives, attachment extraction, and broad heterogeneous folder/archive
 normalization remain out of scope.
@@ -1023,8 +1037,8 @@ scripts/run_driver_monitored.sh \
 | `recipe-email-eml-html-mvp.yaml` | Maintained plain-text `.eml` structural bundle path for one verified single-message slice with pageless provenance. |
 | `recipe-email-mbox-html-mvp.yaml` | Maintained plain-text `.mbox` structural bundle path for one verified two-message archive slice with one HTML entry per message and pageless provenance. |
 | `recipe-epub-html-mvp.yaml` | Maintained EPUB structural bundle path for the verified bounded chapter-first prose slice with pageless provenance. |
-| `recipe-mixed-archive-zip-routing-mvp.yaml` | Maintained ZIP-only mixed-archive path that manifests archive members, routes supported members into existing direct-entry recipes, records blocked members explicitly, and includes bounded ZIP-only PDF-member and grouped image-member continuations on checked-in probes. |
-| `recipe-mixed-folder-routing-mvp.yaml` | Maintained source-native mixed-folder path that inventories bounded folder trees, routes supported members into existing direct-entry recipes, and records blocked members explicitly, including one direct-folder PDF-member approved-handoff launch continuation and one direct-folder grouped image-member first-artifact continuation. |
+| `recipe-mixed-archive-zip-routing-mvp.yaml` | Maintained ZIP-only mixed-archive path that manifests archive members, routes supported members into existing direct-entry recipes, records blocked members explicitly, and includes bounded ZIP-only PDF-member and grouped image-member OCR-boundary continuations on checked-in probes. |
+| `recipe-mixed-folder-routing-mvp.yaml` | Maintained source-native mixed-folder path that inventories bounded folder trees, routes supported members into existing direct-entry recipes, and records blocked members explicitly, including one direct-folder PDF-member approved-handoff launch continuation and one direct-folder grouped image-member OCR-boundary continuation. |
 | `recipe-pptx-html-mvp.yaml` | Maintained PPTX structural bundle path for the verified bounded slide slice: one HTML page per supported slide entry with slide-number provenance. |
 | `recipe-web-page-html-mvp.yaml` | Maintained checked-HTML web-page path for one repo-owned static snapshot that reuses the existing `page_html_v1` to `doc-web` chain. |
 | `recipe-xlsx-html-mvp.yaml` | Maintained XLSX structural bundle path for the verified simple-table slice: one HTML page per supported sheet/entry, including multiple table regions on one sheet, with anchor-based provenance. |

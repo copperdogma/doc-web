@@ -540,7 +540,7 @@
       "id": "mixed-archive",
       "format_family": "mixed-archive",
       "status": "passing",
-      "description": "Bounded ZIP archives or source-native folders routed by capability class: one generic direct-entry passthrough slice for already-supported member types, one PDF-member approved-handoff launch slice on ZIP and direct-folder entry, and one grouped image-member first-artifact slice on ZIP and direct-folder entry",
+      "description": "Bounded ZIP archives or source-native folders routed by capability class: one generic direct-entry passthrough slice for already-supported member types, one PDF-member approved-handoff launch slice on ZIP and direct-folder entry, and one grouped image-member OCR-boundary slice on ZIP and direct-folder entry",
       "pipeline_recipe": "recipe-mixed-archive-zip-routing-mvp.yaml / recipe-mixed-folder-routing-mvp.yaml",
       "intake_module": "archive_unpack_manifest_v1 or folder_members_manifest_v1 → archive_route_members_v1",
       "complexity": ["mixed-layout"],
@@ -561,7 +561,7 @@
           "id": "mixed-archive-images-mini",
           "source": "testdata/mixed-archive-images-mini.zip",
           "pages": 2,
-          "notes": "Supported on the first bounded ZIP-only grouped image-member continuation of the same mixed-input seam. Story 224 established one repo-owned three-member ZIP with two page images under `pages/` plus one intentionally unsupported `.txt` member. The lane emits archive/member manifest rows plus grouped member route rows with shared `group_id`, `group_key`, `group_role`, `group_size`, `launch_input_path`, `downstream_run_id`, and `first_downstream_artifact` fields, launches exactly one grouped `--input-images` child run into the maintained image-directory recipe, records the emitted `01_images_dir_to_manifest_v1/pages_images_manifest.jsonl` artifact, and preserves the explicit blocked `.txt` row."
+          "notes": "Supported on the first bounded ZIP-only grouped image-member OCR-boundary continuation of the same mixed-input seam. Story 224 established one repo-owned three-member ZIP with two page images under `pages/` plus one intentionally unsupported `.txt` member, launches exactly one grouped `--input-images` child run into the maintained image-directory recipe, records the emitted `01_images_dir_to_manifest_v1/pages_images_manifest.jsonl` artifact as `first_downstream_artifact`, reaches `02_ocr_ai_gpt51_v1/pages_html.jsonl` under the shared grouped child run id, and preserves the explicit blocked `.txt` row. The route rows keep shared `group_id`, `group_key`, `group_role`, `group_size`, `launch_input_path`, and `downstream_run_id` provenance across the grouped members."
         },
         {
           "id": "mixed-folder-mini",
@@ -579,14 +579,14 @@
           "id": "mixed-folder-images-mini",
           "source": "testdata/mixed-folder-images-mini",
           "pages": 2,
-          "notes": "Supported on the first bounded direct-folder grouped image-member continuation of the same mixed-input seam. Story 224 widened the grouped-image proof to one repo-owned three-member source-native folder tree with two page images under `pages/` plus one intentionally unsupported `.txt` member. The lane emits source-native archive/member manifest rows plus grouped member route rows with shared `group_id`, `group_key`, `group_role`, `group_size`, `launch_input_path`, `downstream_run_id`, and `first_downstream_artifact` fields, launches exactly one grouped `--input-images` child run into the maintained image-directory recipe from the source-native `pages/` directory, records the emitted `01_images_dir_to_manifest_v1/pages_images_manifest.jsonl` artifact, and preserves the explicit blocked `.txt` row."
+          "notes": "Supported on the first bounded direct-folder grouped image-member OCR-boundary continuation of the same mixed-input seam. Story 224 widened the grouped-image proof to one repo-owned three-member source-native folder tree with two page images under `pages/` plus one intentionally unsupported `.txt` member. The lane emits source-native archive/member manifest rows plus grouped member route rows with shared `group_id`, `group_key`, `group_role`, `group_size`, `launch_input_path`, `downstream_run_id`, and `first_downstream_artifact` fields, launches exactly one grouped `--input-images` child run into the maintained image-directory recipe from the source-native `pages/` directory, reaches `02_ocr_ai_gpt51_v1/pages_html.jsonl` under the shared grouped child run id, and preserves the explicit blocked `.txt` row."
         }
       ],
       "scores": null,
       "known_gaps": [
-        "Passing evidence is still bounded to six checked-in probes covering three behavior classes: direct-entry passthrough on one ZIP and one source-native folder mix, PDF-member approved-handoff launch on one ZIP and one source-native folder mix, and grouped image-member first-artifact continuation on one ZIP mix plus one source-native folder mix.",
+        "Passing evidence is still bounded to six checked-in probes covering three behavior classes: direct-entry passthrough on one ZIP and one source-native folder mix, PDF-member approved-handoff launch on one ZIP and one source-native folder mix, and grouped image-member OCR-boundary continuation on one ZIP mix plus one source-native folder mix.",
         "This row models routing/continuation classes rather than every `supported member type × container` permutation. Already-supported direct-entry member types belong to the generic passthrough class unless the container changes routing, provenance, downstream artifact shape, or validation boundaries.",
-        "The maintained lane does not yet claim scanned or handwritten PDF-member launch parity, grouped-image continuation beyond the first downstream `page_image_v1` artifact, nested archives, attachment extraction, ambiguous AI-assisted route decisions, or broad heterogeneous archive ownership.",
+        "The maintained lane does not yet claim scanned or handwritten PDF-member launch parity, grouped-image continuation beyond the first downstream `page_html_v1` artifact, nested archives, attachment extraction, ambiguous AI-assisted route decisions, or broad heterogeneous archive ownership.",
         "Mixed-archive provenance currently relies on relative `member_path` / `member_id`, source-native or extracted member file paths depending on the entry surface, and downstream run ids or artifact paths; it does not flatten members into one combined bundle or claim archive-level page anchors."
       ],
       "graduated": false

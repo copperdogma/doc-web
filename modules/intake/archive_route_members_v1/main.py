@@ -49,6 +49,11 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--out", default=DEFAULT_OUT, help="Output route artifact path")
     parser.add_argument("--downstream-end-at", dest="downstream_end_at", default=None)
     parser.add_argument(
+        "--grouped-image-downstream-end-at",
+        dest="grouped_image_downstream_end_at",
+        default=None,
+    )
+    parser.add_argument(
         "--pdf-member-handoff-mode",
         dest="pdf_member_handoff_mode",
         default="recommendation_only",
@@ -236,7 +241,11 @@ def _route_grouped_image_members(
         GROUPED_IMAGE_RECIPE,
         f"{args.run_id or 'mixed-archive'}-{primary_member_id}-grouped",
     )
-    grouped_image_end_at = args.downstream_end_at or "images_to_manifest"
+    grouped_image_end_at = (
+        args.grouped_image_downstream_end_at
+        or args.downstream_end_at
+        or "images_to_manifest"
+    )
     downstream_output_dir = output_root / downstream_run_id
     first_downstream_artifact = _downstream_artifact(
         output_root,
