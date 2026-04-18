@@ -94,6 +94,7 @@ Grouped by primary `spec:N` category. Stories without category refs remain in an
 | 216 | Refresh LOC George Washington Benchmark Proof and Bounded Stronger-Model Screen | High | Done | 214 | [story-216](stories/story-216-refresh-loc-gw-benchmark-proof-and-stronger-model-screen.md) |
 | 217 | Probe Receipt-Only Image-Entry Rescue on LOC Asset 367466 | High | Done | 216 | [story-217](stories/story-217-loc-gw-receipt-only-image-entry-rescue-probe.md) |
 | 220 | Repair Onward Genealogy Row-Semantic Note Placement | High | Done | 206 | [story-220](stories/story-220-onward-genealogy-row-semantic-note-placement.md) |
+| 225 | Establish a Bounded Digital Peter Historical-Handwriting Benchmark Slice | High | Done | 212 | [story-225](stories/story-225-digital-peter-historical-handwriting-benchmark-slice.md) |
 
 ### spec:3 — Layout & Structure Understanding
 

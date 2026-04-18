@@ -217,7 +217,8 @@
           "216",
           "217",
           "219",
-          "220"
+          "220",
+          "225"
         ],
         "adr_ids": [
           "ADR-001",
@@ -560,7 +561,8 @@
           "221",
           "222",
           "223",
-          "224"
+          "224",
+          "225"
         ],
         "adr_ids": [
           "ADR-002"
@@ -798,7 +800,8 @@
           "216",
           "217",
           "219",
-          "220"
+          "220",
+          "225"
         ],
         "eval_ids": [
           "ocr-model-genealogy",
@@ -866,7 +869,8 @@
             "216",
             "217",
             "219",
-            "220"
+            "220",
+            "225"
           ],
           "eval_ids": [
             "ocr-model-genealogy",
@@ -1280,7 +1284,8 @@
           "214",
           "215",
           "216",
-          "217"
+          "217",
+          "225"
         ],
         "eval_ids": [],
         "actionability": {
@@ -1335,7 +1340,8 @@
             "214",
             "215",
             "216",
-            "217"
+            "217",
+            "225"
           ],
           "eval_ids": []
         }
@@ -12313,6 +12319,71 @@
           "source_type": "story-work-log",
           "source": "docs/stories/story-224-mixed-archive-grouped-image-member-routing-seam.md",
           "summary": "mark-story-done close-out: validated Story 224 complete and"
+        }
+      }
+    },
+    {
+      "id": "225",
+      "title": "Establish a Bounded Digital Peter Historical-Handwriting Benchmark Slice",
+      "path": "docs/stories/story-225-digital-peter-historical-handwriting-benchmark-slice.md",
+      "status": "Done",
+      "priority": "High",
+      "ideal_refs": [
+        "Requirement #2 (Detect), Requirement #3 (Extract), Requirement #6 (Validate), Any format, any condition, Fidelity to the source, Traceability is the product"
+      ],
+      "spec_refs": [
+        "spec:2",
+        "spec:2.1",
+        "spec:2.2",
+        "spec:8"
+      ],
+      "decision_refs": [
+        "`docs/ideal.md`, `docs/spec.md`, `docs/methodology/state.yaml`, `docs/methodology/graph.json`, `docs/evals/README.md`, `docs/evals/registry.yaml`, `docs/scout/scout-014-degraded-handwriting-eval-sources.md`, `tests/fixtures/formats/_coverage-matrix.json`, `docs/stories/story-191-finish-real-handwritten-ocr-on-the-loc-fixture-pair.md`, `docs/stories/story-212-diem-htr-historical-handwriting-benchmark-slice.md`, `docs/stories/story-215-washington-database-english-longhand-benchmark-slice.md`, `docs/stories/story-217-loc-gw-receipt-only-image-entry-rescue-probe.md`, and `None found after search in docs/decisions/`, `docs/runbooks/`, `docs/scout/`, and `docs/notes/` for a narrower ADR or runbook governing Digital Peter benchmark adoption beyond Scout 014 and the recent handwritten story chain"
+      ],
+      "adr_ids": [],
+      "depends_on": [
+        "212"
+      ],
+      "category_refs": [
+        "spec:2",
+        "spec:8"
+      ],
+      "compromise_refs": [
+        "B1",
+        "C1"
+      ],
+      "input_coverage_refs": [
+        "handwritten-notes"
+      ],
+      "architecture_domains": [
+        "ocr_and_extraction"
+      ],
+      "roadmap_tags": [
+        "campaign:maintained-intake-honesty"
+      ],
+      "blocker_summary": "",
+      "blocker_evidence": "",
+      "unblock_condition": "",
+      "last_work_log_entry": {
+        "timestamp": "20260417-2205",
+        "date": "2026-04-17",
+        "summary": "`/mark-story-done` close-out: revalidated Story 225 against `docs/ideal.md`, `spec:2`, `spec:8`, the current handwritten story chain, and the bounded Digital Peter artifacts before closing it. Fresh close-out evidence..."
+      },
+      "legacy_build_map_refs": "",
+      "metadata_source": "frontmatter",
+      "missing_frontmatter_keys": [],
+      "actionability": {
+        "source_kind": "story",
+        "source_id": "225",
+        "source_path": "docs/stories/story-225-digital-peter-historical-handwriting-benchmark-slice.md",
+        "recommended_now": false,
+        "posture": "completed",
+        "why_now": "`/mark-story-done` close-out: revalidated Story 225 against `docs/ideal.md`, `spec:2`, `spec:8`, the current handwritten story chain, and the bounded Digital Peter artifacts before closing it. Fresh close-out evidence...",
+        "last_relevant_action": {
+          "date": "2026-04-17",
+          "source_type": "story-work-log",
+          "source": "docs/stories/story-225-digital-peter-historical-handwriting-benchmark-slice.md",
+          "summary": "`/mark-story-done` close-out: revalidated Story 225 against `docs/ideal.md`, `spec:2`, `spec:8`, the current handwritten story chain, and the bounded Digital Peter artifacts before closing it. Fresh close-out evidence..."
         }
       }
     }

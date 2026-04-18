@@ -1,3 +1,11 @@
+## [2026-04-17-02] - Land Digital Peter comparison benchmark close-out (Story 225)
+
+### Added
+- Added a bounded Digital Peter historical-handwriting comparison record with explicit slice IDs, annotation-derived truth reconstruction, and inspected benchmark summaries that keep the corpus as comparison-only evidence rather than an implicit maintained eval lane
+
+### Changed
+- Changed Story 225 and the generated methodology views so the handwritten backlog now records the Digital Peter result as completed negative benchmark evidence, with Story 215 remaining the only named follow-up if lawful Washington access appears
+
 ## [2026-04-17-01] - Land grouped mixed-input image parity and packaging guidance (Story 224)
 
 ### Added
