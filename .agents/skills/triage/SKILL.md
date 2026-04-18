@@ -16,6 +16,8 @@ Important is not enough by itself. `/triage` must answer both:
 
 - what gap matters most?
 - why is this the right thing to do now?
+- how close is the repo to the Ideal on today's technology, not just against
+  the literal north-star?
 
 A primary gap can stay primary while still being the wrong recommended action
 if nothing materially changed since the last attempt, recommendation, or
@@ -109,7 +111,19 @@ When invoked with no scope:
    falsifiable next move, that is enough unless recent evidence says the same
    move is currently blocked, exhausted, or not worth repeating.
 
-6. **Synthesize one cross-domain recommendation**
+6. **Calibrate against the Ideal**
+   - Add one short section that answers "how are we doing vs the Ideal?"
+   - Keep this grounded in current repo evidence, not vibes
+   - Distinguish:
+     - literal north-star distance
+     - current-tech progress
+   - Keep it compact and decision-useful:
+     - where the repo is already strong
+     - where the biggest remaining gap still blocks a stronger "close to the
+       Ideal" claim
+     - whether the line of travel is improving, stalled, or blocked
+
+7. **Synthesize one cross-domain recommendation**
    Rank the problem first, then choose the vehicle that best advances it
    (continue an active story, expand/reopen a story, create a story, run an
    eval, do architecture work, or no-op).
@@ -152,7 +166,7 @@ When invoked with no scope:
    next turn. A bare `yes` from the user should be enough to authorize that one
    action without needing a follow-up clarification.
 
-7. **Return the compact report**
+8. **Return the compact report**
 
 ```markdown
 ## Triage
@@ -161,6 +175,11 @@ When invoked with no scope:
 - Last relevant action: {date + story/eval/artifact}
 - Why now: {materially new trigger or "none"}
 - If "none": {why the primary gap is not the recommended action today}
+
+### Vs Ideal
+- Literal north-star: {how far the repo still is from the true Ideal}
+- Current-tech read: {how close the repo is to a strong present-day version of the Ideal}
+- Direction: {getting closer | mixed | stalled | blocked} — {why}
 
 ### Recommended Action
 - {one next action}
@@ -190,6 +209,7 @@ When invoked with no scope:
 - Full-sweep mode is read-only.
 - Use parallel leaf sweeps when feasible.
 - Return one recommendation, not a vague list.
+- Always include a short `Vs Ideal` read in full-sweep mode.
 - End with a clear acceptance prompt that the user can approve with `yes`.
 - Respect leaf-skill boundaries: `/triage inbox` may modify files; unscoped
   `/triage` may not.
