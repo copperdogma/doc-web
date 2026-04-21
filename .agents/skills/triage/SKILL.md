@@ -65,6 +65,12 @@ When invoked with no scope:
      `Pending` or `recommended_now` story can still be the wrong vehicle if it
      is a same-line fragment.
    - `tests/fixtures/formats/_coverage-matrix.json`
+   - codebase-improvement freshness:
+     - inspect `memory/codebase-improvement-state.yaml` when present
+     - otherwise inspect the latest report under `docs/reports/codebase-improvement/`
+     - treat the lane as `never` when neither exists
+     - compare the last broad scout pass against recent source churn in active
+       code roots before declaring the repo effectively settled
    - relevant ADRs under `docs/decisions/`
    - recent `git log --oneline -20`
 
@@ -126,7 +132,7 @@ When invoked with no scope:
 7. **Synthesize one cross-domain recommendation**
    Rank the problem first, then choose the vehicle that best advances it
    (continue an active story, expand/reopen a story, create a story, run an
-   eval, do architecture work, or no-op).
+   eval, do architecture work, run `/codebase-improvement-scout`, or no-op).
 
    Before recommending `create a story`, challenge that choice against the last
    2-4 stories on the same problem line. If the delta is mostly entry-form
@@ -151,6 +157,17 @@ When invoked with no scope:
    - urgency / staleness
    - operator cost
    - existing story shells only as packaging / tie-break context, not as value by themselves
+
+   Treat codebase-improvement scouting as a real low-priority pressure signal:
+   inspect the last report/state and answer:
+   - when was the last broad codebase-improvement scout?
+   - was it a real repo sweep or only a narrow one-off pass?
+   - how much meaningful source churn landed since then?
+   - did the last scout leave an unresolved recommended next step or story candidate?
+
+   If the lane has never run, is stale, or recent source churn has clearly
+   outpaced the last broad pass, recommend `/codebase-improvement-scout` over
+   `no-op` unless a stronger actionable line clearly wins.
 
    If the strongest problem line is explicitly `Blocked`, verify whether its
    unblock condition is actually met in the current pass. If not, surface that
@@ -195,6 +212,7 @@ When invoked with no scope:
 - Stories: {summary}
 - Inbox: {summary}
 - Evals: {summary}
+- Codebase improvement: {last broad scout, freshness vs recent churn, and whether a hygiene pass is due}
 
 ### Health Flags
 - {blocked story / stale inbox / stale eval / pending ADR}
@@ -224,6 +242,11 @@ When invoked with no scope:
 - A primary gap with no materially new trigger may stay primary, but it should
   usually move to `Health Flags` or `Runner-Ups` rather than become the
   recommended action.
+- Do not treat any codebase-improvement artifact as fresh automatically; check
+  whether it was a broad repo sweep or only a narrow one-off pass.
+- Do not recommend `no-op` while the codebase-improvement lane is missing or
+  stale after meaningful recent source churn unless a stronger actionable line
+  clearly outranks it.
 - Do not recommend a new story for same-line entry-form parity, same-line
   later-state progression, or tests/docs/truth-surface codification on current
   behavior unless the repo evidence shows that the runtime seam or validation
