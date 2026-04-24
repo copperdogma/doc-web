@@ -52,3 +52,5 @@
 - [ ] Skill sync check completed (`scripts/sync-agent-skills.sh --check`)
 - [ ] Eval-surface audit completed
 - [ ] Methodology alignment sweep completed
+- [ ] Ideal/spec intake or local equivalent confirmed before setup creates generic placeholders
+- [ ] Eval ladder represented: root/parent evals, measured failure modes, child evals, and owning stories where applicable

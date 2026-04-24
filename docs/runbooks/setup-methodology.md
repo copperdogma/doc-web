@@ -66,6 +66,16 @@ Modes:
 For new evals, follow the manual scaffolding and registry protocol in
 `docs/evals/README.md` until a dedicated eval-creation skill exists.
 
+## Intake and Eval-Ladder Preflight
+
+Before installing or refreshing setup surfaces, confirm `docs/ideal.md` and
+`docs/spec.md` are real project-specific artifacts. If they are missing or too
+generic, recover the document-pipeline intent from existing code, docs, evals,
+and user conversation before setup creates generic placeholders. For AI or
+format-capability areas, preserve the root/parent/child eval ladder: root eval
+or explicit deferral, parent failure, measured failure mode, child eval when
+needed, and owning story only after the next ladder node is clear.
+
 ## What `/setup-methodology` Installs or Refreshes
 
 - `docs/methodology-ideal-spec-compromise.md`
