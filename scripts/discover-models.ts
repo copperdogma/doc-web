@@ -321,9 +321,9 @@ function printSummary(results: ProviderResult[], tested: Set<string>) {
 // ── Main ─────────────────────────────────────────────────────────────────────
 
 const PROVIDERS = [
-  { key: "openai", envKey: "OPENAI_API_KEY", display: "OpenAI", query: queryOpenAI },
-  { key: "anthropic", envKey: "ANTHROPIC_API_KEY", display: "Anthropic", query: queryAnthropic },
-  { key: "google", envKey: "GEMINI_API_KEY", display: "Google (Gemini)", query: queryGoogle },
+  { key: "openai", envKey: "DOC_WEB_OPENAI_API_KEY", display: "OpenAI", query: queryOpenAI },
+  { key: "anthropic", envKey: "DOC_WEB_ANTHROPIC_API_KEY", display: "Anthropic", query: queryAnthropic },
+  { key: "google", envKey: "DOC_WEB_GEMINI_API_KEY", display: "Google (Gemini)", query: queryGoogle },
 ] as const;
 
 async function main() {

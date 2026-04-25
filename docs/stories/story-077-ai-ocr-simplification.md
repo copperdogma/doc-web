@@ -329,7 +329,7 @@ Return your findings in a concise, structured report suitable for engineering de
 
 ### 20251220-0008 — Added Gemini OCR bench script; run blocked by quota
 - **Result:** Blocked; Gemini API calls failed with 429 RESOURCE_EXHAUSTED (free-tier quota 0 for gemini-2.0-flash).
-- **Notes:** Added `scripts/ocr_bench_gemini_ocr.py` to run Gemini OCR with minimal HTML prompt and sanitization; uses `GEMINI_API_KEY`/`GOOGLE_API_KEY`. First call for `page-004L.png` failed due to quota.
+- **Notes:** Added `scripts/ocr_bench_gemini_ocr.py` to run Gemini OCR with minimal HTML prompt and sanitization; use `DOC_WEB_GEMINI_API_KEY` through the repo env wrapper. First call for `page-004L.png` failed due to quota.
 - **Next:** Confirm paid/billed Gemini API key or project (non‑free tier), then rerun `scripts/ocr_bench_gemini_ocr.py` to generate outputs and diff summary.
 
 ### 20251220-0011 — Gemini OCR retry after billing

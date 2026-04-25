@@ -20,6 +20,10 @@ import sys
 from datetime import datetime, timezone
 from pathlib import Path
 
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+
+from doc_web.env import build_doc_web_env
+
 try:
     import httpx
 except ImportError:
@@ -99,22 +103,22 @@ def classify_tier(model_id: str) -> str:
 
 PROVIDERS = {
     "openai": {
-        "env_key": "OPENAI_API_KEY",
+        "env_key": "DOC_WEB_OPENAI_API_KEY",
         "display": "OpenAI",
         "setup_url": "https://platform.openai.com/api-keys",
-        "setup_hint": "export OPENAI_API_KEY='sk-...'",
+        "setup_hint": "set DOC_WEB_OPENAI_API_KEY in .env",
     },
     "anthropic": {
-        "env_key": "ANTHROPIC_API_KEY",
+        "env_key": "DOC_WEB_ANTHROPIC_API_KEY",
         "display": "Anthropic",
         "setup_url": "https://console.anthropic.com/settings/keys",
-        "setup_hint": "export ANTHROPIC_API_KEY='sk-ant-...'",
+        "setup_hint": "set DOC_WEB_ANTHROPIC_API_KEY in .env",
     },
     "google": {
-        "env_key": "GEMINI_API_KEY",
+        "env_key": "DOC_WEB_GEMINI_API_KEY",
         "display": "Google (Gemini)",
         "setup_url": "https://aistudio.google.com/app/apikey",
-        "setup_hint": "export GEMINI_API_KEY='AI...'",
+        "setup_hint": "set DOC_WEB_GEMINI_API_KEY in .env",
     },
 }
 
@@ -450,6 +454,7 @@ def newest_model_in_tier(models: list[dict]) -> str | None:
 
 def format_text_report(results: dict, registry_models: set[str] | None = None) -> str:
     """Human-readable text report."""
+    env = build_doc_web_env()
     lines = []
     lines.append("=" * 60)
     lines.append("  AI Model Discovery Report")
@@ -458,7 +463,7 @@ def format_text_report(results: dict, registry_models: set[str] | None = None) -
 
     lines.append("\n## API Key Status\n")
     for provider_id, provider in PROVIDERS.items():
-        key = os.environ.get(provider["env_key"], "")
+        key = env.get(provider["env_key"], "")
         status = "SET" if key else "NOT SET"
         icon = "+" if key else "-"
         lines.append(
@@ -514,13 +519,14 @@ def format_text_report(results: dict, registry_models: set[str] | None = None) -
 
 def format_yaml_report(results: dict) -> str:
     """Machine-readable YAML report."""
+    env = build_doc_web_env()
     report = {
         "discovered": datetime.now(tz=timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
         "providers": {},
     }
 
     for provider_id in PROVIDERS:
-        key_set = bool(os.environ.get(PROVIDERS[provider_id]["env_key"], ""))
+        key_set = bool(env.get(PROVIDERS[provider_id]["env_key"], ""))
         models = results.get(provider_id)
         entry = {
             "api_key_set": key_set,
@@ -613,9 +619,10 @@ def format_summary_report(results: dict, registry_models: set[str] | None = None
 
 def discover_models() -> dict:
     """Query all configured providers and return results."""
+    env = build_doc_web_env()
     results = {}
     for provider_id, provider in PROVIDERS.items():
-        api_key = os.environ.get(provider["env_key"], "")
+        api_key = env.get(provider["env_key"], "")
         if not api_key:
             results[provider_id] = None
             continue

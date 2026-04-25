@@ -7,7 +7,9 @@ surfaces.
 
 - promptfoo installed (`npm install -g promptfoo`)
 - API keys for the provider/model slice you are running. The current maintained
-  dedicated C5-linked command uses `GEMINI_API_KEY`.
+  crop-only C5 command uses `DOC_WEB_GEMINI_API_KEY`, and the current
+  page-context C5 deletion gate uses `DOC_WEB_OPENAI_API_KEY`, both through
+  `scripts/run_with_doc_web_env.py`.
 - Checked-in local crop benchmark fixtures under:
   - `benchmarks/input/source-pages-b64/`
   - `benchmarks/input/crop-validation-b64/`
@@ -30,14 +32,15 @@ cd benchmarks && promptfoo eval -c tasks/crop-validation.yaml --no-cache \
   -j 1
 
 # Page-context deletion gate for the maintained runtime overlap corpus
-cd benchmarks && promptfoo eval -c tasks/crop-page-level-deletion-gate.yaml --no-cache \
-  --output results/story209-crop-page-level-deletion-gate-g31-page-context-v2.json \
+cd benchmarks && ../scripts/run_with_doc_web_env.py promptfoo eval \
+  -c tasks/crop-page-level-deletion-gate.yaml --no-cache \
+  --output results/crop-page-level-deletion-gate-gpt55-responses-current-20260424.json \
   -j 1
 
 # Clean-checkout smoke checks
-cd benchmarks && promptfoo eval -c tasks/image-crop-extraction.yaml --no-cache --filter-first-n 1 -j 1 --no-write
-cd benchmarks && promptfoo eval -c tasks/crop-validation.yaml --no-cache --filter-first-n 1 -j 1 --no-write
-cd benchmarks && promptfoo eval -c tasks/crop-page-level-deletion-gate.yaml --no-cache --filter-first-n 1 -j 1 --no-write
+cd benchmarks && ../scripts/run_with_doc_web_env.py promptfoo eval -c tasks/image-crop-extraction.yaml --no-cache --filter-first-n 1 -j 1 --no-write
+cd benchmarks && ../scripts/run_with_doc_web_env.py promptfoo eval -c tasks/crop-validation.yaml --no-cache --filter-first-n 1 -j 1 --no-write
+cd benchmarks && ../scripts/run_with_doc_web_env.py promptfoo eval -c tasks/crop-page-level-deletion-gate.yaml --no-cache --filter-first-n 1 -j 1 --no-write
 ```
 
 View results: `promptfoo view`
@@ -59,8 +62,8 @@ View results: `promptfoo view`
   the certificate/seal crop on page 12 and duplicated nearby text in the final
   HTML.
 - **Current dedicated C5-linked score**: `crop-validation` is `1.0` overall / `1.0` pass rate on the checked-in 40-crop corpus (Gemini 3.1 Flash Lite + `caption-focus`, measured 2026-04-11)
-- **Current page-context C5 deletion-gate score**: `crop-page-level-deletion-gate` is `1.0` overall / `1.0` pass rate on the checked-in `22`-case overlap corpus (Gemini 3.1 Flash Lite + `page-context`, measured 2026-04-11; tracked proof note: `docs/evals/attempts/002-crop-page-level-deletion-gate-story209-proof.md`)
-- **Current C5 decision**: residue is still required. The page-context corpus still contains `4` explicit fail-labeled current-runtime cases (`page-018-000`, `page-092-000`, `page-122-000`, `page-126-000`), so `trim_layout_text` and bounded caption assist do not have an honest deletion proof yet.
+- **Current page-context C5 deletion-gate score**: `crop-page-level-deletion-gate` is `1.0` overall / `1.0` pass rate on the checked-in `22`-case overlap corpus with GPT-5.5 Responses + `page-context` promptfix, measured 2026-04-24 on the corrected golden. The previous Gemini 3.1 Flash Lite `22/22` result is stale after the `page-122-001` golden correction; the fresh Gemini rerun is `21/22`.
+- **Current C5 decision**: residue is still required. The page-context corpus still contains `5` explicit fail-labeled current-runtime cases (`page-018-000`, `page-092-000`, `page-122-000`, `page-122-001`, `page-126-000`), so `trim_layout_text` and bounded caption assist do not have an honest deletion proof yet.
 - **Spec compromises**:
   - `C4` — Two-Stage Image Crop Detection
   - `C5` — Layout Text Trim Heuristics for Crops

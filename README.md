@@ -527,10 +527,15 @@ The active repo path is format-aware intake plus structural website output for
 - The fuller repo runtime from `requirements.txt` now also includes DOCX, EPUB, XLSX, and PPTX support, but it is currently validated on Python 3.11/3.12 because the pinned `unstructured==0.16.9` line is limited to that range.
 
 ### API Keys
-Set the following environment variables:
-- `OPENAI_API_KEY`: For GPT-4/5 models.
-- `GEMINI_API_KEY`: For Google Gemini models.
-- `ANTHROPIC_API_KEY`: For Claude models (benchmarking/judging).
+For repo-local runs, put app-scoped keys in `.env`:
+- `DOC_WEB_OPENAI_API_KEY`: For GPT-4/5 models.
+- `DOC_WEB_GEMINI_API_KEY`: For Google Gemini models.
+- `DOC_WEB_ANTHROPIC_API_KEY`: For Claude models (benchmarking/judging).
+
+Run provider-backed commands through `scripts/run_with_doc_web_env.py`; it maps
+the local names to provider-standard child-process names only for that command.
+Library callers should pass explicit clients or config instead of depending on
+doc-web-specific env names.
 
 ### Legacy Environment (Unstructured/EasyOCR)
 If using the deprecated legacy pipeline with local OCR:

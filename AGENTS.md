@@ -322,7 +322,7 @@ Avoid manual text edits; use this loop to stay generic, reproducible, and format
 - Legacy recipes in `configs/recipes/legacy/` — preserved for reference, not active use.
 
 ## Models / Dependencies
-- OpenAI API (set `OPENAI_API_KEY`).
+- OpenAI API (set `DOC_WEB_OPENAI_API_KEY` in the repo-local `.env`).
 - Tesseract on PATH (or set `paths.tesseract_cmd`).
 - **Model Selection Guidelines**:
   - **For maximum intelligence/complex reasoning**: Use `gpt-5` (or latest flagship model)
@@ -347,7 +347,11 @@ We use [promptfoo](https://www.promptfoo.dev/) for evaluating AI model/prompt qu
 - **Node.js 22+** (24 LTS recommended). Promptfoo requires Node 22+. Installed via nvm.
 - **promptfoo** installed globally: `npm install -g promptfoo` (v0.120.24+).
 - Shell sessions need nvm loaded: `source ~/.nvm/nvm.sh && nvm use 24`.
-- API keys: `OPENAI_API_KEY`, `ANTHROPIC_API_KEY`, and `GEMINI_API_KEY` must be set.
+- API keys: prefer repo-local `.env` keys `DOC_WEB_OPENAI_API_KEY`,
+  `DOC_WEB_ANTHROPIC_API_KEY`, and `DOC_WEB_GEMINI_API_KEY`, then run
+  provider-backed benchmark commands through `scripts/run_with_doc_web_env.py`.
+  The wrapper maps those names to provider-standard names only for the child
+  process.
 - If you want a freshness delay for the global `promptfoo` install, configure it at the user level (`~/.npmrc`). npm added `min-release-age` in `11.10.0`; a repo-local file cannot reliably enforce it for global installs.
 
 ### Workspace Structure
@@ -368,10 +372,10 @@ benchmarks/
 source ~/.nvm/nvm.sh && nvm use 24 > /dev/null 2>&1
 
 # Run a benchmark (no cache for reproducibility)
-promptfoo eval -c tasks/image-crop-extraction.yaml --no-cache -j 3
+../scripts/run_with_doc_web_env.py promptfoo eval -c tasks/image-crop-extraction.yaml --no-cache -j 3
 
 # Save results to file
-promptfoo eval -c tasks/image-crop-extraction.yaml --no-cache --output results/run-name.json
+../scripts/run_with_doc_web_env.py promptfoo eval -c tasks/image-crop-extraction.yaml --no-cache --output results/run-name.json
 
 # View results in web UI
 promptfoo view
@@ -382,7 +386,7 @@ promptfoo eval -c tasks/image-crop-extraction.yaml --grader anthropic:messages:c
 
 ### Judge / Grader Model
 
-**Default**: promptfoo uses `gpt-5` (OpenAI) for `llm-rubric` assertions when `OPENAI_API_KEY` is set.
+**Default**: promptfoo uses `gpt-5` (OpenAI) for `llm-rubric` assertions when the OpenAI key is mapped by `scripts/run_with_doc_web_env.py`.
 
 **Our standard**: Use **`claude-opus-4-6`** as the judge for all evals. Rationale:
 - The judge must be at least as capable as the models being tested.
@@ -395,7 +399,7 @@ defaultTest:
     provider: anthropic:messages:claude-opus-4-6
 ```
 
-**Provider prefixes**: `openai:`, `anthropic:messages:`, `google:` (uses `GEMINI_API_KEY`).
+**Provider prefixes**: `openai:`, `anthropic:messages:`, `google:` (use `scripts/run_with_doc_web_env.py` to map the corresponding `DOC_WEB_*` key).
 
 ### Python Scorer Interface
 

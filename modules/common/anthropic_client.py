@@ -7,9 +7,9 @@ logs token usage via log_llm_usage().
 from __future__ import annotations
 
 import base64
-import os
 from typing import Any, Optional, Tuple
 
+from doc_web.env import get_doc_web_api_key
 from modules.common.utils import log_llm_usage
 
 try:
@@ -40,10 +40,10 @@ class AnthropicVisionClient:
             raise RuntimeError(
                 "anthropic package not installed; pip install anthropic"
             ) from _ANTHROPIC_IMPORT_ERROR
-        self._api_key = api_key or os.environ.get("ANTHROPIC_API_KEY")
+        self._api_key = api_key or get_doc_web_api_key("anthropic")
         if not self._api_key:
             raise RuntimeError(
-                "ANTHROPIC_API_KEY must be set in the environment"
+                "DOC_WEB_ANTHROPIC_API_KEY must be set in the environment"
             )
         self._client = anthropic.Anthropic(api_key=self._api_key)
 

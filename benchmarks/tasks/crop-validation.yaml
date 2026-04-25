@@ -17,6 +17,22 @@ prompts:
 
 # Vision models — Gemini 3 Pro daily quota exhausted, using Flash + 2.5 Pro for now
 providers:
+  - id: openai:chat:gpt-5.5
+    label: "GPT-5.5"
+    config:
+      temperature: 0
+      max_tokens: 2048
+  - id: openai:responses:gpt-5.5
+    label: "GPT-5.5 Responses"
+    config:
+      reasoning_effort: none
+      max_output_tokens: 2048
+  - id: openai:responses:gpt-5.5-pro
+    label: "GPT-5.5 Pro Responses"
+    config:
+      reasoning_effort: medium
+      verbosity: low
+      max_output_tokens: 1024
   - id: openai:chat:gpt-5.3-chat-latest
     label: "GPT-5.3 Instant"
     config:

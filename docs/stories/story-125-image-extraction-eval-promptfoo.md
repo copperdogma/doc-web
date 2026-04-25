@@ -162,7 +162,7 @@ The scorer will measure multiple dimensions with weights:
 
 ## Prerequisites
 - **Node.js 22+** and **promptfoo** installed globally (`npm install -g promptfoo`).
-- **API keys**: `OPENAI_API_KEY`, `ANTHROPIC_API_KEY`, `GEMINI_API_KEY`.
+- **API keys**: `DOC_WEB_OPENAI_API_KEY`, `DOC_WEB_ANTHROPIC_API_KEY`, `DOC_WEB_GEMINI_API_KEY`.
 - Follow cine-forge `AGENTS.md` promptfoo section for setup guidance.
 
 ## Open Questions
@@ -182,7 +182,7 @@ After this story is done, **return to Story 026** to:
 ### 20260216b — Full eval run completed
 
 - Fixed Anthropic prompt format: promptfoo sends raw prompts as-is, so Anthropic's `type: "image"` format needed provider-specific JS prompt functions
-- Fixed Google API key: GEMINI_API_KEY was in .zshrc but not available in bash shell where promptfoo runs
+- Fixed Google API key: Gemini key was in .zshrc but not available in bash shell where promptfoo runs; current workflow uses repo `.env` plus `scripts/run_with_doc_web_env.py`
 - Created shared JS prompt helper (`_image-helpers.js`) that adapts image content blocks per provider (OpenAI `image_url`, Anthropic `image` with base64 source, Google `inlineData`)
 - Full eval: 12 models x 3 prompts x 13 images = 468 calls, 0 errors
 - Results: 223 passed, 245 failed (47.65% pass rate)

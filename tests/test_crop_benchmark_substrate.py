@@ -96,3 +96,15 @@ def test_crop_page_level_deletion_gate_assets_exist_and_match_golden_keys():
 
     assert len(seen_keys) == len(set(seen_keys)), f"{task_name}: duplicate crop keys"
     assert sorted(seen_keys) == golden_keys
+
+
+def test_crop_page_level_deletion_gate_uses_current_winner():
+    task_name = "crop-page-level-deletion-gate.yaml"
+    task = _load_task(task_name)
+
+    provider_ids = [provider["id"] for provider in task["providers"]]
+
+    assert provider_ids == ["openai:responses:gpt-5.5"], (
+        f"{task_name}: maintained page-context validator should run the "
+        "current corrected-golden winner by default"
+    )

@@ -1,3 +1,4 @@
+from doc_web.env import CHILD_KEY_BY_PROVIDER, DOC_WEB_KEY_BY_PROVIDER, STALE_GOOGLE_KEY
 from scripts.spikes.diem_htr_benchmark import (
     PAGE_SEPARATOR,
     STORY212_SLICE,
@@ -89,14 +90,14 @@ def test_retry_detector_only_matches_transient_gemini_capacity_errors():
     assert not should_retry_transient_eval_failure("", "OCR failed because the transcript path is missing")
 
 
-def test_build_eval_env_prefers_gemini_key_when_both_google_env_vars_exist(monkeypatch):
-    monkeypatch.setenv("GEMINI_API_KEY", "gem-key")
-    monkeypatch.setenv("GOOGLE_API_KEY", "google-key")
+def test_build_eval_env_maps_doc_web_gemini_key_and_drops_stale_google_key(monkeypatch):
+    monkeypatch.setenv(DOC_WEB_KEY_BY_PROVIDER["gemini"], "gem-key")
+    monkeypatch.setenv(STALE_GOOGLE_KEY, "google-key")
 
     env = _build_eval_env()
 
-    assert env["GEMINI_API_KEY"] == "gem-key"
-    assert "GOOGLE_API_KEY" not in env
+    assert env[CHILD_KEY_BY_PROVIDER["gemini"]] == "gem-key"
+    assert STALE_GOOGLE_KEY not in env
     assert env["PYTHONPATH"]
 
 

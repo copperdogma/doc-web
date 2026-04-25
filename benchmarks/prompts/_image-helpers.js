@@ -19,6 +19,13 @@ function extractBase64(dataUri) {
 function buildImageContent(dataUri, providerId) {
   const { base64Data, mediaType } = extractBase64(dataUri);
 
+  if (providerId.startsWith("openai:responses:")) {
+    return {
+      type: "input_image",
+      image_url: dataUri,
+    };
+  }
+
   if (providerId.startsWith("anthropic:")) {
     return {
       type: "image",
@@ -58,6 +65,18 @@ function buildMessages(promptText, dataUriOrList, providerId) {
         role: "user",
         parts: [
           { text: promptText },
+          ...imageContents,
+        ],
+      },
+    ];
+  }
+
+  if (providerId.startsWith("openai:responses:")) {
+    return [
+      {
+        role: "user",
+        content: [
+          { type: "input_text", text: promptText },
           ...imageContents,
         ],
       },

@@ -11,15 +11,20 @@ Usage:
 """
 import json
 import sys
+from datetime import date, datetime
 from pathlib import Path
 
 # ── Pricing Table (USD per 1M tokens: [input, output]) ──────────────────────
 # Update when models change. Source: provider pricing pages.
 # fmt: off
 MODEL_PRICING: dict[str, tuple[float, float]] = {
-    # OpenAI — https://platform.openai.com/docs/pricing
-    "gpt-5.4":         (2.00,  8.00),
-    "gpt-5.4-pro":     (2.00,  8.00),
+    # OpenAI — https://openai.com/api/pricing/ and model docs
+    "gpt-5.5":         (5.00, 30.00),
+    "gpt-5.5-pro":     (30.00, 180.00),
+    "gpt-5.4":         (2.50, 15.00),
+    "gpt-5.4-pro":     (30.00, 180.00),
+    "gpt-5.4-mini":    (0.75,  4.50),
+    "gpt-5.4-nano":    (0.20,  1.25),
     "gpt-5.3":         (2.00,  8.00),
     "gpt-5.2":         (2.00,  8.00),
     "gpt-5.2-pro":     (2.00,  8.00),
@@ -77,6 +82,7 @@ def main():
     registry_format = "--format" in sys.argv and "registry" in sys.argv
 
     data = json.loads(results_path.read_text())
+    measured = _measured_date(data)
     results = data.get("results", {}).get("results", [])
 
     # Group by provider
@@ -153,9 +159,23 @@ def main():
     summaries.sort(key=lambda s: s["avg_score"], reverse=True)
 
     if registry_format:
-        _print_registry(summaries)
+        _print_registry(summaries, measured)
     else:
         _print_table(summaries)
+
+
+def _measured_date(data: dict) -> str:
+    """Return the evaluation date from promptfoo metadata when available."""
+    metadata = data.get("metadata") or {}
+    for key in ("evaluationCreatedAt", "exportedAt"):
+        raw = metadata.get(key)
+        if not raw:
+            continue
+        try:
+            return datetime.fromisoformat(raw.replace("Z", "+00:00")).date().isoformat()
+        except ValueError:
+            pass
+    return date.today().isoformat()
 
 
 def _print_table(summaries: list[dict]):
@@ -188,7 +208,7 @@ def _print_table(summaries: list[dict]):
             print(f"Speed winner:   {fastest['label']} (score={fastest['avg_score']:.3f}, latency={fastest['avg_latency_ms']/1000:.1f}s)")
 
 
-def _print_registry(summaries: list[dict]):
+def _print_registry(summaries: list[dict], measured: str):
     """Print in eval registry YAML format for copy-paste."""
     print("    scores:")
     for s in summaries:
@@ -203,7 +223,7 @@ def _print_registry(summaries: list[dict]):
           structure_preservation: {s['avg_score']:.3f}
           {per_test.replace(', ', chr(10) + '          ')}
         latency_ms: {s['avg_latency_ms']}{cost_line}
-        measured: 2026-03-11""")
+        measured: {measured}""")
 
 
 if __name__ == "__main__":

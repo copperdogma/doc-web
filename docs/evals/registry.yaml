@@ -79,6 +79,55 @@ evals:
           proof anchor is now
           `docs/evals/attempts/001-image-crop-extraction-story207-proof-refresh.md`;
           the raw promptfoo JSON remains a local regenerable artifact.
+      - model: "GPT-5.5 (conservative-count prompt)"
+        metrics:
+          overall: 0.8111
+          pass_rate: 0.7692
+          cases_total: 13
+          latency_ms: 9180
+        measured: 2026-04-24
+        git_sha: aa5b577
+        note: >
+          Fresh new-subject-model challenger rerun after confirming `gpt-5.5`
+          exists in the local OpenAI model list. Command:
+          `cd benchmarks && promptfoo eval -c tasks/image-crop-extraction.yaml
+          --no-cache --filter-providers 'openai:chat:gpt-5.5'
+          --filter-prompts 'conservative-count' --output
+          results/gpt55-image-crop-extraction-20260424.json -j 1`.
+          The run completed `10/13` with `3` scorer failures, `0` errors,
+          `overall = 0.8111`, `pass_rate = 0.7692`, average latency about
+          `9180 ms`, and total tokens `52692`. Estimated current GPT-5.5 API
+          cost from token counts is about `$0.4080` total (`$0.0314` per case).
+          Failures were bbox precision misses on `Image001`, `Image013`, and
+          `Image020`, so this does not replace the maintained Gemini 3 Flash
+          detector. Portable tracked proof:
+          `docs/evals/attempts/003-gpt55-crop-eval-refresh.md`.
+      - model: "GPT-5.5 Responses (conservative-count prompt)"
+        metrics:
+          overall: 0.791
+          pass_rate: 0.7692
+          cases_total: 13
+          latency_ms: 4071
+        latency_ms: 4071
+        cost_usd: 0.0217
+        cost_estimated: true
+        measured: 2026-04-24
+        git_sha: aa5b577
+        note: >
+          Fresh direct Responses API rerun after adding
+          `openai:responses:gpt-5.5` and Responses-compatible image prompt
+          formatting. Command:
+          `cd benchmarks && promptfoo eval -c tasks/image-crop-extraction.yaml
+          --no-cache --filter-providers '^openai:responses:gpt-5\.5$'
+          --filter-prompts 'conservative-count' --output
+          results/gpt55-responses-image-crop-extraction-gpt55-20260424.json
+          -j 1`. The run completed `10/13` with `0` provider errors,
+          `overall = 0.791`, `pass_rate = 0.7692`, average latency about
+          `4071 ms`, and estimated current API cost about `$0.2820` total
+          (`$0.0217` per case). It confirms the Chat interface did not hide a
+          passing GPT-5.5 detector; the failure set shifted to `Image001`,
+          `Image021`, and `Image059`. Portable tracked proof:
+          `docs/evals/attempts/006-gpt55-responses-eval-refresh.md`.
       - model: "Gemini 3 Flash (conservative-count prompt, heading-safe revision)"
         metrics:
           overall: 0.9678
@@ -248,6 +297,38 @@ evals:
           `0.8164`, but the maintained aggregate still clears the crop gate and
           now anchors the canonical coverage-matrix rows. Portable tracked proof:
           `docs/evals/attempts/001-image-crop-extraction-story207-proof-refresh.md`.
+      - id: "009"
+        date: 2026-04-24
+        status: failed
+        approach: "New-subject-model screen: add callable GPT-5.5 to the maintained detector task and rerun the winning conservative-count slice"
+        score_before: 0.9703
+        score_after: 0.8111
+        note: >
+          `gpt-5.5` is callable through the promptfoo OpenAI chat provider, but
+          its first maintained detector pass underperformed the current Gemini
+          3 Flash baseline. The failures were model-wrong bbox precision
+          misses: `Image001` cropped only the stylized title text instead of
+          the full title/title-caption area, `Image013` undercovered the
+          portrait, and `Image020` undercovered the second ranch photo. An
+          attempted `gpt-5.5-pro` chat-provider row returned 404 "not a chat
+          model", so it was not kept in the maintained promptfoo config. No
+          prompt, scorer, or golden changes were made.
+      - id: "010"
+        date: 2026-04-24
+        status: failed
+        approach: "Re-run the detector through OpenAI Responses after GPT-5.5 Pro became Responses-callable"
+        score_before: 0.8111
+        score_after: 0.791
+        note: >
+          Added Responses-compatible OpenAI image blocks and reran
+          `openai:responses:gpt-5.5` on the same maintained
+          `conservative-count` detector slice. The direct Responses path still
+          failed `3/13` cases and scored slightly lower than the earlier Chat
+          run (`0.791` vs `0.8111`), though the failure set changed. GPT-5.5
+          Pro Responses passed a one-case `Image000` smoke, but full detector
+          attempts did not complete in the interactive promptfoo loop; `Image001`
+          appears pathological for Pro-medium under this prompt. No scorer or
+          golden changes were made.
 
     retry_when:
       - condition: new-subject-model
@@ -305,6 +386,73 @@ evals:
           fail for caption leakage. Story 209 keeps this surface explicitly
           bounded and adds the new page-context deletion gate for the broader
           C5 question.
+      - model: "GPT-5.5 (caption-focus prompt)"
+        metrics:
+          overall: 0.975
+          pass_rate: 0.975
+          cases_total: 40
+          latency_ms: 6419
+        measured: 2026-04-24
+        git_sha: aa5b577
+        note: >
+          Fresh new-subject-model challenger rerun via
+          `cd benchmarks && promptfoo eval -c tasks/crop-validation.yaml
+          --no-cache --filter-providers 'openai:chat:gpt-5.5'
+          --filter-prompts 'caption-focus' --output
+          results/gpt55-crop-validation-20260424.json -j 1`. The run
+          completed `39/40` with `1` scorer failure, `0` errors,
+          `overall = 0.975`, `pass_rate = 0.975`, average latency about
+          `6419 ms`, and total tokens `242008`. Estimated current GPT-5.5 API
+          cost from token counts is about `$1.3258` total (`$0.0331` per case).
+          The miss was `page-126-000`, where GPT-5.5 passed a crop with visible
+          external page text at the left edge by treating the text as plaque
+          text inside the photo. Portable tracked proof:
+          `docs/evals/attempts/003-gpt55-crop-eval-refresh.md`.
+      - model: "GPT-5.5 Responses (caption-focus prompt)"
+        metrics:
+          overall: 0.975
+          pass_rate: 0.975
+          cases_total: 40
+          latency_ms: 4396
+        latency_ms: 4396
+        cost_usd: 0.035
+        cost_estimated: true
+        measured: 2026-04-24
+        git_sha: aa5b577
+        note: >
+          Direct Responses API rerun via
+          `cd benchmarks && promptfoo eval -c tasks/crop-validation.yaml
+          --no-cache --filter-providers '^openai:responses:gpt-5\.5$'
+          --filter-prompts 'caption-focus' --output
+          results/gpt55-responses-crop-validation-20260424.json -j 1`.
+          The run matched the earlier Chat result at `39/40` with the same
+          false negative on `page-126-000`, `0` provider errors, average
+          latency about `4396 ms`, and estimated current API cost about
+          `$1.4005` total (`$0.0350` per case). Portable tracked proof:
+          `docs/evals/attempts/006-gpt55-responses-eval-refresh.md`.
+      - model: "GPT-5.5 Pro Responses (caption-focus prompt)"
+        metrics:
+          overall: 0.975
+          pass_rate: 0.975
+          cases_total: 40
+          latency_ms: 17359
+        latency_ms: 17359
+        cost_usd: 0.2305
+        cost_estimated: true
+        measured: 2026-04-24
+        git_sha: aa5b577
+        note: >
+          GPT-5.5 Pro Responses rerun via
+          `cd benchmarks && PROMPTFOO_EVAL_TIMEOUT_MS=180000 promptfoo eval -c
+          tasks/crop-validation.yaml --no-cache --filter-providers
+          '^openai:responses:gpt-5\.5-pro$' --filter-prompts
+          'caption-focus' --output
+          results/gpt55pro-responses-crop-validation-20260424.json -j 1`.
+          The run also reached `39/40` with the same false negative on
+          `page-126-000`, `0` provider errors, average latency about
+          `17359 ms`, and estimated current API cost about `$9.2181` total
+          (`$0.2305` per case). Portable tracked proof:
+          `docs/evals/attempts/006-gpt55-responses-eval-refresh.md`.
       - model: "Gemini 3.1 Flash Lite (caption-focus prompt)"
         metrics:
           overall: 1.0
@@ -357,6 +505,30 @@ evals:
           `126000 ms`, and total tokens `59086`. The result confirmed the
           existing crop-only surface remained healthy and that the missing
           truth was broader page context, not a broken bounded validator.
+      - id: "003"
+        date: 2026-04-24
+        status: failed
+        approach: "New-subject-model screen: add callable GPT-5.5 to the bounded crop-only validation task and rerun caption-focus"
+        score_before: 1.0
+        score_after: 0.975
+        note: >
+          GPT-5.5 reached `39/40` but did not match the maintained Gemini 3.1
+          Flash Lite `40/40` result. Mismatch classification: model-wrong false
+          negative on `page-126-000`; manual image inspection confirmed the
+          crop includes external page text on the left side even though the
+          model passed it as integral plaque text. No golden changes were made.
+      - id: "004"
+        date: 2026-04-24
+        status: failed
+        approach: "Re-run crop-only validation through OpenAI Responses for GPT-5.5 and GPT-5.5 Pro"
+        score_before: 0.975
+        score_after: 0.975
+        note: >
+          Direct Responses API did not change the outcome. GPT-5.5 Responses
+          and GPT-5.5 Pro Responses both scored `39/40` and both missed
+          `page-126-000` as a false negative. Pro was much slower and more
+          expensive with no quality gain. No prompt, scorer, or golden changes
+          were made.
 
     retry_when:
       - condition: new-subject-model
@@ -383,7 +555,7 @@ evals:
       image text.
     pipeline_stage: crop_illustrations
     runner: promptfoo
-    command: "cd benchmarks && promptfoo eval -c tasks/crop-page-level-deletion-gate.yaml --no-cache --output results/story209-crop-page-level-deletion-gate-g31-page-context-v2.json -j 1"
+    command: "cd benchmarks && ../scripts/run_with_doc_web_env.py promptfoo eval -c tasks/crop-page-level-deletion-gate.yaml --no-cache --output results/crop-page-level-deletion-gate-gpt55-responses-current-20260424.json -j 1"
     config: benchmarks/tasks/crop-page-level-deletion-gate.yaml
     scorer: benchmarks/scorers/crop_validation_scorer.py
     golden: benchmarks/golden/crop-page-level-deletion-gate.json
@@ -391,6 +563,19 @@ evals:
     category_refs: ["spec:4", "spec:8"]
     compromise_refs: ["C5"]
     spec_compromise: C5
+
+    ranking:
+      quality_winner: "GPT-5.5 Responses (page-context prompt, promptfix)"
+      applied: >
+        The maintained promptfoo task now runs `openai:responses:gpt-5.5` by
+        default because it is the only current validator that reaches `22/22`
+        on the corrected page-context golden. Gemini 3.1 Flash Lite remains
+        useful as a historical/regression comparison, but its fresh
+        corrected-golden rerun is `21/22`.
+      note: >
+        Do not switch the crop-only `crop-validation` surface from Gemini 3.1
+        Flash Lite; GPT-5.5 Responses is only the current winner for the
+        broader page-context deletion gate.
 
     target:
       metric: pass_rate
@@ -400,9 +585,9 @@ evals:
         This is the current page-context C5 deletion-gate truth surface for the
         maintained runtime overlap corpus. Passing here means the validator
         matches human pass/fail labels on `22` checked cases; it does not
-        delete `C5` because that corpus still contains `4` explicit fail-labeled
+        delete `C5` because that corpus still contains `5` explicit fail-labeled
         residue cases (`page-018-000`, `page-092-000`, `page-122-000`,
-        `page-126-000`).
+        `page-122-001`, and `page-126-000`).
 
     scores:
       - model: "Gemini 3.1 Flash Lite (page-context prompt)"
@@ -428,6 +613,144 @@ evals:
           seal text while `page-018-000`, `page-122-000`, and `page-126-000`
           all label as fails for external page-text leakage. Portable tracked
           proof: `docs/evals/attempts/002-crop-page-level-deletion-gate-story209-proof.md`.
+          This score predates the 2026-04-24 page-context golden correction for
+          `page-122-001`; the fresh corrected-golden rerun below supersedes it
+          for current comparisons.
+      - model: "Gemini 3.1 Flash Lite (page-context prompt, corrected golden)"
+        metrics:
+          overall: 0.9545
+          pass_rate: 0.9545
+          cases_total: 22
+          pass_labeled: 17
+          fail_labeled: 5
+          latency_ms: 5454
+        measured: 2026-04-24
+        git_sha: aa5b577
+        note: >
+          Fresh corrected-golden regression after replacing the revoked shared
+          Google credential with `DOC_WEB_GEMINI_API_KEY` and running promptfoo
+          through `scripts/run_with_doc_web_env.py`. Command:
+          `cd benchmarks && ../scripts/run_with_doc_web_env.py promptfoo eval -c
+          tasks/crop-page-level-deletion-gate.yaml --no-cache
+          --filter-providers '^google:gemini-3\.1-flash-lite-preview$'
+          --output
+          results/g31-crop-page-level-deletion-gate-promptfix-rerun-20260424.json
+          -j 1`. The run completed `21/22` with `1` scorer failure, `0`
+          provider errors, average latency about `5454 ms`, and total tokens
+          `60728`. The remaining miss is model-wrong: Gemini passed
+          `page-122-001` even though the corrected page-context golden now fails
+          it for leaking a neighboring portrait slice. Portable tracked proof:
+          `docs/evals/attempts/008-gemini-page-context-corrected-golden-rerun.md`.
+      - model: "GPT-5.5 (page-context prompt)"
+        metrics:
+          overall: 0.7273
+          pass_rate: 0.7273
+          cases_total: 22
+          pass_labeled: 18
+          fail_labeled: 4
+          latency_ms: 12484
+        measured: 2026-04-24
+        git_sha: aa5b577
+        note: >
+          Fresh new-subject-model challenger rerun via
+          `cd benchmarks && promptfoo eval -c
+          tasks/crop-page-level-deletion-gate.yaml --no-cache
+          --filter-providers 'openai:chat:gpt-5.5' --output
+          results/gpt55-crop-page-level-deletion-gate-20260424.json -j 1`.
+          The run completed `16/22` with `6` scorer failures, `0` errors,
+          `overall = 0.7273`, `pass_rate = 0.7273`, average latency about
+          `12484 ms`, and total tokens `233193`. Estimated current GPT-5.5 API
+          cost from token counts is about `$1.3984` total (`$0.0636` per case).
+          Failures were false positives on `page-004-000`, `page-012-001`,
+          `page-021-000`, `page-021-001`, and `page-122-001`, plus the same
+          false negative on `page-126-000`. Portable tracked proof:
+          `docs/evals/attempts/003-gpt55-crop-eval-refresh.md`.
+      - model: "GPT-5.5 Responses (page-context prompt)"
+        metrics:
+          overall: 0.9091
+          pass_rate: 0.9091
+          cases_total: 22
+          pass_labeled: 18
+          fail_labeled: 4
+          latency_ms: 5006
+        latency_ms: 5006
+        cost_usd: 0.0588
+        cost_estimated: true
+        measured: 2026-04-24
+        git_sha: aa5b577
+        note: >
+          Direct Responses API rerun via
+          `cd benchmarks && promptfoo eval -c
+          tasks/crop-page-level-deletion-gate.yaml --no-cache
+          --filter-providers '^openai:responses:gpt-5\.5$' --output
+          results/gpt55-responses-crop-page-level-deletion-gate-20260424.json
+          -j 1`. The run improved materially over the earlier Chat result
+          (`20/22` vs `16/22`) but still failed the maintained gate. Remaining
+          failures were reported as `page-021-001` and `page-122-001`; the
+          later prompt-repair pass confirmed `page-021-001` as a prompt false
+          positive and reclassified `page-122-001` as a page-context golden
+          error because the crop includes a neighboring portrait slice.
+          Estimated current API cost was about `$1.2926` total (`$0.0588` per
+          case). Portable tracked proof:
+          `docs/evals/attempts/006-gpt55-responses-eval-refresh.md`.
+      - model: "GPT-5.5 Responses (page-context prompt, promptfix)"
+        metrics:
+          overall: 1.0
+          pass_rate: 1.0
+          cases_total: 22
+          pass_labeled: 17
+          fail_labeled: 5
+          latency_ms: 5253
+        latency_ms: 5253
+        cost_usd: 0.0595
+        cost_estimated: true
+        measured: 2026-04-24
+        git_sha: aa5b577
+        note: >
+          Follow-up prompt repair after direct Responses measurement. The
+          prompt now treats sky/snow/photo backdrops as image content, states
+          that this gate primarily checks page-text and neighboring-visual
+          leakage, and tolerates tight line-art framing unless the full-page
+          context shows a large missing part of the intended visual. Manual
+          inspection also corrected the `page-122-001` page-context golden from
+          pass to fail because the crop leaks into the neighboring Sophie
+          L'Heureux portrait. After narrowing the maintained task to the winning
+          provider, the applied rerun
+          `cd benchmarks && ../scripts/run_with_doc_web_env.py promptfoo eval -c
+          tasks/crop-page-level-deletion-gate.yaml --no-cache --output
+          results/crop-page-level-deletion-gate-gpt55-responses-current-20260424.json
+          -j 1` completed `22/22` with `0` failures, `0` errors, average
+          latency about `5253 ms`, and estimated current API cost about
+          `$1.3094` total (`$0.0595` per case). A later Gemini regression check
+          with `DOC_WEB_GEMINI_API_KEY` succeeded but scored `21/22` on the
+          corrected golden, so GPT-5.5 Responses is the only current `22/22`
+          page-context validator. Portable tracked proof:
+          `docs/evals/attempts/009-gpt55-page-context-applied-default.md`.
+      - model: "GPT-5.5 Pro Responses (page-context prompt)"
+        metrics:
+          overall: 0.6818
+          pass_rate: 0.6818
+          cases_total: 22
+          pass_labeled: 18
+          fail_labeled: 4
+          latency_ms: 31803
+        latency_ms: 31803
+        cost_usd: 0.4269
+        cost_estimated: true
+        measured: 2026-04-24
+        git_sha: aa5b577
+        note: >
+          GPT-5.5 Pro Responses rerun via
+          `cd benchmarks && PROMPTFOO_EVAL_TIMEOUT_MS=180000 promptfoo eval -c
+          tasks/crop-page-level-deletion-gate.yaml --no-cache
+          --filter-providers '^openai:responses:gpt-5\.5-pro$' --output
+          results/gpt55pro-responses-crop-page-level-deletion-gate-20260424.json
+          -j 1`. The run completed with `15/22`, `0` provider errors, average
+          latency about `31803 ms`, and estimated current API cost about
+          `$9.3913` total (`$0.4269` per case). Failures were mostly
+          over-rejections of golden pass crops plus empty/parse-fail outputs on
+          `page-021-000`, `page-125-000`, and `page-126-000`. Portable tracked
+          proof: `docs/evals/attempts/006-gpt55-responses-eval-refresh.md`.
 
     attempts:
       - id: "001"
@@ -453,8 +776,94 @@ evals:
           surrounding page text from adjacent plaques or neighboring figures
           removed the only false negative. The final rerun reached `22/22`
           correct labels and left the decision unchanged: C5 residue is still
-          required because the checked corpus still contains `4` explicit fail
-          cases in the current maintained runtime.
+          required because the checked corpus then contained `4` explicit fail
+          cases in the maintained runtime.
+      - id: "003"
+        date: 2026-04-24
+        status: failed
+        approach: "New-subject-model screen: add callable GPT-5.5 to the page-context C5 deletion gate"
+        score_before: 1.0
+        score_after: 0.7273
+        note: >
+          GPT-5.5 did not preserve the maintained page-context validator
+          contract. It over-rejected several golden pass crops as incomplete
+          (`page-004-000`, `page-012-001`, `page-021-000`, `page-021-001`,
+          `page-122-001`) and still missed the critical external-text failure
+          on `page-126-000`. Manual inspection confirmed `page-004-000` is a
+          tight but clean wagon crop, while `page-126-000` really includes
+          external text along the left edge. No prompt, scorer, or golden
+          changes were made.
+      - id: "004"
+        date: 2026-04-24
+        status: failed
+        approach: "Re-run the page-context C5 gate through OpenAI Responses for GPT-5.5 and GPT-5.5 Pro"
+        score_before: 0.7273
+        score_after: 0.9091
+        note: >
+          GPT-5.5 Responses improved over Chat (`20/22` vs `16/22`) but still
+          missed the maintained `1.0` gate with false positives on
+          `page-021-001` and then-golden-pass `page-122-001`; subsequent
+          manual page-context inspection reclassified `page-122-001` as a
+          golden error. GPT-5.5 Pro Responses scored only `15/22`, with several
+          false positives and three empty outputs that the scorer could not
+          parse.
+      - id: "005"
+        date: 2026-04-24
+        status: succeeded
+        approach: "Repair the GPT-5.5 Responses page-context prompt and correct one page-context golden"
+        score_before: 0.9091
+        score_after: 1.0
+        note: >
+          Manual inspection classified `page-021-001` as prompt-wrong: the
+          large pale area is sky/snow/photo background inside the ranch image,
+          not blank page margin. `page-122-001` was reclassified as
+          golden-wrong for the page-context gate: the crop includes a visible
+          slice of the neighboring Sophie L'Heureux portrait. The prompt now
+          prioritizes external page text and neighboring-visual leakage,
+          counts natural light image regions as image content, and only fails
+          incompleteness when the full page clearly shows a large missing part
+          of the intended visual. The final GPT-5.5 Responses rerun reached
+          `22/22` on
+          `benchmarks/results/gpt55-responses-crop-page-level-deletion-gate-promptfix-final-20260424.json`.
+          An initial Gemini regression rerun was attempted at
+          `benchmarks/results/g31-crop-page-level-deletion-gate-promptfix-20260424.json`
+          but produced `22` provider errors because the configured Google API
+          key was rejected. After switching promptfoo child processes to
+          `DOC_WEB_GEMINI_API_KEY`, the fresh corrected-golden Gemini rerun
+          completed with real model judgments but scored `21/22`, leaving
+          GPT-5.5 Responses as the only current `22/22` page-context validator
+          on the corrected golden.
+      - id: "006"
+        date: 2026-04-24
+        status: failed
+        approach: "Rerun Gemini 3.1 Flash Lite after DOC_WEB_GEMINI_API_KEY repair on the corrected page-context golden"
+        score_before: 1.0
+        score_after: 0.9545
+        note: >
+          The key-scope repair resolved the previous provider block: promptfoo
+          produced `21/22` real judgments with `0` provider errors at
+          `benchmarks/results/g31-crop-page-level-deletion-gate-promptfix-rerun-20260424.json`.
+          The single remaining mismatch is model-wrong: Gemini returned
+          `{"verdict": "pass"}` for `page-122-001` because it focused on
+          excluding caption text and missed the visible neighboring Sophie
+          L'Heureux portrait slice at the crop edge. The previous `1.0` Gemini
+          score is now stale because it was measured before the `page-122-001`
+          golden correction.
+      - id: "007"
+        date: 2026-04-24
+        status: succeeded
+        approach: "Apply GPT-5.5 Responses as the maintained page-context validator and rerun the narrowed task"
+        score_before: 1.0
+        score_after: 1.0
+        note: >
+          The maintained `benchmarks/tasks/crop-page-level-deletion-gate.yaml`
+          provider list now contains only `openai:responses:gpt-5.5`, with the
+          Gemini and Pro challenger outcomes preserved as recorded historical
+          evidence instead of default providers. The applied rerun at
+          `benchmarks/results/crop-page-level-deletion-gate-gpt55-responses-current-20260424.json`
+          completed `22/22` with `0` failures and `0` provider errors. A narrow
+          substrate test now enforces that this task defaults to the current
+          corrected-golden winner.
 
     retry_when:
       - condition: new-subject-model
@@ -513,10 +922,35 @@ evals:
           `story140-onward-targeted-rescue-r7`, `r13`, and `r19` rather than a
           fresh promptfoo model sweep, so no new comparable model score is
           recorded here yet.
+      - id: "003"
+        date: 2026-04-24
+        status: blocked
+        approach: "Add GPT-5.5 to the GPT-only promptfoo screen and attempt a table-strict rerun"
+        score_before: null
+        score_after: null
+        note: >
+          Added `openai:chat:gpt-5.5` to
+          `benchmarks/tasks/ocr-genealogy-tables-gpt-only.yaml`, then attempted
+          `cd benchmarks && promptfoo eval -c
+          tasks/ocr-genealogy-tables-gpt-only.yaml --no-cache
+          --filter-providers 'openai:chat:gpt-5.5' --filter-prompts
+          'table-strict' --output
+          results/gpt55-ocr-genealogy-tables-table-strict-20260424.json -j 1`.
+          The first run aborted before any provider call because
+          `benchmarks/input/onward-pages-b64/Image007.b64.txt` is missing.
+          This is the broader benchmark-substrate drift already documented in
+          Story 183. A temporary local full-resolution raw-image base64 attempt
+          was stopped and removed because those `5100x6600` page encodings are
+          not the original downscaled canonical fixtures and would make the
+          score non-comparable.
 
     retry_when:
       - condition: new-subject-model
         note: "Models with native table understanding may eliminate rescue pass"
+      - condition: benchmark-substrate-restored
+        note: >
+          Rerun when the canonical `benchmarks/input/onward-pages-b64/`
+          fixtures are restored or regenerated with documented dimensions.
 
   - id: handwritten-notes-transcription
     name: Handwritten Notes Transcription
@@ -1071,19 +1505,49 @@ evals:
       value: 0.95
 
     ranking:
-      quality_winner: "Gemini 3.1 Pro"
+      quality_winner: "GPT-5.5 (score-only challenger)"
       balanced_winner: "Gemini 3.1 Pro"
       value_winner: "GPT-5.4"
       note: >
-        2026-03-11 refresh: Gemini 3.1 Pro is new quality winner (0.969, up from 0.115
-        with truncation fix). Cheapest of the models that meet 0.95 target ($0.09/call).
-        GPT-5.4 is value winner — same quality as Opus (0.952) at 3x lower cost ($0.11).
-        Previous Claude winners stable but dethroned on quality by Gemini.
+        2026-04-24 GPT-5.5 score-only challenger is the new aggregate-score
+        leader at `0.9714`, narrowly above Gemini 3.1 Pro's `0.969`, but all
+        three cases still have exact cell errors. Current-price cost from
+        token counts is about `$1.9268` total (`$0.6423` per chapter call), so
+        keep the applied recipe unchanged until failure class and value are
+        reviewed. 2026-03-11 context: Gemini 3.1 Pro jumped from 0.115 to 0.969
+        after the truncation fix, and GPT-5.4 remains the tracked value winner
+        with known estimated cost.
       applied: >
         Recipe updated to gemini-3.1-pro-preview with maxOutputTokens=65536 (2026-03-11).
         Previous: claude-sonnet-4-6 (balanced winner from attempt 001).
 
     scores:
+      - model: "GPT-5.5"
+        metrics:
+          structure_preservation: 0.9714
+          alma: 0.9333
+          arthur: 0.9918
+          marie_louise: 0.989
+          promptfoo_pass_rate: 0.0
+        latency_ms: 162210
+        cost_usd: 0.6423
+        cost_estimated: true
+        measured: 2026-04-24
+        git_sha: aa5b577
+        note: >
+          Fresh new-subject-model challenger rerun via
+          `cd benchmarks && promptfoo eval -c tasks/onward-table-fidelity.yaml
+          --no-cache --filter-providers 'openai:chat:gpt-5.5' --output
+          results/gpt55-onward-table-fidelity-20260424.json -j 1`. The run
+          completed all `3` cases with `0` provider errors and average
+          `structure_preservation = 0.9714`, which narrowly beats the prior
+          Gemini 3.1 Pro aggregate score. Promptfoo still marked `0/3` cases
+          passed because the scorer requires exact cell equality; failures were
+          residual row/cell errors, especially Alma child-note/descendant-count
+          drift. Total tokens `192778`; estimated current GPT-5.5 API cost from
+          token counts is about `$1.9268` total (`$0.6423` per chapter call).
+          Portable tracked proof:
+          `docs/evals/attempts/004-gpt55-onward-table-fidelity-refresh.md`.
       # --- 2026-03-11 refresh (attempt 002) ---
       - model: "Gemini 3.1 Pro"
         metrics:
@@ -1216,6 +1680,54 @@ evals:
           leaderboard because it is a bounded Marie-Louise seam check, but it
           is verified negative evidence that GLM-OCR is not a credible next
           Onward table candidate on the tested hard lane.
+      - id: "004"
+        date: 2026-04-24
+        status: partial
+        approach: "New-subject-model screen: add callable GPT-5.5 to the Onward table-fidelity promptfoo surface"
+        score_before: 0.969
+        score_after: 0.9714
+        note: >
+          GPT-5.5 narrowly improved the aggregate score over Gemini 3.1 Pro
+          (`0.9714` vs `0.969`) and ran faster on average (`162210 ms` vs
+          `207500 ms`), but the scorer still returned `0/3` exact-match passes.
+          Error profile: Alma remained weakest at `0.9333` with continuation and
+          child-count drift; Arthur and Marie-Louise were high-scoring but still
+          had exact cell mismatches. No recipe, scorer, prompt, or golden
+          changes were made; adoption remains pending value/failure review.
+      - id: "005"
+        date: 2026-04-24
+        status: failed
+        approach: "Run GPT-5.5 through the maintained Onward single-page OCR screens"
+        score_before: 0.272
+        score_after: 0.0
+        note: >
+          Added `openai:chat:gpt-5.5` to
+          `benchmarks/tasks/onward-single-page-gpt54-screen.yaml` and
+          `benchmarks/tasks/onward-table-fidelity-single-page-budget.yaml`,
+          then ran both screens filtered to GPT-5.5. The 3-page screen wrote
+          `benchmarks/results/gpt55-onward-single-page-screen-20260424.json`
+          with `0/3` passes, `0` provider errors, `2786` tokens, average
+          latency `3878 ms`, and estimated total cost `$0.0265`. The 15-page
+          budget screen wrote
+          `benchmarks/results/gpt55-onward-single-page-budget-20260424.json`
+          with `0/15` passes, `0` provider errors, `14957` tokens, average
+          latency `4504 ms`, and estimated total cost `$0.1633`. This is a
+          prompt/scorer-contract failure on the single-page `onward_ocr.js`
+          screen, not an API availability failure.
+      - id: "006"
+        date: 2026-04-24
+        status: failed
+        approach: "Re-run the suspicious three-page Onward single-page OCR screen through OpenAI Responses"
+        score_before: 0.0
+        score_after: 0.0
+        note: >
+          After adding Responses-compatible image formatting, reran
+          `benchmarks/tasks/onward-single-page-gpt54-screen.yaml` filtered to
+          `openai:responses:gpt-5.5` and `openai:responses:gpt-5.5-pro`.
+          Both models still failed `0/3` with `Output has no tables`, so the
+          single-page no-table result was not caused solely by the Chat
+          Completions provider. Result file:
+          `benchmarks/results/gpt55-responses-onward-single-page-screen-20260424.json`.
 
     retry_when:
       - condition: new-subject-model
@@ -1241,6 +1753,20 @@ evals:
           Validates max_long_side=2048 as safe default for OCR pipeline.
 
     single_page_budget_eval:
+      - model: "GPT-5.5"
+        metrics: { single_page_avg: 0.0, promptfoo_pass_rate: 0.0 }
+        latency_ms: 4504
+        cost_usd: 0.0109
+        cost_estimated: true
+        measured: 2026-04-24
+        note: >
+          GPT-5.5 failed the maintained 15-page single-page budget screen
+          (`0/15` promptfoo passes, `0` provider errors) via
+          `benchmarks/results/gpt55-onward-single-page-budget-20260424.json`.
+          The narrower 3-page GPT-5.4 Mini/Nano screen also failed `0/3` via
+          `benchmarks/results/gpt55-onward-single-page-screen-20260424.json`.
+          Current-price estimated cost was `$0.0109` per page on the 15-page
+          screen (`$0.1633` total).
       - model: "Gemini 2.5 Flash"
         metrics: { single_page_avg: 0.257 }
         measured: 2026-03-12
@@ -1488,6 +2014,35 @@ evals:
           (overall / pass_rate). The portable tracked proof anchor is
           `docs/evals/attempts/001-image-crop-extraction-story207-proof-refresh.md`;
           this is now the current canonical C4 deletion-gate proof.
+      - model: "GPT-5.5 (conservative-count prompt)"
+        metrics:
+          overall: 0.8111
+          pass_rate: 0.7692
+        measured: 2026-04-24
+        git_sha: aa5b577
+        note: >
+          Fresh new-subject-model challenger rerun through the same maintained
+          filtered detector surface wrote
+          `benchmarks/results/gpt55-image-crop-extraction-20260424.json` and
+          reached `10/13` scorer passes with `overall = 0.8111` and
+          `pass_rate = 0.7692`. The failures were bbox precision misses on
+          `Image001`, `Image013`, and `Image020`, so this does not replace the
+          maintained Gemini 3 Flash detector. Portable tracked proof:
+          `docs/evals/attempts/003-gpt55-crop-eval-refresh.md`.
+      - model: "GPT-5.5 Responses (conservative-count prompt)"
+        metrics:
+          overall: 0.791
+          pass_rate: 0.7692
+        measured: 2026-04-24
+        git_sha: aa5b577
+        note: >
+          Direct Responses API rerun through the same maintained filtered
+          detector surface wrote
+          `benchmarks/results/gpt55-responses-image-crop-extraction-gpt55-20260424.json`
+          and reached `10/13` scorer passes with `overall = 0.791` and
+          `pass_rate = 0.7692`. The failure set shifted to `Image001`,
+          `Image021`, and `Image059`, but the gate still fails. Portable
+          tracked proof: `docs/evals/attempts/006-gpt55-responses-eval-refresh.md`.
       - model: "Gemini 3 Flash (conservative-count prompt, heading-safe revision)"
         metrics:
           overall: 0.9678
@@ -1571,6 +2126,30 @@ evals:
           slightly while keeping the same honest prompt/golden contract. Portable
           tracked proof:
           `docs/evals/attempts/001-image-crop-extraction-story207-proof-refresh.md`.
+      - id: "004"
+        date: 2026-04-24
+        status: failed
+        approach: "New-subject-model screen: add callable GPT-5.5 to the maintained single-model crop detection surface"
+        score_before: 0.9703
+        score_after: 0.8111
+        note: >
+          GPT-5.5 is callable but underperformed the current Gemini 3 Flash
+          single-stage detector on the same maintained `conservative-count`
+          slice. It failed `Image001`, `Image013`, and `Image020` on bbox
+          precision, with no scorer or golden changes. Portable tracked proof:
+          `docs/evals/attempts/003-gpt55-crop-eval-refresh.md`.
+      - id: "005"
+        date: 2026-04-24
+        status: failed
+        approach: "Re-run the maintained single-model crop detector through OpenAI Responses"
+        score_before: 0.8111
+        score_after: 0.791
+        note: >
+          The Responses path changed GPT-5.5 behavior but did not improve the
+          gate. It still passed only `10/13`, now failing `Image001`,
+          `Image021`, and `Image059`. GPT-5.5 Pro Responses passed only a
+          one-case detector smoke before full detector attempts proved too slow
+          for the interactive promptfoo loop.
 
     retry_when:
       - condition: new-subject-model

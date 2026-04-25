@@ -1,9 +1,24 @@
-description: "Onward single-page OCR screen for GPT-5.4 Mini/Nano"
+description: "Onward single-page OCR screen for GPT-5.5 and GPT-5.4 Mini/Nano"
 
 prompts:
   - file://../prompts/onward_ocr.js
 
 providers:
+  - id: openai:chat:gpt-5.5
+    label: "GPT-5.5"
+    config:
+      temperature: 0.0
+      max_tokens: 8192
+  - id: openai:responses:gpt-5.5
+    label: "GPT-5.5 Responses"
+    config:
+      reasoning_effort: none
+      max_output_tokens: 8192
+  - id: openai:responses:gpt-5.5-pro
+    label: "GPT-5.5 Pro Responses"
+    config:
+      reasoning_effort: medium
+      max_output_tokens: 8192
   - id: openai:chat:gpt-5.4-mini
     label: "GPT-5.4 Mini"
     config:

@@ -104,5 +104,5 @@ legacy_system: ''
 - Scoring weights (mixed pages): table weights reduced, 15% allocated to img_detection
 - Scoring weights (image-only): 100% img_detection
 - Images >4MB resized with `sips -Z 2550` to fit Anthropic's 5MB base64 limit
-- GEMINI_API_KEY must be sourced from ~/.zshrc (not available in default bash env)
+- `DOC_WEB_GEMINI_API_KEY` should be set in the repo-local `.env` and mapped with `scripts/run_with_doc_web_env.py`
 - BOY/GIRL is a single column in this book (values like "1 1"), not two separate columns

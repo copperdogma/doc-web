@@ -3,8 +3,8 @@
     "description": "Page-context subset of crop-validation goldens for the C5 deletion-gate overlap corpus",
     "source_golden": "benchmarks/golden/crop-validation.json",
     "cases_total": 22,
-    "pass_cases": 18,
-    "fail_cases": 4,
+    "pass_cases": 17,
+    "fail_cases": 5,
     "notes": "Pairs checked-in full-page fixtures with the maintained crop-validation corpus so the validator can judge crops with source-page context."
   },
   "page-001-000": {
@@ -96,9 +96,11 @@
     "notes": "Group reunion photo includes printed caption text at bottom: 'L'Heureux family re-union — July, 1939. Ninety members...' This external caption should have been excluded by the crop."
   },
   "page-122-001": {
-    "verdict": "pass",
-    "reasons": [],
-    "notes": "Two side-by-side oval portraits (Moise and brother Edward). Good crop."
+    "verdict": "fail",
+    "reasons": [
+      "neighboring_visual_included"
+    ],
+    "notes": "Oval portrait of Moise and brother Edward includes a visible slice of the neighboring Sophie L'Heureux portrait at the right edge. Source-page context confirms this adjacent visual should have been excluded."
   },
   "page-125-000": {
     "verdict": "pass",

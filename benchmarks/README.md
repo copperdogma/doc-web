@@ -11,10 +11,13 @@ source ~/.nvm/nvm.sh && nvm use 24
 # Install promptfoo globally
 npm install -g promptfoo
 
-# API keys needed
-export OPENAI_API_KEY=...
-export ANTHROPIC_API_KEY=...
-export GEMINI_API_KEY=...
+# Preferred: put repo-local keys in ../.env
+DOC_WEB_OPENAI_API_KEY=...
+DOC_WEB_ANTHROPIC_API_KEY=...
+DOC_WEB_GEMINI_API_KEY=...
+
+# Then run provider-backed commands through the doc-web env wrapper.
+../scripts/run_with_doc_web_env.py promptfoo eval -c tasks/image-crop-extraction.yaml --no-cache -j 3
 ```
 
 If you want a freshness delay for the global `promptfoo` install, set it in your
@@ -49,26 +52,26 @@ multi-provider vision prompts.
 cd benchmarks/
 
 # Run an eval (no cache for reproducibility)
-promptfoo eval -c tasks/image-crop-extraction.yaml --no-cache -j 3
+../scripts/run_with_doc_web_env.py promptfoo eval -c tasks/image-crop-extraction.yaml --no-cache -j 3
 
 # Smoke-check the maintained crop surfaces from a clean checkout
-promptfoo eval -c tasks/image-crop-extraction.yaml --no-cache --filter-first-n 1 -j 1 --no-write
-promptfoo eval -c tasks/crop-validation.yaml --no-cache --filter-first-n 1 -j 1 --no-write
-promptfoo eval -c tasks/crop-page-level-deletion-gate.yaml --no-cache --filter-first-n 1 -j 1 --no-write
+../scripts/run_with_doc_web_env.py promptfoo eval -c tasks/image-crop-extraction.yaml --no-cache --filter-first-n 1 -j 1 --no-write
+../scripts/run_with_doc_web_env.py promptfoo eval -c tasks/crop-validation.yaml --no-cache --filter-first-n 1 -j 1 --no-write
+../scripts/run_with_doc_web_env.py promptfoo eval -c tasks/crop-page-level-deletion-gate.yaml --no-cache --filter-first-n 1 -j 1 --no-write
 
 # Save results
-promptfoo eval -c tasks/image-crop-extraction.yaml --no-cache --output results/image-crop-run1.json
+../scripts/run_with_doc_web_env.py promptfoo eval -c tasks/image-crop-extraction.yaml --no-cache --output results/image-crop-run1.json
 
 # Current maintained dedicated C5-linked surface
-promptfoo eval -c tasks/crop-validation.yaml --no-cache \
+../scripts/run_with_doc_web_env.py promptfoo eval -c tasks/crop-validation.yaml --no-cache \
   --filter-providers 'google:gemini-3.1-flash-lite-preview' \
   --filter-prompts 'caption-focus' \
   --output results/crop-validation-story183-g31-caption-focus.json \
   -j 1
 
 # Current maintained page-context C5 deletion gate
-promptfoo eval -c tasks/crop-page-level-deletion-gate.yaml --no-cache \
-  --output results/story209-crop-page-level-deletion-gate-g31-page-context-v2.json \
+../scripts/run_with_doc_web_env.py promptfoo eval -c tasks/crop-page-level-deletion-gate.yaml --no-cache \
+  --output results/crop-page-level-deletion-gate-gpt55-responses-current-20260424.json \
   -j 1
 
 # View results in web UI leaderboard
@@ -127,7 +130,7 @@ promptfoo eval -c tasks/crop-validation.yaml --no-cache \
 ### 3. Crop Page-Level Deletion Gate (Story 209)
 
 **Task**: Judge the maintained runtime overlap cases with both the source page and the extracted crop in view, so the benchmark can answer the broader C5 deletion question instead of only the crop-only pass/fail question.
-**Current maintained result**: Gemini 3.1 Flash Lite + `page-context` (`1.0` overall, `1.0` pass rate, `22/22` on 2026-04-11)
+**Current maintained result**: GPT-5.5 Responses + `page-context` promptfix (`1.0` overall, `1.0` pass rate, `22/22` on 2026-04-24 corrected golden)
 **Config**: `tasks/crop-page-level-deletion-gate.yaml`
 **Scorer**: `scorers/crop_validation_scorer.py` — pass/fail classification against checked labels from the page-context golden
 **Golden**: `golden/crop-page-level-deletion-gate.json`
@@ -135,15 +138,16 @@ promptfoo eval -c tasks/crop-validation.yaml --no-cache \
 
 ```bash
 cd benchmarks && source ~/.nvm/nvm.sh && nvm use 24 >/dev/null 2>&1 && \
-promptfoo eval -c tasks/crop-page-level-deletion-gate.yaml --no-cache \
-  --output results/story209-crop-page-level-deletion-gate-g31-page-context-v2.json \
+../scripts/run_with_doc_web_env.py promptfoo eval -c tasks/crop-page-level-deletion-gate.yaml --no-cache \
+  --output results/crop-page-level-deletion-gate-gpt55-responses-current-20260424.json \
   -j 1
 ```
 
 **Key findings**:
 - This is the broader page-context C5 deletion-gate surface; it complements, but does not replace, the bounded crop-only `crop-validation` task.
-- The checked-in overlap corpus now covers the page-12 seal/text-bearing case, the page-122 caption-leak case, and additional reviewed residue-style examples on the maintained Onward seam.
-- The surface passes cleanly as a judge, but its own golden still includes 4 fail-labeled current-runtime cases, so Story 209's current decision is to keep the surviving C5 residue in place.
+- The checked-in overlap corpus now covers the page-12 seal/text-bearing case, the page-122 caption/neighboring-portrait leakage cases, and additional reviewed residue-style examples on the maintained Onward seam.
+- The maintained task now runs only the corrected-golden winner, `openai:responses:gpt-5.5`; the earlier Gemini 3.1 Flash Lite `22/22` result is stale after the `page-122-001` correction, and its fresh rerun is `21/22`.
+- The surface passes cleanly as a judge, but its own golden still includes 5 fail-labeled current-runtime cases, so Story 209's current decision is to keep the surviving C5 residue in place.
 
 ---
 

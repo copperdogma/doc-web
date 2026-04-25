@@ -47,7 +47,9 @@ def gate_ocr_img_tags(ocr_pages):
 def gate_vlm_yesno(image_dir, model, pages_to_check=None):
     """Gate: ask a cheap VLM 'does this page have illustrations?' yes/no."""
     from google.genai import Client
-    client = Client(api_key=os.environ.get("GOOGLE_API_KEY") or os.environ.get("GEMINI_API_KEY"))
+    from doc_web.env import get_doc_web_api_key
+
+    client = Client(api_key=get_doc_web_api_key("gemini"))
 
     prompt = """Look at this scanned book page. Does it contain any photographs, illustrations, drawings, logos, seals, or other non-text visual elements?
 

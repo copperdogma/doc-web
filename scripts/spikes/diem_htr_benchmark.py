@@ -22,6 +22,10 @@ from datetime import datetime
 from pathlib import Path
 from typing import Any
 
+sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
+
+from doc_web.env import build_child_env
+
 try:
     from PIL import Image
 except ImportError as exc:  # pragma: no cover - exercised only in missing-dependency envs
@@ -263,12 +267,7 @@ def should_retry_transient_eval_failure(stdout: str, stderr: str) -> bool:
 
 
 def _build_eval_env() -> dict[str, str]:
-    env = dict(os.environ)
-    if env.get("GEMINI_API_KEY") and env.get("GOOGLE_API_KEY"):
-        # The live Story 212 pass consistently hit fast 503s under GOOGLE_API_KEY,
-        # while the same unchanged recipe succeeded once the Gemini-specific key
-        # was allowed to drive the provider client.
-        env.pop("GOOGLE_API_KEY", None)
+    env = build_child_env()
     env["PYTHONPATH"] = str(ROOT)
     return env
 
@@ -607,7 +606,7 @@ def main() -> None:
             "pdf_case_id": args.pdf_case_id,
             "include_pdf": args.include_pdf,
             "max_attempts": args.max_attempts,
-            "env_policy": "prefer GEMINI_API_KEY when both Gemini env vars are present",
+            "env_policy": "map DOC_WEB_GEMINI_API_KEY for child provider clients",
         },
         "dataset": slice_manifest["dataset"],
         "slice": slice_manifest["slice"],

@@ -19,7 +19,7 @@ Entry format: `YYYY-MM-DD — short title`: summary plus explanation including f
 - 2026-02-16 — Gemini extended thinking eats output tokens: Set `maxOutputTokens: 16384` for Gemini providers (4096 is insufficient).
 - 2026-02-16 — Gemini model IDs: No dated preview suffixes. Use `gemini-2.5-flash`, `gemini-2.5-pro`, `gemini-3-pro-preview`.
 - 2026-02-16 — promptfoo `raw` prompts bypass format translation: When using `raw:` prompt key, content is sent verbatim to every provider. Anthropic expects `type: "image"` (not `image_url`), Google expects `inlineData` (not `image_url`). Use JS prompt functions with `id: "file://..."` that detect `provider.id` and adapt the image content block format per provider.
-- 2026-02-16 — GEMINI_API_KEY in wrong shell: If key is in `.zshrc` but promptfoo runs in bash, it won't be found. Export the key before running or add to `.bashrc`.
+- 2026-02-16 — Gemini key in wrong shell: If a provider key is only in `.zshrc` but promptfoo runs in bash, it won't be found. Use the repo-local `.env` plus `scripts/run_with_doc_web_env.py`.
 - 2026-02-16 — `file://` corrupts binary image data: promptfoo's `file://` loader corrupts binary JPEG when interpolated into prompt templates. Pre-encode images as base64 data URI text files (`data:image/jpeg;base64,...`) stored as `.b64.txt`.
 
 ## Lessons Learned

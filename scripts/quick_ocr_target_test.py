@@ -103,8 +103,9 @@ def run_simple_ocr_test(image_path: Path, model: str = "gpt-4.1-mini") -> dict:
     import os
 
     import openai
+    from doc_web.env import get_doc_web_api_key
 
-    client = openai.OpenAI(api_key=os.environ.get("OPENAI_API_KEY"))
+    client = openai.OpenAI(api_key=get_doc_web_api_key("openai"))
 
     # Read image
     with open(image_path, "rb") as f:

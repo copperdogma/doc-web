@@ -6,6 +6,7 @@ Ported from Dossier's benchmarking.py. Prices are per 1M tokens (input, output).
 CHARS_PER_TOKEN = 4
 
 # (input_price_per_1M, output_price_per_1M)
+# OpenAI prices checked against https://openai.com/api/pricing/ and model docs.
 MODEL_PRICING: dict[str, tuple[float, float]] = {
     # Anthropic
     "claude-opus-4-6": (15.0, 75.0),
@@ -13,6 +14,12 @@ MODEL_PRICING: dict[str, tuple[float, float]] = {
     "claude-sonnet-4-20250514": (3.0, 15.0),
     "claude-haiku-4-5-20251001": (0.80, 4.0),
     # OpenAI
+    "gpt-5.5": (5.0, 30.0),
+    "gpt-5.5-pro": (30.0, 180.0),
+    "gpt-5.4": (2.50, 15.0),
+    "gpt-5.4-pro": (30.0, 180.0),
+    "gpt-5.4-mini": (0.75, 4.50),
+    "gpt-5.4-nano": (0.20, 1.25),
     "gpt-5.1": (2.0, 8.0),
     "gpt-4o": (2.50, 10.0),
     "gpt-4.1": (2.0, 8.0),

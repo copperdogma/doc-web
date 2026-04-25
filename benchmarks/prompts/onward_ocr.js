@@ -84,6 +84,20 @@ CRITICAL TABLE RULES:
     ]);
   }
 
+  // --- OpenAI Responses ---
+  if (provider.id.startsWith('openai:responses')) {
+    const userContent = [{ type: 'input_text', text: systemPrompt + "\n\n" + userText }];
+    for (const b64 of images) {
+      userContent.push({
+        type: 'input_image',
+        image_url: `data:image/jpeg;base64,${b64}`
+      });
+    }
+    return JSON.stringify([
+      { role: 'user', content: userContent }
+    ]);
+  }
+
   // --- OpenAI / Default ---
   const userContent = [{ type: 'text', text: userText }];
   for (const b64 of images) {
