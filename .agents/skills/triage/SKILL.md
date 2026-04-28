@@ -1,16 +1,18 @@
 ---
 name: triage
-description: Identify the highest-leverage Ideal/spec/state gap, run completion sanity and eval-ladder gates, then recommend the next action
+description: Orchestrate doc-web triage from Ideal/spec facts and neutral lane packets, then recommend the best next action
 user-invocable: true
 ---
 
-# /triage [stories|inbox|evals|architecture] [sub-arg]
+# /triage [stories|inbox|evals|architecture|health] [sub-arg]
 
 > Alignment check: Before choosing an approach, verify it aligns with `docs/ideal.md` and relevant decision records in `docs/decisions/`. If this work touches a known compromise in `docs/spec.md`, respect its limitation type and evolution path. If none apply, say so explicitly.
 
-`/triage` is the meta-skill. It does not own the backlog, inbox, or eval logic
-itself. It routes to the leaf skills and, in full-sweep mode, synthesizes one
-recommended next action.
+`/triage` is the meta-skill. It does not own the backlog, inbox, eval,
+architecture, or health logic itself. In full-sweep mode it starts from the
+Ideal/spec/state/graph and coverage facts, gathers neutral lane packets, shows
+the top three cross-domain candidates, then synthesizes one recommended next
+action.
 
 Important is not enough by itself. `/triage` must answer both:
 
@@ -18,6 +20,8 @@ Important is not enough by itself. `/triage` must answer both:
 - why is this the right thing to do now?
 - how close is the repo to the Ideal on today's technology, not just against
   the literal north-star?
+- which top three cross-domain candidates are credible, and why did the final
+  recommendation beat the other top-three candidates?
 
 A primary gap can stay primary while still being the wrong recommended action
 if nothing materially changed since the last attempt, recommendation, or
@@ -36,6 +40,8 @@ measurement pass.
 | `/triage evals image-crop-extraction` | Delegate to `/triage-evals image-crop-extraction` |
 | `/triage architecture` | Delegate to `/triage-architecture` |
 | `/triage architecture methodology_tooling` | Delegate to `/triage-architecture methodology_tooling` |
+| `/triage health` | Delegate to `/triage-health` |
+| `/triage health scan` | Delegate to `/triage-health scan` |
 
 When a scope is provided, hand off completely to the leaf skill. Do not
 maintain duplicate logic here.
@@ -46,6 +52,29 @@ maintain duplicate logic here.
 - `/triage-inbox` — inbox scan or processing
 - `/triage-evals` — eval health, rerun candidates, compromise deletion signals
 - `/triage-architecture` — bounded structural simplification / cleanup lane
+- `/triage-health` — read-only freshness packet across coverage, codebase
+  improvement, eval/model/golden, methodology/tooling, architecture-audit, and
+  absent UI-scout truth
+- `/codebase-improvement-scout` — report-first codebase hygiene follow-up when
+  triage recommends it
+- `/discover-models` — provider/model freshness follow-up when triage recommends it
+
+When full-sweep `/triage` asks a leaf for input, request a compact lane packet
+instead of a final repo-wide decision. Each lane packet should provide up to
+three neutral candidates with:
+
+- candidate name
+- Ideal promise and spec refs
+- evidence and source files
+- why now
+- suggested action shape
+- whether it is story-worthy or too small
+- validation or stop condition
+- blockers, stale evidence, and reasons not to do it now
+
+The main `/triage` thread owns cross-domain ranking. Do not preselect one
+"largest gap" so narrowly that leaf lanes ignore stronger evidence in their own
+domains.
 
 ## Completion Sanity Gate
 
@@ -94,22 +123,45 @@ When invoked with no scope:
    - `tests/fixtures/formats/_coverage-matrix.json`
    - relevant ADRs under `docs/decisions/`
    - recent `git log --oneline -20`
+   - Goal: identify the broad candidate set of live gaps and simplification
+     opportunities before reading stories as a backlog, without choosing the
+     final winner yet.
 
-2. **Run leaf sweeps in parallel**
-   - `/triage-stories`
-   - `/triage-inbox scan`
-   - `/triage-evals`
-   - `/triage-architecture`
+2. **Start neutral lane evidence, then run the fact collector directly**
+   - If the environment and user instructions allow subagents or delegation,
+     immediately launch scoped lane packet requests after reading the shared
+     frame. Keep packets neutral: ask each lane for its best candidates from the
+     broad Ideal/spec/state/graph/coverage context, not for a final repo-wide
+     pick and not for confirmation of one preselected gap.
+   - Ask these lanes for packets:
+     - `/triage-stories`
+     - `/triage-inbox scan`
+     - `/triage-evals`
+     - `/triage-architecture`
+     - `/triage-health scan`
+   - In the main thread, while lane packets are running, run:
 
-3. **Collect leaf reports**
-   Each report should return:
-   - one top recommendation
-   - 1-3 supporting reasons
-   - health flags / bottlenecks
-   - whether the recommendation is read-only or action-taking
+     ```bash
+     python scripts/triage_facts.py --json
+     ```
 
-4. **Run the why-now / actionability gate**
-   Before recommending work under the strongest problem line, answer:
+   - Use the facts for branch/dirty state, generated wrapper drift, story/eval
+     recommendations, inbox counts, architecture-audit cadence, coverage matrix
+     status, codebase-improvement freshness, lane presence, and recent churn.
+   - If the script fails, say so explicitly and continue from the underlying
+     docs with lower confidence. Do not pretend the fact pass happened.
+   - If delegation is unavailable, still run the direct fact collector here,
+     then query the same neutral lane packet contracts sequentially later.
+
+3. **Open candidate gaps without picking a winner yet**
+   - State 2-4 plausible unmet Ideal promises or overscaffolded compromises in
+     plain language.
+   - Map each to owning spec section(s), methodology category, phase, coverage
+     matrix row if relevant, and known evidence.
+   - Do not pick the final winner before lane packets report.
+
+4. **Run the why-now / actionability gate for plausible winners**
+   Before recommending work under a candidate problem line, answer:
    - what was the last meaningful action on this line?
    - on what date did it happen?
    - what artifact, story, eval, or recommendation proves that?
@@ -138,7 +190,19 @@ When invoked with no scope:
    falsifiable next move, that is enough unless recent evidence says the same
    move is currently blocked, exhausted, or not worth repeating.
 
-6. **Calibrate against the Ideal**
+6. **Read decision and architecture constraints for plausible winners**
+   - Open relevant ADRs and architecture-audit state for candidate gaps.
+   - If none apply, say so explicitly.
+   - Do not recommend work that fights a settled boundary such as the doc-web
+     runtime boundary or the maintained intake contract.
+
+7. **Collect lane packets**
+   - If packets were launched earlier, collect their reports here.
+   - If delegation was unavailable, run the same scoped contracts sequentially.
+   - Keep `scripts/triage_facts.py` as a direct main-thread fact source, not a
+     delegated lane and not a substitute for lane judgment.
+
+8. **Calibrate against the Ideal**
    - Add one short section that answers "how are we doing vs the Ideal?"
    - Keep this grounded in current repo evidence, not vibes
    - Distinguish:
@@ -150,7 +214,20 @@ When invoked with no scope:
        Ideal" claim
      - whether the line of travel is improving, stalled, or blocked
 
-7. **Synthesize one cross-domain recommendation**
+9. **Build the top-three shortlist**
+   Merge lane candidates into the top three cross-domain recommendations. Each
+   item must include:
+   - recommendation
+   - Ideal/spec value
+   - why now
+   - action shape
+   - validation or stop condition
+   - why it ranked above or below the other two
+
+   Do not hide the other top-three candidates. Cam may choose recommendation 2
+   or 3 when human context changes the call.
+
+10. **Synthesize one cross-domain recommendation**
    Rank the problem first, then choose the vehicle that best advances it
    (continue an active story, expand/reopen a story, create a story, run an
    eval, do architecture work, or no-op).
@@ -193,7 +270,7 @@ When invoked with no scope:
    next turn. A bare `yes` from the user should be enough to authorize that one
    action without needing a follow-up clarification.
 
-8. **Return the compact report**
+11. **Return the compact report**
 
 ```markdown
 ## Triage
@@ -208,26 +285,41 @@ When invoked with no scope:
 - Current-tech read: {how close the repo is to a strong present-day version of the Ideal}
 - Direction: {getting closer | mixed | stalled | blocked} — {why}
 
-### Recommended Action
-- {one next action}
-
-### Why
-- {2-3 strongest reasons}
-
-### Runner-Ups
-- {alternate action}
-- {alternate action}
+### Top Three Recommendations
+1. {recommendation}
+   - Ideal/spec value: ...
+   - Why now: ...
+   - Action shape: ...
+   - Validation/stop condition: ...
+   - Why this rank: ...
+2. {recommendation}
+   - Ideal/spec value: ...
+   - Why now: ...
+   - Action shape: ...
+   - Validation/stop condition: ...
+   - Why this rank: ...
+3. {recommendation}
+   - Ideal/spec value: ...
+   - Why now: ...
+   - Action shape: ...
+   - Validation/stop condition: ...
+   - Why this rank: ...
 
 ### Domain Notes
 - Stories: {summary}
 - Inbox: {summary}
 - Evals: {summary}
+- Architecture: {summary}
+- Health/freshness: {coverage/codebase/methodology/model signals}
 
 ### Health Flags
 - {blocked story / stale inbox / stale eval / pending ADR}
 
-### Decision
-- Reply `yes` to proceed with: {repeat the one recommended action verbatim}
+### Recommended Action
+- {one next action}
+- Why: {2-3 strongest reasons}
+
+Reply yes to proceed with: {exact next command or concrete action}.
 ```
 
 ## Guardrails
@@ -236,8 +328,17 @@ When invoked with no scope:
 - Full-sweep mode is read-only.
 - Use parallel leaf sweeps when feasible.
 - Return one recommendation, not a vague list.
+- Always show the top three cross-domain recommendations before choosing the
+  final recommendation.
 - Always include a short `Vs Ideal` read in full-sweep mode.
-- End with a clear acceptance prompt that the user can approve with `yes`.
+- Run `python scripts/triage_facts.py --json` directly in the main thread
+  during full-sweep mode unless blocked, and report the blocker if it is
+  blocked.
+- End with the exact `Reply yes to proceed with: ...` handoff for the chosen
+  recommendation.
+- Treat `doc-web` as the checkout, package, and fact JSON identity. Do not
+  rewrite intentional `doc-forge` product-doc wording when it is describing the
+  product surface rather than the repo/package.
 - Respect leaf-skill boundaries: `/triage inbox` may modify files; unscoped
   `/triage` may not.
 - Do not overweight `Draft` / `Pending` story presence. Story shells are
@@ -249,8 +350,8 @@ When invoked with no scope:
 - Do not recommend repeating a line just because it is still the biggest open
   gap; cite the last attempt and the current why-now trigger explicitly.
 - A primary gap with no materially new trigger may stay primary, but it should
-  usually move to `Health Flags` or `Runner-Ups` rather than become the
-  recommended action.
+  usually move to `Health Flags` or a lower-ranked top-three entry rather than
+  become the recommended action.
 - Do not recommend a new story for same-line entry-form parity, same-line
   later-state progression, or tests/docs/truth-surface codification on current
   behavior unless the repo evidence shows that the runtime seam or validation

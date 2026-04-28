@@ -39,6 +39,28 @@ The core filter is actionability, not abstract importance. A red or stale eval
 line is not recommendable unless the diagnosis can name why that line should be
 revisited now.
 
+## Lane Packet Mode
+
+When the full `/triage` orchestrator asks for a lane packet, stay read-only and
+do not choose the repo-wide recommendation. Return up to three neutral
+eval-domain candidates, including:
+
+- candidate eval, compromise, golden, or measurement line
+- Ideal promise and spec/state/coverage refs
+- evidence from the registry, state, graph, coverage matrix, result artifacts,
+  attempts, and current `HEAD`
+- why now, including whether the trigger is active, exhausted, or absent
+- suggested action shape: rerun, improve eval, classify failure, update golden,
+  defer, create story, or health flag only
+- whether the candidate is story-worthy or too small for a story
+- validation or stop condition
+- blockers, stale evidence, and reasons not to do it now
+
+The main `/triage` thread owns final cross-domain ranking. Do not force eval
+work to the top just because an eval is red or stale. In lane-packet mode,
+return candidates and stop conditions; reserve the direct
+`### Recommended Action` winner for direct leaf invocation.
+
 ## Read First
 
 1. `docs/evals/registry.yaml`
@@ -137,8 +159,11 @@ Look for:
 ### Missing / Weak Coverage
 - {gap}
 
+### Lane Packet
+- {candidate + Ideal/spec value + why now + action shape + stop condition}
+
 ### Recommended Action
-- {one next eval action}
+- {one next eval action; direct leaf invocation only, omit in lane-packet mode}
 
 ### Health Flags
 - {stale score / missing eval / docs-registry drift}

@@ -37,6 +37,29 @@ A short advisory report:
 
 This skill is read-only.
 
+## Lane Packet Mode
+
+When the full `/triage` orchestrator asks for a lane packet, stay read-only and
+do not choose the repo-wide recommendation. Return up to three neutral story or
+problem-line candidates from the story domain, including:
+
+- candidate name and story ID or grouped problem line
+- Ideal promise and spec/state/coverage refs
+- evidence from `docs/methodology/graph.json`, the generated `docs/stories.md`
+  projection, story files, state, coverage matrix, and recent work
+- why now, including blocker or retry-trigger truth
+- suggested action shape: `continue`, `reopen`, `expand`, `consolidate`,
+  `promote`, `start`, or `health flag only`
+- whether the candidate is story-worthy or too small for a new story
+- validation or stop condition
+- blockers, stale evidence, and reasons not to do it now
+
+The main `/triage` thread owns cross-domain ranking. Do not over-focus on a
+single broad gap supplied by the orchestrator if story evidence shows another
+story-domain candidate is stronger. In lane-packet mode, return candidates and
+stop conditions; reserve the direct `### Recommended Action` winner for direct
+leaf invocation.
+
 ## Steps
 
 1. **Read project state**
@@ -168,8 +191,11 @@ This skill is read-only.
    ### Bottlenecks / Concerns
    - {issue}
 
+   ### Lane Packet
+   - {candidate + Ideal/spec value + why now + action shape + stop condition}
+
    ### Recommended Action
-   - {one next story action}
+   - {one next story action; direct leaf invocation only, omit in lane-packet mode}
    ```
 
 7. **User decides**

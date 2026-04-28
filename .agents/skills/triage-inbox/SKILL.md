@@ -20,7 +20,29 @@ Canonical inbox triage leaf skill. Direct invocation is allowed, and
 - **Scan mode** (`/triage-inbox scan` or `/triage inbox scan`)
   - read-only
   - used by the `/triage` orchestrator
-  - produces a compact report and recommended next action, but does not edit files
+  - produces a compact report or neutral lane packet, but does not edit files
+
+## Lane Packet Mode
+
+When the full `/triage` orchestrator asks for a lane packet, keep the result
+neutral. Return up to three inbox-domain candidates, including:
+
+- candidate name and inbox item(s)
+- Ideal promise and spec/coverage refs
+- evidence from `docs/inbox.md`, state, graph, stories, ADRs, coverage matrix,
+  and recent work
+- why now
+- suggested action shape: fold into existing story, create story, ADR, spec
+  update, eval, research spike, scout expedition, defer, or discard
+- whether the candidate is story-worthy or too small for a story
+- validation or stop condition
+- blockers, stale evidence, and reasons not to do it now
+
+The main `/triage` thread decides whether an inbox item beats stories, evals,
+architecture, or health work. Do not convert the top inbox item into the final
+repo-wide pick unless the user invoked this leaf skill directly. In lane-packet
+mode, return candidates and stop conditions; reserve the direct
+`### Recommended Action` winner for direct leaf invocation.
 
 ## Steps
 
@@ -66,8 +88,11 @@ Canonical inbox triage leaf skill. Direct invocation is allowed, and
    ### Top Candidates
    - {item + short why}
 
+   ### Lane Packet
+   - {candidate + Ideal/spec value + why now + action shape + stop condition}
+
    ### Recommended Action
-   - {one next inbox action}
+   - {one next inbox action; direct leaf invocation only, omit in lane-packet mode}
 
    ### Health Flags
    - {inbox growing / stale backlog / unresolved urgent item}

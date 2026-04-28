@@ -1,19 +1,19 @@
-# Makefile for doc-forge
+# Makefile for doc-web
 # Prefer the active environment's Python so `make test`/`make lint` use the
 # same interpreter the repo dependencies were installed into.
 PYTHON ?= $(shell command -v python 2>/dev/null || command -v python3 2>/dev/null)
 
-.PHONY: test lint format smoke skills-sync skills-check check-size methodology-compile methodology-check
+.PHONY: test lint format smoke skills-sync skills-check check-size methodology-compile methodology-check triage-facts triage-facts-check
 
 # ── Testing & Linting ─────────────────────────────────────────────────
 test:
 	$(PYTHON) -m pytest tests/
 
 lint:
-	$(PYTHON) -m ruff check doc_web/ modules/ tests/ scripts/methodology_graph.py
+	$(PYTHON) -m ruff check doc_web/ modules/ tests/ scripts/methodology_graph.py scripts/triage_facts.py
 
 format:
-	$(PYTHON) -m ruff format doc_web/ modules/ tests/ scripts/methodology_graph.py
+	$(PYTHON) -m ruff format doc_web/ modules/ tests/ scripts/methodology_graph.py scripts/triage_facts.py
 
 # ── Smoke Tests ───────────────────────────────────────────────────────
 smoke:
@@ -34,6 +34,12 @@ methodology-compile:
 
 methodology-check:
 	$(PYTHON) scripts/methodology_graph.py check
+
+triage-facts:
+	$(PYTHON) scripts/triage_facts.py
+
+triage-facts-check:
+	$(PYTHON) -m pytest tests/test_triage_facts.py
 
 # ── Code Health ───────────────────────────────────────────────────────
 check-size:
