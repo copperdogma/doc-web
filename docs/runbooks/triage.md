@@ -31,15 +31,20 @@ implementation path honestly.
 2. Treat the coverage matrix as part of the shared frame, especially when a
    candidate gap touches formats, input routing, provenance, artifacts, or
    channels.
-3. Start neutral lane packets when delegation is available:
+3. Start neutral lane packets. Unscoped `/triage` is a contracted fan-out
+   command: treat the user's invocation as explicit authorization to use the
+   runtime's subagent/delegation tool for neutral lane packets when it is
+   available and safe for the current checkout:
    - `/triage-stories`
    - `/triage-inbox scan`
    - `/triage-evals`
    - `/triage-architecture`
    - `/triage-health scan`
 
-   If delegation is unavailable, collect the same scoped lane packets
-   sequentially after the direct fact pass.
+   If subagents/delegation are unavailable, unsafe for the current checkout,
+   or the user explicitly asks not to use them, collect the same scoped lane
+   packets sequentially after the direct fact pass and state that fallback in the
+   response.
 4. In the main thread, run:
 
    ```bash
