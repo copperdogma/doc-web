@@ -247,6 +247,13 @@ When invoked with no scope:
    owning module, artifact contract, and operator-facing outcome do not
    materially change; prefer representative probes or regression checks inside
    the current class over a new story shell.
+   When a new story is still the right vehicle, do not default to a few-minute
+   slice. If adjacent work shares the same artifact chain, owning module,
+   validation boundary, or operator-facing outcome, expand the boundary toward
+   roughly one focused AI hour of implementation plus validation, or longer
+   when that is the smallest coherent milestone. Treat that as a sizing
+   heuristic, not a quota; keep tiny stories only for genuine high-risk
+   unknowns, blockers, or indivisible proof boundaries.
 
    Choose the next action with the strongest combined signal across:
    - movement toward the Ideal
