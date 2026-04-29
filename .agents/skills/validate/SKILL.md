@@ -30,6 +30,16 @@ Thoroughly analyze what was done and how it compares to the original instruction
    - Treat every positive status claim as provisional until it is backed by
      fresh commands, artifact inspection, or both from this validation pass
 
+2.25 **Run a findings-first review pass**
+   - Review the current diff for concrete bugs, behavioral regressions, missing
+     tests, security/trust-boundary risks, and operational hazards before
+     grading requirements or closure.
+   - Report material findings first, ordered by severity and grounded in
+     file/line references when possible.
+   - If no material findings are found, say so explicitly and name any residual
+     verification limits.
+   - Do not let green checks or tidy story bookkeeping hide a real defect.
+
 2.5 **If there is a known story/ticket, validate against it**
    - **When a story is "known"**: the user provided a story path/ID/title, or a single story file is clearly in-scope (e.g., `docs/stories/story-*.md`) for the work being validated.
    - Open the story/ticket doc and extract:
@@ -67,9 +77,9 @@ Thoroughly analyze what was done and how it compares to the original instruction
 
 2.9 **Use optional parallel validation only when warranted**
    - Parallel packets are useful for non-trivial validation slices such as
-     changed-file review, story requirement review, repo-native check/test
-     execution, artifact/eval review, and holistic Ideal/spec/decision fit
-     review.
+     findings-first defect review, changed-file review, story requirement
+     review, repo-native check/test execution, artifact/eval review, and
+     holistic Ideal/spec/decision fit review.
    - Scope each packet to explicit files, commands, requirements, artifacts, or
      architecture questions. Require fresh evidence from this validation pass,
      and preserve doc-web's local story, eval, decision, and close-out
@@ -184,6 +194,14 @@ For each requirement, provide:
   - Expand tests to cover password reset and simultaneous session revocation
 
 ## Final Scorecard
+
+Lead with a findings section before the scorecard:
+
+- concrete bugs, behavioral regressions, missing tests, or
+  "no material findings found"
+- severity ordering for material findings
+- file/line references when possible
+- residual verification limits when no material findings are found
 
 ### Overall Grade: [A/B/C/D/F]
 
