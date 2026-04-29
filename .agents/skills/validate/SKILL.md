@@ -65,6 +65,26 @@ Thoroughly analyze what was done and how it compares to the original instruction
    - If the story appears to touch those areas and cites no ADRs, search `docs/decisions/` before assuming none exist.
    - Call out missing ADR / decision alignment explicitly in the report when relevant.
 
+2.9 **Use optional parallel validation only when warranted**
+   - Parallel packets are useful for non-trivial validation slices such as
+     changed-file review, story requirement review, repo-native check/test
+     execution, artifact/eval review, and holistic Ideal/spec/decision fit
+     review.
+   - Scope each packet to explicit files, commands, requirements, artifacts, or
+     architecture questions. Require fresh evidence from this validation pass,
+     and preserve doc-web's local story, eval, decision, and close-out
+     bookkeeping gates.
+   - Subagents may gather evidence or flag findings, but the main thread keeps
+     the final score, closure recommendation, story handoff state, and
+     yes-ready next step.
+   - Do not make subagents mandatory for routine small validation.
+   - If parallel packets are unavailable, unsafe for the checkout, or explicitly
+     disabled by the user, run the same validation passes sequentially and note
+     the fallback.
+   - Escalate to `/loop-verify` for broad or high-risk diffs, repeated material
+     fixes during validation, cross-repo rollout surfaces, or cases where one
+     complete clean parallel round matters before closure.
+
 3. **Score Each Requirement**
    - **A**: Fully implemented, high quality, exceeds expectations
    - **B**: Implemented well, minor improvements possible

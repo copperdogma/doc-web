@@ -12,6 +12,24 @@ Create a new story in `docs/stories/` with consistent format when a new story is
 actually warranted. If the honest move is to expand or reopen an existing story
 on the same problem line, do that instead of minting a new ID.
 
+## Optional Sidecar Evidence
+
+For non-trivial or cross-cutting story creation, the main thread may use
+subagents or sidecar agents to gather bounded evidence before deciding whether
+to bootstrap. Useful packets include codebase impact scans, recent or active
+story lookup, ADR/scout/runbook/eval lookup, source-specific research, and
+edge-case completeness checks across architecture, evals, input coverage, and
+operator surfaces.
+
+- Sidecars are optional and evidence-only. They do not decide whether a story is
+  warranted, choose the story boundary, set the initial status, or write the
+  final story artifact.
+- Do not default story creation to `/loop-verify`; reserve repeated verify
+  loops for later validation or unusually broad/high-risk planning surfaces.
+- If subagents are unavailable, unsafe for the checkout, or explicitly disabled
+  by the user, run the same evidence checks sequentially and state that
+  fallback in the handoff.
+
 ## Eval Ladder Gate
 
 For AI-capability work, identify the eval ladder before creating or prioritizing
