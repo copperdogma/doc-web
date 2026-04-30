@@ -27,6 +27,11 @@ import re
 
 from modules.common import ensure_dir, save_jsonl, read_jsonl
 
+
+def _normalize_ws(text: str) -> str:
+    return re.sub(r"\s+", " ", str(text or "")).strip()
+
+
 try:
     from modules.common.openai_client import OpenAI
 except Exception as exc:  # pragma: no cover - environment dependency
@@ -199,7 +204,19 @@ Return JSON only.
 
 
 # Keys propagated from detector VLM response through box transformations
-_DETECTOR_META_KEYS = ("_description", "_contains_text", "_text_reason", "_source_issues", "_caption_text")
+_DETECTOR_META_KEYS = (
+    "_description",
+    "_contains_text",
+    "_text_reason",
+    "_source_issues",
+    "_caption_text",
+    "_nearby_text",
+    "_expected_visual_contents",
+    "_critical_graphics_target_id",
+    "_critical_graphics_importance",
+    "_critical_graphics_role",
+    "_critical_graphics_reason",
+)
 
 
 def _copy_detector_meta(src: dict, dst: dict) -> dict:
@@ -809,6 +826,672 @@ def _trim_text_edges(
     }
     _copy_detector_meta(box, new_box)
     return new_box
+
+
+def _should_mask_reference_panel_prose(box: Dict[str, Any]) -> bool:
+    role = str(box.get("_critical_graphics_role") or "").casefold()
+    if role != "card_reference":
+        return False
+    description = str(box.get("_description") or "").casefold()
+    if any(cue in description for cue in ("annotated", "labelled", "labeled", "callout")):
+        return False
+    return any(cue in description for cue in ("reference images", "reference panel", "card faces", "card grid", "card sheet"))
+
+
+def _should_split_card_reference_panel(box: Dict[str, Any]) -> bool:
+    role = str(box.get("_critical_graphics_role") or "").casefold()
+    if role != "card_reference":
+        return False
+    description = str(box.get("_description") or "").casefold()
+    if any(cue in description for cue in ("annotated", "labelled", "labeled", "callout")):
+        return False
+    return any(cue in description for cue in ("reference images", "reference panel", "card faces", "card grid", "card sheet"))
+
+
+def _mask_detached_graphic_background(cropped: Image.Image, box: Dict[str, Any]) -> Optional[Image.Image]:
+    """Return an RGBA crop that hides detached prose around complex graphics.
+
+    Course and board layouts are often irregular shapes. A rectangular source
+    bbox can be correct for the map but still include prose below an empty
+    corner. For map-like crops, make detected detached prose transparent while
+    leaving the retained source pixels unchanged.
+    """
+    role = str(box.get("_critical_graphics_role") or "").casefold()
+    if role != "map_or_board":
+        return None
+    rgb = cropped.convert("RGB")
+    arr = np.asarray(rgb)
+    h, w = arr.shape[:2]
+    if h < 120 or w < 120:
+        return None
+
+    hsv = cv2.cvtColor(arr, cv2.COLOR_RGB2HSV)
+    saturation = hsv[:, :, 1]
+    value = hsv[:, :, 2]
+    gray = cv2.cvtColor(arr, cv2.COLOR_RGB2GRAY)
+    edges = cv2.Canny(gray, 45, 140)
+
+    # Saturated board elements, dark tracks/walls, and repeated tile/grid edges
+    # are map signals. Plain paper and prose-only areas should not survive the
+    # component-size filters below.
+    signal = (
+        (saturation > 32)
+        | (value < 112)
+        | (edges > 0)
+    ).astype("uint8") * 255
+
+    mask = np.full((h, w), 255, dtype=np.uint8)
+    changed = False
+    changed = _mask_bottom_text_components(signal, mask)
+    changed = _mask_edge_prose_with_ocr(rgb, mask) or changed
+    if not changed:
+        return None
+    rgba = np.dstack([arr, mask])
+    result = Image.fromarray(rgba, mode="RGBA")
+    result.info["_doc_web_masked_graphic_background"] = True
+    return result
+
+
+def _mask_detached_map_background(cropped: Image.Image, box: Dict[str, Any]) -> Optional[Image.Image]:
+    return _mask_detached_graphic_background(cropped, box)
+
+
+def _should_mask_text_heavy_rule_panel(box: Dict[str, Any]) -> bool:
+    """Return true for large mixed prose+visual panels where prose is semantic HTML."""
+    role = str(box.get("_critical_graphics_role") or "").casefold()
+    if role != "rule_example_diagram":
+        return False
+    try:
+        area_ratio = float(box.get("area_ratio") or 0.0)
+    except (TypeError, ValueError):
+        area_ratio = 0.0
+    if area_ratio < 0.20:
+        return False
+    text = " ".join(
+        str(box.get(key) or "")
+        for key in ("_description", "_nearby_text", "_expected_visual_contents")
+    ).casefold()
+    # Callout labels are spatially integrated with the figure and should remain
+    # source pixels; plain instructional prose around a visual panel can be
+    # represented semantically and hidden in the crop.
+    if any(cue in text for cue in ("callout box", "callout boxes", "yellow callout", "annotated callout")):
+        return False
+    return any(cue in text for cue in ("panel", "example", "upgrade", "reference", "diagram"))
+
+
+def _mask_detached_rule_panel_prose(cropped: Image.Image, box: Dict[str, Any]) -> Optional[Image.Image]:
+    if not _should_mask_text_heavy_rule_panel(box):
+        return None
+    rgb = cropped.convert("RGB")
+    arr = np.asarray(rgb)
+    alpha_mask = np.full((arr.shape[0], arr.shape[1]), 255, dtype=np.uint8)
+    if not _mask_light_background_reference_prose(rgb, alpha_mask):
+        return None
+    rgba = np.dstack([arr, alpha_mask])
+    result = Image.fromarray(rgba, mode="RGBA")
+    result.info["_doc_web_masked_rule_panel_prose"] = True
+    return result
+
+
+def _mask_rule_panel_split_prose(cropped: Image.Image, box: Dict[str, Any]) -> Optional[Image.Image]:
+    if str(box.get("_detection_method") or "") != "cv_guided_rule_panel_split":
+        return None
+    rgb = cropped.convert("RGB")
+    arr = np.asarray(rgb)
+    alpha_mask = np.full((arr.shape[0], arr.shape[1]), 255, dtype=np.uint8)
+    if not _mask_light_edge_text_components(rgb, alpha_mask):
+        return None
+    rgba = np.dstack([arr, alpha_mask])
+    result = Image.fromarray(rgba, mode="RGBA")
+    result.info["_doc_web_masked_rule_panel_split_prose"] = True
+    return result
+
+
+def _mask_rule_panel_placement_layout_prose(cropped: Image.Image, box: Dict[str, Any]) -> Optional[Image.Image]:
+    if str(box.get("_rule_panel_child_kind") or "") != "placement_layout":
+        return None
+    rgb = cropped.convert("RGB")
+    arr = np.asarray(rgb)
+    h, w = arr.shape[:2]
+    if h < 120 or w < 120:
+        return None
+    visual_cluster = _mask_rule_panel_placement_layout_visual_cluster(arr)
+    if visual_cluster is not None:
+        visual_cluster.info["_doc_web_masked_rule_panel_placement_layout_visual_cluster"] = True
+        return visual_cluster
+
+    alpha_mask = np.full((h, w), 255, dtype=np.uint8)
+    changed = _mask_light_upper_left_prose_margin(rgb, alpha_mask)
+    if not changed:
+        return None
+    rgba = np.dstack([arr, alpha_mask])
+    result = Image.fromarray(rgba, mode="RGBA")
+    result.info["_doc_web_masked_rule_panel_placement_layout_prose"] = True
+    return result
+
+
+def _mask_rule_panel_placement_layout_visual_cluster(arr: np.ndarray) -> Optional[Image.Image]:
+    """Keep sparse visual placement clusters while dropping ordinary surrounding prose."""
+    h, w = arr.shape[:2]
+    hsv = cv2.cvtColor(arr, cv2.COLOR_RGB2HSV)
+    saturation = hsv[:, :, 1]
+    value = hsv[:, :, 2]
+
+    visual_seed = (((saturation > 45) & (value > 55)) | (value < 82)).astype("uint8") * 255
+    visual_seed = cv2.morphologyEx(
+        visual_seed,
+        cv2.MORPH_CLOSE,
+        cv2.getStructuringElement(cv2.MORPH_RECT, (7, 7)),
+        iterations=1,
+    )
+    visual_seed = cv2.dilate(
+        visual_seed,
+        cv2.getStructuringElement(cv2.MORPH_RECT, (9, 9)),
+        iterations=1,
+    )
+    num_labels, labels, stats, _ = cv2.connectedComponentsWithStats(visual_seed, connectivity=8)
+
+    component_boxes: List[Tuple[int, int, int, int, int]] = []
+    min_area = max(90, int(w * h * 0.00028))
+    for label in range(1, num_labels):
+        x, y, cw, ch, area = stats[label]
+        if area < min_area:
+            continue
+        if cw < 8 or ch < 8:
+            continue
+        comp_sat = saturation[y:y + ch, x:x + cw]
+        comp_val = value[y:y + ch, x:x + cw]
+        sat_ratio = float(np.mean((comp_sat > 55) & (comp_val > 55)))
+        dark_ratio = float(np.mean(comp_val < 95))
+        text_like = ch <= max(24, int(h * 0.045)) and cw > ch * 5 and sat_ratio < 0.18
+        low_saturation_text_like = (
+            sat_ratio < 0.04
+            and dark_ratio < 0.28
+            and ch <= max(46, int(h * 0.055))
+            and cw > ch * 1.9
+            and area < w * h * 0.015
+        )
+        upper_left_prose_like = (
+            (x + cw / 2.0) < w * 0.58
+            and (y + ch / 2.0) < h * 0.38
+            and sat_ratio < 0.20
+            and ch < h * 0.12
+        )
+        if text_like or low_saturation_text_like or upper_left_prose_like:
+            continue
+        if sat_ratio < 0.03 and dark_ratio < 0.04 and area < w * h * 0.003:
+            continue
+        component_boxes.append((int(x), int(y), int(x + cw), int(y + ch), int(area)))
+
+    if len(component_boxes) < 2:
+        return None
+
+    alpha = np.zeros((h, w), dtype=np.uint8)
+
+    def paint_box(box: Tuple[int, int, int, int, int], pad: int) -> None:
+        x0, y0, x1, y1, _area = box
+        alpha[max(0, y0 - pad):min(h, y1 + pad), max(0, x0 - pad):min(w, x1 + pad)] = 255
+
+    small_pad = max(5, int(min(w, h) * 0.01))
+    for component in component_boxes:
+        paint_box(component, small_pad)
+
+    # Placement layouts often have one lower mat/card cluster and one upper card
+    # cluster linked by thin guide lines. Group each cluster rectangularly so
+    # source-pixel relationships remain legible without preserving prose bands.
+    lower_group = [box for box in component_boxes if (box[1] + box[3]) / 2.0 > h * 0.42]
+    if lower_group:
+        gx0 = min(box[0] for box in lower_group)
+        gy0 = min(box[1] for box in lower_group)
+        gx1 = max(box[2] for box in lower_group)
+        gy1 = max(box[3] for box in lower_group)
+        if (gx1 - gx0) >= w * 0.12 and (gy1 - gy0) >= h * 0.08:
+            pad = max(8, int(min(w, h) * 0.018))
+            alpha[max(0, gy0 - pad):min(h, gy1 + pad), max(0, gx0 - pad):min(w, gx1 + pad)] = 255
+
+    colored = ((saturation > 70) & (value > 70)).astype("uint8") * 255
+    colored = cv2.dilate(
+        colored,
+        cv2.getStructuringElement(cv2.MORPH_RECT, (7, 7)),
+        iterations=1,
+    )
+    alpha[colored > 0] = 255
+
+    alpha = cv2.morphologyEx(
+        alpha,
+        cv2.MORPH_CLOSE,
+        cv2.getStructuringElement(cv2.MORPH_RECT, (5, 5)),
+        iterations=1,
+    )
+    if float(np.mean(alpha > 0)) > 0.86:
+        return None
+
+    ys, xs = np.where(alpha > 0)
+    if ys.size == 0 or xs.size == 0:
+        return None
+    pad = max(4, int(min(w, h) * 0.01))
+    x0 = max(0, int(xs.min()) - pad)
+    y0 = max(0, int(ys.min()) - pad)
+    x1 = min(w, int(xs.max()) + pad + 1)
+    y1 = min(h, int(ys.max()) + pad + 1)
+    if x1 <= x0 or y1 <= y0:
+        return None
+
+    rgba = np.dstack([arr, alpha])
+    return Image.fromarray(rgba[y0:y1, x0:x1], mode="RGBA")
+
+
+def _mask_light_upper_left_prose_margin(image: Image.Image, alpha_mask: np.ndarray) -> bool:
+    arr = np.asarray(image.convert("RGB"))
+    h, w = alpha_mask.shape[:2]
+    top = int(h * 0.42)
+    left = int(w * 0.58)
+    if top <= 0 or left <= 0:
+        return False
+    hsv = cv2.cvtColor(arr[:top, :left], cv2.COLOR_RGB2HSV)
+    saturation = hsv[:, :, 1]
+    value = hsv[:, :, 2]
+    light_ratio = float(np.mean((value > 160) & (saturation < 80)))
+    if light_ratio < 0.55:
+        return False
+    gray = cv2.cvtColor(arr[:top, :left], cv2.COLOR_RGB2GRAY)
+    protected = _saturated_visual_protection_mask(arr)
+    text_signal = ((gray < 145) & (saturation < 115)).astype("uint8") * 255
+    kernel_w = max(31, min(95, left // 12))
+    if kernel_w % 2 == 0:
+        kernel_w += 1
+    text_like = cv2.morphologyEx(
+        text_signal,
+        cv2.MORPH_CLOSE,
+        cv2.getStructuringElement(cv2.MORPH_RECT, (kernel_w, 5)),
+        iterations=1,
+    )
+    num_labels, _labels, stats, _ = cv2.connectedComponentsWithStats(text_like, connectivity=8)
+    changed = False
+    for label in range(1, num_labels):
+        x, y, cw, ch, area = stats[label]
+        if area < max(40, int(left * top * 0.0003)):
+            continue
+        if cw < max(45, int(left * 0.04)):
+            continue
+        if ch < 4 or ch > max(42, int(top * 0.16)):
+            continue
+        component_sat = saturation[y:y + ch, x:x + cw]
+        component_val = value[y:y + ch, x:x + cw]
+        visual_ratio = float(np.mean((component_sat > 95) & (component_val > 80)))
+        if visual_ratio > 0.12:
+            continue
+        pad_x = max(8, min(26, int(cw * 0.03)))
+        pad_y = max(6, min(18, int(ch * 0.8)))
+        my0 = max(0, y - pad_y)
+        my1 = min(h, y + ch + pad_y)
+        mx0 = max(0, x - pad_x)
+        mx1 = min(w, x + cw + pad_x)
+        region = alpha_mask[my0:my1, mx0:mx1]
+        protected_region = protected[my0:my1, mx0:mx1] > 0
+        region[~protected_region] = 0
+        changed = True
+    return changed
+
+
+def _saturated_visual_protection_mask(arr: np.ndarray) -> np.ndarray:
+    h, w = arr.shape[:2]
+    hsv = cv2.cvtColor(arr, cv2.COLOR_RGB2HSV)
+    saturation = hsv[:, :, 1]
+    value = hsv[:, :, 2]
+    signal = ((saturation > 38) & (value > 65)).astype("uint8") * 255
+    signal = cv2.morphologyEx(
+        signal,
+        cv2.MORPH_CLOSE,
+        cv2.getStructuringElement(cv2.MORPH_RECT, (9, 9)),
+        iterations=1,
+    )
+    signal = cv2.dilate(
+        signal,
+        cv2.getStructuringElement(cv2.MORPH_RECT, (28, 28)),
+        iterations=1,
+    )
+    num_labels, labels, stats, _ = cv2.connectedComponentsWithStats(signal, connectivity=8)
+    protected = np.zeros((h, w), dtype=np.uint8)
+    min_area = max(100, int(w * h * 0.00035))
+    for label in range(1, num_labels):
+        x, y, cw, ch, area = stats[label]
+        if area < min_area:
+            continue
+        if cw < w * 0.025 and ch < h * 0.025:
+            continue
+        protected[labels == label] = 255
+    return protected
+
+
+def _mask_unprotected_light_text_lines(image: Image.Image, alpha_mask: np.ndarray) -> bool:
+    """Clear OCR text lines that are not spatially inside saturated visuals."""
+    try:
+        import pytesseract
+        from pytesseract import Output
+    except Exception:
+        return False
+    try:
+        data = pytesseract.image_to_data(image, output_type=Output.DICT, config="--psm 6")
+    except Exception:
+        return False
+
+    arr = np.asarray(image.convert("RGB"))
+    h, w = alpha_mask.shape[:2]
+    protected = _saturated_visual_protection_mask(arr)
+    words: List[Dict[str, Any]] = []
+    texts = data.get("text") or []
+    for idx, raw_text in enumerate(texts):
+        text = str(raw_text or "").strip()
+        if not re.search(r"[A-Za-z]{3,}", text):
+            continue
+        try:
+            conf = float(data.get("conf", [])[idx])
+        except Exception:
+            conf = -1.0
+        if conf >= 0 and conf < 20:
+            continue
+        try:
+            x = int(data.get("left", [])[idx])
+            y = int(data.get("top", [])[idx])
+            bw = int(data.get("width", [])[idx])
+            bh = int(data.get("height", [])[idx])
+        except Exception:
+            continue
+        if bw <= 0 or bh <= 0:
+            continue
+        cx = min(w - 1, max(0, x + bw // 2))
+        cy = min(h - 1, max(0, y + bh // 2))
+        words.append(
+            {
+                "box": (x, y, x + bw, y + bh),
+                "cy": cy,
+                "protected": protected[cy, cx] > 0,
+            }
+        )
+    if not words:
+        return False
+
+    words.sort(key=lambda item: (item["cy"], item["box"][0]))
+    line_gap = max(12, int(h * 0.025))
+    lines: List[Dict[str, Any]] = []
+    for word in words:
+        if not lines or abs(word["cy"] - lines[-1]["cy"]) > line_gap:
+            lines.append({"words": [word], "cy": float(word["cy"])})
+        else:
+            lines[-1]["words"].append(word)
+            lines[-1]["cy"] = sum(item["cy"] for item in lines[-1]["words"]) / len(lines[-1]["words"])
+
+    changed = False
+    for line in lines:
+        line_words = line["words"]
+        protected_ratio = sum(1 for word in line_words if word["protected"]) / float(len(line_words))
+        if protected_ratio >= 0.45:
+            continue
+        x0 = min(word["box"][0] for word in line_words)
+        y0 = min(word["box"][1] for word in line_words)
+        x1 = max(word["box"][2] for word in line_words)
+        y1 = max(word["box"][3] for word in line_words)
+        pad = max(8, min(22, int((y1 - y0) * 0.8)))
+        alpha_mask[max(0, y0 - pad):min(h, y1 + pad), max(0, x0 - pad):min(w, x1 + pad)] = 0
+        changed = True
+    return changed
+
+
+def _mask_rule_example_edge_prose(cropped: Image.Image, box: Dict[str, Any]) -> Optional[Image.Image]:
+    role = str(box.get("_critical_graphics_role") or "").casefold()
+    if role != "rule_example_diagram":
+        return None
+    rgb = cropped.convert("RGB")
+    arr = np.asarray(rgb)
+    alpha_mask = np.full((arr.shape[0], arr.shape[1]), 255, dtype=np.uint8)
+    if not _mask_light_edge_text_components(rgb, alpha_mask):
+        return None
+    rgba = np.dstack([arr, alpha_mask])
+    result = Image.fromarray(rgba, mode="RGBA")
+    result.info["_doc_web_masked_rule_example_edge_prose"] = True
+    return result
+
+
+def _mask_bottom_text_components(signal: np.ndarray, alpha_mask: np.ndarray) -> bool:
+    """Clear detached horizontal text components in the lower edge band."""
+    h, w = alpha_mask.shape[:2]
+    if h <= 0 or w <= 0:
+        return False
+    kernel_w = max(17, min(45, w // 45))
+    kernel_h = max(3, min(7, h // 140))
+    if kernel_w % 2 == 0:
+        kernel_w += 1
+    if kernel_h % 2 == 0:
+        kernel_h += 1
+    text_kernel = cv2.getStructuringElement(cv2.MORPH_RECT, (kernel_w, kernel_h))
+    text_like = cv2.morphologyEx(signal, cv2.MORPH_CLOSE, text_kernel, iterations=1)
+    num_labels, _labels, stats, _ = cv2.connectedComponentsWithStats(text_like, connectivity=8)
+    changed = False
+    for label in range(1, num_labels):
+        x, y, cw, ch, area = stats[label]
+        if area <= 0:
+            continue
+        if y < h * 0.68:
+            continue
+        if x > w * 0.28 and (x + cw) < w * 0.72:
+            continue
+        if ch > h * 0.09:
+            continue
+        if cw < w * 0.035 or cw > w * 0.38:
+            continue
+        density = area / float(max(1, cw * ch))
+        if density < 0.2:
+            continue
+        pad = max(4, min(18, int(max(cw, ch) * 0.05)))
+        x0 = max(0, int(x) - pad)
+        y0 = max(0, int(y) - pad)
+        x1 = min(w, int(x + cw) + pad)
+        y1 = min(h, int(y + ch) + pad)
+        alpha_mask[y0:y1, x0:x1] = 0
+        changed = True
+    return changed
+
+
+def _mask_edge_prose_with_ocr(image: Image.Image, alpha_mask: np.ndarray) -> bool:
+    """Clear OCR-detected prose words near the bottom edge of a map crop."""
+    try:
+        import pytesseract
+        from pytesseract import Output
+    except Exception:
+        return False
+    try:
+        data = pytesseract.image_to_data(image, output_type=Output.DICT, config="--psm 6")
+    except Exception:
+        return False
+    h, w = alpha_mask.shape[:2]
+    changed = False
+    texts = data.get("text") or []
+    for idx, raw_text in enumerate(texts):
+        text = str(raw_text or "").strip()
+        if not re.search(r"[A-Za-z]{3,}", text):
+            continue
+        try:
+            conf = float(data.get("conf", [])[idx])
+        except Exception:
+            conf = -1.0
+        if conf >= 0 and conf < 20:
+            continue
+        try:
+            x = int(data.get("left", [])[idx])
+            y = int(data.get("top", [])[idx])
+            bw = int(data.get("width", [])[idx])
+            bh = int(data.get("height", [])[idx])
+        except Exception:
+            continue
+        if bw <= 0 or bh <= 0:
+            continue
+        if y < h * 0.62:
+            continue
+        if x > w * 0.28 and (x + bw) < w * 0.72:
+            continue
+        pad = max(4, min(18, int(max(bw, bh) * 0.08)))
+        x0 = max(0, x - pad)
+        y0 = max(0, y - pad)
+        x1 = min(w, x + bw + pad)
+        y1 = min(h, y + bh + pad)
+        alpha_mask[y0:y1, x0:x1] = 0
+        changed = True
+    return changed
+
+
+def _mask_light_background_reference_prose(image: Image.Image, alpha_mask: np.ndarray) -> bool:
+    """Clear OCR words printed on light paper while preserving dark card faces."""
+    try:
+        import pytesseract
+        from pytesseract import Output
+    except Exception:
+        return False
+    try:
+        data = pytesseract.image_to_data(image, output_type=Output.DICT, config="--psm 6")
+    except Exception:
+        return False
+    arr = np.asarray(image.convert("RGB"))
+    h, w = alpha_mask.shape[:2]
+    boxes = []
+    texts = data.get("text") or []
+    for idx, raw_text in enumerate(texts):
+        text = str(raw_text or "").strip()
+        if not re.search(r"[A-Za-z]{3,}", text):
+            continue
+        try:
+            conf = float(data.get("conf", [])[idx])
+        except Exception:
+            conf = -1.0
+        if conf >= 0 and conf < 20:
+            continue
+        try:
+            x = int(data.get("left", [])[idx])
+            y = int(data.get("top", [])[idx])
+            bw = int(data.get("width", [])[idx])
+            bh = int(data.get("height", [])[idx])
+        except Exception:
+            continue
+        if bw <= 0 or bh <= 0:
+            continue
+        pad = max(4, min(18, int(max(bw, bh) * 0.12)))
+        x0 = max(0, x - pad)
+        y0 = max(0, y - pad)
+        x1 = min(w, x + bw + pad)
+        y1 = min(h, y + bh + pad)
+        roi = arr[y0:y1, x0:x1]
+        if roi.size == 0:
+            continue
+        mean_value = float(np.mean(np.max(roi, axis=2)))
+        mean_saturation = float(np.mean(cv2.cvtColor(roi, cv2.COLOR_RGB2HSV)[:, :, 1]))
+        # Body/prose labels sit on light paper. Card titles sit inside dark,
+        # saturated card frames and should remain source pixels.
+        if mean_value < 150 or mean_saturation > 95:
+            continue
+        boxes.append((x0, y0, x1, y1))
+    if not boxes:
+        return False
+
+    boxes.sort(key=lambda item: ((item[1] + item[3]) / 2, item[0]))
+    line_gap = max(18, int(h * 0.025))
+    lines: list[list[tuple[int, int, int, int]]] = []
+    for box in boxes:
+        cy = (box[1] + box[3]) / 2
+        if not lines:
+            lines.append([box])
+            continue
+        last = lines[-1]
+        last_cy = sum((b[1] + b[3]) / 2 for b in last) / len(last)
+        if abs(cy - last_cy) <= line_gap or box[1] <= max(b[3] for b in last):
+            last.append(box)
+        else:
+            lines.append([box])
+
+    line_boxes = [
+        (
+            min(b[0] for b in line),
+            min(b[1] for b in line),
+            max(b[2] for b in line),
+            max(b[3] for b in line),
+        )
+        for line in lines
+    ]
+    clusters: list[list[tuple[int, int, int, int]]] = []
+    paragraph_gap = max(38, int(h * 0.04))
+    for line_box in line_boxes:
+        if not clusters:
+            clusters.append([line_box])
+            continue
+        last = clusters[-1]
+        previous = last[-1]
+        vertical_gap = line_box[1] - previous[3]
+        horizontal_overlap = min(line_box[2], previous[2]) - max(line_box[0], previous[0])
+        if vertical_gap <= paragraph_gap and horizontal_overlap >= -max(30, int(w * 0.03)):
+            last.append(line_box)
+        else:
+            clusters.append([line_box])
+
+    for cluster in clusters:
+        pad = max(12, int(max((b[3] - b[1]) for b in cluster) * 1.2), int(h * 0.015))
+        x0 = max(0, min(b[0] for b in cluster) - pad)
+        y0 = max(0, min(b[1] for b in cluster) - pad)
+        x1 = min(w, max(b[2] for b in cluster) + pad)
+        y1 = min(h, max(b[3] for b in cluster) + pad)
+        alpha_mask[y0:y1, x0:x1] = 0
+    return True
+
+
+def _mask_light_edge_text_components(image: Image.Image, alpha_mask: np.ndarray) -> bool:
+    """Clear partial prose clipped into light edge bands of split visual crops."""
+    arr = np.asarray(image.convert("RGB"))
+    h, w = alpha_mask.shape[:2]
+    if h < 80 or w < 80:
+        return False
+    hsv = cv2.cvtColor(arr, cv2.COLOR_RGB2HSV)
+    saturation = hsv[:, :, 1]
+    value = hsv[:, :, 2]
+    text_like = ((value < 170) & (saturation < 90)).astype("uint8") * 255
+    if not np.any(text_like):
+        return False
+    kernel = cv2.getStructuringElement(cv2.MORPH_RECT, (3, 3))
+    text_like = cv2.morphologyEx(text_like, cv2.MORPH_OPEN, kernel, iterations=1)
+    num_labels, _labels, stats, _ = cv2.connectedComponentsWithStats(text_like, connectivity=8)
+    changed = False
+    right_start = int(w * 0.78)
+    right_sat = saturation[:, right_start:w]
+    right_val = value[:, right_start:w]
+    if right_sat.size:
+        right_light_ratio = float(np.mean((right_val > 170) & (right_sat < 80)))
+        right_text_ratio = float(np.mean((right_val < 145) & (right_sat < 90)))
+        if right_light_ratio > 0.45 and right_text_ratio > 0.002:
+            alpha_mask[:, right_start:w] = 0
+            changed = True
+    for label in range(1, num_labels):
+        x, y, cw, ch, area = stats[label]
+        if area < 6 or area > max(800, int(w * h * 0.01)):
+            continue
+        if cw > w * 0.22 or ch > h * 0.18:
+            continue
+        pad = max(5, min(18, int(max(cw, ch) * 0.35)))
+        x0 = max(0, int(x) - pad)
+        y0 = max(0, int(y) - pad)
+        x1 = min(w, int(x + cw) + pad)
+        y1 = min(h, int(y + ch) + pad)
+        edge_x = max(14, int(w * 0.06))
+        edge_y = max(14, int(h * 0.06))
+        touches_edge = x0 <= edge_x or x1 >= w - edge_x or y0 <= edge_y or y1 >= h - edge_y
+        if not touches_edge:
+            continue
+        roi_sat = saturation[y0:y1, x0:x1]
+        roi_val = value[y0:y1, x0:x1]
+        if roi_sat.size == 0:
+            continue
+        light_ratio = float(np.mean((roi_val > 170) & (roi_sat < 80)))
+        if light_ratio < 0.35:
+            continue
+        alpha_mask[y0:y1, x0:x1] = 0
+        changed = True
+    return changed
 
 
 def _box_has_text_band(
@@ -1529,6 +2212,640 @@ def _trim_caption_from_box(
     _copy_detector_meta(box, new_box)
     return new_box
 
+
+def _trim_rule_example_bottom_prose_band(
+    image_path: str,
+    box: Dict[str, int],
+    *,
+    margin_px: int = 8,
+) -> Dict[str, int]:
+    role = str(box.get("_critical_graphics_role") or "").casefold()
+    if role not in {"rule_example_diagram", "component_reference"}:
+        return box
+    if str(box.get("_detection_method") or "") == "cv_guided_rule_panel_split":
+        return box
+    img_bgr = cv2.imread(str(image_path), cv2.IMREAD_COLOR)
+    if img_bgr is None:
+        return box
+    img_h, img_w = img_bgr.shape[:2]
+    x0 = max(0, int(box.get("x0", 0)))
+    y0 = max(0, int(box.get("y0", 0)))
+    x1 = min(img_w, int(box.get("x1", img_w)))
+    y1 = min(img_h, int(box.get("y1", img_h)))
+    if x1 <= x0 or y1 <= y0:
+        return box
+    roi = img_bgr[y0:y1, x0:x1]
+    if roi.size == 0:
+        return box
+    hsv = cv2.cvtColor(roi, cv2.COLOR_BGR2HSV)
+    sat = hsv[:, :, 1]
+    gray = cv2.cvtColor(roi, cv2.COLOR_BGR2GRAY)
+    dark_text = (gray < 150) & (sat < 90)
+    saturated = sat > 100
+    h, w = gray.shape[:2]
+    if h < 120 or w < 120:
+        return box
+    row_signal = dark_text.sum(axis=1) / float(max(1, w))
+    sat_signal = saturated.sum(axis=1) / float(max(1, w))
+    candidates = [
+        row
+        for row in range(int(h * 0.75), h)
+        if 0.005 < row_signal[row] < 0.25 and sat_signal[row] < 0.08
+    ]
+    if not candidates:
+        return box
+    groups: List[Tuple[int, int]] = []
+    start = last = candidates[0]
+    for row in candidates[1:]:
+        if row <= last + 3:
+            last = row
+            continue
+        groups.append((start, last))
+        start = last = row
+    groups.append((start, last))
+    prose_groups = [(start, end) for start, end in groups if start >= int(h * 0.88)]
+    if not prose_groups:
+        return box
+    trim_start = min(start for start, _end in prose_groups)
+    new_y1 = y0 + max(0, trim_start - margin_px)
+    if new_y1 <= y0 or y1 - new_y1 < max(8, int(h * 0.015)):
+        return box
+    new_box = {
+        "x0": x0,
+        "y0": y0,
+        "x1": x1,
+        "y1": new_y1,
+        "width": x1 - x0,
+        "height": new_y1 - y0,
+    }
+    _copy_detector_meta(box, new_box)
+    new_box["_detection_method"] = box.get("_detection_method", "critical_graphics_manifest")
+    new_box["_trimmed_rule_example_bottom_prose"] = True
+    return new_box
+
+
+def _trim_rule_panel_cost_reference_card(
+    image_path: str,
+    box: Dict[str, int],
+    *,
+    pad_px: int = 0,
+) -> Dict[str, int]:
+    """Trim split cost-reference children to the card-like visual object."""
+    if str(box.get("_rule_panel_child_kind") or "") != "cost_reference":
+        return box
+    img_bgr = cv2.imread(str(image_path), cv2.IMREAD_COLOR)
+    if img_bgr is None:
+        return box
+    img_h, img_w = img_bgr.shape[:2]
+    x0 = max(0, int(box.get("x0", 0)))
+    y0 = max(0, int(box.get("y0", 0)))
+    x1 = min(img_w, int(box.get("x1", img_w)))
+    y1 = min(img_h, int(box.get("y1", img_h)))
+    if x1 <= x0 or y1 <= y0:
+        return box
+    roi = img_bgr[y0:y1, x0:x1]
+    if roi.size == 0:
+        return box
+    hsv = cv2.cvtColor(roi, cv2.COLOR_BGR2HSV)
+    value = hsv[:, :, 2]
+    h, w = value.shape[:2]
+    if h < 120 or w < 120:
+        return box
+
+    # Cost reference visuals are usually card/object crops. Detached prose can
+    # be connected by a thin callout line, so prefer the tall dark visual body
+    # rather than a saturation union that follows the callout into text.
+    dark = (value < 85).astype("uint8") * 255
+    dark = cv2.morphologyEx(
+        dark,
+        cv2.MORPH_CLOSE,
+        cv2.getStructuringElement(cv2.MORPH_RECT, (7, 7)),
+        iterations=1,
+    )
+    num_labels, _labels, stats, _ = cv2.connectedComponentsWithStats(dark, connectivity=8)
+    components: List[Tuple[int, int, int, int, int]] = []
+    min_area = max(600, int(w * h * 0.025))
+    for label in range(1, num_labels):
+        cx, cy, cw, ch, area = stats[label]
+        if area < min_area:
+            continue
+        if ch < h * 0.55 or cw < w * 0.25:
+            continue
+        components.append((int(cx), int(cy), int(cx + cw), int(cy + ch), int(area)))
+    if not components:
+        return box
+
+    component = max(components, key=lambda item: item[4])
+    local_x1 = min(w, component[2] + pad_px)
+    if local_x1 < int(w * 0.45):
+        return box
+    trims_right_edge = local_x1 < int(w * 0.94)
+    if not trims_right_edge:
+        local_x1 = w
+
+    if not trims_right_edge:
+        return box
+    new_box = dict(box)
+    new_box["x1"] = x0 + local_x1
+    new_box["width"] = int(new_box["x1"] - new_box["x0"])
+    new_box["height"] = int(new_box["y1"] - new_box["y0"])
+    new_box["area"] = int(new_box["width"] * new_box["height"])
+    new_box["area_ratio"] = round(new_box["area"] / float(max(1, img_w * img_h)), 4)
+    new_box["_trimmed_rule_panel_cost_reference"] = True
+    return new_box
+
+
+def _expand_rule_panel_placement_layout_box(
+    image_path: str,
+    box: Dict[str, int],
+    *,
+    bottom_pad_ratio: float = 0.06,
+) -> Dict[str, int]:
+    """Add a small lower safety margin for sparse placement-layout clusters."""
+    if str(box.get("_rule_panel_child_kind") or "") != "placement_layout":
+        return box
+    try:
+        with Image.open(image_path) as img:
+            img_w, img_h = img.size
+    except Exception:
+        return box
+    x0 = max(0, int(box.get("x0", 0)))
+    y0 = max(0, int(box.get("y0", 0)))
+    x1 = min(img_w, int(box.get("x1", img_w)))
+    y1 = min(img_h, int(box.get("y1", img_h)))
+    if x1 <= x0 or y1 <= y0:
+        return box
+    pad = max(8, int((y1 - y0) * bottom_pad_ratio))
+    new_y1 = min(img_h, y1 + pad)
+    if new_y1 == y1:
+        return box
+    new_box = dict(box)
+    new_box["x0"] = x0
+    new_box["y0"] = y0
+    new_box["x1"] = x1
+    new_box["y1"] = new_y1
+    new_box["width"] = int(x1 - x0)
+    new_box["height"] = int(new_y1 - y0)
+    new_box["area"] = int(new_box["width"] * new_box["height"])
+    new_box["area_ratio"] = round(new_box["area"] / float(max(1, img_w * img_h)), 4)
+    new_box["_expanded_rule_panel_placement_layout"] = True
+    return new_box
+
+
+def _looks_like_player_mat_register_target(box: Dict[str, Any]) -> bool:
+    if str(box.get("_rule_panel_child_kind") or ""):
+        return False
+    if str(box.get("_critical_graphics_role") or "").casefold() != "rule_example_diagram":
+        return False
+    text = " ".join(
+        str(box.get(key) or "")
+        for key in ("_description", "_nearby_text", "_expected_visual_contents")
+    ).casefold()
+    return any(
+        cue in text
+        for cue in (
+            "player mat",
+            "programming mat",
+            "first register",
+            "remaining register",
+            "energy reserve",
+            "discard area",
+        )
+    )
+
+
+def _expand_player_mat_register_rule_example_box(
+    image_path: str,
+    box: Dict[str, int],
+    *,
+    max_search_ratio: float = 0.4,
+    max_detached_gap_ratio: float = 0.12,
+    pad_px: int = 16,
+) -> Dict[str, int]:
+    """Expand player-mat/register examples when the top edge cuts through the mat."""
+    if not _looks_like_player_mat_register_target(box):
+        return box
+    img_bgr = cv2.imread(str(image_path), cv2.IMREAD_COLOR)
+    if img_bgr is None:
+        return box
+    img_h, img_w = img_bgr.shape[:2]
+    x0 = max(0, int(box.get("x0", 0)))
+    y0 = max(0, int(box.get("y0", 0)))
+    x1 = min(img_w, int(box.get("x1", img_w)))
+    y1 = min(img_h, int(box.get("y1", img_h)))
+    if x1 <= x0 or y1 <= y0:
+        return box
+    h = y1 - y0
+    w = x1 - x0
+    search_y0 = max(0, y0 - max(140, int(h * max_search_ratio)))
+    if search_y0 >= y0:
+        return box
+    roi = img_bgr[search_y0:y1, x0:x1]
+    if roi.size == 0:
+        return box
+    hsv = cv2.cvtColor(roi, cv2.COLOR_BGR2HSV)
+    saturation = hsv[:, :, 1]
+    value = hsv[:, :, 2]
+    # Player mats mix colored card slots, dark card borders, robot icons, and
+    # gray board texture. Keep the signal broad, then only accept components
+    # whose bottom is very close to the current crop edge.
+    visual = (((saturation > 55) & (value > 60)) | (value < 150)).astype("uint8") * 255
+    visual = cv2.morphologyEx(
+        visual,
+        cv2.MORPH_CLOSE,
+        cv2.getStructuringElement(cv2.MORPH_RECT, (7, 7)),
+        iterations=1,
+    )
+    visual = cv2.dilate(
+        visual,
+        cv2.getStructuringElement(cv2.MORPH_RECT, (5, 5)),
+        iterations=1,
+    )
+    num_labels, _labels, stats, _ = cv2.connectedComponentsWithStats(visual, connectivity=8)
+    current_top = y0 - search_y0
+    max_detached_gap = max(36, int(h * max_detached_gap_ratio))
+    min_area = max(700, int(w * h * 0.003))
+    candidate_tops: List[int] = []
+    for label in range(1, num_labels):
+        cx, cy, cw, ch, area = stats[label]
+        if area < min_area:
+            continue
+        if cw < max(24, int(w * 0.035)) or ch < 18:
+            continue
+        if cy >= current_top - 4:
+            continue
+        comp_sat = saturation[cy:cy + ch, cx:cx + cw]
+        comp_val = value[cy:cy + ch, cx:cx + cw]
+        sat_ratio = float(np.mean((comp_sat > 55) & (comp_val > 60)))
+        dark_ratio = float(np.mean(comp_val < 150))
+        text_like_above_figure = (
+            ch <= max(42, int(h * 0.085))
+            and cw > max(36, ch * 1.2)
+            and sat_ratio < 0.04
+            and dark_ratio < 0.45
+        )
+        if text_like_above_figure:
+            continue
+        gap = current_top - int(cy + ch)
+        if gap > max_detached_gap:
+            continue
+        candidate_tops.append(int(cy))
+
+    if not candidate_tops:
+        return box
+    new_y0 = max(0, search_y0 + min(candidate_tops) - pad_px)
+    if y0 - new_y0 < max(12, int(h * 0.025)):
+        return box
+    new_box = dict(box)
+    new_box["x0"] = x0
+    new_box["y0"] = new_y0
+    new_box["x1"] = x1
+    new_box["y1"] = y1
+    new_box["width"] = int(w)
+    new_box["height"] = int(y1 - new_y0)
+    new_box["area"] = int(new_box["width"] * new_box["height"])
+    new_box["area_ratio"] = round(new_box["area"] / float(max(1, img_w * img_h)), 4)
+    new_box["_expanded_player_mat_register_top"] = True
+    return new_box
+
+
+def _looks_like_integrated_callout_target(box: Dict[str, Any]) -> bool:
+    if str(box.get("_rule_panel_child_kind") or ""):
+        return False
+    if str(box.get("_detection_method") or "") == "cv_guided_rule_panel_split":
+        return False
+    if str(box.get("_critical_graphics_role") or "").casefold() != "rule_example_diagram":
+        return False
+    text = " ".join(
+        str(box.get(key) or "")
+        for key in ("_description", "_nearby_text", "_expected_visual_contents")
+    ).casefold()
+    return any(cue in text for cue in ("callout", "numbered", "step", "yellow"))
+
+
+def _expand_integrated_callout_rule_example_box(
+    image_path: str,
+    box: Dict[str, int],
+    *,
+    min_row_ratio: float = 0.015,
+    max_search_ratio: float = 0.75,
+    pad_px: int = 16,
+) -> Dict[str, int]:
+    """Expand rule-example crops that cut through integrated callout panels."""
+    if not _looks_like_integrated_callout_target(box):
+        return box
+    img_bgr = cv2.imread(str(image_path), cv2.IMREAD_COLOR)
+    if img_bgr is None:
+        return box
+    img_h, img_w = img_bgr.shape[:2]
+    x0 = max(0, int(box.get("x0", 0)))
+    y0 = max(0, int(box.get("y0", 0)))
+    x1 = min(img_w, int(box.get("x1", img_w)))
+    y1 = min(img_h, int(box.get("y1", img_h)))
+    if x1 <= x0 or y1 <= y0:
+        return box
+    h = y1 - y0
+    search_y1 = min(img_h, y1 + max(160, int(h * max_search_ratio)))
+    if search_y1 <= y1:
+        return box
+    roi = img_bgr[y0:search_y1, x0:x1]
+    if roi.size == 0:
+        return box
+    hsv = cv2.cvtColor(roi, cv2.COLOR_BGR2HSV)
+    saturation = hsv[:, :, 1]
+    value = hsv[:, :, 2]
+    colored = ((saturation > 80) & (value > 110)).astype("uint8") * 255
+    colored = cv2.morphologyEx(
+        colored,
+        cv2.MORPH_CLOSE,
+        cv2.getStructuringElement(cv2.MORPH_RECT, (9, 9)),
+        iterations=1,
+    )
+    current_bottom = y1 - y0
+
+    num_labels, _labels, stats, _ = cv2.connectedComponentsWithStats(colored, connectivity=8)
+    candidate_bottoms: List[int] = []
+    max_detached_gap = max(70, int(h * 0.12))
+    min_area = max(80, int((x1 - x0) * h * min_row_ratio * 0.45))
+    for label in range(1, num_labels):
+        cx, cy, cw, ch, area = stats[label]
+        if area < min_area:
+            continue
+        if cw < max(40, int((x1 - x0) * 0.035)) or ch < 12:
+            continue
+        if cy + ch <= current_bottom + 12:
+            continue
+        if cy > current_bottom + max_detached_gap:
+            continue
+        candidate_bottoms.append(int(cy + ch))
+
+    if not candidate_bottoms:
+        return box
+    last_active = max(candidate_bottoms)
+    if last_active <= current_bottom + 12:
+        return box
+    new_y1 = min(img_h, y0 + last_active + pad_px)
+    if new_y1 <= y1:
+        return box
+    new_box = dict(box)
+    new_box["x0"] = x0
+    new_box["y0"] = y0
+    new_box["x1"] = x1
+    new_box["y1"] = new_y1
+    new_box["width"] = int(x1 - x0)
+    new_box["height"] = int(new_y1 - y0)
+    new_box["area"] = int(new_box["width"] * new_box["height"])
+    new_box["area_ratio"] = round(new_box["area"] / float(max(1, img_w * img_h)), 4)
+    new_box["_expanded_integrated_callouts"] = True
+    return new_box
+
+
+def _is_text_only_rule_panel_split_box(img_bgr: np.ndarray, box: Dict[str, int]) -> bool:
+    """Return true for split children that are only prominent prose, not visuals."""
+    if img_bgr is None:
+        return False
+    img_h, img_w = img_bgr.shape[:2]
+    x0 = max(0, int(box.get("x0", 0)))
+    y0 = max(0, int(box.get("y0", 0)))
+    x1 = min(img_w, int(box.get("x1", img_w)))
+    y1 = min(img_h, int(box.get("y1", img_h)))
+    if x1 <= x0 or y1 <= y0:
+        return False
+    roi = img_bgr[y0:y1, x0:x1]
+    if roi.size == 0:
+        return False
+    hsv = cv2.cvtColor(roi, cv2.COLOR_BGR2HSV)
+    saturation = hsv[:, :, 1]
+    value = hsv[:, :, 2]
+    h, w = value.shape[:2]
+    if h < 80 or w < 80:
+        return False
+
+    light_ratio = float(np.mean((value > 170) & (saturation < 80)))
+    saturated_ratio = float(np.mean((saturation > 100) & (value > 80)))
+    dark_ratio = float(np.mean(value < 90))
+    if light_ratio < 0.70 or saturated_ratio < 0.02 or dark_ratio > 0.035:
+        return False
+
+    non_light = (((value < 170) | (saturation > 90))).astype("uint8") * 255
+    kernel = cv2.getStructuringElement(cv2.MORPH_RECT, (5, 5))
+    connected = cv2.morphologyEx(non_light, cv2.MORPH_CLOSE, kernel, iterations=1)
+    num_labels, _labels, stats, _ = cv2.connectedComponentsWithStats(connected, connectivity=8)
+    for label in range(1, num_labels):
+        _x, _y, cw, ch, area = stats[label]
+        if area > max(900, int(w * h * 0.03)) and cw > w * 0.18 and ch > h * 0.18:
+            return False
+
+    row_coverage = (non_light > 0).mean(axis=1)
+    active_rows = np.flatnonzero((row_coverage > 0.018) & (row_coverage < 0.65))
+    if active_rows.size == 0:
+        return False
+    groups = 1
+    last = int(active_rows[0])
+    for row in active_rows[1:]:
+        row_int = int(row)
+        if row_int > last + 4:
+            groups += 1
+        last = row_int
+    return groups >= 2
+
+
+def _split_mixed_rule_panel_visual_clusters(
+    img_bgr: np.ndarray,
+    box: Dict[str, int],
+) -> List[Dict[str, int]]:
+    """Split an overbroad rule-panel child when prose creates a large empty corner."""
+    if img_bgr is None:
+        return [box]
+    img_h, img_w = img_bgr.shape[:2]
+    x0 = max(0, int(box.get("x0", 0)))
+    y0 = max(0, int(box.get("y0", 0)))
+    x1 = min(img_w, int(box.get("x1", img_w)))
+    y1 = min(img_h, int(box.get("y1", img_h)))
+    if x1 <= x0 or y1 <= y0:
+        return [box]
+    roi = img_bgr[y0:y1, x0:x1]
+    if roi.size == 0:
+        return [box]
+    hsv = cv2.cvtColor(roi, cv2.COLOR_BGR2HSV)
+    saturation = hsv[:, :, 1]
+    value = hsv[:, :, 2]
+    h, w = value.shape[:2]
+    if h < 180 or w < 180:
+        return [box]
+
+    top_left = roi[: max(1, int(h * 0.45)), : max(1, int(w * 0.45))]
+    top_left_hsv = cv2.cvtColor(top_left, cv2.COLOR_BGR2HSV)
+    top_left_light_ratio = float(np.mean((top_left_hsv[:, :, 2] > 170) & (top_left_hsv[:, :, 1] < 80)))
+    if top_left_light_ratio < 0.78:
+        return [box]
+
+    non_light = (((value < 170) | (saturation > 80))).astype("uint8") * 255
+    kernel = cv2.getStructuringElement(cv2.MORPH_RECT, (7, 7))
+    connected = cv2.morphologyEx(non_light, cv2.MORPH_CLOSE, kernel, iterations=1)
+    num_labels, _labels, stats, _ = cv2.connectedComponentsWithStats(connected, connectivity=8)
+    components: List[Tuple[int, int, int, int, int]] = []
+    min_area = max(900, int(w * h * 0.012))
+    for label in range(1, num_labels):
+        cx, cy, cw, ch, area = stats[label]
+        if area < min_area:
+            continue
+        if cw < max(35, int(w * 0.05)) or ch < max(35, int(h * 0.05)):
+            continue
+        components.append((int(cx), int(cy), int(cx + cw), int(cy + ch), int(area)))
+    if len(components) < 3:
+        return [box]
+
+    top_components = [c for c in components if ((c[1] + c[3]) / 2.0) < h * 0.55]
+    bottom_components = [c for c in components if ((c[1] + c[3]) / 2.0) >= h * 0.45]
+    if not top_components or not bottom_components:
+        return [box]
+
+    def make_group(group: List[Tuple[int, int, int, int, int]]) -> Dict[str, int]:
+        pad = max(8, int(min(w, h) * 0.015))
+        gx0 = max(0, min(c[0] for c in group) - pad)
+        gy0 = max(0, min(c[1] for c in group) - pad)
+        gx1 = min(w, max(c[2] for c in group) + pad)
+        gy1 = min(h, max(c[3] for c in group) + pad)
+        new_box = {
+            "x0": x0 + gx0,
+            "y0": y0 + gy0,
+            "x1": x0 + gx1,
+            "y1": y0 + gy1,
+        }
+        new_box["width"] = int(new_box["x1"] - new_box["x0"])
+        new_box["height"] = int(new_box["y1"] - new_box["y0"])
+        new_box["area"] = int(new_box["width"] * new_box["height"])
+        new_box["area_ratio"] = round(new_box["area"] / float(max(1, img_w * img_h)), 4)
+        return new_box
+
+    refined = [make_group(top_components), make_group(bottom_components)]
+    refined = [candidate for candidate in refined if candidate["width"] > 0 and candidate["height"] > 0]
+    if len(refined) < 2:
+        return [box]
+    original_area = max(1, (x1 - x0) * (y1 - y0))
+    refined_area = sum(candidate["width"] * candidate["height"] for candidate in refined)
+    if refined_area >= original_area * 0.92:
+        return [box]
+    return _sort_boxes_reading_order(refined)
+
+
+def _rule_panel_sentences(text: str) -> List[str]:
+    parts = [
+        _normalize_ws(part)
+        for part in re.split(r"(?:;|\n|(?<=[.!?])\s+)", str(text or ""))
+        if _normalize_ws(part)
+    ]
+    return parts
+
+
+def _select_rule_panel_context(original_box: Dict[str, Any], keywords: Set[str]) -> str:
+    text = str(original_box.get("_nearby_text") or "")
+    sentences = _rule_panel_sentences(text)
+    selected = [
+        sentence
+        for sentence in sentences
+        if any(keyword in sentence.casefold() for keyword in keywords)
+    ]
+    if selected:
+        return " ".join(selected)
+    return _normalize_ws(text)
+
+
+def _merge_rule_panel_box_group(
+    img_bgr: np.ndarray,
+    boxes: List[Dict[str, int]],
+) -> Dict[str, int]:
+    img_h, img_w = img_bgr.shape[:2]
+    x0 = max(0, min(int(box["x0"]) for box in boxes))
+    y0 = max(0, min(int(box["y0"]) for box in boxes))
+    x1 = min(img_w, max(int(box["x1"]) for box in boxes))
+    y1 = min(img_h, max(int(box["y1"]) for box in boxes))
+    merged = {
+        "x0": x0,
+        "y0": y0,
+        "x1": x1,
+        "y1": y1,
+        "width": x1 - x0,
+        "height": y1 - y0,
+    }
+    merged["area"] = int(merged["width"] * merged["height"])
+    merged["area_ratio"] = round(merged["area"] / float(max(1, img_w * img_h)), 4)
+    return merged
+
+
+def _should_group_rule_panel_placement_layout(box: Dict[str, Any]) -> bool:
+    text = " ".join(
+        str(box.get(key) or "")
+        for key in ("_nearby_text", "_description", "_expected_visual_contents")
+    ).casefold()
+    return (
+        any(keyword in text for keyword in ("place", "placement", "installed", "slot", "player mat"))
+        and any(keyword in text for keyword in ("temporary", "permanent", "upgrade", "card"))
+    )
+
+
+def _group_rule_panel_placement_layout(
+    original_box: Dict[str, Any],
+    split_boxes: List[Dict[str, int]],
+    img_bgr: np.ndarray,
+) -> List[Dict[str, int]]:
+    """Keep a cost/example child separate while grouping placement-layout children."""
+    if len(split_boxes) < 3 or not _should_group_rule_panel_placement_layout(original_box):
+        return split_boxes
+
+    ox0 = int(original_box.get("x0", 0))
+    oy0 = int(original_box.get("y0", 0))
+    ow = max(1, int(original_box.get("width") or (int(original_box.get("x1", ox0 + 1)) - ox0)))
+    oh = max(1, int(original_box.get("height") or (int(original_box.get("y1", oy0 + 1)) - oy0)))
+
+    cost_candidates: List[Dict[str, int]] = []
+    for candidate in split_boxes:
+        cx = ((candidate["x0"] + candidate["x1"]) / 2.0 - ox0) / float(ow)
+        cy = ((candidate["y0"] + candidate["y1"]) / 2.0 - oy0) / float(oh)
+        if cx < 0.42 and cy < 0.52:
+            cost_candidates.append(candidate)
+    if not cost_candidates:
+        return split_boxes
+
+    cost_box = min(
+        cost_candidates,
+        key=lambda candidate: (
+            candidate.get("area", candidate["width"] * candidate["height"]),
+            candidate["y0"],
+            candidate["x0"],
+        ),
+    )
+    placement_boxes = [candidate for candidate in split_boxes if candidate is not cost_box]
+    if len(placement_boxes) < 2:
+        return split_boxes
+
+    placement = _merge_rule_panel_box_group(img_bgr, placement_boxes)
+    cost_box = dict(cost_box)
+    placement["_rule_panel_child_kind"] = "placement_layout"
+    cost_box["_rule_panel_child_kind"] = "cost_reference"
+    return _sort_boxes_reading_order([cost_box, placement])
+
+
+def _apply_rule_panel_child_metadata(
+    new_box: Dict[str, Any],
+    original_box: Dict[str, Any],
+) -> None:
+    child_kind = str(new_box.get("_rule_panel_child_kind") or "")
+    if child_kind == "cost_reference":
+        new_box["_nearby_text"] = _select_rule_panel_context(
+            original_box,
+            {"cost", "number", "pay", "energy", "top left"},
+        )
+        new_box["_description"] = "Card cost reference visual"
+    elif child_kind == "placement_layout":
+        new_box["_nearby_text"] = _select_rule_panel_context(
+            original_box,
+            {"place", "placement", "slot", "mat", "permanent", "temporary", "installed"},
+        )
+        new_box["_description"] = "Card placement layout visual"
+
+
 def _extract_images_from_html(html: str) -> List[Dict[str, Any]]:
     """Extract image metadata from HTML img tags (fallback for older OCR output)."""
     images = []
@@ -1550,6 +2867,112 @@ def _extract_images_from_html(html: str) -> List[Dict[str, Any]]:
                 images.append({"alt": alt, "count": 1})
 
     return images
+
+
+def _target_description(target: Dict[str, Any]) -> str:
+    parts = [
+        str(target.get("description") or "").strip(),
+        str(target.get("nearby_text") or "").strip(),
+        str(target.get("role") or "").replace("_", " ").strip(),
+    ]
+    return " — ".join(part for part in parts if part)
+
+
+def _load_critical_graphics_targets(path: Optional[str]) -> Dict[int, List[Dict[str, Any]]]:
+    """Load visual-planner targets by logical page.
+
+    Only non-decorative targets are crop intent. Decorative notes stay in the
+    manifest/report and should not create final manual assets.
+    """
+    if not path:
+        return {}
+    manifest_path = Path(path)
+    if not manifest_path.exists():
+        raise FileNotFoundError(f"critical graphics manifest not found: {manifest_path}")
+    data = json.loads(manifest_path.read_text(encoding="utf-8"))
+    page_targets: Dict[int, List[Dict[str, Any]]] = {}
+    for page in data.get("pages", []):
+        if not isinstance(page, dict):
+            continue
+        page_number = page.get("page_number")
+        if not isinstance(page_number, int):
+            continue
+        for target in page.get("targets", []):
+            if not isinstance(target, dict):
+                continue
+            importance = str(target.get("importance") or "").strip().lower()
+            if importance == "decorative":
+                continue
+            page_targets.setdefault(page_number, []).append(target)
+    return page_targets
+
+
+def _box_from_critical_target(
+    target: Dict[str, Any],
+    *,
+    image_width: Optional[int] = None,
+    image_height: Optional[int] = None,
+    padding_percent: float = 0.0,
+) -> Optional[Dict[str, int]]:
+    bbox = target.get("bbox_pixels")
+    if not isinstance(bbox, dict):
+        return None
+    try:
+        x0 = int(round(float(bbox["x0"])))
+        y0 = int(round(float(bbox["y0"])))
+        x1 = int(round(float(bbox["x1"])))
+        y1 = int(round(float(bbox["y1"])))
+    except (KeyError, TypeError, ValueError):
+        return None
+    if x1 <= x0 or y1 <= y0:
+        return None
+    if image_width and image_height and padding_percent > 0:
+        pad_x = int(round((x1 - x0) * padding_percent))
+        pad_y = int(round((y1 - y0) * padding_percent))
+        x0 = max(0, x0 - pad_x)
+        y0 = max(0, y0 - pad_y)
+        x1 = min(int(image_width), x1 + pad_x)
+        y1 = min(int(image_height), y1 + pad_y)
+    box: Dict[str, int] = {
+        "x0": x0,
+        "y0": y0,
+        "x1": x1,
+        "y1": y1,
+        "width": x1 - x0,
+        "height": y1 - y0,
+        "_from_vlm": True,
+        "_detection_method": "critical_graphics_manifest",
+        "_description": _target_description(target),
+        "_nearby_text": target.get("nearby_text"),
+        "_expected_visual_contents": target.get("expected_visual_contents"),
+        "_critical_graphics_target_id": target.get("target_id"),
+        "_critical_graphics_importance": target.get("importance"),
+        "_critical_graphics_role": target.get("role"),
+        "_critical_graphics_reason": target.get("reason"),
+    }
+    return box
+
+
+def _critical_target_padding_percent(target: Dict[str, Any]) -> float:
+    """Return conservative role-specific padding for visual-planner crop intent."""
+    role = str(target.get("role") or "").casefold()
+    if role == "component_reference":
+        # Component reference boxes from VLMs are often semantically correct but
+        # visually tight around the object. A small margin preserves edge board
+        # squares/icons while downstream prose trimming still removes detached
+        # text bands.
+        return 0.06
+    return 0.0
+
+
+def _align_descriptions_to_detected_boxes(descriptions: List[str], boxes: List[Dict[str, int]]) -> List[str]:
+    if len(boxes) >= len(descriptions):
+        return descriptions
+    skippable_pattern = re.compile(r"\b(callout|note|reminder|summary panel)\b", re.IGNORECASE)
+    without_text_callouts = [desc for desc in descriptions if not skippable_pattern.search(desc or "")]
+    if len(without_text_callouts) == len(boxes):
+        return without_text_callouts
+    return descriptions
 
 
 def _extract_numbers(name: str) -> List[int]:
@@ -1861,6 +3284,32 @@ def _dedupe_boxes(
     return kept
 
 
+def _sort_boxes_reading_order(boxes: List[Dict[str, int]]) -> List[Dict[str, int]]:
+    """Sort boxes by visual rows, then x-position within each row."""
+    if not boxes:
+        return boxes
+    heights = sorted(max(1, int(b.get("height") or (b["y1"] - b["y0"]))) for b in boxes)
+    median_height = heights[len(heights) // 2]
+    row_tolerance = max(20, int(median_height * 0.35))
+    rows: List[List[Dict[str, int]]] = []
+    for box in sorted(boxes, key=lambda b: ((b["y0"] + b["y1"]) / 2.0, b["x0"])):
+        center_y = (box["y0"] + box["y1"]) / 2.0
+        placed = False
+        for row in rows:
+            row_center = sum((b["y0"] + b["y1"]) / 2.0 for b in row) / float(len(row))
+            if abs(center_y - row_center) <= row_tolerance:
+                row.append(box)
+                placed = True
+                break
+        if not placed:
+            rows.append([box])
+    rows.sort(key=lambda row: min(b["y0"] for b in row))
+    sorted_boxes: List[Dict[str, int]] = []
+    for row in rows:
+        sorted_boxes.extend(sorted(row, key=lambda b: b["x0"]))
+    return sorted_boxes
+
+
 def _prune_contained_boxes(
     boxes: List[Dict[str, int]],
     contain_ratio: float = 0.9,
@@ -2004,8 +3453,525 @@ def _split_boxes_to_count(
     if len(out) > expected_count:
         out.sort(key=lambda b: (b.get("height", 0) * b.get("width", 0)))
         out = out[-expected_count:]
-    out.sort(key=lambda b: (b.get("y0", 0), b.get("x0", 0)))
+    return _sort_boxes_reading_order(out)
+
+
+def _detect_saturated_regions_for_dense_split(
+    img_bgr: np.ndarray,
+    region: Dict[str, int],
+    *,
+    expected_count: int,
+    saturation_threshold: int,
+    min_component_area_ratio: float,
+    max_component_area_ratio: float,
+    padding_percent: float,
+) -> List[Dict[str, int]]:
+    """Find repeated colorful visual blocks inside an overbroad crop box.
+
+    Dense reference pages often have a textured or decorative background that
+    makes the first-pass detector return the whole page. This pass uses a
+    generic saturation mask to find repeated maps, card faces, icons, or callout
+    panels without relying on document titles or page-specific labels.
+    """
+    if img_bgr is None or expected_count <= 1:
+        return []
+    img_h, img_w = img_bgr.shape[:2]
+    x0 = max(0, int(region.get("x0", 0)))
+    y0 = max(0, int(region.get("y0", 0)))
+    x1 = min(img_w, int(region.get("x1", img_w)))
+    y1 = min(img_h, int(region.get("y1", img_h)))
+    if x1 <= x0 or y1 <= y0:
+        return []
+
+    roi = img_bgr[y0:y1, x0:x1]
+    if roi.size == 0:
+        return []
+    roi_h, roi_w = roi.shape[:2]
+    page_area = float(max(1, img_w * img_h))
+    hsv = cv2.cvtColor(roi, cv2.COLOR_BGR2HSV)
+    saturation = hsv[:, :, 1]
+    value = hsv[:, :, 2]
+    mask = ((saturation >= saturation_threshold) & (value >= 45)).astype("uint8") * 255
+
+    kernel_size = max(5, int(min(roi_w, roi_h) * 0.01))
+    if kernel_size % 2 == 0:
+        kernel_size += 1
+    kernel = cv2.getStructuringElement(cv2.MORPH_RECT, (kernel_size, kernel_size))
+    mask = cv2.morphologyEx(mask, cv2.MORPH_CLOSE, kernel, iterations=2)
+    mask = cv2.dilate(mask, kernel, iterations=1)
+
+    contours, _ = cv2.findContours(mask, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+    candidates: List[Dict[str, int]] = []
+    for cnt in contours:
+        cx, cy, cw, ch = cv2.boundingRect(cnt)
+        if cw <= 0 or ch <= 0:
+            continue
+        abs_x0 = x0 + cx
+        abs_y0 = y0 + cy
+        abs_x1 = abs_x0 + cw
+        abs_y1 = abs_y0 + ch
+        area_ratio = (cw * ch) / page_area
+        if area_ratio < min_component_area_ratio or area_ratio > max_component_area_ratio:
+            continue
+        if cw < max(45, int(img_w * 0.025)) or ch < max(45, int(img_h * 0.025)):
+            continue
+        aspect = cw / float(max(1, ch))
+        if aspect < 0.15 or aspect > 4.5:
+            continue
+        if ch > 0.85 * img_h or cw > 0.85 * img_w:
+            continue
+        center_x = (abs_x0 + abs_x1) / 2.0 / float(max(1, img_w))
+        center_y = (abs_y0 + abs_y1) / 2.0 / float(max(1, img_h))
+        if area_ratio < 0.006 and aspect > 3.0 and ch < 0.05 * img_h:
+            continue
+        if area_ratio < 0.006 and center_y > 0.88 and center_x > 0.65:
+            continue
+        if area_ratio < 0.008 and aspect < 0.4 and center_y > 0.8 and center_x > 0.7:
+            continue
+
+        pad = int(max(cw, ch) * padding_percent)
+        box = {
+            "x0": max(0, abs_x0 - pad),
+            "y0": max(0, abs_y0 - pad),
+            "x1": min(img_w, abs_x1 + pad),
+            "y1": min(img_h, abs_y1 + pad),
+        }
+        box["width"] = int(box["x1"] - box["x0"])
+        box["height"] = int(box["y1"] - box["y0"])
+        if box["width"] <= 0 or box["height"] <= 0:
+            continue
+        box["area"] = int(box["width"] * box["height"])
+        box["area_ratio"] = round(box["area"] / page_area, 4)
+        box["_detection_method"] = "cv_guided_dense_split"
+        candidates.append(box)
+
+    candidates = _merge_stacked_dense_components(candidates, img_w=img_w, img_h=img_h)
+    candidates.sort(key=lambda b: b.get("area", 0), reverse=True)
+    selected: List[Dict[str, int]] = []
+    for candidate in candidates:
+        if len(selected) >= expected_count:
+            break
+        if any(_boxes_overlap(candidate, existing) for existing in selected):
+            continue
+        selected.append(candidate)
+    selected = _expand_dense_boxes_with_upper_panels(img_bgr, selected)
+    return _sort_boxes_reading_order(selected)
+
+
+def _dense_box_x_overlap_ratio(a: Dict[str, int], b: Dict[str, int]) -> float:
+    overlap = max(0, min(a["x1"], b["x1"]) - max(a["x0"], b["x0"]))
+    return overlap / float(max(1, min(a["width"], b["width"])))
+
+
+def _merge_dense_boxes(a: Dict[str, int], b: Dict[str, int], *, img_w: int, img_h: int) -> Dict[str, int]:
+    merged = {
+        "x0": max(0, min(a["x0"], b["x0"])),
+        "y0": max(0, min(a["y0"], b["y0"])),
+        "x1": min(img_w, max(a["x1"], b["x1"])),
+        "y1": min(img_h, max(a["y1"], b["y1"])),
+    }
+    merged["width"] = int(merged["x1"] - merged["x0"])
+    merged["height"] = int(merged["y1"] - merged["y0"])
+    merged["area"] = int(merged["width"] * merged["height"])
+    merged["area_ratio"] = round(merged["area"] / float(max(1, img_w * img_h)), 4)
+    merged["_detection_method"] = "cv_guided_dense_split"
+    merged["_dense_component_merge_count"] = int(a.get("_dense_component_merge_count") or 1) + int(
+        b.get("_dense_component_merge_count") or 1
+    )
+    return merged
+
+
+def _merge_stacked_dense_components(
+    boxes: List[Dict[str, int]],
+    *,
+    img_w: int,
+    img_h: int,
+) -> List[Dict[str, int]]:
+    """Merge close, same-column saturated components into one card/panel crop."""
+    if len(boxes) < 2:
+        return boxes
+    sorted_boxes = sorted(boxes, key=lambda b: (b["x0"], b["y0"], b["x1"]))
+    used: set[int] = set()
+    merged: List[Dict[str, int]] = []
+    for idx, box in enumerate(sorted_boxes):
+        if idx in used:
+            continue
+        best_idx = None
+        best_gap = None
+        for jdx, other in enumerate(sorted_boxes):
+            if jdx == idx or jdx in used:
+                continue
+            if other["y0"] < box["y1"]:
+                continue
+            gap = other["y0"] - box["y1"]
+            max_gap = max(14, int(min(box["height"], other["height"]) * 0.35))
+            if gap > max_gap:
+                continue
+            x_overlap = _dense_box_x_overlap_ratio(box, other)
+            if x_overlap < 0.7:
+                continue
+            width_ratio = min(box["width"], other["width"]) / float(max(1, max(box["width"], other["width"])))
+            if width_ratio < 0.65:
+                continue
+            combined_height = other["y1"] - box["y0"]
+            if combined_height > 0.45 * img_h:
+                continue
+            if best_gap is None or gap < best_gap:
+                best_gap = gap
+                best_idx = jdx
+        if best_idx is None:
+            merged.append(box)
+            used.add(idx)
+            continue
+        merged.append(_merge_dense_boxes(box, sorted_boxes[best_idx], img_w=img_w, img_h=img_h))
+        used.add(idx)
+        used.add(best_idx)
+    return merged
+
+
+def _expand_dense_boxes_with_upper_panels(
+    img_bgr: np.ndarray,
+    boxes: List[Dict[str, int]],
+) -> List[Dict[str, int]]:
+    """Expand dense card/reference crops upward to include nearby header panels."""
+    if img_bgr is None or not boxes:
+        return boxes
+    img_h, img_w = img_bgr.shape[:2]
+    gray = cv2.cvtColor(img_bgr, cv2.COLOR_BGR2GRAY)
+    out: List[Dict[str, int]] = []
+    for box in boxes:
+        x0 = max(0, int(box["x0"]))
+        x1 = min(img_w, int(box["x1"]))
+        y0 = max(0, int(box["y0"]))
+        height = max(1, int(box.get("height") or (box["y1"] - box["y0"])))
+        search_top = max(0, y0 - max(80, int(height * 0.7)))
+        if x1 <= x0 or y0 <= search_top:
+            out.append(box)
+            continue
+        roi = gray[search_top:y0, x0:x1]
+        if roi.size == 0:
+            out.append(box)
+            continue
+        dark_mask = roi < 150
+        row_coverage = dark_mask.mean(axis=1)
+        active_rows = np.flatnonzero(row_coverage >= 0.18)
+        if active_rows.size == 0:
+            out.append(box)
+            continue
+        segments: List[tuple[int, int]] = []
+        start = int(active_rows[0])
+        last = start
+        for row in active_rows[1:]:
+            row_int = int(row)
+            if row_int <= last + 2:
+                last = row_int
+                continue
+            segments.append((start, last))
+            start = row_int
+            last = row_int
+        segments.append((start, last))
+
+        chosen: tuple[int, int] | None = None
+        for seg_start, seg_end in reversed(segments):
+            gap = (y0 - 1) - (search_top + seg_end)
+            seg_height = seg_end - seg_start + 1
+            if gap <= max(22, int(height * 0.16)) and seg_height >= max(12, int(height * 0.08)):
+                chosen = (seg_start, seg_end)
+                break
+        if chosen is None:
+            out.append(box)
+            continue
+
+        new_box = dict(box)
+        new_y0 = max(0, search_top + chosen[0] - int(height * 0.04))
+        if new_y0 < y0:
+            new_box["y0"] = new_y0
+            new_box["height"] = int(new_box["y1"] - new_box["y0"])
+            new_box["area"] = int(new_box["width"] * new_box["height"])
+            new_box["area_ratio"] = round(new_box["area"] / float(max(1, img_w * img_h)), 4)
+            new_box["_dense_upper_panel_expanded"] = True
+        out.append(new_box)
     return out
+
+
+def _split_dense_reference_boxes(
+    image_path: str,
+    boxes: List[Dict[str, int]],
+    *,
+    expected_count: int,
+    min_expected_count: int,
+    min_overbroad_area_ratio: float,
+    saturation_threshold: int,
+    min_component_area_ratio: float,
+    max_component_area_ratio: float,
+    padding_percent: float,
+) -> List[Dict[str, int]]:
+    if expected_count < min_expected_count or len(boxes) >= expected_count or not boxes:
+        return boxes
+    img_bgr = cv2.imread(str(image_path), cv2.IMREAD_COLOR)
+    if img_bgr is None:
+        return boxes
+    img_h, img_w = img_bgr.shape[:2]
+    page_area = float(max(1, img_w * img_h))
+    overbroad: List[Dict[str, int]] = []
+    retained: List[Dict[str, int]] = []
+    for box in boxes:
+        area = (box["x1"] - box["x0"]) * (box["y1"] - box["y0"])
+        area_ratio = float(box.get("area_ratio") or (area / page_area))
+        if area_ratio >= min_overbroad_area_ratio:
+            overbroad.append(box)
+        else:
+            retained.append(box)
+    if not overbroad:
+        return boxes
+
+    dense_candidates: List[Dict[str, int]] = []
+    remaining_needed = max(0, expected_count - len(retained))
+    for region in overbroad:
+        dense_candidates.extend(
+            _detect_saturated_regions_for_dense_split(
+                img_bgr,
+                region,
+                expected_count=max(expected_count, remaining_needed),
+                saturation_threshold=saturation_threshold,
+                min_component_area_ratio=min_component_area_ratio,
+                max_component_area_ratio=max_component_area_ratio,
+                padding_percent=padding_percent,
+            )
+        )
+    if not dense_candidates:
+        return boxes
+
+    combined = retained + dense_candidates
+    combined.sort(key=lambda b: b.get("area", b.get("width", 0) * b.get("height", 0)), reverse=True)
+    selected: List[Dict[str, int]] = []
+    for candidate in combined:
+        if len(selected) >= expected_count:
+            break
+        if any(_box_iou(candidate, existing) >= 0.6 for existing in selected):
+            continue
+        selected.append(candidate)
+    if len(selected) <= len(boxes):
+        return boxes
+    return _sort_boxes_reading_order(selected)
+
+
+_REFERENCE_LABEL_CATEGORY_RE = re.compile(
+    r"\b(?:card\s+index|programming\s+cards?|special\s+programming\s+cards?|"
+    r"upgrade\s+cards?|permanent\s+upgrades?|temporary\s+upgrades?)\b",
+    re.IGNORECASE,
+)
+_NUMBER_WORDS = {
+    "one": 1,
+    "two": 2,
+    "three": 3,
+    "four": 4,
+    "five": 5,
+    "six": 6,
+    "seven": 7,
+    "eight": 8,
+    "nine": 9,
+    "ten": 10,
+    "eleven": 11,
+    "twelve": 12,
+}
+
+
+def _compact_reference_label(raw: str) -> Optional[str]:
+    label = re.sub(r"\s+", " ", str(raw or "")).strip(" .:;|")
+    if not label:
+        return None
+    if _REFERENCE_LABEL_CATEGORY_RE.fullmatch(label):
+        return None
+    words = [word for word in re.split(r"\s+", label) if word]
+    if not words or len(words) > 4:
+        return None
+    if sum(1 for ch in label if ch.isalpha()) < 2:
+        return None
+    return label
+
+
+def _card_reference_labels(box: Dict[str, Any]) -> List[str]:
+    """Return compact labels that can anchor split card-reference crops."""
+    texts: List[str] = []
+    nearby = box.get("_nearby_text")
+    if isinstance(nearby, str) and nearby.strip():
+        texts.append(nearby)
+    description = box.get("_description")
+    if not texts and isinstance(description, str) and description.strip():
+        # _target_description joins nearby text as an em-dash segment. Use it as
+        # a fallback for older boxes that predate explicit nearby_text metadata.
+        texts.extend(re.split(r"\s+[—–]\s+", description))
+
+    labels: List[str] = []
+    seen: Set[str] = set()
+    for text in texts:
+        for part in re.split(r"[;\n]", text):
+            for candidate in re.split(r",", part):
+                label = _compact_reference_label(candidate)
+                if not label:
+                    continue
+                key = label.casefold()
+                if key in seen:
+                    continue
+                labels.append(label)
+                seen.add(key)
+    return labels
+
+
+def _card_reference_expected_count(box: Dict[str, Any], labels: List[str]) -> int:
+    if labels:
+        return len(labels)
+    description = str(box.get("_description") or "")
+    match = re.search(r"\b(\d{1,2})\s+(?:card|component|reference)\b", description, re.IGNORECASE)
+    if match:
+        return int(match.group(1))
+    match = re.search(r"\b(" + "|".join(_NUMBER_WORDS) + r")\s+(?:card|component|reference)", description, re.IGNORECASE)
+    if match:
+        return _NUMBER_WORDS[match.group(1).casefold()]
+    expected = box.get("_expected_visual_contents")
+    if isinstance(expected, list):
+        return len(expected)
+    return 0
+
+
+def _split_card_reference_panel_boxes(
+    image_path: str,
+    boxes: List[Dict[str, int]],
+    *,
+    min_expected_count: int,
+    saturation_threshold: int,
+    min_component_area_ratio: float,
+    max_component_area_ratio: float,
+    padding_percent: float,
+) -> List[Dict[str, int]]:
+    """Split a multi-card reference panel into individual card-face crops.
+
+    A visual planner may correctly decide that "the card reference grid" is an
+    essential graphic, but a single rectangular panel often mixes source-pixel
+    card faces with prose that is better represented as semantic HTML. When the
+    panel exposes enough compact labels, reuse the dense visual-block detector
+    to emit one crop per repeated card-like block.
+    """
+    if not boxes:
+        return boxes
+    img_bgr = None
+    out: List[Dict[str, int]] = []
+    changed = False
+    for box in boxes:
+        if not _should_split_card_reference_panel(box):
+            out.append(box)
+            continue
+        labels = _card_reference_labels(box)
+        expected_count = _card_reference_expected_count(box, labels)
+        if expected_count < min_expected_count:
+            out.append(box)
+            continue
+        if img_bgr is None:
+            img_bgr = cv2.imread(str(image_path), cv2.IMREAD_COLOR)
+        if img_bgr is None:
+            out.append(box)
+            continue
+
+        split_boxes = _detect_saturated_regions_for_dense_split(
+            img_bgr,
+            box,
+            expected_count=expected_count,
+            saturation_threshold=saturation_threshold,
+            min_component_area_ratio=min_component_area_ratio,
+            max_component_area_ratio=max_component_area_ratio,
+            padding_percent=padding_percent,
+        )
+        minimum_usable = max(min_expected_count, int(round(expected_count * 0.7)))
+        if len(split_boxes) < minimum_usable:
+            out.append(box)
+            continue
+
+        base_target_id = str(box.get("_critical_graphics_target_id") or "").strip()
+        for idx, split_box in enumerate(split_boxes):
+            new_box = dict(split_box)
+            _copy_detector_meta(box, new_box)
+            label = labels[idx] if idx < len(labels) else ""
+            new_box["_critical_graphics_role"] = "card_face"
+            new_box["_contains_text"] = True
+            new_box["_detection_method"] = "cv_guided_reference_panel_split"
+            new_box["_description"] = f"Card face titled {label}" if label else "Card face from reference panel"
+            if base_target_id:
+                new_box["_critical_graphics_target_id"] = f"{base_target_id}-card-{idx + 1:02d}"
+            out.append(new_box)
+        changed = True
+    if not changed:
+        return boxes
+    return _sort_boxes_reading_order(out)
+
+
+def _rule_panel_expected_split_count(box: Dict[str, Any]) -> int:
+    expected = box.get("_expected_visual_contents")
+    if isinstance(expected, list):
+        return max(2, min(8, len(expected)))
+    return 4
+
+
+def _split_text_heavy_rule_panel_boxes(
+    image_path: str,
+    boxes: List[Dict[str, int]],
+    *,
+    saturation_threshold: int,
+    min_component_area_ratio: float,
+    max_component_area_ratio: float,
+    padding_percent: float,
+) -> List[Dict[str, int]]:
+    if not boxes:
+        return boxes
+    img_bgr = None
+    out: List[Dict[str, int]] = []
+    changed = False
+    for box in boxes:
+        if not _should_mask_text_heavy_rule_panel(box):
+            out.append(box)
+            continue
+        if img_bgr is None:
+            img_bgr = cv2.imread(str(image_path), cv2.IMREAD_COLOR)
+        if img_bgr is None:
+            out.append(box)
+            continue
+        split_boxes = _detect_saturated_regions_for_dense_split(
+            img_bgr,
+            box,
+            expected_count=_rule_panel_expected_split_count(box),
+            saturation_threshold=saturation_threshold,
+            min_component_area_ratio=min_component_area_ratio,
+            max_component_area_ratio=max_component_area_ratio,
+            padding_percent=padding_percent,
+        )
+        if len(split_boxes) < 2:
+            out.append(box)
+            continue
+
+        refined_split_boxes: List[Dict[str, int]] = []
+        for split_box in split_boxes:
+            if _is_text_only_rule_panel_split_box(img_bgr, split_box):
+                continue
+            refined_split_boxes.extend(_split_mixed_rule_panel_visual_clusters(img_bgr, split_box))
+        refined_split_boxes = _sort_boxes_reading_order(refined_split_boxes)
+        refined_split_boxes = _group_rule_panel_placement_layout(box, refined_split_boxes, img_bgr)
+        if len(refined_split_boxes) < 2:
+            out.append(box)
+            continue
+
+        base_target_id = str(box.get("_critical_graphics_target_id") or "").strip()
+        for idx, split_box in enumerate(refined_split_boxes, start=1):
+            new_box = dict(split_box)
+            _copy_detector_meta(box, new_box)
+            new_box["_detection_method"] = "cv_guided_rule_panel_split"
+            if base_target_id:
+                new_box["_critical_graphics_target_id"] = f"{base_target_id}-part-{idx:02d}"
+            _apply_rule_panel_child_metadata(new_box, box)
+            out.append(new_box)
+        changed = True
+    if not changed:
+        return boxes
+    return _sort_boxes_reading_order(out)
 
 
 def detect_nonwhite_boxes(
@@ -2291,6 +4257,7 @@ def crop_illustrations_guided(
     min_height: int = 50,
     highres_manifest: Optional[str] = None,
     highres_images_dir: Optional[str] = None,
+    critical_graphics_manifest: Optional[str] = None,
     padding_percent: float = 0.05,
     rescue_model: Optional[str] = None,
     rescue_temperature: float = 0.0,
@@ -2336,6 +4303,12 @@ def crop_illustrations_guided(
     split_min_gap_px: int = 12,
     split_min_segment_height_ratio: float = 0.12,
     split_min_segment_nonwhite_ratio: float = 0.01,
+    dense_split_when_missing: bool = False,
+    dense_split_min_expected_count: int = 3,
+    dense_split_min_area_ratio: float = 0.35,
+    dense_split_min_component_area_ratio: float = 0.0015,
+    dense_split_max_component_area_ratio: float = 0.12,
+    dense_split_saturation_threshold: int = 35,
     trim_caption: bool = False,
     caption_max_height_ratio: float = 0.18,
     caption_text_ratio_threshold: float = 0.2,
@@ -2362,6 +4335,7 @@ def crop_illustrations_guided(
         min_width: Min box width in pixels
         min_height: Min box height in pixels
         highres_manifest: Optional path to high-res page images manifest (for better quality crops)
+        critical_graphics_manifest: Optional VLM visual-planner manifest with source-pixel crop targets
         padding_percent: Percentage padding around detected boxes (default 0.05 = 5%)
 
     Returns:
@@ -2385,6 +4359,10 @@ def crop_illustrations_guided(
 
     pages = list(read_jsonl(ocr_manifest))
     manifest = []
+    critical_targets_by_page = _load_critical_graphics_targets(critical_graphics_manifest)
+    if critical_targets_by_page:
+        target_count = sum(len(targets) for targets in critical_targets_by_page.values())
+        _log(f"Loaded {target_count} critical graphics target(s) from {critical_graphics_manifest}")
 
     # Build high-res page map from highres_manifest OR from image_native fields
     highres_page_map = {}
@@ -2439,6 +4417,15 @@ def crop_illustrations_guided(
                 p["images"] = extracted
                 pages_with_images.append(p)
 
+    if critical_targets_by_page:
+        existing_page_nums = {p.get("page_number") for p in pages_with_images}
+        for p in pages:
+            pn = p.get("page_number")
+            if pn in critical_targets_by_page and pn not in existing_page_nums:
+                pages_with_images.append(p)
+                _log(f"  Added page {pn} to processing list (critical graphics manifest)")
+        pages_with_images.sort(key=lambda p: p.get("page_number", 0))
+
     _log(f"Found {len(pages_with_images)} pages with images out of {len(pages)} total")
 
     # Parse cover_pages param
@@ -2490,6 +4477,7 @@ def crop_illustrations_guided(
         page_num = page_rec.get("page_number")
         image_path = page_rec.get("image")
         ocr_images = page_rec.get("images", [])
+        critical_targets = critical_targets_by_page.get(page_num, [])
 
         # Use high-res image if available, otherwise use OCR image
         source_image_path = highres_page_map.get(page_num, image_path)
@@ -2543,18 +4531,24 @@ def crop_illustrations_guided(
                 _log(f"  Page {page_num}: Cover page capture failed: {exc}")
             continue
 
-        # Calculate expected count.
-        # If multiple <img> tags exist, prefer tag count (data-count is often noisy).
-        # If only one tag exists, allow data-count to request multiple crops.
-        if len(ocr_images) > 1:
+        # Calculate expected count. Prefer the visual-planner manifest when it
+        # exists; it is a semantic intent signal, while OCR placeholders are a
+        # fallback proxy.
+        if critical_targets:
+            expected_count = len(critical_targets)
+        elif len(ocr_images) > 1:
+            # If multiple <img> tags exist, prefer tag count (data-count is often noisy).
             expected_count = len(ocr_images)
         else:
+            # If only one tag exists, allow data-count to request multiple crops.
             expected_count = sum(img.get("count", 1) for img in ocr_images)
 
-        # Flatten OCR image list for rescue hints and alt matching.
-        # If multiple tags exist, treat each as a single image to avoid noisy data-count inflation.
+        # Flatten descriptions for crop alt text, VLM rescue hints, and matching.
         ocr_descriptions = []
-        if len(ocr_images) > 1:
+        if critical_targets:
+            for target in critical_targets:
+                ocr_descriptions.append(_target_description(target))
+        elif len(ocr_images) > 1:
             for img in ocr_images:
                 ocr_descriptions.append(img.get("alt", ""))
         else:
@@ -2567,8 +4561,33 @@ def crop_illustrations_guided(
         resolution_label = "high-res" if using_highres else "OCR-res"
         _log(f"  Page {page_num}: Expecting {expected_count} illustration(s) [{resolution_label}]")
 
+        source_img_w = None
+        source_img_h = None
+        if critical_targets:
+            try:
+                with Image.open(source_image_path) as size_img:
+                    source_img_w, source_img_h = size_img.size
+            except Exception:
+                source_img_w = None
+                source_img_h = None
+        boxes_from_critical_manifest = [
+            _box_from_critical_target(
+                target,
+                image_width=source_img_w,
+                image_height=source_img_h,
+                # Visual-planner targets are already semantic source-pixel crop
+                # intent. Only apply narrow role-specific safety margins where
+                # visual completeness is more likely to fail than prose pickup.
+                padding_percent=_critical_target_padding_percent(target),
+            )
+            for target in critical_targets
+        ]
+        boxes_from_critical_manifest = [box for box in boxes_from_critical_manifest if box]
+        if boxes_from_critical_manifest:
+            boxes = boxes_from_critical_manifest
+            _log(f"    Critical graphics manifest supplied {len(boxes)} bbox target(s)")
         # Run CV detection with expected count
-        if detection_mode == "layout":
+        elif detection_mode == "layout":
             if layout_engine is None and not layout_engine_failed:
                 try:
                     os.environ.setdefault("DISABLE_MODEL_SOURCE_CHECK", "True")
@@ -2859,13 +4878,53 @@ def crop_illustrations_guided(
         if detection_mode == "layout" and boxes:
             boxes = sorted(boxes, key=lambda b: b.get("area_ratio", 0.0), reverse=True)[:expected_count]
 
-        # Match boxes with OCR image descriptions (by order/position)
-        # Sort boxes by y-position to match reading order
-        boxes_sorted = sorted(boxes, key=lambda b: (b["y0"], b["x0"]))
+        # Match boxes with OCR image descriptions by visual reading order.
+        boxes_sorted = _sort_boxes_reading_order(boxes)
         boxes_deduped = _dedupe_boxes(boxes_sorted)
         if len(boxes_deduped) < len(boxes_sorted):
             boxes_sorted = boxes_deduped
             _log(f"    Deduped boxes: {len(boxes)} -> {len(boxes_sorted)}")
+
+        if dense_split_when_missing and boxes_sorted:
+            split_rule_panel_boxes = _split_text_heavy_rule_panel_boxes(
+                source_image_path,
+                boxes_sorted,
+                saturation_threshold=dense_split_saturation_threshold,
+                min_component_area_ratio=dense_split_min_component_area_ratio,
+                max_component_area_ratio=dense_split_max_component_area_ratio,
+                padding_percent=padding_percent,
+            )
+            if len(split_rule_panel_boxes) > len(boxes_sorted):
+                _log(f"    Rule panel split: {len(boxes_sorted)} -> {len(split_rule_panel_boxes)} boxes")
+                boxes_sorted = split_rule_panel_boxes
+            split_reference_boxes = _split_card_reference_panel_boxes(
+                source_image_path,
+                boxes_sorted,
+                min_expected_count=dense_split_min_expected_count,
+                saturation_threshold=dense_split_saturation_threshold,
+                min_component_area_ratio=dense_split_min_component_area_ratio,
+                max_component_area_ratio=dense_split_max_component_area_ratio,
+                padding_percent=padding_percent,
+            )
+            if len(split_reference_boxes) > len(boxes_sorted):
+                _log(f"    Card reference split: {len(boxes_sorted)} -> {len(split_reference_boxes)} boxes")
+                boxes_sorted = split_reference_boxes
+
+        if dense_split_when_missing and boxes_sorted and len(boxes_sorted) < expected_count:
+            dense_boxes = _split_dense_reference_boxes(
+                source_image_path,
+                boxes_sorted,
+                expected_count=expected_count,
+                min_expected_count=dense_split_min_expected_count,
+                min_overbroad_area_ratio=dense_split_min_area_ratio,
+                saturation_threshold=dense_split_saturation_threshold,
+                min_component_area_ratio=dense_split_min_component_area_ratio,
+                max_component_area_ratio=dense_split_max_component_area_ratio,
+                padding_percent=padding_percent,
+            )
+            if len(dense_boxes) > len(boxes_sorted):
+                _log(f"    Dense reference split: {len(boxes_sorted)} -> {len(dense_boxes)} boxes")
+                boxes_sorted = dense_boxes
 
         if img_gray is not None and boxes_sorted and split_when_missing and len(boxes_sorted) < expected_count:
             min_segment_height = max(40, int(img_gray.shape[0] * split_min_segment_height_ratio))
@@ -2982,26 +5041,63 @@ def crop_illustrations_guided(
                     trimmed.append(new_box)
                 boxes_sorted = trimmed
 
+        if boxes_sorted:
+            boxes_sorted = [
+                _trim_rule_example_bottom_prose_band(source_image_path, box)
+                for box in boxes_sorted
+            ]
+            boxes_sorted = [
+                _trim_rule_panel_cost_reference_card(source_image_path, box)
+                for box in boxes_sorted
+            ]
+            boxes_sorted = [
+                _expand_rule_panel_placement_layout_box(source_image_path, box)
+                for box in boxes_sorted
+            ]
+            boxes_sorted = [
+                _expand_player_mat_register_rule_example_box(source_image_path, box)
+                for box in boxes_sorted
+            ]
+            boxes_sorted = [
+                _expand_integrated_callout_rule_example_box(source_image_path, box)
+                for box in boxes_sorted
+            ]
+
         for box in boxes_sorted:
             if "area_ratio" not in box:
                 area = (box["x1"] - box["x0"]) * (box["y1"] - box["y0"])
                 box["area_ratio"] = round(area / float(img_w * img_h), 4) if area and img_w and img_h else 0.0
 
+        boxes_sorted = _sort_boxes_reading_order(boxes_sorted)
+        matched_descriptions = _align_descriptions_to_detected_boxes(ocr_descriptions, boxes_sorted)
         for box_idx, box in enumerate(boxes_sorted):
-            # Get description from OCR if available
-            alt = ""
-            if box_idx < len(ocr_descriptions):
-                alt = ocr_descriptions[box_idx]
+            # Prefer metadata that traveled with the box. Index-based matching is
+            # only safe for detector outputs that do not already carry descriptors.
+            alt = str(box.get("_description") or "").strip()
+            if not alt and box_idx < len(matched_descriptions):
+                alt = matched_descriptions[box_idx]
 
             # Crop illustration
             cropped = page_img.crop((box["x0"], box["y0"], box["x1"], box["y1"]))
+            masked_crop = _mask_detached_map_background(cropped, box)
+            if masked_crop is None:
+                masked_crop = _mask_rule_panel_placement_layout_prose(cropped, box)
+            if masked_crop is None:
+                masked_crop = _mask_rule_panel_split_prose(cropped, box)
+            if masked_crop is None:
+                masked_crop = _mask_detached_rule_panel_prose(cropped, box)
+            if masked_crop is not None:
+                cropped = masked_crop
 
             # Generate filename
-            filename = f"page-{page_num:03d}-{box_idx:03d}.{ext}"
+            actual_ext = "png" if cropped.mode == "RGBA" else ext
+            filename = f"page-{page_num:03d}-{box_idx:03d}.{actual_ext}"
             filepath = os.path.join(images_dir, filename)
 
             # Save original
-            if fmt == "jpeg":
+            if cropped.mode == "RGBA":
+                cropped.save(filepath, "PNG")
+            elif fmt == "jpeg":
                 if cropped.mode not in ("RGB", "L"):
                     cropped = cropped.convert("RGB")
                 cropped.save(filepath, "JPEG", quality=jpeg_quality, optimize=True)
@@ -3014,7 +5110,7 @@ def crop_illustrations_guided(
 
             # Generate alpha version if B&W and transparency enabled
             filename_alpha = None
-            has_transparency = False
+            has_transparency = cropped.mode == "RGBA"
 
             if transparency and is_bw:
                 filename_alpha = f"page-{page_num:03d}-{box_idx:03d}-alpha.png"
@@ -3046,13 +5142,22 @@ def crop_illustrations_guided(
                     "height": box["height"]
                 },
                 "area_ratio": box["area_ratio"],
-                "detection_method": "cv_guided",
+                "detection_method": box.get("_detection_method", "cv_guided"),
                 "image_description": box.get("_description", ""),
                 "contains_text": box.get("_contains_text", False),
                 "source_issues": box.get("_source_issues", ""),
                 "caption_box": box.get("caption_box"),
                 "caption_text": box.get("_caption_text") or None,
             }
+            if box.get("_critical_graphics_target_id"):
+                record["critical_graphics_target_id"] = box.get("_critical_graphics_target_id")
+                record["critical_graphics_importance"] = box.get("_critical_graphics_importance")
+                record["critical_graphics_role"] = box.get("_critical_graphics_role")
+                record["critical_graphics_reason"] = box.get("_critical_graphics_reason")
+            if box.get("_nearby_text"):
+                record["nearby_text"] = box.get("_nearby_text")
+            if box.get("_expected_visual_contents"):
+                record["expected_visual_contents"] = box.get("_expected_visual_contents")
 
             manifest.append(record)
 
@@ -3234,6 +5339,11 @@ def main():
         "--highres-images-dir",
         default=None,
         help="Optional high-res images directory (sorted to page order)"
+    )
+    parser.add_argument(
+        "--critical-graphics-manifest",
+        default=None,
+        help="Optional critical_graphics_manifest_v1 JSON with VLM-selected crop targets"
     )
     parser.add_argument(
         "--padding-percent",
@@ -3506,6 +5616,41 @@ def main():
         help="Minimum nonwhite ratio for segment retention (default 0.01)"
     )
     parser.add_argument(
+        "--dense-split-when-missing",
+        action="store_true",
+        help="Split overbroad dense reference crops into repeated saturated visual blocks"
+    )
+    parser.add_argument(
+        "--dense-split-min-expected-count",
+        type=int,
+        default=3,
+        help="Minimum expected image count before dense reference splitting is considered"
+    )
+    parser.add_argument(
+        "--dense-split-min-area-ratio",
+        type=float,
+        default=0.35,
+        help="Minimum page area ratio for a crop to be considered overbroad"
+    )
+    parser.add_argument(
+        "--dense-split-min-component-area-ratio",
+        type=float,
+        default=0.0015,
+        help="Minimum page area ratio for dense split components"
+    )
+    parser.add_argument(
+        "--dense-split-max-component-area-ratio",
+        type=float,
+        default=0.12,
+        help="Maximum page area ratio for dense split components"
+    )
+    parser.add_argument(
+        "--dense-split-saturation-threshold",
+        type=int,
+        default=35,
+        help="HSV saturation threshold for dense split visual-block detection"
+    )
+    parser.add_argument(
         "--trim-caption",
         action="store_true",
         help="Trim caption text from bottom of detected image boxes"
@@ -3579,6 +5724,7 @@ def main():
         min_height=args.min_height,
         highres_manifest=args.highres_manifest,
         highres_images_dir=args.highres_images_dir,
+        critical_graphics_manifest=args.critical_graphics_manifest,
         padding_percent=args.padding_percent,
         rescue_model=args.rescue_model,
         rescue_temperature=args.rescue_temperature,
@@ -3624,6 +5770,12 @@ def main():
         split_min_gap_px=args.split_min_gap_px,
         split_min_segment_height_ratio=args.split_min_segment_height_ratio,
         split_min_segment_nonwhite_ratio=args.split_min_segment_nonwhite_ratio,
+        dense_split_when_missing=args.dense_split_when_missing,
+        dense_split_min_expected_count=args.dense_split_min_expected_count,
+        dense_split_min_area_ratio=args.dense_split_min_area_ratio,
+        dense_split_min_component_area_ratio=args.dense_split_min_component_area_ratio,
+        dense_split_max_component_area_ratio=args.dense_split_max_component_area_ratio,
+        dense_split_saturation_threshold=args.dense_split_saturation_threshold,
         trim_caption=args.trim_caption,
         caption_max_height_ratio=args.caption_max_height_ratio,
         caption_text_ratio_threshold=args.caption_text_ratio_threshold,

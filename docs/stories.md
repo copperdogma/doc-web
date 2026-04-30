@@ -65,6 +65,7 @@ Grouped by primary `spec:N` category. Stories without category refs remain in an
 | 222 | Establish the First Honest Mixed-Folder PDF-Member Routing Seam | High | Done | 169, 180, 196, 205, 218, 221 | [story-222](stories/story-222-mixed-folder-pdf-member-routing-seam.md) |
 | 223 | Expand the First Honest PDF-Member Approved-Handoff Seam to Direct-Folder Parity and First Maintained-PDF Launch | High | Done | 176, 180, 196, 205, 221, 222 | [story-223](stories/story-223-mixed-archive-pdf-member-approved-handoff-seam.md) |
 | 224 | Extend the First Honest Grouped Image-Member Continuation to the First OCR Artifact | High | Done | 180, 205, 218 | [story-224](stories/story-224-mixed-archive-grouped-image-member-routing-seam.md) |
+| 226 | Process a Graphic-Designed Rulebook into Semantic Plain HTML | High | Done | — | [story-226](stories/story-226-robo-rally-rulebook-semantic-html.md) |
 
 ### spec:2 — OCR & Text Extraction
 

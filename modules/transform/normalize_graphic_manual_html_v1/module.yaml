@@ -1,0 +1,17 @@
+module_id: normalize_graphic_manual_html_v1
+stage: transform
+entrypoint: modules/transform/normalize_graphic_manual_html_v1/main.py
+input_schema: page_html_v1
+output_schema: page_html_v1
+description: "Normalize OCR HTML for graphics-heavy manuals before portioning/building: promote true section running heads, remove chrome, and preserve provenance fields."
+params:
+  - name: out
+    type: str
+    default: null
+  - name: max_promoted_running_head_occurrences
+    type: int
+    default: 2
+  - name: strip_page_numbers
+    type: bool
+    default: true
+notes: "Category-level cleanup for designed manuals/rulebooks. Uses document-wide frequency and heading evidence, not title-specific strings."

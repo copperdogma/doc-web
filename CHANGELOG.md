@@ -1,3 +1,15 @@
+## [2026-04-30-02] - Land graphics-heavy rulebook semantic HTML path (Story 226)
+
+### Added
+- Added a graphics-heavy imposed-PDF recipe with logical page-order inference, critical graphics planning, graphic-manual normalization, and semantic manual conformance validation for short visual manuals/rulebooks
+- Added a visual inspect loop skill and preserved Story 226 source-vs-output QA artifacts for manual crop, sectioning, and semantic-capture review loops
+
+### Changed
+- Changed chapter building, heading portioning, guided crop extraction, and page-number extraction so graphic-designed manuals can keep source-pixel rule figures near their semantic anchors while suppressing decorative or text-only visual clutter
+
+### Fixed
+- Fixed the Story 226 pilot defects found during manual review, including imposed page ordering, page-break-driven sectioning, text-contaminated crops, over/under-cropped rule diagrams, broad catalog grouping, and figure/prose anchoring regressions
+
 ## [2026-04-30-01] - Harden Gemini SDK API-version defaults (Story 227)
 
 ### Added

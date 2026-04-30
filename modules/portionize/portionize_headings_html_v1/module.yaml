@@ -2,3 +2,16 @@ module_id: portionize_headings_html_v1
 stage: portionize
 entrypoint: modules/portionize/portionize_headings_html_v1/main.py
 description: "Portionize chapters by detecting top-level HTML headings (e.g., <h1>) and mapping them to printed or source page ranges, with an optional single-document fallback for flat inputs."
+parameters:
+  - name: suppress_lower_heading_item_boundaries
+    type: boolean
+    default: false
+    description: "When scanning h2+ headings, suppress lower-level headings that look like catalog/reference item entries with immediate label/value metadata instead of new top-level portions."
+  - name: merge_catalog_subsections
+    type: boolean
+    default: false
+    description: "Merge subsection/category boundaries back under an earlier catalog/index parent when headings and running-head signals show they share the same catalog family."
+  - name: merge_procedural_subsections
+    type: boolean
+    default: false
+    description: "Merge phase/round/procedure subsection headings under a broad procedural parent when the parent introduces details on following pages."

@@ -14,6 +14,7 @@ from schemas import DocWebBundleManifest, DocWebProvenanceBlock
 from modules.build.build_chapter_html_v1.main import (
     _attach_images,
     _finalize_genealogy_body_html,
+    _group_manifest_by_page,
     _is_likely_caption,
     _html5_wrap,
     _add_table_scope,
@@ -21,10 +22,15 @@ from modules.build.build_chapter_html_v1.main import (
     _merge_genealogy_tables_preserving_headings,
     _merge_contiguous_genealogy_tables,
     _normalize_heading_breaks,
+    _normalize_catalog_entries,
+    _polish_flat_chapter_headings,
+    _normalize_reference_entries,
+    _promote_text_callout_paragraphs,
     _rebalance_repeated_generation_h1s,
     _refine_chapter_segments,
     _strip_headers_and_numbers,
     _stitch_page_breaks,
+    _tag_entry_body,
     _titles_related,
 )
 
@@ -87,6 +93,35 @@ class TestRichAltText:
         img = soup.find("img")
         assert img["alt"] == ""
 
+    def test_integrated_diagram_callout_caption_is_not_duplicated(self):
+        html = (
+            '<figure><img alt="Board movement plan">'
+            "<figcaption>1. Start here.<br>2. Turn right.<br>3. Move ahead.</figcaption>"
+            "</figure>"
+        )
+        crops = [
+            {
+                **_crop(
+                    "diagram.jpg",
+                    image_description=(
+                        "Board movement plan with numbered callout boxes. "
+                        "1. Start here. 2. Turn right. 3. Move ahead."
+                    ),
+                ),
+                "critical_graphics_role": "rule_example_diagram",
+                "critical_graphics_importance": "essential",
+                "nearby_text": "1. Start here. 2. Turn right. 3. Move ahead.",
+            }
+        ]
+
+        result = _attach_images(html, crops, "images")
+        soup = BeautifulSoup(result, "html.parser")
+        figure = soup.find("figure")
+
+        assert figure is not None
+        assert figure.get("data-caption-deduped") == "integrated-diagram-callouts"
+        assert figure.find("figcaption") is None
+
 
 # ---------------------------------------------------------------------------
 # T5: <figure>/<figcaption> wrapping
@@ -115,6 +150,49 @@ class TestFigureWrapping:
         soup = BeautifulSoup(result, "html.parser")
         assert soup.find("figcaption") is None
 
+    def test_crop_figure_provenance_uses_crop_source_page_not_chapter_fallback(self):
+        html = _attach_images(
+            "<h1>Catalog</h1><p>Intro.</p><h2>Course B</h2>",
+            [
+                {
+                    **_crop("page-002-000.jpg", alt="Course B map"),
+                    "source_page": 2,
+                    "critical_graphics_role": "map_or_board",
+                    "importance": "essential",
+                }
+            ],
+            "images",
+        )
+        body_html, rows = _tag_entry_body(
+            {
+                "filename": "chapter-001.html",
+                "body_html": html,
+                "source_pages": [1, 2],
+                "source_printed_pages": [1, 2],
+                "prepared_pages": [
+                    {
+                        "page_number": 1,
+                        "printed_page_number": 1,
+                        "html": "<h1>Catalog</h1><p>Intro.</p>",
+                    },
+                    {
+                        "page_number": 2,
+                        "printed_page_number": 2,
+                        "html": "<h2>Course B</h2>",
+                    },
+                ],
+            },
+            run_id="test-run",
+            created_at="2026-04-29T00:00:00Z",
+        )
+
+        soup = BeautifulSoup(body_html, "html.parser")
+        assert soup.find("figure") is not None
+        figure_row = next(row for row in rows if row["block_kind"] == "figure")
+        assert figure_row["source_page_number"] == 2
+        assert figure_row["source_printed_page_number"] == 2
+        assert "crop:page-002-000.jpg" in figure_row["source_element_ids"]
+
     def test_multiple_images_each_get_figure(self):
         crops = [_crop("a.jpg", caption_text="Cap A"), _crop("b.jpg")]
         result = _attach_images(SAMPLE_PAGE_HTML_MULTI, crops, "images")
@@ -125,6 +203,195 @@ class TestFigureWrapping:
         captions = soup.find_all("figcaption")
         assert len(captions) == 1
         assert captions[0].string == "Cap A"
+
+
+def test_split_labeled_multi_image_figures_uses_nearby_text_anchors() -> None:
+    soup = BeautifulSoup(
+        """
+        <article>
+          <ol>
+            <li><p>Each player takes a figure and places that robot on one of the starting positions.</p></li>
+          </ol>
+          <figure>
+            <img src="images/page-003-001.jpg" data-crop-filename="page-003-001.jpg"
+                 data-critical-graphics-role="setup_diagram"
+                 data-critical-graphics-importance="essential"
+                 data-critical-graphics-nearby-text="For a two-player game, place the boards as shown in this diagram."
+                 alt="Two player setup diagram"/>
+            <img src="images/page-003-000.jpg" data-crop-filename="page-003-000.jpg"
+                 data-critical-graphics-role="setup_diagram"
+                 data-critical-graphics-importance="essential"
+                 data-critical-graphics-nearby-text="Each player takes a figure and places that robot on one of the starting positions."
+                 alt="Starting positions graphic"/>
+          </figure>
+          <p>For a two-player game, place the boards as shown in this diagram.</p>
+        </article>
+        """,
+        "html.parser",
+    )
+
+    assert build_main._split_labeled_multi_image_figures(soup) == 2
+
+    starting_img = soup.find("img", {"data-crop-filename": "page-003-000.jpg"})
+    setup_img = soup.find("img", {"data-crop-filename": "page-003-001.jpg"})
+    list_item = soup.find("li")
+    setup_text = soup.find("p", string=re.compile("For a two-player game"))
+    assert starting_img.find_parent("li") is list_item
+    assert setup_img.find_parent("figure") is setup_text.find_previous_sibling("figure")
+    assert not any(len(fig.find_all("img", recursive=False)) > 1 for fig in soup.find_all("figure"))
+
+
+def test_split_labeled_multi_image_figures_refreshes_remaining_figure_metadata() -> None:
+    soup = BeautifulSoup(
+        """
+        <article>
+          <p>Place robots on the starting positions.</p>
+          <figure data-doc-web-source-crop-filename="start.jpg" data-critical-graphics-target-id="start">
+            <img src="images/start.jpg" data-crop-filename="start.jpg"
+                 data-critical-graphics-target-id="start"
+                 data-critical-graphics-role="board_element"
+                 data-critical-graphics-importance="essential"
+                 data-critical-graphics-nearby-text="Place robots on the starting positions."
+                 alt="Starting positions"/>
+            <img src="images/setup.jpg" data-crop-filename="setup.jpg"
+                 data-critical-graphics-target-id="setup"
+                 data-critical-graphics-role="setup_diagram"
+                 data-critical-graphics-importance="essential"
+                 data-critical-graphics-nearby-text="Two-player setup overview."
+                 alt="Setup overview"/>
+          </figure>
+        </article>
+        """,
+        "html.parser",
+    )
+
+    assert build_main._split_labeled_multi_image_figures(soup) == 1
+
+    remaining = soup.find("img", {"data-crop-filename": "setup.jpg"}).find_parent("figure")
+    assert remaining["data-doc-web-source-crop-filename"] == "setup.jpg"
+    assert remaining["data-critical-graphics-target-id"] == "setup"
+    assert remaining["data-critical-graphics-role"] == "setup_diagram"
+
+
+def test_split_labeled_multi_image_figure_extends_anchor_through_nearby_text_run() -> None:
+    soup = BeautifulSoup(
+        """
+        <article>
+          <p>To purchase an upgrade, look at the number in the top left-hand corner of the card.</p>
+          <p>If you've purchased a permanent upgrade, place it on one of the upgrade slots on your player mat.</p>
+          <p>If you've purchased a temporary upgrade, place it in front of your player mat.</p>
+          <figure>
+            <img src="images/cost.png" data-crop-filename="cost.png"
+                 data-critical-graphics-role="rule_example_diagram"
+                 data-critical-graphics-importance="essential"
+                 data-critical-graphics-nearby-text="To purchase an upgrade, look at the number in the top left-hand corner of the card."
+                 alt="Cost reference card"/>
+            <img src="images/layout.png" data-crop-filename="layout.png"
+                 data-critical-graphics-role="rule_example_diagram"
+                 data-critical-graphics-importance="essential"
+                 data-critical-graphics-nearby-text="If you've purchased a permanent upgrade, place it on one of the upgrade slots on your player mat. If you've purchased a temporary upgrade, place it in front of your player mat."
+                 alt="Card placement layout visual"/>
+          </figure>
+        </article>
+        """,
+        "html.parser",
+    )
+
+    assert build_main._split_labeled_multi_image_figures(soup) == 2
+
+    layout = soup.find("img", {"data-crop-filename": "layout.png"}).find_parent("figure")
+    previous = layout.find_previous_sibling("p")
+
+    assert "temporary upgrade" in previous.get_text(" ", strip=True)
+
+
+def test_redundant_page_snapshot_crop_is_skipped_when_page_text_is_semantic() -> None:
+    soup = BeautifulSoup(
+        "<article><p>"
+        + " ".join(f"semantic token {idx}" for idx in range(60))
+        + "</p></article>",
+        "html.parser",
+    )
+    crop = {
+        "filename": "page-002-000.jpg",
+        "area_ratio": 0.99,
+        "image_description": "Large page snapshot",
+    }
+
+    assert build_main._should_skip_source_pixel_crop(crop, soup)
+
+
+def test_multiple_figures_inserted_at_same_anchor_keep_manifest_order() -> None:
+    html = "<article><p>Luis programmed a card and moves forward one space.</p></article>"
+    crops = [
+        {
+            **_crop(
+                "mat.jpg",
+                image_description="Luis player mat showing the programmed card",
+            ),
+            "critical_graphics_role": "rule_example_diagram",
+            "critical_graphics_importance": "essential",
+            "nearby_text": "Luis programmed a card and moves forward one space.",
+        },
+        {
+            **_crop(
+                "board.jpg",
+                image_description="Luis board position showing the move",
+            ),
+            "critical_graphics_role": "rule_example_diagram",
+            "critical_graphics_importance": "essential",
+            "nearby_text": "Luis programmed a card and moves forward one space.",
+        },
+    ]
+
+    result = _attach_images(html, crops, "images")
+    soup = BeautifulSoup(result, "html.parser")
+
+    assert [img["src"] for img in soup.find_all("img")] == ["images/mat.jpg", "images/board.jpg"]
+
+
+def test_orphan_crop_covering_contiguous_paragraphs_inserts_after_text_run() -> None:
+    html = """
+    <article>
+      <p>To purchase an upgrade, look at the number in the top left-hand corner of the card.</p>
+      <p>If you've purchased a permanent upgrade, place it on one of the upgrade slots on your player mat.</p>
+      <p>If you've purchased a temporary upgrade, place it in front of your player mat.</p>
+      <p>Then continue with the next phase.</p>
+    </article>
+    """
+    result = _attach_images(
+        html,
+        [
+            {
+                **_crop("layout.png", image_description="Card placement layout visual"),
+                "critical_graphics_role": "card_reference",
+                "critical_graphics_importance": "essential",
+                "nearby_text": (
+                    "If you've purchased a permanent upgrade, place it on one of the upgrade slots on your player mat. "
+                    "If you've purchased a temporary upgrade, place it in front of your player mat."
+                ),
+            }
+        ],
+        "images",
+    )
+    soup = BeautifulSoup(result, "html.parser")
+
+    figure = soup.find("img", {"data-crop-filename": "layout.png"}).find_parent("figure")
+    previous = figure.find_previous_sibling("p")
+    following = figure.find_next_sibling("p")
+
+    assert "temporary upgrade" in previous.get_text(" ", strip=True)
+    assert "Then continue" in following.get_text(" ", strip=True)
+
+
+def test_candidate_titles_for_refinement_excludes_future_duplicate_boundaries() -> None:
+    portions = [
+        {"title": "HOW TO PLAY", "page_start": 4, "page_end": 11},
+        {"title": "MORE ON RACING THROUGH THE FACTORY", "page_start": 12, "page_end": 13},
+        {"title": "SUMMARY OF A ROUND", "page_start": 32, "page_end": 32},
+    ]
+
+    assert build_main._candidate_titles_for_refinement(portions, 0, 11) == ["HOW TO PLAY"]
 
 
 # ---------------------------------------------------------------------------
@@ -224,6 +491,47 @@ class TestCaptionAbsorption:
         assert figcaption is not None
         assert figcaption.string == "From crop pipeline"
 
+    def test_existing_figure_gets_critical_graphics_metadata(self):
+        html = '<figure><img alt="Upgrade card"></figure>'
+        crops = [{
+            **_crop("card.jpg", image_description="Upgrade card face for Test Card"),
+            "critical_graphics_role": "card_face",
+            "critical_graphics_importance": "essential",
+            "critical_graphics_target_id": "p001-g01",
+        }]
+
+        result = _attach_images(html, crops, "images")
+        soup = BeautifulSoup(result, "html.parser")
+
+        figure = soup.find("figure")
+        assert figure["data-critical-graphics-role"] == "card_face"
+        assert figure["data-critical-graphics-importance"] == "essential"
+        assert figure["data-critical-graphics-target-id"] == "p001-g01"
+
+    def test_removes_unmatched_image_placeholders(self):
+        html = '<figure><img alt="Diagram"><img alt="Duplicate placeholder"></figure>'
+        crops = [_crop("img.jpg", image_description="Diagram crop")]
+
+        result = _attach_images(html, crops, "images")
+        soup = BeautifulSoup(result, "html.parser")
+
+        imgs = soup.find_all("img")
+        assert len(imgs) == 1
+        assert imgs[0]["src"] == "images/img.jpg"
+
+    def test_dedupes_caption_matching_adjacent_heading(self):
+        html = (
+            '<figure><img alt="Priority antenna"><figcaption>Determining Priority</figcaption></figure>'
+            '<p><strong>Determining Priority</strong><br>Priority determines the next player.</p>'
+        )
+        crops = [_crop("img.jpg", image_description="Priority antenna")]
+
+        result = _attach_images(html, crops, "images")
+        soup = BeautifulSoup(result, "html.parser")
+
+        assert soup.find("figcaption") is None
+        assert soup.find("figure")["data-caption-deduped"] == "adjacent-text"
+
     def test_suppresses_adjacent_duplicate_paragraphs_for_text_bearing_crop(self, monkeypatch):
         html = (
             '<figure><img alt="Official Seal"></figure>'
@@ -266,20 +574,286 @@ class TestCaptionAbsorption:
         assert paragraphs == ["Hon. Gordon MacMurchy Minister of Agriculture"]
 
 
+def test_normalize_reference_entries_converts_card_like_strong_paragraphs() -> None:
+    html = (
+        "<p><strong>CACHE MEMORY</strong><br>"
+        "<strong>Cost:</strong> 4<br>"
+        "<strong>Effect:</strong> You may discard cards.</p>"
+    )
+
+    result = _normalize_reference_entries(html, enabled=True)
+    soup = BeautifulSoup(result, "html.parser")
+
+    assert soup.find("dl", class_="semantic-entry-list") is not None
+    assert soup.find("dt").get_text(" ", strip=True) == "CACHE MEMORY"
+    assert "Effect:" in soup.find("dd").get_text(" ", strip=True)
+
+
+def test_normalize_reference_entries_rejects_phase_label_paragraph() -> None:
+    html = "<p><strong>The Upgrade Phase:</strong> Use energy cubes.</p>"
+
+    assert _normalize_reference_entries(html, enabled=True) == html
+
+
+def test_normalize_reference_entries_converts_figure_labeled_card_entries() -> None:
+    html = (
+        '<figure><img src="images/card.jpg" alt="Energy Routine"></figure>'
+        "<p>ENERGY ROUTINE</p>"
+        "<p>Take one energy cube, and place it on your player mat.</p>"
+    )
+
+    result = _normalize_reference_entries(html, enabled=True)
+    soup = BeautifulSoup(result, "html.parser")
+
+    assert soup.find("figure") is not None
+    assert soup.find("dt").get_text(" ", strip=True) == "ENERGY ROUTINE"
+    assert "Take one energy cube" in soup.find("dd").get_text(" ", strip=True)
+
+
+def test_normalize_reference_entries_converts_label_before_figure_card_entries() -> None:
+    html = (
+        "<p>ENERGY ROUTINE</p>"
+        '<figure><img src="images/card.jpg" alt="Energy Routine"></figure>'
+        "<p>Take one energy cube, and place it on your player mat.</p>"
+        "<p>SANDBOX ROUTINE</p>"
+    )
+
+    result = _normalize_reference_entries(html, enabled=True)
+    soup = BeautifulSoup(result, "html.parser")
+
+    assert soup.find("dt").get_text(" ", strip=True) == "ENERGY ROUTINE"
+    assert "Take one energy cube" in soup.find("dd").get_text(" ", strip=True)
+    assert soup.find("p", string="SANDBOX ROUTINE") is not None
+
+
+def test_normalize_catalog_entries_groups_mixed_figure_label_metadata_patterns() -> None:
+    html = (
+        "<h1>ROUTE CATALOG</h1>"
+        "<p>On the following pages, find a list of routes.</p>"
+        "<h2>EASY ROUTES</h2>"
+        '<figure data-critical-graphics-role="map_or_board"><img src="images/a.jpg" alt="River Walk — Game Length: Short; Boards: A"></figure>'
+        "<h3>RIVER WALK</h3>"
+        "<p><strong>Game Length:</strong> Short<br><strong>Boards:</strong> A</p>"
+        "<dl class=\"semantic-entry-list\"><dt>RIDGE WALK</dt><dd><strong>Game Length:</strong> Long<br><strong>Boards:</strong> B</dd></dl>"
+        '<figure data-critical-graphics-role="map_or_board"><img src="images/b.jpg" alt="Ridge Walk"></figure>'
+        "<p><strong>CLIFF LOOP</strong></p>"
+        '<figure data-critical-graphics-role="map_or_board"><img src="images/c.jpg" alt="Cliff Loop"></figure>'
+        "<p><strong>Game Length:</strong> Medium<br><strong>Boards:</strong> C</p>"
+        "<h3>PEAK PASS</h3>"
+        '<figure data-critical-graphics-role="map_or_board"><img src="images/d.jpg" alt="Peak Pass"></figure>'
+        "<p><strong>Game Length:</strong> Short<br><strong>Boards:</strong> D</p>"
+    )
+
+    result = _normalize_catalog_entries(html, title="ROUTE CATALOG", enabled=True)
+    soup = BeautifulSoup(result, "html.parser")
+    entries = soup.find_all("section", class_="semantic-catalog-entry")
+
+    assert [entry.find("h3").get_text(" ", strip=True) for entry in entries] == [
+        "RIVER WALK",
+        "RIDGE WALK",
+        "CLIFF LOOP",
+        "PEAK PASS",
+    ]
+    assert [entry.find("img")["src"] for entry in entries] == [
+        "images/a.jpg",
+        "images/b.jpg",
+        "images/c.jpg",
+        "images/d.jpg",
+    ]
+    assert all("Game Length:" in entry.get_text(" ", strip=True) for entry in entries)
+    assert not soup.find("dt", string="RIDGE WALK")
+
+
+def test_normalize_catalog_entries_keeps_reference_panel_at_category_level() -> None:
+    html = (
+        "<h1>CARD INDEX</h1>"
+        "<h2>PROGRAMMING CARDS</h2>"
+        '<figure data-critical-graphics-role="card_reference">'
+        '<img src="images/cards.jpg" alt="Reference images of nine card faces: Move 1, Move 2, Move 3, Turn Right, Turn Left"></figure>'
+        "<h3>MOVE 1, MOVE 2, MOVE 3</h3>"
+        "<p>Move your robot in the direction it is facing.</p>"
+        "<dl class=\"semantic-entry-list\"><dt>TURN RIGHT</dt><dd>Turn your robot 90 degrees right.</dd></dl>"
+    )
+
+    result = _normalize_catalog_entries(html, title="CARD INDEX", enabled=True)
+    soup = BeautifulSoup(result, "html.parser")
+
+    assert soup.find("figure", attrs={"data-critical-graphics-role": "card_reference"}) is not None
+    assert not soup.find("section", class_="semantic-catalog-entry")
+
+
+def test_attach_images_inserts_useful_catalog_card_crops_with_exact_label_anchors() -> None:
+    html = (
+        "<h1>CARD INDEX</h1>"
+        "<h2>UPGRADE CARDS</h2>"
+        "<dl>"
+        "<dt>ADMIN PRIVILEGE</dt><dd><strong>Cost:</strong> 3<br><strong>Effect:</strong> Give priority.</dd>"
+        "<dt>CORRUPTION WAVE</dt><dd><strong>Cost:</strong> 4<br><strong>Effect:</strong> Move damage cards.</dd>"
+        "</dl>"
+    )
+    crops = [
+        {
+            "filename": "admin.jpg",
+            "image_description": "Admin Privilege permanent upgrade card face — ADMIN PRIVILEGE Cost: 3 Effect: Give priority. — card face",
+            "critical_graphics_role": "card_face",
+            "critical_graphics_importance": "useful",
+            "critical_graphics_target_id": "p001-g01",
+        },
+        {
+            "filename": "corruption.jpg",
+            "image_description": "Corruption Wave permanent upgrade card face — CORRUPTION WAVE Cost: 4 Effect: Move damage cards. — card face",
+            "critical_graphics_role": "card_face",
+            "critical_graphics_importance": "useful",
+            "critical_graphics_target_id": "p001-g02",
+        },
+    ]
+
+    result = _attach_images(html, crops, "images")
+    soup = BeautifulSoup(result, "html.parser")
+
+    assert [img["data-crop-filename"] for img in soup.find_all("img")] == ["admin.jpg", "corruption.jpg"]
+    assert soup.find("dt", string="ADMIN PRIVILEGE").find_next_sibling("dd").find("figure") is not None
+
+
+def test_normalize_catalog_entries_groups_definition_list_entries_with_embedded_figures() -> None:
+    html = (
+        "<h1>ROUTE CATALOG</h1>"
+        "<h2>EASY ROUTES</h2>"
+        "<dl>"
+        "<dt>RIVER WALK</dt>"
+        "<dd>"
+        '<figure data-critical-graphics-role="map_or_board"><img src="images/river.jpg" alt="River Walk"></figure>'
+        "<strong>Distance:</strong> Short<br><strong>Difficulty:</strong> Easy"
+        "</dd>"
+        "<dt>RIDGE WALK</dt>"
+        "<dd>"
+        '<figure data-critical-graphics-role="map_or_board"><img src="images/ridge.jpg" alt="Ridge Walk"></figure>'
+        "<strong>Distance:</strong> Long<br><strong>Difficulty:</strong> Medium"
+        "</dd>"
+        "</dl>"
+    )
+
+    result = _normalize_catalog_entries(html, title="ROUTE CATALOG", enabled=True)
+    soup = BeautifulSoup(result, "html.parser")
+    entries = soup.find_all("section", class_="semantic-catalog-entry")
+
+    assert [entry["data-catalog-entry-title"] for entry in entries] == ["RIVER WALK", "RIDGE WALK"]
+    assert [entry.find("img")["src"] for entry in entries] == ["images/river.jpg", "images/ridge.jpg"]
+    assert all(entry.find("p") is not None for entry in entries)
+    assert "Distance: Short" in entries[0].find("p").get_text(" ", strip=True)
+    assert soup.find("dl") is None
+
+
+def test_catalog_entry_provenance_survives_dt_dd_to_heading_paragraph_normalization() -> None:
+    body_html = (
+        "<section class=\"semantic-catalog-entry\" data-catalog-entry-title=\"ADMIN PRIVILEGE\">"
+        "<h3>ADMIN PRIVILEGE</h3>"
+        "<p><strong>Cost:</strong> 3<br><strong>Effect:</strong> Give priority.</p>"
+        "</section>"
+        "<section class=\"semantic-catalog-entry\" data-catalog-entry-title=\"CACHE MEMORY\">"
+        "<h3>CACHE MEMORY</h3>"
+        "<p><strong>Cost:</strong> 4<br><strong>Effect:</strong> Put cards on top of your deck.</p>"
+        "</section>"
+    )
+    _, rows = _tag_entry_body(
+        {
+            "filename": "chapter-001.html",
+            "body_html": body_html,
+            "source_pages": [5, 6],
+            "source_printed_pages": [5, 6],
+            "prepared_pages": [
+                {
+                    "page_number": 5,
+                    "printed_page_number": 5,
+                    "html": (
+                        "<dl>"
+                        "<dt>ADMIN PRIVILEGE</dt>"
+                        "<dd><strong>Cost:</strong> 3<br><strong>Effect:</strong> Give priority.</dd>"
+                        "</dl>"
+                    ),
+                },
+                {
+                    "page_number": 6,
+                    "printed_page_number": 6,
+                    "html": "<p>CACHE MEMORY Cost: 4 Effect: Put cards on top of your deck.</p>",
+                },
+            ],
+        },
+        run_id="test-run",
+        created_at="2026-04-29T00:00:00Z",
+    )
+
+    by_text = {row["text_quote"]: row for row in rows if row.get("text_quote")}
+    assert by_text["ADMIN PRIVILEGE"]["source_page_number"] == 5
+    assert by_text["Cost: 3 Effect: Give priority."]["source_page_number"] == 5
+    assert by_text["CACHE MEMORY"]["source_page_number"] == 6
+    assert by_text["Cost: 4 Effect: Put cards on top of your deck."]["source_page_number"] == 6
+
+
+def test_normalize_catalog_entries_keeps_multi_figures_with_preceding_definition_entry() -> None:
+    html = (
+        "<h1>CARD INDEX</h1>"
+        "<h2>PROGRAMMING CARDS</h2>"
+        '<dl class="semantic-entry-list"><dt>MOVE 1, MOVE 2, MOVE 3</dt>'
+        "<dd>Move your robot in the direction it is facing.</dd></dl>"
+        '<figure data-critical-graphics-role="card_face"><img src="images/move1.jpg" alt="Card face titled MOVE 1"></figure>'
+        '<figure data-critical-graphics-role="card_face"><img src="images/move2.jpg" alt="Card face titled MOVE 2"></figure>'
+        '<figure data-critical-graphics-role="card_face"><img src="images/move3.jpg" alt="Card face titled MOVE 3"></figure>'
+        '<dl class="semantic-entry-list"><dt>TURN RIGHT</dt><dd>Turn right.</dd></dl>'
+        '<figure data-critical-graphics-role="card_face"><img src="images/right.jpg" alt="Card face titled TURN RIGHT"></figure>'
+        '<figure data-critical-graphics-role="card_face"><img src="images/left.jpg" alt="Card face titled TURN LEFT"></figure>'
+        '<dl class="semantic-entry-list"><dt>TURN LEFT</dt><dd>Turn left.</dd></dl>'
+        "<h3>TURN LEFT</h3><p>Turn left.</p>"
+        "<h3>U-TURN</h3><p>Turn around.</p>"
+    )
+
+    result = _normalize_catalog_entries(html, title="CARD INDEX", enabled=True)
+    soup = BeautifulSoup(result, "html.parser")
+    entries = soup.find_all("section", class_="semantic-catalog-entry")
+
+    assert [entry["data-catalog-entry-title"] for entry in entries] == [
+        "MOVE 1, MOVE 2, MOVE 3",
+        "TURN RIGHT",
+        "TURN LEFT",
+    ]
+    assert [img["src"] for img in entries[0].find_all("img")] == [
+        "images/move1.jpg",
+        "images/move2.jpg",
+        "images/move3.jpg",
+    ]
+    assert [img["src"] for img in entries[1].find_all("img")] == ["images/right.jpg"]
+    assert [img["src"] for img in entries[2].find_all("img")] == ["images/left.jpg"]
+
+
+def test_polish_flat_chapter_headings_suppresses_redundant_catalog_marker_headings() -> None:
+    html = (
+        "<h1>CARD INDEX</h1>"
+        "<h1>PROGRAMMING CARDS</h1>"
+        "<h1>CARDS</h1>"
+        "<dl><dt>MOVE 1</dt><dd>Move one space.</dd><dt>TURN RIGHT</dt><dd>Turn right.</dd></dl>"
+        "<h1>UPGRADE CARDS</h1>"
+    )
+
+    result = _polish_flat_chapter_headings(html, "CARD INDEX")
+    soup = BeautifulSoup(result, "html.parser")
+    headings = [tag.get_text(" ", strip=True) for tag in soup.find_all(re.compile(r"^h[1-6]$"))]
+
+    assert headings == ["CARD INDEX", "PROGRAMMING CARDS", "UPGRADE CARDS"]
+
+
 # ---------------------------------------------------------------------------
 # T3: Robust image matching
 # ---------------------------------------------------------------------------
 
 class TestImageMatching:
     def test_more_tags_than_crops(self):
-        """Extra <img> tags should be left alone, not crash."""
+        """Extra OCR placeholders should be removed so final HTML has no broken images."""
         crops = [_crop("img.jpg")]
         result = _attach_images(SAMPLE_PAGE_HTML_MULTI, crops, "images")
         soup = BeautifulSoup(result, "html.parser")
         imgs = soup.find_all("img")
-        assert len(imgs) == 2
+        assert len(imgs) == 1
         assert imgs[0].get("src") == "images/img.jpg"
-        assert imgs[1].get("src") is None  # unmatched
 
     def test_more_crops_than_tags(self):
         """Extra crops should be ignored, not crash."""
@@ -336,6 +910,262 @@ class TestImageMatching:
         assert "Leonidas and Josephine" in figures[0].find("figcaption").get_text()
         assert figures[1].find("img")["src"] == "images/single.jpg"
         assert "Laetitia" in figures[1].find("figcaption").get_text()
+
+    def test_descriptor_matching_skips_decorative_placeholder_on_dense_page(self):
+        html = "".join(
+            f'<figure><img alt="Upgrade card titled {name}"></figure>'
+            for name in [
+                "Cache Memory",
+                "Defrag Gizmo",
+                "Double Barrel Laser",
+                "Modular Chassis",
+                "Firewall",
+                "Pressor Beam",
+                "Rogue Code",
+                "Hover Unit",
+                "Rail Gun",
+            ]
+        )
+        crops = [
+            _crop("cache.jpg", image_description="Upgrade card face for Cache Memory"),
+            _crop("defrag.jpg", image_description="Upgrade card face for Defrag Gizmo"),
+            _crop("double.jpg", image_description="Upgrade card face for Double Barrel Laser"),
+            _crop("modular.jpg", image_description="Upgrade card face for Modular Chassis"),
+            _crop("firewall.jpg", image_description="Upgrade card face for Firewall"),
+            _crop("pressor.jpg", image_description="Upgrade card face for Pressor Beam"),
+            _crop("hover.jpg", image_description="Upgrade card face for Hover Unit"),
+            _crop("rail.jpg", image_description="Upgrade card face for Rail Gun"),
+        ]
+
+        result = _attach_images(html, crops, "images")
+        soup = BeautifulSoup(result, "html.parser")
+        srcs = [img["src"] for img in soup.find_all("img")]
+
+        assert "images/hover.jpg" in srcs
+        assert "images/rail.jpg" in srcs
+        assert all("Rogue Code" not in img.get("alt", "") for img in soup.find_all("img"))
+
+    def test_text_only_callout_placeholder_becomes_semantic_aside_not_unrelated_crop(self):
+        html = (
+            '<figure><img alt="Circular reminder graphic about upgrades">'
+            "<figcaption>Don’t forget! You can use upgrades during activation.</figcaption>"
+            "</figure>"
+        )
+        crops = [_crop("belt.jpg", image_description="Blue conveyor belt board space icon")]
+
+        result = _attach_images(html, crops, "images")
+        soup = BeautifulSoup(result, "html.parser")
+
+        assert soup.find("img") is None
+        assert soup.find("figure") is None
+        aside = soup.find("aside", attrs={"data-doc-web-semantic": "text-callout"})
+        assert aside is not None
+        assert aside["data-callout-kind"] == "reminder"
+        assert aside.get_text(" ", strip=True) == "Don’t forget! You can use upgrades during activation."
+
+    def test_text_only_callout_placeholder_uses_alt_cue_for_semantic_aside(self):
+        html = (
+            '<figure><img alt="Callout labeled conflict rule">'
+            "<figcaption>Special Rule<br>Specific card rules override the general rules.</figcaption>"
+            "</figure>"
+        )
+        crops = [_crop("card.jpg", image_description="Upgrade card face")]
+
+        result = _attach_images(html, crops, "images")
+        soup = BeautifulSoup(result, "html.parser")
+
+        assert soup.find("img") is None
+        assert soup.find("figure") is None
+        aside = soup.find("aside", attrs={"data-doc-web-semantic": "text-callout"})
+        assert aside is not None
+        assert aside["data-callout-kind"] == "reminder"
+        assert aside.get_text(" ", strip=True) == "Special Rule Specific card rules override the general rules."
+
+    def test_fully_emphasized_text_callout_paragraph_becomes_semantic_aside(self):
+        html = (
+            "<p><strong>After the fifth register is complete, players take the programming cards "
+            "in their registers and place them in their discard piles. Then play returns to the "
+            "upgrade phase.</strong></p>"
+        )
+
+        soup = BeautifulSoup(html, "html.parser")
+        _promote_text_callout_paragraphs(soup)
+
+        aside = soup.find("aside", attrs={"data-doc-web-semantic": "text-callout"})
+        assert aside is not None
+        assert aside["data-callout-kind"] == "important"
+        assert soup.find("p").get_text(" ", strip=True).startswith("After the fifth register")
+
+    def test_text_represented_summary_reference_is_not_attached_as_image(self):
+        html = (
+            "<h1>Summary of a Round</h1>"
+            "<ol><li>The Upgrade Phase</li><li>The Programming Phase</li>"
+            "<li>The Activation Phase</li></ol>"
+            '<figure><img alt="Summary panel"></figure>'
+        )
+        crops = [
+            {
+                **_crop(
+                    "summary.jpg",
+                    image_description=(
+                        "Quick-reference panel summarizing the sequence of a round — "
+                        "Summary of a Round; The Upgrade Phase; The Programming Phase; "
+                        "The Activation Phase — summary reference"
+                    ),
+                ),
+                "critical_graphics_role": "summary_reference",
+                "critical_graphics_importance": "useful",
+            }
+        ]
+
+        result = _attach_images(html, crops, "images")
+        soup = BeautifulSoup(result, "html.parser")
+
+        assert soup.find("img") is None
+        assert soup.find("figure") is None
+        assert "The Activation Phase" in soup.get_text(" ", strip=True)
+
+    def test_unused_essential_card_crop_is_inserted_into_matching_definition(self):
+        html = "<dl><dt>MEMORY STICK</dt><dd>Cost: 3<br>Effect: Draw one additional card.</dd></dl>"
+        crops = [
+            {
+                **_crop(
+                    "memory-stick.jpg",
+                    image_description=(
+                        "Memory Stick upgrade card face — MEMORY STICK Cost: 3 "
+                        "Effect: Draw one additional card. — card face"
+                    ),
+                ),
+                "critical_graphics_role": "card_face",
+                "critical_graphics_importance": "essential",
+            }
+        ]
+
+        result = _attach_images(html, crops, "images")
+        soup = BeautifulSoup(result, "html.parser")
+
+        dd = soup.find("dd")
+        figure = dd.find("figure")
+        assert figure is not None
+        assert figure["data-placement"] == "inferred-essential"
+        assert figure.find("img")["src"] == "images/memory-stick.jpg"
+
+    def test_unused_essential_board_element_crop_is_inserted_into_matching_list_item(self):
+        html = (
+            "<ol>"
+            "<li><p><strong>Blue conveyor belts</strong> move robots two spaces.</p></li>"
+            "<li><p><strong>Green conveyor belts</strong> move robots one space.</p></li>"
+            "</ol>"
+        )
+        crops = [
+            {
+                **_crop(
+                    "green-belt.jpg",
+                    image_description=(
+                        "Green conveyor belt board space icon with activation-order marker 2 "
+                        "— Green conveyor belts move robots one space. — board element"
+                    ),
+                ),
+                "critical_graphics_role": "board_element",
+                "critical_graphics_importance": "essential",
+            }
+        ]
+
+        result = _attach_images(html, crops, "images")
+        soup = BeautifulSoup(result, "html.parser")
+
+        list_items = soup.find_all("li")
+        assert list_items[0].find("img") is None
+        assert list_items[1].find("img")["src"] == "images/green-belt.jpg"
+
+    def test_unused_useful_crop_is_not_inserted_without_placeholder(self):
+        html = "<p>Damage card text is already represented semantically.</p>"
+        crops = [
+            {
+                **_crop("spam.jpg", image_description="SPAM damage card face — SPAM — card face"),
+                "critical_graphics_role": "card_face",
+                "critical_graphics_importance": "useful",
+            }
+        ]
+
+        result = _attach_images(html, crops, "images")
+        soup = BeautifulSoup(result, "html.parser")
+
+        assert soup.find("img") is None
+
+    def test_labeled_multi_image_figure_is_split_to_matching_following_entries(self):
+        html = (
+            '<figure><img alt="Gears"><img alt="Board lasers"></figure>'
+            "<p><strong>Gears</strong><br>Gears rotate robots.</p>"
+            "<p><strong>Board Lasers</strong><br>Board lasers fire at robots.</p>"
+        )
+        crops = [
+            {
+                **_crop(
+                    "gears.jpg",
+                    image_description="Two gear board-space examples — Gears rotate robots. — component reference",
+                ),
+                "critical_graphics_role": "component_reference",
+                "critical_graphics_importance": "essential",
+            },
+            {
+                **_crop(
+                    "lasers.jpg",
+                    image_description="Board laser space examples — Board Lasers fire at robots. — component reference",
+                ),
+                "critical_graphics_role": "component_reference",
+                "critical_graphics_importance": "essential",
+            },
+        ]
+
+        result = _attach_images(html, crops, "images")
+        soup = BeautifulSoup(result, "html.parser")
+        figures = soup.find_all("figure")
+        paragraphs = soup.find_all("p")
+
+        assert len(figures) == 2
+        assert paragraphs[0].find_next_sibling("figure").find("img")["src"] == "images/gears.jpg"
+        assert paragraphs[1].find_next_sibling("figure").find("img")["src"] == "images/lasers.jpg"
+
+    def test_group_manifest_sorts_crops_by_visual_rows(self, tmp_path):
+        manifest = tmp_path / "illustration_manifest.jsonl"
+        rows = [
+            {
+                "source_page": 1,
+                "filename": "right.jpg",
+                "bbox": {"x0": 140, "y0": 28, "x1": 200, "y1": 88, "height": 60},
+            },
+            {
+                "source_page": 1,
+                "filename": "left.jpg",
+                "bbox": {"x0": 20, "y0": 30, "x1": 80, "y1": 90, "height": 60},
+            },
+        ]
+        manifest.write_text("\n".join(json.dumps(row) for row in rows) + "\n", encoding="utf-8")
+
+        grouped = _group_manifest_by_page(str(manifest))
+
+        assert [row["filename"] for row in grouped[1]] == ["left.jpg", "right.jpg"]
+
+    def test_group_manifest_sorts_top_aligned_different_height_crops_left_to_right(self, tmp_path):
+        manifest = tmp_path / "illustration_manifest.jsonl"
+        rows = [
+            {
+                "source_page": 1,
+                "filename": "right-tall.jpg",
+                "bbox": {"x0": 140, "y0": 20, "x1": 220, "y1": 180, "height": 160},
+            },
+            {
+                "source_page": 1,
+                "filename": "left-short.jpg",
+                "bbox": {"x0": 20, "y0": 24, "x1": 100, "y1": 84, "height": 60},
+            },
+        ]
+        manifest.write_text("\n".join(json.dumps(row) for row in rows) + "\n", encoding="utf-8")
+
+        grouped = _group_manifest_by_page(str(manifest))
+
+        assert [row["filename"] for row in grouped[1]] == ["left-short.jpg", "right-tall.jpg"]
 
 
 class TestFigurePlacementNormalization:
@@ -427,6 +1257,8 @@ class TestNavigation:
         assert 'href="ch1.html"' in nav
         assert 'href="ch3.html"' in nav
         assert 'href="index.html"' in nav
+        assert 'data-doc-web-ui-chrome="navigation"' in nav
+        assert 'aria-label="Document navigation"' in nav
 
     def test_no_prev(self):
         nav = _build_nav(None, None, "ch2.html", "Ch 2")
@@ -2116,3 +2948,29 @@ class TestCLIIntegration:
             tag.name == "h2" and "WARNING: THIS AGREEMENT WILL AFFECT YOUR LEGAL RIGHTS." in tag.get_text(" ", strip=True)
             for tag in soup.find_all(re.compile(r"^h[1-6]$"))
         )
+
+    def test_preserves_nested_heading_levels_for_catalog_chapters(self):
+        html = (
+            "<h1>ROUTE CATALOG</h1>"
+            "<p>On the following pages, find a list of routes.</p>"
+            "<h1>EASY ROUTES</h1>"
+            "<h2>RIVER WALK</h2>"
+            "<p><strong>Distance:</strong> Short<br><strong>Difficulty:</strong> Easy</p>"
+            "<h2>RIDGE WALK</h2>"
+            "<p><strong>Distance:</strong> Long<br><strong>Difficulty:</strong> Medium</p>"
+            "<h1>HARD. ROUTE. CATALOG</h1>"
+            "<h2>CLIFF LOOP</h2>"
+            "<p><strong>Distance:</strong> Long<br><strong>Difficulty:</strong> Hard</p>"
+        )
+
+        soup = BeautifulSoup(_polish_flat_chapter_headings(html, "ROUTE CATALOG"), "html.parser")
+        headings = [(tag.name, tag.get_text(" ", strip=True)) for tag in soup.find_all(re.compile(r"^h[1-6]$"))]
+
+        assert headings == [
+            ("h1", "ROUTE CATALOG"),
+            ("h2", "EASY ROUTES"),
+            ("h3", "RIVER WALK"),
+            ("h3", "RIDGE WALK"),
+            ("h2", "HARD. ROUTE. CATALOG"),
+            ("h3", "CLIFF LOOP"),
+        ]

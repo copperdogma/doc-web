@@ -18,6 +18,11 @@ inputs:
     description: OCR JSONL manifest (page_html_v1 schema with images field)
     required: true
 
+  - name: critical_graphics_manifest
+    type: file
+    description: Optional critical_graphics_manifest_v1 JSON with VLM-selected crop targets
+    required: false
+
 outputs:
   - name: illustration_manifest
     type: file
@@ -159,6 +164,11 @@ parameters:
     type: string
     default: null
     description: Optional high-res images directory (sorted to page order)
+
+  - name: critical_graphics_manifest
+    type: string
+    default: null
+    description: Optional VLM critical-graphics manifest used as crop intent and bbox source
 
   - name: padding_percent
     type: float
@@ -385,6 +395,36 @@ parameters:
     default: 0.01
     description: Minimum nonwhite ratio for segment retention
 
+  - name: dense_split_when_missing
+    type: boolean
+    default: false
+    description: Split overbroad dense reference crops into repeated saturated visual blocks
+
+  - name: dense_split_min_expected_count
+    type: integer
+    default: 3
+    description: Minimum expected image count before dense reference splitting is considered
+
+  - name: dense_split_min_area_ratio
+    type: float
+    default: 0.35
+    description: Minimum page area ratio for a crop to be considered overbroad
+
+  - name: dense_split_min_component_area_ratio
+    type: float
+    default: 0.0015
+    description: Minimum page area ratio for dense split components
+
+  - name: dense_split_max_component_area_ratio
+    type: float
+    default: 0.12
+    description: Maximum page area ratio for dense split components
+
+  - name: dense_split_saturation_threshold
+    type: integer
+    default: 35
+    description: HSV saturation threshold for dense split visual-block detection
+
   - name: trim_caption
     type: boolean
     default: false
@@ -460,6 +500,7 @@ command: |
     --min-height={min_height} \
     {highres_manifest:+--highres-manifest {highres_manifest}} \
     {highres_images_dir:+--highres-images-dir {highres_images_dir}} \
+    {critical_graphics_manifest:+--critical-graphics-manifest {critical_graphics_manifest}} \
     --padding-percent={padding_percent} \
     {rescue_model:+--rescue-model {rescue_model}} \
     --rescue-temperature={rescue_temperature} \
@@ -504,6 +545,12 @@ command: |
     --split-min-gap-px={split_min_gap_px} \
     --split-min-segment-height-ratio={split_min_segment_height_ratio} \
     --split-min-segment-nonwhite-ratio={split_min_segment_nonwhite_ratio} \
+    {dense_split_when_missing:+--dense-split-when-missing} \
+    --dense-split-min-expected-count={dense_split_min_expected_count} \
+    --dense-split-min-area-ratio={dense_split_min_area_ratio} \
+    --dense-split-min-component-area-ratio={dense_split_min_component_area_ratio} \
+    --dense-split-max-component-area-ratio={dense_split_max_component_area_ratio} \
+    --dense-split-saturation-threshold={dense_split_saturation_threshold} \
     {trim_caption:+--trim-caption} \
     --caption-max-height-ratio={caption_max_height_ratio} \
     --caption-text-ratio-threshold={caption_text_ratio_threshold} \

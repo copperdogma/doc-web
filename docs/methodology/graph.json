@@ -142,7 +142,8 @@
           "221",
           "222",
           "223",
-          "224"
+          "224",
+          "226"
         ],
         "adr_ids": [
           "ADR-001",
@@ -220,6 +221,7 @@
           "220",
           "224",
           "225",
+          "226",
           "227"
         ],
         "adr_ids": [
@@ -281,7 +283,8 @@
           "206",
           "213",
           "219",
-          "220"
+          "220",
+          "226"
         ],
         "adr_ids": [
           "ADR-002",
@@ -321,6 +324,7 @@
           "198",
           "207",
           "209",
+          "226",
           "227"
         ],
         "adr_ids": [],
@@ -423,7 +427,8 @@
           "221",
           "222",
           "223",
-          "224"
+          "224",
+          "226"
         ],
         "adr_ids": [
           "ADR-002",
@@ -488,7 +493,8 @@
           "221",
           "222",
           "223",
-          "224"
+          "224",
+          "226"
         ],
         "adr_ids": [
           "ADR-002",
@@ -565,7 +571,8 @@
           "222",
           "223",
           "224",
-          "225"
+          "225",
+          "226"
         ],
         "adr_ids": [
           "ADR-002"
@@ -616,7 +623,8 @@
           "221",
           "222",
           "223",
-          "224"
+          "224",
+          "226"
         ],
         "adr_ids": [],
         "eval_ids": [
@@ -679,7 +687,8 @@
           "221",
           "222",
           "223",
-          "224"
+          "224",
+          "226"
         ],
         "eval_ids": [
           "auto-book-type-detection",
@@ -744,7 +753,8 @@
             "221",
             "222",
             "223",
-            "224"
+            "224",
+            "226"
           ],
           "eval_ids": [
             "auto-book-type-detection",
@@ -992,7 +1002,8 @@
           "206",
           "213",
           "219",
-          "220"
+          "220",
+          "226"
         ],
         "eval_ids": [
           "layout-section-splitting",
@@ -1051,7 +1062,8 @@
             "206",
             "213",
             "219",
-            "220"
+            "220",
+            "226"
           ],
           "eval_ids": [
             "layout-section-splitting",
@@ -1075,6 +1087,7 @@
           "198",
           "207",
           "209",
+          "226",
           "227"
         ],
         "eval_ids": [
@@ -1106,6 +1119,7 @@
             "198",
             "207",
             "209",
+            "226",
             "227"
           ],
           "eval_ids": [
@@ -1129,7 +1143,8 @@
           "184",
           "198",
           "207",
-          "209"
+          "209",
+          "226"
         ],
         "eval_ids": [
           "crop-validation",
@@ -1161,7 +1176,8 @@
             "184",
             "198",
             "207",
-            "209"
+            "209",
+            "226"
           ],
           "eval_ids": [
             "crop-validation",
@@ -1294,7 +1310,8 @@
           "215",
           "216",
           "217",
-          "225"
+          "225",
+          "226"
         ],
         "eval_ids": [],
         "actionability": {
@@ -1350,7 +1367,8 @@
             "215",
             "216",
             "217",
-            "225"
+            "225",
+            "226"
           ],
           "eval_ids": []
         }
@@ -1467,7 +1485,8 @@
           "186",
           "189",
           "191",
-          "192"
+          "192",
+          "226"
         ],
         "eval_ids": [],
         "actionability": {
@@ -1490,7 +1509,8 @@
             "186",
             "189",
             "191",
-            "192"
+            "192",
+            "226"
           ],
           "eval_ids": []
         }
@@ -1657,7 +1677,8 @@
           "221",
           "222",
           "223",
-          "224"
+          "224",
+          "226"
         ],
         "eval_ids": [],
         "actionability": {
@@ -1689,7 +1710,8 @@
             "221",
             "222",
             "223",
-            "224"
+            "224",
+            "226"
           ],
           "eval_ids": []
         }
@@ -12397,6 +12419,84 @@
           "source_type": "story-work-log",
           "source": "docs/stories/story-225-digital-peter-historical-handwriting-benchmark-slice.md",
           "summary": "`/mark-story-done` close-out: revalidated Story 225 against `docs/ideal.md`, `spec:2`, `spec:8`, the current handwritten story chain, and the bounded Digital Peter artifacts before closing it. Fresh close-out evidence..."
+        }
+      }
+    },
+    {
+      "id": "226",
+      "title": "Process a Graphic-Designed Rulebook into Semantic Plain HTML",
+      "path": "docs/stories/story-226-robo-rally-rulebook-semantic-html.md",
+      "status": "Done",
+      "priority": "High",
+      "ideal_refs": [
+        "Requirement #1 (Ingest), Requirement #2 (Detect), Requirement #3 (Extract), Requirement #4 (Illustrate), Requirement #5 (Structure), Requirement #6 (Validate), Dossier-ready output, Fidelity to the source, Traceability is the product"
+      ],
+      "spec_refs": [
+        "spec:1",
+        "spec:1.1",
+        "spec:2",
+        "spec:3",
+        "spec:3.1",
+        "spec:4",
+        "spec:4.1",
+        "spec:4.2",
+        "spec:6",
+        "spec:7",
+        "spec:8"
+      ],
+      "decision_refs": [
+        "`docs/ideal.md`, `docs/spec.md`, `docs/methodology/state.yaml`, `docs/methodology/graph.json`, `tests/fixtures/formats/_coverage-matrix.json`, `docs/doc-web-bundle-contract.md`, `docs/runbooks/document-consistency-planning.md`, `docs/runbooks/crop-eval-workflow.md`, `docs/decisions/adr-002-doc-web-runtime-boundary/adr.md`, `docs/stories/story-009-layout-preserve.md`, `docs/stories/story-069-pdf-text-extraction-engine.md`, `docs/stories/story-070-ocr-split-refinement.md`, `docs/stories/story-154-dossier-doc-web-semantic-html-handoff.md`, `docs/stories/story-168-marker-lite-maintained-born-digital-pdf-path.md`, `docs/stories/story-183-crop-benchmark-substrate-and-c5-validation-surface.md`, `docs/stories/story-207-refresh-crop-c4-proof-and-coverage-truth-surfaces.md`, and `None found after search in docs/decisions/`, `docs/runbooks/`, `docs/scout/`, and `docs/notes/` for a narrower ADR/runbook governing print-imposed, graphics-heavy rulebook deimposition and semantic HTML",
+        "docs/decisions/adr-002-doc-web-runtime-boundary/adr.md"
+      ],
+      "adr_ids": [],
+      "depends_on": [],
+      "category_refs": [
+        "spec:1",
+        "spec:2",
+        "spec:3",
+        "spec:4",
+        "spec:6",
+        "spec:7",
+        "spec:8",
+        "spec:9"
+      ],
+      "compromise_refs": [
+        "B1",
+        "B10",
+        "B5",
+        "C2",
+        "C3",
+        "C4",
+        "C5"
+      ],
+      "input_coverage_refs": [
+        "born-digital-pdf"
+      ],
+      "architecture_domains": [
+        "doc_web_runtime",
+        "document_structure_and_consistency",
+        "intake_and_routing"
+      ],
+      "roadmap_tags": [],
+      "blocker_summary": "",
+      "blocker_evidence": "",
+      "unblock_condition": "",
+      "last_work_log_entry": null,
+      "legacy_build_map_refs": "",
+      "metadata_source": "frontmatter",
+      "missing_frontmatter_keys": [],
+      "actionability": {
+        "source_kind": "story",
+        "source_id": "226",
+        "source_path": "docs/stories/story-226-robo-rally-rulebook-semantic-html.md",
+        "recommended_now": false,
+        "posture": "completed",
+        "why_now": "",
+        "last_relevant_action": {
+          "date": null,
+          "source_type": "story-status",
+          "source": "docs/stories/story-226-robo-rally-rulebook-semantic-html.md",
+          "summary": ""
         }
       }
     },

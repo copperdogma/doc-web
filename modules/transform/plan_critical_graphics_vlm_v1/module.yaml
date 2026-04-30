@@ -1,0 +1,52 @@
+module_id: plan_critical_graphics_vlm_v1
+stage: transform
+entrypoint: modules/transform/plan_critical_graphics_vlm_v1/main.py
+input_schema: page_image_v1
+output_schema: null
+description: "Use a strong VLM to identify rule-critical graphics for short graphics-heavy manuals/rulebooks, emitting crop intent and validation evidence while keeping final assets source-pixel based."
+default_params:
+  model: gpt-5.5
+  max_output_tokens: 4096
+  temperature: 0.0
+  max_long_side: 1600
+  max_context_chars: 3000
+  concurrency: 2
+  timeout_seconds: null
+  only_pages: ""
+  fallback_from_ocr: false
+param_schema:
+  properties:
+    pages:
+      type: string
+      description: "Ordered logical page_image_v1 manifest"
+    page_html:
+      type: string
+      description: "OCR page_html_v1 JSONL used as textual context"
+    model:
+      type: string
+    max_output_tokens:
+      type: integer
+      minimum: 256
+    temperature:
+      type: number
+      minimum: 0
+      maximum: 2
+    max_long_side:
+      type: integer
+      minimum: 0
+    max_context_chars:
+      type: integer
+      minimum: 200
+    concurrency:
+      type: integer
+      minimum: 1
+      maximum: 10
+    timeout_seconds:
+      type: number
+      minimum: 1
+    only_pages:
+      type: string
+    fallback_from_ocr:
+      type: boolean
+  required: [pages, page_html, model]
+notes: "Writes critical_graphics_manifest.json, critical_graphics_model_responses.jsonl, and a markdown review report. Generated pixels are never final assets; bbox targets are intended for deterministic source-image cropping and validation."

@@ -23,7 +23,29 @@ def _strip_tags(text: str) -> str:
     return text.strip()
 
 
-def _extract_printed_page_number(html: str) -> Dict[str, Optional[Any]]:
+def _coerce_int(value: Any) -> Optional[int]:
+    if isinstance(value, bool):
+        return None
+    if isinstance(value, int):
+        return value
+    if isinstance(value, str) and value.strip().isdigit():
+        return int(value.strip())
+    return None
+
+
+def _select_page_number_from_text(cleaned: str, source_page_number: Optional[int]) -> Optional[int]:
+    digits = [int(token) for token in re.findall(r"\d+", cleaned or "")]
+    if not digits:
+        return None
+    # Imposed/split manuals can leave spread-range footers such as "8-9" on
+    # both halves. If the upstream manifest already has reader-order page
+    # numbers, prefer the number that agrees with the current logical page.
+    if source_page_number in digits:
+        return source_page_number
+    return digits[-1]
+
+
+def _extract_printed_page_number(html: str, source_page_number: Optional[int] = None) -> Dict[str, Optional[Any]]:
     if not html:
         return {"printed_page_number": None, "printed_page_number_text": None}
     matches = re.findall(
@@ -47,17 +69,17 @@ def _extract_printed_page_number(html: str) -> Dict[str, Optional[Any]]:
         if not candidates:
             return {"printed_page_number": None, "printed_page_number_text": None}
         cleaned = candidates[-1]
-        digits = re.findall(r"\d+", cleaned)
-        if not digits:
+        page_number = _select_page_number_from_text(cleaned, source_page_number)
+        if page_number is None:
             return {"printed_page_number": None, "printed_page_number_text": cleaned or None}
-        return {"printed_page_number": int(digits[-1]), "printed_page_number_text": cleaned or None}
+        return {"printed_page_number": page_number, "printed_page_number_text": cleaned or None}
     # Prefer the last occurrence (footers are typically last).
     raw = matches[-1]
     cleaned = _strip_tags(raw)
-    digits = re.findall(r"\d+", cleaned)
-    if not digits:
+    page_number = _select_page_number_from_text(cleaned, source_page_number)
+    if page_number is None:
         return {"printed_page_number": None, "printed_page_number_text": cleaned or None}
-    return {"printed_page_number": int(digits[-1]), "printed_page_number_text": cleaned or None}
+    return {"printed_page_number": page_number, "printed_page_number_text": cleaned or None}
 
 
 def _infer_missing_page_numbers(rows: List[Dict[str, Any]]) -> None:
@@ -131,7 +153,7 @@ def main() -> None:
     rows = []
     for row in read_jsonl(args.pages):
         html = row.get("html") or row.get("raw_html") or ""
-        extracted = _extract_printed_page_number(html)
+        extracted = _extract_printed_page_number(html, _coerce_int(row.get("page_number") or row.get("page")))
         row["printed_page_number"] = extracted["printed_page_number"]
         row["printed_page_number_text"] = extracted["printed_page_number_text"]
         row["printed_page_number_inferred"] = False

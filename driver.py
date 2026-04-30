@@ -749,6 +749,14 @@ def build_command(
             flags_added.add("--output-dir")
             cmd += ["--ocr-manifest", ocr_manifest_path]
             flags_added.add("--ocr-manifest")
+            for extra_key, extra_val in artifact_inputs.items():
+                if extra_key == "ocr_manifest":
+                    continue
+                flag = "--" + extra_key.replace("_", "-")
+                if flag in flags_added:
+                    continue
+                cmd += [flag, str(extra_val)]
+                flags_added.add(flag)
         elif stage_conf["module"] == "extract_text_v1":
             input_glob = recipe_input.get("text_glob") or params.get("input_glob")
             if not input_glob:

@@ -1,0 +1,8 @@
+module_id: plan_graphic_manual_figures_v1
+stage: transform
+entrypoint: modules/transform/plan_graphic_manual_figures_v1/main.py
+input_schema: page_html_v1
+output_schema: null
+description: "Create inspectable essential-graphics policy artifacts for graphics-heavy manuals from OCR HTML figure placeholders."
+params: []
+notes: "Classifies OCR-emitted figure placeholders by generic instructional roles and writes essential_graphics_plan.json plus graphic_role_inventory.json."

@@ -1,0 +1,17 @@
+module_id: validate_semantic_manual_html_v1
+stage: validate
+entrypoint: modules/validate/validate_semantic_manual_html_v1/main.py
+input_schema: null
+output_schema: null
+description: "Validate candidate semantic HTML for graphics-heavy manuals, including logical order, figure coverage, SOTA visual-planner target coverage, crops, and provenance."
+params:
+  - name: min_figure_crop_ratio
+    type: float
+    default: 0.75
+  - name: min_critical_target_crop_coverage
+    type: float
+    default: 0.5
+  - name: fail_on_blocking
+    type: bool
+    default: false
+notes: "Writes semantic_manual_html_conformance_report.json plus a Markdown summary. Warnings are surfaced without blocking unless fail_on_blocking is enabled."

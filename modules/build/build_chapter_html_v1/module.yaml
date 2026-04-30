@@ -23,4 +23,16 @@ params:
   - name: merge_contiguous_genealogy_tables
     type: bool
     default: false
+  - name: include_navigation
+    type: bool
+    default: true
+  - name: suppress_navigation
+    type: bool
+    default: false
+  - name: normalize_reference_entries
+    type: bool
+    default: false
+  - name: normalize_catalog_entries
+    type: bool
+    default: false
 notes: "Produces self-contained HTML5 documents. Images wrapped in <figure> with <figcaption> from VLM caption text. Alt text uses VLM image_description."

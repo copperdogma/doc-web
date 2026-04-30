@@ -1,0 +1,20 @@
+module_id: infer_logical_page_order_v1
+stage: extract
+entrypoint: modules/extract/infer_logical_page_order_v1/main.py
+input_schema: page_image_v1
+output_schema: page_image_v1
+description: "Infer reader-order page_image_v1 rows from split spread images using generic printed page-label signals."
+params:
+  - name: out
+    type: str
+    default: pages_logical_manifest.jsonl
+  - name: label_regex
+    type: str
+    default: "(?P<left>\\d{1,4})\\s*-\\s*(?P<right>\\d{1,4})"
+  - name: min_confidence
+    type: float
+    default: 0.7
+  - name: fail_on_uncertain
+    type: bool
+    default: false
+notes: "Writes a reordered page_image_v1 manifest plus logical_page_map.json and logical_page_order_report.md sidecars. Intended for generic imposed/graphics-heavy PDFs, not one title."

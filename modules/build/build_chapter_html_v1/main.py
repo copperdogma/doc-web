@@ -174,6 +174,30 @@ figcaption {
   margin-top: 0.4em;
   font-style: italic;
 }
+figure.inferred-essential-figure {
+  text-align: left;
+  margin: 0.8em 0 1em;
+}
+figure.inferred-essential-figure img {
+  max-height: 18rem;
+  width: auto;
+}
+li > figure.inferred-essential-figure,
+dd > figure.inferred-essential-figure {
+  margin-top: 0.2em;
+}
+li > figure.inferred-essential-figure img {
+  max-height: 12rem;
+}
+aside.semantic-callout {
+  border-left: 0.35rem solid #c9a227;
+  margin: 1.5rem 0;
+  padding: 0.75rem 1rem;
+  background: #fff8dc;
+}
+aside.semantic-callout p {
+  margin: 0;
+}
 img {
   max-width: 100%;
   height: auto;
@@ -248,7 +272,11 @@ def _build_nav(prev_file: Optional[str], prev_title: Optional[str],
     cls = 'chapter-nav bottom' if is_bottom else 'chapter-nav'
     prev_link = f'<a href="{prev_file}">&larr; {html_escape(prev_title or "Prev")}</a>' if prev_file else '<span class="nav-placeholder"></span>'
     next_link = f'<a href="{next_file}">{html_escape(next_title or "Next")} &rarr;</a>' if next_file else '<span class="nav-placeholder"></span>'
-    return f'<nav class="{cls}">{prev_link}<a href="index.html">Index</a>{next_link}</nav>'
+    return (
+        f'<nav class="{cls}" aria-label="Document navigation" '
+        f'data-doc-web-ui-chrome="navigation">'
+        f'{prev_link}<a href="index.html">Index</a>{next_link}</nav>'
+    )
 
 
 # ---------------------------------------------------------------------------
@@ -372,11 +400,24 @@ def _build_source_descriptors(pages: List[Dict[str, Any]]) -> List[Dict[str, Any
 
 
 def _match_source_descriptor(tag, source_descriptors: List[Dict[str, Any]], start_idx: int):
-    if start_idx >= len(source_descriptors):
+    if not source_descriptors:
         return None, start_idx
 
     final_kind = _block_kind_for_tag(tag.name)
     final_text = _text_quote_for_tag(tag, final_kind) or ""
+
+    if final_text:
+        text_match, consumed_end = _match_source_descriptor_by_text(
+            final_kind,
+            final_text,
+            source_descriptors,
+            start_idx,
+        )
+        if text_match is not None:
+            return text_match, consumed_end
+
+    if start_idx >= len(source_descriptors):
+        return None, start_idx
 
     found_idx = start_idx
     window_end = min(len(source_descriptors), start_idx + 8)
@@ -414,10 +455,77 @@ def _match_source_descriptor(tag, source_descriptors: List[Dict[str, Any]], star
     return matched, consumed_end
 
 
+def _source_descriptor_text_score(final_kind: str, final_text: str, descriptor: Dict[str, Any]) -> float:
+    descriptor_text = descriptor.get("text_quote") or ""
+    final_norm = _normalize_ws(final_text).casefold()
+    descriptor_norm = _normalize_ws(descriptor_text).casefold()
+    if not final_norm or not descriptor_norm:
+        return 0.0
+    final_numbers = set(re.findall(r"\b\d+\b", final_norm))
+    descriptor_numbers = set(re.findall(r"\b\d+\b", descriptor_norm))
+    numbers_conflict = bool(final_numbers and descriptor_numbers and final_numbers.isdisjoint(descriptor_numbers))
+    if final_norm == descriptor_norm:
+        base = 1.0
+    elif descriptor_norm.startswith(final_norm + " ") or descriptor_norm.startswith(final_norm + ":"):
+        base = 0.94
+    elif final_norm.startswith(descriptor_norm + " ") or final_norm.startswith(descriptor_norm + ":"):
+        base = 0.9
+    elif len(final_norm) >= 8 and final_norm in descriptor_norm:
+        base = 0.86
+    elif len(descriptor_norm) >= 8 and descriptor_norm in final_norm:
+        base = 0.84
+    else:
+        base = _descriptor_similarity(final_text, descriptor_text)
+    if numbers_conflict:
+        base = min(base, 0.35)
+    if descriptor.get("block_kind") == final_kind:
+        base += 0.04
+    return min(base, 1.0)
+
+
+def _match_source_descriptor_by_text(
+    final_kind: str,
+    final_text: str,
+    source_descriptors: List[Dict[str, Any]],
+    start_idx: int,
+):
+    search_start = 0
+    search_end = len(source_descriptors)
+    best_idx = None
+    best_score = 0.0
+    for idx in range(search_start, search_end):
+        descriptor = source_descriptors[idx]
+        score = _source_descriptor_text_score(final_kind, final_text, descriptor)
+        if score < 0.78:
+            continue
+        distance = abs(idx - start_idx)
+        adjusted = score - (distance * 0.001)
+        if adjusted > best_score:
+            best_score = adjusted
+            best_idx = idx
+    if best_idx is None:
+        return None, start_idx
+    matched = dict(source_descriptors[best_idx])
+    matched["text_quote"] = final_text
+    matched["source_element_ids"] = [matched["element_id"]]
+    return matched, max(start_idx, best_idx + 1)
+
+
 def _tag_entry_body(entry: Dict[str, Any], *, run_id: Optional[str], created_at: str):
     entry_id = Path(entry["filename"]).stem
     soup = BeautifulSoup(entry["body_html"] or "", "html.parser")
     source_descriptors = _build_source_descriptors(entry.get("prepared_pages") or [])
+    page_metadata: Dict[int, Dict[str, Any]] = {}
+    for page in entry.get("prepared_pages") or []:
+        page_number = _coerce_int(page.get("page_number") or page.get("page"))
+        if page_number is None:
+            continue
+        printed_page_number = _coerce_int(page.get("printed_page_number"))
+        page_metadata[page_number] = {
+            "printed_page_number": printed_page_number,
+            "printed_page_label": page.get("printed_page_number_text")
+            or (str(printed_page_number) if printed_page_number is not None else None),
+        }
     source_idx = 0
     provenance_rows: List[Dict[str, Any]] = []
 
@@ -438,6 +546,8 @@ def _tag_entry_body(entry: Dict[str, Any], *, run_id: Optional[str], created_at:
         block_id = f"blk-{entry_id}-{ordinal:04d}"
         tag["id"] = block_id
         matched, source_idx = _match_source_descriptor(tag, source_descriptors, source_idx)
+        override_page = _coerce_int(tag.get("data-doc-web-source-page-number"))
+        override_crop = _normalize_ws(tag.get("data-doc-web-source-crop-filename") or "")
         block_kind = _block_kind_for_tag(tag.name)
         text_quote = _text_quote_for_tag(tag, block_kind)
         if matched is None:
@@ -447,6 +557,17 @@ def _tag_entry_body(entry: Dict[str, Any], *, run_id: Optional[str], created_at:
                 "printed_page_label": fallback_printed_label,
                 "source_element_ids": [f"{entry_id}-b{ordinal:04d}"],
             }
+        if override_page is not None:
+            page_meta = page_metadata.get(override_page, {})
+            source_element_ids = list(matched.get("source_element_ids") or [])
+            if override_crop:
+                crop_element_id = f"crop:{override_crop}"
+                if crop_element_id not in source_element_ids:
+                    source_element_ids.append(crop_element_id)
+            matched["page_number"] = override_page
+            matched["printed_page_number"] = page_meta.get("printed_page_number")
+            matched["printed_page_label"] = page_meta.get("printed_page_label")
+            matched["source_element_ids"] = source_element_ids or [f"{entry_id}-b{ordinal:04d}"]
 
         provenance_rows.append(
             {
@@ -617,9 +738,103 @@ def _looks_oversized_flat_heading(text: str) -> bool:
     return False
 
 
+_CATALOG_HEADING_WORDS = {
+    "actions",
+    "catalog",
+    "card",
+    "cards",
+    "component",
+    "components",
+    "contents",
+    "course",
+    "courses",
+    "element",
+    "elements",
+    "examples",
+    "index",
+    "overview",
+    "phase",
+    "phases",
+    "reference",
+    "references",
+    "route",
+    "routes",
+    "rules",
+    "setup",
+    "summary",
+    "upgrade",
+    "upgrades",
+    "variants",
+}
+
+
+def _singular_heading_token(token: str) -> str:
+    token = token.strip().casefold()
+    if len(token) > 4 and token.endswith("ies"):
+        return token[:-3] + "y"
+    if len(token) > 3 and token.endswith("s"):
+        return token[:-1]
+    return token
+
+
+def _looks_catalog_category_heading(text: str) -> bool:
+    normalized_tokens = [_singular_heading_token(token) for token in _title_tokens(text)]
+    if any(token in _CATALOG_HEADING_WORDS for token in normalized_tokens):
+        return True
+    return ":" in text and any(token in _CATALOG_HEADING_WORDS for token in normalized_tokens[:3])
+
+
+def _looks_redundant_catalog_marker_heading(text: str, title: str) -> bool:
+    tokens = [_singular_heading_token(token) for token in _title_tokens(text)]
+    if len(tokens) != 1:
+        return False
+    token = tokens[0]
+    if token not in _CATALOG_HEADING_WORDS:
+        return False
+    title_tokens = {_singular_heading_token(title_token) for title_token in _title_tokens(title)}
+    return token in title_tokens
+
+
+def _text_until_next_heading(tag: Any, *, max_chars: int = 280) -> str:
+    parts: List[str] = []
+    for sibling in tag.next_siblings:
+        name = getattr(sibling, "name", None)
+        if name and re.fullmatch(r"h[1-6]", name.lower()):
+            break
+        text = _normalize_ws(
+            sibling.get_text(" ", strip=True) if hasattr(sibling, "get_text") else str(sibling)
+        )
+        if text:
+            parts.append(text)
+        if sum(len(part) for part in parts) >= max_chars:
+            break
+    return _normalize_ws(" ".join(parts))[:max_chars]
+
+
+def _looks_label_value_metadata(text: str) -> bool:
+    labels = re.findall(r"\b[A-Z][A-Za-z0-9 /&-]{1,28}:", text or "")
+    return len({label.casefold() for label in labels}) >= 2
+
+
+def _heading_followed_by_label_values(tag: Any) -> bool:
+    return _looks_label_value_metadata(_text_until_next_heading(tag))
+
+
+def _looks_like_catalog_chapter(soup: BeautifulSoup, title: str) -> bool:
+    if not _looks_catalog_category_heading(title):
+        return False
+    headings = soup.find_all(re.compile(r"^h[1-6]$"))
+    if len(headings) < 4:
+        return False
+    label_value_runs = sum(1 for heading in headings if _heading_followed_by_label_values(heading))
+    definition_terms = len(soup.find_all("dt"))
+    return (label_value_runs + definition_terms) >= 2
+
+
 def _polish_flat_chapter_headings(html: str, title: str) -> str:
     soup = BeautifulSoup(html or "", "html.parser")
     primary_heading_seen = False
+    catalog_chapter = _looks_like_catalog_chapter(soup, title)
 
     for heading in soup.find_all(re.compile(r"^h[1-6]$")):
         text = _normalize_ws(heading.get_text(" ", strip=True))
@@ -627,6 +842,12 @@ def _polish_flat_chapter_headings(html: str, title: str) -> str:
             continue
         if not primary_heading_seen and _titles_related(text, title):
             primary_heading_seen = True
+            continue
+        if primary_heading_seen and catalog_chapter and _looks_redundant_catalog_marker_heading(text, title):
+            heading.decompose()
+            continue
+        if primary_heading_seen and catalog_chapter and _looks_catalog_category_heading(text):
+            heading.name = "h2"
             continue
         if _looks_oversized_flat_heading(text):
             heading.name = "p"
@@ -636,7 +857,15 @@ def _polish_flat_chapter_headings(html: str, title: str) -> str:
             heading["class"] = classes
             continue
         if primary_heading_seen and heading.name in {"h1", "h2"}:
-            heading.name = "h3"
+            if catalog_chapter:
+                if _heading_followed_by_label_values(heading):
+                    heading.name = "h3"
+                elif heading.name == "h1":
+                    heading.name = "h2"
+                else:
+                    heading.name = "h3"
+            else:
+                heading.name = "h3"
 
     return soup.decode_contents()
 
@@ -964,6 +1193,23 @@ def _refine_chapter_segments(
     return segments
 
 
+def _candidate_titles_for_refinement(
+    portions: List[Dict[str, Any]],
+    portion_idx: int,
+    current_page_end: Optional[int],
+) -> List[str]:
+    """Return titles that can start within the current portion's page range."""
+    titles: List[str] = []
+    for idx, portion in enumerate(portions[portion_idx:], start=portion_idx):
+        title = portion.get("title") or portion.get("portion_id") or ""
+        if not title:
+            continue
+        start = _coerce_int(portion.get("page_start"))
+        if idx == portion_idx or current_page_end is None or start is None or start <= current_page_end:
+            titles.append(title)
+    return titles
+
+
 def _extend_unique(existing: Optional[List[Any]], new_values: Optional[List[Any]]) -> List[Any]:
     merged = list(existing or [])
     for value in new_values or []:
@@ -998,18 +1244,63 @@ def _group_manifest_by_page(manifest_path: str) -> Dict[int, List[Dict[str, Any]
         page = row.get("source_page")
         if not isinstance(page, int):
             continue
-        bbox = row.get("bbox") or {}
-        row["_sort_key"] = (
-            int(bbox.get("y0") or 0),
-            int(bbox.get("x0") or 0),
-            row.get("filename") or "",
-        )
         grouped.setdefault(page, []).append(row)
     for rows in grouped.values():
-        rows.sort(key=lambda r: r.get("_sort_key"))
-        for r in rows:
-            r.pop("_sort_key", None)
+        rows[:] = _sort_crop_rows_reading_order(rows)
     return grouped
+
+
+def _sort_crop_rows_reading_order(rows: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
+    """Sort crop records by visual rows, then x-position within each row."""
+    if not rows:
+        return rows
+
+    def _bbox(row: Dict[str, Any]) -> Dict[str, Any]:
+        return row.get("bbox") or {}
+
+    heights = []
+    for row in rows:
+        bbox = _bbox(row)
+        height = _coerce_int(bbox.get("height"))
+        if height is None:
+            y0 = _coerce_int(bbox.get("y0")) or 0
+            y1 = _coerce_int(bbox.get("y1")) or y0
+            height = max(1, y1 - y0)
+        heights.append(max(1, height))
+    median_height = sorted(heights)[len(heights) // 2]
+    row_tolerance = max(20, int(median_height * 0.35))
+
+    def _center_y(row: Dict[str, Any]) -> float:
+        bbox = _bbox(row)
+        y0 = _coerce_int(bbox.get("y0")) or 0
+        y1 = _coerce_int(bbox.get("y1")) or y0
+        return (y0 + y1) / 2.0
+
+    def _top_y(row: Dict[str, Any]) -> int:
+        return _coerce_int(_bbox(row).get("y0")) or 0
+
+    def _x0(row: Dict[str, Any]) -> int:
+        return _coerce_int(_bbox(row).get("x0")) or 0
+
+    rows_by_center = sorted(rows, key=lambda row: (_center_y(row), _x0(row), row.get("filename") or ""))
+    visual_rows: List[List[Dict[str, Any]]] = []
+    for row in rows_by_center:
+        center_y = _center_y(row)
+        top_y = _top_y(row)
+        for visual_row in visual_rows:
+            row_center = sum(_center_y(item) for item in visual_row) / float(len(visual_row))
+            row_top = min(_top_y(item) for item in visual_row)
+            if abs(center_y - row_center) <= row_tolerance or abs(top_y - row_top) <= row_tolerance:
+                visual_row.append(row)
+                break
+        else:
+            visual_rows.append([row])
+
+    visual_rows.sort(key=lambda visual_row: min(_coerce_int(_bbox(row).get("y0")) or 0 for row in visual_row))
+    sorted_rows: List[Dict[str, Any]] = []
+    for visual_row in visual_rows:
+        sorted_rows.extend(sorted(visual_row, key=lambda row: (_x0(row), row.get("filename") or "")))
+    return sorted_rows
 
 
 def _refresh_published_illustration_images(
@@ -1122,6 +1413,125 @@ def _crop_match_texts(crop: Dict[str, Any]) -> List[str]:
     return texts
 
 
+def _crop_nearby_texts(crop: Dict[str, Any]) -> List[str]:
+    texts: List[str] = []
+    for key in ("nearby_text", "expected_visual_contents"):
+        value = crop.get(key)
+        if isinstance(value, (list, tuple)):
+            raw_text = " ".join(str(item) for item in value)
+        elif isinstance(value, dict):
+            raw_text = " ".join(str(item) for item in value.values())
+        else:
+            raw_text = str(value or "")
+        text = _normalize_ws(raw_text)
+        if text:
+            texts.append(text)
+    for text in _crop_match_texts(crop):
+        segments = [
+            _normalize_ws(segment)
+            for segment in re.split(r"\s+[—–]\s+", text)
+            if _normalize_ws(segment)
+        ]
+        if len(segments) >= 3:
+            texts.extend(segments[1:-1])
+        elif len(segments) == 2:
+            texts.append(segments[1])
+    deduped: List[str] = []
+    seen: Set[str] = set()
+    for text in texts:
+        key = text.casefold()
+        if key in seen:
+            continue
+        seen.add(key)
+        deduped.append(text)
+    return deduped
+
+
+_TEXT_SEMANTIC_CROP_ROLES = {"summary_reference"}
+_ORPHAN_INSERTABLE_CROP_ROLES = {
+    "board_element",
+    "card_face",
+    "card_reference",
+    "component_reference",
+    "icon_reference",
+    "map_or_board",
+    "rule_example_diagram",
+    "setup_diagram",
+}
+
+
+def _role_from_crop(crop: Dict[str, Any]) -> str:
+    role = crop.get("critical_graphics_role") or crop.get("role") or ""
+    if role:
+        return str(role)
+    text = " ".join(_crop_match_texts(crop)).casefold()
+    if "summary reference" in text:
+        return "summary_reference"
+    if "card face" in text:
+        return "card_face"
+    if "map or board" in text:
+        return "map_or_board"
+    if "rule example diagram" in text:
+        return "rule_example_diagram"
+    if "component reference" in text:
+        return "component_reference"
+    if "board element" in text:
+        return "board_element"
+    return ""
+
+
+def _importance_from_crop(crop: Dict[str, Any]) -> str:
+    return str(crop.get("critical_graphics_importance") or crop.get("importance") or "").casefold()
+
+
+def _semantic_text_contains_crop(crop: Dict[str, Any], soup) -> bool:
+    """Return true when a text-heavy crop is already represented in page HTML."""
+    page_text_tokens = {
+        token
+        for token in _title_tokens(soup.get_text(" ", strip=True))
+        if len(token) > 2
+    }
+    if not page_text_tokens:
+        return False
+    crop_tokens = {
+        token
+        for text in _crop_match_texts(crop)
+        for token in _title_tokens(text)
+        if len(token) > 2 and token not in _DESCRIPTOR_GENERIC_TOKENS
+    }
+    if not crop_tokens:
+        return False
+    return len(crop_tokens & page_text_tokens) / len(crop_tokens) >= 0.6
+
+
+def _is_redundant_page_snapshot_crop(crop: Dict[str, Any], soup) -> bool:
+    if _role_from_crop(crop) or _importance_from_crop(crop) or crop.get("critical_graphics_target_id"):
+        return False
+    try:
+        area_ratio = float(crop.get("area_ratio") or 0.0)
+    except (TypeError, ValueError):
+        area_ratio = 0.0
+    if area_ratio < 0.85:
+        return False
+    page_tokens = [
+        token
+        for token in _title_tokens(soup.get_text(" ", strip=True))
+        if len(token) > 2
+    ]
+    return len(page_tokens) >= 40
+
+
+def _should_skip_source_pixel_crop(crop: Dict[str, Any], soup) -> bool:
+    if _is_redundant_page_snapshot_crop(crop, soup):
+        return True
+    role = _role_from_crop(crop)
+    if role not in _TEXT_SEMANTIC_CROP_ROLES:
+        return False
+    if _importance_from_crop(crop) != "essential":
+        return True
+    return _semantic_text_contains_crop(crop, soup)
+
+
 def _block_match_texts(tag) -> List[str]:
     texts = []
     alt = _normalize_ws(tag.get("alt") or "")
@@ -1137,6 +1547,68 @@ def _block_match_texts(tag) -> List[str]:
     else:
         texts.extend(_peek_caption_siblings(tag))
     return texts
+
+
+_TEXT_ONLY_CALLOUT_RE = re.compile(
+    r"\b(?:callout|don['’]?t\s+forget|important|note|reminder|remember|warning)\b",
+    re.IGNORECASE,
+)
+_STRONG_CALLOUT_CUE_RE = re.compile(
+    r"\b(?:after|before|complete|must|remember|warning|important|note|players?|turn|phase|return|discard)\b",
+    re.IGNORECASE,
+)
+
+
+def _is_text_only_callout_placeholder(tag) -> bool:
+    """Detect OCR image placeholders that are actually styled text callouts."""
+    alt = _normalize_ws(tag.get("alt") or "")
+    parent = tag.parent
+    caption = ""
+    if parent and parent.name == "figure":
+        figcaption = parent.find("figcaption")
+        if figcaption:
+            caption = _normalize_ws(figcaption.get_text(" ", strip=True))
+    if not caption:
+        return False
+    combined = f"{alt} {caption}"
+    return bool(_TEXT_ONLY_CALLOUT_RE.search(combined))
+
+
+def _build_semantic_callout(soup, text: str, *, kind: str = "note"):
+    aside = soup.new_tag("aside")
+    aside["class"] = ["semantic-callout", f"semantic-callout-{kind}"]
+    aside["role"] = "note"
+    aside["data-doc-web-semantic"] = "text-callout"
+    aside["data-callout-kind"] = kind
+    paragraph = soup.new_tag("p")
+    paragraph.string = text
+    aside.append(paragraph)
+    return aside
+
+
+def _paragraph_is_fully_strong(tag) -> bool:
+    if getattr(tag, "name", None) != "p":
+        return False
+    if tag.find_parent(["figure", "figcaption", "li", "dd", "table", "nav"]):
+        return False
+    text = _normalize_ws(tag.get_text(" ", strip=True))
+    if len(text) < 60:
+        return False
+    strong_text = _normalize_ws(" ".join(strong.get_text(" ", strip=True) for strong in tag.find_all("strong")))
+    if not strong_text:
+        return False
+    return text == strong_text and bool(_STRONG_CALLOUT_CUE_RE.search(text))
+
+
+def _promote_text_callout_paragraphs(soup) -> int:
+    promoted = 0
+    for paragraph in list(soup.find_all("p")):
+        if not _paragraph_is_fully_strong(paragraph):
+            continue
+        text = _normalize_ws(paragraph.get_text(" ", strip=True))
+        paragraph.replace_with(_build_semantic_callout(soup, text, kind="important"))
+        promoted += 1
+    return promoted
 
 
 def _text_overlap_ratio(text: str, crop_tokens: set[str]) -> float:
@@ -1218,7 +1690,622 @@ def _descriptor_similarity(a: str, b: str) -> float:
     overlap = 0.0
     if tokens_a and tokens_b:
         overlap = len(tokens_a & tokens_b) / max(len(tokens_a), len(tokens_b))
-    return max(ratio, overlap)
+    base = max(ratio, overlap)
+
+    label_a = _descriptor_label_tokens(a)
+    label_b = _descriptor_label_tokens(b)
+    if label_a and label_b:
+        label_overlap = len(label_a & label_b) / max(len(label_a), len(label_b))
+        if label_overlap > 0:
+            return max(base, 0.75 + (0.25 * label_overlap))
+        return min(base, 0.12)
+    return base
+
+
+_DESCRIPTOR_LABEL_RE = re.compile(
+    r"\b(?:titled|title|named|labeled|labelled|for)\s+([A-Z][A-Za-z0-9'’ -]{1,60})"
+)
+_DESCRIPTOR_LABEL_STOP_RE = re.compile(r"\s+(?:cost|effect|shows?|with|on|in|from)\b", re.IGNORECASE)
+_DESCRIPTOR_GENERIC_TOKENS = {
+    "a",
+    "an",
+    "and",
+    "art",
+    "card",
+    "cards",
+    "component",
+    "components",
+    "course",
+    "diagram",
+    "element",
+    "elements",
+    "face",
+    "figure",
+    "graphic",
+    "graphics",
+    "image",
+    "images",
+    "icon",
+    "icons",
+    "line",
+    "of",
+    "order",
+    "labeled",
+    "labelled",
+    "layout",
+    "layouts",
+    "marker",
+    "reference",
+    "references",
+    "space",
+    "spaces",
+    "sight",
+    "temporary",
+    "reference",
+    "titled",
+    "upgrade",
+    "upgrades",
+    "visual",
+    "with",
+}
+
+
+def _descriptor_label_tokens(text: str) -> set[str]:
+    """Extract explicit labels like "titled X" or "face for X" for matching."""
+    raw = _normalize_ws(text)
+    for match in _DESCRIPTOR_LABEL_RE.finditer(raw):
+        candidate = match.group(1)
+        candidate = re.split(r"\s+[—–-]\s+|[.:;,|]", candidate, maxsplit=1)[0]
+        candidate = _DESCRIPTOR_LABEL_STOP_RE.split(candidate, maxsplit=1)[0]
+        tokens = {
+            token
+            for token in _title_tokens(candidate)
+            if _is_label_token(token)
+        }
+        if tokens:
+            return tokens
+    return set()
+
+
+def _token_key(token: str) -> str:
+    token = token.casefold().replace("’", "'")
+    if len(token) > 3 and token.endswith("s"):
+        return token[:-1]
+    return token
+
+
+def _is_label_token(token: str) -> bool:
+    if token in _DESCRIPTOR_GENERIC_TOKENS:
+        return False
+    return len(token) > 1 or token.isdigit() or (len(token) == 1 and token.isalpha())
+
+
+def _normalized_token_set(text: str) -> set[str]:
+    return {
+        _token_key(token)
+        for token in _title_tokens(text)
+        if _is_label_token(token)
+    }
+
+
+_LABEL_START_STOP_WORDS = {
+    "Add",
+    "Choose",
+    "Cost",
+    "Deal",
+    "Draw",
+    "Effect",
+    "End",
+    "Execute",
+    "Get",
+    "If",
+    "Move",
+    "Repeat",
+    "Replace",
+    "Robots",
+    "Take",
+    "When",
+    "You",
+}
+
+
+def _leading_title_tokens(text: str) -> set[str]:
+    words: List[str] = []
+    for raw in _normalize_ws(text).split():
+        cleaned = raw.strip("()[]{}.,:;\"'“”‘’")
+        if not cleaned:
+            break
+        if cleaned in _LABEL_START_STOP_WORDS:
+            break
+        if cleaned[0].isupper() or cleaned.isupper():
+            words.append(cleaned)
+            continue
+        break
+    if not words or len(words) > 4:
+        return set()
+    return _normalized_token_set(" ".join(words))
+
+
+def _crop_label_tokens(crop: Dict[str, Any]) -> set[str]:
+    """Infer the compact subject label for matching orphan crops to text blocks."""
+    role = _role_from_crop(crop)
+    for text in _crop_match_texts(crop):
+        if role in {"board_element", "card_face", "card_reference", "component_reference", "icon_reference"}:
+            for segment in re.split(r"\s+[—–]\s+", text)[1:]:
+                leading = _leading_title_tokens(segment)
+                if leading:
+                    return leading
+        explicit = {_token_key(token) for token in _descriptor_label_tokens(text)}
+        if explicit:
+            return explicit
+        head = re.split(r"\s+[—–]\s+|;|\bCost:\b|\bEffect:\b", text, maxsplit=1)[0]
+        head = re.sub(r"\bboard\s+elements?\b", " ", head, flags=re.IGNORECASE)
+        head = re.sub(r"\bboard\s+space\b", "space", head, flags=re.IGNORECASE)
+        head = re.sub(r"\bwith\s+activation[- ]order\s+marker\s+\d+\b", " ", head, flags=re.IGNORECASE)
+        head = re.sub(
+            r"\b(?:upgrade|temporary|special|programming|damage|space|reference|"
+            r"image|icon|diagram|example|layout|course|card|face|component|marker|activation[- ]order)\b",
+            " ",
+            head,
+            flags=re.IGNORECASE,
+        )
+        tokens = _normalized_token_set(head)
+        if tokens:
+            return tokens
+    return set()
+
+
+def _anchor_text(tag) -> str:
+    if getattr(tag, "name", None) == "dt":
+        return _normalize_ws(tag.get_text(" ", strip=True))
+    if getattr(tag, "name", None) == "li":
+        return _normalize_ws(tag.get_text(" ", strip=True))
+    if getattr(tag, "name", None) == "p":
+        return _normalize_ws(tag.get_text(" ", strip=True))
+    if getattr(tag, "name", None) in {"h1", "h2", "h3", "h4", "h5", "h6"}:
+        return _normalize_ws(tag.get_text(" ", strip=True))
+    return ""
+
+
+def _anchor_label_text(tag) -> str:
+    if getattr(tag, "name", None) == "dt":
+        return _normalize_ws(tag.get_text(" ", strip=True))
+    if getattr(tag, "name", None) == "li":
+        strong = tag.find("strong")
+        if strong:
+            return _normalize_ws(strong.get_text(" ", strip=True))
+    if getattr(tag, "name", None) == "p":
+        strong = tag.find("strong")
+        if strong:
+            return _normalize_ws(strong.get_text(" ", strip=True))
+    if getattr(tag, "name", None) in {"h1", "h2", "h3", "h4", "h5", "h6"}:
+        return _normalize_ws(tag.get_text(" ", strip=True))
+    return ""
+
+
+def _orphan_anchor_score(crop: Dict[str, Any], tag) -> float:
+    anchor = _anchor_text(tag)
+    if not anchor:
+        return 0.0
+    best = max(
+        (_descriptor_similarity(text, anchor) for text in _crop_match_texts(crop)),
+        default=0.0,
+    )
+    crop_label = _crop_label_tokens(crop)
+    anchor_label_tokens = _normalized_token_set(_anchor_label_text(tag))
+    label_conflict = False
+    if crop_label and anchor_label_tokens:
+        label_overlap = len(crop_label & anchor_label_tokens) / len(crop_label)
+        label_conflict = label_overlap < 0.75
+        if label_overlap < 0.75:
+            best = min(best, 0.6 + (0.2 * label_overlap))
+        if label_overlap >= 0.999:
+            best = max(best, 0.98)
+        elif label_overlap:
+            best = max(best, 0.64 + (0.24 * label_overlap))
+    anchor_tokens = _normalized_token_set(anchor)
+    if crop_label and anchor_tokens and not anchor_label_tokens:
+        overlap = len(crop_label & anchor_tokens) / len(crop_label)
+        if overlap:
+            best = max(best, 0.72 + (0.28 * overlap))
+    if crop_label and not anchor_label_tokens:
+        best = min(best, 0.6)
+    anchor_tokens = _normalized_token_set(anchor)
+    if anchor_tokens and not label_conflict:
+        for nearby_text in _crop_nearby_texts(crop):
+            nearby_tokens = _normalized_token_set(nearby_text)
+            if not nearby_tokens:
+                continue
+            overlap = len(anchor_tokens & nearby_tokens)
+            if overlap < 3:
+                continue
+            compact_coverage = overlap / float(max(1, min(len(anchor_tokens), len(nearby_tokens))))
+            if overlap >= 4 and compact_coverage >= 0.65:
+                best = max(best, 0.96)
+            elif compact_coverage >= 0.5:
+                best = max(best, 0.82)
+    return best
+
+
+def _anchor_priority(tag) -> int:
+    name = getattr(tag, "name", None)
+    if name in {"dt", "li", "p"}:
+        return 3
+    if name in {"h2", "h3", "h4", "h5", "h6"}:
+        return 2
+    if name == "h1":
+        return 1
+    return 0
+
+
+def _best_anchor_for_orphan_crop(soup, crop: Dict[str, Any]):
+    best_tag = None
+    best_score = 0.0
+    best_priority = 0
+    candidates = soup.find_all(["dt", "h1", "h2", "h3", "h4", "h5", "h6", "li", "p"])
+    for tag in candidates:
+        if tag.find_parent("figure"):
+            continue
+        score = _orphan_anchor_score(crop, tag)
+        priority = _anchor_priority(tag)
+        if score > best_score + 0.02 or (abs(score - best_score) <= 0.02 and priority > best_priority):
+            best_score = score
+            best_tag = tag
+            best_priority = priority
+    if best_score >= 0.34:
+        return best_tag
+    return None
+
+
+def _extend_anchor_through_nearby_text_run(anchor, crop: Dict[str, Any]):
+    if getattr(anchor, "name", None) != "p":
+        return anchor
+    if getattr(anchor.parent, "name", None) in {"li", "dd"}:
+        return anchor
+
+    nearby_tokens: Set[str] = set()
+    for text in _crop_nearby_texts(crop):
+        nearby_tokens.update(_normalized_token_set(text))
+    if len(nearby_tokens) < 5:
+        return anchor
+
+    current = anchor
+    for _ in range(4):
+        sibling = _next_significant_tag(current)
+        if getattr(sibling, "name", None) != "p":
+            break
+        sibling_tokens = _normalized_token_set(sibling.get_text(" ", strip=True))
+        if len(sibling_tokens) < 3:
+            break
+        overlap = len(sibling_tokens & nearby_tokens)
+        coverage = overlap / float(max(1, len(sibling_tokens)))
+        if not ((overlap >= 4 and coverage >= 0.5) or (overlap >= 3 and coverage >= 0.75)):
+            break
+        current = sibling
+    return current
+
+
+def _build_crop_figure(soup, crop: Dict[str, Any], rel_src: str):
+    filename = crop.get("filename")
+    if not filename:
+        return None
+    figure = soup.new_tag("figure")
+    figure["data-placement"] = "inferred-essential"
+    figure["class"] = ["inferred-essential-figure"]
+    img = soup.new_tag("img")
+    img["src"] = f"{rel_src}/{filename}"
+    img["alt"] = crop.get("image_description") or crop.get("alt") or ""
+    img["data-crop-filename"] = filename
+    _annotate_img_from_crop(img, crop)
+    figure.append(img)
+    _annotate_figure_from_crop(figure, crop)
+    return figure
+
+
+def _annotate_img_from_crop(img, crop: Dict[str, Any]) -> None:
+    source_page = _coerce_int(crop.get("source_page"))
+    filename = crop.get("filename")
+    if source_page is not None:
+        img["data-doc-web-source-page-number"] = str(source_page)
+    if filename:
+        img["data-doc-web-source-crop-filename"] = str(filename)
+    role = _role_from_crop(crop)
+    importance = _importance_from_crop(crop)
+    target_id = crop.get("critical_graphics_target_id")
+    nearby_text = _normalize_ws(crop.get("nearby_text") or "")
+    if role:
+        img["data-critical-graphics-role"] = role
+    if importance:
+        img["data-critical-graphics-importance"] = importance
+    if target_id:
+        img["data-critical-graphics-target-id"] = str(target_id)
+    if nearby_text:
+        img["data-critical-graphics-nearby-text"] = nearby_text
+
+
+def _annotate_figure_from_crop(figure, crop: Dict[str, Any]) -> None:
+    role = _role_from_crop(crop)
+    importance = _importance_from_crop(crop)
+    source_page = _coerce_int(crop.get("source_page"))
+    filename = crop.get("filename")
+    if source_page is not None:
+        figure["data-doc-web-source-page-number"] = str(source_page)
+    if filename:
+        figure["data-doc-web-source-crop-filename"] = str(filename)
+    if role:
+        figure["data-critical-graphics-role"] = role
+    if importance:
+        figure["data-critical-graphics-importance"] = importance
+    target_id = crop.get("critical_graphics_target_id")
+    if target_id:
+        figure["data-critical-graphics-target-id"] = str(target_id)
+
+
+def _insert_figure_near_anchor(figure, anchor) -> None:
+    if anchor is None:
+        return
+
+    def insert_after_existing_figure_run(base) -> None:
+        sibling = _next_significant_tag(base)
+        last_figure = None
+        while getattr(sibling, "name", None) == "figure":
+            last_figure = sibling
+            sibling = _next_significant_tag(sibling)
+        if last_figure is not None:
+            last_figure.insert_after(figure)
+        else:
+            base.insert_after(figure)
+
+    name = getattr(anchor, "name", None)
+    if name == "dt":
+        dd = _next_significant_tag(anchor)
+        if getattr(dd, "name", None) == "dd":
+            dd.insert(0, figure)
+        else:
+            anchor.insert_before(figure)
+        return
+    if name == "dd":
+        anchor.insert(0, figure)
+        return
+    if name == "li":
+        first_paragraph = anchor.find("p", recursive=False)
+        if first_paragraph:
+            first_paragraph.insert_after(figure)
+        else:
+            anchor.append(figure)
+        return
+    if name == "p" and getattr(anchor.parent, "name", None) in {"li", "dd"}:
+        if anchor.parent.name == "li":
+            insert_after_existing_figure_run(anchor)
+        else:
+            anchor.parent.insert(0, figure)
+        return
+    if name in {"h1", "h2", "h3", "h4", "h5", "h6"}:
+        insert_after_existing_figure_run(anchor)
+        return
+    if name == "p":
+        insert_after_existing_figure_run(anchor)
+        return
+    anchor.insert_before(figure)
+
+
+def _append_orphan_figure(soup, figure) -> None:
+    container = soup.find(["article", "body"]) or soup
+    container.append(figure)
+
+
+def _node_appears_after(anchor, node) -> bool:
+    for candidate in node.next_elements:
+        if candidate is anchor:
+            return True
+    return False
+
+
+def _insert_split_figure_near_anchor(figure, anchor, original_figure) -> None:
+    if anchor is None:
+        return
+    if getattr(anchor, "name", None) == "p" and _node_appears_after(anchor, original_figure):
+        anchor.insert_before(figure)
+        return
+    _insert_figure_near_anchor(figure, anchor)
+
+
+def _crop_from_img_tag(img) -> Dict[str, Any]:
+    parent = img.find_parent("figure") if img is not None else None
+    source_page = _coerce_int(
+        img.get("data-doc-web-source-page-number")
+        or (parent.get("data-doc-web-source-page-number") if parent else None)
+    )
+    filename = img.get("data-crop-filename") or img.get("data-doc-web-source-crop-filename")
+    return {
+        "filename": filename,
+        "image_description": img.get("alt") or "",
+        "alt": img.get("alt") or "",
+        "source_page": source_page,
+        "nearby_text": img.get("data-critical-graphics-nearby-text") or "",
+        "critical_graphics_role": (
+            img.get("data-critical-graphics-role")
+            or (parent.get("data-critical-graphics-role") if parent else None)
+            or _role_from_crop({"image_description": img.get("alt") or ""})
+        ),
+        "critical_graphics_importance": (
+            img.get("data-critical-graphics-importance")
+            or (parent.get("data-critical-graphics-importance") if parent else None)
+            or "essential"
+        ),
+        "critical_graphics_target_id": (
+            img.get("data-critical-graphics-target-id")
+            or (parent.get("data-critical-graphics-target-id") if parent else None)
+        ),
+    }
+
+
+def _split_labeled_multi_image_figures(soup) -> int:
+    """Move multi-image placeholder runs to nearby semantic labels when possible."""
+    moved = 0
+    for figure in list(soup.find_all("figure")):
+        imgs = [img for img in figure.find_all("img", recursive=False) if img.get("src")]
+        if len(imgs) < 2:
+            continue
+        for img in list(imgs):
+            crop = _crop_from_img_tag(img)
+            if not crop.get("filename"):
+                continue
+            anchor = _best_anchor_for_orphan_crop(soup, crop)
+            if anchor is None:
+                continue
+            if _orphan_anchor_score(crop, anchor) < 0.72:
+                continue
+            new_figure = soup.new_tag("figure")
+            new_figure["data-placement"] = "repositioned-essential"
+            new_figure["class"] = ["inferred-essential-figure"]
+            img.extract()
+            new_figure.append(img)
+            _annotate_figure_from_crop(new_figure, crop)
+            extended_anchor = _extend_anchor_through_nearby_text_run(anchor, crop)
+            if extended_anchor is not anchor:
+                _insert_figure_near_anchor(new_figure, extended_anchor)
+            else:
+                _insert_split_figure_near_anchor(new_figure, anchor, figure)
+            moved += 1
+        if not figure.find("img", src=True):
+            figure.decompose()
+            continue
+        remaining_imgs = [img for img in figure.find_all("img", recursive=False) if img.get("src")]
+        if len(remaining_imgs) == 1:
+            _annotate_figure_from_crop(figure, _crop_from_img_tag(remaining_imgs[0]))
+    return moved
+
+
+def _figure_current_catalog_anchor(figure):
+    sibling = _previous_significant_tag(figure)
+    while getattr(sibling, "name", None) == "figure":
+        sibling = _previous_significant_tag(sibling)
+    if _anchor_label_text(sibling):
+        return sibling
+    return None
+
+
+def _reposition_labeled_catalog_figures(soup) -> int:
+    """Move labeled catalog figures from OCR order to their semantic label."""
+    moved = 0
+    for figure in list(soup.find_all("figure")):
+        if figure.find_parent("section", class_="semantic-catalog-entry"):
+            continue
+        if not _is_catalog_entry_figure(figure):
+            continue
+        img = figure.find("img")
+        if img is None:
+            continue
+        crop = _crop_from_img_tag(img)
+        anchor = _best_anchor_for_orphan_crop(soup, crop)
+        if anchor is None or _orphan_anchor_score(crop, anchor) < 0.95:
+            continue
+        if _figure_current_catalog_anchor(figure) is anchor:
+            continue
+        figure.extract()
+        _insert_figure_near_anchor(figure, anchor)
+        moved += 1
+    return moved
+
+
+def _catalog_figure_order_key(anchor_text: str, figure) -> tuple[int, str]:
+    img = figure.find("img") if getattr(figure, "name", None) == "figure" else None
+    crop = _crop_from_img_tag(img) if img else {}
+    crop_tokens = _crop_label_tokens(crop)
+    anchor_tokens = [_token_key(token) for token in _title_tokens(anchor_text) if _is_label_token(token)]
+    if crop_tokens and anchor_tokens:
+        counts = {token: anchor_tokens.count(token) for token in set(anchor_tokens)}
+        unique_positions = [
+            idx for idx, token in enumerate(anchor_tokens)
+            if token in crop_tokens and counts.get(token) == 1
+        ]
+        if unique_positions:
+            return (min(unique_positions), str(img.get("data-crop-filename") or ""))
+        positions = [idx for idx, token in enumerate(anchor_tokens) if token in crop_tokens]
+        if positions:
+            return (min(positions), str(img.get("data-crop-filename") or ""))
+    return (10_000, str(img.get("data-crop-filename") or "") if img else "")
+
+
+def _sort_catalog_figure_runs(soup) -> int:
+    sorted_runs = 0
+    for anchor in list(soup.find_all(["dt", "h1", "h2", "h3", "h4", "h5", "h6", "li", "p"])):
+        label = _anchor_label_text(anchor) or _anchor_text(anchor)
+        if not label:
+            continue
+        figures = []
+        sibling = _next_significant_tag(anchor)
+        while getattr(sibling, "name", None) == "figure" and _is_catalog_entry_figure(sibling):
+            figures.append(sibling)
+            sibling = _next_significant_tag(sibling)
+        if len(figures) < 2:
+            continue
+        ordered = sorted(figures, key=lambda fig: _catalog_figure_order_key(label, fig))
+        if ordered == figures:
+            continue
+        cursor = anchor
+        for figure in ordered:
+            figure.extract()
+            cursor.insert_after(figure)
+            cursor = figure
+        sorted_runs += 1
+    return sorted_runs
+
+
+_ORPHAN_OPTIONAL_CATALOG_CROP_ROLES = {
+    "card_face",
+    "card_reference",
+    "component_reference",
+    "icon_reference",
+}
+
+
+def _is_high_confidence_catalog_anchor(crop: Dict[str, Any], anchor) -> bool:
+    label = _anchor_label_text(anchor) or _anchor_text(anchor)
+    if not _compact_catalog_label(label):
+        return False
+    return _orphan_anchor_score(crop, anchor) >= 0.95
+
+
+def _should_insert_orphan_crop(crop: Dict[str, Any], anchor) -> bool:
+    role = _role_from_crop(crop)
+    if role not in _ORPHAN_INSERTABLE_CROP_ROLES:
+        return False
+    importance = _importance_from_crop(crop)
+    if importance == "essential":
+        return True
+    return bool(
+        importance == "useful"
+        and role in _ORPHAN_OPTIONAL_CATALOG_CROP_ROLES
+        and anchor is not None
+        and _is_high_confidence_catalog_anchor(crop, anchor)
+    )
+
+
+def _insert_orphan_essential_crops(
+    soup,
+    crops: List[Dict[str, Any]],
+    used_crop_indices: Set[int],
+    rel_src: str,
+) -> int:
+    inserted = 0
+    for crop_idx, crop in enumerate(crops):
+        if crop_idx in used_crop_indices:
+            continue
+        figure = _build_crop_figure(soup, crop, rel_src)
+        if figure is None:
+            continue
+        anchor = _best_anchor_for_orphan_crop(soup, crop)
+        if not _should_insert_orphan_crop(crop, anchor):
+            continue
+        if anchor is None:
+            _append_orphan_figure(soup, figure)
+        else:
+            anchor = _extend_anchor_through_nearby_text_run(anchor, crop)
+            _insert_figure_near_anchor(figure, anchor)
+        inserted += 1
+    return inserted
 
 
 def _match_crops_to_img_tags(img_tags, crops: List[Dict[str, Any]]) -> Dict[int, int]:
@@ -1227,7 +2314,7 @@ def _match_crops_to_img_tags(img_tags, crops: List[Dict[str, Any]]) -> Dict[int,
     n_crops = len(crops)
     if not n_tags or not n_crops:
         return {}
-    if max(n_tags, n_crops) > 8:
+    if max(n_tags, n_crops) > 12:
         return {idx: idx for idx in range(min(n_tags, n_crops))}
 
     block_texts = [_block_match_texts(tag) for tag in img_tags]
@@ -1321,6 +2408,98 @@ def _stitch_figure_interruptions(soup) -> None:
         next_sig.decompose()
 
 
+def _remove_unresolved_image_placeholders(soup) -> None:
+    for tag in list(soup.find_all("img")):
+        if tag.attrs is None:
+            continue
+        if tag.get("src"):
+            continue
+        alt_text = _normalize_ws(tag.get("alt") or "")
+        parent = tag.parent
+        tag.decompose()
+        if parent and parent.name == "figure" and not parent.find("img", src=True):
+            caption = parent.find("figcaption")
+            caption_text = _normalize_ws(caption.get_text(" ", strip=True)) if caption else ""
+            if caption_text:
+                if _TEXT_ONLY_CALLOUT_RE.search(f"{alt_text} {caption_text}"):
+                    replacement = _build_semantic_callout(soup, caption_text, kind="reminder")
+                else:
+                    replacement = soup.new_tag("p")
+                    replacement.string = caption_text
+                parent.replace_with(replacement)
+            else:
+                parent.decompose()
+
+
+def _leading_label_text(tag) -> str:
+    if getattr(tag, "name", None) in {"h1", "h2", "h3", "h4", "h5", "h6"}:
+        return _normalize_ws(tag.get_text(" ", strip=True))
+    if getattr(tag, "name", None) == "p":
+        first_strong = tag.find("strong")
+        if first_strong:
+            return _normalize_ws(first_strong.get_text(" ", strip=True))
+        return _normalize_ws(tag.get_text(" ", strip=True)).split(".", 1)[0]
+    return ""
+
+
+def _dedupe_figure_captions_against_adjacent_text(soup) -> None:
+    for figure in list(soup.find_all("figure")):
+        caption = figure.find("figcaption")
+        caption_text = _normalize_ws(caption.get_text(" ", strip=True)) if caption else ""
+        if not caption_text:
+            continue
+        caption_key = set(_title_tokens(caption_text))
+        if not caption_key:
+            continue
+        prev_label = _leading_label_text(_previous_significant_tag(figure))
+        next_label = _leading_label_text(_next_significant_tag(figure))
+        for label in (prev_label, next_label):
+            label_key = set(_title_tokens(label))
+            if label_key and caption_key <= label_key:
+                caption.decompose()
+                figure["data-caption-deduped"] = "adjacent-text"
+                break
+
+
+def _dedupe_integrated_diagram_callout_captions(soup) -> None:
+    """Remove figcaptions that duplicate spatial callout text inside diagrams."""
+    for figure in list(soup.find_all("figure")):
+        role = _normalize_ws(figure.get("data-critical-graphics-role") or "").casefold()
+        if role != "rule_example_diagram":
+            continue
+        caption = figure.find("figcaption")
+        caption_text = _normalize_ws(caption.get_text(" ", strip=True)) if caption else ""
+        if not caption_text:
+            continue
+        numbered_items = re.findall(r"(?:^|\s)\d+[\.)]\s+\S+", caption_text)
+        if len(numbered_items) < 2:
+            continue
+        img = figure.find("img")
+        meta_text = " ".join(
+            _normalize_ws(value)
+            for value in (
+                figure.get("data-critical-graphics-nearby-text") or "",
+                img.get("data-critical-graphics-nearby-text") if img else "",
+                img.get("alt") if img else "",
+            )
+            if value
+        ).casefold()
+        if not any(cue in meta_text for cue in ("callout", "numbered", "movement plan", "green path")):
+            continue
+        caption_tokens = {
+            token
+            for token in _title_tokens(caption_text)
+            if len(token) > 2 and token not in _DESCRIPTOR_GENERIC_TOKENS
+        }
+        meta_tokens = set(_title_tokens(meta_text))
+        if not caption_tokens:
+            continue
+        if len(caption_tokens & meta_tokens) / float(len(caption_tokens)) < 0.6:
+            continue
+        caption.decompose()
+        figure["data-caption-deduped"] = "integrated-diagram-callouts"
+
+
 def _expand_multi_count_img_tags(soup) -> None:
     """Expand OCR placeholders like <img data-count="2"> into multiple tags."""
     for tag in list(soup.find_all("img")):
@@ -1357,11 +2536,17 @@ def _attach_images(html: str, crops: List[Dict[str, Any]], rel_src: str) -> str:
         return html
     soup = BeautifulSoup(html, "html.parser")
     _expand_multi_count_img_tags(soup)
-    img_tags = soup.find_all("img")
-    crop_matches = _match_crops_to_img_tags(img_tags, crops)
+    candidate_crops = [
+        crop
+        for crop in crops
+        if not _should_skip_source_pixel_crop(crop, soup)
+    ]
+    img_tags = [tag for tag in soup.find_all("img") if not _is_text_only_callout_placeholder(tag)]
+    crop_matches = _match_crops_to_img_tags(img_tags, candidate_crops)
+    used_crop_indices: Set[int] = set()
 
     n_tags = len(img_tags)
-    n_crops = len(crops)
+    n_crops = len(candidate_crops)
     if n_tags != n_crops:
         print(f"  [build] Warning: {n_tags} <img> tags vs {n_crops} crops on page — matching by descriptors with fallback",
               file=sys.stderr)
@@ -1370,16 +2555,18 @@ def _attach_images(html: str, crops: List[Dict[str, Any]], rel_src: str) -> str:
         crop_idx = crop_matches.get(idx)
         if crop_idx is None:
             continue
-        crop = crops[crop_idx]
+        crop = candidate_crops[crop_idx]
         filename = crop.get("filename")
         if not filename:
             continue
+        used_crop_indices.add(crop_idx)
 
         # Rich alt text — prefer VLM image_description over OCR alt
         alt = crop.get("image_description") or crop.get("alt") or ""
         tag["src"] = f"{rel_src}/{filename}"
         tag["alt"] = alt
         tag["data-crop-filename"] = filename
+        _annotate_img_from_crop(tag, crop)
 
         parent = tag.parent
         already_in_figure = parent and parent.name == "figure"
@@ -1389,6 +2576,7 @@ def _attach_images(html: str, crops: List[Dict[str, Any]], rel_src: str) -> str:
             # Add crop metadata; leave existing <figcaption> intact.
             figure = parent
             figure["data-placement"] = "ocr-figure"
+            _annotate_figure_from_crop(figure, crop)
             existing_figcap = figure.find("figcaption")
             caption_text = crop.get("caption_text")
             if existing_figcap:
@@ -1403,6 +2591,7 @@ def _attach_images(html: str, crops: List[Dict[str, Any]], rel_src: str) -> str:
             figure = soup.new_tag("figure")
             tag.wrap(figure)
             figure["data-placement"] = "ocr-inline"
+            _annotate_figure_from_crop(figure, crop)
 
             # Try to find a caption: crop pipeline caption or adjacent <p>
             caption_text = crop.get("caption_text")
@@ -1418,7 +2607,15 @@ def _attach_images(html: str, crops: List[Dict[str, Any]], rel_src: str) -> str:
 
         _suppress_duplicate_text_after_figure(figure, crop)
 
+    _insert_orphan_essential_crops(soup, candidate_crops, used_crop_indices, rel_src)
+    _split_labeled_multi_image_figures(soup)
+    _reposition_labeled_catalog_figures(soup)
+    _sort_catalog_figure_runs(soup)
     _stitch_figure_interruptions(soup)
+    _remove_unresolved_image_placeholders(soup)
+    _promote_text_callout_paragraphs(soup)
+    _dedupe_figure_captions_against_adjacent_text(soup)
+    _dedupe_integrated_diagram_callout_captions(soup)
     return soup.decode_contents()
 
 
@@ -1470,6 +2667,498 @@ def _absorb_caption_siblings(figure, soup) -> bool:
     return True
 
 
+def _reference_entry_parts(paragraph) -> Optional[tuple[str, list[Any]]]:
+    children = list(paragraph.contents)
+    first_strong_idx = None
+    for idx, child in enumerate(children):
+        name = getattr(child, "name", None)
+        if name == "strong":
+            first_strong_idx = idx
+            break
+        if name is None and not str(child).strip():
+            continue
+        return None
+    if first_strong_idx is None:
+        return None
+    strong = children[first_strong_idx]
+    term = _normalize_ws(strong.get_text(" ", strip=True))
+    if not term or len(term) > 80 or term.endswith(":"):
+        return None
+    tokens = _title_tokens(term)
+    if not tokens or len(tokens) > 6:
+        return None
+    uppercase_letters = sum(1 for char in term if char.isalpha() and char.isupper())
+    letters = sum(1 for char in term if char.isalpha())
+    if letters and uppercase_letters / letters < 0.7:
+        return None
+
+    remainder = children[first_strong_idx + 1 :]
+    while remainder:
+        first = remainder[0]
+        if getattr(first, "name", None) == "br" or (getattr(first, "name", None) is None and not str(first).strip()):
+            remainder = remainder[1:]
+            continue
+        break
+    remainder_text = _normalize_ws(" ".join(getattr(child, "get_text", lambda *_: str(child))(" ", strip=True) for child in remainder))
+    if len(remainder_text) < 8:
+        return None
+    return term, remainder
+
+
+def _is_uppercase_reference_label(text: str) -> bool:
+    text = _normalize_ws(text)
+    if not text or len(text) > 80 or text.endswith(":"):
+        return False
+    tokens = _title_tokens(text)
+    if not tokens or len(tokens) > 6:
+        return False
+    letters = [char for char in text if char.isalpha()]
+    if not letters:
+        return False
+    return sum(1 for char in letters if char.isupper()) / len(letters) >= 0.7
+
+
+def _normalize_figure_labeled_entries(soup) -> int:
+    converted = 0
+    for paragraph in list(soup.find_all("p")):
+        if not paragraph.parent:
+            continue
+        label = _normalize_ws(paragraph.get_text(" ", strip=True))
+        if not _is_uppercase_reference_label(label):
+            continue
+        prev_sig = _previous_significant_tag(paragraph)
+        next_sig = _next_significant_tag(paragraph)
+        figure_before_label = getattr(prev_sig, "name", None) == "figure"
+        figure_after_label = getattr(next_sig, "name", None) == "figure"
+        if not figure_before_label and not figure_after_label:
+            continue
+        desc_nodes = []
+        sibling = _next_significant_tag(next_sig if figure_after_label else paragraph)
+        while getattr(sibling, "name", None) == "p":
+            sibling_text = _normalize_ws(sibling.get_text(" ", strip=True))
+            if _is_uppercase_reference_label(sibling_text):
+                break
+            desc_nodes.append(sibling)
+            sibling = _next_significant_tag(sibling)
+            if len(desc_nodes) >= 3:
+                break
+        if not desc_nodes:
+            continue
+        dl = soup.new_tag("dl")
+        dl["class"] = ["semantic-entry-list"]
+        dt = soup.new_tag("dt")
+        dt.string = label
+        dd = soup.new_tag("dd")
+        for idx, node in enumerate(desc_nodes):
+            if idx:
+                dd.append(soup.new_tag("br"))
+            for child in list(node.children):
+                dd.append(deepcopy(child))
+        dl.append(dt)
+        dl.append(dd)
+        paragraph.replace_with(dl)
+        for node in desc_nodes:
+            node.decompose()
+        converted += 1
+    return converted
+
+
+def _normalize_reference_entries(html: str, *, enabled: bool) -> str:
+    if not enabled or "<strong" not in html:
+        soup = BeautifulSoup(html or "", "html.parser")
+        converted = _normalize_figure_labeled_entries(soup) if enabled else 0
+        return soup.decode_contents() if converted else html
+    soup = BeautifulSoup(html or "", "html.parser")
+    converted = 0
+    for paragraph in list(soup.find_all("p")):
+        parts = _reference_entry_parts(paragraph)
+        if not parts:
+            continue
+        term, remainder = parts
+        dl = soup.new_tag("dl")
+        dl["class"] = ["semantic-entry-list"]
+        dt = soup.new_tag("dt")
+        dt.string = term
+        dd = soup.new_tag("dd")
+        for child in remainder:
+            dd.append(deepcopy(child))
+        dl.append(dt)
+        dl.append(dd)
+        paragraph.replace_with(dl)
+        converted += 1
+    converted += _normalize_figure_labeled_entries(soup)
+    if converted:
+        return soup.decode_contents()
+    return html
+
+
+_CATALOG_ENTRY_FIGURE_ROLES = {
+    "card_face",
+    "component_reference",
+    "icon_reference",
+    "map_or_board",
+    "setup_diagram",
+}
+
+
+def _figure_role(tag: Any) -> str:
+    return str(tag.get("data-critical-graphics-role") or "")
+
+
+def _is_catalog_entry_figure(tag: Any) -> bool:
+    if getattr(tag, "name", None) != "figure":
+        return False
+    role = _figure_role(tag)
+    if role == "card_reference":
+        return False
+    if role in _CATALOG_ENTRY_FIGURE_ROLES:
+        return True
+    img = tag.find("img")
+    alt = img.get("alt") if img else ""
+    lowered = str(alt or "").casefold()
+    return bool(
+        _looks_label_value_metadata(str(alt or ""))
+        and any(word in lowered for word in ("card", "course", "map", "reference", "component"))
+    )
+
+
+def _compact_catalog_label(text: str) -> bool:
+    text = _normalize_ws(text)
+    if not text or len(text) > 90 or text.endswith(":"):
+        return False
+    if _looks_label_value_metadata(text):
+        return False
+    if len(_title_tokens(text)) > 8:
+        return False
+    if re.search(r"[.!?]", text):
+        return False
+    letters = [char for char in text if char.isalpha()]
+    return bool(letters and len(letters) / max(1, len(text)) >= 0.45)
+
+
+def _catalog_label_key(text: str) -> str:
+    return " ".join(_title_tokens(text))
+
+
+def _catalog_entry_title_from_node(tag: Any) -> Optional[str]:
+    name = getattr(tag, "name", None)
+    if name in {"h3", "h4", "h5", "h6"}:
+        text = _normalize_ws(tag.get_text(" ", strip=True))
+        return text if _compact_catalog_label(text) else None
+    if name == "p":
+        text = _normalize_ws(tag.get_text(" ", strip=True))
+        strong = tag.find("strong", recursive=False)
+        strong_text = _normalize_ws(strong.get_text(" ", strip=True)) if strong else ""
+        if strong_text and _catalog_label_key(text) == _catalog_label_key(strong_text) and _compact_catalog_label(strong_text):
+            return strong_text
+        if _is_uppercase_reference_label(text):
+            return text
+        return None
+    if name == "dl" and "semantic-entry-list" in (tag.get("class") or []):
+        dt = tag.find("dt", recursive=False)
+        if not dt:
+            return None
+        text = _normalize_ws(dt.get_text(" ", strip=True))
+        return text if _compact_catalog_label(text) else None
+    return None
+
+
+def _catalog_entry_metadata_from_dl(soup: BeautifulSoup, dl: Any):
+    dd = dl.find("dd", recursive=False)
+    if not dd:
+        return None
+    paragraph = soup.new_tag("p")
+    for child in list(dd.contents):
+        paragraph.append(child.extract())
+    return paragraph if _normalize_ws(paragraph.get_text(" ", strip=True)) else None
+
+
+def _is_catalog_entry_metadata_node(tag: Any) -> bool:
+    name = getattr(tag, "name", None)
+    if name == "p":
+        return _looks_label_value_metadata(tag.get_text(" ", strip=True))
+    if name == "dl" and "semantic-entry-list" in (tag.get("class") or []):
+        dd = tag.find("dd", recursive=False)
+        return bool(dd and _looks_label_value_metadata(dd.get_text(" ", strip=True)))
+    return False
+
+
+def _metadata_node_for_entry(soup: BeautifulSoup, tag: Any):
+    if getattr(tag, "name", None) == "dl":
+        return _catalog_entry_metadata_from_dl(soup, tag)
+    return tag
+
+
+def _dl_catalog_pairs(dl: Any) -> list[tuple[Any, Any]]:
+    pairs = []
+    children = [child for child in dl.children if getattr(child, "name", None)]
+    idx = 0
+    while idx < len(children):
+        dt = children[idx]
+        dd = children[idx + 1] if idx + 1 < len(children) else None
+        if getattr(dt, "name", None) == "dt" and getattr(dd, "name", None) == "dd":
+            pairs.append((dt, dd))
+            idx += 2
+            continue
+        return []
+    return pairs
+
+
+def _dd_contains_catalog_metadata(dd: Any) -> bool:
+    text = _normalize_ws(dd.get_text(" ", strip=True))
+    return _looks_label_value_metadata(text)
+
+
+_CATALOG_METADATA_BLOCK_TAGS = {
+    "blockquote",
+    "div",
+    "dl",
+    "ol",
+    "p",
+    "pre",
+    "section",
+    "table",
+    "ul",
+}
+
+
+def _append_dd_metadata(section: Any, dd: Any, soup: BeautifulSoup) -> bool:
+    moved_children = []
+    for child in list(dd.contents):
+        if getattr(child, "name", None) == "figure":
+            child.extract()
+            continue
+        if getattr(child, "name", None) is None and not str(child).strip():
+            child.extract()
+            continue
+        moved_children.append(child.extract())
+    if moved_children:
+        paragraph = None
+        for child in moved_children:
+            child_name = getattr(child, "name", None)
+            if child_name in _CATALOG_METADATA_BLOCK_TAGS:
+                if paragraph and _normalize_ws(paragraph.get_text(" ", strip=True)):
+                    section.append(paragraph)
+                paragraph = None
+                section.append(child)
+                continue
+            if paragraph is None:
+                paragraph = soup.new_tag("p")
+            paragraph.append(child)
+        if paragraph and _normalize_ws(paragraph.get_text(" ", strip=True)):
+            section.append(paragraph)
+        return True
+    text = _normalize_ws(dd.get_text(" ", strip=True))
+    if not text:
+        return False
+    paragraph = soup.new_tag("p")
+    paragraph.string = text
+    section.append(paragraph)
+    return True
+
+
+def _normalize_embedded_dl_catalog_entries(soup: BeautifulSoup) -> int:
+    converted = 0
+    for dl in list(soup.find_all("dl")):
+        if dl.find_parent("section", class_="semantic-catalog-entry"):
+            continue
+        pairs = _dl_catalog_pairs(dl)
+        if not pairs:
+            continue
+        sections = []
+        for dt, dd in pairs:
+            title = _normalize_ws(dt.get_text(" ", strip=True))
+            figure = next((fig for fig in dd.find_all("figure") if _is_catalog_entry_figure(fig)), None)
+            if not title or not _compact_catalog_label(title) or figure is None or not _dd_contains_catalog_metadata(dd):
+                sections = []
+                break
+            section = soup.new_tag("section")
+            section["class"] = ["semantic-catalog-entry"]
+            section["data-doc-web-semantic"] = "catalog-entry"
+            section["data-catalog-entry-title"] = title
+            heading = soup.new_tag("h3")
+            heading.string = title
+            section.append(heading)
+            section.append(figure.extract())
+            if not _append_dd_metadata(section, dd, soup):
+                sections = []
+                break
+            sections.append(section)
+        if not sections:
+            continue
+        for section in sections:
+            dl.insert_before(section)
+            converted += 1
+        dl.decompose()
+    return converted
+
+
+def _looks_like_catalog_entry_fragment(soup: BeautifulSoup, title: str) -> bool:
+    if not _looks_catalog_category_heading(title):
+        return False
+    figures = [tag for tag in soup.find_all("figure") if _is_catalog_entry_figure(tag)]
+    metadata_nodes = [tag for tag in soup.find_all(["p", "dl"]) if _is_catalog_entry_metadata_node(tag)]
+    return len(figures) >= 2 and len(metadata_nodes) >= 2
+
+
+def _wrap_catalog_entry(
+    soup: BeautifulSoup,
+    *,
+    title: str,
+    figure: Any,
+    title_node: Any,
+    metadata_node: Any,
+    insert_before: Any,
+    figures: Optional[list[Any]] = None,
+) -> bool:
+    if not title or not figure or not title_node or not metadata_node or not insert_before:
+        return False
+    if figure.find_parent("section", class_="semantic-catalog-entry"):
+        return False
+
+    metadata = _metadata_node_for_entry(soup, metadata_node)
+    if not metadata:
+        return False
+
+    section = soup.new_tag("section")
+    section["class"] = ["semantic-catalog-entry"]
+    section["data-doc-web-semantic"] = "catalog-entry"
+    section["data-catalog-entry-title"] = title
+    insert_before.insert_before(section)
+    heading = soup.new_tag("h3")
+    heading.string = title
+    section.append(heading)
+    entry_figures = figures or [figure]
+    for entry_figure in entry_figures:
+        if getattr(entry_figure, "parent", None):
+            section.append(entry_figure.extract())
+    section.append(metadata.extract() if getattr(metadata, "parent", None) else metadata)
+    if getattr(title_node, "parent", None):
+        title_node.decompose()
+    if metadata_node is not title_node and metadata_node is not metadata and getattr(metadata_node, "parent", None):
+        metadata_node.decompose()
+    return True
+
+
+def _catalog_figure_matches_title(figure: Any, title: str) -> bool:
+    if not title:
+        return True
+    img = figure.find("img") if getattr(figure, "name", None) == "figure" else None
+    if img is None:
+        return True
+    crop_tokens = _crop_label_tokens(_crop_from_img_tag(img))
+    title_tokens = _normalized_token_set(title)
+    if not crop_tokens or not title_tokens:
+        return True
+    return len(crop_tokens & title_tokens) / float(len(crop_tokens)) >= 0.75
+
+
+def _catalog_figure_run_after(figure: Any, *, title: str = "") -> tuple[list[Any], Any]:
+    figures = [figure]
+    sibling = _next_significant_tag(figure)
+    while getattr(sibling, "name", None) == "figure" and _is_catalog_entry_figure(sibling):
+        if title and not _catalog_figure_matches_title(sibling, title):
+            break
+        figures.append(sibling)
+        sibling = _next_significant_tag(sibling)
+    return figures, sibling
+
+
+def _normalize_catalog_entries(html: str, *, title: str, enabled: bool) -> str:
+    if not enabled:
+        return html
+    soup = BeautifulSoup(html or "", "html.parser")
+    if not (_looks_like_catalog_chapter(soup, title) or _looks_like_catalog_entry_fragment(soup, title)):
+        if _looks_catalog_category_heading(title):
+            converted = _normalize_embedded_dl_catalog_entries(soup)
+            return soup.decode_contents() if converted else html
+        return html
+
+    converted = _normalize_embedded_dl_catalog_entries(soup)
+    for figure in list(soup.find_all("figure")):
+        if not _is_catalog_entry_figure(figure):
+            continue
+
+        prev_tag = _previous_significant_tag(figure)
+        next_tag = _next_significant_tag(figure)
+        prev_title = _catalog_entry_title_from_node(prev_tag)
+        next_title = _catalog_entry_title_from_node(next_tag)
+
+        if prev_title and getattr(prev_tag, "name", None) == "dl":
+            figure_run, _ = _catalog_figure_run_after(figure, title=prev_title)
+            converted += int(
+                _wrap_catalog_entry(
+                    soup,
+                    title=prev_title,
+                    figure=figure,
+                    figures=figure_run,
+                    title_node=prev_tag,
+                    metadata_node=prev_tag,
+                    insert_before=prev_tag,
+                )
+            )
+            continue
+
+        if prev_title and getattr(prev_tag, "name", None) == "p":
+            metadata = _next_significant_tag(figure)
+            if _is_catalog_entry_metadata_node(metadata):
+                converted += int(
+                    _wrap_catalog_entry(
+                        soup,
+                        title=prev_title,
+                        figure=figure,
+                        title_node=prev_tag,
+                        metadata_node=metadata,
+                        insert_before=prev_tag,
+                    )
+                )
+                continue
+
+        if prev_title and getattr(prev_tag, "name", None) in {"h3", "h4", "h5", "h6"}:
+            figure_run, metadata = _catalog_figure_run_after(figure, title=prev_title)
+            if _is_catalog_entry_metadata_node(metadata):
+                converted += int(
+                    _wrap_catalog_entry(
+                        soup,
+                        title=prev_title,
+                        figure=figure,
+                        figures=figure_run,
+                        title_node=prev_tag,
+                        metadata_node=metadata,
+                        insert_before=prev_tag,
+                    )
+                )
+                continue
+
+        if next_title:
+            if getattr(next_tag, "name", None) == "dl":
+                converted += int(
+                    _wrap_catalog_entry(
+                        soup,
+                        title=next_title,
+                        figure=figure,
+                        title_node=next_tag,
+                        metadata_node=next_tag,
+                        insert_before=figure,
+                    )
+                )
+                continue
+            metadata = _next_significant_tag(next_tag)
+            if _is_catalog_entry_metadata_node(metadata):
+                converted += int(
+                    _wrap_catalog_entry(
+                        soup,
+                        title=next_title,
+                        figure=figure,
+                        title_node=next_tag,
+                        metadata_node=metadata,
+                        insert_before=figure,
+                    )
+                )
+
+    return soup.decode_contents() if converted else html
+
+
 # ---------------------------------------------------------------------------
 # Main
 # ---------------------------------------------------------------------------
@@ -1495,6 +3184,34 @@ def main() -> None:
         action="store_true",
         default=False,
         help="Collapse contiguous same-schema genealogy tables into one table with subgroup heading rows.",
+    )
+    parser.add_argument(
+        "--include-navigation",
+        dest="include_navigation",
+        action=argparse.BooleanOptionalAction,
+        default=True,
+        help="Include previous/index/next navigation chrome in generated chapter files.",
+    )
+    parser.add_argument(
+        "--suppress-navigation",
+        dest="suppress_navigation",
+        action="store_true",
+        default=False,
+        help="Suppress previous/index/next navigation chrome in generated chapter files.",
+    )
+    parser.add_argument(
+        "--normalize-reference-entries",
+        dest="normalize_reference_entries",
+        action=argparse.BooleanOptionalAction,
+        default=False,
+        help="Convert repeated <strong>term</strong><br> paragraphs into definition-list entries.",
+    )
+    parser.add_argument(
+        "--normalize-catalog-entries",
+        dest="normalize_catalog_entries",
+        action=argparse.BooleanOptionalAction,
+        default=False,
+        help="Group catalog/index entry figures, labels, and metadata into semantic entry sections.",
     )
     parser.add_argument("--run-id", dest="run_id", default=None, help="Run ID for progress logging")
     parser.add_argument("--state-file", dest="state_file", default=None, help="Pipeline state JSON path")
@@ -1541,8 +3258,6 @@ def main() -> None:
     covered_printed_pages = set()
     covered_source_pages = set()
     chapters_by_start = {}
-    portion_titles = [p.get("title") or p.get("portion_id") or "" for p in portions]
-
     # ── Build chapters ──────────────────────────────────────────────────
     chapter_files: List[Dict[str, Any]] = []  # For navigation pass
 
@@ -1607,7 +3322,7 @@ def main() -> None:
                 "owner_heading": _first_strong_owner_heading(html),
             })
 
-        candidate_titles = portion_titles[portion_idx:]
+        candidate_titles = _candidate_titles_for_refinement(portions, portion_idx, page_end)
         stale_portion = any(
             entry.get("kind") == "chapter" and _titles_related(title, entry.get("title"))
             for entry in chapter_files
@@ -1639,6 +3354,10 @@ def main() -> None:
             body_html = _finalize_genealogy_body_html(
                 body_html,
                 enabled=args.merge_contiguous_genealogy_tables,
+            )
+            body_html = _normalize_reference_entries(
+                body_html,
+                enabled=args.normalize_reference_entries,
             )
             toc_entries.append({
                 "title": segment["title"],
@@ -1755,20 +3474,38 @@ def main() -> None:
         next_file = chapter_files[i + 1]["filename"] if i < len(chapter_files) - 1 else None
         next_title = chapter_files[i + 1]["title"] if i < len(chapter_files) - 1 else None
 
-        nav_top = _build_nav(prev_file, prev_title, next_file, next_title)
-        nav_bottom = _build_nav(prev_file, prev_title, next_file, next_title, is_bottom=True)
+        include_navigation = args.include_navigation and not args.suppress_navigation
+        nav_top = _build_nav(prev_file, prev_title, next_file, next_title) if include_navigation else ""
+        nav_bottom = _build_nav(prev_file, prev_title, next_file, next_title, is_bottom=True) if include_navigation else ""
         page_title = f"{entry['title']} — {book_title}" if book_title else entry["title"]
         body_html = entry["body_html"]
         body_html = _finalize_genealogy_body_html(
             body_html,
             enabled=args.merge_contiguous_genealogy_tables,
         )
+        body_html = _normalize_reference_entries(
+            body_html,
+            enabled=args.normalize_reference_entries,
+        )
         entry["body_html"] = body_html
-        if entry.get("kind") == "chapter" and (entry.get("source_pages") or []) and not (
-            entry.get("source_printed_pages") or []
-        ):
+        should_polish_headings = False
+        if entry.get("kind") == "chapter" and (entry.get("source_pages") or []):
+            if not (entry.get("source_printed_pages") or []):
+                should_polish_headings = True
+            else:
+                should_polish_headings = _looks_like_catalog_chapter(
+                    BeautifulSoup(body_html or "", "html.parser"),
+                    entry["title"],
+                )
+        if should_polish_headings:
             body_html = _polish_flat_chapter_headings(body_html, entry["title"])
             entry["body_html"] = body_html
+        body_html = _normalize_catalog_entries(
+            body_html,
+            title=entry["title"],
+            enabled=args.normalize_catalog_entries and entry.get("kind") == "chapter",
+        )
+        entry["body_html"] = body_html
         body_html, entry_provenance_rows = _tag_entry_body(entry, run_id=args.run_id, created_at=bundle_created_at)
         entry["body_html"] = body_html
 

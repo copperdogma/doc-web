@@ -1,0 +1,171 @@
+# MVP: graphics-heavy imposed PDF to semantic HTML.
+#
+# This recipe targets a category, not a title: print-ready manuals/rulebooks
+# delivered as landscape spreads with dense visual design and essential
+# explanatory graphics.
+
+input:
+  # Local hard-case default for Story 226; override with --input-pdf or recipe
+  # params for other graphics-heavy imposed manuals/rulebooks.
+  pdf: input/f5-robo-rally-rulebook.pdf
+
+stages:
+  - id: pdf_to_images
+    stage: extract
+    module: extract_pdf_images_fast_v1
+    out: pages_images_manifest.jsonl
+    params:
+      out: pages_images_manifest.jsonl
+      no_normalize: true
+
+  - id: split_spreads
+    stage: extract
+    module: split_pages_from_manifest_v1
+    needs: [pdf_to_images]
+    inputs:
+      pages: pdf_to_images
+    out: pages_split_manifest.jsonl
+    params:
+      out: pages_split_manifest.jsonl
+
+  - id: infer_logical_pages
+    stage: extract
+    module: infer_logical_page_order_v1
+    needs: [split_spreads]
+    inputs:
+      pages: split_spreads
+    out: pages_logical_manifest.jsonl
+    params:
+      out: pages_logical_manifest.jsonl
+      min_confidence: 0.7
+      fail_on_uncertain: true
+
+  - id: ocr_ai
+    stage: extract
+    module: ocr_ai_gpt51_v1
+    needs: [infer_logical_pages]
+    inputs:
+      pages: infer_logical_pages
+    out: pages_html.jsonl
+    params:
+      model: gpt-5.1
+      max_output_tokens: 8192
+      max_long_side: 2048
+      concurrency: 3
+      skip_blank_pages: true
+      ocr_hints: |
+        - Treat this as a graphics-heavy manual or game-rulebook page, not a prose-only book page.
+        - Preserve exact rule text, headings, numbers, lists, tables, card/reference grids, and procedural order.
+        - Use semantic HTML only: headings, paragraphs, lists, definition lists, and tables. Do not reproduce decorative layout.
+        - Preserve rule-critical visuals as <figure> placeholders near the relevant text: setup diagrams, rule examples, board/map/course layouts, component/icon references, card faces/reference sheets, and quick-reference summaries.
+        - Suppress decorative backgrounds, layout chrome, printer marks, and non-instructional art unless the page has no other semantic identity.
+        - For dense card/icon/reference grids, prefer a table or definition list for transcribed text and use figure placeholders only when the visual appearance itself is needed to understand the rule.
+
+  - id: plan_figures
+    stage: transform
+    module: plan_graphic_manual_figures_v1
+    needs: [ocr_ai]
+    inputs:
+      pages: ocr_ai
+    out: essential_graphics_plan.json
+
+  - id: plan_critical_graphics
+    stage: transform
+    module: plan_critical_graphics_vlm_v1
+    needs: [infer_logical_pages, ocr_ai]
+    inputs:
+      pages: infer_logical_pages
+      page_html: ocr_ai
+    out: critical_graphics_manifest.json
+    params:
+      model: gpt-5.5
+      max_output_tokens: 4096
+      max_long_side: 1600
+      max_context_chars: 3000
+      concurrency: 2
+      timeout_seconds: 180
+
+  - id: crop_illustrations
+    stage: extract
+    module: crop_illustrations_guided_v1
+    needs: [ocr_ai, plan_critical_graphics]
+    inputs:
+      ocr_manifest: ocr_ai
+      critical_graphics_manifest: plan_critical_graphics
+    out: illustration_manifest.jsonl
+    params:
+      output_format: jpeg
+      jpeg_quality: 92
+      detection_mode: auto
+      padding_percent: 0.03
+      split_when_missing: true
+      dense_split_when_missing: true
+      dense_split_min_expected_count: 3
+      dense_split_min_area_ratio: 0.35
+      trim_text_edges: true
+
+  - id: extract_page_numbers
+    stage: transform
+    module: extract_page_numbers_html_v1
+    needs: [ocr_ai]
+    inputs:
+      pages: ocr_ai
+    out: pages_html_with_page_numbers.jsonl
+
+  - id: normalize_manual_html
+    stage: transform
+    module: normalize_graphic_manual_html_v1
+    needs: [extract_page_numbers]
+    inputs:
+      pages: extract_page_numbers
+    out: pages_manual_normalized.jsonl
+    params:
+      max_promoted_running_head_occurrences: 2
+      strip_page_numbers: true
+
+  - id: portionize_headings
+    stage: portionize
+    module: portionize_headings_html_v1
+    needs: [normalize_manual_html]
+    inputs:
+      pages: normalize_manual_html
+    out: portions_headings.jsonl
+    params:
+      heading_tags: h1,h2
+      allow_unnumbered: true
+      fallback_mode: single-document
+      fallback_title: Manual
+      suppress_lower_heading_item_boundaries: true
+      merge_catalog_subsections: true
+      merge_procedural_subsections: true
+
+  - id: build_chapters
+    stage: build
+    module: build_chapter_html_v1
+    needs: [normalize_manual_html, portionize_headings, crop_illustrations]
+    inputs:
+      pages: normalize_manual_html
+      portions: portionize_headings
+      illustration_manifest: crop_illustrations
+    out: chapters_manifest.jsonl
+    params:
+      images_subdir: images
+      book_title: Manual
+      book_author: ""
+      normalize_reference_entries: true
+      normalize_catalog_entries: true
+
+  - id: validate_manual_html
+    stage: validate
+    module: validate_semantic_manual_html_v1
+    needs: [infer_logical_pages, normalize_manual_html, plan_figures, plan_critical_graphics, crop_illustrations, build_chapters]
+    inputs:
+      logical_pages: infer_logical_pages
+      pages: normalize_manual_html
+      figure_plan: plan_figures
+      critical_graphics_manifest: plan_critical_graphics
+      crops: crop_illustrations
+      chapters: build_chapters
+    out: semantic_manual_html_conformance_report.json
+    params:
+      min_figure_crop_ratio: 0.75
