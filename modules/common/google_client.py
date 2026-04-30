@@ -7,9 +7,9 @@ logs token usage via log_llm_usage().
 from __future__ import annotations
 
 import base64
-from typing import Any, Optional, Tuple
+from typing import Any, Mapping, Optional, Tuple
 
-from doc_web.env import get_doc_web_api_key
+from doc_web.env import build_doc_web_env, get_doc_web_api_key
 from modules.common.utils import log_llm_usage
 
 try:
@@ -21,6 +21,32 @@ except Exception as e:
     genai = None  # type: ignore[assignment]
     types = None  # type: ignore[assignment]
     _GENAI_IMPORT_ERROR = e
+
+
+GEMINI_API_VERSION_ENV = "DOC_WEB_GEMINI_API_VERSION"
+DEFAULT_GEMINI_API_VERSION = "v1beta"
+SUPPORTED_GEMINI_API_VERSIONS = {"v1", "v1beta"}
+
+
+def get_doc_web_gemini_api_version(env: Mapping[str, str] | None = None) -> str:
+    """Return the explicit Gemini API version for official google-genai clients."""
+    api_version = (
+        build_doc_web_env(env=env).get(GEMINI_API_VERSION_ENV)
+        or DEFAULT_GEMINI_API_VERSION
+    ).strip()
+    if api_version not in SUPPORTED_GEMINI_API_VERSIONS:
+        raise ValueError(
+            f"{GEMINI_API_VERSION_ENV} must be one of "
+            f"{sorted(SUPPORTED_GEMINI_API_VERSIONS)}"
+        )
+    return api_version
+
+
+def get_gemini_client_http_options(
+    env: Mapping[str, str] | None = None,
+) -> dict[str, str]:
+    """Return google-genai client http_options with an explicit API version."""
+    return {"api_version": get_doc_web_gemini_api_version(env=env)}
 
 
 def _decode_data_uri(data_uri: str) -> Tuple[bytes, str]:
@@ -47,7 +73,10 @@ class GeminiVisionClient:
             raise RuntimeError(
                 "DOC_WEB_GEMINI_API_KEY must be set in the environment"
             )
-        self._client = genai.Client(api_key=self._api_key)
+        self._client = genai.Client(
+            api_key=self._api_key,
+            http_options=get_gemini_client_http_options(),
+        )
 
     def generate_vision(
         self,

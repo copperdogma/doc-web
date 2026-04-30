@@ -1,3 +1,19 @@
+## [2026-04-30-01] - Harden Gemini SDK API-version defaults (Story 227)
+
+### Added
+- Added shared Gemini SDK API-version configuration with an explicit `v1beta` default, a bounded `DOC_WEB_GEMINI_API_VERSION` override, and focused unit coverage for the default, `v1`, and invalid-version paths.
+
+### Changed
+- Changed the shared Gemini vision client and direct benchmark helper clients to pass explicit `google-genai` `http_options`, preserving the current beta-channel behavior ahead of the February 2027 SDK default switch.
+- Changed Story 227 and the generated methodology views so the completed Gemini API-version hardening work is recorded as closed.
+
+### Tested
+- `python -m pytest tests/test_google_client.py -q`
+- `PYTHONDONTWRITEBYTECODE=1 make methodology-check`
+- `make lint`
+- `git diff --check`
+- `make test`
+
 ## [2026-04-17-02] - Land Digital Peter comparison benchmark close-out (Story 225)
 
 ### Added

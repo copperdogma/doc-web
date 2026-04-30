@@ -48,8 +48,12 @@ def gate_vlm_yesno(image_dir, model, pages_to_check=None):
     """Gate: ask a cheap VLM 'does this page have illustrations?' yes/no."""
     from google.genai import Client
     from doc_web.env import get_doc_web_api_key
+    from modules.common.google_client import get_gemini_client_http_options
 
-    client = Client(api_key=get_doc_web_api_key("gemini"))
+    client = Client(
+        api_key=get_doc_web_api_key("gemini"),
+        http_options=get_gemini_client_http_options(),
+    )
 
     prompt = """Look at this scanned book page. Does it contain any photographs, illustrations, drawings, logos, seals, or other non-text visual elements?
 

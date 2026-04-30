@@ -95,6 +95,7 @@ Grouped by primary `spec:N` category. Stories without category refs remain in an
 | 217 | Probe Receipt-Only Image-Entry Rescue on LOC Asset 367466 | High | Done | 216 | [story-217](stories/story-217-loc-gw-receipt-only-image-entry-rescue-probe.md) |
 | 220 | Repair Onward Genealogy Row-Semantic Note Placement | High | Done | 206 | [story-220](stories/story-220-onward-genealogy-row-semantic-note-placement.md) |
 | 225 | Establish a Bounded Digital Peter Historical-Handwriting Benchmark Slice | High | Done | 212 | [story-225](stories/story-225-digital-peter-historical-handwriting-benchmark-slice.md) |
+| 227 | Gemini SDK API-Version Hardening | Medium | Done | — | [story-227](stories/story-227-gemini-sdk-api-version-hardening.md) |
 
 ### spec:3 — Layout & Structure Understanding
 

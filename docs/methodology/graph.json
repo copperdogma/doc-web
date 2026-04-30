@@ -219,7 +219,8 @@
           "219",
           "220",
           "224",
-          "225"
+          "225",
+          "227"
         ],
         "adr_ids": [
           "ADR-001",
@@ -319,7 +320,8 @@
           "184",
           "198",
           "207",
-          "209"
+          "209",
+          "227"
         ],
         "adr_ids": [],
         "eval_ids": [
@@ -803,7 +805,8 @@
           "219",
           "220",
           "224",
-          "225"
+          "225",
+          "227"
         ],
         "eval_ids": [
           "ocr-model-genealogy",
@@ -873,7 +876,8 @@
             "219",
             "220",
             "224",
-            "225"
+            "225",
+            "227"
           ],
           "eval_ids": [
             "ocr-model-genealogy",
@@ -1070,7 +1074,8 @@
           "184",
           "198",
           "207",
-          "209"
+          "209",
+          "227"
         ],
         "eval_ids": [
           "image-crop-extraction",
@@ -1100,7 +1105,8 @@
             "184",
             "198",
             "207",
-            "209"
+            "209",
+            "227"
           ],
           "eval_ids": [
             "image-crop-extraction",
@@ -12391,6 +12397,71 @@
           "source_type": "story-work-log",
           "source": "docs/stories/story-225-digital-peter-historical-handwriting-benchmark-slice.md",
           "summary": "`/mark-story-done` close-out: revalidated Story 225 against `docs/ideal.md`, `spec:2`, `spec:8`, the current handwritten story chain, and the bounded Digital Peter artifacts before closing it. Fresh close-out evidence..."
+        }
+      }
+    },
+    {
+      "id": "227",
+      "title": "Gemini SDK API-Version Hardening",
+      "path": "docs/stories/story-227-gemini-sdk-api-version-hardening.md",
+      "status": "Done",
+      "priority": "Medium",
+      "ideal_refs": [
+        "Requirement #3 (Extract), Requirement #4 (Illustrate), Traceability is the product, Fidelity to the source"
+      ],
+      "spec_refs": [
+        "spec:2",
+        "spec:2.1",
+        "spec:4",
+        "spec:4.1"
+      ],
+      "decision_refs": [
+        "Conductor Scout 027 (`/Users/cam/Documents/Projects/conductor/docs/scout/scout-027-gemini-sdk-v1-default-shift.md`), Google Gemini API version docs (`https://ai.google.dev/gemini-api/docs/api-versions`), Google Gemini libraries docs (`https://ai.google.dev/gemini-api/docs/libraries`), `docs/ideal.md`, `docs/spec.md`, `docs/methodology/state.yaml`, `docs/methodology/graph.json`, `docs/evals/registry.yaml`, and no narrower repo-local ADR found for Gemini SDK API-version policy"
+      ],
+      "adr_ids": [],
+      "depends_on": [],
+      "category_refs": [
+        "spec:2",
+        "spec:4"
+      ],
+      "compromise_refs": [
+        "C1",
+        "C4"
+      ],
+      "input_coverage_refs": [
+        "handwritten-notes",
+        "image-directory-scans"
+      ],
+      "architecture_domains": [
+        "document_structure_and_consistency",
+        "ocr_and_extraction"
+      ],
+      "roadmap_tags": [
+        "campaign:maintained-intake-honesty"
+      ],
+      "blocker_summary": "",
+      "blocker_evidence": "",
+      "unblock_condition": "",
+      "last_work_log_entry": {
+        "timestamp": "20260430-1155",
+        "date": "2026-04-30",
+        "summary": "`/mark-story-done 227`: rechecked the completed Story 227"
+      },
+      "legacy_build_map_refs": "",
+      "metadata_source": "frontmatter",
+      "missing_frontmatter_keys": [],
+      "actionability": {
+        "source_kind": "story",
+        "source_id": "227",
+        "source_path": "docs/stories/story-227-gemini-sdk-api-version-hardening.md",
+        "recommended_now": false,
+        "posture": "completed",
+        "why_now": "`/mark-story-done 227`: rechecked the completed Story 227",
+        "last_relevant_action": {
+          "date": "2026-04-30",
+          "source_type": "story-work-log",
+          "source": "docs/stories/story-227-gemini-sdk-api-version-hardening.md",
+          "summary": "`/mark-story-done 227`: rechecked the completed Story 227"
         }
       }
     }

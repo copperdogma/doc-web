@@ -43,8 +43,12 @@ Only answer false if the page is PURELY typeset text with no visual elements at 
 def run_gate(image_dir, model, prompt, label):
     from google.genai import Client
     from doc_web.env import get_doc_web_api_key
+    from modules.common.google_client import get_gemini_client_http_options
 
-    client = Client(api_key=get_doc_web_api_key("gemini"))
+    client = Client(
+        api_key=get_doc_web_api_key("gemini"),
+        http_options=get_gemini_client_http_options(),
+    )
 
     flagged = set()
     total_in = 0
