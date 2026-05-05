@@ -143,7 +143,8 @@
           "222",
           "223",
           "224",
-          "226"
+          "226",
+          "228"
         ],
         "adr_ids": [
           "ADR-001",
@@ -284,7 +285,8 @@
           "213",
           "219",
           "220",
-          "226"
+          "226",
+          "228"
         ],
         "adr_ids": [
           "ADR-002",
@@ -428,7 +430,8 @@
           "222",
           "223",
           "224",
-          "226"
+          "226",
+          "228"
         ],
         "adr_ids": [
           "ADR-002",
@@ -494,7 +497,8 @@
           "222",
           "223",
           "224",
-          "226"
+          "226",
+          "228"
         ],
         "adr_ids": [
           "ADR-002",
@@ -12562,6 +12566,81 @@
           "source_type": "story-work-log",
           "source": "docs/stories/story-227-gemini-sdk-api-version-hardening.md",
           "summary": "`/mark-story-done 227`: rechecked the completed Story 227"
+        }
+      }
+    },
+    {
+      "id": "228",
+      "title": "Fast `doc-web` Preview Bundle Mode for Dossier and Storybook",
+      "path": "docs/stories/story-228-fast-doc-web-preview-bundle-mode.md",
+      "status": "Done",
+      "priority": "High",
+      "ideal_refs": [
+        "Requirement #1 (Detect), Requirement #5 (Structure), Requirement #6 (Validate), Requirement #7 (Export), Traceability is the Product, Dossier-ready output"
+      ],
+      "spec_refs": [
+        "spec:1",
+        "spec:3",
+        "spec:6",
+        "spec:7"
+      ],
+      "decision_refs": [
+        "`docs/decisions/adr-002-doc-web-runtime-boundary/adr.md`, `docs/doc-web-bundle-contract.md`, `docs/dossier-doc-web-handoff.md`, `docs/notes/standalone-dossier-intake-runtime-plan.md`, `/Users/cam/.codex/worktrees/759a/dossier/docs/stories/artifacts/story-143-doc-web-preview-requirements.md`",
+        "ADR-002"
+      ],
+      "adr_ids": [
+        "ADR-002"
+      ],
+      "depends_on": [
+        "152",
+        "154",
+        "156"
+      ],
+      "category_refs": [
+        "spec:1",
+        "spec:3",
+        "spec:6",
+        "spec:7"
+      ],
+      "compromise_refs": [],
+      "input_coverage_refs": [
+        "born-digital-pdf",
+        "docx",
+        "pptx",
+        "scanned-pdf-prose",
+        "xlsx"
+      ],
+      "architecture_domains": [
+        "doc_web_runtime"
+      ],
+      "roadmap_tags": [
+        "dossier-preview",
+        "preview-bundle",
+        "storybook-preview"
+      ],
+      "blocker_summary": "",
+      "blocker_evidence": "",
+      "unblock_condition": "",
+      "last_work_log_entry": {
+        "timestamp": "20260504-2233",
+        "date": "2026-05-04",
+        "summary": "`/mark-story-done` close-out: rechecked Story 228 workflow gates, acceptance criteria, tasks, tenet checklist, dependency status, ADR-002 alignment, docs updates, and validation evidence. Dependencies Story 152, Story..."
+      },
+      "legacy_build_map_refs": "",
+      "metadata_source": "frontmatter",
+      "missing_frontmatter_keys": [],
+      "actionability": {
+        "source_kind": "story",
+        "source_id": "228",
+        "source_path": "docs/stories/story-228-fast-doc-web-preview-bundle-mode.md",
+        "recommended_now": false,
+        "posture": "completed",
+        "why_now": "`/mark-story-done` close-out: rechecked Story 228 workflow gates, acceptance criteria, tasks, tenet checklist, dependency status, ADR-002 alignment, docs updates, and validation evidence. Dependencies Story 152, Story...",
+        "last_relevant_action": {
+          "date": "2026-05-04",
+          "source_type": "story-work-log",
+          "source": "docs/stories/story-228-fast-doc-web-preview-bundle-mode.md",
+          "summary": "`/mark-story-done` close-out: rechecked Story 228 workflow gates, acceptance criteria, tasks, tenet checklist, dependency status, ADR-002 alignment, docs updates, and validation evidence. Dependencies Story 152, Story..."
         }
       }
     }

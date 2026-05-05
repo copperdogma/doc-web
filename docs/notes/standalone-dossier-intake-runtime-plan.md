@@ -21,6 +21,28 @@ What remains is primarily downstream adoption work inside Dossier: pin
 management, install/check-upstream/bump scripts, and the `doc_web_bundle_v1`
 adapter.
 
+## Preview Extension After Story 228
+
+The downstream preview requirement adds a new runtime surface without changing
+the accepted boundary:
+
+- `doc-web preview --input ... --out-dir ...` emits a non-final bundle rooted
+  like the normal `doc-web` contract
+- preview sidecars are explicit: `preview_metadata.json`,
+  `preview_status.jsonl`, `preview_to_full_selectors.json`, and
+  `cache/cache_identity.json` / `cache/parsed_units.jsonl`
+- born-digital PDF preview uses a fast text-layer sample
+- scan-heavy PDF preview returns structural facts and deferred OCR warnings
+  instead of fake text
+- image-directory preview runs bounded Tesseract OCR on a small sample and
+  emits structural facts plus a non-final `content_hint` when usable text is
+  found; otherwise it returns deferred OCR warnings instead of fake text
+- content hints use `auto` mode: a bounded cheap-model summary over sampled
+  text when `DOC_WEB_OPENAI_API_KEY` is present, with deterministic fallback and
+  explicit cache identity
+- DOCX preview uses a lightweight pageless sampler for the latency-bound path;
+  the full maintained DOCX lane still owns richer Unstructured processing
+
 ## Accepted Boundary
 
 - `codex-forge` remains the ingestion R&D lab.

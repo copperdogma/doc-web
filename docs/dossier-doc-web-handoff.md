@@ -101,6 +101,8 @@ The payload includes:
 - `requires_python`
 - `supported_bundle_schema_versions`
 - `schema_fingerprint`
+- `supported_preview_schema_versions`
+- `preview_contract_fingerprint`
 - `compatibility_policy`
 
 Compatibility policy:
@@ -109,9 +111,49 @@ Compatibility policy:
   stand-alone schema compatibility key.
 - Treat a changed `schema_fingerprint` or changed supported schema version as an
   upgrade block until the Dossier adapter explicitly accepts the change.
+- Treat a changed `preview_contract_fingerprint` or changed supported preview
+  schema version as an upgrade block before using preview mode.
 - Treat a changed `contract_version` as a broader boundary change, but do not
   treat an unchanged `contract_version` as proof that the manifest/provenance
   contract is unchanged.
+
+## Preview Bundle Consumption
+
+For real-time upload preview, Dossier and Storybook should call:
+
+```bash
+doc-web preview --input <raw-document> --out-dir <preview-bundle-dir> --json
+```
+
+The preview output is still a `doc-web` bundle. Dossier should validate the
+normal bundle files plus the preview sidecars:
+
+- `manifest.json` as `doc_web_bundle_manifest_v1`
+- `provenance/blocks.jsonl` as `doc_web_provenance_block_v1`
+- `preview_metadata.json` as `doc_web_preview_metadata_v1`
+- `preview_to_full_selectors.json` as `doc_web_preview_selector_map_v1`
+- `cache/cache_identity.json` as the reuse gate
+- `cache/parsed_units.jsonl` as the reusable parsed-text cache payload
+
+Preview metadata tells the consumer whether coverage is `complete`, `sampled`,
+`partial`, or `deferred`. It may also include a non-final `content_hint` with a
+title guess, document-kind hint, high-level summary, evidence snippets, and
+quality warnings. Dossier may show or summarize preview text, but it must not
+treat preview text or `content_hint` as extracted graph facts and must not infer
+OCR quality or page counts beyond the emitted metadata. Image-directory previews
+use bounded preview OCR when available; otherwise they should be shown as
+OCR-deferred until a full `doc-web` processing job emits real text.
+When `DOC_WEB_OPENAI_API_KEY` is configured, `doc-web` may use a bounded
+cheap-model pass to turn the sampled preview text into one direct summary
+sentence. Dossier should display the emitted `status`, `basis`, `warnings`, and
+cache identity with the hint rather than re-summarizing raw files itself.
+
+Dossier remains responsible for preserving the preview bundle and later choosing
+whether to run a full `doc-web` processing job. A compatible full job may reuse
+`cache/parsed_units.jsonl` only after matching `cache/cache_identity.json`. When
+full processing regenerates content, Dossier should use
+`preview_to_full_selectors.json` or preserved `entry_id` / `block_id` values to
+keep citations stable.
 
 ## Recommended Pinned Consumer Shape
 

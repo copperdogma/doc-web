@@ -23,6 +23,9 @@ closed in this more precise shape:
   `configs/recipes/doc-web-fixture-bundle-smoke.yaml`
 - clean-venv contract and `.[driver]` smoke tests exist in
   `tests/test_doc_web_cli_contract.py`
+- the runtime exposes a latency-bound preview mode via `doc-web preview` for
+  raw document upload flows, with normal bundle files plus preview metadata,
+  status, cache identity, and selector-continuity sidecars
 
 What remains is downstream adoption work inside Dossier, not readiness work in
 this repo.
@@ -82,8 +85,31 @@ Evidence:
 Result:
 
 - Dossier can cheaply inspect `runtime_version`, `requires_python`,
-  supported schema versions, `schema_fingerprint`, and the published
-  compatibility policy before accepting a bump
+  supported schema versions, `schema_fingerprint`,
+  `preview_contract_fingerprint`, and the published compatibility policy before
+  accepting a bump
+
+### Runtime preview surface
+
+Evidence:
+
+- `doc_web/preview.py`
+- `doc_web/cli.py`
+- `tests/test_doc_web_preview.py`
+
+Result:
+
+- `doc-web preview --input ... --out-dir ... --json` creates a non-final
+  bundle-shaped preview output for text-layer PDFs, DOCX files, and image
+  directories
+- scan-heavy PDFs return structural facts and `deferred` coverage instead of
+  pretending OCR text is available; image directories run bounded preview OCR
+  and emit a non-final `content_hint` when the OCR sample is usable
+- content hints can use a bounded cheap-model pass over sampled text when the
+  repo-local OpenAI key is configured, with deterministic fallback and cache-key
+  provenance when the model is unavailable
+- preview metadata and selector mapping validate as
+  `doc_web_preview_metadata_v1` and `doc_web_preview_selector_map_v1`
 
 ### Live bundle contract emission from current repo code
 
@@ -135,6 +161,9 @@ These are downstream implementation tasks, not reasons to delay presenting
 - enforce pinned-by-default with explicit local overrides only
 - implement the `doc_web_bundle_v1` intake adapter and `semantic_html`
   stop-point
+- add Dossier/Storybook preview ingestion around `preview_metadata.json`,
+  `preview_status.jsonl`, `preview_to_full_selectors.json`,
+  `cache/cache_identity.json`, and `cache/parsed_units.jsonl`
 - export a pinned source snapshot for Docker/deploy builds
 
 ## Later / Non-Blocking Improvements

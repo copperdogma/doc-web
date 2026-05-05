@@ -83,13 +83,49 @@ def test_runtime_contract_payload_has_required_fields():
         "provenance": "doc_web_provenance_block_v1",
     }
     assert payload["schema_fingerprint"].startswith("sha256:")
+    assert payload["preview_contract_fingerprint"].startswith("sha256:")
+    assert payload["supported_preview_schema_versions"] == {
+        "metadata": "doc_web_preview_metadata_v1",
+        "selector_map": "doc_web_preview_selector_map_v1",
+    }
     assert payload["compatibility_policy"] == {
         "contract_version_role": "coarse-runtime-boundary-family",
         "consumer_gate_fields": [
             "schema_fingerprint",
             "supported_bundle_schema_versions",
+            "preview_contract_fingerprint",
+            "supported_preview_schema_versions",
         ],
     }
+    assert payload["preview_layout"] == {
+        "metadata_path": "preview_metadata.json",
+        "status_path": "preview_status.jsonl",
+        "selector_map_path": "preview_to_full_selectors.json",
+        "cache_identity_path": "cache/cache_identity.json",
+        "parsed_units_path": "cache/parsed_units.jsonl",
+    }
+    assert payload["preview_status_stages"] == [
+        "accepted",
+        "preparing_pages",
+        "detecting_text_or_ocr_need",
+        "reading_sample",
+        "building_preview_html",
+        "preview_ready",
+        "continuing_full_processing",
+        "ready",
+        "failed",
+    ]
+    assert payload["preview_coverage_states"] == [
+        "complete",
+        "sampled",
+        "partial",
+        "deferred",
+    ]
+    assert payload["preview_content_hint_modes"] == [
+        "auto",
+        "ai",
+        "deterministic",
+    ]
 
 
 def test_doc_web_module_cli_emits_machine_readable_contract_json():
@@ -104,7 +140,6 @@ def test_doc_web_module_cli_emits_machine_readable_contract_json():
     assert proc.returncode == 0, proc.stderr
     payload = json.loads(proc.stdout)
     assert payload == build_runtime_contract()
-
 
 def test_pip_install_exposes_doc_web_console_script(tmp_path: Path):
     venv_dir = tmp_path / "venv"
@@ -138,6 +173,31 @@ def test_pip_install_exposes_doc_web_console_script(tmp_path: Path):
     assert proc.returncode == 0, proc.stderr
     payload = json.loads(proc.stdout)
     assert payload == build_runtime_contract()
+
+    preview_dir = tmp_path / "installed-preview"
+    preview = subprocess.run(
+        [
+            str(cli_bin),
+            "preview",
+            "--input",
+            str(REPO_ROOT / "testdata" / "flat-born-digital-mini.pdf"),
+            "--out-dir",
+            str(preview_dir),
+            "--content-hint-mode",
+            "deterministic",
+            "--json",
+        ],
+        cwd=str(tmp_path),
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE,
+        text=True,
+    )
+
+    assert preview.returncode == 0, preview.stderr
+    preview_payload = json.loads(preview.stdout)
+    assert preview_payload["coverage_state"] == "complete"
+    assert (preview_dir / "manifest.json").exists()
+    assert (preview_dir / "preview_metadata.json").exists()
 
 
 def test_driver_extra_supports_repo_owned_doc_web_fixture_smoke(tmp_path: Path):

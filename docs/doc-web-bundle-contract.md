@@ -34,6 +34,45 @@ Explicitly out of scope for v1:
 - sentence-level or token-level provenance by default
 - codex-forge-internal planning metadata as part of the public runtime boundary
 
+## Preview Mode Extension
+
+Preview mode is a latency-bound extension of this bundle model, not a separate
+JSON-only contract. A preview bundle still writes the normal required files:
+
+- `manifest.json`
+- `index.html`
+- semantic HTML entries at bundle root
+- `provenance/blocks.jsonl`
+
+Preview mode adds these sidecars:
+
+- `preview_metadata.json` (`doc_web_preview_metadata_v1`)
+- `preview_status.jsonl`
+- `preview_to_full_selectors.json` (`doc_web_preview_selector_map_v1`)
+- `cache/cache_identity.json`
+- `cache/parsed_units.jsonl`
+
+Rules:
+
+- preview HTML is explicitly non-final
+- `coverage_state` must be one of `complete`, `sampled`, `partial`, or `deferred`
+- scan-heavy inputs and image directories with no fast text layer should report
+  deferred text/OCR need instead of inventing preview text
+- preview source identity includes source SHA-256, `doc-web` version, parser
+  settings, runtime options, and preview contract fingerprint
+- `preview_metadata.json` may include a non-final `content_hint` with a title
+  guess, document-kind hint, high-level summary, evidence snippets, quality
+  status, and warnings; consumers must not treat it as extracted graph facts
+- content hints may be produced by a bounded cheap-model pass over sampled text
+  (`auto` / `ai`) or by deterministic fallback; `cache/cache_identity.json`
+  records the mode, model, prompt version, sample hash, and cache key
+- `cache/parsed_units.jsonl` is the reusable parsed-text cache payload for
+  later compatible full processing jobs; consumers must gate reuse on
+  `cache/cache_identity.json`
+- preview/full selector continuity is represented by preserved block IDs when
+  possible and by `preview_to_full_selectors.json` when a later full run needs
+  mapping
+
 ## Compatibility Signaling
 
 The bundle/provenance contract is exposed to downstream consumers through
@@ -45,6 +84,10 @@ Compatibility policy for that payload:
   v1.
 - `supported_bundle_schema_versions` and `schema_fingerprint` are the
   consumer-facing compatibility gates for the manifest/provenance contract.
+- `supported_preview_schema_versions` and `preview_contract_fingerprint` are the
+  consumer-facing gates for preview metadata and selector continuity.
+- `preview_status_stages` and `preview_coverage_states` enumerate the supported
+  operator-facing preview vocabulary.
 - A stable `contract_version` does not guarantee a stable schema fingerprint.
   Downstream adopters must treat fingerprint or supported-schema drift as a
   review-and-accept boundary even when `contract_version` is unchanged.

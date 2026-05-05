@@ -649,6 +649,236 @@ class DocWebProvenanceBlock(BaseModel):
         return self
 
 
+class DocWebPreviewUnit(BaseModel):
+    """Page, record, entry, or document unit represented in preview coverage."""
+
+    kind: Literal["page", "record", "entry", "document"]
+    identifier: str
+    included: bool
+    reason: Optional[str] = None
+
+
+class DocWebPreviewStatusEvent(BaseModel):
+    """Progress event emitted by the synchronous preview path."""
+
+    stage: Literal[
+        "accepted",
+        "preparing_pages",
+        "detecting_text_or_ocr_need",
+        "reading_sample",
+        "building_preview_html",
+        "preview_ready",
+        "continuing_full_processing",
+        "ready",
+        "failed",
+    ]
+    elapsed_ms: float
+    message: str
+    artifact: Optional[str] = None
+    detail: Dict[str, Any] = Field(default_factory=dict)
+
+    @field_validator("elapsed_ms")
+    @classmethod
+    def validate_elapsed_ms(cls, value: float) -> float:
+        if value < 0:
+            raise ValueError("elapsed_ms must be >= 0")
+        return value
+
+
+class DocWebPreviewContentHint(BaseModel):
+    """Non-final high-level content hint derived from preview metadata/text."""
+
+    status: Literal["available", "deferred", "low_quality"]
+    title_guess: Optional[str] = None
+    document_kind_hint: str = "unknown"
+    high_level_summary: str
+    basis: List[str] = Field(default_factory=list)
+    evidence: List[str] = Field(default_factory=list)
+    warnings: List[str] = Field(default_factory=list)
+    text_quality_score: Optional[float] = None
+    coverage_state: Optional[str] = None
+    summary_provider: Optional[str] = None
+    summary_model: Optional[str] = None
+    summary_ms: Optional[float] = None
+    summary_prompt_version: Optional[str] = None
+    sample_sha256: Optional[str] = None
+    cache_key: Optional[str] = None
+    fallback_reason: Optional[str] = None
+
+    @field_validator("text_quality_score")
+    @classmethod
+    def validate_text_quality_score(cls, value: Optional[float]) -> Optional[float]:
+        if value is None:
+            return value
+        if not 0.0 <= value <= 1.0:
+            raise ValueError("text_quality_score must be between 0.0 and 1.0")
+        return value
+
+    @field_validator("summary_ms")
+    @classmethod
+    def validate_summary_ms(cls, value: Optional[float]) -> Optional[float]:
+        if value is None:
+            return value
+        if value < 0:
+            raise ValueError("summary_ms must be >= 0")
+        return value
+
+    @field_validator("sample_sha256")
+    @classmethod
+    def validate_sample_sha256(cls, value: Optional[str]) -> Optional[str]:
+        if value is None:
+            return value
+        if not re.fullmatch(r"[0-9a-f]{64}", value):
+            raise ValueError("sample_sha256 must be a lowercase SHA-256 hex digest")
+        return value
+
+    @field_validator("cache_key")
+    @classmethod
+    def validate_cache_key(cls, value: Optional[str]) -> Optional[str]:
+        if value is None:
+            return value
+        if not value.startswith("sha256:"):
+            raise ValueError("cache_key must start with sha256:")
+        return value
+
+
+class DocWebPreviewMetadata(BaseModel):
+    """Preview-mode metadata sidecar for latency-bound `doc-web` bundles."""
+
+    schema_version: str = "doc_web_preview_metadata_v1"
+    module_id: Optional[str] = None
+    run_id: Optional[str] = None
+    created_at: Optional[str] = None
+
+    preview_mode: Literal["preview"] = "preview"
+    status: Literal["preview_ready", "failed"]
+    coverage_state: Literal["complete", "sampled", "partial", "deferred"]
+    source_artifact: str
+    source_sha256: str
+    doc_web_version: str
+    preview_contract_fingerprint: str
+    parser_settings: Dict[str, Any] = Field(default_factory=dict)
+    runtime_options: Dict[str, Any] = Field(default_factory=dict)
+    structural_facts: Dict[str, Any] = Field(default_factory=dict)
+    content_hint: Optional[DocWebPreviewContentHint] = None
+    included_units: List[DocWebPreviewUnit] = Field(default_factory=list)
+    skipped_units: List[DocWebPreviewUnit] = Field(default_factory=list)
+    warnings: List[str] = Field(default_factory=list)
+    unsupported_inferences: List[str] = Field(default_factory=list)
+    status_events: List[DocWebPreviewStatusEvent]
+    timing_ms: Dict[str, float] = Field(default_factory=dict)
+    cache_identity: Dict[str, Any] = Field(default_factory=dict)
+    artifacts: Dict[str, str] = Field(default_factory=dict)
+
+    @field_validator("source_sha256")
+    @classmethod
+    def validate_source_sha256(cls, value: str) -> str:
+        if not re.fullmatch(r"[0-9a-f]{64}", value):
+            raise ValueError("source_sha256 must be a lowercase SHA-256 hex digest")
+        return value
+
+    @field_validator("preview_contract_fingerprint")
+    @classmethod
+    def validate_preview_contract_fingerprint(cls, value: str) -> str:
+        if not value.startswith("sha256:"):
+            raise ValueError("preview_contract_fingerprint must start with sha256:")
+        return value
+
+    @field_validator("timing_ms")
+    @classmethod
+    def validate_timing_ms(cls, value: Dict[str, float]) -> Dict[str, float]:
+        for key, elapsed in value.items():
+            if elapsed < 0:
+                raise ValueError(f"timing_ms.{key} must be >= 0")
+        return value
+
+    @model_validator(mode="after")
+    def validate_status_events(self):
+        if not self.status_events:
+            raise ValueError("status_events cannot be empty")
+        if self.status_events[0].stage != "accepted":
+            raise ValueError("first preview status event must be accepted")
+        if self.status == "failed" and self.status_events[-1].stage != "failed":
+            raise ValueError("failed previews must end with a failed status event")
+        if (
+            self.status == "preview_ready"
+            and self.status_events[-1].stage != "preview_ready"
+        ):
+            raise ValueError(
+                "ready previews must end with a preview_ready status event"
+            )
+        return self
+
+
+class DocWebPreviewSelectorMapping(BaseModel):
+    """Selector continuity row from a preview block to a full-output selector."""
+
+    preview_entry_id: str
+    preview_block_id: Optional[str] = None
+    full_entry_id: Optional[str] = None
+    full_block_id: Optional[str] = None
+    mapping_kind: Literal["preserved", "mapped", "deferred"]
+    source_element_ids: List[str] = Field(default_factory=list)
+    reason: Optional[str] = None
+
+    @field_validator("preview_entry_id", "full_entry_id")
+    @classmethod
+    def validate_optional_entry_id(cls, value: Optional[str]) -> Optional[str]:
+        if value is None:
+            return value
+        return _validate_doc_web_entry_id(value, "entry_id")
+
+    @field_validator("preview_block_id", "full_block_id")
+    @classmethod
+    def validate_optional_block_id(cls, value: Optional[str]) -> Optional[str]:
+        if value is None:
+            return value
+        if not _DOC_WEB_BLOCK_ID_RE.fullmatch(value):
+            raise ValueError("block ids must match blk-<entry-id>-<4-digit ordinal>")
+        return value
+
+    @model_validator(mode="after")
+    def validate_mapping(self):
+        if self.mapping_kind == "preserved":
+            if self.preview_block_id != self.full_block_id:
+                raise ValueError("preserved mappings must keep identical block ids")
+            if self.preview_entry_id != self.full_entry_id:
+                raise ValueError("preserved mappings must keep identical entry ids")
+        if self.mapping_kind == "mapped" and not self.full_entry_id:
+            raise ValueError("mapped selector rows require full_entry_id")
+        if self.mapping_kind == "deferred" and not self.reason:
+            raise ValueError("deferred selector rows require a reason")
+        return self
+
+
+class DocWebPreviewSelectorMap(BaseModel):
+    """Machine-readable selector continuity sidecar for preview bundles."""
+
+    schema_version: str = "doc_web_preview_selector_map_v1"
+    module_id: Optional[str] = None
+    run_id: Optional[str] = None
+    created_at: Optional[str] = None
+
+    source_artifact: str
+    source_sha256: str
+    preview_contract_fingerprint: str
+    mappings: List[DocWebPreviewSelectorMapping] = Field(default_factory=list)
+
+    @field_validator("source_sha256")
+    @classmethod
+    def validate_source_sha256(cls, value: str) -> str:
+        if not re.fullmatch(r"[0-9a-f]{64}", value):
+            raise ValueError("source_sha256 must be a lowercase SHA-256 hex digest")
+        return value
+
+    @field_validator("preview_contract_fingerprint")
+    @classmethod
+    def validate_preview_contract_fingerprint(cls, value: str) -> str:
+        if not value.startswith("sha256:"):
+            raise ValueError("preview_contract_fingerprint must start with sha256:")
+        return value
+
+
 class ImageCrop(BaseModel):
     schema_version: str = "image_crop_v1"
     module_id: Optional[str] = None
@@ -997,7 +1227,9 @@ class ArchiveMemberManifest(BaseModel):
     run_id: Optional[str] = None
     created_at: Optional[str] = None
 
-    _member_path_relative = field_validator("member_path")(_validate_archive_member_path)
+    _member_path_relative = field_validator("member_path")(
+        _validate_archive_member_path
+    )
 
 
 class ArchiveMemberRoute(BaseModel):
@@ -1031,7 +1263,9 @@ class ArchiveMemberRoute(BaseModel):
     run_id: Optional[str] = None
     created_at: Optional[str] = None
 
-    _member_path_relative = field_validator("member_path")(_validate_archive_member_path)
+    _member_path_relative = field_validator("member_path")(
+        _validate_archive_member_path
+    )
 
 
 # ────────────────────────────────────────────────────────────────

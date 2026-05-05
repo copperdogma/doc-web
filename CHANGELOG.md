@@ -1,3 +1,16 @@
+## [2026-05-04-01] - Add fast doc-web preview bundle mode (Story 228)
+
+### Added
+- Added `doc-web preview` for latency-bound, non-final preview bundles with normal bundle files, preview metadata, progress status, cache identity, and preview-to-full selector mapping.
+- Added bounded preview support for text-layer PDFs, scan-heavy/deferred PDFs, DOCX, and image directories with fast OCR sampling and high-level content hints.
+
+### Changed
+- Extended the runtime contract, schemas, validator, Dossier handoff docs, README, and runbook with explicit preview schema versions, status vocabulary, coverage states, and consumer guidance.
+
+### Fixed
+- Fixed preview timeout handling so tiny explicit timeouts emit a failed status artifact and JSON error instead of a traceback.
+- Fixed the installable preview path so it no longer depends on repo-local `modules.common` imports.
+
 ## [2026-04-30-02] - Land graphics-heavy rulebook semantic HTML path (Story 226)
 
 ### Added

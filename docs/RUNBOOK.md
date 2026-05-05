@@ -61,6 +61,62 @@ For the maintained DOCX lane, add the explicit DOCX extra:
 python -m pip install '.[driver,docx]'
 ```
 
+### Runtime Preview
+
+Use preview mode when a downstream consumer needs a fast, explicitly non-final
+HTML/provenance artifact for an uploaded raw PDF, DOCX, or image directory:
+
+```bash
+python -m pip install .
+doc-web preview \
+  --input testdata/flat-born-digital-mini.pdf \
+  --out-dir output/runs/preview-flat-born-digital/output/html \
+  --json
+```
+
+Preview mode writes a normal bundle root plus preview sidecars:
+
+- `manifest.json`
+- `index.html`
+- `page-*.html` or `chapter-*.html`
+- `provenance/blocks.jsonl`
+- `preview_metadata.json`
+- `preview_status.jsonl`
+- `preview_to_full_selectors.json`
+- `cache/cache_identity.json`
+- `cache/parsed_units.jsonl`
+
+Validate preview artifacts with:
+
+```bash
+python validate_artifact.py --schema doc_web_bundle_manifest_v1 \
+  --file output/runs/preview-flat-born-digital/output/html/manifest.json
+python validate_artifact.py --schema doc_web_provenance_block_v1 \
+  --file output/runs/preview-flat-born-digital/output/html/provenance/blocks.jsonl
+python validate_artifact.py --schema doc_web_preview_metadata_v1 \
+  --file output/runs/preview-flat-born-digital/output/html/preview_metadata.json
+python validate_artifact.py --schema doc_web_preview_selector_map_v1 \
+  --file output/runs/preview-flat-born-digital/output/html/preview_to_full_selectors.json
+```
+
+The preview metadata `coverage_state` is authoritative. `deferred` means
+`doc-web` found structural facts but did not produce source text inside the
+preview budget. Dossier and Storybook may show this state, but should not claim
+OCR quality or extracted facts beyond the emitted metadata. A later full
+processing job may reuse `cache/parsed_units.jsonl` only when
+`cache/cache_identity.json` matches the source and runtime settings.
+For image directories, preview mode counts the image inventory, hashes the
+directory source, and runs bounded Tesseract OCR over a small sample to populate
+non-final preview text and `content_hint` when possible. If the OCR sample
+cannot produce usable text inside the preview budget, the preview remains
+honestly `deferred` and leaves `provenance/blocks.jsonl` empty until full OCR
+runs.
+Content hints default to `--content-hint-mode auto`: when
+`DOC_WEB_OPENAI_API_KEY` is available, `doc-web` asks a bounded cheap OpenAI
+model for one direct summary sentence over the already-sampled text. If the key
+is absent, the call times out, or the model returns unusable JSON, preview keeps
+the bundle valid and records the deterministic fallback in `content_hint`.
+
 For the maintained XLSX lane, add the explicit XLSX extra:
 
 ```bash

@@ -25,6 +25,9 @@ AI-first runtime for turning scanned books, PDFs, office documents, plain-text e
 python -m pip install .
 doc-web contract --json
 
+# Fast non-final preview bundle for Dossier / Storybook upload flows
+doc-web preview --input testdata/flat-born-digital-mini.pdf --out-dir /tmp/doc-web-preview --json
+
 # Repo-owned driver smoke lanes from this checkout
 python -m pip install '.[driver]'
 
@@ -50,12 +53,30 @@ The contract preflight returns:
 - required Python version
 - supported bundle schema versions
 - a schema fingerprint Dossier can use to block incompatible upgrades
+- supported preview schema versions
+- a preview contract fingerprint Dossier can use to block incompatible preview upgrades
 - explicit compatibility-policy guidance for interpreting those fields
 
 The `driver` extra keeps the base package small while making the repo-owned
 smoke lanes installable. It covers the maintained proof lanes in this README
 and the runbook that need YAML parsing plus HTML bundle building, without
 claiming that the base package alone can run `driver.py`.
+
+The base package also includes the lightweight preview readers (`pypdf` and
+`python-docx`) because preview is part of the supported downstream runtime
+surface. Preview mode accepts PDFs, DOCX files, and image directories. It emits
+a normal bundle plus `preview_metadata.json`, `preview_status.jsonl`,
+`preview_to_full_selectors.json`, and `cache/cache_identity.json` /
+`cache/parsed_units.jsonl`; the metadata marks output as non-final and records
+whether coverage is complete, sampled, partial, or deferred. Image directories
+run a bounded Tesseract OCR pass over a small sample so Storybook/Dossier can
+show a non-final high-level `content_hint`; when OCR is unavailable or too weak,
+preview reports deferred OCR status without inventing text.
+By default, preview uses `--content-hint-mode auto`: if
+`DOC_WEB_OPENAI_API_KEY` is configured, a bounded cheap-model pass summarizes
+the sampled text with `gpt-4.1-nano`; otherwise the deterministic fallback
+emits a simpler title/type hint. The summary cache key records the source hash,
+sample hash, prompt version, model, and mode.
 
 The `docx`, `xlsx`, and `pptx` extras add the narrow office-document partition
 dependencies needed by the maintained office-native recipes without turning the
@@ -96,6 +117,12 @@ Recommended first-pass adoption loop:
 # Cheap compatibility preflight
 python -m pip install .
 doc-web contract --json
+
+# Fast non-final preview bundle
+doc-web preview \
+  --input testdata/flat-born-digital-mini.pdf \
+  --out-dir output/runs/preview-flat-born-digital/output/html \
+  --json
 
 # Repo-owned smoke lane from this checkout
 python -m pip install '.[driver]'

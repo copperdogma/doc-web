@@ -37,6 +37,8 @@ from schemas import (
     ElementCore,
     DocWebBundleManifest,
     DocWebProvenanceBlock,
+    DocWebPreviewMetadata,
+    DocWebPreviewSelectorMap,
 )
 
 
@@ -72,6 +74,8 @@ SCHEMA_MAP: Dict[str, Type[BaseModel]] = {
     "element_core_v1": ElementCore,
     "doc_web_bundle_manifest_v1": DocWebBundleManifest,
     "doc_web_provenance_block_v1": DocWebProvenanceBlock,
+    "doc_web_preview_metadata_v1": DocWebPreviewMetadata,
+    "doc_web_preview_selector_map_v1": DocWebPreviewSelectorMap,
 }
 
 
@@ -91,7 +95,9 @@ def _iter_artifact_rows(path: str):
 
 
 def main():
-    parser = argparse.ArgumentParser(description="Validate artifact JSON or JSONL against schema.")
+    parser = argparse.ArgumentParser(
+        description="Validate artifact JSON or JSONL against schema."
+    )
     parser.add_argument("--schema", required=True, choices=SCHEMA_MAP.keys())
     parser.add_argument("--file", required=True, help="Path to JSON or JSONL artifact")
     args = parser.parse_args()
