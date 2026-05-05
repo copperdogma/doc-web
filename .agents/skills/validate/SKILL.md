@@ -264,6 +264,17 @@ Fresh-verification rule:
   freshly verified instead of implying current confidence
 
 
+
+## Reviewed Learning Hook
+
+Before final validation handoff, run or explicitly consider `/learning-review`
+only when validation found material issues, repeated closeout friction, a
+surprising pass/fail result, a missing guardrail, or an explicit user correction
+that appears reusable. Skip it for ordinary clean validation. If it returns
+`RESULT: candidate-warranted`, report the finding or draft it through
+`/learning-candidate`; do not promote or mutate live workflow surfaces during
+ordinary validation closeout.
+
 ## ADDITIONAL NOTES FROM USER
 (there may be none)
 
