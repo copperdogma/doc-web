@@ -1,3 +1,13 @@
+## [2026-05-06-01] - Record GPT-5.5 Instant eval challenger
+
+### Added
+- Added a bounded promptfoo Responses provider for the `chat-latest` alias so model-refresh runs can test GPT-5.5 Instant with image inputs without changing maintained provider lists.
+- Added a tracked GPT-5.5 Instant challenger attempt covering `image-crop-extraction`, the page-level crop deletion gate, and the cheap content-hint preview seam.
+
+### Changed
+- Changed the eval registry, crop/preview story logs, generated methodology graph, and inbox to close the GPT-5.5 Instant item with a no-adoption decision.
+- Changed the `/improve-eval` skill so future eval handoffs end with an explicit adoption recommendation and yes-ready closeout step instead of verification status.
+
 ## [2026-05-04-01] - Add fast doc-web preview bundle mode (Story 228)
 
 ### Added

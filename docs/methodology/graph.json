@@ -1100,21 +1100,22 @@
         ],
         "actionability": {
           "source_kind": "eval",
-          "source_id": "single-model-crop-detection",
+          "source_id": "image-crop-extraction",
           "source_path": "docs/evals/registry.yaml",
           "recommended_now": false,
           "posture": "wait-for-trigger",
           "retry_trigger_status": "waiting",
           "retry_when": [
+            "golden-fix",
             "new-subject-model"
           ],
-          "why_now": "Next-gen Gemini or GPT may achieve single-stage quality",
+          "why_now": "Gemini 4 or equivalent may push past 0.95 target Golden references cover limited page types; add table-heavy pages",
           "last_relevant_action": {
-            "date": "2026-04-24",
+            "date": "2026-05-06",
             "source_type": "eval-attempt",
             "source": "docs/evals/registry.yaml",
-            "source_id": "005",
-            "summary": "The Responses path changed GPT-5.5 behavior but did not improve the gate. It still passed only `10/13`, now failing `Image001`, `Image021`, and `Image059`. GPT-5.5 Pro Responses passed only a one-case detector smoke b..."
+            "source_id": "011",
+            "summary": "`chat-latest` is present in the OpenAI model list and is image-callable through the local Responses shim, but it did not beat the maintained Gemini 3 Flash detector. The run scored `0.8006` with `11/13` passes, `0` pr..."
           },
           "story_ids": [
             "135",
@@ -1156,23 +1157,23 @@
         ],
         "actionability": {
           "source_kind": "eval",
-          "source_id": "crop-validation",
+          "source_id": "crop-page-level-deletion-gate",
           "source_path": "docs/evals/registry.yaml",
           "recommended_now": false,
-          "posture": "wait-for-trigger",
-          "retry_trigger_status": "waiting",
+          "posture": "trigger-exhausted",
+          "retry_trigger_status": "exhausted",
           "retry_when": [
             "golden-fix",
-            "new-approach",
-            "new-subject-model"
+            "new-subject-model",
+            "runtime-change"
           ],
-          "why_now": "Rerun when a new validator model or prompt looks strong enough to widen or replace the current bounded C5-linked truth surface. Broaden or redesign this surface when the project is ready to measure the spec's wider pa...",
+          "why_now": "Rerun when a materially stronger validator or detector may reduce the current fail-labeled page-context cases. Rerun after any maintained crop/runtime simplification before claiming `trim_layout_text` or bounded capti...",
           "last_relevant_action": {
-            "date": "2026-04-24",
+            "date": "2026-05-06",
             "source_type": "eval-attempt",
             "source": "docs/evals/registry.yaml",
-            "source_id": "004",
-            "summary": "Direct Responses API did not change the outcome. GPT-5.5 Responses and GPT-5.5 Pro Responses both scored `39/40` and both missed `page-126-000` as a false negative. Pro was much slower and more expensive with no quali..."
+            "source_id": "008",
+            "summary": "`chat-latest` is image-callable through the local Responses shim, but it did not preserve the maintained page-context deletion-gate contract. The run scored `21/22` with `0` provider errors, average latency about `569..."
           },
           "story_ids": [
             "135",
@@ -1600,12 +1601,12 @@
           "source_path": "docs/stories/story-207-refresh-crop-c4-proof-and-coverage-truth-surfaces.md",
           "recommended_now": false,
           "posture": "completed",
-          "why_now": "`/mark-story-done` close-out completed. Re-validated Story 207 against the current repo state: all tasks, acceptance criteria, and tenet checks remain satisfied; dependency stories 183 and 198 are both `Done`; and no...",
+          "why_now": "post-closeout model refresh note: screened OpenAI `chat-latest` / GPT-5.5 Instant as a bounded detector challenger after the 2026-05-05 release. The alias was image-callable through `benchmarks/providers/openai_chat_l...",
           "last_relevant_action": {
-            "date": "2026-04-10",
+            "date": "2026-05-06",
             "source_type": "story-work-log",
             "source": "docs/stories/story-207-refresh-crop-c4-proof-and-coverage-truth-surfaces.md",
-            "summary": "`/mark-story-done` close-out completed. Re-validated Story 207 against the current repo state: all tasks, acceptance criteria, and tenet checks remain satisfied; dependency stories 183 and 198 are both `Done`; and no..."
+            "summary": "post-closeout model refresh note: screened OpenAI `chat-latest` / GPT-5.5 Instant as a bounded detector challenger after the 2026-05-05 release. The alias was image-callable through `benchmarks/providers/openai_chat_l..."
           },
           "story_ids": [
             "181",
@@ -11140,9 +11141,9 @@
       "blocker_evidence": "",
       "unblock_condition": "",
       "last_work_log_entry": {
-        "timestamp": "20260410-1438",
-        "date": "2026-04-10",
-        "summary": "`/mark-story-done` close-out completed. Re-validated Story 207 against the current repo state: all tasks, acceptance criteria, and tenet checks remain satisfied; dependency stories 183 and 198 are both `Done`; and no..."
+        "timestamp": "20260506-0335",
+        "date": "2026-05-06",
+        "summary": "post-closeout model refresh note: screened OpenAI `chat-latest` / GPT-5.5 Instant as a bounded detector challenger after the 2026-05-05 release. The alias was image-callable through `benchmarks/providers/openai_chat_l..."
       },
       "legacy_build_map_refs": "",
       "metadata_source": "frontmatter",
@@ -11153,12 +11154,12 @@
         "source_path": "docs/stories/story-207-refresh-crop-c4-proof-and-coverage-truth-surfaces.md",
         "recommended_now": false,
         "posture": "completed",
-        "why_now": "`/mark-story-done` close-out completed. Re-validated Story 207 against the current repo state: all tasks, acceptance criteria, and tenet checks remain satisfied; dependency stories 183 and 198 are both `Done`; and no...",
+        "why_now": "post-closeout model refresh note: screened OpenAI `chat-latest` / GPT-5.5 Instant as a bounded detector challenger after the 2026-05-05 release. The alias was image-callable through `benchmarks/providers/openai_chat_l...",
         "last_relevant_action": {
-          "date": "2026-04-10",
+          "date": "2026-05-06",
           "source_type": "story-work-log",
           "source": "docs/stories/story-207-refresh-crop-c4-proof-and-coverage-truth-surfaces.md",
-          "summary": "`/mark-story-done` close-out completed. Re-validated Story 207 against the current repo state: all tasks, acceptance criteria, and tenet checks remain satisfied; dependency stories 183 and 198 are both `Done`; and no..."
+          "summary": "post-closeout model refresh note: screened OpenAI `chat-latest` / GPT-5.5 Instant as a bounded detector challenger after the 2026-05-05 release. The alias was image-callable through `benchmarks/providers/openai_chat_l..."
         }
       }
     },
@@ -11278,9 +11279,9 @@
       "blocker_evidence": "",
       "unblock_condition": "",
       "last_work_log_entry": {
-        "timestamp": "20260424-1930",
-        "date": "2026-04-24",
-        "summary": "post-closeout model refresh application: after the GPT-5.5 API refresh and corrected-golden reruns, narrowed `benchmarks/tasks/crop-page-level-deletion-gate.yaml` to the current corrected-golden winner, `openai:respon..."
+        "timestamp": "20260506-0335",
+        "date": "2026-05-06",
+        "summary": "post-closeout model refresh note: screened OpenAI `chat-latest` / GPT-5.5 Instant as a bounded page-context challenger after verifying it was image-callable through `benchmarks/providers/openai_chat_latest_responses.p..."
       },
       "legacy_build_map_refs": "",
       "metadata_source": "frontmatter",
@@ -11291,12 +11292,12 @@
         "source_path": "docs/stories/story-209-crop-c5-page-level-deletion-gate.md",
         "recommended_now": false,
         "posture": "completed",
-        "why_now": "post-closeout model refresh application: after the GPT-5.5 API refresh and corrected-golden reruns, narrowed `benchmarks/tasks/crop-page-level-deletion-gate.yaml` to the current corrected-golden winner, `openai:respon...",
+        "why_now": "post-closeout model refresh note: screened OpenAI `chat-latest` / GPT-5.5 Instant as a bounded page-context challenger after verifying it was image-callable through `benchmarks/providers/openai_chat_latest_responses.p...",
         "last_relevant_action": {
-          "date": "2026-04-24",
+          "date": "2026-05-06",
           "source_type": "story-work-log",
           "source": "docs/stories/story-209-crop-c5-page-level-deletion-gate.md",
-          "summary": "post-closeout model refresh application: after the GPT-5.5 API refresh and corrected-golden reruns, narrowed `benchmarks/tasks/crop-page-level-deletion-gate.yaml` to the current corrected-golden winner, `openai:respon..."
+          "summary": "post-closeout model refresh note: screened OpenAI `chat-latest` / GPT-5.5 Instant as a bounded page-context challenger after verifying it was image-callable through `benchmarks/providers/openai_chat_latest_responses.p..."
         }
       }
     },
@@ -12622,9 +12623,9 @@
       "blocker_evidence": "",
       "unblock_condition": "",
       "last_work_log_entry": {
-        "timestamp": "20260504-2233",
-        "date": "2026-05-04",
-        "summary": "`/mark-story-done` close-out: rechecked Story 228 workflow gates, acceptance criteria, tasks, tenet checklist, dependency status, ADR-002 alignment, docs updates, and validation evidence. Dependencies Story 152, Story..."
+        "timestamp": "20260506-0335",
+        "date": "2026-05-06",
+        "summary": "post-closeout model refresh note: screened OpenAI `chat-latest` / GPT-5.5 Instant against the cheap content-hint preview seam. The current `doc_web/preview_content_hint.py` path uses Chat Completions and default `gpt-..."
       },
       "legacy_build_map_refs": "",
       "metadata_source": "frontmatter",
@@ -12635,12 +12636,12 @@
         "source_path": "docs/stories/story-228-fast-doc-web-preview-bundle-mode.md",
         "recommended_now": false,
         "posture": "completed",
-        "why_now": "`/mark-story-done` close-out: rechecked Story 228 workflow gates, acceptance criteria, tasks, tenet checklist, dependency status, ADR-002 alignment, docs updates, and validation evidence. Dependencies Story 152, Story...",
+        "why_now": "post-closeout model refresh note: screened OpenAI `chat-latest` / GPT-5.5 Instant against the cheap content-hint preview seam. The current `doc_web/preview_content_hint.py` path uses Chat Completions and default `gpt-...",
         "last_relevant_action": {
-          "date": "2026-05-04",
+          "date": "2026-05-06",
           "source_type": "story-work-log",
           "source": "docs/stories/story-228-fast-doc-web-preview-bundle-mode.md",
-          "summary": "`/mark-story-done` close-out: rechecked Story 228 workflow gates, acceptance criteria, tasks, tenet checklist, dependency status, ADR-002 alignment, docs updates, and validation evidence. Dependencies Story 152, Story..."
+          "summary": "post-closeout model refresh note: screened OpenAI `chat-latest` / GPT-5.5 Instant against the cheap content-hint preview seam. The current `doc_web/preview_content_hint.py` path uses Chat Completions and default `gpt-..."
         }
       }
     }
@@ -12818,6 +12819,21 @@
           "note": "Fresh direct Responses API rerun after adding `openai:responses:gpt-5.5` and Responses-compatible image prompt formatting. Command: `cd benchmarks && promptfoo eval -c tasks/image-crop-extraction.yaml --no-cache --filter-providers '^openai:responses:gpt-5\\.5$' --filter-prompts 'conservative-count' --output results/gpt55-responses-image-crop-extraction-gpt55-20260424.json -j 1`. The run completed `10/13` with `0` provider errors, `overall = 0.791`, `pass_rate = 0.7692`, average latency about `4071 ms`, and estimated current API cost about `$0.2820` total (`$0.0217` per case). It confirms the Chat interface did not hide a passing GPT-5.5 detector; the failure set shifted to `Image001`, `Image021`, and `Image059`. Portable tracked proof: `docs/evals/attempts/006-gpt55-responses-eval-refresh.md`.\n"
         },
         {
+          "model": "OpenAI chat-latest Responses alias (GPT-5.5 Instant, conservative-count prompt)",
+          "metrics": {
+            "overall": 0.8006,
+            "pass_rate": 0.8462,
+            "cases_total": 13,
+            "latency_ms": 3610
+          },
+          "latency_ms": 3610,
+          "cost_usd": 0.0107,
+          "cost_estimated": true,
+          "measured": "2026-05-06",
+          "git_sha": "60942e2",
+          "note": "Bounded GPT-5.5 Instant alias challenger after OpenAI's 2026-05-05 release exposed the API alias as `chat-latest`. Promptfoo 0.121.1 sent unsupported parameters through the built-in OpenAI providers, so this run used the narrow `benchmarks/providers/openai_chat_latest_responses.py` Responses shim against the maintained detector task with only the provider overridden. Equivalent command: `cd benchmarks && DOC_WEB_OPENAI_API_KEY=\"$OPENAI_API_KEY\" ../scripts/run_with_doc_web_env.py promptfoo eval -c tasks/image-crop-extraction.yaml --providers \"python:$(pwd)/providers/openai_chat_latest_responses.py\" --no-cache --filter-prompts 'conservative-count' --output results/chat-latest-image-crop-extraction-20260506.json -j 1`. The run completed `11/13` with `0` provider errors, `overall = 0.8006`, `pass_rate = 0.8462`, average latency about `3610 ms`, and estimated GPT-5.5-rate cost about `$0.1389` total (`$0.0107` per case). Failures were bbox undercoverage on `Image013` and `Image021`, so the alias does not replace the maintained Gemini 3 Flash detector. Portable tracked proof: `docs/evals/attempts/010-chat-latest-instant-bounded-challenger.md`.\n"
+        },
+        {
           "model": "Gemini 3 Flash (conservative-count prompt, heading-safe revision)",
           "metrics": {
             "overall": 0.9678,
@@ -12881,19 +12897,19 @@
         }
       ],
       "latest_score": {
-        "model": "GPT-5.5 Responses (conservative-count prompt)",
+        "model": "OpenAI chat-latest Responses alias (GPT-5.5 Instant, conservative-count prompt)",
         "metrics": {
-          "overall": 0.791,
-          "pass_rate": 0.7692,
+          "overall": 0.8006,
+          "pass_rate": 0.8462,
           "cases_total": 13,
-          "latency_ms": 4071
+          "latency_ms": 3610
         },
-        "latency_ms": 4071,
-        "cost_usd": 0.0217,
+        "latency_ms": 3610,
+        "cost_usd": 0.0107,
         "cost_estimated": true,
-        "measured": "2026-04-24",
-        "git_sha": "aa5b577",
-        "note": "Fresh direct Responses API rerun after adding `openai:responses:gpt-5.5` and Responses-compatible image prompt formatting. Command: `cd benchmarks && promptfoo eval -c tasks/image-crop-extraction.yaml --no-cache --filter-providers '^openai:responses:gpt-5\\.5$' --filter-prompts 'conservative-count' --output results/gpt55-responses-image-crop-extraction-gpt55-20260424.json -j 1`. The run completed `10/13` with `0` provider errors, `overall = 0.791`, `pass_rate = 0.7692`, average latency about `4071 ms`, and estimated current API cost about `$0.2820` total (`$0.0217` per case). It confirms the Chat interface did not hide a passing GPT-5.5 detector; the failure set shifted to `Image001`, `Image021`, and `Image059`. Portable tracked proof: `docs/evals/attempts/006-gpt55-responses-eval-refresh.md`.\n"
+        "measured": "2026-05-06",
+        "git_sha": "60942e2",
+        "note": "Bounded GPT-5.5 Instant alias challenger after OpenAI's 2026-05-05 release exposed the API alias as `chat-latest`. Promptfoo 0.121.1 sent unsupported parameters through the built-in OpenAI providers, so this run used the narrow `benchmarks/providers/openai_chat_latest_responses.py` Responses shim against the maintained detector task with only the provider overridden. Equivalent command: `cd benchmarks && DOC_WEB_OPENAI_API_KEY=\"$OPENAI_API_KEY\" ../scripts/run_with_doc_web_env.py promptfoo eval -c tasks/image-crop-extraction.yaml --providers \"python:$(pwd)/providers/openai_chat_latest_responses.py\" --no-cache --filter-prompts 'conservative-count' --output results/chat-latest-image-crop-extraction-20260506.json -j 1`. The run completed `11/13` with `0` provider errors, `overall = 0.8006`, `pass_rate = 0.8462`, average latency about `3610 ms`, and estimated GPT-5.5-rate cost about `$0.1389` total (`$0.0107` per case). Failures were bbox undercoverage on `Image013` and `Image021`, so the alias does not replace the maintained Gemini 3 Flash detector. Portable tracked proof: `docs/evals/attempts/010-chat-latest-instant-bounded-challenger.md`.\n"
       },
       "attempts": [
         {
@@ -12975,6 +12991,14 @@
           "approach": "Re-run the detector through OpenAI Responses after GPT-5.5 Pro became Responses-callable",
           "note": "Added Responses-compatible OpenAI image blocks and reran `openai:responses:gpt-5.5` on the same maintained `conservative-count` detector slice. The direct Responses path still failed `3/13` cases and scored slightly lower than the earlier Chat run (`0.791` vs `0.8111`), though the failure set changed. GPT-5.5 Pro Responses passed a one-case `Image000` smoke, but full detector attempts did not complete in the interactive promptfoo loop; `Image001` appears pathological for Pro-medium under this prompt. No scorer or golden changes were made.\n",
           "retry_when": []
+        },
+        {
+          "id": "011",
+          "date": "2026-05-06",
+          "status": "failed",
+          "approach": "Screen OpenAI `chat-latest` / GPT-5.5 Instant as a bounded detector challenger after the 2026-05-05 release",
+          "note": "`chat-latest` is present in the OpenAI model list and is image-callable through the local Responses shim, but it did not beat the maintained Gemini 3 Flash detector. The run scored `0.8006` with `11/13` passes, `0` provider errors, average latency about `3610 ms`, and estimated cost about `$0.1389` total. `Image013` and `Image021` failed due to undercovered portrait/photo bounding boxes. No maintained providers, prompts, scorers, or goldens were changed.\n",
+          "retry_when": []
         }
       ],
       "retry_when": [
@@ -12999,11 +13023,11 @@
         ],
         "why_now": "Gemini 4 or equivalent may push past 0.95 target Golden references cover limited page types; add table-heavy pages",
         "last_relevant_action": {
-          "date": "2026-04-24",
+          "date": "2026-05-06",
           "source_type": "eval-attempt",
           "source": "docs/evals/registry.yaml",
-          "source_id": "010",
-          "summary": "Added Responses-compatible OpenAI image blocks and reran `openai:responses:gpt-5.5` on the same maintained `conservative-count` detector slice. The direct Responses path still failed `3/13` cases and scored slightly l..."
+          "source_id": "011",
+          "summary": "`chat-latest` is present in the OpenAI model list and is image-callable through the local Responses shim, but it did not beat the maintained Gemini 3 Flash detector. The run scored `0.8006` with `11/13` passes, `0` pr..."
         }
       }
     },
@@ -13269,6 +13293,23 @@
           "note": "Follow-up prompt repair after direct Responses measurement. The prompt now treats sky/snow/photo backdrops as image content, states that this gate primarily checks page-text and neighboring-visual leakage, and tolerates tight line-art framing unless the full-page context shows a large missing part of the intended visual. Manual inspection also corrected the `page-122-001` page-context golden from pass to fail because the crop leaks into the neighboring Sophie L'Heureux portrait. After narrowing the maintained task to the winning provider, the applied rerun `cd benchmarks && ../scripts/run_with_doc_web_env.py promptfoo eval -c tasks/crop-page-level-deletion-gate.yaml --no-cache --output results/crop-page-level-deletion-gate-gpt55-responses-current-20260424.json -j 1` completed `22/22` with `0` failures, `0` errors, average latency about `5253 ms`, and estimated current API cost about `$1.3094` total (`$0.0595` per case). A later Gemini regression check with `DOC_WEB_GEMINI_API_KEY` succeeded but scored `21/22` on the corrected golden, so GPT-5.5 Responses is the only current `22/22` page-context validator. Portable tracked proof: `docs/evals/attempts/009-gpt55-page-context-applied-default.md`.\n"
         },
         {
+          "model": "OpenAI chat-latest Responses alias (GPT-5.5 Instant, page-context prompt)",
+          "metrics": {
+            "overall": 0.9545,
+            "pass_rate": 0.9545,
+            "cases_total": 22,
+            "pass_labeled": 17,
+            "fail_labeled": 5,
+            "latency_ms": 5698
+          },
+          "latency_ms": 5698,
+          "cost_usd": 0.0188,
+          "cost_estimated": true,
+          "measured": "2026-05-06",
+          "git_sha": "60942e2",
+          "note": "Bounded GPT-5.5 Instant alias challenger after verifying `chat-latest` can be called with image inputs through `benchmarks/providers/openai_chat_latest_responses.py`. Command: `cd benchmarks && DOC_WEB_OPENAI_API_KEY=\"$OPENAI_API_KEY\" ../scripts/run_with_doc_web_env.py promptfoo eval -c tasks/crop-page-level-deletion-gate.yaml --providers \"python:$(pwd)/providers/openai_chat_latest_responses.py\" --no-cache --output results/chat-latest-crop-page-level-deletion-gate-20260506.json -j 1`. The run completed `21/22` with `0` provider errors, `overall = 0.9545`, `pass_rate = 0.9545`, average latency about `5698 ms`, and estimated GPT-5.5-rate cost about `$0.4136` total (`$0.0188` per case). The single failure was `page-122-001`: the model returned `pass` even though the corrected golden fails the crop for leaking a neighboring portrait slice. This does not replace the maintained `openai:responses:gpt-5.5` page-context winner. Portable tracked proof: `docs/evals/attempts/010-chat-latest-instant-bounded-challenger.md`.\n"
+        },
+        {
           "model": "GPT-5.5 Pro Responses (page-context prompt)",
           "metrics": {
             "overall": 0.6818,
@@ -13287,18 +13328,21 @@
         }
       ],
       "latest_score": {
-        "model": "Gemini 3.1 Flash Lite (page-context prompt, corrected golden)",
+        "model": "OpenAI chat-latest Responses alias (GPT-5.5 Instant, page-context prompt)",
         "metrics": {
           "overall": 0.9545,
           "pass_rate": 0.9545,
           "cases_total": 22,
           "pass_labeled": 17,
           "fail_labeled": 5,
-          "latency_ms": 5454
+          "latency_ms": 5698
         },
-        "measured": "2026-04-24",
-        "git_sha": "aa5b577",
-        "note": "Fresh corrected-golden regression after replacing the revoked shared Google credential with `DOC_WEB_GEMINI_API_KEY` and running promptfoo through `scripts/run_with_doc_web_env.py`. Command: `cd benchmarks && ../scripts/run_with_doc_web_env.py promptfoo eval -c tasks/crop-page-level-deletion-gate.yaml --no-cache --filter-providers '^google:gemini-3\\.1-flash-lite-preview$' --output results/g31-crop-page-level-deletion-gate-promptfix-rerun-20260424.json -j 1`. The run completed `21/22` with `1` scorer failure, `0` provider errors, average latency about `5454 ms`, and total tokens `60728`. The remaining miss is model-wrong: Gemini passed `page-122-001` even though the corrected page-context golden now fails it for leaking a neighboring portrait slice. Portable tracked proof: `docs/evals/attempts/008-gemini-page-context-corrected-golden-rerun.md`.\n"
+        "latency_ms": 5698,
+        "cost_usd": 0.0188,
+        "cost_estimated": true,
+        "measured": "2026-05-06",
+        "git_sha": "60942e2",
+        "note": "Bounded GPT-5.5 Instant alias challenger after verifying `chat-latest` can be called with image inputs through `benchmarks/providers/openai_chat_latest_responses.py`. Command: `cd benchmarks && DOC_WEB_OPENAI_API_KEY=\"$OPENAI_API_KEY\" ../scripts/run_with_doc_web_env.py promptfoo eval -c tasks/crop-page-level-deletion-gate.yaml --providers \"python:$(pwd)/providers/openai_chat_latest_responses.py\" --no-cache --output results/chat-latest-crop-page-level-deletion-gate-20260506.json -j 1`. The run completed `21/22` with `0` provider errors, `overall = 0.9545`, `pass_rate = 0.9545`, average latency about `5698 ms`, and estimated GPT-5.5-rate cost about `$0.4136` total (`$0.0188` per case). The single failure was `page-122-001`: the model returned `pass` even though the corrected golden fails the crop for leaking a neighboring portrait slice. This does not replace the maintained `openai:responses:gpt-5.5` page-context winner. Portable tracked proof: `docs/evals/attempts/010-chat-latest-instant-bounded-challenger.md`.\n"
       },
       "attempts": [
         {
@@ -13356,6 +13400,14 @@
           "approach": "Apply GPT-5.5 Responses as the maintained page-context validator and rerun the narrowed task",
           "note": "The maintained `benchmarks/tasks/crop-page-level-deletion-gate.yaml` provider list now contains only `openai:responses:gpt-5.5`, with the Gemini and Pro challenger outcomes preserved as recorded historical evidence instead of default providers. The applied rerun at `benchmarks/results/crop-page-level-deletion-gate-gpt55-responses-current-20260424.json` completed `22/22` with `0` failures and `0` provider errors. A narrow substrate test now enforces that this task defaults to the current corrected-golden winner.\n",
           "retry_when": []
+        },
+        {
+          "id": "008",
+          "date": "2026-05-06",
+          "status": "failed",
+          "approach": "Screen OpenAI `chat-latest` / GPT-5.5 Instant as a bounded page-context challenger after the 2026-05-05 release",
+          "note": "`chat-latest` is image-callable through the local Responses shim, but it did not preserve the maintained page-context deletion-gate contract. The run scored `21/22` with `0` provider errors, average latency about `5698 ms`, and estimated cost about `$0.4136` total. The miss was model-wrong on `page-122-001`: it passed a crop that the corrected golden fails for leaking a neighboring portrait slice. No maintained providers, prompts, scorers, or goldens were changed.\n",
+          "retry_when": []
         }
       ],
       "retry_when": [
@@ -13383,11 +13435,11 @@
         ],
         "why_now": "Rerun when a materially stronger validator or detector may reduce the current fail-labeled page-context cases. Rerun after any maintained crop/runtime simplification before claiming `trim_layout_text` or bounded capti...",
         "last_relevant_action": {
-          "date": "2026-04-24",
+          "date": "2026-05-06",
           "source_type": "eval-attempt",
           "source": "docs/evals/registry.yaml",
-          "source_id": "007",
-          "summary": "The maintained `benchmarks/tasks/crop-page-level-deletion-gate.yaml` provider list now contains only `openai:responses:gpt-5.5`, with the Gemini and Pro challenger outcomes preserved as recorded historical evidence in..."
+          "source_id": "008",
+          "summary": "`chat-latest` is image-callable through the local Responses shim, but it did not preserve the maintained page-context deletion-gate contract. The run scored `21/22` with `0` provider errors, average latency about `569..."
         }
       }
     },

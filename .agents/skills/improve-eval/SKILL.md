@@ -1,6 +1,6 @@
 ---
 name: improve-eval
-description: Investigate eval failures, classify whether the prompt/pipeline or test/golden is wrong, improve the result, and record verified scores
+description: Investigate eval failures, classify whether the prompt/pipeline or test/golden is wrong, improve the result, record verified scores, and make an explicit adoption recommendation
 user-invocable: true
 ---
 
@@ -169,19 +169,43 @@ code, or hybrid implementation honestly.
 29. **Update the work log** — if this happened under a story, add the verified
     outcome there too, including mismatch classification when relevant.
 
-## Phase 7 — Assess and Report
+## Phase 7 — Assess and Recommend
 
 30. **Compare to target**:
     - if passing, state that explicitly
     - if still failing, show the remaining gap and whether the next step is
       another attempt, a blocked wait, or a new story
 
-31. **Summarize**:
+31. **Make the adoption decision** — every eval handoff must answer the
+    operational question directly:
+    - **Adopt** — the tested model / prompt / provider is better on the
+      relevant quality gate and does not lose on material latency or cost.
+      Name exactly where to use it, why it wins, and which configs/docs/tests
+      should change.
+    - **Do not adopt** — it does not beat the maintained winner, is not
+      callable on the needed path, or loses on quality despite cost/latency
+      improvements. Say that it does not seem worthy of adoption and name the
+      decisive evidence.
+    - **Conditional adopt** — use only when it wins on one surface but loses
+      elsewhere. Name the specific winning surface and keep the losing surfaces
+      unchanged.
+
+32. **Summarize evidence**:
     - what was tried
     - what changed
     - score / latency / cost delta
     - whether any mismatches were `model-wrong`, `golden-wrong`, or `ambiguous`
     - what not to retry next time if this failed
+
+33. **End with a yes-ready recommendation, not verification status**:
+    - Verification belongs in the evidence section; it must not be the final
+      takeaway.
+    - If adoption is recommended, end with:
+      `Reply yes to proceed with: adopt <model/provider> for <specific surfaces>, update the maintained configs/docs/tests, close off this eval, check it in, and push to main.`
+    - If adoption is not recommended, end with:
+      `Reply yes to proceed with: close off this eval, check it in, and push to main.`
+    - If commit/push has not been explicitly approved yet, do not perform it;
+      make the yes-ready sentence the final recommendation.
 
 ## Guardrails
 

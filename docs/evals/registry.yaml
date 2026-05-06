@@ -128,6 +128,38 @@ evals:
           passing GPT-5.5 detector; the failure set shifted to `Image001`,
           `Image021`, and `Image059`. Portable tracked proof:
           `docs/evals/attempts/006-gpt55-responses-eval-refresh.md`.
+      - model: "OpenAI chat-latest Responses alias (GPT-5.5 Instant, conservative-count prompt)"
+        metrics:
+          overall: 0.8006
+          pass_rate: 0.8462
+          cases_total: 13
+          latency_ms: 3610
+        latency_ms: 3610
+        cost_usd: 0.0107
+        cost_estimated: true
+        measured: 2026-05-06
+        git_sha: 60942e2
+        note: >
+          Bounded GPT-5.5 Instant alias challenger after OpenAI's 2026-05-05
+          release exposed the API alias as `chat-latest`. Promptfoo 0.121.1
+          sent unsupported parameters through the built-in OpenAI providers, so
+          this run used the narrow
+          `benchmarks/providers/openai_chat_latest_responses.py` Responses shim
+          against the maintained detector task with only the provider
+          overridden. Equivalent command:
+          `cd benchmarks && DOC_WEB_OPENAI_API_KEY="$OPENAI_API_KEY"
+          ../scripts/run_with_doc_web_env.py promptfoo eval -c
+          tasks/image-crop-extraction.yaml --providers
+          "python:$(pwd)/providers/openai_chat_latest_responses.py" --no-cache
+          --filter-prompts 'conservative-count' --output
+          results/chat-latest-image-crop-extraction-20260506.json -j 1`. The
+          run completed `11/13` with `0` provider errors, `overall = 0.8006`,
+          `pass_rate = 0.8462`, average latency about `3610 ms`, and estimated
+          GPT-5.5-rate cost about `$0.1389` total (`$0.0107` per case).
+          Failures were bbox undercoverage on `Image013` and `Image021`, so the
+          alias does not replace the maintained Gemini 3 Flash detector.
+          Portable tracked proof:
+          `docs/evals/attempts/010-chat-latest-instant-bounded-challenger.md`.
       - model: "Gemini 3 Flash (conservative-count prompt, heading-safe revision)"
         metrics:
           overall: 0.9678
@@ -329,6 +361,20 @@ evals:
           attempts did not complete in the interactive promptfoo loop; `Image001`
           appears pathological for Pro-medium under this prompt. No scorer or
           golden changes were made.
+      - id: "011"
+        date: 2026-05-06
+        status: failed
+        approach: "Screen OpenAI `chat-latest` / GPT-5.5 Instant as a bounded detector challenger after the 2026-05-05 release"
+        score_before: 0.9703
+        score_after: 0.8006
+        note: >
+          `chat-latest` is present in the OpenAI model list and is image-callable
+          through the local Responses shim, but it did not beat the maintained
+          Gemini 3 Flash detector. The run scored `0.8006` with `11/13` passes,
+          `0` provider errors, average latency about `3610 ms`, and estimated
+          cost about `$0.1389` total. `Image013` and `Image021` failed due to
+          undercovered portrait/photo bounding boxes. No maintained providers,
+          prompts, scorers, or goldens were changed.
 
     retry_when:
       - condition: new-subject-model
@@ -726,6 +772,38 @@ evals:
           corrected golden, so GPT-5.5 Responses is the only current `22/22`
           page-context validator. Portable tracked proof:
           `docs/evals/attempts/009-gpt55-page-context-applied-default.md`.
+      - model: "OpenAI chat-latest Responses alias (GPT-5.5 Instant, page-context prompt)"
+        metrics:
+          overall: 0.9545
+          pass_rate: 0.9545
+          cases_total: 22
+          pass_labeled: 17
+          fail_labeled: 5
+          latency_ms: 5698
+        latency_ms: 5698
+        cost_usd: 0.0188
+        cost_estimated: true
+        measured: 2026-05-06
+        git_sha: 60942e2
+        note: >
+          Bounded GPT-5.5 Instant alias challenger after verifying
+          `chat-latest` can be called with image inputs through
+          `benchmarks/providers/openai_chat_latest_responses.py`. Command:
+          `cd benchmarks && DOC_WEB_OPENAI_API_KEY="$OPENAI_API_KEY"
+          ../scripts/run_with_doc_web_env.py promptfoo eval -c
+          tasks/crop-page-level-deletion-gate.yaml --providers
+          "python:$(pwd)/providers/openai_chat_latest_responses.py" --no-cache
+          --output
+          results/chat-latest-crop-page-level-deletion-gate-20260506.json
+          -j 1`. The run completed `21/22` with `0` provider errors,
+          `overall = 0.9545`, `pass_rate = 0.9545`, average latency about
+          `5698 ms`, and estimated GPT-5.5-rate cost about `$0.4136` total
+          (`$0.0188` per case). The single failure was `page-122-001`: the
+          model returned `pass` even though the corrected golden fails the crop
+          for leaking a neighboring portrait slice. This does not replace the
+          maintained `openai:responses:gpt-5.5` page-context winner. Portable
+          tracked proof:
+          `docs/evals/attempts/010-chat-latest-instant-bounded-challenger.md`.
       - model: "GPT-5.5 Pro Responses (page-context prompt)"
         metrics:
           overall: 0.6818
@@ -864,6 +942,20 @@ evals:
           completed `22/22` with `0` failures and `0` provider errors. A narrow
           substrate test now enforces that this task defaults to the current
           corrected-golden winner.
+      - id: "008"
+        date: 2026-05-06
+        status: failed
+        approach: "Screen OpenAI `chat-latest` / GPT-5.5 Instant as a bounded page-context challenger after the 2026-05-05 release"
+        score_before: 1.0
+        score_after: 0.9545
+        note: >
+          `chat-latest` is image-callable through the local Responses shim, but
+          it did not preserve the maintained page-context deletion-gate
+          contract. The run scored `21/22` with `0` provider errors, average
+          latency about `5698 ms`, and estimated cost about `$0.4136` total.
+          The miss was model-wrong on `page-122-001`: it passed a crop that the
+          corrected golden fails for leaking a neighboring portrait slice. No
+          maintained providers, prompts, scorers, or goldens were changed.
 
     retry_when:
       - condition: new-subject-model
