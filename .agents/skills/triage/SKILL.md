@@ -27,6 +27,10 @@ A primary gap can stay primary while still being the wrong recommended action
 if nothing materially changed since the last attempt, recommendation, or
 measurement pass.
 
+## Worker Model Sizing
+
+When full-sweep triage launches neutral lane packets with subagents, size each worker model and reasoning level to lane risk. Use cheaper or lower-reasoning workers for factual scans and mechanical packet gathering; keep stronger workers for semantic contracts, security, eval correctness, cross-repo decisions, or high-cost misses. Record any explicit override rationale in the triage report.
+
 ## Routing
 
 | Invocation | Behavior |
