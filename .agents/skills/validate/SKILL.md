@@ -280,3 +280,14 @@ ordinary validation closeout.
 (there may be none)
 
 $ARGUMENTS
+
+## npm Supply-Chain Validation
+
+If the story or current diff touches dependencies, lockfiles, package-manager
+scripts, install scripts, `.github/workflows`, publish jobs, deploy jobs, cache
+behavior, or OIDC/token permissions, run the repo-local scanner and include its
+summary in validation findings:
+
+```bash
+python3 scripts/npm_supply_chain_scan.py
+```

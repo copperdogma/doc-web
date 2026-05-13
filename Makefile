@@ -3,7 +3,7 @@
 # same interpreter the repo dependencies were installed into.
 PYTHON ?= $(shell command -v python 2>/dev/null || command -v python3 2>/dev/null)
 
-.PHONY: test lint format smoke skills-sync skills-check check-size methodology-compile methodology-check triage-facts triage-facts-check
+.PHONY: test lint format smoke skills-sync skills-check check-size methodology-compile methodology-check triage-facts triage-facts-check supply-chain-scan
 
 # ── Testing & Linting ─────────────────────────────────────────────────
 test:
@@ -45,3 +45,6 @@ triage-facts-check:
 check-size:
 	@echo "Python source files over 400 lines:"
 	@find doc_web modules -name "*.py" -exec wc -l {} \; | sort -rn | awk '$$1 > 400 {print "  LARGE: " $$1 " lines — " $$2}'
+
+supply-chain-scan:
+	$(PYTHON) scripts/npm_supply_chain_scan.py

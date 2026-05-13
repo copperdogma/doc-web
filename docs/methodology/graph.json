@@ -13035,7 +13035,7 @@
       "id": "crop-validation",
       "name": "Crop Validation",
       "type": "quality",
-      "command": "cd benchmarks && promptfoo eval -c tasks/crop-validation.yaml --no-cache --filter-providers 'google:gemini-3.1-flash-lite-preview' --filter-prompts 'caption-focus' --output results/crop-validation-story183-g31-caption-focus.json -j 1",
+      "command": "cd benchmarks && promptfoo eval -c tasks/crop-validation.yaml --no-cache --filter-providers 'google:gemini-3.1-flash-lite' --filter-prompts 'caption-focus' --output results/crop-validation-story183-g31-caption-focus.json -j 1",
       "path": "docs/evals/registry.yaml",
       "description": "Dedicated bounded crop-only text-exclusion / crop-quality surface for the maintained 40-crop corpus from the Onward illustration lane. Scores pass/fail crop judgments against checked-in labels for external page text, excessive blank space, and obvious wrong-region crops.\n",
       "spec_refs": [],
@@ -13060,7 +13060,7 @@
             "latency_ms": 3150
           },
           "measured": "2026-04-11",
-          "note": "Story 209 reran the maintained bounded crop-only surface via `cd benchmarks && promptfoo eval -c tasks/crop-validation.yaml --no-cache --filter-providers 'google:gemini-3.1-flash-lite-preview' --filter-prompts 'caption-focus' --output results/story209-crop-validation-baseline.json -j 1`. The rerun completed `40/40` with `0` failures, `0` errors, duration about `126000 ms`, and total tokens `59086`. Manual inspection in the same pass reconfirmed that `page-012-001` still labels as a clean pass for integral seal text while `page-122-000` still labels as a fail for caption leakage. Story 209 keeps this surface explicitly bounded and adds the new page-context deletion gate for the broader C5 question.\n"
+          "note": "Story 209 reran the maintained bounded crop-only surface via `cd benchmarks && promptfoo eval -c tasks/crop-validation.yaml --no-cache --filter-providers 'google:gemini-3.1-flash-lite' --filter-prompts 'caption-focus' --output results/story209-crop-validation-baseline.json -j 1`. The rerun completed `40/40` with `0` failures, `0` errors, duration about `126000 ms`, and total tokens `59086`. Manual inspection in the same pass reconfirmed that `page-012-001` still labels as a clean pass for integral seal text while `page-122-000` still labels as a fail for caption leakage. Story 209 keeps this surface explicitly bounded and adds the new page-context deletion gate for the broader C5 question.\n"
         },
         {
           "model": "GPT-5.5 (caption-focus prompt)",
@@ -13113,7 +13113,7 @@
             "latency_ms": 3021
           },
           "measured": "2026-04-03",
-          "note": "Story 183 repaired the tracked crop benchmark substrate by restoring the canonical local `.b64.txt` fixtures under `benchmarks/input/source-pages-b64/` and `benchmarks/input/crop-validation-b64/`, then reran the full 40-crop dedicated validation surface via `cd benchmarks && promptfoo eval -c tasks/crop-validation.yaml --no-cache --filter-providers 'google:gemini-3.1-flash-lite-preview' --filter-prompts 'caption-focus' --output results/crop-validation-story183-g31-caption-focus.json -j 1`. The repaired local benchmark completed `40/40` with `0` failures, `0` errors, `120833 ms` total duration, and `59087` total tokens. Manual inspection in the same pass confirmed the 4 checked fail cases (`page-018-000`, `page-092-000`, `page-122-000`, `page-126-000`) still returned `{\"verdict\": \"fail\", ...}` while integral-text pass case `page-012-000` still returned `{\"verdict\": \"pass\", ...}` in `benchmarks/results/crop-validation-story183-g31-caption-focus.json`.\n"
+          "note": "Story 183 repaired the tracked crop benchmark substrate by restoring the canonical local `.b64.txt` fixtures under `benchmarks/input/source-pages-b64/` and `benchmarks/input/crop-validation-b64/`, then reran the full 40-crop dedicated validation surface via `cd benchmarks && promptfoo eval -c tasks/crop-validation.yaml --no-cache --filter-providers 'google:gemini-3.1-flash-lite' --filter-prompts 'caption-focus' --output results/crop-validation-story183-g31-caption-focus.json -j 1`. The repaired local benchmark completed `40/40` with `0` failures, `0` errors, `120833 ms` total duration, and `59087` total tokens. Manual inspection in the same pass confirmed the 4 checked fail cases (`page-018-000`, `page-092-000`, `page-122-000`, `page-126-000`) still returned `{\"verdict\": \"fail\", ...}` while integral-text pass case `page-012-000` still returned `{\"verdict\": \"pass\", ...}` in `benchmarks/results/crop-validation-story183-g31-caption-focus.json`.\n"
         }
       ],
       "latest_score": {

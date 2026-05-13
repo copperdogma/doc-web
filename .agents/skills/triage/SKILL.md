@@ -386,3 +386,14 @@ Reply yes to proceed with: {exact next command or concrete action}.
   moves.
 - `Converge` means "try to delete or collapse residue," not "wait until
   something else happens."
+
+## npm Supply-Chain Incidents
+
+If triage involves an npm/package/dependency/CI supply-chain incident, inspect
+`docs/runbooks/npm-supply-chain-hardening.md` and run the repo-local scanner:
+
+```bash
+python3 scripts/npm_supply_chain_scan.py
+```
+
+For unrelated product triage, do not run the scanner just because it exists.

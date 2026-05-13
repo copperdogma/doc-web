@@ -476,3 +476,12 @@ When a new AI-powered module needs tuning:
 ## AI Learning Log
 
 See [`docs/ai-learning-log.md`](docs/ai-learning-log.md) — living memory of effective patterns, known pitfalls, and lessons learned across sessions. Update it when you discover something worth remembering.
+
+## npm Supply-Chain Guardrail
+
+This repo is self-contained for npm incident checks. When triaging a supply-chain
+incident or changing dependencies, lockfiles, package-manager scripts, install
+scripts, GitHub Actions, publish/deploy jobs, cache behavior, or OIDC/token
+permissions, follow `docs/runbooks/npm-supply-chain-hardening.md` and run the
+repo-local scanner (`make supply-chain-scan`, `npm run supply-chain:scan`, or
+`python3 scripts/npm_supply_chain_scan.py --strict`).
