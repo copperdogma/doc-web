@@ -2,9 +2,7 @@
 
 import base64
 import json
-import os
 import sys
-from collections import defaultdict
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent.parent))
@@ -121,8 +119,8 @@ def main():
         # (model, prompt, label)
         ("gemini-2.5-flash", PERMISSIVE_PROMPT, "2.5-flash/permissive"),
         ("gemini-2.5-flash", AGGRESSIVE_PROMPT, "2.5-flash/aggressive"),
-        ("gemini-3.1-flash-lite-preview", PERMISSIVE_PROMPT, "3.1-lite/permissive"),
-        ("gemini-3.1-flash-lite-preview", AGGRESSIVE_PROMPT, "3.1-lite/aggressive"),
+        ("gemini-3.1-flash-lite", PERMISSIVE_PROMPT, "3.1-lite/permissive"),
+        ("gemini-3.1-flash-lite", AGGRESSIVE_PROMPT, "3.1-lite/aggressive"),
         ("gemini-3-flash-preview", PERMISSIVE_PROMPT, "3-flash/permissive"),
         ("gemini-3-flash-preview", AGGRESSIVE_PROMPT, "3-flash/aggressive"),
     ]
@@ -152,7 +150,7 @@ def main():
     # Save
     with open("benchmarks/results/permissive-gate-eval.json", "w") as f:
         json.dump(results, f, indent=2, default=str)
-    print(f"\nSaved to benchmarks/results/permissive-gate-eval.json")
+    print("\nSaved to benchmarks/results/permissive-gate-eval.json")
 
 
 if __name__ == "__main__":

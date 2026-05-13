@@ -392,7 +392,7 @@ evals:
       text, excessive blank space, and obvious wrong-region crops.
     pipeline_stage: crop_illustrations
     runner: promptfoo
-    command: "cd benchmarks && promptfoo eval -c tasks/crop-validation.yaml --no-cache --filter-providers 'google:gemini-3.1-flash-lite-preview' --filter-prompts 'caption-focus' --output results/crop-validation-story183-g31-caption-focus.json -j 1"
+    command: "cd benchmarks && promptfoo eval -c tasks/crop-validation.yaml --no-cache --filter-providers 'google:gemini-3.1-flash-lite' --filter-prompts 'caption-focus' --output results/crop-validation-story183-g31-caption-focus.json -j 1"
     config: benchmarks/tasks/crop-validation.yaml
     scorer: benchmarks/scorers/crop_validation_scorer.py
     golden: benchmarks/golden/crop-validation.json
@@ -422,7 +422,7 @@ evals:
         note: >
           Story 209 reran the maintained bounded crop-only surface via
           `cd benchmarks && promptfoo eval -c tasks/crop-validation.yaml
-          --no-cache --filter-providers 'google:gemini-3.1-flash-lite-preview'
+          --no-cache --filter-providers 'google:gemini-3.1-flash-lite'
           --filter-prompts 'caption-focus' --output
           results/story209-crop-validation-baseline.json -j 1`.
           The rerun completed `40/40` with `0` failures, `0` errors, duration
@@ -513,7 +513,7 @@ evals:
           `benchmarks/input/crop-validation-b64/`, then reran the full 40-crop
           dedicated validation surface via
           `cd benchmarks && promptfoo eval -c tasks/crop-validation.yaml
-          --no-cache --filter-providers 'google:gemini-3.1-flash-lite-preview'
+          --no-cache --filter-providers 'google:gemini-3.1-flash-lite'
           --filter-prompts 'caption-focus' --output
           results/crop-validation-story183-g31-caption-focus.json -j 1`.
           The repaired local benchmark completed `40/40` with `0` failures,

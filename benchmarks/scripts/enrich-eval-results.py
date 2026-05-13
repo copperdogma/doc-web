@@ -50,7 +50,7 @@ MODEL_PRICING: dict[str, tuple[float, float]] = {
     "gemini-3-pro-preview":      (1.25,  10.00),
     "gemini-3.1-pro-preview":    (1.25,  10.00),
     "gemini-3-flash-preview":    (0.15,   0.60),
-    "gemini-3.1-flash-lite-preview": (0.075, 0.30),
+    "gemini-3.1-flash-lite": (0.075, 0.30),
 }
 # fmt: on
 

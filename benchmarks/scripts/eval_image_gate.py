@@ -7,10 +7,7 @@ and estimated cost per 1000 pages.
 
 import base64
 import json
-import os
 import sys
-import time
-from collections import defaultdict
 from pathlib import Path
 
 # Add project root to path
@@ -154,13 +151,13 @@ def main():
     results["OCR <img> tags"] = {**score, "cost_per_1k": 0.0, "input_tokens": 0, "output_tokens": 0}
     print(f"  Flagged: {score['flagged']} pages | Recall: {score['recall']:.1%} | Precision: {score['precision']:.1%}")
     print(f"  Missed golden pages: {score['missed']}")
-    print(f"  Cost: $0 (already computed)")
+    print("  Cost: $0 (already computed)")
 
     # --- Gate 2-4: VLM yes/no ---
     vlm_models = [
         ("gemini-2.5-flash", 0.15, 0.60),      # input $/M, output $/M
         ("gemini-3-flash-preview", 0.15, 0.60),  # estimated same tier
-        ("gemini-3.1-flash-lite-preview", 0.075, 0.30),  # cheapest
+        ("gemini-3.1-flash-lite", 0.075, 0.30),  # cheapest
     ]
 
     for model, input_price, output_price in vlm_models:
@@ -180,7 +177,7 @@ def main():
         print(f"  Tokens: {in_tok:,} in / {out_tok:,} out | Cost/1k pages: ${cost_per_1k:.4f}")
 
     # --- Gate 5: No gate (all pages) ---
-    print(f"\n=== Gate: No gate (all pages) ===")
+    print("\n=== Gate: No gate (all pages) ===")
     all_pages = set(range(1, total_pages + 1))
     score = score_gate(all_pages, golden_pages, total_pages)
     results["No gate (all pages)"] = {**score, "cost_per_1k": 0.0, "input_tokens": 0, "output_tokens": 0}

@@ -26,7 +26,7 @@ cd benchmarks && promptfoo eval -c tasks/image-crop-extraction.yaml --no-cache -
 
 # Dedicated bounded text-exclusion / crop-quality surface (C5-linked)
 cd benchmarks && promptfoo eval -c tasks/crop-validation.yaml --no-cache \
-  --filter-providers 'google:gemini-3.1-flash-lite-preview' \
+  --filter-providers 'google:gemini-3.1-flash-lite' \
   --filter-prompts 'caption-focus' \
   --output results/crop-validation-story183-g31-caption-focus.json \
   -j 1

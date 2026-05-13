@@ -64,7 +64,7 @@ cd benchmarks/
 
 # Current maintained dedicated C5-linked surface
 ../scripts/run_with_doc_web_env.py promptfoo eval -c tasks/crop-validation.yaml --no-cache \
-  --filter-providers 'google:gemini-3.1-flash-lite-preview' \
+  --filter-providers 'google:gemini-3.1-flash-lite' \
   --filter-prompts 'caption-focus' \
   --output results/crop-validation-story183-g31-caption-focus.json \
   -j 1
@@ -114,7 +114,7 @@ cd benchmarks && source ~/.zshrc && promptfoo eval -c tasks/image-crop-extractio
 ```bash
 cd benchmarks && source ~/.nvm/nvm.sh && nvm use 24 >/dev/null 2>&1 && \
 promptfoo eval -c tasks/crop-validation.yaml --no-cache \
-  --filter-providers 'google:gemini-3.1-flash-lite-preview' \
+  --filter-providers 'google:gemini-3.1-flash-lite' \
   --filter-prompts 'caption-focus' \
   --output results/crop-validation-story183-g31-caption-focus.json \
   -j 1
