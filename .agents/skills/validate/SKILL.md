@@ -40,6 +40,32 @@ Thoroughly analyze what was done and how it compares to the original instruction
      verification limits.
    - Do not let green checks or tidy story bookkeeping hide a real defect.
 
+2.35 **Use `codex review` as an extra signal for non-trivial code diffs**
+   - Run it when the user asks for a second-model/code review, the diff is broad
+     or high-risk, behavior/security/API/tooling code changed, test coverage is
+     uncertain, or the work is nearing commit/ship and a review signal is worth
+     the token cost.
+   - Skip it for docs-only scout/alignment/inbox routing, generated index
+     refreshes, tiny obvious patches, and product/taste decisions. If skipped
+     for a code diff, name the reason briefly.
+   - Choose the target deliberately:
+     - dirty local work: `codex review --uncommitted`
+     - branch or PR work: `git fetch origin`, then `codex review --base`
+       against the PR base or `origin/main`
+     - single committed change: `codex review --commit HEAD`
+   - Do not use a clean `--uncommitted` review on a clean checkout as evidence
+     that committed branch work is clean; it only proves there is no local
+     patch.
+   - Treat review output as advisory. Verify each finding against the real code
+     path and relevant docs/types before accepting it, reject speculative or
+     over-broad findings, and prefer small fixes at the right ownership
+     boundary.
+   - Keep a terse accepted/rejected finding ledger. If an accepted finding
+     changes code, rerun the focused affected tests/checks and rerun the review
+     signal for the changed scope.
+   - Do not replace `/validate` with `codex review`; it is one evidence source,
+     while `/validate` remains the closure authority.
+
 2.5 **If there is a known story/ticket, validate against it**
    - **When a story is "known"**: the user provided a story path/ID/title, or a single story file is clearly in-scope (e.g., `docs/stories/story-*.md`) for the work being validated.
    - Open the story/ticket doc and extract:
