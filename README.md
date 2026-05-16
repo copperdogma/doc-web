@@ -8,6 +8,20 @@ AI-first runtime for turning scanned books, PDFs, office documents, plain-text e
 
 `doc-web` intentionally owns structural output, not the final themed website experience. Presentation-layer website generation remains outside this repo's scope.
 
+## Local Runtime Allocation
+
+doc-web is currently a CLI/runtime boundary rather than a long-running local
+browser UI or API server, so it does not have a `local:*` launcher yet.
+Conductor reserves doc-web's future local runtime ranges now:
+
+- UI worktree range: `5800-5899`
+- service/API worktree range: `3800-3899`
+
+When a persistent preview server or local API lands, add a repo-local launcher
+that reads Conductor's `local-dev-ports.json`, persists the absolute worktree
+path slot in `~/.codex/local-dev-ports.json`, uses strict binding, and exposes
+status/start/stop commands before documenting a Run action.
+
 ## 📚 Documentation
 - **[Runbook & Operations Guide](docs/RUNBOOK.md)**: **START HERE** for running the pipeline, resuming runs, and troubleshooting.
 - **[Agent Guide](AGENTS.md)**: Guidelines for AI agents and developers contributing to the codebase.
