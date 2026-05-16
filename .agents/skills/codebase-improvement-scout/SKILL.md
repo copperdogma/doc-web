@@ -67,7 +67,20 @@ Run the strongest available deterministic checks first. Verify tools exist befor
    - Python dead code: `vulture`
    - dependency drift: `deptry`
 
-4. **Targeted reads:**
+4. **Optional algorithmic complexity detector:**
+   - Treat complexity signals as leads, not proof.
+   - Look for nested scans, membership/search inside loops, sort-in-loop
+     behavior, N+1-shaped IO/query/API loops, and repeated expensive
+     derivations in pipeline code.
+   - For each plausible lead, inspect the local code before ranking it and
+     capture current pattern, estimated current complexity, recommended change,
+     estimated complexity after, risk level, and tests, benchmarks, driver
+     output, artifact inspection, or manual measurements needed.
+   - Do not let scanner output outrank generated artifact truth.
+   - Do not require remote npm helpers or standalone optimizer skills for this
+     scan.
+
+5. **Targeted reads:**
    - inspect the top hotspot files
    - inspect recent stories affecting those areas
    - check whether an apparent issue is already tracked or intentionally accepted
@@ -104,11 +117,22 @@ Rank findings by leverage, not raw issue count:
 
 Prefer the top 3-5 findings. Low-signal laundry lists are a failure.
 
+For algorithmic complexity candidates, classification is incomplete until the
+scan can answer:
+- local data shape and hot path
+- estimated current complexity
+- recommended change and estimated complexity after
+- why behavior should remain equivalent
+- tests, benchmarks, driver output, artifact inspection, or manual measurements
+  needed
+
 ## Phase 3 — Write the Scan Report
 
 Fill the generated report with:
 - run metadata and scope
 - detectors used or unavailable
+- complexity findings with current pattern, estimated current complexity,
+  recommended change, estimated complexity after, risk level, and proof needed
 - top findings with classification
 - one recommended next step
 - story candidate or existing-story link
