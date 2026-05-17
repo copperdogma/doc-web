@@ -241,14 +241,27 @@ def _make_openai_client(
 def _fallback(
     deterministic: dict[str, Any], *, fallback_reason: str, hard_failure: bool
 ) -> dict[str, Any]:
+    portable_reason = _portable_fallback_reason(fallback_reason)
     hint = dict(deterministic)
-    hint["fallback_reason"] = fallback_reason
+    hint["fallback_reason"] = portable_reason
     if hard_failure:
         hint["warnings"] = [
             *hint.get("warnings", []),
-            f"AI content hint failed; deterministic fallback used: {fallback_reason}",
+            f"AI content hint failed; deterministic fallback used: {portable_reason}",
         ]
     return hint
+
+
+def _portable_fallback_reason(reason: str) -> str:
+    reason = " ".join(str(reason or "").split())
+    if not reason:
+        return "content hint fallback"
+    if reason == "DOC_WEB_OPENAI_API_KEY is not configured.":
+        return reason
+    match = re.match(r"^([A-Za-z_][A-Za-z0-9_]*)(?::|\\b)", reason)
+    if match:
+        return f"{match.group(1)} content hint fallback"
+    return "content hint fallback"
 
 
 def _normalize_ai_hint(

@@ -67,6 +67,7 @@ Grouped by primary `spec:N` category. Stories without category refs remain in an
 | 224 | Extend the First Honest Grouped Image-Member Continuation to the First OCR Artifact | High | Done | 180, 205, 218 | [story-224](stories/story-224-mixed-archive-grouped-image-member-routing-seam.md) |
 | 226 | Process a Graphic-Designed Rulebook into Semantic Plain HTML | High | Done | — | [story-226](stories/story-226-robo-rally-rulebook-semantic-html.md) |
 | 228 | Fast `doc-web` Preview Bundle Mode for Dossier and Storybook | High | Done | 152, 154, 156 | [story-228](stories/story-228-fast-doc-web-preview-bundle-mode.md) |
+| 229 | Harden Preview Bundle Portability and Mixed-PDF OCR Fallback | High | Done | 228 | [story-229](stories/story-229-preview-bundle-portability-and-pdf-ocr-followup.md) |
 
 ### spec:2 — OCR & Text Extraction
 

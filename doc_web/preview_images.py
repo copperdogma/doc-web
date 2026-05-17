@@ -25,6 +25,10 @@ def _natural_key(path: Path) -> list[int | str]:
     return parts
 
 
+def _portable_ocr_error(exc: Exception) -> str:
+    return f"{type(exc).__name__}: image OCR failed"
+
+
 def image_directory_preview(
     *,
     source_path: Path,
@@ -80,20 +84,12 @@ def image_directory_preview(
         except Exception as exc:  # pragma: no cover - depends on local OCR runtime
             text = ""
             ocr_errors.append(
-                {"image": image_path.name, "error": f"{type(exc).__name__}: {exc}"}
+                {"page": str(page_index), "error": _portable_ocr_error(exc)}
             )
 
         paragraphs = paragraphs_from_text(text, max_chars_per_block=max_chars_per_block)
         ocr_text_chars += sum(len(paragraph) for paragraph in paragraphs)
         if not paragraphs:
-            skipped_units.append(
-                {
-                    "kind": "page",
-                    "identifier": str(page_index),
-                    "included": False,
-                    "reason": "no_preview_ocr_text",
-                }
-            )
             continue
 
         included_pages.add(page_index)
@@ -102,7 +98,7 @@ def image_directory_preview(
                 kind="paragraph",
                 text=paragraph,
                 source_page_number=page_index,
-                source_element_ids=[f"image-{image_path.stem}-ocr-{ordinal:04d}"],
+                source_element_ids=[f"image-page-{page_index:03d}-ocr-{ordinal:04d}"],
             )
             for ordinal, paragraph in enumerate(paragraphs, start=1)
         ]
@@ -179,9 +175,7 @@ def image_directory_preview(
         "total_image_bytes": total_bytes,
         "text_layer_available": False,
         "ocr_needed": True,
-        "metadata_title": source_path.name,
-        "first_image": image_paths[0].name if image_paths else None,
-        "last_image": image_paths[-1].name if image_paths else None,
+        "metadata_title": "Image Directory Preview",
     }
     return entries, facts, included_units, skipped_units, warnings, coverage_state
 

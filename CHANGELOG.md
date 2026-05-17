@@ -1,3 +1,30 @@
+## [2026-05-06-02] - Harden preview bundle portability and mixed-PDF OCR fallback
+
+### Added
+- Added a mixed text-layer/image-only PDF fixture to prove sampled PDF pages after page 1 can use deterministic single-page OCR fallback.
+- Added manifest file-safety metadata so portable preview snapshots declare which bundle-local files are safe to persist and replay.
+
+### Fixed
+- Fixed preview PDF sampling so image-only sampled pages are rasterized with `pdftoppm -singlefile` and OCRed without leaking Poppler filename assumptions to consumers.
+- Fixed scan-heavy PDF preview OCR so fallback work honors the remaining preview budget and reports `preview_ocr_budget_exhausted` partial/deferred coverage instead of causing load-sensitive hard preview timeouts.
+- Fixed deferred PDF preview metadata so empty OCR fallback produces unique skipped-page rows with the sampled-page failure reason preserved.
+- Fixed preview manifest validation so unsafe source refs, non-portable file paths, missing replay-required rows, unsafe replay claims, and portable-marked debug/private/cache-local rows are rejected.
+- Fixed preview cache identity and sidecars so replay identity uses source hash/ref, parser/OCR settings, page count, bundle fingerprint, and doc-web version/ref instead of local source paths or filenames.
+- Fixed the cache identity contract so `cache/cache_identity.json` validates as `doc_web_cache_identity_v1` and is exposed through `doc-web contract --json` schema versions and preview contract fingerprinting.
+- Fixed cache identity privacy validation so direct schema/CLI checks reject colon-form storage/source references and partial/malformed `sha256:` fingerprint/cache-key strings while valid `sha256:<hex>` identity values remain allowed.
+- Fixed cache identity validation so stale `identity_fingerprint` values are rejected, display-label path exemptions are limited to `source_identity.source_display_label`, embedded donor filenames are rejected, and valid colon-form content-hint model IDs remain allowed.
+- Fixed cache identity fingerprinting so integer and float content-hint timeout inputs normalize to the same runtime identity.
+- Fixed preview content-hint cache identity so default `auto` mode records the resolved effective mode and AI fallback reasons are portable instead of raw exception text.
+- Fixed the module CLI entrypoint so `python -m doc_web.cli contract --json` works alongside `python -m doc_web contract --json`.
+- Fixed manifest validation so required replay file paths must use their expected roles instead of validating when mislabeled as generic assets.
+- Fixed manifest/cache schema validation so extra undeclared private fields are rejected and optional non-replay status sidecars do not block portable replay snapshots.
+- Fixed manifest `asset_roots` validation so portable preview manifests reject absolute paths, URI/storage refs, drive-prefixed paths, backslashes, parent traversal, and empty asset-root entries.
+- Fixed PDF/DOCX metadata sanitization so local source paths, storage refs, donor filenames including punctuated filename references, and donor filename stems from source-authored title/creator metadata or DOCX title paragraphs cannot enter manifest-declared portable safe files.
+- Fixed PDF content hints so missing `/Title` metadata stays null in structural facts instead of using the generic display fallback as a trusted title.
+- Fixed portable preview `run_id` handling so caller-provided path-like or embedded source-filename-shaped run IDs are rejected before manifest/provenance/metadata safe files are written.
+- Fixed portable preview image-directory metadata plus PDF/image OCR-error rows so persisted safe files use page refs and portable error classes instead of source names or paths.
+- Fixed preview CLI timeout/failure JSON so the reported status path is bundle-relative, the failed status row preserves the specific timeout or PDF rasterization failure reason, and the payload does not leak the local output directory.
+
 ## [2026-05-06-01] - Record GPT-5.5 Instant eval challenger
 
 ### Added

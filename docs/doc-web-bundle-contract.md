@@ -69,9 +69,24 @@ Rules:
 - `cache/parsed_units.jsonl` is the reusable parsed-text cache payload for
   later compatible full processing jobs; consumers must gate reuse on
   `cache/cache_identity.json`
+- `manifest.json` declares bundle-local `files` rows so consumers can persist
+  only `safe_to_persist=true` / `privacy_class=portable` paths; safe file paths
+  are relative to the bundle root and require no local source path to replay
+- portable preview manifests use a privacy-safe `source_artifact` reference
+  (`sha256:<source-hash>`), not a local filename/path, temp path, URI, or
+  storage key
 - preview/full selector continuity is represented by preserved block IDs when
   possible and by `preview_to_full_selectors.json` when a later full run needs
   mapping
+- cache identity is privacy-safe: it uses a source hash/reference, page or unit
+  count, `doc-web` version/ref, parser/OCR settings, runtime options, preview
+  contract fingerprint, bundle fingerprint, content-hint identity/cache key,
+  and an identity fingerprint, not a donor filename, local filename/path,
+  storage key, or source hash used as a filename
+- `preview_metadata.json.cache_identity` validates the same
+  `doc_web_cache_identity_v1` shape as `cache/cache_identity.json`; source
+  path/name data is allowed only in rewriteable display-label fields and must
+  not participate in replay identity
 
 ## Compatibility Signaling
 
@@ -132,6 +147,8 @@ Required top-level fields:
 - `entries`
 - `reading_order`
 - `provenance_path`
+- `files` for preview bundles and whenever a bundle is intended to be persisted
+  or replayed as a portable snapshot
 
 Required per-entry fields:
 
@@ -157,6 +174,85 @@ Contract rules:
 - `path` must point to a content HTML file.
 - `index_path` must point to an HTML file at bundle root.
 - `provenance_path` must point to a JSONL sidecar.
+- when `files` is present, `source_artifact` must be a privacy-safe
+  `sha256:<source-hash>` reference rather than a source path, source filename,
+  URI, or storage key because `manifest.json` is itself replay-required.
+- when `run_id` is present in portable preview files, it must be a short
+  portable identifier (`A-Z`, `a-z`, `0-9`, `_`, `.`, `-`) rather than a path,
+  URI/storage ref, or source-derived filename.
+- preview manifests (`module_id=doc_web_preview_v1`) must include `files`; they
+  cannot omit the file contract to bypass portable replay checks.
+- file rows must use non-empty POSIX bundle-relative paths; URI/storage keys,
+  drive-prefixed paths, absolute paths, backslashes, and parent traversal are
+  invalid in the portable contract.
+- `asset_roots`, when present, must also use non-empty POSIX bundle-relative
+  paths; URI/storage keys, drive-prefixed paths, absolute paths, backslashes,
+  empty entries, and parent traversal are invalid.
+- file rows marked safe to persist/replay must use `privacy_class=portable`;
+  debug, private, and cache-local files must either be absent from the portable
+  list or explicitly marked unsafe.
+- rows with `role=debug`, `role=private`, or `role=cache_local` must use the
+  matching non-portable `privacy_class` and must not be marked safe to persist,
+  safe to replay, or required for replay.
+- `required_for_replay=true` means the file is both `safe_to_persist=true` and
+  `safe_to_replay=true`.
+- when `files` is present, the replay-required core rows must include
+  `manifest.json`, `index_path`, `provenance_path`, and every `entries[].path`;
+  each of those rows must be portable, safe to persist, safe to replay, and
+  marked `required_for_replay=true`.
+- preview bundles (`module_id=doc_web_preview_v1`) and manifests containing any
+  preview file rows must also include replay-required rows for
+  `preview_metadata.json`, `preview_to_full_selectors.json`,
+  `cache/cache_identity.json`, and `cache/parsed_units.jsonl`.
+
+Required per-file fields when `files` is present:
+
+- `path`
+- `role`
+- `safe_to_persist`
+- `safe_to_replay`
+- `privacy_class`
+- `required_for_replay`
+
+### `doc_web_cache_identity_v1`
+
+Serialized as `cache/cache_identity.json` and embedded in
+`preview_metadata.json.cache_identity`.
+
+Required top-level fields:
+
+- `identity_schema_version`
+- `source_identity`
+- `doc_web_version`
+- `doc_web_ref`
+- `parser_settings`
+- `runtime_options`
+- `preview_contract_fingerprint`
+- `bundle_fingerprint`
+- `reusable_artifacts`
+- `content_hint`
+- `identity_fingerprint`
+
+Contract rules:
+
+- `source_identity.source_ref` must be `sha256:<source-hash>` and must match
+  `source_identity.source_sha256`
+- `source_identity` records the hash algorithm/origin and page or unit count
+  when known
+- source names, donor filenames, source-hash filenames, local paths, temp
+  paths, URIs, and storage keys must not appear in identity fields; source
+  path/name data is allowed only as a rewriteable display label such as
+  `source_display_label`
+- `reusable_artifacts.parsed_units` and `reusable_artifacts.selector_map` are
+  non-empty POSIX bundle-relative paths
+- `preview_contract_fingerprint`, `bundle_fingerprint`, content-hint cache keys,
+  and `identity_fingerprint` use `sha256:<hex>` values
+- `identity_fingerprint` is the stable replay gate over source identity,
+  runtime/parser options, preview contract fingerprint, bundle fingerprint, and
+  content-hint identity; validation recomputes it and display labels must not
+  change it
+- colon-form content-hint model IDs are allowed only in the content-hint model
+  fields; colon-form source/storage refs remain invalid elsewhere
 
 ### `doc_web_provenance_block_v1`
 

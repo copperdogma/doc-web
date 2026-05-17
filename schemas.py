@@ -1,3 +1,5 @@
+import hashlib
+import json
 import re
 from pathlib import PurePosixPath
 from typing import Any, Dict, List, Optional, Literal, Union
@@ -385,6 +387,32 @@ class BoundingBox(BaseModel):
 
 _DOC_WEB_ENTRY_ID_RE = re.compile(r"^[a-z0-9]+(?:-[a-z0-9]+)*$")
 _DOC_WEB_BLOCK_ID_RE = re.compile(r"^blk-[a-z0-9]+(?:-[a-z0-9]+)*-[0-9]{4}$")
+_DOC_WEB_PREVIEW_MODULE_ID = "doc_web_preview_v1"
+_DOC_WEB_SOURCE_ARTIFACT_EXTENSIONS = {
+    ".csv",
+    ".doc",
+    ".docx",
+    ".epub",
+    ".heic",
+    ".htm",
+    ".html",
+    ".jpeg",
+    ".jpg",
+    ".json",
+    ".jsonl",
+    ".md",
+    ".pdf",
+    ".png",
+    ".rtf",
+    ".tif",
+    ".tiff",
+    ".txt",
+    ".webp",
+    ".xls",
+    ".xlsx",
+    ".xml",
+    ".zip",
+}
 
 
 def _validate_doc_web_entry_id(value: str, field_name: str) -> str:
@@ -392,6 +420,43 @@ def _validate_doc_web_entry_id(value: str, field_name: str) -> str:
         raise ValueError(
             f"{field_name} must be lowercase kebab-case (example: chapter-010, page-002)"
         )
+    return value
+
+
+def _validate_doc_web_source_ref(value: str, field_name: str) -> str:
+    if not re.fullmatch(r"sha256:[0-9a-f]{64}", value):
+        raise ValueError(
+            f"{field_name} must be a privacy-safe sha256:<hex> source reference"
+        )
+    return value
+
+
+def _validate_doc_web_sha256_ref(value: str, field_name: str) -> str:
+    if not re.fullmatch(r"sha256:[0-9a-f]{64}", value):
+        raise ValueError(f"{field_name} must be a sha256:<hex> digest")
+    return value
+
+
+def _contains_doc_web_source_artifact_filename(value: str) -> bool:
+    extensions = "|".join(
+        re.escape(ext.lstrip(".")) for ext in sorted(_DOC_WEB_SOURCE_ARTIFACT_EXTENSIONS)
+    )
+    return bool(
+        re.search(
+            rf"(?i)(?<![A-Za-z0-9._-])[A-Za-z0-9][A-Za-z0-9._-]*"
+            rf"\.(?:{extensions})(?![A-Za-z0-9])",
+            value,
+        )
+    )
+
+
+def _validate_doc_web_run_id(value: Optional[str]) -> Optional[str]:
+    if value is None:
+        return value
+    if not re.fullmatch(r"[A-Za-z0-9][A-Za-z0-9_.-]{0,127}", value):
+        raise ValueError("run_id must be a portable identifier")
+    if _contains_doc_web_source_artifact_filename(value):
+        raise ValueError("run_id must be a portable identifier")
     return value
 
 
@@ -435,6 +500,8 @@ class ChapterHtmlManifestEntry(BaseModel):
 
 class DocWebBundleEntry(BaseModel):
     """Single content document in the first formal `doc-web` bundle contract."""
+
+    model_config = ConfigDict(extra="forbid")
 
     entry_id: str
     kind: Literal["chapter", "page"]
@@ -499,8 +566,88 @@ class DocWebBundleEntry(BaseModel):
         return self
 
 
+def _validate_bundle_relative_path(value: str, label: str) -> str:
+    if not value:
+        raise ValueError(f"{label} cannot be empty")
+    if "\\" in value:
+        raise ValueError(f"{label} must use POSIX '/' separators")
+    if re.match(r"^[A-Za-z][A-Za-z0-9+.-]*:", value):
+        raise ValueError(
+            f"{label} cannot be URI, storage-key, or drive-prefixed paths"
+        )
+    path = PurePosixPath(value)
+    if path.is_absolute():
+        raise ValueError(f"{label} must be relative to the bundle root")
+    if path.as_posix() == "." or any(
+        part in {"", ".", ".."} for part in value.split("/")
+    ):
+        raise ValueError(f"{label} cannot contain empty, '.', or '..' parts")
+    return value
+
+
+class DocWebBundleFile(BaseModel):
+    """Bundle file classification for portable snapshot/replay consumers."""
+
+    model_config = ConfigDict(extra="forbid")
+
+    _UNSAFE_ROLE_PRIVACY_CLASS = {
+        "debug": "debug",
+        "private": "private",
+        "cache_local": "cache_local",
+    }
+
+    path: str
+    role: Literal[
+        "manifest",
+        "index",
+        "entry",
+        "asset",
+        "provenance",
+        "preview_metadata",
+        "preview_status",
+        "selector_map",
+        "cache_identity",
+        "parsed_units",
+        "debug",
+        "private",
+        "cache_local",
+    ]
+    safe_to_persist: bool = False
+    safe_to_replay: bool = False
+    privacy_class: Literal["portable", "debug", "private", "cache_local"] = "private"
+    required_for_replay: bool = False
+
+    @field_validator("path")
+    @classmethod
+    def validate_bundle_relative_path(cls, value: str) -> str:
+        return _validate_bundle_relative_path(value, "bundle file paths")
+
+    @model_validator(mode="after")
+    def validate_file_safety(self):
+        unsafe_privacy_class = self._UNSAFE_ROLE_PRIVACY_CLASS.get(self.role)
+        if unsafe_privacy_class is not None:
+            if self.privacy_class != unsafe_privacy_class:
+                raise ValueError(
+                    f"{self.role} bundle files must use privacy_class='{unsafe_privacy_class}'"
+                )
+            if self.safe_to_persist or self.safe_to_replay or self.required_for_replay:
+                raise ValueError(
+                    f"{self.role} bundle files must be marked unsafe for persist/replay"
+                )
+        if self.safe_to_persist or self.safe_to_replay:
+            if self.privacy_class != "portable":
+                raise ValueError("safe bundle files must use privacy_class='portable'")
+        if self.required_for_replay and not self.safe_to_replay:
+            raise ValueError("required_for_replay files must be safe_to_replay")
+        if self.required_for_replay and not self.safe_to_persist:
+            raise ValueError("required_for_replay files must be safe_to_persist")
+        return self
+
+
 class DocWebBundleManifest(BaseModel):
     """Document-level manifest for the first formal `doc-web` bundle contract."""
+
+    model_config = ConfigDict(extra="forbid")
 
     schema_version: str = "doc_web_bundle_manifest_v1"
     module_id: Optional[str] = None
@@ -516,6 +663,19 @@ class DocWebBundleManifest(BaseModel):
     reading_order: List[str]
     asset_roots: List[str] = Field(default_factory=list)
     provenance_path: str = "provenance/blocks.jsonl"
+    files: List[DocWebBundleFile] = Field(default_factory=list)
+
+    @field_validator("run_id")
+    @classmethod
+    def validate_run_id(cls, value: Optional[str]) -> Optional[str]:
+        return _validate_doc_web_run_id(value)
+
+    @field_validator("asset_roots")
+    @classmethod
+    def validate_asset_roots(cls, value: List[str]) -> List[str]:
+        for asset_root in value:
+            _validate_bundle_relative_path(asset_root, "asset_roots")
+        return value
 
     @model_validator(mode="after")
     def validate_manifest(self):
@@ -564,6 +724,150 @@ class DocWebBundleManifest(BaseModel):
                 raise ValueError(
                     f"next_entry_id for '{entry.entry_id}' must match reading-order adjacency"
                 )
+
+        is_preview_bundle = self.module_id == _DOC_WEB_PREVIEW_MODULE_ID
+        if is_preview_bundle and not self.files:
+            raise ValueError(
+                "preview bundle manifests must include files with required replay paths"
+            )
+
+        if self.files:
+            _validate_doc_web_source_ref(self.source_artifact, "source_artifact")
+
+            file_paths = [file.path for file in self.files]
+            if len(set(file_paths)) != len(file_paths):
+                raise ValueError("bundle file manifest paths must be unique")
+
+            files_by_path = {file.path: file for file in self.files}
+            required_replay_paths = {
+                "manifest.json",
+                self.index_path,
+                self.provenance_path,
+                *[entry.path for entry in self.entries],
+            }
+            missing_paths = sorted(
+                path for path in required_replay_paths if path not in files_by_path
+            )
+            if missing_paths:
+                raise ValueError(
+                    "bundle file manifest is missing required replay paths: "
+                    + ", ".join(missing_paths)
+                )
+
+            for path in sorted(required_replay_paths):
+                file = files_by_path[path]
+                if not (
+                    file.safe_to_persist
+                    and file.safe_to_replay
+                    and file.privacy_class == "portable"
+                    and file.required_for_replay
+                ):
+                    raise ValueError(
+                        "required replay paths must be portable, safe to persist, "
+                        f"safe to replay, and marked required_for_replay: {path}"
+                    )
+
+            expected_roles_by_path = {
+                "manifest.json": "manifest",
+                self.index_path: "index",
+                self.provenance_path: "provenance",
+            }
+            expected_roles_by_path.update(
+                {entry.path: "entry" for entry in self.entries}
+            )
+            for path, expected_role in sorted(expected_roles_by_path.items()):
+                if files_by_path[path].role != expected_role:
+                    raise ValueError(
+                        "bundle file manifest role does not match required path: "
+                        f"{path} must use role='{expected_role}'"
+                    )
+
+            entry_paths = {entry.path for entry in self.entries}
+            singleton_paths_by_role = {
+                "manifest": {"manifest.json"},
+                "index": {self.index_path},
+                "provenance": {self.provenance_path},
+            }
+            for file in self.files:
+                allowed_paths = (
+                    entry_paths
+                    if file.role == "entry"
+                    else singleton_paths_by_role.get(file.role)
+                )
+                if allowed_paths is not None and file.path not in allowed_paths:
+                    allowed_rendered = ", ".join(sorted(allowed_paths))
+                    raise ValueError(
+                        "bundle file manifest role/path pairing is invalid: "
+                        f"role='{file.role}' must use path {allowed_rendered}"
+                    )
+
+            preview_replay_paths = {
+                "preview_metadata.json",
+                "preview_to_full_selectors.json",
+                "cache/cache_identity.json",
+                "cache/parsed_units.jsonl",
+            }
+            preview_roles = {
+                "preview_metadata",
+                "preview_status",
+                "selector_map",
+                "cache_identity",
+                "parsed_units",
+            }
+            has_preview_files = is_preview_bundle or any(
+                file.role in preview_roles or file.path in preview_replay_paths
+                for file in self.files
+            )
+            if has_preview_files:
+                missing_preview_paths = sorted(
+                    path for path in preview_replay_paths if path not in files_by_path
+                )
+                if missing_preview_paths:
+                    raise ValueError(
+                        "preview bundle file manifest is missing required replay paths: "
+                        + ", ".join(missing_preview_paths)
+                    )
+                for path in sorted(preview_replay_paths):
+                    file = files_by_path[path]
+                    if not (
+                        file.safe_to_persist
+                        and file.safe_to_replay
+                        and file.privacy_class == "portable"
+                        and file.required_for_replay
+                    ):
+                        raise ValueError(
+                            "preview replay paths must be portable, safe to persist, "
+                            f"safe to replay, and marked required_for_replay: {path}"
+                        )
+                preview_expected_roles_by_path = {
+                    "preview_metadata.json": "preview_metadata",
+                    "preview_status.jsonl": "preview_status",
+                    "preview_to_full_selectors.json": "selector_map",
+                    "cache/cache_identity.json": "cache_identity",
+                    "cache/parsed_units.jsonl": "parsed_units",
+                }
+                for path, expected_role in sorted(
+                    preview_expected_roles_by_path.items()
+                ):
+                    if path not in files_by_path:
+                        continue
+                    if files_by_path[path].role != expected_role:
+                        raise ValueError(
+                            "preview bundle file manifest role does not match "
+                            f"required path: {path} must use role='{expected_role}'"
+                        )
+                preview_singleton_paths_by_role = {
+                    expected_role: {path}
+                    for path, expected_role in preview_expected_roles_by_path.items()
+                }
+                for file in self.files:
+                    allowed_paths = preview_singleton_paths_by_role.get(file.role)
+                    if allowed_paths is not None and file.path not in allowed_paths:
+                        allowed_rendered = ", ".join(sorted(allowed_paths))
+                        raise ValueError(
+                            "preview bundle file manifest role/path pairing is invalid: "
+                            f"role='{file.role}' must use path {allowed_rendered}"
+                        )
         return self
 
 
@@ -599,6 +903,11 @@ class DocWebProvenanceBlock(BaseModel):
     source_bbox: Optional[BoundingBox] = None
     confidence: Optional[float] = None
     text_quote: Optional[str] = None
+
+    @field_validator("run_id")
+    @classmethod
+    def validate_run_id(cls, value: Optional[str]) -> Optional[str]:
+        return _validate_doc_web_run_id(value)
 
     @field_validator("block_id")
     @classmethod
@@ -688,6 +997,8 @@ class DocWebPreviewStatusEvent(BaseModel):
 class DocWebPreviewContentHint(BaseModel):
     """Non-final high-level content hint derived from preview metadata/text."""
 
+    model_config = ConfigDict(extra="forbid")
+
     status: Literal["available", "deferred", "low_quality"]
     title_guess: Optional[str] = None
     document_kind_hint: str = "unknown"
@@ -737,13 +1048,227 @@ class DocWebPreviewContentHint(BaseModel):
     def validate_cache_key(cls, value: Optional[str]) -> Optional[str]:
         if value is None:
             return value
-        if not value.startswith("sha256:"):
-            raise ValueError("cache_key must start with sha256:")
+        return _validate_doc_web_sha256_ref(value, "cache_key")
+
+
+class DocWebPreviewCacheSourceIdentity(BaseModel):
+    """Privacy-safe source identity used to decide preview cache reuse."""
+
+    model_config = ConfigDict(extra="forbid")
+
+    source_ref: str
+    source_sha256: str
+    source_hash_algorithm: Literal["sha256"]
+    source_hash_origin: str
+    page_count: Optional[int] = None
+    source_unit_count: Optional[int] = None
+    source_display_label: Optional[str] = None
+
+    def __getitem__(self, key: str) -> Any:
+        return getattr(self, key)
+
+    @field_validator("source_ref")
+    @classmethod
+    def validate_source_ref(cls, value: str) -> str:
+        return _validate_doc_web_source_ref(value, "source_identity.source_ref")
+
+    @field_validator("source_sha256")
+    @classmethod
+    def validate_source_sha256(cls, value: str) -> str:
+        if not re.fullmatch(r"[0-9a-f]{64}", value):
+            raise ValueError(
+                "source_identity.source_sha256 must be a lowercase SHA-256 hex digest"
+            )
         return value
+
+    @field_validator("page_count", "source_unit_count")
+    @classmethod
+    def validate_counts(cls, value: Optional[int]) -> Optional[int]:
+        if value is None:
+            return value
+        if value < 0:
+            raise ValueError("source identity counts must be >= 0")
+        return value
+
+    @model_validator(mode="after")
+    def validate_source_ref_matches_hash(self):
+        if self.source_ref != f"sha256:{self.source_sha256}":
+            raise ValueError(
+                "source_identity.source_ref must match source_identity.source_sha256"
+            )
+        return self
+
+
+class DocWebPreviewReusableArtifacts(BaseModel):
+    """Bundle-relative artifacts reusable after cache identity match."""
+
+    model_config = ConfigDict(extra="forbid")
+
+    parsed_units: str
+    selector_map: str
+
+    def __getitem__(self, key: str) -> Any:
+        return getattr(self, key)
+
+    @field_validator("parsed_units", "selector_map")
+    @classmethod
+    def validate_reusable_artifact_path(cls, value: str) -> str:
+        return DocWebBundleFile.validate_bundle_relative_path(value)
+
+
+class DocWebPreviewCacheContentHintIdentity(BaseModel):
+    """Cache-relevant content-hint inputs and outputs."""
+
+    model_config = ConfigDict(extra="forbid")
+
+    mode: Literal["auto", "ai", "deterministic"]
+    effective_mode: Literal["ai", "deterministic"]
+    provider: Optional[str] = None
+    model: Optional[str] = None
+    prompt_version: Optional[str] = None
+    sample_sha256: Optional[str] = None
+    cache_key: Optional[str] = None
+    fallback_reason: Optional[str] = None
+    requested_timeout_seconds: float
+
+    def __getitem__(self, key: str) -> Any:
+        return getattr(self, key)
+
+    @field_validator("sample_sha256")
+    @classmethod
+    def validate_sample_sha256(cls, value: Optional[str]) -> Optional[str]:
+        if value is None:
+            return value
+        if not re.fullmatch(r"[0-9a-f]{64}", value):
+            raise ValueError(
+                "content_hint.sample_sha256 must be a lowercase SHA-256 hex digest"
+            )
+        return value
+
+    @field_validator("cache_key")
+    @classmethod
+    def validate_cache_key(cls, value: Optional[str]) -> Optional[str]:
+        if value is None:
+            return value
+        if not re.fullmatch(r"sha256:[0-9a-f]{64}", value):
+            raise ValueError("content_hint.cache_key must be a sha256:<hex> digest")
+        return value
+
+    @field_validator("requested_timeout_seconds")
+    @classmethod
+    def validate_requested_timeout_seconds(cls, value: float) -> float:
+        if value < 0:
+            raise ValueError("requested_timeout_seconds must be >= 0")
+        return value
+
+
+class DocWebPreviewCacheIdentity(BaseModel):
+    """Replay gate for portable preview cache artifacts."""
+
+    model_config = ConfigDict(extra="forbid")
+
+    identity_schema_version: Literal["doc_web_cache_identity_v1"]
+    source_identity: DocWebPreviewCacheSourceIdentity
+    doc_web_version: str
+    doc_web_ref: str
+    parser_settings: Dict[str, Any]
+    runtime_options: Dict[str, Any]
+    preview_contract_fingerprint: str
+    bundle_fingerprint: str
+    reusable_artifacts: DocWebPreviewReusableArtifacts
+    content_hint: DocWebPreviewCacheContentHintIdentity
+    identity_fingerprint: str
+
+    def __getitem__(self, key: str) -> Any:
+        return getattr(self, key)
+
+    @field_validator(
+        "preview_contract_fingerprint", "bundle_fingerprint", "identity_fingerprint"
+    )
+    @classmethod
+    def validate_fingerprint(cls, value: str) -> str:
+        return _validate_doc_web_sha256_ref(value, "cache identity fingerprints")
+
+    def _expected_identity_fingerprint(self) -> str:
+        source_identity = self.source_identity.model_dump()
+        source_identity.pop("source_display_label", None)
+        payload = {
+            "source_identity": source_identity,
+            "doc_web_version": self.doc_web_version,
+            "doc_web_ref": self.doc_web_ref,
+            "parser_settings": self.parser_settings,
+            "runtime_options": self.runtime_options,
+            "preview_contract_fingerprint": self.preview_contract_fingerprint,
+            "bundle_fingerprint": self.bundle_fingerprint,
+            "content_hint": self.content_hint.model_dump(),
+        }
+        encoded = json.dumps(
+            payload, ensure_ascii=False, sort_keys=True, separators=(",", ":")
+        ).encode("utf-8")
+        return f"sha256:{hashlib.sha256(encoded).hexdigest()}"
+
+    @model_validator(mode="after")
+    def validate_privacy_safe_strings(self):
+        allowed_display_paths = {("source_identity", "source_display_label")}
+        allowed_bundle_paths = {
+            ("reusable_artifacts", "parsed_units"),
+            ("reusable_artifacts", "selector_map"),
+        }
+        allowed_model_ref_paths = {
+            ("runtime_options", "content_hint_model"),
+            ("content_hint", "model"),
+        }
+        def walk(value: Any, path: tuple[str, ...]) -> None:
+            if isinstance(value, BaseModel):
+                walk(value.model_dump(), path)
+                return
+            if isinstance(value, dict):
+                for key, child in value.items():
+                    walk(child, (*path, str(key)))
+                return
+            if isinstance(value, list):
+                for index, child in enumerate(value):
+                    walk(child, (*path, str(index)))
+                return
+            if not isinstance(value, str):
+                return
+            if path in allowed_display_paths:
+                return
+            if path in allowed_bundle_paths:
+                DocWebBundleFile.validate_bundle_relative_path(value)
+                return
+            if path in allowed_model_ref_paths:
+                return
+            if re.fullmatch(r"sha256:[0-9a-f]{64}", value):
+                return
+            if re.match(r"^[A-Za-z][A-Za-z0-9+.-]*:", value):
+                raise ValueError("cache identity must not contain URI/storage paths")
+            if value.startswith("/") or re.match(r"^[A-Za-z]:[\\/]", value):
+                raise ValueError("cache identity must not contain local source paths")
+            if "\\" in value:
+                raise ValueError("cache identity must not contain local source paths")
+            if "/" in value:
+                raise ValueError("cache identity must not contain relative source paths")
+            if re.fullmatch(r"[0-9a-f]{64}\.[A-Za-z0-9]+", value):
+                raise ValueError(
+                    "cache identity must not use source hashes as filenames"
+                )
+            if _contains_doc_web_source_artifact_filename(value):
+                raise ValueError("cache identity must not contain donor filenames")
+
+        walk(self, ())
+        expected = self._expected_identity_fingerprint()
+        if self.identity_fingerprint != expected:
+            raise ValueError(
+                "identity_fingerprint must match cache identity fields"
+            )
+        return self
 
 
 class DocWebPreviewMetadata(BaseModel):
     """Preview-mode metadata sidecar for latency-bound `doc-web` bundles."""
+
+    model_config = ConfigDict(extra="forbid")
 
     schema_version: str = "doc_web_preview_metadata_v1"
     module_id: Optional[str] = None
@@ -767,8 +1292,13 @@ class DocWebPreviewMetadata(BaseModel):
     unsupported_inferences: List[str] = Field(default_factory=list)
     status_events: List[DocWebPreviewStatusEvent]
     timing_ms: Dict[str, float] = Field(default_factory=dict)
-    cache_identity: Dict[str, Any] = Field(default_factory=dict)
+    cache_identity: DocWebPreviewCacheIdentity
     artifacts: Dict[str, str] = Field(default_factory=dict)
+
+    @field_validator("run_id")
+    @classmethod
+    def validate_run_id(cls, value: Optional[str]) -> Optional[str]:
+        return _validate_doc_web_run_id(value)
 
     @field_validator("source_sha256")
     @classmethod
@@ -777,12 +1307,15 @@ class DocWebPreviewMetadata(BaseModel):
             raise ValueError("source_sha256 must be a lowercase SHA-256 hex digest")
         return value
 
+    @field_validator("source_artifact")
+    @classmethod
+    def validate_source_artifact(cls, value: str) -> str:
+        return _validate_doc_web_source_ref(value, "source_artifact")
+
     @field_validator("preview_contract_fingerprint")
     @classmethod
     def validate_preview_contract_fingerprint(cls, value: str) -> str:
-        if not value.startswith("sha256:"):
-            raise ValueError("preview_contract_fingerprint must start with sha256:")
-        return value
+        return _validate_doc_web_sha256_ref(value, "preview_contract_fingerprint")
 
     @field_validator("timing_ms")
     @classmethod
@@ -794,6 +1327,13 @@ class DocWebPreviewMetadata(BaseModel):
 
     @model_validator(mode="after")
     def validate_status_events(self):
+        if self.source_artifact != f"sha256:{self.source_sha256}":
+            raise ValueError("source_artifact must match source_sha256")
+        if (
+            self.cache_identity.source_identity.source_sha256 != self.source_sha256
+            or self.cache_identity.source_identity.source_ref != self.source_artifact
+        ):
+            raise ValueError("cache_identity source identity must match preview source")
         if not self.status_events:
             raise ValueError("status_events cannot be empty")
         if self.status_events[0].stage != "accepted":
@@ -812,6 +1352,8 @@ class DocWebPreviewMetadata(BaseModel):
 
 class DocWebPreviewSelectorMapping(BaseModel):
     """Selector continuity row from a preview block to a full-output selector."""
+
+    model_config = ConfigDict(extra="forbid")
 
     preview_entry_id: str
     preview_block_id: Optional[str] = None
@@ -854,6 +1396,8 @@ class DocWebPreviewSelectorMapping(BaseModel):
 class DocWebPreviewSelectorMap(BaseModel):
     """Machine-readable selector continuity sidecar for preview bundles."""
 
+    model_config = ConfigDict(extra="forbid")
+
     schema_version: str = "doc_web_preview_selector_map_v1"
     module_id: Optional[str] = None
     run_id: Optional[str] = None
@@ -864,6 +1408,11 @@ class DocWebPreviewSelectorMap(BaseModel):
     preview_contract_fingerprint: str
     mappings: List[DocWebPreviewSelectorMapping] = Field(default_factory=list)
 
+    @field_validator("run_id")
+    @classmethod
+    def validate_run_id(cls, value: Optional[str]) -> Optional[str]:
+        return _validate_doc_web_run_id(value)
+
     @field_validator("source_sha256")
     @classmethod
     def validate_source_sha256(cls, value: str) -> str:
@@ -871,12 +1420,21 @@ class DocWebPreviewSelectorMap(BaseModel):
             raise ValueError("source_sha256 must be a lowercase SHA-256 hex digest")
         return value
 
+    @field_validator("source_artifact")
+    @classmethod
+    def validate_source_artifact(cls, value: str) -> str:
+        return _validate_doc_web_source_ref(value, "source_artifact")
+
     @field_validator("preview_contract_fingerprint")
     @classmethod
     def validate_preview_contract_fingerprint(cls, value: str) -> str:
-        if not value.startswith("sha256:"):
-            raise ValueError("preview_contract_fingerprint must start with sha256:")
-        return value
+        return _validate_doc_web_sha256_ref(value, "preview_contract_fingerprint")
+
+    @model_validator(mode="after")
+    def validate_source_ref_matches_hash(self):
+        if self.source_artifact != f"sha256:{self.source_sha256}":
+            raise ValueError("source_artifact must match source_sha256")
+        return self
 
 
 class ImageCrop(BaseModel):

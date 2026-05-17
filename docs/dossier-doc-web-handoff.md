@@ -141,17 +141,50 @@ title guess, document-kind hint, high-level summary, evidence snippets, and
 quality warnings. Dossier may show or summarize preview text, but it must not
 treat preview text or `content_hint` as extracted graph facts and must not infer
 OCR quality or page counts beyond the emitted metadata. Image-directory previews
-use bounded preview OCR when available; otherwise they should be shown as
-OCR-deferred until a full `doc-web` processing job emits real text.
+and sampled PDF pages without a text layer use bounded preview OCR when
+available; otherwise they should be shown as OCR-deferred until a full
+`doc-web` processing job emits real text. PDF fallback rasterization is owned
+inside `doc-web`; consumers should not guess Poppler output filename patterns.
 When `DOC_WEB_OPENAI_API_KEY` is configured, `doc-web` may use a bounded
 cheap-model pass to turn the sampled preview text into one direct summary
 sentence. Dossier should display the emitted `status`, `basis`, `warnings`, and
 cache identity with the hint rather than re-summarizing raw files itself.
 
 Dossier remains responsible for preserving the preview bundle and later choosing
-whether to run a full `doc-web` processing job. A compatible full job may reuse
-`cache/parsed_units.jsonl` only after matching `cache/cache_identity.json`. When
-full processing regenerates content, Dossier should use
+whether to run a full `doc-web` processing job. Persist only the `manifest.json`
+`files` rows marked `safe_to_persist=true` with `privacy_class=portable`; those
+paths are non-empty POSIX bundle-relative paths, not URI/storage keys, local
+absolute paths, drive-prefixed paths, or parent traversal paths. `asset_roots`,
+when present, follow the same bundle-relative portability rule instead of
+naming local asset directories. Rows marked
+`required_for_replay=true` are also `safe_to_persist=true` and
+`safe_to_replay=true`; for preview snapshots identified by
+`module_id=doc_web_preview_v1`, `files` must be present and those
+replay-required rows include
+`manifest.json`, `index.html`, every entry HTML file, `provenance/blocks.jsonl`,
+`preview_metadata.json`, `preview_to_full_selectors.json`,
+`cache/cache_identity.json`, and `cache/parsed_units.jsonl`.
+For portable preview manifests, `source_artifact` is a privacy-safe
+`sha256:<source-hash>` reference rather than a source filename/path, temp path,
+URI, or storage key.
+If `run_id` is present in portable preview files, it is a portable identifier
+only, not a local path, storage ref, or source-derived filename.
+Rows with `role=debug`, `role=private`, or `role=cache_local` are not portable
+replay inputs; if present, they must use the matching non-portable
+`privacy_class` and must not be marked safe to persist, safe to replay, or
+required for replay.
+`preview_status.jsonl` may be persisted for audit/debugging but is not required
+for replay. A compatible full job may reuse
+`cache/parsed_units.jsonl` only after matching the privacy-safe
+`cache/cache_identity.json`, which includes source hash/ref, page or unit count,
+`doc-web` version/ref, parser/OCR settings, runtime options, preview contract
+fingerprint, bundle fingerprint, content-hint identity/cache key, and an
+identity fingerprint rather than donor filenames, local source paths, storage
+keys, or source hashes used as filenames.
+`preview_metadata.json.cache_identity` is the same `doc_web_cache_identity_v1`
+shape; Dossier may rewrite display labels such as a source name/path for UI, but
+those labels are not replay identity and must not be used to decide cache reuse.
+When full processing regenerates content, Dossier should use
 `preview_to_full_selectors.json` or preserved `entry_id` / `block_id` values to
 keep citations stable.
 

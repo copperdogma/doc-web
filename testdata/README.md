@@ -7,6 +7,7 @@
 - `flat-born-digital-form-mini.md` / `flat-born-digital-form-mini.pdf`: repo-owned flat born-digital form-like packet with short label-style sections and an all-caps warning block. Story 177 uses it to widen the repeatable proof surface beyond the original prose-only mini fixture and to measure whether oversized in-body headings are a generic rough edge on the maintained non-TOC lane.
 - `scanned-prose-mini.md` / `scanned-prose-mini.pdf`: original repo-owned prose source plus a generated image-only PDF fixture for `scanned-pdf-prose`. Story 167 uses it to prove maintained scanned-PDF entry, `page_image_v1` provenance, and a clean simple-prose OCR lane without relying on a shared local asset. This is passing evidence for the repo-owned simple-prose fixture, not a blanket claim about degraded or noisy scanned prose.
 - `scanned-prose-degraded.pdf`: repo-owned image-only degraded/noisy synthetic scanned-prose fixture generated from the same checked-in `scanned-prose-mini.md` source via `generate_scanned_prose_fixture.py --preset degraded`. The current preset is intentionally visibly rougher than the clean slice: softer text, lower contrast, added scan noise, slight skew, and faint edge shadow. Story 210 uses it to widen the bounded maintained support slice beyond the clean fixture: the generic PDF OCR lane still extracts strong text on this rougher synthetic degraded probe (`ocr_quality` `0.94-0.96`, normalized text ratio `0.996038` on 2026-04-10), but the repo still does not claim broad real-world degraded scanned-prose coverage.
+- `mixed-text-image-mini.source.json` / `mixed-text-image-mini.pdf`: repo-owned preview-regression fixture with page 1 as born-digital text and page 2 as image-only text. It proves the preview PDF path can keep page 1 text-layer extraction while deterministically rasterizing and OCRing page 2 without exposing Poppler filename details to consumers.
 - `handwritten-notes-mini.txt` / `handwritten-notes-mini-images/` / `handwritten-notes-mini.pdf`: repo-owned synthetic handwritten-notes fixture generated from a checked-in transcript via `generate_handwritten_notes_fixture.py`. Story 179 uses it to prove the first narrow, highly legible handwritten-note slice on the maintained generic image-directory and PDF OCR lanes.
 - `handwritten-notes-faded.txt` / `handwritten-notes-faded-images/` / `handwritten-notes-faded.pdf`: repo-owned synthetic handwritten-notes fixture generated from a checked-in transcript via `generate_handwritten_notes_fixture.py --preset faded`. Story 185 widens the maintained handwritten proof surface to a third synthetic slice with smaller, lighter, more jittered text than the current rough preset. Provenance: repo-authored transcript plus checked-in generated assets. Licensing: repo-owned. Status: `synthetic`, not evidence that real handwriting is broadly solved.
 - `handwritten-notes-rough.txt` / `handwritten-notes-rough-images/` / `handwritten-notes-rough.pdf`: repo-owned synthetic handwritten-notes fixture generated from a checked-in transcript via `generate_handwritten_notes_fixture.py --preset rough`. Story 182 widens the maintained handwritten proof surface to two synthetic fixtures: one highly legible slice plus one rougher synthetic note on the same generic image-directory and PDF OCR lanes. This is still bounded synthetic evidence, not a claim about messy cursive, degraded diaries, or broader real-world handwriting.
@@ -74,6 +75,10 @@ Regeneration:
   ```bash
   python testdata/generate_scanned_prose_fixture.py
   python testdata/generate_scanned_prose_fixture.py --preset degraded
+  ```
+- Mixed text-layer plus image-only PDF:
+  ```bash
+  python testdata/generate_mixed_text_image_pdf_fixture.py
   ```
 - Synthetic handwritten-notes fixtures:
   ```bash

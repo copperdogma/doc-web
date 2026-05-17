@@ -144,7 +144,8 @@
           "223",
           "224",
           "226",
-          "228"
+          "228",
+          "229"
         ],
         "adr_ids": [
           "ADR-001",
@@ -286,7 +287,8 @@
           "219",
           "220",
           "226",
-          "228"
+          "228",
+          "229"
         ],
         "adr_ids": [
           "ADR-002",
@@ -431,7 +433,8 @@
           "223",
           "224",
           "226",
-          "228"
+          "228",
+          "229"
         ],
         "adr_ids": [
           "ADR-002",
@@ -498,7 +501,8 @@
           "223",
           "224",
           "226",
-          "228"
+          "228",
+          "229"
         ],
         "adr_ids": [
           "ADR-002",
@@ -12623,9 +12627,9 @@
       "blocker_evidence": "",
       "unblock_condition": "",
       "last_work_log_entry": {
-        "timestamp": "20260506-0335",
+        "timestamp": "20260506-1358",
         "date": "2026-05-06",
-        "summary": "post-closeout model refresh note: screened OpenAI `chat-latest` / GPT-5.5 Instant against the cheap content-hint preview seam. The current `doc_web/preview_content_hint.py` path uses Chat Completions and default `gpt-..."
+        "summary": "post-closeout Storybook follow-up handoff: the Storybook-reported portability and mixed-PDF OCR defects are intentionally tracked in Story 229 instead of reopening Story 228. Story 228 remains the completed preview-mo..."
       },
       "legacy_build_map_refs": "",
       "metadata_source": "frontmatter",
@@ -12636,12 +12640,83 @@
         "source_path": "docs/stories/story-228-fast-doc-web-preview-bundle-mode.md",
         "recommended_now": false,
         "posture": "completed",
-        "why_now": "post-closeout model refresh note: screened OpenAI `chat-latest` / GPT-5.5 Instant against the cheap content-hint preview seam. The current `doc_web/preview_content_hint.py` path uses Chat Completions and default `gpt-...",
+        "why_now": "post-closeout Storybook follow-up handoff: the Storybook-reported portability and mixed-PDF OCR defects are intentionally tracked in Story 229 instead of reopening Story 228. Story 228 remains the completed preview-mo...",
         "last_relevant_action": {
           "date": "2026-05-06",
           "source_type": "story-work-log",
           "source": "docs/stories/story-228-fast-doc-web-preview-bundle-mode.md",
-          "summary": "post-closeout model refresh note: screened OpenAI `chat-latest` / GPT-5.5 Instant against the cheap content-hint preview seam. The current `doc_web/preview_content_hint.py` path uses Chat Completions and default `gpt-..."
+          "summary": "post-closeout Storybook follow-up handoff: the Storybook-reported portability and mixed-PDF OCR defects are intentionally tracked in Story 229 instead of reopening Story 228. Story 228 remains the completed preview-mo..."
+        }
+      }
+    },
+    {
+      "id": "229",
+      "title": "Harden Preview Bundle Portability and Mixed-PDF OCR Fallback",
+      "path": "docs/stories/story-229-preview-bundle-portability-and-pdf-ocr-followup.md",
+      "status": "Done",
+      "priority": "High",
+      "ideal_refs": [
+        "Fidelity to Source",
+        "Inspect the Artifacts",
+        "Traceability is the Product"
+      ],
+      "spec_refs": [
+        "spec:1",
+        "spec:3",
+        "spec:6",
+        "spec:7"
+      ],
+      "decision_refs": [
+        "`docs/decisions/adr-002-doc-web-runtime-boundary/adr.md`, `docs/doc-web-bundle-contract.md`, `docs/dossier-doc-web-handoff.md`",
+        "ADR-002"
+      ],
+      "adr_ids": [
+        "ADR-002"
+      ],
+      "depends_on": [
+        "228"
+      ],
+      "category_refs": [
+        "spec:1",
+        "spec:3",
+        "spec:6",
+        "spec:7"
+      ],
+      "compromise_refs": [],
+      "input_coverage_refs": [
+        "born-digital-pdf",
+        "scanned-pdf-prose"
+      ],
+      "architecture_domains": [
+        "doc-web preview runtime contract"
+      ],
+      "roadmap_tags": [
+        "preview",
+        "storybook-handoff"
+      ],
+      "blocker_summary": "",
+      "blocker_evidence": "",
+      "unblock_condition": "",
+      "last_work_log_entry": {
+        "timestamp": "20260516-2251",
+        "date": "2026-05-16",
+        "summary": "Final `/validate` plus `/mark-story-done` closeout pass completed on the stabilized Story 229 tree. Fresh affected tests passed for the preview/contract/CLI surface (`PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -m pyte..."
+      },
+      "legacy_build_map_refs": "",
+      "metadata_source": "frontmatter",
+      "missing_frontmatter_keys": [],
+      "actionability": {
+        "source_kind": "story",
+        "source_id": "229",
+        "source_path": "docs/stories/story-229-preview-bundle-portability-and-pdf-ocr-followup.md",
+        "recommended_now": false,
+        "posture": "completed",
+        "why_now": "Final `/validate` plus `/mark-story-done` closeout pass completed on the stabilized Story 229 tree. Fresh affected tests passed for the preview/contract/CLI surface (`PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -m pyte...",
+        "last_relevant_action": {
+          "date": "2026-05-16",
+          "source_type": "story-work-log",
+          "source": "docs/stories/story-229-preview-bundle-portability-and-pdf-ocr-followup.md",
+          "summary": "Final `/validate` plus `/mark-story-done` closeout pass completed on the stabilized Story 229 tree. Fresh affected tests passed for the preview/contract/CLI surface (`PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -m pyte..."
         }
       }
     }

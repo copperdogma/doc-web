@@ -111,12 +111,13 @@ def main() -> None:
         except PreviewTimeout as exc:
             out_dir = Path(args.out_dir)
             out_dir.mkdir(parents=True, exist_ok=True)
+            failure_reason = getattr(exc, "failure_reason", "timeout")
             failed_event = {
                 "stage": "failed",
                 "elapsed_ms": round((time.perf_counter() - started_at) * 1000, 3),
                 "message": str(exc),
                 "artifact": None,
-                "detail": {"reason": "timeout"},
+                "detail": {"reason": failure_reason},
             }
             (out_dir / STATUS_PATH).write_text(
                 json.dumps(failed_event, ensure_ascii=False, sort_keys=True) + "\n",
@@ -125,7 +126,7 @@ def main() -> None:
             payload = {
                 "status": "failed",
                 "error": str(exc),
-                "status_path": str((out_dir / STATUS_PATH).resolve()),
+                "status_path": STATUS_PATH,
             }
             print(
                 json.dumps(
@@ -143,3 +144,7 @@ def main() -> None:
         return
 
     parser.print_help()
+
+
+if __name__ == "__main__":
+    main()

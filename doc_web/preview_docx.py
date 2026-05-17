@@ -10,7 +10,12 @@ from docx.oxml.text.paragraph import CT_P
 from docx.table import Table
 from docx.text.paragraph import Paragraph
 
-from doc_web.preview_support import PreviewBlock, PreviewEntry, collapse_text
+from doc_web.preview_support import (
+    PreviewBlock,
+    PreviewEntry,
+    collapse_text,
+    portable_metadata_text,
+)
 
 
 def _table_html(table: Table, block_id: str) -> str:
@@ -25,9 +30,14 @@ def _table_html(table: Table, block_id: str) -> str:
 
 def _docx_blocks(source_path: Path) -> tuple[str, list[dict[str, Any]], dict[str, Any]]:
     document = Document(str(source_path))
+    private_identifiers = (source_path.name, source_path.stem)
     title = (
-        collapse_text(document.core_properties.title or "")
-        or source_path.stem.replace("-", " ").replace("_", " ").title()
+        portable_metadata_text(
+            document.core_properties.title,
+            fallback="Document Preview",
+            private_identifiers=private_identifiers,
+        )
+        or "Document Preview"
     )
     blocks: list[dict[str, Any]] = []
     paragraph_count = 0
@@ -89,6 +99,7 @@ def docx_preview(
     str,
 ]:
     document_title, blocks, facts = _docx_blocks(source_path)
+    private_identifiers = (source_path.name, source_path.stem)
     entries: list[PreviewEntry] = []
     current: PreviewEntry | None = None
     skipped_units: list[dict[str, Any]] = []
@@ -110,8 +121,16 @@ def docx_preview(
         style = str(block.get("style") or "")
         text = str(block.get("text") or "")
         if style == "Title" and not entries and current is None:
-            document_title = text or document_title
-            facts["metadata_title"] = document_title
+            safe_title = portable_metadata_text(
+                text,
+                fallback=None,
+                private_identifiers=private_identifiers,
+            )
+            if safe_title:
+                document_title = safe_title
+                facts["metadata_title"] = document_title
+            else:
+                facts["metadata_title"] = None
             continue
         if style.startswith("Heading 1"):
             if len(entries) >= max_sample_units:

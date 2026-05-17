@@ -1,7 +1,5 @@
 from __future__ import annotations
 
-import argparse
-import json
 import time
 from pathlib import Path
 from typing import Any
@@ -10,8 +8,16 @@ from doc_web import __version__
 from doc_web.preview_bundle import write_bundle
 from doc_web.preview_content_hint import build_content_hint
 from doc_web.preview_docx import docx_preview
+from doc_web.preview_identity import build_cache_identity, bundle_fingerprint
 from doc_web.preview_images import image_directory_preview
-from doc_web.preview_pdf import pdf_preview
+from doc_web.preview_pdf import (
+    PDF_OCR_ENGINE,
+    PDF_OCR_MAX_DIMENSION,
+    PDF_OCR_RASTER_DPI,
+    PDF_OCR_RASTERIZER,
+    PDF_OCR_TIMEOUT_SECONDS,
+    pdf_preview,
+)
 from doc_web.preview_support import (
     CACHE_IDENTITY_PATH,
     INDEX_PATH,
@@ -26,6 +32,9 @@ from doc_web.preview_support import (
     save_json,
     save_jsonl,
     sha256_source,
+    source_reference,
+    portable_metadata_text,
+    portable_run_id,
     utc_now,
 )
 from doc_web.runtime_contract import build_runtime_contract
@@ -37,6 +46,7 @@ def _build_source_preview(
     source_path: Path,
     max_sample_units: int,
     max_chars_per_block: int,
+    ocr_deadline_at: float | None,
 ) -> tuple[
     list[Any],
     dict[str, Any],
@@ -65,10 +75,16 @@ def _build_source_preview(
         )
     elif suffix == ".pdf":
         parser_settings["parser"] = "pypdf"
+        parser_settings["ocr_engine"] = PDF_OCR_ENGINE
+        parser_settings["ocr_rasterizer"] = PDF_OCR_RASTERIZER
+        parser_settings["ocr_raster_dpi"] = PDF_OCR_RASTER_DPI
+        parser_settings["ocr_timeout_seconds"] = PDF_OCR_TIMEOUT_SECONDS
+        parser_settings["ocr_max_dimension"] = PDF_OCR_MAX_DIMENSION
         preview = pdf_preview(
             source_path=source_path,
             max_sample_units=max_sample_units,
             max_chars_per_block=max_chars_per_block,
+            ocr_deadline_at=ocr_deadline_at,
         )
     elif suffix == ".docx":
         parser_settings["parser"] = "python-docx"
@@ -79,6 +95,32 @@ def _build_source_preview(
     else:
         raise SystemExit(f"Unsupported preview input type: {suffix or '<none>'}")
     return (*preview, parser_settings)
+
+
+def _effective_content_hint_mode(content_hint: dict[str, Any]) -> str:
+    if content_hint.get("summary_provider"):
+        return "ai"
+    return "deterministic"
+
+
+def _source_private_identifiers(source_path: Path) -> tuple[str, str]:
+    return (source_path.name, source_path.stem)
+
+
+def _sanitize_metadata_facts(
+    facts: dict[str, Any], *, source_path: Path
+) -> dict[str, Any]:
+    sanitized = dict(facts)
+    private_identifiers = _source_private_identifiers(source_path)
+    sanitized["metadata_title"] = portable_metadata_text(
+        sanitized.get("metadata_title"),
+        private_identifiers=private_identifiers,
+    )
+    sanitized["metadata_creator"] = portable_metadata_text(
+        sanitized.get("metadata_creator"),
+        private_identifiers=private_identifiers,
+    )
+    return sanitized
 
 
 def build_preview(
@@ -95,11 +137,16 @@ def build_preview(
     run_id: str | None = None,
 ) -> dict[str, Any]:
     started_at = time.perf_counter()
+    timeout_seconds = float(timeout_seconds)
+    usable_deadline_seconds = float(usable_deadline_seconds)
+    content_hint_timeout_seconds = float(content_hint_timeout_seconds)
     events: list[dict[str, Any]] = []
     source_path = input_path.resolve()
     out_dir.mkdir(parents=True, exist_ok=True)
     created_at = utc_now()
-    preview_fingerprint = build_runtime_contract()["preview_contract_fingerprint"]
+    run_id = portable_run_id(run_id)
+    runtime_contract = build_runtime_contract()
+    preview_fingerprint = runtime_contract["preview_contract_fingerprint"]
 
     add_status(
         events,
@@ -110,6 +157,7 @@ def build_preview(
     check_timeout(started_at, timeout_seconds)
 
     source_sha256 = sha256_source(source_path)
+    source_ref = source_reference(source_sha256)
     add_status(
         events,
         stage="preparing_pages",
@@ -130,8 +178,10 @@ def build_preview(
             source_path=source_path,
             max_sample_units=max_sample_units,
             max_chars_per_block=max_chars_per_block,
+            ocr_deadline_at=started_at + max(0.0, timeout_seconds - 0.75),
         )
     )
+    facts = _sanitize_metadata_facts(facts, source_path=source_path)
 
     add_status(
         events,
@@ -151,8 +201,10 @@ def build_preview(
     manifest, provenance_rows, selector_mappings, parsed_units = write_bundle(
         out_dir=out_dir,
         entries=entries,
-        document_title=facts.get("metadata_title") or source_path.stem,
+        document_title=facts.get("metadata_title") or "Document Preview",
         source_path=source_path,
+        source_ref=source_ref,
+        document_id=f"doc-{source_sha256[:12]}",
         created_at=created_at,
         run_id=run_id,
     )
@@ -163,12 +215,19 @@ def build_preview(
         module_id=MODULE_ID,
         run_id=run_id,
         created_at=created_at,
-        source_artifact=str(source_path),
+        source_artifact=source_ref,
         source_sha256=source_sha256,
         preview_contract_fingerprint=preview_fingerprint,
         mappings=selector_mappings,
     ).model_dump(exclude_none=True)
     save_json(out_dir / SELECTOR_MAP_PATH, selector_map)
+
+    bundle_fingerprint_value = bundle_fingerprint(
+        manifest=manifest,
+        provenance_rows=provenance_rows,
+        selector_mappings=selector_mappings,
+        parsed_units=parsed_units,
+    )
 
     runtime_options = {
         "timeout_seconds": timeout_seconds,
@@ -178,18 +237,6 @@ def build_preview(
         "content_hint_mode": content_hint_mode,
         "content_hint_model": content_hint_model,
         "content_hint_timeout_seconds": content_hint_timeout_seconds,
-    }
-    cache_identity = {
-        "source_artifact": str(source_path),
-        "source_sha256": source_sha256,
-        "doc_web_version": __version__,
-        "parser_settings": parser_settings,
-        "runtime_options": runtime_options,
-        "preview_contract_fingerprint": preview_fingerprint,
-        "reusable_artifacts": {
-            "parsed_units": PARSED_UNITS_PATH,
-            "selector_map": SELECTOR_MAP_PATH,
-        },
     }
     elapsed_before_hint = time.perf_counter() - started_at
     remaining_hint_budget = max(
@@ -221,18 +268,29 @@ def build_preview(
         ai_timeout_seconds=effective_hint_timeout_seconds,
         source_sha256=source_sha256,
     )
-    cache_identity["content_hint"] = {
+    content_hint_identity = {
         "mode": content_hint_mode,
-        "effective_mode": effective_hint_mode,
+        "effective_mode": _effective_content_hint_mode(content_hint),
         "provider": content_hint.get("summary_provider"),
         "model": content_hint.get("summary_model") or content_hint_model,
         "prompt_version": content_hint.get("summary_prompt_version"),
         "sample_sha256": content_hint.get("sample_sha256"),
         "cache_key": content_hint.get("cache_key"),
         "fallback_reason": content_hint.get("fallback_reason"),
-        "requested_timeout_seconds": content_hint_timeout_seconds,
-        "effective_timeout_seconds": round(effective_hint_timeout_seconds, 3),
+        "requested_timeout_seconds": float(content_hint_timeout_seconds),
     }
+    cache_identity = build_cache_identity(
+        source_ref=source_ref,
+        source_sha256=source_sha256,
+        facts=facts,
+        doc_web_version=__version__,
+        doc_web_ref=runtime_contract["runtime_version"],
+        parser_settings=parser_settings,
+        runtime_options=runtime_options,
+        preview_contract_fingerprint=preview_fingerprint,
+        bundle_fingerprint_value=bundle_fingerprint_value,
+        content_hint_identity=content_hint_identity,
+    )
     save_json(out_dir / CACHE_IDENTITY_PATH, cache_identity)
 
     add_status(
@@ -240,7 +298,7 @@ def build_preview(
         stage="preview_ready",
         started_at=started_at,
         message="Preview bundle ready",
-        artifact=str((out_dir / "manifest.json").resolve()),
+        artifact="manifest.json",
         detail={"provenance_rows": len(provenance_rows)},
     )
     timing = {
@@ -260,7 +318,7 @@ def build_preview(
         created_at=created_at,
         status="preview_ready",
         coverage_state=coverage_state,
-        source_artifact=str(source_path),
+        source_artifact=source_ref,
         source_sha256=source_sha256,
         doc_web_version=__version__,
         preview_contract_fingerprint=preview_fingerprint,
@@ -306,78 +364,3 @@ def build_preview(
         "warnings": warnings,
         "content_hint": content_hint,
     }
-
-
-def build_arg_parser() -> argparse.ArgumentParser:
-    parser = argparse.ArgumentParser(
-        description="Build a latency-bound doc-web preview bundle."
-    )
-    parser.add_argument("--input", required=True, help="Raw source document path")
-    parser.add_argument(
-        "--out-dir", required=True, help="Output preview bundle directory"
-    )
-    parser.add_argument(
-        "--max-sample-units",
-        type=int,
-        default=3,
-        help="Maximum pages/entries to sample",
-    )
-    parser.add_argument(
-        "--timeout-seconds", type=float, default=8.0, help="Hard synchronous timeout"
-    )
-    parser.add_argument(
-        "--usable-deadline-seconds",
-        type=float,
-        default=3.0,
-        help="Target deadline for a usable preview or honest deferred response",
-    )
-    parser.add_argument("--max-chars-per-block", type=int, default=1200)
-    parser.add_argument(
-        "--content-hint-mode",
-        choices=["auto", "ai", "deterministic"],
-        default="auto",
-        help=(
-            "How to produce high-level content hints. 'auto' uses a bounded "
-            "cheap-model pass when DOC_WEB_OPENAI_API_KEY is configured, then "
-            "falls back to deterministic hints."
-        ),
-    )
-    parser.add_argument(
-        "--content-hint-model",
-        default="gpt-4.1-nano",
-        help="OpenAI model for ai/auto content hints",
-    )
-    parser.add_argument(
-        "--content-hint-timeout-seconds",
-        type=float,
-        default=0.75,
-        help="Timeout for the optional AI content-hint call",
-    )
-    parser.add_argument("--run-id", default=None)
-    parser.add_argument("--json", action="store_true", help="Emit JSON summary only")
-    return parser
-
-
-def main(argv: list[str] | None = None) -> None:
-    parser = build_arg_parser()
-    args = parser.parse_args(argv)
-    summary = build_preview(
-        input_path=Path(args.input),
-        out_dir=Path(args.out_dir),
-        max_sample_units=args.max_sample_units,
-        timeout_seconds=args.timeout_seconds,
-        usable_deadline_seconds=args.usable_deadline_seconds,
-        max_chars_per_block=args.max_chars_per_block,
-        content_hint_mode=args.content_hint_mode,
-        content_hint_model=args.content_hint_model,
-        content_hint_timeout_seconds=args.content_hint_timeout_seconds,
-        run_id=args.run_id,
-    )
-    if args.json:
-        print(json.dumps(summary, ensure_ascii=False, sort_keys=True))
-    else:
-        print(json.dumps(summary, ensure_ascii=False, indent=2, sort_keys=True))
-
-
-if __name__ == "__main__":
-    main()

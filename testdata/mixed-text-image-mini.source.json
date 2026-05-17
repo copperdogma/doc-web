@@ -1,0 +1,13 @@
+{
+  "title": "Mixed Text Image Mini",
+  "pages": [
+    {
+      "kind": "text-layer",
+      "text": "Page one has usable embedded text for preview sampling. It proves the PDF cannot be classified as scan-only just because a later page needs OCR."
+    },
+    {
+      "kind": "image-only",
+      "text": "IMAGE ONLY PAGE TWO OCR TARGET. The fallback must read this page without guessing a Poppler filename."
+    }
+  ]
+}

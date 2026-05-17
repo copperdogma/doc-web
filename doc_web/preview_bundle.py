@@ -5,9 +5,14 @@ from pathlib import Path
 from typing import Any
 
 from doc_web.preview_support import (
+    CACHE_IDENTITY_PATH,
     INDEX_PATH,
+    METADATA_PATH,
     MODULE_ID,
+    PARSED_UNITS_PATH,
     PROVENANCE_PATH,
+    SELECTOR_MAP_PATH,
+    STATUS_PATH,
     PreviewBlock,
     PreviewEntry,
     collapse_text,
@@ -90,6 +95,8 @@ def write_bundle(
     entries: list[PreviewEntry],
     document_title: str,
     source_path: Path,
+    source_ref: str,
+    document_id: str,
     created_at: str,
     run_id: str | None,
 ) -> tuple[
@@ -175,18 +182,97 @@ def write_bundle(
             }
         )
 
+    file_manifest = [
+        {
+            "path": "manifest.json",
+            "role": "manifest",
+            "safe_to_persist": True,
+            "safe_to_replay": True,
+            "privacy_class": "portable",
+            "required_for_replay": True,
+        },
+        {
+            "path": INDEX_PATH,
+            "role": "index",
+            "safe_to_persist": True,
+            "safe_to_replay": True,
+            "privacy_class": "portable",
+            "required_for_replay": True,
+        },
+        {
+            "path": PROVENANCE_PATH,
+            "role": "provenance",
+            "safe_to_persist": True,
+            "safe_to_replay": True,
+            "privacy_class": "portable",
+            "required_for_replay": True,
+        },
+        {
+            "path": METADATA_PATH,
+            "role": "preview_metadata",
+            "safe_to_persist": True,
+            "safe_to_replay": True,
+            "privacy_class": "portable",
+            "required_for_replay": True,
+        },
+        {
+            "path": STATUS_PATH,
+            "role": "preview_status",
+            "safe_to_persist": True,
+            "safe_to_replay": False,
+            "privacy_class": "portable",
+            "required_for_replay": False,
+        },
+        {
+            "path": SELECTOR_MAP_PATH,
+            "role": "selector_map",
+            "safe_to_persist": True,
+            "safe_to_replay": True,
+            "privacy_class": "portable",
+            "required_for_replay": True,
+        },
+        {
+            "path": CACHE_IDENTITY_PATH,
+            "role": "cache_identity",
+            "safe_to_persist": True,
+            "safe_to_replay": True,
+            "privacy_class": "portable",
+            "required_for_replay": True,
+        },
+        {
+            "path": PARSED_UNITS_PATH,
+            "role": "parsed_units",
+            "safe_to_persist": True,
+            "safe_to_replay": True,
+            "privacy_class": "portable",
+            "required_for_replay": True,
+        },
+    ]
+    file_manifest.extend(
+        {
+            "path": entry["path"],
+            "role": "entry",
+            "safe_to_persist": True,
+            "safe_to_replay": True,
+            "privacy_class": "portable",
+            "required_for_replay": True,
+        }
+        for entry in manifest_entries
+    )
+
     manifest = DocWebBundleManifest(
         schema_version="doc_web_bundle_manifest_v1",
         module_id=MODULE_ID,
         run_id=run_id,
         created_at=created_at,
-        document_id=source_path.stem,
+        document_id=document_id,
         title=document_title,
-        source_artifact=str(source_path.resolve()),
+        source_artifact=source_ref,
         entries=manifest_entries,
         reading_order=[entry["entry_id"] for entry in manifest_entries],
         asset_roots=[],
         provenance_path=PROVENANCE_PATH,
+        files=file_manifest,
     ).model_dump(exclude_none=True)
 
     (out_dir / INDEX_PATH).write_text(

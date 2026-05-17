@@ -4,6 +4,7 @@ from typing import Any, Dict
 
 from schemas import (
     DocWebBundleManifest,
+    DocWebPreviewCacheIdentity,
     DocWebPreviewMetadata,
     DocWebPreviewSelectorMap,
     DocWebProvenanceBlock,
@@ -39,6 +40,7 @@ PREVIEW_STATUS_STAGES = [
 ]
 PREVIEW_COVERAGE_STATES = ["complete", "sampled", "partial", "deferred"]
 PREVIEW_CONTENT_HINT_MODES = ["auto", "ai", "deterministic"]
+PREVIEW_CACHE_IDENTITY_SCHEMA_VERSION = "doc_web_cache_identity_v1"
 
 
 def _schema_fingerprint() -> str:
@@ -67,6 +69,9 @@ def _preview_contract_fingerprint() -> str:
             mode="validation"
         ),
         "preview_selector_map_schema": DocWebPreviewSelectorMap.model_json_schema(
+            mode="validation"
+        ),
+        "preview_cache_identity_schema": DocWebPreviewCacheIdentity.model_json_schema(
             mode="validation"
         ),
         "preview_layout": {
@@ -114,6 +119,7 @@ def build_runtime_contract() -> Dict[str, Any]:
         "supported_preview_schema_versions": {
             "metadata": preview_metadata_schema_version,
             "selector_map": preview_selector_map_schema_version,
+            "cache_identity": PREVIEW_CACHE_IDENTITY_SCHEMA_VERSION,
         },
         "compatibility_policy": COMPATIBILITY_POLICY,
         "bundle_layout": {

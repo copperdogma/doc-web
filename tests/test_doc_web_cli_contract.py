@@ -1,4 +1,5 @@
 import json
+import re
 import shutil
 import subprocess
 import sys
@@ -82,11 +83,14 @@ def test_runtime_contract_payload_has_required_fields():
         "manifest": "doc_web_bundle_manifest_v1",
         "provenance": "doc_web_provenance_block_v1",
     }
-    assert payload["schema_fingerprint"].startswith("sha256:")
-    assert payload["preview_contract_fingerprint"].startswith("sha256:")
+    assert re.fullmatch(r"sha256:[0-9a-f]{64}", payload["schema_fingerprint"])
+    assert re.fullmatch(
+        r"sha256:[0-9a-f]{64}", payload["preview_contract_fingerprint"]
+    )
     assert payload["supported_preview_schema_versions"] == {
         "metadata": "doc_web_preview_metadata_v1",
         "selector_map": "doc_web_preview_selector_map_v1",
+        "cache_identity": "doc_web_cache_identity_v1",
     }
     assert payload["compatibility_policy"] == {
         "contract_version_role": "coarse-runtime-boundary-family",
