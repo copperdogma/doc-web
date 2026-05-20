@@ -51,6 +51,12 @@ code, or hybrid implementation honestly.
    claiming the trigger is met.
 5. **Read the relevant local runbook when applicable** — for example,
    `docs/runbooks/golden-build.md` or `docs/runbooks/crop-eval-workflow.md`.
+6. **Check reasoning-effort variants when relevant** — if the retry trigger is a
+   new OpenAI reasoning model or a Responses-only capability, prefer a bounded
+   `low` / `medium` / `high` effort sweep over testing one opaque provider
+   label. Skip `xhigh` unless `high` is valid and already value-competitive.
+   Treat effort as a measured quality/latency/cost dimension, not as a runtime
+   default change by itself.
 
 ## Phase 1 — Pick or Confirm the Candidate
 

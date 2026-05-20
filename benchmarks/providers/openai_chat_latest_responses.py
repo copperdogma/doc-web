@@ -25,6 +25,7 @@ import httpx
 DEFAULT_MODEL = "chat-latest"
 DEFAULT_MAX_OUTPUT_TOKENS = 4096
 GPT55_INPUT_PRICE_PER_1M = 5.0
+GPT55_CACHED_INPUT_PRICE_PER_1M = 0.5
 GPT55_OUTPUT_PRICE_PER_1M = 30.0
 
 
@@ -73,17 +74,39 @@ def _normalize_input(prompt: str) -> list[dict[str, Any]] | str:
     return normalized or prompt
 
 
-def _build_body(prompt: str) -> dict[str, Any]:
-    return {
-        "model": os.environ.get("OPENAI_CHAT_LATEST_MODEL", DEFAULT_MODEL),
+def _coerce_text(value: Any) -> str | None:
+    if value is None:
+        return None
+    text = str(value).strip()
+    return text or None
+
+
+def _build_body(prompt: str, config: dict[str, Any]) -> dict[str, Any]:
+    max_output_tokens = (
+        config.get("max_output_tokens")
+        or config.get("maxOutputTokens")
+        or os.environ.get("OPENAI_CHAT_LATEST_MAX_OUTPUT_TOKENS")
+        or DEFAULT_MAX_OUTPUT_TOKENS
+    )
+    body: dict[str, Any] = {
+        "model": config.get("model")
+        or os.environ.get("OPENAI_CHAT_LATEST_MODEL", DEFAULT_MODEL),
         "input": _normalize_input(prompt),
-        "max_output_tokens": int(
-            os.environ.get(
-                "OPENAI_CHAT_LATEST_MAX_OUTPUT_TOKENS",
-                str(DEFAULT_MAX_OUTPUT_TOKENS),
-            )
-        ),
+        "max_output_tokens": int(max_output_tokens),
     }
+    effort = _coerce_text(
+        config.get("reasoning_effort")
+        or config.get("reasoningEffort")
+        or os.environ.get("OPENAI_CHAT_LATEST_REASONING_EFFORT")
+    )
+    if effort:
+        body["reasoning"] = {"effort": effort}
+    verbosity = _coerce_text(
+        config.get("verbosity") or os.environ.get("OPENAI_CHAT_LATEST_VERBOSITY")
+    )
+    if verbosity:
+        body["text"] = {"verbosity": verbosity}
+    return body
 
 
 def _extract_output_text(data: dict[str, Any]) -> str:
@@ -105,7 +128,7 @@ def _extract_output_text(data: dict[str, Any]) -> str:
     return "\n".join(chunks).strip()
 
 
-def _token_usage(data: dict[str, Any]) -> dict[str, int] | None:
+def _token_usage(data: dict[str, Any]) -> dict[str, Any] | None:
     usage = data.get("usage")
     if not isinstance(usage, dict):
         return None
@@ -114,30 +137,51 @@ def _token_usage(data: dict[str, Any]) -> dict[str, int] | None:
         usage.get("output_tokens") or usage.get("completion_tokens") or 0
     )
     total_tokens = int(usage.get("total_tokens") or prompt_tokens + completion_tokens)
+    input_details = usage.get("input_tokens_details") or {}
+    output_details = usage.get("output_tokens_details") or {}
+    cached_tokens = (
+        int(input_details.get("cached_tokens") or 0)
+        if isinstance(input_details, dict)
+        else 0
+    )
+    reasoning_tokens = (
+        int(output_details.get("reasoning_tokens") or 0)
+        if isinstance(output_details, dict)
+        else 0
+    )
     return {
         "prompt": prompt_tokens,
         "completion": completion_tokens,
         "total": total_tokens,
+        "completionDetails": {
+            "cachedPrompt": cached_tokens,
+            "reasoning": reasoning_tokens,
+        },
     }
 
 
-def _estimated_cost(token_usage: dict[str, int] | None) -> float | None:
+def _estimated_cost(token_usage: dict[str, Any] | None) -> float | None:
     if token_usage is None:
         return None
+    details = token_usage.get("completionDetails") or {}
+    cached_prompt = int(details.get("cachedPrompt") or 0)
+    uncached_prompt = max(token_usage["prompt"] - cached_prompt, 0)
     return (
-        token_usage["prompt"] * GPT55_INPUT_PRICE_PER_1M
+        uncached_prompt * GPT55_INPUT_PRICE_PER_1M
+        + cached_prompt * GPT55_CACHED_INPUT_PRICE_PER_1M
         + token_usage["completion"] * GPT55_OUTPUT_PRICE_PER_1M
     ) / 1_000_000
 
 
 def call_api(prompt: str, options: dict[str, Any], context: dict[str, Any]):
+    config = (options or {}).get("config", {})
     api_key = os.environ.get("OPENAI_API_KEY") or os.environ.get(
         "DOC_WEB_OPENAI_API_KEY"
     )
     if not api_key:
         return {"error": "OPENAI_API_KEY is not configured"}
 
-    body = _build_body(prompt)
+    body = _build_body(prompt, config)
     timeout = float(os.environ.get("OPENAI_CHAT_LATEST_TIMEOUT_SECONDS", "120"))
     try:
         response = httpx.post(
