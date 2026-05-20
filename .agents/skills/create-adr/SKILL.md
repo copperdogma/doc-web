@@ -14,6 +14,13 @@ divergent option set. If the user has explicitly authorized delegation, a
 bounded ideation subagent is a good fit for generating the option packet.
 `/create-adr` still owns the decision, ADR text, and follow-up route.
 
+Use `/triage-adr` on an existing ADR when the conversation has become unclear,
+when it is not obvious what decisions remain, or when the ADR appears mature
+but the next route is uncertain. `/triage-adr` inventories remaining
+Cam-owned decisions, technical recommendations, evidence gaps, and alignment
+work before `/create-adr` creates more decision surface or `/align` propagates
+the result.
+
 ## Example
 
 ```text
@@ -67,6 +74,7 @@ bounded ideation subagent is a good fit for generating the option packet.
 
 8. **After the ADR matures, run `/align`**
    - Once research or implementation changes the project direction, use `/align` to propagate implications across `docs/ideal.md`, `docs/spec.md`, `docs/methodology/state.yaml`, `docs/methodology/graph.json`, `docs/requirements.md`, stories, ADRs, coverage truth, and evals
+   - If the ADR's remaining decisions, maturity, or next route are unclear, run `/triage-adr` before `/align`
 
 ## Guardrails
 

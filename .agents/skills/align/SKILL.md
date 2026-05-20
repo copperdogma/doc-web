@@ -16,6 +16,8 @@ and advisory.
 Use this after changes that may ripple across core project guidance:
 
 - an ADR is accepted or materially redirected
+- an ADR appears ready to align but remaining decisions are unclear; run
+  `/triage-adr` first
 - `docs/ideal.md`, `docs/spec.md`, or `docs/requirements.md` changes
 - `docs/methodology/state.yaml` or `docs/methodology/graph.json` changes
 - an eval newly passes and may delete a compromise
