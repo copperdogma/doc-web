@@ -1115,11 +1115,11 @@
           ],
           "why_now": "Gemini 4 or equivalent may push past 0.95 target Golden references cover limited page types; add table-heavy pages",
           "last_relevant_action": {
-            "date": "2026-05-06",
+            "date": "2026-05-20",
             "source_type": "eval-attempt",
             "source": "docs/evals/registry.yaml",
-            "source_id": "011",
-            "summary": "`chat-latest` is present in the OpenAI model list and is image-callable through the local Responses shim, but it did not beat the maintained Gemini 3 Flash detector. The run scored `0.8006` with `11/13` passes, `0` pr..."
+            "source_id": "012",
+            "summary": "Kimi K2.6 is image-callable through the local Moonshot promptfoo provider, but it did not beat the maintained Gemini 3 Flash detector. The run scored `0.8981` with `12/13` passes, `0` provider errors, average latency..."
           },
           "story_ids": [
             "135",
@@ -1173,11 +1173,11 @@
           ],
           "why_now": "Rerun when a materially stronger validator or detector may reduce the current fail-labeled page-context cases. Rerun after any maintained crop/runtime simplification before claiming `trim_layout_text` or bounded capti...",
           "last_relevant_action": {
-            "date": "2026-05-06",
+            "date": "2026-05-20",
             "source_type": "eval-attempt",
             "source": "docs/evals/registry.yaml",
-            "source_id": "008",
-            "summary": "`chat-latest` is image-callable through the local Responses shim, but it did not preserve the maintained page-context deletion-gate contract. The run scored `21/22` with `0` provider errors, average latency about `569..."
+            "source_id": "009",
+            "summary": "Kimi K2.6 is callable on the two-image page-context prompt and is materially cheaper than the maintained GPT-5.5 Responses gate, but it did not preserve the required `22/22` quality contract. The run scored `21/22` wi..."
           },
           "story_ids": [
             "135",
@@ -1605,12 +1605,12 @@
           "source_path": "docs/stories/story-207-refresh-crop-c4-proof-and-coverage-truth-surfaces.md",
           "recommended_now": false,
           "posture": "completed",
-          "why_now": "post-closeout model refresh note: screened OpenAI `chat-latest` / GPT-5.5 Instant as a bounded detector challenger after the 2026-05-05 release. The alias was image-callable through `benchmarks/providers/openai_chat_l...",
+          "why_now": "post-closeout model refresh note: screened Moonshot `kimi-k2.6` as a bounded direct-API detector challenger after adding `benchmarks/providers/moonshot_kimi_chat.py` and mapping `DOC_WEB_MOONSHOT_API_KEY` for promptfo...",
           "last_relevant_action": {
-            "date": "2026-05-06",
+            "date": "2026-05-20",
             "source_type": "story-work-log",
             "source": "docs/stories/story-207-refresh-crop-c4-proof-and-coverage-truth-surfaces.md",
-            "summary": "post-closeout model refresh note: screened OpenAI `chat-latest` / GPT-5.5 Instant as a bounded detector challenger after the 2026-05-05 release. The alias was image-callable through `benchmarks/providers/openai_chat_l..."
+            "summary": "post-closeout model refresh note: screened Moonshot `kimi-k2.6` as a bounded direct-API detector challenger after adding `benchmarks/providers/moonshot_kimi_chat.py` and mapping `DOC_WEB_MOONSHOT_API_KEY` for promptfo..."
           },
           "story_ids": [
             "181",
@@ -11145,9 +11145,9 @@
       "blocker_evidence": "",
       "unblock_condition": "",
       "last_work_log_entry": {
-        "timestamp": "20260506-0335",
-        "date": "2026-05-06",
-        "summary": "post-closeout model refresh note: screened OpenAI `chat-latest` / GPT-5.5 Instant as a bounded detector challenger after the 2026-05-05 release. The alias was image-callable through `benchmarks/providers/openai_chat_l..."
+        "timestamp": "20260520-1245",
+        "date": "2026-05-20",
+        "summary": "post-closeout model refresh note: screened Moonshot `kimi-k2.6` as a bounded direct-API detector challenger after adding `benchmarks/providers/moonshot_kimi_chat.py` and mapping `DOC_WEB_MOONSHOT_API_KEY` for promptfo..."
       },
       "legacy_build_map_refs": "",
       "metadata_source": "frontmatter",
@@ -11158,12 +11158,12 @@
         "source_path": "docs/stories/story-207-refresh-crop-c4-proof-and-coverage-truth-surfaces.md",
         "recommended_now": false,
         "posture": "completed",
-        "why_now": "post-closeout model refresh note: screened OpenAI `chat-latest` / GPT-5.5 Instant as a bounded detector challenger after the 2026-05-05 release. The alias was image-callable through `benchmarks/providers/openai_chat_l...",
+        "why_now": "post-closeout model refresh note: screened Moonshot `kimi-k2.6` as a bounded direct-API detector challenger after adding `benchmarks/providers/moonshot_kimi_chat.py` and mapping `DOC_WEB_MOONSHOT_API_KEY` for promptfo...",
         "last_relevant_action": {
-          "date": "2026-05-06",
+          "date": "2026-05-20",
           "source_type": "story-work-log",
           "source": "docs/stories/story-207-refresh-crop-c4-proof-and-coverage-truth-surfaces.md",
-          "summary": "post-closeout model refresh note: screened OpenAI `chat-latest` / GPT-5.5 Instant as a bounded detector challenger after the 2026-05-05 release. The alias was image-callable through `benchmarks/providers/openai_chat_l..."
+          "summary": "post-closeout model refresh note: screened Moonshot `kimi-k2.6` as a bounded direct-API detector challenger after adding `benchmarks/providers/moonshot_kimi_chat.py` and mapping `DOC_WEB_MOONSHOT_API_KEY` for promptfo..."
         }
       }
     },
@@ -11283,9 +11283,9 @@
       "blocker_evidence": "",
       "unblock_condition": "",
       "last_work_log_entry": {
-        "timestamp": "20260506-0335",
-        "date": "2026-05-06",
-        "summary": "post-closeout model refresh note: screened OpenAI `chat-latest` / GPT-5.5 Instant as a bounded page-context challenger after verifying it was image-callable through `benchmarks/providers/openai_chat_latest_responses.p..."
+        "timestamp": "20260520-1245",
+        "date": "2026-05-20",
+        "summary": "post-closeout model refresh note: screened Moonshot `kimi-k2.6` as a bounded direct-API page-context challenger after verifying it could handle the full-page-plus-crop two-image prompt through `benchmarks/providers/mo..."
       },
       "legacy_build_map_refs": "",
       "metadata_source": "frontmatter",
@@ -11296,12 +11296,12 @@
         "source_path": "docs/stories/story-209-crop-c5-page-level-deletion-gate.md",
         "recommended_now": false,
         "posture": "completed",
-        "why_now": "post-closeout model refresh note: screened OpenAI `chat-latest` / GPT-5.5 Instant as a bounded page-context challenger after verifying it was image-callable through `benchmarks/providers/openai_chat_latest_responses.p...",
+        "why_now": "post-closeout model refresh note: screened Moonshot `kimi-k2.6` as a bounded direct-API page-context challenger after verifying it could handle the full-page-plus-crop two-image prompt through `benchmarks/providers/mo...",
         "last_relevant_action": {
-          "date": "2026-05-06",
+          "date": "2026-05-20",
           "source_type": "story-work-log",
           "source": "docs/stories/story-209-crop-c5-page-level-deletion-gate.md",
-          "summary": "post-closeout model refresh note: screened OpenAI `chat-latest` / GPT-5.5 Instant as a bounded page-context challenger after verifying it was image-callable through `benchmarks/providers/openai_chat_latest_responses.p..."
+          "summary": "post-closeout model refresh note: screened Moonshot `kimi-k2.6` as a bounded direct-API page-context challenger after verifying it could handle the full-page-plus-crop two-image prompt through `benchmarks/providers/mo..."
         }
       }
     },
@@ -12909,6 +12909,21 @@
           "note": "Bounded GPT-5.5 Instant alias challenger after OpenAI's 2026-05-05 release exposed the API alias as `chat-latest`. Promptfoo 0.121.1 sent unsupported parameters through the built-in OpenAI providers, so this run used the narrow `benchmarks/providers/openai_chat_latest_responses.py` Responses shim against the maintained detector task with only the provider overridden. Equivalent command: `cd benchmarks && DOC_WEB_OPENAI_API_KEY=\"$OPENAI_API_KEY\" ../scripts/run_with_doc_web_env.py promptfoo eval -c tasks/image-crop-extraction.yaml --providers \"python:$(pwd)/providers/openai_chat_latest_responses.py\" --no-cache --filter-prompts 'conservative-count' --output results/chat-latest-image-crop-extraction-20260506.json -j 1`. The run completed `11/13` with `0` provider errors, `overall = 0.8006`, `pass_rate = 0.8462`, average latency about `3610 ms`, and estimated GPT-5.5-rate cost about `$0.1389` total (`$0.0107` per case). Failures were bbox undercoverage on `Image013` and `Image021`, so the alias does not replace the maintained Gemini 3 Flash detector. Portable tracked proof: `docs/evals/attempts/010-chat-latest-instant-bounded-challenger.md`.\n"
         },
         {
+          "model": "Kimi K2.6 (conservative-count prompt, non-thinking)",
+          "metrics": {
+            "overall": 0.8981,
+            "pass_rate": 0.9231,
+            "cases_total": 13,
+            "latency_ms": 6176
+          },
+          "latency_ms": 6176,
+          "cost_usd": 0.004,
+          "cost_estimated": true,
+          "measured": "2026-05-20",
+          "git_sha": "37ef4af",
+          "note": "Bounded Moonshot direct-API challenger after adding `benchmarks/providers/moonshot_kimi_chat.py` and mapping `DOC_WEB_MOONSHOT_API_KEY` to `MOONSHOT_API_KEY` for child promptfoo runs. Command: `cd benchmarks && DOC_WEB_ENV_FILE=/Users/cam/Documents/Projects/doc-web/.env ../scripts/run_with_doc_web_env.py promptfoo eval -c tasks/image-crop-extraction.yaml --providers \"python:$(pwd)/providers/moonshot_kimi_chat.py\" --filter-prompts 'conservative-count' --output results/kimi-k26-image-crop-extraction-20260520.json --no-cache -j 1`. The run completed `12/13` with `0` provider errors, `overall = 0.8981`, `pass_rate = 0.9231`, average latency about `6176 ms`, and estimated Kimi K2.6 cost about `$0.0519` total (`$0.0040` per case). The single miss was model-wrong on `Image001`: Kimi returned no images for the stylized title page that the maintained prompt/golden intentionally count as standalone artwork. A thinking-mode retry of the failed case also returned no images, so no full thinking-mode rerun was warranted. Portable tracked proof: `docs/evals/attempts/011-kimi-k26-bounded-challenger.md`.\n"
+        },
+        {
           "model": "Gemini 3 Flash (conservative-count prompt, heading-safe revision)",
           "metrics": {
             "overall": 0.9678,
@@ -12972,19 +12987,19 @@
         }
       ],
       "latest_score": {
-        "model": "OpenAI chat-latest Responses alias (GPT-5.5 Instant, conservative-count prompt)",
+        "model": "Kimi K2.6 (conservative-count prompt, non-thinking)",
         "metrics": {
-          "overall": 0.8006,
-          "pass_rate": 0.8462,
+          "overall": 0.8981,
+          "pass_rate": 0.9231,
           "cases_total": 13,
-          "latency_ms": 3610
+          "latency_ms": 6176
         },
-        "latency_ms": 3610,
-        "cost_usd": 0.0107,
+        "latency_ms": 6176,
+        "cost_usd": 0.004,
         "cost_estimated": true,
-        "measured": "2026-05-06",
-        "git_sha": "60942e2",
-        "note": "Bounded GPT-5.5 Instant alias challenger after OpenAI's 2026-05-05 release exposed the API alias as `chat-latest`. Promptfoo 0.121.1 sent unsupported parameters through the built-in OpenAI providers, so this run used the narrow `benchmarks/providers/openai_chat_latest_responses.py` Responses shim against the maintained detector task with only the provider overridden. Equivalent command: `cd benchmarks && DOC_WEB_OPENAI_API_KEY=\"$OPENAI_API_KEY\" ../scripts/run_with_doc_web_env.py promptfoo eval -c tasks/image-crop-extraction.yaml --providers \"python:$(pwd)/providers/openai_chat_latest_responses.py\" --no-cache --filter-prompts 'conservative-count' --output results/chat-latest-image-crop-extraction-20260506.json -j 1`. The run completed `11/13` with `0` provider errors, `overall = 0.8006`, `pass_rate = 0.8462`, average latency about `3610 ms`, and estimated GPT-5.5-rate cost about `$0.1389` total (`$0.0107` per case). Failures were bbox undercoverage on `Image013` and `Image021`, so the alias does not replace the maintained Gemini 3 Flash detector. Portable tracked proof: `docs/evals/attempts/010-chat-latest-instant-bounded-challenger.md`.\n"
+        "measured": "2026-05-20",
+        "git_sha": "37ef4af",
+        "note": "Bounded Moonshot direct-API challenger after adding `benchmarks/providers/moonshot_kimi_chat.py` and mapping `DOC_WEB_MOONSHOT_API_KEY` to `MOONSHOT_API_KEY` for child promptfoo runs. Command: `cd benchmarks && DOC_WEB_ENV_FILE=/Users/cam/Documents/Projects/doc-web/.env ../scripts/run_with_doc_web_env.py promptfoo eval -c tasks/image-crop-extraction.yaml --providers \"python:$(pwd)/providers/moonshot_kimi_chat.py\" --filter-prompts 'conservative-count' --output results/kimi-k26-image-crop-extraction-20260520.json --no-cache -j 1`. The run completed `12/13` with `0` provider errors, `overall = 0.8981`, `pass_rate = 0.9231`, average latency about `6176 ms`, and estimated Kimi K2.6 cost about `$0.0519` total (`$0.0040` per case). The single miss was model-wrong on `Image001`: Kimi returned no images for the stylized title page that the maintained prompt/golden intentionally count as standalone artwork. A thinking-mode retry of the failed case also returned no images, so no full thinking-mode rerun was warranted. Portable tracked proof: `docs/evals/attempts/011-kimi-k26-bounded-challenger.md`.\n"
       },
       "attempts": [
         {
@@ -13074,6 +13089,14 @@
           "approach": "Screen OpenAI `chat-latest` / GPT-5.5 Instant as a bounded detector challenger after the 2026-05-05 release",
           "note": "`chat-latest` is present in the OpenAI model list and is image-callable through the local Responses shim, but it did not beat the maintained Gemini 3 Flash detector. The run scored `0.8006` with `11/13` passes, `0` provider errors, average latency about `3610 ms`, and estimated cost about `$0.1389` total. `Image013` and `Image021` failed due to undercovered portrait/photo bounding boxes. No maintained providers, prompts, scorers, or goldens were changed.\n",
           "retry_when": []
+        },
+        {
+          "id": "012",
+          "date": "2026-05-20",
+          "status": "failed",
+          "approach": "Screen Kimi K2.6 through Moonshot's direct API as a bounded detector challenger",
+          "note": "Kimi K2.6 is image-callable through the local Moonshot promptfoo provider, but it did not beat the maintained Gemini 3 Flash detector. The run scored `0.8981` with `12/13` passes, `0` provider errors, average latency about `6176 ms`, and estimated cost about `$0.0519` total. The miss was model-wrong on `Image001`: the maintained prompt/golden count the stylized title page as a standalone visual element, while Kimi returned `{\"images\": []}`. Thinking mode did not repair that failed case. No maintained providers, prompts, scorers, or goldens were changed.\n",
+          "retry_when": []
         }
       ],
       "retry_when": [
@@ -13098,11 +13121,11 @@
         ],
         "why_now": "Gemini 4 or equivalent may push past 0.95 target Golden references cover limited page types; add table-heavy pages",
         "last_relevant_action": {
-          "date": "2026-05-06",
+          "date": "2026-05-20",
           "source_type": "eval-attempt",
           "source": "docs/evals/registry.yaml",
-          "source_id": "011",
-          "summary": "`chat-latest` is present in the OpenAI model list and is image-callable through the local Responses shim, but it did not beat the maintained Gemini 3 Flash detector. The run scored `0.8006` with `11/13` passes, `0` pr..."
+          "source_id": "012",
+          "summary": "Kimi K2.6 is image-callable through the local Moonshot promptfoo provider, but it did not beat the maintained Gemini 3 Flash detector. The run scored `0.8981` with `12/13` passes, `0` provider errors, average latency..."
         }
       }
     },
@@ -13385,6 +13408,23 @@
           "note": "Bounded GPT-5.5 Instant alias challenger after verifying `chat-latest` can be called with image inputs through `benchmarks/providers/openai_chat_latest_responses.py`. Command: `cd benchmarks && DOC_WEB_OPENAI_API_KEY=\"$OPENAI_API_KEY\" ../scripts/run_with_doc_web_env.py promptfoo eval -c tasks/crop-page-level-deletion-gate.yaml --providers \"python:$(pwd)/providers/openai_chat_latest_responses.py\" --no-cache --output results/chat-latest-crop-page-level-deletion-gate-20260506.json -j 1`. The run completed `21/22` with `0` provider errors, `overall = 0.9545`, `pass_rate = 0.9545`, average latency about `5698 ms`, and estimated GPT-5.5-rate cost about `$0.4136` total (`$0.0188` per case). The single failure was `page-122-001`: the model returned `pass` even though the corrected golden fails the crop for leaking a neighboring portrait slice. This does not replace the maintained `openai:responses:gpt-5.5` page-context winner. Portable tracked proof: `docs/evals/attempts/010-chat-latest-instant-bounded-challenger.md`.\n"
         },
         {
+          "model": "Kimi K2.6 (page-context prompt, non-thinking)",
+          "metrics": {
+            "overall": 0.9545,
+            "pass_rate": 0.9545,
+            "cases_total": 22,
+            "pass_labeled": 17,
+            "fail_labeled": 5,
+            "latency_ms": 9868
+          },
+          "latency_ms": 9868,
+          "cost_usd": 0.0075,
+          "cost_estimated": true,
+          "measured": "2026-05-20",
+          "git_sha": "37ef4af",
+          "note": "Bounded Moonshot direct-API challenger after verifying Kimi K2.6 can handle the repo's two-image full-page-plus-crop prompt shape through `benchmarks/providers/moonshot_kimi_chat.py`. Command: `cd benchmarks && DOC_WEB_ENV_FILE=/Users/cam/Documents/Projects/doc-web/.env ../scripts/run_with_doc_web_env.py promptfoo eval -c tasks/crop-page-level-deletion-gate.yaml --providers \"python:$(pwd)/providers/moonshot_kimi_chat.py\" --output results/kimi-k26-crop-page-level-deletion-gate-20260520.json --no-cache -j 1`. The run completed `21/22` with `0` provider errors, `overall = 0.9545`, `pass_rate = 0.9545`, average latency about `9868 ms`, and estimated Kimi K2.6 cost about `$0.1646` total (`$0.0075` per case). The miss was model-wrong on `page-122-001`: Kimi returned `pass` even though manual source/crop inspection confirmed the corrected golden failure for leaking a neighboring Sophie L'Heureux portrait slice. A thinking-mode retry of the failed case also returned `pass`, so no full thinking-mode rerun was warranted. This does not replace the maintained `openai:responses:gpt-5.5` page-context winner. Portable tracked proof: `docs/evals/attempts/011-kimi-k26-bounded-challenger.md`.\n"
+        },
+        {
           "model": "GPT-5.5 Pro Responses (page-context prompt)",
           "metrics": {
             "overall": 0.6818,
@@ -13403,21 +13443,21 @@
         }
       ],
       "latest_score": {
-        "model": "OpenAI chat-latest Responses alias (GPT-5.5 Instant, page-context prompt)",
+        "model": "Kimi K2.6 (page-context prompt, non-thinking)",
         "metrics": {
           "overall": 0.9545,
           "pass_rate": 0.9545,
           "cases_total": 22,
           "pass_labeled": 17,
           "fail_labeled": 5,
-          "latency_ms": 5698
+          "latency_ms": 9868
         },
-        "latency_ms": 5698,
-        "cost_usd": 0.0188,
+        "latency_ms": 9868,
+        "cost_usd": 0.0075,
         "cost_estimated": true,
-        "measured": "2026-05-06",
-        "git_sha": "60942e2",
-        "note": "Bounded GPT-5.5 Instant alias challenger after verifying `chat-latest` can be called with image inputs through `benchmarks/providers/openai_chat_latest_responses.py`. Command: `cd benchmarks && DOC_WEB_OPENAI_API_KEY=\"$OPENAI_API_KEY\" ../scripts/run_with_doc_web_env.py promptfoo eval -c tasks/crop-page-level-deletion-gate.yaml --providers \"python:$(pwd)/providers/openai_chat_latest_responses.py\" --no-cache --output results/chat-latest-crop-page-level-deletion-gate-20260506.json -j 1`. The run completed `21/22` with `0` provider errors, `overall = 0.9545`, `pass_rate = 0.9545`, average latency about `5698 ms`, and estimated GPT-5.5-rate cost about `$0.4136` total (`$0.0188` per case). The single failure was `page-122-001`: the model returned `pass` even though the corrected golden fails the crop for leaking a neighboring portrait slice. This does not replace the maintained `openai:responses:gpt-5.5` page-context winner. Portable tracked proof: `docs/evals/attempts/010-chat-latest-instant-bounded-challenger.md`.\n"
+        "measured": "2026-05-20",
+        "git_sha": "37ef4af",
+        "note": "Bounded Moonshot direct-API challenger after verifying Kimi K2.6 can handle the repo's two-image full-page-plus-crop prompt shape through `benchmarks/providers/moonshot_kimi_chat.py`. Command: `cd benchmarks && DOC_WEB_ENV_FILE=/Users/cam/Documents/Projects/doc-web/.env ../scripts/run_with_doc_web_env.py promptfoo eval -c tasks/crop-page-level-deletion-gate.yaml --providers \"python:$(pwd)/providers/moonshot_kimi_chat.py\" --output results/kimi-k26-crop-page-level-deletion-gate-20260520.json --no-cache -j 1`. The run completed `21/22` with `0` provider errors, `overall = 0.9545`, `pass_rate = 0.9545`, average latency about `9868 ms`, and estimated Kimi K2.6 cost about `$0.1646` total (`$0.0075` per case). The miss was model-wrong on `page-122-001`: Kimi returned `pass` even though manual source/crop inspection confirmed the corrected golden failure for leaking a neighboring Sophie L'Heureux portrait slice. A thinking-mode retry of the failed case also returned `pass`, so no full thinking-mode rerun was warranted. This does not replace the maintained `openai:responses:gpt-5.5` page-context winner. Portable tracked proof: `docs/evals/attempts/011-kimi-k26-bounded-challenger.md`.\n"
       },
       "attempts": [
         {
@@ -13483,6 +13523,14 @@
           "approach": "Screen OpenAI `chat-latest` / GPT-5.5 Instant as a bounded page-context challenger after the 2026-05-05 release",
           "note": "`chat-latest` is image-callable through the local Responses shim, but it did not preserve the maintained page-context deletion-gate contract. The run scored `21/22` with `0` provider errors, average latency about `5698 ms`, and estimated cost about `$0.4136` total. The miss was model-wrong on `page-122-001`: it passed a crop that the corrected golden fails for leaking a neighboring portrait slice. No maintained providers, prompts, scorers, or goldens were changed.\n",
           "retry_when": []
+        },
+        {
+          "id": "009",
+          "date": "2026-05-20",
+          "status": "failed",
+          "approach": "Screen Kimi K2.6 through Moonshot's direct API as a bounded page-context challenger",
+          "note": "Kimi K2.6 is callable on the two-image page-context prompt and is materially cheaper than the maintained GPT-5.5 Responses gate, but it did not preserve the required `22/22` quality contract. The run scored `21/22` with `0` provider errors, average latency about `9868 ms`, and estimated cost about `$0.1646` total. The miss was model-wrong on `page-122-001`: Kimi returned `pass` for a crop that the corrected golden fails for a visible neighboring portrait slice. Thinking mode did not repair the failed case. No maintained providers, prompts, scorers, or goldens were changed.\n",
+          "retry_when": []
         }
       ],
       "retry_when": [
@@ -13510,11 +13558,11 @@
         ],
         "why_now": "Rerun when a materially stronger validator or detector may reduce the current fail-labeled page-context cases. Rerun after any maintained crop/runtime simplification before claiming `trim_layout_text` or bounded capti...",
         "last_relevant_action": {
-          "date": "2026-05-06",
+          "date": "2026-05-20",
           "source_type": "eval-attempt",
           "source": "docs/evals/registry.yaml",
-          "source_id": "008",
-          "summary": "`chat-latest` is image-callable through the local Responses shim, but it did not preserve the maintained page-context deletion-gate contract. The run scored `21/22` with `0` provider errors, average latency about `569..."
+          "source_id": "009",
+          "summary": "Kimi K2.6 is callable on the two-image page-context prompt and is materially cheaper than the maintained GPT-5.5 Responses gate, but it did not preserve the required `22/22` quality contract. The run scored `21/22` wi..."
         }
       }
     },

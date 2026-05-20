@@ -15,17 +15,20 @@ from typing import Mapping
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_ENV_FILE = REPO_ROOT / ".env"
+ENV_FILE_OVERRIDE = "DOC_WEB_ENV_FILE"
 
 DOC_WEB_KEY_BY_PROVIDER = {
     "openai": "DOC_WEB_OPENAI_API_KEY",
     "anthropic": "DOC_WEB_ANTHROPIC_API_KEY",
     "gemini": "DOC_WEB_GEMINI_API_KEY",
+    "moonshot": "DOC_WEB_MOONSHOT_API_KEY",
 }
 
 CHILD_KEY_BY_PROVIDER = {
     "openai": "OPENAI_API_KEY",
     "anthropic": "ANTHROPIC_API_KEY",
     "gemini": "GEMINI_API_KEY",
+    "moonshot": "MOONSHOT_API_KEY",
 }
 
 STALE_GOOGLE_KEY = "GOOGLE_API_KEY"
@@ -63,10 +66,11 @@ def parse_dotenv(path: Path) -> dict[str, str]:
 
 def build_doc_web_env(
     env: Mapping[str, str] | None = None,
-    env_file: Path = DEFAULT_ENV_FILE,
+    env_file: Path | None = None,
 ) -> dict[str, str]:
     """Return env plus repo-local .env defaults, without provider remapping."""
     merged = dict(os.environ if env is None else env)
+    env_file = env_file or Path(merged.get(ENV_FILE_OVERRIDE, DEFAULT_ENV_FILE))
     for key, value in parse_dotenv(env_file).items():
         merged.setdefault(key, value)
     return merged
@@ -76,14 +80,14 @@ def get_doc_web_api_key(
     provider: str,
     *,
     env: Mapping[str, str] | None = None,
-    env_file: Path = DEFAULT_ENV_FILE,
+    env_file: Path | None = None,
 ) -> str | None:
     """Return the doc-web-scoped API key for a provider, if configured."""
     key_name = DOC_WEB_KEY_BY_PROVIDER[provider]
     return build_doc_web_env(env=env, env_file=env_file).get(key_name) or None
 
 
-def build_child_env(env_file: Path = DEFAULT_ENV_FILE) -> dict[str, str]:
+def build_child_env(env_file: Path | None = None) -> dict[str, str]:
     """Map doc-web-scoped keys to child-process provider keys."""
     child_env = build_doc_web_env(env_file=env_file)
 

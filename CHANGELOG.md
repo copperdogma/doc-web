@@ -1,3 +1,12 @@
+## [2026-05-20-01] - Record Kimi K2.6 eval challenger
+
+### Added
+- Added a bounded promptfoo provider for Moonshot `kimi-k2.6` so model-refresh runs can test Kimi with image inputs through the direct Moonshot API.
+- Added a tracked Kimi K2.6 challenger attempt covering `image-crop-extraction` and the page-level crop deletion gate.
+
+### Changed
+- Changed the eval registry, crop story logs, generated methodology graph, README benchmark key docs, and inbox to close the Kimi K2.6 item with a no-adoption decision.
+
 ## [2026-05-06-02] - Harden preview bundle portability and mixed-PDF OCR fallback
 
 ### Added

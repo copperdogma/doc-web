@@ -572,6 +572,7 @@ For repo-local runs, put app-scoped keys in `.env`:
 - `DOC_WEB_OPENAI_API_KEY`: For GPT-4/5 models.
 - `DOC_WEB_GEMINI_API_KEY`: For Google Gemini models.
 - `DOC_WEB_ANTHROPIC_API_KEY`: For Claude models (benchmarking/judging).
+- `DOC_WEB_MOONSHOT_API_KEY`: For Moonshot/Kimi benchmark challengers.
 
 Run provider-backed commands through `scripts/run_with_doc_web_env.py`; it maps
 the local names to provider-standard child-process names only for that command.

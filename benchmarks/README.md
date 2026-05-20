@@ -15,6 +15,7 @@ npm install -g promptfoo
 DOC_WEB_OPENAI_API_KEY=...
 DOC_WEB_ANTHROPIC_API_KEY=...
 DOC_WEB_GEMINI_API_KEY=...
+DOC_WEB_MOONSHOT_API_KEY=...
 
 # Then run provider-backed commands through the doc-web env wrapper.
 ../scripts/run_with_doc_web_env.py promptfoo eval -c tasks/image-crop-extraction.yaml --no-cache -j 3
@@ -61,6 +62,13 @@ cd benchmarks/
 
 # Save results
 ../scripts/run_with_doc_web_env.py promptfoo eval -c tasks/image-crop-extraction.yaml --no-cache --output results/image-crop-run1.json
+
+# Run a bounded Kimi K2.6 challenger through Moonshot's direct API
+../scripts/run_with_doc_web_env.py promptfoo eval -c tasks/image-crop-extraction.yaml --no-cache \
+  --providers "python:$(pwd)/providers/moonshot_kimi_chat.py" \
+  --filter-prompts 'conservative-count' \
+  --output results/kimi-k26-image-crop-extraction.json \
+  -j 1
 
 # Current maintained dedicated C5-linked surface
 ../scripts/run_with_doc_web_env.py promptfoo eval -c tasks/crop-validation.yaml --no-cache \

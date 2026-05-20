@@ -160,6 +160,37 @@ evals:
           alias does not replace the maintained Gemini 3 Flash detector.
           Portable tracked proof:
           `docs/evals/attempts/010-chat-latest-instant-bounded-challenger.md`.
+      - model: "Kimi K2.6 (conservative-count prompt, non-thinking)"
+        metrics:
+          overall: 0.8981
+          pass_rate: 0.9231
+          cases_total: 13
+          latency_ms: 6176
+        latency_ms: 6176
+        cost_usd: 0.0040
+        cost_estimated: true
+        measured: 2026-05-20
+        git_sha: 37ef4af
+        note: >
+          Bounded Moonshot direct-API challenger after adding
+          `benchmarks/providers/moonshot_kimi_chat.py` and mapping
+          `DOC_WEB_MOONSHOT_API_KEY` to `MOONSHOT_API_KEY` for child promptfoo
+          runs. Command: `cd benchmarks &&
+          DOC_WEB_ENV_FILE=/Users/cam/Documents/Projects/doc-web/.env
+          ../scripts/run_with_doc_web_env.py promptfoo eval -c
+          tasks/image-crop-extraction.yaml --providers
+          "python:$(pwd)/providers/moonshot_kimi_chat.py" --filter-prompts
+          'conservative-count' --output
+          results/kimi-k26-image-crop-extraction-20260520.json --no-cache
+          -j 1`. The run completed `12/13` with `0` provider errors,
+          `overall = 0.8981`, `pass_rate = 0.9231`, average latency about
+          `6176 ms`, and estimated Kimi K2.6 cost about `$0.0519` total
+          (`$0.0040` per case). The single miss was model-wrong on `Image001`:
+          Kimi returned no images for the stylized title page that the
+          maintained prompt/golden intentionally count as standalone artwork.
+          A thinking-mode retry of the failed case also returned no images, so
+          no full thinking-mode rerun was warranted. Portable tracked proof:
+          `docs/evals/attempts/011-kimi-k26-bounded-challenger.md`.
       - model: "Gemini 3 Flash (conservative-count prompt, heading-safe revision)"
         metrics:
           overall: 0.9678
@@ -375,6 +406,22 @@ evals:
           cost about `$0.1389` total. `Image013` and `Image021` failed due to
           undercovered portrait/photo bounding boxes. No maintained providers,
           prompts, scorers, or goldens were changed.
+      - id: "012"
+        date: 2026-05-20
+        status: failed
+        approach: "Screen Kimi K2.6 through Moonshot's direct API as a bounded detector challenger"
+        score_before: 0.9703
+        score_after: 0.8981
+        note: >
+          Kimi K2.6 is image-callable through the local Moonshot promptfoo
+          provider, but it did not beat the maintained Gemini 3 Flash detector.
+          The run scored `0.8981` with `12/13` passes, `0` provider errors,
+          average latency about `6176 ms`, and estimated cost about `$0.0519`
+          total. The miss was model-wrong on `Image001`: the maintained
+          prompt/golden count the stylized title page as a standalone visual
+          element, while Kimi returned `{"images": []}`. Thinking mode did not
+          repair that failed case. No maintained providers, prompts, scorers,
+          or goldens were changed.
 
     retry_when:
       - condition: new-subject-model
@@ -804,6 +851,40 @@ evals:
           maintained `openai:responses:gpt-5.5` page-context winner. Portable
           tracked proof:
           `docs/evals/attempts/010-chat-latest-instant-bounded-challenger.md`.
+      - model: "Kimi K2.6 (page-context prompt, non-thinking)"
+        metrics:
+          overall: 0.9545
+          pass_rate: 0.9545
+          cases_total: 22
+          pass_labeled: 17
+          fail_labeled: 5
+          latency_ms: 9868
+        latency_ms: 9868
+        cost_usd: 0.0075
+        cost_estimated: true
+        measured: 2026-05-20
+        git_sha: 37ef4af
+        note: >
+          Bounded Moonshot direct-API challenger after verifying Kimi K2.6 can
+          handle the repo's two-image full-page-plus-crop prompt shape through
+          `benchmarks/providers/moonshot_kimi_chat.py`. Command:
+          `cd benchmarks &&
+          DOC_WEB_ENV_FILE=/Users/cam/Documents/Projects/doc-web/.env
+          ../scripts/run_with_doc_web_env.py promptfoo eval -c
+          tasks/crop-page-level-deletion-gate.yaml --providers
+          "python:$(pwd)/providers/moonshot_kimi_chat.py" --output
+          results/kimi-k26-crop-page-level-deletion-gate-20260520.json
+          --no-cache -j 1`. The run completed `21/22` with `0` provider
+          errors, `overall = 0.9545`, `pass_rate = 0.9545`, average latency
+          about `9868 ms`, and estimated Kimi K2.6 cost about `$0.1646` total
+          (`$0.0075` per case). The miss was model-wrong on `page-122-001`:
+          Kimi returned `pass` even though manual source/crop inspection
+          confirmed the corrected golden failure for leaking a neighboring
+          Sophie L'Heureux portrait slice. A thinking-mode retry of the failed
+          case also returned `pass`, so no full thinking-mode rerun was
+          warranted. This does not replace the maintained
+          `openai:responses:gpt-5.5` page-context winner. Portable tracked
+          proof: `docs/evals/attempts/011-kimi-k26-bounded-challenger.md`.
       - model: "GPT-5.5 Pro Responses (page-context prompt)"
         metrics:
           overall: 0.6818
@@ -956,6 +1037,22 @@ evals:
           The miss was model-wrong on `page-122-001`: it passed a crop that the
           corrected golden fails for leaking a neighboring portrait slice. No
           maintained providers, prompts, scorers, or goldens were changed.
+      - id: "009"
+        date: 2026-05-20
+        status: failed
+        approach: "Screen Kimi K2.6 through Moonshot's direct API as a bounded page-context challenger"
+        score_before: 1.0
+        score_after: 0.9545
+        note: >
+          Kimi K2.6 is callable on the two-image page-context prompt and is
+          materially cheaper than the maintained GPT-5.5 Responses gate, but it
+          did not preserve the required `22/22` quality contract. The run
+          scored `21/22` with `0` provider errors, average latency about
+          `9868 ms`, and estimated cost about `$0.1646` total. The miss was
+          model-wrong on `page-122-001`: Kimi returned `pass` for a crop that
+          the corrected golden fails for a visible neighboring portrait slice.
+          Thinking mode did not repair the failed case. No maintained
+          providers, prompts, scorers, or goldens were changed.
 
     retry_when:
       - condition: new-subject-model
