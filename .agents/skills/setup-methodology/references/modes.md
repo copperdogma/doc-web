@@ -31,5 +31,5 @@ category-aligned, graph+state structure.
 Use when the repo already has the package but it has drifted.
 
 - Refresh AGENTS, runbook, checklist, and eval-surface docs
-- Refresh skill wrappers
+- Refresh skill-surface links
 - Audit for stale setup language and degraded planning guidance

@@ -1,6 +1,6 @@
 ---
 name: create-cross-cli-skill
-description: Create a new project skill in canonical format and sync it for Codex, Claude, Cursor, and Gemini CLI.
+description: Create a new project skill in canonical Agent Skills format and refresh compatibility links.
 user-invocable: true
 ---
 
@@ -32,15 +32,17 @@ Optional colocated resources:
    > If none apply, say so explicitly.
    ```
 3. Keep instructions implementation-oriented and testable.
-4. Avoid tool-specific primary sources (`.cursor/commands`, `.claude/commands`) for skill content.
+4. Avoid tool-specific primary sources (`.cursor/commands`, `.claude/commands`, `.gemini/commands`) for skill content.
 5. After creating or changing skills, run: `scripts/sync-agent-skills.sh`
 6. Validate with: `scripts/sync-agent-skills.sh --check`
+7. Generate provider-specific command aliases only when this repo explicitly keeps slash-command aliases: `scripts/sync-agent-skills.sh --sync-aliases`; validate them with `scripts/sync-agent-skills.sh --check-aliases`.
 
 ## Validation Checklist
 
 - New skill exists at canonical path.
-- `.claude/skills` and `.cursor/skills` still point to `.agents/skills`.
-- Matching Gemini wrapper exists in `.gemini/commands/<skill-name>.toml`.
+- `.claude/skills`, `.cursor/skills`, and `skills` still point to `.agents/skills`.
+- No matching Gemini wrapper is required for standard skill discovery.
+- Optional command aliases are generated and checked only when intentionally retained.
 
 ## Guardrails
 

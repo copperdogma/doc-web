@@ -138,11 +138,18 @@ def methodology_tooling_facts() -> dict[str, Any]:
         if wrapper_root.exists()
         else []
     )
+    alias_check_enabled = bool(wrappers)
+    missing_aliases = sorted(set(invocable) - set(wrappers)) if alias_check_enabled else []
+    extra_aliases = sorted(set(wrappers) - set(invocable)) if alias_check_enabled else []
     return {
         "invocable_skill_count": len(invocable),
+        "command_alias_status": "present" if alias_check_enabled else "absent",
+        "command_alias_count": len(wrappers),
+        "missing_command_aliases": missing_aliases,
+        "extra_command_aliases": extra_aliases,
         "gemini_wrapper_count": len(wrappers),
-        "missing_gemini_wrappers": sorted(set(invocable) - set(wrappers)),
-        "extra_gemini_wrappers": sorted(set(wrappers) - set(invocable)),
+        "missing_gemini_wrappers": missing_aliases,
+        "extra_gemini_wrappers": extra_aliases,
     }
 
 
@@ -449,10 +456,10 @@ def print_text(facts: dict[str, Any]) -> None:
     print(f"- architecture due domains: {len(facts['architecture']['due_domains'])}")
     print("- ui scout due: absent")
     print(f"- codebase improvement: {facts['codebase_improvement']['status']}")
-    wrapper_drift = len(facts["methodology_tooling"]["missing_gemini_wrappers"]) + len(
-        facts["methodology_tooling"]["extra_gemini_wrappers"]
+    wrapper_drift = len(facts["methodology_tooling"]["missing_command_aliases"]) + len(
+        facts["methodology_tooling"]["extra_command_aliases"]
     )
-    print(f"- wrapper drift: {wrapper_drift}")
+    print(f"- command alias drift: {wrapper_drift}")
 
 
 if __name__ == "__main__":

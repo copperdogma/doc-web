@@ -12,7 +12,7 @@ Run:
 python scripts/triage_facts.py --json
 ```
 
-Use the output for branch/dirty status, generated wrapper drift, stories, evals,
+Use the output for branch/dirty status, skill-surface or optional-alias drift, stories, evals,
 coverage matrix rows, architecture-audit cadence, codebase-improvement
 freshness, lane presence, and recent churn. If the command fails, report the
 blocker and continue from the underlying files with lower confidence.
@@ -24,7 +24,7 @@ blocker and continue from the underlying files with lower confidence.
 - Codebase improvement: latest report age versus recent source churn.
 - Eval/model/golden: stale scores, ready retry triggers, missing root/parent
   proof, and current model evidence already present in repo docs.
-- Methodology/tooling: skill wrapper drift, graph drift, generated story-index
+- Methodology/tooling: skill-surface link or optional-alias drift, graph drift, generated story-index
   drift, and setup checklist drift.
 - Architecture audits: due domains, open findings, recent story references, and
   repeated drift signals.

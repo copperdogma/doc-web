@@ -579,4 +579,4 @@ def test_active_surface_paths_cover_methodology_hardening_surfaces():
     assert "docs/evals/README.md" in rel_paths
     assert "docs/methodology-artifact-audit-and-migration.md" in rel_paths
     assert ".agents/skills/setup-methodology/references/modes.md" in rel_paths
-    assert ".gemini/commands/create-story.toml" in rel_paths
+    assert ".agents/skills/create-cross-cli-skill/SKILL.md" in rel_paths

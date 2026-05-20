@@ -147,7 +147,7 @@ Once the package exists, ongoing work moves to:
 
 1. Regenerate or refresh the working checklist
 2. Refresh AGENTS, runbook, and eval-surface docs
-3. Refresh skill wrappers
+3. Refresh skill-surface links
 4. Audit for stale setup language and planning drift
 
 ## Checklist Rule

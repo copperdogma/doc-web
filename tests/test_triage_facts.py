@@ -41,14 +41,13 @@ def test_collect_facts_core_doc_web_lanes(monkeypatch):
     assert set(module.LANE_SKILLS) == expected_lanes
     assert set(facts["lanes"]) == expected_lanes
     assert all(status == "present" for status in facts["lanes"].values())
-    lane_wrappers = {path.stem for path in (ROOT / ".gemini" / "commands").glob("*.toml")}
-    assert expected_lanes <= lane_wrappers
     assert facts["coverage"]["path"] == "tests/fixtures/formats/_coverage-matrix.json"
     assert facts["coverage"]["total_formats"] > 0
     assert "passing" in facts["coverage"]["by_status"]
     assert facts["architecture"]["status"] == "present"
-    assert facts["methodology_tooling"]["missing_gemini_wrappers"] == []
-    assert facts["methodology_tooling"]["extra_gemini_wrappers"] == []
+    assert facts["methodology_tooling"]["command_alias_status"] == "absent"
+    assert facts["methodology_tooling"]["missing_command_aliases"] == []
+    assert facts["methodology_tooling"]["extra_command_aliases"] == []
 
 
 def test_cli_json_is_parseable():

@@ -51,7 +51,7 @@ implementation path honestly.
    python scripts/triage_facts.py --json
    ```
 
-   Use this as direct evidence for branch/dirty state, generated wrapper drift,
+   Use this as direct evidence for branch/dirty state, skill-surface link or optional-alias drift,
    story/eval recommendations, inbox counts, architecture-audit cadence,
    coverage matrix status, codebase-improvement freshness, lane presence, and
    recent churn. Keep it as a main-thread fact source, not as a substitute for

@@ -56,6 +56,7 @@ ACTIVE_SURFACE_PATHS = [
     ROOT / ".agents/skills/codebase-improvement-scout/SKILL.md",
     ROOT / ".agents/skills/create-adr/SKILL.md",
     ROOT / ".agents/skills/create-adr/templates/adr.md",
+    ROOT / ".agents/skills/create-cross-cli-skill/SKILL.md",
     ROOT / ".agents/skills/create-story/SKILL.md",
     ROOT / ".agents/skills/create-story/templates/story.md",
     ROOT / ".agents/skills/finish-and-push/SKILL.md",
@@ -74,15 +75,7 @@ ACTIVE_SURFACE_PATHS = [
     ROOT / ".agents/skills/triage-stories/SKILL.md",
     ROOT / ".agents/skills/loop-verify/SKILL.md",
     ROOT / ".agents/skills/validate/SKILL.md",
-    ROOT / ".gemini/commands/loop-verify.toml",
-    ROOT / ".gemini/commands/triage.toml",
-    ROOT / ".gemini/commands/triage-architecture.toml",
-    ROOT / ".gemini/commands/triage-evals.toml",
-    ROOT / ".gemini/commands/triage-health.toml",
-    ROOT / ".gemini/commands/triage-inbox.toml",
-    ROOT / ".gemini/commands/triage-stories.toml",
     ROOT / "scripts/triage_facts.py",
-    ROOT / ".gemini/commands/create-story.toml",
 ]
 SPEC_REF_RE = re.compile(r"\bspec:\d+(?:\.\d+)*\b")
 ADR_ID_RE = re.compile(r"\bADR-\d{3}\b")
