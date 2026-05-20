@@ -119,6 +119,14 @@ code, or hybrid implementation honestly.
 
 ## Phase 2 — Plan (produces a written artifact)
 
+If the implementation approach is genuinely unclear because the solution space
+is weak, use `/ideation` before writing the plan. Keep this optional and
+bounded: the ideation packet can improve alternatives and tradeoffs. If the
+user has explicitly authorized delegation and the option search is not blocking
+the immediate next local step, a bounded ideation subagent is a good fit. The
+main `/build-story` thread still owns the plan, approval gate, and final
+implementation judgment.
+
 9. **Eval-first approach gate** — Before planning implementation:
    - **What eval?** Identify or create a test that measures success. Even a minimal fixture + assertion counts.
    - **What's the baseline?** Run the eval against current code. Document the number.
