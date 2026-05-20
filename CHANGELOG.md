@@ -1,3 +1,11 @@
+## [2026-05-20-02] - Record Gemini 3.5 Flash eval challenger
+
+### Added
+- Added a tracked Gemini 3.5 Flash challenger attempt covering detector, crop-validation, page-context, and bounded handwritten OCR screens.
+
+### Changed
+- Changed the eval registry, generated methodology graph, and attempt notes to close the Gemini 3.5 Flash item with a no-adoption decision.
+
 ## [2026-05-20-01] - Record Kimi K2.6 eval challenger
 
 ### Added

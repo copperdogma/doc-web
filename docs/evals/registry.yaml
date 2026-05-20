@@ -191,6 +191,34 @@ evals:
           A thinking-mode retry of the failed case also returned no images, so
           no full thinking-mode rerun was warranted. Portable tracked proof:
           `docs/evals/attempts/011-kimi-k26-bounded-challenger.md`.
+      - model: "Gemini 3.5 Flash (conservative-count prompt)"
+        metrics:
+          overall: 0.9679
+          pass_rate: 1.0
+          cases_total: 13
+          latency_ms: 9675
+        latency_ms: 9675
+        cost_usd: 0.0084
+        cost_estimated: true
+        measured: 2026-05-20
+        git_sha: 99450a3
+        note: >
+          Bounded Gemini 3.5 Flash challenger after Conductor Scout 035 and the
+          2026-05-19 Google model docs exposed stable `gemini-3.5-flash`.
+          Command: `cd benchmarks && promptfoo eval -c
+          tasks/image-crop-extraction.yaml --providers google:gemini-3.5-flash
+          --filter-prompts 'conservative-count' --no-cache --output
+          results/gemini35-flash-image-crop-extraction-20260520.json -j 1`.
+          The run completed `13/13` with `0` failures and `0` provider errors,
+          `overall = 0.9679`, `pass_rate = 1.0`, average latency about
+          `9675 ms`, and `26609` total tokens. Estimated paid standard Gemini
+          3.5 Flash cost from current Google pricing is about `$0.1095` total
+          (`$0.0084` per case), while the actual run used free-tier quota. This
+          passes the detector target but does not replace the maintained Gemini
+          3 Flash detector because it is slightly below the current maintained
+          score (`0.9703`), slower in this run, and costlier on paid standard
+          pricing. Portable tracked proof:
+          `docs/evals/attempts/011-gemini35-flash-bounded-challenger.md`.
       - model: "Gemini 3 Flash (conservative-count prompt, heading-safe revision)"
         metrics:
           overall: 0.9678
@@ -422,6 +450,30 @@ evals:
           element, while Kimi returned `{"images": []}`. Thinking mode did not
           repair that failed case. No maintained providers, prompts, scorers,
           or goldens were changed.
+      - id: "013"
+        date: 2026-05-20
+        status: failed
+        approach: "Screen Google `gemini-3.5-flash` as a bounded detector challenger after the Gemini 3.5 Flash release"
+        score_before: 0.9703
+        score_after: 0.9679
+        note: >
+          `gemini-3.5-flash` is live in the Gemini model list and callable
+          through promptfoo once stale `GOOGLE_API_KEY` is unset in favor of the
+          repo-scoped `DOC_WEB_GEMINI_API_KEY`. The maintained
+          `conservative-count` detector slice passed at `13/13` with `0`
+          provider errors and `overall = 0.9679`, but that is still slightly
+          below the maintained Gemini 3 Flash `0.9703` result and was slower in
+          this pass. Estimated paid standard pricing is also higher than the
+          maintained detector proof (`$0.1095` total vs about `$0.059`). No
+          maintained providers, prompts, scorers, or goldens were changed. The
+          follow-up crop-only validator and page-context gate later ran after
+          paid-tier availability recovered, scoring `39/40` and `21/22`
+          respectively. The bounded handwritten OCR screen reached only
+          `0.247350` on the corrected real-fixture floor. Result: Gemini 3.5
+          Flash is callable and useful evidence, but it does not replace any
+          maintained detector, validator, or OCR provider. Portable tracked
+          proof:
+          `docs/evals/attempts/011-gemini35-flash-bounded-challenger.md`.
 
     retry_when:
       - condition: new-subject-model
@@ -546,6 +598,34 @@ evals:
           `17359 ms`, and estimated current API cost about `$9.2181` total
           (`$0.2305` per case). Portable tracked proof:
           `docs/evals/attempts/006-gpt55-responses-eval-refresh.md`.
+      - model: "Gemini 3.5 Flash (caption-focus prompt, direct REST)"
+        metrics:
+          overall: 0.975
+          pass_rate: 0.975
+          cases_total: 40
+          latency_ms: 3767
+        latency_ms: 3767
+        cost_usd: 0.0053
+        cost_estimated: true
+        measured: 2026-05-20
+        git_sha: 99450a3
+        note: >
+          Bounded Gemini 3.5 Flash crop-only validator retry after paid-tier
+          availability recovered. Direct Gemini REST fallback reused the
+          maintained prompt text and Python scorer because promptfoo provider
+          attempts had first been blocked by free-tier project quota and then by
+          `503 UNAVAILABLE` high-demand responses. Result artifact:
+          `benchmarks/results/gemini35-flash-crop-validation-direct-20260520.json`.
+          The run completed `39/40` with `0` provider errors, `overall = 0.975`,
+          average latency about `3767 ms`, and `71027` total tokens (`57182`
+          prompt, `2713` candidate, `11132` thinking). Estimated paid standard
+          cost is about `$0.2104` total (`$0.0053` per case). The miss was
+          model-wrong on `page-126-000`: the golden fails the crop because
+          book-page text is visible along the left side, but Gemini 3.5 Flash
+          treated the text as integral plaque text. This ties recent GPT-5.5
+          style `39/40` challengers but does not replace the maintained Gemini
+          3.1 Flash Lite `40/40` crop-only validator. Portable tracked proof:
+          `docs/evals/attempts/011-gemini35-flash-bounded-challenger.md`.
       - model: "Gemini 3.1 Flash Lite (caption-focus prompt)"
         metrics:
           overall: 1.0
@@ -622,6 +702,22 @@ evals:
           `page-126-000` as a false negative. Pro was much slower and more
           expensive with no quality gain. No prompt, scorer, or golden changes
           were made.
+      - id: "005"
+        date: 2026-05-20
+        status: failed
+        approach: "Screen Gemini 3.5 Flash as a bounded crop-only validator challenger after paid-tier availability recovered"
+        score_before: 1.0
+        score_after: 0.975
+        note: >
+          Initial promptfoo and direct REST attempts were blocked first by
+          free-tier project quota and then by repeated `503 UNAVAILABLE`
+          high-demand responses. After the heartbeat retry health probe
+          succeeded on the canonical doc-web key with `serviceTier: standard`, I
+          reran the 40-case crop-only validator through the direct REST fallback.
+          The run scored `39/40` with `0` provider errors and only missed
+          `page-126-000`, where Gemini 3.5 Flash treated visible external
+          book-page text as integral plaque text. No maintained providers,
+          prompts, scorers, or goldens were changed.
 
     retry_when:
       - condition: new-subject-model
@@ -885,6 +981,37 @@ evals:
           warranted. This does not replace the maintained
           `openai:responses:gpt-5.5` page-context winner. Portable tracked
           proof: `docs/evals/attempts/011-kimi-k26-bounded-challenger.md`.
+      - model: "Gemini 3.5 Flash (page-context prompt, direct REST)"
+        metrics:
+          overall: 0.954545
+          pass_rate: 0.954545
+          cases_total: 22
+          pass_labeled: 17
+          fail_labeled: 5
+          latency_ms: 4554
+        latency_ms: 4554
+        cost_usd: 0.0084
+        cost_estimated: true
+        measured: 2026-05-20
+        git_sha: 99450a3
+        note: >
+          Bounded Gemini 3.5 Flash page-context validator retry after paid-tier
+          availability recovered. Direct Gemini REST fallback reused the
+          maintained page-context prompt text and Python scorer because
+          promptfoo provider attempts had first been blocked by free-tier
+          project quota and then by `503 UNAVAILABLE` high-demand responses.
+          Result artifact:
+          `benchmarks/results/gemini35-flash-crop-page-level-deletion-gate-direct-20260520.json`.
+          The run completed `21/22` with `0` provider errors,
+          `overall = 0.954545`, average latency about `4554 ms`, and `70296`
+          total tokens (`59636` prompt, `1533` candidate, `9127` thinking).
+          Estimated paid standard cost is about `$0.1854` total (`$0.0084` per
+          case). The miss was model-wrong on `page-122-001`: the corrected
+          golden fails the crop for a visible neighboring portrait slice, but
+          Gemini 3.5 Flash passed it as a clean two-portrait extraction. This
+          does not replace the maintained `openai:responses:gpt-5.5`
+          page-context winner. Portable tracked proof:
+          `docs/evals/attempts/011-gemini35-flash-bounded-challenger.md`.
       - model: "GPT-5.5 Pro Responses (page-context prompt)"
         metrics:
           overall: 0.6818
@@ -1053,6 +1180,22 @@ evals:
           the corrected golden fails for a visible neighboring portrait slice.
           Thinking mode did not repair the failed case. No maintained
           providers, prompts, scorers, or goldens were changed.
+      - id: "010"
+        date: 2026-05-20
+        status: failed
+        approach: "Screen Gemini 3.5 Flash as a bounded page-context validator challenger after paid-tier availability recovered"
+        score_before: 1.0
+        score_after: 0.954545
+        note: >
+          Initial promptfoo and direct REST attempts were blocked first by
+          free-tier project quota and then by repeated `503 UNAVAILABLE`
+          high-demand responses. After the heartbeat retry health probe
+          succeeded on the canonical doc-web key with `serviceTier: standard`, I
+          reran the 22-case page-context deletion gate through the direct REST
+          fallback. The run scored `21/22` with `0` provider errors and missed
+          `page-122-001`, where Gemini 3.5 Flash returned `pass` for a crop that
+          the corrected golden fails for leaking a neighboring portrait slice.
+          No maintained providers, prompts, scorers, or goldens were changed.
 
     retry_when:
       - condition: new-subject-model
@@ -1205,6 +1348,36 @@ evals:
           `Battle of Chickamauga`, `lates novels`, `excepatable`) and still
           drifts semantically on Barney. The handwritten family therefore
           remains `has-fixture`, not `passing`.
+      - model: "Gemini 3.5 Flash bounded real-fixture image-entry screen"
+        metrics:
+          overall_min_ratio: 0.24735
+          page_min_ratio: 0.24735
+          pass_rate: 0.0
+          cases_total: 2
+          fixture_count: 2
+          fixtures_passing: 0
+          barney_image_overall_ratio: 0.807498
+          alverson_image_overall_ratio: 0.24735
+        measured: 2026-05-20
+        git_sha: 99450a3
+        note: >
+          Bounded Gemini 3.5 Flash handwritten OCR screen after the canonical
+          doc-web key recovered from free-tier quota and provider high-demand
+          blockers. The image-entry-only screen used the corrected Barney and
+          Alverson real fixtures without editing maintained recipes. Result
+          summary:
+          `benchmarks/results/handwritten-notes-gemini35-flash-image-screen-20260520.json`.
+          OCR artifacts:
+          `output/runs/eval-barney-image-gemini-3-5-flash/02_ocr_ai_gpt51_v1/pages_html.jsonl`
+          and
+          `output/runs/eval-alverson-image-gemini-3-5-flash/02_ocr_ai_gpt51_v1/pages_html.jsonl`.
+          Barney reached `0.807498`, but Alverson reached only `0.247350`, so
+          the screen floor was `0.247350` with `0/2` cases clearing the `0.99`
+          bar. Manual inspection confirmed the low Alverson score reflects
+          wrong-source text such as `Danville Va Nov 18th 1863` and `Battle of
+          Chickamauga`, not a scoring quirk. Because Gemini 3.5 Flash did not
+          beat both corrected real fixtures, it was not promoted to a PDF-entry
+          or full five-fixture rerun.
       - model: "Maintained handwritten rescue OCR lanes (gemini-2.5-pro via handwritten-notes rescue recipes)"
         metrics:
           overall_min_ratio: 0.499136
@@ -1665,6 +1838,25 @@ evals:
           Result: GLM-OCR is current **new-substrate-wrong** evidence on the
           corrected handwritten blocker surface and does not justify reopening
           Story 191.
+      - id: "009"
+        date: 2026-05-20
+        status: failed
+        approach: "Screen Gemini 3.5 Flash on the corrected Barney/Alverson real image-entry pair after paid-tier availability recovered"
+        score_before: 0.677267
+        score_after: 0.24735
+        note: >
+          Initial Gemini 3.5 Flash handwritten follow-up was blocked by the same
+          free-tier project quota and `503 UNAVAILABLE` high-demand responses as
+          the crop validator retries. After the heartbeat retry health probe
+          succeeded on the canonical doc-web key, I ran a bounded image-entry
+          screen on the corrected Barney and Alverson real fixtures. The screen
+          scored Barney at `0.807498`, Alverson at `0.247350`, and the
+          real-fixture floor at `0.247350`, below the maintained rescue floor of
+          `0.677267`. Manual inspection confirmed wrong-source Alverson text
+          such as `Danville Va Nov 18th 1863` and `Battle of Chickamauga`.
+          Because the candidate did not beat both corrected real fixtures, it
+          was not promoted to PDF-entry or full-corpus reruns. No maintained
+          recipes, prompts, scorers, or goldens were changed.
 
     retry_when:
       - condition: new-subject-model
