@@ -1,3 +1,11 @@
+## [2026-05-25-01] - Record Photon image-processing scout
+
+### Added
+- Added Scout 015 evaluating `silvia-odwyer/photon` against doc-forge's current image-processing, OCR handoff, and crop-runtime tools.
+
+### Changed
+- Changed the scout index to record the no-adoption recommendation for Photon, parking it only as a possible future browser-side preview/edit reference.
+
 ## [2026-05-20-02] - Record Gemini 3.5 Flash eval challenger
 
 ### Added
