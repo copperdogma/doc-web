@@ -4,6 +4,16 @@ This file captures ideas, insights, and potential architectural improvements dis
 
 ## Untriaged
 
+- 2026-05-28 — From Conductor Scout 043: Anthropic's `claude-opus-4-8`
+  is a credible doc-web challenger for page-context extraction, crop/OCR
+  judgment, and any materially stronger-OCR retry. If Anthropic credential and
+  cost setup is cheap, run it through the maintained `image-crop-extraction` /
+  page-context crop deletion gates and the parked handwritten/OCR blocker,
+  comparing against the current OpenAI/Gemini winners. Track `effort`, adaptive
+  thinking, markdown-fenced JSON, sampling-parameter constraints, latency, and
+  large-page-image cost before changing maintained providers. Source:
+  `/Users/cam/.codex/worktrees/1375/conductor/docs/scout/scout-043-claude-opus-48-api-eval-opportunities.md`
+
 - 2026-05-19 — From Conductor Scout 035: Google's Gemini API `gemini-3.5-flash`
   is a strong doc-web challenger because it has image/PDF input, structured
   output, 1M context, and fresh media-resolution migration guidance. If Google
