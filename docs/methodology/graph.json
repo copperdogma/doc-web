@@ -1161,23 +1161,23 @@
         ],
         "actionability": {
           "source_kind": "eval",
-          "source_id": "crop-validation",
+          "source_id": "crop-page-level-deletion-gate",
           "source_path": "docs/evals/registry.yaml",
           "recommended_now": false,
-          "posture": "wait-for-trigger",
-          "retry_trigger_status": "waiting",
+          "posture": "trigger-exhausted",
+          "retry_trigger_status": "exhausted",
           "retry_when": [
             "golden-fix",
-            "new-approach",
-            "new-subject-model"
+            "new-subject-model",
+            "runtime-change"
           ],
-          "why_now": "Rerun when a new validator model or prompt looks strong enough to widen or replace the current bounded C5-linked truth surface. Broaden or redesign this surface when the project is ready to measure the spec's wider pa...",
+          "why_now": "Rerun when a materially stronger validator or detector may reduce the current fail-labeled page-context cases. Rerun after any maintained crop/runtime simplification before claiming `trim_layout_text` or bounded capti...",
           "last_relevant_action": {
-            "date": "2026-05-20",
+            "date": "2026-05-28",
             "source_type": "eval-attempt",
             "source": "docs/evals/registry.yaml",
-            "source_id": "005",
-            "summary": "Initial promptfoo and direct REST attempts were blocked first by free-tier project quota and then by repeated `503 UNAVAILABLE` high-demand responses. After the heartbeat retry health probe succeeded on the canonical..."
+            "source_id": "011",
+            "summary": "Claude Opus 4.8 is callable on the two-image page-context prompt once sampling params are omitted and adaptive thinking/high effort are used, but it did not preserve the maintained `22/22` quality contract. The run sc..."
           },
           "story_ids": [
             "135",
@@ -12939,6 +12939,21 @@
           "note": "Bounded Gemini 3.5 Flash challenger after Conductor Scout 035 and the 2026-05-19 Google model docs exposed stable `gemini-3.5-flash`. Command: `cd benchmarks && promptfoo eval -c tasks/image-crop-extraction.yaml --providers google:gemini-3.5-flash --filter-prompts 'conservative-count' --no-cache --output results/gemini35-flash-image-crop-extraction-20260520.json -j 1`. The run completed `13/13` with `0` failures and `0` provider errors, `overall = 0.9679`, `pass_rate = 1.0`, average latency about `9675 ms`, and `26609` total tokens. Estimated paid standard Gemini 3.5 Flash cost from current Google pricing is about `$0.1095` total (`$0.0084` per case), while the actual run used free-tier quota. This passes the detector target but does not replace the maintained Gemini 3 Flash detector because it is slightly below the current maintained score (`0.9703`), slower in this run, and costlier on paid standard pricing. Portable tracked proof: `docs/evals/attempts/011-gemini35-flash-bounded-challenger.md`.\n"
         },
         {
+          "model": "Claude Opus 4.8 (conservative-count prompt, adaptive high effort)",
+          "metrics": {
+            "overall": 0.7669,
+            "pass_rate": 0.7692,
+            "cases_total": 13,
+            "latency_ms": 4291
+          },
+          "latency_ms": 4291,
+          "cost_usd": 0.0247,
+          "cost_estimated": true,
+          "measured": "2026-05-28",
+          "git_sha": "5254df1",
+          "note": "Bounded Anthropic challenger after Conductor Scout 043 and the 2026-05-28 Anthropic Opus 4.8 release. Promptfoo 0.121.1's built-in Anthropic provider sent `temperature`, which Opus 4.8 rejects, so the run used the narrow `benchmarks/providers/anthropic_opus48_messages.py` provider with sampling params omitted, adaptive thinking enabled, and `output_config.effort = high`. Command: `cd benchmarks && ../scripts/run_with_doc_web_env.py promptfoo eval -c tasks/image-crop-extraction.yaml --providers python:$(pwd)/providers/anthropic_opus48_messages.py --filter-prompts 'conservative-count' --output results/opus48-image-crop-extraction-20260528.json --no-cache -j 1`. The run completed `10/13` with `0` provider errors, `overall = 0.7669`, `pass_rate = 0.7692`, average latency about `4291 ms`, and estimated Opus 4.8 cost about `$0.3215` total (`$0.0247` per case). Failures were bbox misses on `Image021`, `Image037`, and `Image059`; an `xhigh` failed-case retry repaired `0/3`. This does not replace the maintained Gemini 3 Flash detector. Portable tracked proof: `docs/evals/attempts/012-opus48-bounded-challenger.md`.\n"
+        },
+        {
           "model": "Gemini 3 Flash (conservative-count prompt, heading-safe revision)",
           "metrics": {
             "overall": 0.9678,
@@ -13002,19 +13017,19 @@
         }
       ],
       "latest_score": {
-        "model": "Kimi K2.6 (conservative-count prompt, non-thinking)",
+        "model": "Claude Opus 4.8 (conservative-count prompt, adaptive high effort)",
         "metrics": {
-          "overall": 0.8981,
-          "pass_rate": 0.9231,
+          "overall": 0.7669,
+          "pass_rate": 0.7692,
           "cases_total": 13,
-          "latency_ms": 6176
+          "latency_ms": 4291
         },
-        "latency_ms": 6176,
-        "cost_usd": 0.004,
+        "latency_ms": 4291,
+        "cost_usd": 0.0247,
         "cost_estimated": true,
-        "measured": "2026-05-20",
-        "git_sha": "37ef4af",
-        "note": "Bounded Moonshot direct-API challenger after adding `benchmarks/providers/moonshot_kimi_chat.py` and mapping `DOC_WEB_MOONSHOT_API_KEY` to `MOONSHOT_API_KEY` for child promptfoo runs. Command: `cd benchmarks && DOC_WEB_ENV_FILE=/Users/cam/Documents/Projects/doc-web/.env ../scripts/run_with_doc_web_env.py promptfoo eval -c tasks/image-crop-extraction.yaml --providers \"python:$(pwd)/providers/moonshot_kimi_chat.py\" --filter-prompts 'conservative-count' --output results/kimi-k26-image-crop-extraction-20260520.json --no-cache -j 1`. The run completed `12/13` with `0` provider errors, `overall = 0.8981`, `pass_rate = 0.9231`, average latency about `6176 ms`, and estimated Kimi K2.6 cost about `$0.0519` total (`$0.0040` per case). The single miss was model-wrong on `Image001`: Kimi returned no images for the stylized title page that the maintained prompt/golden intentionally count as standalone artwork. A thinking-mode retry of the failed case also returned no images, so no full thinking-mode rerun was warranted. Portable tracked proof: `docs/evals/attempts/011-kimi-k26-bounded-challenger.md`.\n"
+        "measured": "2026-05-28",
+        "git_sha": "5254df1",
+        "note": "Bounded Anthropic challenger after Conductor Scout 043 and the 2026-05-28 Anthropic Opus 4.8 release. Promptfoo 0.121.1's built-in Anthropic provider sent `temperature`, which Opus 4.8 rejects, so the run used the narrow `benchmarks/providers/anthropic_opus48_messages.py` provider with sampling params omitted, adaptive thinking enabled, and `output_config.effort = high`. Command: `cd benchmarks && ../scripts/run_with_doc_web_env.py promptfoo eval -c tasks/image-crop-extraction.yaml --providers python:$(pwd)/providers/anthropic_opus48_messages.py --filter-prompts 'conservative-count' --output results/opus48-image-crop-extraction-20260528.json --no-cache -j 1`. The run completed `10/13` with `0` provider errors, `overall = 0.7669`, `pass_rate = 0.7692`, average latency about `4291 ms`, and estimated Opus 4.8 cost about `$0.3215` total (`$0.0247` per case). Failures were bbox misses on `Image021`, `Image037`, and `Image059`; an `xhigh` failed-case retry repaired `0/3`. This does not replace the maintained Gemini 3 Flash detector. Portable tracked proof: `docs/evals/attempts/012-opus48-bounded-challenger.md`.\n"
       },
       "attempts": [
         {
@@ -13488,6 +13503,23 @@
           "note": "Bounded Gemini 3.5 Flash page-context validator retry after paid-tier availability recovered. Direct Gemini REST fallback reused the maintained page-context prompt text and Python scorer because promptfoo provider attempts had first been blocked by free-tier project quota and then by `503 UNAVAILABLE` high-demand responses. Result artifact: `benchmarks/results/gemini35-flash-crop-page-level-deletion-gate-direct-20260520.json`. The run completed `21/22` with `0` provider errors, `overall = 0.954545`, average latency about `4554 ms`, and `70296` total tokens (`59636` prompt, `1533` candidate, `9127` thinking). Estimated paid standard cost is about `$0.1854` total (`$0.0084` per case). The miss was model-wrong on `page-122-001`: the corrected golden fails the crop for a visible neighboring portrait slice, but Gemini 3.5 Flash passed it as a clean two-portrait extraction. This does not replace the maintained `openai:responses:gpt-5.5` page-context winner. Portable tracked proof: `docs/evals/attempts/011-gemini35-flash-bounded-challenger.md`.\n"
         },
         {
+          "model": "Claude Opus 4.8 (page-context prompt, adaptive high effort)",
+          "metrics": {
+            "overall": 0.9091,
+            "pass_rate": 0.9091,
+            "cases_total": 22,
+            "pass_labeled": 17,
+            "fail_labeled": 5,
+            "latency_ms": 4853
+          },
+          "latency_ms": 4853,
+          "cost_usd": 0.0473,
+          "cost_estimated": true,
+          "measured": "2026-05-28",
+          "git_sha": "5254df1",
+          "note": "Bounded Anthropic challenger after Conductor Scout 043 and the 2026-05-28 Anthropic Opus 4.8 release. Promptfoo 0.121.1's built-in Anthropic provider sent `temperature`, which Opus 4.8 rejects, so the run used the narrow `benchmarks/providers/anthropic_opus48_messages.py` provider with sampling params omitted, adaptive thinking enabled, and `output_config.effort = high`. Command: `cd benchmarks && ../scripts/run_with_doc_web_env.py promptfoo eval -c tasks/crop-page-level-deletion-gate.yaml --providers python:$(pwd)/providers/anthropic_opus48_messages.py --output results/opus48-crop-page-level-deletion-gate-20260528.json --no-cache -j 1`. The run completed `20/22` with `0` provider errors, `overall = 0.9091`, average latency about `4853 ms`, and estimated Opus 4.8 cost about `$1.0405` total (`$0.0473` per case). The misses were model-wrong false negatives on `page-122-001`, where the crop leaks a neighboring portrait slice, and `page-126-000`, where visible book-page text appears at the left edge. An `xhigh` failed-case retry repaired `0/2`. This does not replace the maintained `openai:responses:gpt-5.5` page-context winner. Portable tracked proof: `docs/evals/attempts/012-opus48-bounded-challenger.md`.\n"
+        },
+        {
           "model": "GPT-5.5 Pro Responses (page-context prompt)",
           "metrics": {
             "overall": 0.6818,
@@ -13506,21 +13538,21 @@
         }
       ],
       "latest_score": {
-        "model": "Kimi K2.6 (page-context prompt, non-thinking)",
+        "model": "Claude Opus 4.8 (page-context prompt, adaptive high effort)",
         "metrics": {
-          "overall": 0.9545,
-          "pass_rate": 0.9545,
+          "overall": 0.9091,
+          "pass_rate": 0.9091,
           "cases_total": 22,
           "pass_labeled": 17,
           "fail_labeled": 5,
-          "latency_ms": 9868
+          "latency_ms": 4853
         },
-        "latency_ms": 9868,
-        "cost_usd": 0.0075,
+        "latency_ms": 4853,
+        "cost_usd": 0.0473,
         "cost_estimated": true,
-        "measured": "2026-05-20",
-        "git_sha": "37ef4af",
-        "note": "Bounded Moonshot direct-API challenger after verifying Kimi K2.6 can handle the repo's two-image full-page-plus-crop prompt shape through `benchmarks/providers/moonshot_kimi_chat.py`. Command: `cd benchmarks && DOC_WEB_ENV_FILE=/Users/cam/Documents/Projects/doc-web/.env ../scripts/run_with_doc_web_env.py promptfoo eval -c tasks/crop-page-level-deletion-gate.yaml --providers \"python:$(pwd)/providers/moonshot_kimi_chat.py\" --output results/kimi-k26-crop-page-level-deletion-gate-20260520.json --no-cache -j 1`. The run completed `21/22` with `0` provider errors, `overall = 0.9545`, `pass_rate = 0.9545`, average latency about `9868 ms`, and estimated Kimi K2.6 cost about `$0.1646` total (`$0.0075` per case). The miss was model-wrong on `page-122-001`: Kimi returned `pass` even though manual source/crop inspection confirmed the corrected golden failure for leaking a neighboring Sophie L'Heureux portrait slice. A thinking-mode retry of the failed case also returned `pass`, so no full thinking-mode rerun was warranted. This does not replace the maintained `openai:responses:gpt-5.5` page-context winner. Portable tracked proof: `docs/evals/attempts/011-kimi-k26-bounded-challenger.md`.\n"
+        "measured": "2026-05-28",
+        "git_sha": "5254df1",
+        "note": "Bounded Anthropic challenger after Conductor Scout 043 and the 2026-05-28 Anthropic Opus 4.8 release. Promptfoo 0.121.1's built-in Anthropic provider sent `temperature`, which Opus 4.8 rejects, so the run used the narrow `benchmarks/providers/anthropic_opus48_messages.py` provider with sampling params omitted, adaptive thinking enabled, and `output_config.effort = high`. Command: `cd benchmarks && ../scripts/run_with_doc_web_env.py promptfoo eval -c tasks/crop-page-level-deletion-gate.yaml --providers python:$(pwd)/providers/anthropic_opus48_messages.py --output results/opus48-crop-page-level-deletion-gate-20260528.json --no-cache -j 1`. The run completed `20/22` with `0` provider errors, `overall = 0.9091`, average latency about `4853 ms`, and estimated Opus 4.8 cost about `$1.0405` total (`$0.0473` per case). The misses were model-wrong false negatives on `page-122-001`, where the crop leaks a neighboring portrait slice, and `page-126-000`, where visible book-page text appears at the left edge. An `xhigh` failed-case retry repaired `0/2`. This does not replace the maintained `openai:responses:gpt-5.5` page-context winner. Portable tracked proof: `docs/evals/attempts/012-opus48-bounded-challenger.md`.\n"
       },
       "attempts": [
         {
@@ -13602,6 +13634,14 @@
           "approach": "Screen Gemini 3.5 Flash as a bounded page-context validator challenger after paid-tier availability recovered",
           "note": "Initial promptfoo and direct REST attempts were blocked first by free-tier project quota and then by repeated `503 UNAVAILABLE` high-demand responses. After the heartbeat retry health probe succeeded on the canonical doc-web key with `serviceTier: standard`, I reran the 22-case page-context deletion gate through the direct REST fallback. The run scored `21/22` with `0` provider errors and missed `page-122-001`, where Gemini 3.5 Flash returned `pass` for a crop that the corrected golden fails for leaking a neighboring portrait slice. No maintained providers, prompts, scorers, or goldens were changed.\n",
           "retry_when": []
+        },
+        {
+          "id": "011",
+          "date": "2026-05-28",
+          "status": "failed",
+          "approach": "Screen Claude Opus 4.8 as a bounded page-context validator challenger after the Anthropic release",
+          "note": "Claude Opus 4.8 is callable on the two-image page-context prompt once sampling params are omitted and adaptive thinking/high effort are used, but it did not preserve the maintained `22/22` quality contract. The run scored `20/22` with `0` provider errors, average latency about `4853 ms`, and estimated cost about `$1.0405` total. The misses were false negatives on the two corrected fail-labeled residue cases `page-122-001` and `page-126-000`; `xhigh` effort repaired `0/2`. No maintained providers, prompts, scorers, or goldens were changed.\n",
+          "retry_when": []
         }
       ],
       "retry_when": [
@@ -13629,11 +13669,11 @@
         ],
         "why_now": "Rerun when a materially stronger validator or detector may reduce the current fail-labeled page-context cases. Rerun after any maintained crop/runtime simplification before claiming `trim_layout_text` or bounded capti...",
         "last_relevant_action": {
-          "date": "2026-05-20",
+          "date": "2026-05-28",
           "source_type": "eval-attempt",
           "source": "docs/evals/registry.yaml",
-          "source_id": "010",
-          "summary": "Initial promptfoo and direct REST attempts were blocked first by free-tier project quota and then by repeated `503 UNAVAILABLE` high-demand responses. After the heartbeat retry health probe succeeded on the canonical..."
+          "source_id": "011",
+          "summary": "Claude Opus 4.8 is callable on the two-image page-context prompt once sampling params are omitted and adaptive thinking/high effort are used, but it did not preserve the maintained `22/22` quality contract. The run sc..."
         }
       }
     },
@@ -13785,6 +13825,24 @@
           "note": "Bounded Gemini 3.5 Flash handwritten OCR screen after the canonical doc-web key recovered from free-tier quota and provider high-demand blockers. The image-entry-only screen used the corrected Barney and Alverson real fixtures without editing maintained recipes. Result summary: `benchmarks/results/handwritten-notes-gemini35-flash-image-screen-20260520.json`. OCR artifacts: `output/runs/eval-barney-image-gemini-3-5-flash/02_ocr_ai_gpt51_v1/pages_html.jsonl` and `output/runs/eval-alverson-image-gemini-3-5-flash/02_ocr_ai_gpt51_v1/pages_html.jsonl`. Barney reached `0.807498`, but Alverson reached only `0.247350`, so the screen floor was `0.247350` with `0/2` cases clearing the `0.99` bar. Manual inspection confirmed the low Alverson score reflects wrong-source text such as `Danville Va Nov 18th 1863` and `Battle of Chickamauga`, not a scoring quirk. Because Gemini 3.5 Flash did not beat both corrected real fixtures, it was not promoted to a PDF-entry or full five-fixture rerun.\n"
         },
         {
+          "model": "Claude Opus 4.8 bounded real-fixture image-entry screen",
+          "metrics": {
+            "overall_min_ratio": 0.680902,
+            "page_min_ratio": 0.680902,
+            "pass_rate": 0.0,
+            "cases_total": 2,
+            "fixture_count": 2,
+            "fixtures_passing": 0,
+            "barney_image_overall_ratio": 0.711207,
+            "alverson_image_overall_ratio": 0.680902,
+            "cost_usd": 0.0215,
+            "cost_estimated": true
+          },
+          "measured": "2026-05-28",
+          "git_sha": "5254df1",
+          "note": "Bounded Claude Opus 4.8 handwritten OCR screen after the Anthropic release and the Opus 4.8 sampling-parameter compatibility fix in `modules/common/anthropic_client.py`. The image-entry-only screen used the corrected Barney and Alverson real fixtures without editing maintained recipes. OCR artifacts: `output/runs/eval-barney-image-opus-4-8/02_ocr_ai_gpt51_v1/pages_html.jsonl` and `output/runs/eval-alverson-image-opus-4-8/02_ocr_ai_gpt51_v1/pages_html.jsonl`. Barney reached `0.711207` and Alverson reached `0.680902`, so the screen floor was `0.680902` with `0/2` cases clearing the `0.99` bar. Instrumentation recorded `4027` prompt tokens, `918` completion tokens, and estimated Opus 4.8 cost about `$0.0431` total (`$0.0215` per case). The candidate barely beat corrected Alverson image-entry but regressed materially from maintained Barney evidence, so it was not promoted to PDF-entry or full-corpus reruns. Portable tracked proof: `docs/evals/attempts/012-opus48-bounded-challenger.md`.\n"
+        },
+        {
           "model": "Maintained handwritten rescue OCR lanes (gemini-2.5-pro via handwritten-notes rescue recipes)",
           "metrics": {
             "overall_min_ratio": 0.499136,
@@ -13907,20 +13965,22 @@
         }
       ],
       "latest_score": {
-        "model": "Gemini 3.5 Flash bounded real-fixture image-entry screen",
+        "model": "Claude Opus 4.8 bounded real-fixture image-entry screen",
         "metrics": {
-          "overall_min_ratio": 0.24735,
-          "page_min_ratio": 0.24735,
+          "overall_min_ratio": 0.680902,
+          "page_min_ratio": 0.680902,
           "pass_rate": 0.0,
           "cases_total": 2,
           "fixture_count": 2,
           "fixtures_passing": 0,
-          "barney_image_overall_ratio": 0.807498,
-          "alverson_image_overall_ratio": 0.24735
+          "barney_image_overall_ratio": 0.711207,
+          "alverson_image_overall_ratio": 0.680902,
+          "cost_usd": 0.0215,
+          "cost_estimated": true
         },
-        "measured": "2026-05-20",
-        "git_sha": "99450a3",
-        "note": "Bounded Gemini 3.5 Flash handwritten OCR screen after the canonical doc-web key recovered from free-tier quota and provider high-demand blockers. The image-entry-only screen used the corrected Barney and Alverson real fixtures without editing maintained recipes. Result summary: `benchmarks/results/handwritten-notes-gemini35-flash-image-screen-20260520.json`. OCR artifacts: `output/runs/eval-barney-image-gemini-3-5-flash/02_ocr_ai_gpt51_v1/pages_html.jsonl` and `output/runs/eval-alverson-image-gemini-3-5-flash/02_ocr_ai_gpt51_v1/pages_html.jsonl`. Barney reached `0.807498`, but Alverson reached only `0.247350`, so the screen floor was `0.247350` with `0/2` cases clearing the `0.99` bar. Manual inspection confirmed the low Alverson score reflects wrong-source text such as `Danville Va Nov 18th 1863` and `Battle of Chickamauga`, not a scoring quirk. Because Gemini 3.5 Flash did not beat both corrected real fixtures, it was not promoted to a PDF-entry or full five-fixture rerun.\n"
+        "measured": "2026-05-28",
+        "git_sha": "5254df1",
+        "note": "Bounded Claude Opus 4.8 handwritten OCR screen after the Anthropic release and the Opus 4.8 sampling-parameter compatibility fix in `modules/common/anthropic_client.py`. The image-entry-only screen used the corrected Barney and Alverson real fixtures without editing maintained recipes. OCR artifacts: `output/runs/eval-barney-image-opus-4-8/02_ocr_ai_gpt51_v1/pages_html.jsonl` and `output/runs/eval-alverson-image-opus-4-8/02_ocr_ai_gpt51_v1/pages_html.jsonl`. Barney reached `0.711207` and Alverson reached `0.680902`, so the screen floor was `0.680902` with `0/2` cases clearing the `0.99` bar. Instrumentation recorded `4027` prompt tokens, `918` completion tokens, and estimated Opus 4.8 cost about `$0.0431` total (`$0.0215` per case). The candidate barely beat corrected Alverson image-entry but regressed materially from maintained Barney evidence, so it was not promoted to PDF-entry or full-corpus reruns. Portable tracked proof: `docs/evals/attempts/012-opus48-bounded-challenger.md`.\n"
       },
       "attempts": [
         {
@@ -13994,6 +14054,14 @@
           "approach": "Screen Gemini 3.5 Flash on the corrected Barney/Alverson real image-entry pair after paid-tier availability recovered",
           "note": "Initial Gemini 3.5 Flash handwritten follow-up was blocked by the same free-tier project quota and `503 UNAVAILABLE` high-demand responses as the crop validator retries. After the heartbeat retry health probe succeeded on the canonical doc-web key, I ran a bounded image-entry screen on the corrected Barney and Alverson real fixtures. The screen scored Barney at `0.807498`, Alverson at `0.247350`, and the real-fixture floor at `0.247350`, below the maintained rescue floor of `0.677267`. Manual inspection confirmed wrong-source Alverson text such as `Danville Va Nov 18th 1863` and `Battle of Chickamauga`. Because the candidate did not beat both corrected real fixtures, it was not promoted to PDF-entry or full-corpus reruns. No maintained recipes, prompts, scorers, or goldens were changed.\n",
           "retry_when": []
+        },
+        {
+          "id": "010",
+          "date": "2026-05-28",
+          "status": "failed",
+          "approach": "Screen Claude Opus 4.8 on the corrected Barney/Alverson real image-entry pair after the Anthropic release",
+          "note": "Claude Opus 4.8 required the Anthropic OCR client to omit `temperature` and send adaptive thinking/high effort for direct OCR module calls. The bounded image-entry screen scored Barney at `0.711207`, Alverson at `0.680902`, and the real-fixture floor at `0.680902`, with `4027` prompt tokens, `918` completion tokens, and estimated cost about `$0.0431` total. This barely clears the corrected Alverson image baseline, but it regresses Barney versus both the Story 192 maintained image-entry evidence (`0.908567`) and the later improve-eval rerun (`0.883604`). Because no case approached the `0.99` bar and Barney materially regressed, it was not promoted to PDF-entry or full-corpus reruns. No maintained recipes, prompts, scorers, or goldens were changed.\n",
+          "retry_when": []
         }
       ],
       "retry_when": [
@@ -14015,11 +14083,11 @@
         ],
         "why_now": "Retry only when a materially stronger model or OCR substrate appears that could plausibly clear Barney and the corrected Alverson front-page truth surface.",
         "last_relevant_action": {
-          "date": "2026-05-20",
+          "date": "2026-05-28",
           "source_type": "eval-attempt",
           "source": "docs/evals/registry.yaml",
-          "source_id": "009",
-          "summary": "Initial Gemini 3.5 Flash handwritten follow-up was blocked by the same free-tier project quota and `503 UNAVAILABLE` high-demand responses as the crop validator retries. After the heartbeat retry health probe succeede..."
+          "source_id": "010",
+          "summary": "Claude Opus 4.8 required the Anthropic OCR client to omit `temperature` and send adaptive thinking/high effort for direct OCR module calls. The bounded image-entry screen scored Barney at `0.711207`, Alverson at `0.68..."
         }
       }
     },

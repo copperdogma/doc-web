@@ -1,3 +1,13 @@
+## [2026-05-28-01] - Record Claude Opus 4.8 eval challenger
+
+### Added
+- Added a bounded Claude Opus 4.8 promptfoo provider so Anthropic challenger runs can omit unsupported sampling parameters while preserving the repo's multimodal benchmark prompts.
+- Added a tracked Opus 4.8 challenger attempt covering the detector, page-context deletion gate, xhigh failed-case retries, and the corrected Barney/Alverson handwritten OCR screen.
+
+### Changed
+- Changed the Anthropic OCR client to use adaptive thinking/high effort and omit `temperature` for `claude-opus-4-8`.
+- Changed the eval registry and inbox to close the Opus 4.8 item with a no-adoption decision.
+
 ## [2026-05-25-01] - Record Photon image-processing scout
 
 ### Added

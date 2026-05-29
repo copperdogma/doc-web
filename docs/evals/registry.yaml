@@ -219,6 +219,37 @@ evals:
           score (`0.9703`), slower in this run, and costlier on paid standard
           pricing. Portable tracked proof:
           `docs/evals/attempts/011-gemini35-flash-bounded-challenger.md`.
+      - model: "Claude Opus 4.8 (conservative-count prompt, adaptive high effort)"
+        metrics:
+          overall: 0.7669
+          pass_rate: 0.7692
+          cases_total: 13
+          latency_ms: 4291
+        latency_ms: 4291
+        cost_usd: 0.0247
+        cost_estimated: true
+        measured: 2026-05-28
+        git_sha: 5254df1
+        note: >
+          Bounded Anthropic challenger after Conductor Scout 043 and the
+          2026-05-28 Anthropic Opus 4.8 release. Promptfoo 0.121.1's built-in
+          Anthropic provider sent `temperature`, which Opus 4.8 rejects, so the
+          run used the narrow `benchmarks/providers/anthropic_opus48_messages.py`
+          provider with sampling params omitted, adaptive thinking enabled, and
+          `output_config.effort = high`. Command: `cd benchmarks &&
+          ../scripts/run_with_doc_web_env.py promptfoo eval -c
+          tasks/image-crop-extraction.yaml --providers
+          python:$(pwd)/providers/anthropic_opus48_messages.py
+          --filter-prompts 'conservative-count' --output
+          results/opus48-image-crop-extraction-20260528.json --no-cache -j 1`.
+          The run completed `10/13` with `0` provider errors,
+          `overall = 0.7669`, `pass_rate = 0.7692`, average latency about
+          `4291 ms`, and estimated Opus 4.8 cost about `$0.3215` total
+          (`$0.0247` per case). Failures were bbox misses on `Image021`,
+          `Image037`, and `Image059`; an `xhigh` failed-case retry repaired
+          `0/3`. This does not replace the maintained Gemini 3 Flash detector.
+          Portable tracked proof:
+          `docs/evals/attempts/012-opus48-bounded-challenger.md`.
       - model: "Gemini 3 Flash (conservative-count prompt, heading-safe revision)"
         metrics:
           overall: 0.9678
@@ -1012,6 +1043,39 @@ evals:
           does not replace the maintained `openai:responses:gpt-5.5`
           page-context winner. Portable tracked proof:
           `docs/evals/attempts/011-gemini35-flash-bounded-challenger.md`.
+      - model: "Claude Opus 4.8 (page-context prompt, adaptive high effort)"
+        metrics:
+          overall: 0.9091
+          pass_rate: 0.9091
+          cases_total: 22
+          pass_labeled: 17
+          fail_labeled: 5
+          latency_ms: 4853
+        latency_ms: 4853
+        cost_usd: 0.0473
+        cost_estimated: true
+        measured: 2026-05-28
+        git_sha: 5254df1
+        note: >
+          Bounded Anthropic challenger after Conductor Scout 043 and the
+          2026-05-28 Anthropic Opus 4.8 release. Promptfoo 0.121.1's built-in
+          Anthropic provider sent `temperature`, which Opus 4.8 rejects, so the
+          run used the narrow `benchmarks/providers/anthropic_opus48_messages.py`
+          provider with sampling params omitted, adaptive thinking enabled, and
+          `output_config.effort = high`. Command: `cd benchmarks &&
+          ../scripts/run_with_doc_web_env.py promptfoo eval -c
+          tasks/crop-page-level-deletion-gate.yaml --providers
+          python:$(pwd)/providers/anthropic_opus48_messages.py --output
+          results/opus48-crop-page-level-deletion-gate-20260528.json --no-cache
+          -j 1`. The run completed `20/22` with `0` provider errors,
+          `overall = 0.9091`, average latency about `4853 ms`, and estimated
+          Opus 4.8 cost about `$1.0405` total (`$0.0473` per case). The misses
+          were model-wrong false negatives on `page-122-001`, where the crop
+          leaks a neighboring portrait slice, and `page-126-000`, where visible
+          book-page text appears at the left edge. An `xhigh` failed-case retry
+          repaired `0/2`. This does not replace the maintained
+          `openai:responses:gpt-5.5` page-context winner. Portable tracked
+          proof: `docs/evals/attempts/012-opus48-bounded-challenger.md`.
       - model: "GPT-5.5 Pro Responses (page-context prompt)"
         metrics:
           overall: 0.6818
@@ -1196,6 +1260,21 @@ evals:
           `page-122-001`, where Gemini 3.5 Flash returned `pass` for a crop that
           the corrected golden fails for leaking a neighboring portrait slice.
           No maintained providers, prompts, scorers, or goldens were changed.
+      - id: "011"
+        date: 2026-05-28
+        status: failed
+        approach: "Screen Claude Opus 4.8 as a bounded page-context validator challenger after the Anthropic release"
+        score_before: 1.0
+        score_after: 0.9091
+        note: >
+          Claude Opus 4.8 is callable on the two-image page-context prompt once
+          sampling params are omitted and adaptive thinking/high effort are used,
+          but it did not preserve the maintained `22/22` quality contract. The
+          run scored `20/22` with `0` provider errors, average latency about
+          `4853 ms`, and estimated cost about `$1.0405` total. The misses were
+          false negatives on the two corrected fail-labeled residue cases
+          `page-122-001` and `page-126-000`; `xhigh` effort repaired `0/2`.
+          No maintained providers, prompts, scorers, or goldens were changed.
 
     retry_when:
       - condition: new-subject-model
@@ -1378,6 +1457,37 @@ evals:
           Chickamauga`, not a scoring quirk. Because Gemini 3.5 Flash did not
           beat both corrected real fixtures, it was not promoted to a PDF-entry
           or full five-fixture rerun.
+      - model: "Claude Opus 4.8 bounded real-fixture image-entry screen"
+        metrics:
+          overall_min_ratio: 0.680902
+          page_min_ratio: 0.680902
+          pass_rate: 0.0
+          cases_total: 2
+          fixture_count: 2
+          fixtures_passing: 0
+          barney_image_overall_ratio: 0.711207
+          alverson_image_overall_ratio: 0.680902
+          cost_usd: 0.0215
+          cost_estimated: true
+        measured: 2026-05-28
+        git_sha: 5254df1
+        note: >
+          Bounded Claude Opus 4.8 handwritten OCR screen after the Anthropic
+          release and the Opus 4.8 sampling-parameter compatibility fix in
+          `modules/common/anthropic_client.py`. The image-entry-only screen used
+          the corrected Barney and Alverson real fixtures without editing
+          maintained recipes. OCR artifacts:
+          `output/runs/eval-barney-image-opus-4-8/02_ocr_ai_gpt51_v1/pages_html.jsonl`
+          and
+          `output/runs/eval-alverson-image-opus-4-8/02_ocr_ai_gpt51_v1/pages_html.jsonl`.
+          Barney reached `0.711207` and Alverson reached `0.680902`, so the
+          screen floor was `0.680902` with `0/2` cases clearing the `0.99` bar.
+          Instrumentation recorded `4027` prompt tokens, `918` completion
+          tokens, and estimated Opus 4.8 cost about `$0.0431` total (`$0.0215`
+          per case). The candidate barely beat corrected Alverson image-entry
+          but regressed materially from maintained Barney evidence, so it was
+          not promoted to PDF-entry or full-corpus reruns. Portable tracked
+          proof: `docs/evals/attempts/012-opus48-bounded-challenger.md`.
       - model: "Maintained handwritten rescue OCR lanes (gemini-2.5-pro via handwritten-notes rescue recipes)"
         metrics:
           overall_min_ratio: 0.499136
@@ -1857,6 +1967,25 @@ evals:
           Because the candidate did not beat both corrected real fixtures, it
           was not promoted to PDF-entry or full-corpus reruns. No maintained
           recipes, prompts, scorers, or goldens were changed.
+      - id: "010"
+        date: 2026-05-28
+        status: failed
+        approach: "Screen Claude Opus 4.8 on the corrected Barney/Alverson real image-entry pair after the Anthropic release"
+        score_before: 0.677267
+        score_after: 0.680902
+        note: >
+          Claude Opus 4.8 required the Anthropic OCR client to omit
+          `temperature` and send adaptive thinking/high effort for direct OCR
+          module calls. The bounded image-entry screen scored Barney at
+          `0.711207`, Alverson at `0.680902`, and the real-fixture floor at
+          `0.680902`, with `4027` prompt tokens, `918` completion tokens, and
+          estimated cost about `$0.0431` total. This barely clears the corrected
+          Alverson image baseline, but it regresses Barney versus both the Story
+          192 maintained image-entry evidence (`0.908567`) and the later
+          improve-eval rerun (`0.883604`). Because no case approached the `0.99`
+          bar and Barney materially regressed, it was not promoted to PDF-entry
+          or full-corpus reruns. No maintained recipes, prompts, scorers, or
+          goldens were changed.
 
     retry_when:
       - condition: new-subject-model

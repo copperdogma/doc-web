@@ -73,12 +73,11 @@ class AnthropicVisionClient:
         # Re-encode to base64 string for the API
         b64_str = base64.b64encode(_image_bytes).decode("utf-8")
 
-        resp = self._client.messages.create(
-            model=model,
-            system=system_prompt,
-            max_tokens=max_tokens,
-            temperature=temperature,
-            messages=[
+        request_kwargs: dict[str, Any] = {
+            "model": model,
+            "system": system_prompt,
+            "max_tokens": max_tokens,
+            "messages": [
                 {
                     "role": "user",
                     "content": [
@@ -94,7 +93,14 @@ class AnthropicVisionClient:
                     ],
                 },
             ],
-        )
+        }
+        if model.startswith("claude-opus-4-8"):
+            request_kwargs["thinking"] = {"type": "adaptive"}
+            request_kwargs["output_config"] = {"effort": "high"}
+        else:
+            request_kwargs["temperature"] = temperature
+
+        resp = self._client.messages.create(**request_kwargs)
 
         # Extract text from content blocks
         raw = ""
