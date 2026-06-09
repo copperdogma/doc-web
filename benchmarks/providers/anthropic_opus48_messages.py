@@ -10,6 +10,9 @@ Usage from benchmarks/:
     -c tasks/image-crop-extraction.yaml \
     --providers python:$(pwd)/providers/anthropic_opus48_messages.py \
     --filter-prompts conservative-count --no-cache -j 1
+
+Set `ANTHROPIC_OPUS48_MODEL` plus the optional price environment variables for
+newer Anthropic frontier challengers that share the no-sampling request shape.
 """
 
 from __future__ import annotations
@@ -134,6 +137,18 @@ def _build_body(prompt: str) -> dict[str, Any]:
     return body
 
 
+def _price_per_1m(kind: str, default: float) -> float:
+    env_names = [
+        f"ANTHROPIC_MESSAGES_{kind}_PRICE_PER_1M",
+        f"ANTHROPIC_OPUS48_{kind}_PRICE_PER_1M",
+    ]
+    for env_name in env_names:
+        raw_value = os.environ.get(env_name)
+        if raw_value:
+            return float(raw_value)
+    return default
+
+
 def _extract_output_text(data: dict[str, Any]) -> str:
     chunks: list[str] = []
     for item in data.get("content", []):
@@ -161,9 +176,11 @@ def _token_usage(data: dict[str, Any]) -> dict[str, int] | None:
 def _estimated_cost(token_usage: dict[str, int] | None) -> float | None:
     if token_usage is None:
         return None
+    input_price = _price_per_1m("INPUT", OPUS48_INPUT_PRICE_PER_1M)
+    output_price = _price_per_1m("OUTPUT", OPUS48_OUTPUT_PRICE_PER_1M)
     return (
-        token_usage["prompt"] * OPUS48_INPUT_PRICE_PER_1M
-        + token_usage["completion"] * OPUS48_OUTPUT_PRICE_PER_1M
+        token_usage["prompt"] * input_price
+        + token_usage["completion"] * output_price
     ) / 1_000_000
 
 

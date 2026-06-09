@@ -1076,6 +1076,47 @@ evals:
           repaired `0/2`. This does not replace the maintained
           `openai:responses:gpt-5.5` page-context winner. Portable tracked
           proof: `docs/evals/attempts/012-opus48-bounded-challenger.md`.
+      - model: "Claude Fable 5 (page-context prompt, adaptive high effort)"
+        metrics:
+          overall: 0.9091
+          pass_rate: 0.9091
+          cases_total: 22
+          pass_labeled: 17
+          fail_labeled: 5
+          latency_ms: 7423
+        latency_ms: 7423
+        cost_usd: 0.0961
+        cost_estimated: true
+        measured: 2026-06-09
+        git_sha: 70a65b5
+        note: >
+          Bounded Anthropic challenger after Conductor Scout 044 and the
+          2026-06-09 Claude Fable 5 release. Official Anthropic docs and the
+          repo-local `/v1/models` response both confirmed `claude-fable-5` is
+          available through the API. The run reused the narrow
+          `benchmarks/providers/anthropic_opus48_messages.py` provider with
+          sampling params omitted, adaptive thinking enabled, `output_config`
+          effort high, and Fable-specific token prices supplied by environment
+          variables. Command: `cd benchmarks && ANTHROPIC_OPUS48_MODEL=claude-fable-5
+          ANTHROPIC_MESSAGES_INPUT_PRICE_PER_1M=10
+          ANTHROPIC_MESSAGES_OUTPUT_PRICE_PER_1M=50
+          ../scripts/run_with_doc_web_env.py promptfoo eval -c
+          tasks/crop-page-level-deletion-gate.yaml --providers
+          python:$(pwd)/providers/anthropic_opus48_messages.py --output
+          results/fable5-crop-page-level-deletion-gate-20260609.json --no-cache
+          -j 1`. The run completed `20/22` with `0` provider errors,
+          `overall = 0.9091`, average latency about `7423 ms`, `197513`
+          prompt tokens, `2771` completion tokens, and estimated Fable cost
+          about `$2.1137` total (`$0.0961` per case). The misses were
+          model-wrong false negatives on `page-122-001`, where the crop leaks
+          the neighboring Sophie L'Heureux portrait, and `page-126-000`, where
+          visible adjacent page/plaque text appears at the left edge. Manual
+          image inspection confirmed the checked-in golden labels. Because
+          Fable fails quality and is also more expensive and slower than the
+          maintained GPT-5.5 Responses winner, no higher-effort retry is
+          warranted. This does not replace the maintained
+          `openai:responses:gpt-5.5` page-context winner. Portable tracked
+          proof: `docs/evals/attempts/013-fable5-bounded-challenger.md`.
       - model: "GPT-5.5 Pro Responses (page-context prompt)"
         metrics:
           overall: 0.6818
@@ -1275,6 +1316,24 @@ evals:
           false negatives on the two corrected fail-labeled residue cases
           `page-122-001` and `page-126-000`; `xhigh` effort repaired `0/2`.
           No maintained providers, prompts, scorers, or goldens were changed.
+      - id: "012"
+        date: 2026-06-09
+        status: failed
+        approach: "Screen Claude Fable 5 as a bounded page-context validator challenger after the Anthropic release"
+        score_before: 1.0
+        score_after: 0.9091
+        note: >
+          Claude Fable 5 is callable on the two-image page-context prompt using
+          the same direct Anthropic/no-sampling provider pattern as Opus 4.8,
+          with Fable pricing recorded in the result artifact, but it did not
+          preserve the maintained `22/22` quality contract. The run scored
+          `20/22` with `0` provider errors, average latency about `7423 ms`,
+          and estimated cost about `$2.1137` total. The misses were
+          model-wrong false negatives on `page-122-001` and `page-126-000`.
+          Manual image inspection confirmed both golden failures. Because Fable
+          also loses latency and cost to the maintained GPT-5.5 Responses
+          winner, no higher-effort retry is warranted. No maintained providers,
+          prompts, scorers, or goldens were changed.
 
     retry_when:
       - condition: new-subject-model

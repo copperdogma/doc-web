@@ -1,3 +1,12 @@
+## [2026-06-09-01] - Record Claude Fable 5 eval challenger
+
+### Added
+- Added a tracked Claude Fable 5 challenger attempt covering the page-level crop deletion gate.
+
+### Changed
+- Changed the bounded Anthropic promptfoo provider so frontier challenger runs can override token prices for correct result-artifact cost accounting.
+- Changed the eval registry and inbox to close the Fable 5 item with a no-adoption decision.
+
 ## [2026-05-28-01] - Record Claude Opus 4.8 eval challenger
 
 ### Added
