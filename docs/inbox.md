@@ -4,6 +4,17 @@ This file captures ideas, insights, and potential architectural improvements dis
 
 ## Untriaged
 
+- 2026-06-09 — From Conductor Scout 044: Anthropic's `claude-fable-5`
+  is a very expensive ceiling-model candidate for tiny hard-document/OCR slices,
+  not a maintained OCR or crop-default candidate. Candidate lane:
+  `crop-page-level-deletion-gate` or one bounded handwritten OCR failed-case
+  screen. Baseline to beat: the GPT-5.5 Responses page-context winner, Gemini
+  crop winners, and prior Opus 4.8 no-promotion evidence. Guardrail: use the
+  existing Anthropic-direct/no-sampling provider pattern, record full image-token
+  cost, and do not alter maintained providers unless quality, latency, and cost
+  all win. Source:
+  `/Users/cam/.codex/worktrees/92f5/conductor/docs/scout/scout-044-claude-fable-5-api-eval-opportunities.md`
+
 - 2026-05-19 — From Conductor Scout 035: Google's Gemini API `gemini-3.5-flash`
   is a strong doc-web challenger because it has image/PDF input, structured
   output, 1M context, and fresh media-resolution migration guidance. If Google
