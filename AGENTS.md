@@ -80,18 +80,32 @@ state/graph workflow, setup checklist, eval-surface docs, and AGENTS wiring.
 - **Graduate, don't accumulate:** When a converter is stable and proven, plan its migration to Dossier. Doc-forge stays focused on unsolved problems.
 - **Consistency policy must be explicit:** When solving document-consistency or normalization problems, emit inspectable policy artifacts (for example `pattern_inventory`, `consistency_plan`, `conformance_report`) instead of hiding conventions in prompts. See `docs/runbooks/document-consistency-planning.md`.
 
-## Subagent Strategy
+## Cost-Aware Delegation
 
-| Task | Model | Rationale |
-|------|-------|-----------|
-| File search, glob, grep, simple reads | **Haiku** | Fast, cheap, mechanical |
-| Write a single focused module/script | **Sonnet** | Good code quality, fast enough |
-| Multi-file refactor, architecture decisions | **Opus** | Needs full context and judgment |
-| Research/exploration across codebase | **Sonnet** | Good at synthesis, thorough |
-| Writing tests for existing code | **Sonnet** | Needs to understand contracts |
-| Reviewing/validating generated code | **Opus** | Quality gate, catches subtle issues |
+Use subagents to parallelize independent work and protect the main context
+window when the task is large enough to justify the overhead. For delegated
+work, choose the lowest model strength and reasoning level that can honestly
+handle the shard; do not name or hard-code a specific model in repo
+instructions.
 
-**Guidelines:** Parallelize independent work. Opus orchestrates, delegates, reviews — never blindly trusts. Use subagents for large-output tasks to protect main context. Fail fast: bad subagent output → adjust approach, don't retry same prompt.
+Use lower-strength sidecars for mechanical work such as file search, simple
+reads, command execution, git or diff inventory, generated-file freshness,
+link or alias checks, and narrow docs consistency scans. Keep the main thread
+responsible for scope, final quality, semantic judgment, architecture
+decisions, security judgment, eval correctness, staging, commits, pushes, and
+user-facing synthesis.
+
+- **Parallelize independent work only when ownership is clear**: If ownership
+  is overlapping or unclear, keep one primary execution path and use subagents
+  for exploration/review instead of concurrent edits.
+- **Coordinator owns judgment**: The main agent reads results, spots issues,
+  and iterates; never blindly trust delegated output.
+- **Context protection**: Use subagents for tasks that produce large output
+  when that protects the main context.
+- **Fail fast**: If a subagent produces bad output, adjust the approach; do not
+  retry the same prompt.
+- **No recursion**: Delegated workers must not spawn more workers, invoke
+  `/loop-verify`, or widen their assignment.
 
 ## Skills
 
