@@ -1,3 +1,11 @@
+## [2026-06-30-01] - Record Claude Sonnet 5 eval challenger
+
+### Added
+- Added a tracked Claude Sonnet 5 challenger attempt covering the maintained detector and page-level crop deletion gate.
+
+### Changed
+- Changed the eval registry and methodology graph to close the Sonnet 5 item with a no-adoption decision.
+
 ## [2026-06-09-01] - Record Claude Fable 5 eval challenger
 
 ### Added

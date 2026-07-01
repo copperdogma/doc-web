@@ -1115,11 +1115,11 @@
           ],
           "why_now": "Gemini 4 or equivalent may push past 0.95 target Golden references cover limited page types; add table-heavy pages",
           "last_relevant_action": {
-            "date": "2026-05-20",
+            "date": "2026-06-30",
             "source_type": "eval-attempt",
             "source": "docs/evals/registry.yaml",
-            "source_id": "013",
-            "summary": "`gemini-3.5-flash` is live in the Gemini model list and callable through promptfoo once stale `GOOGLE_API_KEY` is unset in favor of the repo-scoped `DOC_WEB_GEMINI_API_KEY`. The maintained `conservative-count` detecto..."
+            "source_id": "014",
+            "summary": "Claude Sonnet 5 is callable through the same direct Anthropic no-sampling provider pattern as Opus 4.8 and Fable 5, but it did not preserve the maintained detector contract. The run scored `5/13` with `0` provider err..."
           },
           "story_ids": [
             "135",
@@ -1173,11 +1173,11 @@
           ],
           "why_now": "Rerun when a materially stronger validator or detector may reduce the current fail-labeled page-context cases. Rerun after any maintained crop/runtime simplification before claiming `trim_layout_text` or bounded capti...",
           "last_relevant_action": {
-            "date": "2026-06-09",
+            "date": "2026-06-30",
             "source_type": "eval-attempt",
             "source": "docs/evals/registry.yaml",
-            "source_id": "012",
-            "summary": "Claude Fable 5 is callable on the two-image page-context prompt using the same direct Anthropic/no-sampling provider pattern as Opus 4.8, with Fable pricing recorded in the result artifact, but it did not preserve the..."
+            "source_id": "013",
+            "summary": "Claude Sonnet 5 is callable on the two-image page-context prompt using the same direct Anthropic/no-sampling provider pattern as Opus 4.8 and Fable 5, with Sonnet pricing recorded in the result artifact, but it did no..."
           },
           "story_ids": [
             "135",
@@ -12954,6 +12954,21 @@
           "note": "Bounded Anthropic challenger after Conductor Scout 043 and the 2026-05-28 Anthropic Opus 4.8 release. Promptfoo 0.121.1's built-in Anthropic provider sent `temperature`, which Opus 4.8 rejects, so the run used the narrow `benchmarks/providers/anthropic_opus48_messages.py` provider with sampling params omitted, adaptive thinking enabled, and `output_config.effort = high`. Command: `cd benchmarks && ../scripts/run_with_doc_web_env.py promptfoo eval -c tasks/image-crop-extraction.yaml --providers python:$(pwd)/providers/anthropic_opus48_messages.py --filter-prompts 'conservative-count' --output results/opus48-image-crop-extraction-20260528.json --no-cache -j 1`. The run completed `10/13` with `0` provider errors, `overall = 0.7669`, `pass_rate = 0.7692`, average latency about `4291 ms`, and estimated Opus 4.8 cost about `$0.3215` total (`$0.0247` per case). Failures were bbox misses on `Image021`, `Image037`, and `Image059`; an `xhigh` failed-case retry repaired `0/3`. This does not replace the maintained Gemini 3 Flash detector. Portable tracked proof: `docs/evals/attempts/012-opus48-bounded-challenger.md`.\n"
         },
         {
+          "model": "Claude Sonnet 5 (conservative-count prompt, adaptive high effort)",
+          "metrics": {
+            "overall": 0.5334,
+            "pass_rate": 0.3846,
+            "cases_total": 13,
+            "latency_ms": 3834
+          },
+          "latency_ms": 3834,
+          "cost_usd": 0.0098,
+          "cost_estimated": true,
+          "measured": "2026-06-30",
+          "git_sha": "fb2d00b",
+          "note": "Bounded Anthropic challenger after the 2026-06-29 Claude Sonnet 5 API release. `python scripts/discover-models.py --check-new` confirmed `claude-sonnet-5` is live through the repo-local Anthropic key, so the run reused the direct Anthropic/no-sampling provider with adaptive thinking enabled, `output_config` effort high, and Sonnet-specific introductory token prices supplied by environment variables. Command: `cd benchmarks && ANTHROPIC_OPUS48_MODEL=claude-sonnet-5 ANTHROPIC_MESSAGES_INPUT_PRICE_PER_1M=2 ANTHROPIC_MESSAGES_OUTPUT_PRICE_PER_1M=10 ../scripts/run_with_doc_web_env.py promptfoo eval -c tasks/image-crop-extraction.yaml --providers python:$(pwd)/providers/anthropic_opus48_messages.py --filter-prompts 'conservative-count' --output results/sonnet5-image-crop-extraction-20260630.json --no-cache -j 1`. The run completed `5/13` with `0` provider errors, `overall = 0.5334`, `pass_rate = 0.3846`, average latency about `3834 ms`, `56874` prompt tokens, `1416` completion tokens, and estimated Sonnet 5 cost about `$0.1279` total (`$0.0098` per case). Failures were model-wrong bbox/coordinate misses on `Image001`, `Image003`, `Image011`, `Image013`, `Image021`, `Image037`, `Image124`, and `Image126`. This does not replace the maintained Gemini 3 Flash detector. Portable tracked proof: `docs/evals/attempts/014-sonnet5-bounded-challenger.md`.\n"
+        },
+        {
           "model": "Gemini 3 Flash (conservative-count prompt, heading-safe revision)",
           "metrics": {
             "overall": 0.9678,
@@ -13017,19 +13032,19 @@
         }
       ],
       "latest_score": {
-        "model": "Claude Opus 4.8 (conservative-count prompt, adaptive high effort)",
+        "model": "Claude Sonnet 5 (conservative-count prompt, adaptive high effort)",
         "metrics": {
-          "overall": 0.7669,
-          "pass_rate": 0.7692,
+          "overall": 0.5334,
+          "pass_rate": 0.3846,
           "cases_total": 13,
-          "latency_ms": 4291
+          "latency_ms": 3834
         },
-        "latency_ms": 4291,
-        "cost_usd": 0.0247,
+        "latency_ms": 3834,
+        "cost_usd": 0.0098,
         "cost_estimated": true,
-        "measured": "2026-05-28",
-        "git_sha": "5254df1",
-        "note": "Bounded Anthropic challenger after Conductor Scout 043 and the 2026-05-28 Anthropic Opus 4.8 release. Promptfoo 0.121.1's built-in Anthropic provider sent `temperature`, which Opus 4.8 rejects, so the run used the narrow `benchmarks/providers/anthropic_opus48_messages.py` provider with sampling params omitted, adaptive thinking enabled, and `output_config.effort = high`. Command: `cd benchmarks && ../scripts/run_with_doc_web_env.py promptfoo eval -c tasks/image-crop-extraction.yaml --providers python:$(pwd)/providers/anthropic_opus48_messages.py --filter-prompts 'conservative-count' --output results/opus48-image-crop-extraction-20260528.json --no-cache -j 1`. The run completed `10/13` with `0` provider errors, `overall = 0.7669`, `pass_rate = 0.7692`, average latency about `4291 ms`, and estimated Opus 4.8 cost about `$0.3215` total (`$0.0247` per case). Failures were bbox misses on `Image021`, `Image037`, and `Image059`; an `xhigh` failed-case retry repaired `0/3`. This does not replace the maintained Gemini 3 Flash detector. Portable tracked proof: `docs/evals/attempts/012-opus48-bounded-challenger.md`.\n"
+        "measured": "2026-06-30",
+        "git_sha": "fb2d00b",
+        "note": "Bounded Anthropic challenger after the 2026-06-29 Claude Sonnet 5 API release. `python scripts/discover-models.py --check-new` confirmed `claude-sonnet-5` is live through the repo-local Anthropic key, so the run reused the direct Anthropic/no-sampling provider with adaptive thinking enabled, `output_config` effort high, and Sonnet-specific introductory token prices supplied by environment variables. Command: `cd benchmarks && ANTHROPIC_OPUS48_MODEL=claude-sonnet-5 ANTHROPIC_MESSAGES_INPUT_PRICE_PER_1M=2 ANTHROPIC_MESSAGES_OUTPUT_PRICE_PER_1M=10 ../scripts/run_with_doc_web_env.py promptfoo eval -c tasks/image-crop-extraction.yaml --providers python:$(pwd)/providers/anthropic_opus48_messages.py --filter-prompts 'conservative-count' --output results/sonnet5-image-crop-extraction-20260630.json --no-cache -j 1`. The run completed `5/13` with `0` provider errors, `overall = 0.5334`, `pass_rate = 0.3846`, average latency about `3834 ms`, `56874` prompt tokens, `1416` completion tokens, and estimated Sonnet 5 cost about `$0.1279` total (`$0.0098` per case). Failures were model-wrong bbox/coordinate misses on `Image001`, `Image003`, `Image011`, `Image013`, `Image021`, `Image037`, `Image124`, and `Image126`. This does not replace the maintained Gemini 3 Flash detector. Portable tracked proof: `docs/evals/attempts/014-sonnet5-bounded-challenger.md`.\n"
       },
       "attempts": [
         {
@@ -13135,6 +13150,14 @@
           "approach": "Screen Google `gemini-3.5-flash` as a bounded detector challenger after the Gemini 3.5 Flash release",
           "note": "`gemini-3.5-flash` is live in the Gemini model list and callable through promptfoo once stale `GOOGLE_API_KEY` is unset in favor of the repo-scoped `DOC_WEB_GEMINI_API_KEY`. The maintained `conservative-count` detector slice passed at `13/13` with `0` provider errors and `overall = 0.9679`, but that is still slightly below the maintained Gemini 3 Flash `0.9703` result and was slower in this pass. Estimated paid standard pricing is also higher than the maintained detector proof (`$0.1095` total vs about `$0.059`). No maintained providers, prompts, scorers, or goldens were changed. The follow-up crop-only validator and page-context gate later ran after paid-tier availability recovered, scoring `39/40` and `21/22` respectively. The bounded handwritten OCR screen reached only `0.247350` on the corrected real-fixture floor. Result: Gemini 3.5 Flash is callable and useful evidence, but it does not replace any maintained detector, validator, or OCR provider. Portable tracked proof: `docs/evals/attempts/011-gemini35-flash-bounded-challenger.md`.\n",
           "retry_when": []
+        },
+        {
+          "id": "014",
+          "date": "2026-06-30",
+          "status": "failed",
+          "approach": "Screen Claude Sonnet 5 as a bounded detector challenger after the Anthropic release",
+          "note": "Claude Sonnet 5 is callable through the same direct Anthropic no-sampling provider pattern as Opus 4.8 and Fable 5, but it did not preserve the maintained detector contract. The run scored `5/13` with `0` provider errors, `overall = 0.5334`, average latency about `3834 ms`, and estimated cost about `$0.1279` total. The failures were bbox/coordinate-quality misses rather than access or parser failures, including normalized/scale-incompatible boxes on portrait pages such as `Image013`. No maintained providers, prompts, scorers, or goldens were changed. Portable tracked proof: `docs/evals/attempts/014-sonnet5-bounded-challenger.md`.\n",
+          "retry_when": []
         }
       ],
       "retry_when": [
@@ -13159,11 +13182,11 @@
         ],
         "why_now": "Gemini 4 or equivalent may push past 0.95 target Golden references cover limited page types; add table-heavy pages",
         "last_relevant_action": {
-          "date": "2026-05-20",
+          "date": "2026-06-30",
           "source_type": "eval-attempt",
           "source": "docs/evals/registry.yaml",
-          "source_id": "013",
-          "summary": "`gemini-3.5-flash` is live in the Gemini model list and callable through promptfoo once stale `GOOGLE_API_KEY` is unset in favor of the repo-scoped `DOC_WEB_GEMINI_API_KEY`. The maintained `conservative-count` detecto..."
+          "source_id": "014",
+          "summary": "Claude Sonnet 5 is callable through the same direct Anthropic no-sampling provider pattern as Opus 4.8 and Fable 5, but it did not preserve the maintained detector contract. The run scored `5/13` with `0` provider err..."
         }
       }
     },
@@ -13537,6 +13560,23 @@
           "note": "Bounded Anthropic challenger after Conductor Scout 044 and the 2026-06-09 Claude Fable 5 release. Official Anthropic docs and the repo-local `/v1/models` response both confirmed `claude-fable-5` is available through the API. The run reused the narrow `benchmarks/providers/anthropic_opus48_messages.py` provider with sampling params omitted, adaptive thinking enabled, `output_config` effort high, and Fable-specific token prices supplied by environment variables. Command: `cd benchmarks && ANTHROPIC_OPUS48_MODEL=claude-fable-5 ANTHROPIC_MESSAGES_INPUT_PRICE_PER_1M=10 ANTHROPIC_MESSAGES_OUTPUT_PRICE_PER_1M=50 ../scripts/run_with_doc_web_env.py promptfoo eval -c tasks/crop-page-level-deletion-gate.yaml --providers python:$(pwd)/providers/anthropic_opus48_messages.py --output results/fable5-crop-page-level-deletion-gate-20260609.json --no-cache -j 1`. The run completed `20/22` with `0` provider errors, `overall = 0.9091`, average latency about `7423 ms`, `197513` prompt tokens, `2771` completion tokens, and estimated Fable cost about `$2.1137` total (`$0.0961` per case). The misses were model-wrong false negatives on `page-122-001`, where the crop leaks the neighboring Sophie L'Heureux portrait, and `page-126-000`, where visible adjacent page/plaque text appears at the left edge. Manual image inspection confirmed the checked-in golden labels. Because Fable fails quality and is also more expensive and slower than the maintained GPT-5.5 Responses winner, no higher-effort retry is warranted. This does not replace the maintained `openai:responses:gpt-5.5` page-context winner. Portable tracked proof: `docs/evals/attempts/013-fable5-bounded-challenger.md`.\n"
         },
         {
+          "model": "Claude Sonnet 5 (page-context prompt, adaptive high effort)",
+          "metrics": {
+            "overall": 0.9091,
+            "pass_rate": 0.9091,
+            "cases_total": 22,
+            "pass_labeled": 17,
+            "fail_labeled": 5,
+            "latency_ms": 3827
+          },
+          "latency_ms": 3827,
+          "cost_usd": 0.0188,
+          "cost_estimated": true,
+          "measured": "2026-06-30",
+          "git_sha": "fb2d00b",
+          "note": "Bounded Anthropic challenger after the 2026-06-29 Claude Sonnet 5 API release. `python scripts/discover-models.py --check-new` confirmed `claude-sonnet-5` is live through the repo-local Anthropic key, so the run reused the direct Anthropic/no-sampling provider with adaptive thinking enabled, `output_config` effort high, and Sonnet-specific introductory token prices supplied by environment variables. Command: `cd benchmarks && ANTHROPIC_OPUS48_MODEL=claude-sonnet-5 ANTHROPIC_MESSAGES_INPUT_PRICE_PER_1M=2 ANTHROPIC_MESSAGES_OUTPUT_PRICE_PER_1M=10 ../scripts/run_with_doc_web_env.py promptfoo eval -c tasks/crop-page-level-deletion-gate.yaml --providers python:$(pwd)/providers/anthropic_opus48_messages.py --output results/sonnet5-crop-page-level-deletion-gate-20260630.json --no-cache -j 1`. The run completed `20/22` with `0` provider errors, `overall = 0.9091`, average latency about `3827 ms`, `197513` prompt tokens, `1757` completion tokens, and estimated Sonnet 5 cost about `$0.4126` total (`$0.0188` per case). The misses were model-wrong false negatives on `page-122-000`, where the crop includes printed caption text below the family reunion photo, and `page-122-001`, where the crop leaks a neighboring portrait. An `xhigh` failed-case retry repaired `page-122-000` but still missed `page-122-001`, so no full xhigh rerun is warranted. This does not replace the maintained `openai:responses:gpt-5.5` page-context winner. Portable tracked proof: `docs/evals/attempts/014-sonnet5-bounded-challenger.md`.\n"
+        },
+        {
           "model": "GPT-5.5 Pro Responses (page-context prompt)",
           "metrics": {
             "overall": 0.6818,
@@ -13555,21 +13595,21 @@
         }
       ],
       "latest_score": {
-        "model": "Claude Fable 5 (page-context prompt, adaptive high effort)",
+        "model": "Claude Sonnet 5 (page-context prompt, adaptive high effort)",
         "metrics": {
           "overall": 0.9091,
           "pass_rate": 0.9091,
           "cases_total": 22,
           "pass_labeled": 17,
           "fail_labeled": 5,
-          "latency_ms": 7423
+          "latency_ms": 3827
         },
-        "latency_ms": 7423,
-        "cost_usd": 0.0961,
+        "latency_ms": 3827,
+        "cost_usd": 0.0188,
         "cost_estimated": true,
-        "measured": "2026-06-09",
-        "git_sha": "70a65b5",
-        "note": "Bounded Anthropic challenger after Conductor Scout 044 and the 2026-06-09 Claude Fable 5 release. Official Anthropic docs and the repo-local `/v1/models` response both confirmed `claude-fable-5` is available through the API. The run reused the narrow `benchmarks/providers/anthropic_opus48_messages.py` provider with sampling params omitted, adaptive thinking enabled, `output_config` effort high, and Fable-specific token prices supplied by environment variables. Command: `cd benchmarks && ANTHROPIC_OPUS48_MODEL=claude-fable-5 ANTHROPIC_MESSAGES_INPUT_PRICE_PER_1M=10 ANTHROPIC_MESSAGES_OUTPUT_PRICE_PER_1M=50 ../scripts/run_with_doc_web_env.py promptfoo eval -c tasks/crop-page-level-deletion-gate.yaml --providers python:$(pwd)/providers/anthropic_opus48_messages.py --output results/fable5-crop-page-level-deletion-gate-20260609.json --no-cache -j 1`. The run completed `20/22` with `0` provider errors, `overall = 0.9091`, average latency about `7423 ms`, `197513` prompt tokens, `2771` completion tokens, and estimated Fable cost about `$2.1137` total (`$0.0961` per case). The misses were model-wrong false negatives on `page-122-001`, where the crop leaks the neighboring Sophie L'Heureux portrait, and `page-126-000`, where visible adjacent page/plaque text appears at the left edge. Manual image inspection confirmed the checked-in golden labels. Because Fable fails quality and is also more expensive and slower than the maintained GPT-5.5 Responses winner, no higher-effort retry is warranted. This does not replace the maintained `openai:responses:gpt-5.5` page-context winner. Portable tracked proof: `docs/evals/attempts/013-fable5-bounded-challenger.md`.\n"
+        "measured": "2026-06-30",
+        "git_sha": "fb2d00b",
+        "note": "Bounded Anthropic challenger after the 2026-06-29 Claude Sonnet 5 API release. `python scripts/discover-models.py --check-new` confirmed `claude-sonnet-5` is live through the repo-local Anthropic key, so the run reused the direct Anthropic/no-sampling provider with adaptive thinking enabled, `output_config` effort high, and Sonnet-specific introductory token prices supplied by environment variables. Command: `cd benchmarks && ANTHROPIC_OPUS48_MODEL=claude-sonnet-5 ANTHROPIC_MESSAGES_INPUT_PRICE_PER_1M=2 ANTHROPIC_MESSAGES_OUTPUT_PRICE_PER_1M=10 ../scripts/run_with_doc_web_env.py promptfoo eval -c tasks/crop-page-level-deletion-gate.yaml --providers python:$(pwd)/providers/anthropic_opus48_messages.py --output results/sonnet5-crop-page-level-deletion-gate-20260630.json --no-cache -j 1`. The run completed `20/22` with `0` provider errors, `overall = 0.9091`, average latency about `3827 ms`, `197513` prompt tokens, `1757` completion tokens, and estimated Sonnet 5 cost about `$0.4126` total (`$0.0188` per case). The misses were model-wrong false negatives on `page-122-000`, where the crop includes printed caption text below the family reunion photo, and `page-122-001`, where the crop leaks a neighboring portrait. An `xhigh` failed-case retry repaired `page-122-000` but still missed `page-122-001`, so no full xhigh rerun is warranted. This does not replace the maintained `openai:responses:gpt-5.5` page-context winner. Portable tracked proof: `docs/evals/attempts/014-sonnet5-bounded-challenger.md`.\n"
       },
       "attempts": [
         {
@@ -13667,6 +13707,14 @@
           "approach": "Screen Claude Fable 5 as a bounded page-context validator challenger after the Anthropic release",
           "note": "Claude Fable 5 is callable on the two-image page-context prompt using the same direct Anthropic/no-sampling provider pattern as Opus 4.8, with Fable pricing recorded in the result artifact, but it did not preserve the maintained `22/22` quality contract. The run scored `20/22` with `0` provider errors, average latency about `7423 ms`, and estimated cost about `$2.1137` total. The misses were model-wrong false negatives on `page-122-001` and `page-126-000`. Manual image inspection confirmed both golden failures. Because Fable also loses latency and cost to the maintained GPT-5.5 Responses winner, no higher-effort retry is warranted. No maintained providers, prompts, scorers, or goldens were changed.\n",
           "retry_when": []
+        },
+        {
+          "id": "013",
+          "date": "2026-06-30",
+          "status": "failed",
+          "approach": "Screen Claude Sonnet 5 as a bounded page-context validator challenger after the Anthropic release",
+          "note": "Claude Sonnet 5 is callable on the two-image page-context prompt using the same direct Anthropic/no-sampling provider pattern as Opus 4.8 and Fable 5, with Sonnet pricing recorded in the result artifact, but it did not preserve the maintained `22/22` quality contract. The high effort run scored `20/22` with `0` provider errors, average latency about `3827 ms`, and estimated cost about `$0.4126` total. The misses were model-wrong false negatives on `page-122-000` and `page-122-001`; manual image inspection confirmed both checked-in fail labels. An `xhigh` failed-case retry repaired `page-122-000` but still missed the neighboring-portrait residue on `page-122-001`, so no full xhigh rerun is warranted. Sonnet 5 is cheaper and faster than the maintained GPT-5.5 Responses winner on this surface, but quality is decisive here. No maintained providers, prompts, scorers, or goldens were changed.\n",
+          "retry_when": []
         }
       ],
       "retry_when": [
@@ -13694,11 +13742,11 @@
         ],
         "why_now": "Rerun when a materially stronger validator or detector may reduce the current fail-labeled page-context cases. Rerun after any maintained crop/runtime simplification before claiming `trim_layout_text` or bounded capti...",
         "last_relevant_action": {
-          "date": "2026-06-09",
+          "date": "2026-06-30",
           "source_type": "eval-attempt",
           "source": "docs/evals/registry.yaml",
-          "source_id": "012",
-          "summary": "Claude Fable 5 is callable on the two-image page-context prompt using the same direct Anthropic/no-sampling provider pattern as Opus 4.8, with Fable pricing recorded in the result artifact, but it did not preserve the..."
+          "source_id": "013",
+          "summary": "Claude Sonnet 5 is callable on the two-image page-context prompt using the same direct Anthropic/no-sampling provider pattern as Opus 4.8 and Fable 5, with Sonnet pricing recorded in the result artifact, but it did no..."
         }
       }
     },
