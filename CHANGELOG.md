@@ -1,3 +1,12 @@
+## [2026-07-11-01] - Record GPT-5.6 eval challenger
+
+### Added
+- Added a bounded OpenAI Responses promptfoo provider so GPT-5.6 Sol, Terra, and Luna challenger runs can use image prompts with explicit Responses content normalization.
+- Added a tracked GPT-5.6 tier-sweep attempt covering the maintained detector and page-level crop deletion gate.
+
+### Changed
+- Changed the eval registry and methodology graph to record GPT-5.6 Terra as a detector challenger but preserve the no-adoption decision because the page-context gate failed the required quality contract.
+
 ## [2026-06-30-01] - Record Claude Sonnet 5 eval challenger
 
 ### Added

@@ -285,6 +285,83 @@ evals:
           `Image124`, and `Image126`. This does not replace the maintained
           Gemini 3 Flash detector. Portable tracked proof:
           `docs/evals/attempts/014-sonnet5-bounded-challenger.md`.
+      - model: "GPT-5.6 Sol Responses (conservative-count prompt, reasoning none)"
+        metrics:
+          overall: 0.9403
+          pass_rate: 1.0
+          cases_total: 13
+          latency_ms: 3223
+        latency_ms: 3223
+        cost_usd: 0.0217
+        cost_estimated: true
+        measured: 2026-07-11
+        git_sha: 5efaa80
+        note: >
+          Bounded OpenAI challenger after official docs and
+          `python scripts/discover-models.py --check-new` confirmed the GPT-5.6
+          Sol/Terra/Luna tiers. Promptfoo 0.121.1's built-in OpenAI Responses
+          provider sent chat-style image content items that the Responses API
+          rejected, so the run used
+          `benchmarks/providers/openai_responses_model.py` with
+          `OPENAI_RESPONSES_MODEL=gpt-5.6-sol`,
+          `OPENAI_RESPONSES_REASONING_EFFORT=none`, and current Sol token
+          prices supplied by environment variables. Result artifact:
+          `benchmarks/results/gpt56-sol-image-crop-extraction-20260711.json`.
+          The run completed `13/13` with `0` provider errors, `overall =
+          0.9403`, average latency about `3223 ms`, `51027` prompt tokens,
+          `920` completion tokens, and estimated Sol cost about `$0.2827` total
+          (`$0.0217` per case). This clears the detector target but does not
+          replace the maintained Gemini 3 Flash detector because quality is
+          below the current `0.9703` score and cost is higher. Portable tracked
+          proof: `docs/evals/attempts/015-gpt56-tier-sweep.md`.
+      - model: "GPT-5.6 Terra Responses (conservative-count prompt, reasoning none)"
+        metrics:
+          overall: 0.9723
+          pass_rate: 1.0
+          cases_total: 13
+          latency_ms: 2641
+        latency_ms: 2641
+        cost_usd: 0.0109
+        cost_estimated: true
+        measured: 2026-07-11
+        git_sha: 5efaa80
+        note: >
+          Bounded GPT-5.6 Terra detector challenger through
+          `benchmarks/providers/openai_responses_model.py` after official docs
+          and model discovery confirmed the tier. Result artifact:
+          `benchmarks/results/gpt56-terra-image-crop-extraction-20260711.json`.
+          The run completed `13/13` with `0` provider errors, `overall =
+          0.9723`, average latency about `2641 ms`, `51027` prompt tokens,
+          `936` completion tokens, and estimated Terra cost about `$0.1416`
+          total (`$0.0109` per case). This is the best GPT-5.6 detector result
+          and slightly beats the maintained Gemini 3 Flash score (`0.9723` vs
+          `0.9703`), but the gain is tiny and costs more than 2x the maintained
+          proof (`$0.1416` vs about `$0.059` total). Keep it as challenger
+          evidence rather than changing the maintained detector by default.
+          Portable tracked proof: `docs/evals/attempts/015-gpt56-tier-sweep.md`.
+      - model: "GPT-5.6 Luna Responses (conservative-count prompt, reasoning none)"
+        metrics:
+          overall: 0.9623
+          pass_rate: 1.0
+          cases_total: 13
+          latency_ms: 2187
+        latency_ms: 2187
+        cost_usd: 0.0043
+        cost_estimated: true
+        measured: 2026-07-11
+        git_sha: 5efaa80
+        note: >
+          Bounded GPT-5.6 Luna detector challenger through
+          `benchmarks/providers/openai_responses_model.py` after official docs
+          and model discovery confirmed the tier. Result artifact:
+          `benchmarks/results/gpt56-luna-image-crop-extraction-20260711.json`.
+          The run completed `13/13` with `0` provider errors, `overall =
+          0.9623`, average latency about `2187 ms`, `51027` prompt tokens,
+          `906` completion tokens, and estimated Luna cost about `$0.0565` total
+          (`$0.0043` per case). Luna is cheaper and faster than the maintained
+          detector proof in this pass, but quality is below both Terra and the
+          maintained Gemini 3 Flash score, so it does not replace the detector.
+          Portable tracked proof: `docs/evals/attempts/015-gpt56-tier-sweep.md`.
       - model: "Gemini 3 Flash (conservative-count prompt, heading-safe revision)"
         metrics:
           overall: 0.9678
@@ -557,6 +634,26 @@ evals:
           pages such as `Image013`. No maintained providers, prompts, scorers,
           or goldens were changed. Portable tracked proof:
           `docs/evals/attempts/014-sonnet5-bounded-challenger.md`.
+      - id: "015"
+        date: 2026-07-11
+        status: partial
+        approach: "Screen GPT-5.6 Sol, Terra, and Luna as bounded detector challengers after the OpenAI release"
+        score_before: 0.9703
+        score_after: 0.9723
+        note: >
+          Official OpenAI docs and `python scripts/discover-models.py
+          --check-new` confirmed the new GPT-5.6 Sol/Terra/Luna tiers and model
+          slugs. Because promptfoo 0.121.1's built-in Responses provider sent
+          unsupported chat-style image content blocks, the sweep used
+          `benchmarks/providers/openai_responses_model.py` against the maintained
+          `conservative-count` detector slice. Terra produced the best GPT-5.6
+          detector result at `13/13`, `overall = 0.9723`, `0` provider errors,
+          average latency about `2641 ms`, and estimated cost about `$0.1416`
+          total. This narrowly beats the maintained Gemini 3 Flash score but is
+          more than 2x the maintained proof cost, and the companion page-context
+          sweep failed the hard deletion-gate contract. No maintained providers,
+          prompts, scorers, or goldens were changed. Portable tracked proof:
+          `docs/evals/attempts/015-gpt56-tier-sweep.md`.
 
     retry_when:
       - condition: new-subject-model
@@ -1208,6 +1305,143 @@ evals:
           replace the maintained `openai:responses:gpt-5.5` page-context
           winner. Portable tracked proof:
           `docs/evals/attempts/014-sonnet5-bounded-challenger.md`.
+      - model: "GPT-5.6 Sol Responses (page-context prompt, reasoning none)"
+        metrics:
+          overall: 0.8182
+          pass_rate: 0.8182
+          cases_total: 22
+          pass_labeled: 17
+          fail_labeled: 5
+          latency_ms: 4743
+        latency_ms: 4743
+        cost_usd: 0.0644
+        cost_estimated: true
+        measured: 2026-07-11
+        git_sha: 5efaa80
+        note: >
+          Bounded GPT-5.6 Sol page-context challenger through
+          `benchmarks/providers/openai_responses_model.py` after official docs
+          and model discovery confirmed the GPT-5.6 tiers. Result artifact:
+          `benchmarks/results/gpt56-sol-crop-page-level-deletion-gate-20260711.json`.
+          The run completed `18/22` with `0` provider errors, `overall =
+          0.8182`, average latency about `4743 ms`, `276946` prompt tokens,
+          `1033` completion tokens, and estimated Sol cost about `$1.4157` total
+          (`$0.0644` per case). Failures were `page-001-000`,
+          `page-122-001`, `page-125-000`, and `page-126-000`; manual image
+          inspection classified them as model-wrong over-rejections of clean
+          crops plus false negatives on the checked neighboring-portrait and
+          page-text leakage cases. This does not replace the maintained
+          `openai:responses:gpt-5.5` page-context winner. Portable tracked
+          proof: `docs/evals/attempts/015-gpt56-tier-sweep.md`.
+      - model: "GPT-5.6 Terra Responses (page-context prompt, reasoning none)"
+        metrics:
+          overall: 0.9545
+          pass_rate: 0.9545
+          cases_total: 22
+          pass_labeled: 17
+          fail_labeled: 5
+          latency_ms: 3963
+        latency_ms: 3963
+        cost_usd: 0.0322
+        cost_estimated: true
+        measured: 2026-07-11
+        git_sha: 5efaa80
+        note: >
+          Bounded GPT-5.6 Terra page-context challenger through
+          `benchmarks/providers/openai_responses_model.py` with reasoning effort
+          `none`. Result artifact:
+          `benchmarks/results/gpt56-terra-crop-page-level-deletion-gate-20260711.json`.
+          The run completed `21/22` with `0` provider errors, `overall =
+          0.9545`, average latency about `3963 ms`, `276946` prompt tokens,
+          `1024` completion tokens, and estimated Terra cost about `$0.7077`
+          total (`$0.0322` per case). The single miss was model-wrong on
+          `page-122-001`: Terra returned `pass` for a crop that manual
+          page-context inspection confirms leaks a neighboring Sophie L'Heureux
+          portrait slice. Terra is cheaper and faster than the maintained GPT-5.5
+          Responses gate in this pass, but quality is decisive and it does not
+          preserve the `22/22` contract. Portable tracked proof:
+          `docs/evals/attempts/015-gpt56-tier-sweep.md`.
+      - model: "GPT-5.6 Luna Responses (page-context prompt, reasoning none)"
+        metrics:
+          overall: 0.8636
+          pass_rate: 0.8636
+          cases_total: 22
+          pass_labeled: 17
+          fail_labeled: 5
+          latency_ms: 4225
+        latency_ms: 4225
+        cost_usd: 0.0129
+        cost_estimated: true
+        measured: 2026-07-11
+        git_sha: 5efaa80
+        note: >
+          Bounded GPT-5.6 Luna page-context challenger through
+          `benchmarks/providers/openai_responses_model.py` with reasoning effort
+          `none`. Result artifact:
+          `benchmarks/results/gpt56-luna-crop-page-level-deletion-gate-20260711.json`.
+          The run completed `19/22` with `0` provider errors, `overall =
+          0.8636`, average latency about `4225 ms`, `276946` prompt tokens,
+          `1187` completion tokens, and estimated Luna cost about `$0.2841`
+          total (`$0.0129` per case). Failures were `page-001-000`,
+          `page-021-001`, and `page-122-001`; manual image inspection classified
+          these as model-wrong over-rejections of clean pass crops plus a false
+          negative on neighboring-portrait leakage. This does not replace the
+          maintained page-context winner. Portable tracked proof:
+          `docs/evals/attempts/015-gpt56-tier-sweep.md`.
+      - model: "GPT-5.6 Terra Responses (page-context prompt, reasoning low)"
+        metrics:
+          overall: 0.9545
+          pass_rate: 0.9545
+          cases_total: 22
+          pass_labeled: 17
+          fail_labeled: 5
+          latency_ms: 4928
+        latency_ms: 4928
+        cost_usd: 0.0330
+        cost_estimated: true
+        measured: 2026-07-11
+        git_sha: 5efaa80
+        note: >
+          Full low-effort GPT-5.6 Terra page-context rerun after a targeted
+          low-effort retry repaired the original `page-122-001` miss. Targeted
+          artifact:
+          `benchmarks/results/gpt56-terra-low-crop-page-level-targeted-20260711.json`;
+          full rerun artifact:
+          `benchmarks/results/gpt56-terra-low-crop-page-level-deletion-gate-20260711.json`.
+          The full run completed `21/22` with `0` provider errors, `overall =
+          0.9545`, average latency about `4928 ms`, `276946` prompt tokens,
+          `2218` completion tokens, and estimated Terra cost about `$0.7256`
+          total (`$0.0330` per case). Low effort fixed `page-122-001` in the
+          full run but regressed to a model-wrong false negative on
+          `page-126-000`, where manual inspection confirms visible adjacent
+          page/plaque text. This does not replace the maintained page-context
+          winner. Portable tracked proof:
+          `docs/evals/attempts/015-gpt56-tier-sweep.md`.
+      - model: "GPT-5.6 Terra Responses (page-context prompt, reasoning medium)"
+        metrics:
+          overall: 0.9091
+          pass_rate: 0.9091
+          cases_total: 22
+          pass_labeled: 17
+          fail_labeled: 5
+          latency_ms: 4945
+        latency_ms: 4945
+        cost_usd: 0.0334
+        cost_estimated: true
+        measured: 2026-07-11
+        git_sha: 5efaa80
+        note: >
+          Full medium-effort GPT-5.6 Terra page-context rerun through
+          `benchmarks/providers/openai_responses_model.py`. Result artifact:
+          `benchmarks/results/gpt56-terra-medium-crop-page-level-deletion-gate-20260711.json`.
+          The run completed `20/22` with `0` provider errors, `overall =
+          0.9091`, average latency about `4945 ms`, `276946` prompt tokens,
+          `2793` completion tokens, and estimated Terra cost about `$0.7343`
+          total (`$0.0334` per case). Failures were model-wrong on
+          `page-125-000` and `page-126-000`; effort was not monotonic and
+          medium performed worse than reasoning `none` on this gate, so no
+          higher-effort full rerun is warranted. Portable tracked proof:
+          `docs/evals/attempts/015-gpt56-tier-sweep.md`.
       - model: "GPT-5.5 Pro Responses (page-context prompt)"
         metrics:
           overall: 0.6818
@@ -1446,6 +1680,28 @@ evals:
           maintained GPT-5.5 Responses winner on this surface, but quality is
           decisive here. No maintained providers, prompts, scorers, or goldens
           were changed.
+      - id: "014"
+        date: 2026-07-11
+        status: failed
+        approach: "Screen GPT-5.6 Sol, Terra, and Luna as bounded page-context validator challengers after the OpenAI release"
+        score_before: 1.0
+        score_after: 0.9545
+        note: >
+          Official OpenAI docs and `python scripts/discover-models.py
+          --check-new` confirmed the GPT-5.6 Sol/Terra/Luna tiers. The sweep
+          used `benchmarks/providers/openai_responses_model.py` because
+          promptfoo 0.121.1's built-in OpenAI Responses provider sent
+          unsupported chat-style image content blocks. The best full GPT-5.6
+          page-context result was Terra reasoning `none` and Terra reasoning
+          `low`, both `21/22` with `0` provider errors; `low` fixed the original
+          `page-122-001` false negative but regressed to `page-126-000`.
+          `medium` scored only `20/22`, Sol scored `18/22`, and Luna scored
+          `19/22`. Manual contact-sheet inspection confirmed the failures were
+          model-wrong, including false negatives on checked neighboring-portrait
+          or page-text leakage cases and false positives on clean pass crops. No
+          maintained providers, prompts, scorers, or goldens were changed.
+          Portable tracked proof:
+          `docs/evals/attempts/015-gpt56-tier-sweep.md`.
 
     retry_when:
       - condition: new-subject-model
