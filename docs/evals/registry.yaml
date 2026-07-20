@@ -1864,7 +1864,7 @@ evals:
     command: "python benchmarks/scripts/run_handwritten_notes_eval.py --image-recipe configs/recipes/recipe-images-ocr-html-handwritten-notes-gemini-rescue.yaml --pdf-recipe configs/recipes/recipe-pdf-ocr-html-handwritten-notes-gemini-rescue.yaml --image-case-id image-handwritten-rescue --pdf-case-id pdf-handwritten-rescue --instrument --output benchmarks/results/handwritten-notes-story189-real-expanded.json"
     scorer: benchmarks/scorers/handwritten_notes_transcription.py
     golden: benchmarks/golden/handwritten-notes/corpus.json
-    story_refs: ["179", "182", "185", "186", "189", "191", "192", "208"]
+    story_refs: ["179", "182", "185", "186", "189", "191", "192", "208", "230"]
     category_refs: ["spec:1", "spec:2", "spec:8"]
     compromise_refs: []
 
@@ -1874,6 +1874,35 @@ evals:
       note: "The target still marks the desired passing bar, but the widened default corpus now includes two real handwritten fixtures that the maintained rescue seam does not clear."
 
     scores:
+      - model: "Unlimited-OCR exact-weight FP32 CPU bounded real-fixture screen"
+        metrics:
+          overall_min_ratio: 0.022946
+          page_min_ratio: 0.022946
+          pass_rate: 0.0
+          cases_total: 2
+          fixture_count: 2
+          fixtures_passing: 0
+          barney_image_overall_ratio: 0.200382
+          alverson_image_overall_ratio: 0.022946
+          barney_latency_ms: 5388
+          alverson_latency_ms: 764699
+        measured: 2026-07-20
+        git_sha: ac574bf
+        note: >
+          Story 230 ran the pinned exact Unlimited-OCR weight object through a
+          narrowly reviewed device/dtype-only community runtime on the corrected
+          Barney and Alverson real image fixtures. The candidate reached only
+          `0.200382` on Barney and `0.022946` on Alverson, with `0/2` cases at
+          the `0.99` bar. Barney omitted substantial visible text. Alverson
+          emitted `30939` tokens against total `max_length = 32768`, hallucinated
+          math, and repeated table-like sequences. Because the helper omitted
+          input length and stop reason, truncation remains indeterminate; the
+          runaway content is independently a decisive quality failure. The
+          public-sample parity control matched Baidu's
+          official BF16 Space exactly after removal of the Space's grounding
+          metadata, so the large result deficit is not close enough to justify
+          an official CUDA rerun. Story 191 remains blocked. Portable proof:
+          `docs/evals/attempts/017-unlimited-ocr-whole-document-challenger.md`.
       - model: "Maintained handwritten rescue OCR lanes (gemini-2.5-pro via handwritten-notes rescue recipes)"
         metrics:
           overall_min_ratio: 0.677267
@@ -2470,6 +2499,21 @@ evals:
           or full-corpus reruns. No maintained recipes, prompts, scorers, or
           goldens were changed.
 
+      - id: "011"
+        date: 2026-07-20
+        status: failed
+        approach: "Story 230 exact-weight Unlimited-OCR screen on the corrected Barney/Alverson real image pair"
+        score_before: 0.677267
+        score_after: 0.022946
+        note: >
+          Unlimited-OCR scored `0.200382` on Barney and `0.022946` on
+          corrected-scope Alverson, with `0/2` passing fixtures. Manual source
+          and artifact inspection classified the omissions, substitutions,
+          fabricated formula, and runaway Alverson generation as candidate
+          model/runtime failures; no golden or scorer changed. Story 191 stays
+          blocked. Portable proof:
+          `docs/evals/attempts/017-unlimited-ocr-whole-document-challenger.md`.
+
     retry_when:
       - condition: new-subject-model
         note: "Retry only when a materially stronger model or OCR substrate appears that could plausibly clear Barney and the corrected Alverson front-page truth surface."
@@ -2487,7 +2531,7 @@ evals:
     config: benchmarks/tasks/onward-table-fidelity.yaml
     scorer: benchmarks/scorers/html_table_diff.py
     golden: benchmarks/golden/onward/
-    story_refs: ["134", "208"]
+    story_refs: ["134", "208", "230"]
     category_refs: ["spec:2"]
     compromise_refs: ["C1"]
     spec_compromise: C1
@@ -2515,6 +2559,35 @@ evals:
         Previous: claude-sonnet-4-6 (balanced winner from attempt 001).
 
     scores:
+      - model: "Unlimited-OCR best-of-three exact-weight FP32 CPU screen"
+        metrics:
+          structure_preservation: 0.6049
+          alma: 0.6797
+          arthur: 0.5384
+          marie_louise: 0.5966
+          promptfoo_pass_rate: 0.0
+          meaningful_wins: 0
+          oracle_hybrid_score: 0.969
+          candidate_selection_share: 0.0
+        latency_ms: 168099
+        cost_usd: 0.0
+        cost_estimated: false
+        measured: 2026-07-20
+        git_sha: ac574bf
+        note: >
+          Story 230 measured single-page Gundam, single-page Base, and one-shot
+          multi-page Base on the same source rasters, then selected the best
+          transport-valid candidate arm per independently reviewed whole-case
+          golden. The best candidate averaged `0.6049` versus the historical
+          applied Gemini 3.1 Pro record at `0.969`, a `-0.3641` delta with
+          `0/3` meaningful wins. Multi-page mode lost to the best single-page
+          arm on every case and emitted seven page segments for six Arthur
+          inputs. The incumbent values are historical registry evidence, not a
+          fresh current-runtime rerun. Manual source/output review confirmed
+          collapsed columns, merged headings, omissions, and OCR drift rather
+          than a scorer/golden defect. Decision: do not adopt or add a second
+          model. Portable proof:
+          `docs/evals/attempts/017-unlimited-ocr-whole-document-challenger.md`.
       - model: "GPT-5.5"
         metrics:
           structure_preservation: 0.9714
@@ -2721,6 +2794,21 @@ evals:
           single-page no-table result was not caused solely by the Chat
           Completions provider. Result file:
           `benchmarks/results/gpt55-responses-onward-single-page-screen-20260424.json`.
+
+      - id: "007"
+        date: 2026-07-20
+        status: failed
+        approach: "Story 230 four-arm exact-weight Unlimited-OCR whole-document challenger on all three independently reviewed Onward cases"
+        score_before: 0.969
+        score_after: 0.6049
+        note: >
+          The best Unlimited-OCR arm per case scored Alma `0.6797`, Arthur
+          `0.5384`, and Marie-Louise `0.5966`, versus historical applied scores
+          `0.923`, `0.989`, and `0.995`. Meaningful wins were `0/3`, the
+          oracle-hybrid stayed `0.969`, and candidate selection share was `0.0`.
+          Arthur multi-page also hard-failed page coverage. No maintained
+          module, recipe, router, scorer, or golden changed. Portable proof:
+          `docs/evals/attempts/017-unlimited-ocr-whole-document-challenger.md`.
 
     retry_when:
       - condition: new-subject-model

@@ -1,3 +1,12 @@
+## [2026-07-20-02] - Reject Unlimited-OCR challenger (Story 230)
+
+### Added
+- Added a bounded exact-weight Unlimited-OCR benchmark harness with raw page/grounding provenance, transport validation, whole-case Onward scoring, corrected real-handwriting scoring, and a precommitted dual-model value gate.
+- Added a portable eval attempt covering official-BF16 public-sample parity, all nine Onward candidate arms, the Barney/Alverson screen, manual artifact inspection, and the final no-adoption decision.
+
+### Changed
+- Changed the eval registry, methodology state, scout record, and generated methodology views to preserve Unlimited-OCR as negative evidence while keeping the maintained OCR paths and blocked Story 191 boundary unchanged.
+
 ## [2026-07-20-01] - Reject Grok 4.5 crop challenger
 
 ### Added
