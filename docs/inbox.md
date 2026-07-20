@@ -15,17 +15,15 @@ This file captures ideas, insights, and potential architectural improvements dis
   latency, and cost. Source:
   `/Users/cam/.codex/worktrees/dfe1/conductor/docs/scout/scout-035-google-gemini-35-flash-api-eval-opportunities.md`
 
-- 2026-05-01 — From Conductor Scout 028: Grok 4.3 is now documented for xAI API
-  use and public snapshots describe text+image input, 1M context, and low
-  output price. Evaluate it only as a bounded challenger if xAI credentials and
-  provider wiring are cheap: candidate surfaces are the maintained
-  `image-crop-extraction` / page-level crop deletion gate and any stronger-OCR
-  blocker where text+image reasoning is actually relevant. Compare against the
-  current Gemini/OpenAI winners; do not alter maintained providers unless the
-  promptfoo/eval evidence wins on quality, latency, and cost. Source:
-  `/Users/cam/.codex/worktrees/414d/conductor/docs/scout/scout-028-grok-4-3-api-eval-opportunities.md`
-
 ## Processed
+
+- 2026-07-20 — Closed the older Conductor Scout 028 Grok item with a newer
+  Grok 4.5 direct-xAI evaluation. The model was callable with image input and
+  valid Responses output, but the maintained detector scored only `0.8026` and
+  `12/13` versus Gemini 3 Flash's `0.9703` and `13/13`. A high-reasoning retry
+  repeated the source-confirmed `Image011` bbox undercoverage, so the
+  page-context gate remained ladder-gated and maintained providers did not
+  change. Proof: `docs/evals/attempts/016-grok45-bounded-challenger.md`.
 
 - 2026-06-09 — Closed the Conductor Scout 044 Claude Fable 5 item with direct
   Anthropic API eval evidence. Fable 5 is callable through the repo-local key

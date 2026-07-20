@@ -1,3 +1,12 @@
+## [2026-07-20-01] - Reject Grok 4.5 crop challenger
+
+### Added
+- Added a direct xAI Responses promptfoo provider with multimodal normalization, reasoning control, reported usage/cost capture, and focused transport tests.
+- Added a tracked Grok 4.5 attempt covering live API verification, the maintained detector run, manual failure classification, and a bounded high-reasoning retry.
+
+### Changed
+- Changed the eval registry and methodology graph to record Grok 4.5 as non-adoptable after it missed the maintained detector quality target; the page-context gate remained ladder-gated.
+
 ## [2026-07-11-01] - Record GPT-5.6 eval challenger
 
 ### Added

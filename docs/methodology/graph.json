@@ -1115,11 +1115,11 @@
           ],
           "why_now": "Gemini 4 or equivalent may push past 0.95 target Golden references cover limited page types; add table-heavy pages",
           "last_relevant_action": {
-            "date": "2026-07-11",
+            "date": "2026-07-20",
             "source_type": "eval-attempt",
             "source": "docs/evals/registry.yaml",
-            "source_id": "015",
-            "summary": "Official OpenAI docs and `python scripts/discover-models.py --check-new` confirmed the new GPT-5.6 Sol/Terra/Luna tiers and model slugs. Because promptfoo 0.121.1's built-in Responses provider sent unsupported chat-st..."
+            "source_id": "016",
+            "summary": "Authenticated first-party model and Responses probes succeeded, and a one-case vision smoke produced valid scored output. The full low-reasoning maintained detector run scored `0.8026`, passed `12/13` cases, averaged..."
           },
           "story_ids": [
             "135",
@@ -1173,11 +1173,11 @@
           ],
           "why_now": "Rerun when a materially stronger validator or detector may reduce the current fail-labeled page-context cases. Rerun after any maintained crop/runtime simplification before claiming `trim_layout_text` or bounded capti...",
           "last_relevant_action": {
-            "date": "2026-07-11",
+            "date": "2026-07-20",
             "source_type": "eval-attempt",
             "source": "docs/evals/registry.yaml",
-            "source_id": "014",
-            "summary": "Official OpenAI docs and `python scripts/discover-models.py --check-new` confirmed the GPT-5.6 Sol/Terra/Luna tiers. The sweep used `benchmarks/providers/openai_responses_model.py` because promptfoo 0.121.1's built-in..."
+            "source_id": "015",
+            "summary": "The companion Grok 4.5 detector run was transport-clean but scored only `0.8026` versus the `0.95` target and maintained `0.9703` winner. A high-reasoning retry repeated its model-wrong `Image011` bbox undercoverage...."
           },
           "story_ids": [
             "135",
@@ -13014,6 +13014,21 @@
           "note": "Bounded GPT-5.6 Luna detector challenger through `benchmarks/providers/openai_responses_model.py` after official docs and model discovery confirmed the tier. Result artifact: `benchmarks/results/gpt56-luna-image-crop-extraction-20260711.json`. The run completed `13/13` with `0` provider errors, `overall = 0.9623`, average latency about `2187 ms`, `51027` prompt tokens, `906` completion tokens, and estimated Luna cost about `$0.0565` total (`$0.0043` per case). Luna is cheaper and faster than the maintained detector proof in this pass, but quality is below both Terra and the maintained Gemini 3 Flash score, so it does not replace the detector. Portable tracked proof: `docs/evals/attempts/015-gpt56-tier-sweep.md`.\n"
         },
         {
+          "model": "Grok 4.5 Responses (conservative-count prompt, reasoning low)",
+          "metrics": {
+            "overall": 0.8026,
+            "pass_rate": 0.9231,
+            "cases_total": 13,
+            "latency_ms": 2433
+          },
+          "latency_ms": 2433,
+          "cost_usd": 0.00564,
+          "cost_estimated": false,
+          "measured": "2026-07-20",
+          "git_sha": "ac574bf",
+          "note": "Bounded direct-xAI Responses challenger after official docs and authenticated HTTP 200 model/text probes confirmed `grok-4.5`. `benchmarks/providers/xai_grok_responses.py` normalized the maintained multimodal prompts and recorded xAI-reported usage/cost. Result: `benchmarks/results/grok45-low-image-crop-extraction-20260720.json`. The run completed `12/13` with `0` provider errors, `overall = 0.8026`, average latency about `2433 ms`, and reported cost about `$0.07328` total (`$0.00564` per case). Manual source inspection classified `Image011` as model-wrong: Grok cropped only the embossed seal instead of the maintained seal-plus-signatures visual region. A high-reasoning failed-case retry remained wrong at `0.5095`, so no full high-reasoning or page-context run was warranted. Portable proof: `docs/evals/attempts/016-grok45-bounded-challenger.md`.\n"
+        },
+        {
           "model": "Gemini 3 Flash (conservative-count prompt, heading-safe revision)",
           "metrics": {
             "overall": 0.9678,
@@ -13077,19 +13092,19 @@
         }
       ],
       "latest_score": {
-        "model": "GPT-5.6 Terra Responses (conservative-count prompt, reasoning none)",
+        "model": "Grok 4.5 Responses (conservative-count prompt, reasoning low)",
         "metrics": {
-          "overall": 0.9723,
-          "pass_rate": 1.0,
+          "overall": 0.8026,
+          "pass_rate": 0.9231,
           "cases_total": 13,
-          "latency_ms": 2641
+          "latency_ms": 2433
         },
-        "latency_ms": 2641,
-        "cost_usd": 0.0109,
-        "cost_estimated": true,
-        "measured": "2026-07-11",
-        "git_sha": "5efaa80",
-        "note": "Bounded GPT-5.6 Terra detector challenger through `benchmarks/providers/openai_responses_model.py` after official docs and model discovery confirmed the tier. Result artifact: `benchmarks/results/gpt56-terra-image-crop-extraction-20260711.json`. The run completed `13/13` with `0` provider errors, `overall = 0.9723`, average latency about `2641 ms`, `51027` prompt tokens, `936` completion tokens, and estimated Terra cost about `$0.1416` total (`$0.0109` per case). This is the best GPT-5.6 detector result and slightly beats the maintained Gemini 3 Flash score (`0.9723` vs `0.9703`), but the gain is tiny and costs more than 2x the maintained proof (`$0.1416` vs about `$0.059` total). Keep it as challenger evidence rather than changing the maintained detector by default. Portable tracked proof: `docs/evals/attempts/015-gpt56-tier-sweep.md`.\n"
+        "latency_ms": 2433,
+        "cost_usd": 0.00564,
+        "cost_estimated": false,
+        "measured": "2026-07-20",
+        "git_sha": "ac574bf",
+        "note": "Bounded direct-xAI Responses challenger after official docs and authenticated HTTP 200 model/text probes confirmed `grok-4.5`. `benchmarks/providers/xai_grok_responses.py` normalized the maintained multimodal prompts and recorded xAI-reported usage/cost. Result: `benchmarks/results/grok45-low-image-crop-extraction-20260720.json`. The run completed `12/13` with `0` provider errors, `overall = 0.8026`, average latency about `2433 ms`, and reported cost about `$0.07328` total (`$0.00564` per case). Manual source inspection classified `Image011` as model-wrong: Grok cropped only the embossed seal instead of the maintained seal-plus-signatures visual region. A high-reasoning failed-case retry remained wrong at `0.5095`, so no full high-reasoning or page-context run was warranted. Portable proof: `docs/evals/attempts/016-grok45-bounded-challenger.md`.\n"
       },
       "attempts": [
         {
@@ -13211,6 +13226,14 @@
           "approach": "Screen GPT-5.6 Sol, Terra, and Luna as bounded detector challengers after the OpenAI release",
           "note": "Official OpenAI docs and `python scripts/discover-models.py --check-new` confirmed the new GPT-5.6 Sol/Terra/Luna tiers and model slugs. Because promptfoo 0.121.1's built-in Responses provider sent unsupported chat-style image content blocks, the sweep used `benchmarks/providers/openai_responses_model.py` against the maintained `conservative-count` detector slice. Terra produced the best GPT-5.6 detector result at `13/13`, `overall = 0.9723`, `0` provider errors, average latency about `2641 ms`, and estimated cost about `$0.1416` total. This narrowly beats the maintained Gemini 3 Flash score but is more than 2x the maintained proof cost, and the companion page-context sweep failed the hard deletion-gate contract. No maintained providers, prompts, scorers, or goldens were changed. Portable tracked proof: `docs/evals/attempts/015-gpt56-tier-sweep.md`.\n",
           "retry_when": []
+        },
+        {
+          "id": "016",
+          "date": "2026-07-20",
+          "status": "failed",
+          "approach": "Screen Grok 4.5 through xAI's direct Responses API as a bounded detector challenger",
+          "note": "Authenticated first-party model and Responses probes succeeded, and a one-case vision smoke produced valid scored output. The full low-reasoning maintained detector run scored `0.8026`, passed `12/13` cases, averaged about `2433 ms`, and cost `$0.07328` total from xAI's reported usage. Manual inspection classified the `Image011` miss as model-wrong bbox undercoverage; a high-reasoning failed-case retry repeated the same seal-only crop. No prompts, scorers, goldens, or maintained providers changed. Portable proof: `docs/evals/attempts/016-grok45-bounded-challenger.md`.\n",
+          "retry_when": []
         }
       ],
       "retry_when": [
@@ -13235,11 +13258,11 @@
         ],
         "why_now": "Gemini 4 or equivalent may push past 0.95 target Golden references cover limited page types; add table-heavy pages",
         "last_relevant_action": {
-          "date": "2026-07-11",
+          "date": "2026-07-20",
           "source_type": "eval-attempt",
           "source": "docs/evals/registry.yaml",
-          "source_id": "015",
-          "summary": "Official OpenAI docs and `python scripts/discover-models.py --check-new` confirmed the new GPT-5.6 Sol/Terra/Luna tiers and model slugs. Because promptfoo 0.121.1's built-in Responses provider sent unsupported chat-st..."
+          "source_id": "016",
+          "summary": "Authenticated first-party model and Responses probes succeeded, and a one-case vision smoke produced valid scored output. The full low-reasoning maintained detector run scored `0.8026`, passed `12/13` cases, averaged..."
         }
       }
     },
@@ -13861,6 +13884,14 @@
           "approach": "Screen GPT-5.6 Sol, Terra, and Luna as bounded page-context validator challengers after the OpenAI release",
           "note": "Official OpenAI docs and `python scripts/discover-models.py --check-new` confirmed the GPT-5.6 Sol/Terra/Luna tiers. The sweep used `benchmarks/providers/openai_responses_model.py` because promptfoo 0.121.1's built-in OpenAI Responses provider sent unsupported chat-style image content blocks. The best full GPT-5.6 page-context result was Terra reasoning `none` and Terra reasoning `low`, both `21/22` with `0` provider errors; `low` fixed the original `page-122-001` false negative but regressed to `page-126-000`. `medium` scored only `20/22`, Sol scored `18/22`, and Luna scored `19/22`. Manual contact-sheet inspection confirmed the failures were model-wrong, including false negatives on checked neighboring-portrait or page-text leakage cases and false positives on clean pass crops. No maintained providers, prompts, scorers, or goldens were changed. Portable tracked proof: `docs/evals/attempts/015-gpt56-tier-sweep.md`.\n",
           "retry_when": []
+        },
+        {
+          "id": "015",
+          "date": "2026-07-20",
+          "status": "failed",
+          "approach": "Gate Grok 4.5 page-context evaluation behind the maintained detector prerequisite",
+          "note": "The companion Grok 4.5 detector run was transport-clean but scored only `0.8026` versus the `0.95` target and maintained `0.9703` winner. A high-reasoning retry repeated its model-wrong `Image011` bbox undercoverage. The 22-case page-context gate was intentionally not started because the candidate failed the cheaper prerequisite and could not qualify for adoption. Retry only after a materially revised Grok model or new visual-grounding evidence. Portable proof: `docs/evals/attempts/016-grok45-bounded-challenger.md`.\n",
+          "retry_when": []
         }
       ],
       "retry_when": [
@@ -13888,11 +13919,11 @@
         ],
         "why_now": "Rerun when a materially stronger validator or detector may reduce the current fail-labeled page-context cases. Rerun after any maintained crop/runtime simplification before claiming `trim_layout_text` or bounded capti...",
         "last_relevant_action": {
-          "date": "2026-07-11",
+          "date": "2026-07-20",
           "source_type": "eval-attempt",
           "source": "docs/evals/registry.yaml",
-          "source_id": "014",
-          "summary": "Official OpenAI docs and `python scripts/discover-models.py --check-new` confirmed the GPT-5.6 Sol/Terra/Luna tiers. The sweep used `benchmarks/providers/openai_responses_model.py` because promptfoo 0.121.1's built-in..."
+          "source_id": "015",
+          "summary": "The companion Grok 4.5 detector run was transport-clean but scored only `0.8026` versus the `0.95` target and maintained `0.9703` winner. A high-reasoning retry repeated its model-wrong `Image011` bbox undercoverage...."
         }
       }
     },
