@@ -1615,12 +1615,12 @@
           "source_path": "docs/stories/story-207-refresh-crop-c4-proof-and-coverage-truth-surfaces.md",
           "recommended_now": false,
           "posture": "completed",
-          "why_now": "final post-hardening validation: reran methodology compilation/checking and skill compatibility checking, then completed `make lint`, focused Ruff format validation, and the full repo suite. Result: lint and diff hygi...",
+          "why_now": "pre-push independent review found one remaining fail-open path: parsed prompt messages silently dropped unsupported or malformed content blocks, so a future eval could omit a required image/file and score the survivin...",
           "last_relevant_action": {
             "date": "2026-07-22",
             "source_type": "story-work-log",
             "source": "docs/stories/story-207-refresh-crop-c4-proof-and-coverage-truth-surfaces.md",
-            "summary": "final post-hardening validation: reran methodology compilation/checking and skill compatibility checking, then completed `make lint`, focused Ruff format validation, and the full repo suite. Result: lint and diff hygi..."
+            "summary": "pre-push independent review found one remaining fail-open path: parsed prompt messages silently dropped unsupported or malformed content blocks, so a future eval could omit a required image/file and score the survivin..."
           },
           "story_ids": [
             "181",
@@ -11155,9 +11155,9 @@
       "blocker_evidence": "",
       "unblock_condition": "",
       "last_work_log_entry": {
-        "timestamp": "20260722-1458",
+        "timestamp": "20260722-1658",
         "date": "2026-07-22",
-        "summary": "final post-hardening validation: reran methodology compilation/checking and skill compatibility checking, then completed `make lint`, focused Ruff format validation, and the full repo suite. Result: lint and diff hygi..."
+        "summary": "pre-push independent review found one remaining fail-open path: parsed prompt messages silently dropped unsupported or malformed content blocks, so a future eval could omit a required image/file and score the survivin..."
       },
       "legacy_build_map_refs": "",
       "metadata_source": "frontmatter",
@@ -11168,12 +11168,12 @@
         "source_path": "docs/stories/story-207-refresh-crop-c4-proof-and-coverage-truth-surfaces.md",
         "recommended_now": false,
         "posture": "completed",
-        "why_now": "final post-hardening validation: reran methodology compilation/checking and skill compatibility checking, then completed `make lint`, focused Ruff format validation, and the full repo suite. Result: lint and diff hygi...",
+        "why_now": "pre-push independent review found one remaining fail-open path: parsed prompt messages silently dropped unsupported or malformed content blocks, so a future eval could omit a required image/file and score the survivin...",
         "last_relevant_action": {
           "date": "2026-07-22",
           "source_type": "story-work-log",
           "source": "docs/stories/story-207-refresh-crop-c4-proof-and-coverage-truth-surfaces.md",
-          "summary": "final post-hardening validation: reran methodology compilation/checking and skill compatibility checking, then completed `make lint`, focused Ruff format validation, and the full repo suite. Result: lint and diff hygi..."
+          "summary": "pre-push independent review found one remaining fail-open path: parsed prompt messages silently dropped unsupported or malformed content blocks, so a future eval could omit a required image/file and score the survivin..."
         }
       }
     },
@@ -13179,7 +13179,7 @@
           "cost_estimated": false,
           "measured": "2026-07-22",
           "git_sha": "41c06e2",
-          "note": "Full fresh `/evaluate-model` pilot after authenticated exact-model, native text, native image/strict-schema, and PromptFoo parity probes. The xAI adapter was repaired to enforce strict JSON Schema and retain served-model metadata before scoring. The no-cache run completed `11/13` with `0` provider errors, `overall = 0.7667`, average latency about `2782 ms`, and reported cost `$0.07598` total. Source inspection classified `Image001` title/date undercoverage and `Image011` seal/signature splitting as model-wrong. A high-reasoning retry repaired `0/2`. `git_sha` is the base HEAD, not the complete evaluated code identity: scoring used a dirty strict-schema adapter with SHA-256 `f0c1ba9a845471bdf63ef21e013e7a14361095740a66db80003274be019cf8d3`. Portable proof and the remaining code/result hashes: `docs/evals/attempts/019-grok45-evaluate-model-skill-pilot.md`.\n"
+          "note": "Full fresh `/evaluate-model` pilot after authenticated exact-model, native text, native image/strict-schema, and PromptFoo parity probes. The xAI adapter was repaired to enforce strict JSON Schema and retain served-model metadata before scoring. The no-cache run completed `11/13` with `0` provider errors, `overall = 0.7667`, average latency about `2782 ms`, and reported cost `$0.07598` total. Source inspection classified `Image001` title/date undercoverage and `Image011` seal/signature splitting as model-wrong. A high-reasoning retry repaired `0/2`. `git_sha` is the base HEAD, not the complete evaluated code identity: scoring used a dirty strict-schema adapter with SHA-256 `f0c1ba9a845471bdf63ef21e013e7a14361095740a66db80003274be019cf8d3`. The byte-exact scored adapter is tracked at `docs/evals/evidence/019-xai-grok-responses-evaluated.py`. Portable proof and the remaining code/result hashes: `docs/evals/attempts/019-grok45-evaluate-model-skill-pilot.md`.\n"
         },
         {
           "model": "Gemini 3 Flash (conservative-count prompt, heading-safe revision)",
@@ -13257,7 +13257,7 @@
         "cost_estimated": false,
         "measured": "2026-07-22",
         "git_sha": "41c06e2",
-        "note": "Full fresh `/evaluate-model` pilot after authenticated exact-model, native text, native image/strict-schema, and PromptFoo parity probes. The xAI adapter was repaired to enforce strict JSON Schema and retain served-model metadata before scoring. The no-cache run completed `11/13` with `0` provider errors, `overall = 0.7667`, average latency about `2782 ms`, and reported cost `$0.07598` total. Source inspection classified `Image001` title/date undercoverage and `Image011` seal/signature splitting as model-wrong. A high-reasoning retry repaired `0/2`. `git_sha` is the base HEAD, not the complete evaluated code identity: scoring used a dirty strict-schema adapter with SHA-256 `f0c1ba9a845471bdf63ef21e013e7a14361095740a66db80003274be019cf8d3`. Portable proof and the remaining code/result hashes: `docs/evals/attempts/019-grok45-evaluate-model-skill-pilot.md`.\n"
+        "note": "Full fresh `/evaluate-model` pilot after authenticated exact-model, native text, native image/strict-schema, and PromptFoo parity probes. The xAI adapter was repaired to enforce strict JSON Schema and retain served-model metadata before scoring. The no-cache run completed `11/13` with `0` provider errors, `overall = 0.7667`, average latency about `2782 ms`, and reported cost `$0.07598` total. Source inspection classified `Image001` title/date undercoverage and `Image011` seal/signature splitting as model-wrong. A high-reasoning retry repaired `0/2`. `git_sha` is the base HEAD, not the complete evaluated code identity: scoring used a dirty strict-schema adapter with SHA-256 `f0c1ba9a845471bdf63ef21e013e7a14361095740a66db80003274be019cf8d3`. The byte-exact scored adapter is tracked at `docs/evals/evidence/019-xai-grok-responses-evaluated.py`. Portable proof and the remaining code/result hashes: `docs/evals/attempts/019-grok45-evaluate-model-skill-pilot.md`.\n"
       },
       "attempts": [
         {

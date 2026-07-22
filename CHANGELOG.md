@@ -1,9 +1,12 @@
 ## [2026-07-22-01] - Re-run Grok 4.5 through `/evaluate-model`
 
 ### Added
-- Added a portable bounded skill-pilot summary covering first-party research, live exact-model/native/contract/parity probes, a fresh incumbent comparison, visual failure classification, and the bounded high-reasoning retry, with hashes and safe regeneration commands for ignored raw evidence.
+- Added a self-contained `/evaluate-model` skill that resolves natural-language briefs, verifies current provider contracts and live access, repairs invalid eval transport before scoring, runs bounded fair comparisons, inspects failures, and records scoped adoption evidence.
+- Added a portable bounded skill-pilot summary covering first-party research, live exact-model/native/contract/parity probes, a fresh incumbent comparison, visual failure classification, and the bounded high-reasoning retry, with a byte-exact scored-adapter snapshot, hashes, and safe regeneration commands for ignored raw evidence.
 
 ### Changed
+- Changed `/evaluate-model` to recognize natural force-fresh/reproducibility intent without weakening safety or fairness gates, distinguish audit-only work, apply a default `$5` all-provider spend ceiling, qualify materially different task contracts independently, and classify a skipped later surface as not measured.
+- Changed the direct xAI Responses benchmark adapter to select and validate strict detector or page-context schemas, require the expected served-model identity, retain requested and served metadata, and reject lossy prompt normalization, incomplete, provider-error, wrong-model, schema-invalid, or malformed-envelope/usage HTTP 200 responses before subject scoring while preserving valid cost evidence.
 - Changed the eval registry and owning crop story logs to preserve the fresh detector `11/13`, `0.7667` no-adoption result while classifying the skipped page-context capability as not measured and keeping all maintained crop defaults unchanged.
 
 ## [2026-07-21-01] - Reject Gemini 3.6 Flash and Gemini 3.5 Flash-Lite challengers

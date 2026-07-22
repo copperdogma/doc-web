@@ -20,6 +20,9 @@ eval-before-build requirements. The primary decision surface is the existing
 progressive hard gate is `crop-page-level-deletion-gate`, owned by Story 209.
 No new story is warranted because the subsystem, fixture family, artifact
 contract, and adoption decision are unchanged. No crop-specific ADR applies.
+The workflow installation itself follows doc-web's canonical cross-CLI skill
+contract and does not create a separate product or eval surface for the crop
+stories to own.
 
 ## Predeclared decision contract
 
@@ -78,6 +81,8 @@ Reasoning defaults to high and cannot be disabled; `presencePenalty`,
 pricing is `$2/M` input, `$0.30/M` cached input, and `$6/M` output; requests at
 or above 200,000 prompt tokens use `$4/M`, `$0.60/M`, and `$12/M` for all
 request tokens. Default retention is 30 days unless team-level ZDR is active.
+The xAI security FAQ also states that API inputs and outputs are not used for
+training unless the customer explicitly grants permission.
 
 Fresh sanitized transport evidence is in the ignored local sidecar
 `benchmarks/results/grok45-skill-pilot-transport-20260722.json`:
@@ -120,6 +125,11 @@ The fresh incumbent remained above the `0.95` target despite expected VLM
 variance from its maintained `0.9703` best. Grok missed both the target and the
 fresh incumbent. The complete Grok pilot, including native probes, two harness
 smokes, the full arm, and the retry, cost `$0.10955`.
+
+Including the fresh Gemini incumbent's `$0.05530`, total provider spend for the
+invocation was `$0.16485`. The skill's later acceptance hardening added a
+default `$5` all-provider ceiling; that numeric ceiling was not predeclared for
+this original run and is not presented as a guardrail the pilot exercised.
 
 ## Failure classification
 
@@ -208,6 +218,13 @@ High-reasoning retry of the failed Grok cases:
 source ~/.nvm/nvm.sh && nvm use 24 >/dev/null 2>&1 && DOC_WEB_ENV_FILE=/Users/cam/Documents/Projects/dossier/.env.local XAI_API_KEY_ENV=DOSSIER_XAI_API_KEY XAI_GROK_REASONING_EFFORT=high PROMPTFOO_EVAL_TIMEOUT_MS=240000 ../scripts/run_with_doc_web_env.py promptfoo eval -c tasks/image-crop-extraction.yaml --providers "python:$(pwd)/providers/xai_grok_responses.py" --filter-prompts conservative-count --filter-failing results/grok45-skill-pilot-low-strict-schema-20260722.json --no-cache --output results/grok45-skill-pilot-high-failure-retry-strict-schema-20260722.json -j 1
 ```
 
+Those are the exact historical commands. The live provider path now contains
+later hardening. To regenerate the scored request contract from the recorded
+base, substitute
+`python:../docs/evals/evidence/019-xai-grok-responses-evaluated.py` for the
+strict-smoke/full/retry provider argument. That tracked snapshot is byte-for-byte
+the dirty adapter used for those three runs; it contains no credential.
+
 ## Evaluated-code and evidence manifest
 
 The run used PromptFoo `0.121.1`, Node `v24.13.1`, and Darwin arm64. The base
@@ -218,7 +235,7 @@ repair was uncommitted when the score was produced:
 | --- | --- | --- |
 | Base HEAD | `41c06e20f08127fd8bbddb1997bf75a9879798c7` | Clean task, prompt, scorer, and golden base |
 | Original prompt-only adapter | `b2f62248e948dddd4cc0227a4545a9bab65c4910ae35073022ecedd1481ec9f2` | Used only for the first smoke; git blob `c195ae86016c6d66f2f7f90b27287169f6c5a8bf` |
-| Repaired evaluated adapter | `f0c1ba9a845471bdf63ef21e013e7a14361095740a66db80003274be019cf8d3` | Used for strict smoke, full Grok arm, and high retry; git blob `5b740d3aa1ba14269197fae9244aa4becf00797d` |
+| Repaired evaluated adapter | `f0c1ba9a845471bdf63ef21e013e7a14361095740a66db80003274be019cf8d3` | Used for strict smoke, full Grok arm, and high retry; tracked exact snapshot `docs/evals/evidence/019-xai-grok-responses-evaluated.py`, 7,236 bytes, git blob `5b740d3aa1ba14269197fae9244aa4becf00797d` |
 | `tasks/image-crop-extraction.yaml` | `7edae5fe3c935517396a8d37cd8f148cb2b592ed4d206168dbb62273d758cf3e` | Fixed task |
 | `prompts/crop-conservative-count.js` | `9a22e566f30eac6258a78a28107d77a17940eca06858dd20cb8d7bc97fc84aba` | Fixed prompt |
 | `scorers/image_crop_scorer.py` | `7fcf07e05726bf3ebbc2488a503a9d7f165dde79649890cbd65f12a6ce4c19e7` | Fixed scorer |
@@ -245,11 +262,12 @@ the recorded scores.
 
 ## Post-pilot adapter hardening
 
-Acceptance review after the scored pilot found two residual adapter risks. The
-generic provider still hard-coded the detector schema even though the
-page-context prompt has a materially different output contract, and it did not
-explicitly reject a provider-error or incomplete HTTP 200 response before
-scoring. Those risks were repaired after the recorded comparison:
+Acceptance review after the scored pilot found residual adapter risks. The
+generic provider hard-coded the detector schema even though the page-context
+prompt has a materially different output contract; it treated terminal state
+too loosely; and a final audit found that it recorded, but did not enforce, the
+served-model identity or selected schema before scoring. Those risks were
+repaired after the recorded comparison:
 
 - `crop_regions` remains the default strict contract and now permits the
   optional `adjacent_text` field required by the maintained two-step prompt.
@@ -258,16 +276,32 @@ scoring. Those risks were repaired after the recorded comparison:
   locally, not called against the provider, because the pilot did not advance
   to that surface.
 - A response now reaches scoring only when xAI reports `status=completed`, no
-  provider error or incomplete details are present, and output text exists.
-  Failure results retain usage, reported cost, ZDR, status, and error evidence.
+  provider error or incomplete details are present, the served model matches the
+  explicit expected identity, and output is valid JSON matching the selected
+  contract. Failure results retain usage, reported cost, ZDR, status, and error
+  evidence; invalid output is fingerprinted by SHA-256 rather than sent to the scorer.
+- Parsed message input now fails closed when a message or content block is empty,
+  malformed, or unsupported instead of silently dropping a required image, file,
+  or other payload before evaluation.
+- Only documented final-message `output_text` is accepted. Non-object or
+  malformed envelopes, malformed/non-finite usage and cost, unexpected output
+  item types, empty error objects, extreme numeric values, and pathological JSON
+  all fail closed as operational/contract evidence instead of reaching a scorer
+  or raising out of the provider.
 - Result metadata now records requested model, reasoning, output contract,
   maximum output tokens, image detail, and storage setting alongside served
   model and response metadata.
 
-The hardened adapter has SHA-256
+The first hardened adapter had SHA-256
 `1b1509a510d52bf615b0ab50d23d0a7590a4622d99fe3307e360b0e116b13a47`
-and git blob `d264187d19ab120f6ddeb3f573bf18293a2b1441`. It is deliberately different
-from the evaluated adapter fingerprint above.
+and computed git blob ID `d264187d19ab120f6ddeb3f573bf18293a2b1441`; that is
+the version used by the one paid smoke below. Only those hashes remain—the
+first-hardening blob itself was not retained in Git. The final locally validated
+adapter, after adding served-model, response-contract, lossless-input, and
+final-message enforcement, has SHA-256
+`29f1f74019118ddea2b1e40caebc074520e6f1d17bb526991abd32b3f6eff920`
+and git blob `1bcd37c441a388a7c211bb78d166ab71693ae280`. Both are deliberately
+different from the evaluated adapter fingerprint above.
 
 One new public-fixture parity smoke was run after focused local validation:
 
@@ -280,8 +314,10 @@ status `completed`, requested `crop_regions`/low/high-detail metadata, ZDR
 header `false`, 3,066 tokens, and reported cost `$0.0062944`. The ignored result
 is 1,203,758 bytes with SHA-256
 `9e7a0a912dbc2b9601219ab1f83b313b1fd75745527f15bd5bda73a11c13ee95`.
-This was contract validation only; no full comparison score or adoption verdict
-was rerun.
+This was contract validation only and ran before the final local-only
+served-model/schema, lossless-input, and final-message rejection patches. Its
+recorded exact model and schema-valid output satisfy those final gates, but no
+second provider call, full comparison score, or adoption verdict was run.
 
 ## Artifacts
 
@@ -292,6 +328,7 @@ was rerun.
 - `benchmarks/results/grok45-skill-pilot-high-failure-retry-strict-schema-20260722.json`
 - `benchmarks/results/grok45-skill-pilot-incumbent-gemini3-flash-20260722.json`
 - `benchmarks/results/grok45-skill-hardening-parity-crop-20260722.json`
+- `docs/evals/evidence/019-xai-grok-responses-evaluated.py`
 
 Official sources checked:
 
@@ -310,11 +347,17 @@ Official sources checked:
   graph and story index are current.
 - Skill compatibility sync and `scripts/sync-agent-skills.sh --check`: passed
   with 29 canonical skills and valid compatibility links.
-- Focused hardened xAI adapter tests: `6 passed`.
+- Focused hardened xAI adapter tests: `20 passed`, including lossy prompt-input,
+  wrong-served-model, schema-invalid completed-response, malformed envelope/usage,
+  multiple-message, extreme numeric, and pathological JSON rejection.
+- Independent adversarial review: 24 malformed/valid response envelopes and 34
+  pathological contract values produced no exception or fail-open scoring.
 - Focused Ruff lint and format checks after hardening: passed.
-- One public-fixture, no-cache hardened-adapter parity smoke: `1/1`, no error,
-  exact served model and terminal status recorded; `$0.0062944`.
+- One public-fixture, no-cache first-hardening parity smoke: `1/1`, no error,
+  exact served model and terminal status recorded; `$0.0062944`. Final
+  served-model/schema, lossless-input, and final-message rejection paths were
+  subsequently validated locally only.
 - `make lint`: passed.
-- `make test`: `875 passed`, 4 unrelated existing Pydantic deprecation
-  warnings, in `736.54s`.
+- `make test`: `889 passed`, 4 unrelated existing Pydantic deprecation
+  warnings, in `807.17s`.
 - `git diff --check`: passed.

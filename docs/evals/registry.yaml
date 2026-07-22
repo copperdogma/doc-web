@@ -468,7 +468,9 @@ evals:
           code identity: scoring used a dirty strict-schema adapter with
           SHA-256
           `f0c1ba9a845471bdf63ef21e013e7a14361095740a66db80003274be019cf8d3`.
-          Portable proof and the remaining code/result hashes:
+          The byte-exact scored adapter is tracked at
+          `docs/evals/evidence/019-xai-grok-responses-evaluated.py`. Portable
+          proof and the remaining code/result hashes:
           `docs/evals/attempts/019-grok45-evaluate-model-skill-pilot.md`.
       - model: "Gemini 3 Flash (conservative-count prompt, heading-safe revision)"
         metrics:

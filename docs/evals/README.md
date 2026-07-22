@@ -74,7 +74,9 @@ in `registry.yaml` if the summary there is sufficient.
 
 ## New Evals
 
-Doc-forge does not yet have a dedicated eval-creation skill. Until it does:
+`/evaluate-model` owns the minimum new or repaired eval surface needed for a
+model-selection run. Doc-web still has no general-purpose skill for creating a
+non-model eval from scratch. For that broader case:
 
 1. add the new benchmark assets and scorer/config in the repo
 2. add the eval entry to `docs/evals/registry.yaml`
