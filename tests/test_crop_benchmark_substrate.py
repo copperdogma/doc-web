@@ -53,6 +53,22 @@ def test_image_crop_extraction_task_keeps_conservative_count_prompt():
     )
 
 
+def test_gemini_35_flash_lite_detector_uses_strict_bbox_schema():
+    task = _load_task("image-crop-extraction.yaml")
+    provider = next(
+        provider
+        for provider in task["providers"]
+        if provider["id"] == "google:gemini-3.5-flash-lite"
+    )
+
+    schema = provider["config"]["responseSchema"]
+    bbox = schema["properties"]["images"]["items"]["properties"]["bbox"]
+
+    assert schema["required"] == ["images"]
+    assert bbox["minItems"] == bbox["maxItems"] == 4
+    assert bbox["items"] == {"type": "integer", "minimum": 0, "maximum": 1000}
+
+
 def test_crop_validation_task_assets_exist_and_match_golden_keys():
     task_name = "crop-validation.yaml"
     task = _load_task(task_name)

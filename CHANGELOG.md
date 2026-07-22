@@ -1,3 +1,14 @@
+## [2026-07-21-01] - Reject Gemini 3.6 Flash and Gemini 3.5 Flash-Lite challengers
+
+### Added
+- Added a portable bounded eval attempt covering exact-ID access, maintained crop detection and validation gates, and real `driver.py` handwriting artifacts for both new GA Gemini models.
+- Added a strict Gemini structured-output contract for the Flash-Lite detector challenger, using unambiguous integer `0-1000` bounding boxes with focused configuration coverage.
+
+### Changed
+- Changed the handwriting transcription scorer to disable `SequenceMatcher` autojunk so long repetitive OCR near-matches are measured honestly, with focused regression coverage.
+- Corrected the initial Flash-Lite detector classification: API-enforced JSON raised it from `8/13`, `0.6427` to `12/13`, `0.8988`, but one manually confirmed bounding-box miss still keeps it below the maintained detector.
+- Changed the eval registry and methodology state to preserve the no-adoption result while keeping all maintained crop and OCR model choices unchanged and Story 191 blocked.
+
 ## [2026-07-20-02] - Reject Unlimited-OCR challenger (Story 230)
 
 ### Added

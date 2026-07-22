@@ -945,12 +945,12 @@
           "source_path": "docs/stories/story-191-finish-real-handwritten-ocr-on-the-loc-fixture-pair.md",
           "recommended_now": false,
           "posture": "blocked",
-          "why_now": "stale-plan cleanup: removed the pre-block implementation plan from this story after it started biasing `/triage` back toward handwriting even though the current blocker evidence and unblock condition say the line shou...",
+          "why_now": "Gemini 3.6 Flash / Gemini 3.5 Flash-Lite unblock screen: both exact GA IDs were live-proven, then each ran through `driver.py` on the corrected Barney and Alverson image-entry fixtures. The first scoring pass exposed...",
           "last_relevant_action": {
-            "date": "2026-04-04",
+            "date": "2026-07-21",
             "source_type": "story-work-log",
             "source": "docs/stories/story-191-finish-real-handwritten-ocr-on-the-loc-fixture-pair.md",
-            "summary": "stale-plan cleanup: removed the pre-block implementation plan from this story after it started biasing `/triage` back toward handwriting even though the current blocker evidence and unblock condition say the line shou..."
+            "summary": "Gemini 3.6 Flash / Gemini 3.5 Flash-Lite unblock screen: both exact GA IDs were live-proven, then each ran through `driver.py` on the corrected Barney and Alverson image-entry fixtures. The first scoring pass exposed..."
           },
           "story_ids": [
             "134",
@@ -1125,11 +1125,11 @@
           ],
           "why_now": "Gemini 4 or equivalent may push past 0.95 target Golden references cover limited page types; add table-heavy pages",
           "last_relevant_action": {
-            "date": "2026-07-20",
+            "date": "2026-07-21",
             "source_type": "eval-attempt",
             "source": "docs/evals/registry.yaml",
-            "source_id": "016",
-            "summary": "Authenticated first-party model and Responses probes succeeded, and a one-case vision smoke produced valid scored output. The full low-reasoning maintained detector run scored `0.8026`, passed `12/13` cases, averaged..."
+            "source_id": "018",
+            "summary": "The strict schema raised the candidate from `8/13` to `12/13`, eliminated every structural output failure, cut average latency to about `1591 ms`, and cost an estimated `$0.0087`. It still missed the overall target be..."
           },
           "story_ids": [
             "135",
@@ -1171,23 +1171,23 @@
         ],
         "actionability": {
           "source_kind": "eval",
-          "source_id": "crop-page-level-deletion-gate",
+          "source_id": "crop-validation",
           "source_path": "docs/evals/registry.yaml",
           "recommended_now": false,
-          "posture": "trigger-exhausted",
-          "retry_trigger_status": "exhausted",
+          "posture": "wait-for-trigger",
+          "retry_trigger_status": "waiting",
           "retry_when": [
             "golden-fix",
-            "new-subject-model",
-            "runtime-change"
+            "new-approach",
+            "new-subject-model"
           ],
-          "why_now": "Rerun when a materially stronger validator or detector may reduce the current fail-labeled page-context cases. Rerun after any maintained crop/runtime simplification before claiming `trim_layout_text` or bounded capti...",
+          "why_now": "Rerun when a new validator model or prompt looks strong enough to widen or replace the current bounded C5-linked truth surface. Broaden or redesign this surface when the project is ready to measure the spec's wider pa...",
           "last_relevant_action": {
-            "date": "2026-07-20",
+            "date": "2026-07-21",
             "source_type": "eval-attempt",
             "source": "docs/evals/registry.yaml",
-            "source_id": "015",
-            "summary": "The companion Grok 4.5 detector run was transport-clean but scored only `0.8026` versus the `0.95` target and maintained `0.9703` winner. A high-reasoning retry repeated its model-wrong `Image011` bbox undercoverage...."
+            "source_id": "006",
+            "summary": "Both candidates completed `39/40` and missed `page-126-000`; manual source/crop inspection confirmed the golden is correct. No maintained surface changed. Portable proof: `docs/evals/attempts/018-gemini36-flash-and-ge..."
           },
           "story_ids": [
             "135",
@@ -1335,16 +1335,16 @@
         "eval_ids": [],
         "actionability": {
           "source_kind": "story",
-          "source_id": "215",
-          "source_path": "docs/stories/story-215-washington-database-english-longhand-benchmark-slice.md",
+          "source_id": "191",
+          "source_path": "docs/stories/story-191-finish-real-handwritten-ocr-on-the-loc-fixture-pair.md",
           "recommended_now": false,
           "posture": "blocked",
-          "why_now": "landing renumber: while rebasing the Story 214 landing branch onto `origin/main`, a different mainline change had already claimed Story `213`. To preserve unique story identifiers, this blocked Washington benchmark re...",
+          "why_now": "Gemini 3.6 Flash / Gemini 3.5 Flash-Lite unblock screen: both exact GA IDs were live-proven, then each ran through `driver.py` on the corrected Barney and Alverson image-entry fixtures. The first scoring pass exposed...",
           "last_relevant_action": {
-            "date": "2026-04-12",
+            "date": "2026-07-21",
             "source_type": "story-work-log",
-            "source": "docs/stories/story-215-washington-database-english-longhand-benchmark-slice.md",
-            "summary": "landing renumber: while rebasing the Story 214 landing branch onto `origin/main`, a different mainline change had already claimed Story `213`. To preserve unique story identifiers, this blocked Washington benchmark re..."
+            "source": "docs/stories/story-191-finish-real-handwritten-ocr-on-the-loc-fixture-pair.md",
+            "summary": "Gemini 3.6 Flash / Gemini 3.5 Flash-Lite unblock screen: both exact GA IDs were live-proven, then each ran through `driver.py` on the corrected Barney and Alverson image-entry fixtures. The first scoring pass exposed..."
           },
           "story_ids": [
             "148",
@@ -1514,12 +1514,12 @@
           "source_path": "docs/stories/story-191-finish-real-handwritten-ocr-on-the-loc-fixture-pair.md",
           "recommended_now": false,
           "posture": "blocked",
-          "why_now": "stale-plan cleanup: removed the pre-block implementation plan from this story after it started biasing `/triage` back toward handwriting even though the current blocker evidence and unblock condition say the line shou...",
+          "why_now": "Gemini 3.6 Flash / Gemini 3.5 Flash-Lite unblock screen: both exact GA IDs were live-proven, then each ran through `driver.py` on the corrected Barney and Alverson image-entry fixtures. The first scoring pass exposed...",
           "last_relevant_action": {
-            "date": "2026-04-04",
+            "date": "2026-07-21",
             "source_type": "story-work-log",
             "source": "docs/stories/story-191-finish-real-handwritten-ocr-on-the-loc-fixture-pair.md",
-            "summary": "stale-plan cleanup: removed the pre-block implementation plan from this story after it started biasing `/triage` back toward handwriting even though the current blocker evidence and unblock condition say the line shou..."
+            "summary": "Gemini 3.6 Flash / Gemini 3.5 Flash-Lite unblock screen: both exact GA IDs were live-proven, then each ran through `driver.py` on the corrected Barney and Alverson image-entry fixtures. The first scoring pass exposed..."
           },
           "story_ids": [
             "179",
@@ -10025,9 +10025,9 @@
       "blocker_evidence": "- Story 192 corrected the Alverson transcript to the exact visible front-page boundary and reran the maintained handwritten corpus, writing `benchmarks/results/handwritten-notes-story192-alverson-frontpage.json` with `pass_rate = 0.6`, `overall_min_ratio = 0.677267`, and `page_min_ratio = 0.677267`. The six synthetic rescue cases still passed at `1.0`, but the real fixtures stayed below bar: Barney scored `0.908567` on image entry and `0.886568` on PDF entry, while corrected-scope Alverson scored `0.677267` on image entry and `0.681952` on PDF entry.\n- Manual artifact inspection on that corrected rerun confirmed the remaining issue is OCR quality on visible source content, not hidden continuation text. Alverson artifacts at `output/runs/handwritten-handwritten-notes-alverson-real-image-handwritten-rescue/02_ocr_ai_gpt51_v1/pages_html.jsonl` and `output/runs/handwritten-handwritten-notes-alverson-real-pdf-handwritten-rescue/02_ocr_ai_gpt51_v1/pages_html.jsonl` still misread the visible front page with errors such as leading `nothing`, `Battle of Chickamauga`, `lates novels`, and `excepatable`. Barney artifacts at `output/runs/handwritten-handwritten-notes-barney-real-image-handwritten-rescue/02_ocr_ai_gpt51_v1/pages_html.jsonl` and `output/runs/handwritten-handwritten-notes-barney-real-pdf-handwritten-rescue/02_ocr_ai_gpt51_v1/pages_html.jsonl` still drift on names and phrases such as `Harlen`, `genesee`, and `father has had gone`.\n- Story 191's fresh direct `gpt-5` / `claude-opus-4-6` probes remain only historical negative evidence because they were measured before Story 192 corrected the Alverson transcript surface. They did not produce a winning OCR substrate then, and no newer corrected-corpus stronger-model winner has been verified since. That keeps this story blocked on missing OCR capability rather than on missing paperwork.\n- 2026-04-05 bounded `/improve-eval handwritten-notes-transcription` rechecked the retry gate after verifying current model availability with `python scripts/discover-models.py --check-new`. Fresh maintained rescue reruns under `benchmarks/results/handwritten-notes-improve-eval-20260405-barney-baseline.json` and `benchmarks/results/handwritten-notes-improve-eval-20260405-alverson-baseline.json` reproduced the current blocker instead of revealing silent drift: Barney stayed at `0.883604` image / `0.756036` pdf, and corrected-scope Alverson stayed at `0.677267` image / `0.681952` pdf. The fresh image-only subject-model screen at `benchmarks/results/handwritten-notes-improve-eval-20260405-image-screen.json` also failed to produce a winner. `gpt-5.4-pro` wrote empty `page_html_v1` artifacts at `output/runs/eval-barney-image-gpt-5-4-pro/01_ocr_ai_gpt51_v1/pages_html.jsonl` and `output/runs/eval-alverson-image-gpt-5-4-pro/01_ocr_ai_gpt51_v1/pages_html.jsonl` (`overall_ratio = 0.0` both), which is current integration/pipeline-wrong evidence rather than a usable OCR result. `gemini-3.1-pro-preview` improved Barney only to `0.843434` at `output/runs/eval-barney-image-gemini-3-1-pro-preview/01_ocr_ai_gpt51_v1/pages_html.jsonl` and left corrected-scope Alverson at `0.262102` at `output/runs/eval-alverson-image-gemini-3-1-pro-preview/01_ocr_ai_gpt51_v1/pages_html.jsonl`, still with the same visible-source failure class. No fresh candidate materially beat both corrected real fixtures, so this story remains blocked and should not reopen yet.",
       "unblock_condition": "Unblock this story only when a materially different OCR substrate or maintained recovery seam is ready to be tested against the corrected corpus and it produces fresh current-pass `driver.py` / eval artifacts that bring Barney and the corrected Alverson front-page fixture to `overall_min_ratio >= 0.99`, `page_min_ratio >= 0.99`, and `pass_rate = 1.0`. If a future story intentionally widens Alverson to the full two-page letter, that fixture-scope work must happen first and be rebaselined separately before it can count as OCR evidence here.",
       "last_work_log_entry": {
-        "timestamp": "20260404-2238",
-        "date": "2026-04-04",
-        "summary": "stale-plan cleanup: removed the pre-block implementation plan from this story after it started biasing `/triage` back toward handwriting even though the current blocker evidence and unblock condition say the line shou..."
+        "timestamp": "20260721-1800",
+        "date": "2026-07-21",
+        "summary": "Gemini 3.6 Flash / Gemini 3.5 Flash-Lite unblock screen: both exact GA IDs were live-proven, then each ran through `driver.py` on the corrected Barney and Alverson image-entry fixtures. The first scoring pass exposed..."
       },
       "legacy_build_map_refs": "",
       "metadata_source": "frontmatter",
@@ -10038,12 +10038,12 @@
         "source_path": "docs/stories/story-191-finish-real-handwritten-ocr-on-the-loc-fixture-pair.md",
         "recommended_now": false,
         "posture": "blocked",
-        "why_now": "stale-plan cleanup: removed the pre-block implementation plan from this story after it started biasing `/triage` back toward handwriting even though the current blocker evidence and unblock condition say the line shou...",
+        "why_now": "Gemini 3.6 Flash / Gemini 3.5 Flash-Lite unblock screen: both exact GA IDs were live-proven, then each ran through `driver.py` on the corrected Barney and Alverson image-entry fixtures. The first scoring pass exposed...",
         "last_relevant_action": {
-          "date": "2026-04-04",
+          "date": "2026-07-21",
           "source_type": "story-work-log",
           "source": "docs/stories/story-191-finish-real-handwritten-ocr-on-the-loc-fixture-pair.md",
-          "summary": "stale-plan cleanup: removed the pre-block implementation plan from this story after it started biasing `/triage` back toward handwriting even though the current blocker evidence and unblock condition say the line shou..."
+          "summary": "Gemini 3.6 Flash / Gemini 3.5 Flash-Lite unblock screen: both exact GA IDs were live-proven, then each ran through `driver.py` on the corrected Barney and Alverson image-entry fixtures. The first scoring pass exposed..."
         }
       }
     },
@@ -12948,6 +12948,48 @@
           "note": "Story 207 reran the maintained detector surface via `promptfoo eval -c tasks/image-crop-extraction.yaml --no-cache --filter-providers 'google:gemini-3-flash-preview' --filter-prompts 'conservative-count' --output results/story207-image-crop-baseline.json -j 1`. The JSON output recorded `13/13` scorer passes with `0` failures and `0` errors; recomputing the mean from the per-case scores yielded `0.9703 / 1.0` (overall / pass_rate), average latency about `7878 ms` per page, and total eval cost about `$0.059`. The portable tracked proof anchor is now `docs/evals/attempts/001-image-crop-extraction-story207-proof-refresh.md`; the raw promptfoo JSON remains a local regenerable artifact.\n"
         },
         {
+          "model": "Gemini 3.6 Flash (conservative-count prompt)",
+          "metrics": {
+            "overall": 0.9692,
+            "pass_rate": 1.0,
+            "cases_total": 13,
+            "latency_ms": 4460
+          },
+          "cost_usd": 0.0897,
+          "cost_estimated": true,
+          "measured": "2026-07-21",
+          "git_sha": "ac574bf",
+          "note": "Exact-ID GA challenger completed `13/13` without provider errors but did not beat the maintained Gemini 3 Flash `0.9703` score and cost more at current standard prices. Portable proof: `docs/evals/attempts/018-gemini36-flash-and-gemini35-flash-lite-bounded-challenger.md`.\n"
+        },
+        {
+          "model": "Gemini 3.5 Flash-Lite (conservative-count prompt)",
+          "metrics": {
+            "overall": 0.6427,
+            "pass_rate": 0.6154,
+            "cases_total": 13,
+            "latency_ms": 1431
+          },
+          "cost_usd": 0.0083,
+          "cost_estimated": true,
+          "measured": "2026-07-21",
+          "git_sha": "ac574bf",
+          "note": "Provisional prompt-only JSON run completed `8/13`. The nested, scale-incompatible, and malformed outputs were later reclassified as pipeline/configuration-wrong after the model's structured-output API support was confirmed and rerun below. Portable proof: `docs/evals/attempts/018-gemini36-flash-and-gemini35-flash-lite-bounded-challenger.md`.\n"
+        },
+        {
+          "model": "Gemini 3.5 Flash-Lite (structured output, integer 0-1000 bboxes)",
+          "metrics": {
+            "overall": 0.8988,
+            "pass_rate": 0.9231,
+            "cases_total": 13,
+            "latency_ms": 1591
+          },
+          "cost_usd": 0.0087,
+          "cost_estimated": true,
+          "measured": "2026-07-21",
+          "git_sha": "ac574bf",
+          "note": "API-enforced JSON Schema eliminated all malformed and nested outputs. A final integer-coordinate run completed `12/13` with `0` provider errors. Manual inspection confirmed the remaining `Image121` miss is model-wrong: the lower-left oval portrait was reduced to a narrow strip. The run clears the `0.90` pass-rate component but misses the `0.95` overall target and maintained `13/13`, `0.9703` detector. Portable proof: `docs/evals/attempts/018-gemini36-flash-and-gemini35-flash-lite-bounded-challenger.md`.\n"
+        },
+        {
           "model": "GPT-5.5 (conservative-count prompt)",
           "metrics": {
             "overall": 0.8111,
@@ -13173,19 +13215,18 @@
         }
       ],
       "latest_score": {
-        "model": "Grok 4.5 Responses (conservative-count prompt, reasoning low)",
+        "model": "Gemini 3.6 Flash (conservative-count prompt)",
         "metrics": {
-          "overall": 0.8026,
-          "pass_rate": 0.9231,
+          "overall": 0.9692,
+          "pass_rate": 1.0,
           "cases_total": 13,
-          "latency_ms": 2433
+          "latency_ms": 4460
         },
-        "latency_ms": 2433,
-        "cost_usd": 0.00564,
-        "cost_estimated": false,
-        "measured": "2026-07-20",
+        "cost_usd": 0.0897,
+        "cost_estimated": true,
+        "measured": "2026-07-21",
         "git_sha": "ac574bf",
-        "note": "Bounded direct-xAI Responses challenger after official docs and authenticated HTTP 200 model/text probes confirmed `grok-4.5`. `benchmarks/providers/xai_grok_responses.py` normalized the maintained multimodal prompts and recorded xAI-reported usage/cost. Result: `benchmarks/results/grok45-low-image-crop-extraction-20260720.json`. The run completed `12/13` with `0` provider errors, `overall = 0.8026`, average latency about `2433 ms`, and reported cost about `$0.07328` total (`$0.00564` per case). Manual source inspection classified `Image011` as model-wrong: Grok cropped only the embossed seal instead of the maintained seal-plus-signatures visual region. A high-reasoning failed-case retry remained wrong at `0.5095`, so no full high-reasoning or page-context run was warranted. Portable proof: `docs/evals/attempts/016-grok45-bounded-challenger.md`.\n"
+        "note": "Exact-ID GA challenger completed `13/13` without provider errors but did not beat the maintained Gemini 3 Flash `0.9703` score and cost more at current standard prices. Portable proof: `docs/evals/attempts/018-gemini36-flash-and-gemini35-flash-lite-bounded-challenger.md`.\n"
       },
       "attempts": [
         {
@@ -13315,6 +13356,22 @@
           "approach": "Screen Grok 4.5 through xAI's direct Responses API as a bounded detector challenger",
           "note": "Authenticated first-party model and Responses probes succeeded, and a one-case vision smoke produced valid scored output. The full low-reasoning maintained detector run scored `0.8026`, passed `12/13` cases, averaged about `2433 ms`, and cost `$0.07328` total from xAI's reported usage. Manual inspection classified the `Image011` miss as model-wrong bbox undercoverage; a high-reasoning failed-case retry repeated the same seal-only crop. No prompts, scorers, goldens, or maintained providers changed. Portable proof: `docs/evals/attempts/016-grok45-bounded-challenger.md`.\n",
           "retry_when": []
+        },
+        {
+          "id": "017",
+          "date": "2026-07-21",
+          "status": "failed",
+          "approach": "Screen Gemini 3.6 Flash and Gemini 3.5 Flash-Lite as exact-ID GA detector challengers",
+          "note": "Gemini 3.6 Flash reached `13/13` and `0.9692`, narrowly below the maintained score and at higher estimated cost. Flash-Lite's initial prompt-only run reached `8/13`; the output-contract correction is recorded in the next attempt. Portable proof: `docs/evals/attempts/018-gemini36-flash-and-gemini35-flash-lite-bounded-challenger.md`.\n",
+          "retry_when": []
+        },
+        {
+          "id": "018",
+          "date": "2026-07-21",
+          "status": "failed",
+          "approach": "Correct the Flash-Lite detector transport with API-enforced JSON Schema and unambiguous integer bounding boxes",
+          "note": "The strict schema raised the candidate from `8/13` to `12/13`, eliminated every structural output failure, cut average latency to about `1591 ms`, and cost an estimated `$0.0087`. It still missed the overall target because `Image121` reduced the lower-left portrait to a narrow strip. Manual source inspection confirmed model-wrong, not golden/scorer-wrong. Do not replace the maintained detector. Portable proof: `docs/evals/attempts/018-gemini36-flash-and-gemini35-flash-lite-bounded-challenger.md`.\n",
+          "retry_when": []
         }
       ],
       "retry_when": [
@@ -13339,11 +13396,11 @@
         ],
         "why_now": "Gemini 4 or equivalent may push past 0.95 target Golden references cover limited page types; add table-heavy pages",
         "last_relevant_action": {
-          "date": "2026-07-20",
+          "date": "2026-07-21",
           "source_type": "eval-attempt",
           "source": "docs/evals/registry.yaml",
-          "source_id": "016",
-          "summary": "Authenticated first-party model and Responses probes succeeded, and a one-case vision smoke produced valid scored output. The full low-reasoning maintained detector run scored `0.8026`, passed `12/13` cases, averaged..."
+          "source_id": "018",
+          "summary": "The strict schema raised the candidate from `8/13` to `12/13`, eliminated every structural output failure, cut average latency to about `1591 ms`, and cost an estimated `$0.0087`. It still missed the overall target be..."
         }
       }
     },
@@ -13367,6 +13424,34 @@
         "spec:8"
       ],
       "scores": [
+        {
+          "model": "Gemini 3.6 Flash (caption-focus prompt)",
+          "metrics": {
+            "overall": 0.975,
+            "pass_rate": 0.975,
+            "cases_total": 40,
+            "latency_ms": 4145
+          },
+          "cost_usd": 0.173,
+          "cost_estimated": true,
+          "measured": "2026-07-21",
+          "git_sha": "ac574bf",
+          "note": "Completed `39/40`; manual inspection confirmed the sole `page-126-000` false negative contains external page text. The maintained Gemini 3.1 Flash Lite remains `40/40`.\n"
+        },
+        {
+          "model": "Gemini 3.5 Flash-Lite (caption-focus prompt)",
+          "metrics": {
+            "overall": 0.975,
+            "pass_rate": 0.975,
+            "cases_total": 40,
+            "latency_ms": 4184
+          },
+          "cost_usd": 0.023,
+          "cost_estimated": true,
+          "measured": "2026-07-21",
+          "git_sha": "ac574bf",
+          "note": "Completed `39/40` with the same manually confirmed model-wrong `page-126-000` false negative. It does not replace the maintained `40/40` crop-only validator. Portable proof: `docs/evals/attempts/018-gemini36-flash-and-gemini35-flash-lite-bounded-challenger.md`.\n"
+        },
         {
           "model": "Gemini 3.1 Flash Lite (caption-focus prompt, story209 baseline rerun)",
           "metrics": {
@@ -13448,19 +13533,18 @@
         }
       ],
       "latest_score": {
-        "model": "Gemini 3.5 Flash (caption-focus prompt, direct REST)",
+        "model": "Gemini 3.6 Flash (caption-focus prompt)",
         "metrics": {
           "overall": 0.975,
           "pass_rate": 0.975,
           "cases_total": 40,
-          "latency_ms": 3767
+          "latency_ms": 4145
         },
-        "latency_ms": 3767,
-        "cost_usd": 0.0053,
+        "cost_usd": 0.173,
         "cost_estimated": true,
-        "measured": "2026-05-20",
-        "git_sha": "99450a3",
-        "note": "Bounded Gemini 3.5 Flash crop-only validator retry after paid-tier availability recovered. Direct Gemini REST fallback reused the maintained prompt text and Python scorer because promptfoo provider attempts had first been blocked by free-tier project quota and then by `503 UNAVAILABLE` high-demand responses. Result artifact: `benchmarks/results/gemini35-flash-crop-validation-direct-20260520.json`. The run completed `39/40` with `0` provider errors, `overall = 0.975`, average latency about `3767 ms`, and `71027` total tokens (`57182` prompt, `2713` candidate, `11132` thinking). Estimated paid standard cost is about `$0.2104` total (`$0.0053` per case). The miss was model-wrong on `page-126-000`: the golden fails the crop because book-page text is visible along the left side, but Gemini 3.5 Flash treated the text as integral plaque text. This ties recent GPT-5.5 style `39/40` challengers but does not replace the maintained Gemini 3.1 Flash Lite `40/40` crop-only validator. Portable tracked proof: `docs/evals/attempts/011-gemini35-flash-bounded-challenger.md`.\n"
+        "measured": "2026-07-21",
+        "git_sha": "ac574bf",
+        "note": "Completed `39/40`; manual inspection confirmed the sole `page-126-000` false negative contains external page text. The maintained Gemini 3.1 Flash Lite remains `40/40`.\n"
       },
       "attempts": [
         {
@@ -13502,6 +13586,14 @@
           "approach": "Screen Gemini 3.5 Flash as a bounded crop-only validator challenger after paid-tier availability recovered",
           "note": "Initial promptfoo and direct REST attempts were blocked first by free-tier project quota and then by repeated `503 UNAVAILABLE` high-demand responses. After the heartbeat retry health probe succeeded on the canonical doc-web key with `serviceTier: standard`, I reran the 40-case crop-only validator through the direct REST fallback. The run scored `39/40` with `0` provider errors and only missed `page-126-000`, where Gemini 3.5 Flash treated visible external book-page text as integral plaque text. No maintained providers, prompts, scorers, or goldens were changed.\n",
           "retry_when": []
+        },
+        {
+          "id": "006",
+          "date": "2026-07-21",
+          "status": "failed",
+          "approach": "Screen Gemini 3.6 Flash and Gemini 3.5 Flash-Lite on the maintained crop-only validator surface",
+          "note": "Both candidates completed `39/40` and missed `page-126-000`; manual source/crop inspection confirmed the golden is correct. No maintained surface changed. Portable proof: `docs/evals/attempts/018-gemini36-flash-and-gemini35-flash-lite-bounded-challenger.md`.\n",
+          "retry_when": []
         }
       ],
       "retry_when": [
@@ -13529,11 +13621,11 @@
         ],
         "why_now": "Rerun when a new validator model or prompt looks strong enough to widen or replace the current bounded C5-linked truth surface. Broaden or redesign this surface when the project is ready to measure the spec's wider pa...",
         "last_relevant_action": {
-          "date": "2026-05-20",
+          "date": "2026-07-21",
           "source_type": "eval-attempt",
           "source": "docs/evals/registry.yaml",
-          "source_id": "005",
-          "summary": "Initial promptfoo and direct REST attempts were blocked first by free-tier project quota and then by repeated `503 UNAVAILABLE` high-demand responses. After the heartbeat retry health probe succeeded on the canonical..."
+          "source_id": "006",
+          "summary": "Both candidates completed `39/40` and missed `page-126-000`; manual source/crop inspection confirmed the golden is correct. No maintained surface changed. Portable proof: `docs/evals/attempts/018-gemini36-flash-and-ge..."
         }
       }
     },
@@ -13556,6 +13648,22 @@
         "spec:8"
       ],
       "scores": [
+        {
+          "model": "Gemini 3.6 Flash (page-context prompt)",
+          "metrics": {
+            "overall": 0.9545,
+            "pass_rate": 0.9545,
+            "cases_total": 22,
+            "pass_labeled": 17,
+            "fail_labeled": 5,
+            "latency_ms": 4569
+          },
+          "cost_usd": 0.1532,
+          "cost_estimated": true,
+          "measured": "2026-07-21",
+          "git_sha": "ac574bf",
+          "note": "Completed `21/22`; manual inspection confirmed `page-122-001` leaks a neighboring portrait slice even though the candidate passed it. The maintained GPT-5.5 Responses validator remains `22/22`. Portable proof: `docs/evals/attempts/018-gemini36-flash-and-gemini35-flash-lite-bounded-challenger.md`.\n"
+        },
         {
           "model": "Gemini 3.1 Flash Lite (page-context prompt)",
           "metrics": {
@@ -13837,21 +13945,20 @@
         }
       ],
       "latest_score": {
-        "model": "GPT-5.6 Terra Responses (page-context prompt, reasoning none)",
+        "model": "Gemini 3.6 Flash (page-context prompt)",
         "metrics": {
           "overall": 0.9545,
           "pass_rate": 0.9545,
           "cases_total": 22,
           "pass_labeled": 17,
           "fail_labeled": 5,
-          "latency_ms": 3963
+          "latency_ms": 4569
         },
-        "latency_ms": 3963,
-        "cost_usd": 0.0322,
+        "cost_usd": 0.1532,
         "cost_estimated": true,
-        "measured": "2026-07-11",
-        "git_sha": "5efaa80",
-        "note": "Bounded GPT-5.6 Terra page-context challenger through `benchmarks/providers/openai_responses_model.py` with reasoning effort `none`. Result artifact: `benchmarks/results/gpt56-terra-crop-page-level-deletion-gate-20260711.json`. The run completed `21/22` with `0` provider errors, `overall = 0.9545`, average latency about `3963 ms`, `276946` prompt tokens, `1024` completion tokens, and estimated Terra cost about `$0.7077` total (`$0.0322` per case). The single miss was model-wrong on `page-122-001`: Terra returned `pass` for a crop that manual page-context inspection confirms leaks a neighboring Sophie L'Heureux portrait slice. Terra is cheaper and faster than the maintained GPT-5.5 Responses gate in this pass, but quality is decisive and it does not preserve the `22/22` contract. Portable tracked proof: `docs/evals/attempts/015-gpt56-tier-sweep.md`.\n"
+        "measured": "2026-07-21",
+        "git_sha": "ac574bf",
+        "note": "Completed `21/22`; manual inspection confirmed `page-122-001` leaks a neighboring portrait slice even though the candidate passed it. The maintained GPT-5.5 Responses validator remains `22/22`. Portable proof: `docs/evals/attempts/018-gemini36-flash-and-gemini35-flash-lite-bounded-challenger.md`.\n"
       },
       "attempts": [
         {
@@ -13973,6 +14080,14 @@
           "approach": "Gate Grok 4.5 page-context evaluation behind the maintained detector prerequisite",
           "note": "The companion Grok 4.5 detector run was transport-clean but scored only `0.8026` versus the `0.95` target and maintained `0.9703` winner. A high-reasoning retry repeated its model-wrong `Image011` bbox undercoverage. The 22-case page-context gate was intentionally not started because the candidate failed the cheaper prerequisite and could not qualify for adoption. Retry only after a materially revised Grok model or new visual-grounding evidence. Portable proof: `docs/evals/attempts/016-grok45-bounded-challenger.md`.\n",
           "retry_when": []
+        },
+        {
+          "id": "016",
+          "date": "2026-07-21",
+          "status": "failed",
+          "approach": "Promote Gemini 3.6 Flash to the page-context gate after its clean detector transport",
+          "note": "Gemini 3.6 Flash completed `21/22` and falsely passed `page-122-001`; manual inspection confirmed neighboring-portrait leakage. Flash-Lite was not promoted after its losing detector and crop-only results. Portable proof: `docs/evals/attempts/018-gemini36-flash-and-gemini35-flash-lite-bounded-challenger.md`.\n",
+          "retry_when": []
         }
       ],
       "retry_when": [
@@ -14000,11 +14115,11 @@
         ],
         "why_now": "Rerun when a materially stronger validator or detector may reduce the current fail-labeled page-context cases. Rerun after any maintained crop/runtime simplification before claiming `trim_layout_text` or bounded capti...",
         "last_relevant_action": {
-          "date": "2026-07-20",
+          "date": "2026-07-21",
           "source_type": "eval-attempt",
           "source": "docs/evals/registry.yaml",
-          "source_id": "015",
-          "summary": "The companion Grok 4.5 detector run was transport-clean but scored only `0.8026` versus the `0.95` target and maintained `0.9703` winner. A high-reasoning retry repeated its model-wrong `Image011` bbox undercoverage...."
+          "source_id": "016",
+          "summary": "Gemini 3.6 Flash completed `21/22` and falsely passed `page-122-001`; manual inspection confirmed neighboring-portrait leakage. Flash-Lite was not promoted after its losing detector and crop-only results. Portable pro..."
         }
       }
     },
@@ -14128,6 +14243,38 @@
         "spec:8"
       ],
       "scores": [
+        {
+          "model": "Gemini 3.6 Flash bounded corrected-real image-entry screen",
+          "metrics": {
+            "overall_min_ratio": 0.984052,
+            "page_min_ratio": 0.984052,
+            "pass_rate": 0.0,
+            "cases_total": 2,
+            "fixture_count": 2,
+            "fixtures_passing": 0,
+            "barney_image_overall_ratio": 0.984527,
+            "alverson_image_overall_ratio": 0.984052
+          },
+          "measured": "2026-07-21",
+          "git_sha": "ac574bf",
+          "note": "Real `driver.py` image-entry artifacts were manually checked against both LOC scans. The corrected scorer disables SequenceMatcher autojunk; remaining literal-transcription differences are genuine model errors, and neither fixture clears `0.99`. Portable proof: `docs/evals/attempts/018-gemini36-flash-and-gemini35-flash-lite-bounded-challenger.md`.\n"
+        },
+        {
+          "model": "Gemini 3.5 Flash-Lite bounded corrected-real image-entry screen",
+          "metrics": {
+            "overall_min_ratio": 0.974964,
+            "page_min_ratio": 0.974964,
+            "pass_rate": 0.0,
+            "cases_total": 2,
+            "fixture_count": 2,
+            "fixtures_passing": 0,
+            "barney_image_overall_ratio": 0.974964,
+            "alverson_image_overall_ratio": 0.989935
+          },
+          "measured": "2026-07-21",
+          "git_sha": "ac574bf",
+          "note": "Real `driver.py` image-entry artifacts were manually checked against both LOC scans. Output was plausible but preserved neither real transcript at the strict `0.99` bar; Story 191 remains blocked. Portable proof: `docs/evals/attempts/018-gemini36-flash-and-gemini35-flash-lite-bounded-challenger.md`.\n"
+        },
         {
           "model": "Unlimited-OCR exact-weight FP32 CPU bounded real-fixture screen",
           "metrics": {
@@ -14316,22 +14463,20 @@
         }
       ],
       "latest_score": {
-        "model": "Unlimited-OCR exact-weight FP32 CPU bounded real-fixture screen",
+        "model": "Gemini 3.6 Flash bounded corrected-real image-entry screen",
         "metrics": {
-          "overall_min_ratio": 0.022946,
-          "page_min_ratio": 0.022946,
+          "overall_min_ratio": 0.984052,
+          "page_min_ratio": 0.984052,
           "pass_rate": 0.0,
           "cases_total": 2,
           "fixture_count": 2,
           "fixtures_passing": 0,
-          "barney_image_overall_ratio": 0.200382,
-          "alverson_image_overall_ratio": 0.022946,
-          "barney_latency_ms": 5388,
-          "alverson_latency_ms": 764699
+          "barney_image_overall_ratio": 0.984527,
+          "alverson_image_overall_ratio": 0.984052
         },
-        "measured": "2026-07-20",
+        "measured": "2026-07-21",
         "git_sha": "ac574bf",
-        "note": "Story 230 ran the pinned exact Unlimited-OCR weight object through a narrowly reviewed device/dtype-only community runtime on the corrected Barney and Alverson real image fixtures. The candidate reached only `0.200382` on Barney and `0.022946` on Alverson, with `0/2` cases at the `0.99` bar. Barney omitted substantial visible text. Alverson emitted `30939` tokens against total `max_length = 32768`, hallucinated math, and repeated table-like sequences. Because the helper omitted input length and stop reason, truncation remains indeterminate; the runaway content is independently a decisive quality failure. The public-sample parity control matched Baidu's official BF16 Space exactly after removal of the Space's grounding metadata, so the large result deficit is not close enough to justify an official CUDA rerun. Story 191 remains blocked. Portable proof: `docs/evals/attempts/017-unlimited-ocr-whole-document-challenger.md`.\n"
+        "note": "Real `driver.py` image-entry artifacts were manually checked against both LOC scans. The corrected scorer disables SequenceMatcher autojunk; remaining literal-transcription differences are genuine model errors, and neither fixture clears `0.99`. Portable proof: `docs/evals/attempts/018-gemini36-flash-and-gemini35-flash-lite-bounded-challenger.md`.\n"
       },
       "attempts": [
         {
@@ -14421,6 +14566,14 @@
           "approach": "Story 230 exact-weight Unlimited-OCR screen on the corrected Barney/Alverson real image pair",
           "note": "Unlimited-OCR scored `0.200382` on Barney and `0.022946` on corrected-scope Alverson, with `0/2` passing fixtures. Manual source and artifact inspection classified the omissions, substitutions, fabricated formula, and runaway Alverson generation as candidate model/runtime failures; no golden or scorer changed. Story 191 stays blocked. Portable proof: `docs/evals/attempts/017-unlimited-ocr-whole-document-challenger.md`.\n",
           "retry_when": []
+        },
+        {
+          "id": "012",
+          "date": "2026-07-21",
+          "status": "failed",
+          "approach": "Screen Gemini 3.6 Flash and Gemini 3.5 Flash-Lite through driver.py on the corrected real image-entry pair",
+          "note": "The first score exposed a test-wrong issue: SequenceMatcher's default autojunk heuristic understated long OCR near-matches. The corrected scores were Gemini 3.6 Flash `0.984527` Barney / `0.984052` Alverson and Flash-Lite `0.974964` / `0.989935`; all remained below `0.99`, with manual scan review confirming genuine residual model errors. Story 191 remains blocked. Portable proof: `docs/evals/attempts/018-gemini36-flash-and-gemini35-flash-lite-bounded-challenger.md`.\n",
+          "retry_when": []
         }
       ],
       "retry_when": [
@@ -14442,11 +14595,11 @@
         ],
         "why_now": "Retry only when a materially stronger model or OCR substrate appears that could plausibly clear Barney and the corrected Alverson front-page truth surface.",
         "last_relevant_action": {
-          "date": "2026-07-20",
+          "date": "2026-07-21",
           "source_type": "eval-attempt",
           "source": "docs/evals/registry.yaml",
-          "source_id": "011",
-          "summary": "Unlimited-OCR scored `0.200382` on Barney and `0.022946` on corrected-scope Alverson, with `0/2` passing fixtures. Manual source and artifact inspection classified the omissions, substitutions, fabricated formula, and..."
+          "source_id": "012",
+          "summary": "The first score exposed a test-wrong issue: SequenceMatcher's default autojunk heuristic understated long OCR near-matches. The corrected scores were Gemini 3.6 Flash `0.984527` Barney / `0.984052` Alverson and Flash-..."
         }
       }
     },
@@ -16398,7 +16551,7 @@
             "224",
             "230"
           ],
-          "notes": "Recent bounded proof and direct-entry expansions are done. Story 205 closed the first ZIP-only mixed-archive routing seam as bounded maintained evidence, Story 218 widened that same seam to one checked-in source-native folder probe, Story 221 established the ZIP PDF-member recommendation substrate, Story 222 added the direct-folder PDF-member recommendation substrate, Story 223 extended that same line to the first bounded approved-handoff launch proof on one checked-in ZIP PDF-member slice plus one checked-in direct-folder PDF-member slice, and Story 224 first closed the grouped image-member first-artifact proof on one checked-in shared-parent page-image slice, widened that same route/module line to one checked-in source-native folder grouped-image parity slice, and then extended the same bounded grouped probes to the first OCR artifact. Story 230 supersedes Story 208 as the latest bounded stronger-OCR evidence: exact-weight Unlimited-OCR lost all three Onward cases and failed the corrected real handwriting pair, so no second-model lane was added. Keep Story 191 blocked until a later pass produces fresh current-pass evidence for a materially stronger OCR substrate, and treat Stories 205, 218, 222, 223, and 224 as proof for one ZIP direct-entry mix, one source-native folder mix, one direct-folder recommendation substrate, one approved-plan-to-launch slice on each bounded PDF-member entry surface, and one grouped image-member continuation to `page_html_v1` on both ZIP and direct-folder entry, rather than broad archive or folder ownership."
+          "notes": "Recent bounded proof and direct-entry expansions are done. Story 205 closed the first ZIP-only mixed-archive routing seam as bounded maintained evidence, Story 218 widened that same seam to one checked-in source-native folder probe, Story 221 established the ZIP PDF-member recommendation substrate, Story 222 added the direct-folder PDF-member recommendation substrate, Story 223 extended that same line to the first bounded approved-handoff launch proof on one checked-in ZIP PDF-member slice plus one checked-in direct-folder PDF-member slice, and Story 224 first closed the grouped image-member first-artifact proof on one checked-in shared-parent page-image slice, widened that same route/module line to one checked-in source-native folder grouped-image parity slice, and then extended the same bounded grouped probes to the first OCR artifact. Story 230 rejected exact-weight Unlimited-OCR on three Onward cases and the corrected real handwriting pair. The later Gemini 3.6 Flash / Gemini 3.5 Flash-Lite bounded screen also left both corrected real fixtures below `0.99`, so no second-model lane was added. Keep Story 191 blocked until a later pass produces fresh current-pass evidence for a materially stronger OCR substrate, and treat Stories 205, 218, 222, 223, and 224 as proof for one ZIP direct-entry mix, one source-native folder mix, one direct-folder recommendation substrate, one approved-plan-to-launch slice on each bounded PDF-member entry surface, and one grouped image-member continuation to `page_html_v1` on both ZIP and direct-folder entry, rather than broad archive or folder ownership."
         }
       ]
     },
@@ -16407,7 +16560,7 @@
         {
           "id": "recommended-order",
           "title": "Recommended Order",
-          "markdown": "Guiding priorities: keep bounded intake + `doc-web` claims honest and widen reusable format coverage only when substrate and proof exist.\n\nUse `docs/methodology/graph.json`, `docs/methodology/state.yaml`, and `/triage` output for current sequencing. Story `205` now stands as the completed bounded proof for the first `mixed-archive` ZIP seam, Story `223` is the bounded PDF-member approved-handoff launch continuation on that same route/module line across the checked-in ZIP and direct-folder probes, and Story `224` now stands as the bounded grouped image-member continuation on that same mixed-archive line across one checked-in ZIP probe and one checked-in direct-folder probe. Story `222` is the direct-folder PDF-member recommendation substrate underneath the direct-folder proof, and Story `218` remains the original non-PDF direct-folder proof; use them as evidence for the specific checked-in fixtures and emitted member-route artifacts, not as blanket archive-support claims. Story `230` is now the latest bounded stronger-OCR evidence: Unlimited-OCR did not beat the historical Onward records or the corrected real handwriting blocker, so Story `191` remains blocked until a later pass proves a materially stronger OCR substrate. Historical Fighting Fantasy/gamebook stories remain in the index below as project record and reference evidence, not as the default mission queue."
+          "markdown": "Guiding priorities: keep bounded intake + `doc-web` claims honest and widen reusable format coverage only when substrate and proof exist.\n\nUse `docs/methodology/graph.json`, `docs/methodology/state.yaml`, and `/triage` output for current sequencing. Story `205` now stands as the completed bounded proof for the first `mixed-archive` ZIP seam, Story `223` is the bounded PDF-member approved-handoff launch continuation on that same route/module line across the checked-in ZIP and direct-folder probes, and Story `224` now stands as the bounded grouped image-member continuation on that same mixed-archive line across one checked-in ZIP probe and one checked-in direct-folder probe. Story `222` is the direct-folder PDF-member recommendation substrate underneath the direct-folder proof, and Story `218` remains the original non-PDF direct-folder proof; use them as evidence for the specific checked-in fixtures and emitted member-route artifacts, not as blanket archive-support claims. Story `230` rejected Unlimited-OCR on the historical Onward records and corrected real handwriting blocker; the later Gemini 3.6 Flash / Gemini 3.5 Flash-Lite bounded screen also failed to clear both real fixtures at `0.99`. Story `191` therefore remains blocked until a later pass proves a materially stronger OCR substrate. Historical Fighting Fantasy/gamebook stories remain in the index below as project record and reference evidence, not as the default mission queue."
         }
       ],
       "uncategorized_label": "Legacy / Uncategorized Stories"
@@ -16461,7 +16614,7 @@
             "230"
           ],
           "open_findings": [],
-          "notes": "The real handwritten line is now an explicit OCR-capability blocker: Story 192 corrected the Alverson truth surface, Story 208 recorded negative GLM-OCR evidence, Story 230 superseded it with a complete three-case Unlimited-OCR whole-document rejection plus a failed corrected real-handwriting screen, and Story 191 remains parked until a materially stronger OCR substrate appears."
+          "notes": "The real handwritten line is now an explicit OCR-capability blocker: Story 192 corrected the Alverson truth surface, Story 208 recorded negative GLM-OCR evidence, Story 230 added a complete three-case Unlimited-OCR whole-document rejection plus a failed corrected real-handwriting screen, and the later Gemini 3.6 Flash / Gemini 3.5 Flash-Lite screen also left both corrected real fixtures below `0.99`. Story 191 remains parked until a materially stronger OCR substrate appears."
         },
         "document_structure_and_consistency": {
           "label": "Document Structure and Consistency",

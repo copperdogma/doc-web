@@ -79,6 +79,43 @@ evals:
           proof anchor is now
           `docs/evals/attempts/001-image-crop-extraction-story207-proof-refresh.md`;
           the raw promptfoo JSON remains a local regenerable artifact.
+      - model: "Gemini 3.6 Flash (conservative-count prompt)"
+        metrics: {overall: 0.9692, pass_rate: 1.0, cases_total: 13, latency_ms: 4460}
+        cost_usd: 0.0897
+        cost_estimated: true
+        measured: 2026-07-21
+        git_sha: ac574bf
+        note: >
+          Exact-ID GA challenger completed `13/13` without provider errors but
+          did not beat the maintained Gemini 3 Flash `0.9703` score and cost
+          more at current standard prices. Portable proof:
+          `docs/evals/attempts/018-gemini36-flash-and-gemini35-flash-lite-bounded-challenger.md`.
+      - model: "Gemini 3.5 Flash-Lite (conservative-count prompt)"
+        metrics: {overall: 0.6427, pass_rate: 0.6154, cases_total: 13, latency_ms: 1431}
+        cost_usd: 0.0083
+        cost_estimated: true
+        measured: 2026-07-21
+        git_sha: ac574bf
+        note: >
+          Provisional prompt-only JSON run completed `8/13`. The nested,
+          scale-incompatible, and malformed outputs were later reclassified as
+          pipeline/configuration-wrong after the model's structured-output API
+          support was confirmed and rerun below. Portable proof:
+          `docs/evals/attempts/018-gemini36-flash-and-gemini35-flash-lite-bounded-challenger.md`.
+      - model: "Gemini 3.5 Flash-Lite (structured output, integer 0-1000 bboxes)"
+        metrics: {overall: 0.8988, pass_rate: 0.9231, cases_total: 13, latency_ms: 1591}
+        cost_usd: 0.0087
+        cost_estimated: true
+        measured: 2026-07-21
+        git_sha: ac574bf
+        note: >
+          API-enforced JSON Schema eliminated all malformed and nested outputs.
+          A final integer-coordinate run completed `12/13` with `0` provider
+          errors. Manual inspection confirmed the remaining `Image121` miss is
+          model-wrong: the lower-left oval portrait was reduced to a narrow
+          strip. The run clears the `0.90` pass-rate component but misses the
+          `0.95` overall target and maintained `13/13`, `0.9703` detector.
+          Portable proof: `docs/evals/attempts/018-gemini36-flash-and-gemini35-flash-lite-bounded-challenger.md`.
       - model: "GPT-5.5 (conservative-count prompt)"
         metrics:
           overall: 0.8111
@@ -695,6 +732,32 @@ evals:
           repeated the same seal-only crop. No prompts, scorers, goldens, or
           maintained providers changed. Portable proof:
           `docs/evals/attempts/016-grok45-bounded-challenger.md`.
+      - id: "017"
+        date: 2026-07-21
+        status: failed
+        approach: "Screen Gemini 3.6 Flash and Gemini 3.5 Flash-Lite as exact-ID GA detector challengers"
+        score_before: 0.9703
+        score_after: 0.9692
+        note: >
+          Gemini 3.6 Flash reached `13/13` and `0.9692`, narrowly below the
+          maintained score and at higher estimated cost. Flash-Lite's initial
+          prompt-only run reached `8/13`; the output-contract correction is
+          recorded in the next attempt. Portable proof:
+          `docs/evals/attempts/018-gemini36-flash-and-gemini35-flash-lite-bounded-challenger.md`.
+      - id: "018"
+        date: 2026-07-21
+        status: failed
+        approach: "Correct the Flash-Lite detector transport with API-enforced JSON Schema and unambiguous integer bounding boxes"
+        score_before: 0.6427
+        score_after: 0.8988
+        note: >
+          The strict schema raised the candidate from `8/13` to `12/13`,
+          eliminated every structural output failure, cut average latency to
+          about `1591 ms`, and cost an estimated `$0.0087`. It still missed the
+          overall target because `Image121` reduced the lower-left portrait to
+          a narrow strip. Manual source inspection confirmed model-wrong, not
+          golden/scorer-wrong. Do not replace the maintained detector.
+          Portable proof: `docs/evals/attempts/018-gemini36-flash-and-gemini35-flash-lite-bounded-challenger.md`.
 
     retry_when:
       - condition: new-subject-model
@@ -732,6 +795,27 @@ evals:
         can be removed.
 
     scores:
+      - model: "Gemini 3.6 Flash (caption-focus prompt)"
+        metrics: {overall: 0.975, pass_rate: 0.975, cases_total: 40, latency_ms: 4145}
+        cost_usd: 0.1730
+        cost_estimated: true
+        measured: 2026-07-21
+        git_sha: ac574bf
+        note: >
+          Completed `39/40`; manual inspection confirmed the sole
+          `page-126-000` false negative contains external page text. The
+          maintained Gemini 3.1 Flash Lite remains `40/40`.
+      - model: "Gemini 3.5 Flash-Lite (caption-focus prompt)"
+        metrics: {overall: 0.975, pass_rate: 0.975, cases_total: 40, latency_ms: 4184}
+        cost_usd: 0.0230
+        cost_estimated: true
+        measured: 2026-07-21
+        git_sha: ac574bf
+        note: >
+          Completed `39/40` with the same manually confirmed model-wrong
+          `page-126-000` false negative. It does not replace the maintained
+          `40/40` crop-only validator. Portable proof:
+          `docs/evals/attempts/018-gemini36-flash-and-gemini35-flash-lite-bounded-challenger.md`.
       - model: "Gemini 3.1 Flash Lite (caption-focus prompt, story209 baseline rerun)"
         metrics:
           overall: 1.0
@@ -939,6 +1023,17 @@ evals:
           `page-126-000`, where Gemini 3.5 Flash treated visible external
           book-page text as integral plaque text. No maintained providers,
           prompts, scorers, or goldens were changed.
+      - id: "006"
+        date: 2026-07-21
+        status: failed
+        approach: "Screen Gemini 3.6 Flash and Gemini 3.5 Flash-Lite on the maintained crop-only validator surface"
+        score_before: 1.0
+        score_after: 0.975
+        note: >
+          Both candidates completed `39/40` and missed `page-126-000`; manual
+          source/crop inspection confirmed the golden is correct. No maintained
+          surface changed. Portable proof:
+          `docs/evals/attempts/018-gemini36-flash-and-gemini35-flash-lite-bounded-challenger.md`.
 
     retry_when:
       - condition: new-subject-model
@@ -1000,6 +1095,23 @@ evals:
         `page-122-001`, and `page-126-000`).
 
     scores:
+      - model: "Gemini 3.6 Flash (page-context prompt)"
+        metrics:
+          overall: 0.9545
+          pass_rate: 0.9545
+          cases_total: 22
+          pass_labeled: 17
+          fail_labeled: 5
+          latency_ms: 4569
+        cost_usd: 0.1532
+        cost_estimated: true
+        measured: 2026-07-21
+        git_sha: ac574bf
+        note: >
+          Completed `21/22`; manual inspection confirmed `page-122-001`
+          leaks a neighboring portrait slice even though the candidate passed
+          it. The maintained GPT-5.5 Responses validator remains `22/22`.
+          Portable proof: `docs/evals/attempts/018-gemini36-flash-and-gemini35-flash-lite-bounded-challenger.md`.
       - model: "Gemini 3.1 Flash Lite (page-context prompt)"
         metrics:
           overall: 1.0
@@ -1758,6 +1870,18 @@ evals:
           could not qualify for adoption. Retry only after a materially revised
           Grok model or new visual-grounding evidence. Portable proof:
           `docs/evals/attempts/016-grok45-bounded-challenger.md`.
+      - id: "016"
+        date: 2026-07-21
+        status: failed
+        approach: "Promote Gemini 3.6 Flash to the page-context gate after its clean detector transport"
+        score_before: 1.0
+        score_after: 0.9545
+        note: >
+          Gemini 3.6 Flash completed `21/22` and falsely passed
+          `page-122-001`; manual inspection confirmed neighboring-portrait
+          leakage. Flash-Lite was not promoted after its losing detector and
+          crop-only results. Portable proof:
+          `docs/evals/attempts/018-gemini36-flash-and-gemini35-flash-lite-bounded-challenger.md`.
 
     retry_when:
       - condition: new-subject-model
@@ -1874,6 +1998,41 @@ evals:
       note: "The target still marks the desired passing bar, but the widened default corpus now includes two real handwritten fixtures that the maintained rescue seam does not clear."
 
     scores:
+      - model: "Gemini 3.6 Flash bounded corrected-real image-entry screen"
+        metrics:
+          overall_min_ratio: 0.984052
+          page_min_ratio: 0.984052
+          pass_rate: 0.0
+          cases_total: 2
+          fixture_count: 2
+          fixtures_passing: 0
+          barney_image_overall_ratio: 0.984527
+          alverson_image_overall_ratio: 0.984052
+        measured: 2026-07-21
+        git_sha: ac574bf
+        note: >
+          Real `driver.py` image-entry artifacts were manually checked against
+          both LOC scans. The corrected scorer disables SequenceMatcher
+          autojunk; remaining literal-transcription differences are genuine
+          model errors, and neither fixture clears `0.99`. Portable proof:
+          `docs/evals/attempts/018-gemini36-flash-and-gemini35-flash-lite-bounded-challenger.md`.
+      - model: "Gemini 3.5 Flash-Lite bounded corrected-real image-entry screen"
+        metrics:
+          overall_min_ratio: 0.974964
+          page_min_ratio: 0.974964
+          pass_rate: 0.0
+          cases_total: 2
+          fixture_count: 2
+          fixtures_passing: 0
+          barney_image_overall_ratio: 0.974964
+          alverson_image_overall_ratio: 0.989935
+        measured: 2026-07-21
+        git_sha: ac574bf
+        note: >
+          Real `driver.py` image-entry artifacts were manually checked against
+          both LOC scans. Output was plausible but preserved neither real
+          transcript at the strict `0.99` bar; Story 191 remains blocked.
+          Portable proof: `docs/evals/attempts/018-gemini36-flash-and-gemini35-flash-lite-bounded-challenger.md`.
       - model: "Unlimited-OCR exact-weight FP32 CPU bounded real-fixture screen"
         metrics:
           overall_min_ratio: 0.022946
@@ -2513,6 +2672,20 @@ evals:
           model/runtime failures; no golden or scorer changed. Story 191 stays
           blocked. Portable proof:
           `docs/evals/attempts/017-unlimited-ocr-whole-document-challenger.md`.
+      - id: "012"
+        date: 2026-07-21
+        status: failed
+        approach: "Screen Gemini 3.6 Flash and Gemini 3.5 Flash-Lite through driver.py on the corrected real image-entry pair"
+        score_before: 0.677267
+        score_after: 0.984052
+        note: >
+          The first score exposed a test-wrong issue: SequenceMatcher's default
+          autojunk heuristic understated long OCR near-matches. The corrected
+          scores were Gemini 3.6 Flash `0.984527` Barney / `0.984052` Alverson
+          and Flash-Lite `0.974964` / `0.989935`; all remained below `0.99`,
+          with manual scan review confirming genuine residual model errors.
+          Story 191 remains blocked. Portable proof:
+          `docs/evals/attempts/018-gemini36-flash-and-gemini35-flash-lite-bounded-challenger.md`.
 
     retry_when:
       - condition: new-subject-model

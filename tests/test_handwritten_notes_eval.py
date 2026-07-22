@@ -7,6 +7,7 @@ from benchmarks.scripts.run_handwritten_notes_eval import (
     derive_single_fixture_id,
     load_fixture_specs,
 )
+from benchmarks.scorers.handwritten_notes_transcription import score_text_pair
 
 
 def test_handwritten_notes_eval_default_corpus_loads_unique_fixtures():
@@ -117,6 +118,16 @@ def test_alverson_real_transcript_matches_front_page_scope():
     assert "Your son" not in transcript
     assert "By Flag of Truce" not in transcript
     assert "Molasses, a little dried fruit" not in transcript
+
+
+def test_handwritten_score_keeps_repeated_characters_in_long_transcriptions():
+    expected = ("the letter repeats common words and characters " * 40) + "original"
+    actual = ("the letter repeats common words and characters " * 40) + "origina1"
+
+    score = score_text_pair(expected, actual)
+
+    assert score["ratio"] > 0.99
+    assert score["exact_match"] is False
 
 
 def test_handwritten_notes_eval_loads_case_instrumentation(monkeypatch, tmp_path):

@@ -5,7 +5,7 @@
 
 const { buildMessages } = require("./_image-helpers");
 
-const PROMPT_TEXT = `Analyze this scanned book page. Find distinct photographs, illustrations, or visual elements.
+const PROMPT_PREFIX = `Analyze this scanned book page. Find distinct photographs, illustrations, or visual elements.
 
 Rules:
 - Only count MAJOR visual elements (photos, illustrations, logos, seals)
@@ -16,12 +16,17 @@ Rules:
 - A cover page or title page with decorative art = ONE image covering the full visual area
 - Signatures next to seals = ONE combined image
 
-Return JSON: {"images": [{"description": "...", "bbox": [x0, y0, x1, y1]}]}
-Coordinates: normalized 0.0-1.0, origin top-left.
-If no images: {"images": []}
+Return JSON: {"images": [{"description": "...", "bbox": [x0, y0, x1, y1]}]}`;
+
+const PROMPT_SUFFIX = `If no images: {"images": []}
 JSON only, no other text.`;
 
 module.exports = function (context) {
   const { vars, provider } = context;
-  return buildMessages(PROMPT_TEXT, vars.image, provider?.id || "");
+  const providerId = provider?.id || "";
+  const coordinates = providerId.includes("gemini-3.5-flash-lite")
+    ? "Coordinates: integers 0-1000, origin top-left, with x0 < x1 and y0 < y1."
+    : "Coordinates: normalized 0.0-1.0, origin top-left.";
+  const promptText = `${PROMPT_PREFIX}\n${coordinates}\n${PROMPT_SUFFIX}`;
+  return buildMessages(promptText, vars.image, providerId);
 };

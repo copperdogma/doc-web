@@ -43,7 +43,11 @@ def normalize_text(text: str) -> str:
 def score_text_pair(expected: str, actual: str) -> dict[str, Any]:
     expected_norm = normalize_text(expected)
     actual_norm = normalize_text(actual)
-    ratio = SequenceMatcher(None, expected_norm, actual_norm).ratio()
+    # Long transcriptions contain many repeated spaces, letters, and common
+    # words. SequenceMatcher's default autojunk heuristic can discard those
+    # repeated characters and collapse a near-match to an implausibly low
+    # score, so keep the complete character sequence for OCR comparisons.
+    ratio = SequenceMatcher(None, expected_norm, actual_norm, autojunk=False).ratio()
     return {
         "ratio": round(ratio, 6),
         "exact_match": expected_norm == actual_norm,
