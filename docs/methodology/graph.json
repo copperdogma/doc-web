@@ -1125,11 +1125,11 @@
           ],
           "why_now": "Gemini 4 or equivalent may push past 0.95 target Golden references cover limited page types; add table-heavy pages",
           "last_relevant_action": {
-            "date": "2026-07-21",
+            "date": "2026-07-22",
             "source_type": "eval-attempt",
             "source": "docs/evals/registry.yaml",
-            "source_id": "018",
-            "summary": "The strict schema raised the candidate from `8/13` to `12/13`, eliminated every structural output failure, cut average latency to about `1591 ms`, and cost an estimated `$0.0087`. It still missed the overall target be..."
+            "source_id": "019",
+            "summary": "User-directed real-world skill pilot explicitly overrode the normal duplicate-evidence stop gate. Fresh first-party research and live access/native/contract/parity probes all passed. The adapter needed a strict-schema..."
           },
           "story_ids": [
             "135",
@@ -1171,23 +1171,23 @@
         ],
         "actionability": {
           "source_kind": "eval",
-          "source_id": "crop-validation",
+          "source_id": "crop-page-level-deletion-gate",
           "source_path": "docs/evals/registry.yaml",
           "recommended_now": false,
-          "posture": "wait-for-trigger",
-          "retry_trigger_status": "waiting",
+          "posture": "trigger-exhausted",
+          "retry_trigger_status": "exhausted",
           "retry_when": [
             "golden-fix",
-            "new-approach",
-            "new-subject-model"
+            "new-subject-model",
+            "runtime-change"
           ],
-          "why_now": "Rerun when a new validator model or prompt looks strong enough to widen or replace the current bounded C5-linked truth surface. Broaden or redesign this surface when the project is ready to measure the spec's wider pa...",
+          "why_now": "Rerun when a materially stronger validator or detector may reduce the current fail-labeled page-context cases. Rerun after any maintained crop/runtime simplification before claiming `trim_layout_text` or bounded capti...",
           "last_relevant_action": {
-            "date": "2026-07-21",
+            "date": "2026-07-22",
             "source_type": "eval-attempt",
             "source": "docs/evals/registry.yaml",
-            "source_id": "006",
-            "summary": "Both candidates completed `39/40` and missed `page-126-000`; manual source/crop inspection confirmed the golden is correct. No maintained surface changed. Portable proof: `docs/evals/attempts/018-gemini36-flash-and-ge..."
+            "source_id": "017",
+            "summary": "The fresh strict-schema Grok detector completed transport-clean but reached only `11/13`, `0.7667` versus the `0.95` target and fresh Gemini incumbent `13/13`, `0.9629`. A high-reasoning retry repaired `0/2` source-ve..."
           },
           "story_ids": [
             "135",
@@ -1615,12 +1615,12 @@
           "source_path": "docs/stories/story-207-refresh-crop-c4-proof-and-coverage-truth-surfaces.md",
           "recommended_now": false,
           "posture": "completed",
-          "why_now": "post-closeout model refresh note: screened Moonshot `kimi-k2.6` as a bounded direct-API detector challenger after adding `benchmarks/providers/moonshot_kimi_chat.py` and mapping `DOC_WEB_MOONSHOT_API_KEY` for promptfo...",
+          "why_now": "final post-hardening validation: reran methodology compilation/checking and skill compatibility checking, then completed `make lint`, focused Ruff format validation, and the full repo suite. Result: lint and diff hygi...",
           "last_relevant_action": {
-            "date": "2026-05-20",
+            "date": "2026-07-22",
             "source_type": "story-work-log",
             "source": "docs/stories/story-207-refresh-crop-c4-proof-and-coverage-truth-surfaces.md",
-            "summary": "post-closeout model refresh note: screened Moonshot `kimi-k2.6` as a bounded direct-API detector challenger after adding `benchmarks/providers/moonshot_kimi_chat.py` and mapping `DOC_WEB_MOONSHOT_API_KEY` for promptfo..."
+            "summary": "final post-hardening validation: reran methodology compilation/checking and skill compatibility checking, then completed `make lint`, focused Ruff format validation, and the full repo suite. Result: lint and diff hygi..."
           },
           "story_ids": [
             "181",
@@ -11155,9 +11155,9 @@
       "blocker_evidence": "",
       "unblock_condition": "",
       "last_work_log_entry": {
-        "timestamp": "20260520-1245",
-        "date": "2026-05-20",
-        "summary": "post-closeout model refresh note: screened Moonshot `kimi-k2.6` as a bounded direct-API detector challenger after adding `benchmarks/providers/moonshot_kimi_chat.py` and mapping `DOC_WEB_MOONSHOT_API_KEY` for promptfo..."
+        "timestamp": "20260722-1458",
+        "date": "2026-07-22",
+        "summary": "final post-hardening validation: reran methodology compilation/checking and skill compatibility checking, then completed `make lint`, focused Ruff format validation, and the full repo suite. Result: lint and diff hygi..."
       },
       "legacy_build_map_refs": "",
       "metadata_source": "frontmatter",
@@ -11168,12 +11168,12 @@
         "source_path": "docs/stories/story-207-refresh-crop-c4-proof-and-coverage-truth-surfaces.md",
         "recommended_now": false,
         "posture": "completed",
-        "why_now": "post-closeout model refresh note: screened Moonshot `kimi-k2.6` as a bounded direct-API detector challenger after adding `benchmarks/providers/moonshot_kimi_chat.py` and mapping `DOC_WEB_MOONSHOT_API_KEY` for promptfo...",
+        "why_now": "final post-hardening validation: reran methodology compilation/checking and skill compatibility checking, then completed `make lint`, focused Ruff format validation, and the full repo suite. Result: lint and diff hygi...",
         "last_relevant_action": {
-          "date": "2026-05-20",
+          "date": "2026-07-22",
           "source_type": "story-work-log",
           "source": "docs/stories/story-207-refresh-crop-c4-proof-and-coverage-truth-surfaces.md",
-          "summary": "post-closeout model refresh note: screened Moonshot `kimi-k2.6` as a bounded direct-API detector challenger after adding `benchmarks/providers/moonshot_kimi_chat.py` and mapping `DOC_WEB_MOONSHOT_API_KEY` for promptfo..."
+          "summary": "final post-hardening validation: reran methodology compilation/checking and skill compatibility checking, then completed `make lint`, focused Ruff format validation, and the full repo suite. Result: lint and diff hygi..."
         }
       }
     },
@@ -11293,9 +11293,9 @@
       "blocker_evidence": "",
       "unblock_condition": "",
       "last_work_log_entry": {
-        "timestamp": "20260520-1245",
-        "date": "2026-05-20",
-        "summary": "post-closeout model refresh note: screened Moonshot `kimi-k2.6` as a bounded direct-API page-context challenger after verifying it could handle the full-page-plus-crop two-image prompt through `benchmarks/providers/mo..."
+        "timestamp": "20260722-0055",
+        "date": "2026-07-22",
+        "summary": "post-closeout Grok 4.5 skill-pilot gate: the fresh strict-schema detector arm reached only `11/13`, `0.7667` versus the `0.95` prerequisite and fresh Gemini incumbent `13/13`, `0.9629`; a high-reasoning retry repaired..."
       },
       "legacy_build_map_refs": "",
       "metadata_source": "frontmatter",
@@ -11306,12 +11306,12 @@
         "source_path": "docs/stories/story-209-crop-c5-page-level-deletion-gate.md",
         "recommended_now": false,
         "posture": "completed",
-        "why_now": "post-closeout model refresh note: screened Moonshot `kimi-k2.6` as a bounded direct-API page-context challenger after verifying it could handle the full-page-plus-crop two-image prompt through `benchmarks/providers/mo...",
+        "why_now": "post-closeout Grok 4.5 skill-pilot gate: the fresh strict-schema detector arm reached only `11/13`, `0.7667` versus the `0.95` prerequisite and fresh Gemini incumbent `13/13`, `0.9629`; a high-reasoning retry repaired...",
         "last_relevant_action": {
-          "date": "2026-05-20",
+          "date": "2026-07-22",
           "source_type": "story-work-log",
           "source": "docs/stories/story-209-crop-c5-page-level-deletion-gate.md",
-          "summary": "post-closeout model refresh note: screened Moonshot `kimi-k2.6` as a bounded direct-API page-context challenger after verifying it could handle the full-page-plus-crop two-image prompt through `benchmarks/providers/mo..."
+          "summary": "post-closeout Grok 4.5 skill-pilot gate: the fresh strict-schema detector arm reached only `11/13`, `0.7667` versus the `0.95` prerequisite and fresh Gemini incumbent `13/13`, `0.9629`; a high-reasoning retry repaired..."
         }
       }
     },
@@ -12948,6 +12948,21 @@
           "note": "Story 207 reran the maintained detector surface via `promptfoo eval -c tasks/image-crop-extraction.yaml --no-cache --filter-providers 'google:gemini-3-flash-preview' --filter-prompts 'conservative-count' --output results/story207-image-crop-baseline.json -j 1`. The JSON output recorded `13/13` scorer passes with `0` failures and `0` errors; recomputing the mean from the per-case scores yielded `0.9703 / 1.0` (overall / pass_rate), average latency about `7878 ms` per page, and total eval cost about `$0.059`. The portable tracked proof anchor is now `docs/evals/attempts/001-image-crop-extraction-story207-proof-refresh.md`; the raw promptfoo JSON remains a local regenerable artifact.\n"
         },
         {
+          "model": "Gemini 3 Flash (evaluate-model skill-pilot fresh incumbent)",
+          "metrics": {
+            "overall": 0.9629,
+            "pass_rate": 1.0,
+            "cases_total": 13,
+            "latency_ms": 7303
+          },
+          "latency_ms": 7303,
+          "cost_usd": 0.00425,
+          "cost_estimated": false,
+          "measured": "2026-07-22",
+          "git_sha": "41c06e2",
+          "note": "Fresh no-cache incumbent arm for the Grok 4.5 `/evaluate-model` skill pilot. The run completed `13/13` with `0` provider errors, `overall = 0.9629`, average latency about `7303 ms`, and reported cost `$0.05530` total. It remained above the `0.95` target despite expected VLM variance from the maintained `0.9703` best. Portable proof: `docs/evals/attempts/019-grok45-evaluate-model-skill-pilot.md`; that note records the exact result, task, prompt, scorer, and golden hashes for this pilot.\n"
+        },
+        {
           "model": "Gemini 3.6 Flash (conservative-count prompt)",
           "metrics": {
             "overall": 0.9692,
@@ -13152,6 +13167,21 @@
           "note": "Bounded direct-xAI Responses challenger after official docs and authenticated HTTP 200 model/text probes confirmed `grok-4.5`. `benchmarks/providers/xai_grok_responses.py` normalized the maintained multimodal prompts and recorded xAI-reported usage/cost. Result: `benchmarks/results/grok45-low-image-crop-extraction-20260720.json`. The run completed `12/13` with `0` provider errors, `overall = 0.8026`, average latency about `2433 ms`, and reported cost about `$0.07328` total (`$0.00564` per case). Manual source inspection classified `Image011` as model-wrong: Grok cropped only the embossed seal instead of the maintained seal-plus-signatures visual region. A high-reasoning failed-case retry remained wrong at `0.5095`, so no full high-reasoning or page-context run was warranted. Portable proof: `docs/evals/attempts/016-grok45-bounded-challenger.md`.\n"
         },
         {
+          "model": "Grok 4.5 Responses (strict schema skill pilot, reasoning low)",
+          "metrics": {
+            "overall": 0.7667,
+            "pass_rate": 0.8462,
+            "cases_total": 13,
+            "latency_ms": 2782
+          },
+          "latency_ms": 2782,
+          "cost_usd": 0.00584,
+          "cost_estimated": false,
+          "measured": "2026-07-22",
+          "git_sha": "41c06e2",
+          "note": "Full fresh `/evaluate-model` pilot after authenticated exact-model, native text, native image/strict-schema, and PromptFoo parity probes. The xAI adapter was repaired to enforce strict JSON Schema and retain served-model metadata before scoring. The no-cache run completed `11/13` with `0` provider errors, `overall = 0.7667`, average latency about `2782 ms`, and reported cost `$0.07598` total. Source inspection classified `Image001` title/date undercoverage and `Image011` seal/signature splitting as model-wrong. A high-reasoning retry repaired `0/2`. `git_sha` is the base HEAD, not the complete evaluated code identity: scoring used a dirty strict-schema adapter with SHA-256 `f0c1ba9a845471bdf63ef21e013e7a14361095740a66db80003274be019cf8d3`. Portable proof and the remaining code/result hashes: `docs/evals/attempts/019-grok45-evaluate-model-skill-pilot.md`.\n"
+        },
+        {
           "model": "Gemini 3 Flash (conservative-count prompt, heading-safe revision)",
           "metrics": {
             "overall": 0.9678,
@@ -13215,18 +13245,19 @@
         }
       ],
       "latest_score": {
-        "model": "Gemini 3.6 Flash (conservative-count prompt)",
+        "model": "Grok 4.5 Responses (strict schema skill pilot, reasoning low)",
         "metrics": {
-          "overall": 0.9692,
-          "pass_rate": 1.0,
+          "overall": 0.7667,
+          "pass_rate": 0.8462,
           "cases_total": 13,
-          "latency_ms": 4460
+          "latency_ms": 2782
         },
-        "cost_usd": 0.0897,
-        "cost_estimated": true,
-        "measured": "2026-07-21",
-        "git_sha": "ac574bf",
-        "note": "Exact-ID GA challenger completed `13/13` without provider errors but did not beat the maintained Gemini 3 Flash `0.9703` score and cost more at current standard prices. Portable proof: `docs/evals/attempts/018-gemini36-flash-and-gemini35-flash-lite-bounded-challenger.md`.\n"
+        "latency_ms": 2782,
+        "cost_usd": 0.00584,
+        "cost_estimated": false,
+        "measured": "2026-07-22",
+        "git_sha": "41c06e2",
+        "note": "Full fresh `/evaluate-model` pilot after authenticated exact-model, native text, native image/strict-schema, and PromptFoo parity probes. The xAI adapter was repaired to enforce strict JSON Schema and retain served-model metadata before scoring. The no-cache run completed `11/13` with `0` provider errors, `overall = 0.7667`, average latency about `2782 ms`, and reported cost `$0.07598` total. Source inspection classified `Image001` title/date undercoverage and `Image011` seal/signature splitting as model-wrong. A high-reasoning retry repaired `0/2`. `git_sha` is the base HEAD, not the complete evaluated code identity: scoring used a dirty strict-schema adapter with SHA-256 `f0c1ba9a845471bdf63ef21e013e7a14361095740a66db80003274be019cf8d3`. Portable proof and the remaining code/result hashes: `docs/evals/attempts/019-grok45-evaluate-model-skill-pilot.md`.\n"
       },
       "attempts": [
         {
@@ -13372,6 +13403,14 @@
           "approach": "Correct the Flash-Lite detector transport with API-enforced JSON Schema and unambiguous integer bounding boxes",
           "note": "The strict schema raised the candidate from `8/13` to `12/13`, eliminated every structural output failure, cut average latency to about `1591 ms`, and cost an estimated `$0.0087`. It still missed the overall target because `Image121` reduced the lower-left portrait to a narrow strip. Manual source inspection confirmed model-wrong, not golden/scorer-wrong. Do not replace the maintained detector. Portable proof: `docs/evals/attempts/018-gemini36-flash-and-gemini35-flash-lite-bounded-challenger.md`.\n",
           "retry_when": []
+        },
+        {
+          "id": "019",
+          "date": "2026-07-22",
+          "status": "failed",
+          "approach": "Run Grok 4.5 through the complete `/evaluate-model` workflow with a fresh strict-schema comparison",
+          "note": "User-directed real-world skill pilot explicitly overrode the normal duplicate-evidence stop gate. Fresh first-party research and live access/native/contract/parity probes all passed. The adapter needed a strict-schema repair before valid scoring. Fresh Gemini 3 Flash passed `13/13` at `0.9629`; Grok passed `11/13` at `0.7667` with no provider errors. Manual inspection classified `Image001` and `Image011` as model-wrong, and high reasoning repaired `0/2`. Do not adopt. Portable proof: `docs/evals/attempts/019-grok45-evaluate-model-skill-pilot.md`.\n",
+          "retry_when": []
         }
       ],
       "retry_when": [
@@ -13396,11 +13435,11 @@
         ],
         "why_now": "Gemini 4 or equivalent may push past 0.95 target Golden references cover limited page types; add table-heavy pages",
         "last_relevant_action": {
-          "date": "2026-07-21",
+          "date": "2026-07-22",
           "source_type": "eval-attempt",
           "source": "docs/evals/registry.yaml",
-          "source_id": "018",
-          "summary": "The strict schema raised the candidate from `8/13` to `12/13`, eliminated every structural output failure, cut average latency to about `1591 ms`, and cost an estimated `$0.0087`. It still missed the overall target be..."
+          "source_id": "019",
+          "summary": "User-directed real-world skill pilot explicitly overrode the normal duplicate-evidence stop gate. Fresh first-party research and live access/native/contract/parity probes all passed. The adapter needed a strict-schema..."
         }
       }
     },
@@ -14088,6 +14127,14 @@
           "approach": "Promote Gemini 3.6 Flash to the page-context gate after its clean detector transport",
           "note": "Gemini 3.6 Flash completed `21/22` and falsely passed `page-122-001`; manual inspection confirmed neighboring-portrait leakage. Flash-Lite was not promoted after its losing detector and crop-only results. Portable proof: `docs/evals/attempts/018-gemini36-flash-and-gemini35-flash-lite-bounded-challenger.md`.\n",
           "retry_when": []
+        },
+        {
+          "id": "017",
+          "date": "2026-07-22",
+          "status": "partial",
+          "approach": "Gate the fresh Grok 4.5 `/evaluate-model` page-context arm behind its detector prerequisite",
+          "note": "The fresh strict-schema Grok detector completed transport-clean but reached only `11/13`, `0.7667` versus the `0.95` target and fresh Gemini incumbent `13/13`, `0.9629`. A high-reasoning retry repaired `0/2` source-verified misses. The 22-case page-context gate was not started because the candidate failed the predeclared prerequisite; page-context capability was therefore not measured and adoption was not advanced. The maintained GPT-5.5 Responses validator remains unchanged. Portable proof: `docs/evals/attempts/019-grok45-evaluate-model-skill-pilot.md`.\n",
+          "retry_when": []
         }
       ],
       "retry_when": [
@@ -14115,11 +14162,11 @@
         ],
         "why_now": "Rerun when a materially stronger validator or detector may reduce the current fail-labeled page-context cases. Rerun after any maintained crop/runtime simplification before claiming `trim_layout_text` or bounded capti...",
         "last_relevant_action": {
-          "date": "2026-07-21",
+          "date": "2026-07-22",
           "source_type": "eval-attempt",
           "source": "docs/evals/registry.yaml",
-          "source_id": "016",
-          "summary": "Gemini 3.6 Flash completed `21/22` and falsely passed `page-122-001`; manual inspection confirmed neighboring-portrait leakage. Flash-Lite was not promoted after its losing detector and crop-only results. Portable pro..."
+          "source_id": "017",
+          "summary": "The fresh strict-schema Grok detector completed transport-clean but reached only `11/13`, `0.7667` versus the `0.95` target and fresh Gemini incumbent `13/13`, `0.9629`. A high-reasoning retry repaired `0/2` source-ve..."
         }
       }
     },

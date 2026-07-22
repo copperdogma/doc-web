@@ -1,3 +1,11 @@
+## [2026-07-22-01] - Re-run Grok 4.5 through `/evaluate-model`
+
+### Added
+- Added a portable bounded skill-pilot summary covering first-party research, live exact-model/native/contract/parity probes, a fresh incumbent comparison, visual failure classification, and the bounded high-reasoning retry, with hashes and safe regeneration commands for ignored raw evidence.
+
+### Changed
+- Changed the eval registry and owning crop story logs to preserve the fresh detector `11/13`, `0.7667` no-adoption result while classifying the skipped page-context capability as not measured and keeping all maintained crop defaults unchanged.
+
 ## [2026-07-21-01] - Reject Gemini 3.6 Flash and Gemini 3.5 Flash-Lite challengers
 
 ### Added

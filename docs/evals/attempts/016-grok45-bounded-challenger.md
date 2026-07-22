@@ -96,11 +96,16 @@ before spending on the stricter page-context gate. Grok 4.5 missed both the
 `0.95` target and the maintained `0.9703` winner by a wide margin, and high
 reasoning did not repair its only hard failure.
 
-**Decision: do not adopt Grok 4.5 for doc-web's maintained crop detector or
-page-context validator.** Its low-reasoning path is fast and inexpensive, but
-the bbox fidelity loss is decisive for this project. Do not rerun the same
-prompt/reasoning variants; retry only after a materially revised Grok model or
-new evidence that its visual grounding changed.
+**Detector decision: do not adopt.** Its low-reasoning path is fast and
+inexpensive, but the bbox fidelity loss is decisive for this maintained surface.
+
+**Page-context capability: not measured; adoption not advanced.** The upstream
+detector failure validly stopped spend under the declared ladder, but it is not
+semantic evidence about the materially different page-context task. The
+maintained page-context validator remains unchanged. Do not rerun the same
+detector prompt/reasoning variants; advance to page context only after a
+materially revised Grok model or new visual-grounding evidence first clears the
+detector prerequisite.
 
 Official references:
 
