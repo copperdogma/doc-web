@@ -15,6 +15,7 @@ from __future__ import annotations
 
 import json
 import os
+import time
 from typing import Any
 
 import httpx
@@ -22,9 +23,10 @@ import httpx
 
 DEFAULT_MODEL = "kimi-k2.6"
 DEFAULT_MAX_COMPLETION_TOKENS = 4096
-KIMI_K26_CACHE_HIT_PRICE_PER_1M = 0.16
-KIMI_K26_INPUT_PRICE_PER_1M = 0.95
-KIMI_K26_OUTPUT_PRICE_PER_1M = 4.00
+MODEL_PRICES_PER_1M = {
+    "kimi-k2.6": {"cache_hit": 0.16, "input": 0.95, "output": 4.00},
+    "kimi-k3": {"cache_hit": 0.30, "input": 3.00, "output": 15.00},
+}
 
 
 def _normalize_messages(prompt: str) -> list[dict[str, Any]]:
@@ -56,8 +58,9 @@ def _normalize_messages(prompt: str) -> list[dict[str, Any]]:
 
 
 def _build_body(prompt: str) -> dict[str, Any]:
+    model = os.environ.get("MOONSHOT_KIMI_MODEL", DEFAULT_MODEL)
     body: dict[str, Any] = {
-        "model": os.environ.get("MOONSHOT_KIMI_MODEL", DEFAULT_MODEL),
+        "model": model,
         "messages": _normalize_messages(prompt),
         "max_completion_tokens": int(
             os.environ.get(
@@ -65,11 +68,17 @@ def _build_body(prompt: str) -> dict[str, Any]:
                 str(DEFAULT_MAX_COMPLETION_TOKENS),
             )
         ),
-        "thinking": {
-            "type": os.environ.get("MOONSHOT_KIMI_THINKING", "disabled"),
-        },
         "response_format": {"type": "json_object"},
     }
+    if model == "kimi-k3":
+        # K3 always reasons and rejects the K2.x `thinking` request field.
+        body["reasoning_effort"] = os.environ.get(
+            "MOONSHOT_KIMI_REASONING_EFFORT", "max"
+        )
+    else:
+        body["thinking"] = {
+            "type": os.environ.get("MOONSHOT_KIMI_THINKING", "disabled"),
+        }
     return body
 
 
@@ -108,15 +117,21 @@ def _token_usage(data: dict[str, Any]) -> dict[str, int] | None:
     }
 
 
-def _estimated_cost(token_usage: dict[str, int] | None) -> float | None:
+def _estimated_cost(
+    token_usage: dict[str, int] | None, model: str | None = None
+) -> float | None:
     if token_usage is None:
+        return None
+    selected_model = model or os.environ.get("MOONSHOT_KIMI_MODEL", DEFAULT_MODEL)
+    prices = MODEL_PRICES_PER_1M.get(selected_model)
+    if prices is None:
         return None
     prompt_tokens = max(0, token_usage["prompt"] - token_usage["cached"])
     cached_tokens = token_usage["cached"]
     return (
-        prompt_tokens * KIMI_K26_INPUT_PRICE_PER_1M
-        + cached_tokens * KIMI_K26_CACHE_HIT_PRICE_PER_1M
-        + token_usage["completion"] * KIMI_K26_OUTPUT_PRICE_PER_1M
+        prompt_tokens * prices["input"]
+        + cached_tokens * prices["cache_hit"]
+        + token_usage["completion"] * prices["output"]
     ) / 1_000_000
 
 
@@ -129,22 +144,31 @@ def call_api(prompt: str, options: dict[str, Any], context: dict[str, Any]):
 
     body = _build_body(prompt)
     timeout = float(os.environ.get("MOONSHOT_KIMI_TIMEOUT_SECONDS", "180"))
-    try:
-        response = httpx.post(
-            "https://api.moonshot.ai/v1/chat/completions",
-            headers={
-                "Authorization": f"Bearer {api_key}",
-                "Content-Type": "application/json",
-            },
-            json=body,
-            timeout=timeout,
-        )
-        response.raise_for_status()
-        data = response.json()
-    except httpx.HTTPStatusError as exc:
-        return {"error": f"API error: {exc.response.status_code} {exc.response.text}"}
-    except Exception as exc:
-        return {"error": f"{type(exc).__name__}: {exc}"}
+    max_attempts = int(os.environ.get("MOONSHOT_KIMI_MAX_ATTEMPTS", "4"))
+    response: httpx.Response | None = None
+    for attempt in range(max_attempts):
+        try:
+            response = httpx.post(
+                "https://api.moonshot.ai/v1/chat/completions",
+                headers={
+                    "Authorization": f"Bearer {api_key}",
+                    "Content-Type": "application/json",
+                },
+                json=body,
+                timeout=timeout,
+            )
+            response.raise_for_status()
+            data = response.json()
+            break
+        except httpx.HTTPStatusError as exc:
+            retryable = exc.response.status_code in {429, 500, 502, 503, 504}
+            if not retryable or attempt + 1 == max_attempts:
+                return {
+                    "error": f"API error: {exc.response.status_code} {exc.response.text}"
+                }
+            time.sleep(min(2**attempt, 8))
+        except Exception as exc:
+            return {"error": f"{type(exc).__name__}: {exc}"}
 
     output = _extract_output_text(data)
     if not output:
@@ -154,7 +178,7 @@ def call_api(prompt: str, options: dict[str, Any], context: dict[str, Any]):
     result: dict[str, Any] = {"output": output}
     if token_usage is not None:
         result["tokenUsage"] = token_usage
-        cost = _estimated_cost(token_usage)
+        cost = _estimated_cost(token_usage, body["model"])
         if cost is not None:
             result["cost"] = cost
     return result

@@ -1,3 +1,13 @@
+## [2026-07-22-02] - Record blocked Kimi K3 launch-day evaluation
+
+### Added
+- Added focused tests for the Moonshot PromptFoo provider's K2.6/K3 request and pricing contracts.
+- Added a tracked Kimi K3 launch-day attempt covering authenticated model visibility and blocked inference smokes.
+
+### Changed
+- Changed the bounded Moonshot provider to support K3's always-reasoning API contract, model-specific pricing, and bounded retry behavior while preserving K2.6 compatibility.
+- Changed the eval registry to record K3 as not yet adoptable because launch-day Moonshot overload prevented a quality measurement.
+
 ## [2026-07-22-01] - Re-run Grok 4.5 through `/evaluate-model`
 
 ### Added

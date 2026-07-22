@@ -822,6 +822,25 @@ evals:
           `Image011` as model-wrong, and high reasoning repaired `0/2`. Do not
           adopt. Portable proof:
           `docs/evals/attempts/019-grok45-evaluate-model-skill-pilot.md`.
+      - id: "020"
+        date: 2026-07-16
+        status: blocked
+        approach: "Screen Kimi K3 through Moonshot's direct API as a bounded launch-day detector challenger"
+        score_before: 0.9703
+        score_after: null
+        note: >
+          Authenticated `GET /v1/models` confirmed `kimi-k3` is visible to the
+          Dossier Moonshot account, and the repo-local provider was updated for
+          K3's required `reasoning_effort=max` request contract and official
+          model-specific pricing. No inference output was obtainable during the
+          launch-day pass: minimal text and base64-vision calls returned HTTP
+          429 `engine_overloaded_error`, while two one-case PromptFoo detector
+          smokes stalled and were stopped without result artifacts. No quality
+          score or mismatch classification is possible yet; maintained prompts,
+          scorers, goldens, and provider defaults remain unchanged. Retry once a
+          minimal vision call and one-case PromptFoo smoke both complete.
+          Portable proof:
+          `docs/evals/attempts/020-kimi-k3-launch-day-challenger.md`.
 
     retry_when:
       - condition: new-subject-model
@@ -1962,6 +1981,22 @@ evals:
           not advanced. The maintained GPT-5.5 Responses validator remains
           unchanged. Portable proof:
           `docs/evals/attempts/019-grok45-evaluate-model-skill-pilot.md`.
+      - id: "018"
+        date: 2026-07-16
+        status: blocked
+        approach: "Screen Kimi K3 as a bounded page-context validator challenger after its launch"
+        score_before: 1.0
+        score_after: null
+        note: >
+          The companion detector smoke never produced K3 output because
+          Moonshot returned launch-day `engine_overloaded_error` responses and
+          PromptFoo calls stalled. The 22-case page-context gate was therefore
+          intentionally not started: the eval ladder requires a successful
+          one-case vision smoke before the larger paid run. This is provider
+          availability evidence, not a model-quality failure. Retry the
+          maintained detector first once K3 inference is healthy, then run this
+          gate only if transport and output structure are sound. Portable proof:
+          `docs/evals/attempts/020-kimi-k3-launch-day-challenger.md`.
 
     retry_when:
       - condition: new-subject-model
