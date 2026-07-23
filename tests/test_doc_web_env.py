@@ -12,6 +12,17 @@ def test_build_child_env_maps_doc_web_moonshot_key(monkeypatch, tmp_path):
     assert env[CHILD_KEY_BY_PROVIDER["moonshot"]] == "moonshot-key"
 
 
+def test_build_child_env_maps_doc_web_openrouter_key(monkeypatch, tmp_path):
+    env_file = tmp_path / ".env"
+    env_file.write_text("DOC_WEB_OPENROUTER_API_KEY=openrouter-key\n")
+    monkeypatch.delenv("OPENROUTER_API_KEY", raising=False)
+
+    env = build_child_env(env_file=env_file)
+
+    assert env[DOC_WEB_KEY_BY_PROVIDER["openrouter"]] == "openrouter-key"
+    assert env[CHILD_KEY_BY_PROVIDER["openrouter"]] == "openrouter-key"
+
+
 def test_build_child_env_respects_doc_web_env_file_override(monkeypatch, tmp_path):
     env_file = tmp_path / ".env.main"
     env_file.write_text("DOC_WEB_MOONSHOT_API_KEY=override-key\n")

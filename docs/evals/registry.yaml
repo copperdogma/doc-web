@@ -824,7 +824,7 @@ evals:
           `docs/evals/attempts/019-grok45-evaluate-model-skill-pilot.md`.
       - id: "020"
         date: 2026-07-16
-        status: blocked
+        status: partial
         approach: "Screen Kimi K3 through Moonshot's direct API as a bounded launch-day detector challenger"
         score_before: 0.9703
         score_after: null
@@ -841,6 +841,30 @@ evals:
           minimal vision call and one-case PromptFoo smoke both complete.
           Portable proof:
           `docs/evals/attempts/020-kimi-k3-launch-day-challenger.md`.
+      - id: "021"
+        date: 2026-07-22
+        status: partial
+        approach: "Force-refresh Kimi K3 through `/evaluate-model` with attributable strict-schema transport"
+        score_before: 0.9635
+        score_after: 0.9844
+        note: >
+          The decision contract was frozen before spend, and the Moonshot
+          adapter was hardened to require strict task schemas, exact served
+          model, normal terminal state, valid usage evidence, and lossless
+          multimodal prompt normalization. Focused coverage passed `15/15`.
+          Direct Moonshot access returned HTTP 401, after which the user
+          explicitly authorized copying a sibling repo's OpenRouter key into
+          doc-web's ignored `.env`, then separately authorized transmitting the
+          checked-in public fixtures. Exact-model text, synthetic vision, and
+          PromptFoo parity probes passed through Moonshot AI with terminal
+          success. The fresh no-cache detector comparison passed `13/13` for
+          both models: K3 scored `0.9844` versus Gemini 3 Flash at `0.9635`,
+          winning 9/13 cases, but was about `3.91x` slower and `4.33x` as
+          expensive. K3 advanced to the distinct page-context gate and failed
+          its hard contract, so no default or second-model route is adopted.
+          Maintained prompts, scorers, goldens, and providers remain unchanged.
+          Portable proof:
+          `docs/evals/attempts/021-kimi-k3-force-fresh-evaluate-model.md`.
 
     retry_when:
       - condition: new-subject-model
@@ -1983,7 +2007,7 @@ evals:
           `docs/evals/attempts/019-grok45-evaluate-model-skill-pilot.md`.
       - id: "018"
         date: 2026-07-16
-        status: blocked
+        status: partial
         approach: "Screen Kimi K3 as a bounded page-context validator challenger after its launch"
         score_before: 1.0
         score_after: null
@@ -1997,6 +2021,25 @@ evals:
           maintained detector first once K3 inference is healthy, then run this
           gate only if transport and output structure are sound. Portable proof:
           `docs/evals/attempts/020-kimi-k3-launch-day-challenger.md`.
+      - id: "019"
+        date: 2026-07-22
+        status: failed
+        approach: "Gate the force-fresh Kimi K3 page-context arm behind access and detector qualification"
+        score_before: 1.0
+        score_after: 0.9545
+        note: >
+          After explicit OpenRouter credential and public-fixture payload
+          authorization, K3 cleared the detector prerequisite and separately
+          qualified the strict page-context contract. Its fresh no-cache run
+          completed without provider or schema errors but passed only `21/22`
+          versus the fresh GPT-5.5 Responses incumbent at `22/22`. Manual
+          source/crop inspection confirmed the sole `page-122-001` false
+          negative is model-wrong: the crop includes the entire neighboring
+          Sophie L'Heureux portrait, which K3 called acceptable at maximum
+          reasoning. This reproduces Kimi K2.6's safety-relevant blind spot.
+          The maintained GPT-5.5 Responses validator remains unchanged.
+          Portable proof:
+          `docs/evals/attempts/021-kimi-k3-force-fresh-evaluate-model.md`.
 
     retry_when:
       - condition: new-subject-model

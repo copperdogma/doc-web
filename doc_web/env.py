@@ -22,6 +22,7 @@ DOC_WEB_KEY_BY_PROVIDER = {
     "anthropic": "DOC_WEB_ANTHROPIC_API_KEY",
     "gemini": "DOC_WEB_GEMINI_API_KEY",
     "moonshot": "DOC_WEB_MOONSHOT_API_KEY",
+    "openrouter": "DOC_WEB_OPENROUTER_API_KEY",
 }
 
 CHILD_KEY_BY_PROVIDER = {
@@ -29,6 +30,7 @@ CHILD_KEY_BY_PROVIDER = {
     "anthropic": "ANTHROPIC_API_KEY",
     "gemini": "GEMINI_API_KEY",
     "moonshot": "MOONSHOT_API_KEY",
+    "openrouter": "OPENROUTER_API_KEY",
 }
 
 STALE_GOOGLE_KEY = "GOOGLE_API_KEY"

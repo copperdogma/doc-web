@@ -1,3 +1,14 @@
+## [2026-07-22-04] - Requalify Kimi K3 evaluation transport
+
+### Added
+- Added a force-fresh `/evaluate-model` attempt recording the predeclared K3 comparison, current first-party contract, zero-spend credential blocker, and exact unblock condition.
+- Added focused coverage for served-model attribution, terminal-state enforcement, strict detector/page-context schemas, malformed output, and lossless multimodal prompt normalization.
+
+### Changed
+- Changed the direct Moonshot benchmark adapter to fail closed unless K3 returns the exact requested model, a normal terminal choice, valid usage evidence, and locally validated strict JSON.
+- Changed the eval registry and owning crop story logs to record direct Moonshot authentication failure followed by successful exact-model OpenRouter qualification and fresh scored comparisons: K3 beat Gemini 3 Flash on detector mean quality but failed the hard page-context gate `21/22` versus GPT-5.5's `22/22`, so maintained crop defaults remain unchanged.
+- Changed the repo environment wrapper and Kimi adapter to support a repo-scoped exact OpenRouter route with normalized reasoning, required strict parameters, disabled fallbacks, and attributable provider/model evidence.
+
 ## [2026-07-22-03] - Preserve table-rescue usage instrumentation
 
 ### Added
