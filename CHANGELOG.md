@@ -1,3 +1,11 @@
+## [2026-07-22-03] - Preserve table-rescue usage instrumentation
+
+### Added
+- Added focused regression coverage for recursively converting SDK usage objects and nested values into JSON-native report data.
+
+### Fixed
+- Fixed `table_rescue_html_loop_v1` report generation so Pydantic-style OpenAI usage objects no longer fail JSONL serialization after a successful rescue call.
+
 ## [2026-07-22-02] - Record blocked Kimi K3 launch-day evaluation
 
 ### Added

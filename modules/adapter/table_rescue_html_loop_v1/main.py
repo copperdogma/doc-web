@@ -186,6 +186,20 @@ def _call_ocr(model: str, prompt: str, image_data: str, temperature: float, max_
     return raw, usage, request_id
 
 
+def _json_safe(value: Any) -> Any:
+    if value is None or isinstance(value, (str, int, float, bool)):
+        return value
+    if isinstance(value, dict):
+        return {str(key): _json_safe(item) for key, item in value.items()}
+    if isinstance(value, (list, tuple)):
+        return [_json_safe(item) for item in value]
+    if hasattr(value, "model_dump"):
+        return _json_safe(value.model_dump())
+    if hasattr(value, "__dict__"):
+        return _json_safe(vars(value))
+    return str(value)
+
+
 def _resolve_default_outdir(input_path: Path, module_id: str) -> Path:
     cur = input_path.parent
     for parent in [cur] + list(cur.parents):
@@ -373,7 +387,7 @@ def main() -> None:
                 "attempted": True,
                 "model": args.model,
                 "prompt_hash": prompt_hash,
-                "usage": usage,
+                "usage": _json_safe(usage),
                 "request_id": request_id,
                 "before": before.__dict__,
                 "after": after.__dict__,
