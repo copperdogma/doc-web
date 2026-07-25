@@ -342,6 +342,34 @@ evals:
           `Image124`, and `Image126`. This does not replace the maintained
           Gemini 3 Flash detector. Portable tracked proof:
           `docs/evals/attempts/014-sonnet5-bounded-challenger.md`.
+      - model: "Claude Opus 5 (conservative-count prompt, adaptive high effort)"
+        metrics:
+          overall: 0.8922
+          pass_rate: 1.0
+          cases_total: 13
+          latency_ms: 5458
+        latency_ms: 5458
+        cost_usd: 0.0274
+        cost_estimated: true
+        measured: 2026-07-25
+        git_sha: 3bb7ad9
+        note: >
+          Exact `claude-opus-5` qualified through native strict-schema text,
+          generated synthetic vision, and a one-case PromptFoo parity smoke
+          after one explicitly approved provider-schema probe. The frozen
+          no-cache detector then passed all `13/13` per-case assertions with
+          `0` provider errors but scored only `0.8922`, below the maintained
+          `>= 0.95` aggregate promotion target. Average latency was `5458 ms`;
+          detector spend was `$0.355715` (`$0.0274` per case). Manual source
+          and golden inspection classified the weakest results as model-wrong:
+          counts were correct, but boxes systematically extended into captions
+          or surrounding page space. The conditional 22-case page-context gate
+          was therefore not run, so that capability remains unmeasured. No
+          maintained provider, prompt, scorer, golden, or runtime default
+          changed. Evidence is anchored to base HEAD `3bb7ad9`, adapter SHA-256
+          `f6b76068d915968bbf9790d5447fa7f39f4a21808914c0dccb011986cb748c61`,
+          and portable proof
+          `docs/evals/attempts/022-opus5-evaluate-model.md`.
       - model: "GPT-5.6 Sol Responses (conservative-count prompt, reasoning none)"
         metrics:
           overall: 0.9403
@@ -865,6 +893,31 @@ evals:
           Maintained prompts, scorers, goldens, and providers remain unchanged.
           Portable proof:
           `docs/evals/attempts/021-kimi-k3-force-fresh-evaluate-model.md`.
+      - id: "022"
+        date: 2026-07-24
+        status: failed
+        approach: "Qualify Claude Opus 5 through `/evaluate-model` before the progressive detector and page-context ladder"
+        score_before: 0.9703
+        score_after: 0.8922
+        note: >
+          Authenticated model discovery listed exact `claude-opus-5`, and
+          current first-party Anthropic docs confirm image input, adaptive
+          thinking, high effort, native JSON Schema, and `$5/M` input plus
+          `$25/M` output pricing. The direct Anthropic adapter was hardened to
+          require lossless prompt normalization, strict output, exact served
+          model, terminal `end_turn`, valid usage, and local contract
+          validation; focused coverage passes `8/8`. The initial native schema
+          probes were blocked by Anthropic's narrower supported subset. After
+          the user explicitly approved one additional provider-compatible
+          probe, strict text, generated synthetic-image, and one-case
+          PromptFoo parity qualification all passed. The full frozen detector
+          passed `13/13` per-case assertions with `0` errors but scored only
+          `0.8922`, below the `>= 0.95` promotion target. Manual inspection
+          found model-wrong loose boxes extending into captions or surrounding
+          page space. Successful-call spend was `$0.390110`. Per the
+          predeclared progressive gate, the 22-case page-context task was not
+          run; that capability remains unmeasured. Do not adopt. Portable
+          proof: `docs/evals/attempts/022-opus5-evaluate-model.md`.
 
     retry_when:
       - condition: new-subject-model

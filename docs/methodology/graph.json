@@ -1125,11 +1125,11 @@
           ],
           "why_now": "Gemini 4 or equivalent may push past 0.95 target Golden references cover limited page types; add table-heavy pages",
           "last_relevant_action": {
-            "date": "2026-07-22",
+            "date": "2026-07-24",
             "source_type": "eval-attempt",
             "source": "docs/evals/registry.yaml",
-            "source_id": "021",
-            "summary": "The decision contract was frozen before spend, and the Moonshot adapter was hardened to require strict task schemas, exact served model, normal terminal state, valid usage evidence, and lossless multimodal prompt norm..."
+            "source_id": "022",
+            "summary": "Authenticated model discovery listed exact `claude-opus-5`, and current first-party Anthropic docs confirm image input, adaptive thinking, high effort, native JSON Schema, and `$5/M` input plus `$25/M` output pricing...."
           },
           "story_ids": [
             "135",
@@ -1615,12 +1615,12 @@
           "source_path": "docs/stories/story-207-refresh-crop-c4-proof-and-coverage-truth-surfaces.md",
           "recommended_now": false,
           "posture": "completed",
-          "why_now": "force-fresh Kimi K3 completed comparison: after explicit authorization to transmit the checked-in public fixtures through OpenRouter, the no-cache K3 detector passed `13/13` at `0.9844` versus fresh Gemini 3 Flash at...",
+          "why_now": "Claude Opus 5 approved resume and detector result: the explicitly approved provider-compatible schema probe passed, followed by exact-model strict text, generated synthetic-image, and one-case PromptFoo parity qualifi...",
           "last_relevant_action": {
-            "date": "2026-07-22",
+            "date": "2026-07-25",
             "source_type": "story-work-log",
             "source": "docs/stories/story-207-refresh-crop-c4-proof-and-coverage-truth-surfaces.md",
-            "summary": "force-fresh Kimi K3 completed comparison: after explicit authorization to transmit the checked-in public fixtures through OpenRouter, the no-cache K3 detector passed `13/13` at `0.9844` versus fresh Gemini 3 Flash at..."
+            "summary": "Claude Opus 5 approved resume and detector result: the explicitly approved provider-compatible schema probe passed, followed by exact-model strict text, generated synthetic-image, and one-case PromptFoo parity qualifi..."
           },
           "story_ids": [
             "181",
@@ -11155,9 +11155,9 @@
       "blocker_evidence": "",
       "unblock_condition": "",
       "last_work_log_entry": {
-        "timestamp": "20260722-1935",
-        "date": "2026-07-22",
-        "summary": "force-fresh Kimi K3 completed comparison: after explicit authorization to transmit the checked-in public fixtures through OpenRouter, the no-cache K3 detector passed `13/13` at `0.9844` versus fresh Gemini 3 Flash at..."
+        "timestamp": "20260725-0015",
+        "date": "2026-07-25",
+        "summary": "Claude Opus 5 approved resume and detector result: the explicitly approved provider-compatible schema probe passed, followed by exact-model strict text, generated synthetic-image, and one-case PromptFoo parity qualifi..."
       },
       "legacy_build_map_refs": "",
       "metadata_source": "frontmatter",
@@ -11168,12 +11168,12 @@
         "source_path": "docs/stories/story-207-refresh-crop-c4-proof-and-coverage-truth-surfaces.md",
         "recommended_now": false,
         "posture": "completed",
-        "why_now": "force-fresh Kimi K3 completed comparison: after explicit authorization to transmit the checked-in public fixtures through OpenRouter, the no-cache K3 detector passed `13/13` at `0.9844` versus fresh Gemini 3 Flash at...",
+        "why_now": "Claude Opus 5 approved resume and detector result: the explicitly approved provider-compatible schema probe passed, followed by exact-model strict text, generated synthetic-image, and one-case PromptFoo parity qualifi...",
         "last_relevant_action": {
-          "date": "2026-07-22",
+          "date": "2026-07-25",
           "source_type": "story-work-log",
           "source": "docs/stories/story-207-refresh-crop-c4-proof-and-coverage-truth-surfaces.md",
-          "summary": "force-fresh Kimi K3 completed comparison: after explicit authorization to transmit the checked-in public fixtures through OpenRouter, the no-cache K3 detector passed `13/13` at `0.9844` versus fresh Gemini 3 Flash at..."
+          "summary": "Claude Opus 5 approved resume and detector result: the explicitly approved provider-compatible schema probe passed, followed by exact-model strict text, generated synthetic-image, and one-case PromptFoo parity qualifi..."
         }
       }
     },
@@ -11293,9 +11293,9 @@
       "blocker_evidence": "",
       "unblock_condition": "",
       "last_work_log_entry": {
-        "timestamp": "20260722-1935",
-        "date": "2026-07-22",
-        "summary": "force-fresh Kimi K3 page-context result: after explicit authorization to send the checked-in public fixtures, K3 separately passed the strict page-context smoke and completed all 22 no-cache cases with exact served mo..."
+        "timestamp": "20260725-0015",
+        "date": "2026-07-25",
+        "summary": "Claude Opus 5 progressive-gate result: after transport qualification, the frozen 13-case detector passed all `13/13` per-case assertions but produced only `0.8922` aggregate quality, below the predeclared `>= 0.95` pr..."
       },
       "legacy_build_map_refs": "",
       "metadata_source": "frontmatter",
@@ -11306,12 +11306,12 @@
         "source_path": "docs/stories/story-209-crop-c5-page-level-deletion-gate.md",
         "recommended_now": false,
         "posture": "completed",
-        "why_now": "force-fresh Kimi K3 page-context result: after explicit authorization to send the checked-in public fixtures, K3 separately passed the strict page-context smoke and completed all 22 no-cache cases with exact served mo...",
+        "why_now": "Claude Opus 5 progressive-gate result: after transport qualification, the frozen 13-case detector passed all `13/13` per-case assertions but produced only `0.8922` aggregate quality, below the predeclared `>= 0.95` pr...",
         "last_relevant_action": {
-          "date": "2026-07-22",
+          "date": "2026-07-25",
           "source_type": "story-work-log",
           "source": "docs/stories/story-209-crop-c5-page-level-deletion-gate.md",
-          "summary": "force-fresh Kimi K3 page-context result: after explicit authorization to send the checked-in public fixtures, K3 separately passed the strict page-context smoke and completed all 22 no-cache cases with exact served mo..."
+          "summary": "Claude Opus 5 progressive-gate result: after transport qualification, the frozen 13-case detector passed all `13/13` per-case assertions but produced only `0.8922` aggregate quality, below the predeclared `>= 0.95` pr..."
         }
       }
     },
@@ -13107,6 +13107,21 @@
           "note": "Bounded Anthropic challenger after the 2026-06-29 Claude Sonnet 5 API release. `python scripts/discover-models.py --check-new` confirmed `claude-sonnet-5` is live through the repo-local Anthropic key, so the run reused the direct Anthropic/no-sampling provider with adaptive thinking enabled, `output_config` effort high, and Sonnet-specific introductory token prices supplied by environment variables. Command: `cd benchmarks && ANTHROPIC_OPUS48_MODEL=claude-sonnet-5 ANTHROPIC_MESSAGES_INPUT_PRICE_PER_1M=2 ANTHROPIC_MESSAGES_OUTPUT_PRICE_PER_1M=10 ../scripts/run_with_doc_web_env.py promptfoo eval -c tasks/image-crop-extraction.yaml --providers python:$(pwd)/providers/anthropic_opus48_messages.py --filter-prompts 'conservative-count' --output results/sonnet5-image-crop-extraction-20260630.json --no-cache -j 1`. The run completed `5/13` with `0` provider errors, `overall = 0.5334`, `pass_rate = 0.3846`, average latency about `3834 ms`, `56874` prompt tokens, `1416` completion tokens, and estimated Sonnet 5 cost about `$0.1279` total (`$0.0098` per case). Failures were model-wrong bbox/coordinate misses on `Image001`, `Image003`, `Image011`, `Image013`, `Image021`, `Image037`, `Image124`, and `Image126`. This does not replace the maintained Gemini 3 Flash detector. Portable tracked proof: `docs/evals/attempts/014-sonnet5-bounded-challenger.md`.\n"
         },
         {
+          "model": "Claude Opus 5 (conservative-count prompt, adaptive high effort)",
+          "metrics": {
+            "overall": 0.8922,
+            "pass_rate": 1.0,
+            "cases_total": 13,
+            "latency_ms": 5458
+          },
+          "latency_ms": 5458,
+          "cost_usd": 0.0274,
+          "cost_estimated": true,
+          "measured": "2026-07-25",
+          "git_sha": "3bb7ad9",
+          "note": "Exact `claude-opus-5` qualified through native strict-schema text, generated synthetic vision, and a one-case PromptFoo parity smoke after one explicitly approved provider-schema probe. The frozen no-cache detector then passed all `13/13` per-case assertions with `0` provider errors but scored only `0.8922`, below the maintained `>= 0.95` aggregate promotion target. Average latency was `5458 ms`; detector spend was `$0.355715` (`$0.0274` per case). Manual source and golden inspection classified the weakest results as model-wrong: counts were correct, but boxes systematically extended into captions or surrounding page space. The conditional 22-case page-context gate was therefore not run, so that capability remains unmeasured. No maintained provider, prompt, scorer, golden, or runtime default changed. Evidence is anchored to base HEAD `3bb7ad9`, adapter SHA-256 `f6b76068d915968bbf9790d5447fa7f39f4a21808914c0dccb011986cb748c61`, and portable proof `docs/evals/attempts/022-opus5-evaluate-model.md`.\n"
+        },
+        {
           "model": "GPT-5.6 Sol Responses (conservative-count prompt, reasoning none)",
           "metrics": {
             "overall": 0.9403,
@@ -13245,19 +13260,19 @@
         }
       ],
       "latest_score": {
-        "model": "Grok 4.5 Responses (strict schema skill pilot, reasoning low)",
+        "model": "Claude Opus 5 (conservative-count prompt, adaptive high effort)",
         "metrics": {
-          "overall": 0.7667,
-          "pass_rate": 0.8462,
+          "overall": 0.8922,
+          "pass_rate": 1.0,
           "cases_total": 13,
-          "latency_ms": 2782
+          "latency_ms": 5458
         },
-        "latency_ms": 2782,
-        "cost_usd": 0.00584,
-        "cost_estimated": false,
-        "measured": "2026-07-22",
-        "git_sha": "41c06e2",
-        "note": "Full fresh `/evaluate-model` pilot after authenticated exact-model, native text, native image/strict-schema, and PromptFoo parity probes. The xAI adapter was repaired to enforce strict JSON Schema and retain served-model metadata before scoring. The no-cache run completed `11/13` with `0` provider errors, `overall = 0.7667`, average latency about `2782 ms`, and reported cost `$0.07598` total. Source inspection classified `Image001` title/date undercoverage and `Image011` seal/signature splitting as model-wrong. A high-reasoning retry repaired `0/2`. `git_sha` is the base HEAD, not the complete evaluated code identity: scoring used a dirty strict-schema adapter with SHA-256 `f0c1ba9a845471bdf63ef21e013e7a14361095740a66db80003274be019cf8d3`. The byte-exact scored adapter is tracked at `docs/evals/evidence/019-xai-grok-responses-evaluated.py`. Portable proof and the remaining code/result hashes: `docs/evals/attempts/019-grok45-evaluate-model-skill-pilot.md`.\n"
+        "latency_ms": 5458,
+        "cost_usd": 0.0274,
+        "cost_estimated": true,
+        "measured": "2026-07-25",
+        "git_sha": "3bb7ad9",
+        "note": "Exact `claude-opus-5` qualified through native strict-schema text, generated synthetic vision, and a one-case PromptFoo parity smoke after one explicitly approved provider-schema probe. The frozen no-cache detector then passed all `13/13` per-case assertions with `0` provider errors but scored only `0.8922`, below the maintained `>= 0.95` aggregate promotion target. Average latency was `5458 ms`; detector spend was `$0.355715` (`$0.0274` per case). Manual source and golden inspection classified the weakest results as model-wrong: counts were correct, but boxes systematically extended into captions or surrounding page space. The conditional 22-case page-context gate was therefore not run, so that capability remains unmeasured. No maintained provider, prompt, scorer, golden, or runtime default changed. Evidence is anchored to base HEAD `3bb7ad9`, adapter SHA-256 `f6b76068d915968bbf9790d5447fa7f39f4a21808914c0dccb011986cb748c61`, and portable proof `docs/evals/attempts/022-opus5-evaluate-model.md`.\n"
       },
       "attempts": [
         {
@@ -13427,6 +13442,14 @@
           "approach": "Force-refresh Kimi K3 through `/evaluate-model` with attributable strict-schema transport",
           "note": "The decision contract was frozen before spend, and the Moonshot adapter was hardened to require strict task schemas, exact served model, normal terminal state, valid usage evidence, and lossless multimodal prompt normalization. Focused coverage passed `15/15`. Direct Moonshot access returned HTTP 401, after which the user explicitly authorized copying a sibling repo's OpenRouter key into doc-web's ignored `.env`, then separately authorized transmitting the checked-in public fixtures. Exact-model text, synthetic vision, and PromptFoo parity probes passed through Moonshot AI with terminal success. The fresh no-cache detector comparison passed `13/13` for both models: K3 scored `0.9844` versus Gemini 3 Flash at `0.9635`, winning 9/13 cases, but was about `3.91x` slower and `4.33x` as expensive. K3 advanced to the distinct page-context gate and failed its hard contract, so no default or second-model route is adopted. Maintained prompts, scorers, goldens, and providers remain unchanged. Portable proof: `docs/evals/attempts/021-kimi-k3-force-fresh-evaluate-model.md`.\n",
           "retry_when": []
+        },
+        {
+          "id": "022",
+          "date": "2026-07-24",
+          "status": "failed",
+          "approach": "Qualify Claude Opus 5 through `/evaluate-model` before the progressive detector and page-context ladder",
+          "note": "Authenticated model discovery listed exact `claude-opus-5`, and current first-party Anthropic docs confirm image input, adaptive thinking, high effort, native JSON Schema, and `$5/M` input plus `$25/M` output pricing. The direct Anthropic adapter was hardened to require lossless prompt normalization, strict output, exact served model, terminal `end_turn`, valid usage, and local contract validation; focused coverage passes `8/8`. The initial native schema probes were blocked by Anthropic's narrower supported subset. After the user explicitly approved one additional provider-compatible probe, strict text, generated synthetic-image, and one-case PromptFoo parity qualification all passed. The full frozen detector passed `13/13` per-case assertions with `0` errors but scored only `0.8922`, below the `>= 0.95` promotion target. Manual inspection found model-wrong loose boxes extending into captions or surrounding page space. Successful-call spend was `$0.390110`. Per the predeclared progressive gate, the 22-case page-context task was not run; that capability remains unmeasured. Do not adopt. Portable proof: `docs/evals/attempts/022-opus5-evaluate-model.md`.\n",
+          "retry_when": []
         }
       ],
       "retry_when": [
@@ -13451,11 +13474,11 @@
         ],
         "why_now": "Gemini 4 or equivalent may push past 0.95 target Golden references cover limited page types; add table-heavy pages",
         "last_relevant_action": {
-          "date": "2026-07-22",
+          "date": "2026-07-24",
           "source_type": "eval-attempt",
           "source": "docs/evals/registry.yaml",
-          "source_id": "021",
-          "summary": "The decision contract was frozen before spend, and the Moonshot adapter was hardened to require strict task schemas, exact served model, normal terminal state, valid usage evidence, and lossless multimodal prompt norm..."
+          "source_id": "022",
+          "summary": "Authenticated model discovery listed exact `claude-opus-5`, and current first-party Anthropic docs confirm image input, adaptive thinking, high effort, native JSON Schema, and `$5/M` input plus `$25/M` output pricing...."
         }
       }
     },

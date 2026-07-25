@@ -1,3 +1,13 @@
+## [2026-07-25-01] - Reject Claude Opus 5 crop challenger
+
+### Added
+- Added focused fail-closed coverage for Anthropic strict schemas, exact served-model attribution, terminal completion, usage evidence, and lossless multimodal normalization.
+- Added a tracked Claude Opus 5 evaluation attempt covering transport qualification, the frozen 13-case detector, manual failure classification, and the progressive-gate decision.
+
+### Changed
+- Changed the direct Anthropic benchmark adapter to support provider-native task schemas while locally enforcing unsupported crop-coordinate constraints.
+- Changed the eval registry and owning crop story logs to record Opus 5's below-target `0.8922` detector result and preserve the unmeasured 22-case page-context capability, maintained providers, and runtime defaults.
+
 ## [2026-07-22-04] - Requalify Kimi K3 evaluation transport
 
 ### Added
