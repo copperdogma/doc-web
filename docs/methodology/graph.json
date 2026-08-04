@@ -333,7 +333,8 @@
           "207",
           "209",
           "226",
-          "227"
+          "227",
+          "231"
         ],
         "adr_ids": [],
         "eval_ids": [
@@ -584,7 +585,8 @@
           "223",
           "224",
           "225",
-          "226"
+          "226",
+          "231"
         ],
         "adr_ids": [
           "ADR-002"
@@ -1106,7 +1108,8 @@
           "207",
           "209",
           "226",
-          "227"
+          "227",
+          "231"
         ],
         "eval_ids": [
           "image-crop-extraction",
@@ -1125,11 +1128,11 @@
           ],
           "why_now": "Gemini 4 or equivalent may push past 0.95 target Golden references cover limited page types; add table-heavy pages",
           "last_relevant_action": {
-            "date": "2026-07-24",
+            "date": "2026-08-03",
             "source_type": "eval-attempt",
             "source": "docs/evals/registry.yaml",
-            "source_id": "022",
-            "summary": "Authenticated model discovery listed exact `claude-opus-5`, and current first-party Anthropic docs confirm image input, adaptive thinking, high effort, native JSON Schema, and `$5/M` input plus `$25/M` output pricing...."
+            "source_id": "023",
+            "summary": "Current official pricing, authenticated exact-ID discovery, strict text, native image, and PromptFoo parity probes all passed. The OpenAI adapter was hardened to require exact served identity, terminal completion, los..."
           },
           "story_ids": [
             "135",
@@ -1139,7 +1142,8 @@
             "207",
             "209",
             "226",
-            "227"
+            "227",
+            "231"
           ],
           "eval_ids": [
             "image-crop-extraction",
@@ -1163,7 +1167,8 @@
           "198",
           "207",
           "209",
-          "226"
+          "226",
+          "231"
         ],
         "eval_ids": [
           "crop-validation",
@@ -1183,11 +1188,11 @@
           ],
           "why_now": "Rerun when a materially stronger validator or detector may reduce the current fail-labeled page-context cases. Rerun after any maintained crop/runtime simplification before claiming `trim_layout_text` or bounded capti...",
           "last_relevant_action": {
-            "date": "2026-07-22",
+            "date": "2026-08-03",
             "source_type": "eval-attempt",
             "source": "docs/evals/registry.yaml",
-            "source_id": "019",
-            "summary": "After explicit OpenRouter credential and public-fixture payload authorization, K3 cleared the detector prerequisite and separately qualified the strict page-context contract. Its fresh no-cache run completed without p..."
+            "source_id": "020",
+            "summary": "Fresh strict-schema Luna detector evidence cleared `>= 0.95` and materially improved value, but its `0.9650` quality was only `0.0027` above the prior Luna run and remained below the best eligible Gemini evidence. Tha..."
           },
           "story_ids": [
             "135",
@@ -1196,7 +1201,8 @@
             "198",
             "207",
             "209",
-            "226"
+            "226",
+            "231"
           ],
           "eval_ids": [
             "crop-validation",
@@ -1330,7 +1336,8 @@
           "216",
           "217",
           "225",
-          "226"
+          "226",
+          "231"
         ],
         "eval_ids": [],
         "actionability": {
@@ -1387,7 +1394,8 @@
             "216",
             "217",
             "225",
-            "226"
+            "226",
+            "231"
           ],
           "eval_ids": []
         }
@@ -11293,9 +11301,9 @@
       "blocker_evidence": "",
       "unblock_condition": "",
       "last_work_log_entry": {
-        "timestamp": "20260725-0015",
-        "date": "2026-07-25",
-        "summary": "Claude Opus 5 progressive-gate result: after transport qualification, the frozen 13-case detector passed all `13/13` per-case assertions but produced only `0.8922` aggregate quality, below the predeclared `>= 0.95` pr..."
+        "timestamp": "20260803-1408",
+        "date": "2026-08-03",
+        "summary": "GPT-5.6 Luna price-triggered follow-on result: the fresh Story 207 detector passed `13/13` at `0.9650` and materially improved value, but quality moved only `+0.0027` from Attempt 015 and stayed below the best eligibl..."
       },
       "legacy_build_map_refs": "",
       "metadata_source": "frontmatter",
@@ -11306,12 +11314,12 @@
         "source_path": "docs/stories/story-209-crop-c5-page-level-deletion-gate.md",
         "recommended_now": false,
         "posture": "completed",
-        "why_now": "Claude Opus 5 progressive-gate result: after transport qualification, the frozen 13-case detector passed all `13/13` per-case assertions but produced only `0.8922` aggregate quality, below the predeclared `>= 0.95` pr...",
+        "why_now": "GPT-5.6 Luna price-triggered follow-on result: the fresh Story 207 detector passed `13/13` at `0.9650` and materially improved value, but quality moved only `+0.0027` from Attempt 015 and stayed below the best eligibl...",
         "last_relevant_action": {
-          "date": "2026-07-25",
+          "date": "2026-08-03",
           "source_type": "story-work-log",
           "source": "docs/stories/story-209-crop-c5-page-level-deletion-gate.md",
-          "summary": "Claude Opus 5 progressive-gate result: after transport qualification, the frozen 13-case detector passed all `13/13` per-case assertions but produced only `0.8922` aggregate quality, below the predeclared `>= 0.95` pr..."
+          "summary": "GPT-5.6 Luna price-triggered follow-on result: the fresh Story 207 detector passed `13/13` at `0.9650` and materially improved value, but quality moved only `+0.0027` from Attempt 015 and stayed below the best eligibl..."
         }
       }
     },
@@ -12800,6 +12808,73 @@
           "summary": "mark-story-done: closed Story 230 with all top-level tasks and"
         }
       }
+    },
+    {
+      "id": "231",
+      "title": "Integrate GPT-5.6 Luna into the Production Crop Detector Route",
+      "path": "docs/stories/story-231-luna-production-crop-detector-route.md",
+      "status": "Done",
+      "priority": "High",
+      "ideal_refs": [
+        "Requirement #4 (Illustrate), Requirement #6 (Validate), AI-First, Fidelity to the source, Traceability is the product"
+      ],
+      "spec_refs": [
+        "spec:4",
+        "spec:4.1",
+        "spec:4.2",
+        "spec:8"
+      ],
+      "decision_refs": [
+        "`docs/ideal.md`, `docs/spec.md`, `docs/methodology/state.yaml`, `docs/methodology/graph.json`, `docs/evals/registry.yaml`, `docs/evals/attempts/023-gpt56-luna-price-refresh.md`, `docs/runbooks/crop-eval-workflow.md`, Stories 184/198/207/209, `configs/recipes/recipe-onward-images-html-mvp.yaml`, `modules/extract/crop_illustrations_guided_v1/main.py`, `modules/common/openai_client.py`, `tests/test_crop_runtime_recipe_contract.py`, and `None found after search in docs/decisions/`, `docs/scout/`, or `docs/notes/` for a narrower crop-provider-routing ADR"
+      ],
+      "adr_ids": [],
+      "depends_on": [
+        "198",
+        "207",
+        "209"
+      ],
+      "category_refs": [
+        "spec:4",
+        "spec:8"
+      ],
+      "compromise_refs": [
+        "B1",
+        "C4",
+        "C5"
+      ],
+      "input_coverage_refs": [
+        "image-directory-scans",
+        "scanned-pdf-tables"
+      ],
+      "architecture_domains": [
+        "document_structure_and_consistency"
+      ],
+      "roadmap_tags": [],
+      "blocker_summary": "",
+      "blocker_evidence": "",
+      "unblock_condition": "",
+      "last_work_log_entry": {
+        "timestamp": "20260803-1413",
+        "date": "2026-08-03",
+        "summary": "build-story implementation started after explicit user approval of the written Story 231 plan. Status moved from Pending to In Progress before code changes. The maintained recipe remains on Gemini during implementatio..."
+      },
+      "legacy_build_map_refs": "",
+      "metadata_source": "frontmatter",
+      "missing_frontmatter_keys": [],
+      "actionability": {
+        "source_kind": "story",
+        "source_id": "231",
+        "source_path": "docs/stories/story-231-luna-production-crop-detector-route.md",
+        "recommended_now": false,
+        "posture": "completed",
+        "why_now": "build-story implementation started after explicit user approval of the written Story 231 plan. Status moved from Pending to In Progress before code changes. The maintained recipe remains on Gemini during implementatio...",
+        "last_relevant_action": {
+          "date": "2026-08-03",
+          "source_type": "story-work-log",
+          "source": "docs/stories/story-231-luna-production-crop-detector-route.md",
+          "summary": "build-story implementation started after explicit user approval of the written Story 231 plan. Status moved from Pending to In Progress before code changes. The maintained recipe remains on Gemini during implementatio..."
+        }
+      }
     }
   ],
   "adrs": [
@@ -13167,6 +13242,21 @@
           "note": "Bounded GPT-5.6 Luna detector challenger through `benchmarks/providers/openai_responses_model.py` after official docs and model discovery confirmed the tier. Result artifact: `benchmarks/results/gpt56-luna-image-crop-extraction-20260711.json`. The run completed `13/13` with `0` provider errors, `overall = 0.9623`, average latency about `2187 ms`, `51027` prompt tokens, `906` completion tokens, and estimated Luna cost about `$0.0565` total (`$0.0043` per case). Luna is cheaper and faster than the maintained detector proof in this pass, but quality is below both Terra and the maintained Gemini 3 Flash score, so it does not replace the detector. Portable tracked proof: `docs/evals/attempts/015-gpt56-tier-sweep.md`.\n"
         },
         {
+          "model": "GPT-5.6 Luna Responses (price-refresh strict-schema detector)",
+          "metrics": {
+            "overall": 0.965,
+            "pass_rate": 1.0,
+            "cases_total": 13,
+            "latency_ms": 2306
+          },
+          "latency_ms": 2306,
+          "cost_usd": 0.000687,
+          "cost_estimated": true,
+          "measured": "2026-08-03",
+          "git_sha": "185dade",
+          "note": "Force-fresh first-party Responses rerun after OpenAI's 80% Luna price cut, using exact served identity, terminal-status and usage checks, strict JSON Schema, `store=false`, and current cache-aware pricing. Luna passed `13/13` at `0.9650`, averaged `2306 ms`, and cost `$0.00892992` total (`$0.000687` per case). The identical fresh Gemini 3 Flash control passed `13/13` at `0.9634`, averaged `6355 ms`, and cost `$0.0483065`: Luna was `2.76x` faster and `5.41x` cheaper. Manual source review found one model-wrong extra title crop on `Image011`; the result still clears the `>= 0.95` target but remains below the best eligible historical Gemini score of `0.9703`. Conditionally prefer Luna for detector value research only; do not infer a production runtime or page-context adoption. Portable proof: `docs/evals/attempts/023-gpt56-luna-price-refresh.md`.\n"
+        },
+        {
           "model": "Grok 4.5 Responses (conservative-count prompt, reasoning low)",
           "metrics": {
             "overall": 0.8026,
@@ -13260,19 +13350,19 @@
         }
       ],
       "latest_score": {
-        "model": "Claude Opus 5 (conservative-count prompt, adaptive high effort)",
+        "model": "GPT-5.6 Luna Responses (price-refresh strict-schema detector)",
         "metrics": {
-          "overall": 0.8922,
+          "overall": 0.965,
           "pass_rate": 1.0,
           "cases_total": 13,
-          "latency_ms": 5458
+          "latency_ms": 2306
         },
-        "latency_ms": 5458,
-        "cost_usd": 0.0274,
+        "latency_ms": 2306,
+        "cost_usd": 0.000687,
         "cost_estimated": true,
-        "measured": "2026-07-25",
-        "git_sha": "3bb7ad9",
-        "note": "Exact `claude-opus-5` qualified through native strict-schema text, generated synthetic vision, and a one-case PromptFoo parity smoke after one explicitly approved provider-schema probe. The frozen no-cache detector then passed all `13/13` per-case assertions with `0` provider errors but scored only `0.8922`, below the maintained `>= 0.95` aggregate promotion target. Average latency was `5458 ms`; detector spend was `$0.355715` (`$0.0274` per case). Manual source and golden inspection classified the weakest results as model-wrong: counts were correct, but boxes systematically extended into captions or surrounding page space. The conditional 22-case page-context gate was therefore not run, so that capability remains unmeasured. No maintained provider, prompt, scorer, golden, or runtime default changed. Evidence is anchored to base HEAD `3bb7ad9`, adapter SHA-256 `f6b76068d915968bbf9790d5447fa7f39f4a21808914c0dccb011986cb748c61`, and portable proof `docs/evals/attempts/022-opus5-evaluate-model.md`.\n"
+        "measured": "2026-08-03",
+        "git_sha": "185dade",
+        "note": "Force-fresh first-party Responses rerun after OpenAI's 80% Luna price cut, using exact served identity, terminal-status and usage checks, strict JSON Schema, `store=false`, and current cache-aware pricing. Luna passed `13/13` at `0.9650`, averaged `2306 ms`, and cost `$0.00892992` total (`$0.000687` per case). The identical fresh Gemini 3 Flash control passed `13/13` at `0.9634`, averaged `6355 ms`, and cost `$0.0483065`: Luna was `2.76x` faster and `5.41x` cheaper. Manual source review found one model-wrong extra title crop on `Image011`; the result still clears the `>= 0.95` target but remains below the best eligible historical Gemini score of `0.9703`. Conditionally prefer Luna for detector value research only; do not infer a production runtime or page-context adoption. Portable proof: `docs/evals/attempts/023-gpt56-luna-price-refresh.md`.\n"
       },
       "attempts": [
         {
@@ -13450,6 +13540,14 @@
           "approach": "Qualify Claude Opus 5 through `/evaluate-model` before the progressive detector and page-context ladder",
           "note": "Authenticated model discovery listed exact `claude-opus-5`, and current first-party Anthropic docs confirm image input, adaptive thinking, high effort, native JSON Schema, and `$5/M` input plus `$25/M` output pricing. The direct Anthropic adapter was hardened to require lossless prompt normalization, strict output, exact served model, terminal `end_turn`, valid usage, and local contract validation; focused coverage passes `8/8`. The initial native schema probes were blocked by Anthropic's narrower supported subset. After the user explicitly approved one additional provider-compatible probe, strict text, generated synthetic-image, and one-case PromptFoo parity qualification all passed. The full frozen detector passed `13/13` per-case assertions with `0` errors but scored only `0.8922`, below the `>= 0.95` promotion target. Manual inspection found model-wrong loose boxes extending into captions or surrounding page space. Successful-call spend was `$0.390110`. Per the predeclared progressive gate, the 22-case page-context task was not run; that capability remains unmeasured. Do not adopt. Portable proof: `docs/evals/attempts/022-opus5-evaluate-model.md`.\n",
           "retry_when": []
+        },
+        {
+          "id": "023",
+          "date": "2026-08-03",
+          "status": "passed",
+          "approach": "Force-refresh GPT-5.6 Luna after its 80% price cut using attributable strict-schema transport and a fresh Gemini control",
+          "note": "Current official pricing, authenticated exact-ID discovery, strict text, native image, and PromptFoo parity probes all passed. The OpenAI adapter was hardened to require exact served identity, terminal completion, lossless multimodal normalization, valid usage, strict local output validation, and cache-aware costs; focused tests passed `5/5`. The frozen no-cache detector comparison passed `13/13` for both arms. Luna reached `0.9650`, `2306 ms`, and `$0.00892992` total versus fresh Gemini at `0.9634`, `6355 ms`, and `$0.0483065`. Luna is the conditional detector value winner, not a broad default: one source-reviewed over-detection remains and its existing `19/22` page-context safety result is still disqualifying. No runtime, maintained provider, prompt, scorer, or golden changed. Portable proof: `docs/evals/attempts/023-gpt56-luna-price-refresh.md`.\n",
+          "retry_when": []
         }
       ],
       "retry_when": [
@@ -13474,11 +13572,11 @@
         ],
         "why_now": "Gemini 4 or equivalent may push past 0.95 target Golden references cover limited page types; add table-heavy pages",
         "last_relevant_action": {
-          "date": "2026-07-24",
+          "date": "2026-08-03",
           "source_type": "eval-attempt",
           "source": "docs/evals/registry.yaml",
-          "source_id": "022",
-          "summary": "Authenticated model discovery listed exact `claude-opus-5`, and current first-party Anthropic docs confirm image input, adaptive thinking, high effort, native JSON Schema, and `$5/M` input plus `$25/M` output pricing...."
+          "source_id": "023",
+          "summary": "Current official pricing, authenticated exact-ID discovery, strict text, native image, and PromptFoo parity probes all passed. The OpenAI adapter was hardened to require exact served identity, terminal completion, los..."
         }
       }
     },
@@ -14190,6 +14288,14 @@
           "approach": "Gate the force-fresh Kimi K3 page-context arm behind access and detector qualification",
           "note": "After explicit OpenRouter credential and public-fixture payload authorization, K3 cleared the detector prerequisite and separately qualified the strict page-context contract. Its fresh no-cache run completed without provider or schema errors but passed only `21/22` versus the fresh GPT-5.5 Responses incumbent at `22/22`. Manual source/crop inspection confirmed the sole `page-122-001` false negative is model-wrong: the crop includes the entire neighboring Sophie L'Heureux portrait, which K3 called acceptable at maximum reasoning. This reproduces Kimi K2.6's safety-relevant blind spot. The maintained GPT-5.5 Responses validator remains unchanged. Portable proof: `docs/evals/attempts/021-kimi-k3-force-fresh-evaluate-model.md`.\n",
           "retry_when": []
+        },
+        {
+          "id": "020",
+          "date": "2026-08-03",
+          "status": "partial",
+          "approach": "Gate Luna's price-triggered page-context rerun behind materially changed detector quality",
+          "note": "Fresh strict-schema Luna detector evidence cleared `>= 0.95` and materially improved value, but its `0.9650` quality was only `0.0027` above the prior Luna run and remained below the best eligible Gemini evidence. That is not a capability change that reopens Attempt 015's source-verified `19/22` Luna page-context result against this hard `22/22` safety contract. Per the predeclared progressive gate, no redundant 22-case rerun or fresh GPT-5.5 control was purchased. Keep the maintained GPT-5.5 validator. Portable proof: `docs/evals/attempts/023-gpt56-luna-price-refresh.md`.\n",
+          "retry_when": []
         }
       ],
       "retry_when": [
@@ -14217,11 +14323,11 @@
         ],
         "why_now": "Rerun when a materially stronger validator or detector may reduce the current fail-labeled page-context cases. Rerun after any maintained crop/runtime simplification before claiming `trim_layout_text` or bounded capti...",
         "last_relevant_action": {
-          "date": "2026-07-22",
+          "date": "2026-08-03",
           "source_type": "eval-attempt",
           "source": "docs/evals/registry.yaml",
-          "source_id": "019",
-          "summary": "After explicit OpenRouter credential and public-fixture payload authorization, K3 cleared the detector prerequisite and separately qualified the strict page-context contract. Its fresh no-cache run completed without p..."
+          "source_id": "020",
+          "summary": "Fresh strict-schema Luna detector evidence cleared `>= 0.95` and materially improved value, but its `0.9650` quality was only `0.0027` above the prior Luna run and remained below the best eligible Gemini evidence. Tha..."
         }
       }
     },

@@ -1,458 +1,362 @@
 ---
 name: evaluate-model
-description: Evaluate one or more AI models end to end for doc-web. Use for natural-language requests ranging from a broad new-model evaluation to a narrow task comparison, with or without exact slugs, providers, eval IDs, settings, or constraints. Resolve missing details, choose or validate a decision-bearing lane, qualify transport, run a fair bounded comparison, debug invalid attempts, preserve evidence, and give a scoped adoption verdict.
+description: Evaluate one or more AI models end to end for doc-web. Use for natural-language requests ranging from a broad new-model evaluation to a narrow task or decision-surface comparison, including long or self-correcting briefs, multiple candidates, audit-only review, or a force-fresh rerun. Resolve current access and model identity, choose maintained decision-bearing surfaces, qualify provider and structured-output transport, run a fair bounded comparison, debug invalid attempts, preserve exact evidence, and give scoped adoption recommendations without changing defaults from launch claims or bad harness output.
 user-invocable: true
 ---
 
 # /evaluate-model [natural-language evaluation brief]
 
-> Alignment check: Before choosing an approach, verify it aligns with `docs/ideal.md`
-> and relevant decision records in `docs/decisions/`. If this work touches a known
-> compromise in `docs/spec.md`, respect its limitation type and evolution path.
-> If none apply, say so explicitly.
+> Alignment check: Read `docs/ideal.md`,
+> `docs/methodology-ideal-spec-compromise.md`, `docs/methodology/state.yaml`,
+> `docs/methodology/graph.json`, generated views, and relevant records in
+> `docs/decisions/` before choosing a lane. Respect the current phase and
+> detector for any `docs/spec.md` compromise. If none apply, state that
+> explicitly.
 
-Evaluate the requested candidate set through defensible production-relevant
-call shapes, not by changing model names and accepting the first harness result.
+Evaluate the requested candidates through production-relevant call shapes. Do
+not merely replace a model name, run Promptfoo once, and treat every red cell as
+model-quality evidence.
 
-## Invocation Contract
+## Invocation and Authority
 
 Treat everything after `/evaluate-model` as an evaluation brief, not positional
-arguments. A model name alone is sufficient, but the brief may instead be long,
-informal, tightly scoped, or contain several candidates and explicit settings.
-Extract and preserve any supplied:
+arguments. A model name alone is enough. The brief may be informal, rambling,
+narrow, contain multiple models, or provide exact settings. Extract and retain:
 
-- candidate names, model families, exact slugs, providers, or access paths
-- target task, runtime stage, eval ID, fixture slice, or product decision
+- candidate names, families, exact slugs, providers, and access paths
+- task, runtime stage, decision surface, eval ID, fixture slice, or adoption
+  question
 - incumbent or requested head-to-head comparison
-- reasoning, thinking, output, schema, tool, sampling, or modality requirements
-- cost, latency, deadline, concurrency, privacy, safety, or data constraints
-- requested breadth, repeats, artifacts, or adoption standard
-- execution intent such as evaluate/run/test/compare versus plan/design/recommend
-- freshness intent such as reuse, rerun from scratch, reproduce/variance-check,
-  or exercise the evaluation workflow fresh
-- explicit exclusions and any later correction that supersedes earlier wording
+- reasoning/thinking, schema, tool, sampling, modality, and output constraints
+- cost, latency, privacy, safety, repeats, concurrency, or deadline limits
+- execute/test/compare intent versus plan/design/read-only intent
+- reuse, audit, force-fresh, reproduce, or variance intent
+- exclusions and later corrections; the latest clear instruction wins
 
-Resolve omitted details from current first-party documentation, authenticated
-access evidence, and repo truth. Do not ask the user to supply an eval ID, exact
-slug, provider, incumbent, or routine settings when those can be discovered.
-Do not silently discard a supplied constraint or reinterpret a narrow request as
-a general model tournament. In a long or self-correcting brief, the latest clear
-instruction wins; state any consequential interpretation before spending.
+Resolve routine omissions from current official documentation, authenticated
+access evidence, runtime configuration, and repo truth. Do not require a second
+command for discovery, story creation, eval triage, mismatch investigation, or
+recording. State consequential interpretations before spending.
 
-Unless explicitly limited to planning or read-only work, a request to evaluate,
-run, benchmark, test, or compare authorizes the smallest bounded execution under
-this skill's caps using configured doc-web credentials and payload-eligible
-fixtures. It also authorizes the normal
-repo-local story, adapter, artifact, registry, and methodology updates required
-to make that evaluation valid and durable. A request to plan, design, scope, or
-recommend remains read-only. Neither form authorizes copying credentials,
-overriding fixture privacy, redefining source-backed goldens to help a model,
-changing runtime defaults, committing, pushing, or broadening rollout.
+Unless explicitly limited to planning or audit, an evaluate/run/test/compare
+request authorizes the smallest bounded execution under this skill's limits,
+using configured doc-web credentials and eligible fixtures. It also
+authorizes the normal story, provider-lane, result, attempt, registry, and
+methodology updates needed to make that evaluation valid and durable. The
+request itself satisfies the plan gate for this standard bounded workflow once
+the plan is written in the owning story. Ask again only for a material scope
+expansion, new dependency or architecture, private payload not already
+approved, a higher spend cap, or a product/default decision reserved for the
+user. Evaluation never implicitly authorizes a default change, commit, push,
+deployment, credential copying, or rollout.
 
-Treat a clear request to rerun from scratch, reproduce prior evidence, measure
-variance, or exercise the workflow fresh as **force-fresh intent** even when the
-user does not use that label. A request only to inspect or audit existing
-evidence remains read-only unless it also asks for fresh execution. Force-fresh
-overrides only duplicate avoidance: retain and cite prior evidence, state the
-verification objective, use new artifact names and uncached subject calls, and
-report whether the result reproduces, weakens, or contradicts the prior result.
-It does not expand scope or relax credential, privacy, spend, fairness, tuning,
-retry, source-truth, default-change, commit, or rollout controls.
+A plan/design/read-only request makes no provider calls, runs no harness,
+creates no artifacts, and mutates no repo surface. Use the execution sections
+as an audit checklist and report gaps.
 
-When force-fresh intent leaves the comparison shape unstated, match it to the
-verification objective before spending. A workflow-acceptance or fresh
-adoption-comparison request reruns the relevant incumbent and candidate on the
-same frozen inputs. A candidate-variance or transport-reproduction request may
-run candidate-only, but cannot make a contemporaneous superiority claim. If
-existing uncommitted eval work could be confused with the new run, use distinct
-attempt and artifact identities and record the full dirty state; use an isolated
-worktree when that evidence cannot otherwise be separated. Never overwrite the
-earlier artifacts.
+Treat requests to rerun from scratch, reproduce, measure variance, or exercise
+the workflow fresh as **force-fresh** even without that label. Force-fresh only
+bypasses duplicate avoidance: preserve prior evidence, use new result/attempt
+identities, bypass subject caches, and retain all privacy, spend, fairness,
+retry, truth, and default-change controls. A fresh adoption comparison reruns
+the relevant candidate and incumbent on frozen inputs. Candidate-only
+transport or variance reproduction cannot support a contemporaneous
+superiority claim.
 
-For a read-only audit, do not make authenticated provider calls, run the
-harness, create artifacts, or mutate adapters, registry, stories, or methodology
-surfaces. Later execution sections become an audit checklist: inspect whether
-the recorded evidence satisfied them and report gaps. Browse current public
-documentation only when the brief requests current verification; otherwise
-preserve the dates and limitations of the evidence being audited.
+When force-fresh leaves the comparison shape unstated, infer it from the
+verification objective. A workflow-acceptance or fresh adoption request reruns
+the candidate and relevant incumbent on the same frozen inputs. A candidate
+variance or transport-reproduction request may remain candidate-only, with no
+current superiority claim.
 
-If neither the brief nor a stricter repo contract supplies a total budget, cap
-all provider spend for the invocation at **US$5**, including access/contract
-probes, candidate and incumbent calls, retries, and judge calls. Estimate and
-start a cost ledger before the first paid call. This is a ceiling, not a target.
-If the smallest valid decision-bearing run could exceed it, or pricing is too
-uncertain to bound conservatively, stop and request approval for an explicit
-higher cap before spending.
+If neither the brief nor a stricter repo contract supplies a total provider
+budget, cap all paid calls for the invocation at **US$5**. This includes access
+and contract probes, subjects, incumbents, retries, and judges. Start a ledger
+before the first paid call and update it after every stage. Stop and ask before
+spending if the smallest valid decision-bearing run may exceed the cap or
+pricing cannot be bounded conservatively.
 
-When scope is omitted, choose the single smallest high-leverage maintained
-doc-web lane whose result could change a real decision. For a narrow request,
-honor that surface and verify it is still decision-bearing. For an explicitly
-broad, portfolio, or across-doc-web request, choose the smallest set of
-materially distinct maintained decision surfaces that answers it, not every
-historical eval. For multiple candidates, qualify each independently and compare
-each against the same maintained incumbent per surface rather than creating
-pairwise tournaments. Use provider-appropriate call shapes rather than forcing
-identical but invalid parameters, and screen progressively so candidate count
-does not multiply an expensive full matrix.
-
-When a brief is rambling, consolidate it into a bounded interpretation, state
-material assumptions, and proceed. Ask only when work needs new credentials or
-authority, unapproved private payloads, spend materially beyond the repo's
-normal bounded eval, or a product preference between genuinely different paths
-that repo evidence cannot resolve. Also ask when explicit constraints conflict
-materially and no safe interpretation preserves the user's intent. If a named
-model cannot be identified or called reproducibly, or no maintained lane could
-change a decision, return an evidence-backed defer/no-eval result instead of
-inventing a benchmark.
-
-Apply the repo's model discovery, eval triage, story creation, and eval
-improvement workflows inside this command when needed. Do not require the user
-to issue separate slash commands before `/evaluate-model` can do its job.
+When the brief is broad, select the smallest portfolio of materially distinct
+maintained decision surfaces that can change a current doc-web decision. When
+it is narrow, honor that surface and verify that it is decision-bearing. For several
+candidates, qualify each independently and compare each with the same
+maintained references per surface; do not create pairwise tournaments. Screen
+progressively so candidate count does not multiply the full matrix.
 
 ## Non-Negotiable Rule
 
-Do not call a model bad when access, provider transport, the harness adapter,
-output contract, parser, cleanup, scorer, or judge failed before valid subject
-evidence was produced. Preserve those failures as operational evidence and keep
+Do not call a model bad when access, capacity, provider transport, adapter,
+prompt contract, output schema, parser, cleanup, scorer, judge, or golden failed
+before valid subject evidence existed. Preserve operational failures and keep
 them separate from semantic capability.
 
-## 1. Resolve the Brief, Candidates, and Owning Decision
+## 1. Resolve the Decision and Evidence Owner
 
-This is an **owning-repo workflow**: for execution, doc-web owns the runtime,
-credentials, fixtures, benchmark artifacts, registry, and adoption decision.
+1. Resolve colloquial launch names to exact API identities only when the mapping
+   is unambiguous. Never silently substitute another model, tier, or snapshot.
+2. Inspect `docs/evals/registry.yaml`, prior attempts and model-refresh stories,
+   current methodology state, runtime manifests/code, and live decision-surface
+   configuration.
+3. Check whether current source-backed evidence already answers the same
+   candidate/configuration/slot question. Reuse it unless force-fresh applies
+   or a model, provider, prompt, scorer, golden, runtime, or decision fact
+   materially changed.
+4. Rank maintained lanes by decision leverage, relevant capability coverage,
+   evidence gap, and cost. Do not run every historical eval by default.
+5. For execution, create or reuse the minimum coherent owning story and write
+   its decision contract before provider spend or eval mutation. Candidates on
+   one decision surface share ownership; do not create a story per model.
 
-First turn the brief into a working scope:
+Read before changing or spending:
 
-1. Identify the requested candidate set without assuming the user's wording is
-   an exact API slug. Resolve colloquial or launch names only when the mapping is
-   unambiguous; never silently substitute a different model.
-2. Separate explicit constraints from inferred defaults and note any tension
-   between the request and a production requirement.
-3. Inspect the registry, current runtime choices, open methodology state, and
-   prior attempts.
-4. Before creating work or spending, check whether a current, source-backed
-   attempt already answers the same candidate/configuration/surface question.
-   If no relevant model, provider, harness, prompt, scorer, golden, or runtime
-   fact has changed and force-fresh intent is absent, return the existing scoped
-   verdict and its evidence limits rather than manufacturing a rerun. When
-   force-fresh applies, preserve the earlier attempt as prior evidence rather
-   than current proof; do not copy its subject outputs or duplicate valid
-   ownership artifacts.
-5. Rank plausible lanes by ability to change a maintained decision, coverage of
-   the model's relevant capabilities, evidence gap, and evaluation cost. Select
-   one primary lane when scope was omitted. When breadth was explicit, select
-   the minimum bounded portfolio covering materially different runtime
-   decisions and state what is out of scope.
-6. For an execution request, create or select the minimum coherent owning story
-   set and write the decision contract before provider spend or mutation.
-   Candidates sharing one decision surface share ownership; split only when
-   runtime ownership or validation boundaries genuinely differ. For a read-only
-   request, identify the would-be owner without changing it. Do this inside the
-   command rather than handing the user another workflow step.
+- `AGENTS.md`, the alignment sources named above, and relevant spec/ADRs
+- `docs/evals/README.md`, registry entries, attempts, and recent refresh stories
+- the selected task, prompt, structural scorer, rubric, golden, provider path,
+  raw results, and `docs/runbooks/promptfoo.md`
+- repo-local discovery, create-story, create-eval, and improve-eval skills
 
-Read before spending tokens or changing eval surfaces:
+The decision contract must record:
 
-- `AGENTS.md`, `docs/ideal.md`, relevant `docs/spec.md` constraints,
-  `docs/methodology/state.yaml`, and `docs/methodology/graph.json`
-- `docs/evals/README.md`, `docs/evals/registry.yaml`, and prior attempt notes
-- candidate-relevant tasks, prompts, scorers, goldens, provider adapters,
-  result artifacts, and runbooks under `docs/runbooks/`
-- the repo-local instructions for discovery, eval triage, story creation, and
-  eval improvement that this command may need to perform internally
+- exact candidates/providers and requested configuration arms
+- named runtime stage/decision surface and eval IDs for each selected surface
+- current runtime default from executable config, not memory
+- best **eligible** maintained evidence after freshness, contract, fixture, and
+  target checks; this may differ from the runtime default or highest raw score
+- maintained prompt, fixtures, structural scorer, rubric/judge, golden, SHA,
+  and dynamic target from the current registry
+- quality, latency, cost, reliability, privacy, and safety gates
+- freshness objective, reusable evidence, stop conditions, and later gates
 
-Ensure any registry entry has the explicit story/category/compromise lineage
-required by the eval README. Reuse suitable existing ownership; do not create a
-story per model or duplicate process artifacts.
-
-Record a decision contract that scales to one or several candidates:
-
-- exact candidate/provider set and maintained incumbent configuration
-- named runtime stage and eval ID for every selected surface that could change
-- maintained prompt, fixtures, scorer/golden, current winning evidence, and SHA
-- quality threshold and any hard promotion gate
-- latency, cost, reliability, privacy, and safety limits
-- exact adoption question and the evidence that could answer it
-- freshness objective, evidence that may be reused, and whether a fresh
-  head-to-head or candidate-only reproduction is required
-- progressive stop conditions, including which later gate runs only after an
-  earlier gate passes
-
-For crop challengers, discover the current detector and page-context ladder from
-the registry and runbooks. Do not hard-code fixture counts, scores, thresholds,
-or incumbents from this skill. If no result could change a maintained decision,
-record what was inspected, why no lane qualifies, and the smallest condition
-that would make evaluation worthwhile; then stop and recommend no eval.
+Judge each slot independently. Failure on one slot must not block an unrelated
+slot; success on one slot must not generalize to another. A candidate that
+beats the runtime default but not the best eligible evidence is a maintenance
+signal, not automatically an adoption win. If no maintained lane can change a
+decision, return an evidence-backed no-eval/defer result.
 
 ## 2. Refresh External and Local Truth
 
-For execution, use current first-party provider documentation plus live
-owner-run evidence. Do not rely on announcement copy, model-family memory, a
-router catalog entry, or a PromptFoo alias alone. For a read-only audit, assess
-the recorded source dates and call evidence without turning this section into
-permission for a fresh authenticated probe.
+For execution, consult current first-party provider documentation and produce
+live owner-run evidence. Announcement copy, router catalogs, aliases, and model
+memory do not prove reproducible access.
 
-Build a dated call-contract sheet for every candidate on the selected surfaces:
+Build a dated call-contract sheet per candidate and selected surface:
 
-- exact model slug, aliases/tiers, availability, region, and access path
-- native endpoint/API family and current SDK or PromptFoo support
-- actual served-model/provider metadata, router fallback policy, and whether an
-  intermediary enforces every required parameter
-- required text/image/file/tool input shape and supported roles
-- strict JSON Schema or structured-output support and required API flags
-- reasoning/thinking controls and supported values
-- output-token control and whether reasoning consumes that budget
-- rejected sampling, stop, seed, penalty, or tool-choice parameters
-- pricing, rate/concurrency limits, service tier, and availability guidance
+- exact model slug, tier/snapshot mapping, region, and access path
+- native endpoint/API family and current SDK/Promptfoo/custom-provider support
+- served-model/provider metadata and router fallback policy
+- required text/image/video/file/tool input shape and supported roles
+- strict JSON Schema or structured-output support and required flags
+- reasoning/thinking controls, allowed values, and output-token interaction
+- rejected sampling, stop, seed, penalty, and tool parameters
+- current pricing, rate/concurrency limits, and availability guidance
 - retention, training, ZDR, and payload eligibility
 
-Use `python scripts/discover-models.py --check-new` only as catalog evidence; it
-does not prove callability and may not cover every custom provider. For xAI,
-Moonshot, routers, or other custom paths, verify the exact provider and model
-directly. Check OpenRouter when it is the best practical supported access path,
-but verify the served model and privacy policy rather than trusting listing
-availability.
+Run `python scripts/discover-models.py --check-new` with the checkout and
+interpreter resolved in Section 3. Treat it as catalog
+evidence, never as callability proof. Verify exact access with the owning
+provider or approved router. A marketing name and served API ID may differ;
+record the mapping and do not claim the requested model was tested without
+served-identity evidence.
 
-A provider marketing name, preview label, dated snapshot, and API slug may
-differ. Record the mapping and do not claim a model was tested unless response
-metadata or other provider evidence supports that exact identity. If several
-tiers or snapshots plausibly match the brief, choose the production-relevant
-one from repo and provider evidence or ask only when the choice changes the
-product question materially.
+## 3. Resolve the Benchmark Workspace and Credentials
 
-## 3. Qualify Transport Before Scoring
+Use the current doc-web checkout and verify the selected config, prompt, scorer,
+golden, adapter, and result directory all belong to the same intended code
+state. If relevant uncommitted eval work would make provenance ambiguous, record
+the dirty state exactly or use a clean isolated worktree.
 
-For execution, use repo-scoped credentials through
-`scripts/run_with_doc_web_env.py`. Never print or commit a key, and do not copy
-one from another repo without explicit user authorization for that scope;
-prefer doc-web's own ignored credential. Decide fixture payload eligibility
-explicitly; `store: false` is not proof of ZDR or privacy approval. Start with
-public, synthetic, or otherwise approved inputs. For a read-only audit, inspect
-whether the record proves each ladder rung below; do not advance the ladder.
+Load credentials only through `scripts/run_with_doc_web_env.py`; do not source,
+print, copy, or commit keys. Use repo-local `DOC_WEB_*` credentials and start
+with public, synthetic, or explicitly approved fixtures. `store: false` is not
+privacy or ZDR proof. Keep private raw data in protected or ignored storage and
+track only safe hashes, summaries, or pointers.
 
-Advance through this ladder and retain sanitized request, response, status,
-latency, usage, finish/stop reason, served-model metadata, and error evidence:
+## 4. Qualify Transport Before Scoring
 
-1. **Access probe** — prove the exact model is authorized and callable. Catalog
-   visibility alone yields `access: unverified`.
-2. **Native probe** — make the smallest direct provider call outside PromptFoo
-   when practical and confirm what model/provider was actually served.
-3. **Contract probe** — exercise the production requirement: images/files,
-   strict schema, tools, long context, or another mandatory feature.
-4. **Harness-parity probe** — send the same small case through the doc-web
-   provider adapter/task and compare it with the native result.
+Advance per candidate and materially distinct surface, preserving sanitized
+request/response, status, latency, usage, finish reason, served identity, and
+errors:
 
-Qualify the contract separately for each materially distinct surface. A schema
-or adapter proven for one prompt/task does not qualify a later gate with a
-different output shape. Do not score until that surface's required contract and
-harness-parity probe pass. If a built-in provider sends the wrong API family,
-multimodal shape, or task schema, repair or add the narrow adapter under
-`benchmarks/providers/`, test it, and rerun parity.
+1. **Access probe** — exact model authorized and callable.
+2. **Native probe** — smallest direct provider call outside Promptfoo when
+   practical; confirm actual served identity.
+3. **Contract probe** — exercise the production modality, tool, long-context,
+   or strict structured-output requirement.
+4. **Harness-parity probe** — send the same small case through the selected
+   doc-web provider/task and compare with native behavior.
 
-HTTP success alone is not a valid subject response. Require the provider's
-terminal success state, no provider error or incomplete condition, expected
-served-model attribution, and complete output before scoring. Preserve status,
-incomplete/error details, usage, and cost as operational evidence when this gate
-fails.
+Qualify each distinct output schema independently. HTTP 200 is insufficient:
+require terminal success, no provider error/incomplete state, expected served
+model, complete output, and sane usage/cost. Fail closed on unknown response
+shapes, missing identity, malformed usage, truncated content, wrong schema, or
+undocumented fallback. Promptfoo omissions remain `unverified`, not invented.
 
-PromptFoo result JSON may omit HTTP status/headers, served-model metadata,
-finish reason, or partial-response details. Capture a sanitized sidecar when
-needed; otherwise mark those provenance fields unverified rather than inventing
-them.
+When structured output is required, use provider-enforced strict schema when
+supported. Prompt-only JSON is not equivalent. If only a weaker documented
+mode exists, label it; if strict output is mandatory, classify incompatibility
+rather than a semantic miss. Ensure output budget covers reasoning plus the
+visible schema. Inspect the actual native request and raw response—a passing
+unit parser or fenced JSON cleanup does not prove contract parity.
 
-Never persist authorization headers, API keys, signed URLs, or equivalent
-secrets. Keep approved private inputs/outputs in the repo's protected or ignored
-artifact location; committable evidence uses redacted excerpts, hashes, or safe
-pointers.
+Repair a narrow provider/harness defect only after native evidence isolates it.
+Test the repair and rerun parity before scoring. A semantic prompt change,
+reasoning change, or output-budget change is a declared configuration arm, not
+invisible transport repair.
 
-When JSON is required, use strict schema enforcement when supported. Prompt-only
-JSON is not equivalent. If only a weaker documented JSON mode exists, test and
-label that limit; if strict structure is mandatory, classify the candidate as
-incompatible rather than scoring malformed output as semantic quality. Ensure
-the output budget can hold reasoning plus the schema before judging malformed
-or incomplete output. A passing adapter unit test or parseable harness smoke
-proves execution, not contract parity: inspect the actual provider-native schema
-request, raw output, and served-model/status metadata.
+## 5. Predeclare a Fair Matrix
 
-## 4. Predeclare a Fair Configuration Budget
+Before viewing scores, record:
 
-Write the candidate and configuration matrix before looking at scores:
+- candidate arms and provider-valid recommended settings
+- the current runtime default and best eligible comparator per surface
+- whether fresh comparators are required for the claim
+- at most two justified diagnostic/configuration arms beyond recommended
+  candidate settings across the evaluation, unless the user approves more
+- aggregate spend cap, stop rules, fixture slice, repeats, and retry cap
+- frozen semantic prompt, fixtures, structural scorer, rubric, golden, and
+  downstream cleanup
+- cache and concurrency policy; use no-cache for changed/force-fresh subjects
 
-- rerun the incumbent on its maintained configuration when fresh comparison is
-  needed
-- for a force-fresh head-to-head claim, rerun the incumbent on the same frozen
-  inputs; for candidate-only reproduction, omit it to control cost and make no
-  contemporaneous superiority claim
-- run every challenger first at explicitly requested compatible settings, or at
-  provider-recommended settings when the brief leaves them open, always with
-  the required production contract
-- predeclare the exact candidate/arm count plus transport-debug retry/repair
-  cap; by default, allow at most two justified diagnostic or configuration arms
-  beyond the candidates' recommended configurations across the evaluation
-- predeclare the aggregate cost cap and update the ledger after every paid
-  stage; stop before the next stage could exceed it
-- give incumbent and challengers comparable opportunity while using each
-  provider's valid controls; do not tune only whichever model is losing
-- use a predeclared calibration slice where possible, then freeze one
-  configuration before the decision-bearing comparison
-- if variants share decision fixtures, label selection exploratory and require
-  a predeclared repeat or independent confirmation before promotion
-- do not expand tuning/debug budgets after seeing scores without explicit owner
-  approval for a separately declared experiment
-- keep prompt, fixtures, scorer, golden, and downstream cleanup fixed during the
-  model comparison
-- bypass subject-output cache for model/config changes, or prove the key covers
-  exact model, provider, reasoning, schema, and route policy
-- reuse frozen subject artifacts when only a scorer/golden is being corrected
-- start PromptFoo at `-j 1`; raise concurrency only after provider limits are
-  verified, and do not exceed the repo's normal `-j 3` without a separate
-  production-throughput experiment
+Give candidates comparable opportunity using valid provider controls; do not
+force identical invalid parameters or tune only the loser. Use a predeclared
+calibration slice, then freeze one configuration before decision evidence. If
+configuration selection used the decision fixtures, every observed score on
+those fixtures remains exploratory: confirm the frozen arm on a predeclared
+held-out slice or with predeclared repeated evidence before making a promotion
+claim. Start at `-j 1`; raise concurrency only after limits are verified and
+never above the repo norm without a separate throughput experiment.
 
-Do not launch the broad historical provider × prompt matrix by default. Filter
-to the maintained incumbent/prompt and the predeclared candidate arms. When
-several models were requested, use a shared cheap qualification/screening stage
-before any candidate advances to the full decision-bearing gate.
+## 6. Protect Scoring and Golden Truth
 
-A request-shape or documented schema-flag fix needed to obtain any valid answer
-is transport repair. A change that can affect answer content—including prompt,
-reasoning level, or output budget—becomes a declared configuration arm and its
-exploratory score is not promotion evidence.
+Use the selected eval's maintained **structural scorer and semantic rubric**.
+Neither alone is sufficient. Keep them fixed during model comparison and
+attribute their scores separately before computing or quoting an aggregate.
 
-## 5. Run Progressively and Inspect Artifacts
+The maintained rubric judge may share a provider with a subject or be weaker
+than a frontier subject. Record that bias risk. A same-provider judge must not
+be the sole evidence for a marginal decision-changing win or loss. For such a
+case, use a predeclared capable cross-provider judge or symmetric second judge
+on the frozen outputs, disclose disagreement, and leave ambiguous cases out of
+promotion evidence. Do not judge-shop after seeing a score.
 
-Use the smallest run that answers the current question:
+Treat source-backed goldens as truth surfaces, not knobs. Inspect the original
+source document or image before changing one. Use `/improve-eval` internally for
+model-wrong, golden-wrong, scorer-wrong, or ambiguous diagnosis, while retaining
+doc-web's canonical top-level taxonomy: **prompt/pipeline-wrong**,
+**test-wrong**, or **ambiguous**, with source-verified mismatches further
+classified as **model-wrong**, **golden-wrong**, or **ambiguous**. Record
+runtime-blocking versus non-runtime-blocking when relevant.
 
-1. one public/synthetic native and harness-parity smoke
-2. one representative PromptFoo case (`--filter-first-n 1` when appropriate)
-3. the known failing or differentiating slice
-4. the bounded maintained task with a frozen configuration
-5. the next hard gate and required repeats only if the promotion condition passes
+For crop challengers, preserve the registry and runbook's progressive ladder:
+qualify transport and run the frozen `image-crop-extraction` detector surface
+before an expensive `crop-page-level-deletion-gate` follow-on. Advance only when
+the candidate clears the maintained detector prerequisite and remains eligible
+to change the page-context decision. A skipped follow-on is **not measured**, not
+a semantic failure. Do not silently replace maintained prompts, scorers, goldens,
+or fixture slices with improvised evidence.
 
-Use `--no-cache` for changed subject model/configuration, every subject arm
-declared force-fresh, and final confirmation. PromptFoo exit code `100` means
-test failures, not a harness crash; inspect the results before classifying it.
+## 7. Run Progressively and Inspect Artifacts
 
-Between stages, open raw subject outputs and generated failure artifacts. For
-crop mismatches, inspect decoded source images/contact sheets before changing a
-golden or scorer. Stop weak or incompatible candidates before expensive later
-gates, but retain every attempt.
+Use the smallest stage that answers the next question:
 
-When a progressive prerequisite stops a later materially distinct surface,
-report that later capability as **not measured** and adoption as **not
-advanced/defer under the declared ladder**. The stop is valid spend/adoption
-evidence, but it is not semantic-quality evidence for an unrun surface.
+1. public/synthetic native and parity smoke
+2. one representative Promptfoo case
+3. known differentiating or failing slice
+4. bounded maintained task with frozen configuration
+5. independent next slot/repeats only after its own entry condition passes
 
-## 6. Classify and Respond to Failures
+Run Promptfoo from the repo's `benchmarks/` directory, through
+`scripts/run_with_doc_web_env.py`, with explicit filtered providers, output path, `--no-cache` where
+required, and initially `-j 1`. Exit code `100` means assertion failures, not a
+harness crash; inspect raw results before classifying it.
 
-For each non-pass, identify the producing stage first: subject request,
-provider/router, adapter, parser, cleanup, scorer, judge, or golden. Then record
-one primary class:
+After every stage, inspect subject output, structural details, rubric evidence,
+usage, cost, and source artifacts. Stop weak or incompatible arms before an
+expensive later gate, but retain every attempt. If an entry condition prevents
+a distinct slot from running, report that slot as **not measured** and adoption
+as **not advanced/deferred under the declared ladder**. Do not convert a valid
+progressive stop into a semantic failure on an unrun capability.
 
-| Failure class | Required response |
+## 8. Classify and Debug Failures
+
+Identify the producing stage first: provider/router, subject request, adapter,
+parser, cleanup, structural scorer, rubric judge, or golden.
+
+| Failure | Required response |
 | --- | --- |
-| transient provider capacity, timeout, `5xx`, or capacity-coded `429` | Respect provider guidance/`Retry-After`; retry within the declared cap; retain all attempts and retry latency/cost. Persistent instability affects reliability, not semantic quality. |
-| auth, quota, region, tier, plan, or policy | Correct only within existing authorization; otherwise mark access blocked/constrained and capability unmeasured. |
-| client concurrency or rate-limit `429` | Inspect error body/headers, advertised limits, and concurrency. Client overload is harness/config evidence; plan limits are access/economics evidence. |
-| wrong endpoint, API family, multimodal shape, or unsupported parameter | Recheck current docs, correct one contract variable, rerun native, then harness parity. |
-| structured output not enforced | Enable supported schema/JSON controls and verify schema support before judging compliance. |
-| truncation or thinking-token exhaustion | Inspect finish reason and usage; correct documented output/thinking controls and rerun the affected slice. |
-| native succeeds but PromptFoo fails | Treat as adapter/harness incompatibility until disproved; inspect cache and served-model metadata. |
-| parser, cleanup, judge, scorer, rubric, or golden mismatch | Isolate the stage and apply the repo-local eval-improvement workflow internally with source verification; reuse valid frozen subject artifacts where honest. |
-| valid output contradicts source-backed expectation | Count as model-quality evidence after transport/config validity is proven. |
-| refusal, content filter, or safety behavior | Classify separately as policy/safety compatibility for the target use. |
+| capacity, timeout, `5xx`, or capacity-coded `429` | Follow provider guidance and retry within the cap. Keep reliability/latency/cost separate from conditional semantic quality. |
+| auth, quota, plan, region, tier, or policy | Correct only within existing authority; otherwise mark access constrained/blocked and capability not measured. |
+| client rate/concurrency `429` | Inspect body/headers and reduce concurrency; do not blame model quality. |
+| wrong endpoint, modality shape, or unsupported parameter | Recheck current docs, change one contract variable, rerun native then parity. |
+| schema not enforced | Enable documented strict output and verify the native request before scoring. |
+| truncation or thinking-token exhaustion | Inspect finish/usage, declare the corrected arm, and rerun only the affected slice. |
+| native succeeds but harness fails | Treat as adapter/cache/harness incompatibility until disproved. |
+| scorer, rubric, judge, cleanup, or golden mismatch | Isolate it on frozen output and run eval-improvement classification. |
+| valid output contradicts source-backed expectation | Count as model-quality evidence after contract validity is proven. |
+| refusal/filter | Report separately as policy/safety compatibility. |
 
-Classify `429` from provider error details, headers, account limits, and tested
-concurrency. Change one causal variable at a time and never experiment until a
-desired score appears.
+Change one causal variable at a time. Report both conditional semantic quality
+on valid responses and end-to-end production reliability including failures,
+retries, latency, and cost. Never erase initial failures by quoting only a
+successful retry.
 
-When retries/provider failures matter, report both:
-
-- **conditional semantic quality** on valid subject responses
-- **end-to-end production result** including every failure, retry, latency, and
-  cost
-
-Do not erase initial failures by reporting only successful retries. Do not
-charge judge, scorer, cleanup, or collector failures to the subject model.
-
-## 7. Verify, Record, and Decide
+## 9. Record Exact Evidence and Decide
 
 Before recommending adoption:
 
-- classify important mismatches against source evidence
-- reject empty, malformed, partial, stale, or wrongly attributed result bundles
-- compare quality, latency, cost, variance, success rate, retry overhead, and
-  privacy/safety eligibility
-- confirm the frozen winner is supported on the intended runtime path
-- record exact sanitized commands, checked docs/date, model/provider IDs,
-  requested and served parameters, fixture scope, repeats, cache state,
-  concurrency, and sanitized transport evidence
-- record a reproducible code identity. For a clean run, use the exact code SHA.
-  For a dirty run after provider/eval repair, record the base SHA plus hashes of
-  every relevant changed file or patch and ignored raw artifact; never imply the
-  base SHA alone produced the result. Link the eventual commit containing the
-  evaluated code when one exists
-- when raw artifacts are ignored, preserve a compact tracked manifest with
-  hashes, aggregate/case evidence needed for the verdict, and safe regeneration
-  commands rather than relying only on local paths
-- after an authorized execution, always update `docs/evals/registry.yaml` when
-  an eval runs or is materially verified, including failed/inconclusive
-  attempts and explicit lineage; add a numbered attempt note when the
-  non-trivial result warrants one. In a read-only audit, report any needed
-  correction without writing it
-- update the owning story work log and regenerate methodology surfaces
+- compare against both the actual runtime default and best eligible evidence
+- apply the current registry's per-slot quality, latency, cost, reliability,
+  privacy, and safety gates rather than hard-coded historical thresholds
+- reject empty, partial, stale, wrongly attributed, or quarantined bundles
+- record sanitized commands, docs/date, requested and served model IDs,
+  parameters, fixtures, repeats, cache, concurrency, versions, and cost ledger
+- for a clean run, record exact SHA; for a dirty run, record base SHA plus
+  hashes/patches of every relevant changed file and ignored raw artifact
+- when raw results are ignored, track a compact manifest with hashes, safe
+  aggregates, and regeneration commands
+- update `docs/evals/registry.yaml` for every authorized eval, including failed
+  or inconclusive runs, with explicit story/category/compromise lineage
+- add a numbered attempt when the non-trivial result warrants one, update the
+  owning story, and regenerate methodology surfaces
 
-Apply the repo-local eval-improvement workflow internally only after a valid
-baseline needs prompt/pipeline versus scorer/golden diagnosis. Do not assume
-every task requires an LLM judge; use the actual maintained assertions and
-attribute any judge separately when present.
-
-Do not change defaults because a model is newer, faster, or cheaper. It must
-clear the maintained quality and operational gates for the exact surface. A
-small isolated win does not justify a second-model router without a predeclared
-breadth/value gate.
+Do not change a default because a model is new, faster, cheaper, or highest on
+one raw aggregate. Adoption requires decision-grade evidence for the exact
+slot. A default change remains a separate explicit user decision unless the
+brief specifically authorized it after defining the gate.
 
 ## Required Output
 
-Return a compact evaluation record. Present one comparison row per selected
-`(surface, candidate, resolved configuration)` where that makes the result
-clear, followed by an adoption decision for each surface:
+Return a compact record with one row per `(slot/surface, candidate, frozen
+configuration)` where useful:
 
-1. **Interpreted brief** — candidates, explicit constraints, inferred
-   assumptions, and any unresolved ambiguity
-2. **Decision and owner** — story set, eval IDs, chosen target surfaces,
-   incumbents, adoption questions, why these lanes outranked plausible
-   alternatives, and what remained out of scope
-3. **External evidence** — checked sources/date, exact models and access paths,
-   freshness objective, and whether prior evidence was freshly inspectable or
-   record-derived
-4. **Configuration matrix** — candidates, arms, rationale,
-   cache/concurrency, and fairness
-5. **Access** — available, constrained, blocked, or unverified per candidate
-6. **Transport** — qualified, blocked, or inconclusive per candidate
-7. **Reliability** — acceptable, degraded, failed, or not measured
-8. **Capability** — better, equivalent, worse, or not measured
-9. **Economics** — latency/cost/retry overhead, or not measured
-10. **Adoption** — adopt, conditional adopt, do not adopt, or defer for the exact
-   surface
-11. **Artifacts and records** — result, attempt, registry, story, and source
-    inspection evidence
-12. **Limits and next step** — what remains unproven and the smallest honest
-    follow-up
+1. interpreted brief and material assumptions
+2. owner/story, selected slots/evals, runtime defaults, best eligible evidence,
+   and why these lanes outranked alternatives
+3. current official evidence, exact identities/access paths, and freshness mode
+4. configuration/fairness matrix, cache/concurrency, and spend ledger
+5. access per candidate: available, constrained, blocked, or unverified
+6. transport per candidate/surface: qualified, blocked, or inconclusive
+7. reliability: acceptable, degraded, failed, or not measured
+8. capability: better, equivalent, worse, or not measured, with conditional
+   semantic quality separated from end-to-end production results
+9. structural score, rubric score, judge/bias treatment, latency, and cost
+10. mismatch classification and source evidence
+11. adoption per surface: adopt, conditional adopt, do not adopt, or defer
+12. exact artifacts/registry/story/provenance and unmeasured limits
 
-An access/transport block normally yields `capability: not measured` and
-`adoption: defer`, unless a missing mandatory production feature makes the
-candidate ineligible. A valid source-backed semantic loss may support `do not
-adopt`. State which happened.
+An access or transport block normally yields `capability: not measured` and
+`adoption: defer`. Missing a mandatory production feature can make a candidate
+ineligible. A valid source-backed semantic loss can support `do not adopt`.
+State which happened.
 
 ## Guardrails
 
-- Do not score pre-response infrastructure failures as semantic misses.
-- Do not weaken required image/schema/tool contracts merely to make a candidate
-  pass.
-- Do not alter goldens or scorers to rescue a model without source-backed
-  inspection and the repo's consultation rules.
-- Do not send private fixtures through a provider path without explicit payload
-  eligibility.
-- Do not silently borrow another repo's credential or trust `store: false` as a
-  privacy policy.
-- Do not commit, push, change runtime defaults, or broaden rollout without
-  explicit authorization.
+- Never score pre-response infrastructure failure as a semantic miss.
+- Never weaken a required prompt, modality, schema, tool, or safety contract to
+  make a candidate pass.
+- Never tune a golden, scorer, or judge to rescue a model.
+- Never send private fixtures through an unapproved provider path.
+- Never borrow another repo's credentials or expose credential values.
+- Never use stale, quarantined, or source-unverified evidence for adoption.
+- Never overwrite prior force-fresh artifacts.
+- Never commit, push, deploy, change defaults, or broaden rollout implicitly.

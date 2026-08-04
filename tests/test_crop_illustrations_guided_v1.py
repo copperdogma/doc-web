@@ -7,6 +7,7 @@ from modules.extract.crop_illustrations_guided_v1.main import (
     _apply_caption_box,
     _apply_rule_panel_child_metadata,
     _align_descriptions_to_detected_boxes,
+    _copy_detector_meta,
     _expand_dense_boxes_with_upper_panels,
     _expand_integrated_callout_rule_example_box,
     _expand_player_mat_register_rule_example_box,
@@ -27,6 +28,19 @@ from modules.extract.crop_illustrations_guided_v1.main import (
     _trim_rule_example_bottom_prose_band,
     crop_illustrations_guided,
 )
+
+
+def test_detector_metadata_survives_box_transformations():
+    source = {
+        "_detector_model": "gpt-5.6-luna",
+        "_detector_provider": "openai",
+        "_detector_request_id": "resp-detector",
+        "_caption_model": "gpt-5.6-luna",
+        "_caption_provider": "openai",
+        "_caption_request_id": "resp-caption",
+    }
+
+    assert _copy_detector_meta(source, {"x0": 1}) == {"x0": 1, **source}
 
 
 def test_apply_caption_box_keeps_partial_width_caption_from_clipping_irregular_image():

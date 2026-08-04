@@ -447,6 +447,31 @@ evals:
           detector proof in this pass, but quality is below both Terra and the
           maintained Gemini 3 Flash score, so it does not replace the detector.
           Portable tracked proof: `docs/evals/attempts/015-gpt56-tier-sweep.md`.
+      - model: "GPT-5.6 Luna Responses (price-refresh strict-schema detector)"
+        metrics:
+          overall: 0.9650
+          pass_rate: 1.0
+          cases_total: 13
+          latency_ms: 2306
+        latency_ms: 2306
+        cost_usd: 0.000687
+        cost_estimated: true
+        measured: 2026-08-03
+        git_sha: 185dade
+        note: >
+          Force-fresh first-party Responses rerun after OpenAI's 80% Luna price
+          cut, using exact served identity, terminal-status and usage checks,
+          strict JSON Schema, `store=false`, and current cache-aware pricing.
+          Luna passed `13/13` at `0.9650`, averaged `2306 ms`, and cost
+          `$0.00892992` total (`$0.000687` per case). The identical fresh
+          Gemini 3 Flash control passed `13/13` at `0.9634`, averaged `6355 ms`,
+          and cost `$0.0483065`: Luna was `2.76x` faster and `5.41x` cheaper.
+          Manual source review found one model-wrong extra title crop on
+          `Image011`; the result still clears the `>= 0.95` target but remains
+          below the best eligible historical Gemini score of `0.9703`.
+          Conditionally prefer Luna for detector value research only; do not
+          infer a production runtime or page-context adoption. Portable proof:
+          `docs/evals/attempts/023-gpt56-luna-price-refresh.md`.
       - model: "Grok 4.5 Responses (conservative-count prompt, reasoning low)"
         metrics:
           overall: 0.8026
@@ -918,6 +943,26 @@ evals:
           predeclared progressive gate, the 22-case page-context task was not
           run; that capability remains unmeasured. Do not adopt. Portable
           proof: `docs/evals/attempts/022-opus5-evaluate-model.md`.
+      - id: "023"
+        date: 2026-08-03
+        status: passed
+        approach: "Force-refresh GPT-5.6 Luna after its 80% price cut using attributable strict-schema transport and a fresh Gemini control"
+        score_before: 0.9634
+        score_after: 0.9650
+        note: >
+          Current official pricing, authenticated exact-ID discovery, strict
+          text, native image, and PromptFoo parity probes all passed. The
+          OpenAI adapter was hardened to require exact served identity,
+          terminal completion, lossless multimodal normalization, valid usage,
+          strict local output validation, and cache-aware costs; focused tests
+          passed `5/5`. The frozen no-cache detector comparison passed `13/13`
+          for both arms. Luna reached `0.9650`, `2306 ms`, and `$0.00892992`
+          total versus fresh Gemini at `0.9634`, `6355 ms`, and `$0.0483065`.
+          Luna is the conditional detector value winner, not a broad default:
+          one source-reviewed over-detection remains and its existing `19/22`
+          page-context safety result is still disqualifying. No runtime,
+          maintained provider, prompt, scorer, or golden changed. Portable
+          proof: `docs/evals/attempts/023-gpt56-luna-price-refresh.md`.
 
     retry_when:
       - condition: new-subject-model
@@ -2093,6 +2138,22 @@ evals:
           The maintained GPT-5.5 Responses validator remains unchanged.
           Portable proof:
           `docs/evals/attempts/021-kimi-k3-force-fresh-evaluate-model.md`.
+      - id: "020"
+        date: 2026-08-03
+        status: partial
+        approach: "Gate Luna's price-triggered page-context rerun behind materially changed detector quality"
+        score_before: 1.0
+        score_after: null
+        note: >
+          Fresh strict-schema Luna detector evidence cleared `>= 0.95` and
+          materially improved value, but its `0.9650` quality was only `0.0027`
+          above the prior Luna run and remained below the best eligible Gemini
+          evidence. That is not a capability change that reopens Attempt 015's
+          source-verified `19/22` Luna page-context result against this hard
+          `22/22` safety contract. Per the predeclared progressive gate, no
+          redundant 22-case rerun or fresh GPT-5.5 control was purchased. Keep
+          the maintained GPT-5.5 validator. Portable proof:
+          `docs/evals/attempts/023-gpt56-luna-price-refresh.md`.
 
     retry_when:
       - condition: new-subject-model

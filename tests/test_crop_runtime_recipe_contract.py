@@ -5,6 +5,7 @@ import yaml
 
 RECIPE_PATH = Path("configs/recipes/recipe-onward-images-html-mvp.yaml")
 MODULE_PATH = Path("modules/extract/crop_illustrations_guided_v1/module.yaml")
+PAGE_CONTEXT_TASK = Path("benchmarks/tasks/crop-page-level-deletion-gate.yaml")
 
 RETIRED_RECIPE_KEYS = {
     "rescue_retry_on_overlap",
@@ -40,7 +41,9 @@ def _crop_stage_params() -> dict:
     for stage in recipe["stages"]:
         if stage["id"] == "crop_illustrations":
             return stage["params"]
-    raise AssertionError("crop_illustrations stage not found in maintained Onward recipe")
+    raise AssertionError(
+        "crop_illustrations stage not found in maintained Onward recipe"
+    )
 
 
 def _crop_module_spec() -> dict:
@@ -74,3 +77,13 @@ def test_crop_module_contract_exposes_only_maintained_rescue_surface():
     command = module_spec["command"]
     for flag in RETIRED_MODULE_FLAGS:
         assert flag not in command
+
+
+def test_page_context_safety_model_is_independent_from_detector_recipe():
+    task = yaml.safe_load(PAGE_CONTEXT_TASK.read_text(encoding="utf-8"))
+
+    provider_ids = [
+        provider if isinstance(provider, str) else provider["id"]
+        for provider in task["providers"]
+    ]
+    assert provider_ids == ["openai:responses:gpt-5.5"]

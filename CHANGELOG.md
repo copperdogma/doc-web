@@ -1,3 +1,16 @@
+## [2026-08-03-01] - Qualify Luna crop value without weakening production fidelity (Story 231)
+
+### Added
+- Added a strict, attributable OpenAI Responses crop-vision route for GPT-5.6 Luna, production-parity Gemini/Luna comparison recipes, and regression coverage that keeps challenger parameters aligned with the maintained runtime.
+- Added a tracked Luna price-refresh evaluation showing a `13/13`, `0.9650` detector result with materially lower cost and latency than the fresh Gemini control.
+
+### Changed
+- Reused and adapted the CineForge `evaluate-model` workflow for doc-web's decision surfaces, progressive gates, provider contracts, and evidence ownership.
+- Kept `gemini-3-flash-preview` as the maintained Onward crop detector and GPT-5.5 as the independent page-context validator after source inspection found Luna included printed captions in two page-122 crops despite better count, cost, and latency.
+
+### Fixed
+- Hardened the OpenAI eval adapter and production crop route to reject incomplete, wrong-model, usage-invalid, malformed, or non-positive-area responses before scoring or artifact emission.
+
 ## [2026-07-25-01] - Reject Claude Opus 5 crop challenger
 
 ### Added

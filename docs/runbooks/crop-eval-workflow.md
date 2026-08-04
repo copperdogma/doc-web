@@ -60,9 +60,21 @@ View results: `promptfoo view`
   crop/build seam. The maintained recipe still keeps
   `rescue_caption_second_pass` plus `trim_layout_text`; removing them widened
   the certificate/seal crop on page 12 and duplicated nearby text in the final
-  HTML.
+  HTML. Story 231 added a strict, attributable OpenAI Responses crop route for
+  `gpt-5.6-luna`, but a production-equivalent comparison rejected Luna as the
+  maintained detector. The cover bypass was identical; Luna recovered all nine
+  expected crops and was faster, while Gemini produced eight after combining
+  the two page-12 signatures. However, Luna included printed captions in two
+  page-122 crops that Gemini kept clean. Keep `gemini-3-flash-preview` in the
+  maintained Onward recipe because C5 text exclusion is a hard gate; Luna
+  remains the frozen-benchmark value winner and a callable challenger, not the
+  production default.
 - **Current dedicated C5-linked score**: `crop-validation` is `1.0` overall / `1.0` pass rate on the checked-in 40-crop corpus (Gemini 3.1 Flash Lite + `caption-focus`, measured 2026-04-11)
 - **Current page-context C5 deletion-gate score**: `crop-page-level-deletion-gate` is `1.0` overall / `1.0` pass rate on the checked-in `22`-case overlap corpus with GPT-5.5 Responses + `page-context` promptfix, measured 2026-04-24 on the corrected golden. The previous Gemini 3.1 Flash Lite `22/22` result is stale after the `page-122-001` golden correction; the fresh Gemini rerun is `21/22`.
+- **Provider-role boundary**: detector selection does not select the
+  page-context validator. Keep that task pinned to
+  `openai:responses:gpt-5.5`; Luna's `19/22` result is still disqualifying for
+  this safety role.
 - **Current C5 decision**: residue is still required. The page-context corpus still contains `5` explicit fail-labeled current-runtime cases (`page-018-000`, `page-092-000`, `page-122-000`, `page-122-001`, `page-126-000`), so `trim_layout_text` and bounded caption assist do not have an honest deletion proof yet.
 - **Spec compromises**:
   - `C4` — Two-Stage Image Crop Detection

@@ -26,6 +26,10 @@ from PIL import Image
 import re
 
 from modules.common import ensure_dir, save_jsonl, read_jsonl
+from modules.common.openai_crop_vision import (
+    call_openai_crop_vision,
+    uses_strict_crop_responses,
+)
 
 
 def _normalize_ws(text: str) -> str:
@@ -216,6 +220,12 @@ _DETECTOR_META_KEYS = (
     "_critical_graphics_importance",
     "_critical_graphics_role",
     "_critical_graphics_reason",
+    "_detector_model",
+    "_detector_provider",
+    "_detector_request_id",
+    "_caption_model",
+    "_caption_provider",
+    "_caption_request_id",
 )
 
 
@@ -290,7 +300,20 @@ def _call_vlm_boxes(
         if OpenAI is None:  # pragma: no cover
             raise RuntimeError("openai package required") from _OPENAI_IMPORT_ERROR
         client = OpenAI(timeout=timeout_seconds) if timeout_seconds else OpenAI()
-        if hasattr(client, "responses"):
+        if hasattr(client, "responses") and uses_strict_crop_responses(model):
+            result = call_openai_crop_vision(
+                client=client,
+                model=model,
+                system_prompt=_BBOX_PROMPT,
+                user_text=user_text,
+                image_data=image_data,
+                max_output_tokens=max_tokens,
+                contract="detector",
+            )
+            raw = result.raw_json_array
+            usage = result.usage
+            request_id = result.request_id
+        elif hasattr(client, "responses"):
             resp = client.responses.create(
                 model=model,
                 temperature=temperature,
@@ -449,7 +472,20 @@ def _call_vlm_caption_boxes(
         if OpenAI is None:  # pragma: no cover
             raise RuntimeError("openai package required") from _OPENAI_IMPORT_ERROR
         client = OpenAI(timeout=timeout_seconds) if timeout_seconds else OpenAI()
-        if hasattr(client, "responses"):
+        if hasattr(client, "responses") and uses_strict_crop_responses(model):
+            result = call_openai_crop_vision(
+                client=client,
+                model=model,
+                system_prompt=_CAPTION_PROMPT,
+                user_text=user_text,
+                image_data=image_data,
+                max_output_tokens=max_tokens,
+                contract="captions",
+            )
+            raw = result.raw_json_array
+            usage = result.usage
+            request_id = result.request_id
+        elif hasattr(client, "responses"):
             resp = client.responses.create(
                 model=model,
                 temperature=temperature,
@@ -4741,6 +4777,11 @@ def crop_illustrations_guided(
                             px["caption_box"] = cap_px
                     px["_from_vlm"] = True
                     _copy_detector_meta(box, px)
+                    px["_detector_model"] = rescue_model
+                    px["_detector_provider"] = (
+                        "google" if _is_gemini_model(rescue_model) else "openai"
+                    )
+                    px["_detector_request_id"] = request_id
                     area_ratio = (px["width"] * px["height"]) / float(w * h)
                     px["area_ratio"] = round(area_ratio, 4)
                     normalized.append(px)
@@ -4765,7 +4806,7 @@ def crop_illustrations_guided(
                     if image_data is None:
                         image_data = _encode_image(source_image_path)
                     h, w = img_gray.shape[:2]
-                    cap_boxes, _, _, _ = _call_vlm_caption_boxes(
+                    cap_boxes, _, caption_request_id, _ = _call_vlm_caption_boxes(
                         rescue_model,
                         image_data,
                         expected_count=len(boxes),
@@ -4774,6 +4815,12 @@ def crop_illustrations_guided(
                         max_tokens=rescue_caption_max_tokens,
                         timeout_seconds=rescue_timeout_seconds,
                     )
+                    for box in boxes:
+                        box["_caption_model"] = rescue_model
+                        box["_caption_provider"] = (
+                            "google" if _is_gemini_model(rescue_model) else "openai"
+                        )
+                        box["_caption_request_id"] = caption_request_id
                     normalized_caps = []
                     for cap in cap_boxes:
                         cap_px = _normalize_box(cap, w, h)
@@ -5149,6 +5196,16 @@ def crop_illustrations_guided(
                 "caption_box": box.get("caption_box"),
                 "caption_text": box.get("_caption_text") or None,
             }
+            for artifact_key, box_key in (
+                ("detector_model", "_detector_model"),
+                ("detector_provider", "_detector_provider"),
+                ("detector_request_id", "_detector_request_id"),
+                ("caption_model", "_caption_model"),
+                ("caption_provider", "_caption_provider"),
+                ("caption_request_id", "_caption_request_id"),
+            ):
+                if box.get(box_key):
+                    record[artifact_key] = box[box_key]
             if box.get("_critical_graphics_target_id"):
                 record["critical_graphics_target_id"] = box.get("_critical_graphics_target_id")
                 record["critical_graphics_importance"] = box.get("_critical_graphics_importance")
