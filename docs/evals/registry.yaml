@@ -472,6 +472,31 @@ evals:
           Conditionally prefer Luna for detector value research only; do not
           infer a production runtime or page-context adoption. Portable proof:
           `docs/evals/attempts/023-gpt56-luna-price-refresh.md`.
+      - model: "Qwen3.8 Max OpenRouter (Alibaba-pinned strict-schema detector, reasoning low)"
+        metrics:
+          overall: 0.9411
+          pass_rate: 0.9231
+          cases_total: 13
+          latency_ms: 16002
+        latency_ms: 16002
+        cost_usd: 0.00827
+        cost_estimated: false
+        measured: 2026-08-04
+        git_sha: b97870f
+        note: >
+          Exact `qwen/qwen3.8-max` OpenRouter route, canonical snapshot
+          `qwen/qwen3.8-max-20260803`, pinned to Alibaba with no fallback,
+          mandatory low reasoning hidden from output, strict JSON Schema,
+          exact served identity, terminal stop, and raw reported usage/cost.
+          Text, generated synthetic-image, and one-case PromptFoo parity probes
+          qualified before the frozen no-cache detector. The full run completed
+          `12/13` with `0` provider/schema errors, `overall = 0.9411`, average
+          latency `16002 ms`, and `$0.107508` total reported cost. Manual source
+          inspection classified `Image011` as model-wrong: Qwen split the seal
+          and adjacent signatures despite the explicit one-combined-image rule.
+          It did not clear the detector prerequisite, so the 22-case
+          page-context gate was not run and remains not measured. Do not adopt.
+          Portable proof: `docs/evals/attempts/024-qwen38-max-evaluate-model.md`.
       - model: "Grok 4.5 Responses (conservative-count prompt, reasoning low)"
         metrics:
           overall: 0.8026
@@ -963,6 +988,26 @@ evals:
           page-context safety result is still disqualifying. No runtime,
           maintained provider, prompt, scorer, or golden changed. Portable
           proof: `docs/evals/attempts/023-gpt56-luna-price-refresh.md`.
+      - id: "024"
+        date: 2026-08-04
+        status: failed
+        approach: "Qualify exact Qwen3.8 Max OpenRouter transport, then run the bounded crop ladder under `/evaluate-model`"
+        score_before: 0.9703
+        score_after: 0.9411
+        note: >
+          Live catalog and endpoint evidence resolved exact
+          `qwen/qwen3.8-max` to canonical snapshot
+          `qwen/qwen3.8-max-20260803` through one Alibaba endpoint. A dedicated
+          fail-closed vision adapter pinned that provider, required strict
+          schema, exact served identity, terminal stop, lossless image
+          normalization, and raw reported usage/cost. Strict text, generated
+          synthetic-image, and one-case PromptFoo parity probes passed. The
+          frozen detector completed `12/13`, `0.9411`, `16002 ms` average, and
+          `$0.107508` total with no provider errors. Source inspection confirmed
+          the `Image011` miss was model-wrong. Total successful-call spend was
+          `$0.117838`; the conditional page-context gate was not run. Do not
+          adopt. Portable proof:
+          `docs/evals/attempts/024-qwen38-max-evaluate-model.md`.
 
     retry_when:
       - condition: new-subject-model

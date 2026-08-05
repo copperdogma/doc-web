@@ -1,3 +1,13 @@
+## [2026-08-05-01] - Reject Qwen3.8 Max crop challenger
+
+### Added
+- Added a fail-closed OpenRouter vision adapter that pins Qwen3.8 Max to Alibaba, preserves multimodal input, enforces strict task schemas, and verifies served identity, terminal completion, usage, and reported cost.
+- Added a tracked Qwen3.8 Max evaluation attempt covering transport qualification, the frozen 13-case detector, manual source inspection, spend, and the progressive-gate decision.
+
+### Changed
+- Changed the eval registry and owning crop story logs to record Qwen3.8 Max's below-target `12/13`, `0.9411` detector result and preserve the unmeasured 22-case page-context capability.
+- Kept `gemini-3-flash-preview` as the maintained Onward crop detector and GPT-5.5 as the maintained page-context validator; no runtime default, prompt, scorer, or golden changed.
+
 ## [2026-08-03-01] - Qualify Luna crop value without weakening production fidelity (Story 231)
 
 ### Added

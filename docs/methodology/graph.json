@@ -1128,11 +1128,11 @@
           ],
           "why_now": "Gemini 4 or equivalent may push past 0.95 target Golden references cover limited page types; add table-heavy pages",
           "last_relevant_action": {
-            "date": "2026-08-03",
+            "date": "2026-08-04",
             "source_type": "eval-attempt",
             "source": "docs/evals/registry.yaml",
-            "source_id": "023",
-            "summary": "Current official pricing, authenticated exact-ID discovery, strict text, native image, and PromptFoo parity probes all passed. The OpenAI adapter was hardened to require exact served identity, terminal completion, los..."
+            "source_id": "024",
+            "summary": "Live catalog and endpoint evidence resolved exact `qwen/qwen3.8-max` to canonical snapshot `qwen/qwen3.8-max-20260803` through one Alibaba endpoint. A dedicated fail-closed vision adapter pinned that provider, require..."
           },
           "story_ids": [
             "135",
@@ -1623,12 +1623,12 @@
           "source_path": "docs/stories/story-207-refresh-crop-c4-proof-and-coverage-truth-surfaces.md",
           "recommended_now": false,
           "posture": "completed",
-          "why_now": "Claude Opus 5 approved resume and detector result: the explicitly approved provider-compatible schema probe passed, followed by exact-model strict text, generated synthetic-image, and one-case PromptFoo parity qualifi...",
+          "why_now": "Qwen3.8 evidence validation: focused adapter/environment tests passed `9/9`; Ruff, registry YAML, methodology compile/check, and diff hygiene passed. Full `make test` completed `935 passed, 1 failed, 4 warnings` in `8...",
           "last_relevant_action": {
-            "date": "2026-07-25",
+            "date": "2026-08-05",
             "source_type": "story-work-log",
             "source": "docs/stories/story-207-refresh-crop-c4-proof-and-coverage-truth-surfaces.md",
-            "summary": "Claude Opus 5 approved resume and detector result: the explicitly approved provider-compatible schema probe passed, followed by exact-model strict text, generated synthetic-image, and one-case PromptFoo parity qualifi..."
+            "summary": "Qwen3.8 evidence validation: focused adapter/environment tests passed `9/9`; Ruff, registry YAML, methodology compile/check, and diff hygiene passed. Full `make test` completed `935 passed, 1 failed, 4 warnings` in `8..."
           },
           "story_ids": [
             "181",
@@ -11163,9 +11163,9 @@
       "blocker_evidence": "",
       "unblock_condition": "",
       "last_work_log_entry": {
-        "timestamp": "20260725-0015",
-        "date": "2026-07-25",
-        "summary": "Claude Opus 5 approved resume and detector result: the explicitly approved provider-compatible schema probe passed, followed by exact-model strict text, generated synthetic-image, and one-case PromptFoo parity qualifi..."
+        "timestamp": "20260805-0010",
+        "date": "2026-08-05",
+        "summary": "Qwen3.8 evidence validation: focused adapter/environment tests passed `9/9`; Ruff, registry YAML, methodology compile/check, and diff hygiene passed. Full `make test` completed `935 passed, 1 failed, 4 warnings` in `8..."
       },
       "legacy_build_map_refs": "",
       "metadata_source": "frontmatter",
@@ -11176,12 +11176,12 @@
         "source_path": "docs/stories/story-207-refresh-crop-c4-proof-and-coverage-truth-surfaces.md",
         "recommended_now": false,
         "posture": "completed",
-        "why_now": "Claude Opus 5 approved resume and detector result: the explicitly approved provider-compatible schema probe passed, followed by exact-model strict text, generated synthetic-image, and one-case PromptFoo parity qualifi...",
+        "why_now": "Qwen3.8 evidence validation: focused adapter/environment tests passed `9/9`; Ruff, registry YAML, methodology compile/check, and diff hygiene passed. Full `make test` completed `935 passed, 1 failed, 4 warnings` in `8...",
         "last_relevant_action": {
-          "date": "2026-07-25",
+          "date": "2026-08-05",
           "source_type": "story-work-log",
           "source": "docs/stories/story-207-refresh-crop-c4-proof-and-coverage-truth-surfaces.md",
-          "summary": "Claude Opus 5 approved resume and detector result: the explicitly approved provider-compatible schema probe passed, followed by exact-model strict text, generated synthetic-image, and one-case PromptFoo parity qualifi..."
+          "summary": "Qwen3.8 evidence validation: focused adapter/environment tests passed `9/9`; Ruff, registry YAML, methodology compile/check, and diff hygiene passed. Full `make test` completed `935 passed, 1 failed, 4 warnings` in `8..."
         }
       }
     },
@@ -11301,9 +11301,9 @@
       "blocker_evidence": "",
       "unblock_condition": "",
       "last_work_log_entry": {
-        "timestamp": "20260803-1408",
-        "date": "2026-08-03",
-        "summary": "GPT-5.6 Luna price-triggered follow-on result: the fresh Story 207 detector passed `13/13` at `0.9650` and materially improved value, but quality moved only `+0.0027` from Attempt 015 and stayed below the best eligibl..."
+        "timestamp": "20260804-2352",
+        "date": "2026-08-04",
+        "summary": "Qwen3.8 Max conditional follow-on result: Story 207's frozen detector completed `12/13` at `0.9411`, below both the `13/13` and `overall >= 0.95` entry conditions. Per the predeclared progressive ladder, this 22-case..."
       },
       "legacy_build_map_refs": "",
       "metadata_source": "frontmatter",
@@ -11314,12 +11314,12 @@
         "source_path": "docs/stories/story-209-crop-c5-page-level-deletion-gate.md",
         "recommended_now": false,
         "posture": "completed",
-        "why_now": "GPT-5.6 Luna price-triggered follow-on result: the fresh Story 207 detector passed `13/13` at `0.9650` and materially improved value, but quality moved only `+0.0027` from Attempt 015 and stayed below the best eligibl...",
+        "why_now": "Qwen3.8 Max conditional follow-on result: Story 207's frozen detector completed `12/13` at `0.9411`, below both the `13/13` and `overall >= 0.95` entry conditions. Per the predeclared progressive ladder, this 22-case...",
         "last_relevant_action": {
-          "date": "2026-08-03",
+          "date": "2026-08-04",
           "source_type": "story-work-log",
           "source": "docs/stories/story-209-crop-c5-page-level-deletion-gate.md",
-          "summary": "GPT-5.6 Luna price-triggered follow-on result: the fresh Story 207 detector passed `13/13` at `0.9650` and materially improved value, but quality moved only `+0.0027` from Attempt 015 and stayed below the best eligibl..."
+          "summary": "Qwen3.8 Max conditional follow-on result: Story 207's frozen detector completed `12/13` at `0.9411`, below both the `13/13` and `overall >= 0.95` entry conditions. Per the predeclared progressive ladder, this 22-case..."
         }
       }
     },
@@ -13257,6 +13257,21 @@
           "note": "Force-fresh first-party Responses rerun after OpenAI's 80% Luna price cut, using exact served identity, terminal-status and usage checks, strict JSON Schema, `store=false`, and current cache-aware pricing. Luna passed `13/13` at `0.9650`, averaged `2306 ms`, and cost `$0.00892992` total (`$0.000687` per case). The identical fresh Gemini 3 Flash control passed `13/13` at `0.9634`, averaged `6355 ms`, and cost `$0.0483065`: Luna was `2.76x` faster and `5.41x` cheaper. Manual source review found one model-wrong extra title crop on `Image011`; the result still clears the `>= 0.95` target but remains below the best eligible historical Gemini score of `0.9703`. Conditionally prefer Luna for detector value research only; do not infer a production runtime or page-context adoption. Portable proof: `docs/evals/attempts/023-gpt56-luna-price-refresh.md`.\n"
         },
         {
+          "model": "Qwen3.8 Max OpenRouter (Alibaba-pinned strict-schema detector, reasoning low)",
+          "metrics": {
+            "overall": 0.9411,
+            "pass_rate": 0.9231,
+            "cases_total": 13,
+            "latency_ms": 16002
+          },
+          "latency_ms": 16002,
+          "cost_usd": 0.00827,
+          "cost_estimated": false,
+          "measured": "2026-08-04",
+          "git_sha": "b97870f",
+          "note": "Exact `qwen/qwen3.8-max` OpenRouter route, canonical snapshot `qwen/qwen3.8-max-20260803`, pinned to Alibaba with no fallback, mandatory low reasoning hidden from output, strict JSON Schema, exact served identity, terminal stop, and raw reported usage/cost. Text, generated synthetic-image, and one-case PromptFoo parity probes qualified before the frozen no-cache detector. The full run completed `12/13` with `0` provider/schema errors, `overall = 0.9411`, average latency `16002 ms`, and `$0.107508` total reported cost. Manual source inspection classified `Image011` as model-wrong: Qwen split the seal and adjacent signatures despite the explicit one-combined-image rule. It did not clear the detector prerequisite, so the 22-case page-context gate was not run and remains not measured. Do not adopt. Portable proof: `docs/evals/attempts/024-qwen38-max-evaluate-model.md`.\n"
+        },
+        {
           "model": "Grok 4.5 Responses (conservative-count prompt, reasoning low)",
           "metrics": {
             "overall": 0.8026,
@@ -13350,19 +13365,19 @@
         }
       ],
       "latest_score": {
-        "model": "GPT-5.6 Luna Responses (price-refresh strict-schema detector)",
+        "model": "Qwen3.8 Max OpenRouter (Alibaba-pinned strict-schema detector, reasoning low)",
         "metrics": {
-          "overall": 0.965,
-          "pass_rate": 1.0,
+          "overall": 0.9411,
+          "pass_rate": 0.9231,
           "cases_total": 13,
-          "latency_ms": 2306
+          "latency_ms": 16002
         },
-        "latency_ms": 2306,
-        "cost_usd": 0.000687,
-        "cost_estimated": true,
-        "measured": "2026-08-03",
-        "git_sha": "185dade",
-        "note": "Force-fresh first-party Responses rerun after OpenAI's 80% Luna price cut, using exact served identity, terminal-status and usage checks, strict JSON Schema, `store=false`, and current cache-aware pricing. Luna passed `13/13` at `0.9650`, averaged `2306 ms`, and cost `$0.00892992` total (`$0.000687` per case). The identical fresh Gemini 3 Flash control passed `13/13` at `0.9634`, averaged `6355 ms`, and cost `$0.0483065`: Luna was `2.76x` faster and `5.41x` cheaper. Manual source review found one model-wrong extra title crop on `Image011`; the result still clears the `>= 0.95` target but remains below the best eligible historical Gemini score of `0.9703`. Conditionally prefer Luna for detector value research only; do not infer a production runtime or page-context adoption. Portable proof: `docs/evals/attempts/023-gpt56-luna-price-refresh.md`.\n"
+        "latency_ms": 16002,
+        "cost_usd": 0.00827,
+        "cost_estimated": false,
+        "measured": "2026-08-04",
+        "git_sha": "b97870f",
+        "note": "Exact `qwen/qwen3.8-max` OpenRouter route, canonical snapshot `qwen/qwen3.8-max-20260803`, pinned to Alibaba with no fallback, mandatory low reasoning hidden from output, strict JSON Schema, exact served identity, terminal stop, and raw reported usage/cost. Text, generated synthetic-image, and one-case PromptFoo parity probes qualified before the frozen no-cache detector. The full run completed `12/13` with `0` provider/schema errors, `overall = 0.9411`, average latency `16002 ms`, and `$0.107508` total reported cost. Manual source inspection classified `Image011` as model-wrong: Qwen split the seal and adjacent signatures despite the explicit one-combined-image rule. It did not clear the detector prerequisite, so the 22-case page-context gate was not run and remains not measured. Do not adopt. Portable proof: `docs/evals/attempts/024-qwen38-max-evaluate-model.md`.\n"
       },
       "attempts": [
         {
@@ -13548,6 +13563,14 @@
           "approach": "Force-refresh GPT-5.6 Luna after its 80% price cut using attributable strict-schema transport and a fresh Gemini control",
           "note": "Current official pricing, authenticated exact-ID discovery, strict text, native image, and PromptFoo parity probes all passed. The OpenAI adapter was hardened to require exact served identity, terminal completion, lossless multimodal normalization, valid usage, strict local output validation, and cache-aware costs; focused tests passed `5/5`. The frozen no-cache detector comparison passed `13/13` for both arms. Luna reached `0.9650`, `2306 ms`, and `$0.00892992` total versus fresh Gemini at `0.9634`, `6355 ms`, and `$0.0483065`. Luna is the conditional detector value winner, not a broad default: one source-reviewed over-detection remains and its existing `19/22` page-context safety result is still disqualifying. No runtime, maintained provider, prompt, scorer, or golden changed. Portable proof: `docs/evals/attempts/023-gpt56-luna-price-refresh.md`.\n",
           "retry_when": []
+        },
+        {
+          "id": "024",
+          "date": "2026-08-04",
+          "status": "failed",
+          "approach": "Qualify exact Qwen3.8 Max OpenRouter transport, then run the bounded crop ladder under `/evaluate-model`",
+          "note": "Live catalog and endpoint evidence resolved exact `qwen/qwen3.8-max` to canonical snapshot `qwen/qwen3.8-max-20260803` through one Alibaba endpoint. A dedicated fail-closed vision adapter pinned that provider, required strict schema, exact served identity, terminal stop, lossless image normalization, and raw reported usage/cost. Strict text, generated synthetic-image, and one-case PromptFoo parity probes passed. The frozen detector completed `12/13`, `0.9411`, `16002 ms` average, and `$0.107508` total with no provider errors. Source inspection confirmed the `Image011` miss was model-wrong. Total successful-call spend was `$0.117838`; the conditional page-context gate was not run. Do not adopt. Portable proof: `docs/evals/attempts/024-qwen38-max-evaluate-model.md`.\n",
+          "retry_when": []
         }
       ],
       "retry_when": [
@@ -13572,11 +13595,11 @@
         ],
         "why_now": "Gemini 4 or equivalent may push past 0.95 target Golden references cover limited page types; add table-heavy pages",
         "last_relevant_action": {
-          "date": "2026-08-03",
+          "date": "2026-08-04",
           "source_type": "eval-attempt",
           "source": "docs/evals/registry.yaml",
-          "source_id": "023",
-          "summary": "Current official pricing, authenticated exact-ID discovery, strict text, native image, and PromptFoo parity probes all passed. The OpenAI adapter was hardened to require exact served identity, terminal completion, los..."
+          "source_id": "024",
+          "summary": "Live catalog and endpoint evidence resolved exact `qwen/qwen3.8-max` to canonical snapshot `qwen/qwen3.8-max-20260803` through one Alibaba endpoint. A dedicated fail-closed vision adapter pinned that provider, require..."
         }
       }
     },
