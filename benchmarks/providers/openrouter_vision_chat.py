@@ -187,6 +187,8 @@ def _body(prompt: str, options: dict[str, Any] | None = None) -> dict[str, Any]:
             "order": [settings["expected_served_provider"]],
             "allow_fallbacks": False,
             "require_parameters": True,
+            "data_collection": "deny",
+            "zdr": True,
         },
     }
 
@@ -354,6 +356,8 @@ def call_api(prompt: str, options: dict[str, Any], context: dict[str, Any]):
         "requested_max_tokens": settings["max_tokens"],
         "allow_fallbacks": False,
         "require_parameters": True,
+        "requested_data_collection": "deny",
+        "requested_zdr": True,
         "response_id": data.get("id"),
         "request_id": response.headers.get("x-request-id"),
         "latency_ms": latency_ms,

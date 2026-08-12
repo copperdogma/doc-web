@@ -66,6 +66,8 @@ def test_body_pins_exact_route_and_preserves_image(monkeypatch):
         "order": ["Alibaba"],
         "allow_fallbacks": False,
         "require_parameters": True,
+        "data_collection": "deny",
+        "zdr": True,
     }
     assert body["reasoning"] == {"effort": "low", "exclude": True}
     assert body["messages"][0]["content"][1]["image_url"]["url"] == data_uri
@@ -84,6 +86,8 @@ def test_success_requires_attributable_usage_and_cost(monkeypatch):
     assert result["metadata"]["served_model"] == "qwen/qwen3.8-max"
     assert result["metadata"]["served_provider"] == "Alibaba"
     assert result["metadata"]["cost_estimated"] is False
+    assert result["metadata"]["requested_data_collection"] == "deny"
+    assert result["metadata"]["requested_zdr"] is True
     assert result["tokenUsage"] == {
         "prompt": 100,
         "completion": 20,

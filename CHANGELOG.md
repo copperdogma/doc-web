@@ -1,3 +1,12 @@
+## [2026-08-12-01] - Reject Grok 4.6 crop challenger
+
+### Added
+- Added a tracked Grok 4.6 evaluation attempt covering authenticated OpenRouter/xAI transport, the frozen 13-case detector, visual source review, spend, and the progressive-gate decision.
+
+### Changed
+- Hardened the generic OpenRouter vision adapter to enforce per-request ZDR and deny provider data collection while retaining strict schemas, exact model/provider attribution, disabled fallbacks, terminal-state checks, and reported usage/cost.
+- Recorded Grok 4.6's below-target `11/13`, `0.8414` detector result and preserved its unmeasured 22-case page-context capability; maintained crop defaults, prompts, scorers, and goldens remain unchanged.
+
 ## [2026-08-05-01] - Reject Qwen3.8 Max crop challenger
 
 ### Added

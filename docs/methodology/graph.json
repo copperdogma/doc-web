@@ -1128,11 +1128,11 @@
           ],
           "why_now": "Gemini 4 or equivalent may push past 0.95 target Golden references cover limited page types; add table-heavy pages",
           "last_relevant_action": {
-            "date": "2026-08-04",
+            "date": "2026-08-12",
             "source_type": "eval-attempt",
             "source": "docs/evals/registry.yaml",
-            "source_id": "024",
-            "summary": "Live catalog and endpoint evidence resolved exact `qwen/qwen3.8-max` to canonical snapshot `qwen/qwen3.8-max-20260803` through one Alibaba endpoint. A dedicated fail-closed vision adapter pinned that provider, require..."
+            "source_id": "025",
+            "summary": "Authenticated OpenRouter discovery resolved exact `x-ai/grok-4.6` to xAI's `x-ai/grok-4.6-20260810` endpoint family. The generic vision adapter pinned provider `xAI`, disabled fallbacks, required strict parameters, an..."
           },
           "story_ids": [
             "135",
@@ -1188,11 +1188,11 @@
           ],
           "why_now": "Rerun when a materially stronger validator or detector may reduce the current fail-labeled page-context cases. Rerun after any maintained crop/runtime simplification before claiming `trim_layout_text` or bounded capti...",
           "last_relevant_action": {
-            "date": "2026-08-03",
+            "date": "2026-08-12",
             "source_type": "eval-attempt",
             "source": "docs/evals/registry.yaml",
-            "source_id": "020",
-            "summary": "Fresh strict-schema Luna detector evidence cleared `>= 0.95` and materially improved value, but its `0.9650` quality was only `0.0027` above the prior Luna run and remained below the best eligible Gemini evidence. Tha..."
+            "source_id": "021",
+            "summary": "Exact OpenRouter/xAI Grok 4.6 transport qualified, but the frozen detector reached only `11/13`, `0.8414`, below both required entry conditions (`13/13` and `overall >= 0.95`). Per the predeclared progressive ladder,..."
           },
           "story_ids": [
             "135",
@@ -1623,12 +1623,12 @@
           "source_path": "docs/stories/story-207-refresh-crop-c4-proof-and-coverage-truth-surfaces.md",
           "recommended_now": false,
           "posture": "completed",
-          "why_now": "Qwen3.8 evidence validation: focused adapter/environment tests passed `9/9`; Ruff, registry YAML, methodology compile/check, and diff hygiene passed. Full `make test` completed `935 passed, 1 failed, 4 warnings` in `8...",
+          "why_now": "Grok 4.6 evidence validation: registry YAML, focused provider/crop coverage (`12 passed`), Ruff/lint, methodology compile/check, and diff hygiene passed. Full `make test` completed `936 passed, 4 warnings in 808.47s`;...",
           "last_relevant_action": {
-            "date": "2026-08-05",
+            "date": "2026-08-12",
             "source_type": "story-work-log",
             "source": "docs/stories/story-207-refresh-crop-c4-proof-and-coverage-truth-surfaces.md",
-            "summary": "Qwen3.8 evidence validation: focused adapter/environment tests passed `9/9`; Ruff, registry YAML, methodology compile/check, and diff hygiene passed. Full `make test` completed `935 passed, 1 failed, 4 warnings` in `8..."
+            "summary": "Grok 4.6 evidence validation: registry YAML, focused provider/crop coverage (`12 passed`), Ruff/lint, methodology compile/check, and diff hygiene passed. Full `make test` completed `936 passed, 4 warnings in 808.47s`;..."
           },
           "story_ids": [
             "181",
@@ -11163,9 +11163,9 @@
       "blocker_evidence": "",
       "unblock_condition": "",
       "last_work_log_entry": {
-        "timestamp": "20260805-0010",
-        "date": "2026-08-05",
-        "summary": "Qwen3.8 evidence validation: focused adapter/environment tests passed `9/9`; Ruff, registry YAML, methodology compile/check, and diff hygiene passed. Full `make test` completed `935 passed, 1 failed, 4 warnings` in `8..."
+        "timestamp": "20260812-1647",
+        "date": "2026-08-12",
+        "summary": "Grok 4.6 evidence validation: registry YAML, focused provider/crop coverage (`12 passed`), Ruff/lint, methodology compile/check, and diff hygiene passed. Full `make test` completed `936 passed, 4 warnings in 808.47s`;..."
       },
       "legacy_build_map_refs": "",
       "metadata_source": "frontmatter",
@@ -11176,12 +11176,12 @@
         "source_path": "docs/stories/story-207-refresh-crop-c4-proof-and-coverage-truth-surfaces.md",
         "recommended_now": false,
         "posture": "completed",
-        "why_now": "Qwen3.8 evidence validation: focused adapter/environment tests passed `9/9`; Ruff, registry YAML, methodology compile/check, and diff hygiene passed. Full `make test` completed `935 passed, 1 failed, 4 warnings` in `8...",
+        "why_now": "Grok 4.6 evidence validation: registry YAML, focused provider/crop coverage (`12 passed`), Ruff/lint, methodology compile/check, and diff hygiene passed. Full `make test` completed `936 passed, 4 warnings in 808.47s`;...",
         "last_relevant_action": {
-          "date": "2026-08-05",
+          "date": "2026-08-12",
           "source_type": "story-work-log",
           "source": "docs/stories/story-207-refresh-crop-c4-proof-and-coverage-truth-surfaces.md",
-          "summary": "Qwen3.8 evidence validation: focused adapter/environment tests passed `9/9`; Ruff, registry YAML, methodology compile/check, and diff hygiene passed. Full `make test` completed `935 passed, 1 failed, 4 warnings` in `8..."
+          "summary": "Grok 4.6 evidence validation: registry YAML, focused provider/crop coverage (`12 passed`), Ruff/lint, methodology compile/check, and diff hygiene passed. Full `make test` completed `936 passed, 4 warnings in 808.47s`;..."
         }
       }
     },
@@ -11301,9 +11301,9 @@
       "blocker_evidence": "",
       "unblock_condition": "",
       "last_work_log_entry": {
-        "timestamp": "20260804-2352",
-        "date": "2026-08-04",
-        "summary": "Qwen3.8 Max conditional follow-on result: Story 207's frozen detector completed `12/13` at `0.9411`, below both the `13/13` and `overall >= 0.95` entry conditions. Per the predeclared progressive ladder, this 22-case..."
+        "timestamp": "20260812-1633",
+        "date": "2026-08-12",
+        "summary": "Grok 4.6 conditional follow-on result: Story 207's frozen detector completed `11/13` at `0.8414`, below both the `13/13` and `overall >= 0.95` entry conditions. Per the predeclared ladder, this 22-case page-context ta..."
       },
       "legacy_build_map_refs": "",
       "metadata_source": "frontmatter",
@@ -11314,12 +11314,12 @@
         "source_path": "docs/stories/story-209-crop-c5-page-level-deletion-gate.md",
         "recommended_now": false,
         "posture": "completed",
-        "why_now": "Qwen3.8 Max conditional follow-on result: Story 207's frozen detector completed `12/13` at `0.9411`, below both the `13/13` and `overall >= 0.95` entry conditions. Per the predeclared progressive ladder, this 22-case...",
+        "why_now": "Grok 4.6 conditional follow-on result: Story 207's frozen detector completed `11/13` at `0.8414`, below both the `13/13` and `overall >= 0.95` entry conditions. Per the predeclared ladder, this 22-case page-context ta...",
         "last_relevant_action": {
-          "date": "2026-08-04",
+          "date": "2026-08-12",
           "source_type": "story-work-log",
           "source": "docs/stories/story-209-crop-c5-page-level-deletion-gate.md",
-          "summary": "Qwen3.8 Max conditional follow-on result: Story 207's frozen detector completed `12/13` at `0.9411`, below both the `13/13` and `overall >= 0.95` entry conditions. Per the predeclared progressive ladder, this 22-case..."
+          "summary": "Grok 4.6 conditional follow-on result: Story 207's frozen detector completed `11/13` at `0.8414`, below both the `13/13` and `overall >= 0.95` entry conditions. Per the predeclared ladder, this 22-case page-context ta..."
         }
       }
     },
@@ -13272,6 +13272,21 @@
           "note": "Exact `qwen/qwen3.8-max` OpenRouter route, canonical snapshot `qwen/qwen3.8-max-20260803`, pinned to Alibaba with no fallback, mandatory low reasoning hidden from output, strict JSON Schema, exact served identity, terminal stop, and raw reported usage/cost. Text, generated synthetic-image, and one-case PromptFoo parity probes qualified before the frozen no-cache detector. The full run completed `12/13` with `0` provider/schema errors, `overall = 0.9411`, average latency `16002 ms`, and `$0.107508` total reported cost. Manual source inspection classified `Image011` as model-wrong: Qwen split the seal and adjacent signatures despite the explicit one-combined-image rule. It did not clear the detector prerequisite, so the 22-case page-context gate was not run and remains not measured. Do not adopt. Portable proof: `docs/evals/attempts/024-qwen38-max-evaluate-model.md`.\n"
         },
         {
+          "model": "Grok 4.6 OpenRouter (xAI-pinned ZDR strict-schema detector, reasoning low)",
+          "metrics": {
+            "overall": 0.8414,
+            "pass_rate": 0.8462,
+            "cases_total": 13,
+            "latency_ms": 3260
+          },
+          "latency_ms": 3260,
+          "cost_usd": 0.005601,
+          "cost_estimated": false,
+          "measured": "2026-08-12",
+          "git_sha": "e117c0d",
+          "note": "Exact `x-ai/grok-4.6` OpenRouter route, mapped by the authenticated endpoint catalog to xAI snapshot family `x-ai/grok-4.6-20260810` and pinned to provider `xAI` with no fallback, per-request ZDR, denied data collection, low reasoning hidden from output, strict JSON Schema, exact served identity, terminal stop, and reported usage/cost. Strict text, image, and one-case PromptFoo parity probes qualified before the frozen no-cache detector. The full run completed `11/13` with `0` provider/schema errors, `overall = 0.8414`, average latency `3260 ms`, and `$0.072818` total reported subject cost. Manual source inspection classified both misses as model-wrong: `Image011` repeated Grok 4.5's seal-only crop instead of grouping the adjacent signatures, while `Image021` cut into the portrait and absorbed its page caption. It did not clear the detector prerequisite, so the 22-case page-context gate was not run and remains not measured. Do not adopt. Portable proof: `docs/evals/attempts/025-grok46-evaluate-model.md`.\n"
+        },
+        {
           "model": "Grok 4.5 Responses (conservative-count prompt, reasoning low)",
           "metrics": {
             "overall": 0.8026,
@@ -13365,19 +13380,19 @@
         }
       ],
       "latest_score": {
-        "model": "Qwen3.8 Max OpenRouter (Alibaba-pinned strict-schema detector, reasoning low)",
+        "model": "Grok 4.6 OpenRouter (xAI-pinned ZDR strict-schema detector, reasoning low)",
         "metrics": {
-          "overall": 0.9411,
-          "pass_rate": 0.9231,
+          "overall": 0.8414,
+          "pass_rate": 0.8462,
           "cases_total": 13,
-          "latency_ms": 16002
+          "latency_ms": 3260
         },
-        "latency_ms": 16002,
-        "cost_usd": 0.00827,
+        "latency_ms": 3260,
+        "cost_usd": 0.005601,
         "cost_estimated": false,
-        "measured": "2026-08-04",
-        "git_sha": "b97870f",
-        "note": "Exact `qwen/qwen3.8-max` OpenRouter route, canonical snapshot `qwen/qwen3.8-max-20260803`, pinned to Alibaba with no fallback, mandatory low reasoning hidden from output, strict JSON Schema, exact served identity, terminal stop, and raw reported usage/cost. Text, generated synthetic-image, and one-case PromptFoo parity probes qualified before the frozen no-cache detector. The full run completed `12/13` with `0` provider/schema errors, `overall = 0.9411`, average latency `16002 ms`, and `$0.107508` total reported cost. Manual source inspection classified `Image011` as model-wrong: Qwen split the seal and adjacent signatures despite the explicit one-combined-image rule. It did not clear the detector prerequisite, so the 22-case page-context gate was not run and remains not measured. Do not adopt. Portable proof: `docs/evals/attempts/024-qwen38-max-evaluate-model.md`.\n"
+        "measured": "2026-08-12",
+        "git_sha": "e117c0d",
+        "note": "Exact `x-ai/grok-4.6` OpenRouter route, mapped by the authenticated endpoint catalog to xAI snapshot family `x-ai/grok-4.6-20260810` and pinned to provider `xAI` with no fallback, per-request ZDR, denied data collection, low reasoning hidden from output, strict JSON Schema, exact served identity, terminal stop, and reported usage/cost. Strict text, image, and one-case PromptFoo parity probes qualified before the frozen no-cache detector. The full run completed `11/13` with `0` provider/schema errors, `overall = 0.8414`, average latency `3260 ms`, and `$0.072818` total reported subject cost. Manual source inspection classified both misses as model-wrong: `Image011` repeated Grok 4.5's seal-only crop instead of grouping the adjacent signatures, while `Image021` cut into the portrait and absorbed its page caption. It did not clear the detector prerequisite, so the 22-case page-context gate was not run and remains not measured. Do not adopt. Portable proof: `docs/evals/attempts/025-grok46-evaluate-model.md`.\n"
       },
       "attempts": [
         {
@@ -13571,6 +13586,14 @@
           "approach": "Qualify exact Qwen3.8 Max OpenRouter transport, then run the bounded crop ladder under `/evaluate-model`",
           "note": "Live catalog and endpoint evidence resolved exact `qwen/qwen3.8-max` to canonical snapshot `qwen/qwen3.8-max-20260803` through one Alibaba endpoint. A dedicated fail-closed vision adapter pinned that provider, required strict schema, exact served identity, terminal stop, lossless image normalization, and raw reported usage/cost. Strict text, generated synthetic-image, and one-case PromptFoo parity probes passed. The frozen detector completed `12/13`, `0.9411`, `16002 ms` average, and `$0.107508` total with no provider errors. Source inspection confirmed the `Image011` miss was model-wrong. Total successful-call spend was `$0.117838`; the conditional page-context gate was not run. Do not adopt. Portable proof: `docs/evals/attempts/024-qwen38-max-evaluate-model.md`.\n",
           "retry_when": []
+        },
+        {
+          "id": "025",
+          "date": "2026-08-12",
+          "status": "failed",
+          "approach": "Qualify exact Grok 4.6 OpenRouter/xAI transport, then rerun the bounded crop ladder under `/evaluate-model`",
+          "note": "Authenticated OpenRouter discovery resolved exact `x-ai/grok-4.6` to xAI's `x-ai/grok-4.6-20260810` endpoint family. The generic vision adapter pinned provider `xAI`, disabled fallbacks, required strict parameters, and added per-request ZDR plus data-collection denial. Exact text, image, and PromptFoo parity probes passed before the no-cache 13-case detector completed `11/13`, `0.8414`, `3260 ms` average, and `$0.072818` subject cost with zero provider/schema errors. Source inspection confirmed `Image011` and `Image021` were model-wrong. Total successful-call spend was `$0.086742`; the conditional page-context gate was not run. Do not adopt. Portable proof: `docs/evals/attempts/025-grok46-evaluate-model.md`.\n",
+          "retry_when": []
         }
       ],
       "retry_when": [
@@ -13595,11 +13618,11 @@
         ],
         "why_now": "Gemini 4 or equivalent may push past 0.95 target Golden references cover limited page types; add table-heavy pages",
         "last_relevant_action": {
-          "date": "2026-08-04",
+          "date": "2026-08-12",
           "source_type": "eval-attempt",
           "source": "docs/evals/registry.yaml",
-          "source_id": "024",
-          "summary": "Live catalog and endpoint evidence resolved exact `qwen/qwen3.8-max` to canonical snapshot `qwen/qwen3.8-max-20260803` through one Alibaba endpoint. A dedicated fail-closed vision adapter pinned that provider, require..."
+          "source_id": "025",
+          "summary": "Authenticated OpenRouter discovery resolved exact `x-ai/grok-4.6` to xAI's `x-ai/grok-4.6-20260810` endpoint family. The generic vision adapter pinned provider `xAI`, disabled fallbacks, required strict parameters, an..."
         }
       }
     },
@@ -14319,6 +14342,14 @@
           "approach": "Gate Luna's price-triggered page-context rerun behind materially changed detector quality",
           "note": "Fresh strict-schema Luna detector evidence cleared `>= 0.95` and materially improved value, but its `0.9650` quality was only `0.0027` above the prior Luna run and remained below the best eligible Gemini evidence. That is not a capability change that reopens Attempt 015's source-verified `19/22` Luna page-context result against this hard `22/22` safety contract. Per the predeclared progressive gate, no redundant 22-case rerun or fresh GPT-5.5 control was purchased. Keep the maintained GPT-5.5 validator. Portable proof: `docs/evals/attempts/023-gpt56-luna-price-refresh.md`.\n",
           "retry_when": []
+        },
+        {
+          "id": "021",
+          "date": "2026-08-12",
+          "status": "partial",
+          "approach": "Gate Grok 4.6 page-context measurement behind the frozen detector prerequisite",
+          "note": "Exact OpenRouter/xAI Grok 4.6 transport qualified, but the frozen detector reached only `11/13`, `0.8414`, below both required entry conditions (`13/13` and `overall >= 0.95`). Per the predeclared progressive ladder, the 22-case page-context task and a fresh GPT-5.5 control were not run. Grok 4.6 page-context capability is not measured; the maintained GPT-5.5 Responses `22/22` validator remains unchanged. Portable proof: `docs/evals/attempts/025-grok46-evaluate-model.md`.\n",
+          "retry_when": []
         }
       ],
       "retry_when": [
@@ -14346,11 +14377,11 @@
         ],
         "why_now": "Rerun when a materially stronger validator or detector may reduce the current fail-labeled page-context cases. Rerun after any maintained crop/runtime simplification before claiming `trim_layout_text` or bounded capti...",
         "last_relevant_action": {
-          "date": "2026-08-03",
+          "date": "2026-08-12",
           "source_type": "eval-attempt",
           "source": "docs/evals/registry.yaml",
-          "source_id": "020",
-          "summary": "Fresh strict-schema Luna detector evidence cleared `>= 0.95` and materially improved value, but its `0.9650` quality was only `0.0027` above the prior Luna run and remained below the best eligible Gemini evidence. Tha..."
+          "source_id": "021",
+          "summary": "Exact OpenRouter/xAI Grok 4.6 transport qualified, but the frozen detector reached only `11/13`, `0.8414`, below both required entry conditions (`13/13` and `overall >= 0.95`). Per the predeclared progressive ladder,..."
         }
       }
     },

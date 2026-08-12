@@ -497,6 +497,33 @@ evals:
           It did not clear the detector prerequisite, so the 22-case
           page-context gate was not run and remains not measured. Do not adopt.
           Portable proof: `docs/evals/attempts/024-qwen38-max-evaluate-model.md`.
+      - model: "Grok 4.6 OpenRouter (xAI-pinned ZDR strict-schema detector, reasoning low)"
+        metrics:
+          overall: 0.8414
+          pass_rate: 0.8462
+          cases_total: 13
+          latency_ms: 3260
+        latency_ms: 3260
+        cost_usd: 0.005601
+        cost_estimated: false
+        measured: 2026-08-12
+        git_sha: e117c0d
+        note: >
+          Exact `x-ai/grok-4.6` OpenRouter route, mapped by the authenticated
+          endpoint catalog to xAI snapshot family `x-ai/grok-4.6-20260810` and
+          pinned to provider `xAI` with no fallback, per-request ZDR, denied
+          data collection, low reasoning hidden from output, strict JSON
+          Schema, exact served identity, terminal stop, and reported usage/cost.
+          Strict text, image, and one-case PromptFoo parity probes qualified
+          before the frozen no-cache detector. The full run completed `11/13`
+          with `0` provider/schema errors, `overall = 0.8414`, average latency
+          `3260 ms`, and `$0.072818` total reported subject cost. Manual source
+          inspection classified both misses as model-wrong: `Image011` repeated
+          Grok 4.5's seal-only crop instead of grouping the adjacent signatures,
+          while `Image021` cut into the portrait and absorbed its page caption.
+          It did not clear the detector prerequisite, so the 22-case
+          page-context gate was not run and remains not measured. Do not adopt.
+          Portable proof: `docs/evals/attempts/025-grok46-evaluate-model.md`.
       - model: "Grok 4.5 Responses (conservative-count prompt, reasoning low)"
         metrics:
           overall: 0.8026
@@ -1008,6 +1035,24 @@ evals:
           `$0.117838`; the conditional page-context gate was not run. Do not
           adopt. Portable proof:
           `docs/evals/attempts/024-qwen38-max-evaluate-model.md`.
+      - id: "025"
+        date: 2026-08-12
+        status: failed
+        approach: "Qualify exact Grok 4.6 OpenRouter/xAI transport, then rerun the bounded crop ladder under `/evaluate-model`"
+        score_before: 0.9703
+        score_after: 0.8414
+        note: >
+          Authenticated OpenRouter discovery resolved exact `x-ai/grok-4.6`
+          to xAI's `x-ai/grok-4.6-20260810` endpoint family. The generic vision
+          adapter pinned provider `xAI`, disabled fallbacks, required strict
+          parameters, and added per-request ZDR plus data-collection denial.
+          Exact text, image, and PromptFoo parity probes passed before the
+          no-cache 13-case detector completed `11/13`, `0.8414`, `3260 ms`
+          average, and `$0.072818` subject cost with zero provider/schema errors.
+          Source inspection confirmed `Image011` and `Image021` were
+          model-wrong. Total successful-call spend was `$0.086742`; the
+          conditional page-context gate was not run. Do not adopt. Portable
+          proof: `docs/evals/attempts/025-grok46-evaluate-model.md`.
 
     retry_when:
       - condition: new-subject-model
@@ -2199,6 +2244,20 @@ evals:
           redundant 22-case rerun or fresh GPT-5.5 control was purchased. Keep
           the maintained GPT-5.5 validator. Portable proof:
           `docs/evals/attempts/023-gpt56-luna-price-refresh.md`.
+      - id: "021"
+        date: 2026-08-12
+        status: partial
+        approach: "Gate Grok 4.6 page-context measurement behind the frozen detector prerequisite"
+        score_before: 1.0
+        score_after: null
+        note: >
+          Exact OpenRouter/xAI Grok 4.6 transport qualified, but the frozen
+          detector reached only `11/13`, `0.8414`, below both required entry
+          conditions (`13/13` and `overall >= 0.95`). Per the predeclared
+          progressive ladder, the 22-case page-context task and a fresh GPT-5.5
+          control were not run. Grok 4.6 page-context capability is not measured;
+          the maintained GPT-5.5 Responses `22/22` validator remains unchanged.
+          Portable proof: `docs/evals/attempts/025-grok46-evaluate-model.md`.
 
     retry_when:
       - condition: new-subject-model
