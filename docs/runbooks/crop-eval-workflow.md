@@ -76,6 +76,13 @@ View results: `promptfoo view`
   `openai:responses:gpt-5.5`; Luna's `19/22` result is still disqualifying for
   this safety role.
 - **Current C5 decision**: residue is still required. The page-context corpus still contains `5` explicit fail-labeled current-runtime cases (`page-018-000`, `page-092-000`, `page-122-000`, `page-122-001`, `page-126-000`), so `trim_layout_text` and bounded caption assist do not have an honest deletion proof yet.
+- **Selection-validity status**: both validator corpora are maintained
+  production-safety regression surfaces, but all current cases are
+  selection-exposed. `caption-focus` was selected on the full 40-case
+  crop-only corpus; page-context prompt repairs and provider selection used the
+  full 22-case corpus. Neither surface currently has held-out confirmation
+  cases, so new winner/promotion claims are blocked. See
+  `benchmarks/golden/crop-eval-provenance.json`.
 - **Spec compromises**:
   - `C4` — Two-Stage Image Crop Detection
   - `C5` — Layout Text Trim Heuristics for Crops
@@ -90,6 +97,32 @@ and use the same evidence discipline for both `crop-validation` and
 3. Proposes approaches (never retries blocked ones)
 4. Measures before/after
 5. Records the verified attempt in the registry
+
+## Selection-validity workflow
+
+1. Keep the existing source-backed labels as regression truth; do not weaken a
+   safety case because many models miss it.
+2. Use `benchmarks/golden/crop-eval-provenance.json` to distinguish calibration,
+   production regression, and held-out confirmation.
+3. Configuration work may use only declared calibration cases and must give
+   every compared model the same arm budget.
+4. Freeze prompts, adapters, schemas, and reasoning settings before opening a
+   newly added held-out slice.
+5. Only after that freeze, set `model_selection_status` to
+   `eligible_held_out_confirmation` and run held-out confirmation once for the
+   selection claim. The regrader requires a nonempty, all-passing held-out
+   partition; blocked status, a missing case, a duplicate row, partition
+   overlap, extra coverage, or any held-out failure remains fail-closed.
+   Continue to require the full production regression gate before any
+   runtime/default change.
+6. If held-out is empty, use
+   `benchmarks/scripts/regrade_crop_result.py` to report capability/regression
+   evidence and `selection_claim_allowed: false`; do not buy another full-corpus
+   incumbent/challenger rerun because it cannot cure selection exposure.
+7. The current bounded inventory is not sufficient to seed held-out truth: it
+   found three unscored logical crops, all pass-style, with two reusing exposed
+   source pages. Follow the 12-case, 8-page, balanced preparation contract in
+   `docs/evals/evidence/026-crop-validity-audit.md`; freeze it before any calls.
 
 ## Verifying Results
 

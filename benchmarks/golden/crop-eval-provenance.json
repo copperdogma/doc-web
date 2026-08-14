@@ -1,0 +1,77 @@
+{
+  "schema_version": "crop_eval_provenance_v1",
+  "policy": {
+    "regression_veto_allowed": true,
+    "selection_veto_allowed_without_held_out": false,
+    "rules": [
+      "Freeze source-backed held-out fixtures and labels before provider calls.",
+      "Use calibration cases for prompt, schema, reasoning, and adapter selection only.",
+      "Give every compared model the same declared calibration-arm budget.",
+      "After configuration freeze, use held-out confirmation once for model-selection claims.",
+      "Set model_selection_status to eligible_held_out_confirmation only after the held-out partition and all compared configurations are frozen; held-out presence alone never makes a selection claim eligible.",
+      "A valid regression failure may block a runtime/default change even when held-out selection evidence passes.",
+      "A regression-only pass or failure is capability evidence, not an unbiased winner claim."
+    ]
+  },
+  "held_out_creation": {
+    "status": "blocked_insufficient_unexposed_truth",
+    "inventory_date": "2026-08-13",
+    "inventory_result": "Existing Onward output history contains only three logical crop keys outside the maintained 40-case corpus. All three are visually pass-style; page-012-002 and page-122-002 reuse source pages already exposed in calibration. They cannot provide a balanced, source-page-independent safety confirmation slice.",
+    "minimum_confirmation_contract": {
+      "case_count": 12,
+      "minimum_distinct_source_pages": 8,
+      "required_labels": {"pass": 6, "fail": 6},
+      "source_page_overlap_with_calibration": 0,
+      "freeze_before_provider_calls": true,
+      "natural_production_crops_only": true,
+      "label_review": "Inspect source page and crop together, record the source-backed reason and hashes, then obtain an independent second review before freezing."
+    },
+    "expansion_rule": "If a predeclared 12-case candidate slice has fewer than six natural production failures, add four previously unused source pages at a time and review every crop from those pages. Do not synthesize defects, cherry-pick by validator output, or call providers before the slice is frozen."
+  },
+  "surfaces": {
+    "crop-validation": {
+      "contract_role": "production_safety_regression",
+      "model_selection_status": "blocked_pending_held_out_truth",
+      "selection_exposure": "The caption-focus prompt was selected from six variants on this full 40-case corpus, and the incumbent plus challengers were repeatedly ranked on the same cases.",
+      "calibration_keys": [
+        "page-001-000", "page-004-000", "page-009-000", "page-012-000",
+        "page-012-001", "page-014-000", "page-018-000", "page-021-000",
+        "page-021-001", "page-022-000", "page-028-000", "page-038-000",
+        "page-038-001", "page-048-000", "page-054-000", "page-060-000",
+        "page-060-001", "page-066-000", "page-072-000", "page-078-000",
+        "page-086-000", "page-092-000", "page-096-000", "page-096-001",
+        "page-102-000", "page-108-000", "page-108-001", "page-116-000",
+        "page-121-000", "page-121-001", "page-122-000", "page-122-001",
+        "page-123-000", "page-123-001", "page-124-000", "page-125-000",
+        "page-126-000", "page-126-001", "page-127-000", "page-127-001"
+      ],
+      "held_out_confirmation_keys": [],
+      "known_tuning_cases": ["page-126-000"],
+      "provenance_refs": [
+        "docs/stories/story-126-crop-quality-text-validation-loop.md",
+        "docs/stories/story-183-repair-crop-benchmark-substrate-and-c5-truth-surface.md"
+      ]
+    },
+    "crop-page-level-deletion-gate": {
+      "contract_role": "production_safety_regression",
+      "model_selection_status": "blocked_pending_held_out_truth",
+      "selection_exposure": "The prompt was repaired on observed incumbent failures and the provider default was selected after repeated full-corpus comparisons.",
+      "calibration_keys": [
+        "page-001-000", "page-004-000", "page-009-000", "page-012-000",
+        "page-012-001", "page-014-000", "page-018-000", "page-021-000",
+        "page-021-001", "page-022-000", "page-038-000", "page-038-001",
+        "page-060-000", "page-060-001", "page-092-000", "page-122-000",
+        "page-122-001", "page-125-000", "page-126-000", "page-126-001",
+        "page-127-000", "page-127-001"
+      ],
+      "held_out_confirmation_keys": [],
+      "known_tuning_cases": [
+        "page-004-000", "page-021-001", "page-122-001", "page-126-000"
+      ],
+      "provenance_refs": [
+        "docs/evals/attempts/002-crop-page-level-deletion-gate-story209-proof.md",
+        "docs/evals/attempts/007-gpt55-page-context-prompt-repair.md"
+      ]
+    }
+  }
+}

@@ -947,12 +947,12 @@
           "source_path": "docs/stories/story-191-finish-real-handwritten-ocr-on-the-loc-fixture-pair.md",
           "recommended_now": false,
           "posture": "blocked",
-          "why_now": "Gemini 3.6 Flash / Gemini 3.5 Flash-Lite unblock screen: both exact GA IDs were live-proven, then each ran through `driver.py` on the corrected Barney and Alverson image-entry fixtures. The first scoring pass exposed...",
+          "why_now": "Gemini 3.7 Flash eval decision contract: screen exact GA ID `gemini-3.7-flash` only on the corrected repo-owned Barney and Alverson image-entry fixtures through `driver.py`, using the existing literal-transcription sc...",
           "last_relevant_action": {
-            "date": "2026-07-21",
+            "date": "2026-08-13",
             "source_type": "story-work-log",
             "source": "docs/stories/story-191-finish-real-handwritten-ocr-on-the-loc-fixture-pair.md",
-            "summary": "Gemini 3.6 Flash / Gemini 3.5 Flash-Lite unblock screen: both exact GA IDs were live-proven, then each ran through `driver.py` on the corrected Barney and Alverson image-entry fixtures. The first scoring pass exposed..."
+            "summary": "Gemini 3.7 Flash eval decision contract: screen exact GA ID `gemini-3.7-flash` only on the corrected repo-owned Barney and Alverson image-entry fixtures through `driver.py`, using the existing literal-transcription sc..."
           },
           "story_ids": [
             "134",
@@ -1176,23 +1176,23 @@
         ],
         "actionability": {
           "source_kind": "eval",
-          "source_id": "crop-page-level-deletion-gate",
+          "source_id": "crop-validation",
           "source_path": "docs/evals/registry.yaml",
           "recommended_now": false,
-          "posture": "trigger-exhausted",
-          "retry_trigger_status": "exhausted",
+          "posture": "wait-for-trigger",
+          "retry_trigger_status": "waiting",
           "retry_when": [
             "golden-fix",
-            "new-subject-model",
-            "runtime-change"
+            "new-approach",
+            "new-subject-model"
           ],
-          "why_now": "Rerun when a materially stronger validator or detector may reduce the current fail-labeled page-context cases. Rerun after any maintained crop/runtime simplification before claiming `trim_layout_text` or bounded capti...",
+          "why_now": "Rerun when a new validator model or prompt looks strong enough to widen or replace the current bounded C5-linked truth surface. Broaden or redesign this surface when the project is ready to measure the spec's wider pa...",
           "last_relevant_action": {
-            "date": "2026-08-12",
+            "date": "2026-08-13",
             "source_type": "eval-attempt",
             "source": "docs/evals/registry.yaml",
-            "source_id": "021",
-            "summary": "Exact OpenRouter/xAI Grok 4.6 transport qualified, but the frozen detector reached only `11/13`, `0.8414`, below both required entry conditions (`13/13` and `overall >= 0.95`). Per the predeclared progressive ladder,..."
+            "source_id": "007",
+            "summary": "Visual inspection reconfirmed `page-126-000` as a valid safety fail, and frozen-output regrading preserved Gemini 3.7 at `39/40` on the full production-regression corpus. However, `caption-focus` was selected on all 4..."
           },
           "story_ids": [
             "135",
@@ -1346,12 +1346,12 @@
           "source_path": "docs/stories/story-191-finish-real-handwritten-ocr-on-the-loc-fixture-pair.md",
           "recommended_now": false,
           "posture": "blocked",
-          "why_now": "Gemini 3.6 Flash / Gemini 3.5 Flash-Lite unblock screen: both exact GA IDs were live-proven, then each ran through `driver.py` on the corrected Barney and Alverson image-entry fixtures. The first scoring pass exposed...",
+          "why_now": "Gemini 3.7 Flash eval decision contract: screen exact GA ID `gemini-3.7-flash` only on the corrected repo-owned Barney and Alverson image-entry fixtures through `driver.py`, using the existing literal-transcription sc...",
           "last_relevant_action": {
-            "date": "2026-07-21",
+            "date": "2026-08-13",
             "source_type": "story-work-log",
             "source": "docs/stories/story-191-finish-real-handwritten-ocr-on-the-loc-fixture-pair.md",
-            "summary": "Gemini 3.6 Flash / Gemini 3.5 Flash-Lite unblock screen: both exact GA IDs were live-proven, then each ran through `driver.py` on the corrected Barney and Alverson image-entry fixtures. The first scoring pass exposed..."
+            "summary": "Gemini 3.7 Flash eval decision contract: screen exact GA ID `gemini-3.7-flash` only on the corrected repo-owned Barney and Alverson image-entry fixtures through `driver.py`, using the existing literal-transcription sc..."
           },
           "story_ids": [
             "148",
@@ -1522,12 +1522,12 @@
           "source_path": "docs/stories/story-191-finish-real-handwritten-ocr-on-the-loc-fixture-pair.md",
           "recommended_now": false,
           "posture": "blocked",
-          "why_now": "Gemini 3.6 Flash / Gemini 3.5 Flash-Lite unblock screen: both exact GA IDs were live-proven, then each ran through `driver.py` on the corrected Barney and Alverson image-entry fixtures. The first scoring pass exposed...",
+          "why_now": "Gemini 3.7 Flash eval decision contract: screen exact GA ID `gemini-3.7-flash` only on the corrected repo-owned Barney and Alverson image-entry fixtures through `driver.py`, using the existing literal-transcription sc...",
           "last_relevant_action": {
-            "date": "2026-07-21",
+            "date": "2026-08-13",
             "source_type": "story-work-log",
             "source": "docs/stories/story-191-finish-real-handwritten-ocr-on-the-loc-fixture-pair.md",
-            "summary": "Gemini 3.6 Flash / Gemini 3.5 Flash-Lite unblock screen: both exact GA IDs were live-proven, then each ran through `driver.py` on the corrected Barney and Alverson image-entry fixtures. The first scoring pass exposed..."
+            "summary": "Gemini 3.7 Flash eval decision contract: screen exact GA ID `gemini-3.7-flash` only on the corrected repo-owned Barney and Alverson image-entry fixtures through `driver.py`, using the existing literal-transcription sc..."
           },
           "story_ids": [
             "179",
@@ -1623,12 +1623,12 @@
           "source_path": "docs/stories/story-207-refresh-crop-c4-proof-and-coverage-truth-surfaces.md",
           "recommended_now": false,
           "posture": "completed",
-          "why_now": "Grok 4.6 evidence validation: registry YAML, focused provider/crop coverage (`12 passed`), Ruff/lint, methodology compile/check, and diff hygiene passed. Full `make test` completed `936 passed, 4 warnings in 808.47s`;...",
+          "why_now": "candidate-close provenance correction: the successful integer detector arm was not byte-identical to the normalized arm. The authorized repair changed the effective coordinate instruction and strict response schema to...",
           "last_relevant_action": {
-            "date": "2026-08-12",
+            "date": "2026-08-13",
             "source_type": "story-work-log",
             "source": "docs/stories/story-207-refresh-crop-c4-proof-and-coverage-truth-surfaces.md",
-            "summary": "Grok 4.6 evidence validation: registry YAML, focused provider/crop coverage (`12 passed`), Ruff/lint, methodology compile/check, and diff hygiene passed. Full `make test` completed `936 passed, 4 warnings in 808.47s`;..."
+            "summary": "candidate-close provenance correction: the successful integer detector arm was not byte-identical to the normalized arm. The authorized repair changed the effective coordinate instruction and strict response schema to..."
           },
           "story_ids": [
             "181",
@@ -10033,9 +10033,9 @@
       "blocker_evidence": "- Story 192 corrected the Alverson transcript to the exact visible front-page boundary and reran the maintained handwritten corpus, writing `benchmarks/results/handwritten-notes-story192-alverson-frontpage.json` with `pass_rate = 0.6`, `overall_min_ratio = 0.677267`, and `page_min_ratio = 0.677267`. The six synthetic rescue cases still passed at `1.0`, but the real fixtures stayed below bar: Barney scored `0.908567` on image entry and `0.886568` on PDF entry, while corrected-scope Alverson scored `0.677267` on image entry and `0.681952` on PDF entry.\n- Manual artifact inspection on that corrected rerun confirmed the remaining issue is OCR quality on visible source content, not hidden continuation text. Alverson artifacts at `output/runs/handwritten-handwritten-notes-alverson-real-image-handwritten-rescue/02_ocr_ai_gpt51_v1/pages_html.jsonl` and `output/runs/handwritten-handwritten-notes-alverson-real-pdf-handwritten-rescue/02_ocr_ai_gpt51_v1/pages_html.jsonl` still misread the visible front page with errors such as leading `nothing`, `Battle of Chickamauga`, `lates novels`, and `excepatable`. Barney artifacts at `output/runs/handwritten-handwritten-notes-barney-real-image-handwritten-rescue/02_ocr_ai_gpt51_v1/pages_html.jsonl` and `output/runs/handwritten-handwritten-notes-barney-real-pdf-handwritten-rescue/02_ocr_ai_gpt51_v1/pages_html.jsonl` still drift on names and phrases such as `Harlen`, `genesee`, and `father has had gone`.\n- Story 191's fresh direct `gpt-5` / `claude-opus-4-6` probes remain only historical negative evidence because they were measured before Story 192 corrected the Alverson transcript surface. They did not produce a winning OCR substrate then, and no newer corrected-corpus stronger-model winner has been verified since. That keeps this story blocked on missing OCR capability rather than on missing paperwork.\n- 2026-04-05 bounded `/improve-eval handwritten-notes-transcription` rechecked the retry gate after verifying current model availability with `python scripts/discover-models.py --check-new`. Fresh maintained rescue reruns under `benchmarks/results/handwritten-notes-improve-eval-20260405-barney-baseline.json` and `benchmarks/results/handwritten-notes-improve-eval-20260405-alverson-baseline.json` reproduced the current blocker instead of revealing silent drift: Barney stayed at `0.883604` image / `0.756036` pdf, and corrected-scope Alverson stayed at `0.677267` image / `0.681952` pdf. The fresh image-only subject-model screen at `benchmarks/results/handwritten-notes-improve-eval-20260405-image-screen.json` also failed to produce a winner. `gpt-5.4-pro` wrote empty `page_html_v1` artifacts at `output/runs/eval-barney-image-gpt-5-4-pro/01_ocr_ai_gpt51_v1/pages_html.jsonl` and `output/runs/eval-alverson-image-gpt-5-4-pro/01_ocr_ai_gpt51_v1/pages_html.jsonl` (`overall_ratio = 0.0` both), which is current integration/pipeline-wrong evidence rather than a usable OCR result. `gemini-3.1-pro-preview` improved Barney only to `0.843434` at `output/runs/eval-barney-image-gemini-3-1-pro-preview/01_ocr_ai_gpt51_v1/pages_html.jsonl` and left corrected-scope Alverson at `0.262102` at `output/runs/eval-alverson-image-gemini-3-1-pro-preview/01_ocr_ai_gpt51_v1/pages_html.jsonl`, still with the same visible-source failure class. No fresh candidate materially beat both corrected real fixtures, so this story remains blocked and should not reopen yet.",
       "unblock_condition": "Unblock this story only when a materially different OCR substrate or maintained recovery seam is ready to be tested against the corrected corpus and it produces fresh current-pass `driver.py` / eval artifacts that bring Barney and the corrected Alverson front-page fixture to `overall_min_ratio >= 0.99`, `page_min_ratio >= 0.99`, and `pass_rate = 1.0`. If a future story intentionally widens Alverson to the full two-page letter, that fixture-scope work must happen first and be rebaselined separately before it can count as OCR evidence here.",
       "last_work_log_entry": {
-        "timestamp": "20260721-1800",
-        "date": "2026-07-21",
-        "summary": "Gemini 3.6 Flash / Gemini 3.5 Flash-Lite unblock screen: both exact GA IDs were live-proven, then each ran through `driver.py` on the corrected Barney and Alverson image-entry fixtures. The first scoring pass exposed..."
+        "timestamp": "20260813-1505",
+        "date": "2026-08-13",
+        "summary": "Gemini 3.7 Flash eval decision contract: screen exact GA ID `gemini-3.7-flash` only on the corrected repo-owned Barney and Alverson image-entry fixtures through `driver.py`, using the existing literal-transcription sc..."
       },
       "legacy_build_map_refs": "",
       "metadata_source": "frontmatter",
@@ -10046,12 +10046,12 @@
         "source_path": "docs/stories/story-191-finish-real-handwritten-ocr-on-the-loc-fixture-pair.md",
         "recommended_now": false,
         "posture": "blocked",
-        "why_now": "Gemini 3.6 Flash / Gemini 3.5 Flash-Lite unblock screen: both exact GA IDs were live-proven, then each ran through `driver.py` on the corrected Barney and Alverson image-entry fixtures. The first scoring pass exposed...",
+        "why_now": "Gemini 3.7 Flash eval decision contract: screen exact GA ID `gemini-3.7-flash` only on the corrected repo-owned Barney and Alverson image-entry fixtures through `driver.py`, using the existing literal-transcription sc...",
         "last_relevant_action": {
-          "date": "2026-07-21",
+          "date": "2026-08-13",
           "source_type": "story-work-log",
           "source": "docs/stories/story-191-finish-real-handwritten-ocr-on-the-loc-fixture-pair.md",
-          "summary": "Gemini 3.6 Flash / Gemini 3.5 Flash-Lite unblock screen: both exact GA IDs were live-proven, then each ran through `driver.py` on the corrected Barney and Alverson image-entry fixtures. The first scoring pass exposed..."
+          "summary": "Gemini 3.7 Flash eval decision contract: screen exact GA ID `gemini-3.7-flash` only on the corrected repo-owned Barney and Alverson image-entry fixtures through `driver.py`, using the existing literal-transcription sc..."
         }
       }
     },
@@ -11163,9 +11163,9 @@
       "blocker_evidence": "",
       "unblock_condition": "",
       "last_work_log_entry": {
-        "timestamp": "20260812-1647",
-        "date": "2026-08-12",
-        "summary": "Grok 4.6 evidence validation: registry YAML, focused provider/crop coverage (`12 passed`), Ruff/lint, methodology compile/check, and diff hygiene passed. Full `make test` completed `936 passed, 4 warnings in 808.47s`;..."
+        "timestamp": "20260813-1745",
+        "date": "2026-08-13",
+        "summary": "candidate-close provenance correction: the successful integer detector arm was not byte-identical to the normalized arm. The authorized repair changed the effective coordinate instruction and strict response schema to..."
       },
       "legacy_build_map_refs": "",
       "metadata_source": "frontmatter",
@@ -11176,12 +11176,12 @@
         "source_path": "docs/stories/story-207-refresh-crop-c4-proof-and-coverage-truth-surfaces.md",
         "recommended_now": false,
         "posture": "completed",
-        "why_now": "Grok 4.6 evidence validation: registry YAML, focused provider/crop coverage (`12 passed`), Ruff/lint, methodology compile/check, and diff hygiene passed. Full `make test` completed `936 passed, 4 warnings in 808.47s`;...",
+        "why_now": "candidate-close provenance correction: the successful integer detector arm was not byte-identical to the normalized arm. The authorized repair changed the effective coordinate instruction and strict response schema to...",
         "last_relevant_action": {
-          "date": "2026-08-12",
+          "date": "2026-08-13",
           "source_type": "story-work-log",
           "source": "docs/stories/story-207-refresh-crop-c4-proof-and-coverage-truth-surfaces.md",
-          "summary": "Grok 4.6 evidence validation: registry YAML, focused provider/crop coverage (`12 passed`), Ruff/lint, methodology compile/check, and diff hygiene passed. Full `make test` completed `936 passed, 4 warnings in 808.47s`;..."
+          "summary": "candidate-close provenance correction: the successful integer detector arm was not byte-identical to the normalized arm. The authorized repair changed the effective coordinate instruction and strict response schema to..."
         }
       }
     },
@@ -11301,9 +11301,9 @@
       "blocker_evidence": "",
       "unblock_condition": "",
       "last_work_log_entry": {
-        "timestamp": "20260812-1633",
-        "date": "2026-08-12",
-        "summary": "Grok 4.6 conditional follow-on result: Story 207's frozen detector completed `11/13` at `0.8414`, below both the `13/13` and `overall >= 0.95` entry conditions. Per the predeclared ladder, this 22-case page-context ta..."
+        "timestamp": "20260813-1745",
+        "date": "2026-08-13",
+        "summary": "candidate-close regrader repair: adversarial tests reproduced four fail-open paths in the first provenance regrader\u2014duplicate result rows collapsed by key, calibration/held-out overlap, blocked status with a passing h..."
       },
       "legacy_build_map_refs": "",
       "metadata_source": "frontmatter",
@@ -11314,12 +11314,12 @@
         "source_path": "docs/stories/story-209-crop-c5-page-level-deletion-gate.md",
         "recommended_now": false,
         "posture": "completed",
-        "why_now": "Grok 4.6 conditional follow-on result: Story 207's frozen detector completed `11/13` at `0.8414`, below both the `13/13` and `overall >= 0.95` entry conditions. Per the predeclared ladder, this 22-case page-context ta...",
+        "why_now": "candidate-close regrader repair: adversarial tests reproduced four fail-open paths in the first provenance regrader\u2014duplicate result rows collapsed by key, calibration/held-out overlap, blocked status with a passing h...",
         "last_relevant_action": {
-          "date": "2026-08-12",
+          "date": "2026-08-13",
           "source_type": "story-work-log",
           "source": "docs/stories/story-209-crop-c5-page-level-deletion-gate.md",
-          "summary": "Grok 4.6 conditional follow-on result: Story 207's frozen detector completed `11/13` at `0.8414`, below both the `13/13` and `overall >= 0.95` entry conditions. Per the predeclared ladder, this 22-case page-context ta..."
+          "summary": "candidate-close regrader repair: adversarial tests reproduced four fail-open paths in the first provenance regrader\u2014duplicate result rows collapsed by key, calibration/held-out overlap, blocked status with a passing h..."
         }
       }
     },
@@ -13052,6 +13052,20 @@
           "note": "Exact-ID GA challenger completed `13/13` without provider errors but did not beat the maintained Gemini 3 Flash `0.9703` score and cost more at current standard prices. Portable proof: `docs/evals/attempts/018-gemini36-flash-and-gemini35-flash-lite-bounded-challenger.md`.\n"
         },
         {
+          "model": "Gemini 3.7 Flash (low thinking, strict integer crop schema)",
+          "metrics": {
+            "overall": 0.970277,
+            "pass_rate": 1.0,
+            "cases_total": 13,
+            "latency_ms": 2251
+          },
+          "cost_usd": 0.020378,
+          "cost_estimated": true,
+          "measured": "2026-08-13",
+          "git_sha": "c69a2e1",
+          "note": "Exact first-party GA challenger passed `13/13` with strict integer `0-1000` bboxes, exact served identity, terminal STOP, and zero provider/schema errors. This was an authorized configuration-repair arm: its effective coordinate instruction and response schema differ from the failed normalized-float arm; Attempt 026 records both exact prompt-source and rendered-instruction hashes. It matches the maintained best aggregate to displayed precision and is much faster/cheaper, but failed the downstream crop-only hard gate. Portable proof: `docs/evals/attempts/026-gemini37-flash-evaluate-model.md`.\n"
+        },
+        {
           "model": "Gemini 3.5 Flash-Lite (conservative-count prompt)",
           "metrics": {
             "overall": 0.6427,
@@ -13380,19 +13394,18 @@
         }
       ],
       "latest_score": {
-        "model": "Grok 4.6 OpenRouter (xAI-pinned ZDR strict-schema detector, reasoning low)",
+        "model": "Gemini 3.7 Flash (low thinking, strict integer crop schema)",
         "metrics": {
-          "overall": 0.8414,
-          "pass_rate": 0.8462,
+          "overall": 0.970277,
+          "pass_rate": 1.0,
           "cases_total": 13,
-          "latency_ms": 3260
+          "latency_ms": 2251
         },
-        "latency_ms": 3260,
-        "cost_usd": 0.005601,
-        "cost_estimated": false,
-        "measured": "2026-08-12",
-        "git_sha": "e117c0d",
-        "note": "Exact `x-ai/grok-4.6` OpenRouter route, mapped by the authenticated endpoint catalog to xAI snapshot family `x-ai/grok-4.6-20260810` and pinned to provider `xAI` with no fallback, per-request ZDR, denied data collection, low reasoning hidden from output, strict JSON Schema, exact served identity, terminal stop, and reported usage/cost. Strict text, image, and one-case PromptFoo parity probes qualified before the frozen no-cache detector. The full run completed `11/13` with `0` provider/schema errors, `overall = 0.8414`, average latency `3260 ms`, and `$0.072818` total reported subject cost. Manual source inspection classified both misses as model-wrong: `Image011` repeated Grok 4.5's seal-only crop instead of grouping the adjacent signatures, while `Image021` cut into the portrait and absorbed its page caption. It did not clear the detector prerequisite, so the 22-case page-context gate was not run and remains not measured. Do not adopt. Portable proof: `docs/evals/attempts/025-grok46-evaluate-model.md`.\n"
+        "cost_usd": 0.020378,
+        "cost_estimated": true,
+        "measured": "2026-08-13",
+        "git_sha": "c69a2e1",
+        "note": "Exact first-party GA challenger passed `13/13` with strict integer `0-1000` bboxes, exact served identity, terminal STOP, and zero provider/schema errors. This was an authorized configuration-repair arm: its effective coordinate instruction and response schema differ from the failed normalized-float arm; Attempt 026 records both exact prompt-source and rendered-instruction hashes. It matches the maintained best aggregate to displayed precision and is much faster/cheaper, but failed the downstream crop-only hard gate. Portable proof: `docs/evals/attempts/026-gemini37-flash-evaluate-model.md`.\n"
       },
       "attempts": [
         {
@@ -13661,6 +13674,20 @@
           "note": "Completed `39/40`; manual inspection confirmed the sole `page-126-000` false negative contains external page text. The maintained Gemini 3.1 Flash Lite remains `40/40`.\n"
         },
         {
+          "model": "Gemini 3.7 Flash (low thinking, strict crop-verdict schema)",
+          "metrics": {
+            "overall": 0.975,
+            "pass_rate": 0.975,
+            "cases_total": 40,
+            "latency_ms": 3023
+          },
+          "cost_usd": 0.063905,
+          "cost_estimated": true,
+          "measured": "2026-08-13",
+          "git_sha": "c69a2e1",
+          "note": "Completed `39/40` with exact identity and zero transport/schema errors. Manual source inspection confirmed the sole `page-126-000` false pass missed external text along the left edge. This is a valid production-safety regression failure, but the full corpus is selection-exposed, so it does not establish an unbiased model winner. The conditional page-context lane was not measured. Portable proof: `docs/evals/attempts/026-gemini37-flash-evaluate-model.md`.\n"
+        },
+        {
           "model": "Gemini 3.5 Flash-Lite (caption-focus prompt)",
           "metrics": {
             "overall": 0.975,
@@ -13683,7 +13710,7 @@
             "latency_ms": 3150
           },
           "measured": "2026-04-11",
-          "note": "Story 209 reran the maintained bounded crop-only surface via `cd benchmarks && promptfoo eval -c tasks/crop-validation.yaml --no-cache --filter-providers 'google:gemini-3.1-flash-lite' --filter-prompts 'caption-focus' --output results/story209-crop-validation-baseline.json -j 1`. The rerun completed `40/40` with `0` failures, `0` errors, duration about `126000 ms`, and total tokens `59086`. Manual inspection in the same pass reconfirmed that `page-012-001` still labels as a clean pass for integral seal text while `page-122-000` still labels as a fail for caption leakage. Story 209 keeps this surface explicitly bounded and adds the new page-context deletion gate for the broader C5 question.\n"
+          "note": "Story 209 reran the maintained bounded crop-only surface via `cd benchmarks && promptfoo eval -c tasks/crop-validation.yaml --no-cache --filter-providers 'google:gemini-3.1-flash-lite' --filter-prompts 'caption-focus' --output results/story209-crop-validation-baseline.json -j 1`. The rerun completed `40/40` with `0` failures, `0` errors, duration about `126000 ms`, and total tokens `59086`. Manual inspection in the same pass reconfirmed that `page-012-001` still labels as a clean pass for integral seal text while `page-122-000` still labels as a fail for caption leakage. Story 209 keeps this surface explicitly bounded and adds the new page-context deletion gate for the broader C5 question. This April result predates the current GA model ID and is stale as a current comparison; rerunning the exposed corpus alone would still not produce selection-grade evidence.\n"
         },
         {
           "model": "GPT-5.5 (caption-focus prompt)",
@@ -13755,18 +13782,18 @@
         }
       ],
       "latest_score": {
-        "model": "Gemini 3.6 Flash (caption-focus prompt)",
+        "model": "Gemini 3.7 Flash (low thinking, strict crop-verdict schema)",
         "metrics": {
           "overall": 0.975,
           "pass_rate": 0.975,
           "cases_total": 40,
-          "latency_ms": 4145
+          "latency_ms": 3023
         },
-        "cost_usd": 0.173,
+        "cost_usd": 0.063905,
         "cost_estimated": true,
-        "measured": "2026-07-21",
-        "git_sha": "ac574bf",
-        "note": "Completed `39/40`; manual inspection confirmed the sole `page-126-000` false negative contains external page text. The maintained Gemini 3.1 Flash Lite remains `40/40`.\n"
+        "measured": "2026-08-13",
+        "git_sha": "c69a2e1",
+        "note": "Completed `39/40` with exact identity and zero transport/schema errors. Manual source inspection confirmed the sole `page-126-000` false pass missed external text along the left edge. This is a valid production-safety regression failure, but the full corpus is selection-exposed, so it does not establish an unbiased model winner. The conditional page-context lane was not measured. Portable proof: `docs/evals/attempts/026-gemini37-flash-evaluate-model.md`.\n"
       },
       "attempts": [
         {
@@ -13816,6 +13843,14 @@
           "approach": "Screen Gemini 3.6 Flash and Gemini 3.5 Flash-Lite on the maintained crop-only validator surface",
           "note": "Both candidates completed `39/40` and missed `page-126-000`; manual source/crop inspection confirmed the golden is correct. No maintained surface changed. Portable proof: `docs/evals/attempts/018-gemini36-flash-and-gemini35-flash-lite-bounded-challenger.md`.\n",
           "retry_when": []
+        },
+        {
+          "id": "007",
+          "date": "2026-08-13",
+          "status": "inconclusive",
+          "approach": "Audit calibration, regression, held-out, tuning-parity, and freshness validity after the Gemini 3.7 screen",
+          "note": "Visual inspection reconfirmed `page-126-000` as a valid safety fail, and frozen-output regrading preserved Gemini 3.7 at `39/40` on the full production-regression corpus. However, `caption-focus` was selected on all 40 cases, challenger tuning budgets were not symmetric, the incumbent `40/40` is stale, and there are zero held-out confirmation cases. Retain the safety veto but retract any unbiased winner claim; promotion is blocked pending fresh held-out source truth. A bounded inventory found only three unscored crops; all were pass-style and two reused exposed source pages, so they were not promoted into a fake held-out slice. The frozen next-pass contract requires 12 natural crops (`6 pass / 6 fail`) from at least eight previously unused source pages. The retained-output regrader now fails closed on duplicate rows, partition overlap, and incomplete or extra coverage; a selection claim additionally requires explicit `eligible_held_out_confirmation` status and a nonempty, all-passing held-out partition. No provider calls or golden changes were made.\n",
+          "retry_when": []
         }
       ],
       "retry_when": [
@@ -13843,11 +13878,11 @@
         ],
         "why_now": "Rerun when a new validator model or prompt looks strong enough to widen or replace the current bounded C5-linked truth surface. Broaden or redesign this surface when the project is ready to measure the spec's wider pa...",
         "last_relevant_action": {
-          "date": "2026-07-21",
+          "date": "2026-08-13",
           "source_type": "eval-attempt",
           "source": "docs/evals/registry.yaml",
-          "source_id": "006",
-          "summary": "Both candidates completed `39/40` and missed `page-126-000`; manual source/crop inspection confirmed the golden is correct. No maintained surface changed. Portable proof: `docs/evals/attempts/018-gemini36-flash-and-ge..."
+          "source_id": "007",
+          "summary": "Visual inspection reconfirmed `page-126-000` as a valid safety fail, and frozen-output regrading preserved Gemini 3.7 at `39/40` on the full production-regression corpus. However, `caption-focus` was selected on all 4..."
         }
       }
     },
@@ -13959,7 +13994,7 @@
           "cost_estimated": true,
           "measured": "2026-04-24",
           "git_sha": "aa5b577",
-          "note": "Follow-up prompt repair after direct Responses measurement. The prompt now treats sky/snow/photo backdrops as image content, states that this gate primarily checks page-text and neighboring-visual leakage, and tolerates tight line-art framing unless the full-page context shows a large missing part of the intended visual. Manual inspection also corrected the `page-122-001` page-context golden from pass to fail because the crop leaks into the neighboring Sophie L'Heureux portrait. After narrowing the maintained task to the winning provider, the applied rerun `cd benchmarks && ../scripts/run_with_doc_web_env.py promptfoo eval -c tasks/crop-page-level-deletion-gate.yaml --no-cache --output results/crop-page-level-deletion-gate-gpt55-responses-current-20260424.json -j 1` completed `22/22` with `0` failures, `0` errors, average latency about `5253 ms`, and estimated current API cost about `$1.3094` total (`$0.0595` per case). A later Gemini regression check with `DOC_WEB_GEMINI_API_KEY` succeeded but scored `21/22` on the corrected golden, so GPT-5.5 Responses is the only current `22/22` page-context validator. Portable tracked proof: `docs/evals/attempts/009-gpt55-page-context-applied-default.md`.\n"
+          "note": "Follow-up prompt repair after direct Responses measurement. The prompt now treats sky/snow/photo backdrops as image content, states that this gate primarily checks page-text and neighboring-visual leakage, and tolerates tight line-art framing unless the full-page context shows a large missing part of the intended visual. Manual inspection also corrected the `page-122-001` page-context golden from pass to fail because the crop leaks into the neighboring Sophie L'Heureux portrait. After narrowing the maintained task to the winning provider, the applied rerun `cd benchmarks && ../scripts/run_with_doc_web_env.py promptfoo eval -c tasks/crop-page-level-deletion-gate.yaml --no-cache --output results/crop-page-level-deletion-gate-gpt55-responses-current-20260424.json -j 1` completed `22/22` with `0` failures, `0` errors, average latency about `5253 ms`, and estimated current API cost about `$1.3094` total (`$0.0595` per case). A later Gemini regression check with `DOC_WEB_GEMINI_API_KEY` succeeded but scored `21/22` on the corrected golden, so GPT-5.5 Responses is the only current `22/22` page-context regression result. The full corpus is selection-exposed, so this does not establish an unbiased winner. Portable tracked proof: `docs/evals/attempts/009-gpt55-page-context-applied-default.md`.\n"
         },
         {
           "model": "OpenAI chat-latest Responses alias (GPT-5.5 Instant, page-context prompt)",
@@ -14506,6 +14541,22 @@
       ],
       "scores": [
         {
+          "model": "Gemini 3.7 Flash bounded corrected-real image-entry screen",
+          "metrics": {
+            "overall_min_ratio": 0.981622,
+            "page_min_ratio": 0.981622,
+            "pass_rate": 0.0,
+            "cases_total": 2,
+            "fixture_count": 2,
+            "fixtures_passing": 0,
+            "barney_image_overall_ratio": 0.981622,
+            "alverson_image_overall_ratio": 0.985233
+          },
+          "measured": "2026-08-13",
+          "git_sha": "c69a2e1",
+          "note": "Exact first-party model ran through `driver.py` at the documented medium default thinking level. Manual comparison with both LOC scans confirmed genuine literal substitutions and omissions; neither case clears `0.99`. Portable proof: `docs/evals/attempts/026-gemini37-flash-evaluate-model.md`.\n"
+        },
+        {
           "model": "Gemini 3.6 Flash bounded corrected-real image-entry screen",
           "metrics": {
             "overall_min_ratio": 0.984052,
@@ -14725,20 +14776,20 @@
         }
       ],
       "latest_score": {
-        "model": "Gemini 3.6 Flash bounded corrected-real image-entry screen",
+        "model": "Gemini 3.7 Flash bounded corrected-real image-entry screen",
         "metrics": {
-          "overall_min_ratio": 0.984052,
-          "page_min_ratio": 0.984052,
+          "overall_min_ratio": 0.981622,
+          "page_min_ratio": 0.981622,
           "pass_rate": 0.0,
           "cases_total": 2,
           "fixture_count": 2,
           "fixtures_passing": 0,
-          "barney_image_overall_ratio": 0.984527,
-          "alverson_image_overall_ratio": 0.984052
+          "barney_image_overall_ratio": 0.981622,
+          "alverson_image_overall_ratio": 0.985233
         },
-        "measured": "2026-07-21",
-        "git_sha": "ac574bf",
-        "note": "Real `driver.py` image-entry artifacts were manually checked against both LOC scans. The corrected scorer disables SequenceMatcher autojunk; remaining literal-transcription differences are genuine model errors, and neither fixture clears `0.99`. Portable proof: `docs/evals/attempts/018-gemini36-flash-and-gemini35-flash-lite-bounded-challenger.md`.\n"
+        "measured": "2026-08-13",
+        "git_sha": "c69a2e1",
+        "note": "Exact first-party model ran through `driver.py` at the documented medium default thinking level. Manual comparison with both LOC scans confirmed genuine literal substitutions and omissions; neither case clears `0.99`. Portable proof: `docs/evals/attempts/026-gemini37-flash-evaluate-model.md`.\n"
       },
       "attempts": [
         {
@@ -14836,6 +14887,14 @@
           "approach": "Screen Gemini 3.6 Flash and Gemini 3.5 Flash-Lite through driver.py on the corrected real image-entry pair",
           "note": "The first score exposed a test-wrong issue: SequenceMatcher's default autojunk heuristic understated long OCR near-matches. The corrected scores were Gemini 3.6 Flash `0.984527` Barney / `0.984052` Alverson and Flash-Lite `0.974964` / `0.989935`; all remained below `0.99`, with manual scan review confirming genuine residual model errors. Story 191 remains blocked. Portable proof: `docs/evals/attempts/018-gemini36-flash-and-gemini35-flash-lite-bounded-challenger.md`.\n",
           "retry_when": []
+        },
+        {
+          "id": "013",
+          "date": "2026-08-13",
+          "status": "failed",
+          "approach": "Screen Gemini 3.7 Flash through driver.py on the corrected real image-entry pair",
+          "note": "Gemini 3.7 Flash scored `0.981622` Barney / `0.985233` Alverson at its documented medium default thinking level. Both miss the `0.99` bar, and the pair floor regresses versus Gemini 3.6 Flash. Manual scan review confirmed literal model errors; Story 191 remains blocked. Portable proof: `docs/evals/attempts/026-gemini37-flash-evaluate-model.md`.\n",
+          "retry_when": []
         }
       ],
       "retry_when": [
@@ -14857,11 +14916,11 @@
         ],
         "why_now": "Retry only when a materially stronger model or OCR substrate appears that could plausibly clear Barney and the corrected Alverson front-page truth surface.",
         "last_relevant_action": {
-          "date": "2026-07-21",
+          "date": "2026-08-13",
           "source_type": "eval-attempt",
           "source": "docs/evals/registry.yaml",
-          "source_id": "012",
-          "summary": "The first score exposed a test-wrong issue: SequenceMatcher's default autojunk heuristic understated long OCR near-matches. The corrected scores were Gemini 3.6 Flash `0.984527` Barney / `0.984052` Alverson and Flash-..."
+          "source_id": "013",
+          "summary": "Gemini 3.7 Flash scored `0.981622` Barney / `0.985233` Alverson at its documented medium default thinking level. Both miss the `0.99` bar, and the pair floor regresses versus Gemini 3.6 Flash. Manual scan review confi..."
         }
       }
     },

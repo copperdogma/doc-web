@@ -1,3 +1,13 @@
+## [2026-08-13-01] - Audit Gemini 3.7 crop evaluation validity
+
+### Added
+- Added a tracked Gemini 3.7 Flash evaluation, strict detector/provider configurations, an eval-only handwriting recipe, and source-backed provenance for the maintained crop regression surfaces.
+- Added a fail-closed frozen-result regrader and adversarial coverage for duplicate rows, partition drift, calibration/held-out overlap, and ineligible selection claims.
+
+### Changed
+- Reclassified the exposed crop corpora as calibration and production-safety regression evidence, blocking model-winner claims until a balanced source-page-independent held-out slice is frozen before provider calls.
+- Recorded Gemini 3.7's `13/13` integer detector result, valid `39/40` crop-safety veto, unmeasured page-context capability, and below-bar handwriting results without changing runtime defaults.
+
 ## [2026-08-12-01] - Reject Grok 4.6 crop challenger
 
 ### Added

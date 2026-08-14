@@ -1,0 +1,28 @@
+- id: google:gemini-3.7-flash
+  label: "Gemini 3.7 Flash (low thinking, strict integer crop schema)"
+  config:
+    maxOutputTokens: 16384
+    generationConfig:
+      thinkingConfig:
+        thinkingLevel: low
+    responseSchema:
+      type: object
+      properties:
+        images:
+          type: array
+          items:
+            type: object
+            properties:
+              description:
+                type: string
+              bbox:
+                type: array
+                description: "Exactly [x0, y0, x1, y1] as 0-1000 integers."
+                items:
+                  type: integer
+                  minimum: 0
+                  maximum: 1000
+                minItems: 4
+                maxItems: 4
+            required: [description, bbox]
+      required: [images]

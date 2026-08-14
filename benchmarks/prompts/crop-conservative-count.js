@@ -24,9 +24,11 @@ JSON only, no other text.`;
 module.exports = function (context) {
   const { vars, provider } = context;
   const providerId = provider?.id || "";
-  const coordinates = providerId.includes("gemini-3.5-flash-lite")
-    ? "Coordinates: integers 0-1000, origin top-left, with x0 < x1 and y0 < y1."
-    : "Coordinates: normalized 0.0-1.0, origin top-left.";
+  const coordinates =
+    providerId.includes("gemini-3.5-flash-lite") ||
+    provider?.label?.includes("strict integer crop schema")
+      ? "Coordinates: integers 0-1000, origin top-left, with x0 < x1 and y0 < y1."
+      : "Coordinates: normalized 0.0-1.0, origin top-left.";
   const promptText = `${PROMPT_PREFIX}\n${coordinates}\n${PROMPT_SUFFIX}`;
   return buildMessages(promptText, vars.image, providerId);
 };

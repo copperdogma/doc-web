@@ -113,7 +113,7 @@ cd benchmarks && source ~/.zshrc && promptfoo eval -c tasks/image-crop-extractio
 ### 2. Crop Validation (Story 126 + Story 183)
 
 **Task**: Judge whether an extracted crop should pass or fail based on external page text, excessive blank space, or obvious wrong-region crops.
-**Current maintained result**: Gemini 3.1 Flash Lite + `caption-focus` (`1.0` overall, `1.0` pass rate, `40/40` on 2026-04-11)
+**Configured regression result**: Gemini 3.1 Flash Lite + `caption-focus` (`1.0` overall, `1.0` pass rate, `40/40` on 2026-04-11; stale for current model selection)
 **Config**: `tasks/crop-validation.yaml`
 **Scorer**: `scorers/crop_validation_scorer.py` — pass/fail classification against checked labels
 **Golden**: `golden/crop-validation.json`
@@ -132,17 +132,21 @@ promptfoo eval -c tasks/crop-validation.yaml --no-cache \
 - This is the dedicated current C5-linked text-exclusion / crop-quality surface.
 - The repaired local benchmark substrate now makes this surface runnable from a clean checkout.
 - Passing this bounded 40-crop corpus does not by itself delete C5; the broader page-level deletion benchmark is still a separate step.
+- All 40 cases were used during prompt/model selection. They remain valid
+  calibration and production-safety regression cases, but there is currently
+  no held-out confirmation slice for an unbiased winner claim. See
+  `golden/crop-eval-provenance.json`.
 
 ---
 
 ### 3. Crop Page-Level Deletion Gate (Story 209)
 
 **Task**: Judge the maintained runtime overlap cases with both the source page and the extracted crop in view, so the benchmark can answer the broader C5 deletion question instead of only the crop-only pass/fail question.
-**Current maintained result**: GPT-5.5 Responses + `page-context` promptfix (`1.0` overall, `1.0` pass rate, `22/22` on 2026-04-24 corrected golden)
+**Configured regression result**: GPT-5.5 Responses + `page-context` promptfix (`1.0` overall, `1.0` pass rate, `22/22` on 2026-04-24 corrected golden)
 **Config**: `tasks/crop-page-level-deletion-gate.yaml`
 **Scorer**: `scorers/crop_validation_scorer.py` — pass/fail classification against checked labels from the page-context golden
 **Golden**: `golden/crop-page-level-deletion-gate.json`
-**Test set**: 22 tracked page/crop overlap cases with 4 explicit fail-labeled residue cases
+**Test set**: 22 tracked page/crop overlap cases with 5 explicit fail-labeled residue cases
 
 ```bash
 cd benchmarks && source ~/.nvm/nvm.sh && nvm use 24 >/dev/null 2>&1 && \
@@ -154,7 +158,13 @@ cd benchmarks && source ~/.nvm/nvm.sh && nvm use 24 >/dev/null 2>&1 && \
 **Key findings**:
 - This is the broader page-context C5 deletion-gate surface; it complements, but does not replace, the bounded crop-only `crop-validation` task.
 - The checked-in overlap corpus now covers the page-12 seal/text-bearing case, the page-122 caption/neighboring-portrait leakage cases, and additional reviewed residue-style examples on the maintained Onward seam.
-- The maintained task now runs only the corrected-golden winner, `openai:responses:gpt-5.5`; the earlier Gemini 3.1 Flash Lite `22/22` result is stale after the `page-122-001` correction, and its fresh rerun is `21/22`.
+- The maintained task currently runs `openai:responses:gpt-5.5`, the recorded
+  corrected-golden `22/22` regression provider. The earlier Gemini 3.1 Flash
+  Lite `22/22` predates the `page-122-001` correction, and its corrected-golden
+  rerun is `21/22`.
+- Prompt repairs and provider selection used this full corpus, so the configured
+  provider is not an unbiased selection winner. New promotion claims are
+  blocked until a source-backed held-out slice is frozen before calls.
 - The surface passes cleanly as a judge, but its own golden still includes 5 fail-labeled current-runtime cases, so Story 209's current decision is to keep the surviving C5 residue in place.
 
 ---

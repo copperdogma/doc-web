@@ -110,6 +110,22 @@ evals:
           did not beat the maintained Gemini 3 Flash `0.9703` score and cost
           more at current standard prices. Portable proof:
           `docs/evals/attempts/018-gemini36-flash-and-gemini35-flash-lite-bounded-challenger.md`.
+      - model: "Gemini 3.7 Flash (low thinking, strict integer crop schema)"
+        metrics: {overall: 0.970277, pass_rate: 1.0, cases_total: 13, latency_ms: 2251}
+        cost_usd: 0.020378
+        cost_estimated: true
+        measured: 2026-08-13
+        git_sha: c69a2e1
+        note: >
+          Exact first-party GA challenger passed `13/13` with strict integer
+          `0-1000` bboxes, exact served identity, terminal STOP, and zero
+          provider/schema errors. This was an authorized configuration-repair
+          arm: its effective coordinate instruction and response schema differ
+          from the failed normalized-float arm; Attempt 026 records both exact
+          prompt-source and rendered-instruction hashes. It matches the
+          maintained best aggregate to displayed precision and is much
+          faster/cheaper, but failed the downstream crop-only hard gate. Portable proof:
+          `docs/evals/attempts/026-gemini37-flash-evaluate-model.md`.
       - model: "Gemini 3.5 Flash-Lite (conservative-count prompt)"
         metrics: {overall: 0.6427, pass_rate: 0.6154, cases_total: 13, latency_ms: 1431}
         cost_usd: 0.0083
@@ -1087,7 +1103,10 @@ evals:
         This is the dedicated current C5-linked truth surface for the checked-in
         40-crop corpus. Passing here does not by itself delete C5; the spec
         still calls for broader page-level evidence before the trim heuristics
-        can be removed.
+        can be removed. All 40 cases are currently calibration / production
+        regression evidence; model-selection promotion is blocked until a
+        source-backed held-out confirmation slice exists. Partition provenance:
+        `benchmarks/golden/crop-eval-provenance.json`.
 
     scores:
       - model: "Gemini 3.6 Flash (caption-focus prompt)"
@@ -1100,6 +1119,21 @@ evals:
           Completed `39/40`; manual inspection confirmed the sole
           `page-126-000` false negative contains external page text. The
           maintained Gemini 3.1 Flash Lite remains `40/40`.
+      - model: "Gemini 3.7 Flash (low thinking, strict crop-verdict schema)"
+        metrics: {overall: 0.975, pass_rate: 0.975, cases_total: 40, latency_ms: 3023}
+        cost_usd: 0.063905
+        cost_estimated: true
+        measured: 2026-08-13
+        git_sha: c69a2e1
+        note: >
+          Completed `39/40` with exact identity and zero transport/schema
+          errors. Manual source inspection confirmed the sole
+          `page-126-000` false pass missed external text along the left edge.
+          This is a valid production-safety regression failure, but the full
+          corpus is selection-exposed, so it does not establish an unbiased
+          model winner. The conditional page-context lane was not measured.
+          Portable proof:
+          `docs/evals/attempts/026-gemini37-flash-evaluate-model.md`.
       - model: "Gemini 3.5 Flash-Lite (caption-focus prompt)"
         metrics: {overall: 0.975, pass_rate: 0.975, cases_total: 40, latency_ms: 4184}
         cost_usd: 0.0230
@@ -1130,7 +1164,9 @@ evals:
           pass for integral seal text while `page-122-000` still labels as a
           fail for caption leakage. Story 209 keeps this surface explicitly
           bounded and adds the new page-context deletion gate for the broader
-          C5 question.
+          C5 question. This April result predates the current GA model ID and
+          is stale as a current comparison; rerunning the exposed corpus alone
+          would still not produce selection-grade evidence.
       - model: "GPT-5.5 (caption-focus prompt)"
         metrics:
           overall: 0.975
@@ -1329,6 +1365,29 @@ evals:
           source/crop inspection confirmed the golden is correct. No maintained
           surface changed. Portable proof:
           `docs/evals/attempts/018-gemini36-flash-and-gemini35-flash-lite-bounded-challenger.md`.
+      - id: "007"
+        date: 2026-08-13
+        status: inconclusive
+        approach: "Audit calibration, regression, held-out, tuning-parity, and freshness validity after the Gemini 3.7 screen"
+        score_before: 0.975
+        score_after: 0.975
+        note: >
+          Visual inspection reconfirmed `page-126-000` as a valid safety fail,
+          and frozen-output regrading preserved Gemini 3.7 at `39/40` on the
+          full production-regression corpus. However, `caption-focus` was
+          selected on all 40 cases, challenger tuning budgets were not
+          symmetric, the incumbent `40/40` is stale, and there are zero
+          held-out confirmation cases. Retain the safety veto but retract any
+          unbiased winner claim; promotion is blocked pending fresh held-out
+          source truth. A bounded inventory found only three unscored crops;
+          all were pass-style and two reused exposed source pages, so they were
+          not promoted into a fake held-out slice. The frozen next-pass contract
+          requires 12 natural crops (`6 pass / 6 fail`) from at least eight
+          previously unused source pages. The retained-output regrader now
+          fails closed on duplicate rows, partition overlap, and incomplete or
+          extra coverage; a selection claim additionally requires explicit
+          `eligible_held_out_confirmation` status and a nonempty, all-passing
+          held-out partition. No provider calls or golden changes were made.
 
     retry_when:
       - condition: new-subject-model
@@ -1365,17 +1424,18 @@ evals:
     spec_compromise: C5
 
     ranking:
-      quality_winner: "GPT-5.5 Responses (page-context prompt, promptfix)"
+      configured_regression_provider: "GPT-5.5 Responses (page-context prompt, promptfix)"
+      model_selection_status: "blocked_pending_held_out_truth"
       applied: >
         The maintained promptfoo task now runs `openai:responses:gpt-5.5` by
-        default because it is the only current validator that reaches `22/22`
-        on the corrected page-context golden. Gemini 3.1 Flash Lite remains
-        useful as a historical/regression comparison, but its fresh
-        corrected-golden rerun is `21/22`.
+        default because it is the recorded `22/22` regression provider on the
+        corrected page-context golden. This is not an unbiased model-selection
+        winner: prompt repair and provider selection used the exposed corpus,
+        and no held-out confirmation partition exists.
       note: >
-        Do not switch the crop-only `crop-validation` surface from Gemini 3.1
-        Flash Lite; GPT-5.5 Responses is only the current winner for the
-        broader page-context deletion gate.
+        Keep the configured provider and safety labels stable. Do not promote a
+        challenger or claim intrinsic superiority until new held-out source
+        truth is frozen and measured under symmetric calibration rules.
 
     target:
       metric: pass_rate
@@ -1387,7 +1447,9 @@ evals:
         matches human pass/fail labels on `22` checked cases; it does not
         delete `C5` because that corpus still contains `5` explicit fail-labeled
         residue cases (`page-018-000`, `page-092-000`, `page-122-000`,
-        `page-122-001`, and `page-126-000`).
+        `page-122-001`, and `page-126-000`). All 22 cases are currently
+        selection-exposed production-regression evidence; partition provenance
+        is recorded in `benchmarks/golden/crop-eval-provenance.json`.
 
     scores:
       - model: "Gemini 3.6 Flash (page-context prompt)"
@@ -1541,7 +1603,8 @@ evals:
           `$1.3094` total (`$0.0595` per case). A later Gemini regression check
           with `DOC_WEB_GEMINI_API_KEY` succeeded but scored `21/22` on the
           corrected golden, so GPT-5.5 Responses is the only current `22/22`
-          page-context validator. Portable tracked proof:
+          page-context regression result. The full corpus is selection-exposed,
+          so this does not establish an unbiased winner. Portable tracked proof:
           `docs/evals/attempts/009-gpt55-page-context-applied-default.md`.
       - model: "OpenAI chat-latest Responses alias (GPT-5.5 Instant, page-context prompt)"
         metrics:
@@ -2374,6 +2437,24 @@ evals:
       note: "The target still marks the desired passing bar, but the widened default corpus now includes two real handwritten fixtures that the maintained rescue seam does not clear."
 
     scores:
+      - model: "Gemini 3.7 Flash bounded corrected-real image-entry screen"
+        metrics:
+          overall_min_ratio: 0.981622
+          page_min_ratio: 0.981622
+          pass_rate: 0.0
+          cases_total: 2
+          fixture_count: 2
+          fixtures_passing: 0
+          barney_image_overall_ratio: 0.981622
+          alverson_image_overall_ratio: 0.985233
+        measured: 2026-08-13
+        git_sha: c69a2e1
+        note: >
+          Exact first-party model ran through `driver.py` at the documented
+          medium default thinking level. Manual comparison with both LOC scans
+          confirmed genuine literal substitutions and omissions; neither case
+          clears `0.99`. Portable proof:
+          `docs/evals/attempts/026-gemini37-flash-evaluate-model.md`.
       - model: "Gemini 3.6 Flash bounded corrected-real image-entry screen"
         metrics:
           overall_min_ratio: 0.984052
@@ -3062,6 +3143,19 @@ evals:
           with manual scan review confirming genuine residual model errors.
           Story 191 remains blocked. Portable proof:
           `docs/evals/attempts/018-gemini36-flash-and-gemini35-flash-lite-bounded-challenger.md`.
+      - id: "013"
+        date: 2026-08-13
+        status: failed
+        approach: "Screen Gemini 3.7 Flash through driver.py on the corrected real image-entry pair"
+        score_before: 0.984052
+        score_after: 0.981622
+        note: >
+          Gemini 3.7 Flash scored `0.981622` Barney / `0.985233`
+          Alverson at its documented medium default thinking level. Both miss
+          the `0.99` bar, and the pair floor regresses versus Gemini 3.6 Flash.
+          Manual scan review confirmed literal model errors; Story 191 remains
+          blocked. Portable proof:
+          `docs/evals/attempts/026-gemini37-flash-evaluate-model.md`.
 
     retry_when:
       - condition: new-subject-model
