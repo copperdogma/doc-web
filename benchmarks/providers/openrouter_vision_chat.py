@@ -6,7 +6,9 @@ import hashlib
 import json
 import math
 import os
+import re
 import time
+from pathlib import Path
 from typing import Any
 
 import httpx
@@ -43,6 +45,32 @@ CROP_SCHEMA = {
     "additionalProperties": False,
 }
 
+CROP_INTEGER_SCHEMA = {
+    "type": "object",
+    "properties": {
+        "images": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "description": {"type": "string"},
+                    "bbox": {
+                        "type": "array",
+                        "description": "Exactly [x0, y0, x1, y1] as 0-1000 integers.",
+                        "items": {"type": "integer", "minimum": 0, "maximum": 1000},
+                        "minItems": 4,
+                        "maxItems": 4,
+                    },
+                },
+                "required": ["description", "bbox"],
+                "additionalProperties": False,
+            },
+        }
+    },
+    "required": ["images"],
+    "additionalProperties": False,
+}
+
 PAGE_CONTEXT_SCHEMA = {
     "type": "object",
     "properties": {
@@ -57,6 +85,7 @@ PAGE_CONTEXT_SCHEMA = {
 
 OUTPUT_CONTRACTS = {
     "crop_regions": CROP_SCHEMA,
+    "crop_regions_integer": CROP_INTEGER_SCHEMA,
     "page_context_validation": PAGE_CONTEXT_SCHEMA,
 }
 
@@ -69,10 +98,16 @@ def _provider_config(options: dict[str, Any] | None) -> dict[str, Any]:
     for key in {
         "expected_served_model",
         "expected_served_provider",
+        "data_collection",
+        "diagnostic_raw_output_file",
+        "diagnostic_wrapper_cleanup",
         "max_tokens",
         "model",
         "output_contract",
+        "pin_provider",
         "reasoning_effort",
+        "require_parameters",
+        "zdr",
     }:
         if key in options and key not in config:
             config[key] = options[key]
@@ -93,16 +128,31 @@ def _settings(options: dict[str, Any] | None = None) -> dict[str, Any]:
         raise ValueError(
             f"Unsupported output contract {output_contract!r}; choose {supported}"
         )
+    pin_provider = bool(config.get("pin_provider", True))
     return {
         "model": model,
         "expected_served_model": str(
             config.get("expected_served_model")
             or os.environ.get("OPENROUTER_VISION_EXPECTED_MODEL", model)
         ),
-        "expected_served_provider": str(
-            config.get("expected_served_provider")
-            or os.environ.get("OPENROUTER_VISION_EXPECTED_PROVIDER", DEFAULT_PROVIDER)
+        "expected_served_provider": (
+            str(
+                config.get("expected_served_provider")
+                or os.environ.get(
+                    "OPENROUTER_VISION_EXPECTED_PROVIDER", DEFAULT_PROVIDER
+                )
+            )
+            if pin_provider
+            else None
         ),
+        "pin_provider": pin_provider,
+        "require_parameters": bool(config.get("require_parameters", True)),
+        "data_collection": config.get("data_collection", "deny"),
+        "diagnostic_raw_output_file": config.get("diagnostic_raw_output_file"),
+        "diagnostic_wrapper_cleanup": bool(
+            config.get("diagnostic_wrapper_cleanup", False)
+        ),
+        "zdr": config.get("zdr", True),
         "max_tokens": int(
             config.get("max_tokens")
             or os.environ.get("OPENROUTER_VISION_MAX_TOKENS", str(DEFAULT_MAX_TOKENS))
@@ -170,7 +220,17 @@ def _normalize_messages(prompt: str) -> list[dict[str, Any]]:
 
 def _body(prompt: str, options: dict[str, Any] | None = None) -> dict[str, Any]:
     settings = _settings(options)
-    return {
+    provider: dict[str, Any] = {}
+    if settings["pin_provider"]:
+        provider["order"] = [settings["expected_served_provider"]]
+        provider["allow_fallbacks"] = False
+    if settings["require_parameters"]:
+        provider["require_parameters"] = True
+    if settings["data_collection"] is not None:
+        provider["data_collection"] = settings["data_collection"]
+    if settings["zdr"] is not None:
+        provider["zdr"] = settings["zdr"]
+    body = {
         "model": settings["model"],
         "messages": _normalize_messages(prompt),
         "max_tokens": settings["max_tokens"],
@@ -183,14 +243,10 @@ def _body(prompt: str, options: dict[str, Any] | None = None) -> dict[str, Any]:
                 "schema": OUTPUT_CONTRACTS[settings["output_contract"]],
             },
         },
-        "provider": {
-            "order": [settings["expected_served_provider"]],
-            "allow_fallbacks": False,
-            "require_parameters": True,
-            "data_collection": "deny",
-            "zdr": True,
-        },
     }
+    if provider:
+        body["provider"] = provider
+    return body
 
 
 def _nonnegative_int(value: Any, field: str) -> int:
@@ -285,6 +341,7 @@ def _contract_error(output: str, contract: str) -> str | None:
         or not isinstance(payload["images"], list)
     ):
         return "root must contain only an images array"
+    integer_contract = contract == "crop_regions_integer"
     for index, image in enumerate(payload["images"]):
         if not isinstance(image, dict):
             return f"images[{index}] must be an object"
@@ -299,7 +356,10 @@ def _contract_error(output: str, contract: str) -> str | None:
         bbox = image["bbox"]
         if not isinstance(bbox, list) or len(bbox) != 4:
             return f"images[{index}].bbox must contain four numbers"
-        if any(
+        if integer_contract:
+            if any(type(v) is not int or v < 0 or v > 1000 for v in bbox):
+                return f"images[{index}].bbox values must be integers from 0 to 1000"
+        elif any(
             isinstance(v, bool)
             or not isinstance(v, (int, float))
             or not math.isfinite(v)
@@ -311,6 +371,38 @@ def _contract_error(output: str, contract: str) -> str | None:
         if bbox[0] >= bbox[2] or bbox[1] >= bbox[3]:
             return f"images[{index}].bbox coordinates must be ordered"
     return None
+
+
+def _retain_public_diagnostic_output(
+    output: str, filename: str | None
+) -> dict[str, Any]:
+    """Retain explicit public-fixture diagnostic output in ignored storage."""
+    if filename is None:
+        return {}
+    digest = hashlib.sha256(output.encode()).hexdigest()
+    filename = filename.replace("{sha256}", digest)
+    if Path(filename).name != filename or not filename.endswith(".json"):
+        raise ValueError("diagnostic_raw_output_file must be a JSON filename")
+    result_dir = Path(__file__).resolve().parents[1] / "results"
+    result_dir.mkdir(parents=True, exist_ok=True)
+    path = result_dir / filename
+    payload = json.dumps({"raw_output": output}, indent=2) + "\n"
+    descriptor = os.open(path, os.O_WRONLY | os.O_CREAT | os.O_EXCL, 0o600)
+    with os.fdopen(descriptor, "w", encoding="utf-8") as handle:
+        handle.write(payload)
+    return {
+        "diagnostic_raw_output_path": f"benchmarks/results/{filename}",
+        "diagnostic_raw_output_sha256": digest,
+        "diagnostic_raw_output_bytes": len(output.encode()),
+    }
+
+
+def _markdown_json(output: str) -> str | None:
+    """Remove a Markdown fence only; do not repair JSON content."""
+    match = re.fullmatch(
+        r"\s*```(?:json)?\s*(\{.*\})\s*```\s*", output, flags=re.DOTALL
+    )
+    return match.group(1).strip() if match else None
 
 
 def call_api(prompt: str, options: dict[str, Any], context: dict[str, Any]):
@@ -354,10 +446,11 @@ def call_api(prompt: str, options: dict[str, Any], context: dict[str, Any]):
         "requested_reasoning_effort": settings["reasoning_effort"],
         "requested_output_contract": settings["output_contract"],
         "requested_max_tokens": settings["max_tokens"],
-        "allow_fallbacks": False,
-        "require_parameters": True,
-        "requested_data_collection": "deny",
-        "requested_zdr": True,
+        "provider_pinned": settings["pin_provider"],
+        "model_fallbacks_configured": False,
+        "require_parameters": settings["require_parameters"],
+        "requested_data_collection": settings["data_collection"],
+        "requested_zdr": settings["zdr"],
         "response_id": data.get("id"),
         "request_id": response.headers.get("x-request-id"),
         "latency_ms": latency_ms,
@@ -388,14 +481,30 @@ def call_api(prompt: str, options: dict[str, Any], context: dict[str, Any]):
     if data.get("model") != settings["expected_served_model"]:
         result["error"] = "OpenRouter served an unexpected model"
         return result
-    if data.get("provider") != settings["expected_served_provider"]:
+    if settings["pin_provider"] and data.get("provider") != settings["expected_served_provider"]:
         result["error"] = "OpenRouter served an unexpected provider"
         return result
     output = _output(data)
     if not output:
         result["error"] = "OpenRouter returned no output text"
         return result
+    try:
+        result["metadata"].update(
+            _retain_public_diagnostic_output(
+                output, settings["diagnostic_raw_output_file"]
+            )
+        )
+    except (OSError, ValueError) as exc:
+        result["error"] = f"Could not retain diagnostic output safely: {exc}"
+        return result
     contract_error = _contract_error(output, settings["output_contract"])
+    if contract_error is not None and settings["diagnostic_wrapper_cleanup"]:
+        cleaned = _markdown_json(output)
+        if cleaned is not None and _contract_error(cleaned, settings["output_contract"]) is None:
+            result["metadata"]["diagnostic_wrapper_cleanup_applied"] = True
+            result["metadata"]["diagnostic_only"] = True
+            result["output"] = cleaned
+            return result
     if contract_error is not None:
         result["metadata"]["contract_error"] = contract_error
         result["metadata"]["invalid_output_sha256"] = hashlib.sha256(

@@ -1069,6 +1069,55 @@ evals:
           model-wrong. Total successful-call spend was `$0.086742`; the
           conditional page-context gate was not run. Do not adopt. Portable
           proof: `docs/evals/attempts/025-grok46-evaluate-model.md`.
+      - id: "027"
+        date: 2026-08-22
+        status: inconclusive
+        approach: "Qualify exact Ox Alpha OpenRouter transport under the fail-closed privacy and strict-integer crop contract"
+        score_before: 0.9703
+        score_after: null
+        note: >
+          Authenticated discovery exposed exact `stealth/ox-alpha`, one
+          `Stealth` endpoint, multimodal input, mandatory reasoning controls,
+          `response_format`, and zero token pricing, but the endpoint's data
+          policy was unspecified. The existing OpenRouter adapter retained
+          provider pinning, disabled fallbacks, required parameters, denied
+          data collection, and requested ZDR; a separate strict integer
+          `0-1000` crop schema was added without changing maintained runtime
+          behavior. Both the strict text and generated synthetic-image probes
+          returned router-level HTTP 404 before inference because no endpoint
+          could satisfy the requested parameters. No PromptFoo case, detector,
+          crop-only validator, or page-context gate ran; spend was `$0`.
+          Capability is not measured and adoption is deferred. Portable proof:
+          `docs/evals/attempts/027-ox-alpha-evaluate-model.md`.
+      - id: "028"
+        date: 2026-08-22
+        status: failed
+        approach: "Rerun Ox Alpha on approved public fixtures without universal privacy filters or provider pinning"
+        score_before: 0.9703
+        score_after: null
+        note: >
+          Cam approved the generated and checked-in crop fixtures for a route
+          that may retain or train on them. The follow-up omitted request-level
+          ZDR and data-collection denial, did not pin the sole same-model
+          endpoint, kept exact `stealth/ox-alpha` identity, and configured no
+          alternate-model fallback. The strict text probe still returned HTTP
+          404 with `require_parameters=true`, isolating strict parameter
+          routing from the prior privacy failure. One authorized generated-image
+          diagnostic omitted only `require_parameters`; it reached exact Ox
+          Alpha on `Stealth` but its Markdown wrapper was rejected. A fresh
+          protected-retention probe proved fence-only cleanup could recover
+          valid generated integer crop JSON. The first maintained-case attempt
+          then exposed and preserved a diagnostic adapter mismatch between the
+          frozen prompt's `0-1` coordinates and integer client validation.
+          Correcting only that schema topology produced a passing one-case
+          smoke and a `13/13` detector run with no provider/parser errors.
+          Diagnostic mean quality was `0.915146`, average latency `8538.85 ms`
+          (maximum `38641 ms`), and reported cost `$0`. This is below the
+          `0.95` detector gate and maintained `0.9703` reference, so the 40/22
+          follow-ons did not run. Access is available, strict drop-in transport
+          is blocked, diagnostic capability is worse, and adoption is rejected.
+          Portable proof:
+          `docs/evals/attempts/028-ox-alpha-public-fixture-rerun.md`.
 
     retry_when:
       - condition: new-subject-model

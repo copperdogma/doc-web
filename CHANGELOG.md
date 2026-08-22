@@ -1,3 +1,15 @@
+## [2026-08-22-01] - Reject Ox Alpha crop challenger
+
+### Added
+- Added a bounded Ox Alpha crop evaluation with exact-model attribution,
+  retained diagnostic evidence, and regression coverage for safe response
+  retention and wrapper-only JSON cleanup.
+
+### Changed
+- Recorded Ox Alpha's `13/13`, `0.9151` diagnostic detector result, below the
+  `0.95` gate and `0.9703` incumbent, while keeping the maintained crop
+  defaults unchanged.
+
 ## [2026-08-13-01] - Audit Gemini 3.7 crop evaluation validity
 
 ### Added

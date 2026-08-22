@@ -74,6 +74,26 @@ def test_body_pins_exact_route_and_preserves_image(monkeypatch):
     assert body["response_format"]["json_schema"]["strict"] is True
 
 
+def test_public_fixture_route_omits_privacy_filters_and_provider_pin():
+    body = provider._body(
+        "return no images",
+        {
+            "config": {
+                "model": "stealth/ox-alpha",
+                "expected_served_model": "stealth/ox-alpha",
+                "pin_provider": False,
+                "require_parameters": True,
+                "data_collection": None,
+                "zdr": None,
+            }
+        },
+    )
+
+    assert body["model"] == "stealth/ox-alpha"
+    assert body["provider"] == {"require_parameters": True}
+    assert "models" not in body
+
+
 def test_success_requires_attributable_usage_and_cost(monkeypatch):
     monkeypatch.setenv("OPENROUTER_API_KEY", "test-key")
     monkeypatch.setattr(
@@ -113,6 +133,35 @@ def test_wrong_model_and_provider_fail_closed(monkeypatch):
     assert "unexpected provider" in provider.call_api("x", {}, {})["error"]
 
 
+def test_unpinned_route_records_provider_without_requiring_one(monkeypatch):
+    monkeypatch.setenv("OPENROUTER_API_KEY", "test-key")
+    monkeypatch.setattr(
+        provider.httpx,
+        "post",
+        lambda *args, **kwargs: _response(
+            _payload(model="stealth/ox-alpha", upstream="Stealth")
+        ),
+    )
+    options = {
+        "config": {
+            "model": "stealth/ox-alpha",
+            "expected_served_model": "stealth/ox-alpha",
+            "pin_provider": False,
+            "data_collection": None,
+            "zdr": None,
+        }
+    }
+
+    result = provider.call_api("x", options, {})
+
+    assert result["output"] == '{"images": []}'
+    assert result["metadata"]["served_provider"] == "Stealth"
+    assert result["metadata"]["provider_pinned"] is False
+    assert result["metadata"]["model_fallbacks_configured"] is False
+    assert "requested_data_collection" not in result["metadata"]
+    assert "requested_zdr" not in result["metadata"]
+
+
 def test_incomplete_or_invalid_usage_fails_closed(monkeypatch):
     monkeypatch.setenv("OPENROUTER_API_KEY", "test-key")
     monkeypatch.setattr(
@@ -143,6 +192,82 @@ def test_schema_invalid_and_reversed_bbox_are_rejected(monkeypatch):
     assert "coordinates must be ordered" in result["error"]
     assert "output" not in result
     assert len(result["metadata"]["invalid_output_sha256"]) == 64
+
+
+def test_integer_crop_contract_is_strict_and_locally_validated(monkeypatch):
+    monkeypatch.setenv("OPENROUTER_API_KEY", "test-key")
+    valid = '{"images":[{"description":"x","bbox":[100,200,800,900]}]}'
+    monkeypatch.setattr(
+        provider.httpx,
+        "post",
+        lambda *args, **kwargs: _response(_payload(content=valid)),
+    )
+    options = {"config": {"output_contract": "crop_regions_integer"}}
+
+    result = provider.call_api("x", options, {})
+
+    assert result["output"] == valid
+    body = provider._body("x", options)
+    bbox = body["response_format"]["json_schema"]["schema"]["properties"]["images"][
+        "items"
+    ]["properties"]["bbox"]
+    assert bbox["items"]["type"] == "integer"
+    invalid = '{"images":[{"description":"x","bbox":[0.1,200,800,900]}]}'
+    monkeypatch.setattr(
+        provider.httpx,
+        "post",
+        lambda *args, **kwargs: _response(_payload(content=invalid)),
+    )
+    assert "integers from 0 to 1000" in provider.call_api("x", options, {})["error"]
+
+
+def test_diagnostic_wrapper_cleanup_retains_raw_before_validation(
+    monkeypatch, tmp_path
+):
+    monkeypatch.setenv("OPENROUTER_API_KEY", "test-key")
+    fenced = '```json\n{"images":[{"description":"x","bbox":[1,2,3,4]}]}\n```'
+    monkeypatch.setattr(
+        provider.httpx,
+        "post",
+        lambda *args, **kwargs: _response(_payload(content=fenced)),
+    )
+    monkeypatch.setattr(
+        provider.Path,
+        "resolve",
+        lambda self: tmp_path / "benchmarks" / "providers" / self.name,
+    )
+    options = {
+        "config": {
+            "output_contract": "crop_regions_integer",
+            "diagnostic_raw_output_file": "public-diagnostic-{sha256}.json",
+            "diagnostic_wrapper_cleanup": True,
+        }
+    }
+
+    result = provider.call_api("x", options, {})
+
+    assert result["output"] == '{"images":[{"description":"x","bbox":[1,2,3,4]}]}'
+    assert result["metadata"]["diagnostic_only"] is True
+    assert result["metadata"]["diagnostic_wrapper_cleanup_applied"] is True
+    digest = provider.hashlib.sha256(fenced.encode()).hexdigest()
+    retained = (
+        tmp_path / "benchmarks" / "results" / f"public-diagnostic-{digest}.json"
+    )
+    assert json.loads(retained.read_text()) == {"raw_output": fenced}
+    assert retained.stat().st_mode & 0o777 == 0o600
+
+
+def test_diagnostic_raw_output_requires_safe_filename(monkeypatch):
+    monkeypatch.setenv("OPENROUTER_API_KEY", "test-key")
+    monkeypatch.setattr(
+        provider.httpx, "post", lambda *args, **kwargs: _response(_payload())
+    )
+
+    result = provider.call_api(
+        "x", {"config": {"diagnostic_raw_output_file": "../unsafe.json"}}, {}
+    )
+
+    assert "must be a JSON filename" in result["error"]
 
 
 def test_missing_key_and_lossy_prompt_fail_before_network(monkeypatch):
