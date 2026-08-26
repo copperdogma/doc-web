@@ -176,32 +176,24 @@ def test_crop_page_level_deletion_gate_assets_exist_and_match_golden_keys():
     assert sorted(seen_keys) == golden_keys
 
 
-def test_crop_eval_provenance_partitions_are_complete_disjoint_and_selection_blocking():
+def test_crop_eval_provenance_uses_complete_authoritative_human_goldens():
     provenance = _load_json("golden/crop-eval-provenance.json")
 
     for surface_name in ("crop-validation", "crop-page-level-deletion-gate"):
         surface = provenance["surfaces"][surface_name]
-        calibration = set(surface["calibration_keys"])
-        held_out = set(surface["held_out_confirmation_keys"])
+        goldens = set(surface["authoritative_golden_keys"])
 
-        assert calibration.isdisjoint(held_out)
-        assert calibration | held_out == _task_crop_keys(f"{surface_name}.yaml")
-        assert surface["model_selection_status"] == "blocked_pending_held_out_truth"
-        assert not held_out
-        assert "page-126-000" in calibration
+        assert goldens == _task_crop_keys(f"{surface_name}.yaml")
+        assert surface["contract_role"] == "authoritative_human_golden"
+        assert surface["model_selection_status"] == "eligible_authoritative_golden"
+        assert "page-126-000" in goldens
         assert "page-126-000" in surface["known_tuning_cases"]
 
+    assert provenance["policy"]["authoritative_human_goldens"] is True
     assert provenance["policy"]["regression_veto_allowed"] is True
-    assert provenance["policy"]["selection_veto_allowed_without_held_out"] is False
-
-    creation = provenance["held_out_creation"]
-    assert creation["status"] == "blocked_insufficient_unexposed_truth"
-    contract = creation["minimum_confirmation_contract"]
-    assert contract["case_count"] == 12
-    assert contract["minimum_distinct_source_pages"] == 8
-    assert contract["required_labels"] == {"pass": 6, "fail": 6}
-    assert contract["source_page_overlap_with_calibration"] == 0
-    assert contract["freeze_before_provider_calls"] is True
+    assert provenance["policy"]["model_ranking_allowed_on_authoritative_goldens"] is True
+    assert provenance["policy"]["promotion_requires_target_pass"] is True
+    assert "held_out_creation" not in provenance
 
 
 def test_page_126_fail_label_is_preserved_on_both_safety_surfaces():
@@ -211,7 +203,7 @@ def test_page_126_fail_label_is_preserved_on_both_safety_surfaces():
         assert "text_included" in golden["page-126-000"]["reasons"]
 
 
-def test_regrade_refuses_partition_drift_and_never_claims_selection_without_held_out():
+def test_regrade_refuses_authoritative_golden_drift_and_separates_ranking_from_promotion():
     payload = {
         "results": {
             "results": [
@@ -220,26 +212,26 @@ def test_regrade_refuses_partition_drift_and_never_claims_selection_without_held
         }
     }
     surface = {
-        "contract_role": "production_safety_regression",
-        "model_selection_status": "blocked_pending_held_out_truth",
-        "calibration_keys": ["calibration-case"],
-        "held_out_confirmation_keys": [],
+        "contract_role": "authoritative_human_golden",
+        "model_selection_status": "eligible_authoritative_golden",
+        "authoritative_golden_keys": ["golden-case"],
     }
+    payload["results"]["results"][0]["vars"]["crop_key"] = "golden-case"
 
     summary = regrade(payload, surface)
-    assert summary["calibration"]["pass_rate"] == 1.0
-    assert summary["held_out_confirmation"]["pass_rate"] is None
-    assert summary["selection_claim_allowed"] is False
+    assert summary["authoritative_goldens"]["pass_rate"] == 1.0
+    assert summary["selection_claim_allowed"] is True
+    assert summary["promotion_claim_allowed"] is True
 
-    surface["held_out_confirmation_keys"] = ["missing-held-out"]
+    surface["authoritative_golden_keys"] = ["missing-golden"]
     try:
         regrade(payload, surface)
     except ValueError as exc:
-        assert "missing-held-out" in str(exc)
+        assert "missing-golden" in str(exc)
     else:
-        raise AssertionError("partition/result drift must fail closed")
+        raise AssertionError("golden/result drift must fail closed")
 
-    surface["held_out_confirmation_keys"] = []
+    surface["authoritative_golden_keys"] = ["golden-case"]
     payload["results"]["results"].append(
         {"vars": {"crop_key": "extra-case"}, "success": True}
     )
@@ -257,17 +249,16 @@ def test_regrade_refuses_duplicate_result_crop_keys():
         }
     }
     surface = {
-        "contract_role": "production_safety_regression",
-        "model_selection_status": "blocked_pending_held_out_truth",
-        "calibration_keys": ["calibration-case"],
-        "held_out_confirmation_keys": [],
+        "contract_role": "authoritative_human_golden",
+        "model_selection_status": "eligible_authoritative_golden",
+        "authoritative_golden_keys": ["calibration-case"],
     }
 
     with pytest.raises(ValueError, match="Duplicate result crop_key rows.*calibration-case"):
         regrade(payload, surface)
 
 
-def test_regrade_refuses_calibration_held_out_overlap():
+def test_regrade_refuses_duplicate_authoritative_golden_keys():
     payload = {
         "results": {
             "results": [
@@ -276,62 +267,60 @@ def test_regrade_refuses_calibration_held_out_overlap():
         }
     }
     surface = {
-        "contract_role": "production_safety_regression",
-        "model_selection_status": "eligible_held_out_confirmation",
-        "calibration_keys": ["shared-case"],
-        "held_out_confirmation_keys": ["shared-case"],
+        "contract_role": "authoritative_human_golden",
+        "model_selection_status": "eligible_authoritative_golden",
+        "authoritative_golden_keys": ["shared-case", "shared-case"],
     }
 
-    with pytest.raises(ValueError, match="partition overlap.*shared-case"):
+    with pytest.raises(ValueError, match="Duplicate authoritative_golden_keys.*shared-case"):
         regrade(payload, surface)
 
 
-def test_regrade_blocks_selection_when_status_is_blocked_despite_passing_held_out():
+def test_regrade_blocks_selection_when_status_is_not_authoritative():
     payload = {
         "results": {
             "results": [
-                {"vars": {"crop_key": "calibration-case"}, "success": True},
-                {"vars": {"crop_key": "held-out-case"}, "success": True},
+                {"vars": {"crop_key": "golden-case"}, "success": True},
             ]
         }
     }
     surface = {
-        "contract_role": "production_safety_regression",
-        "model_selection_status": "blocked_pending_held_out_truth",
-        "calibration_keys": ["calibration-case"],
-        "held_out_confirmation_keys": ["held-out-case"],
+        "contract_role": "authoritative_human_golden",
+        "model_selection_status": "blocked_unverified_golden",
+        "authoritative_golden_keys": ["golden-case"],
     }
 
     summary = regrade(payload, surface)
-    assert summary["held_out_confirmation"]["pass_rate"] == 1.0
+    assert summary["authoritative_goldens"]["pass_rate"] == 1.0
     assert summary["selection_claim_allowed"] is False
+    assert summary["promotion_claim_allowed"] is False
 
 
-def test_regrade_requires_all_held_out_cases_to_pass_for_selection():
+def test_regrade_allows_ranking_but_not_promotion_when_a_golden_fails():
     payload = {
         "results": {
             "results": [
-                {"vars": {"crop_key": "calibration-case"}, "success": True},
-                {"vars": {"crop_key": "held-out-pass"}, "success": True},
-                {"vars": {"crop_key": "held-out-fail"}, "success": False},
+                {"vars": {"crop_key": "golden-pass"}, "success": True},
+                {"vars": {"crop_key": "golden-fail"}, "success": False},
             ]
         }
     }
     surface = {
-        "contract_role": "production_safety_regression",
-        "model_selection_status": "eligible_held_out_confirmation",
-        "calibration_keys": ["calibration-case"],
-        "held_out_confirmation_keys": ["held-out-pass", "held-out-fail"],
+        "contract_role": "authoritative_human_golden",
+        "model_selection_status": "eligible_authoritative_golden",
+        "authoritative_golden_keys": ["golden-pass", "golden-fail"],
     }
 
     summary = regrade(payload, surface)
-    assert summary["held_out_confirmation"]["pass_rate"] == 0.5
-    assert summary["selection_claim_allowed"] is False
-
-    payload["results"]["results"][2]["success"] = True
-    summary = regrade(payload, surface)
-    assert summary["held_out_confirmation"]["pass_rate"] == 1.0
+    assert summary["authoritative_goldens"]["pass_rate"] == 0.5
     assert summary["selection_claim_allowed"] is True
+    assert summary["promotion_claim_allowed"] is False
+
+    payload["results"]["results"][1]["success"] = True
+    summary = regrade(payload, surface)
+    assert summary["authoritative_goldens"]["pass_rate"] == 1.0
+    assert summary["selection_claim_allowed"] is True
+    assert summary["promotion_claim_allowed"] is True
 
 
 def test_crop_page_level_deletion_gate_keeps_configured_regression_provider():

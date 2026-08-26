@@ -334,7 +334,8 @@
           "209",
           "226",
           "227",
-          "231"
+          "231",
+          "232"
         ],
         "adr_ids": [],
         "eval_ids": [
@@ -586,7 +587,8 @@
           "224",
           "225",
           "226",
-          "231"
+          "231",
+          "232"
         ],
         "adr_ids": [
           "ADR-002"
@@ -1109,7 +1111,8 @@
           "209",
           "226",
           "227",
-          "231"
+          "231",
+          "232"
         ],
         "eval_ids": [
           "image-crop-extraction",
@@ -1143,7 +1146,8 @@
             "209",
             "226",
             "227",
-            "231"
+            "231",
+            "232"
           ],
           "eval_ids": [
             "image-crop-extraction",
@@ -1168,7 +1172,8 @@
           "207",
           "209",
           "226",
-          "231"
+          "231",
+          "232"
         ],
         "eval_ids": [
           "crop-validation",
@@ -1202,7 +1207,8 @@
             "207",
             "209",
             "226",
-            "231"
+            "231",
+            "232"
           ],
           "eval_ids": [
             "crop-validation",
@@ -12875,6 +12881,74 @@
           "summary": "build-story implementation started after explicit user approval of the written Story 231 plan. Status moved from Pending to In Progress before code changes. The maintained recipe remains on Gemini during implementatio..."
         }
       }
+    },
+    {
+      "id": "232",
+      "title": "Authoritative golden model reevaluation",
+      "path": "docs/stories/story-232-authoritative-golden-model-reevaluation.md",
+      "status": "Done",
+      "priority": "High",
+      "ideal_refs": [
+        "AI-First",
+        "Fidelity to Source",
+        "Traceability"
+      ],
+      "spec_refs": [
+        "C4",
+        "C5",
+        "spec:4",
+        "spec:8"
+      ],
+      "decision_refs": [
+        "Eval README, crop workflow/runbook, Stories 207/209, Attempt 026",
+        "no ADR change is required."
+      ],
+      "adr_ids": [],
+      "depends_on": [
+        "207",
+        "209"
+      ],
+      "category_refs": [
+        "spec:4",
+        "spec:8"
+      ],
+      "compromise_refs": [
+        "C4",
+        "C5"
+      ],
+      "input_coverage_refs": [],
+      "architecture_domains": [
+        "crop-evaluation"
+      ],
+      "roadmap_tags": [
+        "model-refresh",
+        "sota"
+      ],
+      "blocker_summary": "",
+      "blocker_evidence": "",
+      "unblock_condition": "",
+      "last_work_log_entry": {
+        "timestamp": "20260825-0001",
+        "date": "2026-08-25",
+        "summary": "close-out renumbering: upstream Ox Alpha work added Attempts 027\u2013028 while this isolated branch awaited landing. Renumbered this unchanged retrospective evidence to Attempt 029 before integration; no score, artifact,..."
+      },
+      "legacy_build_map_refs": "",
+      "metadata_source": "frontmatter",
+      "missing_frontmatter_keys": [],
+      "actionability": {
+        "source_kind": "story",
+        "source_id": "232",
+        "source_path": "docs/stories/story-232-authoritative-golden-model-reevaluation.md",
+        "recommended_now": false,
+        "posture": "completed",
+        "why_now": "close-out renumbering: upstream Ox Alpha work added Attempts 027\u2013028 while this isolated branch awaited landing. Renumbered this unchanged retrospective evidence to Attempt 029 before integration; no score, artifact,...",
+        "last_relevant_action": {
+          "date": "2026-08-25",
+          "source_type": "story-work-log",
+          "source": "docs/stories/story-232-authoritative-golden-model-reevaluation.md",
+          "summary": "close-out renumbering: upstream Ox Alpha work added Attempts 027\u2013028 while this isolated branch awaited landing. Renumbered this unchanged retrospective evidence to Attempt 029 before integration; no score, artifact,..."
+        }
+      }
     }
   ],
   "adrs": [
@@ -13001,7 +13075,8 @@
       "story_refs": [
         "133",
         "183",
-        "207"
+        "207",
+        "232"
       ],
       "compromise_refs": [
         "C4"
@@ -13012,6 +13087,40 @@
         "spec:9"
       ],
       "scores": [
+        {
+          "model": "GPT-5.6 Terra (none reasoning, fresh repaired-contract parity)",
+          "metrics": {
+            "overall": 0.9689,
+            "pass_rate": 1.0,
+            "cases_total": 13,
+            "latency_ms": 2915
+          },
+          "latency_ms": 2915,
+          "cost_usd": 0.117188,
+          "cost_estimated": true,
+          "measured": "2026-08-14",
+          "git_sha": "009afed+story232-uncommitted",
+          "result_file": "benchmarks/results/retrospective-gpt56-terra-detector-20260814.json",
+          "evidence_status": "current-comparable-quality-leader-production-eligible",
+          "note": "Fresh symmetric parity on the 13 authoritative detector goldens. Passed 13/13 and achieved the highest current comparable mean score, 0.9689 versus fresh Gemini 3 Flash 0.9595. Exact Responses model, none reasoning, strict output, and no provider/schema errors. This is the measured detector quality leader; any executable default change still requires explicit user approval.\n"
+        },
+        {
+          "model": "Gemini 3 Flash (fresh repaired-contract parity)",
+          "metrics": {
+            "overall": 0.959477,
+            "pass_rate": 1.0,
+            "cases_total": 13,
+            "latency_ms": 6236
+          },
+          "latency_ms": 6236,
+          "cost_usd": 0.0526175,
+          "cost_estimated": false,
+          "measured": "2026-08-14",
+          "git_sha": "009afed+story232-uncommitted",
+          "result_file": "benchmarks/results/retrospective-gemini3-flash-detector-20260814.json",
+          "evidence_status": "current-comparable-incumbent",
+          "note": "Fresh incumbent parity passed 13/13 but scored below GPT-5.6 Terra and was slower; it no longer holds the measured detector quality lead."
+        },
         {
           "model": "Gemini 3 Flash (conservative-count prompt, maintained rerun)",
           "metrics": {
@@ -13394,18 +13503,21 @@
         }
       ],
       "latest_score": {
-        "model": "Gemini 3.7 Flash (low thinking, strict integer crop schema)",
+        "model": "Gemini 3 Flash (fresh repaired-contract parity)",
         "metrics": {
-          "overall": 0.970277,
+          "overall": 0.959477,
           "pass_rate": 1.0,
           "cases_total": 13,
-          "latency_ms": 2251
+          "latency_ms": 6236
         },
-        "cost_usd": 0.020378,
-        "cost_estimated": true,
-        "measured": "2026-08-13",
-        "git_sha": "c69a2e1",
-        "note": "Exact first-party GA challenger passed `13/13` with strict integer `0-1000` bboxes, exact served identity, terminal STOP, and zero provider/schema errors. This was an authorized configuration-repair arm: its effective coordinate instruction and response schema differ from the failed normalized-float arm; Attempt 026 records both exact prompt-source and rendered-instruction hashes. It matches the maintained best aggregate to displayed precision and is much faster/cheaper, but failed the downstream crop-only hard gate. Portable proof: `docs/evals/attempts/026-gemini37-flash-evaluate-model.md`.\n"
+        "latency_ms": 6236,
+        "cost_usd": 0.0526175,
+        "cost_estimated": false,
+        "measured": "2026-08-14",
+        "git_sha": "009afed+story232-uncommitted",
+        "result_file": "benchmarks/results/retrospective-gemini3-flash-detector-20260814.json",
+        "evidence_status": "current-comparable-incumbent",
+        "note": "Fresh incumbent parity passed 13/13 but scored below GPT-5.6 Terra and was slower; it no longer holds the measured detector quality lead."
       },
       "attempts": [
         {
@@ -13665,7 +13777,8 @@
       "spec_refs": [],
       "story_refs": [
         "183",
-        "209"
+        "209",
+        "232"
       ],
       "compromise_refs": [
         "C5"
@@ -13675,6 +13788,40 @@
         "spec:8"
       ],
       "scores": [
+        {
+          "model": "Gemini 3.1 Flash Lite (fresh authoritative-golden parity)",
+          "metrics": {
+            "overall": 1.0,
+            "pass_rate": 1.0,
+            "cases_total": 40,
+            "latency_ms": 2627
+          },
+          "latency_ms": 2627,
+          "cost_usd": 0.050106,
+          "cost_estimated": true,
+          "measured": "2026-08-14",
+          "git_sha": "009afed+story232-uncommitted",
+          "result_file": "benchmarks/results/retrospective-gemini31-crop-validation-20260814.json",
+          "evidence_status": "current-comparable-quality-leader-production-eligible",
+          "note": "Fresh symmetric rerun on all 40 authoritative human goldens. Passed 40/40 and remains both the measured quality leader and the only production-eligible compared model."
+        },
+        {
+          "model": "Gemini 3.7 Flash (fresh authoritative-golden parity)",
+          "metrics": {
+            "overall": 0.975,
+            "pass_rate": 0.975,
+            "cases_total": 40,
+            "latency_ms": 2694
+          },
+          "latency_ms": 2694,
+          "cost_usd": 0.071612,
+          "cost_estimated": true,
+          "measured": "2026-08-14",
+          "git_sha": "009afed+story232-uncommitted",
+          "result_file": "benchmarks/results/retrospective-gemini37-crop-validation-20260814.json",
+          "evidence_status": "current-comparable-challenger-production-ineligible",
+          "note": "Fresh reproducible rerun confirms 39/40 and the same source-backed page-126-000 false pass. It is lower quality, slightly slower, and estimated costlier than the incumbent; do not adopt."
+        },
         {
           "model": "Gemini 3.6 Flash (caption-focus prompt)",
           "metrics": {
@@ -13798,18 +13945,21 @@
         }
       ],
       "latest_score": {
-        "model": "Gemini 3.7 Flash (low thinking, strict crop-verdict schema)",
+        "model": "Gemini 3.7 Flash (fresh authoritative-golden parity)",
         "metrics": {
           "overall": 0.975,
           "pass_rate": 0.975,
           "cases_total": 40,
-          "latency_ms": 3023
+          "latency_ms": 2694
         },
-        "cost_usd": 0.063905,
+        "latency_ms": 2694,
+        "cost_usd": 0.071612,
         "cost_estimated": true,
-        "measured": "2026-08-13",
-        "git_sha": "c69a2e1",
-        "note": "Completed `39/40` with exact identity and zero transport/schema errors. Manual source inspection confirmed the sole `page-126-000` false pass missed external text along the left edge. This is a valid production-safety regression failure, but the full corpus is selection-exposed, so it does not establish an unbiased model winner. The conditional page-context lane was not measured. Portable proof: `docs/evals/attempts/026-gemini37-flash-evaluate-model.md`.\n"
+        "measured": "2026-08-14",
+        "git_sha": "009afed+story232-uncommitted",
+        "result_file": "benchmarks/results/retrospective-gemini37-crop-validation-20260814.json",
+        "evidence_status": "current-comparable-challenger-production-ineligible",
+        "note": "Fresh reproducible rerun confirms 39/40 and the same source-backed page-126-000 false pass. It is lower quality, slightly slower, and estimated costlier than the incumbent; do not adopt."
       },
       "attempts": [
         {
@@ -13865,7 +14015,7 @@
           "date": "2026-08-13",
           "status": "inconclusive",
           "approach": "Audit calibration, regression, held-out, tuning-parity, and freshness validity after the Gemini 3.7 screen",
-          "note": "Visual inspection reconfirmed `page-126-000` as a valid safety fail, and frozen-output regrading preserved Gemini 3.7 at `39/40` on the full production-regression corpus. However, `caption-focus` was selected on all 40 cases, challenger tuning budgets were not symmetric, the incumbent `40/40` is stale, and there are zero held-out confirmation cases. Retain the safety veto but retract any unbiased winner claim; promotion is blocked pending fresh held-out source truth. A bounded inventory found only three unscored crops; all were pass-style and two reused exposed source pages, so they were not promoted into a fake held-out slice. The frozen next-pass contract requires 12 natural crops (`6 pass / 6 fail`) from at least eight previously unused source pages. The retained-output regrader now fails closed on duplicate rows, partition overlap, and incomplete or extra coverage; a selection claim additionally requires explicit `eligible_held_out_confirmation` status and a nonempty, all-passing held-out partition. No provider calls or golden changes were made.\n",
+          "note": "Visual inspection reconfirmed `page-126-000` as a valid safety fail, and frozen-output regrading preserved Gemini 3.7 at `39/40` on the full production-regression corpus. However, `caption-focus` was selected on all 40 cases, challenger tuning budgets were not symmetric, the incumbent `40/40` is stale, and there are zero held-out confirmation cases. Retain the safety veto but retract any unbiased winner claim; promotion is blocked pending fresh held-out source truth. A bounded inventory found only three unscored crops; all were pass-style and two reused exposed source pages, so they were not promoted into a fake held-out slice. The frozen next-pass contract requires 12 natural crops (`6 pass / 6 fail`) from at least eight previously unused source pages. The retained-output regrader now fails closed on duplicate rows, partition overlap, and incomplete or extra coverage; a selection claim additionally requires explicit `eligible_held_out_confirmation` status and a nonempty, all-passing held-out partition. No provider calls or golden changes were made. This selection-policy conclusion was superseded on 2026-08-14 after the user confirmed the hand-authored goldens are the authoritative bounded model-selection set; the measured 39/40 and safety failure remain valid.\n",
           "retry_when": []
         }
       ],
@@ -13911,7 +14061,8 @@
       "description": "Page-context C5 deletion-gate surface for the maintained runtime overlap corpus. Shows the source page plus the extracted crop together and scores pass/fail crop judgments against checked-in labels for external page text, neighboring-visual leakage, excessive blank space, and integral image text.\n",
       "spec_refs": [],
       "story_refs": [
-        "209"
+        "209",
+        "232"
       ],
       "compromise_refs": [
         "C5"
@@ -16192,11 +16343,11 @@
         "scores": {
           "text_fidelity": 0.93,
           "structure_preservation": 0.95,
-          "illustration_extraction": 0.9703,
+          "illustration_extraction": 0.9689,
           "provenance_completeness": 1.0,
-          "measured": "2026-04-10",
+          "measured": "2026-08-14",
           "provenance_measured": "2026-03-27",
-          "notes": "Structure quality comes from Story 131 / the 2026-03-11 onward-table-fidelity refresh. Story 207 refreshed illustration quality against the maintained `image-crop-extraction` detector surface to `0.9703` on 2026-04-10, then rechecked the reviewed Onward publication seam from Stories 184 and 198 before promoting the canonical row. Story 157 restored maintained PDF-backed entry plus fresh provenance verification on the shared Onward PDF."
+          "notes": "Structure quality comes from Story 131 / the 2026-03-11 onward-table-fidelity refresh. Story 232 reran the repaired maintained `image-crop-extraction` detector surface on all 13 authoritative cases: GPT-5.6 Terra passed 13/13 at `0.9689` on 2026-08-14 and became the fresh measured detector leader. Stories 184 and 198 still provide the reviewed Onward publication seam, while Story 157 restored maintained PDF-backed entry plus fresh provenance verification on the shared Onward PDF."
         },
         "score_sources": {
           "illustration_extraction": {
@@ -16231,11 +16382,11 @@
         "scores": {
           "text_fidelity": 0.93,
           "structure_preservation": 0.95,
-          "illustration_extraction": 0.9703,
+          "illustration_extraction": 0.9689,
           "provenance_completeness": 1.0,
-          "measured": "2026-04-10",
+          "measured": "2026-08-14",
           "provenance_measured": "2026-03-11",
-          "notes": "Shares the current scanned-image quality envelope: table structure at 0.95, illustration extraction now follows Story 207's fresh maintained `image-crop-extraction` rerun at `0.9703` on 2026-04-10, and provenance completeness remains 1.0 after Story 132 verification. Stories 184 and 198 still provide the reviewed Onward publication seam for this crop score."
+          "notes": "Shares the current scanned-image quality envelope: table structure at 0.95, illustration extraction follows Story 232's repaired maintained `image-crop-extraction` rerun at `0.9689` on 2026-08-14, and provenance completeness remains 1.0 after Story 132 verification. GPT-5.6 Terra passed all 13 authoritative detector cases; Stories 184 and 198 still provide the reviewed Onward publication seam for this score."
         },
         "score_sources": {
           "illustration_extraction": {

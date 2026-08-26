@@ -121,6 +121,7 @@ Grouped by primary `spec:N` category. Stories without category refs remain in an
 | 207 | Refresh Crop C4 Proof and Coverage Truth Surfaces | High | Done | 183, 198 | [story-207](stories/story-207-refresh-crop-c4-proof-and-coverage-truth-surfaces.md) |
 | 209 | Widen C5 Crop Deletion Gate to Page-Level Proof | High | Done | 183, 198, 207 | [story-209](stories/story-209-crop-c5-page-level-deletion-gate.md) |
 | 231 | Integrate GPT-5.6 Luna into the Production Crop Detector Route | High | Done | 198, 207, 209 | [story-231](stories/story-231-luna-production-crop-detector-route.md) |
+| 232 | Authoritative golden model reevaluation | High | Done | 207, 209 | [story-232](stories/story-232-authoritative-golden-model-reevaluation.md) |
 
 ### spec:5 — Document Consistency Planning
 

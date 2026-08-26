@@ -1,5 +1,11 @@
 # Attempt 026 — Gemini 3.7 Flash evaluation
 
+> Superseded selection-policy note (2026-08-14): the checked-in crop goldens
+> are user-created ideal answers and remain the authoritative bounded
+> model-selection surface. References below to a required 12-case held-out set
+> are historical and withdrawn. The measured `13/13`, `39/40`, handwriting
+> scores, hashes, and source-verified `page-126-000` failure remain unchanged.
+
 **Eval:** `image-crop-extraction`, `crop-validation`, conditional `crop-page-level-deletion-gate`, and corrected real-handwriting screen
 **Date:** 2026-08-13
 **Worker Model:** Codex GPT-5

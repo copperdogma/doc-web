@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Regrade an existing PromptFoo crop result by provenance partition."""
+"""Regrade an existing PromptFoo crop result against authoritative goldens."""
 
 from __future__ import annotations
 
@@ -12,7 +12,7 @@ from typing import Any
 
 ROOT = Path(__file__).resolve().parents[2]
 DEFAULT_PROVENANCE = ROOT / "benchmarks/golden/crop-eval-provenance.json"
-SELECTION_ELIGIBLE_STATUS = "eligible_held_out_confirmation"
+SELECTION_ELIGIBLE_STATUS = "eligible_authoritative_golden"
 
 
 def _validated_partition(surface: dict[str, Any], field: str) -> list[str]:
@@ -69,13 +69,8 @@ def regrade(payload: dict[str, Any], surface: dict[str, Any]) -> dict[str, Any]:
             "failures": [row["vars"]["crop_key"] for row in selected if not row["success"]],
         }
 
-    calibration = _validated_partition(surface, "calibration_keys")
-    held_out = _validated_partition(surface, "held_out_confirmation_keys")
-    overlap = sorted(set(calibration) & set(held_out))
-    if overlap:
-        raise ValueError(f"Calibration/held-out partition overlap: {overlap}")
-
-    expected = set(calibration) | set(held_out)
+    authoritative = _validated_partition(surface, "authoritative_golden_keys")
+    expected = set(authoritative)
     actual = set(by_key)
     if expected != actual:
         raise ValueError(
@@ -83,21 +78,18 @@ def regrade(payload: dict[str, Any], surface: dict[str, Any]) -> dict[str, Any]:
             f"extra={sorted(actual - expected)}"
         )
 
-    held_out_summary = summarize(held_out)
+    authoritative_summary = summarize(authoritative)
     model_selection_status = surface.get("model_selection_status")
-    selection_claim_allowed = (
-        model_selection_status == SELECTION_ELIGIBLE_STATUS
-        and held_out_summary["cases"] > 0
-        and held_out_summary["failed"] == 0
-    )
+    selection_claim_allowed = model_selection_status == SELECTION_ELIGIBLE_STATUS and authoritative_summary["cases"] > 0
+    promotion_claim_allowed = selection_claim_allowed and authoritative_summary["failed"] == 0
 
     return {
         "contract_role": surface["contract_role"],
         "model_selection_status": model_selection_status,
         "all_cases": summarize(sorted(actual)),
-        "calibration": summarize(calibration),
-        "held_out_confirmation": held_out_summary,
+        "authoritative_goldens": authoritative_summary,
         "selection_claim_allowed": selection_claim_allowed,
+        "promotion_claim_allowed": promotion_claim_allowed,
     }
 
 

@@ -132,10 +132,10 @@ promptfoo eval -c tasks/crop-validation.yaml --no-cache \
 - This is the dedicated current C5-linked text-exclusion / crop-quality surface.
 - The repaired local benchmark substrate now makes this surface runnable from a clean checkout.
 - Passing this bounded 40-crop corpus does not by itself delete C5; the broader page-level deletion benchmark is still a separate step.
-- All 40 cases were used during prompt/model selection. They remain valid
-  calibration and production-safety regression cases, but there is currently
-  no held-out confirmation slice for an unbiased winner claim. See
-  `golden/crop-eval-provenance.json`.
+- All 40 hand-authored labels are the authoritative bounded truth surface for
+  scoring and model selection. Prompt-selection history remains recorded in
+  `golden/crop-eval-provenance.json`; it does not require inventing a second
+  held-out corpus. Promotion still requires the full maintained safety target.
 
 ---
 
@@ -162,9 +162,10 @@ cd benchmarks && source ~/.nvm/nvm.sh && nvm use 24 >/dev/null 2>&1 && \
   corrected-golden `22/22` regression provider. The earlier Gemini 3.1 Flash
   Lite `22/22` predates the `page-122-001` correction, and its corrected-golden
   rerun is `21/22`.
-- Prompt repairs and provider selection used this full corpus, so the configured
-  provider is not an unbiased selection winner. New promotion claims are
-  blocked until a source-backed held-out slice is frozen before calls.
+- Prompt repairs and provider selection used this full corpus, so comparisons
+  must keep prompts, scorers, goldens, and configuration budgets symmetric.
+  The human-authored labels remain authoritative for bounded ranking and the
+  full `22/22` runtime-promotion gate.
 - The surface passes cleanly as a judge, but its own golden still includes 5 fail-labeled current-runtime cases, so Story 209's current decision is to keep the surviving C5 residue in place.
 
 ---

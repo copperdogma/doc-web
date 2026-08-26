@@ -10,6 +10,11 @@
   `0.95` gate and `0.9703` incumbent, while keeping the maintained crop
   defaults unchanged.
 
+## [2026-08-14-01] - Restore authoritative crop golden selection
+
+### Changed
+- Restored the hand-authored crop goldens as the authoritative bounded model-selection surface and removed the unnecessary 12-case held-out prerequisite, while preserving strict provenance validation and the full-pass runtime-promotion gate.
+
 ## [2026-08-13-01] - Audit Gemini 3.7 crop evaluation validity
 
 ### Added

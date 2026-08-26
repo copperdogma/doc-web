@@ -59,6 +59,10 @@ providers:
     config:
       temperature: 0
       maxOutputTokens: 2048
+  - id: google:gemini-3.7-flash
+    label: "Gemini 3.7 Flash"
+    config:
+      maxOutputTokens: 2048
 
 # 40 test cases — one per crop from onward-gemini3pro-001 run
 tests:

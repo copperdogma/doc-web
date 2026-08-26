@@ -97,11 +97,11 @@
       "scores": {
         "text_fidelity": 0.93,
         "structure_preservation": 0.95,
-        "illustration_extraction": 0.9703,
+        "illustration_extraction": 0.9689,
         "provenance_completeness": 1.0,
-        "measured": "2026-04-10",
+        "measured": "2026-08-14",
         "provenance_measured": "2026-03-27",
-        "notes": "Structure quality comes from Story 131 / the 2026-03-11 onward-table-fidelity refresh. Story 207 refreshed illustration quality against the maintained `image-crop-extraction` detector surface to `0.9703` on 2026-04-10, then rechecked the reviewed Onward publication seam from Stories 184 and 198 before promoting the canonical row. Story 157 restored maintained PDF-backed entry plus fresh provenance verification on the shared Onward PDF."
+        "notes": "Structure quality comes from Story 131 / the 2026-03-11 onward-table-fidelity refresh. Story 232 reran the repaired maintained `image-crop-extraction` detector surface on all 13 authoritative cases: GPT-5.6 Terra passed 13/13 at `0.9689` on 2026-08-14 and became the fresh measured detector leader. Stories 184 and 198 still provide the reviewed Onward publication seam, while Story 157 restored maintained PDF-backed entry plus fresh provenance verification on the shared Onward PDF."
       },
       "score_sources": {
         "illustration_extraction": {
@@ -131,11 +131,11 @@
       "scores": {
         "text_fidelity": 0.93,
         "structure_preservation": 0.95,
-        "illustration_extraction": 0.9703,
+        "illustration_extraction": 0.9689,
         "provenance_completeness": 1.0,
-        "measured": "2026-04-10",
+        "measured": "2026-08-14",
         "provenance_measured": "2026-03-11",
-        "notes": "Shares the current scanned-image quality envelope: table structure at 0.95, illustration extraction now follows Story 207's fresh maintained `image-crop-extraction` rerun at `0.9703` on 2026-04-10, and provenance completeness remains 1.0 after Story 132 verification. Stories 184 and 198 still provide the reviewed Onward publication seam for this crop score."
+        "notes": "Shares the current scanned-image quality envelope: table structure at 0.95, illustration extraction follows Story 232's repaired maintained `image-crop-extraction` rerun at `0.9689` on 2026-08-14, and provenance completeness remains 1.0 after Story 132 verification. GPT-5.6 Terra passed all 13 authoritative detector cases; Stories 184 and 198 still provide the reviewed Onward publication seam for this score."
       },
       "score_sources": {
         "illustration_extraction": {

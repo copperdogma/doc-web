@@ -49,7 +49,7 @@ evals:
     config: benchmarks/tasks/image-crop-extraction.yaml
     scorer: benchmarks/scorers/image_crop_scorer.py
     golden: benchmarks/golden/
-    story_refs: ["133", "183", "207"]
+    story_refs: ["133", "183", "207", "232"]
     category_refs: ["spec:4", "spec:8"]
     compromise_refs: ["C4"]
     spec_compromise: C4
@@ -60,6 +60,32 @@ evals:
       pass_rate: 0.90
 
     scores:
+      - model: "GPT-5.6 Terra (none reasoning, fresh repaired-contract parity)"
+        metrics: {overall: 0.9689, pass_rate: 1.0, cases_total: 13, latency_ms: 2915}
+        latency_ms: 2915
+        cost_usd: 0.117188
+        cost_estimated: true
+        measured: 2026-08-14
+        git_sha: 009afed+story232-uncommitted
+        result_file: benchmarks/results/retrospective-gpt56-terra-detector-20260814.json
+        evidence_status: current-comparable-quality-leader-production-eligible
+        note: >
+          Fresh symmetric parity on the 13 authoritative detector goldens.
+          Passed 13/13 and achieved the highest current comparable mean score,
+          0.9689 versus fresh Gemini 3 Flash 0.9595. Exact Responses model,
+          none reasoning, strict output, and no provider/schema errors. This is
+          the measured detector quality leader; any executable default change
+          still requires explicit user approval.
+      - model: "Gemini 3 Flash (fresh repaired-contract parity)"
+        metrics: {overall: 0.959477, pass_rate: 1.0, cases_total: 13, latency_ms: 6236}
+        latency_ms: 6236
+        cost_usd: 0.0526175
+        cost_estimated: false
+        measured: 2026-08-14
+        git_sha: 009afed+story232-uncommitted
+        result_file: benchmarks/results/retrospective-gemini3-flash-detector-20260814.json
+        evidence_status: current-comparable-incumbent
+        note: "Fresh incumbent parity passed 13/13 but scored below GPT-5.6 Terra and was slower; it no longer holds the measured detector quality lead."
       - model: "Gemini 3 Flash (conservative-count prompt, maintained rerun)"
         metrics:
           overall: 0.9703
@@ -1139,7 +1165,7 @@ evals:
     config: benchmarks/tasks/crop-validation.yaml
     scorer: benchmarks/scorers/crop_validation_scorer.py
     golden: benchmarks/golden/crop-validation.json
-    story_refs: ["183", "209"]
+    story_refs: ["183", "209", "232"]
     category_refs: ["spec:4", "spec:8"]
     compromise_refs: ["C5"]
     spec_compromise: C5
@@ -1152,12 +1178,32 @@ evals:
         This is the dedicated current C5-linked truth surface for the checked-in
         40-crop corpus. Passing here does not by itself delete C5; the spec
         still calls for broader page-level evidence before the trim heuristics
-        can be removed. All 40 cases are currently calibration / production
-        regression evidence; model-selection promotion is blocked until a
-        source-backed held-out confirmation slice exists. Partition provenance:
-        `benchmarks/golden/crop-eval-provenance.json`.
+        can be removed. All 40 hand-authored cases are the authoritative bounded
+        scoring and model-selection truth surface. A second held-out corpus is
+        not required; promotion still requires the full 1.0 safety target.
+        Provenance: `benchmarks/golden/crop-eval-provenance.json`.
 
     scores:
+      - model: "Gemini 3.1 Flash Lite (fresh authoritative-golden parity)"
+        metrics: {overall: 1.0, pass_rate: 1.0, cases_total: 40, latency_ms: 2627}
+        latency_ms: 2627
+        cost_usd: 0.050106
+        cost_estimated: true
+        measured: 2026-08-14
+        git_sha: 009afed+story232-uncommitted
+        result_file: benchmarks/results/retrospective-gemini31-crop-validation-20260814.json
+        evidence_status: current-comparable-quality-leader-production-eligible
+        note: "Fresh symmetric rerun on all 40 authoritative human goldens. Passed 40/40 and remains both the measured quality leader and the only production-eligible compared model."
+      - model: "Gemini 3.7 Flash (fresh authoritative-golden parity)"
+        metrics: {overall: 0.975, pass_rate: 0.975, cases_total: 40, latency_ms: 2694}
+        latency_ms: 2694
+        cost_usd: 0.071612
+        cost_estimated: true
+        measured: 2026-08-14
+        git_sha: 009afed+story232-uncommitted
+        result_file: benchmarks/results/retrospective-gemini37-crop-validation-20260814.json
+        evidence_status: current-comparable-challenger-production-ineligible
+        note: "Fresh reproducible rerun confirms 39/40 and the same source-backed page-126-000 false pass. It is lower quality, slightly slower, and estimated costlier than the incumbent; do not adopt."
       - model: "Gemini 3.6 Flash (caption-focus prompt)"
         metrics: {overall: 0.975, pass_rate: 0.975, cases_total: 40, latency_ms: 4145}
         cost_usd: 0.1730
@@ -1437,6 +1483,10 @@ evals:
           extra coverage; a selection claim additionally requires explicit
           `eligible_held_out_confirmation` status and a nonempty, all-passing
           held-out partition. No provider calls or golden changes were made.
+          This selection-policy conclusion was superseded on 2026-08-14 after
+          the user confirmed the hand-authored goldens are the authoritative
+          bounded model-selection set; the measured 39/40 and safety failure
+          remain valid.
 
     retry_when:
       - condition: new-subject-model
@@ -1467,24 +1517,23 @@ evals:
     config: benchmarks/tasks/crop-page-level-deletion-gate.yaml
     scorer: benchmarks/scorers/crop_validation_scorer.py
     golden: benchmarks/golden/crop-page-level-deletion-gate.json
-    story_refs: ["209"]
+    story_refs: ["209", "232"]
     category_refs: ["spec:4", "spec:8"]
     compromise_refs: ["C5"]
     spec_compromise: C5
 
     ranking:
       configured_regression_provider: "GPT-5.5 Responses (page-context prompt, promptfix)"
-      model_selection_status: "blocked_pending_held_out_truth"
+      model_selection_status: "eligible_authoritative_golden"
       applied: >
         The maintained promptfoo task now runs `openai:responses:gpt-5.5` by
         default because it is the recorded `22/22` regression provider on the
-        corrected page-context golden. This is not an unbiased model-selection
-        winner: prompt repair and provider selection used the exposed corpus,
-        and no held-out confirmation partition exists.
+        corrected, human-authored page-context golden. This is the bounded
+        maintained winner under the authoritative current corpus.
       note: >
-        Keep the configured provider and safety labels stable. Do not promote a
-        challenger or claim intrinsic superiority until new held-out source
-        truth is frozen and measured under symmetric calibration rules.
+        Keep the configured provider and safety labels stable. Compare any
+        challenger on the same unchanged prompts, scorer, goldens, and declared
+        configuration budget. Promotion requires the full maintained target.
 
     target:
       metric: pass_rate
@@ -1497,8 +1546,8 @@ evals:
         delete `C5` because that corpus still contains `5` explicit fail-labeled
         residue cases (`page-018-000`, `page-092-000`, `page-122-000`,
         `page-122-001`, and `page-126-000`). All 22 cases are currently
-        selection-exposed production-regression evidence; partition provenance
-        is recorded in `benchmarks/golden/crop-eval-provenance.json`.
+        authoritative human-golden evidence; provenance and prompt-selection
+        history are recorded in `benchmarks/golden/crop-eval-provenance.json`.
 
     scores:
       - model: "Gemini 3.6 Flash (page-context prompt)"

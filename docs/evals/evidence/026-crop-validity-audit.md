@@ -1,5 +1,11 @@
 # Attempt 026 crop-validity visual and provenance packet
 
+> Superseded selection-policy note (2026-08-14): the user confirmed that the
+> checked-in crop goldens were hand-created as ideal source truth and are the
+> authoritative bounded model-selection set. The 12-case held-out prerequisite
+> proposed below is withdrawn. Historical observations about prompt exposure,
+> exact hashes, and the valid `page-126-000` safety failure remain evidence.
+
 ## Target
 
 - Full source page: `benchmarks/input/source-pages-b64/Image125.b64.txt`

@@ -38,24 +38,19 @@ result.
 A score is stale if the code or benchmark surface changed materially after the
 recorded `git_sha`. When in doubt, re-measure.
 
-### Calibration, regression, and held-out selection
+### Authoritative human goldens and model selection
 
-Do not use one case set interchangeably for prompt development, production
-regression, and model-selection claims.
+The checked-in crop goldens were created by the user as source-reviewed ideal
+answers. They are the authoritative bounded truth surface for scoring and model
+selection; a second held-out corpus is not a prerequisite.
 
-- **Calibration** may guide prompt, schema, reasoning, adapter, or model-specific
-  configuration. Once a case influences a choice, it remains selection-exposed.
-- **Production regression** preserves source-backed safety and fidelity defects.
-  A failure may veto a runtime/default change even when the case is exposed.
-- **Held-out confirmation** is frozen before provider calls and is not viewed
-  during configuration selection. A winner/promotion claim requires this role.
-
-Every maintained model-selection surface that has seen prompt or model tuning
-must record its partition and provenance. Calibration and held-out keys must be
-disjoint and cover the declared task. Give compared models the same declared
-calibration-arm budget, freeze configurations before confirmation, and do not
-claim an unbiased winner when the held-out partition is empty. In that state,
-report model selection as blocked while retaining valid regression evidence.
+Give compared models the same unchanged prompt, scorer, golden keys, and
+declared configuration budget. Retain exact provenance and classify every
+mismatch against the source. A complete valid run may support relative ranking
+on this bounded corpus, while runtime promotion still requires the maintained
+quality target plus latency, cost, safety, reliability, and transport gates.
+When another hand-reviewed book corpus becomes available it should widen the
+evidence base, not retroactively invalidate the current goldens.
 
 ## Explicit Lineage Contract
 
