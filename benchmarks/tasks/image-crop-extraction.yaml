@@ -95,6 +95,25 @@ providers:
       temperature: 0
       max_tokens: 4096
 
+  # OpenRouter — bounded public-fixture diagnostic only. Strict router
+  # parameter enforcement is known to be unavailable for this endpoint, so
+  # the generic provider retains and client-validates exact raw output before
+  # any fence-only cleanup.
+  - id: python:../providers/openrouter_vision_chat.py
+    label: "Ox Alpha diagnostic (low reasoning, client-validated crop JSON)"
+    config:
+      model: stealth/ox-alpha
+      expected_served_model: stealth/ox-alpha
+      pin_provider: false
+      require_parameters: false
+      data_collection: null
+      zdr: null
+      reasoning_effort: low
+      output_contract: crop_regions
+      diagnostic_wrapper_cleanup: true
+      diagnostic_raw_output_file: "ox-alpha-public-detector-float-20260825-{sha256}.json"
+      max_tokens: 16384
+
   # Google — Gemini 2.5 series
   - id: google:gemini-2.5-flash
     label: "Gemini 2.5 Flash"

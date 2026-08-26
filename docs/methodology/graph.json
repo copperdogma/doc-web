@@ -1131,11 +1131,11 @@
           ],
           "why_now": "Gemini 4 or equivalent may push past 0.95 target Golden references cover limited page types; add table-heavy pages",
           "last_relevant_action": {
-            "date": "2026-08-22",
+            "date": "2026-08-25",
             "source_type": "eval-attempt",
             "source": "docs/evals/registry.yaml",
-            "source_id": "028",
-            "summary": "Cam approved the generated and checked-in crop fixtures for a route that may retain or train on them. The follow-up omitted request-level ZDR and data-collection denial, did not pin the sole same-model endpoint, kept..."
+            "source_id": "030",
+            "summary": "Repeated the same exact `stealth/ox-alpha` low-reasoning public-fixture diagnostic lane with no cache, concurrency one, exact served identity, protected raw retention, and the maintained prompt/scorer/golden frozen. S..."
           },
           "story_ids": [
             "135",
@@ -1629,12 +1629,12 @@
           "source_path": "docs/stories/story-207-refresh-crop-c4-proof-and-coverage-truth-surfaces.md",
           "recommended_now": false,
           "posture": "completed",
-          "why_now": "Ox Alpha final bounded diagnostic: added explicit public-fixture raw-output retention under ignored mode-`0600` result files before parser rejection, leaving normal adapter defaults hash-only. A fresh generated-image...",
+          "why_now": "Ox Alpha force-fresh drift result: strict `require_parameters=true` routing still returned HTTP 404. The exact-model public diagnostic then completed all 13 fresh no-cache calls with terminal `stop`, protected raw ret...",
           "last_relevant_action": {
-            "date": "2026-08-22",
+            "date": "2026-08-25",
             "source_type": "story-work-log",
             "source": "docs/stories/story-207-refresh-crop-c4-proof-and-coverage-truth-surfaces.md",
-            "summary": "Ox Alpha final bounded diagnostic: added explicit public-fixture raw-output retention under ignored mode-`0600` result files before parser rejection, leaving normal adapter defaults hash-only. A fresh generated-image..."
+            "summary": "Ox Alpha force-fresh drift result: strict `require_parameters=true` routing still returned HTTP 404. The exact-model public diagnostic then completed all 13 fresh no-cache calls with terminal `stop`, protected raw ret..."
           },
           "story_ids": [
             "181",
@@ -11169,9 +11169,9 @@
       "blocker_evidence": "",
       "unblock_condition": "",
       "last_work_log_entry": {
-        "timestamp": "20260822-1642",
-        "date": "2026-08-22",
-        "summary": "Ox Alpha final bounded diagnostic: added explicit public-fixture raw-output retention under ignored mode-`0600` result files before parser rejection, leaving normal adapter defaults hash-only. A fresh generated-image..."
+        "timestamp": "20260825-0002",
+        "date": "2026-08-25",
+        "summary": "Ox Alpha force-fresh drift result: strict `require_parameters=true` routing still returned HTTP 404. The exact-model public diagnostic then completed all 13 fresh no-cache calls with terminal `stop`, protected raw ret..."
       },
       "legacy_build_map_refs": "",
       "metadata_source": "frontmatter",
@@ -11182,12 +11182,12 @@
         "source_path": "docs/stories/story-207-refresh-crop-c4-proof-and-coverage-truth-surfaces.md",
         "recommended_now": false,
         "posture": "completed",
-        "why_now": "Ox Alpha final bounded diagnostic: added explicit public-fixture raw-output retention under ignored mode-`0600` result files before parser rejection, leaving normal adapter defaults hash-only. A fresh generated-image...",
+        "why_now": "Ox Alpha force-fresh drift result: strict `require_parameters=true` routing still returned HTTP 404. The exact-model public diagnostic then completed all 13 fresh no-cache calls with terminal `stop`, protected raw ret...",
         "last_relevant_action": {
-          "date": "2026-08-22",
+          "date": "2026-08-25",
           "source_type": "story-work-log",
           "source": "docs/stories/story-207-refresh-crop-c4-proof-and-coverage-truth-surfaces.md",
-          "summary": "Ox Alpha final bounded diagnostic: added explicit public-fixture raw-output retention under ignored mode-`0600` result files before parser rejection, leaving normal adapter defaults hash-only. A fresh generated-image..."
+          "summary": "Ox Alpha force-fresh drift result: strict `require_parameters=true` routing still returned HTTP 404. The exact-model public diagnostic then completed all 13 fresh no-cache calls with terminal `stop`, protected raw ret..."
         }
       }
     },
@@ -13735,6 +13735,14 @@
           "approach": "Rerun Ox Alpha on approved public fixtures without universal privacy filters or provider pinning",
           "note": "Cam approved the generated and checked-in crop fixtures for a route that may retain or train on them. The follow-up omitted request-level ZDR and data-collection denial, did not pin the sole same-model endpoint, kept exact `stealth/ox-alpha` identity, and configured no alternate-model fallback. The strict text probe still returned HTTP 404 with `require_parameters=true`, isolating strict parameter routing from the prior privacy failure. One authorized generated-image diagnostic omitted only `require_parameters`; it reached exact Ox Alpha on `Stealth` but its Markdown wrapper was rejected. A fresh protected-retention probe proved fence-only cleanup could recover valid generated integer crop JSON. The first maintained-case attempt then exposed and preserved a diagnostic adapter mismatch between the frozen prompt's `0-1` coordinates and integer client validation. Correcting only that schema topology produced a passing one-case smoke and a `13/13` detector run with no provider/parser errors. Diagnostic mean quality was `0.915146`, average latency `8538.85 ms` (maximum `38641 ms`), and reported cost `$0`. This is below the `0.95` detector gate and maintained `0.9703` reference, so the 40/22 follow-ons did not run. Access is available, strict drop-in transport is blocked, diagnostic capability is worse, and adoption is rejected. Portable proof: `docs/evals/attempts/028-ox-alpha-public-fixture-rerun.md`.\n",
           "retry_when": []
+        },
+        {
+          "id": "030",
+          "date": "2026-08-25",
+          "status": "failed",
+          "approach": "Force-fresh candidate-only Ox Alpha drift rerun on the Attempt 028 public detector lane",
+          "note": "Repeated the same exact `stealth/ox-alpha` low-reasoning public-fixture diagnostic lane with no cache, concurrency one, exact served identity, protected raw retention, and the maintained prompt/scorer/golden frozen. Strict `require_parameters=true` routing still returned 404. The client-validated detector then completed with zero provider or parser errors but fell from Attempt 028's `13/13`, `0.915146` to `12/13`, `0.880846`; `Image001` returned no crops for the source-verified stylized-title artwork. Mean latency improved from `8538.85 ms` to `7247.92 ms`, and candidate cost remained `$0`, but quality regressed and the strict transport block remains. This does not support the claimed day-over-day behavioral improvement on the frozen sample and cannot identify the provider's update mechanism. The 40/22 follow-ons did not run. An interrupted command-shape error made seven excluded default-provider smoke calls costing `$0.0073287`; total known repo spend remained below the `$0.75` cap. Portable proof: `docs/evals/attempts/030-ox-alpha-force-fresh-drift-rerun.md`.\n",
+          "retry_when": []
         }
       ],
       "retry_when": [
@@ -13759,11 +13767,11 @@
         ],
         "why_now": "Gemini 4 or equivalent may push past 0.95 target Golden references cover limited page types; add table-heavy pages",
         "last_relevant_action": {
-          "date": "2026-08-22",
+          "date": "2026-08-25",
           "source_type": "eval-attempt",
           "source": "docs/evals/registry.yaml",
-          "source_id": "028",
-          "summary": "Cam approved the generated and checked-in crop fixtures for a route that may retain or train on them. The follow-up omitted request-level ZDR and data-collection denial, did not pin the sole same-model endpoint, kept..."
+          "source_id": "030",
+          "summary": "Repeated the same exact `stealth/ox-alpha` low-reasoning public-fixture diagnostic lane with no cache, concurrency one, exact served identity, protected raw retention, and the maintained prompt/scorer/golden frozen. S..."
         }
       }
     },

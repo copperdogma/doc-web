@@ -1146,6 +1146,29 @@ evals:
           is blocked, diagnostic capability is worse, and adoption is rejected.
           Portable proof:
           `docs/evals/attempts/028-ox-alpha-public-fixture-rerun.md`.
+      - id: "030"
+        date: 2026-08-25
+        status: failed
+        approach: "Force-fresh candidate-only Ox Alpha drift rerun on the Attempt 028 public detector lane"
+        score_before: 0.915146
+        score_after: 0.880846
+        note: >
+          Repeated the same exact `stealth/ox-alpha` low-reasoning public-fixture
+          diagnostic lane with no cache, concurrency one, exact served identity,
+          protected raw retention, and the maintained prompt/scorer/golden
+          frozen. Strict `require_parameters=true` routing still returned 404.
+          The client-validated detector then completed with zero provider or
+          parser errors but fell from Attempt 028's `13/13`, `0.915146` to
+          `12/13`, `0.880846`; `Image001` returned no crops for the
+          source-verified stylized-title artwork. Mean latency improved from
+          `8538.85 ms` to `7247.92 ms`, and candidate cost remained `$0`, but
+          quality regressed and the strict transport block remains. This does
+          not support the claimed day-over-day behavioral improvement on the
+          frozen sample and cannot identify the provider's update mechanism.
+          The 40/22 follow-ons did not run. An interrupted command-shape error
+          made seven excluded default-provider smoke calls costing `$0.0073287`;
+          total known repo spend remained below the `$0.75` cap. Portable proof:
+          `docs/evals/attempts/030-ox-alpha-force-fresh-drift-rerun.md`.
 
     retry_when:
       - condition: new-subject-model

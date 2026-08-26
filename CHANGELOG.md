@@ -1,3 +1,10 @@
+## [2026-08-26-01] - Reject Ox Alpha drift rerun
+
+### Changed
+- Recorded the force-fresh Ox Alpha crop rerun at 12/13 and 0.880846, below its
+  August 22 result, while retaining the strict-route block and unchanged
+  downstream promotion gates.
+
 ## [2026-08-25-01] - Reject Terra runtime promotion
 
 ### Added
