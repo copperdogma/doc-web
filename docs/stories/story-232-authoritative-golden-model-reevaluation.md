@@ -40,6 +40,8 @@ Restore the hand-authored crop goldens as the complete authoritative model-selec
 - [x] Any paid comparison reruns candidate and incumbent symmetrically on unchanged prompts/scorers/goldens under the USD 5 cap.
 - [x] Name the highest valid comparable score as the measured quality leader even if it misses the absolute target; separately require hard safety/schema/runtime gates for production promotion.
 - [x] No runtime/default change, commit, push, or Dossier work occurs implicitly.
+- [x] After explicit promotion approval, require exact production-recipe parity
+      and source/crop inspection before changing the maintained detector.
 
 ## Out of Scope
 
@@ -123,3 +125,5 @@ The user approved this plan, the policy removal, and bounded paid calls on 2026-
 20260814-0145 — complete: the hand-authored goldens are again the complete authoritative decision surface. Fresh parity made GPT-5.6 Terra the detector quality leader at `13/13`, `0.9689`, and retained Gemini 3.1 Flash Lite as crop-only leader at `40/40`, `1.0`; Gemini 3.7 repeated its source-backed `page-126-000` safety miss. Retained page-context and handwriting evidence remained decisive. Attempt 029, registry history, provenance, changelog, and methodology record the outcome; conservative spend was `$0.29152`. No default changed.
 
 20260825-0001 — close-out renumbering: upstream Ox Alpha work added Attempts 027–028 while this isolated branch awaited landing. Renumbered this unchanged retrospective evidence to Attempt 029 before integration; no score, artifact, or selection claim changed.
+
+20260825-2030 — explicit promotion check complete: a mechanically parity-locked four-page Onward recipe ran GPT-5.6 Terra through the exact production crop route. Terra returned nine crops for `$0.045452`, but source/crop inspection found printed captions retained below both page-122 portraits, repeating Luna's hard C5 defect. Terra remains the measured detector-benchmark quality leader but is production-ineligible; `gemini-3-flash-preview` remains the runtime default. Story total subject spend is `$0.336972`.

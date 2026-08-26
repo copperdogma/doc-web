@@ -52,7 +52,7 @@ View results: `promptfoo view`
   - `crop-validation` — dedicated bounded crop-only text-exclusion / crop-quality surface linked to `C5`
   - `crop-page-level-deletion-gate` — page-context deletion-gate surface for the maintained runtime overlap corpus
 - **Maintained detector prompt set**: `baseline`, `strict-exclude`, `two-step`, `conservative-count`
-- **Current detector score**: `image-crop-extraction` best recorded result is `0.9703` overall / `1.0` pass rate (Gemini 3 Flash `conservative-count` on the maintained task, rerun on 2026-04-10; tracked proof note: `docs/evals/attempts/001-image-crop-extraction-story207-proof-refresh.md`)
+- **Current detector score**: the fresh comparable quality leader is GPT-5.6 Terra at `0.9689` / `13/13`; the symmetric Gemini 3 Flash control scored `0.9595` / `13/13`. Terra is not production-eligible because its exact Onward runtime proof retained captions on two page-122 crops. See Attempt 029.
 - **Current C4 deletion-gate score**: `single-model-crop-detection` is `0.9703` overall / `1.0` pass rate on that same maintained single-stage rerun, so the bounded deletion gate still passes. Use the same tracked proof note above as the portable summary; the raw promptfoo JSON remains a local regenerable artifact.
 - **Maintained runtime note**: Stories 184 and 198 proved the reviewed Onward
   lane can delete the retired retry / refine / validate surface from both the
@@ -68,7 +68,10 @@ View results: `promptfoo view`
   page-122 crops that Gemini kept clean. Keep `gemini-3-flash-preview` in the
   maintained Onward recipe because C5 text exclusion is a hard gate; Luna
   remains the frozen-benchmark value winner and a callable challenger, not the
-  production default.
+  production default. Story 232 later gave Terra the same exact-runtime check:
+  it also recovered nine crops but retained printed captions below both
+  page-122 portraits. Keep `gemini-3-flash-preview`; benchmark leadership does
+  not waive the runtime text-exclusion gate.
 - **Current dedicated C5-linked score**: `crop-validation` is `1.0` overall / `1.0` pass rate on the checked-in 40-crop corpus (Gemini 3.1 Flash Lite + `caption-focus`, measured 2026-04-11)
 - **Current page-context C5 deletion-gate score**: `crop-page-level-deletion-gate` is `1.0` overall / `1.0` pass rate on the checked-in `22`-case overlap corpus with GPT-5.5 Responses + `page-context` promptfix, measured 2026-04-24 on the corrected golden. The previous Gemini 3.1 Flash Lite `22/22` result is stale after the `page-122-001` golden correction; the fresh Gemini rerun is `21/22`.
 - **Provider-role boundary**: detector selection does not select the
@@ -76,13 +79,11 @@ View results: `promptfoo view`
   `openai:responses:gpt-5.5`; Luna's `19/22` result is still disqualifying for
   this safety role.
 - **Current C5 decision**: residue is still required. The page-context corpus still contains `5` explicit fail-labeled current-runtime cases (`page-018-000`, `page-092-000`, `page-122-000`, `page-122-001`, `page-126-000`), so `trim_layout_text` and bounded caption assist do not have an honest deletion proof yet.
-- **Selection-validity status**: both validator corpora are maintained
-  production-safety regression surfaces, but all current cases are
-  selection-exposed. `caption-focus` was selected on the full 40-case
-  crop-only corpus; page-context prompt repairs and provider selection used the
-  full 22-case corpus. Neither surface currently has held-out confirmation
-  cases, so new winner/promotion claims are blocked. See
-  `benchmarks/golden/crop-eval-provenance.json`.
+- **Selection-validity status**: the existing hand-authored goldens are the
+  authoritative bounded model-selection surface. Their prior use is a disclosed
+  generalization limit, not a blocker that invents a second held-out corpus.
+  Rank models on the complete goldens, and separately enforce every hard
+  production/runtime gate before changing a default.
 - **Spec compromises**:
   - `C4` — Two-Stage Image Crop Detection
   - `C5` — Layout Text Trim Heuristics for Crops
@@ -100,29 +101,20 @@ and use the same evidence discipline for both `crop-validation` and
 
 ## Selection-validity workflow
 
-1. Keep the existing source-backed labels as regression truth; do not weaken a
+1. Keep every source-backed label as authoritative truth; do not weaken a
    safety case because many models miss it.
-2. Use `benchmarks/golden/crop-eval-provenance.json` to distinguish calibration,
-   production regression, and held-out confirmation.
-3. Configuration work may use only declared calibration cases and must give
-   every compared model the same arm budget.
-4. Freeze prompts, adapters, schemas, and reasoning settings before opening a
-   newly added held-out slice.
-5. Only after that freeze, set `model_selection_status` to
-   `eligible_held_out_confirmation` and run held-out confirmation once for the
-   selection claim. The regrader requires a nonempty, all-passing held-out
-   partition; blocked status, a missing case, a duplicate row, partition
-   overlap, extra coverage, or any held-out failure remains fail-closed.
-   Continue to require the full production regression gate before any
-   runtime/default change.
-6. If held-out is empty, use
-   `benchmarks/scripts/regrade_crop_result.py` to report capability/regression
-   evidence and `selection_claim_allowed: false`; do not buy another full-corpus
-   incumbent/challenger rerun because it cannot cure selection exposure.
-7. The current bounded inventory is not sufficient to seed held-out truth: it
-   found three unscored logical crops, all pass-style, with two reusing exposed
-   source pages. Follow the 12-case, 8-page, balanced preparation contract in
-   `docs/evals/evidence/026-crop-validity-audit.md`; freeze it before any calls.
+2. Freeze prompts, adapters, schemas, reasoning settings, scorers, and goldens
+   before a comparison, and give candidate and incumbent symmetric treatment.
+3. Require unique, complete, attributable rows and fail closed on malformed,
+   missing, extra, or duplicate evidence.
+4. Name the best comparable score as the measured quality leader, even when it
+   misses an absolute target.
+5. Treat benchmark selection and production adoption as separate decisions.
+   A runtime/default change still requires all transport, schema, privacy,
+   cost, latency, and exact production-output safety gates.
+6. Disclose that repeated use of the bounded goldens limits claims about unseen
+   books. A future hand-curated book can broaden coverage, but it is not a
+   prerequisite for decisions on the current authoritative set.
 
 ## Verifying Results
 

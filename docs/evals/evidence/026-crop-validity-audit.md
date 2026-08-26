@@ -49,15 +49,14 @@ production crop defect.
   capability evidence and a valid safety-policy block on changing the default.
   It is not unbiased evidence that the incumbent model is intrinsically better.
 
-## Remedy
+## Remedy (superseded 2026-08-14)
 
-Keep every current label and retain both existing corpora as calibration plus
-production-regression surfaces. Block new winner/promotion claims until a new
-source-backed held-out confirmation slice is frozen before provider calls.
-Future comparisons may tune each model only on the declared calibration slice
-with the same arm budget, then evaluate the frozen configurations once on the
-held-out slice. A held-out win cannot override a failure on the production
-safety regression gate.
+Keep every current label and use the complete hand-authored corpora as the
+authoritative bounded selection and production-regression surfaces. Compare
+frozen configurations symmetrically and disclose the generalization limit from
+repeated use. A future independently curated book can broaden coverage, but no
+additional held-out set is required. Benchmark leadership cannot override a
+failure on the production safety/runtime gate.
 
 ## Frozen-output regrade
 

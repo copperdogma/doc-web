@@ -32,8 +32,9 @@ response
 - Detector gate: `13/13`, overall `>= 0.95`, zero provider/schema errors. Only
   after it passes, run the independent 40-case `crop-validation` gate (`40/40`)
   and 22-case `crop-page-level-deletion-gate` (`22/22`) under their maintained
-  prompts and scorers. These selection-exposed safety corpora can provide
-  regression evidence, not an unbiased promotion claim.
+  prompts and scorers. These hand-authored goldens are the authoritative
+  bounded selection surface; production promotion additionally requires every
+  hard safety/runtime gate.
 - Spend cap: US$0.75 including probes and any diagnostic. Current catalog token
   price is zero; stop if live usage reports an unexpected charge or the cap
   could be exceeded.

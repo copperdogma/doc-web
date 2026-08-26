@@ -1,0 +1,70 @@
+# Story 232 production-parity proof. The fixture is materialized from checked-in
+# b64 sources by scripts/prepare_story231_crop_fixture.py before this recipe runs.
+# Parameters match the maintained Onward recipe except for the bounded page cap.
+stages:
+  - id: load_pages
+    stage: extract
+    module: load_artifact_v1
+    out: pages_html.jsonl
+    params:
+      path: output/fixtures/story231-crop-runtime/pages_html.jsonl
+      schema_version: page_html_v1
+
+  - id: crop_illustrations
+    stage: extract
+    module: crop_illustrations_guided_v1
+    needs: [load_pages]
+    inputs:
+      ocr_manifest: load_pages
+    out: illustration_manifest.jsonl
+    params:
+      transparency: false
+      output_format: jpeg
+      jpeg_quality: 92
+      highres_images_dir: input/onward-to-the-unknown-images
+      detection_mode: layout
+      white_threshold: 252
+      close_kernel: 31
+      close_iterations: 3
+      score_min_nonwhite: 0.01
+      min_nonwhite_ratio: 0.02
+      max_text_ratio: 0.02
+      text_line_kernel_w: 31
+      text_line_kernel_h: 3
+      text_line_iterations: 1
+      text_block_kernel_w: 25
+      text_block_kernel_h: 3
+      text_block_iterations: 1
+      min_area_ratio: 0.001
+      min_width: 120
+      min_height: 120
+      padding_percent: 0.08
+      text_kernel: 3
+      text_iterations: 1
+      rescue_model: gpt-5.6-terra
+      rescue_temperature: 0.0
+      rescue_max_tokens: 8192
+      rescue_max_pages: 4
+      rescue_include_alt: true
+      rescue_always: true
+      rescue_caption_second_pass: true
+      rescue_caption_max_tokens: 400
+      refine_with_textlines: false
+      trim_layout_text: true
+      layout_text_model: PP-DocLayout_plus-L
+      layout_text_score_thresh: 0.6
+      layout_text_max_gap_ratio: 0.2
+      layout_text_bottom_band_ratio: 0.35
+      layout_text_top_band_ratio: 0.35
+      layout_text_margin_px: 6
+      layout_text_min_width_ratio: 0.4
+      layout_text_max_height_ratio: 0.2
+      layout_split_text: false
+      layout_split_min_gap_ratio: 0.12
+      layout_split_margin_px: 6
+      trim_text_edges: false
+      trim_ocr_text_edges: false
+      split_when_missing: true
+      trim_caption: false
+      caption_relax_max_gap_ratio: 0.2
+      cover_pages: "1"

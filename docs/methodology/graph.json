@@ -12928,9 +12928,9 @@
       "blocker_evidence": "",
       "unblock_condition": "",
       "last_work_log_entry": {
-        "timestamp": "20260825-0001",
+        "timestamp": "20260825-2030",
         "date": "2026-08-25",
-        "summary": "close-out renumbering: upstream Ox Alpha work added Attempts 027\u2013028 while this isolated branch awaited landing. Renumbered this unchanged retrospective evidence to Attempt 029 before integration; no score, artifact,..."
+        "summary": "explicit promotion check complete: a mechanically parity-locked four-page Onward recipe ran GPT-5.6 Terra through the exact production crop route. Terra returned nine crops for `$0.045452`, but source/crop inspection..."
       },
       "legacy_build_map_refs": "",
       "metadata_source": "frontmatter",
@@ -12941,12 +12941,12 @@
         "source_path": "docs/stories/story-232-authoritative-golden-model-reevaluation.md",
         "recommended_now": false,
         "posture": "completed",
-        "why_now": "close-out renumbering: upstream Ox Alpha work added Attempts 027\u2013028 while this isolated branch awaited landing. Renumbered this unchanged retrospective evidence to Attempt 029 before integration; no score, artifact,...",
+        "why_now": "explicit promotion check complete: a mechanically parity-locked four-page Onward recipe ran GPT-5.6 Terra through the exact production crop route. Terra returned nine crops for `$0.045452`, but source/crop inspection...",
         "last_relevant_action": {
           "date": "2026-08-25",
           "source_type": "story-work-log",
           "source": "docs/stories/story-232-authoritative-golden-model-reevaluation.md",
-          "summary": "close-out renumbering: upstream Ox Alpha work added Attempts 027\u2013028 while this isolated branch awaited landing. Renumbered this unchanged retrospective evidence to Attempt 029 before integration; no score, artifact,..."
+          "summary": "explicit promotion check complete: a mechanically parity-locked four-page Onward recipe ran GPT-5.6 Terra through the exact production crop route. Terra returned nine crops for `$0.045452`, but source/crop inspection..."
         }
       }
     }
@@ -13101,8 +13101,8 @@
           "measured": "2026-08-14",
           "git_sha": "009afed+story232-uncommitted",
           "result_file": "benchmarks/results/retrospective-gpt56-terra-detector-20260814.json",
-          "evidence_status": "current-comparable-quality-leader-production-eligible",
-          "note": "Fresh symmetric parity on the 13 authoritative detector goldens. Passed 13/13 and achieved the highest current comparable mean score, 0.9689 versus fresh Gemini 3 Flash 0.9595. Exact Responses model, none reasoning, strict output, and no provider/schema errors. This is the measured detector quality leader; any executable default change still requires explicit user approval.\n"
+          "evidence_status": "current-comparable-quality-leader-production-ineligible",
+          "note": "Fresh symmetric parity on the 13 authoritative detector goldens. Passed 13/13 and achieved the highest current comparable mean score, 0.9689 versus fresh Gemini 3 Flash 0.9595. Exact Responses model, none reasoning, strict output, and no provider/schema errors. This is the measured detector quality leader. An explicitly approved exact Onward runtime proof later retained printed captions below both page-122 portraits, so it is production-ineligible and the Gemini runtime default remains unchanged. See Attempt 029.\n"
         },
         {
           "model": "Gemini 3 Flash (fresh repaired-contract parity)",

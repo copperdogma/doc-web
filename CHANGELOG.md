@@ -1,3 +1,15 @@
+## [2026-08-25-01] - Reject Terra runtime promotion
+
+### Added
+- Added an exact production-recipe Terra parity fixture and contract test.
+
+### Changed
+- Kept Gemini 3 Flash as the Onward detector after Terra retained printed
+  captions below both page-122 portraits despite leading the bounded detector
+  benchmark and recovering the extra page-12 signature.
+- Replaced the obsolete held-out prerequisite in the crop runbook with the
+  authoritative hand-authored-golden selection policy.
+
 ## [2026-08-22-01] - Reject Ox Alpha crop challenger
 
 ### Added

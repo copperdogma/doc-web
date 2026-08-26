@@ -13,7 +13,7 @@
 
 ## Decision
 
-**No runtime/default change.** The strict integer-coordinate detector remains a credible future replacement candidate, and the handwriting path is not adopted because both corrected real fixtures miss `0.99`. The crop-only result is now classified more narrowly: Gemini 3.7 fails a valid production-safety regression case, but model selection is blocked rather than lost because the full corpus is selection-exposed and has no held-out confirmation slice. Keep the currently configured providers until decision-grade held-out evidence exists. No runtime default, scorer, golden, or maintained provider changed. The evaluation harness prompt source did change for the authorized integer-coordinate repair; that change routes the strict-integer-labeled arm to an integer coordinate instruction while leaving existing maintained-provider behavior unchanged.
+**No runtime/default change.** The strict integer-coordinate detector remains a credible future replacement candidate, and the handwriting path is not adopted because both corrected real fixtures miss `0.99`. The crop-only result is decisive on the authoritative bounded goldens: Gemini 3.7 fails the valid `page-126-000` production-safety case and ranks below the `40/40` incumbent. No second held-out set is required. No runtime default, scorer, golden, or maintained provider changed. The evaluation harness prompt source did change for the authorized integer-coordinate repair; that change routes the strict-integer-labeled arm to an integer coordinate instruction while leaving existing maintained-provider behavior unchanged.
 
 ## Provider and privacy qualification
 

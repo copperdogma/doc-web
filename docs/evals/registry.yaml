@@ -68,14 +68,16 @@ evals:
         measured: 2026-08-14
         git_sha: 009afed+story232-uncommitted
         result_file: benchmarks/results/retrospective-gpt56-terra-detector-20260814.json
-        evidence_status: current-comparable-quality-leader-production-eligible
+        evidence_status: current-comparable-quality-leader-production-ineligible
         note: >
           Fresh symmetric parity on the 13 authoritative detector goldens.
           Passed 13/13 and achieved the highest current comparable mean score,
           0.9689 versus fresh Gemini 3 Flash 0.9595. Exact Responses model,
           none reasoning, strict output, and no provider/schema errors. This is
-          the measured detector quality leader; any executable default change
-          still requires explicit user approval.
+          the measured detector quality leader. An explicitly approved exact
+          Onward runtime proof later retained printed captions below both
+          page-122 portraits, so it is production-ineligible and the Gemini
+          runtime default remains unchanged. See Attempt 029.
       - model: "Gemini 3 Flash (fresh repaired-contract parity)"
         metrics: {overall: 0.959477, pass_rate: 1.0, cases_total: 13, latency_ms: 6236}
         latency_ms: 6236
