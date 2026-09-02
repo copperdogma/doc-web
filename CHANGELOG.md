@@ -1,3 +1,11 @@
+## [2026-09-01-01] - Reject Claude Fable 5.1 crop challenger
+
+### Changed
+- Recorded exact first-party Fable 5.1 transport qualification and its failed
+  maintained detector gate: one quarantined bbox contract error, aggregate
+  `0.870015`, and `$0.731890` detector spend, with the page-context gate and
+  maintained crop defaults left unchanged.
+
 ## [2026-08-26-01] - Reject Ox Alpha drift rerun
 
 ### Changed

@@ -1629,12 +1629,12 @@
           "source_path": "docs/stories/story-207-refresh-crop-c4-proof-and-coverage-truth-surfaces.md",
           "recommended_now": false,
           "posture": "completed",
-          "why_now": "Ox Alpha force-fresh drift result: strict `require_parameters=true` routing still returned HTTP 404. The exact-model public diagnostic then completed all 13 fresh no-cache calls with terminal `stop`, protected raw ret...",
+          "why_now": "Claude Fable 5.1 result: authenticated discovery listed exact `claude-fable-5-1`; native strict text, generated synthetic vision, and corrected one-case PromptFoo parity all qualified with exact served identity, termi...",
           "last_relevant_action": {
-            "date": "2026-08-25",
+            "date": "2026-09-01",
             "source_type": "story-work-log",
             "source": "docs/stories/story-207-refresh-crop-c4-proof-and-coverage-truth-surfaces.md",
-            "summary": "Ox Alpha force-fresh drift result: strict `require_parameters=true` routing still returned HTTP 404. The exact-model public diagnostic then completed all 13 fresh no-cache calls with terminal `stop`, protected raw ret..."
+            "summary": "Claude Fable 5.1 result: authenticated discovery listed exact `claude-fable-5-1`; native strict text, generated synthetic vision, and corrected one-case PromptFoo parity all qualified with exact served identity, termi..."
           },
           "story_ids": [
             "181",
@@ -11169,9 +11169,9 @@
       "blocker_evidence": "",
       "unblock_condition": "",
       "last_work_log_entry": {
-        "timestamp": "20260825-0002",
-        "date": "2026-08-25",
-        "summary": "Ox Alpha force-fresh drift result: strict `require_parameters=true` routing still returned HTTP 404. The exact-model public diagnostic then completed all 13 fresh no-cache calls with terminal `stop`, protected raw ret..."
+        "timestamp": "20260901-2205",
+        "date": "2026-09-01",
+        "summary": "Claude Fable 5.1 result: authenticated discovery listed exact `claude-fable-5-1`; native strict text, generated synthetic vision, and corrected one-case PromptFoo parity all qualified with exact served identity, termi..."
       },
       "legacy_build_map_refs": "",
       "metadata_source": "frontmatter",
@@ -11182,12 +11182,12 @@
         "source_path": "docs/stories/story-207-refresh-crop-c4-proof-and-coverage-truth-surfaces.md",
         "recommended_now": false,
         "posture": "completed",
-        "why_now": "Ox Alpha force-fresh drift result: strict `require_parameters=true` routing still returned HTTP 404. The exact-model public diagnostic then completed all 13 fresh no-cache calls with terminal `stop`, protected raw ret...",
+        "why_now": "Claude Fable 5.1 result: authenticated discovery listed exact `claude-fable-5-1`; native strict text, generated synthetic vision, and corrected one-case PromptFoo parity all qualified with exact served identity, termi...",
         "last_relevant_action": {
-          "date": "2026-08-25",
+          "date": "2026-09-01",
           "source_type": "story-work-log",
           "source": "docs/stories/story-207-refresh-crop-c4-proof-and-coverage-truth-surfaces.md",
-          "summary": "Ox Alpha force-fresh drift result: strict `require_parameters=true` routing still returned HTTP 404. The exact-model public diagnostic then completed all 13 fresh no-cache calls with terminal `stop`, protected raw ret..."
+          "summary": "Claude Fable 5.1 result: authenticated discovery listed exact `claude-fable-5-1`; native strict text, generated synthetic vision, and corrected one-case PromptFoo parity all qualified with exact served identity, termi..."
         }
       }
     },
@@ -13320,6 +13320,23 @@
           "note": "Exact `claude-opus-5` qualified through native strict-schema text, generated synthetic vision, and a one-case PromptFoo parity smoke after one explicitly approved provider-schema probe. The frozen no-cache detector then passed all `13/13` per-case assertions with `0` provider errors but scored only `0.8922`, below the maintained `>= 0.95` aggregate promotion target. Average latency was `5458 ms`; detector spend was `$0.355715` (`$0.0274` per case). Manual source and golden inspection classified the weakest results as model-wrong: counts were correct, but boxes systematically extended into captions or surrounding page space. The conditional 22-case page-context gate was therefore not run, so that capability remains unmeasured. No maintained provider, prompt, scorer, golden, or runtime default changed. Evidence is anchored to base HEAD `3bb7ad9`, adapter SHA-256 `f6b76068d915968bbf9790d5447fa7f39f4a21808914c0dccb011986cb748c61`, and portable proof `docs/evals/attempts/022-opus5-evaluate-model.md`.\n"
         },
         {
+          "model": "Claude Fable 5.1 (adaptive thinking, high effort, direct Anthropic strict schema)",
+          "metrics": {
+            "overall": 0.870015,
+            "pass_rate": 0.923077,
+            "cases_total": 13,
+            "latency_ms": 6661
+          },
+          "latency_ms": 6661,
+          "cost_usd": 0.056299,
+          "cost_estimated": true,
+          "measured": "2026-09-01",
+          "git_sha": "0864678+attempt031-uncommitted",
+          "result_file": "benchmarks/results/fable51-evaluate-model-detector-20260901.json",
+          "evidence_status": "current-comparable-candidate-rejected",
+          "note": "Exact first-party `claude-fable-5-1` qualified for strict text, generated synthetic vision, and one-case PromptFoo parity. The frozen detector completed 12 scorer passes and one locally quarantined out-of-range bbox contract error. Aggregate including the error was `0.870015`; even the 12 schema-valid rows averaged only `0.942517`, below the `0.95` target. Average latency was `6661 ms`, detector spend was `$0.731890` total, and total qualification-plus-detector spend was `$0.799160`. The progressive 22-case page-context gate did not run. Portable proof: `docs/evals/attempts/031-claude-fable51-evaluate-model.md`.\n"
+        },
+        {
           "model": "GPT-5.6 Sol Responses (conservative-count prompt, reasoning none)",
           "metrics": {
             "overall": 0.9403,
@@ -13503,21 +13520,21 @@
         }
       ],
       "latest_score": {
-        "model": "Gemini 3 Flash (fresh repaired-contract parity)",
+        "model": "Claude Fable 5.1 (adaptive thinking, high effort, direct Anthropic strict schema)",
         "metrics": {
-          "overall": 0.959477,
-          "pass_rate": 1.0,
+          "overall": 0.870015,
+          "pass_rate": 0.923077,
           "cases_total": 13,
-          "latency_ms": 6236
+          "latency_ms": 6661
         },
-        "latency_ms": 6236,
-        "cost_usd": 0.0526175,
-        "cost_estimated": false,
-        "measured": "2026-08-14",
-        "git_sha": "009afed+story232-uncommitted",
-        "result_file": "benchmarks/results/retrospective-gemini3-flash-detector-20260814.json",
-        "evidence_status": "current-comparable-incumbent",
-        "note": "Fresh incumbent parity passed 13/13 but scored below GPT-5.6 Terra and was slower; it no longer holds the measured detector quality lead."
+        "latency_ms": 6661,
+        "cost_usd": 0.056299,
+        "cost_estimated": true,
+        "measured": "2026-09-01",
+        "git_sha": "0864678+attempt031-uncommitted",
+        "result_file": "benchmarks/results/fable51-evaluate-model-detector-20260901.json",
+        "evidence_status": "current-comparable-candidate-rejected",
+        "note": "Exact first-party `claude-fable-5-1` qualified for strict text, generated synthetic vision, and one-case PromptFoo parity. The frozen detector completed 12 scorer passes and one locally quarantined out-of-range bbox contract error. Aggregate including the error was `0.870015`; even the 12 schema-valid rows averaged only `0.942517`, below the `0.95` target. Average latency was `6661 ms`, detector spend was `$0.731890` total, and total qualification-plus-detector spend was `$0.799160`. The progressive 22-case page-context gate did not run. Portable proof: `docs/evals/attempts/031-claude-fable51-evaluate-model.md`.\n"
       },
       "attempts": [
         {
