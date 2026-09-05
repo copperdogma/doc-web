@@ -36,3 +36,5 @@ elements_core.jsonl
 **/.claude/settings.local.json
 
 .gemini/commands/
+benchmarks/results/gpt6-astra-20260904/
+benchmarks/results/gpt6-astra-20260905/

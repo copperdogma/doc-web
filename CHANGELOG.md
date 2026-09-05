@@ -1,3 +1,31 @@
+## [2026-09-05-02] - Reject GPT-6 Astra page-context promotion
+
+### Added
+- Added a frozen one-case page-context task for the authoritative
+  `page-122-001` neighboring-portrait differentiator.
+
+### Changed
+- Stopped Astra medium after it falsely passed the neighboring-portrait crop;
+  kept GPT-5.5 Responses as the recorded `22/22` page-context provider and left
+  all crop runtime defaults unchanged.
+
+## [2026-09-05-01] - Measure GPT-6 Astra crop reasoning frontier
+
+### Changed
+- Qualified exact first-party GPT-6 Astra strict image transport and recorded
+  fresh low-through-max reasoning calibration. Low and medium both passed the
+  complete `13/13` maintained detector, with medium setting a new bounded
+  quality high of `0.980392`; production adoption remains deferred because the
+  conditional page-context safety gate could not fit within the approved cap.
+
+## [2026-09-04-01] - Defer GPT-6 Astra crop challenger until account access
+
+### Changed
+- Recorded an owner-wrapped authenticated `gpt-6-astra` access stop before
+  inference: exact model retrieval returned `404 model_not_found`, so crop
+  capability remains unmeasured, spend stayed at `$0.00`, and all maintained
+  prompts, goldens, providers, and runtime defaults remain unchanged.
+
 ## [2026-09-01-01] - Reject Claude Fable 5.1 crop challenger
 
 ### Changed

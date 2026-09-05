@@ -1,0 +1,22 @@
+description: "GPT-6 Astra page-context differentiator — frozen page-122-001 case"
+
+prompts:
+  - id: "file://../prompts/validate-page-level-crop.js"
+    label: "page-context"
+
+providers:
+  - id: openai:responses:gpt-5.5
+    label: "GPT-5.5 Responses"
+    config:
+      reasoning_effort: none
+      max_output_tokens: 2048
+
+tests:
+  - vars:
+      page_image: file://../input/source-pages-b64/Image121.b64.txt
+      crop_image: file://../input/crop-validation-b64/page-122-001.b64.txt
+      crop_key: "page-122-001"
+      golden_relpath: "golden/crop-page-level-deletion-gate.json"
+    assert:
+      - type: python
+        value: file://../scorers/crop_validation_scorer.py

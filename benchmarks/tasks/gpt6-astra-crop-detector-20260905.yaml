@@ -1,0 +1,157 @@
+description: "GPT-6 Astra reasoning-effort calibration and maintained crop detector — 2026-09-05"
+
+prompts:
+  - id: "file://../prompts/crop-conservative-count.js"
+    label: "conservative-count"
+
+providers:
+  - id: python:../providers/openai_responses_model.py
+    label: "GPT-6 Astra low"
+    config:
+      model: gpt-6-astra
+      expected_served_model: gpt-6-astra
+      reasoning_effort: low
+      max_output_tokens: 4096
+      image_detail: high
+      output_contract: crop_regions
+  - id: python:../providers/openai_responses_model.py
+    label: "GPT-6 Astra medium"
+    config:
+      model: gpt-6-astra
+      expected_served_model: gpt-6-astra
+      reasoning_effort: medium
+      max_output_tokens: 4096
+      image_detail: high
+      output_contract: crop_regions
+  - id: python:../providers/openai_responses_model.py
+    label: "GPT-6 Astra high"
+    config:
+      model: gpt-6-astra
+      expected_served_model: gpt-6-astra
+      reasoning_effort: high
+      max_output_tokens: 4096
+      image_detail: high
+      output_contract: crop_regions
+  - id: python:../providers/openai_responses_model.py
+    label: "GPT-6 Astra xhigh"
+    config:
+      model: gpt-6-astra
+      expected_served_model: gpt-6-astra
+      reasoning_effort: xhigh
+      max_output_tokens: 4096
+      image_detail: high
+      output_contract: crop_regions
+  - id: python:../providers/openai_responses_model.py
+    label: "GPT-6 Astra max"
+    config:
+      model: gpt-6-astra
+      expected_served_model: gpt-6-astra
+      reasoning_effort: max
+      max_output_tokens: 4096
+      image_detail: high
+      output_contract: crop_regions
+
+tests:
+  - description: "Image001 stylized-title differentiator"
+    vars:
+      image: file://../input/source-pages-b64/Image001.b64.txt
+      golden_key: "Image001"
+    assert:
+      - type: python
+        value: file://../scorers/image_crop_scorer.py
+
+  - description: "Image000 cover"
+    vars:
+      image: file://../input/source-pages-b64/Image000.b64.txt
+      golden_key: "Image000"
+    assert:
+      - type: python
+        value: file://../scorers/image_crop_scorer.py
+
+  - description: "Image003 single portrait"
+    vars:
+      image: file://../input/source-pages-b64/Image003.b64.txt
+      golden_key: "Image003"
+    assert:
+      - type: python
+        value: file://../scorers/image_crop_scorer.py
+
+  - description: "Image008 single portrait"
+    vars:
+      image: file://../input/source-pages-b64/Image008.b64.txt
+      golden_key: "Image008"
+    assert:
+      - type: python
+        value: file://../scorers/image_crop_scorer.py
+
+  - description: "Image011 seal and signatures"
+    vars:
+      image: file://../input/source-pages-b64/Image011.b64.txt
+      golden_key: "Image011"
+    assert:
+      - type: python
+        value: file://../scorers/image_crop_scorer.py
+
+  - description: "Image013 portrait"
+    vars:
+      image: file://../input/source-pages-b64/Image013.b64.txt
+      golden_key: "Image013"
+    assert:
+      - type: python
+        value: file://../scorers/image_crop_scorer.py
+
+  - description: "Image020 two stacked photos"
+    vars:
+      image: file://../input/source-pages-b64/Image020.b64.txt
+      golden_key: "Image020"
+    assert:
+      - type: python
+        value: file://../scorers/image_crop_scorer.py
+
+  - description: "Image021 portrait"
+    vars:
+      image: file://../input/source-pages-b64/Image021.b64.txt
+      golden_key: "Image021"
+    assert:
+      - type: python
+        value: file://../scorers/image_crop_scorer.py
+
+  - description: "Image037 two photos"
+    vars:
+      image: file://../input/source-pages-b64/Image037.b64.txt
+      golden_key: "Image037"
+    assert:
+      - type: python
+        value: file://../scorers/image_crop_scorer.py
+
+  - description: "Image059 two photos"
+    vars:
+      image: file://../input/source-pages-b64/Image059.b64.txt
+      golden_key: "Image059"
+    assert:
+      - type: python
+        value: file://../scorers/image_crop_scorer.py
+
+  - description: "Image121 three photos"
+    vars:
+      image: file://../input/source-pages-b64/Image121.b64.txt
+      golden_key: "Image121"
+    assert:
+      - type: python
+        value: file://../scorers/image_crop_scorer.py
+
+  - description: "Image124 single illustration"
+    vars:
+      image: file://../input/source-pages-b64/Image124.b64.txt
+      golden_key: "Image124"
+    assert:
+      - type: python
+        value: file://../scorers/image_crop_scorer.py
+
+  - description: "Image126 two photos"
+    vars:
+      image: file://../input/source-pages-b64/Image126.b64.txt
+      golden_key: "Image126"
+    assert:
+      - type: python
+        value: file://../scorers/image_crop_scorer.py

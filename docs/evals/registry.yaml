@@ -60,6 +60,47 @@ evals:
       pass_rate: 0.90
 
     scores:
+      - model: "GPT-6 Astra Responses (medium reasoning, strict crop schema)"
+        metrics: {overall: 0.980392, pass_rate: 1.0, cases_total: 13, latency_ms: 4134}
+        latency_ms: 4134
+        cost_usd: 0.434804
+        cost_estimated: true
+        measured: 2026-09-05
+        git_sha: 18c8c15+attempt033-uncommitted
+        result_file: benchmarks/results/gpt6-astra-20260905/detector-full-medium.json
+        evidence_status: current-bounded-quality-leader-production-unqualified
+        note: >
+          Exact first-party `gpt-6-astra` with medium reasoning, strict
+          Responses JSON Schema, image detail high, no cache, and concurrency
+          one passed all `13/13` authoritative detector cases with zero
+          provider/schema errors. Mean quality was `0.980392`, average latency
+          `4134 ms`, and usage-priced cost `$0.434804` total. This is the
+          highest current bounded detector score. The original US$1.50
+          campaign cap could not conservatively fund the conditional 22-case
+          page-context safety gate after the approved five-effort calibration
+          and two full detector runs; a separately approved follow-on then
+          failed the targeted `page-122-001` safety differentiator. It is
+          therefore not production-qualified and does not change the Gemini
+          runtime default. See Attempts 033 and 034.
+      - model: "GPT-6 Astra Responses (low reasoning, strict crop schema)"
+        metrics: {overall: 0.979562, pass_rate: 1.0, cases_total: 13, latency_ms: 3556}
+        latency_ms: 3556
+        cost_usd: 0.431904
+        cost_estimated: true
+        measured: 2026-09-05
+        git_sha: 18c8c15+attempt033-uncommitted
+        result_file: benchmarks/results/gpt6-astra-20260905/detector-full-low.json
+        evidence_status: current-bounded-quality-challenger-production-unqualified
+        note: >
+          Exact first-party `gpt-6-astra` with low reasoning and the same
+          frozen strict detector contract passed `13/13` with zero errors,
+          `0.979562` mean quality, `3556 ms` average latency, and `$0.431904`
+          usage-priced total cost. Low remains Pareto-efficient beside medium:
+          it gives up `0.000830` mean quality but is faster and slightly
+          cheaper. It did not qualify the conditional page-context safety gate,
+          and the separately tested medium arm failed the targeted
+          `page-122-001` differentiator, so this is not production adoption
+          evidence. See Attempts 033 and 034.
       - model: "GPT-5.6 Terra (none reasoning, fresh repaired-contract parity)"
         metrics: {overall: 0.9689, pass_rate: 1.0, cases_total: 13, latency_ms: 2915}
         latency_ms: 2915
@@ -1188,6 +1229,50 @@ evals:
           made seven excluded default-provider smoke calls costing `$0.0073287`;
           total known repo spend remained below the `$0.75` cap. Portable proof:
           `docs/evals/attempts/030-ox-alpha-force-fresh-drift-rerun.md`.
+      - id: "032"
+        date: 2026-09-04
+        status: inconclusive
+        approach: "Qualify exact first-party GPT-6 Astra access before the bounded maintained crop ladder"
+        score_before: 0.9703
+        score_after: null
+        note: >
+          Current OpenAI documentation resolved exact model `gpt-6-astra`,
+          Responses transport, image input, strict structured output, low
+          reasoning, and current `$10/M` input plus `$50/M` output pricing,
+          while warning that API availability was still rolling out. The
+          owner-wrapped authenticated `GET /v1/models/gpt-6-astra` returned
+          HTTP 404 `model_not_found` for this account. The progressive ladder
+          therefore stopped before any inference, checked-in fixture,
+          PromptFoo parity, detector, or page-context call. Spend was exactly
+          `$0.00`; access is blocked, capability is not measured, and adoption
+          is deferred. No maintained task provider, prompt, scorer, golden,
+          runtime default, or credential changed. Retry only after exact-model
+          authenticated retrieval succeeds. Portable proof:
+          `docs/evals/attempts/032-gpt6-astra-evaluate-model.md`.
+      - id: "033"
+        date: 2026-09-05
+        status: succeeded
+        approach: "Qualify GPT-6 Astra and measure the low-through-max reasoning frontier before bounded detector promotion"
+        score_before: 0.9703
+        score_after: 0.980392
+        note: >
+          Exact retrieval, native text/image strict schema, and PromptFoo
+          parity all qualified for `gpt-6-astra`. On predeclared `Image001`,
+          low/medium/high/xhigh/max scored
+          `0.9939/0.9946/0.9930/0.9939/0.9940`; high through max were dominated
+          by medium, while low and medium remained Pareto-efficient. Fresh
+          13-case runs passed `13/13` with zero errors: low scored `0.979562`
+          at `3556 ms` mean latency and `$0.431904`, while medium scored
+          `0.980392` at `4134 ms` and `$0.434804`. Manual source inspection
+          classified the shared weakest `Image000` inset-cover box as
+          model-wrong undercoverage, not a golden or transport defect. Total
+          campaign spend was `$0.960878` of `$1.50`. The remaining `$0.539122`
+          could not conservatively fund the 22-case page-context gate because
+          the observed full-page input floor alone projected to `$0.696740`
+          before second images or output. Astra becomes the bounded detector
+          quality leader but remains production-unqualified; keep the Gemini
+          runtime default. Portable proof:
+          `docs/evals/attempts/033-gpt6-astra-reasoning-frontier.md`.
 
     retry_when:
       - condition: new-subject-model
@@ -2120,6 +2205,33 @@ evals:
           over-rejections of golden pass crops plus empty/parse-fail outputs on
           `page-021-000`, `page-125-000`, and `page-126-000`. Portable tracked
           proof: `docs/evals/attempts/006-gpt55-responses-eval-refresh.md`.
+      - model: "GPT-6 Astra Responses (page-context prompt, medium, targeted differentiator)"
+        metrics:
+          overall: 0.0
+          pass_rate: 0.0
+          cases_total: 1
+          pass_labeled: 0
+          fail_labeled: 1
+          latency_ms: 8068
+          prompt_tokens: 6353
+          completion_tokens: 58
+        latency_ms: 8068
+        cost_usd: 0.06643
+        cost_estimated: false
+        measured: 2026-09-05
+        note: >
+          Progressive Astra follow-on ran the authoritative `page-122-001`
+          neighboring-portrait differentiator before the full 22-case gate.
+          Exact `gpt-6-astra` medium completed the strict two-image response
+          contract but returned `pass`, explicitly calling the crop “the two
+          oval portraits.” Manual source/crop inspection confirmed the golden
+          `fail`: the intended Moise/Edward crop includes the entire adjacent
+          Sophie L'Heureux portrait. This model-wrong false negative failed the
+          hard `1.0` safety prerequisite, so the remaining 21 cases, retries,
+          and fresh incumbent were not purchased. This targeted score is a
+          stop-gate result, not a full-run rate. Spend was `$0.066430/$1.50`.
+          GPT-5.5 Responses remains the recorded `22/22` provider. Portable
+          proof: `docs/evals/attempts/034-gpt6-astra-page-context-gate.md`.
 
     attempts:
       - id: "001"
@@ -2463,6 +2575,24 @@ evals:
           control were not run. Grok 4.6 page-context capability is not measured;
           the maintained GPT-5.5 Responses `22/22` validator remains unchanged.
           Portable proof: `docs/evals/attempts/025-grok46-evaluate-model.md`.
+      - id: "022"
+        date: 2026-09-05
+        status: failed
+        approach: "Screen detector-leading GPT-6 Astra medium on the authoritative page-122-001 page-context differentiator"
+        score_before: 1.0
+        score_after: 0.0
+        note: >
+          Exact first-party `gpt-6-astra` medium qualified the strict two-image
+          transport but falsely passed `page-122-001`, the predeclared
+          neighboring-portrait differentiator. The candidate described two
+          oval portraits while overlooking that the intended Moise/Edward crop
+          contains the entire adjacent Sophie L'Heureux portrait. Manual
+          inspection confirmed the maintained golden and a model-wrong false
+          negative. The hard quality gate stopped the campaign after one call
+          at `$0.066430`; 21 remaining cases, retries, and a fresh GPT-5.5
+          comparator were not run. No provider, prompt, scorer, golden, or
+          runtime default changed. Portable proof:
+          `docs/evals/attempts/034-gpt6-astra-page-context-gate.md`.
 
     retry_when:
       - condition: new-subject-model
