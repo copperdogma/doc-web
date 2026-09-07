@@ -1,3 +1,10 @@
+## [2026-09-06-01] - Screen exact Qwen3.8 Max 0902 crop detector
+
+### Changed
+- Qualified exact Alibaba/OpenRouter strict vision access, then stopped on the
+  unchanged seal/signatures grouping failure. Recorded $0.013964 total spend
+  and explicit unmeasured full-suite/safety limits; retained all model defaults.
+
 ## [2026-09-05-02] - Reject GPT-6 Astra page-context promotion
 
 ### Added

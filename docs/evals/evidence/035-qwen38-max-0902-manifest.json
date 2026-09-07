@@ -1,0 +1,166 @@
+{
+  "base_sha": "b67f001481307ed1d4f2a4194436620dda16528b",
+  "branch": "codex/qwen38-max-0902-eval-20260906",
+  "date": "2026-09-06",
+  "worker": "Codex owner agent",
+  "data_class": "owner-identified public fixtures and synthetic image; retention uncertainty approved",
+  "code": [
+    {
+      "path": "benchmarks/providers/openrouter_vision_chat.py",
+      "sha256": "f93c72b566e4bdced8b7eef59cf4d6228dfd07d3771753f1d0308d63964bc2ab",
+      "bytes": 19600
+    },
+    {
+      "path": "benchmarks/providers/qwen0902_budgeted.py",
+      "sha256": "28e1d5386d1064eda5c751be71d6b3339da0d787a67f8ea7a66e9cb478d41a78",
+      "bytes": 2815
+    },
+    {
+      "path": "benchmarks/scripts/qwen0902_probe.py",
+      "sha256": "324866ed74f2440dcc623fc307202860f8577bda2b429a7ad201cd36759082a2",
+      "bytes": 2518
+    },
+    {
+      "path": "benchmarks/tasks/image-crop-qwen0902.yaml",
+      "sha256": "8c4594293faa1fa388bf94526bb9ce92af7c86c7d1ad5106ce1614eeee60097e",
+      "bytes": 3729
+    },
+    {
+      "path": "benchmarks/tasks/image-crop-extraction.yaml",
+      "sha256": "0dbac27f12ed7ab56f840676eb72cb8d79798d8e4e3a6a142da19b26bd8a0531",
+      "bytes": 7959
+    },
+    {
+      "path": "benchmarks/prompts/crop-conservative-count.js",
+      "sha256": "bca281e0fbe547e3f3ef049b436d87c73ed7bb066e86f51145fb444b48211b64",
+      "bytes": 1733
+    },
+    {
+      "path": "benchmarks/prompts/_image-helpers.js",
+      "sha256": "ad723df59a55896922752bd963f50ca7e36e7c77717d568deb5f9fdd1d3e11c0",
+      "bytes": 2312
+    },
+    {
+      "path": "benchmarks/scorers/image_crop_scorer.py",
+      "sha256": "7fcf07e05726bf3ebbc2488a503a9d7f165dde79649890cbd65f12a6ce4c19e7",
+      "bytes": 10333
+    },
+    {
+      "path": "benchmarks/golden/image-crops.json",
+      "sha256": "2ac0a8f01e00a252439da1f4827a85bc5118bf96460a3ff1780e642eafc60f90",
+      "bytes": 7783
+    }
+  ],
+  "raw": [
+    {
+      "path": "benchmarks/results/qwen0902-20260906/Image011.jpg",
+      "sha256": "ae3524cb58ac940c912c7885d65ec9d21221415d97d1ea21d97be9615161a860",
+      "bytes": 232594
+    },
+    {
+      "path": "benchmarks/results/qwen0902-20260906/call-001.json",
+      "sha256": "f8e3d09123c1a299e7745de69df050424271ab8aae3f4edbc0bb81c495098080",
+      "bytes": 1462
+    },
+    {
+      "path": "benchmarks/results/qwen0902-20260906/call-002.json",
+      "sha256": "9eb50e381f0d8a35eb1d95028ba06b705f37e8b520e736281477c173b519ee80",
+      "bytes": 1485
+    },
+    {
+      "path": "benchmarks/results/qwen0902-20260906/call-003.json",
+      "sha256": "c4ffabedb15500a3e96a6cf1051088a6eb27b15d6d682d2348c6214bbf209207",
+      "bytes": 1821
+    },
+    {
+      "path": "benchmarks/results/qwen0902-20260906/endpoint-catalog.json",
+      "sha256": "f54f415d62c1de55892d35b50995b74f5448ddecffd1d8bfbd3f429fd0a256d8",
+      "bytes": 2398
+    },
+    {
+      "path": "benchmarks/results/qwen0902-20260906/image011.json",
+      "sha256": "7e98ab68f9d94bf7974fc2d97ca5c22988e0157798f25aeb550f9daef61ded91",
+      "bytes": 326956
+    },
+    {
+      "path": "benchmarks/results/qwen0902-20260906/ledger.json",
+      "sha256": "bb2b9ed1f2076da20ad604ecb93cef87ffb977e7df5f22aa50c8f4c47c011282",
+      "bytes": 635
+    },
+    {
+      "path": "benchmarks/results/qwen0902-20260906/native-probe.json",
+      "sha256": "f985228f67216a954cd0eaa638a9228e2bb8922efd9fe31282f30e3d384ba7e7",
+      "bytes": 228
+    },
+    {
+      "path": "benchmarks/results/qwen0902-20260906/parity-probe.json",
+      "sha256": "24d72b420adbba6ffe811d610cc0928b35dc3cb8c6d6006878a39fa26042e10f",
+      "bytes": 1445
+    },
+    {
+      "path": "benchmarks/results/qwen0902-20260906/preflight.json",
+      "sha256": "029d962b287b4d5c568e878fd89d0cb5afe149d6ddc100ccdb08dc22bf8b1ae4",
+      "bytes": 5687
+    },
+    {
+      "path": "benchmarks/results/qwen0902-20260906/qwen0902_budgeted-executed.py",
+      "sha256": "0bce249623c57a0dedff96f7be3d6ad9fa10466037ba5a0d21ab2ea00bc8f0cf",
+      "bytes": 2510
+    },
+    {
+      "path": "benchmarks/results/qwen0902-20260906/qwen0902_probe-executed.py",
+      "sha256": "1cdafc0273632e890b72029a0588aac32feb2579f9e61c4903d61c6009e553cd",
+      "bytes": 2016
+    },
+    {
+      "path": "benchmarks/results/qwen0902-20260906/request-001.json",
+      "sha256": "38acf395327a9e2e94256d2033f9efd1475eae2f313d38d52fe83c777ba724cf",
+      "bytes": 2255
+    },
+    {
+      "path": "benchmarks/results/qwen0902-20260906/request-002.json",
+      "sha256": "38acf395327a9e2e94256d2033f9efd1475eae2f313d38d52fe83c777ba724cf",
+      "bytes": 2255
+    },
+    {
+      "path": "benchmarks/results/qwen0902-20260906/request-003.json",
+      "sha256": "da8043a411a03144f79d35836fcc25ac7d04afdb69e9c3d662ef5a0c70a5e7e9",
+      "bytes": 312792
+    }
+  ],
+  "ledger": {
+    "cap_usd": 0.75,
+    "spent_usd": 0.013964,
+    "calls": [
+      {
+        "sequence": 1,
+        "path": "benchmarks/results/qwen0902-20260906/call-001.json",
+        "cost_usd": 0.001732,
+        "status_code": 200,
+        "latency_ms": 6229
+      },
+      {
+        "sequence": 2,
+        "path": "benchmarks/results/qwen0902-20260906/call-002.json",
+        "cost_usd": 0.00172,
+        "status_code": 200,
+        "latency_ms": 6163
+      },
+      {
+        "sequence": 3,
+        "path": "benchmarks/results/qwen0902-20260906/call-003.json",
+        "cost_usd": 0.010512,
+        "status_code": 200,
+        "latency_ms": 19958
+      }
+    ],
+    "unresolved_cost": false
+  },
+  "command_cwd": "/Users/cam/.codex/worktrees/qwen38-max-0902-20260906/doc-web",
+  "commands": [
+    "/Users/cam/Documents/Projects/doc-web/.venv/bin/python scripts/run_with_doc_web_env.py /Users/cam/Documents/Projects/doc-web/.venv/bin/python benchmarks/scripts/qwen0902_probe.py native",
+    "/Users/cam/Documents/Projects/doc-web/.venv/bin/python scripts/run_with_doc_web_env.py /Users/cam/Documents/Projects/doc-web/.venv/bin/python benchmarks/scripts/qwen0902_probe.py parity",
+    "cd benchmarks && PROMPTFOO_PYTHON=/Users/cam/Documents/Projects/doc-web/.venv/bin/python /Users/cam/Documents/Projects/doc-web/.venv/bin/python ../scripts/run_with_doc_web_env.py promptfoo eval -c tasks/image-crop-qwen0902.yaml --filter-pattern '^Image011$' --no-cache -j 1 --no-share --output results/qwen0902-20260906/image011.json"
+  ],
+  "provenance_note": "Only finite-cost validation hardened after three completed calls. Exact executed wrapper source retained separately; semantic prompt, production owner adapter, task, schema and scorer unchanged. Request bodies reconstructed offline and verified byte-canonical SHA256 against the pre-send hashes in all3 raw calls. Rerunning is a new spend authorization and must use a new output/ledger identity. After calls, Ruff formatting/import cleanup was applied to the campaign guard, probe helper and tests. Both exact executed campaign Python sources are retained in ignored storage; hashes distinguish those from the final reviewed files."
+}

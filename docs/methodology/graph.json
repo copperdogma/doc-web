@@ -1126,16 +1126,15 @@
           "posture": "wait-for-trigger",
           "retry_trigger_status": "waiting",
           "retry_when": [
-            "golden-fix",
             "new-subject-model"
           ],
           "why_now": "Gemini 4 or equivalent may push past 0.95 target Golden references cover limited page types; add table-heavy pages",
           "last_relevant_action": {
-            "date": "2026-09-05",
+            "date": "2026-09-06",
             "source_type": "eval-attempt",
             "source": "docs/evals/registry.yaml",
-            "source_id": "033",
-            "summary": "Exact retrieval, native text/image strict schema, and PromptFoo parity all qualified for `gpt-6-astra`. On predeclared `Image001`, low/medium/high/xhigh/max scored `0.9939/0.9946/0.9930/0.9939/0.9940`; high through ma..."
+            "source_id": "035",
+            "summary": "Native and owner-adapter strict vision qualified. Image011 screen failed 0/1, 0.6001 with three regions instead of two; manually inspected source confirms the explicit combined seal/signatures rule was missed. Full-su..."
           },
           "story_ids": [
             "135",
@@ -1193,11 +1192,11 @@
           ],
           "why_now": "Rerun when a materially stronger validator or detector may reduce the current fail-labeled page-context cases. Rerun after any maintained crop/runtime simplification before claiming `trim_layout_text` or bounded capti...",
           "last_relevant_action": {
-            "date": "2026-09-05",
+            "date": "2026-09-06",
             "source_type": "eval-attempt",
             "source": "docs/evals/registry.yaml",
-            "source_id": "022",
-            "summary": "Exact first-party `gpt-6-astra` medium qualified the strict two-image transport but falsely passed `page-122-001`, the predeclared neighboring-portrait differentiator. The candidate described two oval portraits while..."
+            "source_id": "023",
+            "summary": "Image011 detector screen failed its grouping requirement after strict vision qualification. Page-context schema, page-122-001 and full22 were not run; capability not measured, adoption not advanced. No page-context sp..."
           },
           "story_ids": [
             "135",
@@ -13804,6 +13803,16 @@
           "retry_when": []
         },
         {
+          "id": "035",
+          "date": "2026-09-06",
+          "status": "failed",
+          "approach": "Re-evaluate exact Qwen3.8 Max 0902 on the predeclared Image011 grouping screen",
+          "note": "Native and owner-adapter strict vision qualified. Image011 screen failed 0/1, 0.6001 with three regions instead of two; manually inspected source confirms the explicit combined seal/signatures rule was missed. Full-suite score remains unmeasured, not 0.6001. No retries; all-call cost $0.013964/$0.75; injected key removed after the last call. See docs/evals/attempts/035-qwen38-max-0902-evaluate-model.md.\n",
+          "retry_when": [
+            "new-subject-model"
+          ]
+        },
+        {
           "id": "033",
           "date": "2026-09-05",
           "status": "succeeded",
@@ -13829,16 +13838,15 @@
         "posture": "wait-for-trigger",
         "retry_trigger_status": "waiting",
         "retry_when": [
-          "golden-fix",
           "new-subject-model"
         ],
         "why_now": "Gemini 4 or equivalent may push past 0.95 target Golden references cover limited page types; add table-heavy pages",
         "last_relevant_action": {
-          "date": "2026-09-05",
+          "date": "2026-09-06",
           "source_type": "eval-attempt",
           "source": "docs/evals/registry.yaml",
-          "source_id": "033",
-          "summary": "Exact retrieval, native text/image strict schema, and PromptFoo parity all qualified for `gpt-6-astra`. On predeclared `Image001`, low/medium/high/xhigh/max scored `0.9939/0.9946/0.9930/0.9939/0.9940`; high through ma..."
+          "source_id": "035",
+          "summary": "Native and owner-adapter strict vision qualified. Image011 screen failed 0/1, 0.6001 with three regions instead of two; manually inspected source confirms the explicit combined seal/signatures rule was missed. Full-su..."
         }
       }
     },
@@ -14655,6 +14663,14 @@
           "approach": "Screen detector-leading GPT-6 Astra medium on the authoritative page-122-001 page-context differentiator",
           "note": "Exact first-party `gpt-6-astra` medium qualified the strict two-image transport but falsely passed `page-122-001`, the predeclared neighboring-portrait differentiator. The candidate described two oval portraits while overlooking that the intended Moise/Edward crop contains the entire adjacent Sophie L'Heureux portrait. Manual inspection confirmed the maintained golden and a model-wrong false negative. The hard quality gate stopped the campaign after one call at `$0.066430`; 21 remaining cases, retries, and a fresh GPT-5.5 comparator were not run. No provider, prompt, scorer, golden, or runtime default changed. Portable proof: `docs/evals/attempts/034-gpt6-astra-page-context-gate.md`.\n",
           "retry_when": []
+        },
+        {
+          "id": "023",
+          "date": "2026-09-06",
+          "status": "inconclusive",
+          "approach": "Gate exact Qwen3.8 Max 0902 page-context work behind its detector screen",
+          "note": "Image011 detector screen failed its grouping requirement after strict vision qualification. Page-context schema, page-122-001 and full22 were not run; capability not measured, adoption not advanced. No page-context spend or semantic failure claimed. See Attempt035.\n",
+          "retry_when": []
         }
       ],
       "retry_when": [
@@ -14682,11 +14698,11 @@
         ],
         "why_now": "Rerun when a materially stronger validator or detector may reduce the current fail-labeled page-context cases. Rerun after any maintained crop/runtime simplification before claiming `trim_layout_text` or bounded capti...",
         "last_relevant_action": {
-          "date": "2026-09-05",
+          "date": "2026-09-06",
           "source_type": "eval-attempt",
           "source": "docs/evals/registry.yaml",
-          "source_id": "022",
-          "summary": "Exact first-party `gpt-6-astra` medium qualified the strict two-image transport but falsely passed `page-122-001`, the predeclared neighboring-portrait differentiator. The candidate described two oval portraits while..."
+          "source_id": "023",
+          "summary": "Image011 detector screen failed its grouping requirement after strict vision qualification. Page-context schema, page-122-001 and full22 were not run; capability not measured, adoption not advanced. No page-context sp..."
         }
       }
     },

@@ -1,0 +1,138 @@
+description: "Image crop extraction from scanned book pages \u2014 Onward to the Unknown"
+prompts:
+- id: file://../prompts/crop-conservative-count.js
+  label: conservative-count
+providers:
+- id: python:../providers/qwen0902_budgeted.py
+  label: Qwen3.8 Max 0902 Alibaba low
+  config:
+    model: qwen/qwen3.8-max-0902
+    expected_served_model: qwen/qwen3.8-max-0902
+    expected_served_provider: Alibaba
+    pin_provider: true
+    require_parameters: true
+    data_collection: null
+    zdr: null
+    reasoning_effort: low
+    max_tokens: 16384
+    output_contract: crop_regions
+tests:
+- vars:
+    image: file://../input/source-pages-b64/Image000.b64.txt
+    golden_key: Image000
+  assert:
+  - type: python
+    value: file://../scorers/image_crop_scorer.py
+  description: Image000
+  options:
+    disableConversationVar: true
+- vars:
+    image: file://../input/source-pages-b64/Image001.b64.txt
+    golden_key: Image001
+  assert:
+  - type: python
+    value: file://../scorers/image_crop_scorer.py
+  description: Image001
+  options:
+    disableConversationVar: true
+- vars:
+    image: file://../input/source-pages-b64/Image003.b64.txt
+    golden_key: Image003
+  assert:
+  - type: python
+    value: file://../scorers/image_crop_scorer.py
+  description: Image003
+  options:
+    disableConversationVar: true
+- vars:
+    image: file://../input/source-pages-b64/Image008.b64.txt
+    golden_key: Image008
+  assert:
+  - type: python
+    value: file://../scorers/image_crop_scorer.py
+  description: Image008
+  options:
+    disableConversationVar: true
+- vars:
+    image: file://../input/source-pages-b64/Image011.b64.txt
+    golden_key: Image011
+  assert:
+  - type: python
+    value: file://../scorers/image_crop_scorer.py
+  description: Image011
+  options:
+    disableConversationVar: true
+- vars:
+    image: file://../input/source-pages-b64/Image013.b64.txt
+    golden_key: Image013
+  assert:
+  - type: python
+    value: file://../scorers/image_crop_scorer.py
+  description: Image013
+  options:
+    disableConversationVar: true
+- vars:
+    image: file://../input/source-pages-b64/Image020.b64.txt
+    golden_key: Image020
+  assert:
+  - type: python
+    value: file://../scorers/image_crop_scorer.py
+  description: Image020
+  options:
+    disableConversationVar: true
+- vars:
+    image: file://../input/source-pages-b64/Image021.b64.txt
+    golden_key: Image021
+  assert:
+  - type: python
+    value: file://../scorers/image_crop_scorer.py
+  description: Image021
+  options:
+    disableConversationVar: true
+- vars:
+    image: file://../input/source-pages-b64/Image037.b64.txt
+    golden_key: Image037
+  assert:
+  - type: python
+    value: file://../scorers/image_crop_scorer.py
+  description: Image037
+  options:
+    disableConversationVar: true
+- vars:
+    image: file://../input/source-pages-b64/Image059.b64.txt
+    golden_key: Image059
+  assert:
+  - type: python
+    value: file://../scorers/image_crop_scorer.py
+  description: Image059
+  options:
+    disableConversationVar: true
+- vars:
+    image: file://../input/source-pages-b64/Image121.b64.txt
+    golden_key: Image121
+  assert:
+  - type: python
+    value: file://../scorers/image_crop_scorer.py
+  description: Image121
+  options:
+    disableConversationVar: true
+- vars:
+    image: file://../input/source-pages-b64/Image124.b64.txt
+    golden_key: Image124
+  assert:
+  - type: python
+    value: file://../scorers/image_crop_scorer.py
+  description: Image124
+  options:
+    disableConversationVar: true
+- vars:
+    image: file://../input/source-pages-b64/Image126.b64.txt
+    golden_key: Image126
+  assert:
+  - type: python
+    value: file://../scorers/image_crop_scorer.py
+  description: Image126
+  options:
+    disableConversationVar: true
+evaluateOptions:
+  maxConcurrency: 1

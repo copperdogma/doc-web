@@ -38,3 +38,6 @@ elements_core.jsonl
 .gemini/commands/
 benchmarks/results/gpt6-astra-20260904/
 benchmarks/results/gpt6-astra-20260905/
+
+# Attempt 035 complete public-fixture provider envelopes and raw results
+/benchmarks/results/qwen0902-20260906/

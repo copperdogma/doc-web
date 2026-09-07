@@ -1249,6 +1249,22 @@ evals:
           runtime default, or credential changed. Retry only after exact-model
           authenticated retrieval succeeds. Portable proof:
           `docs/evals/attempts/032-gpt6-astra-evaluate-model.md`.
+      - id: "035"
+        date: 2026-09-06
+        status: failed
+        approach: "Re-evaluate exact Qwen3.8 Max 0902 on the predeclared Image011 grouping screen"
+        score_before: null
+        score_after: null
+        note: >
+          Native and owner-adapter strict vision qualified. Image011 screen
+          failed 0/1, 0.6001 with three regions instead of two; manually inspected
+          source confirms the explicit combined seal/signatures rule was missed.
+          Full-suite score remains unmeasured, not 0.6001. No retries; all-call
+          cost $0.013964/$0.75; injected key removed after the last call.
+          See docs/evals/attempts/035-qwen38-max-0902-evaluate-model.md.
+        retry_when:
+          - condition: new-subject-model
+            note: "Revised checkpoint or independently justified grouping contract change; unchanged catalog alone is insufficient."
       - id: "033"
         date: 2026-09-05
         status: succeeded
@@ -2593,6 +2609,18 @@ evals:
           comparator were not run. No provider, prompt, scorer, golden, or
           runtime default changed. Portable proof:
           `docs/evals/attempts/034-gpt6-astra-page-context-gate.md`.
+
+      - id: "023"
+        date: 2026-09-06
+        status: inconclusive
+        approach: "Gate exact Qwen3.8 Max 0902 page-context work behind its detector screen"
+        score_before: 1.0
+        score_after: null
+        note: >
+          Image011 detector screen failed its grouping requirement after strict
+          vision qualification. Page-context schema, page-122-001 and full22
+          were not run; capability not measured, adoption not advanced.
+          No page-context spend or semantic failure claimed. See Attempt035.
 
     retry_when:
       - condition: new-subject-model
