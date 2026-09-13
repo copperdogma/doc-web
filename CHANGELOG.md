@@ -1,3 +1,13 @@
+## [2026-09-13-03] - Unify close-out and landing guidance
+
+### Changed
+- Replaced the repository-specific close-out wrapper with the shared
+  `/finish-and-push` skill and a concise Doc Web validation runbook.
+- Retired `/check-in-diff` and routed active close-out callers through the
+  unified skill while preserving historical story and changelog records.
+- Made proportional validation authoritative for close-out handoffs, including
+  input-based evidence reuse and focused checks for isolated tooling changes.
+
 ## [2026-09-13-02] - Record inconclusive Qwen3.8 Flash crop retry
 
 ### Added

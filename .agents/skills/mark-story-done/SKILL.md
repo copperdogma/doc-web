@@ -28,15 +28,15 @@ Close a completed story after validation.
 
 3. **Validate completeness:**
    - [ ] All task checkboxes checked
-   - [ ] All acceptance criteria met (with fresh current-state evidence)
+   - [ ] All acceptance criteria met with evidence applicable to the current candidate
    - [ ] Work log is current (no dangling "Next Steps" without resolution)
    - [ ] Dependencies addressed (if depends on other stories, are they done?)
    - [ ] If `Decision Refs` cite ADRs or ADR open items: check the parent ADR `Remaining Work` and note whether this story resolves any item enough for that ADR to move toward `ACCEPTED`
    - [ ] Central Tenet verification checkboxes checked
    - [ ] Doc update checkbox checked
-   - [ ] Project checks pass:
-     - `python -m pytest tests/`
-     - `python -m ruff check modules/ tests/`
+   - [ ] The smallest sufficient project checks selected under
+     `/finish-and-push`'s `Validation proportional to the change` policy pass;
+     use `docs/runbooks/close-out.md` for local commands and artifact rules
    - [ ] If pipeline modules changed: tested through `driver.py` with artifacts inspected
    - [ ] If evals were run: mismatches classified, `docs/evals/registry.yaml` updated with verified scores
 
@@ -84,8 +84,9 @@ If complete (or user approves remaining gaps):
    the work log and check `Validation complete or explicitly skipped by user`.
 4. Regenerate generated `docs/stories.md` and compiled
    `docs/methodology/graph.json` so the generated story index and graph reflect `Done`.
-5. Append completion note to story work log with date and evidence. End the
-   note with the recommended next step: `/check-in-diff`.
+5. Append completion note to story work log with date and evidence. If invoked
+   by `/finish-and-push`, return control to that skill after closure. Otherwise,
+   end the note with `/finish-and-push` as the recommended next step.
 6. Update CHANGELOG.md:
    - Search CHANGELOG.md for the story number (e.g., `Story 001`)
    - If an entry already exists, skip — do not duplicate
@@ -116,12 +117,14 @@ If not complete and the user has **not** approved a closure recommendation, stop
 
 - Never hide gaps — always report unmet criteria explicitly
 - Never treat old notes or stale passing logs as proof for the current story
-  state; if something was not re-verified now, say it is not freshly verified
-- Never describe the story as complete, ready, or validated without fresh
-  close-out evidence or an explicitly cited prior validation result
+  state; reuse evidence only when its tested content, environment, and check
+  configuration still apply, and identify it explicitly
+- Never describe the story as complete, ready, or validated without applicable
+  close-out evidence for the current candidate
 - Ask for confirmation when unresolved items remain
 - Do not duplicate CHANGELOG.md entries — always check before writing
-- Never mark Done without running the full check suite
+- Never mark Done without sufficient proportional validation and all explicit
+  acceptance or mandatory CI/release gates
 - Never mark a Draft story as Done — it must be promoted to Pending and built via `/build-story` first
 - Never treat the existence of a follow-up story by itself as a reason to close
   the current one

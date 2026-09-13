@@ -10,6 +10,11 @@ user-invocable: true
 
 Thoroughly analyze what was done and how it compares to the original instructions using git diff and file analysis.
 
+For validation that feeds story closure or `/finish-and-push`, the shared
+skill's `Validation proportional to the change` policy is authoritative. Select
+the smallest sufficient checks and reuse evidence whose tested content,
+environment, and check configuration still apply.
+
 ## Analysis Process
 
 1. **Review Changes**
@@ -28,7 +33,8 @@ Thoroughly analyze what was done and how it compares to the original instruction
    - Compare against original requirements/story/documentation
    - Check for completeness, quality, and adherence to specifications
    - Treat every positive status claim as provisional until it is backed by
-     fresh commands, artifact inspection, or both from this validation pass
+     commands, artifact inspection, or reusable evidence applicable to the
+     current candidate
 
 2.25 **Run a findings-first review pass**
    - Review the current diff for concrete bugs, behavioral regressions, missing
@@ -108,9 +114,9 @@ Thoroughly analyze what was done and how it compares to the original instruction
      review, repo-native check/test execution, artifact/eval review, and
      holistic Ideal/spec/decision fit review.
    - Scope each packet to explicit files, commands, requirements, artifacts, or
-     architecture questions. Require fresh evidence from this validation pass,
-     and preserve doc-web's local story, eval, decision, and close-out
-     bookkeeping gates.
+     architecture questions. Require evidence applicable to the candidate and
+     preserve doc-web's local story, eval, decision, and close-out bookkeeping
+     gates.
    - Subagents may gather evidence or flag findings, but the main thread keeps
      the final score, closure recommendation, story handoff state, and
      yes-ready next step.
@@ -284,11 +290,12 @@ Default behavior:
   prefer **`Mark blocked`**.
 - Never silently weaken requirements. The report must say exactly what would be rescoped and why.
 
-Fresh-verification rule:
+Evidence rule:
 - Do not say something is fixed, passing, or done unless that claim is backed
-  by commands, artifact reads, or both from this validation pass
-- If something was not re-run or re-opened now, label it explicitly as not
-  freshly verified instead of implying current confidence
+  by commands, artifact reads, or prior evidence whose tested content,
+  environment, and check configuration still apply
+- Identify reused evidence and its applicable inputs; rerun only checks affected
+  by subsequent code, configuration, dependency, or integration changes
 
 
 

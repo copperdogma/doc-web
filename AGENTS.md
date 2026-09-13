@@ -67,12 +67,16 @@ state/graph workflow, setup checklist, eval-surface docs, and AGENTS wiring.
 - **Security First**: NEVER stage secrets, API keys, or credentials.
 - **Verify, Don't Assume**: Check files and dependencies exist before using them.
 - **Eval-First Engineering**: Test the simplest AI approach first. If SOTA succeeds in one call, there's nothing to build. Never conclude "AI can't do this" from a cheap model's failure.
-- **Fresh Verification Required**: Never claim something is fixed, passing, or done unless the current state was verified in this pass by commands, artifact inspection, or both. If you did not re-run it, say it is not freshly verified.
-- **The Definition of Done:** A story or task is **NOT complete** until:
+- **Applicable Verification Required**: Never claim something is fixed, passing, or done unless commands, artifact inspection, or reusable evidence cover the candidate's tested content, environment, and check configuration. Rerun checks when those inputs changed; identify reused evidence and its limits.
+- **The Definition of Done for pipeline or artifact behavior:** A story or task that changes pipeline behavior or produced artifacts is **NOT complete** until:
     1. It runs successfully through `driver.py` in a real (or partial resume) pipeline.
     2. Produced artifacts exist in `output/runs/`.
     3. **Manual Data Inspection**: You have opened the artifacts (JSON/JSONL) and manually verified that the specific data being added/fixed is accurate and high-quality.
     4. You have reported the specific artifact paths and sample data verified to the user.
+- **Close-out validation authority:** For `/validate`, `/mark-story-done`, and
+  `/finish-and-push` handoffs, the shared skill's `Validation proportional to
+  the change` section governs check selection. Preserve explicit acceptance,
+  semantic, security, and mandatory CI/release gates.
 - **Default to coherent scope expansion:** If exploration reveals important adjacent work that is necessary to actually satisfy the story's goal, expand the story modestly and update the story file/work log instead of treating it as "out of scope." For larger expansions, present the recommendation to the user for approval before implementing. Only split work into a new story when it is materially distinct, meaningfully larger in blast radius, or would make validation unclear.
 - **Estimate in relative effort, not human time:** Unless the user explicitly asks for calendar estimates, express effort as relative size (`XS`, `S`, `M`, `L`, `XL` or equivalent), not hours/days. Optimize scope decisions for what an AI can implement and validate coherently, not for human sprint capacity.
 - **Inspect outputs, not just logs:** A green or non-crashing run is not evidence of correctness. Always manually open produced artifacts and check for logical errors (e.g., garbled text, broken tables, missing data, incorrect values).
@@ -93,6 +97,9 @@ state/graph workflow, setup checklist, eval-surface docs, and AGENTS wiring.
 
 **Guidelines:** Parallelize independent work. Opus orchestrates, delegates, reviews — never blindly trusts. Use subagents for large-output tasks to protect main context. Fail fast: bad subagent output → adjust approach, don't retry same prompt.
 
+For `/finish-and-push`, its `Coordination` section governs delegation for the
+close-out flow in place of this general strategy.
+
 ## Skills
 
 Canonical location: `.agents/skills/` — works across Claude Code, Cursor, Gemini CLI.
@@ -103,6 +110,7 @@ Canonical location: `.agents/skills/` — works across Claude Code, Cursor, Gemi
 - Use `/triage` for read-only full sweeps or scoped backlog / inbox / eval triage
 - Use `/triage-architecture` when a bounded architecture-audit lane is the right next move
 - Use `/setup-methodology` to install or refresh the methodology package and canonical setup docs
+- Use `/finish-and-push` for close-out readiness review or an explicitly authorized validate/commit/land flow; repo-specific requirements are in `docs/runbooks/close-out.md`
 - To create a new skill: `/create-cross-cli-skill`
 
 ## Story Lifecycle
