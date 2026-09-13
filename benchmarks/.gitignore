@@ -1,5 +1,6 @@
 # Large data files — regenerate by running promptfoo eval
 results/*.json
+results/**/*.json
 results/visual-comparison/
 
 # Maintained crop benchmark fixtures live under input/source-pages-b64/ and

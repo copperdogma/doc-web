@@ -1269,6 +1269,31 @@ evals:
         retry_when:
           - condition: new-subject-model
             note: "After heartbeat1 semantic rejection, revised checkpoint or independently justified localization contract change; no further capacity-only retry."
+      - id: "037"
+        date: 2026-09-13
+        status: inconclusive
+        approach: "Force-fresh exact Qwen3.8 Flash OpenRouter retry with normalized and corrected integer crop contracts"
+        score_before: null
+        score_after: null
+        note: >
+          Exact `qwen/qwen3.8-flash` on Alibaba qualified strict text,
+          generated image, owner-adapter parity, and a representative
+          maintained case. Its normalized full13 attempt returned 13 final
+          rows but only five contract-valid outputs: four passed and Image011
+          failed at 0.6393 after omitting adjacent signatures. Seven rows used
+          0-1000 coordinates despite strict 0-1 bounds and one added a root
+          field, so no full-suite semantic score is valid. The existing
+          integer-coordinate prompt/schema repair then qualified native and
+          parity, but its representative call hit two Alibaba capacity 429s.
+          The predeclared Makora fp4 alternative also returned capacity 429 on
+          its first native probe. Total spend was $0.010852478/$0.75 across 23
+          network calls: 19 HTTP 200 and four zero-cost 429s. Detector
+          capability remains incomplete; the 40/22 safety follow-ons were not
+          measured and adoption is deferred. Portable proof:
+          `docs/evals/attempts/037-qwen38-flash-force-fresh-evaluate-model.md`.
+        retry_when:
+          - condition: dependency-available
+            note: "Retry only after both exact endpoints sustain strict integer-image calls long enough to complete representative and full13 evidence without capacity churn."
       - id: "035"
         date: 2026-09-06
         status: failed

@@ -1,0 +1,78 @@
+description: "Attempt 037 Qwen3.8 Flash force-fresh crop detector"
+prompts:
+  - id: file://../prompts/crop-conservative-count.js
+    label: conservative-count
+providers:
+  - id: python:../providers/qwen38_flash_budgeted.py
+    label: Qwen3.8 Flash Alibaba low
+    config: &qwen_flash
+      model: qwen/qwen3.8-flash
+      expected_served_model: qwen/qwen3.8-flash
+      expected_served_provider: Alibaba
+      pin_provider: true
+      require_parameters: true
+      data_collection: null
+      zdr: null
+      reasoning_effort: low
+      max_tokens: 16384
+      output_contract: crop_regions
+  - id: python:../providers/qwen38_flash_budgeted.py
+    label: Qwen3.8 Flash Makora low
+    config:
+      <<: *qwen_flash
+      expected_served_provider: Makora
+  - id: python:../providers/qwen38_flash_budgeted.py
+    label: Qwen3.8 Flash Alibaba low strict integer crop schema
+    config:
+      <<: *qwen_flash
+      output_contract: crop_regions_integer
+  - id: python:../providers/qwen38_flash_budgeted.py
+    label: Qwen3.8 Flash Makora low strict integer crop schema
+    config:
+      <<: *qwen_flash
+      expected_served_provider: Makora
+      output_contract: crop_regions_integer
+tests:
+  - &case
+    vars: {image: file://../input/source-pages-b64/Image000.b64.txt, golden_key: Image000}
+    assert: [{type: python, value: file://../scorers/image_crop_scorer.py}]
+    description: Image000
+    options: {disableConversationVar: true}
+  - <<: *case
+    vars: {image: file://../input/source-pages-b64/Image001.b64.txt, golden_key: Image001}
+    description: Image001
+  - <<: *case
+    vars: {image: file://../input/source-pages-b64/Image003.b64.txt, golden_key: Image003}
+    description: Image003
+  - <<: *case
+    vars: {image: file://../input/source-pages-b64/Image008.b64.txt, golden_key: Image008}
+    description: Image008
+  - <<: *case
+    vars: {image: file://../input/source-pages-b64/Image011.b64.txt, golden_key: Image011}
+    description: Image011
+  - <<: *case
+    vars: {image: file://../input/source-pages-b64/Image013.b64.txt, golden_key: Image013}
+    description: Image013
+  - <<: *case
+    vars: {image: file://../input/source-pages-b64/Image020.b64.txt, golden_key: Image020}
+    description: Image020
+  - <<: *case
+    vars: {image: file://../input/source-pages-b64/Image021.b64.txt, golden_key: Image021}
+    description: Image021
+  - <<: *case
+    vars: {image: file://../input/source-pages-b64/Image037.b64.txt, golden_key: Image037}
+    description: Image037
+  - <<: *case
+    vars: {image: file://../input/source-pages-b64/Image059.b64.txt, golden_key: Image059}
+    description: Image059
+  - <<: *case
+    vars: {image: file://../input/source-pages-b64/Image121.b64.txt, golden_key: Image121}
+    description: Image121
+  - <<: *case
+    vars: {image: file://../input/source-pages-b64/Image124.b64.txt, golden_key: Image124}
+    description: Image124
+  - <<: *case
+    vars: {image: file://../input/source-pages-b64/Image126.b64.txt, golden_key: Image126}
+    description: Image126
+evaluateOptions:
+  maxConcurrency: 1

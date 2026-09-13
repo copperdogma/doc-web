@@ -1,0 +1,69 @@
+{
+  "base_sha": "bb3c6ffaaa9163a831635ffee5429be9debfcd01",
+  "branch": "codex/qwen38-flash-eval-20260913",
+  "worktree": "/Users/cam/.codex/worktrees/qwen38-flash-retry-20260913/doc-web",
+  "date": "2026-09-13",
+  "worker": "Codex owner agent",
+  "data_class": "owner-identified public checked-in crop fixtures and generated synthetic square",
+  "candidate": {
+    "requested_model": "qwen/qwen3.8-flash",
+    "canonical_slug": "qwen/qwen3.8-flash-20260826",
+    "primary_provider": "Alibaba",
+    "alternate_provider": "Makora fp4",
+    "fallbacks": false,
+    "reasoning_effort": "low",
+    "reasoning_excluded": true
+  },
+  "code": [
+    {"path": "benchmarks/.gitignore", "sha256": "7956c5124413416849906b5a0f855f5dc272f14c9a92bcfe5b932bec343f95fd", "bytes": 348},
+    {"path": "benchmarks/providers/openrouter_vision_chat.py", "sha256": "f93c72b566e4bdced8b7eef59cf4d6228dfd07d3771753f1d0308d63964bc2ab", "bytes": 19600},
+    {"path": "benchmarks/providers/qwen38_flash_budgeted.py", "sha256": "21bdae38d8415b1d3a54567dd77ea584b5afbf387e3dd67699a03cec0894019b", "bytes": 3053},
+    {"path": "benchmarks/scripts/qwen38_flash_probe.py", "sha256": "46d383a46a8a973dea22a1c19e97cf6ca332c9e872bdc6bb311de8c4ee57f92e", "bytes": 3957},
+    {"path": "benchmarks/tasks/image-crop-qwen38-flash.yaml", "sha256": "e99f813a44fd7fa802dd835ea11b933abbfdcebd749a983512ba5c90804cf986", "bytes": 3045},
+    {"path": "benchmarks/tasks/image-crop-extraction.yaml", "sha256": "0dbac27f12ed7ab56f840676eb72cb8d79798d8e4e3a6a142da19b26bd8a0531", "bytes": 7959},
+    {"path": "benchmarks/prompts/crop-conservative-count.js", "sha256": "bca281e0fbe547e3f3ef049b436d87c73ed7bb066e86f51145fb444b48211b64", "bytes": 1733},
+    {"path": "benchmarks/prompts/_image-helpers.js", "sha256": "ad723df59a55896922752bd963f50ca7e36e7c77717d568deb5f9fdd1d3e11c0", "bytes": 2312},
+    {"path": "benchmarks/scorers/image_crop_scorer.py", "sha256": "7fcf07e05726bf3ebbc2488a503a9d7f165dde79649890cbd65f12a6ce4c19e7", "bytes": 10333},
+    {"path": "benchmarks/golden/image-crops.json", "sha256": "2ac0a8f01e00a252439da1f4827a85bc5118bf96460a3ff1780e642eafc60f90", "bytes": 7783}
+  ],
+  "raw_bundle": {
+    "directory": "benchmarks/results/qwen38-flash-20260913",
+    "call_file_pattern": "call-*.json",
+    "call_file_count": 23,
+    "call_file_total_bytes": 10812087,
+    "sorted_sha256_size_path_manifest_sha256": "89268625345f7a76a0890800b6a67aeffed1e891ec7bdb3f9bf3b49b6a55875e",
+    "note": "Each protected call file contains the complete public/synthetic request body and response envelope; the bundle digest is SHA256 over sorted lines of sha256, byte size, and relative path."
+  },
+  "result_artifacts": [
+    {"path": "benchmarks/results/qwen38-flash-20260913/endpoint-catalog.json", "sha256": "5ed57a1d7c293b75d6a379533f04a9ffc0f52e2513bc5b54433399f89b8ab806", "bytes": 1295},
+    {"path": "benchmarks/results/qwen38-flash-20260913/preflight.json", "sha256": "067566fc68f667e78e976c9dc433c76c8c4ab929e6042db35beb34986fc31200", "bytes": 1320},
+    {"path": "benchmarks/results/qwen38-flash-20260913/ledger.json", "sha256": "d4c34448d367be4be507d2f3817c54cb795d60713ec9779ef5733eab89baa7d1", "bytes": 4390},
+    {"path": "benchmarks/results/qwen38-flash-20260913/alibaba-text-probe.json", "sha256": "e8e4920ec92a32b6a129383f136b3c0d562382a2d27c3c4746f08e2b1cae27b0", "bytes": 121},
+    {"path": "benchmarks/results/qwen38-flash-20260913/alibaba-native-probe.json", "sha256": "01da114e706145f2aca5ef3a34e38ee9166b6fce3808cd32a1818bec39248908", "bytes": 219},
+    {"path": "benchmarks/results/qwen38-flash-20260913/alibaba-parity-probe.json", "sha256": "06441db84163c1ce6b7315287faf1d273a4a750f82c84fbfc6b9adda50dbcb26", "bytes": 1416},
+    {"path": "benchmarks/results/qwen38-flash-20260913/alibaba-representative-image011.json", "sha256": "6e4614a78a7424fb61d48e7ca833ae4b56d88aeb12670f8e6afc89f2f0ea2419", "bytes": 327023},
+    {"path": "benchmarks/results/qwen38-flash-20260913/alibaba-full13.json", "sha256": "a4cfce6b68a7db0426502eaf8d7545efa5eeca319ea4b251e365f8023393f480", "bytes": 9641311},
+    {"path": "benchmarks/results/qwen38-flash-20260913/alibaba-integer-native-probe.json", "sha256": "70026e82a4865fcb480c4a65c7c269340b9a2e483bdc00eb6239dbc110d0a24f", "bytes": 182},
+    {"path": "benchmarks/results/qwen38-flash-20260913/alibaba-integer-parity-probe.json", "sha256": "8811b47f87218423a38bd679b7224c6ca8011ea6320ad153f88a1f07fc6f97db", "bytes": 1384}
+  ],
+  "ledger": {
+    "cap_usd": 0.75,
+    "spent_usd": 0.010852478,
+    "network_calls": 23,
+    "http_200": 19,
+    "capacity_429": 4,
+    "unresolved_cost": false
+  },
+  "commands": [
+    "scripts/run_with_doc_web_env.py python benchmarks/scripts/qwen38_flash_probe.py text --provider Alibaba",
+    "scripts/run_with_doc_web_env.py python benchmarks/scripts/qwen38_flash_probe.py native --provider Alibaba",
+    "scripts/run_with_doc_web_env.py python benchmarks/scripts/qwen38_flash_probe.py parity --provider Alibaba",
+    "cd benchmarks && scripts/run_with_doc_web_env.py promptfoo eval -c tasks/image-crop-qwen38-flash.yaml --filter-providers '^Qwen3.8 Flash Alibaba low$' --filter-pattern '^Image011$' --no-cache -j 1 --no-share --output results/qwen38-flash-20260913/alibaba-representative-image011.json",
+    "cd benchmarks && scripts/run_with_doc_web_env.py promptfoo eval -c tasks/image-crop-qwen38-flash.yaml --filter-providers '^Qwen3.8 Flash Alibaba low$' --no-cache -j 1 --no-share --output results/qwen38-flash-20260913/alibaba-full13.json",
+    "scripts/run_with_doc_web_env.py python benchmarks/scripts/qwen38_flash_probe.py native --provider Alibaba --integer",
+    "scripts/run_with_doc_web_env.py python benchmarks/scripts/qwen38_flash_probe.py parity --provider Alibaba --integer",
+    "Interrupted: integer Alibaba Image011 PromptFoo representative after two capacity 429s",
+    "Makora integer native probe stopped on one capacity 429"
+  ],
+  "provenance_note": "The owner adapter and campaign recorder stayed unchanged. The campaign task and probe helper gained only declared integer-coordinate and Makora configurations after raw normalized output isolated the transport mismatch. Exact request bodies are retained in the call bundle; no later code identity is attributed backward to earlier calls. The tracked gitignore gained a recursive JSON-results rule after the run so nested protected campaign artifacts remain ignored like existing top-level PromptFoo JSON; it did not affect inference."
+}

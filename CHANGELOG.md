@@ -1,3 +1,20 @@
+## [2026-09-13-02] - Record inconclusive Qwen3.8 Flash crop retry
+
+### Added
+- Added bounded OpenRouter Qwen3.8 Flash qualification and crop-evaluation
+  support with exact provider attribution, strict schema checks, spend guards,
+  protected raw evidence, and focused regression coverage.
+
+### Changed
+- Recorded that Alibaba access now works, while normalized-coordinate contract
+  failures and shared-pool capacity on the corrected integer arm leave full
+  detector capability incomplete; crop defaults and safety gates remain
+  unchanged.
+
+### Fixed
+- Kept nested JSON campaign results ignored so raw request/response evidence
+  cannot enter a normal staging set accidentally.
+
 ## [2026-09-13-01] - Reject DeepSeek V4.1 Flash crop detector
 
 ### Changed
