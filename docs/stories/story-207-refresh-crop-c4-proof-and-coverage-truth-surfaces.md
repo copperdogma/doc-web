@@ -333,3 +333,5 @@ bound inside$.50. Three new terminal calls; prior429 preserved. Key removed
 and absence verified.20 offline tests +methodology/hash/diff checks passed.
 See Attempt036 heartbeat1 appendix and separate manifest. This owner lane is
 complete; no further scheduled semantic retry. No pipeline/default change.
+
+20260913 — authorized check-in validation: full make test passed 968 tests with four existing Pydantic warnings in 865.18s; make lint, direct campaign-helper Ruff, methodology compile/check, manifest hashes and git diff --check passed. No paid provider calls. Scoped evidence commit b0bf188; current-base branch landing authorized. Primary checkout and unrelated dirt preserved.

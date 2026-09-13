@@ -197,3 +197,5 @@ history remains intact. An import-only Ruff cleanup preserves the exact
 executed retry helper separately in the heartbeat manifest. No provider calls.
 Story207 was already Done; its historical closure is unchanged, and this
 attempt is complete without claiming broader runtime proof.
+
+20260913 — authorized check-in validation: full make test passed 968 tests with four existing Pydantic warnings in 865.18s; make lint, direct campaign-helper Ruff, methodology compile/check, manifest hashes and git diff --check passed. No paid provider calls. Scoped evidence commit b0bf188; current-base branch landing authorized. Primary checkout and unrelated dirt preserved.
