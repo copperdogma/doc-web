@@ -1,0 +1,102 @@
+{
+  "base_sha": "5e2de62842f3e15313bdb74d9d41b84b40abec96",
+  "branch": "codex/deepseek-v41-flash-eval-20260912",
+  "date": "2026-09-12",
+  "worktree": "/Users/cam/.codex/worktrees/deepseek-v41-flash-20260912/doc-web",
+  "model": "deepseek/deepseek-v4.1-flash",
+  "canonical_catalog_id": "deepseek/deepseek-v4.1-flash-20260910",
+  "served_identity": "not returned",
+  "route": "deepinfra/fp8",
+  "data_class": "synthetic generated square only",
+  "cap_usd": 0.5,
+  "reported_inference_spend_usd": 0,
+  "billing_reconciled": false,
+  "conservative_unreconciled_exposure_usd": 0.0106144,
+  "result": "HTTP429 engine_overloaded upstream_provider_shared_pool; access constrained, capability unmeasured, adoption defer",
+  "cleanup": "temporary DOC_WEB_OPENROUTER_API_KEY removed by helper and absence verified",
+  "code": [
+    {
+      "path": "benchmarks/providers/openrouter_vision_chat.py",
+      "sha256": "f93c72b566e4bdced8b7eef59cf4d6228dfd07d3771753f1d0308d63964bc2ab",
+      "bytes": 19600
+    },
+    {
+      "path": "benchmarks/providers/deepseek_v41_budgeted.py",
+      "sha256": "cec562a34a644215a6aebfe51cf0b002f9991c908ba838631e3087edec428d71",
+      "bytes": 3178
+    },
+    {
+      "path": "benchmarks/scripts/deepseek_v41_probe.py",
+      "sha256": "4030ef945e25473af52831cee29f78bbc37e921bd379704de6f0a7e5ec384418",
+      "bytes": 2532
+    },
+    {
+      "path": "benchmarks/tasks/image-crop-deepseek-v41.yaml",
+      "sha256": "1e0b04c6acf8ba149ce218a3c4bc88a37fe223ada745cad8e534d64de8eeb89a",
+      "bytes": 3754
+    },
+    {
+      "path": "benchmarks/prompts/crop-conservative-count.js",
+      "sha256": "bca281e0fbe547e3f3ef049b436d87c73ed7bb066e86f51145fb444b48211b64",
+      "bytes": 1733
+    },
+    {
+      "path": "benchmarks/prompts/_image-helpers.js",
+      "sha256": "ad723df59a55896922752bd963f50ca7e36e7c77717d568deb5f9fdd1d3e11c0",
+      "bytes": 2312
+    },
+    {
+      "path": "benchmarks/scorers/image_crop_scorer.py",
+      "sha256": "7fcf07e05726bf3ebbc2488a503a9d7f165dde79649890cbd65f12a6ce4c19e7",
+      "bytes": 10333
+    },
+    {
+      "path": "benchmarks/golden/image-crops.json",
+      "sha256": "2ac0a8f01e00a252439da1f4827a85bc5118bf96460a3ff1780e642eafc60f90",
+      "bytes": 7783
+    }
+  ],
+  "raw": [
+    {
+      "path": "benchmarks/results/deepseek-v41-20260912/call-001.json",
+      "sha256": "34dbf19be3b9854d11ea65e5886984e19db0d7af24ee311da3c4e8ec329abf6a",
+      "bytes": 958
+    },
+    {
+      "path": "benchmarks/results/deepseek-v41-20260912/endpoints.json",
+      "sha256": "da9d1443427b0ade800cf095b83ae44fddcf2fba3e45bd0a7934cdcacc670436",
+      "bytes": 12852
+    },
+    {
+      "path": "benchmarks/results/deepseek-v41-20260912/executed-deepseek_v41_budgeted.py",
+      "sha256": "44ecdc0e5027ead10dcbf7d9661ff9f8f6930ea52ca9f13072ae58f52d7f2e7b",
+      "bytes": 2939
+    },
+    {
+      "path": "benchmarks/results/deepseek-v41-20260912/ledger.json",
+      "sha256": "0c8b67acb6b9d8966b54bcaacb02fa7aeeda0d4220a56213141dc92172f97507",
+      "bytes": 582
+    },
+    {
+      "path": "benchmarks/results/deepseek-v41-20260912/pre-hardening-ledger.json",
+      "sha256": "483cc60f8c1d453ae22bef978d5ae02c729309e3f49965524baf95a07f0c57c4",
+      "bytes": 463
+    },
+    {
+      "path": "benchmarks/results/deepseek-v41-20260912/request-001.json",
+      "sha256": "5bf0979172b3769464bee0cdf672a9b0681f3e4d01b4316325b3190c5b89aab7",
+      "bytes": 1504
+    }
+  ],
+  "commands": [
+    "/Users/cam/miniconda3/bin/python scripts/run_with_doc_web_env.py /Users/cam/miniconda3/bin/python benchmarks/scripts/deepseek_v41_probe.py native"
+  ],
+  "limits": "No parity, matrix preflight, Promptfoo, source fixture, control or safety calls after native stop.",
+  "executed_guard": {
+    "path": "benchmarks/results/deepseek-v41-20260912/executed-deepseek_v41_budgeted.py",
+    "sha256": "44ecdc0e5027ead10dcbf7d9661ff9f8f6930ea52ca9f13072ae58f52d7f2e7b",
+    "bytes": 2939
+  },
+  "post_run_changes": "Missing-usage error costs now unresolved; closed ledger refuses replay. No new provider calls.",
+  "validation": "20 offline adapter/guard tests; methodology compile/check; diff check"
+}

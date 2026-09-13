@@ -1,0 +1,193 @@
+{
+  "base_sha": "5e2de62842f3e15313bdb74d9d41b84b40abec96",
+  "branch": "codex/deepseek-v41-flash-eval-20260912",
+  "worktree": "/Users/cam/.codex/worktrees/deepseek-v41-flash-20260912/doc-web",
+  "run": "deepseek-v41-20260912-heartbeat1",
+  "timestamp_utc": "2026-09-12T23:56:30Z",
+  "deadline_utc": "2026-09-13T23:54:06Z",
+  "result": "do-not-adopt detector: Image0110/1 score.5551 localization failure, valid transport",
+  "ledger": {
+    "cap_usd": 0.4893856,
+    "campaign_cap_usd": 0.5,
+    "prior_unreconciled_exposure_usd": 0.0106144,
+    "spent_usd": 0.0027737680000000002,
+    "calls": [
+      {
+        "sequence": 1,
+        "path": "benchmarks/results/deepseek-v41-20260912-heartbeat1/call-001.json",
+        "cost_usd": 0.000526,
+        "status_code": 200,
+        "latency_ms": 12516
+      },
+      {
+        "sequence": 2,
+        "path": "benchmarks/results/deepseek-v41-20260912-heartbeat1/call-002.json",
+        "cost_usd": 0.000358368,
+        "status_code": 200,
+        "latency_ms": 12460
+      },
+      {
+        "sequence": 3,
+        "path": "benchmarks/results/deepseek-v41-20260912-heartbeat1/call-003.json",
+        "cost_usd": 0.0018894,
+        "status_code": 200,
+        "latency_ms": 67804
+      }
+    ],
+    "deadline_utc": "2026-09-13T23:54:06+00:00",
+    "unresolved_cost": false,
+    "closed": true,
+    "credential_cleanup": "DOC_WEB_OPENROUTER_API_KEY absent",
+    "reported_cumulative_spend_usd": 0.0027737680000000002,
+    "cumulative_spend_plus_unreconciled_exposure_usd": 0.013388167999999999
+  },
+  "raw": [
+    {
+      "path": "benchmarks/results/deepseek-v41-20260912-heartbeat1/Image011.jpg",
+      "sha256": "ae3524cb58ac940c912c7885d65ec9d21221415d97d1ea21d97be9615161a860",
+      "bytes": 232594
+    },
+    {
+      "path": "benchmarks/results/deepseek-v41-20260912-heartbeat1/call-001.json",
+      "sha256": "41efb4b03a6d9ae98143045fdfea2690bc3dca640c8bbbec9efb7d75bb8b510b",
+      "bytes": 1467
+    },
+    {
+      "path": "benchmarks/results/deepseek-v41-20260912-heartbeat1/call-002.json",
+      "sha256": "551a355da5a96a6742c76e2b7388ca736de983acf3b5cebb7363918409a4fe5e",
+      "bytes": 1572
+    },
+    {
+      "path": "benchmarks/results/deepseek-v41-20260912-heartbeat1/call-003.json",
+      "sha256": "d084cb2807f0858601851b45b71c92c3f12fef5a0db7ba82f12ca1edc9e119a8",
+      "bytes": 1631
+    },
+    {
+      "path": "benchmarks/results/deepseek-v41-20260912-heartbeat1/endpoints.json",
+      "sha256": "2d651a95f9befc8957e5dab43938647907a45fb2137c900fbcf6912cd611e775",
+      "bytes": 12818
+    },
+    {
+      "path": "benchmarks/results/deepseek-v41-20260912-heartbeat1/image011.json",
+      "sha256": "6dc0f20c1638a8194309d58933f75efd6d81dc48a929d0eb188e8fe456c0bf3e",
+      "bytes": 326807
+    },
+    {
+      "path": "benchmarks/results/deepseek-v41-20260912-heartbeat1/ledger.json",
+      "sha256": "d04894047d0ecb9fe76cae30461462163bbe47de442758fd32a0693aa40a943f",
+      "bytes": 1039
+    },
+    {
+      "path": "benchmarks/results/deepseek-v41-20260912-heartbeat1/native-probe.json",
+      "sha256": "af1805e41773aea4e6da8660181873c2e7848d17a9851462c928dea8f360be19",
+      "bytes": 229
+    },
+    {
+      "path": "benchmarks/results/deepseek-v41-20260912-heartbeat1/parity-probe.json",
+      "sha256": "3ad8ef4ee44cdc5333e591b16ddfdcec77f541f2201655b997422708cebd858d",
+      "bytes": 1553
+    },
+    {
+      "path": "benchmarks/results/deepseek-v41-20260912-heartbeat1/preflight.json",
+      "sha256": "be6a25b8f8e39d79de46563d0a6bfdb2bc24b6fbf0c106a126c8d28a5e81cfd7",
+      "bytes": 3988
+    },
+    {
+      "path": "benchmarks/results/deepseek-v41-20260912-heartbeat1/request-001.json",
+      "sha256": "5bf0979172b3769464bee0cdf672a9b0681f3e4d01b4316325b3190c5b89aab7",
+      "bytes": 1504
+    },
+    {
+      "path": "benchmarks/results/deepseek-v41-20260912-heartbeat1/request-002.json",
+      "sha256": "5bf0979172b3769464bee0cdf672a9b0681f3e4d01b4316325b3190c5b89aab7",
+      "bytes": 1504
+    },
+    {
+      "path": "benchmarks/results/deepseek-v41-20260912-heartbeat1/request-003.json",
+      "sha256": "aee1ff311be185d580477ec3c7df303e71d9241c1b8a5ff29b8da6e81198fad0",
+      "bytes": 312041
+    },
+    {
+      "path": "benchmarks/results/deepseek-v41-20260912-heartbeat1/executed-deepseek_v41_retry_probe.py",
+      "bytes": 2921,
+      "sha256": "56bbe4c690a02c36af1118214dccc8636ac34a67613a9964f8636a24ddb8af3f"
+    }
+  ],
+  "code": [
+    {
+      "path": "benchmarks/providers/openrouter_vision_chat.py",
+      "bytes": 19600,
+      "sha256": "f93c72b566e4bdced8b7eef59cf4d6228dfd07d3771753f1d0308d63964bc2ab"
+    },
+    {
+      "path": "benchmarks/providers/deepseek_v41_budgeted.py",
+      "bytes": 3178,
+      "sha256": "cec562a34a644215a6aebfe51cf0b002f9991c908ba838631e3087edec428d71"
+    },
+    {
+      "path": "benchmarks/scripts/deepseek_v41_probe.py",
+      "bytes": 2532,
+      "sha256": "4030ef945e25473af52831cee29f78bbc37e921bd379704de6f0a7e5ec384418"
+    },
+    {
+      "path": "benchmarks/tasks/image-crop-deepseek-v41.yaml",
+      "bytes": 3754,
+      "sha256": "1e0b04c6acf8ba149ce218a3c4bc88a37fe223ada745cad8e534d64de8eeb89a"
+    },
+    {
+      "path": "benchmarks/prompts/crop-conservative-count.js",
+      "bytes": 1733,
+      "sha256": "bca281e0fbe547e3f3ef049b436d87c73ed7bb066e86f51145fb444b48211b64"
+    },
+    {
+      "path": "benchmarks/prompts/_image-helpers.js",
+      "bytes": 2312,
+      "sha256": "ad723df59a55896922752bd963f50ca7e36e7c77717d568deb5f9fdd1d3e11c0"
+    },
+    {
+      "path": "benchmarks/scorers/image_crop_scorer.py",
+      "bytes": 10333,
+      "sha256": "7fcf07e05726bf3ebbc2488a503a9d7f165dde79649890cbd65f12a6ce4c19e7"
+    },
+    {
+      "path": "benchmarks/golden/image-crops.json",
+      "bytes": 7783,
+      "sha256": "2ac0a8f01e00a252439da1f4827a85bc5118bf96460a3ff1780e642eafc60f90"
+    },
+    {
+      "path": "benchmarks/scripts/deepseek_v41_retry_probe.py",
+      "bytes": 2921,
+      "sha256": "57bb68bb15626b869362f99e39c3c03de0fc3c408fae36809e93b772b9eb3fb7"
+    },
+    {
+      "path": "benchmarks/providers/deepseek_v41_heartbeat1.py",
+      "bytes": 607,
+      "sha256": "f6964f0e2fa25ed9c4820f3f877d8e441a9125d1988fceb27edebd3eaf502c91"
+    },
+    {
+      "path": "benchmarks/tasks/image-crop-deepseek-v41-heartbeat1.yaml",
+      "bytes": 3756,
+      "sha256": "9ed96a9b9faa3bd6c362cdbf004803c8d29e7b422492202a575f6df02075e4a4"
+    }
+  ],
+  "validation": "20 offline tests; method compile/check; outgoing body equality+hashes; source visual review",
+  "unmeasured": [
+    "full13",
+    "fresh incumbent",
+    "page-context"
+  ],
+  "fixture_policy": "generated square plus owner-identified public Image011; retention uncertainty approved",
+  "prior_manifest": "docs/evals/evidence/036-deepseek-v41-flash-manifest.json",
+  "completed_for_schedule": true,
+  "commands": [
+    "/Users/cam/miniconda3/bin/python scripts/run_with_doc_web_env.py /Users/cam/miniconda3/bin/python benchmarks/scripts/deepseek_v41_retry_probe.py native --run deepseek-v41-20260912-heartbeat1",
+    "/Users/cam/miniconda3/bin/python scripts/run_with_doc_web_env.py /Users/cam/miniconda3/bin/python benchmarks/scripts/deepseek_v41_retry_probe.py parity --run deepseek-v41-20260912-heartbeat1",
+    "PATH=/Users/cam/.nvm/versions/node/v24.13.1/bin:$PATH /Users/cam/miniconda3/bin/python ../scripts/run_with_doc_web_env.py promptfoo eval -c tasks/image-crop-deepseek-v41-heartbeat1.yaml --no-cache --filter-pattern Image011 --output results/deepseek-v41-20260912-heartbeat1/image011.json -j 1"
+  ],
+  "executed_retry_helper": {
+    "path": "benchmarks/results/deepseek-v41-20260912-heartbeat1/executed-deepseek_v41_retry_probe.py",
+    "bytes": 2921,
+    "sha256": "56bbe4c690a02c36af1118214dccc8636ac34a67613a9964f8636a24ddb8af3f"
+  },
+  "post_run_cleanup": "Import-only Ruff fix in retry helper during authorized check-in; original executed helper retained separately. No new inference."
+}

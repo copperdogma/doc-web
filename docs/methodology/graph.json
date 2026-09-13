@@ -1130,11 +1130,11 @@
           ],
           "why_now": "Gemini 4 or equivalent may push past 0.95 target Golden references cover limited page types; add table-heavy pages",
           "last_relevant_action": {
-            "date": "2026-09-06",
+            "date": "2026-09-12",
             "source_type": "eval-attempt",
             "source": "docs/evals/registry.yaml",
-            "source_id": "035",
-            "summary": "Native and owner-adapter strict vision qualified. Image011 screen failed 0/1, 0.6001 with three regions instead of two; manually inspected source confirms the explicit combined seal/signatures rule was missed. Full-su..."
+            "source_id": "036",
+            "summary": "Do not adopt the frozen detector: authorized heartbeat1 qualified strict native/adapter vision, then Image011 failed 0/1, score 0.5551, with correct count but mislocalized boxes (source verified). Full13, fresh incumb..."
           },
           "story_ids": [
             "135",
@@ -13803,6 +13803,16 @@
           "retry_when": []
         },
         {
+          "id": "036",
+          "date": "2026-09-12",
+          "status": "failed",
+          "approach": "Exact DeepSeek V4.1 Flash pinned DeepInfra fp8 access screen and authorized heartbeat1 detector screen",
+          "note": "Do not adopt the frozen detector: authorized heartbeat1 qualified strict native/adapter vision, then Image011 failed 0/1, score 0.5551, with correct count but mislocalized boxes (source verified). Full13, fresh incumbent and separate safety remain unmeasured. Three successful heartbeat calls cost $0.002773768. Initial native HTTP429 engine_overloaded (737ms) remains preserved as shared-pool capacity evidence with unknown billing, not a semantic failure. Cumulative spend plus initial unresolved charge bound is $0.013388168/$0.50. Temporary key removed; owner lane complete. See docs/evals/attempts/036-deepseek-v41-flash-evaluate-model.md.\n",
+          "retry_when": [
+            "new-subject-model"
+          ]
+        },
+        {
           "id": "035",
           "date": "2026-09-06",
           "status": "failed",
@@ -13842,11 +13852,11 @@
         ],
         "why_now": "Gemini 4 or equivalent may push past 0.95 target Golden references cover limited page types; add table-heavy pages",
         "last_relevant_action": {
-          "date": "2026-09-06",
+          "date": "2026-09-12",
           "source_type": "eval-attempt",
           "source": "docs/evals/registry.yaml",
-          "source_id": "035",
-          "summary": "Native and owner-adapter strict vision qualified. Image011 screen failed 0/1, 0.6001 with three regions instead of two; manually inspected source confirms the explicit combined seal/signatures rule was missed. Full-su..."
+          "source_id": "036",
+          "summary": "Do not adopt the frozen detector: authorized heartbeat1 qualified strict native/adapter vision, then Image011 failed 0/1, score 0.5551, with correct count but mislocalized boxes (source verified). Full13, fresh incumb..."
         }
       }
     },

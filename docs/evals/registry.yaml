@@ -1249,6 +1249,26 @@ evals:
           runtime default, or credential changed. Retry only after exact-model
           authenticated retrieval succeeds. Portable proof:
           `docs/evals/attempts/032-gpt6-astra-evaluate-model.md`.
+      - id: "036"
+        date: 2026-09-12
+        status: failed
+        approach: "Exact DeepSeek V4.1 Flash pinned DeepInfra fp8 access screen and authorized heartbeat1 detector screen"
+        score_before: null
+        score_after: null
+        note: >
+          Do not adopt the frozen detector: authorized heartbeat1 qualified
+          strict native/adapter vision, then Image011 failed 0/1, score 0.5551,
+          with correct count but mislocalized boxes (source verified).
+          Full13, fresh incumbent and separate safety remain unmeasured.
+          Three successful heartbeat calls cost $0.002773768. Initial native
+          HTTP429 engine_overloaded (737ms) remains preserved as shared-pool
+          capacity evidence with unknown billing, not a semantic failure.
+          Cumulative spend plus initial unresolved charge bound is
+          $0.013388168/$0.50. Temporary key removed; owner lane complete.
+          See docs/evals/attempts/036-deepseek-v41-flash-evaluate-model.md.
+        retry_when:
+          - condition: new-subject-model
+            note: "After heartbeat1 semantic rejection, revised checkpoint or independently justified localization contract change; no further capacity-only retry."
       - id: "035"
         date: 2026-09-06
         status: failed

@@ -1,3 +1,12 @@
+## [2026-09-13-01] - Reject DeepSeek V4.1 Flash crop detector
+
+### Changed
+- Recorded recovered strict vision access followed by the source-verified
+  Image011 localization failure (0.5551). Kept crop defaults and stopped before
+  the full detector suite; reported $0.002773768 generation spend separately
+  from the initial capacity error's unresolved charge exposure.
+- Added bounded, closed-run-safe evaluation helpers and durable evidence manifests.
+
 ## [2026-09-06-01] - Screen exact Qwen3.8 Max 0902 crop detector
 
 ### Changed

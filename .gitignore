@@ -41,3 +41,7 @@ benchmarks/results/gpt6-astra-20260905/
 
 # Attempt 035 complete public-fixture provider envelopes and raw results
 /benchmarks/results/qwen0902-20260906/
+
+# Attempt 036 provider envelopes
+/benchmarks/results/deepseek-v41-20260912/
+/benchmarks/results/deepseek-v41-20260912-heartbeat1/

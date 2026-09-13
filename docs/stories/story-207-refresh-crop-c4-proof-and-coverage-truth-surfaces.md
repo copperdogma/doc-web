@@ -273,3 +273,63 @@ Attempt035 records exact0902/Alibaba strict native and owner-adapter vision qual
 Validation: 18/18 focused adapter/spend-guard tests; Ruff; full raw/code hash manifest verification; registry parsing; methodology compile/check; git diff --check. No pipeline code changed, so no driver integration or unrelated broad suite. The one-case screen is recorded in attempt history only, preserving the graph's comparable full-suite score. Proof: docs/evals/attempts/035-qwen38-max-0902-evaluate-model.md and docs/evals/evidence/035-qwen38-max-0902-manifest.json. Existing story completion gates remain closed; this bounded evaluation continuation is complete and uncommitted.
 
 20260906 — authorized check-in: full make test passed 959 tests (four existing Pydantic warnings); lint, direct helper Ruff, methodology and manifest checks passed. Scoped evaluation records/support approved for remote main landing; no new inference and no primary-checkout cleanup.
+
+
+## 2026-09-12 — Attempt 036 pre-spend plan
+
+Approved Conductor Scout070 item1, US$0.50 including all probes/controls.
+Exact new deepseek/deepseek-v4.1-flash (canonical 20260910), pinned
+deepinfra/fp8, strict crop_regions, low reasoning excluded, 1024 synthetic
+and 16384 real output cap. Public owner-identified images and generated square
+only; residual logging accepted, no private data. No fallback, cache or
+automatic retries; concurrency one. Reserve 50k input tokens at $0.20/M plus
+max completion $0.60/M before each request. Current endpoint status -2 may stop
+access. Native strict vision then same-case owner adapter parity; stop on
+access failure. One safe require_parameters-only diagnostic is permitted if
+strict routing rejects; it cannot qualify production parity. After qualification
+render all 13 independent cases offline, Image011 first; stop any hard miss,
+otherwise require 13/13 and >=.95. Fresh Gemini incumbent only if candidate
+passes and bounded spend can cover it. No page-context, defaults or landing.
+Frozen conservative-count prompt, scorer, user-authored goldens. Gemini 3 Flash
+runtime historical 13/13 .9703, Astra .980392 bounded leader but safety-ineligible.
+C4 converge; this tests simplification/value, not a new architecture.
+
+### Attempt036 closeout
+
+Native synthetic strict call stopped HTTP429 engine_overloaded (shared upstream
+pool), 737ms, no output/usage. Access constrained; no semantic score. $0 reported
+inference spend, billing unreconciled; retain $0.0106144 maximum-call exposure
+within approved $0.50. No retry or schema diagnostic appropriate for capacity.
+Temporary DOC_WEB_OPENROUTER_API_KEY removed and absence verified.
+Attempt036 and manifest preserve full ignored envelope/request hashes and
+exact executed code. No maintained prompt/scorer/golden/default changed.
+20 adapter/budget guard tests passed after no-usage429 and closed-run
+fail-closed hardening. Executed guard retained separately; no new calls.
+Owner adapter checks and methodology
+compile/check provide bounded validation. Runtime eligibility did not advance,
+so no driver or broad runtime suite was appropriate. Existing story status
+and historical proof remain; this bounded evaluation is closed as constrained.
+Impact: avoids paying for a detector comparison while upstream capacity cannot
+produce valid evidence. No pipeline improvement or capability claim.
+
+## 2026-09-12 23:56 UTC — Attempt036 heartbeat1 pre-spend plan
+
+Explicit finite six-hour retry authorization permits one new native probe this
+wake, deadline 2026-09-13 23:54:06 UTC. Preserve initial evidence/closed ledger.
+New run deepseek-v41-20260912-heartbeat1 carries $0.0106144 prior unresolved
+exposure; local remaining cap $0.4893856 inside original cumulative $0.50.
+Same generated square, exact model/DeepInfra fp8, low/strict contract and all
+original detector progression gates. No rapid capacity retry or page-context.
+Only progress to parity then frozen owner lane if native qualification succeeds.
+
+### Heartbeat1 closeout — 2026-09-12
+
+Access recovered; native/parity passed strict square probes. Frozen Image011
+then failed localization, score.5551,0/1, zero errors,67.804s. Count/grouping
+correct but logo and seal/signature boxes spatially wrong; source/golden
+verified. Stop do-not-adopt detector, no full13/control/page-context. Fresh
+spend$.002773768 +prior unknown$.0106144 =$.013388168 conservative cumulative
+bound inside$.50. Three new terminal calls; prior429 preserved. Key removed
+and absence verified.20 offline tests +methodology/hash/diff checks passed.
+See Attempt036 heartbeat1 appendix and separate manifest. This owner lane is
+complete; no further scheduled semantic retry. No pipeline/default change.
