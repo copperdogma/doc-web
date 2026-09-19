@@ -339,3 +339,19 @@ See Attempt036 heartbeat1 appendix and separate manifest. This owner lane is
 complete; no further scheduled semantic retry. No pipeline/default change.
 
 20260913 — authorized check-in validation: full make test passed 968 tests with four existing Pydantic warnings in 865.18s; make lint, direct campaign-helper Ruff, methodology compile/check, manifest hashes and git diff --check passed. No paid provider calls. Scoped evidence commit b0bf188; current-base branch landing authorized. Primary checkout and unrelated dirt preserved.
+
+## 2026-09-19 — Attempt 038 Qwen3.8-Omni-Flash access stop
+
+Approved Conductor Scout071 item 2: direct `qwen3.8-omni-flash`, low reasoning,
+frozen conservative-count/integer schema, US$0.50 including all calls. Qualify
+access/native strict vision/parity, then Image011, then full13 and fresh Gemini
+only on passing gates; no page-context expansion. Owner-wrapper presence-only
+check found no direct Alibaba/DashScope key, and Conductor has no supported
+central direct Alibaba mapping. Stopped with zero calls and US$0 spend.
+Callability remains unverified; transport, reliability, quality and economics
+remain unmeasured. No adapter, prompt, scorer, golden, default or secret changed.
+Cam explicitly deferred this campaign on 2026-09-19 due to unavailable access.
+No automatic retry or key provisioning. Reopening requires a new explicit user
+instruction after eligible direct access and regional endpoint exist, then
+current scope/budget confirmation and strict qualification. See Attempt 038 for contract, commands,
+provenance and layered verdict. Existing Done status is historical and unchanged.

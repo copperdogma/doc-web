@@ -741,6 +741,28 @@ evals:
         note: "Poor bounding box precision"
 
     attempts:
+      - id: "038"
+        date: 2026-09-19
+        status: inconclusive
+        approach: "Qualify direct Alibaba Qwen3.8-Omni-Flash for the approved bounded detector lane"
+        score_before: 0.9703
+        score_after: null
+        retry_when:
+          - condition: dependency-available
+            note: "New explicit user reopening after eligible direct Alibaba credential and regional endpoint exist; no automatic retry"
+        note: >
+          Story 207 / Conductor Scout071 item 2, US$0.50 ceiling. Owner-wrapper
+          presence-only checks found no direct Alibaba/DashScope credential;
+          Conductor has no supported direct Alibaba custody mapping. Stopped
+          before any authenticated probe or inference, with US$0 actual spend.
+          Access locally blocked, provider callability unverified; transport,
+          reliability, capability and response economics not measured. Image011,
+          full13, fresh comparator and JSON diagnostic were not run; page-context
+          is out of scope. User explicitly deferred on 2026-09-19 due to no access;
+          no automatic retry or key provisioning. Adoption deferred, no
+          runtime/default change. Exact
+          model is distinct from ordinary Qwen3.8 Flash and Max. Evidence:
+          `docs/evals/attempts/038-qwen38-omni-flash-access-stop.md`.
       - id: "001"
         date: 2026-01-24
         status: succeeded

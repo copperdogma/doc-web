@@ -1,3 +1,11 @@
+## [2026-09-19-01] - Defer Qwen3.8-Omni-Flash crop evaluation
+
+### Changed
+- Recorded the approved detector evaluation's zero-spend direct Alibaba access
+  stop and Cam's explicit deferral. Capability remains unmeasured; future work
+  requires explicit reopening after eligible access exists, with no automatic
+  retry or runtime-default change.
+
 ## [2026-09-13-03] - Unify close-out and landing guidance
 
 ### Changed

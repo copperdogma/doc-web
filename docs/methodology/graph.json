@@ -1130,11 +1130,11 @@
           ],
           "why_now": "Gemini 4 or equivalent may push past 0.95 target Golden references cover limited page types; add table-heavy pages",
           "last_relevant_action": {
-            "date": "2026-09-13",
+            "date": "2026-09-19",
             "source_type": "eval-attempt",
             "source": "docs/evals/registry.yaml",
-            "source_id": "037",
-            "summary": "Exact `qwen/qwen3.8-flash` on Alibaba qualified strict text, generated image, owner-adapter parity, and a representative maintained case. Its normalized full13 attempt returned 13 final rows but only five contract-val..."
+            "source_id": "038",
+            "summary": "Story 207 / Conductor Scout071 item 2, US$0.50 ceiling. Owner-wrapper presence-only checks found no direct Alibaba/DashScope credential; Conductor has no supported direct Alibaba custody mapping. Stopped before any au..."
           },
           "story_ids": [
             "135",
@@ -13571,6 +13571,16 @@
       },
       "attempts": [
         {
+          "id": "038",
+          "date": "2026-09-19",
+          "status": "inconclusive",
+          "approach": "Qualify direct Alibaba Qwen3.8-Omni-Flash for the approved bounded detector lane",
+          "note": "Story 207 / Conductor Scout071 item 2, US$0.50 ceiling. Owner-wrapper presence-only checks found no direct Alibaba/DashScope credential; Conductor has no supported direct Alibaba custody mapping. Stopped before any authenticated probe or inference, with US$0 actual spend. Access locally blocked, provider callability unverified; transport, reliability, capability and response economics not measured. Image011, full13, fresh comparator and JSON diagnostic were not run; page-context is out of scope. User explicitly deferred on 2026-09-19 due to no access; no automatic retry or key provisioning. Adoption deferred, no runtime/default change. Exact model is distinct from ordinary Qwen3.8 Flash and Max. Evidence: `docs/evals/attempts/038-qwen38-omni-flash-access-stop.md`.\n",
+          "retry_when": [
+            "dependency-available"
+          ]
+        },
+        {
           "id": "001",
           "date": "2026-01-24",
           "status": "succeeded",
@@ -13862,11 +13872,11 @@
         ],
         "why_now": "Gemini 4 or equivalent may push past 0.95 target Golden references cover limited page types; add table-heavy pages",
         "last_relevant_action": {
-          "date": "2026-09-13",
+          "date": "2026-09-19",
           "source_type": "eval-attempt",
           "source": "docs/evals/registry.yaml",
-          "source_id": "037",
-          "summary": "Exact `qwen/qwen3.8-flash` on Alibaba qualified strict text, generated image, owner-adapter parity, and a representative maintained case. Its normalized full13 attempt returned 13 final rows but only five contract-val..."
+          "source_id": "038",
+          "summary": "Story 207 / Conductor Scout071 item 2, US$0.50 ceiling. Owner-wrapper presence-only checks found no direct Alibaba/DashScope credential; Conductor has no supported direct Alibaba custody mapping. Stopped before any au..."
         }
       }
     },
