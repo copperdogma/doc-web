@@ -1,0 +1,16 @@
+{
+  "synthetic_only": true,
+  "real_native_runtime_call": true,
+  "planner_basis": "retained mock-authored planner output",
+  "authoritative_artifacts_unchanged": true,
+  "authoritative_file_hashes": {
+    "consistency_plan.json": "3a4dfbc9dbb91fbb4dff6bc3386df018f5e1c3fe5395dbf3db87dd1374e8df28",
+    "conformance_report.json": "9ea68b95088db0232f5125d1c755ee9bc0e388cdff9b58b58cb5be74e15b6355",
+    "jev_consistency_shadow.json": "3736c1e9766a06f19a6c8c9801825ade44b62275e4e3d69b006740292c9f6e89",
+    "pattern_inventory.json": "d8556e0b841675a6f9b58ffcaa3e31591fc65ab0f1fee88c3bbed8fe949bcd58",
+    "document_consistency_dossier.json": "2d8016c7ce2a260aeb4fcc27cff257aaae7b7bb260c49c05339f498d304e0b64"
+  },
+  "maximum_attempts": 1,
+  "reserved_cap_usd": 0.002688,
+  "persistent_enable_changed": false
+}

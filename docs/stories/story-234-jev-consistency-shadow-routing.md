@@ -103,3 +103,15 @@ CLI omitted because independent findings-first agent review covered the exact
 transport/runtime/test diff. No remaining implementation gaps. Story234 closed
 via mark-story-done; metadata/index/CHANGELOG updated. Implemented and validated,
 not live-enabled, provisioned, deployed, committed or landed.
+
+
+### Native synthetic observation — 2026-09-21
+
+After Cam supplied the dedicated runtime key, one native runtime-seam request
+completed in303ms forUS$0.000044268. JEV returned conformant with0.70 confidence;
+configured routing correctly reused the planner on low confidence. All five
+existing authoritative JSON artifacts retained their byte hashes. Retained
+report and verification: `docs/evals/artifacts/story234-jev-shadow/live-synthetic-observation-01/`.
+No private document, extra GPT call or persistent activation. This is a transport
+and policy observation, not a production-quality comparison. Existing full-driver
+mock integration evidence remains applicable; runtime source did not change.

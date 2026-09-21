@@ -1,0 +1,41 @@
+{
+  "schema_version": "jev_consistency_shadow_v1",
+  "advisory_only": true,
+  "model": "jev-1.13.0",
+  "state_basis": "compact_extracted_html_only",
+  "chapters": [
+    {
+      "chapter_ordinal": 0,
+      "authoritative_status": "conformant",
+      "shadow_status": "conformant",
+      "route": "planner_fallback",
+      "latency_ms": 303.04308398626745,
+      "jev_status": "conformant",
+      "probabilities": {
+        "conformant": 0.76,
+        "uncertain": 0.17,
+        "mixed": 0.0,
+        "row_semantic_issue": 0.01,
+        "format_drift": 0.06
+      },
+      "confidence": 0.7,
+      "input_tokens": 1054,
+      "output_tokens": 64,
+      "cost_usd": 4.4268000000000004e-05,
+      "reason": "low_confidence"
+    }
+  ],
+  "known_cost_usd": 4.4268000000000004e-05,
+  "unknown_cost_reserved_usd": 0.0,
+  "maximum_run_cost_usd": 0.008064,
+  "dispatched": 1,
+  "created_at": "2026-09-21T18:30:09.037428+00:00",
+  "run_id": "story234-enabled",
+  "input_sha256": "9279956e8e09ecc7e9564a073005a43a6bd7a140c649ba5e874186d9d61dcf04",
+  "plan_sha256": "9fa2e131b189b9e50d74d00fa3013a1ed3bc1f5e3d587e7af9da92440c662384",
+  "authoritative_sha256": "5bd9ec764bc7bb0cd74d48ac48c2198d05d5d12f7812f930ca47ad9be0d09f44",
+  "total_chapters": 1,
+  "comparison_mode": "shadow_with_existing_planner_fallback",
+  "skipped_chapters": 0,
+  "status": "complete"
+}
