@@ -1,0 +1,69 @@
+[
+  {
+    "case_id": "case-01",
+    "chapter_basename": "chapter-001.html",
+    "expected": "conformant",
+    "reason": "One coherent seven-column table; generated dates and children in matching columns.",
+    "mutation": false,
+    "source_evidence": "fully fictional generated table; original personal content discarded",
+    "source_excerpt_available": true,
+    "conditional_classifier_scored": true,
+    "pipeline_scored": true
+  },
+  {
+    "case_id": "case-02",
+    "chapter_basename": "chapter-002.html",
+    "expected": "format_drift",
+    "reason": "Injected duplicate full-header table split within one logical genealogy chapter; cohort convention is contiguous tables.",
+    "mutation": true,
+    "source_evidence": "fully fictional generated table; original personal content discarded",
+    "source_excerpt_available": true,
+    "conditional_classifier_scored": true,
+    "pipeline_scored": true
+  },
+  {
+    "case_id": "case-03",
+    "chapter_basename": "chapter-003.html",
+    "expected": "format_drift",
+    "reason": "Injected concatenated generation and two family headings in one subgroup cell.",
+    "mutation": true,
+    "source_evidence": "fully fictional generated table; original personal content discarded",
+    "source_excerpt_available": true,
+    "conditional_classifier_scored": true,
+    "pipeline_scored": true
+  },
+  {
+    "case_id": "case-04",
+    "chapter_basename": "chapter-004.html",
+    "expected": "format_drift",
+    "reason": "Injected BOY/GIRL fused header and corresponding slash-separated child values preserving meaning.",
+    "mutation": true,
+    "source_evidence": "fully fictional generated table; original personal content discarded",
+    "source_excerpt_available": true,
+    "conditional_classifier_scored": true,
+    "pipeline_scored": true
+  },
+  {
+    "case_id": "case-05",
+    "chapter_basename": "chapter-005.html",
+    "expected": "row_semantic_issue",
+    "reason": "Injected explicit child-birth note into DIED without a death assertion; full source counterpart states child birth.",
+    "mutation": true,
+    "source_evidence": "fully fictional generated table; original personal content discarded",
+    "source_excerpt_available": true,
+    "conditional_classifier_scored": true,
+    "pipeline_scored": true
+  },
+  {
+    "case_id": "case-06",
+    "chapter_basename": "chapter-006.html",
+    "expected": "uncertain",
+    "reason": "Injected clipped note in DIED with no event type; source excerpt intentionally absent, so death versus child birth cannot be established.",
+    "mutation": true,
+    "source_evidence": "fully fictional generated table; original personal content discarded",
+    "source_excerpt_available": false,
+    "conditional_classifier_scored": false,
+    "pipeline_scored": true,
+    "adjudication": "Ambiguous cue dropped by maintained dossier. Compaction coverage probe only; exclude conditional classifier accuracy."
+  }
+]

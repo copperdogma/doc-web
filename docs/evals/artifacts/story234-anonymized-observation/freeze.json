@@ -1,0 +1,21 @@
+{
+  "docs/evals/artifacts/story234-anonymized-observation/chapter-001.html": "ad35d196c8342811a4947d993e810cc08ff9a50bbf111a3a34e1d6b51f7aed6d",
+  "docs/evals/artifacts/story234-anonymized-observation/gold.json": "6ebba235e8637a49f82725c090ec07bb65216fa4a8f02883fdf00972f042752a",
+  "docs/evals/artifacts/story234-anonymized-observation/chapter-006.html": "1338e45785a9a8184ca4d2bee512b2023b6250217682f76954b494495e928fa4",
+  "docs/evals/artifacts/story234-anonymized-observation/pages.jsonl": "dd23bbb61b7f36d5a6373454e64a47bdcd5feec4e9c126326fc263c22819da24",
+  "docs/evals/artifacts/story234-anonymized-observation/chapter-005.html": "13838fe8f2bcab2d983c5a941f214dd52aae2639745a0aa7f3f6c3674aeca899",
+  "docs/evals/artifacts/story234-anonymized-observation/chapter-004.html": "b5579c856ff0d6feff72ca70f8a8373242f999e4d5d17bef4b661f06963937e2",
+  "docs/evals/artifacts/story234-anonymized-observation/dossier.json": "122ffdc6e474f78abb01d2ccf95785c60bd7cb315948a3214d8698c99b14a311",
+  "docs/evals/artifacts/story234-anonymized-observation/chapters.jsonl": "025dd3d45aefd7d7cd07a9198721332af71c638bfe21a9716c445ca9a7a04a08",
+  "docs/evals/artifacts/story234-anonymized-observation/plan.md": "e08aed0322d793a82f6d524d131496452dc829f43fecd568d002077d9a26ce9c",
+  "docs/evals/artifacts/story234-anonymized-observation/chapter-003.html": "34f658f43081179aa969f05eed605ca3103375af9d2add0371e3876d592fc90d",
+  "docs/evals/artifacts/story234-anonymized-observation/planner.request.json": "d4888522946cbcdd37da364309e0323764e9fc5239202595834b04ad2bcbfa10",
+  "docs/evals/artifacts/story234-anonymized-observation/lineage.json": "829686d65b9343f4ceda47ff92944821580b22b296a58c1738db9aa81ae90a5f",
+  "docs/evals/artifacts/story234-anonymized-observation/chapter-002.html": "eb4eff7b1d8a2e20fbb6e7542e6042cf39fb40d0374b3b70287bceb13a708019",
+  "benchmarks/jev-observation/run.py": "565d486c88104af842feacc0f1ef79a5b5752a537d1a8a40bd90764dfb4a1406",
+  "benchmarks/jev-observation/test_run.py": "7290346693174789c6c0ec13ca8e333d82fd73048674aac74455ec0c13d70d46",
+  "benchmarks/jev-observation/prepare.py": "93090c5753295e8db38661b661df3bac02045a5595741cf323d1662daaa0fcba",
+  "modules/validate/plan_onward_document_consistency_v1/main.py": "36dd4ceda1b25a3b0d8862cd8f38d6db3fa6c3c03f44081b567a12526f9d0a36",
+  "modules/validate/plan_onward_document_consistency_v1/jev_shadow.py": "f3e4a199c0d8fe1290c6a587bb2a0f7656801a2d0bce8a83a0e2aaead6842b9d",
+  "modules/validate/validate_onward_genealogy_consistency_v1/main.py": "d8729c26de12cf0b0172b70a8d66f8c2ab6de0733fae6e7254b875d0ce40fbe6"
+}

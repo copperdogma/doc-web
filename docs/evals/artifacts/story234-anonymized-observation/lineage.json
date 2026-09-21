@@ -1,0 +1,7 @@
+{
+  "source_path": "benchmarks/golden/onward/reviewed_html_slice/story149-onward-build-regression-r1/chapter-023.html",
+  "source_sha256": "854ac95e10813604ad5f2e3e942cb5b6a3ad38097e09c19f610cea9b4130db29",
+  "source_table_count": 2,
+  "source_rows": 48,
+  "scope": "One real reviewed DOM structure, six fictional variants; five explicitly injected mutations. Not production traffic or source-fidelity evaluation."
+}

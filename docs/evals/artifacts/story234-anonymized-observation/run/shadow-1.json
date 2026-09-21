@@ -1,0 +1,81 @@
+{
+  "schema_version": "jev_consistency_shadow_v1",
+  "advisory_only": true,
+  "model": "jev-1.13.0",
+  "state_basis": "compact_extracted_html_only",
+  "chapters": [
+    {
+      "chapter_ordinal": 0,
+      "authoritative_status": "conformant",
+      "shadow_status": "conformant",
+      "route": "jev",
+      "latency_ms": 300.8942910237238,
+      "jev_status": "conformant",
+      "probabilities": {
+        "uncertain": 0.02,
+        "row_semantic_issue": 0.0,
+        "conformant": 0.98,
+        "format_drift": 0.0,
+        "mixed": 0.0
+      },
+      "confidence": 0.97,
+      "input_tokens": 1224,
+      "output_tokens": 64,
+      "cost_usd": 5.1408e-05,
+      "reason": "confident_classification"
+    },
+    {
+      "chapter_ordinal": 1,
+      "authoritative_status": "format_drift",
+      "shadow_status": "format_drift",
+      "route": "planner_fallback",
+      "latency_ms": 239.03133405838162,
+      "jev_status": "format_drift",
+      "probabilities": {
+        "row_semantic_issue": 0.0,
+        "mixed": 0.01,
+        "uncertain": 0.03,
+        "format_drift": 0.55,
+        "conformant": 0.41
+      },
+      "confidence": 0.44,
+      "input_tokens": 1213,
+      "output_tokens": 64,
+      "cost_usd": 5.0946e-05,
+      "reason": "low_confidence"
+    },
+    {
+      "chapter_ordinal": 2,
+      "authoritative_status": "format_drift",
+      "shadow_status": "format_drift",
+      "route": "planner_fallback",
+      "latency_ms": 220.64045805018395,
+      "jev_status": "format_drift",
+      "probabilities": {
+        "format_drift": 0.8099999999999999,
+        "uncertain": 0.01,
+        "row_semantic_issue": 0.03,
+        "conformant": 0.02,
+        "mixed": 0.13
+      },
+      "confidence": 0.77,
+      "input_tokens": 1289,
+      "output_tokens": 64,
+      "cost_usd": 5.4138e-05,
+      "reason": "low_confidence"
+    }
+  ],
+  "known_cost_usd": 0.000156492,
+  "unknown_cost_reserved_usd": 0.0,
+  "maximum_run_cost_usd": 0.008064,
+  "dispatched": 3,
+  "created_at": "2026-09-21T18:45:36.508049+00:00",
+  "run_id": "story234-anonymized-observation",
+  "input_sha256": "e70d6fcac5ecc0641ba2490c6c1985839c87a3f14a54988d570c45b58ca93d19",
+  "plan_sha256": "77108f18110d14f845f0f0e666d3975b2e83baec4b0626a59917c5dd8601bc16",
+  "authoritative_sha256": "3ec396a97c4498c0dc6c9a0486e3dfdfa0663ea883043a3caf16325b0b19e95e",
+  "total_chapters": 3,
+  "comparison_mode": "shadow_with_existing_planner_fallback",
+  "skipped_chapters": 0,
+  "status": "complete"
+}

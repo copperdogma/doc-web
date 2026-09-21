@@ -1,6 +1,9 @@
 ## [2026-09-21-02] - Add opt-in JEV consistency shadow routing (Story 234)
 
 ### Added
+- Observed six anonymized structural variants with the full planner and native
+  JEV shadow; preserved outputs and identified contradictory conventions plus a
+  compaction blind spot. Seven calls cost$0.03386839; keep shadow opt-in.
 - Default-off, bounded JEV shadow beside the document planner, with explicit
   uncertainty, deterministic layout veto, existing-planner fallback and atomic
   privacy-minimized diagnostics. Authoritative outputs remain unchanged.

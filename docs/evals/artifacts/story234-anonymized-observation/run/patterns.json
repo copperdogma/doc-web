@@ -1,0 +1,216 @@
+{
+  "schema_version": "document_pattern_inventory_v1",
+  "created_at": "2026-09-21T18:45:36.506667Z",
+  "run_id": "story234-anonymized-observation",
+  "document_label": "Onward genealogy consistency planning",
+  "source_artifacts": {
+    "chapters_artifact": "/Users/cam/.codex/worktrees/jev-docweb-20260921/docs/evals/artifacts/story234-anonymized-observation/chapters.jsonl",
+    "pages_artifact": "/Users/cam/.codex/worktrees/jev-docweb-20260921/docs/evals/artifacts/story234-anonymized-observation/pages.jsonl"
+  },
+  "summary": {
+    "pattern_family_count": 4,
+    "candidate_genealogy_chapters": 6
+  },
+  "pattern_families": [
+    {
+      "pattern_id": "pattern_1",
+      "label": "Standard 7-column genealogy table with separate summary row",
+      "description": "Genealogy tables with headers NAME, BORN, MARRIED, SPOUSE, BOY, GIRL, DIED, followed by a separate summary/total descendants table. Subgroup/context rows are present but not concatenated. No fused BOYGIRL headers. No left-column-only family rows. Notes are not present in the DIED column.",
+      "member_chapters": [
+        "chapter-001.html",
+        "chapter-006.html"
+      ],
+      "baseline_chapters": [
+        "chapter-001.html"
+      ],
+      "canonical_signals": [
+        "genealogy_table_count: 1",
+        "summary_table_count: 1",
+        "header: name|born|married|spouse|boy|girl|died",
+        "subgroup_row_count: 16",
+        "no concatenated subgroup/context rows",
+        "no fused boygirl headers",
+        "no suspicious row semantics"
+      ],
+      "canonical_headers": [
+        "NAME",
+        "BORN",
+        "MARRIED",
+        "SPOUSE",
+        "BOY",
+        "GIRL",
+        "DIED"
+      ],
+      "allowed_variants": [
+        "summary/total table may be present after main table"
+      ],
+      "document_local_conventions": {
+        "subgroup_context_rows": "Single, non-concatenated subgroup/context rows are allowed.",
+        "table_fragmentation": "One genealogy table per chapter, plus a separate summary/total table is allowed.",
+        "summary_rows": "Summary/total descendants table is allowed and expected.",
+        "marginal_or_handwritten_notes": "No marginal or handwritten notes present; if present, should not be in DIED column."
+      },
+      "confidence": 0.98,
+      "evidence": [
+        {
+          "chapter_basename": "chapter-001.html",
+          "page_numbers": [
+            1
+          ],
+          "quote": "genealogy_table_count: 1, summary_table_count: 1, header: name|born|married|spouse|boy|girl|died, subgroup_row_count: 16, no suspicious rows"
+        },
+        {
+          "chapter_basename": "chapter-006.html",
+          "page_numbers": [
+            6
+          ],
+          "quote": "genealogy_table_count: 1, summary_table_count: 1, header: name|born|married|spouse|boy|girl|died, subgroup_row_count: 16, no suspicious rows"
+        }
+      ]
+    },
+    {
+      "pattern_id": "pattern_2",
+      "label": "Standard 7-column genealogy table with minor fragmentation or context drift",
+      "description": "Chapters that mostly follow the standard 7-column pattern but show minor fragmentation (multiple genealogy tables per chapter) or concatenated subgroup/context rows.",
+      "member_chapters": [
+        "chapter-002.html",
+        "chapter-003.html"
+      ],
+      "baseline_chapters": [
+        "chapter-002.html"
+      ],
+      "canonical_signals": [
+        "genealogy_table_count: 2 (chapter-002.html)",
+        "concatenated_subgroup_row_count: 1 (chapter-003.html)",
+        "header: name|born|married|spouse|boy|girl|died",
+        "summary_table_count: 1"
+      ],
+      "canonical_headers": [
+        "NAME",
+        "BORN",
+        "MARRIED",
+        "SPOUSE",
+        "BOY",
+        "GIRL",
+        "DIED"
+      ],
+      "allowed_variants": [
+        "Multiple genealogy tables per chapter (fragmentation)",
+        "Concatenated subgroup/context rows"
+      ],
+      "document_local_conventions": {
+        "subgroup_context_rows": "Should not be concatenated; each context row should be separate.",
+        "table_fragmentation": "Prefer one genealogy table per chapter, but minor fragmentation is observed.",
+        "summary_rows": "Summary/total descendants table is allowed.",
+        "marginal_or_handwritten_notes": "No marginal or handwritten notes present."
+      },
+      "confidence": 0.9,
+      "evidence": [
+        {
+          "chapter_basename": "chapter-002.html",
+          "page_numbers": [
+            2
+          ],
+          "quote": "genealogy_table_count: 2, summary_table_count: 1, header: name|born|married|spouse|boy|girl|died, no suspicious rows"
+        },
+        {
+          "chapter_basename": "chapter-003.html",
+          "page_numbers": [
+            3
+          ],
+          "quote": "concatenated_subgroup_row_count: 1, subgroup_rows: 'SYNTHETIC Great Great Grandchildren SYNTHETIC Grandchildren FIRST FAMILY SECOND FAMILY'"
+        }
+      ]
+    },
+    {
+      "pattern_id": "pattern_3",
+      "label": "7-column genealogy table with row semantic issue (child note in DIED column)",
+      "description": "Standard 7-column genealogy table, but with a child note or annotation incorrectly placed in the DIED column.",
+      "member_chapters": [
+        "chapter-005.html"
+      ],
+      "baseline_chapters": [
+        "chapter-005.html"
+      ],
+      "canonical_signals": [
+        "genealogy_table_count: 1",
+        "summary_table_count: 1",
+        "header: name|born|married|spouse|boy|girl|died",
+        "suspicious_row_semantic_count: 1",
+        "child_note_in_wrong_column"
+      ],
+      "canonical_headers": [
+        "NAME",
+        "BORN",
+        "MARRIED",
+        "SPOUSE",
+        "BOY",
+        "GIRL",
+        "DIED"
+      ],
+      "allowed_variants": [
+        "None; this is a semantic error, not a legitimate variant."
+      ],
+      "document_local_conventions": {
+        "subgroup_context_rows": "Single, non-concatenated subgroup/context rows are allowed.",
+        "table_fragmentation": "One genealogy table per chapter, plus a separate summary/total table is allowed.",
+        "summary_rows": "Summary/total descendants table is allowed.",
+        "marginal_or_handwritten_notes": "Notes should not be placed in the DIED column."
+      },
+      "confidence": 0.95,
+      "evidence": [
+        {
+          "chapter_basename": "chapter-005.html",
+          "page_numbers": [
+            5
+          ],
+          "quote": "suspicious_row_semantic_count: 1, child_note_in_wrong_column, died_cell: 'Child Person Z was born Jan 1 1851 to Person A'"
+        }
+      ]
+    },
+    {
+      "pattern_id": "pattern_4",
+      "label": "Fused BOYGIRL header genealogy table",
+      "description": "Genealogy table with a fused BOYGIRL header instead of separate BOY and GIRL columns. Otherwise similar to the standard pattern.",
+      "member_chapters": [
+        "chapter-004.html"
+      ],
+      "baseline_chapters": [
+        "chapter-004.html"
+      ],
+      "canonical_signals": [
+        "genealogy_table_count: 1",
+        "summary_table_count: 1",
+        "header: name|born|married|spouse|boygirl|died",
+        "residual_boygirl_header_count: 1"
+      ],
+      "canonical_headers": [
+        "NAME",
+        "BORN",
+        "MARRIED",
+        "SPOUSE",
+        "BOYGIRL",
+        "DIED"
+      ],
+      "allowed_variants": [
+        "Fused BOYGIRL header"
+      ],
+      "document_local_conventions": {
+        "subgroup_context_rows": "Single, non-concatenated subgroup/context rows are allowed.",
+        "table_fragmentation": "One genealogy table per chapter, plus a separate summary/total table is allowed.",
+        "summary_rows": "Summary/total descendants table is allowed.",
+        "marginal_or_handwritten_notes": "No marginal or handwritten notes present."
+      },
+      "confidence": 0.92,
+      "evidence": [
+        {
+          "chapter_basename": "chapter-004.html",
+          "page_numbers": [
+            4
+          ],
+          "quote": "header: name|born|married|spouse|boygirl|died, residual_boygirl_header_count: 1"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,81 @@
+{
+  "schema_version": "jev_consistency_shadow_v1",
+  "advisory_only": true,
+  "model": "jev-1.13.0",
+  "state_basis": "compact_extracted_html_only",
+  "chapters": [
+    {
+      "chapter_ordinal": 0,
+      "authoritative_status": "format_drift",
+      "shadow_status": "uncertain",
+      "route": "review",
+      "latency_ms": 228.64987491630018,
+      "jev_status": "conformant",
+      "probabilities": {
+        "uncertain": 0.03,
+        "row_semantic_issue": 0.0,
+        "mixed": 0.0,
+        "conformant": 0.95,
+        "format_drift": 0.02
+      },
+      "confidence": 0.94,
+      "input_tokens": 1178,
+      "output_tokens": 64,
+      "cost_usd": 4.9476000000000005e-05,
+      "reason": "deterministic_layout_guard"
+    },
+    {
+      "chapter_ordinal": 1,
+      "authoritative_status": "row_semantic_issue",
+      "shadow_status": "row_semantic_issue",
+      "route": "jev",
+      "latency_ms": 326.1344580678269,
+      "jev_status": "row_semantic_issue",
+      "probabilities": {
+        "conformant": 0.0,
+        "mixed": 0.02,
+        "row_semantic_issue": 0.98,
+        "format_drift": 0.0,
+        "uncertain": 0.0
+      },
+      "confidence": 0.98,
+      "input_tokens": 1367,
+      "output_tokens": 66,
+      "cost_usd": 5.7414e-05,
+      "reason": "confident_classification"
+    },
+    {
+      "chapter_ordinal": 2,
+      "authoritative_status": "conformant",
+      "shadow_status": "conformant",
+      "route": "jev",
+      "latency_ms": 225.41645797900856,
+      "jev_status": "conformant",
+      "probabilities": {
+        "conformant": 0.95,
+        "mixed": 0.0,
+        "format_drift": 0.01,
+        "uncertain": 0.04,
+        "row_semantic_issue": 0.0
+      },
+      "confidence": 0.94,
+      "input_tokens": 1024,
+      "output_tokens": 64,
+      "cost_usd": 4.3008000000000006e-05,
+      "reason": "confident_classification"
+    }
+  ],
+  "known_cost_usd": 0.000149898,
+  "unknown_cost_reserved_usd": 0.0,
+  "maximum_run_cost_usd": 0.008064,
+  "dispatched": 3,
+  "created_at": "2026-09-21T18:45:37.269618+00:00",
+  "run_id": "story234-anonymized-observation",
+  "input_sha256": "a0f7555048932eb67b3b668395ac37d3913b7f6f3e65ab4a1ca8d54371ed50c5",
+  "plan_sha256": "77108f18110d14f845f0f0e666d3975b2e83baec4b0626a59917c5dd8601bc16",
+  "authoritative_sha256": "3ec396a97c4498c0dc6c9a0486e3dfdfa0663ea883043a3caf16325b0b19e95e",
+  "total_chapters": 3,
+  "comparison_mode": "shadow_with_existing_planner_fallback",
+  "skipped_chapters": 0,
+  "status": "complete"
+}

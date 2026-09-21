@@ -1,0 +1,15 @@
+{
+  "status": "CLEAR",
+  "reviewer": "root",
+  "freeze_sha256": "b9b5ae5349ae4765781487b48843cddbfd55142e7efb36f1efc2a67826ae2ee3",
+  "findings": [
+    "Generated text contains only fictional labels/dates; one inherited 48-row structure, five declared mutations.",
+    "Cases1-5 source-supported; case6 predeclared compaction coverage probe excluded conditional classifier accuracy.",
+    "No gold in exact planner request or shadow extraction.",
+    "Native runtime deadline, no retries, distinct attempt custody, explicit endpoint/model/usage qualification and immutable primary outputs verified."
+  ],
+  "max_calls": 7,
+  "maximum_exposure_usd": 0.15,
+  "conditional_classifier_cases": 5,
+  "private_original_transfer_authorized": false
+}

@@ -115,3 +115,17 @@ report and verification: `docs/evals/artifacts/story234-jev-shadow/live-syntheti
 No private document, extra GPT call or persistent activation. This is a transport
 and policy observation, not a production-quality comparison. Existing full-driver
 mock integration evidence remains applicable; runtime source did not change.
+
+2026-09-21 — Approved limited native observation after landing: generated six
+fully fictional variants preserving one reviewed 48-row chapter DOM; root reviewed
+source/gold/requests before calls and excluded the sixth compaction probe from
+conditional classifier scoring. Full planner5/5, rawJEV4/5, guarded shadow4/5
+exact with a safe review on the remaining format case. Allfour authoritative
+artifacts unchanged. Planner conventions contradicted its own format verdict on
+fused headers, explaining the JEV clean result; layout guard prevented clearance.
+The deliberately ambiguous sixth note was dropped by compaction and both models
+missed that missing context. Seven calls cost$0.03386839, unknown$0, no retries or
+contract failures under$0.15 cap. Keep shadow-only; no runtime policy changes.
+Evidence: `docs/evals/artifacts/story234-anonymized-observation/report.md`, frozen
+manifest/review and `run/` raw requests/responses. Five focused harness tests and
+Ruff passed; runtime tests reused unchanged. Primary checkout untouched.

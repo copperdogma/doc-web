@@ -1271,8 +1271,8 @@
             "date": "2026-09-21",
             "source_type": "eval-attempt",
             "source": "docs/evals/registry.yaml",
-            "source_id": "001",
-            "summary": "USD0.0630996 spent on97calls; no runtime changes. Exact evidence docs/evals/artifacts/jev-consistency-20260921/report.md."
+            "source_id": "002",
+            "summary": "Five evidence-visible cases: full planner5/5, raw JEV4/5, shadow4/5 exact plus1 safe layout-guard review. Sixth deliberately ambiguous case was dropped by compaction and excluded from classifier accuracy before calls...."
           },
           "story_ids": [
             "145",
@@ -16634,6 +16634,14 @@
           "approach": "Independent synthetic gold review, native Choice/schema comparison, real confidence fallback",
           "note": "USD0.0630996 spent on97calls; no runtime changes. Exact evidence docs/evals/artifacts/jev-consistency-20260921/report.md.",
           "retry_when": []
+        },
+        {
+          "id": "002",
+          "date": "2026-09-21",
+          "status": "succeeded",
+          "approach": "Story234 anonymized structural runtime observation; fresh full planner and dependent native shadow",
+          "note": "Five evidence-visible cases: full planner5/5, raw JEV4/5, shadow4/5 exact plus1 safe layout-guard review. Sixth deliberately ambiguous case was dropped by compaction and excluded from classifier accuracy before calls. Planner fused-header verdict contradicted its allowed conventions; no additional defect caught versus planner. Seven calls USD0.03386839, unknown0; existing authoritative artifacts unchanged. Keep opt-in; address convention consistency and compaction before expansion. Evidence docs/evals/artifacts/story234-anonymized-observation/report.md.\n",
+          "retry_when": []
         }
       ],
       "retry_when": [],
@@ -16654,8 +16662,8 @@
           "date": "2026-09-21",
           "source_type": "eval-attempt",
           "source": "docs/evals/registry.yaml",
-          "source_id": "001",
-          "summary": "USD0.0630996 spent on97calls; no runtime changes. Exact evidence docs/evals/artifacts/jev-consistency-20260921/report.md."
+          "source_id": "002",
+          "summary": "Five evidence-visible cases: full planner5/5, raw JEV4/5, shadow4/5 exact plus1 safe layout-guard review. Sixth deliberately ambiguous case was dropped by compaction and excluded from classifier accuracy before calls...."
         }
       }
     }
