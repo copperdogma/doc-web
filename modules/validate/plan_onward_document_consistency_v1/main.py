@@ -97,6 +97,20 @@ Genealogy-specific reminders:
 - Marginal or handwritten notes should be handled consistently, but they are a
   semantic placement problem when their meaning or attachment is wrong.
 
+Conventions describe the desired document-local policy, not a catalog of observed
+errors. Keep observed signatures and defects in evidence/chapter findings. Do not
+put a feature in canonical_headers, canonical_signals or allowed_variants while
+also calling that same feature a defect for that family. In particular, do not
+create an anomaly-only family to make fused headers or concatenated context rows
+canonical. A genuinely different, supported document-local variant is allowed;
+explain its evidence and apply its policy consistently. Compare all chapters
+before choosing the family baseline.
+
+Unclassified DIED-cell notes are evidence needing interpretation, not proven
+child/death events. Missing source pages and truncated examples limit certainty.
+If the event or row attachment cannot be established from available evidence,
+return uncertain rather than inventing a semantic defect or assuming conformant.
+
 Return strict JSON only.
 """
 
@@ -205,6 +219,22 @@ def _row_semantic_note_reason(cells: Sequence[str]) -> Optional[str]:
     return None
 
 
+def _unclassified_died_note(cells: Sequence[str]) -> bool:
+    """Retain unknown prose without asserting a semantic defect."""
+    if len(cells) not in {6, 7} or _row_semantic_note_reason(cells):
+        return False
+    value = _normalize_text(cells[-1])
+    return bool(
+        re.search(r"[A-Za-z]", value)
+        and not PURE_DATE_RE.fullmatch(value)
+        and not (MONTH_HINT_RE.fullmatch(value.split()[0]) and re.fullmatch(
+            r"[A-Za-z]{3,9}\.?\s+\d{1,2}(?:,\s*|\s+)\d{2,4}", value
+        ))
+        and not DEATH_HINT_RE.search(value)
+        and value.lower() not in {"unknown", "n/a", "na", "living", "alive"}
+    )
+
+
 def _resolve_artifact_path(path: str, *, run_dir: str, output_root: str) -> str:
     raw = Path(path)
     candidates: List[Path] = []
@@ -252,6 +282,7 @@ def _page_profile(page_row: Dict[str, Any]) -> Dict[str, Any]:
     concatenated_subgroups: List[str] = []
     left_column_rows: List[str] = []
     suspicious_rows: List[Dict[str, Any]] = []
+    unclassified_note_rows: List[Dict[str, Any]] = []
 
     for heading in soup.find_all(["h2", "h3"]):
         text = _normalize_text(heading.get_text(" ", strip=True))
@@ -279,6 +310,10 @@ def _page_profile(page_row: Dict[str, Any]) -> Dict[str, Any]:
                 if numeric_colspan <= 2:
                     left_column_rows.append(cells[0])
 
+            if _unclassified_died_note(cells):
+                unclassified_note_rows.append({
+                    "row_preview": " | ".join(cells), "died_cell": cells[-1]
+                })
             reason = _row_semantic_note_reason(cells)
             if reason:
                 suspicious_rows.append(
@@ -315,6 +350,7 @@ def _page_profile(page_row: Dict[str, Any]) -> Dict[str, Any]:
             "concatenated_subgroup_row_count": len(concatenated_subgroups),
             "left_column_only_family_row_count": len(left_column_rows),
             "suspicious_row_semantic_count": len(suspicious_rows),
+            "unclassified_note_count": len(unclassified_note_rows),
             "header_signatures": dict(signatures),
             "suggested_issue_types": suggested_issue_types,
         },
@@ -323,6 +359,7 @@ def _page_profile(page_row: Dict[str, Any]) -> Dict[str, Any]:
             "concatenated_subgroups": _clean_text_list(concatenated_subgroups, limit=3),
             "left_column_family_rows": _clean_text_list(left_column_rows, limit=3),
             "suspicious_rows": suspicious_rows[:2],
+            "unclassified_notes": unclassified_note_rows[:2],
         },
     }
 
@@ -352,6 +389,7 @@ def _chapter_profile(
     left_column_rows: List[str] = []
     summary_rows: List[str] = []
     suspicious_rows: List[Dict[str, Any]] = []
+    unclassified_note_rows: List[Dict[str, Any]] = []
 
     for heading in soup.find_all(["h2", "h3"]):
         text = _normalize_text(heading.get_text(" ", strip=True))
@@ -384,6 +422,10 @@ def _chapter_profile(
                 if numeric_colspan <= 2:
                     left_column_rows.append(cells[0])
 
+            if _unclassified_died_note(cells):
+                unclassified_note_rows.append({
+                    "row_preview": " | ".join(cells), "died_cell": cells[-1]
+                })
             reason = _row_semantic_note_reason(cells)
             if reason:
                 suspicious_rows.append(
@@ -416,7 +458,7 @@ def _chapter_profile(
         if not page_row:
             continue
         page_profile = _page_profile(page_row)
-        if page_profile["signals"]["suggested_issue_types"] or not page_profiles:
+        if page_profile["signals"]["suggested_issue_types"] or page_profile["signals"]["unclassified_note_count"] or not page_profiles:
             page_profiles.append(page_profile)
     page_profiles = page_profiles[:4]
 
@@ -444,6 +486,7 @@ def _chapter_profile(
             "concatenated_subgroup_row_count": len(concatenated_subgroups),
             "left_column_only_family_row_count": len(left_column_rows),
             "suspicious_row_semantic_count": len(suspicious_rows),
+            "unclassified_note_count": len(unclassified_note_rows),
             "header_signatures": dict(signatures),
             "suggested_issue_types": suggested_issue_types,
         },
@@ -454,8 +497,15 @@ def _chapter_profile(
             "left_column_family_rows": _clean_text_list(left_column_rows, limit=4),
             "summary_rows": _clean_text_list(summary_rows, limit=4),
             "suspicious_rows": suspicious_rows[:4],
+            "unclassified_notes": unclassified_note_rows[:4],
         },
         "page_profiles": page_profiles,
+        "source_context": {
+            "expected_page_count": len(metrics.source_pages),
+            "available_page_count": sum(p in page_rows_by_number for p in metrics.source_pages),
+            "missing_pages": [p for p in metrics.source_pages if p not in page_rows_by_number],
+            "retained_page_profiles": len(page_profiles),
+        },
     }
 
 
@@ -542,6 +592,13 @@ def _planner_input_from_dossier(dossier: Dict[str, Any]) -> Dict[str, Any]:
                 "chapter_basename": chapter["chapter_basename"],
                 "chapter_title": chapter["chapter_title"],
                 "source_pages": chapter["source_pages"],
+                "source_context": {
+                    **chapter.get("source_context", {}),
+                    "retained_page_profiles": len((chapter.get("page_profiles") or [])[:2]),
+                    "available_profiles_omitted_from_compact_input": max(0,
+                        chapter.get("source_context", {}).get("available_page_count", 0)
+                        - len((chapter.get("page_profiles") or [])[:2])),
+                },
                 "source_printed_pages": chapter["source_printed_pages"],
                 "current_detector": chapter["current_detector"],
                 "signals": {
@@ -554,6 +611,11 @@ def _planner_input_from_dossier(dossier: Dict[str, Any]) -> Dict[str, Any]:
                     "concatenated_subgroups": [_truncate(value, 200) for value in (chapter["signal_examples"].get("concatenated_subgroups") or [])[:2]],
                     "left_column_family_rows": [_truncate(value, 160) for value in (chapter["signal_examples"].get("left_column_family_rows") or [])[:2]],
                     "summary_rows": [_truncate(value, 160) for value in (chapter["signal_examples"].get("summary_rows") or [])[:2]],
+                    "unclassified_notes": [
+                        {"row_preview": _truncate(item.get("row_preview") or "", 220),
+                         "died_cell": _truncate(item.get("died_cell") or "", 140)}
+                        for item in chapter["signal_examples"].get("unclassified_notes", [])[:2]
+                    ],
                     "suspicious_rows": [
                         {
                             "reason": item.get("reason"),
@@ -575,6 +637,11 @@ def _planner_input_from_dossier(dossier: Dict[str, Any]) -> Dict[str, Any]:
                             "external_headings": [_truncate(value, 160) for value in (page["signal_examples"].get("external_headings") or [])[:2]],
                             "concatenated_subgroups": [_truncate(value, 180) for value in (page["signal_examples"].get("concatenated_subgroups") or [])[:2]],
                             "left_column_family_rows": [_truncate(value, 160) for value in (page["signal_examples"].get("left_column_family_rows") or [])[:2]],
+                            "unclassified_notes": [
+                                {"row_preview": _truncate(item.get("row_preview") or "", 220),
+                                 "died_cell": _truncate(item.get("died_cell") or "", 140)}
+                                for item in page["signal_examples"].get("unclassified_notes", [])[:1]
+                            ],
                             "suspicious_rows": [
                                 {
                                     "reason": item.get("reason"),
@@ -924,6 +991,20 @@ def build_outputs(
         }
         pattern_families.append(normalized)
 
+    for family in pattern_families:
+        conflicts = []
+        canonical = tuple(_normalize_token(v) for v in family["canonical_headers"])
+        if canonical == FUSED_HEADERS:
+            conflicts = [
+                {"chapter_basename": f["chapter_basename"], "reason": "canonical_fused_header_flagged_as_defect"}
+                for f in planner_payload.get("chapter_findings", [])
+                if f.get("chapter_basename") in family["member_chapters"]
+                and f.get("status") in {"format_drift", "mixed"}
+                and "fused_boygirl_headers" in f.get("issue_types", [])
+                and "fused_boygirl_headers" in chapter_profiles[f["chapter_basename"]]["signals"]["suggested_issue_types"]
+            ]
+        family["convention_conflicts"] = conflicts
+
     pattern_by_id = {family["pattern_id"]: family for family in pattern_families}
     chapter_findings_by_chapter: Dict[str, Dict[str, Any]] = {}
     for finding in planner_payload.get("chapter_findings") or []:
@@ -939,6 +1020,21 @@ def build_outputs(
         status = _status_from_issue_types(issue_types)
         if not issue_types:
             status = "conformant"
+        unresolved_context = bool(chapter_profile["signals"].get("unclassified_note_count")) and bool(
+            chapter_profile.get("source_context", {}).get("missing_pages")
+        )
+        if finding.get("status") == "uncertain" or (status == "conformant" and unresolved_context):
+            status = "uncertain"
+        family = pattern_by_id.get(finding.get("pattern_id"), {})
+        policy_disagreement = (
+            finding.get("status") == "conformant" and not requested_issue_types
+            and set(suggested_issue_types) == {"fused_boygirl_headers"}
+            and chapter_basename in family.get("member_chapters", [])
+            and tuple(_normalize_token(v) for v in family.get("canonical_headers", [])) == FUSED_HEADERS
+            and not family.get("convention_conflicts")
+        )
+        if policy_disagreement:
+            status, issue_types = "uncertain", []
         evidence = _normalize_evidence(finding.get("evidence") or [], valid_chapters)
         if not evidence and issue_types:
             evidence = _default_evidence_for_issue_types(chapter_profile, issue_types)
@@ -957,6 +1053,7 @@ def build_outputs(
             "chapter_title": chapter_profile["chapter_title"],
             "pattern_id": finding.get("pattern_id") if finding.get("pattern_id") in pattern_by_id else None,
             "status": status,
+            **({"status_reason": "detector_vs_canonical_variant_disagreement"} if policy_disagreement else {}),
             "issue_types": issue_types,
             "why": _normalize_text(finding.get("why") or ""),
             "relevant_pages": page_numbers,
@@ -974,6 +1071,8 @@ def build_outputs(
         if finding is None:
             inferred_issue_types = chapter_profile["signals"]["suggested_issue_types"]
             inferred_status = "conformant" if not inferred_issue_types else _status_from_issue_types(inferred_issue_types)
+            if not inferred_issue_types and chapter_profile["signals"].get("unclassified_note_count"):
+                inferred_status = "uncertain"
             finding = {
                 "chapter_basename": chapter_basename,
                 "chapter_title": chapter_profile["chapter_title"],
@@ -1022,6 +1121,7 @@ def build_outputs(
         "format_drift_chapters": format_drift_chapters,
         "row_semantic_issue_chapters": row_semantic_chapters,
         "mixed_issue_chapters": mixed_issue_chapters,
+        "uncertain_chapters": [c["chapter_basename"] for c in conformance_chapters if c["status"] == "uncertain"],
         "newly_surfaced_format_drift_chapters": newly_surfaced,
         "newly_surfaced_mixed_issue_chapters": newly_surfaced_mixed,
         "current_detector_flagged_chapters": dossier["baseline"]["current_detector_flagged_chapters"],
@@ -1060,6 +1160,7 @@ def build_outputs(
                 "canonical_signals": family["canonical_signals"],
                 "allowed_variants": family["allowed_variants"],
                 "document_local_conventions": family["document_local_conventions"],
+                "convention_conflicts": family["convention_conflicts"],
                 "confidence": family["confidence"],
             }
             for family in pattern_families

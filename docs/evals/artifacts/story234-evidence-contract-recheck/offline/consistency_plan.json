@@ -1,0 +1,157 @@
+{
+  "schema_version": "document_consistency_plan_v1",
+  "created_at": "2026-09-21T19:00:32.348633Z",
+  "run_id": "contract-enabled",
+  "document_label": "Onward genealogy consistency planning",
+  "summary": {
+    "document_scope": "6 chapters, all with synthetic genealogy tables and summary rows. Most chapters use a 7-column header (NAME, BORN, MARRIED, SPOUSE, BOY, GIRL, DIED) with a separate summary/total table. One chapter (chapter-004.html) uses a fused BOYGIRL header. Issues include one instance each of multi-table fragmentation, concatenated subgroup/context rows, a fused BOYGIRL header, and a child note in the wrong column.",
+    "default_note_policy": "Notes and child annotations should not be placed in the DIED column; marginal or child notes should be attached to the correct individual or family row, not misfiled in unrelated columns.",
+    "default_note_policy_rationale": "The majority of chapters do not show child or marginal notes in the DIED column, and only one chapter (chapter-005.html) has a semantic placement error. This suggests the intended convention is to keep such notes out of the DIED column for clarity and consistency.",
+    "overall_confidence": 0.93
+  },
+  "pattern_conventions": [
+    {
+      "pattern_id": "pattern_1",
+      "label": "Standard 7-column genealogy table with separate summary row",
+      "member_chapters": [
+        "chapter-001.html",
+        "chapter-006.html"
+      ],
+      "canonical_headers": [
+        "NAME",
+        "BORN",
+        "MARRIED",
+        "SPOUSE",
+        "BOY",
+        "GIRL",
+        "DIED"
+      ],
+      "canonical_signals": [
+        "genealogy_table_count: 1",
+        "summary_table_count: 1",
+        "header: name|born|married|spouse|boy|girl|died",
+        "subgroup_row_count: 16",
+        "no concatenated subgroup/context rows",
+        "no fused boygirl headers",
+        "no suspicious row semantics"
+      ],
+      "allowed_variants": [
+        "summary/total table may be present after main table"
+      ],
+      "document_local_conventions": {
+        "subgroup_context_rows": "Single, non-concatenated subgroup/context rows are allowed.",
+        "table_fragmentation": "One genealogy table per chapter, plus a separate summary/total table is allowed.",
+        "summary_rows": "Summary/total descendants table is allowed and expected.",
+        "marginal_or_handwritten_notes": "No marginal or handwritten notes present; if present, should not be in DIED column."
+      },
+      "convention_conflicts": [],
+      "confidence": 0.98
+    },
+    {
+      "pattern_id": "pattern_2",
+      "label": "Standard 7-column genealogy table with minor fragmentation or context drift",
+      "member_chapters": [
+        "chapter-002.html",
+        "chapter-003.html"
+      ],
+      "canonical_headers": [
+        "NAME",
+        "BORN",
+        "MARRIED",
+        "SPOUSE",
+        "BOY",
+        "GIRL",
+        "DIED"
+      ],
+      "canonical_signals": [
+        "genealogy_table_count: 2 (chapter-002.html)",
+        "concatenated_subgroup_row_count: 1 (chapter-003.html)",
+        "header: name|born|married|spouse|boy|girl|died",
+        "summary_table_count: 1"
+      ],
+      "allowed_variants": [
+        "Multiple genealogy tables per chapter (fragmentation)",
+        "Concatenated subgroup/context rows"
+      ],
+      "document_local_conventions": {
+        "subgroup_context_rows": "Should not be concatenated; each context row should be separate.",
+        "table_fragmentation": "Prefer one genealogy table per chapter, but minor fragmentation is observed.",
+        "summary_rows": "Summary/total descendants table is allowed.",
+        "marginal_or_handwritten_notes": "No marginal or handwritten notes present."
+      },
+      "convention_conflicts": [],
+      "confidence": 0.9
+    },
+    {
+      "pattern_id": "pattern_3",
+      "label": "7-column genealogy table with row semantic issue (child note in DIED column)",
+      "member_chapters": [
+        "chapter-005.html"
+      ],
+      "canonical_headers": [
+        "NAME",
+        "BORN",
+        "MARRIED",
+        "SPOUSE",
+        "BOY",
+        "GIRL",
+        "DIED"
+      ],
+      "canonical_signals": [
+        "genealogy_table_count: 1",
+        "summary_table_count: 1",
+        "header: name|born|married|spouse|boy|girl|died",
+        "suspicious_row_semantic_count: 1",
+        "child_note_in_wrong_column"
+      ],
+      "allowed_variants": [
+        "None; this is a semantic error, not a legitimate variant."
+      ],
+      "document_local_conventions": {
+        "subgroup_context_rows": "Single, non-concatenated subgroup/context rows are allowed.",
+        "table_fragmentation": "One genealogy table per chapter, plus a separate summary/total table is allowed.",
+        "summary_rows": "Summary/total descendants table is allowed.",
+        "marginal_or_handwritten_notes": "Notes should not be placed in the DIED column."
+      },
+      "convention_conflicts": [],
+      "confidence": 0.95
+    },
+    {
+      "pattern_id": "pattern_4",
+      "label": "Fused BOYGIRL header genealogy table",
+      "member_chapters": [
+        "chapter-004.html"
+      ],
+      "canonical_headers": [
+        "NAME",
+        "BORN",
+        "MARRIED",
+        "SPOUSE",
+        "BOYGIRL",
+        "DIED"
+      ],
+      "canonical_signals": [
+        "genealogy_table_count: 1",
+        "summary_table_count: 1",
+        "header: name|born|married|spouse|boygirl|died",
+        "residual_boygirl_header_count: 1"
+      ],
+      "allowed_variants": [
+        "Fused BOYGIRL header"
+      ],
+      "document_local_conventions": {
+        "subgroup_context_rows": "Single, non-concatenated subgroup/context rows are allowed.",
+        "table_fragmentation": "One genealogy table per chapter, plus a separate summary/total table is allowed.",
+        "summary_rows": "Summary/total descendants table is allowed.",
+        "marginal_or_handwritten_notes": "No marginal or handwritten notes present."
+      },
+      "convention_conflicts": [
+        {
+          "chapter_basename": "chapter-004.html",
+          "reason": "canonical_fused_header_flagged_as_defect"
+        }
+      ],
+      "confidence": 0.92
+    }
+  ]
+}

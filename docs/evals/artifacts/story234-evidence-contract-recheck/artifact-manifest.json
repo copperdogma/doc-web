@@ -1,0 +1,134 @@
+{
+  "report.md": {
+    "sha256": "1b64461839cf506025e72e20f73c077cb165cd52ef09c87691a88099d02485cb",
+    "bytes": 6930
+  },
+  "validation.md": {
+    "sha256": "45baaebf5627050e4795b2f6b21d09173db64471f85650e93da946cc9870fa85",
+    "bytes": 1907
+  },
+  "dossier.json": {
+    "sha256": "6f771fab8e54c6736c97c1f713db59ba64625b755351786330a6c0a58bb5b1c5",
+    "bytes": 18497
+  },
+  "plan.md": {
+    "sha256": "98f92779f28376202fcf1f27c12e49b75ea42fa30305f6ef02ef8fd091ed3b50",
+    "bytes": 1204
+  },
+  "planner.request.json": {
+    "sha256": "39984cdcca69c4e15adbe769b51691804dc198e17c2057b401f09427487dceab",
+    "bytes": 23855
+  },
+  "review.json": {
+    "sha256": "09da4037cd9b2bcb82c06b2d4a29db64a4718dc9d5a20a6601f51be0bc8c48fe",
+    "bytes": 647
+  },
+  "freeze.json": {
+    "sha256": "3efd90ff2bfaefdadf1bcefb3197e69829767558c03d434e713c75121d463f2c",
+    "bytes": 2709
+  },
+  "run/summary.json": {
+    "sha256": "e8bf6e11a8f84755e29138f505019476d30f7ac1fe32fefd15d2ebf106cd68c1",
+    "bytes": 728
+  },
+  "run/shadow-1.json": {
+    "sha256": "7ad9bd972fad12fe83ef5aecffc5391ef02ce431a6173a234f811036c2c3ad73",
+    "bytes": 2458
+  },
+  "run/jev-1.request.json": {
+    "sha256": "5240e823cb7128e1da703761735676dfeac022cfc5e3d5e54d180e352a0ff98c",
+    "bytes": 4652
+  },
+  "run/planner.response.json": {
+    "sha256": "15a732afe10761c278875fd75998805c07201b7b10a2303610d201bd3ffe9089",
+    "bytes": 11100
+  },
+  "run/plan.json": {
+    "sha256": "ca6e0d94370b0a93f2252e534db29d4025370216f4be9e5c2780bdbf1a87bde9",
+    "bytes": 4223
+  },
+  "run/primary.json": {
+    "sha256": "ce5dfd042fe7781e065691e12170449b675fca58c8fb1f2b57f722c94a7d0eea",
+    "bytes": 4808
+  },
+  "run/jev-4.response.json": {
+    "sha256": "36d480311dfdb1cf483ed0dcd15d33236115db5c1c3803a3ac149d230ff44ce7",
+    "bytes": 401
+  },
+  "run/jev-3.response.json": {
+    "sha256": "90febcab6b834a2996e01ad029f33a3a355623649b86e4174da0a81c977d1ea5",
+    "bytes": 395
+  },
+  "run/ledger.jsonl": {
+    "sha256": "d2b00aa0aba703f96536185aeb38955500c6f6c991030ab4d84c66d29d5b2a94",
+    "bytes": 380
+  },
+  "run/jev-2.response.json": {
+    "sha256": "4f158148efdfa9fea6e74527e27c7e476053106e51b18179ebc2a63e358be309",
+    "bytes": 391
+  },
+  "run/jev-5.response.json": {
+    "sha256": "ef62777effe0c28768c24b35047c5994bc5de2d19c7a3e9b447a0c97558e8b65",
+    "bytes": 401
+  },
+  "run/jev-1.response.json": {
+    "sha256": "130c0ab59142962e644e61a845ec0e9b39ebcfc978cf50e2e5f5448b79d70ed3",
+    "bytes": 392
+  },
+  "run/planner.request.json": {
+    "sha256": "39984cdcca69c4e15adbe769b51691804dc198e17c2057b401f09427487dceab",
+    "bytes": 23855
+  },
+  "run/conformance.json": {
+    "sha256": "fa757a5b016adef2d500dfb21d023a4a5e3b89fe497b83c0d1dec38836ce8adf",
+    "bytes": 8269
+  },
+  "run/jev-5.request.json": {
+    "sha256": "567b57d82652c6d0123f90792ee6893780767db4926c0f86644248819d0e0eec",
+    "bytes": 4010
+  },
+  "run/jev-2.request.json": {
+    "sha256": "b51e2cded655580be625cb0db08f757220d4244ec3bf462078842a7904348128",
+    "bytes": 4652
+  },
+  "run/patterns.json": {
+    "sha256": "0f8db2331a26ee7af66a8fcb4e9dba734e64f456718968b24a555a255f7754e0",
+    "bytes": 5186
+  },
+  "run/jev-3.request.json": {
+    "sha256": "7da4f676b115a4a43305156f07ded54ddce0f75aca212f37b695922c5aeb04fc",
+    "bytes": 4976
+  },
+  "run/jev-4.request.json": {
+    "sha256": "c240878f4135798ae7684e9fe93e4a41fdc3e36c481fd3e83b90d2b6c8bed69f",
+    "bytes": 5154
+  },
+  "run/shadow-2.json": {
+    "sha256": "a3b787b07774ecbaeb4303b3b75abaec41f2253e469de4426899f8ebd11ae6e1",
+    "bytes": 2128
+  },
+  "offline/report.jsonl": {
+    "sha256": "c72a21c6e278fab380021a1e23a6eba3f64a6e64b7b6241b32776db9a784e7a5",
+    "bytes": 3746
+  },
+  "offline/consistency_plan.json": {
+    "sha256": "a37ff9720ac5e4e7ff89ba357c8cf892e82dc0ff589aea65d67e18c50fa89c3a",
+    "bytes": 6183
+  },
+  "offline/conformance_report.json": {
+    "sha256": "9c243ddc8e6582d96e2144315c740cf190d6593ba618965e71dfab7355bebc36",
+    "bytes": 8111
+  },
+  "offline/jev_consistency_shadow.json": {
+    "sha256": "2bc8c61b229e4a32f5359941f7d39dad8a4c02a1ff4ea76d1f75f1892f4df327",
+    "bytes": 2948
+  },
+  "offline/document_consistency_dossier.json": {
+    "sha256": "e1018fe1ddc6adef2a18cebb96b24b8ed422dbb942e4d5eebedd4a753eb9f174",
+    "bytes": 18492
+  },
+  "offline/driver-verification.json": {
+    "sha256": "655e1270acf2f82999bb8763c9793c94f87af268bbbba431b7b9200017f43cec",
+    "bytes": 562
+  }
+}

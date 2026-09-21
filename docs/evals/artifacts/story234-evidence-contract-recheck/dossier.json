@@ -1,0 +1,539 @@
+{
+  "schema_version": "onward_document_consistency_dossier_v1",
+  "created_at": "2026-09-21T18:57:27.996583Z",
+  "document_label": "Onward genealogy consistency planning",
+  "source_artifacts": {
+    "chapters_artifact": "/Users/cam/.codex/worktrees/jev-docweb-20260921/docs/evals/artifacts/story234-anonymized-observation/chapters.jsonl",
+    "pages_artifact": "/Users/cam/.codex/worktrees/jev-docweb-20260921/docs/evals/artifacts/story234-anonymized-observation/pages.jsonl"
+  },
+  "baseline": {
+    "candidate_genealogy_chapters": 6,
+    "current_detector_flagged_chapters": [
+      "chapter-004.html"
+    ],
+    "current_detector_unflagged_watchlist": [
+      "chapter-002.html",
+      "chapter-003.html",
+      "chapter-005.html"
+    ],
+    "issue_signal_counts": {
+      "fragmented_multi_table_chapter": 1,
+      "concatenated_subgroup_context_rows": 1,
+      "fused_boygirl_headers": 1,
+      "child_note_in_wrong_column": 1
+    },
+    "header_signature_counts": {
+      "name|born|married|spouse|boy|girl|died": 6,
+      "totaldescendants": 6,
+      "name|born|married|spouse|boygirl|died": 1
+    }
+  },
+  "chapter_profiles": [
+    {
+      "chapter_basename": "chapter-001.html",
+      "chapter_title": "Fictional structural sample",
+      "chapter_file": "/Users/cam/.codex/worktrees/jev-docweb-20260921/docs/evals/artifacts/story234-anonymized-observation/chapter-001.html",
+      "chapter_artifact_path": "/Users/cam/.codex/worktrees/jev-docweb-20260921/docs/evals/artifacts/story234-anonymized-observation/chapter-001.html",
+      "source_pages": [
+        1
+      ],
+      "source_printed_pages": [],
+      "current_detector": {
+        "flagged": false,
+        "drift_score": 0,
+        "confidence": 0.5,
+        "reasons": [],
+        "dominant_signature": "name|born|married|spouse|boy|girl|died"
+      },
+      "signals": {
+        "genealogy_table_count": 1,
+        "all_table_count": 2,
+        "summary_table_count": 1,
+        "subgroup_row_count": 16,
+        "external_family_heading_count": 0,
+        "residual_boygirl_header_count": 0,
+        "concatenated_subgroup_row_count": 0,
+        "left_column_only_family_row_count": 0,
+        "suspicious_row_semantic_count": 0,
+        "unclassified_note_count": 0,
+        "header_signatures": {
+          "name|born|married|spouse|boy|girl|died": 1,
+          "totaldescendants": 1
+        },
+        "suggested_issue_types": []
+      },
+      "signal_examples": {
+        "subgroup_rows": [
+          "SYNTHETIC FAMILY"
+        ],
+        "external_headings": [],
+        "concatenated_subgroups": [],
+        "left_column_family_rows": [],
+        "summary_rows": [
+          "TOTAL DESCENDANTS 12"
+        ],
+        "suspicious_rows": [],
+        "unclassified_notes": []
+      },
+      "page_profiles": [
+        {
+          "page_number": 1,
+          "printed_page_number": null,
+          "image": null,
+          "signals": {
+            "table_count": 2,
+            "subgroup_row_count": 16,
+            "external_family_heading_count": 0,
+            "residual_boygirl_header_count": 0,
+            "concatenated_subgroup_row_count": 0,
+            "left_column_only_family_row_count": 0,
+            "suspicious_row_semantic_count": 0,
+            "unclassified_note_count": 0,
+            "header_signatures": {
+              "name|born|married|spouse|boy|girl|died": 1,
+              "totaldescendants": 1
+            },
+            "suggested_issue_types": []
+          },
+          "signal_examples": {
+            "external_headings": [],
+            "concatenated_subgroups": [],
+            "left_column_family_rows": [],
+            "suspicious_rows": [],
+            "unclassified_notes": []
+          }
+        }
+      ],
+      "source_context": {
+        "expected_page_count": 1,
+        "available_page_count": 1,
+        "missing_pages": [],
+        "retained_page_profiles": 1
+      }
+    },
+    {
+      "chapter_basename": "chapter-002.html",
+      "chapter_title": "Fictional structural sample",
+      "chapter_file": "/Users/cam/.codex/worktrees/jev-docweb-20260921/docs/evals/artifacts/story234-anonymized-observation/chapter-002.html",
+      "chapter_artifact_path": "/Users/cam/.codex/worktrees/jev-docweb-20260921/docs/evals/artifacts/story234-anonymized-observation/chapter-002.html",
+      "source_pages": [
+        2
+      ],
+      "source_printed_pages": [],
+      "current_detector": {
+        "flagged": false,
+        "drift_score": 0,
+        "confidence": 0.5,
+        "reasons": [],
+        "dominant_signature": "name|born|married|spouse|boy|girl|died"
+      },
+      "signals": {
+        "genealogy_table_count": 2,
+        "all_table_count": 3,
+        "summary_table_count": 1,
+        "subgroup_row_count": 16,
+        "external_family_heading_count": 0,
+        "residual_boygirl_header_count": 0,
+        "concatenated_subgroup_row_count": 0,
+        "left_column_only_family_row_count": 0,
+        "suspicious_row_semantic_count": 0,
+        "unclassified_note_count": 0,
+        "header_signatures": {
+          "name|born|married|spouse|boy|girl|died": 2,
+          "totaldescendants": 1
+        },
+        "suggested_issue_types": [
+          "fragmented_multi_table_chapter"
+        ]
+      },
+      "signal_examples": {
+        "subgroup_rows": [
+          "SYNTHETIC FAMILY"
+        ],
+        "external_headings": [],
+        "concatenated_subgroups": [],
+        "left_column_family_rows": [],
+        "summary_rows": [
+          "TOTAL DESCENDANTS 12"
+        ],
+        "suspicious_rows": [],
+        "unclassified_notes": []
+      },
+      "page_profiles": [
+        {
+          "page_number": 2,
+          "printed_page_number": null,
+          "image": null,
+          "signals": {
+            "table_count": 3,
+            "subgroup_row_count": 16,
+            "external_family_heading_count": 0,
+            "residual_boygirl_header_count": 0,
+            "concatenated_subgroup_row_count": 0,
+            "left_column_only_family_row_count": 0,
+            "suspicious_row_semantic_count": 0,
+            "unclassified_note_count": 0,
+            "header_signatures": {
+              "name|born|married|spouse|boy|girl|died": 2,
+              "totaldescendants": 1
+            },
+            "suggested_issue_types": [
+              "fragmented_multi_table_chapter"
+            ]
+          },
+          "signal_examples": {
+            "external_headings": [],
+            "concatenated_subgroups": [],
+            "left_column_family_rows": [],
+            "suspicious_rows": [],
+            "unclassified_notes": []
+          }
+        }
+      ],
+      "source_context": {
+        "expected_page_count": 1,
+        "available_page_count": 1,
+        "missing_pages": [],
+        "retained_page_profiles": 1
+      }
+    },
+    {
+      "chapter_basename": "chapter-003.html",
+      "chapter_title": "Fictional structural sample",
+      "chapter_file": "/Users/cam/.codex/worktrees/jev-docweb-20260921/docs/evals/artifacts/story234-anonymized-observation/chapter-003.html",
+      "chapter_artifact_path": "/Users/cam/.codex/worktrees/jev-docweb-20260921/docs/evals/artifacts/story234-anonymized-observation/chapter-003.html",
+      "source_pages": [
+        3
+      ],
+      "source_printed_pages": [],
+      "current_detector": {
+        "flagged": false,
+        "drift_score": 0,
+        "confidence": 0.5,
+        "reasons": [],
+        "dominant_signature": "name|born|married|spouse|boy|girl|died"
+      },
+      "signals": {
+        "genealogy_table_count": 1,
+        "all_table_count": 2,
+        "summary_table_count": 1,
+        "subgroup_row_count": 16,
+        "external_family_heading_count": 0,
+        "residual_boygirl_header_count": 0,
+        "concatenated_subgroup_row_count": 1,
+        "left_column_only_family_row_count": 0,
+        "suspicious_row_semantic_count": 0,
+        "unclassified_note_count": 0,
+        "header_signatures": {
+          "name|born|married|spouse|boy|girl|died": 1,
+          "totaldescendants": 1
+        },
+        "suggested_issue_types": [
+          "concatenated_subgroup_context_rows"
+        ]
+      },
+      "signal_examples": {
+        "subgroup_rows": [
+          "SYNTHETIC Great Great Grandchildren SYNTHETIC Grandchildren FIRST FAMILY SECOND FAMILY",
+          "SYNTHETIC FAMILY"
+        ],
+        "external_headings": [],
+        "concatenated_subgroups": [
+          "SYNTHETIC Great Great Grandchildren SYNTHETIC Grandchildren FIRST FAMILY SECOND FAMILY"
+        ],
+        "left_column_family_rows": [],
+        "summary_rows": [
+          "TOTAL DESCENDANTS 12"
+        ],
+        "suspicious_rows": [],
+        "unclassified_notes": []
+      },
+      "page_profiles": [
+        {
+          "page_number": 3,
+          "printed_page_number": null,
+          "image": null,
+          "signals": {
+            "table_count": 2,
+            "subgroup_row_count": 16,
+            "external_family_heading_count": 0,
+            "residual_boygirl_header_count": 0,
+            "concatenated_subgroup_row_count": 1,
+            "left_column_only_family_row_count": 0,
+            "suspicious_row_semantic_count": 0,
+            "unclassified_note_count": 0,
+            "header_signatures": {
+              "name|born|married|spouse|boy|girl|died": 1,
+              "totaldescendants": 1
+            },
+            "suggested_issue_types": [
+              "concatenated_subgroup_context_rows"
+            ]
+          },
+          "signal_examples": {
+            "external_headings": [],
+            "concatenated_subgroups": [
+              "SYNTHETIC Great Great Grandchildren SYNTHETIC Grandchildren FIRST FAMILY SECOND FAMILY"
+            ],
+            "left_column_family_rows": [],
+            "suspicious_rows": [],
+            "unclassified_notes": []
+          }
+        }
+      ],
+      "source_context": {
+        "expected_page_count": 1,
+        "available_page_count": 1,
+        "missing_pages": [],
+        "retained_page_profiles": 1
+      }
+    },
+    {
+      "chapter_basename": "chapter-004.html",
+      "chapter_title": "Fictional structural sample",
+      "chapter_file": "/Users/cam/.codex/worktrees/jev-docweb-20260921/docs/evals/artifacts/story234-anonymized-observation/chapter-004.html",
+      "chapter_artifact_path": "/Users/cam/.codex/worktrees/jev-docweb-20260921/docs/evals/artifacts/story234-anonymized-observation/chapter-004.html",
+      "source_pages": [
+        4
+      ],
+      "source_printed_pages": [],
+      "current_detector": {
+        "flagged": true,
+        "drift_score": 25,
+        "confidence": 0.75,
+        "reasons": [
+          "residual_boygirl_headers"
+        ],
+        "dominant_signature": "name|born|married|spouse|boygirl|died"
+      },
+      "signals": {
+        "genealogy_table_count": 1,
+        "all_table_count": 2,
+        "summary_table_count": 1,
+        "subgroup_row_count": 16,
+        "external_family_heading_count": 0,
+        "residual_boygirl_header_count": 1,
+        "concatenated_subgroup_row_count": 0,
+        "left_column_only_family_row_count": 0,
+        "suspicious_row_semantic_count": 0,
+        "unclassified_note_count": 0,
+        "header_signatures": {
+          "name|born|married|spouse|boygirl|died": 1,
+          "totaldescendants": 1
+        },
+        "suggested_issue_types": [
+          "fused_boygirl_headers"
+        ]
+      },
+      "signal_examples": {
+        "subgroup_rows": [
+          "SYNTHETIC FAMILY"
+        ],
+        "external_headings": [],
+        "concatenated_subgroups": [],
+        "left_column_family_rows": [],
+        "summary_rows": [
+          "TOTAL DESCENDANTS 12"
+        ],
+        "suspicious_rows": [],
+        "unclassified_notes": []
+      },
+      "page_profiles": [
+        {
+          "page_number": 4,
+          "printed_page_number": null,
+          "image": null,
+          "signals": {
+            "table_count": 2,
+            "subgroup_row_count": 16,
+            "external_family_heading_count": 0,
+            "residual_boygirl_header_count": 1,
+            "concatenated_subgroup_row_count": 0,
+            "left_column_only_family_row_count": 0,
+            "suspicious_row_semantic_count": 0,
+            "unclassified_note_count": 0,
+            "header_signatures": {
+              "name|born|married|spouse|boygirl|died": 1,
+              "totaldescendants": 1
+            },
+            "suggested_issue_types": [
+              "fused_boygirl_headers"
+            ]
+          },
+          "signal_examples": {
+            "external_headings": [],
+            "concatenated_subgroups": [],
+            "left_column_family_rows": [],
+            "suspicious_rows": [],
+            "unclassified_notes": []
+          }
+        }
+      ],
+      "source_context": {
+        "expected_page_count": 1,
+        "available_page_count": 1,
+        "missing_pages": [],
+        "retained_page_profiles": 1
+      }
+    },
+    {
+      "chapter_basename": "chapter-005.html",
+      "chapter_title": "Fictional structural sample",
+      "chapter_file": "/Users/cam/.codex/worktrees/jev-docweb-20260921/docs/evals/artifacts/story234-anonymized-observation/chapter-005.html",
+      "chapter_artifact_path": "/Users/cam/.codex/worktrees/jev-docweb-20260921/docs/evals/artifacts/story234-anonymized-observation/chapter-005.html",
+      "source_pages": [
+        5
+      ],
+      "source_printed_pages": [],
+      "current_detector": {
+        "flagged": false,
+        "drift_score": 0,
+        "confidence": 0.5,
+        "reasons": [],
+        "dominant_signature": "name|born|married|spouse|boy|girl|died"
+      },
+      "signals": {
+        "genealogy_table_count": 1,
+        "all_table_count": 2,
+        "summary_table_count": 1,
+        "subgroup_row_count": 16,
+        "external_family_heading_count": 0,
+        "residual_boygirl_header_count": 0,
+        "concatenated_subgroup_row_count": 0,
+        "left_column_only_family_row_count": 0,
+        "suspicious_row_semantic_count": 1,
+        "unclassified_note_count": 0,
+        "header_signatures": {
+          "name|born|married|spouse|boy|girl|died": 1,
+          "totaldescendants": 1
+        },
+        "suggested_issue_types": [
+          "child_note_in_wrong_column"
+        ]
+      },
+      "signal_examples": {
+        "subgroup_rows": [
+          "SYNTHETIC FAMILY"
+        ],
+        "external_headings": [],
+        "concatenated_subgroups": [],
+        "left_column_family_rows": [],
+        "summary_rows": [
+          "TOTAL DESCENDANTS 12"
+        ],
+        "suspicious_rows": [
+          {
+            "reason": "child_note_in_wrong_column",
+            "row_preview": "Person 1 | Jan 1 1801 | Jan 1 1821 | Partner 1 | 1 | 1 | Child Person Z was born Jan 1 1851 to Person A",
+            "died_cell": "Child Person Z was born Jan 1 1851 to Person A"
+          }
+        ],
+        "unclassified_notes": []
+      },
+      "page_profiles": [
+        {
+          "page_number": 5,
+          "printed_page_number": null,
+          "image": null,
+          "signals": {
+            "table_count": 2,
+            "subgroup_row_count": 16,
+            "external_family_heading_count": 0,
+            "residual_boygirl_header_count": 0,
+            "concatenated_subgroup_row_count": 0,
+            "left_column_only_family_row_count": 0,
+            "suspicious_row_semantic_count": 1,
+            "unclassified_note_count": 0,
+            "header_signatures": {
+              "name|born|married|spouse|boy|girl|died": 1,
+              "totaldescendants": 1
+            },
+            "suggested_issue_types": [
+              "child_note_in_wrong_column"
+            ]
+          },
+          "signal_examples": {
+            "external_headings": [],
+            "concatenated_subgroups": [],
+            "left_column_family_rows": [],
+            "suspicious_rows": [
+              {
+                "reason": "child_note_in_wrong_column",
+                "row_preview": "Person 1 | Jan 1 1801 | Jan 1 1821 | Partner 1 | 1 | 1 | Child Person Z was born Jan 1 1851 to Person A",
+                "died_cell": "Child Person Z was born Jan 1 1851 to Person A"
+              }
+            ],
+            "unclassified_notes": []
+          }
+        }
+      ],
+      "source_context": {
+        "expected_page_count": 1,
+        "available_page_count": 1,
+        "missing_pages": [],
+        "retained_page_profiles": 1
+      }
+    },
+    {
+      "chapter_basename": "chapter-006.html",
+      "chapter_title": "Fictional structural sample",
+      "chapter_file": "/Users/cam/.codex/worktrees/jev-docweb-20260921/docs/evals/artifacts/story234-anonymized-observation/chapter-006.html",
+      "chapter_artifact_path": "/Users/cam/.codex/worktrees/jev-docweb-20260921/docs/evals/artifacts/story234-anonymized-observation/chapter-006.html",
+      "source_pages": [
+        6
+      ],
+      "source_printed_pages": [],
+      "current_detector": {
+        "flagged": false,
+        "drift_score": 0,
+        "confidence": 0.5,
+        "reasons": [],
+        "dominant_signature": "name|born|married|spouse|boy|girl|died"
+      },
+      "signals": {
+        "genealogy_table_count": 1,
+        "all_table_count": 2,
+        "summary_table_count": 1,
+        "subgroup_row_count": 16,
+        "external_family_heading_count": 0,
+        "residual_boygirl_header_count": 0,
+        "concatenated_subgroup_row_count": 0,
+        "left_column_only_family_row_count": 0,
+        "suspicious_row_semantic_count": 0,
+        "unclassified_note_count": 1,
+        "header_signatures": {
+          "name|born|married|spouse|boy|girl|died": 1,
+          "totaldescendants": 1
+        },
+        "suggested_issue_types": []
+      },
+      "signal_examples": {
+        "subgroup_rows": [
+          "SYNTHETIC FAMILY"
+        ],
+        "external_headings": [],
+        "concatenated_subgroups": [],
+        "left_column_family_rows": [],
+        "summary_rows": [
+          "TOTAL DESCENDANTS 12"
+        ],
+        "suspicious_rows": [],
+        "unclassified_notes": [
+          {
+            "row_preview": "Person 1 | Jan 1 1801 | Jan 1 1821 | Partner 1 | 1 | 1 | Person Z Jan 1 1851; event label and row attachment missing from excerpt",
+            "died_cell": "Person Z Jan 1 1851; event label and row attachment missing from excerpt"
+          }
+        ]
+      },
+      "page_profiles": [],
+      "source_context": {
+        "expected_page_count": 1,
+        "available_page_count": 0,
+        "missing_pages": [
+          6
+        ],
+        "retained_page_profiles": 0
+      }
+    }
+  ]
+}

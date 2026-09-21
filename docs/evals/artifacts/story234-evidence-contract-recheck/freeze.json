@@ -1,0 +1,22 @@
+{
+  "docs/evals/artifacts/story234-evidence-contract-recheck/dossier.json": "6f771fab8e54c6736c97c1f713db59ba64625b755351786330a6c0a58bb5b1c5",
+  "docs/evals/artifacts/story234-evidence-contract-recheck/plan.md": "98f92779f28376202fcf1f27c12e49b75ea42fa30305f6ef02ef8fd091ed3b50",
+  "docs/evals/artifacts/story234-evidence-contract-recheck/planner.request.json": "39984cdcca69c4e15adbe769b51691804dc198e17c2057b401f09427487dceab",
+  "docs/evals/artifacts/story234-anonymized-observation/chapter-001.html": "ad35d196c8342811a4947d993e810cc08ff9a50bbf111a3a34e1d6b51f7aed6d",
+  "docs/evals/artifacts/story234-anonymized-observation/chapter-006.html": "1338e45785a9a8184ca4d2bee512b2023b6250217682f76954b494495e928fa4",
+  "docs/evals/artifacts/story234-anonymized-observation/chapter-005.html": "13838fe8f2bcab2d983c5a941f214dd52aae2639745a0aa7f3f6c3674aeca899",
+  "docs/evals/artifacts/story234-anonymized-observation/chapter-004.html": "b5579c856ff0d6feff72ca70f8a8373242f999e4d5d17bef4b661f06963937e2",
+  "docs/evals/artifacts/story234-anonymized-observation/chapter-003.html": "34f658f43081179aa969f05eed605ca3103375af9d2add0371e3876d592fc90d",
+  "docs/evals/artifacts/story234-anonymized-observation/chapter-002.html": "eb4eff7b1d8a2e20fbb6e7542e6042cf39fb40d0374b3b70287bceb13a708019",
+  "docs/evals/artifacts/story234-anonymized-observation/gold.json": "6ebba235e8637a49f82725c090ec07bb65216fa4a8f02883fdf00972f042752a",
+  "docs/evals/artifacts/story234-anonymized-observation/chapters.jsonl": "025dd3d45aefd7d7cd07a9198721332af71c638bfe21a9716c445ca9a7a04a08",
+  "docs/evals/artifacts/story234-anonymized-observation/pages.jsonl": "dd23bbb61b7f36d5a6373454e64a47bdcd5feec4e9c126326fc263c22819da24",
+  "benchmarks/jev-observation/recheck.py": "7467d00a2ae2ca8a3d3f26ac73c7d4fb875d153c5c961d41212c576fb2261909",
+  "benchmarks/jev-observation/prepare_recheck.py": "ffda218134a05d002c590368f18a7c194ce78c4ac16afb1b9dd102c7a6cd80ba",
+  "modules/validate/plan_onward_document_consistency_v1/main.py": "8a00289d737bb882246d03161c194810a3f09dd51ceef221ca4bae36e3f4250b",
+  "modules/validate/plan_onward_document_consistency_v1/jev_shadow.py": "390277ca181e6f0ac8ca99bc1ab50ffc8f8cb096f2f7b86d9d395ba21e355a26",
+  "modules/validate/validate_onward_genealogy_consistency_v1/main.py": "d8729c26de12cf0b0172b70a8d66f8c2ab6de0733fae6e7254b875d0ce40fbe6",
+  "tests/test_consistency_evidence_contract.py": "bdc7f9a38c5a1870faf38eddb3e8173ef8d9233494470eda2cb7354867508617",
+  "scripts/verify_consistency_evidence_contract.py": "886c241c7eb963fb68d95a2627d9e3073aff14985ef2fb7c664036aa51815f15",
+  "tests/fixtures/jev_shadow/mock_provider/openai.py": "bbc98503549df8e63a69478da1a5f6847585ff161482f815490ce76a0e7bac10"
+}

@@ -1,6 +1,9 @@
 ## [2026-09-21-02] - Add opt-in JEV consistency shadow routing (Story 234)
 
 ### Added
+- Preserve unclassified event notes and source-context uncertainty in planner
+  inputs/outputs; surface exact convention contradictions and retain review
+  uncertainty through dependent shadow routing without automatic variant repair.
 - Observed six anonymized structural variants with the full planner and native
   JEV shadow; preserved outputs and identified contradictory conventions plus a
   compaction blind spot. Seven calls cost$0.03386839; keep shadow opt-in.

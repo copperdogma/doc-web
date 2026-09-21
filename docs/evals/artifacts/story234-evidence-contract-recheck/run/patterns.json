@@ -1,0 +1,137 @@
+{
+  "schema_version": "document_pattern_inventory_v1",
+  "created_at": "2026-09-21T19:03:52.094427Z",
+  "run_id": "story234-evidence-contract-recheck",
+  "document_label": "Onward genealogy consistency planning",
+  "source_artifacts": {
+    "chapters_artifact": "/Users/cam/.codex/worktrees/jev-docweb-20260921/docs/evals/artifacts/story234-anonymized-observation/chapters.jsonl",
+    "pages_artifact": "/Users/cam/.codex/worktrees/jev-docweb-20260921/docs/evals/artifacts/story234-anonymized-observation/pages.jsonl"
+  },
+  "summary": {
+    "pattern_family_count": 2,
+    "candidate_genealogy_chapters": 6
+  },
+  "pattern_families": [
+    {
+      "pattern_id": "pattern_1",
+      "label": "Standard 7-column genealogy table with separate summary",
+      "description": "Chapters with a main genealogy table using the header NAME|BORN|MARRIED|SPOUSE|BOY|GIRL|DIED, separate summary/total table, single non-concatenated subgroup/context rows, and no fused BOY/GIRL columns.",
+      "member_chapters": [
+        "chapter-001.html",
+        "chapter-002.html",
+        "chapter-003.html",
+        "chapter-005.html",
+        "chapter-006.html"
+      ],
+      "baseline_chapters": [
+        "chapter-001.html"
+      ],
+      "canonical_signals": [
+        "genealogy_table_count: 1 (or 2 if summary table present)",
+        "summary_table_count: 1",
+        "header: name|born|married|spouse|boy|girl|died",
+        "subgroup/context rows: single, non-concatenated",
+        "BOY and GIRL columns distinct"
+      ],
+      "canonical_headers": [
+        "NAME",
+        "BORN",
+        "MARRIED",
+        "SPOUSE",
+        "BOY",
+        "GIRL",
+        "DIED"
+      ],
+      "allowed_variants": [
+        "Multiple genealogy tables only if each is a legitimate family group, not fragmentation",
+        "Summary/total table may be present as a separate table"
+      ],
+      "document_local_conventions": {
+        "subgroup_context_rows": "Single, non-concatenated context rows for each subgroup/family",
+        "table_fragmentation": "No fragmentation; one genealogy table per family group, summary table separate",
+        "summary_rows": "Summary/total rows are in a separate table, not appended to the main genealogy table",
+        "marginal_or_handwritten_notes": "Notes must be placed in the correct semantic column (child events in BOY/GIRL, death events in DIED); unclassified notes require further evidence"
+      },
+      "confidence": 0.95,
+      "evidence": [
+        {
+          "chapter_basename": "chapter-001.html",
+          "page_numbers": [
+            1
+          ],
+          "quote": "Header: name|born|married|spouse|boy|girl|died; summary table: totaldescendants; subgroup row: SYNTHETIC FAMILY"
+        },
+        {
+          "chapter_basename": "chapter-002.html",
+          "page_numbers": [
+            2
+          ],
+          "quote": "Two genealogy tables, one summary table; all use standard 7-column header; no concatenated context rows"
+        },
+        {
+          "chapter_basename": "chapter-003.html",
+          "page_numbers": [
+            3
+          ],
+          "quote": "Standard header, but one concatenated context row: 'SYNTHETIC Great Great Grandchildren SYNTHETIC Grandchildren FIRST FAMILY SECOND FAMILY'"
+        },
+        {
+          "chapter_basename": "chapter-005.html",
+          "page_numbers": [
+            5
+          ],
+          "quote": "Standard header, summary table, one child note in wrong column (DIED)"
+        }
+      ],
+      "convention_conflicts": []
+    },
+    {
+      "pattern_id": "pattern_2",
+      "label": "Fused BOY/GIRL header variant",
+      "description": "Chapter with a genealogy table using a fused BOY/GIRL column (header: name|born|married|spouse|boygirl|died), otherwise similar to the standard pattern.",
+      "member_chapters": [
+        "chapter-004.html"
+      ],
+      "baseline_chapters": [
+        "chapter-004.html"
+      ],
+      "canonical_signals": [
+        "genealogy_table_count: 1",
+        "summary_table_count: 1",
+        "header: name|born|married|spouse|boygirl|died",
+        "BOY and GIRL columns fused"
+      ],
+      "canonical_headers": [
+        "NAME",
+        "BORN",
+        "MARRIED",
+        "SPOUSE",
+        "BOY/GIRL",
+        "DIED"
+      ],
+      "allowed_variants": [],
+      "document_local_conventions": {
+        "subgroup_context_rows": "Single, non-concatenated context rows",
+        "table_fragmentation": "No fragmentation; one genealogy table per family group, summary table separate",
+        "summary_rows": "Summary/total rows are in a separate table",
+        "marginal_or_handwritten_notes": "Notes must be placed in the correct semantic column"
+      },
+      "confidence": 0.9,
+      "evidence": [
+        {
+          "chapter_basename": "chapter-004.html",
+          "page_numbers": [
+            4
+          ],
+          "quote": "Header: name|born|married|spouse|boygirl|died; residual_boygirl_header_count: 1; summary table present"
+        }
+      ],
+      "convention_conflicts": [
+        {
+          "chapter_basename": "chapter-004.html",
+          "reason": "canonical_fused_header_flagged_as_defect"
+        }
+      ]
+    }
+  ]
+}

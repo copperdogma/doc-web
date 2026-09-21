@@ -187,7 +187,7 @@ def state_for(
         return None
     # Explicit allowlist: no paths, title/name identifiers, AI verdict or repair rationale.
     evidence = {
-        k: chapter.get(k) for k in ("signals", "signal_examples", "page_profiles")
+        k: chapter.get(k) for k in ("signals", "signal_examples", "page_profiles", "source_context")
     }
 
     # Strip classifier hints while retaining observed structures and text examples.
@@ -276,6 +276,14 @@ def run_shadow(
         if report["dispatched"] >= MAX_CHAPTERS:
             row["reason"] = "run_limit"
             continue
+        conflicts = [
+            item for convention in plan.get("pattern_conventions", [])
+            if chapter["chapter_basename"] in convention.get("member_chapters", [])
+            for item in convention.get("convention_conflicts", [])
+        ]
+        if conflicts:
+            row["reason"] = "conflicting_conventions"
+            continue
         state = state_for(chapter, plan)
         if state is None:
             row["reason"] = "missing_conventions"
@@ -311,7 +319,11 @@ def run_shadow(
             set(chapter.get("signals", {}).get("suggested_issue_types", []))
             & FORMAT_ISSUES
         )
-        if judgment.label == "uncertain":
+        if baseline == "uncertain":
+            row.update(
+                shadow_status="uncertain", route="review", reason="authoritative_uncertainty"
+            )
+        elif judgment.label == "uncertain":
             row.update(
                 shadow_status="uncertain", route="review", reason="explicit_uncertainty"
             )

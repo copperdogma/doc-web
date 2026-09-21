@@ -1,0 +1,153 @@
+{
+  "schema_version": "pipeline_issues_v1",
+  "module_id": "plan_onward_document_consistency_v1",
+  "run_id": "story234-evidence-contract-recheck",
+  "created_at": "2026-09-21T19:03:52.094472Z",
+  "summary": {
+    "chapters_artifact": "/Users/cam/.codex/worktrees/jev-docweb-20260921/docs/evals/artifacts/story234-anonymized-observation/chapters.jsonl",
+    "pages_artifact": "/Users/cam/.codex/worktrees/jev-docweb-20260921/docs/evals/artifacts/story234-anonymized-observation/pages.jsonl",
+    "candidate_genealogy_chapters": 6,
+    "pattern_family_count": 2,
+    "format_drift_chapters": [
+      "chapter-002.html",
+      "chapter-003.html",
+      "chapter-004.html"
+    ],
+    "row_semantic_issue_chapters": [
+      "chapter-005.html"
+    ],
+    "mixed_issue_chapters": [],
+    "uncertain_chapters": [
+      "chapter-006.html"
+    ],
+    "newly_surfaced_format_drift_chapters": [
+      "chapter-002.html",
+      "chapter-003.html"
+    ],
+    "newly_surfaced_mixed_issue_chapters": [],
+    "current_detector_flagged_chapters": [
+      "chapter-004.html"
+    ],
+    "default_note_policy": "Notes and child/death events should be placed in their appropriate columns (child events in BOY/GIRL, death events in DIED), with summary/total tables separated from main genealogy tables. Subgroup/context rows should be single, non-concatenated rows. BOY and GIRL columns should remain distinct."
+  },
+  "issues": [
+    {
+      "type": "document_consistency_planning_issue",
+      "severity": "warning",
+      "chapter_basename": "chapter-002.html",
+      "chapter_title": "Fictional structural sample",
+      "status": "format_drift",
+      "pattern_id": "pattern_1",
+      "issue_types": [
+        "fragmented_multi_table_chapter"
+      ],
+      "relevant_pages": [
+        2
+      ],
+      "surfaced_new_vs_current_detector": true,
+      "evidence": [
+        {
+          "chapter_basename": "chapter-002.html",
+          "page_numbers": [
+            2
+          ],
+          "quote": "Two genealogy tables, one summary table; all use standard 7-column header; no concatenated context rows"
+        }
+      ]
+    },
+    {
+      "type": "document_consistency_planning_issue",
+      "severity": "warning",
+      "chapter_basename": "chapter-003.html",
+      "chapter_title": "Fictional structural sample",
+      "status": "format_drift",
+      "pattern_id": "pattern_1",
+      "issue_types": [
+        "concatenated_subgroup_context_rows"
+      ],
+      "relevant_pages": [
+        3
+      ],
+      "surfaced_new_vs_current_detector": true,
+      "evidence": [
+        {
+          "chapter_basename": "chapter-003.html",
+          "page_numbers": [
+            3
+          ],
+          "quote": "Concatenated context row: 'SYNTHETIC Great Great Grandchildren SYNTHETIC Grandchildren FIRST FAMILY SECOND FAMILY'"
+        }
+      ]
+    },
+    {
+      "type": "document_consistency_planning_issue",
+      "severity": "warning",
+      "chapter_basename": "chapter-004.html",
+      "chapter_title": "Fictional structural sample",
+      "status": "format_drift",
+      "pattern_id": "pattern_2",
+      "issue_types": [
+        "fused_boygirl_headers"
+      ],
+      "relevant_pages": [
+        4
+      ],
+      "surfaced_new_vs_current_detector": false,
+      "evidence": [
+        {
+          "chapter_basename": "chapter-004.html",
+          "page_numbers": [
+            4
+          ],
+          "quote": "Header: name|born|married|spouse|boygirl|died; residual_boygirl_header_count: 1"
+        }
+      ]
+    },
+    {
+      "type": "document_consistency_planning_issue",
+      "severity": "warning",
+      "chapter_basename": "chapter-005.html",
+      "chapter_title": "Fictional structural sample",
+      "status": "row_semantic_issue",
+      "pattern_id": "pattern_1",
+      "issue_types": [
+        "child_note_in_wrong_column"
+      ],
+      "relevant_pages": [
+        5
+      ],
+      "surfaced_new_vs_current_detector": false,
+      "evidence": [
+        {
+          "chapter_basename": "chapter-005.html",
+          "page_numbers": [
+            5
+          ],
+          "quote": "DIED cell: 'Child Person Z was born Jan 1 1851 to Person A'"
+        }
+      ]
+    },
+    {
+      "type": "document_consistency_planning_issue",
+      "severity": "warning",
+      "chapter_basename": "chapter-006.html",
+      "chapter_title": "Fictional structural sample",
+      "status": "uncertain",
+      "pattern_id": "pattern_1",
+      "issue_types": [],
+      "relevant_pages": [
+        6
+      ],
+      "surfaced_new_vs_current_detector": false,
+      "evidence": [
+        {
+          "chapter_basename": "chapter-006.html",
+          "page_numbers": [
+            6
+          ],
+          "quote": "DIED cell: 'Person Z Jan 1 1851; event label and row attachment missing from excerpt'"
+        }
+      ]
+    }
+  ]
+}

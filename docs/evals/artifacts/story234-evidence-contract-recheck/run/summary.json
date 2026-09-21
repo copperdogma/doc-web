@@ -1,0 +1,15 @@
+{
+  "authoritative_artifact_sha256_unchanged": {
+    "plan.json": "ca6e0d94370b0a93f2252e534db29d4025370216f4be9e5c2780bdbf1a87bde9",
+    "primary.json": "ce5dfd042fe7781e065691e12170449b675fca58c8fb1f2b57f722c94a7d0eea",
+    "conformance.json": "fa757a5b016adef2d500dfb21d023a4a5e3b89fe497b83c0d1dec38836ce8adf",
+    "patterns.json": "0f8db2331a26ee7af66a8fcb4e9dba734e64f456718968b24a555a255f7754e0"
+  },
+  "planner_latency_ms": 29176.34462506976,
+  "planner_known_cost_usd": 0.02974,
+  "maximum_reserved_usd": 0.11310799999999999,
+  "dispatched": 6,
+  "jev_known_cost_usd": 0.00028912800000000004,
+  "jev_unknown_reserved_usd": 0.0,
+  "scope": "Added shadow cost alongside full planner; not savings or production traffic."
+}

@@ -1,0 +1,11 @@
+{
+  "provider_calls": 0,
+  "uncertain_survives_driver_stamping": true,
+  "authoritative_outputs_invariant": true,
+  "conflicting_convention_calls": 0,
+  "normal_shadow_dispatches": 3,
+  "paths": {
+    "disabled": "/Users/cam/.codex/worktrees/jev-docweb-20260921/output/runs/story234-evidence-contract-cohort-r5/disabled/contract-disabled/01_plan_onward_document_consistency_v1",
+    "enabled": "/Users/cam/.codex/worktrees/jev-docweb-20260921/output/runs/story234-evidence-contract-cohort-r5/enabled/contract-enabled/01_plan_onward_document_consistency_v1"
+  }
+}

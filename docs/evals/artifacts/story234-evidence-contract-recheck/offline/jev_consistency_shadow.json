@@ -1,0 +1,102 @@
+{
+  "schema_version": "jev_consistency_shadow_v1",
+  "advisory_only": true,
+  "model": "jev-1.13.0",
+  "state_basis": "compact_extracted_html_only",
+  "chapters": [
+    {
+      "chapter_ordinal": 0,
+      "authoritative_status": "format_drift",
+      "shadow_status": "format_drift",
+      "route": "planner_fallback",
+      "reason": "conflicting_conventions"
+    },
+    {
+      "chapter_ordinal": 1,
+      "authoritative_status": "uncertain",
+      "shadow_status": "uncertain",
+      "route": "review",
+      "latency_ms": 11.378708062693477,
+      "jev_status": "uncertain",
+      "probabilities": {
+        "conformant": 0,
+        "format_drift": 0,
+        "row_semantic_issue": 0,
+        "mixed": 0,
+        "uncertain": 1
+      },
+      "confidence": 0.1,
+      "input_tokens": 500,
+      "output_tokens": 30,
+      "cost_usd": 2.1e-05,
+      "reason": "authoritative_uncertainty"
+    },
+    {
+      "chapter_ordinal": 2,
+      "authoritative_status": "conformant",
+      "shadow_status": "uncertain",
+      "route": "review",
+      "latency_ms": 4.482374992221594,
+      "jev_status": "uncertain",
+      "probabilities": {
+        "conformant": 0,
+        "format_drift": 0,
+        "row_semantic_issue": 0,
+        "mixed": 0,
+        "uncertain": 1
+      },
+      "confidence": 0.1,
+      "input_tokens": 500,
+      "output_tokens": 30,
+      "cost_usd": 2.1e-05,
+      "reason": "explicit_uncertainty"
+    },
+    {
+      "chapter_ordinal": 3,
+      "authoritative_status": "format_drift",
+      "shadow_status": "uncertain",
+      "route": "review",
+      "latency_ms": 4.508916987106204,
+      "jev_status": "uncertain",
+      "probabilities": {
+        "conformant": 0,
+        "format_drift": 0,
+        "row_semantic_issue": 0,
+        "mixed": 0,
+        "uncertain": 1
+      },
+      "confidence": 0.1,
+      "input_tokens": 500,
+      "output_tokens": 30,
+      "cost_usd": 2.1e-05,
+      "reason": "explicit_uncertainty"
+    },
+    {
+      "chapter_ordinal": 4,
+      "authoritative_status": "format_drift",
+      "shadow_status": "format_drift",
+      "route": "planner_fallback",
+      "reason": "run_limit"
+    },
+    {
+      "chapter_ordinal": 5,
+      "authoritative_status": "row_semantic_issue",
+      "shadow_status": "row_semantic_issue",
+      "route": "planner_fallback",
+      "reason": "run_limit"
+    }
+  ],
+  "known_cost_usd": 6.3e-05,
+  "unknown_cost_reserved_usd": 0.0,
+  "maximum_run_cost_usd": 0.008064,
+  "dispatched": 3,
+  "created_at": "2026-09-21T19:00:32.350995+00:00",
+  "run_id": "contract-enabled",
+  "input_sha256": "131b101f24e55843d24a4d1f07b93bb62ca7aa47e84973de886da3764f61f151",
+  "plan_sha256": "f4b32637596dfdef30f8f9ad58eb7cc91f693765643fb705ad51eda662e07390",
+  "authoritative_sha256": "19104faec8c72e1dfac9fe1663de625c61d05cd3001c2891e5f0dc44bd171d44",
+  "total_chapters": 6,
+  "comparison_mode": "shadow_with_existing_planner_fallback",
+  "skipped_chapters": 3,
+  "status": "complete"
+}

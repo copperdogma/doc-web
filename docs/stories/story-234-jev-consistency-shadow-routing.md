@@ -129,3 +129,35 @@ contract failures under$0.15 cap. Keep shadow-only; no runtime policy changes.
 Evidence: `docs/evals/artifacts/story234-anonymized-observation/report.md`, frozen
 manifest/review and `run/` raw requests/responses. Five focused harness tests and
 Ruff passed; runtime tests reused unchanged. Primary checkout untouched.
+
+
+2026-09-21 — User approved evidence-contract follow-through in the same Story234
+seam. Extend scope to fix contradictory generated conventions and compacted-away
+unclassified event notes, while keeping JEV default-off/advisory. Preserve raw
+planner policy and detector evidence; diagnose exact canonical-fused/header-defect
+contradiction and skip only that shadow policy. A supported-looking canonical
+fused variant versus sole detector fused warning becomes uncertain review, not
+automatic format repair. Preserve explicit/omitted uncertainty and missing source
+context without inventing semantic defects. This intentionally improves planner
+normalization; shadow-on versus shadow-off remains invariant for the same new code.
+
+Follow-through acceptance:
+- [x] Unknown non-date event notes and actual compact source coverage remain visible.
+- [x] Contradictory conventions diagnosed without banning legitimate variants.
+- [x] Uncertain review survives normalization and does not enter default repair.
+- [x] Focused regressions and offline real-driver new-behavior proof.
+- [x] Independent final review and separately frozen same-sample native recheck.
+
+
+2026-09-21 — Evidence-contract follow-through validated and closed. Independent
+review CLEAR;32focused runtime/evidence tests and34affected repair-consumer tests
+passed, scoped Ruff/whitespace clean. Final realdriver cohort-r5 with network
+blocked proves uncertain/no-repair and exact contradiction guard through stamped
+artifacts. Approved frozen recheck used1planner+5JEV calls, USD0.030029128, no
+errors/retries/unknown usage. Original five: planner5/5, JEV3correct/1miss/1skip,
+routed4/5plus1safe review. Newlyvisible case6: planneruncertain, JEVsemantic overcall,
+routeduncertain. Planner still generated a fused canonical contradiction, now
+explicitly diagnosed and withheld from JEV; do not claim prompt-only elimination.
+Allsix action routes safe/correct, dependent checking only; shadow remains opt-in.
+Original HTML/gold/evidence untouched. Report and exact evidence:
+`docs/evals/artifacts/story234-evidence-contract-recheck/report.md`.

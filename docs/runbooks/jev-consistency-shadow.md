@@ -75,3 +75,26 @@ inputs and explicit mock providers. It blocks network, scrubs inherited provider
 credentials, checks all authoritative artifacts are invariant (excluding run ID
 and timestamps), and retains files for inspection. Use a fresh output directory;
 previous verification artifacts are not overwritten.
+
+## Evidence and convention contract
+
+The planner now keeps bounded unclassified non-date DIED-cell prose separately
+from known child-note defect signals. Compact inputs disclose available/missing
+source pages and how many page profiles survived sampling. Unknown prose does
+not itself prove a defect. Missing-source uncertainty and explicit model
+uncertainty remain review-routed through normalization; dependent JEV output
+cannot clear authoritative uncertainty. The raw JEV label remains inspectable.
+
+Planner instructions distinguish observed anomalies from desired canonical
+policy. A structurally provable contradiction (canonical fused child header plus
+the same raw finding calling that header a defect) is recorded in
+`convention_conflicts`; shadow skips that policy and uses the current planner
+result with `conflicting_conventions`. This does not rewrite the policy.
+
+If a raw finding explicitly accepts a canonical fused variant but the only
+deterministic warning is the fused header, the planner surfaces
+`detector_vs_canonical_variant_disagreement` as uncertain with no repair issues.
+That preserves both source policy and detector evidence rather than forcing a
+house style. Other independent defects remain subject to normal handling.
+Default repair filters exclude uncertain chapters. These are planner-contract
+fixes; toggling shadow alone still leaves authoritative artifacts unchanged.

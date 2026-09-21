@@ -1271,8 +1271,8 @@
             "date": "2026-09-21",
             "source_type": "eval-attempt",
             "source": "docs/evals/registry.yaml",
-            "source_id": "002",
-            "summary": "Five evidence-visible cases: full planner5/5, raw JEV4/5, shadow4/5 exact plus1 safe layout-guard review. Sixth deliberately ambiguous case was dropped by compaction and excluded from classifier accuracy before calls...."
+            "source_id": "003",
+            "summary": "Original five: raw and normalized planner5/5; rawJEV3correct/1miss/1skip; shadow4/5exact plus safe review. Newly visible ambiguous case6 planner uncertain, JEVsemantic overcall, guarded uncertain. Model still emits fu..."
           },
           "story_ids": [
             "145",
@@ -16642,6 +16642,14 @@
           "approach": "Story234 anonymized structural runtime observation; fresh full planner and dependent native shadow",
           "note": "Five evidence-visible cases: full planner5/5, raw JEV4/5, shadow4/5 exact plus1 safe layout-guard review. Sixth deliberately ambiguous case was dropped by compaction and excluded from classifier accuracy before calls. Planner fused-header verdict contradicted its allowed conventions; no additional defect caught versus planner. Seven calls USD0.03386839, unknown0; existing authoritative artifacts unchanged. Keep opt-in; address convention consistency and compaction before expansion. Evidence docs/evals/artifacts/story234-anonymized-observation/report.md.\n",
           "retry_when": []
+        },
+        {
+          "id": "003",
+          "date": "2026-09-21",
+          "status": "succeeded",
+          "approach": "Same frozen anonymous HTML/gold, revised planner evidence/policy contract and guarded JEV shadow",
+          "note": "Original five: raw and normalized planner5/5; rawJEV3correct/1miss/1skip; shadow4/5exact plus safe review. Newly visible ambiguous case6 planner uncertain, JEVsemantic overcall, guarded uncertain. Model still emits fused canonical contradiction; diagnostic prevents sending that policy. Six calls USD0.030029128, unknown0. No production quality or savings claim. Evidence docs/evals/artifacts/story234-evidence-contract-recheck/report.md.\n",
+          "retry_when": []
         }
       ],
       "retry_when": [],
@@ -16662,8 +16670,8 @@
           "date": "2026-09-21",
           "source_type": "eval-attempt",
           "source": "docs/evals/registry.yaml",
-          "source_id": "002",
-          "summary": "Five evidence-visible cases: full planner5/5, raw JEV4/5, shadow4/5 exact plus1 safe layout-guard review. Sixth deliberately ambiguous case was dropped by compaction and excluded from classifier accuracy before calls...."
+          "source_id": "003",
+          "summary": "Original five: raw and normalized planner5/5; rawJEV3correct/1miss/1skip; shadow4/5exact plus safe review. Newly visible ambiguous case6 planner uncertain, JEVsemantic overcall, guarded uncertain. Model still emits fu..."
         }
       }
     }

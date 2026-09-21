@@ -4985,3 +4985,15 @@ evals:
           unknown0; existing authoritative artifacts unchanged. Keep opt-in;
           address convention consistency and compaction before expansion.
           Evidence docs/evals/artifacts/story234-anonymized-observation/report.md.
+
+      - id: "003"
+        date: 2026-09-21
+        status: succeeded
+        approach: "Same frozen anonymous HTML/gold, revised planner evidence/policy contract and guarded JEV shadow"
+        note: >
+          Original five: raw and normalized planner5/5; rawJEV3correct/1miss/1skip;
+          shadow4/5exact plus safe review. Newly visible ambiguous case6 planner
+          uncertain, JEVsemantic overcall, guarded uncertain. Model still emits
+          fused canonical contradiction; diagnostic prevents sending that policy.
+          Six calls USD0.030029128, unknown0. No production quality or savings
+          claim. Evidence docs/evals/artifacts/story234-evidence-contract-recheck/report.md.

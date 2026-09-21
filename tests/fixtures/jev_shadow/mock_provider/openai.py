@@ -1,6 +1,8 @@
 """Offline provider for synthetic driver verification, never used by runtime."""
 
 import json
+import os
+from pathlib import Path
 from types import SimpleNamespace
 
 
@@ -39,6 +41,10 @@ class OpenAI:
                 }
             ],
         }
+        if os.environ.get("DOC_WEB_TEST_PLANNER_PAYLOAD_PATH"):
+            payload = json.loads(
+                Path(os.environ["DOC_WEB_TEST_PLANNER_PAYLOAD_PATH"]).read_text()
+            )
         return SimpleNamespace(
             choices=[
                 SimpleNamespace(message=SimpleNamespace(content=json.dumps(payload)))
