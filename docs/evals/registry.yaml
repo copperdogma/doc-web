@@ -4934,3 +4934,40 @@ evals:
           Rerun when the supported repo-owned born-digital corpus changes, when
           new comparison-only PDFs are added, or when a currently optional local
           comparison case becomes repo-owned enough to join the passing gate.
+
+  - id: jev-document-consistency-classification
+    name: JEV synthetic document consistency classification
+    type: quality
+    description: >
+      Five-class status projection with explicit conventions and synthetic source
+      prose; genealogy tables and maintenance cards. Does not measure convention
+      generation, full planner outputs, OCR, or repair. Fresh JEV versus Story220
+      GPT-4.1 model projected to status, separate deterministic comparators.
+    pipeline_stage: validate
+    runner: custom
+    command: "python benchmarks/jev-consistency/run.py"
+    story_refs: ["233"]
+    category_refs: ["spec:2", "spec:5"]
+    compromise_refs: ["C7"]
+    target:
+      metric: relative_accuracy_cost_latency
+      value: "Compare current candidates; no arbitrary absolute quality/savings gate"
+    scores:
+      - model: "jev-1.13.0"
+        measured: 2026-09-21
+        metrics: {accuracy: 0.60, macro_f1: 0.5857720058, latency_ms: 394.5305, cost_usd: 0.00003549, cost_estimated: true}
+        note: "24/40; latency is mean. Synthetic five-class status only."
+      - model: "gpt-4.1-2025-04-14 narrow status projection"
+        measured: 2026-09-21
+        metrics: {accuracy: 0.725, macro_f1: 0.7133456932, latency_ms: 797.5414, cost_usd: 0.0010852, cost_estimated: true}
+        note: "29/40; latency is mean. Not full unchanged planner."
+      - model: "jev-1.13.0 with real confidence-gated GPT-4.1 fallback"
+        measured: 2026-09-21
+        metrics: {accuracy: 0.825, macro_f1: 0.8156005398, latency_ms: 755.8994, cost_usd: 0.00049229, cost_estimated: true}
+        note: "33/40;17 actual fallbacks; mean latency.54.64% cheaper narrow workflow;3 defects called clean, same count as incumbent. Conditional bounded integration candidate."
+    attempts:
+      - id: "001"
+        date: 2026-09-21
+        status: succeeded
+        approach: "Independent synthetic gold review, native Choice/schema comparison, real confidence fallback"
+        note: "USD0.0630996 spent on97calls; no runtime changes. Exact evidence docs/evals/artifacts/jev-consistency-20260921/report.md."

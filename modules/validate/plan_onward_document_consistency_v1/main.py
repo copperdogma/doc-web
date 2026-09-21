@@ -1199,6 +1199,23 @@ def main() -> None:
     save_json(conformance_report_path, conformance_report)
     save_jsonl(out_path, [primary_report])
 
+    # Shadow output is deliberately excluded from authoritative planning/repair artifacts.
+    try:
+        from modules.validate.plan_onward_document_consistency_v1.jev_shadow import write_shadow
+
+        shadow_path = Path(os.path.dirname(out_path)) / "jev_consistency_shadow.json"
+        shadow_path.unlink(missing_ok=True)
+        shadow_ok = write_shadow(
+            shadow_path,
+            _planner_input_from_dossier(dossier)["chapters"],
+            consistency_plan,
+            conformance_report,
+        )
+    except Exception:
+        shadow_ok = False
+    if not shadow_ok:
+        print("[plan_onward_document_consistency_v1] optional shadow sidecar unavailable")
+
     logger.log(
         "validate",
         "done",

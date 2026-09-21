@@ -1,3 +1,20 @@
+## [2026-09-21-02] - Add opt-in JEV consistency shadow routing (Story 234)
+
+### Added
+- Default-off, bounded JEV shadow beside the document planner, with explicit
+  uncertainty, deterministic layout veto, existing-planner fallback and atomic
+  privacy-minimized diagnostics. Authoritative outputs remain unchanged.
+- Owner runtime-key documentation and26affected tests; real synthetic driver
+  verification in disabled/enabled/provider-failure modes with zero provider calls.
+
+## [2026-09-21-01] - Compare JEV document consistency routing (Story 233)
+
+### Added
+- Independently reviewed synthetic five-class comparison, exact native evidence,
+  cost ledger, real JEV/GPT-4.1 fallback and separate deterministic baselines.
+- Relative result: cascade33/40 versus GPT29/40,54.64% cheaper on the narrow task;
+  conditional shadow candidate with layout guards. Runtime defaults unchanged.
+
 ## [2026-09-19-01] - Defer Qwen3.8-Omni-Flash crop evaluation
 
 ### Changed

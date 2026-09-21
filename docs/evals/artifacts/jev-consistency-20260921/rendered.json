@@ -1,0 +1,2097 @@
+[
+  {
+    "id": "family-01",
+    "jev": {
+      "model": "jev-1.13.0",
+      "state": {
+        "conventions": {
+          "headers": [
+            "Name",
+            "Born",
+            "Married",
+            "Spouse",
+            "Boy",
+            "Girl",
+            "Died"
+          ],
+          "layout": "One continuous main table. A separate summary table headed Metric and Count is allowed. Page-break continuation tables are allowed. Column order/capitalization may vary if labels keep correct values.",
+          "meaning": "Born and Died apply to the named person. Married is marriage year; Spouse is the named partner; Boy and Girl give counts of sons and daughters."
+        },
+        "source_evidence": "Mira Vale was born in 1932 and died in 2001. Leon Vale was born in 1930 and died in 1999. They married one another in 1955 and had one son and one daughter.",
+        "tables": [
+          {
+            "headers": [
+              "Name",
+              "Born",
+              "Married",
+              "Spouse",
+              "Boy",
+              "Girl",
+              "Died"
+            ],
+            "rows": [
+              [
+                "Mira Vale",
+                "1932",
+                "1955",
+                "Leon Vale",
+                "1",
+                "1",
+                "2001"
+              ],
+              [
+                "Leon Vale",
+                "1930",
+                "1955",
+                "Mira Vale",
+                "1",
+                "1",
+                "1999"
+              ]
+            ],
+            "page_break_before": false
+          }
+        ]
+      },
+      "questions": {
+        "status": {
+          "type": "choice",
+          "instructions": "Classify the extracted chapter tables or maintenance cards against the explicit conventions and source evidence. Evaluate meaning and attachment, not just structural validity. Use only supplied evidence. A fused header with correct paired values is format-only; wrong source values or attachments are semantic defects. Incomplete/ambiguous evidence without an established defect means uncertain. Return one class.",
+          "criteria": {
+            "conformant": "The text and row ownership match source evidence and explicit document-local conventions; allowed layout variations are not defects.",
+            "format_drift": "A documented table/header/layout convention is violated, but no row value, meaning or attachment contradicts source evidence.",
+            "row_semantic_issue": "A row value, meaning or note attachment contradicts source evidence, while table/header/layout conventions are satisfied.",
+            "mixed": "Both a table/header/layout convention violation and a source-supported row value, meaning or attachment defect are present.",
+            "uncertain": "Evidence or explicit conventions are insufficient or ambiguous to establish whether this chapter is conformant or defective."
+          }
+        }
+      }
+    },
+    "gpt": {
+      "model": "gpt-4.1-2025-04-14",
+      "store": false,
+      "temperature": 0,
+      "max_completion_tokens": 160,
+      "messages": [
+        {
+          "role": "system",
+          "content": "Classify the extracted chapter tables or maintenance cards against the explicit conventions and source evidence. Evaluate meaning and attachment, not just structural validity. Use only supplied evidence. A fused header with correct paired values is format-only; wrong source values or attachments are semantic defects. Incomplete/ambiguous evidence without an established defect means uncertain. Return one class.\n{\"conformant\": \"The text and row ownership match source evidence and explicit document-local conventions; allowed layout variations are not defects.\", \"format_drift\": \"A documented table/header/layout convention is violated, but no row value, meaning or attachment contradicts source evidence.\", \"row_semantic_issue\": \"A row value, meaning or note attachment contradicts source evidence, while table/header/layout conventions are satisfied.\", \"mixed\": \"Both a table/header/layout convention violation and a source-supported row value, meaning or attachment defect are present.\", \"uncertain\": \"Evidence or explicit conventions are insufficient or ambiguous to establish whether this chapter is conformant or defective.\"}"
+        },
+        {
+          "role": "user",
+          "content": "{\"conventions\": {\"headers\": [\"Name\", \"Born\", \"Married\", \"Spouse\", \"Boy\", \"Girl\", \"Died\"], \"layout\": \"One continuous main table. A separate summary table headed Metric and Count is allowed. Page-break continuation tables are allowed. Column order/capitalization may vary if labels keep correct values.\", \"meaning\": \"Born and Died apply to the named person. Married is marriage year; Spouse is the named partner; Boy and Girl give counts of sons and daughters.\"}, \"source_evidence\": \"Mira Vale was born in 1932 and died in 2001. Leon Vale was born in 1930 and died in 1999. They married one another in 1955 and had one son and one daughter.\", \"tables\": [{\"headers\": [\"Name\", \"Born\", \"Married\", \"Spouse\", \"Boy\", \"Girl\", \"Died\"], \"rows\": [[\"Mira Vale\", \"1932\", \"1955\", \"Leon Vale\", \"1\", \"1\", \"2001\"], [\"Leon Vale\", \"1930\", \"1955\", \"Mira Vale\", \"1\", \"1\", \"1999\"]], \"page_break_before\": false}]}"
+        }
+      ],
+      "response_format": {
+        "type": "json_schema",
+        "json_schema": {
+          "name": "consistency_classification",
+          "strict": true,
+          "schema": {
+            "type": "object",
+            "properties": {
+              "classification": {
+                "type": "string",
+                "enum": [
+                  "conformant",
+                  "format_drift",
+                  "row_semantic_issue",
+                  "mixed",
+                  "uncertain"
+                ]
+              }
+            },
+            "required": [
+              "classification"
+            ],
+            "additionalProperties": false
+          }
+        }
+      }
+    }
+  },
+  {
+    "id": "family-02",
+    "jev": {
+      "model": "jev-1.13.0",
+      "state": {
+        "conventions": {
+          "headers": [
+            "Name",
+            "Born",
+            "Married",
+            "Spouse",
+            "Boy",
+            "Girl",
+            "Died"
+          ],
+          "layout": "One continuous main table. A separate summary table headed Metric and Count is allowed. Page-break continuation tables are allowed. Column order/capitalization may vary if labels keep correct values.",
+          "meaning": "Born and Died apply to the named person. Married is marriage year; Spouse is the named partner; Boy and Girl give counts of sons and daughters."
+        },
+        "source_evidence": "Mira Vale was born in 1932 and died in 2001. Leon Vale was born in 1930 and died in 1999. They married one another in 1955 and had one son and one daughter.",
+        "tables": [
+          {
+            "headers": [
+              "SPOUSE",
+              "NAME",
+              "MARRIED",
+              "BORN",
+              "BOY",
+              "GIRL",
+              "DIED"
+            ],
+            "rows": [
+              [
+                "Leon Vale",
+                "Mira Vale",
+                "1955",
+                "1932",
+                "1",
+                "1",
+                "2001"
+              ],
+              [
+                "Mira Vale",
+                "Leon Vale",
+                "1955",
+                "1930",
+                "1",
+                "1",
+                "1999"
+              ]
+            ],
+            "page_break_before": false
+          },
+          {
+            "headers": [
+              "Metric",
+              "Count"
+            ],
+            "rows": [
+              [
+                "Records",
+                "2"
+              ]
+            ],
+            "page_break_before": false
+          }
+        ]
+      },
+      "questions": {
+        "status": {
+          "type": "choice",
+          "instructions": "Classify the extracted chapter tables or maintenance cards against the explicit conventions and source evidence. Evaluate meaning and attachment, not just structural validity. Use only supplied evidence. A fused header with correct paired values is format-only; wrong source values or attachments are semantic defects. Incomplete/ambiguous evidence without an established defect means uncertain. Return one class.",
+          "criteria": {
+            "conformant": "The text and row ownership match source evidence and explicit document-local conventions; allowed layout variations are not defects.",
+            "format_drift": "A documented table/header/layout convention is violated, but no row value, meaning or attachment contradicts source evidence.",
+            "row_semantic_issue": "A row value, meaning or note attachment contradicts source evidence, while table/header/layout conventions are satisfied.",
+            "mixed": "Both a table/header/layout convention violation and a source-supported row value, meaning or attachment defect are present.",
+            "uncertain": "Evidence or explicit conventions are insufficient or ambiguous to establish whether this chapter is conformant or defective."
+          }
+        }
+      }
+    },
+    "gpt": {
+      "model": "gpt-4.1-2025-04-14",
+      "store": false,
+      "temperature": 0,
+      "max_completion_tokens": 160,
+      "messages": [
+        {
+          "role": "system",
+          "content": "Classify the extracted chapter tables or maintenance cards against the explicit conventions and source evidence. Evaluate meaning and attachment, not just structural validity. Use only supplied evidence. A fused header with correct paired values is format-only; wrong source values or attachments are semantic defects. Incomplete/ambiguous evidence without an established defect means uncertain. Return one class.\n{\"conformant\": \"The text and row ownership match source evidence and explicit document-local conventions; allowed layout variations are not defects.\", \"format_drift\": \"A documented table/header/layout convention is violated, but no row value, meaning or attachment contradicts source evidence.\", \"row_semantic_issue\": \"A row value, meaning or note attachment contradicts source evidence, while table/header/layout conventions are satisfied.\", \"mixed\": \"Both a table/header/layout convention violation and a source-supported row value, meaning or attachment defect are present.\", \"uncertain\": \"Evidence or explicit conventions are insufficient or ambiguous to establish whether this chapter is conformant or defective.\"}"
+        },
+        {
+          "role": "user",
+          "content": "{\"conventions\": {\"headers\": [\"Name\", \"Born\", \"Married\", \"Spouse\", \"Boy\", \"Girl\", \"Died\"], \"layout\": \"One continuous main table. A separate summary table headed Metric and Count is allowed. Page-break continuation tables are allowed. Column order/capitalization may vary if labels keep correct values.\", \"meaning\": \"Born and Died apply to the named person. Married is marriage year; Spouse is the named partner; Boy and Girl give counts of sons and daughters.\"}, \"source_evidence\": \"Mira Vale was born in 1932 and died in 2001. Leon Vale was born in 1930 and died in 1999. They married one another in 1955 and had one son and one daughter.\", \"tables\": [{\"headers\": [\"SPOUSE\", \"NAME\", \"MARRIED\", \"BORN\", \"BOY\", \"GIRL\", \"DIED\"], \"rows\": [[\"Leon Vale\", \"Mira Vale\", \"1955\", \"1932\", \"1\", \"1\", \"2001\"], [\"Mira Vale\", \"Leon Vale\", \"1955\", \"1930\", \"1\", \"1\", \"1999\"]], \"page_break_before\": false}, {\"headers\": [\"Metric\", \"Count\"], \"rows\": [[\"Records\", \"2\"]], \"page_break_before\": false}]}"
+        }
+      ],
+      "response_format": {
+        "type": "json_schema",
+        "json_schema": {
+          "name": "consistency_classification",
+          "strict": true,
+          "schema": {
+            "type": "object",
+            "properties": {
+              "classification": {
+                "type": "string",
+                "enum": [
+                  "conformant",
+                  "format_drift",
+                  "row_semantic_issue",
+                  "mixed",
+                  "uncertain"
+                ]
+              }
+            },
+            "required": [
+              "classification"
+            ],
+            "additionalProperties": false
+          }
+        }
+      }
+    }
+  },
+  {
+    "id": "family-03",
+    "jev": {
+      "model": "jev-1.13.0",
+      "state": {
+        "conventions": {
+          "headers": [
+            "Name",
+            "Born",
+            "Married",
+            "Spouse",
+            "Boy",
+            "Girl",
+            "Died"
+          ],
+          "layout": "One continuous main table. A separate summary table headed Metric and Count is allowed. Page-break continuation tables are allowed. Column order/capitalization may vary if labels keep correct values.",
+          "meaning": "Born and Died apply to the named person. Married is marriage year; Spouse is the named partner; Boy and Girl give counts of sons and daughters."
+        },
+        "source_evidence": "Mira Vale was born in 1932 and died in 2001. Leon Vale was born in 1930 and died in 1999. They married one another in 1955 and had one son and one daughter.",
+        "tables": [
+          {
+            "headers": [
+              "Name",
+              "Born",
+              "Married",
+              "Spouse",
+              "Boy",
+              "Girl",
+              "Died"
+            ],
+            "rows": [
+              [
+                "Mira Vale",
+                "1932",
+                "1955",
+                "Leon Vale",
+                "1",
+                "1",
+                "2001"
+              ]
+            ],
+            "page_break_before": false
+          },
+          {
+            "headers": [
+              "Name",
+              "Born",
+              "Married",
+              "Spouse",
+              "Boy",
+              "Girl",
+              "Died"
+            ],
+            "rows": [
+              [
+                "Leon Vale",
+                "1930",
+                "1955",
+                "Mira Vale",
+                "1",
+                "1",
+                "1999"
+              ]
+            ],
+            "page_break_before": false
+          }
+        ]
+      },
+      "questions": {
+        "status": {
+          "type": "choice",
+          "instructions": "Classify the extracted chapter tables or maintenance cards against the explicit conventions and source evidence. Evaluate meaning and attachment, not just structural validity. Use only supplied evidence. A fused header with correct paired values is format-only; wrong source values or attachments are semantic defects. Incomplete/ambiguous evidence without an established defect means uncertain. Return one class.",
+          "criteria": {
+            "conformant": "The text and row ownership match source evidence and explicit document-local conventions; allowed layout variations are not defects.",
+            "format_drift": "A documented table/header/layout convention is violated, but no row value, meaning or attachment contradicts source evidence.",
+            "row_semantic_issue": "A row value, meaning or note attachment contradicts source evidence, while table/header/layout conventions are satisfied.",
+            "mixed": "Both a table/header/layout convention violation and a source-supported row value, meaning or attachment defect are present.",
+            "uncertain": "Evidence or explicit conventions are insufficient or ambiguous to establish whether this chapter is conformant or defective."
+          }
+        }
+      }
+    },
+    "gpt": {
+      "model": "gpt-4.1-2025-04-14",
+      "store": false,
+      "temperature": 0,
+      "max_completion_tokens": 160,
+      "messages": [
+        {
+          "role": "system",
+          "content": "Classify the extracted chapter tables or maintenance cards against the explicit conventions and source evidence. Evaluate meaning and attachment, not just structural validity. Use only supplied evidence. A fused header with correct paired values is format-only; wrong source values or attachments are semantic defects. Incomplete/ambiguous evidence without an established defect means uncertain. Return one class.\n{\"conformant\": \"The text and row ownership match source evidence and explicit document-local conventions; allowed layout variations are not defects.\", \"format_drift\": \"A documented table/header/layout convention is violated, but no row value, meaning or attachment contradicts source evidence.\", \"row_semantic_issue\": \"A row value, meaning or note attachment contradicts source evidence, while table/header/layout conventions are satisfied.\", \"mixed\": \"Both a table/header/layout convention violation and a source-supported row value, meaning or attachment defect are present.\", \"uncertain\": \"Evidence or explicit conventions are insufficient or ambiguous to establish whether this chapter is conformant or defective.\"}"
+        },
+        {
+          "role": "user",
+          "content": "{\"conventions\": {\"headers\": [\"Name\", \"Born\", \"Married\", \"Spouse\", \"Boy\", \"Girl\", \"Died\"], \"layout\": \"One continuous main table. A separate summary table headed Metric and Count is allowed. Page-break continuation tables are allowed. Column order/capitalization may vary if labels keep correct values.\", \"meaning\": \"Born and Died apply to the named person. Married is marriage year; Spouse is the named partner; Boy and Girl give counts of sons and daughters.\"}, \"source_evidence\": \"Mira Vale was born in 1932 and died in 2001. Leon Vale was born in 1930 and died in 1999. They married one another in 1955 and had one son and one daughter.\", \"tables\": [{\"headers\": [\"Name\", \"Born\", \"Married\", \"Spouse\", \"Boy\", \"Girl\", \"Died\"], \"rows\": [[\"Mira Vale\", \"1932\", \"1955\", \"Leon Vale\", \"1\", \"1\", \"2001\"]], \"page_break_before\": false}, {\"headers\": [\"Name\", \"Born\", \"Married\", \"Spouse\", \"Boy\", \"Girl\", \"Died\"], \"rows\": [[\"Leon Vale\", \"1930\", \"1955\", \"Mira Vale\", \"1\", \"1\", \"1999\"]], \"page_break_before\": false}]}"
+        }
+      ],
+      "response_format": {
+        "type": "json_schema",
+        "json_schema": {
+          "name": "consistency_classification",
+          "strict": true,
+          "schema": {
+            "type": "object",
+            "properties": {
+              "classification": {
+                "type": "string",
+                "enum": [
+                  "conformant",
+                  "format_drift",
+                  "row_semantic_issue",
+                  "mixed",
+                  "uncertain"
+                ]
+              }
+            },
+            "required": [
+              "classification"
+            ],
+            "additionalProperties": false
+          }
+        }
+      }
+    }
+  },
+  {
+    "id": "family-04",
+    "jev": {
+      "model": "jev-1.13.0",
+      "state": {
+        "conventions": {
+          "headers": [
+            "Name",
+            "Born",
+            "Married",
+            "Spouse",
+            "Boy",
+            "Girl",
+            "Died"
+          ],
+          "layout": "One continuous main table. A separate summary table headed Metric and Count is allowed. Page-break continuation tables are allowed. Column order/capitalization may vary if labels keep correct values.",
+          "meaning": "Born and Died apply to the named person. Married is marriage year; Spouse is the named partner; Boy and Girl give counts of sons and daughters."
+        },
+        "source_evidence": "Mira Vale was born in 1932 and died in 2001. Leon Vale was born in 1930 and died in 1999. They married one another in 1955 and had one son and one daughter.",
+        "tables": [
+          {
+            "headers": [
+              "Name",
+              "Born",
+              "Married",
+              "Spouse",
+              "Boy/Girl",
+              "Died"
+            ],
+            "rows": [
+              [
+                "Mira Vale",
+                "1932",
+                "1955",
+                "Leon Vale",
+                "1 / 1",
+                "2001"
+              ],
+              [
+                "Leon Vale",
+                "1930",
+                "1955",
+                "Mira Vale",
+                "1 / 1",
+                "1999"
+              ]
+            ],
+            "page_break_before": false
+          }
+        ]
+      },
+      "questions": {
+        "status": {
+          "type": "choice",
+          "instructions": "Classify the extracted chapter tables or maintenance cards against the explicit conventions and source evidence. Evaluate meaning and attachment, not just structural validity. Use only supplied evidence. A fused header with correct paired values is format-only; wrong source values or attachments are semantic defects. Incomplete/ambiguous evidence without an established defect means uncertain. Return one class.",
+          "criteria": {
+            "conformant": "The text and row ownership match source evidence and explicit document-local conventions; allowed layout variations are not defects.",
+            "format_drift": "A documented table/header/layout convention is violated, but no row value, meaning or attachment contradicts source evidence.",
+            "row_semantic_issue": "A row value, meaning or note attachment contradicts source evidence, while table/header/layout conventions are satisfied.",
+            "mixed": "Both a table/header/layout convention violation and a source-supported row value, meaning or attachment defect are present.",
+            "uncertain": "Evidence or explicit conventions are insufficient or ambiguous to establish whether this chapter is conformant or defective."
+          }
+        }
+      }
+    },
+    "gpt": {
+      "model": "gpt-4.1-2025-04-14",
+      "store": false,
+      "temperature": 0,
+      "max_completion_tokens": 160,
+      "messages": [
+        {
+          "role": "system",
+          "content": "Classify the extracted chapter tables or maintenance cards against the explicit conventions and source evidence. Evaluate meaning and attachment, not just structural validity. Use only supplied evidence. A fused header with correct paired values is format-only; wrong source values or attachments are semantic defects. Incomplete/ambiguous evidence without an established defect means uncertain. Return one class.\n{\"conformant\": \"The text and row ownership match source evidence and explicit document-local conventions; allowed layout variations are not defects.\", \"format_drift\": \"A documented table/header/layout convention is violated, but no row value, meaning or attachment contradicts source evidence.\", \"row_semantic_issue\": \"A row value, meaning or note attachment contradicts source evidence, while table/header/layout conventions are satisfied.\", \"mixed\": \"Both a table/header/layout convention violation and a source-supported row value, meaning or attachment defect are present.\", \"uncertain\": \"Evidence or explicit conventions are insufficient or ambiguous to establish whether this chapter is conformant or defective.\"}"
+        },
+        {
+          "role": "user",
+          "content": "{\"conventions\": {\"headers\": [\"Name\", \"Born\", \"Married\", \"Spouse\", \"Boy\", \"Girl\", \"Died\"], \"layout\": \"One continuous main table. A separate summary table headed Metric and Count is allowed. Page-break continuation tables are allowed. Column order/capitalization may vary if labels keep correct values.\", \"meaning\": \"Born and Died apply to the named person. Married is marriage year; Spouse is the named partner; Boy and Girl give counts of sons and daughters.\"}, \"source_evidence\": \"Mira Vale was born in 1932 and died in 2001. Leon Vale was born in 1930 and died in 1999. They married one another in 1955 and had one son and one daughter.\", \"tables\": [{\"headers\": [\"Name\", \"Born\", \"Married\", \"Spouse\", \"Boy/Girl\", \"Died\"], \"rows\": [[\"Mira Vale\", \"1932\", \"1955\", \"Leon Vale\", \"1 / 1\", \"2001\"], [\"Leon Vale\", \"1930\", \"1955\", \"Mira Vale\", \"1 / 1\", \"1999\"]], \"page_break_before\": false}]}"
+        }
+      ],
+      "response_format": {
+        "type": "json_schema",
+        "json_schema": {
+          "name": "consistency_classification",
+          "strict": true,
+          "schema": {
+            "type": "object",
+            "properties": {
+              "classification": {
+                "type": "string",
+                "enum": [
+                  "conformant",
+                  "format_drift",
+                  "row_semantic_issue",
+                  "mixed",
+                  "uncertain"
+                ]
+              }
+            },
+            "required": [
+              "classification"
+            ],
+            "additionalProperties": false
+          }
+        }
+      }
+    }
+  },
+  {
+    "id": "family-05",
+    "jev": {
+      "model": "jev-1.13.0",
+      "state": {
+        "conventions": {
+          "headers": [
+            "Name",
+            "Born",
+            "Married",
+            "Spouse",
+            "Boy",
+            "Girl",
+            "Died"
+          ],
+          "layout": "One continuous main table. A separate summary table headed Metric and Count is allowed. Page-break continuation tables are allowed. Column order/capitalization may vary if labels keep correct values.",
+          "meaning": "Born and Died apply to the named person. Married is marriage year; Spouse is the named partner; Boy and Girl give counts of sons and daughters."
+        },
+        "source_evidence": "Mira Vale was born in 1932 and died in 2001. Leon Vale was born in 1930 and died in 1999. They married one another in 1955 and had one son and one daughter.",
+        "tables": [
+          {
+            "headers": [
+              "Name",
+              "Born",
+              "Married",
+              "Spouse",
+              "Boy",
+              "Girl",
+              "Died"
+            ],
+            "rows": [
+              [
+                "Mira Vale",
+                "1932",
+                "1955",
+                "Leon Vale",
+                "1",
+                "1",
+                "1999"
+              ],
+              [
+                "Leon Vale",
+                "1930",
+                "1955",
+                "Mira Vale",
+                "1",
+                "1",
+                "2001"
+              ]
+            ],
+            "page_break_before": false
+          }
+        ]
+      },
+      "questions": {
+        "status": {
+          "type": "choice",
+          "instructions": "Classify the extracted chapter tables or maintenance cards against the explicit conventions and source evidence. Evaluate meaning and attachment, not just structural validity. Use only supplied evidence. A fused header with correct paired values is format-only; wrong source values or attachments are semantic defects. Incomplete/ambiguous evidence without an established defect means uncertain. Return one class.",
+          "criteria": {
+            "conformant": "The text and row ownership match source evidence and explicit document-local conventions; allowed layout variations are not defects.",
+            "format_drift": "A documented table/header/layout convention is violated, but no row value, meaning or attachment contradicts source evidence.",
+            "row_semantic_issue": "A row value, meaning or note attachment contradicts source evidence, while table/header/layout conventions are satisfied.",
+            "mixed": "Both a table/header/layout convention violation and a source-supported row value, meaning or attachment defect are present.",
+            "uncertain": "Evidence or explicit conventions are insufficient or ambiguous to establish whether this chapter is conformant or defective."
+          }
+        }
+      }
+    },
+    "gpt": {
+      "model": "gpt-4.1-2025-04-14",
+      "store": false,
+      "temperature": 0,
+      "max_completion_tokens": 160,
+      "messages": [
+        {
+          "role": "system",
+          "content": "Classify the extracted chapter tables or maintenance cards against the explicit conventions and source evidence. Evaluate meaning and attachment, not just structural validity. Use only supplied evidence. A fused header with correct paired values is format-only; wrong source values or attachments are semantic defects. Incomplete/ambiguous evidence without an established defect means uncertain. Return one class.\n{\"conformant\": \"The text and row ownership match source evidence and explicit document-local conventions; allowed layout variations are not defects.\", \"format_drift\": \"A documented table/header/layout convention is violated, but no row value, meaning or attachment contradicts source evidence.\", \"row_semantic_issue\": \"A row value, meaning or note attachment contradicts source evidence, while table/header/layout conventions are satisfied.\", \"mixed\": \"Both a table/header/layout convention violation and a source-supported row value, meaning or attachment defect are present.\", \"uncertain\": \"Evidence or explicit conventions are insufficient or ambiguous to establish whether this chapter is conformant or defective.\"}"
+        },
+        {
+          "role": "user",
+          "content": "{\"conventions\": {\"headers\": [\"Name\", \"Born\", \"Married\", \"Spouse\", \"Boy\", \"Girl\", \"Died\"], \"layout\": \"One continuous main table. A separate summary table headed Metric and Count is allowed. Page-break continuation tables are allowed. Column order/capitalization may vary if labels keep correct values.\", \"meaning\": \"Born and Died apply to the named person. Married is marriage year; Spouse is the named partner; Boy and Girl give counts of sons and daughters.\"}, \"source_evidence\": \"Mira Vale was born in 1932 and died in 2001. Leon Vale was born in 1930 and died in 1999. They married one another in 1955 and had one son and one daughter.\", \"tables\": [{\"headers\": [\"Name\", \"Born\", \"Married\", \"Spouse\", \"Boy\", \"Girl\", \"Died\"], \"rows\": [[\"Mira Vale\", \"1932\", \"1955\", \"Leon Vale\", \"1\", \"1\", \"1999\"], [\"Leon Vale\", \"1930\", \"1955\", \"Mira Vale\", \"1\", \"1\", \"2001\"]], \"page_break_before\": false}]}"
+        }
+      ],
+      "response_format": {
+        "type": "json_schema",
+        "json_schema": {
+          "name": "consistency_classification",
+          "strict": true,
+          "schema": {
+            "type": "object",
+            "properties": {
+              "classification": {
+                "type": "string",
+                "enum": [
+                  "conformant",
+                  "format_drift",
+                  "row_semantic_issue",
+                  "mixed",
+                  "uncertain"
+                ]
+              }
+            },
+            "required": [
+              "classification"
+            ],
+            "additionalProperties": false
+          }
+        }
+      }
+    }
+  },
+  {
+    "id": "family-06",
+    "jev": {
+      "model": "jev-1.13.0",
+      "state": {
+        "conventions": {
+          "headers": [
+            "Name",
+            "Born",
+            "Married",
+            "Spouse",
+            "Boy",
+            "Girl",
+            "Died"
+          ],
+          "layout": "One continuous main table. A separate summary table headed Metric and Count is allowed. Page-break continuation tables are allowed. Column order/capitalization may vary if labels keep correct values.",
+          "meaning": "Born and Died apply to the named person. Married is marriage year; Spouse is the named partner; Boy and Girl give counts of sons and daughters."
+        },
+        "source_evidence": "Mira Vale was born in 1932 and died in 2001. Leon Vale was born in 1930 and died in 1999. They married one another in 1955 and had one son and one daughter.",
+        "tables": [
+          {
+            "headers": [
+              "Name",
+              "Born",
+              "Married",
+              "Spouse",
+              "Boy",
+              "Girl",
+              "Died"
+            ],
+            "rows": [
+              [
+                "Mira Vale",
+                "1930",
+                "1955",
+                "Leon Vale",
+                "1",
+                "1",
+                "2001"
+              ],
+              [
+                "Leon Vale",
+                "1930",
+                "1955",
+                "Mira Vale",
+                "1",
+                "1",
+                "1999"
+              ]
+            ],
+            "page_break_before": false
+          }
+        ]
+      },
+      "questions": {
+        "status": {
+          "type": "choice",
+          "instructions": "Classify the extracted chapter tables or maintenance cards against the explicit conventions and source evidence. Evaluate meaning and attachment, not just structural validity. Use only supplied evidence. A fused header with correct paired values is format-only; wrong source values or attachments are semantic defects. Incomplete/ambiguous evidence without an established defect means uncertain. Return one class.",
+          "criteria": {
+            "conformant": "The text and row ownership match source evidence and explicit document-local conventions; allowed layout variations are not defects.",
+            "format_drift": "A documented table/header/layout convention is violated, but no row value, meaning or attachment contradicts source evidence.",
+            "row_semantic_issue": "A row value, meaning or note attachment contradicts source evidence, while table/header/layout conventions are satisfied.",
+            "mixed": "Both a table/header/layout convention violation and a source-supported row value, meaning or attachment defect are present.",
+            "uncertain": "Evidence or explicit conventions are insufficient or ambiguous to establish whether this chapter is conformant or defective."
+          }
+        }
+      }
+    },
+    "gpt": {
+      "model": "gpt-4.1-2025-04-14",
+      "store": false,
+      "temperature": 0,
+      "max_completion_tokens": 160,
+      "messages": [
+        {
+          "role": "system",
+          "content": "Classify the extracted chapter tables or maintenance cards against the explicit conventions and source evidence. Evaluate meaning and attachment, not just structural validity. Use only supplied evidence. A fused header with correct paired values is format-only; wrong source values or attachments are semantic defects. Incomplete/ambiguous evidence without an established defect means uncertain. Return one class.\n{\"conformant\": \"The text and row ownership match source evidence and explicit document-local conventions; allowed layout variations are not defects.\", \"format_drift\": \"A documented table/header/layout convention is violated, but no row value, meaning or attachment contradicts source evidence.\", \"row_semantic_issue\": \"A row value, meaning or note attachment contradicts source evidence, while table/header/layout conventions are satisfied.\", \"mixed\": \"Both a table/header/layout convention violation and a source-supported row value, meaning or attachment defect are present.\", \"uncertain\": \"Evidence or explicit conventions are insufficient or ambiguous to establish whether this chapter is conformant or defective.\"}"
+        },
+        {
+          "role": "user",
+          "content": "{\"conventions\": {\"headers\": [\"Name\", \"Born\", \"Married\", \"Spouse\", \"Boy\", \"Girl\", \"Died\"], \"layout\": \"One continuous main table. A separate summary table headed Metric and Count is allowed. Page-break continuation tables are allowed. Column order/capitalization may vary if labels keep correct values.\", \"meaning\": \"Born and Died apply to the named person. Married is marriage year; Spouse is the named partner; Boy and Girl give counts of sons and daughters.\"}, \"source_evidence\": \"Mira Vale was born in 1932 and died in 2001. Leon Vale was born in 1930 and died in 1999. They married one another in 1955 and had one son and one daughter.\", \"tables\": [{\"headers\": [\"Name\", \"Born\", \"Married\", \"Spouse\", \"Boy\", \"Girl\", \"Died\"], \"rows\": [[\"Mira Vale\", \"1930\", \"1955\", \"Leon Vale\", \"1\", \"1\", \"2001\"], [\"Leon Vale\", \"1930\", \"1955\", \"Mira Vale\", \"1\", \"1\", \"1999\"]], \"page_break_before\": false}]}"
+        }
+      ],
+      "response_format": {
+        "type": "json_schema",
+        "json_schema": {
+          "name": "consistency_classification",
+          "strict": true,
+          "schema": {
+            "type": "object",
+            "properties": {
+              "classification": {
+                "type": "string",
+                "enum": [
+                  "conformant",
+                  "format_drift",
+                  "row_semantic_issue",
+                  "mixed",
+                  "uncertain"
+                ]
+              }
+            },
+            "required": [
+              "classification"
+            ],
+            "additionalProperties": false
+          }
+        }
+      }
+    }
+  },
+  {
+    "id": "family-07",
+    "jev": {
+      "model": "jev-1.13.0",
+      "state": {
+        "conventions": {
+          "headers": [
+            "Name",
+            "Born",
+            "Married",
+            "Spouse",
+            "Boy",
+            "Girl",
+            "Died"
+          ],
+          "layout": "One continuous main table. A separate summary table headed Metric and Count is allowed. Page-break continuation tables are allowed. Column order/capitalization may vary if labels keep correct values.",
+          "meaning": "Born and Died apply to the named person. Married is marriage year; Spouse is the named partner; Boy and Girl give counts of sons and daughters."
+        },
+        "source_evidence": "Mira Vale was born in 1932 and died in 2001. Leon Vale was born in 1930 and died in 1999. They married one another in 1955 and had one son and one daughter.",
+        "tables": [
+          {
+            "headers": [
+              "Name",
+              "Born",
+              "Married",
+              "Spouse",
+              "Boy",
+              "Girl",
+              "Died"
+            ],
+            "rows": [
+              [
+                "Mira Vale",
+                "1932",
+                "1955",
+                "Leon Vale",
+                "1",
+                "1",
+                "1999"
+              ]
+            ],
+            "page_break_before": false
+          },
+          {
+            "headers": [
+              "Name",
+              "Born",
+              "Married",
+              "Spouse",
+              "Boy",
+              "Girl",
+              "Died"
+            ],
+            "rows": [
+              [
+                "Leon Vale",
+                "1930",
+                "1955",
+                "Mira Vale",
+                "1",
+                "1",
+                "2001"
+              ]
+            ],
+            "page_break_before": false
+          }
+        ]
+      },
+      "questions": {
+        "status": {
+          "type": "choice",
+          "instructions": "Classify the extracted chapter tables or maintenance cards against the explicit conventions and source evidence. Evaluate meaning and attachment, not just structural validity. Use only supplied evidence. A fused header with correct paired values is format-only; wrong source values or attachments are semantic defects. Incomplete/ambiguous evidence without an established defect means uncertain. Return one class.",
+          "criteria": {
+            "conformant": "The text and row ownership match source evidence and explicit document-local conventions; allowed layout variations are not defects.",
+            "format_drift": "A documented table/header/layout convention is violated, but no row value, meaning or attachment contradicts source evidence.",
+            "row_semantic_issue": "A row value, meaning or note attachment contradicts source evidence, while table/header/layout conventions are satisfied.",
+            "mixed": "Both a table/header/layout convention violation and a source-supported row value, meaning or attachment defect are present.",
+            "uncertain": "Evidence or explicit conventions are insufficient or ambiguous to establish whether this chapter is conformant or defective."
+          }
+        }
+      }
+    },
+    "gpt": {
+      "model": "gpt-4.1-2025-04-14",
+      "store": false,
+      "temperature": 0,
+      "max_completion_tokens": 160,
+      "messages": [
+        {
+          "role": "system",
+          "content": "Classify the extracted chapter tables or maintenance cards against the explicit conventions and source evidence. Evaluate meaning and attachment, not just structural validity. Use only supplied evidence. A fused header with correct paired values is format-only; wrong source values or attachments are semantic defects. Incomplete/ambiguous evidence without an established defect means uncertain. Return one class.\n{\"conformant\": \"The text and row ownership match source evidence and explicit document-local conventions; allowed layout variations are not defects.\", \"format_drift\": \"A documented table/header/layout convention is violated, but no row value, meaning or attachment contradicts source evidence.\", \"row_semantic_issue\": \"A row value, meaning or note attachment contradicts source evidence, while table/header/layout conventions are satisfied.\", \"mixed\": \"Both a table/header/layout convention violation and a source-supported row value, meaning or attachment defect are present.\", \"uncertain\": \"Evidence or explicit conventions are insufficient or ambiguous to establish whether this chapter is conformant or defective.\"}"
+        },
+        {
+          "role": "user",
+          "content": "{\"conventions\": {\"headers\": [\"Name\", \"Born\", \"Married\", \"Spouse\", \"Boy\", \"Girl\", \"Died\"], \"layout\": \"One continuous main table. A separate summary table headed Metric and Count is allowed. Page-break continuation tables are allowed. Column order/capitalization may vary if labels keep correct values.\", \"meaning\": \"Born and Died apply to the named person. Married is marriage year; Spouse is the named partner; Boy and Girl give counts of sons and daughters.\"}, \"source_evidence\": \"Mira Vale was born in 1932 and died in 2001. Leon Vale was born in 1930 and died in 1999. They married one another in 1955 and had one son and one daughter.\", \"tables\": [{\"headers\": [\"Name\", \"Born\", \"Married\", \"Spouse\", \"Boy\", \"Girl\", \"Died\"], \"rows\": [[\"Mira Vale\", \"1932\", \"1955\", \"Leon Vale\", \"1\", \"1\", \"1999\"]], \"page_break_before\": false}, {\"headers\": [\"Name\", \"Born\", \"Married\", \"Spouse\", \"Boy\", \"Girl\", \"Died\"], \"rows\": [[\"Leon Vale\", \"1930\", \"1955\", \"Mira Vale\", \"1\", \"1\", \"2001\"]], \"page_break_before\": false}]}"
+        }
+      ],
+      "response_format": {
+        "type": "json_schema",
+        "json_schema": {
+          "name": "consistency_classification",
+          "strict": true,
+          "schema": {
+            "type": "object",
+            "properties": {
+              "classification": {
+                "type": "string",
+                "enum": [
+                  "conformant",
+                  "format_drift",
+                  "row_semantic_issue",
+                  "mixed",
+                  "uncertain"
+                ]
+              }
+            },
+            "required": [
+              "classification"
+            ],
+            "additionalProperties": false
+          }
+        }
+      }
+    }
+  },
+  {
+    "id": "family-08",
+    "jev": {
+      "model": "jev-1.13.0",
+      "state": {
+        "conventions": {
+          "headers": [
+            "Name",
+            "Born",
+            "Married",
+            "Spouse",
+            "Boy",
+            "Girl",
+            "Died"
+          ],
+          "layout": "One continuous main table. A separate summary table headed Metric and Count is allowed. Page-break continuation tables are allowed. Column order/capitalization may vary if labels keep correct values.",
+          "meaning": "Born and Died apply to the named person. Married is marriage year; Spouse is the named partner; Boy and Girl give counts of sons and daughters."
+        },
+        "source_evidence": "Mira Vale was born in 1932 and died in 2001. Leon Vale was born in 1930 and died in 1999. They married one another in 1955 and had one son and one daughter.",
+        "tables": [
+          {
+            "headers": [
+              "Name",
+              "Born",
+              "Married",
+              "Spouse",
+              "Boy/Girl",
+              "Died"
+            ],
+            "rows": [
+              [
+                "Mira Vale",
+                "1930",
+                "1955",
+                "Leon Vale",
+                "1 / 1",
+                "2001"
+              ],
+              [
+                "Leon Vale",
+                "1930",
+                "1955",
+                "Mira Vale",
+                "1 / 1",
+                "1999"
+              ]
+            ],
+            "page_break_before": false
+          }
+        ]
+      },
+      "questions": {
+        "status": {
+          "type": "choice",
+          "instructions": "Classify the extracted chapter tables or maintenance cards against the explicit conventions and source evidence. Evaluate meaning and attachment, not just structural validity. Use only supplied evidence. A fused header with correct paired values is format-only; wrong source values or attachments are semantic defects. Incomplete/ambiguous evidence without an established defect means uncertain. Return one class.",
+          "criteria": {
+            "conformant": "The text and row ownership match source evidence and explicit document-local conventions; allowed layout variations are not defects.",
+            "format_drift": "A documented table/header/layout convention is violated, but no row value, meaning or attachment contradicts source evidence.",
+            "row_semantic_issue": "A row value, meaning or note attachment contradicts source evidence, while table/header/layout conventions are satisfied.",
+            "mixed": "Both a table/header/layout convention violation and a source-supported row value, meaning or attachment defect are present.",
+            "uncertain": "Evidence or explicit conventions are insufficient or ambiguous to establish whether this chapter is conformant or defective."
+          }
+        }
+      }
+    },
+    "gpt": {
+      "model": "gpt-4.1-2025-04-14",
+      "store": false,
+      "temperature": 0,
+      "max_completion_tokens": 160,
+      "messages": [
+        {
+          "role": "system",
+          "content": "Classify the extracted chapter tables or maintenance cards against the explicit conventions and source evidence. Evaluate meaning and attachment, not just structural validity. Use only supplied evidence. A fused header with correct paired values is format-only; wrong source values or attachments are semantic defects. Incomplete/ambiguous evidence without an established defect means uncertain. Return one class.\n{\"conformant\": \"The text and row ownership match source evidence and explicit document-local conventions; allowed layout variations are not defects.\", \"format_drift\": \"A documented table/header/layout convention is violated, but no row value, meaning or attachment contradicts source evidence.\", \"row_semantic_issue\": \"A row value, meaning or note attachment contradicts source evidence, while table/header/layout conventions are satisfied.\", \"mixed\": \"Both a table/header/layout convention violation and a source-supported row value, meaning or attachment defect are present.\", \"uncertain\": \"Evidence or explicit conventions are insufficient or ambiguous to establish whether this chapter is conformant or defective.\"}"
+        },
+        {
+          "role": "user",
+          "content": "{\"conventions\": {\"headers\": [\"Name\", \"Born\", \"Married\", \"Spouse\", \"Boy\", \"Girl\", \"Died\"], \"layout\": \"One continuous main table. A separate summary table headed Metric and Count is allowed. Page-break continuation tables are allowed. Column order/capitalization may vary if labels keep correct values.\", \"meaning\": \"Born and Died apply to the named person. Married is marriage year; Spouse is the named partner; Boy and Girl give counts of sons and daughters.\"}, \"source_evidence\": \"Mira Vale was born in 1932 and died in 2001. Leon Vale was born in 1930 and died in 1999. They married one another in 1955 and had one son and one daughter.\", \"tables\": [{\"headers\": [\"Name\", \"Born\", \"Married\", \"Spouse\", \"Boy/Girl\", \"Died\"], \"rows\": [[\"Mira Vale\", \"1930\", \"1955\", \"Leon Vale\", \"1 / 1\", \"2001\"], [\"Leon Vale\", \"1930\", \"1955\", \"Mira Vale\", \"1 / 1\", \"1999\"]], \"page_break_before\": false}]}"
+        }
+      ],
+      "response_format": {
+        "type": "json_schema",
+        "json_schema": {
+          "name": "consistency_classification",
+          "strict": true,
+          "schema": {
+            "type": "object",
+            "properties": {
+              "classification": {
+                "type": "string",
+                "enum": [
+                  "conformant",
+                  "format_drift",
+                  "row_semantic_issue",
+                  "mixed",
+                  "uncertain"
+                ]
+              }
+            },
+            "required": [
+              "classification"
+            ],
+            "additionalProperties": false
+          }
+        }
+      }
+    }
+  },
+  {
+    "id": "family-09",
+    "jev": {
+      "model": "jev-1.13.0",
+      "state": {
+        "conventions": {
+          "headers": [
+            "Name",
+            "Born",
+            "Married",
+            "Spouse",
+            "Boy",
+            "Girl",
+            "Died"
+          ],
+          "layout": "One continuous main table. A separate summary table headed Metric and Count is allowed. Page-break continuation tables are allowed. Column order/capitalization may vary if labels keep correct values.",
+          "meaning": "Born and Died apply to the named person. Married is marriage year; Spouse is the named partner; Boy and Girl give counts of sons and daughters."
+        },
+        "source_evidence": "Mira and Leon married in 1955 and had one son and one daughter. The source crop omits birth and death dates.",
+        "tables": [
+          {
+            "headers": [
+              "Name",
+              "Born",
+              "Married",
+              "Spouse",
+              "Boy",
+              "Girl",
+              "Died"
+            ],
+            "rows": [
+              [
+                "Mira Vale",
+                "1932",
+                "1955",
+                "Leon Vale",
+                "1",
+                "1",
+                "2001"
+              ],
+              [
+                "Leon Vale",
+                "1930",
+                "1955",
+                "Mira Vale",
+                "1",
+                "1",
+                "1999"
+              ]
+            ],
+            "page_break_before": false
+          }
+        ]
+      },
+      "questions": {
+        "status": {
+          "type": "choice",
+          "instructions": "Classify the extracted chapter tables or maintenance cards against the explicit conventions and source evidence. Evaluate meaning and attachment, not just structural validity. Use only supplied evidence. A fused header with correct paired values is format-only; wrong source values or attachments are semantic defects. Incomplete/ambiguous evidence without an established defect means uncertain. Return one class.",
+          "criteria": {
+            "conformant": "The text and row ownership match source evidence and explicit document-local conventions; allowed layout variations are not defects.",
+            "format_drift": "A documented table/header/layout convention is violated, but no row value, meaning or attachment contradicts source evidence.",
+            "row_semantic_issue": "A row value, meaning or note attachment contradicts source evidence, while table/header/layout conventions are satisfied.",
+            "mixed": "Both a table/header/layout convention violation and a source-supported row value, meaning or attachment defect are present.",
+            "uncertain": "Evidence or explicit conventions are insufficient or ambiguous to establish whether this chapter is conformant or defective."
+          }
+        }
+      }
+    },
+    "gpt": {
+      "model": "gpt-4.1-2025-04-14",
+      "store": false,
+      "temperature": 0,
+      "max_completion_tokens": 160,
+      "messages": [
+        {
+          "role": "system",
+          "content": "Classify the extracted chapter tables or maintenance cards against the explicit conventions and source evidence. Evaluate meaning and attachment, not just structural validity. Use only supplied evidence. A fused header with correct paired values is format-only; wrong source values or attachments are semantic defects. Incomplete/ambiguous evidence without an established defect means uncertain. Return one class.\n{\"conformant\": \"The text and row ownership match source evidence and explicit document-local conventions; allowed layout variations are not defects.\", \"format_drift\": \"A documented table/header/layout convention is violated, but no row value, meaning or attachment contradicts source evidence.\", \"row_semantic_issue\": \"A row value, meaning or note attachment contradicts source evidence, while table/header/layout conventions are satisfied.\", \"mixed\": \"Both a table/header/layout convention violation and a source-supported row value, meaning or attachment defect are present.\", \"uncertain\": \"Evidence or explicit conventions are insufficient or ambiguous to establish whether this chapter is conformant or defective.\"}"
+        },
+        {
+          "role": "user",
+          "content": "{\"conventions\": {\"headers\": [\"Name\", \"Born\", \"Married\", \"Spouse\", \"Boy\", \"Girl\", \"Died\"], \"layout\": \"One continuous main table. A separate summary table headed Metric and Count is allowed. Page-break continuation tables are allowed. Column order/capitalization may vary if labels keep correct values.\", \"meaning\": \"Born and Died apply to the named person. Married is marriage year; Spouse is the named partner; Boy and Girl give counts of sons and daughters.\"}, \"source_evidence\": \"Mira and Leon married in 1955 and had one son and one daughter. The source crop omits birth and death dates.\", \"tables\": [{\"headers\": [\"Name\", \"Born\", \"Married\", \"Spouse\", \"Boy\", \"Girl\", \"Died\"], \"rows\": [[\"Mira Vale\", \"1932\", \"1955\", \"Leon Vale\", \"1\", \"1\", \"2001\"], [\"Leon Vale\", \"1930\", \"1955\", \"Mira Vale\", \"1\", \"1\", \"1999\"]], \"page_break_before\": false}]}"
+        }
+      ],
+      "response_format": {
+        "type": "json_schema",
+        "json_schema": {
+          "name": "consistency_classification",
+          "strict": true,
+          "schema": {
+            "type": "object",
+            "properties": {
+              "classification": {
+                "type": "string",
+                "enum": [
+                  "conformant",
+                  "format_drift",
+                  "row_semantic_issue",
+                  "mixed",
+                  "uncertain"
+                ]
+              }
+            },
+            "required": [
+              "classification"
+            ],
+            "additionalProperties": false
+          }
+        }
+      }
+    }
+  },
+  {
+    "id": "family-10",
+    "jev": {
+      "model": "jev-1.13.0",
+      "state": {
+        "conventions": {
+          "headers": [
+            "Name",
+            "Born",
+            "Married",
+            "Spouse",
+            "Boy",
+            "Girl",
+            "Died"
+          ],
+          "layout": "One continuous main table. A separate summary table headed Metric and Count is allowed. Page-break continuation tables are allowed. Column order/capitalization may vary if labels keep correct values.",
+          "meaning": "Born and Died apply to the named person. Married is marriage year; Spouse is the named partner; Boy and Girl give counts of sons and daughters."
+        },
+        "source_evidence": "Mira and Leon married in 1955 and had one son and one daughter. The source lists birth years 1932 and 1930 and death years 2001 and 1999, but lost alignment makes attribution of each date to either spouse indeterminate.",
+        "tables": [
+          {
+            "headers": [
+              "Name",
+              "Born",
+              "Married",
+              "Spouse",
+              "Boy",
+              "Girl",
+              "Died"
+            ],
+            "rows": [
+              [
+                "Mira Vale",
+                "1932",
+                "1955",
+                "Leon Vale",
+                "1",
+                "1",
+                "2001"
+              ],
+              [
+                "Leon Vale",
+                "1930",
+                "1955",
+                "Mira Vale",
+                "1",
+                "1",
+                "1999"
+              ]
+            ],
+            "page_break_before": false
+          }
+        ]
+      },
+      "questions": {
+        "status": {
+          "type": "choice",
+          "instructions": "Classify the extracted chapter tables or maintenance cards against the explicit conventions and source evidence. Evaluate meaning and attachment, not just structural validity. Use only supplied evidence. A fused header with correct paired values is format-only; wrong source values or attachments are semantic defects. Incomplete/ambiguous evidence without an established defect means uncertain. Return one class.",
+          "criteria": {
+            "conformant": "The text and row ownership match source evidence and explicit document-local conventions; allowed layout variations are not defects.",
+            "format_drift": "A documented table/header/layout convention is violated, but no row value, meaning or attachment contradicts source evidence.",
+            "row_semantic_issue": "A row value, meaning or note attachment contradicts source evidence, while table/header/layout conventions are satisfied.",
+            "mixed": "Both a table/header/layout convention violation and a source-supported row value, meaning or attachment defect are present.",
+            "uncertain": "Evidence or explicit conventions are insufficient or ambiguous to establish whether this chapter is conformant or defective."
+          }
+        }
+      }
+    },
+    "gpt": {
+      "model": "gpt-4.1-2025-04-14",
+      "store": false,
+      "temperature": 0,
+      "max_completion_tokens": 160,
+      "messages": [
+        {
+          "role": "system",
+          "content": "Classify the extracted chapter tables or maintenance cards against the explicit conventions and source evidence. Evaluate meaning and attachment, not just structural validity. Use only supplied evidence. A fused header with correct paired values is format-only; wrong source values or attachments are semantic defects. Incomplete/ambiguous evidence without an established defect means uncertain. Return one class.\n{\"conformant\": \"The text and row ownership match source evidence and explicit document-local conventions; allowed layout variations are not defects.\", \"format_drift\": \"A documented table/header/layout convention is violated, but no row value, meaning or attachment contradicts source evidence.\", \"row_semantic_issue\": \"A row value, meaning or note attachment contradicts source evidence, while table/header/layout conventions are satisfied.\", \"mixed\": \"Both a table/header/layout convention violation and a source-supported row value, meaning or attachment defect are present.\", \"uncertain\": \"Evidence or explicit conventions are insufficient or ambiguous to establish whether this chapter is conformant or defective.\"}"
+        },
+        {
+          "role": "user",
+          "content": "{\"conventions\": {\"headers\": [\"Name\", \"Born\", \"Married\", \"Spouse\", \"Boy\", \"Girl\", \"Died\"], \"layout\": \"One continuous main table. A separate summary table headed Metric and Count is allowed. Page-break continuation tables are allowed. Column order/capitalization may vary if labels keep correct values.\", \"meaning\": \"Born and Died apply to the named person. Married is marriage year; Spouse is the named partner; Boy and Girl give counts of sons and daughters.\"}, \"source_evidence\": \"Mira and Leon married in 1955 and had one son and one daughter. The source lists birth years 1932 and 1930 and death years 2001 and 1999, but lost alignment makes attribution of each date to either spouse indeterminate.\", \"tables\": [{\"headers\": [\"Name\", \"Born\", \"Married\", \"Spouse\", \"Boy\", \"Girl\", \"Died\"], \"rows\": [[\"Mira Vale\", \"1932\", \"1955\", \"Leon Vale\", \"1\", \"1\", \"2001\"], [\"Leon Vale\", \"1930\", \"1955\", \"Mira Vale\", \"1\", \"1\", \"1999\"]], \"page_break_before\": false}]}"
+        }
+      ],
+      "response_format": {
+        "type": "json_schema",
+        "json_schema": {
+          "name": "consistency_classification",
+          "strict": true,
+          "schema": {
+            "type": "object",
+            "properties": {
+              "classification": {
+                "type": "string",
+                "enum": [
+                  "conformant",
+                  "format_drift",
+                  "row_semantic_issue",
+                  "mixed",
+                  "uncertain"
+                ]
+              }
+            },
+            "required": [
+              "classification"
+            ],
+            "additionalProperties": false
+          }
+        }
+      }
+    }
+  },
+  {
+    "id": "maintenance-01",
+    "jev": {
+      "model": "jev-1.13.0",
+      "state": {
+        "conventions": {
+          "required_fields": [
+            "Installed",
+            "Technician"
+          ],
+          "layout": "One titled card per asset. Field order may vary. Each card has a local Notes list; a note labelled GLOBAL may instead appear in document_footer. Combining two asset titles in one card or duplicating the same asset into multiple cards is format drift.",
+          "meaning": "Installed is installation year. Technician is current responsible person. Local Notes are work performed on that asset; GLOBAL advice applies to all assets."
+        },
+        "source_evidence": "Pump A was installed in 2020. R. Fen is responsible for it; its seal was replaced. Valve B entered service in 2021 under L. Orin; its pressure was inspected. Global advice: isolate power before servicing.",
+        "cards": [
+          {
+            "title": "Pump A",
+            "fields": {
+              "Installed": "2020",
+              "Technician": "R. Fen"
+            },
+            "notes": [
+              "Seal replaced"
+            ]
+          },
+          {
+            "title": "Valve B",
+            "fields": {
+              "Installed": "2021",
+              "Technician": "L. Orin"
+            },
+            "notes": [
+              "Pressure inspected"
+            ]
+          }
+        ],
+        "document_footer": []
+      },
+      "questions": {
+        "status": {
+          "type": "choice",
+          "instructions": "Classify the extracted chapter tables or maintenance cards against the explicit conventions and source evidence. Evaluate meaning and attachment, not just structural validity. Use only supplied evidence. A fused header with correct paired values is format-only; wrong source values or attachments are semantic defects. Incomplete/ambiguous evidence without an established defect means uncertain. Return one class.",
+          "criteria": {
+            "conformant": "The text and row ownership match source evidence and explicit document-local conventions; allowed layout variations are not defects.",
+            "format_drift": "A documented table/header/layout convention is violated, but no row value, meaning or attachment contradicts source evidence.",
+            "row_semantic_issue": "A row value, meaning or note attachment contradicts source evidence, while table/header/layout conventions are satisfied.",
+            "mixed": "Both a table/header/layout convention violation and a source-supported row value, meaning or attachment defect are present.",
+            "uncertain": "Evidence or explicit conventions are insufficient or ambiguous to establish whether this chapter is conformant or defective."
+          }
+        }
+      }
+    },
+    "gpt": {
+      "model": "gpt-4.1-2025-04-14",
+      "store": false,
+      "temperature": 0,
+      "max_completion_tokens": 160,
+      "messages": [
+        {
+          "role": "system",
+          "content": "Classify the extracted chapter tables or maintenance cards against the explicit conventions and source evidence. Evaluate meaning and attachment, not just structural validity. Use only supplied evidence. A fused header with correct paired values is format-only; wrong source values or attachments are semantic defects. Incomplete/ambiguous evidence without an established defect means uncertain. Return one class.\n{\"conformant\": \"The text and row ownership match source evidence and explicit document-local conventions; allowed layout variations are not defects.\", \"format_drift\": \"A documented table/header/layout convention is violated, but no row value, meaning or attachment contradicts source evidence.\", \"row_semantic_issue\": \"A row value, meaning or note attachment contradicts source evidence, while table/header/layout conventions are satisfied.\", \"mixed\": \"Both a table/header/layout convention violation and a source-supported row value, meaning or attachment defect are present.\", \"uncertain\": \"Evidence or explicit conventions are insufficient or ambiguous to establish whether this chapter is conformant or defective.\"}"
+        },
+        {
+          "role": "user",
+          "content": "{\"conventions\": {\"required_fields\": [\"Installed\", \"Technician\"], \"layout\": \"One titled card per asset. Field order may vary. Each card has a local Notes list; a note labelled GLOBAL may instead appear in document_footer. Combining two asset titles in one card or duplicating the same asset into multiple cards is format drift.\", \"meaning\": \"Installed is installation year. Technician is current responsible person. Local Notes are work performed on that asset; GLOBAL advice applies to all assets.\"}, \"source_evidence\": \"Pump A was installed in 2020. R. Fen is responsible for it; its seal was replaced. Valve B entered service in 2021 under L. Orin; its pressure was inspected. Global advice: isolate power before servicing.\", \"cards\": [{\"title\": \"Pump A\", \"fields\": {\"Installed\": \"2020\", \"Technician\": \"R. Fen\"}, \"notes\": [\"Seal replaced\"]}, {\"title\": \"Valve B\", \"fields\": {\"Installed\": \"2021\", \"Technician\": \"L. Orin\"}, \"notes\": [\"Pressure inspected\"]}], \"document_footer\": []}"
+        }
+      ],
+      "response_format": {
+        "type": "json_schema",
+        "json_schema": {
+          "name": "consistency_classification",
+          "strict": true,
+          "schema": {
+            "type": "object",
+            "properties": {
+              "classification": {
+                "type": "string",
+                "enum": [
+                  "conformant",
+                  "format_drift",
+                  "row_semantic_issue",
+                  "mixed",
+                  "uncertain"
+                ]
+              }
+            },
+            "required": [
+              "classification"
+            ],
+            "additionalProperties": false
+          }
+        }
+      }
+    }
+  },
+  {
+    "id": "maintenance-02",
+    "jev": {
+      "model": "jev-1.13.0",
+      "state": {
+        "conventions": {
+          "required_fields": [
+            "Installed",
+            "Technician"
+          ],
+          "layout": "One titled card per asset. Field order may vary. Each card has a local Notes list; a note labelled GLOBAL may instead appear in document_footer. Combining two asset titles in one card or duplicating the same asset into multiple cards is format drift.",
+          "meaning": "Installed is installation year. Technician is current responsible person. Local Notes are work performed on that asset; GLOBAL advice applies to all assets."
+        },
+        "source_evidence": "Pump A was installed in 2020. R. Fen is responsible for it; its seal was replaced. Valve B entered service in 2021 under L. Orin; its pressure was inspected. Global advice: isolate power before servicing.",
+        "cards": [
+          {
+            "title": "Pump A",
+            "fields": {
+              "Technician": "R. Fen",
+              "Installed": "2020"
+            },
+            "notes": [
+              "Seal replaced"
+            ]
+          },
+          {
+            "title": "Valve B",
+            "fields": {
+              "Technician": "L. Orin",
+              "Installed": "2021"
+            },
+            "notes": [
+              "Pressure inspected"
+            ]
+          }
+        ],
+        "document_footer": [
+          "GLOBAL: isolate power before servicing"
+        ]
+      },
+      "questions": {
+        "status": {
+          "type": "choice",
+          "instructions": "Classify the extracted chapter tables or maintenance cards against the explicit conventions and source evidence. Evaluate meaning and attachment, not just structural validity. Use only supplied evidence. A fused header with correct paired values is format-only; wrong source values or attachments are semantic defects. Incomplete/ambiguous evidence without an established defect means uncertain. Return one class.",
+          "criteria": {
+            "conformant": "The text and row ownership match source evidence and explicit document-local conventions; allowed layout variations are not defects.",
+            "format_drift": "A documented table/header/layout convention is violated, but no row value, meaning or attachment contradicts source evidence.",
+            "row_semantic_issue": "A row value, meaning or note attachment contradicts source evidence, while table/header/layout conventions are satisfied.",
+            "mixed": "Both a table/header/layout convention violation and a source-supported row value, meaning or attachment defect are present.",
+            "uncertain": "Evidence or explicit conventions are insufficient or ambiguous to establish whether this chapter is conformant or defective."
+          }
+        }
+      }
+    },
+    "gpt": {
+      "model": "gpt-4.1-2025-04-14",
+      "store": false,
+      "temperature": 0,
+      "max_completion_tokens": 160,
+      "messages": [
+        {
+          "role": "system",
+          "content": "Classify the extracted chapter tables or maintenance cards against the explicit conventions and source evidence. Evaluate meaning and attachment, not just structural validity. Use only supplied evidence. A fused header with correct paired values is format-only; wrong source values or attachments are semantic defects. Incomplete/ambiguous evidence without an established defect means uncertain. Return one class.\n{\"conformant\": \"The text and row ownership match source evidence and explicit document-local conventions; allowed layout variations are not defects.\", \"format_drift\": \"A documented table/header/layout convention is violated, but no row value, meaning or attachment contradicts source evidence.\", \"row_semantic_issue\": \"A row value, meaning or note attachment contradicts source evidence, while table/header/layout conventions are satisfied.\", \"mixed\": \"Both a table/header/layout convention violation and a source-supported row value, meaning or attachment defect are present.\", \"uncertain\": \"Evidence or explicit conventions are insufficient or ambiguous to establish whether this chapter is conformant or defective.\"}"
+        },
+        {
+          "role": "user",
+          "content": "{\"conventions\": {\"required_fields\": [\"Installed\", \"Technician\"], \"layout\": \"One titled card per asset. Field order may vary. Each card has a local Notes list; a note labelled GLOBAL may instead appear in document_footer. Combining two asset titles in one card or duplicating the same asset into multiple cards is format drift.\", \"meaning\": \"Installed is installation year. Technician is current responsible person. Local Notes are work performed on that asset; GLOBAL advice applies to all assets.\"}, \"source_evidence\": \"Pump A was installed in 2020. R. Fen is responsible for it; its seal was replaced. Valve B entered service in 2021 under L. Orin; its pressure was inspected. Global advice: isolate power before servicing.\", \"cards\": [{\"title\": \"Pump A\", \"fields\": {\"Technician\": \"R. Fen\", \"Installed\": \"2020\"}, \"notes\": [\"Seal replaced\"]}, {\"title\": \"Valve B\", \"fields\": {\"Technician\": \"L. Orin\", \"Installed\": \"2021\"}, \"notes\": [\"Pressure inspected\"]}], \"document_footer\": [\"GLOBAL: isolate power before servicing\"]}"
+        }
+      ],
+      "response_format": {
+        "type": "json_schema",
+        "json_schema": {
+          "name": "consistency_classification",
+          "strict": true,
+          "schema": {
+            "type": "object",
+            "properties": {
+              "classification": {
+                "type": "string",
+                "enum": [
+                  "conformant",
+                  "format_drift",
+                  "row_semantic_issue",
+                  "mixed",
+                  "uncertain"
+                ]
+              }
+            },
+            "required": [
+              "classification"
+            ],
+            "additionalProperties": false
+          }
+        }
+      }
+    }
+  },
+  {
+    "id": "maintenance-03",
+    "jev": {
+      "model": "jev-1.13.0",
+      "state": {
+        "conventions": {
+          "required_fields": [
+            "Installed",
+            "Technician"
+          ],
+          "layout": "One titled card per asset. Field order may vary. Each card has a local Notes list; a note labelled GLOBAL may instead appear in document_footer. Combining two asset titles in one card or duplicating the same asset into multiple cards is format drift.",
+          "meaning": "Installed is installation year. Technician is current responsible person. Local Notes are work performed on that asset; GLOBAL advice applies to all assets."
+        },
+        "source_evidence": "Pump A was installed in 2020. R. Fen is responsible for it; its seal was replaced. Valve B entered service in 2021 under L. Orin; its pressure was inspected. Global advice: isolate power before servicing.",
+        "cards": [
+          {
+            "title": "Pump A / Valve B",
+            "fields": {
+              "Installed": "2020 / 2021",
+              "Technician": "R. Fen / L. Orin"
+            },
+            "notes": [
+              "Pump A: Seal replaced",
+              "Valve B: Pressure inspected"
+            ]
+          }
+        ],
+        "document_footer": []
+      },
+      "questions": {
+        "status": {
+          "type": "choice",
+          "instructions": "Classify the extracted chapter tables or maintenance cards against the explicit conventions and source evidence. Evaluate meaning and attachment, not just structural validity. Use only supplied evidence. A fused header with correct paired values is format-only; wrong source values or attachments are semantic defects. Incomplete/ambiguous evidence without an established defect means uncertain. Return one class.",
+          "criteria": {
+            "conformant": "The text and row ownership match source evidence and explicit document-local conventions; allowed layout variations are not defects.",
+            "format_drift": "A documented table/header/layout convention is violated, but no row value, meaning or attachment contradicts source evidence.",
+            "row_semantic_issue": "A row value, meaning or note attachment contradicts source evidence, while table/header/layout conventions are satisfied.",
+            "mixed": "Both a table/header/layout convention violation and a source-supported row value, meaning or attachment defect are present.",
+            "uncertain": "Evidence or explicit conventions are insufficient or ambiguous to establish whether this chapter is conformant or defective."
+          }
+        }
+      }
+    },
+    "gpt": {
+      "model": "gpt-4.1-2025-04-14",
+      "store": false,
+      "temperature": 0,
+      "max_completion_tokens": 160,
+      "messages": [
+        {
+          "role": "system",
+          "content": "Classify the extracted chapter tables or maintenance cards against the explicit conventions and source evidence. Evaluate meaning and attachment, not just structural validity. Use only supplied evidence. A fused header with correct paired values is format-only; wrong source values or attachments are semantic defects. Incomplete/ambiguous evidence without an established defect means uncertain. Return one class.\n{\"conformant\": \"The text and row ownership match source evidence and explicit document-local conventions; allowed layout variations are not defects.\", \"format_drift\": \"A documented table/header/layout convention is violated, but no row value, meaning or attachment contradicts source evidence.\", \"row_semantic_issue\": \"A row value, meaning or note attachment contradicts source evidence, while table/header/layout conventions are satisfied.\", \"mixed\": \"Both a table/header/layout convention violation and a source-supported row value, meaning or attachment defect are present.\", \"uncertain\": \"Evidence or explicit conventions are insufficient or ambiguous to establish whether this chapter is conformant or defective.\"}"
+        },
+        {
+          "role": "user",
+          "content": "{\"conventions\": {\"required_fields\": [\"Installed\", \"Technician\"], \"layout\": \"One titled card per asset. Field order may vary. Each card has a local Notes list; a note labelled GLOBAL may instead appear in document_footer. Combining two asset titles in one card or duplicating the same asset into multiple cards is format drift.\", \"meaning\": \"Installed is installation year. Technician is current responsible person. Local Notes are work performed on that asset; GLOBAL advice applies to all assets.\"}, \"source_evidence\": \"Pump A was installed in 2020. R. Fen is responsible for it; its seal was replaced. Valve B entered service in 2021 under L. Orin; its pressure was inspected. Global advice: isolate power before servicing.\", \"cards\": [{\"title\": \"Pump A / Valve B\", \"fields\": {\"Installed\": \"2020 / 2021\", \"Technician\": \"R. Fen / L. Orin\"}, \"notes\": [\"Pump A: Seal replaced\", \"Valve B: Pressure inspected\"]}], \"document_footer\": []}"
+        }
+      ],
+      "response_format": {
+        "type": "json_schema",
+        "json_schema": {
+          "name": "consistency_classification",
+          "strict": true,
+          "schema": {
+            "type": "object",
+            "properties": {
+              "classification": {
+                "type": "string",
+                "enum": [
+                  "conformant",
+                  "format_drift",
+                  "row_semantic_issue",
+                  "mixed",
+                  "uncertain"
+                ]
+              }
+            },
+            "required": [
+              "classification"
+            ],
+            "additionalProperties": false
+          }
+        }
+      }
+    }
+  },
+  {
+    "id": "maintenance-04",
+    "jev": {
+      "model": "jev-1.13.0",
+      "state": {
+        "conventions": {
+          "required_fields": [
+            "Installed",
+            "Technician"
+          ],
+          "layout": "One titled card per asset. Field order may vary. Each card has a local Notes list; a note labelled GLOBAL may instead appear in document_footer. Combining two asset titles in one card or duplicating the same asset into multiple cards is format drift.",
+          "meaning": "Installed is installation year. Technician is current responsible person. Local Notes are work performed on that asset; GLOBAL advice applies to all assets."
+        },
+        "source_evidence": "Pump A was installed in 2020. R. Fen is responsible for it; its seal was replaced. Valve B entered service in 2021 under L. Orin; its pressure was inspected. Global advice: isolate power before servicing.",
+        "cards": [
+          {
+            "title": "Pump A",
+            "fields": {
+              "Installed": "2020",
+              "Technician": "R. Fen"
+            },
+            "notes": [
+              "Seal replaced"
+            ]
+          },
+          {
+            "title": "Pump A",
+            "fields": {
+              "Installed": "2020",
+              "Technician": "R. Fen"
+            },
+            "notes": []
+          },
+          {
+            "title": "Valve B",
+            "fields": {
+              "Installed": "2021",
+              "Technician": "L. Orin"
+            },
+            "notes": [
+              "Pressure inspected"
+            ]
+          }
+        ],
+        "document_footer": []
+      },
+      "questions": {
+        "status": {
+          "type": "choice",
+          "instructions": "Classify the extracted chapter tables or maintenance cards against the explicit conventions and source evidence. Evaluate meaning and attachment, not just structural validity. Use only supplied evidence. A fused header with correct paired values is format-only; wrong source values or attachments are semantic defects. Incomplete/ambiguous evidence without an established defect means uncertain. Return one class.",
+          "criteria": {
+            "conformant": "The text and row ownership match source evidence and explicit document-local conventions; allowed layout variations are not defects.",
+            "format_drift": "A documented table/header/layout convention is violated, but no row value, meaning or attachment contradicts source evidence.",
+            "row_semantic_issue": "A row value, meaning or note attachment contradicts source evidence, while table/header/layout conventions are satisfied.",
+            "mixed": "Both a table/header/layout convention violation and a source-supported row value, meaning or attachment defect are present.",
+            "uncertain": "Evidence or explicit conventions are insufficient or ambiguous to establish whether this chapter is conformant or defective."
+          }
+        }
+      }
+    },
+    "gpt": {
+      "model": "gpt-4.1-2025-04-14",
+      "store": false,
+      "temperature": 0,
+      "max_completion_tokens": 160,
+      "messages": [
+        {
+          "role": "system",
+          "content": "Classify the extracted chapter tables or maintenance cards against the explicit conventions and source evidence. Evaluate meaning and attachment, not just structural validity. Use only supplied evidence. A fused header with correct paired values is format-only; wrong source values or attachments are semantic defects. Incomplete/ambiguous evidence without an established defect means uncertain. Return one class.\n{\"conformant\": \"The text and row ownership match source evidence and explicit document-local conventions; allowed layout variations are not defects.\", \"format_drift\": \"A documented table/header/layout convention is violated, but no row value, meaning or attachment contradicts source evidence.\", \"row_semantic_issue\": \"A row value, meaning or note attachment contradicts source evidence, while table/header/layout conventions are satisfied.\", \"mixed\": \"Both a table/header/layout convention violation and a source-supported row value, meaning or attachment defect are present.\", \"uncertain\": \"Evidence or explicit conventions are insufficient or ambiguous to establish whether this chapter is conformant or defective.\"}"
+        },
+        {
+          "role": "user",
+          "content": "{\"conventions\": {\"required_fields\": [\"Installed\", \"Technician\"], \"layout\": \"One titled card per asset. Field order may vary. Each card has a local Notes list; a note labelled GLOBAL may instead appear in document_footer. Combining two asset titles in one card or duplicating the same asset into multiple cards is format drift.\", \"meaning\": \"Installed is installation year. Technician is current responsible person. Local Notes are work performed on that asset; GLOBAL advice applies to all assets.\"}, \"source_evidence\": \"Pump A was installed in 2020. R. Fen is responsible for it; its seal was replaced. Valve B entered service in 2021 under L. Orin; its pressure was inspected. Global advice: isolate power before servicing.\", \"cards\": [{\"title\": \"Pump A\", \"fields\": {\"Installed\": \"2020\", \"Technician\": \"R. Fen\"}, \"notes\": [\"Seal replaced\"]}, {\"title\": \"Pump A\", \"fields\": {\"Installed\": \"2020\", \"Technician\": \"R. Fen\"}, \"notes\": []}, {\"title\": \"Valve B\", \"fields\": {\"Installed\": \"2021\", \"Technician\": \"L. Orin\"}, \"notes\": [\"Pressure inspected\"]}], \"document_footer\": []}"
+        }
+      ],
+      "response_format": {
+        "type": "json_schema",
+        "json_schema": {
+          "name": "consistency_classification",
+          "strict": true,
+          "schema": {
+            "type": "object",
+            "properties": {
+              "classification": {
+                "type": "string",
+                "enum": [
+                  "conformant",
+                  "format_drift",
+                  "row_semantic_issue",
+                  "mixed",
+                  "uncertain"
+                ]
+              }
+            },
+            "required": [
+              "classification"
+            ],
+            "additionalProperties": false
+          }
+        }
+      }
+    }
+  },
+  {
+    "id": "maintenance-05",
+    "jev": {
+      "model": "jev-1.13.0",
+      "state": {
+        "conventions": {
+          "required_fields": [
+            "Installed",
+            "Technician"
+          ],
+          "layout": "One titled card per asset. Field order may vary. Each card has a local Notes list; a note labelled GLOBAL may instead appear in document_footer. Combining two asset titles in one card or duplicating the same asset into multiple cards is format drift.",
+          "meaning": "Installed is installation year. Technician is current responsible person. Local Notes are work performed on that asset; GLOBAL advice applies to all assets."
+        },
+        "source_evidence": "Pump A was installed in 2020. R. Fen is responsible for it; its seal was replaced. Valve B entered service in 2021 under L. Orin; its pressure was inspected. Global advice: isolate power before servicing.",
+        "cards": [
+          {
+            "title": "Pump A",
+            "fields": {
+              "Installed": "2020",
+              "Technician": "R. Fen"
+            },
+            "notes": [
+              "Pressure inspected"
+            ]
+          },
+          {
+            "title": "Valve B",
+            "fields": {
+              "Installed": "2021",
+              "Technician": "L. Orin"
+            },
+            "notes": [
+              "Seal replaced"
+            ]
+          }
+        ],
+        "document_footer": []
+      },
+      "questions": {
+        "status": {
+          "type": "choice",
+          "instructions": "Classify the extracted chapter tables or maintenance cards against the explicit conventions and source evidence. Evaluate meaning and attachment, not just structural validity. Use only supplied evidence. A fused header with correct paired values is format-only; wrong source values or attachments are semantic defects. Incomplete/ambiguous evidence without an established defect means uncertain. Return one class.",
+          "criteria": {
+            "conformant": "The text and row ownership match source evidence and explicit document-local conventions; allowed layout variations are not defects.",
+            "format_drift": "A documented table/header/layout convention is violated, but no row value, meaning or attachment contradicts source evidence.",
+            "row_semantic_issue": "A row value, meaning or note attachment contradicts source evidence, while table/header/layout conventions are satisfied.",
+            "mixed": "Both a table/header/layout convention violation and a source-supported row value, meaning or attachment defect are present.",
+            "uncertain": "Evidence or explicit conventions are insufficient or ambiguous to establish whether this chapter is conformant or defective."
+          }
+        }
+      }
+    },
+    "gpt": {
+      "model": "gpt-4.1-2025-04-14",
+      "store": false,
+      "temperature": 0,
+      "max_completion_tokens": 160,
+      "messages": [
+        {
+          "role": "system",
+          "content": "Classify the extracted chapter tables or maintenance cards against the explicit conventions and source evidence. Evaluate meaning and attachment, not just structural validity. Use only supplied evidence. A fused header with correct paired values is format-only; wrong source values or attachments are semantic defects. Incomplete/ambiguous evidence without an established defect means uncertain. Return one class.\n{\"conformant\": \"The text and row ownership match source evidence and explicit document-local conventions; allowed layout variations are not defects.\", \"format_drift\": \"A documented table/header/layout convention is violated, but no row value, meaning or attachment contradicts source evidence.\", \"row_semantic_issue\": \"A row value, meaning or note attachment contradicts source evidence, while table/header/layout conventions are satisfied.\", \"mixed\": \"Both a table/header/layout convention violation and a source-supported row value, meaning or attachment defect are present.\", \"uncertain\": \"Evidence or explicit conventions are insufficient or ambiguous to establish whether this chapter is conformant or defective.\"}"
+        },
+        {
+          "role": "user",
+          "content": "{\"conventions\": {\"required_fields\": [\"Installed\", \"Technician\"], \"layout\": \"One titled card per asset. Field order may vary. Each card has a local Notes list; a note labelled GLOBAL may instead appear in document_footer. Combining two asset titles in one card or duplicating the same asset into multiple cards is format drift.\", \"meaning\": \"Installed is installation year. Technician is current responsible person. Local Notes are work performed on that asset; GLOBAL advice applies to all assets.\"}, \"source_evidence\": \"Pump A was installed in 2020. R. Fen is responsible for it; its seal was replaced. Valve B entered service in 2021 under L. Orin; its pressure was inspected. Global advice: isolate power before servicing.\", \"cards\": [{\"title\": \"Pump A\", \"fields\": {\"Installed\": \"2020\", \"Technician\": \"R. Fen\"}, \"notes\": [\"Pressure inspected\"]}, {\"title\": \"Valve B\", \"fields\": {\"Installed\": \"2021\", \"Technician\": \"L. Orin\"}, \"notes\": [\"Seal replaced\"]}], \"document_footer\": []}"
+        }
+      ],
+      "response_format": {
+        "type": "json_schema",
+        "json_schema": {
+          "name": "consistency_classification",
+          "strict": true,
+          "schema": {
+            "type": "object",
+            "properties": {
+              "classification": {
+                "type": "string",
+                "enum": [
+                  "conformant",
+                  "format_drift",
+                  "row_semantic_issue",
+                  "mixed",
+                  "uncertain"
+                ]
+              }
+            },
+            "required": [
+              "classification"
+            ],
+            "additionalProperties": false
+          }
+        }
+      }
+    }
+  },
+  {
+    "id": "maintenance-06",
+    "jev": {
+      "model": "jev-1.13.0",
+      "state": {
+        "conventions": {
+          "required_fields": [
+            "Installed",
+            "Technician"
+          ],
+          "layout": "One titled card per asset. Field order may vary. Each card has a local Notes list; a note labelled GLOBAL may instead appear in document_footer. Combining two asset titles in one card or duplicating the same asset into multiple cards is format drift.",
+          "meaning": "Installed is installation year. Technician is current responsible person. Local Notes are work performed on that asset; GLOBAL advice applies to all assets."
+        },
+        "source_evidence": "Pump A was installed in 2020. R. Fen is responsible for it; its seal was replaced. Valve B entered service in 2021 under L. Orin; its pressure was inspected. Global advice: isolate power before servicing.",
+        "cards": [
+          {
+            "title": "Pump A",
+            "fields": {
+              "Installed": "2021",
+              "Technician": "R. Fen"
+            },
+            "notes": [
+              "Seal replaced"
+            ]
+          },
+          {
+            "title": "Valve B",
+            "fields": {
+              "Installed": "2021",
+              "Technician": "L. Orin"
+            },
+            "notes": [
+              "Pressure inspected"
+            ]
+          }
+        ],
+        "document_footer": []
+      },
+      "questions": {
+        "status": {
+          "type": "choice",
+          "instructions": "Classify the extracted chapter tables or maintenance cards against the explicit conventions and source evidence. Evaluate meaning and attachment, not just structural validity. Use only supplied evidence. A fused header with correct paired values is format-only; wrong source values or attachments are semantic defects. Incomplete/ambiguous evidence without an established defect means uncertain. Return one class.",
+          "criteria": {
+            "conformant": "The text and row ownership match source evidence and explicit document-local conventions; allowed layout variations are not defects.",
+            "format_drift": "A documented table/header/layout convention is violated, but no row value, meaning or attachment contradicts source evidence.",
+            "row_semantic_issue": "A row value, meaning or note attachment contradicts source evidence, while table/header/layout conventions are satisfied.",
+            "mixed": "Both a table/header/layout convention violation and a source-supported row value, meaning or attachment defect are present.",
+            "uncertain": "Evidence or explicit conventions are insufficient or ambiguous to establish whether this chapter is conformant or defective."
+          }
+        }
+      }
+    },
+    "gpt": {
+      "model": "gpt-4.1-2025-04-14",
+      "store": false,
+      "temperature": 0,
+      "max_completion_tokens": 160,
+      "messages": [
+        {
+          "role": "system",
+          "content": "Classify the extracted chapter tables or maintenance cards against the explicit conventions and source evidence. Evaluate meaning and attachment, not just structural validity. Use only supplied evidence. A fused header with correct paired values is format-only; wrong source values or attachments are semantic defects. Incomplete/ambiguous evidence without an established defect means uncertain. Return one class.\n{\"conformant\": \"The text and row ownership match source evidence and explicit document-local conventions; allowed layout variations are not defects.\", \"format_drift\": \"A documented table/header/layout convention is violated, but no row value, meaning or attachment contradicts source evidence.\", \"row_semantic_issue\": \"A row value, meaning or note attachment contradicts source evidence, while table/header/layout conventions are satisfied.\", \"mixed\": \"Both a table/header/layout convention violation and a source-supported row value, meaning or attachment defect are present.\", \"uncertain\": \"Evidence or explicit conventions are insufficient or ambiguous to establish whether this chapter is conformant or defective.\"}"
+        },
+        {
+          "role": "user",
+          "content": "{\"conventions\": {\"required_fields\": [\"Installed\", \"Technician\"], \"layout\": \"One titled card per asset. Field order may vary. Each card has a local Notes list; a note labelled GLOBAL may instead appear in document_footer. Combining two asset titles in one card or duplicating the same asset into multiple cards is format drift.\", \"meaning\": \"Installed is installation year. Technician is current responsible person. Local Notes are work performed on that asset; GLOBAL advice applies to all assets.\"}, \"source_evidence\": \"Pump A was installed in 2020. R. Fen is responsible for it; its seal was replaced. Valve B entered service in 2021 under L. Orin; its pressure was inspected. Global advice: isolate power before servicing.\", \"cards\": [{\"title\": \"Pump A\", \"fields\": {\"Installed\": \"2021\", \"Technician\": \"R. Fen\"}, \"notes\": [\"Seal replaced\"]}, {\"title\": \"Valve B\", \"fields\": {\"Installed\": \"2021\", \"Technician\": \"L. Orin\"}, \"notes\": [\"Pressure inspected\"]}], \"document_footer\": []}"
+        }
+      ],
+      "response_format": {
+        "type": "json_schema",
+        "json_schema": {
+          "name": "consistency_classification",
+          "strict": true,
+          "schema": {
+            "type": "object",
+            "properties": {
+              "classification": {
+                "type": "string",
+                "enum": [
+                  "conformant",
+                  "format_drift",
+                  "row_semantic_issue",
+                  "mixed",
+                  "uncertain"
+                ]
+              }
+            },
+            "required": [
+              "classification"
+            ],
+            "additionalProperties": false
+          }
+        }
+      }
+    }
+  },
+  {
+    "id": "maintenance-07",
+    "jev": {
+      "model": "jev-1.13.0",
+      "state": {
+        "conventions": {
+          "required_fields": [
+            "Installed",
+            "Technician"
+          ],
+          "layout": "One titled card per asset. Field order may vary. Each card has a local Notes list; a note labelled GLOBAL may instead appear in document_footer. Combining two asset titles in one card or duplicating the same asset into multiple cards is format drift.",
+          "meaning": "Installed is installation year. Technician is current responsible person. Local Notes are work performed on that asset; GLOBAL advice applies to all assets."
+        },
+        "source_evidence": "Pump A was installed in 2020. R. Fen is responsible for it; its seal was replaced. Valve B entered service in 2021 under L. Orin; its pressure was inspected. Global advice: isolate power before servicing.",
+        "cards": [
+          {
+            "title": "Pump A / Valve B",
+            "fields": {
+              "Installed": "2020 / 2021",
+              "Technician": "R. Fen / L. Orin"
+            },
+            "notes": [
+              "Pump A: Pressure inspected",
+              "Valve B: Seal replaced"
+            ]
+          }
+        ],
+        "document_footer": []
+      },
+      "questions": {
+        "status": {
+          "type": "choice",
+          "instructions": "Classify the extracted chapter tables or maintenance cards against the explicit conventions and source evidence. Evaluate meaning and attachment, not just structural validity. Use only supplied evidence. A fused header with correct paired values is format-only; wrong source values or attachments are semantic defects. Incomplete/ambiguous evidence without an established defect means uncertain. Return one class.",
+          "criteria": {
+            "conformant": "The text and row ownership match source evidence and explicit document-local conventions; allowed layout variations are not defects.",
+            "format_drift": "A documented table/header/layout convention is violated, but no row value, meaning or attachment contradicts source evidence.",
+            "row_semantic_issue": "A row value, meaning or note attachment contradicts source evidence, while table/header/layout conventions are satisfied.",
+            "mixed": "Both a table/header/layout convention violation and a source-supported row value, meaning or attachment defect are present.",
+            "uncertain": "Evidence or explicit conventions are insufficient or ambiguous to establish whether this chapter is conformant or defective."
+          }
+        }
+      }
+    },
+    "gpt": {
+      "model": "gpt-4.1-2025-04-14",
+      "store": false,
+      "temperature": 0,
+      "max_completion_tokens": 160,
+      "messages": [
+        {
+          "role": "system",
+          "content": "Classify the extracted chapter tables or maintenance cards against the explicit conventions and source evidence. Evaluate meaning and attachment, not just structural validity. Use only supplied evidence. A fused header with correct paired values is format-only; wrong source values or attachments are semantic defects. Incomplete/ambiguous evidence without an established defect means uncertain. Return one class.\n{\"conformant\": \"The text and row ownership match source evidence and explicit document-local conventions; allowed layout variations are not defects.\", \"format_drift\": \"A documented table/header/layout convention is violated, but no row value, meaning or attachment contradicts source evidence.\", \"row_semantic_issue\": \"A row value, meaning or note attachment contradicts source evidence, while table/header/layout conventions are satisfied.\", \"mixed\": \"Both a table/header/layout convention violation and a source-supported row value, meaning or attachment defect are present.\", \"uncertain\": \"Evidence or explicit conventions are insufficient or ambiguous to establish whether this chapter is conformant or defective.\"}"
+        },
+        {
+          "role": "user",
+          "content": "{\"conventions\": {\"required_fields\": [\"Installed\", \"Technician\"], \"layout\": \"One titled card per asset. Field order may vary. Each card has a local Notes list; a note labelled GLOBAL may instead appear in document_footer. Combining two asset titles in one card or duplicating the same asset into multiple cards is format drift.\", \"meaning\": \"Installed is installation year. Technician is current responsible person. Local Notes are work performed on that asset; GLOBAL advice applies to all assets.\"}, \"source_evidence\": \"Pump A was installed in 2020. R. Fen is responsible for it; its seal was replaced. Valve B entered service in 2021 under L. Orin; its pressure was inspected. Global advice: isolate power before servicing.\", \"cards\": [{\"title\": \"Pump A / Valve B\", \"fields\": {\"Installed\": \"2020 / 2021\", \"Technician\": \"R. Fen / L. Orin\"}, \"notes\": [\"Pump A: Pressure inspected\", \"Valve B: Seal replaced\"]}], \"document_footer\": []}"
+        }
+      ],
+      "response_format": {
+        "type": "json_schema",
+        "json_schema": {
+          "name": "consistency_classification",
+          "strict": true,
+          "schema": {
+            "type": "object",
+            "properties": {
+              "classification": {
+                "type": "string",
+                "enum": [
+                  "conformant",
+                  "format_drift",
+                  "row_semantic_issue",
+                  "mixed",
+                  "uncertain"
+                ]
+              }
+            },
+            "required": [
+              "classification"
+            ],
+            "additionalProperties": false
+          }
+        }
+      }
+    }
+  },
+  {
+    "id": "maintenance-08",
+    "jev": {
+      "model": "jev-1.13.0",
+      "state": {
+        "conventions": {
+          "required_fields": [
+            "Installed",
+            "Technician"
+          ],
+          "layout": "One titled card per asset. Field order may vary. Each card has a local Notes list; a note labelled GLOBAL may instead appear in document_footer. Combining two asset titles in one card or duplicating the same asset into multiple cards is format drift.",
+          "meaning": "Installed is installation year. Technician is current responsible person. Local Notes are work performed on that asset; GLOBAL advice applies to all assets."
+        },
+        "source_evidence": "Pump A was installed in 2020. R. Fen is responsible for it; its seal was replaced. Valve B entered service in 2021 under L. Orin; its pressure was inspected. Global advice: isolate power before servicing.",
+        "cards": [
+          {
+            "title": "Pump A",
+            "fields": {
+              "Installed": "2020",
+              "Technician": "R. Fen"
+            },
+            "notes": [
+              "Seal replaced"
+            ]
+          },
+          {
+            "title": "Pump A",
+            "fields": {
+              "Installed": "2020",
+              "Technician": "R. Fen"
+            },
+            "notes": []
+          },
+          {
+            "title": "Valve B",
+            "fields": {
+              "Installed": "2021",
+              "Technician": "R. Fen"
+            },
+            "notes": [
+              "Pressure inspected"
+            ]
+          }
+        ],
+        "document_footer": []
+      },
+      "questions": {
+        "status": {
+          "type": "choice",
+          "instructions": "Classify the extracted chapter tables or maintenance cards against the explicit conventions and source evidence. Evaluate meaning and attachment, not just structural validity. Use only supplied evidence. A fused header with correct paired values is format-only; wrong source values or attachments are semantic defects. Incomplete/ambiguous evidence without an established defect means uncertain. Return one class.",
+          "criteria": {
+            "conformant": "The text and row ownership match source evidence and explicit document-local conventions; allowed layout variations are not defects.",
+            "format_drift": "A documented table/header/layout convention is violated, but no row value, meaning or attachment contradicts source evidence.",
+            "row_semantic_issue": "A row value, meaning or note attachment contradicts source evidence, while table/header/layout conventions are satisfied.",
+            "mixed": "Both a table/header/layout convention violation and a source-supported row value, meaning or attachment defect are present.",
+            "uncertain": "Evidence or explicit conventions are insufficient or ambiguous to establish whether this chapter is conformant or defective."
+          }
+        }
+      }
+    },
+    "gpt": {
+      "model": "gpt-4.1-2025-04-14",
+      "store": false,
+      "temperature": 0,
+      "max_completion_tokens": 160,
+      "messages": [
+        {
+          "role": "system",
+          "content": "Classify the extracted chapter tables or maintenance cards against the explicit conventions and source evidence. Evaluate meaning and attachment, not just structural validity. Use only supplied evidence. A fused header with correct paired values is format-only; wrong source values or attachments are semantic defects. Incomplete/ambiguous evidence without an established defect means uncertain. Return one class.\n{\"conformant\": \"The text and row ownership match source evidence and explicit document-local conventions; allowed layout variations are not defects.\", \"format_drift\": \"A documented table/header/layout convention is violated, but no row value, meaning or attachment contradicts source evidence.\", \"row_semantic_issue\": \"A row value, meaning or note attachment contradicts source evidence, while table/header/layout conventions are satisfied.\", \"mixed\": \"Both a table/header/layout convention violation and a source-supported row value, meaning or attachment defect are present.\", \"uncertain\": \"Evidence or explicit conventions are insufficient or ambiguous to establish whether this chapter is conformant or defective.\"}"
+        },
+        {
+          "role": "user",
+          "content": "{\"conventions\": {\"required_fields\": [\"Installed\", \"Technician\"], \"layout\": \"One titled card per asset. Field order may vary. Each card has a local Notes list; a note labelled GLOBAL may instead appear in document_footer. Combining two asset titles in one card or duplicating the same asset into multiple cards is format drift.\", \"meaning\": \"Installed is installation year. Technician is current responsible person. Local Notes are work performed on that asset; GLOBAL advice applies to all assets.\"}, \"source_evidence\": \"Pump A was installed in 2020. R. Fen is responsible for it; its seal was replaced. Valve B entered service in 2021 under L. Orin; its pressure was inspected. Global advice: isolate power before servicing.\", \"cards\": [{\"title\": \"Pump A\", \"fields\": {\"Installed\": \"2020\", \"Technician\": \"R. Fen\"}, \"notes\": [\"Seal replaced\"]}, {\"title\": \"Pump A\", \"fields\": {\"Installed\": \"2020\", \"Technician\": \"R. Fen\"}, \"notes\": []}, {\"title\": \"Valve B\", \"fields\": {\"Installed\": \"2021\", \"Technician\": \"R. Fen\"}, \"notes\": [\"Pressure inspected\"]}], \"document_footer\": []}"
+        }
+      ],
+      "response_format": {
+        "type": "json_schema",
+        "json_schema": {
+          "name": "consistency_classification",
+          "strict": true,
+          "schema": {
+            "type": "object",
+            "properties": {
+              "classification": {
+                "type": "string",
+                "enum": [
+                  "conformant",
+                  "format_drift",
+                  "row_semantic_issue",
+                  "mixed",
+                  "uncertain"
+                ]
+              }
+            },
+            "required": [
+              "classification"
+            ],
+            "additionalProperties": false
+          }
+        }
+      }
+    }
+  },
+  {
+    "id": "maintenance-09",
+    "jev": {
+      "model": "jev-1.13.0",
+      "state": {
+        "conventions": {
+          "required_fields": [
+            "Installed",
+            "Technician"
+          ],
+          "layout": "One titled card per asset. Field order may vary. Each card has a local Notes list; a note labelled GLOBAL may instead appear in document_footer. Combining two asset titles in one card or duplicating the same asset into multiple cards is format drift.",
+          "meaning": "Installed is installation year. Technician is current responsible person. Local Notes are work performed on that asset; GLOBAL advice applies to all assets."
+        },
+        "source_evidence": "Pump A is managed by R. Fen and Valve B by L. Orin. The source crop excludes installation dates and maintenance notes.",
+        "cards": [
+          {
+            "title": "Pump A",
+            "fields": {
+              "Installed": "2020",
+              "Technician": "R. Fen"
+            },
+            "notes": [
+              "Seal replaced"
+            ]
+          },
+          {
+            "title": "Valve B",
+            "fields": {
+              "Installed": "2021",
+              "Technician": "L. Orin"
+            },
+            "notes": [
+              "Pressure inspected"
+            ]
+          }
+        ],
+        "document_footer": []
+      },
+      "questions": {
+        "status": {
+          "type": "choice",
+          "instructions": "Classify the extracted chapter tables or maintenance cards against the explicit conventions and source evidence. Evaluate meaning and attachment, not just structural validity. Use only supplied evidence. A fused header with correct paired values is format-only; wrong source values or attachments are semantic defects. Incomplete/ambiguous evidence without an established defect means uncertain. Return one class.",
+          "criteria": {
+            "conformant": "The text and row ownership match source evidence and explicit document-local conventions; allowed layout variations are not defects.",
+            "format_drift": "A documented table/header/layout convention is violated, but no row value, meaning or attachment contradicts source evidence.",
+            "row_semantic_issue": "A row value, meaning or note attachment contradicts source evidence, while table/header/layout conventions are satisfied.",
+            "mixed": "Both a table/header/layout convention violation and a source-supported row value, meaning or attachment defect are present.",
+            "uncertain": "Evidence or explicit conventions are insufficient or ambiguous to establish whether this chapter is conformant or defective."
+          }
+        }
+      }
+    },
+    "gpt": {
+      "model": "gpt-4.1-2025-04-14",
+      "store": false,
+      "temperature": 0,
+      "max_completion_tokens": 160,
+      "messages": [
+        {
+          "role": "system",
+          "content": "Classify the extracted chapter tables or maintenance cards against the explicit conventions and source evidence. Evaluate meaning and attachment, not just structural validity. Use only supplied evidence. A fused header with correct paired values is format-only; wrong source values or attachments are semantic defects. Incomplete/ambiguous evidence without an established defect means uncertain. Return one class.\n{\"conformant\": \"The text and row ownership match source evidence and explicit document-local conventions; allowed layout variations are not defects.\", \"format_drift\": \"A documented table/header/layout convention is violated, but no row value, meaning or attachment contradicts source evidence.\", \"row_semantic_issue\": \"A row value, meaning or note attachment contradicts source evidence, while table/header/layout conventions are satisfied.\", \"mixed\": \"Both a table/header/layout convention violation and a source-supported row value, meaning or attachment defect are present.\", \"uncertain\": \"Evidence or explicit conventions are insufficient or ambiguous to establish whether this chapter is conformant or defective.\"}"
+        },
+        {
+          "role": "user",
+          "content": "{\"conventions\": {\"required_fields\": [\"Installed\", \"Technician\"], \"layout\": \"One titled card per asset. Field order may vary. Each card has a local Notes list; a note labelled GLOBAL may instead appear in document_footer. Combining two asset titles in one card or duplicating the same asset into multiple cards is format drift.\", \"meaning\": \"Installed is installation year. Technician is current responsible person. Local Notes are work performed on that asset; GLOBAL advice applies to all assets.\"}, \"source_evidence\": \"Pump A is managed by R. Fen and Valve B by L. Orin. The source crop excludes installation dates and maintenance notes.\", \"cards\": [{\"title\": \"Pump A\", \"fields\": {\"Installed\": \"2020\", \"Technician\": \"R. Fen\"}, \"notes\": [\"Seal replaced\"]}, {\"title\": \"Valve B\", \"fields\": {\"Installed\": \"2021\", \"Technician\": \"L. Orin\"}, \"notes\": [\"Pressure inspected\"]}], \"document_footer\": []}"
+        }
+      ],
+      "response_format": {
+        "type": "json_schema",
+        "json_schema": {
+          "name": "consistency_classification",
+          "strict": true,
+          "schema": {
+            "type": "object",
+            "properties": {
+              "classification": {
+                "type": "string",
+                "enum": [
+                  "conformant",
+                  "format_drift",
+                  "row_semantic_issue",
+                  "mixed",
+                  "uncertain"
+                ]
+              }
+            },
+            "required": [
+              "classification"
+            ],
+            "additionalProperties": false
+          }
+        }
+      }
+    }
+  },
+  {
+    "id": "maintenance-10",
+    "jev": {
+      "model": "jev-1.13.0",
+      "state": {
+        "conventions": {
+          "required_fields": [
+            "Installed",
+            "Technician"
+          ],
+          "layout": "One titled card per asset. Field order may vary. Each card has a local Notes list; a note labelled GLOBAL may instead appear in document_footer. Combining two asset titles in one card or duplicating the same asset into multiple cards is format drift.",
+          "meaning": "Installed is installation year. Technician is current responsible person. Local Notes are work performed on that asset; GLOBAL advice applies to all assets."
+        },
+        "source_evidence": "Pump A was installed in 2020 under R. Fen; Valve B in 2021 under L. Orin. The maintenance footer says seal replaced; pressure inspected. No row markers or linking arrows survive to show which asset received either operation.",
+        "cards": [
+          {
+            "title": "Pump A",
+            "fields": {
+              "Installed": "2020",
+              "Technician": "R. Fen"
+            },
+            "notes": [
+              "Seal replaced"
+            ]
+          },
+          {
+            "title": "Valve B",
+            "fields": {
+              "Installed": "2021",
+              "Technician": "L. Orin"
+            },
+            "notes": [
+              "Pressure inspected"
+            ]
+          }
+        ],
+        "document_footer": []
+      },
+      "questions": {
+        "status": {
+          "type": "choice",
+          "instructions": "Classify the extracted chapter tables or maintenance cards against the explicit conventions and source evidence. Evaluate meaning and attachment, not just structural validity. Use only supplied evidence. A fused header with correct paired values is format-only; wrong source values or attachments are semantic defects. Incomplete/ambiguous evidence without an established defect means uncertain. Return one class.",
+          "criteria": {
+            "conformant": "The text and row ownership match source evidence and explicit document-local conventions; allowed layout variations are not defects.",
+            "format_drift": "A documented table/header/layout convention is violated, but no row value, meaning or attachment contradicts source evidence.",
+            "row_semantic_issue": "A row value, meaning or note attachment contradicts source evidence, while table/header/layout conventions are satisfied.",
+            "mixed": "Both a table/header/layout convention violation and a source-supported row value, meaning or attachment defect are present.",
+            "uncertain": "Evidence or explicit conventions are insufficient or ambiguous to establish whether this chapter is conformant or defective."
+          }
+        }
+      }
+    },
+    "gpt": {
+      "model": "gpt-4.1-2025-04-14",
+      "store": false,
+      "temperature": 0,
+      "max_completion_tokens": 160,
+      "messages": [
+        {
+          "role": "system",
+          "content": "Classify the extracted chapter tables or maintenance cards against the explicit conventions and source evidence. Evaluate meaning and attachment, not just structural validity. Use only supplied evidence. A fused header with correct paired values is format-only; wrong source values or attachments are semantic defects. Incomplete/ambiguous evidence without an established defect means uncertain. Return one class.\n{\"conformant\": \"The text and row ownership match source evidence and explicit document-local conventions; allowed layout variations are not defects.\", \"format_drift\": \"A documented table/header/layout convention is violated, but no row value, meaning or attachment contradicts source evidence.\", \"row_semantic_issue\": \"A row value, meaning or note attachment contradicts source evidence, while table/header/layout conventions are satisfied.\", \"mixed\": \"Both a table/header/layout convention violation and a source-supported row value, meaning or attachment defect are present.\", \"uncertain\": \"Evidence or explicit conventions are insufficient or ambiguous to establish whether this chapter is conformant or defective.\"}"
+        },
+        {
+          "role": "user",
+          "content": "{\"conventions\": {\"required_fields\": [\"Installed\", \"Technician\"], \"layout\": \"One titled card per asset. Field order may vary. Each card has a local Notes list; a note labelled GLOBAL may instead appear in document_footer. Combining two asset titles in one card or duplicating the same asset into multiple cards is format drift.\", \"meaning\": \"Installed is installation year. Technician is current responsible person. Local Notes are work performed on that asset; GLOBAL advice applies to all assets.\"}, \"source_evidence\": \"Pump A was installed in 2020 under R. Fen; Valve B in 2021 under L. Orin. The maintenance footer says seal replaced; pressure inspected. No row markers or linking arrows survive to show which asset received either operation.\", \"cards\": [{\"title\": \"Pump A\", \"fields\": {\"Installed\": \"2020\", \"Technician\": \"R. Fen\"}, \"notes\": [\"Seal replaced\"]}, {\"title\": \"Valve B\", \"fields\": {\"Installed\": \"2021\", \"Technician\": \"L. Orin\"}, \"notes\": [\"Pressure inspected\"]}], \"document_footer\": []}"
+        }
+      ],
+      "response_format": {
+        "type": "json_schema",
+        "json_schema": {
+          "name": "consistency_classification",
+          "strict": true,
+          "schema": {
+            "type": "object",
+            "properties": {
+              "classification": {
+                "type": "string",
+                "enum": [
+                  "conformant",
+                  "format_drift",
+                  "row_semantic_issue",
+                  "mixed",
+                  "uncertain"
+                ]
+              }
+            },
+            "required": [
+              "classification"
+            ],
+            "additionalProperties": false
+          }
+        }
+      }
+    }
+  }
+]

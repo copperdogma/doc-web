@@ -1,0 +1,13 @@
+{
+  "approved_fixture_sha256": "88994b8cd7c75d832114f33e613c3b2d8656b737f53962292ee34c4e81b128ab",
+  "reviewer": "independent-fixture-author-review",
+  "reviewed_at": "2026-09-21",
+  "status": "approved_for_predeclared_relative_evaluation",
+  "caveats": [
+    "The corpus contains ten paired mutation patterns across two synthetic source documents; it is not twenty independent source scenarios.",
+    "The maintained genealogy detector is eligible only for the rendered seven-column family cases; maintenance-card cases are out of domain for that baseline.",
+    "The generic structural-only baseline cannot establish source-semantic correctness and must be reported separately from the maintained detector and model arms.",
+    "Uncertain cases intentionally test missing or ambiguous source attribution; explicit uncertain output must remain review-routed regardless of confidence.",
+    "Results support a bounded relative comparison on this closed five-class vocabulary, not a claim of general document-consistency performance."
+  ]
+}

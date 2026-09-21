@@ -1,0 +1,333 @@
+[
+  {
+    "id": "family-01",
+    "gold": "conformant",
+    "status": "measured",
+    "result": {
+      "chapter_file": "/Users/cam/.codex/worktrees/jev-docweb-20260921/docs/evals/artifacts/jev-consistency-20260921/family-01.html",
+      "chapter_basename": "family-01.html",
+      "chapter_number": null,
+      "chapter_title": "",
+      "source_pages": [
+        1
+      ],
+      "source_printed_pages": [],
+      "source_page_count": 1,
+      "genealogy_table_count": 1,
+      "all_table_count": 1,
+      "subgroup_row_count": 0,
+      "external_family_heading_count": 0,
+      "residual_boygirl_header_count": 0,
+      "dominant_signature": "name|born|married|spouse|boy|girl|died",
+      "signatures": [
+        "name|born|married|spouse|boy|girl|died"
+      ],
+      "drift_score": 0,
+      "confidence": 0.5,
+      "reasons": [],
+      "flagged": false
+    }
+  },
+  {
+    "id": "family-02",
+    "gold": "conformant",
+    "status": "out_of_domain",
+    "result": null
+  },
+  {
+    "id": "family-03",
+    "gold": "format_drift",
+    "status": "measured",
+    "result": {
+      "chapter_file": "/Users/cam/.codex/worktrees/jev-docweb-20260921/docs/evals/artifacts/jev-consistency-20260921/family-03.html",
+      "chapter_basename": "family-03.html",
+      "chapter_number": null,
+      "chapter_title": "",
+      "source_pages": [
+        1
+      ],
+      "source_printed_pages": [],
+      "source_page_count": 1,
+      "genealogy_table_count": 2,
+      "all_table_count": 2,
+      "subgroup_row_count": 0,
+      "external_family_heading_count": 0,
+      "residual_boygirl_header_count": 0,
+      "dominant_signature": "name|born|married|spouse|boy|girl|died",
+      "signatures": [
+        "name|born|married|spouse|boy|girl|died"
+      ],
+      "drift_score": 0,
+      "confidence": 0.5,
+      "reasons": [],
+      "flagged": false
+    }
+  },
+  {
+    "id": "family-04",
+    "gold": "format_drift",
+    "status": "measured",
+    "result": {
+      "chapter_file": "/Users/cam/.codex/worktrees/jev-docweb-20260921/docs/evals/artifacts/jev-consistency-20260921/family-04.html",
+      "chapter_basename": "family-04.html",
+      "chapter_number": null,
+      "chapter_title": "",
+      "source_pages": [
+        1
+      ],
+      "source_printed_pages": [],
+      "source_page_count": 1,
+      "genealogy_table_count": 1,
+      "all_table_count": 1,
+      "subgroup_row_count": 0,
+      "external_family_heading_count": 0,
+      "residual_boygirl_header_count": 1,
+      "dominant_signature": "name|born|married|spouse|boygirl|died",
+      "signatures": [
+        "name|born|married|spouse|boygirl|died"
+      ],
+      "drift_score": 25,
+      "confidence": 0.75,
+      "reasons": [
+        "residual_boygirl_headers"
+      ],
+      "flagged": true
+    }
+  },
+  {
+    "id": "family-05",
+    "gold": "row_semantic_issue",
+    "status": "measured",
+    "result": {
+      "chapter_file": "/Users/cam/.codex/worktrees/jev-docweb-20260921/docs/evals/artifacts/jev-consistency-20260921/family-05.html",
+      "chapter_basename": "family-05.html",
+      "chapter_number": null,
+      "chapter_title": "",
+      "source_pages": [
+        1
+      ],
+      "source_printed_pages": [],
+      "source_page_count": 1,
+      "genealogy_table_count": 1,
+      "all_table_count": 1,
+      "subgroup_row_count": 0,
+      "external_family_heading_count": 0,
+      "residual_boygirl_header_count": 0,
+      "dominant_signature": "name|born|married|spouse|boy|girl|died",
+      "signatures": [
+        "name|born|married|spouse|boy|girl|died"
+      ],
+      "drift_score": 0,
+      "confidence": 0.5,
+      "reasons": [],
+      "flagged": false
+    }
+  },
+  {
+    "id": "family-06",
+    "gold": "row_semantic_issue",
+    "status": "measured",
+    "result": {
+      "chapter_file": "/Users/cam/.codex/worktrees/jev-docweb-20260921/docs/evals/artifacts/jev-consistency-20260921/family-06.html",
+      "chapter_basename": "family-06.html",
+      "chapter_number": null,
+      "chapter_title": "",
+      "source_pages": [
+        1
+      ],
+      "source_printed_pages": [],
+      "source_page_count": 1,
+      "genealogy_table_count": 1,
+      "all_table_count": 1,
+      "subgroup_row_count": 0,
+      "external_family_heading_count": 0,
+      "residual_boygirl_header_count": 0,
+      "dominant_signature": "name|born|married|spouse|boy|girl|died",
+      "signatures": [
+        "name|born|married|spouse|boy|girl|died"
+      ],
+      "drift_score": 0,
+      "confidence": 0.5,
+      "reasons": [],
+      "flagged": false
+    }
+  },
+  {
+    "id": "family-07",
+    "gold": "mixed",
+    "status": "measured",
+    "result": {
+      "chapter_file": "/Users/cam/.codex/worktrees/jev-docweb-20260921/docs/evals/artifacts/jev-consistency-20260921/family-07.html",
+      "chapter_basename": "family-07.html",
+      "chapter_number": null,
+      "chapter_title": "",
+      "source_pages": [
+        1
+      ],
+      "source_printed_pages": [],
+      "source_page_count": 1,
+      "genealogy_table_count": 2,
+      "all_table_count": 2,
+      "subgroup_row_count": 0,
+      "external_family_heading_count": 0,
+      "residual_boygirl_header_count": 0,
+      "dominant_signature": "name|born|married|spouse|boy|girl|died",
+      "signatures": [
+        "name|born|married|spouse|boy|girl|died"
+      ],
+      "drift_score": 0,
+      "confidence": 0.5,
+      "reasons": [],
+      "flagged": false
+    }
+  },
+  {
+    "id": "family-08",
+    "gold": "mixed",
+    "status": "measured",
+    "result": {
+      "chapter_file": "/Users/cam/.codex/worktrees/jev-docweb-20260921/docs/evals/artifacts/jev-consistency-20260921/family-08.html",
+      "chapter_basename": "family-08.html",
+      "chapter_number": null,
+      "chapter_title": "",
+      "source_pages": [
+        1
+      ],
+      "source_printed_pages": [],
+      "source_page_count": 1,
+      "genealogy_table_count": 1,
+      "all_table_count": 1,
+      "subgroup_row_count": 0,
+      "external_family_heading_count": 0,
+      "residual_boygirl_header_count": 1,
+      "dominant_signature": "name|born|married|spouse|boygirl|died",
+      "signatures": [
+        "name|born|married|spouse|boygirl|died"
+      ],
+      "drift_score": 25,
+      "confidence": 0.75,
+      "reasons": [
+        "residual_boygirl_headers"
+      ],
+      "flagged": true
+    }
+  },
+  {
+    "id": "family-09",
+    "gold": "uncertain",
+    "status": "measured",
+    "result": {
+      "chapter_file": "/Users/cam/.codex/worktrees/jev-docweb-20260921/docs/evals/artifacts/jev-consistency-20260921/family-09.html",
+      "chapter_basename": "family-09.html",
+      "chapter_number": null,
+      "chapter_title": "",
+      "source_pages": [
+        1
+      ],
+      "source_printed_pages": [],
+      "source_page_count": 1,
+      "genealogy_table_count": 1,
+      "all_table_count": 1,
+      "subgroup_row_count": 0,
+      "external_family_heading_count": 0,
+      "residual_boygirl_header_count": 0,
+      "dominant_signature": "name|born|married|spouse|boy|girl|died",
+      "signatures": [
+        "name|born|married|spouse|boy|girl|died"
+      ],
+      "drift_score": 0,
+      "confidence": 0.5,
+      "reasons": [],
+      "flagged": false
+    }
+  },
+  {
+    "id": "family-10",
+    "gold": "uncertain",
+    "status": "measured",
+    "result": {
+      "chapter_file": "/Users/cam/.codex/worktrees/jev-docweb-20260921/docs/evals/artifacts/jev-consistency-20260921/family-10.html",
+      "chapter_basename": "family-10.html",
+      "chapter_number": null,
+      "chapter_title": "",
+      "source_pages": [
+        1
+      ],
+      "source_printed_pages": [],
+      "source_page_count": 1,
+      "genealogy_table_count": 1,
+      "all_table_count": 1,
+      "subgroup_row_count": 0,
+      "external_family_heading_count": 0,
+      "residual_boygirl_header_count": 0,
+      "dominant_signature": "name|born|married|spouse|boy|girl|died",
+      "signatures": [
+        "name|born|married|spouse|boy|girl|died"
+      ],
+      "drift_score": 0,
+      "confidence": 0.5,
+      "reasons": [],
+      "flagged": false
+    }
+  },
+  {
+    "id": "maintenance-01",
+    "gold": "conformant",
+    "status": "out_of_domain",
+    "reason": "maintenance cards have no genealogy table"
+  },
+  {
+    "id": "maintenance-02",
+    "gold": "conformant",
+    "status": "out_of_domain",
+    "reason": "maintenance cards have no genealogy table"
+  },
+  {
+    "id": "maintenance-03",
+    "gold": "format_drift",
+    "status": "out_of_domain",
+    "reason": "maintenance cards have no genealogy table"
+  },
+  {
+    "id": "maintenance-04",
+    "gold": "format_drift",
+    "status": "out_of_domain",
+    "reason": "maintenance cards have no genealogy table"
+  },
+  {
+    "id": "maintenance-05",
+    "gold": "row_semantic_issue",
+    "status": "out_of_domain",
+    "reason": "maintenance cards have no genealogy table"
+  },
+  {
+    "id": "maintenance-06",
+    "gold": "row_semantic_issue",
+    "status": "out_of_domain",
+    "reason": "maintenance cards have no genealogy table"
+  },
+  {
+    "id": "maintenance-07",
+    "gold": "mixed",
+    "status": "out_of_domain",
+    "reason": "maintenance cards have no genealogy table"
+  },
+  {
+    "id": "maintenance-08",
+    "gold": "mixed",
+    "status": "out_of_domain",
+    "reason": "maintenance cards have no genealogy table"
+  },
+  {
+    "id": "maintenance-09",
+    "gold": "uncertain",
+    "status": "out_of_domain",
+    "reason": "maintenance cards have no genealogy table"
+  },
+  {
+    "id": "maintenance-10",
+    "gold": "uncertain",
+    "status": "out_of_domain",
+    "reason": "maintenance cards have no genealogy table"
+  }
+]

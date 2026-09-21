@@ -1,0 +1,997 @@
+[
+  {
+    "id": "family-01",
+    "domain": "family",
+    "input": {
+      "conventions": {
+        "headers": [
+          "Name",
+          "Born",
+          "Married",
+          "Spouse",
+          "Boy",
+          "Girl",
+          "Died"
+        ],
+        "layout": "One continuous main table. A separate summary table headed Metric and Count is allowed. Page-break continuation tables are allowed. Column order/capitalization may vary if labels keep correct values.",
+        "meaning": "Born and Died apply to the named person. Married is marriage year; Spouse is the named partner; Boy and Girl give counts of sons and daughters."
+      },
+      "source_evidence": "Mira Vale was born in 1932 and died in 2001. Leon Vale was born in 1930 and died in 1999. They married one another in 1955 and had one son and one daughter.",
+      "tables": [
+        {
+          "headers": [
+            "Name",
+            "Born",
+            "Married",
+            "Spouse",
+            "Boy",
+            "Girl",
+            "Died"
+          ],
+          "rows": [
+            [
+              "Mira Vale",
+              "1932",
+              "1955",
+              "Leon Vale",
+              "1",
+              "1",
+              "2001"
+            ],
+            [
+              "Leon Vale",
+              "1930",
+              "1955",
+              "Mira Vale",
+              "1",
+              "1",
+              "1999"
+            ]
+          ],
+          "page_break_before": false
+        }
+      ]
+    },
+    "gold": "conformant",
+    "rationale": "All source facts and layout preserved."
+  },
+  {
+    "id": "family-02",
+    "domain": "family",
+    "input": {
+      "conventions": {
+        "headers": [
+          "Name",
+          "Born",
+          "Married",
+          "Spouse",
+          "Boy",
+          "Girl",
+          "Died"
+        ],
+        "layout": "One continuous main table. A separate summary table headed Metric and Count is allowed. Page-break continuation tables are allowed. Column order/capitalization may vary if labels keep correct values.",
+        "meaning": "Born and Died apply to the named person. Married is marriage year; Spouse is the named partner; Boy and Girl give counts of sons and daughters."
+      },
+      "source_evidence": "Mira Vale was born in 1932 and died in 2001. Leon Vale was born in 1930 and died in 1999. They married one another in 1955 and had one son and one daughter.",
+      "tables": [
+        {
+          "headers": [
+            "SPOUSE",
+            "NAME",
+            "MARRIED",
+            "BORN",
+            "BOY",
+            "GIRL",
+            "DIED"
+          ],
+          "rows": [
+            [
+              "Leon Vale",
+              "Mira Vale",
+              "1955",
+              "1932",
+              "1",
+              "1",
+              "2001"
+            ],
+            [
+              "Mira Vale",
+              "Leon Vale",
+              "1955",
+              "1930",
+              "1",
+              "1",
+              "1999"
+            ]
+          ],
+          "page_break_before": false
+        },
+        {
+          "headers": [
+            "Metric",
+            "Count"
+          ],
+          "rows": [
+            [
+              "Records",
+              "2"
+            ]
+          ],
+          "page_break_before": false
+        }
+      ]
+    },
+    "gold": "conformant",
+    "rationale": "Allowed reordered columns and separate summary."
+  },
+  {
+    "id": "family-03",
+    "domain": "family",
+    "input": {
+      "conventions": {
+        "headers": [
+          "Name",
+          "Born",
+          "Married",
+          "Spouse",
+          "Boy",
+          "Girl",
+          "Died"
+        ],
+        "layout": "One continuous main table. A separate summary table headed Metric and Count is allowed. Page-break continuation tables are allowed. Column order/capitalization may vary if labels keep correct values.",
+        "meaning": "Born and Died apply to the named person. Married is marriage year; Spouse is the named partner; Boy and Girl give counts of sons and daughters."
+      },
+      "source_evidence": "Mira Vale was born in 1932 and died in 2001. Leon Vale was born in 1930 and died in 1999. They married one another in 1955 and had one son and one daughter.",
+      "tables": [
+        {
+          "headers": [
+            "Name",
+            "Born",
+            "Married",
+            "Spouse",
+            "Boy",
+            "Girl",
+            "Died"
+          ],
+          "rows": [
+            [
+              "Mira Vale",
+              "1932",
+              "1955",
+              "Leon Vale",
+              "1",
+              "1",
+              "2001"
+            ]
+          ],
+          "page_break_before": false
+        },
+        {
+          "headers": [
+            "Name",
+            "Born",
+            "Married",
+            "Spouse",
+            "Boy",
+            "Girl",
+            "Died"
+          ],
+          "rows": [
+            [
+              "Leon Vale",
+              "1930",
+              "1955",
+              "Mira Vale",
+              "1",
+              "1",
+              "1999"
+            ]
+          ],
+          "page_break_before": false
+        }
+      ]
+    },
+    "gold": "format_drift",
+    "rationale": "Unallowed split without page break; facts correct."
+  },
+  {
+    "id": "family-04",
+    "domain": "family",
+    "input": {
+      "conventions": {
+        "headers": [
+          "Name",
+          "Born",
+          "Married",
+          "Spouse",
+          "Boy",
+          "Girl",
+          "Died"
+        ],
+        "layout": "One continuous main table. A separate summary table headed Metric and Count is allowed. Page-break continuation tables are allowed. Column order/capitalization may vary if labels keep correct values.",
+        "meaning": "Born and Died apply to the named person. Married is marriage year; Spouse is the named partner; Boy and Girl give counts of sons and daughters."
+      },
+      "source_evidence": "Mira Vale was born in 1932 and died in 2001. Leon Vale was born in 1930 and died in 1999. They married one another in 1955 and had one son and one daughter.",
+      "tables": [
+        {
+          "headers": [
+            "Name",
+            "Born",
+            "Married",
+            "Spouse",
+            "Boy/Girl",
+            "Died"
+          ],
+          "rows": [
+            [
+              "Mira Vale",
+              "1932",
+              "1955",
+              "Leon Vale",
+              "1 / 1",
+              "2001"
+            ],
+            [
+              "Leon Vale",
+              "1930",
+              "1955",
+              "Mira Vale",
+              "1 / 1",
+              "1999"
+            ]
+          ],
+          "page_break_before": false
+        }
+      ]
+    },
+    "gold": "format_drift",
+    "rationale": "Fused columns preserve counts but violate headers."
+  },
+  {
+    "id": "family-05",
+    "domain": "family",
+    "input": {
+      "conventions": {
+        "headers": [
+          "Name",
+          "Born",
+          "Married",
+          "Spouse",
+          "Boy",
+          "Girl",
+          "Died"
+        ],
+        "layout": "One continuous main table. A separate summary table headed Metric and Count is allowed. Page-break continuation tables are allowed. Column order/capitalization may vary if labels keep correct values.",
+        "meaning": "Born and Died apply to the named person. Married is marriage year; Spouse is the named partner; Boy and Girl give counts of sons and daughters."
+      },
+      "source_evidence": "Mira Vale was born in 1932 and died in 2001. Leon Vale was born in 1930 and died in 1999. They married one another in 1955 and had one son and one daughter.",
+      "tables": [
+        {
+          "headers": [
+            "Name",
+            "Born",
+            "Married",
+            "Spouse",
+            "Boy",
+            "Girl",
+            "Died"
+          ],
+          "rows": [
+            [
+              "Mira Vale",
+              "1932",
+              "1955",
+              "Leon Vale",
+              "1",
+              "1",
+              "1999"
+            ],
+            [
+              "Leon Vale",
+              "1930",
+              "1955",
+              "Mira Vale",
+              "1",
+              "1",
+              "2001"
+            ]
+          ],
+          "page_break_before": false
+        }
+      ]
+    },
+    "gold": "row_semantic_issue",
+    "rationale": "Death dates attached to wrong person."
+  },
+  {
+    "id": "family-06",
+    "domain": "family",
+    "input": {
+      "conventions": {
+        "headers": [
+          "Name",
+          "Born",
+          "Married",
+          "Spouse",
+          "Boy",
+          "Girl",
+          "Died"
+        ],
+        "layout": "One continuous main table. A separate summary table headed Metric and Count is allowed. Page-break continuation tables are allowed. Column order/capitalization may vary if labels keep correct values.",
+        "meaning": "Born and Died apply to the named person. Married is marriage year; Spouse is the named partner; Boy and Girl give counts of sons and daughters."
+      },
+      "source_evidence": "Mira Vale was born in 1932 and died in 2001. Leon Vale was born in 1930 and died in 1999. They married one another in 1955 and had one son and one daughter.",
+      "tables": [
+        {
+          "headers": [
+            "Name",
+            "Born",
+            "Married",
+            "Spouse",
+            "Boy",
+            "Girl",
+            "Died"
+          ],
+          "rows": [
+            [
+              "Mira Vale",
+              "1930",
+              "1955",
+              "Leon Vale",
+              "1",
+              "1",
+              "2001"
+            ],
+            [
+              "Leon Vale",
+              "1930",
+              "1955",
+              "Mira Vale",
+              "1",
+              "1",
+              "1999"
+            ]
+          ],
+          "page_break_before": false
+        }
+      ]
+    },
+    "gold": "row_semantic_issue",
+    "rationale": "Mira birth date conflicts with source."
+  },
+  {
+    "id": "family-07",
+    "domain": "family",
+    "input": {
+      "conventions": {
+        "headers": [
+          "Name",
+          "Born",
+          "Married",
+          "Spouse",
+          "Boy",
+          "Girl",
+          "Died"
+        ],
+        "layout": "One continuous main table. A separate summary table headed Metric and Count is allowed. Page-break continuation tables are allowed. Column order/capitalization may vary if labels keep correct values.",
+        "meaning": "Born and Died apply to the named person. Married is marriage year; Spouse is the named partner; Boy and Girl give counts of sons and daughters."
+      },
+      "source_evidence": "Mira Vale was born in 1932 and died in 2001. Leon Vale was born in 1930 and died in 1999. They married one another in 1955 and had one son and one daughter.",
+      "tables": [
+        {
+          "headers": [
+            "Name",
+            "Born",
+            "Married",
+            "Spouse",
+            "Boy",
+            "Girl",
+            "Died"
+          ],
+          "rows": [
+            [
+              "Mira Vale",
+              "1932",
+              "1955",
+              "Leon Vale",
+              "1",
+              "1",
+              "1999"
+            ]
+          ],
+          "page_break_before": false
+        },
+        {
+          "headers": [
+            "Name",
+            "Born",
+            "Married",
+            "Spouse",
+            "Boy",
+            "Girl",
+            "Died"
+          ],
+          "rows": [
+            [
+              "Leon Vale",
+              "1930",
+              "1955",
+              "Mira Vale",
+              "1",
+              "1",
+              "2001"
+            ]
+          ],
+          "page_break_before": false
+        }
+      ]
+    },
+    "gold": "mixed",
+    "rationale": "Unallowed split and swapped death dates."
+  },
+  {
+    "id": "family-08",
+    "domain": "family",
+    "input": {
+      "conventions": {
+        "headers": [
+          "Name",
+          "Born",
+          "Married",
+          "Spouse",
+          "Boy",
+          "Girl",
+          "Died"
+        ],
+        "layout": "One continuous main table. A separate summary table headed Metric and Count is allowed. Page-break continuation tables are allowed. Column order/capitalization may vary if labels keep correct values.",
+        "meaning": "Born and Died apply to the named person. Married is marriage year; Spouse is the named partner; Boy and Girl give counts of sons and daughters."
+      },
+      "source_evidence": "Mira Vale was born in 1932 and died in 2001. Leon Vale was born in 1930 and died in 1999. They married one another in 1955 and had one son and one daughter.",
+      "tables": [
+        {
+          "headers": [
+            "Name",
+            "Born",
+            "Married",
+            "Spouse",
+            "Boy/Girl",
+            "Died"
+          ],
+          "rows": [
+            [
+              "Mira Vale",
+              "1930",
+              "1955",
+              "Leon Vale",
+              "1 / 1",
+              "2001"
+            ],
+            [
+              "Leon Vale",
+              "1930",
+              "1955",
+              "Mira Vale",
+              "1 / 1",
+              "1999"
+            ]
+          ],
+          "page_break_before": false
+        }
+      ]
+    },
+    "gold": "mixed",
+    "rationale": "Fused header plus wrong birth date."
+  },
+  {
+    "id": "family-09",
+    "domain": "family",
+    "input": {
+      "conventions": {
+        "headers": [
+          "Name",
+          "Born",
+          "Married",
+          "Spouse",
+          "Boy",
+          "Girl",
+          "Died"
+        ],
+        "layout": "One continuous main table. A separate summary table headed Metric and Count is allowed. Page-break continuation tables are allowed. Column order/capitalization may vary if labels keep correct values.",
+        "meaning": "Born and Died apply to the named person. Married is marriage year; Spouse is the named partner; Boy and Girl give counts of sons and daughters."
+      },
+      "source_evidence": "Mira and Leon married in 1955 and had one son and one daughter. The source crop omits birth and death dates.",
+      "tables": [
+        {
+          "headers": [
+            "Name",
+            "Born",
+            "Married",
+            "Spouse",
+            "Boy",
+            "Girl",
+            "Died"
+          ],
+          "rows": [
+            [
+              "Mira Vale",
+              "1932",
+              "1955",
+              "Leon Vale",
+              "1",
+              "1",
+              "2001"
+            ],
+            [
+              "Leon Vale",
+              "1930",
+              "1955",
+              "Mira Vale",
+              "1",
+              "1",
+              "1999"
+            ]
+          ],
+          "page_break_before": false
+        }
+      ]
+    },
+    "gold": "uncertain",
+    "rationale": "Visible extracted dates cannot be verified; no established conflict."
+  },
+  {
+    "id": "family-10",
+    "domain": "family",
+    "input": {
+      "conventions": {
+        "headers": [
+          "Name",
+          "Born",
+          "Married",
+          "Spouse",
+          "Boy",
+          "Girl",
+          "Died"
+        ],
+        "layout": "One continuous main table. A separate summary table headed Metric and Count is allowed. Page-break continuation tables are allowed. Column order/capitalization may vary if labels keep correct values.",
+        "meaning": "Born and Died apply to the named person. Married is marriage year; Spouse is the named partner; Boy and Girl give counts of sons and daughters."
+      },
+      "source_evidence": "Mira and Leon married in 1955 and had one son and one daughter. The source lists birth years 1932 and 1930 and death years 2001 and 1999, but lost alignment makes attribution of each date to either spouse indeterminate.",
+      "tables": [
+        {
+          "headers": [
+            "Name",
+            "Born",
+            "Married",
+            "Spouse",
+            "Boy",
+            "Girl",
+            "Died"
+          ],
+          "rows": [
+            [
+              "Mira Vale",
+              "1932",
+              "1955",
+              "Leon Vale",
+              "1",
+              "1",
+              "2001"
+            ],
+            [
+              "Leon Vale",
+              "1930",
+              "1955",
+              "Mira Vale",
+              "1",
+              "1",
+              "1999"
+            ]
+          ],
+          "page_break_before": false
+        }
+      ]
+    },
+    "gold": "uncertain",
+    "rationale": "Both death and birth assignments unresolved without source alignment."
+  },
+  {
+    "id": "maintenance-01",
+    "domain": "maintenance",
+    "input": {
+      "conventions": {
+        "required_fields": [
+          "Installed",
+          "Technician"
+        ],
+        "layout": "One titled card per asset. Field order may vary. Each card has a local Notes list; a note labelled GLOBAL may instead appear in document_footer. Combining two asset titles in one card or duplicating the same asset into multiple cards is format drift.",
+        "meaning": "Installed is installation year. Technician is current responsible person. Local Notes are work performed on that asset; GLOBAL advice applies to all assets."
+      },
+      "source_evidence": "Pump A was installed in 2020. R. Fen is responsible for it; its seal was replaced. Valve B entered service in 2021 under L. Orin; its pressure was inspected. Global advice: isolate power before servicing.",
+      "cards": [
+        {
+          "title": "Pump A",
+          "fields": {
+            "Installed": "2020",
+            "Technician": "R. Fen"
+          },
+          "notes": [
+            "Seal replaced"
+          ]
+        },
+        {
+          "title": "Valve B",
+          "fields": {
+            "Installed": "2021",
+            "Technician": "L. Orin"
+          },
+          "notes": [
+            "Pressure inspected"
+          ]
+        }
+      ],
+      "document_footer": []
+    },
+    "gold": "conformant",
+    "rationale": "Titled cards preserve source facts."
+  },
+  {
+    "id": "maintenance-02",
+    "domain": "maintenance",
+    "input": {
+      "conventions": {
+        "required_fields": [
+          "Installed",
+          "Technician"
+        ],
+        "layout": "One titled card per asset. Field order may vary. Each card has a local Notes list; a note labelled GLOBAL may instead appear in document_footer. Combining two asset titles in one card or duplicating the same asset into multiple cards is format drift.",
+        "meaning": "Installed is installation year. Technician is current responsible person. Local Notes are work performed on that asset; GLOBAL advice applies to all assets."
+      },
+      "source_evidence": "Pump A was installed in 2020. R. Fen is responsible for it; its seal was replaced. Valve B entered service in 2021 under L. Orin; its pressure was inspected. Global advice: isolate power before servicing.",
+      "cards": [
+        {
+          "title": "Pump A",
+          "fields": {
+            "Technician": "R. Fen",
+            "Installed": "2020"
+          },
+          "notes": [
+            "Seal replaced"
+          ]
+        },
+        {
+          "title": "Valve B",
+          "fields": {
+            "Technician": "L. Orin",
+            "Installed": "2021"
+          },
+          "notes": [
+            "Pressure inspected"
+          ]
+        }
+      ],
+      "document_footer": [
+        "GLOBAL: isolate power before servicing"
+      ]
+    },
+    "gold": "conformant",
+    "rationale": "Order variation and global footer are permitted."
+  },
+  {
+    "id": "maintenance-03",
+    "domain": "maintenance",
+    "input": {
+      "conventions": {
+        "required_fields": [
+          "Installed",
+          "Technician"
+        ],
+        "layout": "One titled card per asset. Field order may vary. Each card has a local Notes list; a note labelled GLOBAL may instead appear in document_footer. Combining two asset titles in one card or duplicating the same asset into multiple cards is format drift.",
+        "meaning": "Installed is installation year. Technician is current responsible person. Local Notes are work performed on that asset; GLOBAL advice applies to all assets."
+      },
+      "source_evidence": "Pump A was installed in 2020. R. Fen is responsible for it; its seal was replaced. Valve B entered service in 2021 under L. Orin; its pressure was inspected. Global advice: isolate power before servicing.",
+      "cards": [
+        {
+          "title": "Pump A / Valve B",
+          "fields": {
+            "Installed": "2020 / 2021",
+            "Technician": "R. Fen / L. Orin"
+          },
+          "notes": [
+            "Pump A: Seal replaced",
+            "Valve B: Pressure inspected"
+          ]
+        }
+      ],
+      "document_footer": []
+    },
+    "gold": "format_drift",
+    "rationale": "Combined card violates one-card-per-asset but keeps clear correct associations."
+  },
+  {
+    "id": "maintenance-04",
+    "domain": "maintenance",
+    "input": {
+      "conventions": {
+        "required_fields": [
+          "Installed",
+          "Technician"
+        ],
+        "layout": "One titled card per asset. Field order may vary. Each card has a local Notes list; a note labelled GLOBAL may instead appear in document_footer. Combining two asset titles in one card or duplicating the same asset into multiple cards is format drift.",
+        "meaning": "Installed is installation year. Technician is current responsible person. Local Notes are work performed on that asset; GLOBAL advice applies to all assets."
+      },
+      "source_evidence": "Pump A was installed in 2020. R. Fen is responsible for it; its seal was replaced. Valve B entered service in 2021 under L. Orin; its pressure was inspected. Global advice: isolate power before servicing.",
+      "cards": [
+        {
+          "title": "Pump A",
+          "fields": {
+            "Installed": "2020",
+            "Technician": "R. Fen"
+          },
+          "notes": [
+            "Seal replaced"
+          ]
+        },
+        {
+          "title": "Pump A",
+          "fields": {
+            "Installed": "2020",
+            "Technician": "R. Fen"
+          },
+          "notes": []
+        },
+        {
+          "title": "Valve B",
+          "fields": {
+            "Installed": "2021",
+            "Technician": "L. Orin"
+          },
+          "notes": [
+            "Pressure inspected"
+          ]
+        }
+      ],
+      "document_footer": []
+    },
+    "gold": "format_drift",
+    "rationale": "Duplicated asset card violates layout; no factual disagreement."
+  },
+  {
+    "id": "maintenance-05",
+    "domain": "maintenance",
+    "input": {
+      "conventions": {
+        "required_fields": [
+          "Installed",
+          "Technician"
+        ],
+        "layout": "One titled card per asset. Field order may vary. Each card has a local Notes list; a note labelled GLOBAL may instead appear in document_footer. Combining two asset titles in one card or duplicating the same asset into multiple cards is format drift.",
+        "meaning": "Installed is installation year. Technician is current responsible person. Local Notes are work performed on that asset; GLOBAL advice applies to all assets."
+      },
+      "source_evidence": "Pump A was installed in 2020. R. Fen is responsible for it; its seal was replaced. Valve B entered service in 2021 under L. Orin; its pressure was inspected. Global advice: isolate power before servicing.",
+      "cards": [
+        {
+          "title": "Pump A",
+          "fields": {
+            "Installed": "2020",
+            "Technician": "R. Fen"
+          },
+          "notes": [
+            "Pressure inspected"
+          ]
+        },
+        {
+          "title": "Valve B",
+          "fields": {
+            "Installed": "2021",
+            "Technician": "L. Orin"
+          },
+          "notes": [
+            "Seal replaced"
+          ]
+        }
+      ],
+      "document_footer": []
+    },
+    "gold": "row_semantic_issue",
+    "rationale": "Work notes attached to opposite assets."
+  },
+  {
+    "id": "maintenance-06",
+    "domain": "maintenance",
+    "input": {
+      "conventions": {
+        "required_fields": [
+          "Installed",
+          "Technician"
+        ],
+        "layout": "One titled card per asset. Field order may vary. Each card has a local Notes list; a note labelled GLOBAL may instead appear in document_footer. Combining two asset titles in one card or duplicating the same asset into multiple cards is format drift.",
+        "meaning": "Installed is installation year. Technician is current responsible person. Local Notes are work performed on that asset; GLOBAL advice applies to all assets."
+      },
+      "source_evidence": "Pump A was installed in 2020. R. Fen is responsible for it; its seal was replaced. Valve B entered service in 2021 under L. Orin; its pressure was inspected. Global advice: isolate power before servicing.",
+      "cards": [
+        {
+          "title": "Pump A",
+          "fields": {
+            "Installed": "2021",
+            "Technician": "R. Fen"
+          },
+          "notes": [
+            "Seal replaced"
+          ]
+        },
+        {
+          "title": "Valve B",
+          "fields": {
+            "Installed": "2021",
+            "Technician": "L. Orin"
+          },
+          "notes": [
+            "Pressure inspected"
+          ]
+        }
+      ],
+      "document_footer": []
+    },
+    "gold": "row_semantic_issue",
+    "rationale": "Pump installation year incorrect."
+  },
+  {
+    "id": "maintenance-07",
+    "domain": "maintenance",
+    "input": {
+      "conventions": {
+        "required_fields": [
+          "Installed",
+          "Technician"
+        ],
+        "layout": "One titled card per asset. Field order may vary. Each card has a local Notes list; a note labelled GLOBAL may instead appear in document_footer. Combining two asset titles in one card or duplicating the same asset into multiple cards is format drift.",
+        "meaning": "Installed is installation year. Technician is current responsible person. Local Notes are work performed on that asset; GLOBAL advice applies to all assets."
+      },
+      "source_evidence": "Pump A was installed in 2020. R. Fen is responsible for it; its seal was replaced. Valve B entered service in 2021 under L. Orin; its pressure was inspected. Global advice: isolate power before servicing.",
+      "cards": [
+        {
+          "title": "Pump A / Valve B",
+          "fields": {
+            "Installed": "2020 / 2021",
+            "Technician": "R. Fen / L. Orin"
+          },
+          "notes": [
+            "Pump A: Pressure inspected",
+            "Valve B: Seal replaced"
+          ]
+        }
+      ],
+      "document_footer": []
+    },
+    "gold": "mixed",
+    "rationale": "Combined card plus swapped work ownership."
+  },
+  {
+    "id": "maintenance-08",
+    "domain": "maintenance",
+    "input": {
+      "conventions": {
+        "required_fields": [
+          "Installed",
+          "Technician"
+        ],
+        "layout": "One titled card per asset. Field order may vary. Each card has a local Notes list; a note labelled GLOBAL may instead appear in document_footer. Combining two asset titles in one card or duplicating the same asset into multiple cards is format drift.",
+        "meaning": "Installed is installation year. Technician is current responsible person. Local Notes are work performed on that asset; GLOBAL advice applies to all assets."
+      },
+      "source_evidence": "Pump A was installed in 2020. R. Fen is responsible for it; its seal was replaced. Valve B entered service in 2021 under L. Orin; its pressure was inspected. Global advice: isolate power before servicing.",
+      "cards": [
+        {
+          "title": "Pump A",
+          "fields": {
+            "Installed": "2020",
+            "Technician": "R. Fen"
+          },
+          "notes": [
+            "Seal replaced"
+          ]
+        },
+        {
+          "title": "Pump A",
+          "fields": {
+            "Installed": "2020",
+            "Technician": "R. Fen"
+          },
+          "notes": []
+        },
+        {
+          "title": "Valve B",
+          "fields": {
+            "Installed": "2021",
+            "Technician": "R. Fen"
+          },
+          "notes": [
+            "Pressure inspected"
+          ]
+        }
+      ],
+      "document_footer": []
+    },
+    "gold": "mixed",
+    "rationale": "Duplicated Pump card plus wrong Valve technician."
+  },
+  {
+    "id": "maintenance-09",
+    "domain": "maintenance",
+    "input": {
+      "conventions": {
+        "required_fields": [
+          "Installed",
+          "Technician"
+        ],
+        "layout": "One titled card per asset. Field order may vary. Each card has a local Notes list; a note labelled GLOBAL may instead appear in document_footer. Combining two asset titles in one card or duplicating the same asset into multiple cards is format drift.",
+        "meaning": "Installed is installation year. Technician is current responsible person. Local Notes are work performed on that asset; GLOBAL advice applies to all assets."
+      },
+      "source_evidence": "Pump A is managed by R. Fen and Valve B by L. Orin. The source crop excludes installation dates and maintenance notes.",
+      "cards": [
+        {
+          "title": "Pump A",
+          "fields": {
+            "Installed": "2020",
+            "Technician": "R. Fen"
+          },
+          "notes": [
+            "Seal replaced"
+          ]
+        },
+        {
+          "title": "Valve B",
+          "fields": {
+            "Installed": "2021",
+            "Technician": "L. Orin"
+          },
+          "notes": [
+            "Pressure inspected"
+          ]
+        }
+      ],
+      "document_footer": []
+    },
+    "gold": "uncertain",
+    "rationale": "Unverified extracted dates/notes with no established conflict."
+  },
+  {
+    "id": "maintenance-10",
+    "domain": "maintenance",
+    "input": {
+      "conventions": {
+        "required_fields": [
+          "Installed",
+          "Technician"
+        ],
+        "layout": "One titled card per asset. Field order may vary. Each card has a local Notes list; a note labelled GLOBAL may instead appear in document_footer. Combining two asset titles in one card or duplicating the same asset into multiple cards is format drift.",
+        "meaning": "Installed is installation year. Technician is current responsible person. Local Notes are work performed on that asset; GLOBAL advice applies to all assets."
+      },
+      "source_evidence": "Pump A was installed in 2020 under R. Fen; Valve B in 2021 under L. Orin. The maintenance footer says seal replaced; pressure inspected. No row markers or linking arrows survive to show which asset received either operation.",
+      "cards": [
+        {
+          "title": "Pump A",
+          "fields": {
+            "Installed": "2020",
+            "Technician": "R. Fen"
+          },
+          "notes": [
+            "Seal replaced"
+          ]
+        },
+        {
+          "title": "Valve B",
+          "fields": {
+            "Installed": "2021",
+            "Technician": "L. Orin"
+          },
+          "notes": [
+            "Pressure inspected"
+          ]
+        }
+      ],
+      "document_footer": []
+    },
+    "gold": "uncertain",
+    "rationale": "Work attachment could be either pairing; no evidence decides."
+  }
+]

@@ -225,7 +225,9 @@
           "225",
           "226",
           "227",
-          "230"
+          "230",
+          "233",
+          "234"
         ],
         "adr_ids": [
           "ADR-001",
@@ -236,7 +238,8 @@
           "handwritten-notes-transcription",
           "onward-table-fidelity",
           "onward-document-consistency-planning",
-          "onward-genealogy-row-semantic-note-placement"
+          "onward-genealogy-row-semantic-note-placement",
+          "jev-document-consistency-classification"
         ]
       },
       {
@@ -375,7 +378,9 @@
           "164",
           "206",
           "219",
-          "220"
+          "220",
+          "233",
+          "234"
         ],
         "adr_ids": [
           "ADR-001",
@@ -384,7 +389,8 @@
         ],
         "eval_ids": [
           "onward-document-consistency-planning",
-          "onward-genealogy-row-semantic-note-placement"
+          "onward-genealogy-row-semantic-note-placement",
+          "jev-document-consistency-classification"
         ]
       },
       {
@@ -1241,30 +1247,32 @@
           "164",
           "206",
           "219",
-          "220"
+          "220",
+          "233",
+          "234"
         ],
         "eval_ids": [
           "onward-document-consistency-planning",
-          "onward-genealogy-row-semantic-note-placement"
+          "onward-genealogy-row-semantic-note-placement",
+          "jev-document-consistency-classification"
         ],
         "actionability": {
           "source_kind": "eval",
-          "source_id": "onward-genealogy-row-semantic-note-placement",
+          "source_id": "jev-document-consistency-classification",
           "source_path": "docs/evals/registry.yaml",
           "recommended_now": false,
           "posture": "wait-for-trigger",
           "retry_trigger_status": "waiting",
           "retry_when": [
-            "architecture-change",
-            "new-approach"
+            "cheaper-subject-model"
           ],
-          "why_now": "Retry when a broader maintained row-semantic note class appears that the current subordinate-note policy does not cover. Re-measure if planner issue typing, structured-repair rendering, or the late genealogy HTML norm...",
+          "why_now": "",
           "last_relevant_action": {
-            "date": "2026-04-13",
+            "date": "2026-09-21",
             "source_type": "eval-attempt",
             "source": "docs/evals/registry.yaml",
             "source_id": "001",
-            "summary": "Early proof runs exposed three blockers in sequence: OpenAI Responses scopes on `gpt-5`, target truncation after widening the relevant page cluster, and note-placement regressions from structured `DIED` cells plus sha..."
+            "summary": "USD0.0630996 spent on97calls; no runtime changes. Exact evidence docs/evals/artifacts/jev-consistency-20260921/report.md."
           },
           "story_ids": [
             "145",
@@ -1283,11 +1291,14 @@
             "164",
             "206",
             "219",
-            "220"
+            "220",
+            "233",
+            "234"
           ],
           "eval_ids": [
             "onward-document-consistency-planning",
-            "onward-genealogy-row-semantic-note-placement"
+            "onward-genealogy-row-semantic-note-placement",
+            "jev-document-consistency-classification"
           ]
         }
       },
@@ -12948,6 +12959,128 @@
           "summary": "GPT-6 Astra page-context follow-on stopped at the first paid differentiator. Exact `gpt-6-astra` medium completed the strict two-image contract but returned `pass` on `page-122-001`, despite describing two oval portra..."
         }
       }
+    },
+    {
+      "id": "233",
+      "title": "JEV consistency classifier evaluation",
+      "path": "docs/stories/story-233-jev-consistency-classifier-evaluation.md",
+      "status": "Done",
+      "priority": "Medium",
+      "ideal_refs": [
+        "Fidelity to Source",
+        "Traceability"
+      ],
+      "spec_refs": [
+        "C7",
+        "spec:2",
+        "spec:5"
+      ],
+      "decision_refs": [
+        "ADR-001",
+        "ADR-001 source-aware consistency strategy",
+        "benchmarks/jev-consistency/plan.md"
+      ],
+      "adr_ids": [
+        "ADR-001"
+      ],
+      "depends_on": [
+        "220"
+      ],
+      "category_refs": [
+        "spec:2",
+        "spec:5"
+      ],
+      "compromise_refs": [
+        "C7"
+      ],
+      "input_coverage_refs": [],
+      "architecture_domains": [
+        "document-consistency"
+      ],
+      "roadmap_tags": [
+        "model-evaluation"
+      ],
+      "blocker_summary": "",
+      "blocker_evidence": "",
+      "unblock_condition": "",
+      "last_work_log_entry": null,
+      "legacy_build_map_refs": "",
+      "metadata_source": "frontmatter",
+      "missing_frontmatter_keys": [],
+      "actionability": {
+        "source_kind": "story",
+        "source_id": "233",
+        "source_path": "docs/stories/story-233-jev-consistency-classifier-evaluation.md",
+        "recommended_now": false,
+        "posture": "completed",
+        "why_now": "",
+        "last_relevant_action": {
+          "date": null,
+          "source_type": "story-status",
+          "source": "docs/stories/story-233-jev-consistency-classifier-evaluation.md",
+          "summary": ""
+        }
+      }
+    },
+    {
+      "id": "234",
+      "title": "JEV consistency shadow routing",
+      "path": "docs/stories/story-234-jev-consistency-shadow-routing.md",
+      "status": "Done",
+      "priority": "Medium",
+      "ideal_refs": [
+        "Fidelity to Source",
+        "Traceability"
+      ],
+      "spec_refs": [
+        "C7",
+        "spec:2",
+        "spec:5"
+      ],
+      "decision_refs": [
+        "ADR-001"
+      ],
+      "adr_ids": [
+        "ADR-001"
+      ],
+      "depends_on": [
+        "233"
+      ],
+      "category_refs": [
+        "spec:2",
+        "spec:5"
+      ],
+      "compromise_refs": [
+        "C7"
+      ],
+      "input_coverage_refs": [],
+      "architecture_domains": [
+        "document-consistency"
+      ],
+      "roadmap_tags": [
+        "model-integration"
+      ],
+      "blocker_summary": "",
+      "blocker_evidence": "",
+      "unblock_condition": "",
+      "last_work_log_entry": null,
+      "legacy_build_map_refs": "",
+      "metadata_source": "frontmatter",
+      "missing_frontmatter_keys": [],
+      "actionability": {
+        "source_kind": "story",
+        "source_id": "234",
+        "source_path": "docs/stories/story-234-jev-consistency-shadow-routing.md",
+        "recommended_now": false,
+        "posture": "completed",
+        "why_now": "",
+        "last_relevant_action": {
+          "date": null,
+          "source_type": "story-status",
+          "source": "docs/stories/story-234-jev-consistency-shadow-routing.md",
+          "summary": ""
+        }
+      }
     }
   ],
   "adrs": [
@@ -16422,6 +16555,107 @@
           "source": "docs/evals/registry.yaml",
           "source_id": "001",
           "summary": "Fresh run via `python benchmarks/scripts/run_born_digital_pdf_eval.py --output benchmarks/results/born-digital-pdf-story196.json --run-root output/runs/story196-born-digital-benchmark` completed all 6 present cases wi..."
+        }
+      }
+    },
+    {
+      "id": "jev-document-consistency-classification",
+      "name": "JEV synthetic document consistency classification",
+      "type": "quality",
+      "command": "python benchmarks/jev-consistency/run.py",
+      "path": "docs/evals/registry.yaml",
+      "description": "Five-class status projection with explicit conventions and synthetic source prose; genealogy tables and maintenance cards. Does not measure convention generation, full planner outputs, OCR, or repair. Fresh JEV versus Story220 GPT-4.1 model projected to status, separate deterministic comparators.\n",
+      "spec_refs": [],
+      "story_refs": [
+        "233"
+      ],
+      "compromise_refs": [
+        "C7"
+      ],
+      "category_refs": [
+        "spec:2",
+        "spec:5"
+      ],
+      "scores": [
+        {
+          "model": "jev-1.13.0",
+          "measured": "2026-09-21",
+          "metrics": {
+            "accuracy": 0.6,
+            "macro_f1": 0.5857720058,
+            "latency_ms": 394.5305,
+            "cost_usd": 3.549e-05,
+            "cost_estimated": true
+          },
+          "note": "24/40; latency is mean. Synthetic five-class status only."
+        },
+        {
+          "model": "gpt-4.1-2025-04-14 narrow status projection",
+          "measured": "2026-09-21",
+          "metrics": {
+            "accuracy": 0.725,
+            "macro_f1": 0.7133456932,
+            "latency_ms": 797.5414,
+            "cost_usd": 0.0010852,
+            "cost_estimated": true
+          },
+          "note": "29/40; latency is mean. Not full unchanged planner."
+        },
+        {
+          "model": "jev-1.13.0 with real confidence-gated GPT-4.1 fallback",
+          "measured": "2026-09-21",
+          "metrics": {
+            "accuracy": 0.825,
+            "macro_f1": 0.8156005398,
+            "latency_ms": 755.8994,
+            "cost_usd": 0.00049229,
+            "cost_estimated": true
+          },
+          "note": "33/40;17 actual fallbacks; mean latency.54.64% cheaper narrow workflow;3 defects called clean, same count as incumbent. Conditional bounded integration candidate."
+        }
+      ],
+      "latest_score": {
+        "model": "jev-1.13.0 with real confidence-gated GPT-4.1 fallback",
+        "measured": "2026-09-21",
+        "metrics": {
+          "accuracy": 0.825,
+          "macro_f1": 0.8156005398,
+          "latency_ms": 755.8994,
+          "cost_usd": 0.00049229,
+          "cost_estimated": true
+        },
+        "note": "33/40;17 actual fallbacks; mean latency.54.64% cheaper narrow workflow;3 defects called clean, same count as incumbent. Conditional bounded integration candidate."
+      },
+      "attempts": [
+        {
+          "id": "001",
+          "date": "2026-09-21",
+          "status": "succeeded",
+          "approach": "Independent synthetic gold review, native Choice/schema comparison, real confidence fallback",
+          "note": "USD0.0630996 spent on97calls; no runtime changes. Exact evidence docs/evals/artifacts/jev-consistency-20260921/report.md.",
+          "retry_when": []
+        }
+      ],
+      "retry_when": [],
+      "retry_when_notes": [],
+      "explicit_lineage": true,
+      "actionability": {
+        "source_kind": "eval",
+        "source_id": "jev-document-consistency-classification",
+        "source_path": "docs/evals/registry.yaml",
+        "recommended_now": false,
+        "posture": "wait-for-trigger",
+        "retry_trigger_status": "waiting",
+        "retry_when": [
+          "cheaper-subject-model"
+        ],
+        "why_now": "",
+        "last_relevant_action": {
+          "date": "2026-09-21",
+          "source_type": "eval-attempt",
+          "source": "docs/evals/registry.yaml",
+          "source_id": "001",
+          "summary": "USD0.0630996 spent on97calls; no runtime changes. Exact evidence docs/evals/artifacts/jev-consistency-20260921/report.md."
         }
       }
     }

@@ -1,0 +1,3429 @@
+[
+  {
+    "id": "r1-family-01",
+    "gold": "conformant",
+    "domain": "family",
+    "arm": "jev",
+    "name": "r1-family-01-jev",
+    "provider": "jev",
+    "reserve_usd": 0.002688,
+    "status": "complete",
+    "http_status": 200,
+    "latency_ms": 587.5118330586702,
+    "cost_usd": 3.6036e-05,
+    "label": "conformant",
+    "confidence": 1.0,
+    "usage": {
+      "input_tokens": 858,
+      "output_tokens": 64
+    },
+    "served_model": "jev-1.13.0"
+  },
+  {
+    "id": "r1-family-01",
+    "gold": "conformant",
+    "domain": "family",
+    "arm": "gpt",
+    "name": "r1-family-01-gpt",
+    "provider": "gpt",
+    "reserve_usd": 0.007084,
+    "status": "complete",
+    "http_status": 200,
+    "latency_ms": 1886.1941669601947,
+    "cost_usd": 0.001096,
+    "label": "conformant",
+    "confidence": null,
+    "usage": {
+      "prompt_tokens": 520,
+      "completion_tokens": 7,
+      "total_tokens": 527,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "audio_tokens": 0
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "audio_tokens": 0,
+        "accepted_prediction_tokens": 0,
+        "rejected_prediction_tokens": 0
+      }
+    },
+    "served_model": "gpt-4.1-2025-04-14"
+  },
+  {
+    "id": "r1-family-01",
+    "gold": "conformant",
+    "domain": "family",
+    "arm": "cascade",
+    "name": "r1-family-01-jev",
+    "provider": "jev",
+    "reserve_usd": 0.002688,
+    "status": "complete",
+    "http_status": 200,
+    "latency_ms": 587.5118330586702,
+    "cost_usd": 3.6036e-05,
+    "label": "conformant",
+    "confidence": 1.0,
+    "usage": {
+      "input_tokens": 858,
+      "output_tokens": 64
+    },
+    "served_model": "jev-1.13.0",
+    "fallback": false
+  },
+  {
+    "id": "r1-family-01",
+    "gold": "conformant",
+    "domain": "family",
+    "arm": "structural",
+    "label": "conformant",
+    "cost_usd": 0,
+    "latency_ms": 0
+  },
+  {
+    "id": "r1-family-02",
+    "gold": "conformant",
+    "domain": "family",
+    "arm": "jev",
+    "name": "r1-family-02-jev",
+    "provider": "jev",
+    "reserve_usd": 0.002688,
+    "status": "complete",
+    "http_status": 200,
+    "latency_ms": 343.7838749960065,
+    "cost_usd": 3.7968000000000006e-05,
+    "label": "conformant",
+    "confidence": 0.91,
+    "usage": {
+      "input_tokens": 904,
+      "output_tokens": 64
+    },
+    "served_model": "jev-1.13.0"
+  },
+  {
+    "id": "r1-family-02",
+    "gold": "conformant",
+    "domain": "family",
+    "arm": "gpt",
+    "name": "r1-family-02-gpt",
+    "provider": "gpt",
+    "reserve_usd": 0.007292,
+    "status": "complete",
+    "http_status": 200,
+    "latency_ms": 1644.4032919825986,
+    "cost_usd": 0.00116,
+    "label": "conformant",
+    "confidence": null,
+    "usage": {
+      "prompt_tokens": 552,
+      "completion_tokens": 7,
+      "total_tokens": 559,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "audio_tokens": 0
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "audio_tokens": 0,
+        "accepted_prediction_tokens": 0,
+        "rejected_prediction_tokens": 0
+      }
+    },
+    "served_model": "gpt-4.1-2025-04-14"
+  },
+  {
+    "id": "r1-family-02",
+    "gold": "conformant",
+    "domain": "family",
+    "arm": "cascade",
+    "name": "r1-family-02-jev",
+    "provider": "jev",
+    "reserve_usd": 0.002688,
+    "status": "complete",
+    "http_status": 200,
+    "latency_ms": 343.7838749960065,
+    "cost_usd": 3.7968000000000006e-05,
+    "label": "conformant",
+    "confidence": 0.91,
+    "usage": {
+      "input_tokens": 904,
+      "output_tokens": 64
+    },
+    "served_model": "jev-1.13.0",
+    "fallback": false
+  },
+  {
+    "id": "r1-family-02",
+    "gold": "conformant",
+    "domain": "family",
+    "arm": "structural",
+    "label": "conformant",
+    "cost_usd": 0,
+    "latency_ms": 0
+  },
+  {
+    "id": "r1-family-03",
+    "gold": "format_drift",
+    "domain": "family",
+    "arm": "jev",
+    "name": "r1-family-03-jev",
+    "provider": "jev",
+    "reserve_usd": 0.002688,
+    "status": "complete",
+    "http_status": 200,
+    "latency_ms": 380.86854200810194,
+    "cost_usd": 3.8262e-05,
+    "label": "conformant",
+    "confidence": 0.8,
+    "usage": {
+      "input_tokens": 911,
+      "output_tokens": 64
+    },
+    "served_model": "jev-1.13.0"
+  },
+  {
+    "id": "r1-family-03",
+    "gold": "format_drift",
+    "domain": "family",
+    "arm": "gpt",
+    "name": "r1-family-03-gpt",
+    "provider": "gpt",
+    "reserve_usd": 0.00735,
+    "status": "complete",
+    "http_status": 200,
+    "latency_ms": 1135.7406669994816,
+    "cost_usd": 0.001172,
+    "label": "conformant",
+    "confidence": null,
+    "usage": {
+      "prompt_tokens": 558,
+      "completion_tokens": 7,
+      "total_tokens": 565,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "audio_tokens": 0
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "audio_tokens": 0,
+        "accepted_prediction_tokens": 0,
+        "rejected_prediction_tokens": 0
+      }
+    },
+    "served_model": "gpt-4.1-2025-04-14"
+  },
+  {
+    "id": "r1-family-03",
+    "gold": "format_drift",
+    "domain": "family",
+    "arm": "cascade",
+    "name": "r1-family-03-jev",
+    "provider": "jev",
+    "reserve_usd": 0.002688,
+    "status": "complete",
+    "http_status": 200,
+    "latency_ms": 380.86854200810194,
+    "cost_usd": 3.8262e-05,
+    "label": "conformant",
+    "confidence": 0.8,
+    "usage": {
+      "input_tokens": 911,
+      "output_tokens": 64
+    },
+    "served_model": "jev-1.13.0",
+    "fallback": false
+  },
+  {
+    "id": "r1-family-03",
+    "gold": "format_drift",
+    "domain": "family",
+    "arm": "structural",
+    "label": "format_drift",
+    "cost_usd": 0,
+    "latency_ms": 0
+  },
+  {
+    "id": "r1-family-04",
+    "gold": "format_drift",
+    "domain": "family",
+    "arm": "jev",
+    "name": "r1-family-04-jev",
+    "provider": "jev",
+    "reserve_usd": 0.002688,
+    "status": "complete",
+    "http_status": 200,
+    "latency_ms": 221.71399998478591,
+    "cost_usd": 3.5868e-05,
+    "label": "conformant",
+    "confidence": 0.71,
+    "usage": {
+      "input_tokens": 854,
+      "output_tokens": 64
+    },
+    "served_model": "jev-1.13.0"
+  },
+  {
+    "id": "r1-family-04",
+    "gold": "format_drift",
+    "domain": "family",
+    "arm": "gpt",
+    "name": "r1-family-04-gpt",
+    "provider": "gpt",
+    "reserve_usd": 0.007062,
+    "status": "complete",
+    "http_status": 200,
+    "latency_ms": 1063.0817079218104,
+    "cost_usd": 0.001094,
+    "label": "format_drift",
+    "confidence": null,
+    "usage": {
+      "prompt_tokens": 519,
+      "completion_tokens": 7,
+      "total_tokens": 526,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "audio_tokens": 0
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "audio_tokens": 0,
+        "accepted_prediction_tokens": 0,
+        "rejected_prediction_tokens": 0
+      }
+    },
+    "served_model": "gpt-4.1-2025-04-14"
+  },
+  {
+    "id": "r1-family-04",
+    "gold": "format_drift",
+    "domain": "family",
+    "arm": "cascade",
+    "name": "r1-family-04-fallback",
+    "provider": "gpt",
+    "reserve_usd": 0.007062,
+    "status": "complete",
+    "http_status": 200,
+    "latency_ms": 902.7220830321312,
+    "cost_usd": 0.001129868,
+    "label": "conformant",
+    "confidence": null,
+    "usage": {
+      "prompt_tokens": 519,
+      "completion_tokens": 7,
+      "total_tokens": 526,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "audio_tokens": 0
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "audio_tokens": 0,
+        "accepted_prediction_tokens": 0,
+        "rejected_prediction_tokens": 0
+      }
+    },
+    "served_model": "gpt-4.1-2025-04-14",
+    "fallback": true
+  },
+  {
+    "id": "r1-family-04",
+    "gold": "format_drift",
+    "domain": "family",
+    "arm": "structural",
+    "label": "format_drift",
+    "cost_usd": 0,
+    "latency_ms": 0
+  },
+  {
+    "id": "r1-family-05",
+    "gold": "row_semantic_issue",
+    "domain": "family",
+    "arm": "jev",
+    "name": "r1-family-05-jev",
+    "provider": "jev",
+    "reserve_usd": 0.002688,
+    "status": "complete",
+    "http_status": 200,
+    "latency_ms": 260.04762505181134,
+    "cost_usd": 3.6036e-05,
+    "label": "row_semantic_issue",
+    "confidence": 0.97,
+    "usage": {
+      "input_tokens": 858,
+      "output_tokens": 66
+    },
+    "served_model": "jev-1.13.0"
+  },
+  {
+    "id": "r1-family-05",
+    "gold": "row_semantic_issue",
+    "domain": "family",
+    "arm": "gpt",
+    "name": "r1-family-05-gpt",
+    "provider": "gpt",
+    "reserve_usd": 0.007084,
+    "status": "complete",
+    "http_status": 200,
+    "latency_ms": 682.4577919906005,
+    "cost_usd": 0.001104,
+    "label": "row_semantic_issue",
+    "confidence": null,
+    "usage": {
+      "prompt_tokens": 520,
+      "completion_tokens": 8,
+      "total_tokens": 528,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "audio_tokens": 0
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "audio_tokens": 0,
+        "accepted_prediction_tokens": 0,
+        "rejected_prediction_tokens": 0
+      }
+    },
+    "served_model": "gpt-4.1-2025-04-14"
+  },
+  {
+    "id": "r1-family-05",
+    "gold": "row_semantic_issue",
+    "domain": "family",
+    "arm": "cascade",
+    "name": "r1-family-05-jev",
+    "provider": "jev",
+    "reserve_usd": 0.002688,
+    "status": "complete",
+    "http_status": 200,
+    "latency_ms": 260.04762505181134,
+    "cost_usd": 3.6036e-05,
+    "label": "row_semantic_issue",
+    "confidence": 0.97,
+    "usage": {
+      "input_tokens": 858,
+      "output_tokens": 66
+    },
+    "served_model": "jev-1.13.0",
+    "fallback": false
+  },
+  {
+    "id": "r1-family-05",
+    "gold": "row_semantic_issue",
+    "domain": "family",
+    "arm": "structural",
+    "label": "conformant",
+    "cost_usd": 0,
+    "latency_ms": 0
+  },
+  {
+    "id": "r1-family-06",
+    "gold": "row_semantic_issue",
+    "domain": "family",
+    "arm": "jev",
+    "name": "r1-family-06-jev",
+    "provider": "jev",
+    "reserve_usd": 0.002688,
+    "status": "complete",
+    "http_status": 200,
+    "latency_ms": 258.9503329945728,
+    "cost_usd": 3.6036e-05,
+    "label": "row_semantic_issue",
+    "confidence": 0.97,
+    "usage": {
+      "input_tokens": 858,
+      "output_tokens": 66
+    },
+    "served_model": "jev-1.13.0"
+  },
+  {
+    "id": "r1-family-06",
+    "gold": "row_semantic_issue",
+    "domain": "family",
+    "arm": "gpt",
+    "name": "r1-family-06-gpt",
+    "provider": "gpt",
+    "reserve_usd": 0.007084,
+    "status": "complete",
+    "http_status": 200,
+    "latency_ms": 976.6855830093846,
+    "cost_usd": 0.001104,
+    "label": "row_semantic_issue",
+    "confidence": null,
+    "usage": {
+      "prompt_tokens": 520,
+      "completion_tokens": 8,
+      "total_tokens": 528,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "audio_tokens": 0
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "audio_tokens": 0,
+        "accepted_prediction_tokens": 0,
+        "rejected_prediction_tokens": 0
+      }
+    },
+    "served_model": "gpt-4.1-2025-04-14"
+  },
+  {
+    "id": "r1-family-06",
+    "gold": "row_semantic_issue",
+    "domain": "family",
+    "arm": "cascade",
+    "name": "r1-family-06-jev",
+    "provider": "jev",
+    "reserve_usd": 0.002688,
+    "status": "complete",
+    "http_status": 200,
+    "latency_ms": 258.9503329945728,
+    "cost_usd": 3.6036e-05,
+    "label": "row_semantic_issue",
+    "confidence": 0.97,
+    "usage": {
+      "input_tokens": 858,
+      "output_tokens": 66
+    },
+    "served_model": "jev-1.13.0",
+    "fallback": false
+  },
+  {
+    "id": "r1-family-06",
+    "gold": "row_semantic_issue",
+    "domain": "family",
+    "arm": "structural",
+    "label": "conformant",
+    "cost_usd": 0,
+    "latency_ms": 0
+  },
+  {
+    "id": "r1-family-07",
+    "gold": "mixed",
+    "domain": "family",
+    "arm": "jev",
+    "name": "r1-family-07-jev",
+    "provider": "jev",
+    "reserve_usd": 0.002688,
+    "status": "complete",
+    "http_status": 200,
+    "latency_ms": 330.55374992545694,
+    "cost_usd": 3.8262e-05,
+    "label": "row_semantic_issue",
+    "confidence": 0.89,
+    "usage": {
+      "input_tokens": 911,
+      "output_tokens": 66
+    },
+    "served_model": "jev-1.13.0"
+  },
+  {
+    "id": "r1-family-07",
+    "gold": "mixed",
+    "domain": "family",
+    "arm": "gpt",
+    "name": "r1-family-07-gpt",
+    "provider": "gpt",
+    "reserve_usd": 0.00735,
+    "status": "complete",
+    "http_status": 200,
+    "latency_ms": 686.8197500007227,
+    "cost_usd": 0.00118,
+    "label": "row_semantic_issue",
+    "confidence": null,
+    "usage": {
+      "prompt_tokens": 558,
+      "completion_tokens": 8,
+      "total_tokens": 566,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "audio_tokens": 0
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "audio_tokens": 0,
+        "accepted_prediction_tokens": 0,
+        "rejected_prediction_tokens": 0
+      }
+    },
+    "served_model": "gpt-4.1-2025-04-14"
+  },
+  {
+    "id": "r1-family-07",
+    "gold": "mixed",
+    "domain": "family",
+    "arm": "cascade",
+    "name": "r1-family-07-jev",
+    "provider": "jev",
+    "reserve_usd": 0.002688,
+    "status": "complete",
+    "http_status": 200,
+    "latency_ms": 330.55374992545694,
+    "cost_usd": 3.8262e-05,
+    "label": "row_semantic_issue",
+    "confidence": 0.89,
+    "usage": {
+      "input_tokens": 911,
+      "output_tokens": 66
+    },
+    "served_model": "jev-1.13.0",
+    "fallback": false
+  },
+  {
+    "id": "r1-family-07",
+    "gold": "mixed",
+    "domain": "family",
+    "arm": "structural",
+    "label": "format_drift",
+    "cost_usd": 0,
+    "latency_ms": 0
+  },
+  {
+    "id": "r1-family-08",
+    "gold": "mixed",
+    "domain": "family",
+    "arm": "jev",
+    "name": "r1-family-08-jev",
+    "provider": "jev",
+    "reserve_usd": 0.002688,
+    "status": "complete",
+    "http_status": 200,
+    "latency_ms": 292.9045830387622,
+    "cost_usd": 3.5868e-05,
+    "label": "row_semantic_issue",
+    "confidence": 0.65,
+    "usage": {
+      "input_tokens": 854,
+      "output_tokens": 66
+    },
+    "served_model": "jev-1.13.0"
+  },
+  {
+    "id": "r1-family-08",
+    "gold": "mixed",
+    "domain": "family",
+    "arm": "gpt",
+    "name": "r1-family-08-gpt",
+    "provider": "gpt",
+    "reserve_usd": 0.007062,
+    "status": "complete",
+    "http_status": 200,
+    "latency_ms": 658.728374983184,
+    "cost_usd": 0.001102,
+    "label": "row_semantic_issue",
+    "confidence": null,
+    "usage": {
+      "prompt_tokens": 519,
+      "completion_tokens": 8,
+      "total_tokens": 527,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "audio_tokens": 0
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "audio_tokens": 0,
+        "accepted_prediction_tokens": 0,
+        "rejected_prediction_tokens": 0
+      }
+    },
+    "served_model": "gpt-4.1-2025-04-14"
+  },
+  {
+    "id": "r1-family-08",
+    "gold": "mixed",
+    "domain": "family",
+    "arm": "cascade",
+    "name": "r1-family-08-fallback",
+    "provider": "gpt",
+    "reserve_usd": 0.007062,
+    "status": "complete",
+    "http_status": 200,
+    "latency_ms": 2237.1578740421683,
+    "cost_usd": 0.001137868,
+    "label": "row_semantic_issue",
+    "confidence": null,
+    "usage": {
+      "prompt_tokens": 519,
+      "completion_tokens": 8,
+      "total_tokens": 527,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "audio_tokens": 0
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "audio_tokens": 0,
+        "accepted_prediction_tokens": 0,
+        "rejected_prediction_tokens": 0
+      }
+    },
+    "served_model": "gpt-4.1-2025-04-14",
+    "fallback": true
+  },
+  {
+    "id": "r1-family-08",
+    "gold": "mixed",
+    "domain": "family",
+    "arm": "structural",
+    "label": "format_drift",
+    "cost_usd": 0,
+    "latency_ms": 0
+  },
+  {
+    "id": "r1-family-09",
+    "gold": "uncertain",
+    "domain": "family",
+    "arm": "jev",
+    "name": "r1-family-09-jev",
+    "provider": "jev",
+    "reserve_usd": 0.002688,
+    "status": "complete",
+    "http_status": 200,
+    "latency_ms": 248.24679200537503,
+    "cost_usd": 3.486e-05,
+    "label": "conformant",
+    "confidence": 0.48,
+    "usage": {
+      "input_tokens": 830,
+      "output_tokens": 64
+    },
+    "served_model": "jev-1.13.0"
+  },
+  {
+    "id": "r1-family-09",
+    "gold": "uncertain",
+    "domain": "family",
+    "arm": "gpt",
+    "name": "r1-family-09-gpt",
+    "provider": "gpt",
+    "reserve_usd": 0.006988,
+    "status": "complete",
+    "http_status": 200,
+    "latency_ms": 572.9102920740843,
+    "cost_usd": 0.001064,
+    "label": "row_semantic_issue",
+    "confidence": null,
+    "usage": {
+      "prompt_tokens": 500,
+      "completion_tokens": 8,
+      "total_tokens": 508,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "audio_tokens": 0
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "audio_tokens": 0,
+        "accepted_prediction_tokens": 0,
+        "rejected_prediction_tokens": 0
+      }
+    },
+    "served_model": "gpt-4.1-2025-04-14"
+  },
+  {
+    "id": "r1-family-09",
+    "gold": "uncertain",
+    "domain": "family",
+    "arm": "cascade",
+    "name": "r1-family-09-fallback",
+    "provider": "gpt",
+    "reserve_usd": 0.006988,
+    "status": "complete",
+    "http_status": 200,
+    "latency_ms": 1134.764541988261,
+    "cost_usd": 0.0010828600000000002,
+    "label": "uncertain",
+    "confidence": null,
+    "usage": {
+      "prompt_tokens": 500,
+      "completion_tokens": 6,
+      "total_tokens": 506,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "audio_tokens": 0
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "audio_tokens": 0,
+        "accepted_prediction_tokens": 0,
+        "rejected_prediction_tokens": 0
+      }
+    },
+    "served_model": "gpt-4.1-2025-04-14",
+    "fallback": true
+  },
+  {
+    "id": "r1-family-09",
+    "gold": "uncertain",
+    "domain": "family",
+    "arm": "structural",
+    "label": "conformant",
+    "cost_usd": 0,
+    "latency_ms": 0
+  },
+  {
+    "id": "r1-family-10",
+    "gold": "uncertain",
+    "domain": "family",
+    "arm": "jev",
+    "name": "r1-family-10-jev",
+    "provider": "jev",
+    "reserve_usd": 0.002688,
+    "status": "complete",
+    "http_status": 200,
+    "latency_ms": 211.00058301817626,
+    "cost_usd": 3.6372e-05,
+    "label": "uncertain",
+    "confidence": 0.38,
+    "usage": {
+      "input_tokens": 866,
+      "output_tokens": 64
+    },
+    "served_model": "jev-1.13.0"
+  },
+  {
+    "id": "r1-family-10",
+    "gold": "uncertain",
+    "domain": "family",
+    "arm": "gpt",
+    "name": "r1-family-10-gpt",
+    "provider": "gpt",
+    "reserve_usd": 0.00721,
+    "status": "complete",
+    "http_status": 200,
+    "latency_ms": 785.3187919827178,
+    "cost_usd": 0.001102,
+    "label": "uncertain",
+    "confidence": null,
+    "usage": {
+      "prompt_tokens": 527,
+      "completion_tokens": 6,
+      "total_tokens": 533,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "audio_tokens": 0
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "audio_tokens": 0,
+        "accepted_prediction_tokens": 0,
+        "rejected_prediction_tokens": 0
+      }
+    },
+    "served_model": "gpt-4.1-2025-04-14"
+  },
+  {
+    "id": "r1-family-10",
+    "gold": "uncertain",
+    "domain": "family",
+    "arm": "cascade",
+    "name": "r1-family-10-jev",
+    "provider": "jev",
+    "reserve_usd": 0.002688,
+    "status": "complete",
+    "http_status": 200,
+    "latency_ms": 211.00058301817626,
+    "cost_usd": 3.6372e-05,
+    "label": "uncertain",
+    "confidence": 0.38,
+    "usage": {
+      "input_tokens": 866,
+      "output_tokens": 64
+    },
+    "served_model": "jev-1.13.0",
+    "fallback": false
+  },
+  {
+    "id": "r1-family-10",
+    "gold": "uncertain",
+    "domain": "family",
+    "arm": "structural",
+    "label": "conformant",
+    "cost_usd": 0,
+    "latency_ms": 0
+  },
+  {
+    "id": "r1-maintenance-01",
+    "gold": "conformant",
+    "domain": "maintenance",
+    "arm": "jev",
+    "name": "r1-maintenance-01-jev",
+    "provider": "jev",
+    "reserve_usd": 0.002688,
+    "status": "complete",
+    "http_status": 200,
+    "latency_ms": 507.69645802211016,
+    "cost_usd": 3.4314e-05,
+    "label": "conformant",
+    "confidence": 0.38,
+    "usage": {
+      "input_tokens": 817,
+      "output_tokens": 64
+    },
+    "served_model": "jev-1.13.0"
+  },
+  {
+    "id": "r1-maintenance-01",
+    "gold": "conformant",
+    "domain": "maintenance",
+    "arm": "gpt",
+    "name": "r1-maintenance-01-gpt",
+    "provider": "gpt",
+    "reserve_usd": 0.007226,
+    "status": "complete",
+    "http_status": 200,
+    "latency_ms": 612.5774170504883,
+    "cost_usd": 0.00105,
+    "label": "conformant",
+    "confidence": null,
+    "usage": {
+      "prompt_tokens": 497,
+      "completion_tokens": 7,
+      "total_tokens": 504,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "audio_tokens": 0
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "audio_tokens": 0,
+        "accepted_prediction_tokens": 0,
+        "rejected_prediction_tokens": 0
+      }
+    },
+    "served_model": "gpt-4.1-2025-04-14"
+  },
+  {
+    "id": "r1-maintenance-01",
+    "gold": "conformant",
+    "domain": "maintenance",
+    "arm": "cascade",
+    "name": "r1-maintenance-01-fallback",
+    "provider": "gpt",
+    "reserve_usd": 0.007226,
+    "status": "complete",
+    "http_status": 200,
+    "latency_ms": 1083.3355829818174,
+    "cost_usd": 0.0010843139999999999,
+    "label": "conformant",
+    "confidence": null,
+    "usage": {
+      "prompt_tokens": 497,
+      "completion_tokens": 7,
+      "total_tokens": 504,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "audio_tokens": 0
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "audio_tokens": 0,
+        "accepted_prediction_tokens": 0,
+        "rejected_prediction_tokens": 0
+      }
+    },
+    "served_model": "gpt-4.1-2025-04-14",
+    "fallback": true
+  },
+  {
+    "id": "r1-maintenance-01",
+    "gold": "conformant",
+    "domain": "maintenance",
+    "arm": "structural",
+    "label": "conformant",
+    "cost_usd": 0,
+    "latency_ms": 0
+  },
+  {
+    "id": "r1-maintenance-02",
+    "gold": "conformant",
+    "domain": "maintenance",
+    "arm": "jev",
+    "name": "r1-maintenance-02-jev",
+    "provider": "jev",
+    "reserve_usd": 0.002688,
+    "status": "complete",
+    "http_status": 200,
+    "latency_ms": 266.91495801787823,
+    "cost_usd": 3.465000000000001e-05,
+    "label": "conformant",
+    "confidence": 0.99,
+    "usage": {
+      "input_tokens": 825,
+      "output_tokens": 64
+    },
+    "served_model": "jev-1.13.0"
+  },
+  {
+    "id": "r1-maintenance-02",
+    "gold": "conformant",
+    "domain": "maintenance",
+    "arm": "gpt",
+    "name": "r1-maintenance-02-gpt",
+    "provider": "gpt",
+    "reserve_usd": 0.00731,
+    "status": "complete",
+    "http_status": 200,
+    "latency_ms": 907.167625031434,
+    "cost_usd": 0.001064,
+    "label": "conformant",
+    "confidence": null,
+    "usage": {
+      "prompt_tokens": 504,
+      "completion_tokens": 7,
+      "total_tokens": 511,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "audio_tokens": 0
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "audio_tokens": 0,
+        "accepted_prediction_tokens": 0,
+        "rejected_prediction_tokens": 0
+      }
+    },
+    "served_model": "gpt-4.1-2025-04-14"
+  },
+  {
+    "id": "r1-maintenance-02",
+    "gold": "conformant",
+    "domain": "maintenance",
+    "arm": "cascade",
+    "name": "r1-maintenance-02-jev",
+    "provider": "jev",
+    "reserve_usd": 0.002688,
+    "status": "complete",
+    "http_status": 200,
+    "latency_ms": 266.91495801787823,
+    "cost_usd": 3.465000000000001e-05,
+    "label": "conformant",
+    "confidence": 0.99,
+    "usage": {
+      "input_tokens": 825,
+      "output_tokens": 64
+    },
+    "served_model": "jev-1.13.0",
+    "fallback": false
+  },
+  {
+    "id": "r1-maintenance-02",
+    "gold": "conformant",
+    "domain": "maintenance",
+    "arm": "structural",
+    "label": "conformant",
+    "cost_usd": 0,
+    "latency_ms": 0
+  },
+  {
+    "id": "r1-maintenance-03",
+    "gold": "format_drift",
+    "domain": "maintenance",
+    "arm": "jev",
+    "name": "r1-maintenance-03-jev",
+    "provider": "jev",
+    "reserve_usd": 0.002688,
+    "status": "complete",
+    "http_status": 200,
+    "latency_ms": 264.6254999563098,
+    "cost_usd": 3.3264000000000005e-05,
+    "label": "mixed",
+    "confidence": 0.5,
+    "usage": {
+      "input_tokens": 792,
+      "output_tokens": 62
+    },
+    "served_model": "jev-1.13.0"
+  },
+  {
+    "id": "r1-maintenance-03",
+    "gold": "format_drift",
+    "domain": "maintenance",
+    "arm": "gpt",
+    "name": "r1-maintenance-03-gpt",
+    "provider": "gpt",
+    "reserve_usd": 0.0070999999999999995,
+    "status": "complete",
+    "http_status": 200,
+    "latency_ms": 758.439667057246,
+    "cost_usd": 0.001024,
+    "label": "format_drift",
+    "confidence": null,
+    "usage": {
+      "prompt_tokens": 484,
+      "completion_tokens": 7,
+      "total_tokens": 491,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "audio_tokens": 0
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "audio_tokens": 0,
+        "accepted_prediction_tokens": 0,
+        "rejected_prediction_tokens": 0
+      }
+    },
+    "served_model": "gpt-4.1-2025-04-14"
+  },
+  {
+    "id": "r1-maintenance-03",
+    "gold": "format_drift",
+    "domain": "maintenance",
+    "arm": "cascade",
+    "name": "r1-maintenance-03-fallback",
+    "provider": "gpt",
+    "reserve_usd": 0.0070999999999999995,
+    "status": "complete",
+    "http_status": 200,
+    "latency_ms": 903.8979999022558,
+    "cost_usd": 0.001057264,
+    "label": "format_drift",
+    "confidence": null,
+    "usage": {
+      "prompt_tokens": 484,
+      "completion_tokens": 7,
+      "total_tokens": 491,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "audio_tokens": 0
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "audio_tokens": 0,
+        "accepted_prediction_tokens": 0,
+        "rejected_prediction_tokens": 0
+      }
+    },
+    "served_model": "gpt-4.1-2025-04-14",
+    "fallback": true
+  },
+  {
+    "id": "r1-maintenance-03",
+    "gold": "format_drift",
+    "domain": "maintenance",
+    "arm": "structural",
+    "label": "format_drift",
+    "cost_usd": 0,
+    "latency_ms": 0
+  },
+  {
+    "id": "r1-maintenance-04",
+    "gold": "format_drift",
+    "domain": "maintenance",
+    "arm": "jev",
+    "name": "r1-maintenance-04-jev",
+    "provider": "jev",
+    "reserve_usd": 0.002688,
+    "status": "complete",
+    "http_status": 200,
+    "latency_ms": 250.42108306661248,
+    "cost_usd": 3.6288e-05,
+    "label": "format_drift",
+    "confidence": 0.6,
+    "usage": {
+      "input_tokens": 864,
+      "output_tokens": 64
+    },
+    "served_model": "jev-1.13.0"
+  },
+  {
+    "id": "r1-maintenance-04",
+    "gold": "format_drift",
+    "domain": "maintenance",
+    "arm": "gpt",
+    "name": "r1-maintenance-04-gpt",
+    "provider": "gpt",
+    "reserve_usd": 0.0074399999999999996,
+    "status": "complete",
+    "http_status": 200,
+    "latency_ms": 764.7512500407174,
+    "cost_usd": 0.001112,
+    "label": "format_drift",
+    "confidence": null,
+    "usage": {
+      "prompt_tokens": 528,
+      "completion_tokens": 7,
+      "total_tokens": 535,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "audio_tokens": 0
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "audio_tokens": 0,
+        "accepted_prediction_tokens": 0,
+        "rejected_prediction_tokens": 0
+      }
+    },
+    "served_model": "gpt-4.1-2025-04-14"
+  },
+  {
+    "id": "r1-maintenance-04",
+    "gold": "format_drift",
+    "domain": "maintenance",
+    "arm": "cascade",
+    "name": "r1-maintenance-04-fallback",
+    "provider": "gpt",
+    "reserve_usd": 0.0074399999999999996,
+    "status": "complete",
+    "http_status": 200,
+    "latency_ms": 1219.3343330873176,
+    "cost_usd": 0.001148288,
+    "label": "format_drift",
+    "confidence": null,
+    "usage": {
+      "prompt_tokens": 528,
+      "completion_tokens": 7,
+      "total_tokens": 535,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "audio_tokens": 0
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "audio_tokens": 0,
+        "accepted_prediction_tokens": 0,
+        "rejected_prediction_tokens": 0
+      }
+    },
+    "served_model": "gpt-4.1-2025-04-14",
+    "fallback": true
+  },
+  {
+    "id": "r1-maintenance-04",
+    "gold": "format_drift",
+    "domain": "maintenance",
+    "arm": "structural",
+    "label": "format_drift",
+    "cost_usd": 0,
+    "latency_ms": 0
+  },
+  {
+    "id": "r1-maintenance-05",
+    "gold": "row_semantic_issue",
+    "domain": "maintenance",
+    "arm": "jev",
+    "name": "r1-maintenance-05-jev",
+    "provider": "jev",
+    "reserve_usd": 0.002688,
+    "status": "complete",
+    "http_status": 200,
+    "latency_ms": 256.56904105562717,
+    "cost_usd": 3.4314e-05,
+    "label": "mixed",
+    "confidence": 0.5,
+    "usage": {
+      "input_tokens": 817,
+      "output_tokens": 62
+    },
+    "served_model": "jev-1.13.0"
+  },
+  {
+    "id": "r1-maintenance-05",
+    "gold": "row_semantic_issue",
+    "domain": "maintenance",
+    "arm": "gpt",
+    "name": "r1-maintenance-05-gpt",
+    "provider": "gpt",
+    "reserve_usd": 0.007226,
+    "status": "complete",
+    "http_status": 200,
+    "latency_ms": 740.9715000540018,
+    "cost_usd": 0.001058,
+    "label": "row_semantic_issue",
+    "confidence": null,
+    "usage": {
+      "prompt_tokens": 497,
+      "completion_tokens": 8,
+      "total_tokens": 505,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "audio_tokens": 0
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "audio_tokens": 0,
+        "accepted_prediction_tokens": 0,
+        "rejected_prediction_tokens": 0
+      }
+    },
+    "served_model": "gpt-4.1-2025-04-14"
+  },
+  {
+    "id": "r1-maintenance-05",
+    "gold": "row_semantic_issue",
+    "domain": "maintenance",
+    "arm": "cascade",
+    "name": "r1-maintenance-05-fallback",
+    "provider": "gpt",
+    "reserve_usd": 0.007226,
+    "status": "complete",
+    "http_status": 200,
+    "latency_ms": 857.7168330084532,
+    "cost_usd": 0.0010923139999999998,
+    "label": "row_semantic_issue",
+    "confidence": null,
+    "usage": {
+      "prompt_tokens": 497,
+      "completion_tokens": 8,
+      "total_tokens": 505,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "audio_tokens": 0
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "audio_tokens": 0,
+        "accepted_prediction_tokens": 0,
+        "rejected_prediction_tokens": 0
+      }
+    },
+    "served_model": "gpt-4.1-2025-04-14",
+    "fallback": true
+  },
+  {
+    "id": "r1-maintenance-05",
+    "gold": "row_semantic_issue",
+    "domain": "maintenance",
+    "arm": "structural",
+    "label": "conformant",
+    "cost_usd": 0,
+    "latency_ms": 0
+  },
+  {
+    "id": "r1-maintenance-06",
+    "gold": "row_semantic_issue",
+    "domain": "maintenance",
+    "arm": "jev",
+    "name": "r1-maintenance-06-jev",
+    "provider": "jev",
+    "reserve_usd": 0.002688,
+    "status": "complete",
+    "http_status": 200,
+    "latency_ms": 275.78512497711927,
+    "cost_usd": 3.4314e-05,
+    "label": "mixed",
+    "confidence": 0.55,
+    "usage": {
+      "input_tokens": 817,
+      "output_tokens": 62
+    },
+    "served_model": "jev-1.13.0"
+  },
+  {
+    "id": "r1-maintenance-06",
+    "gold": "row_semantic_issue",
+    "domain": "maintenance",
+    "arm": "gpt",
+    "name": "r1-maintenance-06-gpt",
+    "provider": "gpt",
+    "reserve_usd": 0.007226,
+    "status": "complete",
+    "http_status": 200,
+    "latency_ms": 671.7784579377621,
+    "cost_usd": 0.001058,
+    "label": "row_semantic_issue",
+    "confidence": null,
+    "usage": {
+      "prompt_tokens": 497,
+      "completion_tokens": 8,
+      "total_tokens": 505,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "audio_tokens": 0
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "audio_tokens": 0,
+        "accepted_prediction_tokens": 0,
+        "rejected_prediction_tokens": 0
+      }
+    },
+    "served_model": "gpt-4.1-2025-04-14"
+  },
+  {
+    "id": "r1-maintenance-06",
+    "gold": "row_semantic_issue",
+    "domain": "maintenance",
+    "arm": "cascade",
+    "name": "r1-maintenance-06-fallback",
+    "provider": "gpt",
+    "reserve_usd": 0.007226,
+    "status": "complete",
+    "http_status": 200,
+    "latency_ms": 1019.3259590305388,
+    "cost_usd": 0.0010923139999999998,
+    "label": "row_semantic_issue",
+    "confidence": null,
+    "usage": {
+      "prompt_tokens": 497,
+      "completion_tokens": 8,
+      "total_tokens": 505,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "audio_tokens": 0
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "audio_tokens": 0,
+        "accepted_prediction_tokens": 0,
+        "rejected_prediction_tokens": 0
+      }
+    },
+    "served_model": "gpt-4.1-2025-04-14",
+    "fallback": true
+  },
+  {
+    "id": "r1-maintenance-06",
+    "gold": "row_semantic_issue",
+    "domain": "maintenance",
+    "arm": "structural",
+    "label": "conformant",
+    "cost_usd": 0,
+    "latency_ms": 0
+  },
+  {
+    "id": "r1-maintenance-07",
+    "gold": "mixed",
+    "domain": "maintenance",
+    "arm": "jev",
+    "name": "r1-maintenance-07-jev",
+    "provider": "jev",
+    "reserve_usd": 0.002688,
+    "status": "complete",
+    "http_status": 200,
+    "latency_ms": 1691.351667046547,
+    "cost_usd": 3.3264000000000005e-05,
+    "label": "mixed",
+    "confidence": 0.99,
+    "usage": {
+      "input_tokens": 792,
+      "output_tokens": 62
+    },
+    "served_model": "jev-1.13.0"
+  },
+  {
+    "id": "r1-maintenance-07",
+    "gold": "mixed",
+    "domain": "maintenance",
+    "arm": "gpt",
+    "name": "r1-maintenance-07-gpt",
+    "provider": "gpt",
+    "reserve_usd": 0.0070999999999999995,
+    "status": "complete",
+    "http_status": 200,
+    "latency_ms": 894.5651249960065,
+    "cost_usd": 0.001008,
+    "label": "mixed",
+    "confidence": null,
+    "usage": {
+      "prompt_tokens": 484,
+      "completion_tokens": 5,
+      "total_tokens": 489,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "audio_tokens": 0
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "audio_tokens": 0,
+        "accepted_prediction_tokens": 0,
+        "rejected_prediction_tokens": 0
+      }
+    },
+    "served_model": "gpt-4.1-2025-04-14"
+  },
+  {
+    "id": "r1-maintenance-07",
+    "gold": "mixed",
+    "domain": "maintenance",
+    "arm": "cascade",
+    "name": "r1-maintenance-07-jev",
+    "provider": "jev",
+    "reserve_usd": 0.002688,
+    "status": "complete",
+    "http_status": 200,
+    "latency_ms": 1691.351667046547,
+    "cost_usd": 3.3264000000000005e-05,
+    "label": "mixed",
+    "confidence": 0.99,
+    "usage": {
+      "input_tokens": 792,
+      "output_tokens": 62
+    },
+    "served_model": "jev-1.13.0",
+    "fallback": false
+  },
+  {
+    "id": "r1-maintenance-07",
+    "gold": "mixed",
+    "domain": "maintenance",
+    "arm": "structural",
+    "label": "format_drift",
+    "cost_usd": 0,
+    "latency_ms": 0
+  },
+  {
+    "id": "r1-maintenance-08",
+    "gold": "mixed",
+    "domain": "maintenance",
+    "arm": "jev",
+    "name": "r1-maintenance-08-jev",
+    "provider": "jev",
+    "reserve_usd": 0.002688,
+    "status": "complete",
+    "http_status": 200,
+    "latency_ms": 258.18466604687274,
+    "cost_usd": 3.6246000000000005e-05,
+    "label": "mixed",
+    "confidence": 0.99,
+    "usage": {
+      "input_tokens": 863,
+      "output_tokens": 62
+    },
+    "served_model": "jev-1.13.0"
+  },
+  {
+    "id": "r1-maintenance-08",
+    "gold": "mixed",
+    "domain": "maintenance",
+    "arm": "gpt",
+    "name": "r1-maintenance-08-gpt",
+    "provider": "gpt",
+    "reserve_usd": 0.007438,
+    "status": "complete",
+    "http_status": 200,
+    "latency_ms": 864.4159999676049,
+    "cost_usd": 0.001094,
+    "label": "mixed",
+    "confidence": null,
+    "usage": {
+      "prompt_tokens": 527,
+      "completion_tokens": 5,
+      "total_tokens": 532,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "audio_tokens": 0
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "audio_tokens": 0,
+        "accepted_prediction_tokens": 0,
+        "rejected_prediction_tokens": 0
+      }
+    },
+    "served_model": "gpt-4.1-2025-04-14"
+  },
+  {
+    "id": "r1-maintenance-08",
+    "gold": "mixed",
+    "domain": "maintenance",
+    "arm": "cascade",
+    "name": "r1-maintenance-08-jev",
+    "provider": "jev",
+    "reserve_usd": 0.002688,
+    "status": "complete",
+    "http_status": 200,
+    "latency_ms": 258.18466604687274,
+    "cost_usd": 3.6246000000000005e-05,
+    "label": "mixed",
+    "confidence": 0.99,
+    "usage": {
+      "input_tokens": 863,
+      "output_tokens": 62
+    },
+    "served_model": "jev-1.13.0",
+    "fallback": false
+  },
+  {
+    "id": "r1-maintenance-08",
+    "gold": "mixed",
+    "domain": "maintenance",
+    "arm": "structural",
+    "label": "format_drift",
+    "cost_usd": 0,
+    "latency_ms": 0
+  },
+  {
+    "id": "r1-maintenance-09",
+    "gold": "uncertain",
+    "domain": "maintenance",
+    "arm": "jev",
+    "name": "r1-maintenance-09-jev",
+    "provider": "jev",
+    "reserve_usd": 0.002688,
+    "status": "complete",
+    "http_status": 200,
+    "latency_ms": 403.0376250157133,
+    "cost_usd": 3.3222e-05,
+    "label": "uncertain",
+    "confidence": 0.29,
+    "usage": {
+      "input_tokens": 791,
+      "output_tokens": 64
+    },
+    "served_model": "jev-1.13.0"
+  },
+  {
+    "id": "r1-maintenance-09",
+    "gold": "uncertain",
+    "domain": "maintenance",
+    "arm": "gpt",
+    "name": "r1-maintenance-09-gpt",
+    "provider": "gpt",
+    "reserve_usd": 0.0070539999999999995,
+    "status": "complete",
+    "http_status": 200,
+    "latency_ms": 722.3777920007706,
+    "cost_usd": 0.000998,
+    "label": "uncertain",
+    "confidence": null,
+    "usage": {
+      "prompt_tokens": 475,
+      "completion_tokens": 6,
+      "total_tokens": 481,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "audio_tokens": 0
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "audio_tokens": 0,
+        "accepted_prediction_tokens": 0,
+        "rejected_prediction_tokens": 0
+      }
+    },
+    "served_model": "gpt-4.1-2025-04-14"
+  },
+  {
+    "id": "r1-maintenance-09",
+    "gold": "uncertain",
+    "domain": "maintenance",
+    "arm": "cascade",
+    "name": "r1-maintenance-09-jev",
+    "provider": "jev",
+    "reserve_usd": 0.002688,
+    "status": "complete",
+    "http_status": 200,
+    "latency_ms": 403.0376250157133,
+    "cost_usd": 3.3222e-05,
+    "label": "uncertain",
+    "confidence": 0.29,
+    "usage": {
+      "input_tokens": 791,
+      "output_tokens": 64
+    },
+    "served_model": "jev-1.13.0",
+    "fallback": false
+  },
+  {
+    "id": "r1-maintenance-09",
+    "gold": "uncertain",
+    "domain": "maintenance",
+    "arm": "structural",
+    "label": "conformant",
+    "cost_usd": 0,
+    "latency_ms": 0
+  },
+  {
+    "id": "r1-maintenance-10",
+    "gold": "uncertain",
+    "domain": "maintenance",
+    "arm": "jev",
+    "name": "r1-maintenance-10-jev",
+    "provider": "jev",
+    "reserve_usd": 0.002688,
+    "status": "complete",
+    "http_status": 200,
+    "latency_ms": 212.21912500914186,
+    "cost_usd": 3.4356e-05,
+    "label": "uncertain",
+    "confidence": 0.47,
+    "usage": {
+      "input_tokens": 818,
+      "output_tokens": 64
+    },
+    "served_model": "jev-1.13.0"
+  },
+  {
+    "id": "r1-maintenance-10",
+    "gold": "uncertain",
+    "domain": "maintenance",
+    "arm": "gpt",
+    "name": "r1-maintenance-10-gpt",
+    "provider": "gpt",
+    "reserve_usd": 0.007266,
+    "status": "complete",
+    "http_status": 200,
+    "latency_ms": 805.7003339054063,
+    "cost_usd": 0.00106,
+    "label": "row_semantic_issue",
+    "confidence": null,
+    "usage": {
+      "prompt_tokens": 498,
+      "completion_tokens": 8,
+      "total_tokens": 506,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "audio_tokens": 0
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "audio_tokens": 0,
+        "accepted_prediction_tokens": 0,
+        "rejected_prediction_tokens": 0
+      }
+    },
+    "served_model": "gpt-4.1-2025-04-14"
+  },
+  {
+    "id": "r1-maintenance-10",
+    "gold": "uncertain",
+    "domain": "maintenance",
+    "arm": "cascade",
+    "name": "r1-maintenance-10-jev",
+    "provider": "jev",
+    "reserve_usd": 0.002688,
+    "status": "complete",
+    "http_status": 200,
+    "latency_ms": 212.21912500914186,
+    "cost_usd": 3.4356e-05,
+    "label": "uncertain",
+    "confidence": 0.47,
+    "usage": {
+      "input_tokens": 818,
+      "output_tokens": 64
+    },
+    "served_model": "jev-1.13.0",
+    "fallback": false
+  },
+  {
+    "id": "r1-maintenance-10",
+    "gold": "uncertain",
+    "domain": "maintenance",
+    "arm": "structural",
+    "label": "conformant",
+    "cost_usd": 0,
+    "latency_ms": 0
+  },
+  {
+    "id": "r2-family-01",
+    "gold": "conformant",
+    "domain": "family",
+    "arm": "jev",
+    "name": "r2-family-01-jev",
+    "provider": "jev",
+    "reserve_usd": 0.002688,
+    "status": "complete",
+    "http_status": 200,
+    "latency_ms": 226.09474998898804,
+    "cost_usd": 3.6036e-05,
+    "label": "conformant",
+    "confidence": 1.0,
+    "usage": {
+      "input_tokens": 858,
+      "output_tokens": 64
+    },
+    "served_model": "jev-1.13.0"
+  },
+  {
+    "id": "r2-family-01",
+    "gold": "conformant",
+    "domain": "family",
+    "arm": "gpt",
+    "name": "r2-family-01-gpt",
+    "provider": "gpt",
+    "reserve_usd": 0.007084,
+    "status": "complete",
+    "http_status": 200,
+    "latency_ms": 644.1488340497017,
+    "cost_usd": 0.001096,
+    "label": "conformant",
+    "confidence": null,
+    "usage": {
+      "prompt_tokens": 520,
+      "completion_tokens": 7,
+      "total_tokens": 527,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "audio_tokens": 0
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "audio_tokens": 0,
+        "accepted_prediction_tokens": 0,
+        "rejected_prediction_tokens": 0
+      }
+    },
+    "served_model": "gpt-4.1-2025-04-14"
+  },
+  {
+    "id": "r2-family-01",
+    "gold": "conformant",
+    "domain": "family",
+    "arm": "cascade",
+    "name": "r2-family-01-jev",
+    "provider": "jev",
+    "reserve_usd": 0.002688,
+    "status": "complete",
+    "http_status": 200,
+    "latency_ms": 226.09474998898804,
+    "cost_usd": 3.6036e-05,
+    "label": "conformant",
+    "confidence": 1.0,
+    "usage": {
+      "input_tokens": 858,
+      "output_tokens": 64
+    },
+    "served_model": "jev-1.13.0",
+    "fallback": false
+  },
+  {
+    "id": "r2-family-01",
+    "gold": "conformant",
+    "domain": "family",
+    "arm": "structural",
+    "label": "conformant",
+    "cost_usd": 0,
+    "latency_ms": 0
+  },
+  {
+    "id": "r2-family-02",
+    "gold": "conformant",
+    "domain": "family",
+    "arm": "jev",
+    "name": "r2-family-02-jev",
+    "provider": "jev",
+    "reserve_usd": 0.002688,
+    "status": "complete",
+    "http_status": 200,
+    "latency_ms": 249.15275000967085,
+    "cost_usd": 3.7968000000000006e-05,
+    "label": "conformant",
+    "confidence": 0.92,
+    "usage": {
+      "input_tokens": 904,
+      "output_tokens": 64
+    },
+    "served_model": "jev-1.13.0"
+  },
+  {
+    "id": "r2-family-02",
+    "gold": "conformant",
+    "domain": "family",
+    "arm": "gpt",
+    "name": "r2-family-02-gpt",
+    "provider": "gpt",
+    "reserve_usd": 0.007292,
+    "status": "complete",
+    "http_status": 200,
+    "latency_ms": 847.841708920896,
+    "cost_usd": 0.00116,
+    "label": "conformant",
+    "confidence": null,
+    "usage": {
+      "prompt_tokens": 552,
+      "completion_tokens": 7,
+      "total_tokens": 559,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "audio_tokens": 0
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "audio_tokens": 0,
+        "accepted_prediction_tokens": 0,
+        "rejected_prediction_tokens": 0
+      }
+    },
+    "served_model": "gpt-4.1-2025-04-14"
+  },
+  {
+    "id": "r2-family-02",
+    "gold": "conformant",
+    "domain": "family",
+    "arm": "cascade",
+    "name": "r2-family-02-jev",
+    "provider": "jev",
+    "reserve_usd": 0.002688,
+    "status": "complete",
+    "http_status": 200,
+    "latency_ms": 249.15275000967085,
+    "cost_usd": 3.7968000000000006e-05,
+    "label": "conformant",
+    "confidence": 0.92,
+    "usage": {
+      "input_tokens": 904,
+      "output_tokens": 64
+    },
+    "served_model": "jev-1.13.0",
+    "fallback": false
+  },
+  {
+    "id": "r2-family-02",
+    "gold": "conformant",
+    "domain": "family",
+    "arm": "structural",
+    "label": "conformant",
+    "cost_usd": 0,
+    "latency_ms": 0
+  },
+  {
+    "id": "r2-family-03",
+    "gold": "format_drift",
+    "domain": "family",
+    "arm": "jev",
+    "name": "r2-family-03-jev",
+    "provider": "jev",
+    "reserve_usd": 0.002688,
+    "status": "complete",
+    "http_status": 200,
+    "latency_ms": 237.7427500905469,
+    "cost_usd": 3.8262e-05,
+    "label": "conformant",
+    "confidence": 0.85,
+    "usage": {
+      "input_tokens": 911,
+      "output_tokens": 64
+    },
+    "served_model": "jev-1.13.0"
+  },
+  {
+    "id": "r2-family-03",
+    "gold": "format_drift",
+    "domain": "family",
+    "arm": "gpt",
+    "name": "r2-family-03-gpt",
+    "provider": "gpt",
+    "reserve_usd": 0.00735,
+    "status": "complete",
+    "http_status": 200,
+    "latency_ms": 700.3263330552727,
+    "cost_usd": 0.001172,
+    "label": "conformant",
+    "confidence": null,
+    "usage": {
+      "prompt_tokens": 558,
+      "completion_tokens": 7,
+      "total_tokens": 565,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "audio_tokens": 0
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "audio_tokens": 0,
+        "accepted_prediction_tokens": 0,
+        "rejected_prediction_tokens": 0
+      }
+    },
+    "served_model": "gpt-4.1-2025-04-14"
+  },
+  {
+    "id": "r2-family-03",
+    "gold": "format_drift",
+    "domain": "family",
+    "arm": "cascade",
+    "name": "r2-family-03-jev",
+    "provider": "jev",
+    "reserve_usd": 0.002688,
+    "status": "complete",
+    "http_status": 200,
+    "latency_ms": 237.7427500905469,
+    "cost_usd": 3.8262e-05,
+    "label": "conformant",
+    "confidence": 0.85,
+    "usage": {
+      "input_tokens": 911,
+      "output_tokens": 64
+    },
+    "served_model": "jev-1.13.0",
+    "fallback": false
+  },
+  {
+    "id": "r2-family-03",
+    "gold": "format_drift",
+    "domain": "family",
+    "arm": "structural",
+    "label": "format_drift",
+    "cost_usd": 0,
+    "latency_ms": 0
+  },
+  {
+    "id": "r2-family-04",
+    "gold": "format_drift",
+    "domain": "family",
+    "arm": "jev",
+    "name": "r2-family-04-jev",
+    "provider": "jev",
+    "reserve_usd": 0.002688,
+    "status": "complete",
+    "http_status": 200,
+    "latency_ms": 224.07079103868455,
+    "cost_usd": 3.5868e-05,
+    "label": "conformant",
+    "confidence": 0.72,
+    "usage": {
+      "input_tokens": 854,
+      "output_tokens": 64
+    },
+    "served_model": "jev-1.13.0"
+  },
+  {
+    "id": "r2-family-04",
+    "gold": "format_drift",
+    "domain": "family",
+    "arm": "gpt",
+    "name": "r2-family-04-gpt",
+    "provider": "gpt",
+    "reserve_usd": 0.007062,
+    "status": "complete",
+    "http_status": 200,
+    "latency_ms": 703.709291992709,
+    "cost_usd": 0.001094,
+    "label": "conformant",
+    "confidence": null,
+    "usage": {
+      "prompt_tokens": 519,
+      "completion_tokens": 7,
+      "total_tokens": 526,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "audio_tokens": 0
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "audio_tokens": 0,
+        "accepted_prediction_tokens": 0,
+        "rejected_prediction_tokens": 0
+      }
+    },
+    "served_model": "gpt-4.1-2025-04-14"
+  },
+  {
+    "id": "r2-family-04",
+    "gold": "format_drift",
+    "domain": "family",
+    "arm": "cascade",
+    "name": "r2-family-04-fallback",
+    "provider": "gpt",
+    "reserve_usd": 0.007062,
+    "status": "complete",
+    "http_status": 200,
+    "latency_ms": 1143.4106660308316,
+    "cost_usd": 0.001129868,
+    "label": "format_drift",
+    "confidence": null,
+    "usage": {
+      "prompt_tokens": 519,
+      "completion_tokens": 7,
+      "total_tokens": 526,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "audio_tokens": 0
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "audio_tokens": 0,
+        "accepted_prediction_tokens": 0,
+        "rejected_prediction_tokens": 0
+      }
+    },
+    "served_model": "gpt-4.1-2025-04-14",
+    "fallback": true
+  },
+  {
+    "id": "r2-family-04",
+    "gold": "format_drift",
+    "domain": "family",
+    "arm": "structural",
+    "label": "format_drift",
+    "cost_usd": 0,
+    "latency_ms": 0
+  },
+  {
+    "id": "r2-family-05",
+    "gold": "row_semantic_issue",
+    "domain": "family",
+    "arm": "jev",
+    "name": "r2-family-05-jev",
+    "provider": "jev",
+    "reserve_usd": 0.002688,
+    "status": "complete",
+    "http_status": 200,
+    "latency_ms": 231.1747499043122,
+    "cost_usd": 3.6036e-05,
+    "label": "row_semantic_issue",
+    "confidence": 0.97,
+    "usage": {
+      "input_tokens": 858,
+      "output_tokens": 66
+    },
+    "served_model": "jev-1.13.0"
+  },
+  {
+    "id": "r2-family-05",
+    "gold": "row_semantic_issue",
+    "domain": "family",
+    "arm": "gpt",
+    "name": "r2-family-05-gpt",
+    "provider": "gpt",
+    "reserve_usd": 0.007084,
+    "status": "complete",
+    "http_status": 200,
+    "latency_ms": 925.5458329571411,
+    "cost_usd": 0.001104,
+    "label": "row_semantic_issue",
+    "confidence": null,
+    "usage": {
+      "prompt_tokens": 520,
+      "completion_tokens": 8,
+      "total_tokens": 528,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "audio_tokens": 0
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "audio_tokens": 0,
+        "accepted_prediction_tokens": 0,
+        "rejected_prediction_tokens": 0
+      }
+    },
+    "served_model": "gpt-4.1-2025-04-14"
+  },
+  {
+    "id": "r2-family-05",
+    "gold": "row_semantic_issue",
+    "domain": "family",
+    "arm": "cascade",
+    "name": "r2-family-05-jev",
+    "provider": "jev",
+    "reserve_usd": 0.002688,
+    "status": "complete",
+    "http_status": 200,
+    "latency_ms": 231.1747499043122,
+    "cost_usd": 3.6036e-05,
+    "label": "row_semantic_issue",
+    "confidence": 0.97,
+    "usage": {
+      "input_tokens": 858,
+      "output_tokens": 66
+    },
+    "served_model": "jev-1.13.0",
+    "fallback": false
+  },
+  {
+    "id": "r2-family-05",
+    "gold": "row_semantic_issue",
+    "domain": "family",
+    "arm": "structural",
+    "label": "conformant",
+    "cost_usd": 0,
+    "latency_ms": 0
+  },
+  {
+    "id": "r2-family-06",
+    "gold": "row_semantic_issue",
+    "domain": "family",
+    "arm": "jev",
+    "name": "r2-family-06-jev",
+    "provider": "jev",
+    "reserve_usd": 0.002688,
+    "status": "complete",
+    "http_status": 200,
+    "latency_ms": 3048.27495792415,
+    "cost_usd": 3.6036e-05,
+    "label": "row_semantic_issue",
+    "confidence": 0.97,
+    "usage": {
+      "input_tokens": 858,
+      "output_tokens": 66
+    },
+    "served_model": "jev-1.13.0"
+  },
+  {
+    "id": "r2-family-06",
+    "gold": "row_semantic_issue",
+    "domain": "family",
+    "arm": "gpt",
+    "name": "r2-family-06-gpt",
+    "provider": "gpt",
+    "reserve_usd": 0.007084,
+    "status": "complete",
+    "http_status": 200,
+    "latency_ms": 648.9774170331657,
+    "cost_usd": 0.001104,
+    "label": "row_semantic_issue",
+    "confidence": null,
+    "usage": {
+      "prompt_tokens": 520,
+      "completion_tokens": 8,
+      "total_tokens": 528,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "audio_tokens": 0
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "audio_tokens": 0,
+        "accepted_prediction_tokens": 0,
+        "rejected_prediction_tokens": 0
+      }
+    },
+    "served_model": "gpt-4.1-2025-04-14"
+  },
+  {
+    "id": "r2-family-06",
+    "gold": "row_semantic_issue",
+    "domain": "family",
+    "arm": "cascade",
+    "name": "r2-family-06-jev",
+    "provider": "jev",
+    "reserve_usd": 0.002688,
+    "status": "complete",
+    "http_status": 200,
+    "latency_ms": 3048.27495792415,
+    "cost_usd": 3.6036e-05,
+    "label": "row_semantic_issue",
+    "confidence": 0.97,
+    "usage": {
+      "input_tokens": 858,
+      "output_tokens": 66
+    },
+    "served_model": "jev-1.13.0",
+    "fallback": false
+  },
+  {
+    "id": "r2-family-06",
+    "gold": "row_semantic_issue",
+    "domain": "family",
+    "arm": "structural",
+    "label": "conformant",
+    "cost_usd": 0,
+    "latency_ms": 0
+  },
+  {
+    "id": "r2-family-07",
+    "gold": "mixed",
+    "domain": "family",
+    "arm": "jev",
+    "name": "r2-family-07-jev",
+    "provider": "jev",
+    "reserve_usd": 0.002688,
+    "status": "complete",
+    "http_status": 200,
+    "latency_ms": 340.475625009276,
+    "cost_usd": 3.8262e-05,
+    "label": "row_semantic_issue",
+    "confidence": 0.78,
+    "usage": {
+      "input_tokens": 911,
+      "output_tokens": 66
+    },
+    "served_model": "jev-1.13.0"
+  },
+  {
+    "id": "r2-family-07",
+    "gold": "mixed",
+    "domain": "family",
+    "arm": "gpt",
+    "name": "r2-family-07-gpt",
+    "provider": "gpt",
+    "reserve_usd": 0.00735,
+    "status": "complete",
+    "http_status": 200,
+    "latency_ms": 658.7353750364855,
+    "cost_usd": 0.00118,
+    "label": "row_semantic_issue",
+    "confidence": null,
+    "usage": {
+      "prompt_tokens": 558,
+      "completion_tokens": 8,
+      "total_tokens": 566,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "audio_tokens": 0
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "audio_tokens": 0,
+        "accepted_prediction_tokens": 0,
+        "rejected_prediction_tokens": 0
+      }
+    },
+    "served_model": "gpt-4.1-2025-04-14"
+  },
+  {
+    "id": "r2-family-07",
+    "gold": "mixed",
+    "domain": "family",
+    "arm": "cascade",
+    "name": "r2-family-07-fallback",
+    "provider": "gpt",
+    "reserve_usd": 0.00735,
+    "status": "complete",
+    "http_status": 200,
+    "latency_ms": 1132.9917080001906,
+    "cost_usd": 0.0012182620000000001,
+    "label": "row_semantic_issue",
+    "confidence": null,
+    "usage": {
+      "prompt_tokens": 558,
+      "completion_tokens": 8,
+      "total_tokens": 566,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "audio_tokens": 0
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "audio_tokens": 0,
+        "accepted_prediction_tokens": 0,
+        "rejected_prediction_tokens": 0
+      }
+    },
+    "served_model": "gpt-4.1-2025-04-14",
+    "fallback": true
+  },
+  {
+    "id": "r2-family-07",
+    "gold": "mixed",
+    "domain": "family",
+    "arm": "structural",
+    "label": "format_drift",
+    "cost_usd": 0,
+    "latency_ms": 0
+  },
+  {
+    "id": "r2-family-08",
+    "gold": "mixed",
+    "domain": "family",
+    "arm": "jev",
+    "name": "r2-family-08-jev",
+    "provider": "jev",
+    "reserve_usd": 0.002688,
+    "status": "complete",
+    "http_status": 200,
+    "latency_ms": 263.2414159597829,
+    "cost_usd": 3.5868e-05,
+    "label": "row_semantic_issue",
+    "confidence": 0.68,
+    "usage": {
+      "input_tokens": 854,
+      "output_tokens": 66
+    },
+    "served_model": "jev-1.13.0"
+  },
+  {
+    "id": "r2-family-08",
+    "gold": "mixed",
+    "domain": "family",
+    "arm": "gpt",
+    "name": "r2-family-08-gpt",
+    "provider": "gpt",
+    "reserve_usd": 0.007062,
+    "status": "complete",
+    "http_status": 200,
+    "latency_ms": 753.1540000345558,
+    "cost_usd": 0.001102,
+    "label": "row_semantic_issue",
+    "confidence": null,
+    "usage": {
+      "prompt_tokens": 519,
+      "completion_tokens": 8,
+      "total_tokens": 527,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "audio_tokens": 0
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "audio_tokens": 0,
+        "accepted_prediction_tokens": 0,
+        "rejected_prediction_tokens": 0
+      }
+    },
+    "served_model": "gpt-4.1-2025-04-14"
+  },
+  {
+    "id": "r2-family-08",
+    "gold": "mixed",
+    "domain": "family",
+    "arm": "cascade",
+    "name": "r2-family-08-fallback",
+    "provider": "gpt",
+    "reserve_usd": 0.007062,
+    "status": "complete",
+    "http_status": 200,
+    "latency_ms": 1605.9203319018707,
+    "cost_usd": 0.001137868,
+    "label": "row_semantic_issue",
+    "confidence": null,
+    "usage": {
+      "prompt_tokens": 519,
+      "completion_tokens": 8,
+      "total_tokens": 527,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "audio_tokens": 0
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "audio_tokens": 0,
+        "accepted_prediction_tokens": 0,
+        "rejected_prediction_tokens": 0
+      }
+    },
+    "served_model": "gpt-4.1-2025-04-14",
+    "fallback": true
+  },
+  {
+    "id": "r2-family-08",
+    "gold": "mixed",
+    "domain": "family",
+    "arm": "structural",
+    "label": "format_drift",
+    "cost_usd": 0,
+    "latency_ms": 0
+  },
+  {
+    "id": "r2-family-09",
+    "gold": "uncertain",
+    "domain": "family",
+    "arm": "jev",
+    "name": "r2-family-09-jev",
+    "provider": "jev",
+    "reserve_usd": 0.002688,
+    "status": "complete",
+    "http_status": 200,
+    "latency_ms": 303.980040946044,
+    "cost_usd": 3.486e-05,
+    "label": "conformant",
+    "confidence": 0.48,
+    "usage": {
+      "input_tokens": 830,
+      "output_tokens": 64
+    },
+    "served_model": "jev-1.13.0"
+  },
+  {
+    "id": "r2-family-09",
+    "gold": "uncertain",
+    "domain": "family",
+    "arm": "gpt",
+    "name": "r2-family-09-gpt",
+    "provider": "gpt",
+    "reserve_usd": 0.006988,
+    "status": "complete",
+    "http_status": 200,
+    "latency_ms": 738.2480419473723,
+    "cost_usd": 0.001048,
+    "label": "uncertain",
+    "confidence": null,
+    "usage": {
+      "prompt_tokens": 500,
+      "completion_tokens": 6,
+      "total_tokens": 506,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "audio_tokens": 0
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "audio_tokens": 0,
+        "accepted_prediction_tokens": 0,
+        "rejected_prediction_tokens": 0
+      }
+    },
+    "served_model": "gpt-4.1-2025-04-14"
+  },
+  {
+    "id": "r2-family-09",
+    "gold": "uncertain",
+    "domain": "family",
+    "arm": "cascade",
+    "name": "r2-family-09-fallback",
+    "provider": "gpt",
+    "reserve_usd": 0.006988,
+    "status": "complete",
+    "http_status": 200,
+    "latency_ms": 1491.9424999970943,
+    "cost_usd": 0.0010828600000000002,
+    "label": "uncertain",
+    "confidence": null,
+    "usage": {
+      "prompt_tokens": 500,
+      "completion_tokens": 6,
+      "total_tokens": 506,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "audio_tokens": 0
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "audio_tokens": 0,
+        "accepted_prediction_tokens": 0,
+        "rejected_prediction_tokens": 0
+      }
+    },
+    "served_model": "gpt-4.1-2025-04-14",
+    "fallback": true
+  },
+  {
+    "id": "r2-family-09",
+    "gold": "uncertain",
+    "domain": "family",
+    "arm": "structural",
+    "label": "conformant",
+    "cost_usd": 0,
+    "latency_ms": 0
+  },
+  {
+    "id": "r2-family-10",
+    "gold": "uncertain",
+    "domain": "family",
+    "arm": "jev",
+    "name": "r2-family-10-jev",
+    "provider": "jev",
+    "reserve_usd": 0.002688,
+    "status": "complete",
+    "http_status": 200,
+    "latency_ms": 352.890667039901,
+    "cost_usd": 3.6372e-05,
+    "label": "uncertain",
+    "confidence": 0.43,
+    "usage": {
+      "input_tokens": 866,
+      "output_tokens": 64
+    },
+    "served_model": "jev-1.13.0"
+  },
+  {
+    "id": "r2-family-10",
+    "gold": "uncertain",
+    "domain": "family",
+    "arm": "gpt",
+    "name": "r2-family-10-gpt",
+    "provider": "gpt",
+    "reserve_usd": 0.00721,
+    "status": "complete",
+    "http_status": 200,
+    "latency_ms": 593.7598750460893,
+    "cost_usd": 0.001102,
+    "label": "uncertain",
+    "confidence": null,
+    "usage": {
+      "prompt_tokens": 527,
+      "completion_tokens": 6,
+      "total_tokens": 533,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "audio_tokens": 0
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "audio_tokens": 0,
+        "accepted_prediction_tokens": 0,
+        "rejected_prediction_tokens": 0
+      }
+    },
+    "served_model": "gpt-4.1-2025-04-14"
+  },
+  {
+    "id": "r2-family-10",
+    "gold": "uncertain",
+    "domain": "family",
+    "arm": "cascade",
+    "name": "r2-family-10-jev",
+    "provider": "jev",
+    "reserve_usd": 0.002688,
+    "status": "complete",
+    "http_status": 200,
+    "latency_ms": 352.890667039901,
+    "cost_usd": 3.6372e-05,
+    "label": "uncertain",
+    "confidence": 0.43,
+    "usage": {
+      "input_tokens": 866,
+      "output_tokens": 64
+    },
+    "served_model": "jev-1.13.0",
+    "fallback": false
+  },
+  {
+    "id": "r2-family-10",
+    "gold": "uncertain",
+    "domain": "family",
+    "arm": "structural",
+    "label": "conformant",
+    "cost_usd": 0,
+    "latency_ms": 0
+  },
+  {
+    "id": "r2-maintenance-01",
+    "gold": "conformant",
+    "domain": "maintenance",
+    "arm": "jev",
+    "name": "r2-maintenance-01-jev",
+    "provider": "jev",
+    "reserve_usd": 0.002688,
+    "status": "complete",
+    "http_status": 200,
+    "latency_ms": 226.0359589708969,
+    "cost_usd": 3.4314e-05,
+    "label": "conformant",
+    "confidence": 0.44,
+    "usage": {
+      "input_tokens": 817,
+      "output_tokens": 64
+    },
+    "served_model": "jev-1.13.0"
+  },
+  {
+    "id": "r2-maintenance-01",
+    "gold": "conformant",
+    "domain": "maintenance",
+    "arm": "gpt",
+    "name": "r2-maintenance-01-gpt",
+    "provider": "gpt",
+    "reserve_usd": 0.007226,
+    "status": "complete",
+    "http_status": 200,
+    "latency_ms": 738.8904580147937,
+    "cost_usd": 0.00105,
+    "label": "conformant",
+    "confidence": null,
+    "usage": {
+      "prompt_tokens": 497,
+      "completion_tokens": 7,
+      "total_tokens": 504,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "audio_tokens": 0
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "audio_tokens": 0,
+        "accepted_prediction_tokens": 0,
+        "rejected_prediction_tokens": 0
+      }
+    },
+    "served_model": "gpt-4.1-2025-04-14"
+  },
+  {
+    "id": "r2-maintenance-01",
+    "gold": "conformant",
+    "domain": "maintenance",
+    "arm": "cascade",
+    "name": "r2-maintenance-01-fallback",
+    "provider": "gpt",
+    "reserve_usd": 0.007226,
+    "status": "complete",
+    "http_status": 200,
+    "latency_ms": 858.3358759060502,
+    "cost_usd": 0.0010843139999999999,
+    "label": "conformant",
+    "confidence": null,
+    "usage": {
+      "prompt_tokens": 497,
+      "completion_tokens": 7,
+      "total_tokens": 504,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "audio_tokens": 0
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "audio_tokens": 0,
+        "accepted_prediction_tokens": 0,
+        "rejected_prediction_tokens": 0
+      }
+    },
+    "served_model": "gpt-4.1-2025-04-14",
+    "fallback": true
+  },
+  {
+    "id": "r2-maintenance-01",
+    "gold": "conformant",
+    "domain": "maintenance",
+    "arm": "structural",
+    "label": "conformant",
+    "cost_usd": 0,
+    "latency_ms": 0
+  },
+  {
+    "id": "r2-maintenance-02",
+    "gold": "conformant",
+    "domain": "maintenance",
+    "arm": "jev",
+    "name": "r2-maintenance-02-jev",
+    "provider": "jev",
+    "reserve_usd": 0.002688,
+    "status": "complete",
+    "http_status": 200,
+    "latency_ms": 386.5681249881163,
+    "cost_usd": 3.465000000000001e-05,
+    "label": "conformant",
+    "confidence": 0.99,
+    "usage": {
+      "input_tokens": 825,
+      "output_tokens": 64
+    },
+    "served_model": "jev-1.13.0"
+  },
+  {
+    "id": "r2-maintenance-02",
+    "gold": "conformant",
+    "domain": "maintenance",
+    "arm": "gpt",
+    "name": "r2-maintenance-02-gpt",
+    "provider": "gpt",
+    "reserve_usd": 0.00731,
+    "status": "complete",
+    "http_status": 200,
+    "latency_ms": 603.8019580300897,
+    "cost_usd": 0.001064,
+    "label": "conformant",
+    "confidence": null,
+    "usage": {
+      "prompt_tokens": 504,
+      "completion_tokens": 7,
+      "total_tokens": 511,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "audio_tokens": 0
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "audio_tokens": 0,
+        "accepted_prediction_tokens": 0,
+        "rejected_prediction_tokens": 0
+      }
+    },
+    "served_model": "gpt-4.1-2025-04-14"
+  },
+  {
+    "id": "r2-maintenance-02",
+    "gold": "conformant",
+    "domain": "maintenance",
+    "arm": "cascade",
+    "name": "r2-maintenance-02-jev",
+    "provider": "jev",
+    "reserve_usd": 0.002688,
+    "status": "complete",
+    "http_status": 200,
+    "latency_ms": 386.5681249881163,
+    "cost_usd": 3.465000000000001e-05,
+    "label": "conformant",
+    "confidence": 0.99,
+    "usage": {
+      "input_tokens": 825,
+      "output_tokens": 64
+    },
+    "served_model": "jev-1.13.0",
+    "fallback": false
+  },
+  {
+    "id": "r2-maintenance-02",
+    "gold": "conformant",
+    "domain": "maintenance",
+    "arm": "structural",
+    "label": "conformant",
+    "cost_usd": 0,
+    "latency_ms": 0
+  },
+  {
+    "id": "r2-maintenance-03",
+    "gold": "format_drift",
+    "domain": "maintenance",
+    "arm": "jev",
+    "name": "r2-maintenance-03-jev",
+    "provider": "jev",
+    "reserve_usd": 0.002688,
+    "status": "complete",
+    "http_status": 200,
+    "latency_ms": 389.33074998203665,
+    "cost_usd": 3.3264000000000005e-05,
+    "label": "mixed",
+    "confidence": 0.37,
+    "usage": {
+      "input_tokens": 792,
+      "output_tokens": 62
+    },
+    "served_model": "jev-1.13.0"
+  },
+  {
+    "id": "r2-maintenance-03",
+    "gold": "format_drift",
+    "domain": "maintenance",
+    "arm": "gpt",
+    "name": "r2-maintenance-03-gpt",
+    "provider": "gpt",
+    "reserve_usd": 0.0070999999999999995,
+    "status": "complete",
+    "http_status": 200,
+    "latency_ms": 999.182292027399,
+    "cost_usd": 0.001024,
+    "label": "format_drift",
+    "confidence": null,
+    "usage": {
+      "prompt_tokens": 484,
+      "completion_tokens": 7,
+      "total_tokens": 491,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "audio_tokens": 0
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "audio_tokens": 0,
+        "accepted_prediction_tokens": 0,
+        "rejected_prediction_tokens": 0
+      }
+    },
+    "served_model": "gpt-4.1-2025-04-14"
+  },
+  {
+    "id": "r2-maintenance-03",
+    "gold": "format_drift",
+    "domain": "maintenance",
+    "arm": "cascade",
+    "name": "r2-maintenance-03-fallback",
+    "provider": "gpt",
+    "reserve_usd": 0.0070999999999999995,
+    "status": "complete",
+    "http_status": 200,
+    "latency_ms": 1042.1131659531966,
+    "cost_usd": 0.001057264,
+    "label": "format_drift",
+    "confidence": null,
+    "usage": {
+      "prompt_tokens": 484,
+      "completion_tokens": 7,
+      "total_tokens": 491,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "audio_tokens": 0
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "audio_tokens": 0,
+        "accepted_prediction_tokens": 0,
+        "rejected_prediction_tokens": 0
+      }
+    },
+    "served_model": "gpt-4.1-2025-04-14",
+    "fallback": true
+  },
+  {
+    "id": "r2-maintenance-03",
+    "gold": "format_drift",
+    "domain": "maintenance",
+    "arm": "structural",
+    "label": "format_drift",
+    "cost_usd": 0,
+    "latency_ms": 0
+  },
+  {
+    "id": "r2-maintenance-04",
+    "gold": "format_drift",
+    "domain": "maintenance",
+    "arm": "jev",
+    "name": "r2-maintenance-04-jev",
+    "provider": "jev",
+    "reserve_usd": 0.002688,
+    "status": "complete",
+    "http_status": 200,
+    "latency_ms": 249.91562496870756,
+    "cost_usd": 3.6288e-05,
+    "label": "format_drift",
+    "confidence": 0.72,
+    "usage": {
+      "input_tokens": 864,
+      "output_tokens": 64
+    },
+    "served_model": "jev-1.13.0"
+  },
+  {
+    "id": "r2-maintenance-04",
+    "gold": "format_drift",
+    "domain": "maintenance",
+    "arm": "gpt",
+    "name": "r2-maintenance-04-gpt",
+    "provider": "gpt",
+    "reserve_usd": 0.0074399999999999996,
+    "status": "complete",
+    "http_status": 200,
+    "latency_ms": 619.9662500293925,
+    "cost_usd": 0.001112,
+    "label": "format_drift",
+    "confidence": null,
+    "usage": {
+      "prompt_tokens": 528,
+      "completion_tokens": 7,
+      "total_tokens": 535,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "audio_tokens": 0
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "audio_tokens": 0,
+        "accepted_prediction_tokens": 0,
+        "rejected_prediction_tokens": 0
+      }
+    },
+    "served_model": "gpt-4.1-2025-04-14"
+  },
+  {
+    "id": "r2-maintenance-04",
+    "gold": "format_drift",
+    "domain": "maintenance",
+    "arm": "cascade",
+    "name": "r2-maintenance-04-fallback",
+    "provider": "gpt",
+    "reserve_usd": 0.0074399999999999996,
+    "status": "complete",
+    "http_status": 200,
+    "latency_ms": 839.7919579874724,
+    "cost_usd": 0.001148288,
+    "label": "format_drift",
+    "confidence": null,
+    "usage": {
+      "prompt_tokens": 528,
+      "completion_tokens": 7,
+      "total_tokens": 535,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "audio_tokens": 0
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "audio_tokens": 0,
+        "accepted_prediction_tokens": 0,
+        "rejected_prediction_tokens": 0
+      }
+    },
+    "served_model": "gpt-4.1-2025-04-14",
+    "fallback": true
+  },
+  {
+    "id": "r2-maintenance-04",
+    "gold": "format_drift",
+    "domain": "maintenance",
+    "arm": "structural",
+    "label": "format_drift",
+    "cost_usd": 0,
+    "latency_ms": 0
+  },
+  {
+    "id": "r2-maintenance-05",
+    "gold": "row_semantic_issue",
+    "domain": "maintenance",
+    "arm": "jev",
+    "name": "r2-maintenance-05-jev",
+    "provider": "jev",
+    "reserve_usd": 0.002688,
+    "status": "complete",
+    "http_status": 200,
+    "latency_ms": 217.68387500196695,
+    "cost_usd": 3.4314e-05,
+    "label": "mixed",
+    "confidence": 0.41,
+    "usage": {
+      "input_tokens": 817,
+      "output_tokens": 62
+    },
+    "served_model": "jev-1.13.0"
+  },
+  {
+    "id": "r2-maintenance-05",
+    "gold": "row_semantic_issue",
+    "domain": "maintenance",
+    "arm": "gpt",
+    "name": "r2-maintenance-05-gpt",
+    "provider": "gpt",
+    "reserve_usd": 0.007226,
+    "status": "complete",
+    "http_status": 200,
+    "latency_ms": 761.6619169712067,
+    "cost_usd": 0.001058,
+    "label": "row_semantic_issue",
+    "confidence": null,
+    "usage": {
+      "prompt_tokens": 497,
+      "completion_tokens": 8,
+      "total_tokens": 505,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "audio_tokens": 0
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "audio_tokens": 0,
+        "accepted_prediction_tokens": 0,
+        "rejected_prediction_tokens": 0
+      }
+    },
+    "served_model": "gpt-4.1-2025-04-14"
+  },
+  {
+    "id": "r2-maintenance-05",
+    "gold": "row_semantic_issue",
+    "domain": "maintenance",
+    "arm": "cascade",
+    "name": "r2-maintenance-05-fallback",
+    "provider": "gpt",
+    "reserve_usd": 0.007226,
+    "status": "complete",
+    "http_status": 200,
+    "latency_ms": 848.2097500236705,
+    "cost_usd": 0.0010923139999999998,
+    "label": "row_semantic_issue",
+    "confidence": null,
+    "usage": {
+      "prompt_tokens": 497,
+      "completion_tokens": 8,
+      "total_tokens": 505,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "audio_tokens": 0
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "audio_tokens": 0,
+        "accepted_prediction_tokens": 0,
+        "rejected_prediction_tokens": 0
+      }
+    },
+    "served_model": "gpt-4.1-2025-04-14",
+    "fallback": true
+  },
+  {
+    "id": "r2-maintenance-05",
+    "gold": "row_semantic_issue",
+    "domain": "maintenance",
+    "arm": "structural",
+    "label": "conformant",
+    "cost_usd": 0,
+    "latency_ms": 0
+  },
+  {
+    "id": "r2-maintenance-06",
+    "gold": "row_semantic_issue",
+    "domain": "maintenance",
+    "arm": "jev",
+    "name": "r2-maintenance-06-jev",
+    "provider": "jev",
+    "reserve_usd": 0.002688,
+    "status": "complete",
+    "http_status": 200,
+    "latency_ms": 269.01266700588167,
+    "cost_usd": 3.4314e-05,
+    "label": "mixed",
+    "confidence": 0.55,
+    "usage": {
+      "input_tokens": 817,
+      "output_tokens": 62
+    },
+    "served_model": "jev-1.13.0"
+  },
+  {
+    "id": "r2-maintenance-06",
+    "gold": "row_semantic_issue",
+    "domain": "maintenance",
+    "arm": "gpt",
+    "name": "r2-maintenance-06-gpt",
+    "provider": "gpt",
+    "reserve_usd": 0.007226,
+    "status": "complete",
+    "http_status": 200,
+    "latency_ms": 635.9685409115627,
+    "cost_usd": 0.001058,
+    "label": "row_semantic_issue",
+    "confidence": null,
+    "usage": {
+      "prompt_tokens": 497,
+      "completion_tokens": 8,
+      "total_tokens": 505,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "audio_tokens": 0
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "audio_tokens": 0,
+        "accepted_prediction_tokens": 0,
+        "rejected_prediction_tokens": 0
+      }
+    },
+    "served_model": "gpt-4.1-2025-04-14"
+  },
+  {
+    "id": "r2-maintenance-06",
+    "gold": "row_semantic_issue",
+    "domain": "maintenance",
+    "arm": "cascade",
+    "name": "r2-maintenance-06-fallback",
+    "provider": "gpt",
+    "reserve_usd": 0.007226,
+    "status": "complete",
+    "http_status": 200,
+    "latency_ms": 935.4947509709746,
+    "cost_usd": 0.0010923139999999998,
+    "label": "row_semantic_issue",
+    "confidence": null,
+    "usage": {
+      "prompt_tokens": 497,
+      "completion_tokens": 8,
+      "total_tokens": 505,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "audio_tokens": 0
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "audio_tokens": 0,
+        "accepted_prediction_tokens": 0,
+        "rejected_prediction_tokens": 0
+      }
+    },
+    "served_model": "gpt-4.1-2025-04-14",
+    "fallback": true
+  },
+  {
+    "id": "r2-maintenance-06",
+    "gold": "row_semantic_issue",
+    "domain": "maintenance",
+    "arm": "structural",
+    "label": "conformant",
+    "cost_usd": 0,
+    "latency_ms": 0
+  },
+  {
+    "id": "r2-maintenance-07",
+    "gold": "mixed",
+    "domain": "maintenance",
+    "arm": "jev",
+    "name": "r2-maintenance-07-jev",
+    "provider": "jev",
+    "reserve_usd": 0.002688,
+    "status": "complete",
+    "http_status": 200,
+    "latency_ms": 207.3477499652654,
+    "cost_usd": 3.3264000000000005e-05,
+    "label": "mixed",
+    "confidence": 0.99,
+    "usage": {
+      "input_tokens": 792,
+      "output_tokens": 62
+    },
+    "served_model": "jev-1.13.0"
+  },
+  {
+    "id": "r2-maintenance-07",
+    "gold": "mixed",
+    "domain": "maintenance",
+    "arm": "gpt",
+    "name": "r2-maintenance-07-gpt",
+    "provider": "gpt",
+    "reserve_usd": 0.0070999999999999995,
+    "status": "complete",
+    "http_status": 200,
+    "latency_ms": 621.9276669435203,
+    "cost_usd": 0.001024,
+    "label": "format_drift",
+    "confidence": null,
+    "usage": {
+      "prompt_tokens": 484,
+      "completion_tokens": 7,
+      "total_tokens": 491,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "audio_tokens": 0
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "audio_tokens": 0,
+        "accepted_prediction_tokens": 0,
+        "rejected_prediction_tokens": 0
+      }
+    },
+    "served_model": "gpt-4.1-2025-04-14"
+  },
+  {
+    "id": "r2-maintenance-07",
+    "gold": "mixed",
+    "domain": "maintenance",
+    "arm": "cascade",
+    "name": "r2-maintenance-07-jev",
+    "provider": "jev",
+    "reserve_usd": 0.002688,
+    "status": "complete",
+    "http_status": 200,
+    "latency_ms": 207.3477499652654,
+    "cost_usd": 3.3264000000000005e-05,
+    "label": "mixed",
+    "confidence": 0.99,
+    "usage": {
+      "input_tokens": 792,
+      "output_tokens": 62
+    },
+    "served_model": "jev-1.13.0",
+    "fallback": false
+  },
+  {
+    "id": "r2-maintenance-07",
+    "gold": "mixed",
+    "domain": "maintenance",
+    "arm": "structural",
+    "label": "format_drift",
+    "cost_usd": 0,
+    "latency_ms": 0
+  },
+  {
+    "id": "r2-maintenance-08",
+    "gold": "mixed",
+    "domain": "maintenance",
+    "arm": "jev",
+    "name": "r2-maintenance-08-jev",
+    "provider": "jev",
+    "reserve_usd": 0.002688,
+    "status": "complete",
+    "http_status": 200,
+    "latency_ms": 335.22995898965746,
+    "cost_usd": 3.6246000000000005e-05,
+    "label": "mixed",
+    "confidence": 0.98,
+    "usage": {
+      "input_tokens": 863,
+      "output_tokens": 62
+    },
+    "served_model": "jev-1.13.0"
+  },
+  {
+    "id": "r2-maintenance-08",
+    "gold": "mixed",
+    "domain": "maintenance",
+    "arm": "gpt",
+    "name": "r2-maintenance-08-gpt",
+    "provider": "gpt",
+    "reserve_usd": 0.007438,
+    "status": "complete",
+    "http_status": 200,
+    "latency_ms": 689.8934580385685,
+    "cost_usd": 0.001094,
+    "label": "mixed",
+    "confidence": null,
+    "usage": {
+      "prompt_tokens": 527,
+      "completion_tokens": 5,
+      "total_tokens": 532,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "audio_tokens": 0
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "audio_tokens": 0,
+        "accepted_prediction_tokens": 0,
+        "rejected_prediction_tokens": 0
+      }
+    },
+    "served_model": "gpt-4.1-2025-04-14"
+  },
+  {
+    "id": "r2-maintenance-08",
+    "gold": "mixed",
+    "domain": "maintenance",
+    "arm": "cascade",
+    "name": "r2-maintenance-08-jev",
+    "provider": "jev",
+    "reserve_usd": 0.002688,
+    "status": "complete",
+    "http_status": 200,
+    "latency_ms": 335.22995898965746,
+    "cost_usd": 3.6246000000000005e-05,
+    "label": "mixed",
+    "confidence": 0.98,
+    "usage": {
+      "input_tokens": 863,
+      "output_tokens": 62
+    },
+    "served_model": "jev-1.13.0",
+    "fallback": false
+  },
+  {
+    "id": "r2-maintenance-08",
+    "gold": "mixed",
+    "domain": "maintenance",
+    "arm": "structural",
+    "label": "format_drift",
+    "cost_usd": 0,
+    "latency_ms": 0
+  },
+  {
+    "id": "r2-maintenance-09",
+    "gold": "uncertain",
+    "domain": "maintenance",
+    "arm": "jev",
+    "name": "r2-maintenance-09-jev",
+    "provider": "jev",
+    "reserve_usd": 0.002688,
+    "status": "complete",
+    "http_status": 200,
+    "latency_ms": 247.76162498164922,
+    "cost_usd": 3.3222e-05,
+    "label": "uncertain",
+    "confidence": 0.33,
+    "usage": {
+      "input_tokens": 791,
+      "output_tokens": 64
+    },
+    "served_model": "jev-1.13.0"
+  },
+  {
+    "id": "r2-maintenance-09",
+    "gold": "uncertain",
+    "domain": "maintenance",
+    "arm": "gpt",
+    "name": "r2-maintenance-09-gpt",
+    "provider": "gpt",
+    "reserve_usd": 0.0070539999999999995,
+    "status": "complete",
+    "http_status": 200,
+    "latency_ms": 625.530666904524,
+    "cost_usd": 0.000998,
+    "label": "uncertain",
+    "confidence": null,
+    "usage": {
+      "prompt_tokens": 475,
+      "completion_tokens": 6,
+      "total_tokens": 481,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "audio_tokens": 0
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "audio_tokens": 0,
+        "accepted_prediction_tokens": 0,
+        "rejected_prediction_tokens": 0
+      }
+    },
+    "served_model": "gpt-4.1-2025-04-14"
+  },
+  {
+    "id": "r2-maintenance-09",
+    "gold": "uncertain",
+    "domain": "maintenance",
+    "arm": "cascade",
+    "name": "r2-maintenance-09-jev",
+    "provider": "jev",
+    "reserve_usd": 0.002688,
+    "status": "complete",
+    "http_status": 200,
+    "latency_ms": 247.76162498164922,
+    "cost_usd": 3.3222e-05,
+    "label": "uncertain",
+    "confidence": 0.33,
+    "usage": {
+      "input_tokens": 791,
+      "output_tokens": 64
+    },
+    "served_model": "jev-1.13.0",
+    "fallback": false
+  },
+  {
+    "id": "r2-maintenance-09",
+    "gold": "uncertain",
+    "domain": "maintenance",
+    "arm": "structural",
+    "label": "conformant",
+    "cost_usd": 0,
+    "latency_ms": 0
+  },
+  {
+    "id": "r2-maintenance-10",
+    "gold": "uncertain",
+    "domain": "maintenance",
+    "arm": "jev",
+    "name": "r2-maintenance-10-jev",
+    "provider": "jev",
+    "reserve_usd": 0.002688,
+    "status": "complete",
+    "http_status": 200,
+    "latency_ms": 252.84916593227535,
+    "cost_usd": 3.4356e-05,
+    "label": "uncertain",
+    "confidence": 0.38,
+    "usage": {
+      "input_tokens": 818,
+      "output_tokens": 64
+    },
+    "served_model": "jev-1.13.0"
+  },
+  {
+    "id": "r2-maintenance-10",
+    "gold": "uncertain",
+    "domain": "maintenance",
+    "arm": "gpt",
+    "name": "r2-maintenance-10-gpt",
+    "provider": "gpt",
+    "reserve_usd": 0.007266,
+    "status": "complete",
+    "http_status": 200,
+    "latency_ms": 555.3018749924377,
+    "cost_usd": 0.00106,
+    "label": "row_semantic_issue",
+    "confidence": null,
+    "usage": {
+      "prompt_tokens": 498,
+      "completion_tokens": 8,
+      "total_tokens": 506,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "audio_tokens": 0
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "audio_tokens": 0,
+        "accepted_prediction_tokens": 0,
+        "rejected_prediction_tokens": 0
+      }
+    },
+    "served_model": "gpt-4.1-2025-04-14"
+  },
+  {
+    "id": "r2-maintenance-10",
+    "gold": "uncertain",
+    "domain": "maintenance",
+    "arm": "cascade",
+    "name": "r2-maintenance-10-jev",
+    "provider": "jev",
+    "reserve_usd": 0.002688,
+    "status": "complete",
+    "http_status": 200,
+    "latency_ms": 252.84916593227535,
+    "cost_usd": 3.4356e-05,
+    "label": "uncertain",
+    "confidence": 0.38,
+    "usage": {
+      "input_tokens": 818,
+      "output_tokens": 64
+    },
+    "served_model": "jev-1.13.0",
+    "fallback": false
+  },
+  {
+    "id": "r2-maintenance-10",
+    "gold": "uncertain",
+    "domain": "maintenance",
+    "arm": "structural",
+    "label": "conformant",
+    "cost_usd": 0,
+    "latency_ms": 0
+  }
+]

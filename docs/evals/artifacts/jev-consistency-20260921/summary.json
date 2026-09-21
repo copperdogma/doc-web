@@ -1,0 +1,372 @@
+{
+  "cascade": {
+    "n": 40,
+    "correct": 33,
+    "accuracy": 0.825,
+    "macro_f1": 0.8156005398110662,
+    "recall": {
+      "conformant": 1.0,
+      "format_drift": 0.625,
+      "row_semantic_issue": 1.0,
+      "mixed": 0.5,
+      "uncertain": 1.0
+    },
+    "defects_called_clean": 3,
+    "clean_flagged_defect": 0,
+    "cost_usd": 0.0196916,
+    "median_ms": 495.2747290371917,
+    "p95_ms": 1691.351667046547,
+    "misses": [
+      {
+        "id": "r1-family-03",
+        "gold": "format_drift",
+        "predicted": "conformant"
+      },
+      {
+        "id": "r1-family-04",
+        "gold": "format_drift",
+        "predicted": "conformant"
+      },
+      {
+        "id": "r1-family-07",
+        "gold": "mixed",
+        "predicted": "row_semantic_issue"
+      },
+      {
+        "id": "r1-family-08",
+        "gold": "mixed",
+        "predicted": "row_semantic_issue"
+      },
+      {
+        "id": "r2-family-03",
+        "gold": "format_drift",
+        "predicted": "conformant"
+      },
+      {
+        "id": "r2-family-07",
+        "gold": "mixed",
+        "predicted": "row_semantic_issue"
+      },
+      {
+        "id": "r2-family-08",
+        "gold": "mixed",
+        "predicted": "row_semantic_issue"
+      }
+    ]
+  },
+  "gpt": {
+    "n": 40,
+    "correct": 29,
+    "accuracy": 0.725,
+    "macro_f1": 0.7133456932083935,
+    "recall": {
+      "conformant": 1.0,
+      "format_drift": 0.625,
+      "row_semantic_issue": 1.0,
+      "mixed": 0.375,
+      "uncertain": 0.625
+    },
+    "defects_called_clean": 3,
+    "clean_flagged_defect": 0,
+    "cost_usd": 0.043408,
+    "median_ms": 730.3129169740714,
+    "p95_ms": 1135.7406669994816,
+    "misses": [
+      {
+        "id": "r1-family-03",
+        "gold": "format_drift",
+        "predicted": "conformant"
+      },
+      {
+        "id": "r1-family-07",
+        "gold": "mixed",
+        "predicted": "row_semantic_issue"
+      },
+      {
+        "id": "r1-family-08",
+        "gold": "mixed",
+        "predicted": "row_semantic_issue"
+      },
+      {
+        "id": "r1-family-09",
+        "gold": "uncertain",
+        "predicted": "row_semantic_issue"
+      },
+      {
+        "id": "r1-maintenance-10",
+        "gold": "uncertain",
+        "predicted": "row_semantic_issue"
+      },
+      {
+        "id": "r2-family-03",
+        "gold": "format_drift",
+        "predicted": "conformant"
+      },
+      {
+        "id": "r2-family-04",
+        "gold": "format_drift",
+        "predicted": "conformant"
+      },
+      {
+        "id": "r2-family-07",
+        "gold": "mixed",
+        "predicted": "row_semantic_issue"
+      },
+      {
+        "id": "r2-family-08",
+        "gold": "mixed",
+        "predicted": "row_semantic_issue"
+      },
+      {
+        "id": "r2-maintenance-07",
+        "gold": "mixed",
+        "predicted": "format_drift"
+      },
+      {
+        "id": "r2-maintenance-10",
+        "gold": "uncertain",
+        "predicted": "row_semantic_issue"
+      }
+    ]
+  },
+  "jev": {
+    "n": 40,
+    "correct": 24,
+    "accuracy": 0.6,
+    "macro_f1": 0.5857720057720057,
+    "recall": {
+      "conformant": 1.0,
+      "format_drift": 0.25,
+      "row_semantic_issue": 0.5,
+      "mixed": 0.5,
+      "uncertain": 0.75
+    },
+    "defects_called_clean": 4,
+    "clean_flagged_defect": 0,
+    "cost_usd": 0.0014196,
+    "median_ms": 261.6445205057971,
+    "p95_ms": 587.5118330586702,
+    "misses": [
+      {
+        "id": "r1-family-03",
+        "gold": "format_drift",
+        "predicted": "conformant"
+      },
+      {
+        "id": "r1-family-04",
+        "gold": "format_drift",
+        "predicted": "conformant"
+      },
+      {
+        "id": "r1-family-07",
+        "gold": "mixed",
+        "predicted": "row_semantic_issue"
+      },
+      {
+        "id": "r1-family-08",
+        "gold": "mixed",
+        "predicted": "row_semantic_issue"
+      },
+      {
+        "id": "r1-family-09",
+        "gold": "uncertain",
+        "predicted": "conformant"
+      },
+      {
+        "id": "r1-maintenance-03",
+        "gold": "format_drift",
+        "predicted": "mixed"
+      },
+      {
+        "id": "r1-maintenance-05",
+        "gold": "row_semantic_issue",
+        "predicted": "mixed"
+      },
+      {
+        "id": "r1-maintenance-06",
+        "gold": "row_semantic_issue",
+        "predicted": "mixed"
+      },
+      {
+        "id": "r2-family-03",
+        "gold": "format_drift",
+        "predicted": "conformant"
+      },
+      {
+        "id": "r2-family-04",
+        "gold": "format_drift",
+        "predicted": "conformant"
+      },
+      {
+        "id": "r2-family-07",
+        "gold": "mixed",
+        "predicted": "row_semantic_issue"
+      },
+      {
+        "id": "r2-family-08",
+        "gold": "mixed",
+        "predicted": "row_semantic_issue"
+      },
+      {
+        "id": "r2-family-09",
+        "gold": "uncertain",
+        "predicted": "conformant"
+      },
+      {
+        "id": "r2-maintenance-03",
+        "gold": "format_drift",
+        "predicted": "mixed"
+      },
+      {
+        "id": "r2-maintenance-05",
+        "gold": "row_semantic_issue",
+        "predicted": "mixed"
+      },
+      {
+        "id": "r2-maintenance-06",
+        "gold": "row_semantic_issue",
+        "predicted": "mixed"
+      }
+    ]
+  },
+  "structural": {
+    "n": 40,
+    "correct": 16,
+    "accuracy": 0.4,
+    "macro_f1": 0.2333333333333333,
+    "recall": {
+      "conformant": 1.0,
+      "format_drift": 1.0,
+      "row_semantic_issue": 0.0,
+      "mixed": 0.0,
+      "uncertain": 0.0
+    },
+    "defects_called_clean": 8,
+    "clean_flagged_defect": 0,
+    "cost_usd": 0,
+    "median_ms": 0.0,
+    "p95_ms": 0,
+    "misses": [
+      {
+        "id": "r1-family-05",
+        "gold": "row_semantic_issue",
+        "predicted": "conformant"
+      },
+      {
+        "id": "r1-family-06",
+        "gold": "row_semantic_issue",
+        "predicted": "conformant"
+      },
+      {
+        "id": "r1-family-07",
+        "gold": "mixed",
+        "predicted": "format_drift"
+      },
+      {
+        "id": "r1-family-08",
+        "gold": "mixed",
+        "predicted": "format_drift"
+      },
+      {
+        "id": "r1-family-09",
+        "gold": "uncertain",
+        "predicted": "conformant"
+      },
+      {
+        "id": "r1-family-10",
+        "gold": "uncertain",
+        "predicted": "conformant"
+      },
+      {
+        "id": "r1-maintenance-05",
+        "gold": "row_semantic_issue",
+        "predicted": "conformant"
+      },
+      {
+        "id": "r1-maintenance-06",
+        "gold": "row_semantic_issue",
+        "predicted": "conformant"
+      },
+      {
+        "id": "r1-maintenance-07",
+        "gold": "mixed",
+        "predicted": "format_drift"
+      },
+      {
+        "id": "r1-maintenance-08",
+        "gold": "mixed",
+        "predicted": "format_drift"
+      },
+      {
+        "id": "r1-maintenance-09",
+        "gold": "uncertain",
+        "predicted": "conformant"
+      },
+      {
+        "id": "r1-maintenance-10",
+        "gold": "uncertain",
+        "predicted": "conformant"
+      },
+      {
+        "id": "r2-family-05",
+        "gold": "row_semantic_issue",
+        "predicted": "conformant"
+      },
+      {
+        "id": "r2-family-06",
+        "gold": "row_semantic_issue",
+        "predicted": "conformant"
+      },
+      {
+        "id": "r2-family-07",
+        "gold": "mixed",
+        "predicted": "format_drift"
+      },
+      {
+        "id": "r2-family-08",
+        "gold": "mixed",
+        "predicted": "format_drift"
+      },
+      {
+        "id": "r2-family-09",
+        "gold": "uncertain",
+        "predicted": "conformant"
+      },
+      {
+        "id": "r2-family-10",
+        "gold": "uncertain",
+        "predicted": "conformant"
+      },
+      {
+        "id": "r2-maintenance-05",
+        "gold": "row_semantic_issue",
+        "predicted": "conformant"
+      },
+      {
+        "id": "r2-maintenance-06",
+        "gold": "row_semantic_issue",
+        "predicted": "conformant"
+      },
+      {
+        "id": "r2-maintenance-07",
+        "gold": "mixed",
+        "predicted": "format_drift"
+      },
+      {
+        "id": "r2-maintenance-08",
+        "gold": "mixed",
+        "predicted": "format_drift"
+      },
+      {
+        "id": "r2-maintenance-09",
+        "gold": "uncertain",
+        "predicted": "conformant"
+      },
+      {
+        "id": "r2-maintenance-10",
+        "gold": "uncertain",
+        "predicted": "conformant"
+      }
+    ]
+  }
+}

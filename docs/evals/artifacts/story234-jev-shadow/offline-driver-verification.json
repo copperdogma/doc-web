@@ -1,0 +1,14 @@
+{
+  "provider_calls": 0,
+  "modes": [
+    "disabled",
+    "enabled",
+    "failure"
+  ],
+  "authoritative_artifacts_invariant": true,
+  "paths": {
+    "disabled": "/Users/cam/.codex/worktrees/jev-docweb-20260921/output/runs/story234-jev-shadow-verification-r4/disabled/story234-disabled/01_plan_onward_document_consistency_v1",
+    "enabled": "/Users/cam/.codex/worktrees/jev-docweb-20260921/output/runs/story234-jev-shadow-verification-r4/enabled/story234-enabled/01_plan_onward_document_consistency_v1",
+    "failure": "/Users/cam/.codex/worktrees/jev-docweb-20260921/output/runs/story234-jev-shadow-verification-r4/failure/story234-failure/01_plan_onward_document_consistency_v1"
+  }
+}

@@ -100,6 +100,8 @@ Grouped by primary `spec:N` category. Stories without category refs remain in an
 | 225 | Establish a Bounded Digital Peter Historical-Handwriting Benchmark Slice | High | Done | 212 | [story-225](stories/story-225-digital-peter-historical-handwriting-benchmark-slice.md) |
 | 230 | Benchmark Unlimited-OCR as a Whole-Document Challenger | High | Done | 208 | [story-230](stories/story-230-benchmark-unlimited-ocr-whole-document-challenger.md) |
 | 227 | Gemini SDK API-Version Hardening | Medium | Done | — | [story-227](stories/story-227-gemini-sdk-api-version-hardening.md) |
+| 233 | JEV consistency classifier evaluation | Medium | Done | 220 | [story-233](stories/story-233-jev-consistency-classifier-evaluation.md) |
+| 234 | JEV consistency shadow routing | Medium | Done | 233 | [story-234](stories/story-234-jev-consistency-shadow-routing.md) |
 
 ### spec:3 — Layout & Structure Understanding
 

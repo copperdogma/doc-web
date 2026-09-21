@@ -1,0 +1,117 @@
+{
+  "reviewer": "independent-fixture-author-review",
+  "reviewed_at": "2026-09-21",
+  "fixture_sha256": "88994b8cd7c75d832114f33e613c3b2d8656b737f53962292ee34c4e81b128ab",
+  "scope": "Post-output source-based semantic review of every unique subject case missed by JEV, standalone GPT-4.1, or the predeclared cascade. No provider calls and no golden changes.",
+  "verdict": {
+    "gold_changes": 0,
+    "golden_wrong": 0,
+    "genuinely_ambiguous_mismatches": 0,
+    "model_wrong_unique_cases": 10,
+    "recommendation": "Conditionally support a bounded shadow comparison of the JEV-to-GPT status-routing cascade only when explicit uncertainty remains review-routed and deterministic layout checks remain active. Do not replace the full planner or change production defaults from this corpus."
+  },
+  "reviewed_mismatches": [
+    {
+      "case_id": "family-03",
+      "gold": "format_drift",
+      "affected": {"jev": [1, 2], "gpt": [1, 2], "cascade": [1, 2]},
+      "observed_predictions": ["conformant"],
+      "classification": "model_wrong",
+      "source_basis": "The convention requires one continuous main table, but the two correct rows are split into separate tables without a page break. The defect is structural and the source facts remain correctly attached."
+    },
+    {
+      "case_id": "family-04",
+      "gold": "format_drift",
+      "affected": {"jev": [1, 2], "gpt": [2], "cascade": [1]},
+      "observed_predictions": ["conformant"],
+      "classification": "model_wrong",
+      "source_basis": "The required Boy and Girl columns are fused into Boy/Girl. Counts and row ownership remain correct, so format_drift is the supported class."
+    },
+    {
+      "case_id": "family-07",
+      "gold": "mixed",
+      "affected": {"jev": [1, 2], "gpt": [1, 2], "cascade": [1, 2]},
+      "observed_predictions": ["row_semantic_issue"],
+      "classification": "model_wrong",
+      "source_basis": "The case combines an unallowed two-table split with death dates attached to the opposite people. Both structural and semantic defects are explicit."
+    },
+    {
+      "case_id": "family-08",
+      "gold": "mixed",
+      "affected": {"jev": [1, 2], "gpt": [1, 2], "cascade": [1, 2]},
+      "observed_predictions": ["row_semantic_issue"],
+      "classification": "model_wrong",
+      "source_basis": "The Boy/Girl header is fused and Mira's birth year conflicts with the source. Both defect classes are present."
+    },
+    {
+      "case_id": "family-09",
+      "gold": "uncertain",
+      "affected": {"jev": [1, 2], "gpt": [1]},
+      "observed_predictions": ["conformant", "row_semantic_issue"],
+      "classification": "model_wrong",
+      "source_basis": "The source crop omits all birth and death dates. The extracted assignments therefore cannot be verified or called wrong; uncertain is required. The cascade correctly routed both repetitions to uncertainty through fallback."
+    },
+    {
+      "case_id": "maintenance-03",
+      "gold": "format_drift",
+      "affected": {"jev": [1, 2]},
+      "observed_predictions": ["mixed"],
+      "classification": "model_wrong",
+      "source_basis": "Two assets are combined into one card contrary to the one-card-per-asset rule, while labels inside the card preserve every source association. No semantic defect is established."
+    },
+    {
+      "case_id": "maintenance-05",
+      "gold": "row_semantic_issue",
+      "affected": {"jev": [1, 2]},
+      "observed_predictions": ["mixed"],
+      "classification": "model_wrong",
+      "source_basis": "The two cards conform structurally, but their maintenance notes are attached to the opposite assets. There is no independent format defect."
+    },
+    {
+      "case_id": "maintenance-06",
+      "gold": "row_semantic_issue",
+      "affected": {"jev": [1, 2]},
+      "observed_predictions": ["mixed"],
+      "classification": "model_wrong",
+      "source_basis": "The card structure conforms and only Pump A's installation year conflicts with the source. There is no format defect."
+    },
+    {
+      "case_id": "maintenance-07",
+      "gold": "mixed",
+      "affected": {"gpt": [2]},
+      "observed_predictions": ["format_drift"],
+      "classification": "model_wrong",
+      "source_basis": "The combined card violates the layout rule and the asset-labelled notes are swapped relative to the source. The semantic component makes mixed necessary."
+    },
+    {
+      "case_id": "maintenance-10",
+      "gold": "uncertain",
+      "affected": {"gpt": [1, 2]},
+      "observed_predictions": ["row_semantic_issue"],
+      "classification": "model_wrong",
+      "source_basis": "The source names both maintenance operations but explicitly lacks surviving links to either asset. The displayed pairing is possible but unverified, so neither correctness nor wrong ownership is established. JEV and the cascade correctly preserved uncertainty in both repetitions."
+    }
+  ],
+  "recommendation_assessment": {
+    "supported": true,
+    "supporting_evidence": [
+      "The predeclared cascade scored 33/40 exact classes versus 29/40 for standalone GPT-4.1 and 24/40 for raw JEV.",
+      "The cascade preserved or recovered all 8/8 uncertainty decisions, compared with 5/8 for standalone GPT-4.1 and 6/8 for raw JEV.",
+      "The cascade was correct on all 20 maintenance-card decisions in this corpus.",
+      "Actual cascade cost was lower than the standalone GPT projection on this balanced fixture distribution."
+    ],
+    "conditions": [
+      "Keep deterministic layout checks because the cascade still called three real family format defects conformant and did not improve the aggregate false-clean count over standalone GPT-4.1.",
+      "Keep every explicit uncertain decision review-routed regardless of confidence.",
+      "Measure the assembled planner and repair consumer in shadow before any production default change.",
+      "Treat the slower cascade p95 as a real serial-fallback tradeoff."
+    ]
+  },
+  "limits": [
+    "The 40 decisions are two repetitions of 20 cases, not 40 independent documents.",
+    "The corpus contains ten paired mutation patterns across only two synthetic source documents and uses balanced class prevalence unlike production traffic.",
+    "The narrow projection supplies conventions; it does not test convention discovery, source retrieval, OCR, rationale quality, repair execution, or end-to-end planner outcomes.",
+    "The maintained genealogy detector was eligible on 9 family cases, rejected the reordered-header case as out of signature, and is out of domain for all maintenance cases.",
+    "Cost and latency comparisons describe this serial synthetic workload and are not production savings or throughput forecasts."
+  ]
+}

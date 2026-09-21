@@ -1,0 +1,34 @@
+{
+  "base_sha": "0a4d20ff894892f4d96a9a4541d9299d358c2cd5",
+  "sources": {
+    "benchmarks/jev-consistency/detector.py": "71b51ddff75eb1e4f1062555a979d6185124ea915707aa37031b740e2329c7ed",
+    "benchmarks/jev-consistency/run.py": "25694c4c851da53364d413ddeb492f7443e63386c7ac420f53668e9b955e7076",
+    "benchmarks/jev-consistency/test_run.py": "45a1cfbe054995962d63078f91a8d67dd52ae82cdd09d3ade3f07e752dfa60ab",
+    "benchmarks/jev-consistency/fixtures.json": "88994b8cd7c75d832114f33e613c3b2d8656b737f53962292ee34c4e81b128ab",
+    "benchmarks/jev-consistency/plan.md": "c485d8c2dcab0c38a24ae18a7ea63d8baf617518cf49252838083f1e534cfce2",
+    "modules/validate/validate_onward_genealogy_consistency_v1/main.py": "d8729c26de12cf0b0172b70a8d66f8c2ab6de0733fae6e7254b875d0ce40fbe6"
+  },
+  "docs_checked": "2026-09-21",
+  "provider_docs": [
+    "https://docs.typesafe.ai/api.md",
+    "https://docs.typesafe.ai/models.md",
+    "https://docs.typesafe.ai/primitives/choice.md",
+    "https://developers.openai.com/api/docs/models/gpt-4.1"
+  ],
+  "prices_per_million": {
+    "jev_input": 0.042,
+    "jev_output": 0,
+    "gpt_input": 2,
+    "gpt_cached_input": 0.5,
+    "gpt_output": 8
+  },
+  "retention": "Synthetic only. Vendor TypeSafe no customer training; retention not asserted ZDR. OpenAI API store=false does not assert ZDR.",
+  "snapshots": {
+    "benchmarks/jev-consistency/detector.py": "docs/evals/artifacts/jev-consistency-20260921/frozen-source/benchmarks/jev-consistency/detector.py",
+    "benchmarks/jev-consistency/run.py": "docs/evals/artifacts/jev-consistency-20260921/frozen-source/benchmarks/jev-consistency/run.py",
+    "benchmarks/jev-consistency/test_run.py": "docs/evals/artifacts/jev-consistency-20260921/frozen-source/benchmarks/jev-consistency/test_run.py",
+    "benchmarks/jev-consistency/fixtures.json": "docs/evals/artifacts/jev-consistency-20260921/frozen-source/benchmarks/jev-consistency/fixtures.json",
+    "benchmarks/jev-consistency/plan.md": "docs/evals/artifacts/jev-consistency-20260921/frozen-source/benchmarks/jev-consistency/plan.md",
+    "modules/validate/validate_onward_genealogy_consistency_v1/main.py": "docs/evals/artifacts/jev-consistency-20260921/frozen-source/modules/validate/validate_onward_genealogy_consistency_v1/main.py"
+  }
+}

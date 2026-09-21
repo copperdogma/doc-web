@@ -1,0 +1,46 @@
+{
+  "schema_version": "document_pattern_inventory_v1",
+  "created_at": "2026-09-21T17:24:06.037168Z",
+  "run_id": "story234-enabled",
+  "document_label": "Onward genealogy consistency planning",
+  "source_artifacts": {
+    "chapters_artifact": "/Users/cam/.codex/worktrees/jev-docweb-20260921/output/runs/story234-jev-shadow-verification-r4/chapters.jsonl",
+    "pages_artifact": "/Users/cam/.codex/worktrees/jev-docweb-20260921/output/runs/story234-jev-shadow-verification-r4/pages.jsonl"
+  },
+  "summary": {
+    "pattern_family_count": 1,
+    "candidate_genealogy_chapters": 1
+  },
+  "pattern_families": [
+    {
+      "pattern_id": "synthetic",
+      "label": "Pattern 1",
+      "description": "",
+      "member_chapters": [
+        "chapter-001.html"
+      ],
+      "baseline_chapters": [
+        "chapter-001.html"
+      ],
+      "canonical_signals": [],
+      "canonical_headers": [
+        "NAME",
+        "BORN",
+        "MARRIED",
+        "SPOUSE",
+        "BOY",
+        "GIRL",
+        "DIED"
+      ],
+      "allowed_variants": [],
+      "document_local_conventions": {
+        "subgroup_context_rows": "Full width family row",
+        "table_fragmentation": "One main table",
+        "summary_rows": "",
+        "marginal_or_handwritten_notes": ""
+      },
+      "confidence": 0.0,
+      "evidence": []
+    }
+  ]
+}
