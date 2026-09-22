@@ -45,3 +45,6 @@ benchmarks/results/gpt6-astra-20260905/
 # Attempt 036 provider envelopes
 /benchmarks/results/deepseek-v41-20260912/
 /benchmarks/results/deepseek-v41-20260912-heartbeat1/
+
+# Attempt 039 direct xAI provider envelopes and public-fixture results
+/benchmarks/results/grok47-20260922/

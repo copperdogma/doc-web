@@ -355,3 +355,26 @@ No automatic retry or key provisioning. Reopening requires a new explicit user
 instruction after eligible direct access and regional endpoint exist, then
 current scope/budget confirmation and strict qualification. See Attempt 038 for contract, commands,
 provenance and layered verdict. Existing Done status is historical and unchanged.
+
+## 2026-09-22 — Attempt 039 Grok 4.7 direct xAI detector rejection
+
+Approved US$0.50 public-fixture-only continuation: exact `grok-4.7` at the
+native xAI Responses endpoint, low reasoning, `store=false`, strict 0–1000
+integer crop schema, no cache, serial execution. The current xAI adapter's
+float schema and prompt routing did not match the maintained integer detector,
+so both were repaired before provider calls; native synthetic image/schema and
+owner-adapter parity then qualified exact served identity, terminal completion,
+usage, and strict JSON output.
+
+The Image011 screen returned the required combined seal/signatures crop and
+passed the frozen scorer, so the full detector ran. It completed `11/13` with
+mean score `0.745785`, zero provider/schema errors, mean end-to-end row latency
+`8059 ms`, and `$0.116280` detector spend. Image001's source visibly contains
+the large stylized Onward title but Grok returned no regions; Image059's two
+photo boxes start too low and omit their upper regions. Both are model-wrong.
+Grok 4.7 therefore misses the `13/13` and `>=0.95` entry contract. The fresh
+Gemini control and all crop-only/page-context/deletion work are not measured;
+the runtime/defaults stay unchanged. Total accounted campaign spend is
+`$0.147314/$0.50`, including `$0.013284` for an acknowledged duplicate native
+probe caused by host-output handling. Evidence: Attempt 039 and its raw/result
+manifest. Existing Story 207 completion remains historical.

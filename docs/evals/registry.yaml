@@ -601,6 +601,33 @@ evals:
           It did not clear the detector prerequisite, so the 22-case
           page-context gate was not run and remains not measured. Do not adopt.
           Portable proof: `docs/evals/attempts/024-qwen38-max-evaluate-model.md`.
+      - model: "Grok 4.7 direct xAI Responses (low reasoning, strict integer crop schema)"
+        metrics: {overall: 0.745785, pass_rate: 0.846154, cases_total: 13, latency_ms: 8059}
+        latency_ms: 8059
+        cost_usd: 0.11628
+        cost_estimated: false
+        measured: 2026-09-22
+        git_sha: 35798b9+attempt039-uncommitted
+        result_file: benchmarks/results/grok47-20260922/full13.json
+        evidence_status: current-direct-qualified-detector-rejection
+        note: >
+          Exact direct `grok-4.7` on xAI Responses, low reasoning, `store=false`,
+          high image detail, native image/strict-integer-schema and owner-adapter
+          parity qualified before the frozen no-cache detector. The single serial
+          campaign completed with zero provider/schema errors but only `11/13`
+          passes and `overall = 0.745785`, so it fails the frozen detector
+          acceptance contract (`13/13`, `>=0.95`). Reported full-detector spend
+          was `$0.116280`, mean latency `8059 ms`, and the entire
+          qualification/screen/detector campaign cost `$0.147314/$0.50`, including
+          an acknowledged duplicate native probe. This bounded campaign qualifies
+          successful-response behavior only; it is not production reliability
+          evidence. Source inspection confirms model-wrong misses: Image001 omits
+          the prominent stylized title artwork entirely; Image059 begins both photo
+          boxes too low, cutting off their upper regions. Image011 now groups the
+          seal and signatures but remains spatially loose. The 22-case page-context
+          gate and fresh Gemini control were deliberately not run. Portable proof:
+          `docs/evals/attempts/039-grok47-direct-xai-crop-evaluation.md` and
+          `docs/evals/evidence/039-grok47-direct-xai-manifest.md`.
       - model: "Grok 4.6 OpenRouter (xAI-pinned ZDR strict-schema detector, reasoning low)"
         metrics:
           overall: 0.8414
@@ -741,6 +768,24 @@ evals:
         note: "Poor bounding box precision"
 
     attempts:
+      - id: "039"
+        date: 2026-09-22
+        status: failed
+        approach: "Evaluate exact Grok 4.7 on direct xAI Responses through the frozen integer crop detector"
+        score_before: 0.9703
+        score_after: 0.745785
+        note: >
+          Direct xAI native strict-image/integer-schema and adapter-parity probes
+          qualified with exact served identity and valid usage. The Image011
+          screen passed the scorer while grouping the seal and signatures, then
+          the frozen serial full detector completed `11/13`, `0.745785`, with
+          zero provider/schema errors. Image001 title-art omission and Image059
+          photo undercoverage are source-verified model-wrong errors. The candidate
+          failed both detector promotion requirements, so no Gemini control or
+          page-context calls were made. Total all-call spend `$0.147314/$0.50`
+          includes a duplicate native probe caused by orchestration output handling;
+          no automatic model retry followed. See
+          `docs/evals/attempts/039-grok47-direct-xai-crop-evaluation.md`.
       - id: "038"
         date: 2026-09-19
         status: inconclusive

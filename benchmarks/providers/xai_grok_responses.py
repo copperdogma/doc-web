@@ -44,10 +44,14 @@ CROP_RESPONSE_FORMAT = {
                         "adjacent_text": {"type": "string"},
                         "bbox": {
                             "type": "array",
+                            "description": (
+                                "Exactly [x0, y0, x1, y1] as 0-1000 integers, "
+                                "with x0 < x1 and y0 < y1."
+                            ),
                             "items": {
-                                "type": "number",
+                                "type": "integer",
                                 "minimum": 0,
-                                "maximum": 1,
+                                "maximum": 1000,
                             },
                             "minItems": 4,
                             "maxItems": 4,
@@ -283,11 +287,9 @@ def _validate_crop_regions(payload: Any) -> str | None:
             return f"images[{index}].adjacent_text must be a string"
         bbox = image["bbox"]
         if not isinstance(bbox, list) or len(bbox) != 4:
-            return f"images[{index}].bbox must be an array of four numbers"
-        if any(
-            not _is_finite_number(value) or value < 0 or value > 1 for value in bbox
-        ):
-            return f"images[{index}].bbox values must be finite numbers from 0 to 1"
+            return f"images[{index}].bbox must be an array of four integers"
+        if any(type(value) is not int or value < 0 or value > 1000 for value in bbox):
+            return f"images[{index}].bbox values must be integers from 0 to 1000"
     return None
 
 
@@ -495,6 +497,57 @@ def _result_with_evidence(
     return result
 
 
+def _retain_raw_envelope(data: dict[str, Any]) -> dict[str, Any]:
+    """Persist a complete provider envelope when the owner configured a safe path.
+
+    The benchmark runner otherwise sees only parsed output.  The ignored raw path
+    is opt-in so normal production use does not create durable copies.
+    """
+
+    raw_dir = os.environ.get("XAI_GROK_RAW_ENVELOPE_DIR")
+    if not raw_dir:
+        return {}
+    target_dir = os.path.abspath(raw_dir)
+    os.makedirs(target_dir, mode=0o700, exist_ok=True)
+    serialized = json.dumps(data, sort_keys=True, indent=2) + "\n"
+    digest = hashlib.sha256(serialized.encode("utf-8")).hexdigest()
+    response_id = str(data.get("id") or "response")
+    safe_id = "".join(char if char.isalnum() or char in "-_" else "_" for char in response_id)
+    target = os.path.join(target_dir, f"{safe_id}-{digest[:12]}.json")
+    with open(target, "w", encoding="utf-8") as handle:
+        handle.write(serialized)
+    os.chmod(target, 0o600)
+    return {
+        "raw_envelope_path": target,
+        "raw_envelope_sha256": digest,
+        "raw_envelope_bytes": len(serialized.encode("utf-8")),
+    }
+
+
+def _retain_raw_http_response(response: httpx.Response) -> dict[str, Any]:
+    """Retain raw HTTP evidence before status or JSON handling can discard it."""
+
+    raw_dir = os.environ.get("XAI_GROK_RAW_ENVELOPE_DIR")
+    if not raw_dir:
+        return {}
+    target_dir = os.path.abspath(raw_dir)
+    os.makedirs(target_dir, mode=0o700, exist_ok=True)
+    raw_body = response.content
+    digest = hashlib.sha256(raw_body).hexdigest()
+    response_id = response.headers.get("x-request-id", "http-response")
+    safe_id = "".join(char if char.isalnum() or char in "-_" else "_" for char in response_id)
+    target = os.path.join(target_dir, f"{safe_id}-{digest[:12]}.http.json")
+    with open(target, "wb") as handle:
+        handle.write(raw_body)
+    os.chmod(target, 0o600)
+    return {
+        "raw_envelope_path": target,
+        "raw_envelope_sha256": digest,
+        "raw_envelope_bytes": len(raw_body),
+        "raw_http_status": response.status_code,
+    }
+
+
 def call_api(prompt: str, options: dict[str, Any], context: dict[str, Any]):
     key_env = os.environ.get("XAI_API_KEY_ENV", "XAI_API_KEY")
     api_key = os.environ.get(key_env) or os.environ.get("XAI_API_KEY")
@@ -515,6 +568,7 @@ def call_api(prompt: str, options: dict[str, Any], context: dict[str, Any]):
                 os.environ.get("XAI_GROK_TIMEOUT_SECONDS", str(DEFAULT_TIMEOUT_SECONDS))
             ),
         )
+        raw_evidence = _retain_raw_http_response(response)
         response.raise_for_status()
         data = response.json()
         if not isinstance(data, dict):
@@ -530,6 +584,7 @@ def call_api(prompt: str, options: dict[str, Any], context: dict[str, Any]):
         response=response,
         settings=settings,
     )
+    result["metadata"].update(raw_evidence)
     provider_error = _provider_error(data)
     if provider_error is not None:
         result["error"] = (

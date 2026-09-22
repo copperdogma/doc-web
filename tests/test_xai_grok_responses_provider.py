@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import hashlib
 import json
+from pathlib import Path
 
 from benchmarks.providers import xai_grok_responses as provider
 
@@ -30,6 +31,11 @@ def test_build_body_normalizes_multimodal_prompt(monkeypatch):
     assert body["store"] is False
     assert body["text"]["format"] == provider.CROP_RESPONSE_FORMAT
     assert body["text"]["format"]["strict"] is True
+    bbox_schema = body["text"]["format"]["schema"]["properties"]["images"][
+        "items"
+    ]["properties"]["bbox"]
+    assert bbox_schema["items"]["type"] == "integer"
+    assert bbox_schema["items"]["maximum"] == 1000
     assert (
         "adjacent_text"
         in body["text"]["format"]["schema"]["properties"]["images"]["items"][
@@ -407,8 +413,38 @@ def test_crop_contract_rejects_huge_integer_without_overflow():
     )
 
     assert provider._contract_error(invalid_output, "crop_regions") == (
-        "images[0].bbox values must be finite numbers from 0 to 1"
+        "images[0].bbox values must be integers from 0 to 1000"
     )
+
+
+def test_crop_contract_rejects_float_coordinates():
+    output = json.dumps(
+        {
+            "images": [
+                {"description": "float bbox", "bbox": [0.1, 0, 900, 1000]}
+            ]
+        }
+    )
+
+    assert provider._contract_error(output, "crop_regions") == (
+        "images[0].bbox values must be integers from 0 to 1000"
+    )
+
+
+def test_raw_http_capture_writes_exact_body_before_parsing(tmp_path, monkeypatch):
+    class FakeResponse:
+        content = b'{"error":"example"}'
+        status_code = 429
+        headers = {"x-request-id": "req/123"}
+
+    monkeypatch.setenv("XAI_GROK_RAW_ENVELOPE_DIR", str(tmp_path))
+
+    evidence = provider._retain_raw_http_response(FakeResponse())
+
+    target = Path(evidence["raw_envelope_path"])
+    assert target.read_bytes() == FakeResponse.content
+    assert evidence["raw_http_status"] == 429
+    assert evidence["raw_envelope_bytes"] == len(FakeResponse.content)
 
 
 def test_completed_non_object_response_is_rejected(monkeypatch):
@@ -581,9 +617,13 @@ def test_contract_parser_rejects_pathological_json_without_raising():
     deeply_nested = "[" * 2000 + "]" * 2000
     over_limit_integer = "1" * 5000
 
-    assert provider._contract_error(deeply_nested, "crop_regions") == (
-        "invalid JSON structure: RecursionError"
-    )
+    # Python's JSON decoder now accepts this depth on the supported runtime;
+    # the contract still rejects it fail-closed because a crop response must be
+    # an object.  Older decoders may stop one layer earlier with RecursionError.
+    assert provider._contract_error(deeply_nested, "crop_regions") in {
+        "invalid JSON structure: RecursionError",
+        "root must be an object",
+    }
     assert provider._contract_error(over_limit_integer, "crop_regions") == (
         "invalid JSON structure: ValueError"
     )

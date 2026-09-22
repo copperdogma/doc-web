@@ -1,0 +1,17 @@
+diff --git a/benchmarks/scripts/grok47_xai_probe.py b/benchmarks/scripts/grok47_xai_probe.py
+--- a/benchmarks/scripts/grok47_xai_probe.py
++++ b/benchmarks/scripts/grok47_xai_probe.py
+@@ -53,11 +53,12 @@
+         json=body,
+         timeout=90,
+     )
++    raw_http = provider._retain_raw_http_response(response)
+     response.raise_for_status()
+     data = response.json()
+     if not isinstance(data, dict):
+         raise ValueError("xAI Responses API response JSON must be an object")
+-    retained = provider._retain_raw_envelope(data)
++    retained = {**raw_http, **provider._retain_raw_envelope(data)}
+     output = provider._extract_output_text(data)
+     if data.get("status") != "completed" or data.get("incomplete_details") is not None:
+         raise AssertionError(f"nonterminal xAI status: {data.get('status')!r}")

@@ -1,0 +1,14 @@
+description: "Grok 4.7 image-crop detector differentiator — Image011"
+
+prompts:
+  - id: "file://../prompts/crop-conservative-count.js"
+    label: "conservative-count"
+
+tests:
+  - description: "Image011 seal and signatures differentiator"
+    vars:
+      image: file://../input/source-pages-b64/Image011.b64.txt
+      golden_key: "Image011"
+    assert:
+      - type: python
+        value: file://../scorers/image_crop_scorer.py

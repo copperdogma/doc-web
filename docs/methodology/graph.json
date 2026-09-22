@@ -1132,15 +1132,16 @@
           "posture": "wait-for-trigger",
           "retry_trigger_status": "waiting",
           "retry_when": [
-            "dependency-available"
+            "golden-fix",
+            "new-subject-model"
           ],
           "why_now": "Gemini 4 or equivalent may push past 0.95 target Golden references cover limited page types; add table-heavy pages",
           "last_relevant_action": {
-            "date": "2026-09-19",
+            "date": "2026-09-22",
             "source_type": "eval-attempt",
             "source": "docs/evals/registry.yaml",
-            "source_id": "038",
-            "summary": "Story 207 / Conductor Scout071 item 2, US$0.50 ceiling. Owner-wrapper presence-only checks found no direct Alibaba/DashScope credential; Conductor has no supported direct Alibaba custody mapping. Stopped before any au..."
+            "source_id": "039",
+            "summary": "Direct xAI native strict-image/integer-schema and adapter-parity probes qualified with exact served identity and valid usage. The Image011 screen passed the scorer while grouping the seal and signatures, then the froz..."
           },
           "story_ids": [
             "135",
@@ -13578,6 +13579,23 @@
           "note": "Exact `qwen/qwen3.8-max` OpenRouter route, canonical snapshot `qwen/qwen3.8-max-20260803`, pinned to Alibaba with no fallback, mandatory low reasoning hidden from output, strict JSON Schema, exact served identity, terminal stop, and raw reported usage/cost. Text, generated synthetic-image, and one-case PromptFoo parity probes qualified before the frozen no-cache detector. The full run completed `12/13` with `0` provider/schema errors, `overall = 0.9411`, average latency `16002 ms`, and `$0.107508` total reported cost. Manual source inspection classified `Image011` as model-wrong: Qwen split the seal and adjacent signatures despite the explicit one-combined-image rule. It did not clear the detector prerequisite, so the 22-case page-context gate was not run and remains not measured. Do not adopt. Portable proof: `docs/evals/attempts/024-qwen38-max-evaluate-model.md`.\n"
         },
         {
+          "model": "Grok 4.7 direct xAI Responses (low reasoning, strict integer crop schema)",
+          "metrics": {
+            "overall": 0.745785,
+            "pass_rate": 0.846154,
+            "cases_total": 13,
+            "latency_ms": 8059
+          },
+          "latency_ms": 8059,
+          "cost_usd": 0.11628,
+          "cost_estimated": false,
+          "measured": "2026-09-22",
+          "git_sha": "35798b9+attempt039-uncommitted",
+          "result_file": "benchmarks/results/grok47-20260922/full13.json",
+          "evidence_status": "current-direct-qualified-detector-rejection",
+          "note": "Exact direct `grok-4.7` on xAI Responses, low reasoning, `store=false`, high image detail, native image/strict-integer-schema and owner-adapter parity qualified before the frozen no-cache detector. The single serial campaign completed with zero provider/schema errors but only `11/13` passes and `overall = 0.745785`, so it fails the frozen detector acceptance contract (`13/13`, `>=0.95`). Reported full-detector spend was `$0.116280`, mean latency `8059 ms`, and the entire qualification/screen/detector campaign cost `$0.147314/$0.50`, including an acknowledged duplicate native probe. This bounded campaign qualifies successful-response behavior only; it is not production reliability evidence. Source inspection confirms model-wrong misses: Image001 omits the prominent stylized title artwork entirely; Image059 begins both photo boxes too low, cutting off their upper regions. Image011 now groups the seal and signatures but remains spatially loose. The 22-case page-context gate and fresh Gemini control were deliberately not run. Portable proof: `docs/evals/attempts/039-grok47-direct-xai-crop-evaluation.md` and `docs/evals/evidence/039-grok47-direct-xai-manifest.md`.\n"
+        },
+        {
           "model": "Grok 4.6 OpenRouter (xAI-pinned ZDR strict-schema detector, reasoning low)",
           "metrics": {
             "overall": 0.8414,
@@ -13686,23 +13704,31 @@
         }
       ],
       "latest_score": {
-        "model": "GPT-6 Astra Responses (medium reasoning, strict crop schema)",
+        "model": "Grok 4.7 direct xAI Responses (low reasoning, strict integer crop schema)",
         "metrics": {
-          "overall": 0.980392,
-          "pass_rate": 1.0,
+          "overall": 0.745785,
+          "pass_rate": 0.846154,
           "cases_total": 13,
-          "latency_ms": 4134
+          "latency_ms": 8059
         },
-        "latency_ms": 4134,
-        "cost_usd": 0.434804,
-        "cost_estimated": true,
-        "measured": "2026-09-05",
-        "git_sha": "18c8c15+attempt033-uncommitted",
-        "result_file": "benchmarks/results/gpt6-astra-20260905/detector-full-medium.json",
-        "evidence_status": "current-bounded-quality-leader-production-unqualified",
-        "note": "Exact first-party `gpt-6-astra` with medium reasoning, strict Responses JSON Schema, image detail high, no cache, and concurrency one passed all `13/13` authoritative detector cases with zero provider/schema errors. Mean quality was `0.980392`, average latency `4134 ms`, and usage-priced cost `$0.434804` total. This is the highest current bounded detector score. The original US$1.50 campaign cap could not conservatively fund the conditional 22-case page-context safety gate after the approved five-effort calibration and two full detector runs; a separately approved follow-on then failed the targeted `page-122-001` safety differentiator. It is therefore not production-qualified and does not change the Gemini runtime default. See Attempts 033 and 034.\n"
+        "latency_ms": 8059,
+        "cost_usd": 0.11628,
+        "cost_estimated": false,
+        "measured": "2026-09-22",
+        "git_sha": "35798b9+attempt039-uncommitted",
+        "result_file": "benchmarks/results/grok47-20260922/full13.json",
+        "evidence_status": "current-direct-qualified-detector-rejection",
+        "note": "Exact direct `grok-4.7` on xAI Responses, low reasoning, `store=false`, high image detail, native image/strict-integer-schema and owner-adapter parity qualified before the frozen no-cache detector. The single serial campaign completed with zero provider/schema errors but only `11/13` passes and `overall = 0.745785`, so it fails the frozen detector acceptance contract (`13/13`, `>=0.95`). Reported full-detector spend was `$0.116280`, mean latency `8059 ms`, and the entire qualification/screen/detector campaign cost `$0.147314/$0.50`, including an acknowledged duplicate native probe. This bounded campaign qualifies successful-response behavior only; it is not production reliability evidence. Source inspection confirms model-wrong misses: Image001 omits the prominent stylized title artwork entirely; Image059 begins both photo boxes too low, cutting off their upper regions. Image011 now groups the seal and signatures but remains spatially loose. The 22-case page-context gate and fresh Gemini control were deliberately not run. Portable proof: `docs/evals/attempts/039-grok47-direct-xai-crop-evaluation.md` and `docs/evals/evidence/039-grok47-direct-xai-manifest.md`.\n"
       },
       "attempts": [
+        {
+          "id": "039",
+          "date": "2026-09-22",
+          "status": "failed",
+          "approach": "Evaluate exact Grok 4.7 on direct xAI Responses through the frozen integer crop detector",
+          "note": "Direct xAI native strict-image/integer-schema and adapter-parity probes qualified with exact served identity and valid usage. The Image011 screen passed the scorer while grouping the seal and signatures, then the frozen serial full detector completed `11/13`, `0.745785`, with zero provider/schema errors. Image001 title-art omission and Image059 photo undercoverage are source-verified model-wrong errors. The candidate failed both detector promotion requirements, so no Gemini control or page-context calls were made. Total all-call spend `$0.147314/$0.50` includes a duplicate native probe caused by orchestration output handling; no automatic model retry followed. See `docs/evals/attempts/039-grok47-direct-xai-crop-evaluation.md`.\n",
+          "retry_when": []
+        },
         {
           "id": "038",
           "date": "2026-09-19",
@@ -14001,15 +14027,16 @@
         "posture": "wait-for-trigger",
         "retry_trigger_status": "waiting",
         "retry_when": [
-          "dependency-available"
+          "golden-fix",
+          "new-subject-model"
         ],
         "why_now": "Gemini 4 or equivalent may push past 0.95 target Golden references cover limited page types; add table-heavy pages",
         "last_relevant_action": {
-          "date": "2026-09-19",
+          "date": "2026-09-22",
           "source_type": "eval-attempt",
           "source": "docs/evals/registry.yaml",
-          "source_id": "038",
-          "summary": "Story 207 / Conductor Scout071 item 2, US$0.50 ceiling. Owner-wrapper presence-only checks found no direct Alibaba/DashScope credential; Conductor has no supported direct Alibaba custody mapping. Stopped before any au..."
+          "source_id": "039",
+          "summary": "Direct xAI native strict-image/integer-schema and adapter-parity probes qualified with exact served identity and valid usage. The Image011 screen passed the scorer while grouping the seal and signatures, then the froz..."
         }
       }
     },
