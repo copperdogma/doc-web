@@ -1,0 +1,32 @@
+description: "Scout074 MiMo V2.6 exact DeepInfra fp8 pinned screen"
+prompts:
+  - id: file://../prompts/crop-conservative-count.js
+    label: conservative-count
+providers:
+  - id: python:../providers/mimo26_budgeted.py
+    label: MiMo V2.6 Flash DeepInfra fp8 integer
+    config: &base
+      model: xiaomi/mimo-v2.6-flash
+      expected_served_model: xiaomi/mimo-v2.6-flash
+      expected_served_provider: DeepInfra
+      provider_route: deepinfra/fp8
+      pin_provider: true
+      require_parameters: true
+      data_collection: null
+      zdr: null
+      reasoning_effort: low
+      reasoning_enabled: false
+      max_tokens: 2048
+      output_contract: crop_regions_integer
+  - id: python:../providers/mimo26_budgeted.py
+    label: MiMo V2.6 Pro DeepInfra fp8 integer
+    config:
+      <<: *base
+      model: xiaomi/mimo-v2.6-pro
+      expected_served_model: xiaomi/mimo-v2.6-pro
+tests:
+  - vars: {image: file://../input/source-pages-b64/Image011.b64.txt, golden_key: Image011}
+    assert: [{type: python, value: file://../scorers/image_crop_scorer.py}]
+    description: Image011
+    options: {disableConversationVar: true}
+evaluateOptions: {maxConcurrency: 1}

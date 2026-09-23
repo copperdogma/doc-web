@@ -105,7 +105,9 @@ def _provider_config(options: dict[str, Any] | None) -> dict[str, Any]:
         "model",
         "output_contract",
         "pin_provider",
+        "provider_route",
         "reasoning_effort",
+        "reasoning_enabled",
         "require_parameters",
         "zdr",
     }:
@@ -219,10 +221,11 @@ def _normalize_messages(prompt: str) -> list[dict[str, Any]]:
 
 
 def _body(prompt: str, options: dict[str, Any] | None = None) -> dict[str, Any]:
+    config = _provider_config(options)
     settings = _settings(options)
     provider: dict[str, Any] = {}
     if settings["pin_provider"]:
-        provider["order"] = [settings["expected_served_provider"]]
+        provider["order"] = [str(config.get("provider_route") or settings["expected_served_provider"])]
         provider["allow_fallbacks"] = False
     if settings["require_parameters"]:
         provider["require_parameters"] = True
@@ -230,11 +233,16 @@ def _body(prompt: str, options: dict[str, Any] | None = None) -> dict[str, Any]:
         provider["data_collection"] = settings["data_collection"]
     if settings["zdr"] is not None:
         provider["zdr"] = settings["zdr"]
+    reasoning = {"exclude": True}
+    if config.get("reasoning_enabled") is False:
+        reasoning["enabled"] = False
+    else:
+        reasoning["effort"] = settings["reasoning_effort"]
     body = {
         "model": settings["model"],
         "messages": _normalize_messages(prompt),
         "max_tokens": settings["max_tokens"],
-        "reasoning": {"effort": settings["reasoning_effort"], "exclude": True},
+        "reasoning": reasoning,
         "response_format": {
             "type": "json_schema",
             "json_schema": {

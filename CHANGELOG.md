@@ -1,3 +1,8 @@
+## [2026-09-22-01] - Record MiMo V2.6 crop transport stop
+
+### Added
+- Preserve both candidate checkpoint attempts, reasoning-control mismatch, six shared-pool capacity failures, seven protected envelopes, and the runner retry defect. No crop score or incumbent comparison was obtained.
+
 ## [2026-09-21-02] - Add opt-in JEV consistency shadow routing (Story 234)
 
 ### Added
