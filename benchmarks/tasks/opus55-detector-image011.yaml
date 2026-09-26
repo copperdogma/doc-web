@@ -1,0 +1,21 @@
+description: Opus 5.5 frozen conservative-count detector projection
+prompts:
+- id: file://../prompts/crop-conservative-count.js
+  label: conservative-count
+providers:
+- id: python:../providers/anthropic_opus48_messages.py
+  label: Opus 5.5 strict integer crop schema
+  config:
+    model: claude-opus-5-5
+    expected_served_model: claude-opus-5-5
+    thinking: adaptive
+    effort: medium
+    output_contract: crop_regions_integer
+    max_tokens: 1024
+tests:
+- vars:
+    image: file://../input/source-pages-b64/Image011.b64.txt
+    golden_key: Image011
+  assert:
+  - type: python
+    value: file://../scorers/image_crop_scorer.py

@@ -80,6 +80,58 @@ def test_page_context_contract_is_selected(monkeypatch):
     assert body["output_config"]["format"]["schema"] == provider.PAGE_CONTEXT_SCHEMA
 
 
+def test_integer_crop_projection_keeps_strict_type_and_local_bounds():
+    options = {"config": {"output_contract": "crop_regions_integer"}}
+    body = provider._build_body("inspect", options)
+    bbox = body["output_config"]["format"]["schema"]["properties"]["images"]["items"][
+        "properties"
+    ]["bbox"]
+
+    assert bbox["items"] == {"type": "integer"}
+    assert (
+        provider._contract_error(
+            '{"images":[{"description":"x","bbox":[0,0,1000,1000]}]}',
+            "crop_regions_integer",
+        )
+        is None
+    )
+    assert "integers from 0 to 1000" in provider._contract_error(
+        '{"images":[{"description":"x","bbox":[0,0,1000,1359]}]}',
+        "crop_regions_integer",
+    )
+
+
+def test_raw_envelope_is_saved_before_invalid_crop_is_rejected(monkeypatch, tmp_path):
+    monkeypatch.setenv("ANTHROPIC_API_KEY", "test-key")
+    monkeypatch.setenv("ANTHROPIC_MESSAGES_RAW_ENVELOPE_DIR", str(tmp_path))
+    monkeypatch.setattr(
+        provider.httpx,
+        "post",
+        lambda *args, **kwargs: _response(
+            _success_payload(
+                text='{"images":[{"description":"x","bbox":[0,0,1000,1359]}]}'
+            )
+        ),
+    )
+
+    result = provider.call_api(
+        "inspect",
+        {
+            "config": {
+                "model": "claude-opus-5",
+                "output_contract": "crop_regions_integer",
+            }
+        },
+        {},
+    )
+
+    assert "violated" in result["error"]
+    assert "output" not in result
+    saved = list(tmp_path.glob("*.json"))
+    assert len(saved) == 1
+    assert saved[0].stem == result["metadata"]["raw_response_sha256"]
+
+
 def test_normalization_rejects_lossy_content_blocks():
     prompt = json.dumps(
         [{"role": "user", "content": [{"type": "input_audio", "data": "x"}]}]

@@ -1137,11 +1137,11 @@
           ],
           "why_now": "Gemini 4 or equivalent may push past 0.95 target Golden references cover limited page types; add table-heavy pages",
           "last_relevant_action": {
-            "date": "2026-09-22",
+            "date": "2026-09-26",
             "source_type": "eval-attempt",
             "source": "docs/evals/registry.yaml",
-            "source_id": "039",
-            "summary": "Direct xAI native strict-image/integer-schema and adapter-parity probes qualified with exact served identity and valid usage. The Image011 screen passed the scorer while grouping the seal and signatures, then the froz..."
+            "source_id": "041",
+            "summary": "Exact owner-authenticated `claude-opus-5-5` qualified native strict image/schema transport and owner-adapter parity. Image011 passed at `0.9548`, but the fresh full13 had only 12 contract-valid scorer passes; Image037..."
           },
           "story_ids": [
             "135",
@@ -1199,11 +1199,11 @@
           ],
           "why_now": "Rerun when a materially stronger validator or detector may reduce the current fail-labeled page-context cases. Rerun after any maintained crop/runtime simplification before claiming `trim_layout_text` or bounded capti...",
           "last_relevant_action": {
-            "date": "2026-09-06",
+            "date": "2026-09-26",
             "source_type": "eval-attempt",
             "source": "docs/evals/registry.yaml",
-            "source_id": "023",
-            "summary": "Image011 detector screen failed its grouping requirement after strict vision qualification. Page-context schema, page-122-001 and full22 were not run; capability not measured, adoption not advanced. No page-context sp..."
+            "source_id": "041",
+            "summary": "Native page-context schema and owner-adapter transport qualified independently of the detector. The source-reviewed `page-122-001` differentiator returned false-safe `pass` for a crop containing the neighboring Sophie..."
           },
           "story_ids": [
             "135",
@@ -12939,9 +12939,9 @@
       "blocker_evidence": "",
       "unblock_condition": "",
       "last_work_log_entry": {
-        "timestamp": "20260905-1115",
-        "date": "2026-09-05",
-        "summary": "GPT-6 Astra page-context follow-on stopped at the first paid differentiator. Exact `gpt-6-astra` medium completed the strict two-image contract but returned `pass` on `page-122-001`, despite describing two oval portra..."
+        "timestamp": "20260926-1330",
+        "date": "2026-09-26",
+        "summary": "Scout 075's separately approved direct Anthropic `claude-opus-5-5` medium evaluation used an isolated current-base worktree and public owner fixtures. Native strict image/page schemas and owner parity qualified. The d..."
       },
       "legacy_build_map_refs": "",
       "metadata_source": "frontmatter",
@@ -12952,12 +12952,12 @@
         "source_path": "docs/stories/story-232-authoritative-golden-model-reevaluation.md",
         "recommended_now": false,
         "posture": "completed",
-        "why_now": "GPT-6 Astra page-context follow-on stopped at the first paid differentiator. Exact `gpt-6-astra` medium completed the strict two-image contract but returned `pass` on `page-122-001`, despite describing two oval portra...",
+        "why_now": "Scout 075's separately approved direct Anthropic `claude-opus-5-5` medium evaluation used an isolated current-base worktree and public owner fixtures. Native strict image/page schemas and owner parity qualified. The d...",
         "last_relevant_action": {
-          "date": "2026-09-05",
+          "date": "2026-09-26",
           "source_type": "story-work-log",
           "source": "docs/stories/story-232-authoritative-golden-model-reevaluation.md",
-          "summary": "GPT-6 Astra page-context follow-on stopped at the first paid differentiator. Exact `gpt-6-astra` medium completed the strict two-image contract but returned `pass` on `page-122-001`, despite describing two oval portra..."
+          "summary": "Scout 075's separately approved direct Anthropic `claude-opus-5-5` medium evaluation used an isolated current-base worktree and public owner fixtures. Native strict image/page schemas and owner parity qualified. The d..."
         }
       }
     },
@@ -13722,6 +13722,14 @@
       },
       "attempts": [
         {
+          "id": "041",
+          "date": "2026-09-26",
+          "status": "failed",
+          "approach": "Direct Anthropic Opus 5.5 medium on frozen integer-coordinate crop detector",
+          "note": "Exact owner-authenticated `claude-opus-5-5` qualified native strict image/schema transport and owner-adapter parity. Image011 passed at `0.9548`, but the fresh full13 had only 12 contract-valid scorer passes; Image037 emitted integer y1=1359 outside 0-1000. The 12 valid rows averaged `0.9177`, below the `>=0.95` target even apart from the contract failure. Full13 cost `$0.281372`; all-call campaign spend was `$0.352940/$2.00`. Fresh Gemini control was not admitted. An independent page-context screen is recorded under the same attempt. No runtime/default change. See `docs/evals/attempts/041-opus55-crop-and-page-context.md`.\n",
+          "retry_when": []
+        },
+        {
           "id": "039",
           "date": "2026-09-22",
           "status": "failed",
@@ -14032,11 +14040,11 @@
         ],
         "why_now": "Gemini 4 or equivalent may push past 0.95 target Golden references cover limited page types; add table-heavy pages",
         "last_relevant_action": {
-          "date": "2026-09-22",
+          "date": "2026-09-26",
           "source_type": "eval-attempt",
           "source": "docs/evals/registry.yaml",
-          "source_id": "039",
-          "summary": "Direct xAI native strict-image/integer-schema and adapter-parity probes qualified with exact served identity and valid usage. The Image011 screen passed the scorer while grouping the seal and signatures, then the froz..."
+          "source_id": "041",
+          "summary": "Exact owner-authenticated `claude-opus-5-5` qualified native strict image/schema transport and owner-adapter parity. Image011 passed at `0.9548`, but the fresh full13 had only 12 contract-valid scorer passes; Image037..."
         }
       }
     },
@@ -14679,6 +14687,14 @@
       },
       "attempts": [
         {
+          "id": "041",
+          "date": "2026-09-26",
+          "status": "failed",
+          "approach": "Independent Opus 5.5 medium strict two-image page-context safety screen",
+          "note": "Native page-context schema and owner-adapter transport qualified independently of the detector. The source-reviewed `page-122-001` differentiator returned false-safe `pass` for a crop containing the neighboring Sophie L'Heureux portrait; golden `fail` was manually reconfirmed against page and crop. This is a contract-valid model-wrong safety failure, not a full22 score. The full22 and fresh GPT-5.5 Responses control were stopped. All-call campaign spend `$0.352940/$2.00`; existing validator and C5 residue remain. See `docs/evals/attempts/041-opus55-crop-and-page-context.md`.\n",
+          "retry_when": []
+        },
+        {
           "id": "001",
           "date": "2026-04-11",
           "status": "partial",
@@ -14888,11 +14904,11 @@
         ],
         "why_now": "Rerun when a materially stronger validator or detector may reduce the current fail-labeled page-context cases. Rerun after any maintained crop/runtime simplification before claiming `trim_layout_text` or bounded capti...",
         "last_relevant_action": {
-          "date": "2026-09-06",
+          "date": "2026-09-26",
           "source_type": "eval-attempt",
           "source": "docs/evals/registry.yaml",
-          "source_id": "023",
-          "summary": "Image011 detector screen failed its grouping requirement after strict vision qualification. Page-context schema, page-122-001 and full22 were not run; capability not measured, adoption not advanced. No page-context sp..."
+          "source_id": "041",
+          "summary": "Native page-context schema and owner-adapter transport qualified independently of the detector. The source-reviewed `page-122-001` differentiator returned false-safe `pass` for a crop containing the neighboring Sophie..."
         }
       }
     },

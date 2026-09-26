@@ -1,0 +1,23 @@
+description: Opus 5.5 frozen page-context projection
+prompts:
+- id: file://../prompts/validate-page-level-crop.js
+  label: page-context
+providers:
+- id: python:../providers/anthropic_opus48_messages.py
+  label: Opus 5.5 strict page-context schema
+  config:
+    model: claude-opus-5-5
+    expected_served_model: claude-opus-5-5
+    thinking: adaptive
+    effort: medium
+    output_contract: page_context_validation
+    max_tokens: 1024
+tests:
+- vars:
+    page_image: file://../input/source-pages-b64/Image121.b64.txt
+    crop_image: file://../input/crop-validation-b64/page-122-001.b64.txt
+    crop_key: page-122-001
+    golden_relpath: golden/crop-page-level-deletion-gate.json
+  assert:
+  - type: python
+    value: file://../scorers/crop_validation_scorer.py

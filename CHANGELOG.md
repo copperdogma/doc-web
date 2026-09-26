@@ -1,3 +1,12 @@
+## [2026-09-26-01] - Measure Opus 5.5 crop and page-context gates
+
+### Added
+- Recorded direct Anthropic Opus 5.5 medium native/adapter qualification and the
+  public-fixture detector and independent page-context safety results. The
+  detector missed its full 13-case contract and quality target; page context
+  made a source-confirmed false-safe judgment. Total all-call cost was
+  $0.352940 under the $2 cap. Runtime defaults and C5 residue remain unchanged.
+
 ## [2026-09-22-01] - Record MiMo V2.6 crop transport stop
 
 ### Added

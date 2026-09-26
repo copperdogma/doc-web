@@ -768,6 +768,23 @@ evals:
         note: "Poor bounding box precision"
 
     attempts:
+      - id: "041"
+        date: 2026-09-26
+        status: failed
+        approach: "Direct Anthropic Opus 5.5 medium on frozen integer-coordinate crop detector"
+        score_before: 0.9703
+        score_after: null
+        note: >
+          Exact owner-authenticated `claude-opus-5-5` qualified native strict
+          image/schema transport and owner-adapter parity. Image011 passed at
+          `0.9548`, but the fresh full13 had only 12 contract-valid scorer
+          passes; Image037 emitted integer y1=1359 outside 0-1000. The 12
+          valid rows averaged `0.9177`, below the `>=0.95` target even apart
+          from the contract failure. Full13 cost `$0.281372`; all-call
+          campaign spend was `$0.352940/$2.00`. Fresh Gemini control was not
+          admitted. An independent page-context screen is recorded under the
+          same attempt. No runtime/default change. See
+          `docs/evals/attempts/041-opus55-crop-and-page-context.md`.
       - id: "039"
         date: 2026-09-22
         status: failed
@@ -2362,6 +2379,22 @@ evals:
           proof: `docs/evals/attempts/034-gpt6-astra-page-context-gate.md`.
 
     attempts:
+      - id: "041"
+        date: 2026-09-26
+        status: failed
+        approach: "Independent Opus 5.5 medium strict two-image page-context safety screen"
+        score_before: 1.0
+        score_after: null
+        note: >
+          Native page-context schema and owner-adapter transport qualified
+          independently of the detector. The source-reviewed `page-122-001`
+          differentiator returned false-safe `pass` for a crop containing the
+          neighboring Sophie L'Heureux portrait; golden `fail` was manually
+          reconfirmed against page and crop. This is a contract-valid
+          model-wrong safety failure, not a full22 score. The full22 and fresh
+          GPT-5.5 Responses control were stopped. All-call campaign spend
+          `$0.352940/$2.00`; existing validator and C5 residue remain. See
+          `docs/evals/attempts/041-opus55-crop-and-page-context.md`.
       - id: "001"
         date: 2026-04-11
         status: partial

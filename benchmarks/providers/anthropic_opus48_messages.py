@@ -17,6 +17,7 @@ import hashlib
 import json
 import math
 import os
+from pathlib import Path
 from typing import Any
 
 import httpx
@@ -56,6 +57,15 @@ CROP_SCHEMA = {
     "additionalProperties": False,
 }
 
+# Opus 5.5's detector screen uses the owner's 0-1000 integer-coordinate
+# projection. Anthropic enforces the integer type; local validation enforces
+# four coordinates, bounds, and ordering because the API's supported schema
+# subset does not accept all numeric/array constraints.
+INTEGER_CROP_SCHEMA = json.loads(json.dumps(CROP_SCHEMA))
+INTEGER_CROP_SCHEMA["properties"]["images"]["items"]["properties"]["bbox"]["items"] = {
+    "type": "integer"
+}
+
 PAGE_CONTEXT_SCHEMA = {
     "type": "object",
     "properties": {
@@ -70,6 +80,7 @@ PAGE_CONTEXT_SCHEMA = {
 
 OUTPUT_CONTRACTS = {
     "crop_regions": CROP_SCHEMA,
+    "crop_regions_integer": INTEGER_CROP_SCHEMA,
     "page_context_validation": PAGE_CONTEXT_SCHEMA,
 }
 
@@ -309,7 +320,7 @@ def _estimated_cost(token_usage: dict[str, int]) -> float:
     ) / 1_000_000
 
 
-def _validate_crop_regions(payload: Any) -> str | None:
+def _validate_crop_regions(payload: Any, *, integer: bool = False) -> str | None:
     if not isinstance(payload, dict) or set(payload) != {"images"}:
         return "root must contain only the required 'images' field"
     images = payload["images"]
@@ -331,13 +342,15 @@ def _validate_crop_regions(payload: Any) -> str | None:
             return f"images[{index}].bbox must contain four numbers"
         if any(
             isinstance(value, bool)
-            or not isinstance(value, (int, float))
+            or not isinstance(value, int if integer else (int, float))
             or not math.isfinite(value)
             or value < 0
-            or value > 1
+            or value > (1000 if integer else 1)
             for value in bbox
         ):
-            return f"images[{index}].bbox values must be finite numbers from 0 to 1"
+            return f"images[{index}].bbox values must be finite {'integers from 0 to 1000' if integer else 'numbers from 0 to 1'}"
+        if integer and (bbox[0] >= bbox[2] or bbox[1] >= bbox[3]):
+            return f"images[{index}].bbox coordinates must be ordered"
     return None
 
 
@@ -363,6 +376,8 @@ def _contract_error(output: str, output_contract: str) -> str | None:
         return f"invalid JSON: {type(exc).__name__}"
     if output_contract == "crop_regions":
         return _validate_crop_regions(payload)
+    if output_contract == "crop_regions_integer":
+        return _validate_crop_regions(payload, integer=True)
     return _validate_page_context(payload)
 
 
@@ -392,6 +407,13 @@ def call_api(prompt: str, options: dict[str, Any], context: dict[str, Any]):
             json=body,
             timeout=timeout,
         )
+        raw_dir = os.environ.get("ANTHROPIC_MESSAGES_RAW_ENVELOPE_DIR")
+        if raw_dir:
+            raw_bytes = response.content
+            raw_hash = hashlib.sha256(raw_bytes).hexdigest()
+            raw_path = Path(raw_dir)
+            raw_path.mkdir(parents=True, exist_ok=True)
+            (raw_path / f"{raw_hash}.json").write_bytes(raw_bytes)
         response.raise_for_status()
         parsed = response.json()
         if not isinstance(parsed, dict):
@@ -414,6 +436,7 @@ def call_api(prompt: str, options: dict[str, Any], context: dict[str, Any]):
         "response_id": data.get("id"),
         "request_id": response.headers.get("request-id")
         or response.headers.get("x-request-id"),
+        "raw_response_sha256": raw_hash if raw_dir else None,
     }
     result: dict[str, Any] = {
         "metadata": {key: value for key, value in metadata.items() if value is not None}
