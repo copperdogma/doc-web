@@ -180,6 +180,16 @@ parameters:
     default: null
     description: Optional vision model for box rescue (e.g., gpt-5.1)
 
+  - name: rescue_reasoning_effort
+    type: string
+    default: none
+    description: Reasoning effort for strict OpenAI detector calls
+
+  - name: rescue_caption_model
+    type: string
+    default: null
+    description: Optional separate vision model for caption boxes
+
   - name: rescue_temperature
     type: float
     default: 0.0
@@ -503,6 +513,8 @@ command: |
     {critical_graphics_manifest:+--critical-graphics-manifest {critical_graphics_manifest}} \
     --padding-percent={padding_percent} \
     {rescue_model:+--rescue-model {rescue_model}} \
+    --rescue-reasoning-effort={rescue_reasoning_effort} \
+    {rescue_caption_model:+--rescue-caption-model {rescue_caption_model}} \
     --rescue-temperature={rescue_temperature} \
     --rescue-max-tokens={rescue_max_tokens} \
     --rescue-max-pages={rescue_max_pages} \

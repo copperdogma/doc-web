@@ -257,6 +257,32 @@ def _encode_image(path: str) -> str:
     return f"data:image/{ext};base64,{b64}"
 
 
+def _array_box(values: list | tuple, *, swap: bool = False) -> dict:
+    if swap:
+        return {"x0": values[1], "y0": values[0], "x1": values[3], "y1": values[2]}
+    return {"x0": values[0], "y0": values[1], "x1": values[2], "y1": values[3]}
+
+
+def _caption_alignment(image_box: dict, caption_box: dict) -> float:
+    """Use the prompt's above/below caption relation to orient array boxes."""
+    image_width = float(image_box["x1"]) - float(image_box["x0"])
+    caption_width = float(caption_box["x1"]) - float(caption_box["x0"])
+    if image_width <= 0 or caption_width <= 0:
+        return -1.0
+    overlap = max(
+        0.0,
+        min(float(image_box["x1"]), float(caption_box["x1"]))
+        - max(float(image_box["x0"]), float(caption_box["x0"])),
+    )
+    horizontal = overlap / min(image_width, caption_width)
+    caption_y0 = float(caption_box["y0"])
+    caption_y1 = float(caption_box["y1"])
+    image_y0 = float(image_box["y0"])
+    image_y1 = float(image_box["y1"])
+    outside_vertically = caption_y0 >= image_y1 or caption_y1 <= image_y0
+    return horizontal + (0.2 if outside_vertically else 0.0)
+
+
 def _call_vlm_boxes(
     model: str,
     image_data: str,
@@ -266,6 +292,7 @@ def _call_vlm_boxes(
     max_tokens: int,
     timeout_seconds: Optional[float],
     extra_instructions: Optional[str] = None,
+    reasoning_effort: str = "none",
 ) -> Tuple[List[Dict[str, float]], Optional[Any], Optional[str], str]:
     raw = ""
     usage = None
@@ -299,7 +326,10 @@ def _call_vlm_boxes(
     else:
         if OpenAI is None:  # pragma: no cover
             raise RuntimeError("openai package required") from _OPENAI_IMPORT_ERROR
-        client = OpenAI(timeout=timeout_seconds) if timeout_seconds else OpenAI()
+        openai_options = {"timeout": timeout_seconds} if timeout_seconds else {}
+        if os.environ.get("CROP_EVAL_DISABLE_SDK_RETRIES") == "1":
+            openai_options["max_retries"] = 0
+        client = OpenAI(**openai_options)
         if hasattr(client, "responses") and uses_strict_crop_responses(model):
             result = call_openai_crop_vision(
                 client=client,
@@ -309,6 +339,7 @@ def _call_vlm_boxes(
                 image_data=image_data,
                 max_output_tokens=max_tokens,
                 contract="detector",
+                reasoning_effort=reasoning_effort,
             )
             raw = result.raw_json_array
             usage = result.usage
@@ -382,20 +413,29 @@ def _call_vlm_boxes(
                         img_box = item
                         cap_box = None
                         schema_mode = False
-                # Handle array format from models.
-                # Gemini returns arrays as [y0, x0, y1, x1] (native format) even
-                # when asked for [x0, y0, x1, y1]. Swap axes for Gemini arrays.
+                # Gemini sometimes emits explicit image_box arrays in x/y order
+                # and sometimes in native y/x order. The prompt requests keyed
+                # coordinates, so array responses require a caption relation
+                # that distinguishes the two interpretations. Ambiguous arrays
+                # fail closed to the existing CV fallback.
+                swap_array_axes = False
+                if _is_gemini_model(model) and isinstance(img_box, (list, tuple)):
+                    if len(img_box) != 4 or not isinstance(cap_box, (list, tuple)) or len(cap_box) != 4:
+                        raise ValueError("ambiguous Gemini image_box array")
+                    normal_image, normal_caption = _array_box(img_box), _array_box(cap_box)
+                    swapped_image, swapped_caption = (
+                        _array_box(img_box, swap=True),
+                        _array_box(cap_box, swap=True),
+                    )
+                    normal_score = _caption_alignment(normal_image, normal_caption)
+                    swapped_score = _caption_alignment(swapped_image, swapped_caption)
+                    if abs(normal_score - swapped_score) <= 0.1:
+                        raise ValueError("ambiguous Gemini array orientation")
+                    swap_array_axes = swapped_score > normal_score
                 if isinstance(img_box, (list, tuple)) and len(img_box) == 4:
-                    if _is_gemini_model(model):
-                        # Gemini native: [y0, x0, y1, x1] → swap to [x0, y0, x1, y1]
-                        img_box = {"x0": img_box[1], "y0": img_box[0], "x1": img_box[3], "y1": img_box[2]}
-                    else:
-                        img_box = {"x0": img_box[0], "y0": img_box[1], "x1": img_box[2], "y1": img_box[3]}
+                    img_box = _array_box(img_box, swap=swap_array_axes)
                 if isinstance(cap_box, (list, tuple)) and len(cap_box) == 4:
-                    if _is_gemini_model(model):
-                        cap_box = {"x0": cap_box[1], "y0": cap_box[0], "x1": cap_box[3], "y1": cap_box[2]}
-                    else:
-                        cap_box = {"x0": cap_box[0], "y0": cap_box[1], "x1": cap_box[2], "y1": cap_box[3]}
+                    cap_box = _array_box(cap_box, swap=swap_array_axes)
                 try:
                     x0 = float(img_box.get("x0"))
                     y0 = float(img_box.get("y0"))
@@ -471,7 +511,10 @@ def _call_vlm_caption_boxes(
     else:
         if OpenAI is None:  # pragma: no cover
             raise RuntimeError("openai package required") from _OPENAI_IMPORT_ERROR
-        client = OpenAI(timeout=timeout_seconds) if timeout_seconds else OpenAI()
+        openai_options = {"timeout": timeout_seconds} if timeout_seconds else {}
+        if os.environ.get("CROP_EVAL_DISABLE_SDK_RETRIES") == "1":
+            openai_options["max_retries"] = 0
+        client = OpenAI(**openai_options)
         if hasattr(client, "responses") and uses_strict_crop_responses(model):
             result = call_openai_crop_vision(
                 client=client,
@@ -4296,6 +4339,8 @@ def crop_illustrations_guided(
     critical_graphics_manifest: Optional[str] = None,
     padding_percent: float = 0.05,
     rescue_model: Optional[str] = None,
+    rescue_reasoning_effort: str = "none",
+    rescue_caption_model: Optional[str] = None,
     rescue_temperature: float = 0.0,
     rescue_max_tokens: int = 800,
     rescue_max_pages: int = 20,
@@ -4745,10 +4790,10 @@ def crop_illustrations_guided(
                     rescue_temperature,
                     rescue_max_tokens,
                     rescue_timeout_seconds,
+                    reasoning_effort=rescue_reasoning_effort,
                 )
-                # Fix Gemini's axis-swap tendency: [y,x,y,x] → [x,y,x,y]
-                if _is_gemini_model(rescue_model) and vlm_boxes:
-                    vlm_boxes = _auto_fix_axis_swap(vlm_boxes, w, h)
+                # _call_vlm_boxes already normalizes native Gemini y/x arrays;
+                # explicit image_box coordinates must not be reinterpreted.
                 debug_dir = os.environ.get("CROP_VLM_DEBUG_DIR")
                 if debug_dir:
                     ensure_dir(debug_dir)
@@ -4798,7 +4843,8 @@ def crop_illustrations_guided(
         if boxes and (trim_caption or (split_when_missing and len(boxes) < expected_count)):
             img_gray = cv2.imread(str(source_image_path), cv2.IMREAD_GRAYSCALE)
 
-        if rescue_caption_second_pass and rescue_model and boxes:
+        caption_model = rescue_caption_model or rescue_model
+        if rescue_caption_second_pass and caption_model and boxes:
             try:
                 if img_gray is None:
                     img_gray = cv2.imread(str(source_image_path), cv2.IMREAD_GRAYSCALE)
@@ -4807,7 +4853,7 @@ def crop_illustrations_guided(
                         image_data = _encode_image(source_image_path)
                     h, w = img_gray.shape[:2]
                     cap_boxes, _, caption_request_id, _ = _call_vlm_caption_boxes(
-                        rescue_model,
+                        caption_model,
                         image_data,
                         expected_count=len(boxes),
                         alt_hints=ocr_descriptions if rescue_include_alt else None,
@@ -4816,9 +4862,9 @@ def crop_illustrations_guided(
                         timeout_seconds=rescue_timeout_seconds,
                     )
                     for box in boxes:
-                        box["_caption_model"] = rescue_model
+                        box["_caption_model"] = caption_model
                         box["_caption_provider"] = (
-                            "google" if _is_gemini_model(rescue_model) else "openai"
+                            "google" if _is_gemini_model(caption_model) else "openai"
                         )
                         box["_caption_request_id"] = caption_request_id
                     normalized_caps = []
@@ -5414,6 +5460,17 @@ def main():
         help="Optional vision model to rescue image boxes when CV misses (e.g., gpt-5.1)"
     )
     parser.add_argument(
+        "--rescue-reasoning-effort",
+        default="none",
+        choices=["none", "low", "medium", "high"],
+        help="Reasoning effort for strict OpenAI detector calls (default none)",
+    )
+    parser.add_argument(
+        "--rescue-caption-model",
+        default=None,
+        help="Optional separate vision model for caption boxes",
+    )
+    parser.add_argument(
         "--rescue-temperature",
         type=float,
         default=0.0,
@@ -5784,6 +5841,8 @@ def main():
         critical_graphics_manifest=args.critical_graphics_manifest,
         padding_percent=args.padding_percent,
         rescue_model=args.rescue_model,
+        rescue_reasoning_effort=args.rescue_reasoning_effort,
+        rescue_caption_model=args.rescue_caption_model,
         rescue_temperature=args.rescue_temperature,
         rescue_max_tokens=args.rescue_max_tokens,
         rescue_max_pages=args.rescue_max_pages,

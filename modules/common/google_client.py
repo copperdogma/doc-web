@@ -7,6 +7,9 @@ logs token usage via log_llm_usage().
 from __future__ import annotations
 
 import base64
+import hashlib
+import os
+from pathlib import Path
 from typing import Any, Mapping, Optional, Tuple
 
 from doc_web.env import build_doc_web_env, get_doc_web_api_key
@@ -122,6 +125,19 @@ class GeminiVisionClient:
             ),
         )
 
+        raw_dir = os.environ.get("GEMINI_CROP_RAW_ENVELOPE_DIR")
+        if raw_dir:
+            dump = getattr(resp, "model_dump_json", None)
+            if not callable(dump):
+                raise RuntimeError("Gemini crop response cannot be retained before parsing")
+            raw_envelope = dump().encode("utf-8")
+            destination = Path(raw_dir)
+            destination.mkdir(parents=True, exist_ok=True, mode=0o700)
+            raw_path = destination / f"{hashlib.sha256(raw_envelope).hexdigest()}.json"
+            if not raw_path.exists():
+                raw_path.write_bytes(raw_envelope)
+                raw_path.chmod(0o600)
+
         raw = resp.text or ""
         response_id = getattr(resp, "response_id", None)
 
@@ -139,5 +155,21 @@ class GeminiVisionClient:
             completion_tokens=completion_tokens,
             provider="google",
         )
+
+        served_model = getattr(resp, "model_version", None)
+        if served_model != model:
+            raise RuntimeError(
+                f"Gemini crop response served {served_model!r}; expected {model!r}"
+            )
+        candidates = getattr(resp, "candidates", None) or []
+        finish_reasons = [
+            getattr(getattr(candidate, "finish_reason", None), "value", None)
+            or str(getattr(candidate, "finish_reason", ""))
+            for candidate in candidates
+        ]
+        if finish_reasons != ["STOP"]:
+            raise RuntimeError(
+                f"Gemini crop response did not finish normally: {finish_reasons!r}"
+            )
 
         return raw, usage_meta, response_id

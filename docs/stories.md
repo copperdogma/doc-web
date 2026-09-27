@@ -124,6 +124,8 @@ Grouped by primary `spec:N` category. Stories without category refs remain in an
 | 209 | Widen C5 Crop Deletion Gate to Page-Level Proof | High | Done | 183, 198, 207 | [story-209](stories/story-209-crop-c5-page-level-deletion-gate.md) |
 | 231 | Integrate GPT-5.6 Luna into the Production Crop Detector Route | High | Done | 198, 207, 209 | [story-231](stories/story-231-luna-production-crop-detector-route.md) |
 | 232 | Authoritative golden model reevaluation | High | Done | 207, 209 | [story-232](stories/story-232-authoritative-golden-model-reevaluation.md) |
+| 235 | GPT-6 Sol and Luna crop evaluation | Medium | Done | 207, 209, 232 | [story-235](stories/story-235-gpt6-sol-luna-crop-evaluation.md) |
+| 236 | GPT-6 Luna detector-only runtime qualification | Medium | Done | 231, 232, 235 | [story-236](stories/story-236-gpt6-luna-detector-runtime-qualification.md) |
 
 ### spec:5 — Document Consistency Planning
 

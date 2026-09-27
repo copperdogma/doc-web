@@ -49,7 +49,7 @@ evals:
     config: benchmarks/tasks/image-crop-extraction.yaml
     scorer: benchmarks/scorers/image_crop_scorer.py
     golden: benchmarks/golden/
-    story_refs: ["133", "183", "207", "232"]
+    story_refs: ["133", "183", "207", "232", "235", "236"]
     category_refs: ["spec:4", "spec:8"]
     compromise_refs: ["C4"]
     spec_compromise: C4
@@ -60,6 +60,45 @@ evals:
       pass_rate: 0.90
 
     scores:
+      - model: "GPT-6 Luna Responses (medium, strict integer crop schema)"
+        metrics: {overall: 0.987554, pass_rate: 1.0, cases_total: 13, latency_ms: 3077}
+        cost_usd: 0.00582015
+        cost_estimated: true
+        measured: 2026-09-26
+        git_sha: 92f341e+attempt042-uncommitted
+        result_file: benchmarks/results/gpt6-sol-luna-20260926/luna-detector-full.json
+        evidence_status: current-bounded-detector-quality-leader-production-unqualified
+        note: >
+          Fresh no-cache full13 versus fresh Gemini 3 Flash passed 13/13 with
+          zero transport errors. Bounded detector mean 0.987554 exceeded fresh
+          Gemini 0.961238, but the independent page-context screen returned a
+          source-verified false-safe pass on page-122-001. This detector result
+          does not promote Luna or remove C5. See Attempt 042.
+      - model: "GPT-6 Sol Responses (medium, strict integer crop schema)"
+        metrics: {overall: 0.978308, pass_rate: 1.0, cases_total: 13, latency_ms: 3404}
+        cost_usd: 0.110163
+        cost_estimated: true
+        measured: 2026-09-26
+        git_sha: 92f341e+attempt042-uncommitted
+        result_file: benchmarks/results/gpt6-sol-luna-20260926/sol-detector-full.json
+        evidence_status: current-bounded-detector-pass-production-unqualified
+        note: >
+          Fresh no-cache full13 versus fresh Gemini 3 Flash passed 13/13 with
+          zero transport errors. Bounded detector mean 0.978308 exceeded fresh
+          Gemini 0.961238, but the independent page-context screen returned a
+          source-verified false-safe pass on page-122-001. No default change.
+          See Attempt 042.
+      - model: "Gemini 3 Flash (fresh GPT-6 campaign control)"
+        metrics: {overall: 0.961238, pass_rate: 1.0, cases_total: 13, latency_ms: 6805}
+        cost_usd: 0.0562295
+        cost_estimated: true
+        measured: 2026-09-26
+        git_sha: 92f341e+attempt042-uncommitted
+        result_file: benchmarks/results/gpt6-sol-luna-20260926/gemini-detector-full.json
+        evidence_status: fresh-same-input-incumbent-control
+        note: >
+          Unchanged maintained Gemini 3 Flash conservative-count control on
+          all 13 public cases; zero errors. See Attempt 042.
       - model: "GPT-6 Astra Responses (medium reasoning, strict crop schema)"
         metrics: {overall: 0.980392, pass_rate: 1.0, cases_total: 13, latency_ms: 4134}
         latency_ms: 4134
@@ -768,6 +807,37 @@ evals:
         note: "Poor bounding box precision"
 
     attempts:
+      - id: "043"
+        date: 2026-09-26
+        status: failed
+        approach: "Exact GPT-6 Luna detector with Gemini caption assist in paired four-page owner driver runs"
+        score_before: 0.961238
+        score_after: null
+        note: >
+          Luna retained its Attempt 042 full13 bounded detector lead, but its
+          production-seam page-12 raw box grouped the seal/signatures, clipped
+          material content and included printed officer labels. The paired
+          Gemini control also retained some officer labels, so neither arm
+          discharges C5. Diagnostic Gemini caption truncation was preserved
+          separately; it did not cause Luna's raw geometry failure. Keep the
+          maintained Gemini detector and GPT-5.5 page regression provider;
+          no default change. Forty-two new direct responses cost $0.181080085;
+          the combined Attempt 042+043 campaign cost $0.382724960/$3.00.
+          See docs/evals/attempts/043-gpt6-luna-detector-runtime-qualification.md.
+      - id: "042"
+        date: 2026-09-26
+        status: succeeded
+        approach: "Fresh direct GPT-6 Sol/Luna medium detector comparison with Gemini 3 Flash"
+        score_before: 0.961238
+        score_after: 0.987554
+        note: >
+          Both exact models passed native strict integer-image qualification,
+          Image011 and full13 without contract errors. Sol scored 0.978308
+          and Luna 0.987554, each 13/13, against fresh Gemini 3 Flash
+          0.961238 / 13/13. Luna leads bounded detector quality and cost.
+          Both separate page-context screens made a source-verified false-safe
+          judgment, so this does not qualify a runtime/default change. The
+          combined campaign used $0.201645 of its $3.00 cap. See Attempt 042.
       - id: "041"
         date: 2026-09-26
         status: failed
@@ -1791,7 +1861,7 @@ evals:
     config: benchmarks/tasks/crop-page-level-deletion-gate.yaml
     scorer: benchmarks/scorers/crop_validation_scorer.py
     golden: benchmarks/golden/crop-page-level-deletion-gate.json
-    story_refs: ["209", "232"]
+    story_refs: ["209", "232", "235"]
     category_refs: ["spec:4", "spec:8"]
     compromise_refs: ["C5"]
     spec_compromise: C5
@@ -1824,6 +1894,32 @@ evals:
         history are recorded in `benchmarks/golden/crop-eval-provenance.json`.
 
     scores:
+      - model: "GPT-6 Sol Responses (none, page-context screen)"
+        metrics: {targeted_pass: 0, targeted_cases: 1, false_safe: 1, latency_ms: 4612}
+        cost_usd: 0.016351
+        cost_estimated: true
+        measured: 2026-09-26
+        git_sha: 92f341e+attempt042-uncommitted
+        result_file: benchmarks/results/gpt6-sol-luna-20260926/sol-page-screen.json
+        evidence_status: targeted-safety-failure-full22-not-measured
+        note: >
+          Exact direct strict-schema page-122-001 call returned pass against the
+          source-reviewed fail golden. The crop includes the separate Sophie
+          L'Heureux portrait. Stop gate barred full22 and fresh GPT-5.5 control;
+          this is not a 22-case score. See Attempt 042.
+      - model: "GPT-6 Luna Responses (none, page-context screen)"
+        metrics: {targeted_pass: 0, targeted_cases: 1, false_safe: 1, latency_ms: 4199}
+        cost_usd: 0.00082205
+        cost_estimated: true
+        measured: 2026-09-26
+        git_sha: 92f341e+attempt042-uncommitted
+        result_file: benchmarks/results/gpt6-sol-luna-20260926/luna-page-screen.json
+        evidence_status: targeted-safety-failure-full22-not-measured
+        note: >
+          Exact direct strict-schema page-122-001 call returned pass against the
+          source-reviewed fail golden. The crop includes the separate Sophie
+          L'Heureux portrait. Stop gate barred full22 and fresh GPT-5.5 control;
+          this is not a 22-case score. See Attempt 042.
       - model: "Gemini 3.6 Flash (page-context prompt)"
         metrics:
           overall: 0.9545
@@ -2379,6 +2475,19 @@ evals:
           proof: `docs/evals/attempts/034-gpt6-astra-page-context-gate.md`.
 
     attempts:
+      - id: "042"
+        date: 2026-09-26
+        status: failed
+        approach: "Independent GPT-6 Sol/Luna none-reasoning page-122-001 safety screens"
+        score_before: 1.0
+        score_after: null
+        note: >
+          Both direct strict two-image responses returned false-safe pass for
+          the human-fail crop containing the separate Sophie portrait. This
+          was visually confirmed against the source page. Each candidate's
+          page lane stopped at one case; full22 and fresh GPT-5.5 control were
+          not measured. The detector full13 comparisons continued separately.
+          The combined campaign used $0.201645 of its $3.00 cap. See Attempt 042.
       - id: "041"
         date: 2026-09-26
         status: failed

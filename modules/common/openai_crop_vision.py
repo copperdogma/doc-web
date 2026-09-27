@@ -2,9 +2,12 @@
 
 from __future__ import annotations
 
+import hashlib
 import json
 import math
+import os
 from dataclasses import dataclass
+from pathlib import Path
 from typing import Any, Literal
 
 
@@ -95,7 +98,23 @@ class OpenAICropVisionResult:
 def uses_strict_crop_responses(model: str) -> bool:
     """Return whether this model uses the strict production crop contract."""
 
-    return model.startswith("gpt-5.6-")
+    return model.startswith(("gpt-5.6-", "gpt-6-"))
+
+
+def _retain_raw_response(response: Any) -> None:
+    raw_dir = os.environ.get("OPENAI_CROP_RAW_ENVELOPE_DIR")
+    if not raw_dir:
+        return
+    dump = getattr(response, "model_dump_json", None)
+    if not callable(dump):
+        raise RuntimeError("OpenAI crop response cannot be retained before parsing")
+    raw = dump().encode("utf-8")
+    destination = Path(raw_dir)
+    destination.mkdir(parents=True, exist_ok=True, mode=0o700)
+    path = destination / f"{hashlib.sha256(raw).hexdigest()}.json"
+    if not path.exists():
+        path.write_bytes(raw)
+        path.chmod(0o600)
 
 
 def _extract_output_text(response: Any) -> str:
@@ -204,6 +223,7 @@ def call_openai_crop_vision(
     image_data: str,
     max_output_tokens: int,
     contract: ContractName,
+    reasoning_effort: str = "none",
 ) -> OpenAICropVisionResult:
     """Call OpenAI Responses with a strict production crop contract."""
 
@@ -212,7 +232,7 @@ def call_openai_crop_vision(
     )
     response = client.responses.create(
         model=model,
-        reasoning={"effort": "none"},
+        reasoning={"effort": reasoning_effort},
         max_output_tokens=max_output_tokens,
         store=False,
         text={"format": response_format},
@@ -230,6 +250,8 @@ def call_openai_crop_vision(
             },
         ],
     )
+
+    _retain_raw_response(response)
 
     status = getattr(response, "status", None)
     served_model = getattr(response, "model", None)

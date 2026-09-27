@@ -38,9 +38,11 @@ def _response(output_text: str, **overrides):
     return SimpleNamespace(**values)
 
 
-def test_strict_route_is_scoped_to_gpt56_models():
+def test_strict_route_is_scoped_to_supported_gpt_models():
     assert uses_strict_crop_responses("gpt-5.6-luna") is True
     assert uses_strict_crop_responses("gpt-5.6-terra") is True
+    assert uses_strict_crop_responses("gpt-6-luna") is True
+    assert uses_strict_crop_responses("gpt-6-sol") is True
     assert uses_strict_crop_responses("gpt-5.1") is False
     assert uses_strict_crop_responses("gemini-3-flash-preview") is False
 
@@ -69,6 +71,38 @@ def test_detector_request_is_strict_private_and_has_no_temperature():
     assert client.responses.kwargs["reasoning"] == {"effort": "none"}
     assert client.responses.kwargs["text"]["format"] == DETECTOR_RESPONSE_FORMAT
     assert "temperature" not in client.responses.kwargs
+
+
+def test_gpt6_detector_medium_reasoning_retains_raw_before_validation(tmp_path, monkeypatch):
+    class _RawResponse:
+        id = "resp-crop-456"
+        model = "gpt-6-luna"
+        status = "completed"
+        incomplete_details = None
+        usage = SimpleNamespace(input_tokens=100, output_tokens=25)
+        output_text = '{"regions":[]}'
+
+        def model_dump_json(self):
+            return '{"id":"resp-crop-456","model":"gpt-6-luna","status":"completed"}'
+
+    monkeypatch.setenv("OPENAI_CROP_RAW_ENVELOPE_DIR", str(tmp_path))
+    client = _FakeClient(_RawResponse())
+    result = call_openai_crop_vision(
+        client=client,
+        model="gpt-6-luna",
+        system_prompt="detect",
+        user_text="none",
+        image_data="data:image/jpeg;base64,abc",
+        max_output_tokens=8192,
+        contract="detector",
+        reasoning_effort="medium",
+    )
+
+    assert result.served_model == "gpt-6-luna"
+    assert client.responses.kwargs["reasoning"] == {"effort": "medium"}
+    assert client.responses.kwargs["store"] is False
+    assert "temperature" not in client.responses.kwargs
+    assert len(list(tmp_path.glob("*.json"))) == 1
 
 
 def test_caption_request_uses_caption_schema_and_normalizes_array():

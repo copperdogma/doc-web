@@ -1,3 +1,32 @@
+## [2026-09-26-03] - Qualify GPT-6 Luna crop runtime seam (Story 236)
+
+### Added
+- Recorded paired same-input four-page owner driver artifacts and 42 complete
+  provider responses. Luna retained the bounded detector benchmark lead but its
+  page-12 raw crop clipped the seal/signatures and included printed labels, so
+  Gemini remains the runtime detector. The fresh Gemini control also retained
+  some officer labels; C5 remains open. Attempt 043 cost an estimated
+  $0.181080085, bringing the combined campaign to $0.382724960/$3.00.
+
+### Changed
+- Added optional strict GPT-6 detector reasoning and split Gemini caption
+  routing, with fail-closed Gemini finish/identity checks and raw-response
+  retention. Maintained recipes and defaults remain unchanged.
+
+## [2026-09-26-02] - Compare GPT-6 Sol and Luna crop gates (Story 235)
+
+### Added
+- Recorded exact direct Responses qualification, fresh 13-page detector
+  comparison with Gemini 3 Flash, and independent page-context safety screens.
+  Luna led bounded detector quality and cost, but both candidates made a
+  source-confirmed false-safe page judgment; runtime defaults and C5 residue
+  remain unchanged. All calls cost an estimated $0.201645 under the $3 cap.
+
+### Changed
+- The OpenAI Responses eval adapter preserves complete raw envelopes and prices
+  cache-write tokens separately. The crop coverage summary now identifies
+  Luna's bounded detector score as production-unqualified.
+
 ## [2026-09-26-01] - Measure Opus 5.5 crop and page-context gates
 
 ### Added

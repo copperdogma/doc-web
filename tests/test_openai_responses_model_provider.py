@@ -92,6 +92,17 @@ def test_openai_responses_model_uses_cached_input_price(monkeypatch):
     assert cost == 1.31
 
 
+def test_openai_responses_model_prices_cache_writes_separately(monkeypatch):
+    provider = _load_provider()
+    monkeypatch.setenv("OPENAI_RESPONSES_INPUT_PRICE_PER_1M", "2")
+    monkeypatch.setenv("OPENAI_RESPONSES_CACHED_INPUT_PRICE_PER_1M", "0.2")
+    monkeypatch.setenv("OPENAI_RESPONSES_CACHE_WRITE_PRICE_PER_1M", "2.5")
+    monkeypatch.setenv("OPENAI_RESPONSES_OUTPUT_PRICE_PER_1M", "10")
+    usage = {"prompt": 1_000_000, "cached": 200_000, "cache_write": 300_000,
+             "completion": 100_000, "total": 1_100_000}
+    assert provider._estimated_cost(usage) == 2.79
+
+
 def test_openai_responses_model_rejects_lossy_prompt_normalization():
     provider = _load_provider()
     prompt = json.dumps(
@@ -123,6 +134,23 @@ def test_openai_responses_model_rejects_non_positive_crop_boxes():
     )
 
     assert error == "images[0].bbox must have positive width and height"
+
+
+def test_openai_responses_model_enforces_integer_crop_projection():
+    provider = _load_provider()
+    body = provider._build_body(
+        "inspect",
+        {"config": {"model": "gpt-6-luna", "reasoning_effort": "medium",
+                    "output_contract": "crop_regions_integer"}},
+    )
+    bbox_items = body["text"]["format"]["schema"]["properties"]["images"][
+        "items"
+    ]["properties"]["bbox"]["items"]
+    assert bbox_items == {"type": "integer", "minimum": 0, "maximum": 1000}
+    assert provider._contract_error(
+        '{"images":[{"description":"bad","bbox":[0,0,1200,900]}]}',
+        "crop_regions_integer",
+    ) == "images[0].bbox values must be finite integers from 0 to 1000"
 
 
 def test_openai_responses_model_requires_completed_exact_contract_response(monkeypatch):
@@ -171,4 +199,5 @@ def test_openai_responses_model_requires_completed_exact_contract_response(monke
         "completion": 10,
         "total": 110,
         "cached": 20,
+        "cache_write": 0,
     }

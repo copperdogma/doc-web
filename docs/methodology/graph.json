@@ -338,7 +338,9 @@
           "226",
           "227",
           "231",
-          "232"
+          "232",
+          "235",
+          "236"
         ],
         "adr_ids": [],
         "eval_ids": [
@@ -594,7 +596,9 @@
           "225",
           "226",
           "231",
-          "232"
+          "232",
+          "235",
+          "236"
         ],
         "adr_ids": [
           "ADR-002"
@@ -1118,7 +1122,9 @@
           "226",
           "227",
           "231",
-          "232"
+          "232",
+          "235",
+          "236"
         ],
         "eval_ids": [
           "image-crop-extraction",
@@ -1140,8 +1146,8 @@
             "date": "2026-09-26",
             "source_type": "eval-attempt",
             "source": "docs/evals/registry.yaml",
-            "source_id": "041",
-            "summary": "Exact owner-authenticated `claude-opus-5-5` qualified native strict image/schema transport and owner-adapter parity. Image011 passed at `0.9548`, but the fresh full13 had only 12 contract-valid scorer passes; Image037..."
+            "source_id": "043",
+            "summary": "Luna retained its Attempt 042 full13 bounded detector lead, but its production-seam page-12 raw box grouped the seal/signatures, clipped material content and included printed officer labels. The paired Gemini control..."
           },
           "story_ids": [
             "135",
@@ -1153,7 +1159,9 @@
             "226",
             "227",
             "231",
-            "232"
+            "232",
+            "235",
+            "236"
           ],
           "eval_ids": [
             "image-crop-extraction",
@@ -1179,7 +1187,9 @@
           "209",
           "226",
           "231",
-          "232"
+          "232",
+          "235",
+          "236"
         ],
         "eval_ids": [
           "crop-validation",
@@ -1202,8 +1212,8 @@
             "date": "2026-09-26",
             "source_type": "eval-attempt",
             "source": "docs/evals/registry.yaml",
-            "source_id": "041",
-            "summary": "Native page-context schema and owner-adapter transport qualified independently of the detector. The source-reviewed `page-122-001` differentiator returned false-safe `pass` for a crop containing the neighboring Sophie..."
+            "source_id": "042",
+            "summary": "Both direct strict two-image responses returned false-safe pass for the human-fail crop containing the separate Sophie portrait. This was visually confirmed against the source page. Each candidate's page lane stopped..."
           },
           "story_ids": [
             "135",
@@ -1214,7 +1224,9 @@
             "209",
             "226",
             "231",
-            "232"
+            "232",
+            "235",
+            "236"
           ],
           "eval_ids": [
             "crop-validation",
@@ -13082,6 +13094,132 @@
           "summary": ""
         }
       }
+    },
+    {
+      "id": "235",
+      "title": "GPT-6 Sol and Luna crop evaluation",
+      "path": "docs/stories/story-235-gpt6-sol-luna-crop-evaluation.md",
+      "status": "Done",
+      "priority": "Medium",
+      "ideal_refs": [
+        "Eval Before Build",
+        "Fidelity to Source"
+      ],
+      "spec_refs": [
+        "C4",
+        "C5",
+        "spec:4",
+        "spec:8"
+      ],
+      "decision_refs": [],
+      "adr_ids": [],
+      "depends_on": [
+        "207",
+        "209",
+        "232"
+      ],
+      "category_refs": [
+        "spec:4",
+        "spec:8"
+      ],
+      "compromise_refs": [
+        "C4",
+        "C5"
+      ],
+      "input_coverage_refs": [
+        "image-directory-scans",
+        "scanned-pdf-tables"
+      ],
+      "architecture_domains": [
+        "illustration-extraction"
+      ],
+      "roadmap_tags": [
+        "model-evaluation"
+      ],
+      "blocker_summary": "",
+      "blocker_evidence": "",
+      "unblock_condition": "",
+      "last_work_log_entry": null,
+      "legacy_build_map_refs": "",
+      "metadata_source": "frontmatter",
+      "missing_frontmatter_keys": [],
+      "actionability": {
+        "source_kind": "story",
+        "source_id": "235",
+        "source_path": "docs/stories/story-235-gpt6-sol-luna-crop-evaluation.md",
+        "recommended_now": false,
+        "posture": "completed",
+        "why_now": "",
+        "last_relevant_action": {
+          "date": null,
+          "source_type": "story-status",
+          "source": "docs/stories/story-235-gpt6-sol-luna-crop-evaluation.md",
+          "summary": ""
+        }
+      }
+    },
+    {
+      "id": "236",
+      "title": "GPT-6 Luna detector-only runtime qualification",
+      "path": "docs/stories/story-236-gpt6-luna-detector-runtime-qualification.md",
+      "status": "Done",
+      "priority": "Medium",
+      "ideal_refs": [
+        "Eval Before Build",
+        "Fidelity to Source"
+      ],
+      "spec_refs": [
+        "C4",
+        "C5",
+        "spec:4",
+        "spec:8"
+      ],
+      "decision_refs": [],
+      "adr_ids": [],
+      "depends_on": [
+        "231",
+        "232",
+        "235"
+      ],
+      "category_refs": [
+        "spec:4",
+        "spec:8"
+      ],
+      "compromise_refs": [
+        "C4",
+        "C5"
+      ],
+      "input_coverage_refs": [
+        "image-directory-scans",
+        "scanned-pdf-tables"
+      ],
+      "architecture_domains": [
+        "illustration-extraction"
+      ],
+      "roadmap_tags": [
+        "model-evaluation"
+      ],
+      "blocker_summary": "",
+      "blocker_evidence": "",
+      "unblock_condition": "",
+      "last_work_log_entry": null,
+      "legacy_build_map_refs": "",
+      "metadata_source": "frontmatter",
+      "missing_frontmatter_keys": [],
+      "actionability": {
+        "source_kind": "story",
+        "source_id": "236",
+        "source_path": "docs/stories/story-236-gpt6-luna-detector-runtime-qualification.md",
+        "recommended_now": false,
+        "posture": "completed",
+        "why_now": "",
+        "last_relevant_action": {
+          "date": null,
+          "source_type": "story-status",
+          "source": "docs/stories/story-236-gpt6-luna-detector-runtime-qualification.md",
+          "summary": ""
+        }
+      }
     }
   ],
   "adrs": [
@@ -13209,7 +13347,9 @@
         "133",
         "183",
         "207",
-        "232"
+        "232",
+        "235",
+        "236"
       ],
       "compromise_refs": [
         "C4"
@@ -13220,6 +13360,54 @@
         "spec:9"
       ],
       "scores": [
+        {
+          "model": "GPT-6 Luna Responses (medium, strict integer crop schema)",
+          "metrics": {
+            "overall": 0.987554,
+            "pass_rate": 1.0,
+            "cases_total": 13,
+            "latency_ms": 3077
+          },
+          "cost_usd": 0.00582015,
+          "cost_estimated": true,
+          "measured": "2026-09-26",
+          "git_sha": "92f341e+attempt042-uncommitted",
+          "result_file": "benchmarks/results/gpt6-sol-luna-20260926/luna-detector-full.json",
+          "evidence_status": "current-bounded-detector-quality-leader-production-unqualified",
+          "note": "Fresh no-cache full13 versus fresh Gemini 3 Flash passed 13/13 with zero transport errors. Bounded detector mean 0.987554 exceeded fresh Gemini 0.961238, but the independent page-context screen returned a source-verified false-safe pass on page-122-001. This detector result does not promote Luna or remove C5. See Attempt 042.\n"
+        },
+        {
+          "model": "GPT-6 Sol Responses (medium, strict integer crop schema)",
+          "metrics": {
+            "overall": 0.978308,
+            "pass_rate": 1.0,
+            "cases_total": 13,
+            "latency_ms": 3404
+          },
+          "cost_usd": 0.110163,
+          "cost_estimated": true,
+          "measured": "2026-09-26",
+          "git_sha": "92f341e+attempt042-uncommitted",
+          "result_file": "benchmarks/results/gpt6-sol-luna-20260926/sol-detector-full.json",
+          "evidence_status": "current-bounded-detector-pass-production-unqualified",
+          "note": "Fresh no-cache full13 versus fresh Gemini 3 Flash passed 13/13 with zero transport errors. Bounded detector mean 0.978308 exceeded fresh Gemini 0.961238, but the independent page-context screen returned a source-verified false-safe pass on page-122-001. No default change. See Attempt 042.\n"
+        },
+        {
+          "model": "Gemini 3 Flash (fresh GPT-6 campaign control)",
+          "metrics": {
+            "overall": 0.961238,
+            "pass_rate": 1.0,
+            "cases_total": 13,
+            "latency_ms": 6805
+          },
+          "cost_usd": 0.0562295,
+          "cost_estimated": true,
+          "measured": "2026-09-26",
+          "git_sha": "92f341e+attempt042-uncommitted",
+          "result_file": "benchmarks/results/gpt6-sol-luna-20260926/gemini-detector-full.json",
+          "evidence_status": "fresh-same-input-incumbent-control",
+          "note": "Unchanged maintained Gemini 3 Flash conservative-count control on all 13 public cases; zero errors. See Attempt 042.\n"
+        },
         {
           "model": "GPT-6 Astra Responses (medium reasoning, strict crop schema)",
           "metrics": {
@@ -13704,23 +13892,38 @@
         }
       ],
       "latest_score": {
-        "model": "Grok 4.7 direct xAI Responses (low reasoning, strict integer crop schema)",
+        "model": "Gemini 3 Flash (fresh GPT-6 campaign control)",
         "metrics": {
-          "overall": 0.745785,
-          "pass_rate": 0.846154,
+          "overall": 0.961238,
+          "pass_rate": 1.0,
           "cases_total": 13,
-          "latency_ms": 8059
+          "latency_ms": 6805
         },
-        "latency_ms": 8059,
-        "cost_usd": 0.11628,
-        "cost_estimated": false,
-        "measured": "2026-09-22",
-        "git_sha": "35798b9+attempt039-uncommitted",
-        "result_file": "benchmarks/results/grok47-20260922/full13.json",
-        "evidence_status": "current-direct-qualified-detector-rejection",
-        "note": "Exact direct `grok-4.7` on xAI Responses, low reasoning, `store=false`, high image detail, native image/strict-integer-schema and owner-adapter parity qualified before the frozen no-cache detector. The single serial campaign completed with zero provider/schema errors but only `11/13` passes and `overall = 0.745785`, so it fails the frozen detector acceptance contract (`13/13`, `>=0.95`). Reported full-detector spend was `$0.116280`, mean latency `8059 ms`, and the entire qualification/screen/detector campaign cost `$0.147314/$0.50`, including an acknowledged duplicate native probe. This bounded campaign qualifies successful-response behavior only; it is not production reliability evidence. Source inspection confirms model-wrong misses: Image001 omits the prominent stylized title artwork entirely; Image059 begins both photo boxes too low, cutting off their upper regions. Image011 now groups the seal and signatures but remains spatially loose. The 22-case page-context gate and fresh Gemini control were deliberately not run. Portable proof: `docs/evals/attempts/039-grok47-direct-xai-crop-evaluation.md` and `docs/evals/evidence/039-grok47-direct-xai-manifest.md`.\n"
+        "cost_usd": 0.0562295,
+        "cost_estimated": true,
+        "measured": "2026-09-26",
+        "git_sha": "92f341e+attempt042-uncommitted",
+        "result_file": "benchmarks/results/gpt6-sol-luna-20260926/gemini-detector-full.json",
+        "evidence_status": "fresh-same-input-incumbent-control",
+        "note": "Unchanged maintained Gemini 3 Flash conservative-count control on all 13 public cases; zero errors. See Attempt 042.\n"
       },
       "attempts": [
+        {
+          "id": "043",
+          "date": "2026-09-26",
+          "status": "failed",
+          "approach": "Exact GPT-6 Luna detector with Gemini caption assist in paired four-page owner driver runs",
+          "note": "Luna retained its Attempt 042 full13 bounded detector lead, but its production-seam page-12 raw box grouped the seal/signatures, clipped material content and included printed officer labels. The paired Gemini control also retained some officer labels, so neither arm discharges C5. Diagnostic Gemini caption truncation was preserved separately; it did not cause Luna's raw geometry failure. Keep the maintained Gemini detector and GPT-5.5 page regression provider; no default change. Forty-two new direct responses cost $0.181080085; the combined Attempt 042+043 campaign cost $0.382724960/$3.00. See docs/evals/attempts/043-gpt6-luna-detector-runtime-qualification.md.\n",
+          "retry_when": []
+        },
+        {
+          "id": "042",
+          "date": "2026-09-26",
+          "status": "succeeded",
+          "approach": "Fresh direct GPT-6 Sol/Luna medium detector comparison with Gemini 3 Flash",
+          "note": "Both exact models passed native strict integer-image qualification, Image011 and full13 without contract errors. Sol scored 0.978308 and Luna 0.987554, each 13/13, against fresh Gemini 3 Flash 0.961238 / 13/13. Luna leads bounded detector quality and cost. Both separate page-context screens made a source-verified false-safe judgment, so this does not qualify a runtime/default change. The combined campaign used $0.201645 of its $3.00 cap. See Attempt 042.\n",
+          "retry_when": []
+        },
         {
           "id": "041",
           "date": "2026-09-26",
@@ -14043,8 +14246,8 @@
           "date": "2026-09-26",
           "source_type": "eval-attempt",
           "source": "docs/evals/registry.yaml",
-          "source_id": "041",
-          "summary": "Exact owner-authenticated `claude-opus-5-5` qualified native strict image/schema transport and owner-adapter parity. Image011 passed at `0.9548`, but the fresh full13 had only 12 contract-valid scorer passes; Image037..."
+          "source_id": "043",
+          "summary": "Luna retained its Attempt 042 full13 bounded detector lead, but its production-seam page-12 raw box grouped the seal/signatures, clipped material content and included printed officer labels. The paired Gemini control..."
         }
       }
     },
@@ -14343,7 +14546,8 @@
       "spec_refs": [],
       "story_refs": [
         "209",
-        "232"
+        "232",
+        "235"
       ],
       "compromise_refs": [
         "C5"
@@ -14353,6 +14557,38 @@
         "spec:8"
       ],
       "scores": [
+        {
+          "model": "GPT-6 Sol Responses (none, page-context screen)",
+          "metrics": {
+            "targeted_pass": 0,
+            "targeted_cases": 1,
+            "false_safe": 1,
+            "latency_ms": 4612
+          },
+          "cost_usd": 0.016351,
+          "cost_estimated": true,
+          "measured": "2026-09-26",
+          "git_sha": "92f341e+attempt042-uncommitted",
+          "result_file": "benchmarks/results/gpt6-sol-luna-20260926/sol-page-screen.json",
+          "evidence_status": "targeted-safety-failure-full22-not-measured",
+          "note": "Exact direct strict-schema page-122-001 call returned pass against the source-reviewed fail golden. The crop includes the separate Sophie L'Heureux portrait. Stop gate barred full22 and fresh GPT-5.5 control; this is not a 22-case score. See Attempt 042.\n"
+        },
+        {
+          "model": "GPT-6 Luna Responses (none, page-context screen)",
+          "metrics": {
+            "targeted_pass": 0,
+            "targeted_cases": 1,
+            "false_safe": 1,
+            "latency_ms": 4199
+          },
+          "cost_usd": 0.00082205,
+          "cost_estimated": true,
+          "measured": "2026-09-26",
+          "git_sha": "92f341e+attempt042-uncommitted",
+          "result_file": "benchmarks/results/gpt6-sol-luna-20260926/luna-page-screen.json",
+          "evidence_status": "targeted-safety-failure-full22-not-measured",
+          "note": "Exact direct strict-schema page-122-001 call returned pass against the source-reviewed fail golden. The crop includes the separate Sophie L'Heureux portrait. Stop gate barred full22 and fresh GPT-5.5 control; this is not a 22-case score. See Attempt 042.\n"
+        },
         {
           "model": "Gemini 3.6 Flash (page-context prompt)",
           "metrics": {
@@ -14668,24 +14904,30 @@
         }
       ],
       "latest_score": {
-        "model": "GPT-6 Astra Responses (page-context prompt, medium, targeted differentiator)",
+        "model": "GPT-6 Sol Responses (none, page-context screen)",
         "metrics": {
-          "overall": 0.0,
-          "pass_rate": 0.0,
-          "cases_total": 1,
-          "pass_labeled": 0,
-          "fail_labeled": 1,
-          "latency_ms": 8068,
-          "prompt_tokens": 6353,
-          "completion_tokens": 58
+          "targeted_pass": 0,
+          "targeted_cases": 1,
+          "false_safe": 1,
+          "latency_ms": 4612
         },
-        "latency_ms": 8068,
-        "cost_usd": 0.06643,
-        "cost_estimated": false,
-        "measured": "2026-09-05",
-        "note": "Progressive Astra follow-on ran the authoritative `page-122-001` neighboring-portrait differentiator before the full 22-case gate. Exact `gpt-6-astra` medium completed the strict two-image response contract but returned `pass`, explicitly calling the crop \u201cthe two oval portraits.\u201d Manual source/crop inspection confirmed the golden `fail`: the intended Moise/Edward crop includes the entire adjacent Sophie L'Heureux portrait. This model-wrong false negative failed the hard `1.0` safety prerequisite, so the remaining 21 cases, retries, and fresh incumbent were not purchased. This targeted score is a stop-gate result, not a full-run rate. Spend was `$0.066430/$1.50`. GPT-5.5 Responses remains the recorded `22/22` provider. Portable proof: `docs/evals/attempts/034-gpt6-astra-page-context-gate.md`.\n"
+        "cost_usd": 0.016351,
+        "cost_estimated": true,
+        "measured": "2026-09-26",
+        "git_sha": "92f341e+attempt042-uncommitted",
+        "result_file": "benchmarks/results/gpt6-sol-luna-20260926/sol-page-screen.json",
+        "evidence_status": "targeted-safety-failure-full22-not-measured",
+        "note": "Exact direct strict-schema page-122-001 call returned pass against the source-reviewed fail golden. The crop includes the separate Sophie L'Heureux portrait. Stop gate barred full22 and fresh GPT-5.5 control; this is not a 22-case score. See Attempt 042.\n"
       },
       "attempts": [
+        {
+          "id": "042",
+          "date": "2026-09-26",
+          "status": "failed",
+          "approach": "Independent GPT-6 Sol/Luna none-reasoning page-122-001 safety screens",
+          "note": "Both direct strict two-image responses returned false-safe pass for the human-fail crop containing the separate Sophie portrait. This was visually confirmed against the source page. Each candidate's page lane stopped at one case; full22 and fresh GPT-5.5 control were not measured. The detector full13 comparisons continued separately. The combined campaign used $0.201645 of its $3.00 cap. See Attempt 042.\n",
+          "retry_when": []
+        },
         {
           "id": "041",
           "date": "2026-09-26",
@@ -14907,8 +15149,8 @@
           "date": "2026-09-26",
           "source_type": "eval-attempt",
           "source": "docs/evals/registry.yaml",
-          "source_id": "041",
-          "summary": "Native page-context schema and owner-adapter transport qualified independently of the detector. The source-reviewed `page-122-001` differentiator returned false-safe `pass` for a crop containing the neighboring Sophie..."
+          "source_id": "042",
+          "summary": "Both direct strict two-image responses returned false-safe pass for the human-fail crop containing the separate Sophie portrait. This was visually confirmed against the source page. Each candidate's page lane stopped..."
         }
       }
     },
@@ -16785,11 +17027,11 @@
         "scores": {
           "text_fidelity": 0.93,
           "structure_preservation": 0.95,
-          "illustration_extraction": 0.980392,
+          "illustration_extraction": 0.987554,
           "provenance_completeness": 1.0,
-          "measured": "2026-09-05",
+          "measured": "2026-09-26",
           "provenance_measured": "2026-03-27",
-          "notes": "Structure quality comes from Story 131 / the 2026-03-11 onward-table-fidelity refresh. Attempt 033 ran GPT-6 Astra medium reasoning on all 13 authoritative `image-crop-extraction` cases: it passed 13/13 at `0.980392` on 2026-09-05 and became the bounded detector-quality leader. Attempt 034 then failed the targeted `page-122-001` page-context safety differentiator, so this score does not change the maintained Gemini runtime default or the reviewed Onward publication seam from Stories 184 and 198. Story 157 restored maintained PDF-backed entry plus fresh provenance verification on the shared Onward PDF."
+          "notes": "Structure quality comes from Story 131 / the 2026-03-11 onward-table-fidelity refresh. Attempt 042 ran GPT-6 Luna medium reasoning on all 13 authoritative `image-crop-extraction` cases: it passed 13/13 at `0.987554` on 2026-09-26 and became the bounded detector-quality leader. Its separate page-122-001 page-context safety screen returned a false-safe pass, so this benchmark score does not change the maintained Gemini runtime default or the reviewed Onward publication seam from Stories 184 and 198. Story 157 restored maintained PDF-backed entry plus fresh provenance verification on the shared Onward PDF."
         },
         "score_sources": {
           "illustration_extraction": {
@@ -16824,11 +17066,11 @@
         "scores": {
           "text_fidelity": 0.93,
           "structure_preservation": 0.95,
-          "illustration_extraction": 0.980392,
+          "illustration_extraction": 0.987554,
           "provenance_completeness": 1.0,
-          "measured": "2026-09-05",
+          "measured": "2026-09-26",
           "provenance_measured": "2026-03-11",
-          "notes": "Shares the current scanned-image quality envelope: table structure at 0.95, illustration extraction follows Attempt 033's `gpt-6-astra` medium-reasoning `image-crop-extraction` run at `0.980392` on 2026-09-05, and provenance completeness remains 1.0 after Story 132 verification. Astra passed all 13 authoritative detector cases, but Attempt 034 failed the targeted `page-122-001` page-context safety differentiator; Stories 184 and 198 still provide the reviewed Onward publication seam and the maintained Gemini runtime remains unchanged."
+          "notes": "Shares the current scanned-image quality envelope: table structure at 0.95, illustration extraction follows Attempt 042's `gpt-6-luna` medium-reasoning `image-crop-extraction` run at `0.987554` on 2026-09-26, and provenance completeness remains 1.0 after Story 132 verification. Luna passed all 13 authoritative detector cases, but failed the targeted `page-122-001` page-context safety differentiator; Stories 184 and 198 still provide the reviewed Onward publication seam and the maintained Gemini runtime remains unchanged."
         },
         "score_sources": {
           "illustration_extraction": {

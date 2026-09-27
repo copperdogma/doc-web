@@ -12,6 +12,7 @@ import hashlib
 import json
 import math
 import os
+from pathlib import Path
 from typing import Any
 
 import httpx
@@ -53,6 +54,12 @@ CROP_RESPONSE_FORMAT = {
     },
 }
 
+INTEGER_CROP_RESPONSE_FORMAT = json.loads(json.dumps(CROP_RESPONSE_FORMAT))
+INTEGER_CROP_RESPONSE_FORMAT["name"] = "crop_regions_integer"
+INTEGER_CROP_RESPONSE_FORMAT["schema"]["properties"]["images"]["items"]["properties"]["bbox"]["items"] = {
+    "type": "integer", "minimum": 0, "maximum": 1000
+}
+
 PAGE_CONTEXT_RESPONSE_FORMAT = {
     "type": "json_schema",
     "name": "page_context_validation",
@@ -72,6 +79,7 @@ PAGE_CONTEXT_RESPONSE_FORMAT = {
 
 OUTPUT_CONTRACTS = {
     "crop_regions": CROP_RESPONSE_FORMAT,
+    "crop_regions_integer": INTEGER_CROP_RESPONSE_FORMAT,
     "page_context_validation": PAGE_CONTEXT_RESPONSE_FORMAT,
 }
 
@@ -255,6 +263,9 @@ def _token_usage(data: dict[str, Any]) -> dict[str, int] | None:
     fields["cached"] = (
         details.get("cached_tokens", 0) if isinstance(details, dict) else 0
     )
+    fields["cache_write"] = (
+        details.get("cache_write_tokens", 0) if isinstance(details, dict) else 0
+    )
     if fields["total"] is None and all(
         isinstance(fields[key], int) for key in ("prompt", "completion")
     ):
@@ -263,6 +274,8 @@ def _token_usage(data: dict[str, Any]) -> dict[str, int] | None:
         not isinstance(value, int) or isinstance(value, bool) or value < 0
         for value in fields.values()
     ):
+        return None
+    if fields["cached"] + fields["cache_write"] > fields["prompt"]:
         return None
     return fields
 
@@ -282,11 +295,16 @@ def _estimated_cost(token_usage: dict[str, int] | None) -> float | None:
     cached_price = _env_float("OPENAI_RESPONSES_CACHED_INPUT_PRICE_PER_1M")
     if cached_price is None:
         cached_price = input_price
+    write_price = _env_float("OPENAI_RESPONSES_CACHE_WRITE_PRICE_PER_1M")
+    if write_price is None:
+        write_price = input_price
     cached = min(token_usage.get("cached", 0), token_usage["prompt"])
-    uncached = token_usage["prompt"] - cached
+    writes = min(token_usage.get("cache_write", 0), token_usage["prompt"] - cached)
+    uncached = token_usage["prompt"] - cached - writes
     return (
         uncached * input_price
         + cached * cached_price
+        + writes * write_price
         + token_usage["completion"] * output_price
     ) / 1_000_000
 
@@ -298,7 +316,7 @@ def _contract_error(output: str, output_contract: str) -> str | None:
         return f"invalid JSON: {type(exc).__name__}"
     if not isinstance(payload, dict):
         return "root must be an object"
-    if output_contract == "crop_regions":
+    if output_contract in {"crop_regions", "crop_regions_integer"}:
         if set(payload) != {"images"} or not isinstance(payload["images"], list):
             return "root must contain only an images array"
         for index, image in enumerate(payload["images"]):
@@ -309,15 +327,16 @@ def _contract_error(output: str, output_contract: str) -> str | None:
             bbox = image["bbox"]
             if not isinstance(bbox, list) or len(bbox) != 4:
                 return f"images[{index}].bbox must contain four numbers"
+            integer = output_contract == "crop_regions_integer"
             if any(
                 isinstance(value, bool)
-                or not isinstance(value, (int, float))
+                or not isinstance(value, int if integer else (int, float))
                 or not math.isfinite(value)
                 or value < 0
-                or value > 1
+                or value > (1000 if integer else 1)
                 for value in bbox
             ):
-                return f"images[{index}].bbox values must be finite numbers from 0 to 1"
+                return f"images[{index}].bbox values must be finite {'integers from 0 to 1000' if integer else 'numbers from 0 to 1'}"
             if bbox[0] >= bbox[2] or bbox[1] >= bbox[3]:
                 return f"images[{index}].bbox must have positive width and height"
         return None
@@ -385,6 +404,16 @@ def call_api(prompt: str, options: dict[str, Any], context: dict[str, Any]):
                 )
             ),
         )
+        raw_dir = os.environ.get("OPENAI_RESPONSES_RAW_ENVELOPE_DIR")
+        if raw_dir:
+            raw_bytes = response.content
+            raw_hash = hashlib.sha256(raw_bytes).hexdigest()
+            raw_path = Path(raw_dir)
+            raw_path.mkdir(parents=True, exist_ok=True, mode=0o700)
+            raw_file = raw_path / f"{raw_hash}.json"
+            if not raw_file.exists():
+                raw_file.write_bytes(raw_bytes)
+                raw_file.chmod(0o600)
         response.raise_for_status()
         data = response.json()
         if not isinstance(data, dict):
@@ -397,6 +426,9 @@ def call_api(prompt: str, options: dict[str, Any], context: dict[str, Any]):
     result: dict[str, Any] = {
         "metadata": _response_metadata(body, data, response, settings)
     }
+    if raw_dir:
+        result["metadata"]["raw_response_sha256"] = raw_hash
+        result["metadata"]["raw_response_bytes"] = len(raw_bytes)
     token_usage = _token_usage(data)
     if token_usage is not None:
         result["tokenUsage"] = token_usage
