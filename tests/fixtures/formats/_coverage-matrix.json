@@ -97,11 +97,11 @@
       "scores": {
         "text_fidelity": 0.93,
         "structure_preservation": 0.95,
-        "illustration_extraction": 0.987554,
+        "illustration_extraction": 0.992731,
         "provenance_completeness": 1.0,
-        "measured": "2026-09-26",
+        "measured": "2026-09-27",
         "provenance_measured": "2026-03-27",
-        "notes": "Structure quality comes from Story 131 / the 2026-03-11 onward-table-fidelity refresh. Attempt 042 ran GPT-6 Luna medium reasoning on all 13 authoritative `image-crop-extraction` cases: it passed 13/13 at `0.987554` on 2026-09-26 and became the bounded detector-quality leader. Its separate page-122-001 page-context safety screen returned a false-safe pass, so this benchmark score does not change the maintained Gemini runtime default or the reviewed Onward publication seam from Stories 184 and 198. Story 157 restored maintained PDF-backed entry plus fresh provenance verification on the shared Onward PDF."
+        "notes": "Attempt 044 fresh image rerun: Sol passed all13 bounded detector cases at0.992731 on2026-09-27, Luna0.987162 and freshGemini0.962615. Sol and Luna fail page safety; actual page12 Sol preserves seal/signatures but printed labels remain, while Luna clips lower seal. Caption-only recovery is recorded separately. This quality envelope does not promote the runtime or remove C5; maintained Gemini and reviewed publication seam remain. Existing table/provenance evidence is unchanged."
       },
       "score_sources": {
         "illustration_extraction": {
@@ -131,11 +131,11 @@
       "scores": {
         "text_fidelity": 0.93,
         "structure_preservation": 0.95,
-        "illustration_extraction": 0.987554,
+        "illustration_extraction": 0.992731,
         "provenance_completeness": 1.0,
-        "measured": "2026-09-26",
+        "measured": "2026-09-27",
         "provenance_measured": "2026-03-11",
-        "notes": "Shares the current scanned-image quality envelope: table structure at 0.95, illustration extraction follows Attempt 042's `gpt-6-luna` medium-reasoning `image-crop-extraction` run at `0.987554` on 2026-09-26, and provenance completeness remains 1.0 after Story 132 verification. Luna passed all 13 authoritative detector cases, but failed the targeted `page-122-001` page-context safety differentiator; Stories 184 and 198 still provide the reviewed Onward publication seam and the maintained Gemini runtime remains unchanged."
+        "notes": "Attempt 044 fresh image rerun: Sol passed all13 bounded detector cases at0.992731 on2026-09-27, Luna0.987162 and freshGemini0.962615. Sol and Luna fail page safety; actual page12 Sol preserves seal/signatures but printed labels remain, while Luna clips lower seal. Caption-only recovery is recorded separately. This quality envelope does not promote the runtime or remove C5; maintained Gemini and reviewed publication seam remain. Existing table/provenance evidence is unchanged."
       },
       "score_sources": {
         "illustration_extraction": {

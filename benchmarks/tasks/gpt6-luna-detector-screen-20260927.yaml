@@ -1,0 +1,23 @@
+description: "Image crop extraction from scanned book pages \u2014 Onward to the Unknown"
+defaultTest:
+  options:
+    provider: anthropic:messages:claude-opus-4-6
+prompts:
+- id: file://../prompts/crop-conservative-count.js
+  label: conservative-count
+providers:
+- id: python:../providers/gpt6_image_rerun_openai.py
+  label: gpt-6-luna strict integer crop schema
+  config:
+    model: gpt-6-luna
+    expected_served_model: gpt-6-luna
+    reasoning_effort: medium
+    output_contract: crop_regions_integer
+    max_output_tokens: 4096
+tests:
+- vars:
+    image: file://../input/source-pages-b64/Image011.b64.txt
+    golden_key: Image011
+  assert:
+  - type: python
+    value: file://../scorers/image_crop_scorer.py

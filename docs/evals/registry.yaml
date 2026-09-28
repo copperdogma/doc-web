@@ -49,7 +49,7 @@ evals:
     config: benchmarks/tasks/image-crop-extraction.yaml
     scorer: benchmarks/scorers/image_crop_scorer.py
     golden: benchmarks/golden/
-    story_refs: ["133", "183", "207", "232", "235", "236"]
+    story_refs: ["133", "183", "207", "232", "235", "236", "237"]
     category_refs: ["spec:4", "spec:8"]
     compromise_refs: ["C4"]
     spec_compromise: C4
@@ -60,6 +60,48 @@ evals:
       pass_rate: 0.90
 
     scores:
+      - model: GPT-6 Sol fresh image rerun (Attempt044)
+        metrics:
+          overall: 0.992731
+          pass_rate: 1.0
+          cases_total: 13
+          latency_ms: 4096
+        cost_usd: 0.11080300000000001
+        cost_estimated: true
+        measured: '2026-09-27'
+        git_sha: ed70d32+attempt044-uncommitted
+        result_file: benchmarks/results/gpt6-image-rerun-20260927/gpt6-sol-detector-full.json
+        evidence_status: fresh-bounded-detector-publication-unqualified
+        note: Frozen fresh same-source detector ranking Sol, Luna, Gemini. Page safety/publication
+          gates remain failed; runtime retained. See Attempt044 and tracked crop sheets.
+      - model: GPT-6 Luna fresh image rerun (Attempt044)
+        metrics:
+          overall: 0.987162
+          pass_rate: 1.0
+          cases_total: 13
+          latency_ms: 3087
+        cost_usd: 0.0057871500000000005
+        cost_estimated: true
+        measured: '2026-09-27'
+        git_sha: ed70d32+attempt044-uncommitted
+        result_file: benchmarks/results/gpt6-image-rerun-20260927/gpt6-luna-detector-full.json
+        evidence_status: fresh-bounded-detector-publication-unqualified
+        note: Frozen fresh same-source detector ranking Sol, Luna, Gemini. Page safety/publication
+          gates remain failed; runtime retained. See Attempt044 and tracked crop sheets.
+      - model: Gemini 3 Flash fresh image rerun (Attempt044)
+        metrics:
+          overall: 0.962615
+          pass_rate: 1.0
+          cases_total: 13
+          latency_ms: 7447
+        cost_usd: 0.0582845
+        cost_estimated: true
+        measured: '2026-09-27'
+        git_sha: ed70d32+attempt044-uncommitted
+        result_file: benchmarks/results/gpt6-image-rerun-20260927/gpt6-detector-gemini-control.json
+        evidence_status: fresh-bounded-detector-publication-unqualified
+        note: Frozen fresh same-source detector ranking Sol, Luna, Gemini. Page safety/publication
+          gates remain failed; runtime retained. See Attempt044 and tracked crop sheets.
       - model: "GPT-6 Luna Responses (medium, strict integer crop schema)"
         metrics: {overall: 0.987554, pass_rate: 1.0, cases_total: 13, latency_ms: 3077}
         cost_usd: 0.00582015
@@ -807,6 +849,19 @@ evals:
         note: "Poor bounding box precision"
 
     attempts:
+      - id: "044"
+        date: 2026-09-27
+        status: succeeded
+        approach: "Fresh image-only GPT6 Sol/Luna detector comparison and page12 runtime fidelity check"
+        score_before: 0.987554
+        score_after: 0.992731
+        note: >
+          Sol13/13 .992731, Luna13/13 .987162, freshGemini13/13 .962615.
+          Sol preserves page12 seal/separate signatures but printed labels remain;
+          Luna raw composite clips lower seal. Gemini runtime falls back to CV
+          after ambiguous array orientation. Caption-only8192 recovery reuses
+          exact paid detector envelopes, adds3 captions, allSTOP. No promotion.
+          Complete80 paid-call campaign $.42295715/$2.50, pending0; see Attempt044.
       - id: "043"
         date: 2026-09-26
         status: failed
@@ -1861,7 +1916,7 @@ evals:
     config: benchmarks/tasks/crop-page-level-deletion-gate.yaml
     scorer: benchmarks/scorers/crop_validation_scorer.py
     golden: benchmarks/golden/crop-page-level-deletion-gate.json
-    story_refs: ["209", "232", "235"]
+    story_refs: ["209", "232", "235", "237"]
     category_refs: ["spec:4", "spec:8"]
     compromise_refs: ["C5"]
     spec_compromise: C5
@@ -1894,6 +1949,48 @@ evals:
         history are recorded in `benchmarks/golden/crop-eval-provenance.json`.
 
     scores:
+      - model: GPT-6 Sol fresh targeted safety (Attempt044)
+        metrics:
+          pass_rate: 0.0
+          cases_total: 1
+          false_safe: 1
+          latency_ms: 5454
+        cost_usd: 0.016351
+        cost_estimated: true
+        measured: '2026-09-27'
+        git_sha: ed70d32+attempt044-uncommitted
+        result_file: benchmarks/results/gpt6-image-rerun-20260927/gpt6-sol-page-screen.json
+        note: Sol screen false-safe; Luna full22 repeats same page122 false-safe after earlier
+          wrong-reason reject. GPT5.5 auto correctly rejects source-confirmed neighboring
+          portrait; high-detail diagnostic fails. No full22 incumbent superiority claim.
+      - model: GPT-6 Luna fresh full22 safety (Attempt044)
+        metrics:
+          pass_rate: 0.9545454545454546
+          cases_total: 22
+          false_safe: 1
+          latency_ms: 2806
+        cost_usd: 0.017072600000000004
+        cost_estimated: true
+        measured: '2026-09-27'
+        git_sha: ed70d32+attempt044-uncommitted
+        result_file: benchmarks/results/gpt6-image-rerun-20260927/gpt6-luna-page-full.json
+        note: Sol screen false-safe; Luna full22 repeats same page122 false-safe after earlier
+          wrong-reason reject. GPT5.5 auto correctly rejects source-confirmed neighboring
+          portrait; high-detail diagnostic fails. No full22 incumbent superiority claim.
+      - model: GPT-5.5 fresh maintained auto-detail safety screen (Attempt044)
+        metrics:
+          pass_rate: 1.0
+          cases_total: 1
+          false_safe: 0
+          latency_ms: 5786
+        cost_usd: 0.08224
+        cost_estimated: true
+        measured: '2026-09-27'
+        git_sha: ed70d32+attempt044-uncommitted
+        result_file: benchmarks/results/gpt6-image-rerun-20260927/gpt6-page-control-auto-screen.json
+        note: Sol screen false-safe; Luna full22 repeats same page122 false-safe after earlier
+          wrong-reason reject. GPT5.5 auto correctly rejects source-confirmed neighboring
+          portrait; high-detail diagnostic fails. No full22 incumbent superiority claim.
       - model: "GPT-6 Sol Responses (none, page-context screen)"
         metrics: {targeted_pass: 0, targeted_cases: 1, false_safe: 1, latency_ms: 4612}
         cost_usd: 0.016351
@@ -2475,6 +2572,18 @@ evals:
           proof: `docs/evals/attempts/034-gpt6-astra-page-context-gate.md`.
 
     attempts:
+      - id: "044"
+        date: 2026-09-27
+        status: failed
+        approach: "Fresh independent Sol/Luna two-image safety lanes with current auto-detail GPT5.5 control"
+        score_before: 1.0
+        score_after: 0.954545
+        note: >
+          Sol false-safe screen stops full22. Luna full22 is21/22, false-safe
+          page122-001 despite initial screen reject for a different artifact.
+          Fresh GPT5.5 auto correctly rejects neighboring portrait; its high
+          diagnostic fails. Keep current safety provider and C5, no default change.
+          Campaign $.42295715/$2.50 with0 pending reservations; see Attempt044.
       - id: "042"
         date: 2026-09-26
         status: failed

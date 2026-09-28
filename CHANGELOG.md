@@ -1,3 +1,12 @@
+## [2026-09-27-01] - Repeat GPT-6 image gates (Story 237)
+
+### Added
+- Fresh GPT-6 image rerun evidence (Attempt 044): Sol leads the 13-case detector
+  comparison; Sol/Luna safety and publication gates remain failed. All calls
+  cost an estimated $0.42295715, and the current runtime remains unchanged.
+- Scoped reservation guards and exact-envelope detector replay allow bounded
+  caption recovery while preserving failed responses and their billed usage.
+
 ## [2026-09-26-03] - Qualify GPT-6 Luna crop runtime seam (Story 236)
 
 ### Added

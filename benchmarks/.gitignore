@@ -9,3 +9,6 @@ input/source-pages/
 
 # Golden crop images (large binaries)
 golden/crops/
+
+# Attempt044 protected complete provider envelopes, requests and logs
+/results/gpt6-image-rerun-20260927/
