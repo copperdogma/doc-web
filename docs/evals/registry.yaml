@@ -49,7 +49,7 @@ evals:
     config: benchmarks/tasks/image-crop-extraction.yaml
     scorer: benchmarks/scorers/image_crop_scorer.py
     golden: benchmarks/golden/
-    story_refs: ["133", "183", "207", "232", "235", "236", "237"]
+    story_refs: ["133", "183", "207", "232", "235", "236", "237", "238"]
     category_refs: ["spec:4", "spec:8"]
     compromise_refs: ["C4"]
     spec_compromise: C4
@@ -849,6 +849,14 @@ evals:
         note: "Poor bounding box precision"
 
     attempts:
+      - id: '045'
+        date: '2026-09-28'
+        status: failed
+        approach: Sonnet5.5 direct medium adaptive maintained evaluation
+        note: 'Attempt045: exact native access passes. Image011 fails required local bbox range and grouping,
+          so full13/page22 not measured. Independent matched real OCR both models below .99; runtime and C5
+          retained. Known spend .05568125 plus quarantined usage estimate .008552 / conservative exposure .23,
+          cap5.'
       - id: "044"
         date: 2026-09-27
         status: succeeded
@@ -1916,7 +1924,7 @@ evals:
     config: benchmarks/tasks/crop-page-level-deletion-gate.yaml
     scorer: benchmarks/scorers/crop_validation_scorer.py
     golden: benchmarks/golden/crop-page-level-deletion-gate.json
-    story_refs: ["209", "232", "235", "237"]
+    story_refs: ["209", "232", "235", "237", "238"]
     category_refs: ["spec:4", "spec:8"]
     compromise_refs: ["C5"]
     spec_compromise: C5
@@ -2572,6 +2580,14 @@ evals:
           proof: `docs/evals/attempts/034-gpt6-astra-page-context-gate.md`.
 
     attempts:
+      - id: '045'
+        date: '2026-09-28'
+        status: inconclusive
+        approach: Sonnet5.5 direct medium adaptive maintained evaluation
+        note: 'Attempt045: exact native access passes. Image011 fails required local bbox range and grouping,
+          so full13/page22 not measured. Independent matched real OCR both models below .99; runtime and C5
+          retained. Known spend .05568125 plus quarantined usage estimate .008552 / conservative exposure .23,
+          cap5.'
       - id: "044"
         date: 2026-09-27
         status: failed
@@ -3090,7 +3106,7 @@ evals:
     command: "python benchmarks/scripts/run_handwritten_notes_eval.py --image-recipe configs/recipes/recipe-images-ocr-html-handwritten-notes-gemini-rescue.yaml --pdf-recipe configs/recipes/recipe-pdf-ocr-html-handwritten-notes-gemini-rescue.yaml --image-case-id image-handwritten-rescue --pdf-case-id pdf-handwritten-rescue --instrument --output benchmarks/results/handwritten-notes-story189-real-expanded.json"
     scorer: benchmarks/scorers/handwritten_notes_transcription.py
     golden: benchmarks/golden/handwritten-notes/corpus.json
-    story_refs: ["179", "182", "185", "186", "189", "191", "192", "208", "230"]
+    story_refs: ["179", "182", "185", "186", "189", "191", "192", "208", "230", "238"]
     category_refs: ["spec:1", "spec:2", "spec:8"]
     compromise_refs: []
 
@@ -3100,6 +3116,38 @@ evals:
       note: "The target still marks the desired passing bar, but the widened default corpus now includes two real handwritten fixtures that the maintained rescue seam does not clear."
 
     scores:
+      - model: claude-sonnet-5-5 fresh matched public LOC image-entry (Attempt045)
+        metrics:
+          overall_min_ratio: 0.982734
+          page_min_ratio: 0.982734
+          pass_rate: 0.0
+          cases_total: 2
+          fixtures_passing: 0
+          barney_image_overall_ratio: 0.982734
+          alverson_image_overall_ratio: 0.98283
+        cost_usd: 0.017107999999999998
+        cost_estimated: true
+        measured: '2026-09-28'
+        git_sha: 747b376+attempt045-uncommitted
+        note: Fresh actual driver OCR outputs with unchanged source prompts/hints/scorer; both below.99, split
+          small deltas and source-visible errors; Story191 remains blocked. Complete response custody for these
+          four calls.
+      - model: gemini-3.7-flash fresh matched public LOC image-entry (Attempt045)
+        metrics:
+          overall_min_ratio: 0.982014
+          page_min_ratio: 0.982014
+          pass_rate: 0.0
+          cases_total: 2
+          fixtures_passing: 0
+          barney_image_overall_ratio: 0.982014
+          alverson_image_overall_ratio: 0.985832
+        cost_usd: 0.012389250000000001
+        cost_estimated: true
+        measured: '2026-09-28'
+        git_sha: 747b376+attempt045-uncommitted
+        note: Fresh actual driver OCR outputs with unchanged source prompts/hints/scorer; both below.99, split
+          small deltas and source-visible errors; Story191 remains blocked. Complete response custody for these
+          four calls.
       - model: "Gemini 3.7 Flash bounded corrected-real image-entry screen"
         metrics:
           overall_min_ratio: 0.981622
@@ -3556,6 +3604,14 @@ evals:
           `output/runs/story179-pdf-generic/02_ocr_ai_gpt51_v1/pages_html.jsonl`.
 
     attempts:
+      - id: '045'
+        date: '2026-09-28'
+        status: failed
+        approach: Sonnet5.5 direct medium adaptive maintained evaluation
+        note: 'Attempt045: exact native access passes. Image011 fails required local bbox range and grouping,
+          so full13/page22 not measured. Independent matched real OCR both models below .99; runtime and C5
+          retained. Known spend .05568125 plus quarantined usage estimate .008552 / conservative exposure .23,
+          cap5.'
       - id: "001"
         date: 2026-04-01
         status: succeeded

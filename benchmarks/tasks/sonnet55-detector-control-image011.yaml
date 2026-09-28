@@ -1,0 +1,17 @@
+description: "Image crop extraction from scanned book pages \u2014 Onward to the Unknown"
+defaultTest:
+  options:
+    provider: anthropic:messages:claude-opus-4-6
+prompts:
+- id: file://../prompts/crop-conservative-count.js
+  label: conservative-count
+providers:
+- id: python:../providers/sonnet55_gemini.py
+  label: Gemini3 Flash maintained normalized detector
+tests:
+- vars:
+    image: file://../input/source-pages-b64/Image011.b64.txt
+    golden_key: Image011
+  assert:
+  - type: python
+    value: file://../scorers/image_crop_scorer.py

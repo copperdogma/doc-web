@@ -7,7 +7,6 @@ logs token usage via log_llm_usage().
 from __future__ import annotations
 
 import base64
-import os
 from typing import Any, Optional, Tuple
 
 from doc_web.env import get_doc_web_api_key
@@ -46,12 +45,7 @@ class AnthropicVisionClient:
             raise RuntimeError(
                 "DOC_WEB_ANTHROPIC_API_KEY must be set in the environment"
             )
-        kwargs = (
-            {"max_retries": 0}
-            if os.environ.get("DOC_WEB_EVAL_DISABLE_RETRIES") == "1"
-            else {}
-        )
-        self._client = anthropic.Anthropic(api_key=self._api_key, **kwargs)
+        self._client = anthropic.Anthropic(api_key=self._api_key, max_retries=0)
 
     def generate_vision(
         self,
@@ -111,13 +105,8 @@ class AnthropicVisionClient:
 
         resp = self._client.messages.create(**request_kwargs)
 
-        if model == "claude-sonnet-5-5" and (
-            getattr(resp, "model", None) != model
-            or getattr(resp, "stop_reason", None) != "end_turn"
-        ):
-            raise RuntimeError(
-                "Anthropic OCR served identity or terminal condition failed"
-            )
+        if getattr(resp, "model", None) != model or getattr(resp, "stop_reason", None) != "end_turn":
+            raise RuntimeError("Anthropic OCR served identity or terminal condition failed")
 
         # Extract text from content blocks
         raw = ""

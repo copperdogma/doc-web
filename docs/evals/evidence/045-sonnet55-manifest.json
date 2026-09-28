@@ -1,0 +1,634 @@
+{
+  "base": "747b3764005189bdd493356fb1c512ce93aa11ea",
+  "worktree": "/Users/cam/.codex/worktrees/sonnet55-eval-20260928/doc-web",
+  "branch": "codex/sonnet55-eval-20260928",
+  "privacy": "public/synthetic only; standard API no-training default; ZDR unverified",
+  "summary": {
+    "sonnet": {
+      "model": "claude-sonnet-5-5",
+      "cases": [
+        {
+          "fixture": "barney",
+          "run_id": "sonnet55-ocr-sonnet-barney-r3",
+          "artifact": "output/runs/sonnet55-ocr-sonnet-barney-r3/02_ocr_ai_gpt51_v1/pages_html.jsonl",
+          "fidelity": 0.982734,
+          "page_min_ratio": 0.982734,
+          "pass": false,
+          "native_latency_ms": 4192,
+          "driver_ocr_seconds": 4.982577,
+          "cost_usd": 0.008552,
+          "response_sequence": 5
+        },
+        {
+          "fixture": "alverson",
+          "run_id": "sonnet55-ocr-sonnet-alverson",
+          "artifact": "output/runs/sonnet55-ocr-sonnet-alverson/02_ocr_ai_gpt51_v1/pages_html.jsonl",
+          "fidelity": 0.98283,
+          "page_min_ratio": 0.98283,
+          "pass": false,
+          "native_latency_ms": 3421,
+          "driver_ocr_seconds": 4.338607,
+          "cost_usd": 0.008556,
+          "response_sequence": 7
+        }
+      ],
+      "min_ratio": 0.982734,
+      "mean_ratio": 0.982782,
+      "pass_rate": 0,
+      "total_native_latency_ms": 7613,
+      "total_driver_ocr_seconds": 9.321183999999999,
+      "cost_usd": 0.017107999999999998
+    },
+    "gemini": {
+      "model": "gemini-3.7-flash",
+      "cases": [
+        {
+          "fixture": "barney",
+          "run_id": "sonnet55-ocr-gemini-barney-r2",
+          "artifact": "output/runs/sonnet55-ocr-gemini-barney-r2/02_ocr_ai_gpt51_v1/pages_html.jsonl",
+          "fidelity": 0.982014,
+          "page_min_ratio": 0.982014,
+          "pass": false,
+          "native_latency_ms": 5573,
+          "driver_ocr_seconds": 6.428611,
+          "cost_usd": 0.00691875,
+          "response_sequence": 8
+        },
+        {
+          "fixture": "alverson",
+          "run_id": "sonnet55-ocr-gemini-alverson",
+          "artifact": "output/runs/sonnet55-ocr-gemini-alverson/02_ocr_ai_gpt51_v1/pages_html.jsonl",
+          "fidelity": 0.985832,
+          "page_min_ratio": 0.985832,
+          "pass": false,
+          "native_latency_ms": 4633,
+          "driver_ocr_seconds": 5.596722,
+          "cost_usd": 0.0054705,
+          "response_sequence": 9
+        }
+      ],
+      "min_ratio": 0.982014,
+      "mean_ratio": 0.9839230000000001,
+      "pass_rate": 0,
+      "total_native_latency_ms": 10206,
+      "total_driver_ocr_seconds": 12.025333,
+      "cost_usd": 0.012389250000000001
+    },
+    "ledger": {
+      "cap_usd": 5,
+      "known_settled_usd": 0.05568125,
+      "quarantined_usage_estimate_usd": 0.008552,
+      "quarantined_reserved_usd": 0.23,
+      "maximum_exposure_usd": 0.28568125,
+      "known_calls": 8,
+      "quarantined_paid_calls": 1,
+      "quality_ocr_calls": 4,
+      "probe_crop_known_usd": 0.026184000000000002
+    }
+  },
+  "packages": {
+    "anthropic": "1.9.0",
+    "google-genai": "2.25.0",
+    "httpx": "0.28.1",
+    "httpx2": "2.13.1",
+    "pytest": "9.1.1",
+    "pydantic": "2.13.5"
+  },
+  "python": "Python 3.14.3",
+  "files": {
+    "benchmarks/results/sonnet55-20260928/response-009.json": {
+      "sha256": "46614a1ccf17f4d8192af5c4cac3f0c646b355ac73da0d61f415afe07bdf2cd7",
+      "bytes": 5713
+    },
+    "benchmarks/results/sonnet55-20260928/request-006.json": {
+      "sha256": "242f8833652c89a4b1ac2591289afba7bc19e1ca44556e2c570f5f4648e54994",
+      "bytes": 311335
+    },
+    "benchmarks/results/sonnet55-20260928/summary.json": {
+      "sha256": "f43fc2c0b4c085bfda6b6dd71136636ff3569b8242fd37a7d79641b0c7829c20",
+      "bytes": 2578
+    },
+    "benchmarks/results/sonnet55-20260928/response-005.json": {
+      "sha256": "2963fd07ea46066f398e8ae9747dbcd173e5ca6cc18bf7d4201a96824bca33e6",
+      "bytes": 2041
+    },
+    "benchmarks/results/sonnet55-20260928/request-007.json": {
+      "sha256": "3d263d33ff73d4055c118d546c6ca8d040f0935d396e6870ea1ac569631de804",
+      "bytes": 568273
+    },
+    "benchmarks/results/sonnet55-20260928/response-008.json": {
+      "sha256": "7201011af0a559b27f6469056df7a8a0d25cf85ec86d7194a0ee40d71d6c9928",
+      "bytes": 7390
+    },
+    "benchmarks/results/sonnet55-20260928/detector-screen.json": {
+      "sha256": "a8a6c66cd69344f34f6907691913b4d920ae90fa1784ba04ede4d9d1fbf36e8c",
+      "bytes": 319366
+    },
+    "benchmarks/results/sonnet55-20260928/response-003.json": {
+      "sha256": "3f1f148262bb311d9326853fd45dba31a888077d07f6c7e815988b5751e8d53c",
+      "bytes": 6009
+    },
+    "benchmarks/results/sonnet55-20260928/request-001.json": {
+      "sha256": "d73497271fa9270d792a0ec330753f3a92e0285314cbf6123cdf672289ee1651",
+      "bytes": 890
+    },
+    "benchmarks/results/sonnet55-20260928/detector-control-screen.json": {
+      "sha256": "1ce417dbcdc5e41c7ec585c593e8fdadc4d0b624626d1deb98eeef555282cb8f",
+      "bytes": 1197843
+    },
+    "benchmarks/results/sonnet55-20260928/response-002.json": {
+      "sha256": "348907861644e624b31f6c23d0e1addaf6f28dead00612e3a417e0578e6c0d96",
+      "bytes": 1019
+    },
+    "benchmarks/results/sonnet55-20260928/native-detector.json": {
+      "sha256": "9af8a686f81fa10316581241bca12adb92e65940e4d4d786a98c7d7fecc20263",
+      "bytes": 778
+    },
+    "benchmarks/results/sonnet55-20260928/response-001.json": {
+      "sha256": "aa6138623d3d8b2f72790da124f18b84b62b14741f237a0cddd1355ab68ee9d6",
+      "bytes": 717
+    },
+    "benchmarks/results/sonnet55-20260928/request-002.json": {
+      "sha256": "c82e000cc127093cbd27447c6789699150e337a6b9b35796656fddb30ff82032",
+      "bytes": 311888
+    },
+    "benchmarks/results/sonnet55-20260928/request-003.json": {
+      "sha256": "6239875f0624ff1eb55c31f8a386a40e031168b01f5491acbc81906c2a0651c9",
+      "bytes": 1187031
+    },
+    "benchmarks/results/sonnet55-20260928/request-008.json": {
+      "sha256": "ad3857030fd961d1fae79e1b8cea94be4662889948f57ee3dc4bb3ff7a967e90",
+      "bytes": 204635
+    },
+    "benchmarks/results/sonnet55-20260928/response-007.json": {
+      "sha256": "8a70286a32fb1a00277bedc2f06f8629232ed1ac4ad984d61a0d54ed12b1ec57",
+      "bytes": 1504
+    },
+    "benchmarks/results/sonnet55-20260928/response-006.json": {
+      "sha256": "815b4e43911fa1030dd7298c402b7486d284d055234bf1faf610146e265ca5a3",
+      "bytes": 11178
+    },
+    "benchmarks/results/sonnet55-20260928/request-009.json": {
+      "sha256": "52762518f00e84762b730528f772465b8b8f6f6e0f1824f50a8daafc542a7985",
+      "bytes": 568251
+    },
+    "benchmarks/results/sonnet55-20260928/ledger.json": {
+      "sha256": "583d1bc3d00844f17b36e5009b4a4c84d159069e0d25cb4715cb06767cf2a466",
+      "bytes": 9932
+    },
+    "benchmarks/results/sonnet55-20260928/request-005.json": {
+      "sha256": "960a88b29987474a4ae541bd9b92f158f8d05f94eaa0c3ab3a9aaabbd4ce74a8",
+      "bytes": 204657
+    },
+    "benchmarks/results/sonnet55-20260928/detector-control-image011.json": {
+      "sha256": "4d3c1c8958b6ca0674cf7ac4c11636b5fa234f1e1d03608e43f2ae2586b6f654",
+      "bytes": 318609
+    },
+    "output/runs/sonnet55-ocr-gemini-barney/pipeline_state.json": {
+      "sha256": "d64aa9037e8064e5564cb0dfab3d478e9b8fdb5e50737dd2b56302773f1386bb",
+      "bytes": 1447
+    },
+    "output/runs/sonnet55-ocr-gemini-barney/instrumentation.json": {
+      "sha256": "f5a71e10ebe39a820fb16d22fd3e3d46c935e5d955756ac6b9a8e41b37266072",
+      "bytes": 3117
+    },
+    "output/runs/sonnet55-ocr-gemini-barney/pipeline_events.jsonl": {
+      "sha256": "799a07b6c7b36a15b0b477ecbfa471c9693103cbcf4114d98f4520702cd23f68",
+      "bytes": 4466
+    },
+    "output/runs/sonnet55-ocr-gemini-barney/01_images_dir_to_manifest_v1/pages_images_manifest.jsonl": {
+      "sha256": "8e7b70fb499c974a2d0c8cae7c9df90128d158f2c2176e54374ec9fc1443fdc4",
+      "bytes": 495
+    },
+    "output/runs/sonnet55-ocr-gemini-barney/snapshots/registry.json": {
+      "sha256": "704c569bfe2085a47d5d08738945486d0cdabb5a180198c575fd3ee588c654a5",
+      "bytes": 3287
+    },
+    "output/runs/sonnet55-ocr-gemini-barney/snapshots/plan.json": {
+      "sha256": "a8c8e863dc885c0c5d5940cbbd9c2019269823980a0f6f7c04ec4be28e943ead",
+      "bytes": 2107
+    },
+    "output/runs/sonnet55-ocr-gemini-barney/snapshots/recipe.yaml": {
+      "sha256": "92b717812f0a8d14f24ea9d005eecea42c9576f1af5fd77ce2e3ae2f8066693d",
+      "bytes": 1088
+    },
+    "output/runs/sonnet55-ocr-gemini-barney/snapshots/pricing.yaml": {
+      "sha256": "5b480d2aba569392a1f4e538bf67e28685bc91e8eced00d4737b0ff30c38bffd",
+      "bytes": 381
+    },
+    "output/runs/sonnet55-ocr-gemini-barney-r2/pipeline_state.json": {
+      "sha256": "3b3778f578a712d7d44df64e74aa03208fbfbc8e39002fc122602a07a25f5bf4",
+      "bytes": 1388
+    },
+    "output/runs/sonnet55-ocr-gemini-barney-r2/instrumentation.json": {
+      "sha256": "a275d198c9d840eb95252b1c12710f21965bcb38ae3fb7e151c77e27b2a015c5",
+      "bytes": 4082
+    },
+    "output/runs/sonnet55-ocr-gemini-barney-r2/pipeline_events.jsonl": {
+      "sha256": "b1e8d4978e48b9e25ad0a8829c1d283b4e7ce1797cbe8d892bb25b7d2b9c671d",
+      "bytes": 4573
+    },
+    "output/runs/sonnet55-ocr-gemini-barney-r2/timing_summary.json": {
+      "sha256": "eef1b1707d2e48b9f20a1e1a0e04ca8bd3852908cf856ca669ded10c2133f199",
+      "bytes": 424
+    },
+    "output/runs/sonnet55-ocr-gemini-barney-r2/instrumentation_calls.jsonl": {
+      "sha256": "55d4caa04f18366a6dac6e30a92b2d9308d3f2ebe2f4b37e9ec55edbb836ab91",
+      "bytes": 327
+    },
+    "output/runs/sonnet55-ocr-gemini-barney-r2/01_images_dir_to_manifest_v1/pages_images_manifest.jsonl": {
+      "sha256": "f2b493000e0be968421a3a1bd533f9c95b37006ff7e8c6f8ef47cf69f5dcf305",
+      "bytes": 498
+    },
+    "output/runs/sonnet55-ocr-gemini-barney-r2/snapshots/registry.json": {
+      "sha256": "704c569bfe2085a47d5d08738945486d0cdabb5a180198c575fd3ee588c654a5",
+      "bytes": 3287
+    },
+    "output/runs/sonnet55-ocr-gemini-barney-r2/snapshots/plan.json": {
+      "sha256": "a8c8e863dc885c0c5d5940cbbd9c2019269823980a0f6f7c04ec4be28e943ead",
+      "bytes": 2107
+    },
+    "output/runs/sonnet55-ocr-gemini-barney-r2/snapshots/recipe.yaml": {
+      "sha256": "92b717812f0a8d14f24ea9d005eecea42c9576f1af5fd77ce2e3ae2f8066693d",
+      "bytes": 1088
+    },
+    "output/runs/sonnet55-ocr-gemini-barney-r2/snapshots/pricing.yaml": {
+      "sha256": "5b480d2aba569392a1f4e538bf67e28685bc91e8eced00d4737b0ff30c38bffd",
+      "bytes": 381
+    },
+    "output/runs/sonnet55-ocr-gemini-barney-r2/02_ocr_ai_gpt51_v1/pages_html.jsonl": {
+      "sha256": "1db1af92b5acba2214c19bc60723c4335068669c751642d8b87eb0590c53312d",
+      "bytes": 3633
+    },
+    "output/runs/sonnet55-ocr-sonnet-alverson/pipeline_state.json": {
+      "sha256": "dd8f96a94e31889fc7ee238747bccfc42c5a313cf9bb4f64f830d470a36d108b",
+      "bytes": 1385
+    },
+    "output/runs/sonnet55-ocr-sonnet-alverson/instrumentation.json": {
+      "sha256": "39246eda179dcdc3560cd18cb1b18c064013597d41849534ccb2f2c21e957221",
+      "bytes": 4089
+    },
+    "output/runs/sonnet55-ocr-sonnet-alverson/pipeline_events.jsonl": {
+      "sha256": "827d9fd21c24cc466f298c502260b0aed8bfcda10c2f69eb559194cda923cf79",
+      "bytes": 4559
+    },
+    "output/runs/sonnet55-ocr-sonnet-alverson/timing_summary.json": {
+      "sha256": "bea4f5d5f2aa37c7d660e09da4c371555edfb27dd759797954b4ee28b07f9ebf",
+      "bytes": 424
+    },
+    "output/runs/sonnet55-ocr-sonnet-alverson/instrumentation_calls.jsonl": {
+      "sha256": "1ccc78df4530b47c063dd56f9ed219ddd9632d6f13e1b0f676a9c7c5fb92bbac",
+      "bytes": 330
+    },
+    "output/runs/sonnet55-ocr-sonnet-alverson/01_images_dir_to_manifest_v1/pages_images_manifest.jsonl": {
+      "sha256": "1de71826055b1d31dff31199812e169e4a2e902ee7a64e9e103522f4a58723ed",
+      "bytes": 501
+    },
+    "output/runs/sonnet55-ocr-sonnet-alverson/snapshots/registry.json": {
+      "sha256": "704c569bfe2085a47d5d08738945486d0cdabb5a180198c575fd3ee588c654a5",
+      "bytes": 3287
+    },
+    "output/runs/sonnet55-ocr-sonnet-alverson/snapshots/plan.json": {
+      "sha256": "d0c6fe0fc84352fd3040a4124b691a37314f832b13a8197e2799fa1e25723085",
+      "bytes": 2110
+    },
+    "output/runs/sonnet55-ocr-sonnet-alverson/snapshots/recipe.yaml": {
+      "sha256": "cd83f9338dc1c6dae1aa22ce9dad4cc94f84552f2722b842fa72907717487589",
+      "bytes": 1096
+    },
+    "output/runs/sonnet55-ocr-sonnet-alverson/snapshots/pricing.yaml": {
+      "sha256": "5b480d2aba569392a1f4e538bf67e28685bc91e8eced00d4737b0ff30c38bffd",
+      "bytes": 381
+    },
+    "output/runs/sonnet55-ocr-sonnet-alverson/02_ocr_ai_gpt51_v1/pages_html.jsonl": {
+      "sha256": "a7a5e5b5700ce358e0ee5cf128290244437e1dec4385f360ed7e129fe359beea",
+      "bytes": 2559
+    },
+    "output/runs/sonnet55-ocr-sonnet-barney/pipeline_state.json": {
+      "sha256": "d28968f3d8323f61da35cc35cad5ff1d282dfbfebb7c247d88b8675ba1f494b3",
+      "bytes": 1447
+    },
+    "output/runs/sonnet55-ocr-sonnet-barney/instrumentation.json": {
+      "sha256": "ff064e9c9b86010c2d30bd0b369d3ba47807135243385573f2f69d2482f61a8b",
+      "bytes": 3117
+    },
+    "output/runs/sonnet55-ocr-sonnet-barney/pipeline_events.jsonl": {
+      "sha256": "6953fcbd297b2b8bbbcc7a733170c32ffd87165915612d4eb0fb7d4224acdc80",
+      "bytes": 4461
+    },
+    "output/runs/sonnet55-ocr-sonnet-barney/01_images_dir_to_manifest_v1/pages_images_manifest.jsonl": {
+      "sha256": "ce33b7604f19f3dac10f90066dd323eee28ef85059c0071f9dab63b7e3b09894",
+      "bytes": 495
+    },
+    "output/runs/sonnet55-ocr-sonnet-barney/snapshots/registry.json": {
+      "sha256": "704c569bfe2085a47d5d08738945486d0cdabb5a180198c575fd3ee588c654a5",
+      "bytes": 3287
+    },
+    "output/runs/sonnet55-ocr-sonnet-barney/snapshots/plan.json": {
+      "sha256": "80c423360c7a8b290fdedfa85caeebb3cb037d4f8118091ecfb9b703ca0f2499",
+      "bytes": 2108
+    },
+    "output/runs/sonnet55-ocr-sonnet-barney/snapshots/recipe.yaml": {
+      "sha256": "fceb22e7e573342b5246d8c387096e5110655c78e470d8edd4a3ea6fd648f20d",
+      "bytes": 1090
+    },
+    "output/runs/sonnet55-ocr-sonnet-barney/snapshots/pricing.yaml": {
+      "sha256": "5b480d2aba569392a1f4e538bf67e28685bc91e8eced00d4737b0ff30c38bffd",
+      "bytes": 381
+    },
+    "output/runs/sonnet55-ocr-gemini-alverson/pipeline_state.json": {
+      "sha256": "36fe5b074c9a5c764c6bbcc9a9af8dd8c595c862cad2ad4a888ce1851fed7a88",
+      "bytes": 1385
+    },
+    "output/runs/sonnet55-ocr-gemini-alverson/instrumentation.json": {
+      "sha256": "3f806fb01b4daf9e9a1d2da544d1956a4afd870fafbc3653b379b749f3083ea5",
+      "bytes": 4083
+    },
+    "output/runs/sonnet55-ocr-gemini-alverson/pipeline_events.jsonl": {
+      "sha256": "0fb09c3f39d9fd3396e8581f1070bb165c6db47172d715481ff1892696013f46",
+      "bytes": 4558
+    },
+    "output/runs/sonnet55-ocr-gemini-alverson/timing_summary.json": {
+      "sha256": "d1f33d82ff45761d7f51069531cfdc5a69b0c71a759d866b5278e2034cd760c1",
+      "bytes": 423
+    },
+    "output/runs/sonnet55-ocr-gemini-alverson/instrumentation_calls.jsonl": {
+      "sha256": "22f14aaa96acb2bcdfa7e6efc7a14624bff448fd7879b726427cec68e6bb0205",
+      "bytes": 326
+    },
+    "output/runs/sonnet55-ocr-gemini-alverson/01_images_dir_to_manifest_v1/pages_images_manifest.jsonl": {
+      "sha256": "6b550dc1476843425db4768aad89cc8e74ce0c9ef0a95e949df5eb907a949d31",
+      "bytes": 501
+    },
+    "output/runs/sonnet55-ocr-gemini-alverson/snapshots/registry.json": {
+      "sha256": "704c569bfe2085a47d5d08738945486d0cdabb5a180198c575fd3ee588c654a5",
+      "bytes": 3287
+    },
+    "output/runs/sonnet55-ocr-gemini-alverson/snapshots/plan.json": {
+      "sha256": "2082e73fc0e82b504e522ab7bfae1ffe38a05b461fba65839be14ab5b158b93d",
+      "bytes": 2109
+    },
+    "output/runs/sonnet55-ocr-gemini-alverson/snapshots/recipe.yaml": {
+      "sha256": "c2301588ab330a511955454459bc7bcdbff238f28ef37288362a8b83dc2a7a45",
+      "bytes": 1094
+    },
+    "output/runs/sonnet55-ocr-gemini-alverson/snapshots/pricing.yaml": {
+      "sha256": "5b480d2aba569392a1f4e538bf67e28685bc91e8eced00d4737b0ff30c38bffd",
+      "bytes": 381
+    },
+    "output/runs/sonnet55-ocr-gemini-alverson/02_ocr_ai_gpt51_v1/pages_html.jsonl": {
+      "sha256": "bdb2c50f30348183ad41633325c67e4f1a7ac747548be7d90af7375c7a173f4a",
+      "bytes": 2641
+    },
+    "output/runs/sonnet55-ocr-sonnet-barney-r3/pipeline_state.json": {
+      "sha256": "ff873daeed9c8c7635fae000612ee69c15606889bcde7dd9188e00ed9450d5fd",
+      "bytes": 1388
+    },
+    "output/runs/sonnet55-ocr-sonnet-barney-r3/instrumentation.json": {
+      "sha256": "b3b600cc0e763b31818041fee09d9688869cffcb0a1640d23a1bf929c7cf4a51",
+      "bytes": 4091
+    },
+    "output/runs/sonnet55-ocr-sonnet-barney-r3/pipeline_events.jsonl": {
+      "sha256": "7e9904ee15c193dd74b8d0e714a68cc9a65e8979d98912ef9ff99b14c98806b7",
+      "bytes": 4574
+    },
+    "output/runs/sonnet55-ocr-sonnet-barney-r3/timing_summary.json": {
+      "sha256": "53b9d254d61e9712456a889898ee465a2e1997fc25be742b7ae3608bd2fde8e6",
+      "bytes": 425
+    },
+    "output/runs/sonnet55-ocr-sonnet-barney-r3/instrumentation_calls.jsonl": {
+      "sha256": "d8c5124cfecdca9f44393e26bb44d51e7e3449bd969eeda5c4c1ccf9a7150897",
+      "bytes": 331
+    },
+    "output/runs/sonnet55-ocr-sonnet-barney-r3/01_images_dir_to_manifest_v1/pages_images_manifest.jsonl": {
+      "sha256": "57edc71e9f6febe201d9d3df70fa8a4f436cfaf242b38868f433e2726c81569e",
+      "bytes": 498
+    },
+    "output/runs/sonnet55-ocr-sonnet-barney-r3/snapshots/registry.json": {
+      "sha256": "704c569bfe2085a47d5d08738945486d0cdabb5a180198c575fd3ee588c654a5",
+      "bytes": 3287
+    },
+    "output/runs/sonnet55-ocr-sonnet-barney-r3/snapshots/plan.json": {
+      "sha256": "80c423360c7a8b290fdedfa85caeebb3cb037d4f8118091ecfb9b703ca0f2499",
+      "bytes": 2108
+    },
+    "output/runs/sonnet55-ocr-sonnet-barney-r3/snapshots/recipe.yaml": {
+      "sha256": "fceb22e7e573342b5246d8c387096e5110655c78e470d8edd4a3ea6fd648f20d",
+      "bytes": 1090
+    },
+    "output/runs/sonnet55-ocr-sonnet-barney-r3/snapshots/pricing.yaml": {
+      "sha256": "5b480d2aba569392a1f4e538bf67e28685bc91e8eced00d4737b0ff30c38bffd",
+      "bytes": 381
+    },
+    "output/runs/sonnet55-ocr-sonnet-barney-r3/02_ocr_ai_gpt51_v1/pages_html.jsonl": {
+      "sha256": "ccc56056a4f2e8e75419dfaf3410dcfb69e757e5db626f35b52a3fbb06364b2e",
+      "bytes": 3629
+    },
+    "output/runs/sonnet55-ocr-sonnet-barney-r2/pipeline_state.json": {
+      "sha256": "3e4660ab067e0627ea61189f3ec7b656431218ec8f081187197bde9d8409184a",
+      "bytes": 1388
+    },
+    "output/runs/sonnet55-ocr-sonnet-barney-r2/instrumentation.json": {
+      "sha256": "aeaeaafc3435da3bc8cfd14ae38ea5f893793b5f745e6e04b47d64a53ddc2c5f",
+      "bytes": 4091
+    },
+    "output/runs/sonnet55-ocr-sonnet-barney-r2/pipeline_events.jsonl": {
+      "sha256": "fde6dbf4f75473a1b13f9e2a2f6bbf6491e42ca20ec33dd59d0486eec85892c1",
+      "bytes": 4574
+    },
+    "output/runs/sonnet55-ocr-sonnet-barney-r2/timing_summary.json": {
+      "sha256": "b5f17fd007607a72343c2ac96a0f541763fecabff500e8685df5900bf63b8831",
+      "bytes": 424
+    },
+    "output/runs/sonnet55-ocr-sonnet-barney-r2/instrumentation_calls.jsonl": {
+      "sha256": "2fe05c0033a763abc47aa8ac0b109cb0a65612e455b1db6ad1bec8686b3059f6",
+      "bytes": 331
+    },
+    "output/runs/sonnet55-ocr-sonnet-barney-r2/01_images_dir_to_manifest_v1/pages_images_manifest.jsonl": {
+      "sha256": "fddd6d766348f4924b78b86fed75ab0ae4a885cc4ebddfc5e4efc6e76b9e578c",
+      "bytes": 498
+    },
+    "output/runs/sonnet55-ocr-sonnet-barney-r2/snapshots/registry.json": {
+      "sha256": "704c569bfe2085a47d5d08738945486d0cdabb5a180198c575fd3ee588c654a5",
+      "bytes": 3287
+    },
+    "output/runs/sonnet55-ocr-sonnet-barney-r2/snapshots/plan.json": {
+      "sha256": "80c423360c7a8b290fdedfa85caeebb3cb037d4f8118091ecfb9b703ca0f2499",
+      "bytes": 2108
+    },
+    "output/runs/sonnet55-ocr-sonnet-barney-r2/snapshots/recipe.yaml": {
+      "sha256": "fceb22e7e573342b5246d8c387096e5110655c78e470d8edd4a3ea6fd648f20d",
+      "bytes": 1090
+    },
+    "output/runs/sonnet55-ocr-sonnet-barney-r2/snapshots/pricing.yaml": {
+      "sha256": "5b480d2aba569392a1f4e538bf67e28685bc91e8eced00d4737b0ff30c38bffd",
+      "bytes": 381
+    },
+    "output/runs/sonnet55-ocr-sonnet-barney-r2/02_ocr_ai_gpt51_v1/pages_html.jsonl": {
+      "sha256": "bd9a46a92ec9bf88238f338bd239bed5499a87153a3ec33e51394805f8e82389",
+      "bytes": 3630
+    },
+    "benchmarks/providers/sonnet55_messages.py": {
+      "sha256": "6722e36add265f1cdba4633106b4df30aa3a061cd83f9565dbbcb71da9e40139",
+      "bytes": 475
+    },
+    "benchmarks/providers/sonnet55_gemini.py": {
+      "sha256": "e08210b2224c2440c3ba7d35ce8f736a32fa568e0547a34179910ae414d1322a",
+      "bytes": 2357
+    },
+    "benchmarks/providers/sonnet55_openai.py": {
+      "sha256": "7a56ee4cabab322003f1fc3f6039948b812e205219d1ab05365af8ef3403fa71",
+      "bytes": 530
+    },
+    "benchmarks/providers/sonnet55_guard.py": {
+      "sha256": "f2b5ed42647a81c39131724fefe0cd712f03a08ac00dd0cfa3d6879e6995c3e4",
+      "bytes": 6434
+    },
+    "benchmarks/scripts/sonnet55_native_probe.py": {
+      "sha256": "58b9540a65ef30a53b6ee94ae6e13981c790a1f8e1953787ac801a91c9d3c7b1",
+      "bytes": 900
+    },
+    "benchmarks/tasks/sonnet55-detector-control-image011.yaml": {
+      "sha256": "de522dad00dd44b1a853b097018e27f3bf7221cdde14460b2ac10360307f08e0",
+      "bytes": 539
+    },
+    "benchmarks/tasks/sonnet55-detector-full.yaml": {
+      "sha256": "3363ad2f253bd9b6b21e7980150384ea3f28a0a52240225e59cc79e4c99b4712",
+      "bytes": 2774
+    },
+    "benchmarks/tasks/sonnet55-page-screen.yaml": {
+      "sha256": "3d9ff243668502ffa63dca420cc3f0a24fb7da03ffef876854266cf3b7a9d33c",
+      "bytes": 763
+    },
+    "benchmarks/tasks/sonnet55-detector-control.yaml": {
+      "sha256": "d2f9cb260694b9a19aabe53850e0a381211624b507c1d9398a5b9543d6b104bb",
+      "bytes": 2591
+    },
+    "benchmarks/tasks/sonnet55-page-control-screen.yaml": {
+      "sha256": "fac27979b09f427adead0cc08d666a6eb9b2dacfdc0cb3a8db0896c9f6fa1448",
+      "bytes": 797
+    },
+    "benchmarks/tasks/sonnet55-detector-screen.yaml": {
+      "sha256": "2eb8eb56d07ec8069e9abd8b3d28aa9e4a2b684eb5b2eb71c27fac27546b3620",
+      "bytes": 722
+    },
+    "benchmarks/tasks/sonnet55-page-full.yaml": {
+      "sha256": "cbfc1dd389189cc2bb328cfa5e524b0680ce360bc06d989e407d5a2eff726c91",
+      "bytes": 7441
+    },
+    "benchmarks/tasks/sonnet55-page-control-full.yaml": {
+      "sha256": "48274de6d7915807386fb60596f1c872e6541ddc1347433ff259b1f7c4b5d5e5",
+      "bytes": 7475
+    },
+    "configs/recipes/sonnet55-ocr-gemini-3.7-flash-alverson.yaml": {
+      "sha256": "29fb42148292234c1ecfa6d349e283c481f249e9abaef2ae8d5a96dad03e88a0",
+      "bytes": 1021
+    },
+    "configs/recipes/sonnet55-ocr-gemini-3.7-flash-barney.yaml": {
+      "sha256": "cc5ac6ad79d9a519888321069f531a764e852158174039570641830f0945a359",
+      "bytes": 1017
+    },
+    "configs/recipes/sonnet55-ocr-claude-sonnet-5-5-alverson.yaml": {
+      "sha256": "1e1882290ed84d076ddc02f8175087a1c02232626112c5b281e1935445927d21",
+      "bytes": 1022
+    },
+    "configs/recipes/sonnet55-ocr-claude-sonnet-5-5-barney.yaml": {
+      "sha256": "f20cb3b00ccbd0b7c9c3cdbe2ec69b0c09f08fd448dfb0399e3b43dfed3cde7e",
+      "bytes": 1018
+    },
+    "benchmarks/sonnet55-bootstrap/sitecustomize.py": {
+      "sha256": "8e8246b2515ee3d6f07e98909c029a70618c76490692e05c0d5fdbd0f589c930",
+      "bytes": 155
+    },
+    "modules/common/anthropic_client.py": {
+      "sha256": "4b9ac7f77cba78ddf01aafe822f32bda84b000bac4e7ff4351fb2cb5c813557c",
+      "bytes": 4689
+    },
+    "docs/evals/evidence/045-anthropic-client-initial.py": {
+      "sha256": "8ef49783fc4bb848ebe338b5c29b9741e2183df4d350b3c3892ec4350314d14c",
+      "bytes": 4548
+    },
+    "docs/evals/evidence/045-guard-initial.py": {
+      "sha256": "c0bdd5eca8f3c8c82d46b576dd900d37189b1375ed0e494159f21b0b603c9924",
+      "bytes": 5978
+    },
+    "docs/evals/evidence/045-sonnet55-frozen.json": {
+      "sha256": "294b856936bf79b7ae40ffc748124c1bfc73dccf7f14007af425e65b5dcc919d",
+      "bytes": 5938
+    },
+    "docs/evals/evidence/045-sonnet55-topology.json": {
+      "sha256": "d95519a6d7206b4530d691a5e53c4643ec49ea838655351826815e684652557f",
+      "bytes": 23636
+    }
+  },
+  "quarantine": "Barney-r2 SDK1.9 switched to httpx2 before old guard caught it. No native envelope; output diagnostic only. Corrected raw custody r3 is quality evidence; no zero spend claim. Conservative .23 remains reserved.",
+  "current_reviewed_source": {
+    "modules/common/anthropic_client.py": {
+      "sha256": "1d7520f6ef2a6b284ade5c509af85d2979d7e8d55a1171f8997dca53a56e2f82",
+      "bytes": 4801
+    },
+    "benchmarks/providers/sonnet55_messages.py": {
+      "sha256": "7773317752452f6ba908a28277687a61f9a1968211181a57a81872d7018830d9",
+      "bytes": 495
+    },
+    "benchmarks/providers/sonnet55_gemini.py": {
+      "sha256": "e08210b2224c2440c3ba7d35ce8f736a32fa568e0547a34179910ae414d1322a",
+      "bytes": 2357
+    },
+    "benchmarks/providers/sonnet55_openai.py": {
+      "sha256": "7a56ee4cabab322003f1fc3f6039948b812e205219d1ab05365af8ef3403fa71",
+      "bytes": 530
+    },
+    "benchmarks/providers/sonnet55_guard.py": {
+      "sha256": "3bb34d5764b5b6c057d15121fbdac58309d59b24c3c2a155eceae399057f5ae0",
+      "bytes": 6622
+    },
+    "benchmarks/scripts/sonnet55_native_probe.py": {
+      "sha256": "5f4bf4e5e0f04ad61d141db63d8e75fcc7583cadf72caa05ed1fd6fcc4fdea27",
+      "bytes": 1202
+    },
+    "tests/test_sonnet55_guard.py": {
+      "sha256": "2ad0efe92701807209b8d8e5da9fac8c3d05e7e3231f174670fed97fb3a651c4",
+      "bytes": 2694
+    },
+    "tests/test_anthropic_client.py": {
+      "sha256": "7cad40d4264f82ff27c1e5e4573023dac7f7779e0efa2d1a8ad1efd3d7f97c49",
+      "bytes": 2772
+    }
+  },
+  "archive": {
+    "path": "docs/evals/evidence/045-sonnet55-reproducibility.tar.gz",
+    "sha256": "86ffe8f97818b20f46b5b1dab068dfc9c0e880f10f531587839b88dadc25a795",
+    "bytes": 3854792
+  },
+  "execution_environments": {
+    "native_and_promptfoo_detector": {
+      "python": "/Users/cam/Documents/Projects/doc-web/.venv/bin/python",
+      "packages": {
+        "httpx": "0.28.1",
+        "pydantic": "2.13.4"
+      },
+      "source": "new isolated worktree; existing owner interpreter"
+    },
+    "sonnet_driver": {
+      "python": "/Users/cam/.codex/worktrees/sonnet55-eval-20260928/doc-web/.venv/bin/python",
+      "anthropic": "1.9.0",
+      "transport": "httpx2 2.13.1",
+      "notes": "r2 old guard bypass quarantined; r3 repaired guard full receipts. Sonnet outputs occurred before GoogleSDK install."
+    },
+    "gemini_driver": {
+      "python": "/Users/cam/.codex/worktrees/sonnet55-eval-20260928/doc-web/.venv/bin/python",
+      "google-genai": "2.25.0",
+      "transport": "httpx 0.28.1",
+      "notes": "SDK installed isolated only after zero-inference missing-package stop"
+    }
+  },
+  "validation": {
+    "focused_tests": 36,
+    "archive_members_verified": 116,
+    "ruff": "pass",
+    "methodology_build": "pass",
+    "methodology_check": "pass",
+    "git_diff_check": "pass"
+  }
+}

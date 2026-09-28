@@ -11,6 +11,8 @@ class _FakeMessages:
     def create(self, **kwargs):
         self.calls.append(kwargs)
         return SimpleNamespace(
+            model=kwargs["model"],
+            stop_reason="end_turn",
             content=[SimpleNamespace(type="text", text="<p>ok</p>")],
             usage=SimpleNamespace(input_tokens=1, output_tokens=2),
             id="msg_test",
@@ -21,7 +23,7 @@ class _FakeAnthropicModule:
     def __init__(self):
         self.messages = _FakeMessages()
 
-    def Anthropic(self, api_key):
+    def Anthropic(self, api_key, **kwargs):
         assert api_key == "test-key"
         return self
 
@@ -59,3 +61,30 @@ def test_anthropic_vision_client_keeps_temperature_for_older_claude(monkeypatch)
     assert call["temperature"] == 0.0
     assert "thinking" not in call
     assert "output_config" not in call
+
+
+def test_sonnet55_ocr_uses_adaptive_medium_without_unsupported_sampling(monkeypatch):
+    call = _client_call("claude-sonnet-5-5", monkeypatch)
+    assert "temperature" not in call
+    assert call["thinking"] == {"type": "adaptive"}
+    assert call["output_config"] == {"effort": "medium"}
+
+
+def test_sonnet55_ocr_rejects_incomplete_native_envelope(monkeypatch):
+    import pytest
+
+    fake = _FakeAnthropicModule()
+    original = fake.messages.create
+
+    def incomplete(**kwargs):
+        response = original(**kwargs)
+        response.stop_reason = "max_tokens"
+        return response
+
+    fake.messages.create = incomplete
+    monkeypatch.setattr(anthropic_client, "anthropic", fake)
+    client = AnthropicVisionClient(api_key="test-key")
+    with pytest.raises(RuntimeError, match="terminal condition"):
+        client.generate_vision(
+            "claude-sonnet-5-5", "system", "user", "data:image/png;base64,WA=="
+        )

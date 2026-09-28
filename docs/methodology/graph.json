@@ -145,7 +145,8 @@
           "224",
           "226",
           "228",
-          "229"
+          "229",
+          "238"
         ],
         "adr_ids": [
           "ADR-001",
@@ -153,6 +154,8 @@
           "ADR-003"
         ],
         "eval_ids": [
+          "image-crop-extraction",
+          "crop-page-level-deletion-gate",
           "handwritten-notes-transcription",
           "onward-table-fidelity",
           "onward-document-consistency-planning",
@@ -227,13 +230,16 @@
           "227",
           "230",
           "233",
-          "234"
+          "234",
+          "238"
         ],
         "adr_ids": [
           "ADR-001",
           "ADR-003"
         ],
         "eval_ids": [
+          "image-crop-extraction",
+          "crop-page-level-deletion-gate",
           "ocr-model-genealogy",
           "handwritten-notes-transcription",
           "onward-table-fidelity",
@@ -341,13 +347,15 @@
           "232",
           "235",
           "236",
-          "237"
+          "237",
+          "238"
         ],
         "adr_ids": [],
         "eval_ids": [
           "image-crop-extraction",
           "crop-validation",
           "crop-page-level-deletion-gate",
+          "handwritten-notes-transcription",
           "single-model-crop-detection"
         ]
       },
@@ -600,7 +608,8 @@
           "232",
           "235",
           "236",
-          "237"
+          "237",
+          "238"
         ],
         "adr_ids": [
           "ADR-002"
@@ -1127,7 +1136,8 @@
           "232",
           "235",
           "236",
-          "237"
+          "237",
+          "238"
         ],
         "eval_ids": [
           "image-crop-extraction",
@@ -1146,11 +1156,11 @@
           ],
           "why_now": "Gemini 4 or equivalent may push past 0.95 target Golden references cover limited page types; add table-heavy pages",
           "last_relevant_action": {
-            "date": "2026-09-27",
+            "date": "2026-09-28",
             "source_type": "eval-attempt",
             "source": "docs/evals/registry.yaml",
-            "source_id": "044",
-            "summary": "Sol13/13 .992731, Luna13/13 .987162, freshGemini13/13 .962615. Sol preserves page12 seal/separate signatures but printed labels remain; Luna raw composite clips lower seal. Gemini runtime falls back to CV after ambigu..."
+            "source_id": "045",
+            "summary": "Attempt045: exact native access passes. Image011 fails required local bbox range and grouping, so full13/page22 not measured. Independent matched real OCR both models below .99; runtime and C5 retained. Known spend .0..."
           },
           "story_ids": [
             "135",
@@ -1165,7 +1175,8 @@
             "232",
             "235",
             "236",
-            "237"
+            "237",
+            "238"
           ],
           "eval_ids": [
             "image-crop-extraction",
@@ -1194,7 +1205,8 @@
           "232",
           "235",
           "236",
-          "237"
+          "237",
+          "238"
         ],
         "eval_ids": [
           "crop-validation",
@@ -1214,11 +1226,11 @@
           ],
           "why_now": "Rerun when a materially stronger validator or detector may reduce the current fail-labeled page-context cases. Rerun after any maintained crop/runtime simplification before claiming `trim_layout_text` or bounded capti...",
           "last_relevant_action": {
-            "date": "2026-09-27",
+            "date": "2026-09-28",
             "source_type": "eval-attempt",
             "source": "docs/evals/registry.yaml",
-            "source_id": "044",
-            "summary": "Sol false-safe screen stops full22. Luna full22 is21/22, false-safe page122-001 despite initial screen reject for a different artifact. Fresh GPT5.5 auto correctly rejects neighboring portrait; its high diagnostic fai..."
+            "source_id": "045",
+            "summary": "Attempt045: exact native access passes. Image011 fails required local bbox range and grouping, so full13/page22 not measured. Independent matched real OCR both models below .99; runtime and C5 retained. Known spend .0..."
           },
           "story_ids": [
             "135",
@@ -1232,7 +1244,8 @@
             "232",
             "235",
             "236",
-            "237"
+            "237",
+            "238"
           ],
           "eval_ids": [
             "crop-validation",
@@ -13288,6 +13301,72 @@
           "summary": ""
         }
       }
+    },
+    {
+      "id": "238",
+      "title": "Sonnet 5.5 maintained detector and handwriting evaluation",
+      "path": "docs/stories/story-238-sonnet55-maintained-model-evaluation.md",
+      "status": "Done",
+      "priority": "Medium",
+      "ideal_refs": [
+        "Eval Before Build",
+        "Fidelity to Source"
+      ],
+      "spec_refs": [
+        "C4",
+        "C5",
+        "spec:1",
+        "spec:2",
+        "spec:4",
+        "spec:8"
+      ],
+      "decision_refs": [],
+      "adr_ids": [],
+      "depends_on": [
+        "237"
+      ],
+      "category_refs": [
+        "spec:1",
+        "spec:2",
+        "spec:4",
+        "spec:8"
+      ],
+      "compromise_refs": [
+        "C4",
+        "C5"
+      ],
+      "input_coverage_refs": [
+        "handwritten-notes",
+        "image-directory-scans"
+      ],
+      "architecture_domains": [
+        "illustration-extraction",
+        "ocr_and_extraction"
+      ],
+      "roadmap_tags": [
+        "model-evaluation"
+      ],
+      "blocker_summary": "",
+      "blocker_evidence": "",
+      "unblock_condition": "",
+      "last_work_log_entry": null,
+      "legacy_build_map_refs": "",
+      "metadata_source": "frontmatter",
+      "missing_frontmatter_keys": [],
+      "actionability": {
+        "source_kind": "story",
+        "source_id": "238",
+        "source_path": "docs/stories/story-238-sonnet55-maintained-model-evaluation.md",
+        "recommended_now": false,
+        "posture": "completed",
+        "why_now": "",
+        "last_relevant_action": {
+          "date": null,
+          "source_type": "story-status",
+          "source": "docs/stories/story-238-sonnet55-maintained-model-evaluation.md",
+          "summary": ""
+        }
+      }
     }
   ],
   "adrs": [
@@ -13418,12 +13497,15 @@
         "232",
         "235",
         "236",
-        "237"
+        "237",
+        "238"
       ],
       "compromise_refs": [
         "C4"
       ],
       "category_refs": [
+        "spec:1",
+        "spec:2",
         "spec:4",
         "spec:8",
         "spec:9"
@@ -14026,6 +14108,14 @@
       },
       "attempts": [
         {
+          "id": "045",
+          "date": "2026-09-28",
+          "status": "failed",
+          "approach": "Sonnet5.5 direct medium adaptive maintained evaluation",
+          "note": "Attempt045: exact native access passes. Image011 fails required local bbox range and grouping, so full13/page22 not measured. Independent matched real OCR both models below .99; runtime and C5 retained. Known spend .05568125 plus quarantined usage estimate .008552 / conservative exposure .23, cap5.",
+          "retry_when": []
+        },
+        {
           "id": "044",
           "date": "2026-09-27",
           "status": "succeeded",
@@ -14368,11 +14458,11 @@
         ],
         "why_now": "Gemini 4 or equivalent may push past 0.95 target Golden references cover limited page types; add table-heavy pages",
         "last_relevant_action": {
-          "date": "2026-09-27",
+          "date": "2026-09-28",
           "source_type": "eval-attempt",
           "source": "docs/evals/registry.yaml",
-          "source_id": "044",
-          "summary": "Sol13/13 .992731, Luna13/13 .987162, freshGemini13/13 .962615. Sol preserves page12 seal/separate signatures but printed labels remain; Luna raw composite clips lower seal. Gemini runtime falls back to CV after ambigu..."
+          "source_id": "045",
+          "summary": "Attempt045: exact native access passes. Image011 fails required local bbox range and grouping, so full13/page22 not measured. Independent matched real OCR both models below .99; runtime and C5 retained. Known spend .0..."
         }
       }
     },
@@ -14673,12 +14763,15 @@
         "209",
         "232",
         "235",
-        "237"
+        "237",
+        "238"
       ],
       "compromise_refs": [
         "C5"
       ],
       "category_refs": [
+        "spec:1",
+        "spec:2",
         "spec:4",
         "spec:8"
       ],
@@ -15091,6 +15184,14 @@
       },
       "attempts": [
         {
+          "id": "045",
+          "date": "2026-09-28",
+          "status": "inconclusive",
+          "approach": "Sonnet5.5 direct medium adaptive maintained evaluation",
+          "note": "Attempt045: exact native access passes. Image011 fails required local bbox range and grouping, so full13/page22 not measured. Independent matched real OCR both models below .99; runtime and C5 retained. Known spend .05568125 plus quarantined usage estimate .008552 / conservative exposure .23, cap5.",
+          "retry_when": []
+        },
+        {
           "id": "044",
           "date": "2026-09-27",
           "status": "failed",
@@ -15324,11 +15425,11 @@
         ],
         "why_now": "Rerun when a materially stronger validator or detector may reduce the current fail-labeled page-context cases. Rerun after any maintained crop/runtime simplification before claiming `trim_layout_text` or bounded capti...",
         "last_relevant_action": {
-          "date": "2026-09-27",
+          "date": "2026-09-28",
           "source_type": "eval-attempt",
           "source": "docs/evals/registry.yaml",
-          "source_id": "044",
-          "summary": "Sol false-safe screen stops full22. Luna full22 is21/22, false-safe page122-001 despite initial screen reject for a different artifact. Fresh GPT5.5 auto correctly rejects neighboring portrait; its high diagnostic fai..."
+          "source_id": "045",
+          "summary": "Attempt045: exact native access passes. Image011 fails required local bbox range and grouping, so full13/page22 not measured. Independent matched real OCR both models below .99; runtime and C5 retained. Known spend .0..."
         }
       }
     },
@@ -15442,16 +15543,52 @@
         "191",
         "192",
         "208",
-        "230"
+        "230",
+        "238"
       ],
       "compromise_refs": [],
       "category_refs": [
         "spec:1",
         "spec:2",
         "spec:3",
+        "spec:4",
         "spec:8"
       ],
       "scores": [
+        {
+          "model": "claude-sonnet-5-5 fresh matched public LOC image-entry (Attempt045)",
+          "metrics": {
+            "overall_min_ratio": 0.982734,
+            "page_min_ratio": 0.982734,
+            "pass_rate": 0.0,
+            "cases_total": 2,
+            "fixtures_passing": 0,
+            "barney_image_overall_ratio": 0.982734,
+            "alverson_image_overall_ratio": 0.98283
+          },
+          "cost_usd": 0.017107999999999998,
+          "cost_estimated": true,
+          "measured": "2026-09-28",
+          "git_sha": "747b376+attempt045-uncommitted",
+          "note": "Fresh actual driver OCR outputs with unchanged source prompts/hints/scorer; both below.99, split small deltas and source-visible errors; Story191 remains blocked. Complete response custody for these four calls."
+        },
+        {
+          "model": "gemini-3.7-flash fresh matched public LOC image-entry (Attempt045)",
+          "metrics": {
+            "overall_min_ratio": 0.982014,
+            "page_min_ratio": 0.982014,
+            "pass_rate": 0.0,
+            "cases_total": 2,
+            "fixtures_passing": 0,
+            "barney_image_overall_ratio": 0.982014,
+            "alverson_image_overall_ratio": 0.985832
+          },
+          "cost_usd": 0.012389250000000001,
+          "cost_estimated": true,
+          "measured": "2026-09-28",
+          "git_sha": "747b376+attempt045-uncommitted",
+          "note": "Fresh actual driver OCR outputs with unchanged source prompts/hints/scorer; both below.99, split small deltas and source-visible errors; Story191 remains blocked. Complete response custody for these four calls."
+        },
         {
           "model": "Gemini 3.7 Flash bounded corrected-real image-entry screen",
           "metrics": {
@@ -15688,22 +15825,31 @@
         }
       ],
       "latest_score": {
-        "model": "Gemini 3.7 Flash bounded corrected-real image-entry screen",
+        "model": "gemini-3.7-flash fresh matched public LOC image-entry (Attempt045)",
         "metrics": {
-          "overall_min_ratio": 0.981622,
-          "page_min_ratio": 0.981622,
+          "overall_min_ratio": 0.982014,
+          "page_min_ratio": 0.982014,
           "pass_rate": 0.0,
           "cases_total": 2,
-          "fixture_count": 2,
           "fixtures_passing": 0,
-          "barney_image_overall_ratio": 0.981622,
-          "alverson_image_overall_ratio": 0.985233
+          "barney_image_overall_ratio": 0.982014,
+          "alverson_image_overall_ratio": 0.985832
         },
-        "measured": "2026-08-13",
-        "git_sha": "c69a2e1",
-        "note": "Exact first-party model ran through `driver.py` at the documented medium default thinking level. Manual comparison with both LOC scans confirmed genuine literal substitutions and omissions; neither case clears `0.99`. Portable proof: `docs/evals/attempts/026-gemini37-flash-evaluate-model.md`.\n"
+        "cost_usd": 0.012389250000000001,
+        "cost_estimated": true,
+        "measured": "2026-09-28",
+        "git_sha": "747b376+attempt045-uncommitted",
+        "note": "Fresh actual driver OCR outputs with unchanged source prompts/hints/scorer; both below.99, split small deltas and source-visible errors; Story191 remains blocked. Complete response custody for these four calls."
       },
       "attempts": [
+        {
+          "id": "045",
+          "date": "2026-09-28",
+          "status": "failed",
+          "approach": "Sonnet5.5 direct medium adaptive maintained evaluation",
+          "note": "Attempt045: exact native access passes. Image011 fails required local bbox range and grouping, so full13/page22 not measured. Independent matched real OCR both models below .99; runtime and C5 retained. Known spend .05568125 plus quarantined usage estimate .008552 / conservative exposure .23, cap5.",
+          "retry_when": []
+        },
         {
           "id": "001",
           "date": "2026-04-01",
@@ -15828,11 +15974,11 @@
         ],
         "why_now": "Retry only when a materially stronger model or OCR substrate appears that could plausibly clear Barney and the corrected Alverson front-page truth surface.",
         "last_relevant_action": {
-          "date": "2026-08-13",
+          "date": "2026-09-28",
           "source_type": "eval-attempt",
           "source": "docs/evals/registry.yaml",
-          "source_id": "013",
-          "summary": "Gemini 3.7 Flash scored `0.981622` Barney / `0.985233` Alverson at its documented medium default thinking level. Both miss the `0.99` bar, and the pair floor regresses versus Gemini 3.6 Flash. Manual scan review confi..."
+          "source_id": "045",
+          "summary": "Attempt045: exact native access passes. Image011 fails required local bbox range and grouping, so full13/page22 not measured. Independent matched real OCR both models below .99; runtime and C5 retained. Known spend .0..."
         }
       }
     },

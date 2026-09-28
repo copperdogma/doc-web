@@ -1,3 +1,16 @@
+## [2026-09-28-01] - Evaluate Sonnet 5.5 detector and handwriting (Story 238)
+
+### Added
+- Recorded exact native Sonnet 5.5 access, the Image011 detector contract stop,
+  and an independent source-reviewed LOC OCR comparison against fresh Gemini 3.7.
+  Neither OCR arm clears 0.99; runtime roles, C5 residue and blocked Story 191 remain.
+- Preserved complete metered receipts, explicit quarantined custody-fault accounting,
+  frozen execution snapshots and a reproducibility archive with 36 focused checks.
+
+### Changed
+- Added narrow Sonnet OCR transport compatibility and eval-only SDK retry control.
+  No runtime default changed.
+
 ## [2026-09-27-01] - Repeat GPT-6 image gates (Story 237)
 
 ### Added
