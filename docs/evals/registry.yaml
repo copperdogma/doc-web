@@ -49,7 +49,7 @@ evals:
     config: benchmarks/tasks/image-crop-extraction.yaml
     scorer: benchmarks/scorers/image_crop_scorer.py
     golden: benchmarks/golden/
-    story_refs: ["133", "183", "207", "232", "235", "236", "237", "238"]
+    story_refs: ["133", "183", "207", "232", "235", "236", "237", "238", "239"]
     category_refs: ["spec:4", "spec:8"]
     compromise_refs: ["C4"]
     spec_compromise: C4
@@ -102,6 +102,29 @@ evals:
         evidence_status: fresh-bounded-detector-publication-unqualified
         note: Frozen fresh same-source detector ranking Sol, Luna, Gemini. Page safety/publication
           gates remain failed; runtime retained. See Attempt044 and tracked crop sheets.
+      - model: GPT-6.1 Sol low fresh strict detector (Attempt046)
+        metrics: {overall: 0.979331, pass_rate: 1.0, cases_total: 13, latency_ms: 3138}
+        cost_usd: 0.1036855
+        cost_estimated: true
+        measured: '2026-09-29'
+        git_sha: 5ca3711+attempt046-uncommitted
+        result_file: benchmarks/results/gpt61-sol-20260929/detector-full13.json
+        evidence_status: fresh-bounded-detector-win-safety-failed-runtime-unqualified
+        note: >
+          Exact direct Responses strict integer arm passed13/13 with valid bounds
+          and source grouping, mean .979331 vs fresh Gemini3 Flash .965292.
+          Page122001 safety false-safe means no full publication/default claim.
+          See Attempt046 and its complete receipt manifest.
+      - model: Gemini 3 Flash fresh matched detector control (Attempt046)
+        metrics: {overall: 0.965292, pass_rate: 1.0, cases_total: 13, latency_ms: 6672}
+        cost_usd: 0.0563795
+        cost_estimated: true
+        measured: '2026-09-29'
+        git_sha: 5ca3711+attempt046-uncommitted
+        result_file: benchmarks/results/gpt61-sol-20260929/detector-gemini-control13.json
+        evidence_status: fresh-bounded-detector-control
+        note: Same13 checked-in source pages, maintained normalized configuration;
+          separate coordinate contract from candidate is disclosed in Attempt046.
       - model: "GPT-6 Luna Responses (medium, strict integer crop schema)"
         metrics: {overall: 0.987554, pass_rate: 1.0, cases_total: 13, latency_ms: 3077}
         cost_usd: 0.00582015
@@ -849,6 +872,17 @@ evals:
         note: "Poor bounding box precision"
 
     attempts:
+      - id: '046'
+        date: '2026-09-29'
+        status: succeeded
+        approach: GPT-6.1 Sol low strict detector versus fresh Gemini3 Flash
+        score_before: 0.965292
+        score_after: 0.979331
+        note: >
+          Candidate13/13 above .95 and faster than fresh Gemini13/13, but
+          costs1.84x and remains below historical GPT6 Sol .992731. Image011
+          seal/signature grouping is source-valid. Page safety separately false-safed;
+          no default change. See Attempt046 and closed $0.29783725 ledger.
       - id: '045'
         date: '2026-09-28'
         status: failed
@@ -1924,7 +1958,7 @@ evals:
     config: benchmarks/tasks/crop-page-level-deletion-gate.yaml
     scorer: benchmarks/scorers/crop_validation_scorer.py
     golden: benchmarks/golden/crop-page-level-deletion-gate.json
-    story_refs: ["209", "232", "235", "237", "238"]
+    story_refs: ["209", "232", "235", "237", "238", "239"]
     category_refs: ["spec:4", "spec:8"]
     compromise_refs: ["C5"]
     spec_compromise: C5
@@ -1957,6 +1991,26 @@ evals:
         history are recorded in `benchmarks/golden/crop-eval-provenance.json`.
 
     scores:
+      - model: GPT-6.1 Sol low targeted page-context safety (Attempt046)
+        metrics: {targeted_pass: 0, targeted_cases: 1, false_safe: 1, latency_ms: 5663}
+        cost_usd: 0.016411
+        cost_estimated: true
+        measured: '2026-09-29'
+        git_sha: 5ca3711+attempt046-uncommitted
+        result_file: benchmarks/results/gpt61-sol-20260929/page122-screen.json
+        evidence_status: source-backed-false-safe-full22-not-measured
+        note: >
+          Candidate called the neighboring Sophie portrait an acceptable second
+          photo in the crop. Full22 stopped by declared gate; retain GPT5.5.
+      - model: GPT-5.5 fresh auto-detail targeted control (Attempt046)
+        metrics: {targeted_pass: 1, targeted_cases: 1, false_safe: 0, latency_ms: 4816}
+        cost_usd: 0.08218
+        cost_estimated: true
+        measured: '2026-09-29'
+        git_sha: 5ca3711+attempt046-uncommitted
+        result_file: benchmarks/results/gpt61-sol-20260929/page122-gpt55-control.json
+        evidence_status: fresh-targeted-control-full22-not-measured
+        note: Maintained none/2048/auto control correctly rejected neighboring portrait.
       - model: GPT-6 Sol fresh targeted safety (Attempt044)
         metrics:
           pass_rate: 0.0
@@ -2580,6 +2634,16 @@ evals:
           proof: `docs/evals/attempts/034-gpt6-astra-page-context-gate.md`.
 
     attempts:
+      - id: '046'
+        date: '2026-09-29'
+        status: failed
+        approach: GPT-6.1 Sol low page122001 two-image safety versus fresh GPT5.5
+        score_before: 1.0
+        score_after: null
+        note: >
+          Candidate false-safe pass on neighboring Sophie portrait. GPT5.5
+          none/2048/auto correctly fails the crop. Full22 stopped and unmeasured;
+          keep GPT5.5 and C5. See Attempt046.
       - id: '045'
         date: '2026-09-28'
         status: inconclusive
@@ -3106,7 +3170,7 @@ evals:
     command: "python benchmarks/scripts/run_handwritten_notes_eval.py --image-recipe configs/recipes/recipe-images-ocr-html-handwritten-notes-gemini-rescue.yaml --pdf-recipe configs/recipes/recipe-pdf-ocr-html-handwritten-notes-gemini-rescue.yaml --image-case-id image-handwritten-rescue --pdf-case-id pdf-handwritten-rescue --instrument --output benchmarks/results/handwritten-notes-story189-real-expanded.json"
     scorer: benchmarks/scorers/handwritten_notes_transcription.py
     golden: benchmarks/golden/handwritten-notes/corpus.json
-    story_refs: ["179", "182", "185", "186", "189", "191", "192", "208", "230", "238"]
+    story_refs: ["179", "182", "185", "186", "189", "191", "192", "208", "230", "238", "239"]
     category_refs: ["spec:1", "spec:2", "spec:8"]
     compromise_refs: []
 
@@ -3116,6 +3180,31 @@ evals:
       note: "The target still marks the desired passing bar, but the widened default corpus now includes two real handwritten fixtures that the maintained rescue seam does not clear."
 
     scores:
+      - model: gpt-6.1-sol low fresh public LOC image-entry (Attempt046)
+        metrics: {overall_min_ratio: 0.902693, page_min_ratio: 0.902693, pass_rate: 0.0,
+          cases_total: 2, fixtures_passing: 0, barney_image_overall_ratio: 0.902693,
+          alverson_image_overall_ratio: 0.935065}
+        cost_usd: 0.015017
+        cost_estimated: true
+        measured: '2026-09-29'
+        git_sha: 5ca3711+attempt046-uncommitted
+        evidence_status: source-backed-barney-loss-alverson-golden-concern
+        note: >
+          Frozen transcript scores: both below .99. Barney has source-visible
+          candidate invention. Alverson original appears to read no good prospect,
+          matching candidate but contradicting the golden's a good prospect;
+          review golden before another OCR decision.
+      - model: gemini-3.7-flash fresh matched public LOC image-entry (Attempt046)
+        metrics: {overall_min_ratio: 0.980645, page_min_ratio: 0.980645, pass_rate: 0.0,
+          cases_total: 2, fixtures_passing: 0, barney_image_overall_ratio: 0.980645,
+          alverson_image_overall_ratio: 0.983471}
+        cost_usd: 0.01323675
+        cost_estimated: true
+        measured: '2026-09-29'
+        git_sha: 5ca3711+attempt046-uncommitted
+        evidence_status: fresh-control-below-fidelity-gate
+        note: Same public image bytes and OCR system/user/hints/scorer as candidate.
+          This two-page image screen leaves Story191 blocked.
       - model: claude-sonnet-5-5 fresh matched public LOC image-entry (Attempt045)
         metrics:
           overall_min_ratio: 0.982734
@@ -3604,6 +3693,18 @@ evals:
           `output/runs/story179-pdf-generic/02_ocr_ai_gpt51_v1/pages_html.jsonl`.
 
     attempts:
+      - id: '046'
+        date: '2026-09-29'
+        status: failed
+        approach: GPT-6.1 Sol low actual-driver public LOC handwriting versus fresh Gemini3.7
+        score_before: 0.980645
+        score_after: 0.902693
+        note: >
+          GPT6.1 Barney .902693 and Alverson .935065 vs fresh Gemini .980645/.983471.
+          Barney has source-visible invention; Alverson no good prospect appears
+          source-correct despite golden mismatch. Frozen scores all below .99;
+          review golden before another OCR decision. Story191 stays Blocked.
+          See Attempt046 and exact driver receipts.
       - id: '045'
         date: '2026-09-28'
         status: failed

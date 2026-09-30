@@ -46,7 +46,7 @@ def _is_anthropic_model(model: str) -> bool:
 
 
 def _openai_supports_temperature(model: str) -> bool:
-    return not (model or "").casefold().startswith("gpt-5")
+    return not (model or "").casefold().startswith(("gpt-5", "gpt-6"))
 
 
 ALLOWED_TAGS = {
@@ -364,6 +364,9 @@ def _call_vision_model(
                 },
             ],
         }
+        if model == "gpt-6.1-sol":
+            request_kwargs["reasoning"] = {"effort": "low"}
+            request_kwargs["store"] = False
         if _openai_supports_temperature(model):
             request_kwargs["temperature"] = temperature
         resp = openai_client.responses.create(**request_kwargs)

@@ -193,3 +193,7 @@ implementation sketch that used to live here.
 ### 2026-09-28 — Sonnet5.5 bounded independent image-entry screen
 
 Attempt045 compares fresh Sonnet5.5 medium adaptive with fresh Gemini3.7 on the unchanged two public LOC scans using actual driver OCR, frozen hints/cleanup/scorer/goldens. Sonnet Barney.982734/Alverson.982830; Gemini.982014/.985832, neither reaches.99. Source-visible errors remain on both arms, and split tiny improvements do not identify a winning substrate. This story remains Blocked; full synthetic/PDF confirmation has no qualifying candidate. Complete artifacts, source mismatches and spend/custody limitation live in Attempt045 and its manifest.
+
+### 2026-09-29 — GPT-6.1 Sol independent public LOC screen
+
+Attempt046 ran exact GPT-6.1 Sol low and fresh Gemini3.7 through the actual image-entry `driver.py` OCR seam on the unchanged Barney/Alverson source pair. Against the frozen transcripts, GPT-6.1 scored .902693/.935065 and Gemini .980645/.983471; both miss .99 on both pages. Barney has a source-visible candidate invention. Alverson source review exposed a golden concern: the original scan appears to read “no good prospect,” matching GPT-6.1 but contradicting the transcript's “a good prospect.” Keep the frozen scores and raw outputs, review/correct that golden before another OCR decision, and do not claim a source-backed reversal by the candidate. Complete raw receipts and stamped outputs are in Attempt046's archive/manifest. Story191 remains Blocked; this screen does not justify synthetic/PDF confirmation or a default change.

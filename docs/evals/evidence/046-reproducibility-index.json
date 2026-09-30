@@ -1,0 +1,13 @@
+{
+  "archive_sha256": "cf384acfbed6c3abc211b4ea35baa6a8a356f0011df8947b5a6ba81f5c434949",
+  "archive_bytes": 22122209,
+  "parts": [
+    {
+      "path": "docs/evals/evidence/046-reproducibility.tar.gz.part01",
+      "bytes": 22122209,
+      "sha256": "cf384acfbed6c3abc211b4ea35baa6a8a356f0011df8947b5a6ba81f5c434949"
+    }
+  ],
+  "entries": 133,
+  "blobs": 31
+}

@@ -48,3 +48,6 @@ benchmarks/results/gpt6-astra-20260905/
 
 # Attempt 039 direct xAI provider envelopes and public-fixture results
 /benchmarks/results/grok47-20260922/
+
+# Attempt 046 complete public-fixture provider envelopes and diagnostics
+/benchmarks/results/gpt61-sol-20260929/

@@ -1,0 +1,802 @@
+{
+  "attempt": "046",
+  "date": "2026-09-29",
+  "repo": "doc-web",
+  "base_sha": "5ca3711fb13b12b5b3e261438e7a00ffe450a647",
+  "branch": "codex/gpt61-sol-eval-20260929",
+  "worktree": "/Users/cam/.codex/worktrees/gpt61-sol-eval-20260929/doc-web",
+  "decision_scope": "fresh bounded detector, conditional page safety, independent actual-driver public LOC handwriting",
+  "privacy": "checked-in public Onward and LOC images plus synthetic probes only; Standard provider retention, no training by default; ZDR unverified",
+  "provider_urls": [
+    "https://developers.openai.com/api/docs/models/gpt-6.1-sol",
+    "https://developers.openai.com/api/docs/models/gpt-5.5",
+    "https://ai.google.dev/gemini-api/docs/pricing"
+  ],
+  "config": {
+    "candidate": "gpt-6.1-sol low direct Responses Standard, strict schema detector/page, freeform OCR",
+    "detector_control": "gemini-3-flash-preview maintained normalized prompt/config",
+    "page_control": "gpt-5.5 none/2048 auto-detail Responses",
+    "ocr_control": "gemini-3.7-flash maintained default medium",
+    "cache": "no-cache Promptfoo, fresh driver run IDs",
+    "concurrency": 1,
+    "judge": "none; deterministic owner scorers",
+    "initial_max_output": {
+      "detector": 4096,
+      "page": 4096,
+      "ocr": 16384
+    }
+  },
+  "detector": {
+    "candidate": {
+      "cases": 13,
+      "passed": 13,
+      "mean_score": 0.979331,
+      "mean_promptfoo_latency_ms": 3138.077,
+      "cost_usd": 0.1036855,
+      "result": {
+        "path": "benchmarks/results/gpt61-sol-20260929/detector-full13.json",
+        "bytes": 9620664,
+        "sha256": "ecb0e942aed3d2a46f87e547a1798ec452834c43e815d751b7dc2a080ea9b368"
+      }
+    },
+    "control": {
+      "cases": 13,
+      "passed": 13,
+      "mean_score": 0.965292,
+      "mean_promptfoo_latency_ms": 6671.846,
+      "cost_usd": 0.0563795,
+      "result": {
+        "path": "benchmarks/results/gpt61-sol-20260929/detector-gemini-control13.json",
+        "bytes": 9607984,
+        "sha256": "9e31f4e18a866fedba727d47bfec65adce2def09a9311522df7c96499597d784"
+      }
+    },
+    "screen": {
+      "cases": 1,
+      "passed": 1,
+      "mean_score": 0.9861,
+      "mean_promptfoo_latency_ms": 3245,
+      "cost_usd": 0.0085035,
+      "result": {
+        "path": "benchmarks/results/gpt61-sol-20260929/detector-image011.json",
+        "bytes": 319727,
+        "sha256": "31851814ab54d5ce92e5c1695aeb0ec294db2201d6547b0eddf96c9cae41e659"
+      }
+    },
+    "source_figure": {
+      "path": "benchmarks/results/gpt61-sol-20260929/image011-geometry.png",
+      "bytes": 433106,
+      "sha256": "138ce186c756bf8f69ebfe3661e0b8c025ab2e190e7de89e708a6d5391302abc"
+    },
+    "source_note": "Image011 lower box preserves seal and both signatures; printed officer text remains inside crop."
+  },
+  "safety": {
+    "candidate_screen": {
+      "cases": 1,
+      "passed": 0,
+      "mean_score": 0,
+      "mean_promptfoo_latency_ms": 5663,
+      "cost_usd": 0.016411,
+      "result": {
+        "path": "benchmarks/results/gpt61-sol-20260929/page122-screen.json",
+        "bytes": 8508998,
+        "sha256": "ebcc8a6402dde04af7c5cbdaaa66329a39aa42117895719a4fe6592acda01294"
+      }
+    },
+    "gpt55_control_screen": {
+      "cases": 1,
+      "passed": 1,
+      "mean_score": 1,
+      "mean_promptfoo_latency_ms": 4816,
+      "cost_usd": 0.08218,
+      "result": {
+        "path": "benchmarks/results/gpt61-sol-20260929/page122-gpt55-control.json",
+        "bytes": 8508682,
+        "sha256": "1e93c561c853710f618c9eb627f1cb97094e8aa6d5df55bce751ad7830efb88a"
+      }
+    },
+    "candidate_verdict": "false-safe pass on source-backed neighboring Sophie portrait; full22 not measured by progressive gate",
+    "source_figure": {
+      "path": "benchmarks/results/gpt61-sol-20260929/page122-source-check.png",
+      "bytes": 1048166,
+      "sha256": "d32ae9c96c3f231ee2c8117f379d666494621bc29521cb2d02adbec06d1675e5"
+    }
+  },
+  "ocr": [
+    {
+      "arm": "candidate",
+      "model": "gpt-6.1-sol",
+      "fixture": "barney",
+      "fidelity": 0.902693,
+      "page_min_ratio": 0.902693,
+      "native_latency_ms": 11750,
+      "ocr_stage_wall_seconds": 13.720557,
+      "cost_usd": 0.0071135,
+      "receipt_sequence": 33,
+      "artifact": {
+        "path": "output/runs/gpt61-sol-barney-image/02_ocr_ai_gpt51_v1/pages_html.jsonl",
+        "bytes": 3648,
+        "sha256": "ea287ab94373b5d1a36b672139e5a62eaefefe4e718df5b0be65d9d437fd2367"
+      }
+    },
+    {
+      "arm": "candidate",
+      "model": "gpt-6.1-sol",
+      "fixture": "alverson",
+      "fidelity": 0.935065,
+      "page_min_ratio": 0.935065,
+      "native_latency_ms": 9807,
+      "ocr_stage_wall_seconds": 11.823255,
+      "cost_usd": 0.0079035,
+      "receipt_sequence": 34,
+      "artifact": {
+        "path": "output/runs/gpt61-sol-alverson-image/02_ocr_ai_gpt51_v1/pages_html.jsonl",
+        "bytes": 2606,
+        "sha256": "303e8aefa85755b6fcf3135c2c6f9051148f6147cc4e1f7de413f0a764329aea"
+      }
+    },
+    {
+      "arm": "control",
+      "model": "gemini-3.7-flash",
+      "fixture": "barney",
+      "fidelity": 0.980645,
+      "page_min_ratio": 0.980645,
+      "native_latency_ms": 5989,
+      "ocr_stage_wall_seconds": 7.638429,
+      "cost_usd": 0.00709125,
+      "receipt_sequence": 35,
+      "artifact": {
+        "path": "output/runs/gpt61-control-gemini37-barney-image/02_ocr_ai_gpt51_v1/pages_html.jsonl",
+        "bytes": 3681,
+        "sha256": "37780ce889099e43441fc78e4052124285b04c4729833fddc324bfe5fd8aac90"
+      }
+    },
+    {
+      "arm": "control",
+      "model": "gemini-3.7-flash",
+      "fixture": "alverson",
+      "fidelity": 0.983471,
+      "page_min_ratio": 0.983471,
+      "native_latency_ms": 6144,
+      "ocr_stage_wall_seconds": 7.689521,
+      "cost_usd": 0.0061455,
+      "receipt_sequence": 36,
+      "artifact": {
+        "path": "output/runs/gpt61-control-gemini37-alverson-image/02_ocr_ai_gpt51_v1/pages_html.jsonl",
+        "bytes": 2653,
+        "sha256": "15f5c4197eabd9ce994a1fefcf75fa253b2928be5ac4090d9b191dd1d02efd84"
+      }
+    }
+  ],
+  "ledger": {
+    "path": "benchmarks/results/gpt61-sol-20260929/ledger.json",
+    "sha256": "3a01778e5b79e8661a8207a8cc42cdfc0f5bbb6ca3f03a3ed34405fabaa3a57c",
+    "known_settled_usd": 0.29783725000000005,
+    "unknown_reserved_usd": 0,
+    "maximum_exposure_usd": 0.29783725000000005,
+    "cap_usd": 14,
+    "closed": true,
+    "calls": 36
+  },
+  "topology": {
+    "path": "docs/evals/evidence/046-gpt61-topology.json",
+    "bytes": 246195,
+    "sha256": "4e61362b888fde5f9973b1c7f713e025658c701bf8850d0227a5d1977366b7af"
+  },
+  "archive_index": {
+    "path": "docs/evals/evidence/046-reproducibility-index.json",
+    "bytes": 362,
+    "sha256": "eff32b244d92fe495932f644d06fcd2649121e45fdf7b2a1e6ca34fa0146c0b5"
+  },
+  "source_files": [
+    {
+      "path": "modules/extract/ocr_ai_gpt51_v1/main.py",
+      "bytes": 30491,
+      "sha256": "a9db81b3d7ed5066a25e4fe24f47c725677014dce677fc8449080b5e90552f6f"
+    },
+    {
+      "path": "modules/common/openai_client.py",
+      "bytes": 2952,
+      "sha256": "eb8b2146f390e3a28f2b02cc032abe9959ba6921690eccc5965a6fd948d43308"
+    },
+    {
+      "path": "modules/common/google_client.py",
+      "bytes": 6099,
+      "sha256": "174e4469436f26452a8d0712af32968ddfa730a04a726bf34d272d970aadd721"
+    },
+    {
+      "path": "benchmarks/providers/openai_responses_model.py",
+      "bytes": 17928,
+      "sha256": "3506470ee1eb9c8da8c472f270e3400fd2c6cbd086c6be836a0d974997696240"
+    },
+    {
+      "path": "benchmarks/providers/gpt61_guard.py",
+      "bytes": 5904,
+      "sha256": "13599352b8d66074ed0d04c8170334b8f03f87d17d70c8ef6d1e867e5d7afe00"
+    },
+    {
+      "path": "benchmarks/providers/gpt61_openai.py",
+      "bytes": 582,
+      "sha256": "f35de1664477aaa31296d466c0a78af3dcae74519f692b2e190f5d82897726f1"
+    },
+    {
+      "path": "benchmarks/providers/gpt61_gemini.py",
+      "bytes": 2354,
+      "sha256": "8d9075f2f9569658b81433fbb59e711662be707f07deaf2974e62065d0c403b4"
+    },
+    {
+      "path": "benchmarks/gpt61-bootstrap/sitecustomize.py",
+      "bytes": 223,
+      "sha256": "60adc79e4d3019a816ad2ed437b80a9851db04e45a18ef9252a2460e47d642ea"
+    },
+    {
+      "path": "docs/evals/evidence/046-execution-sources/benchmarks/scripts/gpt61_native_probe.py",
+      "bytes": 3686,
+      "sha256": "138e94319a634502c793e3c22047bdcead3d6e11f8cdb5911d0ab8a3f87389e7",
+      "executed_path": "benchmarks/scripts/gpt61_native_probe.py"
+    },
+    {
+      "path": "docs/evals/evidence/046-execution-sources/benchmarks/scripts/gpt61_preflight.py",
+      "bytes": 7025,
+      "sha256": "f8dd437e31d105dc51e22716e5ba964ee73acfc646e0c45ceb76a62b3c5e569a",
+      "executed_path": "benchmarks/scripts/gpt61_preflight.py"
+    },
+    {
+      "path": "benchmarks/prompts/crop-conservative-count.js",
+      "bytes": 1782,
+      "sha256": "d15c7fd6f20389e5e7b2af9f15dd3697a31c28f47cfea8147c8114fe82f1e8f9"
+    },
+    {
+      "path": "benchmarks/prompts/validate-page-level-crop.js",
+      "bytes": 2796,
+      "sha256": "2ccc8c96ef69c14102d7ffd13b5a39715e5cd136b497510b1b2f88243009a5a0"
+    },
+    {
+      "path": "benchmarks/scorers/image_crop_scorer.py",
+      "bytes": 10333,
+      "sha256": "7fcf07e05726bf3ebbc2488a503a9d7f165dde79649890cbd65f12a6ce4c19e7"
+    },
+    {
+      "path": "benchmarks/scorers/crop_validation_scorer.py",
+      "bytes": 4546,
+      "sha256": "12eb63725523bd00d59ce12b7486db8c9244124a0c57bb68cae8b8e9e7d288fb"
+    },
+    {
+      "path": "benchmarks/scorers/handwritten_notes_transcription.py",
+      "bytes": 4712,
+      "sha256": "3e8ab803e94b22b139e78d51bd029f6502ecac03a170f2dd7955b86afd67ee6b"
+    },
+    {
+      "path": "benchmarks/golden/image-crops.json",
+      "bytes": 7783,
+      "sha256": "2ac0a8f01e00a252439da1f4827a85bc5118bf96460a3ff1780e642eafc60f90"
+    },
+    {
+      "path": "benchmarks/golden/crop-eval-provenance.json",
+      "bytes": 3398,
+      "sha256": "acb9101b05f8377f9c07de3a52bbdc2b09cf78f002ed81b36e328f3c4cd5e071"
+    },
+    {
+      "path": "benchmarks/golden/crop-page-level-deletion-gate.json",
+      "bytes": 4476,
+      "sha256": "4bcba8f4ab8a742608e7cfc1438464a71cf56aa4cd9cbe9e0a67e4a410ac18a5"
+    },
+    {
+      "path": "benchmarks/golden/handwritten-notes/corpus.json",
+      "bytes": 2009,
+      "sha256": "473dda06af0a76c23865b4edf7db0a6fdd3de22199a2e457cfbff617b6ca8b7e"
+    },
+    {
+      "path": "benchmarks/tasks/gpt61-detector-control.yaml",
+      "bytes": 2614,
+      "sha256": "0f7524f43e460b8ad503ad9c21036d044026775fdde9d77744e5ec4117b52c98"
+    },
+    {
+      "path": "benchmarks/tasks/gpt61-detector-full.yaml",
+      "bytes": 2750,
+      "sha256": "1555ef6b27a1ada910e0d23768cb669b95b155f31214be021f2ce030184cfb64"
+    },
+    {
+      "path": "benchmarks/tasks/gpt61-detector-screen.yaml",
+      "bytes": 698,
+      "sha256": "da0047c862ba5d7965680b3cbca96ea375e7b7e0d637d8c8b4c6b322df89ef31"
+    },
+    {
+      "path": "benchmarks/tasks/gpt61-page-control-full.yaml",
+      "bytes": 7472,
+      "sha256": "a8ada93ce16df1de95b716823890c3fffe155537fd5d80197c513a57ebb1608f"
+    },
+    {
+      "path": "benchmarks/tasks/gpt61-page-control-screen.yaml",
+      "bytes": 839,
+      "sha256": "046f338f99e47a3ec94835f99d231b30aefe0db7171033fcacdb1d7b00c5d7cb"
+    },
+    {
+      "path": "benchmarks/tasks/gpt61-page-full.yaml",
+      "bytes": 7423,
+      "sha256": "66afd465e1daf56e26233a86de5165960049768583782faa9bfa6f96e0c6e4fc"
+    },
+    {
+      "path": "benchmarks/tasks/gpt61-page-screen.yaml",
+      "bytes": 745,
+      "sha256": "33d4fb25946d5e32b6e1cc18ea20e6be46ed503978984fd8d700dc7e72a4f6f0"
+    },
+    {
+      "path": "configs/recipes/gpt61-ocr-gemini-3.7-flash-alverson.yaml",
+      "bytes": 1021,
+      "sha256": "29fb42148292234c1ecfa6d349e283c481f249e9abaef2ae8d5a96dad03e88a0"
+    },
+    {
+      "path": "configs/recipes/gpt61-ocr-gemini-3.7-flash-barney.yaml",
+      "bytes": 1017,
+      "sha256": "cc5ac6ad79d9a519888321069f531a764e852158174039570641830f0945a359"
+    },
+    {
+      "path": "configs/recipes/gpt61-ocr-gpt-6.1-sol-alverson.yaml",
+      "bytes": 1016,
+      "sha256": "c9a883206537347fce28a99723318c113c380231de31356ec6fd0982a9d089b6"
+    },
+    {
+      "path": "configs/recipes/gpt61-ocr-gpt-6.1-sol-barney.yaml",
+      "bytes": 1012,
+      "sha256": "1893821801cdf0f3ffeed965e71a76f1afe606b7b41dbd4b0e7e492b8b9880df"
+    },
+    {
+      "path": "testdata/handwritten-notes-barney-real-images/page-001.jpg",
+      "bytes": 150713,
+      "sha256": "aaf212e6091d913ded7117dd61f1437a83c57af4f974809e7fb96c11a813d9c5"
+    },
+    {
+      "path": "testdata/handwritten-notes-alverson-real-images/page-001.jpg",
+      "bytes": 423424,
+      "sha256": "74876a4568c5fdc459b78fde2b6e3216038fcd6e247972432d31207fcc94c198"
+    },
+    {
+      "path": "testdata/handwritten-notes-barney-real.txt",
+      "bytes": 1397,
+      "sha256": "78827ef175378bd2c55d0405fc35213acfc17e348b5edd48b1e089525a83e2bf"
+    },
+    {
+      "path": "testdata/handwritten-notes-alverson-real.txt",
+      "bytes": 879,
+      "sha256": "54291e20b842e2299fee392cd881a202f181263da10f4e85cb8ca49dfe74ac27"
+    },
+    {
+      "path": "benchmarks/input/source-pages-b64/Image011.b64.txt",
+      "bytes": 310151,
+      "sha256": "71806b69682ae403974ab6090429aa894029c3d3771b77c76bdbe10cb2102f83"
+    },
+    {
+      "path": "benchmarks/input/source-pages-b64/Image121.b64.txt",
+      "bytes": 1133039,
+      "sha256": "d58cb6142e0c5688b34ba8877ca45f4affb63dea1f44b608b0e2464e7ef5d0ca"
+    },
+    {
+      "path": "benchmarks/input/crop-validation-b64/page-122-001.b64.txt",
+      "bytes": 7364519,
+      "sha256": "1cd664289bbf7f54f918d02d9958f3cfdd2089185cb563ba62b4afad3ec8e02f"
+    }
+  ],
+  "receipt_summary": [
+    {
+      "sequence": 1,
+      "stage": "native-detector",
+      "requested_model": "gpt-6.1-sol",
+      "served_model": "gpt-6.1-sol",
+      "response_id": "resp_06fae9ef07b6d721016abc0db26dec87d082ebc900ff3a1cc5",
+      "latency_ms": 3615,
+      "cost_usd": 0.000916,
+      "request_sha256": "0b12b3648ceecbb17819d67141ea63400d33be1afde5157a338c7b672e64439f",
+      "response_sha256": "18c070a5d943eb4af7c68c2d7f65650bc5b5e9e224b2edcf3a5fcc1ff36427e6"
+    },
+    {
+      "sequence": 2,
+      "stage": "detector-image011",
+      "requested_model": "gpt-6.1-sol",
+      "served_model": "gpt-6.1-sol",
+      "response_id": "resp_078e466c9c129599016abc0dbdaab887d080f22d0ab05b0472",
+      "latency_ms": 2944,
+      "cost_usd": 0.0085035,
+      "request_sha256": "9bf89399f7fa304f622fa90e0b89f46b7219a45a70b614754afa9f37e1b1d2e2",
+      "response_sha256": "1afea255221d1685b4e606a4016b73ee0ac6cdb07b80fd20900bad16246aebb7"
+    },
+    {
+      "sequence": 3,
+      "stage": "detector-full13",
+      "requested_model": "gpt-6.1-sol",
+      "served_model": "gpt-6.1-sol",
+      "response_id": "resp_0961528bf35da948016abc0dd14e5487d092501211c7fb4ad5",
+      "latency_ms": 2711,
+      "cost_usd": 0.0086335,
+      "request_sha256": "30aa6baca043d35eb0096d987babed3da6a1c8ba4a0962680224ef36d8384a11",
+      "response_sha256": "bda864a3afac9e66a311586fcd637028b549f17132114dd765760200f52bca2c"
+    },
+    {
+      "sequence": 4,
+      "stage": "detector-full13",
+      "requested_model": "gpt-6.1-sol",
+      "served_model": "gpt-6.1-sol",
+      "response_id": "resp_067f7bebe0e3b543016abc0dd4099487d0ae2c8582963324ad",
+      "latency_ms": 3003,
+      "cost_usd": 0.0084235,
+      "request_sha256": "37486f33f22bcc1770a92f50b814dec4968f4a83e27c497210b0b1af42cde751",
+      "response_sha256": "e55c41153ed7519d7218fe6f1f7e90e5680f5e6b131c53194ed7603afbe92970"
+    },
+    {
+      "sequence": 5,
+      "stage": "detector-full13",
+      "requested_model": "gpt-6.1-sol",
+      "served_model": "gpt-6.1-sol",
+      "response_id": "resp_007a91c6e591abff016abc0dd73f7487d0b324052d52f0f31e",
+      "latency_ms": 2663,
+      "cost_usd": 0.0084635,
+      "request_sha256": "08ab4f3089b283663c04e26ad2ccf6631ce6854cb89a9d0964ecf5a666781932",
+      "response_sha256": "b1dfe01c1a66fc552f0b77401a9751cf8039374ed704ab740512e442d8104f0d"
+    },
+    {
+      "sequence": 6,
+      "stage": "detector-full13",
+      "requested_model": "gpt-6.1-sol",
+      "served_model": "gpt-6.1-sol",
+      "response_id": "resp_046c9e9ee22411be016abc0dda31a487d0b3079149affe486b",
+      "latency_ms": 2703,
+      "cost_usd": 0.0084035,
+      "request_sha256": "ffcaf8a196376c1e71cfb108480d270aa0deaa65e2c137b75cd612ae9eb01526",
+      "response_sha256": "c1de2dcab5db53afa3d1a96b16af3e3d88d3f39bee1b31da5d7bac6bacf86683"
+    },
+    {
+      "sequence": 7,
+      "stage": "detector-full13",
+      "requested_model": "gpt-6.1-sol",
+      "served_model": "gpt-6.1-sol",
+      "response_id": "resp_0ac37c0a6d5b4988016abc0ddcedfc87d09ed08385ca8093fc",
+      "latency_ms": 2556,
+      "cost_usd": 0.0008835,
+      "request_sha256": "9bf89399f7fa304f622fa90e0b89f46b7219a45a70b614754afa9f37e1b1d2e2",
+      "response_sha256": "2b46e36460bda099789862502d6b6e7e846d157735b55bb388ef349a8072afff"
+    },
+    {
+      "sequence": 8,
+      "stage": "detector-full13",
+      "requested_model": "gpt-6.1-sol",
+      "served_model": "gpt-6.1-sol",
+      "response_id": "resp_08f126b3f71a033d016abc0ddfbefc87d08338dd0b0d2fdce2",
+      "latency_ms": 2760,
+      "cost_usd": 0.0084035,
+      "request_sha256": "6a613185c2e895d452769830212913be45e283f1097dd61d97d51da98fbbf6e5",
+      "response_sha256": "6b4ca2b76fcaa80e81a7fe6e313670c51e61c3528eaf8a04d0d5640054c45c93"
+    },
+    {
+      "sequence": 9,
+      "stage": "detector-full13",
+      "requested_model": "gpt-6.1-sol",
+      "served_model": "gpt-6.1-sol",
+      "response_id": "resp_0bd48dcbe98c505f016abc0de31db087d0b38f157e06a4c283",
+      "latency_ms": 3681,
+      "cost_usd": 0.0086035,
+      "request_sha256": "5769ff5c14a3204214025ac65d7ae73c48c60309cc21e8a037a127cfe0a0bf47",
+      "response_sha256": "ad1578a5a44ac71bb3704af5a5fe955d43138d46c5f0c17bda386ae8794e6b2b"
+    },
+    {
+      "sequence": 10,
+      "stage": "detector-full13",
+      "requested_model": "gpt-6.1-sol",
+      "served_model": "gpt-6.1-sol",
+      "response_id": "resp_0a9baaed1b24d8c3016abc0de6bdf887d0a831746af3b7686b",
+      "latency_ms": 2661,
+      "cost_usd": 0.0083735,
+      "request_sha256": "6cf5fa67c907b2a709aa0ad4211106cd769e311fe78fac7fef2cdf6e27a73ed9",
+      "response_sha256": "4319554b45b672d57e4c367f6c0cc94b1a85c6c337c2ebfa876f9539e0fedfa7"
+    },
+    {
+      "sequence": 11,
+      "stage": "detector-full13",
+      "requested_model": "gpt-6.1-sol",
+      "served_model": "gpt-6.1-sol",
+      "response_id": "resp_0aa186877811022a016abc0de9815c87d0b06ef57cc75deb92",
+      "latency_ms": 2922,
+      "cost_usd": 0.0086835,
+      "request_sha256": "c523ccbbba3cfab319e88ab6d7934e1bca8cb75278d8e4c06876e9ddeebdcc94",
+      "response_sha256": "566b2df0f5619b900fd7f8692af16928329468945199e2d0c2d3077fd1500859"
+    },
+    {
+      "sequence": 12,
+      "stage": "detector-full13",
+      "requested_model": "gpt-6.1-sol",
+      "served_model": "gpt-6.1-sol",
+      "response_id": "resp_0ab1428eb2a5f348016abc0deca5c087d08c375409179f0f5b",
+      "latency_ms": 3321,
+      "cost_usd": 0.0087535,
+      "request_sha256": "22d6f30510461bad581f73deaececb09415509ea428d4a884ecf8a0be96730a4",
+      "response_sha256": "1ac1c4da86ea511ad6ea98f4ffc6599db16697333d1af3fd1b5b4acc10b5ed02"
+    },
+    {
+      "sequence": 13,
+      "stage": "detector-full13",
+      "requested_model": "gpt-6.1-sol",
+      "served_model": "gpt-6.1-sol",
+      "response_id": "resp_09c442bea2250b90016abc0df0486087d0a21d6d65faf56e97",
+      "latency_ms": 3693,
+      "cost_usd": 0.0089335,
+      "request_sha256": "df849a42c018ec2b464f39f0f0c2ea645e9b5107750b819423c85d76bee3d5d9",
+      "response_sha256": "7af606d307dc91598db25a19d228115887220781ef6becd8c790e55355d595f4"
+    },
+    {
+      "sequence": 14,
+      "stage": "detector-full13",
+      "requested_model": "gpt-6.1-sol",
+      "served_model": "gpt-6.1-sol",
+      "response_id": "resp_0133f6f190f1d5d5016abc0df40c8c87d08c5e56f1d9644669",
+      "latency_ms": 3154,
+      "cost_usd": 0.0084035,
+      "request_sha256": "82d07d1b9612471332e10a889925e49201d6c6f28759894c6384967b2764d6dc",
+      "response_sha256": "498a40ace2a60a32cd32c679199ff7937099b5e5ca3236aec99261891e8629a3"
+    },
+    {
+      "sequence": 15,
+      "stage": "detector-full13",
+      "requested_model": "gpt-6.1-sol",
+      "served_model": "gpt-6.1-sol",
+      "response_id": "resp_0c78da70bf12c06d016abc0df7706887d08bb7434a0adfa52f",
+      "latency_ms": 3919,
+      "cost_usd": 0.0087235,
+      "request_sha256": "0f9acd3b108817ce4879ca90a11cabdade4330b3dafa713e25a2c5499c8f4654",
+      "response_sha256": "429948dcc5c3f4fec83aac5448d0dceb5611bb0b46a3cd7bd8c07f73cf5d0bb0"
+    },
+    {
+      "sequence": 16,
+      "stage": "detector-gemini-control13",
+      "requested_model": "gemini-3-flash-preview",
+      "served_model": "gemini-3-flash-preview",
+      "response_id": "CQ68aqa0Nay8qtsP8dWNgQo",
+      "latency_ms": 7138,
+      "cost_usd": 0.0042725,
+      "request_sha256": "6239875f0624ff1eb55c31f8a386a40e031168b01f5491acbc81906c2a0651c9",
+      "response_sha256": "0b33aaabdaad8b84e992180b8bcbe6a10a6f14707659bf2ffcebb0c1208d4464"
+    },
+    {
+      "sequence": 17,
+      "stage": "detector-gemini-control13",
+      "requested_model": "gemini-3-flash-preview",
+      "served_model": "gemini-3-flash-preview",
+      "response_id": "EQ68atW7AYKYjMcPuKypkQk",
+      "latency_ms": 6205,
+      "cost_usd": 0.0045935,
+      "request_sha256": "01b4129b1c68907267cb3e71fc64bd3517497b103f7c28fb085982eef0f5e296",
+      "response_sha256": "178d7a25cd136cbfc82d851957ded4da67bc2d4a567892e27da0e79c509bcafd"
+    },
+    {
+      "sequence": 18,
+      "stage": "detector-gemini-control13",
+      "requested_model": "gemini-3-flash-preview",
+      "served_model": "gemini-3-flash-preview",
+      "response_id": "Fw68au6jG_uhz7IPjO7yuQ8",
+      "latency_ms": 3568,
+      "cost_usd": 0.0020045,
+      "request_sha256": "0678d76e8bbc40b8867facb609d017f95020e5bcb53519e7bb663fe951769366",
+      "response_sha256": "f54ad088e6716f9821e5f6ac4f068d35b47592da856acc27e8e5bbaf2fb5cc47"
+    },
+    {
+      "sequence": 19,
+      "stage": "detector-gemini-control13",
+      "requested_model": "gemini-3-flash-preview",
+      "served_model": "gemini-3-flash-preview",
+      "response_id": "Gw68aqrMEqudz7IP896q6Qk",
+      "latency_ms": 5510,
+      "cost_usd": 0.0031565,
+      "request_sha256": "1dfc824d33f35fa451b526b795882a3b0d62f3ac68b43b41e56fa667c7aa9664",
+      "response_sha256": "05194974a96fb509b2f4692f43aefd35dc99a166878ee916326ae622d1219f9f"
+    },
+    {
+      "sequence": 20,
+      "stage": "detector-gemini-control13",
+      "requested_model": "gemini-3-flash-preview",
+      "served_model": "gemini-3-flash-preview",
+      "response_id": "IA68avaBOcujqtsPz9OL6Qw",
+      "latency_ms": 12606,
+      "cost_usd": 0.0088775,
+      "request_sha256": "242f8833652c89a4b1ac2591289afba7bc19e1ca44556e2c570f5f4648e54994",
+      "response_sha256": "f99a2e2423f57b7aab8921ddb6b903f4aa7d230717236d91403fdf831eece6e2"
+    },
+    {
+      "sequence": 21,
+      "stage": "detector-gemini-control13",
+      "requested_model": "gemini-3-flash-preview",
+      "served_model": "gemini-3-flash-preview",
+      "response_id": "LQ68aqWdMv66qtsPptyxgQo",
+      "latency_ms": 6462,
+      "cost_usd": 0.0038375,
+      "request_sha256": "c873916ab505ac44160df5787c20d3486ddd02c31f292d0834eda31e982dcf43",
+      "response_sha256": "f6c3c7dff4bc801be249f79a4abcfae850f52968f41ec05d6882728931b51482"
+    },
+    {
+      "sequence": 22,
+      "stage": "detector-gemini-control13",
+      "requested_model": "gemini-3-flash-preview",
+      "served_model": "gemini-3-flash-preview",
+      "response_id": "NA68atvzILf8qtsPrMmW8Ak",
+      "latency_ms": 3892,
+      "cost_usd": 0.0022655,
+      "request_sha256": "15cf72c367c960515e3e53a7f220a89c9518462615802099d50d467adda099d8",
+      "response_sha256": "50fbf83ff7d3b0094e758830b8411e710f97cfb52d55bc595cd6c90667241f87"
+    },
+    {
+      "sequence": 23,
+      "stage": "detector-gemini-control13",
+      "requested_model": "gemini-3-flash-preview",
+      "served_model": "gemini-3-flash-preview",
+      "response_id": "OA68atjrJYevqtsP-_PY6Ag",
+      "latency_ms": 6087,
+      "cost_usd": 0.0039215,
+      "request_sha256": "ede3f7f9999cf06b79e3e9afbfa0ea2f2b999ccc866fb50b0e343c0639ff94cc",
+      "response_sha256": "0c9ef9efc93c384d6f0285acb43685ced9668c60cb9ecde35f236d0666a03802"
+    },
+    {
+      "sequence": 24,
+      "stage": "detector-gemini-control13",
+      "requested_model": "gemini-3-flash-preview",
+      "served_model": "gemini-3-flash-preview",
+      "response_id": "Pg68apaDOMCO6dkP8a_u0Qg",
+      "latency_ms": 8182,
+      "cost_usd": 0.0056585,
+      "request_sha256": "8003657cc3c5963f0986aedf82e1881a9fc4f9d34b8ed2a6da8c7bf9f2d56d8e",
+      "response_sha256": "7012d6c9ddd520eab217c9702dc494c3f749597d6c9b0e0a0be9d7c1526c796e"
+    },
+    {
+      "sequence": 25,
+      "stage": "detector-gemini-control13",
+      "requested_model": "gemini-3-flash-preview",
+      "served_model": "gemini-3-flash-preview",
+      "response_id": "Rw68aoSdFPuez7IPkOOYiQQ",
+      "latency_ms": 5983,
+      "cost_usd": 0.0040325,
+      "request_sha256": "8a47a2e83cb5aaf18d298dbd166fb96c12132ffad2e773588357378d1ae57c4d",
+      "response_sha256": "3bd2cb45583856e1a45fd13ddcd2f6513621efb679c8363af866d608a10dee78"
+    },
+    {
+      "sequence": 26,
+      "stage": "detector-gemini-control13",
+      "requested_model": "gemini-3-flash-preview",
+      "served_model": "gemini-3-flash-preview",
+      "response_id": "TQ68aoG_Id6VmtkPo5L78Ac",
+      "latency_ms": 4340,
+      "cost_usd": 0.0027635,
+      "request_sha256": "4406971fd4bbf662c9d44c0df1f3e78b2314293f166d9b7a762fa5cc84dc9834",
+      "response_sha256": "f1bbb37d9b1f88de20f1b63bfaff18572642fefb6f62c7c00d2266e033b97dbe"
+    },
+    {
+      "sequence": 27,
+      "stage": "detector-gemini-control13",
+      "requested_model": "gemini-3-flash-preview",
+      "served_model": "gemini-3-flash-preview",
+      "response_id": "Ug68apwHz4_p2Q-1v4uoBg",
+      "latency_ms": 6618,
+      "cost_usd": 0.0043745,
+      "request_sha256": "34ff8c8cbbb4a97ce12bc31430f7d892e9d36a1a91d820fd518617a4ebc0a214",
+      "response_sha256": "977e36ddb62f47805b95568f7a4dabceb3a4137b919db7708c28554eb7c45c86"
+    },
+    {
+      "sequence": 28,
+      "stage": "detector-gemini-control13",
+      "requested_model": "gemini-3-flash-preview",
+      "served_model": "gemini-3-flash-preview",
+      "response_id": "WA68aq_5N6LVjMcPqPrKoQQ",
+      "latency_ms": 9153,
+      "cost_usd": 0.0066215,
+      "request_sha256": "7342ab06d3a173309298362832fbd334ba0f0c27c46ca5a00da13e46ae0363aa",
+      "response_sha256": "4a31c4fd350d8f7276bab08dc162f685ac80798c5b08a7431f95c252fbd822f6"
+    },
+    {
+      "sequence": 29,
+      "stage": "native-page",
+      "requested_model": "gpt-6.1-sol",
+      "served_model": "gpt-6.1-sol",
+      "response_id": "resp_003d6ea1e943c9ab016abc0e72cd7887d0812286e613672c8a",
+      "latency_ms": 3756,
+      "cost_usd": 0.00106,
+      "request_sha256": "d56923cd464e2d267866e27cb3051d01362ba0291297f7f2339a618782fd3915",
+      "response_sha256": "c3d7788da694686aa0b001fec08931f5730ff5b5a9c804d8a1f3ccb851eda8fe"
+    },
+    {
+      "sequence": 30,
+      "stage": "page122-screen",
+      "requested_model": "gpt-6.1-sol",
+      "served_model": "gpt-6.1-sol",
+      "response_id": "resp_0895514d9ef8011d016abc0e7dfcec87d09f583bff79fc878a",
+      "latency_ms": 5185,
+      "cost_usd": 0.016411,
+      "request_sha256": "2b6c6266b42b1fbcd239fc378fd6e6c22e59b6be9b53a2fff4bc4b7bf0538cae",
+      "response_sha256": "7288b322929365216a1482bcd9f269d947c2aac3cd62350d06a2be2c7c834d23"
+    },
+    {
+      "sequence": 31,
+      "stage": "page122-gpt55-control",
+      "requested_model": "gpt-5.5",
+      "served_model": "gpt-5.5-2026-04-23",
+      "response_id": "resp_0e461b6cc073988b016abc0e9d31a887d09f5661317869bb2d",
+      "latency_ms": 4363,
+      "cost_usd": 0.08218,
+      "request_sha256": "a10bf04aab08f20f64df0390904f69b1e1458000f6805e3dafd0d1b1f0caa34a",
+      "response_sha256": "6167de8cd3f6e6172a1ce9ce9b6550078dfa909f0f5d9648154b263f764fda0e"
+    },
+    {
+      "sequence": 32,
+      "stage": "native-ocr",
+      "requested_model": "gpt-6.1-sol",
+      "served_model": "gpt-6.1-sol",
+      "response_id": "resp_06cdb1c8b23fc6cf016abc0ec7a2f087d0acba6f75ef9c54b7",
+      "latency_ms": 2156,
+      "cost_usd": 0.000448,
+      "request_sha256": "f341415f6671e34c570c8b1e30df319ac9eb0583e160fc1ad3af5dfb38242f10",
+      "response_sha256": "42dbc8d9d3de55aa8fe8255d635b3444f30ec9e0e5fdb15f911f56a3a0390b83"
+    },
+    {
+      "sequence": 33,
+      "stage": "ocr-gpt61-barney",
+      "requested_model": "gpt-6.1-sol",
+      "served_model": "gpt-6.1-sol",
+      "response_id": "resp_0ae97a329544a38d016abc0ed9fb4087d0b59365c9c0667791",
+      "latency_ms": 11750,
+      "cost_usd": 0.0071135,
+      "request_sha256": "160e4905d07b88620d7fd4eda01f5b552ab403318ffa68f794455f62ceeb2205",
+      "response_sha256": "69b83c4863d9f2b41ee373c79e9e0c261ffef9b28aec2e0620069ab7fad82de4"
+    },
+    {
+      "sequence": 34,
+      "stage": "ocr-gpt61-alverson",
+      "requested_model": "gpt-6.1-sol",
+      "served_model": "gpt-6.1-sol",
+      "response_id": "resp_0c2d1c77f4780318016abc0eeeb91487d0ad442b9e5ac8272b",
+      "latency_ms": 9807,
+      "cost_usd": 0.0079035,
+      "request_sha256": "e0b97a04fb6411dee89877a161ade9b60fc1ee63403c80fec3d40d212d2725d6",
+      "response_sha256": "0a89bad88e3ad6ea8851f0276fbe448d1df11743c0199be766c3b8c6c19437af"
+    },
+    {
+      "sequence": 35,
+      "stage": "ocr-gemini37-barney",
+      "requested_model": "gemini-3.7-flash",
+      "served_model": "gemini-3.7-flash",
+      "response_id": "FQ-8avHTFruHqtsPtJyQsQo",
+      "latency_ms": 5989,
+      "cost_usd": 0.00709125,
+      "request_sha256": "0e2e785d81e780b78138a9b89e22d9b7dd37214c453ab9d2523f9a896c2d030d",
+      "response_sha256": "b5bff8e7a185e2eb10a24fbb6256c3980bfd868106a309871a4a4777987a1a36"
+    },
+    {
+      "sequence": 36,
+      "stage": "ocr-gemini37-alverson",
+      "requested_model": "gemini-3.7-flash",
+      "served_model": "gemini-3.7-flash",
+      "response_id": "Iw-8apaHNszoz7IP7Ze9-Q0",
+      "latency_ms": 6144,
+      "cost_usd": 0.0061455,
+      "request_sha256": "f028ae30f2aeff2db64c698a72fd942948913451ac4af56d1a8ed8b12036a82e",
+      "response_sha256": "59367372dbd7694f211da9896effffbf0d611c1efe5ccfd203b6bdfbcb661e76"
+    }
+  ],
+  "reproduce": "python docs/evals/evidence/046-reconstruct.py --parts docs/evals/evidence/046-reproducibility.tar.gz.part01 --destination /tmp/doc-web-046-verify",
+  "credential_custody": "Existing owner DOC_WEB_OPENAI_API_KEY and DOC_WEB_GEMINI_API_KEY through read-only wrapper; no injection/copy/cleanup needed.",
+  "closeout_note": "Executed native probe and preflight bytes frozen separately; current tooling receives formatting-only lint repair. Runtime, guard, raw receipts, goldens and scored outputs unchanged.",
+  "closeout_validation": {
+    "python": "3.11.5",
+    "provider_calls": 0,
+    "frozen_evidence": "36 complete native receipts and all133 reconstructed archive members independently verified; recorded runtime/guard source hashes match candidate",
+    "owner_lint": "make lint passed after one formatting-only baseline test repair",
+    "focused": "21 initial offline tests passed;8 OCR/Mimo tests passed;4 cross-guard tests passed,1 skipped because httpx2 unavailable",
+    "full_initial": "1025 passed,1 skipped,3 failures:2 unchanged requirements native pikepdf installation failures and campaign test transport cleanup defect",
+    "reused": "seven successful unchanged optional-format install/driver smoke checks from full_initial",
+    "environment_limits": "Two unchanged requirements.txt installation tests resolve pikepdf10.16 and fail compiling QPDFAcroFormDocumentHelper::validate with local qpdf12.2.0; no requirements/default/fixture/golden changes.",
+    "tested_changed_sources": {
+      "modules/extract/ocr_ai_gpt51_v1/main.py": "a9db81b3d7ed5066a25e4fe24f47c725677014dce677fc8449080b5e90552f6f",
+      "benchmarks/providers/gpt61_guard.py": "13599352b8d66074ed0d04c8170334b8f03f87d17d70c8ef6d1e867e5d7afe00",
+      "tests/test_gpt61_guard.py": "f170419d2e65d288dec3fab0783c5cb082c31d807f7a1b03c1f3cede0ce0dfab",
+      "tests/test_ocr_ai_gpt51_empty_page_recovery.py": "c427296bf66e3ff3806c4eceb22b9a91dc17c79f5a75e44b03cb8cca68a98aaf",
+      "tests/test_mimo26_budgeted.py": "372573b8e73b33a682f5b326a40c2919430ee8b210fd572bafc83bcf9e65b9d8"
+    },
+    "regression_after_cleanup": {
+      "command": "python -m pytest tests/ -q -k 'not extra_supports_repo_owned and not requirements_txt_supports'",
+      "result": "1019 passed,1 skipped,9 deselected,4 warnings in133.93s"
+    }
+  }
+}

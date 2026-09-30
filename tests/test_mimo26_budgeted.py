@@ -11,7 +11,8 @@ SPEC.loader.exec_module(provider)
 
 
 def test_capacity_response_stops_a_second_network_attempt(tmp_path, monkeypatch):
-    results = tmp_path / "results"; results.mkdir()
+    results = tmp_path / "results"
+    results.mkdir()
     monkeypatch.setattr(provider, "ROOT", tmp_path)
     monkeypatch.setattr(provider, "RESULTS", results)
     (results / "ledger.json").write_text(json.dumps({"cap_usd": .5, "spent_usd": 0, "unresolved_cost": False, "calls": []}))

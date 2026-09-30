@@ -1,3 +1,16 @@
+## [2026-09-29-01] - Evaluate GPT-6.1 Sol on maintained Doc Web gates (Story 239)
+
+### Added
+- Recorded exact direct Responses access and a fresh 13-page detector win over
+  Gemini 3 Flash, with source-checked seal and signature localization.
+- Preserved the source-confirmed page-context false-safe, two actual-driver LOC
+  handwriting misses, all 36 complete paid receipts, and a verified offline
+  reproducibility archive. Safety and OCR defaults remain unchanged.
+
+### Changed
+- Added eval-only GPT-6.1 OCR Responses compatibility and bounded transport
+  reservation guards. No runtime default changed.
+
 ## [2026-09-28-01] - Evaluate Sonnet 5.5 detector and handwriting (Story 238)
 
 ### Added

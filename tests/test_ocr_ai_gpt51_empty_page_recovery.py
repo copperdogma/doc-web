@@ -29,7 +29,9 @@ def _sparse_text_page(draw, size) -> None:
     width, height = size
     for y in (90, 135, 180, 225, 270):
         draw.rectangle((80, y, width - 140, y + 12), fill="black")
-    draw.rectangle((width // 2 - 18, height - 120, width // 2 + 18, height - 100), fill="black")
+    draw.rectangle(
+        (width // 2 - 18, height - 120, width // 2 + 18, height - 100), fill="black"
+    )
 
 
 def test_blank_page_detection_accepts_true_blank_page() -> None:
@@ -163,3 +165,24 @@ def test_call_vision_model_keeps_temperature_for_non_gpt5_openai_responses() -> 
     assert call["model"] == "gpt-4.1"
     assert call["temperature"] == 0.0
     assert call["max_output_tokens"] == 512
+
+
+def test_call_vision_model_uses_gpt61_eval_contract() -> None:
+    client = _DummyOpenAI()
+    raw, _, request_id = _call_vision_model(
+        "gpt-6.1-sol",
+        "system prompt",
+        "user prompt",
+        "data:image/jpeg;base64,abc",
+        0.0,
+        16384,
+        openai_client=client,
+    )
+    call = client.responses.calls[0]
+    assert raw == "<p>ok</p>"
+    assert request_id == "resp_test"
+    assert call["reasoning"] == {"effort": "low"}
+    assert call["store"] is False
+    assert "temperature" not in call
+    assert call["max_output_tokens"] == 16384
+    assert call["input"][1]["content"][1]["image_url"] == "data:image/jpeg;base64,abc"

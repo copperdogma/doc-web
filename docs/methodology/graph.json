@@ -146,7 +146,8 @@
           "226",
           "228",
           "229",
-          "238"
+          "238",
+          "239"
         ],
         "adr_ids": [
           "ADR-001",
@@ -231,7 +232,8 @@
           "230",
           "233",
           "234",
-          "238"
+          "238",
+          "239"
         ],
         "adr_ids": [
           "ADR-001",
@@ -348,7 +350,8 @@
           "235",
           "236",
           "237",
-          "238"
+          "238",
+          "239"
         ],
         "adr_ids": [],
         "eval_ids": [
@@ -609,7 +612,8 @@
           "235",
           "236",
           "237",
-          "238"
+          "238",
+          "239"
         ],
         "adr_ids": [
           "ADR-002"
@@ -1137,7 +1141,8 @@
           "235",
           "236",
           "237",
-          "238"
+          "238",
+          "239"
         ],
         "eval_ids": [
           "image-crop-extraction",
@@ -1156,11 +1161,11 @@
           ],
           "why_now": "Gemini 4 or equivalent may push past 0.95 target Golden references cover limited page types; add table-heavy pages",
           "last_relevant_action": {
-            "date": "2026-09-28",
+            "date": "2026-09-29",
             "source_type": "eval-attempt",
             "source": "docs/evals/registry.yaml",
-            "source_id": "045",
-            "summary": "Attempt045: exact native access passes. Image011 fails required local bbox range and grouping, so full13/page22 not measured. Independent matched real OCR both models below .99; runtime and C5 retained. Known spend .0..."
+            "source_id": "046",
+            "summary": "Candidate13/13 above .95 and faster than fresh Gemini13/13, but costs1.84x and remains below historical GPT6 Sol .992731. Image011 seal/signature grouping is source-valid. Page safety separately false-safed; no defaul..."
           },
           "story_ids": [
             "135",
@@ -1176,7 +1181,8 @@
             "235",
             "236",
             "237",
-            "238"
+            "238",
+            "239"
           ],
           "eval_ids": [
             "image-crop-extraction",
@@ -1206,7 +1212,8 @@
           "235",
           "236",
           "237",
-          "238"
+          "238",
+          "239"
         ],
         "eval_ids": [
           "crop-validation",
@@ -1226,11 +1233,11 @@
           ],
           "why_now": "Rerun when a materially stronger validator or detector may reduce the current fail-labeled page-context cases. Rerun after any maintained crop/runtime simplification before claiming `trim_layout_text` or bounded capti...",
           "last_relevant_action": {
-            "date": "2026-09-28",
+            "date": "2026-09-29",
             "source_type": "eval-attempt",
             "source": "docs/evals/registry.yaml",
-            "source_id": "045",
-            "summary": "Attempt045: exact native access passes. Image011 fails required local bbox range and grouping, so full13/page22 not measured. Independent matched real OCR both models below .99; runtime and C5 retained. Known spend .0..."
+            "source_id": "046",
+            "summary": "Candidate false-safe pass on neighboring Sophie portrait. GPT5.5 none/2048/auto correctly fails the crop. Full22 stopped and unmeasured; keep GPT5.5 and C5. See Attempt046."
           },
           "story_ids": [
             "135",
@@ -1245,7 +1252,8 @@
             "235",
             "236",
             "237",
-            "238"
+            "238",
+            "239"
           ],
           "eval_ids": [
             "crop-validation",
@@ -13367,6 +13375,72 @@
           "summary": ""
         }
       }
+    },
+    {
+      "id": "239",
+      "title": "GPT-6.1 Sol maintained detector, safety and handwriting evaluation",
+      "path": "docs/stories/story-239-gpt61-sol-maintained-model-evaluation.md",
+      "status": "Done",
+      "priority": "Medium",
+      "ideal_refs": [
+        "Eval Before Build",
+        "Fidelity to Source"
+      ],
+      "spec_refs": [
+        "C4",
+        "C5",
+        "spec:1",
+        "spec:2",
+        "spec:4",
+        "spec:8"
+      ],
+      "decision_refs": [],
+      "adr_ids": [],
+      "depends_on": [
+        "238"
+      ],
+      "category_refs": [
+        "spec:1",
+        "spec:2",
+        "spec:4",
+        "spec:8"
+      ],
+      "compromise_refs": [
+        "C4",
+        "C5"
+      ],
+      "input_coverage_refs": [
+        "handwritten-notes",
+        "image-directory-scans"
+      ],
+      "architecture_domains": [
+        "illustration-extraction",
+        "ocr_and_extraction"
+      ],
+      "roadmap_tags": [
+        "model-evaluation"
+      ],
+      "blocker_summary": "",
+      "blocker_evidence": "",
+      "unblock_condition": "",
+      "last_work_log_entry": null,
+      "legacy_build_map_refs": "",
+      "metadata_source": "frontmatter",
+      "missing_frontmatter_keys": [],
+      "actionability": {
+        "source_kind": "story",
+        "source_id": "239",
+        "source_path": "docs/stories/story-239-gpt61-sol-maintained-model-evaluation.md",
+        "recommended_now": false,
+        "posture": "completed",
+        "why_now": "",
+        "last_relevant_action": {
+          "date": null,
+          "source_type": "story-status",
+          "source": "docs/stories/story-239-gpt61-sol-maintained-model-evaluation.md",
+          "summary": ""
+        }
+      }
     }
   ],
   "adrs": [
@@ -13498,7 +13572,8 @@
         "235",
         "236",
         "237",
-        "238"
+        "238",
+        "239"
       ],
       "compromise_refs": [
         "C4"
@@ -13558,6 +13633,38 @@
           "result_file": "benchmarks/results/gpt6-image-rerun-20260927/gpt6-detector-gemini-control.json",
           "evidence_status": "fresh-bounded-detector-publication-unqualified",
           "note": "Frozen fresh same-source detector ranking Sol, Luna, Gemini. Page safety/publication gates remain failed; runtime retained. See Attempt044 and tracked crop sheets."
+        },
+        {
+          "model": "GPT-6.1 Sol low fresh strict detector (Attempt046)",
+          "metrics": {
+            "overall": 0.979331,
+            "pass_rate": 1.0,
+            "cases_total": 13,
+            "latency_ms": 3138
+          },
+          "cost_usd": 0.1036855,
+          "cost_estimated": true,
+          "measured": "2026-09-29",
+          "git_sha": "5ca3711+attempt046-uncommitted",
+          "result_file": "benchmarks/results/gpt61-sol-20260929/detector-full13.json",
+          "evidence_status": "fresh-bounded-detector-win-safety-failed-runtime-unqualified",
+          "note": "Exact direct Responses strict integer arm passed13/13 with valid bounds and source grouping, mean .979331 vs fresh Gemini3 Flash .965292. Page122001 safety false-safe means no full publication/default claim. See Attempt046 and its complete receipt manifest.\n"
+        },
+        {
+          "model": "Gemini 3 Flash fresh matched detector control (Attempt046)",
+          "metrics": {
+            "overall": 0.965292,
+            "pass_rate": 1.0,
+            "cases_total": 13,
+            "latency_ms": 6672
+          },
+          "cost_usd": 0.0563795,
+          "cost_estimated": true,
+          "measured": "2026-09-29",
+          "git_sha": "5ca3711+attempt046-uncommitted",
+          "result_file": "benchmarks/results/gpt61-sol-20260929/detector-gemini-control13.json",
+          "evidence_status": "fresh-bounded-detector-control",
+          "note": "Same13 checked-in source pages, maintained normalized configuration; separate coordinate contract from candidate is disclosed in Attempt046."
         },
         {
           "model": "GPT-6 Luna Responses (medium, strict integer crop schema)",
@@ -14091,22 +14198,30 @@
         }
       ],
       "latest_score": {
-        "model": "Gemini 3 Flash fresh image rerun (Attempt044)",
+        "model": "Gemini 3 Flash fresh matched detector control (Attempt046)",
         "metrics": {
-          "overall": 0.962615,
+          "overall": 0.965292,
           "pass_rate": 1.0,
           "cases_total": 13,
-          "latency_ms": 7447
+          "latency_ms": 6672
         },
-        "cost_usd": 0.0582845,
+        "cost_usd": 0.0563795,
         "cost_estimated": true,
-        "measured": "2026-09-27",
-        "git_sha": "ed70d32+attempt044-uncommitted",
-        "result_file": "benchmarks/results/gpt6-image-rerun-20260927/gpt6-detector-gemini-control.json",
-        "evidence_status": "fresh-bounded-detector-publication-unqualified",
-        "note": "Frozen fresh same-source detector ranking Sol, Luna, Gemini. Page safety/publication gates remain failed; runtime retained. See Attempt044 and tracked crop sheets."
+        "measured": "2026-09-29",
+        "git_sha": "5ca3711+attempt046-uncommitted",
+        "result_file": "benchmarks/results/gpt61-sol-20260929/detector-gemini-control13.json",
+        "evidence_status": "fresh-bounded-detector-control",
+        "note": "Same13 checked-in source pages, maintained normalized configuration; separate coordinate contract from candidate is disclosed in Attempt046."
       },
       "attempts": [
+        {
+          "id": "046",
+          "date": "2026-09-29",
+          "status": "succeeded",
+          "approach": "GPT-6.1 Sol low strict detector versus fresh Gemini3 Flash",
+          "note": "Candidate13/13 above .95 and faster than fresh Gemini13/13, but costs1.84x and remains below historical GPT6 Sol .992731. Image011 seal/signature grouping is source-valid. Page safety separately false-safed; no default change. See Attempt046 and closed $0.29783725 ledger.\n",
+          "retry_when": []
+        },
         {
           "id": "045",
           "date": "2026-09-28",
@@ -14458,11 +14573,11 @@
         ],
         "why_now": "Gemini 4 or equivalent may push past 0.95 target Golden references cover limited page types; add table-heavy pages",
         "last_relevant_action": {
-          "date": "2026-09-28",
+          "date": "2026-09-29",
           "source_type": "eval-attempt",
           "source": "docs/evals/registry.yaml",
-          "source_id": "045",
-          "summary": "Attempt045: exact native access passes. Image011 fails required local bbox range and grouping, so full13/page22 not measured. Independent matched real OCR both models below .99; runtime and C5 retained. Known spend .0..."
+          "source_id": "046",
+          "summary": "Candidate13/13 above .95 and faster than fresh Gemini13/13, but costs1.84x and remains below historical GPT6 Sol .992731. Image011 seal/signature grouping is source-valid. Page safety separately false-safed; no defaul..."
         }
       }
     },
@@ -14764,7 +14879,8 @@
         "232",
         "235",
         "237",
-        "238"
+        "238",
+        "239"
       ],
       "compromise_refs": [
         "C5"
@@ -14776,6 +14892,38 @@
         "spec:8"
       ],
       "scores": [
+        {
+          "model": "GPT-6.1 Sol low targeted page-context safety (Attempt046)",
+          "metrics": {
+            "targeted_pass": 0,
+            "targeted_cases": 1,
+            "false_safe": 1,
+            "latency_ms": 5663
+          },
+          "cost_usd": 0.016411,
+          "cost_estimated": true,
+          "measured": "2026-09-29",
+          "git_sha": "5ca3711+attempt046-uncommitted",
+          "result_file": "benchmarks/results/gpt61-sol-20260929/page122-screen.json",
+          "evidence_status": "source-backed-false-safe-full22-not-measured",
+          "note": "Candidate called the neighboring Sophie portrait an acceptable second photo in the crop. Full22 stopped by declared gate; retain GPT5.5.\n"
+        },
+        {
+          "model": "GPT-5.5 fresh auto-detail targeted control (Attempt046)",
+          "metrics": {
+            "targeted_pass": 1,
+            "targeted_cases": 1,
+            "false_safe": 0,
+            "latency_ms": 4816
+          },
+          "cost_usd": 0.08218,
+          "cost_estimated": true,
+          "measured": "2026-09-29",
+          "git_sha": "5ca3711+attempt046-uncommitted",
+          "result_file": "benchmarks/results/gpt61-sol-20260929/page122-gpt55-control.json",
+          "evidence_status": "fresh-targeted-control-full22-not-measured",
+          "note": "Maintained none/2048/auto control correctly rejected neighboring portrait."
+        },
         {
           "model": "GPT-6 Sol fresh targeted safety (Attempt044)",
           "metrics": {
@@ -15168,21 +15316,30 @@
         }
       ],
       "latest_score": {
-        "model": "GPT-6 Sol fresh targeted safety (Attempt044)",
+        "model": "GPT-6.1 Sol low targeted page-context safety (Attempt046)",
         "metrics": {
-          "pass_rate": 0.0,
-          "cases_total": 1,
+          "targeted_pass": 0,
+          "targeted_cases": 1,
           "false_safe": 1,
-          "latency_ms": 5454
+          "latency_ms": 5663
         },
-        "cost_usd": 0.016351,
+        "cost_usd": 0.016411,
         "cost_estimated": true,
-        "measured": "2026-09-27",
-        "git_sha": "ed70d32+attempt044-uncommitted",
-        "result_file": "benchmarks/results/gpt6-image-rerun-20260927/gpt6-sol-page-screen.json",
-        "note": "Sol screen false-safe; Luna full22 repeats same page122 false-safe after earlier wrong-reason reject. GPT5.5 auto correctly rejects source-confirmed neighboring portrait; high-detail diagnostic fails. No full22 incumbent superiority claim."
+        "measured": "2026-09-29",
+        "git_sha": "5ca3711+attempt046-uncommitted",
+        "result_file": "benchmarks/results/gpt61-sol-20260929/page122-screen.json",
+        "evidence_status": "source-backed-false-safe-full22-not-measured",
+        "note": "Candidate called the neighboring Sophie portrait an acceptable second photo in the crop. Full22 stopped by declared gate; retain GPT5.5.\n"
       },
       "attempts": [
+        {
+          "id": "046",
+          "date": "2026-09-29",
+          "status": "failed",
+          "approach": "GPT-6.1 Sol low page122001 two-image safety versus fresh GPT5.5",
+          "note": "Candidate false-safe pass on neighboring Sophie portrait. GPT5.5 none/2048/auto correctly fails the crop. Full22 stopped and unmeasured; keep GPT5.5 and C5. See Attempt046.\n",
+          "retry_when": []
+        },
         {
           "id": "045",
           "date": "2026-09-28",
@@ -15425,11 +15582,11 @@
         ],
         "why_now": "Rerun when a materially stronger validator or detector may reduce the current fail-labeled page-context cases. Rerun after any maintained crop/runtime simplification before claiming `trim_layout_text` or bounded capti...",
         "last_relevant_action": {
-          "date": "2026-09-28",
+          "date": "2026-09-29",
           "source_type": "eval-attempt",
           "source": "docs/evals/registry.yaml",
-          "source_id": "045",
-          "summary": "Attempt045: exact native access passes. Image011 fails required local bbox range and grouping, so full13/page22 not measured. Independent matched real OCR both models below .99; runtime and C5 retained. Known spend .0..."
+          "source_id": "046",
+          "summary": "Candidate false-safe pass on neighboring Sophie portrait. GPT5.5 none/2048/auto correctly fails the crop. Full22 stopped and unmeasured; keep GPT5.5 and C5. See Attempt046."
         }
       }
     },
@@ -15544,7 +15701,8 @@
         "192",
         "208",
         "230",
-        "238"
+        "238",
+        "239"
       ],
       "compromise_refs": [],
       "category_refs": [
@@ -15555,6 +15713,42 @@
         "spec:8"
       ],
       "scores": [
+        {
+          "model": "gpt-6.1-sol low fresh public LOC image-entry (Attempt046)",
+          "metrics": {
+            "overall_min_ratio": 0.902693,
+            "page_min_ratio": 0.902693,
+            "pass_rate": 0.0,
+            "cases_total": 2,
+            "fixtures_passing": 0,
+            "barney_image_overall_ratio": 0.902693,
+            "alverson_image_overall_ratio": 0.935065
+          },
+          "cost_usd": 0.015017,
+          "cost_estimated": true,
+          "measured": "2026-09-29",
+          "git_sha": "5ca3711+attempt046-uncommitted",
+          "evidence_status": "source-backed-barney-loss-alverson-golden-concern",
+          "note": "Frozen transcript scores: both below .99. Barney has source-visible candidate invention. Alverson original appears to read no good prospect, matching candidate but contradicting the golden's a good prospect; review golden before another OCR decision.\n"
+        },
+        {
+          "model": "gemini-3.7-flash fresh matched public LOC image-entry (Attempt046)",
+          "metrics": {
+            "overall_min_ratio": 0.980645,
+            "page_min_ratio": 0.980645,
+            "pass_rate": 0.0,
+            "cases_total": 2,
+            "fixtures_passing": 0,
+            "barney_image_overall_ratio": 0.980645,
+            "alverson_image_overall_ratio": 0.983471
+          },
+          "cost_usd": 0.01323675,
+          "cost_estimated": true,
+          "measured": "2026-09-29",
+          "git_sha": "5ca3711+attempt046-uncommitted",
+          "evidence_status": "fresh-control-below-fidelity-gate",
+          "note": "Same public image bytes and OCR system/user/hints/scorer as candidate. This two-page image screen leaves Story191 blocked."
+        },
         {
           "model": "claude-sonnet-5-5 fresh matched public LOC image-entry (Attempt045)",
           "metrics": {
@@ -15825,23 +16019,32 @@
         }
       ],
       "latest_score": {
-        "model": "gemini-3.7-flash fresh matched public LOC image-entry (Attempt045)",
+        "model": "gpt-6.1-sol low fresh public LOC image-entry (Attempt046)",
         "metrics": {
-          "overall_min_ratio": 0.982014,
-          "page_min_ratio": 0.982014,
+          "overall_min_ratio": 0.902693,
+          "page_min_ratio": 0.902693,
           "pass_rate": 0.0,
           "cases_total": 2,
           "fixtures_passing": 0,
-          "barney_image_overall_ratio": 0.982014,
-          "alverson_image_overall_ratio": 0.985832
+          "barney_image_overall_ratio": 0.902693,
+          "alverson_image_overall_ratio": 0.935065
         },
-        "cost_usd": 0.012389250000000001,
+        "cost_usd": 0.015017,
         "cost_estimated": true,
-        "measured": "2026-09-28",
-        "git_sha": "747b376+attempt045-uncommitted",
-        "note": "Fresh actual driver OCR outputs with unchanged source prompts/hints/scorer; both below.99, split small deltas and source-visible errors; Story191 remains blocked. Complete response custody for these four calls."
+        "measured": "2026-09-29",
+        "git_sha": "5ca3711+attempt046-uncommitted",
+        "evidence_status": "source-backed-barney-loss-alverson-golden-concern",
+        "note": "Frozen transcript scores: both below .99. Barney has source-visible candidate invention. Alverson original appears to read no good prospect, matching candidate but contradicting the golden's a good prospect; review golden before another OCR decision.\n"
       },
       "attempts": [
+        {
+          "id": "046",
+          "date": "2026-09-29",
+          "status": "failed",
+          "approach": "GPT-6.1 Sol low actual-driver public LOC handwriting versus fresh Gemini3.7",
+          "note": "GPT6.1 Barney .902693 and Alverson .935065 vs fresh Gemini .980645/.983471. Barney has source-visible invention; Alverson no good prospect appears source-correct despite golden mismatch. Frozen scores all below .99; review golden before another OCR decision. Story191 stays Blocked. See Attempt046 and exact driver receipts.\n",
+          "retry_when": []
+        },
         {
           "id": "045",
           "date": "2026-09-28",
@@ -15974,11 +16177,11 @@
         ],
         "why_now": "Retry only when a materially stronger model or OCR substrate appears that could plausibly clear Barney and the corrected Alverson front-page truth surface.",
         "last_relevant_action": {
-          "date": "2026-09-28",
+          "date": "2026-09-29",
           "source_type": "eval-attempt",
           "source": "docs/evals/registry.yaml",
-          "source_id": "045",
-          "summary": "Attempt045: exact native access passes. Image011 fails required local bbox range and grouping, so full13/page22 not measured. Independent matched real OCR both models below .99; runtime and C5 retained. Known spend .0..."
+          "source_id": "046",
+          "summary": "GPT6.1 Barney .902693 and Alverson .935065 vs fresh Gemini .980645/.983471. Barney has source-visible invention; Alverson no good prospect appears source-correct despite golden mismatch. Frozen scores all below .99; r..."
         }
       }
     },
@@ -18047,7 +18250,7 @@
             "224",
             "230"
           ],
-          "notes": "Recent bounded proof and direct-entry expansions are done. Story 205 closed the first ZIP-only mixed-archive routing seam as bounded maintained evidence, Story 218 widened that same seam to one checked-in source-native folder probe, Story 221 established the ZIP PDF-member recommendation substrate, Story 222 added the direct-folder PDF-member recommendation substrate, Story 223 extended that same line to the first bounded approved-handoff launch proof on one checked-in ZIP PDF-member slice plus one checked-in direct-folder PDF-member slice, and Story 224 first closed the grouped image-member first-artifact proof on one checked-in shared-parent page-image slice, widened that same route/module line to one checked-in source-native folder grouped-image parity slice, and then extended the same bounded grouped probes to the first OCR artifact. Story 230 rejected exact-weight Unlimited-OCR on three Onward cases and the corrected real handwriting pair. The later Gemini 3.6 Flash / Gemini 3.5 Flash-Lite bounded screen also left both corrected real fixtures below `0.99`, so no second-model lane was added. Keep Story 191 blocked until a later pass produces fresh current-pass evidence for a materially stronger OCR substrate, and treat Stories 205, 218, 222, 223, and 224 as proof for one ZIP direct-entry mix, one source-native folder mix, one direct-folder recommendation substrate, one approved-plan-to-launch slice on each bounded PDF-member entry surface, and one grouped image-member continuation to `page_html_v1` on both ZIP and direct-folder entry, rather than broad archive or folder ownership."
+          "notes": "Recent bounded proof and direct-entry expansions are done. Story 205 closed the first ZIP-only mixed-archive routing seam as bounded maintained evidence, Story 218 widened that same seam to one checked-in source-native folder probe, Story 221 established the ZIP PDF-member recommendation substrate, Story 222 added the direct-folder PDF-member recommendation substrate, Story 223 extended that same line to the first bounded approved-handoff launch proof on one checked-in ZIP PDF-member slice plus one checked-in direct-folder PDF-member slice, and Story 224 first closed the grouped image-member first-artifact proof on one checked-in shared-parent page-image slice, widened that same route/module line to one checked-in source-native folder grouped-image parity slice, and then extended the same bounded grouped probes to the first OCR artifact. Story 230 rejected exact-weight Unlimited-OCR on three Onward cases and the corrected real handwriting pair. The later Gemini 3.6 Flash / Gemini 3.5 Flash-Lite bounded screen also left both corrected real fixtures below `0.99`, so no second-model lane was added. Story 239 / Attempt046 also leaves the real handwriting gate blocked: GPT-6.1 Sol loses on Barney, and Alverson has a source-visible golden concern requiring separate review before another OCR decision. Its bounded detector win does not override the page-context false-safe; all runtime defaults remain retained. Keep Story 191 blocked until a later pass produces fresh current-pass evidence for a materially stronger OCR substrate, and treat Stories 205, 218, 222, 223, and 224 as proof for one ZIP direct-entry mix, one source-native folder mix, one direct-folder recommendation substrate, one approved-plan-to-launch slice on each bounded PDF-member entry surface, and one grouped image-member continuation to `page_html_v1` on both ZIP and direct-folder entry, rather than broad archive or folder ownership."
         }
       ]
     },
