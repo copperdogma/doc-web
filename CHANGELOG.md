@@ -1,3 +1,19 @@
+## [2026-09-30-02] - Add offline opt-in crop review gate (Story241)
+
+### Added
+- Explicit trusted-local review of every crop proposal, complete source inventory, source/crop display, append-only review decisions and deterministic reviewed release. Synthetic replay fixtures cover saved S3 pass and a labelled S4 false fail; no Cam approvals are invented.
+- Opted-in chapter publication verifies original evidence twice and stages exact approved visuals; missing/stale/conflicting/unresolved decisions, incomplete inventory, unsafe paths and output aliases hold publication while preserving source/crops. Defaults and model routes stay unchanged.
+- Focused custody/bypass/recrop/real-driver regressions, operator runbook and source-safe validation evidence. Zero API spend; live model promotion remains deferred.
+
+## [2026-09-30-01] - Measure repaired page-safety contract (Story240)
+
+### Added
+- Source-backed6/6 screens for Luna medium, Sol6.1 medium and maintained GPT5.5, with exact receipts and all six fresh diagram pairs frozen before inference.
+- Campaign-specific pre-call126000 golden correction; historical golden and047 evidence preserved.
+
+### Fixed
+- Eval guard closes on quota/duplicate sends; restored-credit continuation disables scheduler retries. Source-confirmed seal-label repair transparently rejudges saved outputs: Sol22/22 plus freshphysical5/5, uncertaintypolicy miss remains; Luna/GPTfalse-rejectstops.71 aggregate attempts and all unknown reserves retained; no runtime/default changed.
+
 ## [2026-09-29-01] - Evaluate GPT-6.1 Sol on maintained Doc Web gates (Story 239)
 
 ### Added
@@ -10,6 +26,15 @@
 ### Changed
 - Added eval-only GPT-6.1 OCR Responses compatibility and bounded transport
   reservation guards. No runtime default changed.
+
+## [2026-09-29-02] - Compare safety thinking levels (Story 240)
+
+### Added
+- Frozen medium/prior-setting page-safety evidence: both medium candidates and fresh GPT5.5 false-safe the neighboring portrait. Full22 remains unmeasured; no reliable fresh safety winner, runtime unchanged.
+- Exact seven receipts, closed $0.0694776 ledger, lossless reconstruction and prompt-contract concern for source-backed review before another paid run.
+
+### Changed
+- Prepared generic page-safety boundary/neighbor and uncertainty instructions for review, preserving legitimate compound visuals. Offline rendering checks only; revised prompt behavior is unmeasured and Story240 remains In Progress.
 
 ## [2026-09-28-01] - Evaluate Sonnet 5.5 detector and handwriting (Story 238)
 

@@ -351,7 +351,9 @@
           "236",
           "237",
           "238",
-          "239"
+          "239",
+          "240",
+          "241"
         ],
         "adr_ids": [],
         "eval_ids": [
@@ -613,7 +615,9 @@
           "236",
           "237",
           "238",
-          "239"
+          "239",
+          "240",
+          "241"
         ],
         "adr_ids": [
           "ADR-002"
@@ -1213,7 +1217,9 @@
           "236",
           "237",
           "238",
-          "239"
+          "239",
+          "240",
+          "241"
         ],
         "eval_ids": [
           "crop-validation",
@@ -1227,17 +1233,15 @@
           "posture": "trigger-exhausted",
           "retry_trigger_status": "exhausted",
           "retry_when": [
-            "golden-fix",
-            "new-subject-model",
-            "runtime-change"
+            "access-restored"
           ],
           "why_now": "Rerun when a materially stronger validator or detector may reduce the current fail-labeled page-context cases. Rerun after any maintained crop/runtime simplification before claiming `trim_layout_text` or bounded capti...",
           "last_relevant_action": {
-            "date": "2026-09-29",
+            "date": "2026-09-30",
             "source_type": "eval-attempt",
             "source": "docs/evals/registry.yaml",
-            "source_id": "046",
-            "summary": "Candidate false-safe pass on neighboring Sophie portrait. GPT5.5 none/2048/auto correctly fails the crop. Full22 stopped and unmeasured; keep GPT5.5 and C5. See Attempt046."
+            "source_id": "048",
+            "summary": "Completed after credits restored: allscreen6/6, Sol source-adjudicated22/22 (frozen21/22) plusfreshphysical5/5, uncertaintypolicy0/1; best measured candidate, promotiondeferred. Luna/GPT5.5 validfalse-rejectstops. Tra..."
           },
           "story_ids": [
             "135",
@@ -1253,7 +1257,9 @@
             "236",
             "237",
             "238",
-            "239"
+            "239",
+            "240",
+            "241"
           ],
           "eval_ids": [
             "crop-validation",
@@ -13441,6 +13447,122 @@
           "summary": ""
         }
       }
+    },
+    {
+      "id": "240",
+      "title": "Thinking-level page-safety comparison and prompt repair preparation",
+      "path": "docs/stories/story-240-thinking-level-page-safety.md",
+      "status": "Done",
+      "priority": "Medium",
+      "ideal_refs": [
+        "Eval Before Build",
+        "Fidelity to Source"
+      ],
+      "spec_refs": [
+        "C5",
+        "spec:4",
+        "spec:8"
+      ],
+      "decision_refs": [],
+      "adr_ids": [],
+      "depends_on": [
+        "239"
+      ],
+      "category_refs": [
+        "spec:4",
+        "spec:8"
+      ],
+      "compromise_refs": [
+        "C5"
+      ],
+      "input_coverage_refs": [
+        "image-directory-scans"
+      ],
+      "architecture_domains": [
+        "illustration-extraction"
+      ],
+      "roadmap_tags": [
+        "model-evaluation"
+      ],
+      "blocker_summary": "",
+      "blocker_evidence": "",
+      "unblock_condition": "",
+      "last_work_log_entry": null,
+      "legacy_build_map_refs": "",
+      "metadata_source": "frontmatter",
+      "missing_frontmatter_keys": [],
+      "actionability": {
+        "source_kind": "story",
+        "source_id": "240",
+        "source_path": "docs/stories/story-240-thinking-level-page-safety.md",
+        "recommended_now": false,
+        "posture": "completed",
+        "why_now": "",
+        "last_relevant_action": {
+          "date": null,
+          "source_type": "story-status",
+          "source": "docs/stories/story-240-thinking-level-page-safety.md",
+          "summary": ""
+        }
+      }
+    },
+    {
+      "id": "241",
+      "title": "Offline opt-in crop review gate",
+      "path": "docs/stories/story-241-offline-crop-review-gate.md",
+      "status": "Done",
+      "priority": "Medium",
+      "ideal_refs": [
+        "Fidelity to the source",
+        "Traceability is the product"
+      ],
+      "spec_refs": [
+        "C5",
+        "spec:4",
+        "spec:8"
+      ],
+      "decision_refs": [],
+      "adr_ids": [],
+      "depends_on": [
+        "240"
+      ],
+      "category_refs": [
+        "spec:4",
+        "spec:8"
+      ],
+      "compromise_refs": [
+        "C5"
+      ],
+      "input_coverage_refs": [
+        "image-directory-scans"
+      ],
+      "architecture_domains": [
+        "illustration-extraction"
+      ],
+      "roadmap_tags": [
+        "artifact-provenance"
+      ],
+      "blocker_summary": "",
+      "blocker_evidence": "",
+      "unblock_condition": "",
+      "last_work_log_entry": null,
+      "legacy_build_map_refs": "",
+      "metadata_source": "frontmatter",
+      "missing_frontmatter_keys": [],
+      "actionability": {
+        "source_kind": "story",
+        "source_id": "241",
+        "source_path": "docs/stories/story-241-offline-crop-review-gate.md",
+        "recommended_now": false,
+        "posture": "completed",
+        "why_now": "",
+        "last_relevant_action": {
+          "date": null,
+          "source_type": "story-status",
+          "source": "docs/stories/story-241-offline-crop-review-gate.md",
+          "summary": ""
+        }
+      }
     }
   ],
   "adrs": [
@@ -14880,7 +15002,8 @@
         "235",
         "237",
         "238",
-        "239"
+        "239",
+        "240"
       ],
       "compromise_refs": [
         "C5"
@@ -14892,6 +15015,154 @@
         "spec:8"
       ],
       "scores": [
+        {
+          "model": "gpt-6.1-sol medium repaired safety (Attempt048)",
+          "metrics": {
+            "source_adjudicated_pass": 22,
+            "full_cases_complete": 22,
+            "frozen_primary_pass": 21,
+            "screen_pass": 6,
+            "screen_cases": 6,
+            "fresh_physical_pass": 5,
+            "fresh_physical_cases": 5,
+            "fresh_uncertainty_policy_pass": 0,
+            "fresh_uncertainty_policy_cases": 1,
+            "full_latency_ms": 4103.6,
+            "full_reasoning_tokens": 128
+          },
+          "cost_usd": 0.4836925,
+          "cost_estimated": true,
+          "measured": "2026-09-30",
+          "git_sha": "58fa3d5+attempt048-uncommitted",
+          "result_file": "docs/evals/evidence/048-continuation-manifest.json",
+          "evidence_status": "source-adjudicated-full22-physical5-policy-unqualified",
+          "note": "Exact Sol medium4096/high. Original frozen score21/22 preserved; source-confirmed seal golden repair rejudged saved outputs22/22 before fresh. Physical5/5; S3 coherent-grouping pass misses declared uncertainty nonacceptance policy, not physicallybadcrop proof. Best measured candidate; defer runtime promotion.\n"
+        },
+        {
+          "model": "gpt-6-luna medium repaired safety (Attempt048)",
+          "metrics": {
+            "source_adjudicated_pass": 17,
+            "full_cases_complete": 18,
+            "full_cases_attempted": 19,
+            "frozen_primary_pass": 16,
+            "source_backed_false_reject": 1,
+            "screen_pass": 6,
+            "screen_cases": 6,
+            "full_latency_ms": 4817.9,
+            "full_reasoning_tokens": 2724
+          },
+          "cost_usd": 0.020555525,
+          "cost_estimated": true,
+          "measured": "2026-09-30",
+          "git_sha": "58fa3d5+attempt048-uncommitted",
+          "result_file": "docs/evals/evidence/048-continuation-manifest.json",
+          "evidence_status": "partial-full-source-backed-stop",
+          "note": "Exact Luna medium4096/high. Integral text inside126000 unified photograph wrongly rejected; stop, three laterfullrows/fresh unrun.012001 seal source-golden defect repaired separately; original16/18 preserved, saved-source17/18. Interrupted022000 has no response; reserved unknown, never semantic miss.\n"
+        },
+        {
+          "model": "gpt-5.5 none repaired safety control (Attempt048)",
+          "metrics": {
+            "source_adjudicated_pass": 0,
+            "full_cases_complete": 1,
+            "source_backed_false_reject": 1,
+            "screen_pass": 6,
+            "screen_cases": 6,
+            "full_latency_ms": 5899,
+            "full_reasoning_tokens": 0
+          },
+          "cost_usd": 0.412491,
+          "cost_estimated": true,
+          "measured": "2026-09-30",
+          "git_sha": "58fa3d5+attempt048-uncommitted",
+          "result_file": "docs/evals/evidence/048-continuation-manifest.json",
+          "evidence_status": "partial-full-source-backed-stop",
+          "note": "Requestedgpt-5.5 servedgpt-5.5-2026-04-23,none2048/auto. Genuine cover-art false-reject: title/border outside intended visual need not be included. Remaining21 full andfreshunrun. Settings differ intentionally from candidates.\n"
+        },
+        {
+          "model": "gpt-6-luna none targeted safety (Attempt047)",
+          "metrics": {
+            "targeted_pass": 1,
+            "targeted_cases": 1,
+            "false_safe": 0,
+            "latency_ms": 3922,
+            "reasoning_tokens": 0
+          },
+          "cost_usd": 0.0008250499999999999,
+          "cost_estimated": true,
+          "measured": "2026-09-29",
+          "git_sha": "58fa3d5+attempt047-uncommitted",
+          "result_file": "benchmarks/results/thinking-safety-20260929/luna-none-screen.json",
+          "evidence_status": "fresh-screen-full22-not-measured",
+          "note": "One case only; prompt-contract concern unresolved. Luna none label match relies on incidental mark. GPT5.5 serves documented gpt-5.5-2026-04-23. See Attempt047."
+        },
+        {
+          "model": "gpt-6-luna medium targeted safety (Attempt047)",
+          "metrics": {
+            "targeted_pass": 0,
+            "targeted_cases": 1,
+            "false_safe": 1,
+            "latency_ms": 5154,
+            "reasoning_tokens": 164
+          },
+          "cost_usd": 0.00090405,
+          "cost_estimated": true,
+          "measured": "2026-09-29",
+          "git_sha": "58fa3d5+attempt047-uncommitted",
+          "result_file": "benchmarks/results/thinking-safety-20260929/luna-medium-screen.json",
+          "evidence_status": "fresh-screen-full22-not-measured",
+          "note": "One case only; prompt-contract concern unresolved. Luna none label match relies on incidental mark. GPT5.5 serves documented gpt-5.5-2026-04-23. See Attempt047."
+        },
+        {
+          "model": "gpt-6.1-sol low targeted safety (Attempt047)",
+          "metrics": {
+            "targeted_pass": 0,
+            "targeted_cases": 1,
+            "false_safe": 1,
+            "latency_ms": 4877,
+            "reasoning_tokens": 0
+          },
+          "cost_usd": 0.016411,
+          "cost_estimated": true,
+          "measured": "2026-09-29",
+          "git_sha": "58fa3d5+attempt047-uncommitted",
+          "result_file": "benchmarks/results/thinking-safety-20260929/sol-low-screen.json",
+          "evidence_status": "fresh-screen-full22-not-measured",
+          "note": "One case only; prompt-contract concern unresolved. Luna none label match relies on incidental mark. GPT5.5 serves documented gpt-5.5-2026-04-23. See Attempt047."
+        },
+        {
+          "model": "gpt-6.1-sol medium targeted safety (Attempt047)",
+          "metrics": {
+            "targeted_pass": 0,
+            "targeted_cases": 1,
+            "false_safe": 1,
+            "latency_ms": 4424,
+            "reasoning_tokens": 0
+          },
+          "cost_usd": 0.016421,
+          "cost_estimated": true,
+          "measured": "2026-09-29",
+          "git_sha": "58fa3d5+attempt047-uncommitted",
+          "result_file": "benchmarks/results/thinking-safety-20260929/sol-medium-screen.json",
+          "evidence_status": "fresh-screen-full22-not-measured",
+          "note": "One case only; prompt-contract concern unresolved. Luna none label match relies on incidental mark. GPT5.5 serves documented gpt-5.5-2026-04-23. See Attempt047."
+        },
+        {
+          "model": "gpt-5.5 none targeted safety (Attempt047)",
+          "metrics": {
+            "targeted_pass": 0,
+            "targeted_cases": 1,
+            "false_safe": 1,
+            "latency_ms": 3520,
+            "reasoning_tokens": 0
+          },
+          "cost_usd": 0.033445,
+          "cost_estimated": true,
+          "measured": "2026-09-29",
+          "git_sha": "58fa3d5+attempt047-uncommitted",
+          "result_file": "benchmarks/results/thinking-safety-20260929/control-screen.json",
+          "evidence_status": "fresh-screen-full22-not-measured",
+          "note": "One case only; prompt-contract concern unresolved. Luna none label match relies on incidental mark. GPT5.5 serves documented gpt-5.5-2026-04-23. See Attempt047."
+        },
         {
           "model": "GPT-6.1 Sol low targeted page-context safety (Attempt046)",
           "metrics": {
@@ -15316,22 +15587,49 @@
         }
       ],
       "latest_score": {
-        "model": "GPT-6.1 Sol low targeted page-context safety (Attempt046)",
+        "model": "gpt-6.1-sol medium repaired safety (Attempt048)",
         "metrics": {
-          "targeted_pass": 0,
-          "targeted_cases": 1,
-          "false_safe": 1,
-          "latency_ms": 5663
+          "source_adjudicated_pass": 22,
+          "full_cases_complete": 22,
+          "frozen_primary_pass": 21,
+          "screen_pass": 6,
+          "screen_cases": 6,
+          "fresh_physical_pass": 5,
+          "fresh_physical_cases": 5,
+          "fresh_uncertainty_policy_pass": 0,
+          "fresh_uncertainty_policy_cases": 1,
+          "full_latency_ms": 4103.6,
+          "full_reasoning_tokens": 128
         },
-        "cost_usd": 0.016411,
+        "cost_usd": 0.4836925,
         "cost_estimated": true,
-        "measured": "2026-09-29",
-        "git_sha": "5ca3711+attempt046-uncommitted",
-        "result_file": "benchmarks/results/gpt61-sol-20260929/page122-screen.json",
-        "evidence_status": "source-backed-false-safe-full22-not-measured",
-        "note": "Candidate called the neighboring Sophie portrait an acceptable second photo in the crop. Full22 stopped by declared gate; retain GPT5.5.\n"
+        "measured": "2026-09-30",
+        "git_sha": "58fa3d5+attempt048-uncommitted",
+        "result_file": "docs/evals/evidence/048-continuation-manifest.json",
+        "evidence_status": "source-adjudicated-full22-physical5-policy-unqualified",
+        "note": "Exact Sol medium4096/high. Original frozen score21/22 preserved; source-confirmed seal golden repair rejudged saved outputs22/22 before fresh. Physical5/5; S3 coherent-grouping pass misses declared uncertainty nonacceptance policy, not physicallybadcrop proof. Best measured candidate; defer runtime promotion.\n"
       },
       "attempts": [
+        {
+          "id": "048",
+          "date": "2026-09-30",
+          "status": "inconclusive",
+          "approach": "Frozen repaired prompt, medium Luna/Sol6.1 and fresh maintained GPT5.5",
+          "note": "Completed after credits restored: allscreen6/6, Sol source-adjudicated22/22 (frozen21/22) plusfreshphysical5/5, uncertaintypolicy0/1; best measured candidate, promotiondeferred. Luna/GPT5.5 validfalse-rejectstops. Transparent golden012001 correction on saved outputs before fresh; original truths/primaryscores retained. Aggregate71attempts=69planned+2recovery,68complete; settled0.916739025, unknown0.023394/cap18. No hiddencontinuationretry, no defaultchange.\n",
+          "retry_when": [
+            "access-restored"
+          ]
+        },
+        {
+          "id": "047",
+          "date": "2026-09-29",
+          "status": "failed",
+          "approach": "Frozen medium Luna/Sol6.1 matched prior-setting screen and fresh GPT5.5 safety control",
+          "note": "Both medium arms and fresh GPT5.5 false-safe neighboring portrait; Luna none label match incidental. Full22 unmeasured. Prompt-contract concern requires source-backed review; no reliable fresh safety winner. Attempt047, total0.0694776/cap14 unknown0.",
+          "retry_when": [
+            "new-approach"
+          ]
+        },
         {
           "id": "046",
           "date": "2026-09-29",
@@ -15576,17 +15874,15 @@
         "posture": "trigger-exhausted",
         "retry_trigger_status": "exhausted",
         "retry_when": [
-          "golden-fix",
-          "new-subject-model",
-          "runtime-change"
+          "access-restored"
         ],
         "why_now": "Rerun when a materially stronger validator or detector may reduce the current fail-labeled page-context cases. Rerun after any maintained crop/runtime simplification before claiming `trim_layout_text` or bounded capti...",
         "last_relevant_action": {
-          "date": "2026-09-29",
+          "date": "2026-09-30",
           "source_type": "eval-attempt",
           "source": "docs/evals/registry.yaml",
-          "source_id": "046",
-          "summary": "Candidate false-safe pass on neighboring Sophie portrait. GPT5.5 none/2048/auto correctly fails the crop. Full22 stopped and unmeasured; keep GPT5.5 and C5. See Attempt046."
+          "source_id": "048",
+          "summary": "Completed after credits restored: allscreen6/6, Sol source-adjudicated22/22 (frozen21/22) plusfreshphysical5/5, uncertaintypolicy0/1; best measured candidate, promotiondeferred. Luna/GPT5.5 validfalse-rejectstops. Tra..."
         }
       }
     },

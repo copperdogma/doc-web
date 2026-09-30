@@ -11,6 +11,12 @@ params:
   - name: illustration_manifest
     type: str
     default: null
+  - name: require_crop_review
+    type: bool
+    default: false
+  - name: crop_review_release
+    type: str
+    default: null
   - name: images_subdir
     type: str
     default: images
@@ -35,4 +41,4 @@ params:
   - name: normalize_catalog_entries
     type: bool
     default: false
-notes: "Produces self-contained HTML5 documents. Images wrapped in <figure> with <figcaption> from VLM caption text. Alt text uses VLM image_description."
+notes: "Produces self-contained HTML5 documents. Images wrapped in <figure> with <figcaption> from VLM caption text. Alt text uses VLM image_description. Opt-in crop review requires a current release receipt, run ID, and fresh output paths; accepted crops must appear exactly once before publication."

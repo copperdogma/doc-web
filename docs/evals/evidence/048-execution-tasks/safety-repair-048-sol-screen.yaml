@@ -1,0 +1,68 @@
+description: Frozen repaired page-context safety; Attempt048
+prompts:
+- id: file://../prompts/validate-page-level-crop.js
+  label: repaired-page-context
+providers:
+- id: python:../providers/safety_repair_openai.py
+  label: sol
+  config:
+    model: gpt-6.1-sol
+    reasoning_effort: medium
+    max_output_tokens: 4096
+    image_detail: high
+    output_contract: page_context_validation
+tests:
+- vars:
+    page_image: file://../input/source-pages-b64/Image121.b64.txt
+    crop_image: file://../input/crop-validation-b64/page-122-001.b64.txt
+    crop_key: page-122-001
+    golden_relpath: golden/crop-page-level-safety-repair-048.json
+    safety_case_id: screen-1-page-122-001
+  assert:
+  - type: python
+    value: file://../scorers/crop_validation_scorer.py
+- vars:
+    page_image: file://../input/source-pages-b64/Image121.b64.txt
+    crop_image: file://../input/crop-validation-b64/page-122-001.b64.txt
+    crop_key: page-122-001
+    golden_relpath: golden/crop-page-level-safety-repair-048.json
+    safety_case_id: screen-2-page-122-001
+  assert:
+  - type: python
+    value: file://../scorers/crop_validation_scorer.py
+- vars:
+    page_image: file://../input/source-pages-b64/Image121.b64.txt
+    crop_image: file://../input/crop-validation-b64/page-122-001.b64.txt
+    crop_key: page-122-001
+    golden_relpath: golden/crop-page-level-safety-repair-048.json
+    safety_case_id: screen-3-page-122-001
+  assert:
+  - type: python
+    value: file://../scorers/crop_validation_scorer.py
+- vars:
+    page_image: file://../input/source-pages-b64/Image008.b64.txt
+    crop_image: file://../input/crop-validation-b64/page-009-000.b64.txt
+    crop_key: page-009-000
+    golden_relpath: golden/crop-page-level-safety-repair-048.json
+    safety_case_id: screen-4-page-009-000
+  assert:
+  - type: python
+    value: file://../scorers/crop_validation_scorer.py
+- vars:
+    page_image: file://../input/source-pages-b64/Image125.b64.txt
+    crop_image: file://../input/crop-validation-b64/page-126-001.b64.txt
+    crop_key: page-126-001
+    golden_relpath: golden/crop-page-level-safety-repair-048.json
+    safety_case_id: screen-5-page-126-001
+  assert:
+  - type: python
+    value: file://../scorers/crop_validation_scorer.py
+- vars:
+    page_image: file://../input/source-pages-b64/Image126.b64.txt
+    crop_image: file://../input/crop-validation-b64/page-127-000.b64.txt
+    crop_key: page-127-000
+    golden_relpath: golden/crop-page-level-safety-repair-048.json
+    safety_case_id: screen-6-page-127-000
+  assert:
+  - type: python
+    value: file://../scorers/crop_validation_scorer.py

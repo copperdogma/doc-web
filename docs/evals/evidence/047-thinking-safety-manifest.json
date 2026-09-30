@@ -1,0 +1,612 @@
+{
+  "base_sha": "58fa3d5f38d274fc702b45ed4161dec381fc24ec",
+  "cap_usd": 14,
+  "spent_usd": 0.0694776,
+  "unknown_reserved_usd": 0,
+  "calls": [
+    {
+      "sequence": 1,
+      "model": "gpt-6-luna",
+      "reserved_usd": 0.007798,
+      "cost_usd": 0.0001015,
+      "request_sha256": "53818fabe0e334a2b9c783207d276762e65dbede3ed1480eafed42841eef5170",
+      "stage": "native-luna-medium",
+      "code_sha256": {
+        "benchmarks/providers/thinking_safety_guard.py": "e7b9364f71a87179796ed81371ec91546a1c88ad1a50f3ea500f2d12fd0dff27",
+        "modules/common/openai_client.py": "eb8b2146f390e3a28f2b02cc032abe9959ba6921690eccc5965a6fd948d43308",
+        "modules/common/google_client.py": "174e4469436f26452a8d0712af32968ddfa730a04a726bf34d272d970aadd721",
+        "modules/extract/ocr_ai_gpt51_v1/main.py": "a9db81b3d7ed5066a25e4fe24f47c725677014dce677fc8449080b5e90552f6f"
+      },
+      "response_sha256": "2a163d8114340bb9d122e766b47ddb4b82bb44235e6aaa0033e164890b2ec8dc",
+      "response_bytes": 5212,
+      "status_code": 200,
+      "latency_ms": 4181,
+      "usage": {
+        "input_tokens": 80,
+        "input_tokens_details": {
+          "cache_write_tokens": 0,
+          "cached_tokens": 0
+        },
+        "output_tokens": 187,
+        "output_tokens_details": {
+          "reasoning_tokens": 142
+        },
+        "total_tokens": 267
+      },
+      "served_model": "gpt-6-luna",
+      "response_id": "resp_03508a064ca03b52016abc8dca388887d0b8e03da2e14a446f"
+    },
+    {
+      "sequence": 2,
+      "model": "gpt-6.1-sol",
+      "reserved_usd": 0.15596,
+      "cost_usd": 0.00137,
+      "request_sha256": "e55255788ac62540023d8c5e8a30f410fb6d6884bafa87734a2a5686bc79507b",
+      "stage": "native-sol-medium",
+      "code_sha256": {
+        "benchmarks/providers/thinking_safety_guard.py": "e7b9364f71a87179796ed81371ec91546a1c88ad1a50f3ea500f2d12fd0dff27",
+        "modules/common/openai_client.py": "eb8b2146f390e3a28f2b02cc032abe9959ba6921690eccc5965a6fd948d43308",
+        "modules/common/google_client.py": "174e4469436f26452a8d0712af32968ddfa730a04a726bf34d272d970aadd721",
+        "modules/extract/ocr_ai_gpt51_v1/main.py": "a9db81b3d7ed5066a25e4fe24f47c725677014dce677fc8449080b5e90552f6f"
+      },
+      "response_sha256": "a25ea8c3490dc0c07718247f89ffad5c6c177ae8769e1fe0a7b1f543d1680be3",
+      "response_bytes": 4775,
+      "status_code": 200,
+      "latency_ms": 4044,
+      "usage": {
+        "input_tokens": 80,
+        "input_tokens_details": {
+          "cache_write_tokens": 0,
+          "cached_tokens": 0
+        },
+        "output_tokens": 121,
+        "output_tokens_details": {
+          "reasoning_tokens": 66
+        },
+        "total_tokens": 201
+      },
+      "served_model": "gpt-6.1-sol",
+      "response_id": "resp_0efb8b583b8ef125016abc8dce324087d080780d30140ebdfe"
+    },
+    {
+      "sequence": 3,
+      "model": "gpt-6-luna",
+      "reserved_usd": 0.007798,
+      "cost_usd": 0.0008250499999999999,
+      "request_sha256": "3b559bdac11191f212858f0dd1109d668da1019ae307b27f87cc3fb31c8aebc9",
+      "stage": "luna-none-screen",
+      "code_sha256": {
+        "benchmarks/providers/thinking_safety_guard.py": "e7b9364f71a87179796ed81371ec91546a1c88ad1a50f3ea500f2d12fd0dff27",
+        "modules/common/openai_client.py": "eb8b2146f390e3a28f2b02cc032abe9959ba6921690eccc5965a6fd948d43308",
+        "modules/common/google_client.py": "174e4469436f26452a8d0712af32968ddfa730a04a726bf34d272d970aadd721",
+        "modules/extract/ocr_ai_gpt51_v1/main.py": "a9db81b3d7ed5066a25e4fe24f47c725677014dce677fc8449080b5e90552f6f"
+      },
+      "response_sha256": "d5c66fe06a421f8976f976400f6084d93e2a1370873591c573fcaaa02c4ba263",
+      "response_bytes": 3001,
+      "status_code": 200,
+      "latency_ms": 3922,
+      "usage": {
+        "input_tokens": 6353,
+        "input_tokens_details": {
+          "cache_write_tokens": 6350,
+          "cached_tokens": 0
+        },
+        "output_tokens": 62,
+        "output_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "total_tokens": 6415
+      },
+      "served_model": "gpt-6-luna",
+      "response_id": "resp_08c70d4dd919d0d2016abc8deb179487d0858051f601c3f72a",
+      "reasoning_tokens": 0,
+      "requested_effort": "none",
+      "output": "{\"verdict\":\"fail\",\"has_page_text\":true,\"excessive_blank\":false,\"reason\":\"The crop includes both oval portraits, but also a small fragment of page-level text/mark at the far left edge; the portrait captions are otherwise excluded.\"}",
+      "scorer_pass": true
+    },
+    {
+      "sequence": 4,
+      "model": "gpt-6-luna",
+      "reserved_usd": 0.007798,
+      "cost_usd": 0.00090405,
+      "request_sha256": "1b878cd982a1d35d6ef9124cd0c1b11c4db95306a49c3b0dc01d1f4d817539eb",
+      "stage": "luna-medium-screen",
+      "code_sha256": {
+        "benchmarks/providers/thinking_safety_guard.py": "e7b9364f71a87179796ed81371ec91546a1c88ad1a50f3ea500f2d12fd0dff27",
+        "modules/common/openai_client.py": "eb8b2146f390e3a28f2b02cc032abe9959ba6921690eccc5965a6fd948d43308",
+        "modules/common/google_client.py": "174e4469436f26452a8d0712af32968ddfa730a04a726bf34d272d970aadd721",
+        "modules/extract/ocr_ai_gpt51_v1/main.py": "a9db81b3d7ed5066a25e4fe24f47c725677014dce677fc8449080b5e90552f6f"
+      },
+      "response_sha256": "e3a0802b404ff4a3dd56a97981fdabf806f598f1306e93d3d51173b3f2b8d236",
+      "response_bytes": 5423,
+      "status_code": 200,
+      "latency_ms": 5154,
+      "usage": {
+        "input_tokens": 6353,
+        "input_tokens_details": {
+          "cache_write_tokens": 6350,
+          "cached_tokens": 0
+        },
+        "output_tokens": 220,
+        "output_tokens_details": {
+          "reasoning_tokens": 164
+        },
+        "total_tokens": 6573
+      },
+      "served_model": "gpt-6-luna",
+      "response_id": "resp_025d34f4236204c2016abc8df163fc87d0bd8dd3e59d58015b",
+      "reasoning_tokens": 164,
+      "requested_effort": "medium",
+      "output": "{\"verdict\":\"pass\",\"has_page_text\":false,\"excessive_blank\":false,\"reason\":\"The crop contains the two portraits without their page captions; the small stray mark at the edge is not page text.\"}",
+      "scorer_pass": false
+    },
+    {
+      "sequence": 5,
+      "model": "gpt-6.1-sol",
+      "reserved_usd": 0.15596,
+      "cost_usd": 0.016411,
+      "request_sha256": "2b6c6266b42b1fbcd239fc378fd6e6c22e59b6be9b53a2fff4bc4b7bf0538cae",
+      "stage": "sol-low-screen",
+      "code_sha256": {
+        "benchmarks/providers/thinking_safety_guard.py": "e7b9364f71a87179796ed81371ec91546a1c88ad1a50f3ea500f2d12fd0dff27",
+        "modules/common/openai_client.py": "eb8b2146f390e3a28f2b02cc032abe9959ba6921690eccc5965a6fd948d43308",
+        "modules/common/google_client.py": "174e4469436f26452a8d0712af32968ddfa730a04a726bf34d272d970aadd721",
+        "modules/extract/ocr_ai_gpt51_v1/main.py": "a9db81b3d7ed5066a25e4fe24f47c725677014dce677fc8449080b5e90552f6f"
+      },
+      "response_sha256": "ee47e43d80642e9ae7c828fb9dfead68ff81c586e9566b03ece4b22549cec3bc",
+      "response_bytes": 2972,
+      "status_code": 200,
+      "latency_ms": 4877,
+      "usage": {
+        "input_tokens": 6353,
+        "input_tokens_details": {
+          "cache_write_tokens": 6350,
+          "cached_tokens": 0
+        },
+        "output_tokens": 53,
+        "output_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "total_tokens": 6406
+      },
+      "served_model": "gpt-6.1-sol",
+      "response_id": "resp_0464c6b82a4c25fa016abc8df9248c87d09e94742acb7101f4",
+      "reasoning_tokens": 0,
+      "requested_effort": "low",
+      "output": "{\"verdict\":\"pass\",\"has_page_text\":false,\"excessive_blank\":false,\"reason\":\"The crop contains the two complete oval portraits without captions or other page text, and surrounding blank space is limited.\"}",
+      "scorer_pass": false
+    },
+    {
+      "sequence": 6,
+      "model": "gpt-6.1-sol",
+      "reserved_usd": 0.15596,
+      "cost_usd": 0.016421,
+      "request_sha256": "9542f762f1657b8d3699dcb3bc79db2e2c06e976f50e2894392f598c1a1e42b6",
+      "stage": "sol-medium-screen",
+      "code_sha256": {
+        "benchmarks/providers/thinking_safety_guard.py": "e7b9364f71a87179796ed81371ec91546a1c88ad1a50f3ea500f2d12fd0dff27",
+        "modules/common/openai_client.py": "eb8b2146f390e3a28f2b02cc032abe9959ba6921690eccc5965a6fd948d43308",
+        "modules/common/google_client.py": "174e4469436f26452a8d0712af32968ddfa730a04a726bf34d272d970aadd721",
+        "modules/extract/ocr_ai_gpt51_v1/main.py": "a9db81b3d7ed5066a25e4fe24f47c725677014dce677fc8449080b5e90552f6f"
+      },
+      "response_sha256": "1f1e40d4fddb8b97c93bf2dcab0ea71ef93aa23d75e92112cda80b7cf02c3850",
+      "response_bytes": 2976,
+      "status_code": 200,
+      "latency_ms": 4424,
+      "usage": {
+        "input_tokens": 6353,
+        "input_tokens_details": {
+          "cache_write_tokens": 6350,
+          "cached_tokens": 0
+        },
+        "output_tokens": 54,
+        "output_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "total_tokens": 6407
+      },
+      "served_model": "gpt-6.1-sol",
+      "response_id": "resp_0710a5c5c53a3968016abc8e0003a087d084ee6b1c4ba501a9",
+      "reasoning_tokens": 0,
+      "requested_effort": "medium",
+      "output": "{\"verdict\":\"pass\",\"has_page_text\":false,\"excessive_blank\":false,\"reason\":\"The crop contains the two oval portraits without captions or other page text, and the surrounding blank space is not excessive.\"}",
+      "scorer_pass": false
+    },
+    {
+      "sequence": 7,
+      "model": "gpt-5.5",
+      "reserved_usd": 0.29144,
+      "cost_usd": 0.033445,
+      "request_sha256": "c2dbb15b2952a525b91cb12be1aa413b76f02a47ee22184a9ba548989d1469be",
+      "stage": "control-screen",
+      "code_sha256": {
+        "benchmarks/providers/thinking_safety_guard.py": "e7b9364f71a87179796ed81371ec91546a1c88ad1a50f3ea500f2d12fd0dff27",
+        "modules/common/openai_client.py": "eb8b2146f390e3a28f2b02cc032abe9959ba6921690eccc5965a6fd948d43308",
+        "modules/common/google_client.py": "174e4469436f26452a8d0712af32968ddfa730a04a726bf34d272d970aadd721",
+        "modules/extract/ocr_ai_gpt51_v1/main.py": "a9db81b3d7ed5066a25e4fe24f47c725677014dce677fc8449080b5e90552f6f"
+      },
+      "response_sha256": "dc23d2984e5a8bf637515a1c50d58d802694bf4190e89141b6fef5e9eab92022",
+      "response_bytes": 3000,
+      "status_code": 200,
+      "latency_ms": 3520,
+      "usage": {
+        "input_tokens": 6353,
+        "input_tokens_details": {
+          "cache_write_tokens": 0,
+          "cached_tokens": 0
+        },
+        "output_tokens": 56,
+        "output_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "total_tokens": 6409
+      },
+      "served_model": "gpt-5.5-2026-04-23",
+      "response_id": "resp_0ce402114fd7cf64016abc8e27077887d09ba7d8415cdd016c",
+      "reasoning_tokens": 0,
+      "requested_effort": "none",
+      "output": "{\"verdict\":\"pass\",\"has_page_text\":false,\"excessive_blank\":false,\"reason\":\"Crop contains the two oval portrait illustrations without captions or surrounding page text; blank areas are just space between/around the images.\"}",
+      "scorer_pass": false
+    }
+  ],
+  "input_sha256": "ec867efaaa9be8c7d2538403fa5039263c3583e6bc28d36b944689f71f23e561",
+  "schema_sha256": "dfde50f5b02eb779fdb8a1f0c008606935f9b261bab75cd7bb83c7bab4308c4e",
+  "candidate_image_detail": "high",
+  "output_maximum": 4096,
+  "source_diagnostic": "docs/evals/evidence/046-page122-source-check.png",
+  "fixture_class": "public established scans and synthetic",
+  "full22": "not measured for either candidate or control after both medium false-safe stops",
+  "files": [
+    {
+      "path": "benchmarks/results/thinking-safety-20260929/control-screen.json",
+      "sha256": "7429499b0906a4d11aafdc2b4868c97180efb0718cd84cb1bda8823dd1052d28",
+      "bytes": 8509157
+    },
+    {
+      "path": "benchmarks/results/thinking-safety-20260929/control-screen.log",
+      "sha256": "2d1c2db277bea75b13b509b8972f0a9e9d040e5d53242a39328689a2a790d3fd",
+      "bytes": 4308
+    },
+    {
+      "path": "benchmarks/results/thinking-safety-20260929/ledger.json",
+      "sha256": "39f0b887acf15e5a5d3413ee489eec3c22622e21272457b3c44d03a1c675d099",
+      "bytes": 9514
+    },
+    {
+      "path": "benchmarks/results/thinking-safety-20260929/luna-medium-screen.json",
+      "sha256": "355ce2864490411e632cb43bf50f96f13765efb491f599b52062d525180f768b",
+      "bytes": 8508987
+    },
+    {
+      "path": "benchmarks/results/thinking-safety-20260929/luna-medium-screen.log",
+      "sha256": "25cd8f44889d6f3ca97e73b0f1653dd3d0364360e27518276d1a91671ca56b85",
+      "bytes": 4408
+    },
+    {
+      "path": "benchmarks/results/thinking-safety-20260929/luna-none-screen.json",
+      "sha256": "58ebff46cbd3a8139d3027352a4981bdfe56fea38ea6749ffefa2b6ce5606b86",
+      "bytes": 8508565
+    },
+    {
+      "path": "benchmarks/results/thinking-safety-20260929/luna-none-screen.log",
+      "sha256": "9afacd120d180e0395f0c367394bb99306cffbcf1f158537eaecbd71170cbd30",
+      "bytes": 4805
+    },
+    {
+      "path": "benchmarks/results/thinking-safety-20260929/request-001.json",
+      "sha256": "53818fabe0e334a2b9c783207d276762e65dbede3ed1480eafed42841eef5170",
+      "bytes": 1158
+    },
+    {
+      "path": "benchmarks/results/thinking-safety-20260929/request-002.json",
+      "sha256": "e55255788ac62540023d8c5e8a30f410fb6d6884bafa87734a2a5686bc79507b",
+      "bytes": 1159
+    },
+    {
+      "path": "benchmarks/results/thinking-safety-20260929/request-003.json",
+      "sha256": "3b559bdac11191f212858f0dd1109d668da1019ae307b27f87cc3fb31c8aebc9",
+      "bytes": 8500717
+    },
+    {
+      "path": "benchmarks/results/thinking-safety-20260929/request-004.json",
+      "sha256": "1b878cd982a1d35d6ef9124cd0c1b11c4db95306a49c3b0dc01d1f4d817539eb",
+      "bytes": 8500719
+    },
+    {
+      "path": "benchmarks/results/thinking-safety-20260929/request-005.json",
+      "sha256": "2b6c6266b42b1fbcd239fc378fd6e6c22e59b6be9b53a2fff4bc4b7bf0538cae",
+      "bytes": 8500717
+    },
+    {
+      "path": "benchmarks/results/thinking-safety-20260929/request-006.json",
+      "sha256": "9542f762f1657b8d3699dcb3bc79db2e2c06e976f50e2894392f598c1a1e42b6",
+      "bytes": 8500720
+    },
+    {
+      "path": "benchmarks/results/thinking-safety-20260929/request-007.json",
+      "sha256": "c2dbb15b2952a525b91cb12be1aa413b76f02a47ee22184a9ba548989d1469be",
+      "bytes": 8500714
+    },
+    {
+      "path": "benchmarks/results/thinking-safety-20260929/response-001.json",
+      "sha256": "2a163d8114340bb9d122e766b47ddb4b82bb44235e6aaa0033e164890b2ec8dc",
+      "bytes": 5212
+    },
+    {
+      "path": "benchmarks/results/thinking-safety-20260929/response-002.json",
+      "sha256": "a25ea8c3490dc0c07718247f89ffad5c6c177ae8769e1fe0a7b1f543d1680be3",
+      "bytes": 4775
+    },
+    {
+      "path": "benchmarks/results/thinking-safety-20260929/response-003.json",
+      "sha256": "d5c66fe06a421f8976f976400f6084d93e2a1370873591c573fcaaa02c4ba263",
+      "bytes": 3001
+    },
+    {
+      "path": "benchmarks/results/thinking-safety-20260929/response-004.json",
+      "sha256": "e3a0802b404ff4a3dd56a97981fdabf806f598f1306e93d3d51173b3f2b8d236",
+      "bytes": 5423
+    },
+    {
+      "path": "benchmarks/results/thinking-safety-20260929/response-005.json",
+      "sha256": "ee47e43d80642e9ae7c828fb9dfead68ff81c586e9566b03ece4b22549cec3bc",
+      "bytes": 2972
+    },
+    {
+      "path": "benchmarks/results/thinking-safety-20260929/response-006.json",
+      "sha256": "1f1e40d4fddb8b97c93bf2dcab0ea71ef93aa23d75e92112cda80b7cf02c3850",
+      "bytes": 2976
+    },
+    {
+      "path": "benchmarks/results/thinking-safety-20260929/response-007.json",
+      "sha256": "dc23d2984e5a8bf637515a1c50d58d802694bf4190e89141b6fef5e9eab92022",
+      "bytes": 3000
+    },
+    {
+      "path": "benchmarks/results/thinking-safety-20260929/sol-low-screen.json",
+      "sha256": "bbedd615fdf083944dd287482dfe15eb921970f40ad236677a6e4a5229c73e1f",
+      "bytes": 8509004
+    },
+    {
+      "path": "benchmarks/results/thinking-safety-20260929/sol-low-screen.log",
+      "sha256": "580822060a7a48e35cf23a47217349938a6e2e847e2a06e3cf48d97ccff05cb8",
+      "bytes": 4308
+    },
+    {
+      "path": "benchmarks/results/thinking-safety-20260929/sol-medium-screen.json",
+      "sha256": "f67943a276c9f45492925e13e00bb52a418a2eba8eecea67bda1ea77021e17dc",
+      "bytes": 8509029
+    },
+    {
+      "path": "benchmarks/results/thinking-safety-20260929/sol-medium-screen.log",
+      "sha256": "a89b0dc7bac617a553c33f981571618b894a96f63a6c743a1eecccd9e7b584d6",
+      "bytes": 4605
+    }
+  ],
+  "archive": {
+    "path": "docs/evals/evidence/047-thinking-safety-receipts.tar.gz",
+    "sha256": "2a52920a58a1d6da6a9e54ef6755a2ce29fbdf84f07c997d0960ea4d2a92a56f",
+    "bytes": 6395042,
+    "format": "lossless data-URI dedup tar; reconstruct literal bytes before hash verification",
+    "blob_hashes": [
+      "d58cb6142e0c5688b34ba8877ca45f4affb63dea1f44b608b0e2464e7ef5d0ca",
+      "1cd664289bbf7f54f918d02d9958f3cfdd2089185cb563ba62b4afad3ec8e02f",
+      "029858c13b47869fffac8b1348bfd6fee8ff0527defe858787d940e9c5673c67"
+    ]
+  },
+  "execution_sources": [
+    {
+      "path": "docs/evals/evidence/047-execution-sources/thinking_safety_guard.py",
+      "sha256": "e7b9364f71a87179796ed81371ec91546a1c88ad1a50f3ea500f2d12fd0dff27"
+    },
+    {
+      "path": "docs/evals/evidence/047-execution-sources/thinking_safety_native_probe.py",
+      "sha256": "4c7c52426a9ade0feba5c2f8539dbf0cb0787cbc42a1386c49d86e505979bd87"
+    },
+    {
+      "path": "docs/evals/evidence/047-execution-sources/thinking_safety_openai.py",
+      "sha256": "c3de77200f892c7594d70d8a0d46c9fd279bcb9a3ab992f4d6dfd7cd5de3816e"
+    },
+    {
+      "path": "docs/evals/evidence/047-execution-sources/thinking_safety_preflight.py",
+      "sha256": "1bf2933e5a85c3f5bedafc395f144baa50b1e8cf2ddcf2b3f10c6773ac40b475"
+    }
+  ],
+  "screen_results": [
+    {
+      "sequence": 3,
+      "model": "gpt-6-luna",
+      "reserved_usd": 0.007798,
+      "cost_usd": 0.0008250499999999999,
+      "request_sha256": "3b559bdac11191f212858f0dd1109d668da1019ae307b27f87cc3fb31c8aebc9",
+      "stage": "luna-none-screen",
+      "code_sha256": {
+        "benchmarks/providers/thinking_safety_guard.py": "e7b9364f71a87179796ed81371ec91546a1c88ad1a50f3ea500f2d12fd0dff27",
+        "modules/common/openai_client.py": "eb8b2146f390e3a28f2b02cc032abe9959ba6921690eccc5965a6fd948d43308",
+        "modules/common/google_client.py": "174e4469436f26452a8d0712af32968ddfa730a04a726bf34d272d970aadd721",
+        "modules/extract/ocr_ai_gpt51_v1/main.py": "a9db81b3d7ed5066a25e4fe24f47c725677014dce677fc8449080b5e90552f6f"
+      },
+      "response_sha256": "d5c66fe06a421f8976f976400f6084d93e2a1370873591c573fcaaa02c4ba263",
+      "response_bytes": 3001,
+      "status_code": 200,
+      "latency_ms": 3922,
+      "usage": {
+        "input_tokens": 6353,
+        "input_tokens_details": {
+          "cache_write_tokens": 6350,
+          "cached_tokens": 0
+        },
+        "output_tokens": 62,
+        "output_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "total_tokens": 6415
+      },
+      "served_model": "gpt-6-luna",
+      "response_id": "resp_08c70d4dd919d0d2016abc8deb179487d0858051f601c3f72a",
+      "reasoning_tokens": 0,
+      "requested_effort": "none",
+      "output": "{\"verdict\":\"fail\",\"has_page_text\":true,\"excessive_blank\":false,\"reason\":\"The crop includes both oval portraits, but also a small fragment of page-level text/mark at the far left edge; the portrait captions are otherwise excluded.\"}",
+      "scorer_pass": true
+    },
+    {
+      "sequence": 4,
+      "model": "gpt-6-luna",
+      "reserved_usd": 0.007798,
+      "cost_usd": 0.00090405,
+      "request_sha256": "1b878cd982a1d35d6ef9124cd0c1b11c4db95306a49c3b0dc01d1f4d817539eb",
+      "stage": "luna-medium-screen",
+      "code_sha256": {
+        "benchmarks/providers/thinking_safety_guard.py": "e7b9364f71a87179796ed81371ec91546a1c88ad1a50f3ea500f2d12fd0dff27",
+        "modules/common/openai_client.py": "eb8b2146f390e3a28f2b02cc032abe9959ba6921690eccc5965a6fd948d43308",
+        "modules/common/google_client.py": "174e4469436f26452a8d0712af32968ddfa730a04a726bf34d272d970aadd721",
+        "modules/extract/ocr_ai_gpt51_v1/main.py": "a9db81b3d7ed5066a25e4fe24f47c725677014dce677fc8449080b5e90552f6f"
+      },
+      "response_sha256": "e3a0802b404ff4a3dd56a97981fdabf806f598f1306e93d3d51173b3f2b8d236",
+      "response_bytes": 5423,
+      "status_code": 200,
+      "latency_ms": 5154,
+      "usage": {
+        "input_tokens": 6353,
+        "input_tokens_details": {
+          "cache_write_tokens": 6350,
+          "cached_tokens": 0
+        },
+        "output_tokens": 220,
+        "output_tokens_details": {
+          "reasoning_tokens": 164
+        },
+        "total_tokens": 6573
+      },
+      "served_model": "gpt-6-luna",
+      "response_id": "resp_025d34f4236204c2016abc8df163fc87d0bd8dd3e59d58015b",
+      "reasoning_tokens": 164,
+      "requested_effort": "medium",
+      "output": "{\"verdict\":\"pass\",\"has_page_text\":false,\"excessive_blank\":false,\"reason\":\"The crop contains the two portraits without their page captions; the small stray mark at the edge is not page text.\"}",
+      "scorer_pass": false
+    },
+    {
+      "sequence": 5,
+      "model": "gpt-6.1-sol",
+      "reserved_usd": 0.15596,
+      "cost_usd": 0.016411,
+      "request_sha256": "2b6c6266b42b1fbcd239fc378fd6e6c22e59b6be9b53a2fff4bc4b7bf0538cae",
+      "stage": "sol-low-screen",
+      "code_sha256": {
+        "benchmarks/providers/thinking_safety_guard.py": "e7b9364f71a87179796ed81371ec91546a1c88ad1a50f3ea500f2d12fd0dff27",
+        "modules/common/openai_client.py": "eb8b2146f390e3a28f2b02cc032abe9959ba6921690eccc5965a6fd948d43308",
+        "modules/common/google_client.py": "174e4469436f26452a8d0712af32968ddfa730a04a726bf34d272d970aadd721",
+        "modules/extract/ocr_ai_gpt51_v1/main.py": "a9db81b3d7ed5066a25e4fe24f47c725677014dce677fc8449080b5e90552f6f"
+      },
+      "response_sha256": "ee47e43d80642e9ae7c828fb9dfead68ff81c586e9566b03ece4b22549cec3bc",
+      "response_bytes": 2972,
+      "status_code": 200,
+      "latency_ms": 4877,
+      "usage": {
+        "input_tokens": 6353,
+        "input_tokens_details": {
+          "cache_write_tokens": 6350,
+          "cached_tokens": 0
+        },
+        "output_tokens": 53,
+        "output_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "total_tokens": 6406
+      },
+      "served_model": "gpt-6.1-sol",
+      "response_id": "resp_0464c6b82a4c25fa016abc8df9248c87d09e94742acb7101f4",
+      "reasoning_tokens": 0,
+      "requested_effort": "low",
+      "output": "{\"verdict\":\"pass\",\"has_page_text\":false,\"excessive_blank\":false,\"reason\":\"The crop contains the two complete oval portraits without captions or other page text, and surrounding blank space is limited.\"}",
+      "scorer_pass": false
+    },
+    {
+      "sequence": 6,
+      "model": "gpt-6.1-sol",
+      "reserved_usd": 0.15596,
+      "cost_usd": 0.016421,
+      "request_sha256": "9542f762f1657b8d3699dcb3bc79db2e2c06e976f50e2894392f598c1a1e42b6",
+      "stage": "sol-medium-screen",
+      "code_sha256": {
+        "benchmarks/providers/thinking_safety_guard.py": "e7b9364f71a87179796ed81371ec91546a1c88ad1a50f3ea500f2d12fd0dff27",
+        "modules/common/openai_client.py": "eb8b2146f390e3a28f2b02cc032abe9959ba6921690eccc5965a6fd948d43308",
+        "modules/common/google_client.py": "174e4469436f26452a8d0712af32968ddfa730a04a726bf34d272d970aadd721",
+        "modules/extract/ocr_ai_gpt51_v1/main.py": "a9db81b3d7ed5066a25e4fe24f47c725677014dce677fc8449080b5e90552f6f"
+      },
+      "response_sha256": "1f1e40d4fddb8b97c93bf2dcab0ea71ef93aa23d75e92112cda80b7cf02c3850",
+      "response_bytes": 2976,
+      "status_code": 200,
+      "latency_ms": 4424,
+      "usage": {
+        "input_tokens": 6353,
+        "input_tokens_details": {
+          "cache_write_tokens": 6350,
+          "cached_tokens": 0
+        },
+        "output_tokens": 54,
+        "output_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "total_tokens": 6407
+      },
+      "served_model": "gpt-6.1-sol",
+      "response_id": "resp_0710a5c5c53a3968016abc8e0003a087d084ee6b1c4ba501a9",
+      "reasoning_tokens": 0,
+      "requested_effort": "medium",
+      "output": "{\"verdict\":\"pass\",\"has_page_text\":false,\"excessive_blank\":false,\"reason\":\"The crop contains the two oval portraits without captions or other page text, and the surrounding blank space is not excessive.\"}",
+      "scorer_pass": false
+    },
+    {
+      "sequence": 7,
+      "model": "gpt-5.5",
+      "reserved_usd": 0.29144,
+      "cost_usd": 0.033445,
+      "request_sha256": "c2dbb15b2952a525b91cb12be1aa413b76f02a47ee22184a9ba548989d1469be",
+      "stage": "control-screen",
+      "code_sha256": {
+        "benchmarks/providers/thinking_safety_guard.py": "e7b9364f71a87179796ed81371ec91546a1c88ad1a50f3ea500f2d12fd0dff27",
+        "modules/common/openai_client.py": "eb8b2146f390e3a28f2b02cc032abe9959ba6921690eccc5965a6fd948d43308",
+        "modules/common/google_client.py": "174e4469436f26452a8d0712af32968ddfa730a04a726bf34d272d970aadd721",
+        "modules/extract/ocr_ai_gpt51_v1/main.py": "a9db81b3d7ed5066a25e4fe24f47c725677014dce677fc8449080b5e90552f6f"
+      },
+      "response_sha256": "dc23d2984e5a8bf637515a1c50d58d802694bf4190e89141b6fef5e9eab92022",
+      "response_bytes": 3000,
+      "status_code": 200,
+      "latency_ms": 3520,
+      "usage": {
+        "input_tokens": 6353,
+        "input_tokens_details": {
+          "cache_write_tokens": 0,
+          "cached_tokens": 0
+        },
+        "output_tokens": 56,
+        "output_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "total_tokens": 6409
+      },
+      "served_model": "gpt-5.5-2026-04-23",
+      "response_id": "resp_0ce402114fd7cf64016abc8e27077887d09ba7d8415cdd016c",
+      "reasoning_tokens": 0,
+      "requested_effort": "none",
+      "output": "{\"verdict\":\"pass\",\"has_page_text\":false,\"excessive_blank\":false,\"reason\":\"Crop contains the two oval portrait illustrations without captions or surrounding page text; blank areas are just space between/around the images.\"}",
+      "scorer_pass": false
+    }
+  ],
+  "prompt_contract_concern": "Opening includes neighboring page visuals, but Important limits full-page context to text ownership and says When uncertain PASS; target-visual contract requires source-backed review before unchanged rerun.",
+  "validation": {
+    "focused_tests": "11 passed; python -m pytest tests/test_thinking_safety_guard.py tests/test_openai_responses_model_provider.py -q",
+    "tooling_lint": "all current5 tooling/test files plus offline reconstruct Ruff passed",
+    "methodology": "build/check passed",
+    "diff": "git diff --check passed",
+    "reconstruction": "25/25 original byte hashes restored in /tmp/docweb-thinking-safety-reconstructed",
+    "runtime_pipeline": "not run; no runtime module/config changed; no pipeline fix claim"
+  },
+  "current_tooling_sha256": {
+    "benchmarks/providers/thinking_safety_openai.py": "6238e5e71b59106b1da1a874692ef1358e348c013901dcc66b0ae914cb424817",
+    "benchmarks/providers/thinking_safety_guard.py": "e7b9364f71a87179796ed81371ec91546a1c88ad1a50f3ea500f2d12fd0dff27",
+    "benchmarks/scripts/thinking_safety_preflight.py": "1a1cf664fbc473d6abf3d301dee637a82bcec9bc5d83ec6a193c723d7ff1486e",
+    "benchmarks/scripts/thinking_safety_native_probe.py": "4c7c52426a9ade0feba5c2f8539dbf0cb0787cbc42a1386c49d86e505979bd87"
+  }
+}

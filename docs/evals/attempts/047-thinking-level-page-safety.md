@@ -1,0 +1,35 @@
+# Attempt 047 — Thinking-level page-safety comparison
+
+September29,2026. Story240. Isolated fresh origin/main base `58fa3d5f38d274fc702b45ed4161dec381fc24ec`, branch `codex/docweb-thinking-safety-20260929`.
+
+**Medium thinking did not fix this maintained safety differentiator. No reliable safety winner was demonstrated in this fresh one-case screen: both medium candidates and the fresh GPT5.5 control approved the neighboring portrait.** Existing runtime settings remain unchanged. The safety prompt needs source-backed contract review before another unchanged paid run; do not infer model-wide inability or GPT5.5 superiority from this result.
+
+| Exact requested model / effort | Scorer /1 | False-safe | Reasoning tokens | Native latency | Usage-priced cost |
+|---|---:|---:|---:|---:|---:|
+| gpt-6-luna none | 1 | 0 | 0 | 3.922s | $0.00082505 |
+| gpt-6-luna medium | 0 | 1 | 164 | 5.154s | $0.00090405 |
+| gpt-6.1-sol low | 0 | 1 | 0 | 4.877s | $0.01641100 |
+| gpt-6.1-sol medium | 0 | 1 | 0 | 4.424s | $0.01642100 |
+| gpt-5.5 none | 0 | 1 | 0 | 3.520s | $0.03344500 |
+
+Candidate none/low and medium use identical4096 output allowance, high image detail, original instructions/images and strict JSON schema. Medium is predeclared before outcomes. Same serialized input and schema hashes are in the [manifest](../evidence/047-thinking-safety-manifest.json); **high image detail is separate from medium reasoning**. GPT5.5 retains none/2048/auto; official alias mapping and actual receipt serve `gpt-5.5-2026-04-23`. Luna medium uses164 reasoning tokens; Sol6.1 medium reports0 on this case, versus66 on its synthetic native qualification. This is evidence about requested-effort settings, not proof that each call used a fixed reasoning budget. One sample per setting cannot establish monotonicity or variance.
+
+Both candidate native synthetic two-image strict schemas qualified independently before owner Promptfoo screens, exact identities/complete terminal status/sane usage. Promptfoo uses the owner Responses adapter without semantic changes. All seven calls completed; no provider/schema/parser/truncation issue, retry or unknown billing. Medium candidate screens failed the source-backed stop gate independently; both full22 candidate arms and the full22 control remain **not measured**. The fresh control screen failed too. Qualification cost$0.00147150; subjects/control$0.06800610; total **$0.06947760 / $14**, unknown reserved$0. No LLM judge. Conditional reservation10.014356+screens.618956+qualification.327516 left3.039172 recovery; no unused reservation is a charge.
+
+## Source and mismatch adjudication
+
+[Original/crop diagnostic](../evidence/046-page122-source-check.png), checked against exact benchmark hashes, visibly shows the intended Moise/Edward oval plus the entire separate neighboring Sophie oval. Golden `fail` stays authoritative and unchanged. Both medium arms describe the crop as two acceptable portraits and return `pass`. Sol low and GPT5.5 also return `pass`. These are valid source-invalid false-safe outputs under the maintained task.
+
+Luna none returns `fail` because of an incidental left-edge mark, while still treating both portraits as acceptable. Its1/1 label match does not prove it understands the neighbor failure or is qualified for safety. Do not select or promote none from this observed label match.
+
+The frozen prompt's opening checks neighboring page visuals, but its Important instructions limit use of full-page context to visible-text ownership and say to pass when uncertain. That is a **prompt-contract concern** for separate caption-free portraits. Canonical classification: prompt/pipeline-wrong concern; source-verified failures are task-level/model-output wrong, with causal attribution between model and contradictory/underspecified instructions unresolved. Goldens, scorer and schema are supported; no test/golden repair is warranted here. Preserve the unsafe receipts without calling this a clean thinking-only capability defect.
+
+## Provenance and verification
+
+Public established scan fixtures and synthetic qualification only. Owner-configured OpenAI key through `scripts/run_with_doc_web_env.py` with read-only `DOC_WEB_ENV_FILE=/Users/cam/Documents/Projects/doc-web/.env`. No secret value, copying or injected credentials. Standard retention may apply; no-training default; account ZDR unverified. Current official [Luna](https://developers.openai.com/api/docs/models/gpt-6-luna), [Sol6.1](https://developers.openai.com/api/docs/models/gpt-6.1-sol), [GPT5.5](https://developers.openai.com/api/docs/models/gpt-5.5) rates refreshed September29; exact input/cache/cachewrite/output rates in story. Serial independent single-user cases, `--no-cache`, promptfoo0.121.1, Python3.11.5; no conversation chaining or implicit judge. Zero-cost [topology](../evidence/047-thinking-safety-topology.json) resolves all8 planned task shapes/inputs/scorers. [Manifest](../evidence/047-thinking-safety-manifest.json) records7 exact request/response pairs and25 artifact hashes. Lossless public-image data-URI dedup archive6.4MB restores exact original bytes with [offline reconstruction](../evidence/047-reconstruct.py), requiring no inference or credentials. Executed guard/provider/native/preflight sources are retained under `047-execution-sources/`; current copies received formatting-only lint cleanup after execution.
+
+Reproduction, within a separately authorized spend budget, from benchmarks: set `DOC_WEB_ENV_FILE` as above and `PROMPTFOO_PYTHON=/Users/cam/miniconda3/bin/python`, then `python ../scripts/run_with_doc_web_env.py promptfoo eval -c tasks/thinking-safety-<arm>-screen.yaml --no-cache --output results/<new-id>.json -j 1`. Initialize a NEW ledger/run identity by adapting the campaign guard before any new inference; closed current ledger intentionally refuses sends. Do not rerun blindly before resolving prompt-contract concerns. Native qualification uses `THINKING_MODEL=<exact-id>` and `python scripts/run_with_doc_web_env.py python benchmarks/scripts/thinking_safety_native_probe.py page`; it likewise requires a fresh authorized ledger identity.
+
+Focused guard/Responses verification11 passed, including before-send cap denial and unknown-usage reservation retention. Tooling Ruff passed; reconstruction verifies every25 original byte hash. No runtime module changed, so driver pipeline proof is unrun and no pipeline-fix/promotion claim is made. Story/eval/graph validation completes the isolated evaluation record, not production safety qualification.
+
+Access available; native/owner transport qualified; observed7/7 request reliability complete; semantic safety insufficient for medium candidates or fresh control; economics measured only for this screen; adoption **do not adopt candidate medium**, existing runtime retained pending prompt-contract repair/variance proof. Next: review the intended-visual criterion against source/golden, repair only a clearly authorized contract, then freeze and repeat matched screens before full22. No runtime defaults, prompt, golden, scorer, commit, push or deployment changed.

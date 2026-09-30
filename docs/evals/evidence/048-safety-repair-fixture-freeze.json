@@ -1,0 +1,219 @@
+{
+  "candidate_prompt_sha256": "ef4395838929b208fe65f21500d81ade902072bef3f8e53f81ef3d3b83fbc421",
+  "source_review": "Owner visually inspected all6 source/crop pairs. S1 common frame/connector+shared caption; S2 separate frames/captions; S3 unframed ambiguous shapes without grouping cues,20.62357% near-white crop, policy uncertainty not physical bad-crop claim; S4 integralbadge text; S5 pagecaption; S6 93.68734% near-white. Root independent review pending before paid calls.",
+  "fixtures": {
+    "fixture_class": "new synthetic diagrams; no provider-generated content",
+    "renderer": "Version: ImageMagick 7.1.1-47 Q16-HDRI x86_64 22763 https://imagemagick.org",
+    "cases": [
+      {
+        "key": "S1",
+        "verdict": "pass",
+        "reason": "source-unified outer frame, connection, shared caption",
+        "crop_bounds": [
+          100,
+          180,
+          900,
+          650
+        ],
+        "near_white_fraction": 0.0,
+        "category": "physical-quality",
+        "files": [
+          {
+            "path": "benchmarks/input/safety-repair-048/S1-source.svg",
+            "bytes": 827,
+            "sha256": "a08e4f1b2cb40a034af52d7f97bc2c667993ffac18308456444e52c84857903a"
+          },
+          {
+            "path": "benchmarks/input/safety-repair-048/S1-source.png",
+            "bytes": 15639,
+            "sha256": "dc6f1b87fbce7c05af523cef3969fa2e34d2dd8a8c7c0167681ddb0565079d0d"
+          },
+          {
+            "path": "benchmarks/input/safety-repair-048/S1-crop.png",
+            "bytes": 6371,
+            "sha256": "3e25393c0d0f4d1502934eab252391f63d4b55926c2e4600c13959f565a04ec3"
+          }
+        ]
+      },
+      {
+        "key": "S2",
+        "verdict": "fail",
+        "reason": "separate framed/captioned neighbor, no leaked caption",
+        "crop_bounds": [
+          100,
+          180,
+          900,
+          650
+        ],
+        "near_white_fraction": 0.17375,
+        "category": "physical-quality",
+        "files": [
+          {
+            "path": "benchmarks/input/safety-repair-048/S2-source.svg",
+            "bytes": 696,
+            "sha256": "486a1e97619cb723699a3b82645c49dbda78e5cadfee3cc2d42535f8e2d361f6"
+          },
+          {
+            "path": "benchmarks/input/safety-repair-048/S2-source.png",
+            "bytes": 15149,
+            "sha256": "1d762cc29d89d012a61545acce63422521e0f51a05339391df2e817fe47bd07f"
+          },
+          {
+            "path": "benchmarks/input/safety-repair-048/S2-crop.png",
+            "bytes": 6507,
+            "sha256": "d9cb87f2812a9d84c41f0e58be8085d126a157b37a73abce32a844a7bcd66d44"
+          }
+        ]
+      },
+      {
+        "key": "S3",
+        "verdict": "fail",
+        "reason": "policy-defined ownership uncertainty; no grouping, caption, connector or enclosing visual frame",
+        "crop_bounds": [
+          220,
+          200,
+          780,
+          700
+        ],
+        "near_white_fraction": 0.20623571428571427,
+        "category": "uncertainty-policy",
+        "files": [
+          {
+            "path": "benchmarks/input/safety-repair-048/S3-source.svg",
+            "bytes": 668,
+            "sha256": "4416f5831d873bb035b233d85a2841607d0ef6668f06f538449fadd2a5bc5c42"
+          },
+          {
+            "path": "benchmarks/input/safety-repair-048/S3-source.png",
+            "bytes": 35359,
+            "sha256": "4cb7ceb9d8a3045951ce9c2da00eb1afb02ad91d1d3bad722283c0f96fa5ce84"
+          },
+          {
+            "path": "benchmarks/input/safety-repair-048/S3-crop.png",
+            "bytes": 28577,
+            "sha256": "11d98294ac8a19c8e77490998a933add2ddf8de6fdbeb8e7156159e201a87bfe"
+          }
+        ]
+      },
+      {
+        "key": "S4",
+        "verdict": "pass",
+        "reason": "badge text integral; external caption excluded",
+        "crop_bounds": [
+          250,
+          220,
+          750,
+          720
+        ],
+        "near_white_fraction": 0.0,
+        "category": "physical-quality",
+        "files": [
+          {
+            "path": "benchmarks/input/safety-repair-048/S4-source.svg",
+            "bytes": 506,
+            "sha256": "c141cd2613e2abdea5a1d7d55f8aafa3fda1fbc0a16a4acf0e62cf7ad7ee68ce"
+          },
+          {
+            "path": "benchmarks/input/safety-repair-048/S4-source.png",
+            "bytes": 19706,
+            "sha256": "381e784398327ecbe0d0e9b84a506d814d7b6ef4928e3d0f769946b64430ac33"
+          },
+          {
+            "path": "benchmarks/input/safety-repair-048/S4-crop.png",
+            "bytes": 11352,
+            "sha256": "9d310a44f961da0f05d01212dd3ba077a49054f5582bd8db393d5ae8670648a8"
+          }
+        ]
+      },
+      {
+        "key": "S5",
+        "verdict": "fail",
+        "reason": "external caption visible in crop",
+        "crop_bounds": [
+          250,
+          220,
+          750,
+          710
+        ],
+        "near_white_fraction": 0.1704408163265306,
+        "category": "physical-quality",
+        "files": [
+          {
+            "path": "benchmarks/input/safety-repair-048/S5-source.svg",
+            "bytes": 431,
+            "sha256": "95c8ad91a1c4b3f66acb24e7a46c358722131c339c59dcefc2a8e2e027ae5f6b"
+          },
+          {
+            "path": "benchmarks/input/safety-repair-048/S5-source.png",
+            "bytes": 14835,
+            "sha256": "e0d9515e5a236e734240762d5a4843b9edf18a63e54fb414162c480d936bd6a7"
+          },
+          {
+            "path": "benchmarks/input/safety-repair-048/S5-crop.png",
+            "bytes": 10832,
+            "sha256": "1573160ca39663a2d1b1539a32a0398c90a9f1db68d9de3e2686c98dd3043046"
+          }
+        ]
+      },
+      {
+        "key": "S6",
+        "verdict": "fail",
+        "reason": "93.75 percent blank page margin",
+        "crop_bounds": [
+          100,
+          100,
+          900,
+          900
+        ],
+        "near_white_fraction": 0.9368734375,
+        "category": "physical-quality",
+        "files": [
+          {
+            "path": "benchmarks/input/safety-repair-048/S6-source.svg",
+            "bytes": 325,
+            "sha256": "a0e66c09b2a195edf28952557a045a51978a323da91a94a4cf593a392ed3cea7"
+          },
+          {
+            "path": "benchmarks/input/safety-repair-048/S6-source.png",
+            "bytes": 7433,
+            "sha256": "b68a43d0f42d64425ae43b32bde95f3f9cd14da6b0923ed104e94b40e27efe91"
+          },
+          {
+            "path": "benchmarks/input/safety-repair-048/S6-crop.png",
+            "bytes": 5882,
+            "sha256": "ab32153e5aab60d75c4e52165d98da1c5ac11323976f9cc2870556b908cf3ca7"
+          }
+        ]
+      }
+    ]
+  },
+  "golden_sha256": "ab029598b7bc638122fe701c52470bc598344ef3ede137eee682e15b71a62ced",
+  "generator_sha256": "46a708295ff1e047e1b46e9a3bf4bd846e6f33cd954efcce05a44716bb64c800",
+  "contact_sheet": "/Users/cam/.codex/worktrees/docweb-thinking-safety-20260929/benchmarks/input/safety-repair-048/contact-sheet.png",
+  "contact_sheet_sha256": "a71ed82662b245057f7b300bbbb92a9a38157219c560cb978d1baaa363d5605c",
+  "immutable047_index_sha256": "9165994eee5cb51bd69e4d8d6abd0d47b2916b3cda8409827fb0d8e29fe8ae92",
+  "root_review": "Coordinator independently viewed all6 source/crop pairs and verified18 exact image/SVG hashes before provider calls. S3 is intentional policy ambiguity; coherent-grouping interpretation may remain plausible and does not establish physical leakage.",
+  "correction_before_first_call": {
+    "case": "page-126-000",
+    "canonical_verdict": "fail",
+    "campaign_verdict": "pass",
+    "historical_counts": {
+      "pass": 17,
+      "fail": 5
+    },
+    "corrected_counts": {
+      "pass": 18,
+      "fail": 4
+    },
+    "source": {
+      "page_path": "benchmarks/input/source-pages-b64/Image125.b64.txt",
+      "crop_path": "benchmarks/input/crop-validation-b64/page-126-000.b64.txt"
+    },
+    "adjudication": "Owner and coordinator independently source-inspected full resolution: left/top engraved text lies inside the same top photograph. Golden-wrong; integral image text allowed under frozen revised prompt. Routine source-backed validity repair, no inference viewed.",
+    "canonical_golden_sha256": "4bcba8f4ab8a742608e7cfc1438464a71cf56aa4cd9cbe9e0a67e4a410ac18a5",
+    "campaign_golden_path": "benchmarks/golden/crop-page-level-safety-repair-048.json",
+    "campaign_golden_sha256": "dd03e49a4a23fce3a15825fe373340b21048b8c841a1acb4b4ed51986d3a5533"
+  },
+  "review_complete_before_paid_calls": true,
+  "fixture/golden_freeze_sha256": "6a39676dd0c2765038a2995e7fb8e36c06be7fd696441c4cd5439cc3c2d36ae8"
+}

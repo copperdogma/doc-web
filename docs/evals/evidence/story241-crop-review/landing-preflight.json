@@ -1,0 +1,49 @@
+{
+  "reconstruction": [
+    {
+      "label": "047",
+      "reconstructed": 25,
+      "live_byte_matches": 25,
+      "output": "Verified and restored 25 exact files"
+    },
+    {
+      "label": "048",
+      "reconstructed": 54,
+      "live_byte_matches": 54,
+      "output": "Verified and restored 54 exact files"
+    },
+    {
+      "label": "048-continuation",
+      "reconstructed": 179,
+      "live_byte_matches": 179,
+      "output": "Verified and restored 179 exact continuation files"
+    }
+  ],
+  "reconstructed_location": "/var/folders/8f/3nlcf3sj1s5bbk1g_3dt3djm0000gn/T/docweb-landing-reconstruction-s3gbrhc5",
+  "secret_pattern_hits": 0,
+  "archive_members_scanned": 299,
+  "candidate_files_scanned": 196,
+  "unchanged_story241_test_inputs": 10,
+  "reused_story241_tests": 208,
+  "scope": [
+    "Story240 repaired safety evaluation and immutable Attempt047/048 evidence",
+    "Story241 offline all-candidate review gate"
+  ],
+  "destination_remote": "origin",
+  "destination_branch": "main",
+  "destination_head": "58fa3d5f38d274fc702b45ed4161dec381fc24ec",
+  "execution_branch": "codex/docweb-thinking-safety-20260929",
+  "integration": "origin/main equals current base; no conflicts or executable changes",
+  "fresh_checks": {
+    "guard_tests": "10 passed",
+    "selected_ruff": "pass",
+    "methodology_check": "pass",
+    "prompt_js_syntax": "pass",
+    "diff_check": "pass"
+  },
+  "evidence_reuse": "208 review/tool/existing-builder tests and real approved/held driver proofs retain exact recorded input hashes",
+  "live_calls": 0,
+  "landing_state": "Prepared, not pushed; waiting for coordinator all-repo preflight",
+  "primary_checkout": "Unrelated primary registry/Story207/attempt028/uv.lock preserved; inbox has no diff",
+  "largest_file_bytes": 20882549
+}

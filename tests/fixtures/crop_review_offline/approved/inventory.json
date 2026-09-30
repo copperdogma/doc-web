@@ -1,0 +1,46 @@
+{
+  "run_id": "story241-crop-review-approved",
+  "complete": true,
+  "operator_id": "fixture-reviewer",
+  "authority_ref": "synthetic-test-authority",
+  "review_evidence": {
+    "path": "inventory-review.txt",
+    "sha256": "b77e112ab6613c93d65cb20ab5da08e875bad9bba306c8d83c4bc32ca76961eb"
+  },
+  "pages_artifact": {
+    "path": "pages.jsonl",
+    "sha256": "d58b2ccd9cc9dddf0212e661859bc576ea15c583b2bd2a0711ad7fef296b8f96"
+  },
+  "portions_artifact": {
+    "path": "portions.jsonl",
+    "sha256": "c65bdab03dd156e79e42218626ccaaf502996b9d60d32d8f7b01285fcf2f50b6"
+  },
+  "pages": [
+    {
+      "source_page": 1,
+      "source_image": "S3-source.png",
+      "source_sha256": "4cb7ceb9d8a3045951ce9c2da00eb1afb02ad91d1d3bad722283c0f96fa5ce84"
+    },
+    {
+      "source_page": 2,
+      "source_image": "S4-source.png",
+      "source_sha256": "381e784398327ecbe0d0e9b84a506d814d7b6ef4928e3d0f769946b64430ac33"
+    }
+  ],
+  "visuals": [
+    {
+      "visual_id": "visual-1",
+      "source_page": 1,
+      "candidate_ids": [
+        "28ee564f85b9eb3b521d5fd27f56669931d6a9a1fcf53eea83fb11c7736948e1"
+      ]
+    },
+    {
+      "visual_id": "visual-2",
+      "source_page": 2,
+      "candidate_ids": [
+        "1c14e4853cd524a6819ffb858ea61a3f9712a97d930cebe24ee7b4fd501f23b7"
+      ]
+    }
+  ]
+}

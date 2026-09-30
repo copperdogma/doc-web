@@ -1,0 +1,620 @@
+{
+  "luna": {
+    "full_attempted": 19,
+    "complete": 18,
+    "frozen_label_correct": 16,
+    "source_valid_cases": 17,
+    "source_valid_correct": 16,
+    "quarantined": 1,
+    "cost_usd": 0.016367274999999997,
+    "latency_ms_mean": 4817.944444444444,
+    "reasoning_tokens": 2724,
+    "rows": [
+      {
+        "sequence": 24,
+        "case": "page-001-000",
+        "expected": "pass",
+        "answer": {
+          "verdict": "pass",
+          "has_page_text": false,
+          "excessive_blank": false,
+          "reason": "The crop isolates the embossed cover artwork and excludes the title and author text; the red cover texture is image background, not blank space."
+        },
+        "label_correct": true,
+        "quarantined": false,
+        "status": "complete"
+      },
+      {
+        "sequence": 25,
+        "case": "page-004-000",
+        "expected": "pass",
+        "answer": {
+          "verdict": "pass",
+          "has_page_text": false,
+          "excessive_blank": false,
+          "reason": "The crop isolates the complete wagon-and-oxen illustration; no page text or neighboring visuals are included."
+        },
+        "label_correct": true,
+        "quarantined": false,
+        "status": "complete"
+      },
+      {
+        "sequence": 26,
+        "case": "page-009-000",
+        "expected": "pass",
+        "answer": {
+          "verdict": "pass",
+          "has_page_text": false,
+          "excessive_blank": false,
+          "reason": "The crop isolates the complete photograph of Moise and Sophie; the page caption and surrounding text are excluded. The light areas are part of the photograph."
+        },
+        "label_correct": true,
+        "quarantined": false,
+        "status": "complete"
+      },
+      {
+        "sequence": 27,
+        "case": "page-012-000",
+        "expected": "pass",
+        "answer": {
+          "verdict": "pass",
+          "has_page_text": false,
+          "excessive_blank": false,
+          "reason": "The crop isolates the page\u2019s logo; its curved lettering and dates are integral to the logo, with no surrounding page text or excessive blank space."
+        },
+        "label_correct": true,
+        "quarantined": false,
+        "status": "complete"
+      },
+      {
+        "sequence": 28,
+        "case": "page-012-001",
+        "expected": "pass",
+        "answer": {
+          "verdict": "fail",
+          "has_page_text": false,
+          "excessive_blank": false,
+          "reason": "The crop isolates the award seal, but cuts off a substantial part of its lower edge; the full page shows the seal\u2019s complete circular outline."
+        },
+        "label_correct": false,
+        "quarantined": true,
+        "status": "complete"
+      },
+      {
+        "sequence": 29,
+        "case": "page-014-000",
+        "expected": "pass",
+        "answer": {
+          "verdict": "pass",
+          "has_page_text": false,
+          "excessive_blank": false,
+          "reason": "The crop isolates the complete photograph of Moise and Sophie; the caption and surrounding page text are excluded."
+        },
+        "label_correct": true,
+        "quarantined": false,
+        "status": "complete"
+      },
+      {
+        "sequence": 30,
+        "case": "page-018-000",
+        "expected": "fail",
+        "answer": {
+          "verdict": "fail",
+          "has_page_text": true,
+          "excessive_blank": true,
+          "reason": "The crop cuts off much of the family photograph on the right, includes the page caption, and contains a large area of blank page below."
+        },
+        "label_correct": true,
+        "quarantined": false,
+        "status": "complete"
+      },
+      {
+        "sequence": 31,
+        "case": "page-021-000",
+        "expected": "pass",
+        "answer": {
+          "verdict": "pass",
+          "has_page_text": false,
+          "excessive_blank": false,
+          "reason": "The crop isolates the complete aerial photograph and excludes the caption and neighboring photograph."
+        },
+        "label_correct": true,
+        "quarantined": false,
+        "status": "complete"
+      },
+      {
+        "sequence": 32,
+        "case": "page-021-001",
+        "expected": "pass",
+        "answer": {
+          "verdict": "pass",
+          "has_page_text": false,
+          "excessive_blank": false,
+          "reason": "The crop isolates the lower ranch-house-and-barn photograph; the large light area is sky within the photo, and no page text or neighboring illustration is included."
+        },
+        "label_correct": true,
+        "quarantined": false,
+        "status": "complete"
+      },
+      {
+        "sequence": 33,
+        "case": "page-022-000",
+        "status": "operational-unavailable"
+      },
+      {
+        "sequence": 40,
+        "case": "page-038-000",
+        "expected": "pass",
+        "answer": {
+          "verdict": "pass",
+          "has_page_text": false,
+          "excessive_blank": false,
+          "reason": "The crop isolates the oval portrait; the surrounding white area is limited and no page text or neighboring visual is included."
+        },
+        "label_correct": true,
+        "quarantined": false,
+        "status": "complete"
+      },
+      {
+        "sequence": 41,
+        "case": "page-038-001",
+        "expected": "pass",
+        "answer": {
+          "verdict": "pass",
+          "has_page_text": false,
+          "excessive_blank": false,
+          "reason": "The crop isolates the full photograph of the seated couple; the page caption and surrounding text are excluded."
+        },
+        "label_correct": true,
+        "quarantined": false,
+        "status": "complete"
+      },
+      {
+        "sequence": 42,
+        "case": "page-060-000",
+        "expected": "pass",
+        "answer": {
+          "verdict": "pass",
+          "has_page_text": false,
+          "excessive_blank": false,
+          "reason": "The crop isolates the complete photograph of the couple; the page caption and surrounding text are excluded."
+        },
+        "label_correct": true,
+        "quarantined": false,
+        "status": "complete"
+      },
+      {
+        "sequence": 43,
+        "case": "page-060-001",
+        "expected": "pass",
+        "answer": {
+          "verdict": "pass",
+          "has_page_text": false,
+          "excessive_blank": false,
+          "reason": "The crop isolates the photograph of the woman; its light background is part of the image, and no page text or neighboring visual is included."
+        },
+        "label_correct": true,
+        "quarantined": false,
+        "status": "complete"
+      },
+      {
+        "sequence": 44,
+        "case": "page-092-000",
+        "expected": "fail",
+        "answer": {
+          "verdict": "fail",
+          "has_page_text": true,
+          "excessive_blank": false,
+          "reason": "The crop includes substantial surrounding page text and only a partial portion of the wedding photograph."
+        },
+        "label_correct": true,
+        "quarantined": false,
+        "status": "complete"
+      },
+      {
+        "sequence": 45,
+        "case": "page-122-000",
+        "expected": "fail",
+        "answer": {
+          "verdict": "fail",
+          "has_page_text": true,
+          "excessive_blank": false,
+          "reason": "The crop includes the page caption beneath the family photograph; the photograph itself is otherwise isolated."
+        },
+        "label_correct": true,
+        "quarantined": false,
+        "status": "complete"
+      },
+      {
+        "sequence": 46,
+        "case": "page-122-001",
+        "expected": "fail",
+        "answer": {
+          "verdict": "fail",
+          "has_page_text": false,
+          "excessive_blank": false,
+          "reason": "The crop combines two separately presented portrait photographs, each with its own caption, rather than isolating one illustration."
+        },
+        "label_correct": true,
+        "quarantined": false,
+        "status": "complete"
+      },
+      {
+        "sequence": 47,
+        "case": "page-125-000",
+        "expected": "pass",
+        "answer": {
+          "verdict": "pass",
+          "has_page_text": false,
+          "excessive_blank": false,
+          "reason": "The crop isolates the illustration and excludes the page caption and number. The signature is part of the artwork, and any minor clipping at the top does not remove a substantial part of the image."
+        },
+        "label_correct": true,
+        "quarantined": false,
+        "status": "complete"
+      },
+      {
+        "sequence": 48,
+        "case": "page-126-000",
+        "expected": "pass",
+        "answer": {
+          "verdict": "fail",
+          "has_page_text": true,
+          "excessive_blank": false,
+          "reason": "The crop includes a strip of text from the neighboring plaque/photo along its left edge; the main plaque\u2019s inscription is integral to the image."
+        },
+        "label_correct": false,
+        "quarantined": false,
+        "status": "complete"
+      }
+    ]
+  },
+  "sol": {
+    "full_attempted": 22,
+    "complete": 22,
+    "frozen_label_correct": 21,
+    "source_valid_cases": 21,
+    "source_valid_correct": 21,
+    "quarantined": 1,
+    "cost_usd": 0.369542,
+    "latency_ms_mean": 4103.590909090909,
+    "reasoning_tokens": 128,
+    "rows": [
+      {
+        "sequence": 34,
+        "case": "page-001-000",
+        "expected": "pass",
+        "answer": {
+          "verdict": "pass",
+          "has_page_text": false,
+          "excessive_blank": false,
+          "reason": "The crop isolates the cover's landscape illustration without title or author text. Minor edge clipping does not omit a large part of the artwork, and the red background is integral to the image."
+        },
+        "label_correct": true,
+        "quarantined": false,
+        "status": "complete"
+      },
+      {
+        "sequence": 35,
+        "case": "page-004-000",
+        "expected": "pass",
+        "answer": {
+          "verdict": "pass",
+          "has_page_text": false,
+          "excessive_blank": false,
+          "reason": "The crop isolates the coherent wagon-and-animals illustration without page text or neighboring visuals. Minor edge clipping does not omit a substantial part of the artwork."
+        },
+        "label_correct": true,
+        "quarantined": false,
+        "status": "complete"
+      },
+      {
+        "sequence": 36,
+        "case": "page-009-000",
+        "expected": "pass",
+        "answer": {
+          "verdict": "pass",
+          "has_page_text": false,
+          "excessive_blank": false,
+          "reason": "The crop isolates the complete portrait photograph, excluding its caption and all surrounding page text."
+        },
+        "label_correct": true,
+        "quarantined": false,
+        "status": "complete"
+      },
+      {
+        "sequence": 37,
+        "case": "page-012-000",
+        "expected": "pass",
+        "answer": {
+          "verdict": "pass",
+          "has_page_text": false,
+          "excessive_blank": false,
+          "reason": "The crop cleanly isolates the anniversary logo, including its integral lettering and dates, without surrounding certificate text or other visuals."
+        },
+        "label_correct": true,
+        "quarantined": false,
+        "status": "complete"
+      },
+      {
+        "sequence": 38,
+        "case": "page-012-001",
+        "expected": "pass",
+        "answer": {
+          "verdict": "fail",
+          "has_page_text": false,
+          "excessive_blank": false,
+          "reason": "The crop isolates the seal but cuts off a substantial lower portion that is fully visible on the source page."
+        },
+        "label_correct": false,
+        "quarantined": true,
+        "status": "complete"
+      },
+      {
+        "sequence": 49,
+        "case": "page-014-000",
+        "expected": "pass",
+        "answer": {
+          "verdict": "pass",
+          "has_page_text": false,
+          "excessive_blank": false,
+          "reason": "The crop isolates the complete portrait photograph, excluding its caption and surrounding page text, with no neighboring visuals or excessive blank space."
+        },
+        "label_correct": true,
+        "quarantined": false,
+        "status": "complete"
+      },
+      {
+        "sequence": 50,
+        "case": "page-018-000",
+        "expected": "fail",
+        "answer": {
+          "verdict": "fail",
+          "has_page_text": true,
+          "excessive_blank": true,
+          "reason": "The crop includes page captions and excessive blank paper, while cutting off a substantial portion of the family photograph on the right and top."
+        },
+        "label_correct": true,
+        "quarantined": false,
+        "status": "complete"
+      },
+      {
+        "sequence": 51,
+        "case": "page-021-000",
+        "expected": "pass",
+        "answer": {
+          "verdict": "pass",
+          "has_page_text": false,
+          "excessive_blank": false,
+          "reason": "The crop isolates the aerial photograph, excluding its caption and the neighboring photograph. Light areas are snowy landscape within the image, not blank page space."
+        },
+        "label_correct": true,
+        "quarantined": false,
+        "status": "complete"
+      },
+      {
+        "sequence": 52,
+        "case": "page-021-001",
+        "expected": "pass",
+        "answer": {
+          "verdict": "pass",
+          "has_page_text": false,
+          "excessive_blank": false,
+          "reason": "The crop isolates the lower ranch photograph without its caption or neighboring image. The large light areas are sky and snow within the photograph, not blank page space."
+        },
+        "label_correct": true,
+        "quarantined": false,
+        "status": "complete"
+      },
+      {
+        "sequence": 53,
+        "case": "page-022-000",
+        "expected": "pass",
+        "answer": {
+          "verdict": "pass",
+          "has_page_text": false,
+          "excessive_blank": false,
+          "reason": "The crop isolates the complete photograph, excluding the caption and surrounding page text, with only a minimal blank border."
+        },
+        "label_correct": true,
+        "quarantined": false,
+        "status": "complete"
+      },
+      {
+        "sequence": 54,
+        "case": "page-038-000",
+        "expected": "pass",
+        "answer": {
+          "verdict": "pass",
+          "has_page_text": false,
+          "excessive_blank": false,
+          "reason": "The crop cleanly isolates the oval portrait, excluding its caption, surrounding text, and the separate photograph."
+        },
+        "label_correct": true,
+        "quarantined": false,
+        "status": "complete"
+      },
+      {
+        "sequence": 55,
+        "case": "page-038-001",
+        "expected": "pass",
+        "answer": {
+          "verdict": "pass",
+          "has_page_text": false,
+          "excessive_blank": false,
+          "reason": "The crop isolates the complete lower photograph of the seated couple, excluding its caption, surrounding text, and neighboring portrait."
+        },
+        "label_correct": true,
+        "quarantined": false,
+        "status": "complete"
+      },
+      {
+        "sequence": 56,
+        "case": "page-060-000",
+        "expected": "pass",
+        "answer": {
+          "verdict": "pass",
+          "has_page_text": false,
+          "excessive_blank": false,
+          "reason": "The crop isolates the complete left-hand photograph, excluding its caption, surrounding paragraphs, and neighboring photograph."
+        },
+        "label_correct": true,
+        "quarantined": false,
+        "status": "complete"
+      },
+      {
+        "sequence": 57,
+        "case": "page-060-001",
+        "expected": "pass",
+        "answer": {
+          "verdict": "pass",
+          "has_page_text": false,
+          "excessive_blank": false,
+          "reason": "The crop isolates the complete lower-right photograph, excluding its caption and all surrounding page text and neighboring visuals."
+        },
+        "label_correct": true,
+        "quarantined": false,
+        "status": "complete"
+      },
+      {
+        "sequence": 58,
+        "case": "page-092-000",
+        "expected": "fail",
+        "answer": {
+          "verdict": "fail",
+          "has_page_text": true,
+          "excessive_blank": false,
+          "reason": "The crop includes substantial surrounding paragraph text and cuts off large portions of the wedding photograph, including the woman."
+        },
+        "label_correct": true,
+        "quarantined": false,
+        "status": "complete"
+      },
+      {
+        "sequence": 59,
+        "case": "page-122-000",
+        "expected": "fail",
+        "answer": {
+          "verdict": "fail",
+          "has_page_text": true,
+          "excessive_blank": false,
+          "reason": "The crop includes the page-level caption beneath the family reunion photograph."
+        },
+        "label_correct": true,
+        "quarantined": false,
+        "status": "complete"
+      },
+      {
+        "sequence": 60,
+        "case": "page-122-001",
+        "expected": "fail",
+        "answer": {
+          "verdict": "fail",
+          "has_page_text": false,
+          "excessive_blank": false,
+          "reason": "The crop combines two separately presented oval photographs, each with its own caption on the source page, rather than isolating one illustration."
+        },
+        "label_correct": true,
+        "quarantined": false,
+        "status": "complete"
+      },
+      {
+        "sequence": 61,
+        "case": "page-125-000",
+        "expected": "pass",
+        "answer": {
+          "verdict": "pass",
+          "has_page_text": false,
+          "excessive_blank": false,
+          "reason": "The crop isolates the wagon illustration and excludes the page credit and number. The visible signature is integral to the artwork; minor edge clipping does not omit a substantial part."
+        },
+        "label_correct": true,
+        "quarantined": false,
+        "status": "complete"
+      },
+      {
+        "sequence": 62,
+        "case": "page-126-000",
+        "expected": "pass",
+        "answer": {
+          "verdict": "pass",
+          "has_page_text": false,
+          "excessive_blank": false,
+          "reason": "The crop isolates the upper photograph and excludes the separate lower photograph. All visible lettering is engraved on plaques within the source photo, not page-level text."
+        },
+        "label_correct": true,
+        "quarantined": false,
+        "status": "complete"
+      },
+      {
+        "sequence": 63,
+        "case": "page-126-001",
+        "expected": "pass",
+        "answer": {
+          "verdict": "pass",
+          "has_page_text": false,
+          "excessive_blank": false,
+          "reason": "The crop isolates the lower photograph without including the neighboring image. All visible text is integral to the photographed plaque, and blank page space is minimal."
+        },
+        "label_correct": true,
+        "quarantined": false,
+        "status": "complete"
+      },
+      {
+        "sequence": 64,
+        "case": "page-127-000",
+        "expected": "pass",
+        "answer": {
+          "verdict": "pass",
+          "has_page_text": false,
+          "excessive_blank": false,
+          "reason": "The crop isolates the upper photograph without including the separate lower image. All visible text is integral monument plaque text, and there is no excessive blank page space."
+        },
+        "label_correct": true,
+        "quarantined": false,
+        "status": "complete"
+      },
+      {
+        "sequence": 65,
+        "case": "page-127-001",
+        "expected": "pass",
+        "answer": {
+          "verdict": "pass",
+          "has_page_text": false,
+          "excessive_blank": false,
+          "reason": "The crop isolates the lower photograph without including the neighboring image or page text. All visible lettering is integral to the photographed plaque."
+        },
+        "label_correct": true,
+        "quarantined": false,
+        "status": "complete"
+      }
+    ]
+  },
+  "control": {
+    "full_attempted": 1,
+    "complete": 1,
+    "frozen_label_correct": 0,
+    "source_valid_cases": 1,
+    "source_valid_correct": 0,
+    "quarantined": 0,
+    "cost_usd": 0.08297,
+    "latency_ms_mean": 5899,
+    "reasoning_tokens": 0,
+    "rows": [
+      {
+        "sequence": 39,
+        "case": "page-001-000",
+        "expected": "pass",
+        "answer": {
+          "verdict": "fail",
+          "has_page_text": false,
+          "excessive_blank": false,
+          "reason": "The crop is an arbitrary close-up of the cover artwork and cuts off large, unmistakable parts of the coherent source illustration and its border/title context shown on the full page."
+        },
+        "label_correct": false,
+        "quarantined": false,
+        "status": "complete"
+      }
+    ]
+  }
+}

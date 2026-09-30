@@ -1,0 +1,24 @@
+description: Frozen repaired page-context safety; Attempt048
+prompts:
+- id: file://../prompts/validate-page-level-crop.js
+  label: repaired-page-context
+providers:
+- id: python:../providers/safety_repair_openai.py
+  label: luna
+  config:
+    maxRetries: 0
+    model: gpt-6-luna
+    reasoning_effort: medium
+    max_output_tokens: 4096
+    image_detail: high
+    output_contract: page_context_validation
+tests:
+- vars:
+    page_image: file://../input/source-pages-b64/Image000.b64.txt
+    crop_image: file://../input/crop-validation-b64/page-001-000.b64.txt
+    crop_key: page-001-000
+    golden_relpath: golden/crop-page-level-safety-repair-048.json
+    safety_recovery: true
+  assert:
+  - type: python
+    value: file://../scorers/crop_validation_scorer.py

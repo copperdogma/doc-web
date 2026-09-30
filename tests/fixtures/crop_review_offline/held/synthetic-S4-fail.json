@@ -1,0 +1,5 @@
+{
+  "synthetic_test": true,
+  "verdict": "fail",
+  "reason": "Synthetic false rejection for mechanics testing; not a measured model output."
+}

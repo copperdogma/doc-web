@@ -1,0 +1,41 @@
+{
+  "prior_frozen_ledger_sha256": "aec3b77548bec59a3c16401b9951fc67b9bdb7d07d1924e26231f83dc18ab7a3",
+  "continuation_initial_ledger_sha256": "affd6ac93c202756b6e0d6f441f8847b08a9d622223e2eb596661869c3ac4a36",
+  "prior_attempts": 23,
+  "prior_effective_planned": 22,
+  "prior_effective_recovery": 1,
+  "prior_settled_usd": 0.40784125,
+  "prior_unknown_usd": 0.015596,
+  "remaining_full_calls": 66,
+  "remaining_conditional_fresh_calls": 18,
+  "remaining_planned_calls": 83,
+  "remaining_recovery_calls": 1,
+  "max_aggregate_attempts": 107,
+  "cap_aggregate_usd": 18,
+  "remaining_worst_reservation_usd": 12.745543999999999,
+  "aggregate_worst_exposure_usd": 13.168981249999998,
+  "first_continuation_call": "Luna full page001000 explicit recovery; failed original planned allowance retained",
+  "no_retry_command_env": {
+    "PROMPTFOO_DISABLE_ADAPTIVE_SCHEDULER": "true",
+    "SAFETY_REPAIR_RUN_ID": "safety-repair-048-20260929-continuation1"
+  },
+  "task_hashes": {
+    "benchmarks/tasks/safety-repair-048-sol-fresh-continuation1.yaml": "858fb45aec4d9501b7a851b1e0accf44eeb50e474594578146791338e795c50d",
+    "benchmarks/tasks/safety-repair-048-control-full-continuation1.yaml": "cd4cc0a7c70cc70c9cfed3516abdae29509fee36a82622d51293b51c2d2a4654",
+    "benchmarks/tasks/safety-repair-048-luna-full-continuation1.yaml": "f8690105f19bd41ced89c8510bb5a195c6ecc020a6060e7d1e1910943acf0a1f",
+    "benchmarks/tasks/safety-repair-048-control-fresh-continuation1.yaml": "f63da158f6e87d78e3db765b00165270b21f43d52826f34d01f8cf539a3f77cd",
+    "benchmarks/tasks/safety-repair-048-sol-full-continuation1.yaml": "72307c1de8c0968f167756f98f023287ca38ecd25669c6153eb60b6eb74153d4",
+    "benchmarks/tasks/safety-repair-048-luna-fresh-continuation1.yaml": "eb53e5000857db5ea5a108d65917ba4aba544b8786f79a727cd4d22bb64d9ef5"
+  },
+  "frozen_prompt_sha256": "ef4395838929b208fe65f21500d81ade902072bef3f8e53f81ef3d3b83fbc421",
+  "offline_native_body_parity_cases": 84,
+  "guard_sha256": "662feec0b78c4a3940309476c21cfa151f33fdb93123fcef71235d038dd160bb",
+  "wrapper_sha256": "549315a849a56e53c2fc29a4ea72ec8f958160b0646388de17b79acb648edcf6",
+  "continuation_execution_sources": {
+    "docs/evals/evidence/048-continuation-execution-sources/safety_repair_continue_cases.py": "3d08dad7895aa4e37404146787f70b34e1736fcf852b801041f71aea92b88e4f",
+    "docs/evals/evidence/048-continuation-execution-sources/safety_repair_openai.py": "549315a849a56e53c2fc29a4ea72ec8f958160b0646388de17b79acb648edcf6",
+    "docs/evals/evidence/048-continuation-execution-sources/safety_repair_guard.py": "662feec0b78c4a3940309476c21cfa151f33fdb93123fcef71235d038dd160bb"
+  },
+  "technical_review": "Coordinator independently verified84 native bodies, aggregate admission; authorized live continuation under existing approval",
+  "scheduler_proof": "docs/evals/evidence/048-no-retry-offline-proof.json"
+}

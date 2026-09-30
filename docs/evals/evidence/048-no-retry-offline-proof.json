@@ -1,0 +1,68 @@
+{
+  "mock_provider_invocations": 1,
+  "no_network_provider": true,
+  "env": {
+    "PROMPTFOO_DISABLE_ADAPTIVE_SCHEDULER": "true",
+    "PROMPTFOO_PYTHON": "/Users/cam/miniconda3/bin/python"
+  },
+  "command": "promptfoo eval -c /tmp/docweb-no-retry-048/task.yaml --no-cache --output /tmp/docweb-no-retry-048/result.json -j1",
+  "provider_source": "from pathlib import Path\ndef call_api(prompt, options, context):\n p=Path('/tmp/docweb-no-retry-048/count.txt');p.write_text(str(int(p.read_text())+1));return {'error':'API error: 429 insufficient_quota credit_balance_exhausted'}\n",
+  "task": {
+    "prompts": [
+      "offline quota reproduction"
+    ],
+    "providers": [
+      {
+        "id": "python:/tmp/docweb-no-retry-048/provider.py",
+        "config": {
+          "maxRetries": 0
+        }
+      }
+    ],
+    "tests": [
+      {
+        "vars": {}
+      }
+    ]
+  },
+  "results": [
+    {
+      "cost": 0,
+      "error": "API error: 429 insufficient_quota credit_balance_exhausted",
+      "gradingResult": null,
+      "id": "96f5a734-f753-4d39-bdd0-a3cfc3eace33",
+      "latencyMs": 114,
+      "namedScores": {},
+      "prompt": {
+        "raw": "offline quota reproduction",
+        "label": "offline quota reproduction",
+        "config": {}
+      },
+      "promptId": "bb57c5c45d159001669fa386fa1c3f2f25ea62d36c115ff34de7cd05f25573bb",
+      "promptIdx": 0,
+      "provider": {
+        "id": "python:/tmp/docweb-no-retry-048/provider.py",
+        "label": ""
+      },
+      "response": {
+        "error": "API error: 429 insufficient_quota credit_balance_exhausted",
+        "cached": false
+      },
+      "score": 0,
+      "success": false,
+      "testCase": {
+        "vars": {},
+        "assert": [],
+        "options": {},
+        "metadata": {}
+      },
+      "testIdx": 0,
+      "vars": {},
+      "metadata": {
+        "_promptfooFileMetadata": {}
+      },
+      "failureReason": 2
+    }
+  ],
+  "focused_tests": "34 passed"
+}

@@ -51,3 +51,11 @@ benchmarks/results/gpt6-astra-20260905/
 
 # Attempt 046 complete public-fixture provider envelopes and diagnostics
 /benchmarks/results/gpt61-sol-20260929/
+
+# Attempt047 exact public-fixture receipts retained in tracked deduplicated archive
+/benchmarks/results/thinking-safety-20260929/
+
+# Attempt048 native receipts and result snapshots in tracked deduplicated archive
+/benchmarks/results/safety-repair-048-20260929/
+
+/benchmarks/results/safety-repair-048-20260929-continuation1/

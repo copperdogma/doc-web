@@ -1,0 +1,1220 @@
+{
+  "run_id": "safety-repair-048-20260929",
+  "base_sha": "58fa3d5f38d274fc702b45ed4161dec381fc24ec",
+  "cap_usd": 18,
+  "spent_usd": 0.40784125,
+  "unknown_reserved_usd": 0.015596,
+  "planned_attempts": 23,
+  "recovery_attempts": 0,
+  "screen_summary": {
+    "luna": {
+      "model": "gpt-6-luna",
+      "cases": 6,
+      "label_correct": 6,
+      "source_reason_correct": 6,
+      "cost_usd": 0.00401435,
+      "latency_ms_mean": 4919.833333333333,
+      "reasoning_tokens": [
+        216,
+        170,
+        145,
+        88,
+        119,
+        76
+      ],
+      "output_tokens": 1167,
+      "input_tokens": 39530,
+      "cache_tokens": 13130,
+      "cache_write_tokens": 26382
+    },
+    "sol": {
+      "model": "gpt-6.1-sol",
+      "cases": 6,
+      "label_correct": 6,
+      "source_reason_correct": 6,
+      "cost_usd": 0.070574,
+      "latency_ms_mean": 4401.333333333333,
+      "reasoning_tokens": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "output_tokens": 327,
+      "input_tokens": 39530,
+      "cache_tokens": 13130,
+      "cache_write_tokens": 26382
+    },
+    "control": {
+      "model": "gpt-5.5",
+      "cases": 6,
+      "label_correct": 6,
+      "source_reason_correct": 6,
+      "cost_usd": 0.323826,
+      "latency_ms_mean": 4850.333333333333,
+      "reasoning_tokens": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "output_tokens": 396,
+      "input_tokens": 87042,
+      "cache_tokens": 27392,
+      "cache_write_tokens": 0
+    }
+  },
+  "calls": [
+    {
+      "sequence": 1,
+      "model": "gpt-6-luna",
+      "effort": "medium",
+      "recovery": false,
+      "stage": "native-luna",
+      "case_key": "native-synthetic-squares",
+      "reserved_usd": 0.007798,
+      "cost_usd": 0.0001739,
+      "request_sha256": "acf1886222b1cce27cbb6a10cd6ae75ab7702a46c57326fa55ec33958ea499fa",
+      "code_sha256": {
+        "benchmarks/providers/safety_repair_guard.py": "08f3726a130a0c0fcad9eb7ba4a6f5e57a5353c7bc15ac29884735d85dfe40a5",
+        "benchmarks/providers/openai_responses_model.py": "3506470ee1eb9c8da8c472f270e3400fd2c6cbd086c6be836a0d974997696240",
+        "benchmarks/providers/safety_repair_openai.py": "fc5b4e66dca5bc3112b004450a77d0025fdd4c468e206938b3989c65b55ab81c",
+        "benchmarks/prompts/validate-page-level-crop.js": "ef4395838929b208fe65f21500d81ade902072bef3f8e53f81ef3d3b83fbc421",
+        "benchmarks/scorers/crop_validation_scorer.py": "12eb63725523bd00d59ce12b7486db8c9244124a0c57bb68cae8b8e9e7d288fb"
+      },
+      "response_sha256": "8e4537c40c2cf3eac27e74350cef19b0c68ae9e43bc2e83672844d583e3801ba",
+      "response_bytes": 5265,
+      "status_code": 200,
+      "latency_ms": 3641,
+      "usage": {
+        "input_tokens": 779,
+        "input_tokens_details": {
+          "cache_write_tokens": 0,
+          "cached_tokens": 0
+        },
+        "output_tokens": 192,
+        "output_tokens_details": {
+          "reasoning_tokens": 138
+        },
+        "total_tokens": 971
+      },
+      "served_model": "gpt-6-luna",
+      "response_id": "resp_0bb6488c140aecf6016abca43068b487d0b75e93322912aede",
+      "response_status": "completed"
+    },
+    {
+      "sequence": 2,
+      "model": "gpt-6.1-sol",
+      "effort": "medium",
+      "recovery": false,
+      "stage": "native-sol",
+      "case_key": "native-synthetic-squares",
+      "reserved_usd": 0.15596,
+      "cost_usd": 0.003558,
+      "request_sha256": "d253a6299b3c3cc95ad722f4ab88c488268faf010eef69eb2869a4d5bc9b72e5",
+      "code_sha256": {
+        "benchmarks/providers/safety_repair_guard.py": "08f3726a130a0c0fcad9eb7ba4a6f5e57a5353c7bc15ac29884735d85dfe40a5",
+        "benchmarks/providers/openai_responses_model.py": "3506470ee1eb9c8da8c472f270e3400fd2c6cbd086c6be836a0d974997696240",
+        "benchmarks/providers/safety_repair_openai.py": "fc5b4e66dca5bc3112b004450a77d0025fdd4c468e206938b3989c65b55ab81c",
+        "benchmarks/prompts/validate-page-level-crop.js": "ef4395838929b208fe65f21500d81ade902072bef3f8e53f81ef3d3b83fbc421",
+        "benchmarks/scorers/crop_validation_scorer.py": "12eb63725523bd00d59ce12b7486db8c9244124a0c57bb68cae8b8e9e7d288fb"
+      },
+      "response_sha256": "78f5ab4924eb5a9706c9217e6e07c4cb2ad0cd8933b0abe34f8efa6093fddca4",
+      "response_bytes": 5305,
+      "status_code": 200,
+      "latency_ms": 7384,
+      "usage": {
+        "input_tokens": 779,
+        "input_tokens_details": {
+          "cache_write_tokens": 0,
+          "cached_tokens": 0
+        },
+        "output_tokens": 200,
+        "output_tokens_details": {
+          "reasoning_tokens": 144
+        },
+        "total_tokens": 979
+      },
+      "served_model": "gpt-6.1-sol",
+      "response_id": "resp_017f31f9edcf79f4016abca433ecf887d0888e14731f090a9c",
+      "response_status": "completed"
+    },
+    {
+      "sequence": 3,
+      "model": "gpt-5.5",
+      "effort": "none",
+      "recovery": false,
+      "stage": "native-control",
+      "case_key": "native-synthetic-squares",
+      "reserved_usd": 0.29144,
+      "cost_usd": 0.005695,
+      "request_sha256": "a7dda5d9191770bdf709ea85df776916fd33336742bb1687235b52ab56d08c33",
+      "code_sha256": {
+        "benchmarks/providers/safety_repair_guard.py": "08f3726a130a0c0fcad9eb7ba4a6f5e57a5353c7bc15ac29884735d85dfe40a5",
+        "benchmarks/providers/openai_responses_model.py": "3506470ee1eb9c8da8c472f270e3400fd2c6cbd086c6be836a0d974997696240",
+        "benchmarks/providers/safety_repair_openai.py": "fc5b4e66dca5bc3112b004450a77d0025fdd4c468e206938b3989c65b55ab81c",
+        "benchmarks/prompts/validate-page-level-crop.js": "ef4395838929b208fe65f21500d81ade902072bef3f8e53f81ef3d3b83fbc421",
+        "benchmarks/scorers/crop_validation_scorer.py": "12eb63725523bd00d59ce12b7486db8c9244124a0c57bb68cae8b8e9e7d288fb"
+      },
+      "response_sha256": "b0de987270e9c96907e4381df5b0272b7592be55b6a3094c32a83e5b4efd8cda",
+      "response_bytes": 3020,
+      "status_code": 200,
+      "latency_ms": 1963,
+      "usage": {
+        "input_tokens": 779,
+        "input_tokens_details": {
+          "cache_write_tokens": 0,
+          "cached_tokens": 0
+        },
+        "output_tokens": 60,
+        "output_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "total_tokens": 839
+      },
+      "served_model": "gpt-5.5-2026-04-23",
+      "response_id": "resp_02700f2269743ded016abca43b7ba487d0a20bfafa1f7174c8",
+      "response_status": "completed"
+    },
+    {
+      "sequence": 4,
+      "model": "gpt-6-luna",
+      "effort": "medium",
+      "recovery": false,
+      "stage": "screen-luna",
+      "case_key": "screen-1-page-122-001",
+      "reserved_usd": 0.007798,
+      "cost_usd": 0.000956925,
+      "request_sha256": "0c2caa999792e901877fe68c38c55cd8e8bb3f5ca30554fe866cf9cedc34ef8e",
+      "code_sha256": {
+        "benchmarks/providers/safety_repair_guard.py": "08f3726a130a0c0fcad9eb7ba4a6f5e57a5353c7bc15ac29884735d85dfe40a5",
+        "benchmarks/providers/openai_responses_model.py": "3506470ee1eb9c8da8c472f270e3400fd2c6cbd086c6be836a0d974997696240",
+        "benchmarks/providers/safety_repair_openai.py": "fc5b4e66dca5bc3112b004450a77d0025fdd4c468e206938b3989c65b55ab81c",
+        "benchmarks/prompts/validate-page-level-crop.js": "ef4395838929b208fe65f21500d81ade902072bef3f8e53f81ef3d3b83fbc421",
+        "benchmarks/scorers/crop_validation_scorer.py": "12eb63725523bd00d59ce12b7486db8c9244124a0c57bb68cae8b8e9e7d288fb"
+      },
+      "response_sha256": "ceeeb9be64653bc47d6439141a1a7c6385c47fb59b63108efc30290172d1523c",
+      "response_bytes": 5879,
+      "status_code": 200,
+      "latency_ms": 6525,
+      "usage": {
+        "input_tokens": 6568,
+        "input_tokens_details": {
+          "cache_write_tokens": 6565,
+          "cached_tokens": 0
+        },
+        "output_tokens": 272,
+        "output_tokens_details": {
+          "reasoning_tokens": 216
+        },
+        "total_tokens": 6840
+      },
+      "served_model": "gpt-6-luna",
+      "response_id": "resp_056850f8b8e9a267016abca479d65487d09dad7ef813663e57",
+      "response_status": "completed"
+    },
+    {
+      "sequence": 5,
+      "model": "gpt-6-luna",
+      "effort": "medium",
+      "recovery": false,
+      "stage": "screen-luna",
+      "case_key": "screen-2-page-122-001",
+      "reserved_usd": 0.007798,
+      "cost_usd": 0.00017994999999999998,
+      "request_sha256": "0c2caa999792e901877fe68c38c55cd8e8bb3f5ca30554fe866cf9cedc34ef8e",
+      "code_sha256": {
+        "benchmarks/providers/safety_repair_guard.py": "08f3726a130a0c0fcad9eb7ba4a6f5e57a5353c7bc15ac29884735d85dfe40a5",
+        "benchmarks/providers/openai_responses_model.py": "3506470ee1eb9c8da8c472f270e3400fd2c6cbd086c6be836a0d974997696240",
+        "benchmarks/providers/safety_repair_openai.py": "fc5b4e66dca5bc3112b004450a77d0025fdd4c468e206938b3989c65b55ab81c",
+        "benchmarks/prompts/validate-page-level-crop.js": "ef4395838929b208fe65f21500d81ade902072bef3f8e53f81ef3d3b83fbc421",
+        "benchmarks/scorers/crop_validation_scorer.py": "12eb63725523bd00d59ce12b7486db8c9244124a0c57bb68cae8b8e9e7d288fb"
+      },
+      "response_sha256": "645fdb192fba72801c7b015554c5d29bc91dc7a8d0401885d0bfe71de906e34b",
+      "response_bytes": 5651,
+      "status_code": 200,
+      "latency_ms": 5510,
+      "usage": {
+        "input_tokens": 6568,
+        "input_tokens_details": {
+          "cache_write_tokens": 0,
+          "cached_tokens": 6565
+        },
+        "output_tokens": 228,
+        "output_tokens_details": {
+          "reasoning_tokens": 170
+        },
+        "total_tokens": 6796
+      },
+      "served_model": "gpt-6-luna",
+      "response_id": "resp_03afd1bd2c657434016abca480c75087d09f8b401040fd15bf",
+      "response_status": "completed"
+    },
+    {
+      "sequence": 6,
+      "model": "gpt-6-luna",
+      "effort": "medium",
+      "recovery": false,
+      "stage": "screen-luna",
+      "case_key": "screen-3-page-122-001",
+      "reserved_usd": 0.007798,
+      "cost_usd": 0.00016595,
+      "request_sha256": "0c2caa999792e901877fe68c38c55cd8e8bb3f5ca30554fe866cf9cedc34ef8e",
+      "code_sha256": {
+        "benchmarks/providers/safety_repair_guard.py": "08f3726a130a0c0fcad9eb7ba4a6f5e57a5353c7bc15ac29884735d85dfe40a5",
+        "benchmarks/providers/openai_responses_model.py": "3506470ee1eb9c8da8c472f270e3400fd2c6cbd086c6be836a0d974997696240",
+        "benchmarks/providers/safety_repair_openai.py": "fc5b4e66dca5bc3112b004450a77d0025fdd4c468e206938b3989c65b55ab81c",
+        "benchmarks/prompts/validate-page-level-crop.js": "ef4395838929b208fe65f21500d81ade902072bef3f8e53f81ef3d3b83fbc421",
+        "benchmarks/scorers/crop_validation_scorer.py": "12eb63725523bd00d59ce12b7486db8c9244124a0c57bb68cae8b8e9e7d288fb"
+      },
+      "response_sha256": "4ddd259038c292e07d265d9ef48c4ae7ccc8193cca2b60fbfa524c8254bf7ab8",
+      "response_bytes": 5383,
+      "status_code": 200,
+      "latency_ms": 5862,
+      "usage": {
+        "input_tokens": 6568,
+        "input_tokens_details": {
+          "cache_write_tokens": 0,
+          "cached_tokens": 6565
+        },
+        "output_tokens": 200,
+        "output_tokens_details": {
+          "reasoning_tokens": 145
+        },
+        "total_tokens": 6768
+      },
+      "served_model": "gpt-6-luna",
+      "response_id": "resp_0ffe62bcbeccf1c5016abca486e61c87d087aef9c6831d45e0",
+      "response_status": "completed"
+    },
+    {
+      "sequence": 7,
+      "model": "gpt-6-luna",
+      "effort": "medium",
+      "recovery": false,
+      "stage": "screen-luna",
+      "case_key": "screen-4-page-009-000",
+      "reserved_usd": 0.007798,
+      "cost_usd": 0.000899175,
+      "request_sha256": "0abb12bdf15b172a010384aa50bbc1f133da0040a18e69c0cc62a0541c80226b",
+      "code_sha256": {
+        "benchmarks/providers/safety_repair_guard.py": "08f3726a130a0c0fcad9eb7ba4a6f5e57a5353c7bc15ac29884735d85dfe40a5",
+        "benchmarks/providers/openai_responses_model.py": "3506470ee1eb9c8da8c472f270e3400fd2c6cbd086c6be836a0d974997696240",
+        "benchmarks/providers/safety_repair_openai.py": "fc5b4e66dca5bc3112b004450a77d0025fdd4c468e206938b3989c65b55ab81c",
+        "benchmarks/prompts/validate-page-level-crop.js": "ef4395838929b208fe65f21500d81ade902072bef3f8e53f81ef3d3b83fbc421",
+        "benchmarks/scorers/crop_validation_scorer.py": "12eb63725523bd00d59ce12b7486db8c9244124a0c57bb68cae8b8e9e7d288fb"
+      },
+      "response_sha256": "8af2eb4aa8a47847b10ca283e150bc99b09db41282ef21c6916f324f8294e141",
+      "response_bytes": 4922,
+      "status_code": 200,
+      "latency_ms": 4155,
+      "usage": {
+        "input_tokens": 6598,
+        "input_tokens_details": {
+          "cache_write_tokens": 6595,
+          "cached_tokens": 0
+        },
+        "output_tokens": 149,
+        "output_tokens_details": {
+          "reasoning_tokens": 88
+        },
+        "total_tokens": 6747
+      },
+      "served_model": "gpt-6-luna",
+      "response_id": "resp_0dcee6e74a3a94bc016abca48ce48487d09d4789363fc0df23",
+      "response_status": "completed"
+    },
+    {
+      "sequence": 8,
+      "model": "gpt-6-luna",
+      "effort": "medium",
+      "recovery": false,
+      "stage": "screen-luna",
+      "case_key": "screen-5-page-126-001",
+      "reserved_usd": 0.007798,
+      "cost_usd": 0.00091455,
+      "request_sha256": "f315e48c08e5f44fd3fca1a5cfe3809c34012545c4b51fdc6b424113b19aa6e8",
+      "code_sha256": {
+        "benchmarks/providers/safety_repair_guard.py": "08f3726a130a0c0fcad9eb7ba4a6f5e57a5353c7bc15ac29884735d85dfe40a5",
+        "benchmarks/providers/openai_responses_model.py": "3506470ee1eb9c8da8c472f270e3400fd2c6cbd086c6be836a0d974997696240",
+        "benchmarks/providers/safety_repair_openai.py": "fc5b4e66dca5bc3112b004450a77d0025fdd4c468e206938b3989c65b55ab81c",
+        "benchmarks/prompts/validate-page-level-crop.js": "ef4395838929b208fe65f21500d81ade902072bef3f8e53f81ef3d3b83fbc421",
+        "benchmarks/scorers/crop_validation_scorer.py": "12eb63725523bd00d59ce12b7486db8c9244124a0c57bb68cae8b8e9e7d288fb"
+      },
+      "response_sha256": "aabf2ee10cfb9e714b2d7fc1e10ec8f581b894ac18ed4309dc3a715b32d0e10d",
+      "response_bytes": 5142,
+      "status_code": 200,
+      "latency_ms": 3845,
+      "usage": {
+        "input_tokens": 6589,
+        "input_tokens_details": {
+          "cache_write_tokens": 6586,
+          "cached_tokens": 0
+        },
+        "output_tokens": 182,
+        "output_tokens_details": {
+          "reasoning_tokens": 119
+        },
+        "total_tokens": 6771
+      },
+      "served_model": "gpt-6-luna",
+      "response_id": "resp_0f70f91f5d6dd6cc016abca4911ac487d0989ae84b672df842",
+      "response_status": "completed"
+    },
+    {
+      "sequence": 9,
+      "model": "gpt-6-luna",
+      "effort": "medium",
+      "recovery": false,
+      "stage": "screen-luna",
+      "case_key": "screen-6-page-127-000",
+      "reserved_usd": 0.007798,
+      "cost_usd": 0.0008977999999999999,
+      "request_sha256": "d0aa72241edc1c800f72551121bdae1c8f51808720bb3a0d9e8ffa19581c5a06",
+      "code_sha256": {
+        "benchmarks/providers/safety_repair_guard.py": "08f3726a130a0c0fcad9eb7ba4a6f5e57a5353c7bc15ac29884735d85dfe40a5",
+        "benchmarks/providers/openai_responses_model.py": "3506470ee1eb9c8da8c472f270e3400fd2c6cbd086c6be836a0d974997696240",
+        "benchmarks/providers/safety_repair_openai.py": "fc5b4e66dca5bc3112b004450a77d0025fdd4c468e206938b3989c65b55ab81c",
+        "benchmarks/prompts/validate-page-level-crop.js": "ef4395838929b208fe65f21500d81ade902072bef3f8e53f81ef3d3b83fbc421",
+        "benchmarks/scorers/crop_validation_scorer.py": "12eb63725523bd00d59ce12b7486db8c9244124a0c57bb68cae8b8e9e7d288fb"
+      },
+      "response_sha256": "6f2a347deb09c847340878274e29af4ce218d8958081a18f9da5f951300f7da1",
+      "response_bytes": 4904,
+      "status_code": 200,
+      "latency_ms": 3622,
+      "usage": {
+        "input_tokens": 6639,
+        "input_tokens_details": {
+          "cache_write_tokens": 6636,
+          "cached_tokens": 0
+        },
+        "output_tokens": 136,
+        "output_tokens_details": {
+          "reasoning_tokens": 76
+        },
+        "total_tokens": 6775
+      },
+      "served_model": "gpt-6-luna",
+      "response_id": "resp_030833787b61a1c4016abca4950f2887d09df81a30593b2d52",
+      "response_status": "completed"
+    },
+    {
+      "sequence": 10,
+      "model": "gpt-6.1-sol",
+      "effort": "medium",
+      "recovery": false,
+      "stage": "screen-sol",
+      "case_key": "screen-1-page-122-001",
+      "reserved_usd": 0.15596,
+      "cost_usd": 0.0169885,
+      "request_sha256": "1fa08f1d818166164611718251b981256b122933c50d8891111e14023c12e00f",
+      "code_sha256": {
+        "benchmarks/providers/safety_repair_guard.py": "08f3726a130a0c0fcad9eb7ba4a6f5e57a5353c7bc15ac29884735d85dfe40a5",
+        "benchmarks/providers/openai_responses_model.py": "3506470ee1eb9c8da8c472f270e3400fd2c6cbd086c6be836a0d974997696240",
+        "benchmarks/providers/safety_repair_openai.py": "fc5b4e66dca5bc3112b004450a77d0025fdd4c468e206938b3989c65b55ab81c",
+        "benchmarks/prompts/validate-page-level-crop.js": "ef4395838929b208fe65f21500d81ade902072bef3f8e53f81ef3d3b83fbc421",
+        "benchmarks/scorers/crop_validation_scorer.py": "12eb63725523bd00d59ce12b7486db8c9244124a0c57bb68cae8b8e9e7d288fb"
+      },
+      "response_sha256": "7a4ef6c0ccb0d733f2d8a1ecc8d282bcaf71b204e07bde476dd50b1420fc298b",
+      "response_bytes": 2995,
+      "status_code": 200,
+      "latency_ms": 5015,
+      "usage": {
+        "input_tokens": 6568,
+        "input_tokens_details": {
+          "cache_write_tokens": 6565,
+          "cached_tokens": 0
+        },
+        "output_tokens": 57,
+        "output_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "total_tokens": 6625
+      },
+      "served_model": "gpt-6.1-sol",
+      "response_id": "resp_0b90a3dc311325f4016abca49c0f3887d0a17facd245cc0ec3",
+      "response_status": "completed"
+    },
+    {
+      "sequence": 11,
+      "model": "gpt-6.1-sol",
+      "effort": "medium",
+      "recovery": false,
+      "stage": "screen-sol",
+      "case_key": "screen-2-page-122-001",
+      "reserved_usd": 0.15596,
+      "cost_usd": 0.0012325,
+      "request_sha256": "1fa08f1d818166164611718251b981256b122933c50d8891111e14023c12e00f",
+      "code_sha256": {
+        "benchmarks/providers/safety_repair_guard.py": "08f3726a130a0c0fcad9eb7ba4a6f5e57a5353c7bc15ac29884735d85dfe40a5",
+        "benchmarks/providers/openai_responses_model.py": "3506470ee1eb9c8da8c472f270e3400fd2c6cbd086c6be836a0d974997696240",
+        "benchmarks/providers/safety_repair_openai.py": "fc5b4e66dca5bc3112b004450a77d0025fdd4c468e206938b3989c65b55ab81c",
+        "benchmarks/prompts/validate-page-level-crop.js": "ef4395838929b208fe65f21500d81ade902072bef3f8e53f81ef3d3b83fbc421",
+        "benchmarks/scorers/crop_validation_scorer.py": "12eb63725523bd00d59ce12b7486db8c9244124a0c57bb68cae8b8e9e7d288fb"
+      },
+      "response_sha256": "fd8425403c7dba7031555815c7367ed9f7c9697d20c425f96d06a66570f56742",
+      "response_bytes": 2993,
+      "status_code": 200,
+      "latency_ms": 4727,
+      "usage": {
+        "input_tokens": 6568,
+        "input_tokens_details": {
+          "cache_write_tokens": 0,
+          "cached_tokens": 6565
+        },
+        "output_tokens": 57,
+        "output_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "total_tokens": 6625
+      },
+      "served_model": "gpt-6.1-sol",
+      "response_id": "resp_017d7e6bcd93cdd9016abca4a14ec487d08a92f69609e31097",
+      "response_status": "completed"
+    },
+    {
+      "sequence": 12,
+      "model": "gpt-6.1-sol",
+      "effort": "medium",
+      "recovery": false,
+      "stage": "screen-sol",
+      "case_key": "screen-3-page-122-001",
+      "reserved_usd": 0.15596,
+      "cost_usd": 0.0012125,
+      "request_sha256": "1fa08f1d818166164611718251b981256b122933c50d8891111e14023c12e00f",
+      "code_sha256": {
+        "benchmarks/providers/safety_repair_guard.py": "08f3726a130a0c0fcad9eb7ba4a6f5e57a5353c7bc15ac29884735d85dfe40a5",
+        "benchmarks/providers/openai_responses_model.py": "3506470ee1eb9c8da8c472f270e3400fd2c6cbd086c6be836a0d974997696240",
+        "benchmarks/providers/safety_repair_openai.py": "fc5b4e66dca5bc3112b004450a77d0025fdd4c468e206938b3989c65b55ab81c",
+        "benchmarks/prompts/validate-page-level-crop.js": "ef4395838929b208fe65f21500d81ade902072bef3f8e53f81ef3d3b83fbc421",
+        "benchmarks/scorers/crop_validation_scorer.py": "12eb63725523bd00d59ce12b7486db8c9244124a0c57bb68cae8b8e9e7d288fb"
+      },
+      "response_sha256": "999ef81afdfa2175bebd4b2da6ed22cf21ed9acfa233f8f3371742ab7a66c4fd",
+      "response_bytes": 3003,
+      "status_code": 200,
+      "latency_ms": 5047,
+      "usage": {
+        "input_tokens": 6568,
+        "input_tokens_details": {
+          "cache_write_tokens": 0,
+          "cached_tokens": 6565
+        },
+        "output_tokens": 55,
+        "output_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "total_tokens": 6623
+      },
+      "served_model": "gpt-6.1-sol",
+      "response_id": "resp_09c622fd20387fa4016abca4a703e487d09ff24d7f56d474bc",
+      "response_status": "completed"
+    },
+    {
+      "sequence": 13,
+      "model": "gpt-6.1-sol",
+      "effort": "medium",
+      "recovery": false,
+      "stage": "screen-sol",
+      "case_key": "screen-4-page-009-000",
+      "reserved_usd": 0.15596,
+      "cost_usd": 0.0169735,
+      "request_sha256": "87a967eefbb108ed94a420cadf795ad2d1abe183ab9f71c1d88f1883b1538196",
+      "code_sha256": {
+        "benchmarks/providers/safety_repair_guard.py": "08f3726a130a0c0fcad9eb7ba4a6f5e57a5353c7bc15ac29884735d85dfe40a5",
+        "benchmarks/providers/openai_responses_model.py": "3506470ee1eb9c8da8c472f270e3400fd2c6cbd086c6be836a0d974997696240",
+        "benchmarks/providers/safety_repair_openai.py": "fc5b4e66dca5bc3112b004450a77d0025fdd4c468e206938b3989c65b55ab81c",
+        "benchmarks/prompts/validate-page-level-crop.js": "ef4395838929b208fe65f21500d81ade902072bef3f8e53f81ef3d3b83fbc421",
+        "benchmarks/scorers/crop_validation_scorer.py": "12eb63725523bd00d59ce12b7486db8c9244124a0c57bb68cae8b8e9e7d288fb"
+      },
+      "response_sha256": "b2ead299420efe045c02f6be40577783e4ee72d71a5164405eaa2825d33cfa4c",
+      "response_bytes": 2953,
+      "status_code": 200,
+      "latency_ms": 3743,
+      "usage": {
+        "input_tokens": 6598,
+        "input_tokens_details": {
+          "cache_write_tokens": 6595,
+          "cached_tokens": 0
+        },
+        "output_tokens": 48,
+        "output_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "total_tokens": 6646
+      },
+      "served_model": "gpt-6.1-sol",
+      "response_id": "resp_009b381b1605119f016abca4ac5e0887d09c47c92e0372429a",
+      "response_status": "completed"
+    },
+    {
+      "sequence": 14,
+      "model": "gpt-6.1-sol",
+      "effort": "medium",
+      "recovery": false,
+      "stage": "screen-sol",
+      "case_key": "screen-5-page-126-001",
+      "reserved_usd": 0.15596,
+      "cost_usd": 0.017011,
+      "request_sha256": "85ae01bdeafc8cebd1dc86eeefab20193164ff4954708ff73320af44cc5b746c",
+      "code_sha256": {
+        "benchmarks/providers/safety_repair_guard.py": "08f3726a130a0c0fcad9eb7ba4a6f5e57a5353c7bc15ac29884735d85dfe40a5",
+        "benchmarks/providers/openai_responses_model.py": "3506470ee1eb9c8da8c472f270e3400fd2c6cbd086c6be836a0d974997696240",
+        "benchmarks/providers/safety_repair_openai.py": "fc5b4e66dca5bc3112b004450a77d0025fdd4c468e206938b3989c65b55ab81c",
+        "benchmarks/prompts/validate-page-level-crop.js": "ef4395838929b208fe65f21500d81ade902072bef3f8e53f81ef3d3b83fbc421",
+        "benchmarks/scorers/crop_validation_scorer.py": "12eb63725523bd00d59ce12b7486db8c9244124a0c57bb68cae8b8e9e7d288fb"
+      },
+      "response_sha256": "a3215b1d193b2cc62fd39482e1383c608ec1f85f82942092520a0a4586b8614a",
+      "response_bytes": 2986,
+      "status_code": 200,
+      "latency_ms": 4481,
+      "usage": {
+        "input_tokens": 6589,
+        "input_tokens_details": {
+          "cache_write_tokens": 6586,
+          "cached_tokens": 0
+        },
+        "output_tokens": 54,
+        "output_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "total_tokens": 6643
+      },
+      "served_model": "gpt-6.1-sol",
+      "response_id": "resp_0637abad306d16c4016abca4afd19887d0923fb7fee3d36a52",
+      "response_status": "completed"
+    },
+    {
+      "sequence": 15,
+      "model": "gpt-6.1-sol",
+      "effort": "medium",
+      "recovery": false,
+      "stage": "screen-sol",
+      "case_key": "screen-6-page-127-000",
+      "reserved_usd": 0.15596,
+      "cost_usd": 0.017156,
+      "request_sha256": "621ca5b4fbb0de26789aa8a5f42c05d787cf0e6c7961a378c165d108f618799f",
+      "code_sha256": {
+        "benchmarks/providers/safety_repair_guard.py": "08f3726a130a0c0fcad9eb7ba4a6f5e57a5353c7bc15ac29884735d85dfe40a5",
+        "benchmarks/providers/openai_responses_model.py": "3506470ee1eb9c8da8c472f270e3400fd2c6cbd086c6be836a0d974997696240",
+        "benchmarks/providers/safety_repair_openai.py": "fc5b4e66dca5bc3112b004450a77d0025fdd4c468e206938b3989c65b55ab81c",
+        "benchmarks/prompts/validate-page-level-crop.js": "ef4395838929b208fe65f21500d81ade902072bef3f8e53f81ef3d3b83fbc421",
+        "benchmarks/scorers/crop_validation_scorer.py": "12eb63725523bd00d59ce12b7486db8c9244124a0c57bb68cae8b8e9e7d288fb"
+      },
+      "response_sha256": "8782fff1189dae6ad84120b6d97d4027ac5c27afbe7ffbe33b892fefa77f0d50",
+      "response_bytes": 2999,
+      "status_code": 200,
+      "latency_ms": 3395,
+      "usage": {
+        "input_tokens": 6639,
+        "input_tokens_details": {
+          "cache_write_tokens": 6636,
+          "cached_tokens": 0
+        },
+        "output_tokens": 56,
+        "output_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "total_tokens": 6695
+      },
+      "served_model": "gpt-6.1-sol",
+      "response_id": "resp_0756764484036c6c016abca4b47ee087d0a91e41a5f81e60ee",
+      "response_status": "completed"
+    },
+    {
+      "sequence": 16,
+      "model": "gpt-5.5",
+      "effort": "none",
+      "recovery": false,
+      "stage": "screen-control",
+      "case_key": "screen-1-page-122-001",
+      "reserved_usd": 0.29144,
+      "cost_usd": 0.083615,
+      "request_sha256": "2ccb3a24898ee42c98d53e18eca2cc167c3d053147876922fb333d43cefbab8a",
+      "code_sha256": {
+        "benchmarks/providers/safety_repair_guard.py": "08f3726a130a0c0fcad9eb7ba4a6f5e57a5353c7bc15ac29884735d85dfe40a5",
+        "benchmarks/providers/openai_responses_model.py": "3506470ee1eb9c8da8c472f270e3400fd2c6cbd086c6be836a0d974997696240",
+        "benchmarks/providers/safety_repair_openai.py": "fc5b4e66dca5bc3112b004450a77d0025fdd4c468e206938b3989c65b55ab81c",
+        "benchmarks/prompts/validate-page-level-crop.js": "ef4395838929b208fe65f21500d81ade902072bef3f8e53f81ef3d3b83fbc421",
+        "benchmarks/scorers/crop_validation_scorer.py": "12eb63725523bd00d59ce12b7486db8c9244124a0c57bb68cae8b8e9e7d288fb"
+      },
+      "response_sha256": "6a6db4d4147a050d4c1f00b881b4f24479639250ed76bd2238977e4d66302af5",
+      "response_bytes": 3019,
+      "status_code": 200,
+      "latency_ms": 5433,
+      "usage": {
+        "input_tokens": 16333,
+        "input_tokens_details": {
+          "cache_write_tokens": 0,
+          "cached_tokens": 0
+        },
+        "output_tokens": 65,
+        "output_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "total_tokens": 16398
+      },
+      "served_model": "gpt-5.5-2026-04-23",
+      "response_id": "resp_0335b70383980e77016abca4bb127887d08579067dab70c5c7",
+      "response_status": "completed"
+    },
+    {
+      "sequence": 17,
+      "model": "gpt-5.5",
+      "effort": "none",
+      "recovery": false,
+      "stage": "screen-control",
+      "case_key": "screen-2-page-122-001",
+      "reserved_usd": 0.29144,
+      "cost_usd": 0.021833,
+      "request_sha256": "2ccb3a24898ee42c98d53e18eca2cc167c3d053147876922fb333d43cefbab8a",
+      "code_sha256": {
+        "benchmarks/providers/safety_repair_guard.py": "08f3726a130a0c0fcad9eb7ba4a6f5e57a5353c7bc15ac29884735d85dfe40a5",
+        "benchmarks/providers/openai_responses_model.py": "3506470ee1eb9c8da8c472f270e3400fd2c6cbd086c6be836a0d974997696240",
+        "benchmarks/providers/safety_repair_openai.py": "fc5b4e66dca5bc3112b004450a77d0025fdd4c468e206938b3989c65b55ab81c",
+        "benchmarks/prompts/validate-page-level-crop.js": "ef4395838929b208fe65f21500d81ade902072bef3f8e53f81ef3d3b83fbc421",
+        "benchmarks/scorers/crop_validation_scorer.py": "12eb63725523bd00d59ce12b7486db8c9244124a0c57bb68cae8b8e9e7d288fb"
+      },
+      "response_sha256": "fb2a4db0f33121f67f801bd637283d3a9a86192c22a3bf21be9bce6b41d79dc5",
+      "response_bytes": 3001,
+      "status_code": 200,
+      "latency_ms": 5267,
+      "usage": {
+        "input_tokens": 16333,
+        "input_tokens_details": {
+          "cache_write_tokens": 0,
+          "cached_tokens": 13696
+        },
+        "output_tokens": 60,
+        "output_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "total_tokens": 16393
+      },
+      "served_model": "gpt-5.5-2026-04-23",
+      "response_id": "resp_07bfb6a6db4ea686016abca4c0d86087d09c9937887833074f",
+      "response_status": "completed"
+    },
+    {
+      "sequence": 18,
+      "model": "gpt-5.5",
+      "effort": "none",
+      "recovery": false,
+      "stage": "screen-control",
+      "case_key": "screen-3-page-122-001",
+      "reserved_usd": 0.29144,
+      "cost_usd": 0.022163,
+      "request_sha256": "2ccb3a24898ee42c98d53e18eca2cc167c3d053147876922fb333d43cefbab8a",
+      "code_sha256": {
+        "benchmarks/providers/safety_repair_guard.py": "08f3726a130a0c0fcad9eb7ba4a6f5e57a5353c7bc15ac29884735d85dfe40a5",
+        "benchmarks/providers/openai_responses_model.py": "3506470ee1eb9c8da8c472f270e3400fd2c6cbd086c6be836a0d974997696240",
+        "benchmarks/providers/safety_repair_openai.py": "fc5b4e66dca5bc3112b004450a77d0025fdd4c468e206938b3989c65b55ab81c",
+        "benchmarks/prompts/validate-page-level-crop.js": "ef4395838929b208fe65f21500d81ade902072bef3f8e53f81ef3d3b83fbc421",
+        "benchmarks/scorers/crop_validation_scorer.py": "12eb63725523bd00d59ce12b7486db8c9244124a0c57bb68cae8b8e9e7d288fb"
+      },
+      "response_sha256": "e612bb4b8a245128574396c0aa13afeeab0d463eccedeb6e62af2ead50e33e48",
+      "response_bytes": 3038,
+      "status_code": 200,
+      "latency_ms": 6597,
+      "usage": {
+        "input_tokens": 16333,
+        "input_tokens_details": {
+          "cache_write_tokens": 0,
+          "cached_tokens": 13696
+        },
+        "output_tokens": 71,
+        "output_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "total_tokens": 16404
+      },
+      "served_model": "gpt-5.5-2026-04-23",
+      "response_id": "resp_0e69fb05ba77bb43016abca4c6ef8c87d0bfa57832fd4d8e08",
+      "response_status": "completed"
+    },
+    {
+      "sequence": 19,
+      "model": "gpt-5.5",
+      "effort": "none",
+      "recovery": false,
+      "stage": "screen-control",
+      "case_key": "screen-4-page-009-000",
+      "reserved_usd": 0.29144,
+      "cost_usd": 0.073765,
+      "request_sha256": "fd45903906d4baa486eec4fbf793dfd069ffa1be7d40b86581c0a2f00a95af1d",
+      "code_sha256": {
+        "benchmarks/providers/safety_repair_guard.py": "08f3726a130a0c0fcad9eb7ba4a6f5e57a5353c7bc15ac29884735d85dfe40a5",
+        "benchmarks/providers/openai_responses_model.py": "3506470ee1eb9c8da8c472f270e3400fd2c6cbd086c6be836a0d974997696240",
+        "benchmarks/providers/safety_repair_openai.py": "fc5b4e66dca5bc3112b004450a77d0025fdd4c468e206938b3989c65b55ab81c",
+        "benchmarks/prompts/validate-page-level-crop.js": "ef4395838929b208fe65f21500d81ade902072bef3f8e53f81ef3d3b83fbc421",
+        "benchmarks/scorers/crop_validation_scorer.py": "12eb63725523bd00d59ce12b7486db8c9244124a0c57bb68cae8b8e9e7d288fb"
+      },
+      "response_sha256": "eff79fbf21df621ec55a8aa9283e54c5b1d6049ca5bd7b90f41dea0d7cd5d183",
+      "response_bytes": 3019,
+      "status_code": 200,
+      "latency_ms": 4877,
+      "usage": {
+        "input_tokens": 14399,
+        "input_tokens_details": {
+          "cache_write_tokens": 0,
+          "cached_tokens": 0
+        },
+        "output_tokens": 59,
+        "output_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "total_tokens": 14458
+      },
+      "served_model": "gpt-5.5-2026-04-23",
+      "response_id": "resp_06fc012273c7aa9d016abca4cdc9fc87d085453a269fd490c5",
+      "response_status": "completed"
+    },
+    {
+      "sequence": 20,
+      "model": "gpt-5.5",
+      "effort": "none",
+      "recovery": false,
+      "stage": "screen-control",
+      "case_key": "screen-5-page-126-001",
+      "reserved_usd": 0.29144,
+      "cost_usd": 0.061425,
+      "request_sha256": "e5c3793320d0c0a93507900ac1d1ef9ba1e50c20a78d65ff1eca4f5fcd9ba5df",
+      "code_sha256": {
+        "benchmarks/providers/safety_repair_guard.py": "08f3726a130a0c0fcad9eb7ba4a6f5e57a5353c7bc15ac29884735d85dfe40a5",
+        "benchmarks/providers/openai_responses_model.py": "3506470ee1eb9c8da8c472f270e3400fd2c6cbd086c6be836a0d974997696240",
+        "benchmarks/providers/safety_repair_openai.py": "fc5b4e66dca5bc3112b004450a77d0025fdd4c468e206938b3989c65b55ab81c",
+        "benchmarks/prompts/validate-page-level-crop.js": "ef4395838929b208fe65f21500d81ade902072bef3f8e53f81ef3d3b83fbc421",
+        "benchmarks/scorers/crop_validation_scorer.py": "12eb63725523bd00d59ce12b7486db8c9244124a0c57bb68cae8b8e9e7d288fb"
+      },
+      "response_sha256": "5103dc5751d667b410e9e547e9b59b58026dc8c8b7c0103b48fcc53570e08bcb",
+      "response_bytes": 3052,
+      "status_code": 200,
+      "latency_ms": 3155,
+      "usage": {
+        "input_tokens": 11877,
+        "input_tokens_details": {
+          "cache_write_tokens": 0,
+          "cached_tokens": 0
+        },
+        "output_tokens": 68,
+        "output_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "total_tokens": 11945
+      },
+      "served_model": "gpt-5.5-2026-04-23",
+      "response_id": "resp_046d183bb8181fee016abca4d294d487d09a33860ebecdcec6",
+      "response_status": "completed"
+    },
+    {
+      "sequence": 21,
+      "model": "gpt-5.5",
+      "effort": "none",
+      "recovery": false,
+      "stage": "screen-control",
+      "case_key": "screen-6-page-127-000",
+      "reserved_usd": 0.29144,
+      "cost_usd": 0.061025,
+      "request_sha256": "fd169ae14f7e533ff39992f459b9fabd7616d56412b675d093652a0bd2ede728",
+      "code_sha256": {
+        "benchmarks/providers/safety_repair_guard.py": "08f3726a130a0c0fcad9eb7ba4a6f5e57a5353c7bc15ac29884735d85dfe40a5",
+        "benchmarks/providers/openai_responses_model.py": "3506470ee1eb9c8da8c472f270e3400fd2c6cbd086c6be836a0d974997696240",
+        "benchmarks/providers/safety_repair_openai.py": "fc5b4e66dca5bc3112b004450a77d0025fdd4c468e206938b3989c65b55ab81c",
+        "benchmarks/prompts/validate-page-level-crop.js": "ef4395838929b208fe65f21500d81ade902072bef3f8e53f81ef3d3b83fbc421",
+        "benchmarks/scorers/crop_validation_scorer.py": "12eb63725523bd00d59ce12b7486db8c9244124a0c57bb68cae8b8e9e7d288fb"
+      },
+      "response_sha256": "fc2259119a66ecbcf3662532a19e2f18678fa09f2bdaf2586dde35662e16af09",
+      "response_bytes": 3102,
+      "status_code": 200,
+      "latency_ms": 3773,
+      "usage": {
+        "input_tokens": 11767,
+        "input_tokens_details": {
+          "cache_write_tokens": 0,
+          "cached_tokens": 0
+        },
+        "output_tokens": 73,
+        "output_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "total_tokens": 11840
+      },
+      "served_model": "gpt-5.5-2026-04-23",
+      "response_id": "resp_04e34fe7d8dc5e8c016abca4d5f49c87d09d48094178dfae76",
+      "response_status": "completed"
+    },
+    {
+      "sequence": 22,
+      "model": "gpt-6-luna",
+      "effort": "medium",
+      "recovery": false,
+      "stage": "full-luna",
+      "case_key": "page-001-000",
+      "reserved_usd": 0.007798,
+      "cost_usd": null,
+      "request_sha256": "251a4dd2150d0aaf61560b4ec018e3e80c6744d4ed01248f4050cfea9818c236",
+      "code_sha256": {
+        "benchmarks/providers/safety_repair_guard.py": "08f3726a130a0c0fcad9eb7ba4a6f5e57a5353c7bc15ac29884735d85dfe40a5",
+        "benchmarks/providers/openai_responses_model.py": "3506470ee1eb9c8da8c472f270e3400fd2c6cbd086c6be836a0d974997696240",
+        "benchmarks/providers/safety_repair_openai.py": "fc5b4e66dca5bc3112b004450a77d0025fdd4c468e206938b3989c65b55ab81c",
+        "benchmarks/prompts/validate-page-level-crop.js": "ef4395838929b208fe65f21500d81ade902072bef3f8e53f81ef3d3b83fbc421",
+        "benchmarks/scorers/crop_validation_scorer.py": "12eb63725523bd00d59ce12b7486db8c9244124a0c57bb68cae8b8e9e7d288fb"
+      },
+      "response_sha256": "48d9f03c6f9b357bc078fb3eb43d1a51aaa9a2c3257727dc310158e50b086fa3",
+      "response_bytes": 262,
+      "status_code": 429,
+      "latency_ms": 3199,
+      "billing_unresolved": true
+    },
+    {
+      "sequence": 23,
+      "model": "gpt-6-luna",
+      "effort": "medium",
+      "recovery": false,
+      "stage": "full-luna",
+      "case_key": "page-001-000",
+      "reserved_usd": 0.007798,
+      "cost_usd": null,
+      "request_sha256": "251a4dd2150d0aaf61560b4ec018e3e80c6744d4ed01248f4050cfea9818c236",
+      "code_sha256": {
+        "benchmarks/providers/safety_repair_guard.py": "08f3726a130a0c0fcad9eb7ba4a6f5e57a5353c7bc15ac29884735d85dfe40a5",
+        "benchmarks/providers/openai_responses_model.py": "3506470ee1eb9c8da8c472f270e3400fd2c6cbd086c6be836a0d974997696240",
+        "benchmarks/providers/safety_repair_openai.py": "fc5b4e66dca5bc3112b004450a77d0025fdd4c468e206938b3989c65b55ab81c",
+        "benchmarks/prompts/validate-page-level-crop.js": "ef4395838929b208fe65f21500d81ade902072bef3f8e53f81ef3d3b83fbc421",
+        "benchmarks/scorers/crop_validation_scorer.py": "12eb63725523bd00d59ce12b7486db8c9244124a0c57bb68cae8b8e9e7d288fb"
+      },
+      "response_sha256": "48d9f03c6f9b357bc078fb3eb43d1a51aaa9a2c3257727dc310158e50b086fa3",
+      "response_bytes": 262,
+      "status_code": 429,
+      "latency_ms": 3064,
+      "billing_unresolved": true
+    }
+  ],
+  "files": [
+    {
+      "path": "benchmarks/results/safety-repair-048-20260929/full-luna.log",
+      "sha256": "5d96508cd5f3ff6fa17c2f9e124fd1e66394a6c172cb0f55369cbd76866ab0bb",
+      "bytes": 592
+    },
+    {
+      "path": "benchmarks/results/safety-repair-048-20260929/ledger.json",
+      "sha256": "aec3b77548bec59a3c16401b9951fc67b9bdb7d07d1924e26231f83dc18ab7a3",
+      "bytes": 36902
+    },
+    {
+      "path": "benchmarks/results/safety-repair-048-20260929/request-001.json",
+      "sha256": "acf1886222b1cce27cbb6a10cd6ae75ab7702a46c57326fa55ec33958ea499fa",
+      "bytes": 4774
+    },
+    {
+      "path": "benchmarks/results/safety-repair-048-20260929/request-002.json",
+      "sha256": "d253a6299b3c3cc95ad722f4ab88c488268faf010eef69eb2869a4d5bc9b72e5",
+      "bytes": 4775
+    },
+    {
+      "path": "benchmarks/results/safety-repair-048-20260929/request-003.json",
+      "sha256": "a7dda5d9191770bdf709ea85df776916fd33336742bb1687235b52ab56d08c33",
+      "bytes": 4769
+    },
+    {
+      "path": "benchmarks/results/safety-repair-048-20260929/request-004.json",
+      "sha256": "0c2caa999792e901877fe68c38c55cd8e8bb3f5ca30554fe866cf9cedc34ef8e",
+      "bytes": 8501968
+    },
+    {
+      "path": "benchmarks/results/safety-repair-048-20260929/request-005.json",
+      "sha256": "0c2caa999792e901877fe68c38c55cd8e8bb3f5ca30554fe866cf9cedc34ef8e",
+      "bytes": 8501968
+    },
+    {
+      "path": "benchmarks/results/safety-repair-048-20260929/request-006.json",
+      "sha256": "0c2caa999792e901877fe68c38c55cd8e8bb3f5ca30554fe866cf9cedc34ef8e",
+      "bytes": 8501968
+    },
+    {
+      "path": "benchmarks/results/safety-repair-048-20260929/request-007.json",
+      "sha256": "0abb12bdf15b172a010384aa50bbc1f133da0040a18e69c0cc62a0541c80226b",
+      "bytes": 5921436
+    },
+    {
+      "path": "benchmarks/results/safety-repair-048-20260929/request-008.json",
+      "sha256": "f315e48c08e5f44fd3fca1a5cfe3809c34012545c4b51fdc6b424113b19aa6e8",
+      "bytes": 2268136
+    },
+    {
+      "path": "benchmarks/results/safety-repair-048-20260929/request-009.json",
+      "sha256": "d0aa72241edc1c800f72551121bdae1c8f51808720bb3a0d9e8ffa19581c5a06",
+      "bytes": 1912616
+    },
+    {
+      "path": "benchmarks/results/safety-repair-048-20260929/request-010.json",
+      "sha256": "1fa08f1d818166164611718251b981256b122933c50d8891111e14023c12e00f",
+      "bytes": 8501969
+    },
+    {
+      "path": "benchmarks/results/safety-repair-048-20260929/request-011.json",
+      "sha256": "1fa08f1d818166164611718251b981256b122933c50d8891111e14023c12e00f",
+      "bytes": 8501969
+    },
+    {
+      "path": "benchmarks/results/safety-repair-048-20260929/request-012.json",
+      "sha256": "1fa08f1d818166164611718251b981256b122933c50d8891111e14023c12e00f",
+      "bytes": 8501969
+    },
+    {
+      "path": "benchmarks/results/safety-repair-048-20260929/request-013.json",
+      "sha256": "87a967eefbb108ed94a420cadf795ad2d1abe183ab9f71c1d88f1883b1538196",
+      "bytes": 5921437
+    },
+    {
+      "path": "benchmarks/results/safety-repair-048-20260929/request-014.json",
+      "sha256": "85ae01bdeafc8cebd1dc86eeefab20193164ff4954708ff73320af44cc5b746c",
+      "bytes": 2268137
+    },
+    {
+      "path": "benchmarks/results/safety-repair-048-20260929/request-015.json",
+      "sha256": "621ca5b4fbb0de26789aa8a5f42c05d787cf0e6c7961a378c165d108f618799f",
+      "bytes": 1912617
+    },
+    {
+      "path": "benchmarks/results/safety-repair-048-20260929/request-016.json",
+      "sha256": "2ccb3a24898ee42c98d53e18eca2cc167c3d053147876922fb333d43cefbab8a",
+      "bytes": 8501963
+    },
+    {
+      "path": "benchmarks/results/safety-repair-048-20260929/request-017.json",
+      "sha256": "2ccb3a24898ee42c98d53e18eca2cc167c3d053147876922fb333d43cefbab8a",
+      "bytes": 8501963
+    },
+    {
+      "path": "benchmarks/results/safety-repair-048-20260929/request-018.json",
+      "sha256": "2ccb3a24898ee42c98d53e18eca2cc167c3d053147876922fb333d43cefbab8a",
+      "bytes": 8501963
+    },
+    {
+      "path": "benchmarks/results/safety-repair-048-20260929/request-019.json",
+      "sha256": "fd45903906d4baa486eec4fbf793dfd069ffa1be7d40b86581c0a2f00a95af1d",
+      "bytes": 5921431
+    },
+    {
+      "path": "benchmarks/results/safety-repair-048-20260929/request-020.json",
+      "sha256": "e5c3793320d0c0a93507900ac1d1ef9ba1e50c20a78d65ff1eca4f5fcd9ba5df",
+      "bytes": 2268131
+    },
+    {
+      "path": "benchmarks/results/safety-repair-048-20260929/request-021.json",
+      "sha256": "fd169ae14f7e533ff39992f459b9fabd7616d56412b675d093652a0bd2ede728",
+      "bytes": 1912611
+    },
+    {
+      "path": "benchmarks/results/safety-repair-048-20260929/request-022.json",
+      "sha256": "251a4dd2150d0aaf61560b4ec018e3e80c6744d4ed01248f4050cfea9818c236",
+      "bytes": 9116220
+    },
+    {
+      "path": "benchmarks/results/safety-repair-048-20260929/request-023.json",
+      "sha256": "251a4dd2150d0aaf61560b4ec018e3e80c6744d4ed01248f4050cfea9818c236",
+      "bytes": 9116220
+    },
+    {
+      "path": "benchmarks/results/safety-repair-048-20260929/response-001.json",
+      "sha256": "8e4537c40c2cf3eac27e74350cef19b0c68ae9e43bc2e83672844d583e3801ba",
+      "bytes": 5265
+    },
+    {
+      "path": "benchmarks/results/safety-repair-048-20260929/response-002.json",
+      "sha256": "78f5ab4924eb5a9706c9217e6e07c4cb2ad0cd8933b0abe34f8efa6093fddca4",
+      "bytes": 5305
+    },
+    {
+      "path": "benchmarks/results/safety-repair-048-20260929/response-003.json",
+      "sha256": "b0de987270e9c96907e4381df5b0272b7592be55b6a3094c32a83e5b4efd8cda",
+      "bytes": 3020
+    },
+    {
+      "path": "benchmarks/results/safety-repair-048-20260929/response-004.json",
+      "sha256": "ceeeb9be64653bc47d6439141a1a7c6385c47fb59b63108efc30290172d1523c",
+      "bytes": 5879
+    },
+    {
+      "path": "benchmarks/results/safety-repair-048-20260929/response-005.json",
+      "sha256": "645fdb192fba72801c7b015554c5d29bc91dc7a8d0401885d0bfe71de906e34b",
+      "bytes": 5651
+    },
+    {
+      "path": "benchmarks/results/safety-repair-048-20260929/response-006.json",
+      "sha256": "4ddd259038c292e07d265d9ef48c4ae7ccc8193cca2b60fbfa524c8254bf7ab8",
+      "bytes": 5383
+    },
+    {
+      "path": "benchmarks/results/safety-repair-048-20260929/response-007.json",
+      "sha256": "8af2eb4aa8a47847b10ca283e150bc99b09db41282ef21c6916f324f8294e141",
+      "bytes": 4922
+    },
+    {
+      "path": "benchmarks/results/safety-repair-048-20260929/response-008.json",
+      "sha256": "aabf2ee10cfb9e714b2d7fc1e10ec8f581b894ac18ed4309dc3a715b32d0e10d",
+      "bytes": 5142
+    },
+    {
+      "path": "benchmarks/results/safety-repair-048-20260929/response-009.json",
+      "sha256": "6f2a347deb09c847340878274e29af4ce218d8958081a18f9da5f951300f7da1",
+      "bytes": 4904
+    },
+    {
+      "path": "benchmarks/results/safety-repair-048-20260929/response-010.json",
+      "sha256": "7a4ef6c0ccb0d733f2d8a1ecc8d282bcaf71b204e07bde476dd50b1420fc298b",
+      "bytes": 2995
+    },
+    {
+      "path": "benchmarks/results/safety-repair-048-20260929/response-011.json",
+      "sha256": "fd8425403c7dba7031555815c7367ed9f7c9697d20c425f96d06a66570f56742",
+      "bytes": 2993
+    },
+    {
+      "path": "benchmarks/results/safety-repair-048-20260929/response-012.json",
+      "sha256": "999ef81afdfa2175bebd4b2da6ed22cf21ed9acfa233f8f3371742ab7a66c4fd",
+      "bytes": 3003
+    },
+    {
+      "path": "benchmarks/results/safety-repair-048-20260929/response-013.json",
+      "sha256": "b2ead299420efe045c02f6be40577783e4ee72d71a5164405eaa2825d33cfa4c",
+      "bytes": 2953
+    },
+    {
+      "path": "benchmarks/results/safety-repair-048-20260929/response-014.json",
+      "sha256": "a3215b1d193b2cc62fd39482e1383c608ec1f85f82942092520a0a4586b8614a",
+      "bytes": 2986
+    },
+    {
+      "path": "benchmarks/results/safety-repair-048-20260929/response-015.json",
+      "sha256": "8782fff1189dae6ad84120b6d97d4027ac5c27afbe7ffbe33b892fefa77f0d50",
+      "bytes": 2999
+    },
+    {
+      "path": "benchmarks/results/safety-repair-048-20260929/response-016.json",
+      "sha256": "6a6db4d4147a050d4c1f00b881b4f24479639250ed76bd2238977e4d66302af5",
+      "bytes": 3019
+    },
+    {
+      "path": "benchmarks/results/safety-repair-048-20260929/response-017.json",
+      "sha256": "fb2a4db0f33121f67f801bd637283d3a9a86192c22a3bf21be9bce6b41d79dc5",
+      "bytes": 3001
+    },
+    {
+      "path": "benchmarks/results/safety-repair-048-20260929/response-018.json",
+      "sha256": "e612bb4b8a245128574396c0aa13afeeab0d463eccedeb6e62af2ead50e33e48",
+      "bytes": 3038
+    },
+    {
+      "path": "benchmarks/results/safety-repair-048-20260929/response-019.json",
+      "sha256": "eff79fbf21df621ec55a8aa9283e54c5b1d6049ca5bd7b90f41dea0d7cd5d183",
+      "bytes": 3019
+    },
+    {
+      "path": "benchmarks/results/safety-repair-048-20260929/response-020.json",
+      "sha256": "5103dc5751d667b410e9e547e9b59b58026dc8c8b7c0103b48fcc53570e08bcb",
+      "bytes": 3052
+    },
+    {
+      "path": "benchmarks/results/safety-repair-048-20260929/response-021.json",
+      "sha256": "fc2259119a66ecbcf3662532a19e2f18678fa09f2bdaf2586dde35662e16af09",
+      "bytes": 3102
+    },
+    {
+      "path": "benchmarks/results/safety-repair-048-20260929/response-022.json",
+      "sha256": "48d9f03c6f9b357bc078fb3eb43d1a51aaa9a2c3257727dc310158e50b086fa3",
+      "bytes": 262
+    },
+    {
+      "path": "benchmarks/results/safety-repair-048-20260929/response-023.json",
+      "sha256": "48d9f03c6f9b357bc078fb3eb43d1a51aaa9a2c3257727dc310158e50b086fa3",
+      "bytes": 262
+    },
+    {
+      "path": "benchmarks/results/safety-repair-048-20260929/screen-control.json",
+      "sha256": "e809547080b6cdf17ba0362e1a7a5ee3d0df581b666198b8717d06d56be8541b",
+      "bytes": 35639162
+    },
+    {
+      "path": "benchmarks/results/safety-repair-048-20260929/screen-control.log",
+      "sha256": "9ef3d22a0cd4835aaadef7381bc295b73aabc46ee3813e9ed86c1cddf584a030",
+      "bytes": 21314
+    },
+    {
+      "path": "benchmarks/results/safety-repair-048-20260929/screen-luna.json",
+      "sha256": "1e83273c59f6f7941670aeebd01c1688d5106bf07d2097236ff772ceb57d2ed7",
+      "bytes": 35638657
+    },
+    {
+      "path": "benchmarks/results/safety-repair-048-20260929/screen-luna.log",
+      "sha256": "81c73c1a1edf6ec37d40dafbd2c5de1f8ca8c1b25af93d75fa0e5e97c5230c46",
+      "bytes": 20253
+    },
+    {
+      "path": "benchmarks/results/safety-repair-048-20260929/screen-sol.json",
+      "sha256": "eba2fdab00ae147fb67ecc1c19128e0cad9eed5e6062dc21d1f512ee280b4f8a",
+      "bytes": 35638481
+    },
+    {
+      "path": "benchmarks/results/safety-repair-048-20260929/screen-sol.log",
+      "sha256": "637b388a993a110b0d287ef4ce24b842f574e10a4843db448db63eec16bc238e",
+      "bytes": 19826
+    }
+  ],
+  "archive": {
+    "path": "docs/evals/evidence/048-safety-repair-receipts.tar.gz",
+    "sha256": "79b46fd9dcbc117eeb8ca02638160fb19f58e93ca93e94cb3d14f86365c4c92d",
+    "bytes": 20882549,
+    "blob_hashes": [
+      "029858c13b47869fffac8b1348bfd6fee8ff0527defe858787d940e9c5673c67",
+      "d58cb6142e0c5688b34ba8877ca45f4affb63dea1f44b608b0e2464e7ef5d0ca",
+      "1cd664289bbf7f54f918d02d9958f3cfdd2089185cb563ba62b4afad3ec8e02f",
+      "c446337a036972508a0dd4c3dc83191fb6ce2c30e8d0df4090df9cf1f4565464",
+      "a6861fb7eccfbf56dbe7dd7ba97f0796ac1923d623f6d116e3ce78ece63facff",
+      "16e6350774e45ec8a1f037adb4623761f3856244ddb2f60ca1be074b6c1817db",
+      "305248b19f8275fd930521b01418b33a92fb66ad6a0cc264a458705d89469059",
+      "ac5c5a1e727deb6d9b132e6c994533566fd4942cfc6deeb1ff1154fbd9f56f7e",
+      "5c3bfe29796ba28cbce97bcf391e37bc1806ca7b722cc27ca1ad86cd2fc910ef",
+      "08b47a53452babd5ee4b23c72c35aedd4b64d1f3491ca371294ff0317d1bf5ff",
+      "18e713ac29cf95cdb96b4f43514c1fa1bfb104fd86fb2f43a250accbf6b69faf"
+    ]
+  },
+  "full22": "not measured; first Luna attempt failed provider quota before semantic response",
+  "fresh6": "not measured for all arms",
+  "hidden_harness_retry_attempts": 1,
+  "recovery_flagged_attempts": 0,
+  "recovery_budget_consumed": 1,
+  "reliability_fault": "Promptfoo0.121.1 adaptive scheduler default maxRetries3 classifies any error containing429 as rate-limited; repeated quota failure once before manual interruption. Owner adapter itself one POST.",
+  "recovery_budget_remaining": 1,
+  "planned_budget_consumed": 22,
+  "implicit_recovery_sequence": 23,
+  "post_execution_hardening": {
+    "guard_sha256": "597dc1dd97925ed8b16576c439a667fdbddb7db37eda99309841fd84008c41ab",
+    "task_hashes": {
+      "benchmarks/tasks/safety-repair-048-control-fresh.yaml": "f63da158f6e87d78e3db765b00165270b21f43d52826f34d01f8cf539a3f77cd",
+      "benchmarks/tasks/safety-repair-048-control-screen.yaml": "d9f9899844f742123d858d5abbabcf1e7d26f05146247eb27323225ab567881d",
+      "benchmarks/tasks/safety-repair-048-sol-full.yaml": "72307c1de8c0968f167756f98f023287ca38ecd25669c6153eb60b6eb74153d4",
+      "benchmarks/tasks/safety-repair-048-sol-fresh.yaml": "858fb45aec4d9501b7a851b1e0accf44eeb50e474594578146791338e795c50d",
+      "benchmarks/tasks/safety-repair-048-luna-fresh.yaml": "eb53e5000857db5ea5a108d65917ba4aba544b8786f79a727cd4d22bb64d9ef5",
+      "benchmarks/tasks/safety-repair-048-luna-screen.yaml": "8a8997b23b1dc9a92a9aaac95056caf2ceba73fb563d59804d86458c6c796a31",
+      "benchmarks/tasks/safety-repair-048-luna-full.yaml": "16f19e33d2fddd6762b35c7b83560f30e5dd5f6a7e8cb360457a852389977212",
+      "benchmarks/tasks/safety-repair-048-control-full.yaml": "cd4cc0a7c70cc70c9cfed3516abdae29509fee36a82622d51293b51c2d2a4654",
+      "benchmarks/tasks/safety-repair-048-sol-screen.yaml": "d3b6ef1672779011563bf0c0dda73ba5df885d170bdc78a75e8d434c7d84b782"
+    },
+    "executed_task_hashes": {
+      "docs/evals/evidence/048-execution-tasks/safety-repair-048-control-fresh.yaml": "88162f6af67281c366f1c83447e2a41fbd1f4eb79b6554a0f7306048d9dceccf",
+      "docs/evals/evidence/048-execution-tasks/safety-repair-048-control-screen.yaml": "9dc7fde9b7bbbb8aeef11f1c353130730e2ef82ed1017ff56196fba01125f3c9",
+      "docs/evals/evidence/048-execution-tasks/safety-repair-048-sol-full.yaml": "dafcb6cd37e58c931307e5f326d12998b6781284b762baeb0b2b34cb601f0456",
+      "docs/evals/evidence/048-execution-tasks/safety-repair-048-sol-fresh.yaml": "5d68971aff7f1ea869dcd20dbc066780d464a319ff8748b876759a311d5a9248",
+      "docs/evals/evidence/048-execution-tasks/safety-repair-048-luna-fresh.yaml": "7909ed6bc46ba9623e397b55e956c39ddcb7c475e4e0c810b34f0807f51d4697",
+      "docs/evals/evidence/048-execution-tasks/safety-repair-048-luna-screen.yaml": "0e623e6679664a52a9107fa460393fcdecab4aa7cf8c5881121cb88146f972b0",
+      "docs/evals/evidence/048-execution-tasks/safety-repair-048-luna-full.yaml": "955f9a1386fb3af46c7c66b888efaaffdd8032c7d5ea6e39ad49199d6ee42595",
+      "docs/evals/evidence/048-execution-tasks/safety-repair-048-control-full.yaml": "35aae130522a79d5a39e12e1ccd9bd2ade2cd97e047c61209ff441bbb44f5d2c",
+      "docs/evals/evidence/048-execution-tasks/safety-repair-048-sol-screen.yaml": "edf8641b438ba8ba04294732d390975d20c3deafb04363f71050a53abd920fb7"
+    }
+  }
+}

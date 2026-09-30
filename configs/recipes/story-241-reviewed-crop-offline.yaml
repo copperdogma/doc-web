@@ -1,0 +1,43 @@
+# Offline synthetic approvals only. No model calls or runtime defaults changed.
+input:
+  text_glob: tests/fixtures/crop_review_offline/approved/authority.txt
+stages:
+  - id: load_pages
+    stage: extract
+    module: load_artifact_v1
+    out: pages.ndjson
+    params:
+      path: tests/fixtures/crop_review_offline/approved/pages.ndjson
+  - id: load_portions
+    stage: extract
+    module: load_artifact_v1
+    out: portions.ndjson
+    params:
+      path: tests/fixtures/crop_review_offline/approved/portions.ndjson
+  - id: release_reviewed
+    stage: transform
+    module: release_reviewed_crops_v1
+    out: illustration_manifest.jsonl
+    params:
+      custody_root: tests/fixtures/crop_review_offline/approved
+      manifest: tests/fixtures/crop_review_offline/approved/manifest.jsonl
+      inventory: tests/fixtures/crop_review_offline/approved/inventory.json
+      proposals: tests/fixtures/crop_review_offline/approved/proposals.jsonl
+      decisions: tests/fixtures/crop_review_offline/approved/decisions.jsonl
+      authority: tests/fixtures/crop_review_offline/approved/authority.json
+  - id: build_reviewed
+    stage: build
+    module: build_chapter_html_v1
+    needs: [load_pages, load_portions, release_reviewed]
+    inputs:
+      pages: load_pages
+      portions: load_portions
+      illustration_manifest: release_reviewed
+    out: chapters_manifest.jsonl
+    params:
+      pages: tests/fixtures/crop_review_offline/approved/pages.jsonl
+      portions: tests/fixtures/crop_review_offline/approved/portions.jsonl
+      crop_review_release: output/runs/story241-crop-review-approved/03_release_reviewed_crops_v1/crop_review_release.json
+      require_crop_review: true
+      book_title: Offline synthetic review fixture
+      book_author: Synthetic test

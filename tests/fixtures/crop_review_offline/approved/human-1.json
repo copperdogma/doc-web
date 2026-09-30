@@ -1,0 +1,6 @@
+{
+  "candidate_id": "28ee564f85b9eb3b521d5fd27f56669931d6a9a1fcf53eea83fb11c7736948e1",
+  "operator_id": "fixture-reviewer",
+  "action": "approve_current_crop",
+  "reason": "Synthetic source-reviewed approval; coherent grouping allowed"
+}

@@ -1,0 +1,360 @@
+{
+  "phase": "user-approved unpaid prompt repair preparation",
+  "before_prompt_sha256": "2ccc8c96ef69c14102d7ffd13b5a39715e5cd136b497510b1b2f88243009a5a0",
+  "after_prompt_sha256": "ef4395838929b208fe65f21500d81ade902072bef3f8e53f81ef3d3b83fbc421",
+  "original_matches_frozen047_topology": true,
+  "frozen047_files_unchanged": 9,
+  "model_calls": 0,
+  "model_behavior": "unmeasured",
+  "consumer_scope": "benchmark task configs only; no runtime module references",
+  "cases": [
+    {
+      "key": "page-001-000",
+      "message_count": 1,
+      "role": "user",
+      "native_image_order": [
+        "full_page",
+        "crop"
+      ],
+      "decoded_image_sha256": [
+        "7500762d6e0b9761b49305b28e0c3609d051af1d5f3eac8ce33028b0b439f325",
+        "67accf0bf3854473e557261d179bce8a4c4519de039460e3c797e52f49e1dfaa"
+      ],
+      "native_schema_sha256": "dfde50f5b02eb779fdb8a1f0c008606935f9b261bab75cd7bb83c7bab4308c4e",
+      "native_body_change": "instruction text only"
+    },
+    {
+      "key": "page-004-000",
+      "message_count": 1,
+      "role": "user",
+      "native_image_order": [
+        "full_page",
+        "crop"
+      ],
+      "decoded_image_sha256": [
+        "ad1807bfdad56d65becf8011137680496f72d564bfc922a8da7d2c021e3ef266",
+        "4cc9a8224d1efbddc1f8f1a5a3f973bb8345f81fe26d03aa3b6d5197ce786209"
+      ],
+      "native_schema_sha256": "dfde50f5b02eb779fdb8a1f0c008606935f9b261bab75cd7bb83c7bab4308c4e",
+      "native_body_change": "instruction text only"
+    },
+    {
+      "key": "page-009-000",
+      "message_count": 1,
+      "role": "user",
+      "native_image_order": [
+        "full_page",
+        "crop"
+      ],
+      "decoded_image_sha256": [
+        "da312d69a4c007009c1e696b32e66a3a7a957eac6b9aa3fa67323eeb1c478c31",
+        "4413db90068236ede2835ef29c29359137847e51158266af20ef925938fa7bc0"
+      ],
+      "native_schema_sha256": "dfde50f5b02eb779fdb8a1f0c008606935f9b261bab75cd7bb83c7bab4308c4e",
+      "native_body_change": "instruction text only"
+    },
+    {
+      "key": "page-012-000",
+      "message_count": 1,
+      "role": "user",
+      "native_image_order": [
+        "full_page",
+        "crop"
+      ],
+      "decoded_image_sha256": [
+        "ae3524cb58ac940c912c7885d65ec9d21221415d97d1ea21d97be9615161a860",
+        "3a2a0f5ac2782b10b066bd4ace50d305ce2bbea1c53e27934205b7cf2a8b93ad"
+      ],
+      "native_schema_sha256": "dfde50f5b02eb779fdb8a1f0c008606935f9b261bab75cd7bb83c7bab4308c4e",
+      "native_body_change": "instruction text only"
+    },
+    {
+      "key": "page-012-001",
+      "message_count": 1,
+      "role": "user",
+      "native_image_order": [
+        "full_page",
+        "crop"
+      ],
+      "decoded_image_sha256": [
+        "ae3524cb58ac940c912c7885d65ec9d21221415d97d1ea21d97be9615161a860",
+        "da367ed32034c950a729fd32707412d2956f01760e2ced6616f2c7306002d7ec"
+      ],
+      "native_schema_sha256": "dfde50f5b02eb779fdb8a1f0c008606935f9b261bab75cd7bb83c7bab4308c4e",
+      "native_body_change": "instruction text only"
+    },
+    {
+      "key": "page-014-000",
+      "message_count": 1,
+      "role": "user",
+      "native_image_order": [
+        "full_page",
+        "crop"
+      ],
+      "decoded_image_sha256": [
+        "cb53f04abc02441992de4903c079b036c6242a50cd275f696231c89634e6a75b",
+        "4f4af349e0fcc4f3e15065dad7fecc68fe1805df524bf2dac94e56a524886693"
+      ],
+      "native_schema_sha256": "dfde50f5b02eb779fdb8a1f0c008606935f9b261bab75cd7bb83c7bab4308c4e",
+      "native_body_change": "instruction text only"
+    },
+    {
+      "key": "page-018-000",
+      "message_count": 1,
+      "role": "user",
+      "native_image_order": [
+        "full_page",
+        "crop"
+      ],
+      "decoded_image_sha256": [
+        "3d069f99adca6caa2039d3a9f4cccc2cb8a44413d5f44023d21baaa42b7ae6d1",
+        "b5c9ee922fe3f6468acf31c7dbe842a4bde8918a4f370c67cf36d5b8546edc0b"
+      ],
+      "native_schema_sha256": "dfde50f5b02eb779fdb8a1f0c008606935f9b261bab75cd7bb83c7bab4308c4e",
+      "native_body_change": "instruction text only"
+    },
+    {
+      "key": "page-021-000",
+      "message_count": 1,
+      "role": "user",
+      "native_image_order": [
+        "full_page",
+        "crop"
+      ],
+      "decoded_image_sha256": [
+        "5a1f2380a089ff23355ff101b07549bd57abba3a51636a6b58a28a31a4195318",
+        "b03c6e1a9b3e3e6842de1760b97fc3e131b91eea3a2e3d11bedafa53a385f426"
+      ],
+      "native_schema_sha256": "dfde50f5b02eb779fdb8a1f0c008606935f9b261bab75cd7bb83c7bab4308c4e",
+      "native_body_change": "instruction text only"
+    },
+    {
+      "key": "page-021-001",
+      "message_count": 1,
+      "role": "user",
+      "native_image_order": [
+        "full_page",
+        "crop"
+      ],
+      "decoded_image_sha256": [
+        "5a1f2380a089ff23355ff101b07549bd57abba3a51636a6b58a28a31a4195318",
+        "7d3af1dc6ffa2a2c731a6f0cdadb791175b25bcb2580c69034dcf2de6c06131e"
+      ],
+      "native_schema_sha256": "dfde50f5b02eb779fdb8a1f0c008606935f9b261bab75cd7bb83c7bab4308c4e",
+      "native_body_change": "instruction text only"
+    },
+    {
+      "key": "page-022-000",
+      "message_count": 1,
+      "role": "user",
+      "native_image_order": [
+        "full_page",
+        "crop"
+      ],
+      "decoded_image_sha256": [
+        "2f49d83261e2f40d20b736b602cc4de8c36b48780ab944dc96c8e08f83e34332",
+        "c8de7753ebe7d13c9646b62bef02984148f4e9e2260197a56babd46442f61ea9"
+      ],
+      "native_schema_sha256": "dfde50f5b02eb779fdb8a1f0c008606935f9b261bab75cd7bb83c7bab4308c4e",
+      "native_body_change": "instruction text only"
+    },
+    {
+      "key": "page-038-000",
+      "message_count": 1,
+      "role": "user",
+      "native_image_order": [
+        "full_page",
+        "crop"
+      ],
+      "decoded_image_sha256": [
+        "b836c9c90fc650dd0513299652bf1af41fc577544803d9cea64928c890cdfdbe",
+        "09855f57fc1ff367f3174dd0a5bfab433e069195aa1d2596f68212cae163a349"
+      ],
+      "native_schema_sha256": "dfde50f5b02eb779fdb8a1f0c008606935f9b261bab75cd7bb83c7bab4308c4e",
+      "native_body_change": "instruction text only"
+    },
+    {
+      "key": "page-038-001",
+      "message_count": 1,
+      "role": "user",
+      "native_image_order": [
+        "full_page",
+        "crop"
+      ],
+      "decoded_image_sha256": [
+        "b836c9c90fc650dd0513299652bf1af41fc577544803d9cea64928c890cdfdbe",
+        "4eaee1585bba4a4c6309e5d5bd28a57b4dd8c297a0b8dd0a491c8c60d4e66b89"
+      ],
+      "native_schema_sha256": "dfde50f5b02eb779fdb8a1f0c008606935f9b261bab75cd7bb83c7bab4308c4e",
+      "native_body_change": "instruction text only"
+    },
+    {
+      "key": "page-060-000",
+      "message_count": 1,
+      "role": "user",
+      "native_image_order": [
+        "full_page",
+        "crop"
+      ],
+      "decoded_image_sha256": [
+        "af4d6f24fc5b026a12697ed4d9da2758257bb8e0ec06c7989a2b2d0625501317",
+        "0e7a4ae8f060dcb0588f647c2e7d51abb7251b91ec81feb6d89a9923f0d4e9b3"
+      ],
+      "native_schema_sha256": "dfde50f5b02eb779fdb8a1f0c008606935f9b261bab75cd7bb83c7bab4308c4e",
+      "native_body_change": "instruction text only"
+    },
+    {
+      "key": "page-060-001",
+      "message_count": 1,
+      "role": "user",
+      "native_image_order": [
+        "full_page",
+        "crop"
+      ],
+      "decoded_image_sha256": [
+        "af4d6f24fc5b026a12697ed4d9da2758257bb8e0ec06c7989a2b2d0625501317",
+        "f05b5737e373e2b06f0544bd74c59c9e92b096919fc775cdd9cc0bb4642dade6"
+      ],
+      "native_schema_sha256": "dfde50f5b02eb779fdb8a1f0c008606935f9b261bab75cd7bb83c7bab4308c4e",
+      "native_body_change": "instruction text only"
+    },
+    {
+      "key": "page-092-000",
+      "message_count": 1,
+      "role": "user",
+      "native_image_order": [
+        "full_page",
+        "crop"
+      ],
+      "decoded_image_sha256": [
+        "23540ee8136d29922da3f9284d44ddb46a07390fdd41f79f9afbb39989c9c04c",
+        "3d02c44de285d58fd54c3131a5c2c6c13235093c88eef49ac02e2a778b23687c"
+      ],
+      "native_schema_sha256": "dfde50f5b02eb779fdb8a1f0c008606935f9b261bab75cd7bb83c7bab4308c4e",
+      "native_body_change": "instruction text only"
+    },
+    {
+      "key": "page-122-000",
+      "message_count": 1,
+      "role": "user",
+      "native_image_order": [
+        "full_page",
+        "crop"
+      ],
+      "decoded_image_sha256": [
+        "04731378a1ff37ffb8e26faf005f87fa2383f9ba91e147ce9caa94e8519d086e",
+        "5ab45f308ea9d353dae2830a574af026b907fd95f6c50e78d48e8921031f6990"
+      ],
+      "native_schema_sha256": "dfde50f5b02eb779fdb8a1f0c008606935f9b261bab75cd7bb83c7bab4308c4e",
+      "native_body_change": "instruction text only"
+    },
+    {
+      "key": "page-122-001",
+      "message_count": 1,
+      "role": "user",
+      "native_image_order": [
+        "full_page",
+        "crop"
+      ],
+      "decoded_image_sha256": [
+        "04731378a1ff37ffb8e26faf005f87fa2383f9ba91e147ce9caa94e8519d086e",
+        "7fea918ba336f4cca9bbbb048f97bcc6377febe2afaebd5eddf2eed0c0bfb8d9"
+      ],
+      "native_schema_sha256": "dfde50f5b02eb779fdb8a1f0c008606935f9b261bab75cd7bb83c7bab4308c4e",
+      "native_body_change": "instruction text only"
+    },
+    {
+      "key": "page-125-000",
+      "message_count": 1,
+      "role": "user",
+      "native_image_order": [
+        "full_page",
+        "crop"
+      ],
+      "decoded_image_sha256": [
+        "b35e4c1e660a0ed9029ebe555558341a933a5724740964ca6927f94f77ae2944",
+        "e371aa234263c051dce440c71d0ec3d5a9ed31bd3b1fc9c4dd4dae475dca57ee"
+      ],
+      "native_schema_sha256": "dfde50f5b02eb779fdb8a1f0c008606935f9b261bab75cd7bb83c7bab4308c4e",
+      "native_body_change": "instruction text only"
+    },
+    {
+      "key": "page-126-000",
+      "message_count": 1,
+      "role": "user",
+      "native_image_order": [
+        "full_page",
+        "crop"
+      ],
+      "decoded_image_sha256": [
+        "4f4ac880a5ff48ffa1a6d2a010e763cf022dceb118988b7bf6d0c0a41fab1143",
+        "be267fc173fd8ed502bd6ab4d0be57c0d7d5a0c1556fdcc9f8c34d94aa8715d6"
+      ],
+      "native_schema_sha256": "dfde50f5b02eb779fdb8a1f0c008606935f9b261bab75cd7bb83c7bab4308c4e",
+      "native_body_change": "instruction text only"
+    },
+    {
+      "key": "page-126-001",
+      "message_count": 1,
+      "role": "user",
+      "native_image_order": [
+        "full_page",
+        "crop"
+      ],
+      "decoded_image_sha256": [
+        "4f4ac880a5ff48ffa1a6d2a010e763cf022dceb118988b7bf6d0c0a41fab1143",
+        "34ceefa5de85865fd864cb3253a38fa73cf6ab5f13ed56daec60e00de20da908"
+      ],
+      "native_schema_sha256": "dfde50f5b02eb779fdb8a1f0c008606935f9b261bab75cd7bb83c7bab4308c4e",
+      "native_body_change": "instruction text only"
+    },
+    {
+      "key": "page-127-000",
+      "message_count": 1,
+      "role": "user",
+      "native_image_order": [
+        "full_page",
+        "crop"
+      ],
+      "decoded_image_sha256": [
+        "25042b92e75e09ff2d7aa9330b44b26a092624a9bee19c7f2707a413f6c7f302",
+        "6dcf9cad3998eba4ed72d1a79594431f86113a04c58b0452670ede3e3ec13429"
+      ],
+      "native_schema_sha256": "dfde50f5b02eb779fdb8a1f0c008606935f9b261bab75cd7bb83c7bab4308c4e",
+      "native_body_change": "instruction text only"
+    },
+    {
+      "key": "page-127-001",
+      "message_count": 1,
+      "role": "user",
+      "native_image_order": [
+        "full_page",
+        "crop"
+      ],
+      "decoded_image_sha256": [
+        "25042b92e75e09ff2d7aa9330b44b26a092624a9bee19c7f2707a413f6c7f302",
+        "c98909f5166e46b330e89288f7ed4cd1f4700a98a5b0153996204725cc7ea29e"
+      ],
+      "native_schema_sha256": "dfde50f5b02eb779fdb8a1f0c008606935f9b261bab75cd7bb83c7bab4308c4e",
+      "native_body_change": "instruction text only"
+    }
+  ],
+  "compound_review": "All22 goldens/crops plus15 original source-page contact images inspected. Unified portrait photos, wagon/oxen drawings, engraved/integral text and one monument photograph with multiple plaques remain valid; separately framed/captioned neighboring source images are distinct.",
+  "risk": "Conservative uncertain fail can increase false rejection; prompt-only intent does not prove semantics. Full22 and fresh source-reviewed compound/neighbor/uncertainty cases needed before qualification.",
+  "preserved_schema": "benchmarks/providers/openai_responses_model.py",
+  "golden_sha256": "4bcba8f4ab8a742608e7cfc1438464a71cf56aa4cd9cbe9e0a67e4a410ac18a5",
+  "scorer_sha256": "12eb63725523bd00d59ce12b7486db8c9244124a0c57bb68cae8b8e9e7d288fb",
+  "validation": {
+    "render_native_parity": "22/22 instruction-only native body change, schema/settings/images/order unchanged",
+    "focused_offline_tests": "27 passed: crop benchmark substrate, crop runtime recipe contract, owner Responses adapter",
+    "javascript_syntax": "node --check passed",
+    "frozen_preservation": "all9 Attempt047 artifacts unchanged; original matches8 frozen task prompt hashes",
+    "semantic_correctness": "not measured; no model calls"
+  },
+  "proposed_semantic_next_step": {
+    "approval": "Separate paid approval required; current phase spends0",
+    "first_screen": "Predeclare three fresh repetitions per model on neighbor fail page122001 and compound pass page127000 plus integral-text pass page126001 and unified-portrait pass page009000. Same frozen revised prompt, source images and schema; Luna medium/Sol6.1 medium4096/high, GPT5.5 none2048/auto maintained comparator. Record source reasons, false-safe and false-reject separately; stop unsafe arms independently. This4-case screen is exposed-corpus evidence, not promotion.",
+    "follow_on": "Only safe arms advance fresh full22. Add source-reviewed fresh examples of separate caption-free neighbors, legitimate multipart figures and ambiguous visual boundaries before broader qualification; freeze new goldens before inference.",
+    "current_scope": "Proposal only; no paid call, provider-default change, runtime validation, or behavioral completion claim."
+  }
+}

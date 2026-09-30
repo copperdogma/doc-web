@@ -1,0 +1,70 @@
+description: Frozen repaired page-context safety; Attempt048
+prompts:
+- id: file://../prompts/validate-page-level-crop.js
+  label: repaired-page-context
+providers:
+- id: python:../providers/safety_repair_openai.py
+  label: control
+  config:
+    maxRetries: 0
+    model: gpt-5.5
+    expected_served_model: gpt-5.5-2026-04-23
+    reasoning_effort: none
+    max_output_tokens: 2048
+    image_detail: auto
+    output_contract: page_context_validation
+tests:
+- vars:
+    page_image: file://../input/safety-repair-048/S1-source.b64.txt
+    crop_image: file://../input/safety-repair-048/S1-crop.b64.txt
+    crop_key: S1
+    safety_case_id: S1
+    golden_relpath: golden/safety-repair-synthetic-048.json
+  assert:
+  - type: python
+    value: file://../scorers/crop_validation_scorer.py
+- vars:
+    page_image: file://../input/safety-repair-048/S2-source.b64.txt
+    crop_image: file://../input/safety-repair-048/S2-crop.b64.txt
+    crop_key: S2
+    safety_case_id: S2
+    golden_relpath: golden/safety-repair-synthetic-048.json
+  assert:
+  - type: python
+    value: file://../scorers/crop_validation_scorer.py
+- vars:
+    page_image: file://../input/safety-repair-048/S3-source.b64.txt
+    crop_image: file://../input/safety-repair-048/S3-crop.b64.txt
+    crop_key: S3
+    safety_case_id: S3
+    golden_relpath: golden/safety-repair-synthetic-048.json
+  assert:
+  - type: python
+    value: file://../scorers/crop_validation_scorer.py
+- vars:
+    page_image: file://../input/safety-repair-048/S4-source.b64.txt
+    crop_image: file://../input/safety-repair-048/S4-crop.b64.txt
+    crop_key: S4
+    safety_case_id: S4
+    golden_relpath: golden/safety-repair-synthetic-048.json
+  assert:
+  - type: python
+    value: file://../scorers/crop_validation_scorer.py
+- vars:
+    page_image: file://../input/safety-repair-048/S5-source.b64.txt
+    crop_image: file://../input/safety-repair-048/S5-crop.b64.txt
+    crop_key: S5
+    safety_case_id: S5
+    golden_relpath: golden/safety-repair-synthetic-048.json
+  assert:
+  - type: python
+    value: file://../scorers/crop_validation_scorer.py
+- vars:
+    page_image: file://../input/safety-repair-048/S6-source.b64.txt
+    crop_image: file://../input/safety-repair-048/S6-crop.b64.txt
+    crop_key: S6
+    safety_case_id: S6
+    golden_relpath: golden/safety-repair-synthetic-048.json
+  assert:
+  - type: python
+    value: file://../scorers/crop_validation_scorer.py

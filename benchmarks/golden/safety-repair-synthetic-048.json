@@ -1,0 +1,40 @@
+{
+  "S1": {
+    "verdict": "pass",
+    "reasons": [],
+    "notes": "source-unified outer frame, connection, shared caption",
+    "category": "physical-quality"
+  },
+  "S2": {
+    "verdict": "fail",
+    "reasons": [],
+    "notes": "separate framed/captioned neighbor, no leaked caption",
+    "category": "physical-quality"
+  },
+  "S3": {
+    "verdict": "fail",
+    "reasons": [
+      "ownership_uncertain"
+    ],
+    "notes": "policy-defined ownership uncertainty; no grouping, caption, connector or enclosing visual frame",
+    "category": "uncertainty-policy"
+  },
+  "S4": {
+    "verdict": "pass",
+    "reasons": [],
+    "notes": "badge text integral; external caption excluded",
+    "category": "physical-quality"
+  },
+  "S5": {
+    "verdict": "fail",
+    "reasons": [],
+    "notes": "external caption visible in crop",
+    "category": "physical-quality"
+  },
+  "S6": {
+    "verdict": "fail",
+    "reasons": [],
+    "notes": "93.75 percent blank page margin",
+    "category": "physical-quality"
+  }
+}

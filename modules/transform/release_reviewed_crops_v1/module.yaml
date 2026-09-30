@@ -1,0 +1,17 @@
+module_id: release_reviewed_crops_v1
+stage: transform
+entrypoint: modules/transform/release_reviewed_crops_v1/main.py
+name: Offline reviewed crop release
+schema_version: illustration_v1
+inputs: []
+outputs:
+  - name: illustration_manifest
+    type: file
+    path: illustration_manifest.jsonl
+parameters:
+  - {name: custody_root, type: string, required: true}
+  - {name: manifest, type: string, required: true}
+  - {name: inventory, type: string, required: true}
+  - {name: proposals, type: string, required: true}
+  - {name: decisions, type: string, required: true}
+  - {name: authority, type: string, required: true}

@@ -1,0 +1,17 @@
+{
+  "prompt_sha256": "ef4395838929b208fe65f21500d81ade902072bef3f8e53f81ef3d3b83fbc421",
+  "fixture_freeze_sha256": "60895f9c2de4075e9200bf770e4c373bd460fc9f88653dbbd785780d69939d74",
+  "topology_sha256": "6e9fdb8af82821c4c5346cce57e67afc5ec3986c83ba1cd767d963e61f050e34",
+  "execution_sources": {
+    "docs/evals/evidence/048-execution-sources/safety_repair_native_probe.py": "2dc1d22819ab806f7510f46c23158541032d0e7a5d450b267d7fd252921ba599",
+    "docs/evals/evidence/048-execution-sources/safety_repair_fixtures.py": "46a708295ff1e047e1b46e9a3bf4bd846e6f33cd954efcce05a44716bb64c800",
+    "docs/evals/evidence/048-execution-sources/safety_repair_preflight.py": "a183eb55bc4be5e502fd6cf52c7378a64baaffab7884995d6354bf30ce7d6d81",
+    "docs/evals/evidence/048-execution-sources/safety_repair_openai.py": "fc5b4e66dca5bc3112b004450a77d0025fdd4c468e206938b3989c65b55ab81c",
+    "docs/evals/evidence/048-execution-sources/validate-page-level-crop.js": "ef4395838929b208fe65f21500d81ade902072bef3f8e53f81ef3d3b83fbc421",
+    "docs/evals/evidence/048-execution-sources/safety_repair_guard.py": "08f3726a130a0c0fcad9eb7ba4a6f5e57a5353c7bc15ac29884735d85dfe40a5"
+  },
+  "offline_tests": "32 passed; guard/cap/recovery/unknown + Responses + crop substrate/runtime contract",
+  "lint": "all changed048 Python tooling/tests Ruff passed",
+  "source_correction": "126000fail\u2192pass before first call; sourcecorrected18pass/4fail; canonical17pass/5fail unchanged",
+  "root_source_review": "complete before dispatch"
+}

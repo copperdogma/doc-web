@@ -1,0 +1,236 @@
+{
+  "scope": "Offline opt-in review mechanics only; no provider calls or real Cam fixture approvals",
+  "test_command": "PYTHONPATH=. pytest -q tests/test_crop_review.py tests/test_crop_review_tool.py tests/test_build_chapter_html.py",
+  "tests_passed": 208,
+  "checks": {
+    "ruff_selected": "pass",
+    "diff_check": "pass",
+    "methodology_graph_check": "pass",
+    "frozen_047_nine": "unchanged",
+    "repaired_prompt": "unchanged"
+  },
+  "input_hashes": {
+    "modules/common/crop_review.py": "925e00e4e67564d382fa757add4637ced04f00efc8992041500f2cbe0ae6007d",
+    "modules/transform/release_reviewed_crops_v1/main.py": "28fda1e0d82ea8be3a621f6fcdbec2523f4cc168d55214384f578162feb0469b",
+    "modules/transform/release_reviewed_crops_v1/module.yaml": "beb900ca676a155d2c3a8fa12e413b529c31ee52843d1db24faa7ed99277a49e",
+    "modules/build/build_chapter_html_v1/main.py": "5de00ab178339ed3986adddc87361d60357d3b19b6764e5d38a9f7ccb1453009",
+    "modules/build/build_chapter_html_v1/module.yaml": "bd49658e3a0104c5aaeaeb2392edda03f25ef6ead5e68f8324bf653c7754cd9e",
+    "tools/crop_review.py": "65ca52e99ba89811cedf21d8baf07aea523f58e98c4727817e38bcf6f113174d",
+    "tools/prepare_crop_review_fixture.py": "a126f2d9d7535f7170ac654a1a081d6546b91432a64d25fc8fb899ccc9809f4f",
+    "tests/test_crop_review.py": "0279a990ac4b40f5ee48eed17b087f4b78c0bece14ff62ace3bad45d6540a3f9",
+    "tests/test_crop_review_tool.py": "92bcb704f4411407ef8ccf43d62181963053fc2542f1a3ecc2b22e2572ae9fa6",
+    "configs/recipes/story-241-reviewed-crop-offline.yaml": "7fe6dd855b4524e81219e163e3dfeb321ba24f6869fe7904feaac6266154de0d"
+  },
+  "fixture_hashes": {
+    "tests/fixtures/crop_review_offline/saved-S3-pass.json": "99ef270f399ae6075a33615cd2fd7b9f444eaef200a644f48b5c1b5672fdcae2",
+    "tests/fixtures/crop_review_offline/approved/authority.txt": "1def08866b748cb007f03ee7a2fc1c4c1bfcd12e6aab93798fba23d516458e62",
+    "tests/fixtures/crop_review_offline/approved/portions.jsonl": "c65bdab03dd156e79e42218626ccaaf502996b9d60d32d8f7b01285fcf2f50b6",
+    "tests/fixtures/crop_review_offline/approved/inventory-review.txt": "b77e112ab6613c93d65cb20ab5da08e875bad9bba306c8d83c4bc32ca76961eb",
+    "tests/fixtures/crop_review_offline/approved/human-1.json": "5d309cfb7bfebcb0d8dda8d73810c723574a87da30251b935db94d6850f1b8fe",
+    "tests/fixtures/crop_review_offline/approved/proposals.jsonl": "d4eebfb743fe29350d7a75266080bf597a3918075e49c871e3c9519c9d3634ee",
+    "tests/fixtures/crop_review_offline/approved/authority.json": "f99fecb3fe61e34227f31d4393215b1bb4f7a0ef6351801f948eb7ad02a74829",
+    "tests/fixtures/crop_review_offline/approved/synthetic-S4-fail.json": "26708915739807198dc03608fca93f138145b9c3e186a4d06b5c578c587d0877",
+    "tests/fixtures/crop_review_offline/approved/pages.jsonl": "d58b2ccd9cc9dddf0212e661859bc576ea15c583b2bd2a0711ad7fef296b8f96",
+    "tests/fixtures/crop_review_offline/approved/portions.ndjson": "c65bdab03dd156e79e42218626ccaaf502996b9d60d32d8f7b01285fcf2f50b6",
+    "tests/fixtures/crop_review_offline/approved/decisions.jsonl": "5ca627a8d900a9c7a49429cf016b325b0c1eecab38a08caf19dc149064f8e586",
+    "tests/fixtures/crop_review_offline/approved/pages.ndjson": "d58b2ccd9cc9dddf0212e661859bc576ea15c583b2bd2a0711ad7fef296b8f96",
+    "tests/fixtures/crop_review_offline/approved/S4-source.png": "381e784398327ecbe0d0e9b84a506d814d7b6ef4928e3d0f769946b64430ac33",
+    "tests/fixtures/crop_review_offline/approved/manifest.jsonl": "7cb9236a94e1f2119bc9e278fff8cff413c71f3e17ac5027e62c8dfda357d00d",
+    "tests/fixtures/crop_review_offline/approved/saved-S3-pass.json": "99ef270f399ae6075a33615cd2fd7b9f444eaef200a644f48b5c1b5672fdcae2",
+    "tests/fixtures/crop_review_offline/approved/inventory.json": "bfaced63818ab602d5d90cf741fffdb51bd218ed8ca1771a6e994829bb6e4f41",
+    "tests/fixtures/crop_review_offline/approved/S3-source.png": "4cb7ceb9d8a3045951ce9c2da00eb1afb02ad91d1d3bad722283c0f96fa5ce84",
+    "tests/fixtures/crop_review_offline/approved/human-2.json": "dd4dd5d589d863c74614fb9d405641ee086e67e5e04515e97af358028bb7c8cd",
+    "tests/fixtures/crop_review_offline/approved/images/S4.png": "9d310a44f961da0f05d01212dd3ba077a49054f5582bd8db393d5ae8670648a8",
+    "tests/fixtures/crop_review_offline/approved/images/S3.png": "11d98294ac8a19c8e77490998a933add2ddf8de6fdbeb8e7156159e201a87bfe",
+    "tests/fixtures/crop_review_offline/held/authority.txt": "1def08866b748cb007f03ee7a2fc1c4c1bfcd12e6aab93798fba23d516458e62",
+    "tests/fixtures/crop_review_offline/held/portions.jsonl": "52339b2b6174d85d0b93280fe6ee9b5831b7b98776ac74b0a20e592094416123",
+    "tests/fixtures/crop_review_offline/held/inventory-review.txt": "b77e112ab6613c93d65cb20ab5da08e875bad9bba306c8d83c4bc32ca76961eb",
+    "tests/fixtures/crop_review_offline/held/human-1.json": "50c52f517777d74fc12292961ec2a5934579071d9c8ed14bb2222679e84ba00f",
+    "tests/fixtures/crop_review_offline/held/proposals.jsonl": "0127fe1214ac7e80aa699ba1bb2b00aebe11f7f8b4e7f7c70ff93c45c58e2d31",
+    "tests/fixtures/crop_review_offline/held/authority.json": "3c04cc9229b2c66676484f91514bfd841365d6a83305fca5436b305616dd7235",
+    "tests/fixtures/crop_review_offline/held/synthetic-S4-fail.json": "26708915739807198dc03608fca93f138145b9c3e186a4d06b5c578c587d0877",
+    "tests/fixtures/crop_review_offline/held/pages.jsonl": "4e15cfc457e8a453babb61320548e5d27b8f83c21376acc9963bf202eed03413",
+    "tests/fixtures/crop_review_offline/held/portions.ndjson": "52339b2b6174d85d0b93280fe6ee9b5831b7b98776ac74b0a20e592094416123",
+    "tests/fixtures/crop_review_offline/held/decisions.jsonl": "4b904fcd3bf64dd4df3712397a76cf6d77ca6a4b65d53086e77a431c6bdaa43b",
+    "tests/fixtures/crop_review_offline/held/pages.ndjson": "4e15cfc457e8a453babb61320548e5d27b8f83c21376acc9963bf202eed03413",
+    "tests/fixtures/crop_review_offline/held/S4-source.png": "381e784398327ecbe0d0e9b84a506d814d7b6ef4928e3d0f769946b64430ac33",
+    "tests/fixtures/crop_review_offline/held/manifest.jsonl": "3c8969ac0e243a8ce7c130c34bdcfee543f2eb2707eb927032d4a0dbe28d1605",
+    "tests/fixtures/crop_review_offline/held/saved-S3-pass.json": "99ef270f399ae6075a33615cd2fd7b9f444eaef200a644f48b5c1b5672fdcae2",
+    "tests/fixtures/crop_review_offline/held/inventory.json": "be070533a9d105837bc799d0cc6de9c41a1ff5c5a8bbc2ca4e7a2d086b91bcfd",
+    "tests/fixtures/crop_review_offline/held/S3-source.png": "4cb7ceb9d8a3045951ce9c2da00eb1afb02ad91d1d3bad722283c0f96fa5ce84",
+    "tests/fixtures/crop_review_offline/held/human-2.json": "69ac8d7530e11fa0306ea66306257ac18db20511b0cb90e7963e8602e0697f98",
+    "tests/fixtures/crop_review_offline/held/images/S4.png": "9d310a44f961da0f05d01212dd3ba077a49054f5582bd8db393d5ae8670648a8",
+    "tests/fixtures/crop_review_offline/held/images/S3.png": "11d98294ac8a19c8e77490998a933add2ddf8de6fdbeb8e7156159e201a87bfe"
+  },
+  "driver_proofs": {
+    "approved_state": {
+      "run_id": "story241-crop-review-approved",
+      "stages": {
+        "load_pages": {
+          "status": "done",
+          "artifact": "output/runs/story241-crop-review-approved/01_load_artifact_v1/pages.ndjson",
+          "updated_at": "2026-09-30T13:35:44.603064Z",
+          "module_id": "load_artifact_v1",
+          "schema_version": null,
+          "description": "Loads an existing artifact from a path without re-running.",
+          "progress": {
+            "current": null,
+            "total": null,
+            "percent": null,
+            "message": null
+          }
+        },
+        "load_portions": {
+          "status": "done",
+          "artifact": "output/runs/story241-crop-review-approved/02_load_artifact_v1/portions.ndjson",
+          "updated_at": "2026-09-30T13:35:44.683697Z",
+          "module_id": "load_artifact_v1",
+          "schema_version": null,
+          "description": "Loads an existing artifact from a path without re-running.",
+          "progress": {
+            "current": null,
+            "total": null,
+            "percent": null,
+            "message": null
+          }
+        },
+        "release_reviewed": {
+          "status": "done",
+          "artifact": "output/runs/story241-crop-review-approved/03_release_reviewed_crops_v1/illustration_manifest.jsonl",
+          "updated_at": "2026-09-30T13:35:44.849488Z",
+          "module_id": "release_reviewed_crops_v1",
+          "schema_version": null,
+          "description": null,
+          "progress": {
+            "current": null,
+            "total": null,
+            "percent": null,
+            "message": null
+          }
+        },
+        "build_reviewed": {
+          "status": "done",
+          "artifact": "output/runs/story241-crop-review-approved/04_build_chapter_html_v1/chapters_manifest.jsonl",
+          "updated_at": "2026-09-30T13:35:46.106297Z",
+          "module_id": "build_chapter_html_v1",
+          "schema_version": null,
+          "description": "Produces self-contained HTML5 documents. Images wrapped in <figure> with <figcaption> from VLM caption text. Alt text uses VLM image_description. Opt-in crop review requires a current release receipt, run ID, and fresh output paths; accepted crops must appear exactly once before publication.",
+          "progress": {
+            "current": null,
+            "total": null,
+            "percent": null,
+            "message": null
+          }
+        }
+      },
+      "status": "done",
+      "ended_at": "2026-09-30T13:35:46.107618Z"
+    },
+    "held_state": {
+      "run_id": "story241-crop-review-held",
+      "stages": {
+        "load_pages": {
+          "status": "done",
+          "artifact": "output/runs/story241-crop-review-held/01_load_artifact_v1/pages.ndjson",
+          "updated_at": "2026-09-30T13:35:46.547663Z",
+          "module_id": "load_artifact_v1",
+          "schema_version": null,
+          "description": "Loads an existing artifact from a path without re-running.",
+          "progress": {
+            "current": null,
+            "total": null,
+            "percent": null,
+            "message": null
+          }
+        },
+        "load_portions": {
+          "status": "done",
+          "artifact": "output/runs/story241-crop-review-held/02_load_artifact_v1/portions.ndjson",
+          "updated_at": "2026-09-30T13:35:46.630718Z",
+          "module_id": "load_artifact_v1",
+          "schema_version": null,
+          "description": "Loads an existing artifact from a path without re-running.",
+          "progress": {
+            "current": null,
+            "total": null,
+            "percent": null,
+            "message": null
+          }
+        },
+        "release_reviewed": {
+          "status": "failed",
+          "artifact": "output/runs/story241-crop-review-held/03_release_reviewed_crops_v1/illustration_manifest.jsonl",
+          "updated_at": "2026-09-30T13:35:46.800934Z",
+          "module_id": "release_reviewed_crops_v1",
+          "schema_version": null,
+          "description": null,
+          "progress": {
+            "current": null,
+            "total": null,
+            "percent": null,
+            "message": "Stage failed after 0.17s"
+          }
+        }
+      },
+      "status": "failed",
+      "status_reason": "stage release_reviewed failed",
+      "ended_at": "2026-09-30T13:35:46.801188Z"
+    },
+    "approved_candidate_count": 2,
+    "approved_html": "output/runs/story241-crop-review-approved/output/html/chapter-001.html",
+    "approved_images_exact": true,
+    "held_no_manifest_images_html": true
+  },
+  "proof_hashes": {
+    "output/runs/story241-crop-review-approved/pipeline_state.json": "26f867699d188daa059da3af6345725d460c51d0d03f7be5a96847279a6724b5",
+    "output/runs/story241-crop-review-approved/pipeline_events.jsonl": "1f27b09ca2254b6b0d744801a51696f5ad829c6861d3fdaab4795e7078914609",
+    "output/runs/story241-crop-review-approved/timing_summary.json": "1923d255e4a1e5a007fdb5aa7d02847fbc467448a694b91ab58771569c181169",
+    "output/runs/story241-crop-review-approved/02_load_artifact_v1/portions.ndjson": "c65bdab03dd156e79e42218626ccaaf502996b9d60d32d8f7b01285fcf2f50b6",
+    "output/runs/story241-crop-review-approved/03_release_reviewed_crops_v1/illustration_manifest.jsonl": "7cb9236a94e1f2119bc9e278fff8cff413c71f3e17ac5027e62c8dfda357d00d",
+    "output/runs/story241-crop-review-approved/03_release_reviewed_crops_v1/crop_review_release.json": "2afdb144fd07225778d727adb9b73e43b515f3804dd9a7d2a404f14a6fa472dc",
+    "output/runs/story241-crop-review-approved/03_release_reviewed_crops_v1/images/S4.png": "9d310a44f961da0f05d01212dd3ba077a49054f5582bd8db393d5ae8670648a8",
+    "output/runs/story241-crop-review-approved/03_release_reviewed_crops_v1/images/S3.png": "11d98294ac8a19c8e77490998a933add2ddf8de6fdbeb8e7156159e201a87bfe",
+    "output/runs/story241-crop-review-approved/snapshots/registry.json": "e2699948ea2dffd566db165a59b89ad63f688600488e336ee3190a231c0a35f7",
+    "output/runs/story241-crop-review-approved/snapshots/plan.json": "59897307f4dba169d838ad56f1abcd45ed874e8c4b724110ce511d91ca2d2fee",
+    "output/runs/story241-crop-review-approved/snapshots/recipe.yaml": "56ab64adcc3003feb16c84b21f3499c7276563dd228e5e4f0bf2daff0c8e17a9",
+    "output/runs/story241-crop-review-approved/output/html/chapter-001.html": "92b1f9dc432eaa1b5794fe7c288f09c96028ffc2c1d9f7bd775f61e161619d98",
+    "output/runs/story241-crop-review-approved/output/html/index.html": "1fb2cfd3b91485c6df2df033096b222b6995ded5c1330f68257b554ba28cebe7",
+    "output/runs/story241-crop-review-approved/output/html/manifest.json": "dbd12e55df54bff56e9ab4849786c8b1209bebac840d1f54053108c85b4b2598",
+    "output/runs/story241-crop-review-approved/output/html/images/S4.png": "9d310a44f961da0f05d01212dd3ba077a49054f5582bd8db393d5ae8670648a8",
+    "output/runs/story241-crop-review-approved/output/html/images/S3.png": "11d98294ac8a19c8e77490998a933add2ddf8de6fdbeb8e7156159e201a87bfe",
+    "output/runs/story241-crop-review-approved/output/html/provenance/blocks.jsonl": "f9fbf20e1dc7727637e21c21aa293626551718daa974db796bf2e5132f09bb50",
+    "output/runs/story241-crop-review-approved/04_build_chapter_html_v1/chapters_manifest.jsonl": "58d74a6b00f08cd80a371f96f7e9e116eff4db56d846af8651f56db6af8076cb",
+    "output/runs/story241-crop-review-approved/01_load_artifact_v1/pages.ndjson": "d58b2ccd9cc9dddf0212e661859bc576ea15c583b2bd2a0711ad7fef296b8f96",
+    "output/runs/story241-crop-review-held/pipeline_state.json": "8c9ae1b36abd20fe94d3961603ee3d44058213ff0f5722bcf72de5423766c9ce",
+    "output/runs/story241-crop-review-held/pipeline_events.jsonl": "0a9f4478fa90d289b2d29e25dabc34490a33f9a78575d9506fe88765c9f9c4d1",
+    "output/runs/story241-crop-review-held/02_load_artifact_v1/portions.ndjson": "52339b2b6174d85d0b93280fe6ee9b5831b7b98776ac74b0a20e592094416123",
+    "output/runs/story241-crop-review-held/03_release_reviewed_crops_v1/crop_review_held.json": "b6fe4de6ff411ab97f1f378246abb42c8e16c891217fec009c603bb8de17d756",
+    "output/runs/story241-crop-review-held/snapshots/registry.json": "e2699948ea2dffd566db165a59b89ad63f688600488e336ee3190a231c0a35f7",
+    "output/runs/story241-crop-review-held/snapshots/plan.json": "2e4625b95ffbe04a415270d3a86b1cf2901b68b8998d9824f0b5a71d03b307fe",
+    "output/runs/story241-crop-review-held/snapshots/recipe.yaml": "25861e2622f2f39e476190c0e462ea0e807bb0d8560f3bf174b2c082066cba20",
+    "output/runs/story241-crop-review-held/01_load_artifact_v1/pages.ndjson": "4e15cfc457e8a453babb61320548e5d27b8f83c21376acc9963bf202eed03413"
+  },
+  "archive_sha256": "f226ebd2369c2f5c22ff537a3bc477558abc6ecf64d37a050a3a51bc7919bfb3",
+  "source_review": {
+    "owner": "S3 plausible coherent grouping; S4 integral badge lettering preserved",
+    "coordinator": "Rendered both exact chapter assets and embedded source/crop red boundaries",
+    "coordinator_screenshot": "/tmp/story241-approved-chapter.png",
+    "display_html": "docs/evals/evidence/story241-crop-review/source-review.html",
+    "display_html_sha256": "ed0d4ef1ea17617030c1372505a4e92f26371db8f5ab8e20f1eca28ad1867075"
+  },
+  "historical_preflights": [
+    "story241-crop-review-path-preflight-held",
+    "story241-crop-review-pages-preflight-held",
+    "story241-crop-review-loader-preflight-held"
+  ],
+  "prior_snapshots": [
+    "story241-crop-review-approved-pre-designation-snapshot",
+    "story241-crop-review-approved-prepublish-check-snapshot",
+    "story241-crop-review-held-prior-diagnostic-snapshot"
+  ],
+  "limitations": [
+    "Trusted local operator assertions, not remote authentication",
+    "Source completeness requires explicit full-page operator review; detector enumeration cannot establish it",
+    "Live Sol qualification and automatic promotion remain deferred"
+  ]
+}

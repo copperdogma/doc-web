@@ -1,0 +1,61 @@
+{
+  "page-012-001": {
+    "frozen_expected": "pass",
+    "source_adjudicated": "golden-wrong; substantial seal bottom missing",
+    "timing": "post-response discovery; frozen labels and primary scores unchanged",
+    "source_size": [
+      1545,
+      2000
+    ],
+    "crop_size": [
+      1397,
+      1096
+    ],
+    "complete_seal_source_bbox": [
+      187,
+      1374,
+      602,
+      1790
+    ],
+    "root_sift_registration": {
+      "matches": 576,
+      "inliers": 439,
+      "source_mapped_crop_corners": [
+        [
+          182.196,
+          1369.781
+        ],
+        [
+          605.348,
+          1369.838
+        ],
+        [
+          605.418,
+          1701.979
+        ],
+        [
+          182.149,
+          1701.972
+        ]
+      ],
+      "missing_bottom_source_pixels": 88,
+      "missing_height_fraction": 0.21
+    },
+    "disposition": "quarantined from semantic error claims and diagnostic denominator, never posthoc21/21 promotion; full22 gate cannot establish fresh admission",
+    "resolution_before_fresh": "Coordinator/owner source-confirmed deterministic eval-validity repair: separately frozen source-adjudicated22-key truth changes012001 tofail; saved outputs rejudged symmetrically allarms, no repeat. Frozen original scores unchanged; Sol22/22 source-adjudicated admits fresh after coordinator review."
+  },
+  "page-001-000-control": {
+    "receipt": 39,
+    "observed": "fail",
+    "frozen_expected": "pass",
+    "source_adjudicated": "model-wrong false-reject",
+    "reason": "Intended embossed landscape/cloud artwork is isolated; surrounding title/author/border outside intended illustration. Minor line-art clipping allowed. Control wrongly requires border/title context.",
+    "disposition": "control stopped before remaining21 full/fresh; independent candidate diagnostics continue"
+  },
+  "page-022-000-luna": {
+    "receipt": 33,
+    "status": "raw intent only, interrupted in-flight while source mismatch investigated",
+    "response_exists": false,
+    "disposition": "operational unavailable, no semantic score and no resend; full reserved0.007798 retained"
+  }
+}

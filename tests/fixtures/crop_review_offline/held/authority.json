@@ -1,0 +1,16 @@
+{
+  "run_id": "story241-crop-review-held",
+  "trust_boundary": "trusted_local_operator",
+  "decision_log": "decisions.jsonl",
+  "synthetic_test": true,
+  "operators": [
+    {
+      "operator_id": "fixture-reviewer",
+      "authority_ref": "synthetic-test-authority",
+      "evidence": {
+        "path": "authority.txt",
+        "sha256": "1def08866b748cb007f03ee7a2fc1c4c1bfcd12e6aab93798fba23d516458e62"
+      }
+    }
+  ]
+}

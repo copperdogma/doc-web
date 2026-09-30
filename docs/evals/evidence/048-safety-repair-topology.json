@@ -1,0 +1,3686 @@
+{
+  "run_id": "safety-repair-048-20260929",
+  "cap_usd": 18,
+  "max_planned": 105,
+  "max_recovery": 2,
+  "cache": "disabled",
+  "concurrency": 1,
+  "judge": "none; owner scorer and manual source review",
+  "base_sha": "58fa3d5f38d274fc702b45ed4161dec381fc24ec",
+  "matrices": [
+    {
+      "task": "benchmarks/tasks/safety-repair-048-luna-screen.yaml",
+      "task_sha256": "0e623e6679664a52a9107fa460393fcdecab4aa7cf8c5881121cb88146f972b0",
+      "arm": "luna",
+      "stage": "screen",
+      "count": 6,
+      "provider": {
+        "id": "python:../providers/safety_repair_openai.py",
+        "label": "luna",
+        "config": {
+          "model": "gpt-6-luna",
+          "reasoning_effort": "medium",
+          "max_output_tokens": 4096,
+          "image_detail": "high",
+          "output_contract": "page_context_validation"
+        }
+      },
+      "per_call_reservation_usd": 0.007798,
+      "cases": [
+        {
+          "key": "page-122-001",
+          "case_id": "screen-1-page-122-001",
+          "sources": {
+            "page_image": {
+              "path": "benchmarks/input/source-pages-b64/Image121.b64.txt",
+              "decoded_sha256": "04731378a1ff37ffb8e26faf005f87fa2383f9ba91e147ce9caa94e8519d086e",
+              "dimensions": [
+                1545,
+                2000
+              ]
+            },
+            "crop_image": {
+              "path": "benchmarks/input/crop-validation-b64/page-122-001.b64.txt",
+              "decoded_sha256": "7fea918ba336f4cca9bbbb048f97bcc6377febe2afaebd5eddf2eed0c0bfb8d9",
+              "dimensions": [
+                4244,
+                2958
+              ]
+            }
+          },
+          "text_schema_bytes": 4057,
+          "prompt_text_sha256": "9931ded6b7e732687b0889e6959ef9a873e6f459a292c132443db0f6bc9a7371",
+          "schema_sha256": "dfde50f5b02eb779fdb8a1f0c008606935f9b261bab75cd7bb83c7bab4308c4e",
+          "native_body_sha256": "0c2caa999792e901877fe68c38c55cd8e8bb3f5ca30554fe866cf9cedc34ef8e",
+          "assertions": [
+            {
+              "type": "python",
+              "value": "file://../scorers/crop_validation_scorer.py"
+            }
+          ]
+        },
+        {
+          "key": "page-122-001",
+          "case_id": "screen-2-page-122-001",
+          "sources": {
+            "page_image": {
+              "path": "benchmarks/input/source-pages-b64/Image121.b64.txt",
+              "decoded_sha256": "04731378a1ff37ffb8e26faf005f87fa2383f9ba91e147ce9caa94e8519d086e",
+              "dimensions": [
+                1545,
+                2000
+              ]
+            },
+            "crop_image": {
+              "path": "benchmarks/input/crop-validation-b64/page-122-001.b64.txt",
+              "decoded_sha256": "7fea918ba336f4cca9bbbb048f97bcc6377febe2afaebd5eddf2eed0c0bfb8d9",
+              "dimensions": [
+                4244,
+                2958
+              ]
+            }
+          },
+          "text_schema_bytes": 4057,
+          "prompt_text_sha256": "9931ded6b7e732687b0889e6959ef9a873e6f459a292c132443db0f6bc9a7371",
+          "schema_sha256": "dfde50f5b02eb779fdb8a1f0c008606935f9b261bab75cd7bb83c7bab4308c4e",
+          "native_body_sha256": "0c2caa999792e901877fe68c38c55cd8e8bb3f5ca30554fe866cf9cedc34ef8e",
+          "assertions": [
+            {
+              "type": "python",
+              "value": "file://../scorers/crop_validation_scorer.py"
+            }
+          ]
+        },
+        {
+          "key": "page-122-001",
+          "case_id": "screen-3-page-122-001",
+          "sources": {
+            "page_image": {
+              "path": "benchmarks/input/source-pages-b64/Image121.b64.txt",
+              "decoded_sha256": "04731378a1ff37ffb8e26faf005f87fa2383f9ba91e147ce9caa94e8519d086e",
+              "dimensions": [
+                1545,
+                2000
+              ]
+            },
+            "crop_image": {
+              "path": "benchmarks/input/crop-validation-b64/page-122-001.b64.txt",
+              "decoded_sha256": "7fea918ba336f4cca9bbbb048f97bcc6377febe2afaebd5eddf2eed0c0bfb8d9",
+              "dimensions": [
+                4244,
+                2958
+              ]
+            }
+          },
+          "text_schema_bytes": 4057,
+          "prompt_text_sha256": "9931ded6b7e732687b0889e6959ef9a873e6f459a292c132443db0f6bc9a7371",
+          "schema_sha256": "dfde50f5b02eb779fdb8a1f0c008606935f9b261bab75cd7bb83c7bab4308c4e",
+          "native_body_sha256": "0c2caa999792e901877fe68c38c55cd8e8bb3f5ca30554fe866cf9cedc34ef8e",
+          "assertions": [
+            {
+              "type": "python",
+              "value": "file://../scorers/crop_validation_scorer.py"
+            }
+          ]
+        },
+        {
+          "key": "page-009-000",
+          "case_id": "screen-4-page-009-000",
+          "sources": {
+            "page_image": {
+              "path": "benchmarks/input/source-pages-b64/Image008.b64.txt",
+              "decoded_sha256": "da312d69a4c007009c1e696b32e66a3a7a957eac6b9aa3fa67323eeb1c478c31",
+              "dimensions": [
+                1545,
+                2000
+              ]
+            },
+            "crop_image": {
+              "path": "benchmarks/input/crop-validation-b64/page-009-000.b64.txt",
+              "decoded_sha256": "4413db90068236ede2835ef29c29359137847e51158266af20ef925938fa7bc0",
+              "dimensions": [
+                3029,
+                2772
+              ]
+            }
+          },
+          "text_schema_bytes": 4057,
+          "prompt_text_sha256": "9931ded6b7e732687b0889e6959ef9a873e6f459a292c132443db0f6bc9a7371",
+          "schema_sha256": "dfde50f5b02eb779fdb8a1f0c008606935f9b261bab75cd7bb83c7bab4308c4e",
+          "native_body_sha256": "0abb12bdf15b172a010384aa50bbc1f133da0040a18e69c0cc62a0541c80226b",
+          "assertions": [
+            {
+              "type": "python",
+              "value": "file://../scorers/crop_validation_scorer.py"
+            }
+          ]
+        },
+        {
+          "key": "page-126-001",
+          "case_id": "screen-5-page-126-001",
+          "sources": {
+            "page_image": {
+              "path": "benchmarks/input/source-pages-b64/Image125.b64.txt",
+              "decoded_sha256": "4f4ac880a5ff48ffa1a6d2a010e763cf022dceb118988b7bf6d0c0a41fab1143",
+              "dimensions": [
+                1545,
+                2000
+              ]
+            },
+            "crop_image": {
+              "path": "benchmarks/input/crop-validation-b64/page-126-001.b64.txt",
+              "decoded_sha256": "34ceefa5de85865fd864cb3253a38fa73cf6ab5f13ed56daec60e00de20da908",
+              "dimensions": [
+                2123,
+                2940
+              ]
+            }
+          },
+          "text_schema_bytes": 4057,
+          "prompt_text_sha256": "9931ded6b7e732687b0889e6959ef9a873e6f459a292c132443db0f6bc9a7371",
+          "schema_sha256": "dfde50f5b02eb779fdb8a1f0c008606935f9b261bab75cd7bb83c7bab4308c4e",
+          "native_body_sha256": "f315e48c08e5f44fd3fca1a5cfe3809c34012545c4b51fdc6b424113b19aa6e8",
+          "assertions": [
+            {
+              "type": "python",
+              "value": "file://../scorers/crop_validation_scorer.py"
+            }
+          ]
+        },
+        {
+          "key": "page-127-000",
+          "case_id": "screen-6-page-127-000",
+          "sources": {
+            "page_image": {
+              "path": "benchmarks/input/source-pages-b64/Image126.b64.txt",
+              "decoded_sha256": "25042b92e75e09ff2d7aa9330b44b26a092624a9bee19c7f2707a413f6c7f302",
+              "dimensions": [
+                1545,
+                2000
+              ]
+            },
+            "crop_image": {
+              "path": "benchmarks/input/crop-validation-b64/page-127-000.b64.txt",
+              "decoded_sha256": "6dcf9cad3998eba4ed72d1a79594431f86113a04c58b0452670ede3e3ec13429",
+              "dimensions": [
+                2924,
+                2081
+              ]
+            }
+          },
+          "text_schema_bytes": 4057,
+          "prompt_text_sha256": "9931ded6b7e732687b0889e6959ef9a873e6f459a292c132443db0f6bc9a7371",
+          "schema_sha256": "dfde50f5b02eb779fdb8a1f0c008606935f9b261bab75cd7bb83c7bab4308c4e",
+          "native_body_sha256": "d0aa72241edc1c800f72551121bdae1c8f51808720bb3a0d9e8ffa19581c5a06",
+          "assertions": [
+            {
+              "type": "python",
+              "value": "file://../scorers/crop_validation_scorer.py"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "task": "benchmarks/tasks/safety-repair-048-luna-full.yaml",
+      "task_sha256": "955f9a1386fb3af46c7c66b888efaaffdd8032c7d5ea6e39ad49199d6ee42595",
+      "arm": "luna",
+      "stage": "full",
+      "count": 22,
+      "provider": {
+        "id": "python:../providers/safety_repair_openai.py",
+        "label": "luna",
+        "config": {
+          "model": "gpt-6-luna",
+          "reasoning_effort": "medium",
+          "max_output_tokens": 4096,
+          "image_detail": "high",
+          "output_contract": "page_context_validation"
+        }
+      },
+      "per_call_reservation_usd": 0.007798,
+      "cases": [
+        {
+          "key": "page-001-000",
+          "case_id": "page-001-000",
+          "sources": {
+            "page_image": {
+              "path": "benchmarks/input/source-pages-b64/Image000.b64.txt",
+              "decoded_sha256": "7500762d6e0b9761b49305b28e0c3609d051af1d5f3eac8ce33028b0b439f325",
+              "dimensions": [
+                1505,
+                2000
+              ]
+            },
+            "crop_image": {
+              "path": "benchmarks/input/crop-validation-b64/page-001-000.b64.txt",
+              "decoded_sha256": "67accf0bf3854473e557261d179bce8a4c4519de039460e3c797e52f49e1dfaa",
+              "dimensions": [
+                3786,
+                4479
+              ]
+            }
+          },
+          "text_schema_bytes": 4057,
+          "prompt_text_sha256": "9931ded6b7e732687b0889e6959ef9a873e6f459a292c132443db0f6bc9a7371",
+          "schema_sha256": "dfde50f5b02eb779fdb8a1f0c008606935f9b261bab75cd7bb83c7bab4308c4e",
+          "native_body_sha256": "251a4dd2150d0aaf61560b4ec018e3e80c6744d4ed01248f4050cfea9818c236",
+          "assertions": [
+            {
+              "type": "python",
+              "value": "file://../scorers/crop_validation_scorer.py"
+            }
+          ]
+        },
+        {
+          "key": "page-004-000",
+          "case_id": "page-004-000",
+          "sources": {
+            "page_image": {
+              "path": "benchmarks/input/source-pages-b64/Image003.b64.txt",
+              "decoded_sha256": "ad1807bfdad56d65becf8011137680496f72d564bfc922a8da7d2c021e3ef266",
+              "dimensions": [
+                1545,
+                2000
+              ]
+            },
+            "crop_image": {
+              "path": "benchmarks/input/crop-validation-b64/page-004-000.b64.txt",
+              "decoded_sha256": "4cc9a8224d1efbddc1f8f1a5a3f973bb8345f81fe26d03aa3b6d5197ce786209",
+              "dimensions": [
+                4468,
+                1254
+              ]
+            }
+          },
+          "text_schema_bytes": 4057,
+          "prompt_text_sha256": "9931ded6b7e732687b0889e6959ef9a873e6f459a292c132443db0f6bc9a7371",
+          "schema_sha256": "dfde50f5b02eb779fdb8a1f0c008606935f9b261bab75cd7bb83c7bab4308c4e",
+          "native_body_sha256": "6b314ddbc75eab2b0ccf53bfd8f91b86880e934cf346eefc6c1442c594046ae0",
+          "assertions": [
+            {
+              "type": "python",
+              "value": "file://../scorers/crop_validation_scorer.py"
+            }
+          ]
+        },
+        {
+          "key": "page-009-000",
+          "case_id": "page-009-000",
+          "sources": {
+            "page_image": {
+              "path": "benchmarks/input/source-pages-b64/Image008.b64.txt",
+              "decoded_sha256": "da312d69a4c007009c1e696b32e66a3a7a957eac6b9aa3fa67323eeb1c478c31",
+              "dimensions": [
+                1545,
+                2000
+              ]
+            },
+            "crop_image": {
+              "path": "benchmarks/input/crop-validation-b64/page-009-000.b64.txt",
+              "decoded_sha256": "4413db90068236ede2835ef29c29359137847e51158266af20ef925938fa7bc0",
+              "dimensions": [
+                3029,
+                2772
+              ]
+            }
+          },
+          "text_schema_bytes": 4057,
+          "prompt_text_sha256": "9931ded6b7e732687b0889e6959ef9a873e6f459a292c132443db0f6bc9a7371",
+          "schema_sha256": "dfde50f5b02eb779fdb8a1f0c008606935f9b261bab75cd7bb83c7bab4308c4e",
+          "native_body_sha256": "0abb12bdf15b172a010384aa50bbc1f133da0040a18e69c0cc62a0541c80226b",
+          "assertions": [
+            {
+              "type": "python",
+              "value": "file://../scorers/crop_validation_scorer.py"
+            }
+          ]
+        },
+        {
+          "key": "page-012-000",
+          "case_id": "page-012-000",
+          "sources": {
+            "page_image": {
+              "path": "benchmarks/input/source-pages-b64/Image011.b64.txt",
+              "decoded_sha256": "ae3524cb58ac940c912c7885d65ec9d21221415d97d1ea21d97be9615161a860",
+              "dimensions": [
+                1545,
+                2000
+              ]
+            },
+            "crop_image": {
+              "path": "benchmarks/input/crop-validation-b64/page-012-000.b64.txt",
+              "decoded_sha256": "3a2a0f5ac2782b10b066bd4ace50d305ce2bbea1c53e27934205b7cf2a8b93ad",
+              "dimensions": [
+                1056,
+                1049
+              ]
+            }
+          },
+          "text_schema_bytes": 4057,
+          "prompt_text_sha256": "9931ded6b7e732687b0889e6959ef9a873e6f459a292c132443db0f6bc9a7371",
+          "schema_sha256": "dfde50f5b02eb779fdb8a1f0c008606935f9b261bab75cd7bb83c7bab4308c4e",
+          "native_body_sha256": "1c4385254dc36550882c3d5e365baed9ea0571d1cadb932f7726220458218e25",
+          "assertions": [
+            {
+              "type": "python",
+              "value": "file://../scorers/crop_validation_scorer.py"
+            }
+          ]
+        },
+        {
+          "key": "page-012-001",
+          "case_id": "page-012-001",
+          "sources": {
+            "page_image": {
+              "path": "benchmarks/input/source-pages-b64/Image011.b64.txt",
+              "decoded_sha256": "ae3524cb58ac940c912c7885d65ec9d21221415d97d1ea21d97be9615161a860",
+              "dimensions": [
+                1545,
+                2000
+              ]
+            },
+            "crop_image": {
+              "path": "benchmarks/input/crop-validation-b64/page-012-001.b64.txt",
+              "decoded_sha256": "da367ed32034c950a729fd32707412d2956f01760e2ced6616f2c7306002d7ec",
+              "dimensions": [
+                1397,
+                1096
+              ]
+            }
+          },
+          "text_schema_bytes": 4057,
+          "prompt_text_sha256": "9931ded6b7e732687b0889e6959ef9a873e6f459a292c132443db0f6bc9a7371",
+          "schema_sha256": "dfde50f5b02eb779fdb8a1f0c008606935f9b261bab75cd7bb83c7bab4308c4e",
+          "native_body_sha256": "7ccab16b2cbfd3aa225984eed2d0b7f1de2655f3759dbf74a42e40748bdc59cc",
+          "assertions": [
+            {
+              "type": "python",
+              "value": "file://../scorers/crop_validation_scorer.py"
+            }
+          ]
+        },
+        {
+          "key": "page-014-000",
+          "case_id": "page-014-000",
+          "sources": {
+            "page_image": {
+              "path": "benchmarks/input/source-pages-b64/Image013.b64.txt",
+              "decoded_sha256": "cb53f04abc02441992de4903c079b036c6242a50cd275f696231c89634e6a75b",
+              "dimensions": [
+                1545,
+                2000
+              ]
+            },
+            "crop_image": {
+              "path": "benchmarks/input/crop-validation-b64/page-014-000.b64.txt",
+              "decoded_sha256": "4f4af349e0fcc4f3e15065dad7fecc68fe1805df524bf2dac94e56a524886693",
+              "dimensions": [
+                1994,
+                1796
+              ]
+            }
+          },
+          "text_schema_bytes": 4057,
+          "prompt_text_sha256": "9931ded6b7e732687b0889e6959ef9a873e6f459a292c132443db0f6bc9a7371",
+          "schema_sha256": "dfde50f5b02eb779fdb8a1f0c008606935f9b261bab75cd7bb83c7bab4308c4e",
+          "native_body_sha256": "b56eb347ed21cefd8949859644376c70f33e1b17dd0bdb3b26493055aa1b3626",
+          "assertions": [
+            {
+              "type": "python",
+              "value": "file://../scorers/crop_validation_scorer.py"
+            }
+          ]
+        },
+        {
+          "key": "page-018-000",
+          "case_id": "page-018-000",
+          "sources": {
+            "page_image": {
+              "path": "benchmarks/input/source-pages-b64/Image017.b64.txt",
+              "decoded_sha256": "3d069f99adca6caa2039d3a9f4cccc2cb8a44413d5f44023d21baaa42b7ae6d1",
+              "dimensions": [
+                1545,
+                2000
+              ]
+            },
+            "crop_image": {
+              "path": "benchmarks/input/crop-validation-b64/page-018-000.b64.txt",
+              "decoded_sha256": "b5c9ee922fe3f6468acf31c7dbe842a4bde8918a4f370c67cf36d5b8546edc0b",
+              "dimensions": [
+                2163,
+                5313
+              ]
+            }
+          },
+          "text_schema_bytes": 4057,
+          "prompt_text_sha256": "9931ded6b7e732687b0889e6959ef9a873e6f459a292c132443db0f6bc9a7371",
+          "schema_sha256": "dfde50f5b02eb779fdb8a1f0c008606935f9b261bab75cd7bb83c7bab4308c4e",
+          "native_body_sha256": "6ea41b163070eae93a5764fd919c928060b177f0ae3f6d7504aedbe1e6dba445",
+          "assertions": [
+            {
+              "type": "python",
+              "value": "file://../scorers/crop_validation_scorer.py"
+            }
+          ]
+        },
+        {
+          "key": "page-021-000",
+          "case_id": "page-021-000",
+          "sources": {
+            "page_image": {
+              "path": "benchmarks/input/source-pages-b64/Image020.b64.txt",
+              "decoded_sha256": "5a1f2380a089ff23355ff101b07549bd57abba3a51636a6b58a28a31a4195318",
+              "dimensions": [
+                1545,
+                2000
+              ]
+            },
+            "crop_image": {
+              "path": "benchmarks/input/crop-validation-b64/page-021-000.b64.txt",
+              "decoded_sha256": "b03c6e1a9b3e3e6842de1760b97fc3e131b91eea3a2e3d11bedafa53a385f426",
+              "dimensions": [
+                4253,
+                2669
+              ]
+            }
+          },
+          "text_schema_bytes": 4057,
+          "prompt_text_sha256": "9931ded6b7e732687b0889e6959ef9a873e6f459a292c132443db0f6bc9a7371",
+          "schema_sha256": "dfde50f5b02eb779fdb8a1f0c008606935f9b261bab75cd7bb83c7bab4308c4e",
+          "native_body_sha256": "2f0fdea7ff096da680e0bb6894d9287167387ca3a16759aa3096a5ff313b4bbb",
+          "assertions": [
+            {
+              "type": "python",
+              "value": "file://../scorers/crop_validation_scorer.py"
+            }
+          ]
+        },
+        {
+          "key": "page-021-001",
+          "case_id": "page-021-001",
+          "sources": {
+            "page_image": {
+              "path": "benchmarks/input/source-pages-b64/Image020.b64.txt",
+              "decoded_sha256": "5a1f2380a089ff23355ff101b07549bd57abba3a51636a6b58a28a31a4195318",
+              "dimensions": [
+                1545,
+                2000
+              ]
+            },
+            "crop_image": {
+              "path": "benchmarks/input/crop-validation-b64/page-021-001.b64.txt",
+              "decoded_sha256": "7d3af1dc6ffa2a2c731a6f0cdadb791175b25bcb2580c69034dcf2de6c06131e",
+              "dimensions": [
+                4152,
+                2471
+              ]
+            }
+          },
+          "text_schema_bytes": 4057,
+          "prompt_text_sha256": "9931ded6b7e732687b0889e6959ef9a873e6f459a292c132443db0f6bc9a7371",
+          "schema_sha256": "dfde50f5b02eb779fdb8a1f0c008606935f9b261bab75cd7bb83c7bab4308c4e",
+          "native_body_sha256": "9f208fd877b8c4c0543c3a827244d2808df206e88c79a96fd3f6527f9e30bbcb",
+          "assertions": [
+            {
+              "type": "python",
+              "value": "file://../scorers/crop_validation_scorer.py"
+            }
+          ]
+        },
+        {
+          "key": "page-022-000",
+          "case_id": "page-022-000",
+          "sources": {
+            "page_image": {
+              "path": "benchmarks/input/source-pages-b64/Image021.b64.txt",
+              "decoded_sha256": "2f49d83261e2f40d20b736b602cc4de8c36b48780ab944dc96c8e08f83e34332",
+              "dimensions": [
+                1545,
+                2000
+              ]
+            },
+            "crop_image": {
+              "path": "benchmarks/input/crop-validation-b64/page-022-000.b64.txt",
+              "decoded_sha256": "c8de7753ebe7d13c9646b62bef02984148f4e9e2260197a56babd46442f61ea9",
+              "dimensions": [
+                1887,
+                1584
+              ]
+            }
+          },
+          "text_schema_bytes": 4057,
+          "prompt_text_sha256": "9931ded6b7e732687b0889e6959ef9a873e6f459a292c132443db0f6bc9a7371",
+          "schema_sha256": "dfde50f5b02eb779fdb8a1f0c008606935f9b261bab75cd7bb83c7bab4308c4e",
+          "native_body_sha256": "4e623ac51c1f061c9c03677b657d48a86e2b5ad935291e9a044730b376b44dc7",
+          "assertions": [
+            {
+              "type": "python",
+              "value": "file://../scorers/crop_validation_scorer.py"
+            }
+          ]
+        },
+        {
+          "key": "page-038-000",
+          "case_id": "page-038-000",
+          "sources": {
+            "page_image": {
+              "path": "benchmarks/input/source-pages-b64/Image037.b64.txt",
+              "decoded_sha256": "b836c9c90fc650dd0513299652bf1af41fc577544803d9cea64928c890cdfdbe",
+              "dimensions": [
+                1545,
+                2000
+              ]
+            },
+            "crop_image": {
+              "path": "benchmarks/input/crop-validation-b64/page-038-000.b64.txt",
+              "decoded_sha256": "09855f57fc1ff367f3174dd0a5bfab433e069195aa1d2596f68212cae163a349",
+              "dimensions": [
+                1372,
+                1706
+              ]
+            }
+          },
+          "text_schema_bytes": 4057,
+          "prompt_text_sha256": "9931ded6b7e732687b0889e6959ef9a873e6f459a292c132443db0f6bc9a7371",
+          "schema_sha256": "dfde50f5b02eb779fdb8a1f0c008606935f9b261bab75cd7bb83c7bab4308c4e",
+          "native_body_sha256": "568de375f79a6c2234b471f624cf1356197d6b2ab7b7cea53331e01e264bb061",
+          "assertions": [
+            {
+              "type": "python",
+              "value": "file://../scorers/crop_validation_scorer.py"
+            }
+          ]
+        },
+        {
+          "key": "page-038-001",
+          "case_id": "page-038-001",
+          "sources": {
+            "page_image": {
+              "path": "benchmarks/input/source-pages-b64/Image037.b64.txt",
+              "decoded_sha256": "b836c9c90fc650dd0513299652bf1af41fc577544803d9cea64928c890cdfdbe",
+              "dimensions": [
+                1545,
+                2000
+              ]
+            },
+            "crop_image": {
+              "path": "benchmarks/input/crop-validation-b64/page-038-001.b64.txt",
+              "decoded_sha256": "4eaee1585bba4a4c6309e5d5bd28a57b4dd8c297a0b8dd0a491c8c60d4e66b89",
+              "dimensions": [
+                2014,
+                1712
+              ]
+            }
+          },
+          "text_schema_bytes": 4057,
+          "prompt_text_sha256": "9931ded6b7e732687b0889e6959ef9a873e6f459a292c132443db0f6bc9a7371",
+          "schema_sha256": "dfde50f5b02eb779fdb8a1f0c008606935f9b261bab75cd7bb83c7bab4308c4e",
+          "native_body_sha256": "6f19bbd50c8d21043407fbcd45a0511a9a06ef1cddf084e0665ae6e0718affd0",
+          "assertions": [
+            {
+              "type": "python",
+              "value": "file://../scorers/crop_validation_scorer.py"
+            }
+          ]
+        },
+        {
+          "key": "page-060-000",
+          "case_id": "page-060-000",
+          "sources": {
+            "page_image": {
+              "path": "benchmarks/input/source-pages-b64/Image059.b64.txt",
+              "decoded_sha256": "af4d6f24fc5b026a12697ed4d9da2758257bb8e0ec06c7989a2b2d0625501317",
+              "dimensions": [
+                1545,
+                2000
+              ]
+            },
+            "crop_image": {
+              "path": "benchmarks/input/crop-validation-b64/page-060-000.b64.txt",
+              "decoded_sha256": "0e7a4ae8f060dcb0588f647c2e7d51abb7251b91ec81feb6d89a9923f0d4e9b3",
+              "dimensions": [
+                2004,
+                2561
+              ]
+            }
+          },
+          "text_schema_bytes": 4057,
+          "prompt_text_sha256": "9931ded6b7e732687b0889e6959ef9a873e6f459a292c132443db0f6bc9a7371",
+          "schema_sha256": "dfde50f5b02eb779fdb8a1f0c008606935f9b261bab75cd7bb83c7bab4308c4e",
+          "native_body_sha256": "d691cfe8f809659af44b8e724027d9e31c658327cef7227cad4c76cf9be0c276",
+          "assertions": [
+            {
+              "type": "python",
+              "value": "file://../scorers/crop_validation_scorer.py"
+            }
+          ]
+        },
+        {
+          "key": "page-060-001",
+          "case_id": "page-060-001",
+          "sources": {
+            "page_image": {
+              "path": "benchmarks/input/source-pages-b64/Image059.b64.txt",
+              "decoded_sha256": "af4d6f24fc5b026a12697ed4d9da2758257bb8e0ec06c7989a2b2d0625501317",
+              "dimensions": [
+                1545,
+                2000
+              ]
+            },
+            "crop_image": {
+              "path": "benchmarks/input/crop-validation-b64/page-060-001.b64.txt",
+              "decoded_sha256": "f05b5737e373e2b06f0544bd74c59c9e92b096919fc775cdd9cc0bb4642dade6",
+              "dimensions": [
+                2015,
+                1743
+              ]
+            }
+          },
+          "text_schema_bytes": 4057,
+          "prompt_text_sha256": "9931ded6b7e732687b0889e6959ef9a873e6f459a292c132443db0f6bc9a7371",
+          "schema_sha256": "dfde50f5b02eb779fdb8a1f0c008606935f9b261bab75cd7bb83c7bab4308c4e",
+          "native_body_sha256": "1bd6e3617e84b55eacac0cb400cbc44939b7c06d0c2901ffd52e7f19bb2d5575",
+          "assertions": [
+            {
+              "type": "python",
+              "value": "file://../scorers/crop_validation_scorer.py"
+            }
+          ]
+        },
+        {
+          "key": "page-092-000",
+          "case_id": "page-092-000",
+          "sources": {
+            "page_image": {
+              "path": "benchmarks/input/source-pages-b64/Image091.b64.txt",
+              "decoded_sha256": "23540ee8136d29922da3f9284d44ddb46a07390fdd41f79f9afbb39989c9c04c",
+              "dimensions": [
+                1545,
+                2000
+              ]
+            },
+            "crop_image": {
+              "path": "benchmarks/input/crop-validation-b64/page-092-000.b64.txt",
+              "decoded_sha256": "3d02c44de285d58fd54c3131a5c2c6c13235093c88eef49ac02e2a778b23687c",
+              "dimensions": [
+                1974,
+                2381
+              ]
+            }
+          },
+          "text_schema_bytes": 4057,
+          "prompt_text_sha256": "9931ded6b7e732687b0889e6959ef9a873e6f459a292c132443db0f6bc9a7371",
+          "schema_sha256": "dfde50f5b02eb779fdb8a1f0c008606935f9b261bab75cd7bb83c7bab4308c4e",
+          "native_body_sha256": "a37c68bb572aaac842e6a0a028a7eef646d6e3b12396ae97fcf7109267c1d43b",
+          "assertions": [
+            {
+              "type": "python",
+              "value": "file://../scorers/crop_validation_scorer.py"
+            }
+          ]
+        },
+        {
+          "key": "page-122-000",
+          "case_id": "page-122-000",
+          "sources": {
+            "page_image": {
+              "path": "benchmarks/input/source-pages-b64/Image121.b64.txt",
+              "decoded_sha256": "04731378a1ff37ffb8e26faf005f87fa2383f9ba91e147ce9caa94e8519d086e",
+              "dimensions": [
+                1545,
+                2000
+              ]
+            },
+            "crop_image": {
+              "path": "benchmarks/input/crop-validation-b64/page-122-000.b64.txt",
+              "decoded_sha256": "5ab45f308ea9d353dae2830a574af026b907fd95f6c50e78d48e8921031f6990",
+              "dimensions": [
+                4244,
+                2478
+              ]
+            }
+          },
+          "text_schema_bytes": 4057,
+          "prompt_text_sha256": "9931ded6b7e732687b0889e6959ef9a873e6f459a292c132443db0f6bc9a7371",
+          "schema_sha256": "dfde50f5b02eb779fdb8a1f0c008606935f9b261bab75cd7bb83c7bab4308c4e",
+          "native_body_sha256": "6ad6b5fd2f49fdb0ae6219ed2df561ce2085321dbd886edd35b70b208a2dc112",
+          "assertions": [
+            {
+              "type": "python",
+              "value": "file://../scorers/crop_validation_scorer.py"
+            }
+          ]
+        },
+        {
+          "key": "page-122-001",
+          "case_id": "page-122-001",
+          "sources": {
+            "page_image": {
+              "path": "benchmarks/input/source-pages-b64/Image121.b64.txt",
+              "decoded_sha256": "04731378a1ff37ffb8e26faf005f87fa2383f9ba91e147ce9caa94e8519d086e",
+              "dimensions": [
+                1545,
+                2000
+              ]
+            },
+            "crop_image": {
+              "path": "benchmarks/input/crop-validation-b64/page-122-001.b64.txt",
+              "decoded_sha256": "7fea918ba336f4cca9bbbb048f97bcc6377febe2afaebd5eddf2eed0c0bfb8d9",
+              "dimensions": [
+                4244,
+                2958
+              ]
+            }
+          },
+          "text_schema_bytes": 4057,
+          "prompt_text_sha256": "9931ded6b7e732687b0889e6959ef9a873e6f459a292c132443db0f6bc9a7371",
+          "schema_sha256": "dfde50f5b02eb779fdb8a1f0c008606935f9b261bab75cd7bb83c7bab4308c4e",
+          "native_body_sha256": "0c2caa999792e901877fe68c38c55cd8e8bb3f5ca30554fe866cf9cedc34ef8e",
+          "assertions": [
+            {
+              "type": "python",
+              "value": "file://../scorers/crop_validation_scorer.py"
+            }
+          ]
+        },
+        {
+          "key": "page-125-000",
+          "case_id": "page-125-000",
+          "sources": {
+            "page_image": {
+              "path": "benchmarks/input/source-pages-b64/Image124.b64.txt",
+              "decoded_sha256": "b35e4c1e660a0ed9029ebe555558341a933a5724740964ca6927f94f77ae2944",
+              "dimensions": [
+                1545,
+                2000
+              ]
+            },
+            "crop_image": {
+              "path": "benchmarks/input/crop-validation-b64/page-125-000.b64.txt",
+              "decoded_sha256": "e371aa234263c051dce440c71d0ec3d5a9ed31bd3b1fc9c4dd4dae475dca57ee",
+              "dimensions": [
+                4011,
+                3871
+              ]
+            }
+          },
+          "text_schema_bytes": 4057,
+          "prompt_text_sha256": "9931ded6b7e732687b0889e6959ef9a873e6f459a292c132443db0f6bc9a7371",
+          "schema_sha256": "dfde50f5b02eb779fdb8a1f0c008606935f9b261bab75cd7bb83c7bab4308c4e",
+          "native_body_sha256": "cfd5b0bda8200d575a12b40868d49643770c89e60815a46b780aefaf9e15725a",
+          "assertions": [
+            {
+              "type": "python",
+              "value": "file://../scorers/crop_validation_scorer.py"
+            }
+          ]
+        },
+        {
+          "key": "page-126-000",
+          "case_id": "page-126-000",
+          "sources": {
+            "page_image": {
+              "path": "benchmarks/input/source-pages-b64/Image125.b64.txt",
+              "decoded_sha256": "4f4ac880a5ff48ffa1a6d2a010e763cf022dceb118988b7bf6d0c0a41fab1143",
+              "dimensions": [
+                1545,
+                2000
+              ]
+            },
+            "crop_image": {
+              "path": "benchmarks/input/crop-validation-b64/page-126-000.b64.txt",
+              "decoded_sha256": "be267fc173fd8ed502bd6ab4d0be57c0d7d5a0c1556fdcc9f8c34d94aa8715d6",
+              "dimensions": [
+                2933,
+                2116
+              ]
+            }
+          },
+          "text_schema_bytes": 4057,
+          "prompt_text_sha256": "9931ded6b7e732687b0889e6959ef9a873e6f459a292c132443db0f6bc9a7371",
+          "schema_sha256": "dfde50f5b02eb779fdb8a1f0c008606935f9b261bab75cd7bb83c7bab4308c4e",
+          "native_body_sha256": "0b1f983f7692996e94e06b14356212509f15c45f91568bc53d5605290bdf0c8c",
+          "assertions": [
+            {
+              "type": "python",
+              "value": "file://../scorers/crop_validation_scorer.py"
+            }
+          ]
+        },
+        {
+          "key": "page-126-001",
+          "case_id": "page-126-001",
+          "sources": {
+            "page_image": {
+              "path": "benchmarks/input/source-pages-b64/Image125.b64.txt",
+              "decoded_sha256": "4f4ac880a5ff48ffa1a6d2a010e763cf022dceb118988b7bf6d0c0a41fab1143",
+              "dimensions": [
+                1545,
+                2000
+              ]
+            },
+            "crop_image": {
+              "path": "benchmarks/input/crop-validation-b64/page-126-001.b64.txt",
+              "decoded_sha256": "34ceefa5de85865fd864cb3253a38fa73cf6ab5f13ed56daec60e00de20da908",
+              "dimensions": [
+                2123,
+                2940
+              ]
+            }
+          },
+          "text_schema_bytes": 4057,
+          "prompt_text_sha256": "9931ded6b7e732687b0889e6959ef9a873e6f459a292c132443db0f6bc9a7371",
+          "schema_sha256": "dfde50f5b02eb779fdb8a1f0c008606935f9b261bab75cd7bb83c7bab4308c4e",
+          "native_body_sha256": "f315e48c08e5f44fd3fca1a5cfe3809c34012545c4b51fdc6b424113b19aa6e8",
+          "assertions": [
+            {
+              "type": "python",
+              "value": "file://../scorers/crop_validation_scorer.py"
+            }
+          ]
+        },
+        {
+          "key": "page-127-000",
+          "case_id": "page-127-000",
+          "sources": {
+            "page_image": {
+              "path": "benchmarks/input/source-pages-b64/Image126.b64.txt",
+              "decoded_sha256": "25042b92e75e09ff2d7aa9330b44b26a092624a9bee19c7f2707a413f6c7f302",
+              "dimensions": [
+                1545,
+                2000
+              ]
+            },
+            "crop_image": {
+              "path": "benchmarks/input/crop-validation-b64/page-127-000.b64.txt",
+              "decoded_sha256": "6dcf9cad3998eba4ed72d1a79594431f86113a04c58b0452670ede3e3ec13429",
+              "dimensions": [
+                2924,
+                2081
+              ]
+            }
+          },
+          "text_schema_bytes": 4057,
+          "prompt_text_sha256": "9931ded6b7e732687b0889e6959ef9a873e6f459a292c132443db0f6bc9a7371",
+          "schema_sha256": "dfde50f5b02eb779fdb8a1f0c008606935f9b261bab75cd7bb83c7bab4308c4e",
+          "native_body_sha256": "d0aa72241edc1c800f72551121bdae1c8f51808720bb3a0d9e8ffa19581c5a06",
+          "assertions": [
+            {
+              "type": "python",
+              "value": "file://../scorers/crop_validation_scorer.py"
+            }
+          ]
+        },
+        {
+          "key": "page-127-001",
+          "case_id": "page-127-001",
+          "sources": {
+            "page_image": {
+              "path": "benchmarks/input/source-pages-b64/Image126.b64.txt",
+              "decoded_sha256": "25042b92e75e09ff2d7aa9330b44b26a092624a9bee19c7f2707a413f6c7f302",
+              "dimensions": [
+                1545,
+                2000
+              ]
+            },
+            "crop_image": {
+              "path": "benchmarks/input/crop-validation-b64/page-127-001.b64.txt",
+              "decoded_sha256": "c98909f5166e46b330e89288f7ed4cd1f4700a98a5b0153996204725cc7ea29e",
+              "dimensions": [
+                2919,
+                2071
+              ]
+            }
+          },
+          "text_schema_bytes": 4057,
+          "prompt_text_sha256": "9931ded6b7e732687b0889e6959ef9a873e6f459a292c132443db0f6bc9a7371",
+          "schema_sha256": "dfde50f5b02eb779fdb8a1f0c008606935f9b261bab75cd7bb83c7bab4308c4e",
+          "native_body_sha256": "add92c5d2a550d5eb2585908626d1196caba6023917ec1e3f4845e4b9f76b794",
+          "assertions": [
+            {
+              "type": "python",
+              "value": "file://../scorers/crop_validation_scorer.py"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "task": "benchmarks/tasks/safety-repair-048-luna-fresh.yaml",
+      "task_sha256": "7909ed6bc46ba9623e397b55e956c39ddcb7c475e4e0c810b34f0807f51d4697",
+      "arm": "luna",
+      "stage": "fresh",
+      "count": 6,
+      "provider": {
+        "id": "python:../providers/safety_repair_openai.py",
+        "label": "luna",
+        "config": {
+          "model": "gpt-6-luna",
+          "reasoning_effort": "medium",
+          "max_output_tokens": 4096,
+          "image_detail": "high",
+          "output_contract": "page_context_validation"
+        }
+      },
+      "per_call_reservation_usd": 0.007798,
+      "cases": [
+        {
+          "key": "S1",
+          "case_id": "S1",
+          "sources": {
+            "page_image": {
+              "path": "benchmarks/input/safety-repair-048/S1-source.b64.txt",
+              "decoded_sha256": "dc6f1b87fbce7c05af523cef3969fa2e34d2dd8a8c7c0167681ddb0565079d0d",
+              "dimensions": [
+                1000,
+                1000
+              ]
+            },
+            "crop_image": {
+              "path": "benchmarks/input/safety-repair-048/S1-crop.b64.txt",
+              "decoded_sha256": "3e25393c0d0f4d1502934eab252391f63d4b55926c2e4600c13959f565a04ec3",
+              "dimensions": [
+                800,
+                470
+              ]
+            }
+          },
+          "text_schema_bytes": 4057,
+          "prompt_text_sha256": "9931ded6b7e732687b0889e6959ef9a873e6f459a292c132443db0f6bc9a7371",
+          "schema_sha256": "dfde50f5b02eb779fdb8a1f0c008606935f9b261bab75cd7bb83c7bab4308c4e",
+          "native_body_sha256": "74ce9e81bcd73dc4082146c8440fbbd61611ff91328c0656d541aafcf93d2110",
+          "assertions": [
+            {
+              "type": "python",
+              "value": "file://../scorers/crop_validation_scorer.py"
+            }
+          ]
+        },
+        {
+          "key": "S2",
+          "case_id": "S2",
+          "sources": {
+            "page_image": {
+              "path": "benchmarks/input/safety-repair-048/S2-source.b64.txt",
+              "decoded_sha256": "1d762cc29d89d012a61545acce63422521e0f51a05339391df2e817fe47bd07f",
+              "dimensions": [
+                1000,
+                1000
+              ]
+            },
+            "crop_image": {
+              "path": "benchmarks/input/safety-repair-048/S2-crop.b64.txt",
+              "decoded_sha256": "d9cb87f2812a9d84c41f0e58be8085d126a157b37a73abce32a844a7bcd66d44",
+              "dimensions": [
+                800,
+                470
+              ]
+            }
+          },
+          "text_schema_bytes": 4057,
+          "prompt_text_sha256": "9931ded6b7e732687b0889e6959ef9a873e6f459a292c132443db0f6bc9a7371",
+          "schema_sha256": "dfde50f5b02eb779fdb8a1f0c008606935f9b261bab75cd7bb83c7bab4308c4e",
+          "native_body_sha256": "36d543882385e5330e3cd3a1205e3e739de610188a9585a6dc109079d636d4ed",
+          "assertions": [
+            {
+              "type": "python",
+              "value": "file://../scorers/crop_validation_scorer.py"
+            }
+          ]
+        },
+        {
+          "key": "S3",
+          "case_id": "S3",
+          "sources": {
+            "page_image": {
+              "path": "benchmarks/input/safety-repair-048/S3-source.b64.txt",
+              "decoded_sha256": "4cb7ceb9d8a3045951ce9c2da00eb1afb02ad91d1d3bad722283c0f96fa5ce84",
+              "dimensions": [
+                1000,
+                1000
+              ]
+            },
+            "crop_image": {
+              "path": "benchmarks/input/safety-repair-048/S3-crop.b64.txt",
+              "decoded_sha256": "11d98294ac8a19c8e77490998a933add2ddf8de6fdbeb8e7156159e201a87bfe",
+              "dimensions": [
+                560,
+                500
+              ]
+            }
+          },
+          "text_schema_bytes": 4057,
+          "prompt_text_sha256": "9931ded6b7e732687b0889e6959ef9a873e6f459a292c132443db0f6bc9a7371",
+          "schema_sha256": "dfde50f5b02eb779fdb8a1f0c008606935f9b261bab75cd7bb83c7bab4308c4e",
+          "native_body_sha256": "7f179446c8bc51b5e412b0d5285ac852389721688c15c1c6d4a61d01f9b05565",
+          "assertions": [
+            {
+              "type": "python",
+              "value": "file://../scorers/crop_validation_scorer.py"
+            }
+          ]
+        },
+        {
+          "key": "S4",
+          "case_id": "S4",
+          "sources": {
+            "page_image": {
+              "path": "benchmarks/input/safety-repair-048/S4-source.b64.txt",
+              "decoded_sha256": "381e784398327ecbe0d0e9b84a506d814d7b6ef4928e3d0f769946b64430ac33",
+              "dimensions": [
+                1000,
+                1000
+              ]
+            },
+            "crop_image": {
+              "path": "benchmarks/input/safety-repair-048/S4-crop.b64.txt",
+              "decoded_sha256": "9d310a44f961da0f05d01212dd3ba077a49054f5582bd8db393d5ae8670648a8",
+              "dimensions": [
+                500,
+                500
+              ]
+            }
+          },
+          "text_schema_bytes": 4057,
+          "prompt_text_sha256": "9931ded6b7e732687b0889e6959ef9a873e6f459a292c132443db0f6bc9a7371",
+          "schema_sha256": "dfde50f5b02eb779fdb8a1f0c008606935f9b261bab75cd7bb83c7bab4308c4e",
+          "native_body_sha256": "8d03fefb77645da75a2f55f892cc7e4c44f537abf21598e095dad01bc010f666",
+          "assertions": [
+            {
+              "type": "python",
+              "value": "file://../scorers/crop_validation_scorer.py"
+            }
+          ]
+        },
+        {
+          "key": "S5",
+          "case_id": "S5",
+          "sources": {
+            "page_image": {
+              "path": "benchmarks/input/safety-repair-048/S5-source.b64.txt",
+              "decoded_sha256": "e0d9515e5a236e734240762d5a4843b9edf18a63e54fb414162c480d936bd6a7",
+              "dimensions": [
+                1000,
+                1000
+              ]
+            },
+            "crop_image": {
+              "path": "benchmarks/input/safety-repair-048/S5-crop.b64.txt",
+              "decoded_sha256": "1573160ca39663a2d1b1539a32a0398c90a9f1db68d9de3e2686c98dd3043046",
+              "dimensions": [
+                500,
+                490
+              ]
+            }
+          },
+          "text_schema_bytes": 4057,
+          "prompt_text_sha256": "9931ded6b7e732687b0889e6959ef9a873e6f459a292c132443db0f6bc9a7371",
+          "schema_sha256": "dfde50f5b02eb779fdb8a1f0c008606935f9b261bab75cd7bb83c7bab4308c4e",
+          "native_body_sha256": "a7cb130cde54983c31fbb6393eabd9c4341ff3bb14f0549e6e309c25c686f072",
+          "assertions": [
+            {
+              "type": "python",
+              "value": "file://../scorers/crop_validation_scorer.py"
+            }
+          ]
+        },
+        {
+          "key": "S6",
+          "case_id": "S6",
+          "sources": {
+            "page_image": {
+              "path": "benchmarks/input/safety-repair-048/S6-source.b64.txt",
+              "decoded_sha256": "b68a43d0f42d64425ae43b32bde95f3f9cd14da6b0923ed104e94b40e27efe91",
+              "dimensions": [
+                1000,
+                1000
+              ]
+            },
+            "crop_image": {
+              "path": "benchmarks/input/safety-repair-048/S6-crop.b64.txt",
+              "decoded_sha256": "ab32153e5aab60d75c4e52165d98da1c5ac11323976f9cc2870556b908cf3ca7",
+              "dimensions": [
+                800,
+                800
+              ]
+            }
+          },
+          "text_schema_bytes": 4057,
+          "prompt_text_sha256": "9931ded6b7e732687b0889e6959ef9a873e6f459a292c132443db0f6bc9a7371",
+          "schema_sha256": "dfde50f5b02eb779fdb8a1f0c008606935f9b261bab75cd7bb83c7bab4308c4e",
+          "native_body_sha256": "d6d813528de4614109870cf3f4c919ddba4ff759e846637ef5327dd7cb9aa6b3",
+          "assertions": [
+            {
+              "type": "python",
+              "value": "file://../scorers/crop_validation_scorer.py"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "task": "benchmarks/tasks/safety-repair-048-sol-screen.yaml",
+      "task_sha256": "edf8641b438ba8ba04294732d390975d20c3deafb04363f71050a53abd920fb7",
+      "arm": "sol",
+      "stage": "screen",
+      "count": 6,
+      "provider": {
+        "id": "python:../providers/safety_repair_openai.py",
+        "label": "sol",
+        "config": {
+          "model": "gpt-6.1-sol",
+          "reasoning_effort": "medium",
+          "max_output_tokens": 4096,
+          "image_detail": "high",
+          "output_contract": "page_context_validation"
+        }
+      },
+      "per_call_reservation_usd": 0.15596,
+      "cases": [
+        {
+          "key": "page-122-001",
+          "case_id": "screen-1-page-122-001",
+          "sources": {
+            "page_image": {
+              "path": "benchmarks/input/source-pages-b64/Image121.b64.txt",
+              "decoded_sha256": "04731378a1ff37ffb8e26faf005f87fa2383f9ba91e147ce9caa94e8519d086e",
+              "dimensions": [
+                1545,
+                2000
+              ]
+            },
+            "crop_image": {
+              "path": "benchmarks/input/crop-validation-b64/page-122-001.b64.txt",
+              "decoded_sha256": "7fea918ba336f4cca9bbbb048f97bcc6377febe2afaebd5eddf2eed0c0bfb8d9",
+              "dimensions": [
+                4244,
+                2958
+              ]
+            }
+          },
+          "text_schema_bytes": 4057,
+          "prompt_text_sha256": "9931ded6b7e732687b0889e6959ef9a873e6f459a292c132443db0f6bc9a7371",
+          "schema_sha256": "dfde50f5b02eb779fdb8a1f0c008606935f9b261bab75cd7bb83c7bab4308c4e",
+          "native_body_sha256": "1fa08f1d818166164611718251b981256b122933c50d8891111e14023c12e00f",
+          "assertions": [
+            {
+              "type": "python",
+              "value": "file://../scorers/crop_validation_scorer.py"
+            }
+          ]
+        },
+        {
+          "key": "page-122-001",
+          "case_id": "screen-2-page-122-001",
+          "sources": {
+            "page_image": {
+              "path": "benchmarks/input/source-pages-b64/Image121.b64.txt",
+              "decoded_sha256": "04731378a1ff37ffb8e26faf005f87fa2383f9ba91e147ce9caa94e8519d086e",
+              "dimensions": [
+                1545,
+                2000
+              ]
+            },
+            "crop_image": {
+              "path": "benchmarks/input/crop-validation-b64/page-122-001.b64.txt",
+              "decoded_sha256": "7fea918ba336f4cca9bbbb048f97bcc6377febe2afaebd5eddf2eed0c0bfb8d9",
+              "dimensions": [
+                4244,
+                2958
+              ]
+            }
+          },
+          "text_schema_bytes": 4057,
+          "prompt_text_sha256": "9931ded6b7e732687b0889e6959ef9a873e6f459a292c132443db0f6bc9a7371",
+          "schema_sha256": "dfde50f5b02eb779fdb8a1f0c008606935f9b261bab75cd7bb83c7bab4308c4e",
+          "native_body_sha256": "1fa08f1d818166164611718251b981256b122933c50d8891111e14023c12e00f",
+          "assertions": [
+            {
+              "type": "python",
+              "value": "file://../scorers/crop_validation_scorer.py"
+            }
+          ]
+        },
+        {
+          "key": "page-122-001",
+          "case_id": "screen-3-page-122-001",
+          "sources": {
+            "page_image": {
+              "path": "benchmarks/input/source-pages-b64/Image121.b64.txt",
+              "decoded_sha256": "04731378a1ff37ffb8e26faf005f87fa2383f9ba91e147ce9caa94e8519d086e",
+              "dimensions": [
+                1545,
+                2000
+              ]
+            },
+            "crop_image": {
+              "path": "benchmarks/input/crop-validation-b64/page-122-001.b64.txt",
+              "decoded_sha256": "7fea918ba336f4cca9bbbb048f97bcc6377febe2afaebd5eddf2eed0c0bfb8d9",
+              "dimensions": [
+                4244,
+                2958
+              ]
+            }
+          },
+          "text_schema_bytes": 4057,
+          "prompt_text_sha256": "9931ded6b7e732687b0889e6959ef9a873e6f459a292c132443db0f6bc9a7371",
+          "schema_sha256": "dfde50f5b02eb779fdb8a1f0c008606935f9b261bab75cd7bb83c7bab4308c4e",
+          "native_body_sha256": "1fa08f1d818166164611718251b981256b122933c50d8891111e14023c12e00f",
+          "assertions": [
+            {
+              "type": "python",
+              "value": "file://../scorers/crop_validation_scorer.py"
+            }
+          ]
+        },
+        {
+          "key": "page-009-000",
+          "case_id": "screen-4-page-009-000",
+          "sources": {
+            "page_image": {
+              "path": "benchmarks/input/source-pages-b64/Image008.b64.txt",
+              "decoded_sha256": "da312d69a4c007009c1e696b32e66a3a7a957eac6b9aa3fa67323eeb1c478c31",
+              "dimensions": [
+                1545,
+                2000
+              ]
+            },
+            "crop_image": {
+              "path": "benchmarks/input/crop-validation-b64/page-009-000.b64.txt",
+              "decoded_sha256": "4413db90068236ede2835ef29c29359137847e51158266af20ef925938fa7bc0",
+              "dimensions": [
+                3029,
+                2772
+              ]
+            }
+          },
+          "text_schema_bytes": 4057,
+          "prompt_text_sha256": "9931ded6b7e732687b0889e6959ef9a873e6f459a292c132443db0f6bc9a7371",
+          "schema_sha256": "dfde50f5b02eb779fdb8a1f0c008606935f9b261bab75cd7bb83c7bab4308c4e",
+          "native_body_sha256": "87a967eefbb108ed94a420cadf795ad2d1abe183ab9f71c1d88f1883b1538196",
+          "assertions": [
+            {
+              "type": "python",
+              "value": "file://../scorers/crop_validation_scorer.py"
+            }
+          ]
+        },
+        {
+          "key": "page-126-001",
+          "case_id": "screen-5-page-126-001",
+          "sources": {
+            "page_image": {
+              "path": "benchmarks/input/source-pages-b64/Image125.b64.txt",
+              "decoded_sha256": "4f4ac880a5ff48ffa1a6d2a010e763cf022dceb118988b7bf6d0c0a41fab1143",
+              "dimensions": [
+                1545,
+                2000
+              ]
+            },
+            "crop_image": {
+              "path": "benchmarks/input/crop-validation-b64/page-126-001.b64.txt",
+              "decoded_sha256": "34ceefa5de85865fd864cb3253a38fa73cf6ab5f13ed56daec60e00de20da908",
+              "dimensions": [
+                2123,
+                2940
+              ]
+            }
+          },
+          "text_schema_bytes": 4057,
+          "prompt_text_sha256": "9931ded6b7e732687b0889e6959ef9a873e6f459a292c132443db0f6bc9a7371",
+          "schema_sha256": "dfde50f5b02eb779fdb8a1f0c008606935f9b261bab75cd7bb83c7bab4308c4e",
+          "native_body_sha256": "85ae01bdeafc8cebd1dc86eeefab20193164ff4954708ff73320af44cc5b746c",
+          "assertions": [
+            {
+              "type": "python",
+              "value": "file://../scorers/crop_validation_scorer.py"
+            }
+          ]
+        },
+        {
+          "key": "page-127-000",
+          "case_id": "screen-6-page-127-000",
+          "sources": {
+            "page_image": {
+              "path": "benchmarks/input/source-pages-b64/Image126.b64.txt",
+              "decoded_sha256": "25042b92e75e09ff2d7aa9330b44b26a092624a9bee19c7f2707a413f6c7f302",
+              "dimensions": [
+                1545,
+                2000
+              ]
+            },
+            "crop_image": {
+              "path": "benchmarks/input/crop-validation-b64/page-127-000.b64.txt",
+              "decoded_sha256": "6dcf9cad3998eba4ed72d1a79594431f86113a04c58b0452670ede3e3ec13429",
+              "dimensions": [
+                2924,
+                2081
+              ]
+            }
+          },
+          "text_schema_bytes": 4057,
+          "prompt_text_sha256": "9931ded6b7e732687b0889e6959ef9a873e6f459a292c132443db0f6bc9a7371",
+          "schema_sha256": "dfde50f5b02eb779fdb8a1f0c008606935f9b261bab75cd7bb83c7bab4308c4e",
+          "native_body_sha256": "621ca5b4fbb0de26789aa8a5f42c05d787cf0e6c7961a378c165d108f618799f",
+          "assertions": [
+            {
+              "type": "python",
+              "value": "file://../scorers/crop_validation_scorer.py"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "task": "benchmarks/tasks/safety-repair-048-sol-full.yaml",
+      "task_sha256": "dafcb6cd37e58c931307e5f326d12998b6781284b762baeb0b2b34cb601f0456",
+      "arm": "sol",
+      "stage": "full",
+      "count": 22,
+      "provider": {
+        "id": "python:../providers/safety_repair_openai.py",
+        "label": "sol",
+        "config": {
+          "model": "gpt-6.1-sol",
+          "reasoning_effort": "medium",
+          "max_output_tokens": 4096,
+          "image_detail": "high",
+          "output_contract": "page_context_validation"
+        }
+      },
+      "per_call_reservation_usd": 0.15596,
+      "cases": [
+        {
+          "key": "page-001-000",
+          "case_id": "page-001-000",
+          "sources": {
+            "page_image": {
+              "path": "benchmarks/input/source-pages-b64/Image000.b64.txt",
+              "decoded_sha256": "7500762d6e0b9761b49305b28e0c3609d051af1d5f3eac8ce33028b0b439f325",
+              "dimensions": [
+                1505,
+                2000
+              ]
+            },
+            "crop_image": {
+              "path": "benchmarks/input/crop-validation-b64/page-001-000.b64.txt",
+              "decoded_sha256": "67accf0bf3854473e557261d179bce8a4c4519de039460e3c797e52f49e1dfaa",
+              "dimensions": [
+                3786,
+                4479
+              ]
+            }
+          },
+          "text_schema_bytes": 4057,
+          "prompt_text_sha256": "9931ded6b7e732687b0889e6959ef9a873e6f459a292c132443db0f6bc9a7371",
+          "schema_sha256": "dfde50f5b02eb779fdb8a1f0c008606935f9b261bab75cd7bb83c7bab4308c4e",
+          "native_body_sha256": "6ef6281ec4c5240664010a734ff73ed63e02dbe60192d20be664188eb68fff6c",
+          "assertions": [
+            {
+              "type": "python",
+              "value": "file://../scorers/crop_validation_scorer.py"
+            }
+          ]
+        },
+        {
+          "key": "page-004-000",
+          "case_id": "page-004-000",
+          "sources": {
+            "page_image": {
+              "path": "benchmarks/input/source-pages-b64/Image003.b64.txt",
+              "decoded_sha256": "ad1807bfdad56d65becf8011137680496f72d564bfc922a8da7d2c021e3ef266",
+              "dimensions": [
+                1545,
+                2000
+              ]
+            },
+            "crop_image": {
+              "path": "benchmarks/input/crop-validation-b64/page-004-000.b64.txt",
+              "decoded_sha256": "4cc9a8224d1efbddc1f8f1a5a3f973bb8345f81fe26d03aa3b6d5197ce786209",
+              "dimensions": [
+                4468,
+                1254
+              ]
+            }
+          },
+          "text_schema_bytes": 4057,
+          "prompt_text_sha256": "9931ded6b7e732687b0889e6959ef9a873e6f459a292c132443db0f6bc9a7371",
+          "schema_sha256": "dfde50f5b02eb779fdb8a1f0c008606935f9b261bab75cd7bb83c7bab4308c4e",
+          "native_body_sha256": "d4438ee80dbcff25add1cbdc1ac0658ca4a5f102228c9e3367325bf4ae6bfb3b",
+          "assertions": [
+            {
+              "type": "python",
+              "value": "file://../scorers/crop_validation_scorer.py"
+            }
+          ]
+        },
+        {
+          "key": "page-009-000",
+          "case_id": "page-009-000",
+          "sources": {
+            "page_image": {
+              "path": "benchmarks/input/source-pages-b64/Image008.b64.txt",
+              "decoded_sha256": "da312d69a4c007009c1e696b32e66a3a7a957eac6b9aa3fa67323eeb1c478c31",
+              "dimensions": [
+                1545,
+                2000
+              ]
+            },
+            "crop_image": {
+              "path": "benchmarks/input/crop-validation-b64/page-009-000.b64.txt",
+              "decoded_sha256": "4413db90068236ede2835ef29c29359137847e51158266af20ef925938fa7bc0",
+              "dimensions": [
+                3029,
+                2772
+              ]
+            }
+          },
+          "text_schema_bytes": 4057,
+          "prompt_text_sha256": "9931ded6b7e732687b0889e6959ef9a873e6f459a292c132443db0f6bc9a7371",
+          "schema_sha256": "dfde50f5b02eb779fdb8a1f0c008606935f9b261bab75cd7bb83c7bab4308c4e",
+          "native_body_sha256": "87a967eefbb108ed94a420cadf795ad2d1abe183ab9f71c1d88f1883b1538196",
+          "assertions": [
+            {
+              "type": "python",
+              "value": "file://../scorers/crop_validation_scorer.py"
+            }
+          ]
+        },
+        {
+          "key": "page-012-000",
+          "case_id": "page-012-000",
+          "sources": {
+            "page_image": {
+              "path": "benchmarks/input/source-pages-b64/Image011.b64.txt",
+              "decoded_sha256": "ae3524cb58ac940c912c7885d65ec9d21221415d97d1ea21d97be9615161a860",
+              "dimensions": [
+                1545,
+                2000
+              ]
+            },
+            "crop_image": {
+              "path": "benchmarks/input/crop-validation-b64/page-012-000.b64.txt",
+              "decoded_sha256": "3a2a0f5ac2782b10b066bd4ace50d305ce2bbea1c53e27934205b7cf2a8b93ad",
+              "dimensions": [
+                1056,
+                1049
+              ]
+            }
+          },
+          "text_schema_bytes": 4057,
+          "prompt_text_sha256": "9931ded6b7e732687b0889e6959ef9a873e6f459a292c132443db0f6bc9a7371",
+          "schema_sha256": "dfde50f5b02eb779fdb8a1f0c008606935f9b261bab75cd7bb83c7bab4308c4e",
+          "native_body_sha256": "0d32ca8df18f30b43c6c39e501e943d60c7727a8dbf07e474df6f51c72aecbf5",
+          "assertions": [
+            {
+              "type": "python",
+              "value": "file://../scorers/crop_validation_scorer.py"
+            }
+          ]
+        },
+        {
+          "key": "page-012-001",
+          "case_id": "page-012-001",
+          "sources": {
+            "page_image": {
+              "path": "benchmarks/input/source-pages-b64/Image011.b64.txt",
+              "decoded_sha256": "ae3524cb58ac940c912c7885d65ec9d21221415d97d1ea21d97be9615161a860",
+              "dimensions": [
+                1545,
+                2000
+              ]
+            },
+            "crop_image": {
+              "path": "benchmarks/input/crop-validation-b64/page-012-001.b64.txt",
+              "decoded_sha256": "da367ed32034c950a729fd32707412d2956f01760e2ced6616f2c7306002d7ec",
+              "dimensions": [
+                1397,
+                1096
+              ]
+            }
+          },
+          "text_schema_bytes": 4057,
+          "prompt_text_sha256": "9931ded6b7e732687b0889e6959ef9a873e6f459a292c132443db0f6bc9a7371",
+          "schema_sha256": "dfde50f5b02eb779fdb8a1f0c008606935f9b261bab75cd7bb83c7bab4308c4e",
+          "native_body_sha256": "f1c5d286dc338dadad8e2b6d5e276dfecb32ef1789e364ed5d9ce06fa0c13854",
+          "assertions": [
+            {
+              "type": "python",
+              "value": "file://../scorers/crop_validation_scorer.py"
+            }
+          ]
+        },
+        {
+          "key": "page-014-000",
+          "case_id": "page-014-000",
+          "sources": {
+            "page_image": {
+              "path": "benchmarks/input/source-pages-b64/Image013.b64.txt",
+              "decoded_sha256": "cb53f04abc02441992de4903c079b036c6242a50cd275f696231c89634e6a75b",
+              "dimensions": [
+                1545,
+                2000
+              ]
+            },
+            "crop_image": {
+              "path": "benchmarks/input/crop-validation-b64/page-014-000.b64.txt",
+              "decoded_sha256": "4f4af349e0fcc4f3e15065dad7fecc68fe1805df524bf2dac94e56a524886693",
+              "dimensions": [
+                1994,
+                1796
+              ]
+            }
+          },
+          "text_schema_bytes": 4057,
+          "prompt_text_sha256": "9931ded6b7e732687b0889e6959ef9a873e6f459a292c132443db0f6bc9a7371",
+          "schema_sha256": "dfde50f5b02eb779fdb8a1f0c008606935f9b261bab75cd7bb83c7bab4308c4e",
+          "native_body_sha256": "f0f4733e38dbfd5d812bc1e66b51305d1c4afdf20b193fecc31d662a57d48b3f",
+          "assertions": [
+            {
+              "type": "python",
+              "value": "file://../scorers/crop_validation_scorer.py"
+            }
+          ]
+        },
+        {
+          "key": "page-018-000",
+          "case_id": "page-018-000",
+          "sources": {
+            "page_image": {
+              "path": "benchmarks/input/source-pages-b64/Image017.b64.txt",
+              "decoded_sha256": "3d069f99adca6caa2039d3a9f4cccc2cb8a44413d5f44023d21baaa42b7ae6d1",
+              "dimensions": [
+                1545,
+                2000
+              ]
+            },
+            "crop_image": {
+              "path": "benchmarks/input/crop-validation-b64/page-018-000.b64.txt",
+              "decoded_sha256": "b5c9ee922fe3f6468acf31c7dbe842a4bde8918a4f370c67cf36d5b8546edc0b",
+              "dimensions": [
+                2163,
+                5313
+              ]
+            }
+          },
+          "text_schema_bytes": 4057,
+          "prompt_text_sha256": "9931ded6b7e732687b0889e6959ef9a873e6f459a292c132443db0f6bc9a7371",
+          "schema_sha256": "dfde50f5b02eb779fdb8a1f0c008606935f9b261bab75cd7bb83c7bab4308c4e",
+          "native_body_sha256": "621d21754066eb9773396290e14be0712584e6cd6ad99c255341e3fa72eade2d",
+          "assertions": [
+            {
+              "type": "python",
+              "value": "file://../scorers/crop_validation_scorer.py"
+            }
+          ]
+        },
+        {
+          "key": "page-021-000",
+          "case_id": "page-021-000",
+          "sources": {
+            "page_image": {
+              "path": "benchmarks/input/source-pages-b64/Image020.b64.txt",
+              "decoded_sha256": "5a1f2380a089ff23355ff101b07549bd57abba3a51636a6b58a28a31a4195318",
+              "dimensions": [
+                1545,
+                2000
+              ]
+            },
+            "crop_image": {
+              "path": "benchmarks/input/crop-validation-b64/page-021-000.b64.txt",
+              "decoded_sha256": "b03c6e1a9b3e3e6842de1760b97fc3e131b91eea3a2e3d11bedafa53a385f426",
+              "dimensions": [
+                4253,
+                2669
+              ]
+            }
+          },
+          "text_schema_bytes": 4057,
+          "prompt_text_sha256": "9931ded6b7e732687b0889e6959ef9a873e6f459a292c132443db0f6bc9a7371",
+          "schema_sha256": "dfde50f5b02eb779fdb8a1f0c008606935f9b261bab75cd7bb83c7bab4308c4e",
+          "native_body_sha256": "6a63aaa12c15e81211d7460ce6d958167308e7d16821350d3326c30b3b1297f8",
+          "assertions": [
+            {
+              "type": "python",
+              "value": "file://../scorers/crop_validation_scorer.py"
+            }
+          ]
+        },
+        {
+          "key": "page-021-001",
+          "case_id": "page-021-001",
+          "sources": {
+            "page_image": {
+              "path": "benchmarks/input/source-pages-b64/Image020.b64.txt",
+              "decoded_sha256": "5a1f2380a089ff23355ff101b07549bd57abba3a51636a6b58a28a31a4195318",
+              "dimensions": [
+                1545,
+                2000
+              ]
+            },
+            "crop_image": {
+              "path": "benchmarks/input/crop-validation-b64/page-021-001.b64.txt",
+              "decoded_sha256": "7d3af1dc6ffa2a2c731a6f0cdadb791175b25bcb2580c69034dcf2de6c06131e",
+              "dimensions": [
+                4152,
+                2471
+              ]
+            }
+          },
+          "text_schema_bytes": 4057,
+          "prompt_text_sha256": "9931ded6b7e732687b0889e6959ef9a873e6f459a292c132443db0f6bc9a7371",
+          "schema_sha256": "dfde50f5b02eb779fdb8a1f0c008606935f9b261bab75cd7bb83c7bab4308c4e",
+          "native_body_sha256": "0a9209bd0fb3c342216b9980cfe8d35f17733f21ca99fafb5348345ed19ff464",
+          "assertions": [
+            {
+              "type": "python",
+              "value": "file://../scorers/crop_validation_scorer.py"
+            }
+          ]
+        },
+        {
+          "key": "page-022-000",
+          "case_id": "page-022-000",
+          "sources": {
+            "page_image": {
+              "path": "benchmarks/input/source-pages-b64/Image021.b64.txt",
+              "decoded_sha256": "2f49d83261e2f40d20b736b602cc4de8c36b48780ab944dc96c8e08f83e34332",
+              "dimensions": [
+                1545,
+                2000
+              ]
+            },
+            "crop_image": {
+              "path": "benchmarks/input/crop-validation-b64/page-022-000.b64.txt",
+              "decoded_sha256": "c8de7753ebe7d13c9646b62bef02984148f4e9e2260197a56babd46442f61ea9",
+              "dimensions": [
+                1887,
+                1584
+              ]
+            }
+          },
+          "text_schema_bytes": 4057,
+          "prompt_text_sha256": "9931ded6b7e732687b0889e6959ef9a873e6f459a292c132443db0f6bc9a7371",
+          "schema_sha256": "dfde50f5b02eb779fdb8a1f0c008606935f9b261bab75cd7bb83c7bab4308c4e",
+          "native_body_sha256": "4aa506a7cdb9f553501117144f0027d0d797fffe868bc5b07fbfc4f64eba1228",
+          "assertions": [
+            {
+              "type": "python",
+              "value": "file://../scorers/crop_validation_scorer.py"
+            }
+          ]
+        },
+        {
+          "key": "page-038-000",
+          "case_id": "page-038-000",
+          "sources": {
+            "page_image": {
+              "path": "benchmarks/input/source-pages-b64/Image037.b64.txt",
+              "decoded_sha256": "b836c9c90fc650dd0513299652bf1af41fc577544803d9cea64928c890cdfdbe",
+              "dimensions": [
+                1545,
+                2000
+              ]
+            },
+            "crop_image": {
+              "path": "benchmarks/input/crop-validation-b64/page-038-000.b64.txt",
+              "decoded_sha256": "09855f57fc1ff367f3174dd0a5bfab433e069195aa1d2596f68212cae163a349",
+              "dimensions": [
+                1372,
+                1706
+              ]
+            }
+          },
+          "text_schema_bytes": 4057,
+          "prompt_text_sha256": "9931ded6b7e732687b0889e6959ef9a873e6f459a292c132443db0f6bc9a7371",
+          "schema_sha256": "dfde50f5b02eb779fdb8a1f0c008606935f9b261bab75cd7bb83c7bab4308c4e",
+          "native_body_sha256": "36b8e6f12355a3cf5dc22f444752ce61499fbc4fd6122975945295018aa4e630",
+          "assertions": [
+            {
+              "type": "python",
+              "value": "file://../scorers/crop_validation_scorer.py"
+            }
+          ]
+        },
+        {
+          "key": "page-038-001",
+          "case_id": "page-038-001",
+          "sources": {
+            "page_image": {
+              "path": "benchmarks/input/source-pages-b64/Image037.b64.txt",
+              "decoded_sha256": "b836c9c90fc650dd0513299652bf1af41fc577544803d9cea64928c890cdfdbe",
+              "dimensions": [
+                1545,
+                2000
+              ]
+            },
+            "crop_image": {
+              "path": "benchmarks/input/crop-validation-b64/page-038-001.b64.txt",
+              "decoded_sha256": "4eaee1585bba4a4c6309e5d5bd28a57b4dd8c297a0b8dd0a491c8c60d4e66b89",
+              "dimensions": [
+                2014,
+                1712
+              ]
+            }
+          },
+          "text_schema_bytes": 4057,
+          "prompt_text_sha256": "9931ded6b7e732687b0889e6959ef9a873e6f459a292c132443db0f6bc9a7371",
+          "schema_sha256": "dfde50f5b02eb779fdb8a1f0c008606935f9b261bab75cd7bb83c7bab4308c4e",
+          "native_body_sha256": "423d5c391e1cc0245e7e2b493482c0c4f61ae941d9292acd7de526d545f03f3e",
+          "assertions": [
+            {
+              "type": "python",
+              "value": "file://../scorers/crop_validation_scorer.py"
+            }
+          ]
+        },
+        {
+          "key": "page-060-000",
+          "case_id": "page-060-000",
+          "sources": {
+            "page_image": {
+              "path": "benchmarks/input/source-pages-b64/Image059.b64.txt",
+              "decoded_sha256": "af4d6f24fc5b026a12697ed4d9da2758257bb8e0ec06c7989a2b2d0625501317",
+              "dimensions": [
+                1545,
+                2000
+              ]
+            },
+            "crop_image": {
+              "path": "benchmarks/input/crop-validation-b64/page-060-000.b64.txt",
+              "decoded_sha256": "0e7a4ae8f060dcb0588f647c2e7d51abb7251b91ec81feb6d89a9923f0d4e9b3",
+              "dimensions": [
+                2004,
+                2561
+              ]
+            }
+          },
+          "text_schema_bytes": 4057,
+          "prompt_text_sha256": "9931ded6b7e732687b0889e6959ef9a873e6f459a292c132443db0f6bc9a7371",
+          "schema_sha256": "dfde50f5b02eb779fdb8a1f0c008606935f9b261bab75cd7bb83c7bab4308c4e",
+          "native_body_sha256": "be110b9afc767a3cabe12059e8f23ef470ac5dcb04f0276b52ebef1259de6514",
+          "assertions": [
+            {
+              "type": "python",
+              "value": "file://../scorers/crop_validation_scorer.py"
+            }
+          ]
+        },
+        {
+          "key": "page-060-001",
+          "case_id": "page-060-001",
+          "sources": {
+            "page_image": {
+              "path": "benchmarks/input/source-pages-b64/Image059.b64.txt",
+              "decoded_sha256": "af4d6f24fc5b026a12697ed4d9da2758257bb8e0ec06c7989a2b2d0625501317",
+              "dimensions": [
+                1545,
+                2000
+              ]
+            },
+            "crop_image": {
+              "path": "benchmarks/input/crop-validation-b64/page-060-001.b64.txt",
+              "decoded_sha256": "f05b5737e373e2b06f0544bd74c59c9e92b096919fc775cdd9cc0bb4642dade6",
+              "dimensions": [
+                2015,
+                1743
+              ]
+            }
+          },
+          "text_schema_bytes": 4057,
+          "prompt_text_sha256": "9931ded6b7e732687b0889e6959ef9a873e6f459a292c132443db0f6bc9a7371",
+          "schema_sha256": "dfde50f5b02eb779fdb8a1f0c008606935f9b261bab75cd7bb83c7bab4308c4e",
+          "native_body_sha256": "0b69b96647a67c15a834d4d00819e70a190a571b246ce9a025324df8493b3c8d",
+          "assertions": [
+            {
+              "type": "python",
+              "value": "file://../scorers/crop_validation_scorer.py"
+            }
+          ]
+        },
+        {
+          "key": "page-092-000",
+          "case_id": "page-092-000",
+          "sources": {
+            "page_image": {
+              "path": "benchmarks/input/source-pages-b64/Image091.b64.txt",
+              "decoded_sha256": "23540ee8136d29922da3f9284d44ddb46a07390fdd41f79f9afbb39989c9c04c",
+              "dimensions": [
+                1545,
+                2000
+              ]
+            },
+            "crop_image": {
+              "path": "benchmarks/input/crop-validation-b64/page-092-000.b64.txt",
+              "decoded_sha256": "3d02c44de285d58fd54c3131a5c2c6c13235093c88eef49ac02e2a778b23687c",
+              "dimensions": [
+                1974,
+                2381
+              ]
+            }
+          },
+          "text_schema_bytes": 4057,
+          "prompt_text_sha256": "9931ded6b7e732687b0889e6959ef9a873e6f459a292c132443db0f6bc9a7371",
+          "schema_sha256": "dfde50f5b02eb779fdb8a1f0c008606935f9b261bab75cd7bb83c7bab4308c4e",
+          "native_body_sha256": "5c0fdc9d9f7fe625867fdd5fa69faa53e116bee07ceff2ba5a98e9711ecf0839",
+          "assertions": [
+            {
+              "type": "python",
+              "value": "file://../scorers/crop_validation_scorer.py"
+            }
+          ]
+        },
+        {
+          "key": "page-122-000",
+          "case_id": "page-122-000",
+          "sources": {
+            "page_image": {
+              "path": "benchmarks/input/source-pages-b64/Image121.b64.txt",
+              "decoded_sha256": "04731378a1ff37ffb8e26faf005f87fa2383f9ba91e147ce9caa94e8519d086e",
+              "dimensions": [
+                1545,
+                2000
+              ]
+            },
+            "crop_image": {
+              "path": "benchmarks/input/crop-validation-b64/page-122-000.b64.txt",
+              "decoded_sha256": "5ab45f308ea9d353dae2830a574af026b907fd95f6c50e78d48e8921031f6990",
+              "dimensions": [
+                4244,
+                2478
+              ]
+            }
+          },
+          "text_schema_bytes": 4057,
+          "prompt_text_sha256": "9931ded6b7e732687b0889e6959ef9a873e6f459a292c132443db0f6bc9a7371",
+          "schema_sha256": "dfde50f5b02eb779fdb8a1f0c008606935f9b261bab75cd7bb83c7bab4308c4e",
+          "native_body_sha256": "a5f5ada07ae65a1b5fb2247cf786ae4b689c17d4c69e438f9260a6176622dee0",
+          "assertions": [
+            {
+              "type": "python",
+              "value": "file://../scorers/crop_validation_scorer.py"
+            }
+          ]
+        },
+        {
+          "key": "page-122-001",
+          "case_id": "page-122-001",
+          "sources": {
+            "page_image": {
+              "path": "benchmarks/input/source-pages-b64/Image121.b64.txt",
+              "decoded_sha256": "04731378a1ff37ffb8e26faf005f87fa2383f9ba91e147ce9caa94e8519d086e",
+              "dimensions": [
+                1545,
+                2000
+              ]
+            },
+            "crop_image": {
+              "path": "benchmarks/input/crop-validation-b64/page-122-001.b64.txt",
+              "decoded_sha256": "7fea918ba336f4cca9bbbb048f97bcc6377febe2afaebd5eddf2eed0c0bfb8d9",
+              "dimensions": [
+                4244,
+                2958
+              ]
+            }
+          },
+          "text_schema_bytes": 4057,
+          "prompt_text_sha256": "9931ded6b7e732687b0889e6959ef9a873e6f459a292c132443db0f6bc9a7371",
+          "schema_sha256": "dfde50f5b02eb779fdb8a1f0c008606935f9b261bab75cd7bb83c7bab4308c4e",
+          "native_body_sha256": "1fa08f1d818166164611718251b981256b122933c50d8891111e14023c12e00f",
+          "assertions": [
+            {
+              "type": "python",
+              "value": "file://../scorers/crop_validation_scorer.py"
+            }
+          ]
+        },
+        {
+          "key": "page-125-000",
+          "case_id": "page-125-000",
+          "sources": {
+            "page_image": {
+              "path": "benchmarks/input/source-pages-b64/Image124.b64.txt",
+              "decoded_sha256": "b35e4c1e660a0ed9029ebe555558341a933a5724740964ca6927f94f77ae2944",
+              "dimensions": [
+                1545,
+                2000
+              ]
+            },
+            "crop_image": {
+              "path": "benchmarks/input/crop-validation-b64/page-125-000.b64.txt",
+              "decoded_sha256": "e371aa234263c051dce440c71d0ec3d5a9ed31bd3b1fc9c4dd4dae475dca57ee",
+              "dimensions": [
+                4011,
+                3871
+              ]
+            }
+          },
+          "text_schema_bytes": 4057,
+          "prompt_text_sha256": "9931ded6b7e732687b0889e6959ef9a873e6f459a292c132443db0f6bc9a7371",
+          "schema_sha256": "dfde50f5b02eb779fdb8a1f0c008606935f9b261bab75cd7bb83c7bab4308c4e",
+          "native_body_sha256": "456c34e54ebece07b1dfa1514bf047d6f8b0e6270fa3726d3aa005befd11c9d5",
+          "assertions": [
+            {
+              "type": "python",
+              "value": "file://../scorers/crop_validation_scorer.py"
+            }
+          ]
+        },
+        {
+          "key": "page-126-000",
+          "case_id": "page-126-000",
+          "sources": {
+            "page_image": {
+              "path": "benchmarks/input/source-pages-b64/Image125.b64.txt",
+              "decoded_sha256": "4f4ac880a5ff48ffa1a6d2a010e763cf022dceb118988b7bf6d0c0a41fab1143",
+              "dimensions": [
+                1545,
+                2000
+              ]
+            },
+            "crop_image": {
+              "path": "benchmarks/input/crop-validation-b64/page-126-000.b64.txt",
+              "decoded_sha256": "be267fc173fd8ed502bd6ab4d0be57c0d7d5a0c1556fdcc9f8c34d94aa8715d6",
+              "dimensions": [
+                2933,
+                2116
+              ]
+            }
+          },
+          "text_schema_bytes": 4057,
+          "prompt_text_sha256": "9931ded6b7e732687b0889e6959ef9a873e6f459a292c132443db0f6bc9a7371",
+          "schema_sha256": "dfde50f5b02eb779fdb8a1f0c008606935f9b261bab75cd7bb83c7bab4308c4e",
+          "native_body_sha256": "16dda88b8b32b93c58076d7cf005b849612b9d08dff246022d8623febf0213dd",
+          "assertions": [
+            {
+              "type": "python",
+              "value": "file://../scorers/crop_validation_scorer.py"
+            }
+          ]
+        },
+        {
+          "key": "page-126-001",
+          "case_id": "page-126-001",
+          "sources": {
+            "page_image": {
+              "path": "benchmarks/input/source-pages-b64/Image125.b64.txt",
+              "decoded_sha256": "4f4ac880a5ff48ffa1a6d2a010e763cf022dceb118988b7bf6d0c0a41fab1143",
+              "dimensions": [
+                1545,
+                2000
+              ]
+            },
+            "crop_image": {
+              "path": "benchmarks/input/crop-validation-b64/page-126-001.b64.txt",
+              "decoded_sha256": "34ceefa5de85865fd864cb3253a38fa73cf6ab5f13ed56daec60e00de20da908",
+              "dimensions": [
+                2123,
+                2940
+              ]
+            }
+          },
+          "text_schema_bytes": 4057,
+          "prompt_text_sha256": "9931ded6b7e732687b0889e6959ef9a873e6f459a292c132443db0f6bc9a7371",
+          "schema_sha256": "dfde50f5b02eb779fdb8a1f0c008606935f9b261bab75cd7bb83c7bab4308c4e",
+          "native_body_sha256": "85ae01bdeafc8cebd1dc86eeefab20193164ff4954708ff73320af44cc5b746c",
+          "assertions": [
+            {
+              "type": "python",
+              "value": "file://../scorers/crop_validation_scorer.py"
+            }
+          ]
+        },
+        {
+          "key": "page-127-000",
+          "case_id": "page-127-000",
+          "sources": {
+            "page_image": {
+              "path": "benchmarks/input/source-pages-b64/Image126.b64.txt",
+              "decoded_sha256": "25042b92e75e09ff2d7aa9330b44b26a092624a9bee19c7f2707a413f6c7f302",
+              "dimensions": [
+                1545,
+                2000
+              ]
+            },
+            "crop_image": {
+              "path": "benchmarks/input/crop-validation-b64/page-127-000.b64.txt",
+              "decoded_sha256": "6dcf9cad3998eba4ed72d1a79594431f86113a04c58b0452670ede3e3ec13429",
+              "dimensions": [
+                2924,
+                2081
+              ]
+            }
+          },
+          "text_schema_bytes": 4057,
+          "prompt_text_sha256": "9931ded6b7e732687b0889e6959ef9a873e6f459a292c132443db0f6bc9a7371",
+          "schema_sha256": "dfde50f5b02eb779fdb8a1f0c008606935f9b261bab75cd7bb83c7bab4308c4e",
+          "native_body_sha256": "621ca5b4fbb0de26789aa8a5f42c05d787cf0e6c7961a378c165d108f618799f",
+          "assertions": [
+            {
+              "type": "python",
+              "value": "file://../scorers/crop_validation_scorer.py"
+            }
+          ]
+        },
+        {
+          "key": "page-127-001",
+          "case_id": "page-127-001",
+          "sources": {
+            "page_image": {
+              "path": "benchmarks/input/source-pages-b64/Image126.b64.txt",
+              "decoded_sha256": "25042b92e75e09ff2d7aa9330b44b26a092624a9bee19c7f2707a413f6c7f302",
+              "dimensions": [
+                1545,
+                2000
+              ]
+            },
+            "crop_image": {
+              "path": "benchmarks/input/crop-validation-b64/page-127-001.b64.txt",
+              "decoded_sha256": "c98909f5166e46b330e89288f7ed4cd1f4700a98a5b0153996204725cc7ea29e",
+              "dimensions": [
+                2919,
+                2071
+              ]
+            }
+          },
+          "text_schema_bytes": 4057,
+          "prompt_text_sha256": "9931ded6b7e732687b0889e6959ef9a873e6f459a292c132443db0f6bc9a7371",
+          "schema_sha256": "dfde50f5b02eb779fdb8a1f0c008606935f9b261bab75cd7bb83c7bab4308c4e",
+          "native_body_sha256": "319cba05af40d771ca1124336a40feaf6b1b0e45a6f8bac3cd346c391a2cd990",
+          "assertions": [
+            {
+              "type": "python",
+              "value": "file://../scorers/crop_validation_scorer.py"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "task": "benchmarks/tasks/safety-repair-048-sol-fresh.yaml",
+      "task_sha256": "5d68971aff7f1ea869dcd20dbc066780d464a319ff8748b876759a311d5a9248",
+      "arm": "sol",
+      "stage": "fresh",
+      "count": 6,
+      "provider": {
+        "id": "python:../providers/safety_repair_openai.py",
+        "label": "sol",
+        "config": {
+          "model": "gpt-6.1-sol",
+          "reasoning_effort": "medium",
+          "max_output_tokens": 4096,
+          "image_detail": "high",
+          "output_contract": "page_context_validation"
+        }
+      },
+      "per_call_reservation_usd": 0.15596,
+      "cases": [
+        {
+          "key": "S1",
+          "case_id": "S1",
+          "sources": {
+            "page_image": {
+              "path": "benchmarks/input/safety-repair-048/S1-source.b64.txt",
+              "decoded_sha256": "dc6f1b87fbce7c05af523cef3969fa2e34d2dd8a8c7c0167681ddb0565079d0d",
+              "dimensions": [
+                1000,
+                1000
+              ]
+            },
+            "crop_image": {
+              "path": "benchmarks/input/safety-repair-048/S1-crop.b64.txt",
+              "decoded_sha256": "3e25393c0d0f4d1502934eab252391f63d4b55926c2e4600c13959f565a04ec3",
+              "dimensions": [
+                800,
+                470
+              ]
+            }
+          },
+          "text_schema_bytes": 4057,
+          "prompt_text_sha256": "9931ded6b7e732687b0889e6959ef9a873e6f459a292c132443db0f6bc9a7371",
+          "schema_sha256": "dfde50f5b02eb779fdb8a1f0c008606935f9b261bab75cd7bb83c7bab4308c4e",
+          "native_body_sha256": "86f73669e9826eaa7a772a1313a06900e2c525a3c70826995f2804c97e2a5edc",
+          "assertions": [
+            {
+              "type": "python",
+              "value": "file://../scorers/crop_validation_scorer.py"
+            }
+          ]
+        },
+        {
+          "key": "S2",
+          "case_id": "S2",
+          "sources": {
+            "page_image": {
+              "path": "benchmarks/input/safety-repair-048/S2-source.b64.txt",
+              "decoded_sha256": "1d762cc29d89d012a61545acce63422521e0f51a05339391df2e817fe47bd07f",
+              "dimensions": [
+                1000,
+                1000
+              ]
+            },
+            "crop_image": {
+              "path": "benchmarks/input/safety-repair-048/S2-crop.b64.txt",
+              "decoded_sha256": "d9cb87f2812a9d84c41f0e58be8085d126a157b37a73abce32a844a7bcd66d44",
+              "dimensions": [
+                800,
+                470
+              ]
+            }
+          },
+          "text_schema_bytes": 4057,
+          "prompt_text_sha256": "9931ded6b7e732687b0889e6959ef9a873e6f459a292c132443db0f6bc9a7371",
+          "schema_sha256": "dfde50f5b02eb779fdb8a1f0c008606935f9b261bab75cd7bb83c7bab4308c4e",
+          "native_body_sha256": "654f4471ae2ca550c09d3ba4a87bf657f688186d83c69b6512a10f4859bc38c9",
+          "assertions": [
+            {
+              "type": "python",
+              "value": "file://../scorers/crop_validation_scorer.py"
+            }
+          ]
+        },
+        {
+          "key": "S3",
+          "case_id": "S3",
+          "sources": {
+            "page_image": {
+              "path": "benchmarks/input/safety-repair-048/S3-source.b64.txt",
+              "decoded_sha256": "4cb7ceb9d8a3045951ce9c2da00eb1afb02ad91d1d3bad722283c0f96fa5ce84",
+              "dimensions": [
+                1000,
+                1000
+              ]
+            },
+            "crop_image": {
+              "path": "benchmarks/input/safety-repair-048/S3-crop.b64.txt",
+              "decoded_sha256": "11d98294ac8a19c8e77490998a933add2ddf8de6fdbeb8e7156159e201a87bfe",
+              "dimensions": [
+                560,
+                500
+              ]
+            }
+          },
+          "text_schema_bytes": 4057,
+          "prompt_text_sha256": "9931ded6b7e732687b0889e6959ef9a873e6f459a292c132443db0f6bc9a7371",
+          "schema_sha256": "dfde50f5b02eb779fdb8a1f0c008606935f9b261bab75cd7bb83c7bab4308c4e",
+          "native_body_sha256": "06eeae84c01a8ef0d70a190295cb77b9f22d36511d678524da77a381500073cd",
+          "assertions": [
+            {
+              "type": "python",
+              "value": "file://../scorers/crop_validation_scorer.py"
+            }
+          ]
+        },
+        {
+          "key": "S4",
+          "case_id": "S4",
+          "sources": {
+            "page_image": {
+              "path": "benchmarks/input/safety-repair-048/S4-source.b64.txt",
+              "decoded_sha256": "381e784398327ecbe0d0e9b84a506d814d7b6ef4928e3d0f769946b64430ac33",
+              "dimensions": [
+                1000,
+                1000
+              ]
+            },
+            "crop_image": {
+              "path": "benchmarks/input/safety-repair-048/S4-crop.b64.txt",
+              "decoded_sha256": "9d310a44f961da0f05d01212dd3ba077a49054f5582bd8db393d5ae8670648a8",
+              "dimensions": [
+                500,
+                500
+              ]
+            }
+          },
+          "text_schema_bytes": 4057,
+          "prompt_text_sha256": "9931ded6b7e732687b0889e6959ef9a873e6f459a292c132443db0f6bc9a7371",
+          "schema_sha256": "dfde50f5b02eb779fdb8a1f0c008606935f9b261bab75cd7bb83c7bab4308c4e",
+          "native_body_sha256": "a5b045f757d1b9df3e2541130decaa2daa5bbc19b0a67fa80646d917239179f9",
+          "assertions": [
+            {
+              "type": "python",
+              "value": "file://../scorers/crop_validation_scorer.py"
+            }
+          ]
+        },
+        {
+          "key": "S5",
+          "case_id": "S5",
+          "sources": {
+            "page_image": {
+              "path": "benchmarks/input/safety-repair-048/S5-source.b64.txt",
+              "decoded_sha256": "e0d9515e5a236e734240762d5a4843b9edf18a63e54fb414162c480d936bd6a7",
+              "dimensions": [
+                1000,
+                1000
+              ]
+            },
+            "crop_image": {
+              "path": "benchmarks/input/safety-repair-048/S5-crop.b64.txt",
+              "decoded_sha256": "1573160ca39663a2d1b1539a32a0398c90a9f1db68d9de3e2686c98dd3043046",
+              "dimensions": [
+                500,
+                490
+              ]
+            }
+          },
+          "text_schema_bytes": 4057,
+          "prompt_text_sha256": "9931ded6b7e732687b0889e6959ef9a873e6f459a292c132443db0f6bc9a7371",
+          "schema_sha256": "dfde50f5b02eb779fdb8a1f0c008606935f9b261bab75cd7bb83c7bab4308c4e",
+          "native_body_sha256": "8108963a4c5f30d6f3b016f22e07a88c9a3b8f96c7f334389f3369a56fadd584",
+          "assertions": [
+            {
+              "type": "python",
+              "value": "file://../scorers/crop_validation_scorer.py"
+            }
+          ]
+        },
+        {
+          "key": "S6",
+          "case_id": "S6",
+          "sources": {
+            "page_image": {
+              "path": "benchmarks/input/safety-repair-048/S6-source.b64.txt",
+              "decoded_sha256": "b68a43d0f42d64425ae43b32bde95f3f9cd14da6b0923ed104e94b40e27efe91",
+              "dimensions": [
+                1000,
+                1000
+              ]
+            },
+            "crop_image": {
+              "path": "benchmarks/input/safety-repair-048/S6-crop.b64.txt",
+              "decoded_sha256": "ab32153e5aab60d75c4e52165d98da1c5ac11323976f9cc2870556b908cf3ca7",
+              "dimensions": [
+                800,
+                800
+              ]
+            }
+          },
+          "text_schema_bytes": 4057,
+          "prompt_text_sha256": "9931ded6b7e732687b0889e6959ef9a873e6f459a292c132443db0f6bc9a7371",
+          "schema_sha256": "dfde50f5b02eb779fdb8a1f0c008606935f9b261bab75cd7bb83c7bab4308c4e",
+          "native_body_sha256": "abbd24b92fab4fe9be3717668e18ea551e78b144a7ba436d9259e502ce46d23d",
+          "assertions": [
+            {
+              "type": "python",
+              "value": "file://../scorers/crop_validation_scorer.py"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "task": "benchmarks/tasks/safety-repair-048-control-screen.yaml",
+      "task_sha256": "9dc7fde9b7bbbb8aeef11f1c353130730e2ef82ed1017ff56196fba01125f3c9",
+      "arm": "control",
+      "stage": "screen",
+      "count": 6,
+      "provider": {
+        "id": "python:../providers/safety_repair_openai.py",
+        "label": "control",
+        "config": {
+          "model": "gpt-5.5",
+          "expected_served_model": "gpt-5.5-2026-04-23",
+          "reasoning_effort": "none",
+          "max_output_tokens": 2048,
+          "image_detail": "auto",
+          "output_contract": "page_context_validation"
+        }
+      },
+      "per_call_reservation_usd": 0.29144,
+      "cases": [
+        {
+          "key": "page-122-001",
+          "case_id": "screen-1-page-122-001",
+          "sources": {
+            "page_image": {
+              "path": "benchmarks/input/source-pages-b64/Image121.b64.txt",
+              "decoded_sha256": "04731378a1ff37ffb8e26faf005f87fa2383f9ba91e147ce9caa94e8519d086e",
+              "dimensions": [
+                1545,
+                2000
+              ]
+            },
+            "crop_image": {
+              "path": "benchmarks/input/crop-validation-b64/page-122-001.b64.txt",
+              "decoded_sha256": "7fea918ba336f4cca9bbbb048f97bcc6377febe2afaebd5eddf2eed0c0bfb8d9",
+              "dimensions": [
+                4244,
+                2958
+              ]
+            }
+          },
+          "text_schema_bytes": 4057,
+          "prompt_text_sha256": "9931ded6b7e732687b0889e6959ef9a873e6f459a292c132443db0f6bc9a7371",
+          "schema_sha256": "dfde50f5b02eb779fdb8a1f0c008606935f9b261bab75cd7bb83c7bab4308c4e",
+          "native_body_sha256": "2ccb3a24898ee42c98d53e18eca2cc167c3d053147876922fb333d43cefbab8a",
+          "assertions": [
+            {
+              "type": "python",
+              "value": "file://../scorers/crop_validation_scorer.py"
+            }
+          ]
+        },
+        {
+          "key": "page-122-001",
+          "case_id": "screen-2-page-122-001",
+          "sources": {
+            "page_image": {
+              "path": "benchmarks/input/source-pages-b64/Image121.b64.txt",
+              "decoded_sha256": "04731378a1ff37ffb8e26faf005f87fa2383f9ba91e147ce9caa94e8519d086e",
+              "dimensions": [
+                1545,
+                2000
+              ]
+            },
+            "crop_image": {
+              "path": "benchmarks/input/crop-validation-b64/page-122-001.b64.txt",
+              "decoded_sha256": "7fea918ba336f4cca9bbbb048f97bcc6377febe2afaebd5eddf2eed0c0bfb8d9",
+              "dimensions": [
+                4244,
+                2958
+              ]
+            }
+          },
+          "text_schema_bytes": 4057,
+          "prompt_text_sha256": "9931ded6b7e732687b0889e6959ef9a873e6f459a292c132443db0f6bc9a7371",
+          "schema_sha256": "dfde50f5b02eb779fdb8a1f0c008606935f9b261bab75cd7bb83c7bab4308c4e",
+          "native_body_sha256": "2ccb3a24898ee42c98d53e18eca2cc167c3d053147876922fb333d43cefbab8a",
+          "assertions": [
+            {
+              "type": "python",
+              "value": "file://../scorers/crop_validation_scorer.py"
+            }
+          ]
+        },
+        {
+          "key": "page-122-001",
+          "case_id": "screen-3-page-122-001",
+          "sources": {
+            "page_image": {
+              "path": "benchmarks/input/source-pages-b64/Image121.b64.txt",
+              "decoded_sha256": "04731378a1ff37ffb8e26faf005f87fa2383f9ba91e147ce9caa94e8519d086e",
+              "dimensions": [
+                1545,
+                2000
+              ]
+            },
+            "crop_image": {
+              "path": "benchmarks/input/crop-validation-b64/page-122-001.b64.txt",
+              "decoded_sha256": "7fea918ba336f4cca9bbbb048f97bcc6377febe2afaebd5eddf2eed0c0bfb8d9",
+              "dimensions": [
+                4244,
+                2958
+              ]
+            }
+          },
+          "text_schema_bytes": 4057,
+          "prompt_text_sha256": "9931ded6b7e732687b0889e6959ef9a873e6f459a292c132443db0f6bc9a7371",
+          "schema_sha256": "dfde50f5b02eb779fdb8a1f0c008606935f9b261bab75cd7bb83c7bab4308c4e",
+          "native_body_sha256": "2ccb3a24898ee42c98d53e18eca2cc167c3d053147876922fb333d43cefbab8a",
+          "assertions": [
+            {
+              "type": "python",
+              "value": "file://../scorers/crop_validation_scorer.py"
+            }
+          ]
+        },
+        {
+          "key": "page-009-000",
+          "case_id": "screen-4-page-009-000",
+          "sources": {
+            "page_image": {
+              "path": "benchmarks/input/source-pages-b64/Image008.b64.txt",
+              "decoded_sha256": "da312d69a4c007009c1e696b32e66a3a7a957eac6b9aa3fa67323eeb1c478c31",
+              "dimensions": [
+                1545,
+                2000
+              ]
+            },
+            "crop_image": {
+              "path": "benchmarks/input/crop-validation-b64/page-009-000.b64.txt",
+              "decoded_sha256": "4413db90068236ede2835ef29c29359137847e51158266af20ef925938fa7bc0",
+              "dimensions": [
+                3029,
+                2772
+              ]
+            }
+          },
+          "text_schema_bytes": 4057,
+          "prompt_text_sha256": "9931ded6b7e732687b0889e6959ef9a873e6f459a292c132443db0f6bc9a7371",
+          "schema_sha256": "dfde50f5b02eb779fdb8a1f0c008606935f9b261bab75cd7bb83c7bab4308c4e",
+          "native_body_sha256": "fd45903906d4baa486eec4fbf793dfd069ffa1be7d40b86581c0a2f00a95af1d",
+          "assertions": [
+            {
+              "type": "python",
+              "value": "file://../scorers/crop_validation_scorer.py"
+            }
+          ]
+        },
+        {
+          "key": "page-126-001",
+          "case_id": "screen-5-page-126-001",
+          "sources": {
+            "page_image": {
+              "path": "benchmarks/input/source-pages-b64/Image125.b64.txt",
+              "decoded_sha256": "4f4ac880a5ff48ffa1a6d2a010e763cf022dceb118988b7bf6d0c0a41fab1143",
+              "dimensions": [
+                1545,
+                2000
+              ]
+            },
+            "crop_image": {
+              "path": "benchmarks/input/crop-validation-b64/page-126-001.b64.txt",
+              "decoded_sha256": "34ceefa5de85865fd864cb3253a38fa73cf6ab5f13ed56daec60e00de20da908",
+              "dimensions": [
+                2123,
+                2940
+              ]
+            }
+          },
+          "text_schema_bytes": 4057,
+          "prompt_text_sha256": "9931ded6b7e732687b0889e6959ef9a873e6f459a292c132443db0f6bc9a7371",
+          "schema_sha256": "dfde50f5b02eb779fdb8a1f0c008606935f9b261bab75cd7bb83c7bab4308c4e",
+          "native_body_sha256": "e5c3793320d0c0a93507900ac1d1ef9ba1e50c20a78d65ff1eca4f5fcd9ba5df",
+          "assertions": [
+            {
+              "type": "python",
+              "value": "file://../scorers/crop_validation_scorer.py"
+            }
+          ]
+        },
+        {
+          "key": "page-127-000",
+          "case_id": "screen-6-page-127-000",
+          "sources": {
+            "page_image": {
+              "path": "benchmarks/input/source-pages-b64/Image126.b64.txt",
+              "decoded_sha256": "25042b92e75e09ff2d7aa9330b44b26a092624a9bee19c7f2707a413f6c7f302",
+              "dimensions": [
+                1545,
+                2000
+              ]
+            },
+            "crop_image": {
+              "path": "benchmarks/input/crop-validation-b64/page-127-000.b64.txt",
+              "decoded_sha256": "6dcf9cad3998eba4ed72d1a79594431f86113a04c58b0452670ede3e3ec13429",
+              "dimensions": [
+                2924,
+                2081
+              ]
+            }
+          },
+          "text_schema_bytes": 4057,
+          "prompt_text_sha256": "9931ded6b7e732687b0889e6959ef9a873e6f459a292c132443db0f6bc9a7371",
+          "schema_sha256": "dfde50f5b02eb779fdb8a1f0c008606935f9b261bab75cd7bb83c7bab4308c4e",
+          "native_body_sha256": "fd169ae14f7e533ff39992f459b9fabd7616d56412b675d093652a0bd2ede728",
+          "assertions": [
+            {
+              "type": "python",
+              "value": "file://../scorers/crop_validation_scorer.py"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "task": "benchmarks/tasks/safety-repair-048-control-full.yaml",
+      "task_sha256": "35aae130522a79d5a39e12e1ccd9bd2ade2cd97e047c61209ff441bbb44f5d2c",
+      "arm": "control",
+      "stage": "full",
+      "count": 22,
+      "provider": {
+        "id": "python:../providers/safety_repair_openai.py",
+        "label": "control",
+        "config": {
+          "model": "gpt-5.5",
+          "expected_served_model": "gpt-5.5-2026-04-23",
+          "reasoning_effort": "none",
+          "max_output_tokens": 2048,
+          "image_detail": "auto",
+          "output_contract": "page_context_validation"
+        }
+      },
+      "per_call_reservation_usd": 0.29144,
+      "cases": [
+        {
+          "key": "page-001-000",
+          "case_id": "page-001-000",
+          "sources": {
+            "page_image": {
+              "path": "benchmarks/input/source-pages-b64/Image000.b64.txt",
+              "decoded_sha256": "7500762d6e0b9761b49305b28e0c3609d051af1d5f3eac8ce33028b0b439f325",
+              "dimensions": [
+                1505,
+                2000
+              ]
+            },
+            "crop_image": {
+              "path": "benchmarks/input/crop-validation-b64/page-001-000.b64.txt",
+              "decoded_sha256": "67accf0bf3854473e557261d179bce8a4c4519de039460e3c797e52f49e1dfaa",
+              "dimensions": [
+                3786,
+                4479
+              ]
+            }
+          },
+          "text_schema_bytes": 4057,
+          "prompt_text_sha256": "9931ded6b7e732687b0889e6959ef9a873e6f459a292c132443db0f6bc9a7371",
+          "schema_sha256": "dfde50f5b02eb779fdb8a1f0c008606935f9b261bab75cd7bb83c7bab4308c4e",
+          "native_body_sha256": "c6552abe8937510b58ce41da850dd60c4446e3506a28d5e872b992b44f7cd023",
+          "assertions": [
+            {
+              "type": "python",
+              "value": "file://../scorers/crop_validation_scorer.py"
+            }
+          ]
+        },
+        {
+          "key": "page-004-000",
+          "case_id": "page-004-000",
+          "sources": {
+            "page_image": {
+              "path": "benchmarks/input/source-pages-b64/Image003.b64.txt",
+              "decoded_sha256": "ad1807bfdad56d65becf8011137680496f72d564bfc922a8da7d2c021e3ef266",
+              "dimensions": [
+                1545,
+                2000
+              ]
+            },
+            "crop_image": {
+              "path": "benchmarks/input/crop-validation-b64/page-004-000.b64.txt",
+              "decoded_sha256": "4cc9a8224d1efbddc1f8f1a5a3f973bb8345f81fe26d03aa3b6d5197ce786209",
+              "dimensions": [
+                4468,
+                1254
+              ]
+            }
+          },
+          "text_schema_bytes": 4057,
+          "prompt_text_sha256": "9931ded6b7e732687b0889e6959ef9a873e6f459a292c132443db0f6bc9a7371",
+          "schema_sha256": "dfde50f5b02eb779fdb8a1f0c008606935f9b261bab75cd7bb83c7bab4308c4e",
+          "native_body_sha256": "9c8028bb5677c84232fc9be76b38042ccaab1c714e08c936f24da8d7ad7e3d7f",
+          "assertions": [
+            {
+              "type": "python",
+              "value": "file://../scorers/crop_validation_scorer.py"
+            }
+          ]
+        },
+        {
+          "key": "page-009-000",
+          "case_id": "page-009-000",
+          "sources": {
+            "page_image": {
+              "path": "benchmarks/input/source-pages-b64/Image008.b64.txt",
+              "decoded_sha256": "da312d69a4c007009c1e696b32e66a3a7a957eac6b9aa3fa67323eeb1c478c31",
+              "dimensions": [
+                1545,
+                2000
+              ]
+            },
+            "crop_image": {
+              "path": "benchmarks/input/crop-validation-b64/page-009-000.b64.txt",
+              "decoded_sha256": "4413db90068236ede2835ef29c29359137847e51158266af20ef925938fa7bc0",
+              "dimensions": [
+                3029,
+                2772
+              ]
+            }
+          },
+          "text_schema_bytes": 4057,
+          "prompt_text_sha256": "9931ded6b7e732687b0889e6959ef9a873e6f459a292c132443db0f6bc9a7371",
+          "schema_sha256": "dfde50f5b02eb779fdb8a1f0c008606935f9b261bab75cd7bb83c7bab4308c4e",
+          "native_body_sha256": "fd45903906d4baa486eec4fbf793dfd069ffa1be7d40b86581c0a2f00a95af1d",
+          "assertions": [
+            {
+              "type": "python",
+              "value": "file://../scorers/crop_validation_scorer.py"
+            }
+          ]
+        },
+        {
+          "key": "page-012-000",
+          "case_id": "page-012-000",
+          "sources": {
+            "page_image": {
+              "path": "benchmarks/input/source-pages-b64/Image011.b64.txt",
+              "decoded_sha256": "ae3524cb58ac940c912c7885d65ec9d21221415d97d1ea21d97be9615161a860",
+              "dimensions": [
+                1545,
+                2000
+              ]
+            },
+            "crop_image": {
+              "path": "benchmarks/input/crop-validation-b64/page-012-000.b64.txt",
+              "decoded_sha256": "3a2a0f5ac2782b10b066bd4ace50d305ce2bbea1c53e27934205b7cf2a8b93ad",
+              "dimensions": [
+                1056,
+                1049
+              ]
+            }
+          },
+          "text_schema_bytes": 4057,
+          "prompt_text_sha256": "9931ded6b7e732687b0889e6959ef9a873e6f459a292c132443db0f6bc9a7371",
+          "schema_sha256": "dfde50f5b02eb779fdb8a1f0c008606935f9b261bab75cd7bb83c7bab4308c4e",
+          "native_body_sha256": "a99c3518844369f07c25fdf8db413b2014cc2f128ac2fbaaf2fa39e2ae15db5a",
+          "assertions": [
+            {
+              "type": "python",
+              "value": "file://../scorers/crop_validation_scorer.py"
+            }
+          ]
+        },
+        {
+          "key": "page-012-001",
+          "case_id": "page-012-001",
+          "sources": {
+            "page_image": {
+              "path": "benchmarks/input/source-pages-b64/Image011.b64.txt",
+              "decoded_sha256": "ae3524cb58ac940c912c7885d65ec9d21221415d97d1ea21d97be9615161a860",
+              "dimensions": [
+                1545,
+                2000
+              ]
+            },
+            "crop_image": {
+              "path": "benchmarks/input/crop-validation-b64/page-012-001.b64.txt",
+              "decoded_sha256": "da367ed32034c950a729fd32707412d2956f01760e2ced6616f2c7306002d7ec",
+              "dimensions": [
+                1397,
+                1096
+              ]
+            }
+          },
+          "text_schema_bytes": 4057,
+          "prompt_text_sha256": "9931ded6b7e732687b0889e6959ef9a873e6f459a292c132443db0f6bc9a7371",
+          "schema_sha256": "dfde50f5b02eb779fdb8a1f0c008606935f9b261bab75cd7bb83c7bab4308c4e",
+          "native_body_sha256": "c2ff48f9ddfbdfe47a50b3a350c4b22f6b276e293164d4841e03840b13d061ab",
+          "assertions": [
+            {
+              "type": "python",
+              "value": "file://../scorers/crop_validation_scorer.py"
+            }
+          ]
+        },
+        {
+          "key": "page-014-000",
+          "case_id": "page-014-000",
+          "sources": {
+            "page_image": {
+              "path": "benchmarks/input/source-pages-b64/Image013.b64.txt",
+              "decoded_sha256": "cb53f04abc02441992de4903c079b036c6242a50cd275f696231c89634e6a75b",
+              "dimensions": [
+                1545,
+                2000
+              ]
+            },
+            "crop_image": {
+              "path": "benchmarks/input/crop-validation-b64/page-014-000.b64.txt",
+              "decoded_sha256": "4f4af349e0fcc4f3e15065dad7fecc68fe1805df524bf2dac94e56a524886693",
+              "dimensions": [
+                1994,
+                1796
+              ]
+            }
+          },
+          "text_schema_bytes": 4057,
+          "prompt_text_sha256": "9931ded6b7e732687b0889e6959ef9a873e6f459a292c132443db0f6bc9a7371",
+          "schema_sha256": "dfde50f5b02eb779fdb8a1f0c008606935f9b261bab75cd7bb83c7bab4308c4e",
+          "native_body_sha256": "c97944fe5d3cc322dd0c69e8dbdee25be0f9b55525efb82531a90fd6f70f3be4",
+          "assertions": [
+            {
+              "type": "python",
+              "value": "file://../scorers/crop_validation_scorer.py"
+            }
+          ]
+        },
+        {
+          "key": "page-018-000",
+          "case_id": "page-018-000",
+          "sources": {
+            "page_image": {
+              "path": "benchmarks/input/source-pages-b64/Image017.b64.txt",
+              "decoded_sha256": "3d069f99adca6caa2039d3a9f4cccc2cb8a44413d5f44023d21baaa42b7ae6d1",
+              "dimensions": [
+                1545,
+                2000
+              ]
+            },
+            "crop_image": {
+              "path": "benchmarks/input/crop-validation-b64/page-018-000.b64.txt",
+              "decoded_sha256": "b5c9ee922fe3f6468acf31c7dbe842a4bde8918a4f370c67cf36d5b8546edc0b",
+              "dimensions": [
+                2163,
+                5313
+              ]
+            }
+          },
+          "text_schema_bytes": 4057,
+          "prompt_text_sha256": "9931ded6b7e732687b0889e6959ef9a873e6f459a292c132443db0f6bc9a7371",
+          "schema_sha256": "dfde50f5b02eb779fdb8a1f0c008606935f9b261bab75cd7bb83c7bab4308c4e",
+          "native_body_sha256": "ad739f92d8b2becab5b0c486697a88fe07fe8e64936f49fa0ead19c5fe7deca4",
+          "assertions": [
+            {
+              "type": "python",
+              "value": "file://../scorers/crop_validation_scorer.py"
+            }
+          ]
+        },
+        {
+          "key": "page-021-000",
+          "case_id": "page-021-000",
+          "sources": {
+            "page_image": {
+              "path": "benchmarks/input/source-pages-b64/Image020.b64.txt",
+              "decoded_sha256": "5a1f2380a089ff23355ff101b07549bd57abba3a51636a6b58a28a31a4195318",
+              "dimensions": [
+                1545,
+                2000
+              ]
+            },
+            "crop_image": {
+              "path": "benchmarks/input/crop-validation-b64/page-021-000.b64.txt",
+              "decoded_sha256": "b03c6e1a9b3e3e6842de1760b97fc3e131b91eea3a2e3d11bedafa53a385f426",
+              "dimensions": [
+                4253,
+                2669
+              ]
+            }
+          },
+          "text_schema_bytes": 4057,
+          "prompt_text_sha256": "9931ded6b7e732687b0889e6959ef9a873e6f459a292c132443db0f6bc9a7371",
+          "schema_sha256": "dfde50f5b02eb779fdb8a1f0c008606935f9b261bab75cd7bb83c7bab4308c4e",
+          "native_body_sha256": "494eb0e99e51caf6f0b38721509b58275763280703eaff6dd062ce641cfee884",
+          "assertions": [
+            {
+              "type": "python",
+              "value": "file://../scorers/crop_validation_scorer.py"
+            }
+          ]
+        },
+        {
+          "key": "page-021-001",
+          "case_id": "page-021-001",
+          "sources": {
+            "page_image": {
+              "path": "benchmarks/input/source-pages-b64/Image020.b64.txt",
+              "decoded_sha256": "5a1f2380a089ff23355ff101b07549bd57abba3a51636a6b58a28a31a4195318",
+              "dimensions": [
+                1545,
+                2000
+              ]
+            },
+            "crop_image": {
+              "path": "benchmarks/input/crop-validation-b64/page-021-001.b64.txt",
+              "decoded_sha256": "7d3af1dc6ffa2a2c731a6f0cdadb791175b25bcb2580c69034dcf2de6c06131e",
+              "dimensions": [
+                4152,
+                2471
+              ]
+            }
+          },
+          "text_schema_bytes": 4057,
+          "prompt_text_sha256": "9931ded6b7e732687b0889e6959ef9a873e6f459a292c132443db0f6bc9a7371",
+          "schema_sha256": "dfde50f5b02eb779fdb8a1f0c008606935f9b261bab75cd7bb83c7bab4308c4e",
+          "native_body_sha256": "d37f21a9669818fc85fe7eb0a5259f86386b2d4b0df0b9f37feaccc78b33b57d",
+          "assertions": [
+            {
+              "type": "python",
+              "value": "file://../scorers/crop_validation_scorer.py"
+            }
+          ]
+        },
+        {
+          "key": "page-022-000",
+          "case_id": "page-022-000",
+          "sources": {
+            "page_image": {
+              "path": "benchmarks/input/source-pages-b64/Image021.b64.txt",
+              "decoded_sha256": "2f49d83261e2f40d20b736b602cc4de8c36b48780ab944dc96c8e08f83e34332",
+              "dimensions": [
+                1545,
+                2000
+              ]
+            },
+            "crop_image": {
+              "path": "benchmarks/input/crop-validation-b64/page-022-000.b64.txt",
+              "decoded_sha256": "c8de7753ebe7d13c9646b62bef02984148f4e9e2260197a56babd46442f61ea9",
+              "dimensions": [
+                1887,
+                1584
+              ]
+            }
+          },
+          "text_schema_bytes": 4057,
+          "prompt_text_sha256": "9931ded6b7e732687b0889e6959ef9a873e6f459a292c132443db0f6bc9a7371",
+          "schema_sha256": "dfde50f5b02eb779fdb8a1f0c008606935f9b261bab75cd7bb83c7bab4308c4e",
+          "native_body_sha256": "6dc16632274480547fc44be5a9b97c4527e73712e49e597638d92b75692d6c68",
+          "assertions": [
+            {
+              "type": "python",
+              "value": "file://../scorers/crop_validation_scorer.py"
+            }
+          ]
+        },
+        {
+          "key": "page-038-000",
+          "case_id": "page-038-000",
+          "sources": {
+            "page_image": {
+              "path": "benchmarks/input/source-pages-b64/Image037.b64.txt",
+              "decoded_sha256": "b836c9c90fc650dd0513299652bf1af41fc577544803d9cea64928c890cdfdbe",
+              "dimensions": [
+                1545,
+                2000
+              ]
+            },
+            "crop_image": {
+              "path": "benchmarks/input/crop-validation-b64/page-038-000.b64.txt",
+              "decoded_sha256": "09855f57fc1ff367f3174dd0a5bfab433e069195aa1d2596f68212cae163a349",
+              "dimensions": [
+                1372,
+                1706
+              ]
+            }
+          },
+          "text_schema_bytes": 4057,
+          "prompt_text_sha256": "9931ded6b7e732687b0889e6959ef9a873e6f459a292c132443db0f6bc9a7371",
+          "schema_sha256": "dfde50f5b02eb779fdb8a1f0c008606935f9b261bab75cd7bb83c7bab4308c4e",
+          "native_body_sha256": "07d4521e3ae33c38f7732ef7e72a20336030cd2d60d025f5a924b7604325eb87",
+          "assertions": [
+            {
+              "type": "python",
+              "value": "file://../scorers/crop_validation_scorer.py"
+            }
+          ]
+        },
+        {
+          "key": "page-038-001",
+          "case_id": "page-038-001",
+          "sources": {
+            "page_image": {
+              "path": "benchmarks/input/source-pages-b64/Image037.b64.txt",
+              "decoded_sha256": "b836c9c90fc650dd0513299652bf1af41fc577544803d9cea64928c890cdfdbe",
+              "dimensions": [
+                1545,
+                2000
+              ]
+            },
+            "crop_image": {
+              "path": "benchmarks/input/crop-validation-b64/page-038-001.b64.txt",
+              "decoded_sha256": "4eaee1585bba4a4c6309e5d5bd28a57b4dd8c297a0b8dd0a491c8c60d4e66b89",
+              "dimensions": [
+                2014,
+                1712
+              ]
+            }
+          },
+          "text_schema_bytes": 4057,
+          "prompt_text_sha256": "9931ded6b7e732687b0889e6959ef9a873e6f459a292c132443db0f6bc9a7371",
+          "schema_sha256": "dfde50f5b02eb779fdb8a1f0c008606935f9b261bab75cd7bb83c7bab4308c4e",
+          "native_body_sha256": "5f7110abd4f4d9b55baa12f08a01b71980d804bb5a8de3ef0798ecedd10ec7cd",
+          "assertions": [
+            {
+              "type": "python",
+              "value": "file://../scorers/crop_validation_scorer.py"
+            }
+          ]
+        },
+        {
+          "key": "page-060-000",
+          "case_id": "page-060-000",
+          "sources": {
+            "page_image": {
+              "path": "benchmarks/input/source-pages-b64/Image059.b64.txt",
+              "decoded_sha256": "af4d6f24fc5b026a12697ed4d9da2758257bb8e0ec06c7989a2b2d0625501317",
+              "dimensions": [
+                1545,
+                2000
+              ]
+            },
+            "crop_image": {
+              "path": "benchmarks/input/crop-validation-b64/page-060-000.b64.txt",
+              "decoded_sha256": "0e7a4ae8f060dcb0588f647c2e7d51abb7251b91ec81feb6d89a9923f0d4e9b3",
+              "dimensions": [
+                2004,
+                2561
+              ]
+            }
+          },
+          "text_schema_bytes": 4057,
+          "prompt_text_sha256": "9931ded6b7e732687b0889e6959ef9a873e6f459a292c132443db0f6bc9a7371",
+          "schema_sha256": "dfde50f5b02eb779fdb8a1f0c008606935f9b261bab75cd7bb83c7bab4308c4e",
+          "native_body_sha256": "c09a23695478038e6020986608dd3fb8147aa0fe37c08dd53eabc23537ef115d",
+          "assertions": [
+            {
+              "type": "python",
+              "value": "file://../scorers/crop_validation_scorer.py"
+            }
+          ]
+        },
+        {
+          "key": "page-060-001",
+          "case_id": "page-060-001",
+          "sources": {
+            "page_image": {
+              "path": "benchmarks/input/source-pages-b64/Image059.b64.txt",
+              "decoded_sha256": "af4d6f24fc5b026a12697ed4d9da2758257bb8e0ec06c7989a2b2d0625501317",
+              "dimensions": [
+                1545,
+                2000
+              ]
+            },
+            "crop_image": {
+              "path": "benchmarks/input/crop-validation-b64/page-060-001.b64.txt",
+              "decoded_sha256": "f05b5737e373e2b06f0544bd74c59c9e92b096919fc775cdd9cc0bb4642dade6",
+              "dimensions": [
+                2015,
+                1743
+              ]
+            }
+          },
+          "text_schema_bytes": 4057,
+          "prompt_text_sha256": "9931ded6b7e732687b0889e6959ef9a873e6f459a292c132443db0f6bc9a7371",
+          "schema_sha256": "dfde50f5b02eb779fdb8a1f0c008606935f9b261bab75cd7bb83c7bab4308c4e",
+          "native_body_sha256": "080d78b4b17ccdf9c616c8ac443b2dcd9e95a17fb0c521cae3a4ead76d569c6a",
+          "assertions": [
+            {
+              "type": "python",
+              "value": "file://../scorers/crop_validation_scorer.py"
+            }
+          ]
+        },
+        {
+          "key": "page-092-000",
+          "case_id": "page-092-000",
+          "sources": {
+            "page_image": {
+              "path": "benchmarks/input/source-pages-b64/Image091.b64.txt",
+              "decoded_sha256": "23540ee8136d29922da3f9284d44ddb46a07390fdd41f79f9afbb39989c9c04c",
+              "dimensions": [
+                1545,
+                2000
+              ]
+            },
+            "crop_image": {
+              "path": "benchmarks/input/crop-validation-b64/page-092-000.b64.txt",
+              "decoded_sha256": "3d02c44de285d58fd54c3131a5c2c6c13235093c88eef49ac02e2a778b23687c",
+              "dimensions": [
+                1974,
+                2381
+              ]
+            }
+          },
+          "text_schema_bytes": 4057,
+          "prompt_text_sha256": "9931ded6b7e732687b0889e6959ef9a873e6f459a292c132443db0f6bc9a7371",
+          "schema_sha256": "dfde50f5b02eb779fdb8a1f0c008606935f9b261bab75cd7bb83c7bab4308c4e",
+          "native_body_sha256": "f884b4033245e74b89c8854978683cec29750987d1a617e748a145203124f257",
+          "assertions": [
+            {
+              "type": "python",
+              "value": "file://../scorers/crop_validation_scorer.py"
+            }
+          ]
+        },
+        {
+          "key": "page-122-000",
+          "case_id": "page-122-000",
+          "sources": {
+            "page_image": {
+              "path": "benchmarks/input/source-pages-b64/Image121.b64.txt",
+              "decoded_sha256": "04731378a1ff37ffb8e26faf005f87fa2383f9ba91e147ce9caa94e8519d086e",
+              "dimensions": [
+                1545,
+                2000
+              ]
+            },
+            "crop_image": {
+              "path": "benchmarks/input/crop-validation-b64/page-122-000.b64.txt",
+              "decoded_sha256": "5ab45f308ea9d353dae2830a574af026b907fd95f6c50e78d48e8921031f6990",
+              "dimensions": [
+                4244,
+                2478
+              ]
+            }
+          },
+          "text_schema_bytes": 4057,
+          "prompt_text_sha256": "9931ded6b7e732687b0889e6959ef9a873e6f459a292c132443db0f6bc9a7371",
+          "schema_sha256": "dfde50f5b02eb779fdb8a1f0c008606935f9b261bab75cd7bb83c7bab4308c4e",
+          "native_body_sha256": "b0dde95e0941017b9350abfb7a5e6ceec3267309665fd38d77b3b3130e050fa4",
+          "assertions": [
+            {
+              "type": "python",
+              "value": "file://../scorers/crop_validation_scorer.py"
+            }
+          ]
+        },
+        {
+          "key": "page-122-001",
+          "case_id": "page-122-001",
+          "sources": {
+            "page_image": {
+              "path": "benchmarks/input/source-pages-b64/Image121.b64.txt",
+              "decoded_sha256": "04731378a1ff37ffb8e26faf005f87fa2383f9ba91e147ce9caa94e8519d086e",
+              "dimensions": [
+                1545,
+                2000
+              ]
+            },
+            "crop_image": {
+              "path": "benchmarks/input/crop-validation-b64/page-122-001.b64.txt",
+              "decoded_sha256": "7fea918ba336f4cca9bbbb048f97bcc6377febe2afaebd5eddf2eed0c0bfb8d9",
+              "dimensions": [
+                4244,
+                2958
+              ]
+            }
+          },
+          "text_schema_bytes": 4057,
+          "prompt_text_sha256": "9931ded6b7e732687b0889e6959ef9a873e6f459a292c132443db0f6bc9a7371",
+          "schema_sha256": "dfde50f5b02eb779fdb8a1f0c008606935f9b261bab75cd7bb83c7bab4308c4e",
+          "native_body_sha256": "2ccb3a24898ee42c98d53e18eca2cc167c3d053147876922fb333d43cefbab8a",
+          "assertions": [
+            {
+              "type": "python",
+              "value": "file://../scorers/crop_validation_scorer.py"
+            }
+          ]
+        },
+        {
+          "key": "page-125-000",
+          "case_id": "page-125-000",
+          "sources": {
+            "page_image": {
+              "path": "benchmarks/input/source-pages-b64/Image124.b64.txt",
+              "decoded_sha256": "b35e4c1e660a0ed9029ebe555558341a933a5724740964ca6927f94f77ae2944",
+              "dimensions": [
+                1545,
+                2000
+              ]
+            },
+            "crop_image": {
+              "path": "benchmarks/input/crop-validation-b64/page-125-000.b64.txt",
+              "decoded_sha256": "e371aa234263c051dce440c71d0ec3d5a9ed31bd3b1fc9c4dd4dae475dca57ee",
+              "dimensions": [
+                4011,
+                3871
+              ]
+            }
+          },
+          "text_schema_bytes": 4057,
+          "prompt_text_sha256": "9931ded6b7e732687b0889e6959ef9a873e6f459a292c132443db0f6bc9a7371",
+          "schema_sha256": "dfde50f5b02eb779fdb8a1f0c008606935f9b261bab75cd7bb83c7bab4308c4e",
+          "native_body_sha256": "09cc90d598b94e245cca8f3e46dbad7e16726de4b807f80d21f7ac5c662c4c97",
+          "assertions": [
+            {
+              "type": "python",
+              "value": "file://../scorers/crop_validation_scorer.py"
+            }
+          ]
+        },
+        {
+          "key": "page-126-000",
+          "case_id": "page-126-000",
+          "sources": {
+            "page_image": {
+              "path": "benchmarks/input/source-pages-b64/Image125.b64.txt",
+              "decoded_sha256": "4f4ac880a5ff48ffa1a6d2a010e763cf022dceb118988b7bf6d0c0a41fab1143",
+              "dimensions": [
+                1545,
+                2000
+              ]
+            },
+            "crop_image": {
+              "path": "benchmarks/input/crop-validation-b64/page-126-000.b64.txt",
+              "decoded_sha256": "be267fc173fd8ed502bd6ab4d0be57c0d7d5a0c1556fdcc9f8c34d94aa8715d6",
+              "dimensions": [
+                2933,
+                2116
+              ]
+            }
+          },
+          "text_schema_bytes": 4057,
+          "prompt_text_sha256": "9931ded6b7e732687b0889e6959ef9a873e6f459a292c132443db0f6bc9a7371",
+          "schema_sha256": "dfde50f5b02eb779fdb8a1f0c008606935f9b261bab75cd7bb83c7bab4308c4e",
+          "native_body_sha256": "fe1d361f90da909098dd454768423e53d750cbe4d3de9d5240e42f551f141c71",
+          "assertions": [
+            {
+              "type": "python",
+              "value": "file://../scorers/crop_validation_scorer.py"
+            }
+          ]
+        },
+        {
+          "key": "page-126-001",
+          "case_id": "page-126-001",
+          "sources": {
+            "page_image": {
+              "path": "benchmarks/input/source-pages-b64/Image125.b64.txt",
+              "decoded_sha256": "4f4ac880a5ff48ffa1a6d2a010e763cf022dceb118988b7bf6d0c0a41fab1143",
+              "dimensions": [
+                1545,
+                2000
+              ]
+            },
+            "crop_image": {
+              "path": "benchmarks/input/crop-validation-b64/page-126-001.b64.txt",
+              "decoded_sha256": "34ceefa5de85865fd864cb3253a38fa73cf6ab5f13ed56daec60e00de20da908",
+              "dimensions": [
+                2123,
+                2940
+              ]
+            }
+          },
+          "text_schema_bytes": 4057,
+          "prompt_text_sha256": "9931ded6b7e732687b0889e6959ef9a873e6f459a292c132443db0f6bc9a7371",
+          "schema_sha256": "dfde50f5b02eb779fdb8a1f0c008606935f9b261bab75cd7bb83c7bab4308c4e",
+          "native_body_sha256": "e5c3793320d0c0a93507900ac1d1ef9ba1e50c20a78d65ff1eca4f5fcd9ba5df",
+          "assertions": [
+            {
+              "type": "python",
+              "value": "file://../scorers/crop_validation_scorer.py"
+            }
+          ]
+        },
+        {
+          "key": "page-127-000",
+          "case_id": "page-127-000",
+          "sources": {
+            "page_image": {
+              "path": "benchmarks/input/source-pages-b64/Image126.b64.txt",
+              "decoded_sha256": "25042b92e75e09ff2d7aa9330b44b26a092624a9bee19c7f2707a413f6c7f302",
+              "dimensions": [
+                1545,
+                2000
+              ]
+            },
+            "crop_image": {
+              "path": "benchmarks/input/crop-validation-b64/page-127-000.b64.txt",
+              "decoded_sha256": "6dcf9cad3998eba4ed72d1a79594431f86113a04c58b0452670ede3e3ec13429",
+              "dimensions": [
+                2924,
+                2081
+              ]
+            }
+          },
+          "text_schema_bytes": 4057,
+          "prompt_text_sha256": "9931ded6b7e732687b0889e6959ef9a873e6f459a292c132443db0f6bc9a7371",
+          "schema_sha256": "dfde50f5b02eb779fdb8a1f0c008606935f9b261bab75cd7bb83c7bab4308c4e",
+          "native_body_sha256": "fd169ae14f7e533ff39992f459b9fabd7616d56412b675d093652a0bd2ede728",
+          "assertions": [
+            {
+              "type": "python",
+              "value": "file://../scorers/crop_validation_scorer.py"
+            }
+          ]
+        },
+        {
+          "key": "page-127-001",
+          "case_id": "page-127-001",
+          "sources": {
+            "page_image": {
+              "path": "benchmarks/input/source-pages-b64/Image126.b64.txt",
+              "decoded_sha256": "25042b92e75e09ff2d7aa9330b44b26a092624a9bee19c7f2707a413f6c7f302",
+              "dimensions": [
+                1545,
+                2000
+              ]
+            },
+            "crop_image": {
+              "path": "benchmarks/input/crop-validation-b64/page-127-001.b64.txt",
+              "decoded_sha256": "c98909f5166e46b330e89288f7ed4cd1f4700a98a5b0153996204725cc7ea29e",
+              "dimensions": [
+                2919,
+                2071
+              ]
+            }
+          },
+          "text_schema_bytes": 4057,
+          "prompt_text_sha256": "9931ded6b7e732687b0889e6959ef9a873e6f459a292c132443db0f6bc9a7371",
+          "schema_sha256": "dfde50f5b02eb779fdb8a1f0c008606935f9b261bab75cd7bb83c7bab4308c4e",
+          "native_body_sha256": "b8bce5d3015c8e66d9e0d7ceb0b6c9df13b9d5de6fc70f49de4195101e7d0a2e",
+          "assertions": [
+            {
+              "type": "python",
+              "value": "file://../scorers/crop_validation_scorer.py"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "task": "benchmarks/tasks/safety-repair-048-control-fresh.yaml",
+      "task_sha256": "88162f6af67281c366f1c83447e2a41fbd1f4eb79b6554a0f7306048d9dceccf",
+      "arm": "control",
+      "stage": "fresh",
+      "count": 6,
+      "provider": {
+        "id": "python:../providers/safety_repair_openai.py",
+        "label": "control",
+        "config": {
+          "model": "gpt-5.5",
+          "expected_served_model": "gpt-5.5-2026-04-23",
+          "reasoning_effort": "none",
+          "max_output_tokens": 2048,
+          "image_detail": "auto",
+          "output_contract": "page_context_validation"
+        }
+      },
+      "per_call_reservation_usd": 0.29144,
+      "cases": [
+        {
+          "key": "S1",
+          "case_id": "S1",
+          "sources": {
+            "page_image": {
+              "path": "benchmarks/input/safety-repair-048/S1-source.b64.txt",
+              "decoded_sha256": "dc6f1b87fbce7c05af523cef3969fa2e34d2dd8a8c7c0167681ddb0565079d0d",
+              "dimensions": [
+                1000,
+                1000
+              ]
+            },
+            "crop_image": {
+              "path": "benchmarks/input/safety-repair-048/S1-crop.b64.txt",
+              "decoded_sha256": "3e25393c0d0f4d1502934eab252391f63d4b55926c2e4600c13959f565a04ec3",
+              "dimensions": [
+                800,
+                470
+              ]
+            }
+          },
+          "text_schema_bytes": 4057,
+          "prompt_text_sha256": "9931ded6b7e732687b0889e6959ef9a873e6f459a292c132443db0f6bc9a7371",
+          "schema_sha256": "dfde50f5b02eb779fdb8a1f0c008606935f9b261bab75cd7bb83c7bab4308c4e",
+          "native_body_sha256": "5e2a2224e8e3bb53000e29f9df0e3e835b1fac1a88ccf0d401b98e1aa361f3db",
+          "assertions": [
+            {
+              "type": "python",
+              "value": "file://../scorers/crop_validation_scorer.py"
+            }
+          ]
+        },
+        {
+          "key": "S2",
+          "case_id": "S2",
+          "sources": {
+            "page_image": {
+              "path": "benchmarks/input/safety-repair-048/S2-source.b64.txt",
+              "decoded_sha256": "1d762cc29d89d012a61545acce63422521e0f51a05339391df2e817fe47bd07f",
+              "dimensions": [
+                1000,
+                1000
+              ]
+            },
+            "crop_image": {
+              "path": "benchmarks/input/safety-repair-048/S2-crop.b64.txt",
+              "decoded_sha256": "d9cb87f2812a9d84c41f0e58be8085d126a157b37a73abce32a844a7bcd66d44",
+              "dimensions": [
+                800,
+                470
+              ]
+            }
+          },
+          "text_schema_bytes": 4057,
+          "prompt_text_sha256": "9931ded6b7e732687b0889e6959ef9a873e6f459a292c132443db0f6bc9a7371",
+          "schema_sha256": "dfde50f5b02eb779fdb8a1f0c008606935f9b261bab75cd7bb83c7bab4308c4e",
+          "native_body_sha256": "c1fd413528785eb5ad9989de5e02f16063d498793f5dc4c5beee1688d8bb585e",
+          "assertions": [
+            {
+              "type": "python",
+              "value": "file://../scorers/crop_validation_scorer.py"
+            }
+          ]
+        },
+        {
+          "key": "S3",
+          "case_id": "S3",
+          "sources": {
+            "page_image": {
+              "path": "benchmarks/input/safety-repair-048/S3-source.b64.txt",
+              "decoded_sha256": "4cb7ceb9d8a3045951ce9c2da00eb1afb02ad91d1d3bad722283c0f96fa5ce84",
+              "dimensions": [
+                1000,
+                1000
+              ]
+            },
+            "crop_image": {
+              "path": "benchmarks/input/safety-repair-048/S3-crop.b64.txt",
+              "decoded_sha256": "11d98294ac8a19c8e77490998a933add2ddf8de6fdbeb8e7156159e201a87bfe",
+              "dimensions": [
+                560,
+                500
+              ]
+            }
+          },
+          "text_schema_bytes": 4057,
+          "prompt_text_sha256": "9931ded6b7e732687b0889e6959ef9a873e6f459a292c132443db0f6bc9a7371",
+          "schema_sha256": "dfde50f5b02eb779fdb8a1f0c008606935f9b261bab75cd7bb83c7bab4308c4e",
+          "native_body_sha256": "d1e38446e9b0f1ea76339e88016e868691cba11eb119f6510ce64f495baab9a7",
+          "assertions": [
+            {
+              "type": "python",
+              "value": "file://../scorers/crop_validation_scorer.py"
+            }
+          ]
+        },
+        {
+          "key": "S4",
+          "case_id": "S4",
+          "sources": {
+            "page_image": {
+              "path": "benchmarks/input/safety-repair-048/S4-source.b64.txt",
+              "decoded_sha256": "381e784398327ecbe0d0e9b84a506d814d7b6ef4928e3d0f769946b64430ac33",
+              "dimensions": [
+                1000,
+                1000
+              ]
+            },
+            "crop_image": {
+              "path": "benchmarks/input/safety-repair-048/S4-crop.b64.txt",
+              "decoded_sha256": "9d310a44f961da0f05d01212dd3ba077a49054f5582bd8db393d5ae8670648a8",
+              "dimensions": [
+                500,
+                500
+              ]
+            }
+          },
+          "text_schema_bytes": 4057,
+          "prompt_text_sha256": "9931ded6b7e732687b0889e6959ef9a873e6f459a292c132443db0f6bc9a7371",
+          "schema_sha256": "dfde50f5b02eb779fdb8a1f0c008606935f9b261bab75cd7bb83c7bab4308c4e",
+          "native_body_sha256": "5fe3a8989eba529042655a0361ec603d3f5effeaf4376690b3da7364e1e88fa5",
+          "assertions": [
+            {
+              "type": "python",
+              "value": "file://../scorers/crop_validation_scorer.py"
+            }
+          ]
+        },
+        {
+          "key": "S5",
+          "case_id": "S5",
+          "sources": {
+            "page_image": {
+              "path": "benchmarks/input/safety-repair-048/S5-source.b64.txt",
+              "decoded_sha256": "e0d9515e5a236e734240762d5a4843b9edf18a63e54fb414162c480d936bd6a7",
+              "dimensions": [
+                1000,
+                1000
+              ]
+            },
+            "crop_image": {
+              "path": "benchmarks/input/safety-repair-048/S5-crop.b64.txt",
+              "decoded_sha256": "1573160ca39663a2d1b1539a32a0398c90a9f1db68d9de3e2686c98dd3043046",
+              "dimensions": [
+                500,
+                490
+              ]
+            }
+          },
+          "text_schema_bytes": 4057,
+          "prompt_text_sha256": "9931ded6b7e732687b0889e6959ef9a873e6f459a292c132443db0f6bc9a7371",
+          "schema_sha256": "dfde50f5b02eb779fdb8a1f0c008606935f9b261bab75cd7bb83c7bab4308c4e",
+          "native_body_sha256": "d59f31fcf16c09383848c359136882163788b2f6630e8796272a6172d5467459",
+          "assertions": [
+            {
+              "type": "python",
+              "value": "file://../scorers/crop_validation_scorer.py"
+            }
+          ]
+        },
+        {
+          "key": "S6",
+          "case_id": "S6",
+          "sources": {
+            "page_image": {
+              "path": "benchmarks/input/safety-repair-048/S6-source.b64.txt",
+              "decoded_sha256": "b68a43d0f42d64425ae43b32bde95f3f9cd14da6b0923ed104e94b40e27efe91",
+              "dimensions": [
+                1000,
+                1000
+              ]
+            },
+            "crop_image": {
+              "path": "benchmarks/input/safety-repair-048/S6-crop.b64.txt",
+              "decoded_sha256": "ab32153e5aab60d75c4e52165d98da1c5ac11323976f9cc2870556b908cf3ca7",
+              "dimensions": [
+                800,
+                800
+              ]
+            }
+          },
+          "text_schema_bytes": 4057,
+          "prompt_text_sha256": "9931ded6b7e732687b0889e6959ef9a873e6f459a292c132443db0f6bc9a7371",
+          "schema_sha256": "dfde50f5b02eb779fdb8a1f0c008606935f9b261bab75cd7bb83c7bab4308c4e",
+          "native_body_sha256": "d0a3311bd094983ad3eb7b1ffb659681088923e8e8c58d8a155af323d60a1d79",
+          "assertions": [
+            {
+              "type": "python",
+              "value": "file://../scorers/crop_validation_scorer.py"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "native": [
+    {
+      "arm": "luna",
+      "body_sha256": "acf1886222b1cce27cbb6a10cd6ae75ab7702a46c57326fa55ec33958ea499fa",
+      "body": {
+        "model": "gpt-6-luna",
+        "input": [
+          {
+            "role": "user",
+            "content": [
+              {
+                "type": "input_text",
+                "text": "You will receive TWO images in this order:\n1. The full scanned book page.\n2. The extracted crop from that page.\n\nJudge whether the extracted crop is acceptable as an illustration crop when compared against the full page context.\nThis gate primarily checks whether page text or neighboring page visuals were left in the crop. It is not a fine-art composition scorer.\n\nReturn JSON: {\"verdict\": \"pass\" or \"fail\", \"has_page_text\": true or false, \"excessive_blank\": true or false, \"reason\": \"brief explanation\"}\n\nPASS when:\n- The crop isolates the intended source illustration or visual element, including a compound or multipart figure when the source page presents it as one coherent visual.\n- Any visible text is integral to the image itself (for example: engraved plaque text, logo text, seal text, handwriting on a photo, or monument inscriptions).\n- The crop is not excessively blank. Large light regions inside a photograph, such as sky, snow, wall, halftone background, or studio backdrop, count as image content rather than empty page space.\n\nFAIL when:\n- The crop also contains a separately presented neighboring illustration or visual element, even if that neighboring visual is complete and its caption has been excluded. Absence of page text does not make unrelated visual leakage acceptable.\n- The crop includes page-level caption text, paragraph text, headers, page-layout text, or other surrounding document text that should have stayed outside the crop.\n- Any surrounding page text from an adjacent plaque, neighboring figure, or page layout is still visible at the crop edge, even if the main subject is correct.\n- The crop is obviously incomplete because the full page shows a large, unmistakable part of the same intended visual outside the crop, or it is so loose that surrounding page content is part of the crop.\n- More than 40% of the crop is empty page margin, scanner background, or blank paper with no real image content.\n\nImportant:\n- Use the FULL PAGE as the source of truth for the intended visual's boundaries, which parts belong together, and whether visible text belongs to the page or to the image. Use source composition, image boundaries, page grouping, and caption relationships; proximity or a shared topic alone does not make separate visuals one figure.\n- Preserve subjects and objects within the same photograph, parts of a composite illustration, and panels of a genuinely unified figure. These are integral image content, not neighboring page visuals. Do not reject a crop merely because a coherent source visual has several components.\n- Do not fail just because the image itself contains meaningful text.\n- Be strict about external text leakage: if text belongs to the page or to a neighboring visual element outside the intended crop, that is a FAIL even when the leakage is small.\n- Do not fail tight framing merely because artwork or a photograph reaches the crop edge, or because there is minor edge clipping on line art. Fail incompleteness only when the full-page context clearly shows a large missing part of the intended visual.\n- Do not count sky, snow, wall, studio backdrop, faded photo background, or other natural light areas inside the image as excessive blank space.\n- If the source page does not let you establish the intended visual's boundary or whether included material belongs to it, return FAIL and explain the uncertainty in reason. FAIL means this crop is not accepted without review; it does not authorize deleting the source illustration. Keep has_page_text and excessive_blank tied to observed conditions rather than inventing either to justify an uncertain verdict.\n\nReturn ONLY valid JSON."
+              },
+              {
+                "type": "input_image",
+                "image_url": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAIAAAD8GO2jAAAAPUlEQVR4nGP8//8/Ay0BE01NH7Vg1AKqABZcEoyMjCQZhCs/Df0gGrVg1IJRC0YtGBEWMI62i0YtGLWAAQBMswk7DKWftAAAAABJRU5ErkJggg==",
+                "detail": "high"
+              },
+              {
+                "type": "input_image",
+                "image_url": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAIAAAD8GO2jAAAAPUlEQVR4nGP8//8/Ay0BE01NH7Vg1AKqABZcEoyMjCQZhCs/Df0gGrVg1IJRC0YtGBEWMI62i0YtGLWAAQBMswk7DKWftAAAAABJRU5ErkJggg==",
+                "detail": "high"
+              }
+            ]
+          }
+        ],
+        "reasoning": {
+          "effort": "medium"
+        },
+        "max_output_tokens": 4096,
+        "store": false,
+        "text": {
+          "format": {
+            "type": "json_schema",
+            "name": "page_context_validation",
+            "strict": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "verdict": {
+                  "type": "string",
+                  "enum": [
+                    "pass",
+                    "fail"
+                  ]
+                },
+                "has_page_text": {
+                  "type": "boolean"
+                },
+                "excessive_blank": {
+                  "type": "boolean"
+                },
+                "reason": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "verdict",
+                "has_page_text",
+                "excessive_blank",
+                "reason"
+              ],
+              "additionalProperties": false
+            }
+          }
+        }
+      }
+    },
+    {
+      "arm": "sol",
+      "body_sha256": "d253a6299b3c3cc95ad722f4ab88c488268faf010eef69eb2869a4d5bc9b72e5",
+      "body": {
+        "model": "gpt-6.1-sol",
+        "input": [
+          {
+            "role": "user",
+            "content": [
+              {
+                "type": "input_text",
+                "text": "You will receive TWO images in this order:\n1. The full scanned book page.\n2. The extracted crop from that page.\n\nJudge whether the extracted crop is acceptable as an illustration crop when compared against the full page context.\nThis gate primarily checks whether page text or neighboring page visuals were left in the crop. It is not a fine-art composition scorer.\n\nReturn JSON: {\"verdict\": \"pass\" or \"fail\", \"has_page_text\": true or false, \"excessive_blank\": true or false, \"reason\": \"brief explanation\"}\n\nPASS when:\n- The crop isolates the intended source illustration or visual element, including a compound or multipart figure when the source page presents it as one coherent visual.\n- Any visible text is integral to the image itself (for example: engraved plaque text, logo text, seal text, handwriting on a photo, or monument inscriptions).\n- The crop is not excessively blank. Large light regions inside a photograph, such as sky, snow, wall, halftone background, or studio backdrop, count as image content rather than empty page space.\n\nFAIL when:\n- The crop also contains a separately presented neighboring illustration or visual element, even if that neighboring visual is complete and its caption has been excluded. Absence of page text does not make unrelated visual leakage acceptable.\n- The crop includes page-level caption text, paragraph text, headers, page-layout text, or other surrounding document text that should have stayed outside the crop.\n- Any surrounding page text from an adjacent plaque, neighboring figure, or page layout is still visible at the crop edge, even if the main subject is correct.\n- The crop is obviously incomplete because the full page shows a large, unmistakable part of the same intended visual outside the crop, or it is so loose that surrounding page content is part of the crop.\n- More than 40% of the crop is empty page margin, scanner background, or blank paper with no real image content.\n\nImportant:\n- Use the FULL PAGE as the source of truth for the intended visual's boundaries, which parts belong together, and whether visible text belongs to the page or to the image. Use source composition, image boundaries, page grouping, and caption relationships; proximity or a shared topic alone does not make separate visuals one figure.\n- Preserve subjects and objects within the same photograph, parts of a composite illustration, and panels of a genuinely unified figure. These are integral image content, not neighboring page visuals. Do not reject a crop merely because a coherent source visual has several components.\n- Do not fail just because the image itself contains meaningful text.\n- Be strict about external text leakage: if text belongs to the page or to a neighboring visual element outside the intended crop, that is a FAIL even when the leakage is small.\n- Do not fail tight framing merely because artwork or a photograph reaches the crop edge, or because there is minor edge clipping on line art. Fail incompleteness only when the full-page context clearly shows a large missing part of the intended visual.\n- Do not count sky, snow, wall, studio backdrop, faded photo background, or other natural light areas inside the image as excessive blank space.\n- If the source page does not let you establish the intended visual's boundary or whether included material belongs to it, return FAIL and explain the uncertainty in reason. FAIL means this crop is not accepted without review; it does not authorize deleting the source illustration. Keep has_page_text and excessive_blank tied to observed conditions rather than inventing either to justify an uncertain verdict.\n\nReturn ONLY valid JSON."
+              },
+              {
+                "type": "input_image",
+                "image_url": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAIAAAD8GO2jAAAAPUlEQVR4nGP8//8/Ay0BE01NH7Vg1AKqABZcEoyMjCQZhCs/Df0gGrVg1IJRC0YtGBEWMI62i0YtGLWAAQBMswk7DKWftAAAAABJRU5ErkJggg==",
+                "detail": "high"
+              },
+              {
+                "type": "input_image",
+                "image_url": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAIAAAD8GO2jAAAAPUlEQVR4nGP8//8/Ay0BE01NH7Vg1AKqABZcEoyMjCQZhCs/Df0gGrVg1IJRC0YtGBEWMI62i0YtGLWAAQBMswk7DKWftAAAAABJRU5ErkJggg==",
+                "detail": "high"
+              }
+            ]
+          }
+        ],
+        "reasoning": {
+          "effort": "medium"
+        },
+        "max_output_tokens": 4096,
+        "store": false,
+        "text": {
+          "format": {
+            "type": "json_schema",
+            "name": "page_context_validation",
+            "strict": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "verdict": {
+                  "type": "string",
+                  "enum": [
+                    "pass",
+                    "fail"
+                  ]
+                },
+                "has_page_text": {
+                  "type": "boolean"
+                },
+                "excessive_blank": {
+                  "type": "boolean"
+                },
+                "reason": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "verdict",
+                "has_page_text",
+                "excessive_blank",
+                "reason"
+              ],
+              "additionalProperties": false
+            }
+          }
+        }
+      }
+    },
+    {
+      "arm": "control",
+      "body_sha256": "a7dda5d9191770bdf709ea85df776916fd33336742bb1687235b52ab56d08c33",
+      "body": {
+        "model": "gpt-5.5",
+        "input": [
+          {
+            "role": "user",
+            "content": [
+              {
+                "type": "input_text",
+                "text": "You will receive TWO images in this order:\n1. The full scanned book page.\n2. The extracted crop from that page.\n\nJudge whether the extracted crop is acceptable as an illustration crop when compared against the full page context.\nThis gate primarily checks whether page text or neighboring page visuals were left in the crop. It is not a fine-art composition scorer.\n\nReturn JSON: {\"verdict\": \"pass\" or \"fail\", \"has_page_text\": true or false, \"excessive_blank\": true or false, \"reason\": \"brief explanation\"}\n\nPASS when:\n- The crop isolates the intended source illustration or visual element, including a compound or multipart figure when the source page presents it as one coherent visual.\n- Any visible text is integral to the image itself (for example: engraved plaque text, logo text, seal text, handwriting on a photo, or monument inscriptions).\n- The crop is not excessively blank. Large light regions inside a photograph, such as sky, snow, wall, halftone background, or studio backdrop, count as image content rather than empty page space.\n\nFAIL when:\n- The crop also contains a separately presented neighboring illustration or visual element, even if that neighboring visual is complete and its caption has been excluded. Absence of page text does not make unrelated visual leakage acceptable.\n- The crop includes page-level caption text, paragraph text, headers, page-layout text, or other surrounding document text that should have stayed outside the crop.\n- Any surrounding page text from an adjacent plaque, neighboring figure, or page layout is still visible at the crop edge, even if the main subject is correct.\n- The crop is obviously incomplete because the full page shows a large, unmistakable part of the same intended visual outside the crop, or it is so loose that surrounding page content is part of the crop.\n- More than 40% of the crop is empty page margin, scanner background, or blank paper with no real image content.\n\nImportant:\n- Use the FULL PAGE as the source of truth for the intended visual's boundaries, which parts belong together, and whether visible text belongs to the page or to the image. Use source composition, image boundaries, page grouping, and caption relationships; proximity or a shared topic alone does not make separate visuals one figure.\n- Preserve subjects and objects within the same photograph, parts of a composite illustration, and panels of a genuinely unified figure. These are integral image content, not neighboring page visuals. Do not reject a crop merely because a coherent source visual has several components.\n- Do not fail just because the image itself contains meaningful text.\n- Be strict about external text leakage: if text belongs to the page or to a neighboring visual element outside the intended crop, that is a FAIL even when the leakage is small.\n- Do not fail tight framing merely because artwork or a photograph reaches the crop edge, or because there is minor edge clipping on line art. Fail incompleteness only when the full-page context clearly shows a large missing part of the intended visual.\n- Do not count sky, snow, wall, studio backdrop, faded photo background, or other natural light areas inside the image as excessive blank space.\n- If the source page does not let you establish the intended visual's boundary or whether included material belongs to it, return FAIL and explain the uncertainty in reason. FAIL means this crop is not accepted without review; it does not authorize deleting the source illustration. Keep has_page_text and excessive_blank tied to observed conditions rather than inventing either to justify an uncertain verdict.\n\nReturn ONLY valid JSON."
+              },
+              {
+                "type": "input_image",
+                "image_url": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAIAAAD8GO2jAAAAPUlEQVR4nGP8//8/Ay0BE01NH7Vg1AKqABZcEoyMjCQZhCs/Df0gGrVg1IJRC0YtGBEWMI62i0YtGLWAAQBMswk7DKWftAAAAABJRU5ErkJggg==",
+                "detail": "auto"
+              },
+              {
+                "type": "input_image",
+                "image_url": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAIAAAD8GO2jAAAAPUlEQVR4nGP8//8/Ay0BE01NH7Vg1AKqABZcEoyMjCQZhCs/Df0gGrVg1IJRC0YtGBEWMI62i0YtGLWAAQBMswk7DKWftAAAAABJRU5ErkJggg==",
+                "detail": "auto"
+              }
+            ]
+          }
+        ],
+        "reasoning": {
+          "effort": "none"
+        },
+        "max_output_tokens": 2048,
+        "store": false,
+        "text": {
+          "format": {
+            "type": "json_schema",
+            "name": "page_context_validation",
+            "strict": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "verdict": {
+                  "type": "string",
+                  "enum": [
+                    "pass",
+                    "fail"
+                  ]
+                },
+                "has_page_text": {
+                  "type": "boolean"
+                },
+                "excessive_blank": {
+                  "type": "boolean"
+                },
+                "reason": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "verdict",
+                "has_page_text",
+                "excessive_blank",
+                "reason"
+              ],
+              "additionalProperties": false
+            }
+          }
+        }
+      }
+    }
+  ],
+  "planned_reservation_usd": 15.93193,
+  "recovery_reservation_usd": 0.58288,
+  "frozen_sources": {
+    "benchmarks/prompts/validate-page-level-crop.js": "ef4395838929b208fe65f21500d81ade902072bef3f8e53f81ef3d3b83fbc421",
+    "benchmarks/providers/openai_responses_model.py": "3506470ee1eb9c8da8c472f270e3400fd2c6cbd086c6be836a0d974997696240",
+    "benchmarks/providers/safety_repair_guard.py": "08f3726a130a0c0fcad9eb7ba4a6f5e57a5353c7bc15ac29884735d85dfe40a5",
+    "benchmarks/providers/safety_repair_openai.py": "fc5b4e66dca5bc3112b004450a77d0025fdd4c468e206938b3989c65b55ab81c",
+    "benchmarks/scorers/crop_validation_scorer.py": "12eb63725523bd00d59ce12b7486db8c9244124a0c57bb68cae8b8e9e7d288fb",
+    "benchmarks/golden/crop-page-level-deletion-gate.json": "4bcba8f4ab8a742608e7cfc1438464a71cf56aa4cd9cbe9e0a67e4a410ac18a5",
+    "benchmarks/golden/crop-page-level-safety-repair-048.json": "dd03e49a4a23fce3a15825fe373340b21048b8c841a1acb4b4ed51986d3a5533",
+    "benchmarks/golden/safety-repair-synthetic-048.json": "ab029598b7bc638122fe701c52470bc598344ef3ede137eee682e15b71a62ced"
+  }
+}

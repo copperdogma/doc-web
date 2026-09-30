@@ -1958,7 +1958,7 @@ evals:
     config: benchmarks/tasks/crop-page-level-deletion-gate.yaml
     scorer: benchmarks/scorers/crop_validation_scorer.py
     golden: benchmarks/golden/crop-page-level-deletion-gate.json
-    story_refs: ["209", "232", "235", "237", "238", "239"]
+    story_refs: ["209", "232", "235", "237", "238", "239", "240"]
     category_refs: ["spec:4", "spec:8"]
     compromise_refs: ["C5"]
     spec_compromise: C5
@@ -1975,6 +1975,16 @@ evals:
         Keep the configured provider and safety labels stable. Compare any
         challenger on the same unchanged prompts, scorer, goldens, and declared
         configuration budget. Promotion requires the full maintained target.
+        Attempt048 measures the revised source-boundary/neighbor/uncertainty prompt.
+        All arms pass6/6 exposed screens. Sol medium is the best measured candidate:
+        full22 saved outputs source-adjudicated22/22 (frozen primary21/22), fresh
+        physical5/5, but uncertainty policy0/1. Luna integral-photo and GPT5.5 cover
+        false-rejects stop independently. Defer automatic promotion/runtime switch.
+        Two source-backed campaign-only golden repairs are explicit:126000 before
+        inference and012001 after numeric source review/before fresh; canonical
+        golden/scorer/schema/configured model and historical hashes unchanged.
+        Total71 attempts, settled0.916739025/unknown0.023394/cap18.
+        See docs/evals/attempts/048-repaired-page-safety.md.
 
     target:
       metric: pass_rate
@@ -1991,6 +2001,146 @@ evals:
         history are recorded in `benchmarks/golden/crop-eval-provenance.json`.
 
     scores:
+      - model: gpt-6.1-sol medium repaired safety (Attempt048)
+        metrics:
+          source_adjudicated_pass: 22
+          full_cases_complete: 22
+          frozen_primary_pass: 21
+          screen_pass: 6
+          screen_cases: 6
+          fresh_physical_pass: 5
+          fresh_physical_cases: 5
+          fresh_uncertainty_policy_pass: 0
+          fresh_uncertainty_policy_cases: 1
+          full_latency_ms: 4103.6
+          full_reasoning_tokens: 128
+        cost_usd: 0.4836925
+        cost_estimated: true
+        measured: '2026-09-30'
+        git_sha: 58fa3d5+attempt048-uncommitted
+        result_file: docs/evals/evidence/048-continuation-manifest.json
+        evidence_status: source-adjudicated-full22-physical5-policy-unqualified
+        note: >
+          Exact Sol medium4096/high. Original frozen score21/22 preserved; source-confirmed
+          seal golden repair rejudged saved outputs22/22 before fresh. Physical5/5;
+          S3 coherent-grouping pass misses declared uncertainty nonacceptance policy,
+          not physicallybadcrop proof. Best measured candidate; defer runtime promotion.
+      - model: gpt-6-luna medium repaired safety (Attempt048)
+        metrics:
+          source_adjudicated_pass: 17
+          full_cases_complete: 18
+          full_cases_attempted: 19
+          frozen_primary_pass: 16
+          source_backed_false_reject: 1
+          screen_pass: 6
+          screen_cases: 6
+          full_latency_ms: 4817.9
+          full_reasoning_tokens: 2724
+        cost_usd: 0.020555525
+        cost_estimated: true
+        measured: '2026-09-30'
+        git_sha: 58fa3d5+attempt048-uncommitted
+        result_file: docs/evals/evidence/048-continuation-manifest.json
+        evidence_status: partial-full-source-backed-stop
+        note: >
+          Exact Luna medium4096/high. Integral text inside126000 unified photograph
+          wrongly rejected; stop, three laterfullrows/fresh unrun.012001 seal source-golden
+          defect repaired separately; original16/18 preserved, saved-source17/18.
+          Interrupted022000 has no response; reserved unknown, never semantic miss.
+      - model: gpt-5.5 none repaired safety control (Attempt048)
+        metrics:
+          source_adjudicated_pass: 0
+          full_cases_complete: 1
+          source_backed_false_reject: 1
+          screen_pass: 6
+          screen_cases: 6
+          full_latency_ms: 5899
+          full_reasoning_tokens: 0
+        cost_usd: 0.412491
+        cost_estimated: true
+        measured: '2026-09-30'
+        git_sha: 58fa3d5+attempt048-uncommitted
+        result_file: docs/evals/evidence/048-continuation-manifest.json
+        evidence_status: partial-full-source-backed-stop
+        note: >
+          Requestedgpt-5.5 servedgpt-5.5-2026-04-23,none2048/auto. Genuine cover-art
+          false-reject: title/border outside intended visual need not be included.
+          Remaining21 full andfreshunrun. Settings differ intentionally from candidates.
+      - model: gpt-6-luna none targeted safety (Attempt047)
+        metrics:
+          targeted_pass: 1
+          targeted_cases: 1
+          false_safe: 0
+          latency_ms: 3922
+          reasoning_tokens: 0
+        cost_usd: 0.0008250499999999999
+        cost_estimated: true
+        measured: '2026-09-29'
+        git_sha: 58fa3d5+attempt047-uncommitted
+        result_file: benchmarks/results/thinking-safety-20260929/luna-none-screen.json
+        evidence_status: fresh-screen-full22-not-measured
+        note: One case only; prompt-contract concern unresolved. Luna none label match relies on incidental
+          mark. GPT5.5 serves documented gpt-5.5-2026-04-23. See Attempt047.
+      - model: gpt-6-luna medium targeted safety (Attempt047)
+        metrics:
+          targeted_pass: 0
+          targeted_cases: 1
+          false_safe: 1
+          latency_ms: 5154
+          reasoning_tokens: 164
+        cost_usd: 0.00090405
+        cost_estimated: true
+        measured: '2026-09-29'
+        git_sha: 58fa3d5+attempt047-uncommitted
+        result_file: benchmarks/results/thinking-safety-20260929/luna-medium-screen.json
+        evidence_status: fresh-screen-full22-not-measured
+        note: One case only; prompt-contract concern unresolved. Luna none label match relies on incidental
+          mark. GPT5.5 serves documented gpt-5.5-2026-04-23. See Attempt047.
+      - model: gpt-6.1-sol low targeted safety (Attempt047)
+        metrics:
+          targeted_pass: 0
+          targeted_cases: 1
+          false_safe: 1
+          latency_ms: 4877
+          reasoning_tokens: 0
+        cost_usd: 0.016411
+        cost_estimated: true
+        measured: '2026-09-29'
+        git_sha: 58fa3d5+attempt047-uncommitted
+        result_file: benchmarks/results/thinking-safety-20260929/sol-low-screen.json
+        evidence_status: fresh-screen-full22-not-measured
+        note: One case only; prompt-contract concern unresolved. Luna none label match relies on incidental
+          mark. GPT5.5 serves documented gpt-5.5-2026-04-23. See Attempt047.
+      - model: gpt-6.1-sol medium targeted safety (Attempt047)
+        metrics:
+          targeted_pass: 0
+          targeted_cases: 1
+          false_safe: 1
+          latency_ms: 4424
+          reasoning_tokens: 0
+        cost_usd: 0.016421
+        cost_estimated: true
+        measured: '2026-09-29'
+        git_sha: 58fa3d5+attempt047-uncommitted
+        result_file: benchmarks/results/thinking-safety-20260929/sol-medium-screen.json
+        evidence_status: fresh-screen-full22-not-measured
+        note: One case only; prompt-contract concern unresolved. Luna none label match relies on incidental
+          mark. GPT5.5 serves documented gpt-5.5-2026-04-23. See Attempt047.
+      - model: gpt-5.5 none targeted safety (Attempt047)
+        metrics:
+          targeted_pass: 0
+          targeted_cases: 1
+          false_safe: 1
+          latency_ms: 3520
+          reasoning_tokens: 0
+        cost_usd: 0.033445
+        cost_estimated: true
+        measured: '2026-09-29'
+        git_sha: 58fa3d5+attempt047-uncommitted
+        result_file: benchmarks/results/thinking-safety-20260929/control-screen.json
+        evidence_status: fresh-screen-full22-not-measured
+        note: One case only; prompt-contract concern unresolved. Luna none label match relies on incidental
+          mark. GPT5.5 serves documented gpt-5.5-2026-04-23. See Attempt047.
       - model: GPT-6.1 Sol low targeted page-context safety (Attempt046)
         metrics: {targeted_pass: 0, targeted_cases: 1, false_safe: 1, latency_ms: 5663}
         cost_usd: 0.016411
@@ -2634,6 +2784,32 @@ evals:
           proof: `docs/evals/attempts/034-gpt6-astra-page-context-gate.md`.
 
     attempts:
+      - id: '048'
+        date: '2026-09-30'
+        status: inconclusive
+        approach: Frozen repaired prompt, medium Luna/Sol6.1 and fresh maintained GPT5.5
+        score_after: null
+        note: >
+          Completed after credits restored: allscreen6/6, Sol source-adjudicated22/22
+          (frozen21/22) plusfreshphysical5/5, uncertaintypolicy0/1; best measured candidate,
+          promotiondeferred. Luna/GPT5.5 validfalse-rejectstops. Transparent golden012001
+          correction on saved outputs before fresh; original truths/primaryscores retained.
+          Aggregate71attempts=69planned+2recovery,68complete; settled0.916739025,
+          unknown0.023394/cap18. No hiddencontinuationretry, no defaultchange.
+        retry_when:
+          - condition: access-restored
+            note: Source-backed uncertainty policy review and separately approved representative-scan/driver qualification before promotion.
+      - id: '047'
+        date: '2026-09-29'
+        status: failed
+        approach: Frozen medium Luna/Sol6.1 matched prior-setting screen and fresh GPT5.5 safety control
+        score_after: null
+        note: Both medium arms and fresh GPT5.5 false-safe neighboring portrait; Luna none label match incidental.
+          Full22 unmeasured. Prompt-contract concern requires source-backed review; no reliable fresh safety
+          winner. Attempt047, total0.0694776/cap14 unknown0.
+        retry_when:
+        - condition: new-approach
+          note: Source-backed target-visual safety contract review and frozen repair before repeated fresh screens/full22.
       - id: '046'
         date: '2026-09-29'
         status: failed

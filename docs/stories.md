@@ -129,6 +129,8 @@ Grouped by primary `spec:N` category. Stories without category refs remain in an
 | 235 | GPT-6 Sol and Luna crop evaluation | Medium | Done | 207, 209, 232 | [story-235](stories/story-235-gpt6-sol-luna-crop-evaluation.md) |
 | 236 | GPT-6 Luna detector-only runtime qualification | Medium | Done | 231, 232, 235 | [story-236](stories/story-236-gpt6-luna-detector-runtime-qualification.md) |
 | 237 | GPT-6 Sol/Luna fresh image re-evaluation | Medium | Done | 235, 236 | [story-237](stories/story-237-gpt6-image-fix-rerun.md) |
+| 240 | Thinking-level page-safety comparison and prompt repair preparation | Medium | Done | 239 | [story-240](stories/story-240-thinking-level-page-safety.md) |
+| 241 | Offline opt-in crop review gate | Medium | Done | 240 | [story-241](stories/story-241-offline-crop-review-gate.md) |
 
 ### spec:5 — Document Consistency Planning
 

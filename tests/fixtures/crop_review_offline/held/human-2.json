@@ -1,0 +1,6 @@
+{
+  "candidate_id": "c5cb6e77d634a5040378fa9615b42007202cefe859e4ab9a3f0e9fe058abae8b",
+  "operator_id": "fixture-reviewer",
+  "action": "approve_current_crop",
+  "reason": "Synthetic source-reviewed approval; integral badge text is allowed"
+}

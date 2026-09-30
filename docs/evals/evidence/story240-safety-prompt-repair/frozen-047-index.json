@@ -1,0 +1,11 @@
+{
+  "docs/evals/attempts/047-thinking-level-page-safety.md": "c1d2d9f17e50fa1dd3496c16d407ac4a49869af4fe5d3f72bf924ec7d720b8dc",
+  "docs/evals/evidence/047-execution-sources/thinking_safety_preflight.py": "1bf2933e5a85c3f5bedafc395f144baa50b1e8cf2ddcf2b3f10c6773ac40b475",
+  "docs/evals/evidence/047-execution-sources/thinking_safety_native_probe.py": "4c7c52426a9ade0feba5c2f8539dbf0cb0787cbc42a1386c49d86e505979bd87",
+  "docs/evals/evidence/047-execution-sources/thinking_safety_openai.py": "c3de77200f892c7594d70d8a0d46c9fd279bcb9a3ab992f4d6dfd7cd5de3816e",
+  "docs/evals/evidence/047-execution-sources/thinking_safety_guard.py": "e7b9364f71a87179796ed81371ec91546a1c88ad1a50f3ea500f2d12fd0dff27",
+  "docs/evals/evidence/047-thinking-safety-manifest.json": "8a6b2d74bd97556655474721e036595230a0ffaff69ebc0cdac856e7db9e2e8c",
+  "docs/evals/evidence/047-thinking-safety-receipts.tar.gz": "2a52920a58a1d6da6a9e54ef6755a2ce29fbdf84f07c997d0960ea4d2a92a56f",
+  "docs/evals/evidence/047-reconstruct.py": "99a836e54d3a61d31feb6aa2d0c1758e308f951358bbda7d72ae302866eff33b",
+  "docs/evals/evidence/047-thinking-safety-topology.json": "69f9608ae4f898d65e5892df08c62d342afda3a371a20ad28e90df74cf24576d"
+}

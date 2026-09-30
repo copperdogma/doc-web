@@ -6,8 +6,12 @@ Produces proper HTML5 documents with embedded CSS, semantic structure
 (<figure>/<figcaption>), chapter navigation, and responsive styling.
 """
 import argparse
+import os
 import re
+import shutil
 import sys
+import tempfile
+from collections import Counter
 from copy import deepcopy
 from difflib import SequenceMatcher
 from functools import lru_cache
@@ -17,6 +21,7 @@ from typing import Any, Dict, List, Optional, Set
 
 from bs4 import BeautifulSoup
 
+from modules.common.crop_review import validate_release_for_build
 from modules.common.onward_genealogy_html import (
     merge_genealogy_tables_preserving_headings as _merge_genealogy_tables_preserving_headings,
     merge_contiguous_genealogy_tables as _merge_contiguous_genealogy_tables,  # noqa: F401
@@ -34,6 +39,56 @@ def _resolve_run_dir(out_path: Path) -> Path:
         if (parent / "pipeline_state.json").exists():
             return parent
     return cur
+
+
+def _check_reviewed_visuals(html_dir: Path, filenames: List[str], images_subdir: str) -> None:
+    expected = Counter(filenames)
+    observed: Counter = Counter()
+    for path in html_dir.glob("*.html"):
+        if path.name == "index.html":
+            continue
+        soup = BeautifulSoup(path.read_text(encoding="utf-8"), "html.parser")
+        for image in soup.find_all("img"):
+            filename = image.get("data-crop-filename")
+            if filename not in expected or image.get("src") != f"{images_subdir.rstrip('/')}/{filename}":
+                raise ValueError(f"Unreviewed or mismatched published image in {path.name}: {image.get('src')}")
+            observed[filename] += 1
+    if observed != expected:
+        raise ValueError(f"Reviewed crop coverage mismatch: expected {dict(expected)}, observed {dict(observed)}")
+
+
+def _check_reviewed_output_paths(html_dir: Path, images_subdir: str, destinations: List[Optional[str]]) -> None:
+    subdir = Path(images_subdir)
+    if (not images_subdir or subdir.is_absolute() or ".." in subdir.parts
+            or subdir == Path(".") or str(subdir) != images_subdir):
+        raise ValueError("Reviewed images subdirectory must be a normalized relative path without traversal")
+    html = html_dir.resolve()
+    paths = [Path(value).resolve() for value in destinations if value is not None]
+    for path in paths:
+        if path.is_relative_to(html) or html.is_relative_to(path):
+            raise ValueError("Reviewed manifest/state/progress paths must be outside the HTML output tree")
+    for index, path in enumerate(paths):
+        for other in paths[index + 1:]:
+            if (path.is_relative_to(other) or other.is_relative_to(path)
+                    or (path.exists() and other.exists() and path.samefile(other))):
+                raise ValueError("Reviewed manifest/state/progress paths must be distinct without overlap")
+
+
+def _publish_reviewed_build(staged_dir: Path, html_dir: Path, out_path: Path, rows: List[Dict[str, Any]]) -> None:
+    """Publish checked output into a fresh destination, preserving existing runs."""
+    if html_dir.exists() or out_path.exists():
+        raise ValueError("Reviewed builds require a fresh output directory and manifest")
+    published = False
+    try:
+        os.replace(staged_dir, html_dir)
+        published = True
+        save_jsonl(str(out_path), rows)
+    except Exception:
+        if published:
+            shutil.rmtree(html_dir)
+            if out_path.exists():
+                out_path.unlink()
+        raise
 
 
 def _coerce_int(value: Any) -> Optional[int]:
@@ -3172,6 +3227,10 @@ def main() -> None:
                         help="Directory to write HTML files (default: output/html under run dir)")
     parser.add_argument("--illustration-manifest", dest="illustration_manifest", default=None,
                         help="Optional illustration_manifest.jsonl to attach img src tags")
+    parser.add_argument("--require-crop-review", action="store_true", default=False,
+                        help="Require a current human crop-review release and fresh output paths before building")
+    parser.add_argument("--crop-review-release", default=None,
+                        help="Crop-review release receipt bound to the illustration manifest")
     parser.add_argument("--images-subdir", dest="images_subdir", default="images",
                         help="Subdir under output/html for cropped images (default: images)")
     parser.add_argument("--book-title", dest="book_title", default="",
@@ -3218,6 +3277,64 @@ def main() -> None:
     parser.add_argument("--progress-file", dest="progress_file", default=None, help="Pipeline progress JSONL path")
     args = parser.parse_args()
 
+    out_path = Path(args.out)
+    run_dir = _resolve_run_dir(out_path)
+    html_dir = Path(args.output_dir) if args.output_dir else (run_dir / "output" / "html")
+    images_dir = html_dir / args.images_subdir
+    review = None
+    if args.require_crop_review or args.crop_review_release is not None:
+        if not args.crop_review_release or not args.illustration_manifest or not args.run_id:
+            parser.error("Crop review requires --crop-review-release, --illustration-manifest, and --run-id")
+        try:
+            _check_reviewed_output_paths(html_dir, args.images_subdir, [args.out, args.state_file, args.progress_file])
+            review = validate_release_for_build(
+                args.illustration_manifest,
+                args.crop_review_release,
+                expected_run_id=args.run_id,
+                output_dir=str(html_dir),
+                images_dir=str(images_dir),
+                output_manifest_path=args.out,
+                pages_path=args.pages,
+                portions_path=args.portions,
+                state_file=args.state_file,
+                progress_file=args.progress_file,
+            )
+            if html_dir.exists() or out_path.exists():
+                raise ValueError("Reviewed builds require a fresh output directory and manifest")
+        except (ValueError, KeyError, TypeError, OSError) as exc:
+            parser.error(f"Crop review blocked build: {exc}")
+
+    if review is not None:
+        html_dir.parent.mkdir(parents=True, exist_ok=True)
+        try:
+            with tempfile.TemporaryDirectory(prefix=".crop-review-build-", dir=html_dir.parent) as temporary:
+                staged_dir = Path(temporary) / "html"
+                manifest_rows = _build(args, staged_dir, html_dir, run_dir)
+                _check_reviewed_visuals(staged_dir, review["expected_filenames"], args.images_subdir)
+                validate_release_for_build(
+                    args.illustration_manifest,
+                    args.crop_review_release,
+                    expected_run_id=args.run_id,
+                    output_dir=str(html_dir),
+                    images_dir=str(images_dir),
+                    output_manifest_path=args.out,
+                    pages_path=args.pages,
+                    portions_path=args.portions,
+                    state_file=args.state_file,
+                    progress_file=args.progress_file,
+                )
+                _publish_reviewed_build(staged_dir, html_dir, out_path, manifest_rows)
+        except (ValueError, KeyError, TypeError, OSError) as exc:
+            parser.error(f"Crop review blocked publication: {exc}")
+    else:
+        manifest_rows = _build(args, html_dir, html_dir, run_dir)
+        save_jsonl(args.out, manifest_rows)
+    logger = ProgressLogger(state_path=args.state_file, progress_path=args.progress_file, run_id=args.run_id)
+    logger.log("build", "done", current=len(manifest_rows), total=len(manifest_rows),
+               message=f"Wrote {len(manifest_rows)} chapters to {html_dir}")
+
+
+def _build(args, html_dir: Path, published_html_dir: Path, run_dir: Path) -> List[Dict[str, Any]]:
     pages = list(read_jsonl(args.pages))
     portions = list(read_jsonl(args.portions))
     if not pages:
@@ -3228,9 +3345,6 @@ def main() -> None:
     book_title = args.book_title or "Book"
     book_author = args.book_author or ""
 
-    out_path = Path(args.out)
-    run_dir = _resolve_run_dir(out_path)
-    html_dir = Path(args.output_dir) if args.output_dir else (run_dir / "output" / "html")
     ensure_dir(str(html_dir))
     images_dir = html_dir / args.images_subdir
     emitted_asset_roots: List[str] = []
@@ -3525,7 +3639,7 @@ def main() -> None:
             "title": entry["title"],
             "page_start": entry["page_start"],
             "page_end": entry["page_end"],
-            "file": str(file_path),
+            "file": str(published_html_dir / entry["filename"]),
             "kind": entry["kind"],
             "source_pages": entry.get("source_pages"),
             "source_printed_pages": entry.get("source_printed_pages"),
@@ -3623,10 +3737,7 @@ def main() -> None:
         },
     )
 
-    save_jsonl(args.out, manifest_rows)
-    logger = ProgressLogger(state_path=args.state_file, progress_path=args.progress_file, run_id=args.run_id)
-    logger.log("build", "done", current=len(manifest_rows), total=len(manifest_rows),
-               message=f"Wrote {len(manifest_rows)} chapters to {html_dir}")
+    return manifest_rows
 
 
 if __name__ == "__main__":
