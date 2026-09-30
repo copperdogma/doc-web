@@ -1,0 +1,5 @@
+usage: main.py [-h] --custody-root CUSTODY_ROOT --manifest MANIFEST
+               --inventory INVENTORY --proposals PROPOSALS --decisions
+               DECISIONS --authority AUTHORITY --out OUT --run-id RUN_ID
+               [--state-file STATE_FILE] [--progress-file PROGRESS_FILE]
+main.py: error: Missing custody file: authority.json

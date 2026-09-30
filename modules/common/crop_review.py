@@ -142,7 +142,7 @@ def evaluate(root, paths, run_id):
     pages_path = read_bound(root, inventory["pages_artifact"])
     portions_path = read_bound(root, inventory["portions_artifact"])
     pages = list(read_jsonl(pages_path))
-    actual_page_numbers = [x.get("page_number", x.get("page")) for x in pages]
+    actual_page_numbers = [x.get("page") if x.get("page_number") is None else x["page_number"] for x in pages]
     require(
         len(actual_page_numbers) == len(set(actual_page_numbers)),
         "Duplicate source pages",
@@ -208,10 +208,35 @@ def evaluate(root, paths, run_id):
         )
         require(proposal.get("verdict") in ("pass", "fail"), "Invalid proposal verdict")
         require(
-            proposal.get("origin") in ("saved_evaluation_replay", "synthetic_test"),
-            "Offline proposal origin required",
+            proposal.get("origin")
+            in (
+                "saved_evaluation_replay",
+                "synthetic_test",
+                "native_crop_safety",
+                "replayed_crop_safety",
+                "mock_crop_safety",
+            ),
+            "Explicit proposal origin required",
         )
         read_bound(root, proposal["receipt"])
+        require(
+            proposal["origin"] != "mock_crop_safety"
+            or authority.get("synthetic_test") is True,
+            "Mock proposals require synthetic test authority",
+        )
+        if proposal["origin"] in (
+            "native_crop_safety",
+            "replayed_crop_safety",
+            "mock_crop_safety",
+        ):
+            from modules.common.crop_safety import validate_native_proposal
+
+            row = next(
+                r
+                for r, b in zip(rows, bindings)
+                if b["candidate_id"] == proposal["candidate_id"]
+            )
+            validate_native_proposal(root, proposal, row, files["manifest"])
     decisions = list(read_jsonl(files["decisions"]))
     require(
         {x.get("candidate_id") for x in decisions} == set(ids),

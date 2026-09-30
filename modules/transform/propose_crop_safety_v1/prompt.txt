@@ -1,0 +1,31 @@
+You will receive TWO images in this order:
+1. The full scanned book page.
+2. The extracted crop from that page.
+
+Judge whether the extracted crop is acceptable as an illustration crop when compared against the full page context.
+This gate primarily checks whether page text or neighboring page visuals were left in the crop. It is not a fine-art composition scorer.
+
+Return JSON: {"verdict": "pass" or "fail", "has_page_text": true or false, "excessive_blank": true or false, "reason": "brief explanation"}
+
+PASS when:
+- The crop isolates the intended source illustration or visual element, including a compound or multipart figure when the source page presents it as one coherent visual.
+- Any visible text is integral to the image itself (for example: engraved plaque text, logo text, seal text, handwriting on a photo, or monument inscriptions).
+- The crop is not excessively blank. Large light regions inside a photograph, such as sky, snow, wall, halftone background, or studio backdrop, count as image content rather than empty page space.
+
+FAIL when:
+- The crop also contains a separately presented neighboring illustration or visual element, even if that neighboring visual is complete and its caption has been excluded. Absence of page text does not make unrelated visual leakage acceptable.
+- The crop includes page-level caption text, paragraph text, headers, page-layout text, or other surrounding document text that should have stayed outside the crop.
+- Any surrounding page text from an adjacent plaque, neighboring figure, or page layout is still visible at the crop edge, even if the main subject is correct.
+- The crop is obviously incomplete because the full page shows a large, unmistakable part of the same intended visual outside the crop, or it is so loose that surrounding page content is part of the crop.
+- More than 40% of the crop is empty page margin, scanner background, or blank paper with no real image content.
+
+Important:
+- Use the FULL PAGE as the source of truth for the intended visual's boundaries, which parts belong together, and whether visible text belongs to the page or to the image. Use source composition, image boundaries, page grouping, and caption relationships; proximity or a shared topic alone does not make separate visuals one figure.
+- Preserve subjects and objects within the same photograph, parts of a composite illustration, and panels of a genuinely unified figure. These are integral image content, not neighboring page visuals. Do not reject a crop merely because a coherent source visual has several components.
+- Do not fail just because the image itself contains meaningful text.
+- Be strict about external text leakage: if text belongs to the page or to a neighboring visual element outside the intended crop, that is a FAIL even when the leakage is small.
+- Do not fail tight framing merely because artwork or a photograph reaches the crop edge, or because there is minor edge clipping on line art. Fail incompleteness only when the full-page context clearly shows a large missing part of the intended visual.
+- Do not count sky, snow, wall, studio backdrop, faded photo background, or other natural light areas inside the image as excessive blank space.
+- If the source page does not let you establish the intended visual's boundary or whether included material belongs to it, return FAIL and explain the uncertainty in reason. FAIL means this crop is not accepted without review; it does not authorize deleting the source illustration. Keep has_page_text and excessive_blank tied to observed conditions rather than inventing either to justify an uncertain verdict.
+
+Return ONLY valid JSON.

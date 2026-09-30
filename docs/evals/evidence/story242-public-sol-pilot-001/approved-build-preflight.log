@@ -1,0 +1,22 @@
+Copied /Users/cam/.codex/worktrees/docweb-thinking-safety-20260929/output/runs/story242-public-sol-pilot-001/custody/pages.jsonl to output/runs/story242-public-sol-pilot-001/approved-build/story242-public-sol-pilot-001/01_load_artifact_v1/pages.jsonl
+Copied /Users/cam/.codex/worktrees/docweb-thinking-safety-20260929/output/runs/story242-public-sol-pilot-001/custody/portions.jsonl to output/runs/story242-public-sol-pilot-001/approved-build/story242-public-sol-pilot-001/02_load_artifact_v1/portions.jsonl
+usage: main.py [-h] --pages PAGES --portions PORTIONS --out OUT
+               [--output-dir OUTPUT_DIR]
+               [--illustration-manifest ILLUSTRATION_MANIFEST]
+               [--require-crop-review]
+               [--crop-review-release CROP_REVIEW_RELEASE]
+               [--images-subdir IMAGES_SUBDIR] [--book-title BOOK_TITLE]
+               [--book-author BOOK_AUTHOR]
+               [--merge-contiguous-genealogy-tables]
+               [--include-navigation | --no-include-navigation]
+               [--suppress-navigation]
+               [--normalize-reference-entries | --no-normalize-reference-entries]
+               [--normalize-catalog-entries | --no-normalize-catalog-entries]
+               [--run-id RUN_ID] [--state-file STATE_FILE]
+               [--progress-file PROGRESS_FILE]
+main.py: error: Crop review blocked build: Missing or symlinked release receipt
+[run] load_pages (load_artifact_v1)
+[run] load_portions (load_artifact_v1)
+[run] release_reviewed (release_reviewed_crops_v1)
+[run] build_reviewed (build_chapter_html_v1)
+Stage build_reviewed failed with code 2

@@ -1,0 +1,26 @@
+[
+  {
+    "disposition": "approved",
+    "run_id": "story242-final-approved",
+    "fixture": "/Users/cam/.codex/worktrees/docweb-thinking-safety-20260929/output/runs/story242-final-approved-fixture",
+    "run": "/Users/cam/.codex/worktrees/docweb-thinking-safety-20260929/output/runs/story242-final-approved",
+    "recipe": "/Users/cam/.codex/worktrees/docweb-thinking-safety-20260929/output/story242-final-approved-recipe.yaml",
+    "returncode": 0
+  },
+  {
+    "disposition": "held",
+    "run_id": "story242-final-held",
+    "fixture": "/Users/cam/.codex/worktrees/docweb-thinking-safety-20260929/output/runs/story242-final-held-fixture",
+    "run": "/Users/cam/.codex/worktrees/docweb-thinking-safety-20260929/output/runs/story242-final-held",
+    "recipe": "/Users/cam/.codex/worktrees/docweb-thinking-safety-20260929/output/story242-final-held-recipe.yaml",
+    "returncode": 1
+  },
+  {
+    "disposition": "error",
+    "run_id": "story242-final-error",
+    "fixture": "/Users/cam/.codex/worktrees/docweb-thinking-safety-20260929/output/runs/story242-final-error-fixture",
+    "run": "/Users/cam/.codex/worktrees/docweb-thinking-safety-20260929/output/runs/story242-final-error",
+    "recipe": "/Users/cam/.codex/worktrees/docweb-thinking-safety-20260929/output/story242-final-error-recipe.yaml",
+    "returncode": 1
+  }
+]

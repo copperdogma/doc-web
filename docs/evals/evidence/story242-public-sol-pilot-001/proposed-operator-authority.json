@@ -1,0 +1,9 @@
+{
+  "run_id": "story242-public-sol-pilot-001",
+  "intent": "authorize_local_crop_review",
+  "operator_id": null,
+  "authority_ref": null,
+  "reason": null,
+  "synthetic_test": false,
+  "proposal_status": "DRAFT ONLY; operator_id/authority_ref/reason remain unfilled. No real authority exists."
+}

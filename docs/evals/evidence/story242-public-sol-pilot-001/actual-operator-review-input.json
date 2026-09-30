@@ -1,0 +1,66 @@
+{
+  "run_id": "story242-public-sol-pilot-001",
+  "operator_id": "Cam",
+  "authority_ref": "conductor-current-chat/2026-09-30/Cam-yes-combined-S3-S4-three-page-review-and-scoped-landing",
+  "source_inventory_complete": true,
+  "reason": "Cam confirmed proposed source-reviewed current S3/S4 crops and complete three-page inventory in the current Conductor chat. Owner source assessment: S3 paired grouping plausible, S4 lettering integral/externalcaption excluded, page3 text-only. This records the actual yes, not a fabricated standalone review transcript.",
+  "reviewed_at": "2026-09-30T17:04:32.622947+00:00",
+  "reviewed_pages": [
+    {
+      "source_page": 1,
+      "source_sha256": "4cb7ceb9d8a3045951ce9c2da00eb1afb02ad91d1d3bad722283c0f96fa5ce84"
+    },
+    {
+      "source_page": 2,
+      "source_sha256": "381e784398327ecbe0d0e9b84a506d814d7b6ef4928e3d0f769946b64430ac33"
+    },
+    {
+      "source_page": 3,
+      "source_sha256": "449d8509b752ea899c4c6248d919c9ebe4859ffdb0596052c915fc2f06aa54a9"
+    }
+  ],
+  "visuals": [
+    {
+      "visual_id": "candidate-visual-1",
+      "source_page": 1,
+      "candidate_ids": [
+        "3219e28c2490b47673b3b5cf762c422c0a17fe724178a31c09a180ac2d3f8ee1"
+      ]
+    },
+    {
+      "visual_id": "candidate-visual-2",
+      "source_page": 2,
+      "candidate_ids": [
+        "3feb513cea71bdd0b0bbecc1b468be415d6fb48ac1ae3381ac464e6dfdeea49a"
+      ]
+    }
+  ],
+  "decisions": [
+    {
+      "candidate_id": "3219e28c2490b47673b3b5cf762c422c0a17fe724178a31c09a180ac2d3f8ee1",
+      "operator_id": "Cam",
+      "action": "approve_current_crop",
+      "reason": "Cam approved this exact current S3 crop after proposed full-source review: complete paired grouping and connecting strokes; coherent intended grouping plausible."
+    },
+    {
+      "candidate_id": "3feb513cea71bdd0b0bbecc1b468be415d6fb48ac1ae3381ac464e6dfdeea49a",
+      "operator_id": "Cam",
+      "action": "approve_current_crop",
+      "reason": "Cam approved this exact current S4 crop: complete badge with integral FIELD STATION lettering, external caption excluded."
+    }
+  ],
+  "approval_evidence": {
+    "source": "Conductor parent conversation; actual user reply reported by coordinating agent /root",
+    "user_reply": "yes",
+    "approved_assertions": [
+      "Both current S3/S4 crops as displayed in pending-source-review.html",
+      "Complete three-source-page inventory including text-only page3",
+      "Scoped Doc Web + Conductor commit/push"
+    ],
+    "approval_received_recorded_at": "2026-09-30T17:04:32.622947+00:00",
+    "original_user_message_timestamp": "Not provided in tool context; recorded_at is custody observation time, not claimed original message timestamp",
+    "authority_ref": "conductor-current-chat/2026-09-30/Cam-yes-combined-S3-S4-three-page-review-and-scoped-landing",
+    "review_html_sha256": "fb24e0d03f41ec9c83fb92ae6970dcc6c414588867cf1915c759b42ef896f84a",
+    "trust_boundary": "Trusted local operator conversation assertion; no remote authentication claim"
+  }
+}

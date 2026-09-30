@@ -1,0 +1,14 @@
+Copied /Users/cam/.codex/worktrees/docweb-thinking-safety-20260929/output/runs/story242-final-held-fixture/input/pages.ndjson to /Users/cam/.codex/worktrees/docweb-thinking-safety-20260929/output/runs/story242-final-held/01_load_artifact_v1/pages.ndjson
+Copied /Users/cam/.codex/worktrees/docweb-thinking-safety-20260929/output/runs/story242-final-held-fixture/input/portions.ndjson to /Users/cam/.codex/worktrees/docweb-thinking-safety-20260929/output/runs/story242-final-held/02_load_artifact_v1/portions.ndjson
+{"proposals": "/Users/cam/.codex/worktrees/docweb-thinking-safety-20260929/output/runs/story242-final-held/03_propose_crop_safety_v1/proposals.jsonl", "completed": 2, "unavailable": 0, "ledger": "/Users/cam/.codex/worktrees/docweb-thinking-safety-20260929/output/runs/story242-final-held-fixture/custody/native-receipts/ledger.json"}
+[run] load_pages (load_artifact_v1)
+[run] load_portions (load_artifact_v1)
+[run] propose_safety (propose_crop_safety_v1)
+[run] finalize_review (finalize_crop_review_v1)
+[run] release_reviewed (release_reviewed_crops_v1)
+usage: main.py [-h] --custody-root CUSTODY_ROOT --manifest MANIFEST
+               --inventory INVENTORY --proposals PROPOSALS --decisions
+               DECISIONS --authority AUTHORITY --out OUT --run-id RUN_ID
+               [--state-file STATE_FILE] [--progress-file PROGRESS_FILE]
+main.py: error: Candidate held: recrop or unresolved ownership
+Stage release_reviewed failed with code 2

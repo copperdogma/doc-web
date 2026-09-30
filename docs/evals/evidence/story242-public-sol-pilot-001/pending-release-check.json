@@ -1,0 +1,33 @@
+{
+  "command": [
+    "/Users/cam/miniconda3/bin/python",
+    "modules/transform/release_reviewed_crops_v1/main.py",
+    "--custody-root",
+    "output/runs/story242-public-sol-pilot-001/custody",
+    "--run-id",
+    "story242-public-sol-pilot-001",
+    "--out",
+    "output/runs/story242-public-sol-pilot-001/pending-release-check/illustration_manifest.jsonl",
+    "--manifest",
+    "output/runs/story242-public-sol-pilot-001/custody/manifest.jsonl",
+    "--inventory",
+    "output/runs/story242-public-sol-pilot-001/custody/inventory.json",
+    "--proposals",
+    "output/runs/story242-public-sol-pilot-001/custody/proposals.jsonl",
+    "--decisions",
+    "output/runs/story242-public-sol-pilot-001/custody/decisions.jsonl",
+    "--authority",
+    "output/runs/story242-public-sol-pilot-001/custody/authority.json"
+  ],
+  "exit_code": 2,
+  "diagnostic": {
+    "schema_version": "crop_review_held_v1",
+    "run_id": "story242-public-sol-pilot-001",
+    "disposition": "hold_publication",
+    "released_count": 0,
+    "candidate_count": 2,
+    "held_count": 2,
+    "reason": "Missing custody file: authority.json",
+    "source_deletion_authorized": false
+  }
+}

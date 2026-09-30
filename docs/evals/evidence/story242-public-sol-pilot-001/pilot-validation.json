@@ -1,0 +1,105 @@
+{
+  "run_id": "story242-public-sol-pilot-001",
+  "completed_at": "2026-09-30T16:08:08.358312+00:00",
+  "provider_requests": 2,
+  "max_attempts": 2,
+  "retries": 0,
+  "recovery_attempts": 0,
+  "cap_usd": 0.5,
+  "ledger_upper_usd": 0.013025,
+  "native_usage_estimate_usd": 0.013021999999999999,
+  "cost_estimated_not_invoice": true,
+  "unknown_reserved_usd": 0,
+  "actual_operator_review": "pending; authority absent, decisions empty, inventory incomplete",
+  "publication": "held; release probe denied missing operator authority, zero crops/assets/chapter",
+  "proposals": [
+    {
+      "filename": "S3.png",
+      "answer": {
+        "verdict": "pass",
+        "has_page_text": false,
+        "excessive_blank": false,
+        "reason": "The crop preserves the complete paired-panel illustration and its connecting lines, with no surrounding text or unrelated visuals."
+      },
+      "response_id": "resp_0d9c2753849a81e3016abd3290d24887d096f497495d7194b8",
+      "served_model": "gpt-6.1-sol",
+      "service_tier": "default",
+      "usage": {
+        "input_tokens": 2350,
+        "input_tokens_details": {
+          "cache_write_tokens": 2347,
+          "cached_tokens": 0
+        },
+        "output_tokens": 73,
+        "output_tokens_details": {
+          "reasoning_tokens": 19
+        },
+        "total_tokens": 2423
+      },
+      "latency_ms": 4876,
+      "ledger_upper_usd": 0.006605,
+      "token_estimate_usd": 0.0066035,
+      "request_sha256": "66a7028a580d0c2128a55f321182317f3a840b0c6ffe53e028fa59d151fb0659",
+      "response_sha256": "2cd80efebae4830f95bdf37bb22ca6e449621b4e9d732417bd1775b7e9aafcee"
+    },
+    {
+      "filename": "S4.png",
+      "answer": {
+        "verdict": "pass",
+        "has_page_text": false,
+        "excessive_blank": false,
+        "reason": "The crop isolates the complete badge and excludes the page caption. \u201cFIELD STATION\u201d is integral to the badge, and the light background is part of the illustration."
+      },
+      "response_id": "resp_07f3e3fd412f3c78016abd3294cfec87d0b59a73ff46276632",
+      "served_model": "gpt-6.1-sol",
+      "service_tier": "default",
+      "usage": {
+        "input_tokens": 2312,
+        "input_tokens_details": {
+          "cache_write_tokens": 2309,
+          "cached_tokens": 0
+        },
+        "output_tokens": 64,
+        "output_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "total_tokens": 2376
+      },
+      "latency_ms": 3145,
+      "ledger_upper_usd": 0.00642,
+      "token_estimate_usd": 0.0064185,
+      "request_sha256": "5da6be681d48a77ad707964591586eb92bbd47ec7c7230c7f4abb2c54cefd468",
+      "response_sha256": "807873035ed43a80308c7d489396d3e02eb535ba314fea521a45c39c74069aa4"
+    }
+  ],
+  "checks": {
+    "frozen_execution_and_custody_hashes": "unchanged",
+    "planned_request_body_hashes": "2/2 exact",
+    "strict_native_contract_reparse": "2/2 pass",
+    "bound_native_proposals": "2/2 pass",
+    "archive_roundtrip": 25,
+    "unreviewed_live_release_probe": {
+      "exit_code": 2,
+      "released_count": 0,
+      "reason": "Missing custody file: authority.json",
+      "source_deletion_authorized": false
+    },
+    "source_review_render": {
+      "full_page_screenshot": "pending-source-review.png",
+      "sha256": "cc82304298bb121203a6b05a7c217100a50551e64d8985bf869bf9d68e2e35c2",
+      "all_images_loaded": true,
+      "source_svg_count": 2,
+      "crop_img_count": 2,
+      "zero_candidate_source_pages": 1,
+      "owner_visual_inspection": "Full S3 grouping/crop, S4 integral lettering/excluded externalcaption and text-only page3 inspected; fresh native reasons visible; no approval events."
+    }
+  },
+  "reused_offline_tests": {
+    "passed": 342,
+    "input_hashes_unchanged": true,
+    "packet": "docs/evals/evidence/story242-crop-safety/validation.json",
+    "verified_unchanged_input_count": 20
+  },
+  "quality_limits": "Exposed synthetic runtime adapter smoke; S3 coherent interpretation plausible; no heldout/representative scan/uncertainty qualification or automatic promotion.",
+  "archive_index_sha256": "9f05d74fb22a0e94b6cb3e20a0eee1bfaece36678323df348f5130ae29aa2006"
+}

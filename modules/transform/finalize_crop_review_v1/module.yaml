@@ -1,0 +1,12 @@
+module_id: finalize_crop_review_v1
+stage: transform
+entrypoint: modules/transform/finalize_crop_review_v1/main.py
+name: Explicit operator review finalization
+schema_version: crop_review_finalization_v1
+inputs: []
+outputs:
+  - {name: review_finalized, type: file, path: review_finalized.json}
+parameters:
+  - {name: custody_root, type: string, required: true}
+  - {name: operator_authority_input, type: string, required: true}
+  - {name: operator_review_input, type: string, required: true}

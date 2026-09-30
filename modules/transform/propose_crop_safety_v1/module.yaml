@@ -1,0 +1,15 @@
+module_id: propose_crop_safety_v1
+stage: transform
+entrypoint: modules/transform/propose_crop_safety_v1/main.py
+name: Opt-in Sol crop safety proposals
+schema_version: crop_safety_proposal_v1
+inputs: []
+outputs:
+  - {name: proposals, type: file, path: proposals.jsonl}
+parameters:
+  - {name: custody_root, type: string, required: true}
+  - {name: manifest, type: string, required: true}
+  - {name: mode, type: string, default: replay}
+  - {name: replay_manifest, type: string, required: false}
+  - {name: cap_usd, type: float, required: false}
+  - {name: max_calls, type: integer, required: false}

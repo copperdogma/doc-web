@@ -1,0 +1,8 @@
+{
+  "run_id": "story242-public-sol-pilot-001",
+  "intent": "authorize_local_crop_review",
+  "operator_id": "Cam",
+  "authority_ref": "conductor-current-chat/2026-09-30/Cam-yes-combined-S3-S4-three-page-review-and-scoped-landing",
+  "reason": "Cam explicitly replied yes to combined confirmation of both current crops, complete three-page source inventory and scoped landing; recorded from current Conductor chat, evidence actual-cam-approval-evidence.json.",
+  "synthetic_test": false
+}

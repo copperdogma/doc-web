@@ -1,3 +1,22 @@
+## [2026-09-30-05] - Complete actual Cam-reviewed public pilot publication
+
+### Added
+- Cam's explicit confirmation of both exact pilot crops and complete3-page inventory, with bound non-synthetic trusted-local authority. Historical drafts and preapproval evidence preserved.
+- Offline-only4-stage release/build driver publishes both byte-exact crops once and retains page3; no additional native calls/default changes. Initial path/loader preflight failure preserved, corrected fresh driver and rendered artifact inspection pass. Scoped landing authorized.
+
+## [2026-09-30-04] - Exercise approved two-case Sol native pilot (Attempt049)
+
+### Added
+- Exactly2 public synthetic live receipts through the opt-in medium safety adapter: both pass with source-compatible reasons, conservativeUS$0.013025/unknown0 under US$0.50/max2. No retries, fallback or default changes.
+- Fresh frozen custody, pending all-page review HTML and unfilled real-operator templates. Every proposal remains held for actual operator source assertions; exposed smoke is not representative quality/promotion proof. Historical offline validation stays immutable.
+
+## [2026-09-30-03] - Wire opt-in Sol crop proposals behind source review (Story242)
+
+### Added
+- Pinned native Sol medium/4096/high strict safety proposer with offline replay default, raw receipts, explicit capped single-send live mode and retained unknown reservations. All candidate passes/fails still require explicit local operator review; native failures cannot publish.
+- Safe actual-source custody preparation, complete-page pending display and operator-owned initialization/finalization templates. Guided crop provenance now records the actual native source/geometry without changing crop pixels or defaults.
+- Public synthetic proposal→review→release→HTML driver proof and342 focused regressions, including operational failures and custody aliases. Zero provider calls; no automatic promotion. Operator runbook proposes a separately authorized two-request US$0.50 public smoke pilot.
+
 ## [2026-09-30-02] - Add offline opt-in crop review gate (Story241)
 
 ### Added

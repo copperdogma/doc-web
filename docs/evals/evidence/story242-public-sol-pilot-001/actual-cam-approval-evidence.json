@@ -1,0 +1,14 @@
+{
+  "source": "Conductor parent conversation; actual user reply reported by coordinating agent /root",
+  "user_reply": "yes",
+  "approved_assertions": [
+    "Both current S3/S4 crops as displayed in pending-source-review.html",
+    "Complete three-source-page inventory including text-only page3",
+    "Scoped Doc Web + Conductor commit/push"
+  ],
+  "approval_received_recorded_at": "2026-09-30T17:04:32.622947+00:00",
+  "original_user_message_timestamp": "Not provided in tool context; recorded_at is custody observation time, not claimed original message timestamp",
+  "authority_ref": "conductor-current-chat/2026-09-30/Cam-yes-combined-S3-S4-three-page-review-and-scoped-landing",
+  "review_html_sha256": "fb24e0d03f41ec9c83fb92ae6970dcc6c414588867cf1915c759b42ef896f84a",
+  "trust_boundary": "Trusted local operator conversation assertion; no remote authentication claim"
+}

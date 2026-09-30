@@ -1,0 +1,16 @@
+{
+  "run_id": "story242-public-sol-pilot-001",
+  "trust_boundary": "trusted_local_operator",
+  "decision_log": "decisions.jsonl",
+  "synthetic_test": false,
+  "operators": [
+    {
+      "operator_id": "Cam",
+      "authority_ref": "conductor-current-chat/2026-09-30/Cam-yes-combined-S3-S4-three-page-review-and-scoped-landing",
+      "evidence": {
+        "path": "operator-authority-input.json",
+        "sha256": "6e63299c81995a8797c1a0560066f973b7cadd459f8ecf31d6e3c8cfa567b633"
+      }
+    }
+  ]
+}

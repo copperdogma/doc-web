@@ -35,6 +35,37 @@
 
 evals:
 
+  - id: sol-crop-safety-native-public-smoke
+    name: Opt-in Sol native public adapter smoke
+    type: quality
+    description: >
+      Exposed public synthetic S3/S4 only. Native strict Responses adapter and
+      all-candidate source-review preparation; not representative scan quality
+      or autonomous publication. Cam explicitly approved both crops and complete3-page source inventory; local offline chapter built.
+    pipeline_stage: validate
+    runner: custom
+    command: "See docs/runbooks/sol-crop-safety-pilot.md; live execution requires explicit capped approval"
+    story_refs: ["242"]
+    category_refs: ["spec:4", "spec:8"]
+    compromise_refs: ["C5"]
+    target:
+      metric: complete_native_contract_receipts
+      value: "2/2; source review mandatory before release"
+    scores:
+      - model: "gpt-6.1-sol medium4096/high/default Standard"
+        measured: 2026-09-30
+        metrics: {completed_receipts: 2, attempted: 2, latency_ms: 4070.5, cost_usd: 0.006511, cost_estimated: true, ledger_upper_total_usd: 0.013025, unknown_reserved_usd: 0}
+        note: "Native2 passes are physically source-compatible; S3 grouping plausible, no uncertainty-policy qualification. Actual Cam assertions bound; offline driver released/built exact2crops once with page3. No default change."
+    attempts:
+      - id: "049"
+        date: 2026-09-30
+        status: succeeded
+        approach: "Cam-approved exactly2 public native requests, US$0.50 inclusive/max2, no retries/recovery/fallback"
+        note: "Adapter and actual-Cam-approved offline release/build succeeded. All native receipts/authority/source bindings remain required. Exact receipts/upper ledger and unfilled operator package in docs/evals/evidence/story242-public-sol-pilot-001/. See docs/evals/attempts/049-sol-native-public-smoke.md."
+    retry_when:
+      - condition: workflow-change
+        note: "No repeats authorized. Future adapter/corpus campaign needs a new explicit bounded plan; preserve exhausted run and receipts."
+
   # ── Quality Evals (promptfoo) ─────────────────────────────────────────────
 
   - id: image-crop-extraction

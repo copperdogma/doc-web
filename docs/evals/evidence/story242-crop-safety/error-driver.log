@@ -1,0 +1,8 @@
+Copied /Users/cam/.codex/worktrees/docweb-thinking-safety-20260929/output/runs/story242-final-error-fixture/input/pages.ndjson to /Users/cam/.codex/worktrees/docweb-thinking-safety-20260929/output/runs/story242-final-error/01_load_artifact_v1/pages.ndjson
+Copied /Users/cam/.codex/worktrees/docweb-thinking-safety-20260929/output/runs/story242-final-error-fixture/input/portions.ndjson to /Users/cam/.codex/worktrees/docweb-thinking-safety-20260929/output/runs/story242-final-error/02_load_artifact_v1/portions.ndjson
+{"proposals": "/Users/cam/.codex/worktrees/docweb-thinking-safety-20260929/output/runs/story242-final-error/03_propose_crop_safety_v1/proposals.jsonl", "completed": 0, "unavailable": 1, "ledger": "/Users/cam/.codex/worktrees/docweb-thinking-safety-20260929/output/runs/story242-final-error-fixture/custody/native-receipts/ledger.json"}
+[run] load_pages (load_artifact_v1)
+[run] load_portions (load_artifact_v1)
+[run] propose_safety (propose_crop_safety_v1)
+Native proposal unavailable; review/publication held
+Stage propose_safety failed with code 2

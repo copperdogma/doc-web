@@ -1,0 +1,61 @@
+# Entirely offline native replay; operator inputs below are synthetic test fixtures.
+input:
+  text_glob: output/runs/story242-crop-safety-fixture/synthetic-authority.json
+stages:
+  - id: load_pages
+    stage: extract
+    module: load_artifact_v1
+    out: pages.ndjson
+    params:
+      path: output/runs/story242-crop-safety-fixture/input/pages.ndjson
+  - id: load_portions
+    stage: extract
+    module: load_artifact_v1
+    out: portions.ndjson
+    params:
+      path: output/runs/story242-crop-safety-fixture/input/portions.ndjson
+  - id: propose_safety
+    stage: transform
+    module: propose_crop_safety_v1
+    out: proposals.jsonl
+    params:
+      custody_root: output/runs/story242-crop-safety-fixture/custody
+      manifest: output/runs/story242-crop-safety-fixture/custody/manifest.jsonl
+      mode: replay
+      replay_manifest: output/runs/story242-crop-safety-fixture/replay/mapping.json
+  - id: finalize_review
+    stage: transform
+    module: finalize_crop_review_v1
+    needs: [propose_safety]
+    inputs:
+      proposals: propose_safety
+    out: review_finalized.json
+    params:
+      custody_root: output/runs/story242-crop-safety-fixture/custody
+      operator_authority_input: output/runs/story242-crop-safety-fixture/synthetic-authority.json
+      operator_review_input: output/runs/story242-crop-safety-fixture/synthetic-review.json
+  - id: release_reviewed
+    stage: transform
+    module: release_reviewed_crops_v1
+    needs: [finalize_review]
+    out: illustration_manifest.jsonl
+    params:
+      custody_root: output/runs/story242-crop-safety-fixture/custody
+      manifest: output/runs/story242-crop-safety-fixture/custody/manifest.jsonl
+      inventory: output/runs/story242-crop-safety-fixture/custody/inventory.json
+      proposals: output/runs/story242-crop-safety-fixture/custody/proposals.jsonl
+      decisions: output/runs/story242-crop-safety-fixture/custody/decisions.jsonl
+      authority: output/runs/story242-crop-safety-fixture/custody/authority.json
+  - id: build_reviewed
+    stage: build
+    module: build_chapter_html_v1
+    needs: [load_pages, load_portions, release_reviewed]
+    inputs:
+      pages: load_pages
+      portions: load_portions
+      illustration_manifest: release_reviewed
+    out: chapters_manifest.jsonl
+    params:
+      crop_review_release: output/runs/story242-crop-safety-approved/05_release_reviewed_crops_v1/crop_review_release.json
+      require_crop_review: true
+      book_title: Offline Sol safety and synthetic operator review

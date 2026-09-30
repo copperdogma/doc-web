@@ -1,0 +1,32 @@
+{
+  "archive_sha256": "cc4dee3fa58db4d337b317b6b6f0c77fb4a2afda0e769764e7f00ed153e542c0",
+  "archive_bytes": 182662,
+  "entries": {
+    "output/runs/story242-public-sol-pilot-001/custody/authority-template.json": "46b69514f2c6760fba6599bb5898175d31382e9bf815e9bee91468317f571522",
+    "output/runs/story242-public-sol-pilot-001/custody/custody_provenance.json": "8b7da29dabc775bed160c0315f61ab03125972f89032e0547b6ec61b5f8e583f",
+    "output/runs/story242-public-sol-pilot-001/custody/decisions.jsonl": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "output/runs/story242-public-sol-pilot-001/custody/images/S3.png": "11d98294ac8a19c8e77490998a933add2ddf8de6fdbeb8e7156159e201a87bfe",
+    "output/runs/story242-public-sol-pilot-001/custody/images/S4.png": "9d310a44f961da0f05d01212dd3ba077a49054f5582bd8db393d5ae8670648a8",
+    "output/runs/story242-public-sol-pilot-001/custody/inventory-review-template.json": "8246ec0e321f6530c6c5027393e4220a6e60974b69d551059f2381adbd75d2f2",
+    "output/runs/story242-public-sol-pilot-001/custody/inventory.json": "51e4d759078d6edf8d8394a72301ff8b1d174477435e623717459606c3e2d599",
+    "output/runs/story242-public-sol-pilot-001/custody/manifest.jsonl": "fff274d2c0e45b784fb3488865fda2a86cf354056e41c30a349baf711332c6a5",
+    "output/runs/story242-public-sol-pilot-001/custody/native-receipts/ledger.json": "df7eb7736b087fdb1cac67a97ed6d11bd40c79b0e9cced44058795f80bb17083",
+    "output/runs/story242-public-sol-pilot-001/custody/native-receipts/request-001.json": "66a7028a580d0c2128a55f321182317f3a840b0c6ffe53e028fa59d151fb0659",
+    "output/runs/story242-public-sol-pilot-001/custody/native-receipts/request-002.json": "5da6be681d48a77ad707964591586eb92bbd47ec7c7230c7f4abb2c54cefd468",
+    "output/runs/story242-public-sol-pilot-001/custody/native-receipts/response-001.json": "2cd80efebae4830f95bdf37bb22ca6e449621b4e9d732417bd1775b7e9aafcee",
+    "output/runs/story242-public-sol-pilot-001/custody/native-receipts/response-002.json": "807873035ed43a80308c7d489396d3e02eb535ba314fea521a45c39c74069aa4",
+    "output/runs/story242-public-sol-pilot-001/custody/originals/manifest.jsonl": "25b0fc42c6e1e72a119773e55e86e84c92667bb8144ea4174163e8218d941013",
+    "output/runs/story242-public-sol-pilot-001/custody/originals/pages.ndjson": "bf02ef32dcbcb3e0c954bb2b3adf6d43ca3a4d0e7ce8d872a6c8c0cbc6965009",
+    "output/runs/story242-public-sol-pilot-001/custody/originals/portions.ndjson": "da881acae180fea61c65f7dc7aa789880fa0d0c8998f42108e6836c00cab1c01",
+    "output/runs/story242-public-sol-pilot-001/custody/originals/source_map.json": "233e62bbdaa65c303af0a70306b623ad836afcdecf0708586687ce967073f9f4",
+    "output/runs/story242-public-sol-pilot-001/custody/pages.jsonl": "bf02ef32dcbcb3e0c954bb2b3adf6d43ca3a4d0e7ce8d872a6c8c0cbc6965009",
+    "output/runs/story242-public-sol-pilot-001/custody/portions.jsonl": "da881acae180fea61c65f7dc7aa789880fa0d0c8998f42108e6836c00cab1c01",
+    "output/runs/story242-public-sol-pilot-001/custody/proposals.jsonl": "b9ea41dfd2038bb6cb38c8839c488cf78c214580ba69882ee6571a5c88e92775",
+    "output/runs/story242-public-sol-pilot-001/custody/source-1.png": "4cb7ceb9d8a3045951ce9c2da00eb1afb02ad91d1d3bad722283c0f96fa5ce84",
+    "output/runs/story242-public-sol-pilot-001/custody/source-2.png": "381e784398327ecbe0d0e9b84a506d814d7b6ef4928e3d0f769946b64430ac33",
+    "output/runs/story242-public-sol-pilot-001/custody/source-3.png": "449d8509b752ea899c4c6248d919c9ebe4859ffdb0596052c915fc2f06aa54a9",
+    "output/runs/story242-public-sol-pilot-001/pending-release-check/crop_review_held.json": "57859cb0a6945cc8b151e1c9d2993c48d5296b793be54591c26ea85b93d12479",
+    "output/crop-safety-run-anchors/story242-public-sol-pilot-001.json": "267bddb61bd8206d08f0e625ffd3f78b0131dbc56d9f29d692639baf5d982be4"
+  },
+  "roundtrip": "all exact native/custody/anchor/held diagnostic files byte-identical"
+}

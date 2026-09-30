@@ -1,0 +1,44 @@
+# Explicit opt-in offline build of already completed native proposals and actual Cam review.
+# No proposer/API stage; binds exact exhausted live-pilot run identity.
+input:
+  text_glob: docs/evals/evidence/story242-public-sol-pilot-001/actual-operator-authority-input.json
+stages:
+- id: load_pages
+  stage: extract
+  module: load_artifact_v1
+  out: pages.ndjson
+  params:
+    path: output/runs/story242-public-sol-pilot-001/custody/pages.jsonl
+- id: load_portions
+  stage: extract
+  module: load_artifact_v1
+  out: portions.ndjson
+  params:
+    path: output/runs/story242-public-sol-pilot-001/custody/portions.jsonl
+- id: release_reviewed
+  stage: transform
+  module: release_reviewed_crops_v1
+  out: illustration_manifest.jsonl
+  params:
+    custody_root: output/runs/story242-public-sol-pilot-001/custody
+    manifest: output/runs/story242-public-sol-pilot-001/custody/manifest.jsonl
+    inventory: output/runs/story242-public-sol-pilot-001/custody/inventory.json
+    proposals: output/runs/story242-public-sol-pilot-001/custody/proposals.jsonl
+    decisions: output/runs/story242-public-sol-pilot-001/custody/decisions.jsonl
+    authority: output/runs/story242-public-sol-pilot-001/custody/authority.json
+- id: build_reviewed
+  stage: build
+  module: build_chapter_html_v1
+  needs:
+  - load_pages
+  - load_portions
+  - release_reviewed
+  inputs:
+    pages: load_pages
+    portions: load_portions
+    illustration_manifest: release_reviewed
+  out: chapters_manifest.jsonl
+  params:
+    require_crop_review: true
+    crop_review_release: output/runs/story242-public-sol-pilot-001/approved-build/03_release_reviewed_crops_v1/crop_review_release.json
+    book_title: "Public Sol pilot \u2014 Cam-approved source crops"

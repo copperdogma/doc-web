@@ -1,0 +1,53 @@
+{
+  "run_id": "story242-public-sol-pilot-001",
+  "operator_id": null,
+  "authority_ref": null,
+  "source_inventory_complete": false,
+  "reason": "Proposed owner source assessment: S3 plausibly coherent paired grouping, S4 integral badge lettering; source page3 contains text only. Await actual operator confirmation.",
+  "reviewed_at": null,
+  "reviewed_pages": [
+    {
+      "source_page": 1,
+      "source_sha256": "4cb7ceb9d8a3045951ce9c2da00eb1afb02ad91d1d3bad722283c0f96fa5ce84"
+    },
+    {
+      "source_page": 2,
+      "source_sha256": "381e784398327ecbe0d0e9b84a506d814d7b6ef4928e3d0f769946b64430ac33"
+    },
+    {
+      "source_page": 3,
+      "source_sha256": "449d8509b752ea899c4c6248d919c9ebe4859ffdb0596052c915fc2f06aa54a9"
+    }
+  ],
+  "visuals": [
+    {
+      "visual_id": "candidate-visual-1",
+      "source_page": 1,
+      "candidate_ids": [
+        "3219e28c2490b47673b3b5cf762c422c0a17fe724178a31c09a180ac2d3f8ee1"
+      ]
+    },
+    {
+      "visual_id": "candidate-visual-2",
+      "source_page": 2,
+      "candidate_ids": [
+        "3feb513cea71bdd0b0bbecc1b468be415d6fb48ac1ae3381ac464e6dfdeea49a"
+      ]
+    }
+  ],
+  "decisions": [
+    {
+      "candidate_id": "3219e28c2490b47673b3b5cf762c422c0a17fe724178a31c09a180ac2d3f8ee1",
+      "operator_id": null,
+      "action": "approve_current_crop",
+      "reason": "Approve proposed S3 crop only if operator agrees paired panel grouping is the intended complete visual."
+    },
+    {
+      "candidate_id": "3feb513cea71bdd0b0bbecc1b468be415d6fb48ac1ae3381ac464e6dfdeea49a",
+      "operator_id": null,
+      "action": "approve_current_crop",
+      "reason": "Approve proposed S4 crop only if operator confirms exact badge including FIELD STATION lettering; external page caption excluded."
+    }
+  ],
+  "proposal_status": "DRAFT ONLY: not operator authority or source approval; do not execute until Cam authorizes real assertions"
+}

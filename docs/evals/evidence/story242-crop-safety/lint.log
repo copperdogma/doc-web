@@ -1,0 +1,2 @@
+/Users/cam/miniconda3/bin/python -m ruff check doc_web/ modules/ tests/ scripts/methodology_graph.py scripts/triage_facts.py
+All checks passed!

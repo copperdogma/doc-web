@@ -353,10 +353,12 @@
           "238",
           "239",
           "240",
-          "241"
+          "241",
+          "242"
         ],
         "adr_ids": [],
         "eval_ids": [
+          "sol-crop-safety-native-public-smoke",
           "image-crop-extraction",
           "crop-validation",
           "crop-page-level-deletion-gate",
@@ -617,12 +619,14 @@
           "238",
           "239",
           "240",
-          "241"
+          "241",
+          "242"
         ],
         "adr_ids": [
           "ADR-002"
         ],
         "eval_ids": [
+          "sol-crop-safety-native-public-smoke",
           "image-crop-extraction",
           "crop-validation",
           "crop-page-level-deletion-gate",
@@ -1219,29 +1223,31 @@
           "238",
           "239",
           "240",
-          "241"
+          "241",
+          "242"
         ],
         "eval_ids": [
+          "sol-crop-safety-native-public-smoke",
           "crop-validation",
           "crop-page-level-deletion-gate"
         ],
         "actionability": {
           "source_kind": "eval",
-          "source_id": "crop-page-level-deletion-gate",
+          "source_id": "sol-crop-safety-native-public-smoke",
           "source_path": "docs/evals/registry.yaml",
           "recommended_now": false,
           "posture": "trigger-exhausted",
           "retry_trigger_status": "exhausted",
           "retry_when": [
-            "access-restored"
+            "workflow-change"
           ],
-          "why_now": "Rerun when a materially stronger validator or detector may reduce the current fail-labeled page-context cases. Rerun after any maintained crop/runtime simplification before claiming `trim_layout_text` or bounded capti...",
+          "why_now": "No repeats authorized. Future adapter/corpus campaign needs a new explicit bounded plan; preserve exhausted run and receipts.",
           "last_relevant_action": {
             "date": "2026-09-30",
             "source_type": "eval-attempt",
             "source": "docs/evals/registry.yaml",
-            "source_id": "048",
-            "summary": "Completed after credits restored: allscreen6/6, Sol source-adjudicated22/22 (frozen21/22) plusfreshphysical5/5, uncertaintypolicy0/1; best measured candidate, promotiondeferred. Luna/GPT5.5 validfalse-rejectstops. Tra..."
+            "source_id": "049",
+            "summary": "Adapter and actual-Cam-approved offline release/build succeeded. All native receipts/authority/source bindings remain required. Exact receipts/upper ledger and unfilled operator package in docs/evals/evidence/story242..."
           },
           "story_ids": [
             "135",
@@ -1259,9 +1265,11 @@
             "238",
             "239",
             "240",
-            "241"
+            "241",
+            "242"
           ],
           "eval_ids": [
+            "sol-crop-safety-native-public-smoke",
             "crop-validation",
             "crop-page-level-deletion-gate"
           ]
@@ -13563,6 +13571,68 @@
           "summary": ""
         }
       }
+    },
+    {
+      "id": "242",
+      "title": "Opt-in Sol crop safety proposals with mandatory source review",
+      "path": "docs/stories/story-242-sol-crop-safety-review-integration.md",
+      "status": "Done",
+      "priority": "Medium",
+      "ideal_refs": [
+        "Fidelity to the source",
+        "Traceability is the product"
+      ],
+      "spec_refs": [
+        "C5",
+        "spec:4",
+        "spec:8"
+      ],
+      "decision_refs": [
+        "001",
+        "002"
+      ],
+      "adr_ids": [],
+      "depends_on": [
+        "240",
+        "241"
+      ],
+      "category_refs": [
+        "spec:4",
+        "spec:8"
+      ],
+      "compromise_refs": [
+        "C5"
+      ],
+      "input_coverage_refs": [
+        "image-directory-scans"
+      ],
+      "architecture_domains": [
+        "illustration-extraction"
+      ],
+      "roadmap_tags": [
+        "artifact-provenance"
+      ],
+      "blocker_summary": "",
+      "blocker_evidence": "",
+      "unblock_condition": "",
+      "last_work_log_entry": null,
+      "legacy_build_map_refs": "",
+      "metadata_source": "frontmatter",
+      "missing_frontmatter_keys": [],
+      "actionability": {
+        "source_kind": "story",
+        "source_id": "242",
+        "source_path": "docs/stories/story-242-sol-crop-safety-review-integration.md",
+        "recommended_now": false,
+        "posture": "completed",
+        "why_now": "",
+        "last_relevant_action": {
+          "date": null,
+          "source_type": "story-status",
+          "source": "docs/stories/story-242-sol-crop-safety-review-integration.md",
+          "summary": ""
+        }
+      }
     }
   ],
   "adrs": [
@@ -13678,6 +13748,91 @@
     }
   ],
   "evals": [
+    {
+      "id": "sol-crop-safety-native-public-smoke",
+      "name": "Opt-in Sol native public adapter smoke",
+      "type": "quality",
+      "command": "See docs/runbooks/sol-crop-safety-pilot.md; live execution requires explicit capped approval",
+      "path": "docs/evals/registry.yaml",
+      "description": "Exposed public synthetic S3/S4 only. Native strict Responses adapter and all-candidate source-review preparation; not representative scan quality or autonomous publication. Cam explicitly approved both crops and complete3-page source inventory; local offline chapter built.\n",
+      "spec_refs": [],
+      "story_refs": [
+        "242"
+      ],
+      "compromise_refs": [
+        "C5"
+      ],
+      "category_refs": [
+        "spec:4",
+        "spec:8"
+      ],
+      "scores": [
+        {
+          "model": "gpt-6.1-sol medium4096/high/default Standard",
+          "measured": "2026-09-30",
+          "metrics": {
+            "completed_receipts": 2,
+            "attempted": 2,
+            "latency_ms": 4070.5,
+            "cost_usd": 0.006511,
+            "cost_estimated": true,
+            "ledger_upper_total_usd": 0.013025,
+            "unknown_reserved_usd": 0
+          },
+          "note": "Native2 passes are physically source-compatible; S3 grouping plausible, no uncertainty-policy qualification. Actual Cam assertions bound; offline driver released/built exact2crops once with page3. No default change."
+        }
+      ],
+      "latest_score": {
+        "model": "gpt-6.1-sol medium4096/high/default Standard",
+        "measured": "2026-09-30",
+        "metrics": {
+          "completed_receipts": 2,
+          "attempted": 2,
+          "latency_ms": 4070.5,
+          "cost_usd": 0.006511,
+          "cost_estimated": true,
+          "ledger_upper_total_usd": 0.013025,
+          "unknown_reserved_usd": 0
+        },
+        "note": "Native2 passes are physically source-compatible; S3 grouping plausible, no uncertainty-policy qualification. Actual Cam assertions bound; offline driver released/built exact2crops once with page3. No default change."
+      },
+      "attempts": [
+        {
+          "id": "049",
+          "date": "2026-09-30",
+          "status": "succeeded",
+          "approach": "Cam-approved exactly2 public native requests, US$0.50 inclusive/max2, no retries/recovery/fallback",
+          "note": "Adapter and actual-Cam-approved offline release/build succeeded. All native receipts/authority/source bindings remain required. Exact receipts/upper ledger and unfilled operator package in docs/evals/evidence/story242-public-sol-pilot-001/. See docs/evals/attempts/049-sol-native-public-smoke.md.",
+          "retry_when": []
+        }
+      ],
+      "retry_when": [
+        "workflow-change"
+      ],
+      "retry_when_notes": [
+        "No repeats authorized. Future adapter/corpus campaign needs a new explicit bounded plan; preserve exhausted run and receipts."
+      ],
+      "explicit_lineage": true,
+      "actionability": {
+        "source_kind": "eval",
+        "source_id": "sol-crop-safety-native-public-smoke",
+        "source_path": "docs/evals/registry.yaml",
+        "recommended_now": false,
+        "posture": "trigger-exhausted",
+        "retry_trigger_status": "exhausted",
+        "retry_when": [
+          "workflow-change"
+        ],
+        "why_now": "No repeats authorized. Future adapter/corpus campaign needs a new explicit bounded plan; preserve exhausted run and receipts.",
+        "last_relevant_action": {
+          "date": "2026-09-30",
+          "source_type": "eval-attempt",
+          "source": "docs/evals/registry.yaml",
+          "source_id": "049",
+          "summary": "Adapter and actual-Cam-approved offline release/build succeeded. All native receipts/authority/source bindings remain required. Exact receipts/upper ledger and unfilled operator package in docs/evals/evidence/story242..."
+        }
+      }
+    },
     {
       "id": "image-crop-extraction",
       "name": "Image Crop Extraction",

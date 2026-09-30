@@ -1,0 +1,26 @@
+Copied /Users/cam/.codex/worktrees/docweb-thinking-safety-20260929/output/runs/story242-public-sol-pilot-001/custody/originals/pages.ndjson to output/runs/story242-public-sol-pilot-001/approved-driver/story242-public-sol-pilot-001/01_load_artifact_v1/pages.ndjson
+Copied /Users/cam/.codex/worktrees/docweb-thinking-safety-20260929/output/runs/story242-public-sol-pilot-001/custody/originals/portions.ndjson to output/runs/story242-public-sol-pilot-001/approved-driver/story242-public-sol-pilot-001/02_load_artifact_v1/portions.ndjson
+[run] load_pages (load_artifact_v1)
+[run] load_portions (load_artifact_v1)
+[run] release_reviewed (release_reviewed_crops_v1)
+[run] build_reviewed (build_chapter_html_v1)
+[summary] run: {
+  "load_pages": {
+    "wall_seconds": 0.1,
+    "pages": 3,
+    "pages_per_min": 1800.0
+  },
+  "load_portions": {
+    "wall_seconds": 0.1,
+    "pages": 1,
+    "pages_per_min": 600.0
+  },
+  "release_reviewed": {
+    "wall_seconds": 0.2
+  },
+  "build_reviewed": {
+    "wall_seconds": 1.46,
+    "summary": "Wrote 1 chapters to output/runs/story242-public-sol-pilot-001/approved-driver/story242-public-sol-pilot-001/output/html"
+  }
+}
+Recipe complete.

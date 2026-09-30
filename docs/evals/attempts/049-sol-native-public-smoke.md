@@ -1,0 +1,28 @@
+# Attempt049 — Sol native public pilot and Cam-approved local chapter
+
+Cam subsequently confirmed both exact current crops and complete three-page inventory, and authorized scoped landing. Actual non-synthetic operator assertions are recorded separately; the fresh approved offline driver released and built both byte-exact crops once, with page3 coverage. Native requests remain exactly2; final cost upperUS$0.013025/unknown0.
+
+## Native pilot — pre-approval snapshot
+
+2026-09-30: Cam approved the prepared two-case S3/S4 public synthetic pilot. Exactly two single-send live requests completed; no probe, retry, recovery, fallback or hidden scheduler. Both strict Responses envelopes served `gpt-6.1-sol`, medium effort, high-detail full source then crop,4096 output bound, store=false. Live `service_tier: default` was explicitly pinned and served, a disclosed operational difference from Attempt048's omitted tier. No default recipe/model/prompt/golden change, commit or push.
+
+Both proposals are pass, with source-compatible physical reasons. S3: complete paired panels and connecting strokes, no unrelated visual/text. S4: isolated whole badge, external caption excluded, FIELD STATION lettering and light fill integral. S3 remains plausibly coherent: a pass is not a demonstrated physical error or complete uncertainty-policy qualification. These two exposed synthetic cases measure live adapter/receipt/review plumbing, not representative scan quality, heldout generality or automatic promotion.
+
+| Case | Input / cache-write / cached | Output / reasoning | Latency | Ledger upper USD |
+|---|---|---|---|---|
+|S3|2350 /2347 /0|73 /19|4876ms|.006605|
+|S4|2312 /2309 /0|64 /0|3145ms|.006420|
+
+Ledger conservative upper **US$0.013025**, unknown reservations **0**, hard inclusive capUS$0.50, max2 attempts exhausted. Native usage plus refreshed official Standard2/.10/2.50/10 rates yields a separate token-based estimateUS$0.013022; this is not an invoice and does not rewrite the conservative ledger. Mean latency4070.5ms. Native outputs are validated and hashes retained; both requests match the frozen planned body exactly. Existing owner key was reused through the established safe repo wrapper, no key/account/provisioning changes or secret output.
+
+New disjoint custody preserves original metadata/source/crop bytes and every source page, including the text-only third page. Unfilled authority/inventory templates and pending full-source/crop HTML are ready. Proposed review sidecars outside custody are clearly draft, operator IDs/references null, completeness=false; **no real operator authority, decisions, release or publication exists yet**. Model passes do not authorize publication. Source rejection would apply to current crop only, never source deletion. Parent coordinator is obtaining Cam's actual combined source assertion and landing decision; no additional model calls are proposed.
+
+[Pre-call freeze](../evidence/story242-public-sol-pilot-001/pre-call-freeze.json), [pending review](../evidence/story242-public-sol-pilot-001/pending-source-review.html), [pilot result/validation](../evidence/story242-public-sol-pilot-001/pilot-validation.json) and portable archive preserve exact evidence. Story242's342-test offline validation remains scoped to its build; its historical zero-call statements are unchanged. Pilot validation reuses unchanged execution inputs and performs strict native reparse/body/hash/cap/authority-state checks. A later real operator decision/publication, if authorized, will be recorded separately without rewriting this measured snapshot.
+
+## Actual approval and offline publication
+
+Cam replied `yes` to the coordinator's explicit combined question confirming BOTH current S3/S4 crops, complete three-source-page inventory and scoped Doc Web/Conductor commit/push. `actual-cam-approval-evidence.json` records the current-chat/date authority reference and exact received reply; original user-message timestamp was not supplied, so recorded_at is custody observation time. No separate fabricated review transcript or secure external authentication is claimed. Actual operator inputs are non-synthetic and bound to this exact run/source/crop/page inventory; the pre-approval drafts/archive and held probe remain unchanged historical snapshots.
+
+Initialization/finalization occurred once. An offline-only4-stage driver loads preserved .ndjson page/portion bytes, releases already-completed native proposals under Cam's assertions, and builds the local chapter. No proposer stage, provider request or default activation occurs. Initial build preflight used an incorrectly nested receipt path/JSONL loader; its failed state/log/recipe are preserved. The corrected new recipe loads the exact reviewed .ndjson bytes and targets a fresh resolved run. All4 stages succeed at `output/runs/story242-public-sol-pilot-001/approved-driver/story242-public-sol-pilot-001/`; final `output/html/chapter-001.html` renders S3/S4 byte-exactly once and the third text-only source page. Native gate revalidation, source/crop bytes, strict receipts and real Cam authority pass; screenshot manually inspected with both images loaded.
+
+Postapproval evidence is separate: `postapproval-validation.json`, `postapproval-custody.tar.gz`, `postapproval-archive-index.json`, actual operator inputs and `approved-chapter.png`. The original `pilot-validation.json` and native preapproval archive remain immutable snapshots. Existing342-test result is reused against all27 identical affected inputs; no runtime fix/new model calls. Broader source-quality/uncertainty qualification and automatic default promotion remain unclaimed.

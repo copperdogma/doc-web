@@ -1,0 +1,51 @@
+{
+  "run_id": "story242-public-sol-pilot-001",
+  "frozen_at": "2026-09-30T16:02:23.422821+00:00",
+  "cap_usd": 0.5,
+  "max_attempts": 2,
+  "recovery_attempts": 0,
+  "reservation_total_usd": 0.31192,
+  "source": "public exposed synthetic S3/S4 only plus no-candidate source page3",
+  "authority_created": false,
+  "source_inventory_complete": false,
+  "rates": {
+    "input": 2,
+    "cached_input": 0.1,
+    "cache_write": 2.5,
+    "output": 10,
+    "per": "1M tokens",
+    "tier": "default Standard",
+    "source": "https://developers.openai.com/api/docs/models/gpt-6.1-sol",
+    "verified_date": "2026-09-30"
+  },
+  "custody_hashes": {
+    "authority-template.json": "46b69514f2c6760fba6599bb5898175d31382e9bf815e9bee91468317f571522",
+    "custody_provenance.json": "8b7da29dabc775bed160c0315f61ab03125972f89032e0547b6ec61b5f8e583f",
+    "decisions.jsonl": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "images/S3.png": "11d98294ac8a19c8e77490998a933add2ddf8de6fdbeb8e7156159e201a87bfe",
+    "images/S4.png": "9d310a44f961da0f05d01212dd3ba077a49054f5582bd8db393d5ae8670648a8",
+    "inventory-review-template.json": "8246ec0e321f6530c6c5027393e4220a6e60974b69d551059f2381adbd75d2f2",
+    "inventory.json": "51e4d759078d6edf8d8394a72301ff8b1d174477435e623717459606c3e2d599",
+    "manifest.jsonl": "fff274d2c0e45b784fb3488865fda2a86cf354056e41c30a349baf711332c6a5",
+    "originals/manifest.jsonl": "25b0fc42c6e1e72a119773e55e86e84c92667bb8144ea4174163e8218d941013",
+    "originals/pages.ndjson": "bf02ef32dcbcb3e0c954bb2b3adf6d43ca3a4d0e7ce8d872a6c8c0cbc6965009",
+    "originals/portions.ndjson": "da881acae180fea61c65f7dc7aa789880fa0d0c8998f42108e6836c00cab1c01",
+    "originals/source_map.json": "233e62bbdaa65c303af0a70306b623ad836afcdecf0708586687ce967073f9f4",
+    "pages.jsonl": "bf02ef32dcbcb3e0c954bb2b3adf6d43ca3a4d0e7ce8d872a6c8c0cbc6965009",
+    "portions.jsonl": "da881acae180fea61c65f7dc7aa789880fa0d0c8998f42108e6836c00cab1c01",
+    "source-1.png": "4cb7ceb9d8a3045951ce9c2da00eb1afb02ad91d1d3bad722283c0f96fa5ce84",
+    "source-2.png": "381e784398327ecbe0d0e9b84a506d814d7b6ef4928e3d0f769946b64430ac33",
+    "source-3.png": "449d8509b752ea899c4c6248d919c9ebe4859ffdb0596052c915fc2f06aa54a9"
+  },
+  "execution_hashes": {
+    "modules/common/crop_safety.py": "680faf9674fe2335199a8924b2b2cf552345dc34ae9dac96d7f61a8702c946a6",
+    "modules/transform/propose_crop_safety_v1/main.py": "036b3fc59db195bb981ae8f007144520bfab18b1eb7545580a21ea4ede971d18",
+    "modules/transform/propose_crop_safety_v1/prompt.txt": "9931ded6b7e732687b0889e6959ef9a873e6f459a292c132443db0f6bc9a7371",
+    "modules/common/crop_review.py": "085d0e21c67e6def812d6b2ad8eb6d34510069717e86ec4e18d090caf63a512b",
+    "scripts/run_with_doc_web_env.py": "24a7416b2db9f686c37bb9d281116886eee93683cfaa296021f506b14526ba19"
+  },
+  "planned_request_hashes": {
+    "S3.png": "66a7028a580d0c2128a55f321182317f3a840b0c6ffe53e028fa59d151fb0659",
+    "S4.png": "5da6be681d48a77ad707964591586eb92bbd47ec7c7230c7f4abb2c54cefd468"
+  }
+}
