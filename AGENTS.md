@@ -111,6 +111,7 @@ Canonical location: `.agents/skills/` — works across Claude Code, Cursor, Gemi
 - Use `/triage-architecture` when a bounded architecture-audit lane is the right next move
 - Use `/setup-methodology` to install or refresh the methodology package and canonical setup docs
 - Use `/finish-and-push` for close-out readiness review or an explicitly authorized validate/commit/land flow; repo-specific requirements are in `docs/runbooks/close-out.md`
+- Use `/loop-review` for strategic checks of long-running work against user intent; carry course corrections forward only within existing authorization, and seek approval for additional actions.
 - To create a new skill: `/create-cross-cli-skill`
 
 ## Story Lifecycle
