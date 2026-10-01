@@ -917,6 +917,11 @@ evals:
           six untargeted fallback crops, with missing titles on the final two
           remaining an explicit review limitation. Focused35crop and142context
           tests pass. No model/golden/corpus promotion or maintained score change.
+          Current-main92b5b6b integration as5ba5111 separately passes377
+          affected tests after exact ignored receipt fixture restoration and
+          fresh zero-API v4 native driver; all108 output/source/bbox bytes and
+          current geometry provenance match applicable inspected evidence.
+          Two fallback title losses remain; no pristine full-suite claim.
           Proof: docs/evals/attempts/050-critical-figure-preservation.md and
           docs/evals/attempts/050-critical-figure-preservation-result.json.
       - id: '046'

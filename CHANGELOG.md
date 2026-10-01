@@ -5,8 +5,8 @@
 - Retain small critical targets in mixed count-limited batches instead of letting fallback fragments replace them.
 
 ### Verified
-- Zero-API native partial driver preserves101 distinct planned figures and the connected page 10 board;22 structural checks pass. Six page 25 fallback crops remain, with title loss on the final two explicitly unqualified.
-- Recorded independent native source replay and177 focused tests without changing maintained detector scores or model defaults.
+- Zero-API native partial driver preserves 101 distinct planned figures and the connected page 10 board;22 structural checks pass. Six page 25 fallback crops remain, with title loss on the final two explicitly unqualified.
+- Recorded independent native source replay and 377 current-main focused checks, with explicit restored ignored-fixture context, without changing maintained detector scores or model defaults.
 
 ## [2026-09-30-05] - Complete actual Cam-reviewed public pilot publication
 

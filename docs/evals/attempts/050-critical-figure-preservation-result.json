@@ -298,5 +298,34 @@
     "reference_strips": "direct p006-g01 retains nine visible card faces; p024-g01 retains three Move1/2/3 faces",
     "fallback": "actual page25 retains six fallback crops; final two contain lower card text without titles, a pre-existing unresolved fidelity issue",
     "claim_limit": "target identity/box preservation and bounded structural conformance only; no whole-manual/corpus/model qualification"
+  },
+  "current_main_validation": {
+    "base_main": "92b5b6b1bfbc7c8eb07d59ff6e2423db6be67019",
+    "guard_commit": "5ba5111",
+    "crop_module_sha256": "8451cc7a7815bbc18ed8218da054a098312e0e2330a3a4484a4ea59e4ad8f62d",
+    "run_root": "/Users/cam/.codex/worktrees/native-material-eval/boardgame-ingester/output/story025-fresh-no-cache-20260930-v2/manual-stages/fresh/refinements/target-preservation-current-main-v4/runs/refined-c09fbc961fc441b78edaf96fa69bcc3b",
+    "conformance_pass": 22,
+    "warnings": 0,
+    "failures": 0,
+    "native_crops": 108,
+    "distinct_critical_targets": 101,
+    "child_target_suffixes": 0,
+    "html_figures": 97,
+    "provenance_rows": 615,
+    "manifest_sha256": "0c76f666882cbef3c7cb67201da5d14f1764662333eaf1b5b6634c49e50f1390",
+    "all_native_output_bytes_equal_prior_inspected_proof": 108,
+    "all_source_bytes_and_bbox_equal_prior": 108,
+    "all_current_native_dimensions_and_coordinate_space_valid": 108,
+    "new_provider_calls": 0,
+    "focused_tests": {
+      "passed": 377,
+      "seconds": 26.23,
+      "environment": "/Users/cam/miniconda3/bin/python (Python3.11.5)",
+      "log": "/tmp/story226-current-main-focused-tests.log",
+      "scope": "crop/planner/semantic/build, provider/coordinate/recipe, opt-in review/setup/native/custody/tool consumers",
+      "fixture_context": "Inherited test helper expects ignored response-068.json. Initial expanded test run had281pass/86setup errors/10failures. Restored exact existing receipt from current docweb-thinking-safety worktree, SHA99ef270f399ae6075a33615cd2fd7b9f444eaef200a644f48b5c1b5672fdcae2 equals tracked saved-S3-pass.json. No trackedhelper changes, synthetic replacement or paid call; passing377 requires this ignored fixture path populated."
+    },
+    "lint": "make lint passes",
+    "claim_limit": "bounded critical target preservation and structural native provenance; two page25 untargeted fallback titles remain clipped, no complete manual/model/corpus promotion"
   }
 }
