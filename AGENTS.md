@@ -84,6 +84,24 @@ state/graph workflow, setup checklist, eval-surface docs, and AGENTS wiring.
 - **Graduate, don't accumulate:** When a converter is stable and proven, plan its migration to Dossier. Doc-forge stays focused on unsolved problems.
 - **Consistency policy must be explicit:** When solving document-consistency or normalization problems, emit inspectable policy artifacts (for example `pattern_inventory`, `consistency_plan`, `conformance_report`) instead of hiding conventions in prompts. See `docs/runbooks/document-consistency-planning.md`.
 
+## Decision-model awareness
+
+When changing a semantic decision, compare deterministic code, a decision model,
+and a language model, then explain the fit. Decision models return typed
+judgments over supplied context; consider them for bounded classification,
+candidate selection, evidence checks, or ranking. TypeSafe Jev supports Choice
+over explicit options, Noul yes/no probability, and Score along ordered rubric
+levels; combine separate judgments with weights in code.
+Keep candidate enumeration, exact rules, identities, permissions, geometry,
+artifact mutation, and execution in code; use language models for open-ended
+text. A typed result or concentrated probability does not prove correctness.
+Check unknown outcomes, stale evidence, fallback, held-out calibration, complete
+workflow quality, latency, and cost against the current baseline before
+adoption. Respect owner privacy and enablement gates. Read
+`docs/decision-models.md` and current provider documentation. Jev is text-only;
+OpenAI announced its text/image Decisions API in limited preview, but access,
+contract, and economics require verification.
+
 ## Subagent Strategy
 
 | Task | Model | Rationale |
