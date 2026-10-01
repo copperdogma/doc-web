@@ -1,3 +1,12 @@
+## [2026-09-30-09] - Bind critical crops to selected source coordinates
+
+### Fixed
+- Validate planner source/basis dimensions and scale critical pixel bounds into selected high-resolution images with explicit source/transform provenance; reject downsampling.
+- Project semantic coverage into that verified source basis, rejecting inconsistent metadata without raw-coordinate fallback or threshold changes.
+
+### Verified
+- Full public zero-API V10 retains101source-exact crops/91HTMLfigures;22native/12package checks pass and ruletext/citations remain exact.75native/41consumer/25producer controls pass. Published32sampled source images and101crop bytes are bound; original/old/protected evidence remains unchanged. Rendered PDF sampling only; Story226 stays In Progress for broader semantic and embedded-byte qualification.
+
 ## [2026-09-30-08] - Preserve decoded source-page pixels (Story226 continuation)
 
 ### Fixed

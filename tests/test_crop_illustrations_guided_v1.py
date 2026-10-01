@@ -30,6 +30,7 @@ from modules.extract.crop_illustrations_guided_v1.main import (
     _split_text_heavy_rule_panel_boxes,
     _trim_rule_panel_cost_reference_card,
     _trim_rule_example_bottom_prose_band,
+    _critical_target_for_selected_image,
     crop_illustrations_guided,
 )
 
@@ -336,6 +337,187 @@ def test_cropper_uses_critical_graphics_manifest_as_source_pixel_crop_intent(tmp
     assert record["detection_method"] == "critical_graphics_manifest"
     assert record["critical_graphics_target_id"] == "p001-g01"
     assert (tmp_path / "out" / "images" / record["filename"]).exists()
+
+
+def test_cropper_scales_critical_bbox_to_highres_source_and_records_provenance(tmp_path):
+    ocr_page = tmp_path / "page-001.png"
+    highres_page = tmp_path / "page-001-highres.png"
+    Image.new("RGB", (100, 80), "white").save(ocr_page)
+    Image.new("RGB", (200, 160), "white").save(highres_page)
+    ocr_manifest = tmp_path / "pages_html.jsonl"
+    ocr_manifest.write_text(json.dumps({"page_number": 1, "image": str(ocr_page), "html": "<h1>Setup</h1>"}) + "\n")
+    highres_manifest = tmp_path / "highres.jsonl"
+    highres_manifest.write_text(json.dumps({"page_number": 1, "image": str(highres_page)}) + "\n")
+    critical_manifest = tmp_path / "critical.json"
+    critical_manifest.write_text(json.dumps({"pages": [{
+        "page_number": 1,
+        "source_image": str(ocr_page),
+        "image_width": 100,
+        "image_height": 80,
+        "targets": [{
+            "target_id": "target-1",
+            "source_page_number": 1,
+            "source_image": str(ocr_page),
+            "importance": "essential",
+            "role": "setup_diagram",
+            "bbox_pixels": {"x0": 11, "y0": 13, "x1": 31, "y1": 27, "width": 20, "height": 14},
+        }],
+    }]}))
+
+    manifest = crop_illustrations_guided(
+        ocr_manifest=str(ocr_manifest),
+        output_dir=str(tmp_path / "out"),
+        output_format="png",
+        critical_graphics_manifest=str(critical_manifest),
+        highres_manifest=str(highres_manifest),
+        only_pages="1",
+    )
+
+    assert len(manifest) == 1
+    assert manifest[0]["bbox"] == {"x0": 22, "y0": 26, "x1": 62, "y1": 54, "width": 40, "height": 28}
+    assert manifest[0]["bbox_source"] == {
+        "bbox_pixels": {"x0": 11, "y0": 13, "x1": 31, "y1": 27, "width": 20, "height": 14},
+        "source_image": str(ocr_page),
+        "image_width": 100,
+        "image_height": 80,
+    }
+    assert manifest[0]["bbox_transform"] == {
+        "method": "scale_pixel_bbox_to_selected_source_v1",
+        "scale_x": 2.0,
+        "scale_y": 2.0,
+        "source_dimensions": [100, 80],
+        "selected_dimensions": [200, 160],
+        "rounding": "floor_start_ceil_end",
+    }
+    assert Image.open(tmp_path / "out" / "images" / manifest[0]["filename"]).size == (40, 28)
+
+
+def test_critical_bbox_rescale_uses_independent_fractional_axis_scales_and_outward_rounding():
+    target = {
+        "source_page_number": 2,
+        "bbox_pixels": {"x0": 10.1, "y0": 20.1, "x1": 30.1, "y1": 40.1},
+    }
+    scaled = _critical_target_for_selected_image(
+        target,
+        page_number=2,
+        page_context={"source_image": "/source/page.png", "image_width": 100, "image_height": 80},
+        ocr_image_path="/source/page.png",
+        selected_image_size=(201, 121),
+        selected_is_higher_resolution=True,
+    )
+    assert scaled["bbox_pixels"] == {"x0": 20, "y0": 30, "x1": 61, "y1": 61}
+    assert scaled["_critical_bbox_source"]["bbox_pixels"] == target["bbox_pixels"]
+    assert scaled["_critical_bbox_transform"]["scale_x"] == 2.01
+    assert scaled["_critical_bbox_transform"]["scale_y"] == 1.5125
+
+
+def test_highres_critical_bbox_rejects_selected_source_smaller_than_planner_basis():
+    with pytest.raises(ValueError, match="is smaller than the planner source basis"):
+        _critical_target_for_selected_image(
+            {
+                "source_page_number": 2,
+                "bbox_pixels": {"x0": 10, "y0": 10, "x1": 30, "y1": 30},
+            },
+            page_number=2,
+            page_context={
+                "source_image": "/source/page.png",
+                "image_width": 100,
+                "image_height": 80,
+            },
+            ocr_image_path="/source/page.png",
+            selected_image_size=(99, 160),
+            selected_is_higher_resolution=True,
+        )
+
+
+@pytest.mark.parametrize(
+    "target, message",
+    [
+        ({"source_page_number": 3, "source_image": "/source/page.png"}, "source_page_number"),
+        ({"source_page_number": 2, "source_image": "/other/page.png"}, "source_image"),
+    ],
+)
+def test_highres_critical_bbox_requires_consistent_source_identity(target, message):
+    target = {**target, "bbox_pixels": {"x0": 1, "y0": 1, "x1": 4, "y1": 4}}
+    with pytest.raises(ValueError, match=message):
+        _critical_target_for_selected_image(
+            target,
+            page_number=2,
+            page_context={"source_image": "/source/page.png", "image_width": 10, "image_height": 10},
+            ocr_image_path="/source/page.png",
+            selected_image_size=(20, 20),
+            selected_is_higher_resolution=True,
+        )
+
+
+def test_critical_bbox_same_resolution_stays_unchanged_without_transform():
+    target = {"bbox_pixels": {"x0": 10.2, "y0": 12.7, "x1": 40.3, "y1": 51.1}}
+    unchanged = _critical_target_for_selected_image(
+        target,
+        page_number=1,
+        page_context={"image_width": 100, "image_height": 80},
+        ocr_image_path="/source/page.png",
+        selected_image_size=(100, 80),
+        selected_is_higher_resolution=False,
+    )
+    assert unchanged == target
+
+
+@pytest.mark.parametrize(
+    ("basis", "error"),
+    [({}, "coordinate basis"), ({"image_width": 0, "image_height": 80}, "coordinate basis")],
+)
+def test_missing_or_invalid_basis_fails_closed_for_highres_but_keeps_same_resolution_path(
+    tmp_path, basis, error
+):
+    ocr_page = tmp_path / "page.png"
+    highres_page = tmp_path / "page-highres.png"
+    Image.new("RGB", (100, 80), "white").save(ocr_page)
+    Image.new("RGB", (200, 160), "white").save(highres_page)
+    ocr_manifest = tmp_path / "pages.jsonl"
+    ocr_manifest.write_text(json.dumps({"page_number": 1, "image": str(ocr_page), "html": "<h1>Test</h1>"}) + "\n")
+    highres_manifest = tmp_path / "highres.jsonl"
+    highres_manifest.write_text(json.dumps({"page_number": 1, "image": str(highres_page)}) + "\n")
+    critical_manifest = tmp_path / "critical.json"
+    critical_manifest.write_text(json.dumps({"pages": [{
+        "page_number": 1,
+        "source_image": str(ocr_page),
+        **basis,
+        "targets": [{
+            "target_id": "target-1",
+            "source_page_number": 1,
+            "source_image": str(ocr_page),
+            "importance": "essential",
+            "role": "setup_diagram",
+            "bbox_pixels": {"x0": 10, "y0": 10, "x1": 40, "y1": 40},
+        }],
+    }]}))
+
+    with pytest.raises(ValueError, match=error):
+        crop_illustrations_guided(
+            ocr_manifest=str(ocr_manifest),
+            output_dir=str(tmp_path / "highres-out"),
+            critical_graphics_manifest=str(critical_manifest),
+            highres_manifest=str(highres_manifest),
+            only_pages="1",
+        )
+
+    same_resolution = crop_illustrations_guided(
+        ocr_manifest=str(ocr_manifest),
+        output_dir=str(tmp_path / "same-res-out"),
+        critical_graphics_manifest=str(critical_manifest),
+        only_pages="1",
+    )
+    assert same_resolution[0]["bbox"]["x0"] == 10
+    assert "bbox_transform" not in same_resolution[0]
+
+
+def test_critical_bbox_source_transform_survives_metadata_copy():
+    source = {
+        "_critical_bbox_source": {"image_width": 100, "image_height": 80},
+        "_critical_bbox_transform": {"method": "scale_pixel_bbox_to_selected_source_v1"},
+    }
+    assert _copy_detector_meta(source, {"x0": 1}) == {"x0": 1, **source}
 
 
 def test_cropper_does_not_mask_integrated_callout_rule_diagrams():

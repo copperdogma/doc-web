@@ -5,6 +5,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import math
 import re
 from datetime import datetime, timezone
 from pathlib import Path
@@ -891,6 +892,217 @@ def _intersection_area(a: dict[str, Any], b: dict[str, Any]) -> int:
     return (ix1 - ix0) * (iy1 - iy0)
 
 
+def _coordinate_bbox(value: Any) -> dict[str, float] | None:
+    if not isinstance(value, dict):
+        return None
+    try:
+        bbox = {key: float(value[key]) for key in ("x0", "y0", "x1", "y1")}
+    except (KeyError, TypeError, ValueError, OverflowError):
+        return None
+    if not all(math.isfinite(coordinate) for coordinate in bbox.values()):
+        return None
+    if bbox["x1"] <= bbox["x0"] or bbox["y1"] <= bbox["y0"]:
+        return None
+    return bbox
+
+
+def _image_dimensions(value: Any) -> tuple[int, int] | None:
+    if not isinstance(value, (list, tuple)) or len(value) != 2:
+        return None
+    dimensions = []
+    for item in value:
+        if isinstance(item, bool):
+            return None
+        try:
+            dimension = int(item)
+        except (TypeError, ValueError, OverflowError):
+            return None
+        if dimension <= 0 or float(item) != dimension:
+            return None
+        dimensions.append(dimension)
+    return dimensions[0], dimensions[1]
+
+
+def _same_source_path(first: Any, second: Any) -> bool:
+    if not isinstance(first, str) or not first.strip():
+        return False
+    if not isinstance(second, str) or not second.strip():
+        return False
+    return Path(first).expanduser().resolve(strict=False) == Path(second).expanduser().resolve(strict=False)
+
+
+def _project_target_bbox_for_crop(
+    *,
+    target: dict[str, Any],
+    page_context: dict[str, Any],
+    page_number: int,
+    crop: dict[str, Any],
+) -> tuple[dict[str, float] | None, str | None]:
+    """Return the target rectangle in this crop's source-pixel basis.
+
+    Legacy same-source crops continue to compare directly. A crop in another
+    coordinate basis must carry the cropper's source bbox and verified scale
+    transform so raw pixel coordinates can never be compared across images.
+    """
+    target_id = str(target.get("target_id") or "")
+    crop_target_id = str(crop.get("critical_graphics_target_id") or "")
+    crop_page = crop.get("source_page")
+    planned_page = page_context.get("page_number")
+    target_page = target.get("source_page_number")
+    if planned_page is not None and (planned_page != page_number or target_page != planned_page):
+        return None, "target source page does not match planned page"
+    if crop_page != page_number:
+        return None, "source page does not match target page"
+    if (
+        crop.get("bbox_transform") is not None
+        and target_id
+        and crop_target_id
+        and crop_target_id != target_id
+        and not crop_target_id.startswith(f"{target_id}-")
+    ):
+        # A different explicit target identity is not evidence for this target.
+        return None, "critical target id does not match"
+
+    target_bbox = _coordinate_bbox(target.get("bbox_pixels"))
+    crop_bbox = _coordinate_bbox(crop.get("bbox"))
+    if target_bbox is None or crop_bbox is None:
+        return None, "target or crop bbox is invalid"
+
+    planned_source_image = page_context.get("source_image")
+    target_source_image = target.get("source_image")
+    if (
+        planned_source_image
+        and target_source_image
+        and not _same_source_path(planned_source_image, target_source_image)
+    ):
+        return None, "target source image does not match planned page source image"
+
+    page_basis = (
+        page_context.get("image_width"),
+        page_context.get("image_height"),
+    )
+    if any(isinstance(value, bool) for value in page_basis):
+        page_dimensions = None
+    else:
+        try:
+            page_dimensions = tuple(int(value) for value in page_basis)
+            if any(float(value) != parsed or parsed <= 0 for value, parsed in zip(page_basis, page_dimensions)):
+                page_dimensions = None
+        except (TypeError, ValueError, OverflowError):
+            page_dimensions = None
+    if page_dimensions is not None and (
+        target_bbox["x0"] < 0
+        or target_bbox["y0"] < 0
+        or target_bbox["x1"] > page_dimensions[0]
+        or target_bbox["y1"] > page_dimensions[1]
+    ):
+        return None, "planned bbox is outside its recorded source dimensions"
+
+    transform = crop.get("bbox_transform")
+    bbox_source = crop.get("bbox_source")
+    crop_dimensions = _image_dimensions(crop.get("source_dimensions"))
+    crop_source_image = crop.get("source_image")
+
+    if transform is None:
+        # Do not infer a change of basis from coordinate values alone. If the
+        # selected source identity or dimensions differ, require provenance.
+        if bbox_source is not None:
+            return None, "bbox_source is present without bbox_transform"
+        if crop_dimensions is not None and page_dimensions is not None and crop_dimensions != page_dimensions:
+            return None, "crop dimensions differ from planned basis without transform"
+        if planned_source_image and crop_source_image and not _same_source_path(planned_source_image, crop_source_image):
+            return None, "crop source image differs from planned basis without transform"
+        bounds = crop_dimensions or page_dimensions
+        if bounds and (
+            crop_bbox["x0"] < 0
+            or crop_bbox["y0"] < 0
+            or crop_bbox["x1"] > bounds[0]
+            or crop_bbox["y1"] > bounds[1]
+        ):
+            return None, "crop bbox is outside its recorded source dimensions"
+        return target_bbox, None
+
+    if not isinstance(transform, dict) or not isinstance(bbox_source, dict):
+        return None, "changed-basis crop is missing bbox source or transform metadata"
+    if not target_id or not crop_target_id or not (
+        crop_target_id == target_id or crop_target_id.startswith(f"{target_id}-")
+    ):
+        return None, "changed-basis crop is not bound to this critical target id"
+    if not isinstance(planned_source_image, str) or not planned_source_image.strip():
+        return None, "planned source image identity is missing"
+    if not _same_source_path(bbox_source.get("source_image"), planned_source_image):
+        return None, "bbox source image does not match planned source image"
+    if target_source_image and not _same_source_path(bbox_source.get("source_image"), target_source_image):
+        return None, "bbox source image does not match target source image"
+
+    source_bbox = _coordinate_bbox(bbox_source.get("bbox_pixels"))
+    if source_bbox is None or source_bbox != target_bbox:
+        return None, "bbox source coordinates do not match the planned target"
+    try:
+        source_dimensions = (int(bbox_source["image_width"]), int(bbox_source["image_height"]))
+    except (KeyError, TypeError, ValueError, OverflowError):
+        return None, "bbox source dimensions are missing or invalid"
+    if (
+        any(isinstance(bbox_source.get(key), bool) for key in ("image_width", "image_height"))
+        or any(value <= 0 for value in source_dimensions)
+        or any(float(bbox_source[key]) != value for key, value in zip(("image_width", "image_height"), source_dimensions))
+    ):
+        return None, "bbox source dimensions are invalid"
+    if page_dimensions is None or source_dimensions != page_dimensions:
+        return None, "bbox source dimensions do not match planned page dimensions"
+
+    selected_dimensions = _image_dimensions(crop.get("source_dimensions"))
+    transform_source_dimensions = _image_dimensions(transform.get("source_dimensions"))
+    transform_selected_dimensions = _image_dimensions(transform.get("selected_dimensions"))
+    if selected_dimensions is None:
+        return None, "selected crop source dimensions are missing or invalid"
+    if transform_source_dimensions != source_dimensions:
+        return None, "transform source dimensions do not match bbox source"
+    if transform_selected_dimensions != selected_dimensions:
+        return None, "transform selected dimensions do not match crop source dimensions"
+    if transform.get("method") != "scale_pixel_bbox_to_selected_source_v1":
+        return None, "bbox transform method is unsupported"
+    if transform.get("rounding") != "floor_start_ceil_end":
+        return None, "bbox transform rounding is unsupported"
+    if selected_dimensions[0] < source_dimensions[0] or selected_dimensions[1] < source_dimensions[1]:
+        return None, "selected crop source is smaller than planned source"
+    if (
+        crop_bbox["x0"] < 0
+        or crop_bbox["y0"] < 0
+        or crop_bbox["x1"] > selected_dimensions[0]
+        or crop_bbox["y1"] > selected_dimensions[1]
+    ):
+        return None, "crop bbox is outside selected source dimensions"
+    try:
+        scale_x = float(transform["scale_x"])
+        scale_y = float(transform["scale_y"])
+    except (KeyError, TypeError, ValueError, OverflowError):
+        return None, "bbox transform scales are missing or invalid"
+    if not math.isfinite(scale_x) or not math.isfinite(scale_y) or scale_x <= 0 or scale_y <= 0:
+        return None, "bbox transform scales are not finite positive values"
+    expected_scale_x = selected_dimensions[0] / source_dimensions[0]
+    expected_scale_y = selected_dimensions[1] / source_dimensions[1]
+    if not math.isclose(scale_x, expected_scale_x, rel_tol=1e-9, abs_tol=1e-9):
+        return None, "bbox transform x scale does not match recorded dimensions"
+    if not math.isclose(scale_y, expected_scale_y, rel_tol=1e-9, abs_tol=1e-9):
+        return None, "bbox transform y scale does not match recorded dimensions"
+
+    projected = {
+        "x0": math.floor(target_bbox["x0"] * scale_x),
+        "y0": math.floor(target_bbox["y0"] * scale_y),
+        "x1": math.ceil(target_bbox["x1"] * scale_x),
+        "y1": math.ceil(target_bbox["y1"] * scale_y),
+    }
+    if (
+        projected["x0"] < 0
+        or projected["y0"] < 0
+        or projected["x1"] > selected_dimensions[0]
+        or projected["y1"] > selected_dimensions[1]
+    ):
+        return None, "projected target bbox is outside selected source dimensions"
+    return projected, None
+
+
 def _critical_graphics_checks(
     *,
     critical_manifest: dict[str, Any],
@@ -904,6 +1116,12 @@ def _critical_graphics_checks(
         if not isinstance(page, dict):
             continue
         page_number = page.get("page_number")
+        page_context = {
+            "page_number": page_number,
+            "source_image": page.get("source_image"),
+            "image_width": page.get("image_width"),
+            "image_height": page.get("image_height"),
+        }
         for target in page.get("targets", []):
             if not isinstance(target, dict):
                 continue
@@ -913,6 +1131,7 @@ def _critical_graphics_checks(
                 continue
             if target.get("source_page_number") is None and isinstance(page_number, int):
                 target = {**target, "source_page_number": page_number}
+            target = {**target, "_critical_page_context": page_context}
             planned_targets.append(target)
 
     manifest_target_count = int(summary.get("target_count") or 0)
@@ -938,13 +1157,20 @@ def _critical_graphics_checks(
 
     misses = []
     matches = []
+    rejected_crops = []
     for target in planned_targets:
         target_bbox = target.get("bbox_pixels") or {}
-        target_area = int(target_bbox.get("width") or 0) * int(target_bbox.get("height") or 0)
+        target_coordinates = _coordinate_bbox(target_bbox)
+        if target_coordinates is None:
+            continue
+        target_area = (target_coordinates["x1"] - target_coordinates["x0"]) * (
+            target_coordinates["y1"] - target_coordinates["y0"]
+        )
         if target_area <= 0:
             continue
         page = target.get("source_page_number")
         target_id = str(target.get("target_id") or "")
+        page_context = target.get("_critical_page_context") or {}
         split_crops = [
             crop
             for crop in crops_by_page.get(page, [])
@@ -956,30 +1182,57 @@ def _critical_graphics_checks(
             "icon_reference",
             "rule_example_diagram",
         }:
-            aggregate_coverage = sum(
-                _intersection_area(target_bbox, crop.get("bbox") or {}) / float(target_area)
-                for crop in split_crops
-                if isinstance(crop.get("bbox"), dict)
-            )
+            aggregate_coverage = 0.0
+            valid_split_crops = 0
+            for crop in split_crops:
+                projected_bbox, rejection = _project_target_bbox_for_crop(
+                    target=target,
+                    page_context=page_context,
+                    page_number=page,
+                    crop=crop,
+                )
+                if projected_bbox is None:
+                    if rejection:
+                        rejected_crops.append({"target_id": target_id, "filename": crop.get("filename"), "reason": rejection})
+                    continue
+                projected_area = (projected_bbox["x1"] - projected_bbox["x0"]) * (
+                    projected_bbox["y1"] - projected_bbox["y0"]
+                )
+                if projected_area <= 0:
+                    continue
+                aggregate_coverage += _intersection_area(projected_bbox, crop.get("bbox") or {}) / float(projected_area)
+                valid_split_crops += 1
             detail = {
                 "target_id": target.get("target_id"),
                 "page": page,
                 "role": target.get("role"),
                 "description": target.get("description"),
-                "split_crop_count": len(split_crops),
+                "split_crop_count": valid_split_crops,
                 "coverage": round(min(1.0, aggregate_coverage), 3),
                 "coverage_mode": "split_reference_children",
             }
-            if len(split_crops) >= 2 and aggregate_coverage >= 0.2:
+            if valid_split_crops >= 2 and aggregate_coverage >= 0.2:
                 matches.append(detail)
                 continue
         best = 0.0
         best_crop = None
         for crop in crops_by_page.get(page, []):
-            crop_bbox = crop.get("bbox")
-            if not isinstance(crop_bbox, dict):
+            projected_bbox, rejection = _project_target_bbox_for_crop(
+                target=target,
+                page_context=page_context,
+                page_number=page,
+                crop=crop,
+            )
+            if projected_bbox is None:
+                if rejection:
+                    rejected_crops.append({"target_id": target_id, "filename": crop.get("filename"), "reason": rejection})
                 continue
-            coverage = _intersection_area(target_bbox, crop_bbox) / float(target_area)
+            projected_area = (projected_bbox["x1"] - projected_bbox["x0"]) * (
+                projected_bbox["y1"] - projected_bbox["y0"]
+            )
+            if projected_area <= 0:
+                continue
+            coverage = _intersection_area(projected_bbox, crop.get("bbox") or {}) / float(projected_area)
             if coverage > best:
                 best = coverage
                 best_crop = crop.get("filename")
@@ -1007,6 +1260,7 @@ def _critical_graphics_checks(
             "matched": len(matches),
             "misses": misses[:10],
             "minimum_target_coverage": min_target_crop_coverage,
+            "rejected_crops": rejected_crops[:20],
         },
     )
     return checks

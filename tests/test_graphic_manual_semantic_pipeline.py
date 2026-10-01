@@ -6,7 +6,11 @@ from pathlib import Path
 import yaml
 
 from modules.transform.plan_graphic_manual_figures_v1.main import build_plan
-from modules.validate.validate_semantic_manual_html_v1.main import build_report, _semantic_fidelity_checks
+from modules.validate.validate_semantic_manual_html_v1.main import (
+    _critical_graphics_checks,
+    _semantic_fidelity_checks,
+    build_report,
+)
 
 
 RECIPE = Path("configs/recipes/recipe-graphics-heavy-imposed-pdf-html-mvp.yaml")
@@ -15,6 +19,37 @@ RECIPE = Path("configs/recipes/recipe-graphics-heavy-imposed-pdf-html-mvp.yaml")
 def _write_jsonl(path: Path, rows: list[dict]) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text("\n".join(json.dumps(row) for row in rows) + "\n", encoding="utf-8")
+
+
+def _critical_crop_coverage_check(*, target: dict, crop: dict, page: dict | None = None) -> dict:
+    page = page or {"page_number": 1, "source_image": "/source/page.png", "image_width": 100, "image_height": 100}
+    target = {"target_id": "p001-g01", "importance": "essential", "role": "board_element", **target}
+    manifest = {"summary": {"target_count": 1}, "pages": [{**page, "targets": [target]}]}
+    checks = _critical_graphics_checks(
+        critical_manifest=manifest,
+        crops=[crop],
+        min_target_crop_coverage=0.8,
+    )
+    return next(check for check in checks if check["id"] == "critical_graphics_crop_coverage")
+
+
+def _highres_bbox_transform(*, source_image: str = "/source/page.png") -> dict:
+    return {
+        "bbox_source": {
+            "bbox_pixels": {"x0": 10, "y0": 10, "x1": 30, "y1": 30, "width": 20, "height": 20},
+            "image_width": 100,
+            "image_height": 100,
+            "source_image": source_image,
+        },
+        "bbox_transform": {
+            "method": "scale_pixel_bbox_to_selected_source_v1",
+            "scale_x": 2.0,
+            "scale_y": 2.0,
+            "source_dimensions": [100, 100],
+            "selected_dimensions": [200, 200],
+            "rounding": "floor_start_ceil_end",
+        },
+    }
 
 
 def test_graphic_manual_plan_classifies_generic_rulebook_roles() -> None:
@@ -47,6 +82,167 @@ def test_graphic_manual_plan_classifies_generic_rulebook_roles() -> None:
     assert {"setup_diagram", "card_or_reference"} <= roles
     summary_page = next(page for page in plan["pages"] if page["page_number"] == 3)
     assert summary_page["page_roles"] == ["summary_reference"]
+
+
+def test_critical_graphics_coverage_preserves_same_source_coordinates() -> None:
+    bbox = {"x0": 10, "y0": 10, "x1": 30, "y1": 30, "width": 20, "height": 20}
+    check = _critical_crop_coverage_check(
+        target={"source_page_number": 1, "bbox_pixels": bbox},
+        crop={
+            "filename": "same-source.png",
+            "source_page": 1,
+            "source_image": "/source/page.png",
+            "source_dimensions": [100, 100],
+            "critical_graphics_target_id": "p001-g01",
+            "bbox": bbox,
+        },
+    )
+
+    assert check["status"] == "pass"
+    assert check["detail"]["matched"] == 1
+
+
+def test_critical_graphics_coverage_projects_valid_two_x_source_basis() -> None:
+    bbox = {"x0": 10, "y0": 10, "x1": 30, "y1": 30, "width": 20, "height": 20}
+    crop = {
+        "filename": "highres.png",
+        "source_page": 1,
+        "source_image": "/highres/page.png",
+        "source_dimensions": [200, 200],
+        "critical_graphics_target_id": "p001-g01",
+        "bbox": {"x0": 20, "y0": 20, "x1": 60, "y1": 60, "width": 40, "height": 40},
+        **_highres_bbox_transform(),
+    }
+
+    check = _critical_crop_coverage_check(
+        target={"source_page_number": 1, "bbox_pixels": bbox},
+        crop=crop,
+    )
+
+    assert check["status"] == "pass"
+    assert check["detail"]["matched"] == 1
+
+
+def test_critical_graphics_coverage_still_rejects_wrong_highres_region() -> None:
+    bbox = {"x0": 10, "y0": 10, "x1": 30, "y1": 30, "width": 20, "height": 20}
+    crop = {
+        "filename": "wrong-region.png",
+        "source_page": 1,
+        "source_image": "/highres/page.png",
+        "source_dimensions": [200, 200],
+        "critical_graphics_target_id": "p001-g01",
+        "bbox": {"x0": 100, "y0": 100, "x1": 140, "y1": 140, "width": 40, "height": 40},
+        **_highres_bbox_transform(),
+    }
+
+    check = _critical_crop_coverage_check(
+        target={"source_page_number": 1, "bbox_pixels": bbox},
+        crop=crop,
+    )
+
+    assert check["status"] == "warn"
+    assert check["detail"]["matched"] == 0
+    assert check["detail"]["misses"][0]["coverage"] == 0.0
+
+
+def test_critical_graphics_coverage_rejects_changed_source_without_transform() -> None:
+    bbox = {"x0": 10, "y0": 10, "x1": 30, "y1": 30, "width": 20, "height": 20}
+    check = _critical_crop_coverage_check(
+        target={"source_page_number": 1, "bbox_pixels": bbox},
+        crop={
+            "filename": "unbound-highres.png",
+            "source_page": 1,
+            "source_image": "/highres/page.png",
+            "source_dimensions": [200, 200],
+            "critical_graphics_target_id": "p001-g01",
+            "bbox": {"x0": 20, "y0": 20, "x1": 60, "y1": 60},
+        },
+    )
+
+    assert check["status"] == "warn"
+    assert check["detail"]["matched"] == 0
+    assert any("without transform" in item["reason"] for item in check["detail"]["rejected_crops"])
+
+
+def test_critical_graphics_coverage_rejects_transform_with_unbound_scale() -> None:
+    bbox = {"x0": 10, "y0": 10, "x1": 30, "y1": 30, "width": 20, "height": 20}
+    metadata = _highres_bbox_transform()
+    metadata["bbox_transform"]["scale_x"] = 1.0
+    check = _critical_crop_coverage_check(
+        target={"source_page_number": 1, "bbox_pixels": bbox},
+        crop={
+            "filename": "mismatched-transform.png",
+            "source_page": 1,
+            "source_image": "/highres/page.png",
+            "source_dimensions": [200, 200],
+            "critical_graphics_target_id": "p001-g01",
+            "bbox": {"x0": 20, "y0": 20, "x1": 60, "y1": 60},
+            **metadata,
+        },
+    )
+
+    assert check["status"] == "warn"
+    assert check["detail"]["matched"] == 0
+    assert any("x scale" in item["reason"] for item in check["detail"]["rejected_crops"])
+
+
+def test_critical_graphics_coverage_rejects_transform_bound_to_another_target() -> None:
+    bbox = {"x0": 10, "y0": 10, "x1": 30, "y1": 30, "width": 20, "height": 20}
+    check = _critical_crop_coverage_check(
+        target={"source_page_number": 1, "bbox_pixels": bbox},
+        crop={
+            "filename": "other-target.png",
+            "source_page": 1,
+            "source_image": "/highres/page.png",
+            "source_dimensions": [200, 200],
+            "critical_graphics_target_id": "p001-g02",
+            "bbox": {"x0": 20, "y0": 20, "x1": 60, "y1": 60},
+            **_highres_bbox_transform(),
+        },
+    )
+
+    assert check["status"] == "warn"
+    assert check["detail"]["matched"] == 0
+
+
+def test_critical_graphics_coverage_rejects_transform_with_wrong_source_image() -> None:
+    bbox = {"x0": 10, "y0": 10, "x1": 30, "y1": 30, "width": 20, "height": 20}
+    metadata = _highres_bbox_transform(source_image="/other/page.png")
+    check = _critical_crop_coverage_check(
+        target={"source_page_number": 1, "source_image": "/source/page.png", "bbox_pixels": bbox},
+        crop={
+            "filename": "wrong-source.png",
+            "source_page": 1,
+            "source_image": "/highres/page.png",
+            "source_dimensions": [200, 200],
+            "critical_graphics_target_id": "p001-g01",
+            "bbox": {"x0": 20, "y0": 20, "x1": 60, "y1": 60},
+            **metadata,
+        },
+    )
+
+    assert check["status"] == "warn"
+    assert check["detail"]["matched"] == 0
+    assert any("bbox source image" in item["reason"] for item in check["detail"]["rejected_crops"])
+
+
+def test_critical_graphics_coverage_rejects_target_bound_to_another_page() -> None:
+    bbox = {"x0": 10, "y0": 10, "x1": 30, "y1": 30, "width": 20, "height": 20}
+    check = _critical_crop_coverage_check(
+        target={"source_page_number": 2, "bbox_pixels": bbox},
+        crop={
+            "filename": "wrong-page.png",
+            "source_page": 2,
+            "source_image": "/source/page.png",
+            "source_dimensions": [100, 100],
+            "critical_graphics_target_id": "p001-g01",
+            "bbox": bbox,
+        },
+    )
+
+    assert check["status"] == "warn"
+    assert check["detail"]["matched"] == 0
+    assert any("planned page" in item["reason"] for item in check["detail"]["rejected_crops"])
 
 
 def test_semantic_manual_conformance_report_surfaces_figure_and_provenance_coverage(tmp_path: Path) -> None:

@@ -13,6 +13,7 @@ This works because:
 import argparse
 import base64
 import json
+import math
 import os
 import shutil
 from datetime import datetime
@@ -220,6 +221,8 @@ _DETECTOR_META_KEYS = (
     "_critical_graphics_importance",
     "_critical_graphics_role",
     "_critical_graphics_reason",
+    "_critical_bbox_source",
+    "_critical_bbox_transform",
     "_detector_model",
     "_detector_provider",
     "_detector_request_id",
@@ -2959,12 +2962,13 @@ def _target_description(target: Dict[str, Any]) -> str:
     return " — ".join(part for part in parts if part)
 
 
-def _load_critical_graphics_targets(path: Optional[str]) -> Dict[int, List[Dict[str, Any]]]:
-    """Load visual-planner targets by logical page.
+def _load_critical_graphics_targets(path: Optional[str]) -> Dict[int, Dict[str, Any]]:
+    """Load visual-planner page context and targets by logical page.
 
     Only non-decorative targets are crop intent. Keep explicitly planned pages
     with zero admitted targets: an empty plan suppresses OCR fallback, while an
-    absent page still permits it. Decorative notes stay in the manifest/report.
+    absent page still permits it. Retain page coordinate/source evidence for
+    validating and transforming pixel boxes when another source image is used.
     """
     if not path:
         return {}
@@ -2972,7 +2976,7 @@ def _load_critical_graphics_targets(path: Optional[str]) -> Dict[int, List[Dict[
     if not manifest_path.exists():
         raise FileNotFoundError(f"critical graphics manifest not found: {manifest_path}")
     data = json.loads(manifest_path.read_text(encoding="utf-8"))
-    page_targets: Dict[int, List[Dict[str, Any]]] = {}
+    page_targets: Dict[int, Dict[str, Any]] = {}
     for page in data.get("pages", []):
         if not isinstance(page, dict):
             continue
@@ -2982,16 +2986,180 @@ def _load_critical_graphics_targets(path: Optional[str]) -> Dict[int, List[Dict[
         targets = page.get("targets")
         if not isinstance(targets, list):
             continue
+        page_context = None
         if all(isinstance(target, dict) for target in targets):
-            page_targets.setdefault(page_number, [])
+            page_context = page_targets.setdefault(
+                page_number,
+                {
+                    "source_image": page.get("source_image"),
+                    "image_width": page.get("image_width"),
+                    "image_height": page.get("image_height"),
+                    "targets": [],
+                },
+            )
         for target in targets:
             if not isinstance(target, dict):
                 continue
             importance = str(target.get("importance") or "").strip().lower()
             if importance == "decorative":
                 continue
-            page_targets.setdefault(page_number, []).append(target)
+            if page_context is None:
+                page_context = page_targets.setdefault(
+                    page_number,
+                    {
+                        "source_image": page.get("source_image"),
+                        "image_width": page.get("image_width"),
+                        "image_height": page.get("image_height"),
+                        "targets": [],
+                    },
+                )
+            target_page = target.get("source_page_number")
+            if target_page is not None and target_page != page_number:
+                raise ValueError(
+                    f"critical graphics target source_page_number {target_page!r} "
+                    f"does not match page_number {page_number}"
+                )
+            target_source_image = target.get("source_image")
+            page_source_image = page_context.get("source_image")
+            if target_source_image and page_source_image and not _same_source_path(
+                target_source_image, page_source_image
+            ):
+                raise ValueError(
+                    f"critical graphics target source_image does not match page {page_number}"
+                )
+            page_context["targets"].append(target)
     return page_targets
+
+
+def _same_source_path(first: Any, second: Any) -> bool:
+    if not isinstance(first, str) or not first.strip():
+        return False
+    if not isinstance(second, str) or not second.strip():
+        return False
+    return Path(first).expanduser().resolve(strict=False) == Path(second).expanduser().resolve(strict=False)
+
+
+def _positive_image_dimension(value: Any) -> Optional[int]:
+    if isinstance(value, bool):
+        return None
+    try:
+        dimension = int(value)
+    except (TypeError, ValueError, OverflowError):
+        return None
+    if dimension <= 0 or float(value) != dimension:
+        return None
+    return dimension
+
+
+def _critical_target_for_selected_image(
+    target: Dict[str, Any],
+    *,
+    page_number: int,
+    page_context: Dict[str, Any],
+    ocr_image_path: Optional[str],
+    selected_image_size: Tuple[int, int],
+    selected_is_higher_resolution: bool,
+) -> Dict[str, Any]:
+    """Validate planner provenance and scale its pixel bbox to the selected image."""
+    target_page = target.get("source_page_number")
+    if selected_is_higher_resolution and target_page is None:
+        raise ValueError(f"critical graphics target on page {page_number} has no source_page_number")
+    if target_page is not None and target_page != page_number:
+        raise ValueError(
+            f"critical graphics target source_page_number {target_page!r} "
+            f"does not match OCR page {page_number}"
+        )
+
+    page_source_image = page_context.get("source_image")
+    target_source_image = target.get("source_image")
+    if selected_is_higher_resolution and (not page_source_image or not ocr_image_path):
+        raise ValueError(
+            f"critical graphics page {page_number} has no source_image identity for high-resolution scaling"
+        )
+    for source_image in (page_source_image, target_source_image):
+        if source_image and ocr_image_path and not _same_source_path(source_image, ocr_image_path):
+            raise ValueError(
+                f"critical graphics source_image does not match OCR image for page {page_number}"
+            )
+
+    basis_width = _positive_image_dimension(page_context.get("image_width"))
+    basis_height = _positive_image_dimension(page_context.get("image_height"))
+    selected_width, selected_height = selected_image_size
+    if basis_width is None or basis_height is None:
+        if selected_is_higher_resolution:
+            raise ValueError(
+                f"critical graphics page {page_number} has no valid image_width/image_height "
+                "basis for high-resolution bbox scaling"
+            )
+        return target
+
+    bbox = target.get("bbox_pixels")
+    if not isinstance(bbox, dict):
+        if selected_is_higher_resolution:
+            raise ValueError(f"critical graphics target on page {page_number} has no pixel bbox")
+        return target
+    try:
+        coordinates = {key: float(bbox[key]) for key in ("x0", "y0", "x1", "y1")}
+    except (KeyError, TypeError, ValueError, OverflowError):
+        if selected_is_higher_resolution:
+            raise ValueError(f"critical graphics target on page {page_number} has an invalid pixel bbox")
+        return target
+    if not all(math.isfinite(value) for value in coordinates.values()):
+        raise ValueError(f"critical graphics target on page {page_number} has non-finite bbox values")
+    if (
+        coordinates["x0"] < 0
+        or coordinates["y0"] < 0
+        or coordinates["x1"] <= coordinates["x0"]
+        or coordinates["y1"] <= coordinates["y0"]
+        or coordinates["x1"] > basis_width
+        or coordinates["y1"] > basis_height
+    ):
+        raise ValueError(
+            f"critical graphics bbox on page {page_number} is outside its recorded "
+            f"{basis_width}x{basis_height} source dimensions"
+        )
+
+    if selected_is_higher_resolution and (
+        selected_width < basis_width or selected_height < basis_height
+    ):
+        raise ValueError(
+            f"selected high-resolution image {selected_width}x{selected_height} is smaller than "
+            f"the planner source basis {basis_width}x{basis_height} on page {page_number}"
+        )
+
+    if (basis_width, basis_height) == (selected_width, selected_height):
+        return target
+
+    if not selected_is_higher_resolution:
+        raise ValueError(
+            f"critical graphics dimensions {basis_width}x{basis_height} do not match "
+            f"selected source {selected_width}x{selected_height} on page {page_number}"
+        )
+
+    scale_x = selected_width / basis_width
+    scale_y = selected_height / basis_height
+    scaled = dict(target)
+    scaled["bbox_pixels"] = {
+        "x0": math.floor(coordinates["x0"] * scale_x),
+        "y0": math.floor(coordinates["y0"] * scale_y),
+        "x1": math.ceil(coordinates["x1"] * scale_x),
+        "y1": math.ceil(coordinates["y1"] * scale_y),
+    }
+    scaled["_critical_bbox_source"] = {
+        "bbox_pixels": dict(bbox),
+        "source_image": page_source_image or target_source_image,
+        "image_width": basis_width,
+        "image_height": basis_height,
+    }
+    scaled["_critical_bbox_transform"] = {
+        "method": "scale_pixel_bbox_to_selected_source_v1",
+        "scale_x": scale_x,
+        "scale_y": scale_y,
+        "source_dimensions": [basis_width, basis_height],
+        "selected_dimensions": [selected_width, selected_height],
+        "rounding": "floor_start_ceil_end",
+    }
+    return scaled
 
 
 def _box_from_critical_target(
@@ -3036,6 +3204,8 @@ def _box_from_critical_target(
         "_critical_graphics_importance": target.get("importance"),
         "_critical_graphics_role": target.get("role"),
         "_critical_graphics_reason": target.get("reason"),
+        "_critical_bbox_source": target.get("_critical_bbox_source"),
+        "_critical_bbox_transform": target.get("_critical_bbox_transform"),
     }
     return box
 
@@ -4470,7 +4640,11 @@ def crop_illustrations_guided(
 
     pages = list(read_jsonl(ocr_manifest))
     manifest = []
-    critical_targets_by_page = _load_critical_graphics_targets(critical_graphics_manifest)
+    critical_page_context_by_number = _load_critical_graphics_targets(critical_graphics_manifest)
+    critical_targets_by_page = {
+        page_number: page_context["targets"]
+        for page_number, page_context in critical_page_context_by_number.items()
+    }
     if critical_targets_by_page:
         target_count = sum(len(targets) for targets in critical_targets_by_page.values())
         _log(f"Loaded {target_count} critical graphics target(s) from {critical_graphics_manifest}")
@@ -4675,7 +4849,7 @@ def crop_illustrations_guided(
                 for _ in range(count):
                     ocr_descriptions.append(img.get("alt", ""))
 
-        using_highres = source_image_path != image_path
+        using_highres = not _same_source_path(source_image_path, image_path)
         resolution_label = "high-res" if using_highres else "OCR-res"
         _log(f"  Page {page_num}: Expecting {expected_count} illustration(s) [{resolution_label}]")
 
@@ -4685,12 +4859,42 @@ def crop_illustrations_guided(
             try:
                 with Image.open(source_image_path) as size_img:
                     source_img_w, source_img_h = size_img.size
-            except Exception:
+                if using_highres:
+                    if not image_path or not os.path.exists(image_path):
+                        raise ValueError(
+                            f"high-resolution critical crop for page {page_num} cannot validate "
+                            "the planner source image because the OCR image is missing"
+                        )
+                    with Image.open(image_path) as original_img:
+                        original_size = original_img.size
+                    page_context = critical_page_context_by_number[page_num]
+                    basis_size = (
+                        _positive_image_dimension(page_context.get("image_width")),
+                        _positive_image_dimension(page_context.get("image_height")),
+                    )
+                    if basis_size != original_size:
+                        raise ValueError(
+                            f"critical graphics coordinate basis {basis_size} does not match "
+                            f"OCR source image {original_size} on page {page_num}"
+                        )
+            except Exception as exc:
+                if using_highres:
+                    raise ValueError(
+                        f"cannot establish critical bbox coordinate basis for high-resolution "
+                        f"page {page_num}: {exc}"
+                    ) from exc
                 source_img_w = None
                 source_img_h = None
         boxes_from_critical_manifest = [
             _box_from_critical_target(
-                target,
+                _critical_target_for_selected_image(
+                    target,
+                    page_number=page_num,
+                    page_context=critical_page_context_by_number[page_num],
+                    ocr_image_path=image_path,
+                    selected_image_size=(source_img_w, source_img_h),
+                    selected_is_higher_resolution=using_highres,
+                ),
                 image_width=source_img_w,
                 image_height=source_img_h,
                 # Visual-planner targets are already semantic source-pixel crop
@@ -5297,6 +5501,10 @@ def crop_illustrations_guided(
                 record["critical_graphics_importance"] = box.get("_critical_graphics_importance")
                 record["critical_graphics_role"] = box.get("_critical_graphics_role")
                 record["critical_graphics_reason"] = box.get("_critical_graphics_reason")
+            if box.get("_critical_bbox_source"):
+                record["bbox_source"] = box["_critical_bbox_source"]
+            if box.get("_critical_bbox_transform"):
+                record["bbox_transform"] = box["_critical_bbox_transform"]
             if box.get("_nearby_text"):
                 record["nearby_text"] = box.get("_nearby_text")
             if box.get("_expected_visual_contents"):

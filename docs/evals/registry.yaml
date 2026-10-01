@@ -903,6 +903,24 @@ evals:
         note: "Poor bounding box precision"
 
     attempts:
+      - id: "052-highres-critical-coordinate-binding"
+        date: 2026-09-30
+        status: succeeded
+        approach: "Source-bound planner bbox scaling and coordinate-aware semantic coverage"
+        note: >
+          Bounded runtime evidence, not a maintained detector score.
+          Full public zero-API V10 retains101 unique targets/91HTMLfigures,
+          with22/22native and12/12package checks. All101 emitted crop RGB
+          arrays equal their recorded higher-resolution source rectangles
+          (232617700pixels); source/bbox/dimension/transform provenance
+          validates. Final rectangles81exact/19inset/1expanded are recorded;
+          two binary alpha masks regenerated, no old-mask equality claim.
+          Rules43469textchars/525nonfigureblocks/16owners24citations exact.
+          Final75native/41consumer/25producer controls pass; original542,
+          V9frozen294 and4373protected entries unchanged.32sampled pages and
+          their evidence are packaged. No new calls, goldens, human approval,
+          physical-family or broader semantic/embedded-byte qualification.
+          Proof: docs/evals/attempts/052-highres-critical-coordinate-binding.md.
       - id: "051-lossless-source-page-encoding"
         date: 2026-09-30
         status: succeeded
