@@ -2962,8 +2962,9 @@ def _target_description(target: Dict[str, Any]) -> str:
 def _load_critical_graphics_targets(path: Optional[str]) -> Dict[int, List[Dict[str, Any]]]:
     """Load visual-planner targets by logical page.
 
-    Only non-decorative targets are crop intent. Decorative notes stay in the
-    manifest/report and should not create final manual assets.
+    Only non-decorative targets are crop intent. Keep explicitly planned pages
+    with zero admitted targets: an empty plan suppresses OCR fallback, while an
+    absent page still permits it. Decorative notes stay in the manifest/report.
     """
     if not path:
         return {}
@@ -2978,7 +2979,12 @@ def _load_critical_graphics_targets(path: Optional[str]) -> Dict[int, List[Dict[
         page_number = page.get("page_number")
         if not isinstance(page_number, int):
             continue
-        for target in page.get("targets", []):
+        targets = page.get("targets")
+        if not isinstance(targets, list):
+            continue
+        if all(isinstance(target, dict) for target in targets):
+            page_targets.setdefault(page_number, [])
+        for target in targets:
             if not isinstance(target, dict):
                 continue
             importance = str(target.get("importance") or "").strip().lower()
@@ -4637,6 +4643,10 @@ def crop_illustrations_guided(
                 })
             except Exception as exc:
                 _log(f"  Page {page_num}: Cover page capture failed: {exc}")
+            continue
+
+        if page_num in critical_targets_by_page and not critical_targets:
+            _log(f"  Page {page_num}: Visual planner requested no figures; skipping OCR fallback")
             continue
 
         # Calculate expected count. Prefer the visual-planner manifest when it

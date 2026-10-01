@@ -924,6 +924,18 @@ evals:
           Two fallback title losses remain; no pristine full-suite claim.
           Proof: docs/evals/attempts/050-critical-figure-preservation.md and
           docs/evals/attempts/050-critical-figure-preservation-result.json.
+          Planned-zero V8 is a later source-bound continuation, not a maintained
+          detector score: zero new provider calls;101/101 original target crops
+          retained with exact output/source/bbox equality to V5; pages25/31 have
+          no fallback crops; native conformance22/22 with no unresolved image
+          placeholders. Semantic plaintext and525 ordered nonfigure blocks are
+          byte-equivalent;16 inventory owners and24 citations remain bound. V6's
+          21/22 failure and V7's runtime-hash stop are retained. Output remains
+          needs_review with no human approval; Story226 remains In Progress for
+          broader visual and maximum-pixel qualification. Root-owned public
+          revision008 package passes12/12 contract checks with840 included
+          files,841 resources,81 sources,16 owners,80 held sources,83 open
+          issues, and zero new calls. See the V8 section in the proof files.
       - id: '046'
         date: '2026-09-29'
         status: succeeded

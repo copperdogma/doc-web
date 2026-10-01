@@ -2,6 +2,7 @@ import cv2
 import json
 import numpy as np
 import pytest
+import modules.extract.crop_illustrations_guided_v1.main as crop_module
 from PIL import Image
 
 from modules.extract.crop_illustrations_guided_v1.main import (
@@ -31,6 +32,82 @@ from modules.extract.crop_illustrations_guided_v1.main import (
     _trim_rule_example_bottom_prose_band,
     crop_illustrations_guided,
 )
+
+
+@pytest.mark.parametrize("plan", [[], [{"importance": "decorative", "role": "card_face"}]])
+def test_explicit_zero_plan_suppresses_ocr_fallback_and_prunes_stale_crops(tmp_path, monkeypatch, plan):
+    page_path = tmp_path / "page.png"
+    Image.new("RGB", (200, 200), "blue").save(page_path)
+    ocr = tmp_path / "ocr.jsonl"
+    ocr.write_text(json.dumps({"page_number": 1, "image": str(page_path),
+                               "images": [{"alt": "Redundant card", "count": 1}]}) + "\n")
+    planner = tmp_path / "planner.json"
+    planner.write_text(json.dumps({"pages": [{"page_number": 1, "targets": plan}]}))
+    images = tmp_path / "out" / "images"
+    images.mkdir(parents=True)
+    Image.new("RGB", (20, 20)).save(images / "page-001-000.png")
+    def unexpected_detector(*args, **kwargs):
+        pytest.fail("Explicit empty crop intent must not invoke a detector")
+    monkeypatch.setattr(crop_module, "detect_contours_cv", unexpected_detector)
+    result = crop_illustrations_guided(str(ocr), str(tmp_path / "out"),
+                                     critical_graphics_manifest=str(planner), only_pages="1")
+    assert result == []
+    assert not list(images.iterdir())
+
+
+@pytest.mark.parametrize("pages", [[], [{"page_number": 2, "targets": []}],
+                                   [{"page_number": 1}], [{"page_number": 1, "targets": [None]}]])
+def test_absent_or_incomplete_plan_keeps_ocr_fallback(tmp_path, monkeypatch, pages):
+    page_path = tmp_path / "page.png"
+    Image.new("RGB", (200, 200), "blue").save(page_path)
+    ocr = tmp_path / "ocr.jsonl"
+    ocr.write_text(json.dumps({"page_number": 1, "image": str(page_path),
+                               "images": [{"alt": "Card", "count": 1}]}) + "\n")
+    planner = tmp_path / "planner.json"
+    planner.write_text(json.dumps({"pages": pages}))
+    calls = []
+    def detector(*args, **kwargs):
+        calls.append(True)
+        return [{"x0": 40, "y0": 40, "x1": 160, "y1": 160,
+                 "width": 120, "height": 120, "area_ratio": .36}]
+    monkeypatch.setattr(crop_module, "detect_contours_cv", detector)
+    result = crop_illustrations_guided(str(ocr), str(tmp_path / "out"),
+                                     critical_graphics_manifest=str(planner), output_format="png")
+    assert calls
+    assert len(result) == 1
+    assert "critical_graphics_target_id" not in result[0]
+
+
+def test_explicit_zero_plan_keeps_cover_capture(tmp_path):
+    page_path = tmp_path / "page.png"
+    Image.new("RGB", (200, 160), "blue").save(page_path)
+    ocr = tmp_path / "ocr.jsonl"
+    ocr.write_text(json.dumps({"page_number": 1, "image": str(page_path), "html": "<h1>Cover</h1>"}) + "\n")
+    planner = tmp_path / "planner.json"
+    planner.write_text(json.dumps({"pages": [{"page_number": 1, "targets": []}]}))
+    result = crop_illustrations_guided(str(ocr), str(tmp_path / "out"),
+                                     critical_graphics_manifest=str(planner), cover_pages="1", output_format="png")
+    assert len(result) == 1
+    assert result[0]["detection_method"] == "cover_page"
+    assert result[0]["bbox"]["width"] == 200
+    assert result[0]["bbox"]["height"] == 160
+
+
+def test_mixed_plan_preserves_useful_target_without_decorative_fallback(tmp_path):
+    page_path = tmp_path / "page.png"
+    Image.new("RGB", (200, 160), "blue").save(page_path)
+    ocr = tmp_path / "ocr.jsonl"
+    ocr.write_text(json.dumps({"page_number": 1, "image": str(page_path),
+                               "images": [{"alt": "Useful card"}, {"alt": "Redundant card"}]}) + "\n")
+    planner = tmp_path / "planner.json"
+    planner.write_text(json.dumps({"pages": [{"page_number": 1, "targets": [
+        {"target_id": "kept", "importance": "useful", "role": "card_face", "description": "Useful card",
+         "bbox_pixels": {"x0": 20, "y0": 30, "x1": 100, "y1": 120}},
+        {"target_id": "omitted", "importance": "decorative", "role": "card_face"}]}]}))
+    result = crop_illustrations_guided(str(ocr), str(tmp_path / "out"),
+                                     critical_graphics_manifest=str(planner), output_format="png")
+    assert [crop["critical_graphics_target_id"] for crop in result] == ["kept"]
+    assert result[0]["bbox"] == {"x0": 20, "y0": 30, "x1": 100, "y1": 120, "width": 80, "height": 90}
 
 
 def test_detector_metadata_survives_box_transformations():

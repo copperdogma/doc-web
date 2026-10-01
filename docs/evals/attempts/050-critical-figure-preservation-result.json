@@ -327,5 +327,87 @@
     },
     "lint": "make lint passes",
     "claim_limit": "bounded critical target preservation and structural native provenance; two page25 untargeted fallback titles remain clipped, no complete manual/model/corpus promotion"
+  },
+  "planned_zero_continuation": {
+    "v6": {
+      "run_root": "/Users/cam/.codex/worktrees/native-material-eval/boardgame-ingester/output/story025-fresh-no-cache-20260930-v2/manual-stages/fresh/refinements/planned-zero-v6/runs/refined-af451da66d9344b78d1481f2326e9365",
+      "status": "failed",
+      "conformance_pass": 21,
+      "warnings": 0,
+      "failures": 1,
+      "unresolved_image_placeholders": 8,
+      "claim_limit": "Retained failed attempt; no publication or pass claim."
+    },
+    "v7": {
+      "status": "not_published",
+      "stop_reason": "offline_refinement_runtime_changed",
+      "claim_limit": "Frozen-runtime binding changed before publication; no artifact result is claimed."
+    },
+    "v8": {
+      "run_root": "/Users/cam/.codex/worktrees/native-material-eval/boardgame-ingester/output/story025-fresh-no-cache-20260930-v2/manual-stages/fresh/refinements/planned-zero-v8/runs/refined-8c0e7958f780460bb7019ddbcebf3f6f",
+      "active_rules_artifact_id": "fresh-rules-474da05fd0f2d461-refined-8c0e7958f780460bb7019ddbcebf3f6f",
+      "conformance": {
+        "check_count": 22,
+        "pass_count": 22,
+        "warn_count": 0,
+        "fail_count": 0,
+        "logical_pages": 32,
+        "preserve_as_figure_count": 112,
+        "crop_count": 101,
+        "distinct_original_target_ids": 101,
+        "untargeted_fallback_crops": 0,
+        "html_figure_count": 91,
+        "provenance_rows": 609,
+        "unresolved_image_placeholders": 0,
+        "essential_source_pixel_crops_referenced": 84,
+        "essential_source_pixel_crops_required": 84,
+        "nondecorative_targets_matched": 101,
+        "nondecorative_targets_with_bbox": 101
+      },
+      "artifact_paths": {
+        "semantic_conformance_report": "runs/refined-8c0e7958f780460bb7019ddbcebf3f6f/12_validate_semantic_manual_html_v1/semantic_manual_html_conformance_report.json",
+        "critical_graphics_manifest": "runs/refined-8c0e7958f780460bb7019ddbcebf3f6f/06_plan_critical_graphics_vlm_v1/critical_graphics_manifest.json",
+        "illustration_manifest": "runs/refined-8c0e7958f780460bb7019ddbcebf3f6f/08_crop_illustrations_guided_v1/illustration_manifest.jsonl",
+        "html_bundle_manifest": "runs/refined-8c0e7958f780460bb7019ddbcebf3f6f/output/html/manifest.json"
+      },
+      "crop_module_sha256": "9dd23238fd6d6fc5455ef9c2f5994e4f3f807d71840709ca3ecf030086455f48",
+      "builder_module_sha256": "f92f35e88e90733aad0f5cbc345e1bb0b3ea18eb39885d485cb5941bdc9cb02d",
+      "recipe_sha256": "24b0b7543c18d6f66b93d4ae955ea3ae7a4870974076990925d8bd5a83b0db56",
+      "native_output_comparison": {
+        "surviving_v5_target_crops_byte_bbox_source_exact": 101,
+        "original_manual_stage_files_byte_identical": 542,
+        "pages_without_fallback_crops": [25, 31]
+      },
+      "semantic_equivalence": {
+        "plaintext_characters": 43469,
+        "plaintext_sha256": "d23f72aaebb5ff339ec82b6cb6c98a9ec02a1ecf0938ba1f51ce4459eaa9ca4e",
+        "ordered_nonfigure_block_count": 525,
+        "ordered_nonfigure_blocks_sha256": "0ba70fbcca3ed16cdeb291d58ae950eac1b4f0cdf4849b4265ccb4422c7909e4",
+        "inventory_component_count": 16,
+        "citations_verified": 24
+      },
+      "public_package_revision_008": {
+        "status": "published",
+        "contract_checks_passed": 12,
+        "contract_checks_total": 12,
+        "included_files": 840,
+        "resources": 841,
+        "sources": 81,
+        "inventory_owners": 16,
+        "selected_physical_assets": 1,
+        "proposals": 1,
+        "held_sources": 80,
+        "open_issues": 83,
+        "correction_events": 2,
+        "new_provider_calls": 0,
+        "planner_manifests_and_omission_notes_bound": true,
+        "selected_asset_and_published_rules_match_audited_sources": true,
+        "protected_prior_files_byte_identical": 4373
+      },
+      "review_status": "needs_review",
+      "human_approved": false,
+      "new_provider_calls": 0,
+      "claim_limit": "Bounded source-bound figure policy proof only; no all-page visual, maximum embedded-pixel, maintained detector, corpus, model, or whole-story qualification."
+    }
   }
 }

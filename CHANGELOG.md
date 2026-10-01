@@ -1,3 +1,14 @@
+## [2026-09-30-07] - Preserve planned zero-figure decisions in semantic HTML (Story 226)
+
+### Fixed
+- Preserve explicit empty/decorative critical-graphics decisions through crop fallback so unplanned OCR crops do not appear on pages where the planner selected no figures.
+- Run existing unresolved-image cleanup on no-crop pages, while preserving plain HTML without image placeholders, already resolved images, semantic captions, and reminder callouts.
+
+### Verified
+- Public zero-API V8 refinement passes22/22 native conformance checks with101 planner-target crops, no fallback crops on pages25/31, no unresolved image placeholders, and exact text/citation equivalence. The bundle remains `needs_review`; no human approval or maintained detector score changed.
+- Root-owned package revision008 passes12/12 contract checks with840 included files,841 resources and zero new calls; review holds and83 open issues remain.
+- V6's 21/22 semantic failure and V7's pre-publication runtime-hash stop remain recorded. Story226 stays In Progress pending broader visual and maximum-pixel qualification.
+
 ## [2026-09-30-06] - Preserve planned critical rule figures (Story 226)
 
 ### Fixed

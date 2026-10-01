@@ -2587,7 +2587,7 @@ def _attach_images(html: str, crops: List[Dict[str, Any]], rel_src: str) -> str:
     Matching: descriptor-based against OCR alt/caption context, with positional
     fallback when the page is too large or descriptors are insufficient.
     """
-    if not html or not crops:
+    if not html or (not crops and "<img" not in html.casefold()):
         return html
     soup = BeautifulSoup(html, "html.parser")
     _expand_multi_count_img_tags(soup)
@@ -2602,7 +2602,7 @@ def _attach_images(html: str, crops: List[Dict[str, Any]], rel_src: str) -> str:
 
     n_tags = len(img_tags)
     n_crops = len(candidate_crops)
-    if n_tags != n_crops:
+    if n_tags != n_crops and n_crops > 0:
         print(f"  [build] Warning: {n_tags} <img> tags vs {n_crops} crops on page — matching by descriptors with fallback",
               file=sys.stderr)
 
@@ -3419,8 +3419,7 @@ def _build(args, html_dir: Path, published_html_dir: Path, run_dir: Path) -> Lis
             page_num = _coerce_int(page.get("page_number") or page.get("page"))
             printed_page_number = _coerce_int(page.get("printed_page_number"))
             crops = crops_by_page.get(page_num, []) if isinstance(page_num, int) else []
-            if crops:
-                html = _attach_images(html, crops, args.images_subdir.rstrip("/"))
+            html = _attach_images(html, crops, args.images_subdir.rstrip("/"))
             html = _strip_headers_and_numbers(html)
             html = _add_table_scope(html)
             html = _normalize_heading_breaks(html)
@@ -3530,8 +3529,7 @@ def _build(args, html_dir: Path, published_html_dir: Path, run_dir: Path) -> Lis
         html = page.get("html") or page.get("raw_html") or ""
         page_num = page.get("page_number") or page.get("page")
         crops = crops_by_page.get(page_num, []) if isinstance(page_num, int) else []
-        if crops:
-            html = _attach_images(html, crops, args.images_subdir.rstrip("/"))
+        html = _attach_images(html, crops, args.images_subdir.rstrip("/"))
         body_html = _strip_headers_and_numbers(html)
         body_html = _add_table_scope(body_html)
         body_html = _finalize_genealogy_body_html(

@@ -864,9 +864,38 @@ class TestImageMatching:
         assert len(imgs) == 1
         assert imgs[0].get("src") == "images/a.jpg"
 
-    def test_no_crops_returns_html_unchanged(self):
-        result = _attach_images(SAMPLE_PAGE_HTML, [], "images")
-        assert result == SAMPLE_PAGE_HTML
+    def test_no_crops_keeps_plain_html_unchanged(self):
+        html = "<p>  Rule text remains. </p>\n"
+        assert _attach_images(html, [], "images") == html
+
+    def test_no_crops_removes_unresolved_placeholder_and_preserves_caption(self):
+        html = (
+            "<p>Rule text remains.</p>"
+            '<figure><img alt="Decorative card"><figcaption>Card title</figcaption></figure>'
+        )
+        result = _attach_images(html, [], "images")
+        soup = BeautifulSoup(result, "html.parser")
+        assert soup.get_text(" ", strip=True) == "Rule text remains. Card title"
+        assert soup.find("img") is None
+
+    def test_no_crops_preserves_semantic_callout_caption(self):
+        html = (
+            '<figure><img alt="Reminder graphic">'
+            "<figcaption>Don’t forget! Use upgrades during activation.</figcaption></figure>"
+        )
+        result = _attach_images(html, [], "images")
+        soup = BeautifulSoup(result, "html.parser")
+        assert soup.find("img") is None
+        assert "Don’t forget! Use upgrades during activation." in soup.get_text(" ", strip=True)
+        assert soup.find("aside") is not None
+
+    def test_no_crops_preserves_resolved_image(self):
+        html = '<figure><img src="images/approved.jpg" alt="Approved crop"></figure>'
+        result = _attach_images(html, [], "images")
+        image = BeautifulSoup(result, "html.parser").find("img")
+        assert image is not None
+        assert image["src"] == "images/approved.jpg"
+        assert image["alt"] == "Approved crop"
 
     def test_no_html_returns_empty(self):
         result = _attach_images("", [_crop("img.jpg")], "images")
