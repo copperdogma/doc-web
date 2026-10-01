@@ -1,0 +1,302 @@
+{
+  "scope": "direct source-bound splitter probe; full partial-driver/publication proof recorded separately",
+  "provider_calls": 0,
+  "source_manifest_sha256": "a3c3497f838deeb826b2bd3d333dbabc3110496f05a8acc9aba6bcfa15de7021",
+  "baseline_module_sha256": "0480b603c786200ec5d08f5bfc6c68d8e8384b921c4495aa68b47bb8293f3d86",
+  "current_module_sha256": "65f9d3c4d32629569427fbade753f238793372314100209e6f0fa929d6530775",
+  "targets": 101,
+  "baseline_intact": 98,
+  "current_intact": 101,
+  "pages": [
+    {
+      "page": 3,
+      "targets": 2,
+      "baseline_boxes": 2,
+      "baseline_intact": 2,
+      "current_boxes": 2,
+      "current_intact": 2,
+      "source_sha256": "f3fe21b63c5fd832f75114b09e204d37ec5ddef67a3f829234584d3b7740b2dc"
+    },
+    {
+      "page": 4,
+      "targets": 3,
+      "baseline_boxes": 3,
+      "baseline_intact": 3,
+      "current_boxes": 3,
+      "current_intact": 3,
+      "source_sha256": "9f52145bd16724880c3d03af5ce90e9c000c5a6512f9a6449f3a2bb3d9913260"
+    },
+    {
+      "page": 5,
+      "targets": 2,
+      "baseline_boxes": 2,
+      "baseline_intact": 2,
+      "current_boxes": 2,
+      "current_intact": 2,
+      "source_sha256": "00365deea224004201bd50d185da22c705bf80f1811dec6e803115ae427abb82"
+    },
+    {
+      "page": 6,
+      "targets": 2,
+      "baseline_boxes": 8,
+      "baseline_intact": 1,
+      "current_boxes": 2,
+      "current_intact": 2,
+      "source_sha256": "7d64dc0000f1a46c4a7582d9e30f39bbd19f93e91f051ec3c8df83717588a0fd"
+    },
+    {
+      "page": 7,
+      "targets": 1,
+      "baseline_boxes": 1,
+      "baseline_intact": 1,
+      "current_boxes": 1,
+      "current_intact": 1,
+      "source_sha256": "3f6a99b84ce56f7b612e3588fe217a4b38a374ea2efe7cd4553b4304b813cab2"
+    },
+    {
+      "page": 8,
+      "targets": 8,
+      "baseline_boxes": 8,
+      "baseline_intact": 8,
+      "current_boxes": 8,
+      "current_intact": 8,
+      "source_sha256": "9c1f415d346b00496b7988f77ddad495cc953a95e9c364af7a3a00147400575b"
+    },
+    {
+      "page": 9,
+      "targets": 6,
+      "baseline_boxes": 6,
+      "baseline_intact": 6,
+      "current_boxes": 6,
+      "current_intact": 6,
+      "source_sha256": "9d1d229af3c115f58577ba3b8b7861064f7d083470718ab0a6b36c29548c5a77"
+    },
+    {
+      "page": 10,
+      "targets": 1,
+      "baseline_boxes": 2,
+      "baseline_intact": 0,
+      "current_boxes": 1,
+      "current_intact": 1,
+      "source_sha256": "2e2c343726d4bbcb78bb7570f740d306434b92d7403516acb4207d33ed131ef4"
+    },
+    {
+      "page": 12,
+      "targets": 7,
+      "baseline_boxes": 7,
+      "baseline_intact": 7,
+      "current_boxes": 7,
+      "current_intact": 7,
+      "source_sha256": "a2cf382d3603b0abf29205d2125f1da9f47ed2f011ef1e9162300102b45cca2f"
+    },
+    {
+      "page": 13,
+      "targets": 7,
+      "baseline_boxes": 7,
+      "baseline_intact": 7,
+      "current_boxes": 7,
+      "current_intact": 7,
+      "source_sha256": "ee072df8683c8c7b2168520f7163fd51d7a9bbabd3a1fcb31a84ecc812e0aa4e"
+    },
+    {
+      "page": 14,
+      "targets": 5,
+      "baseline_boxes": 5,
+      "baseline_intact": 5,
+      "current_boxes": 5,
+      "current_intact": 5,
+      "source_sha256": "b706ffbbc5d88b32327dcc33486c23f6dbb0148b4af8c782ab0bf5f4993c5271"
+    },
+    {
+      "page": 15,
+      "targets": 6,
+      "baseline_boxes": 6,
+      "baseline_intact": 6,
+      "current_boxes": 6,
+      "current_intact": 6,
+      "source_sha256": "615f5e8d0ffdde91fbc952af19d0a7e5985cbd08fe0019af549c8e2c167861a7"
+    },
+    {
+      "page": 16,
+      "targets": 1,
+      "baseline_boxes": 1,
+      "baseline_intact": 1,
+      "current_boxes": 1,
+      "current_intact": 1,
+      "source_sha256": "178db90961140dbd4443c8c13c8f8294a7cbb3a6e165cc1d9eaaeaa3aacc67c0"
+    },
+    {
+      "page": 17,
+      "targets": 4,
+      "baseline_boxes": 4,
+      "baseline_intact": 4,
+      "current_boxes": 4,
+      "current_intact": 4,
+      "source_sha256": "0f7897956075713a88d0ef04289e8d2a92288e98ccc8e2f082cd2d22f33822a7"
+    },
+    {
+      "page": 18,
+      "targets": 3,
+      "baseline_boxes": 3,
+      "baseline_intact": 3,
+      "current_boxes": 3,
+      "current_intact": 3,
+      "source_sha256": "a66b8605c4b68eaeead4e18426301f6260f2f723d5f8b600b16dff7ba5b8f21a"
+    },
+    {
+      "page": 19,
+      "targets": 2,
+      "baseline_boxes": 2,
+      "baseline_intact": 2,
+      "current_boxes": 2,
+      "current_intact": 2,
+      "source_sha256": "1c7aaa5fb7901ccf6fa61719535d7f861fb4072f5148620b16cb29ac0d15df1c"
+    },
+    {
+      "page": 20,
+      "targets": 2,
+      "baseline_boxes": 2,
+      "baseline_intact": 2,
+      "current_boxes": 2,
+      "current_intact": 2,
+      "source_sha256": "211658e578af130a07f887272562365e789d4cd2086c2df4694f9e7ea55a44df"
+    },
+    {
+      "page": 21,
+      "targets": 3,
+      "baseline_boxes": 3,
+      "baseline_intact": 3,
+      "current_boxes": 3,
+      "current_intact": 3,
+      "source_sha256": "e1c2bf67bb176b59dce24c753c8b79b26ab61d794590344c6ccfb8f62cc46e71"
+    },
+    {
+      "page": 22,
+      "targets": 2,
+      "baseline_boxes": 2,
+      "baseline_intact": 2,
+      "current_boxes": 2,
+      "current_intact": 2,
+      "source_sha256": "c121198bb6a8598c2048a25e520d28d03b5c04bd9713e036fd743c63eecc34b3"
+    },
+    {
+      "page": 23,
+      "targets": 2,
+      "baseline_boxes": 2,
+      "baseline_intact": 2,
+      "current_boxes": 2,
+      "current_intact": 2,
+      "source_sha256": "37697ac4bad22451298ae8a54674d70dc0e637e1899d1d16da5e090c5e5c54e4"
+    },
+    {
+      "page": 24,
+      "targets": 7,
+      "baseline_boxes": 9,
+      "baseline_intact": 6,
+      "current_boxes": 7,
+      "current_intact": 7,
+      "source_sha256": "6c82e864f289a30224423a2d27eefc4d843abfeb86cc9a9697035fbb276244f2"
+    },
+    {
+      "page": 26,
+      "targets": 1,
+      "baseline_boxes": 1,
+      "baseline_intact": 1,
+      "current_boxes": 1,
+      "current_intact": 1,
+      "source_sha256": "a8f25a665b8db7b8a1cf1a0c5651c6ded825f84532c20993e6b7166872f2eb9f"
+    },
+    {
+      "page": 27,
+      "targets": 8,
+      "baseline_boxes": 8,
+      "baseline_intact": 8,
+      "current_boxes": 8,
+      "current_intact": 8,
+      "source_sha256": "53c05963f18ccc118d44539ad937f27334ee4348403d14c6c4e5d9cc2439c3e3"
+    },
+    {
+      "page": 28,
+      "targets": 8,
+      "baseline_boxes": 8,
+      "baseline_intact": 8,
+      "current_boxes": 8,
+      "current_intact": 8,
+      "source_sha256": "d651ebbbb68e991c8ddafce0fa9988f21f62aa4c85915a40834284b8509b1bff"
+    },
+    {
+      "page": 30,
+      "targets": 8,
+      "baseline_boxes": 8,
+      "baseline_intact": 8,
+      "current_boxes": 8,
+      "current_intact": 8,
+      "source_sha256": "67f8c74893b9ceda05ccb251c3ab2cc5b1097b2933244c76eb9a24cf3357066c"
+    }
+  ],
+  "inspection_cases": [
+    {
+      "target_id": "p006-g01",
+      "page": 6,
+      "role": "card_reference",
+      "baseline_parts": 7,
+      "whole_bbox": {
+        "x0": 535,
+        "y0": 2121,
+        "x1": 2534,
+        "y1": 2422
+      },
+      "whole_image": "/Users/cam/.codex/worktrees/preserve-critical-rule-figures/doc-web/output/runs/story226-target-preservation-probe-20260930-v3/p006-g01-current-whole.png"
+    },
+    {
+      "target_id": "p010-g01",
+      "page": 10,
+      "role": "rule_example_diagram",
+      "baseline_parts": 2,
+      "whole_bbox": {
+        "x0": 537,
+        "y0": 1396,
+        "x1": 2531,
+        "y1": 2563
+      },
+      "whole_image": "/Users/cam/.codex/worktrees/preserve-critical-rule-figures/doc-web/output/runs/story226-target-preservation-probe-20260930-v3/p010-g01-current-whole.png"
+    },
+    {
+      "target_id": "p024-g01",
+      "page": 24,
+      "role": "card_reference",
+      "baseline_parts": 3,
+      "whole_bbox": {
+        "x0": 532,
+        "y0": 834,
+        "x1": 1809,
+        "y1": 1378
+      },
+      "whole_image": "/Users/cam/.codex/worktrees/preserve-critical-rule-figures/doc-web/output/runs/story226-target-preservation-probe-20260930-v3/p024-g01-current-whole.png"
+    }
+  ],
+  "partial_driver": {
+    "run_root": "/Users/cam/.codex/worktrees/native-material-eval/boardgame-ingester/output/story025-fresh-no-cache-20260930-v2/manual-stages/fresh/refinements/target-preservation/runs/refined-36cdcd35600e4d298ce3df424fea1305",
+    "conformance": {
+      "check_count": 22,
+      "pass_count": 22,
+      "warn_count": 0,
+      "fail_count": 0,
+      "logical_pages": 32,
+      "page_html_rows": 32,
+      "preserve_as_figure_count": 112,
+      "crop_count": 108,
+      "html_figure_count": 97,
+      "provenance_rows": 615
+    },
+    "overall_status": "pass",
+    "manifest_targets": 101,
+    "new_provider_calls": 0
+  },
+  "inspection": {
+    "whole_board": "actual page-010-000.jpg retains connected board, robot positions, colored arrows and three explanatory callouts; old two isolated gear crops did not",
+    "reference_strips": "direct p006-g01 retains nine visible card faces; p024-g01 retains three Move1/2/3 faces",
+    "fallback": "actual page25 retains six fallback crops; final two contain lower card text without titles, a pre-existing unresolved fidelity issue",
+    "claim_limit": "target identity/box preservation and bounded structural conformance only; no whole-manual/corpus/model qualification"
+  }
+}

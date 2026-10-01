@@ -12,7 +12,7 @@
     "spec:1": { "substrate": "exists", "last_reviewed": "2026-04-04" },
     "spec:2": { "substrate": "exists", "last_reviewed": "2026-04-04" },
     "spec:3": { "substrate": "exists", "last_reviewed": "2026-04-04" },
-    "spec:4": { "substrate": "exists", "last_reviewed": "2026-04-04" },
+    "spec:4": { "substrate": "exists", "last_reviewed": "2026-09-30", "notes": "Story226 current source-figure continuation preserves all101 explicit critical targets before deterministic subdivision (baseline98/101), while untargeted fallback continues. Native partial-driver conformance22/22 is bounded structural evidence; page25 final two fallback crops omit titles and remain a fidelity/review gap. No maintained detector score, model or corpus promotion." },
     "spec:5": { "substrate": "exists", "last_reviewed": "2026-04-04" },
     "spec:6": { "substrate": "exists", "last_reviewed": "2026-04-04" },
     "spec:7": { "substrate": "partial", "last_reviewed": "2026-04-04" },

@@ -1,6 +1,7 @@
 import cv2
 import json
 import numpy as np
+import pytest
 from PIL import Image
 
 from modules.extract.crop_illustrations_guided_v1.main import (
@@ -21,6 +22,8 @@ from modules.extract.crop_illustrations_guided_v1.main import (
     _mask_detached_map_background,
     _should_split_card_reference_panel,
     _prune_stale_crop_images,
+    _split_boxes_to_count,
+    _split_box_by_layout_text_band,
     _split_card_reference_panel_boxes,
     _split_dense_reference_boxes,
     _split_text_heavy_rule_panel_boxes,
@@ -282,7 +285,7 @@ def test_cropper_does_not_mask_integrated_callout_rule_diagrams():
     )
 
 
-def test_split_text_heavy_rule_panel_boxes_keeps_visual_children_without_prose_panel(tmp_path):
+def test_split_untargeted_text_heavy_rule_panel_boxes_keeps_visual_children_without_prose_panel(tmp_path):
     page_path = tmp_path / "rule-panel.png"
     canvas = np.full((900, 900, 3), 238, dtype=np.uint8)
     for idx in range(5):
@@ -307,7 +310,6 @@ def test_split_text_heavy_rule_panel_boxes_keeps_visual_children_without_prose_p
                 "area_ratio": 1.0,
                 "_critical_graphics_role": "rule_example_diagram",
                 "_critical_graphics_importance": "essential",
-                "_critical_graphics_target_id": "p001-g01",
                 "_description": "Purchasing upgrades example panel with cards and player mat.",
                 "_nearby_text": (
                     "To purchase an upgrade, look at the number in the top left-hand corner of the card. "
@@ -325,7 +327,7 @@ def test_split_text_heavy_rule_panel_boxes_keeps_visual_children_without_prose_p
 
     assert len(boxes) >= 2
     assert {box["_detection_method"] for box in boxes} == {"cv_guided_rule_panel_split"}
-    assert all(str(box["_critical_graphics_target_id"]).startswith("p001-g01-part-") for box in boxes)
+    assert all("_critical_graphics_target_id" not in box for box in boxes)
     assert all(box["area_ratio"] < 0.6 for box in boxes)
 
 
@@ -842,7 +844,7 @@ def test_reference_panel_splitting_is_limited_to_unannotated_card_grids():
     )
 
 
-def test_split_card_reference_panel_boxes_emits_individual_card_faces(tmp_path):
+def test_split_untargeted_card_reference_panel_boxes_emits_individual_card_faces(tmp_path):
     page_path = tmp_path / "card-reference.png"
     canvas = np.full((720, 640, 3), 238, dtype=np.uint8)
     positions = [(60, 80), (380, 80), (60, 380), (380, 380)]
@@ -869,7 +871,6 @@ def test_split_card_reference_panel_boxes_emits_individual_card_faces(tmp_path):
                 "_critical_graphics_role": "card_reference",
                 "_description": "Reference images of the programming card faces",
                 "_nearby_text": "PROGRAMMING CARDS; MOVE 1; TURN RIGHT; POWER UP; AGAIN",
-                "_critical_graphics_target_id": "p001-g01",
                 "_critical_graphics_importance": "essential",
             }
         ],
@@ -883,12 +884,7 @@ def test_split_card_reference_panel_boxes_emits_individual_card_faces(tmp_path):
     assert len(split) == 4
     assert {box["_critical_graphics_role"] for box in split} == {"card_face"}
     assert [box["_description"] for box in split] == [f"Card face titled {label}" for label in labels]
-    assert [box["_critical_graphics_target_id"] for box in split] == [
-        "p001-g01-card-01",
-        "p001-g01-card-02",
-        "p001-g01-card-03",
-        "p001-g01-card-04",
-    ]
+    assert all("_critical_graphics_target_id" not in box for box in split)
 
 
 def test_cropper_emits_transparent_png_for_map_crop_with_detached_edge_text(tmp_path):
@@ -947,3 +943,57 @@ def test_cropper_emits_transparent_png_for_map_crop_with_detached_edge_text(tmp_
     alpha = np.asarray(image)[:, :, 3]
     assert alpha[230, 30] == 0
     assert alpha[170, 190] == 255
+
+
+@pytest.mark.parametrize("splitter", ["dense", "cards", "rule_panel", "gaps", "layout"])
+def test_critical_planner_target_survives_all_fallback_splitters(tmp_path, splitter):
+    """Internal colors/prose/count hints must not replace a complete AI figure."""
+    page_path = tmp_path / "critical-board.png"
+    canvas = np.full((900, 900, 3), 238, dtype=np.uint8)
+    for x, y in [(60, 80), (520, 80), (60, 520), (520, 520)]:
+        cv2.rectangle(canvas, (x, y), (x + 210, y + 230), (30, 180, 210), -1)
+    cv2.imwrite(str(page_path), canvas)
+    target = {"x0": 0, "y0": 0, "x1": 900, "y1": 900, "width": 900,
+              "height": 900, "area_ratio": 1.0, "_critical_graphics_target_id": "p001-g01",
+              "_critical_graphics_role": "card_reference" if splitter == "cards" else "rule_example_diagram",
+              "_critical_graphics_importance": "essential", "_description": "Four cards and player mat panel",
+              "_nearby_text": "MOVE 1; TURN RIGHT; POWER UP; AGAIN",
+              "_expected_visual_contents": ["card", "card", "mat", "card"],
+              "_detector_request_id": "resp-real-target"}
+    original = dict(target)
+    common = dict(saturation_threshold=35, min_component_area_ratio=.005,
+                  max_component_area_ratio=.25, padding_percent=.01)
+    if splitter == "dense":
+        result = _split_dense_reference_boxes(str(page_path), [target], expected_count=6,
+                    min_expected_count=3, min_overbroad_area_ratio=.35, **common)
+    elif splitter == "cards":
+        result = _split_card_reference_panel_boxes(str(page_path), [target], min_expected_count=3, **common)
+    elif splitter == "rule_panel":
+        result = _split_text_heavy_rule_panel_boxes(str(page_path), [target], **common)
+    elif splitter == "gaps":
+        result = _split_boxes_to_count(cv2.cvtColor(canvas, cv2.COLOR_BGR2GRAY), [target],
+                    expected_count=4, white_threshold=245, gap_ratio_threshold=.05,
+                    min_gap_px=10, min_segment_height=40, min_segment_nonwhite_ratio=.01)
+    else:
+        result = _split_box_by_layout_text_band(target, [{"x0": 0, "y0": 420, "x1": 900, "y1": 455}],
+                    min_width_ratio=.5, max_height_ratio=.2, min_gap_ratio=.1, margin_px=0)
+    assert result == [original]
+    assert target == original
+
+
+def test_dense_mixed_targets_preserved_while_untargeted_reference_recovers(tmp_path):
+    page_path = tmp_path / "mixed-reference.png"
+    canvas = np.full((1000, 1000, 3), 238, dtype=np.uint8)
+    for x, y in [(70, 100), (470, 100), (70, 440), (470, 440), (70, 760), (470, 760)]:
+        cv2.rectangle(canvas, (x, y), (x + 260, y + 220), (30, 180, 210), -1)
+    cv2.imwrite(str(page_path), canvas)
+    target = {"x0": 900, "y0": 0, "x1": 920, "y1": 20, "width": 20, "height": 20,
+              "area_ratio": .0004, "_critical_graphics_target_id": "tiny-critical"}
+    fallback = {"x0": 0, "y0": 0, "x1": 850, "y1": 1000, "width": 850,
+                "height": 1000, "area_ratio": .85}
+    result = _split_dense_reference_boxes(str(page_path), [target, fallback], expected_count=7,
+                min_expected_count=3, min_overbroad_area_ratio=.35, saturation_threshold=35,
+                min_component_area_ratio=.01, max_component_area_ratio=.2, padding_percent=.01)
+    assert len(result) == 7
+    assert target in result
+    assert sum(row.get("_detection_method") == "cv_guided_dense_split" for row in result) == 6

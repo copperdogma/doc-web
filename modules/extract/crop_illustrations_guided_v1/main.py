@@ -1838,6 +1838,8 @@ def _split_box_by_layout_text_band(
     min_gap_ratio: float,
     margin_px: int,
 ) -> List[Dict[str, int]]:
+    if box.get("_critical_graphics_target_id"):
+        return [box]
     x0, y0, x1, y1 = box["x0"], box["y0"], box["x1"], box["y1"]
     if x1 <= x0 or y1 <= y0:
         return [box]
@@ -3506,6 +3508,16 @@ def _split_boxes_to_count(
 ) -> List[Dict[str, int]]:
     if expected_count <= len(boxes) or not boxes:
         return boxes
+    protected = [box for box in boxes if box.get("_critical_graphics_target_id")]
+    if protected:
+        fallback = [box for box in boxes if not box.get("_critical_graphics_target_id")]
+        split = _split_boxes_to_count(
+            img_gray, fallback, expected_count=max(0, expected_count - len(protected)),
+            white_threshold=white_threshold, gap_ratio_threshold=gap_ratio_threshold,
+            min_gap_px=min_gap_px, min_segment_height=min_segment_height,
+            min_segment_nonwhite_ratio=min_segment_nonwhite_ratio,
+        )
+        return _sort_boxes_reading_order(protected + split)
     boxes_sorted = sorted(
         boxes,
         key=lambda b: (b.get("height", 0) * b.get("width", 0)),
@@ -3787,6 +3799,18 @@ def _split_dense_reference_boxes(
 ) -> List[Dict[str, int]]:
     if expected_count < min_expected_count or len(boxes) >= expected_count or not boxes:
         return boxes
+    # Planner targets describe complete source figures. Repeated colored blocks
+    # inside a board or rule diagram are not evidence for subdividing that figure.
+    protected = [box for box in boxes if box.get("_critical_graphics_target_id")]
+    if protected:
+        fallback = [box for box in boxes if not box.get("_critical_graphics_target_id")]
+        split = _split_dense_reference_boxes(
+            image_path, fallback, expected_count=max(0, expected_count - len(protected)),
+            min_expected_count=min_expected_count, min_overbroad_area_ratio=min_overbroad_area_ratio,
+            saturation_threshold=saturation_threshold, min_component_area_ratio=min_component_area_ratio,
+            max_component_area_ratio=max_component_area_ratio, padding_percent=padding_percent,
+        )
+        return _sort_boxes_reading_order(protected + split)
     img_bgr = cv2.imread(str(image_path), cv2.IMREAD_COLOR)
     if img_bgr is None:
         return boxes
@@ -3938,7 +3962,7 @@ def _split_card_reference_panel_boxes(
     out: List[Dict[str, int]] = []
     changed = False
     for box in boxes:
-        if not _should_split_card_reference_panel(box):
+        if box.get("_critical_graphics_target_id") or not _should_split_card_reference_panel(box):
             out.append(box)
             continue
         labels = _card_reference_labels(box)
@@ -4006,7 +4030,7 @@ def _split_text_heavy_rule_panel_boxes(
     out: List[Dict[str, int]] = []
     changed = False
     for box in boxes:
-        if not _should_mask_text_heavy_rule_panel(box):
+        if box.get("_critical_graphics_target_id") or not _should_mask_text_heavy_rule_panel(box):
             out.append(box)
             continue
         if img_bgr is None:

@@ -20,6 +20,7 @@ Grouped by primary `spec:N` category. Stories without category refs remain in an
 
 | ID | Title | Priority | Status | Depends On | Link |
 |---|---|---|---|---|---|
+| 226 | Process a Graphic-Designed Rulebook into Semantic Plain HTML | High | In Progress | — | [story-226](stories/story-226-robo-rally-rulebook-semantic-html.md) |
 | 191 | Finish Real Handwritten OCR on the LOC Fixture Pair | High | Blocked | 189 | [story-191](stories/story-191-finish-real-handwritten-ocr-on-the-loc-fixture-pair.md) |
 | 141 | Onward Genealogy Consistency Investigation and ADR Handoff | High | Done | 140 | [story-141](stories/story-141-onward-genealogy-table-consistency-pass.md) |
 | 142 | Onward Genealogy Consistency Detection and Rerun Gating | High | Done | 140, 141 | [story-142](stories/story-142-onward-source-aware-genealogy-consistency-first-slice.md) |
@@ -65,7 +66,6 @@ Grouped by primary `spec:N` category. Stories without category refs remain in an
 | 222 | Establish the First Honest Mixed-Folder PDF-Member Routing Seam | High | Done | 169, 180, 196, 205, 218, 221 | [story-222](stories/story-222-mixed-folder-pdf-member-routing-seam.md) |
 | 223 | Expand the First Honest PDF-Member Approved-Handoff Seam to Direct-Folder Parity and First Maintained-PDF Launch | High | Done | 176, 180, 196, 205, 221, 222 | [story-223](stories/story-223-mixed-archive-pdf-member-approved-handoff-seam.md) |
 | 224 | Extend the First Honest Grouped Image-Member Continuation to the First OCR Artifact | High | Done | 180, 205, 218 | [story-224](stories/story-224-mixed-archive-grouped-image-member-routing-seam.md) |
-| 226 | Process a Graphic-Designed Rulebook into Semantic Plain HTML | High | Done | — | [story-226](stories/story-226-robo-rally-rulebook-semantic-html.md) |
 | 228 | Fast `doc-web` Preview Bundle Mode for Dossier and Storybook | High | Done | 152, 154, 156 | [story-228](stories/story-228-fast-doc-web-preview-bundle-mode.md) |
 | 229 | Harden Preview Bundle Portability and Mixed-PDF OCR Fallback | High | Done | 228 | [story-229](stories/story-229-preview-bundle-portability-and-pdf-ocr-followup.md) |
 | 238 | Sonnet 5.5 maintained detector and handwriting evaluation | Medium | Done | 237 | [story-238](stories/story-238-sonnet55-maintained-model-evaluation.md) |

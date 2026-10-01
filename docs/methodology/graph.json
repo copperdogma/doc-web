@@ -308,6 +308,7 @@
           "ADR-003"
         ],
         "eval_ids": [
+          "image-crop-extraction",
           "ocr-model-genealogy",
           "handwritten-notes-transcription",
           "onward-table-fidelity",
@@ -334,7 +335,8 @@
         ],
         "state": {
           "substrate": "exists",
-          "last_reviewed": "2026-04-04"
+          "last_reviewed": "2026-09-30",
+          "notes": "Story226 current source-figure continuation preserves all101 explicit critical targets before deterministic subdivision (baseline98/101), while untargeted fallback continues. Native partial-driver conformance22/22 is bounded structural evidence; page25 final two fallback crops omit titles and remain a fidelity/review gap. No maintained detector score, model or corpus promotion."
         },
         "story_ids": [
           "135",
@@ -471,6 +473,7 @@
           "ADR-003"
         ],
         "eval_ids": [
+          "image-crop-extraction",
           "onward-document-consistency-planning",
           "onward-genealogy-row-semantic-note-placement",
           "auto-book-type-detection",
@@ -539,6 +542,7 @@
           "ADR-003"
         ],
         "eval_ids": [
+          "image-crop-extraction",
           "onward-document-consistency-planning",
           "onward-genealogy-row-semantic-note-placement",
           "auto-book-type-detection",
@@ -744,22 +748,17 @@
           "approved-intake-handoff"
         ],
         "actionability": {
-          "source_kind": "eval",
-          "source_id": "approved-intake-handoff",
-          "source_path": "docs/evals/registry.yaml",
-          "recommended_now": false,
-          "posture": "wait-for-trigger",
-          "retry_trigger_status": "waiting",
-          "retry_when": [
-            "workflow-change"
-          ],
-          "why_now": "Rerun when `run_dispatch_v1`, supported input families, or the driver input-override plumbing changes.",
+          "source_kind": "story",
+          "source_id": "226",
+          "source_path": "docs/stories/story-226-robo-rally-rulebook-semantic-html.md",
+          "recommended_now": true,
+          "posture": "in-progress",
+          "why_now": "",
           "last_relevant_action": {
-            "date": "2026-04-13",
-            "source_type": "eval-attempt",
-            "source": "docs/evals/registry.yaml",
-            "source_id": "007",
-            "summary": "Classification: benchmark-harness-wrong / scope-metadata stale, not golden-wrong. A fresh pre-fix boundary probe on current `HEAD` showed the newly maintained `mixed-archive` and `mixed-folder` entry kinds still retur..."
+            "date": null,
+            "source_type": "story-status",
+            "source": "docs/stories/story-226-robo-rally-rulebook-semantic-html.md",
+            "summary": ""
           },
           "story_ids": [
             "141",
@@ -1064,23 +1063,17 @@
           "born-digital-pdf-quality-surface"
         ],
         "actionability": {
-          "source_kind": "eval",
-          "source_id": "born-digital-pdf-quality-surface",
-          "source_path": "docs/evals/registry.yaml",
-          "recommended_now": false,
-          "posture": "wait-for-trigger",
-          "retry_trigger_status": "waiting",
-          "retry_when": [
-            "corpus-change",
-            "workflow-change"
-          ],
-          "why_now": "Rerun when either maintained born-digital recipe, the Marker-lite extract stage, or the bundle/provenance build path changes. Rerun when the supported repo-owned born-digital corpus changes, when new comparison-only P...",
+          "source_kind": "story",
+          "source_id": "226",
+          "source_path": "docs/stories/story-226-robo-rally-rulebook-semantic-html.md",
+          "recommended_now": true,
+          "posture": "in-progress",
+          "why_now": "",
           "last_relevant_action": {
-            "date": "2026-04-08",
-            "source_type": "eval-attempt",
-            "source": "docs/evals/registry.yaml",
-            "source_id": "001",
-            "summary": "Fresh run via `python benchmarks/scripts/run_born_digital_pdf_eval.py --output benchmarks/results/born-digital-pdf-story196.json --run-root output/runs/story196-born-digital-benchmark` completed all 6 present cases wi..."
+            "date": null,
+            "source_type": "story-status",
+            "source": "docs/stories/story-226-robo-rally-rulebook-semantic-html.md",
+            "summary": ""
           },
           "story_ids": [
             "135",
@@ -1157,23 +1150,17 @@
           "single-model-crop-detection"
         ],
         "actionability": {
-          "source_kind": "eval",
-          "source_id": "image-crop-extraction",
-          "source_path": "docs/evals/registry.yaml",
-          "recommended_now": false,
-          "posture": "wait-for-trigger",
-          "retry_trigger_status": "waiting",
-          "retry_when": [
-            "golden-fix",
-            "new-subject-model"
-          ],
-          "why_now": "Gemini 4 or equivalent may push past 0.95 target Golden references cover limited page types; add table-heavy pages",
+          "source_kind": "story",
+          "source_id": "226",
+          "source_path": "docs/stories/story-226-robo-rally-rulebook-semantic-html.md",
+          "recommended_now": true,
+          "posture": "in-progress",
+          "why_now": "",
           "last_relevant_action": {
-            "date": "2026-09-29",
-            "source_type": "eval-attempt",
-            "source": "docs/evals/registry.yaml",
-            "source_id": "046",
-            "summary": "Candidate13/13 above .95 and faster than fresh Gemini13/13, but costs1.84x and remains below historical GPT6 Sol .992731. Image011 seal/signature grouping is source-valid. Page safety separately false-safed; no defaul..."
+            "date": null,
+            "source_type": "story-status",
+            "source": "docs/stories/story-226-robo-rally-rulebook-semantic-html.md",
+            "summary": ""
           },
           "story_ids": [
             "135",
@@ -1232,22 +1219,17 @@
           "crop-page-level-deletion-gate"
         ],
         "actionability": {
-          "source_kind": "eval",
-          "source_id": "sol-crop-safety-native-public-smoke",
-          "source_path": "docs/evals/registry.yaml",
-          "recommended_now": false,
-          "posture": "trigger-exhausted",
-          "retry_trigger_status": "exhausted",
-          "retry_when": [
-            "workflow-change"
-          ],
-          "why_now": "No repeats authorized. Future adapter/corpus campaign needs a new explicit bounded plan; preserve exhausted run and receipts.",
+          "source_kind": "story",
+          "source_id": "226",
+          "source_path": "docs/stories/story-226-robo-rally-rulebook-semantic-html.md",
+          "recommended_now": true,
+          "posture": "in-progress",
+          "why_now": "",
           "last_relevant_action": {
-            "date": "2026-09-30",
-            "source_type": "eval-attempt",
-            "source": "docs/evals/registry.yaml",
-            "source_id": "049",
-            "summary": "Adapter and actual-Cam-approved offline release/build succeeded. All native receipts/authority/source bindings remain required. Exact receipts/upper ledger and unfilled operator package in docs/evals/evidence/story242..."
+            "date": null,
+            "source_type": "story-status",
+            "source": "docs/stories/story-226-robo-rally-rulebook-semantic-html.md",
+            "summary": ""
           },
           "story_ids": [
             "135",
@@ -1412,16 +1394,16 @@
         "eval_ids": [],
         "actionability": {
           "source_kind": "story",
-          "source_id": "191",
-          "source_path": "docs/stories/story-191-finish-real-handwritten-ocr-on-the-loc-fixture-pair.md",
-          "recommended_now": false,
-          "posture": "blocked",
-          "why_now": "Gemini 3.7 Flash eval decision contract: screen exact GA ID `gemini-3.7-flash` only on the corrected repo-owned Barney and Alverson image-entry fixtures through `driver.py`, using the existing literal-transcription sc...",
+          "source_id": "226",
+          "source_path": "docs/stories/story-226-robo-rally-rulebook-semantic-html.md",
+          "recommended_now": true,
+          "posture": "in-progress",
+          "why_now": "",
           "last_relevant_action": {
-            "date": "2026-08-13",
-            "source_type": "story-work-log",
-            "source": "docs/stories/story-191-finish-real-handwritten-ocr-on-the-loc-fixture-pair.md",
-            "summary": "Gemini 3.7 Flash eval decision contract: screen exact GA ID `gemini-3.7-flash` only on the corrected repo-owned Barney and Alverson image-entry fixtures through `driver.py`, using the existing literal-transcription sc..."
+            "date": null,
+            "source_type": "story-status",
+            "source": "docs/stories/story-226-robo-rally-rulebook-semantic-html.md",
+            "summary": ""
           },
           "story_ids": [
             "148",
@@ -1588,16 +1570,16 @@
         "eval_ids": [],
         "actionability": {
           "source_kind": "story",
-          "source_id": "191",
-          "source_path": "docs/stories/story-191-finish-real-handwritten-ocr-on-the-loc-fixture-pair.md",
-          "recommended_now": false,
-          "posture": "blocked",
-          "why_now": "Gemini 3.7 Flash eval decision contract: screen exact GA ID `gemini-3.7-flash` only on the corrected repo-owned Barney and Alverson image-entry fixtures through `driver.py`, using the existing literal-transcription sc...",
+          "source_id": "226",
+          "source_path": "docs/stories/story-226-robo-rally-rulebook-semantic-html.md",
+          "recommended_now": true,
+          "posture": "in-progress",
+          "why_now": "",
           "last_relevant_action": {
-            "date": "2026-08-13",
-            "source_type": "story-work-log",
-            "source": "docs/stories/story-191-finish-real-handwritten-ocr-on-the-loc-fixture-pair.md",
-            "summary": "Gemini 3.7 Flash eval decision contract: screen exact GA ID `gemini-3.7-flash` only on the corrected repo-owned Barney and Alverson image-entry fixtures through `driver.py`, using the existing literal-transcription sc..."
+            "date": null,
+            "source_type": "story-status",
+            "source": "docs/stories/story-226-robo-rally-rulebook-semantic-html.md",
+            "summary": ""
           },
           "story_ids": [
             "179",
@@ -1780,16 +1762,16 @@
         "eval_ids": [],
         "actionability": {
           "source_kind": "story",
-          "source_id": "224",
-          "source_path": "docs/stories/story-224-mixed-archive-grouped-image-member-routing-seam.md",
-          "recommended_now": false,
-          "posture": "completed",
-          "why_now": "mark-story-done close-out: validated Story 224 complete and",
+          "source_id": "226",
+          "source_path": "docs/stories/story-226-robo-rally-rulebook-semantic-html.md",
+          "recommended_now": true,
+          "posture": "in-progress",
+          "why_now": "",
           "last_relevant_action": {
-            "date": "2026-04-17",
-            "source_type": "story-work-log",
-            "source": "docs/stories/story-224-mixed-archive-grouped-image-member-routing-seam.md",
-            "summary": "mark-story-done close-out: validated Story 224 complete and"
+            "date": null,
+            "source_type": "story-status",
+            "source": "docs/stories/story-226-robo-rally-rulebook-semantic-html.md",
+            "summary": ""
           },
           "story_ids": [
             "148",
@@ -12523,7 +12505,7 @@
       "id": "226",
       "title": "Process a Graphic-Designed Rulebook into Semantic Plain HTML",
       "path": "docs/stories/story-226-robo-rally-rulebook-semantic-html.md",
-      "status": "Done",
+      "status": "In Progress",
       "priority": "High",
       "ideal_refs": [
         "Requirement #1 (Ingest), Requirement #2 (Detect), Requirement #3 (Extract), Requirement #4 (Illustrate), Requirement #5 (Structure), Requirement #6 (Validate), Dossier-ready output, Fidelity to the source, Traceability is the product"
@@ -12586,8 +12568,8 @@
         "source_kind": "story",
         "source_id": "226",
         "source_path": "docs/stories/story-226-robo-rally-rulebook-semantic-html.md",
-        "recommended_now": false,
-        "posture": "completed",
+        "recommended_now": true,
+        "posture": "in-progress",
         "why_now": "",
         "last_relevant_action": {
           "date": null,
@@ -13845,6 +13827,7 @@
         "133",
         "183",
         "207",
+        "226",
         "232",
         "235",
         "236",
@@ -13858,7 +13841,10 @@
       "category_refs": [
         "spec:1",
         "spec:2",
+        "spec:3",
         "spec:4",
+        "spec:6",
+        "spec:7",
         "spec:8",
         "spec:9"
       ],
@@ -14492,6 +14478,14 @@
       },
       "attempts": [
         {
+          "id": "050-critical-target-preservation",
+          "date": "2026-09-30",
+          "status": "succeeded",
+          "approach": "Story226 deterministic source-figure target ownership through fallback splitting",
+          "note": "Separately scoped runtime evidence, not a maintained detector score: frozen current source plan preserves101/101 complete target boxes, compared with98/101 at009afed. Zero-API native partial driver has 22pass/0warning/0failure conformance checks,108crop artifacts, 101distinct target IDs,97HTML figures and615provenance rows. Page10 whole board replaces two isolated gear patches; page25 retains six untargeted fallback crops, with missing titles on the final two remaining an explicit review limitation. Focused35crop and142context tests pass. No model/golden/corpus promotion or maintained score change. Proof: docs/evals/attempts/050-critical-figure-preservation.md and docs/evals/attempts/050-critical-figure-preservation-result.json.\n",
+          "retry_when": []
+        },
+        {
           "id": "046",
           "date": "2026-09-29",
           "status": "succeeded",
@@ -14850,11 +14844,11 @@
         ],
         "why_now": "Gemini 4 or equivalent may push past 0.95 target Golden references cover limited page types; add table-heavy pages",
         "last_relevant_action": {
-          "date": "2026-09-29",
+          "date": "2026-09-30",
           "source_type": "eval-attempt",
           "source": "docs/evals/registry.yaml",
-          "source_id": "046",
-          "summary": "Candidate13/13 above .95 and faster than fresh Gemini13/13, but costs1.84x and remains below historical GPT6 Sol .992731. Image011 seal/signature grouping is source-valid. Page safety separately false-safed; no defaul..."
+          "source_id": "050-critical-target-preservation",
+          "summary": "Separately scoped runtime evidence, not a maintained detector score: frozen current source plan preserves101/101 complete target boxes, compared with98/101 at009afed. Zero-API native partial driver has 22pass/0warning..."
         }
       }
     },
@@ -18574,7 +18568,8 @@
       },
       "spec:4": {
         "substrate": "exists",
-        "last_reviewed": "2026-04-04"
+        "last_reviewed": "2026-09-30",
+        "notes": "Story226 current source-figure continuation preserves all101 explicit critical targets before deterministic subdivision (baseline98/101), while untargeted fallback continues. Native partial-driver conformance22/22 is bounded structural evidence; page25 final two fallback crops omit titles and remain a fidelity/review gap. No maintained detector score, model or corpus promotion."
       },
       "spec:5": {
         "substrate": "exists",
