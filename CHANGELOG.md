@@ -1,3 +1,11 @@
+## [2026-09-30-08] - Preserve decoded source-page pixels (Story226 continuation)
+
+### Fixed
+- Save decoded RGB native/rendered PDF pages and retained normalized images as lossless PNG instead of JPEG95; use TIFF for decoded CMYK pages to preserve all four channels and record output encoding.
+
+### Verified
+- Four RGB regressions fail on base; the final candidate passes all eight RGB/CMYK, fast/fallback, normalized/unscaled encoding cases and30 affected tests in9.07s. Real native and public Ingester FINAL runs produce identical16spreads/32logicalpages with unchanged dimensions/mapping and0model calls. Sampled page5 preserves19,665,625RGB pixels exactly against an independent render; a separate128×96 CMYK native driver preserves all12,288 pixels across four channels. Existing published output and maximum embedded-pixel qualification remain explicit limitations.
+
 ## [2026-09-30-07] - Preserve planned zero-figure decisions in semantic HTML (Story 226)
 
 ### Fixed

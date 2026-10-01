@@ -525,12 +525,14 @@ def main() -> None:
         img, metadata = extracted_images[page_idx]
         extraction_method = metadata["extraction_method"]
         original_size = (img.width, img.height)
+        # PNG cannot encode CMYK; TIFF preserves those native channels exactly.
+        extension, encoding = ("tif", "TIFF") if img.mode == "CMYK" else ("png", "PNG")
 
         # Save native (original resolution) image before any processing
         out_path_native = None
         if images_native_dir and args.normalize and global_scale_factor != 1.0:
-            out_path_native = os.path.join(images_native_dir, f"page-{page_idx:03d}.jpg")
-            img.save(out_path_native, "JPEG", quality=95)
+            out_path_native = os.path.join(images_native_dir, f"page-{page_idx:03d}.{extension}")
+            img.save(out_path_native, encoding)
 
         # Apply global scaling
         if args.normalize and global_scale_factor != 1.0:
@@ -565,8 +567,9 @@ def main() -> None:
         metadata["final_size"] = f"{img.width}x{img.height}"
 
         # Save normalized image (for OCR)
-        out_path = os.path.join(images_dir, f"page-{page_idx:03d}.jpg")
-        img.save(out_path, "JPEG", quality=95)
+        out_path = os.path.join(images_dir, f"page-{page_idx:03d}.{extension}")
+        img.save(out_path, encoding)
+        metadata["output_encoding"] = encoding.lower()
 
         page_number += 1
         manifest_rows.append(_build_manifest_row(page_idx, page_number, out_path, args.run_id, os.path.abspath(args.pdf), out_path_native))

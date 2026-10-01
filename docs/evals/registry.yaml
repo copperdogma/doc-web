@@ -903,6 +903,24 @@ evals:
         note: "Poor bounding box precision"
 
     attempts:
+      - id: "051-lossless-source-page-encoding"
+        date: 2026-09-30
+        status: succeeded
+        approach: "Preserve decoded RGB pages as PNG and CMYK pages as four-channel TIFF"
+        note: >
+          Scoped source-page encoding evidence, not a maintained detector score.
+          Physical spread5 JPEG95 changed15,257,490 of19,665,625 rendered RGB
+          pixels. PNG candidate is byte-identical to the independent300-DPI render.
+          Real native driver and public Ingester prepare/split produce identical
+          16spreads/32logicalPNG pages, dimensions and complete logical mapping.
+          Four RGB regressions fail on base; all8 RGB/CMYK × native/fallback ×
+          normalized/unscaled encoding cases pass on candidate. Final30 native
+          tests pass in9.07s;15 consumer controls also pass. A native128x96 CMYK
+          TIFF preserves all12288 four-channel pixels exactly. Zero model calls;
+          original542/V9frozen294/protected4373 unchanged. Old public revision009
+          is not regenerated; maximum embedded sampling,
+          whole-manual semantics and physical qualification remain open.
+          Proof: docs/evals/attempts/051-lossless-source-page-encoding.md and result.json.
       - id: "050-critical-target-preservation"
         date: 2026-09-30
         status: succeeded

@@ -336,7 +336,7 @@
         "state": {
           "substrate": "exists",
           "last_reviewed": "2026-09-30",
-          "notes": "Story226's source-target continuation preserves all101 explicit critical targets before subdivision (baseline98/101). Planned-zero V8 suppresses eight redundant/decorative page25/31 depictions (seven prior fallback crop artifacts):101 admitted target crops are exact to V5 bytes/bboxes/sources; no fallback crops or unresolved image placeholders remain, and conformance is22/22. Text/citation equivalence holds across43,469 plaintext characters,525 ordered nonfigure blocks,16 inventory owners and24 citations. Public package revision008 passes12/12 contract checks, retaining80 held sources and83 open issues. V6's semantic failure and V7's pre-publication runtime-hash stop remain retained. No maintained detector score, model or corpus promotion; output needs review. Story226 remains In Progress because broader all-page visual fidelity and maximum embedded-pixel qualification are not proved."
+          "notes": "Story226's source-target continuation preserves all101 explicit critical targets before subdivision (baseline98/101). Planned-zero V8 suppresses eight redundant/decorative page25/31 depictions (seven prior fallback crop artifacts):101 admitted target crops are exact to V5 bytes/bboxes/sources; no fallback crops or unresolved image placeholders remain, and conformance is22/22. Text/citation equivalence holds across43,469 plaintext characters,525 ordered nonfigure blocks,16 inventory owners and24 citations. Public package revision008 passes12/12 contract checks, retaining80 held sources and83 open issues. V6's semantic failure and V7's pre-publication runtime-hash stop remain retained. No maintained detector score, model or corpus promotion; output needs review. Story226 remains In Progress because broader all-page visual fidelity and maximum embedded-pixel qualification are not proved. Fresh source-page continuation now uses lossless PNG for RGB and TIFF for native CMYK decoded/rendered and normalized page output. Eight encoding cases and affected consumers pass (30 tests); a real synthetic CMYK PDF driver preserves all 12,288 decoded four-channel pixels, extraction-only scope. Native driver and public free Ingester split prove16spreads/32logicalpages with unchanged geometry/map and zero calls. The sampled19,665,625RGB pixels are exact to an independent300dpi renderer. Existing publishedV9 remains historical; maxembedded sampling/all-page semantic fidelity unqualified. See docs/evals/attempts/051-lossless-source-page-encoding.md."
         },
         "story_ids": [
           "135",
@@ -14478,6 +14478,14 @@
       },
       "attempts": [
         {
+          "id": "051-lossless-source-page-encoding",
+          "date": "2026-09-30",
+          "status": "succeeded",
+          "approach": "Preserve decoded RGB pages as PNG and CMYK pages as four-channel TIFF",
+          "note": "Scoped source-page encoding evidence, not a maintained detector score. Physical spread5 JPEG95 changed15,257,490 of19,665,625 rendered RGB pixels. PNG candidate is byte-identical to the independent300-DPI render. Real native driver and public Ingester prepare/split produce identical 16spreads/32logicalPNG pages, dimensions and complete logical mapping. Four RGB regressions fail on base; all8 RGB/CMYK \u00d7 native/fallback \u00d7 normalized/unscaled encoding cases pass on candidate. Final30 native tests pass in9.07s;15 consumer controls also pass. A native128x96 CMYK TIFF preserves all12288 four-channel pixels exactly. Zero model calls; original542/V9frozen294/protected4373 unchanged. Old public revision009 is not regenerated; maximum embedded sampling, whole-manual semantics and physical qualification remain open. Proof: docs/evals/attempts/051-lossless-source-page-encoding.md and result.json.\n",
+          "retry_when": []
+        },
+        {
           "id": "050-critical-target-preservation",
           "date": "2026-09-30",
           "status": "succeeded",
@@ -14847,8 +14855,8 @@
           "date": "2026-09-30",
           "source_type": "eval-attempt",
           "source": "docs/evals/registry.yaml",
-          "source_id": "050-critical-target-preservation",
-          "summary": "Separately scoped runtime evidence, not a maintained detector score: frozen current source plan preserves101/101 complete target boxes, compared with98/101 at009afed. Zero-API native partial driver has 22pass/0warning..."
+          "source_id": "051-lossless-source-page-encoding",
+          "summary": "Scoped source-page encoding evidence, not a maintained detector score. Physical spread5 JPEG95 changed15,257,490 of19,665,625 rendered RGB pixels. PNG candidate is byte-identical to the independent300-DPI render. Real..."
         }
       }
     },
@@ -18569,7 +18577,7 @@
       "spec:4": {
         "substrate": "exists",
         "last_reviewed": "2026-09-30",
-        "notes": "Story226's source-target continuation preserves all101 explicit critical targets before subdivision (baseline98/101). Planned-zero V8 suppresses eight redundant/decorative page25/31 depictions (seven prior fallback crop artifacts):101 admitted target crops are exact to V5 bytes/bboxes/sources; no fallback crops or unresolved image placeholders remain, and conformance is22/22. Text/citation equivalence holds across43,469 plaintext characters,525 ordered nonfigure blocks,16 inventory owners and24 citations. Public package revision008 passes12/12 contract checks, retaining80 held sources and83 open issues. V6's semantic failure and V7's pre-publication runtime-hash stop remain retained. No maintained detector score, model or corpus promotion; output needs review. Story226 remains In Progress because broader all-page visual fidelity and maximum embedded-pixel qualification are not proved."
+        "notes": "Story226's source-target continuation preserves all101 explicit critical targets before subdivision (baseline98/101). Planned-zero V8 suppresses eight redundant/decorative page25/31 depictions (seven prior fallback crop artifacts):101 admitted target crops are exact to V5 bytes/bboxes/sources; no fallback crops or unresolved image placeholders remain, and conformance is22/22. Text/citation equivalence holds across43,469 plaintext characters,525 ordered nonfigure blocks,16 inventory owners and24 citations. Public package revision008 passes12/12 contract checks, retaining80 held sources and83 open issues. V6's semantic failure and V7's pre-publication runtime-hash stop remain retained. No maintained detector score, model or corpus promotion; output needs review. Story226 remains In Progress because broader all-page visual fidelity and maximum embedded-pixel qualification are not proved. Fresh source-page continuation now uses lossless PNG for RGB and TIFF for native CMYK decoded/rendered and normalized page output. Eight encoding cases and affected consumers pass (30 tests); a real synthetic CMYK PDF driver preserves all 12,288 decoded four-channel pixels, extraction-only scope. Native driver and public free Ingester split prove16spreads/32logicalpages with unchanged geometry/map and zero calls. The sampled19,665,625RGB pixels are exact to an independent300dpi renderer. Existing publishedV9 remains historical; maxembedded sampling/all-page semantic fidelity unqualified. See docs/evals/attempts/051-lossless-source-page-encoding.md."
       },
       "spec:5": {
         "substrate": "exists",

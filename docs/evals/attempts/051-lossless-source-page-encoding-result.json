@@ -1,0 +1,146 @@
+{
+  "scope": "Decoded source-page encoding in fresh extraction; no existing published V9 regeneration, embedded maximum sampling, semantic full-manual or physical-family qualification",
+  "baseline": {
+    "scope": "one physical PDF page, existing 300 dpi pdf2image fallback render versus retained first-stage JPEG95; rendered page pixels only",
+    "physical_pdf_page": 5,
+    "dpi": 300,
+    "pdf_sha256": "474da05fd0f2d461ff8ca0b281799b0eb36f070c5c3aa55bbb3fc9436ffe1370",
+    "first_stage_jpeg": "/Users/cam/.codex/worktrees/native-material-eval/boardgame-ingester/output/story025-fresh-no-cache-20260930-v2/manual-stages/fresh/refinements/lossless-figures-v9/runs/refined-65eff00299934d26bc21804c093b3c95/01_extract_pdf_images_fast_v1/images/page-005.jpg",
+    "first_stage_jpeg_sha256_before": "c3ed85a2cf85a47d52ed62e987f39cdcb40c6b4e077d79fb1038ffe4db64a72d",
+    "first_stage_jpeg_sha256_after": "c3ed85a2cf85a47d52ed62e987f39cdcb40c6b4e077d79fb1038ffe4db64a72d",
+    "first_stage_source_unchanged": true,
+    "rendered_png": "/Users/cam/.codex/worktrees/native-material-eval/boardgame-ingester/output/runs/upstream-jpeg95-loss-page005-render300-20260930/page-005-render-300dpi.png",
+    "render_dimensions": [
+      5425,
+      3625
+    ],
+    "retained_jpeg_dimensions": [
+      5425,
+      3625
+    ],
+    "decoded_rgb_pixels": 19665625,
+    "identical_rgb_pixels": 4408135,
+    "different_rgb_pixels": 15257490,
+    "different_rgb_pixel_percent": 77.58456697918322,
+    "mean_absolute_channel_delta": 1.0336954796334552,
+    "max_absolute_channel_delta": 186,
+    "mean_absolute_channel_delta_by_channel": [
+      0.9909737422532973,
+      0.6165453170189099,
+      1.4935673796281583
+    ],
+    "max_absolute_channel_delta_by_channel": [
+      78,
+      46,
+      186
+    ],
+    "first_stage_jpeg_bytes": 4846677,
+    "rendered_png_bytes": 12721747,
+    "render_png_sha256": "1c57a7d4bef3c7588eb4b5443268afecb1bd4acdb9f59d21a24033b76388ffa7"
+  },
+  "candidate_native_run": "/Users/cam/.codex/worktrees/preserve-critical-rule-figures/doc-web/output/runs/lossless-source-pages-story025-20260930",
+  "candidate_public_run": "/Users/cam/.codex/worktrees/native-material-eval/boardgame-ingester/output/story025-lossless-source-pages-final-20260930/manual-stages/fresh/runs/manual-b38dc58b1d024d6d9b0cf4a4fd182aaf",
+  "public_contract": "/Users/cam/.codex/worktrees/native-material-eval/boardgame-ingester/output/story025-lossless-source-pages-final-20260930/manual-stages/fresh/contract.json",
+  "public_split_status": "qualified",
+  "map_summary": {
+    "physical_spread_count": 16,
+    "split_page_count": 32,
+    "inferred_logical_page_count": 32,
+    "expected_logical_page_count": 32,
+    "missing_logical_pages": [],
+    "duplicate_logical_pages": [],
+    "complete": true,
+    "confidence": 0.847,
+    "issues_count": 0
+  },
+  "checks": {
+    "sixteen_public_png_pages": true,
+    "thirtytwo_public_split_pngs": true,
+    "all_public_and_native_page_bytes_equal": true,
+    "all_public_and_native_split_bytes_equal": true,
+    "all_split_dimensions_equal_v9": true,
+    "physical_page_imposition_identical": true,
+    "logical_map_complete": true,
+    "sample_page005_byte_exact_independent_render": true,
+    "source_pdf_exact": true,
+    "all542_original_paid_files_unchanged": true,
+    "all_frozen_v9_files_unchanged": true,
+    "all4373_protected_entries_unchanged": true,
+    "no_provider_phase_executed": true,
+    "actual_cmyk_driver_native_channels_exact": true,
+    "current_runtime_bound": true
+  },
+  "all_checks_pass": true,
+  "metrics": {
+    "public_source_count": 81,
+    "physical_spreads": 16,
+    "logical_pages": 32,
+    "render_dpi": 300,
+    "new_inference_calls": 0,
+    "png_page_bytes": 175169909,
+    "old_jpeg_page_bytes": 68778952,
+    "sample_exact_RGB_pixels": 19665625,
+    "original_frozen_files": 542,
+    "v9_frozen_files": 294,
+    "protected_entries": 4373
+  },
+  "protected": {
+    "previous_workflow": {
+      "count": 2238,
+      "unchanged": true
+    },
+    "primary_raw": {
+      "count": 82,
+      "unchanged": true
+    },
+    "reviewed_cache": {
+      "count": 274,
+      "unchanged": true
+    },
+    "upstream_tracked": {
+      "count": 1779,
+      "unchanged": true
+    }
+  },
+  "tested_content": {
+    "modules/extract/extract_pdf_images_fast_v1/main.py": "4ead5fa3ffc9c55044eadc8de22453eb992c2fe699c74c0d21849b57c82cf176",
+    "modules/extract/extract_pdf_images_fast_v1/module.yaml": "8345b299294fe2d518f6b8e65565a19d26b8720511ef6021b66979dcf18651cc",
+    "tests/test_extract_pdf_images_fast_v1.py": "a01fefe9ba5d720a2a36fe77b48e11f673b917b160c13bdc42e7c60eaeebe097"
+  },
+  "validation": {
+    "native_tests": "30 passed in 9.07s; eight RGB/CMYK encoding cases; four RGB cases fail on base",
+    "bgi_interface_tests": "15passed6.019s; runtimeunchanged",
+    "ruff": "affectednativefilespass",
+    "py_compile": "pass after final CMYK edit",
+    "diff_check": "pass",
+    "root_visual_inspection": "Final public page-005R (logical 9): three player-mat/register examples, board relationships, labels and prose intact",
+    "native_driver_command": "python driver.py --recipe configs/recipes/recipe-graphics-heavy-imposed-pdf-html-mvp.yaml --input-pdf <sourcePDF> --run-id lossless-source-pages-story025-20260930 --end-at infer_logical_pages",
+    "public_commands": "Final candidate: run --no-cache; manual prepare; manual split; no rules/inventory calls"
+  },
+  "limitations": [
+    "Existingpublishedrevision009stilluseshistoricalJPEGsourcerasters",
+    "Noapproval/golden/model/corpus/rootpromotion",
+    "37 embedded placements exceed300ppi. Initial ordinal-based figure projection was rejected; corrected authoritative-source projection is a separate next-eval diagnostic."
+  ],
+  "cmyk_driver": {
+    "source_pdf": "/Users/cam/.codex/worktrees/preserve-critical-rule-figures/doc-web/output/runs/lossless-source-page-cmyk-fixture-20260930/source.pdf",
+    "driver_run": "/Users/cam/.codex/worktrees/preserve-critical-rule-figures/doc-web/output/runs/lossless-source-page-cmyk-driver-20260930",
+    "mode": "CMYK",
+    "dimensions": [
+      128,
+      96
+    ],
+    "native_decoded_mode": "CMYK",
+    "native_decoded_dimensions": [
+      128,
+      96
+    ],
+    "native_channels_exact": true,
+    "pixel_count": 12288,
+    "channels": 4,
+    "output_encoding": "TIFF",
+    "new_inference_calls": 0,
+    "scope": "single synthetic CMYK PDF, extraction stage only; no whole CMYK manual or figure crop qualification"
+  },
+  "proof_context": "Initial RGB-only native driver artifacts retained; final public extraction/split/map re-executes final RGB/CMYK candidate and matches all 48 images. Separate current-candidate native CMYK driver proves decoded native channels exactly at extraction only."
+}
