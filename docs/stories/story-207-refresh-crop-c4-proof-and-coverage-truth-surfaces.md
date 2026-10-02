@@ -378,3 +378,30 @@ the runtime/defaults stay unchanged. Total accounted campaign spend is
 `$0.147314/$0.50`, including `$0.013284` for an acknowledged duplicate native
 probe caused by host-output handling. Evidence: Attempt 039 and its raw/result
 manifest. Existing Story 207 completion remains historical.
+
+## 2026-10-02 — Attempt 053 Grok 4.7 reasoning calibration
+
+Fresh direct xAI Responses calibration compared low, medium, and high reasoning
+on Image001 and Image059 with the maintained conservative-count prompt, scorer,
+goldens, high image detail, `store=false`, and strict integer crop schema.
+`max_output_tokens=8192` was held equal across arms; because Attempt039 used
+2048, this is effort-plus-output-budget evidence, not a pure effort comparison.
+All three arms returned no box for Image001's golden decorative title artwork
+(0.075, fail). Image059 scored 0.7918 (low, pass), 0.9180 (medium, pass), and
+0.6993 (high, fail). The arithmetic means of the two case scores were 0.4334,
+0.4965, and 0.38715; none qualified both per-case gates. Root independently
+confirmed the source title art is the correct existing golden. No remaining11
+cases or Gemini comparison were run; page-safety, detector promotion, and
+adoption remain unmeasured.
+
+Eight xAI calls (native probe, adapter parity, six image requests) settled at
+`$0.075754`, with no unresolved charge and no observed spend above `$5`. The
+calibration ledger's `$2.098304` request bound assumed the requested 8,192-token
+output cap was enforced. Later cross-owner evidence showed xAI can report
+output beyond a requested cap, so this assumption does not establish a
+theoretical maximum; none of these eight receipts exceeded the recorded bound
+or 1,140 completion tokens. A relative-path bookkeeping command ran from the
+wrong working directory; the overlapping Image001 hold was later linked to its
+actual provider response UUID and its history preserved. See Attempt053 and
+`docs/evals/evidence/053-grok47-reasoning-crop/` for source hashes, exact result
+rows, raw provider receipts, wrapper snapshot, ledger, and visual overlays.

@@ -1,0 +1,20 @@
+description: "Grok 4.7 reasoning calibration, source pages Image001 and Image059"
+prompts:
+  - id: "file://../../prompts/crop-conservative-count.js"
+    label: conservative-count
+providers: []
+tests:
+  - description: "Image001"
+    vars:
+      image: file://../../input/source-pages-b64/Image001.b64.txt
+      golden_key: "Image001"
+    assert:
+      - type: python
+        value: file://../../scorers/image_crop_scorer.py
+  - description: "Image059"
+    vars:
+      image: file://../../input/source-pages-b64/Image059.b64.txt
+      golden_key: "Image059"
+    assert:
+      - type: python
+        value: file://../../scorers/image_crop_scorer.py
