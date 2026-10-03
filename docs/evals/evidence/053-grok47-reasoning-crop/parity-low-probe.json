@@ -1,0 +1,21 @@
+{
+  "cost": 0.005582,
+  "output_contract": "crop_regions",
+  "output_sha256": "44f76c8d060059d263e26f9155f051a5e8ec320481ef247c75ab848fd0808e71",
+  "raw_envelope": {
+    "raw_envelope_bytes": 5845,
+    "raw_envelope_path": "raw/f224275d-9612-9815-8d08-9fc776efabf6-cc60518f9342.http.json",
+    "raw_envelope_sha256": "cc60518f9342a1c5fa7ad0a44600b790b333ff7e9f5bf54f4af2d1201880ac9a",
+    "raw_envelope_original_path": "/Users/cam/.codex/worktrees/grok47-docweb-reasoning-20261002/benchmarks/results/grok47-reasoning-20261002/raw/f224275d-9612-9815-8d08-9fc776efabf6-cc60518f9342.http.json",
+    "raw_envelope_relative_path": "raw/f224275d-9612-9815-8d08-9fc776efabf6-cc60518f9342.http.json"
+  },
+  "requested_model": "grok-4.7",
+  "served_model": "grok-4.7",
+  "status": "completed",
+  "usage": {
+    "cached": 1152,
+    "completion": 720,
+    "prompt": 1495,
+    "total": 2215
+  }
+}

@@ -1,0 +1,95 @@
+{
+  "run_id": "grok47-docweb-reasoning-20261002",
+  "evaluations": [
+    {
+      "effort": "low",
+      "promptfoo_eval_id": "eval-evx-2026-10-02T13:41:49",
+      "promptfoo_overall_score": 0.8667999999999999,
+      "promptfoo_overall_semantics": "Promptfoo prompt-level aggregate; not the arithmetic mean of the two case scores",
+      "rows": [
+        {
+          "case": "Image001",
+          "pass": false,
+          "score": 0.075,
+          "latency_ms": 8594,
+          "cost_usd": 0.009828,
+          "reason": "box_count=0.50 (0/1) | iou_mean=0.000 | iou_min=0.000 | coverage=0.000 | total=0.075 | matches=[+1 missed golden]",
+          "output": "{\"images\": []}"
+        },
+        {
+          "case": "Image059",
+          "pass": true,
+          "score": 0.7918,
+          "latency_ms": 9019,
+          "cost_usd": 0.010008,
+          "reason": "box_count=1.00 (2/2) | iou_mean=0.766 | iou_min=0.607 | coverage=0.808 | total=0.792 | matches=[pred[0]<->gold[0] IoU=0.925, pred[1]<->gold[1] IoU=0.607]",
+          "output": "{\"images\": [{\"description\": \"Black-and-white photograph of a couple standing outdoors in winter, captioned George and Sophranie L'Heureux.\", \"bbox\": [104, 358, 486, 735]}, {\"description\": \"Black-and-white portrait photograph of a woman standing outdoors, captioned Mrs. George L'Heureux (Emilienne).\", \"bbox\": [563, 693, 948, 907]}]}"
+        }
+      ],
+      "arithmetic_case_mean": 0.43339999999999995,
+      "settled_pair_cost_usd": 0.019836,
+      "total_latency_ms": 17613,
+      "provider_errors": 0
+    },
+    {
+      "effort": "medium",
+      "promptfoo_eval_id": "eval-Gw2-2026-10-02T13:42:41",
+      "promptfoo_overall_score": 0.993,
+      "promptfoo_overall_semantics": "Promptfoo prompt-level aggregate; not the arithmetic mean of the two case scores",
+      "rows": [
+        {
+          "case": "Image001",
+          "pass": false,
+          "score": 0.075,
+          "latency_ms": 17717,
+          "cost_usd": 0.013296,
+          "reason": "box_count=0.50 (0/1) | iou_mean=0.000 | iou_min=0.000 | coverage=0.000 | total=0.075 | matches=[+1 missed golden]",
+          "output": "{\"images\": []}"
+        },
+        {
+          "case": "Image059",
+          "pass": true,
+          "score": 0.918,
+          "latency_ms": 8078,
+          "cost_usd": 0.009606,
+          "reason": "box_count=1.00 (2/2) | iou_mean=0.901 | iou_min=0.870 | coverage=0.920 | total=0.918 | matches=[pred[1]<->gold[1] IoU=0.932, pred[0]<->gold[0] IoU=0.870]",
+          "output": "{\"images\":[{\"description\":\"Black-and-white photograph of a man and woman standing outdoors in winter clothing, captioned George and Sophranie (second wife) L'Heureux.\",\"bbox\":[108,376,493,721]},{\"description\":\"Black-and-white portrait photograph of a woman standing outdoors, captioned Mrs. George L'Heureux (Emilienne - first wife).\",\"bbox\":[510,626,904,891]}]}"
+        }
+      ],
+      "arithmetic_case_mean": 0.4965,
+      "settled_pair_cost_usd": 0.022902,
+      "total_latency_ms": 25795,
+      "provider_errors": 0
+    },
+    {
+      "effort": "high",
+      "promptfoo_eval_id": "eval-vje-2026-10-02T13:43:27",
+      "promptfoo_overall_score": 0.7743,
+      "promptfoo_overall_semantics": "Promptfoo prompt-level aggregate; not the arithmetic mean of the two case scores",
+      "rows": [
+        {
+          "case": "Image001",
+          "pass": false,
+          "score": 0.075,
+          "latency_ms": 15374,
+          "cost_usd": 0.012156,
+          "reason": "box_count=0.50 (0/1) | iou_mean=0.000 | iou_min=0.000 | coverage=0.000 | total=0.075 | matches=[+1 missed golden]",
+          "output": "{\"images\": []}"
+        },
+        {
+          "case": "Image059",
+          "pass": false,
+          "score": 0.6993,
+          "latency_ms": 13174,
+          "cost_usd": 0.011874,
+          "reason": "box_count=1.00 (2/2) | iou_mean=0.639 | iou_min=0.583 | coverage=0.681 | total=0.699 | matches=[pred[0]<->gold[0] IoU=0.695, pred[1]<->gold[1] IoU=0.583]",
+          "output": "{\"images\":[{\"description\":\"Black-and-white photograph of a couple standing outdoors in heavy winter coats and hats.\",\"bbox\":[105,405,436,739]},{\"description\":\"Black-and-white portrait photograph of a woman standing outdoors in a light dress.\",\"bbox\":[584,688,916,929]}]}"
+        }
+      ],
+      "arithmetic_case_mean": 0.38715,
+      "settled_pair_cost_usd": 0.02403,
+      "total_latency_ms": 28548,
+      "provider_errors": 0
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "original_ignored_run_files": {
+    "preflight.json": {
+      "bytes": 5264,
+      "sha256": "fffcc16e07f2b67f80cca0721b88270b7a5d1c56304a79d84b2ec31a770634c8"
+    },
+    "ledger.json": {
+      "bytes": 8357,
+      "sha256": "300d774f3e20db4220d8ed1149ba721e23fa6b073e35044923c16a2b9c31e756"
+    },
+    "calibration.yaml": {
+      "bytes": 646,
+      "sha256": "698cdeb56d64247df4cc1ab354de55fbc7fb5aa7f36b47338b8bdf152f42122f"
+    },
+    "xai_grok_responses_budgeted.py": {
+      "bytes": 3573,
+      "sha256": "9e21ca14fa4c89230d5f2d0f710d79616d25a6a3a444d9e365830db38845352f"
+    },
+    "low-calibration.json": {
+      "bytes": 1180467,
+      "sha256": "90893a0febadc64b4c831a16af784d256c41c6fed146b7badd3e1e1aaa69d8fd"
+    },
+    "medium-calibration.json": {
+      "bytes": 1180497,
+      "sha256": "763c90489fc68fcaed1c11765ffc9c4d28062aa2eb449c8f7177e97d8dd7a862"
+    },
+    "high-calibration.json": {
+      "bytes": 1180709,
+      "sha256": "c061952f7079c032cfc5ceb212cca12afa488ca024e05958eb2bdf95e979e718"
+    }
+  }
+}

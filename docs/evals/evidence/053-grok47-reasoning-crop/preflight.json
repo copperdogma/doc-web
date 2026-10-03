@@ -1,0 +1,121 @@
+{
+  "run_id": "grok47-docweb-reasoning-20261002",
+  "owner": "Doc Web",
+  "surface": "image-crop-extraction detector only",
+  "base_sha": "b90c0da0f95eff852eeaea16419051a0b0a2e10d",
+  "candidate": {
+    "provider": "xAI direct Responses API",
+    "endpoint": "https://api.x.ai/v1/responses",
+    "requested_model": "grok-4.7",
+    "expected_served_model": "grok-4.7",
+    "efforts": [
+      "low",
+      "medium",
+      "high"
+    ],
+    "image_detail": "high",
+    "store": false,
+    "max_output_tokens": 8192,
+    "schema": "strict crop_regions; bbox integers 0..1000"
+  },
+  "incumbent": {
+    "model": "google:gemini-3-flash-preview",
+    "config": "maintained owner comparator, same13 inputs, conservative-count prompt"
+  },
+  "freshness": "fresh uncached serial calls; no Attempt039 output reuse; no prompt/scorer/golden edits",
+  "stages": [
+    {
+      "stage": "native-contract-probe",
+      "count": 1,
+      "input": "generated 128x128 synthetic black square",
+      "stop": "must be terminal completed, exact served ID, valid usage/cost and strict integer schema; retain complete raw response before parse"
+    },
+    {
+      "stage": "harness-parity-probe",
+      "count": 1,
+      "input": "same generated synthetic case through owner provider adapter",
+      "stop": "same validity gates; compare request/schema and output capture topology"
+    },
+    {
+      "stage": "reasoning-calibration",
+      "count": 6,
+      "matrix": {
+        "low": [
+          "Image001",
+          "Image059"
+        ],
+        "medium": [
+          "Image001",
+          "Image059"
+        ],
+        "high": [
+          "Image001",
+          "Image059"
+        ]
+      },
+      "selection": "An effort is eligible only if both per-case assertions pass and both outputs are source-acceptable. Among eligible efforts, choose highest pair mean; if quality scores differ by <=0.01, choose the lower settled pair cost, then lower latency. Low may qualify; no rule requires a higher effort to beat fresh low. No pair-level >=0.95 gate."
+    },
+    {
+      "stage": "selected-effort-confirmation",
+      "count": 11,
+      "matrix": "remaining maintained cases for the single selected effort only",
+      "gate": "combine with exposed pair; all13/13 case passes, overall >=.95, zero schema/provider errors; otherwise no comparator"
+    },
+    {
+      "stage": "fresh-maintained-comparator",
+      "count": 13,
+      "matrix": "same all13 inputs with Gemini 3 Flash maintained configuration, only if Grok full13 gates pass",
+      "stop": "serial, usage/cost/latency captured; stop if remaining hard-cap reservation cannot be admitted"
+    }
+  ],
+  "recovery_allowance": {
+    "max_operational_recoveries": 2,
+    "only": "evidence-backed transport/operational faults; no semantic retries; every uncertain charge remains reserved until reconciled"
+  },
+  "hard_cap_usd_all_providers": 5.0,
+  "reservation_policy": {
+    "serial": true,
+    "xai_input_bound_tokens": 500000,
+    "xai_output_bound_tokens": 8192,
+    "xai_rates_usd_per_million": {
+      "input_long_context": 4,
+      "output_long_context": 12
+    },
+    "xai_max_per_dispatch_usd": 2.098304,
+    "gemini_input_bound_tokens": 1048576,
+    "gemini_output_bound_tokens": 16384,
+    "gemini_rates_usd_per_million": {
+      "input_text_image": 0.5,
+      "output_including_thinking": 3
+    },
+    "gemini_max_per_dispatch_usd": 0.57344,
+    "settlement": "Reserve the full per-dispatch cap before each request. Only after complete valid usage/cost evidence settles may actual settled charge replace/release that request reservation. If no receipt/valid usage, preserve entire reservation as unresolved and stop or proceed only if remaining cap covers all pending reservations plus next dispatch."
+  },
+  "provider_sources_checked_utc": "2026-10-02",
+  "provider_sources": [
+    "https://docs.x.ai/developers/model-capabilities/text/reasoning",
+    "https://docs.x.ai/developers/grok-4-7",
+    "https://docs.x.ai/developers/pricing",
+    "https://docs.x.ai/developers/model-capabilities/images/understanding",
+    "https://docs.x.ai/developers/model-capabilities/text/structured-outputs",
+    "https://docs.x.ai/developers/faq/security",
+    "https://ai.google.dev/gemini-api/docs/pricing",
+    "https://ai.google.dev/gemini-api/docs/models/gemini-3-flash-preview",
+    "https://ai.google.dev/gemini-api/docs/models/gemini-3-flash-preview"
+  ],
+  "selection_rubric": {
+    "both_case_assertions_required": true,
+    "both_source_acceptable_required": true,
+    "rank": "highest pair mean",
+    "tie_band": 0.01,
+    "tie_breakers": [
+      "lower total settled pair cost",
+      "lower mean latency"
+    ],
+    "low_effort_allowed_to_qualify": true
+  },
+  "candidate_limitations": [
+    "All reasoning arms use max_output_tokens=8192; this differs from Attempt039 low max_output_tokens=2048, so any quality contrast is effort+new-output-budget configuration evidence, not a pure reasoning/checkpoint effect.",
+    "The exact production Gemini comparator has 1,048,576 input token and 65,536 model output limits; maintained owner config caps output at 16,384. Current official standard paid rates are $0.50/M input and $3/M output (model reasoning included in output), so worst per-call bound is $0.573440."
+  ]
+}

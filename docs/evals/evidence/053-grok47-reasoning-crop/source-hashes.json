@@ -1,0 +1,41 @@
+{
+  "base_sha": "b90c0da0f95eff852eeaea16419051a0b0a2e10d",
+  "sources": [
+    {
+      "path": "benchmarks/providers/xai_grok_responses.py",
+      "git_blob": "205311f2e8d5ec0156e23023c65b93f36f2d0a62",
+      "sha256": "2ce50173aa3523a15653772741c41310108227dfa18fa55491a3b738d908ef77",
+      "bytes": 23063
+    },
+    {
+      "path": "benchmarks/prompts/crop-conservative-count.js",
+      "git_blob": "37ec722ab4b00c779db1d16660fcd36dfa7719fd",
+      "sha256": "d15c7fd6f20389e5e7b2af9f15dd3697a31c28f47cfea8147c8114fe82f1e8f9",
+      "bytes": 1782
+    },
+    {
+      "path": "benchmarks/scorers/image_crop_scorer.py",
+      "git_blob": "7592c8074ed2cf3d8707aed8863a64836b75bca5",
+      "sha256": "7fcf07e05726bf3ebbc2488a503a9d7f165dde79649890cbd65f12a6ce4c19e7",
+      "bytes": 10333
+    },
+    {
+      "path": "benchmarks/golden/image-crops.json",
+      "git_blob": "97a011f8d78661a91d4ce6b00ddda8f4e4821a07",
+      "sha256": "2ac0a8f01e00a252439da1f4827a85bc5118bf96460a3ff1780e642eafc60f90",
+      "bytes": 7783
+    },
+    {
+      "path": "benchmarks/tasks/image-crop-extraction.yaml",
+      "git_blob": "cbc10707b50a98de930c49c4c21359be47e4ded1",
+      "sha256": "0dbac27f12ed7ab56f840676eb72cb8d79798d8e4e3a6a142da19b26bd8a0531",
+      "bytes": 7959
+    },
+    {
+      "path": "benchmarks/prompts/_image-helpers.js",
+      "git_blob": "8caec37c0a784e16f253b0bc0395a35ec447165f",
+      "sha256": "ad723df59a55896922752bd963f50ca7e36e7c77717d568deb5f9fdd1d3e11c0",
+      "bytes": 2312
+    }
+  ]
+}

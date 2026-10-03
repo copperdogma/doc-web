@@ -14336,6 +14336,24 @@
           "note": "Exact `qwen/qwen3.8-max` OpenRouter route, canonical snapshot `qwen/qwen3.8-max-20260803`, pinned to Alibaba with no fallback, mandatory low reasoning hidden from output, strict JSON Schema, exact served identity, terminal stop, and raw reported usage/cost. Text, generated synthetic-image, and one-case PromptFoo parity probes qualified before the frozen no-cache detector. The full run completed `12/13` with `0` provider/schema errors, `overall = 0.9411`, average latency `16002 ms`, and `$0.107508` total reported cost. Manual source inspection classified `Image011` as model-wrong: Qwen split the seal and adjacent signatures despite the explicit one-combined-image rule. It did not clear the detector prerequisite, so the 22-case page-context gate was not run and remains not measured. Do not adopt. Portable proof: `docs/evals/attempts/024-qwen38-max-evaluate-model.md`.\n"
         },
         {
+          "model": "Grok 4.7 direct xAI Responses (low/medium/high reasoning calibration, Attempt053; incomplete 2-case diagnostic)",
+          "metrics": {
+            "calibration_cases_per_effort": 2,
+            "low_case_mean": 0.4334,
+            "medium_case_mean": 0.4965,
+            "high_case_mean": 0.38715,
+            "completed_provider_calls": 8,
+            "provider_errors": 0
+          },
+          "latency_ms": 11993,
+          "cost_usd": 0.075754,
+          "cost_estimated": false,
+          "measured": "2026-10-02",
+          "git_sha": "b90c0da0f95eff852eeaea16419051a0b0a2e10d",
+          "evidence_status": "incomplete-reasoning-calibration-no-effort-qualified",
+          "note": "Exact direct `grok-4.7`, `store=false`, high image detail, strict integer crop schema, and unchanged maintained prompt/scorer/golden. Fresh low/medium/high calibration each covered Image001 and Image059 with `max_output_tokens=8192`; per-case rows and raw receipt hashes are in Attempt053 evidence. All three arms returned no box for the golden Image001 title artwork (0.075, fail); Image059 scored 0.7918 (low, pass), 0.9180 (medium, pass), and 0.6993 (high, fail). Arithmetic two-case means are 0.4334, 0.4965, and 0.38715; these are diagnostic only, not full-detector scores. No arm qualified, so remaining11 and the fresh Gemini comparator were not run. All eight receipts settled for `$0.075754`, with zero unresolved charges and no observed spend above the `$5` ceiling. The `$2.098304` per-request reservation used an output-token cap assumption; a later cross-owner receipt showed xAI may report output above the requested cap, so that reservation is not a proven theoretical maximum. No actual reservation breach was observed in these receipts. Page-safety and adoption remain unmeasured. See `docs/evals/attempts/053-grok47-reasoning-image-crop-calibration.md` and `docs/evals/evidence/053-grok47-reasoning-crop/`.\n"
+        },
+        {
           "model": "Grok 4.7 direct xAI Responses (low reasoning, strict integer crop schema)",
           "metrics": {
             "overall": 0.745785,
@@ -14461,20 +14479,22 @@
         }
       ],
       "latest_score": {
-        "model": "Gemini 3 Flash fresh matched detector control (Attempt046)",
+        "model": "Grok 4.7 direct xAI Responses (low/medium/high reasoning calibration, Attempt053; incomplete 2-case diagnostic)",
         "metrics": {
-          "overall": 0.965292,
-          "pass_rate": 1.0,
-          "cases_total": 13,
-          "latency_ms": 6672
+          "calibration_cases_per_effort": 2,
+          "low_case_mean": 0.4334,
+          "medium_case_mean": 0.4965,
+          "high_case_mean": 0.38715,
+          "completed_provider_calls": 8,
+          "provider_errors": 0
         },
-        "cost_usd": 0.0563795,
-        "cost_estimated": true,
-        "measured": "2026-09-29",
-        "git_sha": "5ca3711+attempt046-uncommitted",
-        "result_file": "benchmarks/results/gpt61-sol-20260929/detector-gemini-control13.json",
-        "evidence_status": "fresh-bounded-detector-control",
-        "note": "Same13 checked-in source pages, maintained normalized configuration; separate coordinate contract from candidate is disclosed in Attempt046."
+        "latency_ms": 11993,
+        "cost_usd": 0.075754,
+        "cost_estimated": false,
+        "measured": "2026-10-02",
+        "git_sha": "b90c0da0f95eff852eeaea16419051a0b0a2e10d",
+        "evidence_status": "incomplete-reasoning-calibration-no-effort-qualified",
+        "note": "Exact direct `grok-4.7`, `store=false`, high image detail, strict integer crop schema, and unchanged maintained prompt/scorer/golden. Fresh low/medium/high calibration each covered Image001 and Image059 with `max_output_tokens=8192`; per-case rows and raw receipt hashes are in Attempt053 evidence. All three arms returned no box for the golden Image001 title artwork (0.075, fail); Image059 scored 0.7918 (low, pass), 0.9180 (medium, pass), and 0.6993 (high, fail). Arithmetic two-case means are 0.4334, 0.4965, and 0.38715; these are diagnostic only, not full-detector scores. No arm qualified, so remaining11 and the fresh Gemini comparator were not run. All eight receipts settled for `$0.075754`, with zero unresolved charges and no observed spend above the `$5` ceiling. The `$2.098304` per-request reservation used an output-token cap assumption; a later cross-owner receipt showed xAI may report output above the requested cap, so that reservation is not a proven theoretical maximum. No actual reservation breach was observed in these receipts. Page-safety and adoption remain unmeasured. See `docs/evals/attempts/053-grok47-reasoning-image-crop-calibration.md` and `docs/evals/evidence/053-grok47-reasoning-crop/`.\n"
       },
       "attempts": [
         {
@@ -14572,6 +14592,16 @@
           "approach": "Direct Anthropic Opus 5.5 medium on frozen integer-coordinate crop detector",
           "note": "Exact owner-authenticated `claude-opus-5-5` qualified native strict image/schema transport and owner-adapter parity. Image011 passed at `0.9548`, but the fresh full13 had only 12 contract-valid scorer passes; Image037 emitted integer y1=1359 outside 0-1000. The 12 valid rows averaged `0.9177`, below the `>=0.95` target even apart from the contract failure. Full13 cost `$0.281372`; all-call campaign spend was `$0.352940/$2.00`. Fresh Gemini control was not admitted. An independent page-context screen is recorded under the same attempt. No runtime/default change. See `docs/evals/attempts/041-opus55-crop-and-page-context.md`.\n",
           "retry_when": []
+        },
+        {
+          "id": "053",
+          "date": "2026-10-02",
+          "status": "failed",
+          "approach": "Fresh Grok 4.7 low/medium/high reasoning calibration on Image001 and Image059",
+          "note": "Eight direct xAI calls (native probe, parity probe, and six calibration cases) settled at `$0.075754`; no actual unresolved charge. Low, medium, and high all omitted Image001's golden decorative title art (0.075, fail). Image059 scored 0.7918 (pass), 0.9180 (pass), and 0.6993 (fail), respectively. Thus no arm qualified both cases and remaining11/Gemini were not run. Per-case data, source overlays, full raw response envelopes, original result hashes, and adapter snapshot are retained in the Attempt053 evidence directory. A relative-path bookkeeping command initially ran from the wrong cwd; the overlapping Image001 hold was later reconciled to its actual receipt UUID and the original event remains recorded. The recorded `$2.098304` per-request reservation assumed xAI honors requested output cap; cross-owner evidence later invalidated that assumption, though no over-bound response or actual spend breach occurred in this campaign. No adoption, page-safety, or full-detector claim.\n",
+          "retry_when": [
+            "new-approach"
+          ]
         },
         {
           "id": "039",

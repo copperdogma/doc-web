@@ -11,6 +11,17 @@
 - All95 decoded RGBA/ICC/geometry/manifest rows remain exact during the PNG comparison; storage grows8.725%, within the frozen25% cap.79 affected controls and independent56 crop controls pass. Story226 remains In Progress; p005 planner excess-background/full-manual qualification holds remain.
 - Public attempts054–056 preserve private execution proofs after remote main allocated global053. No provider calls or cheaper-model adoption.
 
+## [2026-10-01-01] — Consolidate agent instructions and explain decision models
+
+### Added
+- Add a portable decision-model guide and compact AGENTS.md entry point for
+  choosing between code, bounded semantic judgments and language generation,
+  preserving owner evaluation verdicts, privacy and enablement gates.
+
+### Changed
+- Remove the root CLAUDE.md bridge after verified native AGENTS.md loading;
+  preserve Claude skill-discovery links and any scoped AGENTS instructions.
+
 ## [2026-09-30-09] - Bind critical crops to selected source coordinates
 
 ### Fixed
