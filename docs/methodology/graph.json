@@ -14478,6 +14478,30 @@
       },
       "attempts": [
         {
+          "id": "056-lossless-png-encoding",
+          "date": "2026-10-03",
+          "status": "succeeded",
+          "approach": "PNG compression3 instead of6; identical decoded assets with bounded storage tradeoff",
+          "note": "Encoding-only cached local crop-stage evidence after055.3freshbaseline times33.02/31.90/31.93s vs3candidate25.33/25.51/25.35s; median20.608% lower. TotalPNG45,520,699\u219249,492,322bytes(+8.725%,3.79MiB), within predeclared25%sizecap and5%minimumtimegain.95PNGbitstreamsdiffer; all six runs95RGBA/95ICC/95normalized fullmanifest rows+bboxes exact excludingrun_id/created_at. Frozenfilesunchanged.79affectedtests passinclRGB/RGBA nativepixels+ICC; Ruffpasses.0newprovidercalls/cost. p007restoredtips inspected; p005backgroundhold remains. Warm serial non-interleavedarms; no wholemanual/game/independentcasepromotion. Story226 In Progress. Proof: docs/evals/attempts/056-lossless-png-encoding.md and result.json.\n",
+          "retry_when": []
+        },
+        {
+          "id": "055-page-local-decode-reuse",
+          "date": "2026-10-03",
+          "status": "succeeded",
+          "approach": "Explicit current-page readonly BGR reuse across four crop helpers",
+          "note": "Cached local crop-stage measurement only. Profile63OpenCVdecodes6.911s within32.663s; no path/global memoization.3baseline crop times 36.96/35.92/35.92s versus3candidate31.63/31.64/32.25s, median11.915% lower. All six runs95PNGbyteexact/95RGBAexact/95ICCexact/95fullrows exact excluding run_id/created_at; corrected frozen artifacts unchanged. Source replacement/repeated-call decode controls and77affected tests pass.0newprovidercalls/cost, localOCRretained.17fidelity-correction source-coordinate overlapsRGBAexact,0newlyhiddenoldvisiblepixels. Warm serial arms, non-interleaved; no held-out-game/fullmanual/game promotion. p005backgroundhold remains, Story226 In Progress. Proof: docs/evals/attempts/055-page-local-decode-reuse.md and result.json.\n",
+          "retry_when": []
+        },
+        {
+          "id": "054-critical-crop-no-amputation",
+          "date": "2026-10-03",
+          "status": "succeeded",
+          "approach": "Require detached prose evidence and veto foreground crossing the proposed cut",
+          "note": "Bounded deterministic fidelity repair, no maintained detector score change. Native p007-g01 planner y1497 was shortened to1471 by the bottom-prose helper; five prepatch frozen source supports now pass exact RGB. Actual zero-API driver page7 crop2.52s and all32pages crop34.75s retain95 filenames:78PNGbyte-identical/17larger rectangles, all95visibleRGBexact to source. All17changes inspected;16restore diagram edges, while p005-001 retains excessive whitespace/decorative hazard stripe from its broad planner target, explicit residual hold. Original synthetic regression y373 now420; genuine detached prose control preserved.76affected tests pass. No cost/speed win, full-manual, independent-game, source-embedded or physical-family promotion. Story226 remains In Progress. Proof: docs/evals/attempts/054-critical-crop-no-amputation.md and result.json.\n",
+          "retry_when": []
+        },
+        {
           "id": "052-highres-critical-coordinate-binding",
           "date": "2026-09-30",
           "status": "succeeded",
@@ -14860,11 +14884,11 @@
         ],
         "why_now": "Gemini 4 or equivalent may push past 0.95 target Golden references cover limited page types; add table-heavy pages",
         "last_relevant_action": {
-          "date": "2026-09-30",
+          "date": "2026-10-03",
           "source_type": "eval-attempt",
           "source": "docs/evals/registry.yaml",
-          "source_id": "052-highres-critical-coordinate-binding",
-          "summary": "Bounded runtime evidence, not a maintained detector score. Full public zero-API V10 retains101 unique targets/91HTMLfigures, with22/22native and12/12package checks. All101 emitted crop RGB arrays equal their recorded..."
+          "source_id": "056-lossless-png-encoding",
+          "summary": "Encoding-only cached local crop-stage evidence after055.3freshbaseline times33.02/31.90/31.93s vs3candidate25.33/25.51/25.35s; median20.608% lower. TotalPNG45,520,699\u219249,492,322bytes(+8.725%,3.79MiB), within predeclar..."
         }
       }
     },

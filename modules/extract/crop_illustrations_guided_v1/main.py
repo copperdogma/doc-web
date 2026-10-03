@@ -163,6 +163,9 @@ def _auto_fix_axis_swap(boxes: list, page_w: int, page_h: int) -> list:
 Image.MAX_IMAGE_PIXELS = None
 
 SUPPORTED_EXTS = {".jpg", ".jpeg", ".png", ".tif", ".tiff", ".webp", ".bmp"}
+# Lossless export: bounded native timing/size evidence in Attempt055 favors
+# less encoding work over a small increase in PNG storage.
+PNG_COMPRESSION_LEVEL = 3
 
 
 def _normalize_output_format(output_format: Optional[str]) -> Tuple[str, str]:
@@ -2302,13 +2305,14 @@ def _trim_rule_example_bottom_prose_band(
     box: Dict[str, int],
     *,
     margin_px: int = 8,
+    source_bgr: Optional[np.ndarray] = None,
 ) -> Dict[str, int]:
     role = str(box.get("_critical_graphics_role") or "").casefold()
     if role not in {"rule_example_diagram", "component_reference"}:
         return box
     if str(box.get("_detection_method") or "") == "cv_guided_rule_panel_split":
         return box
-    img_bgr = cv2.imread(str(image_path), cv2.IMREAD_COLOR)
+    img_bgr = source_bgr if source_bgr is not None else cv2.imread(str(image_path), cv2.IMREAD_COLOR)
     if img_bgr is None:
         return box
     img_h, img_w = img_bgr.shape[:2]
@@ -2354,6 +2358,26 @@ def _trim_rule_example_bottom_prose_band(
     new_y1 = y0 + max(0, trim_start - margin_px)
     if new_y1 <= y0 or y1 - new_y1 < max(8, int(h * 0.015)):
         return box
+    # Sparse, low-saturation card borders can look like prose by row density.
+    # Only remove a detached band: a visual component crossing the cut means
+    # the proposed trim would amputate source artwork, regardless of its color.
+    cut_row = new_y1 - y0
+    foreground = ((gray < 150) | (sat > 55)).astype(np.uint8)
+    count, _labels, stats, _centroids = cv2.connectedComponentsWithStats(
+        foreground, connectivity=8
+    )
+    for label in range(1, count):
+        _cx, cy, _cw, ch, area = stats[label]
+        if area >= 16 and cy < cut_row < cy + ch:
+            return box
+    # A background separator is affirmative evidence of detachment. Without
+    # it, retain the planner's source rectangle rather than guess at text.
+    separator = foreground[max(0, cut_row - margin_px):cut_row]
+    if separator.shape[0] < 3 or not np.any(
+        np.convolve((separator.sum(axis=1) <= max(1, w * 0.005)).astype(int),
+                    np.ones(3, dtype=int), mode="valid") == 3
+    ):
+        return box
     new_box = {
         "x0": x0,
         "y0": y0,
@@ -2373,11 +2397,12 @@ def _trim_rule_panel_cost_reference_card(
     box: Dict[str, int],
     *,
     pad_px: int = 0,
+    source_bgr: Optional[np.ndarray] = None,
 ) -> Dict[str, int]:
     """Trim split cost-reference children to the card-like visual object."""
     if str(box.get("_rule_panel_child_kind") or "") != "cost_reference":
         return box
-    img_bgr = cv2.imread(str(image_path), cv2.IMREAD_COLOR)
+    img_bgr = source_bgr if source_bgr is not None else cv2.imread(str(image_path), cv2.IMREAD_COLOR)
     if img_bgr is None:
         return box
     img_h, img_w = img_bgr.shape[:2]
@@ -2505,11 +2530,12 @@ def _expand_player_mat_register_rule_example_box(
     max_search_ratio: float = 0.4,
     max_detached_gap_ratio: float = 0.12,
     pad_px: int = 16,
+    source_bgr: Optional[np.ndarray] = None,
 ) -> Dict[str, int]:
     """Expand player-mat/register examples when the top edge cuts through the mat."""
     if not _looks_like_player_mat_register_target(box):
         return box
-    img_bgr = cv2.imread(str(image_path), cv2.IMREAD_COLOR)
+    img_bgr = source_bgr if source_bgr is not None else cv2.imread(str(image_path), cv2.IMREAD_COLOR)
     if img_bgr is None:
         return box
     img_h, img_w = img_bgr.shape[:2]
@@ -2614,11 +2640,12 @@ def _expand_integrated_callout_rule_example_box(
     min_row_ratio: float = 0.015,
     max_search_ratio: float = 0.75,
     pad_px: int = 16,
+    source_bgr: Optional[np.ndarray] = None,
 ) -> Dict[str, int]:
     """Expand rule-example crops that cut through integrated callout panels."""
     if not _looks_like_integrated_callout_target(box):
         return box
-    img_bgr = cv2.imread(str(image_path), cv2.IMREAD_COLOR)
+    img_bgr = source_bgr if source_bgr is not None else cv2.imread(str(image_path), cv2.IMREAD_COLOR)
     if img_bgr is None:
         return box
     img_h, img_w = img_bgr.shape[:2]
@@ -4785,7 +4812,7 @@ def crop_illustrations_guided(
                         cropped = cropped.convert("RGB")
                     cropped.save(filepath, "JPEG", quality=jpeg_quality, optimize=True)
                 else:
-                    cropped.save(filepath, "PNG")
+                    cropped.save(filepath, "PNG", compress_level=PNG_COMPRESSION_LEVEL)
                 is_bw = _is_bw_image(cropped)
                 alt = ""
                 if ocr_images:
@@ -5376,12 +5403,25 @@ def crop_illustrations_guided(
                 boxes_sorted = trimmed
 
         if boxes_sorted:
+            # Share one exact OpenCV decode for this selected source page only.
+            # Explicit arrays avoid a path cache and cannot survive another page
+            # or invocation. Helpers only inspect this immutable pixel snapshot.
+            page_bgr = None
+            if any(
+                str(box.get("_critical_graphics_role") or "").casefold()
+                in {"rule_example_diagram", "component_reference"}
+                or str(box.get("_rule_panel_child_kind") or "") == "cost_reference"
+                for box in boxes_sorted
+            ):
+                page_bgr = cv2.imread(str(source_image_path), cv2.IMREAD_COLOR)
+                if page_bgr is not None:
+                    page_bgr.setflags(write=False)
             boxes_sorted = [
-                _trim_rule_example_bottom_prose_band(source_image_path, box)
+                _trim_rule_example_bottom_prose_band(source_image_path, box, source_bgr=page_bgr)
                 for box in boxes_sorted
             ]
             boxes_sorted = [
-                _trim_rule_panel_cost_reference_card(source_image_path, box)
+                _trim_rule_panel_cost_reference_card(source_image_path, box, source_bgr=page_bgr)
                 for box in boxes_sorted
             ]
             boxes_sorted = [
@@ -5389,11 +5429,11 @@ def crop_illustrations_guided(
                 for box in boxes_sorted
             ]
             boxes_sorted = [
-                _expand_player_mat_register_rule_example_box(source_image_path, box)
+                _expand_player_mat_register_rule_example_box(source_image_path, box, source_bgr=page_bgr)
                 for box in boxes_sorted
             ]
             boxes_sorted = [
-                _expand_integrated_callout_rule_example_box(source_image_path, box)
+                _expand_integrated_callout_rule_example_box(source_image_path, box, source_bgr=page_bgr)
                 for box in boxes_sorted
             ]
 
@@ -5430,13 +5470,13 @@ def crop_illustrations_guided(
 
             # Save original
             if cropped.mode == "RGBA":
-                cropped.save(filepath, "PNG")
+                cropped.save(filepath, "PNG", compress_level=PNG_COMPRESSION_LEVEL)
             elif fmt == "jpeg":
                 if cropped.mode not in ("RGB", "L"):
                     cropped = cropped.convert("RGB")
                 cropped.save(filepath, "JPEG", quality=jpeg_quality, optimize=True)
             else:
-                cropped.save(filepath, "PNG")
+                cropped.save(filepath, "PNG", compress_level=PNG_COMPRESSION_LEVEL)
 
             # Detect if image is color or B&W
             is_bw = _is_bw_image(cropped)
@@ -5451,7 +5491,7 @@ def crop_illustrations_guided(
                 filepath_alpha = os.path.join(images_dir, filename_alpha)
 
                 cropped_alpha = _make_transparent(cropped, threshold)
-                cropped_alpha.save(filepath_alpha, "PNG")
+                cropped_alpha.save(filepath_alpha, "PNG", compress_level=PNG_COMPRESSION_LEVEL)
                 has_transparency = True
 
             # Build manifest record

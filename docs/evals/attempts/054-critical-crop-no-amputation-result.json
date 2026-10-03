@@ -1,0 +1,143 @@
+{
+  "schema_version": "bounded_crop_quality_repair_v1",
+  "story": "226",
+  "date": "2026-10-03",
+  "candidate_module_sha256": "f4dc951c9bbf226538744bdfeb3548121cd46cbc9bf04918520f026a1f98c85e",
+  "source_sha256": "b5f6de09d204bd04ea8d2636ad0ae853ebc5aa72b0e506f9a13873862a806e76",
+  "frozen_truth_sha256": "b439b2be1208fe75e7e1c0b98e371f7f101fc3452fed3866c3d3449250a77180",
+  "original_page7_bbox": [
+    529,
+    544,
+    2043,
+    1471
+  ],
+  "candidate_page7_bbox": [
+    529,
+    544,
+    2043,
+    1497
+  ],
+  "minimum_supports": {
+    "count": 5,
+    "native_exact_pass": 5
+  },
+  "all_page_replay": {
+    "logical_input_pages": 32,
+    "figure_count": 95,
+    "unchanged_file_names": true,
+    "byte_identical_figures": 78,
+    "changed_figures": 17,
+    "visible_native_rgb_exact": 95,
+    "crop_stage_seconds": 34.75
+  },
+  "page7_crop_stage_seconds": 2.52,
+  "new_api_calls": 0,
+  "new_provider_cost_usd": 0,
+  "residual_holds": [
+    "page-005-001 broad planner target retains whitespace and hazard-stripe decoration"
+  ],
+  "maintained_detector_score_changed": false,
+  "full_manual_quality_qualified": false,
+  "economics_improvement_qualified": false,
+  "comparison_rows": [
+    {
+      "filename": "page-004-000.png",
+      "old_bottom": 1600,
+      "candidate_bottom": 1628
+    },
+    {
+      "filename": "page-005-001.png",
+      "old_bottom": 3089,
+      "candidate_bottom": 3554
+    },
+    {
+      "filename": "page-007-000.png",
+      "old_bottom": 1471,
+      "candidate_bottom": 1497
+    },
+    {
+      "filename": "page-008-003.png",
+      "old_bottom": 1303,
+      "candidate_bottom": 1345
+    },
+    {
+      "filename": "page-009-001.png",
+      "old_bottom": 1291,
+      "candidate_bottom": 1392
+    },
+    {
+      "filename": "page-009-003.png",
+      "old_bottom": 2205,
+      "candidate_bottom": 2306
+    },
+    {
+      "filename": "page-009-005.png",
+      "old_bottom": 3108,
+      "candidate_bottom": 3208
+    },
+    {
+      "filename": "page-012-000.png",
+      "old_bottom": 1472,
+      "candidate_bottom": 1490
+    },
+    {
+      "filename": "page-012-001.png",
+      "old_bottom": 1674,
+      "candidate_bottom": 1718
+    },
+    {
+      "filename": "page-012-002.png",
+      "old_bottom": 1828,
+      "candidate_bottom": 1842
+    },
+    {
+      "filename": "page-012-003.png",
+      "old_bottom": 2175,
+      "candidate_bottom": 2193
+    },
+    {
+      "filename": "page-012-004.png",
+      "old_bottom": 2507,
+      "candidate_bottom": 2534
+    },
+    {
+      "filename": "page-012-005.png",
+      "old_bottom": 2858,
+      "candidate_bottom": 2875
+    },
+    {
+      "filename": "page-014-001.png",
+      "old_bottom": 1714,
+      "candidate_bottom": 1733
+    },
+    {
+      "filename": "page-014-002.png",
+      "old_bottom": 1718,
+      "candidate_bottom": 1733
+    },
+    {
+      "filename": "page-014-003.png",
+      "old_bottom": 2163,
+      "candidate_bottom": 2179
+    },
+    {
+      "filename": "page-014-004.png",
+      "old_bottom": 2164,
+      "candidate_bottom": 2182
+    }
+  ],
+  "synthetic_regression_original_y1": 373,
+  "synthetic_regression_expected_y1": 420,
+  "private_evidence_root": "output/runs/story028-manual-trim-proof",
+  "validation": {
+    "affected_tests": 76,
+    "affected_test_seconds": 2.67,
+    "ruff_pass": true,
+    "original_synthetic_regression_fails": true
+  },
+  "alpha_overlap_checks": {
+    "changed_crops": 17,
+    "RGBA_exact_in_old_source_coordinate_overlap": 17,
+    "newly_hidden_old_visible_pixels": 0
+  }
+}

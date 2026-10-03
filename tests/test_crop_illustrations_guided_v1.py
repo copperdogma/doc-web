@@ -868,6 +868,19 @@ def test_integrated_callout_expansion_ignores_detached_page_decoration(tmp_path)
     assert expanded["_expanded_integrated_callouts"] is True
 
 
+def test_trim_bottom_prose_band_preserves_connected_card_border(tmp_path):
+    page_path = tmp_path / "card-with-lower-border.png"
+    canvas = np.full((420, 520, 3), 238, dtype=np.uint8)
+    cv2.rectangle(canvas, (70, 40), (440, 380), (45, 45, 45), thickness=-1)
+    # A thin dark frame and lower tip produce prose-like sparse bottom rows.
+    cv2.rectangle(canvas, (220, 340), (290, 405), (45, 45, 45), thickness=4)
+    cv2.imwrite(str(page_path), canvas)
+    box = {"x0": 0, "y0": 0, "x1": 520, "y1": 420,
+           "width": 520, "height": 420,
+           "_critical_graphics_role": "rule_example_diagram"}
+    assert _trim_rule_example_bottom_prose_band(str(page_path), box) == box
+
+
 def test_trim_bottom_prose_band_handles_component_reference_and_tiny_text_strip(tmp_path):
     page_path = tmp_path / "component-with-bottom-prose.png"
     canvas = np.full((420, 520, 3), 238, dtype=np.uint8)
@@ -1256,3 +1269,65 @@ def test_dense_mixed_targets_preserved_while_untargeted_reference_recovers(tmp_p
     assert len(result) == 7
     assert target in result
     assert sum(row.get("_detection_method") == "cv_guided_dense_split" for row in result) == 6
+
+
+def test_page_decode_reuse_is_local_and_refreshes_changed_source(tmp_path, monkeypatch):
+    page = tmp_path / "page.png"
+    ocr = tmp_path / "pages.jsonl"
+    plan = tmp_path / "plan.json"
+    ocr.write_text(json.dumps({"page_number": 1, "image": str(page), "html": "<h1>Example</h1>"}) + "\n")
+    targets = [{"target_id": str(i), "importance": "essential",
+                "role": "rule_example_diagram", "description": "Spatial example",
+                "bbox_pixels": {"x0": x, "y0": 10, "x1": x + 50, "y1": 80}}
+               for i, x in enumerate([10, 100])]
+    plan.write_text(json.dumps({"pages": [{"page_number": 1, "targets": targets}]}))
+    real_read = cv2.imread
+    reads = []
+
+    def capture_read(path, flags):
+        if str(path) == str(page) and flags == cv2.IMREAD_COLOR:
+            reads.append(path)
+        return real_read(path, flags)
+
+    monkeypatch.setattr(cv2, "imread", capture_read)
+    outputs = []
+    for run, color in enumerate([(20, 80, 220), (220, 80, 20)]):
+        canvas = np.full((120, 160, 3), 245, dtype=np.uint8)
+        for x in [10, 100]:
+            cv2.rectangle(canvas, (x, 10), (x + 49, 79), color, thickness=-1)
+        cv2.imwrite(str(page), canvas)
+        output = tmp_path / f"out-{run}"
+        rows = crop_illustrations_guided(str(ocr), str(output),
+                                        critical_graphics_manifest=str(plan),
+                                        detection_mode="auto", output_format="png")
+        assert len(rows) == 2
+        assert len(reads) == run + 1  # one decode despite two targets
+        pixels = np.array(Image.open(output / "images" / rows[0]["filename"]))
+        assert np.array_equal(pixels[0, 0, :3], np.array(color[::-1]))
+        outputs.append(pixels)
+    assert not np.array_equal(*outputs)  # same path, new invocation, new pixels
+
+
+@pytest.mark.parametrize("mode", ["RGB", "RGBA"])
+def test_png_export_preserves_native_pixels_and_icc(tmp_path, mode):
+    source = tmp_path / "profiled-source.png"
+    pixels = np.zeros((120, 160, 4 if mode == "RGBA" else 3), dtype=np.uint8)
+    pixels[:, :, :3] = [20, 80, 220]
+    if mode == "RGBA":
+        pixels[:, :, 3] = np.arange(160, dtype=np.uint8)[None, :]
+    profile = b"synthetic-test-profile"
+    Image.fromarray(pixels, mode).save(source, "PNG", icc_profile=profile)
+    ocr = tmp_path / "pages.jsonl"
+    ocr.write_text(json.dumps({"page_number": 1, "image": str(source), "html": "<h1>Setup</h1>"}) + "\n")
+    plan = tmp_path / "plan.json"
+    plan.write_text(json.dumps({"pages": [{"page_number": 1, "targets": [
+        {"target_id": "one", "importance": "essential", "role": "setup_diagram",
+         "bbox_pixels": {"x0": 20, "y0": 30, "x1": 110, "y1": 95}}]}]}))
+    output = tmp_path / "out"
+    rows = crop_illustrations_guided(str(ocr), str(output),
+                                    critical_graphics_manifest=str(plan),
+                                    detection_mode="auto", output_format="png")
+    with Image.open(output / "images" / rows[0]["filename"]) as exported:
+        assert exported.format == "PNG"
+        assert exported.info["icc_profile"] == profile
+        assert np.array_equal(np.array(exported), pixels[30:95, 20:110])

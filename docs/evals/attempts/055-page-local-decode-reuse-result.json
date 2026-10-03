@@ -1,0 +1,102 @@
+{
+  "scope": "cached local crop stage only; residual p005 background hold; no complete manual/game economics admission",
+  "new_api_calls": 0,
+  "new_provider_cost_usd": 0,
+  "baseline_frozen_files_unchanged": true,
+  "crop_stage_seconds": {
+    "baseline": [
+      36.96,
+      35.92,
+      35.92
+    ],
+    "candidate": [
+      31.63,
+      31.64,
+      32.25
+    ]
+  },
+  "median_crop_seconds": {
+    "baseline": 35.92,
+    "candidate": 31.64
+  },
+  "median_relative_improvement": 0.11915367483296213,
+  "candidate_module_sha256": "9590b3656688ed78717d525f4910f0a80f24b5b34c2a33a03dfe8c3da9a47136",
+  "checks": [
+    {
+      "arm": "baseline",
+      "repeat": 1,
+      "same_filenames": true,
+      "PNG_byte_exact": 95,
+      "RGBA_exact": 95,
+      "ICC_exact": 95,
+      "normalized_manifest_rows_exact": 95,
+      "count": 95
+    },
+    {
+      "arm": "baseline",
+      "repeat": 2,
+      "same_filenames": true,
+      "PNG_byte_exact": 95,
+      "RGBA_exact": 95,
+      "ICC_exact": 95,
+      "normalized_manifest_rows_exact": 95,
+      "count": 95
+    },
+    {
+      "arm": "baseline",
+      "repeat": 3,
+      "same_filenames": true,
+      "PNG_byte_exact": 95,
+      "RGBA_exact": 95,
+      "ICC_exact": 95,
+      "normalized_manifest_rows_exact": 95,
+      "count": 95
+    },
+    {
+      "arm": "candidate",
+      "repeat": 1,
+      "same_filenames": true,
+      "PNG_byte_exact": 95,
+      "RGBA_exact": 95,
+      "ICC_exact": 95,
+      "normalized_manifest_rows_exact": 95,
+      "count": 95
+    },
+    {
+      "arm": "candidate",
+      "repeat": 2,
+      "same_filenames": true,
+      "PNG_byte_exact": 95,
+      "RGBA_exact": 95,
+      "ICC_exact": 95,
+      "normalized_manifest_rows_exact": 95,
+      "count": 95
+    },
+    {
+      "arm": "candidate",
+      "repeat": 3,
+      "same_filenames": true,
+      "PNG_byte_exact": 95,
+      "RGBA_exact": 95,
+      "ICC_exact": 95,
+      "normalized_manifest_rows_exact": 95,
+      "count": 95
+    }
+  ],
+  "limitations": "3 serial warm-machine repetitions per arm; baseline then candidate, not interleaved; OS caches/load/local OCR vary; independent physical-game quality not qualified.",
+  "validation": {
+    "affected_tests": 77,
+    "affected_test_seconds": 3.64,
+    "ruff_pass": true
+  },
+  "profile_before": {
+    "total_seconds": 32.663,
+    "cv2_imread_calls": 63,
+    "cv2_imread_seconds": 6.911,
+    "PIL_source_decode_seconds": 4.811,
+    "PNG_encoding_seconds": 14.389,
+    "local_Tesseract_calls": 10,
+    "local_Tesseract_cumulative_seconds": 7.246
+  },
+  "reuse_policy": "Explicit readonly exact OpenCV BGR decode passed to four helpers for current selected source page; no global/path cache, source refreshed each invocation/page."
+}

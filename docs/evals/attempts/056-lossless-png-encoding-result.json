@@ -1,0 +1,115 @@
+{
+  "scope": "PNG lossless encoding-only cached local crop stage; no wholemanual/game admission",
+  "baseline_png_compression": 6,
+  "candidate_png_compression": 3,
+  "new_api_calls": 0,
+  "new_provider_cost_usd": 0,
+  "baseline_frozen_files_unchanged": true,
+  "crop_stage_seconds": {
+    "baseline": [
+      33.02,
+      31.9,
+      31.93
+    ],
+    "candidate": [
+      25.33,
+      25.51,
+      25.35
+    ]
+  },
+  "median_crop_seconds": {
+    "baseline": 31.93,
+    "candidate": 25.35
+  },
+  "median_relative_improvement": 0.20607579079235827,
+  "baseline_png_bytes": 45520699,
+  "checks": [
+    {
+      "arm": "baseline",
+      "repeat": 1,
+      "same_filenames": true,
+      "PNG_byte_exact": 95,
+      "RGBA_exact": 95,
+      "ICC_exact": 95,
+      "normalized_full_manifest_rows_exact": 95,
+      "count": 95,
+      "png_bytes": 45520699,
+      "png_increase_ratio": 0.0
+    },
+    {
+      "arm": "baseline",
+      "repeat": 2,
+      "same_filenames": true,
+      "PNG_byte_exact": 95,
+      "RGBA_exact": 95,
+      "ICC_exact": 95,
+      "normalized_full_manifest_rows_exact": 95,
+      "count": 95,
+      "png_bytes": 45520699,
+      "png_increase_ratio": 0.0
+    },
+    {
+      "arm": "baseline",
+      "repeat": 3,
+      "same_filenames": true,
+      "PNG_byte_exact": 95,
+      "RGBA_exact": 95,
+      "ICC_exact": 95,
+      "normalized_full_manifest_rows_exact": 95,
+      "count": 95,
+      "png_bytes": 45520699,
+      "png_increase_ratio": 0.0
+    },
+    {
+      "arm": "candidate",
+      "repeat": 1,
+      "same_filenames": true,
+      "PNG_byte_exact": 0,
+      "RGBA_exact": 95,
+      "ICC_exact": 95,
+      "normalized_full_manifest_rows_exact": 95,
+      "count": 95,
+      "png_bytes": 49492322,
+      "png_increase_ratio": 0.08724872612347179
+    },
+    {
+      "arm": "candidate",
+      "repeat": 2,
+      "same_filenames": true,
+      "PNG_byte_exact": 0,
+      "RGBA_exact": 95,
+      "ICC_exact": 95,
+      "normalized_full_manifest_rows_exact": 95,
+      "count": 95,
+      "png_bytes": 49492322,
+      "png_increase_ratio": 0.08724872612347179
+    },
+    {
+      "arm": "candidate",
+      "repeat": 3,
+      "same_filenames": true,
+      "PNG_byte_exact": 0,
+      "RGBA_exact": 95,
+      "ICC_exact": 95,
+      "normalized_full_manifest_rows_exact": 95,
+      "count": 95,
+      "png_bytes": 49492322,
+      "png_increase_ratio": 0.08724872612347179
+    }
+  ],
+  "predeclared_gates": {
+    "max_png_size_increase_ratio": 0.25,
+    "minimum_median_crop_gain": 0.05
+  },
+  "bounded_admission_gates_pass": true,
+  "candidate_module_sha256": "0636e0df09442d3e858f31a0c6513e47e78a0eac460e045825e718b352544211",
+  "validation": {
+    "affected_tests": 79,
+    "seconds": 2.41,
+    "ruff_pass": true
+  },
+  "residual_holds": [
+    "page-005-001 broad planner whitespace/hazard stripe"
+  ],
+  "limitations": "3 serial warm-machine repetitions per arm, baseline before candidate; no independent-game/coldstart/fullmanual quality qualification; agent work/prior API cost excluded."
+}

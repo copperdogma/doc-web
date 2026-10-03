@@ -1,3 +1,16 @@
+## [2026-10-03-01] - Preserve critical artwork and speed lossless native crops (Story226 continuation)
+
+### Fixed
+- Veto prose-band trimming across connected foreground and require a detached background separator, preserving artwork already inside planner rectangles.
+
+### Changed
+- Reuse one immutable selected-page BGR decode within a crop invocation and encode PNGs at lossless compression level3.
+
+### Verified
+- Actual cached32-page driver replays retain95 native figures, restoring17 previously shortened rectangles without losing old visible pixels. Independent3+3comparisons show11.915% local crop-time reduction for page-local decode reuse, then20.608% for lossless PNG encoding in its separate window; gains are not additive or whole-game claims.
+- All95 decoded RGBA/ICC/geometry/manifest rows remain exact during the PNG comparison; storage grows8.725%, within the frozen25% cap.79 affected controls and independent56 crop controls pass. Story226 remains In Progress; p005 planner excess-background/full-manual qualification holds remain.
+- Public attempts054–056 preserve private execution proofs after remote main allocated global053. No provider calls or cheaper-model adoption.
+
 ## [2026-09-30-09] - Bind critical crops to selected source coordinates
 
 ### Fixed
