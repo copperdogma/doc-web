@@ -59,7 +59,8 @@ code, or hybrid implementation honestly.
 
 7. **If no eval was provided, rank candidates** using this priority:
    - retry-ready failed attempts whose `retry_when` conditions are now met
-   - stale scores measured far from current `HEAD`
+   - scores made stale by relevant evaluated code, prompt, model/provider,
+     scorer, golden, or input changes (commit distance alone is not enough)
    - largest gap to target
    - compromise-detection evals with no meaningful baseline yet
 
@@ -74,8 +75,11 @@ code, or hybrid implementation honestly.
    target dimensions and there is no open latency/cost issue, report
    `No action needed` and stop.
 
-10. **Check staleness** — if a score records `git_sha` and it differs
-    materially from current `HEAD`, flag re-measurement before deep diagnosis.
+10. **Check staleness** — compare the score's recorded `git_sha` with current
+    `HEAD` to locate changes, then determine whether evaluated code, prompt,
+    model/provider contract, scorer, golden, inputs, or execution environment
+    changed. Re-measure only when those changes could affect this result;
+    commit distance alone does not make evidence stale.
 
 11. **Present the ranked candidate list** if no eval was supplied. Wait for the
     user to pick unless `--autonomous` is active.
@@ -144,6 +148,36 @@ code, or hybrid implementation honestly.
     - filter to the relevant provider or cases when debugging one failure
     - reserve `--no-cache` for prompt changes or the final verification run
 
+## Experiment Decision Contract
+
+Before implementation or paid calls, record in the attempt plan:
+
+- a falsifiable hypothesis and the change or comparison that tests it
+- the baseline, metric, and aggregation rule, all fixed before observing results
+- required quality gates and any safety or correctness constraints
+- a meaningful improvement threshold, including how it is calculated
+- the authorized time, call, and spend budget, plus a stop condition
+- what result leads to adoption, rejection, or a qualified/uncertain result
+- the exact input identities reserved for development and independent
+  validation
+
+Start with the cheapest experiment that can settle the decision. An offline
+calculation or existing retained output may rule out an approach before any
+implementation or API call. A borderline result may receive one confirmation
+batch specified in advance and within the authorized budget; otherwise report
+it as uncertain. Assess sample size, paired variation, and measurement
+precision; a numerical threshold pass alone does not establish adoption-grade
+evidence. Preserve all observations and do not change the aggregation rule,
+input subset, or comparison after seeing results. Do not repeat attempts until
+a favorable result appears.
+Record whether validation inputs influenced tuning. If they did, disclose that
+contamination and reserve fresh material for the next independent confirmation.
+
+For result verification, follow
+`.agents/skills/finish-and-push/SKILL.md`'s proportional-validation and
+evidence-reuse policy: unchanged evidence carries forward, and rerun checks
+whose inputs or dependencies were affected by the change.
+
 ## Phase 5 — Execute
 
 24. **Baseline measurement** — run the eval or scoped test to establish the
@@ -210,7 +244,9 @@ code, or hybrid implementation honestly.
 ## Guardrails
 
 - Never retry a blocked approach.
-- Always measure before and after.
+- For changes that proceed to execution, measure the applicable before/after
+  result. A cheaper offline bound may reject an approach before implementation
+  or paid calls; record that calculation and do not manufacture a benchmark run.
 - Do not change files before the approval gate unless `--autonomous` is active.
 - Record failed attempts as carefully as successful ones.
 - Do not skip mismatch classification when the eval uses a golden or rubric.

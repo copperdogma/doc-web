@@ -33,7 +33,9 @@ code, or hybrid implementation honestly.
 - no argument: scan the full eval surface
 - eval ID argument: assess one eval's health, staleness, and next action
 
-This skill is read-only and advisory. It never runs evals automatically.
+This skill is read-only and advisory. It never runs evals automatically. Use
+retained representative timings, costs, effort records, or offline calculations
+for impact estimates; if evidence is missing, recommend a bounded measurement.
 
 The core filter is actionability, not abstract importance. A red or stale eval
 line is not recommendable unless the diagnosis can name why that line should be
@@ -76,6 +78,18 @@ return candidates and stop conditions; reserve the direct
 If a recommendation depends on model availability, pricing, or a newly released
 provider capability, verify it with current official docs or a fresh web search
 before claiming the trigger is met.
+
+## Impact Check
+
+Before recommending an optimization, estimate the target stage's share of
+end-to-end intake time, cost, or human effort and the improvement the proposed
+change could realistically deliver. Use a lightweight representative
+measurement where possible; label estimates and evidence limits. For example,
+if a stage uses 5% of total intake time and its time is reduced by 30%, the overall
+time saving is about 1.5%, before overhead. Prefer the end-to-end impact over
+the impressive-looking local percentage. Quality defects and critical
+dependencies can justify work independently of speed or cost savings; name
+that reason explicitly.
 
 ## What To Evaluate
 
@@ -152,6 +166,8 @@ Look for:
 ### Rerun Candidates
 - {eval-id} — {why now}
   - Last relevant action: {date + attempt/story/evidence}
+  - For an optimization: stage share × realistic local gain → estimated
+    end-to-end time, cost, or human effort saved; explain critical-path effects
 
 ### Deletion Candidates
 - {compromise / eval-id} — {why the compromise may now be deletable}
@@ -178,10 +194,10 @@ Recommend the smallest correct next step:
 - `/create-story` when the issue is an implementation gap, not just eval staleness
 - update `docs/methodology/state.yaml`, `tests/fixtures/formats/_coverage-matrix.json`, or `docs/spec.md` when the truth surfaces drift from a passing gate
 
-Prefer a concrete next move over `no action` whenever a phase-aligned,
-bounded experiment or proof refresh still exists. Reserve `no action` for lines
-that are truly blocked on external capability, just retried on the same
-premise, or missing a falsifiable next experiment.
+Prefer a concrete next move when its expected user, quality, dependency, time,
+cost, or effort impact justifies the work and it is phase-aligned. A bounded
+experiment or proof refresh alone does not establish sufficient value; report
+`no action` when likely benefit is immaterial, and explain the impact basis.
 
 Do not auto-run expensive evals. Present cost/time implications and let the
 user decide.
@@ -197,9 +213,9 @@ user decide.
 - Do not convert "big gap" or "red line" into "do this now" without naming a
   concrete why-now trigger or a genuinely new unanswered question.
 - Do not treat "no newly released model" as sufficient reason for no action
-  when a bounded prompt, golden, proof-refresh, or architecture-linked eval
-  move still exists.
-- If a `converge` or `climb` line still has a bounded falsifiable next move,
-  prefer recommending it over `no action`.
+  when a bounded move with material expected impact still exists.
+- A bounded falsifiable move in a `converge` or `climb` line is not by itself
+  sufficient reason to recommend action; apply the impact check and report
+  quality or critical-dependency exceptions explicitly.
 - If no eval action is justified, say so clearly
 - Keep the report compact enough for `/triage` to synthesize with other leaf reports

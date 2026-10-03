@@ -1,3 +1,8 @@
+## [2026-10-03-03] - Set experiment and loop-review decision rules
+
+### Changed
+- Add end-to-end impact estimates to eval triage, predeclared experiment and uncertainty rules to eval improvement, and follow-through/opportunity-cost checks to loop reviews.
+
 ## [2026-10-03-02] - Preserve visible source color in crop metadata (Story226 continuation)
 
 ### Fixed
