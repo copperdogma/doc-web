@@ -936,6 +936,25 @@ evals:
         note: "Poor bounding box precision"
 
     attempts:
+      - id: "057-color-fidelity-source-metadata"
+        date: 2026-10-03
+        status: succeeded
+        approach: "Conservative visible source-channel color metadata; prevent colored grayscale alpha derivatives"
+        note: >
+          Existing aggregate-channel means and average chroma falsely classify
+          colored crops. Six new controls fail on incumbent; nine pass after
+          visible RGB channel equality replaces aggregate thresholds, excluding
+          alpha-zero pixels and preserving partly visible chroma/source tint.
+          Real cached32-page driver retains all95 PNG bytes/RGBA/ICC/bboxes and
+          full rows except is_color plus run_id/created_at; all95 visible native
+          source RGB exact.92 flags false→true, color count3→95. Original inputs
+          unchanged; crop23.15s is one observation, no timing-win claim.111 affected
+          tests pass after correcting a matched prepatch stale planner fixture's
+          true preview basis/identity and native-to-preview bbox. No runtime guard
+          weakening or crop golden change.0 provider calls/cost. p005 background
+          hold and Story226 In Progress remain. No wholemanual/held-out/model
+          promotion. Proof: docs/evals/attempts/057-color-fidelity-source-metadata.md
+          and result.json.
       - id: "056-lossless-png-encoding"
         date: 2026-10-03
         status: succeeded

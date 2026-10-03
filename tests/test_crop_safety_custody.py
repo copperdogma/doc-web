@@ -257,7 +257,21 @@ def test_guided_regular_crop_records_actual_high_resolution_source(inputs):
     pages = inputs["pages_path"]
     save_jsonl(pages, [{"page_number": 1, "image": str(preview), "image_native": str(native), "images": []}])
     critical = inputs["out_root"].parent / "critical.json"
-    critical.write_text(json.dumps({"schema_version": "critical_graphics_manifest_v1", "pages": [{"page_number": 1, "targets": [{"target_id": "fixture-native", "importance": "essential", "role": "photo", "description": "Offline source mapping fixture", "bbox_pixels": {"x0": 10, "y0": 10, "x1": 85, "y1": 100, "width": 75, "height": 90}}]}]}))
+    with Image.open(preview) as preview_image:
+        basis_width, basis_height = preview_image.size
+    # The planner sees the half-size preview. Its bbox maps to the same
+    # native (10, 10, 85, 100) rectangle used by this source-custody fixture.
+    critical.write_text(json.dumps({
+        "schema_version": "critical_graphics_manifest_v1", "pages": [{
+            "page_number": 1, "image_width": basis_width, "image_height": basis_height,
+            "source_image": str(preview), "targets": [{
+                "target_id": "fixture-native", "source_page_number": 1,
+                "source_image": str(preview), "importance": "essential", "role": "photo",
+                "description": "Offline source mapping fixture",
+                "bbox_pixels": {"x0": 5, "y0": 5, "x1": 42.5, "y1": 50, "width": 37.5, "height": 45},
+            }],
+        }],
+    }))
     rows = crop_illustrations_guided(str(pages), str(inputs["out_root"].parent / "guided-regular"), run_id=inputs["run_id"], output_format="png", transparency=False, detection_mode="auto", critical_graphics_manifest=str(critical), padding_percent=0)
     assert len(rows) == 1
     assert rows[0]["source_image"] == str(native)

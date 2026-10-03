@@ -3316,48 +3316,18 @@ def _prune_stale_crop_images(
 
 
 def _is_bw_image(img: Image.Image) -> bool:
-    """Check if image is black & white (grayscale or near-grayscale).
-    
-    Handles beige/cream paper backgrounds by checking both color variance
-    and saturation levels. Desaturated images (low saturation) are treated
-    as B&W even if they have slight color variance from aged paper.
+    """True only when all visible source pixels have equal RGB channels.
+
+    Source tint and sparse colored accents remain color. Fully transparent
+    pixels do not contribute; even partly visible chroma must be preserved.
     """
     if img.mode in ('L', '1'):
         return True
-
-    if img.mode == 'RGB' or img.mode == 'RGBA':
-        img_array = np.array(img)
-        if img.mode == 'RGBA':
-            rgb = img_array[:, :, :3]
-        else:
-            rgb = img_array
-
-        # Method 1: Check color variance (strict)
-        r, g, b = rgb[:, :, 0], rgb[:, :, 1], rgb[:, :, 2]
-        color_variance = np.std([np.mean(r), np.mean(g), np.mean(b)])
-        if color_variance < 5:
-            return True
-        
-        # Method 2: Check saturation (handles beige/cream backgrounds)
-        # Convert to normalized RGB for saturation calculation
-        rgb_norm = rgb.astype(np.float32) / 255.0
-        max_val = np.max(rgb_norm, axis=2)
-        min_val = np.min(rgb_norm, axis=2)
-        delta = max_val - min_val
-        
-        # Calculate mean saturation (0.0 = grayscale, 1.0 = fully saturated)
-        mean_saturation = np.mean(delta)
-        
-        # If saturation is very low (< 0.25), treat as B&W even with color variance
-        # This handles beige/cream paper that has slight R/G/B differences but is effectively grayscale
-        if mean_saturation < 0.25:
-            return True
-        
-        # Fallback: if color variance is moderate (< 20) and saturation is low (< 0.30)
-        if color_variance < 20 and mean_saturation < 0.30:
-            return True
-
-    return False
+    pixels = np.asarray(img if img.mode in ('RGB', 'RGBA') else img.convert('RGBA'))
+    chroma = (pixels[:, :, 0] != pixels[:, :, 1]) | (pixels[:, :, 1] != pixels[:, :, 2])
+    if pixels.shape[2] == 4:
+        chroma &= pixels[:, :, 3] != 0
+    return not bool(np.any(chroma))
 
 
 def _make_transparent(img: Image.Image, threshold: int = 230) -> Image.Image:

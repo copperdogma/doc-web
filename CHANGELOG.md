@@ -1,3 +1,12 @@
+## [2026-10-03-02] - Preserve visible source color in crop metadata (Story226 continuation)
+
+### Fixed
+- Classify visible source channel differences conservatively, preventing balanced/sparse color and paper tint from being marked grayscale or receiving a grayscale transparency derivative.
+- Repair a stale custody test's preview coordinate basis while preserving its native rectangle assertion and runtime geometry guards.
+
+### Changed
+- Cached32-page proof preserves all95 PNG bytes, RGBA arrays, ICC profiles and crop bounds;92 incorrect color flags change.111 affected controls and independent source comparison pass with zero provider calls. Existing p005 crop-quality hold remains; Story226 stays In Progress.
+
 ## [2026-10-03-01] - Preserve critical artwork and speed lossless native crops (Story226 continuation)
 
 ### Fixed
