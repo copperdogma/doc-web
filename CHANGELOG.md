@@ -1,3 +1,9 @@
+## [2026-10-04-01] — Research before reinvention
+
+### Changed
+- Add bounded problem-class research and periodic strategy checkpoints to agent
+  workflows, preserving owner reuse boundaries, verification stops, and budgets.
+
 ## [2026-10-03-03] - Set experiment and loop-review decision rules
 
 ### Changed

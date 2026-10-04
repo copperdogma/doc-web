@@ -3,6 +3,32 @@
 > Canonical prose front door for doc-forge's methodology package.
 > Use this runbook together with `/setup-methodology`.
 
+## Research and strategy wiring
+
+When creating or refreshing AGENTS, carry the portable research rule: diagnose
+an uncertain nontrivial obstacle locally, name its general problem class, reuse
+applicable prior findings or inspect a few relevant primary sources, and stop
+once an approach and small local check are clear. Save reusable sources,
+decision, local result, and uncertainty in existing notes. Revisit diagnosis
+before repeated retries or special cases. Preserve owner reuse restrictions and
+acceptance criteria; obvious fixes need no research ceremony. Retain the rule
+in lean kickoff packages even if full methodology setup is deferred.
+
+Wire narrow planning and active implementation hooks into `/build-story`, and
+an unfamiliar/repeated-failure hook into `/validate`. Existing `/loop-verify`
+uses coordinator round-boundary strategy checks and periodic source comparisons;
+existing `/loop-review` compares established alternatives at strategy checkpoints.
+Keep a requested cadence, otherwise use roughly 30 active minutes or three
+substantive rounds, whichever comes first. Carry active time, round count, and
+last/next checkpoint across interruptions; verified dependency waits are not
+active work. If a timed checkpoint is overdue, do one current-state review
+before permitted continuation, within remaining budget, and keep the original
+next deadline rather than replaying missed slots or restarting the cadence.
+Reuse still-applicable comparisons with a reason; fresh searches are not a
+quota. Hard stops and budgets take precedence. Do not add schedules, extend the
+run, or weaken meaningful acceptance. Preserve the owner's existing verifier
+phase/reset contract when refreshing research guidance.
+
 ## Why This Exists
 
 Doc-forge already has the authored methodology canon:

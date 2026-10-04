@@ -160,6 +160,72 @@ get nicer wording, a redundant second opinion, or a stronger-sounding closeout
 line. Escalate to `/validate` for closure judgment; do not turn `/loop-verify`
 into story closure.
 
+## Coordinator Strategy Checkpoints
+
+Before choosing another permitted round, briefly check what outcome or
+uncertainty improved, which assumptions keep repeating, and whether special
+cases are accumulating. The coordinator owns strategy; workers retain their
+single-pass shards without recursive loops or research swarms.
+
+On longer authorized active runs, proactively compare the current technique
+with an established, meaningfully different approach to the general problem
+class, even while local metrics improve. Use the operator's requested cadence;
+otherwise start with roughly 30 minutes of active work or three substantive
+rounds since the previous deeper comparison (or run start), whichever comes first.
+This is a tunable starting default, not a calibrated optimum. An unfamiliar
+material obstacle can trigger comparison earlier.
+
+Keep the checkpoint regular, but browse afresh only when needed. Reuse a recent
+source-backed comparison only if its assumptions, relevant constraints, and
+observed failure modes still fit, recording why. Otherwise inspect a few useful
+primary sources for the general problem class. Stop research once applicability
+and the smallest discriminating local experiment are clear. Compare permitted
+reuse, complexity, and maintenance cost; preserve acceptance criteria and owner
+boundaries. Research supports a hypothesis until the local check supplies
+evidence. If the bounded search is inconclusive or unavailable, report the gap
+and choose an in-scope diagnostic or stop under the existing contract; do not
+keep searching indefinitely or claim an unverified alternative is established.
+
+Record useful sources or reused evidence, local results, remaining uncertainty, a
+`continue`/`change`/`defer`/`stop` decision, any next experiment, and the next
+reassessment trigger in the existing finding ledger or work log. Carry cadence
+state across interruptions, including active time and substantive rounds since
+the last deeper comparison; brief round checks do not reset that cadence, and
+genuine dependency waits do not count as active work.
+If an operator-timed checkpoint is overdue on resumption, perform one current
+comparison before otherwise permitted continuation, within remaining time and
+budget. Record the missed checkpoint and keep the original next deadline;
+do not replay every missed slot or shift the cadence to the resumption time.
+Research and experiments consume the existing budget. These checkpoints do not
+authorize more rounds, budget, scope, or a recurring automation.
+
+## Non-Convergence And Systemic Audit Trigger
+
+Stop the normal loop and switch to `final state: systemic-audit-needed` or
+`final state: non-convergent` when the loop shows that it is still mapping the
+defect landscape rather than closing a candidate:
+
+- two consecutive passes find same-class material issues
+- two material resets happen without narrowing the remaining risk
+- workers keep finding new instances after a class-level pattern is already
+  visible
+- the scope expands beyond the original threat model, owner boundary, or
+  approved file/output surface
+- candidate validation becomes more expensive than another discovery pass is
+  likely to justify
+- full-suite, proof-generation, docs, changelog, or methodology work is being
+  repeated after non-final fixes
+
+When this triggers, stop fixing instance by instance. Report the defect class,
+known affected surfaces, local impact, focused probes already run, and the
+smallest recommended systemic audit or follow-up story. If local work can still
+be validated independently, separate that from the systemic follow-up.
+
+These hard stops take precedence over strategy cadence: do not wait for a
+checkpoint or use research to justify another prohibited round. Any comparison
+for the proposed systemic follow-up must fit the remaining authorized audit
+scope and budget; it does not authorize implementing that follow-up.
+
 ## Upstream And Expansion Boundary
 
 Before launching workers and while classifying findings, state the boundary
@@ -236,6 +302,8 @@ When a worker finds an upstream-owned or expansion issue:
      conflict, upstream-owned issue, expansion finding, or required human
      judgment.
 6. Decide whether the loop resets or stops.
+   - Apply the non-convergence/systemic-audit hard stops before choosing another
+     round or reset. A strategy checkpoint never overrides a stop or budget.
    - If any shard is `RESULT: blocked` and the blocker is still unresolved at
      the end of the round, stop and report the blocker unless the main agent can
      resolve it locally without widening scope.
@@ -376,7 +444,7 @@ stories or ADRs outside the named files.
 - upstream-owned findings, expansion findings, or blockers, if any, with the
   local impact and suggested follow-up route
 - final state: converged, budget-complete, continuation-needed, blocked, or
-  non-convergent
+  non-convergent, systemic-audit-needed
 - checks run
 - learning-review result when the loop exposed material repeated issues,
   blockers, non-convergence, explicit user correction, missing guardrail, or a
