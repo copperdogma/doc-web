@@ -517,6 +517,7 @@ def _build_doc_web_bundle(
     entries: list[dict[str, Any]] = []
     provenance_rows: list[dict[str, Any]] = []
     page_files: dict[str, str] = {}
+    navigation_aliases: dict[str, dict[str, list[str]]] = {}
     runtime_trace: list[dict[str, Any]] = []
 
     entry_ids = [f"page-{index:03d}" for index in range(1, len(page_contexts) + 1)]
@@ -535,9 +536,13 @@ def _build_doc_web_bundle(
         llm_request_count = (page_stats.get("block_metadata") or {}).get("llm_request_count", 0)
 
         soup = BeautifulSoup(page_row["html"], "html.parser")
+        aliases = navigation_aliases.setdefault(entry_id, {})
         tags = [tag for tag in _iter_provenance_tags(soup) if _should_emit_provenance_tag(tag)]
         for ordinal, tag in enumerate(tags, start=1):
             block_id = f"blk-{entry_id}-{ordinal:04d}"
+            original_id = tag.get("id")
+            if original_id:
+                aliases.setdefault(original_id, []).append(block_id)
             tag["id"] = block_id
             source_element_id = tag.get("data-source-element-id") or f"{entry_id}-dom-{ordinal:04d}"
             confidence = float(tag.get("data-source-confidence")) if tag.get("data-source-confidence") else None
@@ -612,6 +617,8 @@ def _build_doc_web_bundle(
         asset_roots=[],
         provenance_path="provenance/blocks.jsonl",
     ).model_dump(exclude_none=True)
+    for row in runtime_trace:
+        row["navigation_id_aliases"] = navigation_aliases.get(row["entry_id"], {})
     return manifest, provenance_rows, page_files, runtime_trace
 
 
@@ -739,6 +746,7 @@ def write_marker_outputs(
     runtime_trace: list[dict[str, Any]],
     summary: dict[str, Any],
     normalization_report: dict[str, Any],
+    resolve_references: bool = False,
 ) -> dict[str, str]:
     pages_path = outdir / artifact_name
     blocks_path = outdir / "marker_blocks.jsonl"
@@ -750,11 +758,26 @@ def write_marker_outputs(
     bundle_index_path = bundle_dir / "index.html"
     bundle_provenance_path = bundle_dir / "provenance" / "blocks.jsonl"
 
+    from modules.common.manual_navigation import resolve_navigation, verify_final_navigation
+
+    navigation_entries = [
+        {**entry, "filename": entry["path"], "body_html": bundle["page_files"][entry["entry_id"]],
+         "prepared_pages": [page for page in page_rows if page["page_number"] in entry.get("source_pages", [])],
+         "_navigation_id_aliases": next((row.get("navigation_id_aliases", {}) for row in runtime_trace
+                                         if row["entry_id"] == entry["entry_id"]), {})}
+        for entry in bundle["manifest"]["entries"]
+    ]
+    navigation_report = resolve_navigation(
+        navigation_entries, bundle_root=bundle_dir, resolve_references=resolve_references,
+        source_pages=page_rows, provenance_rows=bundle["provenance_rows"],
+    )
+    bundle["page_files"] = {entry["entry_id"]: entry["body_html"] for entry in navigation_entries}
+    save_json(str(bundle_dir / "navigation_resolution_report.json"), navigation_report)
+
     save_jsonl(str(pages_path), page_rows)
     save_jsonl(str(blocks_path), block_rows)
     save_json(str(runtime_trace_path), runtime_trace)
     save_json(str(normalization_report_path), normalization_report)
-    save_json(str(bundle_manifest_path), bundle["manifest"])
     save_jsonl(str(bundle_provenance_path), bundle["provenance_rows"])
     write_text(
         bundle_index_path,
@@ -766,11 +789,22 @@ def write_marker_outputs(
     for entry_id, page_html in bundle["page_files"].items():
         write_text(bundle_dir / f"{entry_id}.html", page_html)
 
+    navigation_report["final_validation"] = verify_final_navigation(
+        [bundle_dir / f"{entry_id}.html" for entry_id in bundle["page_files"]] + [bundle_index_path],
+        source_pages=page_rows,
+        source_entries=navigation_entries,
+    )
+    save_json(str(bundle_dir / "navigation_resolution_report.json"), navigation_report)
+    if navigation_report["final_validation"]["issues"]:
+        raise ValueError(f"Final HTML navigation failed: {navigation_report['final_validation']['issues']}")
+    save_json(str(bundle_manifest_path), bundle["manifest"])
+
     output_artifacts = {
         "pages_html": str(pages_path),
         "marker_blocks": str(blocks_path),
         "runtime_trace": str(runtime_trace_path),
         "normalization_report": str(normalization_report_path),
+        "navigation_resolution_report": str(bundle_dir / "navigation_resolution_report.json"),
         "doc_web_bundle_manifest": str(bundle_manifest_path),
         "doc_web_bundle_provenance": str(bundle_provenance_path),
         "summary": str(summary_path),

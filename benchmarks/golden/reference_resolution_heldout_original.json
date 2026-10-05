@@ -1,0 +1,325 @@
+{
+  "version": 1,
+  "split": "heldout",
+  "authorship": "Separate evaluator-authored harbour corpus, held back from runtime developers and candidate execution.",
+  "entries": [
+    {
+      "filename": "harbour-log.html",
+      "body_html": "<h1 id=\"welcome\">Harbour Log</h1><p data-eval-case=\"offset\" id=\"h-offset\">Consult page 31.</p><p data-eval-case=\"roman\" id=\"h-roman\">See page vi.</p><p data-eval-case=\"inline\" id=\"h-inline\">Return to <b>chapter</b> <i>4</i>.</p><p data-eval-case=\"wrong\" id=\"h-wrong\"><a href=\"harbour-safety.html#routine\">Section 18</a></p><p data-eval-case=\"scope\" id=\"h-scope\"><a href=\"harbour-safety.html#local\">section 2</a></p><p data-eval-case=\"missing\" id=\"h-missing\">See Table 81.</p><p data-eval-case=\"inferred\" id=\"h-inferred\">See page 32.</p><p data-eval-case=\"ambiguous\" id=\"h-ambiguous\">See section 19.</p><p data-eval-case=\"url\" id=\"h-url\">Details at https://example.net/log?version=2.</p><nav data-eval-case=\"nav\" id=\"h-nav\">See section 18.</nav><h2 id=\"local\">Section 2 Local log</h2><dl><dt>Contents</dt><dd data-eval-case=\"toc\" id=\"h-toc\">Chapter 4 — Mooring .... 31</dd></dl><ul class=\"index\"><li data-eval-case=\"index\" id=\"h-index\">Mooring, 31, 90</li></ul>",
+      "source_pages": [
+        1
+      ],
+      "prepared_pages": [
+        {
+          "page_number": 1,
+          "html": "<h1 id=\"welcome\">Harbour Log</h1><p data-eval-case=\"offset\" id=\"h-offset\">Consult page 31.</p><p data-eval-case=\"roman\" id=\"h-roman\">See page vi.</p><p data-eval-case=\"inline\" id=\"h-inline\">Return to <b>chapter</b> <i>4</i>.</p><p data-eval-case=\"wrong\" id=\"h-wrong\"><a href=\"harbour-safety.html#routine\">Section 18</a></p><p data-eval-case=\"scope\" id=\"h-scope\"><a href=\"harbour-safety.html#local\">section 2</a></p><p data-eval-case=\"missing\" id=\"h-missing\">See Table 81.</p><p data-eval-case=\"inferred\" id=\"h-inferred\">See page 32.</p><p data-eval-case=\"ambiguous\" id=\"h-ambiguous\">See section 19.</p><p data-eval-case=\"url\" id=\"h-url\">Details at https://example.net/log?version=2.</p><nav data-eval-case=\"nav\" id=\"h-nav\">See section 18.</nav><h2 id=\"local\">Section 2 Local log</h2><dl><dt>Contents</dt><dd data-eval-case=\"toc\" id=\"h-toc\">Chapter 4 — Mooring .... 31</dd></dl><ul class=\"index\"><li data-eval-case=\"index\" id=\"h-index\">Mooring, 31, 90</li></ul>"
+        }
+      ]
+    },
+    {
+      "filename": "harbour-safety.html",
+      "body_html": "<h1 id=\"mooring\">Chapter 4 Mooring</h1><h2 id=\"urgent\">Section 18 Urgent procedure</h2><h2 id=\"routine\">Section 20 Routine procedure</h2><h2 id=\"local\">Section 2 Safety appendix</h2><h3 id=\"dup-a\">Section 19 East</h3><h3 id=\"dup-b\">Section 19 West</h3>",
+      "source_pages": [
+        6
+      ],
+      "prepared_pages": [
+        {
+          "page_number": 6,
+          "html": "<h1 id=\"mooring\">Chapter 4 Mooring</h1><h2 id=\"urgent\">Section 18 Urgent procedure</h2><h2 id=\"routine\">Section 20 Routine procedure</h2><h2 id=\"local\">Section 2 Safety appendix</h2><h3 id=\"dup-a\">Section 19 East</h3><h3 id=\"dup-b\">Section 19 West</h3>",
+          "printed_page_number": 31,
+          "printed_page_number_text": "31",
+          "printed_page_number_inferred": false
+        }
+      ]
+    },
+    {
+      "filename": "harbour-front.html",
+      "body_html": "<p id=\"foreword\">Preface</p>",
+      "source_pages": [
+        2
+      ],
+      "prepared_pages": [
+        {
+          "page_number": 2,
+          "html": "<p id=\"foreword\">Preface</p>",
+          "printed_page_number_text": "vi",
+          "printed_page_number_inferred": false
+        }
+      ]
+    },
+    {
+      "filename": "harbour-estimate.html",
+      "body_html": "<p id=\"estimate\">Estimated pagination</p>",
+      "source_pages": [
+        7
+      ],
+      "prepared_pages": [
+        {
+          "page_number": 7,
+          "html": "<p id=\"estimate\">Estimated pagination</p>",
+          "printed_page_number": 32,
+          "printed_page_number_text": "32",
+          "printed_page_number_inferred": true
+        }
+      ]
+    }
+  ],
+  "source_pages": [
+    {
+      "page_number": 1,
+      "html": "<h1 id=\"welcome\">Harbour Log</h1><p data-eval-case=\"offset\" id=\"h-offset\">Consult page 31.</p><p data-eval-case=\"roman\" id=\"h-roman\">See page vi.</p><p data-eval-case=\"inline\" id=\"h-inline\">Return to <b>chapter</b> <i>4</i>.</p><p data-eval-case=\"wrong\" id=\"h-wrong\"><a href=\"harbour-safety.html#routine\">Section 18</a></p><p data-eval-case=\"scope\" id=\"h-scope\"><a href=\"harbour-safety.html#local\">section 2</a></p><p data-eval-case=\"missing\" id=\"h-missing\">See Table 81.</p><p data-eval-case=\"inferred\" id=\"h-inferred\">See page 32.</p><p data-eval-case=\"ambiguous\" id=\"h-ambiguous\">See section 19.</p><p data-eval-case=\"url\" id=\"h-url\">Details at https://example.net/log?version=2.</p><nav data-eval-case=\"nav\" id=\"h-nav\">See section 18.</nav><h2 id=\"local\">Section 2 Local log</h2><dl><dt>Contents</dt><dd data-eval-case=\"toc\" id=\"h-toc\">Chapter 4 — Mooring .... 31</dd></dl><ul class=\"index\"><li data-eval-case=\"index\" id=\"h-index\">Mooring, 31, 90</li></ul>"
+    },
+    {
+      "page_number": 6,
+      "html": "<h1 id=\"mooring\">Chapter 4 Mooring</h1><h2 id=\"urgent\">Section 18 Urgent procedure</h2><h2 id=\"routine\">Section 20 Routine procedure</h2><h2 id=\"local\">Section 2 Safety appendix</h2><h3 id=\"dup-a\">Section 19 East</h3><h3 id=\"dup-b\">Section 19 West</h3>",
+      "printed_page_number": 31,
+      "printed_page_number_text": "31",
+      "printed_page_number_inferred": false
+    },
+    {
+      "page_number": 2,
+      "html": "<p id=\"foreword\">Preface</p>",
+      "printed_page_number_text": "vi",
+      "printed_page_number_inferred": false
+    },
+    {
+      "page_number": 7,
+      "html": "<p id=\"estimate\">Estimated pagination</p>",
+      "printed_page_number": 32,
+      "printed_page_number_text": "32",
+      "printed_page_number_inferred": true
+    }
+  ],
+  "provenance_rows": [
+    {
+      "block_id": "welcome",
+      "html_path": "harbour-log.html",
+      "source_page_number": 1,
+      "source_printed_page": null,
+      "text_quote": "Harbour Log"
+    },
+    {
+      "block_id": "h-offset",
+      "html_path": "harbour-log.html",
+      "source_page_number": 1,
+      "source_printed_page": null,
+      "text_quote": "Consult page 31."
+    },
+    {
+      "block_id": "h-roman",
+      "html_path": "harbour-log.html",
+      "source_page_number": 1,
+      "source_printed_page": null,
+      "text_quote": "See page vi."
+    },
+    {
+      "block_id": "h-inline",
+      "html_path": "harbour-log.html",
+      "source_page_number": 1,
+      "source_printed_page": null,
+      "text_quote": "Return to chapter 4."
+    },
+    {
+      "block_id": "h-wrong",
+      "html_path": "harbour-log.html",
+      "source_page_number": 1,
+      "source_printed_page": null,
+      "text_quote": "Section 18"
+    },
+    {
+      "block_id": "h-scope",
+      "html_path": "harbour-log.html",
+      "source_page_number": 1,
+      "source_printed_page": null,
+      "text_quote": "section 2"
+    },
+    {
+      "block_id": "h-missing",
+      "html_path": "harbour-log.html",
+      "source_page_number": 1,
+      "source_printed_page": null,
+      "text_quote": "See Table 81."
+    },
+    {
+      "block_id": "h-inferred",
+      "html_path": "harbour-log.html",
+      "source_page_number": 1,
+      "source_printed_page": null,
+      "text_quote": "See page 32."
+    },
+    {
+      "block_id": "h-ambiguous",
+      "html_path": "harbour-log.html",
+      "source_page_number": 1,
+      "source_printed_page": null,
+      "text_quote": "See section 19."
+    },
+    {
+      "block_id": "h-url",
+      "html_path": "harbour-log.html",
+      "source_page_number": 1,
+      "source_printed_page": null,
+      "text_quote": "Details at https://example.net/log?version=2."
+    },
+    {
+      "block_id": "h-nav",
+      "html_path": "harbour-log.html",
+      "source_page_number": 1,
+      "source_printed_page": null,
+      "text_quote": "See section 18."
+    },
+    {
+      "block_id": "local",
+      "html_path": "harbour-log.html",
+      "source_page_number": 1,
+      "source_printed_page": null,
+      "text_quote": "Section 2 Local log"
+    },
+    {
+      "block_id": "h-toc",
+      "html_path": "harbour-log.html",
+      "source_page_number": 1,
+      "source_printed_page": null,
+      "text_quote": "Chapter 4 — Mooring .... 31"
+    },
+    {
+      "block_id": "h-index",
+      "html_path": "harbour-log.html",
+      "source_page_number": 1,
+      "source_printed_page": null,
+      "text_quote": "Mooring, 31, 90"
+    },
+    {
+      "block_id": "mooring",
+      "html_path": "harbour-safety.html",
+      "source_page_number": 6,
+      "source_printed_page": "31",
+      "text_quote": "Chapter 4 Mooring"
+    },
+    {
+      "block_id": "urgent",
+      "html_path": "harbour-safety.html",
+      "source_page_number": 6,
+      "source_printed_page": "31",
+      "text_quote": "Section 18 Urgent procedure"
+    },
+    {
+      "block_id": "routine",
+      "html_path": "harbour-safety.html",
+      "source_page_number": 6,
+      "source_printed_page": "31",
+      "text_quote": "Section 20 Routine procedure"
+    },
+    {
+      "block_id": "local",
+      "html_path": "harbour-safety.html",
+      "source_page_number": 6,
+      "source_printed_page": "31",
+      "text_quote": "Section 2 Safety appendix"
+    },
+    {
+      "block_id": "dup-a",
+      "html_path": "harbour-safety.html",
+      "source_page_number": 6,
+      "source_printed_page": "31",
+      "text_quote": "Section 19 East"
+    },
+    {
+      "block_id": "dup-b",
+      "html_path": "harbour-safety.html",
+      "source_page_number": 6,
+      "source_printed_page": "31",
+      "text_quote": "Section 19 West"
+    },
+    {
+      "block_id": "foreword",
+      "html_path": "harbour-front.html",
+      "source_page_number": 2,
+      "source_printed_page": "vi",
+      "text_quote": "Preface"
+    },
+    {
+      "block_id": "estimate",
+      "html_path": "harbour-estimate.html",
+      "source_page_number": 7,
+      "source_printed_page": "32",
+      "text_quote": "Estimated pagination"
+    }
+  ],
+  "cases": [
+    {
+      "id": "offset",
+      "file": "harbour-log.html",
+      "expected_href": "harbour-safety.html#mooring",
+      "expected_status": "resolved"
+    },
+    {
+      "id": "roman",
+      "file": "harbour-log.html",
+      "expected_href": "harbour-front.html#foreword",
+      "expected_status": "resolved"
+    },
+    {
+      "id": "inline",
+      "file": "harbour-log.html",
+      "expected_href": "harbour-safety.html#mooring",
+      "expected_status": "resolved"
+    },
+    {
+      "id": "wrong",
+      "file": "harbour-log.html",
+      "expected_href": "harbour-safety.html#urgent",
+      "expected_status": "resolved"
+    },
+    {
+      "id": "scope",
+      "file": "harbour-log.html",
+      "expected_href": "harbour-safety.html#local",
+      "expected_status": "resolved"
+    },
+    {
+      "id": "missing",
+      "file": "harbour-log.html",
+      "expected_href": null,
+      "expected_status": "missing"
+    },
+    {
+      "id": "inferred",
+      "file": "harbour-log.html",
+      "expected_href": null,
+      "expected_status": "missing"
+    },
+    {
+      "id": "ambiguous",
+      "file": "harbour-log.html",
+      "expected_href": null,
+      "expected_status": "ambiguous"
+    },
+    {
+      "id": "url",
+      "file": "harbour-log.html",
+      "expected_href": "https://example.net/log?version=2",
+      "expected_status": "resolved"
+    },
+    {
+      "id": "nav",
+      "file": "harbour-log.html",
+      "expected_href": null,
+      "expected_status": "skipped"
+    },
+    {
+      "id": "toc",
+      "file": "harbour-log.html",
+      "expected_href": "harbour-safety.html#mooring",
+      "expected_status": "resolved"
+    },
+    {
+      "id": "index",
+      "file": "harbour-log.html",
+      "expected_hrefs": [
+        "harbour-safety.html#mooring"
+      ],
+      "expected_status": "mixed"
+    }
+  ]
+}

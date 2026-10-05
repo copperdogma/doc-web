@@ -35,6 +35,56 @@
 
 evals:
 
+  - id: reference-resolution
+    name: Optional source-grounded reference resolution
+    type: quality
+    description: >
+      Exact destination correctness, occurrence recall, safe abstention and
+      source preservation for default-off final-HTML enrichment. Includes
+      contents/index entries and historical gamebook comparison workloads.
+      Historical OCR artifacts are not whole-document goldens.
+    pipeline_stage: build
+    runner: custom
+    command: "python benchmarks/scripts/reference_resolution_benchmark.py --split development --repeat 10 --output output/story243-benchmark-dev.json"
+    story_refs: ["243"]
+    category_refs: ["spec:3", "spec:6", "spec:7"]
+    spec_refs: ["spec:3.1", "spec:6", "spec:7"]
+    compromise_refs: []
+    target:
+      metric: exact_target_precision
+      value: 1.0
+      wrong_targets: 0
+      source_text_preservation: 1.0
+      api_calls: 0
+      cost_usd: 0
+    scores:
+      - model: deterministic-exact-source-reference-v1
+        measured: 2026-10-05
+        metrics: {heldout_cases: 12, passed: 12, exact_target_recall: 1.0, wrong_targets: 0, abstention_accuracy: 1.0, source_preservation: 1.0, latency_ms: 3.460279, cost_usd: 0, api_calls: 0}
+        note: "Single reserved synthetic confirmation after 273-source candidate freeze; all audit, markup, provenance, idempotence and opt-out gates pass. Timing is descriptive only. output/story243-heldout-final.json."
+      - model: deterministic-exact-source-reference-v1
+        measured: 2026-10-05
+        metrics: {freeway_scored_occurrences: 491, passed: 491, exact_target_recall: 1.0, wrong_targets: 0, excluded_source_anchors: 29, unscored_additional_discoveries: 66, latency_ms: 248.460146, cost_usd: 0, api_calls: 0}
+        note: "Single reserved Freeway comparison over 380 observed sections. Zero-wrong claim covers 491 admitted occurrences only; historical OCR health warnings and adapter exclusions prevent whole-book accuracy claims. No negative natural cases, so abstention is unmeasured. output/story243-freeway-final.json."
+      - model: deterministic-exact-source-reference-v1-with-source-parse-reuse
+        measured: 2026-10-05
+        metrics: {synthetic_paired_median_gain: 0.140308, deathtrap_paired_median_gain: 0.115178, synthetic_winning_pairs: 19, deathtrap_winning_pairs: 20, pairs_per_workload: 20, deathtrap_baseline_p50_ms: 364.481750, deathtrap_candidate_p50_ms: 321.909729, latency_ms: 317.495237, cost_usd: 0, api_calls: 0}
+        note: "One final matched-semantics cache/no-cache confirmation, exact on/off state parity and 24/24 plus 627/627 development quality. Retain cache; stop for diminishing returns. No full-driver speed claim; earlier epochs are separate and nonadditive. docs/notes/story243-performance.md."
+    attempts:
+      - id: "059"
+        date: 2026-10-05
+        status: succeeded
+        approach: >
+          Reuse final-heading resolver; optional exact printed-label/reference
+          discovery; frozen controls before bounded quality-preserving hillclimb.
+        note: >
+          User-requested Sol6.1 medium workers completed implementation,
+          bounded source-identity audits, independent confirmations and the
+          quality-preserving hillclimb. Donor discovered zero of three plain
+          forms; final reserved synthetic 12/12 and Freeway 491/491 admitted
+          references pass with zero wrong targets. No provider calls or heldout
+          tuning. See docs/evals/attempts/059-reference-resolution.md for bounds.
+
   - id: sol-crop-safety-native-public-smoke
     name: Opt-in Sol native public adapter smoke
     type: quality

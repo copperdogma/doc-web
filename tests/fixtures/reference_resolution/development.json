@@ -1,0 +1,591 @@
+{
+  "version": 1,
+  "split": "development",
+  "authorship": "Authored expected destinations before candidate execution; target IDs are literal source fixtures, not generated answers.",
+  "entries": [
+    {
+      "filename": "orchard-start.html",
+      "body_html": "<h1 id=\"start\">Orchard Guide</h1><p data-eval-case=\"wrong-existing\" id=\"occ-wrong-existing\"><a href=\"orchard-targets.html#wrong\">section 7</a></p><p data-eval-case=\"printed-offset\" id=\"occ-printed-offset\">See page 12.</p><p data-eval-case=\"roman\" id=\"occ-roman\">See page iv.</p><p data-eval-case=\"section-inline\" id=\"occ-section-inline\">See <em>section</em> <strong>7</strong>.</p><p data-eval-case=\"paragraph\" id=\"occ-paragraph\">See paragraph 8.</p><p data-eval-case=\"chapter\" id=\"occ-chapter\">See chapter 2.</p><p data-eval-case=\"figure\" id=\"occ-figure\">See Figure 3.</p><p data-eval-case=\"table\" id=\"occ-table\">See Table 5.</p><p data-eval-case=\"footnote\" id=\"occ-footnote\">See footnote 6.</p><p data-eval-case=\"duplicate-label\" id=\"occ-duplicate-label\">See page 22.</p><p data-eval-case=\"inferred\" id=\"occ-inferred\">See page 23.</p><p data-eval-case=\"missing\" id=\"occ-missing\">See page 99.</p><p data-eval-case=\"range\" id=\"occ-range\">See pages 24–25.</p><p data-eval-case=\"source-alias\" id=\"occ-source-alias\"><a href=\"orchard-targets.html#source-note\">this note</a></p><p data-eval-case=\"file-scope\" id=\"occ-file-scope\"><a href=\"orchard-targets.html#local\">section 9</a></p><p data-eval-case=\"duplicate-id\" id=\"occ-duplicate-id\"><a href=\"orchard-targets.html#duplicate\">unlabelled note</a></p><p data-eval-case=\"foreign\" id=\"occ-foreign\"><a href=\"other-edition.html#section\">section 7</a></p><p data-eval-case=\"url\" id=\"occ-url\">Visit https://example.org/guide#overview.</p><p data-eval-case=\"existing-url\" id=\"occ-existing-url\"><a href=\"https://example.org/source\">source website</a></p><p data-eval-case=\"skip-code\" id=\"occ-skip-code\"><code>See section 7</code></p><ul><li data-eval-case=\"toc\" id=\"occ-toc\">Chapter 2 ........ 12</li></ul><h2>Index</h2><table class=\"index\"><tbody><tr data-eval-case=\"index\" id=\"occ-index\"><td>Equipment</td><td>12, 99</td></tr></tbody></table><h2 id=\"local\">Section 9 Local appendix</h2><p data-eval-case=\"repeat-a\" id=\"occ-repeat-a\">See section 7.</p><p data-eval-case=\"repeat-b\" id=\"occ-repeat-b\">See section 7.</p>",
+      "source_pages": [
+        1
+      ],
+      "prepared_pages": [
+        {
+          "page_number": 1,
+          "html": "<h1 id=\"start\">Orchard Guide</h1><p data-eval-case=\"wrong-existing\" id=\"occ-wrong-existing\"><a href=\"orchard-targets.html#wrong\">section 7</a></p><p data-eval-case=\"printed-offset\" id=\"occ-printed-offset\">See page 12.</p><p data-eval-case=\"roman\" id=\"occ-roman\">See page iv.</p><p data-eval-case=\"section-inline\" id=\"occ-section-inline\">See <em>section</em> <strong>7</strong>.</p><p data-eval-case=\"paragraph\" id=\"occ-paragraph\">See paragraph 8.</p><p data-eval-case=\"chapter\" id=\"occ-chapter\">See chapter 2.</p><p data-eval-case=\"figure\" id=\"occ-figure\">See Figure 3.</p><p data-eval-case=\"table\" id=\"occ-table\">See Table 5.</p><p data-eval-case=\"footnote\" id=\"occ-footnote\">See footnote 6.</p><p data-eval-case=\"duplicate-label\" id=\"occ-duplicate-label\">See page 22.</p><p data-eval-case=\"inferred\" id=\"occ-inferred\">See page 23.</p><p data-eval-case=\"missing\" id=\"occ-missing\">See page 99.</p><p data-eval-case=\"range\" id=\"occ-range\">See pages 24–25.</p><p data-eval-case=\"source-alias\" id=\"occ-source-alias\"><a href=\"orchard-targets.html#source-note\">this note</a></p><p data-eval-case=\"file-scope\" id=\"occ-file-scope\"><a href=\"orchard-targets.html#local\">section 9</a></p><p data-eval-case=\"duplicate-id\" id=\"occ-duplicate-id\"><a href=\"orchard-targets.html#duplicate\">unlabelled note</a></p><p data-eval-case=\"foreign\" id=\"occ-foreign\"><a href=\"other-edition.html#section\">section 7</a></p><p data-eval-case=\"url\" id=\"occ-url\">Visit https://example.org/guide#overview.</p><p data-eval-case=\"existing-url\" id=\"occ-existing-url\"><a href=\"https://example.org/source\">source website</a></p><p data-eval-case=\"skip-code\" id=\"occ-skip-code\"><code>See section 7</code></p><ul><li data-eval-case=\"toc\" id=\"occ-toc\">Chapter 2 ........ 12</li></ul><h2>Index</h2><table class=\"index\"><tbody><tr data-eval-case=\"index\" id=\"occ-index\"><td>Equipment</td><td>12, 99</td></tr></tbody></table><h2 id=\"local\">Section 9 Local appendix</h2><p data-eval-case=\"repeat-a\" id=\"occ-repeat-a\">See section 7.</p><p data-eval-case=\"repeat-b\" id=\"occ-repeat-b\">See section 7.</p>"
+        }
+      ]
+    },
+    {
+      "filename": "orchard-targets.html",
+      "body_html": "<h1 id=\"page\">Destination page</h1><h2 id=\"section\">Section 7 Safe route</h2><h2 id=\"wrong\">Section 11 Wrong route</h2><h2 id=\"chapter\">Chapter 2 Equipment</h2><p id=\"paragraph\">Paragraph 8. Keep the gate clear.</p><figure id=\"figure\"><figcaption>Figure 3. Gate plan</figcaption></figure><table id=\"table\"><caption>Table 5. Tools</caption><tr><td>Hammer</td></tr></table><aside id=\"footnote\">Footnote 6. Source note.</aside><p id=\"note\">Keep original note.</p><h2 id=\"local\">Section 9 Scoped appendix</h2><p id=\"duplicate\">One</p><p id=\"duplicate\">Two</p>",
+      "source_pages": [
+        41
+      ],
+      "_navigation_id_aliases": {
+        "source-note": [
+          "note"
+        ]
+      },
+      "prepared_pages": [
+        {
+          "page_number": 41,
+          "html": "<h1 id=\"page\">Destination page</h1><h2 id=\"section\">Section 7 Safe route</h2><h2 id=\"wrong\">Section 11 Wrong route</h2><h2 id=\"chapter\">Chapter 2 Equipment</h2><p id=\"paragraph\">Paragraph 8. Keep the gate clear.</p><figure id=\"figure\"><figcaption>Figure 3. Gate plan</figcaption></figure><table id=\"table\"><caption>Table 5. Tools</caption><tr><td>Hammer</td></tr></table><aside id=\"footnote\">Footnote 6. Source note.</aside><p id=\"note\">Keep original note.</p><h2 id=\"local\">Section 9 Scoped appendix</h2><p id=\"duplicate\">One</p><p id=\"duplicate\">Two</p>",
+          "printed_page_number": 12,
+          "printed_page_number_text": "12",
+          "printed_page_number_inferred": false
+        }
+      ]
+    },
+    {
+      "filename": "orchard-roman.html",
+      "body_html": "<h2 id=\"roman\">Front matter</h2>",
+      "source_pages": [
+        42
+      ],
+      "prepared_pages": [
+        {
+          "page_number": 42,
+          "html": "<h2 id=\"roman\">Front matter</h2>",
+          "printed_page_number_text": "iv",
+          "printed_page_number_inferred": false
+        }
+      ]
+    },
+    {
+      "filename": "orchard-ambiguous.html",
+      "body_html": "<p id=\"d1\">First</p><p id=\"d2\">Second</p><p id=\"infer\">Inferred</p><p id=\"spread\">Spread</p>",
+      "source_pages": [
+        43,
+        44,
+        45,
+        46
+      ],
+      "prepared_pages": [
+        {
+          "page_number": 43,
+          "html": "<p id=\"d1\">First</p>",
+          "printed_page_number_text": "22"
+        },
+        {
+          "page_number": 44,
+          "html": "<p id=\"d2\">Second</p>",
+          "printed_page_number_text": "22"
+        },
+        {
+          "page_number": 45,
+          "html": "<p id=\"infer\">Inferred</p>",
+          "printed_page_number_text": "23",
+          "printed_page_number_inferred": true
+        },
+        {
+          "page_number": 46,
+          "html": "<p id=\"spread\">Spread</p>",
+          "printed_page_number_text": "24-25"
+        }
+      ]
+    }
+  ],
+  "source_pages": [
+    {
+      "page_number": 1,
+      "html": "<h1 id=\"start\">Orchard Guide</h1><p data-eval-case=\"wrong-existing\" id=\"occ-wrong-existing\"><a href=\"orchard-targets.html#wrong\">section 7</a></p><p data-eval-case=\"printed-offset\" id=\"occ-printed-offset\">See page 12.</p><p data-eval-case=\"roman\" id=\"occ-roman\">See page iv.</p><p data-eval-case=\"section-inline\" id=\"occ-section-inline\">See <em>section</em> <strong>7</strong>.</p><p data-eval-case=\"paragraph\" id=\"occ-paragraph\">See paragraph 8.</p><p data-eval-case=\"chapter\" id=\"occ-chapter\">See chapter 2.</p><p data-eval-case=\"figure\" id=\"occ-figure\">See Figure 3.</p><p data-eval-case=\"table\" id=\"occ-table\">See Table 5.</p><p data-eval-case=\"footnote\" id=\"occ-footnote\">See footnote 6.</p><p data-eval-case=\"duplicate-label\" id=\"occ-duplicate-label\">See page 22.</p><p data-eval-case=\"inferred\" id=\"occ-inferred\">See page 23.</p><p data-eval-case=\"missing\" id=\"occ-missing\">See page 99.</p><p data-eval-case=\"range\" id=\"occ-range\">See pages 24–25.</p><p data-eval-case=\"source-alias\" id=\"occ-source-alias\"><a href=\"orchard-targets.html#source-note\">this note</a></p><p data-eval-case=\"file-scope\" id=\"occ-file-scope\"><a href=\"orchard-targets.html#local\">section 9</a></p><p data-eval-case=\"duplicate-id\" id=\"occ-duplicate-id\"><a href=\"orchard-targets.html#duplicate\">unlabelled note</a></p><p data-eval-case=\"foreign\" id=\"occ-foreign\"><a href=\"other-edition.html#section\">section 7</a></p><p data-eval-case=\"url\" id=\"occ-url\">Visit https://example.org/guide#overview.</p><p data-eval-case=\"existing-url\" id=\"occ-existing-url\"><a href=\"https://example.org/source\">source website</a></p><p data-eval-case=\"skip-code\" id=\"occ-skip-code\"><code>See section 7</code></p><ul><li data-eval-case=\"toc\" id=\"occ-toc\">Chapter 2 ........ 12</li></ul><h2>Index</h2><table class=\"index\"><tbody><tr data-eval-case=\"index\" id=\"occ-index\"><td>Equipment</td><td>12, 99</td></tr></tbody></table><h2 id=\"local\">Section 9 Local appendix</h2><p data-eval-case=\"repeat-a\" id=\"occ-repeat-a\">See section 7.</p><p data-eval-case=\"repeat-b\" id=\"occ-repeat-b\">See section 7.</p>"
+    },
+    {
+      "page_number": 41,
+      "html": "<h1 id=\"page\">Destination page</h1><h2 id=\"section\">Section 7 Safe route</h2><h2 id=\"wrong\">Section 11 Wrong route</h2><h2 id=\"chapter\">Chapter 2 Equipment</h2><p id=\"paragraph\">Paragraph 8. Keep the gate clear.</p><figure id=\"figure\"><figcaption>Figure 3. Gate plan</figcaption></figure><table id=\"table\"><caption>Table 5. Tools</caption><tr><td>Hammer</td></tr></table><aside id=\"footnote\">Footnote 6. Source note.</aside><p id=\"note\">Keep original note.</p><h2 id=\"local\">Section 9 Scoped appendix</h2><p id=\"duplicate\">One</p><p id=\"duplicate\">Two</p>",
+      "printed_page_number": 12,
+      "printed_page_number_text": "12",
+      "printed_page_number_inferred": false
+    },
+    {
+      "page_number": 42,
+      "html": "<h2 id=\"roman\">Front matter</h2>",
+      "printed_page_number_text": "iv",
+      "printed_page_number_inferred": false
+    },
+    {
+      "page_number": 43,
+      "html": "<p id=\"d1\">First</p>",
+      "printed_page_number_text": "22"
+    },
+    {
+      "page_number": 44,
+      "html": "<p id=\"d2\">Second</p>",
+      "printed_page_number_text": "22"
+    },
+    {
+      "page_number": 45,
+      "html": "<p id=\"infer\">Inferred</p>",
+      "printed_page_number_text": "23",
+      "printed_page_number_inferred": true
+    },
+    {
+      "page_number": 46,
+      "html": "<p id=\"spread\">Spread</p>",
+      "printed_page_number_text": "24-25"
+    }
+  ],
+  "provenance_rows": [
+    {
+      "block_id": "start",
+      "html_path": "orchard-start.html",
+      "source_page_number": 1,
+      "source_printed_page": null,
+      "text_quote": "Orchard Guide"
+    },
+    {
+      "block_id": "occ-wrong-existing",
+      "html_path": "orchard-start.html",
+      "source_page_number": 1,
+      "source_printed_page": null,
+      "text_quote": "section 7"
+    },
+    {
+      "block_id": "occ-printed-offset",
+      "html_path": "orchard-start.html",
+      "source_page_number": 1,
+      "source_printed_page": null,
+      "text_quote": "See page 12."
+    },
+    {
+      "block_id": "occ-roman",
+      "html_path": "orchard-start.html",
+      "source_page_number": 1,
+      "source_printed_page": null,
+      "text_quote": "See page iv."
+    },
+    {
+      "block_id": "occ-section-inline",
+      "html_path": "orchard-start.html",
+      "source_page_number": 1,
+      "source_printed_page": null,
+      "text_quote": "See section 7."
+    },
+    {
+      "block_id": "occ-paragraph",
+      "html_path": "orchard-start.html",
+      "source_page_number": 1,
+      "source_printed_page": null,
+      "text_quote": "See paragraph 8."
+    },
+    {
+      "block_id": "occ-chapter",
+      "html_path": "orchard-start.html",
+      "source_page_number": 1,
+      "source_printed_page": null,
+      "text_quote": "See chapter 2."
+    },
+    {
+      "block_id": "occ-figure",
+      "html_path": "orchard-start.html",
+      "source_page_number": 1,
+      "source_printed_page": null,
+      "text_quote": "See Figure 3."
+    },
+    {
+      "block_id": "occ-table",
+      "html_path": "orchard-start.html",
+      "source_page_number": 1,
+      "source_printed_page": null,
+      "text_quote": "See Table 5."
+    },
+    {
+      "block_id": "occ-footnote",
+      "html_path": "orchard-start.html",
+      "source_page_number": 1,
+      "source_printed_page": null,
+      "text_quote": "See footnote 6."
+    },
+    {
+      "block_id": "occ-duplicate-label",
+      "html_path": "orchard-start.html",
+      "source_page_number": 1,
+      "source_printed_page": null,
+      "text_quote": "See page 22."
+    },
+    {
+      "block_id": "occ-inferred",
+      "html_path": "orchard-start.html",
+      "source_page_number": 1,
+      "source_printed_page": null,
+      "text_quote": "See page 23."
+    },
+    {
+      "block_id": "occ-missing",
+      "html_path": "orchard-start.html",
+      "source_page_number": 1,
+      "source_printed_page": null,
+      "text_quote": "See page 99."
+    },
+    {
+      "block_id": "occ-range",
+      "html_path": "orchard-start.html",
+      "source_page_number": 1,
+      "source_printed_page": null,
+      "text_quote": "See pages 24–25."
+    },
+    {
+      "block_id": "occ-source-alias",
+      "html_path": "orchard-start.html",
+      "source_page_number": 1,
+      "source_printed_page": null,
+      "text_quote": "this note"
+    },
+    {
+      "block_id": "occ-file-scope",
+      "html_path": "orchard-start.html",
+      "source_page_number": 1,
+      "source_printed_page": null,
+      "text_quote": "section 9"
+    },
+    {
+      "block_id": "occ-duplicate-id",
+      "html_path": "orchard-start.html",
+      "source_page_number": 1,
+      "source_printed_page": null,
+      "text_quote": "unlabelled note"
+    },
+    {
+      "block_id": "occ-foreign",
+      "html_path": "orchard-start.html",
+      "source_page_number": 1,
+      "source_printed_page": null,
+      "text_quote": "section 7"
+    },
+    {
+      "block_id": "occ-url",
+      "html_path": "orchard-start.html",
+      "source_page_number": 1,
+      "source_printed_page": null,
+      "text_quote": "Visit https://example.org/guide#overview."
+    },
+    {
+      "block_id": "occ-existing-url",
+      "html_path": "orchard-start.html",
+      "source_page_number": 1,
+      "source_printed_page": null,
+      "text_quote": "source website"
+    },
+    {
+      "block_id": "occ-skip-code",
+      "html_path": "orchard-start.html",
+      "source_page_number": 1,
+      "source_printed_page": null,
+      "text_quote": "See section 7"
+    },
+    {
+      "block_id": "occ-toc",
+      "html_path": "orchard-start.html",
+      "source_page_number": 1,
+      "source_printed_page": null,
+      "text_quote": "Chapter 2 ........ 12"
+    },
+    {
+      "block_id": "occ-index",
+      "html_path": "orchard-start.html",
+      "source_page_number": 1,
+      "source_printed_page": null,
+      "text_quote": "Equipment12, 99"
+    },
+    {
+      "block_id": "local",
+      "html_path": "orchard-start.html",
+      "source_page_number": 1,
+      "source_printed_page": null,
+      "text_quote": "Section 9 Local appendix"
+    },
+    {
+      "block_id": "page",
+      "html_path": "orchard-targets.html",
+      "source_page_number": 41,
+      "source_printed_page": "12",
+      "text_quote": "Destination page"
+    },
+    {
+      "block_id": "section",
+      "html_path": "orchard-targets.html",
+      "source_page_number": 41,
+      "source_printed_page": "12",
+      "text_quote": "Section 7 Safe route"
+    },
+    {
+      "block_id": "wrong",
+      "html_path": "orchard-targets.html",
+      "source_page_number": 41,
+      "source_printed_page": "12",
+      "text_quote": "Section 11 Wrong route"
+    },
+    {
+      "block_id": "chapter",
+      "html_path": "orchard-targets.html",
+      "source_page_number": 41,
+      "source_printed_page": "12",
+      "text_quote": "Chapter 2 Equipment"
+    },
+    {
+      "block_id": "paragraph",
+      "html_path": "orchard-targets.html",
+      "source_page_number": 41,
+      "source_printed_page": "12",
+      "text_quote": "Paragraph 8. Keep the gate clear."
+    },
+    {
+      "block_id": "figure",
+      "html_path": "orchard-targets.html",
+      "source_page_number": 41,
+      "source_printed_page": "12",
+      "text_quote": "Figure 3. Gate plan"
+    },
+    {
+      "block_id": "table",
+      "html_path": "orchard-targets.html",
+      "source_page_number": 41,
+      "source_printed_page": "12",
+      "text_quote": "Table 5. ToolsHammer"
+    },
+    {
+      "block_id": "footnote",
+      "html_path": "orchard-targets.html",
+      "source_page_number": 41,
+      "source_printed_page": "12",
+      "text_quote": "Footnote 6. Source note."
+    },
+    {
+      "block_id": "note",
+      "html_path": "orchard-targets.html",
+      "source_page_number": 41,
+      "source_printed_page": "12",
+      "text_quote": "Keep original note."
+    },
+    {
+      "block_id": "local",
+      "html_path": "orchard-targets.html",
+      "source_page_number": 41,
+      "source_printed_page": "12",
+      "text_quote": "Section 9 Scoped appendix"
+    },
+    {
+      "block_id": "duplicate",
+      "html_path": "orchard-targets.html",
+      "source_page_number": 41,
+      "source_printed_page": "12",
+      "text_quote": "One"
+    },
+    {
+      "block_id": "duplicate",
+      "html_path": "orchard-targets.html",
+      "source_page_number": 41,
+      "source_printed_page": "12",
+      "text_quote": "Two"
+    },
+    {
+      "block_id": "roman",
+      "html_path": "orchard-roman.html",
+      "source_page_number": 42,
+      "source_printed_page": "iv",
+      "text_quote": "Front matter"
+    },
+    {
+      "block_id": "d1",
+      "html_path": "orchard-ambiguous.html",
+      "source_page_number": 43,
+      "source_printed_page": "22",
+      "text_quote": "First"
+    },
+    {
+      "block_id": "d2",
+      "html_path": "orchard-ambiguous.html",
+      "source_page_number": 44,
+      "source_printed_page": "22",
+      "text_quote": "Second"
+    },
+    {
+      "block_id": "infer",
+      "html_path": "orchard-ambiguous.html",
+      "source_page_number": 45,
+      "source_printed_page": "23",
+      "text_quote": "Inferred"
+    },
+    {
+      "block_id": "spread",
+      "html_path": "orchard-ambiguous.html",
+      "source_page_number": 46,
+      "source_printed_page": "24-25",
+      "text_quote": "Spread"
+    },
+    {
+      "block_id": "occ-repeat-a",
+      "html_path": "orchard-start.html",
+      "source_page_number": 1,
+      "source_printed_page": null,
+      "text_quote": "See section 7."
+    },
+    {
+      "block_id": "occ-repeat-b",
+      "html_path": "orchard-start.html",
+      "source_page_number": 1,
+      "source_printed_page": null,
+      "text_quote": "See section 7."
+    }
+  ],
+  "cases": [
+    {
+      "id": "wrong-existing",
+      "file": "orchard-start.html",
+      "expected_href": "orchard-targets.html#section",
+      "expected_status": "resolved"
+    },
+    {
+      "id": "printed-offset",
+      "file": "orchard-start.html",
+      "expected_href": "orchard-targets.html#page",
+      "expected_status": "resolved"
+    },
+    {
+      "id": "roman",
+      "file": "orchard-start.html",
+      "expected_href": "orchard-roman.html#roman",
+      "expected_status": "resolved"
+    },
+    {
+      "id": "section-inline",
+      "file": "orchard-start.html",
+      "expected_href": "orchard-targets.html#section",
+      "expected_status": "resolved"
+    },
+    {
+      "id": "paragraph",
+      "file": "orchard-start.html",
+      "expected_href": "orchard-targets.html#paragraph",
+      "expected_status": "resolved"
+    },
+    {
+      "id": "chapter",
+      "file": "orchard-start.html",
+      "expected_href": "orchard-targets.html#chapter",
+      "expected_status": "resolved"
+    },
+    {
+      "id": "figure",
+      "file": "orchard-start.html",
+      "expected_href": "orchard-targets.html#figure",
+      "expected_status": "resolved"
+    },
+    {
+      "id": "table",
+      "file": "orchard-start.html",
+      "expected_href": "orchard-targets.html#table",
+      "expected_status": "resolved"
+    },
+    {
+      "id": "footnote",
+      "file": "orchard-start.html",
+      "expected_href": "orchard-targets.html#footnote",
+      "expected_status": "resolved"
+    },
+    {
+      "id": "duplicate-label",
+      "file": "orchard-start.html",
+      "expected_href": null,
+      "expected_status": "ambiguous"
+    },
+    {
+      "id": "inferred",
+      "file": "orchard-start.html",
+      "expected_href": null,
+      "expected_status": "missing"
+    },
+    {
+      "id": "missing",
+      "file": "orchard-start.html",
+      "expected_href": null,
+      "expected_status": "missing"
+    },
+    {
+      "id": "range",
+      "file": "orchard-start.html",
+      "expected_href": null,
+      "expected_status": "ambiguous"
+    },
+    {
+      "id": "source-alias",
+      "file": "orchard-start.html",
+      "expected_href": "orchard-targets.html#note",
+      "expected_status": "resolved"
+    },
+    {
+      "id": "file-scope",
+      "file": "orchard-start.html",
+      "expected_href": "orchard-targets.html#local",
+      "expected_status": "resolved"
+    },
+    {
+      "id": "duplicate-id",
+      "file": "orchard-start.html",
+      "expected_href": null,
+      "expected_status": "ambiguous"
+    },
+    {
+      "id": "foreign",
+      "file": "orchard-start.html",
+      "expected_href": null,
+      "expected_status": "missing"
+    },
+    {
+      "id": "url",
+      "file": "orchard-start.html",
+      "expected_href": "https://example.org/guide#overview",
+      "expected_status": "resolved"
+    },
+    {
+      "id": "existing-url",
+      "file": "orchard-start.html",
+      "expected_href": "https://example.org/source",
+      "expected_status": "resolved"
+    },
+    {
+      "id": "skip-code",
+      "file": "orchard-start.html",
+      "expected_href": null,
+      "expected_status": "skipped"
+    },
+    {
+      "id": "toc",
+      "file": "orchard-start.html",
+      "expected_status": "resolved",
+      "expected_hrefs": [
+        "orchard-targets.html#chapter",
+        "orchard-targets.html#page"
+      ],
+      "expected_report_statuses": [
+        "resolved",
+        "resolved"
+      ]
+    },
+    {
+      "id": "index",
+      "file": "orchard-start.html",
+      "expected_hrefs": [
+        "orchard-targets.html#page"
+      ],
+      "expected_status": "mixed",
+      "expected_report_statuses": [
+        "resolved",
+        "missing"
+      ]
+    },
+    {
+      "id": "repeat-a",
+      "file": "orchard-start.html",
+      "expected_href": "orchard-targets.html#section",
+      "expected_status": "resolved"
+    },
+    {
+      "id": "repeat-b",
+      "file": "orchard-start.html",
+      "expected_href": "orchard-targets.html#section",
+      "expected_status": "resolved"
+    }
+  ]
+}

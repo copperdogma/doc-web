@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "scope": "Reference-only observed input; historical health unsafe. No OCR completeness claim. Heldout answer contents must remain unopened until candidate freeze.",
+  "sources": {
+    "development": {
+      "path": "/Users/cam/Documents/Projects/codex-forge/output/runs/ff-deathtrap-dungeon-small/gamebook.json",
+      "sha256": "6173c7060ce4debf89729dee3bbf6e3637357a150dafb60c71f35c22fe714014"
+    },
+    "heldout": {
+      "path": "/Users/cam/Documents/Projects/codex-forge/output/runs/ff-freeway-fighter/gamebook.json",
+      "sha256": "101d7141614f8cbf87405b648ff3643f5b14be0bd0733ff5f1b69f70cc1b1c6b"
+    }
+  }
+}

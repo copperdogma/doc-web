@@ -1,6 +1,6 @@
 ---
 name: loop-review
-description: Review a long-running agent thread or work loop against the user's intended outcome, investigate progress and possible local minima, consider better approaches, and prepare a concrete course correction for approval and handoff. Use for strategic checks on ongoing work rather than routine status updates or code review.
+description: Review long-running work against the user's outcome, compare established approaches, and prepare a bounded course correction. Use for strategic checkpoints, not routine status or code review.
 user-invocable: true
 ---
 
@@ -29,6 +29,16 @@ Compare progress with the end state, including both product usefulness and execu
 - Is the bottleneck missing information, the technique, an overly narrow eval, an execution constraint, or a goal that rewards activity?
 
 Do not equate test counts, closed stories, reports, proposals, or historical eval scores with completion. Conversely, explain how legitimate enabling work advances the outcome even when it adds no immediately usable output. Distinguish a genuine blocker from an unanswered question that affects only one item or lane. State evidence gaps instead of converting suspicion into a finding.
+
+## Challenge the approach
+
+Compare continuing as planned with plausible alternatives. Use the problem's actual constraints to consider richer context, a simpler existing path, different tools or models, a small human-assisted baseline, working backward from the consumer's needs, and an earlier end-to-end or independent-case demonstration. Do not require every review to explore every option.
+
+Separate controlled benchmark restrictions from context the production workflow may legitimately use. Preserve quality gates, provenance, and real approval evidence. Never propose weakening a golden or inventing human approval to improve a score.
+
+Verify availability and requirements before recommending a specific new tool. Treat an untested alternative as a hypothesis. Give a promising alternative a bounded experiment: representative inputs, comparison baseline, success evidence, effort or cost where material, and an exit condition. Avoid speculative frameworks, open-ended setup, and a pivot whose cost exceeds its likely value.
+
+Assess whether the current bounded task should finish before changing direction. Favor preserving useful completed work and avoiding disruptive concurrent changes. A critical problem may justify an immediate stop recommendation, but the audit itself does not stop the thread.
 
 ## Research at strategy checkpoints
 
@@ -80,31 +90,34 @@ and scope limits take precedence over another checkpoint. Clean scoped
 verification ends that verifier; assess a broader goal mismatch separately
 without restarting the clean verification loop.
 
-## Follow Through and Opportunity Cost
+## Recommendation follow-through and stopping discipline
 
-Every review answers:
+Answer these four questions explicitly, including on a first review (where a
+prior recommendation may be absent):
 
-- What changed because of the previous review?
-- What improved for the user, or what evidence changed the next decision?
-- Is current work still attacking the most valuable remaining problem?
-- What should be finished, changed, deferred, or stopped?
+1. **Follow-through:** What prior recommendation or requested cadence exists,
+   what was its approval status, and was it completed, rejected, deferred,
+   superseded, or left pending? Verify actions from artifacts or state, not
+   message counts. If this is the first review, say no prior recommendation
+   was found in the inspected evidence.
+2. **Utility and decision evidence:** What can the user or downstream consumer
+   do now, and what evidence changes the next decision? Credit failed
+   experiments when they close a useful question, and credit verified waits
+   that establish dependency state even when the dependency remains pending.
+   Distinguish those results from bookkeeping such as polling, status narration,
+   or elapsed time.
+3. **Opportunity cost:** What useful alternative or user outcome is displaced
+   by continuing, and does expected benefit justify the time, expense, human
+   effort, and dependency risk?
+4. **Disposition:** Should the bounded task finish, change approach, defer
+   until a concrete trigger, or stop? Name the evidence and next review date or
+   requested deadline when one exists.
 
-When the user requested periodic reviews, carry the original deadline and
-review schedule through interruptions; report the next due point against that
-original schedule rather than silently restarting it. Distinguish useful
-failed experiments and verified waits for external dependencies from repeated
-bookkeeping or status churn. A story can be complete while the broader goal
-continues; assess and state the goal's stopping condition separately.
-
-## Challenge the approach
-
-Compare continuing as planned with plausible alternatives. Use the problem's actual constraints to consider richer context, a simpler existing path, different tools or models, a small human-assisted baseline, working backward from the consumer's needs, and an earlier end-to-end or independent-case demonstration. Do not require every review to explore every option.
-
-Separate controlled benchmark restrictions from context the production workflow may legitimately use. Preserve quality gates, provenance, and real approval evidence. Never propose weakening a golden or inventing human approval to improve a score.
-
-Verify availability and requirements before recommending a specific new tool. Treat an untested alternative as a hypothesis. Give a promising alternative a bounded experiment: representative inputs, comparison baseline, success evidence, effort or cost where material, and an exit condition. Avoid speculative frameworks, open-ended setup, and a pivot whose cost exceeds its likely value.
-
-Assess whether the current bounded task should finish before changing direction. Favor preserving useful completed work and avoiding disruptive concurrent changes. A critical problem may justify an immediate stop recommendation, but the audit itself does not stop the thread.
+Preserve a periodic cadence or deadline already requested across interruptions;
+do not silently replace it with a one-off check or create a new schedule. Marking
+a story complete closes that deliverable only. Assess the broader user goal
+separately and keep it active when required outcomes remain; story completion or
+a high activity count does not prove the intended result is achieved.
 
 ## Present a concrete recommendation
 

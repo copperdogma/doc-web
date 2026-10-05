@@ -153,6 +153,13 @@ python validate_artifact.py \
   --file output/runs/<run_id>/output/html/provenance/blocks.jsonl
 ```
 
+Final HTML builds can optionally add source-grounded reference links, including
+tables of contents and indices. Pass `--resolve-references` to `driver.py`, or
+set `resolve_references: true` on the final emitter's recipe parameters. It is
+off by default and performs no model calls. Existing local-link inspection stays
+enabled. See [reference resolution](docs/runbooks/reference-resolution.md) for
+invocation, printed-page rules and the inspectable decision report.
+
 For the maintained born-digital PDF proof lanes, keep the same `.[driver]`
 install and add the non-Python runtime prerequisites up front:
 

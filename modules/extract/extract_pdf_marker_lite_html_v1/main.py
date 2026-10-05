@@ -30,6 +30,7 @@ def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(
         description="Extract born-digital PDF HTML through the bounded Marker-lite runtime."
     )
+    parser.add_argument("--resolve-references", action="store_true", help="Link explicit source-supported references in final HTML.")
     parser.add_argument("--pdf", required=True, help="Path to input PDF")
     parser.add_argument("--outdir", required=True, help="Output directory")
     parser.add_argument("--out", default="pages_html.jsonl", help="Output page_html_v1 artifact name")
@@ -140,6 +141,7 @@ def main() -> None:
             runtime_trace=runtime_trace,
             summary=summary,
             normalization_report=normalization_report,
+            resolve_references=args.resolve_references,
         )
         runtime_path = outdir / "marker_runtime.json"
         runtime_payload = {

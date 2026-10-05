@@ -8,6 +8,7 @@ from schemas import (
     DocWebPreviewMetadata,
     DocWebPreviewSelectorMap,
     DocWebProvenanceBlock,
+    NavigationResolutionReport,
 )
 
 from doc_web import __version__
@@ -49,9 +50,11 @@ def _schema_fingerprint() -> str:
         "contract_version": CONTRACT_VERSION,
         "manifest_schema": DocWebBundleManifest.model_json_schema(mode="validation"),
         "provenance_schema": DocWebProvenanceBlock.model_json_schema(mode="validation"),
+        "navigation_resolution_schema": NavigationResolutionReport.model_json_schema(mode="validation"),
         "bundle_layout": {
             "index_path": "index.html",
             "provenance_path": "provenance/blocks.jsonl",
+            "navigation_resolution_path": "navigation_resolution_report.json",
             "entry_path_pattern": "{entry_id}.html",
         },
     }
@@ -116,6 +119,15 @@ def build_runtime_contract() -> Dict[str, Any]:
             "manifest": manifest_schema_version,
             "provenance": provenance_schema_version,
         },
+        "reference_resolution": {
+            "schema_version": "manual_navigation_resolution_v1",
+            "report_path": "navigation_resolution_report.json",
+            "final_build_only": True,
+            "existing_link_validation": "always",
+            "discovery_default": False,
+            "driver_flag": "--resolve-references",
+            "module_parameter": "resolve_references",
+        },
         "supported_preview_schema_versions": {
             "metadata": preview_metadata_schema_version,
             "selector_map": preview_selector_map_schema_version,
@@ -125,6 +137,7 @@ def build_runtime_contract() -> Dict[str, Any]:
         "bundle_layout": {
             "index_path": "index.html",
             "provenance_path": "provenance/blocks.jsonl",
+            "navigation_resolution_path": "navigation_resolution_report.json",
             "entry_path_pattern": "{entry_id}.html",
             "default_asset_roots": ["images"],
         },

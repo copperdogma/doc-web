@@ -8,6 +8,7 @@ from typing import Any, Optional
 
 from bs4 import BeautifulSoup
 
+from modules.common.manual_navigation import resolve_navigation, verify_final_navigation
 from modules.common.utils import ensure_dir, save_json, save_jsonl
 from schemas import DocWebBundleManifest, DocWebProvenanceBlock
 
@@ -246,7 +247,13 @@ def render_entry(
             )
             first_heading = False
         elif element_type == "Table":
-            rendered_html = render_table_html(metadata.get("text_as_html") or text, block_id)
+            raw_table_html = metadata.get("text_as_html") or text
+            source_table = BeautifulSoup(raw_table_html, "html.parser").find("table", id=True)
+            if source_table is not None:
+                table_aliases = entry.setdefault("_navigation_id_aliases", {}).setdefault(source_table["id"], [])
+                if block_id not in table_aliases:
+                    table_aliases.append(block_id)
+            rendered_html = render_table_html(raw_table_html, block_id)
             first_heading = False
         elif element_type in {"FigureCaption", "Figure"}:
             rendered_html = (
@@ -295,6 +302,7 @@ def write_bundle(
     document_title: str,
     creator: str = "",
     include_source_page_numbers: bool = False,
+    resolve_references: bool = False,
 ) -> dict[str, Any]:
     run_dir = out_path.resolve().parents[1]
     html_dir = run_dir / "output" / "html"
@@ -308,17 +316,33 @@ def write_bundle(
     manifest_entries: list[dict[str, Any]] = []
     provenance_rows: list[dict[str, Any]] = []
 
-    for index, entry in enumerate(entry_specs, start=1):
-        prev_entry_id = entry_specs[index - 2]["entry_id"] if index > 1 else None
-        next_entry_id = entry_specs[index]["entry_id"] if index < len(entry_specs) else None
+    navigation_entries = []
+    for entry in entry_specs:
         body_html, entry_rows = render_entry(
-            entry,
-            module_id=module_id,
-            run_id=run_id,
-            created_at=created_at,
+            entry, module_id=module_id, run_id=run_id, created_at=created_at,
             include_source_page_numbers=include_source_page_numbers,
         )
         provenance_rows.extend(entry_rows)
+        aliases = entry.get("_navigation_id_aliases", {})
+        for row in entry_rows:
+            for source_id in row["source_element_ids"]:
+                source_aliases = aliases.setdefault(source_id, [])
+                if row["block_id"] not in source_aliases:
+                    source_aliases.append(row["block_id"])
+        entry["_navigation_id_aliases"] = aliases
+        entry["prepared_pages"] = [{"html": body_html}]
+        entry["body_html"] = body_html
+        navigation_entries.append({**entry, "filename": f'{entry["entry_id"]}.html'})
+    navigation_report = resolve_navigation(
+        navigation_entries, bundle_root=html_dir,
+        resolve_references=resolve_references, provenance_rows=provenance_rows,
+    )
+    save_json(html_dir / "navigation_resolution_report.json", navigation_report)
+
+    for index, entry in enumerate(navigation_entries, start=1):
+        prev_entry_id = entry_specs[index - 2]["entry_id"] if index > 1 else None
+        next_entry_id = entry_specs[index]["entry_id"] if index < len(entry_specs) else None
+        body_html = entry["body_html"]
         filename = f'{entry["entry_id"]}.html'
         wrapped = html_wrap(
             body_html,
@@ -360,10 +384,19 @@ def write_bundle(
         bundle_index_html(document_title, manifest_entries),
         encoding="utf-8",
     )
+    navigation_report["final_validation"] = verify_final_navigation(
+        [html_dir / entry["filename"] for entry in navigation_entries] + [html_dir / "index.html"],
+        source_entries=[{**entry, '_navigation_content_selector': 'body',
+                         '_navigation_generated_prefix_selector': 'body > nav.doc-nav:first-child'} for entry in navigation_entries],
+    )
+    save_json(html_dir / "navigation_resolution_report.json", navigation_report)
+    if navigation_report["final_validation"]["issues"]:
+        raise ValueError(f"Final HTML navigation failed: {navigation_report['final_validation']['issues']}")
     save_json(html_dir / "manifest.json", manifest)
     save_jsonl(provenance_dir / "blocks.jsonl", provenance_rows)
 
     return {
+        "navigation_resolution_report_path": str((html_dir / "navigation_resolution_report.json").resolve()),
         "manifest_path": str((html_dir / "manifest.json").resolve()),
         "provenance_path": str((provenance_dir / "blocks.jsonl").resolve()),
         "index_path": str((html_dir / "index.html").resolve()),

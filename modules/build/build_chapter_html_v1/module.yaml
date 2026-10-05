@@ -5,6 +5,9 @@ input_schema: null
 output_schema: null
 description: "Build per-chapter HTML5 documents from pages + portion hypotheses. Includes embedded CSS, semantic structure (<figure>/<figcaption>), chapter navigation, responsive styling, and rich image alt text."
 params:
+  - name: resolve_references
+    type: bool
+    default: false
   - name: output_dir
     type: str
     default: null
@@ -42,3 +45,54 @@ params:
     type: bool
     default: false
 notes: "Produces self-contained HTML5 documents. Images wrapped in <figure> with <figcaption> from VLM caption text. Alt text uses VLM image_description. Opt-in crop review requires a current release receipt, run ID, and fresh output paths; accepted crops must appear exactly once before publication."
+
+default_params:
+  resolve_references: false
+param_schema:
+  properties:
+    pages:
+      type: string
+    portions:
+      type: string
+    out:
+      type: string
+    run_id:
+      type: string
+    state_file:
+      type: string
+    progress_file:
+      type: string
+    no_include_navigation:
+      type: boolean
+    no_normalize_reference_entries:
+      type: boolean
+    no_normalize_catalog_entries:
+      type: boolean
+    resolve_references:
+      type: boolean
+      default: false
+    output_dir:
+      type: string
+    illustration_manifest:
+      type: string
+    require_crop_review:
+      type: boolean
+    crop_review_release:
+      type: string
+    images_subdir:
+      type: string
+    book_title:
+      type: string
+    book_author:
+      type: string
+    merge_contiguous_genealogy_tables:
+      type: boolean
+    include_navigation:
+      type: boolean
+    suppress_navigation:
+      type: boolean
+    normalize_reference_entries:
+      type: boolean
+    normalize_catalog_entries:
+      type: boolean
+  required: []

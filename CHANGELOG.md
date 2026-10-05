@@ -1,3 +1,17 @@
+## [2026-10-05-01] — Optional source-grounded reference links (Story 243)
+
+### Added
+- Add default-off `--resolve-references` for final chapter, Marker and native Office bundles, covering explicit printed pages, labelled sections/paragraphs/figures/tables/footnotes, HTTP(S) URLs, contents and indices.
+- Emit typed resolution reports with source wording, location, target evidence and explicit missing/ambiguous decisions; preserve printed labels separately from scan identity.
+
+### Fixed
+- Validate existing and serialized links before manifest sealing; rebind source IDs with exact occurrence authority, preserving text, inline markup and provenance.
+- Preserve logical reading order when printed page numbers repeat or reset.
+
+### Verified
+- Fresh driver on/off builds and rendered inspection, 386 focused tests, independent synthetic12/12 and Freeway491/491 admitted reference checks; zero wrong targets within scored controls and zero provider calls. Historical OCR/coverage limits remain explicit.
+- Final matched-semantics cache comparison measures14.03%synthetic/11.52%Deathtrap resolver gains with exact output parity; no whole-pipeline speed claim. Attempt059 records bounds and the diminishing-returns stop.
+
 ## [2026-10-04-02] — Preserve planner-owned figures and source page identity
 
 ### Fixed

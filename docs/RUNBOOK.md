@@ -219,6 +219,13 @@ This smoke lane does not require the local OCR stack after install, but it does
 require the `driver` extra because `driver.py` and the bundle builder depend on
 YAML parsing plus HTML bundle tooling.
 
+### Optional Reference Resolution
+
+Use [the reference-resolution runbook](runbooks/reference-resolution.md) for
+default-off `--resolve-references`, recipe configuration, the offline fixture
+smoke and decision-report inspection. Printed labels and PDF/scan indexes are
+distinct; missing or ambiguous evidence is reported rather than guessed.
+
 ### Maintained Born-Digital Book-Like Smoke
 
 Use this when you need a maintained proof run of the bounded book-like

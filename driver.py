@@ -684,6 +684,32 @@ def finalize_run_state(state_path: str, *, run_validation_failed: bool) -> None:
         json.dump(state, f, indent=2)
 
 
+REFERENCE_RESOLUTION_MODULES = frozenset({
+    "build_chapter_html_v1", "extract_pdf_marker_lite_html_v1",
+    "docx_elements_to_bundle_v1", "xlsx_elements_to_bundle_v1",
+    "pptx_elements_to_bundle_v1", "epub_elements_to_bundle_v1",
+    "email_elements_to_bundle_v1", "mbox_elements_to_bundle_v1",
+})
+
+
+def apply_reference_resolution(recipe: Dict[str, Any], enabled: bool = False) -> None:
+    """Apply discovery only to supported final emitters; never silently ignore it."""
+    stages = recipe.get("stages") or []
+    final_stages = [stage for stage in stages if stage.get("module") in REFERENCE_RESOLUTION_MODULES]
+    for stage in stages:
+        stage_params = {**(stage.get("params") or {}), **(recipe.get("stage_params") or {}).get(stage.get("id") or stage.get("stage"), {})}
+        if stage_params.get("resolve_references") and stage not in final_stages:
+            raise SystemExit(f"Reference resolution is unsupported for module {stage.get('module')}")
+    if enabled and not final_stages:
+        raise SystemExit("--resolve-references requires a supported final HTML emitter in the recipe")
+    if enabled:
+        for stage in final_stages:
+            stage.setdefault("params", {})["resolve_references"] = True
+            overrides = (recipe.get("stage_params") or {}).get(stage.get("id") or stage.get("stage"))
+            if overrides is not None:
+                overrides["resolve_references"] = True
+
+
 def build_command(
     entrypoint: str,
     params: Dict[str, Any],
@@ -700,6 +726,8 @@ def build_command(
     """
     Returns (artifact_path, cmd_list, cwd)
     """
+    if params.get("resolve_references") and stage_conf.get("module") not in REFERENCE_RESOLUTION_MODULES:
+        raise SystemExit(f"Reference resolution is unsupported for module {stage_conf.get('module')}")
     script, func = (entrypoint.split(":") + [None])[:2]
     script_path = os.path.join(os.getcwd(), script)
     module_name = None
@@ -1444,6 +1472,7 @@ def main():
     parser = argparse.ArgumentParser(
         description="Pipeline driver that executes a recipe and module registry."
     )
+    parser.add_argument("--resolve-references", action="store_true", help="Link explicit source-supported references on final HTML emitters.")
     parser.add_argument("--config", help="Path to run configuration YAML")
     parser.add_argument(
         "--recipe", help="Path to recipe yaml (optional if --config is used)"
@@ -1607,6 +1636,7 @@ def main():
         args.allow_run_id_reuse = (
             args.allow_run_id_reuse or config.options.allow_run_id_reuse
         )
+        args.resolve_references = args.resolve_references or config.options.resolve_references
         args.dump_plan = args.dump_plan or config.options.dump_plan
 
         args.instrument = args.instrument or config.instrumentation.enabled
@@ -1934,6 +1964,7 @@ def main():
     if instrument_enabled:
         instrumentation_paths = {"json": instr_json_path, "md": instr_md_path}
 
+    apply_reference_resolution(recipe, args.resolve_references)
     plan = build_plan(recipe, registry)
     # Only validate schemas for stages we're actually running (skip validation if starting from a later stage)
     if not args.start_from:

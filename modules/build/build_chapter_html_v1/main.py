@@ -22,6 +22,7 @@ from typing import Any, Dict, List, Optional, Set
 from bs4 import BeautifulSoup
 
 from modules.common.crop_review import validate_release_for_build
+from modules.common.manual_navigation import resolve_navigation, verify_final_navigation
 from modules.common.onward_genealogy_html import (
     merge_genealogy_tables_preserving_headings as _merge_genealogy_tables_preserving_headings,
     merge_contiguous_genealogy_tables as _merge_contiguous_genealogy_tables,  # noqa: F401
@@ -169,6 +170,7 @@ p.flattened-heading {
   font-weight: 600;
 }
 a { color: var(--color-link); }
+.unresolved-reference { text-decoration: underline dotted; cursor: help; }
 
 /* Navigation */
 nav.chapter-nav {
@@ -599,6 +601,9 @@ def _tag_entry_body(entry: Dict[str, Any], *, run_id: Optional[str], created_at:
 
     for ordinal, tag in enumerate(final_tags, start=1):
         block_id = f"blk-{entry_id}-{ordinal:04d}"
+        original_id = tag.get("id")
+        if original_id:
+            entry.setdefault("_navigation_id_aliases", {}).setdefault(original_id, []).append(block_id)
         tag["id"] = block_id
         matched, source_idx = _match_source_descriptor(tag, source_descriptors, source_idx)
         override_page = _coerce_int(tag.get("data-doc-web-source-page-number"))
@@ -649,11 +654,9 @@ def _tag_entry_body(entry: Dict[str, Any], *, run_id: Optional[str], created_at:
 # ---------------------------------------------------------------------------
 
 def _page_sort_key(row: Dict[str, Any]) -> tuple:
-    page_num = _source_page_number(row) or 0
-    printed_num = _coerce_int(row.get("printed_page_number"))
-    if printed_num is None:
-        printed_num = page_num
-    return (printed_num, page_num)
+    # Observed print labels describe destinations, not reading order. Logical
+    # source identity survives offsets, numbering resets and Roman front matter.
+    return (_source_page_number(row) or 0,)
 
 
 def _select_pages_for_portion(portion: Dict[str, Any], pages_sorted: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
@@ -704,10 +707,10 @@ def _page_already_covered(
 ) -> bool:
     printed_number = _coerce_int(page.get("printed_page_number"))
     source_number = _source_page_number(page)
-    return (
-        (printed_number is not None and printed_number in covered_printed_pages)
-        or (source_number is not None and source_number in covered_source_pages)
-    )
+    # Print labels may repeat; coverage is owned by logical source identity.
+    if source_number is not None:
+        return source_number in covered_source_pages
+    return printed_number is not None and printed_number in covered_printed_pages
 
 
 def _normalize_ws(text: str) -> str:
@@ -3220,6 +3223,7 @@ def _normalize_catalog_entries(html: str, *, title: str, enabled: bool) -> str:
 
 def main() -> None:
     parser = argparse.ArgumentParser(description="Build per-chapter HTML files from pages + portions.")
+    parser.add_argument("--resolve-references", action="store_true", help="Link explicit source-supported references in final HTML.")
     parser.add_argument("--pages", required=True, help="page_html_v1 JSONL (with printed_page_number)")
     parser.add_argument("--portions", required=True, help="portion_hyp_v1 JSONL")
     parser.add_argument("--out", required=True, help="Output manifest JSONL path")
@@ -3512,9 +3516,8 @@ def _build(args, html_dir: Path, published_html_dir: Path, run_dir: Path) -> Lis
         printed_num = _coerce_int(page.get("printed_page_number"))
         printed_text = page.get("printed_page_number_text")
         page_num = _source_page_number(page)
-        if (isinstance(printed_num, int) and printed_num in covered_printed_pages) or (
-            isinstance(page_num, int) and page_num in covered_source_pages
-        ):
+        if _page_already_covered(page, covered_printed_pages=covered_printed_pages,
+                                 covered_source_pages=covered_source_pages):
             continue
         fallback_count += 1
         filename = f"page-{fallback_count:03d}.html"
@@ -3571,25 +3574,16 @@ def _build(args, html_dir: Path, published_html_dir: Path, run_dir: Path) -> Lis
     chapter_files = sorted(
         fallback_page_files + chapter_files,
         key=lambda entry: (
-            _coerce_int(entry.get("page_start"))
-            if _coerce_int(entry.get("page_start")) is not None
-            else (_coerce_int((entry.get("source_pages") or [None])[0]) or 0),
+            _coerce_int((entry.get("source_pages") or [None])[0])
+            if _coerce_int((entry.get("source_pages") or [None])[0]) is not None
+            else (_coerce_int(entry.get("page_start")) or 0),
             0 if entry.get("kind") == "page" else 1,
         ),
     )
     bundle_created_at = _utc()
 
-    # ── Write all files with navigation ─────────────────────────────────
-    for i, entry in enumerate(chapter_files):
-        prev_file = chapter_files[i - 1]["filename"] if i > 0 else None
-        prev_title = chapter_files[i - 1]["title"] if i > 0 else None
-        next_file = chapter_files[i + 1]["filename"] if i < len(chapter_files) - 1 else None
-        next_title = chapter_files[i + 1]["title"] if i < len(chapter_files) - 1 else None
-
-        include_navigation = args.include_navigation and not args.suppress_navigation
-        nav_top = _build_nav(prev_file, prev_title, next_file, next_title) if include_navigation else ""
-        nav_bottom = _build_nav(prev_file, prev_title, next_file, next_title, is_bottom=True) if include_navigation else ""
-        page_title = f"{entry['title']} — {book_title}" if book_title else entry["title"]
+    # First finalize every body and ID. References may point to later chapters.
+    for entry in chapter_files:
         body_html = entry["body_html"]
         body_html = _finalize_genealogy_body_html(
             body_html,
@@ -3621,10 +3615,28 @@ def _build(args, html_dir: Path, published_html_dir: Path, run_dir: Path) -> Lis
         body_html, entry_provenance_rows = _tag_entry_body(entry, run_id=args.run_id, created_at=bundle_created_at)
         entry["body_html"] = body_html
 
+        provenance_rows.extend(entry_provenance_rows)
+
+    navigation_report = resolve_navigation(
+        chapter_files, bundle_root=html_dir, resolve_references=args.resolve_references,
+        source_pages=pages, provenance_rows=provenance_rows,
+    )
+    save_json(str(html_dir / "navigation_resolution_report.json"), navigation_report)
+
+    # Serialize final links before descendant checksums/provenance are frozen.
+    for i, entry in enumerate(chapter_files):
+        prev_file = chapter_files[i - 1]["filename"] if i > 0 else None
+        prev_title = chapter_files[i - 1]["title"] if i > 0 else None
+        next_file = chapter_files[i + 1]["filename"] if i < len(chapter_files) - 1 else None
+        next_title = chapter_files[i + 1]["title"] if i < len(chapter_files) - 1 else None
+        include_navigation = args.include_navigation and not args.suppress_navigation
+        nav_top = _build_nav(prev_file, prev_title, next_file, next_title) if include_navigation else ""
+        nav_bottom = _build_nav(prev_file, prev_title, next_file, next_title, is_bottom=True) if include_navigation else ""
+        page_title = f"{entry['title']} — {book_title}" if book_title else entry["title"]
+        body_html = entry["body_html"]
         full_html = _html5_wrap(body_html, page_title, nav_top, nav_bottom)
         file_path = html_dir / entry["filename"]
         file_path.write_text(full_html, encoding="utf-8")
-        provenance_rows.extend(entry_provenance_rows)
 
         printed_pages = entry.get("source_printed_pages") or []
 
@@ -3657,8 +3669,8 @@ def _build(args, html_dir: Path, published_html_dir: Path, run_dir: Path) -> Lis
                 "next_entry_id": Path(next_file).stem if next_file else None,
                 "source_pages": entry.get("source_pages") or [],
                 "printed_pages": printed_pages,
-                "printed_page_start": printed_pages[0] if printed_pages else None,
-                "printed_page_end": printed_pages[-1] if printed_pages else None,
+                "printed_page_start": min(printed_pages) if printed_pages else None,
+                "printed_page_end": max(printed_pages) if printed_pages else None,
             }
         )
 
@@ -3674,10 +3686,11 @@ def _build(args, html_dir: Path, published_html_dir: Path, run_dir: Path) -> Lis
     for page in pages_scan:
         printed_num = _coerce_int(page.get("printed_page_number"))
         page_num = _coerce_int(page.get("page_number") or page.get("page"))
-        anchor_page = printed_num if isinstance(printed_num, int) else page_num
-        if isinstance(anchor_page, int) and anchor_page in chapters_by_start and anchor_page not in emitted_chapters:
-            entry = chapters_by_start[anchor_page]
-            label = entry["title"]
+        for entry in chapter_files:
+            if entry.get("kind") != "chapter" or entry["filename"] in emitted_chapters:
+                continue
+            if not entry.get("source_pages") or entry["source_pages"][0] != page_num:
+                continue
             chapter_printed_pages = entry.get("source_printed_pages") or []
             if chapter_printed_pages:
                 page_start = chapter_printed_pages[0]
@@ -3685,12 +3698,10 @@ def _build(args, html_dir: Path, published_html_dir: Path, run_dir: Path) -> Lis
                 page_range = f"p. {page_start}" if page_start == page_end else f"p. {page_start}&ndash;{page_end}"
             else:
                 page_range = ""
-            index_entries.append({"label": label, "file": entry["file"], "page_range": page_range})
-            emitted_chapters.add(anchor_page)
-        if not (
-            (isinstance(printed_num, int) and printed_num in covered_printed_pages)
-            or (isinstance(page_num, int) and page_num in covered_source_pages)
-        ):
+            index_entries.append({"label": entry["title"], "file": entry["filename"], "page_range": page_range})
+            emitted_chapters.add(entry["filename"])
+        if not _page_already_covered(page, covered_printed_pages=covered_printed_pages,
+                                     covered_source_pages=covered_source_pages):
             fe = fallback_by_page.get(page_num)
             if fe:
                 index_entries.append({"label": fe["title"], "file": fe["file"], "page_range": ""})
@@ -3713,6 +3724,14 @@ def _build(args, html_dir: Path, published_html_dir: Path, run_dir: Path) -> Lis
     index_html = _html5_wrap(index_body, book_title or "Index")
     index_path = html_dir / "index.html"
     index_path.write_text(index_html, encoding="utf-8")
+
+    navigation_report["final_validation"] = verify_final_navigation(
+        [html_dir / entry["filename"] for entry in chapter_files] + [index_path], source_pages=pages,
+        source_entries=[{**entry, '_navigation_content_selector': 'body > article'} for entry in chapter_files],
+    )
+    save_json(str(html_dir / "navigation_resolution_report.json"), navigation_report)
+    if navigation_report["final_validation"]["issues"]:
+        raise ValueError(f"Final HTML navigation failed: {navigation_report['final_validation']['issues']}")
 
     provenance_path = html_dir / "provenance" / "blocks.jsonl"
     save_jsonl(str(provenance_path), provenance_rows)

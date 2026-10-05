@@ -13,6 +13,7 @@ from typing import Any
 
 from bs4 import BeautifulSoup
 
+from modules.common.manual_navigation import inspect_navigation
 from modules.common.utils import ProgressLogger, read_jsonl, save_json
 
 
@@ -1337,6 +1338,19 @@ def build_report(
     chapters = list(read_jsonl(str(chapters_path))) if chapters_path.exists() else []
     html_files = _html_files_from_chapters(chapters)
     figure_counts = _count_figures(html_files)
+    navigation_resource_observations = []
+    navigation_semantic_observations = []
+    navigation_issues, navigation_annotations = inspect_navigation(
+        html_files, source_pages=pages, resource_observations=navigation_resource_observations,
+        semantic_observations=navigation_semantic_observations
+    )
+    _check(checks, "local_navigation_targets", "Local resources exist and active HTML fragments have unique destinations.",
+           not navigation_issues, detail={"issues": navigation_issues, "count": len(navigation_issues),
+                                         "resource_fragments_unmeasured": navigation_resource_observations})
+    _check(checks, "local_navigation_resolution", "Missing or ambiguous source references remain visible for review.",
+           not navigation_annotations and not navigation_semantic_observations, warning=True,
+           detail={"annotations": navigation_annotations, "count": len(navigation_annotations),
+                   "semantic_label_ambiguities_unmeasured": navigation_semantic_observations})
 
     logical_summary = logical_map.get("summary") or {}
     _check(

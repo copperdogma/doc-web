@@ -1,0 +1,25 @@
+# Source-owned page fixture; --resolve-references enables enrichment at finalization.
+stages:
+  - id: load_pages
+    stage: extract
+    module: load_artifact_v1
+    out: pages.jsonl
+    params:
+      path: tests/fixtures/reference_resolution/pages.jsonl
+  - id: load_portions
+    stage: extract
+    module: load_artifact_v1
+    needs: [load_pages]
+    out: portions.jsonl
+    params:
+      path: tests/fixtures/reference_resolution/portions.jsonl
+  - id: build_html
+    stage: build
+    module: build_chapter_html_v1
+    needs: [load_pages, load_portions]
+    inputs:
+      pages: load_pages
+      portions: load_portions
+    out: chapters_manifest.jsonl
+    params:
+      book_title: Reference Resolution Smoke

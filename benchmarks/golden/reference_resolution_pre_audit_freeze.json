@@ -1,0 +1,54 @@
+{
+  "version": 1,
+  "candidate_executed": true,
+  "heldout_policy": "Do not execute or inspect heldout answers until candidate freeze. Fixture author is evaluator, not runtime developer.",
+  "sha256": {
+    "tests/fixtures/reference_resolution/development.json": "acb46855a4456fd18421de968a708353c793a8e7abedd0adc75042c48fba41d2",
+    "tests/fixtures/reference_resolution/heldout.json": "637575bb478966bd618dc7a3df90050cc126df6458668bc4541673f27e8c639e",
+    "tests/fixtures/reference_resolution/pages.jsonl": "5af915cac383f71ae5b138389ddd2d24899699e1152c69eabf85a69e301be14a",
+    "tests/fixtures/reference_resolution/portions.jsonl": "b0560ef3eac3136f24248db86a0fa3abd165acc2070f4f8d727433b5e3bf70e5"
+  },
+  "harness_sha256": "4d7191b3717165a8d660b7020c82e33dc479e80625f7008c5bcaa8695a4e0e90",
+  "calibration": {
+    "classification": "test-wrong",
+    "case": "development toc",
+    "reason": "Initial expected omitted separately explicit printed-page destination; one of 22 initial cases (4.5 percent). Parent authorized minor factual correction. Source and literal target IDs unchanged.",
+    "original_freeze": "benchmarks/golden/reference_resolution_original_freeze.json",
+    "original_result": "output/story243-benchmark-dev-initial.json",
+    "independent_holdout_changed": false,
+    "logical_occurrence_scoring": "Adjacent same-target leaf anchors inside one frozen region are one logical reference. Repeated references are separate marker cases; anchor_count retained."
+  },
+  "heldout_report_calibration": {
+    "classification": "test-wrong",
+    "reason": "Report completeness must count separately explicit title/page and mixed page-list references within each aggregate marker. No execution observed, no destination/source/runtime change. Parent approved before candidate freeze.",
+    "original_authored_sha256": "6b6910075cd1da334cbf0c5fc7ff12f8e641d9dbb33497e0dd4f11b1c3d34f60",
+    "original_authored_file": "benchmarks/golden/reference_resolution_heldout_original.json",
+    "changes": [
+      {
+        "id": "toc",
+        "before_expected_report_statuses": [
+          "resolved"
+        ],
+        "after_expected_report_statuses": [
+          "resolved",
+          "resolved"
+        ],
+        "targets_unchanged": true,
+        "source_unchanged": true
+      },
+      {
+        "id": "index",
+        "before_expected_report_statuses": [
+          "mixed"
+        ],
+        "after_expected_report_statuses": [
+          "resolved",
+          "missing"
+        ],
+        "targets_unchanged": true,
+        "source_unchanged": true
+      }
+    ],
+    "heldout_executed": false
+  }
+}

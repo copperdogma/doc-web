@@ -871,6 +871,67 @@ class DocWebBundleManifest(BaseModel):
         return self
 
 
+class NavigationReferenceSource(BaseModel):
+    path: str
+    block_id: Optional[str] = None
+    location: Optional[Dict[str, int]] = None
+    provenance: Optional[Dict[str, Any]] = None
+
+
+class NavigationReferenceTarget(BaseModel):
+    path: str
+    id: Optional[str] = None
+    href: str
+    kind: str
+    evidence: Union[Dict[str, Any], List[Dict[str, Any]], str, None] = None
+
+
+class NavigationReferenceRecord(BaseModel):
+    # Candidate evidence and existing-link observations vary by reference class.
+    model_config = ConfigDict(extra="allow")
+    resolution_status: Literal["resolved", "ambiguous", "missing"]
+    original_text: str
+    source: NavigationReferenceSource
+    target: Optional[NavigationReferenceTarget] = None
+    candidates: List[Dict[str, Any]] = Field(default_factory=list)
+    policy: Literal["exact-source-reference-v1"]
+    reason: str
+
+
+class NavigationResolutionPolicy(BaseModel):
+    id: Literal["exact-source-reference-v1"] = "exact-source-reference-v1"
+    printed_pages: Literal["observed_labels_only"] = "observed_labels_only"
+    scope: Literal["single_document_build"] = "single_document_build"
+    fuzzy_matching: Literal[False] = False
+    resolve_references: bool = False
+
+
+class NavigationResolutionTiming(BaseModel):
+    elapsed_ms: float = Field(ge=0)
+
+
+class FinalNavigationValidation(BaseModel):
+    status: Literal["passed", "failed"]
+    issues: List[Dict[str, Any]] = Field(default_factory=list)
+    annotations: List[Dict[str, Any]] = Field(default_factory=list)
+    resource_observations: List[Dict[str, Any]] = Field(default_factory=list)
+    semantic_observations: List[Dict[str, Any]] = Field(default_factory=list)
+
+
+class NavigationResolutionReport(BaseModel):
+    schema_version: Literal["manual_navigation_resolution_v1"] = "manual_navigation_resolution_v1"
+    scope: Literal["single_document_build"] = "single_document_build"
+    summary: Dict[str, int] = Field(default_factory=dict)
+    resolution_summary: Dict[str, int] = Field(default_factory=dict)
+    references: List[NavigationReferenceRecord] = Field(default_factory=list)
+    semantic_observations: List[Dict[str, Any]] = Field(default_factory=list)
+    final_validation: Optional[FinalNavigationValidation] = None
+    policy: NavigationResolutionPolicy
+    timing: NavigationResolutionTiming
+    api_calls: Literal[0] = 0
+    cost_usd: Literal[0] = 0
+
+
 class DocWebProvenanceBlock(BaseModel):
     """
     Paragraph/block-level provenance sidecar row for the first `doc-web` contract.
@@ -2130,6 +2191,7 @@ class ExecutionConfig(BaseModel):
 
 
 class OptionsConfig(BaseModel):
+    resolve_references: bool = False
     mock: bool = False
     no_validate: bool = False
     allow_run_id_reuse: bool = False

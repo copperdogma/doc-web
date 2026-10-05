@@ -5,6 +5,9 @@ input_schema: null
 output_schema: page_html_v1
 description: "Born-digital PDF extract path that reuses the bounded Marker-lite runtime seam, normalizes the result into page_html_v1, and emits doc-web bundle/provenance sidecars for inspection."
 params:
+  - name: resolve_references
+    type: bool
+    default: false
   - name: out
     type: str
     default: pages_html.jsonl
@@ -24,3 +27,36 @@ params:
     type: bool
     default: true
 notes: "Keeps Marker runtime/bootstrap explicit: this stage depends on Docker plus a repo-local cached Marker runtime or bootstrap source. The main artifact is page_html_v1; sidecars preserve raw Marker JSON/meta, runtime bootstrap info, normalization decisions, and a contract-aligned doc_web_bundle proof."
+
+default_params:
+  resolve_references: false
+param_schema:
+  properties:
+    pdf:
+      type: string
+    outdir:
+      type: string
+    run_id:
+      type: string
+    state_file:
+      type: string
+    progress_file:
+      type: string
+    no_bootstrap:
+      type: boolean
+    resolve_references:
+      type: boolean
+      default: false
+    out:
+      type: string
+    container_name:
+      type: string
+    bootstrap_from_container:
+      type: string
+    bootstrap_image:
+      type: string
+    base_image:
+      type: string
+    allow_bootstrap:
+      type: boolean
+  required: []

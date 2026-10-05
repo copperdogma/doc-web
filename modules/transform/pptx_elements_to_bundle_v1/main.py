@@ -109,6 +109,7 @@ def _build_bundle(
     run_id: Optional[str],
     book_title: str,
     book_author: str,
+    resolve_references: bool = False,
 ) -> dict[str, Any]:
     normalized_elements = _normalize_pptx_elements(elements)
     entry_specs = _group_by_slide(normalized_elements)
@@ -117,6 +118,7 @@ def _build_bundle(
         entry_specs[0]["title"] if entry_specs and entry_specs[0]["title"] else fallback_title
     )
     return write_bundle(
+        resolve_references=resolve_references,
         entry_specs=entry_specs,
         source_elements=normalized_elements,
         out_path=out_path,
@@ -137,6 +139,7 @@ def main() -> None:
     parser.add_argument("--run-id", dest="run_id", default=None, help="Driver compatibility")
     parser.add_argument("--state-file", dest="state_file", default=None, help="Driver compatibility")
     parser.add_argument("--progress-file", dest="progress_file", default=None, help="Driver compatibility")
+    parser.add_argument("--resolve-references", action="store_true", help="Link explicit source-supported references in final HTML.")
     args = parser.parse_args()
 
     module_id = "pptx_elements_to_bundle_v1"
@@ -160,6 +163,7 @@ def main() -> None:
         run_id=args.run_id,
         book_title=args.book_title,
         book_author=args.book_author,
+        resolve_references=args.resolve_references,
     )
     save_json(str(out_path), report)
     logger.log(

@@ -4,10 +4,14 @@ entrypoint: modules/transform/xlsx_elements_to_bundle_v1/main.py
 input_schema: unstructured_element_v1
 output_schema: null
 default_params:
+  resolve_references: false
   book_title: ""
   book_author: ""
 param_schema:
   properties:
+    resolve_references:
+      type: boolean
+      description: "Link explicit source-supported references in final HTML"
     book_title:
       type: string
       description: "Optional workbook title override for the emitted bundle"

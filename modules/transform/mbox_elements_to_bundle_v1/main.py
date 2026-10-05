@@ -161,6 +161,7 @@ def _build_bundle(
     run_id: Optional[str],
     book_title: str,
     book_author: str,
+    resolve_references: bool = False,
 ) -> dict[str, Any]:
     entry_specs = _group_by_message(elements)
     messages = _report_messages(entry_specs)
@@ -168,6 +169,7 @@ def _build_bundle(
         elements, out_path.stem
     )
     report = write_bundle(
+        resolve_references=resolve_references,
         entry_specs=entry_specs,
         source_elements=elements,
         out_path=out_path,
@@ -212,6 +214,7 @@ def main() -> None:
         default=None,
         help="Driver compatibility",
     )
+    parser.add_argument("--resolve-references", action="store_true", help="Link explicit source-supported references in final HTML.")
     args = parser.parse_args()
 
     module_id = "mbox_elements_to_bundle_v1"
@@ -237,6 +240,7 @@ def main() -> None:
         run_id=args.run_id,
         book_title=args.book_title,
         book_author=args.book_author,
+        resolve_references=args.resolve_references,
     )
     save_json(str(out_path), report)
     logger.log(

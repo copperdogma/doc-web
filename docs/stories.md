@@ -114,6 +114,7 @@ Grouped by primary `spec:N` category. Stories without category refs remain in an
 | 139 | Partial-TOC Section Splitting and Page-Break Continuation | High | Done | 129, 137 | [story-139](stories/story-139-partial-toc-section-splitting-and-page-break-continuation.md) |
 | 173 | Harden `doc-web` After the First Dossier Adoption Trial | High | Done | 156, 168, 171 | [story-173](stories/story-173-dossier-doc-web-adoption-hardening.md) |
 | 181 | Establish a Maintained Layout Benchmark and Provenance-Focused Section-Splitting Proof Surface | High | Done | 172, 177 | [story-181](stories/story-181-maintained-layout-benchmark-and-section-splitting-proof.md) |
+| 243 | Optional source-grounded reference resolution | High | Done | 226 | [story-243](stories/story-243-optional-source-grounded-reference-resolution.md) |
 
 ### spec:4 — Illustration Extraction
 

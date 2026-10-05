@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "candidate_executed": false,
+  "heldout_policy": "Do not execute or inspect heldout answers until candidate freeze. Fixture author is evaluator, not runtime developer.",
+  "sha256": {
+    "tests/fixtures/reference_resolution/development.json": "65a3cc4b780eaafa455e12d29dc882ff548f7b41757464410f6d089e4c863418",
+    "tests/fixtures/reference_resolution/heldout.json": "6b6910075cd1da334cbf0c5fc7ff12f8e641d9dbb33497e0dd4f11b1c3d34f60",
+    "tests/fixtures/reference_resolution/pages.jsonl": "2710a1f2b4bd64299726e805615c1d0cc44175d8b5a3f4701cdaef0ccaf2510d",
+    "tests/fixtures/reference_resolution/portions.jsonl": "b0560ef3eac3136f24248db86a0fa3abd165acc2070f4f8d727433b5e3bf70e5"
+  },
+  "harness_sha256": "39ba855e2693c191859e5e3b415e5550ccd02ed23b595ae3d2e5aa41438a10e9"
+}
