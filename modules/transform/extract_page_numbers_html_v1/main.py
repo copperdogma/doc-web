@@ -54,25 +54,19 @@ def _extract_printed_page_number(html: str, source_page_number: Optional[int] = 
         flags=re.IGNORECASE | re.DOTALL,
     )
     if not matches:
-        # Fallback: find trailing standalone numeric or roman numeral lines outside tables.
+        # An unmarked numeric paragraph is only a candidate at the document
+        # boundary. A catalog code before the title is body content, not a folio.
         soup = BeautifulSoup(html, "html.parser")
-        candidates: List[str] = []
-        for p in soup.find_all("p"):
-            if p.find_parent("table") is not None:
-                continue
-            text = _strip_tags(str(p))
-            if not text:
-                continue
-            text = text.strip()
-            if re.fullmatch(r"\d{1,4}", text) or re.fullmatch(r"[ivxlcdm]+", text.lower()):
-                candidates.append(text)
-        if not candidates:
+        blocks = [tag for tag in soup.find_all(["p", "h1", "h2", "h3", "h4", "h5", "h6", "li", "dt", "dd", "figure", "table"])
+                  if tag.get_text(" ", strip=True)]
+        last = blocks[-1] if blocks else None
+        if last is None or last.name != "p" or last.find_parent(["table", "figure"]) is not None:
             return {"printed_page_number": None, "printed_page_number_text": None}
-        cleaned = candidates[-1]
-        page_number = _select_page_number_from_text(cleaned, source_page_number)
-        if page_number is None:
-            return {"printed_page_number": None, "printed_page_number_text": cleaned or None}
-        return {"printed_page_number": page_number, "printed_page_number_text": cleaned or None}
+        cleaned = _strip_tags(str(last))
+        if not (re.fullmatch(r"\d+", cleaned) or re.fullmatch(r"[ivxlcdm]+", cleaned.lower())):
+            return {"printed_page_number": None, "printed_page_number_text": None}
+        return {"printed_page_number": _select_page_number_from_text(cleaned, source_page_number),
+                "printed_page_number_text": cleaned or None, "_requires_sequence_support": True}
     # Prefer the last occurrence (footers are typically last).
     raw = matches[-1]
     cleaned = _strip_tags(raw)
@@ -106,11 +100,20 @@ def _infer_missing_page_numbers(rows: List[Dict[str, Any]]) -> None:
                     rk["printed_page_number"] = pa + (k - a)
                     rk["printed_page_number_inferred"] = True
 
-    # Backfill before first known numeric (only if >= 1).
+    # Extrapolation requires at least two independent observed anchors with
+    # matching logical-page offsets. One printed label cannot number a book.
     first = idxs[0]
+    first_supported = len(idxs) >= 2 and (
+        ordered[idxs[1]][1]["printed_page_number"] - ordered[first][1]["printed_page_number"] == idxs[1] - first
+    )
+    last = idxs[-1]
+    last_supported = len(idxs) >= 2 and (
+        ordered[last][1]["printed_page_number"] - ordered[idxs[-2]][1]["printed_page_number"] == last - idxs[-2]
+    )
+    # Backfill before the first corroborated numeric label (only if >= 1).
     _, r_first = ordered[first]
     p_first = r_first.get("printed_page_number")
-    if isinstance(p_first, int):
+    if first_supported and isinstance(p_first, int):
         for k in range(first - 1, -1, -1):
             inferred = p_first - (first - k)
             if inferred < 1:
@@ -121,16 +124,50 @@ def _infer_missing_page_numbers(rows: List[Dict[str, Any]]) -> None:
                 rk["printed_page_number_inferred"] = True
 
     # Forward fill after last known numeric.
-    last = idxs[-1]
     _, r_last = ordered[last]
     p_last = r_last.get("printed_page_number")
-    if isinstance(p_last, int):
+    if last_supported and isinstance(p_last, int):
         for k in range(last + 1, len(ordered)):
             inferred = p_last + (k - last)
             _, rk = ordered[k]
             if rk.get("printed_page_number") is None:
                 rk["printed_page_number"] = inferred
                 rk["printed_page_number_inferred"] = True
+
+
+def extract_page_numbers(rows: List[Dict[str, Any]], *, infer_missing: bool = True) -> List[Dict[str, Any]]:
+    """Keep source indices separate from explicitly evidenced printed labels."""
+    output = []
+    candidates = []
+    for original in rows:
+        row = dict(original)
+        html = row.get("html") or row.get("raw_html") or ""
+        extracted = _extract_printed_page_number(html, _coerce_int(row.get("page_number") or row.get("page")))
+        row["printed_page_number"] = extracted["printed_page_number"]
+        row["printed_page_number_text"] = extracted["printed_page_number_text"]
+        row["printed_page_number_inferred"] = False
+        if extracted.get("_requires_sequence_support") and isinstance(row["printed_page_number"], int):
+            candidates.append(len(output))
+        output.append(row)
+    # Unmarked terminal numbers need an independently observed label at the
+    # same printed-versus-source offset; no magnitude cutoff or title exception.
+    observed = [(i, _coerce_int(row.get("page_number") or row.get("page")), row["printed_page_number"])
+                for i, row in enumerate(output) if type(row["printed_page_number"]) is int]
+    for i in candidates:
+        row = output[i]
+        source_page = _coerce_int(row.get("page_number") or row.get("page"))
+        number = row["printed_page_number"]
+        supported = source_page is not None and any(
+            j != i and other_source is not None and other_source != source_page
+            and other_number - number == other_source - source_page
+            for j, other_source, other_number in observed
+        )
+        if not supported:
+            row["printed_page_number"] = None
+            row["printed_page_number_text"] = None
+    if infer_missing:
+        _infer_missing_page_numbers(output)
+    return output
 
 
 def main() -> None:
@@ -150,17 +187,7 @@ def main() -> None:
     logger = ProgressLogger(state_path=args.state_file, progress_path=args.progress_file, run_id=args.run_id)
     logger.log("extract_page_numbers", "running", message=f"Loading {args.pages}")
 
-    rows = []
-    for row in read_jsonl(args.pages):
-        html = row.get("html") or row.get("raw_html") or ""
-        extracted = _extract_printed_page_number(html, _coerce_int(row.get("page_number") or row.get("page")))
-        row["printed_page_number"] = extracted["printed_page_number"]
-        row["printed_page_number_text"] = extracted["printed_page_number_text"]
-        row["printed_page_number_inferred"] = False
-        rows.append(row)
-
-    if args.infer_missing:
-        _infer_missing_page_numbers(rows)
+    rows = extract_page_numbers(list(read_jsonl(args.pages)), infer_missing=args.infer_missing)
 
     save_jsonl(args.out, rows)
     logger.log(

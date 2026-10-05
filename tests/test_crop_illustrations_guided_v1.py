@@ -1017,7 +1017,7 @@ def test_cropper_keeps_critical_manifest_bboxes_tight_even_when_detector_padding
     assert manifest[0]["bbox"] == {"x0": 50, "y0": 80, "x1": 150, "y1": 140, "width": 100, "height": 60}
 
 
-def test_cropper_adds_small_safety_margin_for_component_reference_targets(tmp_path):
+def test_cropper_preserves_exact_component_reference_target_bounds(tmp_path):
     page_path = tmp_path / "page-001.png"
     canvas = np.full((200, 200, 3), 245, dtype=np.uint8)
     cv2.rectangle(canvas, (50, 50), (100, 100), (20, 80, 220), thickness=-1)
@@ -1062,7 +1062,7 @@ def test_cropper_adds_small_safety_margin_for_component_reference_targets(tmp_pa
         padding_percent=0.0,
     )
 
-    assert manifest[0]["bbox"] == {"x0": 47, "y0": 47, "x1": 103, "y1": 103, "width": 56, "height": 56}
+    assert manifest[0]["bbox"] == {"x0": 50, "y0": 50, "x1": 100, "y1": 100, "width": 50, "height": 50}
 
 
 def test_mask_detached_map_background_removes_corner_text_but_keeps_map_pixels():
@@ -1159,7 +1159,7 @@ def test_split_untargeted_card_reference_panel_boxes_emits_individual_card_faces
     assert all("_critical_graphics_target_id" not in box for box in split)
 
 
-def test_cropper_emits_transparent_png_for_map_crop_with_detached_edge_text(tmp_path):
+def test_cropper_preserves_planner_map_pixels_in_lossless_png(tmp_path):
     page_path = tmp_path / "page-001.png"
     canvas = np.full((260, 360, 3), 235, dtype=np.uint8)
     cv2.rectangle(canvas, (20, 20), (340, 130), (190, 195, 195), thickness=-1)
@@ -1210,11 +1210,10 @@ def test_cropper_emits_transparent_png_for_map_crop_with_detached_edge_text(tmp_
     )
 
     assert manifest[0]["filename"].endswith(".png")
-    assert manifest[0]["has_transparency"] is True
-    image = Image.open(tmp_path / "out" / "images" / manifest[0]["filename"]).convert("RGBA")
-    alpha = np.asarray(image)[:, :, 3]
-    assert alpha[230, 30] == 0
-    assert alpha[170, 190] == 255
+    assert manifest[0]["has_transparency"] is False
+    assert manifest[0]["crop_transform"] == "rectangle_and_encode"
+    image = Image.open(tmp_path / "out" / "images" / manifest[0]["filename"]).convert("RGB")
+    assert np.array_equal(np.asarray(image), canvas[:, :, ::-1])
 
 
 @pytest.mark.parametrize("splitter", ["dense", "cards", "rule_panel", "gaps", "layout"])
@@ -1301,7 +1300,7 @@ def test_page_decode_reuse_is_local_and_refreshes_changed_source(tmp_path, monke
                                         critical_graphics_manifest=str(plan),
                                         detection_mode="auto", output_format="png")
         assert len(rows) == 2
-        assert len(reads) == run + 1  # one decode despite two targets
+        assert len(reads) == 0  # planner preservation does not run visual heuristics
         pixels = np.array(Image.open(output / "images" / rows[0]["filename"]))
         assert np.array_equal(pixels[0, 0, :3], np.array(color[::-1]))
         outputs.append(pixels)
@@ -1331,3 +1330,64 @@ def test_png_export_preserves_native_pixels_and_icc(tmp_path, mode):
         assert exported.format == "PNG"
         assert exported.info["icc_profile"] == profile
         assert np.array_equal(np.array(exported), pixels[30:95, 20:110])
+
+
+@pytest.mark.parametrize("role", ["rule_example_diagram", "component_reference", "map_or_board"])
+def test_planner_monochrome_graph_labels_preserve_every_pixel_with_all_cleanup_enabled(tmp_path, monkeypatch, role):
+    """A graph's sparse axes and prose-like labels are essential source pixels."""
+    page = tmp_path / "graph.png"
+    canvas = np.full((240, 360, 3), 250, dtype=np.uint8)
+    for x in [35, 175]:
+        cv2.line(canvas, (x, 30), (x, 190), (85, 85, 85), 1)
+        cv2.line(canvas, (x, 190), (x + 125, 190), (85, 85, 85), 1)
+        cv2.line(canvas, (x + 4, 182), (x + 100, 80), (120, 120, 120), 1)
+        cv2.putText(canvas, "ENGINE ROOM", (x, 215), cv2.FONT_HERSHEY_SIMPLEX, .3, (40, 40, 40), 1)
+    cv2.imwrite(str(page), canvas)
+    ocr = tmp_path / "ocr.jsonl"
+    ocr.write_text(json.dumps({"page_number": 1, "image": str(page), "images": [{"alt": "graph"}]}) + "\n")
+    plan = tmp_path / "plan.json"
+    plan.write_text(json.dumps({"pages": [{"page_number": 1, "targets": [{
+        "target_id": "graph", "importance": "essential", "role": role,
+        "bbox_pixels": {"x0": 20, "y0": 20, "x1": 320, "y1": 225},
+        "description": "Graphs with integrated labels", "caption_box": {"x0": 20, "y0": 190, "x1": 320, "y1": 225}
+    }]}]}))
+    def forbidden(*args, **kwargs):
+        pytest.fail("Planner-owned rectangles must not invoke content-removal heuristics or rescue")
+    for name in ["_call_vlm_boxes", "_call_vlm_caption_boxes", "_refine_boxes_with_nonwhite",
+                 "_refine_boxes_with_nontext", "_refine_boxes_remove_text_lines", "_trim_text_edges",
+                 "_split_text_heavy_rule_panel_boxes", "_split_card_reference_panel_boxes",
+                 "_apply_caption_box", "_trim_box_by_ocr_text", "_trim_caption_from_box",
+                 "_trim_rule_example_bottom_prose_band", "_mask_detached_map_background",
+                 "_make_transparent"]:
+        monkeypatch.setattr(crop_module, name, forbidden)
+    result = crop_illustrations_guided(str(ocr), str(tmp_path / "out"),
+        critical_graphics_manifest=str(plan), output_format="jpeg", transparency=True,
+        rescue_model="unused-model", rescue_always=True, rescue_caption_second_pass=True,
+        refine_with_nonwhite=True, refine_with_nontext=True, refine_with_textlines=True,
+        trim_text_edges=True, trim_ocr_text_edges=True, ocr_tesseract_cmd="unused",
+        trim_layout_text=True, layout_split_text=True, trim_caption=True,
+        dense_split_when_missing=True, split_when_missing=True)
+    assert len(result) == 1
+    row = result[0]
+    assert row["bbox"] == {"x0": 20, "y0": 20, "x1": 320, "y1": 225, "width": 300, "height": 205}
+    assert row["crop_transform"] == "rectangle_and_encode"
+    assert row["filename_alpha"] is None
+    assert row["contains_text"] is None  # planner has not classified text presence
+    with Image.open(tmp_path / "out" / "images" / row["filename"]) as image:
+        assert image.format == "PNG"
+        assert np.array_equal(np.array(image), canvas[20:225, 20:320, ::-1])
+
+
+@pytest.mark.parametrize("declaration", [True, False])
+def test_critical_target_preserves_explicit_text_presence_declaration(declaration):
+    box = crop_module._box_from_critical_target({
+        "bbox_pixels": {"x0": 0, "y0": 0, "x1": 10, "y1": 10},
+        "contains_text": declaration})
+    assert box["_contains_text"] is declaration
+
+
+@pytest.mark.parametrize("bounds", [(-1, 0, 10, 10), (0, -1, 10, 10), (0, 0, 21, 10), (0, 0, 10, 21)])
+def test_critical_target_rejects_out_of_source_pixels_instead_of_padding(bounds):
+    with pytest.raises(ValueError, match="outside selected source image"):
+        crop_module._box_from_critical_target({"bbox_pixels": dict(zip(("x0", "y0", "x1", "y1"), bounds))},
+            image_width=20, image_height=20)

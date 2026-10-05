@@ -162,7 +162,9 @@ def build_logical_page_map(
     for physical_order_index, row in enumerate(split_rows, start=1):
         physical_sheet = _coerce_int(row.get("original_page_number")) or _coerce_int(row.get("page")) or physical_order_index
         spread_side = row.get("spread_side")
-        label = labels.get(physical_sheet)
+        # A text-layer range is a spread label only for a physically split
+        # source. Dice ranges in portrait body text must not become metadata.
+        label = labels.get(physical_sheet) if spread_side in {"L", "R"} else None
         logical_page = None
         confidence = 0.35
         reason = "unresolved: no printed label matched this page"
@@ -256,19 +258,21 @@ def build_logical_page_map(
     for order_index, entry in enumerate(entries, start=1):
         entry["logical_order_index"] = order_index
 
-    physical_spreads = [
-        {
-            "physical_sheet": label.physical_sheet,
-            "printed_spread_label": label.pair_label,
-            "left_printed_page": label.left_printed_page,
-            "right_printed_page": label.right_printed_page,
-            "is_cover_or_back_imposition_signal": label.left_printed_page > label.right_printed_page,
-            "confidence": label.confidence,
-            "source_line": label.source_line,
-            "reason": label.reason,
-        }
-        for label in sorted(labels.values(), key=lambda item: item.physical_sheet)
-    ]
+    split_sheets = sorted({entry["physical_sheet"] for entry in entries
+                           if entry.get("spread_side") in {"L", "R"}})
+    physical_spreads = []
+    for physical_sheet in split_sheets:
+        label = labels.get(physical_sheet)
+        physical_spreads.append({
+            "physical_sheet": physical_sheet,
+            "printed_spread_label": label.pair_label if label else None,
+            "left_printed_page": label.left_printed_page if label else None,
+            "right_printed_page": label.right_printed_page if label else None,
+            "is_cover_or_back_imposition_signal": label.left_printed_page > label.right_printed_page if label else False,
+            "confidence": label.confidence if label else None,
+            "source_line": label.source_line if label else None,
+            "reason": label.reason if label else "physical split source; printed label unresolved",
+        })
 
     complete = bool(seen_pages) and not missing_pages and not duplicate_pages and len(seen_pages) == len(split_rows)
     return {

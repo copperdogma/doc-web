@@ -611,3 +611,96 @@ def test_graphics_heavy_imposed_pdf_recipe_wiring() -> None:
     assert build_stage["params"]["normalize_reference_entries"] is True
     assert build_stage["params"]["normalize_catalog_entries"] is True
     assert "graphics-heavy manual" in data["stages"][3]["params"]["ocr_hints"]
+
+
+def _zero_graphics_report(tmp_path, *, mutation=None, omit_figure=False, omit_critical=False):
+    logical = tmp_path / "logical" / "pages.jsonl"
+    _write_jsonl(logical, [{"page_number": 1}, {"page_number": 2}])
+    (logical.parent / "logical_page_map.json").write_text(json.dumps({"summary": {
+        "complete": True, "issues_count": 0, "inferred_logical_page_count": 2}}))
+    pages = tmp_path / "pages.jsonl"
+    _write_jsonl(pages, [{"page_number": 1, "html": "<h1>Events</h1><p>One event.</p>"},
+                         {"page_number": 2, "html": "<p>Another event.</p>"}])
+    plan = {"summary": {"pages_reviewed": 2, "preserve_as_figure_count": 0, "uncertain_count": 0},
+            "pages": [{"page_number": 1}, {"page_number": 2}], "plan_items": []}
+    critical = {"summary": {"page_count": 2, "target_count": 0, "essential_count": 0,
+                            "useful_count": 0, "uncertain_count": 0},
+                "pages": [{"page_number": 1, "targets": [], "uncertainties": []},
+                          {"page_number": 2, "targets": [], "uncertainties": []}]}
+    if mutation:
+        mutation(plan, critical)
+    plan_path, critical_path = tmp_path / "plan.json", tmp_path / "critical.json"
+    if not omit_figure:
+        plan_path.write_text(json.dumps(plan))
+    if not omit_critical:
+        critical_path.write_text(json.dumps(critical))
+    crops = tmp_path / "crops.jsonl"
+    crops.write_text("")
+    html = tmp_path / "html" / "chapter.html"
+    html.parent.mkdir()
+    html.write_text("<h1>Events</h1><p>One event.</p><p>Another event.</p>")
+    (html.parent / "manifest.json").write_text("{}")
+    _write_jsonl(html.parent / "provenance" / "blocks.jsonl", [{"block_id": "one"}])
+    chapters = tmp_path / "chapters.jsonl"
+    _write_jsonl(chapters, [{"file": str(html), "source_pages": [1, 2], "title": "Events"}])
+    return build_report(pages_path=pages, logical_pages_path=logical, figure_plan_path=plan_path,
+        critical_graphics_manifest_path=critical_path, crops_path=crops, chapters_path=chapters,
+        run_id="zero-graphics", min_figure_crop_ratio=.75, min_critical_target_crop_coverage=.5)
+
+
+def test_conformance_accepts_exhaustive_reviewed_text_only_manual(tmp_path):
+    report = _zero_graphics_report(tmp_path)
+    check = next(c for c in report["checks"] if c["id"] == "essential_graphics_plan_present")
+    assert check["status"] == "pass"
+    assert check["detail"]["exhaustive_reviewed_zero_graphics"] is True
+    assert report["summary"]["fail_count"] == 0
+
+
+def test_conformance_accepts_exhaustive_decorative_only_review(tmp_path):
+    def mutation(plan, critical):
+        critical["summary"]["target_count"] = 1
+        critical["pages"][0]["targets"] = [{"importance": "decorative"}]
+    report = _zero_graphics_report(tmp_path, mutation=mutation)
+    assert report["summary"]["fail_count"] == 0
+
+
+def test_zero_graphics_rejects_absent_critical_planner(tmp_path):
+    report = _zero_graphics_report(tmp_path, omit_critical=True)
+    assert next(c for c in report["checks"] if c["id"] == "essential_graphics_plan_present")["status"] == "fail"
+
+
+def test_zero_graphics_rejects_missing_figure_plan(tmp_path):
+    report = _zero_graphics_report(tmp_path, omit_figure=True)
+    assert next(c for c in report["checks"] if c["id"] == "essential_graphics_plan_present")["status"] == "fail"
+
+
+def test_zero_graphics_rejects_incomplete_and_duplicate_planner_pages(tmp_path):
+    for name, page_numbers in [("incomplete", [1]), ("duplicate", [1, 1])]:
+        root = tmp_path / name
+        root.mkdir()
+        def mutation(plan, critical):
+            critical["pages"] = [{"page_number": number, "targets": [], "uncertainties": []} for number in page_numbers]
+        report = _zero_graphics_report(root, mutation=mutation)
+        assert next(c for c in report["checks"] if c["id"] == "essential_graphics_plan_present")["status"] == "fail"
+
+
+def test_zero_graphics_rejects_missing_essential_target_despite_zero_summary(tmp_path):
+    def mutation(plan, critical):
+        critical["pages"][0]["targets"] = [{"importance": "essential", "bbox_pixels": {"x0": 0, "y0": 0, "x1": 20, "y1": 20}}]
+    report = _zero_graphics_report(tmp_path, mutation=mutation)
+    assert next(c for c in report["checks"] if c["id"] == "essential_graphics_plan_present")["status"] == "fail"
+
+
+def test_zero_graphics_rejects_uncertain_targets_and_page_decisions(tmp_path):
+    for name in ["target", "page", "summary"]:
+        root = tmp_path / name
+        root.mkdir()
+        def mutation(plan, critical):
+            if name == "target":
+                critical["pages"][0]["targets"] = [{"importance": "uncertain"}]
+            elif name == "page":
+                critical["pages"][0]["uncertainties"] = ["Might contain a diagram"]
+            else:
+                critical["summary"]["uncertain_count"] = 1
+        report = _zero_graphics_report(root, mutation=mutation)
+        assert next(c for c in report["checks"] if c["id"] == "essential_graphics_plan_present")["status"] == "fail"

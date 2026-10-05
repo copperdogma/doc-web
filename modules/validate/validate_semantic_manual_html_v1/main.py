@@ -1108,6 +1108,7 @@ def _critical_graphics_checks(
     critical_manifest: dict[str, Any],
     crops: list[dict[str, Any]],
     min_target_crop_coverage: float,
+    reviewed_zero_graphics: bool = False,
 ) -> list[dict[str, Any]]:
     checks: list[dict[str, Any]] = []
     summary = critical_manifest.get("summary") or {}
@@ -1145,7 +1146,7 @@ def _critical_graphics_checks(
         checks,
         "critical_graphics_manifest_present",
         "SOTA visual-planner manifest exists and records non-decorative target decisions.",
-        bool(critical_manifest) and manifest_target_count > 0,
+        bool(critical_manifest) and (manifest_target_count > 0 or reviewed_zero_graphics),
         detail=summary,
     )
 
@@ -1266,6 +1267,48 @@ def _critical_graphics_checks(
     return checks
 
 
+def _reviewed_zero_graphics(
+    *, plan: dict[str, Any], critical_manifest: dict[str, Any], logical_pages: list[dict[str, Any]]
+) -> bool:
+    """Distinguish an exhaustive empty decision from absent or unresolved work."""
+    expected = [row.get("page_number") for row in logical_pages]
+    if not expected or any(type(page) is not int for page in expected) or len(set(expected)) != len(expected):
+        return False
+    for document in (plan, critical_manifest):
+        rows = document.get("pages")
+        if not isinstance(rows, list) or any(not isinstance(row, dict) for row in rows):
+            return False
+        actual = [row.get("page_number") for row in rows]
+        if any(type(page) is not int for page in actual) or len(actual) != len(expected) or set(actual) != set(expected):
+            return False
+    summary = plan.get("summary") or {}
+    if summary.get("pages_reviewed") != len(expected):
+        return False
+    for field in ("preserve_as_figure_count", "uncertain_count"):
+        if type(summary.get(field)) is not int or summary[field] != 0:
+            return False
+    items = plan.get("plan_items")
+    if not isinstance(items, list) or any(
+        not isinstance(item, dict) or item.get("preserve_as_figure") or item.get("classification") != "decorative"
+        for item in items
+    ):
+        return False
+    critical_summary = critical_manifest.get("summary") or {}
+    if critical_summary.get("page_count") != len(expected):
+        return False
+    for field in ("essential_count", "useful_count", "uncertain_count"):
+        if type(critical_summary.get(field)) is not int or critical_summary[field] != 0:
+            return False
+    for row in critical_manifest["pages"]:
+        targets = row.get("targets")
+        uncertainties = row.get("uncertainties")
+        if not isinstance(targets, list) or not isinstance(uncertainties, list) or uncertainties:
+            return False
+        if any(not isinstance(target, dict) or target.get("importance") != "decorative" for target in targets):
+            return False
+    return True
+
+
 def build_report(
     *,
     pages_path: Path,
@@ -1319,6 +1362,9 @@ def build_report(
         detail={"page_html_rows": len(pages), "ordered_page_rows": len(logical_pages), "empty_html_pages": empty_html_pages},
     )
 
+    reviewed_zero_graphics = _reviewed_zero_graphics(
+        plan=plan, critical_manifest=critical_manifest, logical_pages=logical_pages
+    )
     plan_summary = plan.get("summary") or {}
     preserve_count = int(plan_summary.get("preserve_as_figure_count") or 0)
     crop_count = len(crops)
@@ -1326,9 +1372,9 @@ def build_report(
     _check(
         checks,
         "essential_graphics_plan_present",
-        "Essential graphics plan exists and records preserve-as-figure decisions.",
-        figure_plan_path.exists() and preserve_count > 0,
-        detail=plan_summary,
+        "Essential graphics plan records figure decisions or an exhaustive reviewed zero-figure result.",
+        figure_plan_path.exists() and (preserve_count > 0 or reviewed_zero_graphics),
+        detail={**plan_summary, "exhaustive_reviewed_zero_graphics": reviewed_zero_graphics},
     )
     _check(
         checks,
@@ -1392,6 +1438,7 @@ def build_report(
                 critical_manifest=critical_manifest,
                 crops=crops,
                 min_target_crop_coverage=min_critical_target_crop_coverage,
+                reviewed_zero_graphics=reviewed_zero_graphics,
             )
         )
 

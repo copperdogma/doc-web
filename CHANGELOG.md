@@ -1,3 +1,13 @@
+## [2026-10-04-02] — Preserve planner-owned figures and source page identity
+
+### Fixed
+- Export critical planner rectangles as lossless source crops without destructive trim, masks, implicit safety margins or rescue calls; reject out-of-source pixel bounds.
+- Accept fully reviewed empty essential-graphics plans only with exhaustive page coverage and no unresolved/essential/useful targets.
+- Keep catalog codes and body dice ranges out of printed folios and physical-spread metadata; require independent corroboration before inferring printed numbers.
+
+### Verified
+- Linked Ingester Story036 native refinements preserve eight complete rules figures,20 events pages and607 text blocks; independent source inspection and241 affected tests pass. Repairs make no new provider calls, and the portable consumer passes12/12 isolated-copy checks. Attempt058 records exact evidence identities. Story226's broader qualification remains In Progress; no detector, model or cost/speed promotion.
+
 ## [2026-10-03-03] - Set experiment and loop-review decision rules
 
 ### Changed

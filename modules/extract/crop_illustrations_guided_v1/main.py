@@ -3208,6 +3208,12 @@ def _box_from_critical_target(
         return None
     if x1 <= x0 or y1 <= y0:
         return None
+    if image_width and image_height and (
+        x0 < 0 or y0 < 0 or x1 > image_width or y1 > image_height
+    ):
+        # Pillow pads out-of-bounds crops with invented pixels. A preservation
+        # rectangle must be entirely owned by the selected source image.
+        raise ValueError("critical graphics bbox extends outside selected source image")
     if image_width and image_height and padding_percent > 0:
         pad_x = int(round((x1 - x0) * padding_percent))
         pad_y = int(round((y1 - y0) * padding_percent))
@@ -3225,6 +3231,9 @@ def _box_from_critical_target(
         "_from_vlm": True,
         "_detection_method": "critical_graphics_manifest",
         "_description": _target_description(target),
+        # Critical planner contracts do not require a text-presence judgment.
+        # Preserve an explicit declaration; absence is unknown, not text-free.
+        "_contains_text": target.get("contains_text") if type(target.get("contains_text")) is bool else None,
         "_nearby_text": target.get("nearby_text"),
         "_expected_visual_contents": target.get("expected_visual_contents"),
         "_critical_graphics_target_id": target.get("target_id"),
@@ -3235,18 +3244,6 @@ def _box_from_critical_target(
         "_critical_bbox_transform": target.get("_critical_bbox_transform"),
     }
     return box
-
-
-def _critical_target_padding_percent(target: Dict[str, Any]) -> float:
-    """Return conservative role-specific padding for visual-planner crop intent."""
-    role = str(target.get("role") or "").casefold()
-    if role == "component_reference":
-        # Component reference boxes from VLMs are often semantically correct but
-        # visually tight around the object. A small margin preserves edge board
-        # squares/icons while downstream prose trimming still removes detached
-        # text bands.
-        return 0.06
-    return 0.0
 
 
 def _align_descriptions_to_detected_boxes(descriptions: List[str], boxes: List[Dict[str, int]]) -> List[str]:
@@ -4894,10 +4891,9 @@ def crop_illustrations_guided(
                 ),
                 image_width=source_img_w,
                 image_height=source_img_h,
-                # Visual-planner targets are already semantic source-pixel crop
-                # intent. Only apply narrow role-specific safety margins where
-                # visual completeness is more likely to fail than prose pickup.
-                padding_percent=_critical_target_padding_percent(target),
+                # The semantic planner owns the complete rectangle, including
+                # monochrome labels and whitespace. Preserve its exact bounds.
+                padding_percent=0.0,
             )
             for target in critical_targets
         ]
@@ -5010,8 +5006,12 @@ def crop_illustrations_guided(
                 padding_percent=padding_percent,
             )
 
+        # Planner rectangles are source-preservation instructions. Geometry and
+        # text-removal heuristics belong only to the untargeted detector path;
+        # diagram labels, axes and rooms are not removable document prose.
+        planner_owned = bool(boxes_from_critical_manifest)
         image_data = None
-        if rescue_model and rescue_used < rescue_max_pages and (rescue_always or len(boxes) < expected_count):
+        if not planner_owned and rescue_model and rescue_used < rescue_max_pages and (rescue_always or len(boxes) < expected_count):
             try:
                 img = cv2.imread(str(source_image_path), cv2.IMREAD_GRAYSCALE)
                 if img is None:
@@ -5082,7 +5082,7 @@ def crop_illustrations_guided(
             img_gray = cv2.imread(str(source_image_path), cv2.IMREAD_GRAYSCALE)
 
         caption_model = rescue_caption_model or rescue_model
-        if rescue_caption_second_pass and caption_model and boxes:
+        if not planner_owned and rescue_caption_second_pass and caption_model and boxes:
             try:
                 if img_gray is None:
                     img_gray = cv2.imread(str(source_image_path), cv2.IMREAD_GRAYSCALE)
@@ -5123,7 +5123,7 @@ def crop_illustrations_guided(
             except Exception as exc:
                 _log(f"    VLM caption pass failed: {exc}")
 
-        if refine_with_nonwhite and boxes:
+        if not planner_owned and refine_with_nonwhite and boxes:
             boxes = _refine_boxes_with_nonwhite(
                 source_image_path,
                 boxes,
@@ -5132,7 +5132,7 @@ def crop_illustrations_guided(
                 close_iterations=refine_close_iterations,
             )
 
-        if refine_with_nontext and boxes:
+        if not planner_owned and refine_with_nontext and boxes:
             if img_gray is None:
                 img_gray = cv2.imread(str(source_image_path), cv2.IMREAD_GRAYSCALE)
             boxes = _refine_boxes_with_nontext(
@@ -5146,7 +5146,7 @@ def crop_illustrations_guided(
                 text_block_iterations=text_block_iterations,
             )
 
-        if refine_with_textlines and boxes:
+        if not planner_owned and refine_with_textlines and boxes:
             if img_gray is None:
                 img_gray = cv2.imread(str(source_image_path), cv2.IMREAD_GRAYSCALE)
             refined = []
@@ -5170,7 +5170,7 @@ def crop_illustrations_guided(
                 )
             boxes = refined
 
-        if trim_text_edges and boxes:
+        if not planner_owned and trim_text_edges and boxes:
             if img_gray is None:
                 img_gray = cv2.imread(str(source_image_path), cv2.IMREAD_GRAYSCALE)
             trimmed_edges = []
@@ -5206,17 +5206,17 @@ def crop_illustrations_guided(
                     box["area_ratio"] = round(area / float(img_w * img_h), 4)
                 else:
                     box["area_ratio"] = 0.0
-        if detection_mode == "layout" and boxes:
+        if not planner_owned and detection_mode == "layout" and boxes:
             boxes = sorted(boxes, key=lambda b: b.get("area_ratio", 0.0), reverse=True)[:expected_count]
 
         # Match boxes with OCR image descriptions by visual reading order.
         boxes_sorted = _sort_boxes_reading_order(boxes)
-        boxes_deduped = _dedupe_boxes(boxes_sorted)
+        boxes_deduped = boxes_sorted if planner_owned else _dedupe_boxes(boxes_sorted)
         if len(boxes_deduped) < len(boxes_sorted):
             boxes_sorted = boxes_deduped
             _log(f"    Deduped boxes: {len(boxes)} -> {len(boxes_sorted)}")
 
-        if dense_split_when_missing and boxes_sorted:
+        if not planner_owned and dense_split_when_missing and boxes_sorted:
             split_rule_panel_boxes = _split_text_heavy_rule_panel_boxes(
                 source_image_path,
                 boxes_sorted,
@@ -5241,7 +5241,7 @@ def crop_illustrations_guided(
                 _log(f"    Card reference split: {len(boxes_sorted)} -> {len(split_reference_boxes)} boxes")
                 boxes_sorted = split_reference_boxes
 
-        if dense_split_when_missing and boxes_sorted and len(boxes_sorted) < expected_count:
+        if not planner_owned and dense_split_when_missing and boxes_sorted and len(boxes_sorted) < expected_count:
             dense_boxes = _split_dense_reference_boxes(
                 source_image_path,
                 boxes_sorted,
@@ -5257,7 +5257,7 @@ def crop_illustrations_guided(
                 _log(f"    Dense reference split: {len(boxes_sorted)} -> {len(dense_boxes)} boxes")
                 boxes_sorted = dense_boxes
 
-        if img_gray is not None and boxes_sorted and split_when_missing and len(boxes_sorted) < expected_count:
+        if not planner_owned and img_gray is not None and boxes_sorted and split_when_missing and len(boxes_sorted) < expected_count:
             min_segment_height = max(40, int(img_gray.shape[0] * split_min_segment_height_ratio))
             boxes_sorted = _split_boxes_to_count(
                 img_gray,
@@ -5270,10 +5270,10 @@ def crop_illustrations_guided(
                 min_segment_nonwhite_ratio=split_min_segment_nonwhite_ratio,
             )
 
-        if boxes_sorted:
+        if not planner_owned and boxes_sorted:
             boxes_sorted = [_apply_caption_box(b, caption_margin_px, caption_relax_max_gap_ratio) for b in boxes_sorted]
 
-        if trim_layout_text and boxes_sorted:
+        if not planner_owned and trim_layout_text and boxes_sorted:
             if layout_engine is None and not layout_engine_failed:
                 try:
                     os.environ.setdefault("DISABLE_MODEL_SOURCE_CHECK", "True")
@@ -5319,7 +5319,7 @@ def crop_illustrations_guided(
                             )
                     boxes_sorted = processed
 
-        if trim_ocr_text_edges and boxes_sorted and tesseract_cmd:
+        if not planner_owned and trim_ocr_text_edges and boxes_sorted and tesseract_cmd:
             if img_gray is None:
                 img_gray = cv2.imread(str(source_image_path), cv2.IMREAD_GRAYSCALE)
             if img_gray is not None:
@@ -5342,7 +5342,7 @@ def crop_illustrations_guided(
                     )
                 boxes_sorted = trimmed_ocr
 
-        if trim_caption and boxes_sorted:
+        if not planner_owned and trim_caption and boxes_sorted:
             if img_gray is None:
                 img_gray = cv2.imread(str(source_image_path), cv2.IMREAD_GRAYSCALE)
             if img_gray is not None:
@@ -5372,7 +5372,7 @@ def crop_illustrations_guided(
                     trimmed.append(new_box)
                 boxes_sorted = trimmed
 
-        if boxes_sorted:
+        if not planner_owned and boxes_sorted:
             # Share one exact OpenCV decode for this selected source page only.
             # Explicit arrays avoid a path cache and cannot survive another page
             # or invocation. Helpers only inspect this immutable pixel snapshot.
@@ -5423,23 +5423,25 @@ def crop_illustrations_guided(
 
             # Crop illustration
             cropped = page_img.crop((box["x0"], box["y0"], box["x1"], box["y1"]))
-            masked_crop = _mask_detached_map_background(cropped, box)
-            if masked_crop is None:
-                masked_crop = _mask_rule_panel_placement_layout_prose(cropped, box)
-            if masked_crop is None:
-                masked_crop = _mask_rule_panel_split_prose(cropped, box)
-            if masked_crop is None:
-                masked_crop = _mask_detached_rule_panel_prose(cropped, box)
-            if masked_crop is not None:
-                cropped = masked_crop
+            masked_crop = None
+            if not planner_owned:
+                masked_crop = _mask_detached_map_background(cropped, box)
+                if masked_crop is None:
+                    masked_crop = _mask_rule_panel_placement_layout_prose(cropped, box)
+                if masked_crop is None:
+                    masked_crop = _mask_rule_panel_split_prose(cropped, box)
+                if masked_crop is None:
+                    masked_crop = _mask_detached_rule_panel_prose(cropped, box)
+                if masked_crop is not None:
+                    cropped = masked_crop
 
             # Generate filename
-            actual_ext = "png" if cropped.mode == "RGBA" else ext
+            actual_ext = "png" if planner_owned or cropped.mode == "RGBA" else ext
             filename = f"page-{page_num:03d}-{box_idx:03d}.{actual_ext}"
             filepath = os.path.join(images_dir, filename)
 
             # Save original
-            if cropped.mode == "RGBA":
+            if planner_owned or cropped.mode == "RGBA":
                 cropped.save(filepath, "PNG", compress_level=PNG_COMPRESSION_LEVEL)
             elif fmt == "jpeg":
                 if cropped.mode not in ("RGB", "L"):
@@ -5456,7 +5458,7 @@ def crop_illustrations_guided(
             filename_alpha = None
             has_transparency = cropped.mode == "RGBA"
 
-            if transparency and is_bw:
+            if not planner_owned and transparency and is_bw:
                 filename_alpha = f"page-{page_num:03d}-{box_idx:03d}-alpha.png"
                 filepath_alpha = os.path.join(images_dir, filename_alpha)
 

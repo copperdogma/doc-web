@@ -1,0 +1,107 @@
+{
+  "schema": "doc-web-bounded-source-fidelity-evidence.v1",
+  "attempt": "058",
+  "date": "2026-10-04",
+  "owning_story": "226",
+  "consumer_story": "boardgame-ingester:036",
+  "base_commit": "6fec862",
+  "status": "succeeded_bounded_runtime_proof",
+  "runtime_and_test_sha256": {
+    "modules/extract/crop_illustrations_guided_v1/main.py": "925e666d8e541631bdbabca39cec49e20d3cfd1d262699340d2cb10be33cf165",
+    "modules/extract/infer_logical_page_order_v1/main.py": "83e0583cb1d754e2b8b020c1abb5eb15e37a12cc69c6d00e19096a0d002e5a3e",
+    "modules/transform/extract_page_numbers_html_v1/main.py": "6935f46b287a556f52c20b7b808eeb647796c4d4a1ed9d2c81757b8d7b3d053d",
+    "modules/validate/validate_semantic_manual_html_v1/main.py": "ad3858e53a7aa495e92e1e47653bff1e2847289fd429cdd4202212a828edf0a0",
+    "tests/test_crop_illustrations_guided_v1.py": "a74be012de383203327b213cb342d2587e2a0be105d32a169a8456542bd10a81",
+    "tests/test_extract_page_numbers_html_v1.py": "7da0e2e8ed5d8beaa0a7ffe317cd5a0e86281270ff88225371b5be9a62494aa9",
+    "tests/test_graphic_manual_semantic_pipeline.py": "e4f8425d79a0fc1fc78b12074a13ade496611ebcfe32df7113da15b70b5b47d1",
+    "tests/test_infer_logical_page_order_v1.py": "6c5fa729844c8a6c18ea9574e5e532b54293093f9572c2b3d397db34fa06d3b7"
+  },
+  "evidence": [
+    {
+      "path": "/Users/cam/.codex/worktrees/native-material-eval/boardgame-ingester/output/story036-star-smuggler-full-intake/independent-validation/backend-final-affected-tests.log",
+      "sha256": "d04f74c4c211baf7356226ba493f17063bcab74f11d876729103e624bfaaffcb"
+    },
+    {
+      "path": "/Users/cam/.codex/worktrees/native-material-eval/boardgame-ingester/output/story036-star-smuggler-full-intake/independent-validation/refined-rules-graphics-validation.json",
+      "sha256": "96f37fc608986efc6c47937a1d782bc33b0be928715c0f7e470fc3f04219e503"
+    },
+    {
+      "path": "/Users/cam/.codex/worktrees/native-material-eval/boardgame-ingester/output/story036-star-smuggler-full-intake/independent-validation/refined-events-v3-text-equivalence-and-packet.json",
+      "sha256": "7c1abd509e35726ebb54559f60c0e4934a06f197572365b75261fb646df5f0e2"
+    },
+    {
+      "path": "/Users/cam/.codex/worktrees/native-material-eval/boardgame-ingester/output/story036-star-smuggler-full-intake/portability-proof/report.json",
+      "sha256": "dc518de5fbe1b52841f57c8f0fb52ce982f76d80a9835a33a781c378aee50603"
+    },
+    {
+      "path": "/Users/cam/.codex/worktrees/native-material-eval/boardgame-ingester/output/story036-star-smuggler-full-intake/candidate-validation-v4.json",
+      "sha256": "3cfe951578196946759717bda610d465d3a52d4840ae3d8b073537bab066d1d6"
+    },
+    {
+      "path": "/Users/cam/.codex/worktrees/native-material-eval/boardgame-ingester/output/story036-star-smuggler-full-intake/independent-validation/backend-landing-affected-tests.log",
+      "sha256": "d2d735985a19047f3314cd6ead60303f2047d177231319dc6fa732ac4d02869d"
+    },
+    {
+      "path": "/Users/cam/.codex/worktrees/native-material-eval/boardgame-ingester/output/story036-star-smuggler-full-intake/independent-validation/backend-landing-planner-tests.log",
+      "sha256": "e28348f298153fd9bb66c0b476b6bb90e6f3d02f437d279acc268a89bc5c73e3"
+    },
+    {
+      "path": "/Users/cam/.codex/worktrees/native-material-eval/boardgame-ingester/output/story036-star-smuggler-full-intake/independent-validation/crop-repair-design.md",
+      "sha256": "5cdc747eee8235c235337e5ebe304644acb8852d2094802222511f1c94ddb44d"
+    }
+  ],
+  "metrics": {
+    "affected_tests_passed": 241,
+    "rules_critical_figures_preserved_exact": 8,
+    "rules_physical_pages": 24,
+    "events_physical_pages": 20,
+    "events_retained_nonfigure_blocks": 607,
+    "events_false_printed_labels_removed": 607,
+    "new_provider_calls_for_repairs": 0,
+    "isolated_consumer_checks_passed": 12
+  },
+  "limitations": [
+    "PDF-composited source rectangles; not embedded byte/channel qualification.",
+    "Reviewed empty-graphics decisions require exhaustive page coverage and no unresolved essential/useful targets.",
+    "Source text corrections and navigation edits belong to the consumer; no Doc-Web automated whole-manual text accuracy admission.",
+    "Story226 remains In Progress; maintained detector scores and old Robo Rally quality holds unchanged.",
+    "Reuse only when listed code/test identities and recorded environment/check configuration remain applicable."
+  ],
+  "verification": {
+    "working_directory": "/Users/cam/.codex/worktrees/star-smuggler-critical-figures/doc-web",
+    "pytest": {
+      "command": "PYTHONDONTWRITEBYTECODE=1 /Users/cam/.codex/worktrees/native-material-eval/boardgame-ingester/output/story036-star-smuggler-full-intake/runtime/bin/python -m pytest -q tests/test_crop_illustrations_guided_v1.py tests/test_extract_page_numbers_html_v1.py tests/test_graphic_manual_semantic_pipeline.py tests/test_infer_logical_page_order_v1.py tests/test_build_chapter_html.py tests/test_normalize_graphic_manual_html_v1.py tests/test_crop_runtime_recipe_contract.py",
+      "python": "3.12.11 Clang17.0.0 macOS",
+      "result": "241 passed,30warnings in18.87s",
+      "log": "/Users/cam/.codex/worktrees/native-material-eval/boardgame-ingester/output/story036-star-smuggler-full-intake/independent-validation/backend-landing-affected-tests.log",
+      "paid_inference": false,
+      "scope_file_sha256": {
+        "tests/test_crop_illustrations_guided_v1.py": "a74be012de383203327b213cb342d2587e2a0be105d32a169a8456542bd10a81",
+        "tests/test_extract_page_numbers_html_v1.py": "7da0e2e8ed5d8beaa0a7ffe317cd5a0e86281270ff88225371b5be9a62494aa9",
+        "tests/test_graphic_manual_semantic_pipeline.py": "e4f8425d79a0fc1fc78b12074a13ade496611ebcfe32df7113da15b70b5b47d1",
+        "tests/test_infer_logical_page_order_v1.py": "6c5fa729844c8a6c18ea9574e5e532b54293093f9572c2b3d397db34fa06d3b7",
+        "tests/test_build_chapter_html.py": "40769d15e2d3450ccfeab349a7561b2855202469dff6180b6a46955dd3dc2426",
+        "tests/test_normalize_graphic_manual_html_v1.py": "80bb4b0c1e65f09d0cf278913f06aa42205ffa6088985fbff383b2151051971f",
+        "tests/test_crop_runtime_recipe_contract.py": "f77302bf87b6896436eb19bb29ac7d63e4e109861c83a12dbb103269c1f870f1"
+      }
+    },
+    "planner_controls": {
+      "command": "PYTHONDONTWRITEBYTECODE=1 /Users/cam/.codex/worktrees/native-material-eval/boardgame-ingester/output/story036-star-smuggler-full-intake/runtime/bin/python -m pytest -q tests/test_plan_critical_graphics_vlm_v1.py",
+      "result": "3 passed in0.53s",
+      "file_sha256": "9274d7c54182ed2c0722339c74035cb15cb60f8c8e0193b4d4c767e04e11c38d",
+      "log": "/Users/cam/.codex/worktrees/native-material-eval/boardgame-ingester/output/story036-star-smuggler-full-intake/independent-validation/backend-landing-planner-tests.log"
+    },
+    "ruff": {
+      "command": "/Users/cam/miniconda3/bin/python -m ruff check modules/extract/crop_illustrations_guided_v1/main.py modules/extract/infer_logical_page_order_v1/main.py modules/transform/extract_page_numbers_html_v1/main.py modules/validate/validate_semantic_manual_html_v1/main.py tests/test_crop_illustrations_guided_v1.py tests/test_extract_page_numbers_html_v1.py tests/test_graphic_manual_semantic_pipeline.py tests/test_infer_logical_page_order_v1.py",
+      "python": "3.11.5 Clang14.0.6",
+      "ruff_version": "0.15.2",
+      "result": "All checks passed!",
+      "initial_probe_limit": "PrivatePython3.12 has no installed Ruff; first probe returned No module named ruff, then separate established miniconda checker passed."
+    },
+    "check_config_sha256": {
+      "pyproject.toml": "dc34b124baaab6218943439bc65ff7f60e45b59ea1ed1e62859f7a477b45ce7b"
+    },
+    "historical_evidence_limit": "Previous241-pass49.49s log did not retain invocation. Fresh241+3 commands above now establish auditable current scope.",
+    "provider_calls_for_validation": 0
+  }
+}

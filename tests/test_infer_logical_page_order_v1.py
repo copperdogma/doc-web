@@ -63,3 +63,28 @@ def test_logical_page_map_flags_missing_split_label(tmp_path: Path) -> None:
 
     assert page_map["summary"]["complete"] is False
     assert page_map["issues"][0]["type"] == "missing_printed_page_label"
+
+
+def test_portrait_body_ranges_do_not_claim_physical_spreads_or_printed_labels(tmp_path: Path) -> None:
+    labels = parse_spread_labels("On a roll of 1-6, choose an outcome.\n\fRoll 2-3 gives supplies.\n\f")
+    rows = [{"page": page, "page_number": page, "original_page_number": page,
+             "spread_side": None, "image": f"/tmp/page{page}.png", "source": ["portrait.pdf"]}
+            for page in [1, 2]]
+    page_map = build_logical_page_map(rows, labels, run_id="test", split_manifest=tmp_path / "split.jsonl",
+                                      pdf=None, min_confidence=.7)
+    assert page_map["summary"]["physical_spread_count"] == 0
+    assert page_map["physical_spreads"] == []
+    assert all(row["printed_spread_label"] is None and row["label_source_line"] is None
+               for row in page_map["logical_pages"])
+    assert [row["image"] for row in build_reordered_manifest(page_map, run_id="test")] == [row["image"] for row in rows]
+    assert page_map["summary"]["complete"] is True
+
+
+def test_unlabelled_physical_split_is_counted_without_inventing_a_label(tmp_path: Path) -> None:
+    rows = [{"page": 1, "page_number": i, "original_page_number": 1,
+             "spread_side": side, "image": f"/tmp/{side}.png"} for i, side in [(1, "L"), (2, "R")]]
+    page_map = build_logical_page_map(rows, {}, run_id="test", split_manifest=tmp_path / "split.jsonl",
+                                      pdf=None, min_confidence=.7)
+    assert page_map["summary"]["physical_spread_count"] == 1
+    assert page_map["physical_spreads"][0]["printed_spread_label"] is None
+    assert page_map["summary"]["complete"] is False

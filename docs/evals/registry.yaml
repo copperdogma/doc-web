@@ -936,6 +936,24 @@ evals:
         note: "Poor bounding box precision"
 
     attempts:
+      - id: "058-star-smuggler-source-fidelity"
+        date: 2026-10-04
+        status: succeeded
+        approach: "Exact planner-owned lossless crops; exhaustive empty graphics and source-backed page metadata"
+        note: >
+          Linked Ingester Story036 bounded runtime repairs preserve all8 rules
+          figures pixel-exact to recorded PDF-composited source rectangles,
+          retaining integrated labels/axes with no destructive cleanup or rescue.
+          Exhaustive20-page decorative-only events qualification retains231 bodies,
+          607 nonfigure blocks and physical identities; unsupported printed folios
+          are null. Physical spread counts require actual L/R split metadata.
+          Fresh241 affected tests plus3 planner controls pass; actual zero-call partial driver and consumer
+          refinements plus independent visual/text inspection apply. Published
+          portable consumer contract passes12/12 with producer paths/network denied.
+          No maintained score/golden/default, embedded-byte, automated whole-manual,
+          model or performance promotion. Existing Story226 holds remain; it stays
+          In Progress. Proof: docs/evals/attempts/058-star-smuggler-source-fidelity.md
+          and result.json, with exact runtime/test/evidence hashes.
       - id: "057-color-fidelity-source-metadata"
         date: 2026-10-03
         status: succeeded
