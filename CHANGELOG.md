@@ -8,6 +8,12 @@
 ### Verified
 - Linked Ingester Story036 native refinements preserve eight complete rules figures,20 events pages and607 text blocks; independent source inspection and241 affected tests pass. Repairs make no new provider calls, and the portable consumer passes12/12 isolated-copy checks. Attempt058 records exact evidence identities. Story226's broader qualification remains In Progress; no detector, model or cost/speed promotion.
 
+## [2026-10-04-01] — Research before reinvention
+
+### Changed
+- Add bounded problem-class research and periodic strategy checkpoints to agent
+  workflows, preserving owner reuse boundaries, verification stops, and budgets.
+
 ## [2026-10-03-03] - Set experiment and loop-review decision rules
 
 ### Changed

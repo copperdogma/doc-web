@@ -1,8 +1,8 @@
 # Attempt 058 — Source-preserving manual runtime repairs
 
-**Date:** 2026-10-04 (America/Edmonton)  
-**Eval:** image-crop-extraction, bounded runtime continuation  
-**Owning story:** 226; linked consumer: Board Game Ingester Story036  
+**Date:** 2026-10-04 (America/Edmonton)
+**Eval:** image-crop-extraction, bounded runtime continuation
+**Owning story:** 226; linked consumer: Board Game Ingester Story036
 **Registry lineage:** story_refs 133/183/207/226/232/235/236/237/238/239; category_refs spec:4/spec:8; compromise_refs C4.
 
 The frozen Star Smuggler intake exposed downstream losses after the paid visual planner had already selected complete figures. Cleanup shortened sparse graph axes and removed integrated labels. The repair preserves planner-owned rectangles as lossless source-pixel PNGs, bypassing content-removal/rescue heuristics and rejecting out-of-source bounds. Non-planner cleanup remains available. A text-only booklet also exposed an invalid requirement for at least one essential figure, a catalog code misidentified as a folio, and dice ranges counted as physical spreads.

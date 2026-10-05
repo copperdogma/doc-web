@@ -15,6 +15,17 @@ skill's `Validation proportional to the change` policy is authoritative. Select
 the smallest sufficient checks and reuse evidence whose tested content,
 environment, and check configuration still apply.
 
+## Research before repeated validation fixes
+
+Before unfamiliar or repeatedly unexplained failures lead to speculative
+retries, sleeps, relaxed assertions, or accumulating special cases, apply
+AGENTS' general-problem-class research rule. Diagnose locally, reuse applicable
+research or consult a few relevant primary sources, then choose a small local
+check of the proposed technique. Record sources, decision, evidence, and
+remaining uncertainty in the current validation record or story work log.
+Preserve acceptance criteria and proportional evidence reuse. Ordinary
+understood fixes and unchanged passing evidence need no research ceremony.
+
 ## Analysis Process
 
 1. **Review Changes**
@@ -296,7 +307,6 @@ Evidence rule:
   environment, and check configuration still apply
 - Identify reused evidence and its applicable inputs; rerun only checks affected
   by subsequent code, configuration, dependency, or integration changes
-
 
 
 ## Reviewed Learning Hook

@@ -117,6 +117,15 @@ code, or hybrid implementation honestly.
    - Potential redundant code or docs to remove
    - Surprises found
 
+For an unfamiliar material obstacle whose next step is uncertain, apply
+AGENTS' research rule before proposing a workaround: inspect local evidence,
+name the general problem class, reuse applicable prior research or compare a
+few relevant primary sources, and choose the smallest local applicability
+check. Record useful sources, assumptions, the decision, local evidence, and
+remaining uncertainty in the existing story work log or research notes.
+Obvious fixes need no research ceremony; preserve this repo's implementation
+reuse boundaries, acceptance criteria, and plan approval gate.
+
 ## Phase 2 — Plan (produces a written artifact)
 
 If the implementation approach is genuinely unclear because the solution space
@@ -171,6 +180,13 @@ context. Keep routine small stories single-threaded.
   run the same work sequentially and note the fallback.
 
 ## Phase 3 — Implement
+
+Keep the research trigger active during implementation. A new uncertain
+obstacle or repeatedly failing approach calls for local diagnosis and a bounded
+comparison with established techniques before more retries or special cases.
+Use the existing work log for sources, decision, local check, and uncertainty.
+For longer active work, follow AGENTS' strategy cadence within existing scope,
+budgets, and hard stops; do not weaken acceptance criteria.
 
 12. **Implement** — Work through tasks in order:
     - If the story status is `Draft` and the exploration proved it honestly buildable, first promote it to `Pending` and regenerate the graph/index so the status matches reality

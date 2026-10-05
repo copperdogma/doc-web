@@ -53,3 +53,13 @@
 - [x] Methodology alignment sweep completed
 - [ ] Ideal/spec intake or local equivalent confirmed before setup creates generic placeholders
 - [ ] Eval ladder represented: root/parent evals, measured failure modes, child evals, and owning stories where applicable
+
+## Research and strategy refresh
+
+- [x] Portable research trigger present in AGENTS, preserving owner boundaries.
+- [x] Existing setup and build/validate surfaces carry narrow active hooks.
+- [x] Existing verification/review loops retain cadence across interruptions,
+      reuse applicable research, and honor earlier systemic/budget hard stops.
+- [x] Existing setup checklist/template retains this wiring for future refreshes.
+- [x] Applied scope and validation limitations recorded in
+      `docs/research-before-reinvention.md`.
