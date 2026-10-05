@@ -5921,3 +5921,13 @@ evals:
           fused canonical contradiction; diagnostic prevents sending that policy.
           Six calls USD0.030029128, unknown0. No production quality or savings
           claim. Evidence docs/evals/artifacts/story234-evidence-contract-recheck/report.md.
+
+# Archived metadata-only follow-through (no scored attempt; no fresh availability claim).
+# 2026-08-26 follow-through: exact OpenRouter route deepseek/deepseek-v4-flash-vision-exp remains catalog-listed but its endpoint metadata lacks provider-enforced forced tools and strict JSON Schema; no owner calls or spend, see `docs/evals/attempts/deepseek-vision-metadata-followthrough-20260826.md`.
+# 2026-08-27 follow-through: unchanged exact-route metadata gate; no provider-enforced forced tools or strict JSON Schema, no owner calls or spend.
+# 2026-08-28 follow-through: exact route remains catalog-listed with one text+image endpoint and only generic tools/tool_choice/response_format; no provider-enforced forced tools or strict JSON Schema, no owner calls or spend.
+# 2026-08-29 follow-through: exact route remains metadata-available; tool_choice.required is false and strict JSON Schema is absent; no owner calls or spend, see `docs/evals/attempts/deepseek-vision-metadata-followthrough-20260826.md`.
+# 2026-08-30 follow-through: exact route remains catalog-listed with generic tools/tool_choice/response_format only; no provider-enforced forced tools or strict JSON Schema, owner calls, or spend, see `docs/evals/attempts/deepseek-vision-metadata-followthrough-20260826.md`.
+# 2026-08-31 follow-through: exact route remains catalog-listed; DeepSeek and Novita endpoints expose only generic tools/tool_choice/response_format, with no provider-enforced forced tools or strict JSON Schema. No owner calls or spend, see `docs/evals/attempts/deepseek-vision-metadata-followthrough-20260826.md`.
+# 2026-09-01 follow-through: exact route remains catalog-listed; DeepSeek and Novita endpoints expose only generic tools/tool_choice/response_format, tool_choice.required is false, and no provider-enforced forced tools or strict JSON Schema. No owner calls or spend, see `docs/evals/attempts/deepseek-vision-metadata-followthrough-20260826.md`.
+# 2026-09-02 follow-through: Fireworks advertises strict structured outputs and required/function tool choice but status is -2 (unavailable); no owner calls or spend, see `docs/evals/attempts/deepseek-vision-metadata-followthrough-20260826.md`.

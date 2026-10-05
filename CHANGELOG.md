@@ -1,3 +1,11 @@
+## [2026-10-05-02] — Reconcile local evaluation notes and dependency lock
+
+### Fixed
+- Preserve historical metadata-only follow-through notes outside Story207 YAML front matter and disambiguate their report from Ox Alpha Attempt028.
+
+### Added
+- Track the pre-existing dependency resolution with the configured seven-day cutoff; all72 package versions remain unchanged and the reconciled lock passes the current uv offline check.
+
 ## [2026-10-05-01] — Optional source-grounded reference links (Story 243)
 
 ### Added
