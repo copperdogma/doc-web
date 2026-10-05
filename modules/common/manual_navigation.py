@@ -10,9 +10,9 @@ from collections import Counter
 from pathlib import Path
 from urllib.parse import quote, unquote, urlsplit
 
-from bs4 import BeautifulSoup
+from bs4 import BeautifulSoup, NavigableString
 
-from modules.common.reference_resolution import NUMBER, parse_uri
+from modules.common.reference_resolution import NUMBER, PREFIXED_LABEL, parse_uri
 
 
 def _text(tag):
@@ -40,11 +40,70 @@ def _tokens(heading):
     # A complete heading or explicit leading identifier is evidence; an
     # ordinary first word cannot authorize a prose reference destination.
     identifier = first.rstrip('.:)').lstrip('(')
-    return {text, identifier} if re.fullmatch(NUMBER, identifier, re.I) else {text}
+    return {text, identifier} if re.fullmatch(f'(?:{NUMBER}|{PREFIXED_LABEL})', identifier, re.I) else {text}
 
 
 def _contains(label, token):
+    # Prefix and number remain one source-derived identity. Case folding is
+    # confined to identifiers; ordinary heading wording remains literal.
+    if re.fullmatch(PREFIXED_LABEL, token):
+        return bool(re.search(r'(?<![\w.])' + re.escape(token) + r'(?!\w|\.\w)', label, re.I))
+    # Full heading wording still begins with the same complete identifier.
+    # Its literal title cannot turn a suffix of another dotted ID into proof.
+    first = token.split()[0].rstrip('.:)').lstrip('(') if token else ''
+    if re.fullmatch(PREFIXED_LABEL, first):
+        return bool(re.search(r'(?<![\w.])' + re.escape(token) + r'(?!\w)', label))
     return bool(re.search(r'(?<!\w)' + re.escape(token) + r'(?!\w)', label))
+
+
+def _anchor_scope_reason(anchor, context_cache=None):
+    """Freeze visible block text and all occurrence offsets once per call."""
+    from modules.common.reference_resolution import BLOCKS, SKIP, STRUCTURAL, ReferenceScope, stream_nodes
+
+    block = next((parent for parent in anchor.parents if parent.name in BLOCKS | STRUCTURAL), anchor)
+    cache = context_cache if context_cache is not None else {}
+    cached = cache.get(id(block))
+    if cached is not None:
+        _, scope, offsets = cached
+        occurrence = offsets.get(id(anchor))
+        return scope.reason(*occurrence) if occurrence else None
+    parts, width, offsets = [], 0, {}
+    skipped = SKIP - {'a'}
+
+    def excluded(tag):
+        return any(parent.name in skipped or parent.has_attr('hidden')
+                   or parent.get('role') == 'navigation' for parent in [tag, *tag.parents] if parent.name)
+
+    def barrier():
+        nonlocal width
+        parts.append('\x00')
+        width += 1
+
+    # Reuse discovery's enter/exit structural boundaries. Skipped content is
+    # opaque, including empty elements, rather than absent from the sentence.
+    # Anchors remain readable so repeated occurrences retain exact coordinates.
+    for node in stream_nodes(block):
+        if node is None:
+            barrier()
+            continue
+        if not isinstance(node, NavigableString):
+            if node.name and excluded(node):
+                barrier()
+            continue
+        if type(node) is not NavigableString or excluded(node.parent):
+            barrier()
+            continue
+        value = str(node)
+        for parent in node.parents:
+            if parent.name == 'a':
+                start = offsets.get(id(parent), (width, width))[0]
+                offsets[id(parent)] = (start, width + len(value))
+        parts.append(value)
+        width += len(value)
+    scope = ReferenceScope(''.join(parts))
+    cache[id(block)] = (block, scope, offsets)
+    occurrence = offsets.get(id(anchor))
+    return scope.reason(*occurrence) if occurrence else None
 
 
 
@@ -63,6 +122,10 @@ def _heading_candidates(label, headings):
                       and label_key(match[2]) == label_key(explicit['label'])]
     else:
         candidates = [h for h in headings if any(_contains(label, token) for token in h['tokens'])]
+    # A bare identifier denotes its identity, even when one heading consists
+    # solely of that identifier. A duplicate titled heading remains ambiguous.
+    if re.fullmatch(PREFIXED_LABEL, label):
+        return candidates, False
     exact = [h for h in candidates if label == h['heading']]
     return exact or candidates, False
 
@@ -97,6 +160,7 @@ def resolve_navigation(entries, *, bundle_root=None, resource_catalog=None,
     base = Path(bundle_root).resolve() if bundle_root is not None else None
     catalog = set(resource_catalog) if resource_catalog is not None else None
     rows = []
+    scope_contexts = {}
     entry_by_path = {entry['filename']: entry for entry in entries}
     for path, soup in soups.items():
         previous_receipts = entry_by_path[path].get('_navigation_alias_receipts', {})
@@ -147,7 +211,12 @@ def resolve_navigation(entries, *, bundle_root=None, resource_catalog=None,
             # Unknown files cannot borrow a similarly named heading here.
             explicit_path = bool(urlsplit(lookup_href).path) if not error else True
             eligible_headings = headings if not explicit_path or target_path in ids else []
-            candidates, typed_ambiguous = _heading_candidates(label, eligible_headings)
+            scope_reason = _anchor_scope_reason(anchor, scope_contexts)
+            # A fragment or original-ID alias cannot establish that an
+            # expressly different document is this build's document.
+            error = error or scope_reason
+            valid = valid and not scope_reason
+            candidates, typed_ambiguous = _heading_candidates(label, eligible_headings) if not scope_reason else ([], False)
             semantic_candidates = candidates
             if len(candidates) > 1 and explicit_path:
                 candidates = [h for h in candidates if h['path'] == target_path]
@@ -195,7 +264,7 @@ def resolve_navigation(entries, *, bundle_root=None, resource_catalog=None,
                 row.update(status='resolved', resolved_href=anchor['href'], reason='original_id_rebound')
             else:
                 status = 'ambiguous' if typed_ambiguous or len(candidates) > 1 or len(mapped) > 1 or ids.get(target_path, {}).get(fragment, 0) > 1 else 'unresolved'
-                row.update(status=status, reason=error or ('ambiguous_typed_reference' if typed_ambiguous else 'source_reference_unavailable' if not supported else 'unique_heading_unavailable'),
+                row.update(status=status, reason=error or scope_reason or ('ambiguous_typed_reference' if typed_ambiguous else 'source_reference_unavailable' if not supported else 'unique_heading_unavailable'),
                            candidates=[{k: h[k] for k in ('path', 'id', 'heading')} for h in candidates])
                 anchor.name = 'span'
                 del anchor['href']
@@ -276,6 +345,7 @@ def inspect_navigation(html_files, *, source_pages=(), source_entries=(), resour
                 for path, soup in soups.items()
                 for tag in soup.find_all(re.compile(r'^h[1-6]$'), id=True) if source_heading(path, _text(tag))]
     issues, annotations = [], []
+    scope_contexts = {}
     positioned_receipts = set()
     failed_receipt_anchors = set()
     for name, context in contexts.items():
@@ -378,12 +448,14 @@ def inspect_navigation(html_files, *, source_pages=(), source_entries=(), resour
             owned = scoped_contexts[path]
             source_authored = any(label == source_label for context in owned for _, source_label in context['links']) if owned else label in source_labels
             authority = alias_authority(path, target, fragment, label, anchor)
+            if not reason and target in ids and source_authored:
+                reason = _anchor_scope_reason(anchor, scope_contexts)
             if not reason and (path, id(anchor)) in positioned_receipts and not authority:
                 reason = 'alias_receipt_authority_unproven'
             if not reason and (path, id(anchor)) in failed_receipt_anchors:
                 continue
             if not reason and fragment and target in ids and source_authored and not authority:
-                candidates, _ = _heading_candidates(label, headings)
+                candidates, _ = _heading_candidates(label, headings) if not _anchor_scope_reason(anchor, scope_contexts) else ([], False)
                 if len(candidates) > 1 and semantic_observations is not None:
                     semantic_observations.append({'path': path.name, 'href': anchor['href'], 'anchor_text': label,
                                                   'status': 'semantic_label_ambiguity',

@@ -70,6 +70,21 @@ evals:
         measured: 2026-10-05
         metrics: {synthetic_paired_median_gain: 0.140308, deathtrap_paired_median_gain: 0.115178, synthetic_winning_pairs: 19, deathtrap_winning_pairs: 20, pairs_per_workload: 20, deathtrap_baseline_p50_ms: 364.481750, deathtrap_candidate_p50_ms: 321.909729, latency_ms: 317.495237, cost_usd: 0, api_calls: 0}
         note: "One final matched-semantics cache/no-cache confirmation, exact on/off state parity and 24/24 plus 627/627 development quality. Retain cache; stop for diminishing returns. No full-driver speed claim; earlier epochs are separate and nonadditive. docs/notes/story243-performance.md."
+      - model: deterministic-exact-source-reference-v1-consumer-repairs
+        measured: 2026-10-05
+        metrics: {baseline_matched_references: 34, baseline_correct_off: 34, baseline_correct_on: 34, fresh_correct_off: 14, fresh_correct_on: 30, fresh_opportunities: 34, wrong_matched_targets: 0, checked_added_links_overlapping_frames: 535, control_passages: 27, control_assertions_passed: 34, control_assertions_failed: 0, staged_packages: 12, dangling_fragments: 0, driver_builds: 12, driver_total_wall_seconds: 90.92, latency_ms: 7576.666667, cost_usd: 0, api_calls: 0}
+        note: >
+          Independent Ingester v3 on immutable891-file producer freeze;27
+          pre-frozen controls/34 assertions pass, original34existing baseline
+          references restored both flags. Fresh30/34on: four compact dice outcome
+          mappings remain unsupported and unlinked; no full-navigation claim.
+          All535 added links across overlapping frames exact-heading checked,
+          not a unique corpus count.12 separately staged packages valid and
+          six flag pairs preserve text/IDs/native bytes/provenance. latency_ms
+          is mean cached final-driver time over12builds, excludes setup/validation/
+          packaging/analysis; no end-to-end intake or whole-pipeline speed claim.
+          604 producer tests/lint and real driver/static inspection pass.
+          Attempt060 records failed v2 and successful v3 scope boundaries.
     attempts:
       - id: "059"
         date: 2026-10-05
@@ -84,6 +99,25 @@ evals:
           forms; final reserved synthetic 12/12 and Freeway 491/491 admitted
           references pass with zero wrong targets. No provider calls or heldout
           tuning. See docs/evals/attempts/059-reference-resolution.md for bounds.
+
+      - id: "060"
+        date: 2026-10-05
+        status: succeeded
+        approach: >
+          Consumer-reported identity/lexical/document-scope repairs; exact
+          source heading authority, coordinated cues and bounded scope parsing;
+          frozen independent cached on/off replay and package target validation.
+        note: >
+          Baseline34/34 restored bothflags; noted/companion defects fixed.
+          First independent v2 still failed according-to installationguide
+          scope; preserved failed candidate and fixed named document-source
+          abstention. Final v3 passes27controls/34assertions and535added link
+          meanings across overlapping frames, with zero wrong matched targets.
+          Fresh four compact dice mappings remain explicit unsupported coverage.
+          Repeated review stopped at systemic checkpoint; shared invariant audit,
+          focused confirmations and independent consumer acceptance applied,
+          no strict clean-round claim. No OCR/providers/consumer workaround or
+          reserved FF tuning. docs/evals/attempts/060-reference-resolution-consumer-repairs.md.
 
   - id: sol-crop-safety-native-public-smoke
     name: Opt-in Sol native public adapter smoke

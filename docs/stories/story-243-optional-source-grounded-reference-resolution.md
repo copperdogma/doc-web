@@ -144,7 +144,9 @@ operator surface. Preview remains non-final.
 
 ## Blocker Summary
 
-None in isolated checkout. Original main cannot fast-forward over unrelated dirt.
+None. Consumer repair acceptance is pending the independent frozen replay.
+The original dirty-checkout obstacle was resolved separately at ba4c84a;
+its initial implementation evidence below is retained as history.
 
 ## Blocker Evidence
 
@@ -295,3 +297,148 @@ isolated worktree's Story243 files only. Primary checkout's four unrelated dirty
 files and its HEAD remain untouched; inbox has no pending diff to reconcile.
 Land execution branch codex/story243-reference-resolution then fast-forward main.
 Landing receipt and remote verification will be retained in output/story243-landing-receipt.json.
+
+## Consumer regression continuation — 2026-10-05
+
+Cam authorized fixing the Ingester repair packet with direct back-and-forth
+between this thread and “Triage and complete project work”. Reopen this same
+resolver story; the owner/seam/artifact boundary is unchanged. Earlier proofs
+remain historical and do not cover the newly exposed failure classes.
+
+### Repair acceptance criteria
+
+- [x] Existing links with exact source-authored prefixed heading identifiers
+  resolve uniquely with both flags; preserve complete identities, duplicate
+  abstention and wrong-but-valid target checks. No game prefix dictionary.
+- [x] Plain explicit prefixed references and index/contents entries use the
+  same exact source evidence. Ordinary code-like prose remains untouched.
+- [x] Spelled-out reference kinds require lexical separation; “noted”,
+  “annotated”, “denoted” and related prose produce no spurious annotation.
+  Explicit note D and documented compact symbol/abbreviation syntax work.
+- [x] Explicit companion/other-document references abstain with inspectable
+  scope reason, including scope before/after citation and existing anchors.
+  Local references in mixed prose continue to resolve when scope is clear.
+- [x] Real driver on/off artifacts preserve text/IDs/provenance and inspect
+  final links, reports, uncertainty markers; existing 34 matched consumer
+  opportunities recovered and new correct-link benefit assessed independently.
+- [x] Ingester verifies frozen candidate/content/input hashes, source-backed
+  target meaning and packaged destinations, then replies directly here. Keep
+  consumer packaging/adoption separate; no edits in its repo by DocWeb.
+- [x] Focused producer regression checks and independent consumer generic
+  controls pass. Preserve originals, no new OCR or paid calls, no corpus tuning
+  from reserved FF answers.
+
+### Authorized repair plan and approach
+
+Use isolated origin/main worktree reference-repairs-1005 at ba4c84a. Delegated
+Sol6.1 medium workers own manual_navigation.py/existing-link tests and
+reference_resolution.py/discovery tests respectively; coordinator owns shared
+story, new driver fixture, integration evidence and repo coordination. Workers
+set bounded goals. Budget is three repair/consumer rounds before explicit
+strategic reassessment; /loop-review after three substantive rounds or roughly
+30active minutes. No schedule created, no blanket commit/push authorization.
+
+The measured parent eval is Ingester's Story038 packet: 0/34 restored links,
+false noted/FootnoteD match, wrong local destination for companion citation.
+These are deterministic identity/lexical/scope defects, not an extraction or
+open-ended generation problem. Compare exact code (chosen), decision model
+(typed scope judgement possible later, but adds provider dependency/uncertainty
+for explicit source grammar), and language model (broader interpretation but
+unnecessary latency/cost and text-mutation risk for these confirmed cases).
+No inference or model capability rejection claimed. Candidate enumeration,
+source IDs, final mutation and exact validation remain in code.
+
+Relevant spec:3.1, spec:6, spec:7 and ADR002 retain source/identity/document
+boundaries; state/graph spec:3/spec:6 exist, spec:7 partial; no graduation or
+coverage-matrix promotion. Reuse current APIs/typed report and emitters.
+
+Research: Python re lexical boundary/repetition documentation
+https://docs.python.org/3/library/re.html and Sphinx explicit-label/document
+cross-reference model https://www.sphinx-doc.org/en/master/usage/referencing.html.
+Adopt required word separators and complete unique label identities. Explicit
+other-document qualifiers cannot acquire local authority from a matching
+number. General natural-language scope remains outside this bounded grammar;
+unknown scope is not proof of a local target.
+
+### Continuation work log
+
+20261005 — Read Ingester report and latest thread, reproduced source shape,
+confirmed independent owner contract by directly messaging the thread under
+Cam's explicit authorization. Frozen historical documents/runtimes retained.
+Ingester prepared eight cached flag-pair builds plus fifteen original and twelve
+independent controls; it waits for tested-content freeze before candidate runs.
+
+20261005 — Producer baseline on clean primary ba4c84a via real driver:
+`output/runs/story243-original-repair-baseline-on/output/html` has missingR123,
+false clickable “noted” to FootnoteD and multiple foreign section3 links. An
+initial concurrently edited worktree run was not a trustworthy baseline and is
+retained as diagnostic only. Local new driver acceptance exposed the broader
+“other installation guide” noun phrase; repair rather than relax the expectation.
+Three substantive worker rounds prompted /loop-review: aligned; lexical/source
+identity code remains the simplest established applicable technique; 237+ tests
+are only producer checks, consumer coverage/adoption still unproved. No new
+scope or provider calls. Retain explicit-field grammar limits; investigate new
+classes rather than widening to heuristic natural-language inference.
+
+20261005 — Two fresh reviewer shards per round found boundary/source-authority
+defects. Accepted findings and exact probes are recorded in
+`docs/notes/story243-consumer-repair-validation.md`. After two same-class
+material rounds, stop the repeated loop per loop-verify systemic-audit rule;
+use bounded coordinator invariant audit, focused regression confirmations and
+independent consumer acceptance. No strict clean-round claim for this repair.
+All assigned fixes finished;570 affected tests and make lint pass. Fresh driver
+`output/runs/story243-repairs-accepted-on/output/html` and corresponding off
+build pass; inspected16 provenance rows, seven correct on links, one recovered
+legacy off link, three foreign abstentions, plain noted/annotations/denoted.
+Static non-scripted renders inspected for both chapters; interactive browser
+verification unavailable because local-file navigation was rejected. No browser
+workaround. PDF/PNG evidence under output/story243-repair-verification.
+Frozen891files in output/story243-repair-candidate-freeze.json; handed directly
+to Ingester for prepared v2 no-network replay. Runtime writers stopped.
+
+20261005 — Independent Ingester v2 restored34/34 baseline existing links off/on
+and improved fresh14→30/34; zero wrong matched targets, exact content/native
+bytes, valid separate packages. Still failed pre-frozen G07 according-to
+installationguide scope. Repair accepted explicit source-document qualifier
+without foreignmodifier; abstain unestablished rather than infer identity.
+C11 coordinated Q/APP/R labels share direct navigation cue; each source heading
+required. Actual e121 four misses are compact dice outcome mappings, not C11
+ordinary coordinated references; keep distinct unsupported coverage limit.
+New604tests/lint and driver v3on/off passed; static/JSON/provenance inspection
+verified18rows, seven correct onlinks, five scope abstentions. New891-file
+manifest v3 sent to consumer; previous failedcandidate/results preserved.
+No broad verification-loop restart or additional paid/OCR work.
+
+20261005 — /validate continuation: implementation complete for admitted grammar,
+all7repairACs met. Independent direct Ingester v3 closure confirms34baseline
+existing targets bothflags,27passages/34assertions,535addedliteral heading
+checks across overlappingframes, exact sixpaired preservation and12relocated
+packages with0danglingfragments. Fresh30/34on; four compact dice mappings
+remain visible/unsupported, no fullrecallclaim. Final891file/test/inputfreeze
+unchanged before/after consumer replay. Attempt060 registry and operator docs
+updated;604affected producer tests/lint/realdriver/manualstaticinspection pass.
+Skip extra codexreview: two fresh delegated review rounds and systemic-audit
+stop already govern current bounded verification; no repeated broad review
+for stronger wording. No strict clean-round/fullsuite/interactivebrowser claim.
+Original workflow/tenet gates remain verified for this source-preserving slice.
+
+20261005 — /mark-story-done continuation: Close now. All7repairACs and3workflow
+gates complete; original11ACs,22tasks andT0–T5 verified within documented
+limits. Same owning Story243 closed on bounded producer and independent
+consumer acceptance; broader Story226/Ingester gates not promoted. Existing
+Story243 CHANGELOG entry updated without duplicate; registry Attempt060
+records original failures, finalfrozenquality and efficiencylimits. Generated
+methodology graph/index refreshed. No implicit commit/push; recommended next
+step /finish-and-push only on Cam's explicit landing authorization.
+
+20261005 — Cam invoked /finish-and-push, explicitly authorizing scoped commit,
+execution-branch push and fast-forward main landing, including linked consumer
+flag integration. All891v3runtime/test files still match the accepted freeze;
+reuse604affected tests, lint, real driver/static inspection and independent
+consumer v3 acceptance. Inbox reviewed unchanged against primary; unrelated
+Gemini challenger note stays live. No extra paid eval or redundant code suite.
+Producer origin/main still ba4c84a; no integration changes required. Consumer
+owner prepares narrow public-option/evidence slice in isolation, preserving
+unrelated source-fidelity work and incomplete story gates. All-repo preflight
+precedes first push; dependency producer lands before consumer. Worktrees and
+outputs retained because --cleanup was not requested.

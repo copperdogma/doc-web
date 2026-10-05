@@ -428,3 +428,221 @@ def test_alias_requires_original_anchor_in_owning_source():
     assert report['references'][0]['reason'] == 'source_reference_unavailable'
     assert item['_navigation_alias_receipts'] == {}
     assert not BeautifulSoup(item['body_html'], 'html.parser').find('a')
+
+
+@pytest.mark.parametrize('identifier', ['R123', 'Q42', 'APP7', 'Appendix12.3a'])
+@pytest.mark.parametrize('lowercase_label', [False, True])
+def test_existing_literal_prefixed_identifier_is_repaired_and_independently_verified(tmp_path, identifier, lowercase_label):
+    label = identifier.lower() if lowercase_label else identifier
+    entry, _ = _entry('one.html', f'<h2>{identifier} Combat</h2><p><a href="#missing"><em>{label}</em></a></p>')
+    source = entry['prepared_pages'][0]['html']
+    report = resolve_navigation([entry])
+    assert report['references'][0]['resolution_status'] == 'resolved'
+    soup = BeautifulSoup(entry['body_html'], 'html.parser')
+    assert soup.a['href'] == '#blk-one-0001'
+    assert soup.a.em.get_text() == label
+    assert entry['prepared_pages'][0]['html'] == source
+    path = tmp_path / 'one.html'
+    path.write_text(entry['body_html'])
+    assert verify_final_navigation([path], source_entries=[entry])['status'] == 'passed'
+    # Reachability alone cannot authorize a different semantic destination.
+    path.write_text(entry['body_html'].replace('#blk-one-0001', '#other') + '<p id="other">Wrong.</p>')
+    assert verify_final_navigation([path], source_entries=[entry])['issues'][0]['reason'] == 'source_heading_target_mismatch'
+
+
+@pytest.mark.parametrize('identifier', ['R123', 'Q42', 'APP7'])
+def test_duplicate_prefixed_identifiers_abstain_case_insensitively(identifier):
+    entry, _ = _entry('one.html', f'<h2>{identifier} First</h2><h2>{identifier.lower()} Second</h2><p><a href="#missing">{identifier}</a></p>')
+    report = resolve_navigation([entry])
+    assert report['references'][0]['resolution_status'] == 'ambiguous'
+    assert len(report['references'][0]['candidates']) == 2
+    assert not BeautifulSoup(entry['body_html'], 'html.parser').find('a')
+
+
+def test_bare_heading_does_not_disambiguate_duplicate_prefixed_identifier():
+    entry, _ = _entry('one.html', '<h2>R123</h2><h2>R123 Combat</h2><p><a href="#missing">R123</a></p>')
+    assert resolve_navigation([entry])['references'][0]['resolution_status'] == 'ambiguous'
+
+
+def test_complete_heading_wording_can_disambiguate_prefixed_identifier():
+    entry, _ = _entry('one.html', '<h2>R123 Combat</h2><h2>R123 Another</h2><p><a href="#missing">R123 Combat</a></p>')
+    assert resolve_navigation([entry])['references'][0]['resolution_status'] == 'resolved'
+    assert BeautifulSoup(entry['body_html'], 'html.parser').a['href'] == '#blk-one-0001'
+
+
+@pytest.mark.parametrize('heading,label', [('R123 Combat', '123'), ('123 Combat', 'R123'), ('R123 Combat', 'Q123'), ('R123 Combat', 'XR123'), ('R123 Combat', 'R1234'), ('R12 Combat', 'R12.3'), ('Appendix12 Combat', 'Appendix12.3a'), ('R12 Combat', 'APP7.R12')])
+def test_prefixed_identifier_never_borrows_numeric_or_partial_identity(heading, label):
+    entry, _ = _entry('one.html', f'<h2>{heading}</h2><p><a href="#missing">{label}</a></p>')
+    assert resolve_navigation([entry])['references'][0]['resolution_status'] == 'missing'
+    assert not BeautifulSoup(entry['body_html'], 'html.parser').find('a')
+
+
+def test_prefixed_identifier_repairs_wrong_valid_target_without_numeric_collision():
+    entry, _ = _entry('one.html', '<h2>123 Numeric</h2><h2>R123 Combat</h2><h2>Q123 Different</h2><p><a href="#blk-one-0001">r123</a></p>')
+    assert resolve_navigation([entry])['references'][0]['resolution_status'] == 'resolved'
+    assert BeautifulSoup(entry['body_html'], 'html.parser').a['href'] == '#blk-one-0002'
+
+
+def test_prefixed_identifier_retains_original_id_alias_authority():
+    entry, _ = _entry('one.html', '<h2>R123 Combat</h2><p id="old">An authored exception.</p><p><a href="#old">R123</a></p>')
+    report = resolve_navigation([entry])
+    assert report['references'][0]['reason'] == 'original_id_rebound'
+    assert BeautifulSoup(entry['body_html'], 'html.parser').a['href'] == '#blk-one-0002'
+
+
+@pytest.mark.parametrize('label,heading', [('section 3', 'Section 3 Combat'), ('R123', 'R123 Combat')])
+def test_existing_fallback_refuses_explicit_companion_document_scope(label, heading):
+    entry, _ = _entry('one.html', f'<h2>{heading}</h2><p>See <a href="#missing">{label}</a> of the separate companion manual.</p><p>See <a href="#missing">{label}</a> here.</p>')
+    report = resolve_navigation([entry])
+    assert [row['resolution_status'] for row in report['references']] == ['missing', 'resolved']
+    assert report['references'][0]['reason'] == 'external_document_scope'
+    soup = BeautifulSoup(entry['body_html'], 'html.parser')
+    assert soup.find_all('p')[0].span.get_text() == label
+    assert soup.find_all('p')[1].a['href'] == '#blk-one-0001'
+
+
+def test_existing_scope_checks_exact_repeated_anchor_occurrence():
+    entry, _ = _entry('one.html', '<h2>Section 3 Combat</h2><p>See <a href="#missing">section 3</a> here; see <a href="#missing">section 3</a> of the separate companion manual.</p>')
+    report = resolve_navigation([entry])
+    assert [row['resolution_status'] for row in report['references']] == ['resolved', 'missing']
+
+
+@pytest.mark.parametrize('href', ['#old', '#blk-one-0001', 'one.html#blk-one-0001'])
+def test_external_scope_refuses_reachable_or_alias_target_in_current_document(tmp_path, href):
+    entry, _ = _entry('one.html', f'<h2 id="old">Section 3 Combat</h2><p>See <a href="{href}">section 3</a> of the separate companion manual.</p>')
+    original_body = entry['body_html']
+    report = resolve_navigation([entry])
+    assert report['references'][0]['reason'] == 'external_document_scope'
+    assert report['references'][0]['resolution_status'] == 'missing'
+    assert not BeautifulSoup(entry['body_html'], 'html.parser').find('a')
+    assert entry['_navigation_alias_receipts'] == {}
+    path = tmp_path / 'one.html'
+    path.write_text(entry['body_html'])
+    assert verify_final_navigation([path], source_entries=[entry])['status'] == 'passed'
+    if 'blk-one-0001' in href:
+        path.write_text(original_body)
+        assert verify_final_navigation([path], source_entries=[entry])['issues'][0]['reason'] == 'external_document_scope'
+
+
+def test_external_scope_retains_actual_external_url():
+    entry, _ = _entry('one.html', '<p>See <a href="https://example.org/companion#3">section 3</a> of the separate companion manual.</p>')
+    assert resolve_navigation([entry])['references'][0]['status'] == 'preserved'
+    assert BeautifulSoup(entry['body_html'], 'html.parser').a['href'] == 'https://example.org/companion#3'
+
+
+def test_prefixed_identifier_case_policy_does_not_fold_ordinary_heading_names():
+    entry, _ = _entry('one.html', '<h2>Setup</h2><p><a href="#missing">setup</a></p>')
+    assert resolve_navigation([entry])['references'][0]['resolution_status'] == 'missing'
+
+
+def test_existing_external_scope_prefix_survives_inline_markup():
+    entry, _ = _entry('one.html', '<h2>R123 Combat</h2><p>In the <em>companion manual</em>, see <a href="#123"><strong>R123</strong></a>.</p>')
+    report = resolve_navigation([entry])
+    assert report['references'][0]['reason'] == 'external_document_scope'
+    assert BeautifulSoup(entry['body_html'], 'html.parser').p.strong.get_text() == 'R123'
+
+
+@pytest.mark.parametrize('barrier', [
+    '<code> is local, unlike examples </code>', '<code></code>',
+    '<pre>Local example</pre>', '<nav>Local navigation</nav>',
+    '<span hidden>Local text</span>', '<span hidden></span>',
+    '<span role="navigation">Local navigation</span>',
+    '<div>Other block</div>', '<div></div>', '<hr>', '<!-- separate annotation -->',
+])
+@pytest.mark.parametrize('side', ['prefix', 'suffix'])
+def test_existing_scope_never_concatenates_across_opaque_or_structural_barriers(tmp_path, barrier, side):
+    clause = (f'In the companion manual, {barrier}<a href="#missing">R123</a>' if side == 'prefix'
+              else f'See <a href="#missing">R123</a>{barrier} of the companion manual.')
+    entry, _ = _entry('one.html', '<h2>R123 Combat</h2><p>' + clause + '</p>')
+    report = resolve_navigation([entry])
+    assert report['references'][0]['resolution_status'] == 'resolved'
+    assert BeautifulSoup(entry['body_html'], 'html.parser').a['href'] == '#blk-one-0001'
+    path = tmp_path / 'one.html'
+    path.write_text(entry['body_html'])
+    assert verify_final_navigation([path], source_entries=[entry])['status'] == 'passed'
+
+
+@pytest.mark.parametrize('clause', [
+    '<a href="#missing">section 3</a> of the compa<em>nion</em> manual.',
+    'In the compa<em>nion</em> manual, see <a href="#missing">section 3</a>.',
+    '<a href="#missing">section 3</a> of the companion ma<strong>nual</strong>.',
+])
+def test_existing_scope_preserves_literal_inline_partial_words(clause):
+    entry, _ = _entry('one.html', '<h2>Section 3 Combat</h2><p>' + clause + '</p>')
+    report = resolve_navigation([entry])
+    assert report['references'][0]['reason'] == 'external_document_scope'
+    assert not BeautifulSoup(entry['body_html'], 'html.parser').find('a')
+
+
+def test_existing_scope_cache_freezes_all_anchor_offsets_before_mutation(monkeypatch, tmp_path):
+    from modules.common import reference_resolution
+    original_scope = reference_resolution.ReferenceScope
+    constructed = []
+
+    def counted_scope(text):
+        constructed.append(text)
+        return original_scope(text)
+
+    monkeypatch.setattr(reference_resolution, 'ReferenceScope', counted_scope)
+    entry, _ = _entry('one.html', '<h2>R123 Combat</h2><p>See <a href="#missing">R123</a> of the companion manual. See <a href="#missing">R123</a> here.</p>')
+    report = resolve_navigation([entry])
+    assert [row['resolution_status'] for row in report['references']] == ['missing', 'resolved']
+    assert len(constructed) == 1
+    # First anchor became a span; the second retained its frozen occurrence.
+    path = tmp_path / 'one.html'
+    path.write_text(entry['body_html'])
+    assert verify_final_navigation([path], source_entries=[entry])['status'] == 'passed'
+    assert len(constructed) == 2  # Inspector builds its own independent scope.
+
+
+def test_scope_cache_is_not_reused_between_resolver_or_inspector_invocations(monkeypatch, tmp_path):
+    from modules.common import reference_resolution
+    original_scope = reference_resolution.ReferenceScope
+    constructed = []
+
+    def counted_scope(text):
+        constructed.append(text)
+        return original_scope(text)
+
+    monkeypatch.setattr(reference_resolution, 'ReferenceScope', counted_scope)
+    for external in [True, False]:
+        suffix = ' of the companion manual' if external else ' here'
+        html = f'<h2 id="h">R123 Combat</h2><p>See <a href="#missing">R123</a>{suffix}.</p>'
+        entry = {'filename': 'one.html', 'body_html': html, 'prepared_pages': [{'html': html}]}
+        report = resolve_navigation([entry])
+        assert report['references'][0]['resolution_status'] == ('missing' if external else 'resolved')
+    assert len(constructed) == 2
+    path = tmp_path / 'one.html'
+    for external in [True, False]:
+        suffix = ' of the companion manual' if external else ' here'
+        html = f'<h2 id="h">R123 Combat</h2><p>See <a href="#h">R123</a>{suffix}.</p>'
+        path.write_text(html)
+        source = {'filename': 'one.html', 'prepared_pages': [{'html': html}]}
+        result = verify_final_navigation([path], source_entries=[source])
+        assert result['status'] == ('failed' if external else 'passed')
+    assert len(constructed) == 4
+
+
+@pytest.mark.parametrize('heading,label', [
+    ('R12 Combat', 'APP7.R12 Combat'),
+    ('Q42 Settings', 'APP7.Q42 Settings'),
+    ('APP7 Setup', 'Q42.APP7 Setup'),
+])
+def test_full_heading_cannot_borrow_dotted_identifier_suffix(tmp_path, heading, label):
+    html = f'<h2 id="target">{heading}</h2><h2 id="other">Other</h2><p><a href="#missing">{label}</a></p>'
+    entry = {'filename': 'one.html', 'body_html': html, 'prepared_pages': [{'html': html}]}
+    report = resolve_navigation([entry])
+    assert report['references'][0]['resolution_status'] == 'missing'
+    assert not BeautifulSoup(entry['body_html'], 'html.parser').find('a')
+    # No false semantic evidence should reject an independently authored
+    # reachable target merely because the dotted suffix resembles a heading.
+    path = tmp_path / 'one.html'
+    path.write_text(html.replace('#missing', '#other'))
+    assert verify_final_navigation([path], source_entries=[entry])['status'] == 'passed'
+
+
+@pytest.mark.parametrize('label', ['R12 Combat', 'Read R12 Combat'])
+def test_full_prefixed_heading_remains_literal_supported_evidence(label):
+    entry, _ = _entry('one.html', f'<h2>R12 Combat</h2><p><a href="#missing">{label}</a></p>')
+    assert resolve_navigation([entry])['references'][0]['resolution_status'] == 'resolved'
+    assert BeautifulSoup(entry['body_html'], 'html.parser').a['href'] == '#blk-one-0001'

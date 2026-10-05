@@ -15,8 +15,11 @@
 ### Fixed
 - Validate existing and serialized links before manifest sealing; rebind source IDs with exact occurrence authority, preserving text, inline markup and provenance.
 - Preserve logical reading order when printed page numbers repeat or reset.
+- Restore complete source-authored prefixed section identities with both flag settings; keep “noted” as prose, abstain on foreign or unestablished document scope, and share explicit cues across coordinated labels.
+- Require source heading/index authority and retain dotted/duplicate abstention; avoid repeated scope parsing and whole-block rescans.
 
 ### Verified
+- Consumer repair continuation:604 affected tests, fresh driver/static inspection, independent27 control passages/34 assertions, original34 existing links restored both flags and12 valid staged packages. Fresh30/34 references resolve; four compact dice mappings stay unsupported. Zero provider calls; Attempt060 retains failed candidate history and bounded acceptance.
 - Fresh driver on/off builds and rendered inspection, 386 focused tests, independent synthetic12/12 and Freeway491/491 admitted reference checks; zero wrong targets within scored controls and zero provider calls. Historical OCR/coverage limits remain explicit.
 - Final matched-semantics cache comparison measures14.03%synthetic/11.52%Deathtrap resolver gains with exact output parity; no whole-pipeline speed claim. Attempt059 records bounds and the diminishing-returns stop.
 
