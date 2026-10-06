@@ -322,6 +322,12 @@ def _call_vision_model(
     anthropic_client=None,
 ) -> Tuple[str, Optional[object], Optional[str]]:
     """Run one OCR request against the provider implied by the model name."""
+    if model == "mistralai/mistral-large-4-0":
+        import sys
+        from pathlib import Path
+        sys.path.insert(0, str(Path(__file__).resolve().parents[3] / "benchmarks/providers"))
+        from mistral4_ocr import generate_vision
+        return generate_vision(model, system_prompt, user_text, data_uri, max_output_tokens)
     if _is_anthropic_model(model):
         if anthropic_client is None:
             raise RuntimeError("anthropic package required for Claude models")

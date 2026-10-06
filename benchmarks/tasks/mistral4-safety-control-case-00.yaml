@@ -1,0 +1,24 @@
+description: Frozen repaired page-context safety; Attempt048
+prompts:
+- id: file://../prompts/validate-page-level-crop.js
+  label: repaired-page-context
+providers:
+- id: python:../providers/mistral4_openai.py
+  label: GPT5.5 maintained none2048auto
+  config:
+    maxRetries: 0
+    model: gpt-5.5
+    expected_served_model: gpt-5.5-2026-04-23
+    reasoning_effort: none
+    max_output_tokens: 2048
+    image_detail: auto
+    output_contract: page_context_validation
+tests:
+- vars:
+    page_image: file://../input/source-pages-b64/Image000.b64.txt
+    crop_image: file://../input/crop-validation-b64/page-001-000.b64.txt
+    crop_key: page-001-000
+    golden_relpath: golden/crop-page-level-safety-repair-048-source-adjudicated.json
+  assert:
+  - type: python
+    value: file://../scorers/crop_validation_scorer.py

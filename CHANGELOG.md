@@ -1,3 +1,13 @@
+## [2026-10-06-01] — Mistral Large4 maintained evaluation (Story244)
+
+### Added
+- Record fresh public detector, repaired safety and handwriting comparison under
+  USD11; forty paid responses settle at USD0.27457617, with exact custody and
+  reconstruction limits. Keep current defaults: candidate clips logo artwork,
+  false-safes an incomplete seal and loses literal handwriting fidelity.
+- Preserve independent source review, strict contracts, matched driver inputs,
+  original/fixed safety labels, and tested cross-process dispatch accounting.
+
 ## [2026-10-05-02] — Reconcile local evaluation notes and dependency lock
 
 ### Fixed

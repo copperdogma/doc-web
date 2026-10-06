@@ -1,0 +1,3228 @@
+{
+  "attempt": "061",
+  "story": "244",
+  "base_sha": "fc558e2e924d0d598f31c69ee86fd5255f696f86",
+  "requested_model": "mistralai/mistral-large-4-0",
+  "served_model": "mistralai/mistral-large-4-0",
+  "served_provider": "Mistral",
+  "dated_catalog": "20261006; alias not an immutable snapshot proof",
+  "privacy": "public Onward/public LOC/synthetic qualification only; route retention/training unverified disclosed; no private payload",
+  "cap_usd": 11,
+  "settled_usd": 0.27457617,
+  "unknown_usd": 0,
+  "unique_calls": 40,
+  "judge": "none; deterministic scorer and independent source review",
+  "configuration": "Candidate no unsupported reasoning; pin mistral/no fallback, max_price0.68input/2.09outputUSD/M;4096 detector/safety16384OCR. Controls maintained Gemini3 Flash temperature0/16384, GPT5.5 none2048auto, Gemini3.7 default thinking16384",
+  "results": {
+    "detector-control-full": {
+      "calls": 13,
+      "cost_usd": 0.046395500000000006,
+      "mean_latency_ms": 6739.307692307692,
+      "p50_latency_ms": 6440,
+      "latency_ms": [
+        9790,
+        8113,
+        3990,
+        5424,
+        7270,
+        6870,
+        5319,
+        4503,
+        12647,
+        6440,
+        5504,
+        6954,
+        4787
+      ],
+      "rows": [
+        {
+          "case": "Image000",
+          "pass": true,
+          "score": 0.8119,
+          "reason": "All assertions passed",
+          "output": "```json\n{\"images\": [{\"description\": \"Front cover art featuring a stylized title 'ONWARD TO THE UNKNOWN 1887-1987' and an illustration of a pioneer landscape with a covered wagon, tree, and clouds, all within a decorative border.\", \"bbox\": [0.045, 0.07, 0.935, 0.945]}]}\n```"
+        },
+        {
+          "case": "Image001",
+          "pass": true,
+          "score": 0.9211,
+          "reason": "All assertions passed",
+          "output": "```json\n{\"images\": [{\"description\": \"Stylized title text 'ONWARD TO THE UNKNOWN' with dates '1887 - 1987'\", \"bbox\": [0.272, 0.193, 0.383, 0.807]}]}\n```"
+        },
+        {
+          "case": "Image003",
+          "pass": true,
+          "score": 0.9789,
+          "reason": "All assertions passed",
+          "output": "{\"images\": [{\"description\": \"A black and white illustration of a covered wagon being pulled by an ox, with a horse standing to the left.\", \"bbox\": [266, 61, 458, 938]}]}"
+        },
+        {
+          "case": "Image008",
+          "pass": true,
+          "score": 0.9966,
+          "reason": "All assertions passed",
+          "output": "```json\n{\"images\": [{\"description\": \"Black and white photograph of Moise and Sophie L'Heureux from around 1910.\", \"bbox\": [0.258, 0.217, 0.672, 0.811]}]}\n```"
+        },
+        {
+          "case": "Image011",
+          "pass": true,
+          "score": 0.9826,
+          "reason": "All assertions passed",
+          "output": "```json\n{\"images\": [{\"description\": \"Celebrate Saskatchewan 1905-1980 logo\", \"bbox\": [0.074, 0.376, 0.234, 0.581]}, {\"description\": \"Official seal and signatures of Hon. Gordon MacMurchy and Hon. Ed Tchorzewski\", \"bbox\": [0.686, 0.118, 0.896, 0.868]}]}\n```"
+        },
+        {
+          "case": "Image013",
+          "pass": true,
+          "score": 0.9399,
+          "reason": "All assertions passed",
+          "output": "```json\n{\"images\": [{\"description\": \"A black and white photograph of a man and a woman, identified by the caption as Moise and Sophie L'Heureux around 1910.\", \"bbox\": [0.095, 0.415, 0.488, 0.716]}]}\n```"
+        },
+        {
+          "case": "Image020",
+          "pass": true,
+          "score": 0.9928,
+          "reason": "All assertions passed",
+          "output": "```json\n{\"images\": [\n  {\"description\": \"Aerial photo of ranch buildings\", \"bbox\": [0.061, 0.081, 0.462, 0.913]},\n  {\"description\": \"Ranch house and barn\", \"bbox\": [0.510, 0.091, 0.882, 0.904]}\n]}\n```"
+        },
+        {
+          "case": "Image021",
+          "pass": true,
+          "score": 0.9816,
+          "reason": "All assertions passed",
+          "output": "```json\n{\"images\": [{\"description\": \"Black and white photograph of Henry and Alma Alain on their 50th wedding anniversary in 1957.\", \"bbox\": [0.433, 0.105, 0.663, 0.48]}]}\n```"
+        },
+        {
+          "case": "Image037",
+          "pass": true,
+          "score": 0.9889,
+          "reason": "All assertions passed",
+          "output": "```json\n{\"images\": [{\"description\": \"Portrait photograph of Mrs. Leonidas L'Heureux (Laetitia)\", \"bbox\": [0.585, 0.053, 0.853, 0.312]}, {\"description\": \"Photograph of Leonidas and Josephine L'Heureux\", \"bbox\": [0.096, 0.643, 0.492, 0.9]}]}\n```"
+        },
+        {
+          "case": "Image059",
+          "pass": true,
+          "score": 0.99,
+          "reason": "All assertions passed",
+          "output": "```json\n{\"images\": [{\"description\": \"Photograph of George and Sophranie L'Heureux standing outdoors.\", \"bbox\": [0.345, 0.095, 0.73, 0.49]}, {\"description\": \"Portrait photograph of Emilienne, the first wife of George L'Heureux.\", \"bbox\": [0.635, 0.515, 0.895, 0.91]}]}\n```"
+        },
+        {
+          "case": "Image121",
+          "pass": true,
+          "score": 0.9757,
+          "reason": "All assertions passed",
+          "output": "```json\n{\"images\": [{\"description\": \"Photograph of the L'Heureux family reunion in July 1939.\", \"bbox\": [0.058, 0.094, 0.408, 0.910]}, {\"description\": \"Oval portrait of Moise L'Heureux and his brother Edward.\", \"bbox\": [0.453, 0.095, 0.874, 0.502]}, {\"description\": \"Oval portrait of Sophie L'Heureux.\", \"bbox\": [0.453, 0.523, 0.874, 0.921]}]}\n```"
+        },
+        {
+          "case": "Image124",
+          "pass": true,
+          "score": 0.9208,
+          "reason": "All assertions passed",
+          "output": "```json\n{\"images\": [{\"description\": \"Line drawing illustration of a covered wagon pulled by oxen with two people inside, set against a landscape with clouds and mountains.\", \"bbox\": [0.08, 0.10, 0.68, 0.85]}]}\n```"
+        },
+        {
+          "case": "Image126",
+          "pass": true,
+          "score": 0.9816,
+          "reason": "All assertions passed",
+          "output": "```json\n{\"images\": [\n  {\"description\": \"Photograph of a stone monument with several commemorative plaques.\", \"bbox\": [114, 206, 434, 779]},\n  {\"description\": \"Close-up photograph of a bronze plaque on the monument, commemorating the first post office.\", \"bbox\": [536, 222, 853, 796]}\n]}\n```"
+        }
+      ],
+      "mean_score": 0.9586461538461538,
+      "passing": 13
+    },
+    "detector-full": {
+      "calls": 13,
+      "cost_usd": 0.02739909,
+      "mean_latency_ms": 5137.2307692307695,
+      "p50_latency_ms": 4076,
+      "latency_ms": [
+        4346,
+        2391,
+        4076,
+        3579,
+        3648,
+        3612,
+        4657,
+        3847,
+        4517,
+        10101,
+        10170,
+        2772,
+        9068
+      ],
+      "rows": [
+        {
+          "case": "Image000",
+          "pass": true,
+          "score": 0.8157,
+          "reason": "All assertions passed",
+          "output": "{\"images\": [{\"description\": \"Full book cover with gold embossed title text 'ONWARD TO THE UNKNOWN 1887-1987', decorative landscape illustration featuring rolling hills, a tree, a wagon, and names 'Moise and Sophie L'Heureux' at the bottom, all within a bordered frame on a maroon background\", \"bbox\": [70, 45, 950, 935]}]}"
+        },
+        {
+          "case": "Image001",
+          "pass": true,
+          "score": 0.9216,
+          "reason": "All assertions passed",
+          "output": "{\"images\": [{\"description\": \"Stylized title text 'ONWARD TO THE UNKNOWN 1887 - 1987' in a bold, decorative display font functioning as standalone artwork on the title page\", \"bbox\": [180, 260, 860, 390]}]}"
+        },
+        {
+          "case": "Image003",
+          "pass": true,
+          "score": 0.9679,
+          "reason": "All assertions passed",
+          "output": "{\"images\": [{\"description\": \"Black and white illustration of a covered wagon being pulled by a horse and an ox, with a driver visible inside the wagon. The scene depicts a historical or pioneer-style transportation method.\", \"bbox\": [50, 260, 940, 460]}]}"
+        },
+        {
+          "case": "Image008",
+          "pass": true,
+          "score": 0.987,
+          "reason": "All assertions passed",
+          "output": "{\"images\": [{\"description\": \"Black and white photograph of Moise and Sophie L'Heureux, a man and woman posing together, dated about 1910\", \"bbox\": [216, 258, 809, 669]}]}"
+        },
+        {
+          "case": "Image011",
+          "pass": true,
+          "score": 0.897,
+          "reason": "All assertions passed",
+          "output": "{\"images\": [{\"description\": \"Circular 'Celebrate Saskatchewan 1905-1980' logo with stylized wheat sheaf design at top center of the certificate\", \"bbox\": [365, 68, 555, 235]}, {\"description\": \"Official black embossed seal with serrated edge and text, located at bottom left of the certificate, combined with adjacent signatures\", \"bbox\": [115, 680, 880, 895]}]}"
+        },
+        {
+          "case": "Image013",
+          "pass": true,
+          "score": 0.9768,
+          "reason": "All assertions passed",
+          "output": "{\"images\": [{\"description\": \"Black and white photograph of Moise and Sophie L'Heureux, a formally dressed couple posing together, with caption below reading 'Moise and Sophie L'Heureux about 1910'\", \"bbox\": [96, 416, 486, 680]}]}"
+        },
+        {
+          "case": "Image020",
+          "pass": true,
+          "score": 0.9931,
+          "reason": "All assertions passed",
+          "output": "{\"images\": [{\"description\": \"Aerial black-and-white photograph of ranch buildings, showing multiple structures, fields, and a dirt road in a rural landscape\", \"bbox\": [80, 58, 915, 462]}, {\"description\": \"Black-and-white ground-level photograph of a ranch house and barn with livestock in a fenced area, set against a snowy or barren landscape\", \"bbox\": [89, 505, 905, 882]}]}"
+        },
+        {
+          "case": "Image021",
+          "pass": true,
+          "score": 0.9895,
+          "reason": "All assertions passed",
+          "output": "{\"images\": [{\"description\": \"Black and white photograph of an older couple (Henry and Alma Alain) standing outdoors in front of foliage, celebrating their 50th wedding anniversary in 1957. The man wears a dark suit with a tie and boutonniere; the woman wears a light-colored dress.\", \"bbox\": [106, 433, 476, 666]}]}"
+        },
+        {
+          "case": "Image037",
+          "pass": true,
+          "score": 0.9823,
+          "reason": "All assertions passed",
+          "output": "{\"images\": [{\"description\": \"Oval portrait photograph of Mrs. Leonidas L'Heureux (Laetitia, first wife), a woman with dark hair styled up, wearing a dark dress with a white lace collar\", \"bbox\": [584, 49, 850, 318]}, {\"description\": \"Rectangular black-and-white photograph of Leonidas and Josephine (second wife) L'Heureux, showing a man in a suit seated next to a woman in a light-colored dress with a dark sash\", \"bbox\": [96, 639, 489, 898]}]}"
+        },
+        {
+          "case": "Image059",
+          "pass": true,
+          "score": 0.9825,
+          "reason": "All assertions passed",
+          "output": "{\"images\": [{\"description\": \"Black and white photograph of George L'Heureux and his second wife Sophanie standing outdoors in winter clothing, with snow on the ground and trees in the background\", \"bbox\": [95, 347, 487, 725]}, {\"description\": \"Black and white portrait photograph of Mrs. George L'Heureux (Emilienne, first wife) standing outdoors in a light-colored dress with a field or landscape in the background\", \"bbox\": [513, 629, 910, 895]}]}"
+        },
+        {
+          "case": "Image121",
+          "pass": true,
+          "score": 0.9859,
+          "reason": "All assertions passed",
+          "output": "{\"images\": [{\"description\": \"Large group photograph of the L'Heureux family reunion in July 1939, showing ninety family members gathered outdoors on a grassy area with trees in the background.\", \"bbox\": [91, 58, 910, 407]}, {\"description\": \"Oval-framed portrait photograph of two men, Moise L'Heureux and his brother Edward, standing side by side in formal attire.\", \"bbox\": [97, 446, 500, 879]}, {\"description\": \"Oval-framed portrait photograph of Sophie L'Heureux, seated and holding an object, with a painted backdrop.\", \"bbox\": [523, 451, 923, 874]}]}"
+        },
+        {
+          "case": "Image124",
+          "pass": true,
+          "score": 0.9726,
+          "reason": "All assertions passed",
+          "output": "{\"images\": [{\"description\": \"Black and white ink illustration of a horse-drawn covered wagon with two figures seated inside, set against a landscape with clouds and distant hills. The illustration is signed 'Aime' in the lower right corner.\", \"bbox\": [100, 80, 900, 680]}]}"
+        },
+        {
+          "case": "Image126",
+          "pass": true,
+          "score": 0.982,
+          "reason": "All assertions passed",
+          "output": "{\"images\": [{\"description\": \"Photograph of a stone monument with multiple bronze plaques commemorating Moise & Sophie L'Heureux, set against a rural landscape with sky and fields\", \"bbox\": [206, 116, 782, 431]}, {\"description\": \"Close-up photograph of a bronze Canada Post plaque mounted on a stone wall, detailing the history of the first post office in the area established in 1897\", \"bbox\": [220, 535, 794, 855]}]}"
+        }
+      ],
+      "mean_score": 0.9579923076923077,
+      "passing": 13
+    },
+    "detector-screen": {
+      "calls": 1,
+      "cost_usd": 0.00215037,
+      "mean_latency_ms": 3406,
+      "p50_latency_ms": 3406,
+      "latency_ms": [
+        3406
+      ]
+    },
+    "native-detector": {
+      "calls": 1,
+      "cost_usd": 0.00020318,
+      "mean_latency_ms": 1643,
+      "p50_latency_ms": 1643,
+      "latency_ms": [
+        1643
+      ]
+    },
+    "native-ocr": {
+      "calls": 1,
+      "cost_usd": 3.478e-05,
+      "mean_latency_ms": 994,
+      "p50_latency_ms": 994,
+      "latency_ms": [
+        994
+      ]
+    },
+    "native-safety": {
+      "calls": 1,
+      "cost_usd": 0.0003147,
+      "mean_latency_ms": null,
+      "p50_latency_ms": null,
+      "latency_ms": []
+    },
+    "ocr-candidate": {
+      "calls": 1,
+      "cost_usd": 0.00171341,
+      "mean_latency_ms": 12896,
+      "p50_latency_ms": 12896,
+      "latency_ms": [
+        12896
+      ],
+      "score": {
+        "transcript_path": "/Users/cam/.codex/worktrees/mistral-large4-eval-20261006/doc-web/testdata/handwritten-notes-barney-real.txt",
+        "artifact_path": "/Users/cam/.codex/worktrees/mistral-large4-eval-20261006/doc-web/output/runs/mistral4-ocr-candidate-barney-20261006/02_ocr_ai_gpt51_v1/pages_html.jsonl",
+        "page_count": 1,
+        "missing_pages": [],
+        "extra_pages": [],
+        "overall_ratio": 0.939957,
+        "overall_exact_match": false,
+        "page_min_ratio": 0.939957,
+        "exact_page_matches": 0,
+        "pages": [
+          {
+            "ratio": 0.939957,
+            "exact_match": false,
+            "expected_length": 1395,
+            "actual_length": 1403,
+            "expected_preview": "health, and can again stand among my comrads and in a few days I hope that I shall again feel as well as before,\nyou wrote that it was lonesome times in old gro",
+            "actual_preview": "health, and can again stand among my comrades and in a few days I hope that I shall again feel as well as before. you wrote that it was lonesome times in old ge",
+            "page_number": 1,
+            "artifact_page_found": true,
+            "artifact_metrics": {
+              "ocr_quality": 0.75,
+              "ocr_integrity": 0.85,
+              "continuation_risk": 0.6
+            }
+          }
+        ]
+      },
+      "alverson": "not measured; clear Barney lane failure"
+    },
+    "ocr-control": {
+      "calls": 1,
+      "cost_usd": 0.00692625,
+      "mean_latency_ms": 5960,
+      "p50_latency_ms": 5960,
+      "latency_ms": [
+        5960
+      ],
+      "score": {
+        "transcript_path": "/Users/cam/.codex/worktrees/mistral-large4-eval-20261006/doc-web/testdata/handwritten-notes-barney-real.txt",
+        "artifact_path": "/Users/cam/.codex/worktrees/mistral-large4-eval-20261006/doc-web/output/runs/mistral4-ocr-control-barney-20261006-recovery1/02_ocr_ai_gpt51_v1/pages_html.jsonl",
+        "page_count": 1,
+        "missing_pages": [],
+        "extra_pages": [],
+        "overall_ratio": 0.97883,
+        "overall_exact_match": false,
+        "page_min_ratio": 0.97883,
+        "exact_page_matches": 0,
+        "pages": [
+          {
+            "ratio": 0.97883,
+            "exact_match": false,
+            "expected_length": 1395,
+            "actual_length": 1392,
+            "expected_preview": "health, and can again stand among my comrads and in a few days I hope that I shall again feel as well as before,\nyou wrote that it was lonesome times in old gro",
+            "actual_preview": "health, and can again stand among my comrads and in a few days I hope that I shall again feel as well as before, you wrote that it was lonesome times in ald Gro",
+            "page_number": 1,
+            "artifact_page_found": true,
+            "artifact_metrics": {
+              "ocr_quality": 0.9,
+              "ocr_integrity": 0.95,
+              "continuation_risk": 1.0
+            }
+          }
+        ]
+      },
+      "alverson": "not measured; clear Barney lane failure"
+    },
+    "safety-control-full": {
+      "calls": 1,
+      "cost_usd": 0.08291,
+      "mean_latency_ms": 7372,
+      "p50_latency_ms": 7372,
+      "latency_ms": [
+        7372
+      ],
+      "rows": [
+        {
+          "case": "page-001-000",
+          "source_adjudicated_pass": false,
+          "frozen_primary_pass": false,
+          "output": "{\"verdict\":\"fail\",\"has_page_text\":false,\"excessive_blank\":false,\"reason\":\"The crop is an incomplete close-up of the cover illustration, cutting off large parts of the coherent visual and excluding the title/border context shown on the full page.\"}",
+          "source_reason": "FP | golden=pass vlm=fail | vlm_reason=\"The crop is an incomplete close-up of the cover illustration, cutting off large parts of the coherent visual and excluding the title/border context shown on the full page.\" | golden_notes=\"Gold embossed book cover illustration. Clean crop, no text.\""
+        }
+      ],
+      "source_adjudicated_correct": 0,
+      "frozen_correct": 0,
+      "unrun": 21
+    },
+    "safety-control-screen": {
+      "calls": 1,
+      "cost_usd": 0.083795,
+      "mean_latency_ms": 6102,
+      "p50_latency_ms": 6102,
+      "latency_ms": [
+        6102
+      ]
+    },
+    "safety-full": {
+      "calls": 5,
+      "cost_usd": 0.01883546,
+      "mean_latency_ms": 10531.8,
+      "p50_latency_ms": 6440,
+      "latency_ms": [
+        15709,
+        6182,
+        6440,
+        4058,
+        20270
+      ],
+      "rows": [
+        {
+          "case": "page-001-000",
+          "source_adjudicated_pass": true,
+          "frozen_primary_pass": true,
+          "output": "{\"verdict\": \"pass\", \"has_page_text\": false, \"excessive_blank\": false, \"reason\": \"The crop isolates the intended illustration (landscape with tree, fields, and wagon) from the book cover. The text visible in the full page ('ONWARD TO THE UNKNOWN', '1887-1987', 'Moise and Sophie L'Heureux') is part of the cover design and is correctly excluded from the crop. The crop contains no page-level text or neighboring visual elements, and the blank areas are part of the illustration's background (sky/fields), not excessive empty page space.\"}",
+          "source_reason": "All assertions passed"
+        },
+        {
+          "case": "page-004-000",
+          "source_adjudicated_pass": true,
+          "frozen_primary_pass": true,
+          "output": "{\"verdict\": \"pass\", \"has_page_text\": false, \"excessive_blank\": false, \"reason\": \"The crop isolates the intended illustration (covered wagon with horse and ox) without including any page text, captions, or neighboring visual elements. The illustration is complete and coherent, with no surrounding document text or unrelated visuals in the crop. The blank areas are part of the illustration's natural background (sky/landscape), not excessive page margin.\"}",
+          "source_reason": "All assertions passed"
+        },
+        {
+          "case": "page-009-000",
+          "source_adjudicated_pass": true,
+          "frozen_primary_pass": true,
+          "output": "{\"verdict\": \"pass\", \"has_page_text\": false, \"excessive_blank\": false, \"reason\": \"The crop isolates the intended photograph of Moise and Sophie without including any page text, captions, or neighboring visual elements. The halftone background and studio backdrop are integral to the photograph and do not count as excessive blank space.\"}",
+          "source_reason": "All assertions passed"
+        },
+        {
+          "case": "page-012-000",
+          "source_adjudicated_pass": true,
+          "frozen_primary_pass": true,
+          "output": "{\"verdict\": \"pass\", \"has_page_text\": false, \"excessive_blank\": false, \"reason\": \"The crop isolates the 'Celebrate Saskatchewan' logo, which is a coherent visual element on the full page. The text within the crop ('CELEBRATE SASKATCHEWAN', '1905-1980') is integral to the logo itself, not page-level text. No neighboring visuals or surrounding document text are included, and the crop is not excessively blank.\"}",
+          "source_reason": "All assertions passed"
+        },
+        {
+          "case": "page-012-001",
+          "source_adjudicated_pass": false,
+          "frozen_primary_pass": true,
+          "output": "{\"verdict\": \"pass\", \"has_page_text\": false, \"excessive_blank\": false, \"reason\": \"The crop isolates the official seal from the certificate, which is a coherent visual element. The text visible within the seal is integral to the seal itself (engraved/embossed text), not page-level text. No neighboring illustrations, captions, or page text are included in the crop.\"}",
+          "source_reason": "FN | golden=fail vlm=pass | vlm_reason=\"The crop isolates the official seal from the certificate, which is a coherent visual element. The text visible within the seal is integral to the seal itself (engraved/embossed text), not page-level text. No neighboring illustrations, captions, or page text are included in the crop.\" | golden_notes=\"Source-adjudicated September30 before fresh confirmation: SIFT439inliers maps cr\""
+        }
+      ],
+      "source_adjudicated_correct": 4,
+      "frozen_correct": 5,
+      "unrun": 17
+    },
+    "safety-screen": {
+      "calls": 1,
+      "cost_usd": 0.00389843,
+      "mean_latency_ms": 8531,
+      "p50_latency_ms": 8531,
+      "latency_ms": [
+        8531
+      ]
+    }
+  },
+  "ocr_parity": {
+    "ocr_system_text_sha256": "dc0225161132feb78c5c587a7f73a443680b36ef9c736419603b2a5f94ec4cbe",
+    "ocr_user_text_sha256": "48841e35733175d7048e62aa4197c85ba91761ae1791e2f2b2cec83f925ab3f7",
+    "ocr_image_sha256": "aaf212e6091d913ded7117dd61f1437a83c57af4f974809e7fb96c11a813d9c5",
+    "image_bytes": 150713,
+    "candidate_roles": [
+      "system",
+      "user"
+    ],
+    "control_roles": "systemInstruction plus independent user contents",
+    "matching": true
+  },
+  "ledger": {
+    "cap_usd": 11,
+    "spent_usd": 0.27457617,
+    "calls": [
+      {
+        "sequence": 1,
+        "case_key": "native-detector",
+        "recovery": false,
+        "model": "mistralai/mistral-large-4-0",
+        "reserved_usd": 0.02624064,
+        "cost_usd": 0.00020318,
+        "request_sha256": "00ebf388120a4f1751661b9ff3a3194ac1559014ac84f320893c77b86e9b341e",
+        "stage": "native-detector",
+        "code_sha256": {
+          "benchmarks/providers/mistral4_guard.py": "67957c5dd5359a4d529047f248a9bca2ed7349aaa70d0f7214afc299298f6af7",
+          "modules/common/openai_client.py": "eb8b2146f390e3a28f2b02cc032abe9959ba6921690eccc5965a6fd948d43308",
+          "modules/common/google_client.py": "174e4469436f26452a8d0712af32968ddfa730a04a726bf34d272d970aadd721",
+          "modules/extract/ocr_ai_gpt51_v1/main.py": "a9db81b3d7ed5066a25e4fe24f47c725677014dce677fc8449080b5e90552f6f"
+        },
+        "response_sha256": "e62cd3ff22d1e60532733b30bfa715ca3b8f5f16bb80e6c40b9caad06aa3c4fa",
+        "response_bytes": 941,
+        "status_code": 200,
+        "latency_ms": 1643,
+        "usage": {
+          "prompt_tokens": 182,
+          "completion_tokens": 38,
+          "total_tokens": 220,
+          "cost": 0.00020318,
+          "is_byok": false,
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "cache_write_tokens": 0,
+            "audio_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost_details": {
+            "upstream_inference_cost": 0.00020318,
+            "upstream_inference_prompt_cost": 0.00012376,
+            "upstream_inference_completions_cost": 7.942e-05
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 0,
+            "image_tokens": 0,
+            "audio_tokens": 0
+          }
+        },
+        "served_model": "mistralai/mistral-large-4-0",
+        "served_provider": "Mistral",
+        "response_id": "gen-1791300203-jgLTQ0E01rjp8QcsJaxM"
+      },
+      {
+        "sequence": 2,
+        "case_key": "Image011",
+        "recovery": false,
+        "model": "mistralai/mistral-large-4-0",
+        "reserved_usd": 0.02624064,
+        "cost_usd": 0.00215037,
+        "request_sha256": "2afe9462ef9e874a73526a45db41be5b41066b806fded59c14073f8cc9fa5275",
+        "stage": "detector-screen",
+        "code_sha256": {
+          "benchmarks/providers/mistral4_guard.py": "67957c5dd5359a4d529047f248a9bca2ed7349aaa70d0f7214afc299298f6af7",
+          "modules/common/openai_client.py": "eb8b2146f390e3a28f2b02cc032abe9959ba6921690eccc5965a6fd948d43308",
+          "modules/common/google_client.py": "174e4469436f26452a8d0712af32968ddfa730a04a726bf34d272d970aadd721",
+          "modules/extract/ocr_ai_gpt51_v1/main.py": "a9db81b3d7ed5066a25e4fe24f47c725677014dce677fc8449080b5e90552f6f"
+        },
+        "response_sha256": "6065d6d7f5ca05df78b167c2fbcd9daafc8590270f682875ef65efd728ddf11d",
+        "response_bytes": 1210,
+        "status_code": 200,
+        "latency_ms": 3406,
+        "usage": {
+          "prompt_tokens": 2815,
+          "completion_tokens": 113,
+          "total_tokens": 2928,
+          "cost": 0.00215037,
+          "is_byok": false,
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "cache_write_tokens": 0,
+            "audio_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost_details": {
+            "upstream_inference_cost": 0.00215037,
+            "upstream_inference_prompt_cost": 0.0019142,
+            "upstream_inference_completions_cost": 0.00023617
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 0,
+            "image_tokens": 0,
+            "audio_tokens": 0
+          }
+        },
+        "served_model": "mistralai/mistral-large-4-0",
+        "served_provider": "Mistral",
+        "response_id": "gen-1791300219-mnnpMjWZKD4zfkubWqe5"
+      },
+      {
+        "sequence": 3,
+        "case_key": "Image000",
+        "recovery": false,
+        "model": "mistralai/mistral-large-4-0",
+        "reserved_usd": 0.02624064,
+        "cost_usd": 0.00207117,
+        "request_sha256": "81c785113780d3e5c5d791acc8443e1ae2f8eadf01551f0507bae31c540901b2",
+        "stage": "detector-full",
+        "code_sha256": {
+          "benchmarks/providers/mistral4_guard.py": "67957c5dd5359a4d529047f248a9bca2ed7349aaa70d0f7214afc299298f6af7",
+          "modules/common/openai_client.py": "eb8b2146f390e3a28f2b02cc032abe9959ba6921690eccc5965a6fd948d43308",
+          "modules/common/google_client.py": "174e4469436f26452a8d0712af32968ddfa730a04a726bf34d272d970aadd721",
+          "modules/extract/ocr_ai_gpt51_v1/main.py": "a9db81b3d7ed5066a25e4fe24f47c725677014dce677fc8449080b5e90552f6f"
+        },
+        "response_sha256": "825de2ea5ecf911aeb063e3c94f4262fed6d9db20b19db4d5f09a309a3859637",
+        "response_bytes": 1163,
+        "status_code": 200,
+        "latency_ms": 4346,
+        "usage": {
+          "prompt_tokens": 2760,
+          "completion_tokens": 93,
+          "total_tokens": 2853,
+          "cost": 0.00207117,
+          "is_byok": false,
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "cache_write_tokens": 0,
+            "audio_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost_details": {
+            "upstream_inference_cost": 0.00207117,
+            "upstream_inference_prompt_cost": 0.0018768,
+            "upstream_inference_completions_cost": 0.00019437
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 0,
+            "image_tokens": 0,
+            "audio_tokens": 0
+          }
+        },
+        "served_model": "mistralai/mistral-large-4-0",
+        "served_provider": "Mistral",
+        "response_id": "gen-1791300276-j2SGJdtXgZ5qoduuc1oc"
+      },
+      {
+        "sequence": 4,
+        "case_key": "Image001",
+        "recovery": false,
+        "model": "mistralai/mistral-large-4-0",
+        "reserved_usd": 0.02624064,
+        "cost_usd": 0.00204378,
+        "request_sha256": "271c304329090aba0422cfe351103d116cac39998246f0478bf3f9274ee5e3f3",
+        "stage": "detector-full",
+        "code_sha256": {
+          "benchmarks/providers/mistral4_guard.py": "67957c5dd5359a4d529047f248a9bca2ed7349aaa70d0f7214afc299298f6af7",
+          "modules/common/openai_client.py": "eb8b2146f390e3a28f2b02cc032abe9959ba6921690eccc5965a6fd948d43308",
+          "modules/common/google_client.py": "174e4469436f26452a8d0712af32968ddfa730a04a726bf34d272d970aadd721",
+          "modules/extract/ocr_ai_gpt51_v1/main.py": "1147a8e80a502153ae4174662e1dab88c878d251ccfcf3034b230cab407f34bd"
+        },
+        "response_sha256": "3c94dc51390bfd08989754c7034c6eb30dad03d56e7e753245c01d911434b294",
+        "response_bytes": 1035,
+        "status_code": 200,
+        "latency_ms": 2391,
+        "usage": {
+          "prompt_tokens": 2815,
+          "completion_tokens": 62,
+          "total_tokens": 2877,
+          "cost": 0.00204378,
+          "is_byok": false,
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "cache_write_tokens": 0,
+            "audio_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost_details": {
+            "upstream_inference_cost": 0.00204378,
+            "upstream_inference_prompt_cost": 0.0019142,
+            "upstream_inference_completions_cost": 0.00012958
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 0,
+            "image_tokens": 0,
+            "audio_tokens": 0
+          }
+        },
+        "served_model": "mistralai/mistral-large-4-0",
+        "served_provider": "Mistral",
+        "response_id": "gen-1791300280-zJVSbedGp603zs1wpvBL"
+      },
+      {
+        "sequence": 5,
+        "case_key": "Image003",
+        "recovery": false,
+        "model": "mistralai/mistral-large-4-0",
+        "reserved_usd": 0.02624064,
+        "cost_usd": 0.00204796,
+        "request_sha256": "386a32842e2ce88f2c0614399a1bf8bac54d79263bbf067de11ef1a50966c537",
+        "stage": "detector-full",
+        "code_sha256": {
+          "benchmarks/providers/mistral4_guard.py": "67957c5dd5359a4d529047f248a9bca2ed7349aaa70d0f7214afc299298f6af7",
+          "modules/common/openai_client.py": "eb8b2146f390e3a28f2b02cc032abe9959ba6921690eccc5965a6fd948d43308",
+          "modules/common/google_client.py": "174e4469436f26452a8d0712af32968ddfa730a04a726bf34d272d970aadd721",
+          "modules/extract/ocr_ai_gpt51_v1/main.py": "1147a8e80a502153ae4174662e1dab88c878d251ccfcf3034b230cab407f34bd"
+        },
+        "response_sha256": "a8217040b411efedc93cb3c2efae88b6926198569ae115d41310a482b86de0c5",
+        "response_bytes": 1096,
+        "status_code": 200,
+        "latency_ms": 4076,
+        "usage": {
+          "prompt_tokens": 2815,
+          "completion_tokens": 64,
+          "total_tokens": 2879,
+          "cost": 0.00204796,
+          "is_byok": false,
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "cache_write_tokens": 0,
+            "audio_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost_details": {
+            "upstream_inference_cost": 0.00204796,
+            "upstream_inference_prompt_cost": 0.0019142,
+            "upstream_inference_completions_cost": 0.00013376
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 0,
+            "image_tokens": 0,
+            "audio_tokens": 0
+          }
+        },
+        "served_model": "mistralai/mistral-large-4-0",
+        "served_provider": "Mistral",
+        "response_id": "gen-1791300283-RBgyUs2fYfFlm8qnka27"
+      },
+      {
+        "sequence": 6,
+        "case_key": "Image008",
+        "recovery": false,
+        "model": "mistralai/mistral-large-4-0",
+        "reserved_usd": 0.02624064,
+        "cost_usd": 0.00202915,
+        "request_sha256": "da8e311a18f3b20946460fdbb8b5d2c32106af03a0949b21d2ebd86bbe5bfd8b",
+        "stage": "detector-full",
+        "code_sha256": {
+          "benchmarks/providers/mistral4_guard.py": "67957c5dd5359a4d529047f248a9bca2ed7349aaa70d0f7214afc299298f6af7",
+          "modules/common/openai_client.py": "eb8b2146f390e3a28f2b02cc032abe9959ba6921690eccc5965a6fd948d43308",
+          "modules/common/google_client.py": "174e4469436f26452a8d0712af32968ddfa730a04a726bf34d272d970aadd721",
+          "modules/extract/ocr_ai_gpt51_v1/main.py": "1147a8e80a502153ae4174662e1dab88c878d251ccfcf3034b230cab407f34bd"
+        },
+        "response_sha256": "afd87c66e3f8f550501fa1685ca604a2e64a525df612a167b08bc6849451bab1",
+        "response_bytes": 1000,
+        "status_code": 200,
+        "latency_ms": 3579,
+        "usage": {
+          "prompt_tokens": 2815,
+          "completion_tokens": 55,
+          "total_tokens": 2870,
+          "cost": 0.00202915,
+          "is_byok": false,
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "cache_write_tokens": 0,
+            "audio_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost_details": {
+            "upstream_inference_cost": 0.00202915,
+            "upstream_inference_prompt_cost": 0.0019142,
+            "upstream_inference_completions_cost": 0.00011495
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 0,
+            "image_tokens": 0,
+            "audio_tokens": 0
+          }
+        },
+        "served_model": "mistralai/mistral-large-4-0",
+        "served_provider": "Mistral",
+        "response_id": "gen-1791300287-FeWI2vL0C5Zmh83m4BXK"
+      },
+      {
+        "sequence": 7,
+        "case_key": "Image011",
+        "recovery": false,
+        "model": "mistralai/mistral-large-4-0",
+        "reserved_usd": 0.02624064,
+        "cost_usd": 0.00212738,
+        "request_sha256": "2afe9462ef9e874a73526a45db41be5b41066b806fded59c14073f8cc9fa5275",
+        "stage": "detector-full",
+        "code_sha256": {
+          "benchmarks/providers/mistral4_guard.py": "67957c5dd5359a4d529047f248a9bca2ed7349aaa70d0f7214afc299298f6af7",
+          "modules/common/openai_client.py": "eb8b2146f390e3a28f2b02cc032abe9959ba6921690eccc5965a6fd948d43308",
+          "modules/common/google_client.py": "174e4469436f26452a8d0712af32968ddfa730a04a726bf34d272d970aadd721",
+          "modules/extract/ocr_ai_gpt51_v1/main.py": "1147a8e80a502153ae4174662e1dab88c878d251ccfcf3034b230cab407f34bd"
+        },
+        "response_sha256": "0c12c9f8ad7f80a90254e3e462c0d057880eafc32b010ea6c8f1bc13dee49653",
+        "response_bytes": 1198,
+        "status_code": 200,
+        "latency_ms": 3648,
+        "usage": {
+          "prompt_tokens": 2815,
+          "completion_tokens": 102,
+          "total_tokens": 2917,
+          "cost": 0.00212738,
+          "is_byok": false,
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "cache_write_tokens": 0,
+            "audio_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost_details": {
+            "upstream_inference_cost": 0.00212738,
+            "upstream_inference_prompt_cost": 0.0019142,
+            "upstream_inference_completions_cost": 0.00021318
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 0,
+            "image_tokens": 0,
+            "audio_tokens": 0
+          }
+        },
+        "served_model": "mistralai/mistral-large-4-0",
+        "served_provider": "Mistral",
+        "response_id": "gen-1791300291-PGDO7KC6cMQpaJpFWWBI"
+      },
+      {
+        "sequence": 8,
+        "case_key": "Image013",
+        "recovery": false,
+        "model": "mistralai/mistral-large-4-0",
+        "reserved_usd": 0.02624064,
+        "cost_usd": 0.00205632,
+        "request_sha256": "7fedc1963324425b96b833a7a357095399aa133c0ed47502d0776ca95745e8f8",
+        "stage": "detector-full",
+        "code_sha256": {
+          "benchmarks/providers/mistral4_guard.py": "67957c5dd5359a4d529047f248a9bca2ed7349aaa70d0f7214afc299298f6af7",
+          "modules/common/openai_client.py": "eb8b2146f390e3a28f2b02cc032abe9959ba6921690eccc5965a6fd948d43308",
+          "modules/common/google_client.py": "174e4469436f26452a8d0712af32968ddfa730a04a726bf34d272d970aadd721",
+          "modules/extract/ocr_ai_gpt51_v1/main.py": "1147a8e80a502153ae4174662e1dab88c878d251ccfcf3034b230cab407f34bd"
+        },
+        "response_sha256": "010e946a7bae2891e6d5aa2f61ffdb0cfa7536597083c9a5cdc4aba471668025",
+        "response_bytes": 1059,
+        "status_code": 200,
+        "latency_ms": 3612,
+        "usage": {
+          "prompt_tokens": 2815,
+          "completion_tokens": 68,
+          "total_tokens": 2883,
+          "cost": 0.00205632,
+          "is_byok": false,
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "cache_write_tokens": 0,
+            "audio_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost_details": {
+            "upstream_inference_cost": 0.00205632,
+            "upstream_inference_prompt_cost": 0.0019142,
+            "upstream_inference_completions_cost": 0.00014212
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 0,
+            "image_tokens": 0,
+            "audio_tokens": 0
+          }
+        },
+        "served_model": "mistralai/mistral-large-4-0",
+        "served_provider": "Mistral",
+        "response_id": "gen-1791300295-ZHREBrD6dIxl8v1h0gI1"
+      },
+      {
+        "sequence": 9,
+        "case_key": "Image020",
+        "recovery": false,
+        "model": "mistralai/mistral-large-4-0",
+        "reserved_usd": 0.02624064,
+        "cost_usd": 0.00212947,
+        "request_sha256": "587d335748de9dc8d8b4ffb050f03af129ea40f9019f0aa364d01fe1bd6ffc78",
+        "stage": "detector-full",
+        "code_sha256": {
+          "benchmarks/providers/mistral4_guard.py": "67957c5dd5359a4d529047f248a9bca2ed7349aaa70d0f7214afc299298f6af7",
+          "modules/common/openai_client.py": "eb8b2146f390e3a28f2b02cc032abe9959ba6921690eccc5965a6fd948d43308",
+          "modules/common/google_client.py": "174e4469436f26452a8d0712af32968ddfa730a04a726bf34d272d970aadd721",
+          "modules/extract/ocr_ai_gpt51_v1/main.py": "1147a8e80a502153ae4174662e1dab88c878d251ccfcf3034b230cab407f34bd"
+        },
+        "response_sha256": "f302b28a1aac9a7e9724408e5041be2284ec9c08cd35a64d29d34c923042a091",
+        "response_bytes": 1224,
+        "status_code": 200,
+        "latency_ms": 4657,
+        "usage": {
+          "prompt_tokens": 2815,
+          "completion_tokens": 103,
+          "total_tokens": 2918,
+          "cost": 0.00212947,
+          "is_byok": false,
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "cache_write_tokens": 0,
+            "audio_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost_details": {
+            "upstream_inference_cost": 0.00212947,
+            "upstream_inference_prompt_cost": 0.0019142,
+            "upstream_inference_completions_cost": 0.00021527
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 0,
+            "image_tokens": 0,
+            "audio_tokens": 0
+          }
+        },
+        "served_model": "mistralai/mistral-large-4-0",
+        "served_provider": "Mistral",
+        "response_id": "gen-1791300298-2tsonT8P9C5vZwjB9fg2"
+      },
+      {
+        "sequence": 10,
+        "case_key": "Image021",
+        "recovery": false,
+        "model": "mistralai/mistral-large-4-0",
+        "reserved_usd": 0.02624064,
+        "cost_usd": 0.00209185,
+        "request_sha256": "8720d066788ec58b193abc1d88b89ce832270711fc92128a6d7db0eb15712f9d",
+        "stage": "detector-full",
+        "code_sha256": {
+          "benchmarks/providers/mistral4_guard.py": "67957c5dd5359a4d529047f248a9bca2ed7349aaa70d0f7214afc299298f6af7",
+          "modules/common/openai_client.py": "eb8b2146f390e3a28f2b02cc032abe9959ba6921690eccc5965a6fd948d43308",
+          "modules/common/google_client.py": "174e4469436f26452a8d0712af32968ddfa730a04a726bf34d272d970aadd721",
+          "modules/extract/ocr_ai_gpt51_v1/main.py": "1147a8e80a502153ae4174662e1dab88c878d251ccfcf3034b230cab407f34bd"
+        },
+        "response_sha256": "dda2db53698ae610b6b1c68d20fd0876dc04d1542358acfa84cace5f6cc056c5",
+        "response_bytes": 1145,
+        "status_code": 200,
+        "latency_ms": 3847,
+        "usage": {
+          "prompt_tokens": 2815,
+          "completion_tokens": 85,
+          "total_tokens": 2900,
+          "cost": 0.00209185,
+          "is_byok": false,
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "cache_write_tokens": 0,
+            "audio_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost_details": {
+            "upstream_inference_cost": 0.00209185,
+            "upstream_inference_prompt_cost": 0.0019142,
+            "upstream_inference_completions_cost": 0.00017765
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 0,
+            "image_tokens": 0,
+            "audio_tokens": 0
+          }
+        },
+        "served_model": "mistralai/mistral-large-4-0",
+        "served_provider": "Mistral",
+        "response_id": "gen-1791300303-46HL0jNbs4gyP8nD0VZ7"
+      },
+      {
+        "sequence": 11,
+        "case_key": "Image037",
+        "recovery": false,
+        "model": "mistralai/mistral-large-4-0",
+        "reserved_usd": 0.02624064,
+        "cost_usd": 0.00218799,
+        "request_sha256": "43b6dae6c8983f89a4ffcbc34fe9399b585e590bb202d661f7ea8b992ca157b5",
+        "stage": "detector-full",
+        "code_sha256": {
+          "benchmarks/providers/mistral4_guard.py": "67957c5dd5359a4d529047f248a9bca2ed7349aaa70d0f7214afc299298f6af7",
+          "modules/common/openai_client.py": "eb8b2146f390e3a28f2b02cc032abe9959ba6921690eccc5965a6fd948d43308",
+          "modules/common/google_client.py": "174e4469436f26452a8d0712af32968ddfa730a04a726bf34d272d970aadd721",
+          "modules/extract/ocr_ai_gpt51_v1/main.py": "1147a8e80a502153ae4174662e1dab88c878d251ccfcf3034b230cab407f34bd"
+        },
+        "response_sha256": "752c2d3947587a9cb46edc5d94b28d7ebedef4471450becb751b49496661caaa",
+        "response_bytes": 1293,
+        "status_code": 200,
+        "latency_ms": 4517,
+        "usage": {
+          "prompt_tokens": 2815,
+          "completion_tokens": 131,
+          "total_tokens": 2946,
+          "cost": 0.00218799,
+          "is_byok": false,
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "cache_write_tokens": 0,
+            "audio_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost_details": {
+            "upstream_inference_cost": 0.00218799,
+            "upstream_inference_prompt_cost": 0.0019142,
+            "upstream_inference_completions_cost": 0.00027379
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 0,
+            "image_tokens": 0,
+            "audio_tokens": 0
+          }
+        },
+        "served_model": "mistralai/mistral-large-4-0",
+        "served_provider": "Mistral",
+        "response_id": "gen-1791300307-oW8GzTfYLdzSkLAfxxYs"
+      },
+      {
+        "sequence": 12,
+        "case_key": "Image059",
+        "recovery": false,
+        "model": "mistralai/mistral-large-4-0",
+        "reserved_usd": 0.02624064,
+        "cost_usd": 0.002165,
+        "request_sha256": "9b5176e3c840a2dd57488d273a7926fc6030cf9fa4a8cbfedbd330694aff992d",
+        "stage": "detector-full",
+        "code_sha256": {
+          "benchmarks/providers/mistral4_guard.py": "67957c5dd5359a4d529047f248a9bca2ed7349aaa70d0f7214afc299298f6af7",
+          "modules/common/openai_client.py": "eb8b2146f390e3a28f2b02cc032abe9959ba6921690eccc5965a6fd948d43308",
+          "modules/common/google_client.py": "174e4469436f26452a8d0712af32968ddfa730a04a726bf34d272d970aadd721",
+          "modules/extract/ocr_ai_gpt51_v1/main.py": "1147a8e80a502153ae4174662e1dab88c878d251ccfcf3034b230cab407f34bd"
+        },
+        "response_sha256": "7f0f9768d08e8e0f4f8b9f00838574a6ffb0b5eb5f84419b0ea445e6c3845a3d",
+        "response_bytes": 1314,
+        "status_code": 200,
+        "latency_ms": 10101,
+        "usage": {
+          "prompt_tokens": 2815,
+          "completion_tokens": 120,
+          "total_tokens": 2935,
+          "cost": 0.002165,
+          "is_byok": false,
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "cache_write_tokens": 0,
+            "audio_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost_details": {
+            "upstream_inference_cost": 0.002165,
+            "upstream_inference_prompt_cost": 0.0019142,
+            "upstream_inference_completions_cost": 0.0002508
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 0,
+            "image_tokens": 0,
+            "audio_tokens": 0
+          }
+        },
+        "served_model": "mistralai/mistral-large-4-0",
+        "served_provider": "Mistral",
+        "response_id": "gen-1791300312-kSR4mns7en8ZTCb60PHm"
+      },
+      {
+        "sequence": 13,
+        "case_key": "Image121",
+        "recovery": false,
+        "model": "mistralai/mistral-large-4-0",
+        "reserved_usd": 0.02624064,
+        "cost_usd": 0.00224442,
+        "request_sha256": "7aa823c9adb40ce6fc7a2c9675f06a2f60dc4a9ded3bb75146c69fac2bd9f9fb",
+        "stage": "detector-full",
+        "code_sha256": {
+          "benchmarks/providers/mistral4_guard.py": "67957c5dd5359a4d529047f248a9bca2ed7349aaa70d0f7214afc299298f6af7",
+          "modules/common/openai_client.py": "eb8b2146f390e3a28f2b02cc032abe9959ba6921690eccc5965a6fd948d43308",
+          "modules/common/google_client.py": "174e4469436f26452a8d0712af32968ddfa730a04a726bf34d272d970aadd721",
+          "modules/extract/ocr_ai_gpt51_v1/main.py": "1147a8e80a502153ae4174662e1dab88c878d251ccfcf3034b230cab407f34bd"
+        },
+        "response_sha256": "ea5fecdfa36901401e105f7eb1e0f7b37788fc8ad38ab33c70b1154998e8336c",
+        "response_bytes": 1431,
+        "status_code": 200,
+        "latency_ms": 10170,
+        "usage": {
+          "prompt_tokens": 2815,
+          "completion_tokens": 158,
+          "total_tokens": 2973,
+          "cost": 0.00224442,
+          "is_byok": false,
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "cache_write_tokens": 0,
+            "audio_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost_details": {
+            "upstream_inference_cost": 0.00224442,
+            "upstream_inference_prompt_cost": 0.0019142,
+            "upstream_inference_completions_cost": 0.00033022
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 0,
+            "image_tokens": 0,
+            "audio_tokens": 0
+          }
+        },
+        "served_model": "mistralai/mistral-large-4-0",
+        "served_provider": "Mistral",
+        "response_id": "gen-1791300322-zchWOATPBWLwfr72kHKA"
+      },
+      {
+        "sequence": 14,
+        "case_key": "Image124",
+        "recovery": false,
+        "model": "mistralai/mistral-large-4-0",
+        "reserved_usd": 0.02624064,
+        "cost_usd": 0.0020605,
+        "request_sha256": "cc05185c5ce2677deb9936c8a3b6a7faf6a5f0812cea5a300744982b7338a7ed",
+        "stage": "detector-full",
+        "code_sha256": {
+          "benchmarks/providers/mistral4_guard.py": "67957c5dd5359a4d529047f248a9bca2ed7349aaa70d0f7214afc299298f6af7",
+          "modules/common/openai_client.py": "eb8b2146f390e3a28f2b02cc032abe9959ba6921690eccc5965a6fd948d43308",
+          "modules/common/google_client.py": "174e4469436f26452a8d0712af32968ddfa730a04a726bf34d272d970aadd721",
+          "modules/extract/ocr_ai_gpt51_v1/main.py": "1147a8e80a502153ae4174662e1dab88c878d251ccfcf3034b230cab407f34bd"
+        },
+        "response_sha256": "e5491346148198b818cac027ccdaffaedd7780c1a6bffb99e69364f7ca867d3c",
+        "response_bytes": 1100,
+        "status_code": 200,
+        "latency_ms": 2772,
+        "usage": {
+          "prompt_tokens": 2815,
+          "completion_tokens": 70,
+          "total_tokens": 2885,
+          "cost": 0.0020605,
+          "is_byok": false,
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "cache_write_tokens": 0,
+            "audio_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost_details": {
+            "upstream_inference_cost": 0.0020605,
+            "upstream_inference_prompt_cost": 0.0019142,
+            "upstream_inference_completions_cost": 0.0001463
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 0,
+            "image_tokens": 0,
+            "audio_tokens": 0
+          }
+        },
+        "served_model": "mistralai/mistral-large-4-0",
+        "served_provider": "Mistral",
+        "response_id": "gen-1791300332-tN5JGdY2mMl0WkWhDKZc"
+      },
+      {
+        "sequence": 15,
+        "case_key": "Image126",
+        "recovery": false,
+        "model": "mistralai/mistral-large-4-0",
+        "reserved_usd": 0.02624064,
+        "cost_usd": 0.0021441,
+        "request_sha256": "6b6570718de29389c87b2491c63a5e36ca8d150d9a168ed6e76a82067d414fb5",
+        "stage": "detector-full",
+        "code_sha256": {
+          "benchmarks/providers/mistral4_guard.py": "67957c5dd5359a4d529047f248a9bca2ed7349aaa70d0f7214afc299298f6af7",
+          "modules/common/openai_client.py": "eb8b2146f390e3a28f2b02cc032abe9959ba6921690eccc5965a6fd948d43308",
+          "modules/common/google_client.py": "174e4469436f26452a8d0712af32968ddfa730a04a726bf34d272d970aadd721",
+          "modules/extract/ocr_ai_gpt51_v1/main.py": "1147a8e80a502153ae4174662e1dab88c878d251ccfcf3034b230cab407f34bd"
+        },
+        "response_sha256": "762f8f03e746018ceece4e548a55d9d3df8219f0640f01caa21f55fcbefda595",
+        "response_bytes": 1273,
+        "status_code": 200,
+        "latency_ms": 9068,
+        "usage": {
+          "prompt_tokens": 2815,
+          "completion_tokens": 110,
+          "total_tokens": 2925,
+          "cost": 0.0021441,
+          "is_byok": false,
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "cache_write_tokens": 0,
+            "audio_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost_details": {
+            "upstream_inference_cost": 0.0021441,
+            "upstream_inference_prompt_cost": 0.0019142,
+            "upstream_inference_completions_cost": 0.0002299
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 0,
+            "image_tokens": 0,
+            "audio_tokens": 0
+          }
+        },
+        "served_model": "mistralai/mistral-large-4-0",
+        "served_provider": "Mistral",
+        "response_id": "gen-1791300335-bhsbabLf7GPjq1IQNcML"
+      },
+      {
+        "sequence": 16,
+        "model": "mistralai/mistral-large-4-0",
+        "served_model": "mistralai/mistral-large-4-0",
+        "served_provider": "Mistral",
+        "stage": "native-safety",
+        "case_key": "native-safety",
+        "reserved_usd": 0.03984064,
+        "cost_usd": 0.0003147,
+        "usage": {
+          "prompt_tokens": 137,
+          "completion_tokens": 106,
+          "total_tokens": 243,
+          "cost": 0.0003147,
+          "is_byok": false,
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "cache_write_tokens": 0,
+            "audio_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost_details": {
+            "upstream_inference_cost": 0.0003147,
+            "upstream_inference_prompt_cost": 9.316e-05,
+            "upstream_inference_completions_cost": 0.00022154
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 0,
+            "image_tokens": 0,
+            "audio_tokens": 0
+          }
+        },
+        "response_id": "gen-1791300323-nuM6p3pnePhOtKLEr6sH",
+        "status_code": 200,
+        "latency_ms": null,
+        "response_path": "native-safety.json",
+        "response_sha256": "fde91891f56e67f2ce12332969148ea28153a3e54b4393e39d2b9745c9c8fe73",
+        "request_path": "reconstructed-native-safety-request.json",
+        "request_sha256": "bab6285f529f0eaaa91b7714f29419a6e44a6e35f2a46b9dd94d4e1b1837cc3e",
+        "custody_repair": "Coordinator worker accidentally overlapped native safety with last detector requests; original ledger row/request-response numbered files overwritten by concurrent write. Native response persisted separately before assertions, exact deterministic request reconstructed from executed source. Request provenance reconstructed, latency lost; not a fresh subject/capability score."
+      },
+      {
+        "sequence": 17,
+        "case_key": "Image000",
+        "recovery": false,
+        "model": "gemini-3-flash-preview",
+        "reserved_usd": 0.062152,
+        "cost_usd": 0.0041675,
+        "request_sha256": "6239875f0624ff1eb55c31f8a386a40e031168b01f5491acbc81906c2a0651c9",
+        "stage": "detector-control-full",
+        "code_sha256": {
+          "benchmarks/providers/mistral4_guard.py": "9682b5daf7589b37db8d82956d5e4ce7314e046037595352b529959bb19b1e7e",
+          "modules/common/openai_client.py": "eb8b2146f390e3a28f2b02cc032abe9959ba6921690eccc5965a6fd948d43308",
+          "modules/common/google_client.py": "174e4469436f26452a8d0712af32968ddfa730a04a726bf34d272d970aadd721",
+          "modules/extract/ocr_ai_gpt51_v1/main.py": "1147a8e80a502153ae4174662e1dab88c878d251ccfcf3034b230cab407f34bd"
+        },
+        "response_sha256": "9e203bdd58bdd2477cea22dbba2fac08a8ce7fbb209e51130b23ae421f1562c0",
+        "response_bytes": 6070,
+        "status_code": 200,
+        "latency_ms": 9790,
+        "usage": {
+          "promptTokenCount": 1333,
+          "candidatesTokenCount": 91,
+          "totalTokenCount": 2500,
+          "promptTokensDetails": [
+            {
+              "modality": "IMAGE",
+              "tokenCount": 1102
+            },
+            {
+              "modality": "TEXT",
+              "tokenCount": 231
+            }
+          ],
+          "thoughtsTokenCount": 1076,
+          "serviceTier": "standard"
+        },
+        "served_model": "gemini-3-flash-preview",
+        "served_provider": null,
+        "response_id": "LBPFavO2M7C0qtsPgvTqiAQ"
+      },
+      {
+        "sequence": 18,
+        "case_key": "Image001",
+        "recovery": false,
+        "model": "gemini-3-flash-preview",
+        "reserved_usd": 0.062152,
+        "cost_usd": 0.0040325,
+        "request_sha256": "01b4129b1c68907267cb3e71fc64bd3517497b103f7c28fb085982eef0f5e296",
+        "stage": "detector-control-full",
+        "code_sha256": {
+          "benchmarks/providers/mistral4_guard.py": "9682b5daf7589b37db8d82956d5e4ce7314e046037595352b529959bb19b1e7e",
+          "modules/common/openai_client.py": "eb8b2146f390e3a28f2b02cc032abe9959ba6921690eccc5965a6fd948d43308",
+          "modules/common/google_client.py": "174e4469436f26452a8d0712af32968ddfa730a04a726bf34d272d970aadd721",
+          "modules/extract/ocr_ai_gpt51_v1/main.py": "1147a8e80a502153ae4174662e1dab88c878d251ccfcf3034b230cab407f34bd"
+        },
+        "response_sha256": "04da240412e23c4d11336097c362e608a11c19534bc61c0f523bd6098254b47a",
+        "response_bytes": 5404,
+        "status_code": 200,
+        "latency_ms": 8113,
+        "usage": {
+          "promptTokenCount": 1333,
+          "candidatesTokenCount": 70,
+          "totalTokenCount": 2455,
+          "promptTokensDetails": [
+            {
+              "modality": "IMAGE",
+              "tokenCount": 1102
+            },
+            {
+              "modality": "TEXT",
+              "tokenCount": 231
+            }
+          ],
+          "thoughtsTokenCount": 1052,
+          "serviceTier": "standard"
+        },
+        "served_model": "gemini-3-flash-preview",
+        "served_provider": null,
+        "response_id": "NhPFavHoI5byz7IPv_7nyQc"
+      },
+      {
+        "sequence": 19,
+        "case_key": "Image003",
+        "recovery": false,
+        "model": "gemini-3-flash-preview",
+        "reserved_usd": 0.062152,
+        "cost_usd": 0.0021395,
+        "request_sha256": "0678d76e8bbc40b8867facb609d017f95020e5bcb53519e7bb663fe951769366",
+        "stage": "detector-control-full",
+        "code_sha256": {
+          "benchmarks/providers/mistral4_guard.py": "9682b5daf7589b37db8d82956d5e4ce7314e046037595352b529959bb19b1e7e",
+          "modules/common/openai_client.py": "eb8b2146f390e3a28f2b02cc032abe9959ba6921690eccc5965a6fd948d43308",
+          "modules/common/google_client.py": "174e4469436f26452a8d0712af32968ddfa730a04a726bf34d272d970aadd721",
+          "modules/extract/ocr_ai_gpt51_v1/main.py": "1147a8e80a502153ae4174662e1dab88c878d251ccfcf3034b230cab407f34bd"
+        },
+        "response_sha256": "af8c3f0c3c01307c2648f295c9d743a7d1860833ad806c4d00e644bc413d8ba1",
+        "response_bytes": 2907,
+        "status_code": 200,
+        "latency_ms": 3990,
+        "usage": {
+          "promptTokenCount": 1333,
+          "candidatesTokenCount": 53,
+          "totalTokenCount": 1824,
+          "promptTokensDetails": [
+            {
+              "modality": "TEXT",
+              "tokenCount": 231
+            },
+            {
+              "modality": "IMAGE",
+              "tokenCount": 1102
+            }
+          ],
+          "thoughtsTokenCount": 438,
+          "serviceTier": "standard"
+        },
+        "served_model": "gemini-3-flash-preview",
+        "served_provider": null,
+        "response_id": "PhPFauTxMrjiz7IPlYXswQM"
+      },
+      {
+        "sequence": 20,
+        "case_key": "Image008",
+        "recovery": false,
+        "model": "gemini-3-flash-preview",
+        "reserved_usd": 0.062152,
+        "cost_usd": 0.0030125,
+        "request_sha256": "1dfc824d33f35fa451b526b795882a3b0d62f3ac68b43b41e56fa667c7aa9664",
+        "stage": "detector-control-full",
+        "code_sha256": {
+          "benchmarks/providers/mistral4_guard.py": "9682b5daf7589b37db8d82956d5e4ce7314e046037595352b529959bb19b1e7e",
+          "modules/common/openai_client.py": "eb8b2146f390e3a28f2b02cc032abe9959ba6921690eccc5965a6fd948d43308",
+          "modules/common/google_client.py": "174e4469436f26452a8d0712af32968ddfa730a04a726bf34d272d970aadd721",
+          "modules/extract/ocr_ai_gpt51_v1/main.py": "1147a8e80a502153ae4174662e1dab88c878d251ccfcf3034b230cab407f34bd"
+        },
+        "response_sha256": "2dafe0a69dfcd3bbeb403d3689fb0730611a4ebe3f7d51459328607ccb7055a5",
+        "response_bytes": 3897,
+        "status_code": 200,
+        "latency_ms": 5424,
+        "usage": {
+          "promptTokenCount": 1333,
+          "candidatesTokenCount": 65,
+          "totalTokenCount": 2115,
+          "promptTokensDetails": [
+            {
+              "modality": "IMAGE",
+              "tokenCount": 1102
+            },
+            {
+              "modality": "TEXT",
+              "tokenCount": 231
+            }
+          ],
+          "thoughtsTokenCount": 717,
+          "serviceTier": "standard"
+        },
+        "served_model": "gemini-3-flash-preview",
+        "served_provider": null,
+        "response_id": "QxPFavuoAtXtz7IP567dgQ8"
+      },
+      {
+        "sequence": 21,
+        "case_key": "Image011",
+        "recovery": false,
+        "model": "gemini-3-flash-preview",
+        "reserved_usd": 0.062152,
+        "cost_usd": 0.0045395,
+        "request_sha256": "242f8833652c89a4b1ac2591289afba7bc19e1ca44556e2c570f5f4648e54994",
+        "stage": "detector-control-full",
+        "code_sha256": {
+          "benchmarks/providers/mistral4_guard.py": "9682b5daf7589b37db8d82956d5e4ce7314e046037595352b529959bb19b1e7e",
+          "modules/common/openai_client.py": "eb8b2146f390e3a28f2b02cc032abe9959ba6921690eccc5965a6fd948d43308",
+          "modules/common/google_client.py": "174e4469436f26452a8d0712af32968ddfa730a04a726bf34d272d970aadd721",
+          "modules/extract/ocr_ai_gpt51_v1/main.py": "1147a8e80a502153ae4174662e1dab88c878d251ccfcf3034b230cab407f34bd"
+        },
+        "response_sha256": "c3294b0185ce8d7603190a1025c08fa5dbe838f7781ec403c3d03c00f55307a0",
+        "response_bytes": 5532,
+        "status_code": 200,
+        "latency_ms": 7270,
+        "usage": {
+          "promptTokenCount": 1333,
+          "candidatesTokenCount": 113,
+          "totalTokenCount": 2624,
+          "promptTokensDetails": [
+            {
+              "modality": "IMAGE",
+              "tokenCount": 1102
+            },
+            {
+              "modality": "TEXT",
+              "tokenCount": 231
+            }
+          ],
+          "thoughtsTokenCount": 1178,
+          "serviceTier": "standard"
+        },
+        "served_model": "gemini-3-flash-preview",
+        "served_provider": null,
+        "response_id": "SBPFavzwGqXsz7IP55es4AM"
+      },
+      {
+        "sequence": 22,
+        "case_key": "Image013",
+        "recovery": false,
+        "model": "gemini-3-flash-preview",
+        "reserved_usd": 0.062152,
+        "cost_usd": 0.0036845,
+        "request_sha256": "c873916ab505ac44160df5787c20d3486ddd02c31f292d0834eda31e982dcf43",
+        "stage": "detector-control-full",
+        "code_sha256": {
+          "benchmarks/providers/mistral4_guard.py": "9682b5daf7589b37db8d82956d5e4ce7314e046037595352b529959bb19b1e7e",
+          "modules/common/openai_client.py": "eb8b2146f390e3a28f2b02cc032abe9959ba6921690eccc5965a6fd948d43308",
+          "modules/common/google_client.py": "174e4469436f26452a8d0712af32968ddfa730a04a726bf34d272d970aadd721",
+          "modules/extract/ocr_ai_gpt51_v1/main.py": "1147a8e80a502153ae4174662e1dab88c878d251ccfcf3034b230cab407f34bd"
+        },
+        "response_sha256": "989a89cd0ea5029ad0e7c149321cc0c5a41840997a3ccc3ec91c02cced823bac",
+        "response_bytes": 4526,
+        "status_code": 200,
+        "latency_ms": 6870,
+        "usage": {
+          "promptTokenCount": 1333,
+          "candidatesTokenCount": 76,
+          "totalTokenCount": 2339,
+          "promptTokensDetails": [
+            {
+              "modality": "IMAGE",
+              "tokenCount": 1102
+            },
+            {
+              "modality": "TEXT",
+              "tokenCount": 231
+            }
+          ],
+          "thoughtsTokenCount": 930,
+          "serviceTier": "standard"
+        },
+        "served_model": "gemini-3-flash-preview",
+        "served_provider": null,
+        "response_id": "TxPFauDyOe-DmtkPvf-1-QM"
+      },
+      {
+        "sequence": 23,
+        "case_key": "Image020",
+        "recovery": false,
+        "model": "gemini-3-flash-preview",
+        "reserved_usd": 0.062152,
+        "cost_usd": 0.0025835,
+        "request_sha256": "15cf72c367c960515e3e53a7f220a89c9518462615802099d50d467adda099d8",
+        "stage": "detector-control-full",
+        "code_sha256": {
+          "benchmarks/providers/mistral4_guard.py": "9682b5daf7589b37db8d82956d5e4ce7314e046037595352b529959bb19b1e7e",
+          "modules/common/openai_client.py": "eb8b2146f390e3a28f2b02cc032abe9959ba6921690eccc5965a6fd948d43308",
+          "modules/common/google_client.py": "174e4469436f26452a8d0712af32968ddfa730a04a726bf34d272d970aadd721",
+          "modules/extract/ocr_ai_gpt51_v1/main.py": "1147a8e80a502153ae4174662e1dab88c878d251ccfcf3034b230cab407f34bd"
+        },
+        "response_sha256": "8e24fbf4d041dc5834e386a3be379077d40ff70ba7f2ece9be63f88005f0b838",
+        "response_bytes": 2889,
+        "status_code": 200,
+        "latency_ms": 5319,
+        "usage": {
+          "promptTokenCount": 1333,
+          "candidatesTokenCount": 97,
+          "totalTokenCount": 1972,
+          "promptTokensDetails": [
+            {
+              "modality": "TEXT",
+              "tokenCount": 231
+            },
+            {
+              "modality": "IMAGE",
+              "tokenCount": 1102
+            }
+          ],
+          "thoughtsTokenCount": 542,
+          "serviceTier": "standard"
+        },
+        "served_model": "gemini-3-flash-preview",
+        "served_provider": null,
+        "response_id": "VxPFarMQw-iq2w-Qvd5I"
+      },
+      {
+        "sequence": 24,
+        "case_key": "Image021",
+        "recovery": false,
+        "model": "gemini-3-flash-preview",
+        "reserved_usd": 0.062152,
+        "cost_usd": 0.0021755,
+        "request_sha256": "ede3f7f9999cf06b79e3e9afbfa0ea2f2b999ccc866fb50b0e343c0639ff94cc",
+        "stage": "detector-control-full",
+        "code_sha256": {
+          "benchmarks/providers/mistral4_guard.py": "9682b5daf7589b37db8d82956d5e4ce7314e046037595352b529959bb19b1e7e",
+          "modules/common/openai_client.py": "eb8b2146f390e3a28f2b02cc032abe9959ba6921690eccc5965a6fd948d43308",
+          "modules/common/google_client.py": "174e4469436f26452a8d0712af32968ddfa730a04a726bf34d272d970aadd721",
+          "modules/extract/ocr_ai_gpt51_v1/main.py": "1147a8e80a502153ae4174662e1dab88c878d251ccfcf3034b230cab407f34bd"
+        },
+        "response_sha256": "bbf26efa0afb44cbc2e86c16f792eb00a43cca13171bc671048238283c870632",
+        "response_bytes": 2819,
+        "status_code": 200,
+        "latency_ms": 4503,
+        "usage": {
+          "promptTokenCount": 1333,
+          "candidatesTokenCount": 67,
+          "totalTokenCount": 1836,
+          "promptTokensDetails": [
+            {
+              "modality": "IMAGE",
+              "tokenCount": 1102
+            },
+            {
+              "modality": "TEXT",
+              "tokenCount": 231
+            }
+          ],
+          "thoughtsTokenCount": 436,
+          "serviceTier": "standard"
+        },
+        "served_model": "gemini-3-flash-preview",
+        "served_provider": null,
+        "response_id": "XBPFatmyG4Xoz7IPq4fP0QQ"
+      },
+      {
+        "sequence": 25,
+        "case_key": "Image037",
+        "recovery": false,
+        "model": "gemini-3-flash-preview",
+        "reserved_usd": 0.062152,
+        "cost_usd": 0.0079535,
+        "request_sha256": "8003657cc3c5963f0986aedf82e1881a9fc4f9d34b8ed2a6da8c7bf9f2d56d8e",
+        "stage": "detector-control-full",
+        "code_sha256": {
+          "benchmarks/providers/mistral4_guard.py": "9682b5daf7589b37db8d82956d5e4ce7314e046037595352b529959bb19b1e7e",
+          "modules/common/openai_client.py": "eb8b2146f390e3a28f2b02cc032abe9959ba6921690eccc5965a6fd948d43308",
+          "modules/common/google_client.py": "174e4469436f26452a8d0712af32968ddfa730a04a726bf34d272d970aadd721",
+          "modules/extract/ocr_ai_gpt51_v1/main.py": "1147a8e80a502153ae4174662e1dab88c878d251ccfcf3034b230cab407f34bd"
+        },
+        "response_sha256": "12e366220516b24b9edc780f667b3bd935caa2425cb324634ecd59fff5bacc6e",
+        "response_bytes": 8783,
+        "status_code": 200,
+        "latency_ms": 12647,
+        "usage": {
+          "promptTokenCount": 1333,
+          "candidatesTokenCount": 104,
+          "totalTokenCount": 3762,
+          "promptTokensDetails": [
+            {
+              "modality": "TEXT",
+              "tokenCount": 231
+            },
+            {
+              "modality": "IMAGE",
+              "tokenCount": 1102
+            }
+          ],
+          "thoughtsTokenCount": 2325,
+          "serviceTier": "standard"
+        },
+        "served_model": "gemini-3-flash-preview",
+        "served_provider": null,
+        "response_id": "YRPFaoWcC9yk6dkP14zlyQQ"
+      },
+      {
+        "sequence": 26,
+        "case_key": "Image059",
+        "recovery": false,
+        "model": "gemini-3-flash-preview",
+        "reserved_usd": 0.062152,
+        "cost_usd": 0.0030695,
+        "request_sha256": "8a47a2e83cb5aaf18d298dbd166fb96c12132ffad2e773588357378d1ae57c4d",
+        "stage": "detector-control-full",
+        "code_sha256": {
+          "benchmarks/providers/mistral4_guard.py": "9682b5daf7589b37db8d82956d5e4ce7314e046037595352b529959bb19b1e7e",
+          "modules/common/openai_client.py": "eb8b2146f390e3a28f2b02cc032abe9959ba6921690eccc5965a6fd948d43308",
+          "modules/common/google_client.py": "174e4469436f26452a8d0712af32968ddfa730a04a726bf34d272d970aadd721",
+          "modules/extract/ocr_ai_gpt51_v1/main.py": "1147a8e80a502153ae4174662e1dab88c878d251ccfcf3034b230cab407f34bd"
+        },
+        "response_sha256": "30175b4b1ce60ddfb3c611fe146d2735b31415350bf8ff29178c71e708ce8437",
+        "response_bytes": 3954,
+        "status_code": 200,
+        "latency_ms": 6440,
+        "usage": {
+          "promptTokenCount": 1333,
+          "candidatesTokenCount": 105,
+          "totalTokenCount": 2134,
+          "promptTokensDetails": [
+            {
+              "modality": "IMAGE",
+              "tokenCount": 1102
+            },
+            {
+              "modality": "TEXT",
+              "tokenCount": 231
+            }
+          ],
+          "thoughtsTokenCount": 696,
+          "serviceTier": "standard"
+        },
+        "served_model": "gemini-3-flash-preview",
+        "served_provider": null,
+        "response_id": "bhPFaszrB9yk6dkP14zlyQQ"
+      },
+      {
+        "sequence": 27,
+        "case_key": "Image121",
+        "recovery": false,
+        "model": "gemini-3-flash-preview",
+        "reserved_usd": 0.062152,
+        "cost_usd": 0.0031055,
+        "request_sha256": "4406971fd4bbf662c9d44c0df1f3e78b2314293f166d9b7a762fa5cc84dc9834",
+        "stage": "detector-control-full",
+        "code_sha256": {
+          "benchmarks/providers/mistral4_guard.py": "9682b5daf7589b37db8d82956d5e4ce7314e046037595352b529959bb19b1e7e",
+          "modules/common/openai_client.py": "eb8b2146f390e3a28f2b02cc032abe9959ba6921690eccc5965a6fd948d43308",
+          "modules/common/google_client.py": "174e4469436f26452a8d0712af32968ddfa730a04a726bf34d272d970aadd721",
+          "modules/extract/ocr_ai_gpt51_v1/main.py": "1147a8e80a502153ae4174662e1dab88c878d251ccfcf3034b230cab407f34bd"
+        },
+        "response_sha256": "27b39ec2c13d296d7c5f5f92ad1f397959df234c041472aeff8e80fb18ab1730",
+        "response_bytes": 3592,
+        "status_code": 200,
+        "latency_ms": 5504,
+        "usage": {
+          "promptTokenCount": 1333,
+          "candidatesTokenCount": 154,
+          "totalTokenCount": 2146,
+          "promptTokensDetails": [
+            {
+              "modality": "TEXT",
+              "tokenCount": 231
+            },
+            {
+              "modality": "IMAGE",
+              "tokenCount": 1102
+            }
+          ],
+          "thoughtsTokenCount": 659,
+          "serviceTier": "standard"
+        },
+        "served_model": "gemini-3-flash-preview",
+        "served_provider": null,
+        "response_id": "dBPFaoHnJPGtz7IPg-CDuAI"
+      },
+      {
+        "sequence": 28,
+        "case_key": "Image124",
+        "recovery": false,
+        "model": "gemini-3-flash-preview",
+        "reserved_usd": 0.062152,
+        "cost_usd": 0.0032225,
+        "request_sha256": "34ff8c8cbbb4a97ce12bc31430f7d892e9d36a1a91d820fd518617a4ebc0a214",
+        "stage": "detector-control-full",
+        "code_sha256": {
+          "benchmarks/providers/mistral4_guard.py": "9682b5daf7589b37db8d82956d5e4ce7314e046037595352b529959bb19b1e7e",
+          "modules/common/openai_client.py": "eb8b2146f390e3a28f2b02cc032abe9959ba6921690eccc5965a6fd948d43308",
+          "modules/common/google_client.py": "174e4469436f26452a8d0712af32968ddfa730a04a726bf34d272d970aadd721",
+          "modules/extract/ocr_ai_gpt51_v1/main.py": "1147a8e80a502153ae4174662e1dab88c878d251ccfcf3034b230cab407f34bd"
+        },
+        "response_sha256": "fe52e9bf11c4ac41b16c72aea8b4ca0d82d5913a92be6d07396ece5af819c173",
+        "response_bytes": 4293,
+        "status_code": 200,
+        "latency_ms": 6954,
+        "usage": {
+          "promptTokenCount": 1333,
+          "candidatesTokenCount": 64,
+          "totalTokenCount": 2185,
+          "promptTokensDetails": [
+            {
+              "modality": "IMAGE",
+              "tokenCount": 1102
+            },
+            {
+              "modality": "TEXT",
+              "tokenCount": 231
+            }
+          ],
+          "thoughtsTokenCount": 788,
+          "serviceTier": "standard"
+        },
+        "served_model": "gemini-3-flash-preview",
+        "served_provider": null,
+        "response_id": "ehPFaqTIBYidz7IP86XViAs"
+      },
+      {
+        "sequence": 29,
+        "case_key": "Image126",
+        "recovery": false,
+        "model": "gemini-3-flash-preview",
+        "reserved_usd": 0.062152,
+        "cost_usd": 0.0027095,
+        "request_sha256": "7342ab06d3a173309298362832fbd334ba0f0c27c46ca5a00da13e46ae0363aa",
+        "stage": "detector-control-full",
+        "code_sha256": {
+          "benchmarks/providers/mistral4_guard.py": "9682b5daf7589b37db8d82956d5e4ce7314e046037595352b529959bb19b1e7e",
+          "modules/common/openai_client.py": "eb8b2146f390e3a28f2b02cc032abe9959ba6921690eccc5965a6fd948d43308",
+          "modules/common/google_client.py": "174e4469436f26452a8d0712af32968ddfa730a04a726bf34d272d970aadd721",
+          "modules/extract/ocr_ai_gpt51_v1/main.py": "1147a8e80a502153ae4174662e1dab88c878d251ccfcf3034b230cab407f34bd"
+        },
+        "response_sha256": "ec36b71bcdd684650dae4cce4df25dc000610186c5a0de6c2e709c22f48c7553",
+        "response_bytes": 3615,
+        "status_code": 200,
+        "latency_ms": 4787,
+        "usage": {
+          "promptTokenCount": 1333,
+          "candidatesTokenCount": 97,
+          "totalTokenCount": 2014,
+          "promptTokensDetails": [
+            {
+              "modality": "TEXT",
+              "tokenCount": 231
+            },
+            {
+              "modality": "IMAGE",
+              "tokenCount": 1102
+            }
+          ],
+          "thoughtsTokenCount": 584,
+          "serviceTier": "standard"
+        },
+        "served_model": "gemini-3-flash-preview",
+        "served_provider": null,
+        "response_id": "gRPFarKLDZGZjMcPk5C9iQs"
+      },
+      {
+        "sequence": 30,
+        "case_key": "page-122-001",
+        "recovery": false,
+        "model": "mistralai/mistral-large-4-0",
+        "reserved_usd": 0.03984064,
+        "cost_usd": 0.00389843,
+        "request_sha256": "4e9583780a216ce30e0439be2f7c6e02f0c3a3d67fb94a46d4a5200e6b441b49",
+        "stage": "safety-screen",
+        "code_sha256": {
+          "benchmarks/providers/mistral4_guard.py": "9682b5daf7589b37db8d82956d5e4ce7314e046037595352b529959bb19b1e7e",
+          "modules/common/openai_client.py": "eb8b2146f390e3a28f2b02cc032abe9959ba6921690eccc5965a6fd948d43308",
+          "modules/common/google_client.py": "174e4469436f26452a8d0712af32968ddfa730a04a726bf34d272d970aadd721",
+          "modules/extract/ocr_ai_gpt51_v1/main.py": "1147a8e80a502153ae4174662e1dab88c878d251ccfcf3034b230cab407f34bd"
+        },
+        "response_sha256": "4e7b2f0e8fb2e67c9ae5cc7af679b9e6315c84cbd9b26e0ed40660679653d212",
+        "response_bytes": 1253,
+        "status_code": 200,
+        "latency_ms": 8531,
+        "usage": {
+          "prompt_tokens": 5441,
+          "completion_tokens": 95,
+          "total_tokens": 5536,
+          "cost": 0.00389843,
+          "is_byok": false,
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "cache_write_tokens": 0,
+            "audio_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost_details": {
+            "upstream_inference_cost": 0.00389843,
+            "upstream_inference_prompt_cost": 0.00369988,
+            "upstream_inference_completions_cost": 0.00019855
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 0,
+            "image_tokens": 0,
+            "audio_tokens": 0
+          }
+        },
+        "served_model": "mistralai/mistral-large-4-0",
+        "served_provider": "Mistral",
+        "response_id": "gen-1791300501-V1TkKjyfdellcpjndxdb"
+      },
+      {
+        "sequence": 31,
+        "case_key": "page-122-001",
+        "recovery": false,
+        "model": "gpt-5.5",
+        "reserved_usd": 0.29144,
+        "cost_usd": 0.083795,
+        "request_sha256": "2ccb3a24898ee42c98d53e18eca2cc167c3d053147876922fb333d43cefbab8a",
+        "stage": "safety-control-screen",
+        "code_sha256": {
+          "benchmarks/providers/mistral4_guard.py": "9682b5daf7589b37db8d82956d5e4ce7314e046037595352b529959bb19b1e7e",
+          "modules/common/openai_client.py": "eb8b2146f390e3a28f2b02cc032abe9959ba6921690eccc5965a6fd948d43308",
+          "modules/common/google_client.py": "174e4469436f26452a8d0712af32968ddfa730a04a726bf34d272d970aadd721",
+          "modules/extract/ocr_ai_gpt51_v1/main.py": "1147a8e80a502153ae4174662e1dab88c878d251ccfcf3034b230cab407f34bd"
+        },
+        "response_sha256": "5d5de73f772c40e6518030ebfc6759046f50b2a2f0aa1239ac136faa6ee83f4c",
+        "response_bytes": 3044,
+        "status_code": 200,
+        "latency_ms": 6102,
+        "usage": {
+          "input_tokens": 16333,
+          "input_tokens_details": {
+            "cache_write_tokens": 0,
+            "cached_tokens": 0
+          },
+          "output_tokens": 71,
+          "output_tokens_details": {
+            "reasoning_tokens": 0
+          },
+          "total_tokens": 16404
+        },
+        "served_model": "gpt-5.5-2026-04-23",
+        "served_provider": null,
+        "response_id": "resp_05c5519fa98b2144016ac513b0ffcc87d0acf65379eef25f3e"
+      },
+      {
+        "sequence": 32,
+        "case_key": "page-001-000",
+        "recovery": false,
+        "model": "mistralai/mistral-large-4-0",
+        "reserved_usd": 0.03984064,
+        "cost_usd": 0.00425053,
+        "request_sha256": "dae3bae0d6881367e7051e82d2f4db1d34604b6fcedb7f3886e9cd495d5e595c",
+        "stage": "safety-full",
+        "code_sha256": {
+          "benchmarks/providers/mistral4_guard.py": "9682b5daf7589b37db8d82956d5e4ce7314e046037595352b529959bb19b1e7e",
+          "modules/common/openai_client.py": "eb8b2146f390e3a28f2b02cc032abe9959ba6921690eccc5965a6fd948d43308",
+          "modules/common/google_client.py": "174e4469436f26452a8d0712af32968ddfa730a04a726bf34d272d970aadd721",
+          "modules/extract/ocr_ai_gpt51_v1/main.py": "1147a8e80a502153ae4174662e1dab88c878d251ccfcf3034b230cab407f34bd"
+        },
+        "response_sha256": "38e522be79d15f27b724c14727f3067cbfb12097428562137311624c7d7ee0a0",
+        "response_bytes": 1406,
+        "status_code": 200,
+        "latency_ms": 15709,
+        "usage": {
+          "prompt_tokens": 5842,
+          "completion_tokens": 133,
+          "total_tokens": 5975,
+          "cost": 0.00425053,
+          "is_byok": false,
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "cache_write_tokens": 0,
+            "audio_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost_details": {
+            "upstream_inference_cost": 0.00425053,
+            "upstream_inference_prompt_cost": 0.00397256,
+            "upstream_inference_completions_cost": 0.00027797
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 0,
+            "image_tokens": 0,
+            "audio_tokens": 0
+          }
+        },
+        "served_model": "mistralai/mistral-large-4-0",
+        "served_provider": "Mistral",
+        "response_id": "gen-1791300566-8oyyd8A6RkfHQZ91RYuD"
+      },
+      {
+        "sequence": 33,
+        "case_key": "page-004-000",
+        "recovery": false,
+        "model": "mistralai/mistral-large-4-0",
+        "reserved_usd": 0.03984064,
+        "cost_usd": 0.00303304,
+        "request_sha256": "ba40fc9c7d4793c4274cc33cb533c29080ec1f4b6f40f612f2a6c373294df444",
+        "stage": "safety-full",
+        "code_sha256": {
+          "benchmarks/providers/mistral4_guard.py": "9682b5daf7589b37db8d82956d5e4ce7314e046037595352b529959bb19b1e7e",
+          "modules/common/openai_client.py": "eb8b2146f390e3a28f2b02cc032abe9959ba6921690eccc5965a6fd948d43308",
+          "modules/common/google_client.py": "174e4469436f26452a8d0712af32968ddfa730a04a726bf34d272d970aadd721",
+          "modules/extract/ocr_ai_gpt51_v1/main.py": "1147a8e80a502153ae4174662e1dab88c878d251ccfcf3034b230cab407f34bd"
+        },
+        "response_sha256": "95264338799c6d9e04adaa7767f5869689e39a21280da5052282062a0e243cd6",
+        "response_bytes": 1301,
+        "status_code": 200,
+        "latency_ms": 6182,
+        "usage": {
+          "prompt_tokens": 4153,
+          "completion_tokens": 100,
+          "total_tokens": 4253,
+          "cost": 0.00303304,
+          "is_byok": false,
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "cache_write_tokens": 0,
+            "audio_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost_details": {
+            "upstream_inference_cost": 0.00303304,
+            "upstream_inference_prompt_cost": 0.00282404,
+            "upstream_inference_completions_cost": 0.000209
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 0,
+            "image_tokens": 0,
+            "audio_tokens": 0
+          }
+        },
+        "served_model": "mistralai/mistral-large-4-0",
+        "served_provider": "Mistral",
+        "response_id": "gen-1791300580-wj1KUOVpcrbEsU3YyNtg"
+      },
+      {
+        "sequence": 34,
+        "case_key": "page-009-000",
+        "recovery": false,
+        "model": "mistralai/mistral-large-4-0",
+        "reserved_usd": 0.03984064,
+        "cost_usd": 0.00431568,
+        "request_sha256": "cbe7e89c2ffd19b23b29ed5843e016ce2364c197b66b1b81da588b8c18664317",
+        "stage": "safety-full",
+        "code_sha256": {
+          "benchmarks/providers/mistral4_guard.py": "9682b5daf7589b37db8d82956d5e4ce7314e046037595352b529959bb19b1e7e",
+          "modules/common/openai_client.py": "eb8b2146f390e3a28f2b02cc032abe9959ba6921690eccc5965a6fd948d43308",
+          "modules/common/google_client.py": "174e4469436f26452a8d0712af32968ddfa730a04a726bf34d272d970aadd721",
+          "modules/extract/ocr_ai_gpt51_v1/main.py": "1147a8e80a502153ae4174662e1dab88c878d251ccfcf3034b230cab407f34bd"
+        },
+        "response_sha256": "3cd594e2e297a33d537348cd56a03af86c11792b9ed59708ee7e0832d335b57d",
+        "response_bytes": 1183,
+        "status_code": 200,
+        "latency_ms": 6440,
+        "usage": {
+          "prompt_tokens": 6113,
+          "completion_tokens": 76,
+          "total_tokens": 6189,
+          "cost": 0.00431568,
+          "is_byok": false,
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "cache_write_tokens": 0,
+            "audio_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost_details": {
+            "upstream_inference_cost": 0.00431568,
+            "upstream_inference_prompt_cost": 0.00415684,
+            "upstream_inference_completions_cost": 0.00015884
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 0,
+            "image_tokens": 0,
+            "audio_tokens": 0
+          }
+        },
+        "served_model": "mistralai/mistral-large-4-0",
+        "served_provider": "Mistral",
+        "response_id": "gen-1791300588-5gBwzbjUq4Dm0Gyw7m77"
+      },
+      {
+        "sequence": 35,
+        "case_key": "page-012-000",
+        "recovery": false,
+        "model": "mistralai/mistral-large-4-0",
+        "reserved_usd": 0.03984064,
+        "cost_usd": 0.00344824,
+        "request_sha256": "b19bb785d75925700209efb214fcd0734abd8ed2deb6a2c8f6a97fd7617c1989",
+        "stage": "safety-full",
+        "code_sha256": {
+          "benchmarks/providers/mistral4_guard.py": "9682b5daf7589b37db8d82956d5e4ce7314e046037595352b529959bb19b1e7e",
+          "modules/common/openai_client.py": "eb8b2146f390e3a28f2b02cc032abe9959ba6921690eccc5965a6fd948d43308",
+          "modules/common/google_client.py": "174e4469436f26452a8d0712af32968ddfa730a04a726bf34d272d970aadd721",
+          "modules/extract/ocr_ai_gpt51_v1/main.py": "1147a8e80a502153ae4174662e1dab88c878d251ccfcf3034b230cab407f34bd"
+        },
+        "response_sha256": "20d5dfcccd072edc47d7b71a61ab3127cc5ba03e5c6d5186a4a930b537975f4f",
+        "response_bytes": 1258,
+        "status_code": 200,
+        "latency_ms": 4058,
+        "usage": {
+          "prompt_tokens": 4739,
+          "completion_tokens": 108,
+          "total_tokens": 4847,
+          "cost": 0.00344824,
+          "is_byok": false,
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "cache_write_tokens": 0,
+            "audio_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost_details": {
+            "upstream_inference_cost": 0.00344824,
+            "upstream_inference_prompt_cost": 0.00322252,
+            "upstream_inference_completions_cost": 0.00022572
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 0,
+            "image_tokens": 0,
+            "audio_tokens": 0
+          }
+        },
+        "served_model": "mistralai/mistral-large-4-0",
+        "served_provider": "Mistral",
+        "response_id": "gen-1791300596-QPX9xCIlxmWYSofermIj"
+      },
+      {
+        "sequence": 36,
+        "case_key": "page-012-001",
+        "recovery": false,
+        "model": "mistralai/mistral-large-4-0",
+        "reserved_usd": 0.03984064,
+        "cost_usd": 0.00378797,
+        "request_sha256": "df221042d0b2777fae7a7ae6b6fd00af471e656cdaebc3ea21636d3287f6dd18",
+        "stage": "safety-full",
+        "code_sha256": {
+          "benchmarks/providers/mistral4_guard.py": "9682b5daf7589b37db8d82956d5e4ce7314e046037595352b529959bb19b1e7e",
+          "modules/common/openai_client.py": "eb8b2146f390e3a28f2b02cc032abe9959ba6921690eccc5965a6fd948d43308",
+          "modules/common/google_client.py": "174e4469436f26452a8d0712af32968ddfa730a04a726bf34d272d970aadd721",
+          "modules/extract/ocr_ai_gpt51_v1/main.py": "1147a8e80a502153ae4174662e1dab88c878d251ccfcf3034b230cab407f34bd"
+        },
+        "response_sha256": "5eef73708d1a81bd18b2597c1d1542e3e88d1211c0634a17be51a20d835f638c",
+        "response_bytes": 1267,
+        "status_code": 200,
+        "latency_ms": 20270,
+        "usage": {
+          "prompt_tokens": 5297,
+          "completion_tokens": 89,
+          "total_tokens": 5386,
+          "cost": 0.00378797,
+          "is_byok": false,
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "cache_write_tokens": 0,
+            "audio_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost_details": {
+            "upstream_inference_cost": 0.00378797,
+            "upstream_inference_prompt_cost": 0.00360196,
+            "upstream_inference_completions_cost": 0.00018601
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 0,
+            "image_tokens": 0,
+            "audio_tokens": 0
+          }
+        },
+        "served_model": "mistralai/mistral-large-4-0",
+        "served_provider": "Mistral",
+        "response_id": "gen-1791300602-v6EvV9EaSaNnAV9FLwgD"
+      },
+      {
+        "sequence": 37,
+        "case_key": "page-001-000",
+        "recovery": false,
+        "model": "gpt-5.5",
+        "reserved_usd": 0.29144,
+        "cost_usd": 0.08291,
+        "request_sha256": "c6552abe8937510b58ce41da850dd60c4446e3506a28d5e872b992b44f7cd023",
+        "stage": "safety-control-full",
+        "code_sha256": {
+          "benchmarks/providers/mistral4_guard.py": "9682b5daf7589b37db8d82956d5e4ce7314e046037595352b529959bb19b1e7e",
+          "modules/common/openai_client.py": "eb8b2146f390e3a28f2b02cc032abe9959ba6921690eccc5965a6fd948d43308",
+          "modules/common/google_client.py": "174e4469436f26452a8d0712af32968ddfa730a04a726bf34d272d970aadd721",
+          "modules/extract/ocr_ai_gpt51_v1/main.py": "1147a8e80a502153ae4174662e1dab88c878d251ccfcf3034b230cab407f34bd"
+        },
+        "response_sha256": "f75a58da8d8a0efa07773c7d72e41fc22817589e1b4c1a90cd2a5ce6ca8aea46",
+        "response_bytes": 3027,
+        "status_code": 200,
+        "latency_ms": 7372,
+        "usage": {
+          "input_tokens": 16198,
+          "input_tokens_details": {
+            "cache_write_tokens": 0,
+            "cached_tokens": 0
+          },
+          "output_tokens": 64,
+          "output_tokens_details": {
+            "reasoning_tokens": 0
+          },
+          "total_tokens": 16262
+        },
+        "served_model": "gpt-5.5-2026-04-23",
+        "served_provider": null,
+        "response_id": "resp_0b089ccb6cb8a90e016ac5143d880487d0a5a1f1ec96d4c4b8"
+      },
+      {
+        "sequence": 38,
+        "case_key": "native-ocr",
+        "recovery": false,
+        "model": "mistralai/mistral-large-4-0",
+        "reserved_usd": 0.05192256,
+        "cost_usd": 3.478e-05,
+        "request_sha256": "875726ccf38f7e8ffd45e20b4a568ba1336cfa45e303a44965cede53fee2cdd9",
+        "stage": "native-ocr",
+        "code_sha256": {
+          "benchmarks/providers/mistral4_guard.py": "9682b5daf7589b37db8d82956d5e4ce7314e046037595352b529959bb19b1e7e",
+          "modules/common/openai_client.py": "eb8b2146f390e3a28f2b02cc032abe9959ba6921690eccc5965a6fd948d43308",
+          "modules/common/google_client.py": "174e4469436f26452a8d0712af32968ddfa730a04a726bf34d272d970aadd721",
+          "modules/extract/ocr_ai_gpt51_v1/main.py": "1147a8e80a502153ae4174662e1dab88c878d251ccfcf3034b230cab407f34bd"
+        },
+        "response_sha256": "7ebe53115a24a4768c5a11fbaca011efb632f645e3b0b595b7be5e3684b979f1",
+        "response_bytes": 821,
+        "status_code": 200,
+        "latency_ms": 994,
+        "usage": {
+          "prompt_tokens": 45,
+          "completion_tokens": 2,
+          "total_tokens": 47,
+          "cost": 3.478e-05,
+          "is_byok": false,
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "cache_write_tokens": 0,
+            "audio_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost_details": {
+            "upstream_inference_cost": 3.478e-05,
+            "upstream_inference_prompt_cost": 3.06e-05,
+            "upstream_inference_completions_cost": 4.18e-06
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 0,
+            "image_tokens": 0,
+            "audio_tokens": 0
+          }
+        },
+        "served_model": "mistralai/mistral-large-4-0",
+        "served_provider": "Mistral",
+        "response_id": "gen-1791300725-xVIYVB7eV7zDKs354qyB"
+      },
+      {
+        "sequence": 39,
+        "case_key": "barney",
+        "recovery": false,
+        "model": "mistralai/mistral-large-4-0",
+        "reserved_usd": 0.05192256,
+        "cost_usd": 0.00171341,
+        "request_sha256": "80b43b82e27d89d7b337b83a263a1d714d8c9a59b0fad195606f488eb7ae0e8e",
+        "stage": "ocr-candidate",
+        "code_sha256": {
+          "benchmarks/providers/mistral4_guard.py": "9682b5daf7589b37db8d82956d5e4ce7314e046037595352b529959bb19b1e7e",
+          "modules/common/openai_client.py": "eb8b2146f390e3a28f2b02cc032abe9959ba6921690eccc5965a6fd948d43308",
+          "modules/common/google_client.py": "174e4469436f26452a8d0712af32968ddfa730a04a726bf34d272d970aadd721",
+          "modules/extract/ocr_ai_gpt51_v1/main.py": "1147a8e80a502153ae4174662e1dab88c878d251ccfcf3034b230cab407f34bd"
+        },
+        "response_sha256": "3f71c6458a26f6f528300961035db84e6af46e6f4eb083a90c0bfcef0db03ce6",
+        "response_bytes": 2401,
+        "status_code": 200,
+        "latency_ms": 12896,
+        "usage": {
+          "prompt_tokens": 1361,
+          "completion_tokens": 377,
+          "total_tokens": 1738,
+          "cost": 0.00171341,
+          "is_byok": false,
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "cache_write_tokens": 0,
+            "audio_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost_details": {
+            "upstream_inference_cost": 0.00171341,
+            "upstream_inference_prompt_cost": 0.00092548,
+            "upstream_inference_completions_cost": 0.00078793
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 0,
+            "image_tokens": 0,
+            "audio_tokens": 0
+          }
+        },
+        "served_model": "mistralai/mistral-large-4-0",
+        "served_provider": "Mistral",
+        "response_id": "gen-1791300736-WbNXqTy2zaOk617CdYkX"
+      },
+      {
+        "sequence": 40,
+        "case_key": "barney",
+        "recovery": false,
+        "model": "gemini-3.7-flash",
+        "reserved_usd": 0.08094,
+        "cost_usd": 0.00692625,
+        "request_sha256": "0e2e785d81e780b78138a9b89e22d9b7dd37214c453ab9d2523f9a896c2d030d",
+        "stage": "ocr-control",
+        "code_sha256": {
+          "benchmarks/providers/mistral4_guard.py": "9682b5daf7589b37db8d82956d5e4ce7314e046037595352b529959bb19b1e7e",
+          "modules/common/openai_client.py": "eb8b2146f390e3a28f2b02cc032abe9959ba6921690eccc5965a6fd948d43308",
+          "modules/common/google_client.py": "174e4469436f26452a8d0712af32968ddfa730a04a726bf34d272d970aadd721",
+          "modules/extract/ocr_ai_gpt51_v1/main.py": "1147a8e80a502153ae4174662e1dab88c878d251ccfcf3034b230cab407f34bd"
+        },
+        "response_sha256": "fe86d9a2b9612885d9e0782b3d4a8462541efa20bd44afc0dc5835f9b5cc53d1",
+        "response_bytes": 8010,
+        "status_code": 200,
+        "latency_ms": 5960,
+        "usage": {
+          "promptTokenCount": 2030,
+          "candidatesTokenCount": 391,
+          "totalTokenCount": 3471,
+          "promptTokensDetails": [
+            {
+              "modality": "TEXT",
+              "tokenCount": 957
+            },
+            {
+              "modality": "IMAGE",
+              "tokenCount": 1073
+            }
+          ],
+          "thoughtsTokenCount": 1050,
+          "serviceTier": "standard"
+        },
+        "served_model": "gemini-3.7-flash",
+        "served_provider": null,
+        "response_id": "ABXFaoKHEP2VmtkPwrjfiAQ"
+      }
+    ],
+    "closed": true,
+    "stop_reason": "Independent detector/safety/OCR decisions reached; no further calls"
+  },
+  "artifacts": [
+    {
+      "path": "benchmarks/results/mistral-large4-20261006/detector-control-full.json",
+      "sha256": "cf02f0e7448302dec2e8376264201ec7f5db9b3fb3ae3e556353a3f18f9546a1",
+      "bytes": 9606343,
+      "template_sha256": "d30ab2e69f2e033df03586ff083f8e74f5efdc7f3f18a88d59033540cae235b4"
+    },
+    {
+      "path": "benchmarks/results/mistral-large4-20261006/detector-control-full.log",
+      "sha256": "97fd9e6fc8640dfb24b33866431ebf0e2b0a2242439cce06d50f5bf45a89a774",
+      "bytes": 24957,
+      "template_sha256": "97fd9e6fc8640dfb24b33866431ebf0e2b0a2242439cce06d50f5bf45a89a774"
+    },
+    {
+      "path": "benchmarks/results/mistral-large4-20261006/detector-full.json",
+      "sha256": "585b136dde0196c7da4672cfa31c341d09327734ffed3a052afc65e210560c6d",
+      "bytes": 9641569,
+      "template_sha256": "2dbce8049528a0b463998bfd0da385e8163f38e6fd1f2e1fa22f56f3a7261e85"
+    },
+    {
+      "path": "benchmarks/results/mistral-large4-20261006/detector-full.log",
+      "sha256": "8ab8f49e97cc8c88a6ab5d088c39c45add5b2f48972dafe04e1f5e632f0cdb9c",
+      "bytes": 24078,
+      "template_sha256": "8ab8f49e97cc8c88a6ab5d088c39c45add5b2f48972dafe04e1f5e632f0cdb9c"
+    },
+    {
+      "path": "benchmarks/results/mistral-large4-20261006/detector-screen.json",
+      "sha256": "c07f413cf4705c61c32b8e711da9d796782b33578655c42b4711721bdc9f9ff5",
+      "bytes": 321468,
+      "template_sha256": "269c1d60b07799e6fca555fdf350153ee2f716a0f288e3ba4f06d7d0406c0962"
+    },
+    {
+      "path": "benchmarks/results/mistral-large4-20261006/discovery.log",
+      "sha256": "dab6c0c7279a5bb9ef54e6a441d28a0b3faf3c2869d21767a6d47036505e569a",
+      "bytes": 9013,
+      "template_sha256": "dab6c0c7279a5bb9ef54e6a441d28a0b3faf3c2869d21767a6d47036505e569a"
+    },
+    {
+      "path": "benchmarks/results/mistral-large4-20261006/ledger.json",
+      "sha256": "2b9a9d4492c9e94547bae5b290ba7c85dd647f1fe339cbc30507e7332d0d86f0",
+      "bytes": 68095,
+      "template_sha256": "2b9a9d4492c9e94547bae5b290ba7c85dd647f1fe339cbc30507e7332d0d86f0"
+    },
+    {
+      "path": "benchmarks/results/mistral-large4-20261006/native-detector.json",
+      "sha256": "0d4fa66421007b4e22f1928784062b18da23a39b40a83f0b644d7c1dd70348d1",
+      "bytes": 1212,
+      "template_sha256": "0d4fa66421007b4e22f1928784062b18da23a39b40a83f0b644d7c1dd70348d1"
+    },
+    {
+      "path": "benchmarks/results/mistral-large4-20261006/native-ocr.json",
+      "sha256": "884095a98a87c5a2b1d66f94adbd0dfc323d97809e935c5fef517eec07c8d123",
+      "bytes": 1088,
+      "template_sha256": "884095a98a87c5a2b1d66f94adbd0dfc323d97809e935c5fef517eec07c8d123"
+    },
+    {
+      "path": "benchmarks/results/mistral-large4-20261006/native-safety.json",
+      "sha256": "fde91891f56e67f2ce12332969148ea28153a3e54b4393e39d2b9745c9c8fe73",
+      "bytes": 1584,
+      "template_sha256": "fde91891f56e67f2ce12332969148ea28153a3e54b4393e39d2b9745c9c8fe73"
+    },
+    {
+      "path": "benchmarks/results/mistral-large4-20261006/ocr-candidate-barney.log",
+      "sha256": "99eb4213c0dd3831b5793588a086149106cc61d7a7251b99a50c02bd414dba56",
+      "bytes": 1276,
+      "template_sha256": "99eb4213c0dd3831b5793588a086149106cc61d7a7251b99a50c02bd414dba56"
+    },
+    {
+      "path": "benchmarks/results/mistral-large4-20261006/ocr-control-barney-recovery1.log",
+      "sha256": "8f4ea73f48fb31304666594e87269875bbcdd055265bfe7bc4266acbf7c26ac1",
+      "bytes": 950,
+      "template_sha256": "8f4ea73f48fb31304666594e87269875bbcdd055265bfe7bc4266acbf7c26ac1"
+    },
+    {
+      "path": "benchmarks/results/mistral-large4-20261006/ocr-control-barney.log",
+      "sha256": "0ab3402a5158a2a066f8c8e30e674d41c7945b80e36562020ef222ec675879ba",
+      "bytes": 1461,
+      "template_sha256": "0ab3402a5158a2a066f8c8e30e674d41c7945b80e36562020ef222ec675879ba"
+    },
+    {
+      "path": "benchmarks/results/mistral-large4-20261006/reconstructed-native-safety-request.json",
+      "sha256": "bab6285f529f0eaaa91b7714f29419a6e44a6e35f2a46b9dd94d4e1b1837cc3e",
+      "bytes": 1155,
+      "template_sha256": "4e3ea8d3ede8e3e07444fd353dbbef04b48aba87d6ea3580d2dc72b14237b280"
+    },
+    {
+      "path": "benchmarks/results/mistral-large4-20261006/request-001.json",
+      "sha256": "00ebf388120a4f1751661b9ff3a3194ac1559014ac84f320893c77b86e9b341e",
+      "bytes": 1095,
+      "template_sha256": "13e55e202a530bd8372a8ca713af495cb39f320f267d2139eb7f5c06bda546af"
+    },
+    {
+      "path": "benchmarks/results/mistral-large4-20261006/request-002.json",
+      "sha256": "2afe9462ef9e874a73526a45db41be5b41066b806fded59c14073f8cc9fa5275",
+      "bytes": 312095,
+      "template_sha256": "877fd3f443923759258947721e9dba5bc1020bfb5d97332200bfe5c22f6e87cd"
+    },
+    {
+      "path": "benchmarks/results/mistral-large4-20261006/request-003.json",
+      "sha256": "81c785113780d3e5c5d791acc8443e1ae2f8eadf01551f0507bae31c540901b2",
+      "bytes": 1187791,
+      "template_sha256": "0505a5f1f9d36409672d92e291901b740505f578170f9e2daba32bcea80a1f93"
+    },
+    {
+      "path": "benchmarks/results/mistral-large4-20261006/request-004.json",
+      "sha256": "271c304329090aba0422cfe351103d116cac39998246f0478bf3f9274ee5e3f3",
+      "bytes": 108227,
+      "template_sha256": "ed4554fe0ca211bd446ca408ec24239f71fcd7512c13cd2822282e0d6d5ee6ec"
+    },
+    {
+      "path": "benchmarks/results/mistral-large4-20261006/request-005.json",
+      "sha256": "386a32842e2ce88f2c0614399a1bf8bac54d79263bbf067de11ef1a50966c537",
+      "bytes": 242651,
+      "template_sha256": "0a4d5885e9eaf7a67e996405fdc8cf2632e92cff92a787b93fab8defcbe322cf"
+    },
+    {
+      "path": "benchmarks/results/mistral-large4-20261006/request-006.json",
+      "sha256": "da8e311a18f3b20946460fdbb8b5d2c32106af03a0949b21d2ebd86bbe5bfd8b",
+      "bytes": 633203,
+      "template_sha256": "2f6d95bd03067c1a90c3c141a1d7e21ded4d9fd5c783a63798819a5a18af9e3a"
+    },
+    {
+      "path": "benchmarks/results/mistral-large4-20261006/request-007.json",
+      "sha256": "2afe9462ef9e874a73526a45db41be5b41066b806fded59c14073f8cc9fa5275",
+      "bytes": 312095,
+      "template_sha256": "877fd3f443923759258947721e9dba5bc1020bfb5d97332200bfe5c22f6e87cd"
+    },
+    {
+      "path": "benchmarks/results/mistral-large4-20261006/request-008.json",
+      "sha256": "7fedc1963324425b96b833a7a357095399aa133c0ed47502d0776ca95745e8f8",
+      "bytes": 978283,
+      "template_sha256": "13bbcd73556bb0ca907ee612ee0395fd494886ecbd9ca4ef3b110997337c8f9b"
+    },
+    {
+      "path": "benchmarks/results/mistral-large4-20261006/request-009.json",
+      "sha256": "587d335748de9dc8d8b4ffb050f03af129ea40f9019f0aa364d01fe1bd6ffc78",
+      "bytes": 1219555,
+      "template_sha256": "3ee5685962ed0dc4577a3d2656880cb929cfdc81f5e60f781efd9387f8fccfbc"
+    },
+    {
+      "path": "benchmarks/results/mistral-large4-20261006/request-010.json",
+      "sha256": "8720d066788ec58b193abc1d88b89ce832270711fc92128a6d7db0eb15712f9d",
+      "bytes": 965363,
+      "template_sha256": "28e9b1ee4bb9d704fe9ce1f9f36dac29386060bcb85c148342f1b5c991b43e58"
+    },
+    {
+      "path": "benchmarks/results/mistral-large4-20261006/request-011.json",
+      "sha256": "43b6dae6c8983f89a4ffcbc34fe9399b585e590bb202d661f7ea8b992ca157b5",
+      "bytes": 976307,
+      "template_sha256": "4ea19587ea15a1f052c0fbf15d3c1a580d7a437b9d2990d9e2f522cfc240c400"
+    },
+    {
+      "path": "benchmarks/results/mistral-large4-20261006/request-012.json",
+      "sha256": "9b5176e3c840a2dd57488d273a7926fc6030cf9fa4a8cbfedbd330694aff992d",
+      "bytes": 1060151,
+      "template_sha256": "6a80d632b6138f1bddbeb8523b652c347b64707fcd858368b5757792bfcbc91b"
+    },
+    {
+      "path": "benchmarks/results/mistral-large4-20261006/request-013.json",
+      "sha256": "7aa823c9adb40ce6fc7a2c9675f06a2f60dc4a9ded3bb75146c69fac2bd9f9fb",
+      "bytes": 1134983,
+      "template_sha256": "792b7b7eb51d066eea542de14e680428487c582adf9b9bf0c337e509a46d3424"
+    },
+    {
+      "path": "benchmarks/results/mistral-large4-20261006/request-014.json",
+      "sha256": "cc05185c5ce2677deb9936c8a3b6a7faf6a5f0812cea5a300744982b7338a7ed",
+      "bytes": 360935,
+      "template_sha256": "8077c7356ebd9f5f6113175df6fe8d76373ad6c3f8ac6c736c5d8bf46acd9a7e"
+    },
+    {
+      "path": "benchmarks/results/mistral-large4-20261006/request-015.json",
+      "sha256": "6b6570718de29389c87b2491c63a5e36ca8d150d9a168ed6e76a82067d414fb5",
+      "bytes": 391491,
+      "template_sha256": "4e055be70573bae271f6150d157c07301c7fb687c4b443561b67aead155cb604"
+    },
+    {
+      "path": "benchmarks/results/mistral-large4-20261006/request-017.json",
+      "sha256": "6239875f0624ff1eb55c31f8a386a40e031168b01f5491acbc81906c2a0651c9",
+      "bytes": 1187031,
+      "template_sha256": "6239875f0624ff1eb55c31f8a386a40e031168b01f5491acbc81906c2a0651c9"
+    },
+    {
+      "path": "benchmarks/results/mistral-large4-20261006/request-018.json",
+      "sha256": "01b4129b1c68907267cb3e71fc64bd3517497b103f7c28fb085982eef0f5e296",
+      "bytes": 107467,
+      "template_sha256": "01b4129b1c68907267cb3e71fc64bd3517497b103f7c28fb085982eef0f5e296"
+    },
+    {
+      "path": "benchmarks/results/mistral-large4-20261006/request-019.json",
+      "sha256": "0678d76e8bbc40b8867facb609d017f95020e5bcb53519e7bb663fe951769366",
+      "bytes": 241891,
+      "template_sha256": "0678d76e8bbc40b8867facb609d017f95020e5bcb53519e7bb663fe951769366"
+    },
+    {
+      "path": "benchmarks/results/mistral-large4-20261006/request-020.json",
+      "sha256": "1dfc824d33f35fa451b526b795882a3b0d62f3ac68b43b41e56fa667c7aa9664",
+      "bytes": 632443,
+      "template_sha256": "1dfc824d33f35fa451b526b795882a3b0d62f3ac68b43b41e56fa667c7aa9664"
+    },
+    {
+      "path": "benchmarks/results/mistral-large4-20261006/request-021.json",
+      "sha256": "242f8833652c89a4b1ac2591289afba7bc19e1ca44556e2c570f5f4648e54994",
+      "bytes": 311335,
+      "template_sha256": "242f8833652c89a4b1ac2591289afba7bc19e1ca44556e2c570f5f4648e54994"
+    },
+    {
+      "path": "benchmarks/results/mistral-large4-20261006/request-022.json",
+      "sha256": "c873916ab505ac44160df5787c20d3486ddd02c31f292d0834eda31e982dcf43",
+      "bytes": 977523,
+      "template_sha256": "c873916ab505ac44160df5787c20d3486ddd02c31f292d0834eda31e982dcf43"
+    },
+    {
+      "path": "benchmarks/results/mistral-large4-20261006/request-023.json",
+      "sha256": "15cf72c367c960515e3e53a7f220a89c9518462615802099d50d467adda099d8",
+      "bytes": 1218795,
+      "template_sha256": "15cf72c367c960515e3e53a7f220a89c9518462615802099d50d467adda099d8"
+    },
+    {
+      "path": "benchmarks/results/mistral-large4-20261006/request-024.json",
+      "sha256": "ede3f7f9999cf06b79e3e9afbfa0ea2f2b999ccc866fb50b0e343c0639ff94cc",
+      "bytes": 964603,
+      "template_sha256": "ede3f7f9999cf06b79e3e9afbfa0ea2f2b999ccc866fb50b0e343c0639ff94cc"
+    },
+    {
+      "path": "benchmarks/results/mistral-large4-20261006/request-025.json",
+      "sha256": "8003657cc3c5963f0986aedf82e1881a9fc4f9d34b8ed2a6da8c7bf9f2d56d8e",
+      "bytes": 975547,
+      "template_sha256": "8003657cc3c5963f0986aedf82e1881a9fc4f9d34b8ed2a6da8c7bf9f2d56d8e"
+    },
+    {
+      "path": "benchmarks/results/mistral-large4-20261006/request-026.json",
+      "sha256": "8a47a2e83cb5aaf18d298dbd166fb96c12132ffad2e773588357378d1ae57c4d",
+      "bytes": 1059391,
+      "template_sha256": "8a47a2e83cb5aaf18d298dbd166fb96c12132ffad2e773588357378d1ae57c4d"
+    },
+    {
+      "path": "benchmarks/results/mistral-large4-20261006/request-027.json",
+      "sha256": "4406971fd4bbf662c9d44c0df1f3e78b2314293f166d9b7a762fa5cc84dc9834",
+      "bytes": 1134223,
+      "template_sha256": "4406971fd4bbf662c9d44c0df1f3e78b2314293f166d9b7a762fa5cc84dc9834"
+    },
+    {
+      "path": "benchmarks/results/mistral-large4-20261006/request-028.json",
+      "sha256": "34ff8c8cbbb4a97ce12bc31430f7d892e9d36a1a91d820fd518617a4ebc0a214",
+      "bytes": 360175,
+      "template_sha256": "34ff8c8cbbb4a97ce12bc31430f7d892e9d36a1a91d820fd518617a4ebc0a214"
+    },
+    {
+      "path": "benchmarks/results/mistral-large4-20261006/request-029.json",
+      "sha256": "7342ab06d3a173309298362832fbd334ba0f0c27c46ca5a00da13e46ae0363aa",
+      "bytes": 390731,
+      "template_sha256": "7342ab06d3a173309298362832fbd334ba0f0c27c46ca5a00da13e46ae0363aa"
+    },
+    {
+      "path": "benchmarks/results/mistral-large4-20261006/request-030.json",
+      "sha256": "4e9583780a216ce30e0439be2f7c6e02f0c3a3d67fb94a46d4a5200e6b441b49",
+      "bytes": 8502059,
+      "template_sha256": "f96ef7b724cd80733120ec87d44b45fbb1a0f12854f746d0686b18f4ea2c0593"
+    },
+    {
+      "path": "benchmarks/results/mistral-large4-20261006/request-031.json",
+      "sha256": "2ccb3a24898ee42c98d53e18eca2cc167c3d053147876922fb333d43cefbab8a",
+      "bytes": 8501963,
+      "template_sha256": "76cca7cd745dac9cdf8bf21c93160af614f80382a5fe555185e01e6508b21299"
+    },
+    {
+      "path": "benchmarks/results/mistral-large4-20261006/request-032.json",
+      "sha256": "dae3bae0d6881367e7051e82d2f4db1d34604b6fcedb7f3886e9cd495d5e595c",
+      "bytes": 9116311,
+      "template_sha256": "b530569159bd5f2fae25fd77bfdeb4569d2885311f905c8d40aff09a9cf9ebc4"
+    },
+    {
+      "path": "benchmarks/results/mistral-large4-20261006/request-033.json",
+      "sha256": "ba40fc9c7d4793c4274cc33cb533c29080ec1f4b6f40f612f2a6c373294df444",
+      "bytes": 1591215,
+      "template_sha256": "b5dc3034c938bb1f9e2cbee9695641cceb8229c7ac7cdb8f73c329cd524c7c18"
+    },
+    {
+      "path": "benchmarks/results/mistral-large4-20261006/request-034.json",
+      "sha256": "cbe7e89c2ffd19b23b29ed5843e016ce2364c197b66b1b81da588b8c18664317",
+      "bytes": 5921527,
+      "template_sha256": "516a8bc6a49e1d2659fc23a497d30319d351b01367668c0685d041613bc56cf9"
+    },
+    {
+      "path": "benchmarks/results/mistral-large4-20261006/request-035.json",
+      "sha256": "b19bb785d75925700209efb214fcd0734abd8ed2deb6a2c8f6a97fd7617c1989",
+      "bytes": 550035,
+      "template_sha256": "99437a5cb3dd9df1e106c37b071ec87e633909d9b43611e1df24b316e1dc7018"
+    },
+    {
+      "path": "benchmarks/results/mistral-large4-20261006/request-036.json",
+      "sha256": "df221042d0b2777fae7a7ae6b6fd00af471e656cdaebc3ea21636d3287f6dd18",
+      "bytes": 605343,
+      "template_sha256": "e7cc77224b3282784bfaa8adacbc19d14064b6944934156db9f8f4c7b2d6fe48"
+    },
+    {
+      "path": "benchmarks/results/mistral-large4-20261006/request-037.json",
+      "sha256": "c6552abe8937510b58ce41da850dd60c4446e3506a28d5e872b992b44f7cd023",
+      "bytes": 9116215,
+      "template_sha256": "fa0c59f0f4e054d4bcb4ce0f4e8a25f02ff1ce76dae3f8688a0c38586add467b"
+    },
+    {
+      "path": "benchmarks/results/mistral-large4-20261006/request-038.json",
+      "sha256": "875726ccf38f7e8ffd45e20b4a568ba1336cfa45e303a44965cede53fee2cdd9",
+      "bytes": 1011,
+      "template_sha256": "28c82770073feeea90a406cc0eed60895e43443b76f3791706fd8978e05a6d94"
+    },
+    {
+      "path": "benchmarks/results/mistral-large4-20261006/request-039.json",
+      "sha256": "80b43b82e27d89d7b337b83a263a1d714d8c9a59b0fad195606f488eb7ae0e8e",
+      "bytes": 204739,
+      "template_sha256": "7d46581eb693fd7401482b20d710a32bfcd4522672f6c9136e769c5e96363476"
+    },
+    {
+      "path": "benchmarks/results/mistral-large4-20261006/request-040.json",
+      "sha256": "0e2e785d81e780b78138a9b89e22d9b7dd37214c453ab9d2523f9a896c2d030d",
+      "bytes": 204634,
+      "template_sha256": "0e2e785d81e780b78138a9b89e22d9b7dd37214c453ab9d2523f9a896c2d030d"
+    },
+    {
+      "path": "benchmarks/results/mistral-large4-20261006/response-001.json",
+      "sha256": "e62cd3ff22d1e60532733b30bfa715ca3b8f5f16bb80e6c40b9caad06aa3c4fa",
+      "bytes": 941,
+      "template_sha256": "e62cd3ff22d1e60532733b30bfa715ca3b8f5f16bb80e6c40b9caad06aa3c4fa"
+    },
+    {
+      "path": "benchmarks/results/mistral-large4-20261006/response-002.json",
+      "sha256": "6065d6d7f5ca05df78b167c2fbcd9daafc8590270f682875ef65efd728ddf11d",
+      "bytes": 1210,
+      "template_sha256": "6065d6d7f5ca05df78b167c2fbcd9daafc8590270f682875ef65efd728ddf11d"
+    },
+    {
+      "path": "benchmarks/results/mistral-large4-20261006/response-003.json",
+      "sha256": "825de2ea5ecf911aeb063e3c94f4262fed6d9db20b19db4d5f09a309a3859637",
+      "bytes": 1163,
+      "template_sha256": "825de2ea5ecf911aeb063e3c94f4262fed6d9db20b19db4d5f09a309a3859637"
+    },
+    {
+      "path": "benchmarks/results/mistral-large4-20261006/response-004.json",
+      "sha256": "3c94dc51390bfd08989754c7034c6eb30dad03d56e7e753245c01d911434b294",
+      "bytes": 1035,
+      "template_sha256": "3c94dc51390bfd08989754c7034c6eb30dad03d56e7e753245c01d911434b294"
+    },
+    {
+      "path": "benchmarks/results/mistral-large4-20261006/response-005.json",
+      "sha256": "a8217040b411efedc93cb3c2efae88b6926198569ae115d41310a482b86de0c5",
+      "bytes": 1096,
+      "template_sha256": "a8217040b411efedc93cb3c2efae88b6926198569ae115d41310a482b86de0c5"
+    },
+    {
+      "path": "benchmarks/results/mistral-large4-20261006/response-006.json",
+      "sha256": "afd87c66e3f8f550501fa1685ca604a2e64a525df612a167b08bc6849451bab1",
+      "bytes": 1000,
+      "template_sha256": "afd87c66e3f8f550501fa1685ca604a2e64a525df612a167b08bc6849451bab1"
+    },
+    {
+      "path": "benchmarks/results/mistral-large4-20261006/response-007.json",
+      "sha256": "0c12c9f8ad7f80a90254e3e462c0d057880eafc32b010ea6c8f1bc13dee49653",
+      "bytes": 1198,
+      "template_sha256": "0c12c9f8ad7f80a90254e3e462c0d057880eafc32b010ea6c8f1bc13dee49653"
+    },
+    {
+      "path": "benchmarks/results/mistral-large4-20261006/response-008.json",
+      "sha256": "010e946a7bae2891e6d5aa2f61ffdb0cfa7536597083c9a5cdc4aba471668025",
+      "bytes": 1059,
+      "template_sha256": "010e946a7bae2891e6d5aa2f61ffdb0cfa7536597083c9a5cdc4aba471668025"
+    },
+    {
+      "path": "benchmarks/results/mistral-large4-20261006/response-009.json",
+      "sha256": "f302b28a1aac9a7e9724408e5041be2284ec9c08cd35a64d29d34c923042a091",
+      "bytes": 1224,
+      "template_sha256": "f302b28a1aac9a7e9724408e5041be2284ec9c08cd35a64d29d34c923042a091"
+    },
+    {
+      "path": "benchmarks/results/mistral-large4-20261006/response-010.json",
+      "sha256": "dda2db53698ae610b6b1c68d20fd0876dc04d1542358acfa84cace5f6cc056c5",
+      "bytes": 1145,
+      "template_sha256": "dda2db53698ae610b6b1c68d20fd0876dc04d1542358acfa84cace5f6cc056c5"
+    },
+    {
+      "path": "benchmarks/results/mistral-large4-20261006/response-011.json",
+      "sha256": "752c2d3947587a9cb46edc5d94b28d7ebedef4471450becb751b49496661caaa",
+      "bytes": 1293,
+      "template_sha256": "752c2d3947587a9cb46edc5d94b28d7ebedef4471450becb751b49496661caaa"
+    },
+    {
+      "path": "benchmarks/results/mistral-large4-20261006/response-012.json",
+      "sha256": "7f0f9768d08e8e0f4f8b9f00838574a6ffb0b5eb5f84419b0ea445e6c3845a3d",
+      "bytes": 1314,
+      "template_sha256": "7f0f9768d08e8e0f4f8b9f00838574a6ffb0b5eb5f84419b0ea445e6c3845a3d"
+    },
+    {
+      "path": "benchmarks/results/mistral-large4-20261006/response-013.json",
+      "sha256": "ea5fecdfa36901401e105f7eb1e0f7b37788fc8ad38ab33c70b1154998e8336c",
+      "bytes": 1431,
+      "template_sha256": "ea5fecdfa36901401e105f7eb1e0f7b37788fc8ad38ab33c70b1154998e8336c"
+    },
+    {
+      "path": "benchmarks/results/mistral-large4-20261006/response-014.json",
+      "sha256": "e5491346148198b818cac027ccdaffaedd7780c1a6bffb99e69364f7ca867d3c",
+      "bytes": 1100,
+      "template_sha256": "e5491346148198b818cac027ccdaffaedd7780c1a6bffb99e69364f7ca867d3c"
+    },
+    {
+      "path": "benchmarks/results/mistral-large4-20261006/response-015.json",
+      "sha256": "762f8f03e746018ceece4e548a55d9d3df8219f0640f01caa21f55fcbefda595",
+      "bytes": 1273,
+      "template_sha256": "762f8f03e746018ceece4e548a55d9d3df8219f0640f01caa21f55fcbefda595"
+    },
+    {
+      "path": "benchmarks/results/mistral-large4-20261006/response-017.json",
+      "sha256": "9e203bdd58bdd2477cea22dbba2fac08a8ce7fbb209e51130b23ae421f1562c0",
+      "bytes": 6070,
+      "template_sha256": "9e203bdd58bdd2477cea22dbba2fac08a8ce7fbb209e51130b23ae421f1562c0"
+    },
+    {
+      "path": "benchmarks/results/mistral-large4-20261006/response-018.json",
+      "sha256": "04da240412e23c4d11336097c362e608a11c19534bc61c0f523bd6098254b47a",
+      "bytes": 5404,
+      "template_sha256": "04da240412e23c4d11336097c362e608a11c19534bc61c0f523bd6098254b47a"
+    },
+    {
+      "path": "benchmarks/results/mistral-large4-20261006/response-019.json",
+      "sha256": "af8c3f0c3c01307c2648f295c9d743a7d1860833ad806c4d00e644bc413d8ba1",
+      "bytes": 2907,
+      "template_sha256": "af8c3f0c3c01307c2648f295c9d743a7d1860833ad806c4d00e644bc413d8ba1"
+    },
+    {
+      "path": "benchmarks/results/mistral-large4-20261006/response-020.json",
+      "sha256": "2dafe0a69dfcd3bbeb403d3689fb0730611a4ebe3f7d51459328607ccb7055a5",
+      "bytes": 3897,
+      "template_sha256": "2dafe0a69dfcd3bbeb403d3689fb0730611a4ebe3f7d51459328607ccb7055a5"
+    },
+    {
+      "path": "benchmarks/results/mistral-large4-20261006/response-021.json",
+      "sha256": "c3294b0185ce8d7603190a1025c08fa5dbe838f7781ec403c3d03c00f55307a0",
+      "bytes": 5532,
+      "template_sha256": "c3294b0185ce8d7603190a1025c08fa5dbe838f7781ec403c3d03c00f55307a0"
+    },
+    {
+      "path": "benchmarks/results/mistral-large4-20261006/response-022.json",
+      "sha256": "989a89cd0ea5029ad0e7c149321cc0c5a41840997a3ccc3ec91c02cced823bac",
+      "bytes": 4526,
+      "template_sha256": "989a89cd0ea5029ad0e7c149321cc0c5a41840997a3ccc3ec91c02cced823bac"
+    },
+    {
+      "path": "benchmarks/results/mistral-large4-20261006/response-023.json",
+      "sha256": "8e24fbf4d041dc5834e386a3be379077d40ff70ba7f2ece9be63f88005f0b838",
+      "bytes": 2889,
+      "template_sha256": "8e24fbf4d041dc5834e386a3be379077d40ff70ba7f2ece9be63f88005f0b838"
+    },
+    {
+      "path": "benchmarks/results/mistral-large4-20261006/response-024.json",
+      "sha256": "bbf26efa0afb44cbc2e86c16f792eb00a43cca13171bc671048238283c870632",
+      "bytes": 2819,
+      "template_sha256": "bbf26efa0afb44cbc2e86c16f792eb00a43cca13171bc671048238283c870632"
+    },
+    {
+      "path": "benchmarks/results/mistral-large4-20261006/response-025.json",
+      "sha256": "12e366220516b24b9edc780f667b3bd935caa2425cb324634ecd59fff5bacc6e",
+      "bytes": 8783,
+      "template_sha256": "12e366220516b24b9edc780f667b3bd935caa2425cb324634ecd59fff5bacc6e"
+    },
+    {
+      "path": "benchmarks/results/mistral-large4-20261006/response-026.json",
+      "sha256": "30175b4b1ce60ddfb3c611fe146d2735b31415350bf8ff29178c71e708ce8437",
+      "bytes": 3954,
+      "template_sha256": "30175b4b1ce60ddfb3c611fe146d2735b31415350bf8ff29178c71e708ce8437"
+    },
+    {
+      "path": "benchmarks/results/mistral-large4-20261006/response-027.json",
+      "sha256": "27b39ec2c13d296d7c5f5f92ad1f397959df234c041472aeff8e80fb18ab1730",
+      "bytes": 3592,
+      "template_sha256": "27b39ec2c13d296d7c5f5f92ad1f397959df234c041472aeff8e80fb18ab1730"
+    },
+    {
+      "path": "benchmarks/results/mistral-large4-20261006/response-028.json",
+      "sha256": "fe52e9bf11c4ac41b16c72aea8b4ca0d82d5913a92be6d07396ece5af819c173",
+      "bytes": 4293,
+      "template_sha256": "fe52e9bf11c4ac41b16c72aea8b4ca0d82d5913a92be6d07396ece5af819c173"
+    },
+    {
+      "path": "benchmarks/results/mistral-large4-20261006/response-029.json",
+      "sha256": "ec36b71bcdd684650dae4cce4df25dc000610186c5a0de6c2e709c22f48c7553",
+      "bytes": 3615,
+      "template_sha256": "ec36b71bcdd684650dae4cce4df25dc000610186c5a0de6c2e709c22f48c7553"
+    },
+    {
+      "path": "benchmarks/results/mistral-large4-20261006/response-030.json",
+      "sha256": "4e7b2f0e8fb2e67c9ae5cc7af679b9e6315c84cbd9b26e0ed40660679653d212",
+      "bytes": 1253,
+      "template_sha256": "4e7b2f0e8fb2e67c9ae5cc7af679b9e6315c84cbd9b26e0ed40660679653d212"
+    },
+    {
+      "path": "benchmarks/results/mistral-large4-20261006/response-031.json",
+      "sha256": "5d5de73f772c40e6518030ebfc6759046f50b2a2f0aa1239ac136faa6ee83f4c",
+      "bytes": 3044,
+      "template_sha256": "5d5de73f772c40e6518030ebfc6759046f50b2a2f0aa1239ac136faa6ee83f4c"
+    },
+    {
+      "path": "benchmarks/results/mistral-large4-20261006/response-032.json",
+      "sha256": "38e522be79d15f27b724c14727f3067cbfb12097428562137311624c7d7ee0a0",
+      "bytes": 1406,
+      "template_sha256": "38e522be79d15f27b724c14727f3067cbfb12097428562137311624c7d7ee0a0"
+    },
+    {
+      "path": "benchmarks/results/mistral-large4-20261006/response-033.json",
+      "sha256": "95264338799c6d9e04adaa7767f5869689e39a21280da5052282062a0e243cd6",
+      "bytes": 1301,
+      "template_sha256": "95264338799c6d9e04adaa7767f5869689e39a21280da5052282062a0e243cd6"
+    },
+    {
+      "path": "benchmarks/results/mistral-large4-20261006/response-034.json",
+      "sha256": "3cd594e2e297a33d537348cd56a03af86c11792b9ed59708ee7e0832d335b57d",
+      "bytes": 1183,
+      "template_sha256": "3cd594e2e297a33d537348cd56a03af86c11792b9ed59708ee7e0832d335b57d"
+    },
+    {
+      "path": "benchmarks/results/mistral-large4-20261006/response-035.json",
+      "sha256": "20d5dfcccd072edc47d7b71a61ab3127cc5ba03e5c6d5186a4a930b537975f4f",
+      "bytes": 1258,
+      "template_sha256": "20d5dfcccd072edc47d7b71a61ab3127cc5ba03e5c6d5186a4a930b537975f4f"
+    },
+    {
+      "path": "benchmarks/results/mistral-large4-20261006/response-036.json",
+      "sha256": "5eef73708d1a81bd18b2597c1d1542e3e88d1211c0634a17be51a20d835f638c",
+      "bytes": 1267,
+      "template_sha256": "5eef73708d1a81bd18b2597c1d1542e3e88d1211c0634a17be51a20d835f638c"
+    },
+    {
+      "path": "benchmarks/results/mistral-large4-20261006/response-037.json",
+      "sha256": "f75a58da8d8a0efa07773c7d72e41fc22817589e1b4c1a90cd2a5ce6ca8aea46",
+      "bytes": 3027,
+      "template_sha256": "f75a58da8d8a0efa07773c7d72e41fc22817589e1b4c1a90cd2a5ce6ca8aea46"
+    },
+    {
+      "path": "benchmarks/results/mistral-large4-20261006/response-038.json",
+      "sha256": "7ebe53115a24a4768c5a11fbaca011efb632f645e3b0b595b7be5e3684b979f1",
+      "bytes": 821,
+      "template_sha256": "7ebe53115a24a4768c5a11fbaca011efb632f645e3b0b595b7be5e3684b979f1"
+    },
+    {
+      "path": "benchmarks/results/mistral-large4-20261006/response-039.json",
+      "sha256": "3f71c6458a26f6f528300961035db84e6af46e6f4eb083a90c0bfcef0db03ce6",
+      "bytes": 2401,
+      "template_sha256": "3f71c6458a26f6f528300961035db84e6af46e6f4eb083a90c0bfcef0db03ce6"
+    },
+    {
+      "path": "benchmarks/results/mistral-large4-20261006/response-040.json",
+      "sha256": "fe86d9a2b9612885d9e0782b3d4a8462541efa20bd44afc0dc5835f9b5cc53d1",
+      "bytes": 8010,
+      "template_sha256": "fe86d9a2b9612885d9e0782b3d4a8462541efa20bd44afc0dc5835f9b5cc53d1"
+    },
+    {
+      "path": "benchmarks/results/mistral-large4-20261006/safety-control-page-001-000.json",
+      "sha256": "17614e30de9df2c2e06cf6f0ec9e913d1f65bb1a6566f7afee38a0abc8a7ab65",
+      "bytes": 9124881,
+      "template_sha256": "4baaba20fe9ab14251b34c2387b5f30d092a11493e45a8474339fd60b46e8ea0"
+    },
+    {
+      "path": "benchmarks/results/mistral-large4-20261006/safety-control-page-001-000.log",
+      "sha256": "d36b7710f3a371824490d8b80275887e6982df305116abf663e77906fe5d9752",
+      "bytes": 5309,
+      "template_sha256": "d36b7710f3a371824490d8b80275887e6982df305116abf663e77906fe5d9752"
+    },
+    {
+      "path": "benchmarks/results/mistral-large4-20261006/safety-control-progressive.json",
+      "sha256": "9972765a245da4e27f6680e19630c508fcfbe041e33a192846cbc750ea1da0e7",
+      "bytes": 9120353,
+      "template_sha256": "abbe207824291b87da63ca7efb540e511ea9b8c7016b55ff2a6760acf06c37cd"
+    },
+    {
+      "path": "benchmarks/results/mistral-large4-20261006/safety-control-screen.json",
+      "sha256": "62443e7f5d961555c66d42bde83cb9e863939a15193b579fa3c2b59481c9ca8c",
+      "bytes": 8510080,
+      "template_sha256": "02297393983543d12a67da0867c1704db59560466957bd147e865452fcc595e5"
+    },
+    {
+      "path": "benchmarks/results/mistral-large4-20261006/safety-control-screen.log",
+      "sha256": "9577c3270c84c7722d2ec5c441e87abba4acf261eb40ec5d11b6cb9de5b5c321",
+      "bytes": 5309,
+      "template_sha256": "9577c3270c84c7722d2ec5c441e87abba4acf261eb40ec5d11b6cb9de5b5c321"
+    },
+    {
+      "path": "benchmarks/results/mistral-large4-20261006/safety-page-001-000.json",
+      "sha256": "dd01fe00a52217257c41598f082b46c95598d29340a5a9662e375c9ea5ae9e88",
+      "bytes": 9126602,
+      "template_sha256": "64e7054c88a7abb5a170c1a25a3b9a376a5840fb04c470f5eeebe1ff722a2c31"
+    },
+    {
+      "path": "benchmarks/results/mistral-large4-20261006/safety-page-001-000.log",
+      "sha256": "be59b047c468363bda5330a24938d8e7818cff2785aa4bcdb3819fdbeb40147a",
+      "bytes": 5897,
+      "template_sha256": "be59b047c468363bda5330a24938d8e7818cff2785aa4bcdb3819fdbeb40147a"
+    },
+    {
+      "path": "benchmarks/results/mistral-large4-20261006/safety-page-004-000.json",
+      "sha256": "d5fa3bca4b400cc04295b55dfd213aaf04a0c35745b754d22e96bd11265e3462",
+      "bytes": 1601316,
+      "template_sha256": "95cc01f87793b81538e122dc67870dedd2047de76475531e6d1958d5b37c0d4c"
+    },
+    {
+      "path": "benchmarks/results/mistral-large4-20261006/safety-page-004-000.log",
+      "sha256": "43a71391e883738b0e354905569f788e2ee8a655184c6a70cd1bad9bf20eb2c1",
+      "bytes": 6095,
+      "template_sha256": "43a71391e883738b0e354905569f788e2ee8a655184c6a70cd1bad9bf20eb2c1"
+    },
+    {
+      "path": "benchmarks/results/mistral-large4-20261006/safety-page-009-000.json",
+      "sha256": "23f529a70943253b4138793741c21d2c24d2e7211708572c9008db5ea3dcee60",
+      "bytes": 5931393,
+      "template_sha256": "10a9e6baa5eb407a3b859d34b440a22bc0604d30cc574ed0aaf8568b5f0e06ef"
+    },
+    {
+      "path": "benchmarks/results/mistral-large4-20261006/safety-page-009-000.log",
+      "sha256": "d883a70750bc92e11437531133a5a81a640b4c1813bc3556a33e773297ca1318",
+      "bytes": 5895,
+      "template_sha256": "d883a70750bc92e11437531133a5a81a640b4c1813bc3556a33e773297ca1318"
+    },
+    {
+      "path": "benchmarks/results/mistral-large4-20261006/safety-page-012-000.json",
+      "sha256": "06a36c5be75145b9683ba7a881579240e6e7083ddab67710cee73c176160e1a1",
+      "bytes": 560089,
+      "template_sha256": "4ba4c9dff65598bc1490a371ccae6d6e65491ba7c0aa7dfbd52ef9447735cfb8"
+    },
+    {
+      "path": "benchmarks/results/mistral-large4-20261006/safety-page-012-000.log",
+      "sha256": "2ea2355e17d21e878795727c6bc7a65a29a48d7477be09377aad5fed262000b9",
+      "bytes": 6294,
+      "template_sha256": "2ea2355e17d21e878795727c6bc7a65a29a48d7477be09377aad5fed262000b9"
+    },
+    {
+      "path": "benchmarks/results/mistral-large4-20261006/safety-page-012-001.json",
+      "sha256": "97fb303195a852495dd608a6872af018e8a628755f9d8c3891edc2ea1d45ed25",
+      "bytes": 616165,
+      "template_sha256": "13fc728d9547c6d48fd32c4a964b7ac6336bb0e09b51fbc4ec6fd5ba53e223fd"
+    },
+    {
+      "path": "benchmarks/results/mistral-large4-20261006/safety-page-012-001.log",
+      "sha256": "14b35535be5ffa1f89567d6e7e8d1c00e5ade214356eb08b1a3bdaa7567a9bdd",
+      "bytes": 6093,
+      "template_sha256": "14b35535be5ffa1f89567d6e7e8d1c00e5ade214356eb08b1a3bdaa7567a9bdd"
+    },
+    {
+      "path": "benchmarks/results/mistral-large4-20261006/safety-progressive.json",
+      "sha256": "094dda1520b5287d813eac290d92ecb6b7c2444d0b332b5cfdd8153bbae0b478",
+      "bytes": 17811307,
+      "template_sha256": "0bc40feda3035b19d1a6a650da9e190638435ca2ff732fd608f218fab9aa963f"
+    },
+    {
+      "path": "benchmarks/results/mistral-large4-20261006/safety-screen.json",
+      "sha256": "2498405ea69107547e9932cadd41e4d0c228a705de7468f0e5413812f30354e0",
+      "bytes": 8512074,
+      "template_sha256": "c50e6bbb7c74514c0ee024836c6d7c57f71e8b56629ea0cabd88c29deed785a3"
+    },
+    {
+      "path": "benchmarks/results/mistral-large4-20261006/safety-screen.log",
+      "sha256": "61211082bf53282519619dca5574591c71fe279f75584d299a7cf1d67e2eb762",
+      "bytes": 6088,
+      "template_sha256": "61211082bf53282519619dca5574591c71fe279f75584d299a7cf1d67e2eb762"
+    },
+    {
+      "path": "output/runs/mistral4-ocr-candidate-barney-20261006/01_images_dir_to_manifest_v1/pages_images_manifest.jsonl",
+      "sha256": "49bd81fa3a177be544ce86eea5edac1959d880ab870942991ef643a2aeea253d",
+      "bytes": 519,
+      "template_sha256": "49bd81fa3a177be544ce86eea5edac1959d880ab870942991ef643a2aeea253d"
+    },
+    {
+      "path": "output/runs/mistral4-ocr-candidate-barney-20261006/02_ocr_ai_gpt51_v1/pages_html.jsonl",
+      "sha256": "867c0f9c2b61601c8e8a9dcbbf7858a64170074c653ceefb376ca7cb4ebfbe47",
+      "bytes": 3687,
+      "template_sha256": "867c0f9c2b61601c8e8a9dcbbf7858a64170074c653ceefb376ca7cb4ebfbe47"
+    },
+    {
+      "path": "output/runs/mistral4-ocr-candidate-barney-20261006/pipeline_events.jsonl",
+      "sha256": "575f39174576d69631e02713830b62a490936b3b221663e1cf64472bcc967227",
+      "bytes": 4737,
+      "template_sha256": "575f39174576d69631e02713830b62a490936b3b221663e1cf64472bcc967227"
+    },
+    {
+      "path": "output/runs/mistral4-ocr-candidate-barney-20261006/pipeline_state.json",
+      "sha256": "391606efb2669153b793881850b5bf59519f1b64b3c07babeabbfdafb97af438",
+      "bytes": 1415,
+      "template_sha256": "391606efb2669153b793881850b5bf59519f1b64b3c07babeabbfdafb97af438"
+    },
+    {
+      "path": "output/runs/mistral4-ocr-candidate-barney-20261006/snapshots/plan.json",
+      "sha256": "af64d1fa81adbe71febdfcadc5ce133663c2d5e4a2bf711f6474b7f062a3d47a",
+      "bytes": 2118,
+      "template_sha256": "af64d1fa81adbe71febdfcadc5ce133663c2d5e4a2bf711f6474b7f062a3d47a"
+    },
+    {
+      "path": "output/runs/mistral4-ocr-candidate-barney-20261006/snapshots/recipe.yaml",
+      "sha256": "f898b2bf04c4d868df9f2a68940afab0016d0876c03eb665bd7ddd2f6dfb04a1",
+      "bytes": 1092,
+      "template_sha256": "f898b2bf04c4d868df9f2a68940afab0016d0876c03eb665bd7ddd2f6dfb04a1"
+    },
+    {
+      "path": "output/runs/mistral4-ocr-candidate-barney-20261006/snapshots/registry.json",
+      "sha256": "704c569bfe2085a47d5d08738945486d0cdabb5a180198c575fd3ee588c654a5",
+      "bytes": 3287,
+      "template_sha256": "704c569bfe2085a47d5d08738945486d0cdabb5a180198c575fd3ee588c654a5"
+    },
+    {
+      "path": "output/runs/mistral4-ocr-candidate-barney-20261006/timing_summary.json",
+      "sha256": "5a24b4eb394d8c129e6300bce4b18bfeb2a702490675414934b1222d2e708bbf",
+      "bytes": 433,
+      "template_sha256": "5a24b4eb394d8c129e6300bce4b18bfeb2a702490675414934b1222d2e708bbf"
+    },
+    {
+      "path": "output/runs/mistral4-ocr-control-barney-20261006/01_images_dir_to_manifest_v1/pages_images_manifest.jsonl",
+      "sha256": "e9c3511387de843557b86e48dd37ac0183346ca3c38c7a7252a24ac8d62ff910",
+      "bytes": 517,
+      "template_sha256": "e9c3511387de843557b86e48dd37ac0183346ca3c38c7a7252a24ac8d62ff910"
+    },
+    {
+      "path": "output/runs/mistral4-ocr-control-barney-20261006/pipeline_events.jsonl",
+      "sha256": "c5f1e8df4dd0aa813f208c54d9a419287e17d895ac6427218da32814ac318fdc",
+      "bytes": 4626,
+      "template_sha256": "c5f1e8df4dd0aa813f208c54d9a419287e17d895ac6427218da32814ac318fdc"
+    },
+    {
+      "path": "output/runs/mistral4-ocr-control-barney-20261006/pipeline_state.json",
+      "sha256": "ac24f75a5f617dc52fd619b26e2dc95256da2000042f5bc072e5af0fffe10820",
+      "bytes": 1477,
+      "template_sha256": "ac24f75a5f617dc52fd619b26e2dc95256da2000042f5bc072e5af0fffe10820"
+    },
+    {
+      "path": "output/runs/mistral4-ocr-control-barney-20261006/snapshots/plan.json",
+      "sha256": "a8c8e863dc885c0c5d5940cbbd9c2019269823980a0f6f7c04ec4be28e943ead",
+      "bytes": 2107,
+      "template_sha256": "a8c8e863dc885c0c5d5940cbbd9c2019269823980a0f6f7c04ec4be28e943ead"
+    },
+    {
+      "path": "output/runs/mistral4-ocr-control-barney-20261006/snapshots/recipe.yaml",
+      "sha256": "a6747f5d8c016b6ed14218c75a307e68e1ee970310fb284f9962a9deaa22a906",
+      "bytes": 1079,
+      "template_sha256": "a6747f5d8c016b6ed14218c75a307e68e1ee970310fb284f9962a9deaa22a906"
+    },
+    {
+      "path": "output/runs/mistral4-ocr-control-barney-20261006/snapshots/registry.json",
+      "sha256": "704c569bfe2085a47d5d08738945486d0cdabb5a180198c575fd3ee588c654a5",
+      "bytes": 3287,
+      "template_sha256": "704c569bfe2085a47d5d08738945486d0cdabb5a180198c575fd3ee588c654a5"
+    },
+    {
+      "path": "output/runs/mistral4-ocr-control-barney-20261006-recovery1/01_images_dir_to_manifest_v1/pages_images_manifest.jsonl",
+      "sha256": "e496af159f27d20b37898474c46fe3c6be4f96d943ddfddd409787e22b45129e",
+      "bytes": 527,
+      "template_sha256": "e496af159f27d20b37898474c46fe3c6be4f96d943ddfddd409787e22b45129e"
+    },
+    {
+      "path": "output/runs/mistral4-ocr-control-barney-20261006-recovery1/02_ocr_ai_gpt51_v1/pages_html.jsonl",
+      "sha256": "05d6508263a93b1b69a0eb9c8246ae6c4fff8e722f2b652227ab3c3471273bf5",
+      "bytes": 3672,
+      "template_sha256": "05d6508263a93b1b69a0eb9c8246ae6c4fff8e722f2b652227ab3c3471273bf5"
+    },
+    {
+      "path": "output/runs/mistral4-ocr-control-barney-20261006-recovery1/pipeline_events.jsonl",
+      "sha256": "3fa9d749c43ff28c16f988ed4bb95f24b9589d9fb1f9a3612db8e882d4f36105",
+      "bytes": 4862,
+      "template_sha256": "3fa9d749c43ff28c16f988ed4bb95f24b9589d9fb1f9a3612db8e882d4f36105"
+    },
+    {
+      "path": "output/runs/mistral4-ocr-control-barney-20261006-recovery1/pipeline_state.json",
+      "sha256": "73dd1309164b0a7930dc781887baba8f8d5fdf5fc24883e11734b8c9d5e9685d",
+      "bytes": 1439,
+      "template_sha256": "73dd1309164b0a7930dc781887baba8f8d5fdf5fc24883e11734b8c9d5e9685d"
+    },
+    {
+      "path": "output/runs/mistral4-ocr-control-barney-20261006-recovery1/snapshots/plan.json",
+      "sha256": "a8c8e863dc885c0c5d5940cbbd9c2019269823980a0f6f7c04ec4be28e943ead",
+      "bytes": 2107,
+      "template_sha256": "a8c8e863dc885c0c5d5940cbbd9c2019269823980a0f6f7c04ec4be28e943ead"
+    },
+    {
+      "path": "output/runs/mistral4-ocr-control-barney-20261006-recovery1/snapshots/recipe.yaml",
+      "sha256": "a6747f5d8c016b6ed14218c75a307e68e1ee970310fb284f9962a9deaa22a906",
+      "bytes": 1079,
+      "template_sha256": "a6747f5d8c016b6ed14218c75a307e68e1ee970310fb284f9962a9deaa22a906"
+    },
+    {
+      "path": "output/runs/mistral4-ocr-control-barney-20261006-recovery1/snapshots/registry.json",
+      "sha256": "704c569bfe2085a47d5d08738945486d0cdabb5a180198c575fd3ee588c654a5",
+      "bytes": 3287,
+      "template_sha256": "704c569bfe2085a47d5d08738945486d0cdabb5a180198c575fd3ee588c654a5"
+    },
+    {
+      "path": "output/runs/mistral4-ocr-control-barney-20261006-recovery1/timing_summary.json",
+      "sha256": "d67ca078dbffdf4734ef61e9ad5fdf7cd5b2684bf76affaaf933c85cbb3a1860",
+      "bytes": 441,
+      "template_sha256": "d67ca078dbffdf4734ef61e9ad5fdf7cd5b2684bf76affaaf933c85cbb3a1860"
+    }
+  ],
+  "archive": {
+    "path": "docs/evals/evidence/061-mistral4-receipts.tar.gz",
+    "bytes": 31267544,
+    "sha256": "387d8683605f92e083cbda3ee13c6e727a0c6a82c011c1bce60509e486114110",
+    "blob_hashes": [
+      "08b47a53452babd5ee4b23c72c35aedd4b64d1f3491ca371294ff0317d1bf5ff",
+      "10cbac03c5666963a197fd93271dd2a50bd079b12a0d79f9257b6e739079957a",
+      "18e713ac29cf95cdb96b4f43514c1fa1bfb104fd86fb2f43a250accbf6b69faf",
+      "1cd664289bbf7f54f918d02d9958f3cfdd2089185cb563ba62b4afad3ec8e02f",
+      "316c7e972ced60576b6c43833dc754e71736142dd0c9c51e314299f5de333ebb",
+      "34a5d473bdd2e5edcd5190e946bc6a67cceef82224c437dd82588c57327a9634",
+      "3aa9dcd4d5221e5f2492d7fe58f9897ebd3a5083449372b12b13e549f00acee8",
+      "4ba5291214f8ccb1a00a7673c48d74f5268503dec113812c2d9b9abc281da6f6",
+      "599e1879c60edae500718930def0d0b296e025f9e8e34153e9627851057fb67a",
+      "620956009cd19e9b7b96300c43a209fa7e46e75f5ce588ea7cb8f186a7c70994",
+      "63e8688d334e8aa8f0e0a176bc2ada3100536c69773010086f138b51a830c67c",
+      "704d793d3fef63897fd2329043ad9e81b9da5ff5d2997eb3e1a51ddaf7b5a1ab",
+      "71806b69682ae403974ab6090429aa894029c3d3771b77c76bdbe10cb2102f83",
+      "7aa9a0f74ee5be30bef3b0a9fcf8827d6beb56d1f8f0e39e93e9be033271e7cf",
+      "a6861fb7eccfbf56dbe7dd7ba97f0796ac1923d623f6d116e3ce78ece63facff",
+      "a8bd27a3aea732312d185057adb765fa82b594dbbb9516622aeae8f4872ef40e",
+      "ac5c5a1e727deb6d9b132e6c994533566fd4942cfc6deeb1ff1154fbd9f56f7e",
+      "ac5e0b041c554e4b0e16acc27f183c171138859dc09434f9c128136d10d9dbaa",
+      "b30bde1dbec6e8e00dd3e9a7b7df6322eb7054843a510a580bb4e2ea09af7789",
+      "c446337a036972508a0dd4c3dc83191fb6ce2c30e8d0df4090df9cf1f4565464",
+      "cddf2ee34357bb29c7d1c46d9c276dd84f694a49e6d00a8a0871f7ac936dfaca",
+      "d58cb6142e0c5688b34ba8877ca45f4affb63dea1f44b608b0e2464e7ef5d0ca"
+    ]
+  },
+  "sources": {
+    "docs/evals/evidence/061-execution-sources/original-ocr-main.py": {
+      "bytes": 30491,
+      "sha256": "a9db81b3d7ed5066a25e4fe24f47c725677014dce677fc8449080b5e90552f6f"
+    },
+    "docs/evals/evidence/061-execution-sources/original-mistral4-guard.py": {
+      "bytes": 7739,
+      "sha256": "67957c5dd5359a4d529047f248a9bca2ed7349aaa70d0f7214afc299298f6af7"
+    },
+    "docs/evals/evidence/061-execution-sources/benchmarks/providers/mistral4_openai.py": {
+      "bytes": 529,
+      "sha256": "6321be7e8f9f9a79f810655cdbd85351dded6f2ff0fa2460860ee714b281488e"
+    },
+    "docs/evals/evidence/061-execution-sources/benchmarks/providers/mistral4_candidate.py": {
+      "bytes": 871,
+      "sha256": "871a0f89f60df445300fe304f2bad8b4d2cf9ed834476bb5b819f7c75bf93817"
+    },
+    "docs/evals/evidence/061-execution-sources/benchmarks/providers/mistral4_guard.py": {
+      "bytes": 8054,
+      "sha256": "9682b5daf7589b37db8d82956d5e4ce7314e046037595352b529959bb19b1e7e"
+    },
+    "docs/evals/evidence/061-execution-sources/benchmarks/providers/mistral4_ocr.py": {
+      "bytes": 1200,
+      "sha256": "c5bf0d97c5eb22098edec6d6abf355ebe7174347d7d50c0f32a971b239052c1d"
+    },
+    "docs/evals/evidence/061-execution-sources/benchmarks/providers/mistral4_gemini.py": {
+      "bytes": 2445,
+      "sha256": "0a9e40f262930d4e24e1e3c77dba40862264d92f2c6f37288ab54cd380a4c110"
+    },
+    "docs/evals/evidence/061-execution-sources/benchmarks/scorers/crop_validation_scorer.py": {
+      "bytes": 4546,
+      "sha256": "12eb63725523bd00d59ce12b7486db8c9244124a0c57bb68cae8b8e9e7d288fb"
+    },
+    "docs/evals/evidence/061-execution-sources/benchmarks/scorers/image_crop_scorer.py": {
+      "bytes": 10333,
+      "sha256": "7fcf07e05726bf3ebbc2488a503a9d7f165dde79649890cbd65f12a6ce4c19e7"
+    },
+    "docs/evals/evidence/061-execution-sources/benchmarks/scorers/handwritten_notes_transcription.py": {
+      "bytes": 4712,
+      "sha256": "3e8ab803e94b22b139e78d51bd029f6502ecac03a170f2dd7955b86afd67ee6b"
+    },
+    "docs/evals/evidence/061-execution-sources/benchmarks/scripts/mistral4_progressive.py": {
+      "bytes": 1444,
+      "sha256": "47d6eaa34404442e2bb0653350e9592efc63faa9f2ad75ebf3e8e778b2a49e6f"
+    },
+    "docs/evals/evidence/061-execution-sources/benchmarks/scripts/mistral4_native_probe.py": {
+      "bytes": 2405,
+      "sha256": "9a550ec544e435022762e70f7f8a4f8617d4002ea318135f86fcfdb5159eec27"
+    },
+    "docs/evals/evidence/061-execution-sources/benchmarks/prompts/validate-page-level-crop.js": {
+      "bytes": 4043,
+      "sha256": "ef4395838929b208fe65f21500d81ade902072bef3f8e53f81ef3d3b83fbc421"
+    },
+    "docs/evals/evidence/061-execution-sources/benchmarks/prompts/crop-conservative-count.js": {
+      "bytes": 1782,
+      "sha256": "d15c7fd6f20389e5e7b2af9f15dd3697a31c28f47cfea8147c8114fe82f1e8f9"
+    },
+    "docs/evals/evidence/061-execution-sources/modules/extract/ocr_ai_gpt51_v1/main.py": {
+      "bytes": 30826,
+      "sha256": "1147a8e80a502153ae4174662e1dab88c878d251ccfcf3034b230cab407f34bd"
+    },
+    "benchmarks/tasks/mistral4-detector-full.yaml": {
+      "bytes": 2861,
+      "sha256": "185f902b5a0fc69da43857456895cb4388dfebacc1e405e3782fc8739deb67b7"
+    },
+    "benchmarks/tasks/mistral4-safety-full.yaml": {
+      "bytes": 8098,
+      "sha256": "562f4df84dff2f133431c4f22e2e76db2c5029a5a05cec582eb7a282ec361ad1"
+    },
+    "benchmarks/tasks/mistral4-detector-screen.yaml": {
+      "bytes": 809,
+      "sha256": "9575dd0d8a6d81d7a1b46288c703a8a890c70346452f622d0594fef7b2038b72"
+    },
+    "benchmarks/tasks/mistral4-safety-case-01.yaml": {
+      "bytes": 937,
+      "sha256": "cdcb01c77e1b8699658f3b035d336a90685e46c01f61a3f770d39bfdbf9bd9f1"
+    },
+    "benchmarks/tasks/mistral4-safety-case-00.yaml": {
+      "bytes": 937,
+      "sha256": "f8d7402c3ccef5780e0f2db12f8872a7d4ab6aae09881400e6178f08f7bbea8b"
+    },
+    "benchmarks/tasks/mistral4-safety-control-case-00.yaml": {
+      "bytes": 813,
+      "sha256": "8a5e52fa2bd3e04c35ff9edd9b8d9cd9a970dde29e685e254be579aa703fd502"
+    },
+    "benchmarks/tasks/mistral4-safety-screen.yaml": {
+      "bytes": 937,
+      "sha256": "4305a78fa47004bc7f60f169dd6ef76fd8b95e278ccffc35994ca9a0ec3083d7"
+    },
+    "benchmarks/tasks/mistral4-detector-control-screen.yaml": {
+      "bytes": 512,
+      "sha256": "1c4e597684221eb06e6b4c6dfc268e16ace1483b9446992931e08fc41423faba"
+    },
+    "benchmarks/tasks/mistral4-detector-control-full.yaml": {
+      "bytes": 2564,
+      "sha256": "49a408cea35cce17172297bcf97980b5712ac681cf51da20cf27dfeeb0774ebb"
+    },
+    "benchmarks/tasks/mistral4-safety-case-04.yaml": {
+      "bytes": 937,
+      "sha256": "c4b5246e00c8c6275596de2d03d6bca32f97944faf2f5cd2f85c7abac669dc99"
+    },
+    "benchmarks/tasks/mistral4-safety-control-screen.yaml": {
+      "bytes": 813,
+      "sha256": "7c61b7f2d0d5f71dc8e758e4f14e4f9cac4b52e29616a94fd1106146c8563589"
+    },
+    "benchmarks/tasks/mistral4-safety-case-03.yaml": {
+      "bytes": 937,
+      "sha256": "b3e4f2223cd631a7d320835786adcfcb306a40e2cf2b07f21d76bc4d4917478d"
+    },
+    "benchmarks/tasks/mistral4-safety-control-full.yaml": {
+      "bytes": 7974,
+      "sha256": "21dad3ca21ef68506fd230d5f46176c77e549dfc5aea074e2937406931cbd3bb"
+    },
+    "benchmarks/tasks/mistral4-safety-case-02.yaml": {
+      "bytes": 937,
+      "sha256": "4ad00af6fed105051fc390a6cdf062de55f1de289103bcaab81717e049db0902"
+    },
+    "configs/recipes/mistral4-ocr-control-barney.yaml": {
+      "bytes": 1017,
+      "sha256": "cc5ac6ad79d9a519888321069f531a764e852158174039570641830f0945a359"
+    },
+    "configs/recipes/mistral4-ocr-candidate-barney.yaml": {
+      "bytes": 1028,
+      "sha256": "ed270f9ab866d2adaae68158f0d8592312ae36d3b22dd85cfb1bf27f9825f92b"
+    },
+    "configs/recipes/mistral4-ocr-control-alverson.yaml": {
+      "bytes": 1021,
+      "sha256": "29fb42148292234c1ecfa6d349e283c481f249e9abaef2ae8d5a96dad03e88a0"
+    },
+    "configs/recipes/mistral4-ocr-candidate-alverson.yaml": {
+      "bytes": 1032,
+      "sha256": "e1e1ee280bd13374f08c92dd87477fb570989f83bb84707d930debe9ab91b264"
+    },
+    "benchmarks/golden/crop-page-level-safety-repair-048.json": {
+      "bytes": 4722,
+      "sha256": "dd03e49a4a23fce3a15825fe373340b21048b8c841a1acb4b4ed51986d3a5533"
+    },
+    "benchmarks/golden/crop-page-level-safety-repair-048-source-adjudicated.json": {
+      "bytes": 5157,
+      "sha256": "6f32bc513494f1c4454b4c41e74186136212d477ff10c87ccb29244ca21aaa76"
+    },
+    "testdata/handwritten-notes-barney-real.txt": {
+      "bytes": 1397,
+      "sha256": "78827ef175378bd2c55d0405fc35213acfc17e348b5edd48b1e089525a83e2bf"
+    },
+    "testdata/handwritten-notes-alverson-real.txt": {
+      "bytes": 879,
+      "sha256": "54291e20b842e2299fee392cd881a202f181263da10f4e85cb8ca49dfe74ac27"
+    }
+  },
+  "provenance_limits": [
+    "Native safety overlapped final detector requests despite plannedserial; ledger/numbered native files overwritten. Surviving full native-safety response settles exactcost. Deterministic reconstructed request is explicitly reconstructed, originalledgerbytes absent and latencylost. Production safety screen request-030/response-030 captured actual strictflag proof; native mini excluded from semantic scores. The surviving native-safety.json is a complete parsed envelope serialized separately, not original HTTP response bytes; both original numbered transport request/response byte files lost. Receipt30 production safety retains exact HTTP request/response bytes.",
+    "Detector latency descriptive5.137vs6.739s, partially overlapped one qualificationcall; not controlledconcurrency/variance proof.",
+    "OCR control first Python3.14venv driver start missinggoogleSDK beforeHTTP($0). ExistingPython3.11SDK restored actualdriver control with newrunid; failed run/log retained. CandidatePython3.14/controlPython3.11; exact system/user/imagebytes match.",
+    "Executed source snapshots preserved before formatting-only lint corrections; originalguard bytes reconstructed and hash verified against original paid receipts."
+  ],
+  "verdict": {
+    "detector": "Do not adopt now: numeric13/13>=.95 and lowercost, but source-visible critical logo clipping; retain Gemini until heldout/sourcefaithfulness and retainedsafetydriver proof.",
+    "safety": "Do not adopt: valid false-safe incomplete seal under source-adjudicated truth; full22 notpassed, later17 unrun. FreshGPT5.5 false-rejectcover also stops independently.",
+    "ocr": "Do not adopt: Barney.939957 worse than freshGemini.978830; both<.99. Alversonsourcegoldvalidprechecked but notmeasured."
+  },
+  "validation": {
+    "command": "python -m pytest tests/test_mistral4_guard.py tests/test_openrouter_vision_chat_provider.py tests/test_openai_responses_model_provider.py tests/test_handwritten_notes_eval.py tests/test_ocr_ai_gpt51_empty_page_recovery.py tests/test_ocr_ai_gpt51_schema.py tests/test_ocr_ai_gpt51_sanitize.py -q",
+    "result": "43 passed in2.85s; Python3.11.5; post-format sources",
+    "lint": "python -m ruff check benchmarks/providers/mistral4*.py benchmarks/scripts/mistral4*.py docs/evals/evidence/061-reconstruct.py tests/test_mistral4_guard.py modules/extract/ocr_ai_gpt51_v1/main.py \u2014 passed",
+    "methodology": "make methodology-compile methodology-check \u2014 passed. Initial failedcandidate score insertedfirst temporarily confused maintained-first coverage compiler; moved scorehistory to end without altering coverage/truth/defaults.",
+    "hygiene": "git diff --check \u2014 passed",
+    "reconstruction": "python docs/evals/evidence/061-reconstruct.py /tmp/docweb-mistral4-reconstructed \u2014132 exactfiles verified",
+    "scope": "Changed eval-only provider/projection, budget/duplicate/unknown/noreasoning/crossprocess dispatch, owner schema/scorers and affected OCRHTMLconsumers; no unrelated suites or new paid calls"
+  },
+  "external_sources": {
+    "checked": "2026-10-06",
+    "candidate": "https://openrouter.ai/api/v1/models/mistralai/mistral-large-4-0/endpoints",
+    "gpt55": "https://developers.openai.com/api/docs/models/gpt-5.5",
+    "gemini37": "https://ai.google.dev/gemini-api/docs/pricing.md",
+    "gemini3": "https://blog.google/products-and-platforms/products/gemini/gemini-3-flash/"
+  },
+  "commands": {
+    "preflight": "Full 8 independent one-provider task rendering used owner gpt61_preflight.one_task with exact provider max_tokens corrected before calls; topology061 records output allowance/rates",
+    "detector": "DOC_WEB_ENV_FILE=/Users/cam/Documents/Projects/doc-web/.env PROMPTFOO_DISABLE_ADAPTIVE_SCHEDULER=true MISTRAL_STAGE=<stage> scripts/run_with_doc_web_env.py promptfoo eval -c tasks/mistral4-<lane>-<screen/full>.yaml --no-cache -j 1 --output results/mistral-large4-20261006/<stage>.json",
+    "safety": "Same wrapper environment, python benchmarks/scripts/mistral4_progressive.py safety or safety-control; one-case tasks/results pause on mismatch",
+    "ocr": "DOC_WEB_ENV_FILE=/Users/cam/Documents/Projects/doc-web/.env PYTHONPATH=benchmarks/mistral4-bootstrap:<worktree> MISTRAL_STAGE=ocr-<candidate/control> MISTRAL_CASE=barney scripts/run_with_doc_web_env.py python driver.py --recipe configs/recipes/mistral4-ocr-<arm>-barney.yaml --run-id mistral4-ocr-<arm>-barney-20261006[-recovery1] --force",
+    "reconstruct": "python docs/evals/evidence/061-reconstruct.py <protected-destination>"
+  },
+  "postcall_source_hashes": {
+    "benchmarks/providers/mistral4_openai.py": "70c74c1b321785c798c9de6bf28e1cc361857255e05ab7a6c4a0b0b7bb68be83",
+    "benchmarks/providers/mistral4_candidate.py": "c5028feda4741962efd26a21b27e89423394152788e41c5739d5919100ae88cf",
+    "benchmarks/providers/mistral4_guard.py": "67e86b0a04bd157e0eb8ab0121bed86ec169f33ce9f01ecc34245b4332d0ebae",
+    "benchmarks/providers/mistral4_ocr.py": "9d5a2a2cf5cf2c535d8fcdcd0ae775e7835750150ad27ce42fc4540f300ed0ee",
+    "benchmarks/providers/mistral4_gemini.py": "d7551a0e5279a5e48cf0c5e4e7d36b6ffa24d6ad267f3113b731fb8ae78db664",
+    "benchmarks/scripts/mistral4_progressive.py": "f20b941f92e30c284a2c2427a35fc52e0f3b745589886af1bea49bfc275382e2",
+    "benchmarks/scripts/mistral4_finalize.py": "e72bb5017ad6c89d9fafa0e3199c41677c9814725c1edcbdac1c57c1727c92f7",
+    "benchmarks/scripts/mistral4_native_probe.py": "8dc7d66da3014ac893b5e99e9a25f2d19a2877f9d9f7ffbb848a448cfcf471ca",
+    "tests/test_mistral4_guard.py": "3fd4f4257acd30facbc4584fafcdaf51b8b6822901477adec675b681e1705bd2",
+    "modules/extract/ocr_ai_gpt51_v1/main.py": "1147a8e80a502153ae4174662e1dab88c878d251ccfcf3034b230cab407f34bd"
+  },
+  "closeout_preflight": {
+    "checked": "2026-10-06",
+    "origin_main": "fc558e2e924d0d598f31c69ee86fd5255f696f86",
+    "integration": "base unchanged; no conflict",
+    "validation_reuse": "43 focused tests, changed-source Ruff, exact archived source and current-source hashes; no runtime/code edit since checks; documentation wording-only clarification",
+    "primary_checkout": "clean; untouched",
+    "push": "held pending coordinator all-repo preflight"
+  }
+}
