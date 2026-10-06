@@ -116,3 +116,29 @@ are added. A fresh full bounded review round follows integration. PDF fixture by
 are marked binary so required PDF whitespace remains immutable; Markdown trailing
 whitespace is removed. The figure-aware recipe guidance explicitly requires both
 review adapter and builder qualification gate.
+
+Merged-candidate verification: 543 focused tests pass, including reference
+resolution, navigation and driver consumer repairs. `make lint` and methodology
+check pass. Both fresh qualified cases were rebuilt through driver.py with
+reference resolution: 13/13 and 23/23 exact cells, final HTML byte-identical to
+the frozen outputs, all portable report and chapter hashes valid. Samples
+manually read include Ab-21/AB-21, cataloge, Il1-O0, o0-LI, recieve and blank
+cells. See `output/story244-phase2/merged-builder-proof.json` and
+`merged-{native,image}-driver.txt`. The first resume refused existing output
+paths; prior outputs were preserved as html-premerge before successful rebuild.
+No OCR/review calls were repeated.
+
+Round 2 runtime (80 checks) and evidence shards are clean. The evidence review
+identified one minor stale Attempt060 README link, corrected to062; it did not
+affect frozen fixture bytes or scores. Baseline full-suite installer/test-order
+limits above remain distinct and unchanged.
+
+Final round 2 contract shard is clean: 452 comparator/publication/navigation/
+reference checks pass. Synthetic reference-enrichment probe preserves the exact
+canonical table digest (four resolved links, one explicit abstention). All three
+independent round-2 shards report no material finding. Accepted integration
+fix: provider guard; minor README/recipe wording fixes applied. No rejected or
+unresolved material finding remains in the bounded story surface. This is the
+loop stop condition; unrelated baseline issues remain follow-ups, not claimed
+as fixed. Validation applies to merged candidate608268a plus documentation-only
+closure changes, with applicable earlier broad evidence reused as described.

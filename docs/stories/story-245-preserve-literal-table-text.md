@@ -16,10 +16,10 @@ legacy_system: ""
 
 # Story 245 — Preserve literal table text through OCR and export
 
-**Priority**: High  
-**Status**: Done  
-**Relative effort**: M, subject to the bounded baseline comparison  
-**Decision Refs**: ADR-001; ADR-002; [source investigation](../notes/table-literal-fidelity-2026-10-06.md); document-consistency planning runbook  
+**Priority**: High
+**Status**: Done
+**Relative effort**: M, subject to the bounded baseline comparison
+**Decision Refs**: ADR-001; ADR-002; [source investigation](../notes/table-literal-fidelity-2026-10-06.md); document-consistency planning runbook
 **Depends On**: None. Reuse Stories 128/140/170/226/243 without waiting for Story 226's broader visual qualification.
 
 ## Goal
@@ -436,3 +436,13 @@ and localhost servers are closed. No commit or push performed.
 
 **Story marked Done via /mark-story-done.** `/finish-and-push` is the recommended
 next step if the user later authorizes landing.
+
+### Authorized landing integration
+
+Remote main concurrently allocated Story244 and Attempt060; this work is
+renumbered Story245/Attempt062 while preserving historical run/evidence paths.
+Merged reference-resolution consumer checks pass (543 focused checks), and
+both qualified driver rebuilds retain byte-identical frozen HTML and valid
+portable hashes. The Mistral provider merge retains the OpenAI-only literal
+receipt guard with two new controls. Close-out review is recorded in the
+existing validation note; paid confirmations and quality claims are unchanged.

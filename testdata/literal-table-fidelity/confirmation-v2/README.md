@@ -16,7 +16,7 @@ ambiguous initial result7/8 cells, held before export with both glyph cells flag
 Hidden-layer pixels match the image-only source; the production reader receives
 only the page raster. This control was offline, not a second paid extraction.
 
-Original candidate/evidence: docs/evals/attempts/060-literal-table-fidelity.md.
+Original candidate/evidence: docs/evals/attempts/062-literal-table-fidelity.md.
 Do not use this panel as fresh confirmation again.
 
 `retained-manifest.json` lists the portable retained files and their original seal
