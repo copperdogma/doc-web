@@ -1,0 +1,99 @@
+{
+  "title": "Bakery production register",
+  "font": "AndaleMono",
+  "font_size": 14,
+  "widths": [
+    136,
+    124,
+    94,
+    150
+  ],
+  "rows": [
+    [
+      {
+        "text": "Product",
+        "header": true
+      },
+      {
+        "text": "Lot",
+        "header": true
+      },
+      {
+        "text": "Trays",
+        "header": true
+      },
+      {
+        "text": "Note",
+        "header": true
+      }
+    ],
+    [
+      {
+        "text": "Olive loaf"
+      },
+      {
+        "text": "Il1-O0"
+      },
+      {
+        "text": "1+"
+      },
+      {
+        "text": "Cooling"
+      }
+    ],
+    [
+      {
+        "text": "Rye loaf"
+      },
+      {
+        "text": "o0-LI"
+      },
+      {
+        "text": "0"
+      },
+      {
+        "text": "recieve"
+      }
+    ],
+    [
+      {
+        "text": "Oat roll"
+      },
+      {
+        "text": "aB-9"
+      },
+      {
+        "text": ""
+      },
+      {
+        "text": "“Ready”"
+      }
+    ],
+    [
+      {
+        "text": "Oat roll"
+      },
+      {
+        "text": "AB-9"
+      },
+      {
+        "text": "-"
+      },
+      {
+        "text": "Ready; hold."
+      }
+    ],
+    [
+      {
+        "text": "Evening batch",
+        "colspan": 2
+      },
+      {
+        "text": "2"
+      },
+      {
+        "text": "No change"
+      }
+    ]
+  ]
+}

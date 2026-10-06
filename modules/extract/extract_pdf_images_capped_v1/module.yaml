@@ -41,4 +41,7 @@ params:
   - name: report
     type: str
     default: render_dpi_report.jsonl
+  - name: image_format
+    type: str
+    default: jpeg
 notes: "Attempts to detect embedded image DPI via pypdf/PyPDF2; falls back to dpi_cap if not available."

@@ -35,6 +35,63 @@
 
 evals:
 
+
+  - id: literal-table-fidelity
+    name: Literal table text and ownership preservation
+    type: quality
+    description: >
+      Exact source-character preservation and separate table structure checks
+      across a reproduced equipment table and varied synthetic documents.
+      Source typos and unusual tokens are data, not inferred corrections.
+    pipeline_stage: extract
+    runner: custom
+    command: "PYTHONPATH=. python benchmarks/scripts/run_literal_table_fidelity.py --manifest output/story244-eval/development.json --out output/story244-eval/fresh --variant literal"
+    story_refs: ["245"]
+    category_refs: ["spec:2", "spec:3", "spec:6"]
+    spec_refs: ["spec:2.1", "spec:2.2", "spec:3.1", "spec:6"]
+    compromise_refs: ["C1", "C3", "C6"]
+    target:
+      metric: exact_literal_and_structure_pass_rate
+      value: 1.0
+      silent_substitutions: 0
+      harmful_control_changes: 0
+    scores:
+      - model: gpt-5.1-baseline-and-literal
+        measured: 2026-10-06
+        git_sha: ba4c84a
+        metrics: {development_cases: 3, baseline_exact_cases: 0, literal_prompt_exact_cases: 0}
+        note: "Both variants fail all three development cases. Exact substitutions and span losses retained; no golden changes. Attempt 062 and current-parser-scores.json. Dirty candidate identities retained separately."
+      - model: gpt-6-astra-single-call-300dpi
+        measured: 2026-10-06
+        git_sha: ba4c84a
+        metrics: {development_cases: 3, development_exact_cases: 3, confirmation_cases: 1, confirmation_exact_cases: 0, confirmation_wrong_cells: 1}
+        note: "Rejected full OCR adoption after frozen unseen workshop failure. Original final equipment57/57 exact is diagnostic and unqualified. Preparation comparisons are separate epochs, not aggregate performance gains."
+      - model: gpt-6-astra-source-only-table-review-v1
+        measured: 2026-10-06
+        git_sha: ba4c84a
+        metrics: {confirmation_cases: 3, exact_literal_and_structure_pass_rate: 0.666667, safe_disposition_rate: 1.0, qualified_cases: 2, held_cases: 1, accepted_cells: 36, accepted_wrong_cells: 0, held_initial_wrong_cells: 1, uncertainty_cells: 2, harmful_control_changes: 0, semantic_rubrics_passed: 4, semantic_rubrics_total: 4, latency_ms: 15684.905625, cost_usd: 0.23970667, cost_estimated: true}
+        note: "Fresh frozen native/image-only confirmations qualify13/13 and23/23cells; identical-glyph negative holds with both ambiguous cells flagged and no export. Literal target1.0 remains unmet; holds never count as correct transcriptions. Timing/cost mean initial+review request sum per fresh case, not driver walltime. Current candidate/evidence summary: docs/evals/evidence/062-literal-table-fidelity-summary.json. No whole-book/default-model/consumer adoption claim."
+    attempts:
+      - id: "062"
+        date: 2026-10-06
+        status: failed
+        approach: >
+          Reject failed single-call adoption; opt-in independent source-only
+          inventory, exact agreement and explicit uncertainty gate; preserve
+          initial OCR, spans, literal entities and source-linked evidence.
+        note: >
+          Exact transcription target remains unmet: this quality attempt failed.
+          The separate safe-handling contract passed fresh native/image-only/
+          ambiguity controls and supports the opt-in gate, not full OCR adoption. Phase1 sixteen subjects,
+          Phase2 thirteen subjects/four Opus rubrics. Estimated token costs
+          USD1.39518/1.82228; reservations9.40/14.90 are separate. No favorable
+          confirmation reruns or document-specific production rules. See Attempt 062.
+        retry_when:
+          - condition: new-subject-model
+            note: "Re-evaluate exact ambiguous-glyph recovery using fresh confirmation; do not reuse exposed goldens as unseen."
+          - condition: new-approach
+            note: "Independently qualified visible/native glyph authority could raise coverage without weakening the hold gate."
+
   - id: reference-resolution
     name: Optional source-grounded reference resolution
     type: quality

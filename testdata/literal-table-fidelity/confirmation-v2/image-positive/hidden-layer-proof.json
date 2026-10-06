@@ -1,0 +1,8 @@
+{
+  "visible_pixels_unchanged": true,
+  "text_layer_nonempty_conflicts_with_optical_source": true,
+  "hidden_text_chars": 56,
+  "pdf_sha256": "2a907db05bab3b2a4792a336ecfbea81d30c6c110a1c1ecc87b527b70f7c0d5a",
+  "optical_render_sha256": "6371063c1cbb058d07f118cf05568e0194c2ca1846c403ebd1717a5c2bc53c8b",
+  "use": "Qualification-only safety control; source-only VLM gets unchanged source image, never hidden text."
+}

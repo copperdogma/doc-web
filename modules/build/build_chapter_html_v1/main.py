@@ -23,6 +23,7 @@ from bs4 import BeautifulSoup
 
 from modules.common.crop_review import validate_release_for_build
 from modules.common.manual_navigation import resolve_navigation, verify_final_navigation
+from modules.common.literal_fidelity_bundle import validate_literal_fidelity_inputs, finalize_literal_fidelity_bundle
 from modules.common.onward_genealogy_html import (
     merge_genealogy_tables_preserving_headings as _merge_genealogy_tables_preserving_headings,
     merge_contiguous_genealogy_tables as _merge_contiguous_genealogy_tables,  # noqa: F401
@@ -447,6 +448,7 @@ def _build_source_descriptors(pages: List[Dict[str, Any]]) -> List[Dict[str, Any
                 {
                     "block_kind": block_kind,
                     "page_number": page_number or 1,
+                    "original_page_number": page.get("original_page_number"),
                     "printed_page_number": printed_page_number,
                     "printed_page_label": printed_page_label,
                     "element_id": f"p{(page_number or 0):03d}-b{ordinal}",
@@ -579,6 +581,7 @@ def _tag_entry_body(entry: Dict[str, Any], *, run_id: Optional[str], created_at:
             continue
         printed_page_number = _coerce_int(page.get("printed_page_number"))
         page_metadata[page_number] = {
+            "original_page_number": page.get("original_page_number"),
             "printed_page_number": printed_page_number,
             "printed_page_label": page.get("printed_page_number_text")
             or (str(printed_page_number) if printed_page_number is not None else None),
@@ -613,6 +616,7 @@ def _tag_entry_body(entry: Dict[str, Any], *, run_id: Optional[str], created_at:
         if matched is None:
             matched = {
                 "page_number": fallback_source_page or 1,
+                "original_page_number": page_metadata.get(fallback_source_page, {}).get("original_page_number"),
                 "printed_page_number": fallback_printed_page,
                 "printed_page_label": fallback_printed_label,
                 "source_element_ids": [f"{entry_id}-b{ordinal:04d}"],
@@ -625,6 +629,7 @@ def _tag_entry_body(entry: Dict[str, Any], *, run_id: Optional[str], created_at:
                 if crop_element_id not in source_element_ids:
                     source_element_ids.append(crop_element_id)
             matched["page_number"] = override_page
+            matched["original_page_number"] = page_meta.get("original_page_number")
             matched["printed_page_number"] = page_meta.get("printed_page_number")
             matched["printed_page_label"] = page_meta.get("printed_page_label")
             matched["source_element_ids"] = source_element_ids or [f"{entry_id}-b{ordinal:04d}"]
@@ -639,6 +644,7 @@ def _tag_entry_body(entry: Dict[str, Any], *, run_id: Optional[str], created_at:
                 "entry_id": entry_id,
                 "block_kind": block_kind,
                 "source_page_number": matched["page_number"],
+                "source_original_page_number": matched.get("original_page_number"),
                 "source_element_ids": matched["source_element_ids"],
                 "source_printed_page_number": matched.get("printed_page_number"),
                 "source_printed_page_label": matched.get("printed_page_label"),
@@ -3235,6 +3241,8 @@ def main() -> None:
                         help="Require a current human crop-review release and fresh output paths before building")
     parser.add_argument("--crop-review-release", default=None,
                         help="Crop-review release receipt bound to the illustration manifest")
+    parser.add_argument("--require-literal-fidelity", action="store_true", default=False,
+                        help="Require source-only literal table receipts before qualified export")
     parser.add_argument("--images-subdir", dest="images_subdir", default="images",
                         help="Subdir under output/html for cropped images (default: images)")
     parser.add_argument("--book-title", dest="book_title", default="",
@@ -3285,12 +3293,21 @@ def main() -> None:
     run_dir = _resolve_run_dir(out_path)
     html_dir = Path(args.output_dir) if args.output_dir else (run_dir / "output" / "html")
     images_dir = html_dir / args.images_subdir
-    review = None
     if args.require_crop_review or args.crop_review_release is not None:
         if not args.crop_review_release or not args.illustration_manifest or not args.run_id:
             parser.error("Crop review requires --crop-review-release, --illustration-manifest, and --run-id")
+    literal_requested = args.require_literal_fidelity or any(
+        row.get("literal_fidelity") is not None for row in read_jsonl(args.pages))
+    if literal_requested or args.require_crop_review or args.crop_review_release is not None:
         try:
             _check_reviewed_output_paths(html_dir, args.images_subdir, [args.out, args.state_file, args.progress_file])
+        except ValueError as exc:
+            parser.error(f"Reviewed build paths blocked: {exc}")
+    if literal_requested and (html_dir.exists() or out_path.exists()):
+        parser.error("Literal fidelity builds require fresh output paths")
+    review = None
+    if args.require_crop_review or args.crop_review_release is not None:
+        try:
             review = validate_release_for_build(
                 args.illustration_manifest,
                 args.crop_review_release,
@@ -3308,28 +3325,29 @@ def main() -> None:
         except (ValueError, KeyError, TypeError, OSError) as exc:
             parser.error(f"Crop review blocked build: {exc}")
 
-    if review is not None:
+    if review is not None or literal_requested:
         html_dir.parent.mkdir(parents=True, exist_ok=True)
         try:
             with tempfile.TemporaryDirectory(prefix=".crop-review-build-", dir=html_dir.parent) as temporary:
                 staged_dir = Path(temporary) / "html"
                 manifest_rows = _build(args, staged_dir, html_dir, run_dir)
-                _check_reviewed_visuals(staged_dir, review["expected_filenames"], args.images_subdir)
-                validate_release_for_build(
-                    args.illustration_manifest,
-                    args.crop_review_release,
-                    expected_run_id=args.run_id,
-                    output_dir=str(html_dir),
-                    images_dir=str(images_dir),
-                    output_manifest_path=args.out,
-                    pages_path=args.pages,
-                    portions_path=args.portions,
-                    state_file=args.state_file,
-                    progress_file=args.progress_file,
-                )
+                if review is not None:
+                    _check_reviewed_visuals(staged_dir, review["expected_filenames"], args.images_subdir)
+                    validate_release_for_build(
+                        args.illustration_manifest,
+                        args.crop_review_release,
+                        expected_run_id=args.run_id,
+                        output_dir=str(html_dir),
+                        images_dir=str(images_dir),
+                        output_manifest_path=args.out,
+                        pages_path=args.pages,
+                        portions_path=args.portions,
+                        state_file=args.state_file,
+                        progress_file=args.progress_file,
+                    )
                 _publish_reviewed_build(staged_dir, html_dir, out_path, manifest_rows)
         except (ValueError, KeyError, TypeError, OSError) as exc:
-            parser.error(f"Crop review blocked publication: {exc}")
+            parser.error(f"Reviewed build blocked publication: {exc}")
     else:
         manifest_rows = _build(args, html_dir, html_dir, run_dir)
         save_jsonl(args.out, manifest_rows)
@@ -3345,6 +3363,8 @@ def _build(args, html_dir: Path, published_html_dir: Path, run_dir: Path) -> Lis
         raise SystemExit(f"Input pages empty: {args.pages}")
     if not portions:
         raise SystemExit(f"Input portions empty: {args.portions}")
+    literal_qualified = validate_literal_fidelity_inputs(
+        pages, run_id=args.run_id, required=getattr(args, "require_literal_fidelity", False))
 
     book_title = args.book_title or "Book"
     book_author = args.book_author or ""
@@ -3432,6 +3452,7 @@ def _build(args, html_dir: Path, published_html_dir: Path, run_dir: Path) -> Lis
             prepared_pages.append({
                 "html": html,
                 "page_number": page_num,
+                "original_page_number": page.get("original_page_number"),
                 "printed_page_number": printed_page_number,
                 "printed_page_number_text": page.get("printed_page_number_text") or (
                     str(printed_page_number) if printed_page_number is not None else None
@@ -3556,6 +3577,7 @@ def _build(args, html_dir: Path, published_html_dir: Path, run_dir: Path) -> Lis
                 {
                     "html": body_html,
                     "page_number": page_num,
+                    "original_page_number": page.get("original_page_number"),
                     "printed_page_number": printed_num,
                     "printed_page_number_text": printed_text or (
                         str(printed_num) if printed_num is not None else None
@@ -3732,6 +3754,8 @@ def _build(args, html_dir: Path, published_html_dir: Path, run_dir: Path) -> Lis
     save_json(str(html_dir / "navigation_resolution_report.json"), navigation_report)
     if navigation_report["final_validation"]["issues"]:
         raise ValueError(f"Final HTML navigation failed: {navigation_report['final_validation']['issues']}")
+    literal_qualification = finalize_literal_fidelity_bundle(
+        literal_qualified, html_dir=html_dir, entries=bundle_entries, run_id=args.run_id)
 
     provenance_path = html_dir / "provenance" / "blocks.jsonl"
     save_jsonl(str(provenance_path), provenance_rows)
@@ -3751,6 +3775,7 @@ def _build(args, html_dir: Path, published_html_dir: Path, run_dir: Path) -> Lis
             "reading_order": [entry["entry_id"] for entry in bundle_entries],
             "asset_roots": emitted_asset_roots,
             "provenance_path": "provenance/blocks.jsonl",
+            **({"literal_fidelity": literal_qualification} if literal_qualification else {}),
         },
     )
 

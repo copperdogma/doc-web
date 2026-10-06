@@ -110,12 +110,19 @@ def _page_max_image_dpi(page) -> Optional[float]:
     return _extract_max_image_dpi_from_xobject(xobject, page_w_in, page_h_in)
 
 
-def _build_manifest_row(page: int, page_number: int, image_path: str, run_id: Optional[str]) -> Dict[str, Any]:
+def _build_manifest_row(
+    page: int,
+    page_number: int,
+    image_path: str,
+    run_id: Optional[str],
+    source_pdf: Optional[str] = None,
+) -> Dict[str, Any]:
     return {
         "schema_version": "page_image_v1",
         "module_id": "extract_pdf_images_capped_v1",
         "run_id": run_id,
         "created_at": _utc(),
+        "source": [os.path.abspath(source_pdf)] if source_pdf else None,
         "page": page,
         "page_number": page_number,
         "original_page_number": page,
@@ -250,6 +257,13 @@ def main() -> None:
     parser.add_argument("--run-id", help="Run identifier for logging")
     parser.add_argument("--out", default="pages_rendered_manifest.jsonl", help="Output manifest filename")
     parser.add_argument("--report", default="render_dpi_report.jsonl", help="Per-page DPI report filename")
+    parser.add_argument(
+        "--image-format",
+        dest="image_format",
+        choices=["jpeg", "png"],
+        default="jpeg",
+        help="Rendered page image format (default: jpeg)",
+    )
     args = parser.parse_args()
 
     dpi_cap = args.dpi_cap
@@ -434,13 +448,22 @@ def main() -> None:
             )
             continue
 
-        out_path = os.path.join(images_dir, f"page-{page_idx:03d}.jpg")
-        images[0].save(out_path, "JPEG")
+        image_format = args.image_format.lower()
+        extension = "jpg" if image_format == "jpeg" else "png"
+        pil_format = "JPEG" if image_format == "jpeg" else "PNG"
+        out_path = os.path.join(images_dir, f"page-{page_idx:03d}.{extension}")
+        images[0].save(out_path, pil_format)
 
         page_number += 1
-        manifest_rows.append(_build_manifest_row(page_idx, page_number, out_path, args.run_id))
+        manifest_rows.append(
+            _build_manifest_row(
+                page_idx, page_number, out_path, args.run_id, source_pdf=args.pdf
+            )
+        )
         report_rows.append({
             "page": page_idx,
+            "image_format": image_format,
+            "image": os.path.abspath(out_path),
             "render_dpi": render_dpi,
             "dpi_cap": dpi_cap,
             "target_dpi": target_dpi,
@@ -479,6 +502,7 @@ def main() -> None:
     )
     save_json(os.path.join(args.outdir, "render_dpi_summary.json"), {
         "pdf": os.path.abspath(args.pdf),
+        "image_format": args.image_format,
         "start": start_page,
         "end": end_page,
         "dpi_cap": dpi_cap,

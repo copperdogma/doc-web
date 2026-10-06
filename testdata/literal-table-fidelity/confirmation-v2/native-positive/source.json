@@ -1,0 +1,65 @@
+{
+  "title": "Library accession checklist",
+  "font": "Times-Roman",
+  "font_size": 14,
+  "widths": [
+    170,
+    150,
+    184
+  ],
+  "rows": [
+    [
+      {
+        "text": "Collection",
+        "header": true
+      },
+      {
+        "text": "Accession",
+        "header": true
+      },
+      {
+        "text": "Review",
+        "header": true
+      }
+    ],
+    [
+      {
+        "text": "Botany"
+      },
+      {
+        "text": "Ab-21"
+      },
+      {
+        "text": "“Complete”"
+      }
+    ],
+    [
+      {
+        "text": "Poetry"
+      },
+      {
+        "text": "AB-21"
+      },
+      {
+        "text": "cataloge"
+      }
+    ],
+    [
+      {
+        "text": "Maps"
+      },
+      {
+        "text": "M/07"
+      },
+      {
+        "text": "Checked; ready."
+      }
+    ],
+    [
+      {
+        "text": "Preserve printed labels.",
+        "colspan": 3
+      }
+    ]
+  ]
+}

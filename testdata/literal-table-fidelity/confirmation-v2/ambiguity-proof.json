@@ -1,0 +1,10 @@
+{
+  "engineered_font_alias": true,
+  "codepoints_distinct": true,
+  "glyph_pixels_equal": true,
+  "advance_equal": true,
+  "raster_size_px": 39,
+  "glyph_sha256": "be3add5846616a5e9e6c29b023433de622bf441e3674fbd15d10b816ebf25900",
+  "font_sha256": "e837097581388a634c18db795aa9dfaa3209fbcd8683d302e2d29b836f85cc06",
+  "expected_behavior": "Explicit uncertainty or refusal to choose a glyph; never exact inferred substitution."
+}

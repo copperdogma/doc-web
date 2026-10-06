@@ -42,6 +42,13 @@ class HtmlSchemaValidator(HTMLParser):
                 self.errors.append(f"p has extra attrs: {extra}")
             return
 
+        if tag in {"td", "th"}:
+            for name, value in attrs_dict.items():
+                limit = 65534 if name == "rowspan" else 1000
+                if name not in {"rowspan", "colspan"} or not (value or "").isascii() or not (value or "").isdigit() or not 1 <= int(value) <= limit:
+                    self.errors.append(f"{tag} has invalid span attr: {name}={value}")
+            return
+
         if attrs_dict:
             self.errors.append(f"{tag} has unexpected attrs: {list(attrs_dict.keys())}")
 
@@ -61,3 +68,15 @@ def test_fixture_html_conforms_to_schema():
         parser = HtmlSchemaValidator()
         parser.feed(row["html"])
         assert not parser.errors, f"page {row.get('page')}: {parser.errors}"
+
+
+def test_table_span_attributes_conform_to_schema():
+    parser = HtmlSchemaValidator()
+    parser.feed('<table><tr><th colspan="3">Header</th></tr><tr><td rowspan="2">Value</td></tr></table>')
+    assert not parser.errors
+
+
+def test_unsafe_table_attributes_are_rejected():
+    parser = HtmlSchemaValidator()
+    parser.feed('<table><tr><td colspan="1001" onclick="bad()">Value</td></tr></table>')
+    assert len(parser.errors) == 2

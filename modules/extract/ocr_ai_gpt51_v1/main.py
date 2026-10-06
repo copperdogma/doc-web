@@ -1,6 +1,7 @@
 import argparse
 import base64
 import io
+from html import escape as html_escape
 import os
 import re
 import threading
@@ -10,6 +11,9 @@ from datetime import datetime
 from html.parser import HTMLParser
 from pathlib import Path
 from typing import Dict, List, Optional, Tuple
+
+from modules.common.ocr_literal_policy import LITERAL_POLICY
+from modules.common.ocr_request_receipt import request_receipt, require_completed_identity
 
 from modules.common.utils import read_jsonl, ensure_dir, append_jsonl, ProgressLogger
 
@@ -100,10 +104,9 @@ Metadata guidance:
 Output ONLY HTML, no Markdown, no code fences, no extra commentary."""
 
 
-def build_system_prompt(hints: Optional[str]) -> str:
-    if not hints:
-        return SYSTEM_PROMPT
-    return SYSTEM_PROMPT + "\n\nRecipe hints:\n" + hints.strip() + "\n"
+def build_system_prompt(hints: Optional[str], literal_transcription: bool = False) -> str:
+    prompt = SYSTEM_PROMPT + ("\n\n" + LITERAL_POLICY if literal_transcription else "")
+    return prompt + ("\n\nRecipe hints:\n" + hints.strip() + "\n" if hints else "")
 
 
 def _resize_image_bytes(image_bytes: bytes, max_long_side: int, mime: str) -> tuple:
@@ -219,9 +222,9 @@ class TagSanitizer(HTMLParser):
                 elif k.lower() == "data-count":
                     count = v or ""
             if count:
-                self.out.append(f"<img alt=\"{alt}\" data-count=\"{count}\">")
+                self.out.append(f'<img alt="{html_escape(alt, quote=True)}" data-count="{html_escape(count, quote=True)}">')
             else:
-                self.out.append(f"<img alt=\"{alt}\">")
+                self.out.append(f'<img alt="{html_escape(alt, quote=True)}">')
             return
         if tag == "br":
             self.out.append("<br>")
@@ -234,7 +237,7 @@ class TagSanitizer(HTMLParser):
                     break
             # Only keep internal fragments (like #123)
             if href.startswith("#"):
-                self.out.append(f"<a href=\"{href}\">")
+                self.out.append(f'<a href="{html_escape(href, quote=True)}">')
             else:
                 self.out.append("<a>")
             return
@@ -245,9 +248,24 @@ class TagSanitizer(HTMLParser):
                     cls = v
                     break
             if cls in (RUNNING_HEAD_CLASS, PAGE_NUMBER_CLASS):
-                self.out.append(f"<p class=\"{cls}\">")
+                self.out.append(f'<p class="{html_escape(cls, quote=True)}">')
             else:
                 self.out.append("<p>")
+            return
+        if tag in {"td", "th"}:
+            retained = []
+            for name, value in attrs:
+                name = name.lower()
+                if name not in {"rowspan", "colspan"}:
+                    continue
+                raw_value = value or ""
+                if not re.fullmatch(r"[0-9]+", raw_value):
+                    continue
+                span = int(raw_value)
+                limit = 65534 if name == "rowspan" else 1000
+                if 1 <= span <= limit:
+                    retained.append(f' {name}="{span}"')
+            self.out.append(f"<{tag}{''.join(retained)}>")
             return
         self.out.append(f"<{tag}>")
 
@@ -258,7 +276,9 @@ class TagSanitizer(HTMLParser):
 
     def handle_data(self, data: str):
         if data:
-            self.out.append(data)
+            # HTMLParser resolves character references before this callback;
+            # re-escape them so source text cannot become markup on output.
+            self.out.append(html_escape(data, quote=False))
 
     def get_html(self) -> str:
         html = "".join(self.out)
@@ -320,8 +340,14 @@ def _call_vision_model(
     openai_client=None,
     gemini_client=None,
     anthropic_client=None,
+    request_options=None,
+    request_records=None,
 ) -> Tuple[str, Optional[object], Optional[str]]:
     """Run one OCR request against the provider implied by the model name."""
+    if (request_options or request_records is not None) and (
+        _is_anthropic_model(model) or _is_gemini_model(model)
+    ):
+        raise ValueError("Literal options/receipts require OpenAI Responses")
     if _is_anthropic_model(model):
         if anthropic_client is None:
             raise RuntimeError("anthropic package required for Claude models")
@@ -364,13 +390,28 @@ def _call_vision_model(
                 },
             ],
         }
-        if model == "gpt-6.1-sol":
+        if request_options:
+            detail = request_options.get("image_detail")
+            if detail:
+                request_kwargs["input"][1]["content"][1]["detail"] = detail
+            effort = request_options.get("reasoning_effort")
+            if effort:
+                request_kwargs["reasoning"] = {"effort": effort}
+        if model == "gpt-6.1-sol" and "reasoning" not in request_kwargs:
             request_kwargs["reasoning"] = {"effort": "low"}
             request_kwargs["store"] = False
         if _openai_supports_temperature(model):
             request_kwargs["temperature"] = temperature
+        request_kwargs["store"] = False
+        started = time.monotonic()
         resp = openai_client.responses.create(**request_kwargs)
+        if request_records is not None:
+            record = request_receipt(resp, request_kwargs, started)
+            request_records.append(record)
+            require_completed_identity(record)
         return resp.output_text or "", getattr(resp, "usage", None), getattr(resp, "id", None)
+    if request_options or request_records is not None:
+        raise RuntimeError("Literal OCR profile requires the Responses API")
     resp = openai_client.chat.completions.create(
         model=model,
         temperature=temperature,
@@ -402,6 +443,10 @@ def _ocr_with_fallback(
     openai_client=None,
     gemini_client=None,
     anthropic_client=None,
+    request_options=None,
+    request_records=None,
+    max_attempts=2,
+    image_mime=None,
 ) -> Tuple[str, str, Dict[str, float], Optional[str], Optional[str], Optional[str]]:
     """OCR a page, retrying once on empty output.
 
@@ -410,11 +455,11 @@ def _ocr_with_fallback(
     Returns stripped raw HTML, sanitized HTML, metadata, metadata tag/warning,
     and the model that produced the kept output.
     """
-    mime = "image/jpeg" if image_path.lower().endswith((".jpg", ".jpeg")) else "image/png"
+    mime = image_mime or ("image/jpeg" if image_path.lower().endswith((".jpg", ".jpeg")) else "image/png")
     b64 = base64.b64encode(image_bytes).decode("utf-8")
     data_uri = f"data:{mime};base64,{b64}"
 
-    model_sequence = [model, retry_model or model]
+    model_sequence = [model, retry_model or model][:max_attempts]
     last_raw = ""
     last_cleaned = ""
     last_meta: Dict[str, float] = {}
@@ -434,6 +479,8 @@ def _ocr_with_fallback(
                 openai_client=openai_client,
                 gemini_client=gemini_client,
                 anthropic_client=anthropic_client,
+                request_options=request_options,
+                request_records=request_records,
             )
         except Exception as exc:
             raise RuntimeError(f"OCR failed on page image {image_path}: {exc}") from exc
@@ -469,6 +516,13 @@ def main() -> None:
     parser.add_argument("--outdir", help="Output directory")
     parser.add_argument("--out", default="pages_html.jsonl", help="Output JSONL filename")
     parser.add_argument("--model", default="gpt-5.1")
+    parser.add_argument("--literal-transcription", "--literal_transcription", action="store_true")
+    parser.add_argument("--image-detail", "--image_detail", choices=["auto", "high", "original"])
+    parser.add_argument("--reasoning-effort", "--reasoning_effort", choices=["low", "medium", "high", "xhigh", "max"])
+    parser.add_argument("--max-attempts", "--max_attempts", type=int, choices=[1, 2], default=2)
+    parser.add_argument("--sdk-max-retries", "--sdk_max_retries", type=int, default=2)
+    parser.add_argument("--request-timeout", "--request_timeout", type=float, default=180)
+
     parser.add_argument("--max-output-tokens", dest="max_output_tokens", type=int, default=4096)
     parser.add_argument("--max_output_tokens", dest="max_output_tokens", type=int, default=4096)
     parser.add_argument("--temperature", type=float, default=0.0)
@@ -546,10 +600,12 @@ def main() -> None:
         if needs_openai:
             if OpenAI is None:
                 raise RuntimeError("openai package required") from _OPENAI_IMPORT_ERROR
-            openai_client = OpenAI()
+            openai_client = OpenAI(max_retries=args.sdk_max_retries, timeout=args.request_timeout)
         else:
             openai_client = None
-        system_prompt = build_system_prompt(args.ocr_hints)
+        system_prompt = build_system_prompt(args.ocr_hints, args.literal_transcription)
+        receipt_lock = threading.Lock()
+        receipt_path = out_path.parent / "ocr_requests.jsonl"
         if out_path.exists() and args.force:
             out_path.unlink()
 
@@ -602,19 +658,31 @@ def main() -> None:
             meta_warning = None
             cleaned = ""
             user_text = "Return HTML only. FIRST line MUST be: <meta name=\"ocr-metadata\" data-ocr-quality=\"0.0-1.0\" data-ocr-integrity=\"0.0-1.0\" data-continuation-risk=\"0.0-1.0\">"
-            raw, cleaned, meta, meta_tag, meta_warning, _model_used = _ocr_with_fallback(
-                image_bytes,
-                image_path,
-                model=args.model,
-                retry_model=args.retry_model,
-                system_prompt=system_prompt,
-                user_text=user_text,
-                temperature=args.temperature,
-                max_output_tokens=args.max_output_tokens,
-                openai_client=openai_client,
-                gemini_client=gemini_client,
-                anthropic_client=anthropic_client,
-            )
+            records = [] if args.literal_transcription else None
+            try:
+                raw, cleaned, meta, meta_tag, meta_warning, _model_used = _ocr_with_fallback(
+                    image_bytes,
+                    image_path,
+                    model=args.model,
+                    retry_model=args.retry_model,
+                    system_prompt=system_prompt,
+                    user_text=user_text,
+                    temperature=args.temperature,
+                    max_output_tokens=args.max_output_tokens,
+                    openai_client=openai_client,
+                    gemini_client=gemini_client,
+                    anthropic_client=anthropic_client,
+                    request_options={k: v for k, v in {"image_detail": args.image_detail, "reasoning_effort": args.reasoning_effort}.items() if v},
+                    request_records=records,
+                    max_attempts=args.max_attempts,
+                    image_mime=mime,
+                )
+            finally:
+                for record in records or []:
+                    record.update(run_id=args.run_id, page=page.get("page"),
+                                  original_page_number=page.get("original_page_number"), image=image_path)
+                    with receipt_lock:
+                        append_jsonl(str(receipt_path), record)
 
             empty_msg = None
             if not cleaned.strip():

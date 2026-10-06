@@ -8,6 +8,7 @@ spec_refs:
   - "spec:6"
   - "spec:7"
 story_refs:
+  - "245"
   - "151"
   - "152"
   - "153"
@@ -206,3 +207,9 @@ Cons:
 - 20260318-2308 — research scaffold prepared: filled `research/research-prompt.md`, wired `research/final-synthesis.md` to the expected provider report files, and created OpenAI, Gemini, Opus, and xAI stub report files so the ADR can move straight into a multi-provider research pass without more setup.
 - 20260318-2329 — research and synthesis completed: pasted xAI and Opus manual reports, ran OpenAI and Gemini automated research, normalized the generated files into the repo's canonical report names, and synthesized the four reports into one recommendation. Result: strong convergence on standalone `doc-web`, structural website output, stronger provenance, and seam-first extraction; the main unresolved decision is only how much release infrastructure to adopt on day one.
 - 20260318-2337 — ADR accepted: user approved the synthesized direction. Propagated the accepted `doc-web` handoff model into `README.md`, `docs/spec.md`, the then-live `docs/build-map.md`, the new extraction-plan note, and the follow-up story set. The remaining work is now implementation, not architecture.
+
+### Story 245: literal table qualification boundary (2026-10-06)
+
+Literal source content is distinct from document-local presentation consistency. An opt-in table-fidelity lane performs one independent source-image-only table inventory/read, preserving initial OCR unchanged. Exact case-sensitive complete cell/span agreement plus zero explicitly uncertain cells permits qualification on that declared scope. Missing tables, disagreement, ambiguity, malformed/incomplete responses or stale evidence produce a typed source-located hold before qualified export. This is measured bounded evidence, never universal correctness from model agreement. No native-layer authority or semantic correction is adopted.
+
+`page_html_v1.literal_fidelity` binds an immutable typed report, source/image digests, physical/logical page identities and complete table sequence. Required-lane builder validation rejects missing/unresolved/stale receipts; final table sequence is checked after enrichment and portable report/qualification digests enter the manifest. Existing recipes without the lane receive no implicit qualification claim. Reports preserve source locations and model receipts without copying private absolute source paths into the portable bundle. Initial literal text, including apparent source errors, remains unchanged. Attempt 062 retains rejected single-call/crop experiments and separate accepted/held coverage.

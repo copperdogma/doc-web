@@ -17,6 +17,9 @@ params:
   - name: require_crop_review
     type: bool
     default: false
+  - name: require_literal_fidelity
+    type: bool
+    default: false
   - name: crop_review_release
     type: str
     default: null
@@ -76,6 +79,8 @@ param_schema:
     illustration_manifest:
       type: string
     require_crop_review:
+      type: boolean
+    require_literal_fidelity:
       type: boolean
     crop_review_release:
       type: string

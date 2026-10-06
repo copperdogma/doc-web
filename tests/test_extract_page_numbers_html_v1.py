@@ -16,6 +16,34 @@ def test_extract_page_number_keeps_legacy_last_digit_when_no_source_match() -> N
     assert _extract_printed_page_number(html, source_page_number=10)["printed_page_number"] == 9
 
 
+def test_labeled_current_total_footer_uses_current_page_and_preserves_label() -> None:
+    from modules.transform.extract_page_numbers_html_v1.main import extract_page_numbers
+
+    rows = [
+        {"page": 19, "page_number": 1, "original_page_number": 19, "html": '<p class="page-number">Star smuggler rules p.19/24</p>'},
+        {"page": 20, "page_number": 2, "html": '<p class="page-number">Page14/80</p>'},
+    ]
+
+    result = extract_page_numbers(rows)
+
+    assert [row["printed_page_number"] for row in result] == [19, 14]
+    assert [row["printed_page_number_text"] for row in result] == [
+        "Star smuggler rules p.19/24",
+        "Page14/80",
+    ]
+    assert [row["original_page_number"] for row in result[:1]] == [19]
+    assert [row["page"] for row in result] == [19, 20]
+
+
+def test_bare_fraction_is_not_treated_as_a_printed_page_number() -> None:
+    html = '<p class="page-number">1/6</p>'
+
+    result = _extract_printed_page_number(html, source_page_number=1)
+
+    assert result["printed_page_number"] is None
+    assert result["printed_page_number_text"] == "1/6"
+
+
 def test_catalog_number_before_title_is_not_a_printed_folio() -> None:
     from modules.transform.extract_page_numbers_html_v1.main import extract_page_numbers
     rows = [{"page_number": 1, "html": "<p>8735</p><h1>Events booklet</h1><p>Rules continue.</p>"},

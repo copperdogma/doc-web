@@ -1,0 +1,795 @@
+{
+  "story": "245",
+  "candidate": "source-only-table-review-v1",
+  "base_git_sha": "ba4c84a",
+  "dirty_candidate_freeze_sha256": "be631859a898d0d48fb7f941bac1dafa8fec888a788cc933bc393ea6cd47ad32",
+  "scope": "bounded table-literal handling; initial exact transcription and safe holds are separate",
+  "single_call_adoption": "rejected: frozen workshop confirmation1cellwrong; no retuning",
+  "fresh_confirmation": {
+    "cases": 3,
+    "literal_exact_cases": 2,
+    "literal_exact_case_rate": 0.6666666666666666,
+    "safe_disposition_cases": 3,
+    "safe_disposition_rate": 1.0,
+    "accepted": 2,
+    "held": 1,
+    "accepted_cells": 36,
+    "accepted_known_errors": 0,
+    "held_initial_cells": 8,
+    "held_initial_errors": 1,
+    "held_uncertainty_cells": 2
+  },
+  "original_diagnostic": {
+    "rows": 19,
+    "cells": 57,
+    "known_errors": 0,
+    "qualified": false,
+    "sample": "LSU: life support unit (r2l3)",
+    "page_identity": {
+      "logical": 1,
+      "physical": 19,
+      "printed": 19
+    }
+  },
+  "synthetic_panel": "testdata/literal-table-fidelity/confirmation-v2",
+  "confirmation_results": [
+    {
+      "case": "native-positive",
+      "run": "output/runs/story244-native-positive-v2",
+      "report": "/Users/cam/Documents/Projects/doc-web/output/runs/story244-native-positive-v2/03_literal_table_review_v1/pages_html_reviewed_reports/row-00000-page-00001-original-00001.json",
+      "status": "verified",
+      "initial": {
+        "text_pass": true,
+        "structure_pass": true,
+        "pass": true,
+        "text_mismatch_count": 0,
+        "structure_mismatch_count": 0,
+        "text_mismatches": [],
+        "structure_mismatches": [],
+        "counts": {
+          "golden": {
+            "tables": 1,
+            "rows": 5,
+            "cells": 13
+          },
+          "actual": {
+            "tables": 1,
+            "rows": 5,
+            "cells": 13
+          }
+        },
+        "scope": {
+          "mode": "all_tables",
+          "table_index": null,
+          "golden_table_count": 1,
+          "actual_table_count": 1,
+          "excluded_actual_table_indices": [],
+          "compared_actual_table_count": 1,
+          "document_actual_table_count": 1
+        }
+      },
+      "final": {
+        "text_pass": true,
+        "structure_pass": true,
+        "pass": true,
+        "text_mismatch_count": 0,
+        "structure_mismatch_count": 0,
+        "text_mismatches": [],
+        "structure_mismatches": [],
+        "counts": {
+          "golden": {
+            "tables": 1,
+            "rows": 5,
+            "cells": 13
+          },
+          "actual": {
+            "tables": 1,
+            "rows": 5,
+            "cells": 13
+          }
+        },
+        "scope": {
+          "mode": "all_tables",
+          "table_index": null,
+          "golden_table_count": 1,
+          "actual_table_count": 1,
+          "excluded_actual_table_indices": [],
+          "compared_actual_table_count": 1,
+          "document_actual_table_count": 1
+        }
+      },
+      "uncertainties": [
+        {
+          "table": 0,
+          "cells": []
+        }
+      ],
+      "source_pdf": {
+        "name": "native.pdf",
+        "sha256": "2ca31296935864c72156f7cc708dff71f3ab95f695a64105631daca8b694b742"
+      },
+      "initial_html_preserved": true,
+      "qualified_export_exists": true
+    },
+    {
+      "case": "image-positive",
+      "run": "output/runs/story244-image-positive-v2",
+      "report": "/Users/cam/Documents/Projects/doc-web/output/runs/story244-image-positive-v2/03_literal_table_review_v1/pages_html_reviewed_reports/row-00000-page-00001-original-00001.json",
+      "status": "verified",
+      "initial": {
+        "text_pass": true,
+        "structure_pass": true,
+        "pass": true,
+        "text_mismatch_count": 0,
+        "structure_mismatch_count": 0,
+        "text_mismatches": [],
+        "structure_mismatches": [],
+        "counts": {
+          "golden": {
+            "tables": 1,
+            "rows": 6,
+            "cells": 23
+          },
+          "actual": {
+            "tables": 1,
+            "rows": 6,
+            "cells": 23
+          }
+        },
+        "scope": {
+          "mode": "all_tables",
+          "table_index": null,
+          "golden_table_count": 1,
+          "actual_table_count": 1,
+          "excluded_actual_table_indices": [],
+          "compared_actual_table_count": 1,
+          "document_actual_table_count": 1
+        }
+      },
+      "final": {
+        "text_pass": true,
+        "structure_pass": true,
+        "pass": true,
+        "text_mismatch_count": 0,
+        "structure_mismatch_count": 0,
+        "text_mismatches": [],
+        "structure_mismatches": [],
+        "counts": {
+          "golden": {
+            "tables": 1,
+            "rows": 6,
+            "cells": 23
+          },
+          "actual": {
+            "tables": 1,
+            "rows": 6,
+            "cells": 23
+          }
+        },
+        "scope": {
+          "mode": "all_tables",
+          "table_index": null,
+          "golden_table_count": 1,
+          "actual_table_count": 1,
+          "excluded_actual_table_indices": [],
+          "compared_actual_table_count": 1,
+          "document_actual_table_count": 1
+        }
+      },
+      "uncertainties": [
+        {
+          "table": 0,
+          "cells": []
+        }
+      ],
+      "source_pdf": {
+        "name": "image-only.pdf",
+        "sha256": "73fdb16a30c623940899ea8150aadf063d537859edf8b8c1cdbadced2d86ef6b"
+      },
+      "initial_html_preserved": true,
+      "qualified_export_exists": true
+    },
+    {
+      "case": "ambiguity-negative",
+      "run": "output/runs/story244-ambiguity-negative-v2",
+      "report": "/Users/cam/Documents/Projects/doc-web/output/runs/story244-ambiguity-negative-v2/03_literal_table_review_v1/pages_html_reviewed_reports/row-00000-page-00001-original-00001.json",
+      "status": "unresolved",
+      "initial": {
+        "text_pass": false,
+        "structure_pass": true,
+        "pass": false,
+        "text_mismatch_count": 1,
+        "structure_mismatch_count": 0,
+        "text_mismatches": [
+          {
+            "table": 0,
+            "actual_table": 0,
+            "row": 2,
+            "cell": 1,
+            "kind": "cell_text",
+            "expected": "l",
+            "actual": "I"
+          }
+        ],
+        "structure_mismatches": [],
+        "counts": {
+          "golden": {
+            "tables": 1,
+            "rows": 4,
+            "cells": 8
+          },
+          "actual": {
+            "tables": 1,
+            "rows": 4,
+            "cells": 8
+          }
+        },
+        "scope": {
+          "mode": "all_tables",
+          "table_index": null,
+          "golden_table_count": 1,
+          "actual_table_count": 1,
+          "excluded_actual_table_indices": [],
+          "compared_actual_table_count": 1,
+          "document_actual_table_count": 1
+        }
+      },
+      "final": null,
+      "uncertainties": [
+        {
+          "table": 0,
+          "cells": [
+            {
+              "alternatives": [
+                "I",
+                "l"
+              ],
+              "cell": 1,
+              "reason": "The single plain vertical glyph does not distinguish uppercase I from lowercase l in this font.",
+              "row": 1
+            },
+            {
+              "alternatives": [
+                "I",
+                "l"
+              ],
+              "cell": 1,
+              "reason": "The single plain vertical glyph does not distinguish uppercase I from lowercase l in this font.",
+              "row": 2
+            }
+          ]
+        }
+      ],
+      "source_pdf": {
+        "name": "image-only.pdf",
+        "sha256": "37cb915b377213a0fe37329bd19cdd20a1589388206a0461122c89418960c079"
+      },
+      "initial_html_preserved": true,
+      "qualified_export_exists": false
+    }
+  ],
+  "cost": {
+    "pricing": {
+      "date": "2026-10-06",
+      "gpt-5.1": {
+        "input_per_million_usd": 1.25,
+        "output_per_million_usd": 10,
+        "source": "https://developers.openai.com/api/docs/models/gpt-5.1",
+        "verification": "Parent verified official model pricing source in current session."
+      },
+      "gpt-6-astra": {
+        "input_per_million_usd": 10,
+        "output_per_million_usd": 50,
+        "source": "https://developers.openai.com/api/docs/models/gpt-6-astra",
+        "verification": "Parent verified official source and retained Attempt 062 research."
+      },
+      "claude-opus-4-6": {
+        "input_per_million_usd": 5,
+        "output_per_million_usd": 25,
+        "source": "https://platform.claude.com/docs/en/about-claude/pricing",
+        "verification": "Parent verified source; retained judge script and receipts use same rates."
+      },
+      "cache_note": "No cache discount assumed; cache_write_tokens are not counted twice. No extra image charge invented beyond reported input tokens."
+    },
+    "phases": {
+      "phase1": {
+        "unique_calls": 16,
+        "tokens": {
+          "input_tokens": 95440,
+          "output_tokens": 15158,
+          "total_tokens": 110598
+        },
+        "priced_calls": 16,
+        "estimated_cost_usd_known_calls": 1.39517875,
+        "estimated_total_cost_usd": 1.39517875,
+        "timed_calls": 16,
+        "sum_recorded_request_elapsed_seconds": 214.8758140429709,
+        "latency_note": "Sum of per-request elapsed measurements, not end-to-end wall time; includes only retained timings.",
+        "subject_calls": 16,
+        "judge_calls": 0,
+        "ledger_calls": 16,
+        "ledger_judge_calls": 0,
+        "reserved_usd": 9.4,
+        "reserve_note": "Enforced budget reservations, distinct from token estimated or billed cost.",
+        "by_model": {
+          "gpt-5.1": {
+            "unique_calls": 6,
+            "tokens": {
+              "input_tokens": 9719,
+              "output_tokens": 5802,
+              "total_tokens": 15521
+            },
+            "priced_calls": 6,
+            "estimated_cost_usd_known_calls": 0.07016875,
+            "estimated_total_cost_usd": 0.07016875,
+            "timed_calls": 6,
+            "sum_recorded_request_elapsed_seconds": 43.43954316797317,
+            "latency_note": "Sum of per-request elapsed measurements, not end-to-end wall time; includes only retained timings."
+          },
+          "gpt-6-astra": {
+            "unique_calls": 10,
+            "tokens": {
+              "input_tokens": 85721,
+              "output_tokens": 9356,
+              "total_tokens": 95077
+            },
+            "priced_calls": 10,
+            "estimated_cost_usd_known_calls": 1.32501,
+            "estimated_total_cost_usd": 1.32501,
+            "timed_calls": 10,
+            "sum_recorded_request_elapsed_seconds": 171.43627087499772,
+            "latency_note": "Sum of per-request elapsed measurements, not end-to-end wall time; includes only retained timings."
+          }
+        }
+      },
+      "phase2": {
+        "unique_calls": 17,
+        "tokens": {
+          "input_tokens": 141678,
+          "output_tokens": 10046,
+          "total_tokens": 151724
+        },
+        "priced_calls": 17,
+        "estimated_cost_usd_known_calls": 1.822275,
+        "estimated_total_cost_usd": 1.822275,
+        "timed_calls": 12,
+        "sum_recorded_request_elapsed_seconds": 143.40902962398832,
+        "latency_note": "Sum of per-request elapsed measurements, not end-to-end wall time; includes only retained timings.",
+        "subject_calls": 13,
+        "judge_calls": 4,
+        "ledger_calls": 13,
+        "ledger_judge_calls": 4,
+        "reserved_usd": 14.9,
+        "reserve_note": "Enforced budget reservations, distinct from token estimated or billed cost.",
+        "by_model": {
+          "claude-opus-4-6": {
+            "unique_calls": 4,
+            "tokens": {
+              "input_tokens": 17211,
+              "output_tokens": 430,
+              "total_tokens": 17641
+            },
+            "priced_calls": 4,
+            "estimated_cost_usd_known_calls": 0.096805,
+            "estimated_total_cost_usd": 0.096805,
+            "timed_calls": 4,
+            "sum_recorded_request_elapsed_seconds": 30.391121541004395,
+            "latency_note": "Sum of per-request elapsed measurements, not end-to-end wall time; includes only retained timings."
+          },
+          "gpt-6-astra": {
+            "unique_calls": 13,
+            "tokens": {
+              "input_tokens": 124467,
+              "output_tokens": 9616,
+              "total_tokens": 134083
+            },
+            "priced_calls": 13,
+            "estimated_cost_usd_known_calls": 1.72547,
+            "estimated_total_cost_usd": 1.72547,
+            "timed_calls": 8,
+            "sum_recorded_request_elapsed_seconds": 113.01790808298392,
+            "latency_note": "Sum of per-request elapsed measurements, not end-to-end wall time; includes only retained timings."
+          }
+        }
+      }
+    },
+    "combined": {
+      "unique_calls": 33,
+      "tokens": {
+        "input_tokens": 237118,
+        "output_tokens": 25204,
+        "total_tokens": 262322
+      },
+      "priced_calls": 33,
+      "estimated_cost_usd_known_calls": 3.2174537499999993,
+      "estimated_total_cost_usd": 3.2174537499999993,
+      "timed_calls": 28,
+      "sum_recorded_request_elapsed_seconds": 358.2848436669592,
+      "latency_note": "Sum of per-request elapsed measurements, not end-to-end wall time; includes only retained timings."
+    },
+    "fresh_cases": [
+      {
+        "case": "native-positive",
+        "initial_plus_review": {
+          "unique_calls": 2,
+          "tokens": {
+            "input_tokens": 21464,
+            "output_tokens": 399,
+            "total_tokens": 21863
+          },
+          "priced_calls": 2,
+          "estimated_cost_usd_known_calls": 0.23459,
+          "estimated_total_cost_usd": 0.23459,
+          "timed_calls": 2,
+          "sum_recorded_request_elapsed_seconds": 13.180030167015502,
+          "latency_note": "Sum of per-request elapsed measurements, not end-to-end wall time; includes only retained timings."
+        },
+        "response_ids": [
+          "resp_0612ce87f11e2388016ac56522e2e087d0a06e3611d9b0eea8",
+          "resp_0a142e6a4f97e0d9016ac5652a37a487d0934fdf9880a19e69"
+        ],
+        "roles": {
+          "driver-initial-OCR": {
+            "unique_calls": 1,
+            "tokens": {
+              "input_tokens": 10935,
+              "output_tokens": 182,
+              "total_tokens": 11117
+            },
+            "priced_calls": 1,
+            "estimated_cost_usd_known_calls": 0.11845,
+            "estimated_total_cost_usd": 0.11845,
+            "timed_calls": 1,
+            "sum_recorded_request_elapsed_seconds": 6.20417616701161,
+            "latency_note": "Sum of per-request elapsed measurements, not end-to-end wall time; includes only retained timings."
+          },
+          "driver-source-gate": {
+            "unique_calls": 1,
+            "tokens": {
+              "input_tokens": 10529,
+              "output_tokens": 217,
+              "total_tokens": 10746
+            },
+            "priced_calls": 1,
+            "estimated_cost_usd_known_calls": 0.11614,
+            "estimated_total_cost_usd": 0.11614,
+            "timed_calls": 1,
+            "sum_recorded_request_elapsed_seconds": 6.975854000003892,
+            "latency_note": "Sum of per-request elapsed measurements, not end-to-end wall time; includes only retained timings."
+          }
+        },
+        "pipeline_stage_wall_seconds": {
+          "pdf_to_images": 1.06,
+          "ocr_ai": 8.35,
+          "literal_table_review": 8.31,
+          "extract_page_numbers": 0.43,
+          "portionize_headings": 0.43,
+          "build_chapters": 2.07
+        },
+        "pipeline_timing_source": "output/runs/story244-native-positive-v2/timing_summary.json",
+        "judge": {
+          "unique_calls": 1,
+          "tokens": {
+            "input_tokens": 3705,
+            "output_tokens": 112,
+            "total_tokens": 3817
+          },
+          "priced_calls": 1,
+          "estimated_cost_usd_known_calls": 0.021325,
+          "estimated_total_cost_usd": 0.021325,
+          "timed_calls": 1,
+          "sum_recorded_request_elapsed_seconds": 5.434758041999885,
+          "latency_note": "Sum of per-request elapsed measurements, not end-to-end wall time; includes only retained timings."
+        }
+      },
+      {
+        "case": "image-positive",
+        "initial_plus_review": {
+          "unique_calls": 2,
+          "tokens": {
+            "input_tokens": 21464,
+            "output_tokens": 704,
+            "total_tokens": 22168
+          },
+          "priced_calls": 2,
+          "estimated_cost_usd_known_calls": 0.24984,
+          "estimated_total_cost_usd": 0.24984,
+          "timed_calls": 2,
+          "sum_recorded_request_elapsed_seconds": 19.738143166003283,
+          "latency_note": "Sum of per-request elapsed measurements, not end-to-end wall time; includes only retained timings."
+        },
+        "response_ids": [
+          "resp_086db3b8b25deb18016ac56522dd3087d09d62aac3b008b1c5",
+          "resp_0f99eae33827548e016ac5652df85487d0a8dfe8276f99ab6d"
+        ],
+        "roles": {
+          "driver-initial-OCR": {
+            "unique_calls": 1,
+            "tokens": {
+              "input_tokens": 10935,
+              "output_tokens": 366,
+              "total_tokens": 11301
+            },
+            "priced_calls": 1,
+            "estimated_cost_usd_known_calls": 0.12765,
+            "estimated_total_cost_usd": 0.12765,
+            "timed_calls": 1,
+            "sum_recorded_request_elapsed_seconds": 9.836277708003763,
+            "latency_note": "Sum of per-request elapsed measurements, not end-to-end wall time; includes only retained timings."
+          },
+          "driver-source-gate": {
+            "unique_calls": 1,
+            "tokens": {
+              "input_tokens": 10529,
+              "output_tokens": 338,
+              "total_tokens": 10867
+            },
+            "priced_calls": 1,
+            "estimated_cost_usd_known_calls": 0.12219,
+            "estimated_total_cost_usd": 0.12219,
+            "timed_calls": 1,
+            "sum_recorded_request_elapsed_seconds": 9.90186545799952,
+            "latency_note": "Sum of per-request elapsed measurements, not end-to-end wall time; includes only retained timings."
+          }
+        },
+        "pipeline_stage_wall_seconds": {
+          "pdf_to_images": 1.06,
+          "ocr_ai": 12.02,
+          "literal_table_review": 11.22,
+          "extract_page_numbers": 0.43,
+          "portionize_headings": 0.43,
+          "build_chapters": 1.88
+        },
+        "pipeline_timing_source": "output/runs/story244-image-positive-v2/timing_summary.json",
+        "judge": {
+          "unique_calls": 1,
+          "tokens": {
+            "input_tokens": 3874,
+            "output_tokens": 121,
+            "total_tokens": 3995
+          },
+          "priced_calls": 1,
+          "estimated_cost_usd_known_calls": 0.022395,
+          "estimated_total_cost_usd": 0.022395,
+          "timed_calls": 1,
+          "sum_recorded_request_elapsed_seconds": 13.302756040997338,
+          "latency_note": "Sum of per-request elapsed measurements, not end-to-end wall time; includes only retained timings."
+        }
+      },
+      {
+        "case": "ambiguity-negative",
+        "initial_plus_review": {
+          "unique_calls": 2,
+          "tokens": {
+            "input_tokens": 21464,
+            "output_tokens": 401,
+            "total_tokens": 21865
+          },
+          "priced_calls": 2,
+          "estimated_cost_usd_known_calls": 0.23469,
+          "estimated_total_cost_usd": 0.23469,
+          "timed_calls": 2,
+          "sum_recorded_request_elapsed_seconds": 14.13654354098253,
+          "latency_note": "Sum of per-request elapsed measurements, not end-to-end wall time; includes only retained timings."
+        },
+        "response_ids": [
+          "resp_04e5e5716ccbf7f4016ac56522dd2887d0ae65fb0d06da9780",
+          "resp_06d183dd2ce3eab2016ac5652b6acc87d084753936c07e50de"
+        ],
+        "roles": {
+          "driver-initial-OCR": {
+            "unique_calls": 1,
+            "tokens": {
+              "input_tokens": 10935,
+              "output_tokens": 212,
+              "total_tokens": 11147
+            },
+            "priced_calls": 1,
+            "estimated_cost_usd_known_calls": 0.11995,
+            "estimated_total_cost_usd": 0.11995,
+            "timed_calls": 1,
+            "sum_recorded_request_elapsed_seconds": 7.3435482079949,
+            "latency_note": "Sum of per-request elapsed measurements, not end-to-end wall time; includes only retained timings."
+          },
+          "driver-source-gate": {
+            "unique_calls": 1,
+            "tokens": {
+              "input_tokens": 10529,
+              "output_tokens": 189,
+              "total_tokens": 10718
+            },
+            "priced_calls": 1,
+            "estimated_cost_usd_known_calls": 0.11474,
+            "estimated_total_cost_usd": 0.11474,
+            "timed_calls": 1,
+            "sum_recorded_request_elapsed_seconds": 6.79299533298763,
+            "latency_note": "Sum of per-request elapsed measurements, not end-to-end wall time; includes only retained timings."
+          }
+        },
+        "pipeline_stage_wall_seconds": null,
+        "pipeline_timing_source": null,
+        "judge": {
+          "unique_calls": 1,
+          "tokens": {
+            "input_tokens": 3250,
+            "output_tokens": 122,
+            "total_tokens": 3372
+          },
+          "priced_calls": 1,
+          "estimated_cost_usd_known_calls": 0.0193,
+          "estimated_total_cost_usd": 0.0193,
+          "timed_calls": 1,
+          "sum_recorded_request_elapsed_seconds": 5.805791000006138,
+          "latency_note": "Sum of per-request elapsed measurements, not end-to-end wall time; includes only retained timings."
+        }
+      }
+    ],
+    "gaps": [
+      "Five Phase2 source-review probes have no retained elapsed_seconds; total Phase2 request latency coverage is partial.",
+      "Run pricing snapshots omit Astra/Opus and are dated 2025-11-22; their default fallback rates are not used.",
+      "Token estimates are not provider billing statements. Reservation totals are not actual spend.",
+      "Pipeline-stage wall timing values were recorded before builder-only resumes; those original values are historical, not live timing_summary.json after resume. Request timings and cost receipts are unchanged."
+    ]
+  },
+  "evidence_paths": [
+    "output/story244-phase2/candidate-freeze-v2.json",
+    "output/story244-phase2/current-parser-scores.json",
+    "output/story244-phase2/confirmation-scores-v2.json",
+    "output/story244-phase2/cost-latency-summary.json",
+    "output/story244-phase2/judges-v2"
+  ],
+  "semantic_rubrics": {
+    "model": "claude-opus-4-6",
+    "passed": 4,
+    "total": 4,
+    "note": "Negative rubric scores safe hold, never literal accuracy."
+  },
+  "validation_addendum": {
+    "at": "2026-10-06T21:20:55.574934+00:00",
+    "file": "modules/build/build_chapter_html_v1/main.py",
+    "frozen_sha256": "fa2e434b4b9ad8c0dd49749b0cf601a8cd5273a59b2bc3d681f78a5cda60e14e",
+    "current_sha256": "9cc714a3b7f57434063761d6eb7f5f40e735b853e24572c4b806484cb12ff837",
+    "reason": "Move existing required crop-review argument check before input discovery; fixes3 existing regressiontests. Does not affect literal-only branches, reader policy or comparisons. Reuse frozen source calls and rebuild final artifacts via driver. No semantic retuning.",
+    "verification": "120 crop tests and236 literal/build/bundle tests pass."
+  },
+  "current_builder_rebuild": [
+    {
+      "case": "native-positive",
+      "exact": {
+        "text_pass": true,
+        "structure_pass": true,
+        "pass": true,
+        "text_mismatch_count": 0,
+        "structure_mismatch_count": 0,
+        "text_mismatches": [],
+        "structure_mismatches": [],
+        "counts": {
+          "golden": {
+            "tables": 1,
+            "rows": 5,
+            "cells": 13
+          },
+          "actual": {
+            "tables": 1,
+            "rows": 5,
+            "cells": 13
+          }
+        },
+        "scope": {
+          "mode": "all_tables",
+          "table_index": null,
+          "golden_table_count": 1,
+          "actual_table_count": 1,
+          "excluded_actual_table_indices": [],
+          "compared_actual_table_count": 1,
+          "document_actual_table_count": 1
+        }
+      },
+      "html_byte_identical_to_frozen": true,
+      "qualification_valid": true,
+      "run_state": "done"
+    },
+    {
+      "case": "image-positive",
+      "exact": {
+        "text_pass": true,
+        "structure_pass": true,
+        "pass": true,
+        "text_mismatch_count": 0,
+        "structure_mismatch_count": 0,
+        "text_mismatches": [],
+        "structure_mismatches": [],
+        "counts": {
+          "golden": {
+            "tables": 1,
+            "rows": 6,
+            "cells": 23
+          },
+          "actual": {
+            "tables": 1,
+            "rows": 6,
+            "cells": 23
+          }
+        },
+        "scope": {
+          "mode": "all_tables",
+          "table_index": null,
+          "golden_table_count": 1,
+          "actual_table_count": 1,
+          "excluded_actual_table_indices": [],
+          "compared_actual_table_count": 1,
+          "document_actual_table_count": 1
+        }
+      },
+      "html_byte_identical_to_frozen": true,
+      "qualification_valid": true,
+      "run_state": "done"
+    },
+    {
+      "case": "star-unqualified-diagnostic",
+      "exact": {
+        "text_pass": true,
+        "structure_pass": true,
+        "pass": true,
+        "text_mismatch_count": 0,
+        "structure_mismatch_count": 0,
+        "text_mismatches": [],
+        "structure_mismatches": [],
+        "counts": {
+          "golden": {
+            "tables": 1,
+            "rows": 19,
+            "cells": 57
+          },
+          "actual": {
+            "tables": 1,
+            "rows": 19,
+            "cells": 57
+          }
+        },
+        "scope": {
+          "mode": "single_table_slice",
+          "table_index": 1,
+          "golden_table_count": 1,
+          "actual_table_count": 4,
+          "excluded_actual_table_indices": [
+            0,
+            2,
+            3
+          ],
+          "compared_actual_table_count": 1,
+          "document_actual_table_count": 4
+        }
+      },
+      "html_byte_identical_to_frozen": true,
+      "qualified": false,
+      "current_html_sha256": "dd36dab9c33bd1e376236fb73b82d46c598c3ad7ed53050789b4cdb2e7cabe05",
+      "run_state": "done"
+    }
+  ],
+  "validation": {
+    "current_broad_passed": 1639,
+    "current_broad_skipped": 1,
+    "separate_transport_passed": 2,
+    "separate_order_sensitive_passed": 3,
+    "current_passing_total": 1644,
+    "reused_unchanged_package_cli_passed": 10,
+    "full_suite_green": false,
+    "full_suite_limits": [
+      "3 existing HTTPX wrapper test-order contamination failures; pass alone",
+      "2 unchanged pikepdf10.16.0 native dependency build failures"
+    ],
+    "lint": "passed",
+    "size": "passed",
+    "original_unfiltered_result": {
+      "passed": 1529,
+      "skipped": 1,
+      "failed": 17,
+      "errors": 86
+    },
+    "note": "Exact fixture restoration and fresh current-code reruns resolve crop and transition-era literal failures. No fake evidence, assertion changes or hidden dependency upgrades."
+  },
+  "story_status": "Done",
+  "quality_attempt_result": "failed; full exact transcription target unmet",
+  "safe_handling_contract": "passed; adopted opt-in"
+}

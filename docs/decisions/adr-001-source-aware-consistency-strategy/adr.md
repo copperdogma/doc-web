@@ -8,6 +8,7 @@ spec_refs:
   - "spec:5"
   - "spec:5.1"
 story_refs:
+  - "245"
   - "141"
   - "142"
   - "143"
@@ -220,3 +221,9 @@ Cons:
 - 20260315-1758 — Story 144 completed with validated document-level planning artifacts. Driver run `story144-onward-document-consistency-plan-r5` emitted `pattern_inventory`, `consistency_plan`, and `conformance_report` sidecars that surfaced the previously missed manual format-failure chapters (`011/012/013/014/018/019/020`), kept `chapter-009.html` in a row-semantic-containing bucket instead of pure format drift, and established the current chapter-first validator as an upstream signal producer rather than the policy source.
 - 20260315-1231 — Story 144 validation hardening: a `/validate` follow-up exposed two normalization bugs in the first planning slice, so the planner now splits pure format-drift summaries from mixed issue summaries and rejects unsupported AI issue types that are not backed by dossier signals. Revalidation run `story144-onward-document-consistency-plan-r7` preserved the missed-format coverage, kept `chapter-009.html` out of pure-format summary buckets, and restored clean `chapter-023.html` to conformant status.
 - 20260315-1347 — ADR accepted: Stories 142–144 resolved the major architecture questions. Doc-forge now treats document-wide consistency planning plus plan-aware selective reruns as the default strategy, adopts direct HTML as the next repair target by default, and reserves a structured intermediate for evidence-driven escalation rather than speculative upfront design.
+
+### Story 245: literal table qualification boundary (2026-10-06)
+
+Literal source content is distinct from document-local presentation consistency. An opt-in table-fidelity lane performs one independent source-image-only table inventory/read, preserving initial OCR unchanged. Exact case-sensitive complete cell/span agreement plus zero explicitly uncertain cells permits qualification on that declared scope. Missing tables, disagreement, ambiguity, malformed/incomplete responses or stale evidence produce a typed source-located hold before qualified export. This is measured bounded evidence, never universal correctness from model agreement. No native-layer authority or semantic correction is adopted.
+
+`page_html_v1.literal_fidelity` binds an immutable typed report, source/image digests, physical/logical page identities and complete table sequence. Required-lane builder validation rejects missing/unresolved/stale receipts; final table sequence is checked after enrichment and portable report/qualification digests enter the manifest. Existing recipes without the lane receive no implicit qualification claim. Reports preserve source locations and model receipts without copying private absolute source paths into the portable bundle. Initial literal text, including apparent source errors, remains unchanged. Attempt 062 retains rejected single-call/crop experiments and separate accepted/held coverage.

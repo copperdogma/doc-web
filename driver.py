@@ -1271,6 +1271,7 @@ def build_command(
     # Progress/state plumbing (skip for adapter modules that don't accept these flags)
     # Also skip for modules that don't support these flags
     adapter_with_progress = {
+        "literal_table_review_v1",
         "table_rescue_onward_tables_v1",
         "table_rescue_html_loop_v1",
         "table_rescue_html_v1",

@@ -1,0 +1,17 @@
+{
+  "source": "testdata/literal-table-fidelity/dev-lab.source.json",
+  "font": "Times-Roman",
+  "rows": 8,
+  "columns": 4,
+  "pages": 1,
+  "raster_dpi": 200,
+  "native_literal_witness_checked": true,
+  "image_only_text_chars": 0,
+  "sha256": {
+    "dev-lab.source.json": "749fbafa414ded2d4947011ed6c327ea98e58d7188b4fd9598880c78a90ca617",
+    "golden.html": "1297a0caed6b30da8d8ef698958ac918939c13bd1153f067ab7934878c42c352",
+    "native.pdf": "f428cd481e21d00b9011ff1e818d457dc180c7bd87f804e38139b488b89ffb2c",
+    "page.png": "252811350463774dfc111b694fc41072b934ed4b28f3767046f41d313e181d1a",
+    "image-only.pdf": "31315d04ec4fba2ce4485eb8a96f206f75f594b83a210ea2e8818a47d8722b60"
+  }
+}

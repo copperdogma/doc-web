@@ -1,3 +1,32 @@
+## [2026-10-06-03] — Literal table evidence and uncertainty gate (Story 245)
+
+### Added
+- Add an opt-in bounded PDF recipe with lossless source rendering, literal OCR,
+  independent source-only table review, typed evidence and a final export gate.
+- Preserve initial OCR and report source-located disagreements or ambiguity;
+  qualify only exact complete table agreement with no reported uncertainty.
+- Include portable report/qualification hashes and separate original physical
+  page identity in bundle provenance.
+
+### Fixed
+- Preserve safe table spans and literal entities during OCR sanitization.
+- Compare captions and rendered text boundaries without glyph normalization;
+  block malformed, hidden, stale or mismatched qualification evidence.
+- Prevent reviewed output path collisions and preserve early crop prerequisites.
+- Read explicit current/total printed folios without treating bare fractions as
+  page numbers.
+
+### Verified
+- Frozen fresh native/image-only confirmations preserve all 36 accepted cells;
+  an identical-glyph case flags both ambiguous cells and holds before export.
+- Original equipment diagnostic preserves `r2l3` across 57 exact cells and stays
+  explicitly unqualified where the independent reader reports uncertainty.
+- Current applicable checks:1,644 passed, one skipped; full-suite dependency and
+  pre-existing test-isolation limits remain recorded in the validation note.
+- Four independent semantic rubrics and current driver rebuilds pass. Attempt
+  062 retains rejected full-transcription adoption; no universal OCR, whole-book
+  fidelity or default-model promotion is claimed.
+
 ## [2026-10-05-02] — Reconcile local evaluation notes and dependency lock
 
 ### Fixed

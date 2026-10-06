@@ -1,0 +1,20 @@
+{
+  "source": "/Users/cam/Documents/Projects/doc-web/output/story244-phase2-confirmation-sealed/native-positive/source.json",
+  "font": "Times-Roman",
+  "rows": 5,
+  "columns": 3,
+  "pages": 1,
+  "raster_dpi": 200,
+  "native_literal_witness_checked": true,
+  "image_only_text_chars": 0,
+  "sha256": {
+    "source.json": "215a697e99c6b5934f27df124ee7207242eac306c5d1e3527476b8e6aca937ff",
+    "golden.html": "d951fa83a93a2aa489301fb0407f1f76fda6839e5e7bff2718d224795ff4c0ba",
+    "native.pdf": "2ca31296935864c72156f7cc708dff71f3ab95f695a64105631daca8b694b742",
+    "page.png": "ab4ff79d69653ffb7907326424b7d24a7380a909585eb77c7b803bf99eab3c0f",
+    "image-only.pdf": "f7cf54f26671f7a38b38927b62734c9aecb9e69da591d08c5603807800ae2215"
+  },
+  "role": "unseen-confirmation",
+  "polarity": "positive",
+  "font_size": 14
+}

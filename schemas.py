@@ -4,6 +4,7 @@ import re
 from pathlib import PurePosixPath
 from typing import Any, Dict, List, Optional, Literal, Union
 from pydantic import BaseModel, ConfigDict, Field, field_validator, model_validator
+from doc_web.literal_fidelity import LiteralFidelityReceipt
 
 
 class Choice(BaseModel):
@@ -235,6 +236,7 @@ class PageHtml(BaseModel):
     printed_page_number_text: Optional[str] = None
     printed_page_number_inferred: Optional[bool] = None
     images: Optional[List[Dict[str, Any]]] = None
+    literal_fidelity: Optional[LiteralFidelityReceipt] = None
 
 
 class HtmlBlock(BaseModel):
@@ -644,6 +646,48 @@ class DocWebBundleFile(BaseModel):
         return self
 
 
+class LiteralFidelityBundleReport(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+    path: str
+    sha256: str = Field(pattern=r"^[0-9a-f]{64}$")
+    logical_page_number: int = Field(ge=1)
+    original_page_number: int = Field(ge=1)
+    table_count: int = Field(ge=0)
+
+    @field_validator("path")
+    @classmethod
+    def validate_path(cls, value: str) -> str:
+        return _validate_bundle_relative_path(value, "literal fidelity report")
+
+
+class LiteralFidelityBundleQualification(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+    scope: Literal["table_literal_text"] = "table_literal_text"
+    status: Literal["qualified"] = "qualified"
+    qualification_path: str
+    qualification_sha256: str = Field(pattern=r"^[0-9a-f]{64}$")
+    reports: List[LiteralFidelityBundleReport]
+    page_count: int = Field(ge=1)
+    table_count: int = Field(ge=0)
+
+    @field_validator("qualification_path")
+    @classmethod
+    def validate_path(cls, value: str) -> str:
+        return _validate_bundle_relative_path(value, "literal fidelity qualification")
+
+    @model_validator(mode="after")
+    def validate_counts(self):
+        if self.page_count != len(self.reports):
+            raise ValueError("literal fidelity page count differs from reports")
+        if self.table_count != sum(report.table_count for report in self.reports):
+            raise ValueError("literal fidelity table count differs from reports")
+        if len({report.logical_page_number for report in self.reports}) != len(self.reports):
+            raise ValueError("duplicate literal fidelity logical page")
+        if len({report.path for report in self.reports}) != len(self.reports):
+            raise ValueError("duplicate literal fidelity report path")
+        return self
+
+
 class DocWebBundleManifest(BaseModel):
     """Document-level manifest for the first formal `doc-web` bundle contract."""
 
@@ -664,6 +708,7 @@ class DocWebBundleManifest(BaseModel):
     asset_roots: List[str] = Field(default_factory=list)
     provenance_path: str = "provenance/blocks.jsonl"
     files: List[DocWebBundleFile] = Field(default_factory=list)
+    literal_fidelity: Optional[LiteralFidelityBundleQualification] = None
 
     @field_validator("run_id")
     @classmethod
@@ -745,6 +790,9 @@ class DocWebBundleManifest(BaseModel):
                 self.provenance_path,
                 *[entry.path for entry in self.entries],
             }
+            if self.literal_fidelity:
+                required_replay_paths.add(self.literal_fidelity.qualification_path)
+                required_replay_paths.update(report.path for report in self.literal_fidelity.reports)
             missing_paths = sorted(
                 path for path in required_replay_paths if path not in files_by_path
             )
@@ -775,6 +823,9 @@ class DocWebBundleManifest(BaseModel):
             expected_roles_by_path.update(
                 {entry.path: "entry" for entry in self.entries}
             )
+            if self.literal_fidelity:
+                expected_roles_by_path[self.literal_fidelity.qualification_path] = "asset"
+                expected_roles_by_path.update({report.path: "asset" for report in self.literal_fidelity.reports})
             for path, expected_role in sorted(expected_roles_by_path.items()):
                 if files_by_path[path].role != expected_role:
                     raise ValueError(
@@ -958,6 +1009,7 @@ class DocWebProvenanceBlock(BaseModel):
         "other",
     ]
     source_page_number: Optional[int] = None
+    source_original_page_number: Optional[int] = None
     source_element_ids: List[str]
     source_printed_page_number: Optional[int] = None
     source_printed_page_label: Optional[str] = None
@@ -984,7 +1036,7 @@ class DocWebProvenanceBlock(BaseModel):
     def validate_entry_id(cls, value: str) -> str:
         return _validate_doc_web_entry_id(value, "entry_id")
 
-    @field_validator("source_page_number")
+    @field_validator("source_page_number", "source_original_page_number")
     @classmethod
     def validate_source_page_number(cls, value: Optional[int]) -> Optional[int]:
         if value is None:

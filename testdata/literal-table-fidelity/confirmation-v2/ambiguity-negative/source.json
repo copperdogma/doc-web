@@ -1,0 +1,45 @@
+{
+  "title": "Warehouse shelf card",
+  "font": "SealedAmbiguity",
+  "font_size": 14,
+  "widths": [
+    252,
+    252
+  ],
+  "rows": [
+    [
+      {
+        "text": "Location",
+        "header": true
+      },
+      {
+        "text": "Stamp",
+        "header": true
+      }
+    ],
+    [
+      {
+        "text": "West rack"
+      },
+      {
+        "text": "I"
+      }
+    ],
+    [
+      {
+        "text": "East rack"
+      },
+      {
+        "text": "l"
+      }
+    ],
+    [
+      {
+        "text": "Check status"
+      },
+      {
+        "text": "Reviewed"
+      }
+    ]
+  ]
+}

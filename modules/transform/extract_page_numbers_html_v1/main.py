@@ -34,6 +34,20 @@ def _coerce_int(value: Any) -> Optional[int]:
 
 
 def _select_page_number_from_text(cleaned: str, source_page_number: Optional[int]) -> Optional[int]:
+    # Explicit current/total labels carry their own semantic order. Preserve
+    # the first value as the printed page and leave the complete label intact
+    # in printed_page_number_text for provenance.
+    labeled_total = re.search(
+        r"\b(?:p(?:age)?\.?\s*)(\d+)\s*/\s*(\d+)\b",
+        cleaned or "",
+        flags=re.IGNORECASE,
+    )
+    if labeled_total:
+        return int(labeled_total.group(1))
+    # A bare fraction may be a dice roll, ratio, or other body notation; it
+    # does not identify a printed page without an explicit page label.
+    if re.search(r"\b\d+\s*/\s*\d+\b", cleaned or ""):
+        return None
     digits = [int(token) for token in re.findall(r"\d+", cleaned or "")]
     if not digits:
         return None

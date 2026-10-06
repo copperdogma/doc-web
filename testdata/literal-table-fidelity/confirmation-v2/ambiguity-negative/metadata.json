@@ -1,0 +1,20 @@
+{
+  "source": "/Users/cam/Documents/Projects/doc-web/output/story244-phase2-confirmation-sealed/ambiguity-negative/source.json",
+  "font": "SealedAmbiguity",
+  "rows": 4,
+  "columns": 2,
+  "pages": 1,
+  "raster_dpi": 200,
+  "native_literal_witness_checked": true,
+  "image_only_text_chars": 0,
+  "sha256": {
+    "source.json": "51cb64fe970a8c2ab19f1833b981158d5c36e82f45d9531758237a1c6a74df37",
+    "golden.html": "131d0c4b32d751505fde26346bd11c4be57fd0d06aa495490a3373b4eff4b68d",
+    "native.pdf": "5145a04eb39c7234e5a75bd86461e3b02217dcc9cfec0339343fb2c10e85821a",
+    "page.png": "75458854bfe3331d761c99f9ac67ad35bf1b5c28620074fd31c08ba5d6052adf",
+    "image-only.pdf": "37cb915b377213a0fe37329bd19cdd20a1589388206a0461122c89418960c079"
+  },
+  "role": "unseen-confirmation",
+  "polarity": "safe-uncertainty-required",
+  "font_size": 14
+}

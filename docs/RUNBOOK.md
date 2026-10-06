@@ -15,6 +15,21 @@
 There is no single default recipe for the active mission. Choose the narrowest
 recipe that matches the document family you are validating.
 
+### Literal table fidelity lane
+
+Use `configs/recipes/recipe-pdf-literal-tables-html.yaml` for bounded text/table PDF conversion when exact spelling, identifiers, case, punctuation and cell ownership matter. It uses composited300-DPI PNG pages, the shared literal-transcription policy, Astra medium reasoning and original image detail. It retains raw OCR and `ocr_requests.jsonl` with submitted image/prompt hashes, served model, status, usage and elapsed time. One OCR attempt per page, no SDK retries; incomplete or wrong-model responses fail. A second, independent source-image-only table read must agree exactly on complete cell/span ownership and report no ambiguity. Typed per-page review reports bind source/image identities and are checked before and after final reference enrichment. Unresolved or stale evidence stops qualified export; initial OCR remains inspectable. The default batch is the first three physical pages, with at most eight tables and three review requests (USD4.50 conservative reservations excluding initial OCR), SDK retries disabled. This lane currently supports text and tables; use a figure-aware recipe with the same OCR parameter overrides, the `literal_table_review_v1` adapter and builder `require_literal_fidelity: true` for documents that need illustrations, and validate that broader path separately. OCR overrides alone do not qualify an export.
+
+```bash
+python scripts/run_with_doc_web_env.py scripts/run_driver_monitored.sh \
+  --recipe configs/recipes/recipe-pdf-literal-tables-html.yaml \
+  --run-id literal-table-proof --output-dir output/runs \
+  -- --allow-run-id-reuse --input-pdf /absolute/path/source.pdf --instrument
+```
+
+Declare the paid slice with a settings file containing `stage_params: {pdf_to_images: {start: 1, end: 2}}`. Larger full-resolution images increase cost and may hit provider image limits; inspect source/render reports before dispatch. Set `literal_transcription: true`, `image_detail: original`, `reasoning_effort: medium`, `max_long_side: 0`, `max_attempts: 1`, `sdk_max_retries: 0`, `max_output_tokens: 8192` and `request_timeout: 180` on the OCR stage to reproduce this profile in another recipe. Original detail must be supported by the chosen model. Legacy cheaper recipes have not passed this literal-fidelity gate.
+
+Attempt 062 retains the rejected single-call candidate and records source-review gate accuracy separately from accepted/held coverage. A held table is a safe outcome, not a correct transcription. Qualified clear cases provide bounded evidence, not a guarantee of every document/font. No native text is inserted or source typo corrected. If source review finds disagreement or ambiguity, retain the initial OCR, locate the source region and stop fidelity-qualified export until resolved; working reference links and model confidence are not proof. Do not manually patch artifacts or rerun failed confirmation until it looks favorable.
+
 ### Runtime Preflight
 
 Use this before downstream pin bumps or consumer integration work:

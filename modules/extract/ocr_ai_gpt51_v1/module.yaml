@@ -15,6 +15,27 @@ default_params:
   blank_threshold: 0.99
 param_schema:
   properties:
+    literal_transcription:
+      type: boolean
+      description: "Opt-in literal source policy and completed/served-model request receipts"
+    image_detail:
+      type: string
+      enum: [auto, high, original]
+    reasoning_effort:
+      type: string
+      enum: [low, medium, high, xhigh, max]
+    max_attempts:
+      type: integer
+      minimum: 1
+      maximum: 2
+    sdk_max_retries:
+      type: integer
+      minimum: 0
+      maximum: 2
+    request_timeout:
+      type: number
+      minimum: 1
+      maximum: 180
     model:
       type: string
     max_output_tokens:
