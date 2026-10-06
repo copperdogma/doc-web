@@ -1,6 +1,7 @@
 """Exact document-local reference inventory and conservative DOM enrichment."""
 import posixpath
 import re
+from bisect import bisect_right
 from collections import defaultdict
 from urllib.parse import quote, urlsplit
 
@@ -8,7 +9,8 @@ from bs4 import BeautifulSoup, CData, NavigableString
 
 POLICY_ID = 'exact-source-reference-v1'
 NUMBER = r'(?:\d+(?:\.\d+)*[A-Za-z]?|[ivxlcdm]+)'
-EXPLICIT = re.compile(r'(?<!\w)(?P<kind>pages?|pp?\.|chapters?|sections?|§|paragraphs?|¶|figures?|fig\.|tables?|footnotes?|notes?)\s*(?P<label>' + NUMBER + r')(?P<range>\s*[-–—]\s*' + NUMBER + r')?(?!\w)', re.I)
+PREFIXED_LABEL = r'[A-Za-z]+\d+(?:\.\d+)*[A-Za-z]?'
+EXPLICIT = re.compile(r'(?<!\w)(?P<kind>pages?(?=\s)|pp?\.|chapters?(?=\s)|sections?(?=\s)|§|paragraphs?(?=\s)|¶|figures?(?=\s)|fig\.|tables?(?=\s)|footnotes?(?=\s)|notes?(?=\s))\s*(?P<label>' + NUMBER + r')(?P<range>\s*[-–—]\s*' + NUMBER + r')?(?!\w)', re.I)
 URL = re.compile(r'https?://[^\s<>"\u201c\u201d\x00]+', re.I)
 TARGET = re.compile(r'^\s*(chapter|section|paragraph|figure|fig\.|table|footnote|note)\s+(' + NUMBER + r')(?=\s|[.:)\-]|$)', re.I)
 TURN = re.compile(r'(?<!\w)(?:turn|return|go|refer)\s+to\s+(?:paragraph\s+)?(?P<label>\d+[A-Za-z]?)(?P<range>\s*[-–—]\s*\d+[A-Za-z]?)?(?!\w)', re.I)
@@ -16,6 +18,117 @@ SKIP = {'a', 'code', 'pre', 'script', 'style', 'nav', 'textarea', 'template', 'n
 BLOCKS = {'p', 'li', 'td', 'th', 'dt', 'dd', 'figcaption', 'caption'}
 HEADINGS = {f'h{level}' for level in range(1, 7)}
 STRUCTURAL = BLOCKS | HEADINGS | {'ul', 'ol', 'dl', 'table', 'thead', 'tbody', 'tfoot', 'tr', 'div', 'section', 'article', 'aside', 'blockquote', 'figure', 'header', 'footer', 'main', 'address', 'form', 'fieldset', 'details', 'summary', 'hr'}
+
+# Closed, attached scope grammar: these are explicit document qualifiers, not
+# semantic guesses from a paragraph mentioning another book elsewhere.
+# Up to three descriptor words retain the explicit foreign modifier + document
+# noun evidence. Connectors, navigation verbs and punctuation terminate the noun
+# phrase so this never absorbs a separately stated local reference/clause.
+SCOPE_DESCRIPTOR = (r'(?!(?:and|or|but|then|however|of|in|from|to|for|with|at|by|'
+                    r'the|a|an|this|that|here|see|consult|read|refer|turn|go|return)\b)'
+                    r'[^\W\d_]+(?:[-‑][^\W\d_]+)*')
+DOCUMENT_SCOPE = (r'(?:(?:the|a|an)\s+)?'
+                  r'(?:(?:separate|companion|other|another|external|different)\s+)+'
+                  + r'(?:' + SCOPE_DESCRIPTOR + r'\s+){0,3}?'
+                  + r'(?:manual|document|book|guide|volume|report|specification)\b')
+DOCUMENT_NOUN = r'(?:manual|document|book|guide|volume|report|specification)\b'
+DOCUMENT_SOURCE = (r'(?:(?:the|a|an)\s+)?(?!(?:this|current|present)\b)'
+                   + r'(?:' + SCOPE_DESCRIPTOR + r'\s+){0,3}?' + DOCUMENT_NOUN)
+SOURCE_PREFIX = re.compile(r'(?<!\w)(?:according\s+to|in|from)\s+' + DOCUMENT_SOURCE
+                           + r'(?:\s*[:,]\s*|\s+)'
+                           + r'(?:(?:see|consult|read)\s+|(?:refer|turn|go|return)\s+to\s+)?(?:\(|\[)?\s*$', re.I)
+SCOPE_SUFFIX = re.compile(r'^\s*[)\]]?\s+(?:of|in|from)\s+' + DOCUMENT_SCOPE, re.I)
+SCOPE_PREFIX = re.compile(r'(?<!\w)(?:(?:according\s+to|in|of|from)\s+)?' + DOCUMENT_SCOPE
+                          + r"(?:['’]s)?(?:\s*[:,]\s*|\s+)"
+                          + r'(?:(?:see|consult|read)\s+|(?:refer|turn|go|return)\s+to\s+)?(?:\(|\[)?\s*$', re.I)
+COORDINATOR = re.compile(r'^\s*[)\]]?\s*(?:,\s*(?:(?:and|or)\s+)?|(?:and|or)\s+)(?:\(|\[)?\s*$', re.I)
+PREFIXED_OCCURRENCE = re.compile(r'(?<![\w.])' + PREFIXED_LABEL + r'(?!\w)(?!\.\w)')
+SCOPE_NUMBER = NUMBER + r'(?!\w)(?!\.\w)'
+BARE_SCOPE_LABEL = re.compile(r'(?<![\w.])' + SCOPE_NUMBER
+                              + r'(?:\s*[-–—]\s*' + SCOPE_NUMBER + r')?', re.I)
+
+
+def scope_occurrences(text):
+    """Exact citation phrases plus shared-kind list tails, solely for scope.
+
+    A bare label becomes list evidence only after an explicit typed phrase and
+    an exact connector; ordinary number prose never seeds this grammar. This
+    does not discover or link the otherwise untyped list tail.
+    """
+    typed = [(m.start(), m.end()) for pattern in (EXPLICIT, TURN)
+             for m in pattern.finditer(text)]
+    prefixed = [(m.start(), m.end()) for m in PREFIXED_OCCURRENCE.finditer(text)]
+    covered = []
+    for start, end in sorted(typed + prefixed):
+        if covered and start < covered[-1][1]:
+            covered[-1] = (covered[-1][0], max(end, covered[-1][1]))
+        else:
+            covered.append((start, end))
+    covered_starts = [a for a, _ in covered]
+    bare = []
+    for match in BARE_SCOPE_LABEL.finditer(text):
+        preceding = bisect_right(covered_starts, match.start()) - 1
+        if preceding >= 0 and covered[preceding][1] > match.start():
+            continue
+        if preceding + 1 < len(covered) and covered[preceding + 1][0] < match.end():
+            continue
+        bare.append((match.start(), match.end()))
+    qualified, previous, shared_kind = [], None, False
+    for start, end, explicit in sorted([(a, b, True) for a, b in typed]
+                                       + [(a, b, False) for a, b in bare]):
+        if explicit:
+            shared_kind = True
+        elif shared_kind and previous and COORDINATOR.fullmatch(text[previous[1]:start]):
+            qualified.append((start, end))
+        else:
+            shared_kind = False
+        previous = (start, end)
+    return sorted(set(typed + prefixed + qualified))
+
+
+class ReferenceScope:
+    """Invocation-local scope groups for one immutable DOM text stream.
+
+    Exact and/or/comma citation syntax shares an attached scope. Intervening
+    prose, sentence boundaries and DOM edit barriers end groups. No title,
+    pronoun, general sentence-coreference or external resolution is inferred.
+    """
+    def __init__(self, text):
+        groups = []
+        for start, end in scope_occurrences(text):
+            if groups and (start < groups[-1][1] or COORDINATOR.fullmatch(text[groups[-1][1]:start])):
+                groups[-1] = (groups[-1][0], max(end, groups[-1][1]))
+            else:
+                groups.append((start, end))
+        self.groups = []
+        for ordinal, (start, end) in enumerate(groups):
+            # Only immediately adjoining text can attach scope. Other citation
+            # groups are boundaries because inherited sentence scope is outside
+            # this grammar. Each interstitial segment is inspected at most twice.
+            previous_end = groups[ordinal - 1][1] if ordinal else 0
+            next_start = groups[ordinal + 1][0] if ordinal + 1 < len(groups) else len(text)
+            prefix = text[previous_end:start].rsplit('\x00', 1)[-1]
+            suffix = text[end:next_start].split('\x00', 1)[0]
+            reason = 'external_document_scope' if SCOPE_SUFFIX.match(suffix) or SCOPE_PREFIX.search(prefix) else None
+            if reason is None and SOURCE_PREFIX.search(prefix):
+                reason = 'unestablished_document_scope'
+            self.groups.append((start, end, reason))
+        self.ends = [end for _, end, _ in self.groups]
+
+    def reason(self, start, end):
+        # Authored anchor text can include a navigation cue around the citation.
+        # Inspect overlapping citation groups using this occurrence's offsets.
+        position = bisect_right(self.ends, start)
+        while position < len(self.groups) and self.groups[position][0] < end:
+            if self.groups[position][2]:
+                return self.groups[position][2]
+            position += 1
+        return None
+
+
+def reference_scope_reason(text, start, end):
+    """Compatibility helper; batch callers should construct ReferenceScope once."""
+    return ReferenceScope(text).reason(start, end)
 
 
 def stream_nodes(block):
@@ -63,7 +176,7 @@ def canonical_kind(kind):
 
 def label_key(value):
     text = str(value).strip()
-    return text.casefold() if re.fullmatch(r'[ivxlcdm]+', text, re.I) else text
+    return text.casefold() if re.fullmatch(r'[ivxlcdm]+|' + PREFIXED_LABEL, text, re.I) else text
 
 
 def forbidden(tag):
@@ -173,6 +286,7 @@ class ReferenceIndex:
             return source_soups[source_html]
 
         self.targets = defaultdict(list)
+        self.source_contexts = defaultdict(set)
         self.rejected_pages = defaultdict(list)
         self.page_observations = defaultdict(list)
         self.provenance = {(r.get('html_path'), r['block_id']): r for r in provenance_rows if r.get('block_id')}
@@ -185,8 +299,16 @@ class ReferenceIndex:
                     rows_by_page[str(row.get('source_page_number'))].append((path, tag['id'], row))
         for entry in entries:
             path = entry['filename']
-            source_texts = {' '.join(t.get_text(' ', strip=True).split()) for page in entry.get('prepared_pages', [])
-                            for t in source_soup(page).find_all()}
+            source_texts = set()
+            source_heading_texts = set()
+            for page in entry.get('prepared_pages', []):
+                for tag in source_soup(page).find_all():
+                    text = ' '.join(tag.get_text(' ', strip=True).split())
+                    source_texts.add(text)
+                    if tag.name in HEADINGS and not forbidden(tag):
+                        source_heading_texts.add(text)
+                    if tag.name in BLOCKS and not forbidden(tag):
+                        self.source_contexts[(path, tag.name, text)].add(context_kind(tag))
             for tag in soups[path].find_all(id=True):
                 text = ' '.join(tag.get_text(' ', strip=True).split())
                 if ids[path][tag['id']] != 1 or text not in source_texts or forbidden(tag):
@@ -196,8 +318,8 @@ class ReferenceIndex:
                 if match and (re.fullmatch(r'h[1-6]', tag.name) or tag.name in {'caption', 'figcaption', 'figure', 'table', 'aside'} or (tag.name in {'p', 'li', 'dt'} and ((match[1].casefold() == 'paragraph' and re.match(r'^\s*paragraph\s+' + NUMBER + r'[.:)]', text, re.I)) or tag.get('role') == 'doc-footnote' or any(c in {'footnote', 'figure-caption', 'table-caption', 'section-label', 'paragraph-label'} for c in tag.get('class', []))))):
                     self.add(canonical_kind(match[1]), match[2], path, tag['id'], {'source_text': text})
                 if re.fullmatch(r'h[1-6]', tag.name):
-                    leading = re.match(r'^(' + NUMBER + r')(?:[.:)]?\s+|[.:)]?$)', text, re.I)
-                    if leading:
+                    leading = re.match(r'^(' + PREFIXED_LABEL + '|' + NUMBER + r')(?:[.:)]?\s+|[.:)]?$)', text, re.I)
+                    if leading and (not re.fullmatch(PREFIXED_LABEL, leading[1]) or text in source_heading_texts):
                         self.add('section', leading[1], path, tag['id'], {'source_text': text})
                         self.add('paragraph', leading[1], path, tag['id'], {'source_text': text})
         raw_pages = list(source_pages) or [p for e in entries for p in e.get('prepared_pages', [])]
@@ -264,6 +386,18 @@ class ReferenceIndex:
             return list({(t['path'], t['id']): t for t in found}.values())
         return list(self.targets.get((kind, label_key(label)), []))
 
+    def source_context(self, path, block):
+        """Context authorizes discovery only when raw source agrees uniquely.
+
+        Repeated same-text source blocks in different contexts cannot establish
+        which occurrence a final block represents; abstain rather than granting
+        an authored index's authority to an ordinary source paragraph.
+        """
+        context = context_kind(block)
+        text = ' '.join(block.get_text(' ', strip=True).split())
+        observed = self.source_contexts.get((path, block.name, text), set())
+        return context if context and observed == {context} else None
+
 
 def context_kind(block):
     for parent in [block, *block.parents]:
@@ -275,18 +409,40 @@ def context_kind(block):
     heading = block.find_previous(re.compile(r'^h[1-6]$'))
     if heading:
         title = ' '.join(heading.get_text(' ', strip=True).split()).casefold()
-        if title in {'contents', 'table of contents', 'index'}:
-            return 'index' if title == 'index' else 'toc'
+        if re.search(r'(?:^|\s)(?:contents|index)$', title):
+            return 'index' if title.endswith('index') else 'toc'
     return None
 
 
-def discover(block):
+def discover(block, index=None, path=None):
     text, slots = text_stream(block)
+    context = index.source_context(path, block) if index is not None else context_kind(block)
     spans = []
     for match in EXPLICIT.finditer(text):
         spans.append((match.start(), match.end(), canonical_kind(match['kind']), match['label'], bool(match['range'])))
     for match in TURN.finditer(text):
         spans.append((match.start(), match.end(), 'paragraph' if re.search(r'\bparagraph\b', match[0], re.I) else 'numbered_location', match['label'], bool(match['range'])))
+    # A code-shaped token alone is not a citation. Require both a navigation
+    # cue and an exact source-authored heading; no prefix dictionary/stripping.
+    if index is not None:
+        prefixed = r'(?P<label>' + PREFIXED_LABEL + r')(?!\w)(?!\.\w)'
+        prefixed += r'(?P<range>\s*[-–—]\s*' + PREFIXED_LABEL + r'(?!\w)(?!\.\w))?'
+        cue = r'(?<!\w)(?:see|consult|read|(?:(?:refer|turn|return|go)\s+to))\s+'
+        cue_before = re.compile(cue + r'(?:\(|\[)?\s*$', re.I)
+        previous_end, previous_eligible = 0, False
+        for match in re.finditer(r'(?<![\w.])' + prefixed, text, re.I):
+            gap = text[previous_end:match.start()]
+            left = text[match.start() - 1:match.start()] if match.start() else ''
+            right = text[match.end():match.end() + 1]
+            before_delimiter = text[match.start() - 2:match.start() - 1] if match.start() > 1 else ''
+            delimited = ((left, right) in {('(', ')'), ('[', ']')}
+                         and not re.match(r'\w', before_delimiter))
+            eligible = bool(context or cue_before.search(gap) or delimited
+                            or (previous_eligible and COORDINATOR.fullmatch(gap)))
+            if eligible and index.lookup('numbered_location', match['label']):
+                end = match.end('range') if match['range'] else match.end('label')
+                spans.append((match.start('label'), end, 'numbered_location', match['label'], bool(match['range'])))
+            previous_end, previous_eligible = match.end(), eligible
     for match in URL.finditer(text):
         if match.end() < len(text) and text[match.end()] == '\x00':
             spans.append((match.start(), match.end(), 'url_blocked', match[0], False))
@@ -300,7 +456,7 @@ def discover(block):
         spans.append((match.start(), end, 'url', text[match.start():end], False))
     for segment in re.finditer(r'[^\x00]+', text):
         segment_text = segment[0]
-        if not (context_kind(block) or re.search(r'\.{3,}\s*(?:\d+|[ivxlcdm]+)\s*$', segment_text, re.I)):
+        if not (context or re.search(r'\.{3,}\s*(?:\d+|[ivxlcdm]+)\s*$', segment_text, re.I)):
             continue
         # Only destination-shaped suffixes of this block's own text segment.
         match = re.search(r'(?:\.{2,}\s*|\s+|^)((?:\d+|[ivxlcdm]+)(?:\s*[-–—,]\s*(?:\d+|[ivxlcdm]+))*)\s*$', segment_text, re.I)
@@ -391,7 +547,8 @@ def enrich(entries, soups, ids, source_pages, provenance_rows, *, source_soups=N
     for path, soup in soups.items():
         blocks = [b for b in soup.find_all(BLOCKS) if not forbidden(b)]
         for block in blocks:
-            text, nodes, spans = discover(block)
+            text, nodes, spans = discover(block, index, path)
+            scope = ReferenceScope(text)
             # Recompute node map after each reverse mutation; offsets stay stable.
             for start, end, kind, label, is_range in reversed(spans):
                 original = text[start:end]
@@ -400,7 +557,10 @@ def enrich(entries, soups, ids, source_pages, provenance_rows, *, source_soups=N
                 candidates = [] if kind == 'url' else index.lookup(kind, label)
                 status, reason, target = 'missing', 'exact_target_unavailable', None
                 href = None
-                if is_range:
+                scope_reason = scope.reason(start, end) if not kind.startswith('url') else None
+                if scope_reason:
+                    reason = scope_reason
+                elif is_range:
                     status, reason = 'ambiguous', 'unsupported_range'
                 elif kind == 'url_blocked':
                     reason = 'excluded_inline_url_boundary'

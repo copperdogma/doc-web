@@ -1,0 +1,436 @@
+{
+  "detector-control-full": {
+    "calls": 13,
+    "cost_usd": 0.046395500000000006,
+    "mean_latency_ms": 6739.307692307692,
+    "p50_latency_ms": 6440,
+    "latency_ms": [
+      9790,
+      8113,
+      3990,
+      5424,
+      7270,
+      6870,
+      5319,
+      4503,
+      12647,
+      6440,
+      5504,
+      6954,
+      4787
+    ],
+    "rows": [
+      {
+        "case": "Image000",
+        "pass": true,
+        "score": 0.8119,
+        "reason": "All assertions passed",
+        "output": "```json\n{\"images\": [{\"description\": \"Front cover art featuring a stylized title 'ONWARD TO THE UNKNOWN 1887-1987' and an illustration of a pioneer landscape with a covered wagon, tree, and clouds, all within a decorative border.\", \"bbox\": [0.045, 0.07, 0.935, 0.945]}]}\n```"
+      },
+      {
+        "case": "Image001",
+        "pass": true,
+        "score": 0.9211,
+        "reason": "All assertions passed",
+        "output": "```json\n{\"images\": [{\"description\": \"Stylized title text 'ONWARD TO THE UNKNOWN' with dates '1887 - 1987'\", \"bbox\": [0.272, 0.193, 0.383, 0.807]}]}\n```"
+      },
+      {
+        "case": "Image003",
+        "pass": true,
+        "score": 0.9789,
+        "reason": "All assertions passed",
+        "output": "{\"images\": [{\"description\": \"A black and white illustration of a covered wagon being pulled by an ox, with a horse standing to the left.\", \"bbox\": [266, 61, 458, 938]}]}"
+      },
+      {
+        "case": "Image008",
+        "pass": true,
+        "score": 0.9966,
+        "reason": "All assertions passed",
+        "output": "```json\n{\"images\": [{\"description\": \"Black and white photograph of Moise and Sophie L'Heureux from around 1910.\", \"bbox\": [0.258, 0.217, 0.672, 0.811]}]}\n```"
+      },
+      {
+        "case": "Image011",
+        "pass": true,
+        "score": 0.9826,
+        "reason": "All assertions passed",
+        "output": "```json\n{\"images\": [{\"description\": \"Celebrate Saskatchewan 1905-1980 logo\", \"bbox\": [0.074, 0.376, 0.234, 0.581]}, {\"description\": \"Official seal and signatures of Hon. Gordon MacMurchy and Hon. Ed Tchorzewski\", \"bbox\": [0.686, 0.118, 0.896, 0.868]}]}\n```"
+      },
+      {
+        "case": "Image013",
+        "pass": true,
+        "score": 0.9399,
+        "reason": "All assertions passed",
+        "output": "```json\n{\"images\": [{\"description\": \"A black and white photograph of a man and a woman, identified by the caption as Moise and Sophie L'Heureux around 1910.\", \"bbox\": [0.095, 0.415, 0.488, 0.716]}]}\n```"
+      },
+      {
+        "case": "Image020",
+        "pass": true,
+        "score": 0.9928,
+        "reason": "All assertions passed",
+        "output": "```json\n{\"images\": [\n  {\"description\": \"Aerial photo of ranch buildings\", \"bbox\": [0.061, 0.081, 0.462, 0.913]},\n  {\"description\": \"Ranch house and barn\", \"bbox\": [0.510, 0.091, 0.882, 0.904]}\n]}\n```"
+      },
+      {
+        "case": "Image021",
+        "pass": true,
+        "score": 0.9816,
+        "reason": "All assertions passed",
+        "output": "```json\n{\"images\": [{\"description\": \"Black and white photograph of Henry and Alma Alain on their 50th wedding anniversary in 1957.\", \"bbox\": [0.433, 0.105, 0.663, 0.48]}]}\n```"
+      },
+      {
+        "case": "Image037",
+        "pass": true,
+        "score": 0.9889,
+        "reason": "All assertions passed",
+        "output": "```json\n{\"images\": [{\"description\": \"Portrait photograph of Mrs. Leonidas L'Heureux (Laetitia)\", \"bbox\": [0.585, 0.053, 0.853, 0.312]}, {\"description\": \"Photograph of Leonidas and Josephine L'Heureux\", \"bbox\": [0.096, 0.643, 0.492, 0.9]}]}\n```"
+      },
+      {
+        "case": "Image059",
+        "pass": true,
+        "score": 0.99,
+        "reason": "All assertions passed",
+        "output": "```json\n{\"images\": [{\"description\": \"Photograph of George and Sophranie L'Heureux standing outdoors.\", \"bbox\": [0.345, 0.095, 0.73, 0.49]}, {\"description\": \"Portrait photograph of Emilienne, the first wife of George L'Heureux.\", \"bbox\": [0.635, 0.515, 0.895, 0.91]}]}\n```"
+      },
+      {
+        "case": "Image121",
+        "pass": true,
+        "score": 0.9757,
+        "reason": "All assertions passed",
+        "output": "```json\n{\"images\": [{\"description\": \"Photograph of the L'Heureux family reunion in July 1939.\", \"bbox\": [0.058, 0.094, 0.408, 0.910]}, {\"description\": \"Oval portrait of Moise L'Heureux and his brother Edward.\", \"bbox\": [0.453, 0.095, 0.874, 0.502]}, {\"description\": \"Oval portrait of Sophie L'Heureux.\", \"bbox\": [0.453, 0.523, 0.874, 0.921]}]}\n```"
+      },
+      {
+        "case": "Image124",
+        "pass": true,
+        "score": 0.9208,
+        "reason": "All assertions passed",
+        "output": "```json\n{\"images\": [{\"description\": \"Line drawing illustration of a covered wagon pulled by oxen with two people inside, set against a landscape with clouds and mountains.\", \"bbox\": [0.08, 0.10, 0.68, 0.85]}]}\n```"
+      },
+      {
+        "case": "Image126",
+        "pass": true,
+        "score": 0.9816,
+        "reason": "All assertions passed",
+        "output": "```json\n{\"images\": [\n  {\"description\": \"Photograph of a stone monument with several commemorative plaques.\", \"bbox\": [114, 206, 434, 779]},\n  {\"description\": \"Close-up photograph of a bronze plaque on the monument, commemorating the first post office.\", \"bbox\": [536, 222, 853, 796]}\n]}\n```"
+      }
+    ],
+    "mean_score": 0.9586461538461538,
+    "passing": 13
+  },
+  "detector-full": {
+    "calls": 13,
+    "cost_usd": 0.02739909,
+    "mean_latency_ms": 5137.2307692307695,
+    "p50_latency_ms": 4076,
+    "latency_ms": [
+      4346,
+      2391,
+      4076,
+      3579,
+      3648,
+      3612,
+      4657,
+      3847,
+      4517,
+      10101,
+      10170,
+      2772,
+      9068
+    ],
+    "rows": [
+      {
+        "case": "Image000",
+        "pass": true,
+        "score": 0.8157,
+        "reason": "All assertions passed",
+        "output": "{\"images\": [{\"description\": \"Full book cover with gold embossed title text 'ONWARD TO THE UNKNOWN 1887-1987', decorative landscape illustration featuring rolling hills, a tree, a wagon, and names 'Moise and Sophie L'Heureux' at the bottom, all within a bordered frame on a maroon background\", \"bbox\": [70, 45, 950, 935]}]}"
+      },
+      {
+        "case": "Image001",
+        "pass": true,
+        "score": 0.9216,
+        "reason": "All assertions passed",
+        "output": "{\"images\": [{\"description\": \"Stylized title text 'ONWARD TO THE UNKNOWN 1887 - 1987' in a bold, decorative display font functioning as standalone artwork on the title page\", \"bbox\": [180, 260, 860, 390]}]}"
+      },
+      {
+        "case": "Image003",
+        "pass": true,
+        "score": 0.9679,
+        "reason": "All assertions passed",
+        "output": "{\"images\": [{\"description\": \"Black and white illustration of a covered wagon being pulled by a horse and an ox, with a driver visible inside the wagon. The scene depicts a historical or pioneer-style transportation method.\", \"bbox\": [50, 260, 940, 460]}]}"
+      },
+      {
+        "case": "Image008",
+        "pass": true,
+        "score": 0.987,
+        "reason": "All assertions passed",
+        "output": "{\"images\": [{\"description\": \"Black and white photograph of Moise and Sophie L'Heureux, a man and woman posing together, dated about 1910\", \"bbox\": [216, 258, 809, 669]}]}"
+      },
+      {
+        "case": "Image011",
+        "pass": true,
+        "score": 0.897,
+        "reason": "All assertions passed",
+        "output": "{\"images\": [{\"description\": \"Circular 'Celebrate Saskatchewan 1905-1980' logo with stylized wheat sheaf design at top center of the certificate\", \"bbox\": [365, 68, 555, 235]}, {\"description\": \"Official black embossed seal with serrated edge and text, located at bottom left of the certificate, combined with adjacent signatures\", \"bbox\": [115, 680, 880, 895]}]}"
+      },
+      {
+        "case": "Image013",
+        "pass": true,
+        "score": 0.9768,
+        "reason": "All assertions passed",
+        "output": "{\"images\": [{\"description\": \"Black and white photograph of Moise and Sophie L'Heureux, a formally dressed couple posing together, with caption below reading 'Moise and Sophie L'Heureux about 1910'\", \"bbox\": [96, 416, 486, 680]}]}"
+      },
+      {
+        "case": "Image020",
+        "pass": true,
+        "score": 0.9931,
+        "reason": "All assertions passed",
+        "output": "{\"images\": [{\"description\": \"Aerial black-and-white photograph of ranch buildings, showing multiple structures, fields, and a dirt road in a rural landscape\", \"bbox\": [80, 58, 915, 462]}, {\"description\": \"Black-and-white ground-level photograph of a ranch house and barn with livestock in a fenced area, set against a snowy or barren landscape\", \"bbox\": [89, 505, 905, 882]}]}"
+      },
+      {
+        "case": "Image021",
+        "pass": true,
+        "score": 0.9895,
+        "reason": "All assertions passed",
+        "output": "{\"images\": [{\"description\": \"Black and white photograph of an older couple (Henry and Alma Alain) standing outdoors in front of foliage, celebrating their 50th wedding anniversary in 1957. The man wears a dark suit with a tie and boutonniere; the woman wears a light-colored dress.\", \"bbox\": [106, 433, 476, 666]}]}"
+      },
+      {
+        "case": "Image037",
+        "pass": true,
+        "score": 0.9823,
+        "reason": "All assertions passed",
+        "output": "{\"images\": [{\"description\": \"Oval portrait photograph of Mrs. Leonidas L'Heureux (Laetitia, first wife), a woman with dark hair styled up, wearing a dark dress with a white lace collar\", \"bbox\": [584, 49, 850, 318]}, {\"description\": \"Rectangular black-and-white photograph of Leonidas and Josephine (second wife) L'Heureux, showing a man in a suit seated next to a woman in a light-colored dress with a dark sash\", \"bbox\": [96, 639, 489, 898]}]}"
+      },
+      {
+        "case": "Image059",
+        "pass": true,
+        "score": 0.9825,
+        "reason": "All assertions passed",
+        "output": "{\"images\": [{\"description\": \"Black and white photograph of George L'Heureux and his second wife Sophanie standing outdoors in winter clothing, with snow on the ground and trees in the background\", \"bbox\": [95, 347, 487, 725]}, {\"description\": \"Black and white portrait photograph of Mrs. George L'Heureux (Emilienne, first wife) standing outdoors in a light-colored dress with a field or landscape in the background\", \"bbox\": [513, 629, 910, 895]}]}"
+      },
+      {
+        "case": "Image121",
+        "pass": true,
+        "score": 0.9859,
+        "reason": "All assertions passed",
+        "output": "{\"images\": [{\"description\": \"Large group photograph of the L'Heureux family reunion in July 1939, showing ninety family members gathered outdoors on a grassy area with trees in the background.\", \"bbox\": [91, 58, 910, 407]}, {\"description\": \"Oval-framed portrait photograph of two men, Moise L'Heureux and his brother Edward, standing side by side in formal attire.\", \"bbox\": [97, 446, 500, 879]}, {\"description\": \"Oval-framed portrait photograph of Sophie L'Heureux, seated and holding an object, with a painted backdrop.\", \"bbox\": [523, 451, 923, 874]}]}"
+      },
+      {
+        "case": "Image124",
+        "pass": true,
+        "score": 0.9726,
+        "reason": "All assertions passed",
+        "output": "{\"images\": [{\"description\": \"Black and white ink illustration of a horse-drawn covered wagon with two figures seated inside, set against a landscape with clouds and distant hills. The illustration is signed 'Aime' in the lower right corner.\", \"bbox\": [100, 80, 900, 680]}]}"
+      },
+      {
+        "case": "Image126",
+        "pass": true,
+        "score": 0.982,
+        "reason": "All assertions passed",
+        "output": "{\"images\": [{\"description\": \"Photograph of a stone monument with multiple bronze plaques commemorating Moise & Sophie L'Heureux, set against a rural landscape with sky and fields\", \"bbox\": [206, 116, 782, 431]}, {\"description\": \"Close-up photograph of a bronze Canada Post plaque mounted on a stone wall, detailing the history of the first post office in the area established in 1897\", \"bbox\": [220, 535, 794, 855]}]}"
+      }
+    ],
+    "mean_score": 0.9579923076923077,
+    "passing": 13
+  },
+  "detector-screen": {
+    "calls": 1,
+    "cost_usd": 0.00215037,
+    "mean_latency_ms": 3406,
+    "p50_latency_ms": 3406,
+    "latency_ms": [
+      3406
+    ]
+  },
+  "native-detector": {
+    "calls": 1,
+    "cost_usd": 0.00020318,
+    "mean_latency_ms": 1643,
+    "p50_latency_ms": 1643,
+    "latency_ms": [
+      1643
+    ]
+  },
+  "native-ocr": {
+    "calls": 1,
+    "cost_usd": 3.478e-05,
+    "mean_latency_ms": 994,
+    "p50_latency_ms": 994,
+    "latency_ms": [
+      994
+    ]
+  },
+  "native-safety": {
+    "calls": 1,
+    "cost_usd": 0.0003147,
+    "mean_latency_ms": null,
+    "p50_latency_ms": null,
+    "latency_ms": []
+  },
+  "ocr-candidate": {
+    "calls": 1,
+    "cost_usd": 0.00171341,
+    "mean_latency_ms": 12896,
+    "p50_latency_ms": 12896,
+    "latency_ms": [
+      12896
+    ],
+    "score": {
+      "transcript_path": "/Users/cam/.codex/worktrees/mistral-large4-eval-20261006/doc-web/testdata/handwritten-notes-barney-real.txt",
+      "artifact_path": "/Users/cam/.codex/worktrees/mistral-large4-eval-20261006/doc-web/output/runs/mistral4-ocr-candidate-barney-20261006/02_ocr_ai_gpt51_v1/pages_html.jsonl",
+      "page_count": 1,
+      "missing_pages": [],
+      "extra_pages": [],
+      "overall_ratio": 0.939957,
+      "overall_exact_match": false,
+      "page_min_ratio": 0.939957,
+      "exact_page_matches": 0,
+      "pages": [
+        {
+          "ratio": 0.939957,
+          "exact_match": false,
+          "expected_length": 1395,
+          "actual_length": 1403,
+          "expected_preview": "health, and can again stand among my comrads and in a few days I hope that I shall again feel as well as before,\nyou wrote that it was lonesome times in old gro",
+          "actual_preview": "health, and can again stand among my comrades and in a few days I hope that I shall again feel as well as before. you wrote that it was lonesome times in old ge",
+          "page_number": 1,
+          "artifact_page_found": true,
+          "artifact_metrics": {
+            "ocr_quality": 0.75,
+            "ocr_integrity": 0.85,
+            "continuation_risk": 0.6
+          }
+        }
+      ]
+    },
+    "alverson": "not measured; clear Barney lane failure"
+  },
+  "ocr-control": {
+    "calls": 1,
+    "cost_usd": 0.00692625,
+    "mean_latency_ms": 5960,
+    "p50_latency_ms": 5960,
+    "latency_ms": [
+      5960
+    ],
+    "score": {
+      "transcript_path": "/Users/cam/.codex/worktrees/mistral-large4-eval-20261006/doc-web/testdata/handwritten-notes-barney-real.txt",
+      "artifact_path": "/Users/cam/.codex/worktrees/mistral-large4-eval-20261006/doc-web/output/runs/mistral4-ocr-control-barney-20261006-recovery1/02_ocr_ai_gpt51_v1/pages_html.jsonl",
+      "page_count": 1,
+      "missing_pages": [],
+      "extra_pages": [],
+      "overall_ratio": 0.97883,
+      "overall_exact_match": false,
+      "page_min_ratio": 0.97883,
+      "exact_page_matches": 0,
+      "pages": [
+        {
+          "ratio": 0.97883,
+          "exact_match": false,
+          "expected_length": 1395,
+          "actual_length": 1392,
+          "expected_preview": "health, and can again stand among my comrads and in a few days I hope that I shall again feel as well as before,\nyou wrote that it was lonesome times in old gro",
+          "actual_preview": "health, and can again stand among my comrads and in a few days I hope that I shall again feel as well as before, you wrote that it was lonesome times in ald Gro",
+          "page_number": 1,
+          "artifact_page_found": true,
+          "artifact_metrics": {
+            "ocr_quality": 0.9,
+            "ocr_integrity": 0.95,
+            "continuation_risk": 1.0
+          }
+        }
+      ]
+    },
+    "alverson": "not measured; clear Barney lane failure"
+  },
+  "safety-control-full": {
+    "calls": 1,
+    "cost_usd": 0.08291,
+    "mean_latency_ms": 7372,
+    "p50_latency_ms": 7372,
+    "latency_ms": [
+      7372
+    ],
+    "rows": [
+      {
+        "case": "page-001-000",
+        "source_adjudicated_pass": false,
+        "frozen_primary_pass": false,
+        "output": "{\"verdict\":\"fail\",\"has_page_text\":false,\"excessive_blank\":false,\"reason\":\"The crop is an incomplete close-up of the cover illustration, cutting off large parts of the coherent visual and excluding the title/border context shown on the full page.\"}",
+        "source_reason": "FP | golden=pass vlm=fail | vlm_reason=\"The crop is an incomplete close-up of the cover illustration, cutting off large parts of the coherent visual and excluding the title/border context shown on the full page.\" | golden_notes=\"Gold embossed book cover illustration. Clean crop, no text.\""
+      }
+    ],
+    "source_adjudicated_correct": 0,
+    "frozen_correct": 0,
+    "unrun": 21
+  },
+  "safety-control-screen": {
+    "calls": 1,
+    "cost_usd": 0.083795,
+    "mean_latency_ms": 6102,
+    "p50_latency_ms": 6102,
+    "latency_ms": [
+      6102
+    ]
+  },
+  "safety-full": {
+    "calls": 5,
+    "cost_usd": 0.01883546,
+    "mean_latency_ms": 10531.8,
+    "p50_latency_ms": 6440,
+    "latency_ms": [
+      15709,
+      6182,
+      6440,
+      4058,
+      20270
+    ],
+    "rows": [
+      {
+        "case": "page-001-000",
+        "source_adjudicated_pass": true,
+        "frozen_primary_pass": true,
+        "output": "{\"verdict\": \"pass\", \"has_page_text\": false, \"excessive_blank\": false, \"reason\": \"The crop isolates the intended illustration (landscape with tree, fields, and wagon) from the book cover. The text visible in the full page ('ONWARD TO THE UNKNOWN', '1887-1987', 'Moise and Sophie L'Heureux') is part of the cover design and is correctly excluded from the crop. The crop contains no page-level text or neighboring visual elements, and the blank areas are part of the illustration's background (sky/fields), not excessive empty page space.\"}",
+        "source_reason": "All assertions passed"
+      },
+      {
+        "case": "page-004-000",
+        "source_adjudicated_pass": true,
+        "frozen_primary_pass": true,
+        "output": "{\"verdict\": \"pass\", \"has_page_text\": false, \"excessive_blank\": false, \"reason\": \"The crop isolates the intended illustration (covered wagon with horse and ox) without including any page text, captions, or neighboring visual elements. The illustration is complete and coherent, with no surrounding document text or unrelated visuals in the crop. The blank areas are part of the illustration's natural background (sky/landscape), not excessive page margin.\"}",
+        "source_reason": "All assertions passed"
+      },
+      {
+        "case": "page-009-000",
+        "source_adjudicated_pass": true,
+        "frozen_primary_pass": true,
+        "output": "{\"verdict\": \"pass\", \"has_page_text\": false, \"excessive_blank\": false, \"reason\": \"The crop isolates the intended photograph of Moise and Sophie without including any page text, captions, or neighboring visual elements. The halftone background and studio backdrop are integral to the photograph and do not count as excessive blank space.\"}",
+        "source_reason": "All assertions passed"
+      },
+      {
+        "case": "page-012-000",
+        "source_adjudicated_pass": true,
+        "frozen_primary_pass": true,
+        "output": "{\"verdict\": \"pass\", \"has_page_text\": false, \"excessive_blank\": false, \"reason\": \"The crop isolates the 'Celebrate Saskatchewan' logo, which is a coherent visual element on the full page. The text within the crop ('CELEBRATE SASKATCHEWAN', '1905-1980') is integral to the logo itself, not page-level text. No neighboring visuals or surrounding document text are included, and the crop is not excessively blank.\"}",
+        "source_reason": "All assertions passed"
+      },
+      {
+        "case": "page-012-001",
+        "source_adjudicated_pass": false,
+        "frozen_primary_pass": true,
+        "output": "{\"verdict\": \"pass\", \"has_page_text\": false, \"excessive_blank\": false, \"reason\": \"The crop isolates the official seal from the certificate, which is a coherent visual element. The text visible within the seal is integral to the seal itself (engraved/embossed text), not page-level text. No neighboring illustrations, captions, or page text are included in the crop.\"}",
+        "source_reason": "FN | golden=fail vlm=pass | vlm_reason=\"The crop isolates the official seal from the certificate, which is a coherent visual element. The text visible within the seal is integral to the seal itself (engraved/embossed text), not page-level text. No neighboring illustrations, captions, or page text are included in the crop.\" | golden_notes=\"Source-adjudicated September30 before fresh confirmation: SIFT439inliers maps cr\""
+      }
+    ],
+    "source_adjudicated_correct": 4,
+    "frozen_correct": 5,
+    "unrun": 17
+  },
+  "safety-screen": {
+    "calls": 1,
+    "cost_usd": 0.00389843,
+    "mean_latency_ms": 8531,
+    "p50_latency_ms": 8531,
+    "latency_ms": [
+      8531
+    ]
+  }
+}

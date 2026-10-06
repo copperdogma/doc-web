@@ -59,3 +59,6 @@ benchmarks/results/gpt6-astra-20260905/
 /benchmarks/results/safety-repair-048-20260929/
 
 /benchmarks/results/safety-repair-048-20260929-continuation1/
+
+# Attempt061 protected raw receipts, logs and dispatch lock
+/benchmarks/results/mistral-large4-20261006/

@@ -179,14 +179,14 @@ def test_sanitizer_does_not_retain_invalid_span_attributes(attr, value):
     assert "Nl" in cleaned
 
 
-@pytest.mark.parametrize("model", ["gemini-3-pro", "claude-opus-4-6"])
+@pytest.mark.parametrize("model", ["gemini-3-pro", "claude-opus-4-6", "mistralai/mistral-large-4-0"])
 def test_openai_transport_settings_cannot_silently_use_other_provider(model):
     with pytest.raises(ValueError, match="require OpenAI Responses"):
         _call_vision_model(model, "system", "user", "data:image/png;base64,YQ==",
                            0, 10, request_options={"image_detail": "original"})
 
 
-@pytest.mark.parametrize("model", ["gemini-3-pro", "claude-opus-4-6"])
+@pytest.mark.parametrize("model", ["gemini-3-pro", "claude-opus-4-6", "mistralai/mistral-large-4-0"])
 def test_receipt_only_literal_profile_cannot_bypass_provider_guard(model):
     with pytest.raises(ValueError, match="require OpenAI Responses"):
         _call_vision_model(model, "system", "user", "data:image/png;base64,YQ==",

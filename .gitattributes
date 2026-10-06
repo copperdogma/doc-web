@@ -3,3 +3,6 @@
 
 # Frozen Attempt046 source bytes intentionally preserve executed whitespace.
 docs/evals/evidence/046-execution-sources/benchmarks/scripts/gpt61_preflight.py whitespace=-blank-at-eol
+
+# Frozen synthetic PDF bytes include required PDF cross-reference whitespace.
+testdata/literal-table-fidelity/**/*.pdf binary

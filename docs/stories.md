@@ -70,6 +70,7 @@ Grouped by primary `spec:N` category. Stories without category refs remain in an
 | 229 | Harden Preview Bundle Portability and Mixed-PDF OCR Fallback | High | Done | 228 | [story-229](stories/story-229-preview-bundle-portability-and-pdf-ocr-followup.md) |
 | 238 | Sonnet 5.5 maintained detector and handwriting evaluation | Medium | Done | 237 | [story-238](stories/story-238-sonnet55-maintained-model-evaluation.md) |
 | 239 | GPT-6.1 Sol maintained detector, safety and handwriting evaluation | Medium | Done | 238 | [story-239](stories/story-239-gpt61-sol-maintained-model-evaluation.md) |
+| 244 | Mistral Large4 maintained detector, repaired safety and handwriting evaluation | Medium | Done | 239, 240 | [story-244](stories/story-244-mistral-large4-maintained-evaluation.md) |
 
 ### spec:2 — OCR & Text Extraction
 

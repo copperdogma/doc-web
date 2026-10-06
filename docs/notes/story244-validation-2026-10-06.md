@@ -99,3 +99,20 @@ unfiltered failures or claim they were fixed.
 `git diff --check` pass. Story 245 is Done after all ACs/tasks/tenets and workflow
 gates were checked. The one CalVer changelog entry, final methodology graph/index
 and evidence registry preserve the measured scope and known limits.
+
+## Authorized close-out review and integration
+
+The user requested validate/fix until clean, commit/push and direct ingester handoff.
+Strict round 1 covers the complete literal OCR/review/export/evidence surface;
+independent runtime and evidence shards found no material defect (88 fresh focused
+checks pass). Remote main advanced with reference-resolution and Mistral work.
+Story 244 and Attempt 060 were concurrently allocated there; this work is now
+Story 245 / Attempt 062. Historical run paths and frozen evidence retain their
+original story244 names and identities. No paid confirmation was rerun.
+
+Integration preserves the upstream Mistral dispatch while applying the existing
+OpenAI-only literal options/receipt guard before it. Two provider boundary controls
+are added. A fresh full bounded review round follows integration. PDF fixture bytes
+are marked binary so required PDF whitespace remains immutable; Markdown trailing
+whitespace is removed. The figure-aware recipe guidance explicitly requires both
+review adapter and builder qualification gate.

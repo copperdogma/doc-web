@@ -147,7 +147,8 @@
           "228",
           "229",
           "238",
-          "239"
+          "239",
+          "244"
         ],
         "adr_ids": [
           "ADR-001",
@@ -234,6 +235,7 @@
           "234",
           "238",
           "239",
+          "244",
           "245"
         ],
         "adr_ids": [
@@ -364,7 +366,8 @@
           "239",
           "240",
           "241",
-          "242"
+          "242",
+          "244"
         ],
         "adr_ids": [],
         "eval_ids": [
@@ -639,7 +642,8 @@
           "239",
           "240",
           "241",
-          "242"
+          "242",
+          "244"
         ],
         "adr_ids": [
           "ADR-002"
@@ -1177,7 +1181,8 @@
           "236",
           "237",
           "238",
-          "239"
+          "239",
+          "244"
         ],
         "eval_ids": [
           "image-crop-extraction",
@@ -1211,7 +1216,8 @@
             "236",
             "237",
             "238",
-            "239"
+            "239",
+            "244"
           ],
           "eval_ids": [
             "image-crop-extraction",
@@ -1245,7 +1251,8 @@
           "239",
           "240",
           "241",
-          "242"
+          "242",
+          "244"
         ],
         "eval_ids": [
           "sol-crop-safety-native-public-smoke",
@@ -1282,7 +1289,8 @@
             "239",
             "240",
             "241",
-            "242"
+            "242",
+            "244"
           ],
           "eval_ids": [
             "sol-crop-safety-native-public-smoke",
@@ -13719,6 +13727,73 @@
       }
     },
     {
+      "id": "244",
+      "title": "Mistral Large4 maintained detector, repaired safety and handwriting evaluation",
+      "path": "docs/stories/story-244-mistral-large4-maintained-evaluation.md",
+      "status": "Done",
+      "priority": "Medium",
+      "ideal_refs": [
+        "Eval Before Build",
+        "Fidelity to Source"
+      ],
+      "spec_refs": [
+        "C4",
+        "C5",
+        "spec:1",
+        "spec:2",
+        "spec:4",
+        "spec:8"
+      ],
+      "decision_refs": [],
+      "adr_ids": [],
+      "depends_on": [
+        "239",
+        "240"
+      ],
+      "category_refs": [
+        "spec:1",
+        "spec:2",
+        "spec:4",
+        "spec:8"
+      ],
+      "compromise_refs": [
+        "C4",
+        "C5"
+      ],
+      "input_coverage_refs": [
+        "handwritten-notes",
+        "image-directory-scans"
+      ],
+      "architecture_domains": [
+        "illustration-extraction",
+        "ocr_and_extraction"
+      ],
+      "roadmap_tags": [
+        "model-evaluation"
+      ],
+      "blocker_summary": "",
+      "blocker_evidence": "",
+      "unblock_condition": "",
+      "last_work_log_entry": null,
+      "legacy_build_map_refs": "",
+      "metadata_source": "frontmatter",
+      "missing_frontmatter_keys": [],
+      "actionability": {
+        "source_kind": "story",
+        "source_id": "244",
+        "source_path": "docs/stories/story-244-mistral-large4-maintained-evaluation.md",
+        "recommended_now": false,
+        "posture": "completed",
+        "why_now": "",
+        "last_relevant_action": {
+          "date": null,
+          "source_type": "story-status",
+          "source": "docs/stories/story-244-mistral-large4-maintained-evaluation.md",
+          "summary": ""
+        }
+      }
+    },
+    {
       "id": "245",
       "title": "Preserve literal table text through OCR and export",
       "path": "docs/stories/story-245-preserve-literal-table-text.md",
@@ -14119,6 +14194,31 @@
             "api_calls": 0
           },
           "note": "One final matched-semantics cache/no-cache confirmation, exact on/off state parity and 24/24 plus 627/627 development quality. Retain cache; stop for diminishing returns. No full-driver speed claim; earlier epochs are separate and nonadditive. docs/notes/story243-performance.md."
+        },
+        {
+          "model": "deterministic-exact-source-reference-v1-consumer-repairs",
+          "measured": "2026-10-05",
+          "metrics": {
+            "baseline_matched_references": 34,
+            "baseline_correct_off": 34,
+            "baseline_correct_on": 34,
+            "fresh_correct_off": 14,
+            "fresh_correct_on": 30,
+            "fresh_opportunities": 34,
+            "wrong_matched_targets": 0,
+            "checked_added_links_overlapping_frames": 535,
+            "control_passages": 27,
+            "control_assertions_passed": 34,
+            "control_assertions_failed": 0,
+            "staged_packages": 12,
+            "dangling_fragments": 0,
+            "driver_builds": 12,
+            "driver_total_wall_seconds": 90.92,
+            "latency_ms": 7576.666667,
+            "cost_usd": 0,
+            "api_calls": 0
+          },
+          "note": "Independent Ingester v3 on immutable891-file producer freeze;27 pre-frozen controls/34 assertions pass, original34existing baseline references restored both flags. Fresh30/34on: four compact dice outcome mappings remain unsupported and unlinked; no full-navigation claim. All535 added links across overlapping frames exact-heading checked, not a unique corpus count.12 separately staged packages valid and six flag pairs preserve text/IDs/native bytes/provenance. latency_ms is mean cached final-driver time over12builds, excludes setup/validation/ packaging/analysis; no end-to-end intake or whole-pipeline speed claim. 604 producer tests/lint and real driver/static inspection pass. Attempt060 records failed v2 and successful v3 scope boundaries.\n"
         }
       ],
       "latest_score": {
@@ -14146,6 +14246,14 @@
           "approach": "Reuse final-heading resolver; optional exact printed-label/reference discovery; frozen controls before bounded quality-preserving hillclimb.\n",
           "note": "User-requested Sol6.1 medium workers completed implementation, bounded source-identity audits, independent confirmations and the quality-preserving hillclimb. Donor discovered zero of three plain forms; final reserved synthetic 12/12 and Freeway 491/491 admitted references pass with zero wrong targets. No provider calls or heldout tuning. See docs/evals/attempts/059-reference-resolution.md for bounds.\n",
           "retry_when": []
+        },
+        {
+          "id": "060",
+          "date": "2026-10-05",
+          "status": "succeeded",
+          "approach": "Consumer-reported identity/lexical/document-scope repairs; exact source heading authority, coordinated cues and bounded scope parsing; frozen independent cached on/off replay and package target validation.\n",
+          "note": "Baseline34/34 restored bothflags; noted/companion defects fixed. First independent v2 still failed according-to installationguide scope; preserved failed candidate and fixed named document-source abstention. Final v3 passes27controls/34assertions and535added link meanings across overlapping frames, with zero wrong matched targets. Fresh four compact dice mappings remain explicit unsupported coverage. Repeated review stopped at systemic checkpoint; shared invariant audit, focused confirmations and independent consumer acceptance applied, no strict clean-round claim. No OCR/providers/consumer workaround or reserved FF tuning. docs/evals/attempts/060-reference-resolution-consumer-repairs.md.\n",
+          "retry_when": []
         }
       ],
       "retry_when": [],
@@ -14156,18 +14264,16 @@
         "source_id": "reference-resolution",
         "source_path": "docs/evals/registry.yaml",
         "recommended_now": false,
-        "posture": "wait-for-trigger",
-        "retry_trigger_status": "waiting",
-        "retry_when": [
-          "golden-fix"
-        ],
+        "posture": "no-trigger-recorded",
+        "retry_trigger_status": "none",
+        "retry_when": [],
         "why_now": "",
         "last_relevant_action": {
           "date": "2026-10-05",
           "source_type": "eval-attempt",
           "source": "docs/evals/registry.yaml",
-          "source_id": "059",
-          "summary": "User-requested Sol6.1 medium workers completed implementation, bounded source-identity audits, independent confirmations and the quality-preserving hillclimb. Donor discovered zero of three plain forms; final reserved..."
+          "source_id": "060",
+          "summary": "Baseline34/34 restored bothflags; noted/companion defects fixed. First independent v2 still failed according-to installationguide scope; preserved failed candidate and fixed named document-source abstention. Final v3..."
         }
       }
     },
@@ -14917,27 +15023,51 @@
           },
           "measured": "2026-01-24",
           "note": "Poor bounding box precision"
+        },
+        {
+          "model": "Mistral Large4 via OpenRouter (Attempt061)",
+          "metrics": {
+            "overall": 0.957992,
+            "pass_rate": 1.0,
+            "cases_total": 13,
+            "latency_ms": 5137
+          },
+          "cost_usd": 0.02739909,
+          "cost_estimated": false,
+          "measured": "2026-10-06",
+          "git_sha": "fc558e2+attempt061-uncommitted",
+          "result_file": "benchmarks/results/mistral-large4-20261006/detector-full.json",
+          "evidence_status": "numeric-pass-source-logo-clipping-do-not-adopt",
+          "note": "Numeric 13/13 and >=.95 but source-visible Image011 logo clipping; fresh Gemini .958646 covers logo. Candidate cost lower; timing partially overlapped qualification, descriptive only. Retain Gemini; no quality equivalence/promotion.\n"
         }
       ],
       "latest_score": {
-        "model": "Grok 4.7 direct xAI Responses (low/medium/high reasoning calibration, Attempt053; incomplete 2-case diagnostic)",
+        "model": "Mistral Large4 via OpenRouter (Attempt061)",
         "metrics": {
-          "calibration_cases_per_effort": 2,
-          "low_case_mean": 0.4334,
-          "medium_case_mean": 0.4965,
-          "high_case_mean": 0.38715,
-          "completed_provider_calls": 8,
-          "provider_errors": 0
+          "overall": 0.957992,
+          "pass_rate": 1.0,
+          "cases_total": 13,
+          "latency_ms": 5137
         },
-        "latency_ms": 11993,
-        "cost_usd": 0.075754,
+        "cost_usd": 0.02739909,
         "cost_estimated": false,
-        "measured": "2026-10-02",
-        "git_sha": "b90c0da0f95eff852eeaea16419051a0b0a2e10d",
-        "evidence_status": "incomplete-reasoning-calibration-no-effort-qualified",
-        "note": "Exact direct `grok-4.7`, `store=false`, high image detail, strict integer crop schema, and unchanged maintained prompt/scorer/golden. Fresh low/medium/high calibration each covered Image001 and Image059 with `max_output_tokens=8192`; per-case rows and raw receipt hashes are in Attempt053 evidence. All three arms returned no box for the golden Image001 title artwork (0.075, fail); Image059 scored 0.7918 (low, pass), 0.9180 (medium, pass), and 0.6993 (high, fail). Arithmetic two-case means are 0.4334, 0.4965, and 0.38715; these are diagnostic only, not full-detector scores. No arm qualified, so remaining11 and the fresh Gemini comparator were not run. All eight receipts settled for `$0.075754`, with zero unresolved charges and no observed spend above the `$5` ceiling. The `$2.098304` per-request reservation used an output-token cap assumption; a later cross-owner receipt showed xAI may report output above the requested cap, so that reservation is not a proven theoretical maximum. No actual reservation breach was observed in these receipts. Page-safety and adoption remain unmeasured. See `docs/evals/attempts/053-grok47-reasoning-image-crop-calibration.md` and `docs/evals/evidence/053-grok47-reasoning-crop/`.\n"
+        "measured": "2026-10-06",
+        "git_sha": "fc558e2+attempt061-uncommitted",
+        "result_file": "benchmarks/results/mistral-large4-20261006/detector-full.json",
+        "evidence_status": "numeric-pass-source-logo-clipping-do-not-adopt",
+        "note": "Numeric 13/13 and >=.95 but source-visible Image011 logo clipping; fresh Gemini .958646 covers logo. Candidate cost lower; timing partially overlapped qualification, descriptive only. Retain Gemini; no quality equivalence/promotion.\n"
       },
       "attempts": [
+        {
+          "id": "061",
+          "date": "2026-10-06",
+          "status": "failed",
+          "approach": "Fresh OpenRouter exact mistralai/mistral-large-4-0; maintained contract and matched control; see Attempt061",
+          "note": "Numeric 13/13 and >=.95 but source-visible Image011 logo clipping; fresh Gemini .958646 covers logo. Candidate cost lower; timing partially overlapped qualification, descriptive only. Retain Gemini; no quality equivalence/promotion. Total campaign 40 distinct responses, USD0.27457617 settled / cap11; no unknown.",
+          "retry_when": [
+            "New checkpoint or source-backed contract improvement with meaningful payoff; no unchanged rerun"
+          ]
+        },
         {
           "id": "058-star-smuggler-source-fidelity",
           "date": "2026-10-04",
@@ -15366,16 +15496,15 @@
         "posture": "wait-for-trigger",
         "retry_trigger_status": "waiting",
         "retry_when": [
-          "golden-fix",
-          "new-subject-model"
+          "New checkpoint or source-backed contract improvement with meaningful payoff; no unchanged rerun"
         ],
         "why_now": "Gemini 4 or equivalent may push past 0.95 target Golden references cover limited page types; add table-heavy pages",
         "last_relevant_action": {
-          "date": "2026-10-04",
+          "date": "2026-10-06",
           "source_type": "eval-attempt",
           "source": "docs/evals/registry.yaml",
-          "source_id": "058-star-smuggler-source-fidelity",
-          "summary": "Linked Ingester Story036 bounded runtime repairs preserve all8 rules figures pixel-exact to recorded PDF-composited source rectangles, retaining integrated labels/axes with no destructive cleanup or rescue. Exhaustive..."
+          "source_id": "061",
+          "summary": "Numeric 13/13 and >=.95 but source-visible Image011 logo clipping; fresh Gemini .958646 covers logo. Candidate cost lower; timing partially overlapped qualification, descriptive only. Retain Gemini; no quality equival..."
         }
       }
     },
@@ -16260,32 +16389,57 @@
           "cost_estimated": false,
           "measured": "2026-09-05",
           "note": "Progressive Astra follow-on ran the authoritative `page-122-001` neighboring-portrait differentiator before the full 22-case gate. Exact `gpt-6-astra` medium completed the strict two-image response contract but returned `pass`, explicitly calling the crop \u201cthe two oval portraits.\u201d Manual source/crop inspection confirmed the golden `fail`: the intended Moise/Edward crop includes the entire adjacent Sophie L'Heureux portrait. This model-wrong false negative failed the hard `1.0` safety prerequisite, so the remaining 21 cases, retries, and fresh incumbent were not purchased. This targeted score is a stop-gate result, not a full-run rate. Spend was `$0.066430/$1.50`. GPT-5.5 Responses remains the recorded `22/22` provider. Portable proof: `docs/evals/attempts/034-gpt6-astra-page-context-gate.md`.\n"
+        },
+        {
+          "model": "Mistral Large4 repaired safety via OpenRouter (Attempt061)",
+          "metrics": {
+            "pass_rate": 0.8,
+            "overall": 0.8,
+            "cases_total": 5,
+            "cases_unrun": 17,
+            "frozen_primary_correct": 5,
+            "source_adjudicated_correct": 4,
+            "false_safe": 1
+          },
+          "cost_usd": 0.01883546,
+          "cost_estimated": false,
+          "measured": "2026-10-06",
+          "git_sha": "fc558e2+attempt061-uncommitted",
+          "result_file": "benchmarks/results/mistral-large4-20261006/safety-progressive.json",
+          "evidence_status": "source-adjudicated-false-safe-progressive-stop",
+          "note": "Attempt048 repaired prompt/source-adjudicated labels: candidate incorrectly accepts seal missing 21% height. Frozen primary 5/5 retained; source-corrected 4/5 is not full 22 rate. GPT5.5 control independently false-rejects cover 0/1, 21 unrun.\n"
         }
       ],
       "latest_score": {
-        "model": "gpt-6.1-sol medium repaired safety (Attempt048)",
+        "model": "Mistral Large4 repaired safety via OpenRouter (Attempt061)",
         "metrics": {
-          "source_adjudicated_pass": 22,
-          "full_cases_complete": 22,
-          "frozen_primary_pass": 21,
-          "screen_pass": 6,
-          "screen_cases": 6,
-          "fresh_physical_pass": 5,
-          "fresh_physical_cases": 5,
-          "fresh_uncertainty_policy_pass": 0,
-          "fresh_uncertainty_policy_cases": 1,
-          "full_latency_ms": 4103.6,
-          "full_reasoning_tokens": 128
+          "pass_rate": 0.8,
+          "overall": 0.8,
+          "cases_total": 5,
+          "cases_unrun": 17,
+          "frozen_primary_correct": 5,
+          "source_adjudicated_correct": 4,
+          "false_safe": 1
         },
-        "cost_usd": 0.4836925,
-        "cost_estimated": true,
-        "measured": "2026-09-30",
-        "git_sha": "58fa3d5+attempt048-uncommitted",
-        "result_file": "docs/evals/evidence/048-continuation-manifest.json",
-        "evidence_status": "source-adjudicated-full22-physical5-policy-unqualified",
-        "note": "Exact Sol medium4096/high. Original frozen score21/22 preserved; source-confirmed seal golden repair rejudged saved outputs22/22 before fresh. Physical5/5; S3 coherent-grouping pass misses declared uncertainty nonacceptance policy, not physicallybadcrop proof. Best measured candidate; defer runtime promotion.\n"
+        "cost_usd": 0.01883546,
+        "cost_estimated": false,
+        "measured": "2026-10-06",
+        "git_sha": "fc558e2+attempt061-uncommitted",
+        "result_file": "benchmarks/results/mistral-large4-20261006/safety-progressive.json",
+        "evidence_status": "source-adjudicated-false-safe-progressive-stop",
+        "note": "Attempt048 repaired prompt/source-adjudicated labels: candidate incorrectly accepts seal missing 21% height. Frozen primary 5/5 retained; source-corrected 4/5 is not full 22 rate. GPT5.5 control independently false-rejects cover 0/1, 21 unrun.\n"
       },
       "attempts": [
+        {
+          "id": "061",
+          "date": "2026-10-06",
+          "status": "failed",
+          "approach": "Fresh OpenRouter exact mistralai/mistral-large-4-0; maintained contract and matched control; see Attempt061",
+          "note": "Attempt048 repaired prompt/source-adjudicated labels: candidate incorrectly accepts seal missing 21% height. Frozen primary 5/5 retained; source-corrected 4/5 is not full 22 rate. GPT5.5 control independently false-rejects cover 0/1, 21 unrun. Total campaign 40 distinct responses, USD0.27457617 settled / cap11; no unknown.",
+          "retry_when": [
+            "New checkpoint or source-backed contract improvement with meaningful payoff; no unchanged rerun"
+          ]
+        },
         {
           "id": "048",
           "date": "2026-09-30",
@@ -16550,15 +16704,15 @@
         "posture": "trigger-exhausted",
         "retry_trigger_status": "exhausted",
         "retry_when": [
-          "access-restored"
+          "New checkpoint or source-backed contract improvement with meaningful payoff; no unchanged rerun"
         ],
         "why_now": "Rerun when a materially stronger validator or detector may reduce the current fail-labeled page-context cases. Rerun after any maintained crop/runtime simplification before claiming `trim_layout_text` or bounded capti...",
         "last_relevant_action": {
-          "date": "2026-09-30",
+          "date": "2026-10-06",
           "source_type": "eval-attempt",
           "source": "docs/evals/registry.yaml",
-          "source_id": "048",
-          "summary": "Completed after credits restored: allscreen6/6, Sol source-adjudicated22/22 (frozen21/22) plusfreshphysical5/5, uncertaintypolicy0/1; best measured candidate, promotiondeferred. Luna/GPT5.5 validfalse-rejectstops. Tra..."
+          "source_id": "061",
+          "summary": "Attempt048 repaired prompt/source-adjudicated labels: candidate incorrectly accepts seal missing 21% height. Frozen primary 5/5 retained; source-corrected 4/5 is not full 22 rate. GPT5.5 control independently false-re..."
         }
       }
     },
@@ -16988,27 +17142,53 @@
           },
           "measured": "2026-04-01",
           "note": "Story 179 added `testdata/handwritten-notes-mini-images/`, the image-only wrapper `testdata/handwritten-notes-mini.pdf`, and the focused regression helper `benchmarks/scripts/run_handwritten_notes_eval.py`. Fresh rerun via that helper wrote `benchmarks/results/handwritten-notes-story179.json` with `pass_rate = 1.0`, `overall_min_ratio = 1.0`, and `page_min_ratio = 1.0`; the helper also verified the PDF wrapper stayed image-only (`[0, 0]` extract-text lengths). Manual artifact inspection in the same pass confirmed exact normalized transcript matches at `output/runs/story179-image-generic/02_ocr_ai_gpt51_v1/pages_html.jsonl` and `output/runs/story179-pdf-generic/02_ocr_ai_gpt51_v1/pages_html.jsonl`.\n"
+        },
+        {
+          "model": "Mistral Large4 fresh actual-driver public LOC Barney (Attempt061)",
+          "metrics": {
+            "overall_min_ratio": 0.939957,
+            "page_min_ratio": 0.939957,
+            "pass_rate": 0.0,
+            "cases_total": 1,
+            "alverson_unrun": 1
+          },
+          "cost_usd": 0.00171341,
+          "cost_estimated": false,
+          "measured": "2026-10-06",
+          "git_sha": "fc558e2+attempt061-uncommitted",
+          "result_file": "benchmarks/results/mistral-large4-20261006/ocr-candidate-barney.log",
+          "evidence_status": "source-backed-barney-loss-progressive-stop",
+          "note": "Candidate literal text loss on source-valid Barney; fresh Gemini .978830 also below.99. Alverson source golden confirms a good prospect but unrun after lane failure. Same system/user/image bytes verified; no truth change.\n"
         }
       ],
       "latest_score": {
-        "model": "gpt-6.1-sol low fresh public LOC image-entry (Attempt046)",
+        "model": "Mistral Large4 fresh actual-driver public LOC Barney (Attempt061)",
         "metrics": {
-          "overall_min_ratio": 0.902693,
-          "page_min_ratio": 0.902693,
+          "overall_min_ratio": 0.939957,
+          "page_min_ratio": 0.939957,
           "pass_rate": 0.0,
-          "cases_total": 2,
-          "fixtures_passing": 0,
-          "barney_image_overall_ratio": 0.902693,
-          "alverson_image_overall_ratio": 0.935065
+          "cases_total": 1,
+          "alverson_unrun": 1
         },
-        "cost_usd": 0.015017,
-        "cost_estimated": true,
-        "measured": "2026-09-29",
-        "git_sha": "5ca3711+attempt046-uncommitted",
-        "evidence_status": "source-backed-barney-loss-alverson-golden-concern",
-        "note": "Frozen transcript scores: both below .99. Barney has source-visible candidate invention. Alverson original appears to read no good prospect, matching candidate but contradicting the golden's a good prospect; review golden before another OCR decision.\n"
+        "cost_usd": 0.00171341,
+        "cost_estimated": false,
+        "measured": "2026-10-06",
+        "git_sha": "fc558e2+attempt061-uncommitted",
+        "result_file": "benchmarks/results/mistral-large4-20261006/ocr-candidate-barney.log",
+        "evidence_status": "source-backed-barney-loss-progressive-stop",
+        "note": "Candidate literal text loss on source-valid Barney; fresh Gemini .978830 also below.99. Alverson source golden confirms a good prospect but unrun after lane failure. Same system/user/image bytes verified; no truth change.\n"
       },
       "attempts": [
+        {
+          "id": "061",
+          "date": "2026-10-06",
+          "status": "failed",
+          "approach": "Fresh OpenRouter exact mistralai/mistral-large-4-0; maintained contract and matched control; see Attempt061",
+          "note": "Candidate literal text loss on source-valid Barney; fresh Gemini .978830 also below.99. Alverson source golden confirms a good prospect but unrun after lane failure. Same system/user/image bytes verified; no truth change. Total campaign 40 distinct responses, USD0.27457617 settled / cap11; no unknown.",
+          "retry_when": [
+            "New checkpoint or source-backed contract improvement with meaningful payoff; no unchanged rerun"
+          ]
+        },
         {
           "id": "046",
           "date": "2026-09-29",
@@ -17145,15 +17325,15 @@
         "posture": "trigger-exhausted",
         "retry_trigger_status": "exhausted",
         "retry_when": [
-          "new-subject-model"
+          "New checkpoint or source-backed contract improvement with meaningful payoff; no unchanged rerun"
         ],
         "why_now": "Retry only when a materially stronger model or OCR substrate appears that could plausibly clear Barney and the corrected Alverson front-page truth surface.",
         "last_relevant_action": {
-          "date": "2026-09-29",
+          "date": "2026-10-06",
           "source_type": "eval-attempt",
           "source": "docs/evals/registry.yaml",
-          "source_id": "046",
-          "summary": "GPT6.1 Barney .902693 and Alverson .935065 vs fresh Gemini .980645/.983471. Barney has source-visible invention; Alverson no good prospect appears source-correct despite golden mismatch. Frozen scores all below .99; r..."
+          "source_id": "061",
+          "summary": "Candidate literal text loss on source-valid Barney; fresh Gemini .978830 also below.99. Alverson source golden confirms a good prospect but unrun after lane failure. Same system/user/image bytes verified; no truth cha..."
         }
       }
     },

@@ -1,0 +1,28 @@
+description: Frozen repaired page-context safety; Attempt048
+prompts:
+- id: file://../prompts/validate-page-level-crop.js
+  label: repaired-page-context
+providers:
+- id: python:../providers/mistral4_candidate.py
+  label: Mistral Large4 safety
+  config:
+    model: mistralai/mistral-large-4-0
+    expected_served_model: mistralai/mistral-large-4-0
+    expected_served_provider: Mistral
+    provider_route: mistral
+    pin_provider: true
+    require_parameters: true
+    data_collection: null
+    zdr: null
+    output_contract: page_context_validation
+    max_tokens: 4096
+    maxRetries: 0
+tests:
+- vars:
+    page_image: file://../input/source-pages-b64/Image011.b64.txt
+    crop_image: file://../input/crop-validation-b64/page-012-001.b64.txt
+    crop_key: page-012-001
+    golden_relpath: golden/crop-page-level-safety-repair-048-source-adjudicated.json
+  assert:
+  - type: python
+    value: file://../scorers/crop_validation_scorer.py

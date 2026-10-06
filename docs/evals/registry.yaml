@@ -127,6 +127,21 @@ evals:
         measured: 2026-10-05
         metrics: {synthetic_paired_median_gain: 0.140308, deathtrap_paired_median_gain: 0.115178, synthetic_winning_pairs: 19, deathtrap_winning_pairs: 20, pairs_per_workload: 20, deathtrap_baseline_p50_ms: 364.481750, deathtrap_candidate_p50_ms: 321.909729, latency_ms: 317.495237, cost_usd: 0, api_calls: 0}
         note: "One final matched-semantics cache/no-cache confirmation, exact on/off state parity and 24/24 plus 627/627 development quality. Retain cache; stop for diminishing returns. No full-driver speed claim; earlier epochs are separate and nonadditive. docs/notes/story243-performance.md."
+      - model: deterministic-exact-source-reference-v1-consumer-repairs
+        measured: 2026-10-05
+        metrics: {baseline_matched_references: 34, baseline_correct_off: 34, baseline_correct_on: 34, fresh_correct_off: 14, fresh_correct_on: 30, fresh_opportunities: 34, wrong_matched_targets: 0, checked_added_links_overlapping_frames: 535, control_passages: 27, control_assertions_passed: 34, control_assertions_failed: 0, staged_packages: 12, dangling_fragments: 0, driver_builds: 12, driver_total_wall_seconds: 90.92, latency_ms: 7576.666667, cost_usd: 0, api_calls: 0}
+        note: >
+          Independent Ingester v3 on immutable891-file producer freeze;27
+          pre-frozen controls/34 assertions pass, original34existing baseline
+          references restored both flags. Fresh30/34on: four compact dice outcome
+          mappings remain unsupported and unlinked; no full-navigation claim.
+          All535 added links across overlapping frames exact-heading checked,
+          not a unique corpus count.12 separately staged packages valid and
+          six flag pairs preserve text/IDs/native bytes/provenance. latency_ms
+          is mean cached final-driver time over12builds, excludes setup/validation/
+          packaging/analysis; no end-to-end intake or whole-pipeline speed claim.
+          604 producer tests/lint and real driver/static inspection pass.
+          Attempt060 records failed v2 and successful v3 scope boundaries.
     attempts:
       - id: "059"
         date: 2026-10-05
@@ -141,6 +156,25 @@ evals:
           forms; final reserved synthetic 12/12 and Freeway 491/491 admitted
           references pass with zero wrong targets. No provider calls or heldout
           tuning. See docs/evals/attempts/059-reference-resolution.md for bounds.
+
+      - id: "060"
+        date: 2026-10-05
+        status: succeeded
+        approach: >
+          Consumer-reported identity/lexical/document-scope repairs; exact
+          source heading authority, coordinated cues and bounded scope parsing;
+          frozen independent cached on/off replay and package target validation.
+        note: >
+          Baseline34/34 restored bothflags; noted/companion defects fixed.
+          First independent v2 still failed according-to installationguide
+          scope; preserved failed candidate and fixed named document-source
+          abstention. Final v3 passes27controls/34assertions and535added link
+          meanings across overlapping frames, with zero wrong matched targets.
+          Fresh four compact dice mappings remain explicit unsupported coverage.
+          Repeated review stopped at systemic checkpoint; shared invariant audit,
+          focused confirmations and independent consumer acceptance applied,
+          no strict clean-round claim. No OCR/providers/consumer workaround or
+          reserved FF tuning. docs/evals/attempts/060-reference-resolution-consumer-repairs.md.
 
   - id: sol-crop-safety-native-public-smoke
     name: Opt-in Sol native public adapter smoke
@@ -1042,7 +1076,29 @@ evals:
         measured: 2026-01-24
         note: "Poor bounding box precision"
 
+      - model: Mistral Large4 via OpenRouter (Attempt061)
+        metrics:
+          overall: 0.957992
+          pass_rate: 1.0
+          cases_total: 13
+          latency_ms: 5137
+        cost_usd: 0.02739909
+        cost_estimated: false
+        measured: '2026-10-06'
+        git_sha: fc558e2+attempt061-uncommitted
+        result_file: benchmarks/results/mistral-large4-20261006/detector-full.json
+        evidence_status: numeric-pass-source-logo-clipping-do-not-adopt
+        note: >
+          Numeric 13/13 and >=.95 but source-visible Image011 logo clipping; fresh Gemini .958646 covers logo. Candidate cost lower; timing partially overlapped qualification, descriptive only. Retain Gemini; no quality equivalence/promotion.
     attempts:
+      - id: '061'
+        date: '2026-10-06'
+        status: failed
+        approach: "Fresh OpenRouter exact mistralai/mistral-large-4-0; maintained contract and matched control; see Attempt061"
+        score_after: 0.957992
+        note: "Numeric 13/13 and >=.95 but source-visible Image011 logo clipping; fresh Gemini .958646 covers logo. Candidate cost lower; timing partially overlapped qualification, descriptive only. Retain Gemini; no quality equivalence/promotion. Total campaign 40 distinct responses, USD0.27457617 settled / cap11; no unknown."
+        retry_when:
+          - "New checkpoint or source-backed contract improvement with meaningful payoff; no unchanged rerun"
       - id: "058-star-smuggler-source-fidelity"
         date: 2026-10-04
         status: succeeded
@@ -3135,7 +3191,32 @@ evals:
           GPT-5.5 Responses remains the recorded `22/22` provider. Portable
           proof: `docs/evals/attempts/034-gpt6-astra-page-context-gate.md`.
 
+      - model: Mistral Large4 repaired safety via OpenRouter (Attempt061)
+        metrics:
+          pass_rate: 0.8
+          overall: 0.8
+          cases_total: 5
+          cases_unrun: 17
+          frozen_primary_correct: 5
+          source_adjudicated_correct: 4
+          false_safe: 1
+        cost_usd: 0.01883546
+        cost_estimated: false
+        measured: '2026-10-06'
+        git_sha: fc558e2+attempt061-uncommitted
+        result_file: benchmarks/results/mistral-large4-20261006/safety-progressive.json
+        evidence_status: source-adjudicated-false-safe-progressive-stop
+        note: >
+          Attempt048 repaired prompt/source-adjudicated labels: candidate incorrectly accepts seal missing 21% height. Frozen primary 5/5 retained; source-corrected 4/5 is not full 22 rate. GPT5.5 control independently false-rejects cover 0/1, 21 unrun.
     attempts:
+      - id: '061'
+        date: '2026-10-06'
+        status: failed
+        approach: "Fresh OpenRouter exact mistralai/mistral-large-4-0; maintained contract and matched control; see Attempt061"
+        score_after: 0.8
+        note: "Attempt048 repaired prompt/source-adjudicated labels: candidate incorrectly accepts seal missing 21% height. Frozen primary 5/5 retained; source-corrected 4/5 is not full 22 rate. GPT5.5 control independently false-rejects cover 0/1, 21 unrun. Total campaign 40 distinct responses, USD0.27457617 settled / cap11; no unknown."
+        retry_when:
+          - "New checkpoint or source-backed contract improvement with meaningful payoff; no unchanged rerun"
       - id: '048'
         date: '2026-09-30'
         status: inconclusive
@@ -4220,7 +4301,30 @@ evals:
           and
           `output/runs/story179-pdf-generic/02_ocr_ai_gpt51_v1/pages_html.jsonl`.
 
+      - model: Mistral Large4 fresh actual-driver public LOC Barney (Attempt061)
+        metrics:
+          overall_min_ratio: 0.939957
+          page_min_ratio: 0.939957
+          pass_rate: 0.0
+          cases_total: 1
+          alverson_unrun: 1
+        cost_usd: 0.00171341
+        cost_estimated: false
+        measured: '2026-10-06'
+        git_sha: fc558e2+attempt061-uncommitted
+        result_file: benchmarks/results/mistral-large4-20261006/ocr-candidate-barney.log
+        evidence_status: source-backed-barney-loss-progressive-stop
+        note: >
+          Candidate literal text loss on source-valid Barney; fresh Gemini .978830 also below.99. Alverson source golden confirms a good prospect but unrun after lane failure. Same system/user/image bytes verified; no truth change.
     attempts:
+      - id: '061'
+        date: '2026-10-06'
+        status: failed
+        approach: "Fresh OpenRouter exact mistralai/mistral-large-4-0; maintained contract and matched control; see Attempt061"
+        score_after: 0.939957
+        note: "Candidate literal text loss on source-valid Barney; fresh Gemini .978830 also below.99. Alverson source golden confirms a good prospect but unrun after lane failure. Same system/user/image bytes verified; no truth change. Total campaign 40 distinct responses, USD0.27457617 settled / cap11; no unknown."
+        retry_when:
+          - "New checkpoint or source-backed contract improvement with meaningful payoff; no unchanged rerun"
       - id: '046'
         date: '2026-09-29'
         status: failed

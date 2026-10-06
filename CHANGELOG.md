@@ -27,6 +27,26 @@
   062 retains rejected full-transcription adoption; no universal OCR, whole-book
   fidelity or default-model promotion is claimed.
 
+## [2026-10-06-02] — Runtime agent staffing and event waits
+
+### Changed
+- Reserve the strongest eligible runtime model and maximum supported thinking
+  for strategic loop review; size ordinary workers to risk and coordination
+  cost, and collect delegated results with completion events.
+- Preserve local authority, approval gates, verifier stops and frozen eval
+  configuration. Record Alignment055 adoption and proportional validation in
+  `docs/agent-staffing-and-event-waits.md`.
+
+## [2026-10-06-01] — Mistral Large4 maintained evaluation (Story244)
+
+### Added
+- Record fresh public detector, repaired safety and handwriting comparison under
+  USD11; forty paid responses settle at USD0.27457617, with exact custody and
+  reconstruction limits. Keep current defaults: candidate clips logo artwork,
+  false-safes an incomplete seal and loses literal handwriting fidelity.
+- Preserve independent source review, strict contracts, matched driver inputs,
+  original/fixed safety labels, and tested cross-process dispatch accounting.
+
 ## [2026-10-05-02] — Reconcile local evaluation notes and dependency lock
 
 ### Fixed
@@ -44,8 +64,11 @@
 ### Fixed
 - Validate existing and serialized links before manifest sealing; rebind source IDs with exact occurrence authority, preserving text, inline markup and provenance.
 - Preserve logical reading order when printed page numbers repeat or reset.
+- Restore complete source-authored prefixed section identities with both flag settings; keep “noted” as prose, abstain on foreign or unestablished document scope, and share explicit cues across coordinated labels.
+- Require source heading/index authority and retain dotted/duplicate abstention; avoid repeated scope parsing and whole-block rescans.
 
 ### Verified
+- Consumer repair continuation:604 affected tests, fresh driver/static inspection, independent27 control passages/34 assertions, original34 existing links restored both flags and12 valid staged packages. Fresh30/34 references resolve; four compact dice mappings stay unsupported. Zero provider calls; Attempt060 retains failed candidate history and bounded acceptance.
 - Fresh driver on/off builds and rendered inspection, 386 focused tests, independent synthetic12/12 and Freeway491/491 admitted reference checks; zero wrong targets within scored controls and zero provider calls. Historical OCR/coverage limits remain explicit.
 - Final matched-semantics cache comparison measures14.03%synthetic/11.52%Deathtrap resolver gains with exact output parity; no whole-pipeline speed claim. Attempt059 records bounds and the diminishing-returns stop.
 
