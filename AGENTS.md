@@ -38,6 +38,18 @@ Read this file at the start of every session.
   comparisons, carry cadence across interruptions, and charge research to the
   existing budget. This does not create a schedule or extend work past a stop.
 
+- For strategic loop reviews, use the strongest available eligible model at its
+  maximum supported thinking level, resolved from current runtime capabilities.
+  Follow `/loop-review` for selection evidence and one bounded read-only
+  reviewer when the main agent is not already suitably configured. Existing
+  scope, access, privacy, budgets and clean-stop rules prevail.
+- Use the cheapest capable workers when delegation saves more than context,
+  coordination and verification overhead. Give bounded packets and direct
+  artifact access. Do independent work or use message-aware completion waits;
+  avoid unchanged status sweeps, duplicate work and watcher agents when native
+  events suffice. Child mailboxes and separate user-owned chats have distinct
+  authorization and continuation contracts.
+
 ## Ideal-First Methodology
 
 **Graph + state structure:** `docs/ideal.md` carries both the product ideal and
@@ -126,16 +138,20 @@ contract, and economics require verification.
 
 ## Subagent Strategy
 
-| Task | Model | Rationale |
-|------|-------|-----------|
-| File search, glob, grep, simple reads | **Haiku** | Fast, cheap, mechanical |
-| Write a single focused module/script | **Sonnet** | Good code quality, fast enough |
-| Multi-file refactor, architecture decisions | **Opus** | Needs full context and judgment |
-| Research/exploration across codebase | **Sonnet** | Good at synthesis, thorough |
-| Writing tests for existing code | **Sonnet** | Needs to understand contracts |
-| Reviewing/validating generated code | **Opus** | Quality gate, catches subtle issues |
+### Runtime model selection by task risk
 
-**Guidelines:** Parallelize independent work. Opus orchestrates, delegates, reviews — never blindly trusts. Use subagents for large-output tasks to protect main context. Fail fast: bad subagent output → adjust approach, don't retry same prompt.
+Resolve worker models and supported thinking levels from current runtime
+capabilities. Use cheaper capable configurations for mechanical searches,
+factual packets and local checks; use stronger configurations for semantic
+contracts, security, eval correctness and consequential cross-file decisions.
+Record explicit override rationale. Strategic loop reviews use the strongest
+eligible model at its maximum supported thinking level under `/loop-review`.
+The main thread owns final quality and reviews delegated output.
+
+**Guidelines:** Parallelize bounded independent work only when ownership is
+clear and delegation has a net benefit. Use subagents for large-output tasks
+when they protect context. Review their output; if it fails, adjust the approach
+instead of retrying the same prompt.
 
 For `/finish-and-push`, its `Coordination` section governs delegation for the
 close-out flow in place of this general strategy.

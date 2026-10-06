@@ -128,6 +128,12 @@ understood fixes and unchanged passing evidence need no research ceremony.
      architecture questions. Require evidence applicable to the candidate and
      preserve doc-web's local story, eval, decision, and close-out bookkeeping
      gates.
+   - Choose the cheapest capable worker for checks when delegation's benefit
+     exceeds context, coordination and verification overhead. Use completion
+     events or message-aware waits; avoid duplicate work and unchanged sweeps.
+     Genuinely strategic outcome/architecture review follows `/loop-review`'s
+     strongest/maximum policy. Routine validation needs no compulsory strategic
+     reviewer, and the existing validation scope and stops still govern.
    - Subagents may gather evidence or flag findings, but the main thread keeps
      the final score, closure recommendation, story handoff state, and
      yes-ready next step.

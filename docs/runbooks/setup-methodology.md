@@ -29,6 +29,22 @@ quota. Hard stops and budgets take precedence. Do not add schedules, extend the
 run, or weaken meaningful acceptance. Preserve the owner's existing verifier
 phase/reset contract when refreshing research guidance.
 
+## Agent staffing and event waits
+
+Carry the short AGENTS policy and `/loop-review` dispatch when refreshing the
+package: resolve the strongest eligible model and its highest supported effort
+at runtime; record requested versus independently verified served identity.
+Use one bounded read-only reviewer when needed, with decisive artifact access,
+no recursive reviews, completion waits, and failed/late-result handling.
+Preserve scope, privacy, budgets, deadlines, clean stops, chat authorization,
+and supported continuation. Ordinary workers use the cheapest capable
+configuration only when context, coordination and verification costs justify it.
+Apply focused missing leaf decisions and preserve owner variants: lane risk
+sizing, tiny-lane coverage, plan gates, final scoring, Git ownership, frozen
+subjects/prompts/judges, actual aggregate spend gates and sparse/no-code exceptions.
+Existing delegation authorization covers the same bounded ideation/ADR packet;
+respect user opt-outs. Do not install an absent evaluation skill for this policy.
+
 ## Why This Exists
 
 Doc-forge already has the authored methodology canon:

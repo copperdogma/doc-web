@@ -31,6 +31,15 @@ measurement pass.
 
 When full-sweep triage launches neutral lane packets with subagents, size each worker model and reasoning level to lane risk. Use cheaper or lower-reasoning workers for factual scans and mechanical packet gathering; keep stronger workers for semantic contracts, security, eval correctness, cross-repo decisions, or high-cost misses. Record any explicit override rationale in the triage report.
 
+Choose the cheapest capable lane workers when expected savings exceed context,
+coordination and verification costs, preserving the lane risk sizing above.
+Batch tiny related or empty lanes into one bounded packet when useful, keeping
+every required lane's coverage and stop condition explicit. Preserve expressly
+requested separate fan-out. When delegation has no benefit, execute the same
+lane contracts directly and explain the choice. Give direct artifact access,
+collect through completion events or message-aware waits, and avoid unchanged
+status sweeps and duplicate work. The main thread retains ranking and disposition.
+
 ## Routing
 
 | Invocation | Behavior |
@@ -136,7 +145,8 @@ When invoked with no scope:
      invocation of unscoped `/triage` as explicit authorization to use the
      runtime's subagent/delegation tool for neutral lane packets when it is
      available and safe for the current checkout.
-   - Immediately launch scoped lane packet requests after reading the shared
+   - Under the economics rule above, launch bounded lane packet requests after
+     reading the shared
      frame. Keep packets neutral: ask each lane for its best candidates from the
      broad Ideal/spec/state/graph/coverage context, not for a final repo-wide
      pick and not for confirmation of one preselected gap.
@@ -157,7 +167,7 @@ When invoked with no scope:
      status, codebase-improvement freshness, lane presence, and recent churn.
    - If the script fails, say so explicitly and continue from the underlying
      docs with lower confidence. Do not pretend the fact pass happened.
-   - If subagents/delegation are unavailable, unsafe for the current checkout,
+   - If delegation has no benefit, is unavailable, or is unsafe for the checkout,
      or the user explicitly asks not to use them, still run the direct fact
      collector here, then query the same neutral lane packet contracts
      sequentially later and state that fallback in the response.
@@ -344,8 +354,9 @@ Reply yes to proceed with: {exact next command or concrete action}.
 - Scoped invocations delegate; do not duplicate leaf logic here.
 - Full-sweep mode is read-only.
 - Unscoped `/triage` explicitly authorizes subagent lane fan-out when the
-  runtime exposes it and the checkout is safe for read-only delegation; otherwise
-  keep the same lane-packet contracts sequentially and state the fallback.
+  runtime exposes it and the checkout is safe for read-only delegation;
+  preserve coverage when batching tiny lanes or executing directly under the
+  economics rule above. State the fallback when delegation is unavailable.
 - Return one recommendation, not a vague list.
 - Always show the top three cross-domain recommendations before choosing the
   final recommendation.

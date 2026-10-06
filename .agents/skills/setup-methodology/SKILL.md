@@ -221,6 +221,14 @@ silently forking the setup contract.
    is reserved for repeated material review/fix rounds. Do not make subagents,
    `/ideation`, or `/loop-verify` mandatory for ordinary setup, no-code repos,
    routine story creation, or small validation passes.
+   Include short AGENTS staffing/wait guidance: choose economical capable
+   workers only when overhead is justified; strategic reviews resolve the
+   strongest eligible model and highest supported effort at runtime. Teach the
+   dispatch in `/loop-review`: requested versus verified served identity, one
+   bounded read-only reviewer when the main agent is not configured, artifact
+   access, no recursive reviews, event waits and failed/late-result handling.
+   Preserve scopes, budgets, clean stops, chat authorization and continuation
+   limits; do not make every task a strategic review.
 11. **Canonical public surface only.** AGENTS/docs should advertise
    `/init-project` for greenfield idea intake and `/setup-methodology` for
    full package setup. Do not reintroduce the old phased setup skills.
@@ -228,13 +236,17 @@ silently forking the setup contract.
    repo has little or no code, install the methodology surfaces quickly around
    the authored Ideal/spec, mark unavailable lanes as absent or deferred, and
    avoid asking agents to infer runtime truth that cannot exist yet.
-13. **Shared skill surfaces should be copied exactly.** When this setup skill or
+13. **Copy shared skill surfaces exactly; preserve approved owner variants.** When this setup skill or
    the shared triage/core story-loop/loop-verify package changes, upgrade one
    source copy and perform a local propagation sweep. Cross-repo propagation is
    separate repo-local adoption work: use dedicated target-repo worktrees or an
-   explicit safe execution path, copy exact shared files there, and run that
+   explicit safe execution path, copy exact shared files or adapt approved
+   owner variants there, and run that
    repo's skill-surface checks before claiming the target repo is updated. Do
-   not independently rewrite the same skill in each repo.
+   not independently rewrite the same shared contract in each repo. Approved
+   owner-specific variants remain local: adapt missing policy decisions into
+   their existing boundaries instead of overwriting whole files, and record
+   the source and retained differences in the owner receipt.
 13. **Local runtime setup uses Conductor allocation.** When a repo has a local
     browser UI, API, internal authoring server, catalog review server, or other
     human/AI runtime, add a repo-local launcher that reads Conductor's
@@ -488,6 +500,14 @@ without spending many rounds proving absent evidence. Do this:
      applicable research, respect current scope and budgets, and do not add a
      recurring schedule. Do not require `/loop-review` for routine or short
      work.
+   - Apply only missing leaf decisions: economical staffing and event collection
+     in build/validate/finish/owner evaluation; triage may batch tiny lanes while
+     preserving coverage and explicit fan-out; ideation/create-adr accept existing
+     delegation authorization. Preserve plan gates, Git ownership, proportional
+     checks and owner adaptations. Strategic review must not alter evaluation
+     subjects, frozen prompts or judges, or weaken actual aggregate spend gates.
+     No-code and short work still get the sparse exceptions above.
+
    - Install or refresh source-routing guidance so provider/component/model
      work checks current official upstream docs first when those facts are
      likely to drift, then ties any adoption back to local Ideal/spec/evals.

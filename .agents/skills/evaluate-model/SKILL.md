@@ -255,6 +255,24 @@ to change the page-context decision. A skipped follow-on is **not measured**, no
 a semantic failure. Do not silently replace maintained prompts, scorers, goldens,
 or fixture slices with improvised evidence.
 
+## Evaluation staffing and collection
+
+Size bounded workers by lane risk and demonstrated capability, choosing the
+cheapest capable configuration when savings exceed context, coordination and
+verification costs. Give direct artifact access; collect through completion
+events or message-aware waits without duplicate provider work or unchanged
+status sweeps. The main thread owns the repo-local protocol and final verdict.
+Strategic coordination review follows `/loop-review`'s runtime strongest/maximum
+policy when warranted; it must not change benchmark subjects, frozen prompts,
+scorers, judges, payload eligibility, or adoption authority.
+
+Before concurrent provider work, require actual provider/job spend gates and
+conservative aggregate reservations within the approved cap. If enforceable
+gates are absent, hold paid dispatch until the existing spend contract can be
+met. Spawn concurrency, prompt budgets, notifications and wait timeouts are not
+hard dollar caps; sleeping parents do not weaken aggregate enforcement. Record
+actual spend and unknown exposure separately from reservations.
+
 ## 7. Run Progressively and Inspect Artifacts
 
 Use the smallest stage that answers the next question:

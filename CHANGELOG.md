@@ -1,3 +1,13 @@
+## [2026-10-06-02] — Runtime agent staffing and event waits
+
+### Changed
+- Reserve the strongest eligible runtime model and maximum supported thinking
+  for strategic loop review; size ordinary workers to risk and coordination
+  cost, and collect delegated results with completion events.
+- Preserve local authority, approval gates, verifier stops and frozen eval
+  configuration. Record Alignment055 adoption and proportional validation in
+  `docs/agent-staffing-and-event-waits.md`.
+
 ## [2026-10-06-01] — Mistral Large4 maintained evaluation (Story244)
 
 ### Added
