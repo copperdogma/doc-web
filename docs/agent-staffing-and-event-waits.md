@@ -1,7 +1,7 @@
 # Agent staffing and event waits — Alignment 055 adoption
 
 Date: 2026-10-06 (America/Edmonton)
-Status: locally adapted and validated owner candidate; remote landing is recorded
+Status: policy landed on owner remote main; final receipt landing is recorded
 by the coordinator in Conductor Alignment 055.
 
 ## Source and isolated owner candidate
@@ -63,3 +63,18 @@ is inferred from this documentation change.
 Checks cover this prose/skill candidate. Product suites, live pipelines and paid
 evaluations were not applicable under the owner's proportional close-out policy.
 Git integration and remote proof remain with the coordinator.
+
+## Verified policy landing
+
+Cam's 2026-10-06 approval covered this scoped commit and push. After the global
+Conductor/11-owner preflight cleared, policy commit
+`581e68dffa21d15eff80d70488e00fcf61e1cfd4` was pushed to
+`origin/codex/align-055-doc-web` and fast-forwarded onto `origin/main`.
+`git ls-remote origin refs/heads/main` verified that exact policy SHA after
+landing. The primary checkout and its unrelated work were preserved.
+
+This section records the observed policy landing. Its subsequent receipt-only
+commit is recorded with final remote-main proof in Conductor Alignment 055's
+consolidated owner ledger. Policy validation is reused because the checked leaf,
+AGENTS and workflow inputs are unchanged; the receipt update receives scoped
+content review and `git diff --check`. No product rerun is required.
