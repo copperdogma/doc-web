@@ -14,8 +14,8 @@ import urllib.error
 import urllib.request
 
 ROOT = Path(__file__).resolve().parents[2]
-EVIDENCE = ROOT / "docs/evals/evidence/065-pplx-shadow"
-RAW = ROOT / "benchmarks/results/pplx-shadow-20261006"
+EVIDENCE = ROOT / "docs/evals/evidence/067-warning-integration"
+RAW = ROOT / "benchmarks/results/pplx-warning-integration-20261006"
 CAP = 4.0
 MODEL = "gpt-4.1-2025-04-14"
 PPLX = "pplx-decider-v1.1-27b"
@@ -290,6 +290,10 @@ def candidate_open(self, request, *args, **kwargs):
         if failure == "timeout":
             raise TimeoutError("offline timeout")
         raw = {} if failure == "malformed" else native_mock(payload)
+        if failure == "disagreement":
+            answer = raw["answers"]["status"]
+            answer.update(choice="row_semantic_issue", confidence=0.42,
+                          probabilities={k: float(k == "row_semantic_issue") for k in payload["questions"]["status"]["criteria"]})
     else:
         PENDING_THREADS.append(threading.current_thread())
         raw = send(payload, "candidate", opener=self, request=request)

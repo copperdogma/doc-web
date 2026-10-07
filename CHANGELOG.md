@@ -1,3 +1,10 @@
+## [2026-10-06-06] — Experimental disagreement warning (Story 248)
+
+### Added
+- Preserve low-confidence candidate/planner disagreement as an advisory review
+  warning in the default-off Perplexity sidecar, leaving authority unchanged.
+- Saved-response and real-driver offline proof; no new inference or activation.
+
 ## [2026-10-06-05] — Offline disagreement review policy (Story 247)
 
 ### Added

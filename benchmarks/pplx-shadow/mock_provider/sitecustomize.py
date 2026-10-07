@@ -31,3 +31,13 @@ if os.environ.get("PPLX_SHADOW_TRANSPORT_MODE") == "offline":
     datetime.datetime = FixedDateTime
 
 atexit.register(runtime_support.settle_threads)
+
+
+if os.environ.get("PPLX_SHADOW_TRANSPORT_MODE") == "offline":
+    import socket
+
+    def deny_network(*args, **kwargs):
+        raise AssertionError("Offline integration forbids socket access")
+
+    socket.socket = deny_network
+    socket.create_connection = deny_network

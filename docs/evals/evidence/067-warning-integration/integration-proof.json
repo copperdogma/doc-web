@@ -1,0 +1,82 @@
+{
+  "provider_calls": 0,
+  "new_spend_usd": 0,
+  "native_receipt_hashes": 10,
+  "saved_candidate_responses_replayed": 2,
+  "unchanged_saved_canonical_artifacts": 4,
+  "real_driver_off": {
+    "run_id": "offline-warning-integration",
+    "document": "doc-01",
+    "folder": "output/runs/pplx-warning-integration-20261006/offline-warning-integration/03_plan_onward_document_consistency_v1",
+    "latency_ms": 1975.4395410000143,
+    "command": [
+      "/usr/local/opt/python@3.14/bin/python3.14",
+      "driver.py",
+      "--recipe",
+      "/Users/cam/.codex/worktrees/pplx-warning-integration-20261006/docs/evals/evidence/067-warning-integration/recipes/doc-01.yaml",
+      "--run-id",
+      "offline-warning-integration",
+      "--output-dir",
+      "/Users/cam/.codex/worktrees/pplx-warning-integration-20261006/output/runs/pplx-warning-integration-20261006/offline-warning-integration",
+      "--allow-run-id-reuse",
+      "--force"
+    ],
+    "canonical_sha256": {
+      "document_consistency_report.jsonl": "57398add0f88b38416e1e5a930bc072bf83d8dfb58a55be03b62e092f72b9f5c",
+      "pattern_inventory.json": "aa4aedd649716e91a868fe8df85d0b3b969459d3b51297bb2474ea25620db902",
+      "consistency_plan.json": "0b5359874ecd94de0031d94fc6b86920776b3a77dcea50c586f1d4e1d94a95ff",
+      "conformance_report.json": "5fc5645c19c1404b5c111db6d9107b5ee7f5c0ed4c97f7ef292eae13e9d0afde"
+    }
+  },
+  "real_driver_on": {
+    "run_id": "offline-warning-integration",
+    "document": "doc-01",
+    "folder": "output/runs/pplx-warning-integration-20261006/offline-warning-integration/03_plan_onward_document_consistency_v1",
+    "latency_ms": 2021.510416999945,
+    "command": [
+      "/usr/local/opt/python@3.14/bin/python3.14",
+      "driver.py",
+      "--recipe",
+      "/Users/cam/.codex/worktrees/pplx-warning-integration-20261006/docs/evals/evidence/067-warning-integration/recipes/doc-01.yaml",
+      "--run-id",
+      "offline-warning-integration",
+      "--output-dir",
+      "/Users/cam/.codex/worktrees/pplx-warning-integration-20261006/output/runs/pplx-warning-integration-20261006/offline-warning-integration",
+      "--allow-run-id-reuse",
+      "--force"
+    ],
+    "canonical_sha256": {
+      "document_consistency_report.jsonl": "57398add0f88b38416e1e5a930bc072bf83d8dfb58a55be03b62e092f72b9f5c",
+      "pattern_inventory.json": "aa4aedd649716e91a868fe8df85d0b3b969459d3b51297bb2474ea25620db902",
+      "consistency_plan.json": "0b5359874ecd94de0031d94fc6b86920776b3a77dcea50c586f1d4e1d94a95ff",
+      "conformance_report.json": "5fc5645c19c1404b5c111db6d9107b5ee7f5c0ed4c97f7ef292eae13e9d0afde"
+    }
+  },
+  "canonical_hashes_equal": true,
+  "verified_warning": {
+    "chapter_ordinal": 0,
+    "authoritative_status": "conformant",
+    "shadow_status": "uncertain",
+    "route": "review",
+    "latency_ms": 18.080416999964655,
+    "pplx_status": "row_semantic_issue",
+    "probabilities": {
+      "conformant": 0.0,
+      "format_drift": 0.0,
+      "row_semantic_issue": 1.0,
+      "mixed": 0.0,
+      "uncertain": 0.0
+    },
+    "confidence": 0.42,
+    "input_tokens": 500,
+    "output_tokens": 1,
+    "cost_usd": 1e-05,
+    "reason": "low_confidence_disagreement",
+    "warning": {
+      "candidate_status": "row_semantic_issue",
+      "authoritative_status": "conformant",
+      "confidence": 0.42
+    }
+  },
+  "limitations": "Saved exposed cohort plus mocked driver proof; no fresh model quality or adoption evidence."
+}

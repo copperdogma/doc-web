@@ -238,7 +238,8 @@
           "244",
           "245",
           "246",
-          "247"
+          "247",
+          "248"
         ],
         "adr_ids": [
           "ADR-001",
@@ -256,7 +257,8 @@
           "onward-genealogy-row-semantic-note-placement",
           "jev-document-consistency-classification",
           "pplx-runtime-consistency-shadow",
-          "pplx-offline-disagreement-review"
+          "pplx-offline-disagreement-review",
+          "pplx-experimental-disagreement-warning"
         ]
       },
       {
@@ -417,7 +419,8 @@
           "233",
           "234",
           "246",
-          "247"
+          "247",
+          "248"
         ],
         "adr_ids": [
           "ADR-001",
@@ -429,7 +432,8 @@
           "onward-genealogy-row-semantic-note-placement",
           "jev-document-consistency-classification",
           "pplx-runtime-consistency-shadow",
-          "pplx-offline-disagreement-review"
+          "pplx-offline-disagreement-review",
+          "pplx-experimental-disagreement-warning"
         ]
       },
       {
@@ -1337,14 +1341,16 @@
           "233",
           "234",
           "246",
-          "247"
+          "247",
+          "248"
         ],
         "eval_ids": [
           "onward-document-consistency-planning",
           "onward-genealogy-row-semantic-note-placement",
           "jev-document-consistency-classification",
           "pplx-runtime-consistency-shadow",
-          "pplx-offline-disagreement-review"
+          "pplx-offline-disagreement-review",
+          "pplx-experimental-disagreement-warning"
         ],
         "actionability": {
           "source_kind": "eval",
@@ -1383,14 +1389,16 @@
             "233",
             "234",
             "246",
-            "247"
+            "247",
+            "248"
           ],
           "eval_ids": [
             "onward-document-consistency-planning",
             "onward-genealogy-row-semantic-note-placement",
             "jev-document-consistency-classification",
             "pplx-runtime-consistency-shadow",
-            "pplx-offline-disagreement-review"
+            "pplx-offline-disagreement-review",
+            "pplx-experimental-disagreement-warning"
           ]
         }
       },
@@ -14004,6 +14012,66 @@
           "summary": ""
         }
       }
+    },
+    {
+      "id": "248",
+      "title": "Experimental sidecar disagreement warning integration",
+      "path": "docs/stories/story-248-experimental-disagreement-warning.md",
+      "status": "Done",
+      "priority": "Medium",
+      "ideal_refs": [
+        "Fidelity to Source",
+        "Traceability"
+      ],
+      "spec_refs": [
+        "spec:2",
+        "spec:5"
+      ],
+      "decision_refs": [
+        "ADR-001"
+      ],
+      "adr_ids": [
+        "ADR-001"
+      ],
+      "depends_on": [
+        "233",
+        "234"
+      ],
+      "category_refs": [
+        "spec:2",
+        "spec:5"
+      ],
+      "compromise_refs": [
+        "C7"
+      ],
+      "input_coverage_refs": [],
+      "architecture_domains": [
+        "document-consistency"
+      ],
+      "roadmap_tags": [
+        "model-evaluation"
+      ],
+      "blocker_summary": "",
+      "blocker_evidence": "",
+      "unblock_condition": "",
+      "last_work_log_entry": null,
+      "legacy_build_map_refs": "",
+      "metadata_source": "frontmatter",
+      "missing_frontmatter_keys": [],
+      "actionability": {
+        "source_kind": "story",
+        "source_id": "248",
+        "source_path": "docs/stories/story-248-experimental-disagreement-warning.md",
+        "recommended_now": false,
+        "posture": "completed",
+        "why_now": "",
+        "last_relevant_action": {
+          "date": null,
+          "source_type": "story-status",
+          "source": "docs/stories/story-248-experimental-disagreement-warning.md",
+          "summary": ""
+        }
+      }
     }
   ],
   "adrs": [
@@ -18881,6 +18949,57 @@
           "source": "docs/evals/registry.yaml",
           "source_id": "001",
           "summary": "Attempt066 zero newcalls/spend. Saved3chapters1document falseclean1to0, review0to1, exactlabels2/3unchanged.10receipt hashes/2exactcandidate replays/4canonicalhashes verified;16boundarytests pass. Post-hoc only, no fr..."
+        }
+      }
+    },
+    {
+      "id": "pplx-experimental-disagreement-warning",
+      "name": "Default-off sidecar disagreement warning integration",
+      "type": "quality",
+      "command": "python benchmarks/pplx-warning-integration/verify.py",
+      "path": "docs/evals/registry.yaml",
+      "description": "Offline integration proof of advisory low-confidence disagreement review; saved native responses and mocked driver, no fresh model inference.\n",
+      "spec_refs": [],
+      "story_refs": [
+        "248"
+      ],
+      "compromise_refs": [
+        "C7"
+      ],
+      "category_refs": [
+        "spec:2",
+        "spec:5"
+      ],
+      "scores": [],
+      "latest_score": null,
+      "attempts": [
+        {
+          "id": "001",
+          "date": "2026-10-06",
+          "status": "succeeded",
+          "approach": "Integrated unchanged.8 low-confidence disagreement review; offline savedanswer/driver proof",
+          "note": "Attempt067 complete,62focusedtests/scopedRuff.10native receipt hashes, 2exactcandidate replays,4canonical hashes and realdriver mocked warning/onoff equivalence pass. Zero newcalls/spend/credentials. No fresh modelquality/adoption claim, defaultsunchanged. Evidence docs/evals/evidence/067-warning-integration/report.md.\n",
+          "retry_when": []
+        }
+      ],
+      "retry_when": [],
+      "retry_when_notes": [],
+      "explicit_lineage": true,
+      "actionability": {
+        "source_kind": "eval",
+        "source_id": "pplx-experimental-disagreement-warning",
+        "source_path": "docs/evals/registry.yaml",
+        "recommended_now": false,
+        "posture": "no-trigger-recorded",
+        "retry_trigger_status": "none",
+        "retry_when": [],
+        "why_now": "",
+        "last_relevant_action": {
+          "date": "2026-10-06",
+          "source_type": "eval-attempt",
+          "source": "docs/evals/registry.yaml",
+          "source_id": "001",
+          "summary": "Attempt067 complete,62focusedtests/scopedRuff.10native receipt hashes, 2exactcandidate replays,4canonical hashes and realdriver mocked warning/onoff equivalence pass. Zero newcalls/spend/credentials. No fresh modelqua..."
         }
       }
     }

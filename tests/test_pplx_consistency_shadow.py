@@ -185,3 +185,37 @@ def test_evidence_switch_disabled_exact_original_dossier_prompt(monkeypatch):
     old = original.build_document_dossier(chapters, pages, **args)
     assert current == old
     assert planner._build_prompt(current) == original._build_prompt(old)
+
+
+@pytest.mark.parametrize('confidence', [0.0, 0.42, 0.799999])
+def test_low_confidence_disagreement_preserves_warning_for_review(confidence):
+    data = inputs()
+    before = copy.deepcopy(data)
+    r = shadow.run_shadow(*data, env=ENV, request=lambda *a: response('row_semantic_issue', confidence))
+    row = r['chapters'][0]
+    assert row['route'] == 'review' and row['shadow_status'] == 'uncertain'
+    assert row['reason'] == 'low_confidence_disagreement'
+    assert row['warning'] == {'candidate_status': 'row_semantic_issue', 'authoritative_status': 'conformant', 'confidence': confidence}
+    assert row['authoritative_status'] == 'conformant' and data == before
+
+
+def test_low_confidence_agreement_retains_existing_fallback():
+    r = shadow.run_shadow(*inputs(), env=ENV, request=lambda *a: response('conformant', 0.42))
+    row = r['chapters'][0]
+    assert row['route'] == 'planner_fallback' and row['reason'] == 'low_confidence'
+    assert row['shadow_status'] == 'conformant' and 'warning' not in row
+
+
+@pytest.mark.parametrize('confidence', [0.8, 0.95])
+def test_confidence_threshold_unchanged(confidence):
+    row = shadow.run_shadow(*inputs(), env=ENV, request=lambda *a: response('row_semantic_issue', confidence))['chapters'][0]
+    assert row['route'] == 'pplx' and row['shadow_status'] == 'row_semantic_issue'
+    assert 'warning' not in row
+
+
+def test_reverse_low_confidence_disagreement_does_not_accept_clean():
+    chapters, plan, auth = inputs()
+    auth['chapters'][0]['status'] = 'mixed'
+    row = shadow.run_shadow(chapters, plan, auth, env=ENV, request=lambda *a: response('conformant', 0.42))['chapters'][0]
+    assert row['route'] == 'review' and row['shadow_status'] == 'uncertain'
+    assert row['authoritative_status'] == 'mixed'

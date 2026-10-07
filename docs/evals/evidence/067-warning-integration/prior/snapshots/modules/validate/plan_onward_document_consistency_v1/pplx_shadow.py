@@ -382,19 +382,7 @@ def run_shadow(
                 reason="deterministic_layout_guard",
             )
         elif judgment.confidence < 0.8:
-            if judgment.label != baseline:
-                row.update(
-                    shadow_status="uncertain",
-                    route="review",
-                    reason="low_confidence_disagreement",
-                    warning={
-                        "candidate_status": judgment.label,
-                        "authoritative_status": baseline,
-                        "confidence": judgment.confidence,
-                    },
-                )
-            else:
-                row["reason"] = "low_confidence"
+            row["reason"] = "low_confidence"
         else:
             row.update(
                 shadow_status=judgment.label,

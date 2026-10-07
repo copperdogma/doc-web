@@ -15,8 +15,8 @@ import runtime_support as support
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT))
 HERE = Path(__file__).parent
-OUT = ROOT / "docs/evals/evidence/065-pplx-shadow"
-RUNS = ROOT / "output/runs/pplx-shadow-20261006"
+OUT = ROOT / "docs/evals/evidence/067-warning-integration"
+RUNS = ROOT / "output/runs/pplx-warning-integration-20261006"
 CANONICAL = [
     "document_consistency_report.jsonl",
     "pattern_inventory.json",
