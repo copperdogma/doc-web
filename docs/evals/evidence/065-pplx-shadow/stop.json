@@ -1,0 +1,21 @@
+{
+  "reason": "guarded_clean_on_defect_or_unknown_requires_source_adjudication",
+  "run_id": "live-r1-doc-01",
+  "rows": [
+    {
+      "run_id": "live-r1-doc-01",
+      "document": "doc-01",
+      "chapter": "chapter-003.html",
+      "stratum": "row_semantic",
+      "gold": "row_semantic_issue",
+      "authoritative": "conformant",
+      "raw_candidate": "row_semantic_issue",
+      "guarded": "conformant",
+      "route": "planner_fallback",
+      "reason": "low_confidence",
+      "confidence": 0.4203098334772307,
+      "unsafe_clean": true,
+      "introduced_unsafe_clean": false
+    }
+  ]
+}

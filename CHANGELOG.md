@@ -1,3 +1,12 @@
+## [2026-10-06-04] — Perplexity runtime shadow safety screen (Story 246)
+
+### Added
+- Isolated default-off synthetic shadow evaluation with observed source evidence,
+  real-driver coverage/invariance checks and bounded native spend receipts.
+- Stop/no-promotion result: correct low-confidence Decider warning falls back to
+  inherited planner false-clean; five calls USD0.02588316, no unresolved spend.
+- Preserve unmeasured coverage and source-reviewed failures; runtime defaults unchanged.
+
 ## [2026-10-06-03] — Literal table evidence and uncertainty gate (Story 245)
 
 ### Added

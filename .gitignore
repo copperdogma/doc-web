@@ -62,3 +62,6 @@ benchmarks/results/gpt6-astra-20260905/
 
 # Attempt061 protected raw receipts, logs and dispatch lock
 /benchmarks/results/mistral-large4-20261006/
+
+# Story246 synthetic native receipts and dispatch lock
+/benchmarks/results/pplx-shadow-20261006/

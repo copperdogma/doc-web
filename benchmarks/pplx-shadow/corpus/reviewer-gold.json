@@ -1,0 +1,392 @@
+[
+  {
+    "document": "doc-01",
+    "chapter": "chapter-001.html",
+    "stratum": "conformant",
+    "gold": "conformant",
+    "source_html": "benchmarks/pplx-shadow/corpus/doc-01/source-001.html",
+    "extracted_html": "benchmarks/pplx-shadow/corpus/doc-01/chapter-001.html",
+    "oracle_conventions": {
+      "canonical_headers": [
+        "Name",
+        "Born",
+        "Married",
+        "Spouse",
+        "Boy",
+        "Girl",
+        "Died"
+      ],
+      "layout": "Preserve source table field separation; one continuous table unless source has real page break",
+      "notes": "Only named/anchored source notes establish ownership; absent source page or unanchored note remains unknown"
+    },
+    "source_reason": "Source cells and actual permitted table layout preserved."
+  },
+  {
+    "document": "doc-01",
+    "chapter": "chapter-002.html",
+    "stratum": "format_only",
+    "gold": "format_drift",
+    "source_html": "benchmarks/pplx-shadow/corpus/doc-01/source-002.html",
+    "extracted_html": "benchmarks/pplx-shadow/corpus/doc-01/chapter-002.html",
+    "oracle_conventions": {
+      "canonical_headers": [
+        "Name",
+        "Born",
+        "Married",
+        "Spouse",
+        "Boy",
+        "Girl",
+        "Died"
+      ],
+      "layout": "Preserve source table field separation; one continuous table unless source has real page break",
+      "notes": "Only named/anchored source notes establish ownership; absent source page or unanchored note remains unknown"
+    },
+    "source_reason": "Extracted count-column separation differs from source while facts and associations remain intact."
+  },
+  {
+    "document": "doc-01",
+    "chapter": "chapter-003.html",
+    "stratum": "row_semantic",
+    "gold": "row_semantic_issue",
+    "source_html": "benchmarks/pplx-shadow/corpus/doc-01/source-003.html",
+    "extracted_html": "benchmarks/pplx-shadow/corpus/doc-01/chapter-003.html",
+    "oracle_conventions": {
+      "canonical_headers": [
+        "Name",
+        "Born",
+        "Married",
+        "Spouse",
+        "Boy",
+        "Girl",
+        "Died"
+      ],
+      "layout": "Preserve source table field separation; one continuous table unless source has real page break",
+      "notes": "Only named/anchored source notes establish ownership; absent source page or unanchored note remains unknown"
+    },
+    "source_reason": "Extracted first person birth year is five years later than actual source; table layout preserved."
+  },
+  {
+    "document": "doc-02",
+    "chapter": "chapter-001.html",
+    "stratum": "mixed",
+    "gold": "mixed",
+    "source_html": "benchmarks/pplx-shadow/corpus/doc-02/source-001.html",
+    "extracted_html": "benchmarks/pplx-shadow/corpus/doc-02/chapter-001.html",
+    "oracle_conventions": {
+      "canonical_headers": [
+        "Name",
+        "Born",
+        "Married",
+        "Spouse",
+        "Boy/Girl",
+        "Died"
+      ],
+      "layout": "Preserve source table field separation; one continuous table unless source has real page break",
+      "notes": "Only named/anchored source notes establish ownership; absent source page or unanchored note remains unknown"
+    },
+    "source_reason": "Count-column separation differs and first person birth year is five years later than source."
+  },
+  {
+    "document": "doc-02",
+    "chapter": "chapter-002.html",
+    "stratum": "missing_source",
+    "gold": "uncertain",
+    "source_html": "benchmarks/pplx-shadow/corpus/doc-02/source-002.html",
+    "extracted_html": "benchmarks/pplx-shadow/corpus/doc-02/chapter-002.html",
+    "oracle_conventions": {
+      "canonical_headers": [
+        "Name",
+        "Born",
+        "Married",
+        "Spouse",
+        "Boy/Girl",
+        "Died"
+      ],
+      "layout": "Preserve source table field separation; one continuous table unless source has real page break",
+      "notes": "Only named/anchored source notes establish ownership; absent source page or unanchored note remains unknown"
+    },
+    "source_reason": "Expected page absent from actual source-pages JSONL; extracted facts cannot be verified. Source file retained for reviewer only and not loaded."
+  },
+  {
+    "document": "doc-02",
+    "chapter": "chapter-003.html",
+    "stratum": "ambiguous_attachment",
+    "gold": "uncertain",
+    "source_html": "benchmarks/pplx-shadow/corpus/doc-02/source-003.html",
+    "extracted_html": "benchmarks/pplx-shadow/corpus/doc-02/chapter-003.html",
+    "oracle_conventions": {
+      "canonical_headers": [
+        "Name",
+        "Born",
+        "Married",
+        "Spouse",
+        "Boy/Girl",
+        "Died"
+      ],
+      "layout": "Preserve source table field separation; one continuous table unless source has real page break",
+      "notes": "Only named/anchored source notes establish ownership; absent source page or unanchored note remains unknown"
+    },
+    "source_reason": "Source aside has no person anchor or linking marker; extraction attaches it to first person without source support."
+  },
+  {
+    "document": "doc-03",
+    "chapter": "chapter-001.html",
+    "stratum": "format_only",
+    "gold": "format_drift",
+    "source_html": "benchmarks/pplx-shadow/corpus/doc-03/source-001.html",
+    "extracted_html": "benchmarks/pplx-shadow/corpus/doc-03/chapter-001.html",
+    "oracle_conventions": {
+      "canonical_headers": [
+        "Name",
+        "Born",
+        "Married",
+        "Spouse",
+        "Boy",
+        "Girl",
+        "Died"
+      ],
+      "layout": "Preserve source table field separation; one continuous table unless source has real page break",
+      "notes": "Only named/anchored source notes establish ownership; absent source page or unanchored note remains unknown"
+    },
+    "source_reason": "Extracted count-column separation differs from source while facts and associations remain intact."
+  },
+  {
+    "document": "doc-03",
+    "chapter": "chapter-002.html",
+    "stratum": "row_semantic",
+    "gold": "row_semantic_issue",
+    "source_html": "benchmarks/pplx-shadow/corpus/doc-03/source-002.html",
+    "extracted_html": "benchmarks/pplx-shadow/corpus/doc-03/chapter-002.html",
+    "oracle_conventions": {
+      "canonical_headers": [
+        "Name",
+        "Born",
+        "Married",
+        "Spouse",
+        "Boy",
+        "Girl",
+        "Died"
+      ],
+      "layout": "Preserve source table field separation; one continuous table unless source has real page break",
+      "notes": "Only named/anchored source notes establish ownership; absent source page or unanchored note remains unknown"
+    },
+    "source_reason": "Extracted first person birth year is five years later than actual source; table layout preserved."
+  },
+  {
+    "document": "doc-03",
+    "chapter": "chapter-003.html",
+    "stratum": "mixed",
+    "gold": "mixed",
+    "source_html": "benchmarks/pplx-shadow/corpus/doc-03/source-003.html",
+    "extracted_html": "benchmarks/pplx-shadow/corpus/doc-03/chapter-003.html",
+    "oracle_conventions": {
+      "canonical_headers": [
+        "Name",
+        "Born",
+        "Married",
+        "Spouse",
+        "Boy",
+        "Girl",
+        "Died"
+      ],
+      "layout": "Preserve source table field separation; one continuous table unless source has real page break",
+      "notes": "Only named/anchored source notes establish ownership; absent source page or unanchored note remains unknown"
+    },
+    "source_reason": "Count-column separation differs and first person birth year is five years later than source."
+  },
+  {
+    "document": "doc-04",
+    "chapter": "chapter-001.html",
+    "stratum": "missing_source",
+    "gold": "uncertain",
+    "source_html": "benchmarks/pplx-shadow/corpus/doc-04/source-001.html",
+    "extracted_html": "benchmarks/pplx-shadow/corpus/doc-04/chapter-001.html",
+    "oracle_conventions": {
+      "canonical_headers": [
+        "Name",
+        "Born",
+        "Married",
+        "Spouse",
+        "Boy",
+        "Girl",
+        "Died"
+      ],
+      "layout": "Preserve source table field separation; one continuous table unless source has real page break",
+      "notes": "Only named/anchored source notes establish ownership; absent source page or unanchored note remains unknown"
+    },
+    "source_reason": "Expected page absent from actual source-pages JSONL; extracted facts cannot be verified. Source file retained for reviewer only and not loaded."
+  },
+  {
+    "document": "doc-04",
+    "chapter": "chapter-002.html",
+    "stratum": "ambiguous_attachment",
+    "gold": "uncertain",
+    "source_html": "benchmarks/pplx-shadow/corpus/doc-04/source-002.html",
+    "extracted_html": "benchmarks/pplx-shadow/corpus/doc-04/chapter-002.html",
+    "oracle_conventions": {
+      "canonical_headers": [
+        "Name",
+        "Born",
+        "Married",
+        "Spouse",
+        "Boy",
+        "Girl",
+        "Died"
+      ],
+      "layout": "Preserve source table field separation; one continuous table unless source has real page break",
+      "notes": "Only named/anchored source notes establish ownership; absent source page or unanchored note remains unknown"
+    },
+    "source_reason": "Source aside has no person anchor or linking marker; extraction attaches it to first person without source support."
+  },
+  {
+    "document": "doc-04",
+    "chapter": "chapter-003.html",
+    "stratum": "conformant",
+    "gold": "conformant",
+    "source_html": "benchmarks/pplx-shadow/corpus/doc-04/source-003.html",
+    "extracted_html": "benchmarks/pplx-shadow/corpus/doc-04/chapter-003.html",
+    "oracle_conventions": {
+      "canonical_headers": [
+        "Name",
+        "Born",
+        "Married",
+        "Spouse",
+        "Boy",
+        "Girl",
+        "Died"
+      ],
+      "layout": "Preserve source table field separation; one continuous table unless source has real page break",
+      "notes": "Only named/anchored source notes establish ownership; absent source page or unanchored note remains unknown"
+    },
+    "source_reason": "Source cells and actual permitted table layout preserved."
+  },
+  {
+    "document": "doc-05",
+    "chapter": "chapter-001.html",
+    "stratum": "row_semantic",
+    "gold": "row_semantic_issue",
+    "source_html": "benchmarks/pplx-shadow/corpus/doc-05/source-001.html",
+    "extracted_html": "benchmarks/pplx-shadow/corpus/doc-05/chapter-001.html",
+    "oracle_conventions": {
+      "canonical_headers": [
+        "Name",
+        "Born",
+        "Married",
+        "Spouse",
+        "Boy/Girl",
+        "Died"
+      ],
+      "layout": "Preserve source table field separation; one continuous table unless source has real page break",
+      "notes": "Only named/anchored source notes establish ownership; absent source page or unanchored note remains unknown"
+    },
+    "source_reason": "Extracted first person birth year is five years later than actual source; table layout preserved."
+  },
+  {
+    "document": "doc-05",
+    "chapter": "chapter-002.html",
+    "stratum": "mixed",
+    "gold": "mixed",
+    "source_html": "benchmarks/pplx-shadow/corpus/doc-05/source-002.html",
+    "extracted_html": "benchmarks/pplx-shadow/corpus/doc-05/chapter-002.html",
+    "oracle_conventions": {
+      "canonical_headers": [
+        "Name",
+        "Born",
+        "Married",
+        "Spouse",
+        "Boy/Girl",
+        "Died"
+      ],
+      "layout": "Preserve source table field separation; one continuous table unless source has real page break",
+      "notes": "Only named/anchored source notes establish ownership; absent source page or unanchored note remains unknown"
+    },
+    "source_reason": "Count-column separation differs and first person birth year is five years later than source."
+  },
+  {
+    "document": "doc-05",
+    "chapter": "chapter-003.html",
+    "stratum": "missing_source",
+    "gold": "uncertain",
+    "source_html": "benchmarks/pplx-shadow/corpus/doc-05/source-003.html",
+    "extracted_html": "benchmarks/pplx-shadow/corpus/doc-05/chapter-003.html",
+    "oracle_conventions": {
+      "canonical_headers": [
+        "Name",
+        "Born",
+        "Married",
+        "Spouse",
+        "Boy/Girl",
+        "Died"
+      ],
+      "layout": "Preserve source table field separation; one continuous table unless source has real page break",
+      "notes": "Only named/anchored source notes establish ownership; absent source page or unanchored note remains unknown"
+    },
+    "source_reason": "Expected page absent from actual source-pages JSONL; extracted facts cannot be verified. Source file retained for reviewer only and not loaded."
+  },
+  {
+    "document": "doc-06",
+    "chapter": "chapter-001.html",
+    "stratum": "ambiguous_attachment",
+    "gold": "uncertain",
+    "source_html": "benchmarks/pplx-shadow/corpus/doc-06/source-001.html",
+    "extracted_html": "benchmarks/pplx-shadow/corpus/doc-06/chapter-001.html",
+    "oracle_conventions": {
+      "canonical_headers": [
+        "NAME",
+        "BORN",
+        "MARRIED",
+        "SPOUSE",
+        "BOY",
+        "GIRL",
+        "DIED"
+      ],
+      "layout": "Preserve source table field separation; one continuous table unless source has real page break",
+      "notes": "Only named/anchored source notes establish ownership; absent source page or unanchored note remains unknown"
+    },
+    "source_reason": "Source aside has no person anchor or linking marker; extraction attaches it to first person without source support."
+  },
+  {
+    "document": "doc-06",
+    "chapter": "chapter-002.html",
+    "stratum": "conformant",
+    "gold": "conformant",
+    "source_html": "benchmarks/pplx-shadow/corpus/doc-06/source-002.html",
+    "extracted_html": "benchmarks/pplx-shadow/corpus/doc-06/chapter-002.html",
+    "oracle_conventions": {
+      "canonical_headers": [
+        "NAME",
+        "BORN",
+        "MARRIED",
+        "SPOUSE",
+        "BOY",
+        "GIRL",
+        "DIED"
+      ],
+      "layout": "Preserve source table field separation; one continuous table unless source has real page break",
+      "notes": "Only named/anchored source notes establish ownership; absent source page or unanchored note remains unknown"
+    },
+    "source_reason": "Source cells and actual permitted table layout preserved."
+  },
+  {
+    "document": "doc-06",
+    "chapter": "chapter-003.html",
+    "stratum": "format_only",
+    "gold": "format_drift",
+    "source_html": "benchmarks/pplx-shadow/corpus/doc-06/source-003.html",
+    "extracted_html": "benchmarks/pplx-shadow/corpus/doc-06/chapter-003.html",
+    "oracle_conventions": {
+      "canonical_headers": [
+        "NAME",
+        "BORN",
+        "MARRIED",
+        "SPOUSE",
+        "BOY",
+        "GIRL",
+        "DIED"
+      ],
+      "layout": "Preserve source table field separation; one continuous table unless source has real page break",
+      "notes": "Only named/anchored source notes establish ownership; absent source page or unanchored note remains unknown"
+    },
+    "source_reason": "Extracted count-column separation differs from source while facts and associations remain intact."
+  }
+]
