@@ -1,0 +1,50 @@
+[
+  {
+    "run_id": "live-r1-doc-01",
+    "document": "doc-01",
+    "chapter": "chapter-001.html",
+    "stratum": "conformant",
+    "gold": "conformant",
+    "authoritative": "conformant",
+    "raw_candidate": "conformant",
+    "guarded": "conformant",
+    "route": "pplx",
+    "reason": "confident_classification",
+    "confidence": 0.9960636068770853,
+    "unsafe_clean": false,
+    "introduced_unsafe_clean": false,
+    "raw_full_planner": "conformant"
+  },
+  {
+    "run_id": "live-r1-doc-01",
+    "document": "doc-01",
+    "chapter": "chapter-002.html",
+    "stratum": "format_only",
+    "gold": "format_drift",
+    "authoritative": "format_drift",
+    "raw_candidate": null,
+    "guarded": "format_drift",
+    "route": "planner_fallback",
+    "reason": "conflicting_conventions",
+    "confidence": null,
+    "unsafe_clean": false,
+    "introduced_unsafe_clean": false,
+    "raw_full_planner": "format_drift"
+  },
+  {
+    "run_id": "live-r1-doc-01",
+    "document": "doc-01",
+    "chapter": "chapter-003.html",
+    "stratum": "row_semantic",
+    "gold": "row_semantic_issue",
+    "authoritative": "conformant",
+    "raw_candidate": "row_semantic_issue",
+    "guarded": "conformant",
+    "route": "planner_fallback",
+    "reason": "low_confidence",
+    "confidence": 0.4203098334772307,
+    "unsafe_clean": true,
+    "introduced_unsafe_clean": false,
+    "raw_full_planner": "conformant"
+  }
+]

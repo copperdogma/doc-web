@@ -6092,3 +6092,31 @@ evals:
 # 2026-08-31 follow-through: exact route remains catalog-listed; DeepSeek and Novita endpoints expose only generic tools/tool_choice/response_format, with no provider-enforced forced tools or strict JSON Schema. No owner calls or spend, see `docs/evals/attempts/deepseek-vision-metadata-followthrough-20260826.md`.
 # 2026-09-01 follow-through: exact route remains catalog-listed; DeepSeek and Novita endpoints expose only generic tools/tool_choice/response_format, tool_choice.required is false, and no provider-enforced forced tools or strict JSON Schema. No owner calls or spend, see `docs/evals/attempts/deepseek-vision-metadata-followthrough-20260826.md`.
 # 2026-09-02 follow-through: Fireworks advertises strict structured outputs and required/function tool choice but status is -2 (unavailable); no owner calls or spend, see `docs/evals/attempts/deepseek-vision-metadata-followthrough-20260826.md`.
+
+  - id: pplx-offline-disagreement-review
+    name: Offline low-confidence disagreement review policy
+    type: quality
+    description: >
+      Post-hoc offline routing replay on saved Attempt065 synthetic native
+      responses. No fresh inference or runtime integration; policy behavior only.
+    pipeline_stage: validate
+    runner: custom
+    command: "python benchmarks/pplx-disagreement-offline/replay.py"
+    story_refs: ["247"]
+    category_refs: ["spec:2", "spec:5"]
+    compromise_refs: ["C7"]
+    target:
+      metric: preserved_disagreement_warning
+      value: "Review valid low-confidence disagreement without modifying authority"
+    scores: []
+    attempts:
+      - id: "001"
+        date: 2026-10-06
+        status: succeeded
+        approach: "Replay frozen saved native answers; pure advisory review routing"
+        note: >
+          Attempt066 zero newcalls/spend. Saved3chapters1document falseclean1to0,
+          review0to1, exactlabels2/3unchanged.10receipt hashes/2exactcandidate
+          replays/4canonicalhashes verified;16boundarytests pass. Post-hoc only,
+          no fresh safety or adoption claim. No runtime/default/commit/push.
+          Evidence docs/evals/evidence/066-offline-disagreement/report.md.
