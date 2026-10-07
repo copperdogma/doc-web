@@ -107,6 +107,7 @@ Grouped by primary `spec:N` category. Stories without category refs remain in an
 | 233 | JEV consistency classifier evaluation | Medium | Done | 220 | [story-233](stories/story-233-jev-consistency-classifier-evaluation.md) |
 | 234 | JEV consistency shadow routing | Medium | Done | 233 | [story-234](stories/story-234-jev-consistency-shadow-routing.md) |
 | 246 | Perplexity synthetic runtime shadow evaluation | Medium | Done | 233, 234 | [story-246](stories/story-246-perplexity-runtime-shadow-evaluation.md) |
+| 247 | Offline disagreement-to-review routing test | Medium | Done | 233, 234 | [story-247](stories/story-247-offline-disagreement-routing.md) |
 
 ### spec:3 — Layout & Structure Understanding
 

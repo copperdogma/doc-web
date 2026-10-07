@@ -1,3 +1,10 @@
+## [2026-10-06-05] — Offline disagreement review policy (Story 247)
+
+### Added
+- Replay saved synthetic native answers with a pure disagreement-to-review rule.
+- Preserve one observed warning as review: false-clean1→0, reviews0→1;
+  exact classification remains2/3. Zero new inference/spend; defaults unchanged.
+
 ## [2026-10-06-04] — Perplexity runtime shadow safety screen (Story 246)
 
 ### Added

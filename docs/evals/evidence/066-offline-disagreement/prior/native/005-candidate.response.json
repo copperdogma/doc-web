@@ -1,0 +1,1 @@
+{"model":"pplx-decider-v1.1-27b","answers":{"status":{"type":"choice","choice":"row_semantic_issue","confidence":0.4203098334772307,"probabilities":{"conformant":0.43783809977996274,"format_drift":0.002483901476501336,"row_semantic_issue":0.5362478667817846,"mixed":0.001803785566209845,"uncertain":0.021626346395541445}}},"usage":{"input_tokens":1807,"output_tokens":1}}

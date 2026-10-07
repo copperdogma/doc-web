@@ -237,7 +237,8 @@
           "239",
           "244",
           "245",
-          "246"
+          "246",
+          "247"
         ],
         "adr_ids": [
           "ADR-001",
@@ -254,7 +255,8 @@
           "onward-document-consistency-planning",
           "onward-genealogy-row-semantic-note-placement",
           "jev-document-consistency-classification",
-          "pplx-runtime-consistency-shadow"
+          "pplx-runtime-consistency-shadow",
+          "pplx-offline-disagreement-review"
         ]
       },
       {
@@ -414,7 +416,8 @@
           "220",
           "233",
           "234",
-          "246"
+          "246",
+          "247"
         ],
         "adr_ids": [
           "ADR-001",
@@ -425,7 +428,8 @@
           "onward-document-consistency-planning",
           "onward-genealogy-row-semantic-note-placement",
           "jev-document-consistency-classification",
-          "pplx-runtime-consistency-shadow"
+          "pplx-runtime-consistency-shadow",
+          "pplx-offline-disagreement-review"
         ]
       },
       {
@@ -1332,13 +1336,15 @@
           "220",
           "233",
           "234",
-          "246"
+          "246",
+          "247"
         ],
         "eval_ids": [
           "onward-document-consistency-planning",
           "onward-genealogy-row-semantic-note-placement",
           "jev-document-consistency-classification",
-          "pplx-runtime-consistency-shadow"
+          "pplx-runtime-consistency-shadow",
+          "pplx-offline-disagreement-review"
         ],
         "actionability": {
           "source_kind": "eval",
@@ -1376,13 +1382,15 @@
             "220",
             "233",
             "234",
-            "246"
+            "246",
+            "247"
           ],
           "eval_ids": [
             "onward-document-consistency-planning",
             "onward-genealogy-row-semantic-note-placement",
             "jev-document-consistency-classification",
-            "pplx-runtime-consistency-shadow"
+            "pplx-runtime-consistency-shadow",
+            "pplx-offline-disagreement-review"
           ]
         }
       },
@@ -13936,6 +13944,66 @@
           "summary": ""
         }
       }
+    },
+    {
+      "id": "247",
+      "title": "Offline disagreement-to-review routing test",
+      "path": "docs/stories/story-247-offline-disagreement-routing.md",
+      "status": "Done",
+      "priority": "Medium",
+      "ideal_refs": [
+        "Fidelity to Source",
+        "Traceability"
+      ],
+      "spec_refs": [
+        "spec:2",
+        "spec:5"
+      ],
+      "decision_refs": [
+        "ADR-001"
+      ],
+      "adr_ids": [
+        "ADR-001"
+      ],
+      "depends_on": [
+        "233",
+        "234"
+      ],
+      "category_refs": [
+        "spec:2",
+        "spec:5"
+      ],
+      "compromise_refs": [
+        "C7"
+      ],
+      "input_coverage_refs": [],
+      "architecture_domains": [
+        "document-consistency"
+      ],
+      "roadmap_tags": [
+        "model-evaluation"
+      ],
+      "blocker_summary": "",
+      "blocker_evidence": "",
+      "unblock_condition": "",
+      "last_work_log_entry": null,
+      "legacy_build_map_refs": "",
+      "metadata_source": "frontmatter",
+      "missing_frontmatter_keys": [],
+      "actionability": {
+        "source_kind": "story",
+        "source_id": "247",
+        "source_path": "docs/stories/story-247-offline-disagreement-routing.md",
+        "recommended_now": false,
+        "posture": "completed",
+        "why_now": "",
+        "last_relevant_action": {
+          "date": null,
+          "source_type": "story-status",
+          "source": "docs/stories/story-247-offline-disagreement-routing.md",
+          "summary": ""
+        }
+      }
     }
   ],
   "adrs": [
@@ -18762,6 +18830,57 @@
           "source": "docs/evals/registry.yaml",
           "source_id": "001",
           "summary": "Attempt065 complete:5nativecalls USD0.02588316/4 unknown0. Firstdoc rawcandidate2/2correct (1conflictskip); guarded2/3 with1inherited plannerfalseclean,0introduced and0accepted usefulcorrections. Correct birthyear war..."
+        }
+      }
+    },
+    {
+      "id": "pplx-offline-disagreement-review",
+      "name": "Offline low-confidence disagreement review policy",
+      "type": "quality",
+      "command": "python benchmarks/pplx-disagreement-offline/replay.py",
+      "path": "docs/evals/registry.yaml",
+      "description": "Post-hoc offline routing replay on saved Attempt065 synthetic native responses. No fresh inference or runtime integration; policy behavior only.\n",
+      "spec_refs": [],
+      "story_refs": [
+        "247"
+      ],
+      "compromise_refs": [
+        "C7"
+      ],
+      "category_refs": [
+        "spec:2",
+        "spec:5"
+      ],
+      "scores": [],
+      "latest_score": null,
+      "attempts": [
+        {
+          "id": "001",
+          "date": "2026-10-06",
+          "status": "succeeded",
+          "approach": "Replay frozen saved native answers; pure advisory review routing",
+          "note": "Attempt066 zero newcalls/spend. Saved3chapters1document falseclean1to0, review0to1, exactlabels2/3unchanged.10receipt hashes/2exactcandidate replays/4canonicalhashes verified;16boundarytests pass. Post-hoc only, no fresh safety or adoption claim. No runtime/default/commit/push. Evidence docs/evals/evidence/066-offline-disagreement/report.md.\n",
+          "retry_when": []
+        }
+      ],
+      "retry_when": [],
+      "retry_when_notes": [],
+      "explicit_lineage": true,
+      "actionability": {
+        "source_kind": "eval",
+        "source_id": "pplx-offline-disagreement-review",
+        "source_path": "docs/evals/registry.yaml",
+        "recommended_now": false,
+        "posture": "no-trigger-recorded",
+        "retry_trigger_status": "none",
+        "retry_when": [],
+        "why_now": "",
+        "last_relevant_action": {
+          "date": "2026-10-06",
+          "source_type": "eval-attempt",
+          "source": "docs/evals/registry.yaml",
+          "source_id": "001",
+          "summary": "Attempt066 zero newcalls/spend. Saved3chapters1document falseclean1to0, review0to1, exactlabels2/3unchanged.10receipt hashes/2exactcandidate replays/4canonicalhashes verified;16boundarytests pass. Post-hoc only, no fr..."
         }
       }
     }
