@@ -1,0 +1,20 @@
+description: "Image crop extraction from scanned book pages \u2014 Onward to the Unknown"
+prompts:
+- id: file://../prompts/crop-conservative-count.js
+  label: conservative-count
+providers:
+- id: python:../providers/haiku55_candidate.py
+  label: Haiku5.5 medium strict integer crop schema
+  config:
+    model: claude-haiku-5-5
+    effort: medium
+    thinking: adaptive
+    output_contract: crop_regions_integer
+    max_tokens: 4096
+tests:
+- vars:
+    image: file://../input/source-pages-b64/Image011.b64.txt
+    golden_key: Image011
+  assert:
+  - type: python
+    value: file://../scorers/image_crop_scorer.py

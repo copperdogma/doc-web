@@ -1,0 +1,214 @@
+{
+  "date": "2026-10-07",
+  "scope": "Haiku5.5 Story249 Attempt068 finish-and-push",
+  "base_sha": "cff6771a01ba202b8eb39e13a604a932708e2278",
+  "branch": "codex/haiku55-eval-20261007",
+  "measurement_sources_preserved": {
+    "manifest": "docs/evals/evidence/068-haiku55-manifest.json",
+    "archive_sha256": "ea27629d41e05b49ef723daaa28d99646a3c1c28d5f00c38232b6bd2483a4277",
+    "paid_source_manifest_member": "benchmarks/results/haiku55-20261007/paid-source-manifest.json",
+    "restorable_member_count": 356
+  },
+  "final_allowlist_count_excluding_this_receipt": 35,
+  "final_tooling_source_count": 11,
+  "final_tooling_sources": {
+    "benchmarks/providers/haiku55_candidate.py": {
+      "sha256": "1de1d257199ddffbc59ed6638bd985b39e145ff4bfe6d1be2337ae7f1da6385a",
+      "bytes": 578
+    },
+    "benchmarks/providers/haiku55_gemini.py": {
+      "sha256": "3aa2696f2540a668c95c46bd89cd7a6a7b13c0039759acacf6180705c32e9089",
+      "bytes": 2460
+    },
+    "benchmarks/providers/haiku55_guard.py": {
+      "sha256": "5d923d1b913163b73170a2f6bcb552e35099e1507ec09b95281549e4a97fe0b0",
+      "bytes": 8262
+    },
+    "benchmarks/providers/haiku55_openai.py": {
+      "sha256": "c17bf6bc04a295a8a5eef27d80d7c43337e4a4cd59ae33230b2e8e793d13c947",
+      "bytes": 567
+    },
+    "benchmarks/scripts/haiku55_calibration.py": {
+      "sha256": "2e3a8dedff17ec8edf330690e31f61b7965a2a866ea0e60cf83f399e7ed13a6d",
+      "bytes": 1792
+    },
+    "benchmarks/scripts/haiku55_consistency.py": {
+      "sha256": "1866a62d1cb06ad9ea39f3fc047d0f69bb71f8950fe6df490a265023e9a9e5b0",
+      "bytes": 5884
+    },
+    "benchmarks/scripts/haiku55_finalize.py": {
+      "sha256": "38a3366a9c4d435b4bf9718ceaff3d05f62f4e35b86a9e8eba5d0abb6424424d",
+      "bytes": 5990
+    },
+    "benchmarks/scripts/haiku55_native_probe.py": {
+      "sha256": "933ba02b64a8c7b5450322d9cfae7e383f3b0c2cc3f49356114ec07ae0e8f635",
+      "bytes": 1764
+    },
+    "benchmarks/scripts/haiku55_ocr_calibration.py": {
+      "sha256": "f0e5aac66ec05444bd11d2e784bd0b5c5bf0bd9f2585bc1d3292421201f4c344",
+      "bytes": 1965
+    },
+    "docs/evals/evidence/068-reconstruct.py": {
+      "sha256": "077a666336eaf0151a519934a94bafc006cbfb3162d44db1c854e8a1a86f9ee4",
+      "bytes": 1722
+    },
+    "tests/test_haiku55_guard.py": {
+      "sha256": "5312988f8f2901b27f9339da791c01ae79d813413af96dc37444c8bae7d0ce82",
+      "bytes": 3704
+    }
+  },
+  "final_files": {
+    ".gitignore": {
+      "sha256": "5a94f04a52dc940536772542be0676f4c5be29d1ab3e838f7736d3fd6e176dae",
+      "bytes": 1820
+    },
+    "CHANGELOG.md": {
+      "sha256": "53fa9608418d142d1719b380f944b58bab63dd9fea494f459b38ac7b502f1708",
+      "bytes": 244527
+    },
+    "benchmarks/providers/haiku55_candidate.py": {
+      "sha256": "1de1d257199ddffbc59ed6638bd985b39e145ff4bfe6d1be2337ae7f1da6385a",
+      "bytes": 578
+    },
+    "benchmarks/providers/haiku55_gemini.py": {
+      "sha256": "3aa2696f2540a668c95c46bd89cd7a6a7b13c0039759acacf6180705c32e9089",
+      "bytes": 2460
+    },
+    "benchmarks/providers/haiku55_guard.py": {
+      "sha256": "5d923d1b913163b73170a2f6bcb552e35099e1507ec09b95281549e4a97fe0b0",
+      "bytes": 8262
+    },
+    "benchmarks/providers/haiku55_openai.py": {
+      "sha256": "c17bf6bc04a295a8a5eef27d80d7c43337e4a4cd59ae33230b2e8e793d13c947",
+      "bytes": 567
+    },
+    "benchmarks/scripts/haiku55_calibration.py": {
+      "sha256": "2e3a8dedff17ec8edf330690e31f61b7965a2a866ea0e60cf83f399e7ed13a6d",
+      "bytes": 1792
+    },
+    "benchmarks/scripts/haiku55_consistency.py": {
+      "sha256": "1866a62d1cb06ad9ea39f3fc047d0f69bb71f8950fe6df490a265023e9a9e5b0",
+      "bytes": 5884
+    },
+    "benchmarks/scripts/haiku55_finalize.py": {
+      "sha256": "38a3366a9c4d435b4bf9718ceaff3d05f62f4e35b86a9e8eba5d0abb6424424d",
+      "bytes": 5990
+    },
+    "benchmarks/scripts/haiku55_native_probe.py": {
+      "sha256": "933ba02b64a8c7b5450322d9cfae7e383f3b0c2cc3f49356114ec07ae0e8f635",
+      "bytes": 1764
+    },
+    "benchmarks/scripts/haiku55_ocr_calibration.py": {
+      "sha256": "f0e5aac66ec05444bd11d2e784bd0b5c5bf0bd9f2585bc1d3292421201f4c344",
+      "bytes": 1965
+    },
+    "benchmarks/tasks/haiku55-detector-control-calibration.yaml": {
+      "sha256": "b02e74dff2fb53b8496a052de2e15829f18c819a66709943005fbea4d2198786",
+      "bytes": 458
+    },
+    "benchmarks/tasks/haiku55-detector-control-full.yaml": {
+      "sha256": "276ebe62fc6079c15739f8b421b7201f84263c2b7fda6db6c94fea88ef16f1a6",
+      "bytes": 2510
+    },
+    "benchmarks/tasks/haiku55-detector-high-calibration.yaml": {
+      "sha256": "30d8589389d29e4bb4ef5d66f7462dd9cacdee08a2ebb432360d6c1a91b1c2fd",
+      "bytes": 605
+    },
+    "benchmarks/tasks/haiku55-detector-low-calibration.yaml": {
+      "sha256": "bc10ac1fd4742d5b1701c0621545e54d71d14da8c769f03fc12c6c77da658ae3",
+      "bytes": 603
+    },
+    "benchmarks/tasks/haiku55-detector-medium-calibration.yaml": {
+      "sha256": "485e28b7deb4e31a403dd06c8d0c9c27f81f48f811a4051ac24407e42c70d3d5",
+      "bytes": 609
+    },
+    "benchmarks/tasks/haiku55-safety-control-calibration.yaml": {
+      "sha256": "2ad162d5fd114478e8106d888caaf007659527dab6be02a170339f8bb72e3ee6",
+      "bytes": 1106
+    },
+    "benchmarks/tasks/haiku55-safety-control-full.yaml": {
+      "sha256": "52f48b2e38687480260f9cb193425f2ece3c97e9747dc32f60a4a20935645216",
+      "bytes": 7926
+    },
+    "benchmarks/tasks/haiku55-safety-high-calibration.yaml": {
+      "sha256": "8ca37027e7a96a407bb9f271d1b48621cfbe21713465f79ab935d907d4693b59",
+      "bytes": 1074
+    },
+    "benchmarks/tasks/haiku55-safety-low-calibration.yaml": {
+      "sha256": "f354c6a3fcd4670057c3ce84edbe931950e8beaacf14f3061eeaa32727acf4fb",
+      "bytes": 1072
+    },
+    "benchmarks/tasks/haiku55-safety-medium-calibration.yaml": {
+      "sha256": "570a2da06dac3124a06c777c983ee58245e8e15b563dd6203989ae12f72f6e5a",
+      "bytes": 1078
+    },
+    "configs/recipes/haiku55-ocr-control-barney.yaml": {
+      "sha256": "cc5ac6ad79d9a519888321069f531a764e852158174039570641830f0945a359",
+      "bytes": 1017
+    },
+    "configs/recipes/haiku55-ocr-high-barney.yaml": {
+      "sha256": "468f691c3b7fa66cd1d5c8379d076b65140700891d70300953cdbc5d4f26a54c",
+      "bytes": 1017
+    },
+    "configs/recipes/haiku55-ocr-low-barney.yaml": {
+      "sha256": "468f691c3b7fa66cd1d5c8379d076b65140700891d70300953cdbc5d4f26a54c",
+      "bytes": 1017
+    },
+    "configs/recipes/haiku55-ocr-medium-barney.yaml": {
+      "sha256": "468f691c3b7fa66cd1d5c8379d076b65140700891d70300953cdbc5d4f26a54c",
+      "bytes": 1017
+    },
+    "docs/evals/attempts/068-haiku55-maintained-evaluation.md": {
+      "sha256": "b0e10d6685ad7e7161f5c1f3dddf96b63ab218b2c3d41313f150f14295a6b0dd",
+      "bytes": 9102
+    },
+    "docs/evals/evidence/068-haiku55-manifest.json": {
+      "sha256": "15d7374342d9f121961a0bec948ef4fd0438adf27ecc3e48a0dd76d27cf978cb",
+      "bytes": 338099
+    },
+    "docs/evals/evidence/068-haiku55-receipts.tar.gz": {
+      "sha256": "ea27629d41e05b49ef723daaa28d99646a3c1c28d5f00c38232b6bd2483a4277",
+      "bytes": 7905276
+    },
+    "docs/evals/evidence/068-reconstruct.py": {
+      "sha256": "077a666336eaf0151a519934a94bafc006cbfb3162d44db1c854e8a1a86f9ee4",
+      "bytes": 1722
+    },
+    "docs/evals/evidence/068-source-review.md": {
+      "sha256": "743bcb15accc9c1ffeb500f74f5d7c1d6f3ecbc7f1b205655f6a5f693ae28278",
+      "bytes": 3609
+    },
+    "docs/evals/registry.yaml": {
+      "sha256": "c215b028e3756f0c19503abc14687395a22f641d50dd06dd16267aa85200a051",
+      "bytes": 354378
+    },
+    "docs/methodology/graph.json": {
+      "sha256": "d2ed4258858a6e0c435a08af623e5fb6fe8424149438b62e04e60b7fa38e02db",
+      "bytes": 960339
+    },
+    "docs/stories.md": {
+      "sha256": "5b132ea2126892e1e16353f3e9cc448e56540d5d79936cec79af492fdd1111d7",
+      "bytes": 40300
+    },
+    "docs/stories/story-249-haiku55-maintained-evaluation.md": {
+      "sha256": "4f0792d33a080df9d06444c3dac80c19477f138d080804cec701784b474dca79",
+      "bytes": 3403
+    },
+    "tests/test_haiku55_guard.py": {
+      "sha256": "5312988f8f2901b27f9339da791c01ae79d813413af96dc37444c8bae7d0ce82",
+      "bytes": 3704
+    }
+  },
+  "post_measurement_changes": "Three entrypoints reject existing campaign outputs before writes or inference; no measured responses or historical source snapshots changed.",
+  "validation": {
+    "focused_pytest": "13 passed in1.32s; tests/test_haiku55_guard.py tests/test_handwritten_notes_eval.py",
+    "ruff": "All changed Python passed",
+    "refusal_checks": "Native, consistency, OCR repeat commands failed before any writes/inference; all existing campaign file hashes unchanged",
+    "methodology": "build/check passed",
+    "staged_diff": "explicit reviewed allowlist; whitespace clean",
+    "secrets": "Configured provider key values absent from staged files and archive; only literal checker prefixes matched generic marker scan"
+  },
+  "additional_provider_calls": 0,
+  "primary_checkout": "Clean older19b30b1d preserved; no synchronization",
+  "cleanup": "Retain task worktree and protected ignored receipts"
+}

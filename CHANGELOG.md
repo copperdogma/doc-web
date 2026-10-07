@@ -1,3 +1,8 @@
+## [2026-10-07-01] — Haiku 5.5 task value evaluation (Story 249)
+
+### Added
+- Evaluated Haiku 5.5 across detector, independent crop safety, public handwriting and synthetic consistency with three thinking configurations. Retained current models; Attempt068 records exact failures, fresh comparisons, cost and source provenance.
+
 ## [2026-10-06-06] — Experimental disagreement warning (Story 248)
 
 ### Added

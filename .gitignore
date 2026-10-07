@@ -67,3 +67,6 @@ benchmarks/results/gpt6-astra-20260905/
 /benchmarks/results/pplx-consistency-20261006/
 # Story246 synthetic native receipts and dispatch lock
 /benchmarks/results/pplx-shadow-20261006/
+
+# Protected public/synthetic Haiku evaluation raw receipts (durable archive in docs).
+benchmarks/results/haiku55-20261007/

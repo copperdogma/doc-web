@@ -1,0 +1,30 @@
+description: Frozen repaired page-context safety; Attempt048
+prompts:
+- id: file://../prompts/validate-page-level-crop.js
+  label: repaired-page-context
+providers:
+- id: python:../providers/haiku55_candidate.py
+  label: Haiku5.5 low safety
+  config:
+    model: claude-haiku-5-5
+    effort: low
+    thinking: disabled
+    output_contract: page_context_validation
+    max_tokens: 4096
+tests:
+- vars:
+    page_image: file://../input/source-pages-b64/Image121.b64.txt
+    crop_image: file://../input/crop-validation-b64/page-122-001.b64.txt
+    crop_key: page-122-001
+    golden_relpath: golden/crop-page-level-safety-repair-048-source-adjudicated.json
+  assert:
+  - type: python
+    value: file://../scorers/crop_validation_scorer.py
+- vars:
+    page_image: file://../input/source-pages-b64/Image011.b64.txt
+    crop_image: file://../input/crop-validation-b64/page-012-001.b64.txt
+    crop_key: page-012-001
+    golden_relpath: golden/crop-page-level-safety-repair-048-source-adjudicated.json
+  assert:
+  - type: python
+    value: file://../scorers/crop_validation_scorer.py

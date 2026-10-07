@@ -239,7 +239,8 @@
           "245",
           "246",
           "247",
-          "248"
+          "248",
+          "249"
         ],
         "adr_ids": [
           "ADR-001",
@@ -373,7 +374,8 @@
           "240",
           "241",
           "242",
-          "244"
+          "244",
+          "249"
         ],
         "adr_ids": [],
         "eval_ids": [
@@ -382,7 +384,8 @@
           "crop-validation",
           "crop-page-level-deletion-gate",
           "handwritten-notes-transcription",
-          "single-model-crop-detection"
+          "single-model-crop-detection",
+          "jev-document-consistency-classification"
         ]
       },
       {
@@ -420,7 +423,8 @@
           "234",
           "246",
           "247",
-          "248"
+          "248",
+          "249"
         ],
         "adr_ids": [
           "ADR-001",
@@ -428,6 +432,9 @@
           "ADR-003"
         ],
         "eval_ids": [
+          "image-crop-extraction",
+          "crop-page-level-deletion-gate",
+          "handwritten-notes-transcription",
           "onward-document-consistency-planning",
           "onward-genealogy-row-semantic-note-placement",
           "jev-document-consistency-classification",
@@ -1194,7 +1201,8 @@
           "237",
           "238",
           "239",
-          "244"
+          "244",
+          "249"
         ],
         "eval_ids": [
           "image-crop-extraction",
@@ -1229,7 +1237,8 @@
             "237",
             "238",
             "239",
-            "244"
+            "244",
+            "249"
           ],
           "eval_ids": [
             "image-crop-extraction",
@@ -1264,7 +1273,8 @@
           "240",
           "241",
           "242",
-          "244"
+          "244",
+          "249"
         ],
         "eval_ids": [
           "sol-crop-safety-native-public-smoke",
@@ -1302,7 +1312,8 @@
             "240",
             "241",
             "242",
-            "244"
+            "244",
+            "249"
           ],
           "eval_ids": [
             "sol-crop-safety-native-public-smoke",
@@ -1342,7 +1353,8 @@
           "234",
           "246",
           "247",
-          "248"
+          "248",
+          "249"
         ],
         "eval_ids": [
           "onward-document-consistency-planning",
@@ -1354,19 +1366,21 @@
         ],
         "actionability": {
           "source_kind": "eval",
-          "source_id": "pplx-runtime-consistency-shadow",
+          "source_id": "jev-document-consistency-classification",
           "source_path": "docs/evals/registry.yaml",
           "recommended_now": false,
-          "posture": "no-trigger-recorded",
-          "retry_trigger_status": "none",
-          "retry_when": [],
+          "posture": "wait-for-trigger",
+          "retry_trigger_status": "waiting",
+          "retry_when": [
+            "new-subject-model"
+          ],
           "why_now": "",
           "last_relevant_action": {
-            "date": "2026-10-06",
+            "date": "2026-10-07",
             "source_type": "eval-attempt",
             "source": "docs/evals/registry.yaml",
-            "source_id": "001",
-            "summary": "Attempt065 complete:5nativecalls USD0.02588316/4 unknown0. Firstdoc rawcandidate2/2correct (1conflictskip); guarded2/3 with1inherited plannerfalseclean,0introduced and0accepted usefulcorrections. Correct birthyear war..."
+            "source_id": "068",
+            "summary": "Fresh fixed synthetic status comparison: frozenlow25/40 vsGPT29/40; lowUSD.0041735 vs.043392, median1153.5ms vs857.5, p951371vs1976; falseclean3vs4. Allarms4/5calibration; confirmation21/35. No freshJev/cascade due mi..."
           },
           "story_ids": [
             "145",
@@ -1390,7 +1404,8 @@
             "234",
             "246",
             "247",
-            "248"
+            "248",
+            "249"
           ],
           "eval_ids": [
             "onward-document-consistency-planning",
@@ -14072,6 +14087,74 @@
           "summary": ""
         }
       }
+    },
+    {
+      "id": "249",
+      "title": "Haiku 5.5 maintained task value evaluation",
+      "path": "docs/stories/story-249-haiku55-maintained-evaluation.md",
+      "status": "Done",
+      "priority": "Medium",
+      "ideal_refs": [
+        "Fidelity to Source",
+        "Traceability"
+      ],
+      "spec_refs": [
+        "C4",
+        "C5",
+        "C7",
+        "spec:2",
+        "spec:4",
+        "spec:5"
+      ],
+      "decision_refs": [
+        "ADR-001"
+      ],
+      "adr_ids": [
+        "ADR-001"
+      ],
+      "depends_on": [
+        "233",
+        "244"
+      ],
+      "category_refs": [
+        "spec:2",
+        "spec:4",
+        "spec:5"
+      ],
+      "compromise_refs": [
+        "C4",
+        "C5",
+        "C7"
+      ],
+      "input_coverage_refs": [],
+      "architecture_domains": [
+        "document-consistency",
+        "ocr"
+      ],
+      "roadmap_tags": [
+        "model-evaluation"
+      ],
+      "blocker_summary": "",
+      "blocker_evidence": "",
+      "unblock_condition": "",
+      "last_work_log_entry": null,
+      "legacy_build_map_refs": "",
+      "metadata_source": "frontmatter",
+      "missing_frontmatter_keys": [],
+      "actionability": {
+        "source_kind": "story",
+        "source_id": "249",
+        "source_path": "docs/stories/story-249-haiku55-maintained-evaluation.md",
+        "recommended_now": false,
+        "posture": "completed",
+        "why_now": "",
+        "last_relevant_action": {
+          "date": null,
+          "source_type": "story-status",
+          "source": "docs/stories/story-249-haiku55-maintained-evaluation.md",
+          "summary": ""
+        }
+      }
     }
   ],
   "adrs": [
@@ -14583,7 +14666,8 @@
         "236",
         "237",
         "238",
-        "239"
+        "239",
+        "249"
       ],
       "compromise_refs": [
         "C4"
@@ -14593,6 +14677,7 @@
         "spec:2",
         "spec:3",
         "spec:4",
+        "spec:5",
         "spec:6",
         "spec:7",
         "spec:8",
@@ -15262,6 +15347,16 @@
       },
       "attempts": [
         {
+          "id": "068",
+          "date": "2026-10-07",
+          "status": "failed",
+          "approach": "Scout089 approved Haiku5.5 thinking/value sweep, direct owner APIs, frozen public/synthetic lanes",
+          "note": "Image011 medium splits3vs2; low out-of-range coordinate quarantined; high score.9242 passes scorer but source-visible logo/seal clipping; freshGemini.9826. Full13 unmeasured; retain incumbent. Attempt068/manifests hold USD.136542 settled plus.011442 unknown reserve, inclusiveUSD10; no defaults changed.",
+          "retry_when": [
+            "new-subject-model"
+          ]
+        },
+        {
           "id": "061",
           "date": "2026-10-06",
           "status": "failed",
@@ -15699,15 +15794,15 @@
         "posture": "wait-for-trigger",
         "retry_trigger_status": "waiting",
         "retry_when": [
-          "New checkpoint or source-backed contract improvement with meaningful payoff; no unchanged rerun"
+          "new-subject-model"
         ],
         "why_now": "Gemini 4 or equivalent may push past 0.95 target Golden references cover limited page types; add table-heavy pages",
         "last_relevant_action": {
-          "date": "2026-10-06",
+          "date": "2026-10-07",
           "source_type": "eval-attempt",
           "source": "docs/evals/registry.yaml",
-          "source_id": "061",
-          "summary": "Numeric 13/13 and >=.95 but source-visible Image011 logo clipping; fresh Gemini .958646 covers logo. Candidate cost lower; timing partially overlapped qualification, descriptive only. Retain Gemini; no quality equival..."
+          "source_id": "068",
+          "summary": "Image011 medium splits3vs2; low out-of-range coordinate quarantined; high score.9242 passes scorer but source-visible logo/seal clipping; freshGemini.9826. Full13 unmeasured; retain incumbent. Attempt068/manifests hol..."
         }
       }
     },
@@ -16011,7 +16106,8 @@
         "237",
         "238",
         "239",
-        "240"
+        "240",
+        "249"
       ],
       "compromise_refs": [
         "C5"
@@ -16020,6 +16116,7 @@
         "spec:1",
         "spec:2",
         "spec:4",
+        "spec:5",
         "spec:8"
       ],
       "scores": [
@@ -16634,6 +16731,16 @@
       },
       "attempts": [
         {
+          "id": "068",
+          "date": "2026-10-07",
+          "status": "failed",
+          "approach": "Scout089 approved Haiku5.5 thinking/value sweep, direct owner APIs, frozen public/synthetic lanes",
+          "note": "Independent source-adjudicated safety2case calibration: all3Haiku arms1/2 false-safe amputated seal; freshGPT5.5 2/2. Old labels preserved separately; full22 unmeasured. Retain safety controls. Attempt068/manifests hold USD.136542 settled plus.011442 unknown reserve, inclusiveUSD10; no defaults changed.",
+          "retry_when": [
+            "new-subject-model"
+          ]
+        },
+        {
           "id": "061",
           "date": "2026-10-06",
           "status": "failed",
@@ -16907,15 +17014,15 @@
         "posture": "trigger-exhausted",
         "retry_trigger_status": "exhausted",
         "retry_when": [
-          "New checkpoint or source-backed contract improvement with meaningful payoff; no unchanged rerun"
+          "new-subject-model"
         ],
         "why_now": "Rerun when a materially stronger validator or detector may reduce the current fail-labeled page-context cases. Rerun after any maintained crop/runtime simplification before claiming `trim_layout_text` or bounded capti...",
         "last_relevant_action": {
-          "date": "2026-10-06",
+          "date": "2026-10-07",
           "source_type": "eval-attempt",
           "source": "docs/evals/registry.yaml",
-          "source_id": "061",
-          "summary": "Attempt048 repaired prompt/source-adjudicated labels: candidate incorrectly accepts seal missing 21% height. Frozen primary 5/5 retained; source-corrected 4/5 is not full 22 rate. GPT5.5 control independently false-re..."
+          "source_id": "068",
+          "summary": "Independent source-adjudicated safety2case calibration: all3Haiku arms1/2 false-safe amputated seal; freshGPT5.5 2/2. Old labels preserved separately; full22 unmeasured. Retain safety controls. Attempt068/manifests ho..."
         }
       }
     },
@@ -17031,7 +17138,8 @@
         "208",
         "230",
         "238",
-        "239"
+        "239",
+        "249"
       ],
       "compromise_refs": [],
       "category_refs": [
@@ -17039,6 +17147,7 @@
         "spec:2",
         "spec:3",
         "spec:4",
+        "spec:5",
         "spec:8"
       ],
       "scores": [
@@ -17383,6 +17492,16 @@
       },
       "attempts": [
         {
+          "id": "068",
+          "date": "2026-10-07",
+          "status": "failed",
+          "approach": "Scout089 approved Haiku5.5 thinking/value sweep, direct owner APIs, frozen public/synthetic lanes",
+          "note": "Actualdriver Barney medium.959162 low.945640 high.942693 vs freshGemini.980617; all<.99; candidate phrases changed. Alverson unmeasured after predeclared stop. Retain incumbent. Attempt068/manifests hold USD.136542 settled plus.011442 unknown reserve, inclusiveUSD10; no defaults changed.",
+          "retry_when": [
+            "new-subject-model"
+          ]
+        },
+        {
           "id": "061",
           "date": "2026-10-06",
           "status": "failed",
@@ -17528,15 +17647,15 @@
         "posture": "trigger-exhausted",
         "retry_trigger_status": "exhausted",
         "retry_when": [
-          "New checkpoint or source-backed contract improvement with meaningful payoff; no unchanged rerun"
+          "new-subject-model"
         ],
         "why_now": "Retry only when a materially stronger model or OCR substrate appears that could plausibly clear Barney and the corrected Alverson front-page truth surface.",
         "last_relevant_action": {
-          "date": "2026-10-06",
+          "date": "2026-10-07",
           "source_type": "eval-attempt",
           "source": "docs/evals/registry.yaml",
-          "source_id": "061",
-          "summary": "Candidate literal text loss on source-valid Barney; fresh Gemini .978830 also below.99. Alverson source golden confirms a good prospect but unrun after lane failure. Same system/user/image bytes verified; no truth cha..."
+          "source_id": "068",
+          "summary": "Actualdriver Barney medium.959162 low.945640 high.942693 vs freshGemini.980617; all<.99; candidate phrases changed. Alverson unmeasured after predeclared stop. Retain incumbent. Attempt068/manifests hold USD.136542 se..."
         }
       }
     },
@@ -18734,13 +18853,15 @@
       "description": "Five-class status projection with explicit conventions and synthetic source prose; genealogy tables and maintenance cards. Does not measure convention generation, full planner outputs, OCR, or repair. Fresh JEV versus Story220 GPT-4.1 model projected to status, separate deterministic comparators.\n",
       "spec_refs": [],
       "story_refs": [
-        "233"
+        "233",
+        "249"
       ],
       "compromise_refs": [
         "C7"
       ],
       "category_refs": [
         "spec:2",
+        "spec:4",
         "spec:5"
       ],
       "scores": [
@@ -18795,6 +18916,16 @@
       },
       "attempts": [
         {
+          "id": "068",
+          "date": "2026-10-07",
+          "status": "inconclusive",
+          "approach": "Scout089 approved Haiku5.5 thinking/value sweep, direct owner APIs, frozen public/synthetic lanes",
+          "note": "Fresh fixed synthetic status comparison: frozenlow25/40 vsGPT29/40; lowUSD.0041735 vs.043392, median1153.5ms vs857.5, p951371vs1976; falseclean3vs4. Allarms4/5calibration; confirmation21/35. No freshJev/cascade due missingownerkey/custody boundary. Retain full planner; no adoption established. Attempt068/manifests hold USD.136542 settled plus.011442 unknown reserve, inclusiveUSD10; no defaults changed.",
+          "retry_when": [
+            "new-subject-model"
+          ]
+        },
+        {
           "id": "001",
           "date": "2026-09-21",
           "status": "succeeded",
@@ -18838,15 +18969,15 @@
         "posture": "wait-for-trigger",
         "retry_trigger_status": "waiting",
         "retry_when": [
-          "cheaper-subject-model"
+          "new-subject-model"
         ],
         "why_now": "",
         "last_relevant_action": {
-          "date": "2026-10-06",
+          "date": "2026-10-07",
           "source_type": "eval-attempt",
           "source": "docs/evals/registry.yaml",
-          "source_id": "004",
-          "summary": "Attempt064 initially awaited access, then user provisioned it.209/209 native calls, USD.097180996 of hardUSD2, unknown0. Raw Perplexity28/40, Jev24/40, OpenAI22/40, GPT30/40; actual cascades30/32/30. Perplexity cascad..."
+          "source_id": "068",
+          "summary": "Fresh fixed synthetic status comparison: frozenlow25/40 vsGPT29/40; lowUSD.0041735 vs.043392, median1153.5ms vs857.5, p951371vs1976; falseclean3vs4. Allarms4/5calibration; confirmation21/35. No freshJev/cascade due mi..."
         }
       }
     },

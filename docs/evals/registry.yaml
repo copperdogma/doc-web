@@ -221,7 +221,7 @@ evals:
     config: benchmarks/tasks/image-crop-extraction.yaml
     scorer: benchmarks/scorers/image_crop_scorer.py
     golden: benchmarks/golden/
-    story_refs: ["133", "183", "207", "226", "232", "235", "236", "237", "238", "239"]
+    story_refs: ["133", "183", "207", "226", "232", "235", "236", "237", "238", "239", "249"]
     category_refs: ["spec:4", "spec:8"]
     compromise_refs: ["C4"]
     spec_compromise: C4
@@ -1091,6 +1091,15 @@ evals:
         note: >
           Numeric 13/13 and >=.95 but source-visible Image011 logo clipping; fresh Gemini .958646 covers logo. Candidate cost lower; timing partially overlapped qualification, descriptive only. Retain Gemini; no quality equivalence/promotion.
     attempts:
+      - id: "068"
+        measured_metrics: {scope: "Image011 calibration only", cases_per_arm: 1, medium_score: 0.5435, high_score: 0.9242, high_source_complete: false, low_contract_valid: false, fresh_control_score: 0.9826}
+        date: 2026-10-07
+        status: failed
+        approach: "Scout089 approved Haiku5.5 thinking/value sweep, direct owner APIs, frozen public/synthetic lanes"
+        note: "Image011 medium splits3vs2; low out-of-range coordinate quarantined; high score.9242 passes scorer but source-visible logo/seal clipping; freshGemini.9826. Full13 unmeasured; retain incumbent. Attempt068/manifests hold USD.136542 settled plus.011442 unknown reserve, inclusiveUSD10; no defaults changed."
+        retry_when:
+          - condition: new-subject-model
+            note: "Material source-faithfulness, geometry, safety or classifier capability change; unchanged failed arms not repeated."
       - id: '061'
         date: '2026-10-06'
         status: failed
@@ -2366,7 +2375,7 @@ evals:
     config: benchmarks/tasks/crop-page-level-deletion-gate.yaml
     scorer: benchmarks/scorers/crop_validation_scorer.py
     golden: benchmarks/golden/crop-page-level-deletion-gate.json
-    story_refs: ["209", "232", "235", "237", "238", "239", "240"]
+    story_refs: ["209", "232", "235", "237", "238", "239", "240", "249"]
     category_refs: ["spec:4", "spec:8"]
     compromise_refs: ["C5"]
     spec_compromise: C5
@@ -3209,6 +3218,15 @@ evals:
         note: >
           Attempt048 repaired prompt/source-adjudicated labels: candidate incorrectly accepts seal missing 21% height. Frozen primary 5/5 retained; source-corrected 4/5 is not full 22 rate. GPT5.5 control independently false-rejects cover 0/1, 21 unrun.
     attempts:
+      - id: "068"
+        measured_metrics: {scope: "two source-adjudicated differentiators", cases_per_arm: 2, candidate_correct_per_arm: 1, false_safe_per_arm: 1, fresh_control_correct: 2}
+        date: 2026-10-07
+        status: failed
+        approach: "Scout089 approved Haiku5.5 thinking/value sweep, direct owner APIs, frozen public/synthetic lanes"
+        note: "Independent source-adjudicated safety2case calibration: all3Haiku arms1/2 false-safe amputated seal; freshGPT5.5 2/2. Old labels preserved separately; full22 unmeasured. Retain safety controls. Attempt068/manifests hold USD.136542 settled plus.011442 unknown reserve, inclusiveUSD10; no defaults changed."
+        retry_when:
+          - condition: new-subject-model
+            note: "Material source-faithfulness, geometry, safety or classifier capability change; unchanged failed arms not repeated."
       - id: '061'
         date: '2026-10-06'
         status: failed
@@ -3779,7 +3797,7 @@ evals:
     command: "python benchmarks/scripts/run_handwritten_notes_eval.py --image-recipe configs/recipes/recipe-images-ocr-html-handwritten-notes-gemini-rescue.yaml --pdf-recipe configs/recipes/recipe-pdf-ocr-html-handwritten-notes-gemini-rescue.yaml --image-case-id image-handwritten-rescue --pdf-case-id pdf-handwritten-rescue --instrument --output benchmarks/results/handwritten-notes-story189-real-expanded.json"
     scorer: benchmarks/scorers/handwritten_notes_transcription.py
     golden: benchmarks/golden/handwritten-notes/corpus.json
-    story_refs: ["179", "182", "185", "186", "189", "191", "192", "208", "230", "238", "239"]
+    story_refs: ["179", "182", "185", "186", "189", "191", "192", "208", "230", "238", "239", "249"]
     category_refs: ["spec:1", "spec:2", "spec:8"]
     compromise_refs: []
 
@@ -4317,6 +4335,15 @@ evals:
         note: >
           Candidate literal text loss on source-valid Barney; fresh Gemini .978830 also below.99. Alverson source golden confirms a good prospect but unrun after lane failure. Same system/user/image bytes verified; no truth change.
     attempts:
+      - id: "068"
+        measured_metrics: {scope: "Barney actualdriver only", medium_ratio: 0.959162, low_ratio: 0.945640, high_ratio: 0.942693, fresh_control_ratio: 0.980617}
+        date: 2026-10-07
+        status: failed
+        approach: "Scout089 approved Haiku5.5 thinking/value sweep, direct owner APIs, frozen public/synthetic lanes"
+        note: "Actualdriver Barney medium.959162 low.945640 high.942693 vs freshGemini.980617; all<.99; candidate phrases changed. Alverson unmeasured after predeclared stop. Retain incumbent. Attempt068/manifests hold USD.136542 settled plus.011442 unknown reserve, inclusiveUSD10; no defaults changed."
+        retry_when:
+          - condition: new-subject-model
+            note: "Material source-faithfulness, geometry, safety or classifier capability change; unchanged failed arms not repeated."
       - id: '061'
         date: '2026-10-06'
         status: failed
@@ -6031,7 +6058,7 @@ evals:
     pipeline_stage: validate
     runner: custom
     command: "python benchmarks/jev-consistency/run.py"
-    story_refs: ["233"]
+    story_refs: ["233", "249"]
     category_refs: ["spec:2", "spec:5"]
     compromise_refs: ["C7"]
     target:
@@ -6051,6 +6078,15 @@ evals:
         metrics: {accuracy: 0.825, macro_f1: 0.8156005398, latency_ms: 755.8994, cost_usd: 0.00049229, cost_estimated: true}
         note: "33/40;17 actual fallbacks; mean latency.54.64% cheaper narrow workflow;3 defects called clean, same count as incumbent. Conditional bounded integration candidate."
     attempts:
+      - id: "068"
+        measured_metrics: {scope: "synthetic five-class projection", judgments: 40, unique_cases: 20, low_correct: 25, fresh_control_correct: 29, low_cost_usd: 0.0041735, control_cost_usd: 0.043392, low_median_ms: 1153.5, control_median_ms: 857.5}
+        date: 2026-10-07
+        status: inconclusive
+        approach: "Scout089 approved Haiku5.5 thinking/value sweep, direct owner APIs, frozen public/synthetic lanes"
+        note: "Fresh fixed synthetic status comparison: frozenlow25/40 vsGPT29/40; lowUSD.0041735 vs.043392, median1153.5ms vs857.5, p951371vs1976; falseclean3vs4. Allarms4/5calibration; confirmation21/35. No freshJev/cascade due missingownerkey/custody boundary. Retain full planner; no adoption established. Attempt068/manifests hold USD.136542 settled plus.011442 unknown reserve, inclusiveUSD10; no defaults changed."
+        retry_when:
+          - condition: new-subject-model
+            note: "Material source-faithfulness, geometry, safety or classifier capability change; unchanged failed arms not repeated."
       - id: "001"
         date: 2026-09-21
         status: succeeded

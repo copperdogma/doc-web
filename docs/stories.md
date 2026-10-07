@@ -109,6 +109,7 @@ Grouped by primary `spec:N` category. Stories without category refs remain in an
 | 246 | Perplexity synthetic runtime shadow evaluation | Medium | Done | 233, 234 | [story-246](stories/story-246-perplexity-runtime-shadow-evaluation.md) |
 | 247 | Offline disagreement-to-review routing test | Medium | Done | 233, 234 | [story-247](stories/story-247-offline-disagreement-routing.md) |
 | 248 | Experimental sidecar disagreement warning integration | Medium | Done | 233, 234 | [story-248](stories/story-248-experimental-disagreement-warning.md) |
+| 249 | Haiku 5.5 maintained task value evaluation | Medium | Done | 233, 244 | [story-249](stories/story-249-haiku55-maintained-evaluation.md) |
 
 ### spec:3 — Layout & Structure Understanding
 
