@@ -6092,3 +6092,31 @@ evals:
 # 2026-08-31 follow-through: exact route remains catalog-listed; DeepSeek and Novita endpoints expose only generic tools/tool_choice/response_format, with no provider-enforced forced tools or strict JSON Schema. No owner calls or spend, see `docs/evals/attempts/deepseek-vision-metadata-followthrough-20260826.md`.
 # 2026-09-01 follow-through: exact route remains catalog-listed; DeepSeek and Novita endpoints expose only generic tools/tool_choice/response_format, tool_choice.required is false, and no provider-enforced forced tools or strict JSON Schema. No owner calls or spend, see `docs/evals/attempts/deepseek-vision-metadata-followthrough-20260826.md`.
 # 2026-09-02 follow-through: Fireworks advertises strict structured outputs and required/function tool choice but status is -2 (unavailable); no owner calls or spend, see `docs/evals/attempts/deepseek-vision-metadata-followthrough-20260826.md`.
+
+  - id: pplx-experimental-disagreement-warning
+    name: Default-off sidecar disagreement warning integration
+    type: quality
+    description: >
+      Offline integration proof of advisory low-confidence disagreement review;
+      saved native responses and mocked driver, no fresh model inference.
+    pipeline_stage: validate
+    runner: custom
+    command: "python benchmarks/pplx-warning-integration/verify.py"
+    story_refs: ["248"]
+    category_refs: ["spec:2", "spec:5"]
+    compromise_refs: ["C7"]
+    target:
+      metric: advisory_warning_integration
+      value: "Warning retained, canonical authority unchanged, default-off"
+    scores: []
+    attempts:
+      - id: "001"
+        date: 2026-10-06
+        status: succeeded
+        approach: "Integrated unchanged.8 low-confidence disagreement review; offline savedanswer/driver proof"
+        note: >
+          Attempt067 complete,62focusedtests/scopedRuff.10native receipt hashes,
+          2exactcandidate replays,4canonical hashes and realdriver mocked
+          warning/onoff equivalence pass. Zero newcalls/spend/credentials.
+          No fresh modelquality/adoption claim, defaultsunchanged. Evidence
+          docs/evals/evidence/067-warning-integration/report.md.

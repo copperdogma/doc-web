@@ -1,3 +1,10 @@
+## [2026-10-06-04] — Experimental disagreement warning (Story 248)
+
+### Added
+- Preserve low-confidence candidate/planner disagreement as an advisory review
+  warning in the default-off Perplexity sidecar, leaving authority unchanged.
+- Saved-response and real-driver offline proof; no new inference or activation.
+
 ## [2026-10-06-03] — Literal table evidence and uncertainty gate (Story 245)
 
 ### Added
