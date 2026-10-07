@@ -1,3 +1,17 @@
+## [2026-10-07-02] — Related-document reference resolution (Story 250)
+
+### Added
+- Opt-in offline `doc-web resolve-set` CLI/Python capability for explicit sets
+  of already-converted bundles, with exact source-backed heading links,
+  inspectable ambiguity/edition holds and portable derivative receipts.
+- Driver recipe/adapter, safe repeat/resume publication, source preservation
+  and static resource checks, installed-package proof and independent consumer
+  acceptance. Bare exact identifiers are eligible within declared related sets.
+
+### Changed
+- Shared reference helpers now ship in the `doc_web` package; existing local
+  resolver policy is preserved. Add tinycss2 for static CSS dependency checks.
+
 ## [2026-10-07-01] — Haiku 5.5 task value evaluation (Story 249)
 
 ### Added

@@ -2255,6 +2255,102 @@ class InstrumentationConfig(BaseModel):
     price_table: Optional[str] = None
 
 
+class RelatedDocumentMember(BaseModel):
+    """Caller-declared relationship; bundle paths are input-only locations."""
+
+    model_config = ConfigDict(extra="forbid")
+    member_id: str = Field(pattern=r"^[a-z][a-z0-9_-]{0,63}$")
+    bundle: str = Field(min_length=1)
+    edition: Optional[str] = Field(default=None, min_length=1)
+
+    @field_validator("edition")
+    @classmethod
+    def nonblank_edition(cls, value):
+        if value is not None and not value.strip():
+            raise ValueError("edition must be nonblank or null")
+        return value
+
+
+class RelatedDocumentSetDeclaration(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+    schema_version: Literal["doc_web_related_set_declaration_v1"]
+    set_id: str = Field(min_length=1)
+    documents: List[RelatedDocumentMember] = Field(min_length=2)
+
+    @model_validator(mode="after")
+    def distinct_members(self):
+        ids = [member.member_id for member in self.documents]
+        if len(ids) != len(set(ids)):
+            raise ValueError("member_id must be unique")
+        return self
+
+
+class RelatedReferenceRecord(BaseModel):
+    """One exact occurrence and its inspectable source/target evidence."""
+
+    model_config = ConfigDict(extra="allow")
+    original_text: str
+    label: str
+    kind: str
+    status: Literal["resolved", "missing", "ambiguous"]
+    reason: str
+    source: Dict[str, Any]
+    candidates: List[Dict[str, Any]]
+    target: Optional[Dict[str, Any]] = None
+
+
+class RelatedDocumentResolutionReport(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+    schema_version: Literal["doc_web_related_resolution_v1"]
+    set_id: str
+    scope: Literal["declared_related_document_set"]
+    policy: Dict[str, Any]
+    references: List[RelatedReferenceRecord]
+    targets: List[Dict[str, Any]]
+    summary: Dict[str, int]
+    api_calls: Literal[0] = 0
+    cost_usd: Literal[0] = 0
+    final_validation: Dict[str, Any]
+
+
+class RelatedSetFile(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+    path: str
+    input_sha256: Optional[str] = Field(default=None, pattern=r"^[0-9a-f]{64}$")
+    sha256: str = Field(pattern=r"^[0-9a-f]{64}$")
+
+    @field_validator("path")
+    @classmethod
+    def relative_path(cls, value):
+        return _validate_bundle_relative_path(value, "related set file")
+
+
+class RelatedDocumentSetManifest(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+    schema_version: Literal["doc_web_related_set_v1"]
+    set_id: str
+    declaration_sha256: str = Field(pattern=r"^[0-9a-f]{64}$")
+    documents: List[Dict[str, Any]]
+    report_path: Literal["related_reference_report.json"] = "related_reference_report.json"
+    files: List[RelatedSetFile]
+
+
+class RelatedDocumentSetResult(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+    schema_version: Literal["doc_web_related_set_result_v1"]
+    run_id: Optional[str] = None
+    module_id: Optional[str] = None
+    created_at: Optional[str] = None
+    status: Literal["complete"]
+    set_id: str
+    output_dir: str
+    manifest_path: Literal["related_documents.json"]
+    report_path: Literal["related_reference_report.json"]
+    summary: Dict[str, int]
+    api_calls: Literal[0] = 0
+    cost_usd: Literal[0] = 0
+
+
 class RunConfig(BaseModel):
     """
     Structured configuration for a pipeline run.

@@ -575,7 +575,7 @@ def test_existing_scope_preserves_literal_inline_partial_words(clause):
 
 
 def test_existing_scope_cache_freezes_all_anchor_offsets_before_mutation(monkeypatch, tmp_path):
-    from modules.common import reference_resolution
+    from doc_web import reference_resolution
     original_scope = reference_resolution.ReferenceScope
     constructed = []
 
@@ -596,7 +596,7 @@ def test_existing_scope_cache_freezes_all_anchor_offsets_before_mutation(monkeyp
 
 
 def test_scope_cache_is_not_reused_between_resolver_or_inspector_invocations(monkeypatch, tmp_path):
-    from modules.common import reference_resolution
+    from doc_web import reference_resolution
     original_scope = reference_resolution.ReferenceScope
     constructed = []
 

@@ -48,16 +48,16 @@ BARE_SCOPE_LABEL = re.compile(r'(?<![\w.])' + SCOPE_NUMBER
                               + r'(?:\s*[-–—]\s*' + SCOPE_NUMBER + r')?', re.I)
 
 
-def scope_occurrences(text):
+def scope_occurrences(text, *, typed_patterns=(EXPLICIT, TURN), prefixed_pattern=PREFIXED_OCCURRENCE):
     """Exact citation phrases plus shared-kind list tails, solely for scope.
 
     A bare label becomes list evidence only after an explicit typed phrase and
     an exact connector; ordinary number prose never seeds this grammar. This
     does not discover or link the otherwise untyped list tail.
     """
-    typed = [(m.start(), m.end()) for pattern in (EXPLICIT, TURN)
+    typed = [(m.start(), m.end()) for pattern in typed_patterns
              for m in pattern.finditer(text)]
-    prefixed = [(m.start(), m.end()) for m in PREFIXED_OCCURRENCE.finditer(text)]
+    prefixed = [(m.start(), m.end()) for m in prefixed_pattern.finditer(text)]
     covered = []
     for start, end in sorted(typed + prefixed):
         if covered and start < covered[-1][1]:
@@ -93,9 +93,11 @@ class ReferenceScope:
     prose, sentence boundaries and DOM edit barriers end groups. No title,
     pronoun, general sentence-coreference or external resolution is inferred.
     """
+    occurrences = staticmethod(scope_occurrences)
+
     def __init__(self, text):
         groups = []
-        for start, end in scope_occurrences(text):
+        for start, end in self.occurrences(text):
             if groups and (start < groups[-1][1] or COORDINATOR.fullmatch(text[groups[-1][1]:start])):
                 groups[-1] = (groups[-1][0], max(end, groups[-1][1]))
             else:

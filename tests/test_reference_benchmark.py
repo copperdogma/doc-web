@@ -214,3 +214,40 @@ def test_populated_but_incorrect_audit_evidence_fails(corruption):
     result = bench.evaluate(corpus, corrupted, 1)
     assert not result["report_audit_contract_correct"]
     assert not result["pass"]
+
+
+def test_relocated_helper_is_in_fresh_candidate_freeze(tmp_path):
+    import json
+    sources = ['modules/common/manual_navigation.py', 'doc_web/reference_resolution.py']
+    receipt = {'candidate_frozen': True,
+               'candidate_source_sha256': {p: bench.digest(bench.ROOT / p) for p in sources},
+               'harness_sha256': bench.digest(PATH)}
+    path = tmp_path / 'freeze.json'
+    path.write_text(json.dumps(receipt))
+    bench.verify_candidate_freeze(path)
+
+
+def test_performance_worker_imports_relocated_helper_from_isolated_snapshot(tmp_path):
+    import json
+    import shutil
+    import subprocess
+    import sys
+    performance_path = PATH.with_name('reference_resolution_performance.py')
+    perf_spec = importlib.util.spec_from_file_location('reference_performance', performance_path)
+    performance = importlib.util.module_from_spec(perf_spec)
+    perf_spec.loader.exec_module(performance)
+    root = tmp_path / 'snapshot'
+    for relative in performance.FILES:
+        target = root / relative
+        target.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copy2(bench.ROOT / relative, target)
+    corpus, _ = bench.load_corpus('development')
+    corpus_path = tmp_path / 'corpus.json'
+    corpus_path.write_text(json.dumps(corpus))
+    process = subprocess.run([sys.executable, str(performance_path), '--worker', str(root),
+                              '--corpus', str(corpus_path)], cwd=tmp_path,
+                             input=json.dumps({'action': 'time'}) + '\n',
+                             text=True, capture_output=True)
+    assert process.returncode == 0, process.stderr
+    loaded = json.loads(process.stdout)['loaded']
+    assert Path(loaded['doc_web.reference_resolution']['path']).is_relative_to(root)

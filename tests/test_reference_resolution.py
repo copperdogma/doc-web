@@ -782,7 +782,7 @@ def test_generated_index_context_cannot_authorize_bare_page_discovery_either():
 
 def test_precomputed_scope_context_matches_per_occurrence_compatibility_helper():
     import re
-    from modules.common.reference_resolution import ReferenceScope, reference_scope_reason
+    from doc_web.reference_resolution import ReferenceScope, reference_scope_reason
     text = ('See sections 3, 4 and 5 of the companion manual; see section 3 here. '
             'In another setup guide, see section 3 and section 4. See Q42 here.')
     scope = ReferenceScope(text)
@@ -792,7 +792,7 @@ def test_precomputed_scope_context_matches_per_occurrence_compatibility_helper()
 
 
 def test_precomputed_scope_context_is_isolated_and_handles_anchor_navigation_cue():
-    from modules.common.reference_resolution import ReferenceScope
+    from doc_web.reference_resolution import ReferenceScope
     foreign = 'See sections 3 and 4 of another guide.'
     local = 'See sections 3 and 4 here.'
     assert ReferenceScope(foreign).reason(0, len('See sections 3')) == 'external_document_scope'
@@ -823,7 +823,7 @@ def test_bare_range_scope_lists_are_per_occurrence_and_do_not_seed_prose_links()
 
 
 def test_interstitial_scope_preserves_disjoint_foreign_local_and_barrier_boundaries():
-    from modules.common.reference_resolution import ReferenceScope
+    from doc_web.reference_resolution import ReferenceScope
     text = ('In the companion manual, see section 1. See section 2 here. '
             'See section 3 of another guide. See section 4\x00 of the other manual. '
             'In another guide\x00 see section 5. See section 6 in this manual.')

@@ -1,0 +1,14 @@
+{
+  "schema_version": "doc_web_related_set_declaration_v1",
+  "set_id": "field-guides",
+  "documents": [
+    {
+      "member_id": "guide",
+      "bundle": "bundles/source"
+    },
+    {
+      "member_id": "companion",
+      "bundle": "bundles/target"
+    }
+  ]
+}

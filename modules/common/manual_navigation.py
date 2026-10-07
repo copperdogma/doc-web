@@ -12,7 +12,7 @@ from urllib.parse import quote, unquote, urlsplit
 
 from bs4 import BeautifulSoup, NavigableString
 
-from modules.common.reference_resolution import NUMBER, PREFIXED_LABEL, parse_uri
+from doc_web.reference_resolution import NUMBER, PREFIXED_LABEL, parse_uri
 
 
 def _text(tag):
@@ -58,7 +58,7 @@ def _contains(label, token):
 
 def _anchor_scope_reason(anchor, context_cache=None):
     """Freeze visible block text and all occurrence offsets once per call."""
-    from modules.common.reference_resolution import BLOCKS, SKIP, STRUCTURAL, ReferenceScope, stream_nodes
+    from doc_web.reference_resolution import BLOCKS, SKIP, STRUCTURAL, ReferenceScope, stream_nodes
 
     block = next((parent for parent in anchor.parents if parent.name in BLOCKS | STRUCTURAL), anchor)
     cache = context_cache if context_cache is not None else {}
@@ -108,7 +108,7 @@ def _anchor_scope_reason(anchor, context_cache=None):
 
 
 def _heading_candidates(label, headings):
-    from modules.common.reference_resolution import EXPLICIT, TARGET, canonical_kind, label_key
+    from doc_web.reference_resolution import EXPLICIT, TARGET, canonical_kind, label_key
 
     explicit_matches = list(EXPLICIT.finditer(label))
     explicit = explicit_matches[0] if len(explicit_matches) == 1 else None
@@ -273,7 +273,7 @@ def resolve_navigation(entries, *, bundle_root=None, resource_catalog=None,
                 anchor['title'] = f'{status.capitalize()} source reference: {before}'
                 anchor['class'] = list(anchor.get('class', [])) + ['unresolved-reference']
             rows.append(row)
-    from modules.common.reference_resolution import POLICY_ID, enrich
+    from doc_web.reference_resolution import POLICY_ID, enrich
     provenance = {(r.get('html_path'), r['block_id']): r for r in provenance_rows if r.get('block_id')}
     for row in rows:
         row.setdefault('reason', 'target_exists' if row['status'] == 'preserved' else 'unique_source_target')

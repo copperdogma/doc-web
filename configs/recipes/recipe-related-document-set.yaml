@@ -1,0 +1,15 @@
+stages:
+  - id: declaration
+    stage: extract
+    module: load_artifact_v1
+    out: declaration.json
+    params:
+      path: tests/fixtures/related_document_set/declaration.json
+      copy_sibling_dir: bundles
+  - id: references
+    stage: transform
+    module: resolve_document_set_v1
+    needs: [declaration]
+    inputs:
+      input: declaration
+    out: related_set_result.json

@@ -371,3 +371,11 @@ What it does not yet prove:
 - real emitted `provenance/blocks.jsonl`
 
 Those missing pieces are intentional Story 153 work, not hand-waved contract gaps.
+
+## Explicit related-document sets
+
+The optional offline [related-document operation](related-document-references.md)
+wraps final bundles in caller-declared member directories, adds source-supported
+relative references, and emits a separate set receipt/report. A local bundle's
+manifest and provenance remain intact; member_id scopes identities across the
+set. Ordinary conversion and local resolution defaults do not change.
