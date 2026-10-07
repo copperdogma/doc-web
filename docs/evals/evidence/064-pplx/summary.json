@@ -1,0 +1,576 @@
+{
+  "decisions": {
+    "n": 40,
+    "correct": 22,
+    "accuracy": 0.55,
+    "macro_f1": 0.5145454545454545,
+    "recall": {
+      "conformant": 1.0,
+      "format_drift": 0.25,
+      "row_semantic_issue": 0.75,
+      "mixed": 0.5,
+      "uncertain": 0.25
+    },
+    "defects_called_clean": 4,
+    "clean_flagged_defect": 0,
+    "cost_usd": 0.0021728000000000003,
+    "median_ms": 249.1341044951696,
+    "p95_ms": 301.483167000697,
+    "misses": [
+      {
+        "id": "r1-family-03",
+        "gold": "format_drift",
+        "predicted": "conformant"
+      },
+      {
+        "id": "r1-family-04",
+        "gold": "format_drift",
+        "predicted": "conformant"
+      },
+      {
+        "id": "r1-family-07",
+        "gold": "mixed",
+        "predicted": "row_semantic_issue"
+      },
+      {
+        "id": "r1-family-08",
+        "gold": "mixed",
+        "predicted": "row_semantic_issue"
+      },
+      {
+        "id": "r1-family-09",
+        "gold": "uncertain",
+        "predicted": "row_semantic_issue"
+      },
+      {
+        "id": "r1-maintenance-03",
+        "gold": "format_drift",
+        "predicted": "mixed"
+      },
+      {
+        "id": "r1-maintenance-05",
+        "gold": "row_semantic_issue",
+        "predicted": "mixed"
+      },
+      {
+        "id": "r1-maintenance-09",
+        "gold": "uncertain",
+        "predicted": "conformant"
+      },
+      {
+        "id": "r1-maintenance-10",
+        "gold": "uncertain",
+        "predicted": "row_semantic_issue"
+      },
+      {
+        "id": "r2-family-03",
+        "gold": "format_drift",
+        "predicted": "conformant"
+      },
+      {
+        "id": "r2-family-04",
+        "gold": "format_drift",
+        "predicted": "conformant"
+      },
+      {
+        "id": "r2-family-07",
+        "gold": "mixed",
+        "predicted": "row_semantic_issue"
+      },
+      {
+        "id": "r2-family-08",
+        "gold": "mixed",
+        "predicted": "row_semantic_issue"
+      },
+      {
+        "id": "r2-family-09",
+        "gold": "uncertain",
+        "predicted": "row_semantic_issue"
+      },
+      {
+        "id": "r2-maintenance-03",
+        "gold": "format_drift",
+        "predicted": "mixed"
+      },
+      {
+        "id": "r2-maintenance-05",
+        "gold": "row_semantic_issue",
+        "predicted": "mixed"
+      },
+      {
+        "id": "r2-maintenance-09",
+        "gold": "uncertain",
+        "predicted": "conformant"
+      },
+      {
+        "id": "r2-maintenance-10",
+        "gold": "uncertain",
+        "predicted": "row_semantic_issue"
+      }
+    ],
+    "review_count": 2,
+    "fallback_count": 0
+  },
+  "decisions-cascade": {
+    "n": 40,
+    "correct": 30,
+    "accuracy": 0.75,
+    "macro_f1": 0.7454767454767455,
+    "recall": {
+      "conformant": 1.0,
+      "format_drift": 0.75,
+      "row_semantic_issue": 1.0,
+      "mixed": 0.375,
+      "uncertain": 0.625
+    },
+    "defects_called_clean": 2,
+    "clean_flagged_defect": 0,
+    "cost_usd": 0.0303968,
+    "median_ms": 840.4351665012655,
+    "p95_ms": 1275.9192910016282,
+    "misses": [
+      {
+        "id": "r1-family-03",
+        "gold": "format_drift",
+        "predicted": "conformant"
+      },
+      {
+        "id": "r1-family-07",
+        "gold": "mixed",
+        "predicted": "row_semantic_issue"
+      },
+      {
+        "id": "r1-family-08",
+        "gold": "mixed",
+        "predicted": "row_semantic_issue"
+      },
+      {
+        "id": "r1-family-09",
+        "gold": "uncertain",
+        "predicted": "row_semantic_issue"
+      },
+      {
+        "id": "r1-maintenance-08",
+        "gold": "mixed",
+        "predicted": "row_semantic_issue"
+      },
+      {
+        "id": "r1-maintenance-10",
+        "gold": "uncertain",
+        "predicted": "row_semantic_issue"
+      },
+      {
+        "id": "r2-family-03",
+        "gold": "format_drift",
+        "predicted": "conformant"
+      },
+      {
+        "id": "r2-family-07",
+        "gold": "mixed",
+        "predicted": "row_semantic_issue"
+      },
+      {
+        "id": "r2-family-08",
+        "gold": "mixed",
+        "predicted": "row_semantic_issue"
+      },
+      {
+        "id": "r2-maintenance-10",
+        "gold": "uncertain",
+        "predicted": "row_semantic_issue"
+      }
+    ],
+    "review_count": 5,
+    "fallback_count": 26
+  },
+  "gpt41": {
+    "n": 40,
+    "correct": 30,
+    "accuracy": 0.75,
+    "macro_f1": 0.7435497835497835,
+    "recall": {
+      "conformant": 1.0,
+      "format_drift": 0.5,
+      "row_semantic_issue": 1.0,
+      "mixed": 0.5,
+      "uncertain": 0.75
+    },
+    "defects_called_clean": 4,
+    "clean_flagged_defect": 0,
+    "cost_usd": 0.043376,
+    "median_ms": 607.7242500032298,
+    "p95_ms": 834.3337919941405,
+    "misses": [
+      {
+        "id": "r1-family-03",
+        "gold": "format_drift",
+        "predicted": "conformant"
+      },
+      {
+        "id": "r1-family-04",
+        "gold": "format_drift",
+        "predicted": "conformant"
+      },
+      {
+        "id": "r1-family-07",
+        "gold": "mixed",
+        "predicted": "row_semantic_issue"
+      },
+      {
+        "id": "r1-family-08",
+        "gold": "mixed",
+        "predicted": "row_semantic_issue"
+      },
+      {
+        "id": "r1-maintenance-10",
+        "gold": "uncertain",
+        "predicted": "row_semantic_issue"
+      },
+      {
+        "id": "r2-family-03",
+        "gold": "format_drift",
+        "predicted": "conformant"
+      },
+      {
+        "id": "r2-family-04",
+        "gold": "format_drift",
+        "predicted": "conformant"
+      },
+      {
+        "id": "r2-family-07",
+        "gold": "mixed",
+        "predicted": "row_semantic_issue"
+      },
+      {
+        "id": "r2-family-08",
+        "gold": "mixed",
+        "predicted": "row_semantic_issue"
+      },
+      {
+        "id": "r2-maintenance-10",
+        "gold": "uncertain",
+        "predicted": "row_semantic_issue"
+      }
+    ],
+    "review_count": 6,
+    "fallback_count": 0
+  },
+  "jev": {
+    "n": 40,
+    "correct": 24,
+    "accuracy": 0.6,
+    "macro_f1": 0.5857720057720057,
+    "recall": {
+      "conformant": 1.0,
+      "format_drift": 0.25,
+      "row_semantic_issue": 0.5,
+      "mixed": 0.5,
+      "uncertain": 0.75
+    },
+    "defects_called_clean": 4,
+    "clean_flagged_defect": 0,
+    "cost_usd": 0.0014196,
+    "median_ms": 230.8246664906619,
+    "p95_ms": 350.63437500502914,
+    "misses": [
+      {
+        "id": "r1-family-03",
+        "gold": "format_drift",
+        "predicted": "conformant"
+      },
+      {
+        "id": "r1-family-04",
+        "gold": "format_drift",
+        "predicted": "conformant"
+      },
+      {
+        "id": "r1-family-07",
+        "gold": "mixed",
+        "predicted": "row_semantic_issue"
+      },
+      {
+        "id": "r1-family-08",
+        "gold": "mixed",
+        "predicted": "row_semantic_issue"
+      },
+      {
+        "id": "r1-family-09",
+        "gold": "uncertain",
+        "predicted": "conformant"
+      },
+      {
+        "id": "r1-maintenance-03",
+        "gold": "format_drift",
+        "predicted": "mixed"
+      },
+      {
+        "id": "r1-maintenance-05",
+        "gold": "row_semantic_issue",
+        "predicted": "mixed"
+      },
+      {
+        "id": "r1-maintenance-06",
+        "gold": "row_semantic_issue",
+        "predicted": "mixed"
+      },
+      {
+        "id": "r2-family-03",
+        "gold": "format_drift",
+        "predicted": "conformant"
+      },
+      {
+        "id": "r2-family-04",
+        "gold": "format_drift",
+        "predicted": "conformant"
+      },
+      {
+        "id": "r2-family-07",
+        "gold": "mixed",
+        "predicted": "row_semantic_issue"
+      },
+      {
+        "id": "r2-family-08",
+        "gold": "mixed",
+        "predicted": "row_semantic_issue"
+      },
+      {
+        "id": "r2-family-09",
+        "gold": "uncertain",
+        "predicted": "conformant"
+      },
+      {
+        "id": "r2-maintenance-03",
+        "gold": "format_drift",
+        "predicted": "mixed"
+      },
+      {
+        "id": "r2-maintenance-05",
+        "gold": "row_semantic_issue",
+        "predicted": "mixed"
+      },
+      {
+        "id": "r2-maintenance-06",
+        "gold": "row_semantic_issue",
+        "predicted": "mixed"
+      }
+    ],
+    "review_count": 6,
+    "fallback_count": 0
+  },
+  "jev-cascade": {
+    "n": 40,
+    "correct": 32,
+    "accuracy": 0.8,
+    "macro_f1": 0.7866666666666667,
+    "recall": {
+      "conformant": 1.0,
+      "format_drift": 0.5,
+      "row_semantic_issue": 1.0,
+      "mixed": 0.5,
+      "uncertain": 1.0
+    },
+    "defects_called_clean": 4,
+    "clean_flagged_defect": 0,
+    "cost_usd": 0.0196836,
+    "median_ms": 272.66429150040494,
+    "p95_ms": 974.8316240002168,
+    "misses": [
+      {
+        "id": "r1-family-03",
+        "gold": "format_drift",
+        "predicted": "conformant"
+      },
+      {
+        "id": "r1-family-04",
+        "gold": "format_drift",
+        "predicted": "conformant"
+      },
+      {
+        "id": "r1-family-07",
+        "gold": "mixed",
+        "predicted": "row_semantic_issue"
+      },
+      {
+        "id": "r1-family-08",
+        "gold": "mixed",
+        "predicted": "row_semantic_issue"
+      },
+      {
+        "id": "r2-family-03",
+        "gold": "format_drift",
+        "predicted": "conformant"
+      },
+      {
+        "id": "r2-family-04",
+        "gold": "format_drift",
+        "predicted": "conformant"
+      },
+      {
+        "id": "r2-family-07",
+        "gold": "mixed",
+        "predicted": "row_semantic_issue"
+      },
+      {
+        "id": "r2-family-08",
+        "gold": "mixed",
+        "predicted": "row_semantic_issue"
+      }
+    ],
+    "review_count": 8,
+    "fallback_count": 17
+  },
+  "pplx": {
+    "n": 40,
+    "correct": 28,
+    "accuracy": 0.7,
+    "macro_f1": 0.6933333333333334,
+    "recall": {
+      "conformant": 1.0,
+      "format_drift": 0.5,
+      "row_semantic_issue": 1.0,
+      "mixed": 0.5,
+      "uncertain": 0.5
+    },
+    "defects_called_clean": 4,
+    "clean_flagged_defect": 0,
+    "cost_usd": 0.00043068,
+    "median_ms": 381.67383350082673,
+    "p95_ms": 498.4560829907423,
+    "misses": [
+      {
+        "id": "r1-family-03",
+        "gold": "format_drift",
+        "predicted": "conformant"
+      },
+      {
+        "id": "r1-family-04",
+        "gold": "format_drift",
+        "predicted": "conformant"
+      },
+      {
+        "id": "r1-family-07",
+        "gold": "mixed",
+        "predicted": "row_semantic_issue"
+      },
+      {
+        "id": "r1-family-08",
+        "gold": "mixed",
+        "predicted": "row_semantic_issue"
+      },
+      {
+        "id": "r1-family-09",
+        "gold": "uncertain",
+        "predicted": "conformant"
+      },
+      {
+        "id": "r1-maintenance-09",
+        "gold": "uncertain",
+        "predicted": "conformant"
+      },
+      {
+        "id": "r2-family-03",
+        "gold": "format_drift",
+        "predicted": "conformant"
+      },
+      {
+        "id": "r2-family-04",
+        "gold": "format_drift",
+        "predicted": "conformant"
+      },
+      {
+        "id": "r2-family-07",
+        "gold": "mixed",
+        "predicted": "row_semantic_issue"
+      },
+      {
+        "id": "r2-family-08",
+        "gold": "mixed",
+        "predicted": "row_semantic_issue"
+      },
+      {
+        "id": "r2-family-09",
+        "gold": "uncertain",
+        "predicted": "conformant"
+      },
+      {
+        "id": "r2-maintenance-09",
+        "gold": "uncertain",
+        "predicted": "conformant"
+      }
+    ],
+    "review_count": 4,
+    "fallback_count": 0
+  },
+  "pplx-cascade": {
+    "n": 40,
+    "correct": 30,
+    "accuracy": 0.75,
+    "macro_f1": 0.7435497835497835,
+    "recall": {
+      "conformant": 1.0,
+      "format_drift": 0.5,
+      "row_semantic_issue": 1.0,
+      "mixed": 0.5,
+      "uncertain": 0.75
+    },
+    "defects_called_clean": 4,
+    "clean_flagged_defect": 0,
+    "cost_usd": 0.00252668,
+    "median_ms": 388.0421875001048,
+    "p95_ms": 568.5692090046359,
+    "misses": [
+      {
+        "id": "r1-family-03",
+        "gold": "format_drift",
+        "predicted": "conformant"
+      },
+      {
+        "id": "r1-family-04",
+        "gold": "format_drift",
+        "predicted": "conformant"
+      },
+      {
+        "id": "r1-family-07",
+        "gold": "mixed",
+        "predicted": "row_semantic_issue"
+      },
+      {
+        "id": "r1-family-08",
+        "gold": "mixed",
+        "predicted": "row_semantic_issue"
+      },
+      {
+        "id": "r1-maintenance-09",
+        "gold": "uncertain",
+        "predicted": "conformant"
+      },
+      {
+        "id": "r2-family-03",
+        "gold": "format_drift",
+        "predicted": "conformant"
+      },
+      {
+        "id": "r2-family-04",
+        "gold": "format_drift",
+        "predicted": "conformant"
+      },
+      {
+        "id": "r2-family-07",
+        "gold": "mixed",
+        "predicted": "row_semantic_issue"
+      },
+      {
+        "id": "r2-family-08",
+        "gold": "mixed",
+        "predicted": "row_semantic_issue"
+      },
+      {
+        "id": "r2-maintenance-09",
+        "gold": "uncertain",
+        "predicted": "conformant"
+      }
+    ],
+    "review_count": 6,
+    "fallback_count": 2
+  }
+}

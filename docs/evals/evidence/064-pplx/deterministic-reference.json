@@ -1,0 +1,102 @@
+[
+  {
+    "id": "family-01",
+    "gold": "conformant",
+    "structural": "conformant"
+  },
+  {
+    "id": "family-02",
+    "gold": "conformant",
+    "structural": "conformant"
+  },
+  {
+    "id": "family-03",
+    "gold": "format_drift",
+    "structural": "format_drift"
+  },
+  {
+    "id": "family-04",
+    "gold": "format_drift",
+    "structural": "format_drift"
+  },
+  {
+    "id": "family-05",
+    "gold": "row_semantic_issue",
+    "structural": "conformant"
+  },
+  {
+    "id": "family-06",
+    "gold": "row_semantic_issue",
+    "structural": "conformant"
+  },
+  {
+    "id": "family-07",
+    "gold": "mixed",
+    "structural": "format_drift"
+  },
+  {
+    "id": "family-08",
+    "gold": "mixed",
+    "structural": "format_drift"
+  },
+  {
+    "id": "family-09",
+    "gold": "uncertain",
+    "structural": "conformant"
+  },
+  {
+    "id": "family-10",
+    "gold": "uncertain",
+    "structural": "conformant"
+  },
+  {
+    "id": "maintenance-01",
+    "gold": "conformant",
+    "structural": "conformant"
+  },
+  {
+    "id": "maintenance-02",
+    "gold": "conformant",
+    "structural": "conformant"
+  },
+  {
+    "id": "maintenance-03",
+    "gold": "format_drift",
+    "structural": "format_drift"
+  },
+  {
+    "id": "maintenance-04",
+    "gold": "format_drift",
+    "structural": "format_drift"
+  },
+  {
+    "id": "maintenance-05",
+    "gold": "row_semantic_issue",
+    "structural": "conformant"
+  },
+  {
+    "id": "maintenance-06",
+    "gold": "row_semantic_issue",
+    "structural": "conformant"
+  },
+  {
+    "id": "maintenance-07",
+    "gold": "mixed",
+    "structural": "format_drift"
+  },
+  {
+    "id": "maintenance-08",
+    "gold": "mixed",
+    "structural": "format_drift"
+  },
+  {
+    "id": "maintenance-09",
+    "gold": "uncertain",
+    "structural": "conformant"
+  },
+  {
+    "id": "maintenance-10",
+    "gold": "uncertain",
+    "structural": "conformant"
+  }
+]

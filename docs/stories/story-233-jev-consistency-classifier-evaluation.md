@@ -86,3 +86,21 @@ owner OpenAI unchanged. Eval registry and CHANGELOG updated. All acceptance/tene
 checks met for eval-only scope; Story220 remains existing substrate, ADR001 stays
 accepted with no design-policy change. Story233 closed via mark-story-done review.
 No commits/push/deployment authorized or performed.
+
+2026-10-06 — Scout088 item3 selected under hard USD2 for fresh Perplexity v1.1,
+Jev1.13 and OpenAI Decisions versus GPT4.1, same synthetic status projection.
+Isolated follow-through Attempt064 prepares exact source snapshots/rendered40
+matrix, native adapters and ten passing offline tests. Perplexity key absent in
+normal owner config and central custody; paid work awaiting provisioning, USD0,
+all candidate quality/economics unmeasured. Existing story result remains done;
+this continuation does not claim a fresh comparison completed or change defaults.
+
+2026-10-06 — Attempt064 continuation completed after user provisioned access.
+209native calls costUSD.097180996/2, unknown0, no retries. Fresh40case raw
+Perplexity28/Jev24/OpenAI22/GPT30; real cascades30/32/30. Perplexity cascade
+94.18%cheaper and31.85%fasterp95 than GPT at equal aggregate75%, but source-
+reviewed missing-evidence false-clean prevents automatic adoption. Prioritize
+bounded independent shadow/full-path promotion check. All source/gold/prompt/
+thresholds unchanged;418raw envelopes+offline replay retained.10focused tests,
+Ruff/methodology/whitespace pass. Both temporary injected keys removed by
+coordinator; no runtime/default/commit/push. Historical story remains closed.

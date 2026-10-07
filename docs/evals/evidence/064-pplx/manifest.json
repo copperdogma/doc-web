@@ -1,0 +1,138 @@
+{
+  "benchmarks/jev-consistency/pplx_campaign.py": {
+    "bytes": 13658,
+    "sha256": "e484fd7e044404b8ae245f5b615cbd4d7af97c501a5f6db057a3bfff8ee5302f"
+  },
+  "benchmarks/jev-consistency/test_pplx_campaign.py": {
+    "bytes": 2718,
+    "sha256": "da59da89f0e85a17ae414193762020d23e63f673b67177a7a50a0fcfb36a11a3"
+  },
+  "docs/evals/attempts/064-perplexity-decider-v11.md": {
+    "bytes": 16717,
+    "sha256": "824bc8cb4b9df974c1007f708eb35752167f804c4d7f71ab84f7f80cd3acee3c"
+  },
+  "docs/evals/evidence/064-pplx/cost-breakdown.json": {
+    "bytes": 230,
+    "sha256": "e7c05e5a315817fc007286f0bd0e6596bf66af7fa7d96aeb8876547f65e6caf9"
+  },
+  "docs/evals/evidence/064-pplx/deterministic-reference.json": {
+    "bytes": 1865,
+    "sha256": "783f9fe98348b6f70ce02fc9e917725ab3bddaef2446b270a378d8ff23cd2c1f"
+  },
+  "docs/evals/evidence/064-pplx/family-01.html": {
+    "bytes": 398,
+    "sha256": "bbfefe5ad8a405caff50070668c30e1e2fad74762dc9c86b6635bd8222641889"
+  },
+  "docs/evals/evidence/064-pplx/family-02.html": {
+    "bytes": 516,
+    "sha256": "c63ec2a5f590812677ae8e6c31f93fbabe5b673bde1490fe424c2385b07cbe06"
+  },
+  "docs/evals/evidence/064-pplx/family-03.html": {
+    "bytes": 547,
+    "sha256": "631ed8739e912a4e8f27711286e6402f4db7bbc06b8ce31e7744bc3fa9c81b34"
+  },
+  "docs/evals/evidence/064-pplx/family-04.html": {
+    "bytes": 378,
+    "sha256": "8e5c9fdda4ac0e84ca379d8bc19f812f198a311cc5b54dfc5186acba1e83e4c0"
+  },
+  "docs/evals/evidence/064-pplx/family-05.html": {
+    "bytes": 398,
+    "sha256": "d1356ddb396d11bbfcea27579e29e5759e9ad1a1752d43fbff0fcac413ea95e6"
+  },
+  "docs/evals/evidence/064-pplx/family-06.html": {
+    "bytes": 398,
+    "sha256": "2b2e453649192f947179b67c1d2c78cbcb7e3d67ce9d09dde297568ec4f411bb"
+  },
+  "docs/evals/evidence/064-pplx/family-07.html": {
+    "bytes": 547,
+    "sha256": "cc72630d57ee37b42eec9d7f2ce7da600bb77805dbac266316431b4c108c28da"
+  },
+  "docs/evals/evidence/064-pplx/family-08.html": {
+    "bytes": 378,
+    "sha256": "9e1bf67bfefa7c28b204ef1cf4b13d230e92439488f16c80a6c93c5f1b933b90"
+  },
+  "docs/evals/evidence/064-pplx/family-09.html": {
+    "bytes": 398,
+    "sha256": "bbfefe5ad8a405caff50070668c30e1e2fad74762dc9c86b6635bd8222641889"
+  },
+  "docs/evals/evidence/064-pplx/family-10.html": {
+    "bytes": 398,
+    "sha256": "bbfefe5ad8a405caff50070668c30e1e2fad74762dc9c86b6635bd8222641889"
+  },
+  "docs/evals/evidence/064-pplx/ledger.json": {
+    "bytes": 169719,
+    "sha256": "65dfcf940191335c0e5b11f6bb8f544096d4ee5b30a8137bc6098188aa9f66fb"
+  },
+  "docs/evals/evidence/064-pplx/maintained-detector.json": {
+    "bytes": 8956,
+    "sha256": "6deff073cce0969810768d2aa609a1eea21d2b2b6582e73ecc24986ad41b2869"
+  },
+  "docs/evals/evidence/064-pplx/paired-detail.json": {
+    "bytes": 1723,
+    "sha256": "bcc4aa4de62d7f9c592159717bea82d2bfa879c38553e0aa0cfa68c428166cb6"
+  },
+  "docs/evals/evidence/064-pplx/preflight.json": {
+    "bytes": 1726,
+    "sha256": "587f5a758237f7d7d3bda9d865f173a1e50498544d590ca4e8e2924393ba637f"
+  },
+  "docs/evals/evidence/064-pplx/qualification.json": {
+    "bytes": 244,
+    "sha256": "a274c17a66df5fd22ae8688279e1935be1d80f48cc3be264506982bf29557df1"
+  },
+  "docs/evals/evidence/064-pplx/raw-manifest.json": {
+    "bytes": 62271,
+    "sha256": "06da8e94e4af7940a6c45d2af7ab48b17fb50e99fcfd244a2962d90ffb780ecb"
+  },
+  "docs/evals/evidence/064-pplx/receipts.tar.gz": {
+    "bytes": 44876,
+    "sha256": "19113c1d338667505a4bd6e0cc0384c585fd78ef26b3e69ac6b500198f94f871"
+  },
+  "docs/evals/evidence/064-pplx/rendered.json": {
+    "bytes": 491803,
+    "sha256": "433aa011b3e5690c4957dd910d90e20d38d4d5bb52b3f52d58064dced750fb63"
+  },
+  "docs/evals/evidence/064-pplx/replay.py": {
+    "bytes": 2143,
+    "sha256": "4556ab227f450db0dc64f2aefcb8682d7d06823bfd2083c6256a0cb38f40f673"
+  },
+  "docs/evals/evidence/064-pplx/results.json": {
+    "bytes": 223272,
+    "sha256": "021f50686c404fe379e027c37dfb166adb119d45365d167a4181bab35d23accb"
+  },
+  "docs/evals/evidence/064-pplx/snapshots/benchmarks/jev-consistency/detector.py": {
+    "bytes": 2270,
+    "sha256": "d6f639af36882ef57e9e8ef2b1083057049de70edc1d512b67c2fc734453c0d6"
+  },
+  "docs/evals/evidence/064-pplx/snapshots/benchmarks/jev-consistency/fixtures.json": {
+    "bytes": 31528,
+    "sha256": "88994b8cd7c75d832114f33e613c3b2d8656b737f53962292ee34c4e81b128ab"
+  },
+  "docs/evals/evidence/064-pplx/snapshots/benchmarks/jev-consistency/plan.md": {
+    "bytes": 2632,
+    "sha256": "c485d8c2dcab0c38a24ae18a7ea63d8baf617518cf49252838083f1e534cfce2"
+  },
+  "docs/evals/evidence/064-pplx/snapshots/benchmarks/jev-consistency/pplx_campaign.py": {
+    "bytes": 13658,
+    "sha256": "e484fd7e044404b8ae245f5b615cbd4d7af97c501a5f6db057a3bfff8ee5302f"
+  },
+  "docs/evals/evidence/064-pplx/snapshots/benchmarks/jev-consistency/run.py": {
+    "bytes": 14567,
+    "sha256": "1391bb3e045344eb7973b09b8eaaa903cbdb9f7e33a4f506cf33cf8ae98f97b4"
+  },
+  "docs/evals/evidence/064-pplx/snapshots/modules/validate/validate_onward_genealogy_consistency_v1/main.py": {
+    "bytes": 31611,
+    "sha256": "d8729c26de12cf0b0172b70a8d66f8c2ab6de0733fae6e7254b875d0ce40fbe6"
+  },
+  "docs/evals/evidence/064-pplx/source-review.json": {
+    "bytes": 17409,
+    "sha256": "86dbdd25a1e1d5a5b55973d644d669e75307d39a1873f4fe368a8a03032eeb90"
+  },
+  "docs/evals/evidence/064-pplx/status.json": {
+    "bytes": 1546,
+    "sha256": "6f55517f051bc4e4061cd2988e6acf042b095bca627637dd4ac90d6e20651f39"
+  },
+  "docs/evals/evidence/064-pplx/summary.json": {
+    "bytes": 13095,
+    "sha256": "79ff81ba0f3a104484ae55ddd9b66513749b8c615df54320af902f509cc1d381"
+  }
+}

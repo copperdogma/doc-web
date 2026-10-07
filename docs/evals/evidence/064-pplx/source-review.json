@@ -1,0 +1,610 @@
+{
+  "reviewer": "owner-worker-source-inspection; coordinator independently corroborates critical cases",
+  "reviewed_cases": [
+    {
+      "id": "family-03",
+      "gold": "format_drift",
+      "source_grounded_reason": "Unallowed split without page break; facts correct.",
+      "input_source_sha256": "0f90f524580fa51f4347dce5acf55a0ef8512eff00985da2a2777fef9f6c0727",
+      "classification": "model-wrong against closed status projection; no scorer/golden/request repair",
+      "observed_misses": [
+        {
+          "arm": "gpt41",
+          "id": "r1-family-03",
+          "label": "conformant",
+          "confidence": null
+        },
+        {
+          "arm": "pplx",
+          "id": "r1-family-03",
+          "label": "conformant",
+          "confidence": 0.9717141054617331
+        },
+        {
+          "arm": "pplx-cascade",
+          "id": "r1-family-03",
+          "label": "conformant",
+          "confidence": 0.9717141054617331
+        },
+        {
+          "arm": "jev",
+          "id": "r1-family-03",
+          "label": "conformant",
+          "confidence": 0.83
+        },
+        {
+          "arm": "jev-cascade",
+          "id": "r1-family-03",
+          "label": "conformant",
+          "confidence": 0.83
+        },
+        {
+          "arm": "decisions",
+          "id": "r1-family-03",
+          "label": "conformant",
+          "confidence": 0.81
+        },
+        {
+          "arm": "decisions-cascade",
+          "id": "r1-family-03",
+          "label": "conformant",
+          "confidence": 0.81
+        },
+        {
+          "arm": "gpt41",
+          "id": "r2-family-03",
+          "label": "conformant",
+          "confidence": null
+        },
+        {
+          "arm": "pplx",
+          "id": "r2-family-03",
+          "label": "conformant",
+          "confidence": 0.9717141054617331
+        },
+        {
+          "arm": "pplx-cascade",
+          "id": "r2-family-03",
+          "label": "conformant",
+          "confidence": 0.9717141054617331
+        },
+        {
+          "arm": "jev",
+          "id": "r2-family-03",
+          "label": "conformant",
+          "confidence": 0.79
+        },
+        {
+          "arm": "jev-cascade",
+          "id": "r2-family-03",
+          "label": "conformant",
+          "confidence": null
+        },
+        {
+          "arm": "decisions",
+          "id": "r2-family-03",
+          "label": "conformant",
+          "confidence": 0.81
+        },
+        {
+          "arm": "decisions-cascade",
+          "id": "r2-family-03",
+          "label": "conformant",
+          "confidence": 0.81
+        }
+      ]
+    },
+    {
+      "id": "family-04",
+      "gold": "format_drift",
+      "source_grounded_reason": "Fused columns preserve counts but violate headers.",
+      "input_source_sha256": "182e35278495f2597c34ddcfb8e9bf85380053d611aa7a2e8517b436c5535d46",
+      "classification": "model-wrong against closed status projection; no scorer/golden/request repair",
+      "observed_misses": [
+        {
+          "arm": "gpt41",
+          "id": "r1-family-04",
+          "label": "conformant",
+          "confidence": null
+        },
+        {
+          "arm": "pplx",
+          "id": "r1-family-04",
+          "label": "conformant",
+          "confidence": 0.9109672749715444
+        },
+        {
+          "arm": "pplx-cascade",
+          "id": "r1-family-04",
+          "label": "conformant",
+          "confidence": 0.9109672749715444
+        },
+        {
+          "arm": "jev",
+          "id": "r1-family-04",
+          "label": "conformant",
+          "confidence": 0.72
+        },
+        {
+          "arm": "jev-cascade",
+          "id": "r1-family-04",
+          "label": "conformant",
+          "confidence": null
+        },
+        {
+          "arm": "decisions",
+          "id": "r1-family-04",
+          "label": "conformant",
+          "confidence": 0.54
+        },
+        {
+          "arm": "gpt41",
+          "id": "r2-family-04",
+          "label": "conformant",
+          "confidence": null
+        },
+        {
+          "arm": "pplx",
+          "id": "r2-family-04",
+          "label": "conformant",
+          "confidence": 0.9109672749715444
+        },
+        {
+          "arm": "pplx-cascade",
+          "id": "r2-family-04",
+          "label": "conformant",
+          "confidence": 0.9109672749715444
+        },
+        {
+          "arm": "jev",
+          "id": "r2-family-04",
+          "label": "conformant",
+          "confidence": 0.76
+        },
+        {
+          "arm": "jev-cascade",
+          "id": "r2-family-04",
+          "label": "conformant",
+          "confidence": null
+        },
+        {
+          "arm": "decisions",
+          "id": "r2-family-04",
+          "label": "conformant",
+          "confidence": 0.54
+        }
+      ]
+    },
+    {
+      "id": "family-07",
+      "gold": "mixed",
+      "source_grounded_reason": "Unallowed split and swapped death dates.",
+      "input_source_sha256": "b50d6dce0a719505041a0e88684a53519d9808c42d5dcdc0825fa6310ca8bd53",
+      "classification": "model-wrong against closed status projection; no scorer/golden/request repair",
+      "observed_misses": [
+        {
+          "arm": "gpt41",
+          "id": "r1-family-07",
+          "label": "row_semantic_issue",
+          "confidence": null
+        },
+        {
+          "arm": "pplx",
+          "id": "r1-family-07",
+          "label": "row_semantic_issue",
+          "confidence": 0.9826221520126207
+        },
+        {
+          "arm": "pplx-cascade",
+          "id": "r1-family-07",
+          "label": "row_semantic_issue",
+          "confidence": 0.9826221520126207
+        },
+        {
+          "arm": "jev",
+          "id": "r1-family-07",
+          "label": "row_semantic_issue",
+          "confidence": 0.83
+        },
+        {
+          "arm": "jev-cascade",
+          "id": "r1-family-07",
+          "label": "row_semantic_issue",
+          "confidence": 0.83
+        },
+        {
+          "arm": "decisions",
+          "id": "r1-family-07",
+          "label": "row_semantic_issue",
+          "confidence": 0.49
+        },
+        {
+          "arm": "decisions-cascade",
+          "id": "r1-family-07",
+          "label": "row_semantic_issue",
+          "confidence": null
+        },
+        {
+          "arm": "gpt41",
+          "id": "r2-family-07",
+          "label": "row_semantic_issue",
+          "confidence": null
+        },
+        {
+          "arm": "pplx",
+          "id": "r2-family-07",
+          "label": "row_semantic_issue",
+          "confidence": 0.9826221520126207
+        },
+        {
+          "arm": "pplx-cascade",
+          "id": "r2-family-07",
+          "label": "row_semantic_issue",
+          "confidence": 0.9826221520126207
+        },
+        {
+          "arm": "jev",
+          "id": "r2-family-07",
+          "label": "row_semantic_issue",
+          "confidence": 0.86
+        },
+        {
+          "arm": "jev-cascade",
+          "id": "r2-family-07",
+          "label": "row_semantic_issue",
+          "confidence": 0.86
+        },
+        {
+          "arm": "decisions",
+          "id": "r2-family-07",
+          "label": "row_semantic_issue",
+          "confidence": 0.49
+        },
+        {
+          "arm": "decisions-cascade",
+          "id": "r2-family-07",
+          "label": "row_semantic_issue",
+          "confidence": null
+        }
+      ]
+    },
+    {
+      "id": "family-08",
+      "gold": "mixed",
+      "source_grounded_reason": "Fused header plus wrong birth date.",
+      "input_source_sha256": "d8f2734f61876f7118bf5ed2a091f8442d447f4979c158254ef58398f05513a1",
+      "classification": "model-wrong against closed status projection; no scorer/golden/request repair",
+      "observed_misses": [
+        {
+          "arm": "gpt41",
+          "id": "r1-family-08",
+          "label": "row_semantic_issue",
+          "confidence": null
+        },
+        {
+          "arm": "pplx",
+          "id": "r1-family-08",
+          "label": "row_semantic_issue",
+          "confidence": 0.9633800631573652
+        },
+        {
+          "arm": "pplx-cascade",
+          "id": "r1-family-08",
+          "label": "row_semantic_issue",
+          "confidence": 0.9633800631573652
+        },
+        {
+          "arm": "jev",
+          "id": "r1-family-08",
+          "label": "row_semantic_issue",
+          "confidence": 0.69
+        },
+        {
+          "arm": "jev-cascade",
+          "id": "r1-family-08",
+          "label": "row_semantic_issue",
+          "confidence": null
+        },
+        {
+          "arm": "decisions",
+          "id": "r1-family-08",
+          "label": "row_semantic_issue",
+          "confidence": 0.74
+        },
+        {
+          "arm": "decisions-cascade",
+          "id": "r1-family-08",
+          "label": "row_semantic_issue",
+          "confidence": null
+        },
+        {
+          "arm": "gpt41",
+          "id": "r2-family-08",
+          "label": "row_semantic_issue",
+          "confidence": null
+        },
+        {
+          "arm": "pplx",
+          "id": "r2-family-08",
+          "label": "row_semantic_issue",
+          "confidence": 0.9633800631573652
+        },
+        {
+          "arm": "pplx-cascade",
+          "id": "r2-family-08",
+          "label": "row_semantic_issue",
+          "confidence": 0.9633800631573652
+        },
+        {
+          "arm": "jev",
+          "id": "r2-family-08",
+          "label": "row_semantic_issue",
+          "confidence": 0.74
+        },
+        {
+          "arm": "jev-cascade",
+          "id": "r2-family-08",
+          "label": "row_semantic_issue",
+          "confidence": null
+        },
+        {
+          "arm": "decisions",
+          "id": "r2-family-08",
+          "label": "row_semantic_issue",
+          "confidence": 0.74
+        },
+        {
+          "arm": "decisions-cascade",
+          "id": "r2-family-08",
+          "label": "row_semantic_issue",
+          "confidence": null
+        }
+      ]
+    },
+    {
+      "id": "family-09",
+      "gold": "uncertain",
+      "source_grounded_reason": "Visible extracted dates cannot be verified; no established conflict.",
+      "input_source_sha256": "fb00a1f1cb69fe5079fc547e04374ddc228efed26611acce4a95bca0e0edd6a4",
+      "classification": "model-wrong against closed status projection; no scorer/golden/request repair",
+      "observed_misses": [
+        {
+          "arm": "pplx",
+          "id": "r1-family-09",
+          "label": "conformant",
+          "confidence": 0.34368806139977714
+        },
+        {
+          "arm": "jev",
+          "id": "r1-family-09",
+          "label": "conformant",
+          "confidence": 0.55
+        },
+        {
+          "arm": "decisions",
+          "id": "r1-family-09",
+          "label": "row_semantic_issue",
+          "confidence": 0.35
+        },
+        {
+          "arm": "decisions-cascade",
+          "id": "r1-family-09",
+          "label": "row_semantic_issue",
+          "confidence": null
+        },
+        {
+          "arm": "pplx",
+          "id": "r2-family-09",
+          "label": "conformant",
+          "confidence": 0.34368806139977714
+        },
+        {
+          "arm": "jev",
+          "id": "r2-family-09",
+          "label": "conformant",
+          "confidence": 0.67
+        },
+        {
+          "arm": "decisions",
+          "id": "r2-family-09",
+          "label": "row_semantic_issue",
+          "confidence": 0.35
+        }
+      ]
+    },
+    {
+      "id": "maintenance-03",
+      "gold": "format_drift",
+      "source_grounded_reason": "Combined card violates one-card-per-asset but keeps clear correct associations.",
+      "input_source_sha256": "d28ab26b0005e6637e4d7423124830f294b220d81ddf346da883d777a67a11c3",
+      "classification": "model-wrong against closed status projection; no scorer/golden/request repair",
+      "observed_misses": [
+        {
+          "arm": "jev",
+          "id": "r1-maintenance-03",
+          "label": "mixed",
+          "confidence": 0.38
+        },
+        {
+          "arm": "decisions",
+          "id": "r1-maintenance-03",
+          "label": "mixed",
+          "confidence": 0.27
+        },
+        {
+          "arm": "jev",
+          "id": "r2-maintenance-03",
+          "label": "mixed",
+          "confidence": 0.44
+        },
+        {
+          "arm": "decisions",
+          "id": "r2-maintenance-03",
+          "label": "mixed",
+          "confidence": 0.27
+        }
+      ]
+    },
+    {
+      "id": "maintenance-05",
+      "gold": "row_semantic_issue",
+      "source_grounded_reason": "Work notes attached to opposite assets.",
+      "input_source_sha256": "a1a8fcf4eef86acf2a36b1c82089c9b281bb8e2b25fbbde5078a73b54b08fcd3",
+      "classification": "model-wrong against closed status projection; no scorer/golden/request repair",
+      "observed_misses": [
+        {
+          "arm": "jev",
+          "id": "r1-maintenance-05",
+          "label": "mixed",
+          "confidence": 0.42
+        },
+        {
+          "arm": "decisions",
+          "id": "r1-maintenance-05",
+          "label": "mixed",
+          "confidence": 0.49
+        },
+        {
+          "arm": "jev",
+          "id": "r2-maintenance-05",
+          "label": "mixed",
+          "confidence": 0.4
+        },
+        {
+          "arm": "decisions",
+          "id": "r2-maintenance-05",
+          "label": "mixed",
+          "confidence": 0.49
+        }
+      ]
+    },
+    {
+      "id": "maintenance-06",
+      "gold": "row_semantic_issue",
+      "source_grounded_reason": "Pump installation year incorrect.",
+      "input_source_sha256": "77b23ec68805c3ddea046d6e8b7f1ae20f1cb6abb55ed3b99b044c054bc0446c",
+      "classification": "model-wrong against closed status projection; no scorer/golden/request repair",
+      "observed_misses": [
+        {
+          "arm": "jev",
+          "id": "r1-maintenance-06",
+          "label": "mixed",
+          "confidence": 0.58
+        },
+        {
+          "arm": "jev",
+          "id": "r2-maintenance-06",
+          "label": "mixed",
+          "confidence": 0.57
+        }
+      ]
+    },
+    {
+      "id": "maintenance-08",
+      "gold": "mixed",
+      "source_grounded_reason": "Duplicated Pump card plus wrong Valve technician.",
+      "input_source_sha256": "0c7300c7c59cbba137e8b6d3ce7d42d91c08d0501f567444f0f60ccef778a6d4",
+      "classification": "model-wrong against closed status projection; no scorer/golden/request repair",
+      "observed_misses": [
+        {
+          "arm": "decisions-cascade",
+          "id": "r1-maintenance-08",
+          "label": "row_semantic_issue",
+          "confidence": null
+        }
+      ]
+    },
+    {
+      "id": "maintenance-09",
+      "gold": "uncertain",
+      "source_grounded_reason": "Unverified extracted dates/notes with no established conflict.",
+      "input_source_sha256": "cf3ab8cd7e8a4c0f8f4ac653fd61d493ba75bd539013e038ad3b6b5312bed145",
+      "classification": "model-wrong against closed status projection; no scorer/golden/request repair",
+      "observed_misses": [
+        {
+          "arm": "pplx",
+          "id": "r1-maintenance-09",
+          "label": "conformant",
+          "confidence": 0.8150901478938438
+        },
+        {
+          "arm": "pplx-cascade",
+          "id": "r1-maintenance-09",
+          "label": "conformant",
+          "confidence": 0.8150901478938438
+        },
+        {
+          "arm": "decisions",
+          "id": "r1-maintenance-09",
+          "label": "conformant",
+          "confidence": 0.4
+        },
+        {
+          "arm": "pplx",
+          "id": "r2-maintenance-09",
+          "label": "conformant",
+          "confidence": 0.8150901478938438
+        },
+        {
+          "arm": "pplx-cascade",
+          "id": "r2-maintenance-09",
+          "label": "conformant",
+          "confidence": 0.8150901478938438
+        },
+        {
+          "arm": "decisions",
+          "id": "r2-maintenance-09",
+          "label": "conformant",
+          "confidence": 0.4
+        }
+      ]
+    },
+    {
+      "id": "maintenance-10",
+      "gold": "uncertain",
+      "source_grounded_reason": "Work attachment could be either pairing; no evidence decides.",
+      "input_source_sha256": "d8082f4b241320d820c59236ee80b60ceffa43ea0419a070d2478207b052b14b",
+      "classification": "model-wrong against closed status projection; no scorer/golden/request repair",
+      "observed_misses": [
+        {
+          "arm": "gpt41",
+          "id": "r1-maintenance-10",
+          "label": "row_semantic_issue",
+          "confidence": null
+        },
+        {
+          "arm": "decisions",
+          "id": "r1-maintenance-10",
+          "label": "row_semantic_issue",
+          "confidence": 0.37
+        },
+        {
+          "arm": "decisions-cascade",
+          "id": "r1-maintenance-10",
+          "label": "row_semantic_issue",
+          "confidence": null
+        },
+        {
+          "arm": "gpt41",
+          "id": "r2-maintenance-10",
+          "label": "row_semantic_issue",
+          "confidence": null
+        },
+        {
+          "arm": "decisions",
+          "id": "r2-maintenance-10",
+          "label": "row_semantic_issue",
+          "confidence": 0.37
+        },
+        {
+          "arm": "decisions-cascade",
+          "id": "r2-maintenance-10",
+          "label": "row_semantic_issue",
+          "confidence": null
+        }
+      ]
+    }
+  ],
+  "gold_changes": false,
+  "scope": "Gold status tests supplied evidence/associations/layout, not completeness transcription. No rationale is inferred from typed answers."
+}

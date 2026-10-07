@@ -1,0 +1,79 @@
+{
+  "decisions": {
+    "per_repeat_correct": {
+      "r1": 11,
+      "r2": 11
+    },
+    "unknown_called_clean": 2,
+    "candidate_only_correct": 0,
+    "gpt_only_correct": 8,
+    "paired_identical_labels": 32,
+    "defect_review_coverage": 0
+  },
+  "decisions-cascade": {
+    "per_repeat_correct": {
+      "r1": 14,
+      "r2": 16
+    },
+    "unknown_called_clean": 0,
+    "candidate_only_correct": 2,
+    "gpt_only_correct": 2,
+    "paired_identical_labels": 36,
+    "defect_review_coverage": 0
+  },
+  "gpt41": {
+    "per_repeat_correct": {
+      "r1": 15,
+      "r2": 15
+    },
+    "unknown_called_clean": 0,
+    "candidate_only_correct": 0,
+    "gpt_only_correct": 0,
+    "paired_identical_labels": 40,
+    "defect_review_coverage": 0
+  },
+  "jev": {
+    "per_repeat_correct": {
+      "r1": 12,
+      "r2": 12
+    },
+    "unknown_called_clean": 2,
+    "candidate_only_correct": 2,
+    "gpt_only_correct": 8,
+    "paired_identical_labels": 30,
+    "defect_review_coverage": 0
+  },
+  "jev-cascade": {
+    "per_repeat_correct": {
+      "r1": 16,
+      "r2": 16
+    },
+    "unknown_called_clean": 0,
+    "candidate_only_correct": 2,
+    "gpt_only_correct": 0,
+    "paired_identical_labels": 38,
+    "defect_review_coverage": 0
+  },
+  "pplx": {
+    "per_repeat_correct": {
+      "r1": 14,
+      "r2": 14
+    },
+    "unknown_called_clean": 4,
+    "candidate_only_correct": 2,
+    "gpt_only_correct": 4,
+    "paired_identical_labels": 34,
+    "defect_review_coverage": 0
+  },
+  "pplx-cascade": {
+    "per_repeat_correct": {
+      "r1": 15,
+      "r2": 15
+    },
+    "unknown_called_clean": 2,
+    "candidate_only_correct": 2,
+    "gpt_only_correct": 2,
+    "paired_identical_labels": 36,
+    "defect_review_coverage": 0
+  }
+}

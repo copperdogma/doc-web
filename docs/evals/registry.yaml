@@ -6083,6 +6083,20 @@ evals:
           Six calls USD0.030029128, unknown0. No production quality or savings
           claim. Evidence docs/evals/artifacts/story234-evidence-contract-recheck/report.md.
 
+      - id: "004"
+        date: 2026-10-06
+        status: succeeded
+        approach: "Scout088 fresh native Perplexity v1.1/Jev/OpenAI consistency comparison with real GPT fallback"
+        note: >
+          Attempt064 initially awaited access, then user provisioned it.209/209
+          native calls, USD.097180996 of hardUSD2, unknown0. Raw Perplexity28/40,
+          Jev24/40, OpenAI22/40, GPT30/40; actual cascades30/32/30. Perplexity
+          cascade94.18%cheaper/31.85%fasterp95 than GPT at75%aggregate equality,
+          but2unsupported clean judgments preserve uncertainty safety concern.
+          Prioritize independent shadow/full-path promotion check; no default
+          change.10focused tests+offline209call replay; temporary keys removed.
+          Evidence docs/evals/attempts/064-perplexity-decider-v11.md.
+
 # Archived metadata-only follow-through (no scored attempt; no fresh availability claim).
 # 2026-08-26 follow-through: exact OpenRouter route deepseek/deepseek-v4-flash-vision-exp remains catalog-listed but its endpoint metadata lacks provider-enforced forced tools and strict JSON Schema; no owner calls or spend, see `docs/evals/attempts/deepseek-vision-metadata-followthrough-20260826.md`.
 # 2026-08-27 follow-through: unchanged exact-route metadata gate; no provider-enforced forced tools or strict JSON Schema, no owner calls or spend.

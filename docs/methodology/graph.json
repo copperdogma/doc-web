@@ -1346,11 +1346,11 @@
           ],
           "why_now": "",
           "last_relevant_action": {
-            "date": "2026-09-21",
+            "date": "2026-10-06",
             "source_type": "eval-attempt",
             "source": "docs/evals/registry.yaml",
-            "source_id": "003",
-            "summary": "Original five: raw and normalized planner5/5; rawJEV3correct/1miss/1skip; shadow4/5exact plus safe review. Newly visible ambiguous case6 planner uncertain, JEVsemantic overcall, guarded uncertain. Model still emits fu..."
+            "source_id": "004",
+            "summary": "Attempt064 initially awaited access, then user provisioned it.209/209 native calls, USD.097180996 of hardUSD2, unknown0. Raw Perplexity28/40, Jev24/40, OpenAI22/40, GPT30/40; actual cascades30/32/30. Perplexity cascad..."
           },
           "story_ids": [
             "145",
@@ -18614,6 +18614,14 @@
           "approach": "Same frozen anonymous HTML/gold, revised planner evidence/policy contract and guarded JEV shadow",
           "note": "Original five: raw and normalized planner5/5; rawJEV3correct/1miss/1skip; shadow4/5exact plus safe review. Newly visible ambiguous case6 planner uncertain, JEVsemantic overcall, guarded uncertain. Model still emits fused canonical contradiction; diagnostic prevents sending that policy. Six calls USD0.030029128, unknown0. No production quality or savings claim. Evidence docs/evals/artifacts/story234-evidence-contract-recheck/report.md.\n",
           "retry_when": []
+        },
+        {
+          "id": "004",
+          "date": "2026-10-06",
+          "status": "succeeded",
+          "approach": "Scout088 fresh native Perplexity v1.1/Jev/OpenAI consistency comparison with real GPT fallback",
+          "note": "Attempt064 initially awaited access, then user provisioned it.209/209 native calls, USD.097180996 of hardUSD2, unknown0. Raw Perplexity28/40, Jev24/40, OpenAI22/40, GPT30/40; actual cascades30/32/30. Perplexity cascade94.18%cheaper/31.85%fasterp95 than GPT at75%aggregate equality, but2unsupported clean judgments preserve uncertainty safety concern. Prioritize independent shadow/full-path promotion check; no default change.10focused tests+offline209call replay; temporary keys removed. Evidence docs/evals/attempts/064-perplexity-decider-v11.md.\n",
+          "retry_when": []
         }
       ],
       "retry_when": [],
@@ -18631,11 +18639,11 @@
         ],
         "why_now": "",
         "last_relevant_action": {
-          "date": "2026-09-21",
+          "date": "2026-10-06",
           "source_type": "eval-attempt",
           "source": "docs/evals/registry.yaml",
-          "source_id": "003",
-          "summary": "Original five: raw and normalized planner5/5; rawJEV3correct/1miss/1skip; shadow4/5exact plus safe review. Newly visible ambiguous case6 planner uncertain, JEVsemantic overcall, guarded uncertain. Model still emits fu..."
+          "source_id": "004",
+          "summary": "Attempt064 initially awaited access, then user provisioned it.209/209 native calls, USD.097180996 of hardUSD2, unknown0. Raw Perplexity28/40, Jev24/40, OpenAI22/40, GPT30/40; actual cascades30/32/30. Perplexity cascad..."
         }
       }
     }
