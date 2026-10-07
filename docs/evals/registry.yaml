@@ -6106,3 +6106,34 @@ evals:
 # 2026-08-31 follow-through: exact route remains catalog-listed; DeepSeek and Novita endpoints expose only generic tools/tool_choice/response_format, with no provider-enforced forced tools or strict JSON Schema. No owner calls or spend, see `docs/evals/attempts/deepseek-vision-metadata-followthrough-20260826.md`.
 # 2026-09-01 follow-through: exact route remains catalog-listed; DeepSeek and Novita endpoints expose only generic tools/tool_choice/response_format, tool_choice.required is false, and no provider-enforced forced tools or strict JSON Schema. No owner calls or spend, see `docs/evals/attempts/deepseek-vision-metadata-followthrough-20260826.md`.
 # 2026-09-02 follow-through: Fireworks advertises strict structured outputs and required/function tool choice but status is -2 (unavailable); no owner calls or spend, see `docs/evals/attempts/deepseek-vision-metadata-followthrough-20260826.md`.
+
+  - id: pplx-runtime-consistency-shadow
+    name: Perplexity independent synthetic runtime consistency shadow
+    type: quality
+    description: >
+      Actual full GPT4.1 planner plus default-off advisory Perplexity on18new
+      chapters across6synthetic genealogy documents, two repetitions.
+      Eval-only observed-evidence path; no planner replacement or cost subtraction.
+    pipeline_stage: validate
+    runner: custom
+    command: "python benchmarks/pplx-shadow/campaign.py preflight"
+    story_refs: ["246"]
+    category_refs: ["spec:2", "spec:5"]
+    compromise_refs: ["C7"]
+    target:
+      metric: guarded_safety_utility
+      value: "Zero unsafe clean; at least one source-confirmed useful correction"
+    scores: []
+    attempts:
+      - id: "001"
+        date: 2026-10-06
+        status: succeeded
+        approach: "Independent source-reviewed synthetic runtime shadow; predeclared safety stop"
+        note: >
+          Attempt065 complete:5nativecalls USD0.02588316/4 unknown0. Firstdoc
+          rawcandidate2/2correct (1conflictskip); guarded2/3 with1inherited
+          plannerfalseclean,0introduced and0accepted usefulcorrections. Correct
+          birthyear warning confidence.42031 failed frozen.8gate; do not promote
+          workflow.15unique and allsecondrepeats unmeasured.55focusedtests and
+          offline receipt/guard replay pass. Temporarykey removed; no defaults.
+          Evidence docs/evals/evidence/065-pplx-shadow/report.md.

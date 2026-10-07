@@ -236,7 +236,8 @@
           "238",
           "239",
           "244",
-          "245"
+          "245",
+          "246"
         ],
         "adr_ids": [
           "ADR-001",
@@ -252,7 +253,8 @@
           "onward-table-fidelity",
           "onward-document-consistency-planning",
           "onward-genealogy-row-semantic-note-placement",
-          "jev-document-consistency-classification"
+          "jev-document-consistency-classification",
+          "pplx-runtime-consistency-shadow"
         ]
       },
       {
@@ -411,7 +413,8 @@
           "219",
           "220",
           "233",
-          "234"
+          "234",
+          "246"
         ],
         "adr_ids": [
           "ADR-001",
@@ -421,7 +424,8 @@
         "eval_ids": [
           "onward-document-consistency-planning",
           "onward-genealogy-row-semantic-note-placement",
-          "jev-document-consistency-classification"
+          "jev-document-consistency-classification",
+          "pplx-runtime-consistency-shadow"
         ]
       },
       {
@@ -1327,30 +1331,30 @@
           "219",
           "220",
           "233",
-          "234"
+          "234",
+          "246"
         ],
         "eval_ids": [
           "onward-document-consistency-planning",
           "onward-genealogy-row-semantic-note-placement",
-          "jev-document-consistency-classification"
+          "jev-document-consistency-classification",
+          "pplx-runtime-consistency-shadow"
         ],
         "actionability": {
           "source_kind": "eval",
-          "source_id": "jev-document-consistency-classification",
+          "source_id": "pplx-runtime-consistency-shadow",
           "source_path": "docs/evals/registry.yaml",
           "recommended_now": false,
-          "posture": "wait-for-trigger",
-          "retry_trigger_status": "waiting",
-          "retry_when": [
-            "cheaper-subject-model"
-          ],
+          "posture": "no-trigger-recorded",
+          "retry_trigger_status": "none",
+          "retry_when": [],
           "why_now": "",
           "last_relevant_action": {
             "date": "2026-10-06",
             "source_type": "eval-attempt",
             "source": "docs/evals/registry.yaml",
-            "source_id": "004",
-            "summary": "Attempt064 initially awaited access, then user provisioned it.209/209 native calls, USD.097180996 of hardUSD2, unknown0. Raw Perplexity28/40, Jev24/40, OpenAI22/40, GPT30/40; actual cascades30/32/30. Perplexity cascad..."
+            "source_id": "001",
+            "summary": "Attempt065 complete:5nativecalls USD0.02588316/4 unknown0. Firstdoc rawcandidate2/2correct (1conflictskip); guarded2/3 with1inherited plannerfalseclean,0introduced and0accepted usefulcorrections. Correct birthyear war..."
           },
           "story_ids": [
             "145",
@@ -1371,12 +1375,14 @@
             "219",
             "220",
             "233",
-            "234"
+            "234",
+            "246"
           ],
           "eval_ids": [
             "onward-document-consistency-planning",
             "onward-genealogy-row-semantic-note-placement",
-            "jev-document-consistency-classification"
+            "jev-document-consistency-classification",
+            "pplx-runtime-consistency-shadow"
           ]
         }
       },
@@ -13869,6 +13875,67 @@
           "summary": "Build exploration/plan: completion goal created; user approval supersedes prior planning-only scope. Generic prompt-first baseline selected for first experiment, not for unconditional adoption. Current sanitizer loses..."
         }
       }
+    },
+    {
+      "id": "246",
+      "title": "Perplexity synthetic runtime shadow evaluation",
+      "path": "docs/stories/story-246-perplexity-runtime-shadow-evaluation.md",
+      "status": "Done",
+      "priority": "Medium",
+      "ideal_refs": [
+        "Fidelity to Source",
+        "Traceability"
+      ],
+      "spec_refs": [
+        "spec:2",
+        "spec:5",
+        "spec:5.1"
+      ],
+      "decision_refs": [
+        "ADR-001"
+      ],
+      "adr_ids": [
+        "ADR-001"
+      ],
+      "depends_on": [
+        "233",
+        "234"
+      ],
+      "category_refs": [
+        "spec:2",
+        "spec:5"
+      ],
+      "compromise_refs": [
+        "C7"
+      ],
+      "input_coverage_refs": [],
+      "architecture_domains": [
+        "document-consistency"
+      ],
+      "roadmap_tags": [
+        "model-evaluation"
+      ],
+      "blocker_summary": "",
+      "blocker_evidence": "",
+      "unblock_condition": "",
+      "last_work_log_entry": null,
+      "legacy_build_map_refs": "",
+      "metadata_source": "frontmatter",
+      "missing_frontmatter_keys": [],
+      "actionability": {
+        "source_kind": "story",
+        "source_id": "246",
+        "source_path": "docs/stories/story-246-perplexity-runtime-shadow-evaluation.md",
+        "recommended_now": false,
+        "posture": "completed",
+        "why_now": "",
+        "last_relevant_action": {
+          "date": null,
+          "source_type": "story-status",
+          "source": "docs/stories/story-246-perplexity-runtime-shadow-evaluation.md",
+          "summary": ""
+        }
+      }
     }
   ],
   "adrs": [
@@ -18644,6 +18711,57 @@
           "source": "docs/evals/registry.yaml",
           "source_id": "004",
           "summary": "Attempt064 initially awaited access, then user provisioned it.209/209 native calls, USD.097180996 of hardUSD2, unknown0. Raw Perplexity28/40, Jev24/40, OpenAI22/40, GPT30/40; actual cascades30/32/30. Perplexity cascad..."
+        }
+      }
+    },
+    {
+      "id": "pplx-runtime-consistency-shadow",
+      "name": "Perplexity independent synthetic runtime consistency shadow",
+      "type": "quality",
+      "command": "python benchmarks/pplx-shadow/campaign.py preflight",
+      "path": "docs/evals/registry.yaml",
+      "description": "Actual full GPT4.1 planner plus default-off advisory Perplexity on18new chapters across6synthetic genealogy documents, two repetitions. Eval-only observed-evidence path; no planner replacement or cost subtraction.\n",
+      "spec_refs": [],
+      "story_refs": [
+        "246"
+      ],
+      "compromise_refs": [
+        "C7"
+      ],
+      "category_refs": [
+        "spec:2",
+        "spec:5"
+      ],
+      "scores": [],
+      "latest_score": null,
+      "attempts": [
+        {
+          "id": "001",
+          "date": "2026-10-06",
+          "status": "succeeded",
+          "approach": "Independent source-reviewed synthetic runtime shadow; predeclared safety stop",
+          "note": "Attempt065 complete:5nativecalls USD0.02588316/4 unknown0. Firstdoc rawcandidate2/2correct (1conflictskip); guarded2/3 with1inherited plannerfalseclean,0introduced and0accepted usefulcorrections. Correct birthyear warning confidence.42031 failed frozen.8gate; do not promote workflow.15unique and allsecondrepeats unmeasured.55focusedtests and offline receipt/guard replay pass. Temporarykey removed; no defaults. Evidence docs/evals/evidence/065-pplx-shadow/report.md.\n",
+          "retry_when": []
+        }
+      ],
+      "retry_when": [],
+      "retry_when_notes": [],
+      "explicit_lineage": true,
+      "actionability": {
+        "source_kind": "eval",
+        "source_id": "pplx-runtime-consistency-shadow",
+        "source_path": "docs/evals/registry.yaml",
+        "recommended_now": false,
+        "posture": "no-trigger-recorded",
+        "retry_trigger_status": "none",
+        "retry_when": [],
+        "why_now": "",
+        "last_relevant_action": {
+          "date": "2026-10-06",
+          "source_type": "eval-attempt",
+          "source": "docs/evals/registry.yaml",
+          "source_id": "001",
+          "summary": "Attempt065 complete:5nativecalls USD0.02588316/4 unknown0. Firstdoc rawcandidate2/2correct (1conflictskip); guarded2/3 with1inherited plannerfalseclean,0introduced and0accepted usefulcorrections. Correct birthyear war..."
         }
       }
     }

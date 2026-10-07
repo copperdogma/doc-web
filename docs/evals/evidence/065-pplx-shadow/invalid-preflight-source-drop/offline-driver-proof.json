@@ -1,0 +1,250 @@
+{
+  "records": [
+    {
+      "run_id": "offline-doc-01",
+      "document": "doc-01",
+      "folder": "output/runs/pplx-shadow-20261006/offline-doc-01/03_plan_onward_document_consistency_v1",
+      "latency_ms": 3586.7178329790477,
+      "command": [
+        "/usr/local/opt/python@3.14/bin/python3.14",
+        "driver.py",
+        "--recipe",
+        "/Users/cam/.codex/worktrees/pplx-docweb-shadow-20261006/docs/evals/evidence/065-pplx-shadow/recipes/doc-01.yaml",
+        "--run-id",
+        "offline-doc-01",
+        "--output-dir",
+        "/Users/cam/.codex/worktrees/pplx-docweb-shadow-20261006/output/runs/pplx-shadow-20261006/offline-doc-01",
+        "--allow-run-id-reuse",
+        "--force"
+      ],
+      "canonical_sha256": {
+        "document_consistency_report.jsonl": "1b0e28d652e15998ff59c2e9736b2f31234baad2677f4fc8e219bb1a3a1d2bcf",
+        "pattern_inventory.json": "051367573758c68c8793f3f8d57f3c926afb297b66f3811e542ea204e0f7ffa2",
+        "consistency_plan.json": "407ad0da026f420e25a824657115dd1d4ea39da78b095e839ffdccab442ec880",
+        "conformance_report.json": "82d58225162df3dfa0ddfcceea041304f9c9d91bcba850c165240180adb13c44"
+      }
+    },
+    {
+      "run_id": "offline-doc-02",
+      "document": "doc-02",
+      "folder": "output/runs/pplx-shadow-20261006/offline-doc-02/03_plan_onward_document_consistency_v1",
+      "latency_ms": 2291.5062499814667,
+      "command": [
+        "/usr/local/opt/python@3.14/bin/python3.14",
+        "driver.py",
+        "--recipe",
+        "/Users/cam/.codex/worktrees/pplx-docweb-shadow-20261006/docs/evals/evidence/065-pplx-shadow/recipes/doc-02.yaml",
+        "--run-id",
+        "offline-doc-02",
+        "--output-dir",
+        "/Users/cam/.codex/worktrees/pplx-docweb-shadow-20261006/output/runs/pplx-shadow-20261006/offline-doc-02",
+        "--allow-run-id-reuse",
+        "--force"
+      ],
+      "canonical_sha256": {
+        "document_consistency_report.jsonl": "fcb9025173a90bb31e23ddfdbd0e35a179eb03d63c258b9c3d563b6a852a2887",
+        "pattern_inventory.json": "112d89e2630a5d221de16ff54b5ecc5fb25cf38a25fc16ab869c58647e70bf57",
+        "consistency_plan.json": "9565e55d05464f5a2cbff7512e2e730ef6da92f1f3f27fd8295835f4e59d89cd",
+        "conformance_report.json": "eb704fd3a49d495055c1def162d102b6f1b7550f21038df2a13ddf9a7a79bb2b"
+      }
+    },
+    {
+      "run_id": "offline-doc-03",
+      "document": "doc-03",
+      "folder": "output/runs/pplx-shadow-20261006/offline-doc-03/03_plan_onward_document_consistency_v1",
+      "latency_ms": 2238.1657090154476,
+      "command": [
+        "/usr/local/opt/python@3.14/bin/python3.14",
+        "driver.py",
+        "--recipe",
+        "/Users/cam/.codex/worktrees/pplx-docweb-shadow-20261006/docs/evals/evidence/065-pplx-shadow/recipes/doc-03.yaml",
+        "--run-id",
+        "offline-doc-03",
+        "--output-dir",
+        "/Users/cam/.codex/worktrees/pplx-docweb-shadow-20261006/output/runs/pplx-shadow-20261006/offline-doc-03",
+        "--allow-run-id-reuse",
+        "--force"
+      ],
+      "canonical_sha256": {
+        "document_consistency_report.jsonl": "dd0a9f7911291eca138c51e3cb89f0a6833c62e951284618ffb1497e978acfd1",
+        "pattern_inventory.json": "39208ecb14ae1b2dd3e251f5d93e00bf30655eb7a428a20973f7e7e76f5d0c51",
+        "consistency_plan.json": "afe15fe7d7683a24046d3294a2e61ac349c333defb163fa07eeb9f027e458938",
+        "conformance_report.json": "eb791738d51a3946029123af981aaf23872445b44f7e107ff7b4a458770e932f"
+      }
+    },
+    {
+      "run_id": "offline-doc-04",
+      "document": "doc-04",
+      "folder": "output/runs/pplx-shadow-20261006/offline-doc-04/03_plan_onward_document_consistency_v1",
+      "latency_ms": 2212.2512079949956,
+      "command": [
+        "/usr/local/opt/python@3.14/bin/python3.14",
+        "driver.py",
+        "--recipe",
+        "/Users/cam/.codex/worktrees/pplx-docweb-shadow-20261006/docs/evals/evidence/065-pplx-shadow/recipes/doc-04.yaml",
+        "--run-id",
+        "offline-doc-04",
+        "--output-dir",
+        "/Users/cam/.codex/worktrees/pplx-docweb-shadow-20261006/output/runs/pplx-shadow-20261006/offline-doc-04",
+        "--allow-run-id-reuse",
+        "--force"
+      ],
+      "canonical_sha256": {
+        "document_consistency_report.jsonl": "9b20482bc5941bc75610e3a7c6097ca8b5d4268dad046e046eb1eb556b915a8f",
+        "pattern_inventory.json": "bb5e0bd01e2e78d0db5c0389b230c44821dcbc50506030f0b1b0e0c6ccda64e0",
+        "consistency_plan.json": "ebb95dda4958d1ecb087c31c3fbaacb75efc1dbe66f4eaee2a2dd56a743bdc0d",
+        "conformance_report.json": "0466294f50704b03416353082d8782994fda757cbe949cf50b88d0f6c60db674"
+      }
+    },
+    {
+      "run_id": "offline-doc-05",
+      "document": "doc-05",
+      "folder": "output/runs/pplx-shadow-20261006/offline-doc-05/03_plan_onward_document_consistency_v1",
+      "latency_ms": 2222.2419169847853,
+      "command": [
+        "/usr/local/opt/python@3.14/bin/python3.14",
+        "driver.py",
+        "--recipe",
+        "/Users/cam/.codex/worktrees/pplx-docweb-shadow-20261006/docs/evals/evidence/065-pplx-shadow/recipes/doc-05.yaml",
+        "--run-id",
+        "offline-doc-05",
+        "--output-dir",
+        "/Users/cam/.codex/worktrees/pplx-docweb-shadow-20261006/output/runs/pplx-shadow-20261006/offline-doc-05",
+        "--allow-run-id-reuse",
+        "--force"
+      ],
+      "canonical_sha256": {
+        "document_consistency_report.jsonl": "19bfd53671d98134a134da3ffc4cc4f233b013a1b016acb5e7a034d0e77e7af0",
+        "pattern_inventory.json": "749dc4aeaf054be9293365d44aade334043ccfc3a47bb9ecb0731b6d48762a4e",
+        "consistency_plan.json": "11e51e246a89f49f37ec54518a7f179ac03526bb24c86d940c40a6cb79752619",
+        "conformance_report.json": "4a2c88b78e401781f508005fcfa1e8c32796a2ee30cac17b16bacef5bca53a4a"
+      }
+    },
+    {
+      "run_id": "offline-doc-06",
+      "document": "doc-06",
+      "folder": "output/runs/pplx-shadow-20261006/offline-doc-06/03_plan_onward_document_consistency_v1",
+      "latency_ms": 2250.580583990086,
+      "command": [
+        "/usr/local/opt/python@3.14/bin/python3.14",
+        "driver.py",
+        "--recipe",
+        "/Users/cam/.codex/worktrees/pplx-docweb-shadow-20261006/docs/evals/evidence/065-pplx-shadow/recipes/doc-06.yaml",
+        "--run-id",
+        "offline-doc-06",
+        "--output-dir",
+        "/Users/cam/.codex/worktrees/pplx-docweb-shadow-20261006/output/runs/pplx-shadow-20261006/offline-doc-06",
+        "--allow-run-id-reuse",
+        "--force"
+      ],
+      "canonical_sha256": {
+        "document_consistency_report.jsonl": "618a9228da9e6fe050c81b6a937c01f10ec321d5e6a1b75c26f44b3a7a1cf281",
+        "pattern_inventory.json": "881c79ae85c389edc3dee0d6125936da314cab5007972fa2cb8394dca45dabfe",
+        "consistency_plan.json": "6737e193049ae695bcec95d69a9bfef5aa47f452030ae1eaa65d99b96a76cf24",
+        "conformance_report.json": "9edefa23cecab32edb6d141e4a1bf0b6830659b7730d36a6dc0801ee9780d6fd"
+      }
+    }
+  ],
+  "invariance_disabled": {
+    "run_id": "offline-invariance",
+    "document": "doc-01",
+    "folder": "output/runs/pplx-shadow-20261006/offline-invariance/03_plan_onward_document_consistency_v1",
+    "latency_ms": 2209.1678750002757,
+    "command": [
+      "/usr/local/opt/python@3.14/bin/python3.14",
+      "driver.py",
+      "--recipe",
+      "/Users/cam/.codex/worktrees/pplx-docweb-shadow-20261006/docs/evals/evidence/065-pplx-shadow/recipes/doc-01.yaml",
+      "--run-id",
+      "offline-invariance",
+      "--output-dir",
+      "/Users/cam/.codex/worktrees/pplx-docweb-shadow-20261006/output/runs/pplx-shadow-20261006/offline-invariance",
+      "--allow-run-id-reuse",
+      "--force"
+    ],
+    "canonical_sha256": {
+      "document_consistency_report.jsonl": "7686347cf9ee50e6b684fcf79349269da443f3fbc7fef2a3e052ed8c05b52fc6",
+      "pattern_inventory.json": "e4d07ab8964a6030d16a97f7fd510e99750a7ee47023ebf8fb7d370380f18ec9",
+      "consistency_plan.json": "bf115e36573dfb1b871069c1aafa7c4952bf8bb65f41d3d6074cb9af99ef1d85",
+      "conformance_report.json": "78381b2b225141389f06c6c74b07c47d43fb42d33c028372dfd9e279fa4e0e1c"
+    }
+  },
+  "invariance_enabled": {
+    "run_id": "offline-invariance",
+    "document": "doc-01",
+    "folder": "output/runs/pplx-shadow-20261006/offline-invariance/03_plan_onward_document_consistency_v1",
+    "latency_ms": 2394.3418329872657,
+    "command": [
+      "/usr/local/opt/python@3.14/bin/python3.14",
+      "driver.py",
+      "--recipe",
+      "/Users/cam/.codex/worktrees/pplx-docweb-shadow-20261006/docs/evals/evidence/065-pplx-shadow/recipes/doc-01.yaml",
+      "--run-id",
+      "offline-invariance",
+      "--output-dir",
+      "/Users/cam/.codex/worktrees/pplx-docweb-shadow-20261006/output/runs/pplx-shadow-20261006/offline-invariance",
+      "--allow-run-id-reuse",
+      "--force"
+    ],
+    "canonical_sha256": {
+      "document_consistency_report.jsonl": "7686347cf9ee50e6b684fcf79349269da443f3fbc7fef2a3e052ed8c05b52fc6",
+      "pattern_inventory.json": "e4d07ab8964a6030d16a97f7fd510e99750a7ee47023ebf8fb7d370380f18ec9",
+      "consistency_plan.json": "bf115e36573dfb1b871069c1aafa7c4952bf8bb65f41d3d6074cb9af99ef1d85",
+      "conformance_report.json": "78381b2b225141389f06c6c74b07c47d43fb42d33c028372dfd9e279fa4e0e1c"
+    }
+  },
+  "failure_invariance": [
+    {
+      "run_id": "offline-invariance",
+      "document": "doc-01",
+      "folder": "output/runs/pplx-shadow-20261006/offline-invariance/03_plan_onward_document_consistency_v1",
+      "latency_ms": 2243.1864999816753,
+      "command": [
+        "/usr/local/opt/python@3.14/bin/python3.14",
+        "driver.py",
+        "--recipe",
+        "/Users/cam/.codex/worktrees/pplx-docweb-shadow-20261006/docs/evals/evidence/065-pplx-shadow/recipes/doc-01.yaml",
+        "--run-id",
+        "offline-invariance",
+        "--output-dir",
+        "/Users/cam/.codex/worktrees/pplx-docweb-shadow-20261006/output/runs/pplx-shadow-20261006/offline-invariance",
+        "--allow-run-id-reuse",
+        "--force"
+      ],
+      "canonical_sha256": {
+        "document_consistency_report.jsonl": "7686347cf9ee50e6b684fcf79349269da443f3fbc7fef2a3e052ed8c05b52fc6",
+        "pattern_inventory.json": "e4d07ab8964a6030d16a97f7fd510e99750a7ee47023ebf8fb7d370380f18ec9",
+        "consistency_plan.json": "bf115e36573dfb1b871069c1aafa7c4952bf8bb65f41d3d6074cb9af99ef1d85",
+        "conformance_report.json": "78381b2b225141389f06c6c74b07c47d43fb42d33c028372dfd9e279fa4e0e1c"
+      }
+    },
+    {
+      "run_id": "offline-invariance",
+      "document": "doc-01",
+      "folder": "output/runs/pplx-shadow-20261006/offline-invariance/03_plan_onward_document_consistency_v1",
+      "latency_ms": 2383.8250410044566,
+      "command": [
+        "/usr/local/opt/python@3.14/bin/python3.14",
+        "driver.py",
+        "--recipe",
+        "/Users/cam/.codex/worktrees/pplx-docweb-shadow-20261006/docs/evals/evidence/065-pplx-shadow/recipes/doc-01.yaml",
+        "--run-id",
+        "offline-invariance",
+        "--output-dir",
+        "/Users/cam/.codex/worktrees/pplx-docweb-shadow-20261006/output/runs/pplx-shadow-20261006/offline-invariance",
+        "--allow-run-id-reuse",
+        "--force"
+      ],
+      "canonical_sha256": {
+        "document_consistency_report.jsonl": "7686347cf9ee50e6b684fcf79349269da443f3fbc7fef2a3e052ed8c05b52fc6",
+        "pattern_inventory.json": "e4d07ab8964a6030d16a97f7fd510e99750a7ee47023ebf8fb7d370380f18ec9",
+        "consistency_plan.json": "bf115e36573dfb1b871069c1aafa7c4952bf8bb65f41d3d6074cb9af99ef1d85",
+        "conformance_report.json": "78381b2b225141389f06c6c74b07c47d43fb42d33c028372dfd9e279fa4e0e1c"
+      }
+    }
+  ],
+  "network_calls": 0,
+  "chapter_denominator": 18,
+  "canonical_exact_hashes_equal": true,
+  "configuration": "eval-only observed-evidence path; ordinary disabled path separately unit-verified"
+}

@@ -1,0 +1,24 @@
+[
+  {
+    "run_id": "live-r1-doc-01",
+    "document": "doc-01",
+    "folder": "output/runs/pplx-shadow-20261006/live-r1-doc-01/03_plan_onward_document_consistency_v1",
+    "latency_ms": 11185.9655000153,
+    "command": [
+      "/usr/local/opt/python@3.14/bin/python3.14",
+      "driver.py",
+      "--recipe",
+      "/Users/cam/.codex/worktrees/pplx-docweb-shadow-20261006/docs/evals/evidence/065-pplx-shadow/recipes/doc-01.yaml",
+      "--run-id",
+      "live-r1-doc-01",
+      "--output-dir",
+      "/Users/cam/.codex/worktrees/pplx-docweb-shadow-20261006/output/runs/pplx-shadow-20261006/live-r1-doc-01"
+    ],
+    "canonical_sha256": {
+      "document_consistency_report.jsonl": "5fd30354ac514e97399c31731a85c69d470ae5727626869cd37538e82f7f44e1",
+      "pattern_inventory.json": "13f7b5efaecc19d195d258a44d5e152feebe24dd480e1e4dd4f5b08517e57068",
+      "consistency_plan.json": "2d581fa8cb6b251e7cb266483de878ec846142d362465eea4592a22627b1b742",
+      "conformance_report.json": "4d899ecb6dfe2fc435a80271e5fb1d95b3831cf3fae292a7b5932329584dce6a"
+    }
+  }
+]

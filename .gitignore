@@ -65,3 +65,5 @@ benchmarks/results/gpt6-astra-20260905/
 
 # Scout088 synthetic text native raw envelopes and dispatch lock
 /benchmarks/results/pplx-consistency-20261006/
+# Story246 synthetic native receipts and dispatch lock
+/benchmarks/results/pplx-shadow-20261006/
