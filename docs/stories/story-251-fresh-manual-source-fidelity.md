@@ -419,3 +419,44 @@ fresh supplemental delivery is consumer-owned and is not claimed by local proof.
 No eval/default/model/coverage promotion. Recommendation: Close now; scoped
 commit and origin/main landing authorized by the direct human request. Primary
 checkout is clean and untouched; no inbox reconciliation is needed.
+
+20261008-1820UTC — Exact references-disabled catalog qualification: unchanged
+runtime commit `4a1294c13e2eab9650a6f9f2824dea96f9a2a7f3` completed the consumer's
+requested graph in `output/runs/story251-default-off-qualification-20261008-r2/`.
+Original 12-stage prefix and stage_params remain exact, including its two true
+normalization flags. Appended builder uses false for reference resolution and
+both normalization flags; only the requested output-directory placeholder was
+bound. Driver snapshot recipe_path records the invoked continuation, while its
+complete effective plan matches the frozen expected plan. The earlier r1 is
+preserved as a different configuration and supplies no r2 applicability evidence.
+
+Only recovery/build/validation executed; driver exit 0 and zero new inference.
+Fresh conformance 24/24, independent semantic 22/22, preservation 11/11 and sampling
+294/294 pass. All 303 packet files, three request files and 454 pinned source files
+remain unchanged. All 103 original crops, 11 ordered article texts and 557 ordered
+nonfigure provenance records survive; 20 crops are added for 123 exported images.
+All 16 existing content links preserve their semantic targets, with no discovery
+links added. All 20 new owners and source/crop/provenance joins pass; 40 native
+layers have no undersampled axes at the documented 0.01 PPI tolerance.
+
+Root opened current source logical 25/26/28, all 20 exported crop thumbnails,
+rendered ENERGY ROUTINE/SANDBOX ROUTINE cards beside unchanged transcription and
+rules, and SET UP's plain page 16 citations. Five new figure JSONL samples agree
+on logical 25/physical 13/printed 25 and their distinct crop IDs. The inventory
+retains 598 held/unassociated items, including 89 explicit held decisions. This
+proves the bounded rendered-pixel derivative, not universal image coverage,
+semantic essentiality, encoded PDF stream/channel identity or arbitrary clipping.
+
+Sealed proof: `output/story251-default-off-catalog-target-20261008/handoff.md`.
+The directory pins all 572 run files, exact effective recipe/plan, 454-file runtime,
+inputs, commands, dependency versions, manual inspection and residual limits.
+Proof manifest SHA256
+`b153d48c7d8872b7bdbb37c89d9a221277cd8128f3d3d926003c84dd1a50fc64`;
+producer pin SHA256
+`417d8058ddd2be6bde162769397019d8c63a9289547c6d693765c7bc86662d2e`.
+Delivered to the authorized consumer before this documentation-only landing;
+independent consumer adoption remains separate. Direct human finish-and-push
+authorization applies to this work-log update. No runtime, default, eval,
+coverage, compromise or story-status change; no product suite rerun is needed
+for this evidence-only diff. Original artifacts and failed/different-config
+evidence remain intact; no extra full-run copy or cleanup was performed.
