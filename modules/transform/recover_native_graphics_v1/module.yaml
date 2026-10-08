@@ -1,0 +1,11 @@
+module_id: recover_native_graphics_v1
+stage: transform
+entrypoint: modules/transform/recover_native_graphics_v1/main.py
+input_schema: null
+output_schema: null
+description: "Opt-in offline native PDF occurrence supplement over immutable retained crops and page rasters."
+params:
+  - name: inclusion_policy
+    type: str
+    default: null
+notes: "Requires pdf, pages, physical_pages and existing_crops inputs; exact raster registration, conservative native title association, source-pixel PNGs, and explicit accepted/held inventory. No inference calls."

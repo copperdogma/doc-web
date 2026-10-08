@@ -122,6 +122,7 @@ Grouped by primary `spec:N` category. Stories without category refs remain in an
 | 181 | Establish a Maintained Layout Benchmark and Provenance-Focused Section-Splitting Proof Surface | High | Done | 172, 177 | [story-181](stories/story-181-maintained-layout-benchmark-and-section-splitting-proof.md) |
 | 243 | Optional source-grounded reference resolution | High | Done | 226 | [story-243](stories/story-243-optional-source-grounded-reference-resolution.md) |
 | 250 | Related-document reference resolution | High | Done | 243 | [story-250](stories/story-250-related-document-reference-resolution.md) |
+| 251 | Fresh manual source fidelity | High | Done | 243, 250 | [story-251](stories/story-251-fresh-manual-source-fidelity.md) |
 
 ### spec:4 — Illustration Extraction
 

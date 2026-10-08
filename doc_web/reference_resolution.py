@@ -190,6 +190,8 @@ def text_stream(block):
     """One edit domain: exact ordinary text nodes owned by this block.
 
     Specialized strings and excluded/nested block text remain opaque barriers.
+    A hard line break is whitespace in the discovery stream, with no source-text
+    width: URLs end there while the authored DOM and source offsets stay intact.
     Slot coordinates include barriers so discovery and mutation share a map.
     """
     pieces, slots, offset, source_offset = [], [], 0, 0
@@ -200,6 +202,11 @@ def text_stream(block):
             offset += 1
             continue
         if not isinstance(node, NavigableString):
+            if node.name == 'br' and not forbidden(node):
+                pieces.append('\n')
+                slots.append((None, offset, offset + 1, False, source_offset, source_offset))
+                offset += 1
+                continue
             if node.name and forbidden(node) and not any(isinstance(child, NavigableString) for child in node.descendants):
                 pieces.append('\x00')
                 slots.append((None, offset, offset + 1, False, source_offset, source_offset))
@@ -222,6 +229,13 @@ def source_location(slots, start, end, base=0):
     last = next(s for s in slots if s[3] and s[1] < end <= s[2])
     return {'start': base + first[4] + start - first[1],
             'end': base + last[4] + end - last[1]}
+
+
+def source_quote(slots, start, end):
+    """Read a discovered span from authored text, omitting synthetic separators."""
+    return ''.join(str(node)[max(start - node_start, 0):min(end - node_start, node_end - node_start)]
+                   for node, node_start, node_end, editable, _, _ in slots
+                   if editable and node_start < end and start < node_end)
 
 
 def source_block_base(block, source_tag):
@@ -553,7 +567,7 @@ def enrich(entries, soups, ids, source_pages, provenance_rows, *, source_soups=N
             scope = ReferenceScope(text)
             # Recompute node map after each reverse mutation; offsets stay stable.
             for start, end, kind, label, is_range in reversed(spans):
-                original = text[start:end]
+                original = source_quote(nodes, start, end)
                 if start == 0 and any(t['path'] == path and t['id'] in {parent.get('id') for parent in [block, *block.parents] if parent.name} for t in index.lookup(kind, label)):
                     continue
                 candidates = [] if kind == 'url' else index.lookup(kind, label)

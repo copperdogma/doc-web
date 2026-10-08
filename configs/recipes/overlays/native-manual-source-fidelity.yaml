@@ -1,0 +1,39 @@
+# Append-only overlay, not a standalone recipe. Use prepare_native_manual_continuation.py.
+stages:
+  - id: source_fidelity_recover
+    stage: transform
+    module: recover_native_graphics_v1
+    needs: [validate_manual_html, pdf_to_images, normalize_manual_html, crop_illustrations]
+    inputs:
+      physical_pages: pdf_to_images
+      pages: normalize_manual_html
+      existing_crops: crop_illustrations
+    out: illustration_manifest.jsonl
+    params:
+      inclusion_policy: source-associated-catalog-illustrations-v1
+  - id: source_fidelity_build
+    stage: build
+    module: build_chapter_html_v1
+    needs: [source_fidelity_recover, normalize_manual_html, portionize_headings]
+    inputs:
+      pages: normalize_manual_html
+      portions: portionize_headings
+      illustration_manifest: source_fidelity_recover
+    out: chapters_manifest.jsonl
+    params:
+      images_subdir: images
+      resolve_references: true
+      normalize_reference_entries: false
+      normalize_catalog_entries: false
+  - id: source_fidelity_validate
+    stage: validate
+    module: validate_semantic_manual_html_v1
+    needs: [infer_logical_pages, normalize_manual_html, plan_figures, plan_critical_graphics, source_fidelity_recover, source_fidelity_build]
+    inputs:
+      logical_pages: infer_logical_pages
+      pages: normalize_manual_html
+      figure_plan: plan_figures
+      critical_graphics_manifest: plan_critical_graphics
+      crops: source_fidelity_recover
+      chapters: source_fidelity_build
+    out: semantic_manual_html_conformance_report.json

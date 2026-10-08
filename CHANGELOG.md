@@ -1,3 +1,19 @@
+## [2026-10-08-01] — Source-faithful offline manual continuation (Story 251)
+
+### Added
+- Opt-in native PDF catalog illustration recovery with explicit source geometry,
+  protected crop preservation, held decisions and pixel/provenance receipts.
+- Append-only offline continuation helper and recipe overlay that preserve the
+  original run, stage graph and paid extraction/planning artifacts.
+
+### Fixed
+- Place source illustrations beside table descriptions without removing literal
+  transcription; preserve hard line breaks when discovering source URLs.
+- Resolve and validate numeric TOC links using their complete source row, printed
+  page evidence and block provenance, retaining ambiguity and wrong-target guards.
+- Qualify fresh driver artifacts with source-pixel/sampling and text preservation
+  checks, 24 passing conformance checks, and 711 affected offline tests.
+
 ## [2026-10-07-02] — Related-document reference resolution (Story 250)
 
 ### Added

@@ -404,6 +404,10 @@ def _iter_provenance_tags(node):
         lowered = name.lower()
         if lowered in {"figure", "table", "p", "li", "caption", "figcaption", "blockquote", "pre"}:
             yield child
+            if lowered == "table":
+                # Tables retain their existing block identity; embedded source
+                # illustrations additionally need their own crop provenance.
+                yield from child.find_all("figure")
             continue
         if lowered in {"h1", "h2", "h3", "h4", "h5", "h6"}:
             yield child
@@ -429,6 +433,12 @@ def _should_emit_provenance_tag(tag) -> bool:
     return True
 
 
+def _is_supplemental_source_figure(tag) -> bool:
+    return bool(getattr(tag, "name", None) == "figure" and (
+        tag.get("data-placement") == "table-catalog"
+        or tag.find("img", attrs={"data-native-graphics-policy": True})))
+
+
 def _build_source_descriptors(pages: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
     descriptors: List[Dict[str, Any]] = []
     for page in pages:
@@ -440,7 +450,7 @@ def _build_source_descriptors(pages: List[Dict[str, Any]]) -> List[Dict[str, Any
         )
         ordinal = 0
         for tag in _iter_provenance_tags(soup):
-            if not _should_emit_provenance_tag(tag):
+            if not _should_emit_provenance_tag(tag) or _is_supplemental_source_figure(tag):
                 continue
             ordinal += 1
             block_kind = _block_kind_for_tag(tag.name)
@@ -608,7 +618,13 @@ def _tag_entry_body(entry: Dict[str, Any], *, run_id: Optional[str], created_at:
         if original_id:
             entry.setdefault("_navigation_id_aliases", {}).setdefault(original_id, []).append(block_id)
         tag["id"] = block_id
-        matched, source_idx = _match_source_descriptor(tag, source_descriptors, source_idx)
+        supplemental = _is_supplemental_source_figure(tag)
+        if supplemental:
+            # This new occurrence has a direct source/crop receipt. It must not
+            # claim or consume the next retained paragraph/heading descriptor.
+            matched = {"page_number": fallback_source_page or 1, "source_element_ids": []}
+        else:
+            matched, source_idx = _match_source_descriptor(tag, source_descriptors, source_idx)
         override_page = _coerce_int(tag.get("data-doc-web-source-page-number"))
         override_crop = _normalize_ws(tag.get("data-doc-web-source-crop-filename") or "")
         block_kind = _block_kind_for_tag(tag.name)
@@ -1704,6 +1720,10 @@ def _ocr_crop_text(image_path: str) -> str:
 
 
 def _suppress_duplicate_text_after_figure(figure, crop: Dict[str, Any]) -> bool:
+    # Supplemental native crops deliberately retain all transcribed wording,
+    # even when that wording also occurs inside the source illustration.
+    if crop.get("native_graphics_provenance") or figure.find("img", attrs={"data-native-graphics-policy": True}):
+        return False
     if not crop.get("contains_text"):
         return False
     image_path = crop.get("_source_path") or ""
@@ -1919,7 +1939,36 @@ def _crop_label_tokens(crop: Dict[str, Any]) -> set[str]:
     return set()
 
 
+def _table_catalog_label(tag) -> str:
+    """Only the compact first cell of a data row can own a catalog figure."""
+    if getattr(tag, "name", None) not in {"td", "th"}:
+        return ""
+    row = tag.parent
+    if getattr(row, "name", None) != "tr":
+        return ""
+    cells = row.find_all(["td", "th"], recursive=False)
+    if len(cells) < 2 or cells[0] is not tag or not any(c.name == "td" for c in cells):
+        return ""
+    clone = BeautifulSoup(str(tag), "html.parser")
+    for figure in clone.find_all(["figure", "img"]):
+        figure.decompose()
+    label = _normalize_ws(clone.get_text(" ", strip=True))
+    return label if _compact_catalog_label(label) else ""
+
+
+def _exact_crop_catalog_label(crop: Dict[str, Any]) -> str:
+    native = crop.get("native_graphics_provenance") or {}
+    label = (native.get("anchor") or {}).get("label")
+    if label:
+        return _normalize_ws(str(label))
+    nearby = _normalize_ws(crop.get("nearby_text") or "")
+    label = re.split(r"\s+[—–]\s+|\s+Cost\s*:", nearby, maxsplit=1, flags=re.IGNORECASE)[0]
+    return label if _compact_catalog_label(label) else ""
+
+
 def _anchor_text(tag) -> str:
+    if getattr(tag, "name", None) in {"td", "th"}:
+        return _table_catalog_label(tag)
     if getattr(tag, "name", None) == "dt":
         return _normalize_ws(tag.get_text(" ", strip=True))
     if getattr(tag, "name", None) == "li":
@@ -1932,6 +1981,8 @@ def _anchor_text(tag) -> str:
 
 
 def _anchor_label_text(tag) -> str:
+    if getattr(tag, "name", None) in {"td", "th"}:
+        return _table_catalog_label(tag)
     if getattr(tag, "name", None) == "dt":
         return _normalize_ws(tag.get_text(" ", strip=True))
     if getattr(tag, "name", None) == "li":
@@ -1993,6 +2044,8 @@ def _orphan_anchor_score(crop: Dict[str, Any], tag) -> float:
 
 def _anchor_priority(tag) -> int:
     name = getattr(tag, "name", None)
+    if name in {"td", "th"}:
+        return 4
     if name in {"dt", "li", "p"}:
         return 3
     if name in {"h2", "h3", "h4", "h5", "h6"}:
@@ -2003,6 +2056,18 @@ def _anchor_priority(tag) -> int:
 
 
 def _best_anchor_for_orphan_crop(soup, crop: Dict[str, Any]):
+    exact_label = _exact_crop_catalog_label(crop)
+    cells = [cell for cell in soup.find_all(["td", "th"]) if _table_catalog_label(cell)]
+    if crop.get("native_graphics_provenance"):
+        candidates = list(soup.find_all(["h1", "h2", "h3", "h4", "h5", "h6"])) + cells
+        matches = [tag for tag in candidates if not tag.find_parent("figure")
+                   and _normalize_ws(_anchor_label_text(tag)).casefold() == exact_label.casefold()]
+        return matches[0] if exact_label and len(matches) == 1 else None
+    if exact_label:
+        matches = [cell for cell in cells
+                   if _table_catalog_label(cell).casefold() == exact_label.casefold()]
+        if matches:
+            return matches[0] if len(matches) == 1 else None
     best_tag = None
     best_score = 0.0
     best_priority = 0
@@ -2085,6 +2150,11 @@ def _annotate_img_from_crop(img, crop: Dict[str, Any]) -> None:
         img["data-critical-graphics-target-id"] = str(target_id)
     if nearby_text:
         img["data-critical-graphics-nearby-text"] = nearby_text
+    native = crop.get("native_graphics_provenance") or {}
+    if native:
+        img["data-native-graphics-policy"] = str(native.get("inclusion_policy") or "")
+        img["data-native-graphics-anchor"] = str((native.get("anchor") or {}).get("label") or "")
+        img["data-native-graphics-source-sha256"] = str(native.get("source_pdf_sha256") or "")
 
 
 def _annotate_figure_from_crop(figure, crop: Dict[str, Any]) -> None:
@@ -2121,6 +2191,10 @@ def _insert_figure_near_anchor(figure, anchor) -> None:
             base.insert_after(figure)
 
     name = getattr(anchor, "name", None)
+    if name in {"td", "th"}:
+        figure["data-placement"] = "table-catalog"
+        anchor.append(figure)
+        return
     if name == "dt":
         dd = _next_significant_tag(anchor)
         if getattr(dd, "name", None) == "dd":
@@ -2186,6 +2260,11 @@ def _crop_from_img_tag(img) -> Dict[str, Any]:
         "image_description": img.get("alt") or "",
         "alt": img.get("alt") or "",
         "source_page": source_page,
+        "native_graphics_provenance": ({
+            "inclusion_policy": img.get("data-native-graphics-policy"),
+            "anchor": {"label": img.get("data-native-graphics-anchor") or ""},
+            "preserve_transcribed_text": True,
+        } if img.get("data-native-graphics-policy") else None),
         "nearby_text": img.get("data-critical-graphics-nearby-text") or "",
         "critical_graphics_role": (
             img.get("data-critical-graphics-role")
@@ -2242,6 +2321,8 @@ def _split_labeled_multi_image_figures(soup) -> int:
 
 
 def _figure_current_catalog_anchor(figure):
+    if getattr(figure.parent, "name", None) in {"td", "th"}:
+        return figure.parent
     sibling = _previous_significant_tag(figure)
     while getattr(sibling, "name", None) == "figure":
         sibling = _previous_significant_tag(sibling)
@@ -2605,9 +2686,17 @@ def _attach_images(html: str, crops: List[Dict[str, Any]], rel_src: str) -> str:
         for crop in crops
         if not _should_skip_source_pixel_crop(crop, soup)
     ]
-    img_tags = [tag for tag in soup.find_all("img") if not _is_text_only_callout_placeholder(tag)]
-    crop_matches = _match_crops_to_img_tags(img_tags, candidate_crops)
-    used_crop_indices: Set[int] = set()
+    img_tags = [tag for tag in soup.find_all("img") if not _is_text_only_callout_placeholder(tag)
+                and not tag.get("data-native-graphics-policy")]
+    # Native supplements have an exact source label contract. Do not spend them
+    # on a fuzzy OCR placeholder match or remove any surrounding source text.
+    matchable = [(index, crop) for index, crop in enumerate(candidate_crops)
+                 if not crop.get("native_graphics_provenance")]
+    crop_matches = {tag: matchable[index][0] for tag, index in
+                    _match_crops_to_img_tags(img_tags, [crop for _, crop in matchable]).items()}
+    present_names = {tag.get("data-crop-filename") for tag in soup.find_all("img", src=True)}
+    used_crop_indices: Set[int] = {index for index, crop in enumerate(candidate_crops)
+                                   if crop.get("filename") in present_names}
 
     n_tags = len(img_tags)
     n_crops = len(candidate_crops)
@@ -2639,7 +2728,7 @@ def _attach_images(html: str, crops: List[Dict[str, Any]], rel_src: str) -> str:
             # New OCR format: <figure> already wraps the <img>.
             # Add crop metadata; leave existing <figcaption> intact.
             figure = parent
-            figure["data-placement"] = "ocr-figure"
+            figure.attrs.setdefault("data-placement", "ocr-figure")
             _annotate_figure_from_crop(figure, crop)
             existing_figcap = figure.find("figcaption")
             caption_text = crop.get("caption_text")
@@ -3453,7 +3542,10 @@ def _build(args, html_dir: Path, published_html_dir: Path, run_dir: Path) -> Lis
                 "html": html,
                 "page_number": page_num,
                 "original_page_number": page.get("original_page_number"),
+                "page_id": page.get("page_id"),
+                "spread_side": page.get("spread_side"),
                 "printed_page_number": printed_page_number,
+                "printed_page_number_inferred": page.get("printed_page_number_inferred"),
                 "printed_page_number_text": page.get("printed_page_number_text") or (
                     str(printed_page_number) if printed_page_number is not None else None
                 ),
@@ -3578,7 +3670,10 @@ def _build(args, html_dir: Path, published_html_dir: Path, run_dir: Path) -> Lis
                     "html": body_html,
                     "page_number": page_num,
                     "original_page_number": page.get("original_page_number"),
+                    "page_id": page.get("page_id"),
+                    "spread_side": page.get("spread_side"),
                     "printed_page_number": printed_num,
+                    "printed_page_number_inferred": page.get("printed_page_number_inferred"),
                     "printed_page_number_text": printed_text or (
                         str(printed_num) if printed_num is not None else None
                     ),
@@ -3750,6 +3845,7 @@ def _build(args, html_dir: Path, published_html_dir: Path, run_dir: Path) -> Lis
     navigation_report["final_validation"] = verify_final_navigation(
         [html_dir / entry["filename"] for entry in chapter_files] + [index_path], source_pages=pages,
         source_entries=[{**entry, '_navigation_content_selector': 'body > article'} for entry in chapter_files],
+        provenance_rows=provenance_rows,
     )
     save_json(str(html_dir / "navigation_resolution_report.json"), navigation_report)
     if navigation_report["final_validation"]["issues"]:

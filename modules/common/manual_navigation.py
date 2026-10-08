@@ -130,6 +130,146 @@ def _heading_candidates(label, headings):
     return exact or candidates, False
 
 
+def _toc_row(anchor):
+    """A complete title cell adjacent to one authored destination cell."""
+    row = anchor.find_parent('tr')
+    if row is None:
+        return None
+    cells = row.find_all(['td', 'th'], recursive=False)
+    if (len(cells) != 2 or anchor.find_parent(['td', 'th']) is not cells[1]
+            or cells[0].find(['a', 'table']) or cells[1].find('table')
+            or len(cells[1].find_all('a')) != 1 or _text(cells[1]) != _text(anchor)):
+        return None
+    title, label = _text(cells[0]), _text(anchor)
+    if not title or not re.fullmatch(r'\d+|[ivxlcdm]+', label, re.I):
+        return None
+    return row, title, label
+
+
+class _TocNavigation:
+    """Source-row occurrence and heading/page joins shared by both passes.
+
+    Capitalization equivalence applies only to full titles in this contract.
+    Raw observed print labels corroborate titles; inferred labels never do.
+    """
+    def __init__(self, entries, soups, ids, source_pages, provenance_rows, source_soups=None):
+        from doc_web.reference_resolution import identity_matches, label_key, raw_page_identity
+
+        self.ids, self.identity_matches, self.label_key = ids, identity_matches, label_key
+        self.provenance = {(r.get('html_path'), r['block_id']): r
+                           for r in provenance_rows if r.get('block_id')}
+        self.rows, self.final_counts, self.headings = {}, {}, []
+        self.final_counts = {path: Counter((shape[1], shape[2]) for a in soup.find_all('a', href=True)
+                                          if (shape := _toc_row(a))) for path, soup in soups.items()}
+        if not any(self.final_counts.values()):
+            return
+        source_soups = {} if source_soups is None else source_soups
+        raw_pages = list(source_pages) or [p for e in entries for p in e.get('prepared_pages', [])]
+        self.observed = {}
+        for page in {raw_page_identity(p): p for p in raw_pages}.values():
+            label = page.get('printed_page_number_text')
+            if label is None:
+                label = page.get('printed_page_number')
+            if (label is not None and not page.get('printed_page_number_inferred')
+                    and re.fullmatch(r'\d+|[ivxlcdm]+', str(label).strip(), re.I)):
+                self.observed.setdefault(label_key(label), []).append(page)
+        for entry in entries:
+            path = entry['filename']
+            if path not in soups:
+                continue
+            sources = []
+            # Identical repeated prepared-page descriptors are one source page.
+            pages = {raw_page_identity(p): p for p in entry.get('prepared_pages', [])}
+            for page in pages.values():
+                source_html = page.get('html') or ''
+                if source_html not in source_soups:
+                    source_soups[source_html] = BeautifulSoup(source_html, 'html.parser')
+                source = source_soups[source_html]
+                sources.append((page, {_text(h) for h in source.find_all(re.compile(r'^h[1-6]$'))}))
+                for anchor in source.find_all('a', href=True):
+                    shape = _toc_row(anchor)
+                    if shape:
+                        _, title, label = shape
+                        self.rows.setdefault((path, title, label), []).append((page, anchor['href']))
+            for tag in soups[path].find_all(re.compile(r'^h[1-6]$'), id=True):
+                if ids[path][tag['id']] != 1:
+                    continue
+                provenance = self.row_provenance(path, tag)
+                proven = [(page, titles) for page, titles in sources
+                          if provenance and str(provenance.get('source_page_number')) == str(page.get('page_number', page.get('page')))
+                          and identity_matches(provenance, page) and _text(tag) in titles]
+                if len(proven) == 1:
+                    self.headings.append({'path': path, 'id': tag['id'], 'heading': _text(tag), 'page': proven[0][0]})
+
+    def row_provenance(self, path, tag):
+        for parent in [tag, *tag.parents]:
+            if parent.get('id'):
+                found = self.provenance.get((path, parent['id']), self.provenance.get((None, parent['id'])))
+                if found:
+                    return found
+        return None
+
+    def decision(self, path, anchor):
+        from doc_web.reference_resolution import ReferenceScope, raw_page_identity
+
+        shape = _toc_row(anchor)
+        if not shape:
+            return None
+        row, title, label = shape
+        sources = self.rows.get((path, title, label), [])
+        if not sources:
+            return None
+        evidence = {'source_title': title, 'source_page_label': label,
+                    'title_comparison': 'whole_title_case_equivalent', 'printed_page_authority': False}
+        result = {'candidates': [], 'toc_evidence': evidence}
+
+        def hold(reason, ambiguous=False):
+            return {**result, 'reason': reason, 'status': 'ambiguous' if ambiguous else 'unresolved'}
+
+        provenance = self.row_provenance(path, row)
+        if not provenance:
+            return hold('toc_source_row_provenance_unavailable')
+        sources = [(page, href) for page, href in sources
+                   if str(provenance.get('source_page_number')) == str(page.get('page_number', page.get('page')))
+                   and self.identity_matches(provenance, page)]
+        if len(sources) != 1 or self.final_counts[path][(title, label)] != 1:
+            return hold('toc_source_row_occurrence_ambiguous', True)
+        page, source_href = sources[0]
+        local = _local(source_href, path)
+        if local is None or local[2] or local[0] not in self.ids:
+            return hold('toc_source_destination_outside_document')
+        scope_text = title + ' page ' + label
+        scope_reason = ReferenceScope(scope_text).reason(len(title) + 1, len(scope_text))
+        if scope_reason:
+            return hold(scope_reason)
+        evidence.update(source_href=source_href, source_row_page_number=page.get('page_number', page.get('page')))
+        candidates = [h for h in self.headings if h['heading'].casefold() == title.casefold()]
+        observations = self.observed.get(self.label_key(label), [])
+        evidence['page_observations'] = [{k: p.get(k) for k in ('page_number', 'original_page_number', 'spread_side', 'printed_page_number_text', 'printed_page_number')} for p in observations]
+        if len(observations) > 1:
+            return hold('duplicate_observed_printed_labels', True)
+        if observations:
+            evidence['printed_page_authority'] = True
+            identity = raw_page_identity(observations[0])
+            candidates = [h for h in candidates if raw_page_identity(h['page']) == identity]
+            reason = 'toc_title_printed_page_conflict' if not candidates else 'unique_source_toc_title_and_page'
+        else:
+            reason = 'unique_source_toc_heading' if candidates else 'toc_unique_heading_unavailable'
+        result['candidates'] = [{k: h[k] for k in ('path', 'id', 'heading')} for h in candidates]
+        if len(candidates) != 1:
+            return hold('toc_duplicate_heading_targets' if len(candidates) > 1 else reason, len(candidates) > 1)
+        if not observations:
+            target_page = candidates[0]['page']
+            target_label = target_page.get('printed_page_number_text')
+            if target_label is None:
+                target_label = target_page.get('printed_page_number')
+            if (target_label is not None and not target_page.get('printed_page_number_inferred')
+                    and re.fullmatch(r'\d+|[ivxlcdm]+', str(target_label).strip(), re.I)
+                    and self.label_key(target_label) != self.label_key(label)):
+                return hold('toc_title_printed_page_conflict')
+        return {**result, 'status': 'resolved', 'reason': reason}
+
+
 def resolve_navigation(entries, *, bundle_root=None, resource_catalog=None,
                        resolve_references=False, source_pages=(), provenance_rows=()):
     """Mutate only link attributes/tags after final IDs, returning a full audit."""
@@ -140,7 +280,7 @@ def resolve_navigation(entries, *, bundle_root=None, resource_catalog=None,
     aliases = {entry['filename']: entry.get('_navigation_id_aliases', {}) for entry in entries}
     source_headings = {entry['filename']: set() for entry in entries}
     source_links = set()
-    source_soups = {} if resolve_references else None
+    source_soups = {}
     for entry in entries:
         for page in entry.get('prepared_pages', []):
             source_html = page.get('html') or ''
@@ -152,6 +292,7 @@ def resolve_navigation(entries, *, bundle_root=None, resource_catalog=None,
                     source_soups[source_html] = soup
             source_headings[entry['filename']].update(_text(tag) for tag in soup.find_all(re.compile(r'^h[1-6]$')))
             source_links.update((entry['filename'], a.get('href'), _text(a)) for a in soup.find_all('a', href=True))
+    toc = _TocNavigation(entries, soups, ids, source_pages, provenance_rows, source_soups)
     headings = []
     for path, soup in soups.items():
         for tag in soup.find_all(re.compile(r'^h[1-6]$'), id=True):
@@ -216,16 +357,8 @@ def resolve_navigation(entries, *, bundle_root=None, resource_catalog=None,
             # expressly different document is this build's document.
             error = error or scope_reason
             valid = valid and not scope_reason
-            candidates, typed_ambiguous = _heading_candidates(label, eligible_headings) if not scope_reason else ([], False)
-            semantic_candidates = candidates
-            if len(candidates) > 1 and explicit_path:
-                candidates = [h for h in candidates if h['path'] == target_path]
-            agrees = any(h['path'] == target_path and h['id'] == fragment for h in candidates)
             supported = (path, before, label) in source_links
             alias_supported = (path, lookup_href, label) in source_links
-            if supported and len(semantic_candidates) > 1:
-                row.update(semantic_status='semantic_label_ambiguity',
-                           semantic_candidates=[{k: h[k] for k in ('path', 'id', 'heading')} for h in semantic_candidates])
             mapped = aliases.get(target_path, {}).get(fragment, [])
             if not explicit_path and not mapped and not valid and fragment:
                 global_aliases = [(alias_path, identifier) for alias_path, alias_map in aliases.items()
@@ -237,7 +370,44 @@ def resolve_navigation(entries, *, bundle_root=None, resource_catalog=None,
                 elif len(global_aliases) > 1:
                     mapped = [identifier for _, identifier in global_aliases]
                     row['alias_candidates'] = [{'path': alias_path, 'id': identifier} for alias_path, identifier in global_aliases]
-            if not error and alias_supported and len(mapped) == 1 and ids.get(target_path, {}).get(mapped[0], 0) == 1:
+            original_id_authority = (not error and alias_supported and len(mapped) == 1
+                                     and ids.get(target_path, {}).get(mapped[0], 0) == 1)
+            # A numeric label in an ordinary table may be a quantity linked to
+            # a note. Its exact authored ID remains stronger evidence than a
+            # title/page interpretation of the surrounding cells.
+            toc_decision = None if original_id_authority else toc.decision(path, anchor)
+            if toc_decision is not None:
+                row.update(toc_decision)
+                if error:
+                    row.update(status='unresolved', reason=error)
+                if row['status'] == 'resolved':
+                    chosen = row['candidates'][0]
+                    relative = '' if chosen['path'] == path else posixpath.relpath(chosen['path'], posixpath.dirname(path) or '.')
+                    rebound = quote(relative, safe='/') + '#' + quote(chosen['id'], safe='-._~')
+                    if valid and (target_path, fragment) == (chosen['path'], chosen['id']):
+                        row['status'] = 'preserved'
+                    else:
+                        anchor['href'] = rebound
+                        row['resolved_href'] = rebound
+                    row['heading'] = chosen['heading']
+                else:
+                    anchor.name = 'span'
+                    del anchor['href']
+                    anchor['data-doc-web-navigation-status'] = row['status']
+                    anchor['data-doc-web-original-href'] = before
+                    anchor['title'] = f"{row['status'].capitalize()} source reference: {before}"
+                    anchor['class'] = list(anchor.get('class', [])) + ['unresolved-reference']
+                rows.append(row)
+                continue
+            candidates, typed_ambiguous = _heading_candidates(label, eligible_headings) if not scope_reason else ([], False)
+            semantic_candidates = candidates
+            if len(candidates) > 1 and explicit_path:
+                candidates = [h for h in candidates if h['path'] == target_path]
+            agrees = any(h['path'] == target_path and h['id'] == fragment for h in candidates)
+            if supported and len(semantic_candidates) > 1:
+                row.update(semantic_status='semantic_label_ambiguity',
+                           semantic_candidates=[{k: h[k] for k in ('path', 'id', 'heading')} for h in semantic_candidates])
+            if original_id_authority:
                 relative = '' if target_path == path else posixpath.relpath(target_path, posixpath.dirname(path) or '.')
                 rebound = quote(relative, safe='/') + '#' + quote(mapped[0], safe='-._~')
                 if before == rebound:
@@ -289,6 +459,9 @@ def resolve_navigation(entries, *, bundle_root=None, resource_catalog=None,
             local = _local(href, row['path'])
             row['target'] = {'path': local[0] if local else href, 'id': (local[1] or None) if local else None, 'href': href,
                              'kind': 'existing_link', 'evidence': {'original_href': row['original_href'], 'reason': row.get('reason', row['status'])}}
+            if row.get('toc_evidence'):
+                row['target']['kind'] = 'toc_heading'
+                row['target']['evidence'].update(row['toc_evidence'])
     if resolve_references:
         rows.extend(enrich(entries, soups, ids, source_pages, provenance_rows, source_soups=source_soups))
     for entry in entries:
@@ -307,7 +480,7 @@ def resolve_navigation(entries, *, bundle_root=None, resource_catalog=None,
 
 
 
-def inspect_navigation(html_files, *, source_pages=(), source_entries=(), resource_observations=None, semantic_observations=None):
+def inspect_navigation(html_files, *, source_pages=(), source_entries=(), provenance_rows=(), resource_observations=None, semantic_observations=None):
     """Validate actual exported local anchors and collect visible abstentions."""
     files = [Path(path) for path in html_files]
     roots = {path.parent.resolve() for path in files}
@@ -317,6 +490,11 @@ def inspect_navigation(html_files, *, source_pages=(), source_entries=(), resour
             files.append(index)
     soups = {path.resolve(): BeautifulSoup(path.read_text(encoding='utf-8'), 'html.parser') for path in files if path.exists()}
     ids = {path: Counter(tag['id'] for tag in soup.find_all(id=True)) for path, soup in soups.items()}
+    source_entries = list(source_entries)
+    toc_soups = {name: soup for path, soup in soups.items() for name in [next((e['filename'] for e in source_entries
+                 if any((root / e['filename']).resolve() == path for root in roots)), None)] if name is not None}
+    toc_ids = {name: Counter(tag['id'] for tag in soup.find_all(id=True)) for name, soup in toc_soups.items()}
+    toc = _TocNavigation(source_entries, toc_soups, toc_ids, source_pages, provenance_rows)
     source_headings, source_labels = set(), set()
     for page in source_pages:
         source = BeautifulSoup(page.get('html') or '', 'html.parser')
@@ -443,11 +621,23 @@ def inspect_navigation(html_files, *, source_pages=(), source_entries=(), resour
                 resource_observations.append({'path': path.name, 'href': anchor['href'],
                                               'status': 'resource_exists_fragment_unmeasured'})
             label = _text(anchor)
+            authority = alias_authority(path, target, fragment, label, anchor)
+            toc_name = next((name for name, toc_soup in toc_soups.items() if toc_soup is soup), None)
+            toc_decision = toc.decision(toc_name, anchor) if toc_name and not authority else None
+            if not reason and toc_decision is not None:
+                if toc_decision['status'] != 'resolved':
+                    reason = toc_decision['reason']
+                else:
+                    chosen = toc_decision['candidates'][0]
+                    if (target, fragment) != ((path.parent / chosen['path']).resolve(), chosen['id']):
+                        reason = 'source_toc_target_mismatch'
+                if reason:
+                    issues.append({'path': path.name, 'href': anchor['href'], 'anchor_text': label, 'reason': reason})
+                continue
             # Independently inspect final destinations. Assert label semantics
             # only for a source-authored reference and a unique exact heading.
             owned = scoped_contexts[path]
             source_authored = any(label == source_label for context in owned for _, source_label in context['links']) if owned else label in source_labels
-            authority = alias_authority(path, target, fragment, label, anchor)
             if not reason and target in ids and source_authored:
                 reason = _anchor_scope_reason(anchor, scope_contexts)
             if not reason and (path, id(anchor)) in positioned_receipts and not authority:
@@ -471,10 +661,11 @@ def inspect_navigation(html_files, *, source_pages=(), source_entries=(), resour
     return issues, annotations
 
 
-def verify_final_navigation(html_files, *, source_pages=(), source_entries=()):
+def verify_final_navigation(html_files, *, source_pages=(), source_entries=(), provenance_rows=()):
     """Inspect serialized exported destinations before bundle hashes are sealed."""
     resources, semantics = [], []
     issues, annotations = inspect_navigation(html_files, source_pages=source_pages, source_entries=source_entries,
+                                            provenance_rows=provenance_rows,
                                             resource_observations=resources,
                                             semantic_observations=semantics)
     return {'status': 'failed' if issues else 'passed', 'issues': issues,
