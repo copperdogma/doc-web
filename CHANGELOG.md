@@ -1,3 +1,11 @@
+## [2026-10-08-02] — Continuing strategic reviewers and fresh milestones
+
+### Changed
+- Reuse a separate continuing reviewer for repeated strategic checkpoints and
+  request a fresh independent assessment at consequential milestones. Preserve
+  model selection, cadence, read-only scope, messaging authority and budgets;
+  keep cache and cost savings as unmeasured hypotheses.
+
 ## [2026-10-08-01] — Source-faithful offline manual continuation (Story 251)
 
 ### Added
