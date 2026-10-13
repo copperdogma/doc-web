@@ -1,0 +1,42 @@
+{
+  "clef": {
+    "identical_rendered_native_harness_body": true,
+    "saved_response_parser_replay": [
+      "conformant",
+      0.2239,
+      8.625e-05
+    ]
+  },
+  "drex": {
+    "identical_rendered_native_harness_body": true,
+    "saved_response_parser_replay": [
+      "conformant",
+      0.9429,
+      3.084e-05
+    ]
+  },
+  "liquid": {
+    "identical_rendered_native_harness_body": true,
+    "saved_response_parser_replay": [
+      "conformant",
+      0.9637587814885322,
+      2.152e-05
+    ]
+  },
+  "scaledown": {
+    "identical_rendered_native_harness_body": true,
+    "saved_response_parser_replay": [
+      "conformant",
+      0.6305683575170038,
+      3.12e-05
+    ]
+  },
+  "solar": {
+    "identical_rendered_native_harness_body": true,
+    "saved_response_parser_replay": [
+      "conformant",
+      0.988444,
+      3.815e-05
+    ]
+  }
+}

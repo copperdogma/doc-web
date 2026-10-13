@@ -1,0 +1,155 @@
+{
+  "reviewer": "owning DocWeb worker, source-based review with maintained independent fixture approval; not paidjudge",
+  "fixture_sha256": "88994b8cd7c75d832114f33e613c3b2d8656b737f53962292ee34c4e81b128ab",
+  "classification": "All20existing golds match explicit conventions/source prose; no golden/prompt/scorer change",
+  "cases": [
+    {
+      "id": "family-01",
+      "gold": "conformant",
+      "source_reason": "All source facts and layout preserved.",
+      "source_evidence": "Mira Vale was born in 1932 and died in 2001. Leon Vale was born in 1930 and died in 1999. They married one another in 1955 and had one son and one daughter.",
+      "classification": "source-supported"
+    },
+    {
+      "id": "family-02",
+      "gold": "conformant",
+      "source_reason": "Allowed reordered columns and separate summary.",
+      "source_evidence": "Mira Vale was born in 1932 and died in 2001. Leon Vale was born in 1930 and died in 1999. They married one another in 1955 and had one son and one daughter.",
+      "classification": "source-supported"
+    },
+    {
+      "id": "family-03",
+      "gold": "format_drift",
+      "source_reason": "Unallowed split without page break; facts correct.",
+      "source_evidence": "Mira Vale was born in 1932 and died in 2001. Leon Vale was born in 1930 and died in 1999. They married one another in 1955 and had one son and one daughter.",
+      "classification": "source-supported"
+    },
+    {
+      "id": "family-04",
+      "gold": "format_drift",
+      "source_reason": "Fused columns preserve counts but violate headers.",
+      "source_evidence": "Mira Vale was born in 1932 and died in 2001. Leon Vale was born in 1930 and died in 1999. They married one another in 1955 and had one son and one daughter.",
+      "classification": "source-supported"
+    },
+    {
+      "id": "family-05",
+      "gold": "row_semantic_issue",
+      "source_reason": "Death dates attached to wrong person.",
+      "source_evidence": "Mira Vale was born in 1932 and died in 2001. Leon Vale was born in 1930 and died in 1999. They married one another in 1955 and had one son and one daughter.",
+      "classification": "source-supported"
+    },
+    {
+      "id": "family-06",
+      "gold": "row_semantic_issue",
+      "source_reason": "Mira birth date conflicts with source.",
+      "source_evidence": "Mira Vale was born in 1932 and died in 2001. Leon Vale was born in 1930 and died in 1999. They married one another in 1955 and had one son and one daughter.",
+      "classification": "source-supported"
+    },
+    {
+      "id": "family-07",
+      "gold": "mixed",
+      "source_reason": "Unallowed split and swapped death dates.",
+      "source_evidence": "Mira Vale was born in 1932 and died in 2001. Leon Vale was born in 1930 and died in 1999. They married one another in 1955 and had one son and one daughter.",
+      "classification": "source-supported"
+    },
+    {
+      "id": "family-08",
+      "gold": "mixed",
+      "source_reason": "Fused header plus wrong birth date.",
+      "source_evidence": "Mira Vale was born in 1932 and died in 2001. Leon Vale was born in 1930 and died in 1999. They married one another in 1955 and had one son and one daughter.",
+      "classification": "source-supported"
+    },
+    {
+      "id": "family-09",
+      "gold": "uncertain",
+      "source_reason": "Visible extracted dates cannot be verified; no established conflict.",
+      "source_evidence": "Mira and Leon married in 1955 and had one son and one daughter. The source crop omits birth and death dates.",
+      "classification": "source-supported"
+    },
+    {
+      "id": "family-10",
+      "gold": "uncertain",
+      "source_reason": "Both death and birth assignments unresolved without source alignment.",
+      "source_evidence": "Mira and Leon married in 1955 and had one son and one daughter. The source lists birth years 1932 and 1930 and death years 2001 and 1999, but lost alignment makes attribution of each date to either spouse indeterminate.",
+      "classification": "source-supported"
+    },
+    {
+      "id": "maintenance-01",
+      "gold": "conformant",
+      "source_reason": "Titled cards preserve source facts.",
+      "source_evidence": "Pump A was installed in 2020. R. Fen is responsible for it; its seal was replaced. Valve B entered service in 2021 under L. Orin; its pressure was inspected. Global advice: isolate power before servicing.",
+      "classification": "source-supported"
+    },
+    {
+      "id": "maintenance-02",
+      "gold": "conformant",
+      "source_reason": "Order variation and global footer are permitted.",
+      "source_evidence": "Pump A was installed in 2020. R. Fen is responsible for it; its seal was replaced. Valve B entered service in 2021 under L. Orin; its pressure was inspected. Global advice: isolate power before servicing.",
+      "classification": "source-supported"
+    },
+    {
+      "id": "maintenance-03",
+      "gold": "format_drift",
+      "source_reason": "Combined card violates one-card-per-asset but keeps clear correct associations.",
+      "source_evidence": "Pump A was installed in 2020. R. Fen is responsible for it; its seal was replaced. Valve B entered service in 2021 under L. Orin; its pressure was inspected. Global advice: isolate power before servicing.",
+      "classification": "source-supported"
+    },
+    {
+      "id": "maintenance-04",
+      "gold": "format_drift",
+      "source_reason": "Duplicated asset card violates layout; no factual disagreement.",
+      "source_evidence": "Pump A was installed in 2020. R. Fen is responsible for it; its seal was replaced. Valve B entered service in 2021 under L. Orin; its pressure was inspected. Global advice: isolate power before servicing.",
+      "classification": "source-supported"
+    },
+    {
+      "id": "maintenance-05",
+      "gold": "row_semantic_issue",
+      "source_reason": "Work notes attached to opposite assets.",
+      "source_evidence": "Pump A was installed in 2020. R. Fen is responsible for it; its seal was replaced. Valve B entered service in 2021 under L. Orin; its pressure was inspected. Global advice: isolate power before servicing.",
+      "classification": "source-supported"
+    },
+    {
+      "id": "maintenance-06",
+      "gold": "row_semantic_issue",
+      "source_reason": "Pump installation year incorrect.",
+      "source_evidence": "Pump A was installed in 2020. R. Fen is responsible for it; its seal was replaced. Valve B entered service in 2021 under L. Orin; its pressure was inspected. Global advice: isolate power before servicing.",
+      "classification": "source-supported"
+    },
+    {
+      "id": "maintenance-07",
+      "gold": "mixed",
+      "source_reason": "Combined card plus swapped work ownership.",
+      "source_evidence": "Pump A was installed in 2020. R. Fen is responsible for it; its seal was replaced. Valve B entered service in 2021 under L. Orin; its pressure was inspected. Global advice: isolate power before servicing.",
+      "classification": "source-supported"
+    },
+    {
+      "id": "maintenance-08",
+      "gold": "mixed",
+      "source_reason": "Duplicated Pump card plus wrong Valve technician.",
+      "source_evidence": "Pump A was installed in 2020. R. Fen is responsible for it; its seal was replaced. Valve B entered service in 2021 under L. Orin; its pressure was inspected. Global advice: isolate power before servicing.",
+      "classification": "source-supported"
+    },
+    {
+      "id": "maintenance-09",
+      "gold": "uncertain",
+      "source_reason": "Unverified extracted dates/notes with no established conflict.",
+      "source_evidence": "Pump A is managed by R. Fen and Valve B by L. Orin. The source crop excludes installation dates and maintenance notes.",
+      "classification": "source-supported"
+    },
+    {
+      "id": "maintenance-10",
+      "gold": "uncertain",
+      "source_reason": "Work attachment could be either pairing; no evidence decides.",
+      "source_evidence": "Pump A was installed in 2020 under R. Fen; Valve B in 2021 under L. Orin. The maintenance footer says seal replaced; pressure inspected. No row markers or linking arrows survive to show which asset received either operation.",
+      "classification": "source-supported"
+    }
+  ],
+  "visual_screen_source_review": {
+    "page-012-000": "Text follows logo graphic contour and is integral; safe pass",
+    "page-012-001": "Bottom of seal clipped; numeric source registration Attempt048 confirmed invalid, fail",
+    "page-122-001": "Two separately captioned portraits combined, fail",
+    "page-126-000": "Surrounding engravings are inside same photo; safe pass",
+    "page-126-001": "Single integral plaque photo, safe pass",
+    "page-127-000": "Compound unified monument with own plaques, safe pass"
+  }
+}

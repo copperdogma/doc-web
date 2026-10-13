@@ -1,0 +1,7 @@
+{
+  "reconstructed_exact_single_line_parser_diff": true,
+  "native_initial_sha256": "ccad80a2d2d9d6796feb63e96bc0b9c613e8517251944cd739fa581ba234570c",
+  "paid_requests_identical": "harness-parity.json",
+  "native_calls": "native-clef,drex,liquid,scaledown,solar,gpt41",
+  "semantic_prompt_changed": false
+}

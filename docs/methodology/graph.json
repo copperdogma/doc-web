@@ -1385,15 +1385,15 @@
           "posture": "wait-for-trigger",
           "retry_trigger_status": "waiting",
           "retry_when": [
-            "new-subject-model"
+            "new-independent-source-aware-batch-lane"
           ],
           "why_now": "",
           "last_relevant_action": {
-            "date": "2026-10-07",
+            "date": "2026-10-13",
             "source_type": "eval-attempt",
             "source": "docs/evals/registry.yaml",
-            "source_id": "068",
-            "summary": "Fresh fixed synthetic status comparison: frozenlow25/40 vsGPT29/40; lowUSD.0041735 vs.043392, median1153.5ms vs857.5, p951371vs1976; falseclean3vs4. Allarms4/5calibration; confirmation21/35. No freshJev/cascade due mi..."
+            "source_id": "070",
+            "summary": "Complete all5text arms plus100actualfallbacks. Solar strongest bounded quality/economy signal:81%lowercascadecost but15.6xhigherp95 and1uncertainty-clean; no automaticpromotion. Liquidcascade4dangerousclean vsGPT3; Sc..."
           },
           "story_ids": [
             "145",
@@ -16890,6 +16890,16 @@
       },
       "attempts": [
         {
+          "id": "070",
+          "date": "2026-10-13",
+          "status": "inconclusive",
+          "approach": "Scout091 finite crop-safety verdict screen on exact Attempt048 source-adjudicated public images",
+          "note": "No safetywinner: Clef exacttwoimage admitted then unsafeaccept012001clippedseal; freshGPT5.5none2048alsoaccepted. Properstop,20remainingnotmeasured; lowconfidence is not a tested visualroutingrule. ScaleDown exacttwoimageHTTP400, documentOCR substitute ineligible, capabilitynotmeasured/defer. Liquid directkeyabsent/defer. Reasons unqualified for typedcandidates. No downsample/OCR rescue or defaults/commit/push. Attempt070 source/gold/hashbindings and rootindependentreview.",
+          "retry_when": [
+            "new-subject-model-or-native-two-image-contract"
+          ]
+        },
+        {
           "id": "068",
           "date": "2026-10-07",
           "status": "failed",
@@ -17173,15 +17183,15 @@
         "posture": "trigger-exhausted",
         "retry_trigger_status": "exhausted",
         "retry_when": [
-          "new-subject-model"
+          "new-subject-model-or-native-two-image-contract"
         ],
         "why_now": "Rerun when a materially stronger validator or detector may reduce the current fail-labeled page-context cases. Rerun after any maintained crop/runtime simplification before claiming `trim_layout_text` or bounded capti...",
         "last_relevant_action": {
-          "date": "2026-10-07",
+          "date": "2026-10-13",
           "source_type": "eval-attempt",
           "source": "docs/evals/registry.yaml",
-          "source_id": "068",
-          "summary": "Independent source-adjudicated safety2case calibration: all3Haiku arms1/2 false-safe amputated seal; freshGPT5.5 2/2. Old labels preserved separately; full22 unmeasured. Retain safety controls. Attempt068/manifests ho..."
+          "source_id": "070",
+          "summary": "No safetywinner: Clef exacttwoimage admitted then unsafeaccept012001clippedseal; freshGPT5.5none2048alsoaccepted. Properstop,20remainingnotmeasured; lowconfidence is not a tested visualroutingrule. ScaleDown exacttwoi..."
         }
       }
     },
@@ -19075,6 +19085,16 @@
       },
       "attempts": [
         {
+          "id": "070",
+          "date": "2026-10-13",
+          "status": "inconclusive",
+          "approach": "Scout091 five dated native OpenRouter Decisions arms, fresh GPT4.1, actual per-arm .8 serial fallback",
+          "note": "Complete all5text arms plus100actualfallbacks. Solar strongest bounded quality/economy signal:81%lowercascadecost but15.6xhigherp95 and1uncertainty-clean; no automaticpromotion. Liquidcascade4dangerousclean vsGPT3; ScaleDowncascade2 but similarcost/slower; Clef/Drex no overallwin. TextUSD.16196998/4 unknown0; ownertext+visualUSD.21462848settled+.00256unknown/12. Attempt070/evidence070-scout091 bind702rawreceipts, currentbase, closedledgers and40focusedtests. No defaults/commit/push.",
+          "retry_when": [
+            "new-independent-source-aware-batch-lane"
+          ]
+        },
+        {
           "id": "068",
           "date": "2026-10-07",
           "status": "inconclusive",
@@ -19128,15 +19148,15 @@
         "posture": "wait-for-trigger",
         "retry_trigger_status": "waiting",
         "retry_when": [
-          "new-subject-model"
+          "new-independent-source-aware-batch-lane"
         ],
         "why_now": "",
         "last_relevant_action": {
-          "date": "2026-10-07",
+          "date": "2026-10-13",
           "source_type": "eval-attempt",
           "source": "docs/evals/registry.yaml",
-          "source_id": "068",
-          "summary": "Fresh fixed synthetic status comparison: frozenlow25/40 vsGPT29/40; lowUSD.0041735 vs.043392, median1153.5ms vs857.5, p951371vs1976; falseclean3vs4. Allarms4/5calibration; confirmation21/35. No freshJev/cascade due mi..."
+          "source_id": "070",
+          "summary": "Complete all5text arms plus100actualfallbacks. Solar strongest bounded quality/economy signal:81%lowercascadecost but15.6xhigherp95 and1uncertainty-clean; no automaticpromotion. Liquidcascade4dangerousclean vsGPT3; Sc..."
         }
       }
     },

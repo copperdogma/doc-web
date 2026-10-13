@@ -104,3 +104,20 @@ bounded independent shadow/full-path promotion check. All source/gold/prompt/
 thresholds unchanged;418raw envelopes+offline replay retained.10focused tests,
 Ruff/methodology/whitespace pass. Both temporary injected keys removed by
 coordinator; no runtime/default/commit/push. Historical story remains closed.
+
+2026-10-13 — Approved Scout091 item2 continuation under hardUSD4; isolated current
+remote5917251. Attempt070 freezes all5exact dated router arms,40fresh judgments
+per arm, actual confidence<.8 per-arm GPT4.1 fallback, synthetic20unique/2sources,
+independent serial requests, unchanged labels/policy. Native qualification and
+complete comparison forthcoming; no runtime/default authority. Independent
+Attempt070 visual finite-verdict lane has its ownUSD8 ledger and stops.
+
+2026-10-13 — Attempt070 complete: all5x40fresh typedjudgments,40freshGPTbaseline,
+100actualserialfallbacks and6qualification;346callsUSD.16196998/4, unknown0.
+Solarcascade33/40vsGPT30,0defectcleanvs3 but1uncertaintycleanvs0;81%cheaper,
+15.6xp95. Strongest bounded batchqualification signal with explicit latency/
+review tradeoff, no automaticpromotion. Otherarms' safety/economics tradeoffs
+recorded, frozen20unique/2sources x2repeats, no tuning.40focusedtests,702receipt
+archive replay and currentbase/dirtysources retained. Existing story done result
+remains; no runtime behavior/default/commit/push. Independent source-aware fresh
+Solar batch/shadow qualification is a separate future scope.

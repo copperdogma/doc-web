@@ -1,0 +1,32 @@
+[
+  {
+    "path": "docs/evals/attempts/021-kimi-k3-force-fresh-evaluate-model.md",
+    "sha256": "82910bff6d2e5344ea701e0052fd29dc5b7e5d372091fe129e829f4f323c0940",
+    "actual_sha256": "82910bff6d2e5344ea701e0052fd29dc5b7e5d372091fe129e829f4f323c0940",
+    "matches_retained": true
+  },
+  {
+    "path": "docs/evals/evidence/046-gpt61-manifest.json",
+    "sha256": "cdc975676dad8d0bddc36bc88581b0d0d605079eae5d5bd4654e94ec48b10843",
+    "actual_sha256": "cdc975676dad8d0bddc36bc88581b0d0d605079eae5d5bd4654e94ec48b10843",
+    "matches_retained": true
+  },
+  {
+    "path": "docs/evals/evidence/047-thinking-safety-manifest.json",
+    "sha256": "8a6b2d74bd97556655474721e036595230a0ffaff69ebc0cdac856e7db9e2e8c",
+    "actual_sha256": "8a6b2d74bd97556655474721e036595230a0ffaff69ebc0cdac856e7db9e2e8c",
+    "matches_retained": true
+  },
+  {
+    "path": "docs/evals/attempts/048-repaired-page-safety.md",
+    "sha256": "e66274ca2a760236938a698df83f411760a41134cc90cac42334055a5b7ae14a",
+    "actual_sha256": "e66274ca2a760236938a698df83f411760a41134cc90cac42334055a5b7ae14a",
+    "matches_retained": true
+  },
+  {
+    "path": "docs/evals/evidence/048-safety-repair-topology.json",
+    "sha256": "6e9fdb8af82821c4c5346cce57e67afc5ec3986c83ba1cd767d963e61f050e34",
+    "actual_sha256": "6e9fdb8af82821c4c5346cce57e67afc5ec3986c83ba1cd767d963e61f050e34",
+    "matches_retained": true
+  }
+]

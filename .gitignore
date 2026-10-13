@@ -70,3 +70,6 @@ benchmarks/results/gpt6-astra-20260905/
 
 # Protected public/synthetic Haiku evaluation raw receipts (durable archive in docs).
 benchmarks/results/haiku55-20261007/
+
+# Original Scout091 public/synthetic HTTP receipts; compact lossless package is tracked.
+benchmarks/results/scout091-20261013/

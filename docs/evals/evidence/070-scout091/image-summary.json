@@ -1,0 +1,153 @@
+{
+  "clef": {
+    "n": 2,
+    "correct": 1,
+    "false_safe": 1,
+    "false_reject": 0,
+    "cost_usd": 0.0008805,
+    "median_ms": 1466.5200204981375,
+    "p95_ms": 1486.8458330020076,
+    "results": [
+      {
+        "name": "image-page-012-000-clef",
+        "arm": "clef",
+        "reserve_usd": 0.0096,
+        "status": "complete",
+        "request_sha256": "716a3b6b069d9e2b8758681405df6ae39721595d5a66234f3e2ba762cb4e422c",
+        "request_bytes": 549897,
+        "http_status": 200,
+        "latency_ms": 1486.8458330020076,
+        "response_bytes": 299,
+        "response_sha256": "a4e22243cfe93c58bf461f2276732edcfb79933546e2047b25137cca26a5d890",
+        "served_model": "cloudflare/clef-omni-20261009",
+        "provider": "Cloudflare",
+        "usage": {
+          "input_tokens": 2927,
+          "output_tokens": 0,
+          "cost": 0.00043905
+        },
+        "label": "pass",
+        "confidence": 0.4988,
+        "cost_usd": 0.00043905,
+        "key": "page-012-000"
+      },
+      {
+        "name": "image-page-012-001-clef",
+        "arm": "clef",
+        "reserve_usd": 0.0096,
+        "status": "complete",
+        "request_sha256": "b1231b3c4446c1eb7fb2c861110b457801993ae5dd06c7fea1eea6fb0b6f7fad",
+        "request_bytes": 605205,
+        "http_status": 200,
+        "latency_ms": 1446.1942079942673,
+        "response_bytes": 299,
+        "response_sha256": "fc601b5fb1252b1d9c4dfd1bbca4ee1893ebb3902a89d05ac740ab87844f2ff2",
+        "served_model": "cloudflare/clef-omni-20261009",
+        "provider": "Cloudflare",
+        "usage": {
+          "input_tokens": 2943,
+          "output_tokens": 0,
+          "cost": 0.00044145
+        },
+        "label": "pass",
+        "confidence": 0.0275,
+        "cost_usd": 0.00044145,
+        "key": "page-012-001"
+      }
+    ],
+    "reasons_qualified": false
+  },
+  "gpt55": {
+    "n": 2,
+    "correct": 1,
+    "false_safe": 1,
+    "false_reject": 0,
+    "cost_usd": 0.051778000000000005,
+    "median_ms": 2762.1704999910435,
+    "p95_ms": 2766.846207989147,
+    "results": [
+      {
+        "name": "image-page-012-000-gpt55",
+        "arm": "gpt55",
+        "reserve_usd": 0.29144,
+        "status": "complete",
+        "request_sha256": "5af11bbdab9769ab842c941684c422dc1d14460efdce6cce8b967a16b595321f",
+        "request_bytes": 549939,
+        "http_status": 200,
+        "latency_ms": 2766.846207989147,
+        "response_bytes": 3042,
+        "response_sha256": "eb874d0792b1b8c618c68b47b60e04ff84e42adcacdd00fa8b668791e9c15815",
+        "served_model": "gpt-5.5-2026-04-23",
+        "provider": null,
+        "usage": {
+          "input_tokens": 5787,
+          "input_tokens_details": {
+            "cache_write_tokens": 0,
+            "cached_tokens": 0
+          },
+          "output_tokens": 66,
+          "output_tokens_details": {
+            "reasoning_tokens": 0
+          },
+          "total_tokens": 5853
+        },
+        "label": "pass",
+        "confidence": null,
+        "cost_usd": 0.030915,
+        "key": "page-012-000"
+      },
+      {
+        "name": "image-page-012-001-gpt55",
+        "arm": "gpt55",
+        "reserve_usd": 0.29144,
+        "status": "complete",
+        "request_sha256": "69cfb953749e5be75e238a3992380ad0d7ad4d666938489ae96db3504ec26747",
+        "request_bytes": 605247,
+        "http_status": 200,
+        "latency_ms": 2757.49479199294,
+        "response_bytes": 3029,
+        "response_sha256": "03ca9e03278c8a9b0de5a59b593645b24a29a5b423aaa45af54080cff7b91f8b",
+        "served_model": "gpt-5.5-2026-04-23",
+        "provider": null,
+        "usage": {
+          "input_tokens": 6329,
+          "input_tokens_details": {
+            "cache_write_tokens": 0,
+            "cached_tokens": 2816
+          },
+          "output_tokens": 63,
+          "output_tokens_details": {
+            "reasoning_tokens": 0
+          },
+          "total_tokens": 6392
+        },
+        "label": "pass",
+        "confidence": null,
+        "cost_usd": 0.020863,
+        "key": "page-012-001"
+      }
+    ],
+    "reasons_qualified": true
+  },
+  "scaledown": {
+    "access": "available text; visualHTTP400",
+    "transport": "blocked two-image",
+    "capability": "not measured",
+    "adoption": "defer",
+    "unknown_cost_usd": 0.00256,
+    "document_extension": "OCR facade not eligible substitute for two exact source/crop images"
+  },
+  "liquid": {
+    "access": "blocked direct key absent",
+    "transport": "not measured",
+    "capability": "not measured",
+    "adoption": "defer"
+  },
+  "coverage": {
+    "matched_cases": 2,
+    "unmeasured_remaining": 20,
+    "full22_gate": "not measured due declared unsafe-accept stop",
+    "confidence_routing": "not tested or predeclared in finite visual projection; no threshold invented",
+    "provider_internal_image_resolution": "Cloudflare image processing caps64-1024tokensperimage documented; exact resized dimensions not returned/unverified; original submitted dimensions andbytes preserved"
+  }
+}

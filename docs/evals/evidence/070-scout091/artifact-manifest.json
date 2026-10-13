@@ -1,0 +1,198 @@
+{
+  "docs/evals/evidence/070-scout091/sources.json": {
+    "bytes": 851,
+    "sha256": "874daef9015973834ec7bb0bcacac36822afea1269b31d73bfdf3389645eb975"
+  },
+  "docs/evals/evidence/070-scout091/text-rendered.json": {
+    "bytes": 744355,
+    "sha256": "58c9d3aa554962fb464d4abcbf5956b3c1f775c6a072b514f9c3e5ae8c5b8d00"
+  },
+  "docs/evals/evidence/070-scout091/text-ledger.json": {
+    "bytes": 294075,
+    "sha256": "f50cf0fc11c1aa53980a500c47c9d17e43255cf8092dafddfbbcdf922721710f"
+  },
+  "docs/evals/evidence/070-scout091/native-initial-source.json": {
+    "bytes": 307,
+    "sha256": "0b5de2f69ab23a1b2c4f68e0810402a9f5bde7c5664a51b4d29a0a01e3e6dbd9"
+  },
+  "docs/evals/evidence/070-scout091/qualification.json": {
+    "bytes": 4173,
+    "sha256": "de8d74bce3c2f16ea6d263f43e3d03fc46a723aed623d5c08dfeb04c013fa978"
+  },
+  "docs/evals/evidence/070-scout091/source-review-contact.jpg": {
+    "bytes": 281675,
+    "sha256": "c73e182b1bceac8d4809c757aace63c5850a0e76793829c316e48f65a95a6cfa"
+  },
+  "docs/evals/evidence/070-scout091/harness-parity.json": {
+    "bytes": 851,
+    "sha256": "5e4cad0536724958d33f9b10dfba4953fc5ab81015b08b25b0a923ce000aba5a"
+  },
+  "docs/evals/evidence/070-scout091/endpoints-scaledown-classify-1.json": {
+    "bytes": 1798,
+    "sha256": "b7148e8d6c1b5019f8e1e25bbd9033ac081983ec47f6dd0167261c75baa0a02a"
+  },
+  "docs/evals/evidence/070-scout091/image-eligibility.json": {
+    "bytes": 23623,
+    "sha256": "b0048db1abbe4f091d35fe9c2d41522e7482a667fd6482179e98f3aa66ff721e"
+  },
+  "docs/evals/evidence/070-scout091/post-paid-validation.json": {
+    "bytes": 2357,
+    "sha256": "2f5148f5428747fc4b780d23f62236b32c7fa58521f19f27160b5a27adeb3c5b"
+  },
+  "docs/evals/evidence/070-scout091/endpoints-cloudflare-clef-omni.json": {
+    "bytes": 1718,
+    "sha256": "a9ff691f24f7b3cec068c901fefd8b7ae421647f63b7d0686cdcbac0fa029cc0"
+  },
+  "docs/evals/evidence/070-scout091/receipt-manifest.json": {
+    "bytes": 191986,
+    "sha256": "d6ed0b9a2f19e6d90b88a98810b7e4f4aa9c78ef778a580d36ad2b3631853bc4"
+  },
+  "docs/evals/evidence/070-scout091/visual-ledger.json": {
+    "bytes": 4069,
+    "sha256": "48b177eef34b259f6ee2d0815ab5b81b0bfd573f1d4060e1c1853ec8aba912b6"
+  },
+  "docs/evals/evidence/070-scout091/provider-contracts.json": {
+    "bytes": 2673,
+    "sha256": "dab99f73ec7a55b0e6d4bad64570c41d4c87c43e4881a051b3a90495d8cf8d52"
+  },
+  "docs/evals/evidence/070-scout091/package_receipts.py": {
+    "bytes": 1976,
+    "sha256": "3c5a18fbd4fc21930d4eef67f8c2a0e79df2a82bf106176002f248aa14f7185e"
+  },
+  "docs/evals/evidence/070-scout091/source-review.json": {
+    "bytes": 8764,
+    "sha256": "3931f26461b4cdf514e2bdc932315898d86c51c5bf873934e60de69fdbaa0a23"
+  },
+  "docs/evals/evidence/070-scout091/parser-recovery.json": {
+    "bytes": 505,
+    "sha256": "810d22c68d2c6edf7c3bc5e08a85bf92ad9a4794c3989063ec9c09d526263778"
+  },
+  "docs/evals/evidence/070-scout091/image-summary.json": {
+    "bytes": 4960,
+    "sha256": "5a9ab42a3c6793e6d0a8c9f9cfc8d404c847b2e06f203fee7d02a0fab92742bf"
+  },
+  "docs/evals/evidence/070-scout091/router-catalog.json": {
+    "bytes": 10634,
+    "sha256": "3f7e06bc6a76f35a55b934bb50c361552d3bf5ebd9f8e5f2f5afb713a951ee1c"
+  },
+  "docs/evals/evidence/070-scout091/validation.json": {
+    "bytes": 3684,
+    "sha256": "d2b5d1105ce7bb90f878b7a7468fb65f9f3e256d03f579a324442cf54659b8d2"
+  },
+  "docs/evals/evidence/070-scout091/receipts.tar.gz": {
+    "bytes": 60900,
+    "sha256": "71adcf5c8613ca22b8c0ffc7c07676f555a0387f5f4c3672b2cdaeaec1676e81"
+  },
+  "docs/evals/evidence/070-scout091/control-qualification.json": {
+    "bytes": 871,
+    "sha256": "e4294decb484be98fe815aa668798b881d664702e6163813033ff8b6b56c95c5"
+  },
+  "docs/evals/evidence/070-scout091/native-initial-source.py": {
+    "bytes": 14032,
+    "sha256": "ccad80a2d2d9d6796feb63e96bc0b9c613e8517251944cd739fa581ba234570c"
+  },
+  "docs/evals/evidence/070-scout091/endpoints-liquid-d1.json": {
+    "bytes": 1622,
+    "sha256": "6fd995d2bfbe08a9eea1c58be10e7a739cd724cc1149d628bd0d68136dd36f50"
+  },
+  "docs/evals/evidence/070-scout091/text-results.json": {
+    "bytes": 370174,
+    "sha256": "2f37a4fe7c60b0f74dca32ef037d8d22bba686050165b178d2f06ccde11ac57a"
+  },
+  "docs/evals/evidence/070-scout091/image-harness-parity.json": {
+    "bytes": 216,
+    "sha256": "6bf4bb3e6a5d538b54c28144a296adfa4357d566f4a773ea5e92448351e07717"
+  },
+  "docs/evals/evidence/070-scout091/image-topology.json": {
+    "bytes": 21343,
+    "sha256": "a7c77292fb932f3a4f37b12b0972809064ed8782ea1db20ad5ade90c98656246"
+  },
+  "docs/evals/evidence/070-scout091/reconstruct.py": {
+    "bytes": 1998,
+    "sha256": "42e566193913c48faec8a98a16b477da2d3ac30e6d1fb3bc753896734ff581b0"
+  },
+  "docs/evals/evidence/070-scout091/eligibility-ref-verification.json": {
+    "bytes": 1382,
+    "sha256": "e89938ce9079b2eb0fe8b4cd4082c34d724738ff8eb9efec2c9594700cf1fbed"
+  },
+  "docs/evals/evidence/070-scout091/endpoints-upstage-solar-decide.json": {
+    "bytes": 2820,
+    "sha256": "f148f6e701ea3d614685923089a60d51c301d504a7386aca6b957789e4d582e1"
+  },
+  "docs/evals/evidence/070-scout091/preflight.json": {
+    "bytes": 2456,
+    "sha256": "72e2b799665831843f431c17ccc38dd54338aad32fbff29dbd0ac9e894f14deb"
+  },
+  "docs/evals/evidence/070-scout091/text-summary.json": {
+    "bytes": 27265,
+    "sha256": "5479565a61f5a11bc475d0bc88fbe3ccdaee5a49465d9be35741806f0fe920fd"
+  },
+  "docs/evals/evidence/070-scout091/endpoints-nace-ai-drex-v2.0.json": {
+    "bytes": 1692,
+    "sha256": "5615d7a8c3e9448120021a5fdca178cf7e44cf4cc8eb94fac8107339be24b0ce"
+  },
+  "docs/evals/evidence/070-scout091/snapshots/benchmarks/providers/openai_responses_model.py": {
+    "bytes": 17928,
+    "sha256": "3506470ee1eb9c8da8c472f270e3400fd2c6cbd086c6be836a0d974997696240"
+  },
+  "docs/evals/evidence/070-scout091/snapshots/benchmarks/golden/crop-page-level-safety-repair-048-source-adjudicated.json": {
+    "bytes": 5157,
+    "sha256": "6f32bc513494f1c4454b4c41e74186136212d477ff10c87ccb29244ca21aaa76"
+  },
+  "docs/evals/evidence/070-scout091/snapshots/benchmarks/jev-consistency/detector.py": {
+    "bytes": 2270,
+    "sha256": "d6f639af36882ef57e9e8ef2b1083057049de70edc1d512b67c2fc734453c0d6"
+  },
+  "docs/evals/evidence/070-scout091/snapshots/benchmarks/jev-consistency/run.py": {
+    "bytes": 14567,
+    "sha256": "1391bb3e045344eb7973b09b8eaaa903cbdb9f7e33a4f506cf33cf8ae98f97b4"
+  },
+  "docs/evals/evidence/070-scout091/snapshots/benchmarks/jev-consistency/decisions_campaign.py": {
+    "bytes": 19052,
+    "sha256": "dd37e3430599de127e3bb407eff38eab2e7001b4b6ec10b4f447beebd1255b8b"
+  },
+  "docs/evals/evidence/070-scout091/snapshots/benchmarks/jev-consistency/fixtures.json": {
+    "bytes": 31528,
+    "sha256": "88994b8cd7c75d832114f33e613c3b2d8656b737f53962292ee34c4e81b128ab"
+  },
+  "docs/evals/evidence/070-scout091/snapshots/benchmarks/jev-consistency/scout091_campaign.py": {
+    "bytes": 13958,
+    "sha256": "64a54f3c8d0370e6626c464c19698836eb0c70958480b202f6c8cb1180ad3ecb"
+  },
+  "docs/evals/evidence/070-scout091/snapshots/benchmarks/scorers/crop_validation_scorer.py": {
+    "bytes": 4546,
+    "sha256": "12eb63725523bd00d59ce12b7486db8c9244124a0c57bb68cae8b8e9e7d288fb"
+  },
+  "docs/evals/evidence/070-scout091/snapshots/benchmarks/prompts/validate-page-level-crop.js": {
+    "bytes": 4043,
+    "sha256": "ef4395838929b208fe65f21500d81ade902072bef3f8e53f81ef3d3b83fbc421"
+  },
+  "docs/evals/evidence/070-scout091/snapshots/scripts/run_with_doc_web_env.py": {
+    "bytes": 1281,
+    "sha256": "24a7416b2db9f686c37bb9d281116886eee93683cfaa296021f506b14526ba19"
+  },
+  "docs/evals/evidence/070-scout091/snapshots/doc_web/env.py": {
+    "bytes": 3489,
+    "sha256": "6153a345dc79252f45075b12f0b2c682c900016ab2558b6c1b074e3a4bd06fe8"
+  },
+  "benchmarks/jev-consistency/scout091_campaign.py": {
+    "bytes": 18824,
+    "sha256": "0a883d1f5fcac73b97cedfcb83e2708716c7be65e643c3507a0a7dddb6f3496e",
+    "postpaid_current_source": true
+  },
+  "benchmarks/jev-consistency/decisions_campaign.py": {
+    "bytes": 2707,
+    "sha256": "8753d0c47c786b18deef2bc2f17e35d884e193794c076cd24da4c9011957f233",
+    "postpaid_current_source": true
+  },
+  "benchmarks/jev-consistency/test_scout091_campaign.py": {
+    "bytes": 3414,
+    "sha256": "60f24775d44c89dac7086b34c7ffe4004838a758cff572e7606dee419b4b69f8",
+    "postpaid_current_source": true
+  },
+  "docs/evals/attempts/070-scout091-five-decision-models.md": {
+    "bytes": 12783,
+    "sha256": "176161df6e69d5b675f1dc42ba848786fbe16b779edad537a6bafc68e839f2d2",
+    "postpaid_current_source": true
+  }
+}

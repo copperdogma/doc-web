@@ -1,0 +1,127 @@
+{
+  "cap_usd": 8.0,
+  "spent_usd": 0.052658500000000004,
+  "unknown_usd": 0.0025600000000000067,
+  "calls": [
+    {
+      "name": "image-page-012-000-clef",
+      "arm": "clef",
+      "reserve_usd": 0.0096,
+      "status": "complete",
+      "request_sha256": "716a3b6b069d9e2b8758681405df6ae39721595d5a66234f3e2ba762cb4e422c",
+      "request_bytes": 549897,
+      "http_status": 200,
+      "latency_ms": 1486.8458330020076,
+      "response_bytes": 299,
+      "response_sha256": "a4e22243cfe93c58bf461f2276732edcfb79933546e2047b25137cca26a5d890",
+      "served_model": "cloudflare/clef-omni-20261009",
+      "provider": "Cloudflare",
+      "usage": {
+        "input_tokens": 2927,
+        "output_tokens": 0,
+        "cost": 0.00043905
+      },
+      "label": "pass",
+      "confidence": 0.4988,
+      "cost_usd": 0.00043905
+    },
+    {
+      "name": "image-page-012-000-scaledown",
+      "arm": "scaledown",
+      "reserve_usd": 0.00256,
+      "status": "http_error",
+      "request_sha256": "b88859bbc99cf470840cf3493b1ae67b9d9b698a4d16580146234bc706ff21d3",
+      "request_bytes": 549896,
+      "http_status": 400,
+      "latency_ms": 483.0870839941781,
+      "response_bytes": 157,
+      "response_sha256": "d61801a70b1b61cd5c51e2e8ca0eb4ba6ee43906fc143d6a3c56e4def46dacce",
+      "served_model": null,
+      "provider": null,
+      "usage": null,
+      "error_type": "ValueError"
+    },
+    {
+      "name": "image-page-012-000-gpt55",
+      "arm": "gpt55",
+      "reserve_usd": 0.29144,
+      "status": "complete",
+      "request_sha256": "5af11bbdab9769ab842c941684c422dc1d14460efdce6cce8b967a16b595321f",
+      "request_bytes": 549939,
+      "http_status": 200,
+      "latency_ms": 2766.846207989147,
+      "response_bytes": 3042,
+      "response_sha256": "eb874d0792b1b8c618c68b47b60e04ff84e42adcacdd00fa8b668791e9c15815",
+      "served_model": "gpt-5.5-2026-04-23",
+      "provider": null,
+      "usage": {
+        "input_tokens": 5787,
+        "input_tokens_details": {
+          "cache_write_tokens": 0,
+          "cached_tokens": 0
+        },
+        "output_tokens": 66,
+        "output_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "total_tokens": 5853
+      },
+      "label": "pass",
+      "confidence": null,
+      "cost_usd": 0.030915
+    },
+    {
+      "name": "image-page-012-001-clef",
+      "arm": "clef",
+      "reserve_usd": 0.0096,
+      "status": "complete",
+      "request_sha256": "b1231b3c4446c1eb7fb2c861110b457801993ae5dd06c7fea1eea6fb0b6f7fad",
+      "request_bytes": 605205,
+      "http_status": 200,
+      "latency_ms": 1446.1942079942673,
+      "response_bytes": 299,
+      "response_sha256": "fc601b5fb1252b1d9c4dfd1bbca4ee1893ebb3902a89d05ac740ab87844f2ff2",
+      "served_model": "cloudflare/clef-omni-20261009",
+      "provider": "Cloudflare",
+      "usage": {
+        "input_tokens": 2943,
+        "output_tokens": 0,
+        "cost": 0.00044145
+      },
+      "label": "pass",
+      "confidence": 0.0275,
+      "cost_usd": 0.00044145
+    },
+    {
+      "name": "image-page-012-001-gpt55",
+      "arm": "gpt55",
+      "reserve_usd": 0.29144,
+      "status": "complete",
+      "request_sha256": "69cfb953749e5be75e238a3992380ad0d7ad4d666938489ae96db3504ec26747",
+      "request_bytes": 605247,
+      "http_status": 200,
+      "latency_ms": 2757.49479199294,
+      "response_bytes": 3029,
+      "response_sha256": "03ca9e03278c8a9b0de5a59b593645b24a29a5b423aaa45af54080cff7b91f8b",
+      "served_model": "gpt-5.5-2026-04-23",
+      "provider": null,
+      "usage": {
+        "input_tokens": 6329,
+        "input_tokens_details": {
+          "cache_write_tokens": 0,
+          "cached_tokens": 2816
+        },
+        "output_tokens": 63,
+        "output_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "total_tokens": 6392
+      },
+      "label": "pass",
+      "confidence": null,
+      "cost_usd": 0.020863
+    }
+  ],
+  "closed": true,
+  "closure_reason": "complete approved40textjudgmentsperarm with100actualfallbacks; visual2case safety stop/ScaleDowntransport/Liquiddirectmissing"
+}

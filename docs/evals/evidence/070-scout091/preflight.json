@@ -1,0 +1,42 @@
+{
+  "base_sha": "5917251340e9c39fbfa69f62d6d31fa8eb8e7d56",
+  "sources": {
+    "benchmarks/jev-consistency/scout091_campaign.py": "64a54f3c8d0370e6626c464c19698836eb0c70958480b202f6c8cb1180ad3ecb",
+    "benchmarks/jev-consistency/decisions_campaign.py": "dd37e3430599de127e3bb407eff38eab2e7001b4b6ec10b4f447beebd1255b8b",
+    "benchmarks/jev-consistency/run.py": "1391bb3e045344eb7973b09b8eaaa903cbdb9f7e33a4f506cf33cf8ae98f97b4",
+    "benchmarks/jev-consistency/fixtures.json": "88994b8cd7c75d832114f33e613c3b2d8656b737f53962292ee34c4e81b128ab",
+    "benchmarks/jev-consistency/detector.py": "d6f639af36882ef57e9e8ef2b1083057049de70edc1d512b67c2fc734453c0d6",
+    "benchmarks/prompts/validate-page-level-crop.js": "ef4395838929b208fe65f21500d81ade902072bef3f8e53f81ef3d3b83fbc421",
+    "benchmarks/golden/crop-page-level-safety-repair-048-source-adjudicated.json": "6f32bc513494f1c4454b4c41e74186136212d477ff10c87ccb29244ca21aaa76",
+    "benchmarks/providers/openai_responses_model.py": "3506470ee1eb9c8da8c472f270e3400fd2c6cbd086c6be836a0d974997696240",
+    "benchmarks/scorers/crop_validation_scorer.py": "12eb63725523bd00d59ce12b7486db8c9244124a0c57bb68cae8b8e9e7d288fb",
+    "scripts/run_with_doc_web_env.py": "24a7416b2db9f686c37bb9d281116886eee93683cfaa296021f506b14526ba19",
+    "doc_web/env.py": "6153a345dc79252f45075b12f0b2c682c900016ab2558b6c1b074e3a4bd06fe8"
+  },
+  "text_cases": 20,
+  "repeats": 2,
+  "source_documents": 2,
+  "text_full_reservation_usd": 2.3113083999999993,
+  "visual_full_reservation_usd": 6.6792,
+  "caps": {
+    "text": 4.0,
+    "visual": 8.0
+  },
+  "concurrency": 1,
+  "sessions": "independent; no chain/cache/retries",
+  "judge": "none; finite maintained scorer and source review",
+  "fallback": "preserve explicit uncertain review; otherwise confidence<.8 real per-arm fresh serial GPT4.1",
+  "visual_order": [
+    "page-012-000",
+    "page-012-001",
+    "page-122-001",
+    "page-126-000",
+    "page-126-001",
+    "page-127-000"
+  ],
+  "visual_stop": "confirmed unsafe accept stops arm; no downsample/OCR rescue",
+  "liquid_visual": "no eligible configured direct key; deferred",
+  "privacy": "synthetic text and explicitly owner-public source-bound22images. Provider retention/training unresolved; allowed on disclosed public/synthetic basis.",
+  "generated_rationale": "unqualified; finite verdict projection only",
+  "matrix_source": "Attempt048 source-adjudicated prompt/gold; Decisions063 eligibility manifest"
+}

@@ -1,3 +1,15 @@
+## [2026-10-13-01] — Five decision-model evaluations (Attempt 070)
+
+### Added
+- Compare five typed consistency classifiers with fresh GPT-4.1 and actual
+  confidence-gated fallbacks. Solar shows a bounded batch quality/cost signal
+  with latency and uncertainty holds; no automatic promotion is qualified.
+- Record the independent crop-safety stop: Clef and fresh GPT-5.5 both accepted
+  a source-confirmed clipped seal. ScaleDown two-image transport is blocked;
+  Liquid direct access is absent. Preserve unmeasured coverage and defaults.
+- Retain exact execution snapshots, a lossless public/synthetic receipt archive,
+  closed separate spend ledgers, source review and focused offline validation.
+
 ## [2026-10-08-02] — Continuing strategic reviewers and fresh milestones
 
 ### Changed

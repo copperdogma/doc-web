@@ -1,0 +1,40 @@
+{
+  "checked_date": "2026-10-13",
+  "sources": "sources.json",
+  "external_capture_sha256": {
+    "scaledown-classify-doc.txt": {
+      "sha256": "c2bd43471d76abd55a4c0200402a57d9ae3c8707331e51e9b019c3d1550cf445",
+      "bytes": 30920
+    },
+    "drex-doc.txt": {
+      "sha256": "6bef2afe67bc12b061f61087c6e7746388d051f6ae9366cffc3557d25d906096",
+      "bytes": 4496
+    },
+    "scaledown-decisions-doc.txt": {
+      "sha256": "d35318d37bea8e1509120290e555bf657ea3025532ed4021a94de61185089a83",
+      "bytes": 22224
+    },
+    "liquid-doc.txt": {
+      "sha256": "8b00b60a7d66cb382aee84629bb460df2b2f86880af2c10283875c22cb81ba6a",
+      "bytes": 4173
+    },
+    "solar-doc.txt": {
+      "sha256": "b5871366e7a79376711b203186b06b68ae8b247051d04e2a0e903f0768342880",
+      "bytes": 2314
+    },
+    "scaledown-doc.txt": {
+      "sha256": "ee3eeb9da39891fe984cb58c3ef978e6f9cd829eaf86be44bbc621698463ad0b",
+      "bytes": 4385
+    }
+  },
+  "capture_policy": "Full external documentation downloads omitted from Git; relevant contract facts summarized here and exact native requests/responses preserved.",
+  "contracts": {
+    "router": "POST /api/alpha/decisions: state plus named typed questions; top-level image_url array parts. Current canonical IDs, providers and pricing bound to catalog/endpoint files. No provider fallbacks.",
+    "scaledown": "Only state.text and state.document are consumed. Complete structured text state is stable lossless JSON in state.text. Native two-image array returned400; the single-document facade delegates OCR/text extraction and is not a source-plus-crop image substitute.",
+    "drex": "2.0 reads state up to8192 tokens and state plus question up to16384; longer requests may serve1.5. Short payloads and exact responseidentity were enforced.",
+    "clef": "Cloudflare Omni uses typed decisions and native images; up to4 images, documented4MiB/16MP perimage and8MiB total. Internal image processing64\u20131024 tokens; actual resized pixels unverified. Original submitted images preserved.",
+    "liquid": "Hosted d1 differs from released d1-3B/d1-omni weights; router text route selected. Direct visual key absent, so no account provisioning or alternative checkpoint. Shared input can be billed perquestion; this lane uses onequestion.",
+    "solar": "Solar Decide native System One returns typed decisions without generated rationale. Upstage router promotionalinputprice.05/M verified in catalog/native costs.",
+    "openai-controls": "Pinned GPT4.1 strict status160 output; GPT5.5 Responses none2048/auto/fullstrictobject. Refreshed prices2/.5/8 and5/.5/30 input/cache/output USD/M. Standard abuse retention, ZDR unverified."
+  }
+}

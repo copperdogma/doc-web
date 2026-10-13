@@ -1,0 +1,1187 @@
+{
+  "clef": {
+    "n": 40,
+    "correct": 18,
+    "accuracy": 0.45,
+    "macro_f1": 0.3856410256410256,
+    "recall": {
+      "conformant": 0.75,
+      "format_drift": 0.25,
+      "row_semantic_issue": 1.0,
+      "mixed": 0.0,
+      "uncertain": 0.25
+    },
+    "defects_called_clean": 6,
+    "clean_flagged_defect": 2,
+    "cost_usd": 0.0034047,
+    "median_ms": 348.284457999398,
+    "p95_ms": 713.296709000133,
+    "misses": [
+      {
+        "id": "r1-family-02",
+        "gold": "conformant",
+        "predicted": "mixed"
+      },
+      {
+        "id": "r1-family-03",
+        "gold": "format_drift",
+        "predicted": "conformant"
+      },
+      {
+        "id": "r1-family-07",
+        "gold": "mixed",
+        "predicted": "row_semantic_issue"
+      },
+      {
+        "id": "r1-family-08",
+        "gold": "mixed",
+        "predicted": "row_semantic_issue"
+      },
+      {
+        "id": "r1-family-09",
+        "gold": "uncertain",
+        "predicted": "conformant"
+      },
+      {
+        "id": "r1-family-10",
+        "gold": "uncertain",
+        "predicted": "conformant"
+      },
+      {
+        "id": "r1-maintenance-03",
+        "gold": "format_drift",
+        "predicted": "conformant"
+      },
+      {
+        "id": "r1-maintenance-04",
+        "gold": "format_drift",
+        "predicted": "conformant"
+      },
+      {
+        "id": "r1-maintenance-07",
+        "gold": "mixed",
+        "predicted": "row_semantic_issue"
+      },
+      {
+        "id": "r1-maintenance-08",
+        "gold": "mixed",
+        "predicted": "row_semantic_issue"
+      },
+      {
+        "id": "r1-maintenance-10",
+        "gold": "uncertain",
+        "predicted": "conformant"
+      },
+      {
+        "id": "r2-family-02",
+        "gold": "conformant",
+        "predicted": "mixed"
+      },
+      {
+        "id": "r2-family-03",
+        "gold": "format_drift",
+        "predicted": "conformant"
+      },
+      {
+        "id": "r2-family-07",
+        "gold": "mixed",
+        "predicted": "row_semantic_issue"
+      },
+      {
+        "id": "r2-family-08",
+        "gold": "mixed",
+        "predicted": "row_semantic_issue"
+      },
+      {
+        "id": "r2-family-09",
+        "gold": "uncertain",
+        "predicted": "conformant"
+      },
+      {
+        "id": "r2-family-10",
+        "gold": "uncertain",
+        "predicted": "conformant"
+      },
+      {
+        "id": "r2-maintenance-03",
+        "gold": "format_drift",
+        "predicted": "conformant"
+      },
+      {
+        "id": "r2-maintenance-04",
+        "gold": "format_drift",
+        "predicted": "conformant"
+      },
+      {
+        "id": "r2-maintenance-07",
+        "gold": "mixed",
+        "predicted": "row_semantic_issue"
+      },
+      {
+        "id": "r2-maintenance-08",
+        "gold": "mixed",
+        "predicted": "row_semantic_issue"
+      },
+      {
+        "id": "r2-maintenance-10",
+        "gold": "uncertain",
+        "predicted": "conformant"
+      }
+    ],
+    "review_count": 2,
+    "fallback_count": 0,
+    "uncertain_called_clean": 6,
+    "uncertainty_clean_unique_case_ids": [
+      "family-09",
+      "family-10",
+      "maintenance-10"
+    ],
+    "defect_clean_unique_case_ids": [
+      "family-03",
+      "maintenance-03",
+      "maintenance-04"
+    ],
+    "all_dangerous_clean_count": 12,
+    "dangerous_clean_unique_case_ids": [
+      "family-03",
+      "family-09",
+      "family-10",
+      "maintenance-03",
+      "maintenance-04",
+      "maintenance-10"
+    ]
+  },
+  "clef-cascade": {
+    "n": 40,
+    "correct": 28,
+    "accuracy": 0.7,
+    "macro_f1": 0.6926914489019752,
+    "recall": {
+      "conformant": 1.0,
+      "format_drift": 0.625,
+      "row_semantic_issue": 1.0,
+      "mixed": 0.375,
+      "uncertain": 0.5
+    },
+    "defects_called_clean": 3,
+    "clean_flagged_defect": 0,
+    "cost_usd": 0.04484069999999999,
+    "median_ms": 1021.9997914973646,
+    "p95_ms": 1851.1595410091104,
+    "misses": [
+      {
+        "id": "r1-family-03",
+        "gold": "format_drift",
+        "predicted": "conformant"
+      },
+      {
+        "id": "r1-family-04",
+        "gold": "format_drift",
+        "predicted": "conformant"
+      },
+      {
+        "id": "r1-family-07",
+        "gold": "mixed",
+        "predicted": "row_semantic_issue"
+      },
+      {
+        "id": "r1-family-08",
+        "gold": "mixed",
+        "predicted": "row_semantic_issue"
+      },
+      {
+        "id": "r1-family-09",
+        "gold": "uncertain",
+        "predicted": "row_semantic_issue"
+      },
+      {
+        "id": "r1-maintenance-08",
+        "gold": "mixed",
+        "predicted": "row_semantic_issue"
+      },
+      {
+        "id": "r1-maintenance-10",
+        "gold": "uncertain",
+        "predicted": "row_semantic_issue"
+      },
+      {
+        "id": "r2-family-03",
+        "gold": "format_drift",
+        "predicted": "conformant"
+      },
+      {
+        "id": "r2-family-07",
+        "gold": "mixed",
+        "predicted": "row_semantic_issue"
+      },
+      {
+        "id": "r2-family-08",
+        "gold": "mixed",
+        "predicted": "row_semantic_issue"
+      },
+      {
+        "id": "r2-family-09",
+        "gold": "uncertain",
+        "predicted": "row_semantic_issue"
+      },
+      {
+        "id": "r2-maintenance-10",
+        "gold": "uncertain",
+        "predicted": "row_semantic_issue"
+      }
+    ],
+    "review_count": 4,
+    "fallback_count": 38,
+    "uncertain_called_clean": 0,
+    "uncertainty_clean_unique_case_ids": [],
+    "defect_clean_unique_case_ids": [
+      "family-03",
+      "family-04"
+    ],
+    "all_dangerous_clean_count": 3,
+    "dangerous_clean_unique_case_ids": [
+      "family-03",
+      "family-04"
+    ]
+  },
+  "drex": {
+    "n": 40,
+    "correct": 18,
+    "accuracy": 0.45,
+    "macro_f1": 0.32,
+    "recall": {
+      "conformant": 1.0,
+      "format_drift": 0.25,
+      "row_semantic_issue": 1.0,
+      "mixed": 0.0,
+      "uncertain": 0.0
+    },
+    "defects_called_clean": 6,
+    "clean_flagged_defect": 0,
+    "cost_usd": 0.0011637600000000002,
+    "median_ms": 388.8568745023804,
+    "p95_ms": 477.4649169994518,
+    "misses": [
+      {
+        "id": "r1-family-03",
+        "gold": "format_drift",
+        "predicted": "conformant"
+      },
+      {
+        "id": "r1-family-04",
+        "gold": "format_drift",
+        "predicted": "conformant"
+      },
+      {
+        "id": "r1-family-07",
+        "gold": "mixed",
+        "predicted": "row_semantic_issue"
+      },
+      {
+        "id": "r1-family-08",
+        "gold": "mixed",
+        "predicted": "row_semantic_issue"
+      },
+      {
+        "id": "r1-family-09",
+        "gold": "uncertain",
+        "predicted": "conformant"
+      },
+      {
+        "id": "r1-family-10",
+        "gold": "uncertain",
+        "predicted": "conformant"
+      },
+      {
+        "id": "r1-maintenance-04",
+        "gold": "format_drift",
+        "predicted": "conformant"
+      },
+      {
+        "id": "r1-maintenance-07",
+        "gold": "mixed",
+        "predicted": "row_semantic_issue"
+      },
+      {
+        "id": "r1-maintenance-08",
+        "gold": "mixed",
+        "predicted": "row_semantic_issue"
+      },
+      {
+        "id": "r1-maintenance-09",
+        "gold": "uncertain",
+        "predicted": "conformant"
+      },
+      {
+        "id": "r1-maintenance-10",
+        "gold": "uncertain",
+        "predicted": "conformant"
+      },
+      {
+        "id": "r2-family-03",
+        "gold": "format_drift",
+        "predicted": "conformant"
+      },
+      {
+        "id": "r2-family-04",
+        "gold": "format_drift",
+        "predicted": "conformant"
+      },
+      {
+        "id": "r2-family-07",
+        "gold": "mixed",
+        "predicted": "row_semantic_issue"
+      },
+      {
+        "id": "r2-family-08",
+        "gold": "mixed",
+        "predicted": "row_semantic_issue"
+      },
+      {
+        "id": "r2-family-09",
+        "gold": "uncertain",
+        "predicted": "conformant"
+      },
+      {
+        "id": "r2-family-10",
+        "gold": "uncertain",
+        "predicted": "conformant"
+      },
+      {
+        "id": "r2-maintenance-04",
+        "gold": "format_drift",
+        "predicted": "conformant"
+      },
+      {
+        "id": "r2-maintenance-07",
+        "gold": "mixed",
+        "predicted": "row_semantic_issue"
+      },
+      {
+        "id": "r2-maintenance-08",
+        "gold": "mixed",
+        "predicted": "row_semantic_issue"
+      },
+      {
+        "id": "r2-maintenance-09",
+        "gold": "uncertain",
+        "predicted": "conformant"
+      },
+      {
+        "id": "r2-maintenance-10",
+        "gold": "uncertain",
+        "predicted": "conformant"
+      }
+    ],
+    "review_count": 0,
+    "fallback_count": 0,
+    "uncertain_called_clean": 8,
+    "uncertainty_clean_unique_case_ids": [
+      "family-09",
+      "family-10",
+      "maintenance-09",
+      "maintenance-10"
+    ],
+    "defect_clean_unique_case_ids": [
+      "family-03",
+      "family-04",
+      "maintenance-04"
+    ],
+    "all_dangerous_clean_count": 14,
+    "dangerous_clean_unique_case_ids": [
+      "family-03",
+      "family-04",
+      "family-09",
+      "family-10",
+      "maintenance-04",
+      "maintenance-09",
+      "maintenance-10"
+    ]
+  },
+  "drex-cascade": {
+    "n": 40,
+    "correct": 22,
+    "accuracy": 0.55,
+    "macro_f1": 0.4730735930735931,
+    "recall": {
+      "conformant": 1.0,
+      "format_drift": 0.5,
+      "row_semantic_issue": 1.0,
+      "mixed": 0.25,
+      "uncertain": 0.0
+    },
+    "defects_called_clean": 4,
+    "clean_flagged_defect": 0,
+    "cost_usd": 0.014383759999999999,
+    "median_ms": 426.9781250040978,
+    "p95_ms": 1115.4182910104282,
+    "misses": [
+      {
+        "id": "r1-family-03",
+        "gold": "format_drift",
+        "predicted": "conformant"
+      },
+      {
+        "id": "r1-family-04",
+        "gold": "format_drift",
+        "predicted": "conformant"
+      },
+      {
+        "id": "r1-family-07",
+        "gold": "mixed",
+        "predicted": "row_semantic_issue"
+      },
+      {
+        "id": "r1-family-08",
+        "gold": "mixed",
+        "predicted": "row_semantic_issue"
+      },
+      {
+        "id": "r1-family-09",
+        "gold": "uncertain",
+        "predicted": "conformant"
+      },
+      {
+        "id": "r1-family-10",
+        "gold": "uncertain",
+        "predicted": "conformant"
+      },
+      {
+        "id": "r1-maintenance-08",
+        "gold": "mixed",
+        "predicted": "row_semantic_issue"
+      },
+      {
+        "id": "r1-maintenance-09",
+        "gold": "uncertain",
+        "predicted": "conformant"
+      },
+      {
+        "id": "r1-maintenance-10",
+        "gold": "uncertain",
+        "predicted": "conformant"
+      },
+      {
+        "id": "r2-family-03",
+        "gold": "format_drift",
+        "predicted": "conformant"
+      },
+      {
+        "id": "r2-family-04",
+        "gold": "format_drift",
+        "predicted": "conformant"
+      },
+      {
+        "id": "r2-family-07",
+        "gold": "mixed",
+        "predicted": "row_semantic_issue"
+      },
+      {
+        "id": "r2-family-08",
+        "gold": "mixed",
+        "predicted": "row_semantic_issue"
+      },
+      {
+        "id": "r2-family-09",
+        "gold": "uncertain",
+        "predicted": "conformant"
+      },
+      {
+        "id": "r2-family-10",
+        "gold": "uncertain",
+        "predicted": "conformant"
+      },
+      {
+        "id": "r2-maintenance-08",
+        "gold": "mixed",
+        "predicted": "row_semantic_issue"
+      },
+      {
+        "id": "r2-maintenance-09",
+        "gold": "uncertain",
+        "predicted": "conformant"
+      },
+      {
+        "id": "r2-maintenance-10",
+        "gold": "uncertain",
+        "predicted": "conformant"
+      }
+    ],
+    "review_count": 0,
+    "fallback_count": 12,
+    "uncertain_called_clean": 8,
+    "uncertainty_clean_unique_case_ids": [
+      "family-09",
+      "family-10",
+      "maintenance-09",
+      "maintenance-10"
+    ],
+    "defect_clean_unique_case_ids": [
+      "family-03",
+      "family-04"
+    ],
+    "all_dangerous_clean_count": 12,
+    "dangerous_clean_unique_case_ids": [
+      "family-03",
+      "family-04",
+      "family-09",
+      "family-10",
+      "maintenance-09",
+      "maintenance-10"
+    ]
+  },
+  "gpt41": {
+    "n": 40,
+    "correct": 30,
+    "accuracy": 0.75,
+    "macro_f1": 0.7372522214627478,
+    "recall": {
+      "conformant": 1.0,
+      "format_drift": 0.625,
+      "row_semantic_issue": 1.0,
+      "mixed": 0.375,
+      "uncertain": 0.75
+    },
+    "defects_called_clean": 3,
+    "clean_flagged_defect": 0,
+    "cost_usd": 0.043392000000000014,
+    "median_ms": 681.4598540004226,
+    "p95_ms": 1111.1150829965482,
+    "misses": [
+      {
+        "id": "r1-family-03",
+        "gold": "format_drift",
+        "predicted": "conformant"
+      },
+      {
+        "id": "r1-family-04",
+        "gold": "format_drift",
+        "predicted": "conformant"
+      },
+      {
+        "id": "r1-family-07",
+        "gold": "mixed",
+        "predicted": "row_semantic_issue"
+      },
+      {
+        "id": "r1-family-08",
+        "gold": "mixed",
+        "predicted": "row_semantic_issue"
+      },
+      {
+        "id": "r1-family-09",
+        "gold": "uncertain",
+        "predicted": "row_semantic_issue"
+      },
+      {
+        "id": "r1-maintenance-07",
+        "gold": "mixed",
+        "predicted": "format_drift"
+      },
+      {
+        "id": "r2-family-03",
+        "gold": "format_drift",
+        "predicted": "conformant"
+      },
+      {
+        "id": "r2-family-07",
+        "gold": "mixed",
+        "predicted": "row_semantic_issue"
+      },
+      {
+        "id": "r2-family-08",
+        "gold": "mixed",
+        "predicted": "row_semantic_issue"
+      },
+      {
+        "id": "r2-maintenance-10",
+        "gold": "uncertain",
+        "predicted": "row_semantic_issue"
+      }
+    ],
+    "review_count": 6,
+    "fallback_count": 0,
+    "uncertain_called_clean": 0,
+    "uncertainty_clean_unique_case_ids": [],
+    "defect_clean_unique_case_ids": [
+      "family-03",
+      "family-04"
+    ],
+    "all_dangerous_clean_count": 3,
+    "dangerous_clean_unique_case_ids": [
+      "family-03",
+      "family-04"
+    ]
+  },
+  "liquid": {
+    "n": 40,
+    "correct": 28,
+    "accuracy": 0.7,
+    "macro_f1": 0.6933333333333332,
+    "recall": {
+      "conformant": 1.0,
+      "format_drift": 0.5,
+      "row_semantic_issue": 1.0,
+      "mixed": 0.5,
+      "uncertain": 0.5
+    },
+    "defects_called_clean": 4,
+    "clean_flagged_defect": 0,
+    "cost_usd": 0.0008538399999999999,
+    "median_ms": 397.8332499973476,
+    "p95_ms": 492.90404199564364,
+    "misses": [
+      {
+        "id": "r1-family-03",
+        "gold": "format_drift",
+        "predicted": "conformant"
+      },
+      {
+        "id": "r1-family-04",
+        "gold": "format_drift",
+        "predicted": "conformant"
+      },
+      {
+        "id": "r1-family-07",
+        "gold": "mixed",
+        "predicted": "row_semantic_issue"
+      },
+      {
+        "id": "r1-family-08",
+        "gold": "mixed",
+        "predicted": "row_semantic_issue"
+      },
+      {
+        "id": "r1-family-09",
+        "gold": "uncertain",
+        "predicted": "conformant"
+      },
+      {
+        "id": "r1-family-10",
+        "gold": "uncertain",
+        "predicted": "conformant"
+      },
+      {
+        "id": "r2-family-03",
+        "gold": "format_drift",
+        "predicted": "conformant"
+      },
+      {
+        "id": "r2-family-04",
+        "gold": "format_drift",
+        "predicted": "conformant"
+      },
+      {
+        "id": "r2-family-07",
+        "gold": "mixed",
+        "predicted": "row_semantic_issue"
+      },
+      {
+        "id": "r2-family-08",
+        "gold": "mixed",
+        "predicted": "row_semantic_issue"
+      },
+      {
+        "id": "r2-family-09",
+        "gold": "uncertain",
+        "predicted": "conformant"
+      },
+      {
+        "id": "r2-family-10",
+        "gold": "uncertain",
+        "predicted": "conformant"
+      }
+    ],
+    "review_count": 4,
+    "fallback_count": 0,
+    "uncertain_called_clean": 4,
+    "uncertainty_clean_unique_case_ids": [
+      "family-09",
+      "family-10"
+    ],
+    "defect_clean_unique_case_ids": [
+      "family-03",
+      "family-04"
+    ],
+    "all_dangerous_clean_count": 8,
+    "dangerous_clean_unique_case_ids": [
+      "family-03",
+      "family-04",
+      "family-09",
+      "family-10"
+    ]
+  },
+  "liquid-cascade": {
+    "n": 40,
+    "correct": 31,
+    "accuracy": 0.775,
+    "macro_f1": 0.7605194805194806,
+    "recall": {
+      "conformant": 1.0,
+      "format_drift": 0.75,
+      "row_semantic_issue": 1.0,
+      "mixed": 0.375,
+      "uncertain": 0.75
+    },
+    "defects_called_clean": 2,
+    "clean_flagged_defect": 0,
+    "cost_usd": 0.007277839999999997,
+    "median_ms": 410.14952099794755,
+    "p95_ms": 1138.8061249890598,
+    "misses": [
+      {
+        "id": "r1-family-03",
+        "gold": "format_drift",
+        "predicted": "conformant"
+      },
+      {
+        "id": "r1-family-07",
+        "gold": "mixed",
+        "predicted": "row_semantic_issue"
+      },
+      {
+        "id": "r1-family-08",
+        "gold": "mixed",
+        "predicted": "row_semantic_issue"
+      },
+      {
+        "id": "r1-family-09",
+        "gold": "uncertain",
+        "predicted": "conformant"
+      },
+      {
+        "id": "r1-maintenance-07",
+        "gold": "mixed",
+        "predicted": "format_drift"
+      },
+      {
+        "id": "r2-family-03",
+        "gold": "format_drift",
+        "predicted": "conformant"
+      },
+      {
+        "id": "r2-family-07",
+        "gold": "mixed",
+        "predicted": "row_semantic_issue"
+      },
+      {
+        "id": "r2-family-08",
+        "gold": "mixed",
+        "predicted": "row_semantic_issue"
+      },
+      {
+        "id": "r2-family-09",
+        "gold": "uncertain",
+        "predicted": "conformant"
+      }
+    ],
+    "review_count": 6,
+    "fallback_count": 6,
+    "uncertain_called_clean": 2,
+    "uncertainty_clean_unique_case_ids": [
+      "family-09"
+    ],
+    "defect_clean_unique_case_ids": [
+      "family-03"
+    ],
+    "all_dangerous_clean_count": 4,
+    "dangerous_clean_unique_case_ids": [
+      "family-03",
+      "family-09"
+    ]
+  },
+  "scaledown": {
+    "n": 40,
+    "correct": 12,
+    "accuracy": 0.3,
+    "macro_f1": 0.19058823529411764,
+    "recall": {
+      "conformant": 0.75,
+      "format_drift": 0.0,
+      "row_semantic_issue": 0.0,
+      "mixed": 0.75,
+      "uncertain": 0.0
+    },
+    "defects_called_clean": 2,
+    "clean_flagged_defect": 2,
+    "cost_usd": 0.00123592,
+    "median_ms": 518.2705414990778,
+    "p95_ms": 800.7086249999702,
+    "misses": [
+      {
+        "id": "r1-family-02",
+        "gold": "conformant",
+        "predicted": "mixed"
+      },
+      {
+        "id": "r1-family-03",
+        "gold": "format_drift",
+        "predicted": "conformant"
+      },
+      {
+        "id": "r1-family-04",
+        "gold": "format_drift",
+        "predicted": "mixed"
+      },
+      {
+        "id": "r1-family-05",
+        "gold": "row_semantic_issue",
+        "predicted": "mixed"
+      },
+      {
+        "id": "r1-family-06",
+        "gold": "row_semantic_issue",
+        "predicted": "mixed"
+      },
+      {
+        "id": "r1-family-09",
+        "gold": "uncertain",
+        "predicted": "conformant"
+      },
+      {
+        "id": "r1-family-10",
+        "gold": "uncertain",
+        "predicted": "mixed"
+      },
+      {
+        "id": "r1-maintenance-03",
+        "gold": "format_drift",
+        "predicted": "mixed"
+      },
+      {
+        "id": "r1-maintenance-04",
+        "gold": "format_drift",
+        "predicted": "mixed"
+      },
+      {
+        "id": "r1-maintenance-05",
+        "gold": "row_semantic_issue",
+        "predicted": "mixed"
+      },
+      {
+        "id": "r1-maintenance-06",
+        "gold": "row_semantic_issue",
+        "predicted": "mixed"
+      },
+      {
+        "id": "r1-maintenance-08",
+        "gold": "mixed",
+        "predicted": "row_semantic_issue"
+      },
+      {
+        "id": "r1-maintenance-09",
+        "gold": "uncertain",
+        "predicted": "conformant"
+      },
+      {
+        "id": "r1-maintenance-10",
+        "gold": "uncertain",
+        "predicted": "mixed"
+      },
+      {
+        "id": "r2-family-02",
+        "gold": "conformant",
+        "predicted": "mixed"
+      },
+      {
+        "id": "r2-family-03",
+        "gold": "format_drift",
+        "predicted": "conformant"
+      },
+      {
+        "id": "r2-family-04",
+        "gold": "format_drift",
+        "predicted": "mixed"
+      },
+      {
+        "id": "r2-family-05",
+        "gold": "row_semantic_issue",
+        "predicted": "mixed"
+      },
+      {
+        "id": "r2-family-06",
+        "gold": "row_semantic_issue",
+        "predicted": "mixed"
+      },
+      {
+        "id": "r2-family-09",
+        "gold": "uncertain",
+        "predicted": "conformant"
+      },
+      {
+        "id": "r2-family-10",
+        "gold": "uncertain",
+        "predicted": "mixed"
+      },
+      {
+        "id": "r2-maintenance-03",
+        "gold": "format_drift",
+        "predicted": "mixed"
+      },
+      {
+        "id": "r2-maintenance-04",
+        "gold": "format_drift",
+        "predicted": "mixed"
+      },
+      {
+        "id": "r2-maintenance-05",
+        "gold": "row_semantic_issue",
+        "predicted": "mixed"
+      },
+      {
+        "id": "r2-maintenance-06",
+        "gold": "row_semantic_issue",
+        "predicted": "mixed"
+      },
+      {
+        "id": "r2-maintenance-08",
+        "gold": "mixed",
+        "predicted": "row_semantic_issue"
+      },
+      {
+        "id": "r2-maintenance-09",
+        "gold": "uncertain",
+        "predicted": "conformant"
+      },
+      {
+        "id": "r2-maintenance-10",
+        "gold": "uncertain",
+        "predicted": "mixed"
+      }
+    ],
+    "review_count": 0,
+    "fallback_count": 0,
+    "uncertain_called_clean": 4,
+    "uncertainty_clean_unique_case_ids": [
+      "family-09",
+      "maintenance-09"
+    ],
+    "defect_clean_unique_case_ids": [
+      "family-03"
+    ],
+    "all_dangerous_clean_count": 6,
+    "dangerous_clean_unique_case_ids": [
+      "family-03",
+      "family-09",
+      "maintenance-09"
+    ]
+  },
+  "scaledown-cascade": {
+    "n": 40,
+    "correct": 31,
+    "accuracy": 0.775,
+    "macro_f1": 0.7688562645084385,
+    "recall": {
+      "conformant": 1.0,
+      "format_drift": 0.75,
+      "row_semantic_issue": 1.0,
+      "mixed": 0.375,
+      "uncertain": 0.75
+    },
+    "defects_called_clean": 2,
+    "clean_flagged_defect": 0,
+    "cost_usd": 0.042507919999999984,
+    "median_ms": 1182.1818535099737,
+    "p95_ms": 1682.4677090044133,
+    "misses": [
+      {
+        "id": "r1-family-03",
+        "gold": "format_drift",
+        "predicted": "conformant"
+      },
+      {
+        "id": "r1-family-07",
+        "gold": "mixed",
+        "predicted": "row_semantic_issue"
+      },
+      {
+        "id": "r1-family-08",
+        "gold": "mixed",
+        "predicted": "row_semantic_issue"
+      },
+      {
+        "id": "r1-family-09",
+        "gold": "uncertain",
+        "predicted": "row_semantic_issue"
+      },
+      {
+        "id": "r1-maintenance-08",
+        "gold": "mixed",
+        "predicted": "row_semantic_issue"
+      },
+      {
+        "id": "r1-maintenance-10",
+        "gold": "uncertain",
+        "predicted": "row_semantic_issue"
+      },
+      {
+        "id": "r2-family-03",
+        "gold": "format_drift",
+        "predicted": "conformant"
+      },
+      {
+        "id": "r2-family-07",
+        "gold": "mixed",
+        "predicted": "row_semantic_issue"
+      },
+      {
+        "id": "r2-family-08",
+        "gold": "mixed",
+        "predicted": "row_semantic_issue"
+      }
+    ],
+    "review_count": 6,
+    "fallback_count": 38,
+    "uncertain_called_clean": 0,
+    "uncertainty_clean_unique_case_ids": [],
+    "defect_clean_unique_case_ids": [
+      "family-03"
+    ],
+    "all_dangerous_clean_count": 2,
+    "dangerous_clean_unique_case_ids": [
+      "family-03"
+    ]
+  },
+  "solar": {
+    "n": 40,
+    "correct": 31,
+    "accuracy": 0.775,
+    "macro_f1": 0.7690323955669223,
+    "recall": {
+      "conformant": 0.875,
+      "format_drift": 1.0,
+      "row_semantic_issue": 1.0,
+      "mixed": 0.5,
+      "uncertain": 0.5
+    },
+    "defects_called_clean": 0,
+    "clean_flagged_defect": 1,
+    "cost_usd": 0.0015118000000000002,
+    "median_ms": 13164.447770999686,
+    "p95_ms": 17319.25504199171,
+    "misses": [
+      {
+        "id": "r1-family-02",
+        "gold": "conformant",
+        "predicted": "row_semantic_issue"
+      },
+      {
+        "id": "r1-family-07",
+        "gold": "mixed",
+        "predicted": "row_semantic_issue"
+      },
+      {
+        "id": "r1-family-08",
+        "gold": "mixed",
+        "predicted": "row_semantic_issue"
+      },
+      {
+        "id": "r1-family-09",
+        "gold": "uncertain",
+        "predicted": "row_semantic_issue"
+      },
+      {
+        "id": "r1-maintenance-09",
+        "gold": "uncertain",
+        "predicted": "conformant"
+      },
+      {
+        "id": "r2-family-07",
+        "gold": "mixed",
+        "predicted": "row_semantic_issue"
+      },
+      {
+        "id": "r2-family-08",
+        "gold": "mixed",
+        "predicted": "format_drift"
+      },
+      {
+        "id": "r2-family-09",
+        "gold": "uncertain",
+        "predicted": "row_semantic_issue"
+      },
+      {
+        "id": "r2-family-10",
+        "gold": "uncertain",
+        "predicted": "row_semantic_issue"
+      }
+    ],
+    "review_count": 4,
+    "fallback_count": 0,
+    "uncertain_called_clean": 1,
+    "uncertainty_clean_unique_case_ids": [
+      "maintenance-09"
+    ],
+    "defect_clean_unique_case_ids": [],
+    "all_dangerous_clean_count": 1,
+    "dangerous_clean_unique_case_ids": [
+      "maintenance-09"
+    ]
+  },
+  "solar-cascade": {
+    "n": 40,
+    "correct": 33,
+    "accuracy": 0.825,
+    "macro_f1": 0.8208693267516797,
+    "recall": {
+      "conformant": 1.0,
+      "format_drift": 1.0,
+      "row_semantic_issue": 1.0,
+      "mixed": 0.5,
+      "uncertain": 0.625
+    },
+    "defects_called_clean": 0,
+    "clean_flagged_defect": 0,
+    "cost_usd": 0.0082638,
+    "median_ms": 13164.447770999686,
+    "p95_ms": 17319.25504199171,
+    "misses": [
+      {
+        "id": "r1-family-07",
+        "gold": "mixed",
+        "predicted": "row_semantic_issue"
+      },
+      {
+        "id": "r1-family-08",
+        "gold": "mixed",
+        "predicted": "row_semantic_issue"
+      },
+      {
+        "id": "r1-family-09",
+        "gold": "uncertain",
+        "predicted": "row_semantic_issue"
+      },
+      {
+        "id": "r1-maintenance-09",
+        "gold": "uncertain",
+        "predicted": "conformant"
+      },
+      {
+        "id": "r2-family-07",
+        "gold": "mixed",
+        "predicted": "row_semantic_issue"
+      },
+      {
+        "id": "r2-family-08",
+        "gold": "mixed",
+        "predicted": "row_semantic_issue"
+      },
+      {
+        "id": "r2-family-10",
+        "gold": "uncertain",
+        "predicted": "row_semantic_issue"
+      }
+    ],
+    "review_count": 5,
+    "fallback_count": 6,
+    "uncertain_called_clean": 1,
+    "uncertainty_clean_unique_case_ids": [
+      "maintenance-09"
+    ],
+    "defect_clean_unique_case_ids": [],
+    "all_dangerous_clean_count": 1,
+    "dangerous_clean_unique_case_ids": [
+      "maintenance-09"
+    ]
+  }
+}

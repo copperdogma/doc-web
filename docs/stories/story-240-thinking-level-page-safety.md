@@ -115,3 +115,22 @@ September30 — Final `/mark-story-done` closes the approved evaluation, not pro
 September30 — User approved defining uncertainty review before any Sol promotion. Prepared offline `docs/evals/evidence/story240-safety-prompt-repair/uncertainty-review-plan.md` after tracing actual crop→manifest→builder/driver seams. Recommended NEW opt-in all-candidate human review (pass AND fail), exact run/source/crop/geometry-bound authority events, hold publication if review missing/stale/unresolved, preserve source/candidates on rejection. No existing runtime GPT5.5 safety call or reviewqueue claimed; detector/caption/C5 retained. S3 coherent interpretation remains plausible; no hiddenfixture-intent ambiguity labels. Concrete future implementation files and24pair pre-inference freeze/physical-policy-publication gates specified; no code/calls/prompt/schema/runtime/default/canonicalgolden changes. Story240 evaluation remains Done; preparation is not implemented qualification.
 
 September30 — Cam authorized scoped finish-and-push of this campaign and linked offline review gate. Landing preparation reuses exact applicable208 test/driver proof inputs, passes10 current guard tests plus selected Ruff, graph, prompt syntax and whitespace checks, and verifies lossless reconstruction of25 original047,54 original048 and179 continuation files against live originals. Primary checkout and prior paid evidence preserved. Candidate is prepared on the current remote-main base; no push until coordinator all-repo preflight completes. See `docs/evals/evidence/story241-crop-review/landing-preflight.json`.
+
+
+2026-10-13 — Scout091 item3 authorizes an independent finite-verdict challenger
+screen using exact Attempt048 source-adjudicated prompt/gold and22explicitly
+owner-public image pairs. Attempt070 holds the separate hardUSD8 ledger, native
+two-image admission, fresh GPT5.5 none/2048 strict control and first-confirmed
+unsafe-accept stop. Clef/ScaleDown router paths; Liquid direct deferred because
+no eligible configured key. Generated-rationale parity, production replacement,
+private inputs, geometry edits, OCR/downsample rescue and defaults excluded.
+Text item2 continues independently underUSD4 and Story233.
+
+2026-10-13 — Attempt070 visual closes after2matched diagnosticcases: Clef/GPT
+bothacceptsource-confirmed012001clippedseal,1false-safe each; no safetywinner,
+no confidence-policy invention. ScaleDown2imageHTTP400, OCRdocument substitute
+ineligible; Liquid directkeyabsent.20remainingunmeasured, nogolden/sourcechanges.
+Visual5attemptsUSD.0526585settled+.00256unknown/8; sourceimagehashes and root
+independent contact-sheet/048physicalregistration review retained. Generated
+rationale replacement and full-driver safety remain unqualified. No defaults,
+commit/push or automaticpromotion. Text remains independently complete.

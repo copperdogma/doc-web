@@ -3218,6 +3218,15 @@ evals:
         note: >
           Attempt048 repaired prompt/source-adjudicated labels: candidate incorrectly accepts seal missing 21% height. Frozen primary 5/5 retained; source-corrected 4/5 is not full 22 rate. GPT5.5 control independently false-rejects cover 0/1, 21 unrun.
     attempts:
+      - id: "070"
+        date: 2026-10-13
+        status: inconclusive
+        approach: "Scout091 finite crop-safety verdict screen on exact Attempt048 source-adjudicated public images"
+        measured_metrics: {matched_cases: 2, remaining_unmeasured: 20, clef_correct: 1, fresh_gpt55_correct: 1, clef_false_safe: 1, fresh_gpt55_false_safe: 1, clef_cost_usd: 0.0008805, fresh_gpt55_cost_usd: 0.051778, visual_settled_usd: 0.0526585, visual_unknown_usd: 0.00256, visual_cap_usd: 8}
+        note: "No safetywinner: Clef exacttwoimage admitted then unsafeaccept012001clippedseal; freshGPT5.5none2048alsoaccepted. Properstop,20remainingnotmeasured; lowconfidence is not a tested visualroutingrule. ScaleDown exacttwoimageHTTP400, documentOCR substitute ineligible, capabilitynotmeasured/defer. Liquid directkeyabsent/defer. Reasons unqualified for typedcandidates. No downsample/OCR rescue or defaults/commit/push. Attempt070 source/gold/hashbindings and rootindependentreview."
+        retry_when:
+          - condition: new-subject-model-or-native-two-image-contract
+            note: "Material safety capability change or ScaleDown native intact source+crop image admission; single-document OCR is not a trigger."
       - id: "068"
         measured_metrics: {scope: "two source-adjudicated differentiators", cases_per_arm: 2, candidate_correct_per_arm: 1, false_safe_per_arm: 1, fresh_control_correct: 2}
         date: 2026-10-07
@@ -6078,6 +6087,15 @@ evals:
         metrics: {accuracy: 0.825, macro_f1: 0.8156005398, latency_ms: 755.8994, cost_usd: 0.00049229, cost_estimated: true}
         note: "33/40;17 actual fallbacks; mean latency.54.64% cheaper narrow workflow;3 defects called clean, same count as incumbent. Conditional bounded integration candidate."
     attempts:
+      - id: "070"
+        date: 2026-10-13
+        status: inconclusive
+        approach: "Scout091 five dated native OpenRouter Decisions arms, fresh GPT4.1, actual per-arm .8 serial fallback"
+        measured_metrics: {unique_cases: 20, repeats: 2, judgments_per_arm: 40, baseline_correct: 30, baseline_defect_clean: 3, baseline_uncertainty_clean: 0, solar_cascade_correct: 33, solar_cascade_defect_clean: 0, solar_cascade_uncertainty_clean: 1, solar_cascade_cost_usd: 0.0082638, baseline_cost_usd: 0.043392, solar_cascade_p95_ms: 17319, baseline_p95_ms: 1111}
+        note: "Complete all5text arms plus100actualfallbacks. Solar strongest bounded quality/economy signal:81%lowercascadecost but15.6xhigherp95 and1uncertainty-clean; no automaticpromotion. Liquidcascade4dangerousclean vsGPT3; ScaleDowncascade2 but similarcost/slower; Clef/Drex no overallwin. TextUSD.16196998/4 unknown0; ownertext+visualUSD.21462848settled+.00256unknown/12. Attempt070/evidence070-scout091 bind702rawreceipts, currentbase, closedledgers and40focusedtests. No defaults/commit/push."
+        retry_when:
+          - condition: new-independent-source-aware-batch-lane
+            note: "Fresh held-out source-aware Solar qualification with explicit review/uncertainty, complete runtime shadow cost and latency; unchanged exposed fixtures not repeated."
       - id: "068"
         measured_metrics: {scope: "synthetic five-class projection", judgments: 40, unique_cases: 20, low_correct: 25, fresh_control_correct: 29, low_cost_usd: 0.0041735, control_cost_usd: 0.043392, low_median_ms: 1153.5, control_median_ms: 857.5}
         date: 2026-10-07
