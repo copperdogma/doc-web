@@ -1,0 +1,26 @@
+{
+  "base": "e44c0a41abf02ad266c10afdf5d95d48bb1b1fe2",
+  "epochs": [
+    {
+      "requests": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "script_sha256": "e96bad6a8f0fe806bcc94c60bcb59d4a36ba0845b7e2cfef55d19b182583b1f5",
+      "description": "Frozen initial high/medium/control producing source"
+    },
+    {
+      "requests": [
+        6,
+        7,
+        8,
+        9
+      ],
+      "script_sha256": "5a650ae22d372fa06649f008acfcf4e904285ed4028392caed0352fbe0eb6801",
+      "description": "Operational topology adds one medium-recovery1 artifact identity; wire medium unchanged. No prompt/pixels/schema/gold/scorer or outputcontrol changed."
+    }
+  ]
+}

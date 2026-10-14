@@ -1,0 +1,15 @@
+{
+  "original_decision_sha256": "7e4777faba853ffa2754fb022702d519e8b569a159111c1025b86bdceaae8fee",
+  "original_preserved": true,
+  "qualification": "Max proceeded on a speculative economic-headroom interpretation to answer the preselected bounded quality question, with root approval. This was a weakened economic rationale, not satisfaction of a measured30percentbenefit gate.",
+  "measured_high_bakery": {
+    "cost_usd": 0.071068,
+    "astra_cost_usd": 0.0824925,
+    "cost_saving_percent": 13.849,
+    "latency_note": "High25.743s versusAstra12.321s; slower, no measured latency benefit."
+  },
+  "economic_basis_limit": "Input plus observed-visible-token floor was theoretical headroom only; it supplied no positive evidence that max would improve task cost or reduce ambiguity deliberation. Higher effort was not predicted to be cheaper.",
+  "source_question": "High kept genuine ambiguity safe but repeated clear O0miss/overholds; root allowed one already selected max arm to settle this bounded source-fidelity gap.",
+  "result_unchanged": "Max repeated the failed bakery sourcequality; retainAstra. No scores, charges, source truth, originaldecisionwording or prior074 evidence changed.",
+  "no_new_requests": true
+}

@@ -46,7 +46,7 @@ evals:
     pipeline_stage: extract
     runner: custom
     command: "PYTHONPATH=. python benchmarks/scripts/run_literal_table_fidelity.py --manifest output/story244-eval/development.json --out output/story244-eval/fresh --variant literal"
-    story_refs: ["245", "253"]
+    story_refs: ["245", "253", "254", "255"]
     category_refs: ["spec:2", "spec:3", "spec:6"]
     spec_refs: ["spec:2.1", "spec:2.2", "spec:3.1", "spec:6"]
     compromise_refs: ["C1", "C3", "C6"]
@@ -56,6 +56,16 @@ evals:
       silent_substitutions: 0
       harmful_control_changes: 0
     scores:
+      - model: meta/muse-wonder-20261012 high-max32768 thinking Scout093
+        measured: 2026-10-14
+        git_sha: e44c0a41+attempt075
+        metrics: {high_cases: 2, max_cases: 2, medium_cases: 1, control_cases: 3, bakery_diagnostic_exact_cells: 22, bakery_total_cells: 23, clear_holds_per_arm: 2, genuine_ambiguity_holds_per_high_max_arm: 2, accepted_wrong_cells: 0, high_bakery_cost_usd: 0.071068, max_bakery_cost_usd: 0.0698608, medium_bakery_cost_usd: 0.042968, high_bakery_latency_ms: 25743, max_bakery_latency_ms: 29033, medium_bakery_latency_ms: 11232}
+        note: "All3levels same O0diagnosticmiss/2readableholds; higherthinking noqualitygain, worsecost/latency vsfreshmedium. Bothhigh/max trueambiguity safeholds; nativeclear unmeasured aftervalidstops. Astra36clear exact+bothholds. NewUSD.4816003+prior.3223511=cumulative.8039514/10 unknown0, onepredispatch402 settled0/recovered. Exposedcalibration; retainAstra. Attempt075/Story255."
+      - model: meta/muse-wonder-20261012 medium32768 source-only Scout093
+        measured: 2026-10-14
+        git_sha: e44c0a41+attempt074
+        metrics: {candidate_cases: 2, control_cases: 3, diagnostic_exact_cells: 35, clear_cells_tested: 36, qualified_cases: 1, accepted_cells: 13, accepted_wrong_cells: 0, clear_uncertainty_cells: 3, harmful_control_changes: 0, latency_ms: 12816.5, cost_usd: 0.0439908, cost_estimated: false}
+        note: "Native13exact; imageIl1-O0->Il1-00 diagnostic and3opticallyclearholds. Valid source stop beforecandidateambiguity; Astra36clearcells exact+bothtrueholds. Pairedcost43.60%/latency42.58%lower with unequal quality; retainAstra. InclusiveUSD.3223511/10 unknown0,6POSTs. Root source review; Attempt074. No providerprofile/export/default adoption."
       - model: gemini-4-argon medium32768 source-only reader Scout092
         measured: 2026-10-13
         git_sha: 91cd9bb1+attempt071
@@ -82,6 +92,22 @@ evals:
         metrics: {cases_per_arm: 3, clear_cells_per_arm: 36, held_ambiguous_cells_per_arm: 2, harmful_changes: 0, low_cost_usd: 0.016486, medium_cost_usd: 0.018516, low_latency_sum_ms: 574451, medium_latency_sum_ms: 222034, low_thinking_tokens: 0, medium_thinking_tokens: 211, cached_tokens: 0}
         note: "Exposed effort-only calibration: boundedqualityparity, low10.96%cheaper but2.59xsamplelatencysum. Descriptiveoneobservation/case, sharedaccountcontextunmeasured. December.032972/.037032; no newAstra control orlevel/defaultadoption. Attempt072."
     attempts:
+      - id: "075"
+        date: 2026-10-14
+        status: failed
+        approach: "Approved high+conditionalmax literal thinking calibration, freshmedium discriminating bakery and freshAstra3 controls."
+        note: "Higherlevels repeat validclearO0 miss and2overholds; no effortqualitygain, actualeconomics worsen versusmedium. Genuineambiguity safety passes. CumulativeUSD.8039514/10 unknown0; ninePOSTs including documentedpredispatch402/oneoperationalrecovery. Prior074closedimmutable; no defaults/exportprofile/commits."
+        retry_when:
+          - condition: new-subject-model
+            note: "Changed exact checkpoint or source-qualified approach; no further unchangedmedium/high/max retry."
+      - id: "074"
+        date: 2026-10-14
+        status: failed
+        approach: "Approved Muse Wonder strict source-only literal screen against fresh Astra on three exposed synthetic confirmation-v2 cases."
+        note: "Clear-source candidate miss and over-abstention, safe hold, no harmful accepted changes. Candidate2/control3; candidate ambiguity unmeasured after stop. Immutable dated generation identity, USD.3223511 settled/unknown0 under10. Story254/evidence074-wonder."
+        retry_when:
+          - condition: new-subject-model
+            note: "Reopen with changed exact checkpoint or source-qualified approach; do not rerun unchanged valid literal failure."
       - id: "073"
         date: 2026-10-13
         status: failed

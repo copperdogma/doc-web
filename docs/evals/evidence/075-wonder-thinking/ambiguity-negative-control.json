@@ -1,0 +1,69 @@
+{
+  "case": "ambiguity-negative",
+  "arm": "control",
+  "status": "unresolved",
+  "errors": [
+    "table 0: source review reports 2 uncertain cells"
+  ],
+  "uncertainties": [
+    {
+      "alternatives": [
+        "I",
+        "l"
+      ],
+      "cell": 1,
+      "reason": "The visible glyph is a plain vertical stroke; uppercase I and lowercase l cannot be reliably distinguished in this font.",
+      "row": 1
+    },
+    {
+      "alternatives": [
+        "I",
+        "l"
+      ],
+      "cell": 1,
+      "reason": "The visible glyph is a plain vertical stroke; uppercase I and lowercase l cannot be reliably distinguished in this font.",
+      "row": 2
+    }
+  ],
+  "quality": {
+    "text_pass": false,
+    "structure_pass": true,
+    "pass": false,
+    "text_mismatch_count": 1,
+    "structure_mismatch_count": 0,
+    "text_mismatches": [
+      {
+        "table": 0,
+        "actual_table": 0,
+        "row": 2,
+        "cell": 1,
+        "kind": "cell_text",
+        "expected": "l",
+        "actual": "I"
+      }
+    ],
+    "structure_mismatches": [],
+    "counts": {
+      "golden": {
+        "tables": 1,
+        "rows": 4,
+        "cells": 8
+      },
+      "actual": {
+        "tables": 1,
+        "rows": 4,
+        "cells": 8
+      }
+    },
+    "scope": {
+      "mode": "all_tables",
+      "table_index": null,
+      "golden_table_count": 1,
+      "actual_table_count": 1,
+      "excluded_actual_table_indices": [],
+      "compared_actual_table_count": 1,
+      "document_actual_table_count": 1
+    }
+  },
+  "report": "benchmarks/results/wonder-thinking-20261014/ambiguity-negative-control_reports/row-00000-page-00001-original-00001.json"
+}

@@ -1,0 +1,202 @@
+{
+  "cap_usd": 10,
+  "spent_usd": 0.3223511,
+  "calls": [
+    {
+      "stage": "native-contract-probe",
+      "model": "meta/muse-wonder",
+      "reserved_usd": 4.849664,
+      "cost_usd": 0.006092,
+      "request_sha256": "cb1b14b6a9567934ea7504abe1f4e1c4a8b232dfa949b17818fd66214b15ea80",
+      "request": "benchmarks/results/wonder-20261014/request-001.json",
+      "response": "benchmarks/results/wonder-20261014/response-001.json",
+      "response_sha256": "61ff7c5df2d8452a9ea9109f1387797caae802914da272a0e43a84e6e41df8d0",
+      "response_bytes": 3875,
+      "status_code": 200,
+      "latency_ms": 2401,
+      "usage": {
+        "prompt_tokens": 393,
+        "completion_tokens": 226,
+        "total_tokens": 619,
+        "cost": 0.006092,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0.006092,
+          "upstream_inference_prompt_cost": 0.001572,
+          "upstream_inference_completions_cost": 0.00452
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 206,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        }
+      },
+      "served_model": "meta/muse-wonder",
+      "provider": "Meta"
+    },
+    {
+      "stage": "native-positive-candidate",
+      "model": "meta/muse-wonder",
+      "reserved_usd": 4.849664,
+      "cost_usd": 0.0287408,
+      "request_sha256": "c5c02090ab8830cc9f3ecc394ad81ca59737b3718b05f290aeea3d5f51b120ff",
+      "request": "benchmarks/results/wonder-20261014/request-002.json",
+      "response": "benchmarks/results/wonder-20261014/response-002.json",
+      "response_sha256": "72a65022923af33d7d38e9fc7bbdd6d9f1a6c430604540651260546b6c3828c8",
+      "response_bytes": 7288,
+      "status_code": 200,
+      "latency_ms": 5996,
+      "usage": {
+        "prompt_tokens": 4377,
+        "completion_tokens": 608,
+        "total_tokens": 4985,
+        "cost": 0.0287408,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 244,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0.0287408,
+          "upstream_inference_prompt_cost": 0.0165808,
+          "upstream_inference_completions_cost": 0.01216
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 423,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        }
+      },
+      "served_model": "meta/muse-wonder",
+      "provider": "Meta"
+    },
+    {
+      "stage": "native-positive-control",
+      "model": "gpt-6-astra",
+      "reserved_usd": 1.5,
+      "cost_usd": 0.0746425,
+      "request_sha256": "b68499fd3b2429923dd5030caf9f633d11365706d0f0c989e29e80c4b4dca14b",
+      "request": "benchmarks/results/wonder-20261014/request-003.json",
+      "response": "benchmarks/results/wonder-20261014/response-003.json",
+      "response_sha256": "25b33b250c7576d9bb5fef26c75c5eae42dd7ed7570f8070b3e4b2beaa76615d",
+      "response_bytes": 7488,
+      "status_code": 200,
+      "latency_ms": 13258,
+      "usage": {
+        "input_tokens": 5016,
+        "input_tokens_details": {
+          "cache_write_tokens": 5013,
+          "cached_tokens": 0
+        },
+        "output_tokens": 239,
+        "output_tokens_details": {
+          "reasoning_tokens": 68
+        },
+        "total_tokens": 5255
+      },
+      "served_model": "gpt-6-astra",
+      "provider": "OpenAI"
+    },
+    {
+      "stage": "image-positive-candidate",
+      "model": "meta/muse-wonder",
+      "reserved_usd": 4.849664,
+      "cost_usd": 0.0592408,
+      "request_sha256": "8559fac34062e06f8b0e9f81aebc44838f1dfe0c78ca2d33e6d1a279bdff9300",
+      "request": "benchmarks/results/wonder-20261014/request-004.json",
+      "response": "benchmarks/results/wonder-20261014/response-004.json",
+      "response_sha256": "9f65125007ab70d05a8a83f2fbb8148316b7dee7d27d91032cd5159cecb17b17",
+      "response_bytes": 24699,
+      "status_code": 200,
+      "latency_ms": 19637,
+      "usage": {
+        "prompt_tokens": 4377,
+        "completion_tokens": 2133,
+        "total_tokens": 6510,
+        "cost": 0.0592408,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 244,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0.0592408,
+          "upstream_inference_prompt_cost": 0.0165808,
+          "upstream_inference_completions_cost": 0.04266
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 1725,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        }
+      },
+      "served_model": "meta/muse-wonder",
+      "provider": "Meta"
+    },
+    {
+      "stage": "image-positive-control",
+      "model": "gpt-6-astra",
+      "reserved_usd": 1.5,
+      "cost_usd": 0.0813425,
+      "request_sha256": "e6235031e3cac69a3f5d01f343d3353c728a73bc7d4e0fa043959507638e9d30",
+      "request": "benchmarks/results/wonder-20261014/request-005.json",
+      "response": "benchmarks/results/wonder-20261014/response-005.json",
+      "response_sha256": "a1f08edad536581655f10a6d5d11ed87dee405556d6cebca6ca94eb35a9d328c",
+      "response_bytes": 8229,
+      "status_code": 200,
+      "latency_ms": 31384,
+      "usage": {
+        "input_tokens": 5016,
+        "input_tokens_details": {
+          "cache_write_tokens": 5013,
+          "cached_tokens": 0
+        },
+        "output_tokens": 373,
+        "output_tokens_details": {
+          "reasoning_tokens": 130
+        },
+        "total_tokens": 5389
+      },
+      "served_model": "gpt-6-astra",
+      "provider": "OpenAI"
+    },
+    {
+      "stage": "ambiguity-negative-control",
+      "model": "gpt-6-astra",
+      "reserved_usd": 1.5,
+      "cost_usd": 0.0722925,
+      "request_sha256": "f327844def7f4d7ad49114964b4302016896b14ee8a31b6bb15a0b0ee5f7a386",
+      "request": "benchmarks/results/wonder-20261014/request-006.json",
+      "response": "benchmarks/results/wonder-20261014/response-006.json",
+      "response_sha256": "f74edd88d011dab398704ed2292d0829a170625452893047945144a70d914dc3",
+      "response_bytes": 5264,
+      "status_code": 200,
+      "latency_ms": 10238,
+      "usage": {
+        "input_tokens": 5016,
+        "input_tokens_details": {
+          "cache_write_tokens": 5013,
+          "cached_tokens": 0
+        },
+        "output_tokens": 192,
+        "output_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "total_tokens": 5208
+      },
+      "served_model": "gpt-6-astra",
+      "provider": "OpenAI"
+    }
+  ],
+  "closed": true
+}

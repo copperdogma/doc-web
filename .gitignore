@@ -84,3 +84,7 @@ benchmarks/results/scout091-20261013/
 
 # Fixture-author build intermediates/dependency cache; frozen sources tracked, retained build evidence archived.
 /benchmarks/fixtures/argon-literal-qualification-v1/build/
+
+# Scout093 raw native custody; safe durable archives in eval evidence
+/benchmarks/results/wonder-20261014/
+/benchmarks/results/wonder-thinking-20261014/

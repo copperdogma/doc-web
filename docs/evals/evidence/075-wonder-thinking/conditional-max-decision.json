@@ -1,0 +1,13 @@
+{
+  "quality_trigger": "Root confirms high trueambiguity2holds; high bakery22/23 diagnostic with2clearholds, correctstructure/noharmfulaccepted changes. Native high skipped aftervalidfailure. Freshmedium now repeats same22/23/2holds, no high within-task quality improvement.",
+  "economic_basis": "No latency advantage observed: high25.743 vsAstra12.321s. Costhigh.071068 vsAstra.0824925 (13.85%saving) below30%parityscreen. No hardruntimecost/latencygate for benchmark; sameinput4377token floor.017508 plus observed visible402tokens.00804 =.025548, below.7*Astraactual.05774475; manythinkingtokens mean cost improvement remains mathematically possible ifmax resolves excess ambiguity deliberation. Not prediction ofmonotonicimprovement oradoption.",
+  "cap_basis": {
+    "prior_usd": 0.3223511,
+    "settled_new_usd": 0.3779715,
+    "unknown_usd": 0,
+    "next_full_context_reserve_usd": 4.849664,
+    "next_exposure_usd": 5.5499865999999995,
+    "cumulative_cap_usd": 10
+  },
+  "decision": "Conditionalmax fixedthreecasepanel is eligible under preapprovedquality/economicplausibility gate; still stop at validfailures, noqualityrelaxation."
+}

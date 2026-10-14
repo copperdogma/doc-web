@@ -1,3 +1,18 @@
+## [2026-10-14-01] — Muse Wonder literal reader evaluations (Stories 254, 255)
+
+### Added
+- Preserve exact native Muse Wonder and fresh Astra source-reader comparisons
+  on exposed synthetic literal-table fixtures, including medium/high/max
+  calibration, safe holds, source reviews and immutable native evidence.
+- Record the recovered pre-provider router budget rejection and explicitly
+  qualify the speculative economic rationale for the bounded max follow-up.
+
+### Verified
+- Retain Astra: higher effort repeats the clear O/0 misread and over-abstention,
+  while true ambiguity stays safely held. No runtime defaults or export profile
+  change. Cumulative provider spend USD0.8039514 of the original USD10 cap,
+  with zero unknown exposure.
+
 ## [2026-10-13-04] — Opt-in native literal reader qualification (Story 253)
 
 ### Added
