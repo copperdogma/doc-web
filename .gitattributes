@@ -1,2 +1,11 @@
-# Preserve sealed PDF container bytes; PDF internals are not prose diffs.
+# Auto detect text files and perform LF normalization
+* text=auto
+
+# Frozen Attempt046 source bytes intentionally preserve executed whitespace.
+docs/evals/evidence/046-execution-sources/benchmarks/scripts/gpt61_preflight.py whitespace=-blank-at-eol
+
+# Frozen synthetic PDF bytes include required PDF cross-reference whitespace.
+testdata/literal-table-fidelity/**/*.pdf binary
+
+# Preserve sealed qualification PDF container bytes; PDF internals are not prose diffs.
 benchmarks/fixtures/argon-literal-qualification-v1/source/*.pdf binary
