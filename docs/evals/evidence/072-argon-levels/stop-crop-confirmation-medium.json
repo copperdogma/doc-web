@@ -1,0 +1,7 @@
+{
+  "kind": "raw_coordinate_contract_failure",
+  "case": "Image037",
+  "level": "medium",
+  "reason": "Frozen prompt requests normalized0-1; raw consistentinteger0-1000 violatesrange. Maintainedscorer auto-rescalingpass isdiagnosticonly; no repair. Rootorderedmediumarmstop, no001/011/confirmation calls.",
+  "result_sha256": "90b0b7f6f207683c9cc18da3c3d21c4a46207badbfc9d209136159d8472d4a5b"
+}

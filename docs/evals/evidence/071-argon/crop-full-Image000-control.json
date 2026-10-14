@@ -1,0 +1,9 @@
+{
+  "raw": "```json\n{\"images\": [{\"description\": \"Gold-embossed cover art featuring stylized title text 'ONWARD TO THE UNKNOWN 1887 - 1987', cloud illustrations, and a landscape scene with a covered wagon and tree, all within a decorative border.\", \"bbox\": [0.071, 0.044, 0.954, 0.94]}]}\n```",
+  "score": {
+    "pass": true,
+    "score": 0.8225,
+    "reason": "box_count=1.00 (1/1) | iou_mean=0.791 | iou_min=0.791 | coverage=0.791 | total=0.822 | matches=[pred[0]<->gold[0] IoU=0.791]"
+  },
+  "served": "gemini-3-flash-preview"
+}

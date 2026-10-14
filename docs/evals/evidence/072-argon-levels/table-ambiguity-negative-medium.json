@@ -1,0 +1,77 @@
+{
+  "lane": "table",
+  "case": "ambiguity-negative",
+  "level": "medium",
+  "stage": "table-ambiguity-negative-medium",
+  "original_sequence": 8,
+  "original_request_sha256": "4065bd51adfa1de4478e09e986c8bf0807844d19c6f5c3d9ae09582dd7e514de",
+  "request_sha256": "4065bd51adfa1de4478e09e986c8bf0807844d19c6f5c3d9ae09582dd7e514de",
+  "image_sha256": "75458854bfe3331d761c99f9ac67ad35bf1b5c28620074fd31c08ba5d6052adf",
+  "semantic_text_sha256": "22265ab78ef08a927a85c35ae69dab43001083f40c1a68f84e738e70069ed949",
+  "schema_sha256": "138cc8a900b2216cb8cfee8d25ada2652d4f9f012695f5bb9fbaf66174c3bcea",
+  "max_output_tokens": 32768,
+  "per_call_reservation_usd": 0.37968,
+  "conditional": false,
+  "status": "unresolved",
+  "uncertainties": [
+    {
+      "alternatives": [
+        "I",
+        "l"
+      ],
+      "cell": 1,
+      "reason": "Single vertical stroke in sans-serif font cannot be distinguished between uppercase I and lowercase l.",
+      "row": 1
+    },
+    {
+      "alternatives": [
+        "I",
+        "l"
+      ],
+      "cell": 1,
+      "reason": "Single vertical stroke in sans-serif font cannot be distinguished between uppercase I and lowercase l.",
+      "row": 2
+    }
+  ],
+  "score": {
+    "text_pass": false,
+    "structure_pass": true,
+    "pass": false,
+    "text_mismatch_count": 1,
+    "structure_mismatch_count": 0,
+    "text_mismatches": [
+      {
+        "table": 0,
+        "actual_table": 0,
+        "row": 2,
+        "cell": 1,
+        "kind": "cell_text",
+        "expected": "l",
+        "actual": "I"
+      }
+    ],
+    "structure_mismatches": [],
+    "counts": {
+      "golden": {
+        "tables": 1,
+        "rows": 4,
+        "cells": 8
+      },
+      "actual": {
+        "tables": 1,
+        "rows": 4,
+        "cells": 8
+      }
+    },
+    "scope": {
+      "mode": "all_tables",
+      "table_index": null,
+      "golden_table_count": 1,
+      "actual_table_count": 1,
+      "excluded_actual_table_indices": [],
+      "compared_actual_table_count": 1,
+      "document_actual_table_count": 1
+    }
+  },
+  "report": "benchmarks/results/argon-levels-20261013/table-ambiguity-negative-medium_reports/row-00000-page-00001-original-00001.json"
+}

@@ -1,0 +1,9 @@
+{
+  "raw": "{\"images\": [{\"description\": \"A black-and-white aerial photograph showing a collection of ranch buildings set amidst rolling hills and open fields.\", \"bbox\": [0.08, 0.06, 0.916, 0.461]}, {\"description\": \"A black-and-white ground-level photograph of a ranch house and barn in a snowy landscape, with a herd of livestock gathered behind wooden fences in the foreground.\", \"bbox\": [0.091, 0.506, 0.905, 0.881]}]}",
+  "score": {
+    "pass": true,
+    "score": 0.9958,
+    "reason": "box_count=1.00 (2/2) | iou_mean=0.993 | iou_min=0.991 | coverage=0.998 | total=0.996 | matches=[pred[0]<->gold[0] IoU=0.996, pred[1]<->gold[1] IoU=0.991]"
+  },
+  "served": "gemini-4-argon"
+}

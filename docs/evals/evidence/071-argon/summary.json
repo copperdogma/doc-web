@@ -1,0 +1,153 @@
+{
+  "base_sha": "91cd9bb1",
+  "branch": "codex/scout092-argon-docweb-20261013",
+  "cap_usd": 15,
+  "settled_usd": 0.34186724999999996,
+  "unknown_usd": 0.441832,
+  "judge_usd": 0,
+  "judge": "independent source-aware subagent plus authoritative deterministic owner scorers; agent orchestration usage unmeasured",
+  "literal": {
+    "candidate_clear_cells": 36,
+    "control_clear_cells": 36,
+    "clear_rows_per_arm": 11,
+    "qualified_clear_cases_per_arm": 2,
+    "ambiguous_held_per_arm": 1,
+    "ambiguous_cells_per_arm": 2,
+    "safe_disposition_per_arm": "3/3",
+    "optical_ambiguity_recovery": false,
+    "harmful_changes": 0,
+    "adoption": "defer production; prioritize held-out narrow reader qualification",
+    "candidate_reader_cost_usd": 0.022916,
+    "control_reader_cost_usd": 0.19873,
+    "candidate_reader_latency_sum_ms": 23238,
+    "control_reader_latency_sum_ms": 32413,
+    "cheaper_fraction": 0.8846877673224979,
+    "latency_reduction_fraction": 0.28306543670749396,
+    "december_candidate_cost_same_tokens_usd": 0.045832,
+    "december_cheaper_fraction": 0.7693755346449958,
+    "initial_ocr": "reused immutable equally; cost not measured anew",
+    "downstream": "opt-in recipe-pdf-literal-tables-html.yaml -> literal_table_review_v1 -> build_chapter_html_v1; runtime SourceOnlyReader still pins Astra; no downstream Ingester activation"
+  },
+  "crop": {
+    "candidate_passes": 8,
+    "control_passes": 9,
+    "cases": 9,
+    "candidate_mean": 0.9174444444444444,
+    "control_mean": 0.9623555555555556,
+    "remaining_unmeasured": [
+      "Image059",
+      "Image121",
+      "Image124",
+      "Image126"
+    ],
+    "adoption": "do not adopt maintained detector",
+    "decisive": "Image037 mixed normalized/integer bbox, plus minor Image001 source edge clipping",
+    "pass_definition": "deterministic maintained scorer passes, not source-complete pages",
+    "source_completeness": {
+      "candidate_confirmed_failures": [
+        "Image001 date ink clipped y760 vs762",
+        "Image037 invalid mixed-unit geometry"
+      ],
+      "candidate_confirmed_complete": [
+        "Image000",
+        "Image008",
+        "Image011",
+        "Image013",
+        "Image021"
+      ],
+      "candidate_uncertain_raster_edges": [
+        "Image003",
+        "Image020"
+      ],
+      "control_confirmed_failure": "Image011 right rule tails clipped; recovered and full control outputs same bbox; other full-control source-completeness not exhaustively certified"
+    }
+  },
+  "ocr": {
+    "candidate_fixture": "barney",
+    "candidate_ratio": 0.988117,
+    "source_backed_errors": [
+      "comrads->comrades",
+      "mede->made"
+    ],
+    "control": "requested gemini-3.7-flash served gemini-3.8-flash; quarantined",
+    "unmeasured": [
+      "Alverson",
+      "fresh exact Gemini3.7 comparison"
+    ],
+    "adoption": "do not adopt candidate on literal OCR; exact comparator access constrained"
+  },
+  "metrics": [
+    {
+      "stage": "native-",
+      "model": "gemini-4-argon",
+      "calls": 3,
+      "cost_usd": 0.010966,
+      "latency_sum_ms": 13285,
+      "cached_input_tokens": 0
+    },
+    {
+      "stage": "table-",
+      "model": "gemini-4-argon",
+      "calls": 3,
+      "cost_usd": 0.022916,
+      "latency_sum_ms": 23238,
+      "cached_input_tokens": 0
+    },
+    {
+      "stage": "table-",
+      "model": "gpt-6-astra",
+      "calls": 3,
+      "cost_usd": 0.19873000000000002,
+      "latency_sum_ms": 32413,
+      "cached_input_tokens": 0
+    },
+    {
+      "stage": "crop-recovery1",
+      "model": "gemini-3-flash-preview",
+      "calls": 1,
+      "cost_usd": 0.0045395,
+      "latency_sum_ms": 6206,
+      "cached_input_tokens": 0
+    },
+    {
+      "stage": "crop-recovery1",
+      "model": "gemini-4-argon",
+      "calls": 1,
+      "cost_usd": 0.007044,
+      "latency_sum_ms": 8547,
+      "cached_input_tokens": 0
+    },
+    {
+      "stage": "crop-full",
+      "model": "gemini-3-flash-preview",
+      "calls": 9,
+      "cost_usd": 0.0371115,
+      "latency_sum_ms": 57241,
+      "cached_input_tokens": 0
+    },
+    {
+      "stage": "crop-full",
+      "model": "gemini-4-argon",
+      "calls": 9,
+      "cost_usd": 0.039326,
+      "latency_sum_ms": 46306,
+      "cached_input_tokens": 0
+    },
+    {
+      "stage": "ocr-",
+      "model": "gemini-3.7-flash",
+      "calls": 1,
+      "cost_usd": 0.01321425,
+      "latency_sum_ms": 21937,
+      "cached_input_tokens": 0
+    },
+    {
+      "stage": "ocr-",
+      "model": "gemini-4-argon",
+      "calls": 1,
+      "cost_usd": 0.00802,
+      "latency_sum_ms": 9498,
+      "cached_input_tokens": 0
+    }
+  ]
+}

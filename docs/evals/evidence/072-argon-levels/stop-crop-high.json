@@ -1,0 +1,7 @@
+{
+  "kind": "source_completeness_failure",
+  "case": "Image011",
+  "level": "high",
+  "reason": "upper horizontal signature rule tail1\u20132px clipped; frozenexplicitcriterionunmet",
+  "source_review": "source-Image011.json"
+}

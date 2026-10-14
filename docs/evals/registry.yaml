@@ -56,6 +56,11 @@ evals:
       silent_substitutions: 0
       harmful_control_changes: 0
     scores:
+      - model: gemini-4-argon medium32768 source-only reader Scout092
+        measured: 2026-10-13
+        git_sha: 91cd9bb1+attempt071
+        metrics: {qualified_cases: 2, held_cases: 1, accepted_cells: 36, accepted_wrong_cells: 0, uncertainty_cells: 2, harmful_control_changes: 0, safe_disposition_rate: 1.0, latency_ms: 7746, cost_usd: 0.007638666667, cost_estimated: true}
+        note: "Fresh3 exposed confirmation-v2 readers vs Astra: same36clearcells and2ambiguous holds. Stage totalsUSD.022916/23.238s vsAstra cold.19873/actual.2363275 and32.413s, no cache reads; DecemberArgon.045832. InitialOCR frozen/reused equally. No wholeworkflow or opticalambiguity recovery/defaultadoption. Attempt071/evidence071-argon."
       - model: gpt-5.1-baseline-and-literal
         measured: 2026-10-06
         git_sha: ba4c84a
@@ -71,6 +76,11 @@ evals:
         git_sha: ba4c84a
         metrics: {confirmation_cases: 3, exact_literal_and_structure_pass_rate: 0.666667, safe_disposition_rate: 1.0, qualified_cases: 2, held_cases: 1, accepted_cells: 36, accepted_wrong_cells: 0, held_initial_wrong_cells: 1, uncertainty_cells: 2, harmful_control_changes: 0, semantic_rubrics_passed: 4, semantic_rubrics_total: 4, latency_ms: 15684.905625, cost_usd: 0.23970667, cost_estimated: true}
         note: "Fresh frozen native/image-only confirmations qualify13/13 and23/23cells; identical-glyph negative holds with both ambiguous cells flagged and no export. Literal target1.0 remains unmet; holds never count as correct transcriptions. Timing/cost mean initial+review request sum per fresh case, not driver walltime. Current candidate/evidence summary: docs/evals/evidence/062-literal-table-fidelity-summary.json. No whole-book/default-model/consumer adoption claim."
+      - model: gemini-4-argon low-vs-medium effort calibration Attempt072
+        measured: 2026-10-13
+        git_sha: 91cd9bb1+attempt072
+        metrics: {cases_per_arm: 3, clear_cells_per_arm: 36, held_ambiguous_cells_per_arm: 2, harmful_changes: 0, low_cost_usd: 0.016486, medium_cost_usd: 0.018516, low_latency_sum_ms: 574451, medium_latency_sum_ms: 222034, low_thinking_tokens: 0, medium_thinking_tokens: 211, cached_tokens: 0}
+        note: "Exposed effort-only calibration: boundedqualityparity, low10.96%cheaper but2.59xsamplelatencysum. Descriptiveoneobservation/case, sharedaccountcontextunmeasured. December.032972/.037032; no newAstra control orlevel/defaultadoption. Attempt072."
     attempts:
       - id: "073"
         date: 2026-10-13
@@ -80,6 +90,16 @@ evals:
         retry_when:
           - condition: architecture-change
             note: "A separately selected change must address source uncertainty/false certainty; do not rerun the valid failing A1 answer or weaken its hold guarantee."
+      - id: "072"
+        date: 2026-10-13
+        status: inconclusive
+        approach: "User-authorized targeted Argon thinking-level calibration"
+        note: "Low/medium boundedqualityparity with cost/latency tradeoff; no overall configuration win.10exactnativecalls USD.082978unknown0/6; corrected cumulativeDocWeb.46244275known+.441832priorunknown=.90427475/15. Oldledgerunchanged, bothclosed;8focusedtests andindependentfinalreview. Source072manifest/report; no defaults/commit/push."
+      - id: "071"
+        date: 2026-10-13
+        status: inconclusive
+        approach: "Scout092 selected Argon native owner comparison"
+        note: "Bounded cheaper literal reader parity; held-out production provider/driver qualification deferred. InclusiveUSD15: corrected settled.37946475 +unknown.441832; original sealed.34186725 retained;31nativeenvelopes/2lostscreenrecords retained, matchedcustodyrecovery. No defaults/commits/push. Story252; docs/evals/evidence/071-argon/report.md."
       - id: "062"
         date: 2026-10-06
         status: failed
@@ -1098,7 +1118,27 @@ evals:
         evidence_status: numeric-pass-source-logo-clipping-do-not-adopt
         note: >
           Numeric 13/13 and >=.95 but source-visible Image011 logo clipping; fresh Gemini .958646 covers logo. Candidate cost lower; timing partially overlapped qualification, descriptive only. Retain Gemini; no quality equivalence/promotion.
+      - model: gemini-4-argon medium32768 progressive Scout092
+        measured: 2026-10-13
+        git_sha: 91cd9bb1+attempt071
+        metrics: {pass_rate: 0.888889, overall: 0.917444, cases_total: 9, latency_ms: 5145.111111, cost_usd: 0.004369555556, cost_estimated: true}
+        note: "8/9 vs freshGemini3Flash9/9 mean.962356. StopImage037 mixedunits normalizedbbox y1=898; smallImage001sourceedgeclip.4remaining and22safety notmeasured. NativeJSONshape qualified; numericbounds prompt/scorer-owned. No detectoradoption. Attempt071."
+      - model: gemini-4-argon high-vs-medium effort calibration Attempt072
+        measured: 2026-10-13
+        git_sha: 91cd9bb1+attempt072
+        metrics: {high_cases: 3, high_numeric_passes: 3, high_source_complete_cases: 2, high_raw_coordinate_compliant_cases: 3, medium_cases: 1, medium_raw_contract_failures: 1, high_cost_usd: 0.043572, high_latency_sum_ms: 150831, high_thinking_tokens: 3025, cached_tokens: 0}
+        note: "Medium037consistentinteger0-1000 failsfrozenraw0-1contract despiteautoscalingnumericpass, armstopped. High037/001sourcecomplete but011ruletail1–2pxclip; nohighpromotion. Medium001/011notrun; optionalmatched037confirmationcancelled understopprecedence, no unpairedrepeat/full13. HighDecember.087144."
     attempts:
+      - id: "072"
+        date: 2026-10-13
+        status: failed
+        approach: "User-authorized targeted Argon thinking-level calibration"
+        note: "High2/3 source-complete versus3/3 numeric passes; raw-range medium stop and cancelled confirmation.10exactnativecalls USD.082978unknown0/6; corrected cumulativeDocWeb.46244275known+.441832priorunknown=.90427475/15. Oldledgerunchanged, bothclosed;8focusedtests andindependentfinalreview. Source072manifest/report; no defaults/commit/push."
+      - id: "071"
+        date: 2026-10-13
+        status: failed
+        approach: "Scout092 selected Argon native owner comparison"
+        note: "Progressive9/13 detector stop after invalid source geometry; current detector retained. InclusiveUSD15: corrected settled.37946475 +unknown.441832; original sealed.34186725 retained;31nativeenvelopes/2lostscreenrecords retained, matchedcustodyrecovery. No defaults/commits/push. Story252; docs/evals/evidence/071-argon/report.md."
       - id: "068"
         measured_metrics: {scope: "Image011 calibration only", cases_per_arm: 1, medium_score: 0.5435, high_score: 0.9242, high_source_complete: false, low_contract_valid: false, fresh_control_score: 0.9826}
         date: 2026-10-07
@@ -3824,6 +3864,11 @@ evals:
       note: "The target still marks the desired passing bar, but the widened default corpus now includes two real handwritten fixtures that the maintained rescue seam does not clear."
 
     scores:
+      - model: gemini-4-argon medium32768 public LOC Barney Scout092
+        measured: 2026-10-13
+        git_sha: 91cd9bb1+attempt071
+        metrics: {overall_min_ratio: 0.988117, cases_total: 1, pass_rate: 0.0, latency_ms: 9498, cost_usd: 0.00802, cost_estimated: true}
+        note: "Actualdriverimageentry: comrads->comrades/mede->made sourcebackedliteralmiss. Frozenratio includesseparatepotentialextra-it goldenconcern, notcandidateerror. Alversonnotrun afterdecisivestop; itsa-good-prospect goldenprecheckedvalid. RequestedGemini3.7served3.8perofficialdeprecation; charge.01321425 quarantined, nofreshrelativeclaim. Attempt071."
       - model: gpt-6.1-sol low fresh public LOC image-entry (Attempt046)
         metrics: {overall_min_ratio: 0.902693, page_min_ratio: 0.902693, pass_rate: 0.0,
           cases_total: 2, fixtures_passing: 0, barney_image_overall_ratio: 0.902693,
@@ -4352,6 +4397,11 @@ evals:
         note: >
           Candidate literal text loss on source-valid Barney; fresh Gemini .978830 also below.99. Alverson source golden confirms a good prospect but unrun after lane failure. Same system/user/image bytes verified; no truth change.
     attempts:
+      - id: "071"
+        date: 2026-10-13
+        status: failed
+        approach: "Scout092 selected Argon native owner comparison"
+        note: "Public Barney literal miss; exact3.7 comparator unavailable, Alverson unmeasured. InclusiveUSD15: corrected settled.37946475 +unknown.441832; original sealed.34186725 retained;31nativeenvelopes/2lostscreenrecords retained, matchedcustodyrecovery. No defaults/commits/push. Story252; docs/evals/evidence/071-argon/report.md."
       - id: "068"
         measured_metrics: {scope: "Barney actualdriver only", medium_ratio: 0.959162, low_ratio: 0.945640, high_ratio: 0.942693, fresh_control_ratio: 0.980617}
         date: 2026-10-07

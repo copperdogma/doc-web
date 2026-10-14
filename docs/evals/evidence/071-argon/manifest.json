@@ -1,0 +1,416 @@
+{
+  "files": [
+    {
+      "path": "benchmarks/results/argon-20261013/argon-ocr-barney-candidate-20261013-operational1.log",
+      "sha256": "face0ab734a592433b2064759a5f4fd273224417b771d1356236dd5da52a86de",
+      "bytes": 1566
+    },
+    {
+      "path": "benchmarks/results/argon-20261013/argon-ocr-barney-candidate-20261013.log",
+      "sha256": "05b5a8eec90571803b7d31c56e22cadbf215f59cbff4ef77b7639cbc2f14e81c",
+      "bytes": 1699
+    },
+    {
+      "path": "benchmarks/results/argon-20261013/argon-ocr-barney-control-20261013.log",
+      "sha256": "b432e837ffe5afcda3b84b652f726c9cfc4512b3e9e3daf5debff89092e8f4e1",
+      "bytes": 3425
+    },
+    {
+      "path": "benchmarks/results/argon-20261013/ledger.json",
+      "sha256": "8213d0303a675a3f6e3ab325a0fcea721d621329558acac0ab98281895f35b00",
+      "bytes": 49743
+    },
+    {
+      "path": "benchmarks/results/argon-20261013/request-001.json",
+      "sha256": "c9c6b66d6a6ff30cff005cadf6d96790b14a3bf078ed555a4daee9c63b94ed46",
+      "bytes": 4247
+    },
+    {
+      "path": "benchmarks/results/argon-20261013/request-002.json",
+      "sha256": "49d81e0d19c3d09f0c4499fde2619386e31e19021d627abc302006b29987f27d",
+      "bytes": 1737
+    },
+    {
+      "path": "benchmarks/results/argon-20261013/request-003.json",
+      "sha256": "5ad4ca46ba8fff4852fcba40c07846b1ab571d2766341e56dd2a8340f68f6e86",
+      "bytes": 1363
+    },
+    {
+      "path": "benchmarks/results/argon-20261013/request-004.json",
+      "sha256": "326cb54f4ef3ae51c7204a7019f86efff6dcc080456f5cb081d76c74700feece",
+      "bytes": 84985
+    },
+    {
+      "path": "benchmarks/results/argon-20261013/request-005.json",
+      "sha256": "3de545dc7a3da46d71e2092d4884939e4b1323e1cab34dac738dc809e4642627",
+      "bytes": 85104
+    },
+    {
+      "path": "benchmarks/results/argon-20261013/request-006.json",
+      "sha256": "f687b77d6f855e7e4121c9f3ecccb2d593089fb1b910ceaf04f59ffcd224f68d",
+      "bytes": 103821
+    },
+    {
+      "path": "benchmarks/results/argon-20261013/request-007.json",
+      "sha256": "7f64fac6048201ead9fda38451412d9b5fbaf5c2b5d47fa024d0baf8c342cd3c",
+      "bytes": 103940
+    },
+    {
+      "path": "benchmarks/results/argon-20261013/request-008.json",
+      "sha256": "4065bd51adfa1de4478e09e986c8bf0807844d19c6f5c3d9ae09582dd7e514de",
+      "bytes": 65865
+    },
+    {
+      "path": "benchmarks/results/argon-20261013/request-009.json",
+      "sha256": "9f6ba8c22031e69526ab2948178816c187c90327cd6c1560dfe6dd3d490b99c9",
+      "bytes": 65984
+    },
+    {
+      "path": "benchmarks/results/argon-20261013/request-012.json",
+      "sha256": "04dd45daa27a8a090a9bf9441d7d41857f774cfc569cd2c392fb0687cf87ac97",
+      "bytes": 311780
+    },
+    {
+      "path": "benchmarks/results/argon-20261013/request-013.json",
+      "sha256": "242f8833652c89a4b1ac2591289afba7bc19e1ca44556e2c570f5f4648e54994",
+      "bytes": 311335
+    },
+    {
+      "path": "benchmarks/results/argon-20261013/request-014.json",
+      "sha256": "4ce60b64dfde58a2bca9f751e3b4381917ca957c92f02ed91ae9f75cf533334f",
+      "bytes": 204611
+    },
+    {
+      "path": "benchmarks/results/argon-20261013/request-015.json",
+      "sha256": "367d52133d49c5a8433552634fd7b72e11cfca7ca316539d63ba9699c4892d2b",
+      "bytes": 204582
+    },
+    {
+      "path": "benchmarks/results/argon-20261013/request-016.json",
+      "sha256": "f8c042ed35f61501b183affecf7bc7744c6335406e3c699d78e7c78a943e8d7c",
+      "bytes": 1187476
+    },
+    {
+      "path": "benchmarks/results/argon-20261013/request-017.json",
+      "sha256": "6239875f0624ff1eb55c31f8a386a40e031168b01f5491acbc81906c2a0651c9",
+      "bytes": 1187031
+    },
+    {
+      "path": "benchmarks/results/argon-20261013/request-018.json",
+      "sha256": "fb4f0a23cef39c358ca638043f6982ad291b65e39ee894e60b364a9a19af19e4",
+      "bytes": 107912
+    },
+    {
+      "path": "benchmarks/results/argon-20261013/request-019.json",
+      "sha256": "01b4129b1c68907267cb3e71fc64bd3517497b103f7c28fb085982eef0f5e296",
+      "bytes": 107467
+    },
+    {
+      "path": "benchmarks/results/argon-20261013/request-020.json",
+      "sha256": "8243c027631975555ab38df492901dc63c1f09f1a0002519a23d2e45f6534504",
+      "bytes": 242336
+    },
+    {
+      "path": "benchmarks/results/argon-20261013/request-021.json",
+      "sha256": "0678d76e8bbc40b8867facb609d017f95020e5bcb53519e7bb663fe951769366",
+      "bytes": 241891
+    },
+    {
+      "path": "benchmarks/results/argon-20261013/request-022.json",
+      "sha256": "a895c4db1e81c380e95ae12395c1d31be0e7bee9ee0077ea67f5bfb539e1dedf",
+      "bytes": 632888
+    },
+    {
+      "path": "benchmarks/results/argon-20261013/request-023.json",
+      "sha256": "1dfc824d33f35fa451b526b795882a3b0d62f3ac68b43b41e56fa667c7aa9664",
+      "bytes": 632443
+    },
+    {
+      "path": "benchmarks/results/argon-20261013/request-024.json",
+      "sha256": "04dd45daa27a8a090a9bf9441d7d41857f774cfc569cd2c392fb0687cf87ac97",
+      "bytes": 311780
+    },
+    {
+      "path": "benchmarks/results/argon-20261013/request-025.json",
+      "sha256": "242f8833652c89a4b1ac2591289afba7bc19e1ca44556e2c570f5f4648e54994",
+      "bytes": 311335
+    },
+    {
+      "path": "benchmarks/results/argon-20261013/request-026.json",
+      "sha256": "b385d4dbfe6be0f71936e3986d1530ef003e02c040acd9c5a95a4aa294c0f328",
+      "bytes": 977968
+    },
+    {
+      "path": "benchmarks/results/argon-20261013/request-027.json",
+      "sha256": "c873916ab505ac44160df5787c20d3486ddd02c31f292d0834eda31e982dcf43",
+      "bytes": 977523
+    },
+    {
+      "path": "benchmarks/results/argon-20261013/request-028.json",
+      "sha256": "f19401e9bf717c15ecb8d2788991b5010edafbb207d858221a0a957c624960ce",
+      "bytes": 1219240
+    },
+    {
+      "path": "benchmarks/results/argon-20261013/request-029.json",
+      "sha256": "15cf72c367c960515e3e53a7f220a89c9518462615802099d50d467adda099d8",
+      "bytes": 1218795
+    },
+    {
+      "path": "benchmarks/results/argon-20261013/request-030.json",
+      "sha256": "9cd4dc2d5955a6e6896dbf18676bc378094c1c036855881d7cb442fa2fd3d814",
+      "bytes": 965048
+    },
+    {
+      "path": "benchmarks/results/argon-20261013/request-031.json",
+      "sha256": "ede3f7f9999cf06b79e3e9afbfa0ea2f2b999ccc866fb50b0e343c0639ff94cc",
+      "bytes": 964603
+    },
+    {
+      "path": "benchmarks/results/argon-20261013/request-032.json",
+      "sha256": "d8a531e0d2392dc4f63530ce112263d869270f32bf4d9e495b1007d8e74b085f",
+      "bytes": 975992
+    },
+    {
+      "path": "benchmarks/results/argon-20261013/request-033.json",
+      "sha256": "8003657cc3c5963f0986aedf82e1881a9fc4f9d34b8ed2a6da8c7bf9f2d56d8e",
+      "bytes": 975547
+    },
+    {
+      "path": "benchmarks/results/argon-20261013/response-001.json",
+      "sha256": "15efd34c736b926babff92b3de974c8a27fae62b891425756985bc40b50abb07",
+      "bytes": 1055
+    },
+    {
+      "path": "benchmarks/results/argon-20261013/response-002.json",
+      "sha256": "8ba133d2f66bb7cd072f97c79ee83c4aed36d4358a2a99b1d89cb33262c418bd",
+      "bytes": 1611
+    },
+    {
+      "path": "benchmarks/results/argon-20261013/response-003.json",
+      "sha256": "2fa65b9c190b2dcd7d30505ada7718dfe548da3cf8953fff2d010d36ae6d2ecf",
+      "bytes": 887
+    },
+    {
+      "path": "benchmarks/results/argon-20261013/response-004.json",
+      "sha256": "290ff2a1ea0f0ecc166959c425479dc791539ea4fc4d82f555c030189da3cd36",
+      "bytes": 2449
+    },
+    {
+      "path": "benchmarks/results/argon-20261013/response-005.json",
+      "sha256": "bee41925b48c1a8f2b154a1afabed9c4ba3a5db9829a9768894b2a5582673b3b",
+      "bytes": 8237
+    },
+    {
+      "path": "benchmarks/results/argon-20261013/response-006.json",
+      "sha256": "e1bfc7d5b854f1285840b1bc9bed430edd68abc5af20e3f5a18a2626f067d24e",
+      "bytes": 4044
+    },
+    {
+      "path": "benchmarks/results/argon-20261013/response-007.json",
+      "sha256": "de11d442e0578ac167efdf6fb8c37c63c7f3f0537593abdc1a2444380533673d",
+      "bytes": 8529
+    },
+    {
+      "path": "benchmarks/results/argon-20261013/response-008.json",
+      "sha256": "e8f1e8e31d72f57742a43abb0dd7b48de5b07debf0b36ff15e1107d7b2606b71",
+      "bytes": 1812
+    },
+    {
+      "path": "benchmarks/results/argon-20261013/response-009.json",
+      "sha256": "b9f4787725e5631025926c31d0c5556d8a0ab89107203895a7e840102d1236a8",
+      "bytes": 7780
+    },
+    {
+      "path": "benchmarks/results/argon-20261013/response-012.json",
+      "sha256": "2c08f4df9b03b8419c94950294725639ad3f701de77df25ceb03d850e127c29e",
+      "bytes": 2028
+    },
+    {
+      "path": "benchmarks/results/argon-20261013/response-013.json",
+      "sha256": "55518149b9ee153687a8e1ba8f83376fc6c1cb6636738259c0399cd004d5b333",
+      "bytes": 5532
+    },
+    {
+      "path": "benchmarks/results/argon-20261013/response-014.json",
+      "sha256": "49dbd1749588e7ad12a2578df6ddcaf642cd736112ace6e48befb9437b9a463a",
+      "bytes": 2752
+    },
+    {
+      "path": "benchmarks/results/argon-20261013/response-015.json",
+      "sha256": "41606917d2e805c54f2c43eeb80510e5803cb25e245d9b677decb76cd1b29e50",
+      "bytes": 14608
+    },
+    {
+      "path": "benchmarks/results/argon-20261013/response-016.json",
+      "sha256": "f49de58e6883406615924cfcb041c9d251dc88be88c30428eeffa3915cbf3456",
+      "bytes": 1388
+    },
+    {
+      "path": "benchmarks/results/argon-20261013/response-017.json",
+      "sha256": "1a73026770677f56e7920cc6a0d1c3ab9437b1b1a5e9bc78226cb52f28475937",
+      "bytes": 7631
+    },
+    {
+      "path": "benchmarks/results/argon-20261013/response-018.json",
+      "sha256": "8ad0b3d604751a3cd31b0760cb49d7fb223944c3efa3ae586d07ea5f012355ab",
+      "bytes": 1033
+    },
+    {
+      "path": "benchmarks/results/argon-20261013/response-019.json",
+      "sha256": "13104cab4530f0b901d1c63f0d800dfa42d4f2af37d3d05cc4640f2ae6d4f39d",
+      "bytes": 5499
+    },
+    {
+      "path": "benchmarks/results/argon-20261013/response-020.json",
+      "sha256": "2146238de05ed6551017cc312ea83fbbc0b595b2b6d6f61e511f8631f81106ee",
+      "bytes": 1254
+    },
+    {
+      "path": "benchmarks/results/argon-20261013/response-021.json",
+      "sha256": "a878b9060b763d6646e99c188bd0c1a3b04e7065977ffac2ae99b07e648ebe94",
+      "bytes": 4390
+    },
+    {
+      "path": "benchmarks/results/argon-20261013/response-022.json",
+      "sha256": "e20ddaffe137190b2cb2476d42ac8b75995cc49c9c409d911f914c4fe08f986a",
+      "bytes": 1193
+    },
+    {
+      "path": "benchmarks/results/argon-20261013/response-023.json",
+      "sha256": "e97715e496ff3ad82ecf62969ec3bcee2486dce78122c1f83f013dd82abb6e34",
+      "bytes": 3527
+    },
+    {
+      "path": "benchmarks/results/argon-20261013/response-024.json",
+      "sha256": "a176285fb76e6bd4e45d5d69f55e97a276be60181a77832c3eb43a6ef89ab878",
+      "bytes": 1208
+    },
+    {
+      "path": "benchmarks/results/argon-20261013/response-025.json",
+      "sha256": "bd350520ca5bda369284db14c9dbba42d84f942991d5017120edbe8b7fb7bfff",
+      "bytes": 5532
+    },
+    {
+      "path": "benchmarks/results/argon-20261013/response-026.json",
+      "sha256": "ac33308bc7fd3aceb5297ff7e9df8f18a2a1de348a06c93952cad5d933c0ecf6",
+      "bytes": 1019
+    },
+    {
+      "path": "benchmarks/results/argon-20261013/response-027.json",
+      "sha256": "4d1c76ac12997085fd54bbd3c96f08ace433385d742dd066200e7c1993cd4b55",
+      "bytes": 4991
+    },
+    {
+      "path": "benchmarks/results/argon-20261013/response-028.json",
+      "sha256": "3b29a79761c623a05c9cdfa9fb86c04cddff7a4273cfd348b531eb364f3a6620",
+      "bytes": 1281
+    },
+    {
+      "path": "benchmarks/results/argon-20261013/response-029.json",
+      "sha256": "c4b3947341301b8c52d47bf3d9bf0798d103ebafd50c99e66bec13c7267b0b49",
+      "bytes": 2892
+    },
+    {
+      "path": "benchmarks/results/argon-20261013/response-030.json",
+      "sha256": "293d0b742c5f2a3e79b8c2cbb236992a690437dbac2567bfd5ad8a3a352d34c7",
+      "bytes": 1049
+    },
+    {
+      "path": "benchmarks/results/argon-20261013/response-031.json",
+      "sha256": "fffa5cb1bc12792cd72766407a67de6bf0995555ee4107b35067ba2fb9d8982b",
+      "bytes": 3157
+    },
+    {
+      "path": "benchmarks/results/argon-20261013/response-032.json",
+      "sha256": "a6adcd5e99d346379034c467b1b14b6f3b0aa06ab4121026191c05b84843a84f",
+      "bytes": 1151
+    },
+    {
+      "path": "benchmarks/results/argon-20261013/response-033.json",
+      "sha256": "61ac1c4b1a660c394b139beca12d1caab5aa76f1643d22149ab5b3b10956bcdc",
+      "bytes": 8508
+    },
+    {
+      "path": "benchmarks/results/argon-20261013/startup/sitecustomize.py",
+      "sha256": "9ee694108ef59b9d2c537c1c8e81b0e7b9d02d514af318a93696ae2530f07d7d",
+      "bytes": 165
+    },
+    {
+      "path": "benchmarks/results/argon-20261013/table-ambiguity-negative-candidate.jsonl",
+      "sha256": "35e4ddee0f94929d60baf9df78fedbc578fba6ed91ea67b8c0bc82ade001c032",
+      "bytes": 2026
+    },
+    {
+      "path": "benchmarks/results/argon-20261013/table-ambiguity-negative-candidate_reports/row-00000-page-00001-original-00001.json",
+      "sha256": "09caa0b7891938810086c45f80159584815c350d2d7afc77b68d2e562fe48f20",
+      "bytes": 3529
+    },
+    {
+      "path": "benchmarks/results/argon-20261013/table-ambiguity-negative-control.jsonl",
+      "sha256": "0236614f9cbc0bbc3825b2fe74d914dca9866d8bd2a45d5a29cdd2cdfc2979a0",
+      "bytes": 2020
+    },
+    {
+      "path": "benchmarks/results/argon-20261013/table-ambiguity-negative-control_reports/row-00000-page-00001-original-00001.json",
+      "sha256": "b5ac89b7aebe4fb91ffbe19e094f57d6572b157fb2ea732724721d0b8b4337bd",
+      "bytes": 3811
+    },
+    {
+      "path": "benchmarks/results/argon-20261013/table-image-positive-candidate.jsonl",
+      "sha256": "55526ec80836c6334a0dba0d6116de01e2278a4579c1ab71fcc26e0423789a11",
+      "bytes": 2536
+    },
+    {
+      "path": "benchmarks/results/argon-20261013/table-image-positive-candidate_reports/row-00000-page-00001-original-00001.json",
+      "sha256": "ca4e0f4fb12ccc5a59ee83160bd8f4cb5893810bf9b9e9e8072a01233f1bcf16",
+      "bytes": 3342
+    },
+    {
+      "path": "benchmarks/results/argon-20261013/table-image-positive-control.jsonl",
+      "sha256": "9b445d4582c87125c6e1d82c1ec81bbbe0a5def692049f40e67e11d9490c353a",
+      "bytes": 2530
+    },
+    {
+      "path": "benchmarks/results/argon-20261013/table-image-positive-control_reports/row-00000-page-00001-original-00001.json",
+      "sha256": "ec318a1c43331f62111d31c8c05a45bb1d37a070cbba1a1341dafa599623d34b",
+      "bytes": 3636
+    },
+    {
+      "path": "benchmarks/results/argon-20261013/table-native-positive-candidate.jsonl",
+      "sha256": "06e0211f7596353d86502d9bbd9c90b31452ea965d68de9d03d6f7a4f89370bd",
+      "bytes": 2299
+    },
+    {
+      "path": "benchmarks/results/argon-20261013/table-native-positive-candidate_reports/row-00000-page-00001-original-00001.json",
+      "sha256": "4a0d6b3adfefc1edab408d5831b074bf96310ad9179ac15e11a6c6bd6b90e5f4",
+      "bytes": 2983
+    },
+    {
+      "path": "benchmarks/results/argon-20261013/table-native-positive-control.jsonl",
+      "sha256": "0801ba0ca9da1250e1563ade6d0ebe80a17d9a13af01faa16572679ef6355326",
+      "bytes": 2293
+    },
+    {
+      "path": "benchmarks/results/argon-20261013/table-native-positive-control_reports/row-00000-page-00001-original-00001.json",
+      "sha256": "cad92627102f76c2e5ac36b65ecaf9daac14148c9df1438cca64f66be51e5428",
+      "bytes": 3276
+    }
+  ],
+  "archive": "docs/evals/evidence/071-argon/native-evidence.tar.gz",
+  "archive_sha256": "4f7508b3bd7e392d84143ad89e6cf0a0bbcca934544a61814ac5c94654bc4083",
+  "archive_bytes": 10737984,
+  "privacy": "approved public/synthetic; no headers or credentials retained",
+  "reconstruct": "Extract native-evidence.tar.gz from repo root; verify listed SHA256s. No provider calls needed.",
+  "lost_records": [
+    10,
+    11
+  ],
+  "lost_outputs": "crop-screen-Image011-{candidate,control}.json retained/quarantined; unknown reserved .441832",
+  "key_document_hashes": {
+    "docs/evals/evidence/071-argon/report.md": "a85164d158e5b8bcdf952bc6c42f0ec7700df3ec08c767d2a3ef3dec42c9e367",
+    "docs/evals/evidence/071-argon/summary.json": "c25c5d4657582a79f8aa061489b792bff3bd1b3fa4c8be5df7e907f0df5c0bb8",
+    "docs/evals/evidence/071-argon/source-review.md": "ed79837f8749524d711fa4b7d13daf16430c8d81e5cd2605954e7abd11ac275d",
+    "docs/evals/evidence/071-argon/producing-sources.json": "e0a277424d973968f869ecb06e13e4dcc846c9509162abfb2ebfa029b6a65e0a",
+    "docs/evals/evidence/071-argon/validation.json": "bca64bea4d141b043d9b0b57f2b9717afd887424a44d7f373008f4dbc59028bc"
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "case": "Image037",
+  "reviewer": "independentSol6.1high",
+  "high_source_complete": true,
+  "high_raw_coordinate_compliant": true,
+  "medium_physical_source_complete_under_legacy_normalization": true,
+  "medium_raw_coordinate_compliant": false,
+  "medium_source_complete": false,
+  "source_sha256": "b836c9c90fc650dd0513299652bf1af41fc577544803d9cea64928c890cdfdbe",
+  "high_result_sha256": "26e568bae688f4084153b41b6423e6faf2378108e18c75c0563a32c6345b206c",
+  "medium_result_sha256": "90b0b7f6f207683c9cc18da3c3d21c4a46207badbfc9d209136159d8472d4a5b",
+  "note": "No photographiccontentclipped. Medium diagnosticphysicalcoverageusesunchangedscorernormalization, not repairedorcompliantresponse."
+}

@@ -1,0 +1,9 @@
+{
+  "raw": "{\"images\": [{\"description\": \"A black and white portrait photograph of Moise and Sophie L'Heureux taken around 1910. Moise is on the left wearing a dark suit, white shirt, and striped tie, with a mustache. Sophie is on the right wearing a dark dress with her hair parted in the middle.\", \"bbox\": [0.217, 0.257, 0.812, 0.672]}]}",
+  "score": {
+    "pass": true,
+    "score": 0.9974,
+    "reason": "box_count=1.00 (1/1) | iou_mean=0.995 | iou_min=0.995 | coverage=1.000 | total=0.997 | matches=[pred[0]<->gold[0] IoU=0.995]"
+  },
+  "served": "gemini-4-argon"
+}

@@ -1,0 +1,35 @@
+[
+  {
+    "fixture": "barney",
+    "arm": "candidate",
+    "driver_exit": 0,
+    "score": {
+      "transcript_path": "/Users/cam/.codex/worktrees/scout092-argon-docweb-20261013/testdata/handwritten-notes-barney-real.txt",
+      "artifact_path": "/Users/cam/.codex/worktrees/scout092-argon-docweb-20261013/output/runs/argon-ocr-barney-candidate-20261013/02_ocr_ai_gpt51_v1/pages_html.jsonl",
+      "page_count": 1,
+      "missing_pages": [],
+      "extra_pages": [],
+      "overall_ratio": 0.988117,
+      "overall_exact_match": false,
+      "page_min_ratio": 0.988117,
+      "exact_page_matches": 0,
+      "pages": [
+        {
+          "ratio": 0.988117,
+          "exact_match": false,
+          "expected_length": 1395,
+          "actual_length": 1382,
+          "expected_preview": "health, and can again stand among my comrads and in a few days I hope that I shall again feel as well as before,\nyou wrote that it was lonesome times in old gro",
+          "actual_preview": "health, and can again stand among my comrades and in a few days I hope that I shall again feel as well as before, you wrote that it was lonesome times in old gr",
+          "page_number": 1,
+          "artifact_page_found": true,
+          "artifact_metrics": {
+            "ocr_quality": 0.78,
+            "ocr_integrity": 0.95,
+            "continuation_risk": 0.95
+          }
+        }
+      ]
+    }
+  }
+]

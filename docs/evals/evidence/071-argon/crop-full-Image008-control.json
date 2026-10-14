@@ -1,0 +1,9 @@
+{
+  "raw": "```json\n{\"images\": [{\"description\": \"Black and white photograph of Moise and Sophie L'Heureux, dated around 1910.\", \"bbox\": [0.258, 0.217, 0.672, 0.811]}]}\n```",
+  "score": {
+    "pass": true,
+    "score": 0.9966,
+    "reason": "box_count=1.00 (1/1) | iou_mean=0.995 | iou_min=0.995 | coverage=0.998 | total=0.997 | matches=[pred[0]<->gold[0] IoU=0.995]"
+  },
+  "served": "gemini-3-flash-preview"
+}

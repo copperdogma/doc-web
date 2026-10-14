@@ -1,0 +1,39 @@
+{
+  "schema_version": "doc_web_scout092_landing_preflight_v1",
+  "date": "2026-10-13",
+  "base_origin_main": "91cd9bb19b174247349f1e83b9aaa869eb08ccc7",
+  "component_commits": {
+    "codex/scout092-argon-docweb-20261013": "57bab4ff8160cdcaadbdde22937042a58a4becc2",
+    "codex/scout092-docweb-literal-20261013": "6545a37ca6b01b903cd72021862bb21f6eacc02f"
+  },
+  "landing_branch": "codex/scout092-docweb-literal-20261013",
+  "remote": "https://github.com/copperdogma/doc-web.git",
+  "integration": "Merge both scoped components; registry union retains071/072 history plus073 failed attempt; unique changelog CalVer02/03/04; generated graph/stories rebuilt. No source/runtime conflict.",
+  "validation": {
+    "reused": "Initial113 focused owner/guard checks, calibration8 guard/cold-pricing checks; literal358 checks plus8 native-HTTP mocked real-driver proof checks for original producing epoch. Bound source/interface artifacts retained.",
+    "landing_logger": "157 affected source/bundle/schema/instrumentation tests passed15.16s, then94 Google/instrumentation checks passed1.64s after invalid native usage extraction. Eight new meaningful raw/sink cases. Independent reviewer confirms fixed logging and no retained replay double count.",
+    "landing_guard": "5 isolated collision/unknown/write-price guard checks passed0.29s; test snapshot custody redirected to disposable owner tree.",
+    "ruff": "Affected landing logger/Google/new tests and guard/tests pass.",
+    "methodology": "Final union compilation/check and diff whitespace checks before merge commit.",
+    "runtime": "Existing /Users/cam/miniconda3/bin/python3.11.5; no installation or provider calls."
+  },
+  "validated_landing_file_sha256": {
+    "modules/common/openai_client.py": "698a446cd454b1061560f05b6ff797d8f11ab3e9d48ba94ea2e5b66ab2ec7120",
+    "modules/common/google_table_source_review.py": "2b5cb5dcf6b09853658b08d7b6dc13678d0c79b150d90dfdd5b5927df28aba98",
+    "benchmarks/providers/argon_guard.py": "6af9c83887876a67846f8bbfc62ee4f9941d683f44ebbae2caa00a0b515ca716",
+    "tests/test_source_reader_instrumentation.py": "d63a8233cdc51290f5bd529705787437941bba23233c2168d52d1408e77be9bc",
+    "tests/test_argon_campaign_guard.py": "3ec8628d5dc1a616259ff33091254fd435d73b2fa56e32010743ec92578e2dd6"
+  },
+  "archives_unchanged_and_git_tracked": {
+    "docs/evals/evidence/071-argon/native-evidence.tar.gz": "4f7508b3bd7e392d84143ad89e6cf0a0bbcca934544a61814ac5c94654bc4083",
+    "docs/evals/evidence/072-argon-levels/native-evidence.tar.gz": "b629f09de85e7917d1365997024e5528d753f13e365be9da90678cf973b9578e",
+    "docs/evals/evidence/073-argon-literal-qualification/evidence.tar.gz": "779fa94728cf7382f111f3613bf45686203824d8b52d41fce8e6e26da74d6f4d"
+  },
+  "durability": "Raw results and output/runs remain ignored, but complete public/synthetic raw custody and producing snapshots are retained in lossless tracked archives and exact manifests. Fixture author build/dependency intermediates excluded from Git; final frozen28 source/index/generator/proof artifacts tracked, retained build evidence also in073archive. No needed ignored evidence is sole-copy-only.",
+  "cost_correction": "docs/evals/landings/scout092-cost-correction.json; all old closed ledgers/archives retained, current owner known.931161750+unknown.441832000=1.372993750/15, campaign2.909662245+unknown1.474024000=4.383686245/35.",
+  "readiness": "No remaining known blocker. No pushes until root coordinated landing clearance.",
+  "primary_preserved": "Primary tracked checkout clean and untouched; protected credential file stays outside Git.",
+  "default_activation": false,
+  "paid_calls_in_closeout": 0,
+  "cleanup": "Both dedicated worktrees and their ignored receipts retained; no cleanup requested."
+}

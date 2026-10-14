@@ -1,0 +1,1263 @@
+{
+  "cap_usd": 15,
+  "spent_usd": 0.34186724999999996,
+  "calls": [
+    {
+      "sequence": 1,
+      "model": "gemini-4-argon",
+      "reserved_usd": 0.37968,
+      "cost_usd": 0.004366,
+      "request_sha256": "c9c6b66d6a6ff30cff005cadf6d96790b14a3bf078ed555a4daee9c63b94ed46",
+      "stage": "native-table",
+      "code_sha256": {
+        "benchmarks/providers/argon_guard.py": "ca803cd07864288acd467392f6ea5e53e04152678a3333f099a792f0076ef938",
+        "modules/common/openai_client.py": "eb8b2146f390e3a28f2b02cc032abe9959ba6921690eccc5965a6fd948d43308",
+        "modules/common/google_client.py": "174e4469436f26452a8d0712af32968ddfa730a04a726bf34d272d970aadd721",
+        "modules/extract/ocr_ai_gpt51_v1/main.py": "eb183426c5070de25a1062cb359b3cc89a490a59b024a85e80e2b22174c0c111"
+      },
+      "response_sha256": "15efd34c736b926babff92b3de974c8a27fae62b891425756985bc40b50abb07",
+      "response_bytes": 1055,
+      "status_code": 200,
+      "latency_ms": 4199,
+      "usage": {
+        "promptTokenCount": 1918,
+        "candidatesTokenCount": 28,
+        "totalTokenCount": 1971,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 837
+          },
+          {
+            "modality": "IMAGE",
+            "tokenCount": 1081
+          }
+        ],
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 28
+          }
+        ],
+        "thoughtsTokenCount": 25
+      },
+      "served_model": "gemini-4-argon",
+      "response_id": "M8vOaqCoBbetz7IPx8W0-As"
+    },
+    {
+      "sequence": 2,
+      "model": "gemini-4-argon",
+      "reserved_usd": 0.37968,
+      "cost_usd": 0.004226,
+      "request_sha256": "49d81e0d19c3d09f0c4499fde2619386e31e19021d627abc302006b29987f27d",
+      "stage": "native-crop",
+      "code_sha256": {
+        "benchmarks/providers/argon_guard.py": "ca803cd07864288acd467392f6ea5e53e04152678a3333f099a792f0076ef938",
+        "modules/common/openai_client.py": "eb8b2146f390e3a28f2b02cc032abe9959ba6921690eccc5965a6fd948d43308",
+        "modules/common/google_client.py": "174e4469436f26452a8d0712af32968ddfa730a04a726bf34d272d970aadd721",
+        "modules/extract/ocr_ai_gpt51_v1/main.py": "eb183426c5070de25a1062cb359b3cc89a490a59b024a85e80e2b22174c0c111"
+      },
+      "response_sha256": "8ba133d2f66bb7cd072f97c79ee83c4aed36d4358a2a99b1d89cb33262c418bd",
+      "response_bytes": 1611,
+      "status_code": 200,
+      "latency_ms": 5145,
+      "usage": {
+        "promptTokenCount": 1383,
+        "candidatesTokenCount": 20,
+        "totalTokenCount": 1529,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 302
+          },
+          {
+            "modality": "IMAGE",
+            "tokenCount": 1081
+          }
+        ],
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 20
+          }
+        ],
+        "thoughtsTokenCount": 126
+      },
+      "served_model": "gemini-4-argon",
+      "response_id": "TsvOao1AkZ2OsQ-Or9uJBw"
+    },
+    {
+      "sequence": 3,
+      "model": "gemini-4-argon",
+      "reserved_usd": 0.37968,
+      "cost_usd": 0.002374,
+      "request_sha256": "5ad4ca46ba8fff4852fcba40c07846b1ab571d2766341e56dd2a8340f68f6e86",
+      "stage": "native-ocr",
+      "code_sha256": {
+        "benchmarks/providers/argon_guard.py": "ca803cd07864288acd467392f6ea5e53e04152678a3333f099a792f0076ef938",
+        "modules/common/openai_client.py": "eb8b2146f390e3a28f2b02cc032abe9959ba6921690eccc5965a6fd948d43308",
+        "modules/common/google_client.py": "174e4469436f26452a8d0712af32968ddfa730a04a726bf34d272d970aadd721",
+        "modules/extract/ocr_ai_gpt51_v1/main.py": "eb183426c5070de25a1062cb359b3cc89a490a59b024a85e80e2b22174c0c111"
+      },
+      "response_sha256": "2fa65b9c190b2dcd7d30505ada7718dfe548da3cf8953fff2d010d36ae6d2ecf",
+      "response_bytes": 887,
+      "status_code": 200,
+      "latency_ms": 3941,
+      "usage": {
+        "promptTokenCount": 1132,
+        "candidatesTokenCount": 11,
+        "totalTokenCount": 1143,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 51
+          },
+          {
+            "modality": "IMAGE",
+            "tokenCount": 1081
+          }
+        ],
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 11
+          }
+        ]
+      },
+      "served_model": "gemini-4-argon",
+      "response_id": "U8vOavncC7Sgz7IP6a2G8Ag"
+    },
+    {
+      "sequence": 4,
+      "model": "gemini-4-argon",
+      "reserved_usd": 0.37968,
+      "cost_usd": 0.006782,
+      "request_sha256": "326cb54f4ef3ae51c7204a7019f86efff6dcc080456f5cb081d76c74700feece",
+      "stage": "table-native-positive-candidate",
+      "code_sha256": {
+        "benchmarks/providers/argon_guard.py": "38b6d191731f4bd7d9d2234100dd63d701d0707d8805ca4eaf49534191480232",
+        "benchmarks/scripts/argon_campaign.py": "57dd4de93499001a45a506188a1ca8868f94f1e5511c35c3c2373b23bfc1a288",
+        "modules/common/openai_client.py": "eb8b2146f390e3a28f2b02cc032abe9959ba6921690eccc5965a6fd948d43308",
+        "modules/common/google_client.py": "174e4469436f26452a8d0712af32968ddfa730a04a726bf34d272d970aadd721",
+        "modules/extract/ocr_ai_gpt51_v1/main.py": "eb183426c5070de25a1062cb359b3cc89a490a59b024a85e80e2b22174c0c111"
+      },
+      "response_sha256": "290ff2a1ea0f0ecc166959c425479dc791539ea4fc4d82f555c030189da3cd36",
+      "response_bytes": 2449,
+      "status_code": 200,
+      "latency_ms": 6289,
+      "usage": {
+        "promptTokenCount": 1941,
+        "candidatesTokenCount": 136,
+        "totalTokenCount": 2231,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 839
+          },
+          {
+            "modality": "IMAGE",
+            "tokenCount": 1102
+          }
+        ],
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 136
+          }
+        ],
+        "thoughtsTokenCount": 154
+      },
+      "served_model": "gemini-4-argon",
+      "response_id": "bsvOata1MLqd_uMP_7bGkA0"
+    },
+    {
+      "sequence": 5,
+      "model": "gpt-6-astra",
+      "reserved_usd": 0.6696,
+      "cost_usd": 0.06551,
+      "request_sha256": "3de545dc7a3da46d71e2092d4884939e4b1323e1cab34dac738dc809e4642627",
+      "stage": "table-native-positive-control",
+      "code_sha256": {
+        "benchmarks/providers/argon_guard.py": "38b6d191731f4bd7d9d2234100dd63d701d0707d8805ca4eaf49534191480232",
+        "benchmarks/scripts/argon_campaign.py": "57dd4de93499001a45a506188a1ca8868f94f1e5511c35c3c2373b23bfc1a288",
+        "modules/common/openai_client.py": "eb8b2146f390e3a28f2b02cc032abe9959ba6921690eccc5965a6fd948d43308",
+        "modules/common/google_client.py": "174e4469436f26452a8d0712af32968ddfa730a04a726bf34d272d970aadd721",
+        "modules/extract/ocr_ai_gpt51_v1/main.py": "eb183426c5070de25a1062cb359b3cc89a490a59b024a85e80e2b22174c0c111"
+      },
+      "response_sha256": "bee41925b48c1a8f2b154a1afabed9c4ba3a5db9829a9768894b2a5582673b3b",
+      "response_bytes": 8237,
+      "status_code": 200,
+      "latency_ms": 12417,
+      "usage": {
+        "input_tokens": 5016,
+        "input_tokens_details": {
+          "cache_write_tokens": 5013,
+          "cached_tokens": 0
+        },
+        "output_tokens": 307,
+        "output_tokens_details": {
+          "reasoning_tokens": 136
+        },
+        "total_tokens": 5323
+      },
+      "served_model": "gpt-6-astra",
+      "response_id": "resp_09677d3594d7ecd8016acecb75e16887d0853ba67cc6b9fd2a"
+    },
+    {
+      "sequence": 6,
+      "model": "gemini-4-argon",
+      "reserved_usd": 0.37968,
+      "cost_usd": 0.010592,
+      "request_sha256": "f687b77d6f855e7e4121c9f3ecccb2d593089fb1b910ceaf04f59ffcd224f68d",
+      "stage": "table-image-positive-candidate",
+      "code_sha256": {
+        "benchmarks/providers/argon_guard.py": "38b6d191731f4bd7d9d2234100dd63d701d0707d8805ca4eaf49534191480232",
+        "benchmarks/scripts/argon_campaign.py": "57dd4de93499001a45a506188a1ca8868f94f1e5511c35c3c2373b23bfc1a288",
+        "modules/common/openai_client.py": "eb8b2146f390e3a28f2b02cc032abe9959ba6921690eccc5965a6fd948d43308",
+        "modules/common/google_client.py": "174e4469436f26452a8d0712af32968ddfa730a04a726bf34d272d970aadd721",
+        "modules/extract/ocr_ai_gpt51_v1/main.py": "eb183426c5070de25a1062cb359b3cc89a490a59b024a85e80e2b22174c0c111"
+      },
+      "response_sha256": "e1bfc7d5b854f1285840b1bc9bed430edd68abc5af20e3f5a18a2626f067d24e",
+      "response_bytes": 4044,
+      "status_code": 200,
+      "latency_ms": 11310,
+      "usage": {
+        "promptTokenCount": 1941,
+        "candidatesTokenCount": 179,
+        "totalTokenCount": 2612,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 839
+          },
+          {
+            "modality": "IMAGE",
+            "tokenCount": 1102
+          }
+        ],
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 179
+          }
+        ],
+        "thoughtsTokenCount": 492
+      },
+      "served_model": "gemini-4-argon",
+      "response_id": "gcvOauuZM6vFqtsPwuCYOQ"
+    },
+    {
+      "sequence": 7,
+      "model": "gpt-6-astra",
+      "reserved_usd": 0.6696,
+      "cost_usd": 0.07001,
+      "request_sha256": "7f64fac6048201ead9fda38451412d9b5fbaf5c2b5d47fa024d0baf8c342cd3c",
+      "stage": "table-image-positive-control",
+      "code_sha256": {
+        "benchmarks/providers/argon_guard.py": "38b6d191731f4bd7d9d2234100dd63d701d0707d8805ca4eaf49534191480232",
+        "benchmarks/scripts/argon_campaign.py": "57dd4de93499001a45a506188a1ca8868f94f1e5511c35c3c2373b23bfc1a288",
+        "modules/common/openai_client.py": "eb8b2146f390e3a28f2b02cc032abe9959ba6921690eccc5965a6fd948d43308",
+        "modules/common/google_client.py": "174e4469436f26452a8d0712af32968ddfa730a04a726bf34d272d970aadd721",
+        "modules/extract/ocr_ai_gpt51_v1/main.py": "eb183426c5070de25a1062cb359b3cc89a490a59b024a85e80e2b22174c0c111"
+      },
+      "response_sha256": "de11d442e0578ac167efdf6fb8c37c63c7f3f0537593abdc1a2444380533673d",
+      "response_bytes": 8529,
+      "status_code": 200,
+      "latency_ms": 11922,
+      "usage": {
+        "input_tokens": 5016,
+        "input_tokens_details": {
+          "cache_write_tokens": 5013,
+          "cached_tokens": 0
+        },
+        "output_tokens": 397,
+        "output_tokens_details": {
+          "reasoning_tokens": 154
+        },
+        "total_tokens": 5413
+      },
+      "served_model": "gpt-6-astra",
+      "response_id": "resp_09e9e0c4e6c73565016acecb8d0ed087d0aa37e1a08948d516"
+    },
+    {
+      "sequence": 8,
+      "model": "gemini-4-argon",
+      "reserved_usd": 0.37968,
+      "cost_usd": 0.005542,
+      "request_sha256": "4065bd51adfa1de4478e09e986c8bf0807844d19c6f5c3d9ae09582dd7e514de",
+      "stage": "table-ambiguity-negative-candidate",
+      "code_sha256": {
+        "benchmarks/providers/argon_guard.py": "38b6d191731f4bd7d9d2234100dd63d701d0707d8805ca4eaf49534191480232",
+        "benchmarks/scripts/argon_campaign.py": "b979c1429abcc745dc51fdbc1ca6b17aee14ca3439f97574402d5aea610470e6",
+        "modules/common/openai_client.py": "eb8b2146f390e3a28f2b02cc032abe9959ba6921690eccc5965a6fd948d43308",
+        "modules/common/google_client.py": "174e4469436f26452a8d0712af32968ddfa730a04a726bf34d272d970aadd721",
+        "modules/extract/ocr_ai_gpt51_v1/main.py": "eb183426c5070de25a1062cb359b3cc89a490a59b024a85e80e2b22174c0c111"
+      },
+      "response_sha256": "e8f1e8e31d72f57742a43abb0dd7b48de5b07debf0b36ff15e1107d7b2606b71",
+      "response_bytes": 1812,
+      "status_code": 200,
+      "latency_ms": 5639,
+      "usage": {
+        "promptTokenCount": 1941,
+        "candidatesTokenCount": 166,
+        "totalTokenCount": 2107,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 839
+          },
+          {
+            "modality": "IMAGE",
+            "tokenCount": 1102
+          }
+        ],
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 166
+          }
+        ]
+      },
+      "served_model": "gemini-4-argon",
+      "response_id": "mcvOaomAAtXh_uMP3_Wq4Ao"
+    },
+    {
+      "sequence": 9,
+      "model": "gpt-6-astra",
+      "reserved_usd": 0.6696,
+      "cost_usd": 0.06321,
+      "request_sha256": "9f6ba8c22031e69526ab2948178816c187c90327cd6c1560dfe6dd3d490b99c9",
+      "stage": "table-ambiguity-negative-control",
+      "code_sha256": {
+        "benchmarks/providers/argon_guard.py": "38b6d191731f4bd7d9d2234100dd63d701d0707d8805ca4eaf49534191480232",
+        "benchmarks/scripts/argon_campaign.py": "b979c1429abcc745dc51fdbc1ca6b17aee14ca3439f97574402d5aea610470e6",
+        "modules/common/openai_client.py": "eb8b2146f390e3a28f2b02cc032abe9959ba6921690eccc5965a6fd948d43308",
+        "modules/common/google_client.py": "174e4469436f26452a8d0712af32968ddfa730a04a726bf34d272d970aadd721",
+        "modules/extract/ocr_ai_gpt51_v1/main.py": "eb183426c5070de25a1062cb359b3cc89a490a59b024a85e80e2b22174c0c111"
+      },
+      "response_sha256": "b9f4787725e5631025926c31d0c5556d8a0ab89107203895a7e840102d1236a8",
+      "response_bytes": 7780,
+      "status_code": 200,
+      "latency_ms": 8074,
+      "usage": {
+        "input_tokens": 5016,
+        "input_tokens_details": {
+          "cache_write_tokens": 5013,
+          "cached_tokens": 0
+        },
+        "output_tokens": 261,
+        "output_tokens_details": {
+          "reasoning_tokens": 72
+        },
+        "total_tokens": 5277
+      },
+      "served_model": "gpt-6-astra",
+      "response_id": "resp_02dc2e66375f2071016acecb9ea53c87d0b38cea520afc7a09"
+    },
+    {
+      "sequence": 10,
+      "model": "gemini-4-argon",
+      "stage": "crop-screen-Image011-candidate",
+      "reserved_usd": 0.37968,
+      "cost_usd": null,
+      "billing_unresolved": true,
+      "raw_custody_lost": true,
+      "reason": "legacy serial guard overlap overwrote envelope; initial output retained and quarantined"
+    },
+    {
+      "sequence": 11,
+      "model": "gemini-3-flash-preview",
+      "stage": "crop-screen-Image011-control",
+      "reserved_usd": 0.062152,
+      "cost_usd": null,
+      "billing_unresolved": true,
+      "raw_custody_lost": true,
+      "reason": "legacy serial guard overlap overwrote envelope; initial output retained and quarantined"
+    },
+    {
+      "sequence": 12,
+      "model": "gemini-4-argon",
+      "reserved_usd": 0.37968,
+      "cost_usd": 0.007044,
+      "request_sha256": "04dd45daa27a8a090a9bf9441d7d41857f774cfc569cd2c392fb0687cf87ac97",
+      "stage": "crop-recovery1-Image011-candidate",
+      "code_sha256": {
+        "benchmarks/providers/argon_guard.py": "c99b49d3622dae8bf935c2cda883c2991976db919c2ffd353b718241ced1b242",
+        "benchmarks/scripts/argon_campaign.py": "2ee908818c7a6b2e276298c878c9f1682ed817155afa8d97067b5527a05ef10b",
+        "modules/common/openai_client.py": "eb8b2146f390e3a28f2b02cc032abe9959ba6921690eccc5965a6fd948d43308",
+        "modules/common/google_client.py": "174e4469436f26452a8d0712af32968ddfa730a04a726bf34d272d970aadd721",
+        "modules/extract/ocr_ai_gpt51_v1/main.py": "eb183426c5070de25a1062cb359b3cc89a490a59b024a85e80e2b22174c0c111"
+      },
+      "response_sha256": "2c08f4df9b03b8419c94950294725639ad3f701de77df25ceb03d850e127c29e",
+      "response_bytes": 2028,
+      "status_code": 200,
+      "latency_ms": 8547,
+      "usage": {
+        "promptTokenCount": 1617,
+        "candidatesTokenCount": 140,
+        "totalTokenCount": 1998,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 515
+          },
+          {
+            "modality": "IMAGE",
+            "tokenCount": 1102
+          }
+        ],
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 140
+          }
+        ],
+        "thoughtsTokenCount": 241
+      },
+      "served_model": "gemini-4-argon",
+      "response_id": "zsvOavH2KKyEz7IP6Kfz4QM"
+    },
+    {
+      "sequence": 13,
+      "model": "gemini-3-flash-preview",
+      "reserved_usd": 0.062152,
+      "cost_usd": 0.0045395,
+      "request_sha256": "242f8833652c89a4b1ac2591289afba7bc19e1ca44556e2c570f5f4648e54994",
+      "stage": "crop-recovery1-Image011-control",
+      "code_sha256": {
+        "benchmarks/providers/argon_guard.py": "c99b49d3622dae8bf935c2cda883c2991976db919c2ffd353b718241ced1b242",
+        "benchmarks/scripts/argon_campaign.py": "2ee908818c7a6b2e276298c878c9f1682ed817155afa8d97067b5527a05ef10b",
+        "modules/common/openai_client.py": "eb8b2146f390e3a28f2b02cc032abe9959ba6921690eccc5965a6fd948d43308",
+        "modules/common/google_client.py": "174e4469436f26452a8d0712af32968ddfa730a04a726bf34d272d970aadd721",
+        "modules/extract/ocr_ai_gpt51_v1/main.py": "eb183426c5070de25a1062cb359b3cc89a490a59b024a85e80e2b22174c0c111"
+      },
+      "response_sha256": "55518149b9ee153687a8e1ba8f83376fc6c1cb6636738259c0399cd004d5b333",
+      "response_bytes": 5532,
+      "status_code": 200,
+      "latency_ms": 6206,
+      "usage": {
+        "promptTokenCount": 1333,
+        "candidatesTokenCount": 113,
+        "totalTokenCount": 2624,
+        "promptTokensDetails": [
+          {
+            "modality": "IMAGE",
+            "tokenCount": 1102
+          },
+          {
+            "modality": "TEXT",
+            "tokenCount": 231
+          }
+        ],
+        "thoughtsTokenCount": 1178,
+        "serviceTier": "standard"
+      },
+      "served_model": "gemini-3-flash-preview",
+      "response_id": "18vOasqqAvWcz7IP2uWzsAM"
+    },
+    {
+      "sequence": 14,
+      "model": "gemini-4-argon",
+      "reserved_usd": 0.37968,
+      "cost_usd": 0.00802,
+      "request_sha256": "4ce60b64dfde58a2bca9f751e3b4381917ca957c92f02ed91ae9f75cf533334f",
+      "stage": "ocr-barney-candidate",
+      "code_sha256": {
+        "benchmarks/providers/argon_guard.py": "c99b49d3622dae8bf935c2cda883c2991976db919c2ffd353b718241ced1b242",
+        "benchmarks/scripts/argon_campaign.py": "4eff8b2ebd111f340ee7b965a5d9a3c37429c203a5ca55f629188af364f7fbd8",
+        "modules/common/openai_client.py": "eb8b2146f390e3a28f2b02cc032abe9959ba6921690eccc5965a6fd948d43308",
+        "modules/common/google_client.py": "174e4469436f26452a8d0712af32968ddfa730a04a726bf34d272d970aadd721",
+        "modules/extract/ocr_ai_gpt51_v1/main.py": "eb183426c5070de25a1062cb359b3cc89a490a59b024a85e80e2b22174c0c111"
+      },
+      "response_sha256": "49dbd1749588e7ad12a2578df6ddcaf642cd736112ace6e48befb9437b9a463a",
+      "response_bytes": 2752,
+      "status_code": 200,
+      "latency_ms": 9498,
+      "usage": {
+        "promptTokenCount": 2055,
+        "candidatesTokenCount": 391,
+        "totalTokenCount": 2446,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 982
+          },
+          {
+            "modality": "IMAGE",
+            "tokenCount": 1073
+          }
+        ],
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 391
+          }
+        ]
+      },
+      "served_model": "gemini-4-argon",
+      "response_id": "KMzOau2oO_Lnz7IP7___8AI"
+    },
+    {
+      "sequence": 15,
+      "model": "gemini-3.7-flash",
+      "reserved_usd": 0.08094,
+      "cost_usd": 0.01321425,
+      "request_sha256": "367d52133d49c5a8433552634fd7b72e11cfca7ca316539d63ba9699c4892d2b",
+      "stage": "ocr-barney-control",
+      "code_sha256": {
+        "benchmarks/providers/argon_guard.py": "c99b49d3622dae8bf935c2cda883c2991976db919c2ffd353b718241ced1b242",
+        "benchmarks/scripts/argon_campaign.py": "4eff8b2ebd111f340ee7b965a5d9a3c37429c203a5ca55f629188af364f7fbd8",
+        "modules/common/openai_client.py": "eb8b2146f390e3a28f2b02cc032abe9959ba6921690eccc5965a6fd948d43308",
+        "modules/common/google_client.py": "174e4469436f26452a8d0712af32968ddfa730a04a726bf34d272d970aadd721",
+        "modules/extract/ocr_ai_gpt51_v1/main.py": "eb183426c5070de25a1062cb359b3cc89a490a59b024a85e80e2b22174c0c111"
+      },
+      "response_sha256": "41606917d2e805c54f2c43eeb80510e5803cb25e245d9b677decb76cd1b29e50",
+      "response_bytes": 14608,
+      "status_code": 200,
+      "latency_ms": 21937,
+      "usage": {
+        "promptTokenCount": 2029,
+        "candidatesTokenCount": 385,
+        "totalTokenCount": 5147,
+        "promptTokensDetails": [
+          {
+            "modality": "IMAGE",
+            "tokenCount": 1073
+          },
+          {
+            "modality": "TEXT",
+            "tokenCount": 956
+          }
+        ],
+        "thoughtsTokenCount": 2733,
+        "serviceTier": "standard"
+      },
+      "served_model": "gemini-3.8-flash",
+      "response_id": "NMzOavmsDIXrqtsP1IPr2Q8"
+    },
+    {
+      "sequence": 16,
+      "model": "gemini-4-argon",
+      "reserved_usd": 0.37968,
+      "cost_usd": 0.004544,
+      "request_sha256": "f8c042ed35f61501b183affecf7bc7744c6335406e3c699d78e7c78a943e8d7c",
+      "stage": "crop-full-Image000-candidate",
+      "code_sha256": {
+        "benchmarks/providers/argon_guard.py": "c99b49d3622dae8bf935c2cda883c2991976db919c2ffd353b718241ced1b242",
+        "benchmarks/scripts/argon_campaign.py": "4eff8b2ebd111f340ee7b965a5d9a3c37429c203a5ca55f629188af364f7fbd8",
+        "modules/common/openai_client.py": "eb8b2146f390e3a28f2b02cc032abe9959ba6921690eccc5965a6fd948d43308",
+        "modules/common/google_client.py": "174e4469436f26452a8d0712af32968ddfa730a04a726bf34d272d970aadd721",
+        "modules/extract/ocr_ai_gpt51_v1/main.py": "eb183426c5070de25a1062cb359b3cc89a490a59b024a85e80e2b22174c0c111"
+      },
+      "response_sha256": "f49de58e6883406615924cfcb041c9d251dc88be88c30428eeffa3915cbf3456",
+      "response_bytes": 1388,
+      "status_code": 200,
+      "latency_ms": 6799,
+      "usage": {
+        "promptTokenCount": 1617,
+        "candidatesTokenCount": 99,
+        "totalTokenCount": 1748,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 515
+          },
+          {
+            "modality": "IMAGE",
+            "tokenCount": 1102
+          }
+        ],
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 99
+          }
+        ],
+        "thoughtsTokenCount": 32
+      },
+      "served_model": "gemini-4-argon",
+      "response_id": "g8zOasjPJN67qtsP6bO_0AI"
+    },
+    {
+      "sequence": 17,
+      "model": "gemini-3-flash-preview",
+      "reserved_usd": 0.062152,
+      "cost_usd": 0.0056345,
+      "request_sha256": "6239875f0624ff1eb55c31f8a386a40e031168b01f5491acbc81906c2a0651c9",
+      "stage": "crop-full-Image000-control",
+      "code_sha256": {
+        "benchmarks/providers/argon_guard.py": "c99b49d3622dae8bf935c2cda883c2991976db919c2ffd353b718241ced1b242",
+        "benchmarks/scripts/argon_campaign.py": "4eff8b2ebd111f340ee7b965a5d9a3c37429c203a5ca55f629188af364f7fbd8",
+        "modules/common/openai_client.py": "eb8b2146f390e3a28f2b02cc032abe9959ba6921690eccc5965a6fd948d43308",
+        "modules/common/google_client.py": "174e4469436f26452a8d0712af32968ddfa730a04a726bf34d272d970aadd721",
+        "modules/extract/ocr_ai_gpt51_v1/main.py": "eb183426c5070de25a1062cb359b3cc89a490a59b024a85e80e2b22174c0c111"
+      },
+      "response_sha256": "1a73026770677f56e7920cc6a0d1c3ab9437b1b1a5e9bc78226cb52f28475937",
+      "response_bytes": 7631,
+      "status_code": 200,
+      "latency_ms": 8852,
+      "usage": {
+        "promptTokenCount": 1333,
+        "candidatesTokenCount": 92,
+        "totalTokenCount": 2989,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 231
+          },
+          {
+            "modality": "IMAGE",
+            "tokenCount": 1102
+          }
+        ],
+        "thoughtsTokenCount": 1564,
+        "serviceTier": "standard"
+      },
+      "served_model": "gemini-3-flash-preview",
+      "response_id": "iszOapLdFouBqtsPrYmwkAk"
+    },
+    {
+      "sequence": 18,
+      "model": "gemini-4-argon",
+      "reserved_usd": 0.37968,
+      "cost_usd": 0.004074,
+      "request_sha256": "fb4f0a23cef39c358ca638043f6982ad291b65e39ee894e60b364a9a19af19e4",
+      "stage": "crop-full-Image001-candidate",
+      "code_sha256": {
+        "benchmarks/providers/argon_guard.py": "c99b49d3622dae8bf935c2cda883c2991976db919c2ffd353b718241ced1b242",
+        "benchmarks/scripts/argon_campaign.py": "4eff8b2ebd111f340ee7b965a5d9a3c37429c203a5ca55f629188af364f7fbd8",
+        "modules/common/openai_client.py": "eb8b2146f390e3a28f2b02cc032abe9959ba6921690eccc5965a6fd948d43308",
+        "modules/common/google_client.py": "174e4469436f26452a8d0712af32968ddfa730a04a726bf34d272d970aadd721",
+        "modules/extract/ocr_ai_gpt51_v1/main.py": "eb183426c5070de25a1062cb359b3cc89a490a59b024a85e80e2b22174c0c111"
+      },
+      "response_sha256": "8ad0b3d604751a3cd31b0760cb49d7fb223944c3efa3ae586d07ea5f012355ab",
+      "response_bytes": 1033,
+      "status_code": 200,
+      "latency_ms": 4675,
+      "usage": {
+        "promptTokenCount": 1617,
+        "candidatesTokenCount": 84,
+        "totalTokenCount": 1701,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 515
+          },
+          {
+            "modality": "IMAGE",
+            "tokenCount": 1102
+          }
+        ],
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 84
+          }
+        ]
+      },
+      "served_model": "gemini-4-argon",
+      "response_id": "k8zOar_ABJWHz7IPib-_wAM"
+    },
+    {
+      "sequence": 19,
+      "model": "gemini-3-flash-preview",
+      "reserved_usd": 0.062152,
+      "cost_usd": 0.0041105,
+      "request_sha256": "01b4129b1c68907267cb3e71fc64bd3517497b103f7c28fb085982eef0f5e296",
+      "stage": "crop-full-Image001-control",
+      "code_sha256": {
+        "benchmarks/providers/argon_guard.py": "c99b49d3622dae8bf935c2cda883c2991976db919c2ffd353b718241ced1b242",
+        "benchmarks/scripts/argon_campaign.py": "4eff8b2ebd111f340ee7b965a5d9a3c37429c203a5ca55f629188af364f7fbd8",
+        "modules/common/openai_client.py": "eb8b2146f390e3a28f2b02cc032abe9959ba6921690eccc5965a6fd948d43308",
+        "modules/common/google_client.py": "174e4469436f26452a8d0712af32968ddfa730a04a726bf34d272d970aadd721",
+        "modules/extract/ocr_ai_gpt51_v1/main.py": "eb183426c5070de25a1062cb359b3cc89a490a59b024a85e80e2b22174c0c111"
+      },
+      "response_sha256": "13104cab4530f0b901d1c63f0d800dfa42d4f2af37d3d05cc4640f2ae6d4f39d",
+      "response_bytes": 5499,
+      "status_code": 200,
+      "latency_ms": 6180,
+      "usage": {
+        "promptTokenCount": 1333,
+        "candidatesTokenCount": 70,
+        "totalTokenCount": 2481,
+        "promptTokensDetails": [
+          {
+            "modality": "IMAGE",
+            "tokenCount": 1102
+          },
+          {
+            "modality": "TEXT",
+            "tokenCount": 231
+          }
+        ],
+        "thoughtsTokenCount": 1078,
+        "serviceTier": "standard"
+      },
+      "served_model": "gemini-3-flash-preview",
+      "response_id": "l8zOasPCLfj6qtsPwbeggAc"
+    },
+    {
+      "sequence": 20,
+      "model": "gemini-4-argon",
+      "reserved_usd": 0.37968,
+      "cost_usd": 0.004574,
+      "request_sha256": "8243c027631975555ab38df492901dc63c1f09f1a0002519a23d2e45f6534504",
+      "stage": "crop-full-Image003-candidate",
+      "code_sha256": {
+        "benchmarks/providers/argon_guard.py": "c99b49d3622dae8bf935c2cda883c2991976db919c2ffd353b718241ced1b242",
+        "benchmarks/scripts/argon_campaign.py": "4eff8b2ebd111f340ee7b965a5d9a3c37429c203a5ca55f629188af364f7fbd8",
+        "modules/common/openai_client.py": "eb8b2146f390e3a28f2b02cc032abe9959ba6921690eccc5965a6fd948d43308",
+        "modules/common/google_client.py": "174e4469436f26452a8d0712af32968ddfa730a04a726bf34d272d970aadd721",
+        "modules/extract/ocr_ai_gpt51_v1/main.py": "eb183426c5070de25a1062cb359b3cc89a490a59b024a85e80e2b22174c0c111"
+      },
+      "response_sha256": "2146238de05ed6551017cc312ea83fbbc0b595b2b6d6f61e511f8631f81106ee",
+      "response_bytes": 1254,
+      "status_code": 200,
+      "latency_ms": 5082,
+      "usage": {
+        "promptTokenCount": 1617,
+        "candidatesTokenCount": 81,
+        "totalTokenCount": 1751,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 515
+          },
+          {
+            "modality": "IMAGE",
+            "tokenCount": 1102
+          }
+        ],
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 81
+          }
+        ],
+        "thoughtsTokenCount": 53
+      },
+      "served_model": "gemini-4-argon",
+      "response_id": "nszOaqHCAt67qtsP6bO_0AI"
+    },
+    {
+      "sequence": 21,
+      "model": "gemini-3-flash-preview",
+      "reserved_usd": 0.062152,
+      "cost_usd": 0.0033425,
+      "request_sha256": "0678d76e8bbc40b8867facb609d017f95020e5bcb53519e7bb663fe951769366",
+      "stage": "crop-full-Image003-control",
+      "code_sha256": {
+        "benchmarks/providers/argon_guard.py": "c99b49d3622dae8bf935c2cda883c2991976db919c2ffd353b718241ced1b242",
+        "benchmarks/scripts/argon_campaign.py": "4eff8b2ebd111f340ee7b965a5d9a3c37429c203a5ca55f629188af364f7fbd8",
+        "modules/common/openai_client.py": "eb8b2146f390e3a28f2b02cc032abe9959ba6921690eccc5965a6fd948d43308",
+        "modules/common/google_client.py": "174e4469436f26452a8d0712af32968ddfa730a04a726bf34d272d970aadd721",
+        "modules/extract/ocr_ai_gpt51_v1/main.py": "eb183426c5070de25a1062cb359b3cc89a490a59b024a85e80e2b22174c0c111"
+      },
+      "response_sha256": "a878b9060b763d6646e99c188bd0c1a3b04e7065977ffac2ae99b07e648ebe94",
+      "response_bytes": 4390,
+      "status_code": 200,
+      "latency_ms": 5154,
+      "usage": {
+        "promptTokenCount": 1333,
+        "candidatesTokenCount": 65,
+        "totalTokenCount": 2225,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 231
+          },
+          {
+            "modality": "IMAGE",
+            "tokenCount": 1102
+          }
+        ],
+        "thoughtsTokenCount": 827,
+        "serviceTier": "standard"
+      },
+      "served_model": "gemini-3-flash-preview",
+      "response_id": "o8zOasuNCpeHz7IP4YqDqQM"
+    },
+    {
+      "sequence": 22,
+      "model": "gemini-4-argon",
+      "reserved_usd": 0.37968,
+      "cost_usd": 0.004414,
+      "request_sha256": "a895c4db1e81c380e95ae12395c1d31be0e7bee9ee0077ea67f5bfb539e1dedf",
+      "stage": "crop-full-Image008-candidate",
+      "code_sha256": {
+        "benchmarks/providers/argon_guard.py": "c99b49d3622dae8bf935c2cda883c2991976db919c2ffd353b718241ced1b242",
+        "benchmarks/scripts/argon_campaign.py": "4eff8b2ebd111f340ee7b965a5d9a3c37429c203a5ca55f629188af364f7fbd8",
+        "modules/common/openai_client.py": "eb8b2146f390e3a28f2b02cc032abe9959ba6921690eccc5965a6fd948d43308",
+        "modules/common/google_client.py": "174e4469436f26452a8d0712af32968ddfa730a04a726bf34d272d970aadd721",
+        "modules/extract/ocr_ai_gpt51_v1/main.py": "eb183426c5070de25a1062cb359b3cc89a490a59b024a85e80e2b22174c0c111"
+      },
+      "response_sha256": "e20ddaffe137190b2cb2476d42ac8b75995cc49c9c409d911f914c4fe08f986a",
+      "response_bytes": 1193,
+      "status_code": 200,
+      "latency_ms": 4666,
+      "usage": {
+        "promptTokenCount": 1617,
+        "candidatesTokenCount": 118,
+        "totalTokenCount": 1735,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 515
+          },
+          {
+            "modality": "IMAGE",
+            "tokenCount": 1102
+          }
+        ],
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 118
+          }
+        ]
+      },
+      "served_model": "gemini-4-argon",
+      "response_id": "qMzOau3AG9-wqtsPweL06A8"
+    },
+    {
+      "sequence": 23,
+      "model": "gemini-3-flash-preview",
+      "reserved_usd": 0.062152,
+      "cost_usd": 0.0026375,
+      "request_sha256": "1dfc824d33f35fa451b526b795882a3b0d62f3ac68b43b41e56fa667c7aa9664",
+      "stage": "crop-full-Image008-control",
+      "code_sha256": {
+        "benchmarks/providers/argon_guard.py": "c99b49d3622dae8bf935c2cda883c2991976db919c2ffd353b718241ced1b242",
+        "benchmarks/scripts/argon_campaign.py": "4eff8b2ebd111f340ee7b965a5d9a3c37429c203a5ca55f629188af364f7fbd8",
+        "modules/common/openai_client.py": "eb8b2146f390e3a28f2b02cc032abe9959ba6921690eccc5965a6fd948d43308",
+        "modules/common/google_client.py": "174e4469436f26452a8d0712af32968ddfa730a04a726bf34d272d970aadd721",
+        "modules/extract/ocr_ai_gpt51_v1/main.py": "eb183426c5070de25a1062cb359b3cc89a490a59b024a85e80e2b22174c0c111"
+      },
+      "response_sha256": "e97715e496ff3ad82ecf62969ec3bcee2486dce78122c1f83f013dd82abb6e34",
+      "response_bytes": 3527,
+      "status_code": 200,
+      "latency_ms": 4356,
+      "usage": {
+        "promptTokenCount": 1333,
+        "candidatesTokenCount": 66,
+        "totalTokenCount": 1990,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 231
+          },
+          {
+            "modality": "IMAGE",
+            "tokenCount": 1102
+          }
+        ],
+        "thoughtsTokenCount": 591,
+        "serviceTier": "standard"
+      },
+      "served_model": "gemini-3-flash-preview",
+      "response_id": "rczOaoiKArrUz7IPzefH4Q8"
+    },
+    {
+      "sequence": 24,
+      "model": "gemini-4-argon",
+      "reserved_usd": 0.37968,
+      "cost_usd": 0.004474,
+      "request_sha256": "04dd45daa27a8a090a9bf9441d7d41857f774cfc569cd2c392fb0687cf87ac97",
+      "stage": "crop-full-Image011-candidate",
+      "code_sha256": {
+        "benchmarks/providers/argon_guard.py": "c99b49d3622dae8bf935c2cda883c2991976db919c2ffd353b718241ced1b242",
+        "benchmarks/scripts/argon_campaign.py": "4eff8b2ebd111f340ee7b965a5d9a3c37429c203a5ca55f629188af364f7fbd8",
+        "modules/common/openai_client.py": "eb8b2146f390e3a28f2b02cc032abe9959ba6921690eccc5965a6fd948d43308",
+        "modules/common/google_client.py": "174e4469436f26452a8d0712af32968ddfa730a04a726bf34d272d970aadd721",
+        "modules/extract/ocr_ai_gpt51_v1/main.py": "eb183426c5070de25a1062cb359b3cc89a490a59b024a85e80e2b22174c0c111"
+      },
+      "response_sha256": "a176285fb76e6bd4e45d5d69f55e97a276be60181a77832c3eb43a6ef89ab878",
+      "response_bytes": 1208,
+      "status_code": 200,
+      "latency_ms": 4171,
+      "usage": {
+        "promptTokenCount": 1617,
+        "candidatesTokenCount": 124,
+        "totalTokenCount": 1741,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 515
+          },
+          {
+            "modality": "IMAGE",
+            "tokenCount": 1102
+          }
+        ],
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 124
+          }
+        ]
+      },
+      "served_model": "gemini-4-argon",
+      "response_id": "sczOap3TGp30jrEPx73JyQ4"
+    },
+    {
+      "sequence": 25,
+      "model": "gemini-3-flash-preview",
+      "reserved_usd": 0.062152,
+      "cost_usd": 0.0045395,
+      "request_sha256": "242f8833652c89a4b1ac2591289afba7bc19e1ca44556e2c570f5f4648e54994",
+      "stage": "crop-full-Image011-control",
+      "code_sha256": {
+        "benchmarks/providers/argon_guard.py": "c99b49d3622dae8bf935c2cda883c2991976db919c2ffd353b718241ced1b242",
+        "benchmarks/scripts/argon_campaign.py": "4eff8b2ebd111f340ee7b965a5d9a3c37429c203a5ca55f629188af364f7fbd8",
+        "modules/common/openai_client.py": "eb8b2146f390e3a28f2b02cc032abe9959ba6921690eccc5965a6fd948d43308",
+        "modules/common/google_client.py": "174e4469436f26452a8d0712af32968ddfa730a04a726bf34d272d970aadd721",
+        "modules/extract/ocr_ai_gpt51_v1/main.py": "eb183426c5070de25a1062cb359b3cc89a490a59b024a85e80e2b22174c0c111"
+      },
+      "response_sha256": "bd350520ca5bda369284db14c9dbba42d84f942991d5017120edbe8b7fb7bfff",
+      "response_bytes": 5532,
+      "status_code": 200,
+      "latency_ms": 6149,
+      "usage": {
+        "promptTokenCount": 1333,
+        "candidatesTokenCount": 113,
+        "totalTokenCount": 2624,
+        "promptTokensDetails": [
+          {
+            "modality": "IMAGE",
+            "tokenCount": 1102
+          },
+          {
+            "modality": "TEXT",
+            "tokenCount": 231
+          }
+        ],
+        "thoughtsTokenCount": 1178,
+        "serviceTier": "standard"
+      },
+      "served_model": "gemini-3-flash-preview",
+      "response_id": "tczOasTmNdXoz7IP9rTjiQM"
+    },
+    {
+      "sequence": 26,
+      "model": "gemini-4-argon",
+      "reserved_usd": 0.37968,
+      "cost_usd": 0.004014,
+      "request_sha256": "b385d4dbfe6be0f71936e3986d1530ef003e02c040acd9c5a95a4aa294c0f328",
+      "stage": "crop-full-Image013-candidate",
+      "code_sha256": {
+        "benchmarks/providers/argon_guard.py": "c99b49d3622dae8bf935c2cda883c2991976db919c2ffd353b718241ced1b242",
+        "benchmarks/scripts/argon_campaign.py": "4eff8b2ebd111f340ee7b965a5d9a3c37429c203a5ca55f629188af364f7fbd8",
+        "modules/common/openai_client.py": "eb8b2146f390e3a28f2b02cc032abe9959ba6921690eccc5965a6fd948d43308",
+        "modules/common/google_client.py": "174e4469436f26452a8d0712af32968ddfa730a04a726bf34d272d970aadd721",
+        "modules/extract/ocr_ai_gpt51_v1/main.py": "eb183426c5070de25a1062cb359b3cc89a490a59b024a85e80e2b22174c0c111"
+      },
+      "response_sha256": "ac33308bc7fd3aceb5297ff7e9df8f18a2a1de348a06c93952cad5d933c0ecf6",
+      "response_bytes": 1019,
+      "status_code": 200,
+      "latency_ms": 4674,
+      "usage": {
+        "promptTokenCount": 1617,
+        "candidatesTokenCount": 78,
+        "totalTokenCount": 1695,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 515
+          },
+          {
+            "modality": "IMAGE",
+            "tokenCount": 1102
+          }
+        ],
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 78
+          }
+        ]
+      },
+      "served_model": "gemini-4-argon",
+      "response_id": "u8zOasrkOJn7qtsP5IDDiQc"
+    },
+    {
+      "sequence": 27,
+      "model": "gemini-3-flash-preview",
+      "reserved_usd": 0.062152,
+      "cost_usd": 0.0039155,
+      "request_sha256": "c873916ab505ac44160df5787c20d3486ddd02c31f292d0834eda31e982dcf43",
+      "stage": "crop-full-Image013-control",
+      "code_sha256": {
+        "benchmarks/providers/argon_guard.py": "c99b49d3622dae8bf935c2cda883c2991976db919c2ffd353b718241ced1b242",
+        "benchmarks/scripts/argon_campaign.py": "4eff8b2ebd111f340ee7b965a5d9a3c37429c203a5ca55f629188af364f7fbd8",
+        "modules/common/openai_client.py": "eb8b2146f390e3a28f2b02cc032abe9959ba6921690eccc5965a6fd948d43308",
+        "modules/common/google_client.py": "174e4469436f26452a8d0712af32968ddfa730a04a726bf34d272d970aadd721",
+        "modules/extract/ocr_ai_gpt51_v1/main.py": "eb183426c5070de25a1062cb359b3cc89a490a59b024a85e80e2b22174c0c111"
+      },
+      "response_sha256": "4d1c76ac12997085fd54bbd3c96f08ace433385d742dd066200e7c1993cd4b55",
+      "response_bytes": 4991,
+      "status_code": 200,
+      "latency_ms": 6504,
+      "usage": {
+        "promptTokenCount": 1333,
+        "candidatesTokenCount": 72,
+        "totalTokenCount": 2416,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 231
+          },
+          {
+            "modality": "IMAGE",
+            "tokenCount": 1102
+          }
+        ],
+        "thoughtsTokenCount": 1011,
+        "serviceTier": "standard"
+      },
+      "served_model": "gemini-3-flash-preview",
+      "response_id": "wMzOao_-IsmJz7IPmceEgAw"
+    },
+    {
+      "sequence": 28,
+      "model": "gemini-4-argon",
+      "reserved_usd": 0.37968,
+      "cost_usd": 0.004694,
+      "request_sha256": "f19401e9bf717c15ecb8d2788991b5010edafbb207d858221a0a957c624960ce",
+      "stage": "crop-full-Image020-candidate",
+      "code_sha256": {
+        "benchmarks/providers/argon_guard.py": "c99b49d3622dae8bf935c2cda883c2991976db919c2ffd353b718241ced1b242",
+        "benchmarks/scripts/argon_campaign.py": "4eff8b2ebd111f340ee7b965a5d9a3c37429c203a5ca55f629188af364f7fbd8",
+        "modules/common/openai_client.py": "eb8b2146f390e3a28f2b02cc032abe9959ba6921690eccc5965a6fd948d43308",
+        "modules/common/google_client.py": "174e4469436f26452a8d0712af32968ddfa730a04a726bf34d272d970aadd721",
+        "modules/extract/ocr_ai_gpt51_v1/main.py": "eb183426c5070de25a1062cb359b3cc89a490a59b024a85e80e2b22174c0c111"
+      },
+      "response_sha256": "3b29a79761c623a05c9cdfa9fb86c04cddff7a4273cfd348b531eb364f3a6620",
+      "response_bytes": 1281,
+      "status_code": 200,
+      "latency_ms": 5731,
+      "usage": {
+        "promptTokenCount": 1617,
+        "candidatesTokenCount": 146,
+        "totalTokenCount": 1763,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 515
+          },
+          {
+            "modality": "IMAGE",
+            "tokenCount": 1102
+          }
+        ],
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 146
+          }
+        ]
+      },
+      "served_model": "gemini-4-argon",
+      "response_id": "x8zOatqJDN-mmtkP7J6k2Qc"
+    },
+    {
+      "sequence": 29,
+      "model": "gemini-3-flash-preview",
+      "reserved_usd": 0.062152,
+      "cost_usd": 0.0025835,
+      "request_sha256": "15cf72c367c960515e3e53a7f220a89c9518462615802099d50d467adda099d8",
+      "stage": "crop-full-Image020-control",
+      "code_sha256": {
+        "benchmarks/providers/argon_guard.py": "c99b49d3622dae8bf935c2cda883c2991976db919c2ffd353b718241ced1b242",
+        "benchmarks/scripts/argon_campaign.py": "4eff8b2ebd111f340ee7b965a5d9a3c37429c203a5ca55f629188af364f7fbd8",
+        "modules/common/openai_client.py": "eb8b2146f390e3a28f2b02cc032abe9959ba6921690eccc5965a6fd948d43308",
+        "modules/common/google_client.py": "174e4469436f26452a8d0712af32968ddfa730a04a726bf34d272d970aadd721",
+        "modules/extract/ocr_ai_gpt51_v1/main.py": "eb183426c5070de25a1062cb359b3cc89a490a59b024a85e80e2b22174c0c111"
+      },
+      "response_sha256": "c4b3947341301b8c52d47bf3d9bf0798d103ebafd50c99e66bec13c7267b0b49",
+      "response_bytes": 2892,
+      "status_code": 200,
+      "latency_ms": 4296,
+      "usage": {
+        "promptTokenCount": 1333,
+        "candidatesTokenCount": 97,
+        "totalTokenCount": 1972,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 231
+          },
+          {
+            "modality": "IMAGE",
+            "tokenCount": 1102
+          }
+        ],
+        "thoughtsTokenCount": 542,
+        "serviceTier": "standard"
+      },
+      "served_model": "gemini-3-flash-preview",
+      "response_id": "zczOaor8BoStz7IP6OK8wAM"
+    },
+    {
+      "sequence": 30,
+      "model": "gemini-4-argon",
+      "reserved_usd": 0.37968,
+      "cost_usd": 0.004054,
+      "request_sha256": "9cd4dc2d5955a6e6896dbf18676bc378094c1c036855881d7cb442fa2fd3d814",
+      "stage": "crop-full-Image021-candidate",
+      "code_sha256": {
+        "benchmarks/providers/argon_guard.py": "c99b49d3622dae8bf935c2cda883c2991976db919c2ffd353b718241ced1b242",
+        "benchmarks/scripts/argon_campaign.py": "4eff8b2ebd111f340ee7b965a5d9a3c37429c203a5ca55f629188af364f7fbd8",
+        "modules/common/openai_client.py": "eb8b2146f390e3a28f2b02cc032abe9959ba6921690eccc5965a6fd948d43308",
+        "modules/common/google_client.py": "174e4469436f26452a8d0712af32968ddfa730a04a726bf34d272d970aadd721",
+        "modules/extract/ocr_ai_gpt51_v1/main.py": "eb183426c5070de25a1062cb359b3cc89a490a59b024a85e80e2b22174c0c111"
+      },
+      "response_sha256": "293d0b742c5f2a3e79b8c2cbb236992a690437dbac2567bfd5ad8a3a352d34c7",
+      "response_bytes": 1049,
+      "status_code": 200,
+      "latency_ms": 4960,
+      "usage": {
+        "promptTokenCount": 1617,
+        "candidatesTokenCount": 82,
+        "totalTokenCount": 1699,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 515
+          },
+          {
+            "modality": "IMAGE",
+            "tokenCount": 1102
+          }
+        ],
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 82
+          }
+        ]
+      },
+      "served_model": "gemini-4-argon",
+      "response_id": "0czOauLFEY7oz7IP4c_H8As"
+    },
+    {
+      "sequence": 31,
+      "model": "gemini-3-flash-preview",
+      "reserved_usd": 0.062152,
+      "cost_usd": 0.0022985,
+      "request_sha256": "ede3f7f9999cf06b79e3e9afbfa0ea2f2b999ccc866fb50b0e343c0639ff94cc",
+      "stage": "crop-full-Image021-control",
+      "code_sha256": {
+        "benchmarks/providers/argon_guard.py": "c99b49d3622dae8bf935c2cda883c2991976db919c2ffd353b718241ced1b242",
+        "benchmarks/scripts/argon_campaign.py": "4eff8b2ebd111f340ee7b965a5d9a3c37429c203a5ca55f629188af364f7fbd8",
+        "modules/common/openai_client.py": "eb8b2146f390e3a28f2b02cc032abe9959ba6921690eccc5965a6fd948d43308",
+        "modules/common/google_client.py": "174e4469436f26452a8d0712af32968ddfa730a04a726bf34d272d970aadd721",
+        "modules/extract/ocr_ai_gpt51_v1/main.py": "eb183426c5070de25a1062cb359b3cc89a490a59b024a85e80e2b22174c0c111"
+      },
+      "response_sha256": "fffa5cb1bc12792cd72766407a67de6bf0995555ee4107b35067ba2fb9d8982b",
+      "response_bytes": 3157,
+      "status_code": 200,
+      "latency_ms": 5039,
+      "usage": {
+        "promptTokenCount": 1333,
+        "candidatesTokenCount": 68,
+        "totalTokenCount": 1877,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 231
+          },
+          {
+            "modality": "IMAGE",
+            "tokenCount": 1102
+          }
+        ],
+        "thoughtsTokenCount": 476,
+        "serviceTier": "standard"
+      },
+      "served_model": "gemini-3-flash-preview",
+      "response_id": "1szOaubaHoGjqtsPote1-AU"
+    },
+    {
+      "sequence": 32,
+      "model": "gemini-4-argon",
+      "reserved_usd": 0.37968,
+      "cost_usd": 0.004484,
+      "request_sha256": "d8a531e0d2392dc4f63530ce112263d869270f32bf4d9e495b1007d8e74b085f",
+      "stage": "crop-full-Image037-candidate",
+      "code_sha256": {
+        "benchmarks/providers/argon_guard.py": "c99b49d3622dae8bf935c2cda883c2991976db919c2ffd353b718241ced1b242",
+        "benchmarks/scripts/argon_campaign.py": "4eff8b2ebd111f340ee7b965a5d9a3c37429c203a5ca55f629188af364f7fbd8",
+        "modules/common/openai_client.py": "eb8b2146f390e3a28f2b02cc032abe9959ba6921690eccc5965a6fd948d43308",
+        "modules/common/google_client.py": "174e4469436f26452a8d0712af32968ddfa730a04a726bf34d272d970aadd721",
+        "modules/extract/ocr_ai_gpt51_v1/main.py": "eb183426c5070de25a1062cb359b3cc89a490a59b024a85e80e2b22174c0c111"
+      },
+      "response_sha256": "a6adcd5e99d346379034c467b1b14b6f3b0aa06ab4121026191c05b84843a84f",
+      "response_bytes": 1151,
+      "status_code": 200,
+      "latency_ms": 5548,
+      "usage": {
+        "promptTokenCount": 1617,
+        "candidatesTokenCount": 125,
+        "totalTokenCount": 1742,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 515
+          },
+          {
+            "modality": "IMAGE",
+            "tokenCount": 1102
+          }
+        ],
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 125
+          }
+        ]
+      },
+      "served_model": "gemini-4-argon",
+      "response_id": "28zOapmuFu2qqtsPhoHJ-A8"
+    },
+    {
+      "sequence": 33,
+      "model": "gemini-3-flash-preview",
+      "reserved_usd": 0.062152,
+      "cost_usd": 0.0080495,
+      "request_sha256": "8003657cc3c5963f0986aedf82e1881a9fc4f9d34b8ed2a6da8c7bf9f2d56d8e",
+      "stage": "crop-full-Image037-control",
+      "code_sha256": {
+        "benchmarks/providers/argon_guard.py": "c99b49d3622dae8bf935c2cda883c2991976db919c2ffd353b718241ced1b242",
+        "benchmarks/scripts/argon_campaign.py": "4eff8b2ebd111f340ee7b965a5d9a3c37429c203a5ca55f629188af364f7fbd8",
+        "modules/common/openai_client.py": "eb8b2146f390e3a28f2b02cc032abe9959ba6921690eccc5965a6fd948d43308",
+        "modules/common/google_client.py": "174e4469436f26452a8d0712af32968ddfa730a04a726bf34d272d970aadd721",
+        "modules/extract/ocr_ai_gpt51_v1/main.py": "eb183426c5070de25a1062cb359b3cc89a490a59b024a85e80e2b22174c0c111"
+      },
+      "response_sha256": "61ac1c4b1a660c394b139beca12d1caab5aa76f1643d22149ab5b3b10956bcdc",
+      "response_bytes": 8508,
+      "status_code": 200,
+      "latency_ms": 10711,
+      "usage": {
+        "promptTokenCount": 1333,
+        "candidatesTokenCount": 135,
+        "totalTokenCount": 3794,
+        "promptTokensDetails": [
+          {
+            "modality": "IMAGE",
+            "tokenCount": 1102
+          },
+          {
+            "modality": "TEXT",
+            "tokenCount": 231
+          }
+        ],
+        "thoughtsTokenCount": 2326,
+        "serviceTier": "standard"
+      },
+      "served_model": "gemini-3-flash-preview",
+      "response_id": "4MzOauC2NMmEz7IP2s-WsAM"
+    }
+  ],
+  "closed": true,
+  "closed_reason": "All independent lanes completed to source-backed progressive stops; no further provider dispatch"
+}

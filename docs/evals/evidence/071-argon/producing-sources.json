@@ -1,0 +1,50 @@
+{
+  "note": "Actual loaded sources reconstructed from exact known edits; dynamic on-disk hashes in early guard records can reflect later edits. This correction identifies producing loaded versions, retaining earlier fields. All reconstructed source bytes retained. Reconstruction v2 matches observed early table runner hash after removing later initializer bypass.",
+  "initial_guard_sha256": "ca803cd07864288acd467392f6ea5e53e04152678a3333f099a792f0076ef938",
+  "runner_versions": {
+    "v1": "3fe9798f26138a9812413df1e75e11babbec305f6b62133ebd1538de6976fe90",
+    "v2": "57dd4de93499001a45a506188a1ca8868f94f1e5511c35c3c2373b23bfc1a288",
+    "current": "4eff8b2ebd111f340ee7b965a5d9a3c37429c203a5ca55f629188af364f7fbd8"
+  },
+  "calls": {
+    "native-table": "v1",
+    "native-crop, native-ocr, all6table": "v2",
+    "quarantinedscreen": "v2 plus uncalled OCR function added (body unchanged)",
+    "recovery1": "current version at guard snapshot before OCR init patch; crop body unchanged",
+    "ocr": "current version at per-call snapshot",
+    "crop-full": "current (4eff8b...)"
+  },
+  "guard_firsthash_matches": true,
+  "loaded_producer_map": {
+    "1": {
+      "runner": "3fe9798f26138a9812413df1e75e11babbec305f6b62133ebd1538de6976fe90",
+      "guard": "ca803cd07864288acd467392f6ea5e53e04152678a3333f099a792f0076ef938"
+    },
+    "2-3": {
+      "runner": "57dd4de93499001a45a506188a1ca8868f94f1e5511c35c3c2373b23bfc1a288",
+      "guard": "ca803cd07864288acd467392f6ea5e53e04152678a3333f099a792f0076ef938"
+    },
+    "4-9": {
+      "runner": "57dd4de93499001a45a506188a1ca8868f94f1e5511c35c3c2373b23bfc1a288",
+      "guard": "38b6d191731f4bd7d9d2234100dd63d701d0707d8805ca4eaf49534191480232"
+    },
+    "10-11-quarantined": {
+      "runner": "b979c1429abcc745dc51fdbc1ca6b17aee14ca3439f97574402d5aea610470e6",
+      "guard": "38b6d191731f4bd7d9d2234100dd63d701d0707d8805ca4eaf49534191480232"
+    },
+    "12-13": {
+      "benchmarks/providers/argon_guard.py": "c99b49d3622dae8bf935c2cda883c2991976db919c2ffd353b718241ced1b242",
+      "benchmarks/scripts/argon_campaign.py": "2ee908818c7a6b2e276298c878c9f1682ed817155afa8d97067b5527a05ef10b",
+      "modules/common/openai_client.py": "eb8b2146f390e3a28f2b02cc032abe9959ba6921690eccc5965a6fd948d43308",
+      "modules/common/google_client.py": "174e4469436f26452a8d0712af32968ddfa730a04a726bf34d272d970aadd721",
+      "modules/extract/ocr_ai_gpt51_v1/main.py": "eb183426c5070de25a1062cb359b3cc89a490a59b024a85e80e2b22174c0c111"
+    },
+    "14-33": {
+      "benchmarks/providers/argon_guard.py": "c99b49d3622dae8bf935c2cda883c2991976db919c2ffd353b718241ced1b242",
+      "benchmarks/scripts/argon_campaign.py": "4eff8b2ebd111f340ee7b965a5d9a3c37429c203a5ca55f629188af364f7fbd8",
+      "modules/common/openai_client.py": "eb8b2146f390e3a28f2b02cc032abe9959ba6921690eccc5965a6fd948d43308",
+      "modules/common/google_client.py": "174e4469436f26452a8d0712af32968ddfa730a04a726bf34d272d970aadd721",
+      "modules/extract/ocr_ai_gpt51_v1/main.py": "eb183426c5070de25a1062cb359b3cc89a490a59b024a85e80e2b22174c0c111"
+    }
+  }
+}
