@@ -1,0 +1,22 @@
+{
+  "lane": "crop",
+  "case": "Image037",
+  "level": "medium",
+  "stage": "crop-Image037-medium",
+  "original_sequence": 32,
+  "original_request_sha256": "d8a531e0d2392dc4f63530ce112263d869270f32bf4d9e495b1007d8e74b085f",
+  "request_sha256": "d8a531e0d2392dc4f63530ce112263d869270f32bf4d9e495b1007d8e74b085f",
+  "image_sha256": "b836c9c90fc650dd0513299652bf1af41fc577544803d9cea64928c890cdfdbe",
+  "semantic_text_sha256": "8ce1e0eccc679f0981856ccab0c0da9c310b7e91802c83c33df5c27c5b02afb9",
+  "schema_sha256": "4181dd49cecf943ebfbf0938485c90bc77d071f6bbf9fe7634198e0ccde747a4",
+  "max_output_tokens": 32768,
+  "per_call_reservation_usd": 0.37968,
+  "conditional": false,
+  "raw": "{\"images\": [{\"bbox\": [584, 52, 853, 314], \"description\": \"Black and white oval portrait photograph of Mrs. Leonidas L'Heureux (Laetitia - first wife).\"}, {\"bbox\": [95, 643, 492, 899], \"description\": \"Black and white portrait photograph of Leonidas and Josephine (second wife) L'Heureux seated together.\"}]}",
+  "score": {
+    "pass": true,
+    "score": 0.9922,
+    "reason": "box_count=1.00 (2/2) | iou_mean=0.987 | iou_min=0.984 | coverage=0.998 | total=0.992 | matches=[pred[0]<->gold[1] IoU=0.989, pred[1]<->gold[0] IoU=0.984]"
+  },
+  "served_model": "gemini-4-argon"
+}

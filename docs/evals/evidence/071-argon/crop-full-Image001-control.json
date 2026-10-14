@@ -1,0 +1,9 @@
+{
+  "raw": "```json\n{\"images\": [{\"description\": \"Stylized title text 'ONWARD TO THE UNKNOWN' and dates '1887 - 1987'\", \"bbox\": [0.271, 0.192, 0.384, 0.808]}]}\n```",
+  "score": {
+    "pass": true,
+    "score": 0.9265,
+    "reason": "box_count=1.00 (1/1) | iou_mean=0.909 | iou_min=0.909 | coverage=0.921 | total=0.927 | matches=[pred[0]<->gold[0] IoU=0.909]"
+  },
+  "served": "gemini-3-flash-preview"
+}

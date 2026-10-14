@@ -1,0 +1,9 @@
+{
+  "raw": "{\"images\": [{\"description\": \"Stylized title text 'ONWARD TO THE UNKNOWN 1887 - 1987' in a decorative Western-style display font.\", \"bbox\": [0.193, 0.27, 0.851, 0.38]}]}",
+  "score": {
+    "pass": true,
+    "score": 0.9755,
+    "reason": "box_count=1.00 (1/1) | iou_mean=0.971 | iou_min=0.971 | coverage=0.971 | total=0.975 | matches=[pred[0]<->gold[0] IoU=0.971]"
+  },
+  "served": "gemini-4-argon"
+}

@@ -1,3 +1,26 @@
+## [2026-10-13-03] — Targeted Argon thinking-level calibration (Attempt072)
+
+### Added
+- Compare low/medium literal readers on identical exposed sources: handling
+  parity with a small token-cost saving and much slower observed low calls.
+- Screen high geometry with independent source review: two complete cases,
+  one clipped rule tail; preserve raw-coordinate medium failure and cancelled
+  optional confirmation rather than promote numeric passes.
+- Retain frozen effort-only requests, cold/December costs, latency samples,
+  immutable old ledger, separate closed calibration ledger and native receipts.
+
+## [2026-10-13-02] — Argon maintained fidelity evaluation (Attempt071)
+
+### Added
+- Source-only table reader comparison: bounded clear/ambiguity handling parity
+  at 88.47% lower reader-stage cost; qualify held-out and actual provider/driver
+  integration before any production change.
+- Preserve progressive detector geometry and handwriting literal failures,
+  unavailable exact Gemini3.7 control, independent source reviews, unknown
+  custody exposure, immutable executed sources and reconstructable receipts.
+- Harden evaluation-only guard against concurrent collisions and duplicates;
+  no runtime defaults, provider account changes or downstream adoption.
+
 ## [2026-10-13-01] — Five decision-model evaluations (Attempt 070)
 
 ### Added

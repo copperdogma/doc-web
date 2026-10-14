@@ -1,0 +1,9 @@
+{
+  "raw": "{\"images\": [{\"description\": \"Gold-embossed cover illustration and title design on a dark red book cover, depicting a covered wagon traveling through a rolling landscape with hills, clouds, and a tall plant in the foreground, framed by a decorative border.\", \"bbox\": [0.068, 0.043, 0.956, 0.941]}]}",
+  "score": {
+    "pass": true,
+    "score": 0.8278,
+    "reason": "box_count=1.00 (1/1) | iou_mean=0.797 | iou_min=0.797 | coverage=0.797 | total=0.828 | matches=[pred[0]<->gold[0] IoU=0.797]"
+  },
+  "served": "gemini-4-argon"
+}

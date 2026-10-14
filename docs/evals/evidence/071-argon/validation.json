@@ -1,0 +1,15 @@
+{
+  "focused_owner_checks": "113 passed (pytest ownerliteralreader/diff/handwriting plus4guardtests)",
+  "final_guard": "4 passed after formatting/hardening",
+  "ruff": "all scoped checks pass",
+  "methodology": "compile/check pass; current eligible winning crop score retained first rather than replace coverage with failed challenger",
+  "receipt_audit": "31raw requests andresponses hashes verified;2lost unknownscreen records explicit",
+  "archive": "79files plusdriverOCRJSON reconstructexact",
+  "diff_check": "pass",
+  "latest_sources": {
+    "benchmarks/providers/argon_guard.py": "c6fccc9f8bf336245af3f890849f8bf6ee89dfe1aec3dd9c788063d193690889",
+    "benchmarks/scripts/argon_campaign.py": "873f85749cbe6254a84a4377b10bcf96f12f25be1f3d4f63de4fd53f8818c6ca",
+    "tests/test_argon_campaign_guard.py": "cc1eb0af1ffee1d8e1a06ee48e2519fb8542f84b29aab2ca46898ef1af34c441"
+  },
+  "producing_sources": "producing-sources.json and execution-sources/* exact historic snapshots; latest sources did not produce paid outcomes"
+}

@@ -1,0 +1,9 @@
+{
+  "raw": "{\"images\": [{\"description\": \"Black and white line illustration of a covered wagon with a horse tied to the back and an ox or cow pulling at the front.\", \"bbox\": [0.06, 0.267, 0.938, 0.459]}]}",
+  "score": {
+    "pass": true,
+    "score": 0.9865,
+    "reason": "box_count=1.00 (1/1) | iou_mean=0.982 | iou_min=0.982 | coverage=0.987 | total=0.986 | matches=[pred[0]<->gold[0] IoU=0.982]"
+  },
+  "served": "gemini-4-argon"
+}

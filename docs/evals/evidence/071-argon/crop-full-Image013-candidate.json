@@ -1,0 +1,9 @@
+{
+  "raw": "{\"images\": [{\"description\": \"A black and white portrait photograph of Moise and Sophie L'Heureux from about 1910.\", \"bbox\": [0.097, 0.415, 0.49, 0.684]}]}",
+  "score": {
+    "pass": true,
+    "score": 0.995,
+    "reason": "box_count=1.00 (1/1) | iou_mean=0.992 | iou_min=0.992 | coverage=0.998 | total=0.995 | matches=[pred[0]<->gold[0] IoU=0.992]"
+  },
+  "served": "gemini-4-argon"
+}

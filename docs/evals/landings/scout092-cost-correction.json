@@ -1,0 +1,115 @@
+{
+  "schema_version": "doc_web_scout092_landing_cost_reconciliation_v1",
+  "date": "2026-10-13",
+  "reason": "Attempt071 guard used ordinary10/M input rate for cache writes instead of standard12.5/M. Closed historical receipts remain immutable; this appended calculation is the current reconciled amount, not new inference.",
+  "currency": "USD",
+  "rate_source": "https://developers.openai.com/api/docs/pricing",
+  "rate_verified": "2026-10-13 Standard short-context Astra10 input/1 cached/12.5 cache writes/50 output USD per1M, official pricing lines939\u2013941; all native served tiers default and short inputs.",
+  "method": "Decimal((input-cached-writes)*10 +cached*1+writes*12.5+inclusive_output*50)/1000000; thinking already included, no double charge.",
+  "per_call": [
+    {
+      "sequence": 5,
+      "stage": "table-native-positive-control",
+      "response_id": "resp_09677d3594d7ecd8016acecb75e16887d0853ba67cc6b9fd2a",
+      "model": "gpt-6-astra",
+      "served_service_tier": "default",
+      "native_response_path": "benchmarks/results/argon-20261013/response-005.json",
+      "native_response_sha256": "bee41925b48c1a8f2b154a1afabed9c4ba3a5db9829a9768894b2a5582673b3b",
+      "request_sha256": "3de545dc7a3da46d71e2092d4884939e4b1323e1cab34dac738dc809e4642627",
+      "usage": {
+        "input_tokens": 5016,
+        "input_tokens_details": {
+          "cache_write_tokens": 5013,
+          "cached_tokens": 0
+        },
+        "output_tokens": 307,
+        "output_tokens_details": {
+          "reasoning_tokens": 136
+        },
+        "total_tokens": 5323
+      },
+      "original_cost_usd": "0.06551",
+      "corrected_cost_usd": "0.0780425",
+      "correction_usd": "0.0125325"
+    },
+    {
+      "sequence": 7,
+      "stage": "table-image-positive-control",
+      "response_id": "resp_09e9e0c4e6c73565016acecb8d0ed087d0aa37e1a08948d516",
+      "model": "gpt-6-astra",
+      "served_service_tier": "default",
+      "native_response_path": "benchmarks/results/argon-20261013/response-007.json",
+      "native_response_sha256": "de11d442e0578ac167efdf6fb8c37c63c7f3f0537593abdc1a2444380533673d",
+      "request_sha256": "7f64fac6048201ead9fda38451412d9b5fbaf5c2b5d47fa024d0baf8c342cd3c",
+      "usage": {
+        "input_tokens": 5016,
+        "input_tokens_details": {
+          "cache_write_tokens": 5013,
+          "cached_tokens": 0
+        },
+        "output_tokens": 397,
+        "output_tokens_details": {
+          "reasoning_tokens": 154
+        },
+        "total_tokens": 5413
+      },
+      "original_cost_usd": "0.07001",
+      "corrected_cost_usd": "0.0825425",
+      "correction_usd": "0.0125325"
+    },
+    {
+      "sequence": 9,
+      "stage": "table-ambiguity-negative-control",
+      "response_id": "resp_02dc2e66375f2071016acecb9ea53c87d0b38cea520afc7a09",
+      "model": "gpt-6-astra",
+      "served_service_tier": "default",
+      "native_response_path": "benchmarks/results/argon-20261013/response-009.json",
+      "native_response_sha256": "b9f4787725e5631025926c31d0c5556d8a0ab89107203895a7e840102d1236a8",
+      "request_sha256": "9f6ba8c22031e69526ab2948178816c187c90327cd6c1560dfe6dd3d490b99c9",
+      "usage": {
+        "input_tokens": 5016,
+        "input_tokens_details": {
+          "cache_write_tokens": 5013,
+          "cached_tokens": 0
+        },
+        "output_tokens": 261,
+        "output_tokens_details": {
+          "reasoning_tokens": 72
+        },
+        "total_tokens": 5277
+      },
+      "original_cost_usd": "0.06321",
+      "corrected_cost_usd": "0.0757425",
+      "correction_usd": "0.0125325"
+    }
+  ],
+  "correction_usd": "0.0375975",
+  "astra_reader_original_total_cold_normalized_usd": ".198730",
+  "astra_reader_corrected_usage_priced_actual_usd": ".236327500",
+  "initial_corrected_known_usd": ".379464750",
+  "initial_unknown_usd": ".441832000",
+  "initial_corrected_exposure_usd": ".821296750",
+  "initial_plus_calibration_known_usd": ".462442750",
+  "initial_plus_calibration_exposure_usd": ".904274750",
+  "all_doc_web_known_usd": ".931161750",
+  "all_doc_web_unknown_usd": ".441832000",
+  "all_doc_web_exposure_usd": "1.372993750",
+  "owner_cap_usd": "15",
+  "campaign_known_usd": "2.909662245",
+  "campaign_unknown_usd": "1.474024000",
+  "campaign_exposure_usd": "4.383686245",
+  "campaign_cap_usd": "35",
+  "paid_calls_after_qualification": 0,
+  "original_closed_ledger_sha256": "8213d0303a675a3f6e3ab325a0fcea721d621329558acac0ab98281895f35b00",
+  "original_archives_unchanged": {
+    "071": "4f7508b3bd7e392d84143ad89e6cf0a0bbcca934544a61814ac5c94654bc4083",
+    "072": "b629f09de85e7917d1365997024e5528d753f13e365be9da90678cf973b9578e"
+  },
+  "future_guard_fix": {
+    "path": "benchmarks/providers/argon_guard.py",
+    "sealed_latest_hash": "c6fccc9f8bf336245af3f890849f8bf6ee89dfe1aec3dd9c788063d193690889",
+    "landing_sha256": "6af9c83887876a67846f8bbfc62ee4f9941d683f44ebbae2caa00a0b515ca716",
+    "focused_tests": "5 passed0.29s; cached-write settlement at12.5/M and worst-price reservation .7346 verified; collision/unknown protection retained; disposable owner tree prevents sealed snapshot mutations",
+    "test_sha256": "3ec8628d5dc1a616259ff33091254fd435d73b2fa56e32010743ec92578e2dd6"
+  }
+}

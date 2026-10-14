@@ -1,0 +1,9 @@
+{
+  "raw": "```json\n{\"images\": [{\"description\": \"A black and white photograph of Henry and Alma Alain on their 50th wedding anniversary in 1957.\", \"bbox\": [0.435, 0.105, 0.665, 0.48]}]}\n```",
+  "score": {
+    "pass": true,
+    "score": 0.9826,
+    "reason": "box_count=1.00 (1/1) | iou_mean=0.976 | iou_min=0.976 | coverage=0.985 | total=0.983 | matches=[pred[0]<->gold[0] IoU=0.976]"
+  },
+  "served": "gemini-3-flash-preview"
+}

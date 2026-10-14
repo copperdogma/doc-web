@@ -1,0 +1,443 @@
+{
+  "cap_usd": 6,
+  "spent_usd": 0.082978,
+  "calls": [
+    {
+      "level": "low",
+      "sequence": 1,
+      "model": "gemini-4-argon",
+      "reserved_usd": 0.37968,
+      "cost_usd": 0.005232,
+      "request_sha256": "249eede0eb933e6ba094fd53d3e079434424079d88f07c1670b2aa2543b13246",
+      "stage": "table-native-positive-low",
+      "code_sha256": {
+        "benchmarks/providers/argon_levels_guard.py": "4a0f1c239c23cd56b34213092203cf9d11b860433230558fa092c979d6fba8d7",
+        "benchmarks/scripts/argon_levels.py": "193a9776e886478e27d5c1ae50bc68bfa375d90980a899484cbf677298e8d492",
+        "modules/common/openai_client.py": "eb8b2146f390e3a28f2b02cc032abe9959ba6921690eccc5965a6fd948d43308",
+        "modules/common/google_client.py": "174e4469436f26452a8d0712af32968ddfa730a04a726bf34d272d970aadd721",
+        "modules/extract/ocr_ai_gpt51_v1/main.py": "eb183426c5070de25a1062cb359b3cc89a490a59b024a85e80e2b22174c0c111"
+      },
+      "response_sha256": "3c218a451897d7f67182c06006fab0624474ca42a1ad08ddfaf42e2bc68cc45a",
+      "response_bytes": 1726,
+      "status_code": 200,
+      "latency_ms": 18881,
+      "usage": {
+        "promptTokenCount": 1941,
+        "candidatesTokenCount": 135,
+        "totalTokenCount": 2076,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 839
+          },
+          {
+            "modality": "IMAGE",
+            "tokenCount": 1102
+          }
+        ],
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 135
+          }
+        ]
+      },
+      "served_model": "gemini-4-argon",
+      "response_id": "69rOavHcF_PQz7IPkqLl2Qk"
+    },
+    {
+      "level": "medium",
+      "sequence": 2,
+      "model": "gemini-4-argon",
+      "reserved_usd": 0.37968,
+      "cost_usd": 0.005232,
+      "request_sha256": "326cb54f4ef3ae51c7204a7019f86efff6dcc080456f5cb081d76c74700feece",
+      "stage": "table-native-positive-medium",
+      "code_sha256": {
+        "benchmarks/providers/argon_levels_guard.py": "4a0f1c239c23cd56b34213092203cf9d11b860433230558fa092c979d6fba8d7",
+        "benchmarks/scripts/argon_levels.py": "193a9776e886478e27d5c1ae50bc68bfa375d90980a899484cbf677298e8d492",
+        "modules/common/openai_client.py": "eb8b2146f390e3a28f2b02cc032abe9959ba6921690eccc5965a6fd948d43308",
+        "modules/common/google_client.py": "174e4469436f26452a8d0712af32968ddfa730a04a726bf34d272d970aadd721",
+        "modules/extract/ocr_ai_gpt51_v1/main.py": "eb183426c5070de25a1062cb359b3cc89a490a59b024a85e80e2b22174c0c111"
+      },
+      "response_sha256": "a5f66c81b1e887dc116feddf87e9219319d77da4c7e8c414d52f297642911726",
+      "response_bytes": 1726,
+      "status_code": 200,
+      "latency_ms": 3740,
+      "usage": {
+        "promptTokenCount": 1941,
+        "candidatesTokenCount": 135,
+        "totalTokenCount": 2076,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 839
+          },
+          {
+            "modality": "IMAGE",
+            "tokenCount": 1102
+          }
+        ],
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 135
+          }
+        ]
+      },
+      "served_model": "gemini-4-argon",
+      "response_id": "_trOavyIC5LpqtsPrOqGoA4"
+    },
+    {
+      "level": "medium",
+      "sequence": 3,
+      "model": "gemini-4-argon",
+      "reserved_usd": 0.37968,
+      "cost_usd": 0.005652,
+      "request_sha256": "f687b77d6f855e7e4121c9f3ecccb2d593089fb1b910ceaf04f59ffcd224f68d",
+      "stage": "table-image-positive-medium",
+      "code_sha256": {
+        "benchmarks/providers/argon_levels_guard.py": "4a0f1c239c23cd56b34213092203cf9d11b860433230558fa092c979d6fba8d7",
+        "benchmarks/scripts/argon_levels.py": "193a9776e886478e27d5c1ae50bc68bfa375d90980a899484cbf677298e8d492",
+        "modules/common/openai_client.py": "eb8b2146f390e3a28f2b02cc032abe9959ba6921690eccc5965a6fd948d43308",
+        "modules/common/google_client.py": "174e4469436f26452a8d0712af32968ddfa730a04a726bf34d272d970aadd721",
+        "modules/extract/ocr_ai_gpt51_v1/main.py": "eb183426c5070de25a1062cb359b3cc89a490a59b024a85e80e2b22174c0c111"
+      },
+      "response_sha256": "1df628105868b2cd6390366073cd443da0d4ca058699e63e202ca2723b622c03",
+      "response_bytes": 2066,
+      "status_code": 200,
+      "latency_ms": 210425,
+      "usage": {
+        "promptTokenCount": 1941,
+        "candidatesTokenCount": 177,
+        "totalTokenCount": 2118,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 839
+          },
+          {
+            "modality": "IMAGE",
+            "tokenCount": 1102
+          }
+        ],
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 177
+          }
+        ]
+      },
+      "served_model": "gemini-4-argon",
+      "response_id": "LtvOauWIN_n9qtsP9Muz6A8"
+    },
+    {
+      "level": "low",
+      "sequence": 4,
+      "model": "gemini-4-argon",
+      "reserved_usd": 0.37968,
+      "cost_usd": 0.005672,
+      "request_sha256": "4de29f3197b90273a588afc1dbe8c9d94787bea43ee0bcc98a32ae0aba512c26",
+      "stage": "table-image-positive-low",
+      "code_sha256": {
+        "benchmarks/providers/argon_levels_guard.py": "4a0f1c239c23cd56b34213092203cf9d11b860433230558fa092c979d6fba8d7",
+        "benchmarks/scripts/argon_levels.py": "193a9776e886478e27d5c1ae50bc68bfa375d90980a899484cbf677298e8d492",
+        "modules/common/openai_client.py": "eb8b2146f390e3a28f2b02cc032abe9959ba6921690eccc5965a6fd948d43308",
+        "modules/common/google_client.py": "174e4469436f26452a8d0712af32968ddfa730a04a726bf34d272d970aadd721",
+        "modules/extract/ocr_ai_gpt51_v1/main.py": "eb183426c5070de25a1062cb359b3cc89a490a59b024a85e80e2b22174c0c111"
+      },
+      "response_sha256": "4cb752ffebb4ddda3be7e8d78315d0d1f0e0321ba859863597d18c8a0e3873cb",
+      "response_bytes": 2066,
+      "status_code": 200,
+      "latency_ms": 498379,
+      "usage": {
+        "promptTokenCount": 1941,
+        "candidatesTokenCount": 179,
+        "totalTokenCount": 2120,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 839
+          },
+          {
+            "modality": "IMAGE",
+            "tokenCount": 1102
+          }
+        ],
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 179
+          }
+        ]
+      },
+      "served_model": "gemini-4-argon",
+      "response_id": "AdzOarndEsXRz7IPq7Tk2Q4"
+    },
+    {
+      "level": "low",
+      "sequence": 5,
+      "model": "gemini-4-argon",
+      "reserved_usd": 0.37968,
+      "cost_usd": 0.005582,
+      "request_sha256": "7725200630c111d3a83ad0666e1f9f5643259b0575c05df0ad9eb151e9065949",
+      "stage": "table-ambiguity-negative-low",
+      "code_sha256": {
+        "benchmarks/providers/argon_levels_guard.py": "4a0f1c239c23cd56b34213092203cf9d11b860433230558fa092c979d6fba8d7",
+        "benchmarks/scripts/argon_levels.py": "193a9776e886478e27d5c1ae50bc68bfa375d90980a899484cbf677298e8d492",
+        "modules/common/openai_client.py": "eb8b2146f390e3a28f2b02cc032abe9959ba6921690eccc5965a6fd948d43308",
+        "modules/common/google_client.py": "174e4469436f26452a8d0712af32968ddfa730a04a726bf34d272d970aadd721",
+        "modules/extract/ocr_ai_gpt51_v1/main.py": "eb183426c5070de25a1062cb359b3cc89a490a59b024a85e80e2b22174c0c111"
+      },
+      "response_sha256": "6b619e653738228f1b3ae29b39655d4e6e3a3201755e6721e7e1614a19da0ad8",
+      "response_bytes": 1826,
+      "status_code": 200,
+      "latency_ms": 57191,
+      "usage": {
+        "promptTokenCount": 1941,
+        "candidatesTokenCount": 170,
+        "totalTokenCount": 2111,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 839
+          },
+          {
+            "modality": "IMAGE",
+            "tokenCount": 1102
+          }
+        ],
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 170
+          }
+        ]
+      },
+      "served_model": "gemini-4-argon",
+      "response_id": "F97OasiaEqOHz7IPprGy4A4"
+    },
+    {
+      "level": "medium",
+      "sequence": 6,
+      "model": "gemini-4-argon",
+      "reserved_usd": 0.37968,
+      "cost_usd": 0.007632,
+      "request_sha256": "4065bd51adfa1de4478e09e986c8bf0807844d19c6f5c3d9ae09582dd7e514de",
+      "stage": "table-ambiguity-negative-medium",
+      "code_sha256": {
+        "benchmarks/providers/argon_levels_guard.py": "4a0f1c239c23cd56b34213092203cf9d11b860433230558fa092c979d6fba8d7",
+        "benchmarks/scripts/argon_levels.py": "193a9776e886478e27d5c1ae50bc68bfa375d90980a899484cbf677298e8d492",
+        "modules/common/openai_client.py": "eb8b2146f390e3a28f2b02cc032abe9959ba6921690eccc5965a6fd948d43308",
+        "modules/common/google_client.py": "174e4469436f26452a8d0712af32968ddfa730a04a726bf34d272d970aadd721",
+        "modules/extract/ocr_ai_gpt51_v1/main.py": "eb183426c5070de25a1062cb359b3cc89a490a59b024a85e80e2b22174c0c111"
+      },
+      "response_sha256": "db11407dccb38d50faab117c6ac65c9be008b1f4d8941ee3bec4ea682cd13713",
+      "response_bytes": 2501,
+      "status_code": 200,
+      "latency_ms": 7869,
+      "usage": {
+        "promptTokenCount": 1941,
+        "candidatesTokenCount": 164,
+        "totalTokenCount": 2316,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 839
+          },
+          {
+            "modality": "IMAGE",
+            "tokenCount": 1102
+          }
+        ],
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 164
+          }
+        ],
+        "thoughtsTokenCount": 211
+      },
+      "served_model": "gemini-4-argon",
+      "response_id": "UN7OatS-GpeHz7IP_uuYwA8"
+    },
+    {
+      "level": "high",
+      "sequence": 7,
+      "model": "gemini-4-argon",
+      "reserved_usd": 0.37968,
+      "cost_usd": 0.011524,
+      "request_sha256": "6db8505879bd8cd715a2f911886944e25af2814a4f549707ea3d1b05d7407180",
+      "stage": "crop-Image037-high",
+      "code_sha256": {
+        "benchmarks/providers/argon_levels_guard.py": "4a0f1c239c23cd56b34213092203cf9d11b860433230558fa092c979d6fba8d7",
+        "benchmarks/scripts/argon_levels.py": "193a9776e886478e27d5c1ae50bc68bfa375d90980a899484cbf677298e8d492",
+        "modules/common/openai_client.py": "eb8b2146f390e3a28f2b02cc032abe9959ba6921690eccc5965a6fd948d43308",
+        "modules/common/google_client.py": "174e4469436f26452a8d0712af32968ddfa730a04a726bf34d272d970aadd721",
+        "modules/extract/ocr_ai_gpt51_v1/main.py": "eb183426c5070de25a1062cb359b3cc89a490a59b024a85e80e2b22174c0c111"
+      },
+      "response_sha256": "0e6d1e82b4513ec9dc6a959e06f63b8f716bc7101fc52e3fc2301caecb2242a1",
+      "response_bytes": 4276,
+      "status_code": 200,
+      "latency_ms": 30031,
+      "usage": {
+        "promptTokenCount": 1617,
+        "candidatesTokenCount": 138,
+        "totalTokenCount": 2446,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 515
+          },
+          {
+            "modality": "IMAGE",
+            "tokenCount": 1102
+          }
+        ],
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 138
+          }
+        ],
+        "thoughtsTokenCount": 691
+      },
+      "served_model": "gemini-4-argon",
+      "response_id": "nd7OaobyBffvqtsPkJUY"
+    },
+    {
+      "level": "medium",
+      "sequence": 8,
+      "model": "gemini-4-argon",
+      "reserved_usd": 0.37968,
+      "cost_usd": 0.004404,
+      "request_sha256": "d8a531e0d2392dc4f63530ce112263d869270f32bf4d9e495b1007d8e74b085f",
+      "stage": "crop-Image037-medium",
+      "code_sha256": {
+        "benchmarks/providers/argon_levels_guard.py": "4a0f1c239c23cd56b34213092203cf9d11b860433230558fa092c979d6fba8d7",
+        "benchmarks/scripts/argon_levels.py": "193a9776e886478e27d5c1ae50bc68bfa375d90980a899484cbf677298e8d492",
+        "modules/common/openai_client.py": "eb8b2146f390e3a28f2b02cc032abe9959ba6921690eccc5965a6fd948d43308",
+        "modules/common/google_client.py": "174e4469436f26452a8d0712af32968ddfa730a04a726bf34d272d970aadd721",
+        "modules/extract/ocr_ai_gpt51_v1/main.py": "eb183426c5070de25a1062cb359b3cc89a490a59b024a85e80e2b22174c0c111"
+      },
+      "response_sha256": "12d17655b9ece16ff7667126cd37e1051e214be59c6c2a8613eecbb1c52824be",
+      "response_bytes": 1179,
+      "status_code": 200,
+      "latency_ms": 4508,
+      "usage": {
+        "promptTokenCount": 1617,
+        "candidatesTokenCount": 117,
+        "totalTokenCount": 1734,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 515
+          },
+          {
+            "modality": "IMAGE",
+            "tokenCount": 1102
+          }
+        ],
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 117
+          }
+        ]
+      },
+      "served_model": "gemini-4-argon",
+      "response_id": "u97Oar6gBLCsz7IPtfqZ2Q4"
+    },
+    {
+      "level": "high",
+      "sequence": 9,
+      "model": "gemini-4-argon",
+      "reserved_usd": 0.37968,
+      "cost_usd": 0.018954,
+      "request_sha256": "7d442ef2c7d87cb585ed2d92bec82ffc7e14e073d4e31292cc827f001c9e3976",
+      "stage": "crop-Image001-high",
+      "code_sha256": {
+        "benchmarks/providers/argon_levels_guard.py": "4a0f1c239c23cd56b34213092203cf9d11b860433230558fa092c979d6fba8d7",
+        "benchmarks/scripts/argon_levels.py": "193a9776e886478e27d5c1ae50bc68bfa375d90980a899484cbf677298e8d492",
+        "modules/common/openai_client.py": "eb8b2146f390e3a28f2b02cc032abe9959ba6921690eccc5965a6fd948d43308",
+        "modules/common/google_client.py": "174e4469436f26452a8d0712af32968ddfa730a04a726bf34d272d970aadd721",
+        "modules/extract/ocr_ai_gpt51_v1/main.py": "eb183426c5070de25a1062cb359b3cc89a490a59b024a85e80e2b22174c0c111"
+      },
+      "response_sha256": "86a7c470df9053d14cf7b6aa5bbbae5489a0296c8ea751b8a3541c3e25370c68",
+      "response_bytes": 7221,
+      "status_code": 200,
+      "latency_ms": 102646,
+      "usage": {
+        "promptTokenCount": 1617,
+        "candidatesTokenCount": 85,
+        "totalTokenCount": 3189,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 515
+          },
+          {
+            "modality": "IMAGE",
+            "tokenCount": 1102
+          }
+        ],
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 85
+          }
+        ],
+        "thoughtsTokenCount": 1487
+      },
+      "served_model": "gemini-4-argon",
+      "response_id": "ud_OaoPMK8OJqtsP7tfKOA"
+    },
+    {
+      "level": "high",
+      "sequence": 10,
+      "model": "gemini-4-argon",
+      "reserved_usd": 0.37968,
+      "cost_usd": 0.013094,
+      "request_sha256": "52022f06a1a137e329d5c03defbdc888f6dc68b07385f789fd8a022ba9cb4b96",
+      "stage": "crop-Image011-high",
+      "code_sha256": {
+        "benchmarks/providers/argon_levels_guard.py": "4a0f1c239c23cd56b34213092203cf9d11b860433230558fa092c979d6fba8d7",
+        "benchmarks/scripts/argon_levels.py": "193a9776e886478e27d5c1ae50bc68bfa375d90980a899484cbf677298e8d492",
+        "modules/common/openai_client.py": "eb8b2146f390e3a28f2b02cc032abe9959ba6921690eccc5965a6fd948d43308",
+        "modules/common/google_client.py": "174e4469436f26452a8d0712af32968ddfa730a04a726bf34d272d970aadd721",
+        "modules/extract/ocr_ai_gpt51_v1/main.py": "eb183426c5070de25a1062cb359b3cc89a490a59b024a85e80e2b22174c0c111"
+      },
+      "response_sha256": "0ef3c306d00de025840acaf412921af29e27a33a655985a47b951ac1c4bb22c5",
+      "response_bytes": 4676,
+      "status_code": 200,
+      "latency_ms": 18154,
+      "usage": {
+        "promptTokenCount": 1617,
+        "candidatesTokenCount": 139,
+        "totalTokenCount": 2603,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 515
+          },
+          {
+            "modality": "IMAGE",
+            "tokenCount": 1102
+          }
+        ],
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 139
+          }
+        ],
+        "thoughtsTokenCount": 847
+      },
+      "served_model": "gemini-4-argon",
+      "response_id": "aeDOatuWMcL7qtsP6dTU8Q8"
+    }
+  ],
+  "closed": true,
+  "original_exposure_usd": 0.78369925,
+  "closed_reason": "All selected effort arms completed to source/contract stops; optional matched confirmation cancelled under root stop-rule precedence"
+}

@@ -1,0 +1,22 @@
+{
+  "case": "Image001",
+  "reviewer": "independentSol6.1high",
+  "high_source_complete": true,
+  "high_raw_coordinate_compliant": true,
+  "bbox": [
+    0.193,
+    0.27,
+    0.852,
+    0.382
+  ],
+  "source_dimensions": [
+    1545,
+    2000
+  ],
+  "right_px": 1316.34,
+  "bottom_px": 764,
+  "observed_rightmost_title_ink_px": 1315,
+  "observed_date_ink_bottom_px": 762,
+  "high_result_sha256": "5184a308652e687fb221c84964d0d1753c99e74e4902990911d99c46a69dcfc3",
+  "medium": "notmeasured afterrawcontractarmstop"
+}

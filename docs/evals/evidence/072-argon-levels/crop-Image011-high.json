@@ -1,0 +1,22 @@
+{
+  "lane": "crop",
+  "case": "Image011",
+  "level": "high",
+  "stage": "crop-Image011-high",
+  "original_sequence": 24,
+  "original_request_sha256": "04dd45daa27a8a090a9bf9441d7d41857f774cfc569cd2c392fb0687cf87ac97",
+  "request_sha256": "52022f06a1a137e329d5c03defbdc888f6dc68b07385f789fd8a022ba9cb4b96",
+  "image_sha256": "ae3524cb58ac940c912c7885d65ec9d21221415d97d1ea21d97be9615161a860",
+  "semantic_text_sha256": "8ce1e0eccc679f0981856ccab0c0da9c310b7e91802c83c33df5c27c5b02afb9",
+  "schema_sha256": "4181dd49cecf943ebfbf0938485c90bc77d071f6bbf9fe7634198e0ccde747a4",
+  "max_output_tokens": 32768,
+  "per_call_reservation_usd": 0.37968,
+  "conditional": false,
+  "raw": "{\"images\": [{\"bbox\": [0.377, 0.074, 0.58, 0.231], \"description\": \"Circular logo for Celebrate Saskatchewan 1905-1980 featuring a stylized wheat sheaf emblem\"}, {\"bbox\": [0.119, 0.686, 0.875, 0.896], \"description\": \"Official seal of the Saskatchewan Department of Agriculture alongside the signatures of Hon. Gordon MacMurchy and Hon. Ed Tchorzewski\"}]}",
+  "score": {
+    "pass": true,
+    "score": 0.9943,
+    "reason": "box_count=1.00 (2/2) | iou_mean=0.991 | iou_min=0.990 | coverage=0.997 | total=0.994 | matches=[pred[1]<->gold[1] IoU=0.993, pred[0]<->gold[0] IoU=0.990]"
+  },
+  "served_model": "gemini-4-argon"
+}
