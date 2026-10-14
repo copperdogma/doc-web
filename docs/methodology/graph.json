@@ -15981,6 +15981,14 @@
       },
       "attempts": [
         {
+          "id": "074",
+          "date": "2026-10-14",
+          "status": "failed",
+          "approach": "Explicit fresh DeepSeek V4.1 Flash low-reasoning retry, exact DeepInfra fp8, frozen conservative-count Image011 stop",
+          "note": "Native and adapter parity qualified exact model/provider and strict normalized-float contract. Image011 passed its individual .70 scorer but source overlay showed logo lower-art/year clipping and lower seal/signature top/right undercoverage. Model localization failure; no malformed numeric/unit or adapter-contract issue. Full13 and fresh Gemini comparator not run. Three calls cost $0.00221018, zero unresolved, new inclusive cap $0.50; Attempt036 historical exposure remains separate. Temporary key removed and verified absent. No defaults/commit/push. Cam directed no further V4.1 checkpoint evaluations, including effort or route variants, without explicit reversal. Attempt074 and manifest: docs/evals/attempts/074-deepseek-v41-flash-fresh-20261014.md, docs/evals/evidence/074-deepseek-v41-fresh-manifest.json.\n",
+          "retry_when": []
+        },
+        {
           "id": "072",
           "date": "2026-10-13",
           "status": "failed",
@@ -16449,11 +16457,11 @@
         ],
         "why_now": "Gemini 4 or equivalent may push past 0.95 target Golden references cover limited page types; add table-heavy pages",
         "last_relevant_action": {
-          "date": "2026-10-13",
+          "date": "2026-10-14",
           "source_type": "eval-attempt",
           "source": "docs/evals/registry.yaml",
-          "source_id": "072",
-          "summary": "High2/3 source-complete versus3/3 numeric passes; raw-range medium stop and cancelled confirmation.10exactnativecalls USD.082978unknown0/6; corrected cumulativeDocWeb.46244275known+.441832priorunknown=.90427475/15. Ol..."
+          "source_id": "074",
+          "summary": "Native and adapter parity qualified exact model/provider and strict normalized-float contract. Image011 passed its individual .70 scorer but source overlay showed logo lower-art/year clipping and lower seal/signature..."
         }
       }
     },
