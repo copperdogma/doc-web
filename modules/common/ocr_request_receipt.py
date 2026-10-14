@@ -15,6 +15,8 @@ def request_receipt(response, kwargs, started):
         "status": getattr(response, "status", None),
         "max_output_tokens": kwargs["max_output_tokens"],
         "reasoning": kwargs.get("reasoning"),
+        "requested_service_tier": kwargs.get("service_tier"),
+        "service_tier": getattr(response, "service_tier", None),
         "elapsed_seconds": time.monotonic() - started,
         "usage": usage.model_dump() if hasattr(usage, "model_dump") else usage,
     }

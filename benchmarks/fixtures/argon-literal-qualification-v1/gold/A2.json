@@ -1,0 +1,22 @@
+{
+  "source_table_count": 1,
+  "tables": [
+    {
+      "bbox": [
+        217,
+        1133,
+        2154,
+        1842
+      ],
+      "html": "<table><tr><th>Meter</th><th>Route</th><th>Reading</th><th>Check</th></tr><tr><td>M-4</td><td>west/3</td><td>14.62</td><td>ok</td></tr><tr><td>M-5</td><td>west/3</td><td></td><td>hold</td></tr><tr><td>M-6</td><td>west/4</td><td>14.67</td><td>ok</td></tr><tr><td colspan=\"4\">Copy damaged</td></tr></table>",
+      "uncertain_cells": [
+        {
+          "row": 2,
+          "cell": 2,
+          "reason": "photocopy abrasion removes the remaining cell digits; no exact value is recoverable",
+          "alternatives": []
+        }
+      ]
+    }
+  ]
+}

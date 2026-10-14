@@ -213,3 +213,16 @@ Cons:
 Literal source content is distinct from document-local presentation consistency. An opt-in table-fidelity lane performs one independent source-image-only table inventory/read, preserving initial OCR unchanged. Exact case-sensitive complete cell/span agreement plus zero explicitly uncertain cells permits qualification on that declared scope. Missing tables, disagreement, ambiguity, malformed/incomplete responses or stale evidence produce a typed source-located hold before qualified export. This is measured bounded evidence, never universal correctness from model agreement. No native-layer authority or semantic correction is adopted.
 
 `page_html_v1.literal_fidelity` binds an immutable typed report, source/image digests, physical/logical page identities and complete table sequence. Required-lane builder validation rejects missing/unresolved/stale receipts; final table sequence is checked after enrichment and portable report/qualification digests enter the manifest. Existing recipes without the lane receive no implicit qualification claim. Reports preserve source locations and model receipts without copying private absolute source paths into the portable bundle. Initial literal text, including apparent source errors, remains unchanged. Attempt 062 retains rejected single-call/crop experiments and separate accepted/held coverage.
+
+
+### Story253: explicitly selected native source-reader authority (2026-10-13)
+
+Cam approved a bounded native Google Argon medium qualification. The reader
+and builder share an explicit provider authority profile; Astra remains the
+default. Google receipts bind exact native model, STOP, thinking/output/schema,
+source bytes, raw envelope and request hash. Individually generated immutable
+native receipts may feed the actual guarded batch export without another
+inference; lineage and all source/table/report/final-sequence checks remain.
+No semantic repair, native-text authority or default activation is introduced.
+Independent unseen source and real-driver/latency/economic qualification remain
+required before recommending this opt-in profile. Attempt073 records outcome.

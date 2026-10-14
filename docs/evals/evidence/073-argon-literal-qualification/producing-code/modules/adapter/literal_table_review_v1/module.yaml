@@ -1,0 +1,12 @@
+module_id: literal_table_review_v1
+stage: adapter
+entrypoint: modules/adapter/literal_table_review_v1/main.py
+input_schema: page_html_v1
+output_schema: page_html_v1
+default_params:
+  model: gpt-6-astra
+  max_pages: 3
+  max_tables: 8
+  max_requests: 10
+  budget_usd: 15
+notes: "Independently reviews complete page images with a source-only model and fails closed unless every table agrees exactly with initial OCR."

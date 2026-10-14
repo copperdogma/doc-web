@@ -46,7 +46,7 @@ evals:
     pipeline_stage: extract
     runner: custom
     command: "PYTHONPATH=. python benchmarks/scripts/run_literal_table_fidelity.py --manifest output/story244-eval/development.json --out output/story244-eval/fresh --variant literal"
-    story_refs: ["245"]
+    story_refs: ["245", "253"]
     category_refs: ["spec:2", "spec:3", "spec:6"]
     spec_refs: ["spec:2.1", "spec:2.2", "spec:3.1", "spec:6"]
     compromise_refs: ["C1", "C3", "C6"]
@@ -72,6 +72,14 @@ evals:
         metrics: {confirmation_cases: 3, exact_literal_and_structure_pass_rate: 0.666667, safe_disposition_rate: 1.0, qualified_cases: 2, held_cases: 1, accepted_cells: 36, accepted_wrong_cells: 0, held_initial_wrong_cells: 1, uncertainty_cells: 2, harmful_control_changes: 0, semantic_rubrics_passed: 4, semantic_rubrics_total: 4, latency_ms: 15684.905625, cost_usd: 0.23970667, cost_estimated: true}
         note: "Fresh frozen native/image-only confirmations qualify13/13 and23/23cells; identical-glyph negative holds with both ambiguous cells flagged and no export. Literal target1.0 remains unmet; holds never count as correct transcriptions. Timing/cost mean initial+review request sum per fresh case, not driver walltime. Current candidate/evidence summary: docs/evals/evidence/062-literal-table-fidelity-summary.json. No whole-book/default-model/consumer adoption claim."
     attempts:
+      - id: "073"
+        date: 2026-10-13
+        status: failed
+        approach: "Approved native Argon medium source-reader qualification against fresh Astra; independent eight-page synthetic panel and real guarded driver consumption."
+        note: "Stopped after5 native POSTs: N1 matched10 clear cells/span; Argon A1 declared the source-proven l/1 ambiguous cell certain with uncertain_cells=[] and adapter verified. Full source_exact is diagnostic, not a valid hold. A1 Astra, remaining6 cases, repeats and live3pageexports are unmeasured. Closed knownUSD.468719/unknown0 under additionalUSD3cap; no recovery. Source/golds/prompt unchanged after answers. Offline4exports/4holds prove wiring only. Default Astra unchanged; no commit/push. See Attempt073 and live-summary.json."
+        retry_when:
+          - condition: architecture-change
+            note: "A separately selected change must address source uncertainty/false certainty; do not rerun the valid failing A1 answer or weaken its hold guarantee."
       - id: "062"
         date: 2026-10-06
         status: failed

@@ -1,3 +1,20 @@
+## [2026-10-13-04] — Opt-in native literal reader qualification (Story 253)
+
+### Added
+- Explicit Google Argon source-only reader and hash-bound native receipt reuse
+  through the real CLI/driver, with provider-aware bundle verification.
+- Locked per-POST budget reservations, raw native bytes before parse, exact
+  identity and standard Astra service tier for the bounded qualification.
+- Independent frozen source panel and sealed progressive Attempt073 evidence.
+  N1 preserves ten clear cells for both readers; Argon misses the mandatory
+  ambiguity hold on A1. Stop after five POSTs; no promotion or default change.
+- Four offline three-page exports and four holds verify integration separately
+  from provider quality. Live complete-batch exports and repeats are unmeasured.
+
+### Fixed
+- Keep source-reader native usage visible in the driver instrumentation sink;
+  retain raw bytes before parse, log once, and reject invalid billing counts.
+
 ## [2026-10-13-01] — Five decision-model evaluations (Attempt 070)
 
 ### Added

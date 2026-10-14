@@ -73,3 +73,9 @@ benchmarks/results/haiku55-20261007/
 
 # Original Scout091 public/synthetic HTTP receipts; compact lossless package is tracked.
 benchmarks/results/scout091-20261013/
+
+# Attempt073 public/synthetic native raw envelopes; durable archive retained in docs.
+/benchmarks/results/argon-literal-qualification-20261013/
+
+# Fixture-author build intermediates/dependency cache; frozen sources tracked, retained build evidence archived.
+/benchmarks/fixtures/argon-literal-qualification-v1/build/

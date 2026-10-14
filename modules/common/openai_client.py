@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 from typing import Any, Optional, Tuple
+import os
 
 from modules.common.utils import log_llm_usage
 
@@ -45,6 +46,39 @@ class _ChatProxy:
         self.completions = _ChatCompletionsProxy(client, logger)
 
 
+class _LoggedRawResponse:
+    """Preserve the SDK envelope and log its parsed usage exactly once."""
+
+    def __init__(self, response, logger, model):
+        self._response = response
+        self._logger = logger
+        self._model = model
+        self._logged = False
+
+    def __getattr__(self, name):
+        return getattr(self._response, name)
+
+    def parse(self, *args, **kwargs):
+        response = self._response.parse(*args, **kwargs)
+        if not self._logged:
+            self._logger(response, self._model)
+            self._logged = True
+        return response
+
+
+class _RawResponsesProxy:
+    def __init__(self, resource, logger):
+        self._resource = resource
+        self._logger = logger
+
+    def __getattr__(self, name):
+        return getattr(self._resource, name)
+
+    def create(self, **kwargs):
+        native = self._resource.create(**kwargs)
+        return _LoggedRawResponse(native, self._logger, kwargs.get("model"))
+
+
 class _ResponsesProxy:
     def __init__(self, client: Any, logger):
         self._client = client
@@ -57,6 +91,11 @@ class _ResponsesProxy:
         self._logger(response, kwargs.get("model"))
         return response
 
+    @property
+    def with_raw_response(self):
+        """Supported SDK path; callers retain HTTP bytes before parsing."""
+        return _RawResponsesProxy(self._client.responses.with_raw_response, self._logger)
+
 
 class OpenAI:
     """
@@ -67,6 +106,15 @@ class OpenAI:
     def __init__(self, *args, **kwargs):
         if _OpenAI is None:
             raise RuntimeError("openai package not installed; pip install openai") from _OPENAI_IMPORT_ERROR
+        if os.environ.get("DOC_WEB_LITERAL_CAMPAIGN_FILE"):
+            import httpx
+
+            if kwargs.get("max_retries") != 0:
+                raise ValueError("Literal campaign requires explicit zero SDK retries")
+            kwargs.setdefault("http_client", httpx.Client(
+                follow_redirects=False, transport=httpx.HTTPTransport(retries=0),
+                timeout=kwargs.get("timeout", 180),
+            ))
         self._client = _OpenAI(*args, **kwargs)
         self.chat = _ChatProxy(self._client, self._log_usage)
         if hasattr(self._client, "responses"):

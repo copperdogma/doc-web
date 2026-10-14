@@ -1,0 +1,151 @@
+{
+  "schema_version": "literal_qualification_live_receipt_review_v1",
+  "reviewed_at": "2026-10-14T03:38:55.951133+00:00",
+  "verdict": "receipt_spend_stop_audit_pass_qualification_stopped_on_expected_hold_failure",
+  "material_receipt_custody_findings": [],
+  "scope": "Independent read-only review of five already completed live native requests, recorded usage, frozen inputs and stop custody. Source truth is independently adjudicated by the source reviewer. No provider calls, credential inspection, suite reruns or changes to source/producing code.",
+  "reviewer_provider_calls": 0,
+  "credentials_inspected": false,
+  "artifacts": {
+    "benchmarks/results/argon-literal-qualification-20261013/ledger.json": "6ae374214b022a945f5de599d043c659a1af7ec360d045e8df785e63fc3fa8d3",
+    "benchmarks/results/argon-literal-qualification-20261013/stop.json": "e019a1b20698356a42922c3b7d5f84371f7920808fa02d469d411306c0a9a808",
+    "docs/evals/evidence/073-argon-literal-qualification/campaign.json": "d4af0a085f2112a54e491cc7477a09667fb23691518ad1333497b83e31322d6f",
+    "docs/evals/evidence/073-argon-literal-qualification/freeze.json": "72b91943847058910d69c24cc2d9a6ccdf6bda197bc5c7a7211dd8ee9e0943a8",
+    "docs/evals/evidence/073-argon-literal-qualification/clearance.json": "fc4031fc3ab5c36c238a5a4ee580624adf7bf4d97ca3373e52e033e95e1fe11b",
+    "docs/evals/evidence/073-argon-literal-qualification/opening-decision.json": "e019a1b20698356a42922c3b7d5f84371f7920808fa02d469d411306c0a9a808",
+    "docs/evals/evidence/073-argon-literal-qualification/source-panel-review-r2.json": "60d89a70862a246ec76740e24f1a11d684afc331f0a509c69c15518e4952577e",
+    "docs/evals/evidence/073-argon-literal-qualification/offline-proof.json": "85ef136304f9af3e6b7a197564af9b1db02c2c969282dcc4b5e11522ef877a5c",
+    "docs/evals/evidence/073-argon-literal-qualification/preflight-connected-review.json": "3d502d90c6f69298e62aa9916b129d5b269d9b8b4c29e76e3989074d6962d48d"
+  },
+  "freeze_checks": {
+    "producing_code_files_unchanged": 24,
+    "fixture_files_unchanged": 28,
+    "campaign_equals_frozen_config": true,
+    "clearance_binds_freeze": true,
+    "closed_prior_ledgers_unchanged": true
+  },
+  "native_contract": {
+    "posts": 5,
+    "order": [
+      "ocr-N1",
+      "reader-N1-astra",
+      "reader-N1-argon",
+      "ocr-A1",
+      "reader-A1-argon"
+    ],
+    "request_body_canonical_and_original_byte_hashes_match": 5,
+    "requests_equal_frozen_and_current_native_builders": 5,
+    "submitted_image_bytes_equal_frozen_render": 5,
+    "exact_requested_served_model_identity": 5,
+    "http200_valid_terminal": 5,
+    "openai_completed": 3,
+    "google_STOP": 2,
+    "astra_requested_and_native_reasoning_effort": "medium",
+    "google_requested_thinking_level": "medium",
+    "astra_explicit_requested_and_served_service_tier": "default",
+    "output_allowances": {
+      "astra": 8192,
+      "argon": 32768
+    },
+    "actual_input_output_within_reservations": true,
+    "strict_reader_schema_valid": 3,
+    "reader_records_exact_original_guard_response_body": 3,
+    "ocr_receipts_native_id_usage_prompt_image_binding": 2,
+    "ocr_raw_html_reproduces_maintained_fence_and_metadata_extraction": 2,
+    "raw_native_envelopes_preserved_before_schema_parse": true
+  },
+  "usage_priced_costs": {
+    "currency": "USD",
+    "known": "0.468719",
+    "unknown_exposure": "0",
+    "cold_normalized": "0.387744",
+    "observed_cache_write_premium": "0.080975",
+    "additional_cap": "3.000000",
+    "owner_cumulative_exposure": "1.335396250",
+    "owner_cap": "15.000000000",
+    "campaign_cumulative_exposure": "4.346088745",
+    "campaign_cap": "35.000000000",
+    "admission_liabilities": [
+      "0.734600",
+      "1.658480",
+      "0.679615",
+      "1.039647",
+      "0.843307"
+    ],
+    "per_post": [
+      {
+        "stage": "ocr-N1",
+        "known_usd": "0.158480",
+        "cold_usd": "0.131150",
+        "cache_write_tokens": 10932,
+        "input_tokens": 10935,
+        "output_tokens_inclusive": 436
+      },
+      {
+        "stage": "reader-N1-astra",
+        "known_usd": "0.141455",
+        "cold_usd": "0.115140",
+        "cache_write_tokens": 10526,
+        "input_tokens": 10529,
+        "output_tokens_inclusive": 197
+      },
+      {
+        "stage": "reader-N1-argon",
+        "known_usd": "0.005112",
+        "cold_usd": "0.005112",
+        "cache_write_tokens": 0,
+        "input_tokens": 1941,
+        "output_tokens_inclusive": 123
+      },
+      {
+        "stage": "ocr-A1",
+        "known_usd": "0.158580",
+        "cold_usd": "0.131250",
+        "cache_write_tokens": 10932,
+        "input_tokens": 10935,
+        "output_tokens_inclusive": 438
+      },
+      {
+        "stage": "reader-A1-argon",
+        "known_usd": "0.005092",
+        "cold_usd": "0.005092",
+        "cache_write_tokens": 0,
+        "input_tokens": 1941,
+        "output_tokens_inclusive": 121
+      }
+    ],
+    "method": "Independent Decimal arithmetic directly from native usage. Astra normal uncached input10, cache reads1, cache writes12.5, output50 USD/M. Argon input2, cache reads0.1, inclusive output10 USD/M. No cache-read hits; output thinking is included rather than charged twice. These are usage-priced amounts, not invoice reconciliation or agent-use charges.",
+    "official_pricing_rechecked": "2026-10-13",
+    "sources": [
+      "https://developers.openai.com/api/docs/pricing",
+      "https://ai.google.dev/gemini-api/docs/pricing"
+    ]
+  },
+  "stop_boundary": {
+    "ledger_closed": true,
+    "stop_file_present": true,
+    "opening_allowed": false,
+    "frozen_stage_calls_exclusively_preserved": true,
+    "recovery_calls": 0,
+    "request_receipt_files": 5,
+    "response_receipt_files": 5,
+    "observed_additional_native_requests": 0,
+    "screen_clearance_absent": true,
+    "panel_clearance_absent": true,
+    "live_exports": 0,
+    "matched_pairs": [
+      "N1"
+    ],
+    "A1_Astra": "unmeasured",
+    "remaining_six_sources": "unmeasured",
+    "preselected_repeat_pairs": "unmeasured",
+    "remaining_scheduled_posts_unmeasured": 27,
+    "qualifying_interpretation": "A1 Argon native schema-valid output declares no uncertain cells, and the preserved local report is verified. This fails the frozen expected-hold requirement; literal agreement on the diagnostic alias does not repair that failure. Source truth judgment remains with the independent source reviewer. Retain the incumbent/default; no paid rescue, expansion, activation or adoption follows."
+  },
+  "limits": [
+    "N1 is the sole matched live reader pair. The Astra A1 outcome is unknown; this audit does not imply Astra passed that hold.",
+    "Earlier four positive exports and four negative holds are explicitly offline native-HTTP mocks. No live positive batch export was performed.",
+    "Provider callability and native contracts are observed only for these five completed requests and the frozen configuration. No aggregate quality, latency/value, consumer acceptance or broader adoption claim is supported.",
+    "Final durable evidence manifest and owner attempt closeout were still being prepared when this primary audit was written; root may request a subsequent manifest custody check."
+  ]
+}

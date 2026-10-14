@@ -135,6 +135,7 @@ def review_literal_tables(
     max_tables: int = 8,
     max_requests: int = 10,
     budget_usd: float = 15.0,
+    source_review_receipts: str | Path | None = None,
 ) -> list[dict[str, Any]]:
     """Review bounded pages and write an immutable report/receipt per page.
 
@@ -155,8 +156,17 @@ def review_literal_tables(
     if reader is None:
         ledger = out_path.parent / "literal_table_review_ledger.json"
         try:
-            reader = SourceOnlyReader(model=model, max_requests=max_requests,
-                                      budget_usd=budget_usd, ledger_path=ledger)
+            if source_review_receipts is not None:
+                from modules.common.google_table_source_review import RetainedSourceOnlyReader
+
+                reader = RetainedSourceOnlyReader(source_review_receipts, model=model)
+            elif model == "gemini-4-argon":
+                from modules.common.google_table_source_review import GoogleSourceOnlyReader
+
+                reader = GoogleSourceOnlyReader(max_requests=max_requests, budget_usd=budget_usd, ledger_path=ledger)
+            else:
+                reader = SourceOnlyReader(model=model, max_requests=max_requests,
+                                          budget_usd=budget_usd, ledger_path=ledger)
         except Exception as exc:
             reader_init_error = f"source-only reader unavailable: {type(exc).__name__}"
             reader = None

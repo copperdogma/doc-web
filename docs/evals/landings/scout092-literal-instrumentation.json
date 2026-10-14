@@ -1,0 +1,36 @@
+{
+  "schema_version": "doc_web_literal_landing_epoch_v1",
+  "date": "2026-10-13",
+  "reason": "Pre-landing read-only review found raw SDK and direct Google source reads omitted normal instrumentation events. Fix logs parsed native usage after preserving raw bytes, before source semantic qualification; invalid Google billing counts produce no invented sink event. Retained replay emits zero usage events and no POST.",
+  "changes": {
+    "modules/common/openai_client.py": {
+      "sealed_producing_sha256": "640c82f2ab6301194f89d95c25ea29d7fd474518ddb5275ce63329e6c3ce1293",
+      "landing_sha256": "698a446cd454b1061560f05b6ff797d8f11ab3e9d48ba94ea2e5b66ab2ec7120"
+    },
+    "modules/common/google_table_source_review.py": {
+      "sealed_producing_sha256": "f2b710dbac60d77f65b96f868d79ec705800d1575a610a69360ffaa39e8d8474",
+      "landing_sha256": "2b5cb5dcf6b09853658b08d7b6dc13678d0c79b150d90dfdd5b5927df28aba98"
+    }
+  },
+  "tests": {
+    "new_instrumentation_cases": 8,
+    "affected_native_source_bundle_schema_tests": "157 passed15.16s before Google negative-count refinement",
+    "after_google_usage_validator_refinement": "94 passed1.64s (Google/native usage instrumentation); previously passing Astra/bundle/schema checks unaffected by final Google usage helper extraction.",
+    "commands": [
+      "/Users/cam/miniconda3/bin/python -m pytest tests/test_source_reader_instrumentation.py tests/test_table_source_review.py tests/test_google_table_source_review.py tests/test_literal_fidelity_bundle.py tests/test_instrumentation_schema.py -q",
+      "/Users/cam/miniconda3/bin/python -m pytest tests/test_source_reader_instrumentation.py tests/test_google_table_source_review.py -q"
+    ],
+    "scope": "Actual installed SDK plus native HTTP MockTransport, raw content retained before parse, parse twice logs once, SourceOnlyReader portable receipt plus sink, Google visible+thinking counted even for malformed semantic answers, negative/missing/bool/cache-overflow usage not logged.",
+    "runtime": "/Users/cam/miniconda3/bin/python3.11.5; no installs/provider/credential calls"
+  },
+  "frozen_paid_code_unchanged_in_archive": true,
+  "paid_requests_not_reexecuted": true,
+  "all_sealed_review_records_unchanged": true,
+  "default_model": "gpt-6-astra",
+  "rate_correction_reference": "docs/evals/landings/scout092-cost-correction.json",
+  "current_owner_known_usd": ".931161750",
+  "current_owner_unknown_usd": ".441832000",
+  "current_owner_exposure_usd": "1.372993750",
+  "known_instrumentation_limit": "Normal driver cost fields remain estimates from caller-selected pricing configuration; exact campaign usage-priced settlement remains in sealed ledger plus explicit correction receipt.",
+  "independent_landing_review": "Same bounded reviewer confirms Astra logs once after parse, Google invalid usage rejected before emission, valid billed malformed answers counted, retained replay silent; no remaining logging blocker."
+}

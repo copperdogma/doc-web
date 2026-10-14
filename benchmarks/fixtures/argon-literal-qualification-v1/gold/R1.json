@@ -1,0 +1,15 @@
+{
+  "source_table_count": 1,
+  "tables": [
+    {
+      "bbox": [
+        217,
+        1133,
+        2112,
+        1700
+      ],
+      "html": "<table><tr><th>Shelf</th><th>Move code</th><th>State</th></tr><tr><td>L-2</td><td>0O-6</td><td>awaiting</td></tr><tr><td>L-3</td><td>00-6</td><td>complete</td></tr><tr><td colspan=\"3\">Lock &amp; pin retained</td></tr></table>",
+      "uncertain_cells": []
+    }
+  ]
+}

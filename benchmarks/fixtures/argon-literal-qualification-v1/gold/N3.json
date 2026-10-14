@@ -1,0 +1,25 @@
+{
+  "source_table_count": 2,
+  "tables": [
+    {
+      "bbox": [
+        217,
+        988,
+        2221,
+        1571
+      ],
+      "html": "<table><tr><th>Gate</th><th>Chainage</th><th>Rise</th><th>Flow</th><th>Flag</th></tr><tr><td>G-1</td><td>0+00</td><td>1.2 m</td><td>4.0</td><td>open</td></tr><tr><td>G-2</td><td>0+85</td><td>1.0 m</td><td>3.8</td><td>inspect</td></tr><tr><td>G-3</td><td>1+70</td><td>0.8 m</td><td></td><td>—</td></tr><tr><td colspan=\"5\">Reference datum: MSL-2</td></tr></table>",
+      "uncertain_cells": []
+    },
+    {
+      "bbox": [
+        217,
+        2258,
+        2221,
+        2608
+      ],
+      "html": "<table><tr><th colspan=\"2\">Collection</th><th colspan=\"2\">Review</th></tr><tr><th>Station</th><th>Sample ID</th><th>pH</th><th>Seal</th></tr><tr><td>C-09</td><td>c-09/a</td><td>7.01</td><td>intact</td></tr></table>",
+      "uncertain_cells": []
+    }
+  ]
+}

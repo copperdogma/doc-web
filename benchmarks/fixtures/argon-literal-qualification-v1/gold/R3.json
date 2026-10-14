@@ -1,0 +1,25 @@
+{
+  "source_table_count": 2,
+  "tables": [
+    {
+      "bbox": [
+        217,
+        988,
+        2408,
+        1454
+      ],
+      "html": "<table><tr><th>Track</th><th>Marker</th><th>Wear</th><th>Limit</th><th>Result</th></tr><tr><td>T-7</td><td>km 08+4</td><td>0.7</td><td>1.0</td><td>pass</td></tr><tr><td>T-8</td><td>km 09+1</td><td>1.1</td><td>1.0</td><td>repair</td></tr><tr><td>T-9</td><td>km 10+0</td><td>0.0</td><td>1.0</td><td>pass</td></tr></table>",
+      "uncertain_cells": []
+    },
+    {
+      "bbox": [
+        217,
+        2196,
+        2408,
+        2546
+      ],
+      "html": "<table><tr><th>Part</th><th>Bin</th><th>Qty</th><th>Seal</th></tr><tr><td>coupler</td><td>r-14</td><td>2</td><td>ok</td></tr><tr><td>washer</td><td>R-14</td><td>—</td><td>open</td></tr></table>",
+      "uncertain_cells": []
+    }
+  ]
+}

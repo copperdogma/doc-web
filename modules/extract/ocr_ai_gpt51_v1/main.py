@@ -401,6 +401,8 @@ def _call_vision_model(
             detail = request_options.get("image_detail")
             if detail:
                 request_kwargs["input"][1]["content"][1]["detail"] = detail
+            if request_options.get("service_tier"):
+                request_kwargs["service_tier"] = request_options["service_tier"]
             effort = request_options.get("reasoning_effort")
             if effort:
                 request_kwargs["reasoning"] = {"effort": effort}
@@ -416,6 +418,8 @@ def _call_vision_model(
             record = request_receipt(resp, request_kwargs, started)
             request_records.append(record)
             require_completed_identity(record)
+            if request_kwargs.get("service_tier") == "default" and record.get("service_tier") != "default":
+                raise RuntimeError("Literal OCR response service tier differs from explicitly requested standard tier")
         return resp.output_text or "", getattr(resp, "usage", None), getattr(resp, "id", None)
     if request_options or request_records is not None:
         raise RuntimeError("Literal OCR profile requires the Responses API")
@@ -679,7 +683,7 @@ def main() -> None:
                     openai_client=openai_client,
                     gemini_client=gemini_client,
                     anthropic_client=anthropic_client,
-                    request_options={k: v for k, v in {"image_detail": args.image_detail, "reasoning_effort": args.reasoning_effort}.items() if v},
+                    request_options={k: v for k, v in {"image_detail": args.image_detail, "reasoning_effort": args.reasoning_effort, "service_tier": "default" if args.literal_transcription else None}.items() if v},
                     request_records=records,
                     max_attempts=args.max_attempts,
                     image_mime=mime,

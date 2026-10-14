@@ -1,0 +1,53 @@
+{
+  "schema_version": "literal_qualification_preflight_review_v1",
+  "reviewed_at": "2026-10-14T02:58:26.588922+00:00",
+  "verdict": "hold_before_paid_dispatch",
+  "scope": "Fresh independent static code, native authority, transport custody and budget-contract review; source/gold excluded; connected mock artifacts not yet reviewed.",
+  "provider_calls": 0,
+  "credentials_inspected": false,
+  "provider_model_outputs_inspected": false,
+  "files_sha256": {
+    "modules/common/google_table_source_review.py": "af108495be4d4aacb826ac6c6d514bbbf703ee0b895fbfb4b5258751da683684",
+    "modules/common/table_source_review.py": "96c71d6ab58f21492e3b24ea059cf988bffe2e9559f51869a741f13d7045fad8",
+    "modules/common/literal_fidelity_bundle.py": "32bcda36545d9f7b4dfaa78dd8d0c590688bed45135ded89637211be4fbe257b",
+    "modules/common/literal_table_review.py": "25085a0937d27e5bae61e3973eddcf2ea6a43496cba814d57fb8af67a0212d67",
+    "modules/common/openai_client.py": "210f91067dccbe907ea8bea48ea54371fe5e3cf54c7d8d79f9c3ff986abb15f4",
+    "benchmarks/providers/literal_qualification_guard.py": "3f06db58ea86ca5262be768fb0260cbba6a76829c8a1b53b108437db2c20f2d5",
+    "benchmarks/scripts/qualify_argon_literal.py": "3d39ffb8990f960089e10b74c697e7055774810c362bcc5cf3d1110fdf5d9cea",
+    "benchmarks/scripts/literal_qualification_offline.py": "f36024a76b8f74b0f9acdf3548642f27c116c32fc46f0603298dd99b31b93e2c"
+  },
+  "findings": [
+    {
+      "id": "R1",
+      "priority": 1,
+      "title": "Require the native Astra profile at final authority validation",
+      "path": "modules/common/google_table_source_review.py",
+      "lines": [
+        115,
+        127
+      ],
+      "problem": "Any missing or foreign Astra authority_profile skips the native envelope, output and request-body validation. The builder invokes this validator directly when reopening a report, so the stronger profile requirement in RetainedSourceOnlyReader does not close final report tamper/downgrade acceptance.",
+      "evidence": "No-network direct calls to validate_source_record accepted both a foreign and a missing profile with invalid native_response_json, invalid native_response_sha256 and request_sha256, and nonexistent image_path, when the hand-authored policy/schema/image metadata and empty SourcePageReview were valid.",
+      "correction": "Require explicit provider=openai and authority_profile=openai-native-astra-source-only-medium-v1, then perform all existing Astra native envelope/request checks unconditionally. Retain legacy artifacts unchanged under their producing snapshot; do not reseal them. Add missing/foreign profile and final builder report downgrade rejection coverage."
+    },
+    {
+      "id": "R2",
+      "priority": 1,
+      "title": "Pin standard OpenAI service before applying standard-rate admission",
+      "path": "benchmarks/providers/literal_qualification_guard.py",
+      "lines": [
+        163,
+        167
+      ],
+      "problem": "The native guard treats omitted service_tier as default although OpenAI omission follows project service settings. Actual Astra reader and common OCR bodies omit service_tier. A Fast project setting therefore invalidates the standard-price reservation assumption; settlement also ignores the served response tier.",
+      "evidence": "No-network _native call accepted an OpenAI request without service_tier; _usage/_cost calculated standard USD0.06 for a synthetic Fast response with1000 input and1000 output tokens. Official Fast-mode documentation states that omitted service_tier inherits the project Fast setting and response.service_tier reports the served tier.",
+      "source": "https://developers.openai.com/api/docs/guides/fast-mode",
+      "correction": "Explicitly set service_tier=default in the actual Astra reader/common OCR native payloads and their frozen body builders; require it at pre-POST admission. Check actual response tier before standard settlement and fail closed with retained conservative liability if the served tier is absent or differs. Re-freeze/replay affected request hashes without changing provider account settings."
+    }
+  ],
+  "other_observations": [
+    "Google authority explicitly selects its provider/profile and binds native body/image/policy/schema; hidden thought parts are excluded from visible output.",
+    "Campaign guard wraps both synchronous httpx/httpx2 Client.send paths, inspects URL-selected transport retries, serializes with flock, durably saves admission intent before exclusive request receipt and POST, retains unknown reservations, and preserves duplicate-stage denial. These are static observations, not live billing proof.",
+    "Final acceptance still requires owner correction, focused regression evidence and current connected four-export/expected-hold artifact proof. No source fidelity, provider callability, live latency/value, or full integration acceptance is established by this review."
+  ]
+}

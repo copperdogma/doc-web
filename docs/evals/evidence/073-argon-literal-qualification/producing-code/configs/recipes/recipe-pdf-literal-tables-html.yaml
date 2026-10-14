@@ -1,0 +1,91 @@
+# Bounded text/table-only PDF lane; figures are intentionally unsupported.
+# Supply the source with --input-pdf. This renders composited full pages
+# as lossless PNG, not native embedded-image bytes.
+# Qualification is table-only; ambiguous/disagreeing source reads stop export.
+# Default is a three-page batch. Declare another bounded range in settings.
+# Use --settings with stage_params.pdf_to_images.start/end to bound pages.
+
+input: {}
+
+stages:
+  - id: pdf_to_images
+    stage: extract
+    module: extract_pdf_images_capped_v1
+    out: pages_images_manifest.jsonl
+    params:
+      out: pages_images_manifest.jsonl
+      dpi_cap: 300
+      min_dpi: 300
+      baseline_dpi: 300
+      sample_count: 0
+      image_format: png
+      start: 1
+      end: 3
+
+  - id: ocr_ai
+    stage: extract
+    module: ocr_ai_gpt51_v1
+    needs: [pdf_to_images]
+    inputs:
+      pages: pdf_to_images
+    out: pages_html.jsonl
+    params:
+      literal_transcription: true
+      max_attempts: 1
+      sdk_max_retries: 0
+      request_timeout: 180
+      model: gpt-6-astra
+      max_output_tokens: 8192
+      max_long_side: 0
+      image_detail: original
+      reasoning_effort: medium
+      concurrency: 1
+
+  - id: literal_table_review
+    stage: adapter
+    module: literal_table_review_v1
+    needs: [ocr_ai]
+    inputs:
+      pages: ocr_ai
+    out: pages_html_reviewed.jsonl
+    params:
+      model: gpt-6-astra
+      max_pages: 3
+      max_tables: 8
+      max_requests: 3
+      budget_usd: 4.5
+
+  - id: extract_page_numbers
+    stage: transform
+    module: extract_page_numbers_html_v1
+    needs: [literal_table_review]
+    inputs:
+      pages: literal_table_review
+    out: pages_html_with_page_numbers.jsonl
+
+  - id: portionize_headings
+    stage: portionize
+    module: portionize_headings_html_v1
+    needs: [extract_page_numbers]
+    inputs:
+      pages: extract_page_numbers
+    out: portions_headings.jsonl
+    params:
+      heading_tags: h1
+      allow_unnumbered: true
+      fallback_mode: single-document
+      fallback_title: Document
+
+  - id: build_chapters
+    stage: build
+    module: build_chapter_html_v1
+    needs: [extract_page_numbers, portionize_headings]
+    inputs:
+      pages: extract_page_numbers
+      portions: portionize_headings
+    out: chapters_manifest.jsonl
+    params:
+      images_subdir: images
+      require_literal_fidelity: true
+      book_title: ""
+      book_author: ""

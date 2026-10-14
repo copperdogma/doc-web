@@ -1,0 +1,19 @@
+{
+  "python": "/Users/cam/miniconda3/bin/python",
+  "packages": {
+    "pytest": "9.0.2",
+    "httpx": "0.27.2",
+    "openai": "2.21.0",
+    "pydantic": "2.12.5",
+    "pillow": "10.4.0",
+    "beautifulsoup4": "4.12.3",
+    "pyyaml": "6.0.2",
+    "pdf2image": "1.17.0",
+    "ruff": "0.15.2",
+    "tiktoken": "0.7.0",
+    "numpy": "1.26.4",
+    "pypdf": "4.3.1"
+  },
+  "reuse": "existing runtime; no installation or primary environment modification",
+  "httpx2": "not installed in selected runtime; optional alternate transport hook tested independently"
+}

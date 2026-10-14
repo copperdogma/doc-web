@@ -14,6 +14,7 @@ def main() -> None:
     input_group.add_argument("--inputs", nargs="+", help="Driver-compatible page artifact inputs")
     parser.add_argument("--out", required=True, help="Output page_html_v1 JSONL path")
     parser.add_argument("--model", default="gpt-6-astra")
+    parser.add_argument("--source-review-receipts", help="Hash-bound native source receipts; consumes without inference")
     parser.add_argument("--max-pages", type=int, default=3)
     parser.add_argument("--max-tables", type=int, default=8)
     parser.add_argument("--max-requests", type=int, default=10)
@@ -44,6 +45,7 @@ def main() -> None:
         max_tables=args.max_tables,
         max_requests=args.max_requests,
         budget_usd=args.budget_usd,
+        source_review_receipts=args.source_review_receipts,
     )
     unresolved = sum(
         row.get("literal_fidelity", {}).get("status") != "verified"

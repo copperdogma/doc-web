@@ -1,0 +1,1144 @@
+{
+  "evidence_class": "OFFLINE MOCK ONLY; frozen gold responses; zero actual provider spend; no model-quality evidence",
+  "actual_provider_spend_usd": 0,
+  "guard_mock_post_count": 24,
+  "ocr_mock_posts": 8,
+  "reader_mock_posts": 16,
+  "positive_exports": [
+    {
+      "group": "N",
+      "arm": "astra",
+      "proof": "/Users/cam/.codex/worktrees/scout092-docweb-literal-20261013/benchmarks/results/argon-literal-qualification-20261013/offline-r3/offline-r3exports/export-N-astra/export-proof.json",
+      "proof_sha256": "32ac13772d9eac2669e2e087eb73121d88e3f52c5da0c4b9fc361617edcc95df"
+    },
+    {
+      "group": "N",
+      "arm": "argon",
+      "proof": "/Users/cam/.codex/worktrees/scout092-docweb-literal-20261013/benchmarks/results/argon-literal-qualification-20261013/offline-r3/offline-r3exports/export-N-argon/export-proof.json",
+      "proof_sha256": "7c2127c7eb9eb5078ef693f489042520e7283ac5fa93302d85e1eaf8f7bce4db"
+    },
+    {
+      "group": "R",
+      "arm": "astra",
+      "proof": "/Users/cam/.codex/worktrees/scout092-docweb-literal-20261013/benchmarks/results/argon-literal-qualification-20261013/offline-r3/offline-r3exports/export-R-astra/export-proof.json",
+      "proof_sha256": "1bdcff2ccd7c17925c054023dea42303f405afc998c284dfefeb5b754892ae97"
+    },
+    {
+      "group": "R",
+      "arm": "argon",
+      "proof": "/Users/cam/.codex/worktrees/scout092-docweb-literal-20261013/benchmarks/results/argon-literal-qualification-20261013/offline-r3/offline-r3exports/export-R-argon/export-proof.json",
+      "proof_sha256": "15240e1327a95059af184e9ea0a28eb927efae535f4e8d70a9f1c9a6be7069a8"
+    }
+  ],
+  "negative_holds": [
+    {
+      "evidence_class": "OFFLINE MOCK ONLY; frozen gold responses; zero actual provider spend; no model-quality evidence",
+      "run_id": "literal073-offline-r3exports-hold-A1-astra",
+      "case": "A1",
+      "arm": "astra",
+      "driver_returncode": 1,
+      "review_returncode": 2,
+      "report_path": "/Users/cam/.codex/worktrees/scout092-docweb-literal-20261013/output/runs/literal073-offline-r3exports-hold-A1-astra/02_literal_table_review_v1/pages_html_reviewed_reports/row-00000-page-00001-original-00001.json",
+      "report_sha256": "85c7ce15823a0bc36007bdad064d2d8f69098a1cc04b7d1e20efb6de4651227c",
+      "status": "unresolved",
+      "manifest_absent": true,
+      "additional_posts": 0,
+      "command": [
+        "/Users/cam/miniconda3/bin/python",
+        "driver.py",
+        "--recipe",
+        "/Users/cam/.codex/worktrees/scout092-docweb-literal-20261013/benchmarks/results/argon-literal-qualification-20261013/offline-r3/offline-r3exports/hold-A1-astra/recipe.yaml",
+        "--run-id",
+        "literal073-offline-r3exports-hold-A1-astra",
+        "--output-dir",
+        "/Users/cam/.codex/worktrees/scout092-docweb-literal-20261013/output/runs/literal073-offline-r3exports-hold-A1-astra"
+      ]
+    },
+    {
+      "evidence_class": "OFFLINE MOCK ONLY; frozen gold responses; zero actual provider spend; no model-quality evidence",
+      "run_id": "literal073-offline-r3exports-hold-A1-argon",
+      "case": "A1",
+      "arm": "argon",
+      "driver_returncode": 1,
+      "review_returncode": 2,
+      "report_path": "/Users/cam/.codex/worktrees/scout092-docweb-literal-20261013/output/runs/literal073-offline-r3exports-hold-A1-argon/02_literal_table_review_v1/pages_html_reviewed_reports/row-00000-page-00001-original-00001.json",
+      "report_sha256": "37033cb9eb4a01e38998ae488e406723e23d4b7d941c8a4b17b2e51c32ad733d",
+      "status": "unresolved",
+      "manifest_absent": true,
+      "additional_posts": 0,
+      "command": [
+        "/Users/cam/miniconda3/bin/python",
+        "driver.py",
+        "--recipe",
+        "/Users/cam/.codex/worktrees/scout092-docweb-literal-20261013/benchmarks/results/argon-literal-qualification-20261013/offline-r3/offline-r3exports/hold-A1-argon/recipe.yaml",
+        "--run-id",
+        "literal073-offline-r3exports-hold-A1-argon",
+        "--output-dir",
+        "/Users/cam/.codex/worktrees/scout092-docweb-literal-20261013/output/runs/literal073-offline-r3exports-hold-A1-argon"
+      ]
+    },
+    {
+      "evidence_class": "OFFLINE MOCK ONLY; frozen gold responses; zero actual provider spend; no model-quality evidence",
+      "run_id": "literal073-offline-r3exports-hold-A2-astra",
+      "case": "A2",
+      "arm": "astra",
+      "driver_returncode": 1,
+      "review_returncode": 2,
+      "report_path": "/Users/cam/.codex/worktrees/scout092-docweb-literal-20261013/output/runs/literal073-offline-r3exports-hold-A2-astra/02_literal_table_review_v1/pages_html_reviewed_reports/row-00000-page-00001-original-00002.json",
+      "report_sha256": "81ab047f4ae8744a45a148e166597034a6be45c4f07f56f46a68573fe277c0a8",
+      "status": "unresolved",
+      "manifest_absent": true,
+      "additional_posts": 0,
+      "command": [
+        "/Users/cam/miniconda3/bin/python",
+        "driver.py",
+        "--recipe",
+        "/Users/cam/.codex/worktrees/scout092-docweb-literal-20261013/benchmarks/results/argon-literal-qualification-20261013/offline-r3/offline-r3exports/hold-A2-astra/recipe.yaml",
+        "--run-id",
+        "literal073-offline-r3exports-hold-A2-astra",
+        "--output-dir",
+        "/Users/cam/.codex/worktrees/scout092-docweb-literal-20261013/output/runs/literal073-offline-r3exports-hold-A2-astra"
+      ]
+    },
+    {
+      "evidence_class": "OFFLINE MOCK ONLY; frozen gold responses; zero actual provider spend; no model-quality evidence",
+      "run_id": "literal073-offline-r3exports-hold-A2-argon",
+      "case": "A2",
+      "arm": "argon",
+      "driver_returncode": 1,
+      "review_returncode": 2,
+      "report_path": "/Users/cam/.codex/worktrees/scout092-docweb-literal-20261013/output/runs/literal073-offline-r3exports-hold-A2-argon/02_literal_table_review_v1/pages_html_reviewed_reports/row-00000-page-00001-original-00002.json",
+      "report_sha256": "42b0495236c00ba2bfe359917cdf7b730bb1a018a92bfd8d155eb217688808c0",
+      "status": "unresolved",
+      "manifest_absent": true,
+      "additional_posts": 0,
+      "command": [
+        "/Users/cam/miniconda3/bin/python",
+        "driver.py",
+        "--recipe",
+        "/Users/cam/.codex/worktrees/scout092-docweb-literal-20261013/benchmarks/results/argon-literal-qualification-20261013/offline-r3/offline-r3exports/hold-A2-argon/recipe.yaml",
+        "--run-id",
+        "literal073-offline-r3exports-hold-A2-argon",
+        "--output-dir",
+        "/Users/cam/.codex/worktrees/scout092-docweb-literal-20261013/output/runs/literal073-offline-r3exports-hold-A2-argon"
+      ]
+    }
+  ],
+  "exports_additional_posts": 0,
+  "holds_additional_posts": 0,
+  "network_connections": 0,
+  "initial_reviews": [
+    {
+      "case": "N1",
+      "arm": "astra",
+      "stage": "reader-N1-astra",
+      "returncode": 0,
+      "review_status": "verified",
+      "source_exact": true,
+      "comparison": {
+        "text_pass": true,
+        "structure_pass": true,
+        "pass": true,
+        "text_mismatch_count": 0,
+        "structure_mismatch_count": 0,
+        "text_mismatches": [],
+        "structure_mismatches": [],
+        "counts": {
+          "golden": {
+            "tables": 1,
+            "rows": 4,
+            "cells": 10
+          },
+          "actual": {
+            "tables": 1,
+            "rows": 4,
+            "cells": 10
+          }
+        },
+        "scope": {
+          "mode": "all_tables",
+          "table_index": null,
+          "golden_table_count": 1,
+          "actual_table_count": 1,
+          "excluded_actual_table_indices": [],
+          "compared_actual_table_count": 1,
+          "document_actual_table_count": 1
+        }
+      },
+      "source_table_count": 1,
+      "uncertain_cells": [],
+      "record_path": "/Users/cam/.codex/worktrees/scout092-docweb-literal-20261013/benchmarks/results/argon-literal-qualification-20261013/offline-r3/offline-r3/reader-N1-astra/native-record.json",
+      "report_path": "/Users/cam/.codex/worktrees/scout092-docweb-literal-20261013/benchmarks/results/argon-literal-qualification-20261013/offline-r3/offline-r3/reader-N1-astra/pages_reviewed_reports/row-00000-page-00001-original-00001.json",
+      "elapsed_seconds": 0.08475570900191087,
+      "independent_source_review": "pending"
+    },
+    {
+      "case": "N1",
+      "arm": "argon",
+      "stage": "reader-N1-argon",
+      "returncode": 0,
+      "review_status": "verified",
+      "source_exact": true,
+      "comparison": {
+        "text_pass": true,
+        "structure_pass": true,
+        "pass": true,
+        "text_mismatch_count": 0,
+        "structure_mismatch_count": 0,
+        "text_mismatches": [],
+        "structure_mismatches": [],
+        "counts": {
+          "golden": {
+            "tables": 1,
+            "rows": 4,
+            "cells": 10
+          },
+          "actual": {
+            "tables": 1,
+            "rows": 4,
+            "cells": 10
+          }
+        },
+        "scope": {
+          "mode": "all_tables",
+          "table_index": null,
+          "golden_table_count": 1,
+          "actual_table_count": 1,
+          "excluded_actual_table_indices": [],
+          "compared_actual_table_count": 1,
+          "document_actual_table_count": 1
+        }
+      },
+      "source_table_count": 1,
+      "uncertain_cells": [],
+      "record_path": "/Users/cam/.codex/worktrees/scout092-docweb-literal-20261013/benchmarks/results/argon-literal-qualification-20261013/offline-r3/offline-r3/reader-N1-argon/native-record.json",
+      "report_path": "/Users/cam/.codex/worktrees/scout092-docweb-literal-20261013/benchmarks/results/argon-literal-qualification-20261013/offline-r3/offline-r3/reader-N1-argon/pages_reviewed_reports/row-00000-page-00001-original-00001.json",
+      "elapsed_seconds": 0.012226292004925199,
+      "independent_source_review": "pending"
+    },
+    {
+      "case": "A1",
+      "arm": "astra",
+      "stage": "reader-A1-astra",
+      "returncode": 2,
+      "review_status": "unresolved",
+      "source_exact": true,
+      "comparison": {
+        "text_pass": true,
+        "structure_pass": true,
+        "pass": true,
+        "text_mismatch_count": 0,
+        "structure_mismatch_count": 0,
+        "text_mismatches": [],
+        "structure_mismatches": [],
+        "counts": {
+          "golden": {
+            "tables": 1,
+            "rows": 4,
+            "cells": 10
+          },
+          "actual": {
+            "tables": 1,
+            "rows": 4,
+            "cells": 10
+          }
+        },
+        "scope": {
+          "mode": "all_tables",
+          "table_index": null,
+          "golden_table_count": 1,
+          "actual_table_count": 1,
+          "excluded_actual_table_indices": [],
+          "compared_actual_table_count": 1,
+          "document_actual_table_count": 1
+        }
+      },
+      "source_table_count": 1,
+      "uncertain_cells": [
+        {
+          "alternatives": [
+            "K8l4",
+            "K814"
+          ],
+          "cell": 1,
+          "reason": "the lowercase l and digit 1 in this cell use the same glyph and the same advance in the printed font",
+          "row": 1
+        }
+      ],
+      "record_path": "/Users/cam/.codex/worktrees/scout092-docweb-literal-20261013/benchmarks/results/argon-literal-qualification-20261013/offline-r3/offline-r3/reader-A1-astra/native-record.json",
+      "report_path": "/Users/cam/.codex/worktrees/scout092-docweb-literal-20261013/benchmarks/results/argon-literal-qualification-20261013/offline-r3/offline-r3/reader-A1-astra/pages_reviewed_reports/row-00000-page-00001-original-00001.json",
+      "elapsed_seconds": 0.08660862500255462,
+      "independent_source_review": "pending"
+    },
+    {
+      "case": "A1",
+      "arm": "argon",
+      "stage": "reader-A1-argon",
+      "returncode": 2,
+      "review_status": "unresolved",
+      "source_exact": true,
+      "comparison": {
+        "text_pass": true,
+        "structure_pass": true,
+        "pass": true,
+        "text_mismatch_count": 0,
+        "structure_mismatch_count": 0,
+        "text_mismatches": [],
+        "structure_mismatches": [],
+        "counts": {
+          "golden": {
+            "tables": 1,
+            "rows": 4,
+            "cells": 10
+          },
+          "actual": {
+            "tables": 1,
+            "rows": 4,
+            "cells": 10
+          }
+        },
+        "scope": {
+          "mode": "all_tables",
+          "table_index": null,
+          "golden_table_count": 1,
+          "actual_table_count": 1,
+          "excluded_actual_table_indices": [],
+          "compared_actual_table_count": 1,
+          "document_actual_table_count": 1
+        }
+      },
+      "source_table_count": 1,
+      "uncertain_cells": [
+        {
+          "alternatives": [
+            "K8l4",
+            "K814"
+          ],
+          "cell": 1,
+          "reason": "the lowercase l and digit 1 in this cell use the same glyph and the same advance in the printed font",
+          "row": 1
+        }
+      ],
+      "record_path": "/Users/cam/.codex/worktrees/scout092-docweb-literal-20261013/benchmarks/results/argon-literal-qualification-20261013/offline-r3/offline-r3/reader-A1-argon/native-record.json",
+      "report_path": "/Users/cam/.codex/worktrees/scout092-docweb-literal-20261013/benchmarks/results/argon-literal-qualification-20261013/offline-r3/offline-r3/reader-A1-argon/pages_reviewed_reports/row-00000-page-00001-original-00001.json",
+      "elapsed_seconds": 0.01646545900439378,
+      "independent_source_review": "pending"
+    },
+    {
+      "case": "N2",
+      "arm": "astra",
+      "stage": "reader-N2-astra",
+      "returncode": 0,
+      "review_status": "verified",
+      "source_exact": true,
+      "comparison": {
+        "text_pass": true,
+        "structure_pass": true,
+        "pass": true,
+        "text_mismatch_count": 0,
+        "structure_mismatch_count": 0,
+        "text_mismatches": [],
+        "structure_mismatches": [],
+        "counts": {
+          "golden": {
+            "tables": 1,
+            "rows": 6,
+            "cells": 22
+          },
+          "actual": {
+            "tables": 1,
+            "rows": 6,
+            "cells": 22
+          }
+        },
+        "scope": {
+          "mode": "all_tables",
+          "table_index": null,
+          "golden_table_count": 1,
+          "actual_table_count": 1,
+          "excluded_actual_table_indices": [],
+          "compared_actual_table_count": 1,
+          "document_actual_table_count": 1
+        }
+      },
+      "source_table_count": 1,
+      "uncertain_cells": [],
+      "record_path": "/Users/cam/.codex/worktrees/scout092-docweb-literal-20261013/benchmarks/results/argon-literal-qualification-20261013/offline-r3/offline-r3/reader-N2-astra/native-record.json",
+      "report_path": "/Users/cam/.codex/worktrees/scout092-docweb-literal-20261013/benchmarks/results/argon-literal-qualification-20261013/offline-r3/offline-r3/reader-N2-astra/pages_reviewed_reports/row-00000-page-00001-original-00002.json",
+      "elapsed_seconds": 0.08427558299445082,
+      "independent_source_review": "pending"
+    },
+    {
+      "case": "N2",
+      "arm": "argon",
+      "stage": "reader-N2-argon",
+      "returncode": 0,
+      "review_status": "verified",
+      "source_exact": true,
+      "comparison": {
+        "text_pass": true,
+        "structure_pass": true,
+        "pass": true,
+        "text_mismatch_count": 0,
+        "structure_mismatch_count": 0,
+        "text_mismatches": [],
+        "structure_mismatches": [],
+        "counts": {
+          "golden": {
+            "tables": 1,
+            "rows": 6,
+            "cells": 22
+          },
+          "actual": {
+            "tables": 1,
+            "rows": 6,
+            "cells": 22
+          }
+        },
+        "scope": {
+          "mode": "all_tables",
+          "table_index": null,
+          "golden_table_count": 1,
+          "actual_table_count": 1,
+          "excluded_actual_table_indices": [],
+          "compared_actual_table_count": 1,
+          "document_actual_table_count": 1
+        }
+      },
+      "source_table_count": 1,
+      "uncertain_cells": [],
+      "record_path": "/Users/cam/.codex/worktrees/scout092-docweb-literal-20261013/benchmarks/results/argon-literal-qualification-20261013/offline-r3/offline-r3/reader-N2-argon/native-record.json",
+      "report_path": "/Users/cam/.codex/worktrees/scout092-docweb-literal-20261013/benchmarks/results/argon-literal-qualification-20261013/offline-r3/offline-r3/reader-N2-argon/pages_reviewed_reports/row-00000-page-00001-original-00002.json",
+      "elapsed_seconds": 0.014088458003243431,
+      "independent_source_review": "pending"
+    },
+    {
+      "case": "N3",
+      "arm": "astra",
+      "stage": "reader-N3-astra",
+      "returncode": 0,
+      "review_status": "verified",
+      "source_exact": true,
+      "comparison": {
+        "text_pass": true,
+        "structure_pass": true,
+        "pass": true,
+        "text_mismatch_count": 0,
+        "structure_mismatch_count": 0,
+        "text_mismatches": [],
+        "structure_mismatches": [],
+        "counts": {
+          "golden": {
+            "tables": 2,
+            "rows": 8,
+            "cells": 31
+          },
+          "actual": {
+            "tables": 2,
+            "rows": 8,
+            "cells": 31
+          }
+        },
+        "scope": {
+          "mode": "all_tables",
+          "table_index": null,
+          "golden_table_count": 2,
+          "actual_table_count": 2,
+          "excluded_actual_table_indices": [],
+          "compared_actual_table_count": 2,
+          "document_actual_table_count": 2
+        }
+      },
+      "source_table_count": 2,
+      "uncertain_cells": [],
+      "record_path": "/Users/cam/.codex/worktrees/scout092-docweb-literal-20261013/benchmarks/results/argon-literal-qualification-20261013/offline-r3/offline-r3/reader-N3-astra/native-record.json",
+      "report_path": "/Users/cam/.codex/worktrees/scout092-docweb-literal-20261013/benchmarks/results/argon-literal-qualification-20261013/offline-r3/offline-r3/reader-N3-astra/pages_reviewed_reports/row-00000-page-00001-original-00003.json",
+      "elapsed_seconds": 0.08141666700248607,
+      "independent_source_review": "pending"
+    },
+    {
+      "case": "N3",
+      "arm": "argon",
+      "stage": "reader-N3-argon",
+      "returncode": 0,
+      "review_status": "verified",
+      "source_exact": true,
+      "comparison": {
+        "text_pass": true,
+        "structure_pass": true,
+        "pass": true,
+        "text_mismatch_count": 0,
+        "structure_mismatch_count": 0,
+        "text_mismatches": [],
+        "structure_mismatches": [],
+        "counts": {
+          "golden": {
+            "tables": 2,
+            "rows": 8,
+            "cells": 31
+          },
+          "actual": {
+            "tables": 2,
+            "rows": 8,
+            "cells": 31
+          }
+        },
+        "scope": {
+          "mode": "all_tables",
+          "table_index": null,
+          "golden_table_count": 2,
+          "actual_table_count": 2,
+          "excluded_actual_table_indices": [],
+          "compared_actual_table_count": 2,
+          "document_actual_table_count": 2
+        }
+      },
+      "source_table_count": 2,
+      "uncertain_cells": [],
+      "record_path": "/Users/cam/.codex/worktrees/scout092-docweb-literal-20261013/benchmarks/results/argon-literal-qualification-20261013/offline-r3/offline-r3/reader-N3-argon/native-record.json",
+      "report_path": "/Users/cam/.codex/worktrees/scout092-docweb-literal-20261013/benchmarks/results/argon-literal-qualification-20261013/offline-r3/offline-r3/reader-N3-argon/pages_reviewed_reports/row-00000-page-00001-original-00003.json",
+      "elapsed_seconds": 0.014365541996085085,
+      "independent_source_review": "pending"
+    },
+    {
+      "case": "R1",
+      "arm": "astra",
+      "stage": "reader-R1-astra",
+      "returncode": 0,
+      "review_status": "verified",
+      "source_exact": true,
+      "comparison": {
+        "text_pass": true,
+        "structure_pass": true,
+        "pass": true,
+        "text_mismatch_count": 0,
+        "structure_mismatch_count": 0,
+        "text_mismatches": [],
+        "structure_mismatches": [],
+        "counts": {
+          "golden": {
+            "tables": 1,
+            "rows": 4,
+            "cells": 10
+          },
+          "actual": {
+            "tables": 1,
+            "rows": 4,
+            "cells": 10
+          }
+        },
+        "scope": {
+          "mode": "all_tables",
+          "table_index": null,
+          "golden_table_count": 1,
+          "actual_table_count": 1,
+          "excluded_actual_table_indices": [],
+          "compared_actual_table_count": 1,
+          "document_actual_table_count": 1
+        }
+      },
+      "source_table_count": 1,
+      "uncertain_cells": [],
+      "record_path": "/Users/cam/.codex/worktrees/scout092-docweb-literal-20261013/benchmarks/results/argon-literal-qualification-20261013/offline-r3/offline-r3/reader-R1-astra/native-record.json",
+      "report_path": "/Users/cam/.codex/worktrees/scout092-docweb-literal-20261013/benchmarks/results/argon-literal-qualification-20261013/offline-r3/offline-r3/reader-R1-astra/pages_reviewed_reports/row-00000-page-00001-original-00001.json",
+      "elapsed_seconds": 0.08029854200140107,
+      "independent_source_review": "pending"
+    },
+    {
+      "case": "R1",
+      "arm": "argon",
+      "stage": "reader-R1-argon",
+      "returncode": 0,
+      "review_status": "verified",
+      "source_exact": true,
+      "comparison": {
+        "text_pass": true,
+        "structure_pass": true,
+        "pass": true,
+        "text_mismatch_count": 0,
+        "structure_mismatch_count": 0,
+        "text_mismatches": [],
+        "structure_mismatches": [],
+        "counts": {
+          "golden": {
+            "tables": 1,
+            "rows": 4,
+            "cells": 10
+          },
+          "actual": {
+            "tables": 1,
+            "rows": 4,
+            "cells": 10
+          }
+        },
+        "scope": {
+          "mode": "all_tables",
+          "table_index": null,
+          "golden_table_count": 1,
+          "actual_table_count": 1,
+          "excluded_actual_table_indices": [],
+          "compared_actual_table_count": 1,
+          "document_actual_table_count": 1
+        }
+      },
+      "source_table_count": 1,
+      "uncertain_cells": [],
+      "record_path": "/Users/cam/.codex/worktrees/scout092-docweb-literal-20261013/benchmarks/results/argon-literal-qualification-20261013/offline-r3/offline-r3/reader-R1-argon/native-record.json",
+      "report_path": "/Users/cam/.codex/worktrees/scout092-docweb-literal-20261013/benchmarks/results/argon-literal-qualification-20261013/offline-r3/offline-r3/reader-R1-argon/pages_reviewed_reports/row-00000-page-00001-original-00001.json",
+      "elapsed_seconds": 0.017130749998614192,
+      "independent_source_review": "pending"
+    },
+    {
+      "case": "R2",
+      "arm": "astra",
+      "stage": "reader-R2-astra",
+      "returncode": 0,
+      "review_status": "verified",
+      "source_exact": true,
+      "comparison": {
+        "text_pass": true,
+        "structure_pass": true,
+        "pass": true,
+        "text_mismatch_count": 0,
+        "structure_mismatch_count": 0,
+        "text_mismatches": [],
+        "structure_mismatches": [],
+        "counts": {
+          "golden": {
+            "tables": 1,
+            "rows": 6,
+            "cells": 23
+          },
+          "actual": {
+            "tables": 1,
+            "rows": 6,
+            "cells": 23
+          }
+        },
+        "scope": {
+          "mode": "all_tables",
+          "table_index": null,
+          "golden_table_count": 1,
+          "actual_table_count": 1,
+          "excluded_actual_table_indices": [],
+          "compared_actual_table_count": 1,
+          "document_actual_table_count": 1
+        }
+      },
+      "source_table_count": 1,
+      "uncertain_cells": [],
+      "record_path": "/Users/cam/.codex/worktrees/scout092-docweb-literal-20261013/benchmarks/results/argon-literal-qualification-20261013/offline-r3/offline-r3/reader-R2-astra/native-record.json",
+      "report_path": "/Users/cam/.codex/worktrees/scout092-docweb-literal-20261013/benchmarks/results/argon-literal-qualification-20261013/offline-r3/offline-r3/reader-R2-astra/pages_reviewed_reports/row-00000-page-00001-original-00002.json",
+      "elapsed_seconds": 0.09139099999447353,
+      "independent_source_review": "pending"
+    },
+    {
+      "case": "R2",
+      "arm": "argon",
+      "stage": "reader-R2-argon",
+      "returncode": 0,
+      "review_status": "verified",
+      "source_exact": true,
+      "comparison": {
+        "text_pass": true,
+        "structure_pass": true,
+        "pass": true,
+        "text_mismatch_count": 0,
+        "structure_mismatch_count": 0,
+        "text_mismatches": [],
+        "structure_mismatches": [],
+        "counts": {
+          "golden": {
+            "tables": 1,
+            "rows": 6,
+            "cells": 23
+          },
+          "actual": {
+            "tables": 1,
+            "rows": 6,
+            "cells": 23
+          }
+        },
+        "scope": {
+          "mode": "all_tables",
+          "table_index": null,
+          "golden_table_count": 1,
+          "actual_table_count": 1,
+          "excluded_actual_table_indices": [],
+          "compared_actual_table_count": 1,
+          "document_actual_table_count": 1
+        }
+      },
+      "source_table_count": 1,
+      "uncertain_cells": [],
+      "record_path": "/Users/cam/.codex/worktrees/scout092-docweb-literal-20261013/benchmarks/results/argon-literal-qualification-20261013/offline-r3/offline-r3/reader-R2-argon/native-record.json",
+      "report_path": "/Users/cam/.codex/worktrees/scout092-docweb-literal-20261013/benchmarks/results/argon-literal-qualification-20261013/offline-r3/offline-r3/reader-R2-argon/pages_reviewed_reports/row-00000-page-00001-original-00002.json",
+      "elapsed_seconds": 0.01750874999561347,
+      "independent_source_review": "pending"
+    },
+    {
+      "case": "R3",
+      "arm": "astra",
+      "stage": "reader-R3-astra",
+      "returncode": 0,
+      "review_status": "verified",
+      "source_exact": true,
+      "comparison": {
+        "text_pass": true,
+        "structure_pass": true,
+        "pass": true,
+        "text_mismatch_count": 0,
+        "structure_mismatch_count": 0,
+        "text_mismatches": [],
+        "structure_mismatches": [],
+        "counts": {
+          "golden": {
+            "tables": 2,
+            "rows": 7,
+            "cells": 32
+          },
+          "actual": {
+            "tables": 2,
+            "rows": 7,
+            "cells": 32
+          }
+        },
+        "scope": {
+          "mode": "all_tables",
+          "table_index": null,
+          "golden_table_count": 2,
+          "actual_table_count": 2,
+          "excluded_actual_table_indices": [],
+          "compared_actual_table_count": 2,
+          "document_actual_table_count": 2
+        }
+      },
+      "source_table_count": 2,
+      "uncertain_cells": [],
+      "record_path": "/Users/cam/.codex/worktrees/scout092-docweb-literal-20261013/benchmarks/results/argon-literal-qualification-20261013/offline-r3/offline-r3/reader-R3-astra/native-record.json",
+      "report_path": "/Users/cam/.codex/worktrees/scout092-docweb-literal-20261013/benchmarks/results/argon-literal-qualification-20261013/offline-r3/offline-r3/reader-R3-astra/pages_reviewed_reports/row-00000-page-00001-original-00003.json",
+      "elapsed_seconds": 0.08323645900236443,
+      "independent_source_review": "pending"
+    },
+    {
+      "case": "R3",
+      "arm": "argon",
+      "stage": "reader-R3-argon",
+      "returncode": 0,
+      "review_status": "verified",
+      "source_exact": true,
+      "comparison": {
+        "text_pass": true,
+        "structure_pass": true,
+        "pass": true,
+        "text_mismatch_count": 0,
+        "structure_mismatch_count": 0,
+        "text_mismatches": [],
+        "structure_mismatches": [],
+        "counts": {
+          "golden": {
+            "tables": 2,
+            "rows": 7,
+            "cells": 32
+          },
+          "actual": {
+            "tables": 2,
+            "rows": 7,
+            "cells": 32
+          }
+        },
+        "scope": {
+          "mode": "all_tables",
+          "table_index": null,
+          "golden_table_count": 2,
+          "actual_table_count": 2,
+          "excluded_actual_table_indices": [],
+          "compared_actual_table_count": 2,
+          "document_actual_table_count": 2
+        }
+      },
+      "source_table_count": 2,
+      "uncertain_cells": [],
+      "record_path": "/Users/cam/.codex/worktrees/scout092-docweb-literal-20261013/benchmarks/results/argon-literal-qualification-20261013/offline-r3/offline-r3/reader-R3-argon/native-record.json",
+      "report_path": "/Users/cam/.codex/worktrees/scout092-docweb-literal-20261013/benchmarks/results/argon-literal-qualification-20261013/offline-r3/offline-r3/reader-R3-argon/pages_reviewed_reports/row-00000-page-00001-original-00003.json",
+      "elapsed_seconds": 0.018480375001672655,
+      "independent_source_review": "pending"
+    },
+    {
+      "case": "A2",
+      "arm": "astra",
+      "stage": "reader-A2-astra",
+      "returncode": 2,
+      "review_status": "unresolved",
+      "source_exact": true,
+      "comparison": {
+        "text_pass": true,
+        "structure_pass": true,
+        "pass": true,
+        "text_mismatch_count": 0,
+        "structure_mismatch_count": 0,
+        "text_mismatches": [],
+        "structure_mismatches": [],
+        "counts": {
+          "golden": {
+            "tables": 1,
+            "rows": 5,
+            "cells": 17
+          },
+          "actual": {
+            "tables": 1,
+            "rows": 5,
+            "cells": 17
+          }
+        },
+        "scope": {
+          "mode": "all_tables",
+          "table_index": null,
+          "golden_table_count": 1,
+          "actual_table_count": 1,
+          "excluded_actual_table_indices": [],
+          "compared_actual_table_count": 1,
+          "document_actual_table_count": 1
+        }
+      },
+      "source_table_count": 1,
+      "uncertain_cells": [
+        {
+          "alternatives": [],
+          "cell": 2,
+          "reason": "photocopy abrasion removes the remaining cell digits; no exact value is recoverable",
+          "row": 2
+        }
+      ],
+      "record_path": "/Users/cam/.codex/worktrees/scout092-docweb-literal-20261013/benchmarks/results/argon-literal-qualification-20261013/offline-r3/offline-r3/reader-A2-astra/native-record.json",
+      "report_path": "/Users/cam/.codex/worktrees/scout092-docweb-literal-20261013/benchmarks/results/argon-literal-qualification-20261013/offline-r3/offline-r3/reader-A2-astra/pages_reviewed_reports/row-00000-page-00001-original-00002.json",
+      "elapsed_seconds": 0.08509887500258628,
+      "independent_source_review": "pending"
+    },
+    {
+      "case": "A2",
+      "arm": "argon",
+      "stage": "reader-A2-argon",
+      "returncode": 2,
+      "review_status": "unresolved",
+      "source_exact": true,
+      "comparison": {
+        "text_pass": true,
+        "structure_pass": true,
+        "pass": true,
+        "text_mismatch_count": 0,
+        "structure_mismatch_count": 0,
+        "text_mismatches": [],
+        "structure_mismatches": [],
+        "counts": {
+          "golden": {
+            "tables": 1,
+            "rows": 5,
+            "cells": 17
+          },
+          "actual": {
+            "tables": 1,
+            "rows": 5,
+            "cells": 17
+          }
+        },
+        "scope": {
+          "mode": "all_tables",
+          "table_index": null,
+          "golden_table_count": 1,
+          "actual_table_count": 1,
+          "excluded_actual_table_indices": [],
+          "compared_actual_table_count": 1,
+          "document_actual_table_count": 1
+        }
+      },
+      "source_table_count": 1,
+      "uncertain_cells": [
+        {
+          "alternatives": [],
+          "cell": 2,
+          "reason": "photocopy abrasion removes the remaining cell digits; no exact value is recoverable",
+          "row": 2
+        }
+      ],
+      "record_path": "/Users/cam/.codex/worktrees/scout092-docweb-literal-20261013/benchmarks/results/argon-literal-qualification-20261013/offline-r3/offline-r3/reader-A2-argon/native-record.json",
+      "report_path": "/Users/cam/.codex/worktrees/scout092-docweb-literal-20261013/benchmarks/results/argon-literal-qualification-20261013/offline-r3/offline-r3/reader-A2-argon/pages_reviewed_reports/row-00000-page-00001-original-00002.json",
+      "elapsed_seconds": 0.01862575000268407,
+      "independent_source_review": "pending"
+    }
+  ],
+  "synthetic_usage_guard_settlement_usd": 0.1056,
+  "source_manifest_sha256": "16fce905b21e65344b57247f5850c3e2ee081d59853e404d8c0bde84eff75718",
+  "code_sha256": {
+    "benchmarks/scripts/literal_qualification_offline.py": "4a2518215902d6fb19ec9a4f7df43e728f6d5f6898935216f8fb3bcef2351f73"
+  },
+  "artifact_sha256": {
+    "evidence/campaign.json": "e780dd904cb575e38ba9915a1c8179803faccd2fb58b7d39bd915c2938b075f0",
+    "evidence/screen-clearance.json": "53d09e892a426d602a31edcf05cbcf3a4411ae48802251fa23bbc6ce65908539",
+    "evidence/panel-clearance.json": "53d09e892a426d602a31edcf05cbcf3a4411ae48802251fa23bbc6ce65908539",
+    "evidence/freeze.json": "d3167204c95706f1ee2809d82edf296f2d6ff6d9f4b7b9ec8c2c4a0367bda84b",
+    "mock-startup/sitecustomize.py": "15115dde626174dade456f289815eeb05596d394ed72ebf0451013915619ee3a",
+    "mock-startup/__pycache__/sitecustomize.cpython-311.pyc": "de3c2c05e8b45bdde57d9675bfe545da8d1e2c719b57d6151c96fdc820bfc587",
+    "offline-r3exports/export-R-astra.log": "50084feeee13ab45b76d63e2e2a839860f7a5671bfe1d5426763bd5f1c8d359f",
+    "offline-r3exports/export-R-argon.log": "e2b9541807748cd06bccdc128638b59858f315a61263fcf178d2a217770e9490",
+    "offline-r3exports/export-N-argon-command.json": "1da8a29a8375f2386268861eb3bfa85cf9b731532d7f9b1377941555b4f648df",
+    "offline-r3exports/export-R-argon-command.json": "55419b2659669f8af1e6c637eb42a3dab9e890e630fc99356e250d83e05ee541",
+    "offline-r3exports/export-N-astra-command.json": "df2d421abcc2549591f38773f17350fa05061354caae5f8a689e23edfe6878b4",
+    "offline-r3exports/export-N-argon.log": "f03843e6e65c20c47e60c6ecb53fa329800ada8c35fc0a72641560ecef76246f",
+    "offline-r3exports/export-N-astra.log": "ac7d13ec007ee19de50242688e87d24f329aae4bb0e6eb77a0cdb6117985fd1d",
+    "offline-r3exports/export-R-astra-command.json": "cb5effc2718b2debca976269ff973b87dc779f6f9e1307864beff88d41a28f48",
+    "offline-r3exports/export-N-argon/common-pages.jsonl": "90df540cc584d0c5038ecf41f7988bd37c60a5a76b88f76691858b34ff58b8b0",
+    "offline-r3exports/export-N-argon/retained.json": "5c8f884377a089b4d9171965046b3ed55bf24c1a34449617be7116b386736d1d",
+    "offline-r3exports/export-N-argon/export-proof.json": "7c2127c7eb9eb5078ef693f489042520e7283ac5fa93302d85e1eaf8f7bce4db",
+    "offline-r3exports/export-N-argon/recipe.yaml": "089a0220df420876cd1f17d62956443049e21d95fec573775b456bc0787a7c3b",
+    "offline-r3exports/export-R-astra/common-pages.jsonl": "8a6e801af5224ff27a4f9e1f17ea54acce6066ef3bd4209ed78430b2446f3137",
+    "offline-r3exports/export-R-astra/retained.json": "0b179adc1541d0ebfbcad0c37f912e54e975a5f81b8cdcf80b72076eecc3f987",
+    "offline-r3exports/export-R-astra/export-proof.json": "1bdcff2ccd7c17925c054023dea42303f405afc998c284dfefeb5b754892ae97",
+    "offline-r3exports/export-R-astra/recipe.yaml": "9930a576594b910a9dc7755aeb3bb7014e7c4da25f2d45fe450ccc7cc3dad84f",
+    "offline-r3exports/loader-smoke/pages_html.jsonl": "b7abc8556c6d56775f88da62d7d63508b7a8a9b6e2fa5f8d516b787eeb48ea21",
+    "offline-r3exports/loader-smoke/command.json": "667ba0e253db18e67f6bd9330839c13e1dc61313827fcff7f2a9ddc05611e545",
+    "offline-r3exports/export-R-argon/common-pages.jsonl": "8a6e801af5224ff27a4f9e1f17ea54acce6066ef3bd4209ed78430b2446f3137",
+    "offline-r3exports/export-R-argon/retained.json": "f88777df108ca809e99ab2cb66e58d03284bfc78d76f10de13750d7646422c13",
+    "offline-r3exports/export-R-argon/export-proof.json": "15240e1327a95059af184e9ea0a28eb927efae535f4e8d70a9f1c9a6be7069a8",
+    "offline-r3exports/export-R-argon/recipe.yaml": "3ba5bc8f52280178c4e47981572a7c29d2935d0102acb5ff63d49a7611ab8a66",
+    "offline-r3exports/export-N-astra/common-pages.jsonl": "90df540cc584d0c5038ecf41f7988bd37c60a5a76b88f76691858b34ff58b8b0",
+    "offline-r3exports/export-N-astra/retained.json": "6c874062a6fa6e305175732378de86f4e575c3b110f5fe22deace35c3970c7a1",
+    "offline-r3exports/export-N-astra/export-proof.json": "32ac13772d9eac2669e2e087eb73121d88e3f52c5da0c4b9fc361617edcc95df",
+    "offline-r3exports/export-N-astra/recipe.yaml": "c36e4be08bbd6aa6318db55f4f07b46f26b00c6a3df627594a4cfccc22106360",
+    "offline-r3exports/hold-A2-argon/hold-proof.json": "2cbff582c5d72d5019e4193393d6cb68dbc873932ae6b2338ad83c6fe5e2e962",
+    "offline-r3exports/hold-A2-argon/common-pages.jsonl": "b083dc5737a1585d49c645f15c0d2d4148acb3526e7b6e13393f15000f158d8d",
+    "offline-r3exports/hold-A2-argon/retained.json": "a609ea0614d95ac78437b9f4da5e9648e0ef78e5a5c7b02e232b87d4a01ef908",
+    "offline-r3exports/hold-A2-argon/recipe.yaml": "ce3f71dbb67a50e95ef7e8f53ce2083e5a56bcb3ab804156c7f39ad399fd7592",
+    "offline-r3exports/hold-A2-argon/driver.log": "20d30fd81587a7c0cdb0a46abbd28aaaac71ae854efe8f995c0ec9fc948851af",
+    "offline-r3exports/hold-A1-astra/hold-proof.json": "5c3e106bd2e569834def4211c286a902c83c11a99e5356495489d91c9622749b",
+    "offline-r3exports/hold-A1-astra/common-pages.jsonl": "bdfcd7ffe9c8e6b7176224b233319e2de25d04f8c3679aee2cdbfd1a1f79fce5",
+    "offline-r3exports/hold-A1-astra/retained.json": "1adfeb2d9dcc6f83af758540309a426b4026c920fe56287d5299c287911309f4",
+    "offline-r3exports/hold-A1-astra/recipe.yaml": "db6d5dbc214d6f28f5d14edbb55078377fecf185d4f7445826e972f46283be32",
+    "offline-r3exports/hold-A1-astra/driver.log": "c2eff32777e82999ca148c9a0b3fb9bae28bc85b33db8659b08fbab0e1559f77",
+    "offline-r3exports/hold-A1-argon/hold-proof.json": "cb6de571020c36674395714e04f01e089dd0e594f318573d7c58982405e455de",
+    "offline-r3exports/hold-A1-argon/common-pages.jsonl": "bdfcd7ffe9c8e6b7176224b233319e2de25d04f8c3679aee2cdbfd1a1f79fce5",
+    "offline-r3exports/hold-A1-argon/retained.json": "f7fcad8e0f08c0cbb4e8d6d41f445753dded3002c8077ba163d42f8a63400595",
+    "offline-r3exports/hold-A1-argon/recipe.yaml": "beb3d8490a642294503583b5c0b8013b1bd82b5356d03b36273ae9e1db8c1b8e",
+    "offline-r3exports/hold-A1-argon/driver.log": "a10d1e5e3950c44f7e0b4acfead9bcb9daff0e491ca3a727dd528aca8c2f4d57",
+    "offline-r3exports/hold-A2-astra/hold-proof.json": "842364457b845aefad28fbcf757827ef2bf24dae7fbf6a6ebeaf0cf61d9bbd01",
+    "offline-r3exports/hold-A2-astra/common-pages.jsonl": "b083dc5737a1585d49c645f15c0d2d4148acb3526e7b6e13393f15000f158d8d",
+    "offline-r3exports/hold-A2-astra/retained.json": "0332405f7f0cb0c70355a2d70577abe88ee21b7ba383f019f5d6dc6fd77a330f",
+    "offline-r3exports/hold-A2-astra/recipe.yaml": "1be7f25db5287430766ff2ee0f61ab101de03f84598006d7e37356b5eea2f1a9",
+    "offline-r3exports/hold-A2-astra/driver.log": "6016ced6f4ec16ef9b4cb75deab704e3b79567028baddc0fdec1f6004441e1ca",
+    "offline-r3/ocr-R2-settings.yaml": "d4dd9b63560faea80ad0096ad0603b44bcbb39e62873e00e2f88fe788c73c26e",
+    "offline-r3/reader-N2-astra-command.json": "3e566ab5141bc9b11ea1d6bb70411b2f36194cb72f244dbab1560e6ba43e544d",
+    "offline-r3/ocr-N3-settings.yaml": "9fa18ef0877a69d807b71cce3a1e9da5f7baed9795429f717b8990e5d442e8c7",
+    "offline-r3/reader-N1-argon.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "offline-r3/reader-N1-astra.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "offline-r3/ocr-R1.log": "e052513c9f4faf181aa0cccbfa72c892e9f7ba2a8cfd920b75ae40bd730c9462",
+    "offline-r3/reader-N1-astra-command.json": "1c718f501896e5a6e7835721687965a838bcb92e9c3ad7f2629a04ef5e505e7f",
+    "offline-r3/reader-R3-argon-command.json": "67a178e7dfd6c745d10991660863f8d3ee12676da6a793bef70e3a55add004d0",
+    "offline-r3/ocr-R2.log": "e94ebede0558ec4bd045ed0e297d09cc072a9e7ac2baa7747844322a50e8a555",
+    "offline-r3/ocr-R1-settings.yaml": "0f0b6a4a43a5553af3c2ffa8573ed34449e743c507e60ebd22ae3d41fcc16f68",
+    "offline-r3/ocr-R3.log": "847047e472217bb1d4e95af2a6046d32da078a6a1abc3a60e1d20e55dba3fc23",
+    "offline-r3/ocr-A2-command.json": "bb03b937c4ee570077134d5eb59364261ba0f18c5580342e3ee8b9e89b5210d1",
+    "offline-r3/ocr-R1-command.json": "a846af763aa843b5c277999174e446300df4a5a2bda24e8543c6d6c3a967d9e3",
+    "offline-r3/reader-R1-astra-command.json": "299ed4b63a51bb6028041186e665b38cb0bef6560df41362a90479e09a5070b4",
+    "offline-r3/reader-A1-argon.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "offline-r3/reader-N3-argon-command.json": "120ffb9b394cd81fc237848622ee38ff5571085f58cc12502714f3ba7ed4a005",
+    "offline-r3/reader-A1-astra-command.json": "916b3c65da4efa412fec7684100e4ee377761d60ceef70c9ac5cd1ca0602c9ce",
+    "offline-r3/reader-R1-argon.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "offline-r3/reader-A2-astra-command.json": "e674fb562079b039a32ff1b302878ae9eb8997c680cce06ec512abada3183880",
+    "offline-r3/reader-R1-astra.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "offline-r3/ocr-A2.log": "6f40ea0b19fac2e12eed42e8311d1853206b8be8688eb3a0ac26aa125e12b87c",
+    "offline-r3/ocr-N1-command.json": "a061c9ac8ddf71637f5506e3947e45c3b84c93da9bc326541b6e17c25200c8e4",
+    "offline-r3/reader-A1-astra.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "offline-r3/reader-R2-astra-command.json": "2129208ca885a61a1b96f13d588183895716f29c6ebd9fdbf616e80fcde72a06",
+    "offline-r3/ocr-A1.log": "e8116aee3de8e57025f74550c5408052b0d8529a8ed787f932b62c3f29acf4c6",
+    "offline-r3/export-N-astra-command.json": "a6a6c8cf33b3cb609e6b50e291a3f83f11a0b50c20d35da76551bffc799af855",
+    "offline-r3/ocr-N3.log": "09cab6d0ebf9eb89b4692e8be086eb90624f02f5dd4e27697c647cb325fd594d",
+    "offline-r3/reader-A2-argon.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "offline-r3/ocr-N3-command.json": "213b87b06686843b0f7926344041089f6152e0e5989e5adb3ec01852e4d4d03e",
+    "offline-r3/ocr-N2.log": "4f8fc24ba624ca0e164ae9fba5540da34b04c841db58c0cbe58d54f24a942a67",
+    "offline-r3/reader-R3-astra-command.json": "f78a586752d7271b9032000a4d361f6c9a844b1a3525bb3e0f3e14e068834ff2",
+    "offline-r3/reader-N3-argon.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "offline-r3/reader-R2-argon.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "offline-r3/reader-N1-argon-command.json": "e19e999ba32d3d9b2824008d8cefd1f277e01e529b0ddbfc48f44b19de4dabda",
+    "offline-r3/ocr-N1.log": "e6c1ab6182c8df5ada7f6ff95f492b7f022b3ffb4d63c3c96cc72ecf8cf9f91f",
+    "offline-r3/export-N-astra.log": "b0c298a3875c66033336f96fc2b322b9ef3ece3ea5c606cd618b9038c6939962",
+    "offline-r3/ocr-N2-command.json": "7021e6321359ca425292fc7dba8461f68a6ced13dcb1689acf01ec80acf72f13",
+    "offline-r3/reader-N2-argon-command.json": "0036c179a082004ced4b15be9ccad8bb0e15ef534d00f4d566d9368bc844c706",
+    "offline-r3/reader-N3-astra.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "offline-r3/reader-R2-astra.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "offline-r3/reader-A2-astra.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "offline-r3/reader-A2-argon-command.json": "60d2045c2034d6c1f2741f8aba1dc835fd0af82a81f3c963e257671ba996b473",
+    "offline-r3/ocr-N1-settings.yaml": "0f0b6a4a43a5553af3c2ffa8573ed34449e743c507e60ebd22ae3d41fcc16f68",
+    "offline-r3/ocr-A1-settings.yaml": "0f0b6a4a43a5553af3c2ffa8573ed34449e743c507e60ebd22ae3d41fcc16f68",
+    "offline-r3/reader-N2-argon.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "offline-r3/reader-R3-argon.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "offline-r3/ocr-R3-command.json": "2b0e6c7fa14dda7e0be44bb2e664f365957e214318d7567341ca2151595e941a",
+    "offline-r3/reader-R2-argon-command.json": "704873fc8c183cd38f4244265eb28121991bc9bec13e738f26f19b97d4d8c5ec",
+    "offline-r3/reader-N3-astra-command.json": "cb9a6d9815a5e6642323b0afae2a3f532f732aa276bf5adc7d7ab3ab29e129e4",
+    "offline-r3/reader-R1-argon-command.json": "279a73f98771230bc60409cdeceee287021c209ea627558206a49de5fa2f45b5",
+    "offline-r3/ocr-A2-settings.yaml": "d4dd9b63560faea80ad0096ad0603b44bcbb39e62873e00e2f88fe788c73c26e",
+    "offline-r3/ocr-R3-settings.yaml": "9fa18ef0877a69d807b71cce3a1e9da5f7baed9795429f717b8990e5d442e8c7",
+    "offline-r3/reader-N2-astra.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "offline-r3/reader-R3-astra.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "offline-r3/ocr-A1-command.json": "020a5e7dbe86962a6d10302afdd2749ab4cee29394d29b44de3d90c6b5e5929e",
+    "offline-r3/ocr-R2-command.json": "b7e0bb6bf85a588ce795c5db524339ba0967fc3302ea2d69563c9c184b54825b",
+    "offline-r3/ocr-N2-settings.yaml": "d4dd9b63560faea80ad0096ad0603b44bcbb39e62873e00e2f88fe788c73c26e",
+    "offline-r3/reader-A1-argon-command.json": "48292dc140ab9e893f8693ab283d62cdcf1b3b6b29831997533b85e6a3089982",
+    "offline-r3/reader-N3-argon/metrics.json": "b1c24d14e0124a3fdc93e34c59b5ea8fd064ea8b72da0bb0604aec63eb74976f",
+    "offline-r3/reader-N3-argon/literal_table_review_ledger.json": "91acd71f5b22885f5d45aa78522298a089a62ff1140c2e196f789f84b7d1c262",
+    "offline-r3/reader-N3-argon/google-source-response-001.json": "8ca53c8dc81988cf5407c8558505526c0651571cf392ad6dfe2242030f218dc4",
+    "offline-r3/reader-N3-argon/pages_reviewed.jsonl": "ee12914efd6c8b4212d07ccbe0929a8820556f5deda716797035dc3305a159f1",
+    "offline-r3/reader-N3-argon/native-record.json": "09794cf1d9068e6db2417ccf62e66f2ed946178afca93cb7fc493a6a5e75562b",
+    "offline-r3/reader-N3-argon/pages_reviewed_reports/row-00000-page-00001-original-00003.json": "d7367d76adc961b89109746606b26faff2a5e355e7b400d1fd00b1f6bff76a44",
+    "offline-r3/reader-R1-astra/metrics.json": "8b365e611b6c84cd37cbd943ef2c296f3e66b46fea15057ef4e5bc4238fc30ee",
+    "offline-r3/reader-R1-astra/literal_table_review_ledger.json": "4ab27fbf95641ad44760a3c04e091dd0fec31ae4fa9891233dabb9e943f4ef2f",
+    "offline-r3/reader-R1-astra/pages_reviewed.jsonl": "1f5d3913b02c318942a052237cddf052963840296ac2128c8a8bae717c9a32c7",
+    "offline-r3/reader-R1-astra/native-record.json": "55a7b0ed6218fa7d55836c6e01a0726488d9905c4fe24db6f3908af5f04afc22",
+    "offline-r3/reader-R1-astra/openai-source-response-001.json": "67c71e30996dce8122b3642f773f322ea63d6e08a76dd2aa7c76ce0a2d807e74",
+    "offline-r3/reader-R1-astra/pages_reviewed_reports/row-00000-page-00001-original-00001.json": "f44d9f3e673be632e384fa36f9017a7687ab7a4f1822cc98335f00e31e3f0932",
+    "offline-r3/reader-N1-argon/metrics.json": "2650878772e5e094bc199c0222347fa388c90f629e11392dd4532f644c55f6d2",
+    "offline-r3/reader-N1-argon/literal_table_review_ledger.json": "67379312d19752f1bbc52421cc00aeffc77db0ddfb673d1998512326ba1ce5b1",
+    "offline-r3/reader-N1-argon/google-source-response-001.json": "10486a01966a2a1d118712825074f0ae1ed1f984845a7a227e54cae59fc9b145",
+    "offline-r3/reader-N1-argon/pages_reviewed.jsonl": "7c198c6cd3a5a31ecec537703d28c74ac6046c9d594094ca020410db78a18169",
+    "offline-r3/reader-N1-argon/native-record.json": "9e5d47cc09aa8873f00536538849de98572fcdb0d799316c2c9b923b58a5cd33",
+    "offline-r3/reader-N1-argon/pages_reviewed_reports/row-00000-page-00001-original-00001.json": "abe83a6ef69d22054d592546617e374f289afda42eb397b81eb5a17bb130bde4",
+    "offline-r3/reader-R3-astra/metrics.json": "1a5a80fd08b1bf2943ba14365f12035dd624c51c5c1957167f2ce5b76ad1dd30",
+    "offline-r3/reader-R3-astra/literal_table_review_ledger.json": "8a985e3711e2fc16c4139fd45fbbf971190dc72ed86a28e5c8da0f2880528a6f",
+    "offline-r3/reader-R3-astra/pages_reviewed.jsonl": "b3928ea62636b15f8847edca4bea3e68a257e78af88a8f951939b2bb3ae3ef8b",
+    "offline-r3/reader-R3-astra/native-record.json": "38ed72ddf7c6d321054e08ebf5c50c14c3e989c2907f8401473b567a9e919de8",
+    "offline-r3/reader-R3-astra/openai-source-response-001.json": "20631ab0cb7464dc86396b0a151593f54b70f0f0b958599b9ac83697ccae6f79",
+    "offline-r3/reader-R3-astra/pages_reviewed_reports/row-00000-page-00001-original-00003.json": "dc267b403d7d935b4be1f396aca0fd9b35c5c9971af6f698764357d4b69662f0",
+    "offline-r3/reader-N2-astra/metrics.json": "0d7649d086998a0f816b9a15685537b33cff93f1d98a920ad74adc7f88962aea",
+    "offline-r3/reader-N2-astra/literal_table_review_ledger.json": "1c8ab553c4ccdd909c1bb7b2bc679a19547185eefb2468ecad5da4973ed4e268",
+    "offline-r3/reader-N2-astra/pages_reviewed.jsonl": "e3e56a69da1fe5f09d806341d6addd2cd0f96bd7897a037ec0fe6fa802991ce7",
+    "offline-r3/reader-N2-astra/native-record.json": "83c99736a60d87afc67b5b3cbef4bee1f3a26624f58b3a84b9da5b6346b26833",
+    "offline-r3/reader-N2-astra/openai-source-response-001.json": "1af5fca6fce4d7dcca48c03614f9c088a9a2917619e11cb8c12f8c0bf441c6c7",
+    "offline-r3/reader-N2-astra/pages_reviewed_reports/row-00000-page-00001-original-00002.json": "e9f8b4709e16da0fd047d59438ee9000aeee2a815360f1f89c6dfd2b62d19d1f",
+    "offline-r3/reader-R2-argon/metrics.json": "5644fb73eef84577df8c91cefbca8066caecf561f5c4f125807f9a68abd4ed55",
+    "offline-r3/reader-R2-argon/literal_table_review_ledger.json": "ac2c696cf183a84259251a3e0ba98496975c04d2ed34aa3de48a2769b68fc6aa",
+    "offline-r3/reader-R2-argon/google-source-response-001.json": "cee34fd8980ddc4f3f9dcdf7f032fd405bc9884807dc3c23ec00193db7693c4d",
+    "offline-r3/reader-R2-argon/pages_reviewed.jsonl": "b2d6df6ab31ffd1db6fb0e9de658bbd31dbfaa483ececf0928f394641dcb1a3a",
+    "offline-r3/reader-R2-argon/native-record.json": "be784ea87acb3c31bea6a2d8c59950b1e82846505927e69ea2e508ee6565b7e1",
+    "offline-r3/reader-R2-argon/pages_reviewed_reports/row-00000-page-00001-original-00002.json": "40ecc76b981114760b489749360118c52ba1a413f9b7661aab312550931f5195",
+    "offline-r3/reader-R2-astra/metrics.json": "01681da4288e17b9b31d169ff7c2c42602f1468704f1dcf998e8933c4fee8e2f",
+    "offline-r3/reader-R2-astra/literal_table_review_ledger.json": "edbc9e4b96eafa19edc556e255e01a102f3f8d77d69c575a04e3576bcbe2f7dc",
+    "offline-r3/reader-R2-astra/pages_reviewed.jsonl": "4c35e53b9ae0c7fb895ebb6ebe3f9ad6f482f100369e559ecacba76b37223b33",
+    "offline-r3/reader-R2-astra/native-record.json": "0713a0578c34fec80a3798022a331637aeb442329a987c12c5522d6722d084d2",
+    "offline-r3/reader-R2-astra/openai-source-response-001.json": "78b5750cedad1693d21d258802244bad0e4851aad1e9770b7259e692acf8bbcf",
+    "offline-r3/reader-R2-astra/pages_reviewed_reports/row-00000-page-00001-original-00002.json": "2d07bafc0ba3c148fcf3e9d3fc2795a40b6ded6eeda20f77e3c13b7db9b599f2",
+    "offline-r3/reader-N2-argon/metrics.json": "417389af4341c42593f75d0d381734bd53598799124ed7e6a6e46cd6c8efd278",
+    "offline-r3/reader-N2-argon/literal_table_review_ledger.json": "f5e7e54faab014f99377141e869324d9b65558be964981a10ba7aded2cfe2902",
+    "offline-r3/reader-N2-argon/google-source-response-001.json": "6ea2848fb37908723207eed99838df1bae06f33252c49a4b390b83655db54658",
+    "offline-r3/reader-N2-argon/pages_reviewed.jsonl": "22fc3a4f839001178b41ab4983b35b1d7a4ca19fc11fd5ec266c8478ff3581fd",
+    "offline-r3/reader-N2-argon/native-record.json": "6ece1c61ae4ccf9c108438e50bf7cdb2d149bab9706665a08ef352efab2ca52f",
+    "offline-r3/reader-N2-argon/pages_reviewed_reports/row-00000-page-00001-original-00002.json": "2c4064fcc8a6b0d05f019878456052ad992df1f688c0b61a6b3ca2001ea7e610",
+    "offline-r3/reader-R3-argon/metrics.json": "9eb33f3769c8ecbb15acbc5de80415fa1a3bc10cf0d885aa2cb630a71f75a5e7",
+    "offline-r3/reader-R3-argon/literal_table_review_ledger.json": "35b109ee2ddec6bbefb5b242217771a723f139208906d1e26fa642b6f8a1b72f",
+    "offline-r3/reader-R3-argon/google-source-response-001.json": "3a55ff08c5f718c90028ead5efd37d2a662f4b34842fbee95d94a48a95f7e463",
+    "offline-r3/reader-R3-argon/pages_reviewed.jsonl": "c84c25dec2604010769e5f888e9f6374af73e019adb20135206fe32ec03c5efd",
+    "offline-r3/reader-R3-argon/native-record.json": "10c950963321e2a7821c3cdb7cb28482cc04a690f21bf566b54eb15938ea9f34",
+    "offline-r3/reader-R3-argon/pages_reviewed_reports/row-00000-page-00001-original-00003.json": "869072e3c6eb5e96455a9b80b4ed6721ae9c463795b56ad86c56f51288d0f2b2",
+    "offline-r3/reader-N1-astra/metrics.json": "41a97bf7bdcde5a6eb0d3367686b687ecb144501c0f33555e0c33631079bb3c9",
+    "offline-r3/reader-N1-astra/literal_table_review_ledger.json": "4566f299fe1e617405b7390b1cc67ac51724fd30b9df822418de805c9d384795",
+    "offline-r3/reader-N1-astra/pages_reviewed.jsonl": "b37d1930ec4f7b66975775a45867cb5fdc87b89aceb45ef8ee889f4242d31363",
+    "offline-r3/reader-N1-astra/native-record.json": "eecbcecdb9ade1a1de879a16cb19a1c10a82acddc8f14c3b9695cbd865cb1bf6",
+    "offline-r3/reader-N1-astra/openai-source-response-001.json": "b1a82ab609b61fa2618892df264bc440086b470a8ee465a9d07ca51c94b518f9",
+    "offline-r3/reader-N1-astra/pages_reviewed_reports/row-00000-page-00001-original-00001.json": "822bece22654a9d4858e5d2c1181f77b1289497e769ead811a774b8c80a86632",
+    "offline-r3/export-N-astra/common-pages.jsonl": "90df540cc584d0c5038ecf41f7988bd37c60a5a76b88f76691858b34ff58b8b0",
+    "offline-r3/export-N-astra/retained.json": "6c874062a6fa6e305175732378de86f4e575c3b110f5fe22deace35c3970c7a1",
+    "offline-r3/export-N-astra/recipe.yaml": "3911e9c5df7b98671d5b9a328cafe7ffd873a327a20c2af6ae9e3ce5efa0bdc7",
+    "offline-r3/reader-R1-argon/metrics.json": "9c271a5348185f55430ee02f8266ae49b3ffe81a428671c8cf329add610c6033",
+    "offline-r3/reader-R1-argon/literal_table_review_ledger.json": "ca606ad5851f67db5482b7efb5e4a3394d1c5581df8fb92dad07da509cba23a5",
+    "offline-r3/reader-R1-argon/google-source-response-001.json": "a1c2e032ebd34876efe39e7cb66e66ec2c825b64a82774ae849079df063d3bad",
+    "offline-r3/reader-R1-argon/pages_reviewed.jsonl": "74986b2288920c77124436485c36c3bcfd10660c4f83cb0cd1fcaecd3c57c929",
+    "offline-r3/reader-R1-argon/native-record.json": "9cb1806a08a1a7fcdadf35f4c0d58967a6abf107213524ddca221cddb1487dfe",
+    "offline-r3/reader-R1-argon/pages_reviewed_reports/row-00000-page-00001-original-00001.json": "f6426991253adc4f39bc321c2d527a6ebdbcbd8e3723088ce930c26fc260fc98",
+    "offline-r3/reader-N3-astra/metrics.json": "74200ba4a13b6d3f8327e4d77a976732f368fb507260421b577caf4cfdcdd32a",
+    "offline-r3/reader-N3-astra/literal_table_review_ledger.json": "f947b0709e88b15f735a959d6098034d2b923265114e1bcda7860f98d9ddc8c8",
+    "offline-r3/reader-N3-astra/pages_reviewed.jsonl": "612063c50fec9d8d46cdfce34c25e20c6eff57fa6e1ed95ff154496fd770ff71",
+    "offline-r3/reader-N3-astra/native-record.json": "14904d8713c140aa73892149e2f1db6e0791a3fbbe24bc4e56641f87eecc1dbf",
+    "offline-r3/reader-N3-astra/openai-source-response-001.json": "79bd96f4125559ca7b4612d28732e90cd990585369a953c1812026117d18436b",
+    "offline-r3/reader-N3-astra/pages_reviewed_reports/row-00000-page-00001-original-00003.json": "382aa85254c4291f6504384e1b293eff681494ab2163062a80f3d875ec234663",
+    "offline-r3/reader-A2-astra/metrics.json": "0c6d0fd5737b3425cad34836f48b9c892400a23c6aad7bba13dec5c787271d7a",
+    "offline-r3/reader-A2-astra/literal_table_review_ledger.json": "29e4f3b9c2234293b3141a8357eb61d8b83eb14a2f75560c50f105f01b592d7a",
+    "offline-r3/reader-A2-astra/pages_reviewed.jsonl": "324aad4b53efe50d3f42b7777f7d6a723fd3c16bfc9357995efd40c272b3085b",
+    "offline-r3/reader-A2-astra/native-record.json": "aadfbe32f1db533a775df48f31a550a65ca43d16e73f2a1d6538cc0fc2e973cf",
+    "offline-r3/reader-A2-astra/openai-source-response-001.json": "a0da8e158855058c1e0e160a0d1feed6eb540640a2815066289992df4048ce8a",
+    "offline-r3/reader-A2-astra/pages_reviewed_reports/row-00000-page-00001-original-00002.json": "6dc820b4eb2aa75b42e0b936d757077a27c28e0c212b6ec28581a1b709b6065d",
+    "offline-r3/reader-A1-argon/metrics.json": "fd5ae0fc1c10bfc61ac3c98a71a85a1e97f128ed9bfa3e3c48f575e2b0e330c1",
+    "offline-r3/reader-A1-argon/literal_table_review_ledger.json": "cbfc165677020467fecc5b9914555a0abed5cc552976830f4eec239f29ac79e3",
+    "offline-r3/reader-A1-argon/google-source-response-001.json": "0885e54ba0977f2feece4325e9d58b5adced092b98abf605b22bb558aa316a2b",
+    "offline-r3/reader-A1-argon/pages_reviewed.jsonl": "02d0a1ebf316e918c871f0bb240ac29f53fac4a9bed8ce41d0fedc488f5f7538",
+    "offline-r3/reader-A1-argon/native-record.json": "12e34970a523790caf0e076d6f849496f019ae79db33b52ba327233bdc150003",
+    "offline-r3/reader-A1-argon/pages_reviewed_reports/row-00000-page-00001-original-00001.json": "1c5216c3a1a5b0d902f47bb36ba5780faead8db457abf42f9da517514de655e3",
+    "offline-r3/reader-A1-astra/metrics.json": "437bc4be279d96a7206c4d6ccef27a5f3fdfe657e7a1804733f6bea007291f8d",
+    "offline-r3/reader-A1-astra/literal_table_review_ledger.json": "b2995d30ea24eb66ba4b9c07dd0094b04b282e9229c176245de528c282e2bdfd",
+    "offline-r3/reader-A1-astra/pages_reviewed.jsonl": "182a14502eaa1cc4bcab05fb5fc7ef3e64b442f88cd65dab648a50b4f546cba8",
+    "offline-r3/reader-A1-astra/native-record.json": "e334447f9feb488e0cf758b3042174d0e1d56dd2e9dfdced153bb9aecdfcf475",
+    "offline-r3/reader-A1-astra/openai-source-response-001.json": "ed3ef0ccce88918c8f83d9fe3fda3aeae5de37a9e63cc60394bef13c433b51fc",
+    "offline-r3/reader-A1-astra/pages_reviewed_reports/row-00000-page-00001-original-00001.json": "be510a5aac0621bc62d684a060aa040c37fb5ffd0c45a76b6bb24188d098d530",
+    "offline-r3/reader-A2-argon/metrics.json": "5cadc50ac645dd48e310b89774fcd8e1bb8622608dcbf6ae3e7df66a508f9cc7",
+    "offline-r3/reader-A2-argon/literal_table_review_ledger.json": "65a15eb1e2342296014137e96a4073cc18aa536274ee605836b636014ed125d0",
+    "offline-r3/reader-A2-argon/google-source-response-001.json": "7c1cd14bfb8448f7eb7cbd578a58ebdaccf839ed29ac1d7450d52783dc5fdaa7",
+    "offline-r3/reader-A2-argon/pages_reviewed.jsonl": "f106e0268b57c2536a4ca48483aa1885257eae0554fc265713a8696271cf3eea",
+    "offline-r3/reader-A2-argon/native-record.json": "5b91275f4943945d924787a461c7e9ed86c3eaf2f4590a13f909c3ad1c058c61",
+    "offline-r3/reader-A2-argon/pages_reviewed_reports/row-00000-page-00001-original-00002.json": "094317835a594c15d08e97f05141a636eaeadc9df595afec086edd39a24f96dd",
+    "guard/response-009.json": "1af5fca6fce4d7dcca48c03614f9c088a9a2917619e11cb8c12f8c0bf441c6c7",
+    "guard/request-010.json": "afd58eb88601e1b62c2b06c76ec98a77e78a65aab7d5f741db13929009d3da52",
+    "guard/request-006.json": "4a1feeb8d73e44aa9c3ec9090e127156994f797459807a65ff8bfb5a07ce3ee1",
+    "guard/response-005.json": "0885e54ba0977f2feece4325e9d58b5adced092b98abf605b22bb558aa316a2b",
+    "guard/response-013.json": "c73eb42fb1cf23f75d5373077bc72af6413d16ed9e39f222d64dd4dff05c31ed",
+    "guard/mock-transport.jsonl": "787bac18c31e809e80368c1d334da711f458ccff6b13111c33812982556dfe9f",
+    "guard/response-012.json": "8ca53c8dc81988cf5407c8558505526c0651571cf392ad6dfe2242030f218dc4",
+    "guard/response-004.json": "e1376c36d2ccb4d7fdfeee9275e4188a2c4a06409239b84705662d05d7ba5d66",
+    "guard/response-024.json": "7c1cd14bfb8448f7eb7cbd578a58ebdaccf839ed29ac1d7450d52783dc5fdaa7",
+    "guard/request-007.json": "fc7f8483a96e2870736e344e692615a34ad53d718e6ff77f9a1cdf111539d264",
+    "guard/request-011.json": "3341e9cff804758a45da8d31de282b8907d07fecb9226e792b6346dede59e320",
+    "guard/response-008.json": "6ea2848fb37908723207eed99838df1bae06f33252c49a4b390b83655db54658",
+    "guard/response-003.json": "10486a01966a2a1d118712825074f0ae1ed1f984845a7a227e54cae59fc9b145",
+    "guard/response-015.json": "67c71e30996dce8122b3642f773f322ea63d6e08a76dd2aa7c76ce0a2d807e74",
+    "guard/request-020.json": "539f305a26e5d4e3583807bfb57068cb1f8f16d856162d92a9050773736348c2",
+    "guard/request-016.json": "849e8a29e913fa6ba06f52f1c7cb5f37b2f474a607e18514fbb932b27e45d13c",
+    "guard/response-019.json": "b3e6b98cf63f9f635abc0c6bbcd14bad4dccf226b46eb7afc8da77e254e210a8",
+    "guard/response-023.json": "a0da8e158855058c1e0e160a0d1feed6eb540640a2815066289992df4048ce8a",
+    "guard/response-022.json": "f2601ab8b545d5f7061a0598598f7d1cf73c7da8d883f6671156032c948b1fb2",
+    "guard/request-001.json": "305f85aaf66510eb3dd12426dd72da1bb81b1d5d91ddf9be2b439e41e3f9d77c",
+    "guard/response-018.json": "78b5750cedad1693d21d258802244bad0e4851aad1e9770b7259e692acf8bbcf",
+    "guard/request-017.json": "5c54971c15ce44e4da95be356fc5068a3544e2b550662bbf3df988488c158678",
+    "guard/request-021.json": "e040865e52356a5689e3bfd5ff52641b35ea812e5acc020e3c8ce6b9ec1f80f1",
+    "guard/response-014.json": "a1c2e032ebd34876efe39e7cb66e66ec2c825b64a82774ae849079df063d3bad",
+    "guard/response-002.json": "b1a82ab609b61fa2618892df264bc440086b470a8ee465a9d07ca51c94b518f9",
+    "guard/dispatch.lock": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "guard/request-022.json": "4923b49d30b27fbc4792bcc05084e58b93f48f5b026ef931b5ee2684e214b863",
+    "guard/response-017.json": "cee34fd8980ddc4f3f9dcdf7f032fd405bc9884807dc3c23ec00193db7693c4d",
+    "guard/response-001.json": "ff230c1b01e88f1c94e1a2132289ceb614d630a4103fc97ac805e9b9d06b8449",
+    "guard/request-018.json": "5372336afd26ca9d3e837eb5747915ad5214389aec24f204b5e7783987b80531",
+    "guard/response-021.json": "3a55ff08c5f718c90028ead5efd37d2a662f4b34842fbee95d94a48a95f7e463",
+    "guard/request-002.json": "f0c652fac46f54c0a1262e763574815d9c12310508e9a22e123efbb57bde087a",
+    "guard/request-014.json": "9a0ad3f5f879758e4aa6ab949c0d838a51dec937d6858855209637c23536e506",
+    "guard/request-015.json": "505415613266633a5157ce53a903781b99333a66eb29076d18ad573902265800",
+    "guard/request-003.json": "bdd4879898ad79d85787e264582ac2c951aeccd24025d5fd6431f9cf47a0b6ea",
+    "guard/response-020.json": "20631ab0cb7464dc86396b0a151593f54b70f0f0b958599b9ac83697ccae6f79",
+    "guard/request-019.json": "1df86ec85838ddaaaa3c0882763f61b4cf3c0eae4e51f12e72a1e0e921ce985f",
+    "guard/response-016.json": "199c15eba4b745c3aa02803e68c151a40f0456fab7e552e69e8ccaa6f95efde5",
+    "guard/request-023.json": "89fc1253417929d054cb675e61b48203bc60dc040d751f484938ea092af82523",
+    "guard/request-004.json": "256472835ef4fa848da7ab853a8e12fbe5cc20fe0ee25593f0612d10482de481",
+    "guard/request-012.json": "c39056c418c4e0f9a8a88f31ee01bd3e12f9db5927afd41a49c5d2889169865d",
+    "guard/request-024.json": "debbfb0c059aa6cace4526f35f91d1b641dd013ee127c79f82d71a23e0680d50",
+    "guard/response-011.json": "79bd96f4125559ca7b4612d28732e90cd990585369a953c1812026117d18436b",
+    "guard/request-008.json": "3c606ddb407e8b1fcb96b1e68f6ce8b30f1360db139cdf49b36fff52f352eb0a",
+    "guard/response-007.json": "ff78b78177980047cafe08ff169ae4835ee62f2853dade91d0111e2b581c6957",
+    "guard/response-006.json": "ed3ef0ccce88918c8f83d9fe3fda3aeae5de37a9e63cc60394bef13c433b51fc",
+    "guard/request-009.json": "aedefa4837945461768dca4355b22287a502d60327cc77d5ee376ac16ab415c7",
+    "guard/response-010.json": "16427402deb805ed9a803366e746e2a07c5139575fbd8e0c0e14c8728964653b",
+    "guard/ledger.json": "2f26f155107632a7bb0e314e890e50ff3b38bd9b518eba77860f825d967a6676",
+    "guard/request-013.json": "660f57e33cc5c6fe47d715cefeb254a0697c378f026d4e951e98454e5cfd84b9",
+    "guard/request-005.json": "8cb0e4ce84c8c8a776c2add436b4401c4c33906d76cb690203f7378271c3873d",
+    "startup/sitecustomize.py": "b5fe645ae3c1e40a5eb60fac664305f719f0a6f9c8699462304c5f560e2b5f34"
+  },
+  "namespace": "offline-r3exports",
+  "initial_namespace": "offline-r3",
+  "reused_initial_native_receipts": true,
+  "initial_producing_harness_sha256": "756ae8c6b54ef66b645c7742801e03ff9a22e271e69dadc60f836e34d534754b",
+  "export_producing_harness_sha256": "03ed30ef0e8f2c3aa647e63de66c0c343c8a5b2f10feec3ddf1450427f667e4e",
+  "result_root": "/Users/cam/.codex/worktrees/scout092-docweb-literal-20261013/benchmarks/results/argon-literal-qualification-20261013/offline-r3"
+}

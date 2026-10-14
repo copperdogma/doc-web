@@ -1,0 +1,138 @@
+{
+  "status": "pre_paid_panel_rejected_pending_source_corrections",
+  "source_class": "public_synthetic",
+  "provider_calls": 0,
+  "archive": "/Users/cam/.codex/worktrees/scout092-docweb-literal-20261013/docs/evals/evidence/073-argon-literal-qualification/source-panel-r1-rejected.tar.gz",
+  "archive_sha256": "9c769c08c67ea70f0ad03fba485c5dd89d59d01942f9bc899945638f096e8ed0",
+  "archive_bytes": 1923392,
+  "source_manifest_sha256": "47d26c683b0ace990d80d93cfa5fc303d526f4b7b8d3c20c0ccb642a3ad90f9c",
+  "files": [
+    {
+      "path": "README.md",
+      "sha256": "7247f249ea5ff99cd3843915ac4b4ab10e4f78a2db8246d06c386936b2b88afd",
+      "bytes": 3468
+    },
+    {
+      "path": "generate_fixture.py",
+      "sha256": "c167d527acfa6754afb59bd3b4101fa4b8864721f9710221d98d19d7e24c1c2a",
+      "bytes": 20758
+    },
+    {
+      "path": "seal_manifest.py",
+      "sha256": "b429e9d18838ffb3627200dcc696092eb4280554a9efddb789ff4114a4ab61f2",
+      "bytes": 5248
+    },
+    {
+      "path": "manifest.json",
+      "sha256": "47d26c683b0ace990d80d93cfa5fc303d526f4b7b8d3c20c0ccb642a3ad90f9c",
+      "bytes": 10802
+    },
+    {
+      "path": "corpus.json",
+      "sha256": "b805142c77a7fe615867a9ed0741bd69f2b5c6e3230642494e5d8593607d2ffb",
+      "bytes": 6367
+    },
+    {
+      "path": "source/holds.pdf",
+      "sha256": "4647d76efda3d69d34775a0ef4e4f1db1b1c9fbda0081843da97abb213010d68",
+      "bytes": 269644
+    },
+    {
+      "path": "source/native.pdf",
+      "sha256": "902649f474c7de075ec7baff4a5fe3229d334d09d65c4be0f75d7fbe9a8937a5",
+      "bytes": 6354
+    },
+    {
+      "path": "source/raster.pdf",
+      "sha256": "42abc774e134fe972532424c7adadf63efd7bee741954233ecdd048e5a16d888",
+      "bytes": 419820
+    },
+    {
+      "path": "gold/A1.json",
+      "sha256": "11092a00d7d8f10c23f762e01d9664c338f233832f0942062894d49ff9d62fd8",
+      "bytes": 644
+    },
+    {
+      "path": "gold/A2.json",
+      "sha256": "2e7fd0dbce3e5acf3590a1ed87d5dcdb328d1ea3582a2cbd587642737c15062e",
+      "bytes": 696
+    },
+    {
+      "path": "gold/N1.json",
+      "sha256": "6b4868e218383133b04682cacfec7fef97af2cc433d334aea00b59299a9c91ec",
+      "bytes": 413
+    },
+    {
+      "path": "gold/N2.json",
+      "sha256": "93e7e15e7aa6d6ea17a2913f54b9a8a491075c6be2e372918e3af223007ce5db",
+      "bytes": 624
+    },
+    {
+      "path": "gold/N3.json",
+      "sha256": "132a206fe9f55cd64c0c060aaa05d47831f16c9880e3948717961331aa4e1cff",
+      "bytes": 902
+    },
+    {
+      "path": "gold/R1.json",
+      "sha256": "f9861838330bbda4eafc4c8aa8a74879d55c1d423be84d21f039a6438df99f9b",
+      "bytes": 413
+    },
+    {
+      "path": "gold/R2.json",
+      "sha256": "c82517b3d01614ad51895d6a3b80419460084384cb2d4aaba63c26ac062d907d",
+      "bytes": 562
+    },
+    {
+      "path": "gold/R3.json",
+      "sha256": "f5392ede96086ab6151bfa5c64111a8d239eb21a266fc0d5c52538bbc93d85af",
+      "bytes": 837
+    },
+    {
+      "path": "renders/A1.png",
+      "sha256": "12b6a3a1199c3eca97f4331033ccf7349479246e8481691f86aab9666bc6446d",
+      "bytes": 224943
+    },
+    {
+      "path": "renders/A2.png",
+      "sha256": "53b5e6751db2f74bcb8357104de0eb5f8d709b2c976c694ecb778b78f5e83cf2",
+      "bytes": 260582
+    },
+    {
+      "path": "renders/N1.png",
+      "sha256": "5237eeeb10aed9cd59c4895788fa7b3e3adca79488d3b23819d8b8e56d1a2473",
+      "bytes": 126174
+    },
+    {
+      "path": "renders/N2.png",
+      "sha256": "2d2005f718ab516fc8c4aca9054649845cb5351d52aa3f8c4cfd43c1350a6ecf",
+      "bytes": 156948
+    },
+    {
+      "path": "renders/N3.png",
+      "sha256": "120b62785417075ba889ff154f5d58faa55194bf0393a0fb412d1d5b36d1fe1a",
+      "bytes": 178680
+    },
+    {
+      "path": "renders/R1.png",
+      "sha256": "7f0684d65a30f9748b82ba8fc4bffabcbbb744f1fca8d7d68370ef9cd5ea2519",
+      "bytes": 222238
+    },
+    {
+      "path": "renders/R2.png",
+      "sha256": "d1d74a8b9ed081200ad4e9f1f0f0199c382527d0265a63f5320b2580633fc668",
+      "bytes": 244632
+    },
+    {
+      "path": "renders/R3.png",
+      "sha256": "6325cbd70cc12a9c3d001b9412afaec8fe2b4133977b6b3b12af769650c12cfd",
+      "bytes": 287310
+    }
+  ],
+  "findings": [
+    "source-only Unicode encoding risk in N2",
+    "A1 l/1 indistinguishability not established",
+    "missing merged-header coverage",
+    "actual driver renderer PNG byte identity differs by dependency runtime"
+  ],
+  "scope": "Original source preparation evidence; no candidate response or model-quality verdict."
+}

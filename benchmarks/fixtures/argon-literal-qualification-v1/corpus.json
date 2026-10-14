@@ -1,0 +1,251 @@
+{
+  "corpus_id": "argon-literal-qualification-v1",
+  "source_policy": "gold records preserve visible source characters and structural ownership; A1/A2 uncertainty is explicit and has no exact-cell gold where pixels do not establish it",
+  "cases": [
+    {
+      "case_id": "N1",
+      "source_group": "native",
+      "density": "sparse",
+      "disposition": "clear",
+      "source_pdf": "source/native.pdf",
+      "source_pdf_page": 1,
+      "gold": "gold/N1.json",
+      "render": "renders/N1.png",
+      "tables": 1,
+      "explicit_cells": 10,
+      "cell_slots": 12,
+      "spans": [
+        {
+          "table_index": 0,
+          "row": 3,
+          "cell": 0,
+          "rowspan": 1,
+          "colspan": 3
+        }
+      ],
+      "uncertain_cells": 0,
+      "gold_sha256": "6b4868e218383133b04682cacfec7fef97af2cc433d334aea00b59299a9c91ec",
+      "render_sha256": "81f766b6b0b856d2440caf8f8742e0dbfe6e2878d1fec8ddf0d61698b0b8720f",
+      "render_dimensions_px": [
+        2550,
+        3300
+      ]
+    },
+    {
+      "case_id": "N2",
+      "source_group": "native",
+      "density": "medium",
+      "disposition": "clear",
+      "source_pdf": "source/native.pdf",
+      "source_pdf_page": 2,
+      "gold": "gold/N2.json",
+      "render": "renders/N2.png",
+      "tables": 1,
+      "explicit_cells": 22,
+      "cell_slots": 24,
+      "spans": [
+        {
+          "table_index": 0,
+          "row": 3,
+          "cell": 0,
+          "rowspan": 2,
+          "colspan": 1
+        },
+        {
+          "table_index": 0,
+          "row": 5,
+          "cell": 0,
+          "rowspan": 1,
+          "colspan": 2
+        }
+      ],
+      "uncertain_cells": 0,
+      "gold_sha256": "448bff5c0315b09180aec1a5837acd83f406ccc6cd331b2b374bb756297e3cd6",
+      "render_sha256": "577e73e5d933d66d70bf2633692dc15408d92e2bdcc978a606131a878a95a4ca",
+      "render_dimensions_px": [
+        2550,
+        3300
+      ]
+    },
+    {
+      "case_id": "N3",
+      "source_group": "native",
+      "density": "dense",
+      "disposition": "clear",
+      "source_pdf": "source/native.pdf",
+      "source_pdf_page": 3,
+      "gold": "gold/N3.json",
+      "render": "renders/N3.png",
+      "tables": 2,
+      "explicit_cells": 31,
+      "cell_slots": 37,
+      "spans": [
+        {
+          "table_index": 0,
+          "row": 4,
+          "cell": 0,
+          "rowspan": 1,
+          "colspan": 5
+        },
+        {
+          "table_index": 1,
+          "row": 0,
+          "cell": 0,
+          "rowspan": 1,
+          "colspan": 2
+        },
+        {
+          "table_index": 1,
+          "row": 0,
+          "cell": 1,
+          "rowspan": 1,
+          "colspan": 2
+        }
+      ],
+      "uncertain_cells": 0,
+      "gold_sha256": "0e5379378440890c105e1cceb0030106b4136c668d30e4f46a661ee9d9963d1d",
+      "render_sha256": "d0ad9575a5a47ea152dc60bda2502640dcb05d9ab25a52be8691664b2147ae35",
+      "render_dimensions_px": [
+        2550,
+        3300
+      ]
+    },
+    {
+      "case_id": "R1",
+      "source_group": "raster",
+      "density": "sparse",
+      "disposition": "clear",
+      "source_pdf": "source/raster.pdf",
+      "source_pdf_page": 1,
+      "gold": "gold/R1.json",
+      "render": "renders/R1.png",
+      "tables": 1,
+      "explicit_cells": 10,
+      "cell_slots": 12,
+      "spans": [
+        {
+          "table_index": 0,
+          "row": 3,
+          "cell": 0,
+          "rowspan": 1,
+          "colspan": 3
+        }
+      ],
+      "uncertain_cells": 0,
+      "gold_sha256": "f9861838330bbda4eafc4c8aa8a74879d55c1d423be84d21f039a6438df99f9b",
+      "render_sha256": "8f14b37bee8af2c273459c703b60a8570e96a2126e64033ad9a6f0a5a764573d",
+      "render_dimensions_px": [
+        2550,
+        3300
+      ]
+    },
+    {
+      "case_id": "R2",
+      "source_group": "raster",
+      "density": "medium",
+      "disposition": "clear",
+      "source_pdf": "source/raster.pdf",
+      "source_pdf_page": 2,
+      "gold": "gold/R2.json",
+      "render": "renders/R2.png",
+      "tables": 1,
+      "explicit_cells": 23,
+      "cell_slots": 24,
+      "spans": [
+        {
+          "table_index": 0,
+          "row": 5,
+          "cell": 0,
+          "rowspan": 1,
+          "colspan": 2
+        }
+      ],
+      "uncertain_cells": 0,
+      "gold_sha256": "c82517b3d01614ad51895d6a3b80419460084384cb2d4aaba63c26ac062d907d",
+      "render_sha256": "9f4dabf4ae2f7b1de78fb65c4aebd88ec33746a76533f70030e62bce593be642",
+      "render_dimensions_px": [
+        2550,
+        3300
+      ]
+    },
+    {
+      "case_id": "R3",
+      "source_group": "raster",
+      "density": "dense",
+      "disposition": "clear",
+      "source_pdf": "source/raster.pdf",
+      "source_pdf_page": 3,
+      "gold": "gold/R3.json",
+      "render": "renders/R3.png",
+      "tables": 2,
+      "explicit_cells": 32,
+      "cell_slots": 32,
+      "spans": [],
+      "uncertain_cells": 0,
+      "gold_sha256": "f5392ede96086ab6151bfa5c64111a8d239eb21a266fc0d5c52538bbc93d85af",
+      "render_sha256": "88cc8b52beeac935478e0d44f10eee84252269526051891d3104e2d8c42949e5",
+      "render_dimensions_px": [
+        2550,
+        3300
+      ]
+    },
+    {
+      "case_id": "A1",
+      "source_group": "hold",
+      "density": "sparse",
+      "disposition": "hold",
+      "source_pdf": "source/holds.pdf",
+      "source_pdf_page": 1,
+      "gold": "gold/A1.json",
+      "render": "renders/A1.png",
+      "tables": 1,
+      "explicit_cells": 10,
+      "cell_slots": 12,
+      "spans": [
+        {
+          "table_index": 0,
+          "row": 3,
+          "cell": 0,
+          "rowspan": 1,
+          "colspan": 3
+        }
+      ],
+      "uncertain_cells": 1,
+      "gold_sha256": "c6c9635b5d39b33b7e840ffa66a76c70542afa82dedf249088fc76093bf0ae29",
+      "render_sha256": "a7be92eae4a84ce647f90444adeb54a343fefda29a06eea3a6eabc87206e11f4",
+      "render_dimensions_px": [
+        2550,
+        3300
+      ]
+    },
+    {
+      "case_id": "A2",
+      "source_group": "hold",
+      "density": "medium",
+      "disposition": "hold",
+      "source_pdf": "source/holds.pdf",
+      "source_pdf_page": 2,
+      "gold": "gold/A2.json",
+      "render": "renders/A2.png",
+      "tables": 1,
+      "explicit_cells": 17,
+      "cell_slots": 20,
+      "spans": [
+        {
+          "table_index": 0,
+          "row": 4,
+          "cell": 0,
+          "rowspan": 1,
+          "colspan": 4
+        }
+      ],
+      "uncertain_cells": 1,
+      "gold_sha256": "2e7fd0dbce3e5acf3590a1ed87d5dcdb328d1ea3582a2cbd587642737c15062e",
+      "render_sha256": "9956be29e37578cf0a00f6abe4b773ada5026ca882f2361ea101de09e5148a97",
+      "render_dimensions_px": [
+        2550,
+        3300
+      ]
+    }
+  ]
+}

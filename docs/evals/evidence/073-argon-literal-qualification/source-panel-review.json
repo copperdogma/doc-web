@@ -1,0 +1,2429 @@
+{
+  "schema_version": "independent_literal_source_panel_review_v1",
+  "reviewed_at_utc": "2026-10-14T02:49:40.547078+00:00",
+  "reviewer_role": "fresh independent source-truth reviewer",
+  "reviewer_configuration": {
+    "requested_model": "gpt-6-astra",
+    "requested_reasoning_effort": "ultra",
+    "selection_basis": "Parent selected strongest eligible configuration for consequential eval correctness under owner AGENTS.",
+    "served_identity_independently_verified": false
+  },
+  "verdict": "NOT_READY_FOR_PRE_PAID_SOURCE_FREEZE",
+  "paid_execution_cleared": false,
+  "root_owns_final_clearance": true,
+  "reason": "File integrity, dimensions, strict schema and all table ownership checks pass, but A1 does not establish the asserted indistinguishable l/1 pair, N2 retains a source-only Unicode encoding gold risk, and planned native merged-header/entity coverage is absent.",
+  "scope": {
+    "provider_calls": 0,
+    "credential_access": false,
+    "fixture_or_code_edits": false,
+    "subagents_spawned": 0,
+    "only_written_artifact": "docs/evals/evidence/073-argon-literal-qualification/source-panel-review.json",
+    "no_new_provider_response_or_runtime_result_viewed": true
+  },
+  "blinding": {
+    "full_page_pixels_viewed_before_gold_json": true,
+    "author_readme_and_manifest_read_before_pixels": true,
+    "source_generator_read_after_pixels": true,
+    "native_text_only_used_for_pdf_provenance_counts": true,
+    "actual_provider_answer_payloads_viewed": false,
+    "limitation": "The prior confirmation-v2 README opened for source provenance incidentally contained old aggregate pass counts. No old actual answer or new-panel result was opened; those aggregate counts were not used to establish any source truth."
+  },
+  "inputs": {
+    "review_plan": {
+      "path": "/Users/cam/Documents/Projects/conductor/docs/scout/scout-092-docweb-literal-qualification-plan.md",
+      "sha256": "82cfaa2bec0ba1d958c13f29a967baedffa2bd41da7caca1d479f146aa33f812"
+    },
+    "owner_agents": {
+      "path": "/Users/cam/.codex/worktrees/scout092-docweb-literal-20261013/AGENTS.md",
+      "sha256": "c8df7a160a24986d590e05c8fa1fe095f70e1f721ebea0af2df1d73b33b5358c"
+    },
+    "manifest": {
+      "path": "/Users/cam/.codex/worktrees/scout092-docweb-literal-20261013/benchmarks/fixtures/argon-literal-qualification-v1/manifest.json",
+      "sha256": "47d26c683b0ace990d80d93cfa5fc303d526f4b7b8d3c20c0ccb642a3ad90f9c"
+    },
+    "corpus_index": {
+      "path": "/Users/cam/.codex/worktrees/scout092-docweb-literal-20261013/benchmarks/fixtures/argon-literal-qualification-v1/corpus.json",
+      "sha256": "b805142c77a7fe615867a9ed0741bd69f2b5c6e3230642494e5d8593607d2ffb"
+    },
+    "readme": {
+      "path": "/Users/cam/.codex/worktrees/scout092-docweb-literal-20261013/benchmarks/fixtures/argon-literal-qualification-v1/README.md",
+      "sha256": "7247f249ea5ff99cd3843915ac4b4ab10e4f78a2db8246d06c386936b2b88afd"
+    },
+    "generator": {
+      "path": "/Users/cam/.codex/worktrees/scout092-docweb-literal-20261013/benchmarks/fixtures/argon-literal-qualification-v1/generate_fixture.py",
+      "sha256": "c167d527acfa6754afb59bd3b4101fa4b8864721f9710221d98d19d7e24c1c2a"
+    },
+    "manifest_sealer": {
+      "path": "/Users/cam/.codex/worktrees/scout092-docweb-literal-20261013/benchmarks/fixtures/argon-literal-qualification-v1/seal_manifest.py",
+      "sha256": "b429e9d18838ffb3627200dcc696092eb4280554a9efddb789ff4114a4ab61f2"
+    },
+    "source_schema": {
+      "path": "/Users/cam/.codex/worktrees/scout092-docweb-literal-20261013/doc_web/literal_fidelity.py",
+      "sha256": "39e4ec0148dd886af7e87d5a762bb043068d1c1a3d06fe742c9820e10fae344a"
+    },
+    "literal_comparator": {
+      "path": "/Users/cam/.codex/worktrees/scout092-docweb-literal-20261013/doc_web/literal_tables.py",
+      "sha256": "f88035148e70db6e32332a459459da04088660aab4444d97ab6af9dc256dfffb"
+    },
+    "source_reader_policy": {
+      "path": "/Users/cam/.codex/worktrees/scout092-docweb-literal-20261013/modules/common/table_source_review.py",
+      "sha256": "96c71d6ab58f21492e3b24ea059cf988bffe2e9559f51869a741f13d7045fad8"
+    },
+    "renderer_module": {
+      "path": "/Users/cam/.codex/worktrees/scout092-docweb-literal-20261013/modules/extract/extract_pdf_images_capped_v1/main.py",
+      "sha256": "8d3a8f64be95111be385e5bc6e296c824539d72d221f029e4154439f50768376"
+    },
+    "renderer_recipe": {
+      "path": "/Users/cam/.codex/worktrees/scout092-docweb-literal-20261013/configs/recipes/recipe-pdf-literal-tables-html.yaml",
+      "sha256": "093d672f36c1d19cd2968917fb4b300393d526f0afbe577bff5961476af4186c"
+    }
+  },
+  "source_pdf_integrity": [
+    {
+      "path": "/Users/cam/.codex/worktrees/scout092-docweb-literal-20261013/benchmarks/fixtures/argon-literal-qualification-v1/source/native.pdf",
+      "sha256": "902649f474c7de075ec7baff4a5fe3229d334d09d65c4be0f75d7fbe9a8937a5",
+      "manifest_hash_matches": true,
+      "pages": 3,
+      "dimensions_points": [
+        [
+          612.0,
+          792.0
+        ],
+        [
+          612.0,
+          792.0
+        ],
+        [
+          612.0,
+          792.0
+        ]
+      ],
+      "extracted_text_characters_per_page": [
+        319,
+        415,
+        479
+      ]
+    },
+    {
+      "path": "/Users/cam/.codex/worktrees/scout092-docweb-literal-20261013/benchmarks/fixtures/argon-literal-qualification-v1/source/raster.pdf",
+      "sha256": "42abc774e134fe972532424c7adadf63efd7bee741954233ecdd048e5a16d888",
+      "manifest_hash_matches": true,
+      "pages": 3,
+      "dimensions_points": [
+        [
+          612.0,
+          792.0
+        ],
+        [
+          612.0,
+          792.0
+        ],
+        [
+          612.0,
+          792.0
+        ]
+      ],
+      "extracted_text_characters_per_page": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "path": "/Users/cam/.codex/worktrees/scout092-docweb-literal-20261013/benchmarks/fixtures/argon-literal-qualification-v1/source/holds.pdf",
+      "sha256": "4647d76efda3d69d34775a0ef4e4f1db1b1c9fbda0081843da97abb213010d68",
+      "manifest_hash_matches": true,
+      "pages": 2,
+      "dimensions_points": [
+        [
+          612.0,
+          792.0
+        ],
+        [
+          612.0,
+          792.0
+        ]
+      ],
+      "extracted_text_characters_per_page": [
+        0,
+        0
+      ]
+    }
+  ],
+  "render_integrity": {
+    "all_eight_manifest_render_hashes_match": true,
+    "all_eight_manifest_gold_hashes_match": true,
+    "all_three_source_pdf_hashes_match": true,
+    "all_eight_match_maintained_renderer_output_bytes": true,
+    "all_eight_independent_poppler_300dpi_pixels_match": true,
+    "method": "In-memory subprocess pdftoppm -r 300 -f PAGE -l PAGE -singlefile -png SOURCE; Pillow RGB pixel comparison; no alternate source file or crop substituted.",
+    "all_dimensions": [
+      2550,
+      3300
+    ],
+    "all_pages_us_letter_points": [
+      612,
+      792
+    ],
+    "dpi": 300,
+    "manifest_generator_renderer_recipe_and_pdf_skill_input_hashes_match": true,
+    "corpus_index_fields_match_manifest": true,
+    "source_generation_byte_reproducibility": "Not asserted. Generator Canvas calls do not set invariant mode; this review freezes existing bytes and independently reproduces their pixels, not timestamp-dependent PDF regeneration bytes.",
+    "exact_byte_scope": "Exact byte equality above is between this frozen panel and the author retained maintained-module output under the author interpreter. It is not proof of equality to output from every runtime/library version.",
+    "actual_driver_environment_notice": {
+      "source": "Parent message during report finalization",
+      "independently_verified_by_this_reviewer": false,
+      "report": "Actual reused /Users/cam/miniconda3/bin/python with Pillow 10.4 creates different PNG bytes from author bundled Pillow 12.3, causing the actual driver to reject the frozen image/request identity before mocked POST. Parent is preserving original panel and checking decoded equality.",
+      "interpretation": "Different lossless PNG bytes can have equal decoded pixels; runtime byte binding must still use the exact frozen image bytes. The independent Poppler pixel checks in this report do not clear a PNG byte identity mismatch.",
+      "pre_paid_clearance": "Not cleared; freeze and re-review actual driver renderer output after the correction pass."
+    }
+  },
+  "source_bounds": {
+    "page_count": 8,
+    "cell_slots_by_page": {
+      "N1": 12,
+      "N2": 24,
+      "N3": 37,
+      "R1": 12,
+      "R2": 24,
+      "R3": 32,
+      "A1": 12,
+      "A2": 20
+    },
+    "maximum_cell_slots": 37,
+    "positive_group_tables": {
+      "native": 4,
+      "raster": 4
+    },
+    "per_page_cell_slot_limit": 40,
+    "positive_group_table_limit": 8,
+    "all_caps_pass": true
+  },
+  "contract_checks": {
+    "all_eight_SourcePageReview_records_validate": true,
+    "all_table_html_parses_without_unsafe_geometry": true,
+    "all_uncertainty_indices_within_explicit_cell_coordinates": true,
+    "bboxes_are_pixels_not_normalized_fractions": true,
+    "safe_entity_test": {
+      "text_pass": true,
+      "structure_pass": true,
+      "pass": true,
+      "text_mismatch_count": 0,
+      "structure_mismatch_count": 0,
+      "text_mismatches": [],
+      "structure_mismatches": [],
+      "counts": {
+        "golden": {
+          "tables": 1,
+          "rows": 1,
+          "cells": 1
+        },
+        "actual": {
+          "tables": 1,
+          "rows": 1,
+          "cells": 1
+        }
+      },
+      "scope": {
+        "mode": "all_tables",
+        "table_index": null,
+        "golden_table_count": 1,
+        "actual_table_count": 1,
+        "excluded_actual_table_indices": [],
+        "compared_actual_table_count": 1,
+        "document_actual_table_count": 1
+      }
+    },
+    "unicode_encoding_probe": {
+      "text_pass": false,
+      "structure_pass": true,
+      "pass": false,
+      "text_mismatch_count": 1,
+      "structure_mismatch_count": 0,
+      "text_mismatches": [
+        {
+          "table": 0,
+          "actual_table": 0,
+          "row": 0,
+          "cell": 0,
+          "kind": "cell_text",
+          "expected": "μm-6",
+          "actual": "µm-6"
+        }
+      ],
+      "structure_mismatches": [],
+      "counts": {
+        "golden": {
+          "tables": 1,
+          "rows": 1,
+          "cells": 1
+        },
+        "actual": {
+          "tables": 1,
+          "rows": 1,
+          "cells": 1
+        }
+      },
+      "scope": {
+        "mode": "all_tables",
+        "table_index": null,
+        "golden_table_count": 1,
+        "actual_table_count": 1,
+        "excluded_actual_table_indices": [],
+        "compared_actual_table_count": 1,
+        "document_actual_table_count": 1
+      }
+    },
+    "literal_semantics": "HTML entities decode and whitespace collapses; case, punctuation and Unicode are unchanged. No fuzzy spelling or inferred values used."
+  },
+  "case_reviews": [
+    {
+      "case_id": "N1",
+      "source_pdf": {
+        "path": "/Users/cam/.codex/worktrees/scout092-docweb-literal-20261013/benchmarks/fixtures/argon-literal-qualification-v1/source/native.pdf",
+        "sha256": "902649f474c7de075ec7baff4a5fe3229d334d09d65c4be0f75d7fbe9a8937a5"
+      },
+      "source_pdf_page": 1,
+      "render": {
+        "path": "/Users/cam/.codex/worktrees/scout092-docweb-literal-20261013/benchmarks/fixtures/argon-literal-qualification-v1/renders/N1.png",
+        "sha256": "5237eeeb10aed9cd59c4895788fa7b3e3adca79488d3b23819d8b8e56d1a2473"
+      },
+      "gold": {
+        "path": "/Users/cam/.codex/worktrees/scout092-docweb-literal-20261013/benchmarks/fixtures/argon-literal-qualification-v1/gold/N1.json",
+        "sha256": "6b4868e218383133b04682cacfec7fef97af2cc433d334aea00b59299a9c91ec"
+      },
+      "maintained_renderer_output": {
+        "path": "/Users/cam/.codex/worktrees/scout092-docweb-literal-20261013/benchmarks/fixtures/argon-literal-qualification-v1/build/render-native/images/page-001.png",
+        "sha256": "5237eeeb10aed9cd59c4895788fa7b3e3adca79488d3b23819d8b8e56d1a2473"
+      },
+      "full_page_viewed_with_view_image": true,
+      "render_dimensions_px": [
+        2550,
+        3300
+      ],
+      "independent_in_memory_poppler_300dpi_render": {
+        "pixel_equal": true,
+        "difference_bbox": null
+      },
+      "gold_schema_validation": "pass",
+      "safe_table_geometry": "pass",
+      "source_table_count": 1,
+      "explicit_cell_count": 10,
+      "cell_slots": 12,
+      "table_geometry": [
+        {
+          "table": 0,
+          "bbox_px": [
+            217,
+            1133,
+            2112,
+            1700
+          ],
+          "row_count": 4,
+          "row_cells": [
+            {
+              "row": 0,
+              "cells": [
+                {
+                  "cell": 0,
+                  "text": "Crate",
+                  "tag": "th",
+                  "rowspan": 1,
+                  "colspan": 1,
+                  "column": 0
+                },
+                {
+                  "cell": 1,
+                  "text": "Seal",
+                  "tag": "th",
+                  "rowspan": 1,
+                  "colspan": 1,
+                  "column": 1
+                },
+                {
+                  "cell": 2,
+                  "text": "Condition",
+                  "tag": "th",
+                  "rowspan": 1,
+                  "colspan": 1,
+                  "column": 2
+                }
+              ]
+            },
+            {
+              "row": 1,
+              "cells": [
+                {
+                  "cell": 0,
+                  "text": "North-4",
+                  "tag": "td",
+                  "rowspan": 1,
+                  "colspan": 1,
+                  "column": 0
+                },
+                {
+                  "cell": 1,
+                  "text": "nQ/17",
+                  "tag": "td",
+                  "rowspan": 1,
+                  "colspan": 1,
+                  "column": 1
+                },
+                {
+                  "cell": 2,
+                  "text": "re-sealed",
+                  "tag": "td",
+                  "rowspan": 1,
+                  "colspan": 1,
+                  "column": 2
+                }
+              ]
+            },
+            {
+              "row": 2,
+              "cells": [
+                {
+                  "cell": 0,
+                  "text": "East-2",
+                  "tag": "td",
+                  "rowspan": 1,
+                  "colspan": 1,
+                  "column": 0
+                },
+                {
+                  "cell": 1,
+                  "text": "EQ/17",
+                  "tag": "td",
+                  "rowspan": 1,
+                  "colspan": 1,
+                  "column": 1
+                },
+                {
+                  "cell": 2,
+                  "text": "scuffed",
+                  "tag": "td",
+                  "rowspan": 1,
+                  "colspan": 1,
+                  "column": 2
+                }
+              ]
+            },
+            {
+              "row": 3,
+              "cells": [
+                {
+                  "cell": 0,
+                  "text": "Hold for review",
+                  "tag": "td",
+                  "rowspan": 1,
+                  "colspan": 3,
+                  "column": 0
+                }
+              ]
+            }
+          ],
+          "bbox_review": "Matches the visible ruled grid region at full-page pixel scale; line thickness may extend about two pixels beyond centerline bounds."
+        }
+      ],
+      "verdict": "visible_cells_and_ownership_match_gold",
+      "observations": [
+        "One ruled Crate register table with three columns and four rows; the final row is one cell spanning all three columns. The title, introductory prose, note 1 and page footer are outside the grid.",
+        "Crate/Seal/Condition; North-4/nQ/17/re-sealed; East-2/EQ/17/scuffed; Hold for review are independently legible. The lower-case n versus upper-case E and Q, slash, hyphens and exact spelling are visible.",
+        "The dark header has low contrast but its three words are legible. No source loss or ambiguous ownership was found."
+      ],
+      "uncertainty_locations": [],
+      "coverage_limits": [
+        "No merged header; its only span is a body/footer cell."
+      ]
+    },
+    {
+      "case_id": "N2",
+      "source_pdf": {
+        "path": "/Users/cam/.codex/worktrees/scout092-docweb-literal-20261013/benchmarks/fixtures/argon-literal-qualification-v1/source/native.pdf",
+        "sha256": "902649f474c7de075ec7baff4a5fe3229d334d09d65c4be0f75d7fbe9a8937a5"
+      },
+      "source_pdf_page": 2,
+      "render": {
+        "path": "/Users/cam/.codex/worktrees/scout092-docweb-literal-20261013/benchmarks/fixtures/argon-literal-qualification-v1/renders/N2.png",
+        "sha256": "2d2005f718ab516fc8c4aca9054649845cb5351d52aa3f8c4cfd43c1350a6ecf"
+      },
+      "gold": {
+        "path": "/Users/cam/.codex/worktrees/scout092-docweb-literal-20261013/benchmarks/fixtures/argon-literal-qualification-v1/gold/N2.json",
+        "sha256": "93e7e15e7aa6d6ea17a2913f54b9a8a491075c6be2e372918e3af223007ce5db"
+      },
+      "maintained_renderer_output": {
+        "path": "/Users/cam/.codex/worktrees/scout092-docweb-literal-20261013/benchmarks/fixtures/argon-literal-qualification-v1/build/render-native/images/page-002.png",
+        "sha256": "2d2005f718ab516fc8c4aca9054649845cb5351d52aa3f8c4cfd43c1350a6ecf"
+      },
+      "full_page_viewed_with_view_image": true,
+      "render_dimensions_px": [
+        2550,
+        3300
+      ],
+      "independent_in_memory_poppler_300dpi_render": {
+        "pixel_equal": true,
+        "difference_bbox": null
+      },
+      "gold_schema_validation": "pass",
+      "safe_table_geometry": "pass",
+      "source_table_count": 1,
+      "explicit_cell_count": 22,
+      "cell_slots": 24,
+      "table_geometry": [
+        {
+          "table": 0,
+          "bbox_px": [
+            217,
+            1133,
+            2112,
+            1983
+          ],
+          "row_count": 6,
+          "row_cells": [
+            {
+              "row": 0,
+              "cells": [
+                {
+                  "cell": 0,
+                  "text": "Bench",
+                  "tag": "th",
+                  "rowspan": 1,
+                  "colspan": 1,
+                  "column": 0
+                },
+                {
+                  "cell": 1,
+                  "text": "Reference",
+                  "tag": "th",
+                  "rowspan": 1,
+                  "colspan": 1,
+                  "column": 1
+                },
+                {
+                  "cell": 2,
+                  "text": "Offset",
+                  "tag": "th",
+                  "rowspan": 1,
+                  "colspan": 1,
+                  "column": 2
+                },
+                {
+                  "cell": 3,
+                  "text": "Disposition",
+                  "tag": "th",
+                  "rowspan": 1,
+                  "colspan": 1,
+                  "column": 3
+                }
+              ]
+            },
+            {
+              "row": 1,
+              "cells": [
+                {
+                  "cell": 0,
+                  "text": "A-03",
+                  "tag": "td",
+                  "rowspan": 1,
+                  "colspan": 1,
+                  "column": 0
+                },
+                {
+                  "cell": 1,
+                  "text": "R8l/24",
+                  "tag": "td",
+                  "rowspan": 1,
+                  "colspan": 1,
+                  "column": 1
+                },
+                {
+                  "cell": 2,
+                  "text": "+0.04",
+                  "tag": "td",
+                  "rowspan": 1,
+                  "colspan": 1,
+                  "column": 2
+                },
+                {
+                  "cell": 3,
+                  "text": "checked",
+                  "tag": "td",
+                  "rowspan": 1,
+                  "colspan": 1,
+                  "column": 3
+                }
+              ]
+            },
+            {
+              "row": 2,
+              "cells": [
+                {
+                  "cell": 0,
+                  "text": "A-04",
+                  "tag": "td",
+                  "rowspan": 1,
+                  "colspan": 1,
+                  "column": 0
+                },
+                {
+                  "cell": 1,
+                  "text": "R81/24",
+                  "tag": "td",
+                  "rowspan": 1,
+                  "colspan": 1,
+                  "column": 1
+                },
+                {
+                  "cell": 2,
+                  "text": "-0.00",
+                  "tag": "td",
+                  "rowspan": 1,
+                  "colspan": 1,
+                  "column": 2
+                },
+                {
+                  "cell": 3,
+                  "text": "recheck!",
+                  "tag": "td",
+                  "rowspan": 1,
+                  "colspan": 1,
+                  "column": 3
+                }
+              ]
+            },
+            {
+              "row": 3,
+              "cells": [
+                {
+                  "cell": 0,
+                  "text": "B-11",
+                  "tag": "td",
+                  "rowspan": 2,
+                  "colspan": 1,
+                  "column": 0
+                },
+                {
+                  "cell": 1,
+                  "text": "μm-6",
+                  "tag": "td",
+                  "rowspan": 1,
+                  "colspan": 1,
+                  "column": 1
+                },
+                {
+                  "cell": 2,
+                  "text": "—",
+                  "tag": "td",
+                  "rowspan": 1,
+                  "colspan": 1,
+                  "column": 2
+                },
+                {
+                  "cell": 3,
+                  "text": "no drift",
+                  "tag": "td",
+                  "rowspan": 1,
+                  "colspan": 1,
+                  "column": 3
+                }
+              ]
+            },
+            {
+              "row": 4,
+              "cells": [
+                {
+                  "cell": 0,
+                  "text": "β-2",
+                  "tag": "td",
+                  "rowspan": 1,
+                  "colspan": 1,
+                  "column": 1
+                },
+                {
+                  "cell": 1,
+                  "text": "0.00",
+                  "tag": "td",
+                  "rowspan": 1,
+                  "colspan": 1,
+                  "column": 2
+                },
+                {
+                  "cell": 2,
+                  "text": "pending",
+                  "tag": "td",
+                  "rowspan": 1,
+                  "colspan": 1,
+                  "column": 3
+                }
+              ]
+            },
+            {
+              "row": 5,
+              "cells": [
+                {
+                  "cell": 0,
+                  "text": "Source label",
+                  "tag": "td",
+                  "rowspan": 1,
+                  "colspan": 2,
+                  "column": 0
+                },
+                {
+                  "cell": 1,
+                  "text": "cataloge",
+                  "tag": "td",
+                  "rowspan": 1,
+                  "colspan": 1,
+                  "column": 2
+                },
+                {
+                  "cell": 2,
+                  "text": "keep literal",
+                  "tag": "td",
+                  "rowspan": 1,
+                  "colspan": 1,
+                  "column": 3
+                }
+              ]
+            }
+          ],
+          "bbox_review": "Matches the visible ruled grid region at full-page pixel scale; line thickness may extend about two pixels beyond centerline bounds."
+        }
+      ],
+      "verdict": "clear_geometry_with_unresolved_codepoint_gold_risk",
+      "observations": [
+        "One Calibration records table, four columns and six rows. Bench B-11 spans rows 3 and 4; therefore the explicit first cell of row 4 (beta-2) belongs to Reference column 1, not Bench. Source label spans the first two columns in row 5.",
+        "Headers Bench/Reference/Offset/Disposition and rows A-03, A-04, B-11, Source label are legible. The serif lower-case l in R8l/24 and digit 1 in R81/24 are visually different in the full-resolution crop. +0.04, -0.00, the long dash, 0.00, recheck!, cataloge and keep literal are visible.",
+        "The mu-shaped first character of row 3 Reference is clear as a glyph, but the pixels alone do not label its Unicode encoding as U+03BC rather than U+00B5. A local author-font specimen renders these encodings differently; that supports how these particular PDF bytes were made but is not a unique source-only encoding authority. The maintained comparator rejects the alternate encoding.",
+        "The beta-shaped reference in row 4 is visibly legible. Surrounding prose and note 2 do not enter the table HTML."
+      ],
+      "uncertainty_locations": [
+        {
+          "table": 0,
+          "row": 3,
+          "cell": 1,
+          "kind": "codepoint_gold_admissibility",
+          "visible": "mu-shaped symbol followed by m-6",
+          "gold": "μm-6",
+          "alternative_encoding": "µm-6"
+        }
+      ],
+      "coverage_limits": [
+        "No merged header.",
+        "The misspelling cataloge also occurs in the exposed confirmation-v2 native-positive source; the whole page is new, but this edge token is reused."
+      ]
+    },
+    {
+      "case_id": "N3",
+      "source_pdf": {
+        "path": "/Users/cam/.codex/worktrees/scout092-docweb-literal-20261013/benchmarks/fixtures/argon-literal-qualification-v1/source/native.pdf",
+        "sha256": "902649f474c7de075ec7baff4a5fe3229d334d09d65c4be0f75d7fbe9a8937a5"
+      },
+      "source_pdf_page": 3,
+      "render": {
+        "path": "/Users/cam/.codex/worktrees/scout092-docweb-literal-20261013/benchmarks/fixtures/argon-literal-qualification-v1/renders/N3.png",
+        "sha256": "120b62785417075ba889ff154f5d58faa55194bf0393a0fb412d1d5b36d1fe1a"
+      },
+      "gold": {
+        "path": "/Users/cam/.codex/worktrees/scout092-docweb-literal-20261013/benchmarks/fixtures/argon-literal-qualification-v1/gold/N3.json",
+        "sha256": "132a206fe9f55cd64c0c060aaa05d47831f16c9880e3948717961331aa4e1cff"
+      },
+      "maintained_renderer_output": {
+        "path": "/Users/cam/.codex/worktrees/scout092-docweb-literal-20261013/benchmarks/fixtures/argon-literal-qualification-v1/build/render-native/images/page-003.png",
+        "sha256": "120b62785417075ba889ff154f5d58faa55194bf0393a0fb412d1d5b36d1fe1a"
+      },
+      "full_page_viewed_with_view_image": true,
+      "render_dimensions_px": [
+        2550,
+        3300
+      ],
+      "independent_in_memory_poppler_300dpi_render": {
+        "pixel_equal": true,
+        "difference_bbox": null
+      },
+      "gold_schema_validation": "pass",
+      "safe_table_geometry": "pass",
+      "source_table_count": 2,
+      "explicit_cell_count": 33,
+      "cell_slots": 37,
+      "table_geometry": [
+        {
+          "table": 0,
+          "bbox_px": [
+            217,
+            988,
+            2221,
+            1571
+          ],
+          "row_count": 5,
+          "row_cells": [
+            {
+              "row": 0,
+              "cells": [
+                {
+                  "cell": 0,
+                  "text": "Gate",
+                  "tag": "th",
+                  "rowspan": 1,
+                  "colspan": 1,
+                  "column": 0
+                },
+                {
+                  "cell": 1,
+                  "text": "Chainage",
+                  "tag": "th",
+                  "rowspan": 1,
+                  "colspan": 1,
+                  "column": 1
+                },
+                {
+                  "cell": 2,
+                  "text": "Rise",
+                  "tag": "th",
+                  "rowspan": 1,
+                  "colspan": 1,
+                  "column": 2
+                },
+                {
+                  "cell": 3,
+                  "text": "Flow",
+                  "tag": "th",
+                  "rowspan": 1,
+                  "colspan": 1,
+                  "column": 3
+                },
+                {
+                  "cell": 4,
+                  "text": "Flag",
+                  "tag": "th",
+                  "rowspan": 1,
+                  "colspan": 1,
+                  "column": 4
+                }
+              ]
+            },
+            {
+              "row": 1,
+              "cells": [
+                {
+                  "cell": 0,
+                  "text": "G-1",
+                  "tag": "td",
+                  "rowspan": 1,
+                  "colspan": 1,
+                  "column": 0
+                },
+                {
+                  "cell": 1,
+                  "text": "0+00",
+                  "tag": "td",
+                  "rowspan": 1,
+                  "colspan": 1,
+                  "column": 1
+                },
+                {
+                  "cell": 2,
+                  "text": "1.2 m",
+                  "tag": "td",
+                  "rowspan": 1,
+                  "colspan": 1,
+                  "column": 2
+                },
+                {
+                  "cell": 3,
+                  "text": "4.0",
+                  "tag": "td",
+                  "rowspan": 1,
+                  "colspan": 1,
+                  "column": 3
+                },
+                {
+                  "cell": 4,
+                  "text": "open",
+                  "tag": "td",
+                  "rowspan": 1,
+                  "colspan": 1,
+                  "column": 4
+                }
+              ]
+            },
+            {
+              "row": 2,
+              "cells": [
+                {
+                  "cell": 0,
+                  "text": "G-2",
+                  "tag": "td",
+                  "rowspan": 1,
+                  "colspan": 1,
+                  "column": 0
+                },
+                {
+                  "cell": 1,
+                  "text": "0+85",
+                  "tag": "td",
+                  "rowspan": 1,
+                  "colspan": 1,
+                  "column": 1
+                },
+                {
+                  "cell": 2,
+                  "text": "1.0 m",
+                  "tag": "td",
+                  "rowspan": 1,
+                  "colspan": 1,
+                  "column": 2
+                },
+                {
+                  "cell": 3,
+                  "text": "3.8",
+                  "tag": "td",
+                  "rowspan": 1,
+                  "colspan": 1,
+                  "column": 3
+                },
+                {
+                  "cell": 4,
+                  "text": "inspect",
+                  "tag": "td",
+                  "rowspan": 1,
+                  "colspan": 1,
+                  "column": 4
+                }
+              ]
+            },
+            {
+              "row": 3,
+              "cells": [
+                {
+                  "cell": 0,
+                  "text": "G-3",
+                  "tag": "td",
+                  "rowspan": 1,
+                  "colspan": 1,
+                  "column": 0
+                },
+                {
+                  "cell": 1,
+                  "text": "1+70",
+                  "tag": "td",
+                  "rowspan": 1,
+                  "colspan": 1,
+                  "column": 1
+                },
+                {
+                  "cell": 2,
+                  "text": "0.8 m",
+                  "tag": "td",
+                  "rowspan": 1,
+                  "colspan": 1,
+                  "column": 2
+                },
+                {
+                  "cell": 3,
+                  "text": "",
+                  "tag": "td",
+                  "rowspan": 1,
+                  "colspan": 1,
+                  "column": 3
+                },
+                {
+                  "cell": 4,
+                  "text": "—",
+                  "tag": "td",
+                  "rowspan": 1,
+                  "colspan": 1,
+                  "column": 4
+                }
+              ]
+            },
+            {
+              "row": 4,
+              "cells": [
+                {
+                  "cell": 0,
+                  "text": "Reference datum: MSL-2",
+                  "tag": "td",
+                  "rowspan": 1,
+                  "colspan": 5,
+                  "column": 0
+                }
+              ]
+            }
+          ],
+          "bbox_review": "Matches the visible ruled grid region at full-page pixel scale; line thickness may extend about two pixels beyond centerline bounds."
+        },
+        {
+          "table": 1,
+          "bbox_px": [
+            217,
+            2258,
+            2221,
+            2608
+          ],
+          "row_count": 3,
+          "row_cells": [
+            {
+              "row": 0,
+              "cells": [
+                {
+                  "cell": 0,
+                  "text": "Station",
+                  "tag": "th",
+                  "rowspan": 1,
+                  "colspan": 1,
+                  "column": 0
+                },
+                {
+                  "cell": 1,
+                  "text": "Sample ID",
+                  "tag": "th",
+                  "rowspan": 1,
+                  "colspan": 1,
+                  "column": 1
+                },
+                {
+                  "cell": 2,
+                  "text": "pH",
+                  "tag": "th",
+                  "rowspan": 1,
+                  "colspan": 1,
+                  "column": 2
+                },
+                {
+                  "cell": 3,
+                  "text": "Seal",
+                  "tag": "th",
+                  "rowspan": 1,
+                  "colspan": 1,
+                  "column": 3
+                }
+              ]
+            },
+            {
+              "row": 1,
+              "cells": [
+                {
+                  "cell": 0,
+                  "text": "C-09",
+                  "tag": "td",
+                  "rowspan": 1,
+                  "colspan": 1,
+                  "column": 0
+                },
+                {
+                  "cell": 1,
+                  "text": "c-09/a",
+                  "tag": "td",
+                  "rowspan": 1,
+                  "colspan": 1,
+                  "column": 1
+                },
+                {
+                  "cell": 2,
+                  "text": "7.01",
+                  "tag": "td",
+                  "rowspan": 1,
+                  "colspan": 1,
+                  "column": 2
+                },
+                {
+                  "cell": 3,
+                  "text": "intact",
+                  "tag": "td",
+                  "rowspan": 1,
+                  "colspan": 1,
+                  "column": 3
+                }
+              ]
+            },
+            {
+              "row": 2,
+              "cells": [
+                {
+                  "cell": 0,
+                  "text": "C-10",
+                  "tag": "td",
+                  "rowspan": 1,
+                  "colspan": 1,
+                  "column": 0
+                },
+                {
+                  "cell": 1,
+                  "text": "C-10/A",
+                  "tag": "td",
+                  "rowspan": 1,
+                  "colspan": 1,
+                  "column": 1
+                },
+                {
+                  "cell": 2,
+                  "text": "6.98",
+                  "tag": "td",
+                  "rowspan": 1,
+                  "colspan": 1,
+                  "column": 2
+                },
+                {
+                  "cell": 3,
+                  "text": "replaced",
+                  "tag": "td",
+                  "rowspan": 1,
+                  "colspan": 1,
+                  "column": 3
+                }
+              ]
+            }
+          ],
+          "bbox_review": "Matches the visible ruled grid region at full-page pixel scale; line thickness may extend about two pixels beyond centerline bounds."
+        }
+      ],
+      "verdict": "visible_cells_and_ownership_match_gold",
+      "observations": [
+        "Two vertically separated ruled tables: Gate measurements first, then Sample tags. Gold reading order follows the actual upper/lower order. Introductory wording says left/right, but the source layout is upper/lower.",
+        "Upper table has five columns/five rows; Reference datum: MSL-2 is a five-column final cell. All Gate/Chainage/Rise/Flow/Flag rows match visible G-1, G-2, G-3; 0+00/0+85/1+70; 1.2 m/1.0 m/0.8 m; 4.0/3.8/empty; open/inspect/long dash.",
+        "The G-3 Flow cell is genuinely empty. Its adjacent Flag contains a visible long dash; these cannot be substituted for one another. The note below the upper grid is outside-table prose.",
+        "Lower table has Station/Sample ID/pH/Seal and C-09/c-09/a/7.01/intact; C-10/C-10/A/6.98/replaced. Case, slash and ownership match. No table is missing or nested.",
+        "Lower note b references D-02;B, which is not in either table. It is visible source prose, not authority to add a row or semicolon to a cell."
+      ],
+      "uncertainty_locations": [],
+      "coverage_limits": [
+        "No merged header.",
+        "The left/right wording and absent D-02;B footnote target are source editorial inconsistencies."
+      ]
+    },
+    {
+      "case_id": "R1",
+      "source_pdf": {
+        "path": "/Users/cam/.codex/worktrees/scout092-docweb-literal-20261013/benchmarks/fixtures/argon-literal-qualification-v1/source/raster.pdf",
+        "sha256": "42abc774e134fe972532424c7adadf63efd7bee741954233ecdd048e5a16d888"
+      },
+      "source_pdf_page": 1,
+      "render": {
+        "path": "/Users/cam/.codex/worktrees/scout092-docweb-literal-20261013/benchmarks/fixtures/argon-literal-qualification-v1/renders/R1.png",
+        "sha256": "7f0684d65a30f9748b82ba8fc4bffabcbbb744f1fca8d7d68370ef9cd5ea2519"
+      },
+      "gold": {
+        "path": "/Users/cam/.codex/worktrees/scout092-docweb-literal-20261013/benchmarks/fixtures/argon-literal-qualification-v1/gold/R1.json",
+        "sha256": "f9861838330bbda4eafc4c8aa8a74879d55c1d423be84d21f039a6438df99f9b"
+      },
+      "maintained_renderer_output": {
+        "path": "/Users/cam/.codex/worktrees/scout092-docweb-literal-20261013/benchmarks/fixtures/argon-literal-qualification-v1/build/render-raster/images/page-001.png",
+        "sha256": "7f0684d65a30f9748b82ba8fc4bffabcbbb744f1fca8d7d68370ef9cd5ea2519"
+      },
+      "full_page_viewed_with_view_image": true,
+      "render_dimensions_px": [
+        2550,
+        3300
+      ],
+      "independent_in_memory_poppler_300dpi_render": {
+        "pixel_equal": true,
+        "difference_bbox": null
+      },
+      "gold_schema_validation": "pass",
+      "safe_table_geometry": "pass",
+      "source_table_count": 1,
+      "explicit_cell_count": 10,
+      "cell_slots": 12,
+      "table_geometry": [
+        {
+          "table": 0,
+          "bbox_px": [
+            217,
+            1133,
+            2112,
+            1700
+          ],
+          "row_count": 4,
+          "row_cells": [
+            {
+              "row": 0,
+              "cells": [
+                {
+                  "cell": 0,
+                  "text": "Shelf",
+                  "tag": "th",
+                  "rowspan": 1,
+                  "colspan": 1,
+                  "column": 0
+                },
+                {
+                  "cell": 1,
+                  "text": "Move code",
+                  "tag": "th",
+                  "rowspan": 1,
+                  "colspan": 1,
+                  "column": 1
+                },
+                {
+                  "cell": 2,
+                  "text": "State",
+                  "tag": "th",
+                  "rowspan": 1,
+                  "colspan": 1,
+                  "column": 2
+                }
+              ]
+            },
+            {
+              "row": 1,
+              "cells": [
+                {
+                  "cell": 0,
+                  "text": "L-2",
+                  "tag": "td",
+                  "rowspan": 1,
+                  "colspan": 1,
+                  "column": 0
+                },
+                {
+                  "cell": 1,
+                  "text": "0O-6",
+                  "tag": "td",
+                  "rowspan": 1,
+                  "colspan": 1,
+                  "column": 1
+                },
+                {
+                  "cell": 2,
+                  "text": "awaiting",
+                  "tag": "td",
+                  "rowspan": 1,
+                  "colspan": 1,
+                  "column": 2
+                }
+              ]
+            },
+            {
+              "row": 2,
+              "cells": [
+                {
+                  "cell": 0,
+                  "text": "L-3",
+                  "tag": "td",
+                  "rowspan": 1,
+                  "colspan": 1,
+                  "column": 0
+                },
+                {
+                  "cell": 1,
+                  "text": "00-6",
+                  "tag": "td",
+                  "rowspan": 1,
+                  "colspan": 1,
+                  "column": 1
+                },
+                {
+                  "cell": 2,
+                  "text": "complete",
+                  "tag": "td",
+                  "rowspan": 1,
+                  "colspan": 1,
+                  "column": 2
+                }
+              ]
+            },
+            {
+              "row": 3,
+              "cells": [
+                {
+                  "cell": 0,
+                  "text": "Lock & pin retained",
+                  "tag": "td",
+                  "rowspan": 1,
+                  "colspan": 3,
+                  "column": 0
+                }
+              ]
+            }
+          ],
+          "bbox_review": "Matches the visible ruled grid region at full-page pixel scale; line thickness may extend about two pixels beyond centerline bounds."
+        }
+      ],
+      "verdict": "visible_cells_and_ownership_match_gold",
+      "observations": [
+        "One Shelf moves table, three columns/four rows; Lock & pin retained spans the final row.",
+        "Shelf/Move code/State; L-2/0O-6/awaiting; L-3/00-6/complete are legible. Full-resolution crop shows digit zero narrower than letter O, so 0O-6 and 00-6 are visually distinguishable without inferring repeated values.",
+        "The ampersand in the spanning cell is visible. Gold &amp; is a representation of that one character; maintained comparison also accepts &#38;. Title and note 1 stay outside the grid."
+      ],
+      "uncertainty_locations": [],
+      "coverage_limits": [
+        "All raster pages are pristine image-only re-encodings of a generated layout, not real degraded scans."
+      ]
+    },
+    {
+      "case_id": "R2",
+      "source_pdf": {
+        "path": "/Users/cam/.codex/worktrees/scout092-docweb-literal-20261013/benchmarks/fixtures/argon-literal-qualification-v1/source/raster.pdf",
+        "sha256": "42abc774e134fe972532424c7adadf63efd7bee741954233ecdd048e5a16d888"
+      },
+      "source_pdf_page": 2,
+      "render": {
+        "path": "/Users/cam/.codex/worktrees/scout092-docweb-literal-20261013/benchmarks/fixtures/argon-literal-qualification-v1/renders/R2.png",
+        "sha256": "d1d74a8b9ed081200ad4e9f1f0f0199c382527d0265a63f5320b2580633fc668"
+      },
+      "gold": {
+        "path": "/Users/cam/.codex/worktrees/scout092-docweb-literal-20261013/benchmarks/fixtures/argon-literal-qualification-v1/gold/R2.json",
+        "sha256": "c82517b3d01614ad51895d6a3b80419460084384cb2d4aaba63c26ac062d907d"
+      },
+      "maintained_renderer_output": {
+        "path": "/Users/cam/.codex/worktrees/scout092-docweb-literal-20261013/benchmarks/fixtures/argon-literal-qualification-v1/build/render-raster/images/page-002.png",
+        "sha256": "d1d74a8b9ed081200ad4e9f1f0f0199c382527d0265a63f5320b2580633fc668"
+      },
+      "full_page_viewed_with_view_image": true,
+      "render_dimensions_px": [
+        2550,
+        3300
+      ],
+      "independent_in_memory_poppler_300dpi_render": {
+        "pixel_equal": true,
+        "difference_bbox": null
+      },
+      "gold_schema_validation": "pass",
+      "safe_table_geometry": "pass",
+      "source_table_count": 1,
+      "explicit_cell_count": 23,
+      "cell_slots": 24,
+      "table_geometry": [
+        {
+          "table": 0,
+          "bbox_px": [
+            217,
+            1133,
+            1971,
+            1983
+          ],
+          "row_count": 6,
+          "row_cells": [
+            {
+              "row": 0,
+              "cells": [
+                {
+                  "cell": 0,
+                  "text": "Row",
+                  "tag": "th",
+                  "rowspan": 1,
+                  "colspan": 1,
+                  "column": 0
+                },
+                {
+                  "cell": 1,
+                  "text": "Variety",
+                  "tag": "th",
+                  "rowspan": 1,
+                  "colspan": 1,
+                  "column": 1
+                },
+                {
+                  "cell": 2,
+                  "text": "Grade",
+                  "tag": "th",
+                  "rowspan": 1,
+                  "colspan": 1,
+                  "column": 2
+                },
+                {
+                  "cell": 3,
+                  "text": "Count",
+                  "tag": "th",
+                  "rowspan": 1,
+                  "colspan": 1,
+                  "column": 3
+                }
+              ]
+            },
+            {
+              "row": 1,
+              "cells": [
+                {
+                  "cell": 0,
+                  "text": "C-1",
+                  "tag": "td",
+                  "rowspan": 1,
+                  "colspan": 1,
+                  "column": 0
+                },
+                {
+                  "cell": 1,
+                  "text": "Moro",
+                  "tag": "td",
+                  "rowspan": 1,
+                  "colspan": 1,
+                  "column": 1
+                },
+                {
+                  "cell": 2,
+                  "text": "A+",
+                  "tag": "td",
+                  "rowspan": 1,
+                  "colspan": 1,
+                  "column": 2
+                },
+                {
+                  "cell": 3,
+                  "text": "18",
+                  "tag": "td",
+                  "rowspan": 1,
+                  "colspan": 1,
+                  "column": 3
+                }
+              ]
+            },
+            {
+              "row": 2,
+              "cells": [
+                {
+                  "cell": 0,
+                  "text": "C-2",
+                  "tag": "td",
+                  "rowspan": 1,
+                  "colspan": 1,
+                  "column": 0
+                },
+                {
+                  "cell": 1,
+                  "text": "Moro",
+                  "tag": "td",
+                  "rowspan": 1,
+                  "colspan": 1,
+                  "column": 1
+                },
+                {
+                  "cell": 2,
+                  "text": "B",
+                  "tag": "td",
+                  "rowspan": 1,
+                  "colspan": 1,
+                  "column": 2
+                },
+                {
+                  "cell": 3,
+                  "text": "—",
+                  "tag": "td",
+                  "rowspan": 1,
+                  "colspan": 1,
+                  "column": 3
+                }
+              ]
+            },
+            {
+              "row": 3,
+              "cells": [
+                {
+                  "cell": 0,
+                  "text": "C-3",
+                  "tag": "td",
+                  "rowspan": 1,
+                  "colspan": 1,
+                  "column": 0
+                },
+                {
+                  "cell": 1,
+                  "text": "Pera",
+                  "tag": "td",
+                  "rowspan": 1,
+                  "colspan": 1,
+                  "column": 1
+                },
+                {
+                  "cell": 2,
+                  "text": "A",
+                  "tag": "td",
+                  "rowspan": 1,
+                  "colspan": 1,
+                  "column": 2
+                },
+                {
+                  "cell": 3,
+                  "text": "",
+                  "tag": "td",
+                  "rowspan": 1,
+                  "colspan": 1,
+                  "column": 3
+                }
+              ]
+            },
+            {
+              "row": 4,
+              "cells": [
+                {
+                  "cell": 0,
+                  "text": "C-4",
+                  "tag": "td",
+                  "rowspan": 1,
+                  "colspan": 1,
+                  "column": 0
+                },
+                {
+                  "cell": 1,
+                  "text": "Pera",
+                  "tag": "td",
+                  "rowspan": 1,
+                  "colspan": 1,
+                  "column": 1
+                },
+                {
+                  "cell": 2,
+                  "text": "A",
+                  "tag": "td",
+                  "rowspan": 1,
+                  "colspan": 1,
+                  "column": 2
+                },
+                {
+                  "cell": 3,
+                  "text": "23",
+                  "tag": "td",
+                  "rowspan": 1,
+                  "colspan": 1,
+                  "column": 3
+                }
+              ]
+            },
+            {
+              "row": 5,
+              "cells": [
+                {
+                  "cell": 0,
+                  "text": "Totals checked",
+                  "tag": "td",
+                  "rowspan": 1,
+                  "colspan": 2,
+                  "column": 0
+                },
+                {
+                  "cell": 1,
+                  "text": "not signed",
+                  "tag": "td",
+                  "rowspan": 1,
+                  "colspan": 1,
+                  "column": 2
+                },
+                {
+                  "cell": 2,
+                  "text": "41",
+                  "tag": "td",
+                  "rowspan": 1,
+                  "colspan": 1,
+                  "column": 3
+                }
+              ]
+            }
+          ],
+          "bbox_review": "Matches the visible ruled grid region at full-page pixel scale; line thickness may extend about two pixels beyond centerline bounds."
+        }
+      ],
+      "verdict": "visible_cells_and_ownership_match_gold",
+      "observations": [
+        "One Picking summary table, four columns/six rows; Totals checked spans Row and Variety columns of the final row.",
+        "Row/Variety/Grade/Count; C-1/Moro/A+/18; C-2/Moro/B/long dash; C-3/Pera/A/empty; C-4/Pera/A/23; Totals checked/not signed/41 match the visible source.",
+        "The C-3 Count cell is visibly blank, while C-2 Count contains a long dash. The final 41 is in Count and not signed is in Grade; no summation or inferred fill was used.",
+        "Note 2 is outside the table and does not add an explicit cell."
+      ],
+      "uncertainty_locations": [],
+      "coverage_limits": [
+        "No specially faint body-text case is present; low-contrast colored headers are the visible contrast challenge."
+      ]
+    },
+    {
+      "case_id": "R3",
+      "source_pdf": {
+        "path": "/Users/cam/.codex/worktrees/scout092-docweb-literal-20261013/benchmarks/fixtures/argon-literal-qualification-v1/source/raster.pdf",
+        "sha256": "42abc774e134fe972532424c7adadf63efd7bee741954233ecdd048e5a16d888"
+      },
+      "source_pdf_page": 3,
+      "render": {
+        "path": "/Users/cam/.codex/worktrees/scout092-docweb-literal-20261013/benchmarks/fixtures/argon-literal-qualification-v1/renders/R3.png",
+        "sha256": "6325cbd70cc12a9c3d001b9412afaec8fe2b4133977b6b3b12af769650c12cfd"
+      },
+      "gold": {
+        "path": "/Users/cam/.codex/worktrees/scout092-docweb-literal-20261013/benchmarks/fixtures/argon-literal-qualification-v1/gold/R3.json",
+        "sha256": "f5392ede96086ab6151bfa5c64111a8d239eb21a266fc0d5c52538bbc93d85af"
+      },
+      "maintained_renderer_output": {
+        "path": "/Users/cam/.codex/worktrees/scout092-docweb-literal-20261013/benchmarks/fixtures/argon-literal-qualification-v1/build/render-raster/images/page-003.png",
+        "sha256": "6325cbd70cc12a9c3d001b9412afaec8fe2b4133977b6b3b12af769650c12cfd"
+      },
+      "full_page_viewed_with_view_image": true,
+      "render_dimensions_px": [
+        2550,
+        3300
+      ],
+      "independent_in_memory_poppler_300dpi_render": {
+        "pixel_equal": true,
+        "difference_bbox": null
+      },
+      "gold_schema_validation": "pass",
+      "safe_table_geometry": "pass",
+      "source_table_count": 2,
+      "explicit_cell_count": 32,
+      "cell_slots": 32,
+      "table_geometry": [
+        {
+          "table": 0,
+          "bbox_px": [
+            217,
+            988,
+            2408,
+            1454
+          ],
+          "row_count": 4,
+          "row_cells": [
+            {
+              "row": 0,
+              "cells": [
+                {
+                  "cell": 0,
+                  "text": "Track",
+                  "tag": "th",
+                  "rowspan": 1,
+                  "colspan": 1,
+                  "column": 0
+                },
+                {
+                  "cell": 1,
+                  "text": "Marker",
+                  "tag": "th",
+                  "rowspan": 1,
+                  "colspan": 1,
+                  "column": 1
+                },
+                {
+                  "cell": 2,
+                  "text": "Wear",
+                  "tag": "th",
+                  "rowspan": 1,
+                  "colspan": 1,
+                  "column": 2
+                },
+                {
+                  "cell": 3,
+                  "text": "Limit",
+                  "tag": "th",
+                  "rowspan": 1,
+                  "colspan": 1,
+                  "column": 3
+                },
+                {
+                  "cell": 4,
+                  "text": "Result",
+                  "tag": "th",
+                  "rowspan": 1,
+                  "colspan": 1,
+                  "column": 4
+                }
+              ]
+            },
+            {
+              "row": 1,
+              "cells": [
+                {
+                  "cell": 0,
+                  "text": "T-7",
+                  "tag": "td",
+                  "rowspan": 1,
+                  "colspan": 1,
+                  "column": 0
+                },
+                {
+                  "cell": 1,
+                  "text": "km 08+4",
+                  "tag": "td",
+                  "rowspan": 1,
+                  "colspan": 1,
+                  "column": 1
+                },
+                {
+                  "cell": 2,
+                  "text": "0.7",
+                  "tag": "td",
+                  "rowspan": 1,
+                  "colspan": 1,
+                  "column": 2
+                },
+                {
+                  "cell": 3,
+                  "text": "1.0",
+                  "tag": "td",
+                  "rowspan": 1,
+                  "colspan": 1,
+                  "column": 3
+                },
+                {
+                  "cell": 4,
+                  "text": "pass",
+                  "tag": "td",
+                  "rowspan": 1,
+                  "colspan": 1,
+                  "column": 4
+                }
+              ]
+            },
+            {
+              "row": 2,
+              "cells": [
+                {
+                  "cell": 0,
+                  "text": "T-8",
+                  "tag": "td",
+                  "rowspan": 1,
+                  "colspan": 1,
+                  "column": 0
+                },
+                {
+                  "cell": 1,
+                  "text": "km 09+1",
+                  "tag": "td",
+                  "rowspan": 1,
+                  "colspan": 1,
+                  "column": 1
+                },
+                {
+                  "cell": 2,
+                  "text": "1.1",
+                  "tag": "td",
+                  "rowspan": 1,
+                  "colspan": 1,
+                  "column": 2
+                },
+                {
+                  "cell": 3,
+                  "text": "1.0",
+                  "tag": "td",
+                  "rowspan": 1,
+                  "colspan": 1,
+                  "column": 3
+                },
+                {
+                  "cell": 4,
+                  "text": "repair",
+                  "tag": "td",
+                  "rowspan": 1,
+                  "colspan": 1,
+                  "column": 4
+                }
+              ]
+            },
+            {
+              "row": 3,
+              "cells": [
+                {
+                  "cell": 0,
+                  "text": "T-9",
+                  "tag": "td",
+                  "rowspan": 1,
+                  "colspan": 1,
+                  "column": 0
+                },
+                {
+                  "cell": 1,
+                  "text": "km 10+0",
+                  "tag": "td",
+                  "rowspan": 1,
+                  "colspan": 1,
+                  "column": 1
+                },
+                {
+                  "cell": 2,
+                  "text": "0.0",
+                  "tag": "td",
+                  "rowspan": 1,
+                  "colspan": 1,
+                  "column": 2
+                },
+                {
+                  "cell": 3,
+                  "text": "1.0",
+                  "tag": "td",
+                  "rowspan": 1,
+                  "colspan": 1,
+                  "column": 3
+                },
+                {
+                  "cell": 4,
+                  "text": "pass",
+                  "tag": "td",
+                  "rowspan": 1,
+                  "colspan": 1,
+                  "column": 4
+                }
+              ]
+            }
+          ],
+          "bbox_review": "Matches the visible ruled grid region at full-page pixel scale; line thickness may extend about two pixels beyond centerline bounds."
+        },
+        {
+          "table": 1,
+          "bbox_px": [
+            217,
+            2196,
+            2408,
+            2546
+          ],
+          "row_count": 3,
+          "row_cells": [
+            {
+              "row": 0,
+              "cells": [
+                {
+                  "cell": 0,
+                  "text": "Part",
+                  "tag": "th",
+                  "rowspan": 1,
+                  "colspan": 1,
+                  "column": 0
+                },
+                {
+                  "cell": 1,
+                  "text": "Bin",
+                  "tag": "th",
+                  "rowspan": 1,
+                  "colspan": 1,
+                  "column": 1
+                },
+                {
+                  "cell": 2,
+                  "text": "Qty",
+                  "tag": "th",
+                  "rowspan": 1,
+                  "colspan": 1,
+                  "column": 2
+                },
+                {
+                  "cell": 3,
+                  "text": "Seal",
+                  "tag": "th",
+                  "rowspan": 1,
+                  "colspan": 1,
+                  "column": 3
+                }
+              ]
+            },
+            {
+              "row": 1,
+              "cells": [
+                {
+                  "cell": 0,
+                  "text": "coupler",
+                  "tag": "td",
+                  "rowspan": 1,
+                  "colspan": 1,
+                  "column": 0
+                },
+                {
+                  "cell": 1,
+                  "text": "r-14",
+                  "tag": "td",
+                  "rowspan": 1,
+                  "colspan": 1,
+                  "column": 1
+                },
+                {
+                  "cell": 2,
+                  "text": "2",
+                  "tag": "td",
+                  "rowspan": 1,
+                  "colspan": 1,
+                  "column": 2
+                },
+                {
+                  "cell": 3,
+                  "text": "ok",
+                  "tag": "td",
+                  "rowspan": 1,
+                  "colspan": 1,
+                  "column": 3
+                }
+              ]
+            },
+            {
+              "row": 2,
+              "cells": [
+                {
+                  "cell": 0,
+                  "text": "washer",
+                  "tag": "td",
+                  "rowspan": 1,
+                  "colspan": 1,
+                  "column": 0
+                },
+                {
+                  "cell": 1,
+                  "text": "R-14",
+                  "tag": "td",
+                  "rowspan": 1,
+                  "colspan": 1,
+                  "column": 1
+                },
+                {
+                  "cell": 2,
+                  "text": "—",
+                  "tag": "td",
+                  "rowspan": 1,
+                  "colspan": 1,
+                  "column": 2
+                },
+                {
+                  "cell": 3,
+                  "text": "open",
+                  "tag": "td",
+                  "rowspan": 1,
+                  "colspan": 1,
+                  "column": 3
+                }
+              ]
+            }
+          ],
+          "bbox_review": "Matches the visible ruled grid region at full-page pixel scale; line thickness may extend about two pixels beyond centerline bounds."
+        }
+      ],
+      "verdict": "visible_cells_and_ownership_match_gold",
+      "observations": [
+        "Two vertically separated tables: Track inspection has five columns/four rows; Parts returned has four columns/three rows. Neither has a span.",
+        "Upper table visibly has Track/Marker/Wear/Limit/Result; T-7/km 08+4/0.7/1.0/pass; T-8/km 09+1/1.1/1.0/repair; T-9/km 10+0/0.0/1.0/pass. Embedded spaces and plus signs belong to the Marker cells.",
+        "Lower table visibly has Part/Bin/Qty/Seal; coupler/r-14/2/ok; washer/R-14/long dash/open. Lower-case r versus upper-case R is distinct. The long dash belongs to washer Qty.",
+        "Notes a and b are outside their respective grids. Note b describes 1+ although no table cell contains 1+; it must not cause a changed quantity."
+      ],
+      "uncertainty_locations": [],
+      "coverage_limits": [
+        "The footnote modifier example 1+ is absent from the cells; ownership is simple spatial separation, without a cell marker."
+      ]
+    },
+    {
+      "case_id": "A1",
+      "source_pdf": {
+        "path": "/Users/cam/.codex/worktrees/scout092-docweb-literal-20261013/benchmarks/fixtures/argon-literal-qualification-v1/source/holds.pdf",
+        "sha256": "4647d76efda3d69d34775a0ef4e4f1db1b1c9fbda0081843da97abb213010d68"
+      },
+      "source_pdf_page": 1,
+      "render": {
+        "path": "/Users/cam/.codex/worktrees/scout092-docweb-literal-20261013/benchmarks/fixtures/argon-literal-qualification-v1/renders/A1.png",
+        "sha256": "12b6a3a1199c3eca97f4331033ccf7349479246e8481691f86aab9666bc6446d"
+      },
+      "gold": {
+        "path": "/Users/cam/.codex/worktrees/scout092-docweb-literal-20261013/benchmarks/fixtures/argon-literal-qualification-v1/gold/A1.json",
+        "sha256": "11092a00d7d8f10c23f762e01d9664c338f233832f0942062894d49ff9d62fd8"
+      },
+      "maintained_renderer_output": {
+        "path": "/Users/cam/.codex/worktrees/scout092-docweb-literal-20261013/benchmarks/fixtures/argon-literal-qualification-v1/build/render-holds/images/page-001.png",
+        "sha256": "12b6a3a1199c3eca97f4331033ccf7349479246e8481691f86aab9666bc6446d"
+      },
+      "full_page_viewed_with_view_image": true,
+      "render_dimensions_px": [
+        2550,
+        3300
+      ],
+      "independent_in_memory_poppler_300dpi_render": {
+        "pixel_equal": true,
+        "difference_bbox": null
+      },
+      "gold_schema_validation": "pass",
+      "safe_table_geometry": "pass",
+      "source_table_count": 1,
+      "explicit_cell_count": 10,
+      "cell_slots": 12,
+      "table_geometry": [
+        {
+          "table": 0,
+          "bbox_px": [
+            217,
+            1133,
+            2154,
+            1700
+          ],
+          "row_count": 4,
+          "row_cells": [
+            {
+              "row": 0,
+              "cells": [
+                {
+                  "cell": 0,
+                  "text": "Container",
+                  "tag": "th",
+                  "rowspan": 1,
+                  "colspan": 1,
+                  "column": 0
+                },
+                {
+                  "cell": 1,
+                  "text": "Code",
+                  "tag": "th",
+                  "rowspan": 1,
+                  "colspan": 1,
+                  "column": 1
+                },
+                {
+                  "cell": 2,
+                  "text": "Seal",
+                  "tag": "th",
+                  "rowspan": 1,
+                  "colspan": 1,
+                  "column": 2
+                }
+              ]
+            },
+            {
+              "row": 1,
+              "cells": [
+                {
+                  "cell": 0,
+                  "text": "Jar-5",
+                  "tag": "td",
+                  "rowspan": 1,
+                  "colspan": 1,
+                  "column": 0
+                },
+                {
+                  "cell": 1,
+                  "text": "K8|4",
+                  "tag": "td",
+                  "rowspan": 1,
+                  "colspan": 1,
+                  "column": 1
+                },
+                {
+                  "cell": 2,
+                  "text": "intact",
+                  "tag": "td",
+                  "rowspan": 1,
+                  "colspan": 1,
+                  "column": 2
+                }
+              ]
+            },
+            {
+              "row": 2,
+              "cells": [
+                {
+                  "cell": 0,
+                  "text": "Jar-6",
+                  "tag": "td",
+                  "rowspan": 1,
+                  "colspan": 1,
+                  "column": 0
+                },
+                {
+                  "cell": 1,
+                  "text": "K84",
+                  "tag": "td",
+                  "rowspan": 1,
+                  "colspan": 1,
+                  "column": 1
+                },
+                {
+                  "cell": 2,
+                  "text": "intact",
+                  "tag": "td",
+                  "rowspan": 1,
+                  "colspan": 1,
+                  "column": 2
+                }
+              ]
+            },
+            {
+              "row": 3,
+              "cells": [
+                {
+                  "cell": 0,
+                  "text": "Review mark",
+                  "tag": "td",
+                  "rowspan": 1,
+                  "colspan": 3,
+                  "column": 0
+                }
+              ]
+            }
+          ],
+          "bbox_review": "Matches the visible ruled grid region at full-page pixel scale; line thickness may extend about two pixels beyond centerline bounds."
+        }
+      ],
+      "verdict": "expected_hold_not_independently_established_as_authored",
+      "observations": [
+        "One Container check table, three columns/four rows. The final Review mark cell spans all three columns. Container/Code/Seal, Jar-5, Jar-6, K84 and both intact cells are clear.",
+        "At table 0 row 1 explicit cell 1, the visible code is K8 followed by a tall single vertical stroke followed by 4. The stroke extends above the K/8 cap height and below the neighboring baseline. K8|4 is a reasonable diagnostic transcription of its physical appearance.",
+        "The gold reason says the stroke has the same visible shape as lower-case l and digit 1. That claim is not supported by the pixels: nearby Helvetica digit 1 and lower-case l specimens differ; digit 1 has an angled top and neither has this drawn stroke geometry. The generator confirms a separately drawn 15-point stroke, not equal l/1 font outlines; this code evidence only explains the visible discrepancy.",
+        "The page prose explicitly says two readings exist and the note calls the mark a vertical stroke. Such assertions cannot independently prove an indistinguishable glyph pair. A cautious hold is defensible, but a source-only literal bar transcription is also plausible; this is not a robust uniquely required l/1 hold case."
+      ],
+      "uncertainty_locations": [
+        {
+          "table": 0,
+          "row": 1,
+          "cell": 1,
+          "gold_alternatives": [
+            "K8l4",
+            "K814"
+          ],
+          "diagnostic_visible": "K8|4",
+          "status": "location_is_correct_but_required_same_shape_alternatives_are_not_established"
+        }
+      ],
+      "coverage_limits": [
+        "Replace this source before paid execution with a genuine pixel-indistinguishable pair. Do not merely rewrite the gold reason or printed hint."
+      ]
+    },
+    {
+      "case_id": "A2",
+      "source_pdf": {
+        "path": "/Users/cam/.codex/worktrees/scout092-docweb-literal-20261013/benchmarks/fixtures/argon-literal-qualification-v1/source/holds.pdf",
+        "sha256": "4647d76efda3d69d34775a0ef4e4f1db1b1c9fbda0081843da97abb213010d68"
+      },
+      "source_pdf_page": 2,
+      "render": {
+        "path": "/Users/cam/.codex/worktrees/scout092-docweb-literal-20261013/benchmarks/fixtures/argon-literal-qualification-v1/renders/A2.png",
+        "sha256": "53b5e6751db2f74bcb8357104de0eb5f8d709b2c976c694ecb778b78f5e83cf2"
+      },
+      "gold": {
+        "path": "/Users/cam/.codex/worktrees/scout092-docweb-literal-20261013/benchmarks/fixtures/argon-literal-qualification-v1/gold/A2.json",
+        "sha256": "2e7fd0dbce3e5acf3590a1ed87d5dcdb328d1ea3582a2cbd587642737c15062e"
+      },
+      "maintained_renderer_output": {
+        "path": "/Users/cam/.codex/worktrees/scout092-docweb-literal-20261013/benchmarks/fixtures/argon-literal-qualification-v1/build/render-holds/images/page-002.png",
+        "sha256": "53b5e6751db2f74bcb8357104de0eb5f8d709b2c976c694ecb778b78f5e83cf2"
+      },
+      "full_page_viewed_with_view_image": true,
+      "render_dimensions_px": [
+        2550,
+        3300
+      ],
+      "independent_in_memory_poppler_300dpi_render": {
+        "pixel_equal": true,
+        "difference_bbox": null
+      },
+      "gold_schema_validation": "pass",
+      "safe_table_geometry": "pass",
+      "source_table_count": 1,
+      "explicit_cell_count": 17,
+      "cell_slots": 20,
+      "table_geometry": [
+        {
+          "table": 0,
+          "bbox_px": [
+            217,
+            1133,
+            2154,
+            1842
+          ],
+          "row_count": 5,
+          "row_cells": [
+            {
+              "row": 0,
+              "cells": [
+                {
+                  "cell": 0,
+                  "text": "Meter",
+                  "tag": "th",
+                  "rowspan": 1,
+                  "colspan": 1,
+                  "column": 0
+                },
+                {
+                  "cell": 1,
+                  "text": "Route",
+                  "tag": "th",
+                  "rowspan": 1,
+                  "colspan": 1,
+                  "column": 1
+                },
+                {
+                  "cell": 2,
+                  "text": "Reading",
+                  "tag": "th",
+                  "rowspan": 1,
+                  "colspan": 1,
+                  "column": 2
+                },
+                {
+                  "cell": 3,
+                  "text": "Check",
+                  "tag": "th",
+                  "rowspan": 1,
+                  "colspan": 1,
+                  "column": 3
+                }
+              ]
+            },
+            {
+              "row": 1,
+              "cells": [
+                {
+                  "cell": 0,
+                  "text": "M-4",
+                  "tag": "td",
+                  "rowspan": 1,
+                  "colspan": 1,
+                  "column": 0
+                },
+                {
+                  "cell": 1,
+                  "text": "west/3",
+                  "tag": "td",
+                  "rowspan": 1,
+                  "colspan": 1,
+                  "column": 1
+                },
+                {
+                  "cell": 2,
+                  "text": "14.62",
+                  "tag": "td",
+                  "rowspan": 1,
+                  "colspan": 1,
+                  "column": 2
+                },
+                {
+                  "cell": 3,
+                  "text": "ok",
+                  "tag": "td",
+                  "rowspan": 1,
+                  "colspan": 1,
+                  "column": 3
+                }
+              ]
+            },
+            {
+              "row": 2,
+              "cells": [
+                {
+                  "cell": 0,
+                  "text": "M-5",
+                  "tag": "td",
+                  "rowspan": 1,
+                  "colspan": 1,
+                  "column": 0
+                },
+                {
+                  "cell": 1,
+                  "text": "west/3",
+                  "tag": "td",
+                  "rowspan": 1,
+                  "colspan": 1,
+                  "column": 1
+                },
+                {
+                  "cell": 2,
+                  "text": "",
+                  "tag": "td",
+                  "rowspan": 1,
+                  "colspan": 1,
+                  "column": 2
+                },
+                {
+                  "cell": 3,
+                  "text": "hold",
+                  "tag": "td",
+                  "rowspan": 1,
+                  "colspan": 1,
+                  "column": 3
+                }
+              ]
+            },
+            {
+              "row": 3,
+              "cells": [
+                {
+                  "cell": 0,
+                  "text": "M-6",
+                  "tag": "td",
+                  "rowspan": 1,
+                  "colspan": 1,
+                  "column": 0
+                },
+                {
+                  "cell": 1,
+                  "text": "west/4",
+                  "tag": "td",
+                  "rowspan": 1,
+                  "colspan": 1,
+                  "column": 1
+                },
+                {
+                  "cell": 2,
+                  "text": "14.67",
+                  "tag": "td",
+                  "rowspan": 1,
+                  "colspan": 1,
+                  "column": 2
+                },
+                {
+                  "cell": 3,
+                  "text": "ok",
+                  "tag": "td",
+                  "rowspan": 1,
+                  "colspan": 1,
+                  "column": 3
+                }
+              ]
+            },
+            {
+              "row": 4,
+              "cells": [
+                {
+                  "cell": 0,
+                  "text": "Copy damaged",
+                  "tag": "td",
+                  "rowspan": 1,
+                  "colspan": 4,
+                  "column": 0
+                }
+              ]
+            }
+          ],
+          "bbox_review": "Matches the visible ruled grid region at full-page pixel scale; line thickness may extend about two pixels beyond centerline bounds."
+        }
+      ],
+      "verdict": "genuine_location_bound_source_loss_hold",
+      "observations": [
+        "One Return readings table, four columns/five rows. Copy damaged is a final four-column spanning cell.",
+        "Meter/Route/Reading/Check; M-4/west/3/14.62/ok; M-5/west/3/unreadable patch/hold; M-6/west/4/14.67/ok are visibly located as represented.",
+        "The M-5 Reading cell contains an opaque gray abraded patch with horizontal strokes; no digit sequence can be established within it. The surrounding intact cells do not license interpolation.",
+        "Uncertainty at table 0 row 2 explicit cell 2 is correct and location-bound. Gold empty HTML is diagnostic only and must not be scored as proof that the source cell was empty. No candidate alternatives are warranted."
+      ],
+      "uncertainty_locations": [
+        {
+          "table": 0,
+          "row": 2,
+          "cell": 2,
+          "status": "genuine_unrecoverable_source_cell",
+          "alternatives": []
+        }
+      ],
+      "coverage_limits": [
+        "The damage is synthetic, but the final pixels genuinely remove the reading; this is sufficient for a bounded source-loss hold."
+      ]
+    }
+  ],
+  "blockers": [
+    {
+      "id": "SOURCE-A1",
+      "severity": "blocking",
+      "case": "A1",
+      "location": {
+        "table": 0,
+        "row": 1,
+        "cell": 1
+      },
+      "finding": "The drawn tall bar does not establish the gold assertion of identical visible lower-case l and digit 1. A source-only bar transcription is plausible, making mandatory hold attribution unfairly dependent on author hints.",
+      "requested_fix": "Author a genuinely indistinguishable glyph pair in the final raster, retaining location-bound uncertainty and diagnostic-only HTML. Prove identical relevant glyph pixels or outlines under the selected font, independently inspect the final page, then freeze new hashes. Keep eight sources and A1 opening/repeat membership."
+    },
+    {
+      "id": "SOURCE-N2-ENCODING",
+      "severity": "blocking_pending_source_truth_resolution",
+      "case": "N2",
+      "location": {
+        "table": 0,
+        "row": 3,
+        "cell": 1
+      },
+      "finding": "Pixels identify a mu-shaped symbol but do not uniquely identify its Unicode encoding as Greek mu versus micro sign. Author font/native text may explain the encoded choice but cannot be sole authority for strict source-only gold.",
+      "counter_evidence_and_limit": "In-memory specimens in the actual author Times-Roman family render Greek mu upright and micro sign slanted, so they are not identical in that particular renderer. This is supporting provenance, not proof that a source-only reader must know the original font-codepoint mapping.",
+      "requested_fix": "Simplest bounded correction: replace this token with independently distinguishable visible characters before paid execution, regenerate source/gold/renders and re-review. Do not weaken the maintained comparator or silently normalize the gold after answers."
+    },
+    {
+      "id": "COVERAGE-NATIVE",
+      "severity": "blocking_plan_coverage",
+      "cases": [
+        "N1",
+        "N2",
+        "N3"
+      ],
+      "finding": "No native table contains a merged header; all header rowspan/colspan values are 1. No native table contains a literal character requiring HTML entity escaping. The sole ampersand is in R1.",
+      "requested_fix": "Add a visibly merged native header with unambiguous column ownership and an entity-bearing literal token while retaining <=40 cell slots/page and <=8 tables/group. Regenerate and independently review all affected artifacts before freeze."
+    }
+  ],
+  "nonblocking_findings": [
+    {
+      "id": "NOVELTY-TOKEN",
+      "finding": "N2 uses the exact exposed misspelling cataloge from prior native-positive. The page as a whole is new, not a renamed fixture, but a fresh misspelling would improve the intended holdout boundary."
+    },
+    {
+      "id": "EDITORIAL-CUES",
+      "finding": "N3 says left/right for vertically stacked tables and references absent D-02;B; R3 describes absent 1+. These do not change visible cell truth but should be aligned during the single pre-paid source correction if retained as ownership challenges."
+    },
+    {
+      "id": "RASTER-LIMIT",
+      "finding": "Raster corpus varies Helvetica, Times-Roman and Courier plus density/layout, and has low-contrast headers. It does not establish coverage of realistic faint/degraded body text or scan noise. Add a deliberately faint yet independently legible cell if that plan item is intended beyond low-contrast headers."
+    }
+  ],
+  "eligibility_and_novelty": {
+    "eligibility": "Eligible synthetic local authoring supported by generator inspection: invented survey/ledger subjects, no imported private/game text or provider result material.",
+    "prior_source_pointers": [
+      {
+        "path": "/Users/cam/.codex/worktrees/scout092-docweb-literal-20261013/testdata/literal-table-fidelity/confirmation-v2/native-positive/source.json",
+        "sha256": "215a697e99c6b5934f27df124ee7207242eac306c5d1e3527476b8e6aca937ff"
+      },
+      {
+        "path": "/Users/cam/.codex/worktrees/scout092-docweb-literal-20261013/testdata/literal-table-fidelity/confirmation-v2/image-positive/source.json",
+        "sha256": "9e57abd8a22e13999d2e9226839599186de8b65c6f1790c572d6823c4dd1735f"
+      },
+      {
+        "path": "/Users/cam/.codex/worktrees/scout092-docweb-literal-20261013/testdata/literal-table-fidelity/confirmation-v2/ambiguity-negative/source.json",
+        "sha256": "51cb64fe970a8c2ab19f1833b981158d5c36e82f45d9531758237a1c6a74df37"
+      }
+    ],
+    "bounded_comparison": "Reviewed only prior source definitions and provenance README, plus current source/gold/generator. Prior subjects Library accession checklist, Bakery production register and Warehouse shelf card differ from current eight subjects and layouts. Current source PDF/render hashes differ; no byte-identical source reuse was identified. Repeated generic words and cataloge are explicitly noted.",
+    "training_unseen_claim": false,
+    "prior_campaign_unexposed_claim": "Author/parent attestation only; this reviewer did not search provider logs or runtime results.",
+    "scope_limit": "This is a bounded repository provenance review, not a universal copyright, training-contamination or all-files audit.",
+    "prior_source_pdf_render_pointers": [
+      {
+        "path": "/Users/cam/.codex/worktrees/scout092-docweb-literal-20261013/testdata/literal-table-fidelity/confirmation-v2/native-positive/native.pdf",
+        "sha256": "2ca31296935864c72156f7cc708dff71f3ab95f695a64105631daca8b694b742"
+      },
+      {
+        "path": "/Users/cam/.codex/worktrees/scout092-docweb-literal-20261013/testdata/literal-table-fidelity/confirmation-v2/native-positive/image-only.pdf",
+        "sha256": "f7cf54f26671f7a38b38927b62734c9aecb9e69da591d08c5603807800ae2215"
+      },
+      {
+        "path": "/Users/cam/.codex/worktrees/scout092-docweb-literal-20261013/testdata/literal-table-fidelity/confirmation-v2/native-positive/page.png",
+        "sha256": "ab4ff79d69653ffb7907326424b7d24a7380a909585eb77c7b803bf99eab3c0f"
+      },
+      {
+        "path": "/Users/cam/.codex/worktrees/scout092-docweb-literal-20261013/testdata/literal-table-fidelity/confirmation-v2/image-positive/native.pdf",
+        "sha256": "f19cb8b6eec2f7be1b83826e51a9e379f32e6fdf4d15b081d41150d9763c87e5"
+      },
+      {
+        "path": "/Users/cam/.codex/worktrees/scout092-docweb-literal-20261013/testdata/literal-table-fidelity/confirmation-v2/image-positive/image-only.pdf",
+        "sha256": "73fdb16a30c623940899ea8150aadf063d537859edf8b8c1cdbadced2d86ef6b"
+      },
+      {
+        "path": "/Users/cam/.codex/worktrees/scout092-docweb-literal-20261013/testdata/literal-table-fidelity/confirmation-v2/image-positive/page.png",
+        "sha256": "faf29a9b7cdd8758657bf524beed9067230b6c01e16bc4f41c43332c5dc6c2a9"
+      },
+      {
+        "path": "/Users/cam/.codex/worktrees/scout092-docweb-literal-20261013/testdata/literal-table-fidelity/confirmation-v2/ambiguity-negative/native.pdf",
+        "sha256": "5145a04eb39c7234e5a75bd86461e3b02217dcc9cfec0339343fb2c10e85821a"
+      },
+      {
+        "path": "/Users/cam/.codex/worktrees/scout092-docweb-literal-20261013/testdata/literal-table-fidelity/confirmation-v2/ambiguity-negative/image-only.pdf",
+        "sha256": "37cb915b377213a0fe37329bd19cdd20a1589388206a0461122c89418960c079"
+      },
+      {
+        "path": "/Users/cam/.codex/worktrees/scout092-docweb-literal-20261013/testdata/literal-table-fidelity/confirmation-v2/ambiguity-negative/page.png",
+        "sha256": "75458854bfe3331d761c99f9ac67ad35bf1b5c28620074fd31c08ba5d6052adf"
+      }
+    ],
+    "prior_byte_reuse_check": "No current source PDF or final PNG hash equals any of the 9 checked prior source PDFs/PNGs."
+  },
+  "research": {
+    "problem_class": "Visual ground-truth admissibility when distinct Unicode encodings or author labels can exceed what source pixels establish.",
+    "primary_sources": [
+      {
+        "url": "https://www.unicode.org/faq/casemap_charprop.html",
+        "finding": "Micro sign U+00B5 has a compatibility decomposition to Greek small letter mu U+03BC; folding occurs in NFKC/NFKD rather than canonical normalization."
+      },
+      {
+        "url": "https://unicode.org/versions/Unicode16.0.0/core-spec/chapter-7/",
+        "finding": "Micro sign and Greek mu are separately encoded compatibility characters and either is commonly used as a micro sign."
+      }
+    ],
+    "local_test": "Current compare_tables rejects μm-6 versus µm-6 while accepting &amp; versus &#38;. In-memory author-font specimens show different shapes for μ and µ in this specific rendering path; Helvetica l, 1 and | do not reproduce the custom A1 stroke as the asserted identical l/1 pair.",
+    "decision": "Keep exact comparator semantics, fix questionable source/gold design before paid execution, and do not infer hidden encoding from author metadata.",
+    "remaining_uncertainty": "Root may seek another independent source review of the N2 codepoint question; this reviewer does not grant pre-paid clearance for it."
+  },
+  "readiness_limits": [
+    "This source review does not validate provider transport, native served identities, token bounds, campaign ledger, online receipts, consumer export or candidate quality.",
+    "No paid execution, model answer, default activation or downstream adoption is implied by passing file-integrity checks.",
+    "Any changed PDF, render, gold, source policy or encoding invalidates the affected review and requires a new source review; retain this rejected version by exact hashes.",
+    "Root has separately reported a runtime PNG byte-encoding identity mismatch. This source review verifies the author artifact bytes and decoded source pixels only; root must resolve actual-driver byte binding without substituting unreviewed source pixels."
+  ],
+  "recommended_next_action": "Retain this rejected review, make one pre-paid correction pass addressing SOURCE-A1, SOURCE-N2-ENCODING and COVERAGE-NATIVE, then independently re-review changed pixels/golds and recheck the complete freeze before root clearance."
+}

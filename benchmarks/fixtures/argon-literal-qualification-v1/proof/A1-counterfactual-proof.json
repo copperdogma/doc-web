@@ -1,0 +1,32 @@
+{
+  "case_id": "A1",
+  "table_index": 0,
+  "row": 1,
+  "cell": 1,
+  "alternatives": [
+    "K8l4",
+    "K814"
+  ],
+  "font_family": "Andale Mono",
+  "source_font_path": "/System/Library/Fonts/Supplemental/Andale Mono.ttf",
+  "source_font_sha256": "ca436a8f07f6699107542ebe19dcc9478f12aa666927699e9fa10115e7d2ee95",
+  "aliased_glyph_name": "one",
+  "original_l_glyph_name": "l",
+  "font_input_sha256": "ca436a8f07f6699107542ebe19dcc9478f12aa666927699e9fa10115e7d2ee95",
+  "aliased_font_sha256": "40b16bee5530bb8a836f3a79eea1d2752342db1203ced5795c969629fd1cb546",
+  "counterfactual_render_size_px": [
+    240,
+    100
+  ],
+  "pixel_arrays_identical": true,
+  "advance_widths_px": {
+    "lowercase-l": 153.625,
+    "digit-one": 153.625
+  },
+  "counterfactual_png_sha256": {
+    "lowercase-l": "ebc779a61e917a00a296d88806ca3c968e94152880f64c8c7a625040424742f7",
+    "digit-one": "ebc779a61e917a00a296d88806ca3c968e94152880f64c8c7a625040424742f7"
+  },
+  "difference_png_sha256": "3e09475504f64ba19e61aa7a5dc3316f33b2f4f17c275fa52feb481eb322db1b",
+  "interpretation": "Both allowed source readings use the same font glyph and advance at this location; neither is designated as the intended literal."
+}
