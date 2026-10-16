@@ -1,0 +1,9 @@
+{
+  "raw": "{\"images\": [{\"description\": \"Celebrate Saskatchewan 1905-1980 logo at the top center\", \"bbox\": [363, 68, 582, 233]}, {\"description\": \"Seal and signatures block at the bottom\", \"bbox\": [116, 686, 878, 903]}]}",
+  "score": {
+    "pass": true,
+    "score": 0.953,
+    "reason": "box_count=1.00 (2/2) | iou_mean=0.919 | iou_min=0.875 | coverage=1.000 | total=0.953 | matches=[pred[1]<->gold[1] IoU=0.964, pred[0]<->gold[0] IoU=0.875]"
+  },
+  "served": "nvidia/nemotron-3.5-super-vl"
+}

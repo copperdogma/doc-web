@@ -1,0 +1,1279 @@
+{
+  "cap_usd": 15,
+  "spent_usd": 0.49405432999999993,
+  "calls": [
+    {
+      "stage": "native-table",
+      "model": "nvidia/nemotron-3.5-super-vl",
+      "reserved_usd": 0.0557056,
+      "cost_usd": 0.000141,
+      "request": "benchmarks/results/scout096-20261016/request-001.json",
+      "request_sha256": "9435b2b486a4f866fb6771b34a9656d6c31b0c6dbb722046bf633d66950d8dfb",
+      "response": "benchmarks/results/scout096-20261016/response-001.json",
+      "response_sha256": "d37a768f95f2988c3e0a1d1f7d953c99cc5a74dd9474c9f396b5b31926383a35",
+      "status_code": 200,
+      "latency_ms": 748,
+      "usage": {
+        "prompt_tokens": 630,
+        "completion_tokens": 93,
+        "total_tokens": 723,
+        "cost": 0.000141,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0.000141,
+          "upstream_inference_prompt_cost": 9.45e-05,
+          "upstream_inference_completions_cost": 4.65e-05
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 78,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        }
+      },
+      "served_model": "nvidia/nemotron-3.5-super-vl",
+      "provider": "Together"
+    },
+    {
+      "stage": "safety-d1-page-001-000",
+      "model": "liquid/d1-ultra",
+      "reserved_usd": 0.0013762560000000002,
+      "cost_usd": null,
+      "request": "benchmarks/results/scout096-20261016/request-002.json",
+      "request_sha256": "44693ae9d5342594f5b9f8853d2acd7281d1be592ece5778a06eb8aa974ee459",
+      "response": "benchmarks/results/scout096-20261016/response-002.json",
+      "response_sha256": "bc4f8d21720340156560fc04922925ff4dc77e01e524a77dc39ecf12a82da8cd",
+      "status_code": 500,
+      "latency_ms": 1730,
+      "billing_unresolved": true
+    },
+    {
+      "stage": "native-crop",
+      "model": "nvidia/nemotron-3.5-super-vl",
+      "reserved_usd": 0.0557056,
+      "cost_usd": 0.00015405,
+      "request": "benchmarks/results/scout096-20261016/request-003.json",
+      "request_sha256": "8905135c8d25364d59aad4d513a40eb309e8905a6f41faa7d6c02b8b91db4777",
+      "response": "benchmarks/results/scout096-20261016/response-003.json",
+      "response_sha256": "88366d609824cf35f170efc46026dca24de532a706ec1f8f14bdd676e928c63d",
+      "status_code": 200,
+      "latency_ms": 1651,
+      "usage": {
+        "prompt_tokens": 307,
+        "completion_tokens": 216,
+        "total_tokens": 523,
+        "cost": 0.00015405,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0.00015405,
+          "upstream_inference_prompt_cost": 4.605e-05,
+          "upstream_inference_completions_cost": 0.000108
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 170,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        }
+      },
+      "served_model": "nvidia/nemotron-3.5-super-vl",
+      "provider": "Together"
+    },
+    {
+      "stage": "safety-span-page-001-000",
+      "model": "respan/span-02",
+      "reserved_usd": 0.00131072,
+      "cost_usd": 1.451e-05,
+      "request": "benchmarks/results/scout096-20261016/request-004.json",
+      "request_sha256": "a2cbb7453372b8930651f4d726d10d561c46befd28fdf66f89c6e08f5bb232aa",
+      "response": "benchmarks/results/scout096-20261016/response-004.json",
+      "response_sha256": "f4f168f07c176256a7e7f55fbf33a4593eb93e15ea1d050f9163246840d61f99",
+      "status_code": 200,
+      "latency_ms": 3698,
+      "usage": {
+        "input_tokens": 1451,
+        "output_tokens": 0,
+        "cost": 1.451e-05
+      },
+      "served_model": "respan/span-02-20261015",
+      "provider": "Respan"
+    },
+    {
+      "stage": "native-ocr",
+      "model": "nvidia/nemotron-3.5-super-vl",
+      "reserved_usd": 0.0557056,
+      "cost_usd": 0.0001497,
+      "request": "benchmarks/results/scout096-20261016/request-005.json",
+      "request_sha256": "d85810079e10354b2aae0b9f600b0ce3a343f2d24c79012f73b504b20810cfab",
+      "response": "benchmarks/results/scout096-20261016/response-005.json",
+      "response_sha256": "6e19a3ff25726004951895be497c1812886453825e0aefb0cc61571af21d8b06",
+      "status_code": 200,
+      "latency_ms": 859,
+      "usage": {
+        "prompt_tokens": 308,
+        "completion_tokens": 207,
+        "total_tokens": 515,
+        "cost": 0.0001497,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0.0001497,
+          "upstream_inference_prompt_cost": 4.62e-05,
+          "upstream_inference_completions_cost": 0.0001035
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 199,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        }
+      },
+      "served_model": "nvidia/nemotron-3.5-super-vl",
+      "provider": "Together"
+    },
+    {
+      "stage": "safety-control-page-001-000",
+      "model": "gpt-5.5",
+      "reserved_usd": 0.29144,
+      "cost_usd": 0.08297,
+      "request": "benchmarks/results/scout096-20261016/request-006.json",
+      "request_sha256": "c6552abe8937510b58ce41da850dd60c4446e3506a28d5e872b992b44f7cd023",
+      "response": "benchmarks/results/scout096-20261016/response-006.json",
+      "response_sha256": "700161428f4d3f04d5d75ffbcbc962cd7129fb56466b071bc2e66d0fd7aac038",
+      "status_code": 200,
+      "latency_ms": 6582,
+      "usage": {
+        "input_tokens": 16198,
+        "input_tokens_details": {
+          "cache_write_tokens": 0,
+          "cached_tokens": 0
+        },
+        "output_tokens": 66,
+        "output_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "total_tokens": 16264
+      },
+      "served_model": "gpt-5.5-2026-04-23",
+      "provider": "OpenAI"
+    },
+    {
+      "stage": "safety-nemotron-page-001-000",
+      "model": "nvidia/nemotron-3.5-super-vl",
+      "reserved_usd": 0.0557056,
+      "cost_usd": 0.0019099,
+      "request": "benchmarks/results/scout096-20261016/request-007.json",
+      "request_sha256": "5e2ef2d923c833a7e823821784a8f1f45eb74d800f24f68b08976779d116d64b",
+      "response": "benchmarks/results/scout096-20261016/response-007.json",
+      "response_sha256": "becc2d53e61e04946aa2299c956ff9413c990f87a04e226095d6c12eae89278c",
+      "status_code": 200,
+      "latency_ms": 9961,
+      "usage": {
+        "prompt_tokens": 7076,
+        "completion_tokens": 1697,
+        "total_tokens": 8773,
+        "cost": 0.0019099,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0.0019099,
+          "upstream_inference_prompt_cost": 0.0010614,
+          "upstream_inference_completions_cost": 0.0008485
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 1617,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        }
+      },
+      "served_model": "nvidia/nemotron-3.5-super-vl",
+      "provider": "Together"
+    },
+    {
+      "stage": "safety-control-page-004-000",
+      "model": "gpt-5.5",
+      "reserved_usd": 0.29144,
+      "cost_usd": 0.058075,
+      "request": "benchmarks/results/scout096-20261016/request-008.json",
+      "request_sha256": "9c8028bb5677c84232fc9be76b38042ccaab1c714e08c936f24da8d7ad7e3d7f",
+      "response": "benchmarks/results/scout096-20261016/response-008.json",
+      "response_sha256": "4dd20385ce68506c6711876786e2d30a500b2f9f621e3afe9acefb4c499ec4f7",
+      "status_code": 200,
+      "latency_ms": 3265,
+      "usage": {
+        "input_tokens": 11201,
+        "input_tokens_details": {
+          "cache_write_tokens": 0,
+          "cached_tokens": 0
+        },
+        "output_tokens": 69,
+        "output_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "total_tokens": 11270
+      },
+      "served_model": "gpt-5.5-2026-04-23",
+      "provider": "OpenAI"
+    },
+    {
+      "stage": "safety-control-page-009-000",
+      "model": "gpt-5.5",
+      "reserved_usd": 0.29144,
+      "cost_usd": 0.073615,
+      "request": "benchmarks/results/scout096-20261016/request-009.json",
+      "request_sha256": "fd45903906d4baa486eec4fbf793dfd069ffa1be7d40b86581c0a2f00a95af1d",
+      "response": "benchmarks/results/scout096-20261016/response-009.json",
+      "response_sha256": "3758d1b6212208c7e860ee33530f89977bc25431648517ef6d537f3d3c5d56f0",
+      "status_code": 200,
+      "latency_ms": 4334,
+      "usage": {
+        "input_tokens": 14399,
+        "input_tokens_details": {
+          "cache_write_tokens": 0,
+          "cached_tokens": 0
+        },
+        "output_tokens": 54,
+        "output_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "total_tokens": 14453
+      },
+      "served_model": "gpt-5.5-2026-04-23",
+      "provider": "OpenAI"
+    },
+    {
+      "stage": "safety-control-page-012-000",
+      "model": "gpt-5.5",
+      "reserved_usd": 0.29144,
+      "cost_usd": 0.030885,
+      "request": "benchmarks/results/scout096-20261016/request-010.json",
+      "request_sha256": "a99c3518844369f07c25fdf8db413b2014cc2f128ac2fbaaf2fa39e2ae15db5a",
+      "response": "benchmarks/results/scout096-20261016/response-010.json",
+      "response_sha256": "18aa67ec8a2c53149a01deb105650be8e621c3d0d96495015400f8b469e8d3a4",
+      "status_code": 200,
+      "latency_ms": 2656,
+      "usage": {
+        "input_tokens": 5787,
+        "input_tokens_details": {
+          "cache_write_tokens": 0,
+          "cached_tokens": 0
+        },
+        "output_tokens": 65,
+        "output_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "total_tokens": 5852
+      },
+      "served_model": "gpt-5.5-2026-04-23",
+      "provider": "OpenAI"
+    },
+    {
+      "stage": "safety-control-page-012-001",
+      "model": "gpt-5.5",
+      "reserved_usd": 0.29144,
+      "cost_usd": 0.020833,
+      "request": "benchmarks/results/scout096-20261016/request-011.json",
+      "request_sha256": "c2ff48f9ddfbdfe47a50b3a350c4b22f6b276e293164d4841e03840b13d061ab",
+      "response": "benchmarks/results/scout096-20261016/response-011.json",
+      "response_sha256": "aea089edcc907891471ca5a969d9e1bd23642d607b27f80b5f18870e67bbb5f1",
+      "status_code": 200,
+      "latency_ms": 5195,
+      "usage": {
+        "input_tokens": 6329,
+        "input_tokens_details": {
+          "cache_write_tokens": 0,
+          "cached_tokens": 2816
+        },
+        "output_tokens": 62,
+        "output_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "total_tokens": 6391
+      },
+      "served_model": "gpt-5.5-2026-04-23",
+      "provider": "OpenAI"
+    },
+    {
+      "stage": "table-ambiguity-negative-candidate",
+      "model": "nvidia/nemotron-3.5-super-vl",
+      "reserved_usd": 0.0557056,
+      "cost_usd": 0.00119565,
+      "request": "benchmarks/results/scout096-20261016/request-012.json",
+      "request_sha256": "dc022a94bc4087ba18dc061da4135cee1c536d12b134a1180db62b0a8dbc8544",
+      "response": "benchmarks/results/scout096-20261016/response-012.json",
+      "response_sha256": "a412382f569fb3ae456c249421058111c058a2148d194ce57e745caba75e62f9",
+      "status_code": 200,
+      "latency_ms": 4230,
+      "usage": {
+        "prompt_tokens": 3671,
+        "completion_tokens": 1290,
+        "total_tokens": 4961,
+        "cost": 0.00119565,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0.00119565,
+          "upstream_inference_prompt_cost": 0.00055065,
+          "upstream_inference_completions_cost": 0.000645
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 1004,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        }
+      },
+      "served_model": "nvidia/nemotron-3.5-super-vl",
+      "provider": "Together"
+    },
+    {
+      "stage": "crop-screen-Image011-candidate",
+      "model": "nvidia/nemotron-3.5-super-vl",
+      "reserved_usd": 0.0557056,
+      "cost_usd": 0.00185245,
+      "request": "benchmarks/results/scout096-20261016/request-013.json",
+      "request_sha256": "d5e666e3ce93eee08935d9b2ab1a0d03c999397e9656cf35b18f6cca52767b14",
+      "response": "benchmarks/results/scout096-20261016/response-013.json",
+      "response_sha256": "ee83e27a7dd3b1f858e88c65cda2f74a898ffc82a04a0a8ce71c29de5b9f289f",
+      "status_code": 200,
+      "latency_ms": 8125,
+      "usage": {
+        "prompt_tokens": 3333,
+        "completion_tokens": 2705,
+        "total_tokens": 6038,
+        "cost": 0.00185245,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0.00185245,
+          "upstream_inference_prompt_cost": 0.00049995,
+          "upstream_inference_completions_cost": 0.0013525
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 2616,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        }
+      },
+      "served_model": "nvidia/nemotron-3.5-super-vl",
+      "provider": "Together"
+    },
+    {
+      "stage": "table-ambiguity-negative-control",
+      "model": "gpt-6-astra",
+      "reserved_usd": 0.7346,
+      "cost_usd": 0.0722925,
+      "request": "benchmarks/results/scout096-20261016/request-014.json",
+      "request_sha256": "f327844def7f4d7ad49114964b4302016896b14ee8a31b6bb15a0b0ee5f7a386",
+      "response": "benchmarks/results/scout096-20261016/response-014.json",
+      "response_sha256": "5580f334d9a3c168889b08669474f07a853c9bc1cd448b667d306457ee7dffe7",
+      "status_code": 200,
+      "latency_ms": 5356,
+      "usage": {
+        "input_tokens": 5016,
+        "input_tokens_details": {
+          "cache_write_tokens": 5013,
+          "cached_tokens": 0
+        },
+        "output_tokens": 192,
+        "output_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "total_tokens": 5208
+      },
+      "served_model": "gpt-6-astra",
+      "provider": "OpenAI"
+    },
+    {
+      "stage": "safety-span-page-004-000",
+      "model": "respan/span-02",
+      "reserved_usd": 0.00131072,
+      "cost_usd": 1.429e-05,
+      "request": "benchmarks/results/scout096-20261016/request-015.json",
+      "request_sha256": "7e63ea9e70bf74cc25e54f71fed59c1062bc9061ff89c522a06b8eee8111611d",
+      "response": "benchmarks/results/scout096-20261016/response-015.json",
+      "response_sha256": "4a5d8874367cdbf37120eccab668124c470f2025a2dc970e8da8d6076c688175",
+      "status_code": 200,
+      "latency_ms": 1492,
+      "usage": {
+        "input_tokens": 1429,
+        "output_tokens": 0,
+        "cost": 1.429e-05
+      },
+      "served_model": "respan/span-02-20261015",
+      "provider": "Respan"
+    },
+    {
+      "stage": "crop-screen-Image011-control",
+      "model": "gemini-3-flash-preview",
+      "reserved_usd": 0.062152,
+      "cost_usd": 0.0096245,
+      "request": "benchmarks/results/scout096-20261016/request-016.json",
+      "request_sha256": "242f8833652c89a4b1ac2591289afba7bc19e1ca44556e2c570f5f4648e54994",
+      "response": "benchmarks/results/scout096-20261016/response-016.json",
+      "response_sha256": "5b0744aff1d6a04f940adc288840dd78c6dc58e44ce9e417c90498d942bf2558",
+      "status_code": 200,
+      "latency_ms": 15481,
+      "usage": {
+        "promptTokenCount": 1333,
+        "candidatesTokenCount": 103,
+        "totalTokenCount": 4319,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 231
+          },
+          {
+            "modality": "IMAGE",
+            "tokenCount": 1102
+          }
+        ],
+        "thoughtsTokenCount": 2883,
+        "serviceTier": "standard"
+      },
+      "served_model": "gemini-3-flash-preview",
+      "provider": "Google"
+    },
+    {
+      "stage": "safety-nemotron-page-004-000",
+      "model": "nvidia/nemotron-3.5-super-vl",
+      "reserved_usd": 0.0557056,
+      "cost_usd": 0.00142745,
+      "request": "benchmarks/results/scout096-20261016/request-017.json",
+      "request_sha256": "5abe8dd4710ca1ea6fab002212ac5c7dfd58ca59e379aa3b52e998d11b2d47f7",
+      "response": "benchmarks/results/scout096-20261016/response-017.json",
+      "response_sha256": "9dbbf81ec14a927907979eb4af7e911a50407c54913485a8ed86258ceb77ef43",
+      "status_code": 200,
+      "latency_ms": 4055,
+      "usage": {
+        "prompt_tokens": 7123,
+        "completion_tokens": 718,
+        "total_tokens": 7841,
+        "cost": 0.00142745,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0.00142745,
+          "upstream_inference_prompt_cost": 0.00106845,
+          "upstream_inference_completions_cost": 0.000359
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 662,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        }
+      },
+      "served_model": "nvidia/nemotron-3.5-super-vl",
+      "provider": "Together"
+    },
+    {
+      "stage": "safety-d1-page-001-000-recovery1",
+      "model": "liquid/d1-ultra",
+      "reserved_usd": 0.0013762560000000002,
+      "cost_usd": null,
+      "request": "benchmarks/results/scout096-20261016/request-018.json",
+      "request_sha256": "44693ae9d5342594f5b9f8853d2acd7281d1be592ece5778a06eb8aa974ee459",
+      "response": "benchmarks/results/scout096-20261016/response-018.json",
+      "response_sha256": "d17677816ada9c1625aa4153f18ece2ee17a9a37f2344de96045d5f803ebf042",
+      "status_code": 413,
+      "latency_ms": 2609,
+      "billing_unresolved": true
+    },
+    {
+      "stage": "ocr-barney-candidate",
+      "model": "nvidia/nemotron-3.5-super-vl",
+      "reserved_usd": 0.0557056,
+      "cost_usd": 0.00216975,
+      "request": "benchmarks/results/scout096-20261016/request-019.json",
+      "request_sha256": "36c9b8bb0049f4b99a4fa81e6973bf85db1698dc43deecdb5050fd202403aedd",
+      "response": "benchmarks/results/scout096-20261016/response-019.json",
+      "response_sha256": "89ac35b4ddaa66cb6b37c5e6c24cf27d2fc8d826c8368297173dfdf5298011eb",
+      "status_code": 200,
+      "latency_ms": 26601,
+      "usage": {
+        "prompt_tokens": 1275,
+        "completion_tokens": 3957,
+        "total_tokens": 5232,
+        "cost": 0.00216975,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0.00216975,
+          "upstream_inference_prompt_cost": 0.00019125,
+          "upstream_inference_completions_cost": 0.0019785
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 3617,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        }
+      },
+      "served_model": "nvidia/nemotron-3.5-super-vl",
+      "provider": "Together"
+    },
+    {
+      "stage": "table-image-positive-candidate",
+      "model": "nvidia/nemotron-3.5-super-vl",
+      "reserved_usd": 0.0557056,
+      "cost_usd": 0.00291865,
+      "request": "benchmarks/results/scout096-20261016/request-020.json",
+      "request_sha256": "39edd292b27ade7f92836b6996ea6776e8fc22f75c760456757ca841ff15d41c",
+      "response": "benchmarks/results/scout096-20261016/response-020.json",
+      "response_sha256": "4c14a73d78f40b794eeb63cf7b2d55608d26909982176670a7108e93622489e9",
+      "status_code": 200,
+      "latency_ms": 17547,
+      "usage": {
+        "prompt_tokens": 3671,
+        "completion_tokens": 4736,
+        "total_tokens": 8407,
+        "cost": 0.00291865,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0.00291865,
+          "upstream_inference_prompt_cost": 0.00055065,
+          "upstream_inference_completions_cost": 0.002368
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 4252,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        }
+      },
+      "served_model": "nvidia/nemotron-3.5-super-vl",
+      "provider": "Together"
+    },
+    {
+      "stage": "ocr-barney-control",
+      "model": "gemini-3.7-flash",
+      "reserved_usd": 0.08094,
+      "cost_usd": 0.01931175,
+      "request": "benchmarks/results/scout096-20261016/request-021.json",
+      "request_sha256": "367d52133d49c5a8433552634fd7b72e11cfca7ca316539d63ba9699c4892d2b",
+      "response": "benchmarks/results/scout096-20261016/response-021.json",
+      "response_sha256": "cfcfc26cd2440ad397ae285d9d186f1515d6f579b7f5fd0aaab55c8c8e19b2c1",
+      "status_code": 200,
+      "latency_ms": 39506,
+      "usage": {
+        "promptTokenCount": 2029,
+        "candidatesTokenCount": 388,
+        "totalTokenCount": 6773,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 956
+          },
+          {
+            "modality": "IMAGE",
+            "tokenCount": 1073
+          }
+        ],
+        "thoughtsTokenCount": 4356,
+        "serviceTier": "standard"
+      },
+      "served_model": "gemini-3.8-flash",
+      "provider": "Google"
+    },
+    {
+      "stage": "safety-span-page-009-000",
+      "model": "respan/span-02",
+      "reserved_usd": 0.00131072,
+      "cost_usd": 1.453e-05,
+      "request": "benchmarks/results/scout096-20261016/request-022.json",
+      "request_sha256": "6ddac2b96e303ff3d965705c8a74413f2a886af8136b2541fa41f2d3ab722bf2",
+      "response": "benchmarks/results/scout096-20261016/response-022.json",
+      "response_sha256": "5bffcca755cf779eb2a0b7e8bcfe7fccb6679a2efeb02d7a719cf62259d9503f",
+      "status_code": 200,
+      "latency_ms": 2049,
+      "usage": {
+        "input_tokens": 1453,
+        "output_tokens": 0,
+        "cost": 1.453e-05
+      },
+      "served_model": "respan/span-02-20261015",
+      "provider": "Respan"
+    },
+    {
+      "stage": "table-image-positive-control",
+      "model": "gpt-6-astra",
+      "reserved_usd": 0.7346,
+      "cost_usd": 0.0802925,
+      "request": "benchmarks/results/scout096-20261016/request-023.json",
+      "request_sha256": "e6235031e3cac69a3f5d01f343d3353c728a73bc7d4e0fa043959507638e9d30",
+      "response": "benchmarks/results/scout096-20261016/response-023.json",
+      "response_sha256": "c2d7ff9b8b7ef00261434e025f5438aba1b4bd4a69effd93904a0e7668494e21",
+      "status_code": 200,
+      "latency_ms": 16051,
+      "usage": {
+        "input_tokens": 5016,
+        "input_tokens_details": {
+          "cache_write_tokens": 5013,
+          "cached_tokens": 0
+        },
+        "output_tokens": 352,
+        "output_tokens_details": {
+          "reasoning_tokens": 109
+        },
+        "total_tokens": 5368
+      },
+      "served_model": "gpt-6-astra",
+      "provider": "OpenAI"
+    },
+    {
+      "stage": "safety-nemotron-page-009-000",
+      "model": "nvidia/nemotron-3.5-super-vl",
+      "reserved_usd": 0.0557056,
+      "cost_usd": 0.00133145,
+      "request": "benchmarks/results/scout096-20261016/request-024.json",
+      "request_sha256": "2943b08c905b5f2e3865166989bfce97d1a37336a76d97d90e8b4ff6f5cb6ff2",
+      "response": "benchmarks/results/scout096-20261016/response-024.json",
+      "response_sha256": "1a9d90a280879ab51c4b7f6c0ea197a01240d049876d2661d0c27588389419aa",
+      "status_code": 200,
+      "latency_ms": 5034,
+      "usage": {
+        "prompt_tokens": 7153,
+        "completion_tokens": 517,
+        "total_tokens": 7670,
+        "cost": 0.00133145,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0.00133145,
+          "upstream_inference_prompt_cost": 0.00107295,
+          "upstream_inference_completions_cost": 0.0002585
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 455,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        }
+      },
+      "served_model": "nvidia/nemotron-3.5-super-vl",
+      "provider": "Together"
+    },
+    {
+      "stage": "crop-full-Image000-candidate",
+      "model": "nvidia/nemotron-3.5-super-vl",
+      "reserved_usd": 0.0557056,
+      "cost_usd": null,
+      "request": "benchmarks/results/scout096-20261016/request-025.json",
+      "request_sha256": "f85457a13f2637c3c31fa4fba9ceaff4f4da4691ba755f639ea8d715c714279d",
+      "response": "benchmarks/results/scout096-20261016/response-025.json",
+      "response_sha256": "4cae0dedb1fa90affc140a75f94336499b6dfe439884bb24c7bde0537e455055",
+      "status_code": 200,
+      "latency_ms": 962,
+      "billing_unresolved": true
+    },
+    {
+      "stage": "safety-span-page-012-000",
+      "model": "respan/span-02",
+      "reserved_usd": 0.00131072,
+      "cost_usd": 1.437e-05,
+      "request": "benchmarks/results/scout096-20261016/request-026.json",
+      "request_sha256": "4d4cc2288db85d0a8ea0718c5de6250c7d44613063f55e891424c6b278b417f5",
+      "response": "benchmarks/results/scout096-20261016/response-026.json",
+      "response_sha256": "d7f33cbfddfdbbfb8579815c5a354f128d163e3bf84ea2c461f8350a7115f149",
+      "status_code": 200,
+      "latency_ms": 1170,
+      "usage": {
+        "input_tokens": 1437,
+        "output_tokens": 0,
+        "cost": 1.437e-05
+      },
+      "served_model": "respan/span-02-20261015",
+      "provider": "Respan"
+    },
+    {
+      "stage": "safety-nemotron-page-012-000",
+      "model": "nvidia/nemotron-3.5-super-vl",
+      "reserved_usd": 0.0557056,
+      "cost_usd": null,
+      "request": "benchmarks/results/scout096-20261016/request-027.json",
+      "request_sha256": "8e89e236f76ec8957d8dd56ae20eb2ba1384b91c6b17948a4466bf401fe28bcc",
+      "response": "benchmarks/results/scout096-20261016/response-027.json",
+      "response_sha256": "191324d5324fb223bc7eaa77a8e01d07af6a02df77f79ca2473ee61d50e0f603",
+      "status_code": 200,
+      "latency_ms": 925,
+      "billing_unresolved": true
+    },
+    {
+      "stage": "safety-span-page-012-001",
+      "model": "respan/span-02",
+      "reserved_usd": 0.00131072,
+      "cost_usd": 1.433e-05,
+      "request": "benchmarks/results/scout096-20261016/request-028.json",
+      "request_sha256": "d15e0c5c79a232c227872314f7bdaf5bd6644a005170f06065e4a495faae332d",
+      "response": "benchmarks/results/scout096-20261016/response-028.json",
+      "response_sha256": "732e93547d29857122b207ffde71c6c699a0ec1bc39e0035e1bd5bb829d9362c",
+      "status_code": 200,
+      "latency_ms": 1610,
+      "usage": {
+        "input_tokens": 1433,
+        "output_tokens": 0,
+        "cost": 1.433e-05
+      },
+      "served_model": "respan/span-02-20261015",
+      "provider": "Respan"
+    },
+    {
+      "stage": "crop-full-Image000-candidate-recovery1",
+      "model": "nvidia/nemotron-3.5-super-vl",
+      "reserved_usd": 0.0557056,
+      "cost_usd": null,
+      "request": "benchmarks/results/scout096-20261016/request-029.json",
+      "request_sha256": "f85457a13f2637c3c31fa4fba9ceaff4f4da4691ba755f639ea8d715c714279d",
+      "response": "benchmarks/results/scout096-20261016/response-029.json",
+      "response_sha256": "8a7f98ea5809b171d7df5357197b146db05a3805aa7283b82bcdb42caa8216a2",
+      "status_code": 200,
+      "latency_ms": 1037,
+      "billing_unresolved": true
+    },
+    {
+      "stage": "safety-nemotron-page-012-000-recovery1",
+      "model": "nvidia/nemotron-3.5-super-vl",
+      "reserved_usd": 0.0557056,
+      "cost_usd": null,
+      "request": "benchmarks/results/scout096-20261016/request-030.json",
+      "request_sha256": "8e89e236f76ec8957d8dd56ae20eb2ba1384b91c6b17948a4466bf401fe28bcc",
+      "response": "benchmarks/results/scout096-20261016/response-030.json",
+      "response_sha256": "2b579ac40e8b4bfd3a989eb97c35a3b491eae798b6028836b8f6d57b0f9c5fba",
+      "status_code": 200,
+      "latency_ms": 1112,
+      "billing_unresolved": true
+    },
+    {
+      "stage": "safety-nemotron-page-012-000-recovery2",
+      "model": "nvidia/nemotron-3.5-super-vl",
+      "reserved_usd": 0.0557056,
+      "cost_usd": 0.0010658,
+      "request": "benchmarks/results/scout096-recovery1-20261016/request-031.json",
+      "request_sha256": "8e89e236f76ec8957d8dd56ae20eb2ba1384b91c6b17948a4466bf401fe28bcc",
+      "response": "benchmarks/results/scout096-recovery1-20261016/response-031.json",
+      "response_sha256": "244630947f779226a5b8b0660a48bca8f0fdb3352decf016dcad2aaa74f13313",
+      "status_code": 200,
+      "latency_ms": 2993,
+      "usage": {
+        "prompt_tokens": 4942,
+        "completion_tokens": 649,
+        "total_tokens": 5591,
+        "cost": 0.0010658,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0.0010658,
+          "upstream_inference_prompt_cost": 0.0007413,
+          "upstream_inference_completions_cost": 0.0003245
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 581,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        }
+      },
+      "served_model": "nvidia/nemotron-3.5-super-vl",
+      "provider": "Together"
+    },
+    {
+      "stage": "crop-epoch1-Image000-candidate",
+      "model": "nvidia/nemotron-3.5-super-vl",
+      "reserved_usd": 0.0557056,
+      "cost_usd": 0.00115,
+      "request": "benchmarks/results/scout096-recovery1-20261016/request-032.json",
+      "request_sha256": "f85457a13f2637c3c31fa4fba9ceaff4f4da4691ba755f639ea8d715c714279d",
+      "response": "benchmarks/results/scout096-recovery1-20261016/response-032.json",
+      "response_sha256": "7c91b7ffa429efd16be607c8c41ac20c440ad1c2c0ac5ecc909edc41526462a6",
+      "status_code": 200,
+      "latency_ms": 3873,
+      "usage": {
+        "prompt_tokens": 3270,
+        "completion_tokens": 1319,
+        "total_tokens": 4589,
+        "cost": 0.00115,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0.00115,
+          "upstream_inference_prompt_cost": 0.0004905,
+          "upstream_inference_completions_cost": 0.0006595
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 1219,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        }
+      },
+      "served_model": "nvidia/nemotron-3.5-super-vl",
+      "provider": "Together"
+    },
+    {
+      "stage": "crop-epoch1-Image000-control",
+      "model": "gemini-3-flash-preview",
+      "reserved_usd": 0.062152,
+      "cost_usd": 0.0056345,
+      "request": "benchmarks/results/scout096-recovery1-20261016/request-033.json",
+      "request_sha256": "6239875f0624ff1eb55c31f8a386a40e031168b01f5491acbc81906c2a0651c9",
+      "response": "benchmarks/results/scout096-recovery1-20261016/response-033.json",
+      "response_sha256": "68eb77b821586831c7e8530501a78195307dfef5ed653794a5c163304c79c964",
+      "status_code": 200,
+      "latency_ms": 9845,
+      "usage": {
+        "promptTokenCount": 1333,
+        "candidatesTokenCount": 92,
+        "totalTokenCount": 2989,
+        "promptTokensDetails": [
+          {
+            "modality": "IMAGE",
+            "tokenCount": 1102
+          },
+          {
+            "modality": "TEXT",
+            "tokenCount": 231
+          }
+        ],
+        "thoughtsTokenCount": 1564,
+        "serviceTier": "standard"
+      },
+      "served_model": "gemini-3-flash-preview",
+      "provider": "Google"
+    },
+    {
+      "stage": "safety-nemotron-page-012-001-epoch1",
+      "model": "nvidia/nemotron-3.5-super-vl",
+      "reserved_usd": 0.0557056,
+      "cost_usd": 0.00119045,
+      "request": "benchmarks/results/scout096-recovery1-20261016/request-034.json",
+      "request_sha256": "527b1709f780eae6792c94a988e9499181e6446cbd20f440345279739aa8d55a",
+      "response": "benchmarks/results/scout096-recovery1-20261016/response-034.json",
+      "response_sha256": "4e4de207ea307f56237797b128f12128f086d495d1733185537f6fc05c8e728c",
+      "status_code": 200,
+      "latency_ms": 8708,
+      "usage": {
+        "prompt_tokens": 5393,
+        "completion_tokens": 763,
+        "total_tokens": 6156,
+        "cost": 0.00119045,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0.00119045,
+          "upstream_inference_prompt_cost": 0.00080895,
+          "upstream_inference_completions_cost": 0.0003815
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 686,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        }
+      },
+      "served_model": "nvidia/nemotron-3.5-super-vl",
+      "provider": "Together"
+    },
+    {
+      "stage": "crop-epoch1-Image001-candidate",
+      "model": "nvidia/nemotron-3.5-super-vl",
+      "reserved_usd": 0.0557056,
+      "cost_usd": 0.00181295,
+      "request": "benchmarks/results/scout096-recovery1-20261016/request-035.json",
+      "request_sha256": "890a345f6291b9ffcef8e44b70b1257cdeb6d754f0b26f11e8104a6f008e8efc",
+      "response": "benchmarks/results/scout096-recovery1-20261016/response-035.json",
+      "response_sha256": "87687e483f10c0a891d3dfa977620262cfa07c188af7da2540cc090869595518",
+      "status_code": 200,
+      "latency_ms": 6521,
+      "usage": {
+        "prompt_tokens": 3333,
+        "completion_tokens": 2626,
+        "total_tokens": 5959,
+        "cost": 0.00181295,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0.00181295,
+          "upstream_inference_prompt_cost": 0.00049995,
+          "upstream_inference_completions_cost": 0.001313
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 2579,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        }
+      },
+      "served_model": "nvidia/nemotron-3.5-super-vl",
+      "provider": "Together"
+    },
+    {
+      "stage": "crop-epoch1-Image001-control",
+      "model": "gemini-3-flash-preview",
+      "reserved_usd": 0.062152,
+      "cost_usd": 0.0040325,
+      "request": "benchmarks/results/scout096-recovery1-20261016/request-036.json",
+      "request_sha256": "01b4129b1c68907267cb3e71fc64bd3517497b103f7c28fb085982eef0f5e296",
+      "response": "benchmarks/results/scout096-recovery1-20261016/response-036.json",
+      "response_sha256": "fa5c1683a38e2e516f6449d965cdc950709c7b670f872c1c74b7137d784747f0",
+      "status_code": 200,
+      "latency_ms": 5993,
+      "usage": {
+        "promptTokenCount": 1333,
+        "candidatesTokenCount": 70,
+        "totalTokenCount": 2455,
+        "promptTokensDetails": [
+          {
+            "modality": "IMAGE",
+            "tokenCount": 1102
+          },
+          {
+            "modality": "TEXT",
+            "tokenCount": 231
+          }
+        ],
+        "thoughtsTokenCount": 1052,
+        "serviceTier": "standard"
+      },
+      "served_model": "gemini-3-flash-preview",
+      "provider": "Google"
+    },
+    {
+      "stage": "crop-epoch1-Image003-candidate",
+      "model": "nvidia/nemotron-3.5-super-vl",
+      "reserved_usd": 0.0557056,
+      "cost_usd": 0.00065545,
+      "request": "benchmarks/results/scout096-recovery1-20261016/request-037.json",
+      "request_sha256": "20d4c2bf7bfe0ea4d73a2e049b2e184e4ceedecbcc2b81ca168e7743165b9834",
+      "response": "benchmarks/results/scout096-recovery1-20261016/response-037.json",
+      "response_sha256": "440f668413129204b398e5fa8feb48a7472d0f208becaf71b2eaa5d7fb4b6744",
+      "status_code": 200,
+      "latency_ms": 1699,
+      "usage": {
+        "prompt_tokens": 3333,
+        "completion_tokens": 311,
+        "total_tokens": 3644,
+        "cost": 0.00065545,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0.00065545,
+          "upstream_inference_prompt_cost": 0.00049995,
+          "upstream_inference_completions_cost": 0.0001555
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 268,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        }
+      },
+      "served_model": "nvidia/nemotron-3.5-super-vl",
+      "provider": "Together"
+    },
+    {
+      "stage": "crop-epoch1-Image003-control",
+      "model": "gemini-3-flash-preview",
+      "reserved_usd": 0.062152,
+      "cost_usd": 0.0021395,
+      "request": "benchmarks/results/scout096-recovery1-20261016/request-038.json",
+      "request_sha256": "0678d76e8bbc40b8867facb609d017f95020e5bcb53519e7bb663fe951769366",
+      "response": "benchmarks/results/scout096-recovery1-20261016/response-038.json",
+      "response_sha256": "9453895fe293e1bb0f46f557a01555cfb5b482cab60b375c9266b04f131760eb",
+      "status_code": 200,
+      "latency_ms": 4018,
+      "usage": {
+        "promptTokenCount": 1333,
+        "candidatesTokenCount": 53,
+        "totalTokenCount": 1824,
+        "promptTokensDetails": [
+          {
+            "modality": "IMAGE",
+            "tokenCount": 1102
+          },
+          {
+            "modality": "TEXT",
+            "tokenCount": 231
+          }
+        ],
+        "thoughtsTokenCount": 438,
+        "serviceTier": "standard"
+      },
+      "served_model": "gemini-3-flash-preview",
+      "provider": "Google"
+    },
+    {
+      "stage": "crop-epoch1-Image008-candidate",
+      "model": "nvidia/nemotron-3.5-super-vl",
+      "reserved_usd": 0.0557056,
+      "cost_usd": 0.00093595,
+      "request": "benchmarks/results/scout096-recovery1-20261016/request-039.json",
+      "request_sha256": "6ad755a54c3eb0a0e3a953666c3ca5efce7775e1ffc3410f469da99d973b4ce6",
+      "response": "benchmarks/results/scout096-recovery1-20261016/response-039.json",
+      "response_sha256": "a2013faa5e1bc8928b2981ea9e3ec2e9109cc2b639cbbfbfae5326c5d8c10e4d",
+      "status_code": 200,
+      "latency_ms": 4510,
+      "usage": {
+        "prompt_tokens": 3333,
+        "completion_tokens": 872,
+        "total_tokens": 4205,
+        "cost": 0.00093595,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0.00093595,
+          "upstream_inference_prompt_cost": 0.00049995,
+          "upstream_inference_completions_cost": 0.000436
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 811,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        }
+      },
+      "served_model": "nvidia/nemotron-3.5-super-vl",
+      "provider": "Together"
+    },
+    {
+      "stage": "crop-epoch1-Image008-control",
+      "model": "gemini-3-flash-preview",
+      "reserved_usd": 0.062152,
+      "cost_usd": 0.0030125,
+      "request": "benchmarks/results/scout096-recovery1-20261016/request-040.json",
+      "request_sha256": "1dfc824d33f35fa451b526b795882a3b0d62f3ac68b43b41e56fa667c7aa9664",
+      "response": "benchmarks/results/scout096-recovery1-20261016/response-040.json",
+      "response_sha256": "987921a1abf29ed8939f307e948794e21a7f2cc201d6c91d263d38bcdf1fb447",
+      "status_code": 200,
+      "latency_ms": 5307,
+      "usage": {
+        "promptTokenCount": 1333,
+        "candidatesTokenCount": 65,
+        "totalTokenCount": 2115,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 231
+          },
+          {
+            "modality": "IMAGE",
+            "tokenCount": 1102
+          }
+        ],
+        "thoughtsTokenCount": 717,
+        "serviceTier": "standard"
+      },
+      "served_model": "gemini-3-flash-preview",
+      "provider": "Google"
+    },
+    {
+      "stage": "crop-epoch1-Image013-candidate",
+      "model": "nvidia/nemotron-3.5-super-vl",
+      "reserved_usd": 0.0557056,
+      "cost_usd": 0.00124545,
+      "request": "benchmarks/results/scout096-recovery1-20261016/request-041.json",
+      "request_sha256": "8b8eb282caf20938c6b76d5e322127e9deed9ff65b9c4d1b3026b29e6d5b8e83",
+      "response": "benchmarks/results/scout096-recovery1-20261016/response-041.json",
+      "response_sha256": "5b0225ff88b0a328cf0466e6d0a0218fd4415ba042b908d6836cd8d5e2e8c6f4",
+      "status_code": 200,
+      "latency_ms": 5440,
+      "usage": {
+        "prompt_tokens": 3333,
+        "completion_tokens": 1491,
+        "total_tokens": 4824,
+        "cost": 0.00124545,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0.00124545,
+          "upstream_inference_prompt_cost": 0.00049995,
+          "upstream_inference_completions_cost": 0.0007455
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 1431,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        }
+      },
+      "served_model": "nvidia/nemotron-3.5-super-vl",
+      "provider": "Together"
+    },
+    {
+      "stage": "crop-epoch1-Image013-control",
+      "model": "gemini-3-flash-preview",
+      "reserved_usd": 0.062152,
+      "cost_usd": 0.0036845,
+      "request": "benchmarks/results/scout096-recovery1-20261016/request-042.json",
+      "request_sha256": "c873916ab505ac44160df5787c20d3486ddd02c31f292d0834eda31e982dcf43",
+      "response": "benchmarks/results/scout096-recovery1-20261016/response-042.json",
+      "response_sha256": "a891a3a0fbacb964f37f18bce642edaf3b3757034fc8e0499d35e1ae162a7548",
+      "status_code": 200,
+      "latency_ms": 6544,
+      "usage": {
+        "promptTokenCount": 1333,
+        "candidatesTokenCount": 76,
+        "totalTokenCount": 2339,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 231
+          },
+          {
+            "modality": "IMAGE",
+            "tokenCount": 1102
+          }
+        ],
+        "thoughtsTokenCount": 930,
+        "serviceTier": "standard"
+      },
+      "served_model": "gemini-3-flash-preview",
+      "provider": "Google"
+    },
+    {
+      "stage": "crop-epoch1-Image020-candidate",
+      "model": "nvidia/nemotron-3.5-super-vl",
+      "reserved_usd": 0.0557056,
+      "cost_usd": 0.00071995,
+      "request": "benchmarks/results/scout096-recovery1-20261016/request-043.json",
+      "request_sha256": "3f0740a8ad9475cf77e2f795909b4ead0f5f1ceb49dbcb9dd8fee396b6bfbabe",
+      "response": "benchmarks/results/scout096-recovery1-20261016/response-043.json",
+      "response_sha256": "d9a613e290fd485ebb03572b93c894bf269f294d4492ae069fa00cfabc62fdd3",
+      "status_code": 200,
+      "latency_ms": 2156,
+      "usage": {
+        "prompt_tokens": 3333,
+        "completion_tokens": 440,
+        "total_tokens": 3773,
+        "cost": 0.00071995,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0.00071995,
+          "upstream_inference_prompt_cost": 0.00049995,
+          "upstream_inference_completions_cost": 0.00022
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 369,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        }
+      },
+      "served_model": "nvidia/nemotron-3.5-super-vl",
+      "provider": "Together"
+    },
+    {
+      "stage": "crop-epoch1-Image020-control",
+      "model": "gemini-3-flash-preview",
+      "reserved_usd": 0.062152,
+      "cost_usd": 0.0055535,
+      "request": "benchmarks/results/scout096-recovery1-20261016/request-044.json",
+      "request_sha256": "15cf72c367c960515e3e53a7f220a89c9518462615802099d50d467adda099d8",
+      "response": "benchmarks/results/scout096-recovery1-20261016/response-044.json",
+      "response_sha256": "2d72ab829e21b1af72f11d650e15c26785e8ab80108e5ecabe92a6ba2facddd3",
+      "status_code": 200,
+      "latency_ms": 8256,
+      "usage": {
+        "promptTokenCount": 1333,
+        "candidatesTokenCount": 96,
+        "totalTokenCount": 2962,
+        "promptTokensDetails": [
+          {
+            "modality": "IMAGE",
+            "tokenCount": 1102
+          },
+          {
+            "modality": "TEXT",
+            "tokenCount": 231
+          }
+        ],
+        "thoughtsTokenCount": 1533,
+        "serviceTier": "standard"
+      },
+      "served_model": "gemini-3-flash-preview",
+      "provider": "Google"
+    }
+  ],
+  "closed": true,
+  "unknown_exposure_usd": 0.22557491200000002,
+  "recovery_epoch": "1 additive continuation; original closed ledger unchanged",
+  "stop_reason": "Source image001 inspected: candidate bboxbottom353 omits date1887-1987 below353, decisive source-completeness miss despite tolerant scorerpass; stop further crop dispatch."
+}

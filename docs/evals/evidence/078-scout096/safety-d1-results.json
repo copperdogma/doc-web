@@ -1,0 +1,22 @@
+[
+  {
+    "key": "page-001-000",
+    "status_code": 500,
+    "latency_ms": 1730,
+    "request_sha256": "44693ae9d5342594f5b9f8853d2acd7281d1be592ece5778a06eb8aa974ee459",
+    "error": "Server error '500 Internal Server Error' for url 'https://openrouter.ai/api/alpha/decisions'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/500",
+    "semantic": "unmeasured",
+    "elapsed_including_queue_ms": 1824,
+    "receipt_response": "benchmarks/results/scout096-20261016/response-002.json"
+  },
+  {
+    "key": "page-001-000",
+    "status_code": 413,
+    "latency_ms": 2609,
+    "request_sha256": "44693ae9d5342594f5b9f8853d2acd7281d1be592ece5778a06eb8aa974ee459",
+    "error": "Client error '413 Payload Too Large' for url 'https://openrouter.ai/api/alpha/decisions'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/413",
+    "semantic": "unmeasured",
+    "elapsed_including_queue_ms": 67891,
+    "receipt_response": "benchmarks/results/scout096-20261016/response-018.json"
+  }
+]

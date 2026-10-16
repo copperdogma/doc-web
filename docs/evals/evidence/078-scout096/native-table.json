@@ -1,0 +1,5 @@
+{
+  "raw": "{\"source_table_count\": 0, \"tables\": []}",
+  "served": "nvidia/nemotron-3.5-super-vl",
+  "finish": "stop"
+}

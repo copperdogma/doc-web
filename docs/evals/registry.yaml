@@ -92,6 +92,14 @@ evals:
         metrics: {cases_per_arm: 3, clear_cells_per_arm: 36, held_ambiguous_cells_per_arm: 2, harmful_changes: 0, low_cost_usd: 0.016486, medium_cost_usd: 0.018516, low_latency_sum_ms: 574451, medium_latency_sum_ms: 222034, low_thinking_tokens: 0, medium_thinking_tokens: 211, cached_tokens: 0}
         note: "Exposed effort-only calibration: boundedqualityparity, low10.96%cheaper but2.59xsamplelatencysum. Descriptiveoneobservation/case, sharedaccountcontextunmeasured. December.032972/.037032; no newAstra control orlevel/defaultadoption. Attempt072."
     attempts:
+      - id: "078"
+        date: 2026-10-16
+        status: inconclusive
+        approach: "Scout096 approved bounded fresh multimodal/typed comparison; Story256. Exact per-arm quality and transport layers retained."
+        note: "Nemotron bakery21/23 exact diagnostic; four clearcell holds, no verified/harmful edits; true ambiguity2holds. Fresh Astra bakery23/23 verified. Stop nativeclear after valid failure. Full owner record attempts/078-scout096.md incl additive restored-route continuation: Nemotron safety4/5 with1unsafe; crop7tolerantpasses mean.913443 and source001dateclip, stop. FinalUSD.49405433settled+.225574912unknown/15; originalfailedarchiveimmutable."
+        retry_when:
+          - condition: new-approach
+            note: "Source-qualified changed approach/checkpoint for valid quality failures; demonstrated Together transport restoration for unmeasured remainder only. No unchanged semantic retries."
       - id: "075"
         date: 2026-10-14
         status: failed
@@ -1155,6 +1163,14 @@ evals:
         metrics: {high_cases: 3, high_numeric_passes: 3, high_source_complete_cases: 2, high_raw_coordinate_compliant_cases: 3, medium_cases: 1, medium_raw_contract_failures: 1, high_cost_usd: 0.043572, high_latency_sum_ms: 150831, high_thinking_tokens: 3025, cached_tokens: 0}
         note: "Medium037consistentinteger0-1000 failsfrozenraw0-1contract despiteautoscalingnumericpass, armstopped. High037/001sourcecomplete but011ruletail1–2pxclip; nohighpromotion. Medium001/011notrun; optionalmatched037confirmationcancelled understopprecedence, no unpairedrepeat/full13. HighDecember.087144."
     attempts:
+      - id: "078"
+        date: 2026-10-16
+        status: inconclusive
+        approach: "Scout096 approved bounded fresh multimodal/typed comparison; Story256. Exact per-arm quality and transport layers retained."
+        note: "Nemotron Image011 score.953 vs fresh Gemini3Flash.9785 with sourcecomplete region review; next Image0002Together embedded502 errors, remainder not measured. No13case qualification. Full owner record attempts/078-scout096.md incl additive restored-route continuation: Nemotron safety4/5 with1unsafe; crop7tolerantpasses mean.913443 and source001dateclip, stop. FinalUSD.49405433settled+.225574912unknown/15; originalfailedarchiveimmutable."
+        retry_when:
+          - condition: new-approach
+            note: "Source-qualified changed approach/checkpoint for valid quality failures; demonstrated Together transport restoration for unmeasured remainder only. No unchanged semantic retries."
       - id: "074"
         date: 2026-10-14
         status: failed
@@ -3311,6 +3327,14 @@ evals:
         note: >
           Attempt048 repaired prompt/source-adjudicated labels: candidate incorrectly accepts seal missing 21% height. Frozen primary 5/5 retained; source-corrected 4/5 is not full 22 rate. GPT5.5 control independently false-rejects cover 0/1, 21 unrun.
     attempts:
+      - id: "078"
+        date: 2026-10-16
+        status: inconclusive
+        approach: "Scout096 approved bounded fresh multimodal/typed comparison; Story256. Exact per-arm quality and transport layers retained."
+        note: "Span4/5 with sourceconfirmed unsafe seal pass; GPT5.5control2/5 sameunsafe pass. Nemotron3/3then2upstream502; d1no valid answer500then4.5MB413. Remaining cases unmeasured; manual veto retained. Full owner record attempts/078-scout096.md incl additive restored-route continuation: Nemotron safety4/5 with1unsafe; crop7tolerantpasses mean.913443 and source001dateclip, stop. FinalUSD.49405433settled+.225574912unknown/15; originalfailedarchiveimmutable."
+        retry_when:
+          - condition: new-approach
+            note: "Source-qualified changed approach/checkpoint for valid quality failures; demonstrated Together transport restoration for unmeasured remainder only. No unchanged semantic retries."
       - id: "070"
         date: 2026-10-13
         status: inconclusive
@@ -4442,6 +4466,14 @@ evals:
         note: >
           Candidate literal text loss on source-valid Barney; fresh Gemini .978830 also below.99. Alverson source golden confirms a good prospect but unrun after lane failure. Same system/user/image bytes verified; no truth change.
     attempts:
+      - id: "078"
+        date: 2026-10-16
+        status: inconclusive
+        approach: "Scout096 approved bounded fresh multimodal/typed comparison; Story256. Exact per-arm quality and transport layers retained."
+        note: "Nemotron actual driver LOCBarney.812112 with invented/normalized narrative; stop Alverson. Exact3.7 control served3.8 quarantined, no comparative quality claim. Full owner record attempts/078-scout096.md incl additive restored-route continuation: Nemotron safety4/5 with1unsafe; crop7tolerantpasses mean.913443 and source001dateclip, stop. FinalUSD.49405433settled+.225574912unknown/15; originalfailedarchiveimmutable."
+        retry_when:
+          - condition: new-approach
+            note: "Source-qualified changed approach/checkpoint for valid quality failures; demonstrated Together transport restoration for unmeasured remainder only. No unchanged semantic retries."
       - id: "071"
         date: 2026-10-13
         status: failed

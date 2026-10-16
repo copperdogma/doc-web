@@ -1,0 +1,70 @@
+{
+  "latency_basis": "guard HTTP send latency excludes queue lock waiting",
+  "quality": "frozen Attempt048 source-adjudicated verdict; manual uncertainty veto remains mandatory",
+  "arms": {
+    "d1": {
+      "valid_cases": 0,
+      "exact": 0,
+      "false_safe": 0,
+      "safe_accepted": 0,
+      "cost_usd": 0,
+      "unresolved_reservation_usd": 0.0027525120000000004,
+      "median_latency_ms": null,
+      "unmeasured_remainder": 22
+    },
+    "span": {
+      "valid_cases": 5,
+      "exact": 4,
+      "false_safe": 1,
+      "safe_accepted": 4,
+      "cost_usd": 7.203e-05,
+      "unresolved_reservation_usd": 0,
+      "median_latency_ms": 1610,
+      "unmeasured_remainder": 17
+    },
+    "nemotron": {
+      "valid_cases": 3,
+      "exact": 3,
+      "false_safe": 0,
+      "safe_accepted": 3,
+      "cost_usd": 0.004668800000000001,
+      "unresolved_reservation_usd": 0.1114112,
+      "median_latency_ms": 5034,
+      "unmeasured_remainder": 19
+    },
+    "control": {
+      "valid_cases": 5,
+      "exact": 2,
+      "false_safe": 1,
+      "safe_accepted": 2,
+      "cost_usd": 0.266378,
+      "unresolved_reservation_usd": 0,
+      "median_latency_ms": 4334,
+      "unmeasured_remainder": 17
+    }
+  },
+  "paired_prefix": {
+    "span": {
+      "n": 5,
+      "candidate_exact": 4,
+      "control_exact": 2,
+      "keys": [
+        "page-001-000",
+        "page-004-000",
+        "page-009-000",
+        "page-012-000",
+        "page-012-001"
+      ]
+    },
+    "nemotron": {
+      "n": 3,
+      "candidate_exact": 3,
+      "control_exact": 1,
+      "keys": [
+        "page-001-000",
+        "page-004-000",
+        "page-009-000"
+      ]
+    }
+  }
+}

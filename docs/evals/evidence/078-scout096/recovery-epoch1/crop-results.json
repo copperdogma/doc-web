@@ -1,0 +1,140 @@
+[
+  {
+    "key": "Image000",
+    "arm": "candidate",
+    "raw": "{\"images\": [{\"description\": \"Gold embossed cover design featuring the title 'ONWARD TO THE UNKNOWN 1887 - 1987', abstract cloud-like shapes, a landscape illustration with a covered wagon and tree, and the names 'Moise and Sophie L'Heureux' at the bottom, all enclosed within a rectangular border.\", \"bbox\": [70, 45, 945, 940]}]}",
+    "score": {
+      "pass": true,
+      "score": 0.8157,
+      "reason": "box_count=1.00 (1/1) | iou_mean=0.783 | iou_min=0.783 | coverage=0.783 | total=0.816 | matches=[pred[0]<->gold[0] IoU=0.783]"
+    },
+    "served": "nvidia/nemotron-3.5-super-vl"
+  },
+  {
+    "key": "Image000",
+    "arm": "control",
+    "raw": "```json\n{\"images\": [{\"description\": \"Gold-embossed cover art featuring stylized title text 'ONWARD TO THE UNKNOWN 1887 - 1987', cloud illustrations, and a landscape scene with a covered wagon and tree, all within a decorative border.\", \"bbox\": [0.071, 0.044, 0.954, 0.94]}]}\n```",
+    "score": {
+      "pass": true,
+      "score": 0.8225,
+      "reason": "box_count=1.00 (1/1) | iou_mean=0.791 | iou_min=0.791 | coverage=0.791 | total=0.822 | matches=[pred[0]<->gold[0] IoU=0.791]"
+    },
+    "served": "gemini-3-flash-preview"
+  },
+  {
+    "key": "Image001",
+    "arm": "candidate",
+    "raw": "{\"images\": [{\"description\": \"Stylized title text 'ONWARD TO THE UNKNOWN'\", \"bbox\": [190, 263, 850, 353]}]}",
+    "score": {
+      "pass": true,
+      "score": 0.7536,
+      "reason": "box_count=1.00 (1/1) | iou_mean=0.693 | iou_min=0.693 | coverage=0.735 | total=0.754 | matches=[pred[0]<->gold[0] IoU=0.693]"
+    },
+    "served": "nvidia/nemotron-3.5-super-vl"
+  },
+  {
+    "key": "Image001",
+    "arm": "control",
+    "raw": "```json\n{\"images\": [{\"description\": \"Stylized title text 'ONWARD TO THE UNKNOWN' with dates '1887 - 1987'\", \"bbox\": [0.272, 0.193, 0.383, 0.807]}]}\n```",
+    "score": {
+      "pass": true,
+      "score": 0.9211,
+      "reason": "box_count=1.00 (1/1) | iou_mean=0.905 | iou_min=0.905 | coverage=0.910 | total=0.921 | matches=[pred[0]<->gold[0] IoU=0.905]"
+    },
+    "served": "gemini-3-flash-preview"
+  },
+  {
+    "key": "Image003",
+    "arm": "candidate",
+    "raw": "{\"images\": [{\"description\": \"Illustration of a covered wagon pulled by animals\", \"bbox\": [60, 262, 937, 449]}]}",
+    "score": {
+      "pass": true,
+      "score": 0.9301,
+      "reason": "box_count=1.00 (1/1) | iou_mean=0.906 | iou_min=0.906 | coverage=0.935 | total=0.930 | matches=[pred[0]<->gold[0] IoU=0.906]"
+    },
+    "served": "nvidia/nemotron-3.5-super-vl"
+  },
+  {
+    "key": "Image003",
+    "arm": "control",
+    "raw": "{\"images\": [{\"description\": \"A black and white illustration of a covered wagon being pulled by an ox, with a horse standing to the left.\", \"bbox\": [266, 61, 458, 938]}]}",
+    "score": {
+      "pass": true,
+      "score": 0.9789,
+      "reason": "box_count=1.00 (1/1) | iou_mean=0.971 | iou_min=0.971 | coverage=0.981 | total=0.979 | matches=[pred[0]<->gold[0] IoU=0.971]"
+    },
+    "served": "gemini-3-flash-preview"
+  },
+  {
+    "key": "Image008",
+    "arm": "candidate",
+    "raw": "{\"images\": [{\"description\": \"Vintage black and white portrait photograph of an elderly couple, likely Moise and Sophie L'Heureux, seated together.\", \"bbox\": [220, 257, 808, 669]}]}",
+    "score": {
+      "pass": true,
+      "score": 0.9878,
+      "reason": "box_count=1.00 (1/1) | iou_mean=0.986 | iou_min=0.986 | coverage=0.986 | total=0.988 | matches=[pred[0]<->gold[0] IoU=0.986]"
+    },
+    "served": "nvidia/nemotron-3.5-super-vl"
+  },
+  {
+    "key": "Image008",
+    "arm": "control",
+    "raw": "```json\n{\"images\": [{\"description\": \"Black and white photograph of Moise and Sophie L'Heureux from around 1910.\", \"bbox\": [0.258, 0.217, 0.672, 0.811]}]}\n```",
+    "score": {
+      "pass": true,
+      "score": 0.9966,
+      "reason": "box_count=1.00 (1/1) | iou_mean=0.995 | iou_min=0.995 | coverage=0.998 | total=0.997 | matches=[pred[0]<->gold[0] IoU=0.995]"
+    },
+    "served": "gemini-3-flash-preview"
+  },
+  {
+    "key": "Image013",
+    "arm": "candidate",
+    "raw": "{\"images\": [{\"description\": \"Black and white photograph of a man and a woman, captioned below as Moïse and Sophie L'Heureux\", \"bbox\": [100, 420, 482, 682]}]}",
+    "score": {
+      "pass": true,
+      "score": 0.9578,
+      "reason": "box_count=1.00 (1/1) | iou_mean=0.950 | iou_min=0.950 | coverage=0.950 | total=0.958 | matches=[pred[0]<->gold[0] IoU=0.950]"
+    },
+    "served": "nvidia/nemotron-3.5-super-vl"
+  },
+  {
+    "key": "Image013",
+    "arm": "control",
+    "raw": "```json\n{\"images\": [{\"description\": \"A black and white photograph of a man and a woman, identified by the caption as Moise and Sophie L'Heureux around 1910.\", \"bbox\": [0.095, 0.415, 0.488, 0.716]}]}\n```",
+    "score": {
+      "pass": true,
+      "score": 0.9399,
+      "reason": "box_count=1.00 (1/1) | iou_mean=0.883 | iou_min=0.883 | coverage=0.996 | total=0.940 | matches=[pred[0]<->gold[0] IoU=0.883]"
+    },
+    "served": "gemini-3-flash-preview"
+  },
+  {
+    "key": "Image020",
+    "arm": "candidate",
+    "raw": "{\"images\": [{\"description\": \"Aerial photo of ranch buildings\", \"bbox\": [77, 60, 917, 462]}, {\"description\": \"Ranch house and barn\", \"bbox\": [92, 508, 908, 882]}]}",
+    "score": {
+      "pass": true,
+      "score": 0.9961,
+      "reason": "box_count=1.00 (2/2) | iou_mean=0.993 | iou_min=0.992 | coverage=0.999 | total=0.996 | matches=[pred[1]<->gold[1] IoU=0.993, pred[0]<->gold[0] IoU=0.992]"
+    },
+    "served": "nvidia/nemotron-3.5-super-vl"
+  },
+  {
+    "key": "Image020",
+    "arm": "control",
+    "raw": "```json\n{\"images\": [\n  {\"description\": \"Aerial photo of ranch buildings\", \"bbox\": [0.081, 0.061, 0.913, 0.462]},\n  {\"description\": \"Ranch house and barn\", \"bbox\": [0.091, 0.51, 0.904, 0.881]}\n]}\n```",
+    "score": {
+      "pass": true,
+      "score": 0.9937,
+      "reason": "box_count=1.00 (2/2) | iou_mean=0.992 | iou_min=0.990 | coverage=0.994 | total=0.994 | matches=[pred[0]<->gold[0] IoU=0.995, pred[1]<->gold[1] IoU=0.990]"
+    },
+    "served": "gemini-3-flash-preview"
+  },
+  {
+    "key": "Image021",
+    "arm": "candidate",
+    "error": "RuntimeError",
+    "capability": "not measured"
+  }
+]

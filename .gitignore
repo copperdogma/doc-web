@@ -91,3 +91,7 @@ benchmarks/results/scout091-20261013/
 
 # Attempt 074 raw receipts; canonical overlay and manifest live under docs/evals/evidence.
 /benchmarks/results/deepseek-v41-fresh-20261014/
+
+# Scout096 lossless native working receipts; sealed archive in docs/evals/evidence
+/benchmarks/results/scout096-20261016/
+/benchmarks/results/scout096-recovery1-20261016/

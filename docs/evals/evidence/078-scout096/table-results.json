@@ -1,0 +1,267 @@
+[
+  {
+    "case": "ambiguity-negative",
+    "arm": "candidate",
+    "status": "unresolved",
+    "uncertainties": [
+      {
+        "alternatives": [
+          "I",
+          "l",
+          "|"
+        ],
+        "cell": 1,
+        "reason": "The character is a single vertical stroke, ambiguous between capital 'I', lowercase 'l', or a bar '|'.",
+        "row": 1
+      },
+      {
+        "alternatives": [
+          "I",
+          "l",
+          "|"
+        ],
+        "cell": 1,
+        "reason": "The character is a single vertical stroke, ambiguous between capital 'I', lowercase 'l', or a bar '|'.",
+        "row": 2
+      }
+    ],
+    "literal_score": {
+      "text_pass": false,
+      "structure_pass": true,
+      "pass": false,
+      "text_mismatch_count": 1,
+      "structure_mismatch_count": 0,
+      "text_mismatches": [
+        {
+          "table": 0,
+          "actual_table": 0,
+          "row": 2,
+          "cell": 1,
+          "kind": "cell_text",
+          "expected": "l",
+          "actual": "I"
+        }
+      ],
+      "structure_mismatches": [],
+      "counts": {
+        "golden": {
+          "tables": 1,
+          "rows": 4,
+          "cells": 8
+        },
+        "actual": {
+          "tables": 1,
+          "rows": 4,
+          "cells": 8
+        }
+      },
+      "scope": {
+        "mode": "all_tables",
+        "table_index": null,
+        "golden_table_count": 1,
+        "actual_table_count": 1,
+        "excluded_actual_table_indices": [],
+        "compared_actual_table_count": 1,
+        "document_actual_table_count": 1
+      }
+    },
+    "report": "benchmarks/results/scout096-20261016/table-ambiguity-negative-candidate_reports/row-00000-page-00001-original-00001.json"
+  },
+  {
+    "case": "ambiguity-negative",
+    "arm": "control",
+    "status": "unresolved",
+    "uncertainties": [
+      {
+        "alternatives": [
+          "I",
+          "l"
+        ],
+        "cell": 1,
+        "reason": "source ambiguity: the plain vertical glyph does not distinguish uppercase I from lowercase l in this font.",
+        "row": 1
+      },
+      {
+        "alternatives": [
+          "I",
+          "l"
+        ],
+        "cell": 1,
+        "reason": "source ambiguity: the plain vertical glyph does not distinguish uppercase I from lowercase l in this font.",
+        "row": 2
+      }
+    ],
+    "literal_score": {
+      "text_pass": false,
+      "structure_pass": true,
+      "pass": false,
+      "text_mismatch_count": 1,
+      "structure_mismatch_count": 0,
+      "text_mismatches": [
+        {
+          "table": 0,
+          "actual_table": 0,
+          "row": 2,
+          "cell": 1,
+          "kind": "cell_text",
+          "expected": "l",
+          "actual": "I"
+        }
+      ],
+      "structure_mismatches": [],
+      "counts": {
+        "golden": {
+          "tables": 1,
+          "rows": 4,
+          "cells": 8
+        },
+        "actual": {
+          "tables": 1,
+          "rows": 4,
+          "cells": 8
+        }
+      },
+      "scope": {
+        "mode": "all_tables",
+        "table_index": null,
+        "golden_table_count": 1,
+        "actual_table_count": 1,
+        "excluded_actual_table_indices": [],
+        "compared_actual_table_count": 1,
+        "document_actual_table_count": 1
+      }
+    },
+    "report": "benchmarks/results/scout096-20261016/table-ambiguity-negative-control_reports/row-00000-page-00001-original-00001.json"
+  },
+  {
+    "case": "image-positive",
+    "arm": "candidate",
+    "status": "unresolved",
+    "uncertainties": [
+      {
+        "alternatives": [
+          "111-00",
+          "Ill-00"
+        ],
+        "cell": 1,
+        "reason": "Ambiguous characters 'I', 'l', '1' in Lot code",
+        "row": 1
+      },
+      {
+        "alternatives": [
+          "00-LI",
+          "oO-LI",
+          "oO-L1"
+        ],
+        "cell": 1,
+        "reason": "Ambiguous characters 'o', 'O', '0', 'I', 'l' in Lot code",
+        "row": 2
+      },
+      {
+        "alternatives": [
+          "O",
+          "0"
+        ],
+        "cell": 2,
+        "reason": "Ambiguous character '0' vs 'O' in Trays column",
+        "row": 2
+      },
+      {
+        "alternatives": [
+          "Evening batch (colspan=2)",
+          "Evening batch (col 1), empty (col 2)"
+        ],
+        "cell": 0,
+        "reason": "Uncertain if first cell spans two columns or if second cell is empty",
+        "row": 5
+      }
+    ],
+    "literal_score": {
+      "text_pass": false,
+      "structure_pass": true,
+      "pass": false,
+      "text_mismatch_count": 2,
+      "structure_mismatch_count": 0,
+      "text_mismatches": [
+        {
+          "table": 0,
+          "actual_table": 0,
+          "row": 1,
+          "cell": 1,
+          "kind": "cell_text",
+          "expected": "Il1-O0",
+          "actual": "Ill-00"
+        },
+        {
+          "table": 0,
+          "actual_table": 0,
+          "row": 2,
+          "cell": 1,
+          "kind": "cell_text",
+          "expected": "o0-LI",
+          "actual": "oO-LI"
+        }
+      ],
+      "structure_mismatches": [],
+      "counts": {
+        "golden": {
+          "tables": 1,
+          "rows": 6,
+          "cells": 23
+        },
+        "actual": {
+          "tables": 1,
+          "rows": 6,
+          "cells": 23
+        }
+      },
+      "scope": {
+        "mode": "all_tables",
+        "table_index": null,
+        "golden_table_count": 1,
+        "actual_table_count": 1,
+        "excluded_actual_table_indices": [],
+        "compared_actual_table_count": 1,
+        "document_actual_table_count": 1
+      }
+    },
+    "report": "benchmarks/results/scout096-20261016/table-image-positive-candidate_reports/row-00000-page-00001-original-00001.json"
+  },
+  {
+    "case": "image-positive",
+    "arm": "control",
+    "status": "verified",
+    "uncertainties": [],
+    "literal_score": {
+      "text_pass": true,
+      "structure_pass": true,
+      "pass": true,
+      "text_mismatch_count": 0,
+      "structure_mismatch_count": 0,
+      "text_mismatches": [],
+      "structure_mismatches": [],
+      "counts": {
+        "golden": {
+          "tables": 1,
+          "rows": 6,
+          "cells": 23
+        },
+        "actual": {
+          "tables": 1,
+          "rows": 6,
+          "cells": 23
+        }
+      },
+      "scope": {
+        "mode": "all_tables",
+        "table_index": null,
+        "golden_table_count": 1,
+        "actual_table_count": 1,
+        "excluded_actual_table_indices": [],
+        "compared_actual_table_count": 1,
+        "document_actual_table_count": 1
+      }
+    },
+    "report": "benchmarks/results/scout096-20261016/table-image-positive-control_reports/row-00000-page-00001-original-00001.json"
+  }
+]

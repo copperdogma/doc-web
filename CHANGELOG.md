@@ -1,3 +1,13 @@
+## [2026-10-16-01] — Record Scout096 source-reading and safety evaluation (Story 256)
+
+### Added
+- Preserve the bounded native receipts, source reviews, cost ledger and additive recovery for literal tables, crop detection, handwriting and page safety.
+- Add eval-only custody and reproduction tools with focused guard tests.
+
+### Verified
+- Retain current readers and manual crop safety review. Nemotron missed clear table cells, omitted a visible crop date, changed handwritten wording and accepted an incomplete seal. Span shared the unsafe seal acceptance; d1 had no valid safety response because of transport and request-size failures. No model or runtime default changed.
+- Final measured provider spend is USD0.494054330 plus USD0.225574912 unresolved reserved exposure under the USD15 cap. The remaining cases are unmeasured.
+
 ## [2026-10-14-01] — Muse Wonder literal reader evaluations (Stories 254, 255)
 
 ### Added

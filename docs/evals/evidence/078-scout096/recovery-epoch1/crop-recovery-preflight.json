@@ -1,0 +1,35 @@
+{
+  "reason": "Echo independently observed restored same Together model route after shared EngineCorewave; one further unchanged affectedcase retry then originalprogressive remainder",
+  "original_Image011": "reused existing candidate/control output, no rerun",
+  "keys": [
+    "Image000",
+    "Image001",
+    "Image003",
+    "Image008",
+    "Image013",
+    "Image020",
+    "Image021",
+    "Image037",
+    "Image059",
+    "Image121",
+    "Image124",
+    "Image126"
+  ],
+  "candidate": "unchanged Together reasoning.enabledtrue32768 strictcrop",
+  "control": "unchanged fresh Gemini3Flashpreview16384",
+  "cap": "original15 cumulative including oldknown+unknown",
+  "hashes": {
+    "Image000": "27e2d03451698a91e4f5c85ddd08be959150b52c203a608413ab64ce535282cc",
+    "Image001": "e33abe08845f5b7a87054398d3e7e54760aaee81e731265ee7d2da4d0ef9dc16",
+    "Image003": "e43c4fd45e66d8e38f184c08f1d3bba1f7c41cab0e5afce4853d7fc4b7e21055",
+    "Image008": "df1de7fd2c4736622232cb1f02857ee1f95f6592813cf62d86bbfc37e2dedeac",
+    "Image013": "4939c8da249aff19d34071a1b02d9e6d5462483adddea1465e337292655688c3",
+    "Image020": "ac9900b17b5e0fb7c11700f4bf1c463f7d75d6062d96406a77d85eab36ecbad7",
+    "Image021": "29f7589ca44ca8595cf3fb90ee35d1998d9d110f4e3426cdbf61ad1e6be4bc81",
+    "Image037": "7d02870a68462ccd13f3c7a2ee914cf21e3b2c33e9b29afc5e32ef8b34a21f7b",
+    "Image059": "6143a4481a198c9246c50a365e28f84fbb0a007dffcefc81b0a2271d65722f18",
+    "Image121": "6e72492186bf0de69a7d44c3524077d44ea21a248a0842ed348bde643a903b7c",
+    "Image124": "aed6a64cf66bfe34138dd35ccec5572ec968912ac71e73fa39e58c10f68c08b8",
+    "Image126": "b68c777ede04bd04f72b1ca4c270f04e7c7fa12fc7c3c3407ad3976a404058ba"
+  }
+}

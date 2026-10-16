@@ -106,6 +106,7 @@ Grouped by primary `spec:N` category. Stories without category refs remain in an
 | 253 | Opt-in native Argon literal-reader qualification | High | Done | 245 | [story-253](stories/story-253-argon-literal-reader-qualification.md) |
 | 254 | Muse Wonder bounded literal-reader screen | High | Done | 245 | [story-254](stories/story-254-muse-wonder-literal-screen.md) |
 | 255 | Muse Wonder literal-reader thinking calibration | High | Done | 245 | [story-255](stories/story-255-wonder-literal-thinking-calibration.md) |
+| 256 | Scout096 bounded source-reading and safety evaluation | High | Done | 245 | [story-256](stories/story-256-scout096-multimodal-evaluation.md) |
 | 227 | Gemini SDK API-Version Hardening | Medium | Done | — | [story-227](stories/story-227-gemini-sdk-api-version-hardening.md) |
 | 233 | JEV consistency classifier evaluation | Medium | Done | 220 | [story-233](stories/story-233-jev-consistency-classifier-evaluation.md) |
 | 234 | JEV consistency shadow routing | Medium | Done | 233 | [story-234](stories/story-234-jev-consistency-shadow-routing.md) |

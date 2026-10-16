@@ -1,0 +1,21 @@
+{
+  "sources": {
+    "benchmarks/providers/scout096_guard.py": {
+      "sha256": "ec8087ae52c05d5fb68dda4d35975903e063d81fbf3fcfb463829c09bc14ac01",
+      "bytes": 4523
+    },
+    "benchmarks/scripts/scout096_crop_recovery.py": {
+      "sha256": "9dcd9326b26d89879bb7b3c3b1ea2b42276cdf471caa2beb223ac6cc501a7b83",
+      "bytes": 2326
+    },
+    "benchmarks/scripts/scout096_safety_recovery1.py": {
+      "sha256": "2b84cdb0f6079cc5f915975ce47ee239380414220813c97b039b39180d4ed94d",
+      "bytes": 9182
+    },
+    "benchmarks/scripts/scout096_reading.py": {
+      "sha256": "5300b0cc9ea0460a27c3daf7e5bfdd1f1e1c58768328688f89e7170ce9401ec3",
+      "bytes": 18787
+    }
+  },
+  "note": "Final hardened reproduction source: bulk scorer-only crop continuation disabled after delayed manual stop; source-reviewed onecase barrier required. Exact paid wire receipts precede this repair and remain authoritative."
+}

@@ -244,7 +244,8 @@
           "252",
           "253",
           "254",
-          "255"
+          "255",
+          "256"
         ],
         "adr_ids": [
           "ADR-001",
@@ -325,7 +326,8 @@
           "252",
           "253",
           "254",
-          "255"
+          "255",
+          "256"
         ],
         "adr_ids": [
           "ADR-001",
@@ -516,7 +518,8 @@
           "252",
           "253",
           "254",
-          "255"
+          "255",
+          "256"
         ],
         "adr_ids": [
           "ADR-001",
@@ -928,7 +931,8 @@
           "252",
           "253",
           "254",
-          "255"
+          "255",
+          "256"
         ],
         "eval_ids": [
           "literal-table-fidelity",
@@ -943,15 +947,15 @@
           "posture": "wait-for-trigger",
           "retry_trigger_status": "waiting",
           "retry_when": [
-            "new-subject-model"
+            "new-approach"
           ],
           "why_now": "",
           "last_relevant_action": {
-            "date": "2026-10-14",
+            "date": "2026-10-16",
             "source_type": "eval-attempt",
             "source": "docs/evals/registry.yaml",
-            "source_id": "075",
-            "summary": "Higherlevels repeat validclearO0 miss and2overholds; no effortqualitygain, actualeconomics worsen versusmedium. Genuineambiguity safety passes. CumulativeUSD.8039514/10 unknown0; ninePOSTs including documentedpredispa..."
+            "source_id": "078",
+            "summary": "Nemotron bakery21/23 exact diagnostic; four clearcell holds, no verified/harmful edits; true ambiguity2holds. Fresh Astra bakery23/23 verified. Stop nativeclear after valid failure. Full owner record attempts/078-scou..."
           },
           "story_ids": [
             "131",
@@ -1004,7 +1008,8 @@
             "252",
             "253",
             "254",
-            "255"
+            "255",
+            "256"
           ],
           "eval_ids": [
             "literal-table-fidelity",
@@ -1045,7 +1050,8 @@
           "252",
           "253",
           "254",
-          "255"
+          "255",
+          "256"
         ],
         "eval_ids": [
           "literal-table-fidelity"
@@ -1058,15 +1064,15 @@
           "posture": "wait-for-trigger",
           "retry_trigger_status": "waiting",
           "retry_when": [
-            "new-subject-model"
+            "new-approach"
           ],
           "why_now": "",
           "last_relevant_action": {
-            "date": "2026-10-14",
+            "date": "2026-10-16",
             "source_type": "eval-attempt",
             "source": "docs/evals/registry.yaml",
-            "source_id": "075",
-            "summary": "Higherlevels repeat validclearO0 miss and2overholds; no effortqualitygain, actualeconomics worsen versusmedium. Genuineambiguity safety passes. CumulativeUSD.8039514/10 unknown0; ninePOSTs including documentedpredispa..."
+            "source_id": "078",
+            "summary": "Nemotron bakery21/23 exact diagnostic; four clearcell holds, no verified/harmful edits; true ambiguity2holds. Fresh Astra bakery23/23 verified. Stop nativeclear after valid failure. Full owner record attempts/078-scou..."
           },
           "story_ids": [
             "134",
@@ -1091,7 +1097,8 @@
             "252",
             "253",
             "254",
-            "255"
+            "255",
+            "256"
           ],
           "eval_ids": [
             "literal-table-fidelity"
@@ -1149,7 +1156,8 @@
           "252",
           "253",
           "254",
-          "255"
+          "255",
+          "256"
         ],
         "eval_ids": [
           "literal-table-fidelity",
@@ -1211,7 +1219,8 @@
             "252",
             "253",
             "254",
-            "255"
+            "255",
+            "256"
           ],
           "eval_ids": [
             "literal-table-fidelity",
@@ -14634,6 +14643,74 @@
           "summary": ""
         }
       }
+    },
+    {
+      "id": "256",
+      "title": "Scout096 bounded source-reading and safety evaluation",
+      "path": "docs/stories/story-256-scout096-multimodal-evaluation.md",
+      "status": "Done",
+      "priority": "High",
+      "ideal_refs": [
+        "req:3",
+        "req:5"
+      ],
+      "spec_refs": [
+        "spec:2.1",
+        "spec:2.2",
+        "spec:3.1",
+        "spec:6"
+      ],
+      "decision_refs": [
+        "ADR-001",
+        "ADR-002"
+      ],
+      "adr_ids": [
+        "ADR-001",
+        "ADR-002"
+      ],
+      "depends_on": [
+        "245"
+      ],
+      "category_refs": [
+        "spec:2",
+        "spec:3",
+        "spec:6"
+      ],
+      "compromise_refs": [
+        "C1",
+        "C3",
+        "C6"
+      ],
+      "input_coverage_refs": [
+        "handwritten-notes",
+        "scanned-pdf-tables"
+      ],
+      "architecture_domains": [
+        "doc_web_runtime",
+        "ocr_and_extraction"
+      ],
+      "roadmap_tags": [],
+      "blocker_summary": "",
+      "blocker_evidence": "",
+      "unblock_condition": "",
+      "last_work_log_entry": null,
+      "legacy_build_map_refs": "",
+      "metadata_source": "frontmatter",
+      "missing_frontmatter_keys": [],
+      "actionability": {
+        "source_kind": "story",
+        "source_id": "256",
+        "source_path": "docs/stories/story-256-scout096-multimodal-evaluation.md",
+        "recommended_now": false,
+        "posture": "completed",
+        "why_now": "",
+        "last_relevant_action": {
+          "date": null,
+          "source_type": "story-status",
+          "source": "docs/stories/story-256-scout096-multimodal-evaluation.md",
+          "summary": ""
+        }
+      }
     }
   ],
   "adrs": [
@@ -14934,6 +15011,16 @@
       },
       "attempts": [
         {
+          "id": "078",
+          "date": "2026-10-16",
+          "status": "inconclusive",
+          "approach": "Scout096 approved bounded fresh multimodal/typed comparison; Story256. Exact per-arm quality and transport layers retained.",
+          "note": "Nemotron bakery21/23 exact diagnostic; four clearcell holds, no verified/harmful edits; true ambiguity2holds. Fresh Astra bakery23/23 verified. Stop nativeclear after valid failure. Full owner record attempts/078-scout096.md incl additive restored-route continuation: Nemotron safety4/5 with1unsafe; crop7tolerantpasses mean.913443 and source001dateclip, stop. FinalUSD.49405433settled+.225574912unknown/15; originalfailedarchiveimmutable.",
+          "retry_when": [
+            "new-approach"
+          ]
+        },
+        {
           "id": "075",
           "date": "2026-10-14",
           "status": "failed",
@@ -15002,15 +15089,15 @@
         "posture": "wait-for-trigger",
         "retry_trigger_status": "waiting",
         "retry_when": [
-          "new-subject-model"
+          "new-approach"
         ],
         "why_now": "",
         "last_relevant_action": {
-          "date": "2026-10-14",
+          "date": "2026-10-16",
           "source_type": "eval-attempt",
           "source": "docs/evals/registry.yaml",
-          "source_id": "075",
-          "summary": "Higherlevels repeat validclearO0 miss and2overholds; no effortqualitygain, actualeconomics worsen versusmedium. Genuineambiguity safety passes. CumulativeUSD.8039514/10 unknown0; ninePOSTs including documentedpredispa..."
+          "source_id": "078",
+          "summary": "Nemotron bakery21/23 exact diagnostic; four clearcell holds, no verified/harmful edits; true ambiguity2holds. Fresh Astra bakery23/23 verified. Stop nativeclear after valid failure. Full owner record attempts/078-scou..."
         }
       }
     },
@@ -15981,6 +16068,16 @@
       },
       "attempts": [
         {
+          "id": "078",
+          "date": "2026-10-16",
+          "status": "inconclusive",
+          "approach": "Scout096 approved bounded fresh multimodal/typed comparison; Story256. Exact per-arm quality and transport layers retained.",
+          "note": "Nemotron Image011 score.953 vs fresh Gemini3Flash.9785 with sourcecomplete region review; next Image0002Together embedded502 errors, remainder not measured. No13case qualification. Full owner record attempts/078-scout096.md incl additive restored-route continuation: Nemotron safety4/5 with1unsafe; crop7tolerantpasses mean.913443 and source001dateclip, stop. FinalUSD.49405433settled+.225574912unknown/15; originalfailedarchiveimmutable.",
+          "retry_when": [
+            "new-approach"
+          ]
+        },
+        {
           "id": "074",
           "date": "2026-10-14",
           "status": "failed",
@@ -16452,16 +16549,15 @@
         "posture": "wait-for-trigger",
         "retry_trigger_status": "waiting",
         "retry_when": [
-          "golden-fix",
-          "new-subject-model"
+          "new-approach"
         ],
         "why_now": "Gemini 4 or equivalent may push past 0.95 target Golden references cover limited page types; add table-heavy pages",
         "last_relevant_action": {
-          "date": "2026-10-14",
+          "date": "2026-10-16",
           "source_type": "eval-attempt",
           "source": "docs/evals/registry.yaml",
-          "source_id": "074",
-          "summary": "Native and adapter parity qualified exact model/provider and strict normalized-float contract. Image011 passed its individual .70 scorer but source overlay showed logo lower-art/year clipping and lower seal/signature..."
+          "source_id": "078",
+          "summary": "Nemotron Image011 score.953 vs fresh Gemini3Flash.9785 with sourcecomplete region review; next Image0002Together embedded502 errors, remainder not measured. No13case qualification. Full owner record attempts/078-scout..."
         }
       }
     },
@@ -17390,6 +17486,16 @@
       },
       "attempts": [
         {
+          "id": "078",
+          "date": "2026-10-16",
+          "status": "inconclusive",
+          "approach": "Scout096 approved bounded fresh multimodal/typed comparison; Story256. Exact per-arm quality and transport layers retained.",
+          "note": "Span4/5 with sourceconfirmed unsafe seal pass; GPT5.5control2/5 sameunsafe pass. Nemotron3/3then2upstream502; d1no valid answer500then4.5MB413. Remaining cases unmeasured; manual veto retained. Full owner record attempts/078-scout096.md incl additive restored-route continuation: Nemotron safety4/5 with1unsafe; crop7tolerantpasses mean.913443 and source001dateclip, stop. FinalUSD.49405433settled+.225574912unknown/15; originalfailedarchiveimmutable.",
+          "retry_when": [
+            "new-approach"
+          ]
+        },
+        {
           "id": "070",
           "date": "2026-10-13",
           "status": "inconclusive",
@@ -17683,15 +17789,15 @@
         "posture": "trigger-exhausted",
         "retry_trigger_status": "exhausted",
         "retry_when": [
-          "new-subject-model-or-native-two-image-contract"
+          "new-approach"
         ],
         "why_now": "Rerun when a materially stronger validator or detector may reduce the current fail-labeled page-context cases. Rerun after any maintained crop/runtime simplification before claiming `trim_layout_text` or bounded capti...",
         "last_relevant_action": {
-          "date": "2026-10-13",
+          "date": "2026-10-16",
           "source_type": "eval-attempt",
           "source": "docs/evals/registry.yaml",
-          "source_id": "070",
-          "summary": "No safetywinner: Clef exacttwoimage admitted then unsafeaccept012001clippedseal; freshGPT5.5none2048alsoaccepted. Properstop,20remainingnotmeasured; lowconfidence is not a tested visualroutingrule. ScaleDown exacttwoi..."
+          "source_id": "078",
+          "summary": "Span4/5 with sourceconfirmed unsafe seal pass; GPT5.5control2/5 sameunsafe pass. Nemotron3/3then2upstream502; d1no valid answer500then4.5MB413. Remaining cases unmeasured; manual veto retained. Full owner record attem..."
         }
       }
     },
@@ -18172,6 +18278,16 @@
       },
       "attempts": [
         {
+          "id": "078",
+          "date": "2026-10-16",
+          "status": "inconclusive",
+          "approach": "Scout096 approved bounded fresh multimodal/typed comparison; Story256. Exact per-arm quality and transport layers retained.",
+          "note": "Nemotron actual driver LOCBarney.812112 with invented/normalized narrative; stop Alverson. Exact3.7 control served3.8 quarantined, no comparative quality claim. Full owner record attempts/078-scout096.md incl additive restored-route continuation: Nemotron safety4/5 with1unsafe; crop7tolerantpasses mean.913443 and source001dateclip, stop. FinalUSD.49405433settled+.225574912unknown/15; originalfailedarchiveimmutable.",
+          "retry_when": [
+            "new-approach"
+          ]
+        },
+        {
           "id": "071",
           "date": "2026-10-13",
           "status": "failed",
@@ -18335,15 +18451,15 @@
         "posture": "trigger-exhausted",
         "retry_trigger_status": "exhausted",
         "retry_when": [
-          "new-subject-model"
+          "new-approach"
         ],
         "why_now": "Retry only when a materially stronger model or OCR substrate appears that could plausibly clear Barney and the corrected Alverson front-page truth surface.",
         "last_relevant_action": {
-          "date": "2026-10-13",
+          "date": "2026-10-16",
           "source_type": "eval-attempt",
           "source": "docs/evals/registry.yaml",
-          "source_id": "071",
-          "summary": "Public Barney literal miss; exact3.7 comparator unavailable, Alverson unmeasured. InclusiveUSD15: corrected settled.37946475 +unknown.441832; original sealed.34186725 retained;31nativeenvelopes/2lostscreenrecords reta..."
+          "source_id": "078",
+          "summary": "Nemotron actual driver LOCBarney.812112 with invented/normalized narrative; stop Alverson. Exact3.7 control served3.8 quarantined, no comparative quality claim. Full owner record attempts/078-scout096.md incl additive..."
         }
       }
     },

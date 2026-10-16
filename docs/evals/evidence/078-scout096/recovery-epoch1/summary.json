@@ -1,0 +1,29 @@
+{
+  "additive_calls": 14,
+  "additive_settled_usd": 0.032832999999999946,
+  "cumulative_settled_usd": 0.49405432999999993,
+  "cumulative_unknown_reserved_usd": 0.22557491200000002,
+  "cumulative_exposure_usd": 0.7196292419999999,
+  "exact_recovered_requests": [
+    {
+      "prior": "crop-full-Image000-candidate",
+      "recovery": "crop-epoch1-Image000-candidate",
+      "identical_request_sha256": "f85457a13f2637c3c31fa4fba9ceaff4f4da4691ba755f639ea8d715c714279d"
+    },
+    {
+      "prior": "safety-nemotron-page-012-000",
+      "recovery": "safety-nemotron-page-012-000-recovery2",
+      "identical_request_sha256": "8e89e236f76ec8957d8dd56ae20eb2ba1384b91c6b17948a4466bf401fe28bcc"
+    }
+  ],
+  "restoration_proof": {
+    "path": "/Users/cam/.local/share/echo-forge-evals/scout096-20261016/141-nemo-scene-tavern.response.json",
+    "sha256": "aaaa34b49d44d125d2c1c11eb12312d1a0ccc4c8b12d457e51f3e5139f45a3da"
+  },
+  "crop_new_pairs": 6,
+  "crop_total_pairs_including_original011": 7,
+  "crop_candidate_mean_including011": 0.9134428571428571,
+  "crop_control_mean_including011": 0.9473142857142857,
+  "source_failure": "Image001 bboxbottom353 excludes date1887\u20131987 below353. Source confirmed originalpixels; scorer permissively passes .7536. Model-wrong sourcecompleteness.",
+  "late_stop": "Scorer-only automatic loop advanced 4 more pairs before manual inspection sealed ledger. Retain all, not additional promotion proof; Image021 guard denied beforePOST."
+}

@@ -1,0 +1,67 @@
+[
+  {
+    "key": "page-001-000",
+    "status_code": 200,
+    "latency_ms": 9961,
+    "request_sha256": "5e2ef2d923c833a7e823821784a8f1f45eb74d800f24f68b08976779d116d64b",
+    "verdict": "pass",
+    "cost_usd": 0.0019099,
+    "correct": true,
+    "false_safe": false,
+    "golden": "pass",
+    "served_model": "nvidia/nemotron-3.5-super-vl",
+    "provider": "Together",
+    "elapsed_including_queue_ms": 24352,
+    "receipt_response": "benchmarks/results/scout096-20261016/response-007.json"
+  },
+  {
+    "key": "page-004-000",
+    "status_code": 200,
+    "latency_ms": 4055,
+    "request_sha256": "5abe8dd4710ca1ea6fab002212ac5c7dfd58ca59e379aa3b52e998d11b2d47f7",
+    "verdict": "pass",
+    "cost_usd": 0.00142745,
+    "correct": true,
+    "false_safe": false,
+    "golden": "pass",
+    "served_model": "nvidia/nemotron-3.5-super-vl",
+    "provider": "Together",
+    "elapsed_including_queue_ms": 67602,
+    "receipt_response": "benchmarks/results/scout096-20261016/response-017.json"
+  },
+  {
+    "key": "page-009-000",
+    "status_code": 200,
+    "latency_ms": 5034,
+    "request_sha256": "2943b08c905b5f2e3865166989bfce97d1a37336a76d97d90e8b4ff6f5cb6ff2",
+    "verdict": "pass",
+    "cost_usd": 0.00133145,
+    "correct": true,
+    "false_safe": false,
+    "golden": "pass",
+    "served_model": "nvidia/nemotron-3.5-super-vl",
+    "provider": "Together",
+    "elapsed_including_queue_ms": 110762,
+    "receipt_response": "benchmarks/results/scout096-20261016/response-024.json"
+  },
+  {
+    "key": "page-012-000",
+    "status_code": 200,
+    "latency_ms": 925,
+    "request_sha256": "8e89e236f76ec8957d8dd56ae20eb2ba1384b91c6b17948a4466bf401fe28bcc",
+    "error": "served identity/error",
+    "semantic": "unmeasured",
+    "elapsed_including_queue_ms": 45613,
+    "receipt_response": "benchmarks/results/scout096-20261016/response-027.json"
+  },
+  {
+    "key": "page-012-000",
+    "status_code": 200,
+    "latency_ms": 1112,
+    "elapsed_including_queue_ms": 1148,
+    "request_sha256": "8e89e236f76ec8957d8dd56ae20eb2ba1384b91c6b17948a4466bf401fe28bcc",
+    "error": "served identity/error",
+    "semantic": "unmeasured",
+    "receipt_response": "benchmarks/results/scout096-20261016/response-030.json"
+  }
+]
