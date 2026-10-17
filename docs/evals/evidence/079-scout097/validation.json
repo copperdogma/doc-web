@@ -1,0 +1,11 @@
+{
+  "guard_tests": "3passed",
+  "ruff": "passed",
+  "compilation": "passed",
+  "registry_yaml_and_lineage": "passed",
+  "methodology": "passed after preserving incumbent score order",
+  "archive_and_all_file_hashes": "passed",
+  "closed_ledger": "14calls all settled,no bound violations,unknown0",
+  "product_tests": "inapplicable; eval-only tooling/docs, no runtime changes",
+  "initial_recovered_check": "partialcandidate inserted before baseline caused coverage drift; moved to historical score order, no golden/coverage adjustment"
+}

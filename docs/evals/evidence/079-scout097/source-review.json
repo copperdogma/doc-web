@@ -1,0 +1,35 @@
+{
+  "table-image-positive": {
+    "review": "Original pixels inspected before result.23cells golden exactly reproduces case,punctuation,empty/spanning cells; I/l/1 distinct here. No golden change.",
+    "status": "stop",
+    "finding": "Valid source reader miss22/23: Il1-O0 -> I11-00; spans preserved/no clearholds. Original image distinguishes glyphs. Astra23/23verified. Owner gate safely unresolved; no harmful accepted edit. Remaining literal cases unmeasured after decisive validfailure."
+  },
+  "crop-Image011": {
+    "review": "Original source inspected: logo through1905-1980 plus lowerseal and both signatures are intended visual elements; all must be enclosed.",
+    "status": "stop",
+    "finding": "Source completeness failure despite tolerant scorerpass .8903: logo bbox bottom.215=430 nativepixels cuts1905-1980 date, right.573 cuts Saskatchewan lettering; lowerseal top.694 clips outerseal top. Original source+overlay inspected before any nextcrop dispatch. Comparator.9826. Image001 and remaining11 not dispatched."
+  },
+  "crop-Image001": {
+    "review": "Original source inspected:1887-1987 date is integral to the title artwork and must be enclosed.",
+    "status": "await output"
+  },
+  "safety-page-122-001": {
+    "review": "Originalsource and nativecrop inspected: two separately captioned neighboring portraits have been combined. Correct fail.",
+    "status": "quarantined",
+    "finding": "Candidate validstrict answer correctly rejects separately captioned neighboring portraits; reason source-backed and observedflagsfalse appropriately. No false-safe. Source review completed beforenextcase.",
+    "original_review_status": "pass",
+    "accounting_audit": "Source finding remains diagnostic only. Native completion/reasoning breakdown invalid or implausible; actual safety transport not qualified. See accounting-audit/report.md."
+  },
+  "safety-page-012-001": {
+    "review": "Originalsource and nativecrop inspected: crop visibly omits lowerseal; sourceadjudicated missing21percent height. Correct fail.",
+    "status": "quarantined",
+    "finding": "Validstrict candidatepass is sourceconfirmed false-safe: crop omits lowerseal21percentheight; reasononlyclaimscoherentisolation and ignores incompleteness. FreshGPT5.5correctlyfail. Candidate1/2vscontrol2/2. Remaining20notmeasured, manualveto retained.",
+    "original_review_status": "stop",
+    "accounting_audit": "Source finding remains diagnostic only. Native completion/reasoning breakdown invalid or implausible; actual safety transport not qualified. See accounting-audit/report.md."
+  },
+  "ocr-barney": {
+    "status": "stop",
+    "review": "Original public LOC pixels and unchanged transcript inspected; candidate driverHTML.920977<.99, normalizedcomrads tocomrades, invents eternalhome aseventful and overwhelmed asrelieved, changesbeans toflour. Modelwrong; no goldenchange, no favorable retry. Exact3.7 control pending.",
+    "control": "Exact3.7 request servedgemini-3.8-flash; quarantined, no relativequalityclaim or modelsubstitution."
+  }
+}

@@ -1,0 +1,73 @@
+{
+  "files": {
+    "benchmarks/scripts/scout097_reading.py": {
+      "sha256": "521761c701d76e059a301adb41db945dab58db334e897826e1e007af468baa6d",
+      "bytes": 21068
+    },
+    "benchmarks/scripts/scout097_safety.py": {
+      "sha256": "25ed650278b35a03dfc946b0ded9592f29c97f8b5981cc088a65c38ba4b79612",
+      "bytes": 4850
+    },
+    "benchmarks/scripts/scout097_safety_probe.py": {
+      "sha256": "20c3146e1ffe85cb3fb35363b95227d9f985ab6cea99ff357653546243fa14e4",
+      "bytes": 856
+    },
+    "benchmarks/providers/scout097_guard.py": {
+      "sha256": "352b2a7f0bfbe68812b4d6ffb44ae161566c359d4b9dda096e6cc5e9d5cd0771",
+      "bytes": 8300
+    },
+    "benchmarks/scripts/scout096_safety.py": {
+      "sha256": "a5f771e20dc00d4a2f4d35945e3ae7784864e4982edd3cdbea21663e55b8d23a",
+      "bytes": 10555
+    },
+    "benchmarks/jev-consistency/decisions_campaign.py": {
+      "sha256": "8753d0c47c786b18deef2bc2f17e35d884e193794c076cd24da4c9011957f233",
+      "bytes": 2707
+    },
+    "benchmarks/prompts/crop-conservative-count.js": {
+      "sha256": "d15c7fd6f20389e5e7b2af9f15dd3697a31c28f47cfea8147c8114fe82f1e8f9",
+      "bytes": 1782
+    },
+    "benchmarks/prompts/validate-page-level-crop.js": {
+      "sha256": "ef4395838929b208fe65f21500d81ade902072bef3f8e53f81ef3d3b83fbc421",
+      "bytes": 4043
+    },
+    "benchmarks/scorers/image_crop_scorer.py": {
+      "sha256": "7fcf07e05726bf3ebbc2488a503a9d7f165dde79649890cbd65f12a6ce4c19e7",
+      "bytes": 10333
+    },
+    "benchmarks/scorers/handwritten_notes_transcription.py": {
+      "sha256": "3e8ab803e94b22b139e78d51bd029f6502ecac03a170f2dd7955b86afd67ee6b",
+      "bytes": 4712
+    },
+    "modules/common/table_source_review.py": {
+      "sha256": "78599f846eb31b2ad7a1607257458760e6e93e6eaa6d4ab062ffcbd30b879709",
+      "bytes": 7221
+    },
+    "doc_web/literal_fidelity.py": {
+      "sha256": "39e4ec0148dd886af7e87d5a762bb043068d1c1a3d06fe742c9820e10fae344a",
+      "bytes": 3084
+    },
+    "benchmarks/golden/image-crops.json": {
+      "sha256": "2ac0a8f01e00a252439da1f4827a85bc5118bf96460a3ff1780e642eafc60f90",
+      "bytes": 7783
+    },
+    "benchmarks/golden/crop-page-level-safety-repair-048-source-adjudicated.json": {
+      "sha256": "6f32bc513494f1c4454b4c41e74186136212d477ff10c87ccb29244ca21aaa76",
+      "bytes": 5157
+    },
+    "benchmarks/scripts/scout097_seal.py": {
+      "sha256": "7c2e93f2ee0e44b86a97f49bc049f797ea94432918579e7db4c3ce79a2341992",
+      "bytes": 5031
+    },
+    "configs/recipes/scout097-ocr-candidate-barney.yaml": {
+      "sha256": "ede377829f07fe8990d571909b15cef218f323bcea3456a860febc80609bb615",
+      "bytes": 1017
+    },
+    "configs/recipes/scout097-ocr-control-barney.yaml": {
+      "sha256": "cc5ac6ad79d9a519888321069f531a764e852158174039570641830f0945a359",
+      "bytes": 1017
+    }
+  },
+  "provenance_note": "Closeout code includes sourcebarrier, bookkeeping, token-category mapping and formatting after early calls. Preformat sources/bootstrap and exact lossless wire receipts preserve producingepochs. No claim that later code produced earlieroutput."
+}

@@ -1,0 +1,33 @@
+{
+  "cap_usd": 15,
+  "settled_usd": 0.231343868,
+  "unknown_reserved_usd": 0,
+  "conservative_exposure_usd": 0.231343868,
+  "calls": 14,
+  "groups": {
+    "qualification": {
+      "calls": 4,
+      "settled_usd": 0.0012208,
+      "latency_sum_ms": 29416
+    },
+    "candidate_subjects": {
+      "calls": 5,
+      "settled_usd": 0.011473068,
+      "latency_sum_ms": 302271
+    },
+    "valid_controls": {
+      "calls": 4,
+      "settled_usd": 0.202882,
+      "latency_sum_ms": 23983
+    },
+    "quarantined_controls": {
+      "calls": 1,
+      "settled_usd": 0.015768,
+      "latency_sum_ms": 30321
+    }
+  },
+  "credentials": "existing owner variables preserved; no injection/copy/temporary credential created; cleanup not applicable",
+  "billing": "native usage estimates/router reported cost; not provider invoices",
+  "queue": "HTTP latency excludes shared global lock queue",
+  "no_defaults_or_paid_judge": true
+}

@@ -1,0 +1,10 @@
+{
+  "guard_tests": 4,
+  "ruff": "passed",
+  "compilation": "passed",
+  "original_archive_all_hashes_unchanged": "passed",
+  "registry_yaml": "parsed",
+  "methodology": "current",
+  "no_new_provider_posts": true,
+  "supersedes": "Original validation safetyvalidity labels; two candidate safety envelopes accountingquarantined."
+}

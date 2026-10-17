@@ -245,7 +245,8 @@
           "253",
           "254",
           "255",
-          "256"
+          "256",
+          "257"
         ],
         "adr_ids": [
           "ADR-001",
@@ -327,7 +328,8 @@
           "253",
           "254",
           "255",
-          "256"
+          "256",
+          "257"
         ],
         "adr_ids": [
           "ADR-001",
@@ -338,6 +340,7 @@
           "literal-table-fidelity",
           "reference-resolution",
           "image-crop-extraction",
+          "crop-page-level-deletion-gate",
           "ocr-model-genealogy",
           "handwritten-notes-transcription",
           "onward-table-fidelity",
@@ -389,10 +392,12 @@
           "244",
           "249",
           "251",
-          "252"
+          "252",
+          "257"
         ],
         "adr_ids": [],
         "eval_ids": [
+          "literal-table-fidelity",
           "sol-crop-safety-native-public-smoke",
           "image-crop-extraction",
           "crop-validation",
@@ -519,7 +524,8 @@
           "253",
           "254",
           "255",
-          "256"
+          "256",
+          "257"
         ],
         "adr_ids": [
           "ADR-001",
@@ -530,6 +536,8 @@
           "literal-table-fidelity",
           "reference-resolution",
           "image-crop-extraction",
+          "crop-page-level-deletion-gate",
+          "handwritten-notes-transcription",
           "onward-document-consistency-planning",
           "onward-genealogy-row-semantic-note-placement",
           "auto-book-type-detection",
@@ -932,7 +940,8 @@
           "253",
           "254",
           "255",
-          "256"
+          "256",
+          "257"
         ],
         "eval_ids": [
           "literal-table-fidelity",
@@ -947,15 +956,15 @@
           "posture": "wait-for-trigger",
           "retry_trigger_status": "waiting",
           "retry_when": [
-            "new-approach"
+            "new-subject-model-or-source-qualified-approach"
           ],
           "why_now": "",
           "last_relevant_action": {
-            "date": "2026-10-16",
+            "date": "2026-10-17",
             "source_type": "eval-attempt",
             "source": "docs/evals/registry.yaml",
-            "source_id": "078",
-            "summary": "Nemotron bakery21/23 exact diagnostic; four clearcell holds, no verified/harmful edits; true ambiguity2holds. Fresh Astra bakery23/23 verified. Stop nativeclear after valid failure. Full owner record attempts/078-scou..."
+            "source_id": "079",
+            "summary": "Bakery Il1-O0 becomes I11-00; spans preserved, owner safely unresolved. Astra23/23verified. Remaining13clear+2ambiguity cells unmeasured aftervalidstop. RetainAstra. Fullrawcustody/ledger/manifest in evidence/079-scou..."
           },
           "story_ids": [
             "131",
@@ -1009,7 +1018,8 @@
             "253",
             "254",
             "255",
-            "256"
+            "256",
+            "257"
           ],
           "eval_ids": [
             "literal-table-fidelity",
@@ -1051,7 +1061,8 @@
           "253",
           "254",
           "255",
-          "256"
+          "256",
+          "257"
         ],
         "eval_ids": [
           "literal-table-fidelity"
@@ -1064,15 +1075,15 @@
           "posture": "wait-for-trigger",
           "retry_trigger_status": "waiting",
           "retry_when": [
-            "new-approach"
+            "new-subject-model-or-source-qualified-approach"
           ],
           "why_now": "",
           "last_relevant_action": {
-            "date": "2026-10-16",
+            "date": "2026-10-17",
             "source_type": "eval-attempt",
             "source": "docs/evals/registry.yaml",
-            "source_id": "078",
-            "summary": "Nemotron bakery21/23 exact diagnostic; four clearcell holds, no verified/harmful edits; true ambiguity2holds. Fresh Astra bakery23/23 verified. Stop nativeclear after valid failure. Full owner record attempts/078-scou..."
+            "source_id": "079",
+            "summary": "Bakery Il1-O0 becomes I11-00; spans preserved, owner safely unresolved. Astra23/23verified. Remaining13clear+2ambiguity cells unmeasured aftervalidstop. RetainAstra. Fullrawcustody/ledger/manifest in evidence/079-scou..."
           },
           "story_ids": [
             "134",
@@ -1098,7 +1109,8 @@
             "253",
             "254",
             "255",
-            "256"
+            "256",
+            "257"
           ],
           "eval_ids": [
             "literal-table-fidelity"
@@ -1157,7 +1169,8 @@
           "253",
           "254",
           "255",
-          "256"
+          "256",
+          "257"
         ],
         "eval_ids": [
           "literal-table-fidelity",
@@ -1220,7 +1233,8 @@
             "253",
             "254",
             "255",
-            "256"
+            "256",
+            "257"
           ],
           "eval_ids": [
             "literal-table-fidelity",
@@ -1257,7 +1271,8 @@
           "244",
           "249",
           "251",
-          "252"
+          "252",
+          "257"
         ],
         "eval_ids": [
           "image-crop-extraction",
@@ -1295,7 +1310,8 @@
             "244",
             "249",
             "251",
-            "252"
+            "252",
+            "257"
           ],
           "eval_ids": [
             "image-crop-extraction",
@@ -1332,7 +1348,8 @@
           "242",
           "244",
           "249",
-          "251"
+          "251",
+          "257"
         ],
         "eval_ids": [
           "sol-crop-safety-native-public-smoke",
@@ -1372,7 +1389,8 @@
             "242",
             "244",
             "249",
-            "251"
+            "251",
+            "257"
           ],
           "eval_ids": [
             "sol-crop-safety-native-public-smoke",
@@ -14711,6 +14729,79 @@
           "summary": ""
         }
       }
+    },
+    {
+      "id": "257",
+      "title": "Scout097 DeepSeek1017 source-fidelity evaluation",
+      "path": "docs/stories/story-257-scout097-deepseek1017-evaluation.md",
+      "status": "Done",
+      "priority": "High",
+      "ideal_refs": [
+        "req:3",
+        "req:4",
+        "req:6"
+      ],
+      "spec_refs": [
+        "spec:2.1",
+        "spec:3.1",
+        "spec:4.1",
+        "spec:4.2",
+        "spec:6"
+      ],
+      "decision_refs": [
+        "ADR-001",
+        "ADR-002"
+      ],
+      "adr_ids": [
+        "ADR-001",
+        "ADR-002"
+      ],
+      "depends_on": [
+        "256"
+      ],
+      "category_refs": [
+        "spec:2",
+        "spec:3",
+        "spec:4",
+        "spec:6"
+      ],
+      "compromise_refs": [
+        "C1",
+        "C3",
+        "C4",
+        "C5",
+        "C6"
+      ],
+      "input_coverage_refs": [
+        "handwritten-notes",
+        "scanned-pdf-tables"
+      ],
+      "architecture_domains": [
+        "doc_web_runtime",
+        "ocr_and_extraction"
+      ],
+      "roadmap_tags": [],
+      "blocker_summary": "",
+      "blocker_evidence": "",
+      "unblock_condition": "",
+      "last_work_log_entry": null,
+      "legacy_build_map_refs": "",
+      "metadata_source": "frontmatter",
+      "missing_frontmatter_keys": [],
+      "actionability": {
+        "source_kind": "story",
+        "source_id": "257",
+        "source_path": "docs/stories/story-257-scout097-deepseek1017-evaluation.md",
+        "recommended_now": false,
+        "posture": "completed",
+        "why_now": "",
+        "last_relevant_action": {
+          "date": null,
+          "source_type": "story-status",
+          "source": "docs/stories/story-257-scout097-deepseek1017-evaluation.md",
+          "summary": ""
+        }
+      }
     }
   ],
   "adrs": [
@@ -14848,7 +14939,8 @@
         "245",
         "253",
         "254",
-        "255"
+        "255",
+        "257"
       ],
       "compromise_refs": [
         "C1",
@@ -14858,6 +14950,7 @@
       "category_refs": [
         "spec:2",
         "spec:3",
+        "spec:4",
         "spec:6"
       ],
       "scores": [
@@ -14987,29 +15080,47 @@
             "cached_tokens": 0
           },
           "note": "Exposed effort-only calibration: boundedqualityparity, low10.96%cheaper but2.59xsamplelatencysum. Descriptiveoneobservation/case, sharedaccountcontextunmeasured. December.032972/.037032; no newAstra control orlevel/defaultadoption. Attempt072."
+        },
+        {
+          "model": "deepseek/deepseek-v4.1-flash-1017 Cloudflare high32768 Scout097",
+          "measured": "2026-10-17",
+          "git_sha": "bceb2956+attempt079-uncommitted",
+          "metrics": {
+            "diagnostic_exact_cells": 22,
+            "clear_cells_tested": 23,
+            "clear_uncertainty_cells": 0,
+            "accepted_wrong_cells": 0,
+            "candidate_cases": 1,
+            "control_cases": 1
+          },
+          "note": "Bakery Il1-O0 becomes I11-00; spans preserved, owner safely unresolved. Astra23/23verified. Remaining13clear+2ambiguity cells unmeasured aftervalidstop. RetainAstra. Fullownerrecord attempts/079-scout097-deepseek1017-source-fidelity.md; closedinclusiveUSD.231343868/15 unknown0, no runtime/defaults."
         }
       ],
       "latest_score": {
-        "model": "meta/muse-wonder-20261012 medium32768 source-only Scout093",
-        "measured": "2026-10-14",
-        "git_sha": "e44c0a41+attempt074",
+        "model": "deepseek/deepseek-v4.1-flash-1017 Cloudflare high32768 Scout097",
+        "measured": "2026-10-17",
+        "git_sha": "bceb2956+attempt079-uncommitted",
         "metrics": {
-          "candidate_cases": 2,
-          "control_cases": 3,
-          "diagnostic_exact_cells": 35,
-          "clear_cells_tested": 36,
-          "qualified_cases": 1,
-          "accepted_cells": 13,
+          "diagnostic_exact_cells": 22,
+          "clear_cells_tested": 23,
+          "clear_uncertainty_cells": 0,
           "accepted_wrong_cells": 0,
-          "clear_uncertainty_cells": 3,
-          "harmful_control_changes": 0,
-          "latency_ms": 12816.5,
-          "cost_usd": 0.0439908,
-          "cost_estimated": false
+          "candidate_cases": 1,
+          "control_cases": 1
         },
-        "note": "Native13exact; imageIl1-O0->Il1-00 diagnostic and3opticallyclearholds. Valid source stop beforecandidateambiguity; Astra36clearcells exact+bothtrueholds. Pairedcost43.60%/latency42.58%lower with unequal quality; retainAstra. InclusiveUSD.3223511/10 unknown0,6POSTs. Root source review; Attempt074. No providerprofile/export/default adoption."
+        "note": "Bakery Il1-O0 becomes I11-00; spans preserved, owner safely unresolved. Astra23/23verified. Remaining13clear+2ambiguity cells unmeasured aftervalidstop. RetainAstra. Fullownerrecord attempts/079-scout097-deepseek1017-source-fidelity.md; closedinclusiveUSD.231343868/15 unknown0, no runtime/defaults."
       },
       "attempts": [
+        {
+          "id": "079",
+          "date": "2026-10-17",
+          "status": "failed",
+          "approach": "Scout097 approved fresh independent owner tasks; exact DeepSeek1017 Cloudflare high32768, Story257",
+          "note": "Bakery Il1-O0 becomes I11-00; spans preserved, owner safely unresolved. Astra23/23verified. Remaining13clear+2ambiguity cells unmeasured aftervalidstop. RetainAstra. Fullrawcustody/ledger/manifest in evidence/079-scout097; all4independenttasks resolved, no semantic sweep or defaults.",
+          "retry_when": [
+            "new-subject-model-or-source-qualified-approach"
+          ]
+        },
         {
           "id": "078",
           "date": "2026-10-16",
@@ -15089,15 +15200,15 @@
         "posture": "wait-for-trigger",
         "retry_trigger_status": "waiting",
         "retry_when": [
-          "new-approach"
+          "new-subject-model-or-source-qualified-approach"
         ],
         "why_now": "",
         "last_relevant_action": {
-          "date": "2026-10-16",
+          "date": "2026-10-17",
           "source_type": "eval-attempt",
           "source": "docs/evals/registry.yaml",
-          "source_id": "078",
-          "summary": "Nemotron bakery21/23 exact diagnostic; four clearcell holds, no verified/harmful edits; true ambiguity2holds. Fresh Astra bakery23/23 verified. Stop nativeclear after valid failure. Full owner record attempts/078-scou..."
+          "source_id": "079",
+          "summary": "Bakery Il1-O0 becomes I11-00; spans preserved, owner safely unresolved. Astra23/23verified. Remaining13clear+2ambiguity cells unmeasured aftervalidstop. RetainAstra. Fullrawcustody/ledger/manifest in evidence/079-scou..."
         }
       }
     },
@@ -15358,7 +15469,8 @@
         "237",
         "238",
         "239",
-        "249"
+        "249",
+        "257"
       ],
       "compromise_refs": [
         "C4"
@@ -16050,23 +16162,45 @@
             "cached_tokens": 0
           },
           "note": "Medium037consistentinteger0-1000 failsfrozenraw0-1contract despiteautoscalingnumericpass, armstopped. High037/001sourcecomplete but011ruletail1\u20132pxclip; nohighpromotion. Medium001/011notrun; optionalmatched037confirmationcancelled understopprecedence, no unpairedrepeat/full13. HighDecember.087144."
+        },
+        {
+          "model": "deepseek/deepseek-v4.1-flash-1017 Cloudflare high32768 Scout097",
+          "measured": "2026-10-17",
+          "git_sha": "bceb2956+attempt079-uncommitted",
+          "metrics": {
+            "overall": 0.8903,
+            "pass_rate": 1.0,
+            "cases_total": 1,
+            "source_complete_cases": 0,
+            "fresh_control_score": 0.9826
+          },
+          "note": "Image011 tolerantpass but sourceconfirmed logo date/rightlettering and outerseal clipped. Sourcebarrier stops beforeImage001/remaining11. No13case orproductionwin; retainGemini3Flash. Fullownerrecord attempts/079-scout097-deepseek1017-source-fidelity.md; closedinclusiveUSD.231343868/15 unknown0, no runtime/defaults."
         }
       ],
       "latest_score": {
-        "model": "gemini-4-argon medium32768 progressive Scout092",
-        "measured": "2026-10-13",
-        "git_sha": "91cd9bb1+attempt071",
+        "model": "deepseek/deepseek-v4.1-flash-1017 Cloudflare high32768 Scout097",
+        "measured": "2026-10-17",
+        "git_sha": "bceb2956+attempt079-uncommitted",
         "metrics": {
-          "pass_rate": 0.888889,
-          "overall": 0.917444,
-          "cases_total": 9,
-          "latency_ms": 5145.111111,
-          "cost_usd": 0.004369555556,
-          "cost_estimated": true
+          "overall": 0.8903,
+          "pass_rate": 1.0,
+          "cases_total": 1,
+          "source_complete_cases": 0,
+          "fresh_control_score": 0.9826
         },
-        "note": "8/9 vs freshGemini3Flash9/9 mean.962356. StopImage037 mixedunits normalizedbbox y1=898; smallImage001sourceedgeclip.4remaining and22safety notmeasured. NativeJSONshape qualified; numericbounds prompt/scorer-owned. No detectoradoption. Attempt071."
+        "note": "Image011 tolerantpass but sourceconfirmed logo date/rightlettering and outerseal clipped. Sourcebarrier stops beforeImage001/remaining11. No13case orproductionwin; retainGemini3Flash. Fullownerrecord attempts/079-scout097-deepseek1017-source-fidelity.md; closedinclusiveUSD.231343868/15 unknown0, no runtime/defaults."
       },
       "attempts": [
+        {
+          "id": "079",
+          "date": "2026-10-17",
+          "status": "failed",
+          "approach": "Scout097 approved fresh independent owner tasks; exact DeepSeek1017 Cloudflare high32768, Story257",
+          "note": "Image011 tolerantpass but sourceconfirmed logo date/rightlettering and outerseal clipped. Sourcebarrier stops beforeImage001/remaining11. No13case orproductionwin; retainGemini3Flash. Fullrawcustody/ledger/manifest in evidence/079-scout097; all4independenttasks resolved, no semantic sweep or defaults.",
+          "retry_when": [
+            "new-subject-model-or-source-qualified-approach"
+          ]
+        },
         {
           "id": "078",
           "date": "2026-10-16",
@@ -16549,15 +16683,15 @@
         "posture": "wait-for-trigger",
         "retry_trigger_status": "waiting",
         "retry_when": [
-          "new-approach"
+          "new-subject-model-or-source-qualified-approach"
         ],
         "why_now": "Gemini 4 or equivalent may push past 0.95 target Golden references cover limited page types; add table-heavy pages",
         "last_relevant_action": {
-          "date": "2026-10-16",
+          "date": "2026-10-17",
           "source_type": "eval-attempt",
           "source": "docs/evals/registry.yaml",
-          "source_id": "078",
-          "summary": "Nemotron Image011 score.953 vs fresh Gemini3Flash.9785 with sourcecomplete region review; next Image0002Together embedded502 errors, remainder not measured. No13case qualification. Full owner record attempts/078-scout..."
+          "source_id": "079",
+          "summary": "Image011 tolerantpass but sourceconfirmed logo date/rightlettering and outerseal clipped. Sourcebarrier stops beforeImage001/remaining11. No13case orproductionwin; retainGemini3Flash. Fullrawcustody/ledger/manifest in..."
         }
       }
     },
@@ -16862,7 +16996,8 @@
         "238",
         "239",
         "240",
-        "249"
+        "249",
+        "257"
       ],
       "compromise_refs": [
         "C5"
@@ -16870,8 +17005,10 @@
       "category_refs": [
         "spec:1",
         "spec:2",
+        "spec:3",
         "spec:4",
         "spec:5",
+        "spec:6",
         "spec:8"
       ],
       "scores": [
@@ -17463,28 +17600,49 @@
           "result_file": "benchmarks/results/mistral-large4-20261006/safety-progressive.json",
           "evidence_status": "source-adjudicated-false-safe-progressive-stop",
           "note": "Attempt048 repaired prompt/source-adjudicated labels: candidate incorrectly accepts seal missing 21% height. Frozen primary 5/5 retained; source-corrected 4/5 is not full 22 rate. GPT5.5 control independently false-rejects cover 0/1, 21 unrun.\n"
+        },
+        {
+          "model": "deepseek/deepseek-v4.1-flash-1017 Cloudflare high32768 Scout097",
+          "measured": "2026-10-17",
+          "git_sha": "bceb2956+attempt079-uncommitted",
+          "metrics": {
+            "adoption_grade_candidate_cases": 0,
+            "accounting_quarantined_cases": 2,
+            "diagnostic_correct": 1,
+            "diagnostic_false_safe": 1,
+            "fresh_control_correct": 2,
+            "fresh_control_false_safe": 0,
+            "remaining_unmeasured": 20
+          },
+          "note": "ACCOUNTINGAUDIT: nativecompletion616/reasoning711 impossible; clippedseal323/311leaves12visible for231charJSON. Bothsubjectsenvelopesquarantined, capabilitynotmeasured/adoptiondefer. Savedclippedseal false-safe is diagnostic only; qualifiedGPT5.5control2/2correct. No newPOST. See evidence/079-scout097/accounting-audit/report.md. Fullownerrecord attempts/079-scout097-deepseek1017-source-fidelity.md; closedinclusiveUSD.231343868/15 unknown0, no runtime/defaults."
         }
       ],
       "latest_score": {
-        "model": "Mistral Large4 repaired safety via OpenRouter (Attempt061)",
+        "model": "deepseek/deepseek-v4.1-flash-1017 Cloudflare high32768 Scout097",
+        "measured": "2026-10-17",
+        "git_sha": "bceb2956+attempt079-uncommitted",
         "metrics": {
-          "pass_rate": 0.8,
-          "overall": 0.8,
-          "cases_total": 5,
-          "cases_unrun": 17,
-          "frozen_primary_correct": 5,
-          "source_adjudicated_correct": 4,
-          "false_safe": 1
+          "adoption_grade_candidate_cases": 0,
+          "accounting_quarantined_cases": 2,
+          "diagnostic_correct": 1,
+          "diagnostic_false_safe": 1,
+          "fresh_control_correct": 2,
+          "fresh_control_false_safe": 0,
+          "remaining_unmeasured": 20
         },
-        "cost_usd": 0.01883546,
-        "cost_estimated": false,
-        "measured": "2026-10-06",
-        "git_sha": "fc558e2+attempt061-uncommitted",
-        "result_file": "benchmarks/results/mistral-large4-20261006/safety-progressive.json",
-        "evidence_status": "source-adjudicated-false-safe-progressive-stop",
-        "note": "Attempt048 repaired prompt/source-adjudicated labels: candidate incorrectly accepts seal missing 21% height. Frozen primary 5/5 retained; source-corrected 4/5 is not full 22 rate. GPT5.5 control independently false-rejects cover 0/1, 21 unrun.\n"
+        "note": "ACCOUNTINGAUDIT: nativecompletion616/reasoning711 impossible; clippedseal323/311leaves12visible for231charJSON. Bothsubjectsenvelopesquarantined, capabilitynotmeasured/adoptiondefer. Savedclippedseal false-safe is diagnostic only; qualifiedGPT5.5control2/2correct. No newPOST. See evidence/079-scout097/accounting-audit/report.md. Fullownerrecord attempts/079-scout097-deepseek1017-source-fidelity.md; closedinclusiveUSD.231343868/15 unknown0, no runtime/defaults."
       },
       "attempts": [
+        {
+          "id": "079",
+          "date": "2026-10-17",
+          "status": "inconclusive",
+          "approach": "Scout097 approved fresh independent owner tasks; exact DeepSeek1017 Cloudflare high32768, Story257",
+          "note": "ACCOUNTINGAUDIT: nativecompletion616/reasoning711 impossible; clippedseal323/311leaves12visible for231charJSON. Bothsubjectsenvelopesquarantined, capabilitynotmeasured/adoptiondefer. Savedclippedseal false-safe is diagnostic only; qualifiedGPT5.5control2/2correct. No newPOST. See evidence/079-scout097/accounting-audit/report.md. Fullrawcustody/ledger/manifest in evidence/079-scout097; all4independenttasks resolved, no semantic sweep or defaults.",
+          "retry_when": [
+            "new-subject-model-or-source-qualified-approach"
+          ]
+        },
         {
           "id": "078",
           "date": "2026-10-16",
@@ -17789,15 +17947,15 @@
         "posture": "trigger-exhausted",
         "retry_trigger_status": "exhausted",
         "retry_when": [
-          "new-approach"
+          "new-subject-model-or-source-qualified-approach"
         ],
         "why_now": "Rerun when a materially stronger validator or detector may reduce the current fail-labeled page-context cases. Rerun after any maintained crop/runtime simplification before claiming `trim_layout_text` or bounded capti...",
         "last_relevant_action": {
-          "date": "2026-10-16",
+          "date": "2026-10-17",
           "source_type": "eval-attempt",
           "source": "docs/evals/registry.yaml",
-          "source_id": "078",
-          "summary": "Span4/5 with sourceconfirmed unsafe seal pass; GPT5.5control2/5 sameunsafe pass. Nemotron3/3then2upstream502; d1no valid answer500then4.5MB413. Remaining cases unmeasured; manual veto retained. Full owner record attem..."
+          "source_id": "079",
+          "summary": "ACCOUNTINGAUDIT: nativecompletion616/reasoning711 impossible; clippedseal323/311leaves12visible for231charJSON. Bothsubjectsenvelopesquarantined, capabilitynotmeasured/adoptiondefer. Savedclippedseal false-safe is dia..."
         }
       }
     },
@@ -17914,7 +18072,8 @@
         "230",
         "238",
         "239",
-        "249"
+        "249",
+        "257"
       ],
       "compromise_refs": [],
       "category_refs": [
@@ -17923,6 +18082,7 @@
         "spec:3",
         "spec:4",
         "spec:5",
+        "spec:6",
         "spec:8"
       ],
       "scores": [
@@ -18260,23 +18420,43 @@
           "result_file": "benchmarks/results/mistral-large4-20261006/ocr-candidate-barney.log",
           "evidence_status": "source-backed-barney-loss-progressive-stop",
           "note": "Candidate literal text loss on source-valid Barney; fresh Gemini .978830 also below.99. Alverson source golden confirms a good prospect but unrun after lane failure. Same system/user/image bytes verified; no truth change.\n"
+        },
+        {
+          "model": "deepseek/deepseek-v4.1-flash-1017 Cloudflare high32768 Scout097",
+          "measured": "2026-10-17",
+          "git_sha": "bceb2956+attempt079-uncommitted",
+          "metrics": {
+            "overall_min_ratio": 0.920977,
+            "cases_total": 1,
+            "pass_rate": 0.0,
+            "alverson_unrun": 1
+          },
+          "note": "ActualdriverBarney literal/sourceerrors below.99. RequestedexactGemini3.7served3.8quarantined, nofreshrelativequalityclaim. Alversonexcludedpendingseparateadjudication. Fullownerrecord attempts/079-scout097-deepseek1017-source-fidelity.md; closedinclusiveUSD.231343868/15 unknown0, no runtime/defaults."
         }
       ],
       "latest_score": {
-        "model": "gemini-4-argon medium32768 public LOC Barney Scout092",
-        "measured": "2026-10-13",
-        "git_sha": "91cd9bb1+attempt071",
+        "model": "deepseek/deepseek-v4.1-flash-1017 Cloudflare high32768 Scout097",
+        "measured": "2026-10-17",
+        "git_sha": "bceb2956+attempt079-uncommitted",
         "metrics": {
-          "overall_min_ratio": 0.988117,
+          "overall_min_ratio": 0.920977,
           "cases_total": 1,
           "pass_rate": 0.0,
-          "latency_ms": 9498,
-          "cost_usd": 0.00802,
-          "cost_estimated": true
+          "alverson_unrun": 1
         },
-        "note": "Actualdriverimageentry: comrads->comrades/mede->made sourcebackedliteralmiss. Frozenratio includesseparatepotentialextra-it goldenconcern, notcandidateerror. Alversonnotrun afterdecisivestop; itsa-good-prospect goldenprecheckedvalid. RequestedGemini3.7served3.8perofficialdeprecation; charge.01321425 quarantined, nofreshrelativeclaim. Attempt071."
+        "note": "ActualdriverBarney literal/sourceerrors below.99. RequestedexactGemini3.7served3.8quarantined, nofreshrelativequalityclaim. Alversonexcludedpendingseparateadjudication. Fullownerrecord attempts/079-scout097-deepseek1017-source-fidelity.md; closedinclusiveUSD.231343868/15 unknown0, no runtime/defaults."
       },
       "attempts": [
+        {
+          "id": "079",
+          "date": "2026-10-17",
+          "status": "failed",
+          "approach": "Scout097 approved fresh independent owner tasks; exact DeepSeek1017 Cloudflare high32768, Story257",
+          "note": "ActualdriverBarney literal/sourceerrors below.99. RequestedexactGemini3.7served3.8quarantined, nofreshrelativequalityclaim. Alversonexcludedpendingseparateadjudication. Fullrawcustody/ledger/manifest in evidence/079-scout097; all4independenttasks resolved, no semantic sweep or defaults.",
+          "retry_when": [
+            "new-subject-model-or-source-qualified-approach"
+          ]
+        },
         {
           "id": "078",
           "date": "2026-10-16",
@@ -18451,15 +18631,15 @@
         "posture": "trigger-exhausted",
         "retry_trigger_status": "exhausted",
         "retry_when": [
-          "new-approach"
+          "new-subject-model-or-source-qualified-approach"
         ],
         "why_now": "Retry only when a materially stronger model or OCR substrate appears that could plausibly clear Barney and the corrected Alverson front-page truth surface.",
         "last_relevant_action": {
-          "date": "2026-10-16",
+          "date": "2026-10-17",
           "source_type": "eval-attempt",
           "source": "docs/evals/registry.yaml",
-          "source_id": "078",
-          "summary": "Nemotron actual driver LOCBarney.812112 with invented/normalized narrative; stop Alverson. Exact3.7 control served3.8 quarantined, no comparative quality claim. Full owner record attempts/078-scout096.md incl additive..."
+          "source_id": "079",
+          "summary": "ActualdriverBarney literal/sourceerrors below.99. RequestedexactGemini3.7served3.8quarantined, nofreshrelativequalityclaim. Alversonexcludedpendingseparateadjudication. Fullrawcustody/ledger/manifest in evidence/079-s..."
         }
       }
     },

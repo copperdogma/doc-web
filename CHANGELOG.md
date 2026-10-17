@@ -1,3 +1,14 @@
+## [2026-10-17-01] — Record Scout097 source-fidelity evaluation (Story 257)
+
+### Added
+- Preserve DeepSeek1017 native receipts, frozen prompts and source reviews for literal tables, crop detection, public Barney handwriting and independent page safety.
+- Add evaluation-only spend, raw-custody and source-review guards, including accounting rejection covered by four offline tests.
+
+### Verified
+- Retain current readers: bakery22/23 versus Astra23/23, source-incomplete Image011 crops, and Barney.920977 below.99. Requested Gemini3.7 served3.8 and is quarantined.
+- Defer safety substitution: both candidate safety envelopes have unreliable native accounting. The saved clipped-seal false-safe is diagnostic only; fresh GPT5.5 controls remain qualified2/2. The additive audit supersedes initial safety labels while preserving producing archives unchanged.
+- Inclusive provider-reported spend USD.231343868 of15, unknown charge exposure0. No runtime or model default changed.
+
 ## [2026-10-16-01] — Record Scout096 source-reading and safety evaluation (Story 256)
 
 ### Added

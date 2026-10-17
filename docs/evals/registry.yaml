@@ -46,7 +46,7 @@ evals:
     pipeline_stage: extract
     runner: custom
     command: "PYTHONPATH=. python benchmarks/scripts/run_literal_table_fidelity.py --manifest output/story244-eval/development.json --out output/story244-eval/fresh --variant literal"
-    story_refs: ["245", "253", "254", "255"]
+    story_refs: ["245", "253", "254", "255", "257"]
     category_refs: ["spec:2", "spec:3", "spec:6"]
     spec_refs: ["spec:2.1", "spec:2.2", "spec:3.1", "spec:6"]
     compromise_refs: ["C1", "C3", "C6"]
@@ -91,7 +91,20 @@ evals:
         git_sha: 91cd9bb1+attempt072
         metrics: {cases_per_arm: 3, clear_cells_per_arm: 36, held_ambiguous_cells_per_arm: 2, harmful_changes: 0, low_cost_usd: 0.016486, medium_cost_usd: 0.018516, low_latency_sum_ms: 574451, medium_latency_sum_ms: 222034, low_thinking_tokens: 0, medium_thinking_tokens: 211, cached_tokens: 0}
         note: "Exposed effort-only calibration: boundedqualityparity, low10.96%cheaper but2.59xsamplelatencysum. Descriptiveoneobservation/case, sharedaccountcontextunmeasured. December.032972/.037032; no newAstra control orlevel/defaultadoption. Attempt072."
+      - model: deepseek/deepseek-v4.1-flash-1017 Cloudflare high32768 Scout097
+        measured: '2026-10-17'
+        git_sha: bceb2956+attempt079-uncommitted
+        metrics: {diagnostic_exact_cells: 22, clear_cells_tested: 23, clear_uncertainty_cells: 0, accepted_wrong_cells: 0, candidate_cases: 1, control_cases: 1}
+        note: "Bakery Il1-O0 becomes I11-00; spans preserved, owner safely unresolved. Astra23/23verified. Remaining13clear+2ambiguity cells unmeasured aftervalidstop. RetainAstra. Fullownerrecord attempts/079-scout097-deepseek1017-source-fidelity.md; closedinclusiveUSD.231343868/15 unknown0, no runtime/defaults."
     attempts:
+      - id: "079"
+        date: 2026-10-17
+        status: failed
+        approach: "Scout097 approved fresh independent owner tasks; exact DeepSeek1017 Cloudflare high32768, Story257"
+        note: "Bakery Il1-O0 becomes I11-00; spans preserved, owner safely unresolved. Astra23/23verified. Remaining13clear+2ambiguity cells unmeasured aftervalidstop. RetainAstra. Fullrawcustody/ledger/manifest in evidence/079-scout097; all4independenttasks resolved, no semantic sweep or defaults."
+        retry_when:
+          - condition: new-subject-model-or-source-qualified-approach
+            note: "Changed checkpoint or separately selected source-fidelity approach; no unchanged valid-failure retries. Untested effort levels remain unmeasured."
       - id: "078"
         date: 2026-10-16
         status: inconclusive
@@ -283,7 +296,7 @@ evals:
     config: benchmarks/tasks/image-crop-extraction.yaml
     scorer: benchmarks/scorers/image_crop_scorer.py
     golden: benchmarks/golden/
-    story_refs: ["133", "183", "207", "226", "232", "235", "236", "237", "238", "239", "249"]
+    story_refs: ["133", "183", "207", "226", "232", "235", "236", "237", "238", "239", "249", "257"]
     category_refs: ["spec:4", "spec:8"]
     compromise_refs: ["C4"]
     spec_compromise: C4
@@ -1162,7 +1175,20 @@ evals:
         git_sha: 91cd9bb1+attempt072
         metrics: {high_cases: 3, high_numeric_passes: 3, high_source_complete_cases: 2, high_raw_coordinate_compliant_cases: 3, medium_cases: 1, medium_raw_contract_failures: 1, high_cost_usd: 0.043572, high_latency_sum_ms: 150831, high_thinking_tokens: 3025, cached_tokens: 0}
         note: "Medium037consistentinteger0-1000 failsfrozenraw0-1contract despiteautoscalingnumericpass, armstopped. High037/001sourcecomplete but011ruletail1–2pxclip; nohighpromotion. Medium001/011notrun; optionalmatched037confirmationcancelled understopprecedence, no unpairedrepeat/full13. HighDecember.087144."
+      - model: deepseek/deepseek-v4.1-flash-1017 Cloudflare high32768 Scout097
+        measured: '2026-10-17'
+        git_sha: bceb2956+attempt079-uncommitted
+        metrics: {overall: 0.8903, pass_rate: 1.0, cases_total: 1, source_complete_cases: 0, fresh_control_score: 0.9826}
+        note: "Image011 tolerantpass but sourceconfirmed logo date/rightlettering and outerseal clipped. Sourcebarrier stops beforeImage001/remaining11. No13case orproductionwin; retainGemini3Flash. Fullownerrecord attempts/079-scout097-deepseek1017-source-fidelity.md; closedinclusiveUSD.231343868/15 unknown0, no runtime/defaults."
     attempts:
+      - id: "079"
+        date: 2026-10-17
+        status: failed
+        approach: "Scout097 approved fresh independent owner tasks; exact DeepSeek1017 Cloudflare high32768, Story257"
+        note: "Image011 tolerantpass but sourceconfirmed logo date/rightlettering and outerseal clipped. Sourcebarrier stops beforeImage001/remaining11. No13case orproductionwin; retainGemini3Flash. Fullrawcustody/ledger/manifest in evidence/079-scout097; all4independenttasks resolved, no semantic sweep or defaults."
+        retry_when:
+          - condition: new-subject-model-or-source-qualified-approach
+            note: "Changed checkpoint or separately selected source-fidelity approach; no unchanged valid-failure retries. Untested effort levels remain unmeasured."
       - id: "078"
         date: 2026-10-16
         status: inconclusive
@@ -2484,7 +2510,7 @@ evals:
     config: benchmarks/tasks/crop-page-level-deletion-gate.yaml
     scorer: benchmarks/scorers/crop_validation_scorer.py
     golden: benchmarks/golden/crop-page-level-deletion-gate.json
-    story_refs: ["209", "232", "235", "237", "238", "239", "240", "249"]
+    story_refs: ["209", "232", "235", "237", "238", "239", "240", "249", "257"]
     category_refs: ["spec:4", "spec:8"]
     compromise_refs: ["C5"]
     spec_compromise: C5
@@ -3326,7 +3352,20 @@ evals:
         evidence_status: source-adjudicated-false-safe-progressive-stop
         note: >
           Attempt048 repaired prompt/source-adjudicated labels: candidate incorrectly accepts seal missing 21% height. Frozen primary 5/5 retained; source-corrected 4/5 is not full 22 rate. GPT5.5 control independently false-rejects cover 0/1, 21 unrun.
+      - model: deepseek/deepseek-v4.1-flash-1017 Cloudflare high32768 Scout097
+        measured: '2026-10-17'
+        git_sha: bceb2956+attempt079-uncommitted
+        metrics: {adoption_grade_candidate_cases: 0, accounting_quarantined_cases: 2, diagnostic_correct: 1, diagnostic_false_safe: 1, fresh_control_correct: 2, fresh_control_false_safe: 0, remaining_unmeasured: 20}
+        note: "ACCOUNTINGAUDIT: nativecompletion616/reasoning711 impossible; clippedseal323/311leaves12visible for231charJSON. Bothsubjectsenvelopesquarantined, capabilitynotmeasured/adoptiondefer. Savedclippedseal false-safe is diagnostic only; qualifiedGPT5.5control2/2correct. No newPOST. See evidence/079-scout097/accounting-audit/report.md. Fullownerrecord attempts/079-scout097-deepseek1017-source-fidelity.md; closedinclusiveUSD.231343868/15 unknown0, no runtime/defaults."
     attempts:
+      - id: "079"
+        date: 2026-10-17
+        status: inconclusive
+        approach: "Scout097 approved fresh independent owner tasks; exact DeepSeek1017 Cloudflare high32768, Story257"
+        note: "ACCOUNTINGAUDIT: nativecompletion616/reasoning711 impossible; clippedseal323/311leaves12visible for231charJSON. Bothsubjectsenvelopesquarantined, capabilitynotmeasured/adoptiondefer. Savedclippedseal false-safe is diagnostic only; qualifiedGPT5.5control2/2correct. No newPOST. See evidence/079-scout097/accounting-audit/report.md. Fullrawcustody/ledger/manifest in evidence/079-scout097; all4independenttasks resolved, no semantic sweep or defaults."
+        retry_when:
+          - condition: new-subject-model-or-source-qualified-approach
+            note: "Changed checkpoint or separately selected source-fidelity approach; no unchanged valid-failure retries. Untested effort levels remain unmeasured."
       - id: "078"
         date: 2026-10-16
         status: inconclusive
@@ -3923,7 +3962,7 @@ evals:
     command: "python benchmarks/scripts/run_handwritten_notes_eval.py --image-recipe configs/recipes/recipe-images-ocr-html-handwritten-notes-gemini-rescue.yaml --pdf-recipe configs/recipes/recipe-pdf-ocr-html-handwritten-notes-gemini-rescue.yaml --image-case-id image-handwritten-rescue --pdf-case-id pdf-handwritten-rescue --instrument --output benchmarks/results/handwritten-notes-story189-real-expanded.json"
     scorer: benchmarks/scorers/handwritten_notes_transcription.py
     golden: benchmarks/golden/handwritten-notes/corpus.json
-    story_refs: ["179", "182", "185", "186", "189", "191", "192", "208", "230", "238", "239", "249"]
+    story_refs: ["179", "182", "185", "186", "189", "191", "192", "208", "230", "238", "239", "249", "257"]
     category_refs: ["spec:1", "spec:2", "spec:8"]
     compromise_refs: []
 
@@ -4465,7 +4504,20 @@ evals:
         evidence_status: source-backed-barney-loss-progressive-stop
         note: >
           Candidate literal text loss on source-valid Barney; fresh Gemini .978830 also below.99. Alverson source golden confirms a good prospect but unrun after lane failure. Same system/user/image bytes verified; no truth change.
+      - model: deepseek/deepseek-v4.1-flash-1017 Cloudflare high32768 Scout097
+        measured: '2026-10-17'
+        git_sha: bceb2956+attempt079-uncommitted
+        metrics: {overall_min_ratio: 0.920977, cases_total: 1, pass_rate: 0.0, alverson_unrun: 1}
+        note: "ActualdriverBarney literal/sourceerrors below.99. RequestedexactGemini3.7served3.8quarantined, nofreshrelativequalityclaim. Alversonexcludedpendingseparateadjudication. Fullownerrecord attempts/079-scout097-deepseek1017-source-fidelity.md; closedinclusiveUSD.231343868/15 unknown0, no runtime/defaults."
     attempts:
+      - id: "079"
+        date: 2026-10-17
+        status: failed
+        approach: "Scout097 approved fresh independent owner tasks; exact DeepSeek1017 Cloudflare high32768, Story257"
+        note: "ActualdriverBarney literal/sourceerrors below.99. RequestedexactGemini3.7served3.8quarantined, nofreshrelativequalityclaim. Alversonexcludedpendingseparateadjudication. Fullrawcustody/ledger/manifest in evidence/079-scout097; all4independenttasks resolved, no semantic sweep or defaults."
+        retry_when:
+          - condition: new-subject-model-or-source-qualified-approach
+            note: "Changed checkpoint or separately selected source-fidelity approach; no unchanged valid-failure retries. Untested effort levels remain unmeasured."
       - id: "078"
         date: 2026-10-16
         status: inconclusive

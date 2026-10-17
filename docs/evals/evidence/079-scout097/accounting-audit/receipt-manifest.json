@@ -1,0 +1,16 @@
+[
+  {
+    "stage": "safety-page-122-001-candidate",
+    "status": 200,
+    "path": "safety-page-122-001-candidate-generation.json",
+    "sha256": "fbcffdb797d81bcacd4d21570cf3c12e3f9d73d41b9c782272ca5b5d16e7ccae",
+    "bytes": 1394
+  },
+  {
+    "stage": "safety-page-012-001-candidate",
+    "status": 200,
+    "path": "safety-page-012-001-candidate-generation.json",
+    "sha256": "de5130b1a658778a25ce1a3de477be017a6357c82483e74095ada3409a9ab0cb",
+    "bytes": 1397
+  }
+]

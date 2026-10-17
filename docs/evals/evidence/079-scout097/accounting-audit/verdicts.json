@@ -1,0 +1,24 @@
+{
+  "supersedes": "Initial safety adoption-grade claims in Attempt079, registry/story and original summary/validation. Original native archive/manifest/ledger preserved unchanged.",
+  "safety": {
+    "access": "available",
+    "native_schema_probe": "qualified",
+    "actual_twoimage_transport": "inconclusive/accountinginvalid",
+    "reliability": "two subject envelopes quarantined",
+    "capability": "not measured for adoption-grade comparison",
+    "diagnostic": "saved outputs1/2sourcecorrect; clippedseal false-safe onlydiagnostic",
+    "controls": "qualified freshGPT5.5 2/2correct",
+    "adoption": "defer safety substitution; retainmanualveto"
+  },
+  "other_lanes": "literal/crop/Barney retain valid source-backed rejection; native counters internally coherent",
+  "money": {
+    "provider_reported_usd": 0.231343868,
+    "unknown_charge_exposure_usd": 0,
+    "provider_safety_generation_receipts_confirm_usd": 0.0011035,
+    "cap_usd": 15,
+    "not_provider_invoice": true
+  },
+  "no_new_provider_posts": true,
+  "new_requests": "2zero-cost generationGETs, both200, no rerun",
+  "future_guard": "rawcustody then reject reasoning>completion or contradictory total; closeledger and quarantine;4offline guard tests pass"
+}

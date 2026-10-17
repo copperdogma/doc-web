@@ -1,0 +1,173 @@
+{
+  "base_sha": "bceb295",
+  "model": "deepseek/deepseek-v4.1-flash-1017",
+  "canonical": "deepseek/deepseek-v4.1-flash-20261017",
+  "provider": "Cloudflare",
+  "precision": "unknown",
+  "effort": "high",
+  "combined_output": 32768,
+  "cap_usd": 15,
+  "topology": {
+    "tables": 3,
+    "crop": 13,
+    "safety": 22,
+    "handwriting": 1,
+    "candidate_probes": 4,
+    "native_schema_then_actual_owner_parity": true,
+    "judge": "no paid judge",
+    "sessions": "independent single request",
+    "concurrency": 1,
+    "cache": "disabled"
+  },
+  "reserves": {
+    "gpt55_22_twoimage_46k_2048": 6.41168,
+    "astra3": 4.5,
+    "gemini14": 0.9,
+    "candidate_18single22double": 2.016864
+  },
+  "input_envelope": "26k single/46k two images includes6k text; image count actual native bytes inspected; conservative20k/image exceeds unscaled32patch counts for all selected sources; no resizing",
+  "images": [
+    {
+      "key": "Image000",
+      "dimensions": [
+        1505,
+        2000
+      ],
+      "native_pixels": 3010000,
+      "raw_32patch_upper": 3024,
+      "sha256": "7500762d6e0b9761b49305b28e0c3609d051af1d5f3eac8ce33028b0b439f325"
+    },
+    {
+      "key": "Image001",
+      "dimensions": [
+        1545,
+        2000
+      ],
+      "native_pixels": 3090000,
+      "raw_32patch_upper": 3087,
+      "sha256": "6427c2e707203017ecacdbeeba9a7432d803fef5872b4c5e11fc517d341033b6"
+    },
+    {
+      "key": "Image003",
+      "dimensions": [
+        1545,
+        2000
+      ],
+      "native_pixels": 3090000,
+      "raw_32patch_upper": 3087,
+      "sha256": "ad1807bfdad56d65becf8011137680496f72d564bfc922a8da7d2c021e3ef266"
+    },
+    {
+      "key": "Image008",
+      "dimensions": [
+        1545,
+        2000
+      ],
+      "native_pixels": 3090000,
+      "raw_32patch_upper": 3087,
+      "sha256": "da312d69a4c007009c1e696b32e66a3a7a957eac6b9aa3fa67323eeb1c478c31"
+    },
+    {
+      "key": "Image011",
+      "dimensions": [
+        1545,
+        2000
+      ],
+      "native_pixels": 3090000,
+      "raw_32patch_upper": 3087,
+      "sha256": "ae3524cb58ac940c912c7885d65ec9d21221415d97d1ea21d97be9615161a860"
+    },
+    {
+      "key": "Image013",
+      "dimensions": [
+        1545,
+        2000
+      ],
+      "native_pixels": 3090000,
+      "raw_32patch_upper": 3087,
+      "sha256": "cb53f04abc02441992de4903c079b036c6242a50cd275f696231c89634e6a75b"
+    },
+    {
+      "key": "Image020",
+      "dimensions": [
+        1545,
+        2000
+      ],
+      "native_pixels": 3090000,
+      "raw_32patch_upper": 3087,
+      "sha256": "5a1f2380a089ff23355ff101b07549bd57abba3a51636a6b58a28a31a4195318"
+    },
+    {
+      "key": "Image021",
+      "dimensions": [
+        1545,
+        2000
+      ],
+      "native_pixels": 3090000,
+      "raw_32patch_upper": 3087,
+      "sha256": "2f49d83261e2f40d20b736b602cc4de8c36b48780ab944dc96c8e08f83e34332"
+    },
+    {
+      "key": "Image037",
+      "dimensions": [
+        1545,
+        2000
+      ],
+      "native_pixels": 3090000,
+      "raw_32patch_upper": 3087,
+      "sha256": "b836c9c90fc650dd0513299652bf1af41fc577544803d9cea64928c890cdfdbe"
+    },
+    {
+      "key": "Image059",
+      "dimensions": [
+        1545,
+        2000
+      ],
+      "native_pixels": 3090000,
+      "raw_32patch_upper": 3087,
+      "sha256": "af4d6f24fc5b026a12697ed4d9da2758257bb8e0ec06c7989a2b2d0625501317"
+    },
+    {
+      "key": "Image121",
+      "dimensions": [
+        1545,
+        2000
+      ],
+      "native_pixels": 3090000,
+      "raw_32patch_upper": 3087,
+      "sha256": "04731378a1ff37ffb8e26faf005f87fa2383f9ba91e147ce9caa94e8519d086e"
+    },
+    {
+      "key": "Image124",
+      "dimensions": [
+        1545,
+        2000
+      ],
+      "native_pixels": 3090000,
+      "raw_32patch_upper": 3087,
+      "sha256": "b35e4c1e660a0ed9029ebe555558341a933a5724740964ca6927f94f77ae2944"
+    },
+    {
+      "key": "Image126",
+      "dimensions": [
+        1545,
+        2000
+      ],
+      "native_pixels": 3090000,
+      "raw_32patch_upper": 3087,
+      "sha256": "25042b92e75e09ff2d7aa9330b44b26a092624a9bee19c7f2707a413f6c7f302"
+    }
+  ],
+  "privacy": "only synthetic and owner-cleared public LOC; ordinary retention/training may occur; no private sources",
+  "credentials": "existing owner DOC_WEB_OPENROUTER_API_KEY/GEMINI/OPENAI via wrapper; no injection",
+  "stop_barrier": "one explicit case invocation then source review before next; no automatic batching; valid failure ends affected arm",
+  "excluded": "Alverson and semantic effort sweep",
+  "recovery": "up to2 evidenced operational attempts per surface within remaining reservation; no valid semantic retries",
+  "reserved_total": 13.828543999999999,
+  "recovery_room": 1.171456000000001,
+  "safety_image_max_unscaled32patch": 16660,
+  "input_envelope_verification": "Every safety image also fits20k native unscaled32patch bound. Full renderedtext less6k tokens conservatively <=6k UTF8bytes. Candidate route maximum1M context;26k/46k+32768 fits.",
+  "probe_accounting": "The published18singlecandidate allowance covers17subjects+1probe;3 additional predeclared schema/image probes draw.1413648 worstcase from1.171456 overhead/recovery pool. Full43call candidate topology thus fits13.9699088 prospective inclusive reservation, with1.0300912 operational recovery remaining. Actualsmallprobe costs settle normally.",
+  "fully_explicit_topology_reserved_usd": 13.969908799999999,
+  "fully_explicit_recovery_usd": 1.030091200000001
+}
