@@ -108,6 +108,7 @@ Grouped by primary `spec:N` category. Stories without category refs remain in an
 | 255 | Muse Wonder literal-reader thinking calibration | High | Done | 245 | [story-255](stories/story-255-wonder-literal-thinking-calibration.md) |
 | 256 | Scout096 bounded source-reading and safety evaluation | High | Done | 245 | [story-256](stories/story-256-scout096-multimodal-evaluation.md) |
 | 257 | Scout097 DeepSeek1017 source-fidelity evaluation | High | Done | 256 | [story-257](stories/story-257-scout097-deepseek1017-evaluation.md) |
+| 258 | Scout099 MiniMax M3.1 Flash GA source-fidelity evaluation | High | Done | 257 | [story-258](stories/story-258-scout099-minimax-ga-evaluation.md) |
 | 227 | Gemini SDK API-Version Hardening | Medium | Done | — | [story-227](stories/story-227-gemini-sdk-api-version-hardening.md) |
 | 233 | JEV consistency classifier evaluation | Medium | Done | 220 | [story-233](stories/story-233-jev-consistency-classifier-evaluation.md) |
 | 234 | JEV consistency shadow routing | Medium | Done | 233 | [story-234](stories/story-234-jev-consistency-shadow-routing.md) |
@@ -147,6 +148,7 @@ Grouped by primary `spec:N` category. Stories without category refs remain in an
 | 240 | Thinking-level page-safety comparison and prompt repair preparation | Medium | Done | 239 | [story-240](stories/story-240-thinking-level-page-safety.md) |
 | 241 | Offline opt-in crop review gate | Medium | Done | 240 | [story-241](stories/story-241-offline-crop-review-gate.md) |
 | 242 | Opt-in Sol crop safety proposals with mandatory source review | Medium | Done | 240, 241 | [story-242](stories/story-242-sol-crop-safety-review-integration.md) |
+| 259 | Scout099 saved safety consumer feasibility | Medium | Done | 242 | [story-259](stories/story-259-scout099-safety-consumer-feasibility.md) |
 
 ### spec:5 — Document Consistency Planning
 

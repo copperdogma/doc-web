@@ -1,3 +1,17 @@
+## [2026-10-20-02] — Record MiniMax GA source-fidelity evaluation (Story 258)
+
+### Verified
+- Preserve the bounded safety diagnostic lead: 20/22 versus fresh GPT5.5 18/22, zero versus one false-safe, with slower candidate latency and unqualified strict/provider/consumer parity.
+- Retain readers and detector after literal, crop-completeness and handwriting failures. Preserve quarantined Gemini3.7-to3.8 control, all raw receipts, USD1.358886 inclusive ledger and credential cleanup.
+- Completed zero-cost follow-through is Story259/Attempt081 below; defer runtime adoption and further paid qualification, retaining current consumer and manual review.
+
+## [2026-10-20-01] — Audit Scout099 safety consumer feasibility (Story 259)
+
+### Verified
+- Preserve all22 saved safety pairs and44 complete payloads with source-reviewed flag/reason findings, historical grades and exact archive bindings.
+- Actual unchanged consumer admission under OS process network denial rejects15 oversized crops and44 incompatible native envelopes. No production routing, release or operator-time gain is claimed.
+- Defer runtime and paid qualification; propose a truthful informational contract before further spend. USD0, zero provider/judge calls, no runtime/default or human-review authority changes.
+
 ## [2026-10-17-01] — Record Scout097 source-fidelity evaluation (Story 257)
 
 ### Added

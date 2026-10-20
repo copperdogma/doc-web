@@ -1,0 +1,107 @@
+{
+  "literal-image-positive": {
+    "status": "fail",
+    "classification": "model-wrong diagnostic source reading",
+    "reason": "Original source Il1-O0 read I11-00 and o0-LI read oo-LI;21/23cells exact, spans preserved, no uncertain cells; downstream safely unresolved. Astra23/23verified."
+  },
+  "crop-Image011": {
+    "status": "fail",
+    "classification": "model-wrong capability-only source extent",
+    "reason": "Native overlay: right.57 cuts Saskatchewan lettering, bottom.225 cuts1905-1980 date; lowerregion left.12/bottom.893 clips seal edge and bottom label. Scorerpass.9301 is insufficient fullcontent. Control.9826. Stop crop beforeImage001."
+  },
+  "safety-page-122-001": {
+    "status": "pass",
+    "reason": "Full page contains separately captioned oval portraits; paired extracted crop groups both. Candidate diagnostic fail correctly rejects grouping, flagsfalse correctly avoid inventing page-text/blank leakage. Original source/crop pixels inspected in safety-portraits-review.jpg."
+  },
+  "ocr-barney": {
+    "status": "fail",
+    "classification": "model-wrong diagnostic handwriting",
+    "reason": "Original LOC image visibly reads long and eternal home, first thing that ever overwhelmed me, straw and cedar brush, consists princeiply of bread meat rice beens sugar molasses coffee and tea. Candidate substitutes Lombard cared him, first thing that comes soon refreshed me, cedar bush and replaces whole lonesome/death paragraphs. Character ratio.757773, far below.99; no source-golden repair or semantic retry."
+  },
+  "safety-page-012-001": {
+    "status": "pass",
+    "reason": "Full source seal has circular lowerportion absent from crop; MiniMax failcorrect with flagsfalse. GPT5.5 false-safe pass is source-wrong, goldenfail upheld. Source/crop safety-seal-review.jpg inspected."
+  },
+  "safety-page-001-000": {
+    "status": "pass",
+    "reason": "Original cover source and crop inspected: isolated landscape/wagon illustration with integral border vegetation; book title and author names intentionally excluded. Candidate passmatches maintainedgold, no external page text."
+  },
+  "safety-page-004-000": {
+    "status": "pass",
+    "reason": "Original coveredwagon source/crop inspected: separate caption excluded; wagon, horse,cow and grass retained at tight boundary. Goldenpass upheld; candidatepasscorrect. GPTfailis false rejection, not false-safe."
+  },
+  "safety-page-009-000": {
+    "status": "pass",
+    "reason": "Original introduction source and crop retain whole coupleportrait while excluding external caption and prose. Bothpasscorrect, sourcegold upheld."
+  },
+  "safety-page-012-000": {
+    "status": "pass",
+    "reason": "Source/crop full anniversary logo lettering and1905-1980date retained, no external documentprose. Bothpasscorrect; goldenpass upheld."
+  },
+  "safety-page-014-000": {
+    "status": "pass",
+    "reason": "Source/crop inspected: same coupleportrait whole lower boundary and both heads retained, caption/prose excluded. Bothpasscorrect."
+  },
+  "safety-page-018-000": {
+    "status": "pass",
+    "reason": "Source/crop inspected: family photo clipped onright and captions/excessiveblank included. Bothfailcorrect, goldenfail upheld."
+  },
+  "safety-page-021-000": {
+    "status": "pass",
+    "reason": "Full aerial ranch photograph retained; no external caption/page text or neighborphoto; bothpasscorrect."
+  },
+  "safety-page-021-001": {
+    "status": "pass",
+    "reason": "Whole winterranch photograph retained including integralsky, caption excluded; blank-looking sky is photographic content, bothpasscorrect."
+  },
+  "safety-page-022-000": {
+    "status": "pass",
+    "reason": "Whole anniversarycouple photograph retained without external boldcaption/pageprose. Bothpasscorrect."
+  },
+  "safety-page-038-000": {
+    "status": "pass",
+    "reason": "Single ovalportrait whole boundary retained, externalcaption/prose excluded. Bothpasscorrect."
+  },
+  "safety-page-038-001": {
+    "status": "pass",
+    "classification": "candidate false-rejection model-wrong",
+    "reason": "Individual native crop and source reviewed: complete original seatedcouple photo including heads, arms/chair and lowerbounds retained. Candidate invents severely incompletezoom/large missingportions, rejects clean source; GPTpasscorrect, golden unchanged. No false-safe; aggregate safecoverage still exceeds comparator, so continue fixedpanel."
+  },
+  "safety-page-060-000": {
+    "status": "pass",
+    "reason": "Whole standingcouple snowphoto retained, externalcaption excluded. Candidatepasscorrect; no invented cropping defect."
+  },
+  "safety-page-060-001": {
+    "status": "pass",
+    "reason": "Whole seatedwoman photo retained, integralsky/background retained with no pagecaption. Candidatepasscorrect."
+  },
+  "safety-page-092-000": {
+    "status": "pass",
+    "reason": "Source/crop inspected: documentprose across columns included and weddingportrait severely clipped. Candidatefailcorrect, sourcegold upheld."
+  },
+  "safety-page-122-000": {
+    "status": "pass",
+    "reason": "Reunioncrop includes external fullcaption; bothfailcorrect, goldenfail upheld. Original fullpage/crop inspected."
+  },
+  "safety-page-125-000": {
+    "status": "pass",
+    "reason": "Full oxwagon illustration and integralartist signature retained; cloud/background part ofdrawing. Externalcredit excluded. Bothpasscorrect."
+  },
+  "safety-page-126-000": {
+    "status": "pass",
+    "classification": "both false-reject source-backedmodel-wrong",
+    "reason": "Whole original topplaque PHOTOGRAPH including neighboring physical plaques retained, not centralobject-only segmentation. Alllettering integralphysicalphotograph; bothfailfalse-rejections against source-backed goldenpass. Candidate safe-coverage remains ahead; continue."
+  },
+  "safety-page-126-001": {
+    "status": "pass",
+    "reason": "Whole lowerplaquephotograph retained, integralphysical lettering allowed. Bothpasscorrect."
+  },
+  "safety-page-127-000": {
+    "status": "pass",
+    "reason": "Whole monumentphotograph retained including stonebase,plaquelettering and sky. Bothpasscorrect."
+  },
+  "safety-page-127-001": {
+    "status": "pass",
+    "reason": "Whole physicalpostoffice plaque photo retained; integraltext/stoneallowed. Bothpasscorrect."
+  }
+}

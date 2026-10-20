@@ -1,0 +1,16 @@
+{
+  "decoded_crop_dimensions": [
+    2163,
+    5313
+  ],
+  "band_bbox": [
+    0,
+    3000,
+    2163,
+    5313
+  ],
+  "band_area_fraction": 0.435347261434218,
+  "band_mean_luminance": 254.99839297032452,
+  "fraction_pixels_below200": 8.39493114057732e-06,
+  "interpretation": "Conservative full-width bottom band is blank paper, independently exceeds40%; scanner specks do not establish image content. Human source adjudication, not new golden/scorer."
+}

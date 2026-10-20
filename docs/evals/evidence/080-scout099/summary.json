@@ -1,0 +1,89 @@
+{
+  "base_sha": "1a347f3f5ea13cb672a4e92d040704b99e556118",
+  "candidate": "minimax/minimax-m3.1-flash:free",
+  "canonical_public_checkpoint": "20261019",
+  "provider": "Minimax",
+  "quantization": "unknown",
+  "effort": "high requested; usage proves reasoningactivity, exacteffort notindependentlyattested",
+  "max_tokens": 32768,
+  "same_task_effort_comparison": false,
+  "access": "available free route; native direct key absent",
+  "transport": "strict parameter enforcement blocked404; localJSON diagnostics qualified; no strict provider parity",
+  "candidate_reliability": "28/28 terminal exactGA inferenceresponses; initial strict404 pre-inference separate",
+  "cap_usd": 15,
+  "spent_usd": 1.3588859999999998,
+  "calls": 54,
+  "unknown_exposure_usd": 0,
+  "safety": {
+    "candidate": {
+      "cases": 22,
+      "correct": 20,
+      "false_safe": 0,
+      "false_rejections": 2,
+      "safe_cases": 17,
+      "safe_accepted": 15,
+      "unsafe_cases": 5,
+      "cost_usd": 0,
+      "latency_ms": {
+        "mean": 10609.772727272728,
+        "median": 8975.0,
+        "p95_nearest_rank": 27502,
+        "min": 3433,
+        "max": 29389
+      },
+      "thinking_tokens": 7259
+    },
+    "control": {
+      "cases": 22,
+      "correct": 18,
+      "false_safe": 1,
+      "false_rejections": 3,
+      "safe_cases": 17,
+      "safe_accepted": 14,
+      "unsafe_cases": 5,
+      "cost_usd": 1.257121,
+      "latency_ms": {
+        "mean": 3950.3636363636365,
+        "median": 3613.5,
+        "p95_nearest_rank": 6224,
+        "min": 2656,
+        "max": 6704
+      },
+      "thinking_tokens": 0
+    }
+  },
+  "literal": {
+    "candidate_exact_clear_cells": 21,
+    "control_exact_clear_cells": 23,
+    "cells_tested": 23,
+    "candidate_uncertain_cells": 0,
+    "spans": "preserved",
+    "owner_acceptance": "safely unresolved",
+    "remaining_clear_cells_unmeasured": 13,
+    "genuine_ambiguities_unmeasured": 2,
+    "adoption": "reject tested arm;retainAstra"
+  },
+  "crop": {
+    "cases": 1,
+    "candidate_score": 0.9301,
+    "control_score": 0.9826,
+    "candidate_source_completeness": false,
+    "remaining_cases_unmeasured": 12,
+    "adoption": "rejecttestedarm;retainGemini"
+  },
+  "handwriting": {
+    "cases": 1,
+    "candidate_ratio": 0.757773,
+    "required_ratio": 0.99,
+    "fresh_control": "requested3.7served3.8;quarantined, no relativequalityclaim",
+    "adoption": "rejecttestedarmagainstabsolutequalitygate"
+  },
+  "safety_action": "prioritizezero-cost saved-output consumer/source/prompt/schema/receipt feasibilityaudit beforepaidstrict-routeorindependentqualification; benchmarkGPT5.5 distinct from shippedSolmedium4096; retainmanualveto",
+  "registry_target": "1.0notmet; selectedzerofalse-safe/no-worsesafecoveragegatepassesdiagnostically",
+  "sample_limits": "22exposed same-source calibration cases; onefreshobservationeach; no statistical/population superiority, consumerparity, private-source or C5deletion claim",
+  "privacy": "public/authored-syntheticonly; retention/trainingmayoccur",
+  "subject_cache": "no subject output reuse; upstream frozenOCR reusedsymmetrically; providerinputcachetokens disclosedinusage",
+  "wait": "22sownspacingafterinitial3diagnostics; reduced10saftercoordinatorupdate. Admission sleep recorded separately; filelock/workerqueue overhead unmeasured and excludedfrom HTTP latency. Initial3diagnostics predatedpacinginstruction.",
+  "operational_setup": "twobefore-provider invocations used Python executable accidentally as DOC_WEB_ENV_FILE, causingUTF8 decodefailure; correctedenvpath, zero providercalls/spend. Not secretcorruption/modelreliability.",
+  "source_epochs": "Exactlosslesswirepayloads retained. Pacing/path/preflightcache-reuse repairs and free-price predispatchguard added afterearlycalls; finaladapter snapshotis closeoutcode, not falselyattributedto initialprobes. No semanticprompt/golden/scorer tuning."
+}

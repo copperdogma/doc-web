@@ -1,0 +1,45 @@
+{
+  "080": {
+    "manifest_byte_identical": true,
+    "archive_sha256": "a95d8003fef28e323f6c9050f6b23a9dd5e22a396ba010c5beb4cfe142a6a271",
+    "archive_bytes": 64316182,
+    "lossless_members_verified": 145
+  },
+  "081": {
+    "manifest_byte_identical": true,
+    "source_members_verified": 14,
+    "combined_shared_record_changes": [
+      {
+        "path": "CHANGELOG.md",
+        "historical_source_sha256": "a420ae076a39d9ee1fa093a6c9e45db1e48282c4fa01e875a6e623ac2ca64248",
+        "combined_sha256": "ae02498ae2e3fa1063ed6470613210c6794cd51027c70009a96304991c45eb78",
+        "reason": "combined080+081 owner records; historical081manifest remains immutable"
+      },
+      {
+        "path": "docs/evals/registry.yaml",
+        "historical_source_sha256": "fdde7a775b2cb176488d0da6808afc92626982b9fd58c49f5a84f6b7c4458162",
+        "combined_sha256": "9ab90ebf0358ae8bffc5bd2539ebc3068cdab8828831e8fd9dfff21ea39c09dc",
+        "reason": "combined080+081 owner records; historical081manifest remains immutable"
+      },
+      {
+        "path": "docs/methodology/graph.json",
+        "historical_source_sha256": "8ae368be5d9e0b259e2c7c5c311cc23135e5c472ce35d6486b99b24bb3e479cf",
+        "combined_sha256": "855a464f78b4534d56c7d8813945388695b91d34634912428c99942490e2dcc9",
+        "reason": "combined080+081 owner records; historical081manifest remains immutable"
+      },
+      {
+        "path": "docs/stories.md",
+        "historical_source_sha256": "1ca62f747040657f8823259038c87c7c56b908b5f987bec6b6bacdea81fb9b93",
+        "combined_sha256": "1439eb17a66bb2f6de6eac207478b0b75bb0f43920a1b8fcd74b30bdbe559e11",
+        "reason": "combined080+081 owner records; historical081manifest remains immutable"
+      }
+    ]
+  },
+  "base_sha": "1a347f3f5ea13cb672a4e92d040704b99e556118",
+  "branch": "codex/scout099-docweb-land-20261020",
+  "worktree": "/Users/cam/.codex/worktrees/scout099-docweb-land-20261020",
+  "validation": "5focusedguardtests, selectedRuff, combinedmethodologybuild/check, whitespacepass; source/inputunchanged; original081OSdeny-networkassertionsreused; no providers/productruntimechanges",
+  "inbox": "primary checkout clean; docs/inbox.md reviewed, noScout099capturepending/uncommitted",
+  "source_worktrees": "preserved unchanged; only integrationcheckout has closeout edits",
+  "no_commit_or_push_yet": true
+}

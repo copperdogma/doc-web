@@ -246,7 +246,8 @@
           "254",
           "255",
           "256",
-          "257"
+          "257",
+          "258"
         ],
         "adr_ids": [
           "ADR-001",
@@ -329,7 +330,8 @@
           "254",
           "255",
           "256",
-          "257"
+          "257",
+          "258"
         ],
         "adr_ids": [
           "ADR-001",
@@ -393,7 +395,9 @@
           "249",
           "251",
           "252",
-          "257"
+          "257",
+          "258",
+          "259"
         ],
         "adr_ids": [],
         "eval_ids": [
@@ -525,7 +529,8 @@
           "254",
           "255",
           "256",
-          "257"
+          "257",
+          "258"
         ],
         "adr_ids": [
           "ADR-001",
@@ -693,7 +698,8 @@
           "240",
           "241",
           "242",
-          "244"
+          "244",
+          "259"
         ],
         "adr_ids": [
           "ADR-002"
@@ -941,7 +947,8 @@
           "254",
           "255",
           "256",
-          "257"
+          "257",
+          "258"
         ],
         "eval_ids": [
           "literal-table-fidelity",
@@ -953,18 +960,16 @@
           "source_id": "literal-table-fidelity",
           "source_path": "docs/evals/registry.yaml",
           "recommended_now": false,
-          "posture": "wait-for-trigger",
-          "retry_trigger_status": "waiting",
-          "retry_when": [
-            "new-subject-model-or-source-qualified-approach"
-          ],
+          "posture": "no-trigger-recorded",
+          "retry_trigger_status": "none",
+          "retry_when": [],
           "why_now": "",
           "last_relevant_action": {
-            "date": "2026-10-17",
+            "date": "2026-10-20",
             "source_type": "eval-attempt",
             "source": "docs/evals/registry.yaml",
-            "source_id": "079",
-            "summary": "Bakery Il1-O0 becomes I11-00; spans preserved, owner safely unresolved. Astra23/23verified. Remaining13clear+2ambiguity cells unmeasured aftervalidstop. RetainAstra. Fullrawcustody/ledger/manifest in evidence/079-scou..."
+            "source_id": "080",
+            "summary": "MiniMax exact GA via pinned Minimax free route, high32768 requested; strict404 parameter-filter; prompt-only diagnostics capability-only, no production schema parity. Attempt080/Story258: safety diagnostic20/22vsGPT18..."
           },
           "story_ids": [
             "131",
@@ -1019,7 +1024,8 @@
             "254",
             "255",
             "256",
-            "257"
+            "257",
+            "258"
           ],
           "eval_ids": [
             "literal-table-fidelity",
@@ -1062,7 +1068,8 @@
           "254",
           "255",
           "256",
-          "257"
+          "257",
+          "258"
         ],
         "eval_ids": [
           "literal-table-fidelity"
@@ -1072,18 +1079,16 @@
           "source_id": "literal-table-fidelity",
           "source_path": "docs/evals/registry.yaml",
           "recommended_now": false,
-          "posture": "wait-for-trigger",
-          "retry_trigger_status": "waiting",
-          "retry_when": [
-            "new-subject-model-or-source-qualified-approach"
-          ],
+          "posture": "no-trigger-recorded",
+          "retry_trigger_status": "none",
+          "retry_when": [],
           "why_now": "",
           "last_relevant_action": {
-            "date": "2026-10-17",
+            "date": "2026-10-20",
             "source_type": "eval-attempt",
             "source": "docs/evals/registry.yaml",
-            "source_id": "079",
-            "summary": "Bakery Il1-O0 becomes I11-00; spans preserved, owner safely unresolved. Astra23/23verified. Remaining13clear+2ambiguity cells unmeasured aftervalidstop. RetainAstra. Fullrawcustody/ledger/manifest in evidence/079-scou..."
+            "source_id": "080",
+            "summary": "MiniMax exact GA via pinned Minimax free route, high32768 requested; strict404 parameter-filter; prompt-only diagnostics capability-only, no production schema parity. Attempt080/Story258: safety diagnostic20/22vsGPT18..."
           },
           "story_ids": [
             "134",
@@ -1110,7 +1115,8 @@
             "254",
             "255",
             "256",
-            "257"
+            "257",
+            "258"
           ],
           "eval_ids": [
             "literal-table-fidelity"
@@ -1170,7 +1176,8 @@
           "254",
           "255",
           "256",
-          "257"
+          "257",
+          "258"
         ],
         "eval_ids": [
           "literal-table-fidelity",
@@ -1234,7 +1241,8 @@
             "254",
             "255",
             "256",
-            "257"
+            "257",
+            "258"
           ],
           "eval_ids": [
             "literal-table-fidelity",
@@ -1272,7 +1280,8 @@
           "249",
           "251",
           "252",
-          "257"
+          "257",
+          "258"
         ],
         "eval_ids": [
           "image-crop-extraction",
@@ -1311,7 +1320,8 @@
             "249",
             "251",
             "252",
-            "257"
+            "257",
+            "258"
           ],
           "eval_ids": [
             "image-crop-extraction",
@@ -1349,7 +1359,9 @@
           "244",
           "249",
           "251",
-          "257"
+          "257",
+          "258",
+          "259"
         ],
         "eval_ids": [
           "sol-crop-safety-native-public-smoke",
@@ -1390,7 +1402,9 @@
             "244",
             "249",
             "251",
-            "257"
+            "257",
+            "258",
+            "259"
           ],
           "eval_ids": [
             "sol-crop-safety-native-public-smoke",
@@ -14802,6 +14816,143 @@
           "summary": ""
         }
       }
+    },
+    {
+      "id": "258",
+      "title": "Scout099 MiniMax M3.1 Flash GA source-fidelity evaluation",
+      "path": "docs/stories/story-258-scout099-minimax-ga-evaluation.md",
+      "status": "Done",
+      "priority": "High",
+      "ideal_refs": [
+        "req:3",
+        "req:4",
+        "req:6"
+      ],
+      "spec_refs": [
+        "spec:2.1",
+        "spec:3.1",
+        "spec:4.1",
+        "spec:4.2",
+        "spec:6"
+      ],
+      "decision_refs": [
+        "ADR-001",
+        "ADR-002"
+      ],
+      "adr_ids": [
+        "ADR-001",
+        "ADR-002"
+      ],
+      "depends_on": [
+        "257"
+      ],
+      "category_refs": [
+        "spec:2",
+        "spec:3",
+        "spec:4",
+        "spec:6"
+      ],
+      "compromise_refs": [
+        "C1",
+        "C3",
+        "C4",
+        "C5",
+        "C6"
+      ],
+      "input_coverage_refs": [
+        "handwritten-notes",
+        "scanned-pdf-tables"
+      ],
+      "architecture_domains": [
+        "doc_web_runtime",
+        "ocr_and_extraction"
+      ],
+      "roadmap_tags": [],
+      "blocker_summary": "",
+      "blocker_evidence": "",
+      "unblock_condition": "",
+      "last_work_log_entry": null,
+      "legacy_build_map_refs": "",
+      "metadata_source": "frontmatter",
+      "missing_frontmatter_keys": [],
+      "actionability": {
+        "source_kind": "story",
+        "source_id": "258",
+        "source_path": "docs/stories/story-258-scout099-minimax-ga-evaluation.md",
+        "recommended_now": false,
+        "posture": "completed",
+        "why_now": "",
+        "last_relevant_action": {
+          "date": null,
+          "source_type": "story-status",
+          "source": "docs/stories/story-258-scout099-minimax-ga-evaluation.md",
+          "summary": ""
+        }
+      }
+    },
+    {
+      "id": "259",
+      "title": "Scout099 saved safety consumer feasibility",
+      "path": "docs/stories/story-259-scout099-safety-consumer-feasibility.md",
+      "status": "Done",
+      "priority": "Medium",
+      "ideal_refs": [
+        "req:4",
+        "req:6"
+      ],
+      "spec_refs": [
+        "spec:4.1",
+        "spec:4.2",
+        "spec:8"
+      ],
+      "decision_refs": [
+        "ADR-001",
+        "ADR-002"
+      ],
+      "adr_ids": [
+        "ADR-001",
+        "ADR-002"
+      ],
+      "depends_on": [
+        "242"
+      ],
+      "category_refs": [
+        "spec:4",
+        "spec:8"
+      ],
+      "compromise_refs": [
+        "C5"
+      ],
+      "input_coverage_refs": [
+        "image-directory-scans"
+      ],
+      "architecture_domains": [
+        "illustration-extraction"
+      ],
+      "roadmap_tags": [
+        "artifact-provenance"
+      ],
+      "blocker_summary": "",
+      "blocker_evidence": "",
+      "unblock_condition": "",
+      "last_work_log_entry": null,
+      "legacy_build_map_refs": "",
+      "metadata_source": "frontmatter",
+      "missing_frontmatter_keys": [],
+      "actionability": {
+        "source_kind": "story",
+        "source_id": "259",
+        "source_path": "docs/stories/story-259-scout099-safety-consumer-feasibility.md",
+        "recommended_now": false,
+        "posture": "completed",
+        "why_now": "",
+        "last_relevant_action": {
+          "date": null,
+          "source_type": "story-status",
+          "source": "docs/stories/story-259-scout099-safety-consumer-feasibility.md",
+          "summary": ""
+        }
+      }
     }
   ],
   "adrs": [
@@ -14940,7 +15091,8 @@
         "253",
         "254",
         "255",
-        "257"
+        "257",
+        "258"
       ],
       "compromise_refs": [
         "C1",
@@ -15112,6 +15264,14 @@
       },
       "attempts": [
         {
+          "id": "080",
+          "date": "2026-10-20",
+          "status": "inconclusive",
+          "approach": "Scout099 approved MiniMax M3.1 Flash GA high32768 independent owner tasks",
+          "note": "MiniMax exact GA via pinned Minimax free route, high32768 requested; strict404 parameter-filter; prompt-only diagnostics capability-only, no production schema parity. Attempt080/Story258: safety diagnostic20/22vsGPT18/22,0vs1false-safe and15vs14safeaccepted; literal21/23, cropclipping, Barney.757773. InclusiveUSD1.358886/15 unknown0; no defaults/current strict coverage change.",
+          "retry_when": []
+        },
+        {
           "id": "079",
           "date": "2026-10-17",
           "status": "failed",
@@ -15197,18 +15357,16 @@
         "source_id": "literal-table-fidelity",
         "source_path": "docs/evals/registry.yaml",
         "recommended_now": false,
-        "posture": "wait-for-trigger",
-        "retry_trigger_status": "waiting",
-        "retry_when": [
-          "new-subject-model-or-source-qualified-approach"
-        ],
+        "posture": "no-trigger-recorded",
+        "retry_trigger_status": "none",
+        "retry_when": [],
         "why_now": "",
         "last_relevant_action": {
-          "date": "2026-10-17",
+          "date": "2026-10-20",
           "source_type": "eval-attempt",
           "source": "docs/evals/registry.yaml",
-          "source_id": "079",
-          "summary": "Bakery Il1-O0 becomes I11-00; spans preserved, owner safely unresolved. Astra23/23verified. Remaining13clear+2ambiguity cells unmeasured aftervalidstop. RetainAstra. Fullrawcustody/ledger/manifest in evidence/079-scou..."
+          "source_id": "080",
+          "summary": "MiniMax exact GA via pinned Minimax free route, high32768 requested; strict404 parameter-filter; prompt-only diagnostics capability-only, no production schema parity. Attempt080/Story258: safety diagnostic20/22vsGPT18..."
         }
       }
     },
@@ -15470,7 +15628,8 @@
         "238",
         "239",
         "249",
-        "257"
+        "257",
+        "258"
       ],
       "compromise_refs": [
         "C4"
@@ -16192,6 +16351,14 @@
       },
       "attempts": [
         {
+          "id": "080",
+          "date": "2026-10-20",
+          "status": "inconclusive",
+          "approach": "Scout099 approved MiniMax M3.1 Flash GA high32768 independent owner tasks",
+          "note": "MiniMax exact GA via pinned Minimax free route, high32768 requested; strict404 parameter-filter; prompt-only diagnostics capability-only, no production schema parity. Attempt080/Story258: safety diagnostic20/22vsGPT18/22,0vs1false-safe and15vs14safeaccepted; literal21/23, cropclipping, Barney.757773. InclusiveUSD1.358886/15 unknown0; no defaults/current strict coverage change.",
+          "retry_when": []
+        },
+        {
           "id": "079",
           "date": "2026-10-17",
           "status": "failed",
@@ -16683,15 +16850,16 @@
         "posture": "wait-for-trigger",
         "retry_trigger_status": "waiting",
         "retry_when": [
-          "new-subject-model-or-source-qualified-approach"
+          "golden-fix",
+          "new-subject-model"
         ],
         "why_now": "Gemini 4 or equivalent may push past 0.95 target Golden references cover limited page types; add table-heavy pages",
         "last_relevant_action": {
-          "date": "2026-10-17",
+          "date": "2026-10-20",
           "source_type": "eval-attempt",
           "source": "docs/evals/registry.yaml",
-          "source_id": "079",
-          "summary": "Image011 tolerantpass but sourceconfirmed logo date/rightlettering and outerseal clipped. Sourcebarrier stops beforeImage001/remaining11. No13case orproductionwin; retainGemini3Flash. Fullrawcustody/ledger/manifest in..."
+          "source_id": "080",
+          "summary": "MiniMax exact GA via pinned Minimax free route, high32768 requested; strict404 parameter-filter; prompt-only diagnostics capability-only, no production schema parity. Attempt080/Story258: safety diagnostic20/22vsGPT18..."
         }
       }
     },
@@ -16997,7 +17165,9 @@
         "239",
         "240",
         "249",
-        "257"
+        "257",
+        "258",
+        "259"
       ],
       "compromise_refs": [
         "C5"
@@ -17634,6 +17804,24 @@
       },
       "attempts": [
         {
+          "id": "081",
+          "date": "2026-10-20",
+          "status": "inconclusive",
+          "approach": "Scout099 US$0 saved-output safety consumer/source feasibility; Story259",
+          "note": "DEFER runtime/paid qualification. Exact unchanged consumer build22/parse44 under OS deny-network:15oversized crops,44native identity rejections,0admitted; full proposer/finalize/release routing not measured without native row/geometry/operator custody. All22 original pairs/44fullpayloads inspected; historical20/22 vs18/22 grades unchanged. New flag findings MiniMax018blankfalse wrong43.5347% blankband andGPT012logo pagetexttrue wrong. Manual no-material-payload-issue19/22vs17/22 is source audit only, not new score/unseen qualification. Attempt081 report/manifest pins original CLOSED080 archive;0provider/judge calls,USD0, no runtime/default/guard changes. Minimum informational contract proposed only.",
+          "retry_when": [
+            "separately-approved-informational-contract-and-native-custody"
+          ]
+        },
+        {
+          "id": "080",
+          "date": "2026-10-20",
+          "status": "inconclusive",
+          "approach": "Scout099 approved MiniMax M3.1 Flash GA high32768 independent owner tasks",
+          "note": "MiniMax exact GA via pinned Minimax free route, high32768 requested; strict404 parameter-filter; prompt-only diagnostics capability-only, no production schema parity. Attempt080/Story258: safety diagnostic20/22vsGPT18/22,0vs1false-safe and15vs14safeaccepted; literal21/23, cropclipping, Barney.757773. InclusiveUSD1.358886/15 unknown0; no defaults/current strict coverage change.",
+          "retry_when": []
+        },
+        {
           "id": "079",
           "date": "2026-10-17",
           "status": "inconclusive",
@@ -17947,15 +18135,15 @@
         "posture": "trigger-exhausted",
         "retry_trigger_status": "exhausted",
         "retry_when": [
-          "new-subject-model-or-source-qualified-approach"
+          "separately-approved-informational-contract-and-native-custody"
         ],
         "why_now": "Rerun when a materially stronger validator or detector may reduce the current fail-labeled page-context cases. Rerun after any maintained crop/runtime simplification before claiming `trim_layout_text` or bounded capti...",
         "last_relevant_action": {
-          "date": "2026-10-17",
+          "date": "2026-10-20",
           "source_type": "eval-attempt",
           "source": "docs/evals/registry.yaml",
-          "source_id": "079",
-          "summary": "ACCOUNTINGAUDIT: nativecompletion616/reasoning711 impossible; clippedseal323/311leaves12visible for231charJSON. Bothsubjectsenvelopesquarantined, capabilitynotmeasured/adoptiondefer. Savedclippedseal false-safe is dia..."
+          "source_id": "081",
+          "summary": "DEFER runtime/paid qualification. Exact unchanged consumer build22/parse44 under OS deny-network:15oversized crops,44native identity rejections,0admitted; full proposer/finalize/release routing not measured without na..."
         }
       }
     },
@@ -18073,7 +18261,8 @@
         "238",
         "239",
         "249",
-        "257"
+        "257",
+        "258"
       ],
       "compromise_refs": [],
       "category_refs": [
@@ -18448,6 +18637,14 @@
       },
       "attempts": [
         {
+          "id": "080",
+          "date": "2026-10-20",
+          "status": "inconclusive",
+          "approach": "Scout099 approved MiniMax M3.1 Flash GA high32768 independent owner tasks",
+          "note": "MiniMax exact GA via pinned Minimax free route, high32768 requested; strict404 parameter-filter; prompt-only diagnostics capability-only, no production schema parity. Attempt080/Story258: safety diagnostic20/22vsGPT18/22,0vs1false-safe and15vs14safeaccepted; literal21/23, cropclipping, Barney.757773. InclusiveUSD1.358886/15 unknown0; no defaults/current strict coverage change.",
+          "retry_when": []
+        },
+        {
           "id": "079",
           "date": "2026-10-17",
           "status": "failed",
@@ -18631,15 +18828,15 @@
         "posture": "trigger-exhausted",
         "retry_trigger_status": "exhausted",
         "retry_when": [
-          "new-subject-model-or-source-qualified-approach"
+          "new-subject-model"
         ],
         "why_now": "Retry only when a materially stronger model or OCR substrate appears that could plausibly clear Barney and the corrected Alverson front-page truth surface.",
         "last_relevant_action": {
-          "date": "2026-10-17",
+          "date": "2026-10-20",
           "source_type": "eval-attempt",
           "source": "docs/evals/registry.yaml",
-          "source_id": "079",
-          "summary": "ActualdriverBarney literal/sourceerrors below.99. RequestedexactGemini3.7served3.8quarantined, nofreshrelativequalityclaim. Alversonexcludedpendingseparateadjudication. Fullrawcustody/ledger/manifest in evidence/079-s..."
+          "source_id": "080",
+          "summary": "MiniMax exact GA via pinned Minimax free route, high32768 requested; strict404 parameter-filter; prompt-only diagnostics capability-only, no production schema parity. Attempt080/Story258: safety diagnostic20/22vsGPT18..."
         }
       }
     },

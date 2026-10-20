@@ -1,0 +1,1457 @@
+{
+  "scope": "13 assigned Scout099 safety cases, read-only original evidence adjudication; no new inference, provider use, environment/credential access, scorer/golden/runtime edits",
+  "old_worktree": "/Users/cam/.codex/worktrees/scout099-docweb-20261020",
+  "saved_golden_file": {
+    "path": "/Users/cam/.codex/worktrees/scout099-docweb-20261020/benchmarks/golden/crop-page-level-safety-repair-048-source-adjudicated.json",
+    "sha256": "6f32bc513494f1c4454b4c41e74186136212d477ff10c87ccb29244ca21aaa76"
+  },
+  "historical_prompt_text_sha256": "9931ded6b7e732687b0889e6959ef9a873e6f459a292c132443db0f6bc9a7371",
+  "current_runtime_prompt_file": {
+    "path": "/Users/cam/.codex/worktrees/scout099-docweb-safety-feasibility-20261020/modules/transform/propose_crop_safety_v1/prompt.txt",
+    "sha256": "9931ded6b7e732687b0889e6959ef9a873e6f459a292c132443db0f6bc9a7371"
+  },
+  "prompt_semantics_reviewed": [
+    "same photograph objects preserved",
+    "separate neighboring page visuals fail",
+    "external page caption/prose fail",
+    "incomplete only if large unmistakable same-visual portion missing",
+    "light photographic background does not count as blank page",
+    "unknown boundary fails for review without inventing observed flags"
+  ],
+  "limits": [
+    "Fresh agent source judgment is not Cam approval or automatic publication authorization.",
+    "Complete payload semantics are reviewed here; saved grades only projected verdict and remain historical.",
+    "No public endpoint qualification or schema/operational adoption claim follows from these offline receipts."
+  ],
+  "cases": [
+    {
+      "key": "page-021-001",
+      "new_source_judgment": {
+        "verdict": "pass",
+        "has_page_text": false,
+        "excessive_blank": false,
+        "reason": "The page has two separately captioned ranch photographs. The crop keeps the complete lower winter ranch photograph, including house at left, barn at right, cattle/fence, snow and broad sky; it excludes both caption and upper photograph. The light sky is photographic content.",
+        "boundary_uncertainty": "none material under supplied prompt; source composition is determinate",
+        "review_scope": "Exact decoded original request source and crop opened individually with view_image; historical montage also inspected. This is a fresh agent source judgment, not Cam approval."
+      },
+      "saved_golden": {
+        "verdict": "pass",
+        "reasons": [],
+        "notes": "Ranch house and barn with livestock. Good crop."
+      },
+      "saved_grade": [
+        {
+          "key": "page-021-001",
+          "arm": "candidate",
+          "verdict": "pass",
+          "cost_usd": 0,
+          "golden": "pass",
+          "false_safe": false,
+          "correct": true
+        },
+        {
+          "key": "page-021-001",
+          "arm": "control",
+          "verdict": "pass",
+          "cost_usd": 0.071158,
+          "golden": "pass",
+          "false_safe": false,
+          "correct": true
+        }
+      ],
+      "images": [
+        {
+          "role": "source",
+          "decoded": {
+            "path": "/Users/cam/.codex/worktrees/scout099-docweb-safety-feasibility-20261020/output/scout099-safety-feasibility/source-assist-images/029-source.jpg",
+            "sha256": "5a1f2380a089ff23355ff101b07549bd57abba3a51636a6b58a28a31a4195318"
+          },
+          "request_embedded_sha256": "5a1f2380a089ff23355ff101b07549bd57abba3a51636a6b58a28a31a4195318",
+          "dimensions": [
+            1545,
+            2000
+          ]
+        },
+        {
+          "role": "crop",
+          "decoded": {
+            "path": "/Users/cam/.codex/worktrees/scout099-docweb-safety-feasibility-20261020/output/scout099-safety-feasibility/source-assist-images/029-crop.jpg",
+            "sha256": "7d3af1dc6ffa2a2c731a6f0cdadb791175b25bcb2580c69034dcf2de6c06131e"
+          },
+          "request_embedded_sha256": "7d3af1dc6ffa2a2c731a6f0cdadb791175b25bcb2580c69034dcf2de6c06131e",
+          "dimensions": [
+            4152,
+            2471
+          ]
+        }
+      ],
+      "arms": {
+        "candidate": {
+          "request": {
+            "path": "/Users/cam/.codex/worktrees/scout099-docweb-20261020/benchmarks/results/scout099-20261020/request-029.json",
+            "sha256": "bb6e2a972d3a93f40d57c013e39bef1db8b2560a2f63d1fb513d3cd4ad67d0e5"
+          },
+          "response": {
+            "path": "/Users/cam/.codex/worktrees/scout099-docweb-20261020/benchmarks/results/scout099-20261020/response-029.json",
+            "sha256": "4b05af3d715eee000ca552b2121d4d9a85c815520acfdcb630957488b7c303a9"
+          },
+          "served_model": "minimax/minimax-m3.1-flash:free",
+          "complete_payload": {
+            "verdict": "pass",
+            "has_page_text": false,
+            "excessive_blank": false,
+            "reason": "The crop isolates the complete lower photograph of the ranch house and barn, excluding its caption and the neighboring photograph. The broad light sky is part of the photograph and counts as image content."
+          },
+          "verdict_matches_new_source_judgment": true,
+          "observed_flags_match_new_source_judgment": true,
+          "reason_source_grounded": true,
+          "uncertainty_review": "No explicit uncertainty field; reason gives a determinate source-grounded condition. No material unhandled ambiguity observed.",
+          "semantic_issues": []
+        },
+        "control": {
+          "request": {
+            "path": "/Users/cam/.codex/worktrees/scout099-docweb-20261020/benchmarks/results/scout099-20261020/request-030.json",
+            "sha256": "d37f21a9669818fc85fe7eb0a5259f86386b2d4b0df0b9f37feaccc78b33b57d"
+          },
+          "response": {
+            "path": "/Users/cam/.codex/worktrees/scout099-docweb-20261020/benchmarks/results/scout099-20261020/response-030.json",
+            "sha256": "5f2f7b965fc75711a07512636d33b0614f2adb5b3adfacf222ec331078cbd41d"
+          },
+          "served_model": "gpt-5.5-2026-04-23",
+          "complete_payload": {
+            "verdict": "pass",
+            "has_page_text": false,
+            "excessive_blank": false,
+            "reason": "Crop isolates the lower photograph without including caption or page text. The large light sky/snow area is part of the photograph, not blank page margin."
+          },
+          "verdict_matches_new_source_judgment": true,
+          "observed_flags_match_new_source_judgment": true,
+          "reason_source_grounded": true,
+          "uncertainty_review": "No explicit uncertainty field; reason gives a determinate source-grounded condition. No material unhandled ambiguity observed.",
+          "semantic_issues": []
+        }
+      }
+    },
+    {
+      "key": "page-022-000",
+      "new_source_judgment": {
+        "verdict": "pass",
+        "has_page_text": false,
+        "excessive_blank": false,
+        "reason": "The page contains a rectangular couple photograph in the left article column. The crop retains both heads, their torsos and hands to the original lower photographic edge, while excluding the bold anniversary caption and article text. No neighboring visual is included.",
+        "boundary_uncertainty": "none material under supplied prompt; source composition is determinate",
+        "review_scope": "Exact decoded original request source and crop opened individually with view_image; historical montage also inspected. This is a fresh agent source judgment, not Cam approval."
+      },
+      "saved_golden": {
+        "verdict": "pass",
+        "reasons": [],
+        "notes": "Henry and Alma Alain 50th anniversary. Good crop."
+      },
+      "saved_grade": [
+        {
+          "key": "page-022-000",
+          "arm": "candidate",
+          "verdict": "pass",
+          "cost_usd": 0,
+          "golden": "pass",
+          "false_safe": false,
+          "correct": true
+        },
+        {
+          "key": "page-022-000",
+          "arm": "control",
+          "verdict": "pass",
+          "cost_usd": 0.041875,
+          "golden": "pass",
+          "false_safe": false,
+          "correct": true
+        }
+      ],
+      "images": [
+        {
+          "role": "source",
+          "decoded": {
+            "path": "/Users/cam/.codex/worktrees/scout099-docweb-safety-feasibility-20261020/output/scout099-safety-feasibility/source-assist-images/031-source.jpg",
+            "sha256": "2f49d83261e2f40d20b736b602cc4de8c36b48780ab944dc96c8e08f83e34332"
+          },
+          "request_embedded_sha256": "2f49d83261e2f40d20b736b602cc4de8c36b48780ab944dc96c8e08f83e34332",
+          "dimensions": [
+            1545,
+            2000
+          ]
+        },
+        {
+          "role": "crop",
+          "decoded": {
+            "path": "/Users/cam/.codex/worktrees/scout099-docweb-safety-feasibility-20261020/output/scout099-safety-feasibility/source-assist-images/031-crop.jpg",
+            "sha256": "c8de7753ebe7d13c9646b62bef02984148f4e9e2260197a56babd46442f61ea9"
+          },
+          "request_embedded_sha256": "c8de7753ebe7d13c9646b62bef02984148f4e9e2260197a56babd46442f61ea9",
+          "dimensions": [
+            1887,
+            1584
+          ]
+        }
+      ],
+      "arms": {
+        "candidate": {
+          "request": {
+            "path": "/Users/cam/.codex/worktrees/scout099-docweb-20261020/benchmarks/results/scout099-20261020/request-031.json",
+            "sha256": "210e935915002e4a3b8da193c0aeb8ac91eb15e4d8da56fb03b5c876a9474744"
+          },
+          "response": {
+            "path": "/Users/cam/.codex/worktrees/scout099-docweb-20261020/benchmarks/results/scout099-20261020/response-031.json",
+            "sha256": "93d49b978f4da8e9b90e924230efc4d4a276e06c8dbac7c0f96c850b725e7de1"
+          },
+          "served_model": "minimax/minimax-m3.1-flash:free",
+          "complete_payload": {
+            "verdict": "pass",
+            "has_page_text": false,
+            "excessive_blank": false,
+            "reason": "The crop isolates the full photograph of Henry and Alma Alain and excludes the page caption and surrounding text; the background is photographic content, not blank margin."
+          },
+          "verdict_matches_new_source_judgment": true,
+          "observed_flags_match_new_source_judgment": true,
+          "reason_source_grounded": true,
+          "uncertainty_review": "No explicit uncertainty field; reason gives a determinate source-grounded condition. No material unhandled ambiguity observed.",
+          "semantic_issues": []
+        },
+        "control": {
+          "request": {
+            "path": "/Users/cam/.codex/worktrees/scout099-docweb-20261020/benchmarks/results/scout099-20261020/request-032.json",
+            "sha256": "6dc16632274480547fc44be5a9b97c4527e73712e49e597638d92b75692d6c68"
+          },
+          "response": {
+            "path": "/Users/cam/.codex/worktrees/scout099-docweb-20261020/benchmarks/results/scout099-20261020/response-032.json",
+            "sha256": "4f215265303bde3b77162bfd23215bf50682d36e89d2f0e2c1a11db79f890c8e"
+          },
+          "served_model": "gpt-5.5-2026-04-23",
+          "complete_payload": {
+            "verdict": "pass",
+            "has_page_text": false,
+            "excessive_blank": false,
+            "reason": "The crop isolates the photograph from the page and excludes the caption and surrounding article text. No neighboring visuals or excessive blank page margin are included."
+          },
+          "verdict_matches_new_source_judgment": true,
+          "observed_flags_match_new_source_judgment": true,
+          "reason_source_grounded": true,
+          "uncertainty_review": "No explicit uncertainty field; reason gives a determinate source-grounded condition. No material unhandled ambiguity observed.",
+          "semantic_issues": []
+        }
+      }
+    },
+    {
+      "key": "page-038-000",
+      "new_source_judgment": {
+        "verdict": "pass",
+        "has_page_text": false,
+        "excessive_blank": false,
+        "reason": "The page has a separately captioned upper-right oval portrait and a lower-left couple photograph. The crop retains the full oval portrait, including hair, shoulders and oval outline. White corners outside the oval are limited and surrounding caption/prose is excluded.",
+        "boundary_uncertainty": "none material under supplied prompt; source composition is determinate",
+        "review_scope": "Exact decoded original request source and crop opened individually with view_image; historical montage also inspected. This is a fresh agent source judgment, not Cam approval."
+      },
+      "saved_golden": {
+        "verdict": "pass",
+        "reasons": [],
+        "notes": "Oval portrait of Mrs. Leonidas (Laetitia). Good tight crop around oval."
+      },
+      "saved_grade": [
+        {
+          "key": "page-038-000",
+          "arm": "candidate",
+          "verdict": "pass",
+          "cost_usd": 0,
+          "golden": "pass",
+          "false_safe": false,
+          "correct": true
+        },
+        {
+          "key": "page-038-000",
+          "arm": "control",
+          "verdict": "pass",
+          "cost_usd": 0.038195,
+          "golden": "pass",
+          "false_safe": false,
+          "correct": true
+        }
+      ],
+      "images": [
+        {
+          "role": "source",
+          "decoded": {
+            "path": "/Users/cam/.codex/worktrees/scout099-docweb-safety-feasibility-20261020/output/scout099-safety-feasibility/source-assist-images/033-source.jpg",
+            "sha256": "b836c9c90fc650dd0513299652bf1af41fc577544803d9cea64928c890cdfdbe"
+          },
+          "request_embedded_sha256": "b836c9c90fc650dd0513299652bf1af41fc577544803d9cea64928c890cdfdbe",
+          "dimensions": [
+            1545,
+            2000
+          ]
+        },
+        {
+          "role": "crop",
+          "decoded": {
+            "path": "/Users/cam/.codex/worktrees/scout099-docweb-safety-feasibility-20261020/output/scout099-safety-feasibility/source-assist-images/033-crop.jpg",
+            "sha256": "09855f57fc1ff367f3174dd0a5bfab433e069195aa1d2596f68212cae163a349"
+          },
+          "request_embedded_sha256": "09855f57fc1ff367f3174dd0a5bfab433e069195aa1d2596f68212cae163a349",
+          "dimensions": [
+            1372,
+            1706
+          ]
+        }
+      ],
+      "arms": {
+        "candidate": {
+          "request": {
+            "path": "/Users/cam/.codex/worktrees/scout099-docweb-20261020/benchmarks/results/scout099-20261020/request-033.json",
+            "sha256": "3905601670eb99f89695b86d0514ea9eee66fb74348e0892fa6bed310ea6942e"
+          },
+          "response": {
+            "path": "/Users/cam/.codex/worktrees/scout099-docweb-20261020/benchmarks/results/scout099-20261020/response-033.json",
+            "sha256": "2b2f30fe99b3bc5ac8247c49c17134faf03c852aabd1825a30e365dcc4182467"
+          },
+          "served_model": "minimax/minimax-m3.1-flash:free",
+          "complete_payload": {
+            "verdict": "pass",
+            "has_page_text": false,
+            "excessive_blank": false,
+            "reason": "The crop tightly isolates the complete oval portrait and excludes the page caption, surrounding text, and neighboring photograph."
+          },
+          "verdict_matches_new_source_judgment": true,
+          "observed_flags_match_new_source_judgment": true,
+          "reason_source_grounded": true,
+          "uncertainty_review": "No explicit uncertainty field; reason gives a determinate source-grounded condition. No material unhandled ambiguity observed.",
+          "semantic_issues": []
+        },
+        "control": {
+          "request": {
+            "path": "/Users/cam/.codex/worktrees/scout099-docweb-20261020/benchmarks/results/scout099-20261020/request-034.json",
+            "sha256": "07d4521e3ae33c38f7732ef7e72a20336030cd2d60d025f5a924b7604325eb87"
+          },
+          "response": {
+            "path": "/Users/cam/.codex/worktrees/scout099-docweb-20261020/benchmarks/results/scout099-20261020/response-034.json",
+            "sha256": "1dfd57c524f38acba3bf8f14d70caa7d9a068b4f70e94b900d73b0f13b8cb4a3"
+          },
+          "served_model": "gpt-5.5-2026-04-23",
+          "complete_payload": {
+            "verdict": "pass",
+            "has_page_text": false,
+            "excessive_blank": false,
+            "reason": "The crop isolates the oval portrait from the page without including the caption, surrounding article text, or neighboring visuals. Light areas are part of the portrait background."
+          },
+          "verdict_matches_new_source_judgment": true,
+          "observed_flags_match_new_source_judgment": true,
+          "reason_source_grounded": true,
+          "uncertainty_review": "No explicit uncertainty field; reason gives a determinate source-grounded condition. No material unhandled ambiguity observed.",
+          "semantic_issues": []
+        }
+      }
+    },
+    {
+      "key": "page-038-001",
+      "new_source_judgment": {
+        "verdict": "pass",
+        "has_page_text": false,
+        "excessive_blank": false,
+        "reason": "The lower-left source photograph shows a seated woman and man. The crop retains both heads, both torsos, their arms/hands, lap/legs and chair through the original lower edge; the source photo itself already frames their legs. It excludes the external caption and upper oval. No large missing part is demonstrated by the source.",
+        "boundary_uncertainty": "none material under supplied prompt; source composition is determinate",
+        "review_scope": "Exact decoded original request source and crop opened individually with view_image; historical montage also inspected. This is a fresh agent source judgment, not Cam approval."
+      },
+      "saved_golden": {
+        "verdict": "pass",
+        "reasons": [],
+        "notes": "Portrait of Leonidas and Josephine seated. Good crop."
+      },
+      "saved_grade": [
+        {
+          "key": "page-038-001",
+          "arm": "candidate",
+          "verdict": "fail",
+          "cost_usd": 0,
+          "golden": "pass",
+          "false_safe": false,
+          "correct": false
+        },
+        {
+          "key": "page-038-001",
+          "arm": "control",
+          "verdict": "pass",
+          "cost_usd": 0.031973,
+          "golden": "pass",
+          "false_safe": false,
+          "correct": true
+        }
+      ],
+      "images": [
+        {
+          "role": "source",
+          "decoded": {
+            "path": "/Users/cam/.codex/worktrees/scout099-docweb-safety-feasibility-20261020/output/scout099-safety-feasibility/source-assist-images/035-source.jpg",
+            "sha256": "b836c9c90fc650dd0513299652bf1af41fc577544803d9cea64928c890cdfdbe"
+          },
+          "request_embedded_sha256": "b836c9c90fc650dd0513299652bf1af41fc577544803d9cea64928c890cdfdbe",
+          "dimensions": [
+            1545,
+            2000
+          ]
+        },
+        {
+          "role": "crop",
+          "decoded": {
+            "path": "/Users/cam/.codex/worktrees/scout099-docweb-safety-feasibility-20261020/output/scout099-safety-feasibility/source-assist-images/035-crop.jpg",
+            "sha256": "4eaee1585bba4a4c6309e5d5bd28a57b4dd8c297a0b8dd0a491c8c60d4e66b89"
+          },
+          "request_embedded_sha256": "4eaee1585bba4a4c6309e5d5bd28a57b4dd8c297a0b8dd0a491c8c60d4e66b89",
+          "dimensions": [
+            2014,
+            1712
+          ]
+        }
+      ],
+      "arms": {
+        "candidate": {
+          "request": {
+            "path": "/Users/cam/.codex/worktrees/scout099-docweb-20261020/benchmarks/results/scout099-20261020/request-035.json",
+            "sha256": "df43ac569753f43ca226fea4f72f1dda1b07342bf1a92032631bb76da44171a8"
+          },
+          "response": {
+            "path": "/Users/cam/.codex/worktrees/scout099-docweb-20261020/benchmarks/results/scout099-20261020/response-035.json",
+            "sha256": "f5197c594c84b7923436000ebd7b6b0f711aed122740742e520a7645fe758df8"
+          },
+          "served_model": "minimax/minimax-m3.1-flash:free",
+          "complete_payload": {
+            "verdict": "fail",
+            "has_page_text": false,
+            "excessive_blank": false,
+            "reason": "The crop is a severely incomplete zoom of the lower-left photograph, omitting large portions of both subjects and the surrounding image. No page text is present, and the halftone photo background is not excessive blank space."
+          },
+          "verdict_matches_new_source_judgment": false,
+          "observed_flags_match_new_source_judgment": true,
+          "reason_source_grounded": false,
+          "uncertainty_review": "No explicit uncertainty field in contract; reason examined. This reason asserts a determinate condition, not abstention.",
+          "semantic_issues": [
+            "Invented severe incompleteness: source/crop retain the full original seated-couple photograph."
+          ]
+        },
+        "control": {
+          "request": {
+            "path": "/Users/cam/.codex/worktrees/scout099-docweb-20261020/benchmarks/results/scout099-20261020/request-036.json",
+            "sha256": "5f7110abd4f4d9b55baa12f08a01b71980d804bb5a8de3ef0798ecedd10ec7cd"
+          },
+          "response": {
+            "path": "/Users/cam/.codex/worktrees/scout099-docweb-20261020/benchmarks/results/scout099-20261020/response-036.json",
+            "sha256": "4f24851f9b67382f2707eabcff0d414153f56fe0f35e10351361a214823d9170"
+          },
+          "served_model": "gpt-5.5-2026-04-23",
+          "complete_payload": {
+            "verdict": "pass",
+            "has_page_text": false,
+            "excessive_blank": false,
+            "reason": "The crop isolates the lower photograph of Leonidas and Josephine without including the page caption or surrounding text; blank areas are part of the photo background."
+          },
+          "verdict_matches_new_source_judgment": true,
+          "observed_flags_match_new_source_judgment": true,
+          "reason_source_grounded": true,
+          "uncertainty_review": "No explicit uncertainty field; reason gives a determinate source-grounded condition. No material unhandled ambiguity observed.",
+          "semantic_issues": []
+        }
+      }
+    },
+    {
+      "key": "page-060-000",
+      "new_source_judgment": {
+        "verdict": "pass",
+        "has_page_text": false,
+        "excessive_blank": false,
+        "reason": "The source has a left standing-couple snow photograph and a lower-right separate woman photograph. The crop retains the complete left photograph, including heads, coats, the woman feet and man lower framing exactly as source. Caption/prose and the separate right photograph are excluded.",
+        "boundary_uncertainty": "none material under supplied prompt; source composition is determinate",
+        "review_scope": "Exact decoded original request source and crop opened individually with view_image; historical montage also inspected. This is a fresh agent source judgment, not Cam approval."
+      },
+      "saved_golden": {
+        "verdict": "pass",
+        "reasons": [],
+        "notes": "George and Sophranie L'Heureux outdoors in coats. Good crop."
+      },
+      "saved_grade": [
+        {
+          "key": "page-060-000",
+          "arm": "candidate",
+          "verdict": "pass",
+          "cost_usd": 0,
+          "golden": "pass",
+          "false_safe": false,
+          "correct": true
+        },
+        {
+          "key": "page-060-000",
+          "arm": "control",
+          "verdict": "pass",
+          "cost_usd": 0.05497,
+          "golden": "pass",
+          "false_safe": false,
+          "correct": true
+        }
+      ],
+      "images": [
+        {
+          "role": "source",
+          "decoded": {
+            "path": "/Users/cam/.codex/worktrees/scout099-docweb-safety-feasibility-20261020/output/scout099-safety-feasibility/source-assist-images/037-source.jpg",
+            "sha256": "af4d6f24fc5b026a12697ed4d9da2758257bb8e0ec06c7989a2b2d0625501317"
+          },
+          "request_embedded_sha256": "af4d6f24fc5b026a12697ed4d9da2758257bb8e0ec06c7989a2b2d0625501317",
+          "dimensions": [
+            1545,
+            2000
+          ]
+        },
+        {
+          "role": "crop",
+          "decoded": {
+            "path": "/Users/cam/.codex/worktrees/scout099-docweb-safety-feasibility-20261020/output/scout099-safety-feasibility/source-assist-images/037-crop.jpg",
+            "sha256": "0e7a4ae8f060dcb0588f647c2e7d51abb7251b91ec81feb6d89a9923f0d4e9b3"
+          },
+          "request_embedded_sha256": "0e7a4ae8f060dcb0588f647c2e7d51abb7251b91ec81feb6d89a9923f0d4e9b3",
+          "dimensions": [
+            2004,
+            2561
+          ]
+        }
+      ],
+      "arms": {
+        "candidate": {
+          "request": {
+            "path": "/Users/cam/.codex/worktrees/scout099-docweb-20261020/benchmarks/results/scout099-20261020/request-037.json",
+            "sha256": "e5a355598f87a384ecb5a840fec1bf358c8667ba90f4533d62971a4155351ffd"
+          },
+          "response": {
+            "path": "/Users/cam/.codex/worktrees/scout099-docweb-20261020/benchmarks/results/scout099-20261020/response-037.json",
+            "sha256": "519515b0441c51efa3678b98b70810af5dc235587040ee23bc442d2eca2a3f4e"
+          },
+          "served_model": "minimax/minimax-m3.1-flash:free",
+          "complete_payload": {
+            "verdict": "pass",
+            "has_page_text": false,
+            "excessive_blank": false,
+            "reason": "The crop cleanly isolates the complete left-page photograph of George and Sophranie, excludes the caption and all surrounding body text, and contains no neighboring visual."
+          },
+          "verdict_matches_new_source_judgment": true,
+          "observed_flags_match_new_source_judgment": true,
+          "reason_source_grounded": true,
+          "uncertainty_review": "No explicit uncertainty field; reason gives a determinate source-grounded condition. No material unhandled ambiguity observed.",
+          "semantic_issues": []
+        },
+        "control": {
+          "request": {
+            "path": "/Users/cam/.codex/worktrees/scout099-docweb-20261020/benchmarks/results/scout099-20261020/request-038.json",
+            "sha256": "c09a23695478038e6020986608dd3fb8147aa0fe37c08dd53eabc23537ef115d"
+          },
+          "response": {
+            "path": "/Users/cam/.codex/worktrees/scout099-docweb-20261020/benchmarks/results/scout099-20261020/response-038.json",
+            "sha256": "189582958f9f5d4585a1e53122eaa383b11154edb06829bf8ba2bddabf666e00"
+          },
+          "served_model": "gpt-5.5-2026-04-23",
+          "complete_payload": {
+            "verdict": "pass",
+            "has_page_text": false,
+            "excessive_blank": false,
+            "reason": "Crop isolates the upper-left photograph without including the caption, surrounding page text, or neighboring image. Light snowy/background areas are part of the photo, not blank page space."
+          },
+          "verdict_matches_new_source_judgment": true,
+          "observed_flags_match_new_source_judgment": true,
+          "reason_source_grounded": true,
+          "uncertainty_review": "No explicit uncertainty field; reason gives a determinate source-grounded condition. No material unhandled ambiguity observed.",
+          "semantic_issues": []
+        }
+      }
+    },
+    {
+      "key": "page-060-001",
+      "new_source_judgment": {
+        "verdict": "pass",
+        "has_page_text": false,
+        "excessive_blank": false,
+        "reason": "The crop retains the complete lower-right woman photograph. Her head, arms/hands, dress and pale photographic sky/background match the source framing. The caption and adjacent article/standing-couple image remain outside the crop. Light photo background is image content.",
+        "boundary_uncertainty": "none material under supplied prompt; source composition is determinate",
+        "review_scope": "Exact decoded original request source and crop opened individually with view_image; historical montage also inspected. This is a fresh agent source judgment, not Cam approval."
+      },
+      "saved_golden": {
+        "verdict": "pass",
+        "reasons": [],
+        "notes": "Mrs. George L'Heureux (Emilienne) sitting outdoors. Good crop."
+      },
+      "saved_grade": [
+        {
+          "key": "page-060-001",
+          "arm": "candidate",
+          "verdict": "pass",
+          "cost_usd": 0,
+          "golden": "pass",
+          "false_safe": false,
+          "correct": true
+        },
+        {
+          "key": "page-060-001",
+          "arm": "control",
+          "verdict": "pass",
+          "cost_usd": 0.032413,
+          "golden": "pass",
+          "false_safe": false,
+          "correct": true
+        }
+      ],
+      "images": [
+        {
+          "role": "source",
+          "decoded": {
+            "path": "/Users/cam/.codex/worktrees/scout099-docweb-safety-feasibility-20261020/output/scout099-safety-feasibility/source-assist-images/039-source.jpg",
+            "sha256": "af4d6f24fc5b026a12697ed4d9da2758257bb8e0ec06c7989a2b2d0625501317"
+          },
+          "request_embedded_sha256": "af4d6f24fc5b026a12697ed4d9da2758257bb8e0ec06c7989a2b2d0625501317",
+          "dimensions": [
+            1545,
+            2000
+          ]
+        },
+        {
+          "role": "crop",
+          "decoded": {
+            "path": "/Users/cam/.codex/worktrees/scout099-docweb-safety-feasibility-20261020/output/scout099-safety-feasibility/source-assist-images/039-crop.jpg",
+            "sha256": "f05b5737e373e2b06f0544bd74c59c9e92b096919fc775cdd9cc0bb4642dade6"
+          },
+          "request_embedded_sha256": "f05b5737e373e2b06f0544bd74c59c9e92b096919fc775cdd9cc0bb4642dade6",
+          "dimensions": [
+            2015,
+            1743
+          ]
+        }
+      ],
+      "arms": {
+        "candidate": {
+          "request": {
+            "path": "/Users/cam/.codex/worktrees/scout099-docweb-20261020/benchmarks/results/scout099-20261020/request-039.json",
+            "sha256": "e6bbd9b848df20c1a05068cb4e98c2c77db9849f91b7dc69d84833ace7dabf32"
+          },
+          "response": {
+            "path": "/Users/cam/.codex/worktrees/scout099-docweb-20261020/benchmarks/results/scout099-20261020/response-039.json",
+            "sha256": "78a05d9eb79c33f6450b44b751bde5786063f585dd28db1f959a051ee387a378"
+          },
+          "served_model": "minimax/minimax-m3.1-flash:free",
+          "complete_payload": {
+            "verdict": "pass",
+            "has_page_text": false,
+            "excessive_blank": false,
+            "reason": "The crop cleanly isolates the lower-right portrait photograph, including its light photographic background, and excludes the caption and all surrounding page text."
+          },
+          "verdict_matches_new_source_judgment": true,
+          "observed_flags_match_new_source_judgment": true,
+          "reason_source_grounded": true,
+          "uncertainty_review": "No explicit uncertainty field; reason gives a determinate source-grounded condition. No material unhandled ambiguity observed.",
+          "semantic_issues": []
+        },
+        "control": {
+          "request": {
+            "path": "/Users/cam/.codex/worktrees/scout099-docweb-20261020/benchmarks/results/scout099-20261020/request-040.json",
+            "sha256": "080d78b4b17ccdf9c616c8ac443b2dcd9e95a17fb0c521cae3a4ead76d569c6a"
+          },
+          "response": {
+            "path": "/Users/cam/.codex/worktrees/scout099-docweb-20261020/benchmarks/results/scout099-20261020/response-040.json",
+            "sha256": "2df0512c61a136abe6e6185b374eb133e22951c9c9cd997880f09175836b3efc"
+          },
+          "served_model": "gpt-5.5-2026-04-23",
+          "complete_payload": {
+            "verdict": "pass",
+            "has_page_text": false,
+            "excessive_blank": false,
+            "reason": "Crop isolates the lower-right photograph from the page and excludes the caption and surrounding article text. Light areas are part of the photo background, not blank page margin."
+          },
+          "verdict_matches_new_source_judgment": true,
+          "observed_flags_match_new_source_judgment": true,
+          "reason_source_grounded": true,
+          "uncertainty_review": "No explicit uncertainty field; reason gives a determinate source-grounded condition. No material unhandled ambiguity observed.",
+          "semantic_issues": []
+        }
+      }
+    },
+    {
+      "key": "page-092-000",
+      "new_source_judgment": {
+        "verdict": "fail",
+        "has_page_text": true,
+        "excessive_blank": false,
+        "reason": "The source contains a full wedding-couple portrait beneath left-column prose. The crop instead contains substantial paragraph text across both columns and only the man/right part of the portrait. The woman and most of the intended photograph are unmistakably absent. Text leakage is observed; margins do not dominate.",
+        "boundary_uncertainty": "none material under supplied prompt; source composition is determinate",
+        "review_scope": "Exact decoded original request source and crop opened individually with view_image; historical montage also inspected. This is a fresh agent source judgment, not Cam approval."
+      },
+      "saved_golden": {
+        "verdict": "fail",
+        "reasons": [
+          "text_included"
+        ],
+        "notes": "Portrait of Archie Richard has body paragraph text from both columns of the book page visible on left and right sides. Crop should have excluded surrounding page text."
+      },
+      "saved_grade": [
+        {
+          "key": "page-092-000",
+          "arm": "candidate",
+          "verdict": "fail",
+          "cost_usd": 0,
+          "golden": "fail",
+          "false_safe": false,
+          "correct": true
+        },
+        {
+          "key": "page-092-000",
+          "arm": "control",
+          "verdict": "fail",
+          "cost_usd": 0.052045,
+          "golden": "fail",
+          "false_safe": false,
+          "correct": true
+        }
+      ],
+      "images": [
+        {
+          "role": "source",
+          "decoded": {
+            "path": "/Users/cam/.codex/worktrees/scout099-docweb-safety-feasibility-20261020/output/scout099-safety-feasibility/source-assist-images/041-source.jpg",
+            "sha256": "23540ee8136d29922da3f9284d44ddb46a07390fdd41f79f9afbb39989c9c04c"
+          },
+          "request_embedded_sha256": "23540ee8136d29922da3f9284d44ddb46a07390fdd41f79f9afbb39989c9c04c",
+          "dimensions": [
+            1545,
+            2000
+          ]
+        },
+        {
+          "role": "crop",
+          "decoded": {
+            "path": "/Users/cam/.codex/worktrees/scout099-docweb-safety-feasibility-20261020/output/scout099-safety-feasibility/source-assist-images/041-crop.jpg",
+            "sha256": "3d02c44de285d58fd54c3131a5c2c6c13235093c88eef49ac02e2a778b23687c"
+          },
+          "request_embedded_sha256": "3d02c44de285d58fd54c3131a5c2c6c13235093c88eef49ac02e2a778b23687c",
+          "dimensions": [
+            1974,
+            2381
+          ]
+        }
+      ],
+      "arms": {
+        "candidate": {
+          "request": {
+            "path": "/Users/cam/.codex/worktrees/scout099-docweb-20261020/benchmarks/results/scout099-20261020/request-041.json",
+            "sha256": "1e9ce1daa2f880fe58322cf4bc1592cf69f90f33e2ea1649cb9c75776ae64c26"
+          },
+          "response": {
+            "path": "/Users/cam/.codex/worktrees/scout099-docweb-20261020/benchmarks/results/scout099-20261020/response-041.json",
+            "sha256": "aebae39cd4e6bc6492160e6087473d4c4e12a6489c515f53471b073181bd26bc"
+          },
+          "served_model": "minimax/minimax-m3.1-flash:free",
+          "complete_payload": {
+            "verdict": "fail",
+            "has_page_text": true,
+            "excessive_blank": false,
+            "reason": "The crop contains substantial page-level paragraph text and only a partial view of the wedding photograph, so it does not isolate the intended illustration."
+          },
+          "verdict_matches_new_source_judgment": true,
+          "observed_flags_match_new_source_judgment": true,
+          "reason_source_grounded": true,
+          "uncertainty_review": "No explicit uncertainty field; reason gives a determinate source-grounded condition. No material unhandled ambiguity observed.",
+          "semantic_issues": []
+        },
+        "control": {
+          "request": {
+            "path": "/Users/cam/.codex/worktrees/scout099-docweb-20261020/benchmarks/results/scout099-20261020/request-042.json",
+            "sha256": "f884b4033245e74b89c8854978683cec29750987d1a617e748a145203124f257"
+          },
+          "response": {
+            "path": "/Users/cam/.codex/worktrees/scout099-docweb-20261020/benchmarks/results/scout099-20261020/response-042.json",
+            "sha256": "686a3318c467664c69b6b63885879819332e84cefc8a7ca91ed64a9084723ab4"
+          },
+          "served_model": "gpt-5.5-2026-04-23",
+          "complete_payload": {
+            "verdict": "fail",
+            "has_page_text": true,
+            "excessive_blank": false,
+            "reason": "The crop includes large amounts of surrounding page paragraph text and only a partial portion of the photograph, so it does not isolate the illustration."
+          },
+          "verdict_matches_new_source_judgment": true,
+          "observed_flags_match_new_source_judgment": true,
+          "reason_source_grounded": true,
+          "uncertainty_review": "No explicit uncertainty field; reason gives a determinate source-grounded condition. No material unhandled ambiguity observed.",
+          "semantic_issues": []
+        }
+      }
+    },
+    {
+      "key": "page-122-000",
+      "new_source_judgment": {
+        "verdict": "fail",
+        "has_page_text": true,
+        "excessive_blank": false,
+        "reason": "The source has an upper group photograph followed by a separate caption, and two lower oval portraits. The crop keeps the full upper photograph and also its page caption beneath the photographic boundary. It excludes the lower ovals. Caption leakage establishes failure; the light sky remains image content.",
+        "boundary_uncertainty": "none material under supplied prompt; source composition is determinate",
+        "review_scope": "Exact decoded original request source and crop opened individually with view_image; historical montage also inspected. This is a fresh agent source judgment, not Cam approval."
+      },
+      "saved_golden": {
+        "verdict": "fail",
+        "reasons": [
+          "text_included"
+        ],
+        "notes": "Group reunion photo includes printed caption text at bottom: 'L'Heureux family re-union \u2014 July, 1939. Ninety members...' This external caption should have been excluded by the crop."
+      },
+      "saved_grade": [
+        {
+          "key": "page-122-000",
+          "arm": "candidate",
+          "verdict": "fail",
+          "cost_usd": 0,
+          "golden": "fail",
+          "false_safe": false,
+          "correct": true
+        },
+        {
+          "key": "page-122-000",
+          "arm": "control",
+          "verdict": "fail",
+          "cost_usd": 0.070603,
+          "golden": "fail",
+          "false_safe": false,
+          "correct": true
+        }
+      ],
+      "images": [
+        {
+          "role": "source",
+          "decoded": {
+            "path": "/Users/cam/.codex/worktrees/scout099-docweb-safety-feasibility-20261020/output/scout099-safety-feasibility/source-assist-images/043-source.jpg",
+            "sha256": "04731378a1ff37ffb8e26faf005f87fa2383f9ba91e147ce9caa94e8519d086e"
+          },
+          "request_embedded_sha256": "04731378a1ff37ffb8e26faf005f87fa2383f9ba91e147ce9caa94e8519d086e",
+          "dimensions": [
+            1545,
+            2000
+          ]
+        },
+        {
+          "role": "crop",
+          "decoded": {
+            "path": "/Users/cam/.codex/worktrees/scout099-docweb-safety-feasibility-20261020/output/scout099-safety-feasibility/source-assist-images/043-crop.jpg",
+            "sha256": "5ab45f308ea9d353dae2830a574af026b907fd95f6c50e78d48e8921031f6990"
+          },
+          "request_embedded_sha256": "5ab45f308ea9d353dae2830a574af026b907fd95f6c50e78d48e8921031f6990",
+          "dimensions": [
+            4244,
+            2478
+          ]
+        }
+      ],
+      "arms": {
+        "candidate": {
+          "request": {
+            "path": "/Users/cam/.codex/worktrees/scout099-docweb-20261020/benchmarks/results/scout099-20261020/request-043.json",
+            "sha256": "c556052bc944ac3657c7cc8f60cb7b65436fda5214b3b78eace3624b8711fe67"
+          },
+          "response": {
+            "path": "/Users/cam/.codex/worktrees/scout099-docweb-20261020/benchmarks/results/scout099-20261020/response-043.json",
+            "sha256": "67422ec4c5f8837bf2c748f1130824a3f7d72db1711a948d8c8e70acbbfb8875"
+          },
+          "served_model": "minimax/minimax-m3.1-flash:free",
+          "complete_payload": {
+            "verdict": "fail",
+            "has_page_text": true,
+            "excessive_blank": false,
+            "reason": "The crop includes the page-level caption beneath the group photograph, which is separate from the image and should remain outside the illustration crop."
+          },
+          "verdict_matches_new_source_judgment": true,
+          "observed_flags_match_new_source_judgment": true,
+          "reason_source_grounded": true,
+          "uncertainty_review": "No explicit uncertainty field; reason gives a determinate source-grounded condition. No material unhandled ambiguity observed.",
+          "semantic_issues": []
+        },
+        "control": {
+          "request": {
+            "path": "/Users/cam/.codex/worktrees/scout099-docweb-20261020/benchmarks/results/scout099-20261020/request-044.json",
+            "sha256": "b0dde95e0941017b9350abfb7a5e6ceec3267309665fd38d77b3b3130e050fa4"
+          },
+          "response": {
+            "path": "/Users/cam/.codex/worktrees/scout099-docweb-20261020/benchmarks/results/scout099-20261020/response-044.json",
+            "sha256": "7d4423bac3f23da05d40e9df24eb1da0df9f31ef31a44f44811112649e6bc8bb"
+          },
+          "served_model": "gpt-5.5-2026-04-23",
+          "complete_payload": {
+            "verdict": "fail",
+            "has_page_text": true,
+            "excessive_blank": false,
+            "reason": "The crop includes the page-level caption text beneath the photo, which should have been excluded from an illustration crop."
+          },
+          "verdict_matches_new_source_judgment": true,
+          "observed_flags_match_new_source_judgment": true,
+          "reason_source_grounded": true,
+          "uncertainty_review": "No explicit uncertainty field; reason gives a determinate source-grounded condition. No material unhandled ambiguity observed.",
+          "semantic_issues": []
+        }
+      }
+    },
+    {
+      "key": "page-125-000",
+      "new_source_judgment": {
+        "verdict": "pass",
+        "has_page_text": false,
+        "excessive_blank": false,
+        "reason": "The page has one oxen/covered-wagon line illustration, integral artist signature, separate printed credit and page number. The crop keeps oxen, people, wagon, wheel, ground strokes and cloud/landscape composition, excluding printed credit and page number. Some faint cloud/landscape strokes reach the tight boundary, but no large missing part is shown; internal white illustration areas do not establish empty margins over 40 percent.",
+        "boundary_uncertainty": "none material under supplied prompt; source composition is determinate",
+        "review_scope": "Exact decoded original request source and crop opened individually with view_image; historical montage also inspected. This is a fresh agent source judgment, not Cam approval."
+      },
+      "saved_golden": {
+        "verdict": "pass",
+        "reasons": [],
+        "notes": "Sketch of covered wagon with two oxen. Good crop."
+      },
+      "saved_grade": [
+        {
+          "key": "page-125-000",
+          "arm": "candidate",
+          "verdict": "pass",
+          "cost_usd": 0,
+          "golden": "pass",
+          "false_safe": false,
+          "correct": true
+        },
+        {
+          "key": "page-125-000",
+          "arm": "control",
+          "verdict": "pass",
+          "cost_usd": 0.08344,
+          "golden": "pass",
+          "false_safe": false,
+          "correct": true
+        }
+      ],
+      "images": [
+        {
+          "role": "source",
+          "decoded": {
+            "path": "/Users/cam/.codex/worktrees/scout099-docweb-safety-feasibility-20261020/output/scout099-safety-feasibility/source-assist-images/045-source.jpg",
+            "sha256": "b35e4c1e660a0ed9029ebe555558341a933a5724740964ca6927f94f77ae2944"
+          },
+          "request_embedded_sha256": "b35e4c1e660a0ed9029ebe555558341a933a5724740964ca6927f94f77ae2944",
+          "dimensions": [
+            1545,
+            2000
+          ]
+        },
+        {
+          "role": "crop",
+          "decoded": {
+            "path": "/Users/cam/.codex/worktrees/scout099-docweb-safety-feasibility-20261020/output/scout099-safety-feasibility/source-assist-images/045-crop.jpg",
+            "sha256": "e371aa234263c051dce440c71d0ec3d5a9ed31bd3b1fc9c4dd4dae475dca57ee"
+          },
+          "request_embedded_sha256": "e371aa234263c051dce440c71d0ec3d5a9ed31bd3b1fc9c4dd4dae475dca57ee",
+          "dimensions": [
+            4011,
+            3871
+          ]
+        }
+      ],
+      "arms": {
+        "candidate": {
+          "request": {
+            "path": "/Users/cam/.codex/worktrees/scout099-docweb-20261020/benchmarks/results/scout099-20261020/request-045.json",
+            "sha256": "9bec61f802fe4eb6954c868c110cb7dfdb6a6de28ec800bdfef9765afb536098"
+          },
+          "response": {
+            "path": "/Users/cam/.codex/worktrees/scout099-docweb-20261020/benchmarks/results/scout099-20261020/response-045.json",
+            "sha256": "f081e1937d7ba44f9dfa3b76d51c73cc727c3b67d9c30c370ca681c15e0de9e9"
+          },
+          "served_model": "minimax/minimax-m3.1-flash:free",
+          "complete_payload": {
+            "verdict": "pass",
+            "has_page_text": false,
+            "excessive_blank": false,
+            "reason": "The crop tightly contains the complete single illustration and excludes the caption, page number, and surrounding page margins; its white areas are integral to the drawing."
+          },
+          "verdict_matches_new_source_judgment": true,
+          "observed_flags_match_new_source_judgment": true,
+          "reason_source_grounded": true,
+          "uncertainty_review": "No explicit uncertainty field; reason gives a determinate source-grounded condition. No material unhandled ambiguity observed.",
+          "semantic_issues": []
+        },
+        "control": {
+          "request": {
+            "path": "/Users/cam/.codex/worktrees/scout099-docweb-20261020/benchmarks/results/scout099-20261020/request-046.json",
+            "sha256": "09cc90d598b94e245cca8f3e46dbad7e16726de4b807f80d21f7ac5c662c4c97"
+          },
+          "response": {
+            "path": "/Users/cam/.codex/worktrees/scout099-docweb-20261020/benchmarks/results/scout099-20261020/response-046.json",
+            "sha256": "5f9fd4c6ba75a6be068224a224a09a1625eacd36065883eabc734fb68ea6c4db"
+          },
+          "served_model": "gpt-5.5-2026-04-23",
+          "complete_payload": {
+            "verdict": "pass",
+            "has_page_text": false,
+            "excessive_blank": false,
+            "reason": "Crop contains only the illustration artwork and excludes the page caption and page number; no neighboring visuals or page text are visible."
+          },
+          "verdict_matches_new_source_judgment": true,
+          "observed_flags_match_new_source_judgment": true,
+          "reason_source_grounded": true,
+          "uncertainty_review": "No explicit uncertainty field; reason gives a determinate source-grounded condition. No material unhandled ambiguity observed.",
+          "semantic_issues": []
+        }
+      }
+    },
+    {
+      "key": "page-126-000",
+      "new_source_judgment": {
+        "verdict": "pass",
+        "has_page_text": false,
+        "excessive_blank": false,
+        "reason": "The page presents two separate photographs. The upper photograph already contains a central veterans plaque and partial left/top plaques on the same continuous stone monument; the crop retains that entire upper photographic composition and excludes the lower separately presented photograph. These side/top plaques are subjects within the same photograph, not separately presented page visuals or page-layout text. Current prompt explicitly preserves objects within the same photograph.",
+        "boundary_uncertainty": "none material under supplied prompt; source composition is determinate",
+        "review_scope": "Exact decoded original request source and crop opened individually with view_image; historical montage also inspected. This is a fresh agent source judgment, not Cam approval."
+      },
+      "saved_golden": {
+        "verdict": "pass",
+        "reasons": [],
+        "notes": "Source-corrected before Attempt048 inference: crop matches the complete top photograph. Engraved plaque fragments and text at left/top are integral objects inside that same photograph, not book page-layout text. Both owner and coordinator independently inspected original source and crop.",
+        "source_adjudication": "golden-wrong: original fail expectation contradicted source photograph"
+      },
+      "saved_grade": [
+        {
+          "key": "page-126-000",
+          "arm": "candidate",
+          "verdict": "fail",
+          "cost_usd": 0,
+          "golden": "pass",
+          "false_safe": false,
+          "correct": false
+        },
+        {
+          "key": "page-126-000",
+          "arm": "control",
+          "verdict": "fail",
+          "cost_usd": 0.061065,
+          "golden": "pass",
+          "false_safe": false,
+          "correct": false
+        }
+      ],
+      "images": [
+        {
+          "role": "source",
+          "decoded": {
+            "path": "/Users/cam/.codex/worktrees/scout099-docweb-safety-feasibility-20261020/output/scout099-safety-feasibility/source-assist-images/047-source.jpg",
+            "sha256": "4f4ac880a5ff48ffa1a6d2a010e763cf022dceb118988b7bf6d0c0a41fab1143"
+          },
+          "request_embedded_sha256": "4f4ac880a5ff48ffa1a6d2a010e763cf022dceb118988b7bf6d0c0a41fab1143",
+          "dimensions": [
+            1545,
+            2000
+          ]
+        },
+        {
+          "role": "crop",
+          "decoded": {
+            "path": "/Users/cam/.codex/worktrees/scout099-docweb-safety-feasibility-20261020/output/scout099-safety-feasibility/source-assist-images/047-crop.jpg",
+            "sha256": "be267fc173fd8ed502bd6ab4d0be57c0d7d5a0c1556fdcc9f8c34d94aa8715d6"
+          },
+          "request_embedded_sha256": "be267fc173fd8ed502bd6ab4d0be57c0d7d5a0c1556fdcc9f8c34d94aa8715d6",
+          "dimensions": [
+            2933,
+            2116
+          ]
+        }
+      ],
+      "arms": {
+        "candidate": {
+          "request": {
+            "path": "/Users/cam/.codex/worktrees/scout099-docweb-20261020/benchmarks/results/scout099-20261020/request-047.json",
+            "sha256": "7e633b61d86ff6a6115ff95f6529402424067cafbef44534d9688dccca45be2e"
+          },
+          "response": {
+            "path": "/Users/cam/.codex/worktrees/scout099-docweb-20261020/benchmarks/results/scout099-20261020/response-047.json",
+            "sha256": "74b1973d057dfdc203af9d42231a3838b0f028689efd34c1cb63451405da65cd"
+          },
+          "served_model": "minimax/minimax-m3.1-flash:free",
+          "complete_payload": {
+            "verdict": "fail",
+            "has_page_text": false,
+            "excessive_blank": false,
+            "reason": "The crop includes substantial portions of neighboring plaques at the left and top edges, not just the intended central plaque."
+          },
+          "verdict_matches_new_source_judgment": false,
+          "observed_flags_match_new_source_judgment": true,
+          "reason_source_grounded": false,
+          "uncertainty_review": "No explicit uncertainty field in contract; reason examined. This reason asserts a determinate condition, not abstention.",
+          "semantic_issues": [
+            "Treats incidental photographed plaques as neighboring page visuals despite source photograph boundaries and prompt same-photograph preservation rule."
+          ]
+        },
+        "control": {
+          "request": {
+            "path": "/Users/cam/.codex/worktrees/scout099-docweb-20261020/benchmarks/results/scout099-20261020/request-048.json",
+            "sha256": "fe1d361f90da909098dd454768423e53d750cbe4d3de9d5240e42f551f141c71"
+          },
+          "response": {
+            "path": "/Users/cam/.codex/worktrees/scout099-docweb-20261020/benchmarks/results/scout099-20261020/response-048.json",
+            "sha256": "c66d65dd525d92f6166dad6518239921625fcb23a509d98dcaae5b46de076985"
+          },
+          "served_model": "gpt-5.5-2026-04-23",
+          "complete_payload": {
+            "verdict": "fail",
+            "has_page_text": false,
+            "excessive_blank": false,
+            "reason": "The crop includes parts of adjacent plaques/visual elements at the left and top instead of isolating the intended upper plaque photograph."
+          },
+          "verdict_matches_new_source_judgment": false,
+          "observed_flags_match_new_source_judgment": true,
+          "reason_source_grounded": false,
+          "uncertainty_review": "No explicit uncertainty field in contract; reason examined. This reason asserts a determinate condition, not abstention.",
+          "semantic_issues": [
+            "Treats incidental photographed plaques as neighboring page visuals despite source photograph boundaries and prompt same-photograph preservation rule."
+          ]
+        }
+      }
+    },
+    {
+      "key": "page-126-001",
+      "new_source_judgment": {
+        "verdict": "pass",
+        "has_page_text": false,
+        "excessive_blank": false,
+        "reason": "The lower separately presented photograph is fully retained, including complete Moise and Sophie plaque, stone surround and incidental lower-left pale marks. Inscription text is integral to the photographed monument. The upper separate photograph and surrounding page are excluded.",
+        "boundary_uncertainty": "none material under supplied prompt; source composition is determinate",
+        "review_scope": "Exact decoded original request source and crop opened individually with view_image; historical montage also inspected. This is a fresh agent source judgment, not Cam approval."
+      },
+      "saved_golden": {
+        "verdict": "pass",
+        "reasons": [],
+        "notes": "Bronze plaque MOISE & SOPHIE L'HEUREUX 1887-1987. Text is engraved on plaque (integral)."
+      },
+      "saved_grade": [
+        {
+          "key": "page-126-001",
+          "arm": "candidate",
+          "verdict": "pass",
+          "cost_usd": 0,
+          "golden": "pass",
+          "false_safe": false,
+          "correct": true
+        },
+        {
+          "key": "page-126-001",
+          "arm": "control",
+          "verdict": "pass",
+          "cost_usd": 0.048663,
+          "golden": "pass",
+          "false_safe": false,
+          "correct": true
+        }
+      ],
+      "images": [
+        {
+          "role": "source",
+          "decoded": {
+            "path": "/Users/cam/.codex/worktrees/scout099-docweb-safety-feasibility-20261020/output/scout099-safety-feasibility/source-assist-images/049-source.jpg",
+            "sha256": "4f4ac880a5ff48ffa1a6d2a010e763cf022dceb118988b7bf6d0c0a41fab1143"
+          },
+          "request_embedded_sha256": "4f4ac880a5ff48ffa1a6d2a010e763cf022dceb118988b7bf6d0c0a41fab1143",
+          "dimensions": [
+            1545,
+            2000
+          ]
+        },
+        {
+          "role": "crop",
+          "decoded": {
+            "path": "/Users/cam/.codex/worktrees/scout099-docweb-safety-feasibility-20261020/output/scout099-safety-feasibility/source-assist-images/049-crop.jpg",
+            "sha256": "34ceefa5de85865fd864cb3253a38fa73cf6ab5f13ed56daec60e00de20da908"
+          },
+          "request_embedded_sha256": "34ceefa5de85865fd864cb3253a38fa73cf6ab5f13ed56daec60e00de20da908",
+          "dimensions": [
+            2123,
+            2940
+          ]
+        }
+      ],
+      "arms": {
+        "candidate": {
+          "request": {
+            "path": "/Users/cam/.codex/worktrees/scout099-docweb-20261020/benchmarks/results/scout099-20261020/request-049.json",
+            "sha256": "9e44f03252e09d1c19d567f1a16a545cc8eae52d4b12dab96310a9482b5cb5e6"
+          },
+          "response": {
+            "path": "/Users/cam/.codex/worktrees/scout099-docweb-20261020/benchmarks/results/scout099-20261020/response-049.json",
+            "sha256": "53f8e1d96bb88c59acdfca4c7e4a2a06b7458897dee05c1137478b5d535d4a7d"
+          },
+          "served_model": "minimax/minimax-m3.1-flash:free",
+          "complete_payload": {
+            "verdict": "pass",
+            "has_page_text": false,
+            "excessive_blank": false,
+            "reason": "The crop isolates the complete lower plaque photograph from the full page. The inscription is part of the photographed monument, not page-level text, and the surrounding stone and rock are image content."
+          },
+          "verdict_matches_new_source_judgment": true,
+          "observed_flags_match_new_source_judgment": true,
+          "reason_source_grounded": true,
+          "uncertainty_review": "No explicit uncertainty field; reason gives a determinate source-grounded condition. No material unhandled ambiguity observed.",
+          "semantic_issues": []
+        },
+        "control": {
+          "request": {
+            "path": "/Users/cam/.codex/worktrees/scout099-docweb-20261020/benchmarks/results/scout099-20261020/request-050.json",
+            "sha256": "e5c3793320d0c0a93507900ac1d1ef9ba1e50c20a78d65ff1eca4f5fcd9ba5df"
+          },
+          "response": {
+            "path": "/Users/cam/.codex/worktrees/scout099-docweb-20261020/benchmarks/results/scout099-20261020/response-050.json",
+            "sha256": "e681c5cf6d7f196515c59206754e24dfd257af76abb051f3775876343a5b9ae9"
+          },
+          "served_model": "gpt-5.5-2026-04-23",
+          "complete_payload": {
+            "verdict": "pass",
+            "has_page_text": false,
+            "excessive_blank": false,
+            "reason": "The crop isolates the lower photograph/plaque from the page; the visible text is inscription text integral to the photographed plaque, with no surrounding page text or neighboring illustration leakage."
+          },
+          "verdict_matches_new_source_judgment": true,
+          "observed_flags_match_new_source_judgment": true,
+          "reason_source_grounded": true,
+          "uncertainty_review": "No explicit uncertainty field; reason gives a determinate source-grounded condition. No material unhandled ambiguity observed.",
+          "semantic_issues": []
+        }
+      }
+    },
+    {
+      "key": "page-127-000",
+      "new_source_judgment": {
+        "verdict": "pass",
+        "has_page_text": false,
+        "excessive_blank": false,
+        "reason": "The upper photograph shows the whole stone monument with three plaques, sky, field and plinth. The crop retains that unified photograph and excludes the separate lower close-up photograph. All lettering belongs to plaques within the same photograph.",
+        "boundary_uncertainty": "none material under supplied prompt; source composition is determinate",
+        "review_scope": "Exact decoded original request source and crop opened individually with view_image; historical montage also inspected. This is a fresh agent source judgment, not Cam approval."
+      },
+      "saved_golden": {
+        "verdict": "pass",
+        "reasons": [],
+        "notes": "Stone monument with three plaques. Text on plaques is integral to the monument image."
+      },
+      "saved_grade": [
+        {
+          "key": "page-127-000",
+          "arm": "candidate",
+          "verdict": "pass",
+          "cost_usd": 0,
+          "golden": "pass",
+          "false_safe": false,
+          "correct": true
+        },
+        {
+          "key": "page-127-000",
+          "arm": "control",
+          "verdict": "pass",
+          "cost_usd": 0.060605,
+          "golden": "pass",
+          "false_safe": false,
+          "correct": true
+        }
+      ],
+      "images": [
+        {
+          "role": "source",
+          "decoded": {
+            "path": "/Users/cam/.codex/worktrees/scout099-docweb-safety-feasibility-20261020/output/scout099-safety-feasibility/source-assist-images/051-source.jpg",
+            "sha256": "25042b92e75e09ff2d7aa9330b44b26a092624a9bee19c7f2707a413f6c7f302"
+          },
+          "request_embedded_sha256": "25042b92e75e09ff2d7aa9330b44b26a092624a9bee19c7f2707a413f6c7f302",
+          "dimensions": [
+            1545,
+            2000
+          ]
+        },
+        {
+          "role": "crop",
+          "decoded": {
+            "path": "/Users/cam/.codex/worktrees/scout099-docweb-safety-feasibility-20261020/output/scout099-safety-feasibility/source-assist-images/051-crop.jpg",
+            "sha256": "6dcf9cad3998eba4ed72d1a79594431f86113a04c58b0452670ede3e3ec13429"
+          },
+          "request_embedded_sha256": "6dcf9cad3998eba4ed72d1a79594431f86113a04c58b0452670ede3e3ec13429",
+          "dimensions": [
+            2924,
+            2081
+          ]
+        }
+      ],
+      "arms": {
+        "candidate": {
+          "request": {
+            "path": "/Users/cam/.codex/worktrees/scout099-docweb-20261020/benchmarks/results/scout099-20261020/request-051.json",
+            "sha256": "188abbdd0249841f82fd198d4d4080d2e850f454dc6de090ca1acd36f48710bd"
+          },
+          "response": {
+            "path": "/Users/cam/.codex/worktrees/scout099-docweb-20261020/benchmarks/results/scout099-20261020/response-051.json",
+            "sha256": "6593abac7a445113af08028954d78861a5aefd2d8b91007599dbf0b4f58439e2"
+          },
+          "served_model": "minimax/minimax-m3.1-flash:free",
+          "complete_payload": {
+            "verdict": "pass",
+            "has_page_text": false,
+            "excessive_blank": false,
+            "reason": "The crop isolates the complete upper photograph of the monument and excludes the separate lower close-up photograph. The visible lettering is integral to the plaques within the image."
+          },
+          "verdict_matches_new_source_judgment": true,
+          "observed_flags_match_new_source_judgment": true,
+          "reason_source_grounded": true,
+          "uncertainty_review": "No explicit uncertainty field; reason gives a determinate source-grounded condition. No material unhandled ambiguity observed.",
+          "semantic_issues": []
+        },
+        "control": {
+          "request": {
+            "path": "/Users/cam/.codex/worktrees/scout099-docweb-20261020/benchmarks/results/scout099-20261020/request-052.json",
+            "sha256": "fd169ae14f7e533ff39992f459b9fabd7616d56412b675d093652a0bd2ede728"
+          },
+          "response": {
+            "path": "/Users/cam/.codex/worktrees/scout099-docweb-20261020/benchmarks/results/scout099-20261020/response-052.json",
+            "sha256": "a6b7928d1983c125a1d5e2b6efd62aa1faa948e1dc353a3c75b500cb2b5cd498"
+          },
+          "served_model": "gpt-5.5-2026-04-23",
+          "complete_payload": {
+            "verdict": "pass",
+            "has_page_text": false,
+            "excessive_blank": false,
+            "reason": "Crop isolates the upper photograph from the page without including page-level text or the separate lower image; plaque text is integral to the photographed monument."
+          },
+          "verdict_matches_new_source_judgment": true,
+          "observed_flags_match_new_source_judgment": true,
+          "reason_source_grounded": true,
+          "uncertainty_review": "No explicit uncertainty field; reason gives a determinate source-grounded condition. No material unhandled ambiguity observed.",
+          "semantic_issues": []
+        }
+      }
+    },
+    {
+      "key": "page-127-001",
+      "new_source_judgment": {
+        "verdict": "pass",
+        "has_page_text": false,
+        "excessive_blank": false,
+        "reason": "The lower photograph shows a Canada Post plaque plus stone surround. The crop retains that distinct photograph, including whole plaque and inscription, and excludes the upper photograph/page margins. Visible lettering is integral inscription text.",
+        "boundary_uncertainty": "none material under supplied prompt; source composition is determinate",
+        "review_scope": "Exact decoded original request source and crop opened individually with view_image; historical montage also inspected. This is a fresh agent source judgment, not Cam approval."
+      },
+      "saved_golden": {
+        "verdict": "pass",
+        "reasons": [],
+        "notes": "Close-up of Canada Post plaque on monument. Text on plaque is integral."
+      },
+      "saved_grade": [
+        {
+          "key": "page-127-001",
+          "arm": "candidate",
+          "verdict": "pass",
+          "cost_usd": 0,
+          "golden": "pass",
+          "false_safe": false,
+          "correct": true
+        },
+        {
+          "key": "page-127-001",
+          "arm": "control",
+          "verdict": "pass",
+          "cost_usd": 0.047593,
+          "golden": "pass",
+          "false_safe": false,
+          "correct": true
+        }
+      ],
+      "images": [
+        {
+          "role": "source",
+          "decoded": {
+            "path": "/Users/cam/.codex/worktrees/scout099-docweb-safety-feasibility-20261020/output/scout099-safety-feasibility/source-assist-images/053-source.jpg",
+            "sha256": "25042b92e75e09ff2d7aa9330b44b26a092624a9bee19c7f2707a413f6c7f302"
+          },
+          "request_embedded_sha256": "25042b92e75e09ff2d7aa9330b44b26a092624a9bee19c7f2707a413f6c7f302",
+          "dimensions": [
+            1545,
+            2000
+          ]
+        },
+        {
+          "role": "crop",
+          "decoded": {
+            "path": "/Users/cam/.codex/worktrees/scout099-docweb-safety-feasibility-20261020/output/scout099-safety-feasibility/source-assist-images/053-crop.jpg",
+            "sha256": "c98909f5166e46b330e89288f7ed4cd1f4700a98a5b0153996204725cc7ea29e"
+          },
+          "request_embedded_sha256": "c98909f5166e46b330e89288f7ed4cd1f4700a98a5b0153996204725cc7ea29e",
+          "dimensions": [
+            2919,
+            2071
+          ]
+        }
+      ],
+      "arms": {
+        "candidate": {
+          "request": {
+            "path": "/Users/cam/.codex/worktrees/scout099-docweb-20261020/benchmarks/results/scout099-20261020/request-053.json",
+            "sha256": "114ad816fb4973f60475a4c3be527f39349f3c44b3aff7b48800cb936cbdf656"
+          },
+          "response": {
+            "path": "/Users/cam/.codex/worktrees/scout099-docweb-20261020/benchmarks/results/scout099-20261020/response-053.json",
+            "sha256": "6b95415927cbf73508aec9f0410ab644e413d069d65f357098545011a7fba017"
+          },
+          "served_model": "minimax/minimax-m3.1-flash:free",
+          "complete_payload": {
+            "verdict": "pass",
+            "has_page_text": false,
+            "excessive_blank": false,
+            "reason": "The crop isolates the Canada Post plaque shown as a distinct lower-page photograph. All visible lettering is integral plaque text, with no page captions, neighboring illustrations, or excessive blank margins included."
+          },
+          "verdict_matches_new_source_judgment": true,
+          "observed_flags_match_new_source_judgment": true,
+          "reason_source_grounded": true,
+          "uncertainty_review": "No explicit uncertainty field; reason gives a determinate source-grounded condition. No material unhandled ambiguity observed.",
+          "semantic_issues": []
+        },
+        "control": {
+          "request": {
+            "path": "/Users/cam/.codex/worktrees/scout099-docweb-20261020/benchmarks/results/scout099-20261020/request-054.json",
+            "sha256": "b8bce5d3015c8e66d9e0d7ceb0b6c9df13b9d5de6fc70f49de4195101e7d0a2e"
+          },
+          "response": {
+            "path": "/Users/cam/.codex/worktrees/scout099-docweb-20261020/benchmarks/results/scout099-20261020/response-054.json",
+            "sha256": "942e6b91ecd37ba743cefbc8e4bff580bb13cf6aff2f9ca4c2833f4ef6d7497d"
+          },
+          "served_model": "gpt-5.5-2026-04-23",
+          "complete_payload": {
+            "verdict": "pass",
+            "has_page_text": false,
+            "excessive_blank": false,
+            "reason": "Crop isolates the lower photograph/detail of the plaque from the page; visible text is engraved plaque text integral to the image, with no page-layout text or unrelated neighboring visuals included."
+          },
+          "verdict_matches_new_source_judgment": true,
+          "observed_flags_match_new_source_judgment": true,
+          "reason_source_grounded": true,
+          "uncertainty_review": "No explicit uncertainty field; reason gives a determinate source-grounded condition. No material unhandled ambiguity observed.",
+          "semantic_issues": []
+        }
+      }
+    }
+  ],
+  "summary": {
+    "candidate_correct_verdicts": 11,
+    "control_correct_verdicts": 12,
+    "total_cases": 13,
+    "candidate_false_rejects": [
+      "page-038-001",
+      "page-126-000"
+    ],
+    "control_false_rejects": [
+      "page-126-000"
+    ],
+    "observed_flag_mismatches": [],
+    "source_judgment_disagrees_with_saved_golden": []
+  }
+}

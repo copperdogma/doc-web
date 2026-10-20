@@ -1,0 +1,18 @@
+{
+  "date": "2026-10-20",
+  "focused_guard_tests": {
+    "command": "python -m unittest discover -s tests -p test_scout099_guard.py -v",
+    "passed": 5,
+    "network_calls": 0
+  },
+  "ruff": "pass: newowneradapter/guard/tests/restore",
+  "methodology_build_check": "pass",
+  "whitespace_diff_check": "pass",
+  "yaml_parse": "pass via methodology compiler",
+  "lossless_restore": "145 exact file SHA256/byte sizes; verified fresh temporary directory offline; archive64316182bytes",
+  "primary_checkout": "read-only preserved",
+  "credential_cleanup": "temporaryDOC_WEB_OPENROUTER_API_KEY removed and absence verified byname, primarykeys untouched",
+  "scope": "eval-only adapter/doc/evidence; actualBarney driver inspected for quality failure; no runtime/sharedlib change or broadproduct/promotion claim",
+  "producer_source_epoch": "rawwire requests authoritative; closeoutguard/pacing snapshots not falselyattributedto earlierreceipts",
+  "commits_pushes_defaults_rollout": "none"
+}
