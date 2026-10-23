@@ -35,12 +35,23 @@ def fake_client(*, output=None, status="completed", model="gpt-6-astra", error=N
         calls.append(kwargs)
         if error:
             raise error
-        return SimpleNamespace(
-            output_text=json.dumps(review_dict()) if output is None else output,
-            status=status, model=model, id="source-test-response", usage=None,
+        output_text = json.dumps(review_dict()) if output is None else output
+        usage = {"input_tokens": 40, "output_tokens": 30, "total_tokens": 70,
+                 "input_tokens_details": {"cached_tokens": 0},
+                 "output_tokens_details": {"reasoning_tokens": 10}}
+        native = {"id": "source-test-response", "object": "response", "created_at": 0,
+                  "status": status, "model": model, "service_tier": "default",
+                  "error": None, "incomplete_details": None, "usage": usage,
+                  "output": [{"id": "message-test", "type": "message", "role": "assistant",
+                              "status": status, "content": [{"type": "output_text",
+                                                             "text": output_text, "annotations": []}]}]}
+        response = SimpleNamespace(
+            output_text=output_text, status=status, model=model, id="source-test-response",
+            usage=usage, service_tier="default", model_dump_json=lambda: json.dumps(native),
         )
+        return SimpleNamespace(content=(json.dumps(native, indent=3) + "\n").encode(), parse=lambda: response)
 
-    return SimpleNamespace(responses=SimpleNamespace(create=create)), calls
+    return SimpleNamespace(responses=SimpleNamespace(with_raw_response=SimpleNamespace(create=create))), calls
 
 
 def test_only_image_dimensions_and_generic_policy_are_submitted(image_path):
@@ -53,6 +64,7 @@ def test_only_image_dimensions_and_generic_policy_are_submitted(image_path):
     assert request["store"] is False
     assert request["reasoning"] == {"effort": "medium"}
     assert request["max_output_tokens"] == 8192
+    assert request["service_tier"] == "default"
     assert request["text"]["format"] == {
         "type": "json_schema", "name": "source_page_tables", "strict": True,
         "schema": SourcePageReview.model_json_schema(),
@@ -67,7 +79,7 @@ def test_only_image_dimensions_and_generic_policy_are_submitted(image_path):
     assert content[1]["type"] == "input_image"
     assert content[1]["detail"] == "original"
     assert base64.b64decode(content[1]["image_url"].split(",", 1)[1]) == image_path.read_bytes()
-    assert set(request) == {"model", "max_output_tokens", "store", "reasoning", "text", "input"}
+    assert set(request) == {"model", "max_output_tokens", "store", "reasoning", "text", "input", "service_tier"}
     # Response/native/OCR tokens and paths never get inserted into request text.
     text = "\n".join(c["text"] for msg in request["input"] for c in msg["content"] if c["type"] == "input_text")
     assert "Nl" not in text
@@ -104,10 +116,45 @@ def test_success_receipt_hashes_request_and_preserves_raw_response(image_path, t
     assert record["served_model"] == record["requested_model"] == "gpt-6-astra"
     assert record["status"] == "completed"
     assert record["image_detail"] == "original"
+    assert record["provider"] == "openai"
+    assert record["authority_profile"] == "openai-native-astra-source-only-medium-v1"
+    assert record["service_tier"] == "default"
+    assert record["request_sha256"] == hashlib.sha256(json.dumps(calls[0], sort_keys=True).encode()).hexdigest()
+    assert record["native_response_sha256"] == hashlib.sha256(record["native_response_json"].encode()).hexdigest()
+    assert record["native_response_json"].endswith("\n")
+    assert (ledger_path.parent / "openai-source-response-001.json").read_bytes() == record["native_response_json"].encode()
+    native = json.loads(record["native_response_json"])
+    assert native["output"][0]["content"][0]["text"] == record["raw_response"]
+    assert native["usage"] == record["usage"] and native["service_tier"] == "default"
     ledger = json.loads(ledger_path.read_text())
     assert ledger["calls"] == 1
     assert ledger["reserved_usd"] == 1.5
     assert ledger["entries"][0]["status"] == "completed"
+
+
+def test_actual_native_bytes_are_retained_before_sdk_parse_failure(image_path, tmp_path):
+    raw = b'{ "malformed native response": '
+    calls = []
+
+    def parse():
+        assert (tmp_path / "openai-source-response-001.json").read_bytes() == raw
+        raise ValueError("SDK response parsing failed")
+
+    def create(**kwargs):
+        calls.append(kwargs)
+        return SimpleNamespace(content=raw, parse=parse)
+
+    client = SimpleNamespace(responses=SimpleNamespace(with_raw_response=SimpleNamespace(create=create)))
+    reader = SourceOnlyReader(client=client, ledger_path=tmp_path / "ledger.json")
+    records = []
+    with pytest.raises(ValueError, match="SDK response parsing failed"):
+        reader(image_path, records)
+    assert len(calls) == len(records) == 1
+    assert records[0]["native_response_json"].encode() == raw
+    assert records[0]["native_response_sha256"] == hashlib.sha256(raw).hexdigest()
+    assert records[0]["error_type"] == "ValueError"
+    assert reader.entries[0]["status"] == "failed"
+    assert json.loads((tmp_path / "ledger.json").read_text())["reserved_usd"] == 1.5
 
 
 @pytest.mark.parametrize("status", [None, "incomplete", "failed", "in_progress"])

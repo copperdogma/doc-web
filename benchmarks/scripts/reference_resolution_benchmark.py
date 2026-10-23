@@ -42,7 +42,7 @@ def verify_candidate_freeze(receipt, natural_source=None):
     sources = data.get("candidate_source_sha256", {})
     required = {
         "modules/common/manual_navigation.py",
-        "modules/common/reference_resolution.py",
+        "doc_web/reference_resolution.py",
     }
     if data.get("candidate_frozen") is not True or not required.issubset(sources):
         raise ValueError("Candidate freeze receipt is incomplete")

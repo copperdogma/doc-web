@@ -65,3 +65,36 @@ benchmarks/results/gpt6-astra-20260905/
 
 # Attempt063 native working receipts and dispatch lock; sealed archive retained in docs.
 /benchmarks/results/gemini4-argon-20261023/
+
+# Scout088 synthetic text native raw envelopes and dispatch lock
+/benchmarks/results/pplx-consistency-20261006/
+# Story246 synthetic native receipts and dispatch lock
+/benchmarks/results/pplx-shadow-20261006/
+
+# Protected public/synthetic Haiku evaluation raw receipts (durable archive in docs).
+benchmarks/results/haiku55-20261007/
+
+# Original Scout091 public/synthetic HTTP receipts; compact lossless package is tracked.
+benchmarks/results/scout091-20261013/
+
+# Scout092 raw native campaign custody; compact archive/manifest retained in docs.
+/benchmarks/results/argon-20261013/
+
+/benchmarks/results/argon-levels-20261013/
+
+# Attempt073 public/synthetic native raw envelopes; durable archive retained in docs.
+/benchmarks/results/argon-literal-qualification-20261013/
+
+# Fixture-author build intermediates/dependency cache; frozen sources tracked, retained build evidence archived.
+/benchmarks/fixtures/argon-literal-qualification-v1/build/
+
+# Scout093 raw native custody; safe durable archives in eval evidence
+/benchmarks/results/wonder-20261014/
+/benchmarks/results/wonder-thinking-20261014/
+
+# Attempt 074 raw receipts; canonical overlay and manifest live under docs/evals/evidence.
+/benchmarks/results/deepseek-v41-fresh-20261014/
+
+# Scout096 lossless native working receipts; sealed archive in docs/evals/evidence
+/benchmarks/results/scout096-20261016/
+/benchmarks/results/scout096-recovery1-20261016/

@@ -1,0 +1,24 @@
+{
+  "executor_visual_inspection": {
+    "pages": [
+      "benchmarks/fixtures/argon-literal-qualification-v1/renders/N1.png",
+      "benchmarks/fixtures/argon-literal-qualification-v1/renders/A1.png"
+    ],
+    "image_dimensions": [
+      2550,
+      3300
+    ],
+    "notes": "N1 visible register cells/footer span match both observations. A1 observation selects the visibly aliased stroke as digit1; certainty cannot be established from font/render counterfactual pixel identity. Independent frozen r2 proof supplies ambiguity truth; executor visual inspection does not manufacture unseen certainty."
+  },
+  "offline_initial_harness": {
+    "sha256": "756ae8c6b54ef66b645c7742801e03ff9a22e271e69dadc60f836e34d534754b",
+    "snapshot_available": false,
+    "limitation": "Historical source content was not captured; exact producing hash and all original mock native request/response evidence retained. Current source must not be represented as that earlier code.",
+    "recovery_check": "One in-memory reversal of the known later loader out wiring did not match the earlier recorded hash; no speculative historical snapshot was written and producing code stayed unchanged."
+  },
+  "final_export_and_live_harness": {
+    "sha256": "03ed30ef0e8f2c3aa647e63de66c0c343c8a5b2f10feec3ddf1450427f667e4e",
+    "snapshot": "producing-code/benchmarks/scripts/qualify_argon_literal.py"
+  },
+  "protected_credentials": "No value/header/env snapshot included. Existing owner wrapper only; no central temporary injection or account change."
+}

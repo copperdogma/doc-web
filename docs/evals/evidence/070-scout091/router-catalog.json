@@ -1,0 +1,352 @@
+[
+  {
+    "id": "scaledown/classify-1",
+    "canonical_slug": "scaledown/classify-1-20260928",
+    "hugging_face_id": null,
+    "name": "ScaleDown: Classify-1",
+    "created": 1791893334,
+    "description": "Classify-1 is a structured decision model from ScaleDown, served through OpenRouter's Decisions API. It scores text or a document against caller-defined choice, yes/no, and ordered-scale questions and returns calibrated probabilities...",
+    "context_length": 1000000,
+    "architecture": {
+      "modality": "text+image+file->decisions",
+      "input_modalities": [
+        "text",
+        "image",
+        "file"
+      ],
+      "output_modalities": [
+        "decisions"
+      ],
+      "tokenizer": "Other",
+      "instruct_type": null
+    },
+    "pricing": {
+      "prompt": "0.00000004",
+      "completion": "0"
+    },
+    "top_provider": {
+      "context_length": 1000000,
+      "max_completion_tokens": 900000,
+      "is_moderated": false
+    },
+    "per_request_limits": null,
+    "supported_parameters": [],
+    "default_parameters": {},
+    "supported_voices": null,
+    "knowledge_cutoff": null,
+    "expiration_date": null,
+    "links": {
+      "details": "/api/v1/models/scaledown/classify-1-20260928/endpoints"
+    }
+  },
+  {
+    "id": "nace-ai/drex-v2.0",
+    "canonical_slug": "nace-ai/drex-v2.0-20261009",
+    "hugging_face_id": null,
+    "name": "Nace.AI: Drex v2.0",
+    "created": 1791827066,
+    "description": "Drex v2.0 is a 35B mixture-of-experts decision model (3B active) from Nace.AI, the larger successor to [Drex v1.5](https://openrouter.ai/nace-ai/drex-v1.5). Given a state (text or JSON) and typed questions (yes/no, multiple choice,...",
+    "context_length": 131072,
+    "architecture": {
+      "modality": "text->decisions",
+      "input_modalities": [
+        "text"
+      ],
+      "output_modalities": [
+        "decisions"
+      ],
+      "tokenizer": "Other",
+      "instruct_type": null
+    },
+    "pricing": {
+      "prompt": "0.00000006",
+      "completion": "0"
+    },
+    "top_provider": {
+      "context_length": 131072,
+      "max_completion_tokens": 117964,
+      "is_moderated": false
+    },
+    "per_request_limits": null,
+    "supported_parameters": [],
+    "default_parameters": {},
+    "supported_voices": null,
+    "knowledge_cutoff": null,
+    "expiration_date": null,
+    "links": {
+      "details": "/api/v1/models/nace-ai/drex-v2.0-20261009/endpoints"
+    }
+  },
+  {
+    "id": "nace-ai/drex-v1.5",
+    "canonical_slug": "nace-ai/drex-v1.5-20261009",
+    "hugging_face_id": "nace-ai/drex-v1.5",
+    "name": "Nace.AI: Drex v1.5",
+    "created": 1791583576,
+    "description": "Drex v1.5 is a 9B decision model from Nace.AI. Given a state (text or JSON) and typed questions (yes/no, multiple choice, or ordinal score), it returns a calibrated probability for...",
+    "context_length": 131072,
+    "architecture": {
+      "modality": "text->decisions",
+      "input_modalities": [
+        "text"
+      ],
+      "output_modalities": [
+        "decisions"
+      ],
+      "tokenizer": "Other",
+      "instruct_type": null
+    },
+    "pricing": {
+      "prompt": "0.00000004",
+      "completion": "0"
+    },
+    "top_provider": {
+      "context_length": 131072,
+      "max_completion_tokens": 117964,
+      "is_moderated": false
+    },
+    "per_request_limits": null,
+    "supported_parameters": [],
+    "default_parameters": {},
+    "supported_voices": null,
+    "knowledge_cutoff": null,
+    "expiration_date": null,
+    "links": {
+      "details": "/api/v1/models/nace-ai/drex-v1.5-20261009/endpoints"
+    }
+  },
+  {
+    "id": "cloudflare/clef-omni",
+    "canonical_slug": "cloudflare/clef-omni-20261009",
+    "hugging_face_id": "Cloudflare/clef-omni",
+    "name": "Cloudflare: Clef Omni",
+    "created": 1791577078,
+    "description": "Clef Omni is the mixture-of-experts member of Cloudflare's open-source Clef decision model family, a fine-tune of Qwen3-Omni-30B-A3B (30B total, 3B active parameters) served on Workers AI. It turns a state...",
+    "context_length": 65536,
+    "architecture": {
+      "modality": "text+image->decisions",
+      "input_modalities": [
+        "text",
+        "image"
+      ],
+      "output_modalities": [
+        "decisions"
+      ],
+      "tokenizer": "Qwen",
+      "instruct_type": null
+    },
+    "pricing": {
+      "prompt": "0.00000015",
+      "completion": "0"
+    },
+    "top_provider": {
+      "context_length": 65536,
+      "max_completion_tokens": 58982,
+      "is_moderated": false
+    },
+    "per_request_limits": null,
+    "supported_parameters": [],
+    "default_parameters": {},
+    "supported_voices": null,
+    "knowledge_cutoff": null,
+    "expiration_date": null,
+    "links": {
+      "details": "/api/v1/models/cloudflare/clef-omni-20261009/endpoints"
+    }
+  },
+  {
+    "id": "upstage/solar-decide-flash",
+    "canonical_slug": "upstage/solar-decide-flash-20261008",
+    "hugging_face_id": null,
+    "name": "Upstage: Solar Decide Flash",
+    "created": 1791419983,
+    "description": "Solar Decide Flash is Upstage's low-latency structured decision model, a faster variant of [Solar Decide](/upstage/solar-decide) built on Solar Mini 4 and served through the System One (`/v1/systemone`) API. Instead of...",
+    "context_length": 524288,
+    "architecture": {
+      "modality": "text->decisions",
+      "input_modalities": [
+        "text"
+      ],
+      "output_modalities": [
+        "decisions"
+      ],
+      "tokenizer": "Other",
+      "instruct_type": null
+    },
+    "pricing": {
+      "prompt": "0.00000005",
+      "completion": "0",
+      "input_cache_read": "0.00000005"
+    },
+    "top_provider": {
+      "context_length": 524288,
+      "max_completion_tokens": 471859,
+      "is_moderated": false
+    },
+    "per_request_limits": null,
+    "supported_parameters": [],
+    "default_parameters": {},
+    "supported_voices": null,
+    "knowledge_cutoff": null,
+    "expiration_date": null,
+    "links": {
+      "details": "/api/v1/models/upstage/solar-decide-flash-20261008/endpoints"
+    }
+  },
+  {
+    "id": "liquid/d1",
+    "canonical_slug": "liquid/d1-20260930",
+    "hugging_face_id": null,
+    "name": "LiquidAI: d1",
+    "created": 1790878711,
+    "description": "d1 is Liquid AI's structured decision model, served as a System One endpoint. Send a state along with typed questions, and it returns a choice, a score, or a yes/no...",
+    "context_length": 65536,
+    "architecture": {
+      "modality": "text->decisions",
+      "input_modalities": [
+        "text"
+      ],
+      "output_modalities": [
+        "decisions"
+      ],
+      "tokenizer": "Other",
+      "instruct_type": null
+    },
+    "pricing": {
+      "prompt": "0.00000004",
+      "completion": "0",
+      "input_cache_read": "0.00000004"
+    },
+    "top_provider": {
+      "context_length": 65536,
+      "max_completion_tokens": 58982,
+      "is_moderated": false
+    },
+    "per_request_limits": null,
+    "supported_parameters": [],
+    "default_parameters": {},
+    "supported_voices": null,
+    "knowledge_cutoff": null,
+    "expiration_date": null,
+    "links": {
+      "details": "/api/v1/models/liquid/d1-20260930/endpoints"
+    }
+  },
+  {
+    "id": "cloudflare/clef-flash",
+    "canonical_slug": "cloudflare/clef-flash",
+    "hugging_face_id": "Cloudflare/clef-flash",
+    "name": "Cloudflare: Clef Flash",
+    "created": 1790870973,
+    "description": "Clef-flash is the fast 9B member of Cloudflare's open-source Clef decision model family, a fine-tune of Qwen3.5-9B served on Workers AI. It turns a state (text or structured JSON) plus...",
+    "context_length": 24576,
+    "architecture": {
+      "modality": "text+image->decisions",
+      "input_modalities": [
+        "text",
+        "image"
+      ],
+      "output_modalities": [
+        "decisions"
+      ],
+      "tokenizer": "Qwen",
+      "instruct_type": null
+    },
+    "pricing": {
+      "prompt": "0.000000021",
+      "completion": "0"
+    },
+    "top_provider": {
+      "context_length": 16384,
+      "max_completion_tokens": 14745,
+      "is_moderated": false
+    },
+    "per_request_limits": null,
+    "supported_parameters": [],
+    "default_parameters": {},
+    "supported_voices": null,
+    "knowledge_cutoff": null,
+    "expiration_date": null,
+    "links": {
+      "details": "/api/v1/models/cloudflare/clef-flash/endpoints"
+    }
+  },
+  {
+    "id": "cloudflare/clef",
+    "canonical_slug": "cloudflare/clef",
+    "hugging_face_id": "Cloudflare/clef",
+    "name": "Cloudflare: Clef",
+    "created": 1790870972,
+    "description": "Clef is Cloudflare's open-source 27B multimodal decision model, a fine-tune of Qwen3.8-27B served on Workers AI. It turns a state (text or structured JSON) plus a schema of typed questions...",
+    "context_length": 65536,
+    "architecture": {
+      "modality": "text+image->decisions",
+      "input_modalities": [
+        "text",
+        "image"
+      ],
+      "output_modalities": [
+        "decisions"
+      ],
+      "tokenizer": "Qwen",
+      "instruct_type": null
+    },
+    "pricing": {
+      "prompt": "0.000000042",
+      "completion": "0"
+    },
+    "top_provider": {
+      "context_length": 16384,
+      "max_completion_tokens": 14745,
+      "is_moderated": false
+    },
+    "per_request_limits": null,
+    "supported_parameters": [],
+    "default_parameters": {},
+    "supported_voices": null,
+    "knowledge_cutoff": null,
+    "expiration_date": null,
+    "links": {
+      "details": "/api/v1/models/cloudflare/clef/endpoints"
+    }
+  },
+  {
+    "id": "upstage/solar-decide",
+    "canonical_slug": "upstage/solar-decide-20260928",
+    "hugging_face_id": null,
+    "name": "Upstage: Solar Decide",
+    "created": 1790592657,
+    "description": "Solar Decide is Upstage's structured decision model, served as a System One endpoint on Solar Mini 4. Send a state along with typed questions, and it returns a choice, a...",
+    "context_length": 524288,
+    "architecture": {
+      "modality": "text->decisions",
+      "input_modalities": [
+        "text"
+      ],
+      "output_modalities": [
+        "decisions"
+      ],
+      "tokenizer": "Other",
+      "instruct_type": null
+    },
+    "pricing": {
+      "prompt": "0.00000005",
+      "completion": "0",
+      "input_cache_read": "0.00000005"
+    },
+    "top_provider": {
+      "context_length": 524288,
+      "max_completion_tokens": 471859,
+      "is_moderated": false
+    },
+    "per_request_limits": null,
+    "supported_parameters": [],
+    "default_parameters": {},
+    "supported_voices": null,
+    "knowledge_cutoff": null,
+    "expiration_date": null,
+    "links": {
+      "details": "/api/v1/models/upstage/solar-decide-20260928/endpoints"
+    }
+  }
+]

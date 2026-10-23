@@ -1,0 +1,91 @@
+{
+  "schema_version": "pplx_consistency_shadow_eval_v1",
+  "advisory_only": true,
+  "model": "pplx-decider-v1.1-27b",
+  "state_basis": "eval_observed_chapter_html_and_available_source_page_html",
+  "chapters": [
+    {
+      "chapter_ordinal": 0,
+      "authoritative_status": "conformant",
+      "shadow_status": "uncertain",
+      "route": "review",
+      "latency_ms": 18.080416999964655,
+      "pplx_status": "row_semantic_issue",
+      "probabilities": {
+        "conformant": 0.0,
+        "format_drift": 0.0,
+        "row_semantic_issue": 1.0,
+        "mixed": 0.0,
+        "uncertain": 0.0
+      },
+      "confidence": 0.42,
+      "input_tokens": 500,
+      "output_tokens": 1,
+      "cost_usd": 1e-05,
+      "reason": "low_confidence_disagreement",
+      "warning": {
+        "candidate_status": "row_semantic_issue",
+        "authoritative_status": "conformant",
+        "confidence": 0.42
+      }
+    },
+    {
+      "chapter_ordinal": 1,
+      "authoritative_status": "format_drift",
+      "shadow_status": "uncertain",
+      "route": "review",
+      "latency_ms": 7.7061250000269865,
+      "pplx_status": "row_semantic_issue",
+      "probabilities": {
+        "conformant": 0.0,
+        "format_drift": 0.0,
+        "row_semantic_issue": 1.0,
+        "mixed": 0.0,
+        "uncertain": 0.0
+      },
+      "confidence": 0.42,
+      "input_tokens": 500,
+      "output_tokens": 1,
+      "cost_usd": 1e-05,
+      "reason": "deterministic_layout_guard"
+    },
+    {
+      "chapter_ordinal": 2,
+      "authoritative_status": "conformant",
+      "shadow_status": "uncertain",
+      "route": "review",
+      "latency_ms": 8.559332999993785,
+      "pplx_status": "row_semantic_issue",
+      "probabilities": {
+        "conformant": 0.0,
+        "format_drift": 0.0,
+        "row_semantic_issue": 1.0,
+        "mixed": 0.0,
+        "uncertain": 0.0
+      },
+      "confidence": 0.42,
+      "input_tokens": 500,
+      "output_tokens": 1,
+      "cost_usd": 1e-05,
+      "reason": "low_confidence_disagreement",
+      "warning": {
+        "candidate_status": "row_semantic_issue",
+        "authoritative_status": "conformant",
+        "confidence": 0.42
+      }
+    }
+  ],
+  "known_cost_usd": 3.0000000000000004e-05,
+  "unknown_cost_reserved_usd": 0.0,
+  "maximum_run_cost_usd": 0.0038400000000000005,
+  "dispatched": 3,
+  "created_at": "2026-10-06T12:00:00+00:00",
+  "run_id": "offline-warning-integration",
+  "input_sha256": "1d013aa66c247b70a0cc6a6b01260af2d14dcd87128c22b586a9df91da518228",
+  "plan_sha256": "dff81e7e4fb6a7db006ee37590a5b9f74337657e097bb4dad3df1b083460ced8",
+  "authoritative_sha256": "f2ade100b81d98b9d87689a64c6c4db97a4d14aa14f7ef3f4a241c483b598d80",
+  "total_chapters": 3,
+  "comparison_mode": "shadow_with_existing_planner_fallback",
+  "skipped_chapters": 0,
+  "status": "complete"
+}

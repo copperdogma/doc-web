@@ -1,0 +1,26 @@
+Copied /Users/cam/.codex/worktrees/pplx-warning-integration-20261006/benchmarks/pplx-shadow/corpus/doc-01/pages.jsonl to /Users/cam/.codex/worktrees/pplx-warning-integration-20261006/output/runs/pplx-warning-integration-20261006/offline-warning-integration/01_load_artifact_v1/pages.jsonl
+Copied /Users/cam/.codex/worktrees/pplx-warning-integration-20261006/benchmarks/pplx-shadow/corpus/doc-01/chapters.jsonl to /Users/cam/.codex/worktrees/pplx-warning-integration-20261006/output/runs/pplx-warning-integration-20261006/offline-warning-integration/02_load_artifact_v1/chapters.jsonl
+⚠️  --force: Cleaning existing directory: /Users/cam/.codex/worktrees/pplx-warning-integration-20261006/output/runs/pplx-warning-integration-20261006/offline-warning-integration
+[run] pages (load_artifact_v1)
+[stamp] /Users/cam/.codex/worktrees/pplx-warning-integration-20261006/output/runs/pplx-warning-integration-20261006/offline-warning-integration/01_load_artifact_v1/pages.jsonl stamped with page_html_v1 (3 rows)
+[run] chapters (load_artifact_v1)
+[stamp] /Users/cam/.codex/worktrees/pplx-warning-integration-20261006/output/runs/pplx-warning-integration-20261006/offline-warning-integration/02_load_artifact_v1/chapters.jsonl stamped with chapter_html_manifest_v1 (3 rows)
+[run] planner (plan_onward_document_consistency_v1)
+[stamp] /Users/cam/.codex/worktrees/pplx-warning-integration-20261006/output/runs/pplx-warning-integration-20261006/offline-warning-integration/03_plan_onward_document_consistency_v1/document_consistency_report.jsonl stamped with pipeline_issues_v1 (1 rows)
+[summary] run: {
+  "pages": {
+    "wall_seconds": 0.42,
+    "pages": 3,
+    "pages_per_min": 428.57
+  },
+  "chapters": {
+    "wall_seconds": 0.41,
+    "pages": 3,
+    "pages_per_min": 439.02
+  },
+  "planner": {
+    "wall_seconds": 0.55,
+    "summary": "Document-level consistency planning complete: patterns=1, newly_surfaced=0"
+  }
+}
+Recipe complete.

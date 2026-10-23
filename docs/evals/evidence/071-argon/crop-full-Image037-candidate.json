@@ -1,0 +1,9 @@
+{
+  "raw": "{\"images\": [{\"description\": \"Oval portrait photograph of Mrs. Leonidas L'Heureux (Laetitia - first wife)\", \"bbox\": [0.585, 0.052, 0.85, 0.314]}, {\"description\": \"Photograph of Leonidas and Josephine (second wife) L'Heureux seated together\", \"bbox\": [0.097, 0.642, 0.492, 898]}]}",
+  "score": {
+    "pass": false,
+    "score": 0.498,
+    "reason": "box_count=1.00 (2/2) | iou_mean=0.497 | iou_min=0.000 | coverage=0.497 | total=0.498 | matches=[pred[0]<->gold[1] IoU=0.994, +1 extra predicted, +1 missed golden]"
+  },
+  "served": "gemini-4-argon"
+}

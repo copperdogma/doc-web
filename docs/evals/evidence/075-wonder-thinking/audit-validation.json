@@ -1,0 +1,10 @@
+{
+  "changes": "documentationaudit only, no inference or nativecontent changes",
+  "archive_members": 56,
+  "archive_sha256": "9a635f04cbd3766009483641a0a43ee8bdd6f261917ce1935e12857711b5de97",
+  "original_conditional_decision_preserved_sha256": "7e4777faba853ffa2754fb022702d519e8b569a159111c1025b86bdceaae8fee",
+  "native_costs_unchanged": true,
+  "prior074_untouched": true,
+  "applicable106tests_unchanged_reused": true,
+  "linked_companion_exists": true
+}

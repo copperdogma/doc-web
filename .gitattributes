@@ -6,3 +6,6 @@ docs/evals/evidence/046-execution-sources/benchmarks/scripts/gpt61_preflight.py 
 
 # Frozen synthetic PDF bytes include required PDF cross-reference whitespace.
 testdata/literal-table-fidelity/**/*.pdf binary
+
+# Preserve sealed qualification PDF container bytes; PDF internals are not prose diffs.
+benchmarks/fixtures/argon-literal-qualification-v1/source/*.pdf binary

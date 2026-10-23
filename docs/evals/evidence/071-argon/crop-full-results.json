@@ -1,0 +1,128 @@
+[
+  {
+    "key": "Image000",
+    "arm": "candidate",
+    "pass": true,
+    "score": 0.8278,
+    "reason": "box_count=1.00 (1/1) | iou_mean=0.797 | iou_min=0.797 | coverage=0.797 | total=0.828 | matches=[pred[0]<->gold[0] IoU=0.797]"
+  },
+  {
+    "key": "Image000",
+    "arm": "control",
+    "pass": true,
+    "score": 0.8225,
+    "reason": "box_count=1.00 (1/1) | iou_mean=0.791 | iou_min=0.791 | coverage=0.791 | total=0.822 | matches=[pred[0]<->gold[0] IoU=0.791]"
+  },
+  {
+    "key": "Image001",
+    "arm": "candidate",
+    "pass": true,
+    "score": 0.9755,
+    "reason": "box_count=1.00 (1/1) | iou_mean=0.971 | iou_min=0.971 | coverage=0.971 | total=0.975 | matches=[pred[0]<->gold[0] IoU=0.971]"
+  },
+  {
+    "key": "Image001",
+    "arm": "control",
+    "pass": true,
+    "score": 0.9265,
+    "reason": "box_count=1.00 (1/1) | iou_mean=0.909 | iou_min=0.909 | coverage=0.921 | total=0.927 | matches=[pred[0]<->gold[0] IoU=0.909]"
+  },
+  {
+    "key": "Image003",
+    "arm": "candidate",
+    "pass": true,
+    "score": 0.9865,
+    "reason": "box_count=1.00 (1/1) | iou_mean=0.982 | iou_min=0.982 | coverage=0.987 | total=0.986 | matches=[pred[0]<->gold[0] IoU=0.982]"
+  },
+  {
+    "key": "Image003",
+    "arm": "control",
+    "pass": true,
+    "score": 0.9814,
+    "reason": "box_count=1.00 (1/1) | iou_mean=0.976 | iou_min=0.976 | coverage=0.981 | total=0.981 | matches=[pred[0]<->gold[0] IoU=0.976]"
+  },
+  {
+    "key": "Image008",
+    "arm": "candidate",
+    "pass": true,
+    "score": 0.9974,
+    "reason": "box_count=1.00 (1/1) | iou_mean=0.995 | iou_min=0.995 | coverage=1.000 | total=0.997 | matches=[pred[0]<->gold[0] IoU=0.995]"
+  },
+  {
+    "key": "Image008",
+    "arm": "control",
+    "pass": true,
+    "score": 0.9966,
+    "reason": "box_count=1.00 (1/1) | iou_mean=0.995 | iou_min=0.995 | coverage=0.998 | total=0.997 | matches=[pred[0]<->gold[0] IoU=0.995]"
+  },
+  {
+    "key": "Image011",
+    "arm": "candidate",
+    "pass": true,
+    "score": 0.9872,
+    "reason": "box_count=1.00 (2/2) | iou_mean=0.978 | iou_min=0.971 | coverage=0.998 | total=0.987 | matches=[pred[0]<->gold[0] IoU=0.985, pred[1]<->gold[1] IoU=0.971]"
+  },
+  {
+    "key": "Image011",
+    "arm": "control",
+    "pass": true,
+    "score": 0.9826,
+    "reason": "box_count=1.00 (2/2) | iou_mean=0.973 | iou_min=0.964 | coverage=0.993 | total=0.983 | matches=[pred[1]<->gold[1] IoU=0.983, pred[0]<->gold[0] IoU=0.964]"
+  },
+  {
+    "key": "Image013",
+    "arm": "candidate",
+    "pass": true,
+    "score": 0.995,
+    "reason": "box_count=1.00 (1/1) | iou_mean=0.992 | iou_min=0.992 | coverage=0.998 | total=0.995 | matches=[pred[0]<->gold[0] IoU=0.992]"
+  },
+  {
+    "key": "Image013",
+    "arm": "control",
+    "pass": true,
+    "score": 0.9895,
+    "reason": "box_count=1.00 (1/1) | iou_mean=0.986 | iou_min=0.986 | coverage=0.989 | total=0.989 | matches=[pred[0]<->gold[0] IoU=0.986]"
+  },
+  {
+    "key": "Image020",
+    "arm": "candidate",
+    "pass": true,
+    "score": 0.9958,
+    "reason": "box_count=1.00 (2/2) | iou_mean=0.993 | iou_min=0.991 | coverage=0.998 | total=0.996 | matches=[pred[0]<->gold[0] IoU=0.996, pred[1]<->gold[1] IoU=0.991]"
+  },
+  {
+    "key": "Image020",
+    "arm": "control",
+    "pass": true,
+    "score": 0.9928,
+    "reason": "box_count=1.00 (2/2) | iou_mean=0.991 | iou_min=0.988 | coverage=0.994 | total=0.993 | matches=[pred[0]<->gold[0] IoU=0.995, pred[1]<->gold[1] IoU=0.988]"
+  },
+  {
+    "key": "Image021",
+    "arm": "candidate",
+    "pass": true,
+    "score": 0.9938,
+    "reason": "box_count=1.00 (1/1) | iou_mean=0.988 | iou_min=0.988 | coverage=1.000 | total=0.994 | matches=[pred[0]<->gold[0] IoU=0.988]"
+  },
+  {
+    "key": "Image021",
+    "arm": "control",
+    "pass": true,
+    "score": 0.9826,
+    "reason": "box_count=1.00 (1/1) | iou_mean=0.976 | iou_min=0.976 | coverage=0.985 | total=0.983 | matches=[pred[0]<->gold[0] IoU=0.976]"
+  },
+  {
+    "key": "Image037",
+    "arm": "candidate",
+    "pass": false,
+    "score": 0.498,
+    "reason": "box_count=1.00 (2/2) | iou_mean=0.497 | iou_min=0.000 | coverage=0.497 | total=0.498 | matches=[pred[0]<->gold[1] IoU=0.994, +1 extra predicted, +1 missed golden]"
+  },
+  {
+    "key": "Image037",
+    "arm": "control",
+    "pass": true,
+    "score": 0.9867,
+    "reason": "box_count=1.00 (2/2) | iou_mean=0.978 | iou_min=0.965 | coverage=0.998 | total=0.987 | matches=[pred[1]<->gold[0] IoU=0.992, pred[0]<->gold[1] IoU=0.965]"
+  }
+]

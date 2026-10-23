@@ -1,0 +1,74 @@
+{
+  "case": "image-positive",
+  "arm": "medium-recovery1",
+  "status": "unresolved",
+  "errors": [
+    "table 0: source review reports 2 uncertain cells",
+    "table 0: initial OCR differs from source review: text_mismatches=1, structure_mismatches=0"
+  ],
+  "uncertainties": [
+    {
+      "alternatives": [
+        "Il1-00",
+        "I11-00",
+        "Il1-O0",
+        "111-00"
+      ],
+      "cell": 1,
+      "reason": "source ambiguity",
+      "row": 1
+    },
+    {
+      "alternatives": [
+        "o0-LI",
+        "o0-L1",
+        "00-LI",
+        "oO-LI"
+      ],
+      "cell": 1,
+      "reason": "source ambiguity",
+      "row": 2
+    }
+  ],
+  "quality": {
+    "text_pass": false,
+    "structure_pass": true,
+    "pass": false,
+    "text_mismatch_count": 1,
+    "structure_mismatch_count": 0,
+    "text_mismatches": [
+      {
+        "table": 0,
+        "actual_table": 0,
+        "row": 1,
+        "cell": 1,
+        "kind": "cell_text",
+        "expected": "Il1-O0",
+        "actual": "Il1-00"
+      }
+    ],
+    "structure_mismatches": [],
+    "counts": {
+      "golden": {
+        "tables": 1,
+        "rows": 6,
+        "cells": 23
+      },
+      "actual": {
+        "tables": 1,
+        "rows": 6,
+        "cells": 23
+      }
+    },
+    "scope": {
+      "mode": "all_tables",
+      "table_index": null,
+      "golden_table_count": 1,
+      "actual_table_count": 1,
+      "excluded_actual_table_indices": [],
+      "compared_actual_table_count": 1,
+      "document_actual_table_count": 1
+    }
+  },
+  "report": "benchmarks/results/wonder-thinking-20261014/image-positive-medium-recovery1_reports/row-00000-page-00001-original-00001.json"
+}

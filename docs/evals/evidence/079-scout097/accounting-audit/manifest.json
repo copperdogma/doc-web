@@ -1,0 +1,49 @@
+{
+  "original_archive_unchanged_sha256": "358fc991b67fc26ee171bdd1a490bf7163f9bb94eae4876b31d91fde456aa698",
+  "original_manifest_sha256": "ec23cfd4868e012af9cc73b171be0113c4b5c7a007fd6436c0163ddb040ba572",
+  "no_provider_posts": true,
+  "generation_gets": 2,
+  "producing_sources": "Original native archive and preformat archive remain authoritative; hardened guard did not produce earlier scores.",
+  "files": [
+    {
+      "path": "benchmarks/providers/scout097_guard.py",
+      "bytes": 9461,
+      "sha256": "18125d359fa5676f5ab9792031ebae60d709fd8d42560ea6c5611664a925c93b"
+    },
+    {
+      "path": "tests/test_scout097_guard.py",
+      "bytes": 4450,
+      "sha256": "5f5549ebbecb0deb985db103d2bcf76ebf9cd6c2f5d46a445297c93103b78d7b"
+    },
+    {
+      "path": "docs/evals/evidence/079-scout097/accounting-audit/hardened-sources.tar.gz",
+      "bytes": 4244,
+      "sha256": "b65af07f9dad6d7e962dd44e0ec197f0da39afff1fabcd1b71e3e79ef170922c"
+    },
+    {
+      "path": "docs/evals/evidence/079-scout097/accounting-audit/receipt-manifest.json",
+      "bytes": 473,
+      "sha256": "0d2095ccc9cec3ce1dcf881edb8f033b9d594174b57095c06965c08c642b00f3"
+    },
+    {
+      "path": "docs/evals/evidence/079-scout097/accounting-audit/report.md",
+      "bytes": 1817,
+      "sha256": "f317ece3c31699c40b23342fd139102e4a51afa92dbc457fa8dadc0a59f00690"
+    },
+    {
+      "path": "docs/evals/evidence/079-scout097/accounting-audit/safety-page-012-001-candidate-generation.json",
+      "bytes": 1397,
+      "sha256": "de5130b1a658778a25ce1a3de477be017a6357c82483e74095ada3409a9ab0cb"
+    },
+    {
+      "path": "docs/evals/evidence/079-scout097/accounting-audit/safety-page-122-001-candidate-generation.json",
+      "bytes": 1394,
+      "sha256": "fbcffdb797d81bcacd4d21570cf3c12e3f9d73d41b9c782272ca5b5d16e7ccae"
+    },
+    {
+      "path": "docs/evals/evidence/079-scout097/accounting-audit/verdicts.json",
+      "bytes": 1231,
+      "sha256": "5df9d0b6bf927b7a591a244d80402d6b1af1f9d35970472da637002b275131c5"
+    }
+  ]
+}

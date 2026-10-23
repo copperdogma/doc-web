@@ -1,0 +1,15 @@
+{
+  "source_table_count": 1,
+  "tables": [
+    {
+      "bbox": [
+        217,
+        1133,
+        2112,
+        1700
+      ],
+      "html": "<table><tr><th>Crate</th><th>Seal</th><th>Condition</th></tr><tr><td>North-4</td><td>nQ/17</td><td>re-sealed</td></tr><tr><td>East-2</td><td>EQ/17</td><td>scuffed</td></tr><tr><td colspan=\"3\">Hold for review</td></tr></table>",
+      "uncertain_cells": []
+    }
+  ]
+}

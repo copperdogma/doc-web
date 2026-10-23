@@ -1337,11 +1337,23 @@ def build_report(
     crops = list(read_jsonl(str(crops_path))) if crops_path.exists() else []
     chapters = list(read_jsonl(str(chapters_path))) if chapters_path.exists() else []
     html_files = _html_files_from_chapters(chapters)
+    provenance_path = html_files[0].parent / "provenance" / "blocks.jsonl" if html_files else None
+    provenance_rows = list(read_jsonl(str(provenance_path))) if provenance_path and provenance_path.exists() else []
+    # Serialized chapters retain source-page ownership but not the builder's
+    # prepared entries. Restore that context so numeric TOC links are checked
+    # against their complete source row and block provenance, not bare numbers.
+    navigation_entries = [
+        {"filename": Path(chapter["file"]).name,
+         "prepared_pages": [page for page in pages
+                            if page.get("page_number", page.get("page")) in chapter["source_pages"]]}
+        for chapter in chapters if chapter.get("file") and chapter.get("source_pages")
+    ]
     figure_counts = _count_figures(html_files)
     navigation_resource_observations = []
     navigation_semantic_observations = []
     navigation_issues, navigation_annotations = inspect_navigation(
-        html_files, source_pages=pages, resource_observations=navigation_resource_observations,
+        html_files, source_pages=pages, source_entries=navigation_entries, provenance_rows=provenance_rows,
+        resource_observations=navigation_resource_observations,
         semantic_observations=navigation_semantic_observations
     )
     _check(checks, "local_navigation_targets", "Local resources exist and active HTML fragments have unique destinations.",
@@ -1413,8 +1425,6 @@ def build_report(
     )
 
     manifest_path = html_files[0].parent / "manifest.json" if html_files else None
-    provenance_path = html_files[0].parent / "provenance" / "blocks.jsonl" if html_files else None
-    provenance_rows = list(read_jsonl(str(provenance_path))) if provenance_path and provenance_path.exists() else []
     _check(
         checks,
         "final_html_bundle_exists",

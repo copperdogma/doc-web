@@ -1,0 +1,97 @@
+{
+  "postpaid_formatting_only_main": true,
+  "postpaid_image_helper_trim": "remove unrelated old dispatch and text paths after closed-ledger completion",
+  "main_paid_source": "docs/evals/evidence/070-scout091/snapshots/benchmarks/jev-consistency/scout091_campaign.py",
+  "helpers_paid_source": "docs/evals/evidence/070-scout091/snapshots/benchmarks/jev-consistency/decisions_campaign.py",
+  "image_parity22": [
+    {
+      "case": "page-001-000",
+      "exact_before_after_image_body": true
+    },
+    {
+      "case": "page-004-000",
+      "exact_before_after_image_body": true
+    },
+    {
+      "case": "page-009-000",
+      "exact_before_after_image_body": true
+    },
+    {
+      "case": "page-012-000",
+      "exact_before_after_image_body": true
+    },
+    {
+      "case": "page-012-001",
+      "exact_before_after_image_body": true
+    },
+    {
+      "case": "page-014-000",
+      "exact_before_after_image_body": true
+    },
+    {
+      "case": "page-018-000",
+      "exact_before_after_image_body": true
+    },
+    {
+      "case": "page-021-000",
+      "exact_before_after_image_body": true
+    },
+    {
+      "case": "page-021-001",
+      "exact_before_after_image_body": true
+    },
+    {
+      "case": "page-022-000",
+      "exact_before_after_image_body": true
+    },
+    {
+      "case": "page-038-000",
+      "exact_before_after_image_body": true
+    },
+    {
+      "case": "page-038-001",
+      "exact_before_after_image_body": true
+    },
+    {
+      "case": "page-060-000",
+      "exact_before_after_image_body": true
+    },
+    {
+      "case": "page-060-001",
+      "exact_before_after_image_body": true
+    },
+    {
+      "case": "page-092-000",
+      "exact_before_after_image_body": true
+    },
+    {
+      "case": "page-122-000",
+      "exact_before_after_image_body": true
+    },
+    {
+      "case": "page-122-001",
+      "exact_before_after_image_body": true
+    },
+    {
+      "case": "page-125-000",
+      "exact_before_after_image_body": true
+    },
+    {
+      "case": "page-126-000",
+      "exact_before_after_image_body": true
+    },
+    {
+      "case": "page-126-001",
+      "exact_before_after_image_body": true
+    },
+    {
+      "case": "page-127-000",
+      "exact_before_after_image_body": true
+    },
+    {
+      "case": "page-127-001",
+      "exact_before_after_image_body": true
+    }
+  ],
+  "closed_ledgers": true
+}

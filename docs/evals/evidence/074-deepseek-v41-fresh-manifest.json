@@ -1,0 +1,250 @@
+{
+  "attempt_id": "074",
+  "date": "2026-10-14",
+  "base_sha": "e44c0a41abf02ad266c10afdf5d95d48bb1b1fe2",
+  "branch": "codex/deepseek-v41-retry-20261014",
+  "worktree": "/Users/cam/.codex/worktrees/deepseek-v41-retry-20261014-docweb",
+  "model": "deepseek/deepseek-v4.1-flash",
+  "canonical_catalog_id": "deepseek/deepseek-v4.1-flash-20260910",
+  "served_identity": "deepseek/deepseek-v4.1-flash",
+  "provider": "DeepInfra",
+  "route": "deepinfra/fp8",
+  "reasoning_effort": "low",
+  "max_output_tokens": 16384,
+  "strict_contract": "crop_regions",
+  "fallbacks": false,
+  "cache": "subject cache disabled; provider reports zero cached prompt tokens",
+  "data_class": "Only the predeclared maintained public/owner-cleared fixture set was submitted, under Cam-approved public/owner-cleared-only use; no private or household source. Synthetic generated square used for native/parity.",
+  "cap_usd": 0.5,
+  "new_campaign_spend_usd": 0.00221018,
+  "unresolved_reservation_usd": 0.0,
+  "historical_attempt036_exposure_preserved_separately_usd": 0.013388168,
+  "qualification": {
+    "native": {
+      "served_model": "deepseek/deepseek-v4.1-flash",
+      "provider": "DeepInfra",
+      "http_status": 200,
+      "latency_ms": 7568,
+      "reported_cost_usd": 0.00020902,
+      "strict_schema_valid": true,
+      "terminal": "stop"
+    },
+    "owner_parity": {
+      "served_model": "deepseek/deepseek-v4.1-flash",
+      "provider": "DeepInfra",
+      "http_status": 200,
+      "latency_ms": 10569,
+      "reported_cost_usd": 0.00044674,
+      "strict_schema_valid": true,
+      "terminal": "stop",
+      "request_sha256_matches_native": true
+    }
+  },
+  "image011": {
+    "http_status": 200,
+    "cases": 1,
+    "latency_ms": 43202,
+    "reported_cost_usd": 0.00155442,
+    "scorer_score": 0.7171,
+    "per_case_scorer_threshold_pass": true,
+    "full13_aggregate_gate": false,
+    "boxes": [
+      [
+        0.38,
+        0.04,
+        0.62,
+        0.18
+      ],
+      [
+        0.12,
+        0.7,
+        0.83,
+        0.91
+      ]
+    ],
+    "gold_boxes": [
+      [
+        0.376863,
+        0.075455,
+        0.58,
+        0.231061
+      ],
+      [
+        0.119804,
+        0.686061,
+        0.876863,
+        0.896667
+      ]
+    ],
+    "source_complete": false,
+    "failure_class": "model localization/source coverage failure; normalized xyxy values valid; no malformed numeric/unit evidence; not an owner adapter/schema failure",
+    "overlay": "docs/evals/evidence/074-image011-source-overlay.jpg"
+  },
+  "stop": "Image011 source-complete gate failed despite one-case scorer pass; full13 and fresh Gemini comparator not run.",
+  "validation": {
+    "syntax": "py_compile passed for new provider/probe",
+    "task_yaml": "13 cases, one prompt, Python scorer only, no paid judge, concurrency 1",
+    "tests": "27 passed: tests/test_openrouter_vision_chat_provider.py tests/test_crop_benchmark_substrate.py",
+    "promptfoo": "0.121.1; --no-cache; -j 1; Image011 one-case output: 1 pass, 0 fail, 0 errors",
+    "credential_cleanup": "Conductor helper removed DOC_WEB_OPENROUTER_API_KEY from worktree .env; verified absent"
+  },
+  "commands": [
+    "/Users/cam/miniconda3/bin/python scripts/run_with_doc_web_env.py /Users/cam/miniconda3/bin/python benchmarks/scripts/deepseek_v41_fresh_probe_20261014.py native",
+    "/Users/cam/miniconda3/bin/python scripts/run_with_doc_web_env.py /Users/cam/miniconda3/bin/python benchmarks/scripts/deepseek_v41_fresh_probe_20261014.py parity",
+    "cd benchmarks && /Users/cam/miniconda3/bin/python ../scripts/run_with_doc_web_env.py /Users/cam/.nvm/versions/node/v24.13.1/bin/promptfoo eval -c tasks/image-crop-deepseek-v41-fresh-20261014.yaml --no-cache --filter-pattern Image011 --output results/deepseek-v41-fresh-20261014/image011.json -j 1"
+  ],
+  "evidence_files": [
+    {
+      "path": "benchmarks/providers/deepseek_v41_fresh_20261014.py",
+      "bytes": 6864,
+      "sha256": "a92db84aaa3adee5730bb980a3d62acdc808b972defb74701d356f433b4f10be"
+    },
+    {
+      "path": "benchmarks/scripts/deepseek_v41_fresh_probe_20261014.py",
+      "bytes": 2627,
+      "sha256": "f697678a1fbbdf2a73d8c18dae1f77900c446b854918e1677252bf0bf54f5988"
+    },
+    {
+      "path": "benchmarks/tasks/image-crop-deepseek-v41-fresh-20261014.yaml",
+      "bytes": 4135,
+      "sha256": "d928d01cea5712f52a059daa08693ef7045f6b1ed61de878e3634b295803d16d"
+    },
+    {
+      "path": "benchmarks/prompts/crop-conservative-count.js",
+      "bytes": 1782,
+      "sha256": "d15c7fd6f20389e5e7b2af9f15dd3697a31c28f47cfea8147c8114fe82f1e8f9"
+    },
+    {
+      "path": "benchmarks/prompts/_image-helpers.js",
+      "bytes": 2312,
+      "sha256": "ad723df59a55896922752bd963f50ca7e36e7c77717d568deb5f9fdd1d3e11c0"
+    },
+    {
+      "path": "benchmarks/scorers/image_crop_scorer.py",
+      "bytes": 10333,
+      "sha256": "7fcf07e05726bf3ebbc2488a503a9d7f165dde79649890cbd65f12a6ce4c19e7"
+    },
+    {
+      "path": "benchmarks/golden/image-crops.json",
+      "bytes": 7783,
+      "sha256": "2ac0a8f01e00a252439da1f4827a85bc5118bf96460a3ff1780e642eafc60f90"
+    },
+    {
+      "path": "benchmarks/input/source-pages-b64/Image011.b64.txt",
+      "bytes": 310151,
+      "sha256": "71806b69682ae403974ab6090429aa894029c3d3771b77c76bdbe10cb2102f83"
+    },
+    {
+      "path": "docs/evals/attempts/074-deepseek-v41-flash-fresh-20261014.md",
+      "bytes": 8872,
+      "sha256": "407e74b5c86651151ab933835de952b03d175ee1e6a89c184c09611e186a9f82"
+    },
+    {
+      "path": "benchmarks/results/deepseek-v41-fresh-20261014/deepseek-openrouter-endpoints.json",
+      "bytes": 35502,
+      "sha256": "87a2a38d35f4559c54db67039a30c6802f5b1733524de4c51d0504e23876a1a7"
+    },
+    {
+      "path": "benchmarks/results/deepseek-v41-fresh-20261014/gemini-openrouter-endpoints.json",
+      "bytes": 7662,
+      "sha256": "fe5447e86fd5a13c81f6267afee6dd66a968dea09833b5e80c029fea6acd476b"
+    },
+    {
+      "path": "benchmarks/results/deepseek-v41-fresh-20261014/preflight.json",
+      "bytes": 7782,
+      "sha256": "0936dbccc31147a005e1ec273b37b72b871f4514b3f90bc7ece04158e467f156"
+    },
+    {
+      "path": "benchmarks/results/deepseek-v41-fresh-20261014/ledger.json",
+      "bytes": 2310,
+      "sha256": "bea7e19cfdd286edcfd9d4fe4aafb4b827358129c6f44a5822ac77265010ad5c"
+    },
+    {
+      "path": "benchmarks/results/deepseek-v41-fresh-20261014/request-001.json",
+      "bytes": 1429,
+      "sha256": "11e07e5651f07997a589fe8bbe9088ead6bd02719d1a33b98ca7a64661652df0"
+    },
+    {
+      "path": "benchmarks/results/deepseek-v41-fresh-20261014/response-001.json",
+      "bytes": 1219,
+      "sha256": "a39278c0d3be5e513ca359c75aac6e1da494bf51526a45f826301b97640eff85"
+    },
+    {
+      "path": "benchmarks/results/deepseek-v41-fresh-20261014/request-002.json",
+      "bytes": 1429,
+      "sha256": "11e07e5651f07997a589fe8bbe9088ead6bd02719d1a33b98ca7a64661652df0"
+    },
+    {
+      "path": "benchmarks/results/deepseek-v41-fresh-20261014/response-002.json",
+      "bytes": 1263,
+      "sha256": "bb195d52a853bb693e2d69bcbc2bc77f6df5fa931f66b22036d1ce305003076f"
+    },
+    {
+      "path": "benchmarks/results/deepseek-v41-fresh-20261014/request-003.json",
+      "bytes": 311965,
+      "sha256": "c0125d227c672e09a6a3411bb551817a9fca6901895614a195cec76060b91080"
+    },
+    {
+      "path": "benchmarks/results/deepseek-v41-fresh-20261014/response-003.json",
+      "bytes": 1490,
+      "sha256": "860c5ba8208238cf560156a431c0cc1df91f774f7ca011e1df413093e6600c8e"
+    },
+    {
+      "path": "benchmarks/results/deepseek-v41-fresh-20261014/native-probe.json",
+      "bytes": 217,
+      "sha256": "f303e6f2e5cd08ebbd03bf2d5ee2bc978722f6f102758f191b1aad0ed85b5b20"
+    },
+    {
+      "path": "benchmarks/results/deepseek-v41-fresh-20261014/parity-probe.json",
+      "bytes": 1456,
+      "sha256": "7c7a9f487b3ac19e3972fca494ca22a37d4c21355d6bcaab9c88992fa35cb29a"
+    },
+    {
+      "path": "benchmarks/results/deepseek-v41-fresh-20261014/image011.json",
+      "bytes": 326644,
+      "sha256": "f86225927bf9e04666feb163c2a338f1bf5a622a058d786b7efb58c3f4ddbe26"
+    },
+    {
+      "path": "benchmarks/results/deepseek-v41-fresh-20261014/image011-source-overlay.jpg",
+      "bytes": 340659,
+      "sha256": "d9b979b2e65ae2059e354cd659cd205eb8eba33b605edd213b3ecf0f97ec6e78"
+    },
+    {
+      "path": "docs/stories/story-207-refresh-crop-c4-proof-and-coverage-truth-surfaces.md",
+      "bytes": 94838,
+      "sha256": "0403c1ebd12b3316bb2bc0a11ed7d58c81bcb4457070ee73c0dc1b2e45b55e1c"
+    },
+    {
+      "path": "docs/evals/registry.yaml",
+      "bytes": 368220,
+      "sha256": "07a7e46c7a4a86fccc6fc38b41de383a9f0f6ab36209d9f9228e0029f8a0df33"
+    },
+    {
+      "path": "benchmarks/input/README.md",
+      "bytes": 879,
+      "sha256": "b51d7c9d85f4fd68d61de66685986ac10b1921def6b3a975fdbea9c1653bb4f1"
+    },
+    {
+      "path": "docs/evals/attempts/036-deepseek-v41-flash-evaluate-model.md",
+      "bytes": 12271,
+      "sha256": "eb7e6c65b0a446b39a921ac95486af0567ed7938dffa550fff4c0351052d2bd1"
+    },
+    {
+      "path": "docs/methodology/graph.json",
+      "bytes": 986038,
+      "sha256": "3c5d0e589d6aa195947645cba7961e93e62b628c57e3754373e2c79cd7e0f645"
+    },
+    {
+      "path": "docs/evals/evidence/074-image011-source-overlay.jpg",
+      "bytes": 340659,
+      "sha256": "d9b979b2e65ae2059e354cd659cd205eb8eba33b605edd213b3ecf0f97ec6e78"
+    },
+    {
+      "path": ".gitignore",
+      "bytes": 2725,
+      "sha256": "ce711b43c3f1c8fb11f3026f7ae18a6d187f1582064c24fb8a57b50c00cff9e8"
+    }
+  ],
+  "fixture_eligibility": "Task-scoped authorization and previously used owner benchmark fixture; eligibility limited to public or owner-cleared source pages. No new/private images added.",
+  "future_retry_authorization": "No further DeepSeek V4.1 checkpoint eval, including effort or route variants, unless Cam explicitly reverses the 2026-10-14 stop instruction."
+}

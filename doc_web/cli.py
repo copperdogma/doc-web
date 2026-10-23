@@ -20,6 +20,13 @@ def _build_parser() -> argparse.ArgumentParser:
         help="Emit JSON only.",
     )
 
+    related_parser = subparsers.add_parser(
+        "resolve-set", help="Resolve exact references in explicitly related converted bundles, offline."
+    )
+    related_parser.add_argument("--manifest", required=True, help="Related-set declaration JSON.")
+    related_parser.add_argument("--out-dir", required=True, help="New portable output directory.")
+    related_parser.add_argument("--json", action="store_true", help="Emit JSON summary only.")
+
     preview_parser = subparsers.add_parser(
         "preview",
         help="Build a latency-bound, non-final doc-web preview bundle.",
@@ -88,6 +95,17 @@ def main() -> None:
             print(json.dumps(payload, ensure_ascii=False, sort_keys=True))
             return
         print(json.dumps(payload, ensure_ascii=False, indent=2, sort_keys=True))
+        return
+
+    if args.command == "resolve-set":
+        from doc_web.related_documents import resolve_document_set
+
+        try:
+            payload = resolve_document_set(args.manifest, args.out_dir)
+        except (ValueError, OSError) as exc:
+            print(json.dumps({"status": "failed", "error": str(exc)}, ensure_ascii=False))
+            raise SystemExit(1) from None
+        print(json.dumps(payload, ensure_ascii=False, indent=None if args.json else 2))
         return
 
     if args.command == "preview":

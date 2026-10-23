@@ -21,7 +21,6 @@ Grouped by primary `spec:N` category. Stories without category refs remain in an
 | ID | Title | Priority | Status | Depends On | Link |
 |---|---|---|---|---|---|
 | 226 | Process a Graphic-Designed Rulebook into Semantic Plain HTML | High | In Progress | — | [story-226](stories/story-226-robo-rally-rulebook-semantic-html.md) |
-| 260 | Lossless artifact validation at the driver boundary | High | In Progress | — | [story-260](stories/story-260-lossless-artifact-validation-boundary.md) |
 | 191 | Finish Real Handwritten OCR on the LOC Fixture Pair | High | Blocked | 189 | [story-191](stories/story-191-finish-real-handwritten-ocr-on-the-loc-fixture-pair.md) |
 | 141 | Onward Genealogy Consistency Investigation and ADR Handoff | High | Done | 140 | [story-141](stories/story-141-onward-genealogy-table-consistency-pass.md) |
 | 142 | Onward Genealogy Consistency Detection and Rerun Gating | High | Done | 140, 141 | [story-142](stories/story-142-onward-source-aware-genealogy-consistency-first-slice.md) |
@@ -69,6 +68,7 @@ Grouped by primary `spec:N` category. Stories without category refs remain in an
 | 224 | Extend the First Honest Grouped Image-Member Continuation to the First OCR Artifact | High | Done | 180, 205, 218 | [story-224](stories/story-224-mixed-archive-grouped-image-member-routing-seam.md) |
 | 228 | Fast `doc-web` Preview Bundle Mode for Dossier and Storybook | High | Done | 152, 154, 156 | [story-228](stories/story-228-fast-doc-web-preview-bundle-mode.md) |
 | 229 | Harden Preview Bundle Portability and Mixed-PDF OCR Fallback | High | Done | 228 | [story-229](stories/story-229-preview-bundle-portability-and-pdf-ocr-followup.md) |
+| 260 | Lossless artifact validation at the driver boundary | High | Done | — | [story-260](stories/story-260-lossless-artifact-validation-boundary.md) |
 | 238 | Sonnet 5.5 maintained detector and handwriting evaluation | Medium | Done | 237 | [story-238](stories/story-238-sonnet55-maintained-model-evaluation.md) |
 | 239 | GPT-6.1 Sol maintained detector, safety and handwriting evaluation | Medium | Done | 238 | [story-239](stories/story-239-gpt61-sol-maintained-model-evaluation.md) |
 | 244 | Mistral Large4 maintained detector, repaired safety and handwriting evaluation | Medium | Done | 239, 240 | [story-244](stories/story-244-mistral-large4-maintained-evaluation.md) |
@@ -104,9 +104,20 @@ Grouped by primary `spec:N` category. Stories without category refs remain in an
 | 225 | Establish a Bounded Digital Peter Historical-Handwriting Benchmark Slice | High | Done | 212 | [story-225](stories/story-225-digital-peter-historical-handwriting-benchmark-slice.md) |
 | 230 | Benchmark Unlimited-OCR as a Whole-Document Challenger | High | Done | 208 | [story-230](stories/story-230-benchmark-unlimited-ocr-whole-document-challenger.md) |
 | 245 | Preserve literal table text through OCR and export | High | Done | — | [story-245](stories/story-245-preserve-literal-table-text.md) |
+| 253 | Opt-in native Argon literal-reader qualification | High | Done | 245 | [story-253](stories/story-253-argon-literal-reader-qualification.md) |
+| 254 | Muse Wonder bounded literal-reader screen | High | Done | 245 | [story-254](stories/story-254-muse-wonder-literal-screen.md) |
+| 255 | Muse Wonder literal-reader thinking calibration | High | Done | 245 | [story-255](stories/story-255-wonder-literal-thinking-calibration.md) |
+| 256 | Scout096 bounded source-reading and safety evaluation | High | Done | 245 | [story-256](stories/story-256-scout096-multimodal-evaluation.md) |
+| 257 | Scout097 DeepSeek1017 source-fidelity evaluation | High | Done | 256 | [story-257](stories/story-257-scout097-deepseek1017-evaluation.md) |
+| 258 | Scout099 MiniMax M3.1 Flash GA source-fidelity evaluation | High | Done | 257 | [story-258](stories/story-258-scout099-minimax-ga-evaluation.md) |
 | 227 | Gemini SDK API-Version Hardening | Medium | Done | — | [story-227](stories/story-227-gemini-sdk-api-version-hardening.md) |
 | 233 | JEV consistency classifier evaluation | Medium | Done | 220 | [story-233](stories/story-233-jev-consistency-classifier-evaluation.md) |
 | 234 | JEV consistency shadow routing | Medium | Done | 233 | [story-234](stories/story-234-jev-consistency-shadow-routing.md) |
+| 246 | Perplexity synthetic runtime shadow evaluation | Medium | Done | 233, 234 | [story-246](stories/story-246-perplexity-runtime-shadow-evaluation.md) |
+| 247 | Offline disagreement-to-review routing test | Medium | Done | 233, 234 | [story-247](stories/story-247-offline-disagreement-routing.md) |
+| 248 | Experimental sidecar disagreement warning integration | Medium | Done | 233, 234 | [story-248](stories/story-248-experimental-disagreement-warning.md) |
+| 249 | Haiku 5.5 maintained task value evaluation | Medium | Done | 233, 244 | [story-249](stories/story-249-haiku55-maintained-evaluation.md) |
+| 252 | Gemini4 Argon maintained fidelity evaluation | Medium | Done | 245 | [story-252](stories/story-252-gemini4-argon-maintained-fidelity.md) |
 
 ### spec:3 — Layout & Structure Understanding
 
@@ -118,6 +129,8 @@ Grouped by primary `spec:N` category. Stories without category refs remain in an
 | 173 | Harden `doc-web` After the First Dossier Adoption Trial | High | Done | 156, 168, 171 | [story-173](stories/story-173-dossier-doc-web-adoption-hardening.md) |
 | 181 | Establish a Maintained Layout Benchmark and Provenance-Focused Section-Splitting Proof Surface | High | Done | 172, 177 | [story-181](stories/story-181-maintained-layout-benchmark-and-section-splitting-proof.md) |
 | 243 | Optional source-grounded reference resolution | High | Done | 226 | [story-243](stories/story-243-optional-source-grounded-reference-resolution.md) |
+| 250 | Related-document reference resolution | High | Done | 243 | [story-250](stories/story-250-related-document-reference-resolution.md) |
+| 251 | Fresh manual source fidelity | High | Done | 243, 250 | [story-251](stories/story-251-fresh-manual-source-fidelity.md) |
 
 ### spec:4 — Illustration Extraction
 
@@ -136,6 +149,7 @@ Grouped by primary `spec:N` category. Stories without category refs remain in an
 | 240 | Thinking-level page-safety comparison and prompt repair preparation | Medium | Done | 239 | [story-240](stories/story-240-thinking-level-page-safety.md) |
 | 241 | Offline opt-in crop review gate | Medium | Done | 240 | [story-241](stories/story-241-offline-crop-review-gate.md) |
 | 242 | Opt-in Sol crop safety proposals with mandatory source review | Medium | Done | 240, 241 | [story-242](stories/story-242-sol-crop-safety-review-integration.md) |
+| 259 | Scout099 saved safety consumer feasibility | Medium | Done | 242 | [story-259](stories/story-259-scout099-safety-consumer-feasibility.md) |
 
 ### spec:5 — Document Consistency Planning
 

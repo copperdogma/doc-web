@@ -1,0 +1,7 @@
+{
+  "qualified": true,
+  "models": [
+    "gpt-4.1-2025-04-14",
+    "pplx-decider-v1.1-27b"
+  ]
+}

@@ -221,7 +221,9 @@ class DriverIntegrationTests(unittest.TestCase):
                         "original_page_number": 1,
                         "image": None,
                         "spread_side": None,
-                        "text": "Sample cleaned page.",
+                        "raw_text": "Sample cleaned page.",
+                        "clean_text": "Sample cleaned page.",
+                        "confidence": 1.0,
                     }
                 )
                 + "\n",
@@ -263,6 +265,9 @@ class DriverIntegrationTests(unittest.TestCase):
 
             matches = list((tmp_path / "run" / run_id).glob("*/pages_clean.jsonl"))
             self.assertEqual(len(matches), 1, f"Expected exactly 1 pages_clean.jsonl, found {len(matches)}: {matches}")
+            rows = [json.loads(line) for line in matches[0].read_text().splitlines()]
+            self.assertEqual(len(rows), 1)
+            self.assertEqual(rows[0]["clean_text"], "Sample cleaned page.")
 
     def test_resume_honors_stage_out(self):
         with tempfile.TemporaryDirectory() as tmp:

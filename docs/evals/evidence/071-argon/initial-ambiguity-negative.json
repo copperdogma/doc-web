@@ -1,0 +1,29 @@
+{
+  "schema_version": "page_html_v1",
+  "module_id": "ocr_ai_gpt51_v1",
+  "run_id": "story244-ambiguity-negative-v2",
+  "source": [
+    "/Users/cam/Documents/Projects/doc-web/output/story244-phase2-confirmation-sealed/ambiguity-negative/image-only.pdf"
+  ],
+  "created_at": "2026-10-06T21:16:25.648009Z",
+  "page": 1,
+  "page_number": 1,
+  "original_page_number": 1,
+  "image": "/Users/cam/Documents/Projects/doc-web/output/runs/story244-ambiguity-negative-v2/01_extract_pdf_images_capped_v1/images/page-001.png",
+  "spread_side": null,
+  "ocr_quality": 0.99,
+  "ocr_integrity": 1.0,
+  "continuation_risk": 0.0,
+  "ocr_metadata_warning": null,
+  "ocr_metadata_tag": null,
+  "ocr_metadata_missing": null,
+  "ocr_empty": null,
+  "ocr_empty_reason": null,
+  "raw_html": "<h1>Warehouse shelf card</h1>\n<table>\n<thead><tr><th>Location</th><th>Stamp</th></tr></thead>\n<tbody>\n<tr><td>West rack</td><td>I</td></tr>\n<tr><td>East rack</td><td>I</td></tr>\n<tr><td>Check status</td><td>Reviewed</td></tr>\n</tbody>\n</table>",
+  "html": "<h1>Warehouse shelf card</h1>\n<table>\n<thead><tr><th>Location</th><th>Stamp</th></tr></thead>\n<tbody>\n<tr><td>West rack</td><td>I</td></tr>\n<tr><td>East rack</td><td>I</td></tr>\n<tr><td>Check status</td><td>Reviewed</td></tr>\n</tbody>\n</table>\n",
+  "printed_page_number": null,
+  "printed_page_number_text": null,
+  "printed_page_number_inferred": null,
+  "images": null,
+  "literal_fidelity": null
+}

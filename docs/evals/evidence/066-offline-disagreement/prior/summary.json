@@ -1,0 +1,69 @@
+{
+  "status": "early_stop_confirmed_inherited_planner_false_clean",
+  "cap_usd": 4,
+  "spend_usd": 0.025883160000000002,
+  "unknown_usd": 0.0,
+  "qualification_usd": 0.00010488,
+  "full_planner_usd": 0.025706,
+  "incremental_sidecar_usd": 7.228e-05,
+  "measured_driver_all_in_usd": 0.02577828,
+  "sidecar_cost_increase_pct": 0.2811794911693768,
+  "planned_unique_chapters": 18,
+  "planned_observations": 36,
+  "measured_unique_chapters": 3,
+  "measured_observations": 3,
+  "unmeasured_unique_chapters": 15,
+  "unmeasured_observations": 33,
+  "measured_driver_runs": 1,
+  "planned_driver_runs": 12,
+  "raw_native_candidate_responses": 2,
+  "candidate_accepted": 1,
+  "planner_fallback": 2,
+  "review_routes": 0,
+  "skip_conflicting_conventions": 1,
+  "low_confidence_fallback": 1,
+  "guarded_false_clean_confirmed_defects": 1,
+  "guarded_false_clean_unknown": 0,
+  "introduced_unsafe_clean": 0,
+  "accepted_useful_corrections": 0,
+  "complete_native_calls": 5,
+  "provider_errors": 0,
+  "retries": 0,
+  "driver_latency_ms": [
+    11185.9655000153
+  ],
+  "full_planner_latency_ms": [
+    8064.643833000446
+  ],
+  "candidate_native_latency_ms": [
+    473.7992500013206,
+    456.95449999766424
+  ],
+  "p95_limit": "Only one document and two candidate calls: empirical percentile is descriptive, no stable p95 inference.",
+  "layers": {
+    "raw_full_planner": {
+      "correct": 2,
+      "available": 3,
+      "denominator": 3,
+      "confirmed_defect_false_clean": 1
+    },
+    "authoritative": {
+      "correct": 2,
+      "available": 3,
+      "denominator": 3,
+      "confirmed_defect_false_clean": 1
+    },
+    "raw_candidate": {
+      "correct": 2,
+      "available": 2,
+      "denominator": 3,
+      "confirmed_defect_false_clean": 0
+    },
+    "guarded": {
+      "correct": 2,
+      "available": 3,
+      "denominator": 3,
+      "confirmed_defect_false_clean": 1
+    }
+  }
+}

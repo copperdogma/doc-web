@@ -1,0 +1,9 @@
+{
+  "raw": "{\"images\": [{\"description\": \"A black and white photograph of Henry and Alma Alain standing outdoors on their 50th wedding anniversary in 1957.\", \"bbox\": [0.107, 0.432, 0.479, 0.668]}]}",
+  "score": {
+    "pass": true,
+    "score": 0.9938,
+    "reason": "box_count=1.00 (1/1) | iou_mean=0.988 | iou_min=0.988 | coverage=1.000 | total=0.994 | matches=[pred[0]<->gold[0] IoU=0.988]"
+  },
+  "served": "gemini-4-argon"
+}

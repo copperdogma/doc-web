@@ -1,0 +1,27 @@
+{
+  "cap_usd": 4,
+  "max_planner": 12,
+  "max_candidate": 36,
+  "max_qualification": 2,
+  "concurrency": 1,
+  "hidden_sdk_retries": 0,
+  "retry_model": "",
+  "planner_id": "gpt-4.1-2025-04-14",
+  "candidate_id": "pplx-decider-v1.1-27b",
+  "planner_output_max": 8000,
+  "input_byte_admission_max": 64000,
+  "planned_reservation_usd": 2.5433600000000003,
+  "recovery_headroom_usd": 1.4566399999999997,
+  "cache": false,
+  "judge": "source adjudication+frozen typed labels; no paidjudge",
+  "screen_documents": [
+    "doc-01",
+    "doc-02"
+  ],
+  "denominator": 18,
+  "repetitions": 2,
+  "source_gold_review": "benchmarks/pplx-shadow/root-source-review.json",
+  "actual_runtime_dossier_prompt": "offline-lineage.json; observed features only; no oracle conventions",
+  "max_native_candidate_state_bytes": 16384,
+  "root_go_required": true
+}

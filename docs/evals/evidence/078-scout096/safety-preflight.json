@@ -1,0 +1,600 @@
+{
+  "subject_cache": "disabled",
+  "concurrency": 1,
+  "judge": "none; frozen deterministic verdict scorer plus source uncertainty veto",
+  "cases": [
+    {
+      "key": "page-001-000",
+      "golden": "pass",
+      "images_ordered_source_then_crop": [
+        {
+          "sha256": "7500762d6e0b9761b49305b28e0c3609d051af1d5f3eac8ce33028b0b439f325",
+          "dimensions": [
+            1505,
+            2000
+          ]
+        },
+        {
+          "sha256": "67accf0bf3854473e557261d179bce8a4c4519de039460e3c797e52f49e1dfaa",
+          "dimensions": [
+            3786,
+            4479
+          ]
+        }
+      ],
+      "request_sha256": {
+        "d1": "44693ae9d5342594f5b9f8853d2acd7281d1be592ece5778a06eb8aa974ee459",
+        "span": "a2cbb7453372b8930651f4d726d10d561c46befd28fdf66f89c6e08f5bb232aa",
+        "nemotron": "5e2ef2d923c833a7e823821784a8f1f45eb74d800f24f68b08976779d116d64b",
+        "control": "c6552abe8937510b58ce41da850dd60c4446e3506a28d5e872b992b44f7cd023"
+      }
+    },
+    {
+      "key": "page-004-000",
+      "golden": "pass",
+      "images_ordered_source_then_crop": [
+        {
+          "sha256": "ad1807bfdad56d65becf8011137680496f72d564bfc922a8da7d2c021e3ef266",
+          "dimensions": [
+            1545,
+            2000
+          ]
+        },
+        {
+          "sha256": "4cc9a8224d1efbddc1f8f1a5a3f973bb8345f81fe26d03aa3b6d5197ce786209",
+          "dimensions": [
+            4468,
+            1254
+          ]
+        }
+      ],
+      "request_sha256": {
+        "d1": "dd41f88ba97c04c4ffd5582725f243c7d342f4623dc696ef5bec166346a3696b",
+        "span": "7e63ea9e70bf74cc25e54f71fed59c1062bc9061ff89c522a06b8eee8111611d",
+        "nemotron": "5abe8dd4710ca1ea6fab002212ac5c7dfd58ca59e379aa3b52e998d11b2d47f7",
+        "control": "9c8028bb5677c84232fc9be76b38042ccaab1c714e08c936f24da8d7ad7e3d7f"
+      }
+    },
+    {
+      "key": "page-009-000",
+      "golden": "pass",
+      "images_ordered_source_then_crop": [
+        {
+          "sha256": "da312d69a4c007009c1e696b32e66a3a7a957eac6b9aa3fa67323eeb1c478c31",
+          "dimensions": [
+            1545,
+            2000
+          ]
+        },
+        {
+          "sha256": "4413db90068236ede2835ef29c29359137847e51158266af20ef925938fa7bc0",
+          "dimensions": [
+            3029,
+            2772
+          ]
+        }
+      ],
+      "request_sha256": {
+        "d1": "db80b5b62643b6476ce15a9bff095246f6c46934b953035f3eb28fc5d61b87d3",
+        "span": "6ddac2b96e303ff3d965705c8a74413f2a886af8136b2541fa41f2d3ab722bf2",
+        "nemotron": "2943b08c905b5f2e3865166989bfce97d1a37336a76d97d90e8b4ff6f5cb6ff2",
+        "control": "fd45903906d4baa486eec4fbf793dfd069ffa1be7d40b86581c0a2f00a95af1d"
+      }
+    },
+    {
+      "key": "page-012-000",
+      "golden": "pass",
+      "images_ordered_source_then_crop": [
+        {
+          "sha256": "ae3524cb58ac940c912c7885d65ec9d21221415d97d1ea21d97be9615161a860",
+          "dimensions": [
+            1545,
+            2000
+          ]
+        },
+        {
+          "sha256": "3a2a0f5ac2782b10b066bd4ace50d305ce2bbea1c53e27934205b7cf2a8b93ad",
+          "dimensions": [
+            1056,
+            1049
+          ]
+        }
+      ],
+      "request_sha256": {
+        "d1": "b18384fcb9ba86e79d3d13c6c4aa4b82eb051575f9bdad34a8630ff639272a34",
+        "span": "4d4cc2288db85d0a8ea0718c5de6250c7d44613063f55e891424c6b278b417f5",
+        "nemotron": "8e89e236f76ec8957d8dd56ae20eb2ba1384b91c6b17948a4466bf401fe28bcc",
+        "control": "a99c3518844369f07c25fdf8db413b2014cc2f128ac2fbaaf2fa39e2ae15db5a"
+      }
+    },
+    {
+      "key": "page-012-001",
+      "golden": "fail",
+      "images_ordered_source_then_crop": [
+        {
+          "sha256": "ae3524cb58ac940c912c7885d65ec9d21221415d97d1ea21d97be9615161a860",
+          "dimensions": [
+            1545,
+            2000
+          ]
+        },
+        {
+          "sha256": "da367ed32034c950a729fd32707412d2956f01760e2ced6616f2c7306002d7ec",
+          "dimensions": [
+            1397,
+            1096
+          ]
+        }
+      ],
+      "request_sha256": {
+        "d1": "e0d67d02844b6c384659e047e799196b888854202c920eef0d51adab02790d08",
+        "span": "d15e0c5c79a232c227872314f7bdaf5bd6644a005170f06065e4a495faae332d",
+        "nemotron": "527b1709f780eae6792c94a988e9499181e6446cbd20f440345279739aa8d55a",
+        "control": "c2ff48f9ddfbdfe47a50b3a350c4b22f6b276e293164d4841e03840b13d061ab"
+      }
+    },
+    {
+      "key": "page-014-000",
+      "golden": "pass",
+      "images_ordered_source_then_crop": [
+        {
+          "sha256": "cb53f04abc02441992de4903c079b036c6242a50cd275f696231c89634e6a75b",
+          "dimensions": [
+            1545,
+            2000
+          ]
+        },
+        {
+          "sha256": "4f4af349e0fcc4f3e15065dad7fecc68fe1805df524bf2dac94e56a524886693",
+          "dimensions": [
+            1994,
+            1796
+          ]
+        }
+      ],
+      "request_sha256": {
+        "d1": "8276539a4a3a47e4bfa8e8be706b94e111f2083f2d91fe4f60b90ae643dc4874",
+        "span": "f7ca6dabfbe69d024189a8ee5ce28d3992112f66a0a7592f95241d064f78a14b",
+        "nemotron": "380e008f4350a7802ba0b2d0e5fb61ed0966aeab7bbbb1dfc183bc47a2a66f8a",
+        "control": "c97944fe5d3cc322dd0c69e8dbdee25be0f9b55525efb82531a90fd6f70f3be4"
+      }
+    },
+    {
+      "key": "page-018-000",
+      "golden": "fail",
+      "images_ordered_source_then_crop": [
+        {
+          "sha256": "3d069f99adca6caa2039d3a9f4cccc2cb8a44413d5f44023d21baaa42b7ae6d1",
+          "dimensions": [
+            1545,
+            2000
+          ]
+        },
+        {
+          "sha256": "b5c9ee922fe3f6468acf31c7dbe842a4bde8918a4f370c67cf36d5b8546edc0b",
+          "dimensions": [
+            2163,
+            5313
+          ]
+        }
+      ],
+      "request_sha256": {
+        "d1": "dee141a6b83f277c5cb755c5696a310515466ec5a79b1463711d18109a87bad5",
+        "span": "f1e0a931cdd3f9d52227c240e01be2908aa97c719070a74b5e9848e9646e5f20",
+        "nemotron": "5ab935afd5c0a368500b60b72ecc9b616ee87647a61a9181033ba2f9894af5b2",
+        "control": "ad739f92d8b2becab5b0c486697a88fe07fe8e64936f49fa0ead19c5fe7deca4"
+      }
+    },
+    {
+      "key": "page-021-000",
+      "golden": "pass",
+      "images_ordered_source_then_crop": [
+        {
+          "sha256": "5a1f2380a089ff23355ff101b07549bd57abba3a51636a6b58a28a31a4195318",
+          "dimensions": [
+            1545,
+            2000
+          ]
+        },
+        {
+          "sha256": "b03c6e1a9b3e3e6842de1760b97fc3e131b91eea3a2e3d11bedafa53a385f426",
+          "dimensions": [
+            4253,
+            2669
+          ]
+        }
+      ],
+      "request_sha256": {
+        "d1": "83d94b2372ca3f0b647ff1bcedaed400343bfc5edb8dafbe2b6e86b7ce22d73b",
+        "span": "4e02e0ce74d7f7316672f48da8ee6f13cff5e9ff3f83ec0003f3421edff11b1f",
+        "nemotron": "d5005695b77299b46be8dd92d10d7043afac01d037256c570d1b3f708b75fff0",
+        "control": "494eb0e99e51caf6f0b38721509b58275763280703eaff6dd062ce641cfee884"
+      }
+    },
+    {
+      "key": "page-021-001",
+      "golden": "pass",
+      "images_ordered_source_then_crop": [
+        {
+          "sha256": "5a1f2380a089ff23355ff101b07549bd57abba3a51636a6b58a28a31a4195318",
+          "dimensions": [
+            1545,
+            2000
+          ]
+        },
+        {
+          "sha256": "7d3af1dc6ffa2a2c731a6f0cdadb791175b25bcb2580c69034dcf2de6c06131e",
+          "dimensions": [
+            4152,
+            2471
+          ]
+        }
+      ],
+      "request_sha256": {
+        "d1": "153143774c76a99113a7cd2daeb96dd5b17e739dc5d7fe2f2039406ae8812c44",
+        "span": "0408295a543e12d8489d8e53bef7594d18aa29932c7e209ec00615ba59dc64ff",
+        "nemotron": "2063c6bc2a8cefbbe470bd78fdc0e4c32c9cc72df57c0d392c07bb10f8dc88c3",
+        "control": "d37f21a9669818fc85fe7eb0a5259f86386b2d4b0df0b9f37feaccc78b33b57d"
+      }
+    },
+    {
+      "key": "page-022-000",
+      "golden": "pass",
+      "images_ordered_source_then_crop": [
+        {
+          "sha256": "2f49d83261e2f40d20b736b602cc4de8c36b48780ab944dc96c8e08f83e34332",
+          "dimensions": [
+            1545,
+            2000
+          ]
+        },
+        {
+          "sha256": "c8de7753ebe7d13c9646b62bef02984148f4e9e2260197a56babd46442f61ea9",
+          "dimensions": [
+            1887,
+            1584
+          ]
+        }
+      ],
+      "request_sha256": {
+        "d1": "29d792f103129241da5c00686583eabbed5f5dcf324f5f3208457e0b9dc63cf6",
+        "span": "d72b3d3a2d238ed8aaf95e18ae4f024086bd80e8f1bd94065e7d4266b9a41488",
+        "nemotron": "291d13c8b9a8901782d17257fdacb497b0e3f8268670ef4efcd731e0a5271ff5",
+        "control": "6dc16632274480547fc44be5a9b97c4527e73712e49e597638d92b75692d6c68"
+      }
+    },
+    {
+      "key": "page-038-000",
+      "golden": "pass",
+      "images_ordered_source_then_crop": [
+        {
+          "sha256": "b836c9c90fc650dd0513299652bf1af41fc577544803d9cea64928c890cdfdbe",
+          "dimensions": [
+            1545,
+            2000
+          ]
+        },
+        {
+          "sha256": "09855f57fc1ff367f3174dd0a5bfab433e069195aa1d2596f68212cae163a349",
+          "dimensions": [
+            1372,
+            1706
+          ]
+        }
+      ],
+      "request_sha256": {
+        "d1": "caa5cbf57c91c6bf74d3c483b96f1dd2648f1fef61c9d31be69f7c24c4afc0c3",
+        "span": "af3e0b6bbcd97f56495c2d7f68f46b78d4195c70a27adc3c072bb8452a087fdd",
+        "nemotron": "d4982d2b46afe4e1d159ce7c9a72c69d9a3d0ca119303c1b63149e20be39bc91",
+        "control": "07d4521e3ae33c38f7732ef7e72a20336030cd2d60d025f5a924b7604325eb87"
+      }
+    },
+    {
+      "key": "page-038-001",
+      "golden": "pass",
+      "images_ordered_source_then_crop": [
+        {
+          "sha256": "b836c9c90fc650dd0513299652bf1af41fc577544803d9cea64928c890cdfdbe",
+          "dimensions": [
+            1545,
+            2000
+          ]
+        },
+        {
+          "sha256": "4eaee1585bba4a4c6309e5d5bd28a57b4dd8c297a0b8dd0a491c8c60d4e66b89",
+          "dimensions": [
+            2014,
+            1712
+          ]
+        }
+      ],
+      "request_sha256": {
+        "d1": "e0f989066712dda4004e8464f612dc14a184e603cb5de618a6a1eb03062aca76",
+        "span": "5d5b02cf6388bb2cbc508a44abed1ff974513927e90fd9d9cd622ad4ef453a47",
+        "nemotron": "409c028f18db10788ed59caab313386365576540e5a0b1a42bf842d5836f19f2",
+        "control": "5f7110abd4f4d9b55baa12f08a01b71980d804bb5a8de3ef0798ecedd10ec7cd"
+      }
+    },
+    {
+      "key": "page-060-000",
+      "golden": "pass",
+      "images_ordered_source_then_crop": [
+        {
+          "sha256": "af4d6f24fc5b026a12697ed4d9da2758257bb8e0ec06c7989a2b2d0625501317",
+          "dimensions": [
+            1545,
+            2000
+          ]
+        },
+        {
+          "sha256": "0e7a4ae8f060dcb0588f647c2e7d51abb7251b91ec81feb6d89a9923f0d4e9b3",
+          "dimensions": [
+            2004,
+            2561
+          ]
+        }
+      ],
+      "request_sha256": {
+        "d1": "b3c92f5cb44f96c82281bead568ecba48feaa1e4bd3123f2ba78c2a2452adec2",
+        "span": "fd78f03dec7eb4e526dbf5388bdfa95bef573e01ab2eb9e96847d41ef2323182",
+        "nemotron": "328f7ede0e6618d68a48e8a341bd23cae6061d7244814caeb10fc2ec702a28de",
+        "control": "c09a23695478038e6020986608dd3fb8147aa0fe37c08dd53eabc23537ef115d"
+      }
+    },
+    {
+      "key": "page-060-001",
+      "golden": "pass",
+      "images_ordered_source_then_crop": [
+        {
+          "sha256": "af4d6f24fc5b026a12697ed4d9da2758257bb8e0ec06c7989a2b2d0625501317",
+          "dimensions": [
+            1545,
+            2000
+          ]
+        },
+        {
+          "sha256": "f05b5737e373e2b06f0544bd74c59c9e92b096919fc775cdd9cc0bb4642dade6",
+          "dimensions": [
+            2015,
+            1743
+          ]
+        }
+      ],
+      "request_sha256": {
+        "d1": "9cbf5821bc5e6beb3e6847f2b7971634ae516d8d6a52623e78ae2423ea48ab62",
+        "span": "aa9467ec818ab09347d59f8cba45f495df8ab5e4034d5aca68d51787e5b77251",
+        "nemotron": "b452e7289cb7bacd61c98f682f621d7cb0083d50174ae99ca778cdf175e8a5a2",
+        "control": "080d78b4b17ccdf9c616c8ac443b2dcd9e95a17fb0c521cae3a4ead76d569c6a"
+      }
+    },
+    {
+      "key": "page-092-000",
+      "golden": "fail",
+      "images_ordered_source_then_crop": [
+        {
+          "sha256": "23540ee8136d29922da3f9284d44ddb46a07390fdd41f79f9afbb39989c9c04c",
+          "dimensions": [
+            1545,
+            2000
+          ]
+        },
+        {
+          "sha256": "3d02c44de285d58fd54c3131a5c2c6c13235093c88eef49ac02e2a778b23687c",
+          "dimensions": [
+            1974,
+            2381
+          ]
+        }
+      ],
+      "request_sha256": {
+        "d1": "e4f405048c85bfa34edab7606c1259427f13a91c24e09b62357dc61db59e2d83",
+        "span": "08e2fb7ed1890131446fadfbc7e53db0d37773658b4a320de4e3137a9686fd40",
+        "nemotron": "ab93d4862b4cb02cc39f9499503a87709d1da109ea0040b420a95debd0693ee9",
+        "control": "f884b4033245e74b89c8854978683cec29750987d1a617e748a145203124f257"
+      }
+    },
+    {
+      "key": "page-122-000",
+      "golden": "fail",
+      "images_ordered_source_then_crop": [
+        {
+          "sha256": "04731378a1ff37ffb8e26faf005f87fa2383f9ba91e147ce9caa94e8519d086e",
+          "dimensions": [
+            1545,
+            2000
+          ]
+        },
+        {
+          "sha256": "5ab45f308ea9d353dae2830a574af026b907fd95f6c50e78d48e8921031f6990",
+          "dimensions": [
+            4244,
+            2478
+          ]
+        }
+      ],
+      "request_sha256": {
+        "d1": "ffb00608162de3599670f067549deb66779e13f4c75bef2f7ef804a4672ca73f",
+        "span": "3f8a23047434af179dc6525c25f10048c04ea1f30e1bbbe04398b60d54595860",
+        "nemotron": "d756cfd68aa8c1dae8cd6a8f351f328770534d1693163cee1408894d4f800d03",
+        "control": "b0dde95e0941017b9350abfb7a5e6ceec3267309665fd38d77b3b3130e050fa4"
+      }
+    },
+    {
+      "key": "page-122-001",
+      "golden": "fail",
+      "images_ordered_source_then_crop": [
+        {
+          "sha256": "04731378a1ff37ffb8e26faf005f87fa2383f9ba91e147ce9caa94e8519d086e",
+          "dimensions": [
+            1545,
+            2000
+          ]
+        },
+        {
+          "sha256": "7fea918ba336f4cca9bbbb048f97bcc6377febe2afaebd5eddf2eed0c0bfb8d9",
+          "dimensions": [
+            4244,
+            2958
+          ]
+        }
+      ],
+      "request_sha256": {
+        "d1": "9105f446386104dd7047df7c6ed5f81c035dbb2035e56e078f72357e39f6b23e",
+        "span": "5287716cc81a5a222c6bbb69630f68b5bd374a1a57a68b4fe5b97b2ced89855d",
+        "nemotron": "827ff622da0859466598c1e66e6b9bed1566772ccad87ff324aec6be7b20aa5b",
+        "control": "2ccb3a24898ee42c98d53e18eca2cc167c3d053147876922fb333d43cefbab8a"
+      }
+    },
+    {
+      "key": "page-125-000",
+      "golden": "pass",
+      "images_ordered_source_then_crop": [
+        {
+          "sha256": "b35e4c1e660a0ed9029ebe555558341a933a5724740964ca6927f94f77ae2944",
+          "dimensions": [
+            1545,
+            2000
+          ]
+        },
+        {
+          "sha256": "e371aa234263c051dce440c71d0ec3d5a9ed31bd3b1fc9c4dd4dae475dca57ee",
+          "dimensions": [
+            4011,
+            3871
+          ]
+        }
+      ],
+      "request_sha256": {
+        "d1": "5fb8fd92eacdc181b0fa66e71d30d8c5209ff9d8bd3b7c2d2d4a2dcdd77ff5fa",
+        "span": "d09a5980e50e3baa50ebd3d614e6152ed366f2added9125b444cb393462574a6",
+        "nemotron": "331595263475c9c5ae0f218f2953f0177ab0f2abfa04157d6a5d58e59e212d8c",
+        "control": "09cc90d598b94e245cca8f3e46dbad7e16726de4b807f80d21f7ac5c662c4c97"
+      }
+    },
+    {
+      "key": "page-126-000",
+      "golden": "pass",
+      "images_ordered_source_then_crop": [
+        {
+          "sha256": "4f4ac880a5ff48ffa1a6d2a010e763cf022dceb118988b7bf6d0c0a41fab1143",
+          "dimensions": [
+            1545,
+            2000
+          ]
+        },
+        {
+          "sha256": "be267fc173fd8ed502bd6ab4d0be57c0d7d5a0c1556fdcc9f8c34d94aa8715d6",
+          "dimensions": [
+            2933,
+            2116
+          ]
+        }
+      ],
+      "request_sha256": {
+        "d1": "609f99aa53564ed3151f5e98ff7e68a4c4f1dd9da8c62877e3c06572777dd09e",
+        "span": "11c8b309065acbb0a66d58727404e9fca9d4c4c3cfb896bf475ece239e1ceeef",
+        "nemotron": "32f23f86adb9b1cd783a33f89b2908dec04c21987829c8c07fd68cd1055e7747",
+        "control": "fe1d361f90da909098dd454768423e53d750cbe4d3de9d5240e42f551f141c71"
+      }
+    },
+    {
+      "key": "page-126-001",
+      "golden": "pass",
+      "images_ordered_source_then_crop": [
+        {
+          "sha256": "4f4ac880a5ff48ffa1a6d2a010e763cf022dceb118988b7bf6d0c0a41fab1143",
+          "dimensions": [
+            1545,
+            2000
+          ]
+        },
+        {
+          "sha256": "34ceefa5de85865fd864cb3253a38fa73cf6ab5f13ed56daec60e00de20da908",
+          "dimensions": [
+            2123,
+            2940
+          ]
+        }
+      ],
+      "request_sha256": {
+        "d1": "324a170d3b76f67ec2b3a4364e70b9265430592fd16d918f0b35ff6539d191b9",
+        "span": "d878675bfeb9c6047f12fece80a72ff6b463d9fd4c33fc208bbc10db8bccf176",
+        "nemotron": "ab2c75779fd0249769384bc2a5cc43da1a7d4e13995ac36a6d080cfa8a8d2679",
+        "control": "e5c3793320d0c0a93507900ac1d1ef9ba1e50c20a78d65ff1eca4f5fcd9ba5df"
+      }
+    },
+    {
+      "key": "page-127-000",
+      "golden": "pass",
+      "images_ordered_source_then_crop": [
+        {
+          "sha256": "25042b92e75e09ff2d7aa9330b44b26a092624a9bee19c7f2707a413f6c7f302",
+          "dimensions": [
+            1545,
+            2000
+          ]
+        },
+        {
+          "sha256": "6dcf9cad3998eba4ed72d1a79594431f86113a04c58b0452670ede3e3ec13429",
+          "dimensions": [
+            2924,
+            2081
+          ]
+        }
+      ],
+      "request_sha256": {
+        "d1": "62f46c17cae01f2e5d4b967dbab9def2da46032eeb0c7b5ed1e118c4f3c10d57",
+        "span": "23d82e2b15acc5c5c2e0aa1bc726d93f37d772822e94558e271953343ef312b4",
+        "nemotron": "67130b951705bd198e2895f97bd1d590012d0caa940515b0ba7c197fa66bb54d",
+        "control": "fd169ae14f7e533ff39992f459b9fabd7616d56412b675d093652a0bd2ede728"
+      }
+    },
+    {
+      "key": "page-127-001",
+      "golden": "pass",
+      "images_ordered_source_then_crop": [
+        {
+          "sha256": "25042b92e75e09ff2d7aa9330b44b26a092624a9bee19c7f2707a413f6c7f302",
+          "dimensions": [
+            1545,
+            2000
+          ]
+        },
+        {
+          "sha256": "c98909f5166e46b330e89288f7ed4cd1f4700a98a5b0153996204725cc7ea29e",
+          "dimensions": [
+            2919,
+            2071
+          ]
+        }
+      ],
+      "request_sha256": {
+        "d1": "107f5db5c138e1d3f2a7dcda63218626f4441a891d33c6d1fdf1900c3091ce73",
+        "span": "d38f777d0c88259efd93ace0623a91b8177414bff414659bf1fa4861a5f0ebe7",
+        "nemotron": "243a0df4c2853e28060eae731997c2a03d934e28ff1747c64e1d411c4ebd2e0a",
+        "control": "b8bce5d3015c8e66d9e0d7ceb0b6c9df13b9d5de6fc70f49de4195101e7d0a2e"
+      }
+    }
+  ],
+  "arms": {
+    "d1": "liquid/d1-ultra",
+    "span": "respan/span-02",
+    "nemotron": "nvidia/nemotron-3.5-super-vl",
+    "control": "gpt-5.5"
+  },
+  "canonical_ids": {
+    "d1": "liquid/d1-ultra-20261015",
+    "span": "respan/span-02-20261015",
+    "nemotron": "nvidia/nemotron-3.5-super-vl-20261015",
+    "control": "gpt-5.5-2026-04-23"
+  },
+  "golden_sha256": "6f32bc513494f1c4454b4c41e74186136212d477ff10c87ccb29244ca21aaa76",
+  "typed_contract": "finite verdict projection only; runtime flags/reason unqualified",
+  "frozen_sources": {
+    "benchmarks/scripts/scout096_safety.py": "9d20e98dcaa0d75753bd39bd7cef77ca6c3b42d03cb54b8796542e9a8d88c6f6",
+    "benchmarks/jev-consistency/decisions_campaign.py": "8753d0c47c786b18deef2bc2f17e35d884e193794c076cd24da4c9011957f233",
+    "benchmarks/prompts/validate-page-level-crop.js": "ef4395838929b208fe65f21500d81ade902072bef3f8e53f81ef3d3b83fbc421",
+    "benchmarks/scorers/crop_validation_scorer.py": "12eb63725523bd00d59ce12b7486db8c9244124a0c57bb68cae8b8e9e7d288fb",
+    "benchmarks/providers/openai_responses_model.py": "3506470ee1eb9c8da8c472f270e3400fd2c6cbd086c6be836a0d974997696240"
+  }
+}

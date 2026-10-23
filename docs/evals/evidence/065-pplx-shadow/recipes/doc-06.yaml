@@ -1,0 +1,36 @@
+stages:
+- id: pages
+  stage: extract
+  module: load_artifact_v1
+  out: pages.jsonl
+  params:
+    path: /Users/cam/.codex/worktrees/pplx-docweb-shadow-20261006/benchmarks/pplx-shadow/corpus/doc-06/pages.jsonl
+    out: pages.jsonl
+    schema_version: page_html_v1
+- id: chapters
+  stage: extract
+  module: load_artifact_v1
+  out: chapters.jsonl
+  params:
+    path: /Users/cam/.codex/worktrees/pplx-docweb-shadow-20261006/benchmarks/pplx-shadow/corpus/doc-06/chapters.jsonl
+    out: chapters.jsonl
+    schema_version: chapter_html_manifest_v1
+- id: planner
+  stage: validate
+  module: plan_onward_document_consistency_v1
+  needs:
+  - pages
+  - chapters
+  inputs:
+    pages: pages
+    chapters: chapters
+  out: document_consistency_report.jsonl
+  params:
+    model: gpt-4.1-2025-04-14
+    retry_model: ''
+    max_completion_tokens: 8000
+    timeout: 120
+    pattern_inventory: pattern_inventory.json
+    consistency_plan: consistency_plan.json
+    conformance_report: conformance_report.json
+    dossier_report: document_consistency_dossier.json

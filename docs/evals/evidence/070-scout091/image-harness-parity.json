@@ -1,0 +1,7 @@
+{
+  "native_custom_harness_body_exact": true,
+  "source_crop_images": 2,
+  "fixture_bytes_preserved": true,
+  "native_same_call_reused_in_exposed_semantic_result": true,
+  "no_generated_reason_for_candidates": true
+}

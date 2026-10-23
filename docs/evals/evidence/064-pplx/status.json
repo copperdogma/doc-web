@@ -1,0 +1,32 @@
+{
+  "status": "completed",
+  "spent_usd": 0.09718099599999998,
+  "unknown_usd": 0.0,
+  "cap_usd": 2,
+  "provider_calls": 209,
+  "authenticated_native_probes": 4,
+  "transport": "all4 native contracts qualified",
+  "reliability": "209/209 complete; no errors/refusals/retries",
+  "capability": "Perplexity raw28/40 vsGPT30;cascade30/40 aggregate tie with different unknown-clean safety. Jev cascade32/40;OpenAIcascade30/40 fewerconfirmeddefectfalsecleans",
+  "economics": "Perplexitycascade94.18%cheaper/31.85%lowerp95 vsfreshGPT",
+  "adoption": "prioritize bounded independent shadow/full-path promotion check; retain defaults, no automatic replacement",
+  "temporary_injection": true,
+  "cleanup": "Coordinator helper removed DOC_WEB_PERPLEXITY_API_KEY and DOC_WEB_TYPESAFE_API_KEY; absence verified by name only; owner OpenAI unchanged",
+  "checks": {
+    "focused_pytest": "10 passed",
+    "ruff": "passed",
+    "methodology_compile_check": "passed",
+    "git_diff_check": "passed",
+    "frozen_sources": "all exact SHA256",
+    "offline_replay": "209calls/418receipts/exact labels confidence andcosts pass"
+  },
+  "source_review": "owner inspected every20source record; coordinator corroborated family03/04 andmaintenance09/10; allgold unchanged",
+  "limits": [
+    "20unique cases/tworepeats/twosynthetic sources/tenmutationpatterns",
+    "no real/private data",
+    "no heldoutconfirmation",
+    "no convention generation/repair/rationale/fullplannerintegration",
+    "images excluded",
+    "model echo not hosted weight attestation"
+  ]
+}

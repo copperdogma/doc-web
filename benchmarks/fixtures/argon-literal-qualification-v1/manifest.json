@@ -1,0 +1,441 @@
+{
+  "fixture_id": "argon-literal-qualification-v1",
+  "eligibility": "new synthetic campaign material; no real people, private records, copyrighted source documents, provider outputs, or downstream Ingester inputs",
+  "source_policy": "gold records preserve visible source characters and structural ownership; A1/A2 uncertainty is explicit and has no exact-cell gold where pixels do not establish it",
+  "gold_contract": "source_table_count and tables[{bbox,html,uncertain_cells}] only; safe-HTML visible text and ownership define the clear truth",
+  "renderer": {
+    "module": "extract_pdf_images_capped_v1",
+    "dpi_cap": 300,
+    "min_dpi": 300,
+    "baseline_dpi": 300,
+    "sample_count": 0,
+    "image_format": "png",
+    "page_size": "US Letter",
+    "expected_pixels": [
+      2550,
+      3300
+    ],
+    "composition": "full page rendered by maintained PDF renderer; no crop or native text insertion"
+  },
+  "runtime": {
+    "invoked_python": "/Users/cam/miniconda3/bin/python",
+    "resolved_executable": "/Users/cam/miniconda3/bin/python3.11",
+    "python_version": "3.11.5 (main, Sep 11 2023, 08:19:27) [Clang 14.0.6 ]",
+    "platform": "macOS-27.0.1-x86_64-i386-64bit",
+    "packages": {
+      "Pillow": "10.4.0",
+      "reportlab": "4.4.10",
+      "pypdf": "4.3.1",
+      "numpy": "1.26.4",
+      "pdf2image": "1.17.0",
+      "PyYAML": "6.0.2",
+      "fonttools": "4.42.1"
+    },
+    "poppler": "pdftoppm version 26.09.0"
+  },
+  "dependencies": {
+    "driver_runtime": "/Users/cam/miniconda3/bin/python",
+    "renderer_imports": [
+      "numpy",
+      "Pillow",
+      "pdf2image",
+      "pypdf",
+      "PyYAML"
+    ]
+  },
+  "generation_command": "PYTHONPATH=/Users/cam/.codex/worktrees/scout092-docweb-literal-20261013 /Users/cam/miniconda3/bin/python benchmarks/fixtures/argon-literal-qualification-v1/generate_fixture.py",
+  "render_commands": [
+    "PYTHONPATH=/Users/cam/.codex/worktrees/scout092-docweb-literal-20261013 /Users/cam/miniconda3/bin/python modules/extract/extract_pdf_images_capped_v1/main.py --pdf benchmarks/fixtures/argon-literal-qualification-v1/source/native.pdf --outdir benchmarks/fixtures/argon-literal-qualification-v1/build/render-native --dpi-cap 300 --baseline-dpi 300 --min-dpi 300 --sample-count 0 --image-format png --start 1 --end 3",
+    "PYTHONPATH=/Users/cam/.codex/worktrees/scout092-docweb-literal-20261013 /Users/cam/miniconda3/bin/python modules/extract/extract_pdf_images_capped_v1/main.py --pdf benchmarks/fixtures/argon-literal-qualification-v1/source/raster.pdf --outdir benchmarks/fixtures/argon-literal-qualification-v1/build/render-raster --dpi-cap 300 --baseline-dpi 300 --min-dpi 300 --sample-count 0 --image-format png --start 1 --end 3",
+    "PYTHONPATH=/Users/cam/.codex/worktrees/scout092-docweb-literal-20261013 /Users/cam/miniconda3/bin/python modules/extract/extract_pdf_images_capped_v1/main.py --pdf benchmarks/fixtures/argon-literal-qualification-v1/source/holds.pdf --outdir benchmarks/fixtures/argon-literal-qualification-v1/build/render-holds --dpi-cap 300 --baseline-dpi 300 --min-dpi 300 --sample-count 0 --image-format png --start 1 --end 2"
+  ],
+  "ambiguity_proof": {
+    "case_id": "A1",
+    "table_index": 0,
+    "row": 1,
+    "cell": 1,
+    "alternatives": [
+      "K8l4",
+      "K814"
+    ],
+    "font_family": "Andale Mono",
+    "source_font_path": "/System/Library/Fonts/Supplemental/Andale Mono.ttf",
+    "source_font_sha256": "ca436a8f07f6699107542ebe19dcc9478f12aa666927699e9fa10115e7d2ee95",
+    "aliased_glyph_name": "one",
+    "original_l_glyph_name": "l",
+    "font_input_sha256": "ca436a8f07f6699107542ebe19dcc9478f12aa666927699e9fa10115e7d2ee95",
+    "aliased_font_sha256": "40b16bee5530bb8a836f3a79eea1d2752342db1203ced5795c969629fd1cb546",
+    "counterfactual_render_size_px": [
+      240,
+      100
+    ],
+    "pixel_arrays_identical": true,
+    "advance_widths_px": {
+      "lowercase-l": 153.625,
+      "digit-one": 153.625
+    },
+    "counterfactual_png_sha256": {
+      "lowercase-l": "ebc779a61e917a00a296d88806ca3c968e94152880f64c8c7a625040424742f7",
+      "digit-one": "ebc779a61e917a00a296d88806ca3c968e94152880f64c8c7a625040424742f7"
+    },
+    "difference_png_sha256": "3e09475504f64ba19e61aa7a5dc3316f33b2f4f17c275fa52feb481eb322db1b",
+    "interpretation": "Both allowed source readings use the same font glyph and advance at this location; neither is designated as the intended literal."
+  },
+  "source_pdfs": {
+    "native": {
+      "path": "source/native.pdf",
+      "sha256": "5646503106e40efddcbb3d461fc525eaa8c945a674ab6ae7d50890aec9d31e1e",
+      "pages": 3,
+      "page_dimensions_points": [
+        [
+          612.0,
+          792.0
+        ],
+        [
+          612.0,
+          792.0
+        ],
+        [
+          612.0,
+          792.0
+        ]
+      ],
+      "extracted_text_characters_per_page": [
+        319,
+        417,
+        474
+      ]
+    },
+    "raster": {
+      "path": "source/raster.pdf",
+      "sha256": "72cbbb41c97e90a01d339b23b88dcbed10b4e388f9a42b60f649f1cc6793409a",
+      "pages": 3,
+      "page_dimensions_points": [
+        [
+          612.0,
+          792.0
+        ],
+        [
+          612.0,
+          792.0
+        ],
+        [
+          612.0,
+          792.0
+        ]
+      ],
+      "extracted_text_characters_per_page": [
+        0,
+        0,
+        0
+      ]
+    },
+    "holds": {
+      "path": "source/holds.pdf",
+      "sha256": "d9a0b989c44a2c41defa5e9f0c0101cc1c6bded7def5ab18e93d0bbcf78d963f",
+      "pages": 2,
+      "page_dimensions_points": [
+        [
+          612.0,
+          792.0
+        ],
+        [
+          612.0,
+          792.0
+        ]
+      ],
+      "extracted_text_characters_per_page": [
+        0,
+        0
+      ]
+    }
+  },
+  "inputs_sha256": {
+    "generator": "d0db65ccf9046a0d30b530d4fd0832bbe33f1c1e613d292454c98ea27ffa64fd",
+    "manifest_sealer": "7b98b04b9c2ee2ce5122a4490fa33eeaf168298781d0766ffda5c4e07bbb7223",
+    "renderer_module": "8d3a8f64be95111be385e5bc6e296c824539d72d221f029e4154439f50768376",
+    "renderer_recipe": "093d672f36c1d19cd2968917fb4b300393d526f0afbe577bff5961476af4186c",
+    "pdf_skill": "a6e20f4ae66364a06d577dd51e0ce66ee2ef955be129cbe195e0a27f403daaf8",
+    "source_font": "ca436a8f07f6699107542ebe19dcc9478f12aa666927699e9fa10115e7d2ee95",
+    "aliased_font": "40b16bee5530bb8a836f3a79eea1d2752342db1203ced5795c969629fd1cb546"
+  },
+  "pages": [
+    {
+      "case_id": "N1",
+      "source_group": "native",
+      "density": "sparse",
+      "disposition": "clear",
+      "source_pdf_page": 1,
+      "tables": 1,
+      "cell_slots": 12,
+      "explicit_cells": 10,
+      "spans": [
+        {
+          "table_index": 0,
+          "row": 3,
+          "cell": 0,
+          "rowspan": 1,
+          "colspan": 3
+        }
+      ],
+      "uncertain_cells": 0,
+      "source_pdf": "source/native.pdf",
+      "gold": "gold/N1.json",
+      "gold_schema_keys": [
+        "source_table_count",
+        "tables"
+      ],
+      "gold_sha256": "6b4868e218383133b04682cacfec7fef97af2cc433d334aea00b59299a9c91ec",
+      "render": "renders/N1.png",
+      "render_dimensions_px": [
+        2550,
+        3300
+      ],
+      "render_sha256": "81f766b6b0b856d2440caf8f8742e0dbfe6e2878d1fec8ddf0d61698b0b8720f"
+    },
+    {
+      "case_id": "N2",
+      "source_group": "native",
+      "density": "medium",
+      "disposition": "clear",
+      "source_pdf_page": 2,
+      "tables": 1,
+      "cell_slots": 24,
+      "explicit_cells": 22,
+      "spans": [
+        {
+          "table_index": 0,
+          "row": 3,
+          "cell": 0,
+          "rowspan": 2,
+          "colspan": 1
+        },
+        {
+          "table_index": 0,
+          "row": 5,
+          "cell": 0,
+          "rowspan": 1,
+          "colspan": 2
+        }
+      ],
+      "uncertain_cells": 0,
+      "source_pdf": "source/native.pdf",
+      "gold": "gold/N2.json",
+      "gold_schema_keys": [
+        "source_table_count",
+        "tables"
+      ],
+      "gold_sha256": "448bff5c0315b09180aec1a5837acd83f406ccc6cd331b2b374bb756297e3cd6",
+      "render": "renders/N2.png",
+      "render_dimensions_px": [
+        2550,
+        3300
+      ],
+      "render_sha256": "577e73e5d933d66d70bf2633692dc15408d92e2bdcc978a606131a878a95a4ca"
+    },
+    {
+      "case_id": "N3",
+      "source_group": "native",
+      "density": "dense",
+      "disposition": "clear",
+      "source_pdf_page": 3,
+      "tables": 2,
+      "cell_slots": 37,
+      "explicit_cells": 31,
+      "spans": [
+        {
+          "table_index": 0,
+          "row": 4,
+          "cell": 0,
+          "rowspan": 1,
+          "colspan": 5
+        },
+        {
+          "table_index": 1,
+          "row": 0,
+          "cell": 0,
+          "rowspan": 1,
+          "colspan": 2
+        },
+        {
+          "table_index": 1,
+          "row": 0,
+          "cell": 1,
+          "rowspan": 1,
+          "colspan": 2
+        }
+      ],
+      "uncertain_cells": 0,
+      "source_pdf": "source/native.pdf",
+      "gold": "gold/N3.json",
+      "gold_schema_keys": [
+        "source_table_count",
+        "tables"
+      ],
+      "gold_sha256": "0e5379378440890c105e1cceb0030106b4136c668d30e4f46a661ee9d9963d1d",
+      "render": "renders/N3.png",
+      "render_dimensions_px": [
+        2550,
+        3300
+      ],
+      "render_sha256": "d0ad9575a5a47ea152dc60bda2502640dcb05d9ab25a52be8691664b2147ae35"
+    },
+    {
+      "case_id": "R1",
+      "source_group": "raster",
+      "density": "sparse",
+      "disposition": "clear",
+      "source_pdf_page": 1,
+      "tables": 1,
+      "cell_slots": 12,
+      "explicit_cells": 10,
+      "spans": [
+        {
+          "table_index": 0,
+          "row": 3,
+          "cell": 0,
+          "rowspan": 1,
+          "colspan": 3
+        }
+      ],
+      "uncertain_cells": 0,
+      "source_pdf": "source/raster.pdf",
+      "gold": "gold/R1.json",
+      "gold_schema_keys": [
+        "source_table_count",
+        "tables"
+      ],
+      "gold_sha256": "f9861838330bbda4eafc4c8aa8a74879d55c1d423be84d21f039a6438df99f9b",
+      "render": "renders/R1.png",
+      "render_dimensions_px": [
+        2550,
+        3300
+      ],
+      "render_sha256": "8f14b37bee8af2c273459c703b60a8570e96a2126e64033ad9a6f0a5a764573d"
+    },
+    {
+      "case_id": "R2",
+      "source_group": "raster",
+      "density": "medium",
+      "disposition": "clear",
+      "source_pdf_page": 2,
+      "tables": 1,
+      "cell_slots": 24,
+      "explicit_cells": 23,
+      "spans": [
+        {
+          "table_index": 0,
+          "row": 5,
+          "cell": 0,
+          "rowspan": 1,
+          "colspan": 2
+        }
+      ],
+      "uncertain_cells": 0,
+      "source_pdf": "source/raster.pdf",
+      "gold": "gold/R2.json",
+      "gold_schema_keys": [
+        "source_table_count",
+        "tables"
+      ],
+      "gold_sha256": "c82517b3d01614ad51895d6a3b80419460084384cb2d4aaba63c26ac062d907d",
+      "render": "renders/R2.png",
+      "render_dimensions_px": [
+        2550,
+        3300
+      ],
+      "render_sha256": "9f4dabf4ae2f7b1de78fb65c4aebd88ec33746a76533f70030e62bce593be642"
+    },
+    {
+      "case_id": "R3",
+      "source_group": "raster",
+      "density": "dense",
+      "disposition": "clear",
+      "source_pdf_page": 3,
+      "tables": 2,
+      "cell_slots": 32,
+      "explicit_cells": 32,
+      "spans": [],
+      "uncertain_cells": 0,
+      "source_pdf": "source/raster.pdf",
+      "gold": "gold/R3.json",
+      "gold_schema_keys": [
+        "source_table_count",
+        "tables"
+      ],
+      "gold_sha256": "f5392ede96086ab6151bfa5c64111a8d239eb21a266fc0d5c52538bbc93d85af",
+      "render": "renders/R3.png",
+      "render_dimensions_px": [
+        2550,
+        3300
+      ],
+      "render_sha256": "88cc8b52beeac935478e0d44f10eee84252269526051891d3104e2d8c42949e5"
+    },
+    {
+      "case_id": "A1",
+      "source_group": "hold",
+      "density": "sparse",
+      "disposition": "hold",
+      "source_pdf_page": 1,
+      "tables": 1,
+      "cell_slots": 12,
+      "explicit_cells": 10,
+      "spans": [
+        {
+          "table_index": 0,
+          "row": 3,
+          "cell": 0,
+          "rowspan": 1,
+          "colspan": 3
+        }
+      ],
+      "uncertain_cells": 1,
+      "source_pdf": "source/holds.pdf",
+      "gold": "gold/A1.json",
+      "gold_schema_keys": [
+        "source_table_count",
+        "tables"
+      ],
+      "gold_sha256": "c6c9635b5d39b33b7e840ffa66a76c70542afa82dedf249088fc76093bf0ae29",
+      "render": "renders/A1.png",
+      "render_dimensions_px": [
+        2550,
+        3300
+      ],
+      "render_sha256": "a7be92eae4a84ce647f90444adeb54a343fefda29a06eea3a6eabc87206e11f4"
+    },
+    {
+      "case_id": "A2",
+      "source_group": "hold",
+      "density": "medium",
+      "disposition": "hold",
+      "source_pdf_page": 2,
+      "tables": 1,
+      "cell_slots": 20,
+      "explicit_cells": 17,
+      "spans": [
+        {
+          "table_index": 0,
+          "row": 4,
+          "cell": 0,
+          "rowspan": 1,
+          "colspan": 4
+        }
+      ],
+      "uncertain_cells": 1,
+      "source_pdf": "source/holds.pdf",
+      "gold": "gold/A2.json",
+      "gold_schema_keys": [
+        "source_table_count",
+        "tables"
+      ],
+      "gold_sha256": "2e7fd0dbce3e5acf3590a1ed87d5dcdb328d1ea3582a2cbd587642737c15062e",
+      "render": "renders/A2.png",
+      "render_dimensions_px": [
+        2550,
+        3300
+      ],
+      "render_sha256": "9956be29e37578cf0a00f6abe4b773ada5026ca882f2361ea101de09e5148a97"
+    }
+  ]
+}

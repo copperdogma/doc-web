@@ -1,0 +1,13 @@
+{
+  "router-multimodal": "https://openrouter.ai/docs/guides/community/multimodal-decisions",
+  "router-contract": "https://openrouter.ai/docs/api/api-reference/alphadecisions/submit-a-decisions-request",
+  "scaledown": "https://docs.scaledown.ai/api-reference/decisions-overview",
+  "cloudflare": "https://developers.cloudflare.com/workers-ai/models/clef-omni/",
+  "drex": "https://console.nace.ai/docs/drex/reference/models",
+  "liquid": "https://docs.liquid.ai/lfm/models/decision-models",
+  "solar": "https://console.upstage.ai/docs/models/solar-decide",
+  "router-privacy": "https://openrouter.ai/docs/guides/privacy/data-collection",
+  "gpt41": "https://developers.openai.com/api/docs/models/gpt-4.1",
+  "gpt55": "https://developers.openai.com/api/docs/models/gpt-5.5",
+  "openai-data": "https://developers.openai.com/api/docs/guides/your-data"
+}

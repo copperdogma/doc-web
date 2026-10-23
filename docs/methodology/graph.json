@@ -237,7 +237,18 @@
           "238",
           "239",
           "244",
-          "245"
+          "245",
+          "246",
+          "247",
+          "248",
+          "249",
+          "252",
+          "253",
+          "254",
+          "255",
+          "256",
+          "257",
+          "258"
         ],
         "adr_ids": [
           "ADR-001",
@@ -253,7 +264,10 @@
           "onward-table-fidelity",
           "onward-document-consistency-planning",
           "onward-genealogy-row-semantic-note-placement",
-          "jev-document-consistency-classification"
+          "jev-document-consistency-classification",
+          "pplx-runtime-consistency-shadow",
+          "pplx-offline-disagreement-review",
+          "pplx-experimental-disagreement-warning"
         ]
       },
       {
@@ -309,7 +323,16 @@
           "229",
           "230",
           "243",
-          "245"
+          "245",
+          "250",
+          "251",
+          "252",
+          "253",
+          "254",
+          "255",
+          "256",
+          "257",
+          "258"
         ],
         "adr_ids": [
           "ADR-001",
@@ -320,6 +343,7 @@
           "literal-table-fidelity",
           "reference-resolution",
           "image-crop-extraction",
+          "crop-page-level-deletion-gate",
           "ocr-model-genealogy",
           "handwritten-notes-transcription",
           "onward-table-fidelity",
@@ -368,16 +392,24 @@
           "240",
           "241",
           "242",
-          "244"
+          "244",
+          "249",
+          "251",
+          "252",
+          "257",
+          "258",
+          "259"
         ],
         "adr_ids": [],
         "eval_ids": [
+          "literal-table-fidelity",
           "sol-crop-safety-native-public-smoke",
           "image-crop-extraction",
           "crop-validation",
           "crop-page-level-deletion-gate",
           "handwritten-notes-transcription",
-          "single-model-crop-detection"
+          "single-model-crop-detection",
+          "jev-document-consistency-classification"
         ]
       },
       {
@@ -412,7 +444,11 @@
           "219",
           "220",
           "233",
-          "234"
+          "234",
+          "246",
+          "247",
+          "248",
+          "249"
         ],
         "adr_ids": [
           "ADR-001",
@@ -420,9 +456,15 @@
           "ADR-003"
         ],
         "eval_ids": [
+          "image-crop-extraction",
+          "crop-page-level-deletion-gate",
+          "handwritten-notes-transcription",
           "onward-document-consistency-planning",
           "onward-genealogy-row-semantic-note-placement",
-          "jev-document-consistency-classification"
+          "jev-document-consistency-classification",
+          "pplx-runtime-consistency-shadow",
+          "pplx-offline-disagreement-review",
+          "pplx-experimental-disagreement-warning"
         ]
       },
       {
@@ -481,6 +523,15 @@
           "229",
           "243",
           "245",
+          "250",
+          "251",
+          "252",
+          "253",
+          "254",
+          "255",
+          "256",
+          "257",
+          "258",
           "260"
         ],
         "adr_ids": [
@@ -492,6 +543,8 @@
           "literal-table-fidelity",
           "reference-resolution",
           "image-crop-extraction",
+          "crop-page-level-deletion-gate",
+          "handwritten-notes-transcription",
           "onward-document-consistency-planning",
           "onward-genealogy-row-semantic-note-placement",
           "auto-book-type-detection",
@@ -555,6 +608,8 @@
           "228",
           "229",
           "243",
+          "250",
+          "251",
           "260"
         ],
         "adr_ids": [
@@ -646,7 +701,8 @@
           "240",
           "241",
           "242",
-          "244"
+          "244",
+          "259"
         ],
         "adr_ids": [
           "ADR-002"
@@ -888,7 +944,14 @@
           "225",
           "227",
           "230",
-          "245"
+          "245",
+          "252",
+          "253",
+          "254",
+          "255",
+          "256",
+          "257",
+          "258"
         ],
         "eval_ids": [
           "literal-table-fidelity",
@@ -900,19 +963,16 @@
           "source_id": "literal-table-fidelity",
           "source_path": "docs/evals/registry.yaml",
           "recommended_now": false,
-          "posture": "wait-for-trigger",
-          "retry_trigger_status": "waiting",
-          "retry_when": [
-            "new-approach",
-            "new-subject-model"
-          ],
+          "posture": "no-trigger-recorded",
+          "retry_trigger_status": "none",
+          "retry_when": [],
           "why_now": "",
           "last_relevant_action": {
-            "date": "2026-10-06",
+            "date": "2026-10-20",
             "source_type": "eval-attempt",
             "source": "docs/evals/registry.yaml",
-            "source_id": "062",
-            "summary": "Exact transcription target remains unmet: this quality attempt failed. The separate safe-handling contract passed fresh native/image-only/ ambiguity controls and supports the opt-in gate, not full OCR adoption. Phase1..."
+            "source_id": "080",
+            "summary": "MiniMax exact GA via pinned Minimax free route, high32768 requested; strict404 parameter-filter; prompt-only diagnostics capability-only, no production schema parity. Attempt080/Story258: safety diagnostic20/22vsGPT18..."
           },
           "story_ids": [
             "131",
@@ -961,7 +1021,14 @@
             "225",
             "227",
             "230",
-            "245"
+            "245",
+            "252",
+            "253",
+            "254",
+            "255",
+            "256",
+            "257",
+            "258"
           ],
           "eval_ids": [
             "literal-table-fidelity",
@@ -998,7 +1065,14 @@
           "208",
           "210",
           "230",
-          "245"
+          "245",
+          "252",
+          "253",
+          "254",
+          "255",
+          "256",
+          "257",
+          "258"
         ],
         "eval_ids": [
           "literal-table-fidelity"
@@ -1008,19 +1082,16 @@
           "source_id": "literal-table-fidelity",
           "source_path": "docs/evals/registry.yaml",
           "recommended_now": false,
-          "posture": "wait-for-trigger",
-          "retry_trigger_status": "waiting",
-          "retry_when": [
-            "new-approach",
-            "new-subject-model"
-          ],
+          "posture": "no-trigger-recorded",
+          "retry_trigger_status": "none",
+          "retry_when": [],
           "why_now": "",
           "last_relevant_action": {
-            "date": "2026-10-06",
+            "date": "2026-10-20",
             "source_type": "eval-attempt",
             "source": "docs/evals/registry.yaml",
-            "source_id": "062",
-            "summary": "Exact transcription target remains unmet: this quality attempt failed. The separate safe-handling contract passed fresh native/image-only/ ambiguity controls and supports the opt-in gate, not full OCR adoption. Phase1..."
+            "source_id": "080",
+            "summary": "MiniMax exact GA via pinned Minimax free route, high32768 requested; strict404 parameter-filter; prompt-only diagnostics capability-only, no production schema parity. Attempt080/Story258: safety diagnostic20/22vsGPT18..."
           },
           "story_ids": [
             "134",
@@ -1041,7 +1112,14 @@
             "208",
             "210",
             "230",
-            "245"
+            "245",
+            "252",
+            "253",
+            "254",
+            "255",
+            "256",
+            "257",
+            "258"
           ],
           "eval_ids": [
             "literal-table-fidelity"
@@ -1094,7 +1172,15 @@
           "220",
           "226",
           "230",
-          "245"
+          "245",
+          "251",
+          "252",
+          "253",
+          "254",
+          "255",
+          "256",
+          "257",
+          "258"
         ],
         "eval_ids": [
           "literal-table-fidelity",
@@ -1151,7 +1237,15 @@
             "220",
             "226",
             "230",
-            "245"
+            "245",
+            "251",
+            "252",
+            "253",
+            "254",
+            "255",
+            "256",
+            "257",
+            "258"
           ],
           "eval_ids": [
             "literal-table-fidelity",
@@ -1185,7 +1279,12 @@
           "237",
           "238",
           "239",
-          "244"
+          "244",
+          "249",
+          "251",
+          "252",
+          "257",
+          "258"
         ],
         "eval_ids": [
           "image-crop-extraction",
@@ -1220,7 +1319,12 @@
             "237",
             "238",
             "239",
-            "244"
+            "244",
+            "249",
+            "251",
+            "252",
+            "257",
+            "258"
           ],
           "eval_ids": [
             "image-crop-extraction",
@@ -1255,7 +1359,12 @@
           "240",
           "241",
           "242",
-          "244"
+          "244",
+          "249",
+          "251",
+          "257",
+          "258",
+          "259"
         ],
         "eval_ids": [
           "sol-crop-safety-native-public-smoke",
@@ -1293,7 +1402,12 @@
             "240",
             "241",
             "242",
-            "244"
+            "244",
+            "249",
+            "251",
+            "257",
+            "258",
+            "259"
           ],
           "eval_ids": [
             "sol-crop-safety-native-public-smoke",
@@ -1330,12 +1444,19 @@
           "219",
           "220",
           "233",
-          "234"
+          "234",
+          "246",
+          "247",
+          "248",
+          "249"
         ],
         "eval_ids": [
           "onward-document-consistency-planning",
           "onward-genealogy-row-semantic-note-placement",
-          "jev-document-consistency-classification"
+          "jev-document-consistency-classification",
+          "pplx-runtime-consistency-shadow",
+          "pplx-offline-disagreement-review",
+          "pplx-experimental-disagreement-warning"
         ],
         "actionability": {
           "source_kind": "eval",
@@ -1345,15 +1466,15 @@
           "posture": "wait-for-trigger",
           "retry_trigger_status": "waiting",
           "retry_when": [
-            "cheaper-subject-model"
+            "new-independent-source-aware-batch-lane"
           ],
           "why_now": "",
           "last_relevant_action": {
-            "date": "2026-09-21",
+            "date": "2026-10-13",
             "source_type": "eval-attempt",
             "source": "docs/evals/registry.yaml",
-            "source_id": "003",
-            "summary": "Original five: raw and normalized planner5/5; rawJEV3correct/1miss/1skip; shadow4/5exact plus safe review. Newly visible ambiguous case6 planner uncertain, JEVsemantic overcall, guarded uncertain. Model still emits fu..."
+            "source_id": "070",
+            "summary": "Complete all5text arms plus100actualfallbacks. Solar strongest bounded quality/economy signal:81%lowercascadecost but15.6xhigherp95 and1uncertainty-clean; no automaticpromotion. Liquidcascade4dangerousclean vsGPT3; Sc..."
           },
           "story_ids": [
             "145",
@@ -1374,12 +1495,19 @@
             "219",
             "220",
             "233",
-            "234"
+            "234",
+            "246",
+            "247",
+            "248",
+            "249"
           ],
           "eval_ids": [
             "onward-document-consistency-planning",
             "onward-genealogy-row-semantic-note-placement",
-            "jev-document-consistency-classification"
+            "jev-document-consistency-classification",
+            "pplx-runtime-consistency-shadow",
+            "pplx-offline-disagreement-review",
+            "pplx-experimental-disagreement-warning"
           ]
         }
       },
@@ -11264,9 +11392,9 @@
       "blocker_evidence": "",
       "unblock_condition": "",
       "last_work_log_entry": {
-        "timestamp": "20261005",
-        "date": "2026-10-05",
-        "summary": "Reconciled the pre-existing August26\u2013September2 metadata-only follow-through notes into current main. Kept scheduled prose outside YAML front matter, retained the $0/no-inference outcome, and renamed the supplemental..."
+        "timestamp": "20261014",
+        "date": "2026-10-14",
+        "summary": "Cam explicitly selected a fresh rerun of DeepSeek V4.1 Flash's already-tested conservative-count crop lane. From current `origin/main` in a separate clean worktree, the exact canonical 20260910 model qualified strict..."
       },
       "legacy_build_map_refs": "",
       "metadata_source": "frontmatter",
@@ -11277,12 +11405,12 @@
         "source_path": "docs/stories/story-207-refresh-crop-c4-proof-and-coverage-truth-surfaces.md",
         "recommended_now": false,
         "posture": "completed",
-        "why_now": "Reconciled the pre-existing August26\u2013September2 metadata-only follow-through notes into current main. Kept scheduled prose outside YAML front matter, retained the $0/no-inference outcome, and renamed the supplemental...",
+        "why_now": "Cam explicitly selected a fresh rerun of DeepSeek V4.1 Flash's already-tested conservative-count crop lane. From current `origin/main` in a separate clean worktree, the exact canonical 20260910 model qualified strict...",
         "last_relevant_action": {
-          "date": "2026-10-05",
+          "date": "2026-10-14",
           "source_type": "story-work-log",
           "source": "docs/stories/story-207-refresh-crop-c4-proof-and-coverage-truth-surfaces.md",
-          "summary": "Reconciled the pre-existing August26\u2013September2 metadata-only follow-through notes into current main. Kept scheduled prose outside YAML front matter, retained the $0/no-inference outcome, and renamed the supplemental..."
+          "summary": "Cam explicitly selected a fresh rerun of DeepSeek V4.1 Flash's already-tested conservative-count crop lane. From current `origin/main` in a separate clean worktree, the exact canonical 20260910 model qualified strict..."
         }
       }
     },
@@ -13890,10 +14018,966 @@
       }
     },
     {
+      "id": "246",
+      "title": "Perplexity synthetic runtime shadow evaluation",
+      "path": "docs/stories/story-246-perplexity-runtime-shadow-evaluation.md",
+      "status": "Done",
+      "priority": "Medium",
+      "ideal_refs": [
+        "Fidelity to Source",
+        "Traceability"
+      ],
+      "spec_refs": [
+        "spec:2",
+        "spec:5",
+        "spec:5.1"
+      ],
+      "decision_refs": [
+        "ADR-001"
+      ],
+      "adr_ids": [
+        "ADR-001"
+      ],
+      "depends_on": [
+        "233",
+        "234"
+      ],
+      "category_refs": [
+        "spec:2",
+        "spec:5"
+      ],
+      "compromise_refs": [
+        "C7"
+      ],
+      "input_coverage_refs": [],
+      "architecture_domains": [
+        "document-consistency"
+      ],
+      "roadmap_tags": [
+        "model-evaluation"
+      ],
+      "blocker_summary": "",
+      "blocker_evidence": "",
+      "unblock_condition": "",
+      "last_work_log_entry": null,
+      "legacy_build_map_refs": "",
+      "metadata_source": "frontmatter",
+      "missing_frontmatter_keys": [],
+      "actionability": {
+        "source_kind": "story",
+        "source_id": "246",
+        "source_path": "docs/stories/story-246-perplexity-runtime-shadow-evaluation.md",
+        "recommended_now": false,
+        "posture": "completed",
+        "why_now": "",
+        "last_relevant_action": {
+          "date": null,
+          "source_type": "story-status",
+          "source": "docs/stories/story-246-perplexity-runtime-shadow-evaluation.md",
+          "summary": ""
+        }
+      }
+    },
+    {
+      "id": "247",
+      "title": "Offline disagreement-to-review routing test",
+      "path": "docs/stories/story-247-offline-disagreement-routing.md",
+      "status": "Done",
+      "priority": "Medium",
+      "ideal_refs": [
+        "Fidelity to Source",
+        "Traceability"
+      ],
+      "spec_refs": [
+        "spec:2",
+        "spec:5"
+      ],
+      "decision_refs": [
+        "ADR-001"
+      ],
+      "adr_ids": [
+        "ADR-001"
+      ],
+      "depends_on": [
+        "233",
+        "234"
+      ],
+      "category_refs": [
+        "spec:2",
+        "spec:5"
+      ],
+      "compromise_refs": [
+        "C7"
+      ],
+      "input_coverage_refs": [],
+      "architecture_domains": [
+        "document-consistency"
+      ],
+      "roadmap_tags": [
+        "model-evaluation"
+      ],
+      "blocker_summary": "",
+      "blocker_evidence": "",
+      "unblock_condition": "",
+      "last_work_log_entry": null,
+      "legacy_build_map_refs": "",
+      "metadata_source": "frontmatter",
+      "missing_frontmatter_keys": [],
+      "actionability": {
+        "source_kind": "story",
+        "source_id": "247",
+        "source_path": "docs/stories/story-247-offline-disagreement-routing.md",
+        "recommended_now": false,
+        "posture": "completed",
+        "why_now": "",
+        "last_relevant_action": {
+          "date": null,
+          "source_type": "story-status",
+          "source": "docs/stories/story-247-offline-disagreement-routing.md",
+          "summary": ""
+        }
+      }
+    },
+    {
+      "id": "248",
+      "title": "Experimental sidecar disagreement warning integration",
+      "path": "docs/stories/story-248-experimental-disagreement-warning.md",
+      "status": "Done",
+      "priority": "Medium",
+      "ideal_refs": [
+        "Fidelity to Source",
+        "Traceability"
+      ],
+      "spec_refs": [
+        "spec:2",
+        "spec:5"
+      ],
+      "decision_refs": [
+        "ADR-001"
+      ],
+      "adr_ids": [
+        "ADR-001"
+      ],
+      "depends_on": [
+        "233",
+        "234"
+      ],
+      "category_refs": [
+        "spec:2",
+        "spec:5"
+      ],
+      "compromise_refs": [
+        "C7"
+      ],
+      "input_coverage_refs": [],
+      "architecture_domains": [
+        "document-consistency"
+      ],
+      "roadmap_tags": [
+        "model-evaluation"
+      ],
+      "blocker_summary": "",
+      "blocker_evidence": "",
+      "unblock_condition": "",
+      "last_work_log_entry": null,
+      "legacy_build_map_refs": "",
+      "metadata_source": "frontmatter",
+      "missing_frontmatter_keys": [],
+      "actionability": {
+        "source_kind": "story",
+        "source_id": "248",
+        "source_path": "docs/stories/story-248-experimental-disagreement-warning.md",
+        "recommended_now": false,
+        "posture": "completed",
+        "why_now": "",
+        "last_relevant_action": {
+          "date": null,
+          "source_type": "story-status",
+          "source": "docs/stories/story-248-experimental-disagreement-warning.md",
+          "summary": ""
+        }
+      }
+    },
+    {
+      "id": "249",
+      "title": "Haiku 5.5 maintained task value evaluation",
+      "path": "docs/stories/story-249-haiku55-maintained-evaluation.md",
+      "status": "Done",
+      "priority": "Medium",
+      "ideal_refs": [
+        "Fidelity to Source",
+        "Traceability"
+      ],
+      "spec_refs": [
+        "C4",
+        "C5",
+        "C7",
+        "spec:2",
+        "spec:4",
+        "spec:5"
+      ],
+      "decision_refs": [
+        "ADR-001"
+      ],
+      "adr_ids": [
+        "ADR-001"
+      ],
+      "depends_on": [
+        "233",
+        "244"
+      ],
+      "category_refs": [
+        "spec:2",
+        "spec:4",
+        "spec:5"
+      ],
+      "compromise_refs": [
+        "C4",
+        "C5",
+        "C7"
+      ],
+      "input_coverage_refs": [],
+      "architecture_domains": [
+        "document-consistency",
+        "ocr"
+      ],
+      "roadmap_tags": [
+        "model-evaluation"
+      ],
+      "blocker_summary": "",
+      "blocker_evidence": "",
+      "unblock_condition": "",
+      "last_work_log_entry": null,
+      "legacy_build_map_refs": "",
+      "metadata_source": "frontmatter",
+      "missing_frontmatter_keys": [],
+      "actionability": {
+        "source_kind": "story",
+        "source_id": "249",
+        "source_path": "docs/stories/story-249-haiku55-maintained-evaluation.md",
+        "recommended_now": false,
+        "posture": "completed",
+        "why_now": "",
+        "last_relevant_action": {
+          "date": null,
+          "source_type": "story-status",
+          "source": "docs/stories/story-249-haiku55-maintained-evaluation.md",
+          "summary": ""
+        }
+      }
+    },
+    {
+      "id": "250",
+      "title": "Related-document reference resolution",
+      "path": "docs/stories/story-250-related-document-reference-resolution.md",
+      "status": "Done",
+      "priority": "High",
+      "ideal_refs": [
+        "req:5",
+        "req:6",
+        "req:7"
+      ],
+      "spec_refs": [
+        "spec:3.1",
+        "spec:6",
+        "spec:7"
+      ],
+      "decision_refs": [
+        "ADR-002",
+        "docs/notes/related-document-references.md"
+      ],
+      "adr_ids": [
+        "ADR-002"
+      ],
+      "depends_on": [
+        "243"
+      ],
+      "category_refs": [
+        "spec:3",
+        "spec:6",
+        "spec:7"
+      ],
+      "compromise_refs": [],
+      "input_coverage_refs": [
+        "born-digital-pdf",
+        "docx",
+        "scanned-pdf-prose"
+      ],
+      "architecture_domains": [
+        "doc_web_runtime",
+        "document_structure_and_consistency"
+      ],
+      "roadmap_tags": [],
+      "blocker_summary": "",
+      "blocker_evidence": "",
+      "unblock_condition": "",
+      "last_work_log_entry": {
+        "timestamp": "20261007-1717",
+        "date": "2026-10-07",
+        "summary": "Finish-and-push authorized by user after consumer acceptance."
+      },
+      "legacy_build_map_refs": "",
+      "metadata_source": "frontmatter",
+      "missing_frontmatter_keys": [],
+      "actionability": {
+        "source_kind": "story",
+        "source_id": "250",
+        "source_path": "docs/stories/story-250-related-document-reference-resolution.md",
+        "recommended_now": false,
+        "posture": "completed",
+        "why_now": "Finish-and-push authorized by user after consumer acceptance.",
+        "last_relevant_action": {
+          "date": "2026-10-07",
+          "source_type": "story-work-log",
+          "source": "docs/stories/story-250-related-document-reference-resolution.md",
+          "summary": "Finish-and-push authorized by user after consumer acceptance."
+        }
+      }
+    },
+    {
+      "id": "251",
+      "title": "Fresh manual source fidelity",
+      "path": "docs/stories/story-251-fresh-manual-source-fidelity.md",
+      "status": "Done",
+      "priority": "High",
+      "ideal_refs": [
+        "req:3",
+        "req:4",
+        "req:5",
+        "req:6",
+        "req:7"
+      ],
+      "spec_refs": [
+        "spec:3.1",
+        "spec:4.1",
+        "spec:4.2",
+        "spec:6",
+        "spec:7"
+      ],
+      "decision_refs": [
+        "ADR-001",
+        "ADR-002",
+        "docs/notes/fresh-manual-source-fidelity.md"
+      ],
+      "adr_ids": [
+        "ADR-001",
+        "ADR-002"
+      ],
+      "depends_on": [
+        "243",
+        "250"
+      ],
+      "category_refs": [
+        "spec:3",
+        "spec:4",
+        "spec:6",
+        "spec:7"
+      ],
+      "compromise_refs": [
+        "C3",
+        "C4",
+        "C5"
+      ],
+      "input_coverage_refs": [
+        "born-digital-pdf"
+      ],
+      "architecture_domains": [
+        "doc_web_runtime",
+        "document_structure_and_consistency"
+      ],
+      "roadmap_tags": [],
+      "blocker_summary": "",
+      "blocker_evidence": "",
+      "unblock_condition": "",
+      "last_work_log_entry": {
+        "timestamp": "20261008-0925",
+        "date": "2026-10-08",
+        "summary": "/mark-story-done under /finish-and-push: all11 acceptance criteria,"
+      },
+      "legacy_build_map_refs": "",
+      "metadata_source": "frontmatter",
+      "missing_frontmatter_keys": [],
+      "actionability": {
+        "source_kind": "story",
+        "source_id": "251",
+        "source_path": "docs/stories/story-251-fresh-manual-source-fidelity.md",
+        "recommended_now": false,
+        "posture": "completed",
+        "why_now": "/mark-story-done under /finish-and-push: all11 acceptance criteria,",
+        "last_relevant_action": {
+          "date": "2026-10-08",
+          "source_type": "story-work-log",
+          "source": "docs/stories/story-251-fresh-manual-source-fidelity.md",
+          "summary": "/mark-story-done under /finish-and-push: all11 acceptance criteria,"
+        }
+      }
+    },
+    {
+      "id": "252",
+      "title": "Gemini4 Argon maintained fidelity evaluation",
+      "path": "docs/stories/story-252-gemini4-argon-maintained-fidelity.md",
+      "status": "Done",
+      "priority": "Medium",
+      "ideal_refs": [
+        "Fidelity to Source",
+        "Traceability"
+      ],
+      "spec_refs": [
+        "C1",
+        "C3",
+        "C4",
+        "C6",
+        "spec:2",
+        "spec:3",
+        "spec:4",
+        "spec:6"
+      ],
+      "decision_refs": [
+        "ADR-001",
+        "ADR-002"
+      ],
+      "adr_ids": [
+        "ADR-001",
+        "ADR-002"
+      ],
+      "depends_on": [
+        "245"
+      ],
+      "category_refs": [
+        "spec:2",
+        "spec:3",
+        "spec:4",
+        "spec:6"
+      ],
+      "compromise_refs": [
+        "C1",
+        "C3",
+        "C4",
+        "C6"
+      ],
+      "input_coverage_refs": [],
+      "architecture_domains": [
+        "doc-web",
+        "ocr"
+      ],
+      "roadmap_tags": [
+        "model-evaluation"
+      ],
+      "blocker_summary": "",
+      "blocker_evidence": "",
+      "unblock_condition": "",
+      "last_work_log_entry": null,
+      "legacy_build_map_refs": "",
+      "metadata_source": "frontmatter",
+      "missing_frontmatter_keys": [],
+      "actionability": {
+        "source_kind": "story",
+        "source_id": "252",
+        "source_path": "docs/stories/story-252-gemini4-argon-maintained-fidelity.md",
+        "recommended_now": false,
+        "posture": "completed",
+        "why_now": "",
+        "last_relevant_action": {
+          "date": null,
+          "source_type": "story-status",
+          "source": "docs/stories/story-252-gemini4-argon-maintained-fidelity.md",
+          "summary": ""
+        }
+      }
+    },
+    {
+      "id": "253",
+      "title": "Opt-in native Argon literal-reader qualification",
+      "path": "docs/stories/story-253-argon-literal-reader-qualification.md",
+      "status": "Done",
+      "priority": "High",
+      "ideal_refs": [
+        "req:3",
+        "req:5",
+        "req:6",
+        "req:7"
+      ],
+      "spec_refs": [
+        "spec:2.1",
+        "spec:2.2",
+        "spec:3.1",
+        "spec:6"
+      ],
+      "decision_refs": [
+        "ADR-001",
+        "ADR-002"
+      ],
+      "adr_ids": [
+        "ADR-001",
+        "ADR-002"
+      ],
+      "depends_on": [
+        "245"
+      ],
+      "category_refs": [
+        "spec:2",
+        "spec:3",
+        "spec:6"
+      ],
+      "compromise_refs": [
+        "C1",
+        "C3",
+        "C6"
+      ],
+      "input_coverage_refs": [
+        "born-digital-pdf",
+        "scanned-pdf-tables"
+      ],
+      "architecture_domains": [
+        "doc_web_runtime",
+        "ocr_and_extraction"
+      ],
+      "roadmap_tags": [],
+      "blocker_summary": "",
+      "blocker_evidence": "",
+      "unblock_condition": "",
+      "last_work_log_entry": null,
+      "legacy_build_map_refs": "",
+      "metadata_source": "frontmatter",
+      "missing_frontmatter_keys": [],
+      "actionability": {
+        "source_kind": "story",
+        "source_id": "253",
+        "source_path": "docs/stories/story-253-argon-literal-reader-qualification.md",
+        "recommended_now": false,
+        "posture": "completed",
+        "why_now": "",
+        "last_relevant_action": {
+          "date": null,
+          "source_type": "story-status",
+          "source": "docs/stories/story-253-argon-literal-reader-qualification.md",
+          "summary": ""
+        }
+      }
+    },
+    {
+      "id": "254",
+      "title": "Muse Wonder bounded literal-reader screen",
+      "path": "docs/stories/story-254-muse-wonder-literal-screen.md",
+      "status": "Done",
+      "priority": "High",
+      "ideal_refs": [
+        "req:3",
+        "req:5",
+        "req:6",
+        "req:7"
+      ],
+      "spec_refs": [
+        "spec:2.1",
+        "spec:2.2",
+        "spec:3.1",
+        "spec:6"
+      ],
+      "decision_refs": [
+        "ADR-001",
+        "ADR-002"
+      ],
+      "adr_ids": [
+        "ADR-001",
+        "ADR-002"
+      ],
+      "depends_on": [
+        "245"
+      ],
+      "category_refs": [
+        "spec:2",
+        "spec:3",
+        "spec:6"
+      ],
+      "compromise_refs": [
+        "C1",
+        "C3",
+        "C6"
+      ],
+      "input_coverage_refs": [
+        "born-digital-pdf",
+        "scanned-pdf-tables"
+      ],
+      "architecture_domains": [
+        "doc_web_runtime",
+        "ocr_and_extraction"
+      ],
+      "roadmap_tags": [],
+      "blocker_summary": "",
+      "blocker_evidence": "",
+      "unblock_condition": "",
+      "last_work_log_entry": null,
+      "legacy_build_map_refs": "",
+      "metadata_source": "frontmatter",
+      "missing_frontmatter_keys": [],
+      "actionability": {
+        "source_kind": "story",
+        "source_id": "254",
+        "source_path": "docs/stories/story-254-muse-wonder-literal-screen.md",
+        "recommended_now": false,
+        "posture": "completed",
+        "why_now": "",
+        "last_relevant_action": {
+          "date": null,
+          "source_type": "story-status",
+          "source": "docs/stories/story-254-muse-wonder-literal-screen.md",
+          "summary": ""
+        }
+      }
+    },
+    {
+      "id": "255",
+      "title": "Muse Wonder literal-reader thinking calibration",
+      "path": "docs/stories/story-255-wonder-literal-thinking-calibration.md",
+      "status": "Done",
+      "priority": "High",
+      "ideal_refs": [
+        "req:3",
+        "req:5",
+        "req:6",
+        "req:7"
+      ],
+      "spec_refs": [
+        "spec:2.1",
+        "spec:2.2",
+        "spec:3.1",
+        "spec:6"
+      ],
+      "decision_refs": [
+        "ADR-001",
+        "ADR-002"
+      ],
+      "adr_ids": [
+        "ADR-001",
+        "ADR-002"
+      ],
+      "depends_on": [
+        "245"
+      ],
+      "category_refs": [
+        "spec:2",
+        "spec:3",
+        "spec:6"
+      ],
+      "compromise_refs": [
+        "C1",
+        "C3",
+        "C6"
+      ],
+      "input_coverage_refs": [
+        "born-digital-pdf",
+        "scanned-pdf-tables"
+      ],
+      "architecture_domains": [
+        "doc_web_runtime",
+        "ocr_and_extraction"
+      ],
+      "roadmap_tags": [],
+      "blocker_summary": "",
+      "blocker_evidence": "",
+      "unblock_condition": "",
+      "last_work_log_entry": null,
+      "legacy_build_map_refs": "",
+      "metadata_source": "frontmatter",
+      "missing_frontmatter_keys": [],
+      "actionability": {
+        "source_kind": "story",
+        "source_id": "255",
+        "source_path": "docs/stories/story-255-wonder-literal-thinking-calibration.md",
+        "recommended_now": false,
+        "posture": "completed",
+        "why_now": "",
+        "last_relevant_action": {
+          "date": null,
+          "source_type": "story-status",
+          "source": "docs/stories/story-255-wonder-literal-thinking-calibration.md",
+          "summary": ""
+        }
+      }
+    },
+    {
+      "id": "256",
+      "title": "Scout096 bounded source-reading and safety evaluation",
+      "path": "docs/stories/story-256-scout096-multimodal-evaluation.md",
+      "status": "Done",
+      "priority": "High",
+      "ideal_refs": [
+        "req:3",
+        "req:5"
+      ],
+      "spec_refs": [
+        "spec:2.1",
+        "spec:2.2",
+        "spec:3.1",
+        "spec:6"
+      ],
+      "decision_refs": [
+        "ADR-001",
+        "ADR-002"
+      ],
+      "adr_ids": [
+        "ADR-001",
+        "ADR-002"
+      ],
+      "depends_on": [
+        "245"
+      ],
+      "category_refs": [
+        "spec:2",
+        "spec:3",
+        "spec:6"
+      ],
+      "compromise_refs": [
+        "C1",
+        "C3",
+        "C6"
+      ],
+      "input_coverage_refs": [
+        "handwritten-notes",
+        "scanned-pdf-tables"
+      ],
+      "architecture_domains": [
+        "doc_web_runtime",
+        "ocr_and_extraction"
+      ],
+      "roadmap_tags": [],
+      "blocker_summary": "",
+      "blocker_evidence": "",
+      "unblock_condition": "",
+      "last_work_log_entry": null,
+      "legacy_build_map_refs": "",
+      "metadata_source": "frontmatter",
+      "missing_frontmatter_keys": [],
+      "actionability": {
+        "source_kind": "story",
+        "source_id": "256",
+        "source_path": "docs/stories/story-256-scout096-multimodal-evaluation.md",
+        "recommended_now": false,
+        "posture": "completed",
+        "why_now": "",
+        "last_relevant_action": {
+          "date": null,
+          "source_type": "story-status",
+          "source": "docs/stories/story-256-scout096-multimodal-evaluation.md",
+          "summary": ""
+        }
+      }
+    },
+    {
+      "id": "257",
+      "title": "Scout097 DeepSeek1017 source-fidelity evaluation",
+      "path": "docs/stories/story-257-scout097-deepseek1017-evaluation.md",
+      "status": "Done",
+      "priority": "High",
+      "ideal_refs": [
+        "req:3",
+        "req:4",
+        "req:6"
+      ],
+      "spec_refs": [
+        "spec:2.1",
+        "spec:3.1",
+        "spec:4.1",
+        "spec:4.2",
+        "spec:6"
+      ],
+      "decision_refs": [
+        "ADR-001",
+        "ADR-002"
+      ],
+      "adr_ids": [
+        "ADR-001",
+        "ADR-002"
+      ],
+      "depends_on": [
+        "256"
+      ],
+      "category_refs": [
+        "spec:2",
+        "spec:3",
+        "spec:4",
+        "spec:6"
+      ],
+      "compromise_refs": [
+        "C1",
+        "C3",
+        "C4",
+        "C5",
+        "C6"
+      ],
+      "input_coverage_refs": [
+        "handwritten-notes",
+        "scanned-pdf-tables"
+      ],
+      "architecture_domains": [
+        "doc_web_runtime",
+        "ocr_and_extraction"
+      ],
+      "roadmap_tags": [],
+      "blocker_summary": "",
+      "blocker_evidence": "",
+      "unblock_condition": "",
+      "last_work_log_entry": null,
+      "legacy_build_map_refs": "",
+      "metadata_source": "frontmatter",
+      "missing_frontmatter_keys": [],
+      "actionability": {
+        "source_kind": "story",
+        "source_id": "257",
+        "source_path": "docs/stories/story-257-scout097-deepseek1017-evaluation.md",
+        "recommended_now": false,
+        "posture": "completed",
+        "why_now": "",
+        "last_relevant_action": {
+          "date": null,
+          "source_type": "story-status",
+          "source": "docs/stories/story-257-scout097-deepseek1017-evaluation.md",
+          "summary": ""
+        }
+      }
+    },
+    {
+      "id": "258",
+      "title": "Scout099 MiniMax M3.1 Flash GA source-fidelity evaluation",
+      "path": "docs/stories/story-258-scout099-minimax-ga-evaluation.md",
+      "status": "Done",
+      "priority": "High",
+      "ideal_refs": [
+        "req:3",
+        "req:4",
+        "req:6"
+      ],
+      "spec_refs": [
+        "spec:2.1",
+        "spec:3.1",
+        "spec:4.1",
+        "spec:4.2",
+        "spec:6"
+      ],
+      "decision_refs": [
+        "ADR-001",
+        "ADR-002"
+      ],
+      "adr_ids": [
+        "ADR-001",
+        "ADR-002"
+      ],
+      "depends_on": [
+        "257"
+      ],
+      "category_refs": [
+        "spec:2",
+        "spec:3",
+        "spec:4",
+        "spec:6"
+      ],
+      "compromise_refs": [
+        "C1",
+        "C3",
+        "C4",
+        "C5",
+        "C6"
+      ],
+      "input_coverage_refs": [
+        "handwritten-notes",
+        "scanned-pdf-tables"
+      ],
+      "architecture_domains": [
+        "doc_web_runtime",
+        "ocr_and_extraction"
+      ],
+      "roadmap_tags": [],
+      "blocker_summary": "",
+      "blocker_evidence": "",
+      "unblock_condition": "",
+      "last_work_log_entry": null,
+      "legacy_build_map_refs": "",
+      "metadata_source": "frontmatter",
+      "missing_frontmatter_keys": [],
+      "actionability": {
+        "source_kind": "story",
+        "source_id": "258",
+        "source_path": "docs/stories/story-258-scout099-minimax-ga-evaluation.md",
+        "recommended_now": false,
+        "posture": "completed",
+        "why_now": "",
+        "last_relevant_action": {
+          "date": null,
+          "source_type": "story-status",
+          "source": "docs/stories/story-258-scout099-minimax-ga-evaluation.md",
+          "summary": ""
+        }
+      }
+    },
+    {
+      "id": "259",
+      "title": "Scout099 saved safety consumer feasibility",
+      "path": "docs/stories/story-259-scout099-safety-consumer-feasibility.md",
+      "status": "Done",
+      "priority": "Medium",
+      "ideal_refs": [
+        "req:4",
+        "req:6"
+      ],
+      "spec_refs": [
+        "spec:4.1",
+        "spec:4.2",
+        "spec:8"
+      ],
+      "decision_refs": [
+        "ADR-001",
+        "ADR-002"
+      ],
+      "adr_ids": [
+        "ADR-001",
+        "ADR-002"
+      ],
+      "depends_on": [
+        "242"
+      ],
+      "category_refs": [
+        "spec:4",
+        "spec:8"
+      ],
+      "compromise_refs": [
+        "C5"
+      ],
+      "input_coverage_refs": [
+        "image-directory-scans"
+      ],
+      "architecture_domains": [
+        "illustration-extraction"
+      ],
+      "roadmap_tags": [
+        "artifact-provenance"
+      ],
+      "blocker_summary": "",
+      "blocker_evidence": "",
+      "unblock_condition": "",
+      "last_work_log_entry": null,
+      "legacy_build_map_refs": "",
+      "metadata_source": "frontmatter",
+      "missing_frontmatter_keys": [],
+      "actionability": {
+        "source_kind": "story",
+        "source_id": "259",
+        "source_path": "docs/stories/story-259-scout099-safety-consumer-feasibility.md",
+        "recommended_now": false,
+        "posture": "completed",
+        "why_now": "",
+        "last_relevant_action": {
+          "date": null,
+          "source_type": "story-status",
+          "source": "docs/stories/story-259-scout099-safety-consumer-feasibility.md",
+          "summary": ""
+        }
+      }
+    },
+    {
       "id": "260",
       "title": "Lossless artifact validation at the driver boundary",
       "path": "docs/stories/story-260-lossless-artifact-validation-boundary.md",
-      "status": "In Progress",
+      "status": "Done",
       "priority": "High",
       "ideal_refs": [
         "req:1",
@@ -13939,9 +15023,9 @@
       "blocker_evidence": "",
       "unblock_condition": "",
       "last_work_log_entry": {
-        "timestamp": "20261023-1737",
+        "timestamp": "20261023-1758",
         "date": "2026-10-23",
-        "summary": "Implemented whole-artifact admission, failure bookkeeping and"
+        "summary": "/validate: no remaining material finding; GradeA, seven of seven"
       },
       "legacy_build_map_refs": "",
       "metadata_source": "frontmatter",
@@ -13950,14 +15034,14 @@
         "source_kind": "story",
         "source_id": "260",
         "source_path": "docs/stories/story-260-lossless-artifact-validation-boundary.md",
-        "recommended_now": true,
-        "posture": "in-progress",
-        "why_now": "Implemented whole-artifact admission, failure bookkeeping and",
+        "recommended_now": false,
+        "posture": "completed",
+        "why_now": "/validate: no remaining material finding; GradeA, seven of seven",
         "last_relevant_action": {
           "date": "2026-10-23",
           "source_type": "story-work-log",
           "source": "docs/stories/story-260-lossless-artifact-validation-boundary.md",
-          "summary": "Implemented whole-artifact admission, failure bookkeeping and"
+          "summary": "/validate: no remaining material finding; GradeA, seven of seven"
         }
       }
     }
@@ -14094,7 +15178,12 @@
         "spec:6"
       ],
       "story_refs": [
-        "245"
+        "245",
+        "253",
+        "254",
+        "255",
+        "257",
+        "258"
       ],
       "compromise_refs": [
         "C1",
@@ -14104,9 +15193,71 @@
       "category_refs": [
         "spec:2",
         "spec:3",
+        "spec:4",
         "spec:6"
       ],
       "scores": [
+        {
+          "model": "meta/muse-wonder-20261012 high-max32768 thinking Scout093",
+          "measured": "2026-10-14",
+          "git_sha": "e44c0a41+attempt075",
+          "metrics": {
+            "high_cases": 2,
+            "max_cases": 2,
+            "medium_cases": 1,
+            "control_cases": 3,
+            "bakery_diagnostic_exact_cells": 22,
+            "bakery_total_cells": 23,
+            "clear_holds_per_arm": 2,
+            "genuine_ambiguity_holds_per_high_max_arm": 2,
+            "accepted_wrong_cells": 0,
+            "high_bakery_cost_usd": 0.071068,
+            "max_bakery_cost_usd": 0.0698608,
+            "medium_bakery_cost_usd": 0.042968,
+            "high_bakery_latency_ms": 25743,
+            "max_bakery_latency_ms": 29033,
+            "medium_bakery_latency_ms": 11232
+          },
+          "note": "All3levels same O0diagnosticmiss/2readableholds; higherthinking noqualitygain, worsecost/latency vsfreshmedium. Bothhigh/max trueambiguity safeholds; nativeclear unmeasured aftervalidstops. Astra36clear exact+bothholds. NewUSD.4816003+prior.3223511=cumulative.8039514/10 unknown0, onepredispatch402 settled0/recovered. Exposedcalibration; retainAstra. Attempt075/Story255."
+        },
+        {
+          "model": "meta/muse-wonder-20261012 medium32768 source-only Scout093",
+          "measured": "2026-10-14",
+          "git_sha": "e44c0a41+attempt074",
+          "metrics": {
+            "candidate_cases": 2,
+            "control_cases": 3,
+            "diagnostic_exact_cells": 35,
+            "clear_cells_tested": 36,
+            "qualified_cases": 1,
+            "accepted_cells": 13,
+            "accepted_wrong_cells": 0,
+            "clear_uncertainty_cells": 3,
+            "harmful_control_changes": 0,
+            "latency_ms": 12816.5,
+            "cost_usd": 0.0439908,
+            "cost_estimated": false
+          },
+          "note": "Native13exact; imageIl1-O0->Il1-00 diagnostic and3opticallyclearholds. Valid source stop beforecandidateambiguity; Astra36clearcells exact+bothtrueholds. Pairedcost43.60%/latency42.58%lower with unequal quality; retainAstra. InclusiveUSD.3223511/10 unknown0,6POSTs. Root source review; Attempt074. No providerprofile/export/default adoption."
+        },
+        {
+          "model": "gemini-4-argon medium32768 source-only reader Scout092",
+          "measured": "2026-10-13",
+          "git_sha": "91cd9bb1+attempt071",
+          "metrics": {
+            "qualified_cases": 2,
+            "held_cases": 1,
+            "accepted_cells": 36,
+            "accepted_wrong_cells": 0,
+            "uncertainty_cells": 2,
+            "harmful_control_changes": 0,
+            "safe_disposition_rate": 1.0,
+            "latency_ms": 7746,
+            "cost_usd": 0.007638666667,
+            "cost_estimated": true
+          },
+          "note": "Fresh3 exposed confirmation-v2 readers vs Astra: same36clearcells and2ambiguous holds. Stage totalsUSD.022916/23.238s vsAstra cold.19873/actual.2363275 and32.413s, no cache reads; DecemberArgon.045832. InitialOCR frozen/reused equally. No wholeworkflow or opticalambiguity recovery/defaultadoption. Attempt071/evidence071-argon."
+        },
         {
           "model": "gpt-5.1-baseline-and-literal",
           "measured": "2026-10-06",
@@ -14153,32 +15304,130 @@
             "cost_estimated": true
           },
           "note": "Fresh frozen native/image-only confirmations qualify13/13 and23/23cells; identical-glyph negative holds with both ambiguous cells flagged and no export. Literal target1.0 remains unmet; holds never count as correct transcriptions. Timing/cost mean initial+review request sum per fresh case, not driver walltime. Current candidate/evidence summary: docs/evals/evidence/062-literal-table-fidelity-summary.json. No whole-book/default-model/consumer adoption claim."
+        },
+        {
+          "model": "gemini-4-argon low-vs-medium effort calibration Attempt072",
+          "measured": "2026-10-13",
+          "git_sha": "91cd9bb1+attempt072",
+          "metrics": {
+            "cases_per_arm": 3,
+            "clear_cells_per_arm": 36,
+            "held_ambiguous_cells_per_arm": 2,
+            "harmful_changes": 0,
+            "low_cost_usd": 0.016486,
+            "medium_cost_usd": 0.018516,
+            "low_latency_sum_ms": 574451,
+            "medium_latency_sum_ms": 222034,
+            "low_thinking_tokens": 0,
+            "medium_thinking_tokens": 211,
+            "cached_tokens": 0
+          },
+          "note": "Exposed effort-only calibration: boundedqualityparity, low10.96%cheaper but2.59xsamplelatencysum. Descriptiveoneobservation/case, sharedaccountcontextunmeasured. December.032972/.037032; no newAstra control orlevel/defaultadoption. Attempt072."
+        },
+        {
+          "model": "deepseek/deepseek-v4.1-flash-1017 Cloudflare high32768 Scout097",
+          "measured": "2026-10-17",
+          "git_sha": "bceb2956+attempt079-uncommitted",
+          "metrics": {
+            "diagnostic_exact_cells": 22,
+            "clear_cells_tested": 23,
+            "clear_uncertainty_cells": 0,
+            "accepted_wrong_cells": 0,
+            "candidate_cases": 1,
+            "control_cases": 1
+          },
+          "note": "Bakery Il1-O0 becomes I11-00; spans preserved, owner safely unresolved. Astra23/23verified. Remaining13clear+2ambiguity cells unmeasured aftervalidstop. RetainAstra. Fullownerrecord attempts/079-scout097-deepseek1017-source-fidelity.md; closedinclusiveUSD.231343868/15 unknown0, no runtime/defaults."
         }
       ],
       "latest_score": {
-        "model": "gpt-6-astra-source-only-table-review-v1",
-        "measured": "2026-10-06",
-        "git_sha": "ba4c84a",
+        "model": "deepseek/deepseek-v4.1-flash-1017 Cloudflare high32768 Scout097",
+        "measured": "2026-10-17",
+        "git_sha": "bceb2956+attempt079-uncommitted",
         "metrics": {
-          "confirmation_cases": 3,
-          "exact_literal_and_structure_pass_rate": 0.666667,
-          "safe_disposition_rate": 1.0,
-          "qualified_cases": 2,
-          "held_cases": 1,
-          "accepted_cells": 36,
+          "diagnostic_exact_cells": 22,
+          "clear_cells_tested": 23,
+          "clear_uncertainty_cells": 0,
           "accepted_wrong_cells": 0,
-          "held_initial_wrong_cells": 1,
-          "uncertainty_cells": 2,
-          "harmful_control_changes": 0,
-          "semantic_rubrics_passed": 4,
-          "semantic_rubrics_total": 4,
-          "latency_ms": 15684.905625,
-          "cost_usd": 0.23970667,
-          "cost_estimated": true
+          "candidate_cases": 1,
+          "control_cases": 1
         },
-        "note": "Fresh frozen native/image-only confirmations qualify13/13 and23/23cells; identical-glyph negative holds with both ambiguous cells flagged and no export. Literal target1.0 remains unmet; holds never count as correct transcriptions. Timing/cost mean initial+review request sum per fresh case, not driver walltime. Current candidate/evidence summary: docs/evals/evidence/062-literal-table-fidelity-summary.json. No whole-book/default-model/consumer adoption claim."
+        "note": "Bakery Il1-O0 becomes I11-00; spans preserved, owner safely unresolved. Astra23/23verified. Remaining13clear+2ambiguity cells unmeasured aftervalidstop. RetainAstra. Fullownerrecord attempts/079-scout097-deepseek1017-source-fidelity.md; closedinclusiveUSD.231343868/15 unknown0, no runtime/defaults."
       },
       "attempts": [
+        {
+          "id": "080",
+          "date": "2026-10-20",
+          "status": "inconclusive",
+          "approach": "Scout099 approved MiniMax M3.1 Flash GA high32768 independent owner tasks",
+          "note": "MiniMax exact GA via pinned Minimax free route, high32768 requested; strict404 parameter-filter; prompt-only diagnostics capability-only, no production schema parity. Attempt080/Story258: safety diagnostic20/22vsGPT18/22,0vs1false-safe and15vs14safeaccepted; literal21/23, cropclipping, Barney.757773. InclusiveUSD1.358886/15 unknown0; no defaults/current strict coverage change.",
+          "retry_when": []
+        },
+        {
+          "id": "079",
+          "date": "2026-10-17",
+          "status": "failed",
+          "approach": "Scout097 approved fresh independent owner tasks; exact DeepSeek1017 Cloudflare high32768, Story257",
+          "note": "Bakery Il1-O0 becomes I11-00; spans preserved, owner safely unresolved. Astra23/23verified. Remaining13clear+2ambiguity cells unmeasured aftervalidstop. RetainAstra. Fullrawcustody/ledger/manifest in evidence/079-scout097; all4independenttasks resolved, no semantic sweep or defaults.",
+          "retry_when": [
+            "new-subject-model-or-source-qualified-approach"
+          ]
+        },
+        {
+          "id": "078",
+          "date": "2026-10-16",
+          "status": "inconclusive",
+          "approach": "Scout096 approved bounded fresh multimodal/typed comparison; Story256. Exact per-arm quality and transport layers retained.",
+          "note": "Nemotron bakery21/23 exact diagnostic; four clearcell holds, no verified/harmful edits; true ambiguity2holds. Fresh Astra bakery23/23 verified. Stop nativeclear after valid failure. Full owner record attempts/078-scout096.md incl additive restored-route continuation: Nemotron safety4/5 with1unsafe; crop7tolerantpasses mean.913443 and source001dateclip, stop. FinalUSD.49405433settled+.225574912unknown/15; originalfailedarchiveimmutable.",
+          "retry_when": [
+            "new-approach"
+          ]
+        },
+        {
+          "id": "075",
+          "date": "2026-10-14",
+          "status": "failed",
+          "approach": "Approved high+conditionalmax literal thinking calibration, freshmedium discriminating bakery and freshAstra3 controls.",
+          "note": "Higherlevels repeat validclearO0 miss and2overholds; no effortqualitygain, actualeconomics worsen versusmedium. Genuineambiguity safety passes. CumulativeUSD.8039514/10 unknown0; ninePOSTs including documentedpredispatch402/oneoperationalrecovery. Prior074closedimmutable; no defaults/exportprofile/commits.",
+          "retry_when": [
+            "new-subject-model"
+          ]
+        },
+        {
+          "id": "074",
+          "date": "2026-10-14",
+          "status": "failed",
+          "approach": "Approved Muse Wonder strict source-only literal screen against fresh Astra on three exposed synthetic confirmation-v2 cases.",
+          "note": "Clear-source candidate miss and over-abstention, safe hold, no harmful accepted changes. Candidate2/control3; candidate ambiguity unmeasured after stop. Immutable dated generation identity, USD.3223511 settled/unknown0 under10. Story254/evidence074-wonder.",
+          "retry_when": [
+            "new-subject-model"
+          ]
+        },
+        {
+          "id": "073",
+          "date": "2026-10-13",
+          "status": "failed",
+          "approach": "Approved native Argon medium source-reader qualification against fresh Astra; independent eight-page synthetic panel and real guarded driver consumption.",
+          "note": "Stopped after5 native POSTs: N1 matched10 clear cells/span; Argon A1 declared the source-proven l/1 ambiguous cell certain with uncertain_cells=[] and adapter verified. Full source_exact is diagnostic, not a valid hold. A1 Astra, remaining6 cases, repeats and live3pageexports are unmeasured. Closed knownUSD.468719/unknown0 under additionalUSD3cap; no recovery. Source/golds/prompt unchanged after answers. Offline4exports/4holds prove wiring only. Default Astra unchanged; no commit/push. See Attempt073 and live-summary.json.",
+          "retry_when": [
+            "architecture-change"
+          ]
+        },
+        {
+          "id": "072",
+          "date": "2026-10-13",
+          "status": "inconclusive",
+          "approach": "User-authorized targeted Argon thinking-level calibration",
+          "note": "Low/medium boundedqualityparity with cost/latency tradeoff; no overall configuration win.10exactnativecalls USD.082978unknown0/6; corrected cumulativeDocWeb.46244275known+.441832priorunknown=.90427475/15. Oldledgerunchanged, bothclosed;8focusedtests andindependentfinalreview. Source072manifest/report; no defaults/commit/push.",
+          "retry_when": []
+        },
+        {
+          "id": "071",
+          "date": "2026-10-13",
+          "status": "inconclusive",
+          "approach": "Scout092 selected Argon native owner comparison",
+          "note": "Bounded cheaper literal reader parity; held-out production provider/driver qualification deferred. InclusiveUSD15: corrected settled.37946475 +unknown.441832; original sealed.34186725 retained;31nativeenvelopes/2lostscreenrecords retained, matchedcustodyrecovery. No defaults/commits/push. Story252; docs/evals/evidence/071-argon/report.md.",
+          "retry_when": []
+        },
         {
           "id": "062",
           "date": "2026-10-06",
@@ -14199,19 +15448,16 @@
         "source_id": "literal-table-fidelity",
         "source_path": "docs/evals/registry.yaml",
         "recommended_now": false,
-        "posture": "wait-for-trigger",
-        "retry_trigger_status": "waiting",
-        "retry_when": [
-          "new-approach",
-          "new-subject-model"
-        ],
+        "posture": "no-trigger-recorded",
+        "retry_trigger_status": "none",
+        "retry_when": [],
         "why_now": "",
         "last_relevant_action": {
-          "date": "2026-10-06",
+          "date": "2026-10-20",
           "source_type": "eval-attempt",
           "source": "docs/evals/registry.yaml",
-          "source_id": "062",
-          "summary": "Exact transcription target remains unmet: this quality attempt failed. The separate safe-handling contract passed fresh native/image-only/ ambiguity controls and supports the opt-in gate, not full OCR adoption. Phase1..."
+          "source_id": "080",
+          "summary": "MiniMax exact GA via pinned Minimax free route, high32768 requested; strict404 parameter-filter; prompt-only diagnostics capability-only, no production schema parity. Attempt080/Story258: safety diagnostic20/22vsGPT18..."
         }
       }
     },
@@ -14471,7 +15717,10 @@
         "236",
         "237",
         "238",
-        "239"
+        "239",
+        "249",
+        "257",
+        "258"
       ],
       "compromise_refs": [
         "C4"
@@ -14481,6 +15730,7 @@
         "spec:2",
         "spec:3",
         "spec:4",
+        "spec:5",
         "spec:6",
         "spec:7",
         "spec:8",
@@ -15168,6 +16418,51 @@
           "result_file": "benchmarks/results/mistral-large4-20261006/detector-full.json",
           "evidence_status": "numeric-pass-source-logo-clipping-do-not-adopt",
           "note": "Numeric 13/13 and >=.95 but source-visible Image011 logo clipping; fresh Gemini .958646 covers logo. Candidate cost lower; timing partially overlapped qualification, descriptive only. Retain Gemini; no quality equivalence/promotion.\n"
+        },
+        {
+          "model": "gemini-4-argon medium32768 progressive Scout092",
+          "measured": "2026-10-13",
+          "git_sha": "91cd9bb1+attempt071",
+          "metrics": {
+            "pass_rate": 0.888889,
+            "overall": 0.917444,
+            "cases_total": 9,
+            "latency_ms": 5145.111111,
+            "cost_usd": 0.004369555556,
+            "cost_estimated": true
+          },
+          "note": "8/9 vs freshGemini3Flash9/9 mean.962356. StopImage037 mixedunits normalizedbbox y1=898; smallImage001sourceedgeclip.4remaining and22safety notmeasured. NativeJSONshape qualified; numericbounds prompt/scorer-owned. No detectoradoption. Attempt071."
+        },
+        {
+          "model": "gemini-4-argon high-vs-medium effort calibration Attempt072",
+          "measured": "2026-10-13",
+          "git_sha": "91cd9bb1+attempt072",
+          "metrics": {
+            "high_cases": 3,
+            "high_numeric_passes": 3,
+            "high_source_complete_cases": 2,
+            "high_raw_coordinate_compliant_cases": 3,
+            "medium_cases": 1,
+            "medium_raw_contract_failures": 1,
+            "high_cost_usd": 0.043572,
+            "high_latency_sum_ms": 150831,
+            "high_thinking_tokens": 3025,
+            "cached_tokens": 0
+          },
+          "note": "Medium037consistentinteger0-1000 failsfrozenraw0-1contract despiteautoscalingnumericpass, armstopped. High037/001sourcecomplete but011ruletail1\u20132pxclip; nohighpromotion. Medium001/011notrun; optionalmatched037confirmationcancelled understopprecedence, no unpairedrepeat/full13. HighDecember.087144."
+        },
+        {
+          "model": "deepseek/deepseek-v4.1-flash-1017 Cloudflare high32768 Scout097",
+          "measured": "2026-10-17",
+          "git_sha": "bceb2956+attempt079-uncommitted",
+          "metrics": {
+            "overall": 0.8903,
+            "pass_rate": 1.0,
+            "cases_total": 1,
+            "source_complete_cases": 0,
+            "fresh_control_score": 0.9826
+          },
+          "note": "Image011 tolerantpass but sourceconfirmed logo date/rightlettering and outerseal clipped. Sourcebarrier stops beforeImage001/remaining11. No13case orproductionwin; retainGemini3Flash. Fullownerrecord attempts/079-scout097-deepseek1017-source-fidelity.md; closedinclusiveUSD.231343868/15 unknown0, no runtime/defaults."
         }
       ],
       "latest_score": {
@@ -15198,6 +16493,68 @@
           "note": "Both arms13/13; Argon improves bounded numeric score with higher cost and observed latency. Native strict image/parity, complete raw custody and closed27-call USD.1176735/5 ledger retained; source review preserves whole-cover undercoverage/edge uncertainty. No safety/handwriting or production-route calls, no default or C5 change. Reused current locked guard with frozen profile; four failing offline accounting regressions repaired before paid calls, final25 focused tests pass. See docs/evals/attempts/063-gemini4-argon-detector-qualification.md.\n",
           "retry_when": [
             "new-approach"
+          ]
+        },
+        {
+          "id": "080",
+          "date": "2026-10-20",
+          "status": "inconclusive",
+          "approach": "Scout099 approved MiniMax M3.1 Flash GA high32768 independent owner tasks",
+          "note": "MiniMax exact GA via pinned Minimax free route, high32768 requested; strict404 parameter-filter; prompt-only diagnostics capability-only, no production schema parity. Attempt080/Story258: safety diagnostic20/22vsGPT18/22,0vs1false-safe and15vs14safeaccepted; literal21/23, cropclipping, Barney.757773. InclusiveUSD1.358886/15 unknown0; no defaults/current strict coverage change.",
+          "retry_when": []
+        },
+        {
+          "id": "079",
+          "date": "2026-10-17",
+          "status": "failed",
+          "approach": "Scout097 approved fresh independent owner tasks; exact DeepSeek1017 Cloudflare high32768, Story257",
+          "note": "Image011 tolerantpass but sourceconfirmed logo date/rightlettering and outerseal clipped. Sourcebarrier stops beforeImage001/remaining11. No13case orproductionwin; retainGemini3Flash. Fullrawcustody/ledger/manifest in evidence/079-scout097; all4independenttasks resolved, no semantic sweep or defaults.",
+          "retry_when": [
+            "new-subject-model-or-source-qualified-approach"
+          ]
+        },
+        {
+          "id": "078",
+          "date": "2026-10-16",
+          "status": "inconclusive",
+          "approach": "Scout096 approved bounded fresh multimodal/typed comparison; Story256. Exact per-arm quality and transport layers retained.",
+          "note": "Nemotron Image011 score.953 vs fresh Gemini3Flash.9785 with sourcecomplete region review; next Image0002Together embedded502 errors, remainder not measured. No13case qualification. Full owner record attempts/078-scout096.md incl additive restored-route continuation: Nemotron safety4/5 with1unsafe; crop7tolerantpasses mean.913443 and source001dateclip, stop. FinalUSD.49405433settled+.225574912unknown/15; originalfailedarchiveimmutable.",
+          "retry_when": [
+            "new-approach"
+          ]
+        },
+        {
+          "id": "074",
+          "date": "2026-10-14",
+          "status": "failed",
+          "approach": "Explicit fresh DeepSeek V4.1 Flash low-reasoning retry, exact DeepInfra fp8, frozen conservative-count Image011 stop",
+          "note": "Native and adapter parity qualified exact model/provider and strict normalized-float contract. Image011 passed its individual .70 scorer but source overlay showed logo lower-art/year clipping and lower seal/signature top/right undercoverage. Model localization failure; no malformed numeric/unit or adapter-contract issue. Full13 and fresh Gemini comparator not run. Three calls cost $0.00221018, zero unresolved, new inclusive cap $0.50; Attempt036 historical exposure remains separate. Temporary key removed and verified absent. No defaults/commit/push. Cam directed no further V4.1 checkpoint evaluations, including effort or route variants, without explicit reversal. Attempt074 and manifest: docs/evals/attempts/074-deepseek-v41-flash-fresh-20261014.md, docs/evals/evidence/074-deepseek-v41-fresh-manifest.json.\n",
+          "retry_when": []
+        },
+        {
+          "id": "072",
+          "date": "2026-10-13",
+          "status": "failed",
+          "approach": "User-authorized targeted Argon thinking-level calibration",
+          "note": "High2/3 source-complete versus3/3 numeric passes; raw-range medium stop and cancelled confirmation.10exactnativecalls USD.082978unknown0/6; corrected cumulativeDocWeb.46244275known+.441832priorunknown=.90427475/15. Oldledgerunchanged, bothclosed;8focusedtests andindependentfinalreview. Source072manifest/report; no defaults/commit/push.",
+          "retry_when": []
+        },
+        {
+          "id": "071",
+          "date": "2026-10-13",
+          "status": "failed",
+          "approach": "Scout092 selected Argon native owner comparison",
+          "note": "Progressive9/13 detector stop after invalid source geometry; current detector retained. InclusiveUSD15: corrected settled.37946475 +unknown.441832; original sealed.34186725 retained;31nativeenvelopes/2lostscreenrecords retained, matchedcustodyrecovery. No defaults/commits/push. Story252; docs/evals/evidence/071-argon/report.md.",
+          "retry_when": []
+        },
+        {
+          "id": "068",
+          "date": "2026-10-07",
+          "status": "failed",
+          "approach": "Scout089 approved Haiku5.5 thinking/value sweep, direct owner APIs, frozen public/synthetic lanes",
+          "note": "Image011 medium splits3vs2; low out-of-range coordinate quarantined; high score.9242 passes scorer but source-visible logo/seal clipping; freshGemini.9826. Full13 unmeasured; retain incumbent. Attempt068/manifests hold USD.136542 settled plus.011442 unknown reserve, inclusiveUSD10; no defaults changed.",
+          "retry_when": [
+            "new-subject-model"
           ]
         },
         {
@@ -15950,7 +17307,11 @@
         "237",
         "238",
         "239",
-        "240"
+        "240",
+        "249",
+        "257",
+        "258",
+        "259"
       ],
       "compromise_refs": [
         "C5"
@@ -15958,7 +17319,10 @@
       "category_refs": [
         "spec:1",
         "spec:2",
+        "spec:3",
         "spec:4",
+        "spec:5",
+        "spec:6",
         "spec:8"
       ],
       "scores": [
@@ -16550,28 +17914,97 @@
           "result_file": "benchmarks/results/mistral-large4-20261006/safety-progressive.json",
           "evidence_status": "source-adjudicated-false-safe-progressive-stop",
           "note": "Attempt048 repaired prompt/source-adjudicated labels: candidate incorrectly accepts seal missing 21% height. Frozen primary 5/5 retained; source-corrected 4/5 is not full 22 rate. GPT5.5 control independently false-rejects cover 0/1, 21 unrun.\n"
+        },
+        {
+          "model": "deepseek/deepseek-v4.1-flash-1017 Cloudflare high32768 Scout097",
+          "measured": "2026-10-17",
+          "git_sha": "bceb2956+attempt079-uncommitted",
+          "metrics": {
+            "adoption_grade_candidate_cases": 0,
+            "accounting_quarantined_cases": 2,
+            "diagnostic_correct": 1,
+            "diagnostic_false_safe": 1,
+            "fresh_control_correct": 2,
+            "fresh_control_false_safe": 0,
+            "remaining_unmeasured": 20
+          },
+          "note": "ACCOUNTINGAUDIT: nativecompletion616/reasoning711 impossible; clippedseal323/311leaves12visible for231charJSON. Bothsubjectsenvelopesquarantined, capabilitynotmeasured/adoptiondefer. Savedclippedseal false-safe is diagnostic only; qualifiedGPT5.5control2/2correct. No newPOST. See evidence/079-scout097/accounting-audit/report.md. Fullownerrecord attempts/079-scout097-deepseek1017-source-fidelity.md; closedinclusiveUSD.231343868/15 unknown0, no runtime/defaults."
         }
       ],
       "latest_score": {
-        "model": "Mistral Large4 repaired safety via OpenRouter (Attempt061)",
+        "model": "deepseek/deepseek-v4.1-flash-1017 Cloudflare high32768 Scout097",
+        "measured": "2026-10-17",
+        "git_sha": "bceb2956+attempt079-uncommitted",
         "metrics": {
-          "pass_rate": 0.8,
-          "overall": 0.8,
-          "cases_total": 5,
-          "cases_unrun": 17,
-          "frozen_primary_correct": 5,
-          "source_adjudicated_correct": 4,
-          "false_safe": 1
+          "adoption_grade_candidate_cases": 0,
+          "accounting_quarantined_cases": 2,
+          "diagnostic_correct": 1,
+          "diagnostic_false_safe": 1,
+          "fresh_control_correct": 2,
+          "fresh_control_false_safe": 0,
+          "remaining_unmeasured": 20
         },
-        "cost_usd": 0.01883546,
-        "cost_estimated": false,
-        "measured": "2026-10-06",
-        "git_sha": "fc558e2+attempt061-uncommitted",
-        "result_file": "benchmarks/results/mistral-large4-20261006/safety-progressive.json",
-        "evidence_status": "source-adjudicated-false-safe-progressive-stop",
-        "note": "Attempt048 repaired prompt/source-adjudicated labels: candidate incorrectly accepts seal missing 21% height. Frozen primary 5/5 retained; source-corrected 4/5 is not full 22 rate. GPT5.5 control independently false-rejects cover 0/1, 21 unrun.\n"
+        "note": "ACCOUNTINGAUDIT: nativecompletion616/reasoning711 impossible; clippedseal323/311leaves12visible for231charJSON. Bothsubjectsenvelopesquarantined, capabilitynotmeasured/adoptiondefer. Savedclippedseal false-safe is diagnostic only; qualifiedGPT5.5control2/2correct. No newPOST. See evidence/079-scout097/accounting-audit/report.md. Fullownerrecord attempts/079-scout097-deepseek1017-source-fidelity.md; closedinclusiveUSD.231343868/15 unknown0, no runtime/defaults."
       },
       "attempts": [
+        {
+          "id": "081",
+          "date": "2026-10-20",
+          "status": "inconclusive",
+          "approach": "Scout099 US$0 saved-output safety consumer/source feasibility; Story259",
+          "note": "DEFER runtime/paid qualification. Exact unchanged consumer build22/parse44 under OS deny-network:15oversized crops,44native identity rejections,0admitted; full proposer/finalize/release routing not measured without native row/geometry/operator custody. All22 original pairs/44fullpayloads inspected; historical20/22 vs18/22 grades unchanged. New flag findings MiniMax018blankfalse wrong43.5347% blankband andGPT012logo pagetexttrue wrong. Manual no-material-payload-issue19/22vs17/22 is source audit only, not new score/unseen qualification. Attempt081 report/manifest pins original CLOSED080 archive;0provider/judge calls,USD0, no runtime/default/guard changes. Minimum informational contract proposed only.",
+          "retry_when": [
+            "separately-approved-informational-contract-and-native-custody"
+          ]
+        },
+        {
+          "id": "080",
+          "date": "2026-10-20",
+          "status": "inconclusive",
+          "approach": "Scout099 approved MiniMax M3.1 Flash GA high32768 independent owner tasks",
+          "note": "MiniMax exact GA via pinned Minimax free route, high32768 requested; strict404 parameter-filter; prompt-only diagnostics capability-only, no production schema parity. Attempt080/Story258: safety diagnostic20/22vsGPT18/22,0vs1false-safe and15vs14safeaccepted; literal21/23, cropclipping, Barney.757773. InclusiveUSD1.358886/15 unknown0; no defaults/current strict coverage change.",
+          "retry_when": []
+        },
+        {
+          "id": "079",
+          "date": "2026-10-17",
+          "status": "inconclusive",
+          "approach": "Scout097 approved fresh independent owner tasks; exact DeepSeek1017 Cloudflare high32768, Story257",
+          "note": "ACCOUNTINGAUDIT: nativecompletion616/reasoning711 impossible; clippedseal323/311leaves12visible for231charJSON. Bothsubjectsenvelopesquarantined, capabilitynotmeasured/adoptiondefer. Savedclippedseal false-safe is diagnostic only; qualifiedGPT5.5control2/2correct. No newPOST. See evidence/079-scout097/accounting-audit/report.md. Fullrawcustody/ledger/manifest in evidence/079-scout097; all4independenttasks resolved, no semantic sweep or defaults.",
+          "retry_when": [
+            "new-subject-model-or-source-qualified-approach"
+          ]
+        },
+        {
+          "id": "078",
+          "date": "2026-10-16",
+          "status": "inconclusive",
+          "approach": "Scout096 approved bounded fresh multimodal/typed comparison; Story256. Exact per-arm quality and transport layers retained.",
+          "note": "Span4/5 with sourceconfirmed unsafe seal pass; GPT5.5control2/5 sameunsafe pass. Nemotron3/3then2upstream502; d1no valid answer500then4.5MB413. Remaining cases unmeasured; manual veto retained. Full owner record attempts/078-scout096.md incl additive restored-route continuation: Nemotron safety4/5 with1unsafe; crop7tolerantpasses mean.913443 and source001dateclip, stop. FinalUSD.49405433settled+.225574912unknown/15; originalfailedarchiveimmutable.",
+          "retry_when": [
+            "new-approach"
+          ]
+        },
+        {
+          "id": "070",
+          "date": "2026-10-13",
+          "status": "inconclusive",
+          "approach": "Scout091 finite crop-safety verdict screen on exact Attempt048 source-adjudicated public images",
+          "note": "No safetywinner: Clef exacttwoimage admitted then unsafeaccept012001clippedseal; freshGPT5.5none2048alsoaccepted. Properstop,20remainingnotmeasured; lowconfidence is not a tested visualroutingrule. ScaleDown exacttwoimageHTTP400, documentOCR substitute ineligible, capabilitynotmeasured/defer. Liquid directkeyabsent/defer. Reasons unqualified for typedcandidates. No downsample/OCR rescue or defaults/commit/push. Attempt070 source/gold/hashbindings and rootindependentreview.",
+          "retry_when": [
+            "new-subject-model-or-native-two-image-contract"
+          ]
+        },
+        {
+          "id": "068",
+          "date": "2026-10-07",
+          "status": "failed",
+          "approach": "Scout089 approved Haiku5.5 thinking/value sweep, direct owner APIs, frozen public/synthetic lanes",
+          "note": "Independent source-adjudicated safety2case calibration: all3Haiku arms1/2 false-safe amputated seal; freshGPT5.5 2/2. Old labels preserved separately; full22 unmeasured. Retain safety controls. Attempt068/manifests hold USD.136542 settled plus.011442 unknown reserve, inclusiveUSD10; no defaults changed.",
+          "retry_when": [
+            "new-subject-model"
+          ]
+        },
         {
           "id": "061",
           "date": "2026-10-06",
@@ -16846,15 +18279,15 @@
         "posture": "trigger-exhausted",
         "retry_trigger_status": "exhausted",
         "retry_when": [
-          "New checkpoint or source-backed contract improvement with meaningful payoff; no unchanged rerun"
+          "separately-approved-informational-contract-and-native-custody"
         ],
         "why_now": "Rerun when a materially stronger validator or detector may reduce the current fail-labeled page-context cases. Rerun after any maintained crop/runtime simplification before claiming `trim_layout_text` or bounded capti...",
         "last_relevant_action": {
-          "date": "2026-10-06",
+          "date": "2026-10-20",
           "source_type": "eval-attempt",
           "source": "docs/evals/registry.yaml",
-          "source_id": "061",
-          "summary": "Attempt048 repaired prompt/source-adjudicated labels: candidate incorrectly accepts seal missing 21% height. Frozen primary 5/5 retained; source-corrected 4/5 is not full 22 rate. GPT5.5 control independently false-re..."
+          "source_id": "081",
+          "summary": "DEFER runtime/paid qualification. Exact unchanged consumer build22/parse44 under OS deny-network:15oversized crops,44native identity rejections,0admitted; full proposer/finalize/release routing not measured without na..."
         }
       }
     },
@@ -16970,7 +18403,10 @@
         "208",
         "230",
         "238",
-        "239"
+        "239",
+        "249",
+        "257",
+        "258"
       ],
       "compromise_refs": [],
       "category_refs": [
@@ -16978,9 +18414,25 @@
         "spec:2",
         "spec:3",
         "spec:4",
+        "spec:5",
+        "spec:6",
         "spec:8"
       ],
       "scores": [
+        {
+          "model": "gemini-4-argon medium32768 public LOC Barney Scout092",
+          "measured": "2026-10-13",
+          "git_sha": "91cd9bb1+attempt071",
+          "metrics": {
+            "overall_min_ratio": 0.988117,
+            "cases_total": 1,
+            "pass_rate": 0.0,
+            "latency_ms": 9498,
+            "cost_usd": 0.00802,
+            "cost_estimated": true
+          },
+          "note": "Actualdriverimageentry: comrads->comrades/mede->made sourcebackedliteralmiss. Frozenratio includesseparatepotentialextra-it goldenconcern, notcandidateerror. Alversonnotrun afterdecisivestop; itsa-good-prospect goldenprecheckedvalid. RequestedGemini3.7served3.8perofficialdeprecation; charge.01321425 quarantined, nofreshrelativeclaim. Attempt071."
+        },
         {
           "model": "gpt-6.1-sol low fresh public LOC image-entry (Attempt046)",
           "metrics": {
@@ -17301,26 +18753,79 @@
           "result_file": "benchmarks/results/mistral-large4-20261006/ocr-candidate-barney.log",
           "evidence_status": "source-backed-barney-loss-progressive-stop",
           "note": "Candidate literal text loss on source-valid Barney; fresh Gemini .978830 also below.99. Alverson source golden confirms a good prospect but unrun after lane failure. Same system/user/image bytes verified; no truth change.\n"
+        },
+        {
+          "model": "deepseek/deepseek-v4.1-flash-1017 Cloudflare high32768 Scout097",
+          "measured": "2026-10-17",
+          "git_sha": "bceb2956+attempt079-uncommitted",
+          "metrics": {
+            "overall_min_ratio": 0.920977,
+            "cases_total": 1,
+            "pass_rate": 0.0,
+            "alverson_unrun": 1
+          },
+          "note": "ActualdriverBarney literal/sourceerrors below.99. RequestedexactGemini3.7served3.8quarantined, nofreshrelativequalityclaim. Alversonexcludedpendingseparateadjudication. Fullownerrecord attempts/079-scout097-deepseek1017-source-fidelity.md; closedinclusiveUSD.231343868/15 unknown0, no runtime/defaults."
         }
       ],
       "latest_score": {
-        "model": "Mistral Large4 fresh actual-driver public LOC Barney (Attempt061)",
+        "model": "deepseek/deepseek-v4.1-flash-1017 Cloudflare high32768 Scout097",
+        "measured": "2026-10-17",
+        "git_sha": "bceb2956+attempt079-uncommitted",
         "metrics": {
-          "overall_min_ratio": 0.939957,
-          "page_min_ratio": 0.939957,
-          "pass_rate": 0.0,
+          "overall_min_ratio": 0.920977,
           "cases_total": 1,
+          "pass_rate": 0.0,
           "alverson_unrun": 1
         },
-        "cost_usd": 0.00171341,
-        "cost_estimated": false,
-        "measured": "2026-10-06",
-        "git_sha": "fc558e2+attempt061-uncommitted",
-        "result_file": "benchmarks/results/mistral-large4-20261006/ocr-candidate-barney.log",
-        "evidence_status": "source-backed-barney-loss-progressive-stop",
-        "note": "Candidate literal text loss on source-valid Barney; fresh Gemini .978830 also below.99. Alverson source golden confirms a good prospect but unrun after lane failure. Same system/user/image bytes verified; no truth change.\n"
+        "note": "ActualdriverBarney literal/sourceerrors below.99. RequestedexactGemini3.7served3.8quarantined, nofreshrelativequalityclaim. Alversonexcludedpendingseparateadjudication. Fullownerrecord attempts/079-scout097-deepseek1017-source-fidelity.md; closedinclusiveUSD.231343868/15 unknown0, no runtime/defaults."
       },
       "attempts": [
+        {
+          "id": "080",
+          "date": "2026-10-20",
+          "status": "inconclusive",
+          "approach": "Scout099 approved MiniMax M3.1 Flash GA high32768 independent owner tasks",
+          "note": "MiniMax exact GA via pinned Minimax free route, high32768 requested; strict404 parameter-filter; prompt-only diagnostics capability-only, no production schema parity. Attempt080/Story258: safety diagnostic20/22vsGPT18/22,0vs1false-safe and15vs14safeaccepted; literal21/23, cropclipping, Barney.757773. InclusiveUSD1.358886/15 unknown0; no defaults/current strict coverage change.",
+          "retry_when": []
+        },
+        {
+          "id": "079",
+          "date": "2026-10-17",
+          "status": "failed",
+          "approach": "Scout097 approved fresh independent owner tasks; exact DeepSeek1017 Cloudflare high32768, Story257",
+          "note": "ActualdriverBarney literal/sourceerrors below.99. RequestedexactGemini3.7served3.8quarantined, nofreshrelativequalityclaim. Alversonexcludedpendingseparateadjudication. Fullrawcustody/ledger/manifest in evidence/079-scout097; all4independenttasks resolved, no semantic sweep or defaults.",
+          "retry_when": [
+            "new-subject-model-or-source-qualified-approach"
+          ]
+        },
+        {
+          "id": "078",
+          "date": "2026-10-16",
+          "status": "inconclusive",
+          "approach": "Scout096 approved bounded fresh multimodal/typed comparison; Story256. Exact per-arm quality and transport layers retained.",
+          "note": "Nemotron actual driver LOCBarney.812112 with invented/normalized narrative; stop Alverson. Exact3.7 control served3.8 quarantined, no comparative quality claim. Full owner record attempts/078-scout096.md incl additive restored-route continuation: Nemotron safety4/5 with1unsafe; crop7tolerantpasses mean.913443 and source001dateclip, stop. FinalUSD.49405433settled+.225574912unknown/15; originalfailedarchiveimmutable.",
+          "retry_when": [
+            "new-approach"
+          ]
+        },
+        {
+          "id": "071",
+          "date": "2026-10-13",
+          "status": "failed",
+          "approach": "Scout092 selected Argon native owner comparison",
+          "note": "Public Barney literal miss; exact3.7 comparator unavailable, Alverson unmeasured. InclusiveUSD15: corrected settled.37946475 +unknown.441832; original sealed.34186725 retained;31nativeenvelopes/2lostscreenrecords retained, matchedcustodyrecovery. No defaults/commits/push. Story252; docs/evals/evidence/071-argon/report.md.",
+          "retry_when": []
+        },
+        {
+          "id": "068",
+          "date": "2026-10-07",
+          "status": "failed",
+          "approach": "Scout089 approved Haiku5.5 thinking/value sweep, direct owner APIs, frozen public/synthetic lanes",
+          "note": "Actualdriver Barney medium.959162 low.945640 high.942693 vs freshGemini.980617; all<.99; candidate phrases changed. Alverson unmeasured after predeclared stop. Retain incumbent. Attempt068/manifests hold USD.136542 settled plus.011442 unknown reserve, inclusiveUSD10; no defaults changed.",
+          "retry_when": [
+            "new-subject-model"
+          ]
+        },
         {
           "id": "061",
           "date": "2026-10-06",
@@ -17467,15 +18972,15 @@
         "posture": "trigger-exhausted",
         "retry_trigger_status": "exhausted",
         "retry_when": [
-          "New checkpoint or source-backed contract improvement with meaningful payoff; no unchanged rerun"
+          "new-subject-model"
         ],
         "why_now": "Retry only when a materially stronger model or OCR substrate appears that could plausibly clear Barney and the corrected Alverson front-page truth surface.",
         "last_relevant_action": {
-          "date": "2026-10-06",
+          "date": "2026-10-20",
           "source_type": "eval-attempt",
           "source": "docs/evals/registry.yaml",
-          "source_id": "061",
-          "summary": "Candidate literal text loss on source-valid Barney; fresh Gemini .978830 also below.99. Alverson source golden confirms a good prospect but unrun after lane failure. Same system/user/image bytes verified; no truth cha..."
+          "source_id": "080",
+          "summary": "MiniMax exact GA via pinned Minimax free route, high32768 requested; strict404 parameter-filter; prompt-only diagnostics capability-only, no production schema parity. Attempt080/Story258: safety diagnostic20/22vsGPT18..."
         }
       }
     },
@@ -18673,13 +20178,15 @@
       "description": "Five-class status projection with explicit conventions and synthetic source prose; genealogy tables and maintenance cards. Does not measure convention generation, full planner outputs, OCR, or repair. Fresh JEV versus Story220 GPT-4.1 model projected to status, separate deterministic comparators.\n",
       "spec_refs": [],
       "story_refs": [
-        "233"
+        "233",
+        "249"
       ],
       "compromise_refs": [
         "C7"
       ],
       "category_refs": [
         "spec:2",
+        "spec:4",
         "spec:5"
       ],
       "scores": [
@@ -18734,6 +20241,26 @@
       },
       "attempts": [
         {
+          "id": "070",
+          "date": "2026-10-13",
+          "status": "inconclusive",
+          "approach": "Scout091 five dated native OpenRouter Decisions arms, fresh GPT4.1, actual per-arm .8 serial fallback",
+          "note": "Complete all5text arms plus100actualfallbacks. Solar strongest bounded quality/economy signal:81%lowercascadecost but15.6xhigherp95 and1uncertainty-clean; no automaticpromotion. Liquidcascade4dangerousclean vsGPT3; ScaleDowncascade2 but similarcost/slower; Clef/Drex no overallwin. TextUSD.16196998/4 unknown0; ownertext+visualUSD.21462848settled+.00256unknown/12. Attempt070/evidence070-scout091 bind702rawreceipts, currentbase, closedledgers and40focusedtests. No defaults/commit/push.",
+          "retry_when": [
+            "new-independent-source-aware-batch-lane"
+          ]
+        },
+        {
+          "id": "068",
+          "date": "2026-10-07",
+          "status": "inconclusive",
+          "approach": "Scout089 approved Haiku5.5 thinking/value sweep, direct owner APIs, frozen public/synthetic lanes",
+          "note": "Fresh fixed synthetic status comparison: frozenlow25/40 vsGPT29/40; lowUSD.0041735 vs.043392, median1153.5ms vs857.5, p951371vs1976; falseclean3vs4. Allarms4/5calibration; confirmation21/35. No freshJev/cascade due missingownerkey/custody boundary. Retain full planner; no adoption established. Attempt068/manifests hold USD.136542 settled plus.011442 unknown reserve, inclusiveUSD10; no defaults changed.",
+          "retry_when": [
+            "new-subject-model"
+          ]
+        },
+        {
           "id": "001",
           "date": "2026-09-21",
           "status": "succeeded",
@@ -18756,6 +20283,14 @@
           "approach": "Same frozen anonymous HTML/gold, revised planner evidence/policy contract and guarded JEV shadow",
           "note": "Original five: raw and normalized planner5/5; rawJEV3correct/1miss/1skip; shadow4/5exact plus safe review. Newly visible ambiguous case6 planner uncertain, JEVsemantic overcall, guarded uncertain. Model still emits fused canonical contradiction; diagnostic prevents sending that policy. Six calls USD0.030029128, unknown0. No production quality or savings claim. Evidence docs/evals/artifacts/story234-evidence-contract-recheck/report.md.\n",
           "retry_when": []
+        },
+        {
+          "id": "004",
+          "date": "2026-10-06",
+          "status": "succeeded",
+          "approach": "Scout088 fresh native Perplexity v1.1/Jev/OpenAI consistency comparison with real GPT fallback",
+          "note": "Attempt064 initially awaited access, then user provisioned it.209/209 native calls, USD.097180996 of hardUSD2, unknown0. Raw Perplexity28/40, Jev24/40, OpenAI22/40, GPT30/40; actual cascades30/32/30. Perplexity cascade94.18%cheaper/31.85%fasterp95 than GPT at75%aggregate equality, but2unsupported clean judgments preserve uncertainty safety concern. Prioritize independent shadow/full-path promotion check; no default change.10focused tests+offline209call replay; temporary keys removed. Evidence docs/evals/attempts/064-perplexity-decider-v11.md.\n",
+          "retry_when": []
         }
       ],
       "retry_when": [],
@@ -18769,15 +20304,168 @@
         "posture": "wait-for-trigger",
         "retry_trigger_status": "waiting",
         "retry_when": [
-          "cheaper-subject-model"
+          "new-independent-source-aware-batch-lane"
         ],
         "why_now": "",
         "last_relevant_action": {
-          "date": "2026-09-21",
+          "date": "2026-10-13",
           "source_type": "eval-attempt",
           "source": "docs/evals/registry.yaml",
-          "source_id": "003",
-          "summary": "Original five: raw and normalized planner5/5; rawJEV3correct/1miss/1skip; shadow4/5exact plus safe review. Newly visible ambiguous case6 planner uncertain, JEVsemantic overcall, guarded uncertain. Model still emits fu..."
+          "source_id": "070",
+          "summary": "Complete all5text arms plus100actualfallbacks. Solar strongest bounded quality/economy signal:81%lowercascadecost but15.6xhigherp95 and1uncertainty-clean; no automaticpromotion. Liquidcascade4dangerousclean vsGPT3; Sc..."
+        }
+      }
+    },
+    {
+      "id": "pplx-runtime-consistency-shadow",
+      "name": "Perplexity independent synthetic runtime consistency shadow",
+      "type": "quality",
+      "command": "python benchmarks/pplx-shadow/campaign.py preflight",
+      "path": "docs/evals/registry.yaml",
+      "description": "Actual full GPT4.1 planner plus default-off advisory Perplexity on18new chapters across6synthetic genealogy documents, two repetitions. Eval-only observed-evidence path; no planner replacement or cost subtraction.\n",
+      "spec_refs": [],
+      "story_refs": [
+        "246"
+      ],
+      "compromise_refs": [
+        "C7"
+      ],
+      "category_refs": [
+        "spec:2",
+        "spec:5"
+      ],
+      "scores": [],
+      "latest_score": null,
+      "attempts": [
+        {
+          "id": "001",
+          "date": "2026-10-06",
+          "status": "succeeded",
+          "approach": "Independent source-reviewed synthetic runtime shadow; predeclared safety stop",
+          "note": "Attempt065 complete:5nativecalls USD0.02588316/4 unknown0. Firstdoc rawcandidate2/2correct (1conflictskip); guarded2/3 with1inherited plannerfalseclean,0introduced and0accepted usefulcorrections. Correct birthyear warning confidence.42031 failed frozen.8gate; do not promote workflow.15unique and allsecondrepeats unmeasured.55focusedtests and offline receipt/guard replay pass. Temporarykey removed; no defaults. Evidence docs/evals/evidence/065-pplx-shadow/report.md.\n",
+          "retry_when": []
+        }
+      ],
+      "retry_when": [],
+      "retry_when_notes": [],
+      "explicit_lineage": true,
+      "actionability": {
+        "source_kind": "eval",
+        "source_id": "pplx-runtime-consistency-shadow",
+        "source_path": "docs/evals/registry.yaml",
+        "recommended_now": false,
+        "posture": "no-trigger-recorded",
+        "retry_trigger_status": "none",
+        "retry_when": [],
+        "why_now": "",
+        "last_relevant_action": {
+          "date": "2026-10-06",
+          "source_type": "eval-attempt",
+          "source": "docs/evals/registry.yaml",
+          "source_id": "001",
+          "summary": "Attempt065 complete:5nativecalls USD0.02588316/4 unknown0. Firstdoc rawcandidate2/2correct (1conflictskip); guarded2/3 with1inherited plannerfalseclean,0introduced and0accepted usefulcorrections. Correct birthyear war..."
+        }
+      }
+    },
+    {
+      "id": "pplx-offline-disagreement-review",
+      "name": "Offline low-confidence disagreement review policy",
+      "type": "quality",
+      "command": "python benchmarks/pplx-disagreement-offline/replay.py",
+      "path": "docs/evals/registry.yaml",
+      "description": "Post-hoc offline routing replay on saved Attempt065 synthetic native responses. No fresh inference or runtime integration; policy behavior only.\n",
+      "spec_refs": [],
+      "story_refs": [
+        "247"
+      ],
+      "compromise_refs": [
+        "C7"
+      ],
+      "category_refs": [
+        "spec:2",
+        "spec:5"
+      ],
+      "scores": [],
+      "latest_score": null,
+      "attempts": [
+        {
+          "id": "001",
+          "date": "2026-10-06",
+          "status": "succeeded",
+          "approach": "Replay frozen saved native answers; pure advisory review routing",
+          "note": "Attempt066 zero newcalls/spend. Saved3chapters1document falseclean1to0, review0to1, exactlabels2/3unchanged.10receipt hashes/2exactcandidate replays/4canonicalhashes verified;16boundarytests pass. Post-hoc only, no fresh safety or adoption claim. No runtime/default/commit/push. Evidence docs/evals/evidence/066-offline-disagreement/report.md.\n",
+          "retry_when": []
+        }
+      ],
+      "retry_when": [],
+      "retry_when_notes": [],
+      "explicit_lineage": true,
+      "actionability": {
+        "source_kind": "eval",
+        "source_id": "pplx-offline-disagreement-review",
+        "source_path": "docs/evals/registry.yaml",
+        "recommended_now": false,
+        "posture": "no-trigger-recorded",
+        "retry_trigger_status": "none",
+        "retry_when": [],
+        "why_now": "",
+        "last_relevant_action": {
+          "date": "2026-10-06",
+          "source_type": "eval-attempt",
+          "source": "docs/evals/registry.yaml",
+          "source_id": "001",
+          "summary": "Attempt066 zero newcalls/spend. Saved3chapters1document falseclean1to0, review0to1, exactlabels2/3unchanged.10receipt hashes/2exactcandidate replays/4canonicalhashes verified;16boundarytests pass. Post-hoc only, no fr..."
+        }
+      }
+    },
+    {
+      "id": "pplx-experimental-disagreement-warning",
+      "name": "Default-off sidecar disagreement warning integration",
+      "type": "quality",
+      "command": "python benchmarks/pplx-warning-integration/verify.py",
+      "path": "docs/evals/registry.yaml",
+      "description": "Offline integration proof of advisory low-confidence disagreement review; saved native responses and mocked driver, no fresh model inference.\n",
+      "spec_refs": [],
+      "story_refs": [
+        "248"
+      ],
+      "compromise_refs": [
+        "C7"
+      ],
+      "category_refs": [
+        "spec:2",
+        "spec:5"
+      ],
+      "scores": [],
+      "latest_score": null,
+      "attempts": [
+        {
+          "id": "001",
+          "date": "2026-10-06",
+          "status": "succeeded",
+          "approach": "Integrated unchanged.8 low-confidence disagreement review; offline savedanswer/driver proof",
+          "note": "Attempt067 complete,62focusedtests/scopedRuff.10native receipt hashes, 2exactcandidate replays,4canonical hashes and realdriver mocked warning/onoff equivalence pass. Zero newcalls/spend/credentials. No fresh modelquality/adoption claim, defaultsunchanged. Evidence docs/evals/evidence/067-warning-integration/report.md.\n",
+          "retry_when": []
+        }
+      ],
+      "retry_when": [],
+      "retry_when_notes": [],
+      "explicit_lineage": true,
+      "actionability": {
+        "source_kind": "eval",
+        "source_id": "pplx-experimental-disagreement-warning",
+        "source_path": "docs/evals/registry.yaml",
+        "recommended_now": false,
+        "posture": "no-trigger-recorded",
+        "retry_trigger_status": "none",
+        "retry_when": [],
+        "why_now": "",
+        "last_relevant_action": {
+          "date": "2026-10-06",
+          "source_type": "eval-attempt",
+          "source": "docs/evals/registry.yaml",
+          "source_id": "001",
+          "summary": "Attempt067 complete,62focusedtests/scopedRuff.10native receipt hashes, 2exactcandidate replays,4canonical hashes and realdriver mocked warning/onoff equivalence pass. Zero newcalls/spend/credentials. No fresh modelqua..."
         }
       }
     }
@@ -19631,14 +21319,15 @@
           "label": "doc-web Runtime",
           "manual_priority": "medium",
           "last_audited_at": "2026-04-09",
-          "stories_since_audit": 0,
+          "stories_since_audit": 1,
           "recent_story_refs": [
             "193",
             "196",
             "197",
             "201",
             "202",
-            "203"
+            "203",
+            "260"
           ],
           "open_findings": [],
           "notes": "Recent bounded runtime work widened maintained proof across XLSX, born-digital PDF, PPTX, EPUB, EML, and MBOX. The runtime boundary is currently honest; future cleanup should wait for a new cross-format seam rather than re-auditing the just-landed direct-entry slices."

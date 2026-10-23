@@ -1,0 +1,9 @@
+{
+  "allowed": false,
+  "reason": "Valid A1 Argon semantic failure: source-proven ambiguous table 0 row 1 cell 1 was declared certain (uncertain_cells=[]), report verified. Diagnostic exact alias text does not establish a correct ambiguity hold.",
+  "stage": "reader-A1-argon",
+  "paid_expansion_stopped": true,
+  "astra_A1_not_dispatched": true,
+  "remaining_panel_and_repeats_not_dispatched": true,
+  "source_review_pending": true
+}

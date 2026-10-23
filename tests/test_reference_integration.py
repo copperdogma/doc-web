@@ -268,11 +268,16 @@ def test_reference_emitter_schema_accepts_actual_parser_flags(module_path):
         action = keywords.get("action")
         is_boolean = isinstance(action, ast.Constant) and action.value in {"store_true", "store_false"}
         has_negative_form = isinstance(action, ast.Attribute) and action.attr == "BooleanOptionalAction"
+        choices = ast.literal_eval(keywords["choices"]) if "choices" in keywords else None
         for flag in node.args:
             if not isinstance(flag, ast.Constant) or not isinstance(flag.value, str) or not flag.value.startswith("--"):
                 continue
             key = flag.value[2:].replace("-", "_")
-            parser_flags[key] = True if is_boolean or has_negative_form else "fixture-value"
+            parser_flags[key] = True if is_boolean or has_negative_form else choices[0] if choices else "fixture-value"
+            if choices:
+                assert set(metadata["param_schema"]["properties"][key]["enum"]) == set(choices)
+                for choice in choices:
+                    _validate_params({key: choice}, metadata["param_schema"], "parser-choice", metadata["module_id"])
             if has_negative_form:
                 parser_flags[f"no_{key}"] = True
     _validate_params(parser_flags, metadata["param_schema"], "parser-surface", metadata["module_id"])

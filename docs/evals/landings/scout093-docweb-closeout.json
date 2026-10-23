@@ -1,0 +1,50 @@
+{
+  "base": "e44c0a41abf02ad266c10afdf5d95d48bb1b1fe2",
+  "scope": "combine original074 and thinking075, no runtime/default modifications",
+  "source_worktrees": [
+    "/Users/cam/.codex/worktrees/scout093-wonder-docweb-20261014",
+    "/Users/cam/.codex/worktrees/scout093-wonder-thinking-docweb-20261014"
+  ],
+  "allowlist": [
+    ".gitignore",
+    "CHANGELOG.md",
+    "docs/evals/registry.yaml",
+    "docs/methodology/graph.json",
+    "docs/stories.md",
+    "benchmarks/scripts/wonder_literal_campaign.py",
+    "benchmarks/scripts/wonder_literal_receipts.py",
+    "docs/evals/attempts/074-muse-wonder-literal-screen.md",
+    "docs/stories/story-254-muse-wonder-literal-screen.md",
+    "tests/test_wonder_literal_campaign.py",
+    "benchmarks/scripts/wonder_thinking_campaign.py",
+    "benchmarks/scripts/wonder_thinking_receipts.py",
+    "docs/evals/attempts/075-wonder-literal-thinking-calibration.md",
+    "docs/stories/story-255-wonder-literal-thinking-calibration.md",
+    "tests/test_wonder_thinking_campaign.py",
+    "docs/evals/evidence/074-wonder",
+    "docs/evals/evidence/075-wonder-thinking",
+    "docs/evals/landings/scout093-docweb-closeout.json"
+  ],
+  "validation_reuse": "104initial/106thinking passed; unchanged exact tooling/interface hashes compared during integration. No paid rerun.",
+  "spend_usd": 0.8039514,
+  "unknown_usd": 0,
+  "primary_checkout": "clean read-only; no capture dirt",
+  "push": "held until supervisor all-repo preflight",
+  "validation": {
+    "tooling_hashes_equal_source_worktrees": {
+      "benchmarks/scripts/wonder_literal_campaign.py": "1ae97879a4416a99ac22903d170cfe58756d63bd6ef8cdfb34d571fcfc07bb79",
+      "benchmarks/scripts/wonder_literal_receipts.py": "766b4f80762d75eda8e304295112f8b54a9400bfc01ce6a7ba5555cdfdd161bf",
+      "tests/test_wonder_literal_campaign.py": "cca806a9d0c284fbba5521ec27020d5d8bd7c3d6c80e931e778d8ee3039102d6",
+      "benchmarks/scripts/wonder_thinking_campaign.py": "5a650ae22d372fa06649f008acfcf4e904285ed4028392caed0352fbe0eb6801",
+      "benchmarks/scripts/wonder_thinking_receipts.py": "f3268e5f83db48bc56745337830919f2f77c06beac0d21dbb8152bbe9a39119e",
+      "tests/test_wonder_thinking_campaign.py": "61fe7722f93e4bf53eb070acd9e3e0f106b735eb8e9328dc817d1dd614b0d24a"
+    },
+    "reused": "100 unchanged owner interface checks, plus original104/thinking106 evidence applies; combined10guard tests rerun offline after integration",
+    "archives": "07432members and07556members verified unchanged vs source archives; accountidentifier/credential scan clear",
+    "methodology": "build/check passed",
+    "lint": "scoped Ruff passed",
+    "whitespace": "passed",
+    "runtime": "no production modules/defaults changed; no paid driver rerun"
+  },
+  "story_closure": "254/255 workflow/tenet/document gates reconciled via mark-story-done; changelog once"
+}

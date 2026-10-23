@@ -1,0 +1,41 @@
+{
+  "sources": {
+    "benchmarks/providers/scout096_guard.py": {
+      "sha256": "87c082906b134f7f26d328f3693b99340ae58ea50ce2da074f49e6761622c03d",
+      "bytes": 4452
+    },
+    "benchmarks/scripts/scout096_reading.py": {
+      "sha256": "1b7deef9e0b02e9cfc13a40d6355e4666f463c909e6a70a0164afedfba79f819",
+      "bytes": 18572
+    },
+    "benchmarks/scripts/scout096_safety.py": {
+      "sha256": "9d20e98dcaa0d75753bd39bd7cef77ca6c3b42d03cb54b8796542e9a8d88c6f6",
+      "bytes": 9049
+    },
+    "benchmarks/scripts/scout096_receipts.py": {
+      "sha256": "7560dc55964c7f653819d2c6ed79f27599e709254510a6bf3861fb9c353aa18d",
+      "bytes": 856
+    },
+    "modules/common/table_source_review.py": {
+      "sha256": "78599f846eb31b2ad7a1607257458760e6e93e6eaa6d4ab062ffcbd30b879709",
+      "bytes": 7221
+    },
+    "modules/common/literal_table_review.py": {
+      "sha256": "25085a0937d27e5bae61e3973eddcf2ea6a43496cba814d57fb8af67a0212d67",
+      "bytes": 14664
+    },
+    "modules/extract/ocr_ai_gpt51_v1/main.py": {
+      "sha256": "bd80f4d050a1eacc6442295471d9727bfd16ff674b84c2d64cec0e491cd96b95",
+      "bytes": 35309
+    },
+    "benchmarks/scorers/image_crop_scorer.py": {
+      "sha256": "7fcf07e05726bf3ebbc2488a503a9d7f165dde79649890cbd65f12a6ce4c19e7",
+      "bytes": 10333
+    },
+    "benchmarks/scorers/handwritten_notes_transcription.py": {
+      "sha256": "3e8ab803e94b22b139e78d51bd029f6502ecac03a170f2dd7955b86afd67ee6b",
+      "bytes": 4712
+    }
+  },
+  "epoch_note": "Current final reproduction sources. Earlier adapter-only repairs occurred after some responses; exact lossless native request/response receipts are authoritative for each paid call. No claim current file produced every earlier output."
+}

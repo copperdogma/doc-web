@@ -1,0 +1,13 @@
+{
+  "tests": {
+    "command": "/usr/local/bin/python3 -m pytest -q tests/test_pplx_consistency_shadow.py tests/test_pplx_shadow_transport.py tests/test_jev_consistency_shadow.py tests/test_consistency_evidence_contract.py tests/test_plan_onward_document_consistency_v1.py",
+    "passed": 55,
+    "warnings": "36existing datetime.utcnow deprecation warnings"
+  },
+  "lint": "scoped Ruff passed",
+  "methodology": "scripts/methodology_graph.py build + check passed",
+  "whitespace": "git diff --check passed",
+  "offline_replay": "70frozen sources/10native receipts/2guard replays + exact canonical hashes; zero network",
+  "cleanup": "temporary DOC_WEB_PERPLEXITY_API_KEY removed by helper; root name-only absence confirmed",
+  "primary": "untouched; no commits/pushes/defaults"
+}

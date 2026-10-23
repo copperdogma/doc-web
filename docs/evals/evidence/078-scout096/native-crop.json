@@ -1,0 +1,5 @@
+{
+  "raw": "{\"images\": [{\"description\": \"The word 'TEST' in black text on a white background.\", \"bbox\": [96, 201, 178, 268]}]}",
+  "served": "nvidia/nemotron-3.5-super-vl",
+  "finish": "stop"
+}

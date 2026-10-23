@@ -5,13 +5,13 @@ import subprocess
 import sys
 from copy import deepcopy
 from pathlib import Path
+from types import SimpleNamespace
 
 import pytest
 from PIL import Image
 
 from doc_web.literal_tables import canonical_table_digest, compare_tables
-from doc_web.literal_fidelity import SourcePageReview
-from modules.common.table_source_review import POLICY
+from modules.common.table_source_review import SourceOnlyReader
 from modules.common.literal_fidelity_bundle import (
     finalize_literal_fidelity_bundle,
     validate_literal_fidelity_inputs,
@@ -60,11 +60,23 @@ def evidence(tmp_path):
         report_path.write_text(json.dumps(report), encoding="utf-8")
         receipt["report_sha256"] = digest(report_path.read_bytes())
 
-    report["requests"] = [{"requested_model": "gpt-6-astra", "served_model": "gpt-6-astra",
-                           "status": "completed", "image_detail": "original", "reasoning": {"effort": "medium"},
-                           "submitted_image_sha256": report["image_sha256"], "prompt_sha256": digest(POLICY.encode()),
-                           "response_schema_sha256": digest(json.dumps(SourcePageReview.model_json_schema(), sort_keys=True).encode()),
-                           "raw_response": json.dumps({"source_table_count": 1, "tables": [report["tables"][0]["review"]]})}]
+    raw = json.dumps({"source_table_count": 1, "tables": [report["tables"][0]["review"]]})
+    usage = {"input_tokens": 40, "output_tokens": 30, "total_tokens": 70,
+             "input_tokens_details": {"cached_tokens": 0},
+             "output_tokens_details": {"reasoning_tokens": 10}}
+    native = {"id": "astra-response-test", "object": "response", "created_at": 0,
+              "status": "completed", "model": "gpt-6-astra", "service_tier": "default",
+              "error": None, "incomplete_details": None, "usage": usage,
+              "output": [{"id": "message-test", "type": "message", "role": "assistant",
+                          "status": "completed", "content": [{"type": "output_text",
+                                                                "text": raw, "annotations": []}]}]}
+    response = SimpleNamespace(output_text=raw, status="completed", model="gpt-6-astra",
+                               id=native["id"], usage=usage, service_tier="default",
+                               model_dump_json=lambda: json.dumps(native))
+    raw_response = SimpleNamespace(content=json.dumps(native).encode(), parse=lambda: response)
+    client = SimpleNamespace(responses=SimpleNamespace(
+        with_raw_response=SimpleNamespace(create=lambda **kwargs: raw_response)))
+    SourceOnlyReader(client=client)(image, report["requests"])
     reseal()
     return row, report, reseal
 
@@ -218,6 +230,11 @@ def test_no_table_receipt_still_requires_clean_independent_review(evidence):
     report.update({"tables": [], "table_count": 0, "reviewed_table_sequence_sha256": canonical_table_digest(row["html"]),
                    "initial_raw_html_sha256": digest(row["raw_html"].encode())})
     report["requests"][0]["raw_response"] = json.dumps({"source_table_count": 0, "tables": []})
+    request = report["requests"][0]
+    native = json.loads(request["native_response_json"])
+    native["output"][0]["content"][0]["text"] = request["raw_response"]
+    request["native_response_json"] = json.dumps(native)
+    request["native_response_sha256"] = digest(request["native_response_json"].encode())
     row["literal_fidelity"].update({"table_count": 0, "reviewed_table_sequence_sha256": report["reviewed_table_sequence_sha256"]})
     reseal()
     assert qualify(row)

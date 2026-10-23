@@ -1,0 +1,4219 @@
+{
+  "scope": "All22 exposed original public page/crop pairs against44 complete saved payloads; original verdict grades preserved separately. Manual source adjudication, not a new scorer/golden or independent unseen test.",
+  "cases": [
+    {
+      "key": "page-001-000",
+      "arms": {
+        "candidate": {
+          "arm": "candidate",
+          "historical_http_latency_ms": 27502,
+          "images_source_then_crop": [
+            {
+              "bytes": 889368,
+              "detail": null,
+              "dimensions": [
+                1505,
+                2000
+              ],
+              "format": "JPEG",
+              "sha256": "7500762d6e0b9761b49305b28e0c3609d051af1d5f3eac8ce33028b0b439f325"
+            },
+            {
+              "bytes": 5944454,
+              "detail": null,
+              "dimensions": [
+                3786,
+                4479
+              ],
+              "format": "JPEG",
+              "sha256": "67accf0bf3854473e557261d179bce8a4c4519de039460e3c797e52f49e1dfaa"
+            }
+          ],
+          "key": "page-001-000",
+          "native_build_result": "Image exceeds frozen pilot input bound; no implicit resize",
+          "native_parse_result": "Missing native response identity",
+          "payload": {
+            "excessive_blank": false,
+            "has_page_text": false,
+            "reason": "The crop isolates the cloud-and-landscape portion of the gold-on-red cover artwork, with no page-level text or neighboring visual leakage; the red areas are part of the image background.",
+            "verdict": "pass"
+          },
+          "payload_shape": "four fields valid locally; not native admission",
+          "provider": "Minimax",
+          "request": "benchmarks/results/scout099-20261020/request-015.json",
+          "request_sha256": "e27097f427652acb09107e1ac9f37afcedc0fdb160741903db50987e52d1609f",
+          "response": "benchmarks/results/scout099-20261020/response-015.json",
+          "response_sha256": "5e76af6e62d0bd9d1f7452dfe0cbe8da32cc70683d6dc63ba81e2198488fec77",
+          "saved_grade": {
+            "correct": true,
+            "false_safe": false,
+            "golden_verdict": "pass"
+          },
+          "saved_request_controls": {
+            "max_tokens": 32768,
+            "model": "minimax/minimax-m3.1-flash:free",
+            "provider": {
+              "allow_fallbacks": false,
+              "max_price": {
+                "completion": 0,
+                "prompt": 0
+              },
+              "only": [
+                "minimax"
+              ],
+              "require_parameters": false
+            },
+            "reasoning": {
+              "effort": "high"
+            }
+          },
+          "served_model": "minimax/minimax-m3.1-flash:free",
+          "stage": "safety-page-001-000-candidate-diagnostic"
+        },
+        "control": {
+          "arm": "control",
+          "historical_http_latency_ms": 6704,
+          "images_source_then_crop": [
+            {
+              "bytes": 889368,
+              "detail": "auto",
+              "dimensions": [
+                1505,
+                2000
+              ],
+              "format": "JPEG",
+              "sha256": "7500762d6e0b9761b49305b28e0c3609d051af1d5f3eac8ce33028b0b439f325"
+            },
+            {
+              "bytes": 5944454,
+              "detail": "auto",
+              "dimensions": [
+                3786,
+                4479
+              ],
+              "format": "JPEG",
+              "sha256": "67accf0bf3854473e557261d179bce8a4c4519de039460e3c797e52f49e1dfaa"
+            }
+          ],
+          "key": "page-001-000",
+          "native_build_result": "Image exceeds frozen pilot input bound; no implicit resize",
+          "native_parse_result": "Unexpected served model identity",
+          "payload": {
+            "excessive_blank": false,
+            "has_page_text": false,
+            "reason": "The crop takes only a middle portion of the coherent cover illustration, cutting off large parts of the same visual shown in the full page, including the title/border and lower landscape elements.",
+            "verdict": "fail"
+          },
+          "payload_shape": "four fields valid locally; not native admission",
+          "provider": "OpenAI",
+          "request": "benchmarks/results/scout099-20261020/request-016.json",
+          "request_sha256": "c6552abe8937510b58ce41da850dd60c4446e3506a28d5e872b992b44f7cd023",
+          "response": "benchmarks/results/scout099-20261020/response-016.json",
+          "response_sha256": "57c6e9dc9cce26ffe7685aa328120a0a195a8b6600bc0d04e03af9d8e5004359",
+          "saved_grade": {
+            "correct": false,
+            "false_safe": false,
+            "golden_verdict": "pass"
+          },
+          "saved_request_controls": {
+            "max_output_tokens": 2048,
+            "model": "gpt-5.5",
+            "reasoning": {
+              "effort": "none"
+            },
+            "store": false,
+            "text": {
+              "format": {
+                "name": "page_context_validation",
+                "schema": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "excessive_blank": {
+                      "type": "boolean"
+                    },
+                    "has_page_text": {
+                      "type": "boolean"
+                    },
+                    "reason": {
+                      "type": "string"
+                    },
+                    "verdict": {
+                      "enum": [
+                        "pass",
+                        "fail"
+                      ],
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "verdict",
+                    "has_page_text",
+                    "excessive_blank",
+                    "reason"
+                  ],
+                  "type": "object"
+                },
+                "strict": true,
+                "type": "json_schema"
+              }
+            }
+          },
+          "served_model": "gpt-5.5-2026-04-23",
+          "stage": "safety-page-001-000-control"
+        }
+      },
+      "new_source_judgment": {
+        "verdict": "pass",
+        "has_page_text": false,
+        "excessive_blank": false,
+        "reason": "Cover landscape/cloud/wagon artwork is isolated; title, author and outer cover border are excluded. Minor decorative line-art edge framing does not show a large missing intended visual under this policy. Red cloth is integral image background.",
+        "boundary_uncertainty": "none material for this source pair under frozen prompt; no operator authority asserted",
+        "review_scope": "Original exact request source/crop bytes decoded and individually viewed; full saved payloads inspected; fresh agent judgment, not Cam approval"
+      },
+      "review_owner": "owning audit lead",
+      "new_payload_review": {
+        "candidate": {
+          "verdict_matches_new_source_judgment": true,
+          "observed_flags_match_new_source_judgment": true,
+          "reason_source_grounded": true,
+          "uncertainty_review": "No explicit uncertainty field. Reason reviewed; no material source-boundary uncertainty requiring a separate hold observed.",
+          "semantic_issues": []
+        },
+        "control": {
+          "verdict_matches_new_source_judgment": false,
+          "observed_flags_match_new_source_judgment": true,
+          "reason_source_grounded": false,
+          "uncertainty_review": "No explicit uncertainty field. Reason reviewed; no material source-boundary uncertainty requiring a separate hold observed.",
+          "semantic_issues": [
+            "source-wrong verdict with unsupported acceptance/incompleteness reason"
+          ]
+        }
+      }
+    },
+    {
+      "key": "page-004-000",
+      "arms": {
+        "candidate": {
+          "arm": "candidate",
+          "historical_http_latency_ms": 4341,
+          "images_source_then_crop": [
+            {
+              "bytes": 180512,
+              "detail": null,
+              "dimensions": [
+                1545,
+                2000
+              ],
+              "format": "JPEG",
+              "sha256": "ad1807bfdad56d65becf8011137680496f72d564bfc922a8da7d2c021e3ef266"
+            },
+            {
+              "bytes": 1009487,
+              "detail": null,
+              "dimensions": [
+                4468,
+                1254
+              ],
+              "format": "JPEG",
+              "sha256": "4cc9a8224d1efbddc1f8f1a5a3f973bb8345f81fe26d03aa3b6d5197ce786209"
+            }
+          ],
+          "key": "page-004-000",
+          "native_build_result": "Image exceeds frozen pilot input bound; no implicit resize",
+          "native_parse_result": "Missing native response identity",
+          "payload": {
+            "excessive_blank": false,
+            "has_page_text": false,
+            "reason": "The crop tightly isolates the complete wagon-and-animal illustration, excluding the surrounding page credits and page number. No external text or neighboring visual is included, and the remaining light areas are part of the illustration.",
+            "verdict": "pass"
+          },
+          "payload_shape": "four fields valid locally; not native admission",
+          "provider": "Minimax",
+          "request": "benchmarks/results/scout099-20261020/request-017.json",
+          "request_sha256": "f2d7dfbe070aa307c29a1c9cc48020c6755192b0fbfcaf6ea1c80603df846516",
+          "response": "benchmarks/results/scout099-20261020/response-017.json",
+          "response_sha256": "29a83d8a1ec6a21a8fb52f24c0f266fd31beedbc1dedce5b14846f0c930f87f8",
+          "saved_grade": {
+            "correct": true,
+            "false_safe": false,
+            "golden_verdict": "pass"
+          },
+          "saved_request_controls": {
+            "max_tokens": 32768,
+            "model": "minimax/minimax-m3.1-flash:free",
+            "provider": {
+              "allow_fallbacks": false,
+              "max_price": {
+                "completion": 0,
+                "prompt": 0
+              },
+              "only": [
+                "minimax"
+              ],
+              "require_parameters": false
+            },
+            "reasoning": {
+              "effort": "high"
+            }
+          },
+          "served_model": "minimax/minimax-m3.1-flash:free",
+          "stage": "safety-page-004-000-candidate-diagnostic"
+        },
+        "control": {
+          "arm": "control",
+          "historical_http_latency_ms": 2891,
+          "images_source_then_crop": [
+            {
+              "bytes": 180512,
+              "detail": "auto",
+              "dimensions": [
+                1545,
+                2000
+              ],
+              "format": "JPEG",
+              "sha256": "ad1807bfdad56d65becf8011137680496f72d564bfc922a8da7d2c021e3ef266"
+            },
+            {
+              "bytes": 1009487,
+              "detail": "auto",
+              "dimensions": [
+                4468,
+                1254
+              ],
+              "format": "JPEG",
+              "sha256": "4cc9a8224d1efbddc1f8f1a5a3f973bb8345f81fe26d03aa3b6d5197ce786209"
+            }
+          ],
+          "key": "page-004-000",
+          "native_build_result": "Image exceeds frozen pilot input bound; no implicit resize",
+          "native_parse_result": "Unexpected served model identity",
+          "payload": {
+            "excessive_blank": false,
+            "has_page_text": false,
+            "reason": "The crop is an overly tight zoom of the illustration and omits large parts of the same intended visual, including much of the left horse and the right side/horse shown on the full page.",
+            "verdict": "fail"
+          },
+          "payload_shape": "four fields valid locally; not native admission",
+          "provider": "OpenAI",
+          "request": "benchmarks/results/scout099-20261020/request-018.json",
+          "request_sha256": "9c8028bb5677c84232fc9be76b38042ccaab1c714e08c936f24da8d7ad7e3d7f",
+          "response": "benchmarks/results/scout099-20261020/response-018.json",
+          "response_sha256": "98d17a854bfefe261c74c07504ccd08b700181440a0acf19bd1404f7776cbdf3",
+          "saved_grade": {
+            "correct": false,
+            "false_safe": false,
+            "golden_verdict": "pass"
+          },
+          "saved_request_controls": {
+            "max_output_tokens": 2048,
+            "model": "gpt-5.5",
+            "reasoning": {
+              "effort": "none"
+            },
+            "store": false,
+            "text": {
+              "format": {
+                "name": "page_context_validation",
+                "schema": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "excessive_blank": {
+                      "type": "boolean"
+                    },
+                    "has_page_text": {
+                      "type": "boolean"
+                    },
+                    "reason": {
+                      "type": "string"
+                    },
+                    "verdict": {
+                      "enum": [
+                        "pass",
+                        "fail"
+                      ],
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "verdict",
+                    "has_page_text",
+                    "excessive_blank",
+                    "reason"
+                  ],
+                  "type": "object"
+                },
+                "strict": true,
+                "type": "json_schema"
+              }
+            }
+          },
+          "served_model": "gpt-5.5-2026-04-23",
+          "stage": "safety-page-004-000-control"
+        }
+      },
+      "new_source_judgment": {
+        "verdict": "pass",
+        "has_page_text": false,
+        "excessive_blank": false,
+        "reason": "Complete wagon, left horse, right ox and grass are retained. External illustration credits and page number are excluded. GPT invents large missing animal parts; source does not show them outside the crop.",
+        "boundary_uncertainty": "none material for this source pair under frozen prompt; no operator authority asserted",
+        "review_scope": "Original exact request source/crop bytes decoded and individually viewed; full saved payloads inspected; fresh agent judgment, not Cam approval"
+      },
+      "review_owner": "owning audit lead",
+      "new_payload_review": {
+        "candidate": {
+          "verdict_matches_new_source_judgment": true,
+          "observed_flags_match_new_source_judgment": true,
+          "reason_source_grounded": true,
+          "uncertainty_review": "No explicit uncertainty field. Reason reviewed; no material source-boundary uncertainty requiring a separate hold observed.",
+          "semantic_issues": []
+        },
+        "control": {
+          "verdict_matches_new_source_judgment": false,
+          "observed_flags_match_new_source_judgment": true,
+          "reason_source_grounded": false,
+          "uncertainty_review": "No explicit uncertainty field. Reason reviewed; no material source-boundary uncertainty requiring a separate hold observed.",
+          "semantic_issues": [
+            "source-wrong verdict with unsupported acceptance/incompleteness reason"
+          ]
+        }
+      }
+    },
+    {
+      "key": "page-009-000",
+      "arms": {
+        "candidate": {
+          "arm": "candidate",
+          "historical_http_latency_ms": 6092,
+          "images_source_then_crop": [
+            {
+              "bytes": 473427,
+              "detail": null,
+              "dimensions": [
+                1545,
+                2000
+              ],
+              "format": "JPEG",
+              "sha256": "da312d69a4c007009c1e696b32e66a3a7a957eac6b9aa3fa67323eeb1c478c31"
+            },
+            {
+              "bytes": 3964307,
+              "detail": null,
+              "dimensions": [
+                3029,
+                2772
+              ],
+              "format": "JPEG",
+              "sha256": "4413db90068236ede2835ef29c29359137847e51158266af20ef925938fa7bc0"
+            }
+          ],
+          "key": "page-009-000",
+          "native_build_result": "Image exceeds frozen pilot input bound; no implicit resize",
+          "native_parse_result": "Missing native response identity",
+          "payload": {
+            "excessive_blank": false,
+            "has_page_text": false,
+            "reason": "The crop cleanly isolates the complete portrait photograph, excluding the caption, surrounding page text, and dedication while retaining the subjects and photographic background.",
+            "verdict": "pass"
+          },
+          "payload_shape": "four fields valid locally; not native admission",
+          "provider": "Minimax",
+          "request": "benchmarks/results/scout099-20261020/request-019.json",
+          "request_sha256": "6eb1207a39b9df1a59573d71e1e96790591e3a65ef11945517b99957d624dd77",
+          "response": "benchmarks/results/scout099-20261020/response-019.json",
+          "response_sha256": "52f7d749737631b89b6fa51d05cab046417229131f7c6a5be35b55b93db94693",
+          "saved_grade": {
+            "correct": true,
+            "false_safe": false,
+            "golden_verdict": "pass"
+          },
+          "saved_request_controls": {
+            "max_tokens": 32768,
+            "model": "minimax/minimax-m3.1-flash:free",
+            "provider": {
+              "allow_fallbacks": false,
+              "max_price": {
+                "completion": 0,
+                "prompt": 0
+              },
+              "only": [
+                "minimax"
+              ],
+              "require_parameters": false
+            },
+            "reasoning": {
+              "effort": "high"
+            }
+          },
+          "served_model": "minimax/minimax-m3.1-flash:free",
+          "stage": "safety-page-009-000-candidate-diagnostic"
+        },
+        "control": {
+          "arm": "control",
+          "historical_http_latency_ms": 4628,
+          "images_source_then_crop": [
+            {
+              "bytes": 473427,
+              "detail": "auto",
+              "dimensions": [
+                1545,
+                2000
+              ],
+              "format": "JPEG",
+              "sha256": "da312d69a4c007009c1e696b32e66a3a7a957eac6b9aa3fa67323eeb1c478c31"
+            },
+            {
+              "bytes": 3964307,
+              "detail": "auto",
+              "dimensions": [
+                3029,
+                2772
+              ],
+              "format": "JPEG",
+              "sha256": "4413db90068236ede2835ef29c29359137847e51158266af20ef925938fa7bc0"
+            }
+          ],
+          "key": "page-009-000",
+          "native_build_result": "Image exceeds frozen pilot input bound; no implicit resize",
+          "native_parse_result": "Unexpected served model identity",
+          "payload": {
+            "excessive_blank": false,
+            "has_page_text": false,
+            "reason": "Crop isolates the main portrait photograph without including page caption or surrounding text; light background is part of the photo.",
+            "verdict": "pass"
+          },
+          "payload_shape": "four fields valid locally; not native admission",
+          "provider": "OpenAI",
+          "request": "benchmarks/results/scout099-20261020/request-020.json",
+          "request_sha256": "fd45903906d4baa486eec4fbf793dfd069ffa1be7d40b86581c0a2f00a95af1d",
+          "response": "benchmarks/results/scout099-20261020/response-020.json",
+          "response_sha256": "2290c1ac62a4f79e597334825e663d9a9d646a5a243f1267e43a9f18eb62cd06",
+          "saved_grade": {
+            "correct": true,
+            "false_safe": false,
+            "golden_verdict": "pass"
+          },
+          "saved_request_controls": {
+            "max_output_tokens": 2048,
+            "model": "gpt-5.5",
+            "reasoning": {
+              "effort": "none"
+            },
+            "store": false,
+            "text": {
+              "format": {
+                "name": "page_context_validation",
+                "schema": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "excessive_blank": {
+                      "type": "boolean"
+                    },
+                    "has_page_text": {
+                      "type": "boolean"
+                    },
+                    "reason": {
+                      "type": "string"
+                    },
+                    "verdict": {
+                      "enum": [
+                        "pass",
+                        "fail"
+                      ],
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "verdict",
+                    "has_page_text",
+                    "excessive_blank",
+                    "reason"
+                  ],
+                  "type": "object"
+                },
+                "strict": true,
+                "type": "json_schema"
+              }
+            }
+          },
+          "served_model": "gpt-5.5-2026-04-23",
+          "stage": "safety-page-009-000-control"
+        }
+      },
+      "new_source_judgment": {
+        "verdict": "pass",
+        "has_page_text": false,
+        "excessive_blank": false,
+        "reason": "Complete Moise/Sophie portrait rectangle retained, with halftone studio backdrop and both people. External caption, introductory prose and dedication are excluded.",
+        "boundary_uncertainty": "none material for this source pair under frozen prompt; no operator authority asserted",
+        "review_scope": "Original exact request source/crop bytes decoded and individually viewed; full saved payloads inspected; fresh agent judgment, not Cam approval"
+      },
+      "review_owner": "owning audit lead",
+      "new_payload_review": {
+        "candidate": {
+          "verdict_matches_new_source_judgment": true,
+          "observed_flags_match_new_source_judgment": true,
+          "reason_source_grounded": true,
+          "uncertainty_review": "No explicit uncertainty field. Reason reviewed; no material source-boundary uncertainty requiring a separate hold observed.",
+          "semantic_issues": []
+        },
+        "control": {
+          "verdict_matches_new_source_judgment": true,
+          "observed_flags_match_new_source_judgment": true,
+          "reason_source_grounded": true,
+          "uncertainty_review": "No explicit uncertainty field. Reason reviewed; no material source-boundary uncertainty requiring a separate hold observed.",
+          "semantic_issues": []
+        }
+      }
+    },
+    {
+      "key": "page-012-000",
+      "arms": {
+        "candidate": {
+          "arm": "candidate",
+          "historical_http_latency_ms": 3433,
+          "images_source_then_crop": [
+            {
+              "bytes": 232594,
+              "detail": null,
+              "dimensions": [
+                1545,
+                2000
+              ],
+              "format": "JPEG",
+              "sha256": "ae3524cb58ac940c912c7885d65ec9d21221415d97d1ea21d97be9615161a860"
+            },
+            {
+              "bytes": 176520,
+              "detail": null,
+              "dimensions": [
+                1056,
+                1049
+              ],
+              "format": "JPEG",
+              "sha256": "3a2a0f5ac2782b10b066bd4ace50d305ce2bbea1c53e27934205b7cf2a8b93ad"
+            }
+          ],
+          "key": "page-012-000",
+          "native_build_result": "built; saved request differs",
+          "native_parse_result": "Missing native response identity",
+          "native_request_equal": false,
+          "payload": {
+            "excessive_blank": false,
+            "has_page_text": false,
+            "reason": "The crop cleanly isolates the Celebrate Saskatchewan logo; its lettering is integral to the logo, with no surrounding page text or visual leakage.",
+            "verdict": "pass"
+          },
+          "payload_shape": "four fields valid locally; not native admission",
+          "provider": "Minimax",
+          "request": "benchmarks/results/scout099-20261020/request-021.json",
+          "request_sha256": "f010f0ca807f34fab6677f3472ddc425760d75e046cf5c15f54e959711f267f6",
+          "response": "benchmarks/results/scout099-20261020/response-021.json",
+          "response_sha256": "a10781e955ac9910b293c1f1a5c906a9ab671220c38eceae7406dbd1853944f0",
+          "saved_grade": {
+            "correct": true,
+            "false_safe": false,
+            "golden_verdict": "pass"
+          },
+          "saved_request_controls": {
+            "max_tokens": 32768,
+            "model": "minimax/minimax-m3.1-flash:free",
+            "provider": {
+              "allow_fallbacks": false,
+              "max_price": {
+                "completion": 0,
+                "prompt": 0
+              },
+              "only": [
+                "minimax"
+              ],
+              "require_parameters": false
+            },
+            "reasoning": {
+              "effort": "high"
+            }
+          },
+          "served_model": "minimax/minimax-m3.1-flash:free",
+          "stage": "safety-page-012-000-candidate-diagnostic"
+        },
+        "control": {
+          "arm": "control",
+          "historical_http_latency_ms": 2764,
+          "images_source_then_crop": [
+            {
+              "bytes": 232594,
+              "detail": "auto",
+              "dimensions": [
+                1545,
+                2000
+              ],
+              "format": "JPEG",
+              "sha256": "ae3524cb58ac940c912c7885d65ec9d21221415d97d1ea21d97be9615161a860"
+            },
+            {
+              "bytes": 176520,
+              "detail": "auto",
+              "dimensions": [
+                1056,
+                1049
+              ],
+              "format": "JPEG",
+              "sha256": "3a2a0f5ac2782b10b066bd4ace50d305ce2bbea1c53e27934205b7cf2a8b93ad"
+            }
+          ],
+          "key": "page-012-000",
+          "native_build_result": "built; saved request differs",
+          "native_parse_result": "Unexpected served model identity",
+          "native_request_equal": false,
+          "payload": {
+            "excessive_blank": false,
+            "has_page_text": true,
+            "reason": "The crop isolates the top Saskatchewan anniversary logo/emblem from the page. The visible text is part of the emblem itself, not surrounding page text, and there is no excessive blank margin.",
+            "verdict": "pass"
+          },
+          "payload_shape": "four fields valid locally; not native admission",
+          "provider": "OpenAI",
+          "request": "benchmarks/results/scout099-20261020/request-022.json",
+          "request_different_top_fields": [
+            "input",
+            "max_output_tokens",
+            "model",
+            "reasoning"
+          ],
+          "request_sha256": "a99c3518844369f07c25fdf8db413b2014cc2f128ac2fbaaf2fa39e2ae15db5a",
+          "response": "benchmarks/results/scout099-20261020/response-022.json",
+          "response_sha256": "eabdb2c8477cbb0f259147e777c3f2d408a596e2588b4b19bc0de22dab24581b",
+          "saved_grade": {
+            "correct": true,
+            "false_safe": false,
+            "golden_verdict": "pass"
+          },
+          "saved_request_controls": {
+            "max_output_tokens": 2048,
+            "model": "gpt-5.5",
+            "reasoning": {
+              "effort": "none"
+            },
+            "store": false,
+            "text": {
+              "format": {
+                "name": "page_context_validation",
+                "schema": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "excessive_blank": {
+                      "type": "boolean"
+                    },
+                    "has_page_text": {
+                      "type": "boolean"
+                    },
+                    "reason": {
+                      "type": "string"
+                    },
+                    "verdict": {
+                      "enum": [
+                        "pass",
+                        "fail"
+                      ],
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "verdict",
+                    "has_page_text",
+                    "excessive_blank",
+                    "reason"
+                  ],
+                  "type": "object"
+                },
+                "strict": true,
+                "type": "json_schema"
+              }
+            }
+          },
+          "served_model": "gpt-5.5-2026-04-23",
+          "stage": "safety-page-012-000-control"
+        }
+      },
+      "new_source_judgment": {
+        "verdict": "pass",
+        "has_page_text": false,
+        "excessive_blank": false,
+        "reason": "Complete Celebrate Saskatchewan anniversary logo and 1905-1980 lettering retained. Lettering is integral logo content; no surrounding certificate prose.",
+        "boundary_uncertainty": "none material for this source pair under frozen prompt; no operator authority asserted",
+        "review_scope": "Original exact request source/crop bytes decoded and individually viewed; full saved payloads inspected; fresh agent judgment, not Cam approval"
+      },
+      "review_owner": "owning audit lead",
+      "new_payload_review": {
+        "candidate": {
+          "verdict_matches_new_source_judgment": true,
+          "observed_flags_match_new_source_judgment": true,
+          "reason_source_grounded": true,
+          "uncertainty_review": "No explicit uncertainty field. Reason reviewed; no material source-boundary uncertainty requiring a separate hold observed.",
+          "semantic_issues": []
+        },
+        "control": {
+          "verdict_matches_new_source_judgment": true,
+          "observed_flags_match_new_source_judgment": false,
+          "reason_source_grounded": true,
+          "uncertainty_review": "No explicit uncertainty field. Reason reviewed; no material source-boundary uncertainty requiring a separate hold observed.",
+          "semantic_issues": [
+            "has_page_text contradicts integral-logo source content and its own reason"
+          ]
+        }
+      }
+    },
+    {
+      "key": "page-012-001",
+      "arms": {
+        "candidate": {
+          "arm": "candidate",
+          "historical_http_latency_ms": 29389,
+          "images_source_then_crop": [
+            {
+              "bytes": 232594,
+              "detail": null,
+              "dimensions": [
+                1545,
+                2000
+              ],
+              "format": "JPEG",
+              "sha256": "ae3524cb58ac940c912c7885d65ec9d21221415d97d1ea21d97be9615161a860"
+            },
+            {
+              "bytes": 217999,
+              "detail": null,
+              "dimensions": [
+                1397,
+                1096
+              ],
+              "format": "JPEG",
+              "sha256": "da367ed32034c950a729fd32707412d2956f01760e2ced6616f2c7306002d7ec"
+            }
+          ],
+          "key": "page-012-001",
+          "native_build_result": "built; saved request differs",
+          "native_parse_result": "Missing native response identity",
+          "native_request_equal": false,
+          "payload": {
+            "excessive_blank": false,
+            "has_page_text": false,
+            "reason": "The crop isolates the embossed seal and includes no external page text, but it cuts off a substantial lower portion of the seal visible on the full page.",
+            "verdict": "fail"
+          },
+          "payload_shape": "four fields valid locally; not native admission",
+          "provider": "Minimax",
+          "request": "benchmarks/results/scout099-20261020/request-013.json",
+          "request_sha256": "431831cddeba1d603b7990bf520793b90fd766adad9edbd180fbe378031e0bca",
+          "response": "benchmarks/results/scout099-20261020/response-013.json",
+          "response_sha256": "6f4fc66b8122da93c5e7b8aef4a7a68569ae0df157e7adafdf77f9192d66bca9",
+          "saved_grade": {
+            "correct": true,
+            "false_safe": false,
+            "golden_verdict": "fail"
+          },
+          "saved_request_controls": {
+            "max_tokens": 32768,
+            "model": "minimax/minimax-m3.1-flash:free",
+            "provider": {
+              "allow_fallbacks": false,
+              "max_price": {
+                "completion": 0,
+                "prompt": 0
+              },
+              "only": [
+                "minimax"
+              ],
+              "require_parameters": false
+            },
+            "reasoning": {
+              "effort": "high"
+            }
+          },
+          "served_model": "minimax/minimax-m3.1-flash:free",
+          "stage": "safety-page-012-001-candidate-diagnostic"
+        },
+        "control": {
+          "arm": "control",
+          "historical_http_latency_ms": 2920,
+          "images_source_then_crop": [
+            {
+              "bytes": 232594,
+              "detail": "auto",
+              "dimensions": [
+                1545,
+                2000
+              ],
+              "format": "JPEG",
+              "sha256": "ae3524cb58ac940c912c7885d65ec9d21221415d97d1ea21d97be9615161a860"
+            },
+            {
+              "bytes": 217999,
+              "detail": "auto",
+              "dimensions": [
+                1397,
+                1096
+              ],
+              "format": "JPEG",
+              "sha256": "da367ed32034c950a729fd32707412d2956f01760e2ced6616f2c7306002d7ec"
+            }
+          ],
+          "key": "page-012-001",
+          "native_build_result": "built; saved request differs",
+          "native_parse_result": "Unexpected served model identity",
+          "native_request_equal": false,
+          "payload": {
+            "excessive_blank": false,
+            "has_page_text": false,
+            "reason": "The crop isolates the seal/rosette visual from the certificate; visible markings are part of the seal itself, with no surrounding page text or neighboring visuals included.",
+            "verdict": "pass"
+          },
+          "payload_shape": "four fields valid locally; not native admission",
+          "provider": "OpenAI",
+          "request": "benchmarks/results/scout099-20261020/request-014.json",
+          "request_different_top_fields": [
+            "input",
+            "max_output_tokens",
+            "model",
+            "reasoning"
+          ],
+          "request_sha256": "c2ff48f9ddfbdfe47a50b3a350c4b22f6b276e293164d4841e03840b13d061ab",
+          "response": "benchmarks/results/scout099-20261020/response-014.json",
+          "response_sha256": "8bcd1932ac177553ecf0c95403c636333a7d53bbf0fcbcb56556762dfe03e27d",
+          "saved_grade": {
+            "correct": false,
+            "false_safe": true,
+            "golden_verdict": "fail"
+          },
+          "saved_request_controls": {
+            "max_output_tokens": 2048,
+            "model": "gpt-5.5",
+            "reasoning": {
+              "effort": "none"
+            },
+            "store": false,
+            "text": {
+              "format": {
+                "name": "page_context_validation",
+                "schema": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "excessive_blank": {
+                      "type": "boolean"
+                    },
+                    "has_page_text": {
+                      "type": "boolean"
+                    },
+                    "reason": {
+                      "type": "string"
+                    },
+                    "verdict": {
+                      "enum": [
+                        "pass",
+                        "fail"
+                      ],
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "verdict",
+                    "has_page_text",
+                    "excessive_blank",
+                    "reason"
+                  ],
+                  "type": "object"
+                },
+                "strict": true,
+                "type": "json_schema"
+              }
+            }
+          },
+          "served_model": "gpt-5.5-2026-04-23",
+          "stage": "safety-page-012-001-control"
+        }
+      },
+      "new_source_judgment": {
+        "verdict": "fail",
+        "has_page_text": false,
+        "excessive_blank": false,
+        "reason": "Full certificate source shows a circular embossed seal. Crop omits a substantial lower arc, leaving straight cut through its lower portion. Neither surrounding certificate prose nor excessive blank margin is present.",
+        "boundary_uncertainty": "none material for this source pair under frozen prompt; no operator authority asserted",
+        "review_scope": "Original exact request source/crop bytes decoded and individually viewed; full saved payloads inspected; fresh agent judgment, not Cam approval"
+      },
+      "review_owner": "owning audit lead",
+      "new_payload_review": {
+        "candidate": {
+          "verdict_matches_new_source_judgment": true,
+          "observed_flags_match_new_source_judgment": true,
+          "reason_source_grounded": true,
+          "uncertainty_review": "No explicit uncertainty field. Reason reviewed; no material source-boundary uncertainty requiring a separate hold observed.",
+          "semantic_issues": []
+        },
+        "control": {
+          "verdict_matches_new_source_judgment": false,
+          "observed_flags_match_new_source_judgment": true,
+          "reason_source_grounded": false,
+          "uncertainty_review": "No explicit uncertainty field. Reason reviewed; no material source-boundary uncertainty requiring a separate hold observed.",
+          "semantic_issues": [
+            "source-wrong verdict with unsupported acceptance/incompleteness reason"
+          ]
+        }
+      }
+    },
+    {
+      "key": "page-014-000",
+      "arms": {
+        "candidate": {
+          "arm": "candidate",
+          "historical_http_latency_ms": 5397,
+          "images_source_then_crop": [
+            {
+              "bytes": 732237,
+              "detail": null,
+              "dimensions": [
+                1545,
+                2000
+              ],
+              "format": "JPEG",
+              "sha256": "cb53f04abc02441992de4903c079b036c6242a50cd275f696231c89634e6a75b"
+            },
+            {
+              "bytes": 1833195,
+              "detail": null,
+              "dimensions": [
+                1994,
+                1796
+              ],
+              "format": "JPEG",
+              "sha256": "4f4af349e0fcc4f3e15065dad7fecc68fe1805df524bf2dac94e56a524886693"
+            }
+          ],
+          "key": "page-014-000",
+          "native_build_result": "built; saved request differs",
+          "native_parse_result": "Missing native response identity",
+          "native_request_equal": false,
+          "payload": {
+            "excessive_blank": false,
+            "has_page_text": false,
+            "reason": "The crop contains the complete portrait photograph of Moise and Sophie, including the natural halftone background, and excludes the caption and surrounding page text.",
+            "verdict": "pass"
+          },
+          "payload_shape": "four fields valid locally; not native admission",
+          "provider": "Minimax",
+          "request": "benchmarks/results/scout099-20261020/request-023.json",
+          "request_sha256": "ef91e9a5dad52154c4eaff328f1c360b6d9cfcab3cad85bdd579b8ea153c0f20",
+          "response": "benchmarks/results/scout099-20261020/response-023.json",
+          "response_sha256": "ea9709632e2c10af755e5fb20e058c957c9f242032097343b49abc2bb040d22d",
+          "saved_grade": {
+            "correct": true,
+            "false_safe": false,
+            "golden_verdict": "pass"
+          },
+          "saved_request_controls": {
+            "max_tokens": 32768,
+            "model": "minimax/minimax-m3.1-flash:free",
+            "provider": {
+              "allow_fallbacks": false,
+              "max_price": {
+                "completion": 0,
+                "prompt": 0
+              },
+              "only": [
+                "minimax"
+              ],
+              "require_parameters": false
+            },
+            "reasoning": {
+              "effort": "high"
+            }
+          },
+          "served_model": "minimax/minimax-m3.1-flash:free",
+          "stage": "safety-page-014-000-candidate-diagnostic"
+        },
+        "control": {
+          "arm": "control",
+          "historical_http_latency_ms": 3619,
+          "images_source_then_crop": [
+            {
+              "bytes": 732237,
+              "detail": "auto",
+              "dimensions": [
+                1545,
+                2000
+              ],
+              "format": "JPEG",
+              "sha256": "cb53f04abc02441992de4903c079b036c6242a50cd275f696231c89634e6a75b"
+            },
+            {
+              "bytes": 1833195,
+              "detail": "auto",
+              "dimensions": [
+                1994,
+                1796
+              ],
+              "format": "JPEG",
+              "sha256": "4f4af349e0fcc4f3e15065dad7fecc68fe1805df524bf2dac94e56a524886693"
+            }
+          ],
+          "key": "page-014-000",
+          "native_build_result": "built; saved request differs",
+          "native_parse_result": "Unexpected served model identity",
+          "native_request_equal": false,
+          "payload": {
+            "excessive_blank": false,
+            "has_page_text": false,
+            "reason": "Crop isolates the portrait photograph without including the page caption or surrounding text; light background is part of the image.",
+            "verdict": "pass"
+          },
+          "payload_shape": "four fields valid locally; not native admission",
+          "provider": "OpenAI",
+          "request": "benchmarks/results/scout099-20261020/request-024.json",
+          "request_different_top_fields": [
+            "input",
+            "max_output_tokens",
+            "model",
+            "reasoning"
+          ],
+          "request_sha256": "c97944fe5d3cc322dd0c69e8dbdee25be0f9b55525efb82531a90fd6f70f3be4",
+          "response": "benchmarks/results/scout099-20261020/response-024.json",
+          "response_sha256": "c3596c02c6cb26574ac79f1e188654fb8b192e8f05db7873838cc760fe616feb",
+          "saved_grade": {
+            "correct": true,
+            "false_safe": false,
+            "golden_verdict": "pass"
+          },
+          "saved_request_controls": {
+            "max_output_tokens": 2048,
+            "model": "gpt-5.5",
+            "reasoning": {
+              "effort": "none"
+            },
+            "store": false,
+            "text": {
+              "format": {
+                "name": "page_context_validation",
+                "schema": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "excessive_blank": {
+                      "type": "boolean"
+                    },
+                    "has_page_text": {
+                      "type": "boolean"
+                    },
+                    "reason": {
+                      "type": "string"
+                    },
+                    "verdict": {
+                      "enum": [
+                        "pass",
+                        "fail"
+                      ],
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "verdict",
+                    "has_page_text",
+                    "excessive_blank",
+                    "reason"
+                  ],
+                  "type": "object"
+                },
+                "strict": true,
+                "type": "json_schema"
+              }
+            }
+          },
+          "served_model": "gpt-5.5-2026-04-23",
+          "stage": "safety-page-014-000-control"
+        }
+      },
+      "new_source_judgment": {
+        "verdict": "pass",
+        "has_page_text": false,
+        "excessive_blank": false,
+        "reason": "Complete portrait photograph including both heads and lower shoulders/background retained. The external caption and two-column prose remain outside.",
+        "boundary_uncertainty": "none material for this source pair under frozen prompt; no operator authority asserted",
+        "review_scope": "Original exact request source/crop bytes decoded and individually viewed; full saved payloads inspected; fresh agent judgment, not Cam approval"
+      },
+      "review_owner": "owning audit lead",
+      "new_payload_review": {
+        "candidate": {
+          "verdict_matches_new_source_judgment": true,
+          "observed_flags_match_new_source_judgment": true,
+          "reason_source_grounded": true,
+          "uncertainty_review": "No explicit uncertainty field. Reason reviewed; no material source-boundary uncertainty requiring a separate hold observed.",
+          "semantic_issues": []
+        },
+        "control": {
+          "verdict_matches_new_source_judgment": true,
+          "observed_flags_match_new_source_judgment": true,
+          "reason_source_grounded": true,
+          "uncertainty_review": "No explicit uncertainty field. Reason reviewed; no material source-boundary uncertainty requiring a separate hold observed.",
+          "semantic_issues": []
+        }
+      }
+    },
+    {
+      "key": "page-018-000",
+      "arms": {
+        "candidate": {
+          "arm": "candidate",
+          "historical_http_latency_ms": 8704,
+          "images_source_then_crop": [
+            {
+              "bytes": 511731,
+              "detail": null,
+              "dimensions": [
+                1545,
+                2000
+              ],
+              "format": "JPEG",
+              "sha256": "3d069f99adca6caa2039d3a9f4cccc2cb8a44413d5f44023d21baaa42b7ae6d1"
+            },
+            {
+              "bytes": 3023475,
+              "detail": null,
+              "dimensions": [
+                2163,
+                5313
+              ],
+              "format": "JPEG",
+              "sha256": "b5c9ee922fe3f6468acf31c7dbe842a4bde8918a4f370c67cf36d5b8546edc0b"
+            }
+          ],
+          "key": "page-018-000",
+          "native_build_result": "Image exceeds frozen pilot input bound; no implicit resize",
+          "native_parse_result": "Missing native response identity",
+          "payload": {
+            "excessive_blank": false,
+            "has_page_text": true,
+            "reason": "The crop includes the page caption and descriptive paragraph, and it omits a large portion of the family photograph visible on the full page.",
+            "verdict": "fail"
+          },
+          "payload_shape": "four fields valid locally; not native admission",
+          "provider": "Minimax",
+          "request": "benchmarks/results/scout099-20261020/request-025.json",
+          "request_sha256": "3f9e632e0cd0b35d1dd4a2e38603bec3b9a2c6979ca550a81f33d0acbd5e6159",
+          "response": "benchmarks/results/scout099-20261020/response-025.json",
+          "response_sha256": "73bf640ffdd33631d849d736ffd70c3f3130952d36d6b843cb01233d316af5a6",
+          "saved_grade": {
+            "correct": true,
+            "false_safe": false,
+            "golden_verdict": "fail"
+          },
+          "saved_request_controls": {
+            "max_tokens": 32768,
+            "model": "minimax/minimax-m3.1-flash:free",
+            "provider": {
+              "allow_fallbacks": false,
+              "max_price": {
+                "completion": 0,
+                "prompt": 0
+              },
+              "only": [
+                "minimax"
+              ],
+              "require_parameters": false
+            },
+            "reasoning": {
+              "effort": "high"
+            }
+          },
+          "served_model": "minimax/minimax-m3.1-flash:free",
+          "stage": "safety-page-018-000-candidate-diagnostic"
+        },
+        "control": {
+          "arm": "control",
+          "historical_http_latency_ms": 4011,
+          "images_source_then_crop": [
+            {
+              "bytes": 511731,
+              "detail": "auto",
+              "dimensions": [
+                1545,
+                2000
+              ],
+              "format": "JPEG",
+              "sha256": "3d069f99adca6caa2039d3a9f4cccc2cb8a44413d5f44023d21baaa42b7ae6d1"
+            },
+            {
+              "bytes": 3023475,
+              "detail": "auto",
+              "dimensions": [
+                2163,
+                5313
+              ],
+              "format": "JPEG",
+              "sha256": "b5c9ee922fe3f6468acf31c7dbe842a4bde8918a4f370c67cf36d5b8546edc0b"
+            }
+          ],
+          "key": "page-018-000",
+          "native_build_result": "Image exceeds frozen pilot input bound; no implicit resize",
+          "native_parse_result": "Unexpected served model identity",
+          "payload": {
+            "excessive_blank": true,
+            "has_page_text": true,
+            "reason": "The crop includes page-level caption text beneath the photograph and a large amount of blank page margin, while also only capturing part of the intended family photo.",
+            "verdict": "fail"
+          },
+          "payload_shape": "four fields valid locally; not native admission",
+          "provider": "OpenAI",
+          "request": "benchmarks/results/scout099-20261020/request-026.json",
+          "request_sha256": "ad739f92d8b2becab5b0c486697a88fe07fe8e64936f49fa0ead19c5fe7deca4",
+          "response": "benchmarks/results/scout099-20261020/response-026.json",
+          "response_sha256": "614292ba274b7a41d30df5d27de7d12fb84a58d12f6556aee37f29b4984c7a9d",
+          "saved_grade": {
+            "correct": true,
+            "false_safe": false,
+            "golden_verdict": "fail"
+          },
+          "saved_request_controls": {
+            "max_output_tokens": 2048,
+            "model": "gpt-5.5",
+            "reasoning": {
+              "effort": "none"
+            },
+            "store": false,
+            "text": {
+              "format": {
+                "name": "page_context_validation",
+                "schema": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "excessive_blank": {
+                      "type": "boolean"
+                    },
+                    "has_page_text": {
+                      "type": "boolean"
+                    },
+                    "reason": {
+                      "type": "string"
+                    },
+                    "verdict": {
+                      "enum": [
+                        "pass",
+                        "fail"
+                      ],
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "verdict",
+                    "has_page_text",
+                    "excessive_blank",
+                    "reason"
+                  ],
+                  "type": "object"
+                },
+                "strict": true,
+                "type": "json_schema"
+              }
+            }
+          },
+          "served_model": "gpt-5.5-2026-04-23",
+          "stage": "safety-page-018-000-control"
+        }
+      },
+      "new_source_judgment": {
+        "verdict": "fail",
+        "has_page_text": true,
+        "excessive_blank": true,
+        "reason": "Crop clips a large right portion of the original family photograph, includes external caption lines, and leaves a blank full-width bottom band. Native crop2163x5313: y3000..5312 alone is43.5347% blank paper, independently exceeding40%.",
+        "boundary_uncertainty": "none material for this source pair under frozen prompt; no operator authority asserted",
+        "review_scope": "Original exact request source/crop bytes decoded and individually viewed; full saved payloads inspected; fresh agent judgment, not Cam approval"
+      },
+      "review_owner": "owning audit lead",
+      "new_payload_review": {
+        "candidate": {
+          "verdict_matches_new_source_judgment": true,
+          "observed_flags_match_new_source_judgment": false,
+          "reason_source_grounded": true,
+          "uncertainty_review": "No explicit uncertainty field. Reason reviewed; no material source-boundary uncertainty requiring a separate hold observed.",
+          "semantic_issues": [
+            "excessive_blank false despite conservative43.5347% blank lower band"
+          ]
+        },
+        "control": {
+          "verdict_matches_new_source_judgment": true,
+          "observed_flags_match_new_source_judgment": true,
+          "reason_source_grounded": true,
+          "uncertainty_review": "No explicit uncertainty field. Reason reviewed; no material source-boundary uncertainty requiring a separate hold observed.",
+          "semantic_issues": []
+        }
+      }
+    },
+    {
+      "key": "page-021-000",
+      "arms": {
+        "candidate": {
+          "arm": "candidate",
+          "historical_http_latency_ms": 11011,
+          "images_source_then_crop": [
+            {
+              "bytes": 913190,
+              "detail": null,
+              "dimensions": [
+                1545,
+                2000
+              ],
+              "format": "JPEG",
+              "sha256": "5a1f2380a089ff23355ff101b07549bd57abba3a51636a6b58a28a31a4195318"
+            },
+            {
+              "bytes": 6433021,
+              "detail": null,
+              "dimensions": [
+                4253,
+                2669
+              ],
+              "format": "JPEG",
+              "sha256": "b03c6e1a9b3e3e6842de1760b97fc3e131b91eea3a2e3d11bedafa53a385f426"
+            }
+          ],
+          "key": "page-021-000",
+          "native_build_result": "Image exceeds frozen pilot input bound; no implicit resize",
+          "native_parse_result": "Missing native response identity",
+          "payload": {
+            "excessive_blank": false,
+            "has_page_text": false,
+            "reason": "The crop isolates the complete upper aerial photograph of the ranch buildings, with no caption or other page text included. The light snow-covered terrain is image content, not blank page margin.",
+            "verdict": "pass"
+          },
+          "payload_shape": "four fields valid locally; not native admission",
+          "provider": "Minimax",
+          "request": "benchmarks/results/scout099-20261020/request-027.json",
+          "request_sha256": "6dfad46b91301c57cecf10b7d962dd0d20e9f29202dd39748ae00ab4bf76b682",
+          "response": "benchmarks/results/scout099-20261020/response-027.json",
+          "response_sha256": "7b289e86ba492f948c01e982ac40479e743aa3f27e555e9da4584ceeb481d8d0",
+          "saved_grade": {
+            "correct": true,
+            "false_safe": false,
+            "golden_verdict": "pass"
+          },
+          "saved_request_controls": {
+            "max_tokens": 32768,
+            "model": "minimax/minimax-m3.1-flash:free",
+            "provider": {
+              "allow_fallbacks": false,
+              "max_price": {
+                "completion": 0,
+                "prompt": 0
+              },
+              "only": [
+                "minimax"
+              ],
+              "require_parameters": false
+            },
+            "reasoning": {
+              "effort": "high"
+            }
+          },
+          "served_model": "minimax/minimax-m3.1-flash:free",
+          "stage": "safety-page-021-000-candidate-diagnostic"
+        },
+        "control": {
+          "arm": "control",
+          "historical_http_latency_ms": 6224,
+          "images_source_then_crop": [
+            {
+              "bytes": 913190,
+              "detail": "auto",
+              "dimensions": [
+                1545,
+                2000
+              ],
+              "format": "JPEG",
+              "sha256": "5a1f2380a089ff23355ff101b07549bd57abba3a51636a6b58a28a31a4195318"
+            },
+            {
+              "bytes": 6433021,
+              "detail": "auto",
+              "dimensions": [
+                4253,
+                2669
+              ],
+              "format": "JPEG",
+              "sha256": "b03c6e1a9b3e3e6842de1760b97fc3e131b91eea3a2e3d11bedafa53a385f426"
+            }
+          ],
+          "key": "page-021-000",
+          "native_build_result": "Image exceeds frozen pilot input bound; no implicit resize",
+          "native_parse_result": "Unexpected served model identity",
+          "payload": {
+            "excessive_blank": false,
+            "has_page_text": false,
+            "reason": "Crop contains only the aerial photograph content from the upper illustration, with no caption/page text or neighboring lower image visible. Light snowy areas are part of the photo, not blank page space.",
+            "verdict": "pass"
+          },
+          "payload_shape": "four fields valid locally; not native admission",
+          "provider": "OpenAI",
+          "request": "benchmarks/results/scout099-20261020/request-028.json",
+          "request_sha256": "494eb0e99e51caf6f0b38721509b58275763280703eaff6dd062ce641cfee884",
+          "response": "benchmarks/results/scout099-20261020/response-028.json",
+          "response_sha256": "24a493aaa816d17f280884d8cd9806ac7a93ff97bdd28a01b5d610ced15d8b2b",
+          "saved_grade": {
+            "correct": true,
+            "false_safe": false,
+            "golden_verdict": "pass"
+          },
+          "saved_request_controls": {
+            "max_output_tokens": 2048,
+            "model": "gpt-5.5",
+            "reasoning": {
+              "effort": "none"
+            },
+            "store": false,
+            "text": {
+              "format": {
+                "name": "page_context_validation",
+                "schema": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "excessive_blank": {
+                      "type": "boolean"
+                    },
+                    "has_page_text": {
+                      "type": "boolean"
+                    },
+                    "reason": {
+                      "type": "string"
+                    },
+                    "verdict": {
+                      "enum": [
+                        "pass",
+                        "fail"
+                      ],
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "verdict",
+                    "has_page_text",
+                    "excessive_blank",
+                    "reason"
+                  ],
+                  "type": "object"
+                },
+                "strict": true,
+                "type": "json_schema"
+              }
+            }
+          },
+          "served_model": "gpt-5.5-2026-04-23",
+          "stage": "safety-page-021-000-control"
+        }
+      },
+      "new_source_judgment": {
+        "verdict": "pass",
+        "has_page_text": false,
+        "excessive_blank": false,
+        "reason": "Whole upper aerial ranch photograph retained without its external caption, lower photograph or page text. Light snow/terrain is photographic content.",
+        "boundary_uncertainty": "none material for this source pair under frozen prompt; no operator authority asserted",
+        "review_scope": "Original exact request source/crop bytes decoded and individually viewed; full saved payloads inspected; fresh agent judgment, not Cam approval"
+      },
+      "review_owner": "owning audit lead",
+      "new_payload_review": {
+        "candidate": {
+          "verdict_matches_new_source_judgment": true,
+          "observed_flags_match_new_source_judgment": true,
+          "reason_source_grounded": true,
+          "uncertainty_review": "No explicit uncertainty field. Reason reviewed; no material source-boundary uncertainty requiring a separate hold observed.",
+          "semantic_issues": []
+        },
+        "control": {
+          "verdict_matches_new_source_judgment": true,
+          "observed_flags_match_new_source_judgment": true,
+          "reason_source_grounded": true,
+          "uncertainty_review": "No explicit uncertainty field. Reason reviewed; no material source-boundary uncertainty requiring a separate hold observed.",
+          "semantic_issues": []
+        }
+      }
+    },
+    {
+      "key": "page-021-001",
+      "arms": {
+        "candidate": {
+          "arm": "candidate",
+          "historical_http_latency_ms": 7122,
+          "images_source_then_crop": [
+            {
+              "bytes": 913190,
+              "detail": null,
+              "dimensions": [
+                1545,
+                2000
+              ],
+              "format": "JPEG",
+              "sha256": "5a1f2380a089ff23355ff101b07549bd57abba3a51636a6b58a28a31a4195318"
+            },
+            {
+              "bytes": 5213443,
+              "detail": null,
+              "dimensions": [
+                4152,
+                2471
+              ],
+              "format": "JPEG",
+              "sha256": "7d3af1dc6ffa2a2c731a6f0cdadb791175b25bcb2580c69034dcf2de6c06131e"
+            }
+          ],
+          "key": "page-021-001",
+          "native_build_result": "Image exceeds frozen pilot input bound; no implicit resize",
+          "native_parse_result": "Missing native response identity",
+          "payload": {
+            "excessive_blank": false,
+            "has_page_text": false,
+            "reason": "The crop isolates the complete lower photograph of the ranch house and barn, excluding its caption and the neighboring photograph. The broad light sky is part of the photograph and counts as image content.",
+            "verdict": "pass"
+          },
+          "payload_shape": "four fields valid locally; not native admission",
+          "provider": "Minimax",
+          "request": "benchmarks/results/scout099-20261020/request-029.json",
+          "request_sha256": "bb6e2a972d3a93f40d57c013e39bef1db8b2560a2f63d1fb513d3cd4ad67d0e5",
+          "response": "benchmarks/results/scout099-20261020/response-029.json",
+          "response_sha256": "4b05af3d715eee000ca552b2121d4d9a85c815520acfdcb630957488b7c303a9",
+          "saved_grade": {
+            "correct": true,
+            "false_safe": false,
+            "golden_verdict": "pass"
+          },
+          "saved_request_controls": {
+            "max_tokens": 32768,
+            "model": "minimax/minimax-m3.1-flash:free",
+            "provider": {
+              "allow_fallbacks": false,
+              "max_price": {
+                "completion": 0,
+                "prompt": 0
+              },
+              "only": [
+                "minimax"
+              ],
+              "require_parameters": false
+            },
+            "reasoning": {
+              "effort": "high"
+            }
+          },
+          "served_model": "minimax/minimax-m3.1-flash:free",
+          "stage": "safety-page-021-001-candidate-diagnostic"
+        },
+        "control": {
+          "arm": "control",
+          "historical_http_latency_ms": 5138,
+          "images_source_then_crop": [
+            {
+              "bytes": 913190,
+              "detail": "auto",
+              "dimensions": [
+                1545,
+                2000
+              ],
+              "format": "JPEG",
+              "sha256": "5a1f2380a089ff23355ff101b07549bd57abba3a51636a6b58a28a31a4195318"
+            },
+            {
+              "bytes": 5213443,
+              "detail": "auto",
+              "dimensions": [
+                4152,
+                2471
+              ],
+              "format": "JPEG",
+              "sha256": "7d3af1dc6ffa2a2c731a6f0cdadb791175b25bcb2580c69034dcf2de6c06131e"
+            }
+          ],
+          "key": "page-021-001",
+          "native_build_result": "Image exceeds frozen pilot input bound; no implicit resize",
+          "native_parse_result": "Unexpected served model identity",
+          "payload": {
+            "excessive_blank": false,
+            "has_page_text": false,
+            "reason": "Crop isolates the lower photograph without including caption or page text. The large light sky/snow area is part of the photograph, not blank page margin.",
+            "verdict": "pass"
+          },
+          "payload_shape": "four fields valid locally; not native admission",
+          "provider": "OpenAI",
+          "request": "benchmarks/results/scout099-20261020/request-030.json",
+          "request_sha256": "d37f21a9669818fc85fe7eb0a5259f86386b2d4b0df0b9f37feaccc78b33b57d",
+          "response": "benchmarks/results/scout099-20261020/response-030.json",
+          "response_sha256": "5f2f7b965fc75711a07512636d33b0614f2adb5b3adfacf222ec331078cbd41d",
+          "saved_grade": {
+            "correct": true,
+            "false_safe": false,
+            "golden_verdict": "pass"
+          },
+          "saved_request_controls": {
+            "max_output_tokens": 2048,
+            "model": "gpt-5.5",
+            "reasoning": {
+              "effort": "none"
+            },
+            "store": false,
+            "text": {
+              "format": {
+                "name": "page_context_validation",
+                "schema": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "excessive_blank": {
+                      "type": "boolean"
+                    },
+                    "has_page_text": {
+                      "type": "boolean"
+                    },
+                    "reason": {
+                      "type": "string"
+                    },
+                    "verdict": {
+                      "enum": [
+                        "pass",
+                        "fail"
+                      ],
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "verdict",
+                    "has_page_text",
+                    "excessive_blank",
+                    "reason"
+                  ],
+                  "type": "object"
+                },
+                "strict": true,
+                "type": "json_schema"
+              }
+            }
+          },
+          "served_model": "gpt-5.5-2026-04-23",
+          "stage": "safety-page-021-001-control"
+        }
+      },
+      "new_source_judgment": {
+        "verdict": "pass",
+        "has_page_text": false,
+        "excessive_blank": false,
+        "reason": "The page has two separately captioned ranch photographs. The crop keeps the complete lower winter ranch photograph, including house at left, barn at right, cattle/fence, snow and broad sky; it excludes both caption and upper photograph. The light sky is photographic content.",
+        "boundary_uncertainty": "none material under supplied prompt; source composition is determinate",
+        "review_scope": "Exact decoded original request source and crop opened individually with view_image; historical montage also inspected. This is a fresh agent source judgment, not Cam approval."
+      },
+      "review_owner": "bounded source reviewer, adopted by owning audit lead",
+      "new_payload_review": {
+        "candidate": {
+          "verdict_matches_new_source_judgment": true,
+          "observed_flags_match_new_source_judgment": true,
+          "reason_source_grounded": true,
+          "uncertainty_review": "No explicit uncertainty field; reason gives a determinate source-grounded condition. No material unhandled ambiguity observed.",
+          "semantic_issues": []
+        },
+        "control": {
+          "verdict_matches_new_source_judgment": true,
+          "observed_flags_match_new_source_judgment": true,
+          "reason_source_grounded": true,
+          "uncertainty_review": "No explicit uncertainty field; reason gives a determinate source-grounded condition. No material unhandled ambiguity observed.",
+          "semantic_issues": []
+        }
+      }
+    },
+    {
+      "key": "page-022-000",
+      "arms": {
+        "candidate": {
+          "arm": "candidate",
+          "historical_http_latency_ms": 4923,
+          "images_source_then_crop": [
+            {
+              "bytes": 722546,
+              "detail": null,
+              "dimensions": [
+                1545,
+                2000
+              ],
+              "format": "JPEG",
+              "sha256": "2f49d83261e2f40d20b736b602cc4de8c36b48780ab944dc96c8e08f83e34332"
+            },
+            {
+              "bytes": 1425938,
+              "detail": null,
+              "dimensions": [
+                1887,
+                1584
+              ],
+              "format": "JPEG",
+              "sha256": "c8de7753ebe7d13c9646b62bef02984148f4e9e2260197a56babd46442f61ea9"
+            }
+          ],
+          "key": "page-022-000",
+          "native_build_result": "built; saved request differs",
+          "native_parse_result": "Missing native response identity",
+          "native_request_equal": false,
+          "payload": {
+            "excessive_blank": false,
+            "has_page_text": false,
+            "reason": "The crop isolates the full photograph of Henry and Alma Alain and excludes the page caption and surrounding text; the background is photographic content, not blank margin.",
+            "verdict": "pass"
+          },
+          "payload_shape": "four fields valid locally; not native admission",
+          "provider": "Minimax",
+          "request": "benchmarks/results/scout099-20261020/request-031.json",
+          "request_sha256": "210e935915002e4a3b8da193c0aeb8ac91eb15e4d8da56fb03b5c876a9474744",
+          "response": "benchmarks/results/scout099-20261020/response-031.json",
+          "response_sha256": "93d49b978f4da8e9b90e924230efc4d4a276e06c8dbac7c0f96c850b725e7de1",
+          "saved_grade": {
+            "correct": true,
+            "false_safe": false,
+            "golden_verdict": "pass"
+          },
+          "saved_request_controls": {
+            "max_tokens": 32768,
+            "model": "minimax/minimax-m3.1-flash:free",
+            "provider": {
+              "allow_fallbacks": false,
+              "max_price": {
+                "completion": 0,
+                "prompt": 0
+              },
+              "only": [
+                "minimax"
+              ],
+              "require_parameters": false
+            },
+            "reasoning": {
+              "effort": "high"
+            }
+          },
+          "served_model": "minimax/minimax-m3.1-flash:free",
+          "stage": "safety-page-022-000-candidate-diagnostic"
+        },
+        "control": {
+          "arm": "control",
+          "historical_http_latency_ms": 3191,
+          "images_source_then_crop": [
+            {
+              "bytes": 722546,
+              "detail": "auto",
+              "dimensions": [
+                1545,
+                2000
+              ],
+              "format": "JPEG",
+              "sha256": "2f49d83261e2f40d20b736b602cc4de8c36b48780ab944dc96c8e08f83e34332"
+            },
+            {
+              "bytes": 1425938,
+              "detail": "auto",
+              "dimensions": [
+                1887,
+                1584
+              ],
+              "format": "JPEG",
+              "sha256": "c8de7753ebe7d13c9646b62bef02984148f4e9e2260197a56babd46442f61ea9"
+            }
+          ],
+          "key": "page-022-000",
+          "native_build_result": "built; saved request differs",
+          "native_parse_result": "Unexpected served model identity",
+          "native_request_equal": false,
+          "payload": {
+            "excessive_blank": false,
+            "has_page_text": false,
+            "reason": "The crop isolates the photograph from the page and excludes the caption and surrounding article text. No neighboring visuals or excessive blank page margin are included.",
+            "verdict": "pass"
+          },
+          "payload_shape": "four fields valid locally; not native admission",
+          "provider": "OpenAI",
+          "request": "benchmarks/results/scout099-20261020/request-032.json",
+          "request_different_top_fields": [
+            "input",
+            "max_output_tokens",
+            "model",
+            "reasoning"
+          ],
+          "request_sha256": "6dc16632274480547fc44be5a9b97c4527e73712e49e597638d92b75692d6c68",
+          "response": "benchmarks/results/scout099-20261020/response-032.json",
+          "response_sha256": "4f215265303bde3b77162bfd23215bf50682d36e89d2f0e2c1a11db79f890c8e",
+          "saved_grade": {
+            "correct": true,
+            "false_safe": false,
+            "golden_verdict": "pass"
+          },
+          "saved_request_controls": {
+            "max_output_tokens": 2048,
+            "model": "gpt-5.5",
+            "reasoning": {
+              "effort": "none"
+            },
+            "store": false,
+            "text": {
+              "format": {
+                "name": "page_context_validation",
+                "schema": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "excessive_blank": {
+                      "type": "boolean"
+                    },
+                    "has_page_text": {
+                      "type": "boolean"
+                    },
+                    "reason": {
+                      "type": "string"
+                    },
+                    "verdict": {
+                      "enum": [
+                        "pass",
+                        "fail"
+                      ],
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "verdict",
+                    "has_page_text",
+                    "excessive_blank",
+                    "reason"
+                  ],
+                  "type": "object"
+                },
+                "strict": true,
+                "type": "json_schema"
+              }
+            }
+          },
+          "served_model": "gpt-5.5-2026-04-23",
+          "stage": "safety-page-022-000-control"
+        }
+      },
+      "new_source_judgment": {
+        "verdict": "pass",
+        "has_page_text": false,
+        "excessive_blank": false,
+        "reason": "The page contains a rectangular couple photograph in the left article column. The crop retains both heads, their torsos and hands to the original lower photographic edge, while excluding the bold anniversary caption and article text. No neighboring visual is included.",
+        "boundary_uncertainty": "none material under supplied prompt; source composition is determinate",
+        "review_scope": "Exact decoded original request source and crop opened individually with view_image; historical montage also inspected. This is a fresh agent source judgment, not Cam approval."
+      },
+      "review_owner": "bounded source reviewer, adopted by owning audit lead",
+      "new_payload_review": {
+        "candidate": {
+          "verdict_matches_new_source_judgment": true,
+          "observed_flags_match_new_source_judgment": true,
+          "reason_source_grounded": true,
+          "uncertainty_review": "No explicit uncertainty field; reason gives a determinate source-grounded condition. No material unhandled ambiguity observed.",
+          "semantic_issues": []
+        },
+        "control": {
+          "verdict_matches_new_source_judgment": true,
+          "observed_flags_match_new_source_judgment": true,
+          "reason_source_grounded": true,
+          "uncertainty_review": "No explicit uncertainty field; reason gives a determinate source-grounded condition. No material unhandled ambiguity observed.",
+          "semantic_issues": []
+        }
+      }
+    },
+    {
+      "key": "page-038-000",
+      "arms": {
+        "candidate": {
+          "arm": "candidate",
+          "historical_http_latency_ms": 4973,
+          "images_source_then_crop": [
+            {
+              "bytes": 730755,
+              "detail": null,
+              "dimensions": [
+                1545,
+                2000
+              ],
+              "format": "JPEG",
+              "sha256": "b836c9c90fc650dd0513299652bf1af41fc577544803d9cea64928c890cdfdbe"
+            },
+            {
+              "bytes": 958411,
+              "detail": null,
+              "dimensions": [
+                1372,
+                1706
+              ],
+              "format": "JPEG",
+              "sha256": "09855f57fc1ff367f3174dd0a5bfab433e069195aa1d2596f68212cae163a349"
+            }
+          ],
+          "key": "page-038-000",
+          "native_build_result": "built; saved request differs",
+          "native_parse_result": "Missing native response identity",
+          "native_request_equal": false,
+          "payload": {
+            "excessive_blank": false,
+            "has_page_text": false,
+            "reason": "The crop tightly isolates the complete oval portrait and excludes the page caption, surrounding text, and neighboring photograph.",
+            "verdict": "pass"
+          },
+          "payload_shape": "four fields valid locally; not native admission",
+          "provider": "Minimax",
+          "request": "benchmarks/results/scout099-20261020/request-033.json",
+          "request_sha256": "3905601670eb99f89695b86d0514ea9eee66fb74348e0892fa6bed310ea6942e",
+          "response": "benchmarks/results/scout099-20261020/response-033.json",
+          "response_sha256": "2b2f30fe99b3bc5ac8247c49c17134faf03c852aabd1825a30e365dcc4182467",
+          "saved_grade": {
+            "correct": true,
+            "false_safe": false,
+            "golden_verdict": "pass"
+          },
+          "saved_request_controls": {
+            "max_tokens": 32768,
+            "model": "minimax/minimax-m3.1-flash:free",
+            "provider": {
+              "allow_fallbacks": false,
+              "max_price": {
+                "completion": 0,
+                "prompt": 0
+              },
+              "only": [
+                "minimax"
+              ],
+              "require_parameters": false
+            },
+            "reasoning": {
+              "effort": "high"
+            }
+          },
+          "served_model": "minimax/minimax-m3.1-flash:free",
+          "stage": "safety-page-038-000-candidate-diagnostic"
+        },
+        "control": {
+          "arm": "control",
+          "historical_http_latency_ms": 2656,
+          "images_source_then_crop": [
+            {
+              "bytes": 730755,
+              "detail": "auto",
+              "dimensions": [
+                1545,
+                2000
+              ],
+              "format": "JPEG",
+              "sha256": "b836c9c90fc650dd0513299652bf1af41fc577544803d9cea64928c890cdfdbe"
+            },
+            {
+              "bytes": 958411,
+              "detail": "auto",
+              "dimensions": [
+                1372,
+                1706
+              ],
+              "format": "JPEG",
+              "sha256": "09855f57fc1ff367f3174dd0a5bfab433e069195aa1d2596f68212cae163a349"
+            }
+          ],
+          "key": "page-038-000",
+          "native_build_result": "built; saved request differs",
+          "native_parse_result": "Unexpected served model identity",
+          "native_request_equal": false,
+          "payload": {
+            "excessive_blank": false,
+            "has_page_text": false,
+            "reason": "The crop isolates the oval portrait from the page without including the caption, surrounding article text, or neighboring visuals. Light areas are part of the portrait background.",
+            "verdict": "pass"
+          },
+          "payload_shape": "four fields valid locally; not native admission",
+          "provider": "OpenAI",
+          "request": "benchmarks/results/scout099-20261020/request-034.json",
+          "request_different_top_fields": [
+            "input",
+            "max_output_tokens",
+            "model",
+            "reasoning"
+          ],
+          "request_sha256": "07d4521e3ae33c38f7732ef7e72a20336030cd2d60d025f5a924b7604325eb87",
+          "response": "benchmarks/results/scout099-20261020/response-034.json",
+          "response_sha256": "1dfd57c524f38acba3bf8f14d70caa7d9a068b4f70e94b900d73b0f13b8cb4a3",
+          "saved_grade": {
+            "correct": true,
+            "false_safe": false,
+            "golden_verdict": "pass"
+          },
+          "saved_request_controls": {
+            "max_output_tokens": 2048,
+            "model": "gpt-5.5",
+            "reasoning": {
+              "effort": "none"
+            },
+            "store": false,
+            "text": {
+              "format": {
+                "name": "page_context_validation",
+                "schema": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "excessive_blank": {
+                      "type": "boolean"
+                    },
+                    "has_page_text": {
+                      "type": "boolean"
+                    },
+                    "reason": {
+                      "type": "string"
+                    },
+                    "verdict": {
+                      "enum": [
+                        "pass",
+                        "fail"
+                      ],
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "verdict",
+                    "has_page_text",
+                    "excessive_blank",
+                    "reason"
+                  ],
+                  "type": "object"
+                },
+                "strict": true,
+                "type": "json_schema"
+              }
+            }
+          },
+          "served_model": "gpt-5.5-2026-04-23",
+          "stage": "safety-page-038-000-control"
+        }
+      },
+      "new_source_judgment": {
+        "verdict": "pass",
+        "has_page_text": false,
+        "excessive_blank": false,
+        "reason": "The page has a separately captioned upper-right oval portrait and a lower-left couple photograph. The crop retains the full oval portrait, including hair, shoulders and oval outline. White corners outside the oval are limited and surrounding caption/prose is excluded.",
+        "boundary_uncertainty": "none material under supplied prompt; source composition is determinate",
+        "review_scope": "Exact decoded original request source and crop opened individually with view_image; historical montage also inspected. This is a fresh agent source judgment, not Cam approval."
+      },
+      "review_owner": "bounded source reviewer, adopted by owning audit lead",
+      "new_payload_review": {
+        "candidate": {
+          "verdict_matches_new_source_judgment": true,
+          "observed_flags_match_new_source_judgment": true,
+          "reason_source_grounded": true,
+          "uncertainty_review": "No explicit uncertainty field; reason gives a determinate source-grounded condition. No material unhandled ambiguity observed.",
+          "semantic_issues": []
+        },
+        "control": {
+          "verdict_matches_new_source_judgment": true,
+          "observed_flags_match_new_source_judgment": true,
+          "reason_source_grounded": true,
+          "uncertainty_review": "No explicit uncertainty field; reason gives a determinate source-grounded condition. No material unhandled ambiguity observed.",
+          "semantic_issues": []
+        }
+      }
+    },
+    {
+      "key": "page-038-001",
+      "arms": {
+        "candidate": {
+          "arm": "candidate",
+          "historical_http_latency_ms": 13316,
+          "images_source_then_crop": [
+            {
+              "bytes": 730755,
+              "detail": null,
+              "dimensions": [
+                1545,
+                2000
+              ],
+              "format": "JPEG",
+              "sha256": "b836c9c90fc650dd0513299652bf1af41fc577544803d9cea64928c890cdfdbe"
+            },
+            {
+              "bytes": 1707524,
+              "detail": null,
+              "dimensions": [
+                2014,
+                1712
+              ],
+              "format": "JPEG",
+              "sha256": "4eaee1585bba4a4c6309e5d5bd28a57b4dd8c297a0b8dd0a491c8c60d4e66b89"
+            }
+          ],
+          "key": "page-038-001",
+          "native_build_result": "built; saved request differs",
+          "native_parse_result": "Missing native response identity",
+          "native_request_equal": false,
+          "payload": {
+            "excessive_blank": false,
+            "has_page_text": false,
+            "reason": "The crop is a severely incomplete zoom of the lower-left photograph, omitting large portions of both subjects and the surrounding image. No page text is present, and the halftone photo background is not excessive blank space.",
+            "verdict": "fail"
+          },
+          "payload_shape": "four fields valid locally; not native admission",
+          "provider": "Minimax",
+          "request": "benchmarks/results/scout099-20261020/request-035.json",
+          "request_sha256": "df43ac569753f43ca226fea4f72f1dda1b07342bf1a92032631bb76da44171a8",
+          "response": "benchmarks/results/scout099-20261020/response-035.json",
+          "response_sha256": "f5197c594c84b7923436000ebd7b6b0f711aed122740742e520a7645fe758df8",
+          "saved_grade": {
+            "correct": false,
+            "false_safe": false,
+            "golden_verdict": "pass"
+          },
+          "saved_request_controls": {
+            "max_tokens": 32768,
+            "model": "minimax/minimax-m3.1-flash:free",
+            "provider": {
+              "allow_fallbacks": false,
+              "max_price": {
+                "completion": 0,
+                "prompt": 0
+              },
+              "only": [
+                "minimax"
+              ],
+              "require_parameters": false
+            },
+            "reasoning": {
+              "effort": "high"
+            }
+          },
+          "served_model": "minimax/minimax-m3.1-flash:free",
+          "stage": "safety-page-038-001-candidate-diagnostic"
+        },
+        "control": {
+          "arm": "control",
+          "historical_http_latency_ms": 3678,
+          "images_source_then_crop": [
+            {
+              "bytes": 730755,
+              "detail": "auto",
+              "dimensions": [
+                1545,
+                2000
+              ],
+              "format": "JPEG",
+              "sha256": "b836c9c90fc650dd0513299652bf1af41fc577544803d9cea64928c890cdfdbe"
+            },
+            {
+              "bytes": 1707524,
+              "detail": "auto",
+              "dimensions": [
+                2014,
+                1712
+              ],
+              "format": "JPEG",
+              "sha256": "4eaee1585bba4a4c6309e5d5bd28a57b4dd8c297a0b8dd0a491c8c60d4e66b89"
+            }
+          ],
+          "key": "page-038-001",
+          "native_build_result": "built; saved request differs",
+          "native_parse_result": "Unexpected served model identity",
+          "native_request_equal": false,
+          "payload": {
+            "excessive_blank": false,
+            "has_page_text": false,
+            "reason": "The crop isolates the lower photograph of Leonidas and Josephine without including the page caption or surrounding text; blank areas are part of the photo background.",
+            "verdict": "pass"
+          },
+          "payload_shape": "four fields valid locally; not native admission",
+          "provider": "OpenAI",
+          "request": "benchmarks/results/scout099-20261020/request-036.json",
+          "request_different_top_fields": [
+            "input",
+            "max_output_tokens",
+            "model",
+            "reasoning"
+          ],
+          "request_sha256": "5f7110abd4f4d9b55baa12f08a01b71980d804bb5a8de3ef0798ecedd10ec7cd",
+          "response": "benchmarks/results/scout099-20261020/response-036.json",
+          "response_sha256": "4f24851f9b67382f2707eabcff0d414153f56fe0f35e10351361a214823d9170",
+          "saved_grade": {
+            "correct": true,
+            "false_safe": false,
+            "golden_verdict": "pass"
+          },
+          "saved_request_controls": {
+            "max_output_tokens": 2048,
+            "model": "gpt-5.5",
+            "reasoning": {
+              "effort": "none"
+            },
+            "store": false,
+            "text": {
+              "format": {
+                "name": "page_context_validation",
+                "schema": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "excessive_blank": {
+                      "type": "boolean"
+                    },
+                    "has_page_text": {
+                      "type": "boolean"
+                    },
+                    "reason": {
+                      "type": "string"
+                    },
+                    "verdict": {
+                      "enum": [
+                        "pass",
+                        "fail"
+                      ],
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "verdict",
+                    "has_page_text",
+                    "excessive_blank",
+                    "reason"
+                  ],
+                  "type": "object"
+                },
+                "strict": true,
+                "type": "json_schema"
+              }
+            }
+          },
+          "served_model": "gpt-5.5-2026-04-23",
+          "stage": "safety-page-038-001-control"
+        }
+      },
+      "new_source_judgment": {
+        "verdict": "pass",
+        "has_page_text": false,
+        "excessive_blank": false,
+        "reason": "The lower-left source photograph shows a seated woman and man. The crop retains both heads, both torsos, their arms/hands, lap/legs and chair through the original lower edge; the source photo itself already frames their legs. It excludes the external caption and upper oval. No large missing part is demonstrated by the source.",
+        "boundary_uncertainty": "none material under supplied prompt; source composition is determinate",
+        "review_scope": "Exact decoded original request source and crop opened individually with view_image; historical montage also inspected. This is a fresh agent source judgment, not Cam approval."
+      },
+      "review_owner": "bounded source reviewer, adopted by owning audit lead",
+      "new_payload_review": {
+        "candidate": {
+          "verdict_matches_new_source_judgment": false,
+          "observed_flags_match_new_source_judgment": true,
+          "reason_source_grounded": false,
+          "uncertainty_review": "No explicit uncertainty field in contract; reason examined. This reason asserts a determinate condition, not abstention.",
+          "semantic_issues": [
+            "Invented severe incompleteness: source/crop retain the full original seated-couple photograph."
+          ]
+        },
+        "control": {
+          "verdict_matches_new_source_judgment": true,
+          "observed_flags_match_new_source_judgment": true,
+          "reason_source_grounded": true,
+          "uncertainty_review": "No explicit uncertainty field; reason gives a determinate source-grounded condition. No material unhandled ambiguity observed.",
+          "semantic_issues": []
+        }
+      }
+    },
+    {
+      "key": "page-060-000",
+      "arms": {
+        "candidate": {
+          "arm": "candidate",
+          "historical_http_latency_ms": 9098,
+          "images_source_then_crop": [
+            {
+              "bytes": 793636,
+              "detail": null,
+              "dimensions": [
+                1545,
+                2000
+              ],
+              "format": "JPEG",
+              "sha256": "af4d6f24fc5b026a12697ed4d9da2758257bb8e0ec06c7989a2b2d0625501317"
+            },
+            {
+              "bytes": 2338932,
+              "detail": null,
+              "dimensions": [
+                2004,
+                2561
+              ],
+              "format": "JPEG",
+              "sha256": "0e7a4ae8f060dcb0588f647c2e7d51abb7251b91ec81feb6d89a9923f0d4e9b3"
+            }
+          ],
+          "key": "page-060-000",
+          "native_build_result": "Image exceeds frozen pilot input bound; no implicit resize",
+          "native_parse_result": "Missing native response identity",
+          "payload": {
+            "excessive_blank": false,
+            "has_page_text": false,
+            "reason": "The crop cleanly isolates the complete left-page photograph of George and Sophranie, excludes the caption and all surrounding body text, and contains no neighboring visual.",
+            "verdict": "pass"
+          },
+          "payload_shape": "four fields valid locally; not native admission",
+          "provider": "Minimax",
+          "request": "benchmarks/results/scout099-20261020/request-037.json",
+          "request_sha256": "e5a355598f87a384ecb5a840fec1bf358c8667ba90f4533d62971a4155351ffd",
+          "response": "benchmarks/results/scout099-20261020/response-037.json",
+          "response_sha256": "519515b0441c51efa3678b98b70810af5dc235587040ee23bc442d2eca2a3f4e",
+          "saved_grade": {
+            "correct": true,
+            "false_safe": false,
+            "golden_verdict": "pass"
+          },
+          "saved_request_controls": {
+            "max_tokens": 32768,
+            "model": "minimax/minimax-m3.1-flash:free",
+            "provider": {
+              "allow_fallbacks": false,
+              "max_price": {
+                "completion": 0,
+                "prompt": 0
+              },
+              "only": [
+                "minimax"
+              ],
+              "require_parameters": false
+            },
+            "reasoning": {
+              "effort": "high"
+            }
+          },
+          "served_model": "minimax/minimax-m3.1-flash:free",
+          "stage": "safety-page-060-000-candidate-diagnostic"
+        },
+        "control": {
+          "arm": "control",
+          "historical_http_latency_ms": 3462,
+          "images_source_then_crop": [
+            {
+              "bytes": 793636,
+              "detail": "auto",
+              "dimensions": [
+                1545,
+                2000
+              ],
+              "format": "JPEG",
+              "sha256": "af4d6f24fc5b026a12697ed4d9da2758257bb8e0ec06c7989a2b2d0625501317"
+            },
+            {
+              "bytes": 2338932,
+              "detail": "auto",
+              "dimensions": [
+                2004,
+                2561
+              ],
+              "format": "JPEG",
+              "sha256": "0e7a4ae8f060dcb0588f647c2e7d51abb7251b91ec81feb6d89a9923f0d4e9b3"
+            }
+          ],
+          "key": "page-060-000",
+          "native_build_result": "Image exceeds frozen pilot input bound; no implicit resize",
+          "native_parse_result": "Unexpected served model identity",
+          "payload": {
+            "excessive_blank": false,
+            "has_page_text": false,
+            "reason": "Crop isolates the upper-left photograph without including the caption, surrounding page text, or neighboring image. Light snowy/background areas are part of the photo, not blank page space.",
+            "verdict": "pass"
+          },
+          "payload_shape": "four fields valid locally; not native admission",
+          "provider": "OpenAI",
+          "request": "benchmarks/results/scout099-20261020/request-038.json",
+          "request_sha256": "c09a23695478038e6020986608dd3fb8147aa0fe37c08dd53eabc23537ef115d",
+          "response": "benchmarks/results/scout099-20261020/response-038.json",
+          "response_sha256": "189582958f9f5d4585a1e53122eaa383b11154edb06829bf8ba2bddabf666e00",
+          "saved_grade": {
+            "correct": true,
+            "false_safe": false,
+            "golden_verdict": "pass"
+          },
+          "saved_request_controls": {
+            "max_output_tokens": 2048,
+            "model": "gpt-5.5",
+            "reasoning": {
+              "effort": "none"
+            },
+            "store": false,
+            "text": {
+              "format": {
+                "name": "page_context_validation",
+                "schema": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "excessive_blank": {
+                      "type": "boolean"
+                    },
+                    "has_page_text": {
+                      "type": "boolean"
+                    },
+                    "reason": {
+                      "type": "string"
+                    },
+                    "verdict": {
+                      "enum": [
+                        "pass",
+                        "fail"
+                      ],
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "verdict",
+                    "has_page_text",
+                    "excessive_blank",
+                    "reason"
+                  ],
+                  "type": "object"
+                },
+                "strict": true,
+                "type": "json_schema"
+              }
+            }
+          },
+          "served_model": "gpt-5.5-2026-04-23",
+          "stage": "safety-page-060-000-control"
+        }
+      },
+      "new_source_judgment": {
+        "verdict": "pass",
+        "has_page_text": false,
+        "excessive_blank": false,
+        "reason": "The source has a left standing-couple snow photograph and a lower-right separate woman photograph. The crop retains the complete left photograph, including heads, coats, the woman feet and man lower framing exactly as source. Caption/prose and the separate right photograph are excluded.",
+        "boundary_uncertainty": "none material under supplied prompt; source composition is determinate",
+        "review_scope": "Exact decoded original request source and crop opened individually with view_image; historical montage also inspected. This is a fresh agent source judgment, not Cam approval."
+      },
+      "review_owner": "bounded source reviewer, adopted by owning audit lead",
+      "new_payload_review": {
+        "candidate": {
+          "verdict_matches_new_source_judgment": true,
+          "observed_flags_match_new_source_judgment": true,
+          "reason_source_grounded": true,
+          "uncertainty_review": "No explicit uncertainty field; reason gives a determinate source-grounded condition. No material unhandled ambiguity observed.",
+          "semantic_issues": []
+        },
+        "control": {
+          "verdict_matches_new_source_judgment": true,
+          "observed_flags_match_new_source_judgment": true,
+          "reason_source_grounded": true,
+          "uncertainty_review": "No explicit uncertainty field; reason gives a determinate source-grounded condition. No material unhandled ambiguity observed.",
+          "semantic_issues": []
+        }
+      }
+    },
+    {
+      "key": "page-060-001",
+      "arms": {
+        "candidate": {
+          "arm": "candidate",
+          "historical_http_latency_ms": 9024,
+          "images_source_then_crop": [
+            {
+              "bytes": 793636,
+              "detail": null,
+              "dimensions": [
+                1545,
+                2000
+              ],
+              "format": "JPEG",
+              "sha256": "af4d6f24fc5b026a12697ed4d9da2758257bb8e0ec06c7989a2b2d0625501317"
+            },
+            {
+              "bytes": 1778000,
+              "detail": null,
+              "dimensions": [
+                2015,
+                1743
+              ],
+              "format": "JPEG",
+              "sha256": "f05b5737e373e2b06f0544bd74c59c9e92b096919fc775cdd9cc0bb4642dade6"
+            }
+          ],
+          "key": "page-060-001",
+          "native_build_result": "built; saved request differs",
+          "native_parse_result": "Missing native response identity",
+          "native_request_equal": false,
+          "payload": {
+            "excessive_blank": false,
+            "has_page_text": false,
+            "reason": "The crop cleanly isolates the lower-right portrait photograph, including its light photographic background, and excludes the caption and all surrounding page text.",
+            "verdict": "pass"
+          },
+          "payload_shape": "four fields valid locally; not native admission",
+          "provider": "Minimax",
+          "request": "benchmarks/results/scout099-20261020/request-039.json",
+          "request_sha256": "e6bbd9b848df20c1a05068cb4e98c2c77db9849f91b7dc69d84833ace7dabf32",
+          "response": "benchmarks/results/scout099-20261020/response-039.json",
+          "response_sha256": "78a05d9eb79c33f6450b44b751bde5786063f585dd28db1f959a051ee387a378",
+          "saved_grade": {
+            "correct": true,
+            "false_safe": false,
+            "golden_verdict": "pass"
+          },
+          "saved_request_controls": {
+            "max_tokens": 32768,
+            "model": "minimax/minimax-m3.1-flash:free",
+            "provider": {
+              "allow_fallbacks": false,
+              "max_price": {
+                "completion": 0,
+                "prompt": 0
+              },
+              "only": [
+                "minimax"
+              ],
+              "require_parameters": false
+            },
+            "reasoning": {
+              "effort": "high"
+            }
+          },
+          "served_model": "minimax/minimax-m3.1-flash:free",
+          "stage": "safety-page-060-001-candidate-diagnostic"
+        },
+        "control": {
+          "arm": "control",
+          "historical_http_latency_ms": 3608,
+          "images_source_then_crop": [
+            {
+              "bytes": 793636,
+              "detail": "auto",
+              "dimensions": [
+                1545,
+                2000
+              ],
+              "format": "JPEG",
+              "sha256": "af4d6f24fc5b026a12697ed4d9da2758257bb8e0ec06c7989a2b2d0625501317"
+            },
+            {
+              "bytes": 1778000,
+              "detail": "auto",
+              "dimensions": [
+                2015,
+                1743
+              ],
+              "format": "JPEG",
+              "sha256": "f05b5737e373e2b06f0544bd74c59c9e92b096919fc775cdd9cc0bb4642dade6"
+            }
+          ],
+          "key": "page-060-001",
+          "native_build_result": "built; saved request differs",
+          "native_parse_result": "Unexpected served model identity",
+          "native_request_equal": false,
+          "payload": {
+            "excessive_blank": false,
+            "has_page_text": false,
+            "reason": "Crop isolates the lower-right photograph from the page and excludes the caption and surrounding article text. Light areas are part of the photo background, not blank page margin.",
+            "verdict": "pass"
+          },
+          "payload_shape": "four fields valid locally; not native admission",
+          "provider": "OpenAI",
+          "request": "benchmarks/results/scout099-20261020/request-040.json",
+          "request_different_top_fields": [
+            "input",
+            "max_output_tokens",
+            "model",
+            "reasoning"
+          ],
+          "request_sha256": "080d78b4b17ccdf9c616c8ac443b2dcd9e95a17fb0c521cae3a4ead76d569c6a",
+          "response": "benchmarks/results/scout099-20261020/response-040.json",
+          "response_sha256": "2df0512c61a136abe6e6185b374eb133e22951c9c9cd997880f09175836b3efc",
+          "saved_grade": {
+            "correct": true,
+            "false_safe": false,
+            "golden_verdict": "pass"
+          },
+          "saved_request_controls": {
+            "max_output_tokens": 2048,
+            "model": "gpt-5.5",
+            "reasoning": {
+              "effort": "none"
+            },
+            "store": false,
+            "text": {
+              "format": {
+                "name": "page_context_validation",
+                "schema": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "excessive_blank": {
+                      "type": "boolean"
+                    },
+                    "has_page_text": {
+                      "type": "boolean"
+                    },
+                    "reason": {
+                      "type": "string"
+                    },
+                    "verdict": {
+                      "enum": [
+                        "pass",
+                        "fail"
+                      ],
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "verdict",
+                    "has_page_text",
+                    "excessive_blank",
+                    "reason"
+                  ],
+                  "type": "object"
+                },
+                "strict": true,
+                "type": "json_schema"
+              }
+            }
+          },
+          "served_model": "gpt-5.5-2026-04-23",
+          "stage": "safety-page-060-001-control"
+        }
+      },
+      "new_source_judgment": {
+        "verdict": "pass",
+        "has_page_text": false,
+        "excessive_blank": false,
+        "reason": "The crop retains the complete lower-right woman photograph. Her head, arms/hands, dress and pale photographic sky/background match the source framing. The caption and adjacent article/standing-couple image remain outside the crop. Light photo background is image content.",
+        "boundary_uncertainty": "none material under supplied prompt; source composition is determinate",
+        "review_scope": "Exact decoded original request source and crop opened individually with view_image; historical montage also inspected. This is a fresh agent source judgment, not Cam approval."
+      },
+      "review_owner": "bounded source reviewer, adopted by owning audit lead",
+      "new_payload_review": {
+        "candidate": {
+          "verdict_matches_new_source_judgment": true,
+          "observed_flags_match_new_source_judgment": true,
+          "reason_source_grounded": true,
+          "uncertainty_review": "No explicit uncertainty field; reason gives a determinate source-grounded condition. No material unhandled ambiguity observed.",
+          "semantic_issues": []
+        },
+        "control": {
+          "verdict_matches_new_source_judgment": true,
+          "observed_flags_match_new_source_judgment": true,
+          "reason_source_grounded": true,
+          "uncertainty_review": "No explicit uncertainty field; reason gives a determinate source-grounded condition. No material unhandled ambiguity observed.",
+          "semantic_issues": []
+        }
+      }
+    },
+    {
+      "key": "page-092-000",
+      "arms": {
+        "candidate": {
+          "arm": "candidate",
+          "historical_http_latency_ms": 13227,
+          "images_source_then_crop": [
+            {
+              "bytes": 675402,
+              "detail": null,
+              "dimensions": [
+                1545,
+                2000
+              ],
+              "format": "JPEG",
+              "sha256": "23540ee8136d29922da3f9284d44ddb46a07390fdd41f79f9afbb39989c9c04c"
+            },
+            {
+              "bytes": 1234084,
+              "detail": null,
+              "dimensions": [
+                1974,
+                2381
+              ],
+              "format": "JPEG",
+              "sha256": "3d02c44de285d58fd54c3131a5c2c6c13235093c88eef49ac02e2a778b23687c"
+            }
+          ],
+          "key": "page-092-000",
+          "native_build_result": "Image exceeds frozen pilot input bound; no implicit resize",
+          "native_parse_result": "Missing native response identity",
+          "payload": {
+            "excessive_blank": false,
+            "has_page_text": true,
+            "reason": "The crop contains substantial page-level paragraph text and only a partial view of the wedding photograph, so it does not isolate the intended illustration.",
+            "verdict": "fail"
+          },
+          "payload_shape": "four fields valid locally; not native admission",
+          "provider": "Minimax",
+          "request": "benchmarks/results/scout099-20261020/request-041.json",
+          "request_sha256": "1e9ce1daa2f880fe58322cf4bc1592cf69f90f33e2ea1649cb9c75776ae64c26",
+          "response": "benchmarks/results/scout099-20261020/response-041.json",
+          "response_sha256": "aebae39cd4e6bc6492160e6087473d4c4e12a6489c515f53471b073181bd26bc",
+          "saved_grade": {
+            "correct": true,
+            "false_safe": false,
+            "golden_verdict": "fail"
+          },
+          "saved_request_controls": {
+            "max_tokens": 32768,
+            "model": "minimax/minimax-m3.1-flash:free",
+            "provider": {
+              "allow_fallbacks": false,
+              "max_price": {
+                "completion": 0,
+                "prompt": 0
+              },
+              "only": [
+                "minimax"
+              ],
+              "require_parameters": false
+            },
+            "reasoning": {
+              "effort": "high"
+            }
+          },
+          "served_model": "minimax/minimax-m3.1-flash:free",
+          "stage": "safety-page-092-000-candidate-diagnostic"
+        },
+        "control": {
+          "arm": "control",
+          "historical_http_latency_ms": 3512,
+          "images_source_then_crop": [
+            {
+              "bytes": 675402,
+              "detail": "auto",
+              "dimensions": [
+                1545,
+                2000
+              ],
+              "format": "JPEG",
+              "sha256": "23540ee8136d29922da3f9284d44ddb46a07390fdd41f79f9afbb39989c9c04c"
+            },
+            {
+              "bytes": 1234084,
+              "detail": "auto",
+              "dimensions": [
+                1974,
+                2381
+              ],
+              "format": "JPEG",
+              "sha256": "3d02c44de285d58fd54c3131a5c2c6c13235093c88eef49ac02e2a778b23687c"
+            }
+          ],
+          "key": "page-092-000",
+          "native_build_result": "Image exceeds frozen pilot input bound; no implicit resize",
+          "native_parse_result": "Unexpected served model identity",
+          "payload": {
+            "excessive_blank": false,
+            "has_page_text": true,
+            "reason": "The crop includes large amounts of surrounding page paragraph text and only a partial portion of the photograph, so it does not isolate the illustration.",
+            "verdict": "fail"
+          },
+          "payload_shape": "four fields valid locally; not native admission",
+          "provider": "OpenAI",
+          "request": "benchmarks/results/scout099-20261020/request-042.json",
+          "request_sha256": "f884b4033245e74b89c8854978683cec29750987d1a617e748a145203124f257",
+          "response": "benchmarks/results/scout099-20261020/response-042.json",
+          "response_sha256": "686a3318c467664c69b6b63885879819332e84cefc8a7ca91ed64a9084723ab4",
+          "saved_grade": {
+            "correct": true,
+            "false_safe": false,
+            "golden_verdict": "fail"
+          },
+          "saved_request_controls": {
+            "max_output_tokens": 2048,
+            "model": "gpt-5.5",
+            "reasoning": {
+              "effort": "none"
+            },
+            "store": false,
+            "text": {
+              "format": {
+                "name": "page_context_validation",
+                "schema": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "excessive_blank": {
+                      "type": "boolean"
+                    },
+                    "has_page_text": {
+                      "type": "boolean"
+                    },
+                    "reason": {
+                      "type": "string"
+                    },
+                    "verdict": {
+                      "enum": [
+                        "pass",
+                        "fail"
+                      ],
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "verdict",
+                    "has_page_text",
+                    "excessive_blank",
+                    "reason"
+                  ],
+                  "type": "object"
+                },
+                "strict": true,
+                "type": "json_schema"
+              }
+            }
+          },
+          "served_model": "gpt-5.5-2026-04-23",
+          "stage": "safety-page-092-000-control"
+        }
+      },
+      "new_source_judgment": {
+        "verdict": "fail",
+        "has_page_text": true,
+        "excessive_blank": false,
+        "reason": "The source contains a full wedding-couple portrait beneath left-column prose. The crop instead contains substantial paragraph text across both columns and only the man/right part of the portrait. The woman and most of the intended photograph are unmistakably absent. Text leakage is observed; margins do not dominate.",
+        "boundary_uncertainty": "none material under supplied prompt; source composition is determinate",
+        "review_scope": "Exact decoded original request source and crop opened individually with view_image; historical montage also inspected. This is a fresh agent source judgment, not Cam approval."
+      },
+      "review_owner": "bounded source reviewer, adopted by owning audit lead",
+      "new_payload_review": {
+        "candidate": {
+          "verdict_matches_new_source_judgment": true,
+          "observed_flags_match_new_source_judgment": true,
+          "reason_source_grounded": true,
+          "uncertainty_review": "No explicit uncertainty field; reason gives a determinate source-grounded condition. No material unhandled ambiguity observed.",
+          "semantic_issues": []
+        },
+        "control": {
+          "verdict_matches_new_source_judgment": true,
+          "observed_flags_match_new_source_judgment": true,
+          "reason_source_grounded": true,
+          "uncertainty_review": "No explicit uncertainty field; reason gives a determinate source-grounded condition. No material unhandled ambiguity observed.",
+          "semantic_issues": []
+        }
+      }
+    },
+    {
+      "key": "page-122-000",
+      "arms": {
+        "candidate": {
+          "arm": "candidate",
+          "historical_http_latency_ms": 17130,
+          "images_source_then_crop": [
+            {
+              "bytes": 849762,
+              "detail": null,
+              "dimensions": [
+                1545,
+                2000
+              ],
+              "format": "JPEG",
+              "sha256": "04731378a1ff37ffb8e26faf005f87fa2383f9ba91e147ce9caa94e8519d086e"
+            },
+            {
+              "bytes": 5580411,
+              "detail": null,
+              "dimensions": [
+                4244,
+                2478
+              ],
+              "format": "JPEG",
+              "sha256": "5ab45f308ea9d353dae2830a574af026b907fd95f6c50e78d48e8921031f6990"
+            }
+          ],
+          "key": "page-122-000",
+          "native_build_result": "Image exceeds frozen pilot input bound; no implicit resize",
+          "native_parse_result": "Missing native response identity",
+          "payload": {
+            "excessive_blank": false,
+            "has_page_text": true,
+            "reason": "The crop includes the page-level caption beneath the group photograph, which is separate from the image and should remain outside the illustration crop.",
+            "verdict": "fail"
+          },
+          "payload_shape": "four fields valid locally; not native admission",
+          "provider": "Minimax",
+          "request": "benchmarks/results/scout099-20261020/request-043.json",
+          "request_sha256": "c556052bc944ac3657c7cc8f60cb7b65436fda5214b3b78eace3624b8711fe67",
+          "response": "benchmarks/results/scout099-20261020/response-043.json",
+          "response_sha256": "67422ec4c5f8837bf2c748f1130824a3f7d72db1711a948d8c8e70acbbfb8875",
+          "saved_grade": {
+            "correct": true,
+            "false_safe": false,
+            "golden_verdict": "fail"
+          },
+          "saved_request_controls": {
+            "max_tokens": 32768,
+            "model": "minimax/minimax-m3.1-flash:free",
+            "provider": {
+              "allow_fallbacks": false,
+              "max_price": {
+                "completion": 0,
+                "prompt": 0
+              },
+              "only": [
+                "minimax"
+              ],
+              "require_parameters": false
+            },
+            "reasoning": {
+              "effort": "high"
+            }
+          },
+          "served_model": "minimax/minimax-m3.1-flash:free",
+          "stage": "safety-page-122-000-candidate-diagnostic"
+        },
+        "control": {
+          "arm": "control",
+          "historical_http_latency_ms": 4530,
+          "images_source_then_crop": [
+            {
+              "bytes": 849762,
+              "detail": "auto",
+              "dimensions": [
+                1545,
+                2000
+              ],
+              "format": "JPEG",
+              "sha256": "04731378a1ff37ffb8e26faf005f87fa2383f9ba91e147ce9caa94e8519d086e"
+            },
+            {
+              "bytes": 5580411,
+              "detail": "auto",
+              "dimensions": [
+                4244,
+                2478
+              ],
+              "format": "JPEG",
+              "sha256": "5ab45f308ea9d353dae2830a574af026b907fd95f6c50e78d48e8921031f6990"
+            }
+          ],
+          "key": "page-122-000",
+          "native_build_result": "Image exceeds frozen pilot input bound; no implicit resize",
+          "native_parse_result": "Unexpected served model identity",
+          "payload": {
+            "excessive_blank": false,
+            "has_page_text": true,
+            "reason": "The crop includes the page-level caption text beneath the photo, which should have been excluded from an illustration crop.",
+            "verdict": "fail"
+          },
+          "payload_shape": "four fields valid locally; not native admission",
+          "provider": "OpenAI",
+          "request": "benchmarks/results/scout099-20261020/request-044.json",
+          "request_sha256": "b0dde95e0941017b9350abfb7a5e6ceec3267309665fd38d77b3b3130e050fa4",
+          "response": "benchmarks/results/scout099-20261020/response-044.json",
+          "response_sha256": "7d4423bac3f23da05d40e9df24eb1da0df9f31ef31a44f44811112649e6bc8bb",
+          "saved_grade": {
+            "correct": true,
+            "false_safe": false,
+            "golden_verdict": "fail"
+          },
+          "saved_request_controls": {
+            "max_output_tokens": 2048,
+            "model": "gpt-5.5",
+            "reasoning": {
+              "effort": "none"
+            },
+            "store": false,
+            "text": {
+              "format": {
+                "name": "page_context_validation",
+                "schema": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "excessive_blank": {
+                      "type": "boolean"
+                    },
+                    "has_page_text": {
+                      "type": "boolean"
+                    },
+                    "reason": {
+                      "type": "string"
+                    },
+                    "verdict": {
+                      "enum": [
+                        "pass",
+                        "fail"
+                      ],
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "verdict",
+                    "has_page_text",
+                    "excessive_blank",
+                    "reason"
+                  ],
+                  "type": "object"
+                },
+                "strict": true,
+                "type": "json_schema"
+              }
+            }
+          },
+          "served_model": "gpt-5.5-2026-04-23",
+          "stage": "safety-page-122-000-control"
+        }
+      },
+      "new_source_judgment": {
+        "verdict": "fail",
+        "has_page_text": true,
+        "excessive_blank": false,
+        "reason": "The source has an upper group photograph followed by a separate caption, and two lower oval portraits. The crop keeps the full upper photograph and also its page caption beneath the photographic boundary. It excludes the lower ovals. Caption leakage establishes failure; the light sky remains image content.",
+        "boundary_uncertainty": "none material under supplied prompt; source composition is determinate",
+        "review_scope": "Exact decoded original request source and crop opened individually with view_image; historical montage also inspected. This is a fresh agent source judgment, not Cam approval."
+      },
+      "review_owner": "bounded source reviewer, adopted by owning audit lead",
+      "new_payload_review": {
+        "candidate": {
+          "verdict_matches_new_source_judgment": true,
+          "observed_flags_match_new_source_judgment": true,
+          "reason_source_grounded": true,
+          "uncertainty_review": "No explicit uncertainty field; reason gives a determinate source-grounded condition. No material unhandled ambiguity observed.",
+          "semantic_issues": []
+        },
+        "control": {
+          "verdict_matches_new_source_judgment": true,
+          "observed_flags_match_new_source_judgment": true,
+          "reason_source_grounded": true,
+          "uncertainty_review": "No explicit uncertainty field; reason gives a determinate source-grounded condition. No material unhandled ambiguity observed.",
+          "semantic_issues": []
+        }
+      }
+    },
+    {
+      "key": "page-122-001",
+      "arms": {
+        "candidate": {
+          "arm": "candidate",
+          "historical_http_latency_ms": 9045,
+          "images_source_then_crop": [
+            {
+              "bytes": 849762,
+              "detail": null,
+              "dimensions": [
+                1545,
+                2000
+              ],
+              "format": "JPEG",
+              "sha256": "04731378a1ff37ffb8e26faf005f87fa2383f9ba91e147ce9caa94e8519d086e"
+            },
+            {
+              "bytes": 5523372,
+              "detail": null,
+              "dimensions": [
+                4244,
+                2958
+              ],
+              "format": "JPEG",
+              "sha256": "7fea918ba336f4cca9bbbb048f97bcc6377febe2afaebd5eddf2eed0c0bfb8d9"
+            }
+          ],
+          "key": "page-122-001",
+          "native_build_result": "Image exceeds frozen pilot input bound; no implicit resize",
+          "native_parse_result": "Missing native response identity",
+          "payload": {
+            "excessive_blank": false,
+            "has_page_text": false,
+            "reason": "The crop combines two separately presented oval portraits, each with its own caption on the full page, rather than isolating one intended illustration.",
+            "verdict": "fail"
+          },
+          "payload_shape": "four fields valid locally; not native admission",
+          "provider": "Minimax",
+          "request": "benchmarks/results/scout099-20261020/request-009.json",
+          "request_sha256": "3985d55797d67fcce90682fc43e3b535d580a1d171b2ef120b9b4e257de47bfe",
+          "response": "benchmarks/results/scout099-20261020/response-009.json",
+          "response_sha256": "520fe3ef1cf5cee250db31aebc4cc0b3d6f9ab7d5d547084eb8bf7b213766d06",
+          "saved_grade": {
+            "correct": true,
+            "false_safe": false,
+            "golden_verdict": "fail"
+          },
+          "saved_request_controls": {
+            "max_tokens": 32768,
+            "model": "minimax/minimax-m3.1-flash:free",
+            "provider": {
+              "allow_fallbacks": false,
+              "max_price": {
+                "completion": 0,
+                "prompt": 0
+              },
+              "only": [
+                "minimax"
+              ],
+              "require_parameters": false
+            },
+            "reasoning": {
+              "effort": "high"
+            }
+          },
+          "served_model": "minimax/minimax-m3.1-flash:free",
+          "stage": "safety-page-122-001-candidate-diagnostic"
+        },
+        "control": {
+          "arm": "control",
+          "historical_http_latency_ms": 5355,
+          "images_source_then_crop": [
+            {
+              "bytes": 849762,
+              "detail": "auto",
+              "dimensions": [
+                1545,
+                2000
+              ],
+              "format": "JPEG",
+              "sha256": "04731378a1ff37ffb8e26faf005f87fa2383f9ba91e147ce9caa94e8519d086e"
+            },
+            {
+              "bytes": 5523372,
+              "detail": "auto",
+              "dimensions": [
+                4244,
+                2958
+              ],
+              "format": "JPEG",
+              "sha256": "7fea918ba336f4cca9bbbb048f97bcc6377febe2afaebd5eddf2eed0c0bfb8d9"
+            }
+          ],
+          "key": "page-122-001",
+          "native_build_result": "Image exceeds frozen pilot input bound; no implicit resize",
+          "native_parse_result": "Unexpected served model identity",
+          "payload": {
+            "excessive_blank": false,
+            "has_page_text": false,
+            "reason": "Crop includes part of the neighboring Sophie L\u2019Heureux portrait on the right, which is a separately presented visual element on the page.",
+            "verdict": "fail"
+          },
+          "payload_shape": "four fields valid locally; not native admission",
+          "provider": "OpenAI",
+          "request": "benchmarks/results/scout099-20261020/request-011.json",
+          "request_sha256": "2ccb3a24898ee42c98d53e18eca2cc167c3d053147876922fb333d43cefbab8a",
+          "response": "benchmarks/results/scout099-20261020/response-011.json",
+          "response_sha256": "379f7253f7d1751803b6669ace9affba0281bb06a7973a198f2c6321fe70c32a",
+          "saved_grade": {
+            "correct": true,
+            "false_safe": false,
+            "golden_verdict": "fail"
+          },
+          "saved_request_controls": {
+            "max_output_tokens": 2048,
+            "model": "gpt-5.5",
+            "reasoning": {
+              "effort": "none"
+            },
+            "store": false,
+            "text": {
+              "format": {
+                "name": "page_context_validation",
+                "schema": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "excessive_blank": {
+                      "type": "boolean"
+                    },
+                    "has_page_text": {
+                      "type": "boolean"
+                    },
+                    "reason": {
+                      "type": "string"
+                    },
+                    "verdict": {
+                      "enum": [
+                        "pass",
+                        "fail"
+                      ],
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "verdict",
+                    "has_page_text",
+                    "excessive_blank",
+                    "reason"
+                  ],
+                  "type": "object"
+                },
+                "strict": true,
+                "type": "json_schema"
+              }
+            }
+          },
+          "served_model": "gpt-5.5-2026-04-23",
+          "stage": "safety-page-122-001-control"
+        }
+      },
+      "new_source_judgment": {
+        "verdict": "fail",
+        "has_page_text": false,
+        "excessive_blank": false,
+        "reason": "Crop groups both whole oval portraits although source presents them separately with distinct captions: Moise/brother Edward and Sophie. No caption text leaks into crop. GPT part-of-neighbor wording understates extent but identifies the correct neighboring-visual boundary failure; retained as minor imprecision, not another categorical defect.",
+        "boundary_uncertainty": "none material for this source pair under frozen prompt; no operator authority asserted",
+        "review_scope": "Original exact request source/crop bytes decoded and individually viewed; full saved payloads inspected; fresh agent judgment, not Cam approval"
+      },
+      "review_owner": "owning audit lead",
+      "new_payload_review": {
+        "candidate": {
+          "verdict_matches_new_source_judgment": true,
+          "observed_flags_match_new_source_judgment": true,
+          "reason_source_grounded": true,
+          "uncertainty_review": "No explicit uncertainty field. Reason reviewed; no material source-boundary uncertainty requiring a separate hold observed.",
+          "semantic_issues": []
+        },
+        "control": {
+          "verdict_matches_new_source_judgment": true,
+          "observed_flags_match_new_source_judgment": true,
+          "reason_source_grounded": true,
+          "uncertainty_review": "No explicit uncertainty field. Reason reviewed; no material source-boundary uncertainty requiring a separate hold observed.",
+          "semantic_issues": []
+        }
+      }
+    },
+    {
+      "key": "page-125-000",
+      "arms": {
+        "candidate": {
+          "arm": "candidate",
+          "historical_http_latency_ms": 11106,
+          "images_source_then_crop": [
+            {
+              "bytes": 269225,
+              "detail": null,
+              "dimensions": [
+                1545,
+                2000
+              ],
+              "format": "JPEG",
+              "sha256": "b35e4c1e660a0ed9029ebe555558341a933a5724740964ca6927f94f77ae2944"
+            },
+            {
+              "bytes": 1777768,
+              "detail": null,
+              "dimensions": [
+                4011,
+                3871
+              ],
+              "format": "JPEG",
+              "sha256": "e371aa234263c051dce440c71d0ec3d5a9ed31bd3b1fc9c4dd4dae475dca57ee"
+            }
+          ],
+          "key": "page-125-000",
+          "native_build_result": "Image exceeds frozen pilot input bound; no implicit resize",
+          "native_parse_result": "Missing native response identity",
+          "payload": {
+            "excessive_blank": false,
+            "has_page_text": false,
+            "reason": "The crop tightly contains the complete single illustration and excludes the caption, page number, and surrounding page margins; its white areas are integral to the drawing.",
+            "verdict": "pass"
+          },
+          "payload_shape": "four fields valid locally; not native admission",
+          "provider": "Minimax",
+          "request": "benchmarks/results/scout099-20261020/request-045.json",
+          "request_sha256": "9bec61f802fe4eb6954c868c110cb7dfdb6a6de28ec800bdfef9765afb536098",
+          "response": "benchmarks/results/scout099-20261020/response-045.json",
+          "response_sha256": "f081e1937d7ba44f9dfa3b76d51c73cc727c3b67d9c30c370ca681c15e0de9e9",
+          "saved_grade": {
+            "correct": true,
+            "false_safe": false,
+            "golden_verdict": "pass"
+          },
+          "saved_request_controls": {
+            "max_tokens": 32768,
+            "model": "minimax/minimax-m3.1-flash:free",
+            "provider": {
+              "allow_fallbacks": false,
+              "max_price": {
+                "completion": 0,
+                "prompt": 0
+              },
+              "only": [
+                "minimax"
+              ],
+              "require_parameters": false
+            },
+            "reasoning": {
+              "effort": "high"
+            }
+          },
+          "served_model": "minimax/minimax-m3.1-flash:free",
+          "stage": "safety-page-125-000-candidate-diagnostic"
+        },
+        "control": {
+          "arm": "control",
+          "historical_http_latency_ms": 3307,
+          "images_source_then_crop": [
+            {
+              "bytes": 269225,
+              "detail": "auto",
+              "dimensions": [
+                1545,
+                2000
+              ],
+              "format": "JPEG",
+              "sha256": "b35e4c1e660a0ed9029ebe555558341a933a5724740964ca6927f94f77ae2944"
+            },
+            {
+              "bytes": 1777768,
+              "detail": "auto",
+              "dimensions": [
+                4011,
+                3871
+              ],
+              "format": "JPEG",
+              "sha256": "e371aa234263c051dce440c71d0ec3d5a9ed31bd3b1fc9c4dd4dae475dca57ee"
+            }
+          ],
+          "key": "page-125-000",
+          "native_build_result": "Image exceeds frozen pilot input bound; no implicit resize",
+          "native_parse_result": "Unexpected served model identity",
+          "payload": {
+            "excessive_blank": false,
+            "has_page_text": false,
+            "reason": "Crop contains only the illustration artwork and excludes the page caption and page number; no neighboring visuals or page text are visible.",
+            "verdict": "pass"
+          },
+          "payload_shape": "four fields valid locally; not native admission",
+          "provider": "OpenAI",
+          "request": "benchmarks/results/scout099-20261020/request-046.json",
+          "request_sha256": "09cc90d598b94e245cca8f3e46dbad7e16726de4b807f80d21f7ac5c662c4c97",
+          "response": "benchmarks/results/scout099-20261020/response-046.json",
+          "response_sha256": "5f9fd4c6ba75a6be068224a224a09a1625eacd36065883eabc734fb68ea6c4db",
+          "saved_grade": {
+            "correct": true,
+            "false_safe": false,
+            "golden_verdict": "pass"
+          },
+          "saved_request_controls": {
+            "max_output_tokens": 2048,
+            "model": "gpt-5.5",
+            "reasoning": {
+              "effort": "none"
+            },
+            "store": false,
+            "text": {
+              "format": {
+                "name": "page_context_validation",
+                "schema": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "excessive_blank": {
+                      "type": "boolean"
+                    },
+                    "has_page_text": {
+                      "type": "boolean"
+                    },
+                    "reason": {
+                      "type": "string"
+                    },
+                    "verdict": {
+                      "enum": [
+                        "pass",
+                        "fail"
+                      ],
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "verdict",
+                    "has_page_text",
+                    "excessive_blank",
+                    "reason"
+                  ],
+                  "type": "object"
+                },
+                "strict": true,
+                "type": "json_schema"
+              }
+            }
+          },
+          "served_model": "gpt-5.5-2026-04-23",
+          "stage": "safety-page-125-000-control"
+        }
+      },
+      "new_source_judgment": {
+        "verdict": "pass",
+        "has_page_text": false,
+        "excessive_blank": false,
+        "reason": "The page has one oxen/covered-wagon line illustration, integral artist signature, separate printed credit and page number. The crop keeps oxen, people, wagon, wheel, ground strokes and cloud/landscape composition, excluding printed credit and page number. Some faint cloud/landscape strokes reach the tight boundary, but no large missing part is shown; internal white illustration areas do not establish empty margins over 40 percent.",
+        "boundary_uncertainty": "none material under supplied prompt; source composition is determinate",
+        "review_scope": "Exact decoded original request source and crop opened individually with view_image; historical montage also inspected. This is a fresh agent source judgment, not Cam approval."
+      },
+      "review_owner": "bounded source reviewer, adopted by owning audit lead",
+      "new_payload_review": {
+        "candidate": {
+          "verdict_matches_new_source_judgment": true,
+          "observed_flags_match_new_source_judgment": true,
+          "reason_source_grounded": true,
+          "uncertainty_review": "No explicit uncertainty field; reason gives a determinate source-grounded condition. No material unhandled ambiguity observed.",
+          "semantic_issues": []
+        },
+        "control": {
+          "verdict_matches_new_source_judgment": true,
+          "observed_flags_match_new_source_judgment": true,
+          "reason_source_grounded": true,
+          "uncertainty_review": "No explicit uncertainty field; reason gives a determinate source-grounded condition. No material unhandled ambiguity observed.",
+          "semantic_issues": []
+        }
+      }
+    },
+    {
+      "key": "page-126-000",
+      "arms": {
+        "candidate": {
+          "arm": "candidate",
+          "historical_http_latency_ms": 8926,
+          "images_source_then_crop": [
+            {
+              "bytes": 382952,
+              "detail": null,
+              "dimensions": [
+                1545,
+                2000
+              ],
+              "format": "JPEG",
+              "sha256": "4f4ac880a5ff48ffa1a6d2a010e763cf022dceb118988b7bf6d0c0a41fab1143"
+            },
+            {
+              "bytes": 1250494,
+              "detail": null,
+              "dimensions": [
+                2933,
+                2116
+              ],
+              "format": "JPEG",
+              "sha256": "be267fc173fd8ed502bd6ab4d0be57c0d7d5a0c1556fdcc9f8c34d94aa8715d6"
+            }
+          ],
+          "key": "page-126-000",
+          "native_build_result": "Image exceeds frozen pilot input bound; no implicit resize",
+          "native_parse_result": "Missing native response identity",
+          "payload": {
+            "excessive_blank": false,
+            "has_page_text": false,
+            "reason": "The crop includes substantial portions of neighboring plaques at the left and top edges, not just the intended central plaque.",
+            "verdict": "fail"
+          },
+          "payload_shape": "four fields valid locally; not native admission",
+          "provider": "Minimax",
+          "request": "benchmarks/results/scout099-20261020/request-047.json",
+          "request_sha256": "7e633b61d86ff6a6115ff95f6529402424067cafbef44534d9688dccca45be2e",
+          "response": "benchmarks/results/scout099-20261020/response-047.json",
+          "response_sha256": "74b1973d057dfdc203af9d42231a3838b0f028689efd34c1cb63451405da65cd",
+          "saved_grade": {
+            "correct": false,
+            "false_safe": false,
+            "golden_verdict": "pass"
+          },
+          "saved_request_controls": {
+            "max_tokens": 32768,
+            "model": "minimax/minimax-m3.1-flash:free",
+            "provider": {
+              "allow_fallbacks": false,
+              "max_price": {
+                "completion": 0,
+                "prompt": 0
+              },
+              "only": [
+                "minimax"
+              ],
+              "require_parameters": false
+            },
+            "reasoning": {
+              "effort": "high"
+            }
+          },
+          "served_model": "minimax/minimax-m3.1-flash:free",
+          "stage": "safety-page-126-000-candidate-diagnostic"
+        },
+        "control": {
+          "arm": "control",
+          "historical_http_latency_ms": 2962,
+          "images_source_then_crop": [
+            {
+              "bytes": 382952,
+              "detail": "auto",
+              "dimensions": [
+                1545,
+                2000
+              ],
+              "format": "JPEG",
+              "sha256": "4f4ac880a5ff48ffa1a6d2a010e763cf022dceb118988b7bf6d0c0a41fab1143"
+            },
+            {
+              "bytes": 1250494,
+              "detail": "auto",
+              "dimensions": [
+                2933,
+                2116
+              ],
+              "format": "JPEG",
+              "sha256": "be267fc173fd8ed502bd6ab4d0be57c0d7d5a0c1556fdcc9f8c34d94aa8715d6"
+            }
+          ],
+          "key": "page-126-000",
+          "native_build_result": "Image exceeds frozen pilot input bound; no implicit resize",
+          "native_parse_result": "Unexpected served model identity",
+          "payload": {
+            "excessive_blank": false,
+            "has_page_text": false,
+            "reason": "The crop includes parts of adjacent plaques/visual elements at the left and top instead of isolating the intended upper plaque photograph.",
+            "verdict": "fail"
+          },
+          "payload_shape": "four fields valid locally; not native admission",
+          "provider": "OpenAI",
+          "request": "benchmarks/results/scout099-20261020/request-048.json",
+          "request_sha256": "fe1d361f90da909098dd454768423e53d750cbe4d3de9d5240e42f551f141c71",
+          "response": "benchmarks/results/scout099-20261020/response-048.json",
+          "response_sha256": "c66d65dd525d92f6166dad6518239921625fcb23a509d98dcaae5b46de076985",
+          "saved_grade": {
+            "correct": false,
+            "false_safe": false,
+            "golden_verdict": "pass"
+          },
+          "saved_request_controls": {
+            "max_output_tokens": 2048,
+            "model": "gpt-5.5",
+            "reasoning": {
+              "effort": "none"
+            },
+            "store": false,
+            "text": {
+              "format": {
+                "name": "page_context_validation",
+                "schema": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "excessive_blank": {
+                      "type": "boolean"
+                    },
+                    "has_page_text": {
+                      "type": "boolean"
+                    },
+                    "reason": {
+                      "type": "string"
+                    },
+                    "verdict": {
+                      "enum": [
+                        "pass",
+                        "fail"
+                      ],
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "verdict",
+                    "has_page_text",
+                    "excessive_blank",
+                    "reason"
+                  ],
+                  "type": "object"
+                },
+                "strict": true,
+                "type": "json_schema"
+              }
+            }
+          },
+          "served_model": "gpt-5.5-2026-04-23",
+          "stage": "safety-page-126-000-control"
+        }
+      },
+      "new_source_judgment": {
+        "verdict": "pass",
+        "has_page_text": false,
+        "excessive_blank": false,
+        "reason": "The page presents two separate photographs. The upper photograph already contains a central veterans plaque and partial left/top plaques on the same continuous stone monument; the crop retains that entire upper photographic composition and excludes the lower separately presented photograph. These side/top plaques are subjects within the same photograph, not separately presented page visuals or page-layout text. Current prompt explicitly preserves objects within the same photograph.",
+        "boundary_uncertainty": "none material under supplied prompt; source composition is determinate",
+        "review_scope": "Exact decoded original request source and crop opened individually with view_image; historical montage also inspected. This is a fresh agent source judgment, not Cam approval."
+      },
+      "review_owner": "bounded source reviewer, adopted by owning audit lead",
+      "new_payload_review": {
+        "candidate": {
+          "verdict_matches_new_source_judgment": false,
+          "observed_flags_match_new_source_judgment": true,
+          "reason_source_grounded": false,
+          "uncertainty_review": "No explicit uncertainty field in contract; reason examined. This reason asserts a determinate condition, not abstention.",
+          "semantic_issues": [
+            "Treats incidental photographed plaques as neighboring page visuals despite source photograph boundaries and prompt same-photograph preservation rule."
+          ]
+        },
+        "control": {
+          "verdict_matches_new_source_judgment": false,
+          "observed_flags_match_new_source_judgment": true,
+          "reason_source_grounded": false,
+          "uncertainty_review": "No explicit uncertainty field in contract; reason examined. This reason asserts a determinate condition, not abstention.",
+          "semantic_issues": [
+            "Treats incidental photographed plaques as neighboring page visuals despite source photograph boundaries and prompt same-photograph preservation rule."
+          ]
+        }
+      }
+    },
+    {
+      "key": "page-126-001",
+      "arms": {
+        "candidate": {
+          "arm": "candidate",
+          "historical_http_latency_ms": 6683,
+          "images_source_then_crop": [
+            {
+              "bytes": 382952,
+              "detail": null,
+              "dimensions": [
+                1545,
+                2000
+              ],
+              "format": "JPEG",
+              "sha256": "4f4ac880a5ff48ffa1a6d2a010e763cf022dceb118988b7bf6d0c0a41fab1143"
+            },
+            {
+              "bytes": 1314806,
+              "detail": null,
+              "dimensions": [
+                2123,
+                2940
+              ],
+              "format": "JPEG",
+              "sha256": "34ceefa5de85865fd864cb3253a38fa73cf6ab5f13ed56daec60e00de20da908"
+            }
+          ],
+          "key": "page-126-001",
+          "native_build_result": "Image exceeds frozen pilot input bound; no implicit resize",
+          "native_parse_result": "Missing native response identity",
+          "payload": {
+            "excessive_blank": false,
+            "has_page_text": false,
+            "reason": "The crop isolates the complete lower plaque photograph from the full page. The inscription is part of the photographed monument, not page-level text, and the surrounding stone and rock are image content.",
+            "verdict": "pass"
+          },
+          "payload_shape": "four fields valid locally; not native admission",
+          "provider": "Minimax",
+          "request": "benchmarks/results/scout099-20261020/request-049.json",
+          "request_sha256": "9e44f03252e09d1c19d567f1a16a545cc8eae52d4b12dab96310a9482b5cb5e6",
+          "response": "benchmarks/results/scout099-20261020/response-049.json",
+          "response_sha256": "53f8e1d96bb88c59acdfca4c7e4a2a06b7458897dee05c1137478b5d535d4a7d",
+          "saved_grade": {
+            "correct": true,
+            "false_safe": false,
+            "golden_verdict": "pass"
+          },
+          "saved_request_controls": {
+            "max_tokens": 32768,
+            "model": "minimax/minimax-m3.1-flash:free",
+            "provider": {
+              "allow_fallbacks": false,
+              "max_price": {
+                "completion": 0,
+                "prompt": 0
+              },
+              "only": [
+                "minimax"
+              ],
+              "require_parameters": false
+            },
+            "reasoning": {
+              "effort": "high"
+            }
+          },
+          "served_model": "minimax/minimax-m3.1-flash:free",
+          "stage": "safety-page-126-001-candidate-diagnostic"
+        },
+        "control": {
+          "arm": "control",
+          "historical_http_latency_ms": 4329,
+          "images_source_then_crop": [
+            {
+              "bytes": 382952,
+              "detail": "auto",
+              "dimensions": [
+                1545,
+                2000
+              ],
+              "format": "JPEG",
+              "sha256": "4f4ac880a5ff48ffa1a6d2a010e763cf022dceb118988b7bf6d0c0a41fab1143"
+            },
+            {
+              "bytes": 1314806,
+              "detail": "auto",
+              "dimensions": [
+                2123,
+                2940
+              ],
+              "format": "JPEG",
+              "sha256": "34ceefa5de85865fd864cb3253a38fa73cf6ab5f13ed56daec60e00de20da908"
+            }
+          ],
+          "key": "page-126-001",
+          "native_build_result": "Image exceeds frozen pilot input bound; no implicit resize",
+          "native_parse_result": "Unexpected served model identity",
+          "payload": {
+            "excessive_blank": false,
+            "has_page_text": false,
+            "reason": "The crop isolates the lower photograph/plaque from the page; the visible text is inscription text integral to the photographed plaque, with no surrounding page text or neighboring illustration leakage.",
+            "verdict": "pass"
+          },
+          "payload_shape": "four fields valid locally; not native admission",
+          "provider": "OpenAI",
+          "request": "benchmarks/results/scout099-20261020/request-050.json",
+          "request_sha256": "e5c3793320d0c0a93507900ac1d1ef9ba1e50c20a78d65ff1eca4f5fcd9ba5df",
+          "response": "benchmarks/results/scout099-20261020/response-050.json",
+          "response_sha256": "e681c5cf6d7f196515c59206754e24dfd257af76abb051f3775876343a5b9ae9",
+          "saved_grade": {
+            "correct": true,
+            "false_safe": false,
+            "golden_verdict": "pass"
+          },
+          "saved_request_controls": {
+            "max_output_tokens": 2048,
+            "model": "gpt-5.5",
+            "reasoning": {
+              "effort": "none"
+            },
+            "store": false,
+            "text": {
+              "format": {
+                "name": "page_context_validation",
+                "schema": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "excessive_blank": {
+                      "type": "boolean"
+                    },
+                    "has_page_text": {
+                      "type": "boolean"
+                    },
+                    "reason": {
+                      "type": "string"
+                    },
+                    "verdict": {
+                      "enum": [
+                        "pass",
+                        "fail"
+                      ],
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "verdict",
+                    "has_page_text",
+                    "excessive_blank",
+                    "reason"
+                  ],
+                  "type": "object"
+                },
+                "strict": true,
+                "type": "json_schema"
+              }
+            }
+          },
+          "served_model": "gpt-5.5-2026-04-23",
+          "stage": "safety-page-126-001-control"
+        }
+      },
+      "new_source_judgment": {
+        "verdict": "pass",
+        "has_page_text": false,
+        "excessive_blank": false,
+        "reason": "The lower separately presented photograph is fully retained, including complete Moise and Sophie plaque, stone surround and incidental lower-left pale marks. Inscription text is integral to the photographed monument. The upper separate photograph and surrounding page are excluded.",
+        "boundary_uncertainty": "none material under supplied prompt; source composition is determinate",
+        "review_scope": "Exact decoded original request source and crop opened individually with view_image; historical montage also inspected. This is a fresh agent source judgment, not Cam approval."
+      },
+      "review_owner": "bounded source reviewer, adopted by owning audit lead",
+      "new_payload_review": {
+        "candidate": {
+          "verdict_matches_new_source_judgment": true,
+          "observed_flags_match_new_source_judgment": true,
+          "reason_source_grounded": true,
+          "uncertainty_review": "No explicit uncertainty field; reason gives a determinate source-grounded condition. No material unhandled ambiguity observed.",
+          "semantic_issues": []
+        },
+        "control": {
+          "verdict_matches_new_source_judgment": true,
+          "observed_flags_match_new_source_judgment": true,
+          "reason_source_grounded": true,
+          "uncertainty_review": "No explicit uncertainty field; reason gives a determinate source-grounded condition. No material unhandled ambiguity observed.",
+          "semantic_issues": []
+        }
+      }
+    },
+    {
+      "key": "page-127-000",
+      "arms": {
+        "candidate": {
+          "arm": "candidate",
+          "historical_http_latency_ms": 14589,
+          "images_source_then_crop": [
+            {
+              "bytes": 292143,
+              "detail": null,
+              "dimensions": [
+                1545,
+                2000
+              ],
+              "format": "JPEG",
+              "sha256": "25042b92e75e09ff2d7aa9330b44b26a092624a9bee19c7f2707a413f6c7f302"
+            },
+            {
+              "bytes": 1138976,
+              "detail": null,
+              "dimensions": [
+                2924,
+                2081
+              ],
+              "format": "JPEG",
+              "sha256": "6dcf9cad3998eba4ed72d1a79594431f86113a04c58b0452670ede3e3ec13429"
+            }
+          ],
+          "key": "page-127-000",
+          "native_build_result": "Image exceeds frozen pilot input bound; no implicit resize",
+          "native_parse_result": "Missing native response identity",
+          "payload": {
+            "excessive_blank": false,
+            "has_page_text": false,
+            "reason": "The crop isolates the complete upper photograph of the monument and excludes the separate lower close-up photograph. The visible lettering is integral to the plaques within the image.",
+            "verdict": "pass"
+          },
+          "payload_shape": "four fields valid locally; not native admission",
+          "provider": "Minimax",
+          "request": "benchmarks/results/scout099-20261020/request-051.json",
+          "request_sha256": "188abbdd0249841f82fd198d4d4080d2e850f454dc6de090ca1acd36f48710bd",
+          "response": "benchmarks/results/scout099-20261020/response-051.json",
+          "response_sha256": "6593abac7a445113af08028954d78861a5aefd2d8b91007599dbf0b4f58439e2",
+          "saved_grade": {
+            "correct": true,
+            "false_safe": false,
+            "golden_verdict": "pass"
+          },
+          "saved_request_controls": {
+            "max_tokens": 32768,
+            "model": "minimax/minimax-m3.1-flash:free",
+            "provider": {
+              "allow_fallbacks": false,
+              "max_price": {
+                "completion": 0,
+                "prompt": 0
+              },
+              "only": [
+                "minimax"
+              ],
+              "require_parameters": false
+            },
+            "reasoning": {
+              "effort": "high"
+            }
+          },
+          "served_model": "minimax/minimax-m3.1-flash:free",
+          "stage": "safety-page-127-000-candidate-diagnostic"
+        },
+        "control": {
+          "arm": "control",
+          "historical_http_latency_ms": 3369,
+          "images_source_then_crop": [
+            {
+              "bytes": 292143,
+              "detail": "auto",
+              "dimensions": [
+                1545,
+                2000
+              ],
+              "format": "JPEG",
+              "sha256": "25042b92e75e09ff2d7aa9330b44b26a092624a9bee19c7f2707a413f6c7f302"
+            },
+            {
+              "bytes": 1138976,
+              "detail": "auto",
+              "dimensions": [
+                2924,
+                2081
+              ],
+              "format": "JPEG",
+              "sha256": "6dcf9cad3998eba4ed72d1a79594431f86113a04c58b0452670ede3e3ec13429"
+            }
+          ],
+          "key": "page-127-000",
+          "native_build_result": "Image exceeds frozen pilot input bound; no implicit resize",
+          "native_parse_result": "Unexpected served model identity",
+          "payload": {
+            "excessive_blank": false,
+            "has_page_text": false,
+            "reason": "Crop isolates the upper photograph from the page without including page-level text or the separate lower image; plaque text is integral to the photographed monument.",
+            "verdict": "pass"
+          },
+          "payload_shape": "four fields valid locally; not native admission",
+          "provider": "OpenAI",
+          "request": "benchmarks/results/scout099-20261020/request-052.json",
+          "request_sha256": "fd169ae14f7e533ff39992f459b9fabd7616d56412b675d093652a0bd2ede728",
+          "response": "benchmarks/results/scout099-20261020/response-052.json",
+          "response_sha256": "a6b7928d1983c125a1d5e2b6efd62aa1faa948e1dc353a3c75b500cb2b5cd498",
+          "saved_grade": {
+            "correct": true,
+            "false_safe": false,
+            "golden_verdict": "pass"
+          },
+          "saved_request_controls": {
+            "max_output_tokens": 2048,
+            "model": "gpt-5.5",
+            "reasoning": {
+              "effort": "none"
+            },
+            "store": false,
+            "text": {
+              "format": {
+                "name": "page_context_validation",
+                "schema": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "excessive_blank": {
+                      "type": "boolean"
+                    },
+                    "has_page_text": {
+                      "type": "boolean"
+                    },
+                    "reason": {
+                      "type": "string"
+                    },
+                    "verdict": {
+                      "enum": [
+                        "pass",
+                        "fail"
+                      ],
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "verdict",
+                    "has_page_text",
+                    "excessive_blank",
+                    "reason"
+                  ],
+                  "type": "object"
+                },
+                "strict": true,
+                "type": "json_schema"
+              }
+            }
+          },
+          "served_model": "gpt-5.5-2026-04-23",
+          "stage": "safety-page-127-000-control"
+        }
+      },
+      "new_source_judgment": {
+        "verdict": "pass",
+        "has_page_text": false,
+        "excessive_blank": false,
+        "reason": "The upper photograph shows the whole stone monument with three plaques, sky, field and plinth. The crop retains that unified photograph and excludes the separate lower close-up photograph. All lettering belongs to plaques within the same photograph.",
+        "boundary_uncertainty": "none material under supplied prompt; source composition is determinate",
+        "review_scope": "Exact decoded original request source and crop opened individually with view_image; historical montage also inspected. This is a fresh agent source judgment, not Cam approval."
+      },
+      "review_owner": "bounded source reviewer, adopted by owning audit lead",
+      "new_payload_review": {
+        "candidate": {
+          "verdict_matches_new_source_judgment": true,
+          "observed_flags_match_new_source_judgment": true,
+          "reason_source_grounded": true,
+          "uncertainty_review": "No explicit uncertainty field; reason gives a determinate source-grounded condition. No material unhandled ambiguity observed.",
+          "semantic_issues": []
+        },
+        "control": {
+          "verdict_matches_new_source_judgment": true,
+          "observed_flags_match_new_source_judgment": true,
+          "reason_source_grounded": true,
+          "uncertainty_review": "No explicit uncertainty field; reason gives a determinate source-grounded condition. No material unhandled ambiguity observed.",
+          "semantic_issues": []
+        }
+      }
+    },
+    {
+      "key": "page-127-001",
+      "arms": {
+        "candidate": {
+          "arm": "candidate",
+          "historical_http_latency_ms": 8384,
+          "images_source_then_crop": [
+            {
+              "bytes": 292143,
+              "detail": null,
+              "dimensions": [
+                1545,
+                2000
+              ],
+              "format": "JPEG",
+              "sha256": "25042b92e75e09ff2d7aa9330b44b26a092624a9bee19c7f2707a413f6c7f302"
+            },
+            {
+              "bytes": 1416767,
+              "detail": null,
+              "dimensions": [
+                2919,
+                2071
+              ],
+              "format": "JPEG",
+              "sha256": "c98909f5166e46b330e89288f7ed4cd1f4700a98a5b0153996204725cc7ea29e"
+            }
+          ],
+          "key": "page-127-001",
+          "native_build_result": "Image exceeds frozen pilot input bound; no implicit resize",
+          "native_parse_result": "Missing native response identity",
+          "payload": {
+            "excessive_blank": false,
+            "has_page_text": false,
+            "reason": "The crop isolates the Canada Post plaque shown as a distinct lower-page photograph. All visible lettering is integral plaque text, with no page captions, neighboring illustrations, or excessive blank margins included.",
+            "verdict": "pass"
+          },
+          "payload_shape": "four fields valid locally; not native admission",
+          "provider": "Minimax",
+          "request": "benchmarks/results/scout099-20261020/request-053.json",
+          "request_sha256": "114ad816fb4973f60475a4c3be527f39349f3c44b3aff7b48800cb936cbdf656",
+          "response": "benchmarks/results/scout099-20261020/response-053.json",
+          "response_sha256": "6b95415927cbf73508aec9f0410ab644e413d069d65f357098545011a7fba017",
+          "saved_grade": {
+            "correct": true,
+            "false_safe": false,
+            "golden_verdict": "pass"
+          },
+          "saved_request_controls": {
+            "max_tokens": 32768,
+            "model": "minimax/minimax-m3.1-flash:free",
+            "provider": {
+              "allow_fallbacks": false,
+              "max_price": {
+                "completion": 0,
+                "prompt": 0
+              },
+              "only": [
+                "minimax"
+              ],
+              "require_parameters": false
+            },
+            "reasoning": {
+              "effort": "high"
+            }
+          },
+          "served_model": "minimax/minimax-m3.1-flash:free",
+          "stage": "safety-page-127-001-candidate-diagnostic"
+        },
+        "control": {
+          "arm": "control",
+          "historical_http_latency_ms": 4050,
+          "images_source_then_crop": [
+            {
+              "bytes": 292143,
+              "detail": "auto",
+              "dimensions": [
+                1545,
+                2000
+              ],
+              "format": "JPEG",
+              "sha256": "25042b92e75e09ff2d7aa9330b44b26a092624a9bee19c7f2707a413f6c7f302"
+            },
+            {
+              "bytes": 1416767,
+              "detail": "auto",
+              "dimensions": [
+                2919,
+                2071
+              ],
+              "format": "JPEG",
+              "sha256": "c98909f5166e46b330e89288f7ed4cd1f4700a98a5b0153996204725cc7ea29e"
+            }
+          ],
+          "key": "page-127-001",
+          "native_build_result": "Image exceeds frozen pilot input bound; no implicit resize",
+          "native_parse_result": "Unexpected served model identity",
+          "payload": {
+            "excessive_blank": false,
+            "has_page_text": false,
+            "reason": "Crop isolates the lower photograph/detail of the plaque from the page; visible text is engraved plaque text integral to the image, with no page-layout text or unrelated neighboring visuals included.",
+            "verdict": "pass"
+          },
+          "payload_shape": "four fields valid locally; not native admission",
+          "provider": "OpenAI",
+          "request": "benchmarks/results/scout099-20261020/request-054.json",
+          "request_sha256": "b8bce5d3015c8e66d9e0d7ceb0b6c9df13b9d5de6fc70f49de4195101e7d0a2e",
+          "response": "benchmarks/results/scout099-20261020/response-054.json",
+          "response_sha256": "942e6b91ecd37ba743cefbc8e4bff580bb13cf6aff2f9ca4c2833f4ef6d7497d",
+          "saved_grade": {
+            "correct": true,
+            "false_safe": false,
+            "golden_verdict": "pass"
+          },
+          "saved_request_controls": {
+            "max_output_tokens": 2048,
+            "model": "gpt-5.5",
+            "reasoning": {
+              "effort": "none"
+            },
+            "store": false,
+            "text": {
+              "format": {
+                "name": "page_context_validation",
+                "schema": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "excessive_blank": {
+                      "type": "boolean"
+                    },
+                    "has_page_text": {
+                      "type": "boolean"
+                    },
+                    "reason": {
+                      "type": "string"
+                    },
+                    "verdict": {
+                      "enum": [
+                        "pass",
+                        "fail"
+                      ],
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "verdict",
+                    "has_page_text",
+                    "excessive_blank",
+                    "reason"
+                  ],
+                  "type": "object"
+                },
+                "strict": true,
+                "type": "json_schema"
+              }
+            }
+          },
+          "served_model": "gpt-5.5-2026-04-23",
+          "stage": "safety-page-127-001-control"
+        }
+      },
+      "new_source_judgment": {
+        "verdict": "pass",
+        "has_page_text": false,
+        "excessive_blank": false,
+        "reason": "The lower photograph shows a Canada Post plaque plus stone surround. The crop retains that distinct photograph, including whole plaque and inscription, and excludes the upper photograph/page margins. Visible lettering is integral inscription text.",
+        "boundary_uncertainty": "none material under supplied prompt; source composition is determinate",
+        "review_scope": "Exact decoded original request source and crop opened individually with view_image; historical montage also inspected. This is a fresh agent source judgment, not Cam approval."
+      },
+      "review_owner": "bounded source reviewer, adopted by owning audit lead",
+      "new_payload_review": {
+        "candidate": {
+          "verdict_matches_new_source_judgment": true,
+          "observed_flags_match_new_source_judgment": true,
+          "reason_source_grounded": true,
+          "uncertainty_review": "No explicit uncertainty field; reason gives a determinate source-grounded condition. No material unhandled ambiguity observed.",
+          "semantic_issues": []
+        },
+        "control": {
+          "verdict_matches_new_source_judgment": true,
+          "observed_flags_match_new_source_judgment": true,
+          "reason_source_grounded": true,
+          "uncertainty_review": "No explicit uncertainty field; reason gives a determinate source-grounded condition. No material unhandled ambiguity observed.",
+          "semantic_issues": []
+        }
+      }
+    }
+  ],
+  "new_findings": [
+    {
+      "key": "page-018-000",
+      "arm": "candidate",
+      "field": "excessive_blank",
+      "saved": false,
+      "source": true,
+      "evidence": "blank-band-observation.json; fail verdict remains correct"
+    },
+    {
+      "key": "page-012-000",
+      "arm": "control",
+      "field": "has_page_text",
+      "saved": true,
+      "source": false,
+      "evidence": "logo lettering integral; reason agrees; pass verdict remains correct"
+    }
+  ],
+  "summary": {
+    "saved_verdict_correct_candidate": 20,
+    "saved_verdict_correct_control": 18,
+    "new_observed_flag_mismatch_candidate": 1,
+    "new_observed_flag_mismatch_control": 1,
+    "no_material_payload_issue_observed_candidate": 19,
+    "no_material_payload_issue_observed_control": 17,
+    "semantic_reason_minor_imprecision": "GPT122001 says part although whole neighbor retained; core diagnosis valid",
+    "uncertainty": "No explicit uncertainty/confidence field in contract or saved payload; no newly unresolved source-boundary case in these22. This is no general uncertainty qualification."
+  }
+}

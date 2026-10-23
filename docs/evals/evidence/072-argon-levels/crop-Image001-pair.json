@@ -1,0 +1,31 @@
+{
+  "results": [
+    {
+      "lane": "crop",
+      "case": "Image001",
+      "level": "high",
+      "stage": "crop-Image001-high",
+      "original_sequence": 18,
+      "original_request_sha256": "fb4f0a23cef39c358ca638043f6982ad291b65e39ee894e60b364a9a19af19e4",
+      "request_sha256": "7d442ef2c7d87cb585ed2d92bec82ffc7e14e073d4e31292cc827f001c9e3976",
+      "image_sha256": "6427c2e707203017ecacdbeeba9a7432d803fef5872b4c5e11fc517d341033b6",
+      "semantic_text_sha256": "8ce1e0eccc679f0981856ccab0c0da9c310b7e91802c83c33df5c27c5b02afb9",
+      "schema_sha256": "4181dd49cecf943ebfbf0938485c90bc77d071f6bbf9fe7634198e0ccde747a4",
+      "max_output_tokens": 32768,
+      "per_call_reservation_usd": 0.37968,
+      "conditional": false,
+      "raw": "{\"images\": [{\"bbox\": [0.193, 0.27, 0.852, 0.382], \"description\": \"Stylized title text in a bold Western display font reading 'ONWARD TO THE UNKNOWN 1887 - 1987'.\"}]}",
+      "score": {
+        "pass": true,
+        "score": 0.9917,
+        "reason": "box_count=1.00 (1/1) | iou_mean=0.990 | iou_min=0.990 | coverage=0.990 | total=0.992 | matches=[pred[0]<->gold[0] IoU=0.990]"
+      },
+      "served_model": "gemini-4-argon"
+    }
+  ],
+  "pair_wall_seconds": 102.67630591600027,
+  "order": [
+    "medium",
+    "high"
+  ]
+}

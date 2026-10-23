@@ -1,0 +1,52 @@
+{
+  "epoch": "recovery1",
+  "original_results_unchanged": true,
+  "fresh_controls_reused_from_original_campaign": true,
+  "new_calls": 2,
+  "additive_subject_cost_usd": 0.00225625,
+  "cumulative_nemotron_cost_usd": 0.006925050000000001,
+  "valid_cases": 5,
+  "exact": 4,
+  "false_safe": 1,
+  "unmeasured_remainder": 17,
+  "recovered_request_hash_unchanged": true,
+  "new_request_hashes_match_original_preflight": true,
+  "new_rows": [
+    {
+      "stage": "safety-nemotron-page-012-000-recovery2",
+      "epoch": "recovery1",
+      "key": "page-012-000",
+      "status_code": 200,
+      "latency_ms": 2993,
+      "elapsed_including_queue_ms": 4509,
+      "request_sha256": "8e89e236f76ec8957d8dd56ae20eb2ba1384b91c6b17948a4466bf401fe28bcc",
+      "verdict": "pass",
+      "cost_usd": 0.0010658,
+      "correct": true,
+      "false_safe": false,
+      "golden": "pass",
+      "served_model": "nvidia/nemotron-3.5-super-vl",
+      "provider": "Together",
+      "receipt_response": "benchmarks/results/scout096-recovery1-20261016/response-031.json"
+    },
+    {
+      "stage": "safety-nemotron-page-012-001-epoch1",
+      "epoch": "recovery1",
+      "key": "page-012-001",
+      "status_code": 200,
+      "latency_ms": 8708,
+      "elapsed_including_queue_ms": 9277,
+      "request_sha256": "527b1709f780eae6792c94a988e9499181e6446cbd20f440345279739aa8d55a",
+      "verdict": "pass",
+      "cost_usd": 0.00119045,
+      "correct": false,
+      "false_safe": true,
+      "golden": "fail",
+      "served_model": "nvidia/nemotron-3.5-super-vl",
+      "provider": "Together",
+      "receipt_response": "benchmarks/results/scout096-recovery1-20261016/response-034.json"
+    }
+  ],
+  "original_unresolved_nemotron_reservations_usd": 0.1114112,
+  "verdict": "reject tested enabled arm for model-only safety replacement; retain human source review"
+}

@@ -9,6 +9,9 @@ from schemas import (
     DocWebPreviewSelectorMap,
     DocWebProvenanceBlock,
     NavigationResolutionReport,
+    RelatedDocumentSetDeclaration,
+    RelatedDocumentResolutionReport,
+    RelatedDocumentSetManifest,
 )
 
 from doc_web import __version__
@@ -127,6 +130,20 @@ def build_runtime_contract() -> Dict[str, Any]:
             "discovery_default": False,
             "driver_flag": "--resolve-references",
             "module_parameter": "resolve_references",
+        },
+        "related_document_resolution": {
+            "command": "python -m doc_web resolve-set --manifest <declaration.json> --out-dir <new-directory> --json",
+            "python_api": "doc_web.related_documents.resolve_document_set(manifest_path, out_dir)",
+            "opt_in": True,
+            "offline": True,
+            "api_calls": 0,
+            "identity_namespace": "caller_declared_member_id",
+            "declaration_schema": RelatedDocumentSetDeclaration.model_json_schema(),
+            "report_schema": RelatedDocumentResolutionReport.model_json_schema(),
+            "manifest_schema": RelatedDocumentSetManifest.model_json_schema(),
+            "manifest_path": "related_documents.json",
+            "report_path": "related_reference_report.json",
+            "member_layout": "{member_id}/{original_bundle_path}",
         },
         "supported_preview_schema_versions": {
             "metadata": preview_metadata_schema_version,

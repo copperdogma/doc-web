@@ -39,7 +39,6 @@ class SourceOnlyReader:
         data = path.read_bytes()
         with Image.open(path) as image:
             width, height = image.size
-            mime = Image.MIME[image.format]
         if width * height > 25_000_000 or len(data) > 20 * 1024 * 1024:
             raise ValueError("Source image exceeds bounded review size")
         # Conservative reservation, not billed cost. Usage remains in receipts.
@@ -47,20 +46,7 @@ class SourceOnlyReader:
         if len(self.entries) >= self.max_requests or (len(self.entries) + 1) * reserve > self.budget_usd:
             raise RuntimeError("Source-review request/reservation cap reached")
         schema = SourcePageReview.model_json_schema()
-        kwargs = {
-            "model": self.model, "max_output_tokens": 8192, "store": False,
-            "reasoning": {"effort": "medium"},
-            "text": {"format": {"type": "json_schema", "name": "source_page_tables",
-                                  "strict": True, "schema": schema}},
-            "input": [
-                {"role": "system", "content": [{"type": "input_text", "text": POLICY}]},
-                {"role": "user", "content": [
-                    {"type": "input_text", "text": f"Source image dimensions: {width} x {height} pixels. Read source tables; return JSON only."},
-                    {"type": "input_image", "detail": "original", "image_url":
-                     f"data:{mime};base64," + base64.b64encode(data).decode("ascii")},
-                ]},
-            ],
-        }
+        kwargs = astra_request(image_path)
         entry = {"submitted_image_sha256": hashlib.sha256(data).hexdigest(),
                  "reserve_usd": reserve, "status": "reserved"}
         self.entries.append(entry)
@@ -69,13 +55,28 @@ class SourceOnlyReader:
         record = {**entry, "requested_model": self.model}
         requests.append(record)
         try:
-            response = self.client.responses.create(**kwargs)
+            native = self.client.responses.with_raw_response.create(**kwargs)
+            raw = native.content
+            if self.ledger_path:
+                native_path = self.ledger_path.parent / f"openai-source-response-{len(self.entries):03d}.json"
+                with native_path.open("xb") as stream:
+                    stream.write(raw)
+            record["provider"] = "openai"
+            record["authority_profile"] = "openai-native-astra-source-only-medium-v1"
+            record["native_response_sha256"] = hashlib.sha256(raw).hexdigest()
+            record["native_response_json"] = raw.decode("utf-8")
+            response = native.parse()
             record.update(request_receipt(response, kwargs, started))
             record["response_schema_sha256"] = hashlib.sha256(
                 json.dumps(schema, sort_keys=True).encode()).hexdigest()
             record["raw_response"] = response.output_text
+            record["service_tier"] = getattr(response, "service_tier", None)
+            record["request_sha256"] = hashlib.sha256(json.dumps(kwargs, sort_keys=True).encode()).hexdigest()
+            record["usage"] = json.loads(raw).get("usage")
             require_completed_identity(record)
-            result = SourcePageReview.model_validate_json(response.output_text)
+            from modules.common.google_table_source_review import validate_source_record
+
+            result = validate_source_record(record, model=self.model, image_sha256=record["submitted_image_sha256"], image_path=image_path)
             entry["status"] = "completed"
             return result
         except Exception as exc:
@@ -94,3 +95,26 @@ class SourceOnlyReader:
                 "calls": len(self.entries), "reserved_usd": len(self.entries) * 1.5,
                 "entries": self.entries,
             }, indent=2) + "\n")
+
+
+def astra_request(image_path):
+    """Inspectable maintained request shared by reader and zero-inference preflight."""
+    path = Path(image_path)
+    data = path.read_bytes()
+    with Image.open(path) as image:
+        width, height = image.size
+        mime = Image.MIME[image.format]
+    return {
+        "model": "gpt-6-astra", "max_output_tokens": 8192, "store": False, "service_tier": "default",
+        "reasoning": {"effort": "medium"},
+        "text": {"format": {"type": "json_schema", "name": "source_page_tables",
+                              "strict": True, "schema": SourcePageReview.model_json_schema()}},
+        "input": [
+            {"role": "system", "content": [{"type": "input_text", "text": POLICY}]},
+            {"role": "user", "content": [
+                {"type": "input_text", "text": f"Source image dimensions: {width} x {height} pixels. Read source tables; return JSON only."},
+                {"type": "input_image", "detail": "original", "image_url":
+                 f"data:{mime};base64," + base64.b64encode(data).decode("ascii")},
+            ]},
+        ],
+    }

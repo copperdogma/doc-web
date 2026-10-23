@@ -1,0 +1,25 @@
+{
+  "source_table_count": 1,
+  "tables": [
+    {
+      "bbox": [
+        217,
+        1133,
+        2154,
+        1700
+      ],
+      "html": "<table><tr><th>Container</th><th>Code</th><th>Seal</th></tr><tr><td>Jar-5</td><td>K814</td><td>intact</td></tr><tr><td>Jar-6</td><td>K84</td><td>intact</td></tr><tr><td colspan=\"3\">Review mark</td></tr></table>",
+      "uncertain_cells": [
+        {
+          "row": 1,
+          "cell": 1,
+          "reason": "the lowercase l and digit 1 in this cell use the same glyph and the same advance in the printed font",
+          "alternatives": [
+            "K8l4",
+            "K814"
+          ]
+        }
+      ]
+    }
+  ]
+}

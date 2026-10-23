@@ -1,0 +1,48 @@
+{
+  "lane": "table",
+  "case": "native-positive",
+  "level": "medium",
+  "stage": "table-native-positive-medium",
+  "original_sequence": 4,
+  "original_request_sha256": "326cb54f4ef3ae51c7204a7019f86efff6dcc080456f5cb081d76c74700feece",
+  "request_sha256": "326cb54f4ef3ae51c7204a7019f86efff6dcc080456f5cb081d76c74700feece",
+  "image_sha256": "ab4ff79d69653ffb7907326424b7d24a7380a909585eb77c7b803bf99eab3c0f",
+  "semantic_text_sha256": "22265ab78ef08a927a85c35ae69dab43001083f40c1a68f84e738e70069ed949",
+  "schema_sha256": "138cc8a900b2216cb8cfee8d25ada2652d4f9f012695f5bb9fbaf66174c3bcea",
+  "max_output_tokens": 32768,
+  "per_call_reservation_usd": 0.37968,
+  "conditional": false,
+  "status": "verified",
+  "uncertainties": [],
+  "score": {
+    "text_pass": true,
+    "structure_pass": true,
+    "pass": true,
+    "text_mismatch_count": 0,
+    "structure_mismatch_count": 0,
+    "text_mismatches": [],
+    "structure_mismatches": [],
+    "counts": {
+      "golden": {
+        "tables": 1,
+        "rows": 5,
+        "cells": 13
+      },
+      "actual": {
+        "tables": 1,
+        "rows": 5,
+        "cells": 13
+      }
+    },
+    "scope": {
+      "mode": "all_tables",
+      "table_index": null,
+      "golden_table_count": 1,
+      "actual_table_count": 1,
+      "excluded_actual_table_indices": [],
+      "compared_actual_table_count": 1,
+      "document_actual_table_count": 1
+    }
+  },
+  "report": "benchmarks/results/argon-levels-20261013/table-native-positive-medium_reports/row-00000-page-00001-original-00001.json"
+}

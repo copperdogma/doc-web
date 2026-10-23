@@ -1,0 +1,5 @@
+{
+  "raw": "{\"images\": [{\"description\": \"The image features the word 'TEST' written in black uppercase letters against a plain white background. The text is positioned in the upper left quadrant.\", \"bbox\": [0.18, 0.09, 0.26, 0.19]}]}",
+  "served": "deepseek/deepseek-v4.1-flash-1017",
+  "finish": "stop"
+}

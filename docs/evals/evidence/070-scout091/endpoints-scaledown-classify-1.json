@@ -1,0 +1,57 @@
+{
+  "data": {
+    "id": "scaledown/classify-1",
+    "name": "ScaleDown: Classify-1",
+    "created": 1791893334,
+    "description": "Classify-1 is a structured decision model from ScaleDown, served through OpenRouter's Decisions API. It scores text or a document against caller-defined choice, yes/no, and ordered-scale questions and returns calibrated probabilities...",
+    "architecture": {
+      "tokenizer": "Other",
+      "instruct_type": null,
+      "modality": "text+image+file->decisions",
+      "input_modalities": [
+        "text",
+        "image",
+        "file"
+      ],
+      "output_modalities": [
+        "decisions"
+      ]
+    },
+    "endpoints": [
+      {
+        "name": "ScaleDown | scaledown/classify-1-20260928",
+        "model_id": "scaledown/classify-1",
+        "model_name": "ScaleDown: Classify-1",
+        "context_length": 1000000,
+        "pricing": {
+          "prompt": "0.00000004",
+          "completion": "0",
+          "discount": 0.2
+        },
+        "provider_name": "ScaleDown",
+        "tag": "scaledown",
+        "quantization": "unknown",
+        "max_completion_tokens": 900000,
+        "max_prompt_tokens": null,
+        "supported_parameters": [],
+        "supports_tool_choice": {
+          "none": true,
+          "auto": true,
+          "required": true,
+          "function": true
+        },
+        "status": 0,
+        "uptime_last_30m": 94.44444444444444,
+        "uptime_last_5m": 66.66666666666666,
+        "uptime_last_1d": 98.33333333333333,
+        "supports_implicit_caching": false,
+        "native_tools": {},
+        "supports_voice_cloning": false,
+        "supports_multiple_audio_references": false,
+        "supports_image_reference": false,
+        "latency_last_30m": null,
+        "throughput_last_30m": null
+      }
+    ]
+  }
+}

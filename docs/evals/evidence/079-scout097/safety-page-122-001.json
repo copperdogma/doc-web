@@ -1,0 +1,20 @@
+[
+  {
+    "key": "page-122-001",
+    "arm": "candidate",
+    "verdict": "fail",
+    "cost_usd": 0.0006418,
+    "golden": "fail",
+    "false_safe": false,
+    "correct": true
+  },
+  {
+    "key": "page-122-001",
+    "arm": "control",
+    "verdict": "fail",
+    "cost_usd": 0.083645,
+    "golden": "fail",
+    "false_safe": false,
+    "correct": true
+  }
+]

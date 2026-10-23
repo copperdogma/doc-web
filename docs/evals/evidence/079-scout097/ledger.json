@@ -1,0 +1,480 @@
+{
+  "cap_usd": 15,
+  "spent_usd": 0.231343868,
+  "calls": [
+    {
+      "stage": "native-table",
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "reserved_usd": 0.0471216,
+      "cost_usd": 7.9e-05,
+      "request": "benchmarks/results/scout097-20261017/request-001.json",
+      "request_sha256": "1b5f72f0395a5bcb980efa2c647024a373069c2d1a0751da7567c7e9d650d240",
+      "response": "benchmarks/results/scout097-20261017/response-001.json",
+      "response_sha256": "76405edb63750346011048059165a32c0b49a62ee67e191db65a91c5c13f4ef8",
+      "status_code": 200,
+      "latency_ms": 1568,
+      "usage": {
+        "prompt_tokens": 562,
+        "completion_tokens": 38,
+        "total_tokens": 600,
+        "cost": 7.9e-05,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 7.9e-05,
+          "upstream_inference_prompt_cost": 5.62e-05,
+          "upstream_inference_completions_cost": 2.28e-05
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 26,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        }
+      },
+      "served_model": "deepseek/deepseek-v4.1-flash-1017",
+      "provider": "Cloudflare"
+    },
+    {
+      "stage": "native-crop",
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "reserved_usd": 0.0471216,
+      "cost_usd": 0.0003875,
+      "request": "benchmarks/results/scout097-20261017/request-002.json",
+      "request_sha256": "40fd9e16aae099aac60fa78f8017544f0e3d912356edef12417b4f2408a1b8a4",
+      "response": "benchmarks/results/scout097-20261017/response-002.json",
+      "response_sha256": "6811653cef77721ecae8d516be8b58fb8259989486496b049b927440150e49b8",
+      "status_code": 200,
+      "latency_ms": 8689,
+      "usage": {
+        "prompt_tokens": 245,
+        "completion_tokens": 605,
+        "total_tokens": 850,
+        "cost": 0.0003875,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0.0003875,
+          "upstream_inference_prompt_cost": 2.45e-05,
+          "upstream_inference_completions_cost": 0.000363
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 437,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        }
+      },
+      "served_model": "deepseek/deepseek-v4.1-flash-1017",
+      "provider": "Cloudflare"
+    },
+    {
+      "stage": "native-ocr",
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "reserved_usd": 0.0471216,
+      "cost_usd": 0.000141,
+      "request": "benchmarks/results/scout097-20261017/request-003.json",
+      "request_sha256": "703728595360102c6455a915787fe9d50ff7ee741fd57350420b7ae2b9178e28",
+      "response": "benchmarks/results/scout097-20261017/response-003.json",
+      "response_sha256": "f15a2dea9f7e9c58c23a6bc69e385977886c688afedb5493d0562b9691ea1b04",
+      "status_code": 200,
+      "latency_ms": 3304,
+      "usage": {
+        "prompt_tokens": 246,
+        "completion_tokens": 194,
+        "total_tokens": 440,
+        "cost": 0.000141,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0.000141,
+          "upstream_inference_prompt_cost": 2.46e-05,
+          "upstream_inference_completions_cost": 0.0001164
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 185,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        }
+      },
+      "served_model": "deepseek/deepseek-v4.1-flash-1017",
+      "provider": "Cloudflare"
+    },
+    {
+      "stage": "table-image-positive-candidate",
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "reserved_usd": 0.0471216,
+      "cost_usd": 0.003398168,
+      "request": "benchmarks/results/scout097-20261017/request-004.json",
+      "request_sha256": "c3612e1137e474707b4680b890d1c0b52d83fbade5a9628c5919ba5139fa5ac3",
+      "response": "benchmarks/results/scout097-20261017/response-004.json",
+      "response_sha256": "96c61543c7639092d6ce47d9b6ff4296009e867f65d9abe7e7e8061d6b7c84e7",
+      "status_code": 200,
+      "latency_ms": 88796,
+      "usage": {
+        "prompt_tokens": 1344,
+        "completion_tokens": 5481,
+        "total_tokens": 6825,
+        "cost": 0.003398168,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 256,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0.003398168,
+          "upstream_inference_prompt_cost": 0.000109568,
+          "upstream_inference_completions_cost": 0.0032886
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 4617,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        }
+      },
+      "served_model": "deepseek/deepseek-v4.1-flash-1017",
+      "provider": "Cloudflare"
+    },
+    {
+      "stage": "native-safety",
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "reserved_usd": 0.0471216,
+      "cost_usd": 0.0006133,
+      "request": "benchmarks/results/scout097-20261017/request-005.json",
+      "request_sha256": "4815ae48d31ef0f8cf49119e76283603bed7887f7936e6c5166be98a5d315844",
+      "response": "benchmarks/results/scout097-20261017/response-005.json",
+      "response_sha256": "8bcbc8a56270c7ec01f3fb86ed1816242102bfb11e392c97b646c5005b87f926",
+      "status_code": 200,
+      "latency_ms": 15855,
+      "usage": {
+        "prompt_tokens": 247,
+        "completion_tokens": 981,
+        "total_tokens": 1228,
+        "cost": 0.0006133,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0.0006133,
+          "upstream_inference_prompt_cost": 2.47e-05,
+          "upstream_inference_completions_cost": 0.0005886
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 864,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        }
+      },
+      "served_model": "deepseek/deepseek-v4.1-flash-1017",
+      "provider": "Cloudflare"
+    },
+    {
+      "stage": "table-image-positive-control",
+      "model": "gpt-6-astra",
+      "reserved_usd": 1.5,
+      "cost_usd": 0.0811925,
+      "request": "benchmarks/results/scout097-20261017/request-006.json",
+      "request_sha256": "e6235031e3cac69a3f5d01f343d3353c728a73bc7d4e0fa043959507638e9d30",
+      "response": "benchmarks/results/scout097-20261017/response-006.json",
+      "response_sha256": "f51ed4e34e4154e45ede17e509c0175672d8d5b5e6c25c9a1fb684e7102dd5f7",
+      "status_code": 200,
+      "latency_ms": 8636,
+      "usage": {
+        "input_tokens": 5016,
+        "input_tokens_details": {
+          "cache_write_tokens": 5013,
+          "cached_tokens": 0
+        },
+        "output_tokens": 370,
+        "output_tokens_details": {
+          "reasoning_tokens": 127
+        },
+        "total_tokens": 5386
+      },
+      "served_model": "gpt-6-astra",
+      "provider": "OpenAI"
+    },
+    {
+      "stage": "crop-screen-Image011-candidate",
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "reserved_usd": 0.0471216,
+      "cost_usd": 0.0006969,
+      "request": "benchmarks/results/scout097-20261017/request-007.json",
+      "request_sha256": "831ce19707342149625704cc002ec0db3a58045a4b75b16572301746c6aaa445",
+      "response": "benchmarks/results/scout097-20261017/response-007.json",
+      "response_sha256": "e1069a25a78a39915bf0c0178367c9051ac2d75d5291d05c2601d74cd67fe3f3",
+      "status_code": 200,
+      "latency_ms": 18977,
+      "usage": {
+        "prompt_tokens": 1239,
+        "completion_tokens": 955,
+        "total_tokens": 2194,
+        "cost": 0.0006969,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0.0006969,
+          "upstream_inference_prompt_cost": 0.0001239,
+          "upstream_inference_completions_cost": 0.000573
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 882,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        }
+      },
+      "served_model": "deepseek/deepseek-v4.1-flash-1017",
+      "provider": "Cloudflare"
+    },
+    {
+      "stage": "crop-screen-Image011-control",
+      "model": "gemini-3-flash-preview",
+      "reserved_usd": 0.062152,
+      "cost_usd": 0.0045395,
+      "request": "benchmarks/results/scout097-20261017/request-008.json",
+      "request_sha256": "242f8833652c89a4b1ac2591289afba7bc19e1ca44556e2c570f5f4648e54994",
+      "response": "benchmarks/results/scout097-20261017/response-008.json",
+      "response_sha256": "e1f6d51a170a089a1ba7fa4f3218d5b15468de454bd1d3d15ea24c552c532e04",
+      "status_code": 200,
+      "latency_ms": 7403,
+      "usage": {
+        "promptTokenCount": 1333,
+        "candidatesTokenCount": 113,
+        "totalTokenCount": 2624,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 231
+          },
+          {
+            "modality": "IMAGE",
+            "tokenCount": 1102
+          }
+        ],
+        "thoughtsTokenCount": 1178,
+        "serviceTier": "standard"
+      },
+      "served_model": "gemini-3-flash-preview",
+      "provider": "Google"
+    },
+    {
+      "stage": "ocr-barney-candidate",
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "reserved_usd": 0.0471216,
+      "cost_usd": 0.0062745,
+      "request": "benchmarks/results/scout097-20261017/request-009.json",
+      "request_sha256": "5e18698cab282d70968edf0d3b6fb33ae6d6a25857098cbbc91b7fdba3db9168",
+      "response": "benchmarks/results/scout097-20261017/response-009.json",
+      "response_sha256": "1dc38282cff03f1f2f93fbc7d557a3914a25b963c0721046ee3bcb3ea021eef6",
+      "status_code": 200,
+      "latency_ms": 158095,
+      "usage": {
+        "prompt_tokens": 1161,
+        "completion_tokens": 10264,
+        "total_tokens": 11425,
+        "cost": 0.0062745,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0.0062745,
+          "upstream_inference_prompt_cost": 0.0001161,
+          "upstream_inference_completions_cost": 0.0061584
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 9024,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        }
+      },
+      "served_model": "deepseek/deepseek-v4.1-flash-1017",
+      "provider": "Cloudflare"
+    },
+    {
+      "stage": "safety-page-122-001-candidate",
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "reserved_usd": 0.0531216,
+      "cost_usd": 0.0006418,
+      "request": "benchmarks/results/scout097-20261017/request-010.json",
+      "request_sha256": "be5d263decf7c8e9ddfc4788c1073de18752162e49c75b5e656f397a120baa22",
+      "response": "benchmarks/results/scout097-20261017/response-010.json",
+      "response_sha256": "aec19ce22c444c1a14ff9c3e10cea6828919cb8c0c2be06ee24e05904d01a4a7",
+      "status_code": 200,
+      "latency_ms": 19401,
+      "usage": {
+        "prompt_tokens": 2722,
+        "completion_tokens": 616,
+        "total_tokens": 3338,
+        "cost": 0.0006418,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0.0006418,
+          "upstream_inference_prompt_cost": 0.0002722,
+          "upstream_inference_completions_cost": 0.0003696
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 711,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        }
+      },
+      "served_model": "deepseek/deepseek-v4.1-flash-1017",
+      "provider": "Cloudflare"
+    },
+    {
+      "stage": "ocr-barney-control",
+      "model": "gemini-3.7-flash",
+      "reserved_usd": 0.08094,
+      "cost_usd": 0.015768,
+      "request": "benchmarks/results/scout097-20261017/request-011.json",
+      "request_sha256": "367d52133d49c5a8433552634fd7b72e11cfca7ca316539d63ba9699c4892d2b",
+      "response": "benchmarks/results/scout097-20261017/response-011.json",
+      "response_sha256": "6a989ae2b324c80b97b5d8ef9b105eafa4f1242806fe0962818d0b7b4c64e5be",
+      "status_code": 200,
+      "latency_ms": 30321,
+      "usage": {
+        "promptTokenCount": 2029,
+        "candidatesTokenCount": 385,
+        "totalTokenCount": 5828,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 956
+          },
+          {
+            "modality": "IMAGE",
+            "tokenCount": 1073
+          }
+        ],
+        "thoughtsTokenCount": 3414,
+        "serviceTier": "standard"
+      },
+      "served_model": "gemini-3.8-flash",
+      "provider": "Google"
+    },
+    {
+      "stage": "safety-page-122-001-control",
+      "model": "gpt-5.5",
+      "reserved_usd": 0.29144,
+      "cost_usd": 0.083645,
+      "request": "benchmarks/results/scout097-20261017/request-012.json",
+      "request_sha256": "2ccb3a24898ee42c98d53e18eca2cc167c3d053147876922fb333d43cefbab8a",
+      "response": "benchmarks/results/scout097-20261017/response-012.json",
+      "response_sha256": "ca6deda24661e0148c110698bbfc331139397c5827a0b1271fe35c513017b09d",
+      "status_code": 200,
+      "latency_ms": 4830,
+      "usage": {
+        "input_tokens": 16333,
+        "input_tokens_details": {
+          "cache_write_tokens": 0,
+          "cached_tokens": 0
+        },
+        "output_tokens": 66,
+        "output_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "total_tokens": 16399
+      },
+      "served_model": "gpt-5.5-2026-04-23",
+      "provider": "OpenAI"
+    },
+    {
+      "stage": "safety-page-012-001-candidate",
+      "model": "deepseek/deepseek-v4.1-flash-1017",
+      "reserved_usd": 0.0531216,
+      "cost_usd": 0.0004617,
+      "request": "benchmarks/results/scout097-20261017/request-013.json",
+      "request_sha256": "7d25c1637957728e2371fd200a803e3682f3b3de65a3702f9e92203db7b1bd4e",
+      "response": "benchmarks/results/scout097-20261017/response-013.json",
+      "response_sha256": "34e5f90570d7ac0df74ce9ea2cd843e4d2b4ae25058213d0cd592661e7f840ce",
+      "status_code": 200,
+      "latency_ms": 17002,
+      "usage": {
+        "prompt_tokens": 2679,
+        "completion_tokens": 323,
+        "total_tokens": 3002,
+        "cost": 0.0004617,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0.0004617,
+          "upstream_inference_prompt_cost": 0.0002679,
+          "upstream_inference_completions_cost": 0.0001938
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 311,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        }
+      },
+      "served_model": "deepseek/deepseek-v4.1-flash-1017",
+      "provider": "Cloudflare"
+    },
+    {
+      "stage": "safety-page-012-001-control",
+      "model": "gpt-5.5",
+      "reserved_usd": 0.29144,
+      "cost_usd": 0.033505,
+      "request": "benchmarks/results/scout097-20261017/request-014.json",
+      "request_sha256": "c2ff48f9ddfbdfe47a50b3a350c4b22f6b276e293164d4841e03840b13d061ab",
+      "response": "benchmarks/results/scout097-20261017/response-014.json",
+      "response_sha256": "8c58fa70e00e106fc78fccd8a0db0c742cd3669f8851324430e5b57082477f8a",
+      "status_code": 200,
+      "latency_ms": 3114,
+      "usage": {
+        "input_tokens": 6329,
+        "input_tokens_details": {
+          "cache_write_tokens": 0,
+          "cached_tokens": 0
+        },
+        "output_tokens": 62,
+        "output_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "total_tokens": 6391
+      },
+      "served_model": "gpt-5.5-2026-04-23",
+      "provider": "OpenAI"
+    }
+  ],
+  "closed": true
+}

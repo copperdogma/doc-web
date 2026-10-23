@@ -1,0 +1,144 @@
+{
+  "status": "offline_exploratory_replay_only",
+  "provider_calls": 0,
+  "new_spend_usd": 0,
+  "source_observations": 3,
+  "source_unique_documents": 1,
+  "native_receipts_verified": 10,
+  "candidate_responses_replayed": 2,
+  "canonical_artifacts_unchanged": 4,
+  "metrics": {
+    "original": {
+      "exact_labels": 2,
+      "unsafe_clean": 1,
+      "review_routes": 0,
+      "determinate_outputs": 3,
+      "candidate_accepted": 1
+    },
+    "proposed": {
+      "exact_labels": 2,
+      "unsafe_clean": 0,
+      "review_routes": 1,
+      "determinate_outputs": 2,
+      "candidate_accepted": 1
+    }
+  },
+  "rows": [
+    {
+      "document": "doc-01",
+      "chapter": "chapter-001.html",
+      "gold": "conformant",
+      "original": {
+        "chapter_ordinal": 0,
+        "authoritative_status": "conformant",
+        "shadow_status": "conformant",
+        "route": "pplx",
+        "latency_ms": 0.21341599995139404,
+        "pplx_status": "conformant",
+        "probabilities": {
+          "conformant": 0.9968508855016682,
+          "format_drift": 0.0008276073045990316,
+          "row_semantic_issue": 0.0006292865798481448,
+          "mixed": 7.228452701984415e-05,
+          "uncertain": 0.0016199360868649438
+        },
+        "confidence": 0.9960636068770853,
+        "input_tokens": 1807,
+        "output_tokens": 1,
+        "cost_usd": 3.614e-05,
+        "reason": "confident_classification"
+      },
+      "proposed": {
+        "chapter_ordinal": 0,
+        "authoritative_status": "conformant",
+        "shadow_status": "conformant",
+        "route": "pplx",
+        "latency_ms": 0.21341599995139404,
+        "pplx_status": "conformant",
+        "probabilities": {
+          "conformant": 0.9968508855016682,
+          "format_drift": 0.0008276073045990316,
+          "row_semantic_issue": 0.0006292865798481448,
+          "mixed": 7.228452701984415e-05,
+          "uncertain": 0.0016199360868649438
+        },
+        "confidence": 0.9960636068770853,
+        "input_tokens": 1807,
+        "output_tokens": 1,
+        "cost_usd": 3.614e-05,
+        "reason": "confident_classification"
+      }
+    },
+    {
+      "document": "doc-01",
+      "chapter": "chapter-002.html",
+      "gold": "format_drift",
+      "original": {
+        "chapter_ordinal": 1,
+        "authoritative_status": "format_drift",
+        "shadow_status": "format_drift",
+        "route": "planner_fallback",
+        "reason": "conflicting_conventions"
+      },
+      "proposed": {
+        "chapter_ordinal": 1,
+        "authoritative_status": "format_drift",
+        "shadow_status": "format_drift",
+        "route": "planner_fallback",
+        "reason": "conflicting_conventions"
+      }
+    },
+    {
+      "document": "doc-01",
+      "chapter": "chapter-003.html",
+      "gold": "row_semantic_issue",
+      "original": {
+        "chapter_ordinal": 2,
+        "authoritative_status": "conformant",
+        "shadow_status": "conformant",
+        "route": "planner_fallback",
+        "latency_ms": 0.09833399997205561,
+        "pplx_status": "row_semantic_issue",
+        "probabilities": {
+          "conformant": 0.43783809977996274,
+          "format_drift": 0.002483901476501336,
+          "row_semantic_issue": 0.5362478667817846,
+          "mixed": 0.001803785566209845,
+          "uncertain": 0.021626346395541445
+        },
+        "confidence": 0.4203098334772307,
+        "input_tokens": 1807,
+        "output_tokens": 1,
+        "cost_usd": 3.614e-05,
+        "reason": "low_confidence"
+      },
+      "proposed": {
+        "chapter_ordinal": 2,
+        "authoritative_status": "conformant",
+        "shadow_status": "uncertain",
+        "route": "review",
+        "latency_ms": 0.09833399997205561,
+        "pplx_status": "row_semantic_issue",
+        "probabilities": {
+          "conformant": 0.43783809977996274,
+          "format_drift": 0.002483901476501336,
+          "row_semantic_issue": 0.5362478667817846,
+          "mixed": 0.001803785566209845,
+          "uncertain": 0.021626346395541445
+        },
+        "confidence": 0.4203098334772307,
+        "input_tokens": 1807,
+        "output_tokens": 1,
+        "cost_usd": 3.614e-05,
+        "reason": "low_confidence_disagreement",
+        "warning": {
+          "candidate_status": "row_semantic_issue",
+          "authoritative_status": "conformant",
+          "confidence": 0.4203098334772307
+        }
+      }
+    }
+  ],
+  "interpretation": "Observed warning preserved as review; no new semantic correction, fresh quality proof, runtime integration or promotion.",
+  "limits": "Post-hoc policy on exposed first-document screen. Fifteen unique cases and all second repeats remain unmeasured. Synthetic boundary tests do not supply new model answers."
+}

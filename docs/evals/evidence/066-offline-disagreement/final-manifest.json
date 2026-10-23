@@ -1,0 +1,175 @@
+{
+  "base": "19b30b1d0db4a7f3b2e31614ba9846dfdb93355c",
+  "branch": "codex/pplx-disagreement-offline-20261006",
+  "status": "completed-offline-exploratory-only",
+  "new_provider_calls": 0,
+  "new_spend_usd": 0,
+  "validation": "16tests, scopedRuff, methodologybuild/check, savedreceipt replay, diffcheck pass",
+  "files": [
+    {
+      "path": "CHANGELOG.md",
+      "sha256": "5eaf7414b006641cc0a71e18e595d5c789a4cc8b297b318f7320aea66249f11d",
+      "bytes": 243383
+    },
+    {
+      "path": "benchmarks/pplx-disagreement-offline/replay.py",
+      "sha256": "e3fbd01266c3422bd3a2cf6d37e6527ca6a03f61e2beddb83a9ba30afbf1669b",
+      "bytes": 6459
+    },
+    {
+      "path": "docs/evals/attempts/066-offline-disagreement-review.md",
+      "sha256": "2a49f9446bb6874ef7e3b2619fe5f40ea1951e6d50f8e93b4ac718be6485782c",
+      "bytes": 795
+    },
+    {
+      "path": "docs/evals/evidence/066-offline-disagreement/input-manifest.json",
+      "sha256": "c0876382f8945251977752a8513efe56aee68196a73da8328266e8830114e37f",
+      "bytes": 8456
+    },
+    {
+      "path": "docs/evals/evidence/066-offline-disagreement/prior/four-output-results.json",
+      "sha256": "9bf45f0d9d0a3c583b6bfca5d3b0b09636810339c20c99656ff287ae4d9147bc",
+      "bytes": 1397
+    },
+    {
+      "path": "docs/evals/evidence/066-offline-disagreement/prior/ledger.json",
+      "sha256": "99db9c0fe4c6ce2b28bed92828ba98768c4276320d37ddaf88294a9dcd7c270c",
+      "bytes": 4106
+    },
+    {
+      "path": "docs/evals/evidence/066-offline-disagreement/prior/live-lineage.json",
+      "sha256": "9629282cd476f50b25b8a91ada52c76a25ae8cc974e02c7a5e702c8cc098ba4a",
+      "bytes": 147372
+    },
+    {
+      "path": "docs/evals/evidence/066-offline-disagreement/prior/native/001-planner.request.json",
+      "sha256": "b451f986f86fc91cadd8b9dc7e9709155f2230a4fce5c2d664a99d80d24cec2c",
+      "bytes": 212
+    },
+    {
+      "path": "docs/evals/evidence/066-offline-disagreement/prior/native/001-planner.response.json",
+      "sha256": "bc035c2a664b52aa9fd55b758137f0c8f089f19066a6c604dae2e3824c3da35d",
+      "bytes": 825
+    },
+    {
+      "path": "docs/evals/evidence/066-offline-disagreement/prior/native/002-candidate.request.json",
+      "sha256": "19a30d95014fe7283911d309ef5e647361857f39919815a7e70b4f94675a38ba",
+      "bytes": 1095
+    },
+    {
+      "path": "docs/evals/evidence/066-offline-disagreement/prior/native/002-candidate.response.json",
+      "sha256": "b3ee8e48c37b743d5a16c5238d61b9c9f9d4b6669f80c705a427760b37c8206f",
+      "bytes": 362
+    },
+    {
+      "path": "docs/evals/evidence/066-offline-disagreement/prior/native/003-planner.request.json",
+      "sha256": "ace9e396e601285b7a36aa40902e3362935a7de7f2f7ec3b4973cab972f244c1",
+      "bytes": 30610
+    },
+    {
+      "path": "docs/evals/evidence/066-offline-disagreement/prior/native/003-planner.response.json",
+      "sha256": "6e3c2b47b16219e63d970823e725a522854623a77333277ac6cbe1a15a548598",
+      "bytes": 7564
+    },
+    {
+      "path": "docs/evals/evidence/066-offline-disagreement/prior/native/004-candidate.request.json",
+      "sha256": "bdd2d8f112d51040d5fff31e53d2764669ad26c69d1f5c36d6f87d5cf50588f9",
+      "bytes": 5716
+    },
+    {
+      "path": "docs/evals/evidence/066-offline-disagreement/prior/native/004-candidate.response.json",
+      "sha256": "5590c405931dc375f1303acdba88c19641124daa62742ba6570147d7953fc8be",
+      "bytes": 369
+    },
+    {
+      "path": "docs/evals/evidence/066-offline-disagreement/prior/native/005-candidate.request.json",
+      "sha256": "955d96170a109247442719cbe96c8cc84a157f7d8cee874e57aa3c07e595159b",
+      "bytes": 5716
+    },
+    {
+      "path": "docs/evals/evidence/066-offline-disagreement/prior/native/005-candidate.response.json",
+      "sha256": "2b330487d44941b6824c4770c0129d14b41b9b8164619583606780b0f0082e5a",
+      "bytes": 371
+    },
+    {
+      "path": "docs/evals/evidence/066-offline-disagreement/prior/paid-artifacts/live-r1-doc-01/conformance_report.json",
+      "sha256": "4d899ecb6dfe2fc435a80271e5fb1d95b3831cf3fae292a7b5932329584dce6a",
+      "bytes": 4700
+    },
+    {
+      "path": "docs/evals/evidence/066-offline-disagreement/prior/paid-artifacts/live-r1-doc-01/consistency_plan.json",
+      "sha256": "2d581fa8cb6b251e7cb266483de878ec846142d362465eea4592a22627b1b742",
+      "bytes": 3074
+    },
+    {
+      "path": "docs/evals/evidence/066-offline-disagreement/prior/paid-artifacts/live-r1-doc-01/document_consistency_dossier.json",
+      "sha256": "90213396643fd4943d16ddf962bbca7322ec264359cb64da65547be11e61104b",
+      "bytes": 24676
+    },
+    {
+      "path": "docs/evals/evidence/066-offline-disagreement/prior/paid-artifacts/live-r1-doc-01/document_consistency_report.jsonl",
+      "sha256": "5fd30354ac514e97399c31731a85c69d470ae5727626869cd37538e82f7f44e1",
+      "bytes": 1553
+    },
+    {
+      "path": "docs/evals/evidence/066-offline-disagreement/prior/paid-artifacts/live-r1-doc-01/pattern_inventory.json",
+      "sha256": "13f7b5efaecc19d195d258a44d5e152feebe24dd480e1e4dd4f5b08517e57068",
+      "bytes": 4434
+    },
+    {
+      "path": "docs/evals/evidence/066-offline-disagreement/prior/paid-artifacts/live-r1-doc-01/pplx_consistency_shadow_eval.json",
+      "sha256": "f9ca43bdaf57c7a56dd9ce459022bfb951ac94ebdb6b6e36fcaf6b3873676dbd",
+      "bytes": 2330
+    },
+    {
+      "path": "docs/evals/evidence/066-offline-disagreement/prior/results.json",
+      "sha256": "07abdeb87baff3836404ff80028432de1b0378f7bb67226efd31771592a02774",
+      "bytes": 1281
+    },
+    {
+      "path": "docs/evals/evidence/066-offline-disagreement/prior/snapshots/modules/validate/plan_onward_document_consistency_v1/pplx_shadow.py",
+      "sha256": "ca1a3375964426f19beb963cddbf7c3f938f84e48e0fe17811a603a4f05704dc",
+      "bytes": 15539
+    },
+    {
+      "path": "docs/evals/evidence/066-offline-disagreement/prior/summary.json",
+      "sha256": "4743a5ddd4f6347c5ec4fa91606e391c0ab7847d37fd20146a825427b581f9e9",
+      "bytes": 1878
+    },
+    {
+      "path": "docs/evals/evidence/066-offline-disagreement/report.md",
+      "sha256": "d124e6b12588fcb7aba187a34987cc32a313656531af1335f2a1537aed8d9d37",
+      "bytes": 3701
+    },
+    {
+      "path": "docs/evals/evidence/066-offline-disagreement/results.json",
+      "sha256": "da00a4cdac8d796804a2ae1d35bb6c11e02454fb4d77f97902b2d6038136991a",
+      "bytes": 4717
+    },
+    {
+      "path": "docs/evals/registry.yaml",
+      "sha256": "6ed584e9315698d97b18919a1f2eea9d1da296a81ab840fd19a73b4a0b1f18e4",
+      "bytes": 347125
+    },
+    {
+      "path": "docs/methodology/graph.json",
+      "sha256": "78a341c910b39d76474461000598176e65ee0030cba9c1ad44dec85b1d9ece05",
+      "bytes": 946812
+    },
+    {
+      "path": "docs/stories/story-247-offline-disagreement-routing.md",
+      "sha256": "2776f863e8cccecf0dcae415f047761fdd831b70a0d49de6815e30e59f3cb826",
+      "bytes": 2738
+    },
+    {
+      "path": "docs/stories.md",
+      "sha256": "1ffa3a2a073a19f283f7f401d9e93658ac8d09727d6bcfcd6950cbbfafc8e170",
+      "bytes": 39836
+    },
+    {
+      "path": "tests/test_pplx_disagreement_offline.py",
+      "sha256": "f21d2fdef2bc73a7bffef06a573d5b8cc1a813dcb017175b4b29b8f32d21f04f",
+      "bytes": 2172
+    }
+  ]
+}

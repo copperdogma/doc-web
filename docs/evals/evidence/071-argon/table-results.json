@@ -1,0 +1,262 @@
+[
+  {
+    "case": "native-positive",
+    "arm": "candidate",
+    "status": "verified",
+    "uncertainties": [],
+    "literal_score": {
+      "text_pass": true,
+      "structure_pass": true,
+      "pass": true,
+      "text_mismatch_count": 0,
+      "structure_mismatch_count": 0,
+      "text_mismatches": [],
+      "structure_mismatches": [],
+      "counts": {
+        "golden": {
+          "tables": 1,
+          "rows": 5,
+          "cells": 13
+        },
+        "actual": {
+          "tables": 1,
+          "rows": 5,
+          "cells": 13
+        }
+      },
+      "scope": {
+        "mode": "all_tables",
+        "table_index": null,
+        "golden_table_count": 1,
+        "actual_table_count": 1,
+        "excluded_actual_table_indices": [],
+        "compared_actual_table_count": 1,
+        "document_actual_table_count": 1
+      }
+    },
+    "report": "benchmarks/results/argon-20261013/table-native-positive-candidate_reports/row-00000-page-00001-original-00001.json"
+  },
+  {
+    "case": "native-positive",
+    "arm": "control",
+    "status": "verified",
+    "uncertainties": [],
+    "literal_score": {
+      "text_pass": true,
+      "structure_pass": true,
+      "pass": true,
+      "text_mismatch_count": 0,
+      "structure_mismatch_count": 0,
+      "text_mismatches": [],
+      "structure_mismatches": [],
+      "counts": {
+        "golden": {
+          "tables": 1,
+          "rows": 5,
+          "cells": 13
+        },
+        "actual": {
+          "tables": 1,
+          "rows": 5,
+          "cells": 13
+        }
+      },
+      "scope": {
+        "mode": "all_tables",
+        "table_index": null,
+        "golden_table_count": 1,
+        "actual_table_count": 1,
+        "excluded_actual_table_indices": [],
+        "compared_actual_table_count": 1,
+        "document_actual_table_count": 1
+      }
+    },
+    "report": "benchmarks/results/argon-20261013/table-native-positive-control_reports/row-00000-page-00001-original-00001.json"
+  },
+  {
+    "case": "image-positive",
+    "arm": "candidate",
+    "status": "verified",
+    "uncertainties": [],
+    "literal_score": {
+      "text_pass": true,
+      "structure_pass": true,
+      "pass": true,
+      "text_mismatch_count": 0,
+      "structure_mismatch_count": 0,
+      "text_mismatches": [],
+      "structure_mismatches": [],
+      "counts": {
+        "golden": {
+          "tables": 1,
+          "rows": 6,
+          "cells": 23
+        },
+        "actual": {
+          "tables": 1,
+          "rows": 6,
+          "cells": 23
+        }
+      },
+      "scope": {
+        "mode": "all_tables",
+        "table_index": null,
+        "golden_table_count": 1,
+        "actual_table_count": 1,
+        "excluded_actual_table_indices": [],
+        "compared_actual_table_count": 1,
+        "document_actual_table_count": 1
+      }
+    },
+    "report": "benchmarks/results/argon-20261013/table-image-positive-candidate_reports/row-00000-page-00001-original-00001.json"
+  },
+  {
+    "case": "image-positive",
+    "arm": "control",
+    "status": "verified",
+    "uncertainties": [],
+    "literal_score": {
+      "text_pass": true,
+      "structure_pass": true,
+      "pass": true,
+      "text_mismatch_count": 0,
+      "structure_mismatch_count": 0,
+      "text_mismatches": [],
+      "structure_mismatches": [],
+      "counts": {
+        "golden": {
+          "tables": 1,
+          "rows": 6,
+          "cells": 23
+        },
+        "actual": {
+          "tables": 1,
+          "rows": 6,
+          "cells": 23
+        }
+      },
+      "scope": {
+        "mode": "all_tables",
+        "table_index": null,
+        "golden_table_count": 1,
+        "actual_table_count": 1,
+        "excluded_actual_table_indices": [],
+        "compared_actual_table_count": 1,
+        "document_actual_table_count": 1
+      }
+    },
+    "report": "benchmarks/results/argon-20261013/table-image-positive-control_reports/row-00000-page-00001-original-00001.json"
+  },
+  {
+    "case": "ambiguity-negative",
+    "arm": "candidate",
+    "status": "unresolved",
+    "uncertainties": [
+      {
+        "alternatives": [
+          "I",
+          "l"
+        ],
+        "cell": 1,
+        "reason": "Single vertical stroke in sans-serif font cannot be distinguished between uppercase I and lowercase l",
+        "row": 1
+      },
+      {
+        "alternatives": [
+          "l",
+          "I"
+        ],
+        "cell": 1,
+        "reason": "Single vertical stroke in sans-serif font cannot be distinguished between uppercase I and lowercase l",
+        "row": 2
+      }
+    ],
+    "literal_score": {
+      "text_pass": true,
+      "structure_pass": true,
+      "pass": true,
+      "text_mismatch_count": 0,
+      "structure_mismatch_count": 0,
+      "text_mismatches": [],
+      "structure_mismatches": [],
+      "counts": {
+        "golden": {
+          "tables": 1,
+          "rows": 4,
+          "cells": 8
+        },
+        "actual": {
+          "tables": 1,
+          "rows": 4,
+          "cells": 8
+        }
+      },
+      "scope": {
+        "mode": "all_tables",
+        "table_index": null,
+        "golden_table_count": 1,
+        "actual_table_count": 1,
+        "excluded_actual_table_indices": [],
+        "compared_actual_table_count": 1,
+        "document_actual_table_count": 1
+      }
+    },
+    "report": "benchmarks/results/argon-20261013/table-ambiguity-negative-candidate_reports/row-00000-page-00001-original-00001.json"
+  },
+  {
+    "case": "ambiguity-negative",
+    "arm": "control",
+    "status": "unresolved",
+    "uncertainties": [
+      {
+        "alternatives": [
+          "I",
+          "l"
+        ],
+        "cell": 1,
+        "reason": "source ambiguity: the plain vertical glyph does not distinguish uppercase I from lowercase l.",
+        "row": 1
+      },
+      {
+        "alternatives": [
+          "l",
+          "I"
+        ],
+        "cell": 1,
+        "reason": "source ambiguity: the plain vertical glyph does not distinguish lowercase l from uppercase I.",
+        "row": 2
+      }
+    ],
+    "literal_score": {
+      "text_pass": true,
+      "structure_pass": true,
+      "pass": true,
+      "text_mismatch_count": 0,
+      "structure_mismatch_count": 0,
+      "text_mismatches": [],
+      "structure_mismatches": [],
+      "counts": {
+        "golden": {
+          "tables": 1,
+          "rows": 4,
+          "cells": 8
+        },
+        "actual": {
+          "tables": 1,
+          "rows": 4,
+          "cells": 8
+        }
+      },
+      "scope": {
+        "mode": "all_tables",
+        "table_index": null,
+        "golden_table_count": 1,
+        "actual_table_count": 1,
+        "excluded_actual_table_indices": [],
+        "compared_actual_table_count": 1,
+        "document_actual_table_count": 1
+      }
+    },
+    "report": "benchmarks/results/argon-20261013/table-ambiguity-negative-control_reports/row-00000-page-00001-original-00001.json"
+  }
+]

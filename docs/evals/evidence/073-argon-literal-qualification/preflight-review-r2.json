@@ -1,0 +1,66 @@
+{
+  "schema_version": "literal_qualification_preflight_review_v1",
+  "reviewed_at": "2026-10-14T03:09:52.890326+00:00",
+  "verdict": "static_corrections_pass_connected_evidence_pending",
+  "previous_review": "preflight-review.json",
+  "scope": "Read-only follow-up of the two original findings and root exact-native-byte finding. No source/gold re-review; no provider outputs read.",
+  "provider_calls": 0,
+  "credentials_inspected": false,
+  "provider_model_outputs_inspected": false,
+  "files_sha256": {
+    "modules/common/google_table_source_review.py": "f2b710dbac60d77f65b96f868d79ec705800d1575a610a69360ffaa39e8d8474",
+    "modules/common/table_source_review.py": "78599f846eb31b2ad7a1607257458760e6e93e6eaa6d4ab062ffcbd30b879709",
+    "modules/common/literal_fidelity_bundle.py": "32bcda36545d9f7b4dfaa78dd8d0c590688bed45135ded89637211be4fbe257b",
+    "modules/common/literal_table_review.py": "25085a0937d27e5bae61e3973eddcf2ea6a43496cba814d57fb8af67a0212d67",
+    "modules/common/openai_client.py": "640c82f2ab6301194f89d95c25ea29d7fd474518ddb5275ce63329e6c3ce1293",
+    "modules/common/ocr_request_receipt.py": "4125331357b9415a6ccdc0f3eb88349136e1420fd8df9a6602f3acce5a6991a5",
+    "modules/extract/ocr_ai_gpt51_v1/main.py": "bd80f4d050a1eacc6442295471d9727bfd16ff674b84c2d64cec0e491cd96b95",
+    "benchmarks/providers/literal_qualification_guard.py": "d0cc72cbbf39ad7383d2e8a472240845ad10fcfa75c1062d1d92cbab0410a175",
+    "benchmarks/scripts/qualify_argon_literal.py": "756ae8c6b54ef66b645c7742801e03ff9a22e271e69dadc60f836e34d534754b",
+    "benchmarks/scripts/literal_qualification_offline.py": "87c8f59cce8646ba1b21329baae1db79775f9efc45027a963280dafe7136b8fb"
+  },
+  "upstream_source_review_sha256": "60d89a70862a246ec76740e24f1a11d684afc331f0a509c69c15518e4952577e",
+  "findings": [],
+  "corrections": [
+    {
+      "id": "R1",
+      "assessment": "resolved_static_and_original_reproductions",
+      "detail": "Astra now requires exact provider=openai and native Astra authority profile, then unconditionally validates native response hash, model/status/error/incomplete state, tier, usage, visible output, actual regular nonsymlink image bytes, and reconstructed request-body digest. Original foreign-profile and missing-profile reproductions both reject. Final builder passes its actual page image to this validator; retained receipt consumption also supplies actual image before accepting/appending the record."
+    },
+    {
+      "id": "R2",
+      "assessment": "resolved_static_and_original_request_reproduction",
+      "detail": "Literal source and common OCR native requests now explicitly request service_tier=default, matching frozen request construction. The guard rejects omitted or nondefault requested tier; original omitted-tier reproduction rejects. Successful Astra responses missing/contradicting default tier cannot settle at standard rates: ledger closes and full unknown reservation remains. Transient502 without a tier retains unknown exposure and remains eligible only for the preauthorized single recovery gate."
+    },
+    {
+      "id": "R3-root",
+      "assessment": "resolved_static_connected_byte_proof_pending",
+      "detail": "SourceOnlyReader uses responses.with_raw_response.create, retains returned content and digest before native.parse, and carries the original UTF8 bytes in portable native_response_json. No model_dump_json fallback remains. Campaign guard writes exact request.content with a separate native-byte hash while retaining canonical body digest for frozen admission. Need connected proof to establish portable report bytes equal actual guarded response files on both arms."
+    }
+  ],
+  "verification": {
+    "performed": [
+      "Original in-memory missing/foreign Astra profile negative reproductions",
+      "Original omitted service tier native-admission negative reproduction",
+      "Targeted static inspection of publisher/retained-reader image and request validation",
+      "Targeted static inspection of raw SDK response path and literal OCR tier route",
+      "Inspection of focused regression test definitions for raw-before-parse retention, resealed final report mutations, missing/foreign tiers and unknown reservation closure"
+    ],
+    "not_repeated": [
+      "Broad test suites",
+      "Provider calls",
+      "Source/gold review",
+      "Connected export execution"
+    ]
+  },
+  "pending": [
+    "Current connected proof.json with four real driver positive exports and four real driver holds",
+    "Exact raw response bytes/digests from guard to retained record and copied final report",
+    "Zero additional native POSTs during export/hold reuse",
+    "Hash validation against current frozen code/source inputs and current focused test receipt"
+  ],
+  "limits": [
+    "No live provider callability, source fidelity, latency, cost saving or production integration claim.",
+    "Static correction assessment does not grant root paid-dispatch clearance."
+  ]
+}

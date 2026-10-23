@@ -1,0 +1,191 @@
+{
+  "verdict": "failed mandatory source-located ambiguity hold; do not adopt",
+  "scope": "explicit native medium literal reader; independently authored synthetic panel, not production/private documents",
+  "live_calls": 5,
+  "known_spend_usd": 0.468719,
+  "unknown_exposure_usd": 0,
+  "ledger_closed": true,
+  "ledger_sha256": "6ae374214b022a945f5de599d043c659a1af7ec360d045e8df785e63fc3fa8d3",
+  "additional_cap_usd": 3,
+  "owner_cumulative_exposure_usd": 1.33539625,
+  "owner_cap_usd": 15,
+  "campaign_cumulative_exposure_usd": 4.346088745,
+  "campaign_cap_usd": 35,
+  "spend_by_role_usd": {
+    "common_ocr": 0.31706,
+    "astra_reader": 0.141455,
+    "argon_reader": 0.010204,
+    "paid_judge": 0,
+    "recovery": 0
+  },
+  "calls": [
+    {
+      "stage": "ocr-N1",
+      "kind": "ocr",
+      "model": "gpt-6-astra",
+      "served_model": "gpt-6-astra",
+      "cost_usd": 0.15848,
+      "cold_cost_usd": 0.13115,
+      "december_cost_usd": 0.15848,
+      "december_cold_cost_usd": 0.13115,
+      "latency_ms": 13091,
+      "usage": {
+        "input_tokens": 10935,
+        "cached_tokens": 0,
+        "cache_write_tokens": 10932,
+        "output_tokens": 436,
+        "thinking_tokens": 196
+      },
+      "request_sha256": "d7ecd34addd57a30544a6d83244ae43850fbe1327869221cacbe3c2ffe3dada6",
+      "native_request_bytes_sha256": "305f85aaf66510eb3dd12426dd72da1bb81b1d5d91ddf9be2b439e41e3f9d77c",
+      "response_sha256": "c35dba5033eabb16901e333889014bbfaa4008a4130267c0ebedacfab7a66eac",
+      "command_wall_seconds": 16.44483633300115
+    },
+    {
+      "stage": "reader-N1-astra",
+      "kind": "reader",
+      "model": "gpt-6-astra",
+      "served_model": "gpt-6-astra",
+      "cost_usd": 0.141455,
+      "cold_cost_usd": 0.11514,
+      "december_cost_usd": 0.141455,
+      "december_cold_cost_usd": 0.11514,
+      "latency_ms": 7070,
+      "usage": {
+        "input_tokens": 10529,
+        "cached_tokens": 0,
+        "cache_write_tokens": 10526,
+        "output_tokens": 197,
+        "thinking_tokens": 47
+      },
+      "request_sha256": "778b9d02954b4338c54a7276b3fad7465fb2877f79fd83731d8a1a8eaa52620b",
+      "native_request_bytes_sha256": "f0c652fac46f54c0a1262e763574815d9c12310508e9a22e123efbb57bde087a",
+      "response_sha256": "c1c8bf9b40c12ed1aca76428df1851dc158370280b0bae5f4b306ae1000284f3",
+      "command_wall_seconds": 8.098292750000837,
+      "reader_elapsed_seconds": 7.157300166989444
+    },
+    {
+      "stage": "reader-N1-argon",
+      "kind": "reader",
+      "model": "gemini-4-argon",
+      "served_model": "gemini-4-argon",
+      "cost_usd": 0.005112,
+      "cold_cost_usd": 0.005112,
+      "december_cost_usd": 0.010224,
+      "december_cold_cost_usd": 0.010224,
+      "latency_ms": 5013,
+      "usage": {
+        "input_tokens": 1941,
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "output_tokens": 123,
+        "thinking_tokens": 0
+      },
+      "request_sha256": "f258d4cf03b63b0e6a52430427abc532d65880911f54359461f6002ec8b5c519",
+      "native_request_bytes_sha256": "bdd4879898ad79d85787e264582ac2c951aeccd24025d5fd6431f9cf47a0b6ea",
+      "response_sha256": "f79848655c8008a38051c917ed0988e8c69c1d73575918c0fbfca9373eb2cb1a",
+      "command_wall_seconds": 5.74320570800046,
+      "reader_elapsed_seconds": 5.024434750012006
+    },
+    {
+      "stage": "ocr-A1",
+      "kind": "ocr",
+      "model": "gpt-6-astra",
+      "served_model": "gpt-6-astra",
+      "cost_usd": 0.15858,
+      "cold_cost_usd": 0.13125,
+      "december_cost_usd": 0.15858,
+      "december_cold_cost_usd": 0.13125,
+      "latency_ms": 13598,
+      "usage": {
+        "input_tokens": 10935,
+        "cached_tokens": 0,
+        "cache_write_tokens": 10932,
+        "output_tokens": 438,
+        "thinking_tokens": 211
+      },
+      "request_sha256": "03f23daa9f7994652da1e868b4f5d0da752b503f85252cbd815e91fb56d07ec1",
+      "native_request_bytes_sha256": "256472835ef4fa848da7ab853a8e12fbe5cc20fe0ee25593f0612d10482de481",
+      "response_sha256": "babe9693aa79c7bf0c4d063cad40fc4e8991b090d9516e951d9914c04f99dff1",
+      "command_wall_seconds": 16.90731466699799
+    },
+    {
+      "stage": "reader-A1-argon",
+      "kind": "reader",
+      "model": "gemini-4-argon",
+      "served_model": "gemini-4-argon",
+      "cost_usd": 0.005092,
+      "cold_cost_usd": 0.005092,
+      "december_cost_usd": 0.010184,
+      "december_cold_cost_usd": 0.010184,
+      "latency_ms": 4917,
+      "usage": {
+        "input_tokens": 1941,
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "output_tokens": 121,
+        "thinking_tokens": 0
+      },
+      "request_sha256": "504659a8d4d39a965e15a2e34306a5c44a780e6d971caaa9f40d2cee5b124cd8",
+      "native_request_bytes_sha256": "8cb0e4ce84c8c8a776c2add436b4401c4c33906d76cb690203f7378271c3873d",
+      "response_sha256": "d65d972c9474d95cb497bc15b08703c3f94a507ccd923009f8a9cca1a96d3852",
+      "command_wall_seconds": 5.742928666993976,
+      "reader_elapsed_seconds": 4.931744792003883
+    }
+  ],
+  "n1": {
+    "clear_cells_per_arm": 10,
+    "span_inventory_diagnostic": "one table, four rows, footer colspan3",
+    "source_exact_both": true,
+    "matched_cold_reader_saving_october_percent": 95.56018759770714,
+    "matched_cold_reader_saving_december_percent": 91.12037519541428,
+    "astra_native_seconds": 7.07,
+    "argon_native_seconds": 5.013,
+    "astra_cli_wall_seconds": 8.098292750000837,
+    "argon_cli_wall_seconds": 5.74320570800046,
+    "independent_source_review": "PASS_ON_N1_CLEAR_SOURCE for both arms"
+  },
+  "a1": {
+    "diagnostic_source_exact": true,
+    "adapter_status": "verified",
+    "declared_uncertain_cells": [],
+    "expected_uncertainty_location": {
+      "table": 0,
+      "row": 1,
+      "cell": 1
+    },
+    "literal_alias_choice": "K814",
+    "mandatory_hold_pass": false,
+    "astra": "unmeasured, stopped before dispatch",
+    "independent_source_review": "VALID_FAILURE_MISSED_MANDATORY_SOURCE_HOLD"
+  },
+  "unmeasured": [
+    "A1 Astra",
+    "N2",
+    "N3",
+    "R1",
+    "R2",
+    "R3",
+    "A2",
+    "all four repeat pairs",
+    "all live three-page exports",
+    "positive batch latency gates",
+    "full-panel cost/value qualification",
+    "whole-workflow savings"
+  ],
+  "offline_integration": {
+    "mock_posts": 24,
+    "positive_three_page_exports": 4,
+    "holds": 4,
+    "resume_additional_posts": 0,
+    "actual_network_spend": 0,
+    "proof_sha256": "85ef136304f9af3e6b7a197564af9b1db02c2c969282dcc4b5e11522ef877a5c"
+  },
+  "price_basis": "Actual native usage at frozen standard prices. Base cold-normalized ignores both read discounts and write premiums; actual Astra reports cache writes, zero cache reads. December Argon price doubles; Astra frozen prices unchanged.",
+  "latency_basis": "Native send timing, source-reader elapsed and complete CLI walltime retained separately; one observed matched page does not establish batch/SLA/tail performance.",
+  "default": "Astra unchanged; no commits/push/deployment",
+  "independent_reviews": {
+    "source-live-review.json": "84e24da50c30615de33844bfa8ad98ad822a1122a4997844f4052a5f7ee44f16",
+    "live-receipt-review.json": "4e24e4d864e52e2c199cc32c0adf1c3af0e9cbc5d842d107eb8fd4653b704eab"
+  }
+}

@@ -86,3 +86,38 @@ owner OpenAI unchanged. Eval registry and CHANGELOG updated. All acceptance/tene
 checks met for eval-only scope; Story220 remains existing substrate, ADR001 stays
 accepted with no design-policy change. Story233 closed via mark-story-done review.
 No commits/push/deployment authorized or performed.
+
+2026-10-06 — Scout088 item3 selected under hard USD2 for fresh Perplexity v1.1,
+Jev1.13 and OpenAI Decisions versus GPT4.1, same synthetic status projection.
+Isolated follow-through Attempt064 prepares exact source snapshots/rendered40
+matrix, native adapters and ten passing offline tests. Perplexity key absent in
+normal owner config and central custody; paid work awaiting provisioning, USD0,
+all candidate quality/economics unmeasured. Existing story result remains done;
+this continuation does not claim a fresh comparison completed or change defaults.
+
+2026-10-06 — Attempt064 continuation completed after user provisioned access.
+209native calls costUSD.097180996/2, unknown0, no retries. Fresh40case raw
+Perplexity28/Jev24/OpenAI22/GPT30; real cascades30/32/30. Perplexity cascade
+94.18%cheaper and31.85%fasterp95 than GPT at equal aggregate75%, but source-
+reviewed missing-evidence false-clean prevents automatic adoption. Prioritize
+bounded independent shadow/full-path promotion check. All source/gold/prompt/
+thresholds unchanged;418raw envelopes+offline replay retained.10focused tests,
+Ruff/methodology/whitespace pass. Both temporary injected keys removed by
+coordinator; no runtime/default/commit/push. Historical story remains closed.
+
+2026-10-13 — Approved Scout091 item2 continuation under hardUSD4; isolated current
+remote5917251. Attempt070 freezes all5exact dated router arms,40fresh judgments
+per arm, actual confidence<.8 per-arm GPT4.1 fallback, synthetic20unique/2sources,
+independent serial requests, unchanged labels/policy. Native qualification and
+complete comparison forthcoming; no runtime/default authority. Independent
+Attempt070 visual finite-verdict lane has its ownUSD8 ledger and stops.
+
+2026-10-13 — Attempt070 complete: all5x40fresh typedjudgments,40freshGPTbaseline,
+100actualserialfallbacks and6qualification;346callsUSD.16196998/4, unknown0.
+Solarcascade33/40vsGPT30,0defectcleanvs3 but1uncertaintycleanvs0;81%cheaper,
+15.6xp95. Strongest bounded batchqualification signal with explicit latency/
+review tradeoff, no automaticpromotion. Otherarms' safety/economics tradeoffs
+recorded, frozen20unique/2sources x2repeats, no tuning.40focusedtests,702receipt
+archive replay and currentbase/dirtysources retained. Existing story done result
+remains; no runtime behavior/default/commit/push. Independent source-aware fresh
+Solar batch/shadow qualification is a separate future scope.

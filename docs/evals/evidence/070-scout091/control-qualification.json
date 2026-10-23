@@ -1,0 +1,32 @@
+{
+  "name": "native-gpt41",
+  "arm": "gpt41",
+  "reserve_usd": 0.009472,
+  "status": "complete",
+  "request_sha256": "888b4890062557b1ae8e4307cd72f031568c6e7415b9e5543c6469481587b900",
+  "request_bytes": 2646,
+  "http_status": 200,
+  "latency_ms": 1981.0209999996005,
+  "response_bytes": 839,
+  "response_sha256": "095d1899d5143f10000330f1e996e4ddd3e7a76877da492309ae4e2f9257c33f",
+  "served_model": "gpt-4.1-2025-04-14",
+  "provider": null,
+  "usage": {
+    "prompt_tokens": 520,
+    "completion_tokens": 7,
+    "total_tokens": 527,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "audio_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0,
+      "audio_tokens": 0,
+      "accepted_prediction_tokens": 0,
+      "rejected_prediction_tokens": 0
+    }
+  },
+  "label": "conformant",
+  "confidence": null,
+  "cost_usd": 0.001096
+}

@@ -462,7 +462,7 @@ def _chapter_profile(
             page_profiles.append(page_profile)
     page_profiles = page_profiles[:4]
 
-    return {
+    result = {
         "chapter_basename": metrics.chapter_basename,
         "chapter_title": metrics.chapter_title,
         "chapter_file": metrics.chapter_file,
@@ -507,6 +507,11 @@ def _chapter_profile(
             "retained_page_profiles": len(page_profiles),
         },
     }
+
+    if os.environ.get("DOC_WEB_PPLX_SHADOW_EVIDENCE") == "enabled":
+        from modules.validate.plan_onward_document_consistency_v1.pplx_evidence import observed_chapter
+        result["runtime_evidence"] = observed_chapter(soup, metrics.source_pages, page_rows_by_number)
+    return result
 
 
 def build_document_dossier(
@@ -656,6 +661,10 @@ def _planner_input_from_dossier(dossier: Dict[str, Any]) -> Dict[str, Any]:
                 ],
             }
         )
+
+    if os.environ.get("DOC_WEB_PPLX_SHADOW_EVIDENCE") == "enabled":
+        for compact, original in zip(chapters, dossier["chapter_profiles"]):
+            compact["runtime_evidence"] = original.get("runtime_evidence", {})
 
     return {
         "schema_version": "onward_document_consistency_planner_input_v1",
@@ -1316,6 +1325,14 @@ def main() -> None:
         shadow_ok = False
     if not shadow_ok:
         print("[plan_onward_document_consistency_v1] optional shadow sidecar unavailable")
+
+    # Separate eval-only sidecar; never read by authoritative normalization or repair.
+    if os.environ.get("DOC_WEB_PPLX_SHADOW_EVAL") == "enabled":
+        from modules.validate.plan_onward_document_consistency_v1.pplx_shadow import write_shadow as write_pplx_shadow
+        write_pplx_shadow(
+            Path(os.path.dirname(out_path)) / "pplx_consistency_shadow_eval.json",
+            _planner_input_from_dossier(dossier)["chapters"], consistency_plan, conformance_report,
+        )
 
     logger.log(
         "validate",

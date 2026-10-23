@@ -1,0 +1,15 @@
+{
+  "source_table_count": 1,
+  "tables": [
+    {
+      "bbox": [
+        217,
+        1133,
+        1971,
+        1983
+      ],
+      "html": "<table><tr><th>Row</th><th>Variety</th><th>Grade</th><th>Count</th></tr><tr><td>C-1</td><td>Moro</td><td>A+</td><td>18</td></tr><tr><td>C-2</td><td>Moro</td><td>B</td><td>—</td></tr><tr><td>C-3</td><td>Pera</td><td>A</td><td></td></tr><tr><td>C-4</td><td>Pera</td><td>A</td><td>23</td></tr><tr><td colspan=\"2\">Totals checked</td><td>not signed</td><td>41</td></tr></table>",
+      "uncertain_cells": []
+    }
+  ]
+}

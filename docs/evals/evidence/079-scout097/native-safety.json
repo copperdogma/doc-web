@@ -1,0 +1,6 @@
+{
+  "raw": "{\n  \"verdict\": \"fail\",\n  \"has_page_text\": true,\n  \"excessive_blank\": true,\n  \"reason\": \"The image is largely blank with only a small 'TEST' text in the top-left corner. It contains excessive whitespace.\"\n}",
+  "served": "deepseek/deepseek-v4.1-flash-1017",
+  "provider": "Cloudflare",
+  "finish": "stop"
+}

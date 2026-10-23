@@ -1,0 +1,59 @@
+{
+  "offline_http_receipts_verified": 702,
+  "complete_response_parse_replays": 350,
+  "cost_ledger_reconciles": true,
+  "cap_guards_and_closure": true,
+  "raw_contains_no_auth_or_Bearer": true,
+  "focused_pytest": {
+    "passed": 40,
+    "commands": "python -m pytest benchmarks/jev-consistency/test_scout091_campaign.py benchmarks/jev-consistency/test_run.py benchmarks/jev-consistency/test_pplx_campaign.py tests/test_openai_responses_model_provider.py tests/test_crop_benchmark_substrate.py -q"
+  },
+  "ruff": "current newrunner/helper/tests/package/reconstruct pass; exact paid snapshots untouched",
+  "methodology": "make methodology-compile and make methodology-check passed",
+  "whitespace": "git diff --check passed",
+  "rawarchive_offline_replay": "702verified sizes/hashes, /tmp/scout091-docweb-replay",
+  "source_eligibility_refs": "all5retained hashes matched; all44sourcecrop URI bindings matched",
+  "credentials": "existingownerkeys read-only normal wrapper; no injected/copy/cleanup variables; primary.env unchanged by worker",
+  "primary_checkout": "read-only primary clean story245 at19b30b1",
+  "worktree_base_sha": "5917251340e9c39fbfa69f62d6d31fa8eb8e7d56",
+  "defaults_runtime_commit_push_deploy_changed": false,
+  "ledgers": {
+    "text": {
+      "calls": 346,
+      "settled_usd": 0.1619699799999998,
+      "unknown_usd": 0.0,
+      "cap_usd": 4.0,
+      "closed": true
+    },
+    "visual": {
+      "calls": 5,
+      "settled_usd": 0.052658500000000004,
+      "unknown_usd": 0.0025600000000000067,
+      "cap_usd": 8.0,
+      "closed": true
+    }
+  },
+  "next": "separate independent source-aware Solar batch qualification with fresh heldout uncertainty evidence and fullshadowcost; no morepaid exposed-fixture work",
+  "closeout": {
+    "user_authorization": "Check in and push if you have not yet; coordinator requires all-repo preflight before pushing",
+    "checked_date": "2026-10-13",
+    "remote_main_sha": "5917251340e9c39fbfa69f62d6d31fa8eb8e7d56",
+    "branch": "codex/scout091-docweb-20261013",
+    "branch_protected": false,
+    "ci_workflows": "No .github workflows in current repository; no active Git hooks",
+    "validation_reuse": "Unchanged scored request, prompt, fixtures and controls reuse34 unchanged focused tests and receipt replay. Seven new tests passed after archive portability repair and closed-preflight overwrite guard;41 applicable focused tests total. Ruff passed current runner/helper/test/package/reconstruct. Metadata/prose changes checked via manifests/graph/whitespace.",
+    "story_closure": "Stories233/240 already Done; appended eval work logs, no broader story or runtime acceptance closure.",
+    "inbox": "Primary clean; reviewed docs/inbox.md contains no Scout091 capture/relevant dirt. Unrelated Gemini note left live.",
+    "integration": "HEAD equals freshly fetched origin/main; no incoming branch commits/conflicts.",
+    "closeout_repairs": [
+      "Regression tests consume tracked archive instead of ignored originals",
+      "Changelog uses2026-10-13-01 CalVer header",
+      "Full external documentation downloads replaced with concise contract summaries and source URLs/hashes",
+      "Closed preflight refuses to overwrite completed paid evidence; post-paid guard only, no request/semantic change"
+    ],
+    "artifact_publication": "Explicit owner-public image eligibility+synthetic text;702 raw requests/responses checked without authorization headers/Bearer credentials and archived losslessly.",
+    "temporary_credentials": "No injection; read-only existing owner keys preserved",
+    "push_state": "candidate only; waiting coordinator ALL_READY",
+    "current_applicable_focused_tests": 41
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "qualified": [
+    "pplx",
+    "jev",
+    "decisions",
+    "gpt41"
+  ],
+  "adapter_parity": "native body and parser are same function used by campaign",
+  "served_identity_limit": "model echo is not cryptographic checkpoint verification"
+}

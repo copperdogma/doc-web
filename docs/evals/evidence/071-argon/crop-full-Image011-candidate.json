@@ -1,0 +1,9 @@
+{
+  "raw": "{\"images\": [{\"description\": \"Circular logo for 'Celebrate Saskatchewan 1905-1980' featuring a stylized wheat sheaf motif.\", \"bbox\": [377, 74, 581, 231]}, {\"description\": \"Official serrated seal of the Department of Agriculture alongside the signatures of Hon. Gordon MacMurchy and Hon. Ed Tchorzewski.\", \"bbox\": [119, 686, 896, 896]}]}",
+  "score": {
+    "pass": true,
+    "score": 0.9872,
+    "reason": "box_count=1.00 (2/2) | iou_mean=0.978 | iou_min=0.971 | coverage=0.998 | total=0.987 | matches=[pred[0]<->gold[0] IoU=0.985, pred[1]<->gold[1] IoU=0.971]"
+  },
+  "served": "gemini-4-argon"
+}

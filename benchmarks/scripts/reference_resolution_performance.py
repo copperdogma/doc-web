@@ -20,7 +20,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[2]
 FILES = [
     'modules/common/__init__.py', 'modules/common/utils.py',
-    'modules/common/manual_navigation.py', 'modules/common/reference_resolution.py',
+    'modules/common/manual_navigation.py', 'doc_web/__init__.py', 'doc_web/reference_resolution.py',
     'benchmarks/scripts/reference_resolution_benchmark.py',
     'benchmarks/golden/reference_resolution_freeze.json',
     'tests/fixtures/reference_resolution/development.json',
@@ -48,9 +48,9 @@ def loaded_receipt(root):
     result = {}
     for name, module in sorted(sys.modules.items()):
         path = getattr(module, '__file__', None)
-        if path and Path(path).is_file() and (name.startswith(('modules', 'bs4', 'soupsieve', 'yaml')) or name == 'frozen_benchmark'):
+        if path and Path(path).is_file() and (name.startswith(('modules', 'doc_web', 'bs4', 'soupsieve', 'yaml')) or name == 'frozen_benchmark'):
             resolved = Path(path).resolve()
-            if name.startswith('modules') and not resolved.is_relative_to(root.resolve()):
+            if name.startswith(('modules', 'doc_web')) and not resolved.is_relative_to(root.resolve()):
                 raise RuntimeError(f'Variant leaked ambient import: {name}: {resolved}')
             result[name] = {'path': str(resolved), 'sha256': sha(resolved)}
     return result

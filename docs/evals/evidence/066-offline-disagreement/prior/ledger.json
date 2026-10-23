@@ -1,0 +1,131 @@
+{
+  "cap_usd": 4.0,
+  "spent_usd": 0.025883160000000002,
+  "unknown_usd": 0.0,
+  "calls": [
+    {
+      "name": "001-planner",
+      "arm": "planner",
+      "kind": "qualification",
+      "run_id": null,
+      "reserve_usd": 0.192,
+      "status": "complete",
+      "request_sha256": "b451f986f86fc91cadd8b9dc7e9709155f2230a4fce5c2d664a99d80d24cec2c",
+      "request_bytes": 212,
+      "latency_ms": 1615.5337909876835,
+      "http_status": 200,
+      "response_sha256": "bc035c2a664b52aa9fd55b758137f0c8f089f19066a6c604dae2e3824c3da35d",
+      "response_bytes": 825,
+      "cost_usd": 0.0001,
+      "usage": {
+        "prompt_tokens": 18,
+        "completion_tokens": 8,
+        "total_tokens": 26,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "audio_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 0,
+          "audio_tokens": 0,
+          "accepted_prediction_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "served_model": "gpt-4.1-2025-04-14"
+    },
+    {
+      "name": "002-candidate",
+      "arm": "candidate",
+      "kind": "qualification",
+      "run_id": null,
+      "reserve_usd": 0.00128,
+      "status": "complete",
+      "request_sha256": "19a30d95014fe7283911d309ef5e647361857f39919815a7e70b4f94675a38ba",
+      "request_bytes": 1095,
+      "latency_ms": 764.3743750231806,
+      "http_status": 200,
+      "response_sha256": "b3ee8e48c37b743d5a16c5238d61b9c9f9d4b6669f80c705a427760b37c8206f",
+      "response_bytes": 362,
+      "cost_usd": 4.88e-06,
+      "usage": {
+        "input_tokens": 244,
+        "output_tokens": 1
+      },
+      "served_model": "pplx-decider-v1.1-27b"
+    },
+    {
+      "name": "003-planner",
+      "arm": "planner",
+      "kind": "planner",
+      "run_id": "live-r1-doc-01",
+      "reserve_usd": 0.192,
+      "status": "complete",
+      "request_sha256": "ace9e396e601285b7a36aa40902e3362935a7de7f2f7ec3b4973cab972f244c1",
+      "request_bytes": 30610,
+      "latency_ms": 8064.643833000446,
+      "http_status": 200,
+      "response_sha256": "6e3c2b47b16219e63d970823e725a522854623a77333277ac6cbe1a15a548598",
+      "response_bytes": 7564,
+      "cost_usd": 0.025706,
+      "usage": {
+        "prompt_tokens": 6445,
+        "completion_tokens": 1602,
+        "total_tokens": 8047,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "audio_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 0,
+          "audio_tokens": 0,
+          "accepted_prediction_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "served_model": "gpt-4.1-2025-04-14"
+    },
+    {
+      "name": "004-candidate",
+      "arm": "candidate",
+      "kind": "candidate",
+      "run_id": "live-r1-doc-01",
+      "reserve_usd": 0.00128,
+      "status": "complete",
+      "request_sha256": "bdd2d8f112d51040d5fff31e53d2764669ad26c69d1f5c36d6f87d5cf50588f9",
+      "request_bytes": 5716,
+      "latency_ms": 473.7992500013206,
+      "http_status": 200,
+      "response_sha256": "5590c405931dc375f1303acdba88c19641124daa62742ba6570147d7953fc8be",
+      "response_bytes": 369,
+      "cost_usd": 3.614e-05,
+      "usage": {
+        "input_tokens": 1807,
+        "output_tokens": 1
+      },
+      "served_model": "pplx-decider-v1.1-27b"
+    },
+    {
+      "name": "005-candidate",
+      "arm": "candidate",
+      "kind": "candidate",
+      "run_id": "live-r1-doc-01",
+      "reserve_usd": 0.00128,
+      "status": "complete",
+      "request_sha256": "955d96170a109247442719cbe96c8cc84a157f7d8cee874e57aa3c07e595159b",
+      "request_bytes": 5716,
+      "latency_ms": 456.95449999766424,
+      "http_status": 200,
+      "response_sha256": "2b330487d44941b6824c4770c0129d14b41b9b8164619583606780b0f0082e5a",
+      "response_bytes": 371,
+      "cost_usd": 3.614e-05,
+      "usage": {
+        "input_tokens": 1807,
+        "output_tokens": 1
+      },
+      "served_model": "pplx-decider-v1.1-27b"
+    }
+  ],
+  "closed": true,
+  "close_reason": "predeclared safety stop confirmed by independent source review"
+}

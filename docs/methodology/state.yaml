@@ -115,8 +115,8 @@
         "label": "doc-web Runtime",
         "manual_priority": "medium",
         "last_audited_at": "2026-04-09",
-        "stories_since_audit": 0,
-        "recent_story_refs": ["193", "196", "197", "201", "202", "203"],
+        "stories_since_audit": 1,
+        "recent_story_refs": ["193", "196", "197", "201", "202", "203", "260"],
         "open_findings": [],
         "notes": "Recent bounded runtime work widened maintained proof across XLSX, born-digital PDF, PPTX, EPUB, EML, and MBOX. The runtime boundary is currently honest; future cleanup should wait for a new cross-format seam rather than re-auditing the just-landed direct-entry slices."
       }

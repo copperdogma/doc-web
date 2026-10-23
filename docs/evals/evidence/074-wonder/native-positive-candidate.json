@@ -1,0 +1,38 @@
+{
+  "case": "native-positive",
+  "arm": "candidate",
+  "status": "verified",
+  "errors": [],
+  "uncertainties": [],
+  "quality": {
+    "text_pass": true,
+    "structure_pass": true,
+    "pass": true,
+    "text_mismatch_count": 0,
+    "structure_mismatch_count": 0,
+    "text_mismatches": [],
+    "structure_mismatches": [],
+    "counts": {
+      "golden": {
+        "tables": 1,
+        "rows": 5,
+        "cells": 13
+      },
+      "actual": {
+        "tables": 1,
+        "rows": 5,
+        "cells": 13
+      }
+    },
+    "scope": {
+      "mode": "all_tables",
+      "table_index": null,
+      "golden_table_count": 1,
+      "actual_table_count": 1,
+      "excluded_actual_table_indices": [],
+      "compared_actual_table_count": 1,
+      "document_actual_table_count": 1
+    }
+  },
+  "report": "benchmarks/results/wonder-20261014/native-positive-candidate_reports/row-00000-page-00001-original-00001.json"
+}

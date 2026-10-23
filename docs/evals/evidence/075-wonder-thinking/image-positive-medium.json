@@ -1,0 +1,360 @@
+{
+  "case": "image-positive",
+  "arm": "medium",
+  "status": "unresolved",
+  "errors": [
+    "source-only review failed: AssertionError"
+  ],
+  "uncertainties": [],
+  "quality": {
+    "text_pass": false,
+    "structure_pass": false,
+    "pass": false,
+    "text_mismatch_count": 31,
+    "structure_mismatch_count": 9,
+    "text_mismatches": [
+      {
+        "kind": "no_tables",
+        "golden": 1,
+        "actual": 0
+      },
+      {
+        "table": 0,
+        "actual_table": 0,
+        "kind": "missing_table"
+      },
+      {
+        "table": 0,
+        "actual_table": 0,
+        "row": 0,
+        "kind": "missing_row"
+      },
+      {
+        "table": 0,
+        "actual_table": 0,
+        "row": 0,
+        "cell": 0,
+        "kind": "cell_text",
+        "expected": "Product",
+        "actual": null
+      },
+      {
+        "table": 0,
+        "actual_table": 0,
+        "row": 0,
+        "cell": 1,
+        "kind": "cell_text",
+        "expected": "Lot",
+        "actual": null
+      },
+      {
+        "table": 0,
+        "actual_table": 0,
+        "row": 0,
+        "cell": 2,
+        "kind": "cell_text",
+        "expected": "Trays",
+        "actual": null
+      },
+      {
+        "table": 0,
+        "actual_table": 0,
+        "row": 0,
+        "cell": 3,
+        "kind": "cell_text",
+        "expected": "Note",
+        "actual": null
+      },
+      {
+        "table": 0,
+        "actual_table": 0,
+        "row": 1,
+        "kind": "missing_row"
+      },
+      {
+        "table": 0,
+        "actual_table": 0,
+        "row": 1,
+        "cell": 0,
+        "kind": "cell_text",
+        "expected": "Olive loaf",
+        "actual": null
+      },
+      {
+        "table": 0,
+        "actual_table": 0,
+        "row": 1,
+        "cell": 1,
+        "kind": "cell_text",
+        "expected": "Il1-O0",
+        "actual": null
+      },
+      {
+        "table": 0,
+        "actual_table": 0,
+        "row": 1,
+        "cell": 2,
+        "kind": "cell_text",
+        "expected": "1+",
+        "actual": null
+      },
+      {
+        "table": 0,
+        "actual_table": 0,
+        "row": 1,
+        "cell": 3,
+        "kind": "cell_text",
+        "expected": "Cooling",
+        "actual": null
+      },
+      {
+        "table": 0,
+        "actual_table": 0,
+        "row": 2,
+        "kind": "missing_row"
+      },
+      {
+        "table": 0,
+        "actual_table": 0,
+        "row": 2,
+        "cell": 0,
+        "kind": "cell_text",
+        "expected": "Rye loaf",
+        "actual": null
+      },
+      {
+        "table": 0,
+        "actual_table": 0,
+        "row": 2,
+        "cell": 1,
+        "kind": "cell_text",
+        "expected": "o0-LI",
+        "actual": null
+      },
+      {
+        "table": 0,
+        "actual_table": 0,
+        "row": 2,
+        "cell": 2,
+        "kind": "cell_text",
+        "expected": "0",
+        "actual": null
+      },
+      {
+        "table": 0,
+        "actual_table": 0,
+        "row": 2,
+        "cell": 3,
+        "kind": "cell_text",
+        "expected": "recieve",
+        "actual": null
+      },
+      {
+        "table": 0,
+        "actual_table": 0,
+        "row": 3,
+        "kind": "missing_row"
+      },
+      {
+        "table": 0,
+        "actual_table": 0,
+        "row": 3,
+        "cell": 0,
+        "kind": "cell_text",
+        "expected": "Oat roll",
+        "actual": null
+      },
+      {
+        "table": 0,
+        "actual_table": 0,
+        "row": 3,
+        "cell": 1,
+        "kind": "cell_text",
+        "expected": "aB-9",
+        "actual": null
+      },
+      {
+        "table": 0,
+        "actual_table": 0,
+        "row": 3,
+        "cell": 2,
+        "kind": "cell_text",
+        "expected": "",
+        "actual": null
+      },
+      {
+        "table": 0,
+        "actual_table": 0,
+        "row": 3,
+        "cell": 3,
+        "kind": "cell_text",
+        "expected": "“Ready”",
+        "actual": null
+      },
+      {
+        "table": 0,
+        "actual_table": 0,
+        "row": 4,
+        "kind": "missing_row"
+      },
+      {
+        "table": 0,
+        "actual_table": 0,
+        "row": 4,
+        "cell": 0,
+        "kind": "cell_text",
+        "expected": "Oat roll",
+        "actual": null
+      },
+      {
+        "table": 0,
+        "actual_table": 0,
+        "row": 4,
+        "cell": 1,
+        "kind": "cell_text",
+        "expected": "AB-9",
+        "actual": null
+      },
+      {
+        "table": 0,
+        "actual_table": 0,
+        "row": 4,
+        "cell": 2,
+        "kind": "cell_text",
+        "expected": "-",
+        "actual": null
+      },
+      {
+        "table": 0,
+        "actual_table": 0,
+        "row": 4,
+        "cell": 3,
+        "kind": "cell_text",
+        "expected": "Ready; hold.",
+        "actual": null
+      },
+      {
+        "table": 0,
+        "actual_table": 0,
+        "row": 5,
+        "kind": "missing_row"
+      },
+      {
+        "table": 0,
+        "actual_table": 0,
+        "row": 5,
+        "cell": 0,
+        "kind": "cell_text",
+        "expected": "Evening batch",
+        "actual": null
+      },
+      {
+        "table": 0,
+        "actual_table": 0,
+        "row": 5,
+        "cell": 1,
+        "kind": "cell_text",
+        "expected": "2",
+        "actual": null
+      },
+      {
+        "table": 0,
+        "actual_table": 0,
+        "row": 5,
+        "cell": 2,
+        "kind": "cell_text",
+        "expected": "No change",
+        "actual": null
+      }
+    ],
+    "structure_mismatches": [
+      {
+        "kind": "no_tables",
+        "golden": 1,
+        "actual": 0
+      },
+      {
+        "kind": "table_count",
+        "expected": 1,
+        "actual": 0
+      },
+      {
+        "table": 0,
+        "actual_table": 0,
+        "kind": "row_count",
+        "expected": 6,
+        "actual": 0
+      },
+      {
+        "table": 0,
+        "actual_table": 0,
+        "row": 0,
+        "kind": "cell_count",
+        "expected": 4,
+        "actual": 0
+      },
+      {
+        "table": 0,
+        "actual_table": 0,
+        "row": 1,
+        "kind": "cell_count",
+        "expected": 4,
+        "actual": 0
+      },
+      {
+        "table": 0,
+        "actual_table": 0,
+        "row": 2,
+        "kind": "cell_count",
+        "expected": 4,
+        "actual": 0
+      },
+      {
+        "table": 0,
+        "actual_table": 0,
+        "row": 3,
+        "kind": "cell_count",
+        "expected": 4,
+        "actual": 0
+      },
+      {
+        "table": 0,
+        "actual_table": 0,
+        "row": 4,
+        "kind": "cell_count",
+        "expected": 4,
+        "actual": 0
+      },
+      {
+        "table": 0,
+        "actual_table": 0,
+        "row": 5,
+        "kind": "cell_count",
+        "expected": 3,
+        "actual": 0
+      }
+    ],
+    "counts": {
+      "golden": {
+        "tables": 1,
+        "rows": 6,
+        "cells": 23
+      },
+      "actual": {
+        "tables": 0,
+        "rows": 0,
+        "cells": 0
+      }
+    },
+    "scope": {
+      "mode": "all_tables",
+      "table_index": null,
+      "golden_table_count": 1,
+      "actual_table_count": 0,
+      "excluded_actual_table_indices": [],
+      "compared_actual_table_count": 0,
+      "document_actual_table_count": 0
+    }
+  },
+  "report": "benchmarks/results/wonder-thinking-20261014/image-positive-medium_reports/row-00000-page-00001-original-00001.json"
+}

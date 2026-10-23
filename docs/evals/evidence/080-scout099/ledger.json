@@ -1,0 +1,1777 @@
+{
+  "cap_usd": 15,
+  "spent_usd": 1.3588859999999998,
+  "calls": [
+    {
+      "stage": "native-table",
+      "model": "minimax/minimax-m3.1-flash:free",
+      "reserved_usd": 0.0,
+      "cost_usd": 0,
+      "request": "benchmarks/results/scout099-20261020/request-001.json",
+      "request_sha256": "456f6b7301cf616635f8b2b3673c056b74a3dc9a83fe10b0a56675bb92e4f52c",
+      "response": "benchmarks/results/scout099-20261020/response-001.json",
+      "response_sha256": "62c462ada893f23d896c1d3b13973d3380cdd966519ea7ca189e0ea571feaa5a",
+      "status_code": 404,
+      "latency_ms": 204,
+      "billing_unresolved": false,
+      "settlement": "routing pre-inference404: no endpoint matched parameters"
+    },
+    {
+      "stage": "native-table-diagnostic",
+      "model": "minimax/minimax-m3.1-flash:free",
+      "reserved_usd": 0.0,
+      "cost_usd": 0,
+      "request": "benchmarks/results/scout099-20261020/request-002.json",
+      "request_sha256": "4851157bb160976a9ac391de9097016e4ddcaccfa6303fab56a78ad42338397f",
+      "response": "benchmarks/results/scout099-20261020/response-002.json",
+      "response_sha256": "ed85068e7577fe2cd210b4962747a5c00f04614872e20c973054dbef9520c27d",
+      "status_code": 200,
+      "latency_ms": 2721,
+      "usage": {
+        "prompt_tokens": 605,
+        "completion_tokens": 84,
+        "total_tokens": 689,
+        "cost": 0,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 184,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0,
+          "upstream_inference_prompt_cost": 0,
+          "upstream_inference_completions_cost": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 74,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        }
+      },
+      "served_model": "minimax/minimax-m3.1-flash:free",
+      "provider": "Minimax",
+      "accounting_valid": true
+    },
+    {
+      "stage": "native-crop-diagnostic",
+      "model": "minimax/minimax-m3.1-flash:free",
+      "reserved_usd": 0.0,
+      "cost_usd": 0,
+      "request": "benchmarks/results/scout099-20261020/request-003.json",
+      "request_sha256": "64e5dc398a83fbf8ec6118dfc09d1110ea3d9a8565c29bb20a90af7eb505b67c",
+      "response": "benchmarks/results/scout099-20261020/response-003.json",
+      "response_sha256": "05c285f226aac1ae15c47961ff6f0dbe824a33788bd4cb51cc33343444286b2c",
+      "status_code": 200,
+      "latency_ms": 5269,
+      "usage": {
+        "prompt_tokens": 308,
+        "completion_tokens": 390,
+        "total_tokens": 698,
+        "cost": 0,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 174,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0,
+          "upstream_inference_prompt_cost": 0,
+          "upstream_inference_completions_cost": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 346,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        }
+      },
+      "served_model": "minimax/minimax-m3.1-flash:free",
+      "provider": "Minimax",
+      "accounting_valid": true
+    },
+    {
+      "stage": "native-ocr-diagnostic",
+      "model": "minimax/minimax-m3.1-flash:free",
+      "reserved_usd": 0.0,
+      "cost_usd": 0,
+      "request": "benchmarks/results/scout099-20261020/request-004.json",
+      "request_sha256": "74c9f9443704330e7b213059284f4aa37b7cc713c8d09722a368a56367fd0d98",
+      "response": "benchmarks/results/scout099-20261020/response-004.json",
+      "response_sha256": "95592393af5f28e9d2dd0c6db315a7c14a0d57ad50747a08a84897081e26b30d",
+      "status_code": 200,
+      "latency_ms": 1726,
+      "usage": {
+        "prompt_tokens": 303,
+        "completion_tokens": 48,
+        "total_tokens": 351,
+        "cost": 0,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 184,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0,
+          "upstream_inference_prompt_cost": 0,
+          "upstream_inference_completions_cost": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 42,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        }
+      },
+      "served_model": "minimax/minimax-m3.1-flash:free",
+      "provider": "Minimax",
+      "accounting_valid": true
+    },
+    {
+      "stage": "table-image-positive-candidate-diagnostic",
+      "model": "minimax/minimax-m3.1-flash:free",
+      "reserved_usd": 0.0,
+      "cost_usd": 0,
+      "request": "benchmarks/results/scout099-20261020/request-005.json",
+      "request_sha256": "a5b7245db94a4bc0af4a2099b9d918c993e419d0ab7ec5a4173c08b9b23065bf",
+      "admission_wait_ms": 0,
+      "response": "benchmarks/results/scout099-20261020/response-005.json",
+      "response_sha256": "f4db5748c381a6eac962f1f295401a91f2a7f80945a6fa3172ca61ec17f9dd5f",
+      "status_code": 200,
+      "latency_ms": 20815,
+      "usage": {
+        "prompt_tokens": 4548,
+        "completion_tokens": 1724,
+        "total_tokens": 6272,
+        "cost": 0,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 184,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0,
+          "upstream_inference_prompt_cost": 0,
+          "upstream_inference_completions_cost": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 1496,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        }
+      },
+      "served_model": "minimax/minimax-m3.1-flash:free",
+      "provider": "Minimax",
+      "accounting_valid": true
+    },
+    {
+      "stage": "table-image-positive-control",
+      "model": "gpt-6-astra",
+      "reserved_usd": 1.5,
+      "cost_usd": 0.0802425,
+      "request": "benchmarks/results/scout099-20261020/request-006.json",
+      "request_sha256": "e6235031e3cac69a3f5d01f343d3353c728a73bc7d4e0fa043959507638e9d30",
+      "response": "benchmarks/results/scout099-20261020/response-006.json",
+      "response_sha256": "6630296fe2931ec2101cb60a9c47a266b0f2ae3b31e3b2e2be89d0fdb0358404",
+      "status_code": 200,
+      "latency_ms": 9273,
+      "usage": {
+        "input_tokens": 5016,
+        "input_tokens_details": {
+          "cache_write_tokens": 5013,
+          "cached_tokens": 0
+        },
+        "output_tokens": 351,
+        "output_tokens_details": {
+          "reasoning_tokens": 108
+        },
+        "total_tokens": 5367
+      },
+      "served_model": "gpt-6-astra",
+      "provider": "OpenAI"
+    },
+    {
+      "stage": "crop-screen-Image011-candidate-diagnostic",
+      "model": "minimax/minimax-m3.1-flash:free",
+      "reserved_usd": 0.0,
+      "cost_usd": 0,
+      "request": "benchmarks/results/scout099-20261020/request-007.json",
+      "request_sha256": "0e2de77afd88c2c7e790a22b9b70748eb53bf8a2523042713471429d8382edb1",
+      "admission_wait_ms": 0,
+      "response": "benchmarks/results/scout099-20261020/response-007.json",
+      "response_sha256": "c458a5e746bdb73368ccbf2e43c95c71dc0ee0042352b53868e556dabb7eef92",
+      "status_code": 200,
+      "latency_ms": 9077,
+      "usage": {
+        "prompt_tokens": 4458,
+        "completion_tokens": 598,
+        "total_tokens": 5056,
+        "cost": 0,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 195,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0,
+          "upstream_inference_prompt_cost": 0,
+          "upstream_inference_completions_cost": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 526,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        }
+      },
+      "served_model": "minimax/minimax-m3.1-flash:free",
+      "provider": "Minimax",
+      "accounting_valid": true
+    },
+    {
+      "stage": "crop-screen-Image011-control-diagnostic",
+      "model": "gemini-3-flash-preview",
+      "reserved_usd": 0.062152,
+      "cost_usd": 0.0045395,
+      "request": "benchmarks/results/scout099-20261020/request-008.json",
+      "request_sha256": "242f8833652c89a4b1ac2591289afba7bc19e1ca44556e2c570f5f4648e54994",
+      "response": "benchmarks/results/scout099-20261020/response-008.json",
+      "response_sha256": "96a4f2b5d66a89a558d2befc6702d34d813041236f99037b574ca4c248bb3472",
+      "status_code": 200,
+      "latency_ms": 6368,
+      "usage": {
+        "promptTokenCount": 1333,
+        "candidatesTokenCount": 113,
+        "totalTokenCount": 2624,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 231
+          },
+          {
+            "modality": "IMAGE",
+            "tokenCount": 1102
+          }
+        ],
+        "thoughtsTokenCount": 1178,
+        "serviceTier": "standard"
+      },
+      "served_model": "gemini-3-flash-preview",
+      "provider": "Google"
+    },
+    {
+      "stage": "safety-page-122-001-candidate-diagnostic",
+      "model": "minimax/minimax-m3.1-flash:free",
+      "reserved_usd": 0.0,
+      "cost_usd": 0,
+      "request": "benchmarks/results/scout099-20261020/request-009.json",
+      "request_sha256": "3985d55797d67fcce90682fc43e3b535d580a1d171b2ef120b9b4e257de47bfe",
+      "admission_wait_ms": 0,
+      "response": "benchmarks/results/scout099-20261020/response-009.json",
+      "response_sha256": "520fe3ef1cf5cee250db31aebc4cc0b3d6f9ab7d5d547084eb8bf7b213766d06",
+      "status_code": 200,
+      "latency_ms": 9045,
+      "usage": {
+        "prompt_tokens": 8618,
+        "completion_tokens": 154,
+        "total_tokens": 8772,
+        "cost": 0,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 128,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0,
+          "upstream_inference_prompt_cost": 0,
+          "upstream_inference_completions_cost": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 104,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        }
+      },
+      "served_model": "minimax/minimax-m3.1-flash:free",
+      "provider": "Minimax",
+      "accounting_valid": true
+    },
+    {
+      "stage": "ocr-barney-candidate-diagnostic",
+      "model": "minimax/minimax-m3.1-flash:free",
+      "reserved_usd": 0.0,
+      "cost_usd": 0,
+      "request": "benchmarks/results/scout099-20261020/request-010.json",
+      "request_sha256": "b8084bc80f4bebc5d852e88c2304d0a42ad8d11d9045dbdb5cf6b4f4b5f6e653",
+      "admission_wait_ms": 12953,
+      "response": "benchmarks/results/scout099-20261020/response-010.json",
+      "response_sha256": "19db40446d058f5394b30b91dd6db847bddc89109288da2a4d7b85cd4cf1cb31",
+      "status_code": 200,
+      "latency_ms": 165905,
+      "usage": {
+        "prompt_tokens": 1511,
+        "completion_tokens": 16412,
+        "total_tokens": 17923,
+        "cost": 0,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 128,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0,
+          "upstream_inference_prompt_cost": 0,
+          "upstream_inference_completions_cost": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 16050,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        }
+      },
+      "served_model": "minimax/minimax-m3.1-flash:free",
+      "provider": "Minimax",
+      "accounting_valid": true
+    },
+    {
+      "stage": "safety-page-122-001-control",
+      "model": "gpt-5.5",
+      "reserved_usd": 0.29144,
+      "cost_usd": 0.083435,
+      "request": "benchmarks/results/scout099-20261020/request-011.json",
+      "request_sha256": "2ccb3a24898ee42c98d53e18eca2cc167c3d053147876922fb333d43cefbab8a",
+      "response": "benchmarks/results/scout099-20261020/response-011.json",
+      "response_sha256": "379f7253f7d1751803b6669ace9affba0281bb06a7973a198f2c6321fe70c32a",
+      "status_code": 200,
+      "latency_ms": 5355,
+      "usage": {
+        "input_tokens": 16333,
+        "input_tokens_details": {
+          "cache_write_tokens": 0,
+          "cached_tokens": 0
+        },
+        "output_tokens": 59,
+        "output_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "total_tokens": 16392
+      },
+      "served_model": "gpt-5.5-2026-04-23",
+      "provider": "OpenAI"
+    },
+    {
+      "stage": "ocr-barney-control-diagnostic",
+      "model": "gemini-3.7-flash",
+      "reserved_usd": 0.08094,
+      "cost_usd": 0.016983,
+      "request": "benchmarks/results/scout099-20261020/request-012.json",
+      "request_sha256": "367d52133d49c5a8433552634fd7b72e11cfca7ca316539d63ba9699c4892d2b",
+      "response": "benchmarks/results/scout099-20261020/response-012.json",
+      "response_sha256": "3feb0b5f08e1500885647d824e69f0e87f68cdfb8c89f9368c3883e6b07dd009",
+      "status_code": 200,
+      "latency_ms": 32014,
+      "usage": {
+        "promptTokenCount": 2029,
+        "candidatesTokenCount": 392,
+        "totalTokenCount": 6152,
+        "promptTokensDetails": [
+          {
+            "modality": "IMAGE",
+            "tokenCount": 1073
+          },
+          {
+            "modality": "TEXT",
+            "tokenCount": 956
+          }
+        ],
+        "thoughtsTokenCount": 3731,
+        "serviceTier": "standard"
+      },
+      "served_model": "gemini-3.8-flash",
+      "provider": "Google"
+    },
+    {
+      "stage": "safety-page-012-001-candidate-diagnostic",
+      "model": "minimax/minimax-m3.1-flash:free",
+      "reserved_usd": 0.0,
+      "cost_usd": 0,
+      "request": "benchmarks/results/scout099-20261020/request-013.json",
+      "request_sha256": "431831cddeba1d603b7990bf520793b90fd766adad9edbd180fbe378031e0bca",
+      "admission_wait_ms": 0,
+      "response": "benchmarks/results/scout099-20261020/response-013.json",
+      "response_sha256": "6f4fc66b8122da93c5e7b8aef4a7a68569ae0df157e7adafdf77f9192d66bca9",
+      "status_code": 200,
+      "latency_ms": 29389,
+      "usage": {
+        "prompt_tokens": 6946,
+        "completion_tokens": 1568,
+        "total_tokens": 8514,
+        "cost": 0,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 906,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0,
+          "upstream_inference_prompt_cost": 0,
+          "upstream_inference_completions_cost": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 1513,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        }
+      },
+      "served_model": "minimax/minimax-m3.1-flash:free",
+      "provider": "Minimax",
+      "accounting_valid": true
+    },
+    {
+      "stage": "safety-page-012-001-control",
+      "model": "gpt-5.5",
+      "reserved_usd": 0.29144,
+      "cost_usd": 0.033535,
+      "request": "benchmarks/results/scout099-20261020/request-014.json",
+      "request_sha256": "c2ff48f9ddfbdfe47a50b3a350c4b22f6b276e293164d4841e03840b13d061ab",
+      "response": "benchmarks/results/scout099-20261020/response-014.json",
+      "response_sha256": "8bcd1932ac177553ecf0c95403c636333a7d53bbf0fcbcb56556762dfe03e27d",
+      "status_code": 200,
+      "latency_ms": 2920,
+      "usage": {
+        "input_tokens": 6329,
+        "input_tokens_details": {
+          "cache_write_tokens": 0,
+          "cached_tokens": 0
+        },
+        "output_tokens": 63,
+        "output_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "total_tokens": 6392
+      },
+      "served_model": "gpt-5.5-2026-04-23",
+      "provider": "OpenAI"
+    },
+    {
+      "stage": "safety-page-001-000-candidate-diagnostic",
+      "model": "minimax/minimax-m3.1-flash:free",
+      "reserved_usd": 0.0,
+      "cost_usd": 0,
+      "request": "benchmarks/results/scout099-20261020/request-015.json",
+      "request_sha256": "e27097f427652acb09107e1ac9f37afcedc0fdb160741903db50987e52d1609f",
+      "admission_wait_ms": 0,
+      "response": "benchmarks/results/scout099-20261020/response-015.json",
+      "response_sha256": "5e76af6e62d0bd9d1f7452dfe0cbe8da32cc70683d6dc63ba81e2198488fec77",
+      "status_code": 200,
+      "latency_ms": 27502,
+      "usage": {
+        "prompt_tokens": 9266,
+        "completion_tokens": 1326,
+        "total_tokens": 10592,
+        "cost": 0,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 906,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0,
+          "upstream_inference_prompt_cost": 0,
+          "upstream_inference_completions_cost": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 1265,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        }
+      },
+      "served_model": "minimax/minimax-m3.1-flash:free",
+      "provider": "Minimax",
+      "accounting_valid": true
+    },
+    {
+      "stage": "safety-page-001-000-control",
+      "model": "gpt-5.5",
+      "reserved_usd": 0.29144,
+      "cost_usd": 0.08303,
+      "request": "benchmarks/results/scout099-20261020/request-016.json",
+      "request_sha256": "c6552abe8937510b58ce41da850dd60c4446e3506a28d5e872b992b44f7cd023",
+      "response": "benchmarks/results/scout099-20261020/response-016.json",
+      "response_sha256": "57c6e9dc9cce26ffe7685aa328120a0a195a8b6600bc0d04e03af9d8e5004359",
+      "status_code": 200,
+      "latency_ms": 6704,
+      "usage": {
+        "input_tokens": 16198,
+        "input_tokens_details": {
+          "cache_write_tokens": 0,
+          "cached_tokens": 0
+        },
+        "output_tokens": 68,
+        "output_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "total_tokens": 16266
+      },
+      "served_model": "gpt-5.5-2026-04-23",
+      "provider": "OpenAI"
+    },
+    {
+      "stage": "safety-page-004-000-candidate-diagnostic",
+      "model": "minimax/minimax-m3.1-flash:free",
+      "reserved_usd": 0.0,
+      "cost_usd": 0,
+      "request": "benchmarks/results/scout099-20261020/request-017.json",
+      "request_sha256": "f2d7dfbe070aa307c29a1c9cc48020c6755192b0fbfcaf6ea1c80603df846516",
+      "admission_wait_ms": 0,
+      "response": "benchmarks/results/scout099-20261020/response-017.json",
+      "response_sha256": "29a83d8a1ec6a21a8fb52f24c0f266fd31beedbc1dedce5b14846f0c930f87f8",
+      "status_code": 200,
+      "latency_ms": 4341,
+      "usage": {
+        "prompt_tokens": 6458,
+        "completion_tokens": 177,
+        "total_tokens": 6635,
+        "cost": 0,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 906,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0,
+          "upstream_inference_prompt_cost": 0,
+          "upstream_inference_completions_cost": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 112,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        }
+      },
+      "served_model": "minimax/minimax-m3.1-flash:free",
+      "provider": "Minimax",
+      "accounting_valid": true
+    },
+    {
+      "stage": "safety-page-004-000-control",
+      "model": "gpt-5.5",
+      "reserved_usd": 0.29144,
+      "cost_usd": 0.058105,
+      "request": "benchmarks/results/scout099-20261020/request-018.json",
+      "request_sha256": "9c8028bb5677c84232fc9be76b38042ccaab1c714e08c936f24da8d7ad7e3d7f",
+      "response": "benchmarks/results/scout099-20261020/response-018.json",
+      "response_sha256": "98d17a854bfefe261c74c07504ccd08b700181440a0acf19bd1404f7776cbdf3",
+      "status_code": 200,
+      "latency_ms": 2891,
+      "usage": {
+        "input_tokens": 11201,
+        "input_tokens_details": {
+          "cache_write_tokens": 0,
+          "cached_tokens": 0
+        },
+        "output_tokens": 70,
+        "output_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "total_tokens": 11271
+      },
+      "served_model": "gpt-5.5-2026-04-23",
+      "provider": "OpenAI"
+    },
+    {
+      "stage": "safety-page-009-000-candidate-diagnostic",
+      "model": "minimax/minimax-m3.1-flash:free",
+      "reserved_usd": 0.0,
+      "cost_usd": 0,
+      "request": "benchmarks/results/scout099-20261020/request-019.json",
+      "request_sha256": "6eb1207a39b9df1a59573d71e1e96790591e3a65ef11945517b99957d624dd77",
+      "admission_wait_ms": 0,
+      "response": "benchmarks/results/scout099-20261020/response-019.json",
+      "response_sha256": "52f7d749737631b89b6fa51d05cab046417229131f7c6a5be35b55b93db94693",
+      "status_code": 200,
+      "latency_ms": 6092,
+      "usage": {
+        "prompt_tokens": 9698,
+        "completion_tokens": 151,
+        "total_tokens": 9849,
+        "cost": 0,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 906,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0,
+          "upstream_inference_prompt_cost": 0,
+          "upstream_inference_completions_cost": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 100,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        }
+      },
+      "served_model": "minimax/minimax-m3.1-flash:free",
+      "provider": "Minimax",
+      "accounting_valid": true
+    },
+    {
+      "stage": "safety-page-009-000-control",
+      "model": "gpt-5.5",
+      "reserved_usd": 0.29144,
+      "cost_usd": 0.073585,
+      "request": "benchmarks/results/scout099-20261020/request-020.json",
+      "request_sha256": "fd45903906d4baa486eec4fbf793dfd069ffa1be7d40b86581c0a2f00a95af1d",
+      "response": "benchmarks/results/scout099-20261020/response-020.json",
+      "response_sha256": "2290c1ac62a4f79e597334825e663d9a9d646a5a243f1267e43a9f18eb62cd06",
+      "status_code": 200,
+      "latency_ms": 4628,
+      "usage": {
+        "input_tokens": 14399,
+        "input_tokens_details": {
+          "cache_write_tokens": 0,
+          "cached_tokens": 0
+        },
+        "output_tokens": 53,
+        "output_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "total_tokens": 14452
+      },
+      "served_model": "gpt-5.5-2026-04-23",
+      "provider": "OpenAI"
+    },
+    {
+      "stage": "safety-page-012-000-candidate-diagnostic",
+      "model": "minimax/minimax-m3.1-flash:free",
+      "reserved_usd": 0.0,
+      "cost_usd": 0,
+      "request": "benchmarks/results/scout099-20261020/request-021.json",
+      "request_sha256": "f010f0ca807f34fab6677f3472ddc425760d75e046cf5c15f54e959711f267f6",
+      "admission_wait_ms": 0,
+      "response": "benchmarks/results/scout099-20261020/response-021.json",
+      "response_sha256": "a10781e955ac9910b293c1f1a5c906a9ab671220c38eceae7406dbd1853944f0",
+      "status_code": 200,
+      "latency_ms": 3433,
+      "usage": {
+        "prompt_tokens": 6390,
+        "completion_tokens": 128,
+        "total_tokens": 6518,
+        "cost": 0,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 4940,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0,
+          "upstream_inference_prompt_cost": 0,
+          "upstream_inference_completions_cost": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 78,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        }
+      },
+      "served_model": "minimax/minimax-m3.1-flash:free",
+      "provider": "Minimax",
+      "accounting_valid": true
+    },
+    {
+      "stage": "safety-page-012-000-control",
+      "model": "gpt-5.5",
+      "reserved_usd": 0.29144,
+      "cost_usd": 0.018303,
+      "request": "benchmarks/results/scout099-20261020/request-022.json",
+      "request_sha256": "a99c3518844369f07c25fdf8db413b2014cc2f128ac2fbaaf2fa39e2ae15db5a",
+      "response": "benchmarks/results/scout099-20261020/response-022.json",
+      "response_sha256": "eabdb2c8477cbb0f259147e777c3f2d408a596e2588b4b19bc0de22dab24581b",
+      "status_code": 200,
+      "latency_ms": 2764,
+      "usage": {
+        "input_tokens": 5787,
+        "input_tokens_details": {
+          "cache_write_tokens": 0,
+          "cached_tokens": 2816
+        },
+        "output_tokens": 68,
+        "output_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "total_tokens": 5855
+      },
+      "served_model": "gpt-5.5-2026-04-23",
+      "provider": "OpenAI"
+    },
+    {
+      "stage": "safety-page-014-000-candidate-diagnostic",
+      "model": "minimax/minimax-m3.1-flash:free",
+      "reserved_usd": 0.0,
+      "cost_usd": 0,
+      "request": "benchmarks/results/scout099-20261020/request-023.json",
+      "request_sha256": "ef91e9a5dad52154c4eaff328f1c360b6d9cfcab3cad85bdd579b8ea153c0f20",
+      "admission_wait_ms": 0,
+      "response": "benchmarks/results/scout099-20261020/response-023.json",
+      "response_sha256": "ea9709632e2c10af755e5fb20e058c957c9f242032097343b49abc2bb040d22d",
+      "status_code": 200,
+      "latency_ms": 5397,
+      "usage": {
+        "prompt_tokens": 9626,
+        "completion_tokens": 220,
+        "total_tokens": 9846,
+        "cost": 0,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 906,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0,
+          "upstream_inference_prompt_cost": 0,
+          "upstream_inference_completions_cost": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 166,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        }
+      },
+      "served_model": "minimax/minimax-m3.1-flash:free",
+      "provider": "Minimax",
+      "accounting_valid": true
+    },
+    {
+      "stage": "safety-page-014-000-control",
+      "model": "gpt-5.5",
+      "reserved_usd": 0.29144,
+      "cost_usd": 0.04554,
+      "request": "benchmarks/results/scout099-20261020/request-024.json",
+      "request_sha256": "c97944fe5d3cc322dd0c69e8dbdee25be0f9b55525efb82531a90fd6f70f3be4",
+      "response": "benchmarks/results/scout099-20261020/response-024.json",
+      "response_sha256": "c3596c02c6cb26574ac79f1e188654fb8b192e8f05db7873838cc760fe616feb",
+      "status_code": 200,
+      "latency_ms": 3619,
+      "usage": {
+        "input_tokens": 8790,
+        "input_tokens_details": {
+          "cache_write_tokens": 0,
+          "cached_tokens": 0
+        },
+        "output_tokens": 53,
+        "output_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "total_tokens": 8843
+      },
+      "served_model": "gpt-5.5-2026-04-23",
+      "provider": "OpenAI"
+    },
+    {
+      "stage": "safety-page-018-000-candidate-diagnostic",
+      "model": "minimax/minimax-m3.1-flash:free",
+      "reserved_usd": 0.0,
+      "cost_usd": 0,
+      "request": "benchmarks/results/scout099-20261020/request-025.json",
+      "request_sha256": "3f9e632e0cd0b35d1dd4a2e38603bec3b9a2c6979ca550a81f33d0acbd5e6159",
+      "admission_wait_ms": 0,
+      "response": "benchmarks/results/scout099-20261020/response-025.json",
+      "response_sha256": "73bf640ffdd33631d849d736ffd70c3f3130952d36d6b843cb01233d316af5a6",
+      "status_code": 200,
+      "latency_ms": 8704,
+      "usage": {
+        "prompt_tokens": 7106,
+        "completion_tokens": 408,
+        "total_tokens": 7514,
+        "cost": 0,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 906,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0,
+          "upstream_inference_prompt_cost": 0,
+          "upstream_inference_completions_cost": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 357,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        }
+      },
+      "served_model": "minimax/minimax-m3.1-flash:free",
+      "provider": "Minimax",
+      "accounting_valid": true
+    },
+    {
+      "stage": "safety-page-018-000-control",
+      "model": "gpt-5.5",
+      "reserved_usd": 0.29144,
+      "cost_usd": 0.082825,
+      "request": "benchmarks/results/scout099-20261020/request-026.json",
+      "request_sha256": "ad739f92d8b2becab5b0c486697a88fe07fe8e64936f49fa0ead19c5fe7deca4",
+      "response": "benchmarks/results/scout099-20261020/response-026.json",
+      "response_sha256": "614292ba274b7a41d30df5d27de7d12fb84a58d12f6556aee37f29b4984c7a9d",
+      "status_code": 200,
+      "latency_ms": 4011,
+      "usage": {
+        "input_tokens": 16199,
+        "input_tokens_details": {
+          "cache_write_tokens": 0,
+          "cached_tokens": 0
+        },
+        "output_tokens": 61,
+        "output_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "total_tokens": 16260
+      },
+      "served_model": "gpt-5.5-2026-04-23",
+      "provider": "OpenAI"
+    },
+    {
+      "stage": "safety-page-021-000-candidate-diagnostic",
+      "model": "minimax/minimax-m3.1-flash:free",
+      "reserved_usd": 0.0,
+      "cost_usd": 0,
+      "request": "benchmarks/results/scout099-20261020/request-027.json",
+      "request_sha256": "6dfad46b91301c57cecf10b7d962dd0d20e9f29202dd39748ae00ab4bf76b682",
+      "admission_wait_ms": 0,
+      "response": "benchmarks/results/scout099-20261020/response-027.json",
+      "response_sha256": "7b289e86ba492f948c01e982ac40479e743aa3f27e555e9da4584ceeb481d8d0",
+      "status_code": 200,
+      "latency_ms": 11011,
+      "usage": {
+        "prompt_tokens": 8258,
+        "completion_tokens": 384,
+        "total_tokens": 8642,
+        "cost": 0,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 195,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0,
+          "upstream_inference_prompt_cost": 0,
+          "upstream_inference_completions_cost": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 327,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        }
+      },
+      "served_model": "minimax/minimax-m3.1-flash:free",
+      "provider": "Minimax",
+      "accounting_valid": true
+    },
+    {
+      "stage": "safety-page-021-000-control",
+      "model": "gpt-5.5",
+      "reserved_usd": 0.29144,
+      "cost_usd": 0.084165,
+      "request": "benchmarks/results/scout099-20261020/request-028.json",
+      "request_sha256": "494eb0e99e51caf6f0b38721509b58275763280703eaff6dd062ce641cfee884",
+      "response": "benchmarks/results/scout099-20261020/response-028.json",
+      "response_sha256": "24a493aaa816d17f280884d8cd9806ac7a93ff97bdd28a01b5d610ced15d8b2b",
+      "status_code": 200,
+      "latency_ms": 6224,
+      "usage": {
+        "input_tokens": 16425,
+        "input_tokens_details": {
+          "cache_write_tokens": 0,
+          "cached_tokens": 0
+        },
+        "output_tokens": 68,
+        "output_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "total_tokens": 16493
+      },
+      "served_model": "gpt-5.5-2026-04-23",
+      "provider": "OpenAI"
+    },
+    {
+      "stage": "safety-page-021-001-candidate-diagnostic",
+      "model": "minimax/minimax-m3.1-flash:free",
+      "reserved_usd": 0.0,
+      "cost_usd": 0,
+      "request": "benchmarks/results/scout099-20261020/request-029.json",
+      "request_sha256": "bb6e2a972d3a93f40d57c013e39bef1db8b2560a2f63d1fb513d3cd4ad67d0e5",
+      "admission_wait_ms": 0,
+      "response": "benchmarks/results/scout099-20261020/response-029.json",
+      "response_sha256": "4b05af3d715eee000ca552b2121d4d9a85c815520acfdcb630957488b7c303a9",
+      "status_code": 200,
+      "latency_ms": 7122,
+      "usage": {
+        "prompt_tokens": 8042,
+        "completion_tokens": 230,
+        "total_tokens": 8272,
+        "cost": 0,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 906,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0,
+          "upstream_inference_prompt_cost": 0,
+          "upstream_inference_completions_cost": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 169,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        }
+      },
+      "served_model": "minimax/minimax-m3.1-flash:free",
+      "provider": "Minimax",
+      "accounting_valid": true
+    },
+    {
+      "stage": "safety-page-021-001-control",
+      "model": "gpt-5.5",
+      "reserved_usd": 0.29144,
+      "cost_usd": 0.071158,
+      "request": "benchmarks/results/scout099-20261020/request-030.json",
+      "request_sha256": "d37f21a9669818fc85fe7eb0a5259f86386b2d4b0df0b9f37feaccc78b33b57d",
+      "response": "benchmarks/results/scout099-20261020/response-030.json",
+      "response_sha256": "5f2f7b965fc75711a07512636d33b0614f2adb5b3adfacf222ec331078cbd41d",
+      "status_code": 200,
+      "latency_ms": 5138,
+      "usage": {
+        "input_tokens": 16400,
+        "input_tokens_details": {
+          "cache_write_tokens": 0,
+          "cached_tokens": 2816
+        },
+        "output_tokens": 61,
+        "output_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "total_tokens": 16461
+      },
+      "served_model": "gpt-5.5-2026-04-23",
+      "provider": "OpenAI"
+    },
+    {
+      "stage": "safety-page-022-000-candidate-diagnostic",
+      "model": "minimax/minimax-m3.1-flash:free",
+      "reserved_usd": 0.0,
+      "cost_usd": 0,
+      "request": "benchmarks/results/scout099-20261020/request-031.json",
+      "request_sha256": "210e935915002e4a3b8da193c0aeb8ac91eb15e4d8da56fb03b5c876a9474744",
+      "admission_wait_ms": 0,
+      "response": "benchmarks/results/scout099-20261020/response-031.json",
+      "response_sha256": "93d49b978f4da8e9b90e924230efc4d4a276e06c8dbac7c0f96c850b725e7de1",
+      "status_code": 200,
+      "latency_ms": 4923,
+      "usage": {
+        "prompt_tokens": 8822,
+        "completion_tokens": 187,
+        "total_tokens": 9009,
+        "cost": 0,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 906,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0,
+          "upstream_inference_prompt_cost": 0,
+          "upstream_inference_completions_cost": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 133,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        }
+      },
+      "served_model": "minimax/minimax-m3.1-flash:free",
+      "provider": "Minimax",
+      "accounting_valid": true
+    },
+    {
+      "stage": "safety-page-022-000-control",
+      "model": "gpt-5.5",
+      "reserved_usd": 0.29144,
+      "cost_usd": 0.041875,
+      "request": "benchmarks/results/scout099-20261020/request-032.json",
+      "request_sha256": "6dc16632274480547fc44be5a9b97c4527e73712e49e597638d92b75692d6c68",
+      "response": "benchmarks/results/scout099-20261020/response-032.json",
+      "response_sha256": "4f215265303bde3b77162bfd23215bf50682d36e89d2f0e2c1a11db79f890c8e",
+      "status_code": 200,
+      "latency_ms": 3191,
+      "usage": {
+        "input_tokens": 8021,
+        "input_tokens_details": {
+          "cache_write_tokens": 0,
+          "cached_tokens": 0
+        },
+        "output_tokens": 59,
+        "output_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "total_tokens": 8080
+      },
+      "served_model": "gpt-5.5-2026-04-23",
+      "provider": "OpenAI"
+    },
+    {
+      "stage": "safety-page-038-000-candidate-diagnostic",
+      "model": "minimax/minimax-m3.1-flash:free",
+      "reserved_usd": 0.0,
+      "cost_usd": 0,
+      "request": "benchmarks/results/scout099-20261020/request-033.json",
+      "request_sha256": "3905601670eb99f89695b86d0514ea9eee66fb74348e0892fa6bed310ea6942e",
+      "admission_wait_ms": 0,
+      "response": "benchmarks/results/scout099-20261020/response-033.json",
+      "response_sha256": "2b2f30fe99b3bc5ac8247c49c17134faf03c852aabd1825a30e365dcc4182467",
+      "status_code": 200,
+      "latency_ms": 4973,
+      "usage": {
+        "prompt_tokens": 7935,
+        "completion_tokens": 108,
+        "total_tokens": 8043,
+        "cost": 0,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 906,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0,
+          "upstream_inference_prompt_cost": 0,
+          "upstream_inference_completions_cost": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 63,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        }
+      },
+      "served_model": "minimax/minimax-m3.1-flash:free",
+      "provider": "Minimax",
+      "accounting_valid": true
+    },
+    {
+      "stage": "safety-page-038-000-control",
+      "model": "gpt-5.5",
+      "reserved_usd": 0.29144,
+      "cost_usd": 0.038195,
+      "request": "benchmarks/results/scout099-20261020/request-034.json",
+      "request_sha256": "07d4521e3ae33c38f7732ef7e72a20336030cd2d60d025f5a924b7604325eb87",
+      "response": "benchmarks/results/scout099-20261020/response-034.json",
+      "response_sha256": "1dfd57c524f38acba3bf8f14d70caa7d9a068b4f70e94b900d73b0f13b8cb4a3",
+      "status_code": 200,
+      "latency_ms": 2656,
+      "usage": {
+        "input_tokens": 7267,
+        "input_tokens_details": {
+          "cache_write_tokens": 0,
+          "cached_tokens": 0
+        },
+        "output_tokens": 62,
+        "output_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "total_tokens": 7329
+      },
+      "served_model": "gpt-5.5-2026-04-23",
+      "provider": "OpenAI"
+    },
+    {
+      "stage": "safety-page-038-001-candidate-diagnostic",
+      "model": "minimax/minimax-m3.1-flash:free",
+      "reserved_usd": 0.0,
+      "cost_usd": 0,
+      "request": "benchmarks/results/scout099-20261020/request-035.json",
+      "request_sha256": "df43ac569753f43ca226fea4f72f1dda1b07342bf1a92032631bb76da44171a8",
+      "admission_wait_ms": 0,
+      "response": "benchmarks/results/scout099-20261020/response-035.json",
+      "response_sha256": "f5197c594c84b7923436000ebd7b6b0f711aed122740742e520a7645fe758df8",
+      "status_code": 200,
+      "latency_ms": 13316,
+      "usage": {
+        "prompt_tokens": 9410,
+        "completion_tokens": 746,
+        "total_tokens": 10156,
+        "cost": 0,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 174,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0,
+          "upstream_inference_prompt_cost": 0,
+          "upstream_inference_completions_cost": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 682,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        }
+      },
+      "served_model": "minimax/minimax-m3.1-flash:free",
+      "provider": "Minimax",
+      "accounting_valid": true
+    },
+    {
+      "stage": "safety-page-038-001-control",
+      "model": "gpt-5.5",
+      "reserved_usd": 0.29144,
+      "cost_usd": 0.031973,
+      "request": "benchmarks/results/scout099-20261020/request-036.json",
+      "request_sha256": "5f7110abd4f4d9b55baa12f08a01b71980d804bb5a8de3ef0798ecedd10ec7cd",
+      "response": "benchmarks/results/scout099-20261020/response-036.json",
+      "response_sha256": "4f24851f9b67382f2707eabcff0d414153f56fe0f35e10351361a214823d9170",
+      "status_code": 200,
+      "latency_ms": 3678,
+      "usage": {
+        "input_tokens": 8563,
+        "input_tokens_details": {
+          "cache_write_tokens": 0,
+          "cached_tokens": 2816
+        },
+        "output_tokens": 61,
+        "output_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "total_tokens": 8624
+      },
+      "served_model": "gpt-5.5-2026-04-23",
+      "provider": "OpenAI"
+    },
+    {
+      "stage": "safety-page-060-000-candidate-diagnostic",
+      "model": "minimax/minimax-m3.1-flash:free",
+      "reserved_usd": 0.0,
+      "cost_usd": 0,
+      "request": "benchmarks/results/scout099-20261020/request-037.json",
+      "request_sha256": "e5a355598f87a384ecb5a840fec1bf358c8667ba90f4533d62971a4155351ffd",
+      "admission_wait_ms": 0,
+      "response": "benchmarks/results/scout099-20261020/response-037.json",
+      "response_sha256": "519515b0441c51efa3678b98b70810af5dc235587040ee23bc442d2eca2a3f4e",
+      "status_code": 200,
+      "latency_ms": 9098,
+      "usage": {
+        "prompt_tokens": 9046,
+        "completion_tokens": 243,
+        "total_tokens": 9289,
+        "cost": 0,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 197,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0,
+          "upstream_inference_prompt_cost": 0,
+          "upstream_inference_completions_cost": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 188,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        }
+      },
+      "served_model": "minimax/minimax-m3.1-flash:free",
+      "provider": "Minimax",
+      "accounting_valid": true
+    },
+    {
+      "stage": "safety-page-060-000-control",
+      "model": "gpt-5.5",
+      "reserved_usd": 0.29144,
+      "cost_usd": 0.05497,
+      "request": "benchmarks/results/scout099-20261020/request-038.json",
+      "request_sha256": "c09a23695478038e6020986608dd3fb8147aa0fe37c08dd53eabc23537ef115d",
+      "response": "benchmarks/results/scout099-20261020/response-038.json",
+      "response_sha256": "189582958f9f5d4585a1e53122eaa383b11154edb06829bf8ba2bddabf666e00",
+      "status_code": 200,
+      "latency_ms": 3462,
+      "usage": {
+        "input_tokens": 10604,
+        "input_tokens_details": {
+          "cache_write_tokens": 0,
+          "cached_tokens": 0
+        },
+        "output_tokens": 65,
+        "output_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "total_tokens": 10669
+      },
+      "served_model": "gpt-5.5-2026-04-23",
+      "provider": "OpenAI"
+    },
+    {
+      "stage": "safety-page-060-001-candidate-diagnostic",
+      "model": "minimax/minimax-m3.1-flash:free",
+      "reserved_usd": 0.0,
+      "cost_usd": 0,
+      "request": "benchmarks/results/scout099-20261020/request-039.json",
+      "request_sha256": "e6bbd9b848df20c1a05068cb4e98c2c77db9849f91b7dc69d84833ace7dabf32",
+      "admission_wait_ms": 0,
+      "response": "benchmarks/results/scout099-20261020/response-039.json",
+      "response_sha256": "78a05d9eb79c33f6450b44b751bde5786063f585dd28db1f959a051ee387a378",
+      "status_code": 200,
+      "latency_ms": 9024,
+      "usage": {
+        "prompt_tokens": 9482,
+        "completion_tokens": 366,
+        "total_tokens": 9848,
+        "cost": 0,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 906,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0,
+          "upstream_inference_prompt_cost": 0,
+          "upstream_inference_completions_cost": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 316,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        }
+      },
+      "served_model": "minimax/minimax-m3.1-flash:free",
+      "provider": "Minimax",
+      "accounting_valid": true
+    },
+    {
+      "stage": "safety-page-060-001-control",
+      "model": "gpt-5.5",
+      "reserved_usd": 0.29144,
+      "cost_usd": 0.032413,
+      "request": "benchmarks/results/scout099-20261020/request-040.json",
+      "request_sha256": "080d78b4b17ccdf9c616c8ac443b2dcd9e95a17fb0c521cae3a4ead76d569c6a",
+      "response": "benchmarks/results/scout099-20261020/response-040.json",
+      "response_sha256": "2df0512c61a136abe6e6185b374eb133e22951c9c9cd997880f09175836b3efc",
+      "status_code": 200,
+      "latency_ms": 3608,
+      "usage": {
+        "input_tokens": 8639,
+        "input_tokens_details": {
+          "cache_write_tokens": 0,
+          "cached_tokens": 2816
+        },
+        "output_tokens": 63,
+        "output_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "total_tokens": 8702
+      },
+      "served_model": "gpt-5.5-2026-04-23",
+      "provider": "OpenAI"
+    },
+    {
+      "stage": "safety-page-092-000-candidate-diagnostic",
+      "model": "minimax/minimax-m3.1-flash:free",
+      "reserved_usd": 0.0,
+      "cost_usd": 0,
+      "request": "benchmarks/results/scout099-20261020/request-041.json",
+      "request_sha256": "1e9ce1daa2f880fe58322cf4bc1592cf69f90f33e2ea1649cb9c75776ae64c26",
+      "admission_wait_ms": 0,
+      "response": "benchmarks/results/scout099-20261020/response-041.json",
+      "response_sha256": "aebae39cd4e6bc6492160e6087473d4c4e12a6489c515f53471b073181bd26bc",
+      "status_code": 200,
+      "latency_ms": 13227,
+      "usage": {
+        "prompt_tokens": 9266,
+        "completion_tokens": 209,
+        "total_tokens": 9475,
+        "cost": 0,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 906,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0,
+          "upstream_inference_prompt_cost": 0,
+          "upstream_inference_completions_cost": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 158,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        }
+      },
+      "served_model": "minimax/minimax-m3.1-flash:free",
+      "provider": "Minimax",
+      "accounting_valid": true
+    },
+    {
+      "stage": "safety-page-092-000-control",
+      "model": "gpt-5.5",
+      "reserved_usd": 0.29144,
+      "cost_usd": 0.052045,
+      "request": "benchmarks/results/scout099-20261020/request-042.json",
+      "request_sha256": "f884b4033245e74b89c8854978683cec29750987d1a617e748a145203124f257",
+      "response": "benchmarks/results/scout099-20261020/response-042.json",
+      "response_sha256": "686a3318c467664c69b6b63885879819332e84cefc8a7ca91ed64a9084723ab4",
+      "status_code": 200,
+      "latency_ms": 3512,
+      "usage": {
+        "input_tokens": 10061,
+        "input_tokens_details": {
+          "cache_write_tokens": 0,
+          "cached_tokens": 0
+        },
+        "output_tokens": 58,
+        "output_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "total_tokens": 10119
+      },
+      "served_model": "gpt-5.5-2026-04-23",
+      "provider": "OpenAI"
+    },
+    {
+      "stage": "safety-page-122-000-candidate-diagnostic",
+      "model": "minimax/minimax-m3.1-flash:free",
+      "reserved_usd": 0.0,
+      "cost_usd": 0,
+      "request": "benchmarks/results/scout099-20261020/request-043.json",
+      "request_sha256": "c556052bc944ac3657c7cc8f60cb7b65436fda5214b3b78eace3624b8711fe67",
+      "admission_wait_ms": 0,
+      "response": "benchmarks/results/scout099-20261020/response-043.json",
+      "response_sha256": "67422ec4c5f8837bf2c748f1130824a3f7d72db1711a948d8c8e70acbbfb8875",
+      "status_code": 200,
+      "latency_ms": 17130,
+      "usage": {
+        "prompt_tokens": 8042,
+        "completion_tokens": 117,
+        "total_tokens": 8159,
+        "cost": 0,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 4940,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0,
+          "upstream_inference_prompt_cost": 0,
+          "upstream_inference_completions_cost": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 67,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        }
+      },
+      "served_model": "minimax/minimax-m3.1-flash:free",
+      "provider": "Minimax",
+      "accounting_valid": true
+    },
+    {
+      "stage": "safety-page-122-000-control",
+      "model": "gpt-5.5",
+      "reserved_usd": 0.29144,
+      "cost_usd": 0.070603,
+      "request": "benchmarks/results/scout099-20261020/request-044.json",
+      "request_sha256": "b0dde95e0941017b9350abfb7a5e6ceec3267309665fd38d77b3b3130e050fa4",
+      "response": "benchmarks/results/scout099-20261020/response-044.json",
+      "response_sha256": "7d4423bac3f23da05d40e9df24eb1da0df9f31ef31a44f44811112649e6bc8bb",
+      "status_code": 200,
+      "latency_ms": 4530,
+      "usage": {
+        "input_tokens": 16337,
+        "input_tokens_details": {
+          "cache_write_tokens": 0,
+          "cached_tokens": 2816
+        },
+        "output_tokens": 53,
+        "output_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "total_tokens": 16390
+      },
+      "served_model": "gpt-5.5-2026-04-23",
+      "provider": "OpenAI"
+    },
+    {
+      "stage": "safety-page-125-000-candidate-diagnostic",
+      "model": "minimax/minimax-m3.1-flash:free",
+      "reserved_usd": 0.0,
+      "cost_usd": 0,
+      "request": "benchmarks/results/scout099-20261020/request-045.json",
+      "request_sha256": "9bec61f802fe4eb6954c868c110cb7dfdb6a6de28ec800bdfef9765afb536098",
+      "admission_wait_ms": 0,
+      "response": "benchmarks/results/scout099-20261020/response-045.json",
+      "response_sha256": "f081e1937d7ba44f9dfa3b76d51c73cc727c3b67d9c30c370ca681c15e0de9e9",
+      "status_code": 200,
+      "latency_ms": 11106,
+      "usage": {
+        "prompt_tokens": 9982,
+        "completion_tokens": 369,
+        "total_tokens": 10351,
+        "cost": 0,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 905,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0,
+          "upstream_inference_prompt_cost": 0,
+          "upstream_inference_completions_cost": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 315,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        }
+      },
+      "served_model": "minimax/minimax-m3.1-flash:free",
+      "provider": "Minimax",
+      "accounting_valid": true
+    },
+    {
+      "stage": "safety-page-125-000-control",
+      "model": "gpt-5.5",
+      "reserved_usd": 0.29144,
+      "cost_usd": 0.08344,
+      "request": "benchmarks/results/scout099-20261020/request-046.json",
+      "request_sha256": "09cc90d598b94e245cca8f3e46dbad7e16726de4b807f80d21f7ac5c662c4c97",
+      "response": "benchmarks/results/scout099-20261020/response-046.json",
+      "response_sha256": "5f9fd4c6ba75a6be068224a224a09a1625eacd36065883eabc734fb68ea6c4db",
+      "status_code": 200,
+      "latency_ms": 3307,
+      "usage": {
+        "input_tokens": 16358,
+        "input_tokens_details": {
+          "cache_write_tokens": 0,
+          "cached_tokens": 0
+        },
+        "output_tokens": 55,
+        "output_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "total_tokens": 16413
+      },
+      "served_model": "gpt-5.5-2026-04-23",
+      "provider": "OpenAI"
+    },
+    {
+      "stage": "safety-page-126-000-candidate-diagnostic",
+      "model": "minimax/minimax-m3.1-flash:free",
+      "reserved_usd": 0.0,
+      "cost_usd": 0,
+      "request": "benchmarks/results/scout099-20261020/request-047.json",
+      "request_sha256": "7e633b61d86ff6a6115ff95f6529402424067cafbef44534d9688dccca45be2e",
+      "admission_wait_ms": 0,
+      "response": "benchmarks/results/scout099-20261020/response-047.json",
+      "response_sha256": "74b1973d057dfdc203af9d42231a3838b0f028689efd34c1cb63451405da65cd",
+      "status_code": 200,
+      "latency_ms": 8926,
+      "usage": {
+        "prompt_tokens": 8762,
+        "completion_tokens": 212,
+        "total_tokens": 8974,
+        "cost": 0,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 906,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0,
+          "upstream_inference_prompt_cost": 0,
+          "upstream_inference_completions_cost": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 166,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        }
+      },
+      "served_model": "minimax/minimax-m3.1-flash:free",
+      "provider": "Minimax",
+      "accounting_valid": true
+    },
+    {
+      "stage": "safety-page-126-000-control",
+      "model": "gpt-5.5",
+      "reserved_usd": 0.29144,
+      "cost_usd": 0.061065,
+      "request": "benchmarks/results/scout099-20261020/request-048.json",
+      "request_sha256": "fe1d361f90da909098dd454768423e53d750cbe4d3de9d5240e42f551f141c71",
+      "response": "benchmarks/results/scout099-20261020/response-048.json",
+      "response_sha256": "c66d65dd525d92f6166dad6518239921625fcb23a509d98dcaae5b46de076985",
+      "status_code": 200,
+      "latency_ms": 2962,
+      "usage": {
+        "input_tokens": 11877,
+        "input_tokens_details": {
+          "cache_write_tokens": 0,
+          "cached_tokens": 0
+        },
+        "output_tokens": 56,
+        "output_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "total_tokens": 11933
+      },
+      "served_model": "gpt-5.5-2026-04-23",
+      "provider": "OpenAI"
+    },
+    {
+      "stage": "safety-page-126-001-candidate-diagnostic",
+      "model": "minimax/minimax-m3.1-flash:free",
+      "reserved_usd": 0.0,
+      "cost_usd": 0,
+      "request": "benchmarks/results/scout099-20261020/request-049.json",
+      "request_sha256": "9e44f03252e09d1c19d567f1a16a545cc8eae52d4b12dab96310a9482b5cb5e6",
+      "admission_wait_ms": 0,
+      "response": "benchmarks/results/scout099-20261020/response-049.json",
+      "response_sha256": "53f8e1d96bb88c59acdfca4c7e4a2a06b7458897dee05c1137478b5d535d4a7d",
+      "status_code": 200,
+      "latency_ms": 6683,
+      "usage": {
+        "prompt_tokens": 8762,
+        "completion_tokens": 243,
+        "total_tokens": 9005,
+        "cost": 0,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 4940,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0,
+          "upstream_inference_prompt_cost": 0,
+          "upstream_inference_completions_cost": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 182,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        }
+      },
+      "served_model": "minimax/minimax-m3.1-flash:free",
+      "provider": "Minimax",
+      "accounting_valid": true
+    },
+    {
+      "stage": "safety-page-126-001-control",
+      "model": "gpt-5.5",
+      "reserved_usd": 0.29144,
+      "cost_usd": 0.048663,
+      "request": "benchmarks/results/scout099-20261020/request-050.json",
+      "request_sha256": "e5c3793320d0c0a93507900ac1d1ef9ba1e50c20a78d65ff1eca4f5fcd9ba5df",
+      "response": "benchmarks/results/scout099-20261020/response-050.json",
+      "response_sha256": "e681c5cf6d7f196515c59206754e24dfd257af76abb051f3775876343a5b9ae9",
+      "status_code": 200,
+      "latency_ms": 4329,
+      "usage": {
+        "input_tokens": 11877,
+        "input_tokens_details": {
+          "cache_write_tokens": 0,
+          "cached_tokens": 2816
+        },
+        "output_tokens": 65,
+        "output_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "total_tokens": 11942
+      },
+      "served_model": "gpt-5.5-2026-04-23",
+      "provider": "OpenAI"
+    },
+    {
+      "stage": "safety-page-127-000-candidate-diagnostic",
+      "model": "minimax/minimax-m3.1-flash:free",
+      "reserved_usd": 0.0,
+      "cost_usd": 0,
+      "request": "benchmarks/results/scout099-20261020/request-051.json",
+      "request_sha256": "188abbdd0249841f82fd198d4d4080d2e850f454dc6de090ca1acd36f48710bd",
+      "admission_wait_ms": 0,
+      "response": "benchmarks/results/scout099-20261020/response-051.json",
+      "response_sha256": "6593abac7a445113af08028954d78861a5aefd2d8b91007599dbf0b4f58439e2",
+      "status_code": 200,
+      "latency_ms": 14589,
+      "usage": {
+        "prompt_tokens": 8690,
+        "completion_tokens": 540,
+        "total_tokens": 9230,
+        "cost": 0,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 906,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0,
+          "upstream_inference_prompt_cost": 0,
+          "upstream_inference_completions_cost": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 485,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        }
+      },
+      "served_model": "minimax/minimax-m3.1-flash:free",
+      "provider": "Minimax",
+      "accounting_valid": true
+    },
+    {
+      "stage": "safety-page-127-000-control",
+      "model": "gpt-5.5",
+      "reserved_usd": 0.29144,
+      "cost_usd": 0.060605,
+      "request": "benchmarks/results/scout099-20261020/request-052.json",
+      "request_sha256": "fd169ae14f7e533ff39992f459b9fabd7616d56412b675d093652a0bd2ede728",
+      "response": "benchmarks/results/scout099-20261020/response-052.json",
+      "response_sha256": "a6b7928d1983c125a1d5e2b6efd62aa1faa948e1dc353a3c75b500cb2b5cd498",
+      "status_code": 200,
+      "latency_ms": 3369,
+      "usage": {
+        "input_tokens": 11767,
+        "input_tokens_details": {
+          "cache_write_tokens": 0,
+          "cached_tokens": 0
+        },
+        "output_tokens": 59,
+        "output_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "total_tokens": 11826
+      },
+      "served_model": "gpt-5.5-2026-04-23",
+      "provider": "OpenAI"
+    },
+    {
+      "stage": "safety-page-127-001-candidate-diagnostic",
+      "model": "minimax/minimax-m3.1-flash:free",
+      "reserved_usd": 0.0,
+      "cost_usd": 0,
+      "request": "benchmarks/results/scout099-20261020/request-053.json",
+      "request_sha256": "114ad816fb4973f60475a4c3be527f39349f3c44b3aff7b48800cb936cbdf656",
+      "admission_wait_ms": 0,
+      "response": "benchmarks/results/scout099-20261020/response-053.json",
+      "response_sha256": "6b95415927cbf73508aec9f0410ab644e413d069d65f357098545011a7fba017",
+      "status_code": 200,
+      "latency_ms": 8384,
+      "usage": {
+        "prompt_tokens": 8618,
+        "completion_tokens": 371,
+        "total_tokens": 8989,
+        "cost": 0,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 184,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0,
+          "upstream_inference_prompt_cost": 0,
+          "upstream_inference_completions_cost": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 313,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        }
+      },
+      "served_model": "minimax/minimax-m3.1-flash:free",
+      "provider": "Minimax",
+      "accounting_valid": true
+    },
+    {
+      "stage": "safety-page-127-001-control",
+      "model": "gpt-5.5",
+      "reserved_usd": 0.29144,
+      "cost_usd": 0.047593,
+      "request": "benchmarks/results/scout099-20261020/request-054.json",
+      "request_sha256": "b8bce5d3015c8e66d9e0d7ceb0b6c9df13b9d5de6fc70f49de4195101e7d0a2e",
+      "response": "benchmarks/results/scout099-20261020/response-054.json",
+      "response_sha256": "942e6b91ecd37ba743cefbc8e4bff580bb13cf6aff2f9ca4c2833f4ef6d7497d",
+      "status_code": 200,
+      "latency_ms": 4050,
+      "usage": {
+        "input_tokens": 11657,
+        "input_tokens_details": {
+          "cache_write_tokens": 0,
+          "cached_tokens": 2816
+        },
+        "output_tokens": 66,
+        "output_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "total_tokens": 11723
+      },
+      "served_model": "gpt-5.5-2026-04-23",
+      "provider": "OpenAI"
+    }
+  ],
+  "closed": true,
+  "unknown_exposure_usd": 0,
+  "cost_note": "Native free route provider-reported charges0; controls usage-priced estimates, not invoice. Wrongidentity3.8 quarantine usage priced served3.8 official$.75/Minput,$3.75/Moutput includingthinking verified20261020 bycoordinator.",
+  "controls_subject_usd": 1.341903,
+  "wrong_identity_overhead_usd": 0.016983,
+  "candidate_subject_usd": 0,
+  "judge_usd": 0,
+  "recovery_usd": 0
+}

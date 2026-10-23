@@ -1,0 +1,182 @@
+[
+  {
+    "stage": "native-table",
+    "status": 404,
+    "data": {
+      "error": {
+        "message": "Generation gen-1792165085-qrQgQp8CSpzAIQH3CQl8 not found",
+        "code": 404
+      }
+    }
+  },
+  {
+    "stage": "native-crop",
+    "status": 404,
+    "data": {
+      "error": {
+        "message": "Generation gen-1792165104-brkNrXIFTnx2GncjRyxD not found",
+        "code": 404
+      }
+    }
+  },
+  {
+    "stage": "safety-span-page-001-000",
+    "status": 404,
+    "data": {
+      "error": {
+        "message": "Generation gen-dec-1792165108-YQ80YCooh6u3MyKKQNDP not found",
+        "code": 404
+      }
+    }
+  },
+  {
+    "stage": "native-ocr",
+    "status": 404,
+    "data": {
+      "error": {
+        "message": "Generation gen-1792165115-rtG9WkVZYPyok75Wa3yU not found",
+        "code": 404
+      }
+    }
+  },
+  {
+    "stage": "safety-nemotron-page-001-000",
+    "status": 404,
+    "data": {
+      "error": {
+        "message": "Generation gen-1792165129-iOkp12xDLOR6JjrOo5L9 not found",
+        "code": 404
+      }
+    }
+  },
+  {
+    "stage": "table-ambiguity-negative-candidate",
+    "status": 404,
+    "data": {
+      "error": {
+        "message": "Generation gen-1792165197-LAEYzDoQQYtCEBbXVy39 not found",
+        "code": 404
+      }
+    }
+  },
+  {
+    "stage": "crop-screen-Image011-candidate",
+    "status": 404,
+    "data": {
+      "error": {
+        "message": "Generation gen-1792165201-51Wc0ZigyFVpkjJTuBbP not found",
+        "code": 404
+      }
+    }
+  },
+  {
+    "stage": "safety-span-page-004-000",
+    "status": 404,
+    "data": {
+      "error": {
+        "message": "Generation gen-dec-1792165215-EuMSmVmBYhEUjeVZDznW not found",
+        "code": 404
+      }
+    }
+  },
+  {
+    "stage": "safety-nemotron-page-004-000",
+    "status": 404,
+    "data": {
+      "error": {
+        "message": "Generation gen-1792165232-dJ3Lzn5m7DUpnmcnC6Qs not found",
+        "code": 404
+      }
+    }
+  },
+  {
+    "stage": "ocr-barney-candidate",
+    "status": 404,
+    "data": {
+      "error": {
+        "message": "Generation gen-1792165238-XiP3WSNlNcb81VujiGRg not found",
+        "code": 404
+      }
+    }
+  },
+  {
+    "stage": "table-image-positive-candidate",
+    "status": 404,
+    "data": {
+      "error": {
+        "message": "Generation gen-1792165266-6JbTHr72zIQ7w1rk4KDb not found",
+        "code": 404
+      }
+    }
+  },
+  {
+    "stage": "safety-span-page-009-000",
+    "status": 404,
+    "data": {
+      "error": {
+        "message": "Generation gen-dec-1792165324-lKtmOGTz8d2E7ldnL50F not found",
+        "code": 404
+      }
+    }
+  },
+  {
+    "stage": "safety-nemotron-page-009-000",
+    "status": 404,
+    "data": {
+      "error": {
+        "message": "Generation gen-1792165343-Xel6pUl76TwOXtVXjgnx not found",
+        "code": 404
+      }
+    }
+  },
+  {
+    "stage": "crop-full-Image000-candidate",
+    "status": 404,
+    "data": {
+      "error": {
+        "message": "Generation gen-1792165389-9V22ut4eKgN7OCGT8gxx not found",
+        "code": 404
+      }
+    }
+  },
+  {
+    "stage": "safety-span-page-012-000",
+    "status": 404,
+    "data": {
+      "error": {
+        "message": "Generation gen-dec-1792165390-CrYrWeHGDKUOvSlsHlCZ not found",
+        "code": 404
+      }
+    }
+  },
+  {
+    "stage": "safety-nemotron-page-012-000",
+    "status": 404,
+    "data": {
+      "error": {
+        "message": "Generation gen-1792165391-dYNR3ObVW425A3ogQJJr not found",
+        "code": 404
+      }
+    }
+  },
+  {
+    "stage": "safety-span-page-012-001",
+    "status": 404,
+    "data": {
+      "error": {
+        "message": "Generation gen-dec-1792165393-AyQ5HplfBIGnRNJOZuu1 not found",
+        "code": 404
+      }
+    }
+  },
+  {
+    "stage": "crop-full-Image000-candidate-recovery1",
+    "status": 404,
+    "data": {
+      "error": {
+        "message": "Generation gen-1792165401-Hre7ZLayxpLC7xEmaSpV not found",
+        "code": 404
+      }
+    }
+  }
+]

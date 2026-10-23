@@ -1,0 +1,26 @@
+Copied /Users/cam/.codex/worktrees/pplx-docweb-shadow-20261006/benchmarks/pplx-shadow/corpus/doc-02/pages.jsonl to /Users/cam/.codex/worktrees/pplx-docweb-shadow-20261006/output/runs/pplx-shadow-20261006/offline-doc-02/01_load_artifact_v1/pages.jsonl
+Copied /Users/cam/.codex/worktrees/pplx-docweb-shadow-20261006/benchmarks/pplx-shadow/corpus/doc-02/chapters.jsonl to /Users/cam/.codex/worktrees/pplx-docweb-shadow-20261006/output/runs/pplx-shadow-20261006/offline-doc-02/02_load_artifact_v1/chapters.jsonl
+⚠️  --force: Cleaning existing directory: /Users/cam/.codex/worktrees/pplx-docweb-shadow-20261006/output/runs/pplx-shadow-20261006/offline-doc-02
+[run] pages (load_artifact_v1)
+[stamp] /Users/cam/.codex/worktrees/pplx-docweb-shadow-20261006/output/runs/pplx-shadow-20261006/offline-doc-02/01_load_artifact_v1/pages.jsonl stamped with page_html_v1 (2 rows)
+[run] chapters (load_artifact_v1)
+[stamp] /Users/cam/.codex/worktrees/pplx-docweb-shadow-20261006/output/runs/pplx-shadow-20261006/offline-doc-02/02_load_artifact_v1/chapters.jsonl stamped with chapter_html_manifest_v1 (3 rows)
+[run] planner (plan_onward_document_consistency_v1)
+[stamp] /Users/cam/.codex/worktrees/pplx-docweb-shadow-20261006/output/runs/pplx-shadow-20261006/offline-doc-02/03_plan_onward_document_consistency_v1/document_consistency_report.jsonl stamped with pipeline_issues_v1 (1 rows)
+[summary] run: {
+  "pages": {
+    "wall_seconds": 0.45,
+    "pages": 2,
+    "pages_per_min": 266.67
+  },
+  "chapters": {
+    "wall_seconds": 0.45,
+    "pages": 3,
+    "pages_per_min": 400.0
+  },
+  "planner": {
+    "wall_seconds": 0.56,
+    "summary": "Document-level consistency planning complete: patterns=1, newly_surfaced=0"
+  }
+}
+Recipe complete.

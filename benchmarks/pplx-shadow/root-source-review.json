@@ -1,0 +1,445 @@
+{
+  "reviewer": "campaign coordinator; independent before provider outputs",
+  "scope": "all18source/extractionpairs, loadedpage membership, attachment attributes and real pagebreak",
+  "cases": [
+    {
+      "document": "doc-01",
+      "chapter": "chapter-001.html",
+      "gold": "conformant",
+      "verdict": "source-supported",
+      "evidence": [
+        {
+          "path": "benchmarks/pplx-shadow/corpus/doc-01/source-001.html",
+          "sha256": "406dd990e28fa5312d58a003f22a0115f6364b1c717879c3a788bafbfe1e7b19"
+        },
+        {
+          "path": "benchmarks/pplx-shadow/corpus/doc-01/chapter-001.html",
+          "sha256": "406dd990e28fa5312d58a003f22a0115f6364b1c717879c3a788bafbfe1e7b19"
+        },
+        {
+          "path": "benchmarks/pplx-shadow/corpus/doc-01/pages.jsonl",
+          "sha256": "a01ac89cda56f6d47d0245d2df576b1a0ac34bdf6f43d9333ec0f72908c722c9"
+        },
+        {
+          "path": "benchmarks/pplx-shadow/corpus/doc-01/chapters.jsonl",
+          "sha256": "49c70ffce701a1413f1fb759a410f284493cd700b9bf8561010d244e74e1b539"
+        }
+      ]
+    },
+    {
+      "document": "doc-01",
+      "chapter": "chapter-002.html",
+      "gold": "format_drift",
+      "verdict": "source-supported",
+      "evidence": [
+        {
+          "path": "benchmarks/pplx-shadow/corpus/doc-01/source-002.html",
+          "sha256": "4cf0e5cd311df7e94ff4352d014924721aaec9d75a482500a23d52a918f0dc98"
+        },
+        {
+          "path": "benchmarks/pplx-shadow/corpus/doc-01/chapter-002.html",
+          "sha256": "a78816528405c9abf7891a2f2833a88c1a5b70ec4869250f014ecb66dd239399"
+        },
+        {
+          "path": "benchmarks/pplx-shadow/corpus/doc-01/pages.jsonl",
+          "sha256": "a01ac89cda56f6d47d0245d2df576b1a0ac34bdf6f43d9333ec0f72908c722c9"
+        },
+        {
+          "path": "benchmarks/pplx-shadow/corpus/doc-01/chapters.jsonl",
+          "sha256": "49c70ffce701a1413f1fb759a410f284493cd700b9bf8561010d244e74e1b539"
+        }
+      ]
+    },
+    {
+      "document": "doc-01",
+      "chapter": "chapter-003.html",
+      "gold": "row_semantic_issue",
+      "verdict": "source-supported",
+      "evidence": [
+        {
+          "path": "benchmarks/pplx-shadow/corpus/doc-01/source-003.html",
+          "sha256": "4d59d33d8bbb0bca647df29b48a1d43561717fc79a1151b26f7a81e9b7785f74"
+        },
+        {
+          "path": "benchmarks/pplx-shadow/corpus/doc-01/chapter-003.html",
+          "sha256": "b149afc9f3b5faa073c61ffe8ee9855a180fd28b0916c2ab5d284a02203d2a90"
+        },
+        {
+          "path": "benchmarks/pplx-shadow/corpus/doc-01/pages.jsonl",
+          "sha256": "a01ac89cda56f6d47d0245d2df576b1a0ac34bdf6f43d9333ec0f72908c722c9"
+        },
+        {
+          "path": "benchmarks/pplx-shadow/corpus/doc-01/chapters.jsonl",
+          "sha256": "49c70ffce701a1413f1fb759a410f284493cd700b9bf8561010d244e74e1b539"
+        }
+      ]
+    },
+    {
+      "document": "doc-02",
+      "chapter": "chapter-001.html",
+      "gold": "mixed",
+      "verdict": "source-supported",
+      "evidence": [
+        {
+          "path": "benchmarks/pplx-shadow/corpus/doc-02/source-001.html",
+          "sha256": "6d7452575aa942d35fb7342136dd0da0a1ad1f2a82d773620849a70af656b69b"
+        },
+        {
+          "path": "benchmarks/pplx-shadow/corpus/doc-02/chapter-001.html",
+          "sha256": "3b91e51cb975657252752fea08f76e8580efdad49a897ed36a598dde0a000869"
+        },
+        {
+          "path": "benchmarks/pplx-shadow/corpus/doc-02/pages.jsonl",
+          "sha256": "08d08597d270e9047613cdc88f9cb5f7b226ee910bd0267a6104576c81d4b08c"
+        },
+        {
+          "path": "benchmarks/pplx-shadow/corpus/doc-02/chapters.jsonl",
+          "sha256": "0ca1130f19cb08aca67311edfa578b69d0baa3300a088853f0de4a3f5be6891e"
+        }
+      ]
+    },
+    {
+      "document": "doc-02",
+      "chapter": "chapter-002.html",
+      "gold": "uncertain",
+      "verdict": "source-supported",
+      "evidence": [
+        {
+          "path": "benchmarks/pplx-shadow/corpus/doc-02/source-002.html",
+          "sha256": "c88526daa1d85f58edc5f6ac220af72ce84a406d0a8da1d5425b7728118bdb41"
+        },
+        {
+          "path": "benchmarks/pplx-shadow/corpus/doc-02/chapter-002.html",
+          "sha256": "c88526daa1d85f58edc5f6ac220af72ce84a406d0a8da1d5425b7728118bdb41"
+        },
+        {
+          "path": "benchmarks/pplx-shadow/corpus/doc-02/pages.jsonl",
+          "sha256": "08d08597d270e9047613cdc88f9cb5f7b226ee910bd0267a6104576c81d4b08c"
+        },
+        {
+          "path": "benchmarks/pplx-shadow/corpus/doc-02/chapters.jsonl",
+          "sha256": "0ca1130f19cb08aca67311edfa578b69d0baa3300a088853f0de4a3f5be6891e"
+        }
+      ]
+    },
+    {
+      "document": "doc-02",
+      "chapter": "chapter-003.html",
+      "gold": "uncertain",
+      "verdict": "source-supported",
+      "evidence": [
+        {
+          "path": "benchmarks/pplx-shadow/corpus/doc-02/source-003.html",
+          "sha256": "49e7ccedb01f6a2bbe1761d00a5b856d8a901c7fb505d8121aade95c91145503"
+        },
+        {
+          "path": "benchmarks/pplx-shadow/corpus/doc-02/chapter-003.html",
+          "sha256": "e394f1b562ce0022e9cd4af7bb98c727af689d07e62f81d057e668af075efad9"
+        },
+        {
+          "path": "benchmarks/pplx-shadow/corpus/doc-02/pages.jsonl",
+          "sha256": "08d08597d270e9047613cdc88f9cb5f7b226ee910bd0267a6104576c81d4b08c"
+        },
+        {
+          "path": "benchmarks/pplx-shadow/corpus/doc-02/chapters.jsonl",
+          "sha256": "0ca1130f19cb08aca67311edfa578b69d0baa3300a088853f0de4a3f5be6891e"
+        }
+      ]
+    },
+    {
+      "document": "doc-03",
+      "chapter": "chapter-001.html",
+      "gold": "format_drift",
+      "verdict": "source-supported",
+      "evidence": [
+        {
+          "path": "benchmarks/pplx-shadow/corpus/doc-03/source-001.html",
+          "sha256": "c1fa20967fe724ebad8c33cca76e4ee7b443fddf9f2e057a5635be8f85ba9052"
+        },
+        {
+          "path": "benchmarks/pplx-shadow/corpus/doc-03/chapter-001.html",
+          "sha256": "57e2444b1120ea4454df28b2f723c2c2fc2b13c481dfd8f7e5957ebaf362aa72"
+        },
+        {
+          "path": "benchmarks/pplx-shadow/corpus/doc-03/pages.jsonl",
+          "sha256": "db1153dfd88c270cf29209787878b9991c542b202f81ce322b1e07365b052ae9"
+        },
+        {
+          "path": "benchmarks/pplx-shadow/corpus/doc-03/chapters.jsonl",
+          "sha256": "987be440897c0df905dc19ee5ff3163031876fabb464d4bebd0c11313a82fb0e"
+        }
+      ]
+    },
+    {
+      "document": "doc-03",
+      "chapter": "chapter-002.html",
+      "gold": "row_semantic_issue",
+      "verdict": "source-supported",
+      "evidence": [
+        {
+          "path": "benchmarks/pplx-shadow/corpus/doc-03/source-002.html",
+          "sha256": "692d79f94e5ec106e609d682ddec5160dc880f79d6d3bbc0b4c1c614295384c8"
+        },
+        {
+          "path": "benchmarks/pplx-shadow/corpus/doc-03/chapter-002.html",
+          "sha256": "555fba6307dcce5d0b7b48040743e73363342f880522dcc5b013671c21087e04"
+        },
+        {
+          "path": "benchmarks/pplx-shadow/corpus/doc-03/pages.jsonl",
+          "sha256": "db1153dfd88c270cf29209787878b9991c542b202f81ce322b1e07365b052ae9"
+        },
+        {
+          "path": "benchmarks/pplx-shadow/corpus/doc-03/chapters.jsonl",
+          "sha256": "987be440897c0df905dc19ee5ff3163031876fabb464d4bebd0c11313a82fb0e"
+        }
+      ]
+    },
+    {
+      "document": "doc-03",
+      "chapter": "chapter-003.html",
+      "gold": "mixed",
+      "verdict": "source-supported",
+      "evidence": [
+        {
+          "path": "benchmarks/pplx-shadow/corpus/doc-03/source-003.html",
+          "sha256": "6bda83d3d0f5f3798fb9d8e44f9ac86dcf8f28ec9d341f47b5bb49723d278b0c"
+        },
+        {
+          "path": "benchmarks/pplx-shadow/corpus/doc-03/chapter-003.html",
+          "sha256": "326bacbe13eb595f2854207f6f26477fee28eabef462c14ddb8faa9eac075a84"
+        },
+        {
+          "path": "benchmarks/pplx-shadow/corpus/doc-03/pages.jsonl",
+          "sha256": "db1153dfd88c270cf29209787878b9991c542b202f81ce322b1e07365b052ae9"
+        },
+        {
+          "path": "benchmarks/pplx-shadow/corpus/doc-03/chapters.jsonl",
+          "sha256": "987be440897c0df905dc19ee5ff3163031876fabb464d4bebd0c11313a82fb0e"
+        }
+      ]
+    },
+    {
+      "document": "doc-04",
+      "chapter": "chapter-001.html",
+      "gold": "uncertain",
+      "verdict": "source-supported",
+      "evidence": [
+        {
+          "path": "benchmarks/pplx-shadow/corpus/doc-04/source-001.html",
+          "sha256": "d0dbc05029a0e3a812f5bd2e47d943215900dff9d35a29035d2e4afe062d1c22"
+        },
+        {
+          "path": "benchmarks/pplx-shadow/corpus/doc-04/chapter-001.html",
+          "sha256": "d0dbc05029a0e3a812f5bd2e47d943215900dff9d35a29035d2e4afe062d1c22"
+        },
+        {
+          "path": "benchmarks/pplx-shadow/corpus/doc-04/pages.jsonl",
+          "sha256": "099c93818e75b85a07e7b80390e5fbec6a3d68d3eaf713d84dab04db99a32f5e"
+        },
+        {
+          "path": "benchmarks/pplx-shadow/corpus/doc-04/chapters.jsonl",
+          "sha256": "411674b02b862dd7e796db77149290fe414e5c6d82629a71473489e3d55bb5c5"
+        }
+      ]
+    },
+    {
+      "document": "doc-04",
+      "chapter": "chapter-002.html",
+      "gold": "uncertain",
+      "verdict": "source-supported",
+      "evidence": [
+        {
+          "path": "benchmarks/pplx-shadow/corpus/doc-04/source-002.html",
+          "sha256": "7d31b728141fcf62425d27a101bc02df78e3363899d2aaee40f4932b70a5b85e"
+        },
+        {
+          "path": "benchmarks/pplx-shadow/corpus/doc-04/chapter-002.html",
+          "sha256": "ffe9be7010e8d209e2ad02d9220ba0a10c0a41ca15e95debb28190e08d0953c5"
+        },
+        {
+          "path": "benchmarks/pplx-shadow/corpus/doc-04/pages.jsonl",
+          "sha256": "099c93818e75b85a07e7b80390e5fbec6a3d68d3eaf713d84dab04db99a32f5e"
+        },
+        {
+          "path": "benchmarks/pplx-shadow/corpus/doc-04/chapters.jsonl",
+          "sha256": "411674b02b862dd7e796db77149290fe414e5c6d82629a71473489e3d55bb5c5"
+        }
+      ]
+    },
+    {
+      "document": "doc-04",
+      "chapter": "chapter-003.html",
+      "gold": "conformant",
+      "verdict": "source-supported",
+      "evidence": [
+        {
+          "path": "benchmarks/pplx-shadow/corpus/doc-04/source-003.html",
+          "sha256": "c86900daababc1d3a9934a9f98d13a49b12ccb4bf37be7f55e34f5cad99f01ed"
+        },
+        {
+          "path": "benchmarks/pplx-shadow/corpus/doc-04/chapter-003.html",
+          "sha256": "c86900daababc1d3a9934a9f98d13a49b12ccb4bf37be7f55e34f5cad99f01ed"
+        },
+        {
+          "path": "benchmarks/pplx-shadow/corpus/doc-04/pages.jsonl",
+          "sha256": "099c93818e75b85a07e7b80390e5fbec6a3d68d3eaf713d84dab04db99a32f5e"
+        },
+        {
+          "path": "benchmarks/pplx-shadow/corpus/doc-04/chapters.jsonl",
+          "sha256": "411674b02b862dd7e796db77149290fe414e5c6d82629a71473489e3d55bb5c5"
+        }
+      ]
+    },
+    {
+      "document": "doc-05",
+      "chapter": "chapter-001.html",
+      "gold": "row_semantic_issue",
+      "verdict": "source-supported",
+      "evidence": [
+        {
+          "path": "benchmarks/pplx-shadow/corpus/doc-05/source-001.html",
+          "sha256": "4fe733155cf1ef07366453dc291df2daf5b140651dc4b3c4c186d85e31e9a17e"
+        },
+        {
+          "path": "benchmarks/pplx-shadow/corpus/doc-05/chapter-001.html",
+          "sha256": "fd7230d8ac4c09a9163a0b992930253e17ba36b96aeef7ab2c90975f57389640"
+        },
+        {
+          "path": "benchmarks/pplx-shadow/corpus/doc-05/pages.jsonl",
+          "sha256": "e2ff3f1c9148968378f9fa7d7e342adc35d6b14232b27f8208ba6f3b45ef6184"
+        },
+        {
+          "path": "benchmarks/pplx-shadow/corpus/doc-05/chapters.jsonl",
+          "sha256": "c1dc15e4d3473c785697f7002e6f2e22d16b9a9889b1e8ce6efbf80ba911bf51"
+        }
+      ]
+    },
+    {
+      "document": "doc-05",
+      "chapter": "chapter-002.html",
+      "gold": "mixed",
+      "verdict": "source-supported",
+      "evidence": [
+        {
+          "path": "benchmarks/pplx-shadow/corpus/doc-05/source-002.html",
+          "sha256": "14034376f5ca385e457c10b6e353ce687e252f401a126201e650b20aeef3f14f"
+        },
+        {
+          "path": "benchmarks/pplx-shadow/corpus/doc-05/chapter-002.html",
+          "sha256": "2818560f8fa248bdaf7cd2e531eb16b13a450ede56970b2f566b7c36521e65fc"
+        },
+        {
+          "path": "benchmarks/pplx-shadow/corpus/doc-05/pages.jsonl",
+          "sha256": "e2ff3f1c9148968378f9fa7d7e342adc35d6b14232b27f8208ba6f3b45ef6184"
+        },
+        {
+          "path": "benchmarks/pplx-shadow/corpus/doc-05/chapters.jsonl",
+          "sha256": "c1dc15e4d3473c785697f7002e6f2e22d16b9a9889b1e8ce6efbf80ba911bf51"
+        }
+      ]
+    },
+    {
+      "document": "doc-05",
+      "chapter": "chapter-003.html",
+      "gold": "uncertain",
+      "verdict": "source-supported",
+      "evidence": [
+        {
+          "path": "benchmarks/pplx-shadow/corpus/doc-05/source-003.html",
+          "sha256": "c11ad0a3794f4737ba066a9caf6e7fc3c3610d4c2468bb7abfb45f02366e6ab6"
+        },
+        {
+          "path": "benchmarks/pplx-shadow/corpus/doc-05/chapter-003.html",
+          "sha256": "c11ad0a3794f4737ba066a9caf6e7fc3c3610d4c2468bb7abfb45f02366e6ab6"
+        },
+        {
+          "path": "benchmarks/pplx-shadow/corpus/doc-05/pages.jsonl",
+          "sha256": "e2ff3f1c9148968378f9fa7d7e342adc35d6b14232b27f8208ba6f3b45ef6184"
+        },
+        {
+          "path": "benchmarks/pplx-shadow/corpus/doc-05/chapters.jsonl",
+          "sha256": "c1dc15e4d3473c785697f7002e6f2e22d16b9a9889b1e8ce6efbf80ba911bf51"
+        }
+      ]
+    },
+    {
+      "document": "doc-06",
+      "chapter": "chapter-001.html",
+      "gold": "uncertain",
+      "verdict": "source-supported",
+      "evidence": [
+        {
+          "path": "benchmarks/pplx-shadow/corpus/doc-06/source-001.html",
+          "sha256": "e5856f78514e8eea3c04ef514f60c208f01bc52ceef7706975a2cf95882faec6"
+        },
+        {
+          "path": "benchmarks/pplx-shadow/corpus/doc-06/chapter-001.html",
+          "sha256": "9edf2d09365ab4ced0d212225e885828f99f225a6220a84050ef1b63beed1100"
+        },
+        {
+          "path": "benchmarks/pplx-shadow/corpus/doc-06/pages.jsonl",
+          "sha256": "2dcc8ea87ed26585e92f06f492c46feb7d6498197e245b336ce399e1390bf4f8"
+        },
+        {
+          "path": "benchmarks/pplx-shadow/corpus/doc-06/chapters.jsonl",
+          "sha256": "6908e052b2a95547ab9b14ab37ec015e424fb991891ab675415bd7b80393e77f"
+        }
+      ]
+    },
+    {
+      "document": "doc-06",
+      "chapter": "chapter-002.html",
+      "gold": "conformant",
+      "verdict": "source-supported",
+      "evidence": [
+        {
+          "path": "benchmarks/pplx-shadow/corpus/doc-06/source-002.html",
+          "sha256": "15ff827124ef784d19a669a616ab9064a92d42feadd32a4e65c39996289b19dd"
+        },
+        {
+          "path": "benchmarks/pplx-shadow/corpus/doc-06/chapter-002.html",
+          "sha256": "15ff827124ef784d19a669a616ab9064a92d42feadd32a4e65c39996289b19dd"
+        },
+        {
+          "path": "benchmarks/pplx-shadow/corpus/doc-06/pages.jsonl",
+          "sha256": "2dcc8ea87ed26585e92f06f492c46feb7d6498197e245b336ce399e1390bf4f8"
+        },
+        {
+          "path": "benchmarks/pplx-shadow/corpus/doc-06/chapters.jsonl",
+          "sha256": "6908e052b2a95547ab9b14ab37ec015e424fb991891ab675415bd7b80393e77f"
+        }
+      ]
+    },
+    {
+      "document": "doc-06",
+      "chapter": "chapter-003.html",
+      "gold": "format_drift",
+      "verdict": "source-supported",
+      "evidence": [
+        {
+          "path": "benchmarks/pplx-shadow/corpus/doc-06/source-003.html",
+          "sha256": "39ac02c99ca0d7cfbb17d4ff8e771ce42f8c63f5b75fb02fdd7e166271b247d1"
+        },
+        {
+          "path": "benchmarks/pplx-shadow/corpus/doc-06/chapter-003.html",
+          "sha256": "4b30add212b114cc7a8e6f00a98a322485299760b7baa1c9e37bf4e6401871f8"
+        },
+        {
+          "path": "benchmarks/pplx-shadow/corpus/doc-06/pages.jsonl",
+          "sha256": "2dcc8ea87ed26585e92f06f492c46feb7d6498197e245b336ce399e1390bf4f8"
+        },
+        {
+          "path": "benchmarks/pplx-shadow/corpus/doc-06/chapters.jsonl",
+          "sha256": "6908e052b2a95547ab9b14ab37ec015e424fb991891ab675415bd7b80393e77f"
+        }
+      ]
+    }
+  ],
+  "limitations": [
+    "New synthetic sources are templated;18chapters across6documents are not18independentdocuments.",
+    "Header capitalization alone is not a defect; source field separation mutation supports format labels.",
+    "Missing sourcefile is reviewer-only; original cannot be verified by model on those3cases."
+  ],
+  "paid_dispatch": "pending final rendered topology, offline driver invariance and reservation review",
+  "metadata_repair_review": "Required PageHtml page/int identifiers repaired; all15loaded source HTML byte-equal independently reviewed originals;3missing excluded. All36source/extractionfiles unchanged. Root verified before paid outputs."
+}

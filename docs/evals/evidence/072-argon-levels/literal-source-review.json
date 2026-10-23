@@ -1,0 +1,39 @@
+{
+  "reviewer": "independentSol6.1high",
+  "source_reviewed_cases": 3,
+  "clear_cells_per_arm": 36,
+  "clear_rows_per_arm": 11,
+  "harmful_changes": 0,
+  "low": {
+    "qualified_cases": 2,
+    "held_cases": 1,
+    "held_cells": [
+      [
+        1,
+        1
+      ],
+      [
+        2,
+        1
+      ]
+    ],
+    "initial_html_unchanged": true
+  },
+  "medium": {
+    "qualified_cases": 2,
+    "held_cases": 1,
+    "held_cells": [
+      [
+        1,
+        1
+      ],
+      [
+        2,
+        1
+      ]
+    ],
+    "initial_html_unchanged": true
+  },
+  "ambiguity_provisional_East_stamp": "I vsauthoredl, remainsunqualified; no opticalrecovery",
+  "claim": "boundedexposedhandlingparity only"
+}

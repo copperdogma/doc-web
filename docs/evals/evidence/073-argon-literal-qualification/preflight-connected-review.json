@@ -1,0 +1,158 @@
+{
+  "schema_version": "literal_qualification_connected_review_v1",
+  "reviewed_at": "2026-10-14T03:19:15.775091+00:00",
+  "verdict": "bounded_offline_connected_pass",
+  "findings": [],
+  "scope": "Independent read-only connected lineage/publication check using existing native-HTTP-mocked driver artifacts; no test-suite replay, new inference or source-gold review.",
+  "evidence_class": "OFFLINE MOCK ONLY; frozen gold responses; zero actual provider spend; no model-quality evidence",
+  "provider_calls_by_reviewer": 0,
+  "credentials_inspected": false,
+  "real_provider_model_outputs_inspected": false,
+  "packet": "/Users/cam/.codex/worktrees/scout092-docweb-literal-20261013/docs/evals/evidence/073-argon-literal-qualification/offline-proof.json",
+  "packet_sha256": "85ef136304f9af3e6b7a197564af9b1db02c2c969282dcc4b5e11522ef877a5c",
+  "static_review_sha256": "8cdf23ec5bd8c29f4e88d98c2c899d889366352e0eee87badbdf451e550e4897",
+  "source_panel_review_sha256": "60d89a70862a246ec76740e24f1a11d684afc331f0a509c69c15518e4952577e",
+  "files_sha256": {
+    "modules/common/google_table_source_review.py": "f2b710dbac60d77f65b96f868d79ec705800d1575a610a69360ffaa39e8d8474",
+    "modules/common/table_source_review.py": "78599f846eb31b2ad7a1607257458760e6e93e6eaa6d4ab062ffcbd30b879709",
+    "modules/common/literal_fidelity_bundle.py": "32bcda36545d9f7b4dfaa78dd8d0c590688bed45135ded89637211be4fbe257b",
+    "modules/common/literal_table_review.py": "25085a0937d27e5bae61e3973eddcf2ea6a43496cba814d57fb8af67a0212d67",
+    "modules/common/openai_client.py": "640c82f2ab6301194f89d95c25ea29d7fd474518ddb5275ce63329e6c3ce1293",
+    "modules/common/ocr_request_receipt.py": "4125331357b9415a6ccdc0f3eb88349136e1420fd8df9a6602f3acce5a6991a5",
+    "modules/extract/ocr_ai_gpt51_v1/main.py": "bd80f4d050a1eacc6442295471d9727bfd16ff674b84c2d64cec0e491cd96b95",
+    "benchmarks/providers/literal_qualification_guard.py": "d0cc72cbbf39ad7383d2e8a472240845ad10fcfa75c1062d1d92cbab0410a175",
+    "benchmarks/scripts/qualify_argon_literal.py": "03ed30ef0e8f2c3aa647e63de66c0c343c8a5b2f10feec3ddf1450427f667e4e",
+    "benchmarks/scripts/literal_qualification_offline.py": "4a2518215902d6fb19ec9a4f7df43e728f6d5f6898935216f8fb3bcef2351f73"
+  },
+  "changed_since_static_review": [
+    "benchmarks/scripts/qualify_argon_literal.py",
+    "benchmarks/scripts/literal_qualification_offline.py"
+  ],
+  "checks": {
+    "original_guarded_mock_posts": 24,
+    "original_ocr_posts": 8,
+    "original_reader_posts": 16,
+    "transport_events": 24,
+    "additional_export_hold_resume_posts": 0,
+    "current_native_body_equal_to_guarded_body": 24,
+    "native_image_bytes_equal_frozen_source_render": 24,
+    "requested_served_model_matches": 24,
+    "astra_explicit_requested_and_served_default_tier": 16,
+    "portable_source_record_exact_original_guard_response_body_matches": 16,
+    "positive_exports": [
+      {
+        "group": "N",
+        "arm": "astra",
+        "cases": [
+          "N1",
+          "N2",
+          "N3"
+        ],
+        "pages": 3,
+        "tables": 4,
+        "cells": 63,
+        "publisher_validator_pass": true,
+        "final_table_text_geometry_equal_common_ocr": true,
+        "final_source_records_equal_original_records": true
+      },
+      {
+        "group": "N",
+        "arm": "argon",
+        "cases": [
+          "N1",
+          "N2",
+          "N3"
+        ],
+        "pages": 3,
+        "tables": 4,
+        "cells": 63,
+        "publisher_validator_pass": true,
+        "final_table_text_geometry_equal_common_ocr": true,
+        "final_source_records_equal_original_records": true
+      },
+      {
+        "group": "R",
+        "arm": "astra",
+        "cases": [
+          "R1",
+          "R2",
+          "R3"
+        ],
+        "pages": 3,
+        "tables": 4,
+        "cells": 65,
+        "publisher_validator_pass": true,
+        "final_table_text_geometry_equal_common_ocr": true,
+        "final_source_records_equal_original_records": true
+      },
+      {
+        "group": "R",
+        "arm": "argon",
+        "cases": [
+          "R1",
+          "R2",
+          "R3"
+        ],
+        "pages": 3,
+        "tables": 4,
+        "cells": 65,
+        "publisher_validator_pass": true,
+        "final_table_text_geometry_equal_common_ocr": true,
+        "final_source_records_equal_original_records": true
+      }
+    ],
+    "negative_holds": [
+      {
+        "case": "A1",
+        "arm": "astra",
+        "report_status": "unresolved",
+        "explicit_source_uncertainty": true,
+        "qualified_manifest_absent": true,
+        "publisher_validator_rejects": true,
+        "source_record_equal_original_record": true
+      },
+      {
+        "case": "A1",
+        "arm": "argon",
+        "report_status": "unresolved",
+        "explicit_source_uncertainty": true,
+        "qualified_manifest_absent": true,
+        "publisher_validator_rejects": true,
+        "source_record_equal_original_record": true
+      },
+      {
+        "case": "A2",
+        "arm": "astra",
+        "report_status": "unresolved",
+        "explicit_source_uncertainty": true,
+        "qualified_manifest_absent": true,
+        "publisher_validator_rejects": true,
+        "source_record_equal_original_record": true
+      },
+      {
+        "case": "A2",
+        "arm": "argon",
+        "report_status": "unresolved",
+        "explicit_source_uncertainty": true,
+        "qualified_manifest_absent": true,
+        "publisher_validator_rejects": true,
+        "source_record_equal_original_record": true
+      }
+    ],
+    "original_six_clear_pages_preserved_per_arm": true,
+    "initial_raw_html_digest_original_page_and_source_pdf_identity_preserved": true
+  },
+  "producing_harness_split": {
+    "initial": "756ae8c6b54ef66b645c7742801e03ff9a22e271e69dadc60f836e34d534754b",
+    "export_only": "03ed30ef0e8f2c3aa647e63de66c0c343c8a5b2f10feec3ddf1450427f667e4e",
+    "initial_namespace": "offline-r3",
+    "export_namespace": "offline-r3exports",
+    "assessment": "Explicit export-only namespace and loader params.out repair consume original native receipts. Current body reconstruction matches every original native request; no re-inference occurred. Earlier initial-harness hash is retained, not presented as the later producing harness."
+  },
+  "limits": [
+    "Mock gold responses establish wiring and retention only; no live provider access, model quality, runtime latency/value or billing result is implied.",
+    "Source/gold eligibility remains independently owned by source-panel-review-r2; this pass checked only its given hash and source-byte lineage.",
+    "Root owns current complete freeze/caps/hash review and paid-dispatch clearance. This review creates no additional paid work authorization.",
+    "No commit, activation, default-model change or downstream adoption is established."
+  ]
+}

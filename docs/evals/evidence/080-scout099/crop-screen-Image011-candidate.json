@@ -1,0 +1,9 @@
+{
+  "raw": "{\"images\":[{\"description\":\"Celebrate Saskatchewan 1905–1980 anniversary logo\",\"bbox\":[0.374,0.072,0.57,0.225]},{\"description\":\"Embossed award seal with two signatures and accompanying name/title blocks\",\"bbox\":[0.12,0.676,0.89,0.893]}]}",
+  "score": {
+    "pass": true,
+    "score": 0.9301,
+    "reason": "box_count=1.00 (2/2) | iou_mean=0.902 | iou_min=0.883 | coverage=0.948 | total=0.930 | matches=[pred[1]<->gold[1] IoU=0.922, pred[0]<->gold[0] IoU=0.883]"
+  },
+  "served": "minimax/minimax-m3.1-flash:free"
+}

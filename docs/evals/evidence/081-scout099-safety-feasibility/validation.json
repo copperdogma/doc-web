@@ -1,0 +1,63 @@
+{
+  "status": "passed",
+  "scope": "evidence-only audit plus task-owned offline script; no runtime edits or product pipeline claim",
+  "base_sha": "1a347f3f5ea13cb672a4e92d040704b99e556118",
+  "checks": [
+    {
+      "name": "actual unchanged owner consumer build22 and parse44 under OS network denial",
+      "command": "env -i PATH=/usr/bin:/bin /usr/bin/sandbox-exec -p '(version 1)(allow default)(deny network*)' /Users/cam/Documents/Projects/doc-web/.venv/bin/python docs/evals/evidence/081-scout099-safety-feasibility/audit.py --old-root /Users/cam/.codex/worktrees/scout099-docweb-20261020 --out docs/evals/evidence/081-scout099-safety-feasibility",
+      "exit_code": 0,
+      "result": "22pairs44payloads;2EPERM pre-import sentinel connects;15oversized crops;0native admitted;0dispatch/USD0; all current fixture URIs equal saved inputs"
+    },
+    {
+      "name": "selected lint",
+      "command": "sandbox-exec deny network with env-i /Users/cam/miniconda3/bin/ruff check docs/evals/evidence/081-scout099-safety-feasibility/audit.py",
+      "exit_code": 0,
+      "result": "All checks passed; owner venv lackedruff so existing systemruff was used; no install"
+    },
+    {
+      "name": "methodology",
+      "command": "sandbox-exec deny network with env-i OWNER_VENV_PYTHON scripts/methodology_graph.py build; then check",
+      "exit_code": 0,
+      "result": "generated graph/stories; graph current"
+    },
+    {
+      "name": "source/JSON/hash/registry inspection",
+      "exit_code": 0,
+      "result": "22source judgments/44payloads/13reviewer pairs; oldgrades20/18; diagnostic payload19/17; exact current inputs; all frozen contracts unchanged; oldarchive/ledger hashes verified; all locally decoded original images in reviewer packet hashmatch"
+    },
+    {
+      "name": "git diff --check",
+      "exit_code": 0,
+      "result": "clean"
+    }
+  ],
+  "not_run": [
+    "provider and judge calls",
+    "full proposer/finalize/release/driver: no eligible native custody admitted",
+    "product tests: no production behavior changed",
+    "paid comparison or independent source qualification"
+  ],
+  "provider_dispatches": 0,
+  "judge_dispatches": 0,
+  "spend_usd": 0,
+  "network_denial": {
+    "credential_environment": "empty key/token names; env -i; no env-file load",
+    "mechanism": "macOS sandbox-exec deny network*",
+    "sentinel_before_owner_imports": [
+      {
+        "errno": 1,
+        "error": "[Errno 1] Operation not permitted",
+        "host": "127.0.0.1",
+        "port": 9
+      },
+      {
+        "errno": 1,
+        "error": "[Errno 1] Operation not permitted",
+        "host": "1.1.1.1",
+        "port": 9
+      }
+    ]
+  },
+  "review_benefit": "No measured reduction in required human reviews or review time; still every-candidate operator review."
+}

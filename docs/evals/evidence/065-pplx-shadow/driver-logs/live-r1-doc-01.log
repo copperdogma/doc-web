@@ -1,0 +1,27 @@
+Copied /Users/cam/.codex/worktrees/pplx-docweb-shadow-20261006/benchmarks/pplx-shadow/corpus/doc-01/pages.jsonl to /Users/cam/.codex/worktrees/pplx-docweb-shadow-20261006/output/runs/pplx-shadow-20261006/live-r1-doc-01/01_load_artifact_v1/pages.jsonl
+Copied /Users/cam/.codex/worktrees/pplx-docweb-shadow-20261006/benchmarks/pplx-shadow/corpus/doc-01/chapters.jsonl to /Users/cam/.codex/worktrees/pplx-docweb-shadow-20261006/output/runs/pplx-shadow-20261006/live-r1-doc-01/02_load_artifact_v1/chapters.jsonl
+/Users/cam/.codex/worktrees/pplx-docweb-shadow-20261006/modules/validate/plan_onward_document_consistency_v1/main.py:119: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  return datetime.utcnow().isoformat() + "Z"
+[run] pages (load_artifact_v1)
+[stamp] /Users/cam/.codex/worktrees/pplx-docweb-shadow-20261006/output/runs/pplx-shadow-20261006/live-r1-doc-01/01_load_artifact_v1/pages.jsonl stamped with page_html_v1 (3 rows)
+[run] chapters (load_artifact_v1)
+[stamp] /Users/cam/.codex/worktrees/pplx-docweb-shadow-20261006/output/runs/pplx-shadow-20261006/live-r1-doc-01/02_load_artifact_v1/chapters.jsonl stamped with chapter_html_manifest_v1 (3 rows)
+[run] planner (plan_onward_document_consistency_v1)
+[stamp] /Users/cam/.codex/worktrees/pplx-docweb-shadow-20261006/output/runs/pplx-shadow-20261006/live-r1-doc-01/03_plan_onward_document_consistency_v1/document_consistency_report.jsonl stamped with pipeline_issues_v1 (1 rows)
+[summary] run: {
+  "pages": {
+    "wall_seconds": 0.46,
+    "pages": 3,
+    "pages_per_min": 391.3
+  },
+  "chapters": {
+    "wall_seconds": 0.46,
+    "pages": 3,
+    "pages_per_min": 391.3
+  },
+  "planner": {
+    "wall_seconds": 9.58,
+    "summary": "Document-level consistency planning complete: patterns=2, newly_surfaced=0"
+  }
+}
+Recipe complete.

@@ -20,6 +20,9 @@ params:
   - name: require_literal_fidelity
     type: bool
     default: false
+  - name: literal_reader_model
+    type: str
+    default: gpt-6-astra
   - name: crop_review_release
     type: str
     default: null
@@ -82,6 +85,9 @@ param_schema:
       type: boolean
     require_literal_fidelity:
       type: boolean
+    literal_reader_model:
+      type: string
+      enum: [gpt-6-astra, gemini-4-argon]
     crop_review_release:
       type: string
     images_subdir:

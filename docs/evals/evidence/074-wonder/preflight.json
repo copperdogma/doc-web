@@ -1,0 +1,56 @@
+{
+  "base": "e44c0a41abf02ad266c10afdf5d95d48bb1b1fe2",
+  "cap_usd": 10,
+  "matrix": [
+    {
+      "case": "native-positive",
+      "image_sha256": "ab4ff79d69653ffb7907326424b7d24a7380a909585eb77c7b803bf99eab3c0f",
+      "dimensions": [
+        1700,
+        2200
+      ],
+      "initial_sha256": "307053d6b43ff4f4755554900c6f89542834408800a1f5ba15a7b79c2375b26e",
+      "candidate_request_sha256": "c5c02090ab8830cc9f3ecc394ad81ca59737b3718b05f290aeea3d5f51b120ff",
+      "control_request_sha256": "b68499fd3b2429923dd5030caf9f633d11365706d0f0c989e29e80c4b4dca14b",
+      "gold_sha256": "d951fa83a93a2aa489301fb0407f1f76fda6839e5e7bff2718d224795ff4c0ba"
+    },
+    {
+      "case": "image-positive",
+      "image_sha256": "faf29a9b7cdd8758657bf524beed9067230b6c01e16bc4f41c43332c5dc6c2a9",
+      "dimensions": [
+        1700,
+        2200
+      ],
+      "initial_sha256": "33ca79ec9f005abcba751ad7d1d78066780e8618bbf8848b69c240900b1db51e",
+      "candidate_request_sha256": "8559fac34062e06f8b0e9f81aebc44838f1dfe0c78ca2d33e6d1a279bdff9300",
+      "control_request_sha256": "e6235031e3cac69a3f5d01f343d3353c728a73bc7d4e0fa043959507638e9d30",
+      "gold_sha256": "f475d70caf451d94b9346e449fa23ea125c73e016440063e46b01a7103358162"
+    },
+    {
+      "case": "ambiguity-negative",
+      "image_sha256": "75458854bfe3331d761c99f9ac67ad35bf1b5c28620074fd31c08ba5d6052adf",
+      "dimensions": [
+        1700,
+        2200
+      ],
+      "initial_sha256": "28e7dcbcd94ba0d51e6a0bc80494ffed12c5efc16632b6cd2d954231463bf74c",
+      "candidate_request_sha256": "358e1d97e131c5726fa3d319ea6f120a230d9d377532d00f3d783c70651452d4",
+      "control_request_sha256": "f327844def7f4d7ad49114964b4302016896b14ee8a31b6bb15a0b0ee5f7a386",
+      "gold_sha256": "131d0c4b32d751505fde26346bd11c4be57fd0d06aa495490a3373b4eff4b68d"
+    }
+  ],
+  "candidate": "meta/muse-wonder medium32768",
+  "control": "gpt-6-astra medium8192 original source-only",
+  "cache": "fresh readers frozen identical upstream OCR",
+  "judge": "independent root source review; deterministic exact comparator authoritative; zero paid judge",
+  "concurrency": 1,
+  "grouping": "independent one-page requests",
+  "policy_sha256": "507c373fda9d9857a5f9865b9fb31b4a1eb6a9fc47560ed1c3ff07d76c14fc72",
+  "schema_sha256": "138cc8a900b2216cb8cfee8d25ada2652d4f9f012695f5bb9fbaf66174c3bcea",
+  "candidate_reserve_usd": 4.849664,
+  "reservation_basis": "entire 1048576 context input at4/M +32768 combined output at20/M; conservative serial settlement; unknown stays reserved",
+  "control_reserve_usd": 1.5,
+  "producer_sha256": "302d659aed54f96bd96c1499a7bccfef416b6d5d828786642ed65d004873d43f",
+  "no_runtime_profile": true,
+  "exposed_regression": true
+}

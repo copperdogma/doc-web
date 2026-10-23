@@ -1,0 +1,7 @@
+{
+  "allowed": true,
+  "freeze_sha256": "72b91943847058910d69c24cc2d9a6ccdf6bda197bc5c7a7211dd8ee9e0943a8",
+  "root_clearance_path": "/Users/cam/Documents/Projects/conductor/docs/scout/evidence/scout092-docweb-literal-preflight-clearance.json",
+  "root_clearance_sha256": "250bc03123c8a2588cf2fbb0d791413c5a381b9f095d7ecc7300fd105fc3008d",
+  "authorization": "Cam approved implementation/run; root verified independent source/preflight and gave GO for frozen progressive plan"
+}

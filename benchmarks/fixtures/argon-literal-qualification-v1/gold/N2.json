@@ -1,0 +1,15 @@
+{
+  "source_table_count": 1,
+  "tables": [
+    {
+      "bbox": [
+        217,
+        1133,
+        2112,
+        1983
+      ],
+      "html": "<table><tr><th>Bench</th><th>Reference</th><th>Offset</th><th>Disposition</th></tr><tr><td>A-03</td><td>R8l/24</td><td>+0.04</td><td>checked</td></tr><tr><td>A-04</td><td>R81/24</td><td>-0.00</td><td>recheck!</td></tr><tr><td rowspan=\"2\">B-11</td><td>um-6</td><td>—</td><td>no drift</td></tr><tr><td>β-2</td><td>0.00</td><td>pending</td></tr><tr><td colspan=\"2\">Source &lt; &amp; code</td><td>reciept</td><td>keep literal</td></tr></table>",
+      "uncertain_cells": []
+    }
+  ]
+}

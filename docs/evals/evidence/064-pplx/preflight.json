@@ -1,0 +1,36 @@
+{
+  "base_sha": "19b30b1d0db4a7f3b2e31614ba9846dfdb93355c",
+  "branch": "codex/pplx-docweb-20261006",
+  "sources": {
+    "benchmarks/jev-consistency/fixtures.json": "88994b8cd7c75d832114f33e613c3b2d8656b737f53962292ee34c4e81b128ab",
+    "benchmarks/jev-consistency/run.py": "1391bb3e045344eb7973b09b8eaaa903cbdb9f7e33a4f506cf33cf8ae98f97b4",
+    "benchmarks/jev-consistency/detector.py": "d6f639af36882ef57e9e8ef2b1083057049de70edc1d512b67c2fc734453c0d6",
+    "benchmarks/jev-consistency/plan.md": "c485d8c2dcab0c38a24ae18a7ea63d8baf617518cf49252838083f1e534cfce2",
+    "benchmarks/jev-consistency/pplx_campaign.py": "e484fd7e044404b8ae245f5b615cbd4d7af97c501a5f6db057a3bfff8ee5302f",
+    "modules/validate/validate_onward_genealogy_consistency_v1/main.py": "d8729c26de12cf0b0172b70a8d66f8c2ab6de0733fae6e7254b875d0ce40fbe6"
+  },
+  "unique_cases": 20,
+  "sources_count": 2,
+  "repeats": 2,
+  "serial_independent_requests": 40,
+  "candidate_calls": 120,
+  "baseline_calls": 40,
+  "maximum_real_fallback_calls": 120,
+  "cache": false,
+  "concurrency": 1,
+  "judge": "maintained exact typed-label scorer plus independent source review; no paid judge",
+  "fallback": "explicit uncertain remains review; otherwise confidence<0.8 real GPT4.1",
+  "image_lane": "excluded",
+  "payload_class": "synthetic",
+  "cap_usd": 2.0,
+  "full_matrix_reservation_usd": 1.2519542879999999,
+  "qualification_reservation_usd": 0.008046772,
+  "recovery_headroom_usd": 0.7399989400000001,
+  "live_contract_qualified": false,
+  "provider_sources": [
+    "https://docs.perplexity.ai/api-reference/decisions-post",
+    "https://docs.typesafe.ai/models",
+    "https://developers.openai.com/api/docs/guides/decisions"
+  ],
+  "checked_date": "2026-10-06"
+}

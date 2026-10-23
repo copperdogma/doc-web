@@ -1,0 +1,764 @@
+{
+  "schema_version": "onward_document_consistency_dossier_v1",
+  "created_at": "2026-10-06T12:00:00Z",
+  "document_label": "Onward genealogy consistency planning",
+  "source_artifacts": {
+    "chapters_artifact": "/Users/cam/.codex/worktrees/pplx-warning-integration-20261006/output/runs/pplx-warning-integration-20261006/offline-warning-integration/02_load_artifact_v1/chapters.jsonl",
+    "pages_artifact": "/Users/cam/.codex/worktrees/pplx-warning-integration-20261006/output/runs/pplx-warning-integration-20261006/offline-warning-integration/01_load_artifact_v1/pages.jsonl"
+  },
+  "baseline": {
+    "candidate_genealogy_chapters": 3,
+    "current_detector_flagged_chapters": [
+      "chapter-002.html"
+    ],
+    "current_detector_unflagged_watchlist": [],
+    "issue_signal_counts": {
+      "fused_boygirl_headers": 1
+    },
+    "header_signature_counts": {
+      "name|born|married|spouse|boy|girl|died": 2,
+      "name|born|married|spouse|boygirl|died": 1
+    }
+  },
+  "chapter_profiles": [
+    {
+      "chapter_basename": "chapter-001.html",
+      "chapter_title": "Family register 1",
+      "chapter_file": "/Users/cam/.codex/worktrees/pplx-warning-integration-20261006/benchmarks/pplx-shadow/corpus/doc-01/chapter-001.html",
+      "chapter_artifact_path": "/Users/cam/.codex/worktrees/pplx-warning-integration-20261006/benchmarks/pplx-shadow/corpus/doc-01/chapter-001.html",
+      "source_pages": [
+        1
+      ],
+      "source_printed_pages": [
+        1
+      ],
+      "current_detector": {
+        "flagged": false,
+        "drift_score": 0,
+        "confidence": 0.5,
+        "reasons": [],
+        "dominant_signature": "name|born|married|spouse|boy|girl|died"
+      },
+      "signals": {
+        "genealogy_table_count": 1,
+        "all_table_count": 1,
+        "summary_table_count": 0,
+        "subgroup_row_count": 0,
+        "external_family_heading_count": 0,
+        "residual_boygirl_header_count": 0,
+        "concatenated_subgroup_row_count": 0,
+        "left_column_only_family_row_count": 0,
+        "suspicious_row_semantic_count": 0,
+        "unclassified_note_count": 0,
+        "header_signatures": {
+          "name|born|married|spouse|boy|girl|died": 1
+        },
+        "suggested_issue_types": []
+      },
+      "signal_examples": {
+        "subgroup_rows": [],
+        "external_headings": [],
+        "concatenated_subgroups": [],
+        "left_column_family_rows": [],
+        "summary_rows": [],
+        "suspicious_rows": [],
+        "unclassified_notes": []
+      },
+      "page_profiles": [
+        {
+          "page_number": 1,
+          "printed_page_number": 1,
+          "image": null,
+          "signals": {
+            "table_count": 1,
+            "subgroup_row_count": 0,
+            "external_family_heading_count": 0,
+            "residual_boygirl_header_count": 0,
+            "concatenated_subgroup_row_count": 0,
+            "left_column_only_family_row_count": 0,
+            "suspicious_row_semantic_count": 0,
+            "unclassified_note_count": 0,
+            "header_signatures": {
+              "name|born|married|spouse|boy|girl|died": 1
+            },
+            "suggested_issue_types": []
+          },
+          "signal_examples": {
+            "external_headings": [],
+            "concatenated_subgroups": [],
+            "left_column_family_rows": [],
+            "suspicious_rows": [],
+            "unclassified_notes": []
+          }
+        }
+      ],
+      "source_context": {
+        "expected_page_count": 1,
+        "available_page_count": 1,
+        "missing_pages": [],
+        "retained_page_profiles": 1
+      },
+      "runtime_evidence": {
+        "chapter": {
+          "observed_html": "<!DOCTYPE html>\n<html><body><h1>Family register 1</h1><table><thead><tr><th>Name</th><th>Born</th><th>Married</th><th>Spouse</th><th>Boy</th><th>Girl</th><th>Died</th></tr></thead><tbody><tr><td>Ada 1 Brook</td><td>1874</td><td>1897</td><td>Eli 1 Brook</td><td>2</td><td>1</td><td>1948</td></tr><tr><td>Eli 1 Brook</td><td>1872</td><td>1897</td><td>Ada 1 Brook</td><td>2</td><td>1</td><td>1946</td></tr></tbody></table><aside data-person=\"Ada 1 Brook\">A daughter, Vale 1, was born in 1900.</aside></body></html>",
+          "note_attachments": [
+            {
+              "text": "A daughter, Vale 1, was born in 1900.",
+              "attributes": {
+                "data-person": "Ada 1 Brook"
+              },
+              "links": []
+            }
+          ],
+          "tables": [
+            {
+              "headers": [
+                "Name",
+                "Born",
+                "Married",
+                "Spouse",
+                "Boy",
+                "Girl",
+                "Died"
+              ],
+              "rows": [
+                [
+                  "Ada 1 Brook",
+                  "1874",
+                  "1897",
+                  "Eli 1 Brook",
+                  "2",
+                  "1",
+                  "1948"
+                ],
+                [
+                  "Eli 1 Brook",
+                  "1872",
+                  "1897",
+                  "Ada 1 Brook",
+                  "2",
+                  "1",
+                  "1946"
+                ]
+              ],
+              "cell_attributes": [
+                [
+                  {},
+                  {},
+                  {},
+                  {},
+                  {},
+                  {},
+                  {}
+                ],
+                [
+                  {},
+                  {},
+                  {},
+                  {},
+                  {},
+                  {},
+                  {}
+                ],
+                [
+                  {},
+                  {},
+                  {},
+                  {},
+                  {},
+                  {},
+                  {}
+                ]
+              ],
+              "table_attributes": {},
+              "page_break_before": false
+            }
+          ],
+          "prose": [
+            "Family register 1",
+            "A daughter, Vale 1, was born in 1900."
+          ],
+          "unanchored_notes": []
+        },
+        "source_pages": [
+          {
+            "page_number": 1,
+            "observed_html": "<!DOCTYPE html>\n<html><body><h1>Family register 1</h1><table><thead><tr><th>Name</th><th>Born</th><th>Married</th><th>Spouse</th><th>Boy</th><th>Girl</th><th>Died</th></tr></thead><tbody><tr><td>Ada 1 Brook</td><td>1874</td><td>1897</td><td>Eli 1 Brook</td><td>2</td><td>1</td><td>1948</td></tr><tr><td>Eli 1 Brook</td><td>1872</td><td>1897</td><td>Ada 1 Brook</td><td>2</td><td>1</td><td>1946</td></tr></tbody></table><aside data-person=\"Ada 1 Brook\">A daughter, Vale 1, was born in 1900.</aside></body></html>",
+            "note_attachments": [
+              {
+                "text": "A daughter, Vale 1, was born in 1900.",
+                "attributes": {
+                  "data-person": "Ada 1 Brook"
+                },
+                "links": []
+              }
+            ],
+            "tables": [
+              {
+                "headers": [
+                  "Name",
+                  "Born",
+                  "Married",
+                  "Spouse",
+                  "Boy",
+                  "Girl",
+                  "Died"
+                ],
+                "rows": [
+                  [
+                    "Ada 1 Brook",
+                    "1874",
+                    "1897",
+                    "Eli 1 Brook",
+                    "2",
+                    "1",
+                    "1948"
+                  ],
+                  [
+                    "Eli 1 Brook",
+                    "1872",
+                    "1897",
+                    "Ada 1 Brook",
+                    "2",
+                    "1",
+                    "1946"
+                  ]
+                ],
+                "cell_attributes": [
+                  [
+                    {},
+                    {},
+                    {},
+                    {},
+                    {},
+                    {},
+                    {}
+                  ],
+                  [
+                    {},
+                    {},
+                    {},
+                    {},
+                    {},
+                    {},
+                    {}
+                  ],
+                  [
+                    {},
+                    {},
+                    {},
+                    {},
+                    {},
+                    {},
+                    {}
+                  ]
+                ],
+                "table_attributes": {},
+                "page_break_before": false
+              }
+            ],
+            "prose": [
+              "Family register 1",
+              "A daughter, Vale 1, was born in 1900."
+            ],
+            "unanchored_notes": []
+          }
+        ],
+        "source_unanchored_notes": [],
+        "basis": "observed synthetic extracted chapter HTML and available source-page HTML; absence is not evidence of correctness"
+      }
+    },
+    {
+      "chapter_basename": "chapter-002.html",
+      "chapter_title": "Family register 2",
+      "chapter_file": "/Users/cam/.codex/worktrees/pplx-warning-integration-20261006/benchmarks/pplx-shadow/corpus/doc-01/chapter-002.html",
+      "chapter_artifact_path": "/Users/cam/.codex/worktrees/pplx-warning-integration-20261006/benchmarks/pplx-shadow/corpus/doc-01/chapter-002.html",
+      "source_pages": [
+        2
+      ],
+      "source_printed_pages": [
+        2
+      ],
+      "current_detector": {
+        "flagged": true,
+        "drift_score": 25,
+        "confidence": 0.75,
+        "reasons": [
+          "residual_boygirl_headers"
+        ],
+        "dominant_signature": "name|born|married|spouse|boygirl|died"
+      },
+      "signals": {
+        "genealogy_table_count": 1,
+        "all_table_count": 1,
+        "summary_table_count": 0,
+        "subgroup_row_count": 0,
+        "external_family_heading_count": 0,
+        "residual_boygirl_header_count": 1,
+        "concatenated_subgroup_row_count": 0,
+        "left_column_only_family_row_count": 0,
+        "suspicious_row_semantic_count": 0,
+        "unclassified_note_count": 0,
+        "header_signatures": {
+          "name|born|married|spouse|boygirl|died": 1
+        },
+        "suggested_issue_types": [
+          "fused_boygirl_headers"
+        ]
+      },
+      "signal_examples": {
+        "subgroup_rows": [],
+        "external_headings": [],
+        "concatenated_subgroups": [],
+        "left_column_family_rows": [],
+        "summary_rows": [],
+        "suspicious_rows": [],
+        "unclassified_notes": []
+      },
+      "page_profiles": [
+        {
+          "page_number": 2,
+          "printed_page_number": 2,
+          "image": null,
+          "signals": {
+            "table_count": 1,
+            "subgroup_row_count": 0,
+            "external_family_heading_count": 0,
+            "residual_boygirl_header_count": 0,
+            "concatenated_subgroup_row_count": 0,
+            "left_column_only_family_row_count": 0,
+            "suspicious_row_semantic_count": 0,
+            "unclassified_note_count": 0,
+            "header_signatures": {
+              "name|born|married|spouse|boy|girl|died": 1
+            },
+            "suggested_issue_types": []
+          },
+          "signal_examples": {
+            "external_headings": [],
+            "concatenated_subgroups": [],
+            "left_column_family_rows": [],
+            "suspicious_rows": [],
+            "unclassified_notes": []
+          }
+        }
+      ],
+      "source_context": {
+        "expected_page_count": 1,
+        "available_page_count": 1,
+        "missing_pages": [],
+        "retained_page_profiles": 1
+      },
+      "runtime_evidence": {
+        "chapter": {
+          "observed_html": "<!DOCTYPE html>\n<html><body><h1>Family register 2</h1><table><thead><tr><th>Name</th><th>Born</th><th>Married</th><th>Spouse</th><th>Boy/Girl</th><th>Died</th></tr></thead><tbody><tr><td>Ada 2 Brook</td><td>1875</td><td>1898</td><td>Eli 2 Brook</td><td>2 / 1</td><td>1949</td></tr><tr><td>Eli 2 Brook</td><td>1873</td><td>1898</td><td>Ada 2 Brook</td><td>2 / 1</td><td>1947</td></tr></tbody></table><aside data-person=\"Ada 2 Brook\">A daughter, Vale 2, was born in 1901.</aside></body></html>",
+          "note_attachments": [
+            {
+              "text": "A daughter, Vale 2, was born in 1901.",
+              "attributes": {
+                "data-person": "Ada 2 Brook"
+              },
+              "links": []
+            }
+          ],
+          "tables": [
+            {
+              "headers": [
+                "Name",
+                "Born",
+                "Married",
+                "Spouse",
+                "Boy/Girl",
+                "Died"
+              ],
+              "rows": [
+                [
+                  "Ada 2 Brook",
+                  "1875",
+                  "1898",
+                  "Eli 2 Brook",
+                  "2 / 1",
+                  "1949"
+                ],
+                [
+                  "Eli 2 Brook",
+                  "1873",
+                  "1898",
+                  "Ada 2 Brook",
+                  "2 / 1",
+                  "1947"
+                ]
+              ],
+              "cell_attributes": [
+                [
+                  {},
+                  {},
+                  {},
+                  {},
+                  {},
+                  {}
+                ],
+                [
+                  {},
+                  {},
+                  {},
+                  {},
+                  {},
+                  {}
+                ],
+                [
+                  {},
+                  {},
+                  {},
+                  {},
+                  {},
+                  {}
+                ]
+              ],
+              "table_attributes": {},
+              "page_break_before": false
+            }
+          ],
+          "prose": [
+            "Family register 2",
+            "A daughter, Vale 2, was born in 1901."
+          ],
+          "unanchored_notes": []
+        },
+        "source_pages": [
+          {
+            "page_number": 2,
+            "observed_html": "<!DOCTYPE html>\n<html><body><h1>Family register 2</h1><table><thead><tr><th>Name</th><th>Born</th><th>Married</th><th>Spouse</th><th>Boy</th><th>Girl</th><th>Died</th></tr></thead><tbody><tr><td>Ada 2 Brook</td><td>1875</td><td>1898</td><td>Eli 2 Brook</td><td>2</td><td>1</td><td>1949</td></tr><tr><td>Eli 2 Brook</td><td>1873</td><td>1898</td><td>Ada 2 Brook</td><td>2</td><td>1</td><td>1947</td></tr></tbody></table><aside data-person=\"Ada 2 Brook\">A daughter, Vale 2, was born in 1901.</aside></body></html>",
+            "note_attachments": [
+              {
+                "text": "A daughter, Vale 2, was born in 1901.",
+                "attributes": {
+                  "data-person": "Ada 2 Brook"
+                },
+                "links": []
+              }
+            ],
+            "tables": [
+              {
+                "headers": [
+                  "Name",
+                  "Born",
+                  "Married",
+                  "Spouse",
+                  "Boy",
+                  "Girl",
+                  "Died"
+                ],
+                "rows": [
+                  [
+                    "Ada 2 Brook",
+                    "1875",
+                    "1898",
+                    "Eli 2 Brook",
+                    "2",
+                    "1",
+                    "1949"
+                  ],
+                  [
+                    "Eli 2 Brook",
+                    "1873",
+                    "1898",
+                    "Ada 2 Brook",
+                    "2",
+                    "1",
+                    "1947"
+                  ]
+                ],
+                "cell_attributes": [
+                  [
+                    {},
+                    {},
+                    {},
+                    {},
+                    {},
+                    {},
+                    {}
+                  ],
+                  [
+                    {},
+                    {},
+                    {},
+                    {},
+                    {},
+                    {},
+                    {}
+                  ],
+                  [
+                    {},
+                    {},
+                    {},
+                    {},
+                    {},
+                    {},
+                    {}
+                  ]
+                ],
+                "table_attributes": {},
+                "page_break_before": false
+              }
+            ],
+            "prose": [
+              "Family register 2",
+              "A daughter, Vale 2, was born in 1901."
+            ],
+            "unanchored_notes": []
+          }
+        ],
+        "source_unanchored_notes": [],
+        "basis": "observed synthetic extracted chapter HTML and available source-page HTML; absence is not evidence of correctness"
+      }
+    },
+    {
+      "chapter_basename": "chapter-003.html",
+      "chapter_title": "Family register 3",
+      "chapter_file": "/Users/cam/.codex/worktrees/pplx-warning-integration-20261006/benchmarks/pplx-shadow/corpus/doc-01/chapter-003.html",
+      "chapter_artifact_path": "/Users/cam/.codex/worktrees/pplx-warning-integration-20261006/benchmarks/pplx-shadow/corpus/doc-01/chapter-003.html",
+      "source_pages": [
+        3
+      ],
+      "source_printed_pages": [
+        3
+      ],
+      "current_detector": {
+        "flagged": false,
+        "drift_score": 0,
+        "confidence": 0.5,
+        "reasons": [],
+        "dominant_signature": "name|born|married|spouse|boy|girl|died"
+      },
+      "signals": {
+        "genealogy_table_count": 1,
+        "all_table_count": 1,
+        "summary_table_count": 0,
+        "subgroup_row_count": 0,
+        "external_family_heading_count": 0,
+        "residual_boygirl_header_count": 0,
+        "concatenated_subgroup_row_count": 0,
+        "left_column_only_family_row_count": 0,
+        "suspicious_row_semantic_count": 0,
+        "unclassified_note_count": 0,
+        "header_signatures": {
+          "name|born|married|spouse|boy|girl|died": 1
+        },
+        "suggested_issue_types": []
+      },
+      "signal_examples": {
+        "subgroup_rows": [],
+        "external_headings": [],
+        "concatenated_subgroups": [],
+        "left_column_family_rows": [],
+        "summary_rows": [],
+        "suspicious_rows": [],
+        "unclassified_notes": []
+      },
+      "page_profiles": [
+        {
+          "page_number": 3,
+          "printed_page_number": 3,
+          "image": null,
+          "signals": {
+            "table_count": 1,
+            "subgroup_row_count": 0,
+            "external_family_heading_count": 0,
+            "residual_boygirl_header_count": 0,
+            "concatenated_subgroup_row_count": 0,
+            "left_column_only_family_row_count": 0,
+            "suspicious_row_semantic_count": 0,
+            "unclassified_note_count": 0,
+            "header_signatures": {
+              "name|born|married|spouse|boy|girl|died": 1
+            },
+            "suggested_issue_types": []
+          },
+          "signal_examples": {
+            "external_headings": [],
+            "concatenated_subgroups": [],
+            "left_column_family_rows": [],
+            "suspicious_rows": [],
+            "unclassified_notes": []
+          }
+        }
+      ],
+      "source_context": {
+        "expected_page_count": 1,
+        "available_page_count": 1,
+        "missing_pages": [],
+        "retained_page_profiles": 1
+      },
+      "runtime_evidence": {
+        "chapter": {
+          "observed_html": "<!DOCTYPE html>\n<html><body><h1>Family register 3</h1><table><thead><tr><th>Name</th><th>Born</th><th>Married</th><th>Spouse</th><th>Boy</th><th>Girl</th><th>Died</th></tr></thead><tbody><tr><td>Ada 3 Brook</td><td>1881</td><td>1899</td><td>Eli 3 Brook</td><td>2</td><td>1</td><td>1950</td></tr><tr><td>Eli 3 Brook</td><td>1874</td><td>1899</td><td>Ada 3 Brook</td><td>2</td><td>1</td><td>1948</td></tr></tbody></table><aside data-person=\"Ada 3 Brook\">A daughter, Vale 3, was born in 1902.</aside></body></html>",
+          "note_attachments": [
+            {
+              "text": "A daughter, Vale 3, was born in 1902.",
+              "attributes": {
+                "data-person": "Ada 3 Brook"
+              },
+              "links": []
+            }
+          ],
+          "tables": [
+            {
+              "headers": [
+                "Name",
+                "Born",
+                "Married",
+                "Spouse",
+                "Boy",
+                "Girl",
+                "Died"
+              ],
+              "rows": [
+                [
+                  "Ada 3 Brook",
+                  "1881",
+                  "1899",
+                  "Eli 3 Brook",
+                  "2",
+                  "1",
+                  "1950"
+                ],
+                [
+                  "Eli 3 Brook",
+                  "1874",
+                  "1899",
+                  "Ada 3 Brook",
+                  "2",
+                  "1",
+                  "1948"
+                ]
+              ],
+              "cell_attributes": [
+                [
+                  {},
+                  {},
+                  {},
+                  {},
+                  {},
+                  {},
+                  {}
+                ],
+                [
+                  {},
+                  {},
+                  {},
+                  {},
+                  {},
+                  {},
+                  {}
+                ],
+                [
+                  {},
+                  {},
+                  {},
+                  {},
+                  {},
+                  {},
+                  {}
+                ]
+              ],
+              "table_attributes": {},
+              "page_break_before": false
+            }
+          ],
+          "prose": [
+            "Family register 3",
+            "A daughter, Vale 3, was born in 1902."
+          ],
+          "unanchored_notes": []
+        },
+        "source_pages": [
+          {
+            "page_number": 3,
+            "observed_html": "<!DOCTYPE html>\n<html><body><h1>Family register 3</h1><table><thead><tr><th>Name</th><th>Born</th><th>Married</th><th>Spouse</th><th>Boy</th><th>Girl</th><th>Died</th></tr></thead><tbody><tr><td>Ada 3 Brook</td><td>1876</td><td>1899</td><td>Eli 3 Brook</td><td>2</td><td>1</td><td>1950</td></tr><tr><td>Eli 3 Brook</td><td>1874</td><td>1899</td><td>Ada 3 Brook</td><td>2</td><td>1</td><td>1948</td></tr></tbody></table><aside data-person=\"Ada 3 Brook\">A daughter, Vale 3, was born in 1902.</aside></body></html>",
+            "note_attachments": [
+              {
+                "text": "A daughter, Vale 3, was born in 1902.",
+                "attributes": {
+                  "data-person": "Ada 3 Brook"
+                },
+                "links": []
+              }
+            ],
+            "tables": [
+              {
+                "headers": [
+                  "Name",
+                  "Born",
+                  "Married",
+                  "Spouse",
+                  "Boy",
+                  "Girl",
+                  "Died"
+                ],
+                "rows": [
+                  [
+                    "Ada 3 Brook",
+                    "1876",
+                    "1899",
+                    "Eli 3 Brook",
+                    "2",
+                    "1",
+                    "1950"
+                  ],
+                  [
+                    "Eli 3 Brook",
+                    "1874",
+                    "1899",
+                    "Ada 3 Brook",
+                    "2",
+                    "1",
+                    "1948"
+                  ]
+                ],
+                "cell_attributes": [
+                  [
+                    {},
+                    {},
+                    {},
+                    {},
+                    {},
+                    {},
+                    {}
+                  ],
+                  [
+                    {},
+                    {},
+                    {},
+                    {},
+                    {},
+                    {},
+                    {}
+                  ],
+                  [
+                    {},
+                    {},
+                    {},
+                    {},
+                    {},
+                    {},
+                    {}
+                  ]
+                ],
+                "table_attributes": {},
+                "page_break_before": false
+              }
+            ],
+            "prose": [
+              "Family register 3",
+              "A daughter, Vale 3, was born in 1902."
+            ],
+            "unanchored_notes": []
+          }
+        ],
+        "source_unanchored_notes": [],
+        "basis": "observed synthetic extracted chapter HTML and available source-page HTML; absence is not evidence of correctness"
+      }
+    }
+  ]
+}

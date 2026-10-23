@@ -1,0 +1,868 @@
+{
+  "schema_version": "independent_literal_live_source_review_v1",
+  "reviewed_at_utc": "2026-10-14T03:40:57.541190+00:00",
+  "verdict": "CONFIRM_VALID_A1_HOLD_FAILURE_AND_NO_PROMOTION_STOP",
+  "recommendation": "Retain N1 source passes, preserve the valid A1 missed-hold failure, stop paid expansion/repeats, and do not promote this candidate from this incomplete qualification.",
+  "reviewer_configuration": {
+    "requested_model": "gpt-6-astra",
+    "requested_reasoning_effort": "ultra",
+    "served_reviewer_identity_independently_verified": false
+  },
+  "frozen_source_authority": {
+    "r1_rejected_review": {
+      "path": "/Users/cam/.codex/worktrees/scout092-docweb-literal-20261013/docs/evals/evidence/073-argon-literal-qualification/source-panel-review.json",
+      "sha256": "fbde160545b171d75ef2bf817bd07a6db147231f123249fc0acf2307b1f57688"
+    },
+    "r2_source_review": {
+      "path": "/Users/cam/.codex/worktrees/scout092-docweb-literal-20261013/docs/evals/evidence/073-argon-literal-qualification/source-panel-review-r2.json",
+      "sha256": "60d89a70862a246ec76740e24f1a11d684afc331f0a509c69c15518e4952577e"
+    },
+    "manifest": {
+      "path": "/Users/cam/.codex/worktrees/scout092-docweb-literal-20261013/benchmarks/fixtures/argon-literal-qualification-v1/manifest.json",
+      "sha256": "16fce905b21e65344b57247f5850c3e2ee081d59853e404d8c0bde84eff75718"
+    },
+    "corpus": {
+      "path": "/Users/cam/.codex/worktrees/scout092-docweb-literal-20261013/benchmarks/fixtures/argon-literal-qualification-v1/corpus.json",
+      "sha256": "ad80fe8dbff492d009522a3c78ac16c0fc12a22efce080c6d463a2799ff7015b"
+    },
+    "A1_counterfactual_proof": {
+      "path": "/Users/cam/.codex/worktrees/scout092-docweb-literal-20261013/benchmarks/fixtures/argon-literal-qualification-v1/proof/A1-counterfactual-proof.json",
+      "sha256": "cca1d22ed298475de3fd075a22b6ea89412b802c13a311fc3cbda4accda41fbe"
+    },
+    "source_schema": {
+      "path": "/Users/cam/.codex/worktrees/scout092-docweb-literal-20261013/doc_web/literal_fidelity.py",
+      "sha256": "39e4ec0148dd886af7e87d5a762bb043068d1c1a3d06fe742c9820e10fae344a"
+    },
+    "literal_comparator": {
+      "path": "/Users/cam/.codex/worktrees/scout092-docweb-literal-20261013/doc_web/literal_tables.py",
+      "sha256": "f88035148e70db6e32332a459459da04088660aab4444d97ab6af9dc256dfffb"
+    },
+    "source_policy": {
+      "path": "/Users/cam/.codex/worktrees/scout092-docweb-literal-20261013/modules/common/table_source_review.py",
+      "sha256": "78599f846eb31b2ad7a1607257458760e6e93e6eaa6d4ab062ffcbd30b879709"
+    },
+    "source_policy_schema_and_comparator_unchanged_since_r2": true
+  },
+  "independence": {
+    "new_provider_outputs_seen_before_r2_source_freeze": false,
+    "first_new_output_access": "This explicitly authorized live adjudication after r2 freeze.",
+    "r1_and_r2_reviews_preserved": true,
+    "source_gold_prompt_or_policy_changes": false,
+    "provider_calls_by_reviewer": 0,
+    "credentials_accessed": false,
+    "extra_agents": 0,
+    "only_written_artifact": "docs/evals/evidence/073-argon-literal-qualification/source-live-review.json"
+  },
+  "observations": [
+    {
+      "case_id": "N1",
+      "arm": "openai:gpt-6-astra",
+      "evidence": {
+        "request_body": {
+          "path": "/Users/cam/.codex/worktrees/scout092-docweb-literal-20261013/benchmarks/results/argon-literal-qualification-20261013/request-002.json",
+          "sha256": "f0c652fac46f54c0a1262e763574815d9c12310508e9a22e123efbb57bde087a"
+        },
+        "native_record": {
+          "path": "/Users/cam/.codex/worktrees/scout092-docweb-literal-20261013/benchmarks/results/argon-literal-qualification-20261013/live/reader-N1-astra/native-record.json",
+          "sha256": "ba28243106b80f2cfe1868ae8dc4d602e4e5c2c28f2f2fadb65ae53bb931f5bd"
+        },
+        "native_response_file": {
+          "path": "/Users/cam/.codex/worktrees/scout092-docweb-literal-20261013/benchmarks/results/argon-literal-qualification-20261013/live/reader-N1-astra/openai-source-response-001.json",
+          "sha256": "c1c8bf9b40c12ed1aca76428df1851dc158370280b0bae5f4b306ae1000284f3"
+        },
+        "module_report": {
+          "path": "/Users/cam/.codex/worktrees/scout092-docweb-literal-20261013/benchmarks/results/argon-literal-qualification-20261013/live/reader-N1-astra/pages_reviewed_reports/row-00000-page-00001-original-00001.json",
+          "sha256": "ba67dc624f76bdca83d0aaf1409b55fe3b6b4f16e6ba1f082aafd6dddb2b88fa"
+        },
+        "frozen_source": {
+          "path": "/Users/cam/.codex/worktrees/scout092-docweb-literal-20261013/benchmarks/fixtures/argon-literal-qualification-v1/renders/N1.png",
+          "sha256": "81f766b6b0b856d2440caf8f8742e0dbfe6e2878d1fec8ddf0d61698b0b8720f"
+        },
+        "frozen_gold": {
+          "path": "/Users/cam/.codex/worktrees/scout092-docweb-literal-20261013/benchmarks/fixtures/argon-literal-qualification-v1/gold/N1.json",
+          "sha256": "6b4868e218383133b04682cacfec7fef97af2cc433d334aea00b59299a9c91ec"
+        }
+      },
+      "validity_before_scoring": {
+        "verdict": "valid_for_source_adjudication",
+        "native_terminal": {
+          "native_model": "gpt-6-astra",
+          "native_status": "completed",
+          "error": null,
+          "incomplete_details": null,
+          "message_statuses": [
+            "completed"
+          ],
+          "response_id": "resp_01667d9b7c2f007d016acef663859887d0b94527d3714b3e81"
+        },
+        "native_answer_exactly_matches_record_raw_response": true,
+        "native_response_string_hash_matches_record": true,
+        "strict_SourcePageReview_validation": "pass",
+        "safe_table_geometry": "pass",
+        "request_schema_exactly_matches_frozen_maintained_schema": true,
+        "actual_body_policy_exactly_matches_frozen_POLICY": true,
+        "actual_body_policy_sha256": "507c373fda9d9857a5f9865b9fb31b4a1eb6a9fc47560ed1c3ff07d76c14fc72",
+        "actual_body_user_text": [
+          {
+            "role": "user",
+            "text": "Source image dimensions: 2550 x 3300 pixels. Read source tables; return JSON only."
+          }
+        ],
+        "actual_body_has_no_OCR_gold_or_other_arm_response": true,
+        "actual_body_image_count": 1,
+        "actual_body_image": {
+          "sha256": "81f766b6b0b856d2440caf8f8742e0dbfe6e2878d1fec8ddf0d61698b0b8720f",
+          "exact_frozen_bytes": true,
+          "format": "PNG",
+          "dimensions_px": [
+            2550,
+            3300
+          ],
+          "detail": "original",
+          "mime": "data:image/png;base64"
+        },
+        "actual_body_settings": {
+          "model": "gpt-6-astra",
+          "max_output_tokens": 8192,
+          "reasoning": {
+            "effort": "medium"
+          },
+          "service_tier": "default",
+          "store": false,
+          "strict_json_schema": true
+        },
+        "scope_limit": "Reader native shape and source-relevant request inputs checked here. Full transport receipt chain, endpoint binding, ledger, cost settlement and total attempt count are assigned to the separate reviewer."
+      },
+      "source_table_count": 1,
+      "explicit_cells": 10,
+      "covered_cell_slots": 12,
+      "rows": [
+        {
+          "row": 0,
+          "cells": [
+            {
+              "cell": 0,
+              "text": "Crate",
+              "tag": "th",
+              "rowspan": 1,
+              "colspan": 1,
+              "column": 0
+            },
+            {
+              "cell": 1,
+              "text": "Seal",
+              "tag": "th",
+              "rowspan": 1,
+              "colspan": 1,
+              "column": 1
+            },
+            {
+              "cell": 2,
+              "text": "Condition",
+              "tag": "th",
+              "rowspan": 1,
+              "colspan": 1,
+              "column": 2
+            }
+          ]
+        },
+        {
+          "row": 1,
+          "cells": [
+            {
+              "cell": 0,
+              "text": "North-4",
+              "tag": "td",
+              "rowspan": 1,
+              "colspan": 1,
+              "column": 0
+            },
+            {
+              "cell": 1,
+              "text": "nQ/17",
+              "tag": "td",
+              "rowspan": 1,
+              "colspan": 1,
+              "column": 1
+            },
+            {
+              "cell": 2,
+              "text": "re-sealed",
+              "tag": "td",
+              "rowspan": 1,
+              "colspan": 1,
+              "column": 2
+            }
+          ]
+        },
+        {
+          "row": 2,
+          "cells": [
+            {
+              "cell": 0,
+              "text": "East-2",
+              "tag": "td",
+              "rowspan": 1,
+              "colspan": 1,
+              "column": 0
+            },
+            {
+              "cell": 1,
+              "text": "EQ/17",
+              "tag": "td",
+              "rowspan": 1,
+              "colspan": 1,
+              "column": 1
+            },
+            {
+              "cell": 2,
+              "text": "scuffed",
+              "tag": "td",
+              "rowspan": 1,
+              "colspan": 1,
+              "column": 2
+            }
+          ]
+        },
+        {
+          "row": 3,
+          "cells": [
+            {
+              "cell": 0,
+              "text": "Hold for review",
+              "tag": "td",
+              "rowspan": 1,
+              "colspan": 3,
+              "column": 0
+            }
+          ]
+        }
+      ],
+      "final_row_span": {
+        "row": 3,
+        "cell": 0,
+        "column": 0,
+        "colspan": 3,
+        "rowspan": 1
+      },
+      "returned_uncertain_cells": [],
+      "bbox_review": {
+        "returned_bbox_px": [
+          216,
+          1133,
+          2113,
+          1701
+        ],
+        "frozen_gold_bbox_px": [
+          217,
+          1133,
+          2112,
+          1700
+        ],
+        "measured_local_table_ink_extent_px": [
+          215,
+          1132,
+          2114,
+          1702
+        ],
+        "measured_ink_method": "Pillow difference from uniform source background inside a table-local ROI, excluding headings/prose; nonzero anti-aliased pixels define the reported extent.",
+        "localization_pass": true,
+        "assessment": "Correct source-pixel table localization. Relative to the measured anti-aliased outer ink extent, Astra is inset about one pixel on each edge; Argon adds about one pixel left/top and is inset about one pixel right/bottom. These are thin rule-edge differences, with no cell glyph, span, row or column ownership lost. Exact equality to a centerline gold bbox is not a frozen scoring rule."
+      },
+      "literal_comparison": {
+        "text_pass": true,
+        "structure_pass": true,
+        "pass": true,
+        "text_mismatch_count": 0,
+        "structure_mismatch_count": 0,
+        "text_mismatches": [],
+        "structure_mismatches": [],
+        "counts": {
+          "golden": {
+            "tables": 1,
+            "rows": 4,
+            "cells": 10
+          },
+          "actual": {
+            "tables": 1,
+            "rows": 4,
+            "cells": 10
+          }
+        },
+        "scope": {
+          "mode": "all_tables",
+          "table_index": null,
+          "golden_table_count": 1,
+          "actual_table_count": 1,
+          "excluded_actual_table_indices": [],
+          "compared_actual_table_count": 1,
+          "document_actual_table_count": 1
+        }
+      },
+      "module_report_observed": {
+        "status": "verified",
+        "unresolved_count": 0,
+        "decision": "initial_agrees_B",
+        "reason": "complete certain exact source agreement",
+        "errors": []
+      },
+      "source_verdict": "PASS_ON_N1_CLEAR_SOURCE",
+      "source_findings": [
+        "The three headers are Crate, Seal, Condition. North-4 owns nQ/17 and re-sealed; East-2 owns EQ/17 and scuffed. Case, slash, hyphens and spelling are exact.",
+        "Hold for review is literal text in one cell spanning all three columns; its wording is not a source ambiguity flag. The complete source table has ten explicit cells and twelve slots.",
+        "Empty uncertainty is appropriate on this clear source. All outside-table titles, prose, note and footer remain excluded.",
+        "Both source text and ownership match the independently reviewed frozen source, beyond mere agreement with the common OCR."
+      ]
+    },
+    {
+      "case_id": "N1",
+      "arm": "google:gemini-4-argon",
+      "evidence": {
+        "request_body": {
+          "path": "/Users/cam/.codex/worktrees/scout092-docweb-literal-20261013/benchmarks/results/argon-literal-qualification-20261013/request-003.json",
+          "sha256": "bdd4879898ad79d85787e264582ac2c951aeccd24025d5fd6431f9cf47a0b6ea"
+        },
+        "native_record": {
+          "path": "/Users/cam/.codex/worktrees/scout092-docweb-literal-20261013/benchmarks/results/argon-literal-qualification-20261013/live/reader-N1-argon/native-record.json",
+          "sha256": "b04d8ba3e480bbc82bd3f71fc0de15e093b11ecff4119a8dce09968cb8503d99"
+        },
+        "native_response_file": {
+          "path": "/Users/cam/.codex/worktrees/scout092-docweb-literal-20261013/benchmarks/results/argon-literal-qualification-20261013/live/reader-N1-argon/google-source-response-001.json",
+          "sha256": "f79848655c8008a38051c917ed0988e8c69c1d73575918c0fbfca9373eb2cb1a"
+        },
+        "module_report": {
+          "path": "/Users/cam/.codex/worktrees/scout092-docweb-literal-20261013/benchmarks/results/argon-literal-qualification-20261013/live/reader-N1-argon/pages_reviewed_reports/row-00000-page-00001-original-00001.json",
+          "sha256": "b65e76d7c3fc17205a635c303537863910f156a48ade5fc3717cb408779b34e0"
+        },
+        "frozen_source": {
+          "path": "/Users/cam/.codex/worktrees/scout092-docweb-literal-20261013/benchmarks/fixtures/argon-literal-qualification-v1/renders/N1.png",
+          "sha256": "81f766b6b0b856d2440caf8f8742e0dbfe6e2878d1fec8ddf0d61698b0b8720f"
+        },
+        "frozen_gold": {
+          "path": "/Users/cam/.codex/worktrees/scout092-docweb-literal-20261013/benchmarks/fixtures/argon-literal-qualification-v1/gold/N1.json",
+          "sha256": "6b4868e218383133b04682cacfec7fef97af2cc433d334aea00b59299a9c91ec"
+        }
+      },
+      "validity_before_scoring": {
+        "verdict": "valid_for_source_adjudication",
+        "native_terminal": {
+          "native_model": "gemini-4-argon",
+          "native_status": "STOP",
+          "candidate_count": 1,
+          "candidate_role": "model",
+          "promptFeedback": null,
+          "response_id": "j_bOar26Ccmt_PUPuN-FoAI"
+        },
+        "native_answer_exactly_matches_record_raw_response": true,
+        "native_response_string_hash_matches_record": true,
+        "strict_SourcePageReview_validation": "pass",
+        "safe_table_geometry": "pass",
+        "request_schema_exactly_matches_frozen_maintained_schema": true,
+        "actual_body_policy_exactly_matches_frozen_POLICY": true,
+        "actual_body_policy_sha256": "507c373fda9d9857a5f9865b9fb31b4a1eb6a9fc47560ed1c3ff07d76c14fc72",
+        "actual_body_user_text": [
+          {
+            "role": "user",
+            "text": "Source image dimensions: 2550 x 3300 pixels. Read source tables; return JSON only."
+          }
+        ],
+        "actual_body_has_no_OCR_gold_or_other_arm_response": true,
+        "actual_body_image_count": 1,
+        "actual_body_image": {
+          "sha256": "81f766b6b0b856d2440caf8f8742e0dbfe6e2878d1fec8ddf0d61698b0b8720f",
+          "exact_frozen_bytes": true,
+          "format": "PNG",
+          "dimensions_px": [
+            2550,
+            3300
+          ],
+          "detail": "original-bytes",
+          "mime": "image/png"
+        },
+        "actual_body_settings": {
+          "maxOutputTokens": 32768,
+          "thinkingConfig": {
+            "thinkingLevel": "medium"
+          },
+          "responseMimeType": "application/json"
+        },
+        "scope_limit": "Reader native shape and source-relevant request inputs checked here. Full transport receipt chain, endpoint binding, ledger, cost settlement and total attempt count are assigned to the separate reviewer."
+      },
+      "source_table_count": 1,
+      "explicit_cells": 10,
+      "covered_cell_slots": 12,
+      "rows": [
+        {
+          "row": 0,
+          "cells": [
+            {
+              "cell": 0,
+              "text": "Crate",
+              "tag": "th",
+              "rowspan": 1,
+              "colspan": 1,
+              "column": 0
+            },
+            {
+              "cell": 1,
+              "text": "Seal",
+              "tag": "th",
+              "rowspan": 1,
+              "colspan": 1,
+              "column": 1
+            },
+            {
+              "cell": 2,
+              "text": "Condition",
+              "tag": "th",
+              "rowspan": 1,
+              "colspan": 1,
+              "column": 2
+            }
+          ]
+        },
+        {
+          "row": 1,
+          "cells": [
+            {
+              "cell": 0,
+              "text": "North-4",
+              "tag": "td",
+              "rowspan": 1,
+              "colspan": 1,
+              "column": 0
+            },
+            {
+              "cell": 1,
+              "text": "nQ/17",
+              "tag": "td",
+              "rowspan": 1,
+              "colspan": 1,
+              "column": 1
+            },
+            {
+              "cell": 2,
+              "text": "re-sealed",
+              "tag": "td",
+              "rowspan": 1,
+              "colspan": 1,
+              "column": 2
+            }
+          ]
+        },
+        {
+          "row": 2,
+          "cells": [
+            {
+              "cell": 0,
+              "text": "East-2",
+              "tag": "td",
+              "rowspan": 1,
+              "colspan": 1,
+              "column": 0
+            },
+            {
+              "cell": 1,
+              "text": "EQ/17",
+              "tag": "td",
+              "rowspan": 1,
+              "colspan": 1,
+              "column": 1
+            },
+            {
+              "cell": 2,
+              "text": "scuffed",
+              "tag": "td",
+              "rowspan": 1,
+              "colspan": 1,
+              "column": 2
+            }
+          ]
+        },
+        {
+          "row": 3,
+          "cells": [
+            {
+              "cell": 0,
+              "text": "Hold for review",
+              "tag": "td",
+              "rowspan": 1,
+              "colspan": 3,
+              "column": 0
+            }
+          ]
+        }
+      ],
+      "final_row_span": {
+        "row": 3,
+        "cell": 0,
+        "column": 0,
+        "colspan": 3,
+        "rowspan": 1
+      },
+      "returned_uncertain_cells": [],
+      "bbox_review": {
+        "returned_bbox_px": [
+          214,
+          1131,
+          2113,
+          1701
+        ],
+        "frozen_gold_bbox_px": [
+          217,
+          1133,
+          2112,
+          1700
+        ],
+        "measured_local_table_ink_extent_px": [
+          215,
+          1132,
+          2114,
+          1702
+        ],
+        "measured_ink_method": "Pillow difference from uniform source background inside a table-local ROI, excluding headings/prose; nonzero anti-aliased pixels define the reported extent.",
+        "localization_pass": true,
+        "assessment": "Correct source-pixel table localization. Relative to the measured anti-aliased outer ink extent, Astra is inset about one pixel on each edge; Argon adds about one pixel left/top and is inset about one pixel right/bottom. These are thin rule-edge differences, with no cell glyph, span, row or column ownership lost. Exact equality to a centerline gold bbox is not a frozen scoring rule."
+      },
+      "literal_comparison": {
+        "text_pass": true,
+        "structure_pass": true,
+        "pass": true,
+        "text_mismatch_count": 0,
+        "structure_mismatch_count": 0,
+        "text_mismatches": [],
+        "structure_mismatches": [],
+        "counts": {
+          "golden": {
+            "tables": 1,
+            "rows": 4,
+            "cells": 10
+          },
+          "actual": {
+            "tables": 1,
+            "rows": 4,
+            "cells": 10
+          }
+        },
+        "scope": {
+          "mode": "all_tables",
+          "table_index": null,
+          "golden_table_count": 1,
+          "actual_table_count": 1,
+          "excluded_actual_table_indices": [],
+          "compared_actual_table_count": 1,
+          "document_actual_table_count": 1
+        }
+      },
+      "module_report_observed": {
+        "status": "verified",
+        "unresolved_count": 0,
+        "decision": "initial_agrees_B",
+        "reason": "complete certain exact source agreement",
+        "errors": []
+      },
+      "source_verdict": "PASS_ON_N1_CLEAR_SOURCE",
+      "source_findings": [
+        "The three headers are Crate, Seal, Condition. North-4 owns nQ/17 and re-sealed; East-2 owns EQ/17 and scuffed. Case, slash, hyphens and spelling are exact.",
+        "Hold for review is literal text in one cell spanning all three columns; its wording is not a source ambiguity flag. The complete source table has ten explicit cells and twelve slots.",
+        "Empty uncertainty is appropriate on this clear source. All outside-table titles, prose, note and footer remain excluded.",
+        "Both source text and ownership match the independently reviewed frozen source, beyond mere agreement with the common OCR."
+      ]
+    },
+    {
+      "case_id": "A1",
+      "arm": "google:gemini-4-argon",
+      "evidence": {
+        "request_body": {
+          "path": "/Users/cam/.codex/worktrees/scout092-docweb-literal-20261013/benchmarks/results/argon-literal-qualification-20261013/request-005.json",
+          "sha256": "8cb0e4ce84c8c8a776c2add436b4401c4c33906d76cb690203f7378271c3873d"
+        },
+        "native_record": {
+          "path": "/Users/cam/.codex/worktrees/scout092-docweb-literal-20261013/benchmarks/results/argon-literal-qualification-20261013/live/reader-A1-argon/native-record.json",
+          "sha256": "d41482c0de03f04f59609456d25f5869989620b81e942b7e2600054660f378f9"
+        },
+        "native_response_file": {
+          "path": "/Users/cam/.codex/worktrees/scout092-docweb-literal-20261013/benchmarks/results/argon-literal-qualification-20261013/live/reader-A1-argon/google-source-response-001.json",
+          "sha256": "d65d972c9474d95cb497bc15b08703c3f94a507ccd923009f8a9cca1a96d3852"
+        },
+        "module_report": {
+          "path": "/Users/cam/.codex/worktrees/scout092-docweb-literal-20261013/benchmarks/results/argon-literal-qualification-20261013/live/reader-A1-argon/pages_reviewed_reports/row-00000-page-00001-original-00001.json",
+          "sha256": "8cb160951627e21dad011678a7ca87103ec9702a47674c610b41a0a7df603935"
+        },
+        "frozen_source": {
+          "path": "/Users/cam/.codex/worktrees/scout092-docweb-literal-20261013/benchmarks/fixtures/argon-literal-qualification-v1/renders/A1.png",
+          "sha256": "a7be92eae4a84ce647f90444adeb54a343fefda29a06eea3a6eabc87206e11f4"
+        },
+        "frozen_gold": {
+          "path": "/Users/cam/.codex/worktrees/scout092-docweb-literal-20261013/benchmarks/fixtures/argon-literal-qualification-v1/gold/A1.json",
+          "sha256": "c6c9635b5d39b33b7e840ffa66a76c70542afa82dedf249088fc76093bf0ae29"
+        }
+      },
+      "validity_before_scoring": {
+        "verdict": "valid_for_source_adjudication",
+        "native_terminal": {
+          "native_model": "gemini-4-argon",
+          "native_status": "STOP",
+          "candidate_count": 1,
+          "candidate_role": "model",
+          "promptFeedback": null,
+          "response_id": "0ffOapbUFaT4qtsPgI7UOQ"
+        },
+        "native_answer_exactly_matches_record_raw_response": true,
+        "native_response_string_hash_matches_record": true,
+        "strict_SourcePageReview_validation": "pass",
+        "safe_table_geometry": "pass",
+        "request_schema_exactly_matches_frozen_maintained_schema": true,
+        "actual_body_policy_exactly_matches_frozen_POLICY": true,
+        "actual_body_policy_sha256": "507c373fda9d9857a5f9865b9fb31b4a1eb6a9fc47560ed1c3ff07d76c14fc72",
+        "actual_body_user_text": [
+          {
+            "role": "user",
+            "text": "Source image dimensions: 2550 x 3300 pixels. Read source tables; return JSON only."
+          }
+        ],
+        "actual_body_has_no_OCR_gold_or_other_arm_response": true,
+        "actual_body_image_count": 1,
+        "actual_body_image": {
+          "sha256": "a7be92eae4a84ce647f90444adeb54a343fefda29a06eea3a6eabc87206e11f4",
+          "exact_frozen_bytes": true,
+          "format": "PNG",
+          "dimensions_px": [
+            2550,
+            3300
+          ],
+          "detail": "original-bytes",
+          "mime": "image/png"
+        },
+        "actual_body_settings": {
+          "maxOutputTokens": 32768,
+          "thinkingConfig": {
+            "thinkingLevel": "medium"
+          },
+          "responseMimeType": "application/json"
+        },
+        "scope_limit": "Reader native shape and source-relevant request inputs checked here. Full transport receipt chain, endpoint binding, ledger, cost settlement and total attempt count are assigned to the separate reviewer."
+      },
+      "source_table_count": 1,
+      "explicit_cells": 10,
+      "covered_cell_slots": 12,
+      "rows": [
+        {
+          "row": 0,
+          "cells": [
+            {
+              "cell": 0,
+              "text": "Container",
+              "tag": "th",
+              "rowspan": 1,
+              "colspan": 1,
+              "column": 0
+            },
+            {
+              "cell": 1,
+              "text": "Code",
+              "tag": "th",
+              "rowspan": 1,
+              "colspan": 1,
+              "column": 1
+            },
+            {
+              "cell": 2,
+              "text": "Seal",
+              "tag": "th",
+              "rowspan": 1,
+              "colspan": 1,
+              "column": 2
+            }
+          ]
+        },
+        {
+          "row": 1,
+          "cells": [
+            {
+              "cell": 0,
+              "text": "Jar-5",
+              "tag": "td",
+              "rowspan": 1,
+              "colspan": 1,
+              "column": 0
+            },
+            {
+              "cell": 1,
+              "text": "K814",
+              "tag": "td",
+              "rowspan": 1,
+              "colspan": 1,
+              "column": 1
+            },
+            {
+              "cell": 2,
+              "text": "intact",
+              "tag": "td",
+              "rowspan": 1,
+              "colspan": 1,
+              "column": 2
+            }
+          ]
+        },
+        {
+          "row": 2,
+          "cells": [
+            {
+              "cell": 0,
+              "text": "Jar-6",
+              "tag": "td",
+              "rowspan": 1,
+              "colspan": 1,
+              "column": 0
+            },
+            {
+              "cell": 1,
+              "text": "K84",
+              "tag": "td",
+              "rowspan": 1,
+              "colspan": 1,
+              "column": 1
+            },
+            {
+              "cell": 2,
+              "text": "intact",
+              "tag": "td",
+              "rowspan": 1,
+              "colspan": 1,
+              "column": 2
+            }
+          ]
+        },
+        {
+          "row": 3,
+          "cells": [
+            {
+              "cell": 0,
+              "text": "Review mark",
+              "tag": "td",
+              "rowspan": 1,
+              "colspan": 3,
+              "column": 0
+            }
+          ]
+        }
+      ],
+      "final_row_span": {
+        "row": 3,
+        "cell": 0,
+        "column": 0,
+        "colspan": 3,
+        "rowspan": 1
+      },
+      "returned_uncertain_cells": [],
+      "bbox_review": {
+        "returned_bbox_px": [
+          214,
+          1132,
+          2157,
+          1703
+        ],
+        "frozen_gold_bbox_px": [
+          217,
+          1133,
+          2154,
+          1700
+        ],
+        "measured_local_table_ink_extent_px": [
+          215,
+          1132,
+          2157,
+          1703
+        ],
+        "measured_ink_method": "Pillow difference from uniform source background inside a table-local ROI, excluding headings/prose; nonzero anti-aliased pixels define the reported extent.",
+        "localization_pass": true,
+        "assessment": "Correct source-pixel localization of the entire table. Returned bounds include the measured outer ink extent with one additional pixel on the left; no content or relevant cell location is omitted."
+      },
+      "literal_comparison": {
+        "text_pass": true,
+        "structure_pass": true,
+        "pass": true,
+        "text_mismatch_count": 0,
+        "structure_mismatch_count": 0,
+        "text_mismatches": [],
+        "structure_mismatches": [],
+        "counts": {
+          "golden": {
+            "tables": 1,
+            "rows": 4,
+            "cells": 10
+          },
+          "actual": {
+            "tables": 1,
+            "rows": 4,
+            "cells": 10
+          }
+        },
+        "scope": {
+          "mode": "all_tables",
+          "table_index": null,
+          "golden_table_count": 1,
+          "actual_table_count": 1,
+          "excluded_actual_table_indices": [],
+          "compared_actual_table_count": 1,
+          "document_actual_table_count": 1
+        }
+      },
+      "module_report_observed": {
+        "status": "verified",
+        "unresolved_count": 0,
+        "decision": "initial_agrees_B",
+        "reason": "complete certain exact source agreement",
+        "errors": []
+      },
+      "source_verdict": "VALID_FAILURE_MISSED_MANDATORY_SOURCE_HOLD",
+      "required_uncertainty_location": {
+        "table": 0,
+        "row": 1,
+        "cell": 1,
+        "row_label": "Jar-5",
+        "column_header": "Code",
+        "column": 1,
+        "source_cell_bbox_px_approx": [
+          842,
+          1275,
+          1467,
+          1417
+        ],
+        "gold_alternatives": [
+          "K8l4",
+          "K814"
+        ]
+      },
+      "source_findings": [
+        "The nine clear cells and three-column footer ownership are preserved. The tenth cell has a diagnostic best observed transcription K814, which is allowed as a plausible alias reading.",
+        "The failure is solely that uncertain_cells is empty at the required Jar-5 Code location. K814 is not penalized for differing from an intended hidden character; it equals the diagnostic gold text.",
+        "The frozen pre-answer source review independently showed K8l4, K814 and the neutral source marker produce identical full-page pixels through the actual font/PDF/raster/image-only source path. The source provides no recoverable choice between the aliases.",
+        "The actual submitted POLICY explicitly requires uncertainty when interpretations cannot be distinguished from visible pixels in this font. Native response is completed, schema-valid, correctly located and tied to the exact reviewed source, so a malformed response, wrong source, changed policy or truncation does not explain the failure.",
+        "The module nevertheless reports verified / complete certain exact source agreement because initial OCR and reader agree. That report is not independent source truth and does not cure the omitted uncertainty. No qualified final export is asserted by this review."
+      ],
+      "diagnostic_literal_comparison_cannot_establish_clear_accuracy": true,
+      "failure_applies_to": "One predeclared deliberately aliased synthetic-font control at medium thinking under this frozen source-only policy."
+    }
+  ],
+  "N1_headline": {
+    "astra": "PASS: all 10 explicit cells, one colspan=3 footer, 12 slots, complete table inventory, correct pixel localization and appropriate empty uncertainty.",
+    "argon": "PASS: all 10 explicit cells, one colspan=3 footer, 12 slots, complete table inventory, correct pixel localization and appropriate empty uncertainty.",
+    "applicability": "One shared clear page. This does not complete either three-page positive group or prove full-path export qualification."
+  },
+  "A1_headline": {
+    "argon": "FAIL: valid native response omits the predeclared required hold at table 0, row 1, explicit cell 1.",
+    "diagnostic_text": "K814 is a plausible best observation and is not itself counted as an error. The absent uncertainty is the error.",
+    "astra": "UNMEASURED: root reports no A1 Astra dispatch after the candidate stop; no A1 Astra native record exists in the observed live directory.",
+    "runtime_report_warning": "The observed module report labels A1 verified from OCR/source-reader agreement, but that conflicts with independent frozen source truth. Agreement alone cannot establish recoverable character identity."
+  },
+  "bounded_interpretation": [
+    "A1 is a deliberately constructed same-glyph/same-advance alias control. It tests abstention under a predeclared source ambiguity, not representative natural-document OCR accuracy or broad intelligence.",
+    "One failed hold supports the frozen stop/no-promotion decision. It does not estimate a population false-acceptance rate, generalize to ordinary fonts/scans, or show that Astra would safely hold A1.",
+    "Both models passed N1; Astra A1 is unmeasured. No comparative safety superiority, broad incumbent advantage, latency/economics verdict or downstream adoption conclusion is claimed.",
+    "The source result is valid for this bound after direct native/input checks; the separate full receipt/hash/cost audit remains authoritative for campaign accounting and transport chain.",
+    "The remaining sources/repeats and real three-page positive-group export outcomes are not completed by these three reader observations."
+  ],
+  "campaign_context_not_independently_audited_here": "Root reports five completed live POSTs (two common OCR plus these three readers), sealed ledger, and no further inference. This review does not recompute the ledger or assert its cost totals."
+}

@@ -27,6 +27,174 @@
   offline with identical hashes and no configured credentials.
 - Close the campaign at 27 completed calls, USD0.1176735 of USD5, unknown0.
 
+## [2026-10-20-02] — Record MiniMax GA source-fidelity evaluation (Story 258)
+
+### Verified
+- Preserve the bounded safety diagnostic lead: 20/22 versus fresh GPT5.5 18/22, zero versus one false-safe, with slower candidate latency and unqualified strict/provider/consumer parity.
+- Retain readers and detector after literal, crop-completeness and handwriting failures. Preserve quarantined Gemini3.7-to3.8 control, all raw receipts, USD1.358886 inclusive ledger and credential cleanup.
+- Completed zero-cost follow-through is Story259/Attempt081 below; defer runtime adoption and further paid qualification, retaining current consumer and manual review.
+
+## [2026-10-20-01] — Audit Scout099 safety consumer feasibility (Story 259)
+
+### Verified
+- Preserve all22 saved safety pairs and44 complete payloads with source-reviewed flag/reason findings, historical grades and exact archive bindings.
+- Actual unchanged consumer admission under OS process network denial rejects15 oversized crops and44 incompatible native envelopes. No production routing, release or operator-time gain is claimed.
+- Defer runtime and paid qualification; propose a truthful informational contract before further spend. USD0, zero provider/judge calls, no runtime/default or human-review authority changes.
+
+## [2026-10-17-01] — Record Scout097 source-fidelity evaluation (Story 257)
+
+### Added
+- Preserve DeepSeek1017 native receipts, frozen prompts and source reviews for literal tables, crop detection, public Barney handwriting and independent page safety.
+- Add evaluation-only spend, raw-custody and source-review guards, including accounting rejection covered by four offline tests.
+
+### Verified
+- Retain current readers: bakery22/23 versus Astra23/23, source-incomplete Image011 crops, and Barney.920977 below.99. Requested Gemini3.7 served3.8 and is quarantined.
+- Defer safety substitution: both candidate safety envelopes have unreliable native accounting. The saved clipped-seal false-safe is diagnostic only; fresh GPT5.5 controls remain qualified2/2. The additive audit supersedes initial safety labels while preserving producing archives unchanged.
+- Inclusive provider-reported spend USD.231343868 of15, unknown charge exposure0. No runtime or model default changed.
+
+## [2026-10-16-01] — Record Scout096 source-reading and safety evaluation (Story 256)
+
+### Added
+- Preserve the bounded native receipts, source reviews, cost ledger and additive recovery for literal tables, crop detection, handwriting and page safety.
+- Add eval-only custody and reproduction tools with focused guard tests.
+
+### Verified
+- Retain current readers and manual crop safety review. Nemotron missed clear table cells, omitted a visible crop date, changed handwritten wording and accepted an incomplete seal. Span shared the unsafe seal acceptance; d1 had no valid safety response because of transport and request-size failures. No model or runtime default changed.
+- Final measured provider spend is USD0.494054330 plus USD0.225574912 unresolved reserved exposure under the USD15 cap. The remaining cases are unmeasured.
+
+## [2026-10-14-01] — Muse Wonder literal reader evaluations (Stories 254, 255)
+
+### Added
+- Preserve exact native Muse Wonder and fresh Astra source-reader comparisons
+  on exposed synthetic literal-table fixtures, including medium/high/max
+  calibration, safe holds, source reviews and immutable native evidence.
+- Record the recovered pre-provider router budget rejection and explicitly
+  qualify the speculative economic rationale for the bounded max follow-up.
+
+### Verified
+- Retain Astra: higher effort repeats the clear O/0 misread and over-abstention,
+  while true ambiguity stays safely held. No runtime defaults or export profile
+  change. Cumulative provider spend USD0.8039514 of the original USD10 cap,
+  with zero unknown exposure.
+
+## [2026-10-13-04] — Opt-in native literal reader qualification (Story 253)
+
+### Added
+- Explicit Google Argon source-only reader and hash-bound native receipt reuse
+  through the real CLI/driver, with provider-aware bundle verification.
+- Locked per-POST budget reservations, raw native bytes before parse, exact
+  identity and standard Astra service tier for the bounded qualification.
+- Independent frozen source panel and sealed progressive Attempt073 evidence.
+  N1 preserves ten clear cells for both readers; Argon misses the mandatory
+  ambiguity hold on A1. Stop after five POSTs; no promotion or default change.
+- Four offline three-page exports and four holds verify integration separately
+  from provider quality. Live complete-batch exports and repeats are unmeasured.
+
+### Fixed
+- Keep source-reader native usage visible in the driver instrumentation sink;
+  retain raw bytes before parse, log once, and reject invalid billing counts.
+
+## [2026-10-13-03] — Targeted Argon thinking-level calibration (Attempt072)
+
+### Added
+- Compare low/medium literal readers on identical exposed sources: handling
+  parity with a small token-cost saving and much slower observed low calls.
+- Screen high geometry with independent source review: two complete cases,
+  one clipped rule tail; preserve raw-coordinate medium failure and cancelled
+  optional confirmation rather than promote numeric passes.
+- Retain frozen effort-only requests, cold/December costs, latency samples,
+  immutable old ledger, separate closed calibration ledger and native receipts.
+
+## [2026-10-13-02] — Argon maintained fidelity evaluation (Attempt071)
+
+### Added
+- Source-only table reader comparison: bounded clear/ambiguity handling parity
+  at 88.47% lower reader-stage cost; qualify held-out and actual provider/driver
+  integration before any production change.
+- Preserve progressive detector geometry and handwriting literal failures,
+  unavailable exact Gemini3.7 control, independent source reviews, unknown
+  custody exposure, immutable executed sources and reconstructable receipts.
+- Harden evaluation-only guard against concurrent collisions and duplicates;
+  no runtime defaults, provider account changes or downstream adoption.
+
+## [2026-10-13-01] — Five decision-model evaluations (Attempt 070)
+
+### Added
+- Compare five typed consistency classifiers with fresh GPT-4.1 and actual
+  confidence-gated fallbacks. Solar shows a bounded batch quality/cost signal
+  with latency and uncertainty holds; no automatic promotion is qualified.
+- Record the independent crop-safety stop: Clef and fresh GPT-5.5 both accepted
+  a source-confirmed clipped seal. ScaleDown two-image transport is blocked;
+  Liquid direct access is absent. Preserve unmeasured coverage and defaults.
+- Retain exact execution snapshots, a lossless public/synthetic receipt archive,
+  closed separate spend ledgers, source review and focused offline validation.
+
+## [2026-10-08-02] — Continuing strategic reviewers and fresh milestones
+
+### Changed
+- Reuse a separate continuing reviewer for repeated strategic checkpoints and
+  request a fresh independent assessment at consequential milestones. Preserve
+  model selection, cadence, read-only scope, messaging authority and budgets;
+  keep cache and cost savings as unmeasured hypotheses.
+
+## [2026-10-08-01] — Source-faithful offline manual continuation (Story 251)
+
+### Added
+- Opt-in native PDF catalog illustration recovery with explicit source geometry,
+  protected crop preservation, held decisions and pixel/provenance receipts.
+- Append-only offline continuation helper and recipe overlay that preserve the
+  original run, stage graph and paid extraction/planning artifacts.
+
+### Fixed
+- Place source illustrations beside table descriptions without removing literal
+  transcription; preserve hard line breaks when discovering source URLs.
+- Resolve and validate numeric TOC links using their complete source row, printed
+  page evidence and block provenance, retaining ambiguity and wrong-target guards.
+- Qualify fresh driver artifacts with source-pixel/sampling and text preservation
+  checks, 24 passing conformance checks, and 711 affected offline tests.
+
+## [2026-10-07-02] — Related-document reference resolution (Story 250)
+
+### Added
+- Opt-in offline `doc-web resolve-set` CLI/Python capability for explicit sets
+  of already-converted bundles, with exact source-backed heading links,
+  inspectable ambiguity/edition holds and portable derivative receipts.
+- Driver recipe/adapter, safe repeat/resume publication, source preservation
+  and static resource checks, installed-package proof and independent consumer
+  acceptance. Bare exact identifiers are eligible within declared related sets.
+
+### Changed
+- Shared reference helpers now ship in the `doc_web` package; existing local
+  resolver policy is preserved. Add tinycss2 for static CSS dependency checks.
+
+## [2026-10-07-01] — Haiku 5.5 task value evaluation (Story 249)
+
+### Added
+- Evaluated Haiku 5.5 across detector, independent crop safety, public handwriting and synthetic consistency with three thinking configurations. Retained current models; Attempt068 records exact failures, fresh comparisons, cost and source provenance.
+
+## [2026-10-06-06] — Experimental disagreement warning (Story 248)
+
+### Added
+- Preserve low-confidence candidate/planner disagreement as an advisory review
+  warning in the default-off Perplexity sidecar, leaving authority unchanged.
+- Saved-response and real-driver offline proof; no new inference or activation.
+
+## [2026-10-06-05] — Offline disagreement review policy (Story 247)
+
+### Added
+- Replay saved synthetic native answers with a pure disagreement-to-review rule.
+- Preserve one observed warning as review: false-clean1→0, reviews0→1;
+  exact classification remains2/3. Zero new inference/spend; defaults unchanged.
+
+## [2026-10-06-04] — Perplexity runtime shadow safety screen (Story 246)
+
+### Added
+- Isolated default-off synthetic shadow evaluation with observed source evidence,
+  real-driver coverage/invariance checks and bounded native spend receipts.
+- Stop/no-promotion result: correct low-confidence Decider warning falls back to
+  inherited planner false-clean; five calls USD0.02588316, no unresolved spend.
+- Preserve unmeasured coverage and source-reviewed failures; runtime defaults unchanged.
+
 ## [2026-10-06-03] — Literal table evidence and uncertainty gate (Story 245)
 
 ### Added

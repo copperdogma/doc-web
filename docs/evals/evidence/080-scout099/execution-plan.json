@@ -1,0 +1,36 @@
+{
+  "date": "2026-10-20",
+  "candidate": "minimax/minimax-m3.1-flash:free",
+  "canonical": "minimax/minimax-m3.1-flash-20261019",
+  "provider_pin": "minimax",
+  "endpoint": "https://openrouter.ai/api/v1/chat/completions",
+  "route_change": "native key absent; root verified current exactGA free route and authorized practical sameGA path",
+  "effort": "high",
+  "max_tokens": 32768,
+  "cap_usd": 15,
+  "candidate_price_usd_per_million": {
+    "input": 0,
+    "output": 0
+  },
+  "no_fallback": true,
+  "source_matrix": "offline-readiness.json",
+  "independent_tasks": [
+    "literal-table-fidelity",
+    "image-crop-extraction",
+    "crop-page-level-deletion-gate",
+    "handwritten-notes-transcription"
+  ],
+  "strict_qualification": "first small authored TEST image; required schema; parameter enforcement",
+  "diagnostic_if_strict_blocked": "same TEST image with response_format removed; require_parameters false; retain exact identity/provider/price pin; prompt-only local JSON validation; capability-only no parity claim",
+  "recovery": "finite two operational attempts per surface; no semantic retry or effort sweep",
+  "controls": "fresh maintained controls only after valid callable challenger",
+  "reservations_usd": {
+    "astra_tables3": 4.5,
+    "gpt55_safety22": 6.41168,
+    "gemini_crop_and_barney": 0.9,
+    "candidate": 0,
+    "recovery": 3.18832
+  },
+  "privacy": "public/authored synthetic only, retention/training uncertain",
+  "runtime_defaults": "unchanged"
+}

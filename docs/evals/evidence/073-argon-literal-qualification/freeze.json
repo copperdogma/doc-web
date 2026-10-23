@@ -1,0 +1,707 @@
+{
+  "base_sha": "91cd9bb19b174247349f1e83b9aaa869eb08ccc7",
+  "config": {
+    "result_dir": "/Users/cam/.codex/worktrees/scout092-docweb-literal-20261013/benchmarks/results/argon-literal-qualification-20261013",
+    "cap_usd": 3,
+    "prior_exposure_usd": 0.86667725,
+    "owner_cap_usd": 15,
+    "campaign_prior_exposure_usd": 3.877369745,
+    "campaign_cap_usd": 35,
+    "max_calls": 33,
+    "operational_recovery": true,
+    "old_ledger_sha256": {
+      "/Users/cam/.codex/worktrees/scout092-argon-docweb-20261013/benchmarks/results/argon-20261013/ledger.json": "8213d0303a675a3f6e3ab325a0fcea721d621329558acac0ab98281895f35b00",
+      "/Users/cam/.codex/worktrees/scout092-argon-docweb-20261013/benchmarks/results/argon-levels-20261013/ledger.json": "fb2fbf30eb5d7b1458804a7f75b843be7e0bc26d10b515d944553b8a9961cbdb"
+    },
+    "matrix": [
+      {
+        "stage": "ocr-N1",
+        "case": "N1",
+        "kind": "ocr",
+        "model": "gpt-6-astra",
+        "request_sha256": "d7ecd34addd57a30544a6d83244ae43850fbe1327869221cacbe3c2ffe3dada6",
+        "reserved_usd": 0.7346,
+        "input_token_bound": 26000,
+        "max_output_tokens": 8192
+      },
+      {
+        "stage": "reader-N1-astra",
+        "case": "N1",
+        "arm": "astra",
+        "kind": "reader",
+        "model": "gpt-6-astra",
+        "request_sha256": "778b9d02954b4338c54a7276b3fad7465fb2877f79fd83731d8a1a8eaa52620b",
+        "reserved_usd": 1.5,
+        "input_token_bound": 26000,
+        "max_output_tokens": 8192
+      },
+      {
+        "stage": "reader-N1-argon",
+        "case": "N1",
+        "arm": "argon",
+        "kind": "reader",
+        "model": "gemini-4-argon",
+        "request_sha256": "f258d4cf03b63b0e6a52430427abc532d65880911f54359461f6002ec8b5c519",
+        "reserved_usd": 0.37968,
+        "input_token_bound": 26000,
+        "max_output_tokens": 32768
+      },
+      {
+        "stage": "ocr-A1",
+        "case": "A1",
+        "kind": "ocr",
+        "model": "gpt-6-astra",
+        "request_sha256": "03f23daa9f7994652da1e868b4f5d0da752b503f85252cbd815e91fb56d07ec1",
+        "reserved_usd": 0.7346,
+        "input_token_bound": 26000,
+        "max_output_tokens": 8192
+      },
+      {
+        "stage": "reader-A1-argon",
+        "case": "A1",
+        "arm": "argon",
+        "kind": "reader",
+        "model": "gemini-4-argon",
+        "request_sha256": "504659a8d4d39a965e15a2e34306a5c44a780e6d971caaa9f40d2cee5b124cd8",
+        "reserved_usd": 0.37968,
+        "input_token_bound": 26000,
+        "max_output_tokens": 32768
+      },
+      {
+        "stage": "reader-A1-astra",
+        "case": "A1",
+        "arm": "astra",
+        "kind": "reader",
+        "model": "gpt-6-astra",
+        "request_sha256": "dc64be87905b68b42d9b960ca52e052783c9e50e82a017e0704a419e85ecf6be",
+        "reserved_usd": 1.5,
+        "input_token_bound": 26000,
+        "max_output_tokens": 8192
+      },
+      {
+        "stage": "ocr-N2",
+        "case": "N2",
+        "kind": "ocr",
+        "model": "gpt-6-astra",
+        "request_sha256": "8bb09122cfb8b7028aad4190eae82c53cecae74873d710b2e7dd298d0aa553f0",
+        "reserved_usd": 0.7346,
+        "input_token_bound": 26000,
+        "max_output_tokens": 8192,
+        "required_gate": "/Users/cam/.codex/worktrees/scout092-docweb-literal-20261013/docs/evals/evidence/073-argon-literal-qualification/screen-clearance.json"
+      },
+      {
+        "stage": "reader-N2-argon",
+        "case": "N2",
+        "arm": "argon",
+        "kind": "reader",
+        "model": "gemini-4-argon",
+        "request_sha256": "508fb1c17a76234b6893bbfd6c9c2e3933ba95091ec18e2b61e2053731753100",
+        "reserved_usd": 0.37968,
+        "input_token_bound": 26000,
+        "max_output_tokens": 32768,
+        "required_gate": "/Users/cam/.codex/worktrees/scout092-docweb-literal-20261013/docs/evals/evidence/073-argon-literal-qualification/screen-clearance.json"
+      },
+      {
+        "stage": "reader-N2-astra",
+        "case": "N2",
+        "arm": "astra",
+        "kind": "reader",
+        "model": "gpt-6-astra",
+        "request_sha256": "32ca4c0ff6374dd19ce63e665d4bc987858dd336a32778423d9756ba976f58b0",
+        "reserved_usd": 1.5,
+        "input_token_bound": 26000,
+        "max_output_tokens": 8192,
+        "required_gate": "/Users/cam/.codex/worktrees/scout092-docweb-literal-20261013/docs/evals/evidence/073-argon-literal-qualification/screen-clearance.json"
+      },
+      {
+        "stage": "ocr-N3",
+        "case": "N3",
+        "kind": "ocr",
+        "model": "gpt-6-astra",
+        "request_sha256": "1a2c36d350c84fc43bae2241e2121f20efb2fcb1aa4bfdde359d46a14554aae5",
+        "reserved_usd": 0.7346,
+        "input_token_bound": 26000,
+        "max_output_tokens": 8192,
+        "required_gate": "/Users/cam/.codex/worktrees/scout092-docweb-literal-20261013/docs/evals/evidence/073-argon-literal-qualification/screen-clearance.json"
+      },
+      {
+        "stage": "reader-N3-astra",
+        "case": "N3",
+        "arm": "astra",
+        "kind": "reader",
+        "model": "gpt-6-astra",
+        "request_sha256": "39d9e1c1224a86f600c6732feb40365c69cd3fdd9b29fcb9497760c38b0d9b9b",
+        "reserved_usd": 1.5,
+        "input_token_bound": 26000,
+        "max_output_tokens": 8192,
+        "required_gate": "/Users/cam/.codex/worktrees/scout092-docweb-literal-20261013/docs/evals/evidence/073-argon-literal-qualification/screen-clearance.json"
+      },
+      {
+        "stage": "reader-N3-argon",
+        "case": "N3",
+        "arm": "argon",
+        "kind": "reader",
+        "model": "gemini-4-argon",
+        "request_sha256": "497515b6f887aae0c5ff9dfc50fa6c7e708c06e5fef130619b79bf1edea9a362",
+        "reserved_usd": 0.37968,
+        "input_token_bound": 26000,
+        "max_output_tokens": 32768,
+        "required_gate": "/Users/cam/.codex/worktrees/scout092-docweb-literal-20261013/docs/evals/evidence/073-argon-literal-qualification/screen-clearance.json"
+      },
+      {
+        "stage": "ocr-R1",
+        "case": "R1",
+        "kind": "ocr",
+        "model": "gpt-6-astra",
+        "request_sha256": "014001d218e29ff3056797b39ffeb8f55b9b6ac3b77bf6af1d8b30ac08758138",
+        "reserved_usd": 0.7346,
+        "input_token_bound": 26000,
+        "max_output_tokens": 8192,
+        "required_gate": "/Users/cam/.codex/worktrees/scout092-docweb-literal-20261013/docs/evals/evidence/073-argon-literal-qualification/screen-clearance.json"
+      },
+      {
+        "stage": "reader-R1-argon",
+        "case": "R1",
+        "arm": "argon",
+        "kind": "reader",
+        "model": "gemini-4-argon",
+        "request_sha256": "228ef30741dee747ed840946ef32cbe25f1152b85ce065acdb46a6d4790313f3",
+        "reserved_usd": 0.37968,
+        "input_token_bound": 26000,
+        "max_output_tokens": 32768,
+        "required_gate": "/Users/cam/.codex/worktrees/scout092-docweb-literal-20261013/docs/evals/evidence/073-argon-literal-qualification/screen-clearance.json"
+      },
+      {
+        "stage": "reader-R1-astra",
+        "case": "R1",
+        "arm": "astra",
+        "kind": "reader",
+        "model": "gpt-6-astra",
+        "request_sha256": "769b19b0f5a1961c6148ca830e983a24038899d9df1f0967eb998bd9b16b3e4e",
+        "reserved_usd": 1.5,
+        "input_token_bound": 26000,
+        "max_output_tokens": 8192,
+        "required_gate": "/Users/cam/.codex/worktrees/scout092-docweb-literal-20261013/docs/evals/evidence/073-argon-literal-qualification/screen-clearance.json"
+      },
+      {
+        "stage": "ocr-R2",
+        "case": "R2",
+        "kind": "ocr",
+        "model": "gpt-6-astra",
+        "request_sha256": "3c110fbe759713e7b619cc97e7476e39696607a6ef97265c30614962d24b12ad",
+        "reserved_usd": 0.7346,
+        "input_token_bound": 26000,
+        "max_output_tokens": 8192,
+        "required_gate": "/Users/cam/.codex/worktrees/scout092-docweb-literal-20261013/docs/evals/evidence/073-argon-literal-qualification/screen-clearance.json"
+      },
+      {
+        "stage": "reader-R2-argon",
+        "case": "R2",
+        "arm": "argon",
+        "kind": "reader",
+        "model": "gemini-4-argon",
+        "request_sha256": "3910e7da29c2d470a1df78f00838362658fb1e1c3bcae6b48776f2db161e82c8",
+        "reserved_usd": 0.37968,
+        "input_token_bound": 26000,
+        "max_output_tokens": 32768,
+        "required_gate": "/Users/cam/.codex/worktrees/scout092-docweb-literal-20261013/docs/evals/evidence/073-argon-literal-qualification/screen-clearance.json"
+      },
+      {
+        "stage": "reader-R2-astra",
+        "case": "R2",
+        "arm": "astra",
+        "kind": "reader",
+        "model": "gpt-6-astra",
+        "request_sha256": "339c995cc761861ea95a3688fc73c830e059d72a16ae3124ac5b2594529365fa",
+        "reserved_usd": 1.5,
+        "input_token_bound": 26000,
+        "max_output_tokens": 8192,
+        "required_gate": "/Users/cam/.codex/worktrees/scout092-docweb-literal-20261013/docs/evals/evidence/073-argon-literal-qualification/screen-clearance.json"
+      },
+      {
+        "stage": "ocr-R3",
+        "case": "R3",
+        "kind": "ocr",
+        "model": "gpt-6-astra",
+        "request_sha256": "ab7a2468ebaebc79603b189ff4f1be3a2be914081a5e64e5776d2c78b8b30453",
+        "reserved_usd": 0.7346,
+        "input_token_bound": 26000,
+        "max_output_tokens": 8192,
+        "required_gate": "/Users/cam/.codex/worktrees/scout092-docweb-literal-20261013/docs/evals/evidence/073-argon-literal-qualification/screen-clearance.json"
+      },
+      {
+        "stage": "reader-R3-astra",
+        "case": "R3",
+        "arm": "astra",
+        "kind": "reader",
+        "model": "gpt-6-astra",
+        "request_sha256": "059ed71e9926bbfffe07d00351a294c470fb0138b3397263b9d935a2233f34ec",
+        "reserved_usd": 1.5,
+        "input_token_bound": 26000,
+        "max_output_tokens": 8192,
+        "required_gate": "/Users/cam/.codex/worktrees/scout092-docweb-literal-20261013/docs/evals/evidence/073-argon-literal-qualification/screen-clearance.json"
+      },
+      {
+        "stage": "reader-R3-argon",
+        "case": "R3",
+        "arm": "argon",
+        "kind": "reader",
+        "model": "gemini-4-argon",
+        "request_sha256": "0f2efae4cac8081d4eb9eb539fa409469feb73502c5451751b56f44a04ee2130",
+        "reserved_usd": 0.37968,
+        "input_token_bound": 26000,
+        "max_output_tokens": 32768,
+        "required_gate": "/Users/cam/.codex/worktrees/scout092-docweb-literal-20261013/docs/evals/evidence/073-argon-literal-qualification/screen-clearance.json"
+      },
+      {
+        "stage": "ocr-A2",
+        "case": "A2",
+        "kind": "ocr",
+        "model": "gpt-6-astra",
+        "request_sha256": "6142a5b08afe8806a36f1b197bed13f9888ba0379f414f21667398d1d9c08201",
+        "reserved_usd": 0.7346,
+        "input_token_bound": 26000,
+        "max_output_tokens": 8192,
+        "required_gate": "/Users/cam/.codex/worktrees/scout092-docweb-literal-20261013/docs/evals/evidence/073-argon-literal-qualification/screen-clearance.json"
+      },
+      {
+        "stage": "reader-A2-astra",
+        "case": "A2",
+        "arm": "astra",
+        "kind": "reader",
+        "model": "gpt-6-astra",
+        "request_sha256": "23c8d8c3b484d2d15559f3f85ca0f4240d265a89542cc979bcab50a275765a80",
+        "reserved_usd": 1.5,
+        "input_token_bound": 26000,
+        "max_output_tokens": 8192,
+        "required_gate": "/Users/cam/.codex/worktrees/scout092-docweb-literal-20261013/docs/evals/evidence/073-argon-literal-qualification/screen-clearance.json"
+      },
+      {
+        "stage": "reader-A2-argon",
+        "case": "A2",
+        "arm": "argon",
+        "kind": "reader",
+        "model": "gemini-4-argon",
+        "request_sha256": "d1e5d2fb4987f1772eb9f3effefade82157a587ddfbc28754309e6faf096e51f",
+        "reserved_usd": 0.37968,
+        "input_token_bound": 26000,
+        "max_output_tokens": 32768,
+        "required_gate": "/Users/cam/.codex/worktrees/scout092-docweb-literal-20261013/docs/evals/evidence/073-argon-literal-qualification/screen-clearance.json"
+      },
+      {
+        "stage": "repeat-N3-argon",
+        "case": "N3",
+        "arm": "argon",
+        "kind": "reader",
+        "model": "gemini-4-argon",
+        "request_sha256": "497515b6f887aae0c5ff9dfc50fa6c7e708c06e5fef130619b79bf1edea9a362",
+        "reserved_usd": 0.37968,
+        "input_token_bound": 26000,
+        "max_output_tokens": 32768,
+        "conditional": true,
+        "required_gate": "/Users/cam/.codex/worktrees/scout092-docweb-literal-20261013/docs/evals/evidence/073-argon-literal-qualification/panel-clearance.json"
+      },
+      {
+        "stage": "repeat-N3-astra",
+        "case": "N3",
+        "arm": "astra",
+        "kind": "reader",
+        "model": "gpt-6-astra",
+        "request_sha256": "39d9e1c1224a86f600c6732feb40365c69cd3fdd9b29fcb9497760c38b0d9b9b",
+        "reserved_usd": 1.5,
+        "input_token_bound": 26000,
+        "max_output_tokens": 8192,
+        "conditional": true,
+        "required_gate": "/Users/cam/.codex/worktrees/scout092-docweb-literal-20261013/docs/evals/evidence/073-argon-literal-qualification/panel-clearance.json"
+      },
+      {
+        "stage": "repeat-R1-astra",
+        "case": "R1",
+        "arm": "astra",
+        "kind": "reader",
+        "model": "gpt-6-astra",
+        "request_sha256": "769b19b0f5a1961c6148ca830e983a24038899d9df1f0967eb998bd9b16b3e4e",
+        "reserved_usd": 1.5,
+        "input_token_bound": 26000,
+        "max_output_tokens": 8192,
+        "conditional": true,
+        "required_gate": "/Users/cam/.codex/worktrees/scout092-docweb-literal-20261013/docs/evals/evidence/073-argon-literal-qualification/panel-clearance.json"
+      },
+      {
+        "stage": "repeat-R1-argon",
+        "case": "R1",
+        "arm": "argon",
+        "kind": "reader",
+        "model": "gemini-4-argon",
+        "request_sha256": "228ef30741dee747ed840946ef32cbe25f1152b85ce065acdb46a6d4790313f3",
+        "reserved_usd": 0.37968,
+        "input_token_bound": 26000,
+        "max_output_tokens": 32768,
+        "conditional": true,
+        "required_gate": "/Users/cam/.codex/worktrees/scout092-docweb-literal-20261013/docs/evals/evidence/073-argon-literal-qualification/panel-clearance.json"
+      },
+      {
+        "stage": "repeat-R3-argon",
+        "case": "R3",
+        "arm": "argon",
+        "kind": "reader",
+        "model": "gemini-4-argon",
+        "request_sha256": "0f2efae4cac8081d4eb9eb539fa409469feb73502c5451751b56f44a04ee2130",
+        "reserved_usd": 0.37968,
+        "input_token_bound": 26000,
+        "max_output_tokens": 32768,
+        "conditional": true,
+        "required_gate": "/Users/cam/.codex/worktrees/scout092-docweb-literal-20261013/docs/evals/evidence/073-argon-literal-qualification/panel-clearance.json"
+      },
+      {
+        "stage": "repeat-R3-astra",
+        "case": "R3",
+        "arm": "astra",
+        "kind": "reader",
+        "model": "gpt-6-astra",
+        "request_sha256": "059ed71e9926bbfffe07d00351a294c470fb0138b3397263b9d935a2233f34ec",
+        "reserved_usd": 1.5,
+        "input_token_bound": 26000,
+        "max_output_tokens": 8192,
+        "conditional": true,
+        "required_gate": "/Users/cam/.codex/worktrees/scout092-docweb-literal-20261013/docs/evals/evidence/073-argon-literal-qualification/panel-clearance.json"
+      },
+      {
+        "stage": "repeat-A1-astra",
+        "case": "A1",
+        "arm": "astra",
+        "kind": "reader",
+        "model": "gpt-6-astra",
+        "request_sha256": "dc64be87905b68b42d9b960ca52e052783c9e50e82a017e0704a419e85ecf6be",
+        "reserved_usd": 1.5,
+        "input_token_bound": 26000,
+        "max_output_tokens": 8192,
+        "conditional": true,
+        "required_gate": "/Users/cam/.codex/worktrees/scout092-docweb-literal-20261013/docs/evals/evidence/073-argon-literal-qualification/panel-clearance.json"
+      },
+      {
+        "stage": "repeat-A1-argon",
+        "case": "A1",
+        "arm": "argon",
+        "kind": "reader",
+        "model": "gemini-4-argon",
+        "request_sha256": "504659a8d4d39a965e15a2e34306a5c44a780e6d971caaa9f40d2cee5b124cd8",
+        "reserved_usd": 0.37968,
+        "input_token_bound": 26000,
+        "max_output_tokens": 32768,
+        "conditional": true,
+        "required_gate": "/Users/cam/.codex/worktrees/scout092-docweb-literal-20261013/docs/evals/evidence/073-argon-literal-qualification/panel-clearance.json"
+      }
+    ]
+  },
+  "source_manifest_sha256": "16fce905b21e65344b57247f5850c3e2ee081d59853e404d8c0bde84eff75718",
+  "bounds": {
+    "ocr-N1": {
+      "image_tokens_upper": 9985,
+      "text_schema_framing_upper": 8034,
+      "complete_input_upper": 18019,
+      "dimensions": [
+        2550,
+        3300
+      ],
+      "admission_ceiling": 26000
+    },
+    "reader-N1-astra": {
+      "image_tokens_upper": 9985,
+      "text_schema_framing_upper": 7465,
+      "complete_input_upper": 17450,
+      "dimensions": [
+        2550,
+        3300
+      ],
+      "admission_ceiling": 26000
+    },
+    "reader-N1-argon": {
+      "image_tokens_upper": 5160,
+      "text_schema_framing_upper": 7341,
+      "complete_input_upper": 12501,
+      "dimensions": [
+        2550,
+        3300
+      ],
+      "admission_ceiling": 26000
+    },
+    "ocr-A1": {
+      "image_tokens_upper": 9985,
+      "text_schema_framing_upper": 8034,
+      "complete_input_upper": 18019,
+      "dimensions": [
+        2550,
+        3300
+      ],
+      "admission_ceiling": 26000
+    },
+    "reader-A1-argon": {
+      "image_tokens_upper": 5160,
+      "text_schema_framing_upper": 7341,
+      "complete_input_upper": 12501,
+      "dimensions": [
+        2550,
+        3300
+      ],
+      "admission_ceiling": 26000
+    },
+    "reader-A1-astra": {
+      "image_tokens_upper": 9985,
+      "text_schema_framing_upper": 7465,
+      "complete_input_upper": 17450,
+      "dimensions": [
+        2550,
+        3300
+      ],
+      "admission_ceiling": 26000
+    },
+    "ocr-N2": {
+      "image_tokens_upper": 9985,
+      "text_schema_framing_upper": 8034,
+      "complete_input_upper": 18019,
+      "dimensions": [
+        2550,
+        3300
+      ],
+      "admission_ceiling": 26000
+    },
+    "reader-N2-argon": {
+      "image_tokens_upper": 5160,
+      "text_schema_framing_upper": 7341,
+      "complete_input_upper": 12501,
+      "dimensions": [
+        2550,
+        3300
+      ],
+      "admission_ceiling": 26000
+    },
+    "reader-N2-astra": {
+      "image_tokens_upper": 9985,
+      "text_schema_framing_upper": 7465,
+      "complete_input_upper": 17450,
+      "dimensions": [
+        2550,
+        3300
+      ],
+      "admission_ceiling": 26000
+    },
+    "ocr-N3": {
+      "image_tokens_upper": 9985,
+      "text_schema_framing_upper": 8034,
+      "complete_input_upper": 18019,
+      "dimensions": [
+        2550,
+        3300
+      ],
+      "admission_ceiling": 26000
+    },
+    "reader-N3-astra": {
+      "image_tokens_upper": 9985,
+      "text_schema_framing_upper": 7465,
+      "complete_input_upper": 17450,
+      "dimensions": [
+        2550,
+        3300
+      ],
+      "admission_ceiling": 26000
+    },
+    "reader-N3-argon": {
+      "image_tokens_upper": 5160,
+      "text_schema_framing_upper": 7341,
+      "complete_input_upper": 12501,
+      "dimensions": [
+        2550,
+        3300
+      ],
+      "admission_ceiling": 26000
+    },
+    "ocr-R1": {
+      "image_tokens_upper": 9985,
+      "text_schema_framing_upper": 8034,
+      "complete_input_upper": 18019,
+      "dimensions": [
+        2550,
+        3300
+      ],
+      "admission_ceiling": 26000
+    },
+    "reader-R1-argon": {
+      "image_tokens_upper": 5160,
+      "text_schema_framing_upper": 7341,
+      "complete_input_upper": 12501,
+      "dimensions": [
+        2550,
+        3300
+      ],
+      "admission_ceiling": 26000
+    },
+    "reader-R1-astra": {
+      "image_tokens_upper": 9985,
+      "text_schema_framing_upper": 7465,
+      "complete_input_upper": 17450,
+      "dimensions": [
+        2550,
+        3300
+      ],
+      "admission_ceiling": 26000
+    },
+    "ocr-R2": {
+      "image_tokens_upper": 9985,
+      "text_schema_framing_upper": 8034,
+      "complete_input_upper": 18019,
+      "dimensions": [
+        2550,
+        3300
+      ],
+      "admission_ceiling": 26000
+    },
+    "reader-R2-argon": {
+      "image_tokens_upper": 5160,
+      "text_schema_framing_upper": 7341,
+      "complete_input_upper": 12501,
+      "dimensions": [
+        2550,
+        3300
+      ],
+      "admission_ceiling": 26000
+    },
+    "reader-R2-astra": {
+      "image_tokens_upper": 9985,
+      "text_schema_framing_upper": 7465,
+      "complete_input_upper": 17450,
+      "dimensions": [
+        2550,
+        3300
+      ],
+      "admission_ceiling": 26000
+    },
+    "ocr-R3": {
+      "image_tokens_upper": 9985,
+      "text_schema_framing_upper": 8034,
+      "complete_input_upper": 18019,
+      "dimensions": [
+        2550,
+        3300
+      ],
+      "admission_ceiling": 26000
+    },
+    "reader-R3-astra": {
+      "image_tokens_upper": 9985,
+      "text_schema_framing_upper": 7465,
+      "complete_input_upper": 17450,
+      "dimensions": [
+        2550,
+        3300
+      ],
+      "admission_ceiling": 26000
+    },
+    "reader-R3-argon": {
+      "image_tokens_upper": 5160,
+      "text_schema_framing_upper": 7341,
+      "complete_input_upper": 12501,
+      "dimensions": [
+        2550,
+        3300
+      ],
+      "admission_ceiling": 26000
+    },
+    "ocr-A2": {
+      "image_tokens_upper": 9985,
+      "text_schema_framing_upper": 8034,
+      "complete_input_upper": 18019,
+      "dimensions": [
+        2550,
+        3300
+      ],
+      "admission_ceiling": 26000
+    },
+    "reader-A2-astra": {
+      "image_tokens_upper": 9985,
+      "text_schema_framing_upper": 7465,
+      "complete_input_upper": 17450,
+      "dimensions": [
+        2550,
+        3300
+      ],
+      "admission_ceiling": 26000
+    },
+    "reader-A2-argon": {
+      "image_tokens_upper": 5160,
+      "text_schema_framing_upper": 7341,
+      "complete_input_upper": 12501,
+      "dimensions": [
+        2550,
+        3300
+      ],
+      "admission_ceiling": 26000
+    }
+  },
+  "code_sha256": {
+    "benchmarks/scripts/qualify_argon_literal.py": "03ed30ef0e8f2c3aa647e63de66c0c343c8a5b2f10feec3ddf1450427f667e4e",
+    "benchmarks/providers/literal_qualification_guard.py": "d0cc72cbbf39ad7383d2e8a472240845ad10fcfa75c1062d1d92cbab0410a175",
+    "modules/common/google_table_source_review.py": "f2b710dbac60d77f65b96f868d79ec705800d1575a610a69360ffaa39e8d8474",
+    "modules/common/table_source_review.py": "78599f846eb31b2ad7a1607257458760e6e93e6eaa6d4ab062ffcbd30b879709",
+    "modules/common/literal_table_review.py": "25085a0937d27e5bae61e3973eddcf2ea6a43496cba814d57fb8af67a0212d67",
+    "modules/common/literal_fidelity_bundle.py": "32bcda36545d9f7b4dfaa78dd8d0c590688bed45135ded89637211be4fbe257b",
+    "modules/common/openai_client.py": "640c82f2ab6301194f89d95c25ea29d7fd474518ddb5275ce63329e6c3ce1293",
+    "modules/adapter/literal_table_review_v1/main.py": "69e41bd4e49d1f82017b2752c4946997d4f36b372f5f85e933224cc0e0ead3c2",
+    "modules/build/build_chapter_html_v1/main.py": "c4f90a260c71d083a2d52c930e6e4306aee8d684dd233add8950bd7815e09806",
+    "modules/build/build_chapter_html_v1/module.yaml": "36e2990bf35f1931c6155d47070063f8a0447cd4a75eb05a23dae85815058e7d",
+    "modules/adapter/literal_table_review_v1/module.yaml": "e1c525996bd668080d83896a5a23a07a19f04cdfdb517da5e24ba8f89a8bc6d2",
+    "modules/extract/ocr_ai_gpt51_v1/main.py": "bd80f4d050a1eacc6442295471d9727bfd16ff674b84c2d64cec0e491cd96b95",
+    "doc_web/literal_fidelity.py": "39e4ec0148dd886af7e87d5a762bb043068d1c1a3d06fe742c9820e10fae344a",
+    "doc_web/literal_tables.py": "f88035148e70db6e32332a459459da04088660aab4444d97ab6af9dc256dfffb",
+    "driver.py": "8f6d72c83387389a8e06989a15c7849bcf3930314851f0066d268d2fab3762a6",
+    "modules/extract/extract_pdf_images_capped_v1/main.py": "8d3a8f64be95111be385e5bc6e296c824539d72d221f029e4154439f50768376",
+    "modules/common/ocr_request_receipt.py": "4125331357b9415a6ccdc0f3eb88349136e1420fd8df9a6602f3acce5a6991a5",
+    "modules/common/ocr_literal_policy.py": "76cda2623060fe7dc6754419e27d81b19d4ffc92371814c9378b10da213a9802",
+    "modules/common/utils.py": "7be234ec64b4bfe5594e8e071d64375c2ca0dcadcb38f6423efc64305526540c",
+    "modules/common/load_artifact_v1/main.py": "4ecd59eccf8f635b2e31b719ed241d4f22c85b8b480aa14794e4d57a6af2b9ec",
+    "doc_web/env.py": "6153a345dc79252f45075b12f0b2c682c900016ab2558b6c1b074e3a4bd06fe8",
+    "schemas.py": "bd5915b05ff5d30595b21b7d63778d1012c31ce128b6f1c4a66603689307a4be",
+    "configs/recipes/recipe-pdf-literal-tables-html.yaml": "093d672f36c1d19cd2968917fb4b300393d526f0afbe577bff5961476af4186c",
+    "configs/recipes/recipe-pdf-literal-tables-html-argon.yaml": "637ec6d8e9c8d7d912ceae7bbe26e82255e555bbb81d92a9c6416a25af1ca7e6"
+  },
+  "fixture_sha256": {
+    "benchmarks/fixtures/argon-literal-qualification-v1/corpus.json": "ad80fe8dbff492d009522a3c78ac16c0fc12a22efce080c6d463a2799ff7015b",
+    "benchmarks/fixtures/argon-literal-qualification-v1/README.md": "1308db5ffa93d63d85bfba66d808797b21d560cf076b7d0b4f9ef1f4ccd5f836",
+    "benchmarks/fixtures/argon-literal-qualification-v1/manifest.json": "16fce905b21e65344b57247f5850c3e2ee081d59853e404d8c0bde84eff75718",
+    "benchmarks/fixtures/argon-literal-qualification-v1/generate_fixture.py": "d0db65ccf9046a0d30b530d4fd0832bbe33f1c1e613d292454c98ea27ffa64fd",
+    "benchmarks/fixtures/argon-literal-qualification-v1/seal_manifest.py": "7b98b04b9c2ee2ce5122a4490fa33eeaf168298781d0766ffda5c4e07bbb7223",
+    "benchmarks/fixtures/argon-literal-qualification-v1/proof/A1-difference.png": "3e09475504f64ba19e61aa7a5dc3316f33b2f4f17c275fa52feb481eb322db1b",
+    "benchmarks/fixtures/argon-literal-qualification-v1/proof/A1-lowercase-l.png": "ebc779a61e917a00a296d88806ca3c968e94152880f64c8c7a625040424742f7",
+    "benchmarks/fixtures/argon-literal-qualification-v1/proof/A1-counterfactual-proof.json": "cca1d22ed298475de3fd075a22b6ea89412b802c13a311fc3cbda4accda41fbe",
+    "benchmarks/fixtures/argon-literal-qualification-v1/proof/A1-digit-one.png": "ebc779a61e917a00a296d88806ca3c968e94152880f64c8c7a625040424742f7",
+    "benchmarks/fixtures/argon-literal-qualification-v1/renders/A1.png": "a7be92eae4a84ce647f90444adeb54a343fefda29a06eea3a6eabc87206e11f4",
+    "benchmarks/fixtures/argon-literal-qualification-v1/renders/A2.png": "9956be29e37578cf0a00f6abe4b773ada5026ca882f2361ea101de09e5148a97",
+    "benchmarks/fixtures/argon-literal-qualification-v1/renders/R2.png": "9f4dabf4ae2f7b1de78fb65c4aebd88ec33746a76533f70030e62bce593be642",
+    "benchmarks/fixtures/argon-literal-qualification-v1/renders/R3.png": "88cc8b52beeac935478e0d44f10eee84252269526051891d3104e2d8c42949e5",
+    "benchmarks/fixtures/argon-literal-qualification-v1/renders/R1.png": "8f14b37bee8af2c273459c703b60a8570e96a2126e64033ad9a6f0a5a764573d",
+    "benchmarks/fixtures/argon-literal-qualification-v1/renders/N1.png": "81f766b6b0b856d2440caf8f8742e0dbfe6e2878d1fec8ddf0d61698b0b8720f",
+    "benchmarks/fixtures/argon-literal-qualification-v1/renders/N3.png": "d0ad9575a5a47ea152dc60bda2502640dcb05d9ab25a52be8691664b2147ae35",
+    "benchmarks/fixtures/argon-literal-qualification-v1/renders/N2.png": "577e73e5d933d66d70bf2633692dc15408d92e2bdcc978a606131a878a95a4ca",
+    "benchmarks/fixtures/argon-literal-qualification-v1/source/native.pdf": "5646503106e40efddcbb3d461fc525eaa8c945a674ab6ae7d50890aec9d31e1e",
+    "benchmarks/fixtures/argon-literal-qualification-v1/source/raster.pdf": "72cbbb41c97e90a01d339b23b88dcbed10b4e388f9a42b60f649f1cc6793409a",
+    "benchmarks/fixtures/argon-literal-qualification-v1/source/holds.pdf": "d9a0b989c44a2c41defa5e9f0c0101cc1c6bded7def5ab18e93d0bbcf78d963f",
+    "benchmarks/fixtures/argon-literal-qualification-v1/gold/R1.json": "f9861838330bbda4eafc4c8aa8a74879d55c1d423be84d21f039a6438df99f9b",
+    "benchmarks/fixtures/argon-literal-qualification-v1/gold/A2.json": "2e7fd0dbce3e5acf3590a1ed87d5dcdb328d1ea3582a2cbd587642737c15062e",
+    "benchmarks/fixtures/argon-literal-qualification-v1/gold/N1.json": "6b4868e218383133b04682cacfec7fef97af2cc433d334aea00b59299a9c91ec",
+    "benchmarks/fixtures/argon-literal-qualification-v1/gold/N2.json": "448bff5c0315b09180aec1a5837acd83f406ccc6cd331b2b374bb756297e3cd6",
+    "benchmarks/fixtures/argon-literal-qualification-v1/gold/N3.json": "0e5379378440890c105e1cceb0030106b4136c668d30e4f46a661ee9d9963d1d",
+    "benchmarks/fixtures/argon-literal-qualification-v1/gold/R3.json": "f5392ede96086ab6151bfa5c64111a8d239eb21a266fc0d5c52538bbc93d85af",
+    "benchmarks/fixtures/argon-literal-qualification-v1/gold/A1.json": "c6c9635b5d39b33b7e840ffa66a76c70542afa82dedf249088fc76093bf0ae29",
+    "benchmarks/fixtures/argon-literal-qualification-v1/gold/R2.json": "c82517b3d01614ad51895d6a3b80419460084384cb2d4aaba63c26ac062d907d"
+  },
+  "live_authorization": "Root explicit clearance required after source and offline review",
+  "opening": [
+    "N1",
+    "A1"
+  ],
+  "repeats": [
+    "N3",
+    "R1",
+    "R3",
+    "A1"
+  ]
+}

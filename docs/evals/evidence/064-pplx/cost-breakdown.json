@@ -1,0 +1,8 @@
+{
+  "qualification": 0.001197916,
+  "subject_gpt41": 0.04337600000000001,
+  "subject_pplx": 0.0004306800000000001,
+  "subject_jev": 0.0014196,
+  "subject_decisions": 0.0021728000000000008,
+  "real_fallback": 0.04858400000000001
+}

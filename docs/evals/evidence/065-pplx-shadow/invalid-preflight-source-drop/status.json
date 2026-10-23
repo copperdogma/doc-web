@@ -1,0 +1,7 @@
+{
+  "status": "invalid_offline_preflight",
+  "paid_calls": 0,
+  "spend_usd": 0,
+  "cause": "PageHtml required page omitted; stamp-skip dropped all source rows despite driver exit0; assertions checked field presence only",
+  "fix": "schema-valid rows from independently reviewed standalone source bytes; exact loaded/dossier/compact source observation and count assertions; reject stamp-skip"
+}

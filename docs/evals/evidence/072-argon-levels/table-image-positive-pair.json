@@ -1,0 +1,105 @@
+{
+  "results": [
+    {
+      "lane": "table",
+      "case": "image-positive",
+      "level": "medium",
+      "stage": "table-image-positive-medium",
+      "original_sequence": 6,
+      "original_request_sha256": "f687b77d6f855e7e4121c9f3ecccb2d593089fb1b910ceaf04f59ffcd224f68d",
+      "request_sha256": "f687b77d6f855e7e4121c9f3ecccb2d593089fb1b910ceaf04f59ffcd224f68d",
+      "image_sha256": "faf29a9b7cdd8758657bf524beed9067230b6c01e16bc4f41c43332c5dc6c2a9",
+      "semantic_text_sha256": "22265ab78ef08a927a85c35ae69dab43001083f40c1a68f84e738e70069ed949",
+      "schema_sha256": "138cc8a900b2216cb8cfee8d25ada2652d4f9f012695f5bb9fbaf66174c3bcea",
+      "max_output_tokens": 32768,
+      "per_call_reservation_usd": 0.37968,
+      "conditional": false,
+      "status": "verified",
+      "uncertainties": [],
+      "score": {
+        "text_pass": true,
+        "structure_pass": true,
+        "pass": true,
+        "text_mismatch_count": 0,
+        "structure_mismatch_count": 0,
+        "text_mismatches": [],
+        "structure_mismatches": [],
+        "counts": {
+          "golden": {
+            "tables": 1,
+            "rows": 6,
+            "cells": 23
+          },
+          "actual": {
+            "tables": 1,
+            "rows": 6,
+            "cells": 23
+          }
+        },
+        "scope": {
+          "mode": "all_tables",
+          "table_index": null,
+          "golden_table_count": 1,
+          "actual_table_count": 1,
+          "excluded_actual_table_indices": [],
+          "compared_actual_table_count": 1,
+          "document_actual_table_count": 1
+        }
+      },
+      "report": "benchmarks/results/argon-levels-20261013/table-image-positive-medium_reports/row-00000-page-00001-original-00001.json"
+    },
+    {
+      "lane": "table",
+      "case": "image-positive",
+      "level": "low",
+      "stage": "table-image-positive-low",
+      "original_sequence": 6,
+      "original_request_sha256": "f687b77d6f855e7e4121c9f3ecccb2d593089fb1b910ceaf04f59ffcd224f68d",
+      "request_sha256": "4de29f3197b90273a588afc1dbe8c9d94787bea43ee0bcc98a32ae0aba512c26",
+      "image_sha256": "faf29a9b7cdd8758657bf524beed9067230b6c01e16bc4f41c43332c5dc6c2a9",
+      "semantic_text_sha256": "22265ab78ef08a927a85c35ae69dab43001083f40c1a68f84e738e70069ed949",
+      "schema_sha256": "138cc8a900b2216cb8cfee8d25ada2652d4f9f012695f5bb9fbaf66174c3bcea",
+      "max_output_tokens": 32768,
+      "per_call_reservation_usd": 0.37968,
+      "conditional": false,
+      "status": "verified",
+      "uncertainties": [],
+      "score": {
+        "text_pass": true,
+        "structure_pass": true,
+        "pass": true,
+        "text_mismatch_count": 0,
+        "structure_mismatch_count": 0,
+        "text_mismatches": [],
+        "structure_mismatches": [],
+        "counts": {
+          "golden": {
+            "tables": 1,
+            "rows": 6,
+            "cells": 23
+          },
+          "actual": {
+            "tables": 1,
+            "rows": 6,
+            "cells": 23
+          }
+        },
+        "scope": {
+          "mode": "all_tables",
+          "table_index": null,
+          "golden_table_count": 1,
+          "actual_table_count": 1,
+          "excluded_actual_table_indices": [],
+          "compared_actual_table_count": 1,
+          "document_actual_table_count": 1
+        }
+      },
+      "report": "benchmarks/results/argon-levels-20261013/table-image-positive-low_reports/row-00000-page-00001-original-00001.json"
+    }
+  ],
+  "pair_wall_seconds": 708.8804314589943,
+  "order": [
+    "medium",
+    "low"
+  ]
+}

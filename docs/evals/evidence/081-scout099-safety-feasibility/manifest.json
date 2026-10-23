@@ -1,0 +1,90 @@
+{
+  "base_sha": "1a347f3f5ea13cb672a4e92d040704b99e556118",
+  "worktree": "/Users/cam/.codex/worktrees/scout099-docweb-safety-feasibility-20261020",
+  "branch": "codex/scout099-safety-feasibility-20261020",
+  "decision": "defer runtime/paid qualification; retain current consumer; minimum explicit informational proposal delivered",
+  "provider_dispatches": 0,
+  "spend_usd": 0,
+  "raw_archive": {
+    "archive": "/Users/cam/.codex/worktrees/scout099-docweb-20261020/docs/evals/evidence/080-scout099/native-evidence-dedup.tar.gz",
+    "manifest": "/Users/cam/.codex/worktrees/scout099-docweb-20261020/docs/evals/evidence/080-scout099/manifest.json",
+    "manifest_sha256": "9811ab6a1ae5f230259b2bb0625c9a1a30200a0561d9ee3bdbfafebd7b4a3ae5",
+    "restore": "python RESTORE_SCRIPT NEW_DISJOINT_DIRECTORY (filesystem only)",
+    "restore_script": "/Users/cam/.codex/worktrees/scout099-docweb-20261020/docs/evals/evidence/080-scout099/restore.py",
+    "restore_script_sha256": "f3908fb10b756b32ccddf822381a0225ce592ce56e225b6db378e662ec8283f4",
+    "sha256": "a95d8003fef28e323f6c9050f6b23a9dd5e22a396ba010c5beb4cfe142a6a271"
+  },
+  "hash_scope": "all additive audit packet files except this self-referential manifest; all changed owner record/generated files",
+  "files": [
+    {
+      "path": "CHANGELOG.md",
+      "bytes": 252625,
+      "sha256": "a420ae076a39d9ee1fa093a6c9e45db1e48282c4fa01e875a6e623ac2ca64248"
+    },
+    {
+      "path": "docs/evals/attempts/081-scout099-safety-feasibility.md",
+      "bytes": 1880,
+      "sha256": "df345b4fc923127c2124f2457635015a34066635c149d5d2c27c7257b2bf0ed4"
+    },
+    {
+      "path": "docs/evals/evidence/081-scout099-safety-feasibility/audit.py",
+      "bytes": 10972,
+      "sha256": "3ec27a708359e0f030dc0840489203d3f57969dd8f89244299be99d574776f4f"
+    },
+    {
+      "path": "docs/evals/evidence/081-scout099-safety-feasibility/blank-band-observation.json",
+      "bytes": 454,
+      "sha256": "b975212b3d263d62a725507163d96def7be9d0227a3c490e7cf4e286bd5f3461"
+    },
+    {
+      "path": "docs/evals/evidence/081-scout099-safety-feasibility/complete-payloads.json",
+      "bytes": 119972,
+      "sha256": "d4a386a4334805671fb7694dfcbc6d4ef1e1de548cc7d1c04175c1409e2a72c9"
+    },
+    {
+      "path": "docs/evals/evidence/081-scout099-safety-feasibility/consumer-replay.json",
+      "bytes": 148928,
+      "sha256": "56a838f687b8d9f57a0393506b35fae3862e4cabbc9c7f09bdb7f003860c9659"
+    },
+    {
+      "path": "docs/evals/evidence/081-scout099-safety-feasibility/report.md",
+      "bytes": 10151,
+      "sha256": "e4c9ea6f21c16b368c19d60c42d9432aa059d1d48e87a64dfcae4d37c0cce9b5"
+    },
+    {
+      "path": "docs/evals/evidence/081-scout099-safety-feasibility/source-assist.json",
+      "bytes": 69792,
+      "sha256": "5a8f90af061393acde5c6b6703093e767b5d9fd99f71cd85334ffa1941779da1"
+    },
+    {
+      "path": "docs/evals/evidence/081-scout099-safety-feasibility/source-review.json",
+      "bytes": 168521,
+      "sha256": "708120db12117a082d6687a71eaf59ab9235ed118bd7939959cf9465f7f5a37a"
+    },
+    {
+      "path": "docs/evals/evidence/081-scout099-safety-feasibility/validation.json",
+      "bytes": 2789,
+      "sha256": "476e50375efd47d6e32d2a875088ab401349900e12e8a11076470b0d605f7654"
+    },
+    {
+      "path": "docs/evals/registry.yaml",
+      "bytes": 378974,
+      "sha256": "fdde7a775b2cb176488d0da6808afc92626982b9fd58c49f5a84f6b7c4458162"
+    },
+    {
+      "path": "docs/methodology/graph.json",
+      "bytes": 1001980,
+      "sha256": "8ae368be5d9e0b259e2c7c5c311cc23135e5c472ce35d6486b99b24bb3e479cf"
+    },
+    {
+      "path": "docs/stories/story-259-scout099-safety-consumer-feasibility.md",
+      "bytes": 4035,
+      "sha256": "85af34e052143943709e62896e2a6df8634ebffed4849de2f4fabf0dc69f9dc6"
+    },
+    {
+      "path": "docs/stories.md",
+      "bytes": 41600,
+      "sha256": "1ca62f747040657f8823259038c87c7c56b908b5f987bec6b6bacdea81fb9b93"
+    }
+  ]
+}

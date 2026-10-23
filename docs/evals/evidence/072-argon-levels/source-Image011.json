@@ -1,0 +1,36 @@
+{
+  "case": "Image011",
+  "reviewer": "independentSol6.1high",
+  "high_source_complete": false,
+  "high_raw_coordinate_compliant": true,
+  "bbox": [
+    0.119,
+    0.686,
+    0.875,
+    0.896
+  ],
+  "source_dimensions": [
+    1545,
+    2000
+  ],
+  "right_px": 1351.875,
+  "clipped_pixels": {
+    "y": 1539,
+    "x": [
+      1352,
+      1353
+    ],
+    "gray_values": [
+      4,
+      92
+    ]
+  },
+  "complete": [
+    "logo",
+    "seal",
+    "both handwritten signatures"
+  ],
+  "failure": "upper horizontal signature rule tail1\u20132px clipped; frozenexplicitcriterionunmet",
+  "high_result_sha256": "b3e80acff3955d331c77ba6dc178e2ad691458944f5c0f4eaf7bef916d5d5808",
+  "medium": "notmeasured afterrawcontractarmstop"
+}

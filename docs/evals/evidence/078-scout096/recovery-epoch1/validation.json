@@ -1,0 +1,10 @@
+{
+  "guardtests": 2,
+  "archive_verified_files": 35,
+  "original_archive_ledger": "unchanged verified",
+  "compilation": 4,
+  "registry_yaml": "valid",
+  "methodology_build_check": "pass",
+  "git_diff_check": "pass",
+  "reproduction": "known unsafe scorer-only bulk path disabled; explicit single-case barrier"
+}

@@ -1,0 +1,399 @@
+{
+  "base": "e44c0a41abf02ad266c10afdf5d95d48bb1b1fe2",
+  "classification": "synthetic sources and full header-free native envelopes; accountID redacted in trackable error envelope; complete original in ignored protected owner result path",
+  "archive_sha256": "9a635f04cbd3766009483641a0a43ee8bdd6f261917ce1935e12857711b5de97",
+  "files": [
+    {
+      "path": "benchmarks/results/wonder-thinking-20261014/response-009.json",
+      "sha256": "49e2df2d37787405af0a8cc35ef378584564320ce3bde31652955ad3cbaed96b",
+      "bytes": 24623,
+      "protected_original_sha256": "49e2df2d37787405af0a8cc35ef378584564320ce3bde31652955ad3cbaed96b",
+      "account_id_redacted": false
+    },
+    {
+      "path": "benchmarks/results/wonder-thinking-20261014/image-positive-medium-decoded.json",
+      "sha256": "615a0d5ee9a0a33f0e156fb93059a37c7859da302711d775d2360623018c17ae",
+      "bytes": 653,
+      "protected_original_sha256": "086197e3b4a52b7b6f175d15569649c9a4c1e7634691dfff58111835e4a23962",
+      "account_id_redacted": true
+    },
+    {
+      "path": "benchmarks/results/wonder-thinking-20261014/request-006.json",
+      "sha256": "b68499fd3b2429923dd5030caf9f633d11365706d0f0c989e29e80c4b4dca14b",
+      "bytes": 85131,
+      "protected_original_sha256": "b68499fd3b2429923dd5030caf9f633d11365706d0f0c989e29e80c4b4dca14b",
+      "account_id_redacted": false
+    },
+    {
+      "path": "benchmarks/results/wonder-thinking-20261014/ambiguity-negative-max.jsonl",
+      "sha256": "5e8bce5584fae07cb9404ab3b98346ee9b8d326a49713fa14132d1a93c5e3ac6",
+      "bytes": 2052,
+      "protected_original_sha256": "5e8bce5584fae07cb9404ab3b98346ee9b8d326a49713fa14132d1a93c5e3ac6",
+      "account_id_redacted": false
+    },
+    {
+      "path": "benchmarks/results/wonder-thinking-20261014/response-005.json",
+      "sha256": "c7a5ec2e6bfb294467eaae9a18a86b7411c3223457baec0ada764e71e99a82ab",
+      "bytes": 8505,
+      "protected_original_sha256": "c7a5ec2e6bfb294467eaae9a18a86b7411c3223457baec0ada764e71e99a82ab",
+      "account_id_redacted": false
+    },
+    {
+      "path": "benchmarks/results/wonder-thinking-20261014/image-positive-max-decoded.json",
+      "sha256": "ebd0ab8358622e9aace894dc29137db554570b137ac2f56ffd66d7a7ad06e7f6",
+      "bytes": 24986,
+      "protected_original_sha256": "ebd0ab8358622e9aace894dc29137db554570b137ac2f56ffd66d7a7ad06e7f6",
+      "account_id_redacted": false
+    },
+    {
+      "path": "benchmarks/results/wonder-thinking-20261014/ambiguity-negative-high-decoded.json",
+      "sha256": "6a481f1dba19654ee616401cf2718d8458b29c7c7b985f86de52228c20d72efb",
+      "bytes": 7859,
+      "protected_original_sha256": "6a481f1dba19654ee616401cf2718d8458b29c7c7b985f86de52228c20d72efb",
+      "account_id_redacted": false
+    },
+    {
+      "path": "benchmarks/results/wonder-thinking-20261014/response-004.json",
+      "sha256": "df0a07a647d6c50355fe8373d429c383dfd80d02caa621301aa93a3717b69568",
+      "bytes": 5292,
+      "protected_original_sha256": "df0a07a647d6c50355fe8373d429c383dfd80d02caa621301aa93a3717b69568",
+      "account_id_redacted": false
+    },
+    {
+      "path": "benchmarks/results/wonder-thinking-20261014/native-positive-control.jsonl",
+      "sha256": "4c9a0386321d06d9af61e283a2ec6cb813d3350feda9f2c8227026c01246087b",
+      "bytes": 2337,
+      "protected_original_sha256": "4c9a0386321d06d9af61e283a2ec6cb813d3350feda9f2c8227026c01246087b",
+      "account_id_redacted": false
+    },
+    {
+      "path": "benchmarks/results/wonder-thinking-20261014/image-positive-control.jsonl",
+      "sha256": "434468155e40417542306bdedbac4bd17bcc2fca6e6f3fcc0f0748d1669e3290",
+      "bytes": 2574,
+      "protected_original_sha256": "434468155e40417542306bdedbac4bd17bcc2fca6e6f3fcc0f0748d1669e3290",
+      "account_id_redacted": false
+    },
+    {
+      "path": "benchmarks/results/wonder-thinking-20261014/image-positive-high.jsonl",
+      "sha256": "4f0151324949217d289a49152d2a0cd234b4dfb21485e4121a27f1cf932f1a2e",
+      "bytes": 2567,
+      "protected_original_sha256": "4f0151324949217d289a49152d2a0cd234b4dfb21485e4121a27f1cf932f1a2e",
+      "account_id_redacted": false
+    },
+    {
+      "path": "benchmarks/results/wonder-thinking-20261014/request-007.json",
+      "sha256": "8559fac34062e06f8b0e9f81aebc44838f1dfe0c78ca2d33e6d1a279bdff9300",
+      "bytes": 104019,
+      "protected_original_sha256": "8559fac34062e06f8b0e9f81aebc44838f1dfe0c78ca2d33e6d1a279bdff9300",
+      "account_id_redacted": false
+    },
+    {
+      "path": "benchmarks/results/wonder-thinking-20261014/image-positive-medium.jsonl",
+      "sha256": "71eb56d0ca944f42ebde899790abdf5c51e5c7f85209b9076f17673da64b81bc",
+      "bytes": 2573,
+      "protected_original_sha256": "71eb56d0ca944f42ebde899790abdf5c51e5c7f85209b9076f17673da64b81bc",
+      "account_id_redacted": false
+    },
+    {
+      "path": "benchmarks/results/wonder-thinking-20261014/response-008.json",
+      "sha256": "c114dab7654d4312e0260fbe43718070ec4dfd24ca378e4e892fdef1adb88eac",
+      "bytes": 7447,
+      "protected_original_sha256": "c114dab7654d4312e0260fbe43718070ec4dfd24ca378e4e892fdef1adb88eac",
+      "account_id_redacted": false
+    },
+    {
+      "path": "benchmarks/results/wonder-thinking-20261014/response-002-generation.json",
+      "sha256": "e17059d0a99e2dc61c4026b65014b67f2cc9f178bd60f3980cd224fd3da4fdaa",
+      "bytes": 1630,
+      "protected_original_sha256": "e17059d0a99e2dc61c4026b65014b67f2cc9f178bd60f3980cd224fd3da4fdaa",
+      "account_id_redacted": false
+    },
+    {
+      "path": "benchmarks/results/wonder-thinking-20261014/response-003.json",
+      "sha256": "615a0d5ee9a0a33f0e156fb93059a37c7859da302711d775d2360623018c17ae",
+      "bytes": 653,
+      "protected_original_sha256": "efb5e9d0530f29444c21689390e1e0ed0d152a242a5a94c2b2aae0db98a59d46",
+      "account_id_redacted": true
+    },
+    {
+      "path": "benchmarks/results/wonder-thinking-20261014/request-001.json",
+      "sha256": "5ae0ca5102032138276e36814032176d4cb7cbb6802541fc1336ee1267308587",
+      "bytes": 66061,
+      "protected_original_sha256": "5ae0ca5102032138276e36814032176d4cb7cbb6802541fc1336ee1267308587",
+      "account_id_redacted": false
+    },
+    {
+      "path": "benchmarks/results/wonder-thinking-20261014/ambiguity-negative-control.jsonl",
+      "sha256": "1f303bbde8676f7233b3113504bf16322e8d433b13e58deaf7cd173c47df7a6f",
+      "bytes": 2064,
+      "protected_original_sha256": "1f303bbde8676f7233b3113504bf16322e8d433b13e58deaf7cd173c47df7a6f",
+      "account_id_redacted": false
+    },
+    {
+      "path": "benchmarks/results/wonder-thinking-20261014/response-002.json",
+      "sha256": "7f1495c05bb6fdc9ff0fa6c14c01f767eb94b0a93301d338040a9af7dec5cdc5",
+      "bytes": 24800,
+      "protected_original_sha256": "7f1495c05bb6fdc9ff0fa6c14c01f767eb94b0a93301d338040a9af7dec5cdc5",
+      "account_id_redacted": false
+    },
+    {
+      "path": "benchmarks/results/wonder-thinking-20261014/response-001.json",
+      "sha256": "54d11ba64e4fb8c87b8f6eeeaa3ebf7a0da5b0fb32b90c07da34f1d7cb7a0ffd",
+      "bytes": 7408,
+      "protected_original_sha256": "54d11ba64e4fb8c87b8f6eeeaa3ebf7a0da5b0fb32b90c07da34f1d7cb7a0ffd",
+      "account_id_redacted": false
+    },
+    {
+      "path": "benchmarks/results/wonder-thinking-20261014/response-001-generation.json",
+      "sha256": "505e360feaa6bbd11b9f64bc8069f4e93a98a24b0f0f08bf7f339df4e3c61707",
+      "bytes": 1627,
+      "protected_original_sha256": "505e360feaa6bbd11b9f64bc8069f4e93a98a24b0f0f08bf7f339df4e3c61707",
+      "account_id_redacted": false
+    },
+    {
+      "path": "benchmarks/results/wonder-thinking-20261014/request-002.json",
+      "sha256": "e5a8ef8346d9342a30c5a335877905b15f0dd997a2fde95f953668cbfba41eae",
+      "bytes": 104017,
+      "protected_original_sha256": "e5a8ef8346d9342a30c5a335877905b15f0dd997a2fde95f953668cbfba41eae",
+      "account_id_redacted": false
+    },
+    {
+      "path": "benchmarks/results/wonder-thinking-20261014/ambiguity-negative-max-decoded.json",
+      "sha256": "868024af1b7dd350a672b61ab88f1ef0688cefa701855530dfdefbd7b96cbf02",
+      "bytes": 7898,
+      "protected_original_sha256": "868024af1b7dd350a672b61ab88f1ef0688cefa701855530dfdefbd7b96cbf02",
+      "account_id_redacted": false
+    },
+    {
+      "path": "benchmarks/results/wonder-thinking-20261014/image-positive-max.jsonl",
+      "sha256": "02f7f9c48631c1a18259070422e9706b650ee1b9d15ab1fc72d6aef4437931bf",
+      "bytes": 2564,
+      "protected_original_sha256": "02f7f9c48631c1a18259070422e9706b650ee1b9d15ab1fc72d6aef4437931bf",
+      "account_id_redacted": false
+    },
+    {
+      "path": "benchmarks/results/wonder-thinking-20261014/request-003.json",
+      "sha256": "8559fac34062e06f8b0e9f81aebc44838f1dfe0c78ca2d33e6d1a279bdff9300",
+      "bytes": 104019,
+      "protected_original_sha256": "8559fac34062e06f8b0e9f81aebc44838f1dfe0c78ca2d33e6d1a279bdff9300",
+      "account_id_redacted": false
+    },
+    {
+      "path": "benchmarks/results/wonder-thinking-20261014/response-009-generation.json",
+      "sha256": "716f0d4617cf843d627ee2d0820f3e45f73312c64901c0b29905894fe985255e",
+      "bytes": 1640,
+      "protected_original_sha256": "716f0d4617cf843d627ee2d0820f3e45f73312c64901c0b29905894fe985255e",
+      "account_id_redacted": false
+    },
+    {
+      "path": "benchmarks/results/wonder-thinking-20261014/image-positive-high-decoded.json",
+      "sha256": "501afd66207f647c2ffb98eb90252dd7b0402119f4e717500f03bd24a6191d0d",
+      "bytes": 25174,
+      "protected_original_sha256": "501afd66207f647c2ffb98eb90252dd7b0402119f4e717500f03bd24a6191d0d",
+      "account_id_redacted": false
+    },
+    {
+      "path": "benchmarks/results/wonder-thinking-20261014/image-positive-medium-recovery1.jsonl",
+      "sha256": "0880d0d9f84ad02f471ac18f48fe1c47cd64459c7e1b461ba0663e7a5fa07b92",
+      "bytes": 2603,
+      "protected_original_sha256": "0880d0d9f84ad02f471ac18f48fe1c47cd64459c7e1b461ba0663e7a5fa07b92",
+      "account_id_redacted": false
+    },
+    {
+      "path": "benchmarks/results/wonder-thinking-20261014/request-004.json",
+      "sha256": "f327844def7f4d7ad49114964b4302016896b14ee8a31b6bb15a0b0ee5f7a386",
+      "bytes": 66011,
+      "protected_original_sha256": "f327844def7f4d7ad49114964b4302016896b14ee8a31b6bb15a0b0ee5f7a386",
+      "account_id_redacted": false
+    },
+    {
+      "path": "benchmarks/results/wonder-thinking-20261014/response-007-generation.json",
+      "sha256": "bd66ad2208df0cb3954c58da50711a0acaf59c465e8e98382b5eaedd453503f2",
+      "bytes": 1629,
+      "protected_original_sha256": "bd66ad2208df0cb3954c58da50711a0acaf59c465e8e98382b5eaedd453503f2",
+      "account_id_redacted": false
+    },
+    {
+      "path": "benchmarks/results/wonder-thinking-20261014/response-008-generation.json",
+      "sha256": "ed068f8ba0512da281e13d55a320e54c274686c58e7142ba980b59871038fe84",
+      "bytes": 1628,
+      "protected_original_sha256": "ed068f8ba0512da281e13d55a320e54c274686c58e7142ba980b59871038fe84",
+      "account_id_redacted": false
+    },
+    {
+      "path": "benchmarks/results/wonder-thinking-20261014/request-008.json",
+      "sha256": "bc4dc064238372b2a3201138b322d2d697502d218c533e6d0fa8f2688ffeca91",
+      "bytes": 66060,
+      "protected_original_sha256": "bc4dc064238372b2a3201138b322d2d697502d218c533e6d0fa8f2688ffeca91",
+      "account_id_redacted": false
+    },
+    {
+      "path": "benchmarks/results/wonder-thinking-20261014/response-007.json",
+      "sha256": "d30fba9e68c7014cd93ad3f2a2ae7095b9888fda2ca53f3edb1beca84a3d0a3e",
+      "bytes": 13344,
+      "protected_original_sha256": "d30fba9e68c7014cd93ad3f2a2ae7095b9888fda2ca53f3edb1beca84a3d0a3e",
+      "account_id_redacted": false
+    },
+    {
+      "path": "benchmarks/results/wonder-thinking-20261014/response-006.json",
+      "sha256": "facde6de4e2e9dbf36d7b7b1e4e3662e7cdada16f61544a1c467a0888b1f71d5",
+      "bytes": 7576,
+      "protected_original_sha256": "facde6de4e2e9dbf36d7b7b1e4e3662e7cdada16f61544a1c467a0888b1f71d5",
+      "account_id_redacted": false
+    },
+    {
+      "path": "benchmarks/results/wonder-thinking-20261014/image-positive-medium-recovery1-decoded.json",
+      "sha256": "ed702c84aea611aae9ac0823a388d1b7fe09e07797700233949ec13a127c47fe",
+      "bytes": 13773,
+      "protected_original_sha256": "ed702c84aea611aae9ac0823a388d1b7fe09e07797700233949ec13a127c47fe",
+      "account_id_redacted": false
+    },
+    {
+      "path": "benchmarks/results/wonder-thinking-20261014/request-009.json",
+      "sha256": "16aa4027ff753785df965bb1c922a8a2265f4e81ced72082fc6e525dc51c2a7d",
+      "bytes": 104016,
+      "protected_original_sha256": "16aa4027ff753785df965bb1c922a8a2265f4e81ced72082fc6e525dc51c2a7d",
+      "account_id_redacted": false
+    },
+    {
+      "path": "benchmarks/results/wonder-thinking-20261014/ledger.json",
+      "sha256": "007b95b409fa8f2090f9c819993c1a49556801c0909ebbe3f6f9f16826b221ba",
+      "bytes": 10551,
+      "protected_original_sha256": "007b95b409fa8f2090f9c819993c1a49556801c0909ebbe3f6f9f16826b221ba",
+      "account_id_redacted": false
+    },
+    {
+      "path": "benchmarks/results/wonder-thinking-20261014/ambiguity-negative-high.jsonl",
+      "sha256": "081c8c0a17defce0f90ccbc9a8c541ceecb0b980489b57671f17022dff97a1d6",
+      "bytes": 2055,
+      "protected_original_sha256": "081c8c0a17defce0f90ccbc9a8c541ceecb0b980489b57671f17022dff97a1d6",
+      "account_id_redacted": false
+    },
+    {
+      "path": "benchmarks/results/wonder-thinking-20261014/request-005.json",
+      "sha256": "e6235031e3cac69a3f5d01f343d3353c728a73bc7d4e0fa043959507638e9d30",
+      "bytes": 103967,
+      "protected_original_sha256": "e6235031e3cac69a3f5d01f343d3353c728a73bc7d4e0fa043959507638e9d30",
+      "account_id_redacted": false
+    },
+    {
+      "path": "benchmarks/results/wonder-thinking-20261014/image-positive-control_reports/row-00000-page-00001-original-00001.json",
+      "sha256": "dc3bf7e0537b667254bbc2df32b49d9d5c71570a8ee2dffb10b1b03b20b4c395",
+      "bytes": 13137,
+      "protected_original_sha256": "dc3bf7e0537b667254bbc2df32b49d9d5c71570a8ee2dffb10b1b03b20b4c395",
+      "account_id_redacted": false
+    },
+    {
+      "path": "benchmarks/results/wonder-thinking-20261014/image-positive-high_reports/row-00000-page-00001-original-00001.json",
+      "sha256": "dde0142edc35e27a5b495c52a8af2d2626bfcb9450b169c6796cc3c144af8887",
+      "bytes": 4335,
+      "protected_original_sha256": "dde0142edc35e27a5b495c52a8af2d2626bfcb9450b169c6796cc3c144af8887",
+      "account_id_redacted": false
+    },
+    {
+      "path": "benchmarks/results/wonder-thinking-20261014/image-positive-medium_reports/row-00000-page-00001-original-00001.json",
+      "sha256": "8151253580542bd40c9343217d731394c8f813de878e2b898734477b03a3b055",
+      "bytes": 704,
+      "protected_original_sha256": "8151253580542bd40c9343217d731394c8f813de878e2b898734477b03a3b055",
+      "account_id_redacted": false
+    },
+    {
+      "path": "benchmarks/results/wonder-thinking-20261014/ambiguity-negative-max_reports/row-00000-page-00001-original-00001.json",
+      "sha256": "634ae81a52b27ea0ba8e82baf2fc366ea9672e1c20b6da0e6394eb20840e8340",
+      "bytes": 3163,
+      "protected_original_sha256": "634ae81a52b27ea0ba8e82baf2fc366ea9672e1c20b6da0e6394eb20840e8340",
+      "account_id_redacted": false
+    },
+    {
+      "path": "benchmarks/results/wonder-thinking-20261014/image-positive-medium-recovery1_reports/row-00000-page-00001-original-00001.json",
+      "sha256": "2b18ac54e398dee463d206816cc82072103be279030e97aafbf78614cd80f3a2",
+      "bytes": 4308,
+      "protected_original_sha256": "2b18ac54e398dee463d206816cc82072103be279030e97aafbf78614cd80f3a2",
+      "account_id_redacted": false
+    },
+    {
+      "path": "benchmarks/results/wonder-thinking-20261014/image-positive-max_reports/row-00000-page-00001-original-00001.json",
+      "sha256": "1e302c3b3a0e21233f3188d0cc491a3a9782aa49dd1169c0f657035b79407cb4",
+      "bytes": 4301,
+      "protected_original_sha256": "1e302c3b3a0e21233f3188d0cc491a3a9782aa49dd1169c0f657035b79407cb4",
+      "account_id_redacted": false
+    },
+    {
+      "path": "benchmarks/results/wonder-thinking-20261014/ambiguity-negative-high_reports/row-00000-page-00001-original-00001.json",
+      "sha256": "e485d6fe00fafda02e255808d9303d1aef03ad9229ef0d4f74ad657b3c9ce0d4",
+      "bytes": 3193,
+      "protected_original_sha256": "e485d6fe00fafda02e255808d9303d1aef03ad9229ef0d4f74ad657b3c9ce0d4",
+      "account_id_redacted": false
+    },
+    {
+      "path": "benchmarks/results/wonder-thinking-20261014/ambiguity-negative-control_reports/row-00000-page-00001-original-00001.json",
+      "sha256": "f418291194b848614c3a303a392ab2017e41fe2cfafdad82de6dd9c273815f88",
+      "bytes": 9961,
+      "protected_original_sha256": "f418291194b848614c3a303a392ab2017e41fe2cfafdad82de6dd9c273815f88",
+      "account_id_redacted": false
+    },
+    {
+      "path": "benchmarks/results/wonder-thinking-20261014/native-positive-control_reports/row-00000-page-00001-original-00001.json",
+      "sha256": "cb9f37a4e5994039b5fd4bcd060c34d2c2808101538c5ac241e091d604736069",
+      "bytes": 11846,
+      "protected_original_sha256": "cb9f37a4e5994039b5fd4bcd060c34d2c2808101538c5ac241e091d604736069",
+      "account_id_redacted": false
+    },
+    {
+      "path": "docs/evals/evidence/075-wonder-thinking/execution-sources/5a650ae22d372fa06649f008acfcf4e904285ed4028392caed0352fbe0eb6801-wonder_thinking_campaign.py",
+      "sha256": "5a650ae22d372fa06649f008acfcf4e904285ed4028392caed0352fbe0eb6801",
+      "bytes": 12355,
+      "protected_original_sha256": "5a650ae22d372fa06649f008acfcf4e904285ed4028392caed0352fbe0eb6801",
+      "account_id_redacted": false
+    },
+    {
+      "path": "docs/evals/evidence/075-wonder-thinking/execution-sources/e96bad6a8f0fe806bcc94c60bcb59d4a36ba0845b7e2cfef55d19b182583b1f5-wonder_thinking_campaign.py",
+      "sha256": "e96bad6a8f0fe806bcc94c60bcb59d4a36ba0845b7e2cfef55d19b182583b1f5",
+      "bytes": 12312,
+      "protected_original_sha256": "e96bad6a8f0fe806bcc94c60bcb59d4a36ba0845b7e2cfef55d19b182583b1f5",
+      "account_id_redacted": false
+    },
+    {
+      "path": "benchmarks/scripts/wonder_thinking_campaign.py",
+      "sha256": "5a650ae22d372fa06649f008acfcf4e904285ed4028392caed0352fbe0eb6801",
+      "bytes": 12355,
+      "protected_original_sha256": "5a650ae22d372fa06649f008acfcf4e904285ed4028392caed0352fbe0eb6801",
+      "account_id_redacted": false
+    },
+    {
+      "path": "benchmarks/scripts/wonder_thinking_receipts.py",
+      "sha256": "f3268e5f83db48bc56745337830919f2f77c06beac0d21dbb8152bbe9a39119e",
+      "bytes": 1370,
+      "protected_original_sha256": "f3268e5f83db48bc56745337830919f2f77c06beac0d21dbb8152bbe9a39119e",
+      "account_id_redacted": false
+    },
+    {
+      "path": "docs/evals/evidence/075-wonder-thinking/conditional-max-decision.json",
+      "sha256": "7e4777faba853ffa2754fb022702d519e8b569a159111c1025b86bdceaae8fee",
+      "bytes": 1145,
+      "protected_original_sha256": "7e4777faba853ffa2754fb022702d519e8b569a159111c1025b86bdceaae8fee",
+      "account_id_redacted": false
+    },
+    {
+      "path": "docs/evals/evidence/075-wonder-thinking/conditional-max-audit-qualification.json",
+      "sha256": "89e3c7f25d082c357af51d11c919067cda5261fb514ce6294cddad80b42b786c",
+      "bytes": 1226,
+      "protected_original_sha256": "89e3c7f25d082c357af51d11c919067cda5261fb514ce6294cddad80b42b786c",
+      "account_id_redacted": false
+    },
+    {
+      "path": "docs/evals/evidence/075-wonder-thinking/report.md",
+      "sha256": "249904106cb07ead464fa41eea685f56be5649ab1ca697eca79aced3a9b242c8",
+      "bytes": 3597,
+      "protected_original_sha256": "249904106cb07ead464fa41eea685f56be5649ab1ca697eca79aced3a9b242c8",
+      "account_id_redacted": false
+    },
+    {
+      "path": "docs/evals/attempts/075-wonder-literal-thinking-calibration.md",
+      "sha256": "9e432070a870ec27422e226a58a304b7ecbc89ddb8eba25f583fcd101e6c50a8",
+      "bytes": 11007,
+      "protected_original_sha256": "9e432070a870ec27422e226a58a304b7ecbc89ddb8eba25f583fcd101e6c50a8",
+      "account_id_redacted": false
+    }
+  ]
+}

@@ -1,0 +1,37 @@
+[
+  {
+    "id": "gen-1792010451-C2CVeGB4emAN6J6Jhxq9",
+    "model": "meta/muse-wonder-20261012",
+    "provider_name": "Meta",
+    "total_cost": 0.033808,
+    "receipt": "benchmarks/results/wonder-thinking-20261014/response-001-generation.json"
+  },
+  {
+    "id": "gen-1792010465-SZgTRW65HrdKM74T7tzZ",
+    "model": "meta/muse-wonder-20261012",
+    "provider_name": "Meta",
+    "total_cost": 0.071068,
+    "receipt": "benchmarks/results/wonder-thinking-20261014/response-002-generation.json"
+  },
+  {
+    "id": "gen-1792010618-DY1lc04fKXwd405rypdC",
+    "model": "meta/muse-wonder-20261012",
+    "provider_name": "Meta",
+    "total_cost": 0.042968,
+    "receipt": "benchmarks/results/wonder-thinking-20261014/response-007-generation.json"
+  },
+  {
+    "id": "gen-1792010663-ACyhq0EyIBmjDWQ2Hy40",
+    "model": "meta/muse-wonder-20261012",
+    "provider_name": "Meta",
+    "total_cost": 0.033768,
+    "receipt": "benchmarks/results/wonder-thinking-20261014/response-008-generation.json"
+  },
+  {
+    "id": "gen-1792010685-paGDMNbgpzTzTtOPwauF",
+    "model": "meta/muse-wonder-20261012",
+    "provider_name": "Meta",
+    "total_cost": 0.0698608,
+    "receipt": "benchmarks/results/wonder-thinking-20261014/response-009-generation.json"
+  }
+]

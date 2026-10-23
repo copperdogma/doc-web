@@ -1,0 +1,10 @@
+{
+  "new_tests": "8guard/cold-pricingtests passed",
+  "ruff": "newguard/runner/summary/tests pass",
+  "reused_owner_evidence": "Attempt071113focusedowner/guardchecks; unchangedruntime/scorers/sourceinputs",
+  "independent_final_review": "Rootfreshreviewer verifiedall10request/responsehashes,4pairedbodyeffort-onlydifferences,identity/STOPand011sourcepixels",
+  "paid_runner_sha256": "193a9776e886478e27d5c1ae50bc68bfa375d90980a899484cbf677298e8d492",
+  "paid_guard_sha256": "4a0f1c239c23cd56b34213092203cf9d11b860433230558fa092c979d6fba8d7",
+  "old_ledger_unchanged_sha256": "8213d0303a675a3f6e3ab325a0fcea721d621329558acac0ab98281895f35b00",
+  "no_broad_product_rerun": "eval-onlychanges, validatedunchangedownerhelpers"
+}

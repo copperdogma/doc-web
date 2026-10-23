@@ -1,0 +1,5 @@
+{
+  "raw": "{\n  \"images\": [\n    {\n      \"label\": \"TEST\",\n      \"bbox\": [0.103, 0.206, 0.181, 0.272]\n    }\n  ]\n}",
+  "served": "minimax/minimax-m3.1-flash:free",
+  "finish": "stop"
+}

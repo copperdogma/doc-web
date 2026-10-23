@@ -1,0 +1,23 @@
+[
+  {
+    "id": "gen-1792008442-32SClQSqFpM0j54KVSht",
+    "model": "meta/muse-wonder-20261012",
+    "provider_name": "Meta",
+    "total_cost": 0.006092,
+    "receipt": "benchmarks/results/wonder-20261014/response-001-generation.json"
+  },
+  {
+    "id": "gen-1792008456-Ty8Gpz3ljSCxbgSRWw69",
+    "model": "meta/muse-wonder-20261012",
+    "provider_name": "Meta",
+    "total_cost": 0.0287408,
+    "receipt": "benchmarks/results/wonder-20261014/response-002-generation.json"
+  },
+  {
+    "id": "gen-1792008505-nElQgPdJ9pbF0rzUDbs6",
+    "model": "meta/muse-wonder-20261012",
+    "provider_name": "Meta",
+    "total_cost": 0.0592408,
+    "receipt": "benchmarks/results/wonder-20261014/response-004-generation.json"
+  }
+]
