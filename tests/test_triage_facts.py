@@ -62,3 +62,93 @@ def test_cli_json_is_parseable():
     parsed = json.loads(completed.stdout)
     assert parsed["repo"] == "doc-web"
     assert parsed["coverage"]["total_formats"] > 0
+
+
+def test_graph_facts_preserves_compiler_recommendations_and_score_dates():
+    module = load_module()
+    module.TODAY = module.date(2026, 10, 23)
+    graph = json.loads((ROOT / "docs/methodology/graph.json").read_text())
+
+    facts = module.graph_facts(graph)
+
+    for source, result in (
+        (graph["stories"], facts["stories"]),
+        (graph["evals"], facts["evals"]),
+        (graph["spec"]["compromises"], facts["compromises"]),
+    ):
+        expected = {
+            item["id"]: item["actionability"]["why_now"]
+            for item in source
+            if (item.get("actionability") or {}).get("recommended_now")
+        }
+        assert {
+            row["id"]: row["why_now"] for row in result["recommended_now"]
+        } == expected
+    expected_stale = {
+        item["id"]: (item.get("latest_score") or {}).get("measured")
+        for item in graph["evals"]
+        if not (item.get("latest_score") or {}).get("measured")
+        or module.days_since(item["latest_score"]["measured"]) > 30
+    }
+    assert {
+        row["id"]: row["measured"] for row in facts["evals"]["stale_scores"]
+    } == dict(list(expected_stale.items())[:20])
+
+
+def test_graph_facts_reports_retry_posture_without_inventing_readiness():
+    module = load_module()
+    facts = module.graph_facts(
+        {
+            "evals": [
+                {
+                    "id": "waiting",
+                    "actionability": {
+                        "recommended_now": True,
+                        "why_now": "Changed workflow requires measurement",
+                        "retry_trigger_status": "waiting",
+                        "retry_when": ["workflow-change"],
+                    },
+                },
+                {
+                    "id": "exhausted",
+                    "actionability": {"retry_trigger_status": "exhausted"},
+                },
+                {"id": "unknown"},
+            ],
+        }
+    )
+
+    assert facts["evals"]["recommended_now"] == [
+        {
+            "id": "waiting",
+            "name": None,
+            "posture": None,
+            "why_now": "Changed workflow requires measurement",
+            "retry_trigger_status": "waiting",
+        }
+    ]
+    assert facts["evals"]["by_retry_trigger_status"] == {
+        "waiting": 1,
+        "exhausted": 1,
+        "unavailable": 1,
+    }
+    assert "retry_ready" not in facts["evals"]
+
+
+def test_graph_facts_distinguishes_recent_stale_and_unavailable_scores():
+    module = load_module()
+    module.TODAY = module.date(2026, 10, 23)
+    facts = module.graph_facts(
+        {
+            "evals": [
+                {"id": "recent", "latest_score": {"measured": "2026-10-06"}},
+                {"id": "stale", "latest_score": {"measured": "2026-09-01"}},
+                {"id": "missing"},
+            ]
+        }
+    )
+
+    assert facts["evals"]["stale_scores"] == [
+        {"id": "stale", "measured": "2026-09-01", "days_since": 52},
+        {"id": "missing", "measured": None, "days_since": None},
+    ]

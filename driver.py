@@ -6,6 +6,7 @@ import subprocess
 import sys
 import time
 import shutil
+import tempfile
 from datetime import datetime
 from typing import Any, Dict, List, Optional, Set, Tuple
 
@@ -25,7 +26,7 @@ from modules.common.utils import (
     utc_now,
 )
 from modules.common.run_registry import record_run_health, record_run_manifest
-from validate_artifact import SCHEMA_MAP
+from validate_artifact import SCHEMA_MAP, iter_artifact_rows, validate_artifact_row
 from modules.common.utils import save_jsonl
 from schemas import RunConfig
 
@@ -1292,31 +1293,70 @@ def build_command(
 
 
 def stamp_artifact(artifact_path: str, schema_name: str, module_id: str, run_id: str):
+    """Validate every producer row before publishing a complete stamped artifact.
+
+    Native Unstructured IR belongs to its producer: validate it without rewriting
+    aliases, metadata or future fields. Failed admission always retains evidence.
+    """
     if schema_name not in SCHEMA_MAP:
         return
     model_cls = SCHEMA_MAP[schema_name]
     allowed_keys = set(model_cls.model_fields.keys())
+    preserve_producer = schema_name == "unstructured_element_v1" or not (
+        {"schema_version", "module_id", "run_id", "created_at"} & allowed_keys
+    )
+    is_json = artifact_path.lower().endswith(".json")
+    if is_json:
+        with open(artifact_path, encoding="utf-8") as source:
+            document = json.load(source)
+        source_rows = document if isinstance(document, list) else [document]
+    else:
+        source_rows = iter_artifact_rows(artifact_path)
     rows = []
     dropped_keys = set()
-    for row in read_jsonl(artifact_path):
-        if isinstance(row, dict) and row.get("error"):
-            continue  # skip invalid rows
+    total = 0
+    for total, row in enumerate(source_rows, 1):
         try:
-            if isinstance(row, dict) and allowed_keys:
+            if preserve_producer:
+                validate_artifact_row(row, model_cls)
+                continue
+            if not isinstance(row, dict):
+                raise ValueError("expected an object")
+            if allowed_keys and model_cls.model_config.get("extra") != "allow":
                 extra = set(row.keys()) - allowed_keys
                 if extra:
                     dropped_keys.update(extra)
-            row.setdefault("schema_version", schema_name)
-            if not row.get("module_id"):
-                row["module_id"] = module_id
-            if not row.get("run_id"):
-                row["run_id"] = run_id
-            if not row.get("created_at"):
-                row["created_at"] = utc_now()
-            rows.append(model_cls(**row).model_dump())
+            if "schema_version" in allowed_keys:
+                row.setdefault("schema_version", schema_name)
+            for key, value in (("module_id", module_id), ("run_id", run_id), ("created_at", utc_now())):
+                if key in allowed_keys and not row.get(key):
+                    row[key] = value
+            rows.append(validate_artifact_row(row, model_cls).model_dump())
         except Exception as e:
-            print(f"[stamp-skip] skipping row due to validation error: {e}")
-    save_jsonl(artifact_path, rows)
+            raise ValueError(
+                f"{artifact_path} ({schema_name}) row {total}: {e}"
+            ) from e
+    if preserve_producer:
+        print(f"[validate] {artifact_path}: {total} producer rows retained unchanged")
+        return
+
+    temporary_path = None
+    try:
+        with tempfile.NamedTemporaryFile(
+            mode="w", encoding="utf-8", dir=os.path.dirname(os.path.abspath(artifact_path)),
+            prefix=f".{os.path.basename(artifact_path)}.", suffix=".tmp", delete=False,
+        ) as candidate:
+            temporary_path = candidate.name
+            if is_json:
+                json.dump(rows if isinstance(document, list) else rows[0], candidate, ensure_ascii=False, indent=2)
+                candidate.write("\n")
+            else:
+                for row in rows:
+                    candidate.write(json.dumps(row, ensure_ascii=False) + "\n")
+        os.replace(temporary_path, artifact_path)
+    finally:
+        if temporary_path and os.path.exists(temporary_path):
+            os.unlink(temporary_path)
     print(f"[stamp] {artifact_path} stamped with {schema_name} ({len(rows)} rows)")
     if dropped_keys:
         dropped_list = ", ".join(sorted(dropped_keys))
@@ -3003,69 +3043,36 @@ def main():
             except Exception:
                 pass
             raise SystemExit(f"Stage {stage_id} failed with code {result.returncode}")
-        # Stamp and validate if schema known
+        # Admission must preserve rejected producer bytes and stop dependents.
         if out_schema:
-            stamp_artifact(artifact_path, out_schema, module_id, run_id)
-            if not args.no_validate:
-                model_cls = SCHEMA_MAP.get(out_schema)
-                if model_cls:
-                    errors = 0
-                    total = 0
-                    # Handle both JSONL and JSON files
-                    # JSON files (like validation_report.json) are single objects, not line-delimited
-                    if artifact_path.endswith(".json") and not artifact_path.endswith(
-                        ".jsonl"
-                    ):
+            try:
+                stamp_artifact(artifact_path, out_schema, module_id, run_id)
+                if not args.no_validate and out_schema in SCHEMA_MAP:
+                    model_cls = SCHEMA_MAP[out_schema]
+                    for row_number, row in enumerate(iter_artifact_rows(artifact_path), 1):
                         try:
-                            with open(artifact_path, "r", encoding="utf-8") as f:
-                                data = json.load(f)
-                            total = 1
-                            try:
-                                model_cls(**data)
-                            except Exception as e:
-                                errors = 1
-                                print(f"[validate error] {artifact_path}: {e}")
-                        except json.JSONDecodeError as e:
-                            errors = 1
-                            print(
-                                f"[validate error] {artifact_path}: Invalid JSON: {e}"
-                            )
-                    else:
-                        # JSONL files (line-delimited)
-                        for row in read_jsonl(artifact_path):
-                            total += 1
-                            try:
-                                model_cls(**row)
-                            except Exception as e:
-                                errors += 1
-                                print(
-                                    f"[validate error] {artifact_path} row {total}: {e}"
-                                )
-                    if errors:
-                        update_state(
-                            state_path,
-                            progress_path,
-                            stage_id,
-                            "failed",
-                            artifact_path,
-                            run_id,
-                            module_id,
-                            out_schema,
-                            stage_description=stage_description,
-                        )
-                        record_stage_instrumentation(
-                            stage_id,
-                            module_id,
-                            "failed",
-                            artifact_path,
-                            out_schema,
-                            stage_started_at,
-                            stage_wall_start,
-                            stage_cpu_start,
-                        )
-                        raise SystemExit(
-                            f"Validation failed for {artifact_path}: {errors} errors"
-                        )
+                            validate_artifact_row(row, model_cls)
+                        except Exception as exc:
+                            raise ValueError(f"row {row_number}: {exc}") from exc
+            except Exception as exc:
+                reason = f"Artifact validation/publication failed for {artifact_path} ({out_schema}): {exc}"
+                update_state(
+                    state_path, progress_path, stage_id, "failed", artifact_path,
+                    run_id, module_id, out_schema, stage_description=stage_description,
+                )
+                record_stage_instrumentation(
+                    stage_id, module_id, "failed", artifact_path, out_schema,
+                    stage_started_at, stage_wall_start, stage_cpu_start,
+                )
+                with open(state_path, encoding="utf-8") as state_file:
+                    failed_state = json.load(state_file)
+                failed_state.update(status="failed", status_reason=reason, ended_at=utc_now(timespec="microseconds"))
+                save_json(state_path, failed_state)
+                try:
+                    record_run_health(run_id, run_dir, recipe=recipe, state_path=state_path)
+                except Exception:
+                    pass
+                raise SystemExit(reason) from exc
 
         update_state(
             state_path,

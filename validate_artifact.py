@@ -4,7 +4,6 @@ from pathlib import Path
 from typing import Dict, Type
 from pydantic import BaseModel, ValidationError
 
-from modules.common.utils import read_jsonl
 from schemas import (
     ArchiveMemberManifest,
     ArchiveMemberRoute,
@@ -35,6 +34,7 @@ from schemas import (
     TurnToLinkClaim,
     TurnToUnclaimedReport,
     ElementCore,
+    UnstructuredElement,
     DocWebBundleManifest,
     DocWebProvenanceBlock,
     NavigationResolutionReport,
@@ -74,6 +74,7 @@ SCHEMA_MAP: Dict[str, Type[BaseModel]] = {
     "turn_to_link_claims_v1": TurnToLinkClaim,
     "turn_to_unclaimed_v1": TurnToUnclaimedReport,
     "element_core_v1": ElementCore,
+    "unstructured_element_v1": UnstructuredElement,
     "manual_navigation_resolution_v1": NavigationResolutionReport,
     "doc_web_bundle_manifest_v1": DocWebBundleManifest,
     "doc_web_provenance_block_v1": DocWebProvenanceBlock,
@@ -83,7 +84,7 @@ SCHEMA_MAP: Dict[str, Type[BaseModel]] = {
 }
 
 
-def _iter_artifact_rows(path: str):
+def iter_artifact_rows(path: str):
     artifact_path = Path(path)
     if artifact_path.suffix.lower() == ".json":
         with artifact_path.open("r", encoding="utf-8") as f:
@@ -95,7 +96,23 @@ def _iter_artifact_rows(path: str):
             yield data
         return
 
-    yield from read_jsonl(path)
+    with artifact_path.open(encoding="utf-8") as source:
+        for line_number, line in enumerate(source, 1):
+            if not line.strip():
+                continue
+            try:
+                yield json.loads(line)
+            except json.JSONDecodeError as exc:
+                raise ValueError(f"{path} row {line_number}: invalid JSON: {exc}") from exc
+
+
+def validate_artifact_row(row, model_cls):
+    """Apply the shared admission contract without changing producer data."""
+    if not isinstance(row, dict):
+        raise ValueError("expected an object")
+    if row.get("error"):
+        raise ValueError("producer error record cannot be admitted")
+    return model_cls.model_validate(row)
 
 
 def main():
@@ -109,11 +126,11 @@ def main():
     model_cls = SCHEMA_MAP[args.schema]
     total = 0
     errors = 0
-    for row in _iter_artifact_rows(args.file):
+    for row in iter_artifact_rows(args.file):
         total += 1
         try:
-            model_cls(**row)
-        except ValidationError as e:
+            validate_artifact_row(row, model_cls)
+        except (ValidationError, ValueError) as e:
             errors += 1
             print(f"[ERROR] row {total}: {e}")
 

@@ -14,7 +14,6 @@ Usage:
 
 import argparse
 import json
-import os
 import re
 import sys
 from datetime import datetime, timezone
@@ -124,7 +123,7 @@ PROVIDERS = {
 
 OPENAI_CHAT_PATTERNS = [
     r"^gpt-",
-    r"^o[134]-",
+    r"^o[134](?:-|$)",
     r"^chatgpt-",
 ]
 
@@ -165,9 +164,14 @@ def query_openai(api_key: str) -> list[dict]:
     )
     resp.raise_for_status()
     data = resp.json()
+    records = _catalog_rows(data, "data", "id")
+    if data.get("has_more") or data.get("next_page") or data.get("nextPageToken"):
+        raise CatalogError("inconsistent_catalog")
+    if len({row["id"] for row in records}) != len(records):
+        raise CatalogError("inconsistent_catalog")
 
     models = []
-    for model in data.get("data", []):
+    for model in records:
         model_id = model["id"]
         if not any(re.match(pattern, model_id) for pattern in OPENAI_CHAT_PATTERNS):
             continue
@@ -188,117 +192,108 @@ def query_openai(api_key: str) -> list[dict]:
     return models
 
 
+MAX_MODEL_PAGES = 20
+CACHE_PATH = Path(__file__).resolve().parents[1] / "docs/evals/models-available.yaml"
+
+
+class CatalogError(ValueError):
+    """A catalog cannot be certified complete; details never contain provider data."""
+
+
+def _catalog_rows(data: dict, field: str, id_field: str) -> list[dict]:
+    if not isinstance(data, dict) or "error" in data:
+        raise CatalogError("invalid_catalog")
+    rows = data.get(field, [] if field == "models" else None)
+    if not isinstance(rows, list) or any(
+        not isinstance(row, dict) or not isinstance(row.get(id_field), str)
+        or not row[id_field].strip() for row in rows
+    ):
+        raise CatalogError("invalid_catalog")
+    return rows
+
+
+def _paged_catalog(provider: str, api_key: str) -> list[dict]:
+    google = provider == "google"
+    url = ("https://generativelanguage.googleapis.com/v1beta/models" if google
+           else "https://api.anthropic.com/v1/models")
+    headers = ({"x-goog-api-key": api_key} if google else
+               {"x-api-key": api_key, "anthropic-version": "2023-06-01"})
+    params = {"pageSize": 1000} if google else {"limit": 1000}
+    cursors: set[str] = set()
+    identifiers: set[str] = set()
+    all_rows = []
+    for _ in range(MAX_MODEL_PAGES):
+        response = httpx.get(url, headers=headers, params=dict(params), timeout=15)
+        response.raise_for_status()
+        data = response.json()
+        rows = _catalog_rows(data, "models" if google else "data", "name" if google else "id")
+        for row in rows:
+            identifier = row["name" if google else "id"]
+            if identifier in identifiers:
+                raise CatalogError("inconsistent_catalog")
+            identifiers.add(identifier)
+        all_rows.extend(rows)
+        if google:
+            cursor = data.get("nextPageToken")
+            if cursor is None or cursor == "":
+                return all_rows
+        else:
+            if type(data.get("has_more")) is not bool:
+                raise CatalogError("invalid_catalog")
+            if not data["has_more"]:
+                return all_rows
+            cursor = data.get("last_id")
+        if not isinstance(cursor, str) or not cursor.strip():
+            raise CatalogError("invalid_cursor")
+        if cursor in cursors:
+            raise CatalogError("pagination_cycle")
+        cursors.add(cursor)
+        params["pageToken" if google else "after_id"] = cursor
+    raise CatalogError("pagination_limit")
+
+
 def query_anthropic(api_key: str) -> list[dict]:
-    """Query Anthropic /v1/models for available models."""
-    headers = {
-        "x-api-key": api_key,
-        "anthropic-version": "2023-06-01",
-    }
-    try:
-        resp = httpx.get(
-            "https://api.anthropic.com/v1/models",
-            headers=headers,
-            timeout=15,
-        )
-        resp.raise_for_status()
-        data = resp.json()
-
-        models = []
-        for model in data.get("data", []):
-            model_id = model["id"]
-            created_raw = model.get("created_at")
-            if isinstance(created_raw, str):
-                created = created_raw[:10]
-            elif isinstance(created_raw, (int, float)) and created_raw > 0:
-                created = datetime.fromtimestamp(
-                    created_raw, tz=timezone.utc
-                ).strftime("%Y-%m-%d")
-            else:
-                created = "unknown"
-            models.append(
-                {
-                    "id": model_id,
-                    "provider": "anthropic",
-                    "display_name": model.get("display_name", model_id),
-                    "created": created,
-                    "tier": classify_tier(model_id),
-                }
-            )
-
-        models.sort(key=lambda item: item.get("created", ""), reverse=True)
-        return models
-    except (httpx.HTTPStatusError, httpx.RequestError) as exc:
-        print(
-            f"  Note: /v1/models returned {exc}. Using known model list.",
-            file=sys.stderr,
-        )
-        return _anthropic_fallback()
-
-
-def _anthropic_fallback() -> list[dict]:
-    """Known Anthropic models when the API endpoint is unavailable."""
-    known = [
-        {
-            "id": "claude-opus-4-6",
-            "provider": "anthropic",
-            "display_name": "Claude Opus 4.6",
-            "created": "2025-12-01",
-        },
-        {
-            "id": "claude-sonnet-4-6",
-            "provider": "anthropic",
-            "display_name": "Claude Sonnet 4.6",
-            "created": "2025-12-01",
-        },
-        {
-            "id": "claude-sonnet-4-5-20241022",
-            "provider": "anthropic",
-            "display_name": "Claude Sonnet 4.5",
-            "created": "2025-10-01",
-        },
-        {
-            "id": "claude-haiku-4-5-20251001",
-            "provider": "anthropic",
-            "display_name": "Claude Haiku 4.5",
-            "created": "2025-10-01",
-        },
-    ]
-    for model in known:
-        model["tier"] = classify_tier(model["id"])
-    return known
+    """Return observed models only after complete bounded cursor traversal."""
+    models = []
+    for model in _paged_catalog("anthropic", api_key):
+        model_id = model["id"]
+        created_raw = model.get("created_at")
+        if isinstance(created_raw, str):
+            created = created_raw[:10]
+        elif isinstance(created_raw, (int, float)) and created_raw > 0:
+            created = datetime.fromtimestamp(created_raw, tz=timezone.utc).strftime("%Y-%m-%d")
+        else:
+            created = "unknown"
+        models.append({
+            "id": model_id, "provider": "anthropic",
+            "display_name": model.get("display_name", model_id),
+            "created": created, "tier": classify_tier(model_id),
+        })
+    models.sort(key=lambda item: item.get("created", ""), reverse=True)
+    return models
 
 
 def query_google(api_key: str) -> list[dict]:
-    """Query Google Gemini /v1beta/models for generative models."""
-    resp = httpx.get(
-        f"https://generativelanguage.googleapis.com/v1beta/models?key={api_key}",
-        timeout=15,
-    )
-    resp.raise_for_status()
-    data = resp.json()
-
+    """Return filtered generation catalog entries after complete traversal."""
     models = []
-    for model in data.get("models", []):
-        name = model.get("name", "")
-        model_id = name.replace("models/", "")
+    for model in _paged_catalog("google", api_key):
+        model_id = model["name"].removeprefix("models/")
         methods = model.get("supportedGenerationMethods", [])
+        if not isinstance(methods, list):
+            raise CatalogError("invalid_catalog")
         if "generateContent" not in methods:
             continue
         if "embedding" in model_id or "aqa" in model_id:
             continue
         if any(re.search(pattern, model_id) for pattern in GOOGLE_SKIP_PATTERNS):
             continue
-        models.append(
-            {
-                "id": model_id,
-                "provider": "google",
-                "display_name": model.get("displayName", model_id),
-                "input_token_limit": model.get("inputTokenLimit"),
-                "output_token_limit": model.get("outputTokenLimit"),
-                "tier": classify_tier(model_id),
-            }
-        )
-
+        models.append({
+            "id": model_id, "provider": "google",
+            "display_name": model.get("displayName", model_id),
+            "input_token_limit": model.get("inputTokenLimit"),
+            "output_token_limit": model.get("outputTokenLimit"),
+            "tier": classify_tier(model_id),
+        })
     models.sort(key=lambda item: item["id"])
     return models
 
@@ -310,117 +305,67 @@ QUERY_FUNCS = {
 }
 
 
-def _normalize_model_text(text: str) -> str:
-    """Normalize freeform model text while preserving version dots."""
-    normalized = text.lower().replace("_", "-").replace(" ", "-")
-    normalized = re.sub(r"[^a-z0-9.+-]+", "-", normalized)
-    normalized = re.sub(r"-{2,}", "-", normalized).strip("-")
-    return normalized
-
-
-def _strip_alias_suffixes(text: str) -> str:
-    """Trim common alias suffixes so dated snapshots match canonical IDs."""
-    patterns = [
-        r"-(\d{4}-\d{2}-\d{2}|\d{8})$",
-        r"-chat-latest$",
-        r"-latest$",
-        r"-preview(?:-[a-z0-9.-]+)?$",
-    ]
-    stripped = text
-    changed = True
-    while changed:
-        changed = False
-        for pattern in patterns:
-            updated = re.sub(pattern, "", stripped)
-            if updated != stripped:
-                stripped = updated
-                changed = True
-    return stripped
-
-
 def _extract_canonical_models(text: str) -> set[str]:
-    """Extract canonical model-family identifiers from freeform text."""
-    normalized = _strip_alias_suffixes(_normalize_model_text(text))
-    tokens: set[str] = set()
+    """Extract score-name references without erasing variants or snapshots.
 
-    patterns = [
-        (
-            re.compile(r"\bgpt-(\d+)(?:[.-](\d+))?(?:-(pro|mini|nano))?\b"),
-            lambda m: "gpt-"
-            + m.group(1)
-            + (f".{m.group(2)}" if m.group(2) else "")
-            + (f"-{m.group(3)}" if m.group(3) else ""),
-        ),
-        (
-            re.compile(r"\b(o[134])(?:-(mini|pro))?\b"),
-            lambda m: m.group(1) + (f"-{m.group(2)}" if m.group(2) else ""),
-        ),
-        (
-            re.compile(r"\bchatgpt-4o\b"),
-            lambda m: "chatgpt-4o",
-        ),
-        (
-            re.compile(r"\bclaude-(opus|sonnet|haiku)-(\d+)(?:[.-](\d+))?\b"),
-            lambda m: "claude-"
-            + m.group(1)
-            + "-"
-            + m.group(2)
-            + (f".{m.group(3)}" if m.group(3) else ""),
-        ),
-        (
-            re.compile(
-                r"\bgemini-(\d+)(?:[.-](\d+))?(?:-(pro|flash-lite|flash|computer-use))?\b"
-            ),
-            lambda m: "gemini-"
-            + m.group(1)
-            + (f".{m.group(2)}" if m.group(2) else "")
-            + (f"-{m.group(3)}" if m.group(3) else ""),
-        ),
-        (
-            re.compile(r"\bgemini-(pro|flash-lite|flash)\b"),
-            lambda m: "gemini-" + m.group(1),
-        ),
-    ]
-
-    for pattern, builder in patterns:
-        for match in pattern.finditer(normalized):
-            tokens.add(builder(match))
-
-    if not tokens and normalized:
-        tokens.add(normalized)
-    return tokens
+    Only conventional display spelling is normalized. Arbitrary aliases and
+    descriptive suffixes are not evidence that two API identities are equal.
+    """
+    normalized = re.sub(r"\s+", " ", text.lower().replace("_", "-")).strip()
+    normalized = re.sub(
+        r"\b(gpt-\d+(?:\.\d+)?)[ ]+(pro|mini|nano|astra|sol|terra|luna|instant)\b",
+        lambda match: match[1] + "-" + match[2], normalized,
+    )
+    normalized = re.sub(
+        r"\bclaude[ -]([a-z]+)[ -](\d+(?:[.-]\d+)?)",
+        lambda match: "claude-" + match[1] + "-" + match[2].replace(".", "-"), normalized,
+    )
+    normalized = re.sub(
+        r"\bgemini[ -](\d+(?:\.\d+)?)[ -](flash[ -]lite|flash|pro|computer[ -]use)\b",
+        lambda match: "gemini-" + match[1] + "-" + match[2].replace(" ", "-"), normalized,
+    )
+    pattern = (
+        r"\b(?:gpt-\d[a-z0-9.]*(?:-[a-z0-9.]+)*|o[134](?:-[a-z0-9.]+)*|"
+        r"chatgpt-[a-z0-9]+(?:-[a-z0-9.]+)*|claude-[a-z0-9]+(?:-[a-z0-9.]+)*|"
+        r"gemini-[a-z0-9.]+(?:-[a-z0-9.]+)*)\b"
+    )
+    tokens = set(re.findall(pattern, normalized))
+    return tokens or ({normalized} if normalized else set())
 
 
 def _matches_registry(model_id: str, display_name: str, registry_models: set[str]) -> bool:
-    """Check if a discovered model matches any canonical registry entry."""
-    discovered = _extract_canonical_models(model_id)
-    if display_name:
-        discovered |= _extract_canonical_models(display_name)
-    return bool(discovered & registry_models)
+    """Match an API ID to score-name references; display names cannot broaden it."""
+    return bool(_extract_canonical_models(model_id) & registry_models)
 
 
-def load_registry_models(registry_path: Path) -> set[str]:
-    """Extract canonical model identifiers mentioned in the eval registry."""
-    if not registry_path.exists():
-        return set()
+def load_registry_models(registry_path: Path) -> set[str] | None:
+    """Extract score references, preserving unavailable versus empty history."""
     if yaml is None:
-        text = registry_path.read_text()
+        print("Registry score references unavailable (PyYAML missing)", file=sys.stderr)
+        return None
+    try:
+        data = yaml.safe_load(registry_path.read_text())
+        if not isinstance(data, dict) or not isinstance(data.get("evals"), list):
+            raise ValueError
         models = set()
-        for line in text.splitlines():
-            if "model:" not in line:
-                continue
-            model_name = line.split("model:")[-1].strip().strip('"').strip("'")
-            models |= _extract_canonical_models(model_name)
+        for eval_entry in data["evals"]:
+            if not isinstance(eval_entry, dict):
+                raise ValueError
+            scores = eval_entry.get("scores", [])
+            if not isinstance(scores, list):
+                raise ValueError
+            for score in scores:
+                if not isinstance(score, dict):
+                    raise ValueError
+                model_name = score.get("model", "")
+                if not isinstance(model_name, str):
+                    raise ValueError
+                if model_name:
+                    models |= _extract_canonical_models(model_name)
         return models
-
-    data = yaml.safe_load(registry_path.read_text())
-    models = set()
-    for eval_entry in data.get("evals", []):
-        for score in eval_entry.get("scores", []):
-            model_name = score.get("model", "")
-            if model_name:
-                models |= _extract_canonical_models(model_name)
-    return models
+    except (OSError, ValueError, yaml.YAMLError):
+        print("Registry score references unavailable (unreadable or invalid registry)", file=sys.stderr)
+        return None
 
 
 def group_by_tier(all_models: list[dict]) -> dict[str, list[dict]]:
@@ -457,9 +402,12 @@ def format_text_report(results: dict, registry_models: set[str] | None = None) -
     env = build_doc_web_env()
     lines = []
     lines.append("=" * 60)
+    lines.append("Catalog observations only; tiers are heuristic, task/inference access is unassessed.")
     lines.append("  AI Model Discovery Report")
     lines.append(f"  {datetime.now(tz=timezone.utc).strftime('%Y-%m-%d %H:%M UTC')}")
     lines.append("=" * 60)
+    if registry_models is None:
+        lines.append("Registry score references not assessed.")
 
     lines.append("\n## API Key Status\n")
     for provider_id, provider in PROVIDERS.items():
@@ -476,6 +424,7 @@ def format_text_report(results: dict, registry_models: set[str] | None = None) -
     for provider_id in PROVIDERS:
         models = results.get(provider_id)
         if models is None:
+            lines.append(f"\n## {PROVIDERS[provider_id]['display']}: SKIPPED (no key)")
             continue
         if isinstance(models, str):
             lines.append(f"\n## {PROVIDERS[provider_id]['display']}: ERROR\n")
@@ -483,7 +432,7 @@ def format_text_report(results: dict, registry_models: set[str] | None = None) -
             continue
 
         lines.append(
-            f"\n## {PROVIDERS[provider_id]['display']} — {len(models)} chat models\n"
+            f"\n## {PROVIDERS[provider_id]['display']} — {len(models)} filtered catalog entries\n"
         )
 
         tier_groups: dict[str, list[dict]] = {tier: [] for tier in TIER_ORDER}
@@ -511,7 +460,7 @@ def format_text_report(results: dict, registry_models: set[str] | None = None) -
                     matched = _matches_registry(
                         model_id, model.get("display_name", ""), registry_models
                     )
-                    in_registry = "  [TESTED]" if matched else "  [NEW]"
+                    in_registry = "  [SCORE REF]" if matched else "  [NO SCORE REF]"
                 lines.append(f"    {model_id}{extra}{in_registry}")
 
     return "\n".join(lines)
@@ -522,6 +471,8 @@ def format_yaml_report(results: dict) -> str:
     env = build_doc_web_env()
     report = {
         "discovered": datetime.now(tz=timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
+        "scope": "filtered catalog; inference access and task quality not assessed",
+        "tiers": "heuristic",
         "providers": {},
     }
 
@@ -535,13 +486,16 @@ def format_yaml_report(results: dict) -> str:
 
         if models is None:
             entry["status"] = "skipped"
+            entry["complete"] = False
             entry["models"] = []
         elif isinstance(models, str):
             entry["status"] = "error"
+            entry["complete"] = False
             entry["error"] = models
             entry["models"] = []
         else:
             entry["status"] = "ok"
+            entry["complete"] = True
             entry["model_count"] = len(models)
             entry["models"] = models
 
@@ -555,8 +509,6 @@ def format_yaml_report(results: dict) -> str:
 def format_summary_report(results: dict, registry_models: set[str] | None = None) -> str:
     """Quick-glance tier summary."""
     all_models = collect_all_models(results)
-    if not all_models:
-        return "No models discovered (check API keys)."
 
     groups = group_by_tier(all_models)
 
@@ -566,9 +518,18 @@ def format_summary_report(results: dict, registry_models: set[str] | None = None
     lines.append(f"  {datetime.now(tz=timezone.utc).strftime('%Y-%m-%d %H:%M UTC')}")
     lines.append(
         f"  {len(all_models)} total models across "
-        f"{sum(1 for value in results.values() if value and not isinstance(value, str))} providers"
+        f"{sum(1 for value in results.values() if isinstance(value, list))} observed providers"
     )
     lines.append("=" * 60)
+    lines.append("")
+    lines.append("  Catalog observations only; tiers are heuristic, task/inference access is unassessed.")
+    if registry_models is None:
+        lines.append("  Registry score references not assessed.")
+    for provider_id, provider in PROVIDERS.items():
+        result = results.get(provider_id)
+        status = ("skipped (no key)" if result is None else
+                  f"error ({result})" if isinstance(result, str) else f"ok ({len(result)} entries)")
+        lines.append(f"  {provider['display']}: {status}")
     lines.append("")
 
     for tier in TIER_ORDER:
@@ -592,10 +553,10 @@ def format_summary_report(results: dict, registry_models: set[str] | None = None
         if registry_models is not None:
             if untested:
                 lines.append(
-                    f"    Untested: {len(untested)} model(s) — {', '.join(untested)}"
+                    f"    No score reference: {len(untested)} ID(s) — {', '.join(untested)}"
                 )
             else:
-                lines.append("    Untested: none")
+                lines.append("    No unmatched score-reference IDs")
         lines.append("")
 
     if registry_models is not None:
@@ -608,18 +569,37 @@ def format_summary_report(results: dict, registry_models: set[str] | None = None
         ]
         if all_untested:
             lines.append(
-                f"  ** {len(all_untested)} untested model(s) found — "
-                "consider running /improve-eval **"
+                f"  {len(all_untested)} catalog ID(s) have no matching score-name reference; "
+                "inspect retry triggers before recommending an eval."
             )
-        else:
-            lines.append("  All discovered models are covered by existing evals.")
+        elif all_models:
+            lines.append("  All catalog IDs have score-name references; this does not qualify any task.")
 
     return "\n".join(lines)
+
+
+def _safe_provider_error(error: Exception) -> str:
+    """Never serialize exception text, request URLs/headers or response bodies."""
+    if isinstance(error, httpx.HTTPStatusError):
+        return f"Discovery failed: HTTP {error.response.status_code} (no certified catalog)"
+    if isinstance(error, httpx.TimeoutException):
+        return "Discovery failed: request timeout (no certified catalog)"
+    if isinstance(error, httpx.RequestError):
+        return "Discovery failed: transport error (no certified catalog)"
+    if isinstance(error, CatalogError):
+        codes = {"invalid_catalog", "inconsistent_catalog", "invalid_cursor",
+                 "pagination_cycle", "pagination_limit", "sensitive_response"}
+        code = str(error) if str(error) in codes else "invalid_catalog"
+        return f"Catalog unavailable or incomplete: {code}"
+    if isinstance(error, (ValueError, TypeError, KeyError)):
+        return "Discovery failed: invalid catalog response"
+    return "Discovery failed: unexpected error"
 
 
 def discover_models() -> dict:
     """Query all configured providers and return results."""
     env = build_doc_web_env()
+    secrets = [env.get(provider["env_key"]) for provider in PROVIDERS.values()]
     results = {}
     for provider_id, provider in PROVIDERS.items():
         api_key = env.get(provider["env_key"], "")
@@ -630,11 +610,14 @@ def discover_models() -> dict:
         print(f"Querying {provider['display']}...", file=sys.stderr)
         try:
             models = QUERY_FUNCS[provider_id](api_key)
+            serialized = json.dumps(models, ensure_ascii=False)
+            if any(secret and secret in serialized for secret in secrets):
+                raise CatalogError("sensitive_response")
             results[provider_id] = models
             print(f"  Found {len(models)} models", file=sys.stderr)
         except Exception as exc:
-            results[provider_id] = f"Error: {exc}"
-            print(f"  Error: {exc}", file=sys.stderr)
+            results[provider_id] = _safe_provider_error(exc)
+            print(f"  {results[provider_id]}", file=sys.stderr)
 
     return results
 
@@ -672,7 +655,7 @@ def main() -> None:
         if registry_models:
             print(
                 "\nRegistry contains "
-                f"{len(registry_models)} tested models: {', '.join(sorted(registry_models))}",
+                f"{len(registry_models)} score-name references: {', '.join(sorted(registry_models))}",
                 file=sys.stderr,
             )
 
@@ -684,10 +667,11 @@ def main() -> None:
         output = format_text_report(results, registry_models)
 
     if args.cache:
-        cache_path = Path(__file__).parent.parent / "docs" / "evals" / "models-available.yaml"
-        cache_path.write_text(output)
+        cache_path = CACHE_PATH
+        cache_path.write_text(format_yaml_report(results))
         print(f"\nWritten to {cache_path}", file=sys.stderr)
-        return
+        if not args.summary:
+            return
 
     print(output)
 

@@ -18,6 +18,10 @@ from typing import Optional
 import yaml
 
 from modules.common.utils import ProgressLogger, read_jsonl, save_jsonl, utc_now
+from modules.intake.archive_member_identity import (
+    grouped_image_identity_error,
+    member_identity_error,
+)
 from modules.intake.intake_plan_utils import (
     MAINTAINED_RECIPES,
     archive_member_recipe_for_input_kind,
@@ -185,12 +189,9 @@ def _grouped_image_candidates(manifest_rows: list[dict]) -> dict[str, dict]:
             continue
         sorted_rows = sorted(rows, key=lambda row: str(row["member_path"]))
         primary_row = sorted_rows[0]
-        launch_input_path = Path(str(primary_row["extracted_path"])).resolve().parent
-        if not all(
-            Path(str(row["extracted_path"])).resolve().parent == launch_input_path
-            for row in sorted_rows
-        ):
-            continue
+        # Keep the inventoried group intact even when a member was replaced by
+        # a symlink or moved. The identity gate must fail the complete group.
+        launch_input_path = Path(str(primary_row["extracted_path"])).absolute().parent
         group_id = f"images-dir:{group_key}"
         group_info = {
             "group_id": group_id,
@@ -217,7 +218,7 @@ def _route_grouped_image_members(
 ) -> tuple[list[dict], bool]:
     group_rows = group_info["rows"]
     primary_member_id = str(group_info["primary_member_id"])
-    launch_input_path = Path(group_info["launch_input_path"]).resolve()
+    launch_input_path = Path(group_info["launch_input_path"])
 
     route_rows = [_base_route_row(row, args) for row in group_rows]
     for route_row in route_rows:
@@ -230,11 +231,11 @@ def _route_grouped_image_members(
             "primary" if route_row["member_id"] == primary_member_id else "secondary"
         )
 
-    if not launch_input_path.exists():
+    identity_error = grouped_image_identity_error(group_info, args.manifest)
+    if identity_error:
         for route_row in route_rows:
-            route_row["terminal_reason"] = (
-                f"grouped_image_input_not_found:{launch_input_path}"
-            )
+            route_row["terminal_outcome"] = "failed"
+            route_row["terminal_reason"] = identity_error
         return route_rows, True
 
     downstream_run_id = default_downstream_run_id(
@@ -304,6 +305,7 @@ def _apply_pdf_member_handoff(
     plan: dict,
     plan_path: str,
     member_id: str,
+    member: dict,
     args: argparse.Namespace,
     output_root: Path,
 ) -> bool:
@@ -325,6 +327,23 @@ def _apply_pdf_member_handoff(
     )
     handoff_row["module_id"] = MODULE_ID
     route_row["handoff_artifact_path"] = str(handoff_path)
+    if handoff_command:
+        identity_error = member_identity_error(member, args.manifest)
+        if not identity_error and (
+            handoff_row["launch_input_flag"] != "--input-pdf"
+            or Path(handoff_row["launch_input_path"]) != Path(member["extracted_path"])
+        ):
+            identity_error = (
+                f"pdf_member_identity_handoff_path_mismatch:manifest={args.manifest}:"
+                f"member_id={member_id}:expected={member['extracted_path']}:"
+                f"observed={handoff_row['launch_input_path']}"
+            )
+        if identity_error:
+            for failed_row in (handoff_row, route_row):
+                failed_row["terminal_outcome"] = "failed"
+                failed_row["terminal_reason"] = identity_error
+            save_jsonl(str(handoff_path), [handoff_row])
+            return False
     save_jsonl(str(handoff_path), [handoff_row])
 
     if not should_launch and handoff_row["terminal_outcome"] == "blocked":
@@ -427,8 +446,10 @@ def main() -> None:
             None if use_pdf_member_recommendation else recipe_path
         )
 
-        if not extracted_path.exists():
-            route_row["terminal_reason"] = f"extracted_member_not_found:{extracted_path}"
+        identity_error = member_identity_error(row, args.manifest)
+        if identity_error:
+            route_row["terminal_outcome"] = "failed"
+            route_row["terminal_reason"] = identity_error
             route_rows.append(route_row)
             failed_launches += 1
             continue
@@ -499,6 +520,7 @@ def main() -> None:
                     plan=plan,
                     plan_path=first_downstream_artifact,
                     member_id=member_id,
+                    member=row,
                     args=args,
                     output_root=output_root,
                 )

@@ -197,3 +197,20 @@ Attempt045 compares fresh Sonnet5.5 medium adaptive with fresh Gemini3.7 on the 
 ### 2026-09-29 — GPT-6.1 Sol independent public LOC screen
 
 Attempt046 ran exact GPT-6.1 Sol low and fresh Gemini3.7 through the actual image-entry `driver.py` OCR seam on the unchanged Barney/Alverson source pair. Against the frozen transcripts, GPT-6.1 scored .902693/.935065 and Gemini .980645/.983471; both miss .99 on both pages. Barney has a source-visible candidate invention. Alverson source review exposed a golden concern: the original scan appears to read “no good prospect,” matching GPT-6.1 but contradicting the transcript's “a good prospect.” Keep the frozen scores and raw outputs, review/correct that golden before another OCR decision, and do not claim a source-backed reversal by the candidate. Complete raw receipts and stamped outputs are in Attempt046's archive/manifest. Story191 remains Blocked; this screen does not justify synthetic/PDF confirmation or a default change.
+
+
+20261023 — Evidence reconciliation during the ongoing triage/fix goal:
+Attempt061's pre-outcome source review
+(`docs/evals/evidence/061-ocr-source-review.md`, October6) explicitly resolves
+Attempt046's Alverson concern as a false alarm: source and maintained transcript
+both read “a good prospect.” Preserve Attempt046's frozen scores and historical
+concern above; the current state note no longer presents that concern as an
+outstanding validity blocker. Story244's fresh Barney scores Mistral.939957 /
+Gemini.978830 both miss.99; Alverson remained unrun after the progressive lane
+failure. This reconciliation reuses the recorded source adjudication; it is
+neither a fresh visual review nor a new OCR result. Story191 stays Blocked,
+the unchanged two-real-fixture/synthetic/PDF unblock conditions still govern,
+and coverage stays has-fixture. No golden, score, recipe or provider change.
+Validation: compare the state wording with Attempt061's source-review note and
+Story244 result, then regenerate/check graph and index. No product tests or
+paid rerun is justified for this evidence-only correction.

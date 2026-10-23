@@ -1,3 +1,32 @@
+## [2026-10-23-02] — Preserve rejected artifact evidence (Story 260)
+
+### Fixed
+- Fail registered-schema stages on invalid rows instead of silently deleting
+  records before validation; retain rejected producer artifacts and stop dependents.
+- Register native Unstructured elements for driver and CLI validation while
+  preserving producer bytes, metadata and `_codex` provenance.
+- Publish stamped artifacts atomically, preserve JSON object/list envelopes,
+  and respect schemas that deliberately have no stamping fields.
+
+## [2026-10-23-01] — Gemini 4 Argon detector qualification (Story 232)
+
+### Added
+- Preserve exact native and fresh 13-case detector comparison receipts, source
+  review and offline reconstruction for Gemini 4 Argon versus Gemini 3 Flash.
+- Record Argon .978131 versus .958315 on this bounded comparison; retain source,
+  safety and production-route qualification gates and existing defaults.
+
+### Fixed
+- Require complete, consistent Google token accounting before settling a charge;
+  reserve unknown exposure on malformed usage and reject frozen campaign drift.
+- Correct the evaluation skill's missing runbook link and outdated detector
+  leader note in the crop workflow.
+
+### Verified
+- 25 focused regressions; all 13 sources inspected; 176 evidence files rebuilt
+  offline with identical hashes and no configured credentials.
+- Close the campaign at 27 completed calls, USD0.1176735 of USD5, unknown0.
+
 ## [2026-10-06-03] — Literal table evidence and uncertainty gate (Story 245)
 
 ### Added
@@ -233,6 +262,11 @@
 ### Changed
 - Added narrow Sonnet OCR transport compatibility and eval-only SDK retry control.
   No runtime default changed.
+
+### Fixed
+- 2026-10-23 continuation: restore process-wide HTTPX transport methods after
+  Sonnet guard tests. The reproduced three downstream guard failures now pass
+  in both test orders;21combined guard checks pass with one optional-client skip.
 
 ## [2026-09-27-01] - Repeat GPT-6 image gates (Story 237)
 
@@ -837,8 +871,10 @@
 
 ### Fixed
 - Fixed the mixed-folder close-out drift by counting Story 218 in the intake/routing audit memory and by documenting that clean repeated proof runs need a fresh parent `run_id` once nested child runs already exist
+- October 23 continuation: reject stale member bytes/paths and changed image-directory membership before shared ZIP/folder dispatch; recheck PDF handoffs and retain inspectable expected/observed identity traces
 
 ### Tested
+- October 23 continuation: 54 focused offline tests (one unchanged OCR smoke deselected), lint, four positive and two stale-resume driver cases with 24 schema checks and zero inference calls; native paths, failure traces, downstream provenance and rendered content inspected
 - `make lint`
 - `make test`
 - `python driver.py --recipe configs/recipes/recipe-mixed-folder-routing-mvp.yaml --input-folder testdata/mixed-folder-mini --run-id story218-mixed-folder-validate-A-20260412 --force`
@@ -865,6 +901,7 @@
 ## [2026-04-12-01] - Refresh LOC proof and bounded screen (Story 216)
 
 ### Added
+- October 23 continuation: added 50 offline discovery regressions covering credential-safe diagnostics, complete catalog traversal, exact score-reference identities, unavailable registry parsing, and structured cache output
 - Added shared-output retry/reuse and bounded direct-image challenger support to the LOC George Washington benchmark helper so Story 216 can refresh the fixed three-asset slice and screen one stronger subject model without touching the maintained OCR runtime
 - Added focused regression coverage for the helper's new parser defaults, transient-failure retry classification, and case-failure summaries
 
@@ -872,9 +909,11 @@
 - Changed Story 216 and the generated methodology/story views so the handwritten benchmark line now records the refreshed shared-root proof, the bounded `gpt-5.4` screen outcome, and the explicit decision to keep Story 191 blocked
 
 ### Fixed
+- October 23 continuation: removed Google URL credentials and Anthropic's guessed success fallback; bounded Google/Anthropic pagination, kept provider failures explicit, and stopped reporting catalog presence or attempted models as tested quality
 - Fixed the proof-refresh failure mode where transient provider-demand errors could abort the first shared-root OCR case before any fresh comparison artifacts were written
 
 ### Tested
+- October 23 continuation: `python -m pytest tests/test_discover_models.py -q` (50 passed), focused Ruff, and one existing-key catalog-only CLI pass (3 GETs; 65 OpenAI, 14 Anthropic, 27 Google entries; no credential matches in saved output); evidence under `output/triage-20261023-discovery-audit/`
 - `python scripts/spikes/loc_gw_benchmark.py --out-root /Users/cam/Documents/Projects/doc-web/output/runs/story216-loc-gw-proof-refresh-r1 --instrument --max-attempts 2 --candidate-model gpt-5.4 --candidate-retry-model gpt-5.2`
 - `python -m pytest tests/`
 - `python -m ruff check modules/ tests/`
@@ -1138,8 +1177,10 @@
 
 ### Fixed
 - Fixed the archive-route output-path bug that surfaced in the first real proof run by resolving driver-style relative artifact paths correctly before stamping
+- October 23 continuation: prevent ZIP members or directory prefixes from aliasing one extracted destination, preserve existing bytes on exact resumes, and reject changed or unsafe destinations before publishing a success manifest
 
 ### Tested
+- October 23 continuation: 16 focused tests, lint, a fresh maintained driver run with four verified member hashes/three downstream bundles/eight schema checks, rejected file and directory collision driver runs, and an unchanged-file partial driver resume; sampled data and rendered DOCX table inspected
 - `make lint`
 - `make methodology-check`
 - `make test`
@@ -1231,16 +1272,23 @@
 ## [2026-04-08-06] - Add bounded web-page direct-entry seam (Story 200)
 
 ### Added
+- October 23 continuation: added a public synthetic local HTML fixture proving heading, list, table, emphasis and link markup through the existing checked-HTML recipe
 - Added a maintained checked-HTML web-page recipe, intake module, snapshot fixture pair, and focused smoke coverage for the first honest `web-page` direct-entry slice
 
 ### Changed
+- October 23 continuation: replaced the `html-files` inventory's retired text-passthrough path and unsupported numeric score with the demonstrated maintained lane and explicit static-file/provenance limits
 - Changed `driver.py`, `RunConfig`, the coverage matrix, README, runbook, and generated methodology surfaces so `web-page` is now documented honestly as a bounded maintained direct explicit-recipe lane
 - Changed intake-boundary helpers and tests so recommendation-only intake and approved handoff block `web-page` explicitly at scope instead of treating it as a vague unsupported family
 
 ### Fixed
+- October 23 citation repair: descend into structured main content so headings, paragraphs, lists and tables keep distinct source-bound anchors; retain coarse unstructured-main behavior and existing explicit figure page/crop ownership
 - Fixed the intake/runtime gap for checked HTML snapshots by reusing the existing `page_html_v1` to `doc-web` path instead of leaving `web-page` unowned in the coverage inventory
+- October 23 continuation: removed the raw-HTML fallback that restored excluded scripts/templates when snapshot cleaning emptied the body; empty cleaned snapshots now fail with the source path before page or bundle publication
 
 ### Tested
+- Final citation repair: 406 focused/consumer tests and lint; three real driver runs with 15 schema checks and 11/3/1 manually inspected citation records; final table/list rendering verified
+- October 23 local-file proof: real driver run `triage-20261023-static-html-fixture-proof`, five schemas, exact source identity and nine table cells verified, browser rendering inspected; no inference
+- October 23 continuation: 17 focused tests, lint, three positive driver runs with nine schema checks and nine manually inspected provenance blocks, and one rejected inactive-only driver run; rendered mixed-content output inspected
 - `make test`
 - `make lint`
 - `python driver.py --recipe configs/recipes/recipe-web-page-html-mvp.yaml --input-html testdata/web-page-mini.html --run-id story200-web-page-validate --allow-run-id-reuse --force`
@@ -1257,6 +1305,11 @@
 - Changed Story 187 and the migration audit record so their remaining-warning language is explicitly historical rather than a false current-state claim
 
 ### Fixed
+- 2026-10-23 continuation: preserve canonical graph recommendations, eval dates
+  and retry postures in triage facts; include dated continuation work logs in
+  last-action evidence. Five failing-before regressions and24focused checks
+  verify the corrected projections without changing scores or runtime defaults.
+
 - Fixed all 11 current eval records to carry explicit lineage metadata (`story_refs`, `category_refs`, `compromise_refs`) consumed directly by the compiler
 - Fixed active-surface drift across AGENTS, setup/eval runbooks, cross-CLI skill wrappers, helper scripts, ADRs 001-003, and the named scout-history surfaces so the current methodology package compiles cleanly under the widened guardrail
 
@@ -1373,15 +1426,20 @@
 ## [2026-04-04-09] - Widen XLSX proof slice and refresh PPTX blocker (Story 193)
 
 ### Added
+- October 23: source-bound XLSX feature report with formula/merge locations, raw cache observations, reader version and consumer-selected worksheet identities
 - Added two supported repo-owned XLSX fixtures (`xlsx-multi-sheet`, `xlsx-two-tables`) plus a bounded unsupported merged-title / formula probe, and widened XLSX smoke coverage across the supported slice
 
 ### Changed
 - Changed the XLSX coverage matrix, repo docs, generated methodology graph, and generated story index so `xlsx` now records a bounded passing slice while `pptx` cites a fresh blocked import seam on the current checkout
 
 ### Fixed
+- October 23: stop the simple-table lane before publishing unsupported formula or merged-range content; detect observed source changes and unavailable worksheet identity without a fallback
+- Stream stored worksheet records without expanding sparse dimensions/merges, and use the consumer reader for part authority to avoid encoded-target and workbook-selection disagreements
 - Fixed XLSX fixture generation so merged-range probes serialize faithfully from checked-in source JSON before the boundary probe is used as canonical evidence
 
 ### Tested
+- October 23: 26 focused tests, lint, three successful supported driver runs with nine artifact-schema checks and 39 exact source cells inspected across five sheets; rendered two-table output verified
+- Existing unsupported probe fails with both formulas/A1:C1 reported and no elements/bundle; a positive-to-negative forced rerun also leaves no previous publication
 - `python -m pytest tests/`
 - `python -m ruff check modules/ tests/`
 - `python driver.py --recipe configs/recipes/recipe-xlsx-html-mvp.yaml --input-xlsx testdata/xlsx-merged-formula.xlsx --run-id story193-xlsx-merged-formula-probe-20260404 --allow-run-id-reuse --force`
@@ -1782,6 +1840,12 @@
 - `python validate_artifact.py --schema doc_web_bundle_manifest_v1 --file /tmp/story174-req-verify-6FWnFT/output/story174-req312-r1/output/html/manifest.json`
 - `python validate_artifact.py --schema doc_web_provenance_block_v1 --file /tmp/story174-req-verify-6FWnFT/output/story174-req312-r1/output/html/provenance/blocks.jsonl`
 - `python -m doc_web contract --json`
+
+### Fixed
+- 2026-10-23 continuation: remove the retired Unstructured PDF dependency chain
+  from maintained requirements and declare headless OpenCV directly. Two clean
+  install checks and eight driver probes pass; preserve cell/source provenance
+  and isolate Google transport tests from an ambient optional SDK.
 
 ## [2026-03-30-01] - Harden Dossier `doc-web` adoption flow (Story 173)
 

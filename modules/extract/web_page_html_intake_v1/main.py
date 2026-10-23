@@ -56,8 +56,7 @@ def _extract_body_html(raw_html: str) -> str:
     root = soup.body if soup.body is not None else soup
     for tag in root.find_all(["script", "noscript", "template"]):
         tag.decompose()
-    body_html = "".join(str(child) for child in root.contents).strip()
-    return body_html or raw_html.strip()
+    return "".join(str(child) for child in root.contents).strip()
 
 
 def _build_sources(html_path: Path, metadata: dict[str, Any]) -> list[str]:
@@ -91,6 +90,8 @@ def main() -> None:
 
     raw_html = html_path.read_text(encoding="utf-8")
     html = _extract_body_html(raw_html)
+    if not html:
+        raise SystemExit(f"No body content remains in checked HTML snapshot: {html_path}")
     metadata = _load_source_metadata(html_path, args.source_metadata)
 
     row = PageHtml(

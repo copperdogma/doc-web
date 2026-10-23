@@ -19,7 +19,7 @@ from html import escape as html_escape
 from pathlib import Path
 from typing import Any, Dict, List, Optional, Set
 
-from bs4 import BeautifulSoup
+from bs4 import BeautifulSoup, Comment, NavigableString
 
 from modules.common.crop_review import validate_release_for_build
 from modules.common.manual_navigation import resolve_navigation, verify_final_navigation
@@ -408,8 +408,21 @@ def _iter_provenance_tags(node):
         if lowered in {"h1", "h2", "h3", "h4", "h5", "h6"}:
             yield child
             continue
-        if lowered in {"article", "section", "div", "ul", "ol", "dl", "tbody", "thead", "tfoot", "tr"}:
-            yield from _iter_provenance_tags(child)
+        if lowered in {"main", "article", "section", "div", "ul", "ol", "dl", "tbody", "thead", "tfoot", "tr"}:
+            # A main containing unwrapped text keeps its existing coarse
+            # citation; recurse only when child elements account for its text.
+            # Existing containers retain their traversal, including explicit
+            # child page/crop ownership even beside unwrapped text.
+            has_direct_text = lowered == "main" and any(
+                isinstance(part, NavigableString)
+                and not isinstance(part, Comment)
+                and str(part).strip()
+                for part in child.children
+            )
+            if has_direct_text:
+                yield child
+            else:
+                yield from _iter_provenance_tags(child)
             continue
         if child.get_text(" ", strip=True):
             yield child

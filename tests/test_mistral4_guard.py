@@ -90,6 +90,52 @@ def test_reasoning_rejected_before_dispatch(tmp_path, monkeypatch):
         )
 
 
+@pytest.mark.parametrize(
+    "usage",
+    [
+        {"promptTokenCount": 10},
+        {"promptTokenCount": 10, "candidatesTokenCount": 2},
+        {"promptTokenCount": 10, "candidatesTokenCount": 2, "totalTokenCount": 15},
+        {
+            "promptTokenCount": 10,
+            "candidatesTokenCount": 2,
+            "thoughtsTokenCount": -1,
+            "totalTokenCount": 11,
+        },
+    ],
+)
+def test_google_incomplete_accounting_keeps_exposure_reserved(
+    tmp_path, monkeypatch, usage
+):
+    initialize(tmp_path, monkeypatch)
+    req = httpx.Request(
+        "POST",
+        "https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent",
+        json={
+            "contents": [
+                {
+                    "role": "user",
+                    "parts": [
+                        {"inlineData": {"data": "AA==", "mimeType": "image/png"}}
+                    ],
+                }
+            ],
+            "generationConfig": {"maxOutputTokens": 4096},
+        },
+    )
+    guard.guarded_send(
+        lambda *a, **kw: httpx.Response(
+            200, request=req, json={"usageMetadata": usage}
+        ),
+        None,
+        req,
+    )
+    ledger = json.loads((tmp_path / "ledger.json").read_text())
+    assert ledger["spent_usd"] == 0
+    assert ledger["calls"][0]["cost_usd"] is None
+    assert ledger["calls"][0]["billing_unresolved"] is True
+
+
 def test_cross_process_actual_dispatch_serial(tmp_path):
     guard.write(
         tmp_path / "ledger.json",

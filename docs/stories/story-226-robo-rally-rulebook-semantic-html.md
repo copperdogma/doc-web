@@ -463,3 +463,78 @@ Measured closeout: the native driver and public FINAL run `manual-b38dc58b1d024d
 
 
 20261004 — Linked Board Game Ingester Story036 exposed planner-owned crop destruction, false catalog folios and portrait body ranges miscounted as spreads. Bounded generic fixes preserve exact PNG source rectangles, strictly qualify exhaustive zero-essential-graphics plans, corroborate unmarked printed folios and count actual physical splits. Actual zero-call native driver refinements preserve all8 rules figures and20 events pages/231 bodies/607 nonfigure blocks; independent source inspection and241 affected tests pass. Consumer portable publication passes12/12 after producer paths/network are denied. Attempt058 binds runtime/test/evidence SHA256 and records artifact paths. No maintained detector/default/golden promotion, embedded-byte qualification or performance claim. The linked consumer story is complete; this owning Robo Rally story remains In Progress with its existing broader qualification holds.
+
+## Current planner-owned qualification probe — 2026-10-23
+
+20261023 — Strategic checkpoint after three bounded triage/fix rounds: requested
+runtime strongest eligible `gpt-6-astra/ultra` under /loop-review (served identity
+unavailable). No earlier strategic recommendation. Reviewer found the repairs
+aligned but warned against maintenance drift; adopted its next direction: one
+source/plan/crop/HTML/provenance packet for the current planner-owned runtime,
+using p005 decoration, p007 border and unaffected p003. Exhausted model lanes
+stay deferred. Review found no material defect in the changed executable lines;
+main retained final quality/authorization. Next checkpoint is after this packet,
+or three further rounds/about30active minutes, whichever comes first; no schedule.
+
+The path worker located Attempt057's actual95crops/32pageOCR/plan in
+`/Users/cam/.codex/worktrees/preserve-critical-rule-figures/doc-web/output/runs/story028-color-metadata-proof/all32/story028-color-metadata-all32`.
+Run health is done, but scope reuse has no assessment. The source paths embedded
+in that OCR/plan are now absent. A second retained doc-web lossless source run
+has the exact32split images, so no source path was silently rebased. Main opened
+retained p005's source PNG and old `page-005-001.png` output. The old crop includes
+body prose at top-left and a large decorative bottom curl. Old planner y1=3186,
+old emitted y1=3554; that output predates the current exact planner-owned path.
+This establishes a historical symptom, not a current runtime failure.
+
+Bounded plan: independently render current source PDF physical2/3/4 at300DPI;
+compare decoded pixels with retained source spreads and right splits. Then select
+whole cached OCR records for logical3/5/7 unchanged, reuse the original planner,
+and supply the existing highres-manifest override rather than editing provenance.
+Record input identities and scope assessment before a zero-provider-call actual
+`driver.py` run through crop, normalize, portionize and build. Inspect current
+figures, text placement, final source anchors and output provenance. No pipeline
+fix until a current defect is reproduced; no broader all-page/embedded-channel
+qualification or OCR semantic acceptance. Current model/recipe defaults retained.
+
+Reusable existing approach: Attempt058 source-preserving planner rectangles and
+real zero-call driver proofs, plus the accepted ADR002 structural HTML/provenance
+boundary. A speculative trim/mask would risk deleting integral content; compare
+the present path before proposing any such mechanism. The local crop supports
+an explicit highres manifest with validated planner/oldOCR coordinate basis.
+Independent current PDF source SHA256 is
+`474da05fd0f2d461ff8ca0b281799b0eb36f070c5c3aa55bbb3fc9436ffe1370`.
+QA scripts/configuration/evidence live at `output/triage-20261023-source-audit/`;
+source-comparison.json records3fullspreads of5425×3625RGB with exact decoded
+pixel equivalence (PNG encoding bytes differ). No generated output was edited
+as a correction; scope selection preserves complete cached records.
+
+20261023 — Current packet disposition: defer the exact cached replay. Source
+comparison succeeds for all3selected physical spreads and right splits, and
+input-binding.json binds the unmodified OCR rows and planner dimensions/identities.
+The first driver run stops at a probe-recipe output-name omission: explicitly
+supply load_artifact's `out` param when the selected input filename differs from
+stage output. Corrected recipe runs under new identity
+`output/runs/triage-20261023-robo-current-three-page-r2/`; three real stages
+complete and03_extract_page_numbers_html_v1/pages_numbered.jsonl contains3rows.
+The crop stage then fails the intended coordinate-basis guard at current
+cropper line4858: original OCR/planner source images do not exist. Supplying a
+retained high-resolution manifest does not establish those missing bytes.
+
+Exact missing assets: `page-002R.png`, `page-003R.png`, `page-004R.png` beneath
+`/Users/cam/.codex/worktrees/native-material-eval/boardgame-ingester/output/ingestion-campaign-20261003-v1/workspace/manual-stages/fresh/runs/manual-1518d28db19c4ef5a366388be9280c48/02_split_pages_from_manifest_v1/images/`.
+Do not reconstruct those paths, silently rebase old artifacts or weaken the
+guard. Restore the authentic original assets or establish a separately qualified
+source-identity rebase before replay. Independent PDF/retained pixel equivalence
+alone does not authenticate the missing original planner image bytes.
+
+`output/triage-20261023-source-audit/diagnostic-result.json` binds runtime/recipe
+hashes, both failed run identities, exact scopes and the decision. No provider
+calls, pipeline changes or current crop/HTML/provenance acceptance. The old
+p005 source/crop visual inspection remains historical; p007/current output and
+unaffected control were not produced. No detector, coverage or all-page claim
+moves. This completes the bounded diagnostic packet and satisfies its immediate
+strategy reassessment: qualified-input dependency missing, so defer this slice
+and let another lane earn work from distinct evidence. Story226 stays InProgress;
+whole-story completion is not implied. Earlier helper-trim and color proofs
+remain historical, not current path failure evidence. Next strategic checkpoint
+remains after3further substantive rounds or about30active minutes; no automation.

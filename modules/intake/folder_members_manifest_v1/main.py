@@ -115,7 +115,7 @@ def main() -> None:
                 "filename": member_path_abs.name,
                 "file_extension": member_path_abs.suffix.lower() or None,
                 "detected_input_kind": infer_archive_member_input_kind(member_path),
-                "file_size_bytes": member_path_abs.stat().st_size,
+                "file_size_bytes": len(payload),
                 "sha256": hashlib.sha256(payload).hexdigest(),
                 "module_id": MODULE_ID,
                 "run_id": args.run_id,

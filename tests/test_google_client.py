@@ -71,11 +71,26 @@ def test_gemini_crop_response_retains_raw_and_rejects_truncation(
         candidates=[SimpleNamespace(finish_reason=SimpleNamespace(value=finish_reason))],
         model_dump_json=lambda: '{"response_id":"gemini-response-1"}',
     )
-    models = SimpleNamespace(generate_content=lambda **kwargs: response)
+    calls = []
+    models = SimpleNamespace(generate_content=lambda **kwargs: calls.append(kwargs) or response)
     monkeypatch.setattr(
         google_client,
         "genai",
         SimpleNamespace(Client=lambda **kwargs: SimpleNamespace(models=models)),
+    )
+    # Keep this offline contract independent of an ambient optional SDK. The
+    # client and its request types are one test-double boundary.
+    monkeypatch.setattr(
+        google_client,
+        "types",
+        SimpleNamespace(
+            Part=SimpleNamespace(
+                from_bytes=lambda **kwargs: SimpleNamespace(**kwargs),
+                from_text=lambda **kwargs: SimpleNamespace(**kwargs),
+            ),
+            Content=lambda **kwargs: SimpleNamespace(**kwargs),
+            GenerateContentConfig=lambda **kwargs: SimpleNamespace(**kwargs),
+        ),
     )
     monkeypatch.setattr(google_client, "log_llm_usage", lambda **kwargs: None)
     monkeypatch.setenv("GEMINI_CROP_RAW_ENVELOPE_DIR", str(tmp_path))
@@ -94,4 +109,6 @@ def test_gemini_crop_response_retains_raw_and_rejects_truncation(
             call()
     else:
         assert call()[2] == "gemini-response-1"
+    assert calls[0]["contents"][0].parts[1].data == b"abc"
+    assert calls[0]["contents"][0].parts[1].mime_type == "image/jpeg"
     assert len(list(tmp_path.glob("*.json"))) == 1

@@ -102,7 +102,7 @@ EMPTY_STORY_SECTION_RE = re.compile(
     re.IGNORECASE | re.DOTALL,
 )
 PLACEHOLDER_SECTION_RE = re.compile(r"^\{.+\}$", re.DOTALL)
-WORK_LOG_ENTRY_RE = re.compile(r"^(?P<stamp>\d{8}-\d{4})\s+—\s+(?P<summary>.+)$")
+WORK_LOG_ENTRY_RE = re.compile(r"^(?P<stamp>\d{8}(?:-\d{4})?)\s+[-–—]\s+(?P<summary>.+)$")
 ISO_DATE_RE = re.compile(r"\b(\d{4}-\d{2}-\d{2})\b")
 COMPACT_DATE_RE = re.compile(r"\b(\d{8})-\d{4}\b")
 TRIGGER_EXHAUSTED_RE = re.compile(
@@ -365,7 +365,10 @@ def parse_story(path: Path) -> dict[str, Any]:
     blocker_summary = extract_markdown_section(body, "Blocker Summary")
     blocker_evidence = extract_markdown_section(body, "Blocker Evidence")
     unblock_condition = extract_markdown_section(body, "Unblock Condition")
-    work_log = extract_markdown_section(body, "Work Log")
+    # Continuations append dated evidence under later headings. Keep the tail
+    # after Work Log, excluding date-shaped planning text before that boundary.
+    work_log_heading = re.search(r"^##\s+Work Log\s*\n", body, re.MULTILINE)
+    work_log = body[work_log_heading.end():] if work_log_heading else ""
     return {
         "id": file_match.group(1),
         "title": title or path.stem,

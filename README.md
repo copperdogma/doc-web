@@ -222,8 +222,11 @@ fixtures on the supported slice:
 That supported slice is still intentionally narrow: simple table-only sheets,
 including multiple table regions on one sheet, with sheet-named entries and
 anchor-based provenance. `testdata/xlsx-merged-formula.xlsx` remains a bounded
-unsupported probe because merged-title / formula-summary structure is currently
-promoted into heading blocks instead of staying inside the table.
+unsupported probe. Formulas or merged ranges now stop intake before publishing
+partial content and leave `xlsx_source_features.json` with the workbook hash,
+sheet/cell/range locations and raw cached XML observations. The lane does not
+calculate formulas or qualify cache freshness; diagnostic coordinates do not
+add cell-level exported provenance.
 
 For the maintained PPTX proof lane, install the explicit PPTX extra:
 
@@ -412,6 +415,12 @@ fixture. The supported claim is intentionally narrow:
 - nested `driver.py` launches into the existing maintained direct-entry DOCX, `.eml`, and web-page lanes
 - explicit blocked routing for unsupported members instead of hidden skips or a fabricated combined bundle
 
+ZIP and folder routing require the inventoried SHA-256, byte count and source
+path to still match before dispatch. Grouped images must also retain exactly
+the inventoried eligible files in their shared directory. A mismatch emits
+failed route rows with an identity trace. Keep inputs unchanged during child
+runs; these checks retain source-native paths without creating a snapshot.
+
 Story 222 establishes the direct-folder recommendation substrate and Story 223
 extends the same checked-in `testdata/mixed-folder-pdf-mini/` fixture to a
 bounded direct-folder approved-handoff launch continuation. That supported claim is
@@ -573,6 +582,9 @@ The active repo path is format-aware intake plus structural website output for
 - `python -m pip install '.[driver,xlsx]'` supports the maintained XLSX lane from this checkout.
 - The maintained born-digital PDF lanes also require Docker and `pdftotext`.
 - The fuller repo runtime from `requirements.txt` now also includes DOCX, EPUB, XLSX, and PPTX support, but it is currently validated on Python 3.11/3.12 because the pinned `unstructured==0.16.9` line is limited to that range.
+- It declares headless OpenCV for image processing directly. The Unstructured PDF
+  extra used only by the archived genealogy recipe is excluded; maintained PDF
+  recipes use the separate PDF/OCR and Marker-lite paths above.
 
 ### API Keys
 For repo-local runs, put app-scoped keys in `.env`:

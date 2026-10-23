@@ -6,7 +6,7 @@
     "untested": "Format identified but no test fixtures or pipeline support",
     "has-fixture": "Test document exists but pipeline not yet built or passing",
     "passing": "Pipeline converts this format with acceptable accuracy",
-    "graduated": "Converter migrated to Dossier — doc-forge no longer the primary owner"
+    "graduated": "Converter migrated to Dossier \u2014 doc-forge no longer the primary owner"
   },
   "accuracy_dimensions": {
     "text_fidelity": "Character-level accuracy of extracted text vs source (0.0-1.0)",
@@ -47,8 +47,11 @@
       "status": "passing",
       "description": "Scanned PDF with primarily prose content",
       "pipeline_recipe": "recipe-pdf-ocr-html-mvp.yaml",
-      "intake_module": "extract_pdf_images_fast_v1 → ocr_ai_gpt51_v1",
-      "complexity": ["simple-prose", "degraded-quality"],
+      "intake_module": "extract_pdf_images_fast_v1 \u2192 ocr_ai_gpt51_v1",
+      "complexity": [
+        "simple-prose",
+        "degraded-quality"
+      ],
       "fixtures": [
         {
           "id": "scanned-prose-mini",
@@ -84,8 +87,11 @@
       "status": "passing",
       "description": "Scanned PDF with dense tables (genealogy, reference books)",
       "pipeline_recipe": "recipe-onward-pdf-html-mvp.yaml",
-      "intake_module": "extract_pdf_images_fast_v1 → ocr_ai_gpt51_v1 → table_rescue_html_loop_v1",
-      "complexity": ["tables", "multi-column"],
+      "intake_module": "extract_pdf_images_fast_v1 \u2192 ocr_ai_gpt51_v1 \u2192 table_rescue_html_loop_v1",
+      "complexity": [
+        "tables",
+        "multi-column"
+      ],
       "fixtures": [
         {
           "id": "onward-to-the-unknown",
@@ -109,7 +115,9 @@
           "metric": "overall"
         }
       },
-      "known_gaps": ["Handwritten annotations still weaken some table pages."],
+      "known_gaps": [
+        "Handwritten annotations still weaken some table pages."
+      ],
       "graduated": false
     },
     {
@@ -118,8 +126,11 @@
       "status": "passing",
       "description": "Directory of scanned page images (JPG/PNG/TIFF)",
       "pipeline_recipe": "recipe-images-ocr-html-mvp.yaml",
-      "intake_module": "images_dir_to_manifest_v1 → ocr_ai_gpt51_v1",
-      "complexity": ["simple-prose", "illustrations"],
+      "intake_module": "images_dir_to_manifest_v1 \u2192 ocr_ai_gpt51_v1",
+      "complexity": [
+        "simple-prose",
+        "illustrations"
+      ],
       "fixtures": [
         {
           "id": "onward-images",
@@ -153,14 +164,16 @@
       "description": "Plain text files (.txt)",
       "pipeline_recipe": "legacy/recipe-text.yaml",
       "intake_module": "extract_text_v1",
-      "complexity": ["simple-prose"],
+      "complexity": [
+        "simple-prose"
+      ],
       "fixtures": [],
       "scores": {
         "text_fidelity": 1.0,
         "structure_preservation": null,
         "illustration_extraction": null,
         "measured": "2025-12-01",
-        "notes": "Text passthrough — no OCR needed. Structure preservation N/A for plain text."
+        "notes": "Text passthrough \u2014 no OCR needed. Structure preservation N/A for plain text."
       },
       "known_gaps": [],
       "graduated": false
@@ -172,7 +185,9 @@
       "description": "Markdown files (.md)",
       "pipeline_recipe": "legacy/recipe-text.yaml",
       "intake_module": "extract_text_v1",
-      "complexity": ["simple-prose"],
+      "complexity": [
+        "simple-prose"
+      ],
       "fixtures": [],
       "scores": {
         "text_fidelity": 1.0,
@@ -181,26 +196,36 @@
         "measured": "2025-12-01",
         "notes": "Markdown passthrough. Structure (headers, lists) preserved as-is."
       },
-      "known_gaps": ["No semantic structure extraction from markdown headers/lists"],
+      "known_gaps": [
+        "No semantic structure extraction from markdown headers/lists"
+      ],
       "graduated": false
     },
     {
       "id": "html-files",
       "format_family": "html",
       "status": "passing",
-      "description": "HTML files",
-      "pipeline_recipe": "legacy/recipe-text.yaml",
-      "intake_module": "extract_text_v1",
-      "complexity": ["simple-prose"],
-      "fixtures": [],
-      "scores": {
-        "text_fidelity": 1.0,
-        "structure_preservation": null,
-        "illustration_extraction": null,
-        "measured": "2025-12-01",
-        "notes": "HTML passthrough. Tags preserved."
-      },
-      "known_gaps": ["No tag stripping or semantic extraction from HTML structure"],
+      "description": "Static local HTML files through the maintained checked-HTML lane",
+      "pipeline_recipe": "recipe-web-page-html-mvp.yaml",
+      "intake_module": "web_page_html_intake_v1 \u2192 extract_page_numbers_html_v1 \u2192 portionize_headings_html_v1 \u2192 build_chapter_html_v1",
+      "complexity": [
+        "simple-prose",
+        "tables"
+      ],
+      "fixtures": [
+        {
+          "id": "static-html-mini",
+          "source": "testdata/static-html-mini.html",
+          "pages": 1,
+          "notes": "Public synthetic Harbor Field Guide fixture, verified through the maintained driver on 2026-10-23. One heading-derived chapter retains ordered/unordered lists, all nine table cells, emphasis and a link. Eleven heading/paragraph/list-item/table anchors bind the structured main content to source page1 and stable source element ids. This shares the checked-HTML behavior class with web-page snapshots rather than adding another runtime."
+        }
+      ],
+      "scores": null,
+      "known_gaps": [
+        "Passing evidence is bounded to one static synthetic local file; no numerical fidelity score or arbitrary HTML/CSS/browser rendering claim.",
+        "Tables remain atomic citation units with no cell-level provenance. Main-wrapped heading/paragraph/list-item/table anchors are verified on the structured fixture; unstructured main text retains a coarse whole-container citation, and broader wrapper/content patterns remain unqualified.",
+        "Linked assets, JavaScript-rendered content and general boilerplate/layout handling remain unqualified."
+      ],
       "graduated": false
     },
     {
@@ -209,8 +234,12 @@
       "status": "passing",
       "description": "PDFs with embedded text (no OCR needed), possibly with complex layouts",
       "pipeline_recipe": "recipe-born-digital-pdf-marker-lite-html-mvp.yaml (book-like lane) and recipe-born-digital-pdf-non-toc-html-mvp.yaml (flat/non-TOC lane)",
-      "intake_module": "extract_pdf_marker_lite_html_v1 / extract_pdf_images_fast_v1 → ocr_ai_gpt51_v1 (comparison only)",
-      "complexity": ["simple-prose", "tables", "illustrations"],
+      "intake_module": "extract_pdf_marker_lite_html_v1 / extract_pdf_images_fast_v1 \u2192 ocr_ai_gpt51_v1 (comparison only)",
+      "complexity": [
+        "simple-prose",
+        "tables",
+        "illustrations"
+      ],
       "fixtures": [
         {
           "id": "tbotb-mini",
@@ -265,8 +294,12 @@
       "status": "passing",
       "description": "Microsoft Word documents (.docx)",
       "pipeline_recipe": "recipe-docx-html-mvp.yaml",
-      "intake_module": "unstructured_docx_intake_v1 → docx_elements_to_bundle_v1",
-      "complexity": ["simple-prose", "tables", "illustrations"],
+      "intake_module": "unstructured_docx_intake_v1 \u2192 docx_elements_to_bundle_v1",
+      "complexity": [
+        "simple-prose",
+        "tables",
+        "illustrations"
+      ],
       "fixtures": [
         {
           "id": "docx-mini",
@@ -301,8 +334,10 @@
       "status": "passing",
       "description": "Microsoft Excel spreadsheets (.xlsx)",
       "pipeline_recipe": "recipe-xlsx-html-mvp.yaml",
-      "intake_module": "unstructured_xlsx_intake_v1 → xlsx_elements_to_bundle_v1",
-      "complexity": ["tables"],
+      "intake_module": "unstructured_xlsx_intake_v1 \u2192 xlsx_elements_to_bundle_v1",
+      "complexity": [
+        "tables"
+      ],
       "fixtures": [
         {
           "id": "xlsx-mini",
@@ -326,13 +361,13 @@
           "id": "xlsx-merged-formula",
           "source": "testdata/xlsx-merged-formula.xlsx",
           "pages": null,
-          "notes": "Bounded unsupported probe. Story 193 reran it to mark the current boundary: Unstructured emitted `Budget Notes` and `Total` as heading blocks around the main table instead of preserving the merged-title / formula-summary structure as table content."
+          "notes": "Bounded unsupported probe. October23 Story193 guard rejects its Budget!B5/C5 formulas and merged A1:C1 with an inspectable source-feature report before accepted elements or publication. The prior Title/Table/Title output omitted both formulas; rejection does not claim extraction support."
         }
       ],
       "scores": null,
       "known_gaps": [
         "Passing evidence is still bounded to the verified simple-table slice from Story 193: table-only sheets, sheet-named entries, and multiple table regions on one sheet.",
-        "The maintained lane does not yet claim formulas, charts, images, comments, cell-level open-original behavior, or merged-title / formula-summary structures like `xlsx-merged-formula.xlsx`.",
+        "The maintained lane does not claim formulas, merged cells, charts, images, comments, or cell-level open-original behavior. Formulas and merged ranges now fail with source-located diagnostics; other advanced feature families remain unqualified, not covered by this admission check.",
         "Workbook provenance currently relies on stable source element ids and sheet-named entries rather than cell-address anchors or explicit page-number fields."
       ],
       "graduated": false
@@ -343,8 +378,11 @@
       "status": "passing",
       "description": "Microsoft PowerPoint presentations (.pptx)",
       "pipeline_recipe": "recipe-pptx-html-mvp.yaml",
-      "intake_module": "unstructured_pptx_intake_v1 → pptx_elements_to_bundle_v1",
-      "complexity": ["mixed-layout", "illustrations"],
+      "intake_module": "unstructured_pptx_intake_v1 \u2192 pptx_elements_to_bundle_v1",
+      "complexity": [
+        "mixed-layout",
+        "illustrations"
+      ],
       "fixtures": [
         {
           "id": "pptx-mini",
@@ -368,7 +406,9 @@
       "description": "EPUB e-books",
       "pipeline_recipe": "recipe-epub-html-mvp.yaml",
       "intake_module": "unstructured_epub_intake_v1 \u2192 epub_elements_to_bundle_v1",
-      "complexity": ["simple-prose"],
+      "complexity": [
+        "simple-prose"
+      ],
       "fixtures": [
         {
           "id": "epub-mini",
@@ -392,7 +432,9 @@
       "description": "Plain-text email messages (.eml) with subject/from/to headers and one message body",
       "pipeline_recipe": "recipe-email-eml-html-mvp.yaml",
       "intake_module": "unstructured_email_intake_v1 \u2192 email_elements_to_bundle_v1",
-      "complexity": ["simple-prose"],
+      "complexity": [
+        "simple-prose"
+      ],
       "fixtures": [
         {
           "id": "email-eml-mini",
@@ -416,7 +458,9 @@
       "description": "Email archives (.mbox) containing multiple messages",
       "pipeline_recipe": "recipe-email-mbox-html-mvp.yaml",
       "intake_module": "mailbox_mbox_intake_v1 \u2192 mbox_elements_to_bundle_v1",
-      "complexity": ["simple-prose"],
+      "complexity": [
+        "simple-prose"
+      ],
       "fixtures": [
         {
           "id": "email-mbox-mini",
@@ -437,10 +481,13 @@
       "id": "web-page",
       "format_family": "web-page",
       "status": "passing",
-      "description": "Checked HTML page snapshots (.html → structured content)",
+      "description": "Checked HTML page snapshots (.html \u2192 structured content)",
       "pipeline_recipe": "recipe-web-page-html-mvp.yaml",
-      "intake_module": "web_page_html_intake_v1 → extract_page_numbers_html_v1 → portionize_headings_html_v1 → build_chapter_html_v1",
-      "complexity": ["mixed-layout", "illustrations"],
+      "intake_module": "web_page_html_intake_v1 \u2192 extract_page_numbers_html_v1 \u2192 portionize_headings_html_v1 \u2192 build_chapter_html_v1",
+      "complexity": [
+        "mixed-layout",
+        "illustrations"
+      ],
       "fixtures": [
         {
           "id": "web-page-mini",
@@ -463,8 +510,11 @@
       "status": "has-fixture",
       "description": "Photos of handwritten notes, letters, diaries",
       "pipeline_recipe": "recipe-images-ocr-html-handwritten-notes-gemini-rescue.yaml / recipe-pdf-ocr-html-handwritten-notes-gemini-rescue.yaml",
-      "intake_module": "images_dir_to_manifest_v1 → ocr_ai_gpt51_v1",
-      "complexity": ["handwritten", "degraded-quality"],
+      "intake_module": "images_dir_to_manifest_v1 \u2192 ocr_ai_gpt51_v1",
+      "complexity": [
+        "handwritten",
+        "degraded-quality"
+      ],
       "fixtures": [
         {
           "id": "handwritten-notes-mini-images",
@@ -542,8 +592,10 @@
       "status": "passing",
       "description": "Bounded ZIP archives or source-native folders routed by capability class: one generic direct-entry passthrough slice for already-supported member types, one PDF-member approved-handoff launch slice on ZIP and direct-folder entry, and one grouped image-member OCR-boundary slice on ZIP and direct-folder entry",
       "pipeline_recipe": "recipe-mixed-archive-zip-routing-mvp.yaml / recipe-mixed-folder-routing-mvp.yaml",
-      "intake_module": "archive_unpack_manifest_v1 or folder_members_manifest_v1 → archive_route_members_v1",
-      "complexity": ["mixed-layout"],
+      "intake_module": "archive_unpack_manifest_v1 or folder_members_manifest_v1 \u2192 archive_route_members_v1",
+      "complexity": [
+        "mixed-layout"
+      ],
       "fixtures": [
         {
           "id": "mixed-archive-mini",
@@ -585,7 +637,7 @@
       "scores": null,
       "known_gaps": [
         "Passing evidence is still bounded to six checked-in probes covering three behavior classes: direct-entry passthrough on one ZIP and one source-native folder mix, PDF-member approved-handoff launch on one ZIP and one source-native folder mix, and grouped image-member OCR-boundary continuation on one ZIP mix plus one source-native folder mix.",
-        "This row models routing/continuation classes rather than every `supported member type × container` permutation. Already-supported direct-entry member types belong to the generic passthrough class unless the container changes routing, provenance, downstream artifact shape, or validation boundaries.",
+        "This row models routing/continuation classes rather than every `supported member type \u00d7 container` permutation. Already-supported direct-entry member types belong to the generic passthrough class unless the container changes routing, provenance, downstream artifact shape, or validation boundaries.",
         "The maintained lane does not yet claim scanned or handwritten PDF-member launch parity, grouped-image continuation beyond the first downstream `page_html_v1` artifact, nested archives, attachment extraction, ambiguous AI-assisted route decisions, or broad heterogeneous archive ownership.",
         "Mixed-archive provenance currently relies on relative `member_path` / `member_id`, source-native or extracted member file paths depending on the entry surface, and downstream run ids or artifact paths; it does not flatten members into one combined bundle or claim archive-level page anchors."
       ],

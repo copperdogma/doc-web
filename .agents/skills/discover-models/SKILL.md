@@ -8,7 +8,7 @@ user-invocable: true
 
 > Alignment check: Before choosing an approach, verify it aligns with `docs/ideal.md` and relevant decision records in `docs/decisions/`. If this work touches a known compromise in `docs/spec.md`, respect its limitation type and evolution path. If none apply, say so explicitly.
 
-Query OpenAI, Anthropic, and Google model APIs to see what's available, flag untested models, and identify new SOTA options for eval work.
+Query OpenAI, Anthropic, and Google model catalogs, compare exact identity references in recorded scores, and identify candidates for further investigation. Catalog presence does not prove inference access, modality, quality or task qualification.
 
 ## Steps
 
@@ -20,14 +20,14 @@ python scripts/discover-models.py --check-new
 
 2. **Analyze the output**:
    - Which providers have API keys configured?
-   - What models are available that we haven't tested yet?
+   - Which catalog IDs lack a matching score-name reference?
    - Are there new SOTA models since our last eval run?
    - Are there new cheap models that might be cost-effective alternatives?
 
 3. **Report to user**:
-   - Summarize key findings: new models worth testing, missing API keys
+   - Summarize observed candidates, provider errors and missing API keys; check existing retry triggers before recommending an eval
    - Highlight models that are likely interesting for eval work (new SOTA, new cheap tier)
-   - Skip dated snapshots and aliases; focus on canonical model IDs
+   - Preserve exact dated snapshots, previews and sibling identities in evidence; do not treat aliases as equivalent without separate evidence
 
 4. **Optionally cache results**:
 
@@ -39,8 +39,10 @@ This writes to `docs/evals/models-available.yaml` for other skills to reference.
 
 ## Notes
 
-- The script checks environment variables for API keys: `OPENAI_API_KEY`, `ANTHROPIC_API_KEY`, `GEMINI_API_KEY`
+- The script uses repo-scoped `DOC_WEB_OPENAI_API_KEY`, `DOC_WEB_ANTHROPIC_API_KEY` and `DOC_WEB_GEMINI_API_KEY` through `doc_web.env`; never print credential values
 - If a key is missing, the script reports setup instructions
-- Models are filtered to chat/completion models only (no embeddings, TTS, image gen, etc.)
-- `[TESTED]` means the model appears in `docs/evals/registry.yaml`
-- `[NEW]` means it hasn't been evaluated yet
+- Catalog filters and tiers are heuristics, not capability or quality measurements
+- `[SCORE REF]` means the ID matches a model-name reference in registry scores; `[NO SCORE REF]` means no such match, not proof it was never evaluated
+- Complete Google/Anthropic pagination is bounded to20pages. A failed, malformed or incomplete traversal contributes no certified models; there is no static-success fallback
+- Error reports contain safe categories/status codes, never raw exception messages or URLs. Google authentication uses a header
+- `--cache --summary` writes structured YAML and prints the summary; every report keeps skipped/error/empty-success states distinct

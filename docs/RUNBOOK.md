@@ -3,6 +3,15 @@
 **Audience:** AI Agents & Engineering Operators
 **Scope:** Execution, Recovery, and Configuration of the Doc Forge pipeline.
 
+Artifacts with registered output schemas are admitted as a whole. A malformed
+row or producer error record fails the stage and stops its dependents; the
+rejected artifact is retained for diagnosis. `--no-validate` skips the additional
+post-stamping check, not admission. Stamping adds only fields declared by the
+schema and replaces validated JSON/JSONL atomically. Native Unstructured elements
+and schemas without stamp fields are validated without rewriting their producer
+bytes, including `_codex` provenance. Unknown/null schemas retain their existing
+behavior; registration is not a claim that every module is schema-validated.
+
 ## 🛑 Critical Safety Rules
 1.  **NEVER use `--force` when resuming.** It deletes the entire run directory.
 2.  **ALWAYS use `run_driver_monitored.sh`** for production runs (handles logging, PID tracking, crash detection).
@@ -160,6 +169,9 @@ python -m pip install '.[driver,email]'
 The fuller repo runtime from `requirements.txt` also now includes DOCX, EPUB,
 XLSX, PPTX, and `.eml` support, but it is currently validated on Python 3.11/3.12
 because the pinned `unstructured==0.16.9` dependency is limited to that range.
+Headless OpenCV is an explicit image-processing dependency. The Unstructured PDF
+extra belongs to the archived genealogy recipe and is excluded from maintained
+requirements; current PDF recipes use their dedicated PDF/OCR or Marker runtime.
 
 ### Structural Website / `doc-web` Runs
 Use these when validating the active structural HTML bundle path.
@@ -460,12 +472,18 @@ checked-in fixtures on the same slice:
 The maintained claim is still bounded to simple table-only sheets, including
 multiple table regions on one sheet, with sheet-named entries and
 `source_element_ids` provenance. `testdata/xlsx-merged-formula.xlsx` is a
-checked-in boundary probe, not a supported smoke fixture: in the fresh Story
-193 recheck, Unstructured split the merged title and `Total` summary into
-heading blocks instead of preserving that summary row as table content.
+checked-in boundary probe, not a supported smoke fixture. Intake now rejects
+formulas or merged ranges before partitioning/publishing and points to
+`01_unstructured_xlsx_intake_v1/xlsx_source_features.json`. The report binds the
+source hash, installed reader version and selected physical worksheet parts,
+identifies formula cells/merged ranges, and retains cached XML text/type without
+decoding, calculation or freshness claims. These locations are diagnostics,
+not newly supported exported cell anchors. Missing native worksheet identity
+or observed source drift also fails intake instead of falling back.
 
 Expected bundle outputs:
 
+- `output/runs/<run_id>/01_unstructured_xlsx_intake_v1/xlsx_source_features.json` (admission report; also retained on an unsupported-feature rejection)
 - `output/runs/<run_id>/01_unstructured_xlsx_intake_v1/elements.jsonl`
 - `output/runs/<run_id>/02_xlsx_elements_to_bundle_v1/xlsx_bundle_report.json`
 - `output/runs/<run_id>/output/html/index.html`
@@ -654,6 +672,15 @@ of the recommendation-only contact-sheet benchmark or the approved-handoff
 automation surface.
 
 ### Repo-Owned Mixed-Archive ZIP Intake Smoke
+
+The shared ZIP/folder router verifies each member's recorded SHA-256, byte
+count, regular-file and source-path identity before dispatch. Grouped-image
+launches additionally require the consumer's immediate eligible image set to
+match the inventoried group. Identity failures emit `failed` route rows with
+expected/observed details and the manifest/source paths in `terminal_reason`.
+If inputs changed intentionally, start a fresh inventory/run rather than
+editing the retained manifest. Keep inputs unchanged while child runs execute;
+the pre-dispatch check does not create an immutable execution snapshot.
 
 Use this when you need a cheap real-run proof that the first bounded
 mixed-archive lane still emits an archive/member manifest, archive-member route

@@ -2,6 +2,7 @@
 
 import hashlib
 import json
+import math
 import os
 import time
 from pathlib import Path
@@ -16,6 +17,54 @@ PRICES = {
     "gpt-5.5": (5, 0.5, 5, 30),
     "gemini-3-flash-preview": (0.5, 0.05, 0.5, 3),
 }
+PROFILE = None
+
+
+def configure_campaign(profile_path):
+    """Load a frozen Google campaign without reusing historical ledger state."""
+    global PROFILE, RESULTS, PRICES
+    path = Path(profile_path).resolve()
+    raw = path.read_bytes()
+    digest = hashlib.sha256(raw).hexdigest()
+    if PROFILE is not None and PROFILE["sha256"] != digest:
+        raise RuntimeError("Campaign reconfiguration denied")
+    data = json.loads(raw)
+    prices = data["prices"]
+    limits = data["output_limits"]
+    endpoints = data["endpoints"]
+    if not prices or set(prices) != set(limits) or set(prices) != set(endpoints):
+        raise ValueError("Incomplete campaign model contract")
+    for model, rates in prices.items():
+        if len(rates) != 4 or any(
+            type(rate) not in (int, float) or not math.isfinite(rate) or rate < 0
+            for rate in rates
+        ):
+            raise ValueError("Invalid campaign prices")
+        if type(limits[model]) is not int or not 0 < limits[model] <= 32768:
+            raise ValueError("Invalid campaign output limit")
+        expected_url = f"https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent"
+        if endpoints[model] != expected_url or "/" in model or ":" in model:
+            raise ValueError("Invalid campaign endpoint")
+    if type(data["max_calls"]) is not int or not 0 < data["max_calls"] <= 86:
+        raise ValueError("Invalid campaign call ceiling")
+    if type(data["cap_usd"]) not in (float, int) or not 0 < data["cap_usd"] <= 5:
+        raise ValueError("Invalid campaign cap")
+    results = Path(data["results_dir"]).resolve()
+    ledger = json.loads((results / "ledger.json").read_text())
+    if ledger.get("campaign_sha256") != digest or ledger["cap_usd"] != data["cap_usd"]:
+        raise RuntimeError("Campaign ledger binding mismatch")
+    if not data.get("sources"):
+        raise ValueError("Missing campaign source bindings")
+    for source, expected in data["sources"].items():
+        resolved = (ROOT / source).resolve()
+        if (
+            not resolved.is_relative_to(ROOT)
+            or hashlib.sha256(resolved.read_bytes()).hexdigest() != expected
+        ):
+            raise RuntimeError("Campaign source binding mismatch")
+    PROFILE = {**data, "path": path, "sha256": digest}
+    RESULTS = results
+    PRICES = prices
 
 
 def write(path, data):
@@ -58,6 +107,11 @@ def _guarded_send_unlocked(original, client, request, **kwargs):
     else:
         raise RuntimeError("Unmetered POST denied by image campaign")
     prices = PRICES[model]
+    if PROFILE is not None:
+        if str(request.url) != PROFILE["endpoints"][model]:
+            raise RuntimeError("Campaign endpoint mismatch")
+        # Check before every send, including in long-lived harness processes.
+        configure_campaign(PROFILE["path"])
     encoded = json.dumps(content)
     images = (
         encoded.count('"type": "image_url"')
@@ -70,10 +124,19 @@ def _guarded_send_unlocked(original, client, request, **kwargs):
     # Fixed benchmark envelope: 20k/image plus 6k for text, instructions and schema.
     bound = images * 20000 + 6000
     reserve = (bound * max(prices[:3]) + maximum * prices[3]) / 1e6
-    if maximum > (16384 if images == 1 else 4096):
+    output_limit = (
+        PROFILE["output_limits"][model]
+        if PROFILE is not None
+        else 16384
+        if images == 1
+        else 4096
+    )
+    if type(maximum) is not int or maximum <= 0 or maximum > output_limit:
         raise RuntimeError("Output exceeds frozen allowance")
     path = RESULTS / "ledger.json"
     ledger = json.loads(path.read_text())
+    if PROFILE is not None and ledger.get("campaign_sha256") != PROFILE["sha256"]:
+        raise RuntimeError("Campaign ledger binding mismatch")
     exposure = ledger["spent_usd"] + sum(
         c["reserved_usd"] for c in ledger["calls"] if c.get("cost_usd") is None
     )
@@ -96,7 +159,7 @@ def _guarded_send_unlocked(original, client, request, **kwargs):
         raise RuntimeError("Duplicate dispatch denied")
     if recovery and sum(c.get("recovery", False) for c in ledger["calls"]) >= 2:
         raise RuntimeError("Two operational recoveries exhausted")
-    if len(ledger["calls"]) >= 86:
+    if len(ledger["calls"]) >= (PROFILE["max_calls"] if PROFILE is not None else 86):
         raise RuntimeError("Finite campaign call ceiling reached")
     seq = len(ledger["calls"]) + 1
     raw_request = json.dumps(body, sort_keys=True).encode()
@@ -121,6 +184,9 @@ def _guarded_send_unlocked(original, client, request, **kwargs):
             ]
         },
     )
+    if PROFILE is not None:
+        record["campaign_sha256"] = PROFILE["sha256"]
+        record["code_sha256"].update(PROFILE["sources"])
     ledger["calls"].append(record)
     write(path, ledger)
     started = time.monotonic()
@@ -146,9 +212,17 @@ def _guarded_send_unlocked(original, client, request, **kwargs):
         usage = data.get("usageMetadata", {}) if google else data.get("usage", {})
         if google:
             inp = usage["promptTokenCount"]
-            out = usage.get("candidatesTokenCount", 0) + usage.get(
-                "thoughtsTokenCount", 0
-            )
+            visible = usage["candidatesTokenCount"]
+            thoughts = usage.get("thoughtsTokenCount", 0)
+            total = usage["totalTokenCount"]
+            if any(
+                type(value) is not int or value < 0
+                for value in (inp, visible, thoughts, total)
+            ):
+                raise ValueError("Invalid Google usage counters")
+            out = visible + thoughts
+            if total != inp + out:
+                raise ValueError("Incomplete Google usage accounting")
             cache = usage.get("cachedContentTokenCount", 0)
             writes = 0
         elif model == "mistralai/mistral-large-4-0":

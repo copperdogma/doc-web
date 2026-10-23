@@ -52,7 +52,7 @@ View results: `promptfoo view`
   - `crop-validation` — dedicated bounded crop-only text-exclusion / crop-quality surface linked to `C5`
   - `crop-page-level-deletion-gate` — page-context deletion-gate surface for the maintained runtime overlap corpus
 - **Maintained detector prompt set**: `baseline`, `strict-exclude`, `two-step`, `conservative-count`
-- **Current detector score**: the fresh comparable quality leader is GPT-5.6 Terra at `0.9689` / `13/13`; the symmetric Gemini 3 Flash control scored `0.9595` / `13/13`. Terra is not production-eligible because its exact Onward runtime proof retained captions on two page-122 crops. See Attempt 029.
+- **Recorded bounded detector leader**: GPT-6 Sol Attempt044 records `0.992731` / `13/13`, separately publication-unqualified. Attempt063 adds a fresh Argon/runtime-control comparison: `0.978131` vs `0.958315`, both `13/13`; Argon has higher observed cost/latency and unresolved exact cover-edge equivalence. This does not replace the historical leader or qualify a production route. Earlier Terra `0.9689` evidence and its caption-contamination veto remain historical; detector ranking never waives source/safety/runtime gates.
 - **Current C4 deletion-gate score**: `single-model-crop-detection` is `0.9703` overall / `1.0` pass rate on that same maintained single-stage rerun, so the bounded deletion gate still passes. Use the same tracked proof note above as the portable summary; the raw promptfoo JSON remains a local regenerable artifact.
 - **Maintained runtime note**: Stories 184 and 198 proved the reviewed Onward
   lane can delete the retired retry / refine / validate surface from both the

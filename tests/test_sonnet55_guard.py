@@ -10,6 +10,19 @@ g = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(g)
 
 
+@pytest.fixture(autouse=True)
+def restore_transport_after_test(monkeypatch):
+    # install() replaces process-wide methods directly; register their originals
+    # so teardown restores both clients even when a transport assertion fails.
+    monkeypatch.setattr(httpx.Client, "send", httpx.Client.send)
+    try:
+        import httpx2
+    except ImportError:
+        pass
+    else:
+        monkeypatch.setattr(httpx2.Client, "send", httpx2.Client.send)
+
+
 @pytest.mark.parametrize("library", ["httpx", "httpx2"])
 def test_guard_intercepts_actual_transport_and_retains_full_pair(
     tmp_path, monkeypatch, library

@@ -1,0 +1,517 @@
+discovered: '2026-10-23T15:51:21Z'
+scope: filtered catalog; inference access and task quality not assessed
+tiers: heuristic
+providers:
+  openai:
+    api_key_set: true
+    env_key: DOC_WEB_OPENAI_API_KEY
+    status: ok
+    complete: true
+    model_count: 65
+    models:
+    - id: gpt-6.1-sol
+      provider: openai
+      created: '2026-09-27'
+      tier: mid
+    - id: gpt-6-sol
+      provider: openai
+      created: '2026-09-14'
+      tier: mid
+    - id: gpt-6-luna
+      provider: openai
+      created: '2026-09-14'
+      tier: mid
+    - id: gpt-live-1
+      provider: openai
+      created: '2026-09-08'
+      tier: mid
+    - id: gpt-6-astra
+      provider: openai
+      created: '2026-08-27'
+      tier: mid
+    - id: gpt-5.6-luna
+      provider: openai
+      created: '2026-06-23'
+      tier: sota
+    - id: gpt-5.6-sol
+      provider: openai
+      created: '2026-06-23'
+      tier: sota
+    - id: gpt-5.6-terra
+      provider: openai
+      created: '2026-06-23'
+      tier: sota
+    - id: gpt-5.5-2026-04-23
+      provider: openai
+      created: '2026-04-22'
+      tier: sota
+    - id: gpt-5.5-pro
+      provider: openai
+      created: '2026-04-22'
+      tier: sota
+    - id: gpt-5.5-pro-2026-04-23
+      provider: openai
+      created: '2026-04-22'
+      tier: sota
+    - id: gpt-5.5
+      provider: openai
+      created: '2026-04-22'
+      tier: sota
+    - id: gpt-5.4-mini
+      provider: openai
+      created: '2026-03-14'
+      tier: cheap
+    - id: gpt-5.4-mini-2026-03-17
+      provider: openai
+      created: '2026-03-14'
+      tier: cheap
+    - id: gpt-5.4-nano
+      provider: openai
+      created: '2026-03-14'
+      tier: cheap
+    - id: gpt-5.4-nano-2026-03-17
+      provider: openai
+      created: '2026-03-14'
+      tier: cheap
+    - id: gpt-5.4
+      provider: openai
+      created: '2026-03-05'
+      tier: sota
+    - id: gpt-5.4-2026-03-05
+      provider: openai
+      created: '2026-03-04'
+      tier: sota
+    - id: gpt-5.4-pro
+      provider: openai
+      created: '2026-03-04'
+      tier: sota
+    - id: gpt-5.4-pro-2026-03-05
+      provider: openai
+      created: '2026-03-04'
+      tier: sota
+    - id: gpt-5.3-chat-latest
+      provider: openai
+      created: '2026-02-27'
+      tier: sota
+    - id: gpt-5.2-pro
+      provider: openai
+      created: '2025-12-10'
+      tier: sota
+    - id: gpt-5.2-pro-2025-12-11
+      provider: openai
+      created: '2025-12-10'
+      tier: sota
+    - id: gpt-5.2-chat-latest
+      provider: openai
+      created: '2025-12-10'
+      tier: sota
+    - id: gpt-5.2-2025-12-11
+      provider: openai
+      created: '2025-12-09'
+      tier: sota
+    - id: gpt-5.2
+      provider: openai
+      created: '2025-12-09'
+      tier: sota
+    - id: gpt-5.1
+      provider: openai
+      created: '2025-11-10'
+      tier: sota
+    - id: gpt-5.1-2025-11-13
+      provider: openai
+      created: '2025-11-10'
+      tier: sota
+    - id: gpt-5.1-chat-latest
+      provider: openai
+      created: '2025-11-07'
+      tier: sota
+    - id: gpt-5-pro-2025-10-06
+      provider: openai
+      created: '2025-10-03'
+      tier: sota
+    - id: gpt-5-pro
+      provider: openai
+      created: '2025-10-03'
+      tier: sota
+    - id: gpt-5-nano
+      provider: openai
+      created: '2025-08-05'
+      tier: cheap
+    - id: gpt-5-mini
+      provider: openai
+      created: '2025-08-05'
+      tier: cheap
+    - id: gpt-5-mini-2025-08-07
+      provider: openai
+      created: '2025-08-05'
+      tier: cheap
+    - id: gpt-5
+      provider: openai
+      created: '2025-08-05'
+      tier: sota
+    - id: gpt-5-nano-2025-08-07
+      provider: openai
+      created: '2025-08-05'
+      tier: cheap
+    - id: gpt-5-chat-latest
+      provider: openai
+      created: '2025-08-01'
+      tier: sota
+    - id: gpt-5-2025-08-07
+      provider: openai
+      created: '2025-08-01'
+      tier: sota
+    - id: o3-pro-2025-06-10
+      provider: openai
+      created: '2025-06-05'
+      tier: reasoning
+    - id: o3-pro
+      provider: openai
+      created: '2025-05-28'
+      tier: reasoning
+    - id: gpt-4.1-nano
+      provider: openai
+      created: '2025-04-10'
+      tier: cheap
+    - id: gpt-4.1
+      provider: openai
+      created: '2025-04-10'
+      tier: mid
+    - id: gpt-4.1-mini-2025-04-14
+      provider: openai
+      created: '2025-04-10'
+      tier: cheap
+    - id: gpt-4.1-mini
+      provider: openai
+      created: '2025-04-10'
+      tier: cheap
+    - id: gpt-4.1-2025-04-14
+      provider: openai
+      created: '2025-04-10'
+      tier: mid
+    - id: gpt-4.1-nano-2025-04-14
+      provider: openai
+      created: '2025-04-10'
+      tier: cheap
+    - id: o3
+      provider: openai
+      created: '2025-04-09'
+      tier: reasoning
+    - id: o4-mini
+      provider: openai
+      created: '2025-04-09'
+      tier: reasoning
+    - id: o4-mini-2025-04-16
+      provider: openai
+      created: '2025-04-08'
+      tier: reasoning
+    - id: o3-2025-04-16
+      provider: openai
+      created: '2025-04-08'
+      tier: reasoning
+    - id: o1-pro
+      provider: openai
+      created: '2025-03-17'
+      tier: reasoning
+    - id: o1-pro-2025-03-19
+      provider: openai
+      created: '2025-03-17'
+      tier: reasoning
+    - id: gpt-4o-2024-11-20
+      provider: openai
+      created: '2025-02-12'
+      tier: legacy
+    - id: o3-mini-2025-01-31
+      provider: openai
+      created: '2025-01-27'
+      tier: reasoning
+    - id: o3-mini
+      provider: openai
+      created: '2025-01-17'
+      tier: reasoning
+    - id: o1
+      provider: openai
+      created: '2024-12-16'
+      tier: reasoning
+    - id: o1-2024-12-17
+      provider: openai
+      created: '2024-12-16'
+      tier: reasoning
+    - id: gpt-4o-2024-08-06
+      provider: openai
+      created: '2024-08-04'
+      tier: legacy
+    - id: gpt-4o-mini
+      provider: openai
+      created: '2024-07-16'
+      tier: cheap
+    - id: gpt-4o-mini-2024-07-18
+      provider: openai
+      created: '2024-07-16'
+      tier: cheap
+    - id: gpt-4o-2024-05-13
+      provider: openai
+      created: '2024-05-10'
+      tier: legacy
+    - id: gpt-4o
+      provider: openai
+      created: '2024-05-10'
+      tier: legacy
+    - id: gpt-4-turbo-2024-04-09
+      provider: openai
+      created: '2024-04-08'
+      tier: legacy
+    - id: gpt-4-turbo
+      provider: openai
+      created: '2024-04-05'
+      tier: legacy
+    - id: gpt-4
+      provider: openai
+      created: '2023-06-27'
+      tier: legacy
+  anthropic:
+    api_key_set: true
+    env_key: DOC_WEB_ANTHROPIC_API_KEY
+    status: ok
+    complete: true
+    model_count: 14
+    models:
+    - id: claude-haiku-5-5
+      provider: anthropic
+      display_name: Claude Haiku 5.5
+      created: '2026-10-07'
+      tier: cheap
+    - id: claude-sonnet-5-5
+      provider: anthropic
+      display_name: Claude Sonnet 5.5
+      created: '2026-09-28'
+      tier: mid
+    - id: claude-opus-5-5
+      provider: anthropic
+      display_name: Claude Opus 5.5
+      created: '2026-09-21'
+      tier: sota
+    - id: claude-fable-5-1
+      provider: anthropic
+      display_name: Claude Fable 5.1
+      created: '2026-08-28'
+      tier: mid
+    - id: claude-opus-5
+      provider: anthropic
+      display_name: Claude Opus 5
+      created: '2026-07-24'
+      tier: sota
+    - id: claude-sonnet-5
+      provider: anthropic
+      display_name: Claude Sonnet 5
+      created: '2026-06-29'
+      tier: mid
+    - id: claude-fable-5
+      provider: anthropic
+      display_name: Claude Fable 5
+      created: '2026-06-07'
+      tier: mid
+    - id: claude-opus-4-8
+      provider: anthropic
+      display_name: Claude Opus 4.8
+      created: '2026-05-28'
+      tier: sota
+    - id: claude-opus-4-7
+      provider: anthropic
+      display_name: Claude Opus 4.7
+      created: '2026-04-14'
+      tier: sota
+    - id: claude-sonnet-4-6
+      provider: anthropic
+      display_name: Claude Sonnet 4.6
+      created: '2026-02-17'
+      tier: mid
+    - id: claude-opus-4-6
+      provider: anthropic
+      display_name: Claude Opus 4.6
+      created: '2026-02-04'
+      tier: sota
+    - id: claude-opus-4-5-20251101
+      provider: anthropic
+      display_name: Claude Opus 4.5
+      created: '2025-11-24'
+      tier: sota
+    - id: claude-haiku-4-5-20251001
+      provider: anthropic
+      display_name: Claude Haiku 4.5
+      created: '2025-10-15'
+      tier: cheap
+    - id: claude-sonnet-4-5-20250929
+      provider: anthropic
+      display_name: Claude Sonnet 4.5
+      created: '2025-09-29'
+      tier: mid
+  google:
+    api_key_set: true
+    env_key: DOC_WEB_GEMINI_API_KEY
+    status: ok
+    complete: true
+    model_count: 27
+    models:
+    - id: antigravity-preview-05-2026
+      provider: google
+      display_name: Antigravity Agent Preview
+      input_token_limit: 1048576
+      output_token_limit: 65536
+      tier: mid
+    - id: antigravity-preview-09-2026
+      provider: google
+      display_name: Antigravity Agent Preview
+      input_token_limit: 1048576
+      output_token_limit: 65536
+      tier: mid
+    - id: antigravity-preview-latest
+      provider: google
+      display_name: Antigravity Agent Preview Latest
+      input_token_limit: 1048576
+      output_token_limit: 65536
+      tier: mid
+    - id: gemini-2.5-computer-use-preview-10-2025
+      provider: google
+      display_name: Gemini 2.5 Computer Use Preview 10-2025
+      input_token_limit: 131072
+      output_token_limit: 65536
+      tier: mid
+    - id: gemini-2.5-flash
+      provider: google
+      display_name: Gemini 2.5 Flash
+      input_token_limit: 1048576
+      output_token_limit: 65536
+      tier: mid
+    - id: gemini-2.5-flash-lite
+      provider: google
+      display_name: Gemini 2.5 Flash-Lite
+      input_token_limit: 1048576
+      output_token_limit: 65536
+      tier: cheap
+    - id: gemini-2.5-pro
+      provider: google
+      display_name: Gemini 2.5 Pro
+      input_token_limit: 1048576
+      output_token_limit: 65536
+      tier: sota
+    - id: gemini-3-flash-preview
+      provider: google
+      display_name: Gemini 3 Flash Preview
+      input_token_limit: 1048576
+      output_token_limit: 65536
+      tier: mid
+    - id: gemini-3.1-flash-lite
+      provider: google
+      display_name: Gemini 3.1 Flash Lite
+      input_token_limit: 1048576
+      output_token_limit: 65536
+      tier: cheap
+    - id: gemini-3.1-flash-lite-preview
+      provider: google
+      display_name: Gemini 3.1 Flash Lite Preview
+      input_token_limit: 1048576
+      output_token_limit: 65536
+      tier: cheap
+    - id: gemini-3.1-pro-preview
+      provider: google
+      display_name: Gemini 3.1 Pro Preview
+      input_token_limit: 1048576
+      output_token_limit: 65536
+      tier: sota
+    - id: gemini-3.5-flash
+      provider: google
+      display_name: Gemini 3.5 Flash
+      input_token_limit: 1048576
+      output_token_limit: 65536
+      tier: mid
+    - id: gemini-3.5-flash-lite
+      provider: google
+      display_name: Gemini 3.5 Flash Lite
+      input_token_limit: 1048576
+      output_token_limit: 65536
+      tier: cheap
+    - id: gemini-3.5-transcribe
+      provider: google
+      display_name: Gemini 3.5 Transcribe
+      input_token_limit: 98304
+      output_token_limit: 32768
+      tier: mid
+    - id: gemini-3.6-flash
+      provider: google
+      display_name: Gemini 3.6 Flash
+      input_token_limit: 1048576
+      output_token_limit: 65536
+      tier: mid
+    - id: gemini-3.7-flash
+      provider: google
+      display_name: Gemini 3.7 Flash
+      input_token_limit: 1048576
+      output_token_limit: 65536
+      tier: mid
+    - id: gemini-3.8-flash
+      provider: google
+      display_name: Gemini 3.8 Flash
+      input_token_limit: 1048576
+      output_token_limit: 65536
+      tier: mid
+    - id: gemini-4-argon
+      provider: google
+      display_name: Gemini 4 Argon
+      input_token_limit: 1048576
+      output_token_limit: 32768
+      tier: mid
+    - id: gemini-flash-latest
+      provider: google
+      display_name: Gemini Flash Latest
+      input_token_limit: 1048576
+      output_token_limit: 65536
+      tier: mid
+    - id: gemini-flash-lite-latest
+      provider: google
+      display_name: Gemini Flash-Lite Latest
+      input_token_limit: 1048576
+      output_token_limit: 65536
+      tier: cheap
+    - id: gemini-nano-banana-2.1
+      provider: google
+      display_name: Nano Banana 2.1
+      input_token_limit: 65536
+      output_token_limit: 65536
+      tier: cheap
+    - id: gemini-omni-1.1-flash
+      provider: google
+      display_name: Gemini Omni 1.1 Flash
+      input_token_limit: 131072
+      output_token_limit: 65536
+      tier: mid
+    - id: gemini-omni-flash-preview
+      provider: google
+      display_name: Gemini Omni Flash Preview
+      input_token_limit: 131072
+      output_token_limit: 65536
+      tier: mid
+    - id: gemini-pro-latest
+      provider: google
+      display_name: Gemini Pro Latest
+      input_token_limit: 1048576
+      output_token_limit: 65536
+      tier: mid
+    - id: lyria-3-clip-preview
+      provider: google
+      display_name: Lyria 3 Clip Preview
+      input_token_limit: 1048576
+      output_token_limit: 65536
+      tier: mid
+    - id: lyria-3-pro-preview
+      provider: google
+      display_name: Lyria 3 Pro Preview
+      input_token_limit: 1048576
+      output_token_limit: 65536
+      tier: mid
+    - id: lyria-3.5
+      provider: google
+      display_name: Lyria 3.5
+      input_token_limit: 1048576
+      output_token_limit: 65536
+      tier: mid

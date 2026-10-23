@@ -36,7 +36,7 @@ OCR seam requires a narrow Anthropic compatibility repair: exact Sonnet5.5 omits
 - [x] Task winners and source-backed mismatch classes determined independently.
 - [x] Registry/attempt/work log plus focused validation complete.
 
-## Work log
+## Work Log
 
 - September28: Created clean remote-base worktree; existing owner Anthropic/Gemini/OpenAI key names present. No values copied. Source review confirms LOC literal misspellings and Image011 combined seal/signature golden. Predeclared medium adaptive Sonnet arm, bounded operational recovery, real driver OCR seam and serial HTTP spend guard.
 
@@ -45,8 +45,8 @@ OCR seam requires a narrow Anthropic compatibility repair: exact Sonnet5.5 omits
 
 ## Workflow gates
 
-- [x] Build complete for selected bounded evaluation.
-- [x] Validation complete:36 focused offline tests, changed tooling Ruff, methodology build/check, all116 reproducibility member hashes and diff hygiene.
+- [x] Build complete for selected bounded evaluation and test-isolation continuation.
+- [x] Validation complete: retain applicable historical evaluation proof and verify the changed test-isolation surface.
 - [x] Story marked done via /mark-story-done; Story191 remains Blocked. No runtime default change.
 
 
@@ -63,3 +63,67 @@ OCR seam requires a narrow Anthropic compatibility repair: exact Sonnet5.5 omits
 ## Scoped closeout
 
 2026-09-28: /finish-and-push invokes /mark-story-done verification for the already-completed bounded evaluation. All three acceptance criteria, workflow gates and tenets are evidenced; dependency Story237 is Done. No new architectural decision or ADR is required for the existing client compatibility seam. Reuse unchanged36 focused tests and source/HTML review; check new records, retained116 archive members, metadata and diff hygiene. Primary checkout has no inbox-only change. Prepare the scoped candidate against unchanged origin/main747b376; push awaits coordinator global preflight release.
+
+
+## 2026-10-23 continuation — Isolate process-wide test transports
+
+### Goal and acceptance
+
+Keep the existing Sonnet offline contract tests from changing later tests'
+HTTPX transports. Preserve all receipt, cap and unknown-billing assertions and
+production guard behavior. The user's ongoing triage/fix goal authorizes this
+bounded existing-owner continuation without another confirmation.
+
+### Tasks and plan
+
+- [x] Snapshot each installed HTTPX client's `send` before each Sonnet guard
+  test and restore it through pytest's monkeypatch teardown.
+- [x] Re-run the exact Sonnet→thinking-safety failure order, reverse it, and
+  run adjacent guard suites together. No live provider calls.
+- [x] Inspect the complete diff and test results; update the existing changelog
+  entry, regenerate/check methodology and close after proportional validation.
+
+20261023 — Baseline/research: current local reproduction
+`python -m pytest tests/test_sonnet55_guard.py tests/test_thinking_safety_guard.py -q`
+returns3failed/2passed/1skipped. Thinking-safety's calls inherit Sonnet's wrapper,
+which uses a shared `_image_guard` marker; one failure looks up Sonnet's absent
+historical ledger. Sonnet's test calls `install()` without restoring either
+HTTPX client, unlike the existing GPT6.1/thinking-safety fixtures. No production
+fault is established: the failure class is process-wide test-state leakage.
+
+Primary sources: [pytest system-state guidance](https://docs.pytest.org/en/stable/explanation/flaky.html#system-state)
+identifies insufficient isolation and missing cleanup; [monkeypatch teardown](https://docs.pytest.org/en/stable/how-to/monkeypatch.html)
+restores saved attributes when the requesting test finishes. Adopt the existing
+local fixture pattern, registering original `Client.send` attributes before
+`install()` directly assigns wrappers. Compare against subprocess isolation:
+that would add startup cost and hide the missing cleanup; production uninstall
+APIs would expand a test-only fix. A language or decision model has no role in
+exact lifecycle cleanup. Verify applicability with both test orders. Optional
+`httpx2` is not installed here, so its branch can be inspected but not executed.
+
+Context: spec:8 substrate exists, C4converge/C5climb scores and runtime defaults
+are unchanged. Relevant provider/test modules exist, and this is the same
+Sonnet guard verification owner. No ADR governs this reversible fixture change
+after searching current decisions; ADR001–003 runtime boundaries are unaffected.
+No schema/recipe/dependency/golden/provider/score change or driver run is needed.
+
+
+20261023 — /validate and /mark-story-done: original failure order now5passed/
+1skipped, reversed order5passed/1skipped. All six adjacent guard suites together
+pass21tests/1skip in0.82s, including before-send cap denial, complete receipt
+retention, unknown-usage reservation and cross-process dispatch controls.
+Only the optional absent `httpx2` parameter skips. Changed test Ruff and diff
+hygiene pass. Manual diff inspection confirms the only executable change is
+Sonnet's13line function-scoped fixture; existing guarded requests/assertions and
+production transports remain identical. All3 continuation tasks and existing
+T0–T5 obligations are met; original paid results/archive evidence is reused
+only for unchanged evaluation scope, with no new score or capability claim.
+
+No material review findings; validation gradeB, Close now. Extra codex review
+and a product/driver/full test run are unnecessary for a test-fixture-only fix
+with exact coupled-test failing-before/passing-after evidence. No new test-for-
+tests or global cleanup fixture was added. Existing changelog entry updated,
+generated metadata inspected and methodology compile/check completes closure.
+Story238 is Done via /mark-story-done. No durable learning mutation is warranted
+for adopting an established local cleanup pattern. /finish-and-push remains an
+optional landing step requiring user authorization; this goal continues.

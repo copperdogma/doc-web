@@ -276,3 +276,152 @@ Result: the maintained DOCX lane is now runnable from both the explicit checkout
 - `python validate_artifact.py --schema doc_web_provenance_block_v1 --file /tmp/story174-req-verify-6FWnFT/output/story174-req312-r1/output/html/provenance/blocks.jsonl` → `Validation OK: 7 rows match doc_web_provenance_block_v1`
 - `python -m doc_web contract --json` → confirmed `compatibility_policy.consumer_gate_fields = ["schema_fingerprint", "supported_bundle_schema_versions"]` while `contract_version` remains `1`
 Close-out changes: set Story 174 to `Done`, checked the validation and mark-done workflow gates, synced [docs/stories.md](/Users/cam/.codex/worktrees/70a4/doc-web/docs/stories.md), and prepared the changelog entry. Next step: `/check-in-diff`.
+
+
+## 2026-10-23 continuation — Remove retired PDF installer dependency chain
+
+### Goal and scope
+
+Make the shared supported requirements install work on the documented Intel
+Python3.11 platform without depending on the legacy Unstructured PDF partitioner.
+This stays in the existing runtime-install owner: same requirements file,
+clean-venv tests, driver boundary and operator result as Story174; no new story
+or format-support claim. The user authorized ongoing triage and issue fixes,
+including this bounded plan, tests and closure; no commit/push is authorized.
+
+### Exploration and decision
+
+The previous goal turn made verified progress; the exact Story226 source-bound
+replay remains deferred because original planner images are missing. Current
+facts, graph and state were checked. The actionable new health trigger is the
+fresh unchanged requirements test failure, not an old dependency date: the
+PPTX requirements-install check fails in158.34s because pikepdf10.17.0 source
+compilation invokes missing `QPDFAcroFormDocumentHelper.validate`. This is the
+same failure class recorded for10.16.0 on October6. Exact new baseline log:
+`output/triage-20261023-dependency-audit/baseline-requirements-install.log`.
+
+General problem class: an unused native dependency chain makes a supported
+installer depend on unavailable platform wheels and local C++ ABI versions.
+Bounded primary sources: [PyPA package formats](https://packaging.python.org/en/latest/discussions/package-formats/)
+explains source-build fallback when no wheel matches;
+[pikepdf installation](https://pikepdf.readthedocs.io/en/latest/installation.html)
+currently documents AppleSilicon-only macOS wheels and source builds for Intel;
+[OpenCV package guidance](https://pypi.org/project/opencv-python/)
+recommends a single headless distribution where no GUI is used. Current PyPI
+metadata was checked for actual platform wheels, rather than assuming support.
+
+A GPT6Luna/high read-only worker traced the maintained callsites. The only
+`partition_pdf` recipe is `configs/recipes/legacy/recipe-genealogy-html.yaml`.
+Office/email modules import that module's generic `serialize_element`, but its
+PDF import is lazy inside `partition_pdf_with_unstructured`; serializers do not
+need the PDF extra. Maintained PDF lanes use `extract_pdf_images_fast_v1` or
+`extract_pdf_marker_lite_html_v1` (separate Docker/Poppler runtime).
+`pyproject.toml` and its unchanged uv lock already omit the PDF extra.
+
+Main review caught a necessary coupled dependency: the PDF extra also brought
+Unstructured inference, which provided OpenCV; maintained crop modules import
+`cv2` unconditionally. Removing `pdf` alone would regress image workflows.
+Promote the used headless OpenCV4 dependency explicitly instead. No module uses
+OpenCV GUI APIs. Retain pypdf/pdf2image/Pillow and all Office/EPUB extras. Do not
+pin obsolete pikepdf or upgrade system QPDF to preserve an unused chain. No
+language/decision model is appropriate for exact dependency ownership. This is
+not an AI-capability change; no paid eval ladder or golden update is required.
+
+Context: spec1/6/7/8 substrate and accepted ADR002 runtime/export boundary apply;
+spec7 remains partial. No new hard-to-reverse decision or narrower ADR found.
+Existing coverage claims and provider defaults remain fixed. The legacy PDF
+partition recipe is reference-only and is not guaranteed by maintained setup.
+
+### Plan and continuation acceptance
+
+- [x] Remove only Unstructured's `pdf` extra; retain Office/EPUB extras and
+  declare headless OpenCV4 directly, without adding a conflicting cv2 package.
+- [x] Extend the existing requirements import smoke to include the required
+  `cv2` import, retaining its PPTX assertion and the independent EPUB check.
+- [x] Verify both unchanged-strength requirements installs in fresh venvs,
+  inspect the resolved graph, and run representative maintained Office/EPUB/PDF
+  driver paths using that clean environment. Inspect real bundle/provenance
+  samples and a source/crop artifact; no provider calls.
+- [x] Broaden to applicable lint and tests for dependency effects; preserve
+  unrelated failures if found. Update setup docs and this existing changelog
+  entry, regenerate/check methodology, validate and close only after evidence.
+
+20261023 — Exploration and plan recorded before the dependency edit. The last
+2–4 packaging-related stories (174/193/197/201) all use the same shared install
+surface; keep the correction here instead of generating a new fragment.
+
+20261023 — Implementation/validation: narrowed the Unstructured extras and
+promoted headless OpenCV4 to a direct requirement. Existing PPTX requirements
+probe now also imports cv2; no assertion was removed. Two independent fresh
+requirements installs pass in138.83s. The clean Python3.11 Intel environment
+resolves OpenCV4.11.0.86/NumPy1.26.4, exactly one OpenCV distribution and none of
+pikepdf/unstructured-inference/torch/onnx/effdet. Full main-environment lint passes.
+No pyproject or uv-lock change is required: that separate packaged install
+surface never requested the retired PDF extra.
+
+Eight fresh-environment actual driver probes complete without provider calls:
+DOCX, XLSX, PPTX, EPUB, EML, MBOX, scanned-PDF source extraction and a synthetic
+CV contour/crop control. Results/commands in
+`output/triage-20261023-dependency-audit/driver-results.json`, dependency manifest
+in clean-environment.json and12schema-validation results in schema-results.json.
+All output runs are under `output/runs/triage-20261023-requirements-{case}/`.
+Manually read12JSONL block records and matching fixture sources: DOCX Family
+Snapshot/Notes with source IDs; XLSX Roster Ada/Researcher/Foothills County and
+Lin/Archivist/Harbor District plus Visits2024=3/2025=4; PPTX source slides1–3;
+EPUB ChapterOne/Two pageless anchors; ordered EML/MBOX messages. The XLSX rendered
+HTML table was personally opened in the background browser and its columns/rows
+match the fixture. Browser and localhost server were then closed. PDF extraction
+PNG was opened (1700×2200L, Harbor Ledger Notes) and the blue control crop was
+opened: all323×303 source pixels match its recorded rectangle exactly, with the
+complete black border. Evidence/limits in artifact-inspection.json. This is
+bounded installer/runtime proof, not new OCR, model or corpus qualification.
+
+The broad fresh-environment run excluding the separate package-extra install
+module yields1871passed/1skipped/2failed in173.48s. Both failures are incomplete
+Google client test doubles: tests replace `genai` but use ambient optional SDK
+`types`; in a clean install types=None. Metadata of the removed PDF chain does
+not provide google-genai, so this was an existing test isolation dependency,
+not lost maintained PDF functionality. Absorb the small coupled verification
+fix in this install-contract continuation: replace both halves of the SDK
+boundary, preserve raw-envelope/truncation assertions, and additionally verify
+image bytes/MIME passed to the fake transport. No production Google client or
+optional SDK contract changes. Rerun the affected tests with and without the SDK;
+reuse the1871unchanged passing checks under proportional validation rather than
+calling the original broad run green. No paid evaluation or golden was touched.
+
+
+20261023 — /validate and /mark-story-done: all4continuation acceptance items met;
+no material finding remains in the reviewed delta. The two SDK-dependent mock
+failures are repaired, and all5Google client checks pass both in the clean
+requirements environment without google-genai (0.05s) and in the ambient SDK
+installation (3.09s). Retention/truncation assertions remain, with added decoded
+image-byte/MIME checks. Thus1873applicable broad-test outcomes are covered by
+1871unchanged broad passes plus the2repaired cases; one absent optional httpx2
+case skips. The original broad log remains a2failure log, not relabeled green.
+The separate two clean requirements-install tests pass; the10unchanged package-
+extra CLI checks were not repeated because neither pyproject nor that package
+install graph changed, and fresh real driver output covers the touched shared
+runtime. No full unfiltered make-test success is claimed.
+
+Full lint and whitespace checks pass on the current code. Manually reviewed the
+entire local diff/untracked inventory, preserving all earlier goal changes.
+Extra codex review was skipped for the small dependency declaration and complete
+SDK test-double correction, backed by fresh clean installs, broad tests, eight
+actual driver probes,12schema checks and source/artifact inspection. The main
+review rejected the initially tempting PDF-extra-only deletion because it would
+lose OpenCV, and retained its essential functionality explicitly. T0–T5 verified:
+source IDs and cell/slide/message order retained, deterministic dependency work,
+failing current baseline before edit, source/CV fidelity inspected, existing
+recipes unchanged, and real artifacts opened. No provider, schema, golden,
+source-content or package-contract change. Python3.12 and Docker/Marker were not
+freshly exercised; no wider coverage qualification follows. The learning detector
+was considered: the optional-SDK test double issue is corrected locally using
+established fixture isolation; no live workflow/skill mutation is needed.
+
+GradeB, Close now. Existing Story174 changelog updated once; methodology compile/
+check follows closure. Story174 is Done via /mark-story-done, and only optional
+/finish-and-push landing remains if Cam authorizes it. No commit/push, paid calls
+or source-artifact edits. The continuous triage goal stays active. This is the
+second substantive round after the last strategic checkpoint (source-bound226
+packet, then this installer fix); next review after one more substantive round
+or about30active minutes from that checkpoint, whichever comes first.

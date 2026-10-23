@@ -1,3 +1,4 @@
+import hashlib
 import json
 import shutil
 import subprocess
@@ -346,6 +347,7 @@ def test_archive_route_zip_pdf_member_launches_recommendation_only_run(
                 "file_extension": ".pdf",
                 "detected_input_kind": "pdf",
                 "file_size_bytes": extracted_pdf.stat().st_size,
+                "sha256": hashlib.sha256(extracted_pdf.read_bytes()).hexdigest(),
             }
         ],
     )
@@ -477,6 +479,9 @@ def test_archive_route_zip_grouped_image_members_launch_shared_images_dir_run(
                 "file_extension": ".png",
                 "detected_input_kind": None,
                 "file_size_bytes": (extracted_dir / "page-002.png").stat().st_size,
+                "sha256": hashlib.sha256(
+                    (extracted_dir / "page-002.png").read_bytes()
+                ).hexdigest(),
             },
             {
                 "schema_version": "archive_member_manifest_v1",
@@ -490,6 +495,9 @@ def test_archive_route_zip_grouped_image_members_launch_shared_images_dir_run(
                 "file_extension": ".png",
                 "detected_input_kind": None,
                 "file_size_bytes": (extracted_dir / "page-001.png").stat().st_size,
+                "sha256": hashlib.sha256(
+                    (extracted_dir / "page-001.png").read_bytes()
+                ).hexdigest(),
             },
             {
                 "schema_version": "archive_member_manifest_v1",
@@ -503,6 +511,9 @@ def test_archive_route_zip_grouped_image_members_launch_shared_images_dir_run(
                 "file_extension": ".txt",
                 "detected_input_kind": None,
                 "file_size_bytes": (notes_dir / "readme.txt").stat().st_size,
+                "sha256": hashlib.sha256(
+                    (notes_dir / "readme.txt").read_bytes()
+                ).hexdigest(),
             },
         ],
     )
@@ -622,6 +633,7 @@ def test_archive_route_zip_pdf_member_writes_handoff_artifact_in_dry_run_mode(
                 "file_extension": ".pdf",
                 "detected_input_kind": "pdf",
                 "file_size_bytes": extracted_pdf.stat().st_size,
+                "sha256": hashlib.sha256(extracted_pdf.read_bytes()).hexdigest(),
             }
         ],
     )
@@ -738,6 +750,7 @@ def test_archive_route_zip_pdf_member_launches_from_approved_handoff(
                 "file_extension": ".pdf",
                 "detected_input_kind": "pdf",
                 "file_size_bytes": extracted_pdf.stat().st_size,
+                "sha256": hashlib.sha256(extracted_pdf.read_bytes()).hexdigest(),
             }
         ],
     )
@@ -823,6 +836,7 @@ def test_archive_route_folder_pdf_member_launches_recommendation_only_run(
                 "file_extension": ".pdf",
                 "detected_input_kind": "pdf",
                 "file_size_bytes": source_pdf.stat().st_size,
+                "sha256": hashlib.sha256(source_pdf.read_bytes()).hexdigest(),
             }
         ],
     )
@@ -929,6 +943,7 @@ def test_archive_route_folder_pdf_member_writes_handoff_artifact_in_dry_run_mode
                 "file_extension": ".pdf",
                 "detected_input_kind": "pdf",
                 "file_size_bytes": source_pdf.stat().st_size,
+                "sha256": hashlib.sha256(source_pdf.read_bytes()).hexdigest(),
             }
         ],
     )
@@ -1041,6 +1056,7 @@ def test_archive_route_folder_pdf_member_launches_from_approved_handoff(
                 "file_extension": ".pdf",
                 "detected_input_kind": "pdf",
                 "file_size_bytes": source_pdf.stat().st_size,
+                "sha256": hashlib.sha256(source_pdf.read_bytes()).hexdigest(),
             }
         ],
     )

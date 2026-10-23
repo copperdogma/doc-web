@@ -145,6 +145,19 @@ def _cache_identity_fingerprint(payload: dict) -> str:
     return f"sha256:{hashlib.sha256(encoded).hexdigest()}"
 
 
+def test_cache_identity_stamping_respects_declared_fields(tmp_path):
+    from driver import stamp_artifact
+
+    payload = _doc_web_cache_identity_example()
+    artifact = tmp_path / "cache_identity.json"
+    artifact.write_text(json.dumps(payload, indent=2))
+    stamp_artifact(str(artifact), "doc_web_cache_identity_v1", "driver", "run")
+    observed = json.loads(artifact.read_text())
+    DocWebPreviewCacheIdentity.model_validate(observed)
+    assert all(observed[key] == value for key, value in payload.items())
+    assert not {"schema_version", "module_id", "run_id", "created_at"} & observed.keys()
+
+
 def _doc_web_cache_identity_example():
     source_sha256 = "a" * 64
     payload = {

@@ -33,12 +33,42 @@ def _safe_member_path(raw_name: str) -> str:
     return str(PurePosixPath(*parts))
 
 
-def _extract_member(archive: zipfile.ZipFile, member_info: zipfile.ZipInfo, extracted_root: Path) -> tuple[str, str]:
+def _extract_member(
+    archive: zipfile.ZipFile,
+    member_info: zipfile.ZipInfo,
+    extracted_root: Path,
+    seen_destinations: set[tuple[int, int]],
+    seen_directories: dict[tuple[int, int], str],
+) -> tuple[str, str]:
     member_path = _safe_member_path(member_info.filename)
     destination = extracted_root / Path(member_path)
+    if destination.is_symlink() or not destination.resolve().is_relative_to(extracted_root.resolve()):
+        raise SystemExit(f"Unsafe archive member destination: {member_path}")
     destination.parent.mkdir(parents=True, exist_ok=True)
+    for parent in Path(member_path).parents:
+        if parent == Path("."):
+            continue
+        parent_stat = (extracted_root / parent).stat()
+        parent_identity = (parent_stat.st_dev, parent_stat.st_ino)
+        logical_parent = str(parent)
+        previous_parent = seen_directories.get(parent_identity)
+        if previous_parent is not None and previous_parent != logical_parent:
+            raise SystemExit(f"Archive members alias the same destination directory: {logical_parent}")
+        seen_directories[parent_identity] = logical_parent
     payload = archive.read(member_info)
-    destination.write_bytes(payload)
+    try:
+        with destination.open("xb") as target:
+            target.write(payload)
+    except FileExistsError:
+        # A resumed stage may retain files. Reuse exact bytes without truncating
+        # them; never replace a different source under its old manifest identity.
+        if not destination.is_file() or destination.read_bytes() != payload:
+            raise SystemExit(f"Archive member destination already contains different data: {member_path}")
+    stat = destination.stat()
+    identity = (stat.st_dev, stat.st_ino)
+    if identity in seen_destinations:
+        raise SystemExit(f"Archive members alias the same destination file: {member_path}")
+    seen_destinations.add(identity)
     digest = hashlib.sha256(payload).hexdigest()
     return member_path, digest
 
@@ -69,6 +99,8 @@ def main() -> None:
     outdir = Path(args.outdir).resolve()
     ensure_dir(str(outdir))
     extracted_root = outdir / "extracted_members"
+    if extracted_root.is_symlink():
+        raise SystemExit(f"Archive extraction root must not be a symlink: {extracted_root}")
     extracted_root.mkdir(parents=True, exist_ok=True)
     out_path = outdir / args.out
 
@@ -84,6 +116,11 @@ def main() -> None:
 
     rows: list[dict] = []
     seen_paths: set[str] = set()
+    seen_destinations: set[tuple[int, int]] = set()
+    root_stat = extracted_root.stat()
+    seen_directories: dict[tuple[int, int], str] = {
+        (root_stat.st_dev, root_stat.st_ino): ".",
+    }
 
     with zipfile.ZipFile(zip_path) as archive:
         members = [info for info in archive.infolist() if not info.is_dir()]
@@ -91,10 +128,13 @@ def main() -> None:
             raise SystemExit(f"No file members found in {zip_path}")
 
         for member_index, member_info in enumerate(members, start=1):
-            member_path, digest = _extract_member(archive, member_info, extracted_root)
+            member_path = _safe_member_path(member_info.filename)
             if member_path in seen_paths:
                 raise SystemExit(f"Duplicate archive member path after normalization: {member_path}")
             seen_paths.add(member_path)
+            member_path, digest = _extract_member(
+                archive, member_info, extracted_root, seen_destinations, seen_directories
+            )
             extracted_path = extracted_root / Path(member_path)
             rows.append(
                 {

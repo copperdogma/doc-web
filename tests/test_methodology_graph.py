@@ -35,6 +35,39 @@ def test_render_stories_index_is_generated_view():
     assert "story-187" in rendered
 
 
+def test_story_actionability_includes_dated_continuation_logs(tmp_path):
+    module = load_module()
+    module.ROOT = tmp_path
+    story = tmp_path / "story-001-continuation.md"
+    story.write_text(textwrap.dedent("""\
+        # Story 001 — Continuation
+        **Status**: In Progress
+
+        ## Plan
+        20261201 — Future plan, not work evidence.
+
+        ## Work Log
+        20260401-1200 — Initial implementation.
+
+        ## Source-fidelity continuation
+        20261004 — Latest actual source inspection.
+        """))
+
+    parsed = module.parse_story(story)
+    action = module.summarize_story_actionability(parsed)
+
+    assert action["last_relevant_action"]["date"] == "2026-10-04"
+    assert action["why_now"] == "Latest actual source inspection."
+
+
+def test_work_log_accepts_existing_dash_and_timestamp_forms():
+    module = load_module()
+    for stamp, separator in (("20260428-1748", "-"), ("20261004", "—")):
+        entry = module.extract_last_work_log_entry(f"{stamp} {separator} Source inspected.")
+        assert entry["timestamp"] == stamp
+        assert entry["summary"] == "Source inspected."
+
+
 def test_parse_stories_ignores_companion_docs(tmp_path):
     module = load_module()
     module.ROOT = tmp_path

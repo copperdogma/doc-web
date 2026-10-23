@@ -407,3 +407,76 @@ deprecation in
 `modules/portionize/portionize_headers_numeric_v1/main.py:96`. Result: Story
 199 still closes cleanly on the current tree and is ready for `/check-in-diff`
 landing.
+
+## 2026-10-23 continuation — Preserve graph meaning in triage facts
+
+The ongoing user goal explicitly authorizes triage and fixes, including this
+bounded plan and validation/closure without another confirmation. Reopen the
+existing methodology hardening owner rather than creating a story for the same
+compiler-to-workflow contract. Relevant state: spec:8/9 substrate exists,
+B7/B8/B9 hold; no product coverage or pipeline behavior changes. ADR search
+found no narrower decision governing this deterministic projection correction;
+the accepted runtime/export ADR boundaries are unaffected.
+
+### Plan and continuation acceptance
+
+- [x] Read canonical snake_case graph fields for recommendations, reasons,
+  retry postures and dated eval scores in `scripts/triage_facts.py`.
+- [x] Delete readiness derived from nonexistent `retryState`; report canonical
+  retry-trigger posture counts, preserving unavailable information explicitly.
+- [x] Add compiler-output contract coverage plus focused recent/stale/missing
+  score controls in `tests/test_triage_facts.py`.
+- [x] Validate focused tooling tests/Ruff, regenerate/check methodology, and
+  manually inspect actual fact output against the graph. Close via
+  `/validate` and `/mark-story-done`; no commit or push.
+
+20261023-0826 — Exploration/baseline: current HEAD19b30b1 has a clean initial
+checkout. Compiler emits `recommended_now`, `why_now`, `latest_score` and
+`retry_trigger_status`; fact collector consumes camelCase names and an invented
+`retryState`. Actual graph recommends Story226 while facts return no stories;
+all17 eval dates incorrectly become null despite Oct6 dated scores. Existing
+19 methodology/facts checks pass, demonstrating the semantic coverage gap.
+Three new contract regressions fail on the unchanged collector (3failed/2passed).
+This is exact schema projection, so deterministic code fits; a decision model
+or language model would add uncertainty to an established identity contract.
+No unfamiliar obstacle or external research is needed for the field correction.
+Files at risk are the collector and its CLI JSON consumer contract; no runtime,
+provider, schema, golden or recipe changes are planned. Existing historical
+completion evidence above remains scoped to its original changes.
+
+Continuation scope adjustment: the same contract check exposed stale last-action
+metadata. Date-only and ASCII-dash work entries in current stories were ignored,
+and later continuation headings cut off newer evidence. Extend only dated entry
+recognition and the post-Work-Log evidence boundary; exclude earlier plan dates.
+Two new regressions fail before the compiler correction. This stays in the same
+methodology projection/validation boundary; no new planning policy or ADR.
+Three neutral triage packets covered all five lanes: GPT6.1Sol/high for semantic
+story/architecture and eval correctness, GPT6Luna/high for factual inbox/health.
+The main thread checked claims and rejected one unrepeatable shell-error report.
+
+
+20261023 — /validate and /mark-story-done: no material findings after
+reviewing all changed sources, tests, generated story/actionability differences
+and untracked inventory. Continuation acceptance4/4 met; all six existing tenet
+obligations remain satisfied. Five defect regressions failed before their owning
+corrections; the applicable combined suite now passes24/24 in2.02s. Focused
+Ruff, methodology compile/check, skills-check and diff hygiene pass. Reviewed
+actual facts: Story226 is recommended with Oct4 source evidence; fresh Oct6 eval
+scores are no longer marked absent, stale rows fall17→11, and retries report
+13waiting/3exhausted/1none without fabricated readiness. The temporary active
+Story199 recommendation will disappear on closure. Manually reviewed all eight
+changed story last-entry records against their dated source entries; no statuses,
+blockers, coverage or scores were promoted by that metadata correction.
+
+Validation gradeB, Close now. Extra `codex review` was skipped for the small
+schema-projection and dated-log corrections with direct failing/passing contract
+proof. No product suites or driver execution: isolated methodology tooling has
+no pipeline dependency, under proportional close-out policy. No provider call,
+golden, runtime, dependency or secret change. The detector for durable workflow
+learning was considered: the missing producer-consumer contract coverage is now
+covered locally; no separate skill/workflow mutation is warranted. Historical
+story verification above applies to unchanged prior work; this continuation's
+fresh checks cover every changed executable surface. Existing changelog entry
+updated once. Story199 is Done via /mark-story-done after validation; remaining
+landing is /finish-and-push only if the user authorizes it. The ongoing goal
+continues to the next triage candidate without committing or pushing.

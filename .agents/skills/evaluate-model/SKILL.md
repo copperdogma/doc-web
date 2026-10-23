@@ -112,7 +112,7 @@ Read before changing or spending:
 - `AGENTS.md`, the alignment sources named above, and relevant spec/ADRs
 - `docs/evals/README.md`, registry entries, attempts, and recent refresh stories
 - the selected task, prompt, structural scorer, rubric, golden, provider path,
-  raw results, and `docs/runbooks/promptfoo.md`
+  raw results, `docs/runbooks/crop-eval-workflow.md`, and `benchmarks/README.md`
 - repo-local discovery, create-story, create-eval, and improve-eval skills
 
 The decision contract must record:

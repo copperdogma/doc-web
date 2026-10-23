@@ -274,6 +274,34 @@ evals:
         evidence_status: fresh-bounded-detector-publication-unqualified
         note: Frozen fresh same-source detector ranking Sol, Luna, Gemini. Page safety/publication
           gates remain failed; runtime retained. See Attempt044 and tracked crop sheets.
+      - model: "gemini-4-argon medium32768 strict integer detector (Attempt063)"
+        metrics: {overall: 0.978131, pass_rate: 1.0, cases_total: 13, latency_ms: 25633, median_latency_ms: 10156, promptfoo_latency_ms: 26096}
+        cost_usd: 0.004808615384615384
+        total_cost_usd: 0.062512
+        cost_estimated: true
+        measured: '2026-10-23'
+        git_sha: 19b30b1+attempt063-uncommitted
+        result_file: docs/evals/evidence/063-gemini4-argon-summary.json
+        evidence_status: fresh-bounded-detector-publication-unqualified
+        note: >
+          Exact native image/strict schema and owner projection parity qualified;
+          frozen full13 passes versus fresh runtime control .958315. Image000
+          remains whole-cover model-wrong bounding undercoverage at .8324;
+          artwork/frame appear retained but exact edge equivalence is unresolved.
+          Higher observed cost/latency, no historical Sol leader replacement,
+          safety/handwriting/production-route unmeasured; no default change.
+          HTTP timing includes response read; Promptfoo time adds bridge overhead.
+          See Attempt063 and its closed27-call USD.1176735/5 ledger.
+      - model: "gemini-3-flash-preview fresh Argon control (Attempt063)"
+        metrics: {overall: 0.958315, pass_rate: 1.0, cases_total: 13, latency_ms: 6586, median_latency_ms: 5844, promptfoo_latency_ms: 7012}
+        cost_usd: 0.003983807692307693
+        total_cost_usd: 0.0517895
+        cost_estimated: true
+        measured: '2026-10-23'
+        git_sha: 19b30b1+attempt063-uncommitted
+        result_file: docs/evals/evidence/063-gemini4-argon-summary.json
+        evidence_status: fresh-bounded-detector-control
+        note: "Fresh same-canonical-source13/13, unchanged runtime-control temperature0/16384/plain detector shape; complete thought-token accounting. No production change."
       - model: GPT-6.1 Sol low fresh strict detector (Attempt046)
         metrics: {overall: 0.979331, pass_rate: 1.0, cases_total: 13, latency_ms: 3138}
         cost_usd: 0.1036855
@@ -1091,6 +1119,24 @@ evals:
         note: >
           Numeric 13/13 and >=.95 but source-visible Image011 logo clipping; fresh Gemini .958646 covers logo. Candidate cost lower; timing partially overlapped qualification, descriptive only. Retain Gemini; no quality equivalence/promotion.
     attempts:
+      - id: "063"
+        date: "2026-10-23"
+        status: succeeded
+        approach: "Qualify exact native Gemini4 Argon medium32768 and frozen13-case detector against fresh runtime control"
+        score_before: 0.958315
+        score_after: 0.978131
+        note: >
+          Both arms13/13; Argon improves bounded numeric score with higher cost
+          and observed latency. Native strict image/parity, complete raw custody
+          and closed27-call USD.1176735/5 ledger retained; source review preserves
+          whole-cover undercoverage/edge uncertainty. No safety/handwriting or
+          production-route calls, no default or C5 change. Reused current locked
+          guard with frozen profile; four failing offline accounting regressions
+          repaired before paid calls, final25 focused tests pass. See
+          docs/evals/attempts/063-gemini4-argon-detector-qualification.md.
+        retry_when:
+          - condition: new-approach
+            note: "Source-accepted production comparison with concrete expected benefit, or materially changed checkpoint/contract; do not repeat unchanged Argon from catalog age or enlarge closed36-send campaign."
       - id: '061'
         date: '2026-10-06'
         status: failed
@@ -1996,7 +2042,7 @@ evals:
 
     retry_when:
       - condition: new-subject-model
-        note: "Gemini 4 or equivalent may push past 0.95 target"
+        note: "Attempt063 qualified Gemini4 Argon13/13 but leaves cover-edge/source/runtime/safety equivalence unqualified and costs/latency higher than fresh control. New identity alone does not warrant another same-line campaign; require a materially changed candidate/contract with plausible source-qualified production benefit."
       - condition: golden-fix
         note: "Golden references cover limited page types; add table-heavy pages"
 

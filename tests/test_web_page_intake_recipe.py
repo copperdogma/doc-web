@@ -4,13 +4,19 @@ import sys
 import uuid
 from pathlib import Path
 
+import pytest
 import yaml
 
+from modules.extract.web_page_html_intake_v1.main import _extract_body_html
 from schemas import DocWebBundleManifest, DocWebProvenanceBlock
 
 
 WEB_PAGE_RECIPE = "configs/recipes/recipe-web-page-html-mvp.yaml"
 WEB_PAGE_FIXTURE = "testdata/web-page-mini.html"
+SNAPSHOT_WRAPPERS = [
+    "{}",
+    "<html><head><title>Metadata</title></head><body>{}</body></html>",
+]
 
 
 def _load_jsonl(path: Path):
@@ -19,6 +25,45 @@ def _load_jsonl(path: Path):
         for line in path.read_text(encoding="utf-8").splitlines()
         if line.strip()
     ]
+
+
+@pytest.mark.parametrize("wrapper", SNAPSHOT_WRAPPERS)
+@pytest.mark.parametrize("content", [
+    "", " \n ", "<script>inert_sentinel()</script>",
+    "<noscript>Inactive</noscript>", "<template><p>Inactive</p></template>",
+])
+def test_cleaned_empty_snapshot_never_restores_raw_html(wrapper, content):
+    assert _extract_body_html(wrapper.format(content)) == ""
+
+
+@pytest.mark.parametrize("wrapper", SNAPSHOT_WRAPPERS)
+@pytest.mark.parametrize("content", [
+    "<h1>Heading</h1><p>Source prose.</p>", '<figure><img src="drawing.png"/></figure>',
+])
+def test_snapshot_retains_body_and_fragment_markup(wrapper, content):
+    raw = wrapper.format(f"<script>inert_sentinel()</script>{content}<template>Inactive</template>")
+    assert _extract_body_html(raw) == content
+
+
+def test_empty_cleaned_snapshot_fails_before_publication(tmp_path: Path):
+    source = tmp_path / "inactive-only.html"
+    source.write_text(
+        '<html><body><script>inert_sentinel()</script><template>Inactive</template></body></html>',
+        encoding="utf-8",
+    )
+    run_id = f"web-page-empty-{uuid.uuid4().hex[:8]}"
+    run_dir = tmp_path / run_id
+    result = subprocess.run(
+        [sys.executable, "driver.py", "--recipe", WEB_PAGE_RECIPE,
+         "--input-html", str(source), "--run-id", run_id,
+         "--output-dir", str(run_dir)],
+        capture_output=True, text=True,
+    )
+    assert result.returncode != 0
+    assert "No body content remains" in result.stdout + result.stderr
+    assert str(source) in result.stdout + result.stderr
+    assert not (run_dir / "01_web_page_html_intake_v1" / "pages_html.jsonl").exists()
+    assert not (run_dir / "output" / "html" / "manifest.json").exists()
 
 
 def test_web_page_recipe_wiring():

@@ -9,12 +9,15 @@ resulting elements to JSON with minimal transformation.
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 import os
+from pathlib import Path
 from typing import Dict, List
 
-from modules.common.utils import ProgressLogger, ensure_dir, save_jsonl
+from modules.common.utils import ProgressLogger, ensure_dir, save_json, save_jsonl
 from modules.intake.unstructured_pdf_intake_v1.main import serialize_element
+from modules.extract.unstructured_xlsx_intake_v1.source_features import inspect_xlsx_features
 
 
 def partition_xlsx_with_unstructured(xlsx_path: str, *, infer_table_structure: bool) -> List:
@@ -80,18 +83,42 @@ def main() -> None:
         module_id=module_id,
     )
 
+    report_path = (Path(args.outdir) / "xlsx_source_features.json").resolve()
+    feature_report = None
+
+    def reject(message: str) -> None:
+        save_json(str(report_path), feature_report)
+        logger.log("extract", "failed", message=message, artifact=str(report_path), module_id=module_id)
+        raise SystemExit(message)
+
+    def require_unchanged_source() -> None:
+        observed = hashlib.sha256(Path(args.xlsx).read_bytes()).hexdigest()
+        if observed != feature_report["source_sha256"]:
+            feature_report["disposition"] = "blocked_source_changed"
+            feature_report["observed_source_sha256"] = observed
+            reject(f"XLSX source changed after native inspection; see {report_path}")
+
     try:
+        feature_report = inspect_xlsx_features(args.xlsx)
+        if feature_report["disposition"] != "native_feature_gate_clear":
+            reject(
+                f'XLSX unsupported native features: {len(feature_report["formula_cells"])} formula cells, '
+                f'{len(feature_report["merged_ranges"])} merged ranges; see {report_path}'
+            )
+        require_unchanged_source()
         elements = partition_xlsx_with_unstructured(
             args.xlsx,
             infer_table_structure=args.infer_table_structure,
         )
+        require_unchanged_source()
+        save_json(str(report_path), feature_report)
     except Exception as exc:
         logger.log(
             "extract",
             "failed",
             current=0,
             total=None,
-            message=f"Unstructured XLSX partitioning failed: {exc}",
+            message=f"XLSX source inspection or partitioning failed: {exc}",
             module_id=module_id,
         )
         raise

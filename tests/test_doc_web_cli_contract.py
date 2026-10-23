@@ -682,7 +682,7 @@ def test_requirements_txt_supports_pptx_import_on_supported_python(tmp_path: Pat
         [
             str(python_bin),
             "-c",
-            "from unstructured.partition.pptx import partition_pptx; print(partition_pptx.__name__)",
+            "import cv2; from unstructured.partition.pptx import partition_pptx; print(partition_pptx.__name__)",
         ],
         cwd=str(REPO_ROOT),
         stdout=subprocess.PIPE,

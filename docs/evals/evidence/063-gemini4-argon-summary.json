@@ -1,0 +1,1896 @@
+{
+  "attempt": "063",
+  "story_refs": [
+    "232"
+  ],
+  "category_refs": [
+    "spec:4",
+    "spec:8"
+  ],
+  "compromise_refs": [
+    "C4"
+  ],
+  "base_sha": "19b30b1",
+  "date": "2026-10-23",
+  "campaign_cap_usd": 5,
+  "frozen_send_cap": 36,
+  "calls": 27,
+  "spent_usd": 0.11767349999999997,
+  "unknown_reserved_usd": 0,
+  "closed": true,
+  "arms": {
+    "candidate": {
+      "model": "gemini-4-argon",
+      "cases": 13,
+      "pass_rate": 1,
+      "overall": 0.9781307692307692,
+      "mean_latency_ms": 25633.46153846154,
+      "median_latency_ms": 10156,
+      "rows": [
+        {
+          "key": "Image000",
+          "success": true,
+          "score": 0.8324,
+          "output": "{\"images\": [{\"description\": \"A red book cover featuring gold-embossed decorative artwork within a framed border, depicting a covered wagon traveling through a landscape with rolling hills, clouds, and a tall tree, accompanied by the title 'ONWARD TO THE UNKNOWN 1887 - 1987' at the top and 'Mo\u00efse and Sophie L'Heureux' at the bottom.\", \"bbox\": [65, 42, 956, 943]}]}",
+          "tokenUsage": {
+            "prompt": 1677,
+            "completion": 165,
+            "total": 1842,
+            "numRequests": 1
+          },
+          "metadata": {
+            "served_model": "gemini-4-argon",
+            "response_id": "e4fbapOIB--Y6dkP26veoQM",
+            "usage": {
+              "promptTokenCount": 1677,
+              "candidatesTokenCount": 122,
+              "totalTokenCount": 1842,
+              "promptTokensDetails": [
+                {
+                  "modality": "TEXT",
+                  "tokenCount": 575
+                },
+                {
+                  "modality": "IMAGE",
+                  "tokenCount": 1102
+                }
+              ],
+              "candidatesTokensDetails": [
+                {
+                  "modality": "TEXT",
+                  "tokenCount": 122
+                }
+              ],
+              "thoughtsTokenCount": 43
+            },
+            "strict_schema": true,
+            "request_sha256": "327d288a3a551e1d472ec72579ff4a00e9056d55e1912ed2ab58a3a3460af796"
+          },
+          "gradingResult": {
+            "pass": true,
+            "score": 0.8324,
+            "reason": "All assertions passed",
+            "namedScores": {},
+            "tokensUsed": {
+              "total": 0,
+              "prompt": 0,
+              "completion": 0,
+              "cached": 0,
+              "numRequests": 0
+            },
+            "componentResults": [
+              {
+                "pass": true,
+                "score": 0.8324,
+                "reason": "box_count=1.00 (1/1) | iou_mean=0.803 | iou_min=0.803 | coverage=0.803 | total=0.832 | matches=[pred[0]<->gold[0] IoU=0.803]",
+                "assertion": {
+                  "type": "python",
+                  "value": "file:///Users/cam/Documents/Projects/doc-web/benchmarks/scorers/image_crop_scorer.py"
+                }
+              }
+            ]
+          },
+          "receipt_sequence": 4,
+          "latency_ms": 134515,
+          "cost_usd": 0.005004,
+          "raw_result": "benchmarks/results/gemini4-argon-20261023/candidate-Image000.json",
+          "raw_result_sha256": "7b1e2fd244ce75dd0c341d11cfa9a0bd99d4b91b7bc4205211ad22515465878d",
+          "promptfoo_latency_ms": 135036
+        },
+        {
+          "key": "Image001",
+          "success": true,
+          "score": 0.9842,
+          "output": "{\"images\": [{\"description\": \"Stylized title text reading 'ONWARD TO THE UNKNOWN 1887 - 1987' in a bold, decorative block font.\", \"bbox\": [193, 270, 852, 381]}]}",
+          "tokenUsage": {
+            "prompt": 1677,
+            "completion": 395,
+            "total": 2072,
+            "numRequests": 1
+          },
+          "metadata": {
+            "served_model": "gemini-4-argon",
+            "response_id": "A4jbavL6N5yV_uMPnbqgqQ4",
+            "usage": {
+              "promptTokenCount": 1677,
+              "candidatesTokenCount": 80,
+              "totalTokenCount": 2072,
+              "promptTokensDetails": [
+                {
+                  "modality": "TEXT",
+                  "tokenCount": 575
+                },
+                {
+                  "modality": "IMAGE",
+                  "tokenCount": 1102
+                }
+              ],
+              "candidatesTokensDetails": [
+                {
+                  "modality": "TEXT",
+                  "tokenCount": 80
+                }
+              ],
+              "thoughtsTokenCount": 315
+            },
+            "strict_schema": true,
+            "request_sha256": "71fe2c4e8f0b896f09a89c57d9cb330941335491c1e30977a18c40b0e9126230"
+          },
+          "gradingResult": {
+            "pass": true,
+            "score": 0.9842,
+            "reason": "All assertions passed",
+            "namedScores": {},
+            "tokensUsed": {
+              "total": 0,
+              "prompt": 0,
+              "completion": 0,
+              "cached": 0,
+              "numRequests": 0
+            },
+            "componentResults": [
+              {
+                "pass": true,
+                "score": 0.9842,
+                "reason": "box_count=1.00 (1/1) | iou_mean=0.981 | iou_min=0.981 | coverage=0.981 | total=0.984 | matches=[pred[0]<->gold[0] IoU=0.981]",
+                "assertion": {
+                  "type": "python",
+                  "value": "file:///Users/cam/Documents/Projects/doc-web/benchmarks/scorers/image_crop_scorer.py"
+                }
+              }
+            ]
+          },
+          "receipt_sequence": 5,
+          "latency_ms": 9432,
+          "cost_usd": 0.007304,
+          "raw_result": "benchmarks/results/gemini4-argon-20261023/candidate-Image001.json",
+          "raw_result_sha256": "690b4193663267546a58a21afc49349b1dfcce7022b2ed131e67b168e4ba8dad",
+          "promptfoo_latency_ms": 9983
+        },
+        {
+          "key": "Image003",
+          "success": true,
+          "score": 0.9859,
+          "output": "{\"images\": [{\"description\": \"A black-and-white line drawing of a covered wagon with a horse tied to the left and an ox or cow hitched to the right, standing in grass.\", \"bbox\": [59, 267, 938, 459]}]}",
+          "tokenUsage": {
+            "prompt": 1677,
+            "completion": 80,
+            "total": 1757,
+            "numRequests": 1
+          },
+          "metadata": {
+            "served_model": "gemini-4-argon",
+            "response_id": "DojbaorzKsaVmtkPkqnXoQo",
+            "usage": {
+              "promptTokenCount": 1677,
+              "candidatesTokenCount": 80,
+              "totalTokenCount": 1757,
+              "promptTokensDetails": [
+                {
+                  "modality": "TEXT",
+                  "tokenCount": 575
+                },
+                {
+                  "modality": "IMAGE",
+                  "tokenCount": 1102
+                }
+              ],
+              "candidatesTokensDetails": [
+                {
+                  "modality": "TEXT",
+                  "tokenCount": 80
+                }
+              ]
+            },
+            "strict_schema": true,
+            "request_sha256": "018c07b59d2929b07d1e8065516b4cbdc3abb4bb10ff4a32aa4baf08421e0b97"
+          },
+          "gradingResult": {
+            "pass": true,
+            "score": 0.9859,
+            "reason": "All assertions passed",
+            "namedScores": {},
+            "tokensUsed": {
+              "total": 0,
+              "prompt": 0,
+              "completion": 0,
+              "cached": 0,
+              "numRequests": 0
+            },
+            "componentResults": [
+              {
+                "pass": true,
+                "score": 0.9859,
+                "reason": "box_count=1.00 (1/1) | iou_mean=0.981 | iou_min=0.981 | coverage=0.987 | total=0.986 | matches=[pred[0]<->gold[0] IoU=0.981]",
+                "assertion": {
+                  "type": "python",
+                  "value": "file:///Users/cam/Documents/Projects/doc-web/benchmarks/scorers/image_crop_scorer.py"
+                }
+              }
+            ]
+          },
+          "receipt_sequence": 6,
+          "latency_ms": 27842,
+          "cost_usd": 0.004154,
+          "raw_result": "benchmarks/results/gemini4-argon-20261023/candidate-Image003.json",
+          "raw_result_sha256": "0d12de4bee24abb5fe7c85895f2b4446ae693a8a105d816b67296bdf246a0c8d",
+          "promptfoo_latency_ms": 28247
+        },
+        {
+          "key": "Image008",
+          "success": true,
+          "score": 0.9946,
+          "output": "{\"images\": [{\"description\": \"A black and white portrait photograph of Moise and Sophie L'Heureux from about 1910.\", \"bbox\": [217, 256, 814, 672]}]}",
+          "tokenUsage": {
+            "prompt": 1677,
+            "completion": 71,
+            "total": 1748,
+            "numRequests": 1
+          },
+          "metadata": {
+            "served_model": "gemini-4-argon",
+            "response_id": "LIjbauvDDKKe6dkPy_WC6Qo",
+            "usage": {
+              "promptTokenCount": 1677,
+              "candidatesTokenCount": 71,
+              "totalTokenCount": 1748,
+              "promptTokensDetails": [
+                {
+                  "modality": "TEXT",
+                  "tokenCount": 575
+                },
+                {
+                  "modality": "IMAGE",
+                  "tokenCount": 1102
+                }
+              ],
+              "candidatesTokensDetails": [
+                {
+                  "modality": "TEXT",
+                  "tokenCount": 71
+                }
+              ]
+            },
+            "strict_schema": true,
+            "request_sha256": "41269120a0b35c74c97ff1d1569f59aaa3eecd311ab86faf3bb73150c7646a27"
+          },
+          "gradingResult": {
+            "pass": true,
+            "score": 0.9946,
+            "reason": "All assertions passed",
+            "namedScores": {},
+            "tokensUsed": {
+              "total": 0,
+              "prompt": 0,
+              "completion": 0,
+              "cached": 0,
+              "numRequests": 0
+            },
+            "componentResults": [
+              {
+                "pass": true,
+                "score": 0.9946,
+                "reason": "box_count=1.00 (1/1) | iou_mean=0.989 | iou_min=0.989 | coverage=1.000 | total=0.995 | matches=[pred[0]<->gold[0] IoU=0.989]",
+                "assertion": {
+                  "type": "python",
+                  "value": "file:///Users/cam/Documents/Projects/doc-web/benchmarks/scorers/image_crop_scorer.py"
+                }
+              }
+            ]
+          },
+          "receipt_sequence": 7,
+          "latency_ms": 44591,
+          "cost_usd": 0.004064,
+          "raw_result": "benchmarks/results/gemini4-argon-20261023/candidate-Image008.json",
+          "raw_result_sha256": "0da738c6732d7ea49f53ae32641f66c8454e4e47ab1935f9d99c19a4f5405d77",
+          "promptfoo_latency_ms": 45034
+        },
+        {
+          "key": "Image011",
+          "success": true,
+          "score": 0.9914,
+          "output": "{\"images\": [{\"description\": \"Circular logo for Celebrate Saskatchewan 1905-1980 featuring a stylized wheat sheaf motif.\", \"bbox\": [377, 74, 581, 232]}, {\"description\": \"Official serrated seal of the Province of Saskatchewan Department of Agriculture alongside the signatures of Hon. Gordon MacMurchy and Hon. Ed Tchorzewski.\", \"bbox\": [119, 686, 876, 896]}]}",
+          "tokenUsage": {
+            "prompt": 1677,
+            "completion": 127,
+            "total": 1804,
+            "numRequests": 1
+          },
+          "metadata": {
+            "served_model": "gemini-4-argon",
+            "response_id": "wobbarXjIqmIqtsP9rfF6Ao",
+            "usage": {
+              "promptTokenCount": 1677,
+              "candidatesTokenCount": 127,
+              "totalTokenCount": 1804,
+              "promptTokensDetails": [
+                {
+                  "modality": "TEXT",
+                  "tokenCount": 575
+                },
+                {
+                  "modality": "IMAGE",
+                  "tokenCount": 1102
+                }
+              ],
+              "candidatesTokensDetails": [
+                {
+                  "modality": "TEXT",
+                  "tokenCount": 127
+                }
+              ]
+            },
+            "strict_schema": true,
+            "request_sha256": "7b19e4787e2d0e533f3fb1d1fdf77635c883e8a83a4efda2118373a1b28012ae"
+          },
+          "gradingResult": {
+            "pass": true,
+            "score": 0.9914,
+            "reason": "All assertions passed",
+            "namedScores": {},
+            "tokensUsed": {
+              "total": 0,
+              "prompt": 0,
+              "completion": 0,
+              "cached": 0,
+              "numRequests": 0
+            },
+            "componentResults": [
+              {
+                "pass": true,
+                "score": 0.9914,
+                "reason": "box_count=1.00 (2/2) | iou_mean=0.987 | iou_min=0.979 | coverage=0.998 | total=0.991 | matches=[pred[1]<->gold[1] IoU=0.994, pred[0]<->gold[0] IoU=0.979]",
+                "assertion": {
+                  "type": "python",
+                  "value": "file:///Users/cam/Documents/Projects/doc-web/benchmarks/scorers/image_crop_scorer.py"
+                }
+              }
+            ]
+          },
+          "receipt_sequence": 2,
+          "latency_ms": 5444,
+          "cost_usd": 0.004624,
+          "raw_result": "benchmarks/results/gemini4-argon-20261023/candidate-Image011.json",
+          "raw_result_sha256": "9290f80a47fdc95712f7ca3acb2152d536853ddeac630d24b82a2a12e3ccc1b0",
+          "promptfoo_latency_ms": 5973
+        },
+        {
+          "key": "Image013",
+          "success": true,
+          "score": 0.9961,
+          "output": "{\"images\": [{\"description\": \"A black and white portrait photograph of a man with a mustache and a woman, captioned Moise and Sophie L'Heureux about 1910.\", \"bbox\": [97, 414, 488, 683]}]}",
+          "tokenUsage": {
+            "prompt": 1677,
+            "completion": 78,
+            "total": 1755,
+            "numRequests": 1
+          },
+          "metadata": {
+            "served_model": "gemini-4-argon",
+            "response_id": "WojbasnyG5rWz7IP28G8iQw",
+            "usage": {
+              "promptTokenCount": 1677,
+              "candidatesTokenCount": 78,
+              "totalTokenCount": 1755,
+              "promptTokensDetails": [
+                {
+                  "modality": "TEXT",
+                  "tokenCount": 575
+                },
+                {
+                  "modality": "IMAGE",
+                  "tokenCount": 1102
+                }
+              ],
+              "candidatesTokensDetails": [
+                {
+                  "modality": "TEXT",
+                  "tokenCount": 78
+                }
+              ]
+            },
+            "strict_schema": true,
+            "request_sha256": "19c01d2f5a9b4c15558ba06b621566abdfd7db6e9af44f6aa3a80e2bbf9743b0"
+          },
+          "gradingResult": {
+            "pass": true,
+            "score": 0.9961,
+            "reason": "All assertions passed",
+            "namedScores": {},
+            "tokensUsed": {
+              "total": 0,
+              "prompt": 0,
+              "completion": 0,
+              "cached": 0,
+              "numRequests": 0
+            },
+            "componentResults": [
+              {
+                "pass": true,
+                "score": 0.9961,
+                "reason": "box_count=1.00 (1/1) | iou_mean=0.995 | iou_min=0.995 | coverage=0.997 | total=0.996 | matches=[pred[0]<->gold[0] IoU=0.995]",
+                "assertion": {
+                  "type": "python",
+                  "value": "file:///Users/cam/Documents/Projects/doc-web/benchmarks/scorers/image_crop_scorer.py"
+                }
+              }
+            ]
+          },
+          "receipt_sequence": 8,
+          "latency_ms": 6199,
+          "cost_usd": 0.004134,
+          "raw_result": "benchmarks/results/gemini4-argon-20261023/candidate-Image013.json",
+          "raw_result_sha256": "8a9505c07eae6cde6e9c19461e8fb751c8eb0f7940b0d27de96f31423e8cfad2",
+          "promptfoo_latency_ms": 6709
+        },
+        {
+          "key": "Image020",
+          "success": true,
+          "score": 0.9965,
+          "output": "{\"images\": [{\"description\": \"Aerial photo of ranch buildings\", \"bbox\": [80, 60, 915, 461]}, {\"description\": \"Ranch house and barn\", \"bbox\": [91, 507, 905, 880]}]}",
+          "tokenUsage": {
+            "prompt": 1677,
+            "completion": 84,
+            "total": 1761,
+            "numRequests": 1
+          },
+          "metadata": {
+            "served_model": "gemini-4-argon",
+            "response_id": "Yojbat-XIvusz7IP8cTjqAo",
+            "usage": {
+              "promptTokenCount": 1677,
+              "candidatesTokenCount": 84,
+              "totalTokenCount": 1761,
+              "promptTokensDetails": [
+                {
+                  "modality": "TEXT",
+                  "tokenCount": 575
+                },
+                {
+                  "modality": "IMAGE",
+                  "tokenCount": 1102
+                }
+              ],
+              "candidatesTokensDetails": [
+                {
+                  "modality": "TEXT",
+                  "tokenCount": 84
+                }
+              ]
+            },
+            "strict_schema": true,
+            "request_sha256": "378648164cc16093b92f89a638941f3ab5361f266f1d5c4c62a48cb68511aa0e"
+          },
+          "gradingResult": {
+            "pass": true,
+            "score": 0.9965,
+            "reason": "All assertions passed",
+            "namedScores": {},
+            "tokensUsed": {
+              "total": 0,
+              "prompt": 0,
+              "completion": 0,
+              "cached": 0,
+              "numRequests": 0
+            },
+            "componentResults": [
+              {
+                "pass": true,
+                "score": 0.9965,
+                "reason": "box_count=1.00 (2/2) | iou_mean=0.995 | iou_min=0.994 | coverage=0.997 | total=0.997 | matches=[pred[0]<->gold[0] IoU=0.996, pred[1]<->gold[1] IoU=0.994]",
+                "assertion": {
+                  "type": "python",
+                  "value": "file:///Users/cam/Documents/Projects/doc-web/benchmarks/scorers/image_crop_scorer.py"
+                }
+              }
+            ]
+          },
+          "receipt_sequence": 9,
+          "latency_ms": 10156,
+          "cost_usd": 0.004194,
+          "raw_result": "benchmarks/results/gemini4-argon-20261023/candidate-Image020.json",
+          "raw_result_sha256": "1e326aa2ccffbc6722be3702139ac70b7b4f3f17f93ae68ab9b936a05f7003c3",
+          "promptfoo_latency_ms": 10600
+        },
+        {
+          "key": "Image021",
+          "success": true,
+          "score": 0.9938,
+          "output": "{\"images\": [{\"description\": \"Black-and-white photograph of an elderly couple, Henry and Alma Alain, standing outdoors in front of trees and bushes on their 50th wedding anniversary in 1957.\", \"bbox\": [107, 431, 479, 667]}]}",
+          "tokenUsage": {
+            "prompt": 1677,
+            "completion": 196,
+            "total": 1873,
+            "numRequests": 1
+          },
+          "metadata": {
+            "served_model": "gemini-4-argon",
+            "response_id": "bojbar33G__rz7IPz6uIqAk",
+            "usage": {
+              "promptTokenCount": 1677,
+              "candidatesTokenCount": 86,
+              "totalTokenCount": 1873,
+              "promptTokensDetails": [
+                {
+                  "modality": "TEXT",
+                  "tokenCount": 575
+                },
+                {
+                  "modality": "IMAGE",
+                  "tokenCount": 1102
+                }
+              ],
+              "candidatesTokensDetails": [
+                {
+                  "modality": "TEXT",
+                  "tokenCount": 86
+                }
+              ],
+              "thoughtsTokenCount": 110
+            },
+            "strict_schema": true,
+            "request_sha256": "e4c75e0f2ce1d0c50637490a9d2c627342a00ac61597bdfc9b3781044b97658d"
+          },
+          "gradingResult": {
+            "pass": true,
+            "score": 0.9938,
+            "reason": "All assertions passed",
+            "namedScores": {},
+            "tokensUsed": {
+              "total": 0,
+              "prompt": 0,
+              "completion": 0,
+              "cached": 0,
+              "numRequests": 0
+            },
+            "componentResults": [
+              {
+                "pass": true,
+                "score": 0.9938,
+                "reason": "box_count=1.00 (1/1) | iou_mean=0.988 | iou_min=0.988 | coverage=1.000 | total=0.994 | matches=[pred[0]<->gold[0] IoU=0.988]",
+                "assertion": {
+                  "type": "python",
+                  "value": "file:///Users/cam/Documents/Projects/doc-web/benchmarks/scorers/image_crop_scorer.py"
+                }
+              }
+            ]
+          },
+          "receipt_sequence": 10,
+          "latency_ms": 37165,
+          "cost_usd": 0.005314,
+          "raw_result": "benchmarks/results/gemini4-argon-20261023/candidate-Image021.json",
+          "raw_result_sha256": "4f6709bdfc1a2cde94e804eea2d007ca7fe007ad7945d695688f97dee48b0efe",
+          "promptfoo_latency_ms": 37599
+        },
+        {
+          "key": "Image037",
+          "success": true,
+          "score": 0.992,
+          "output": "{\"images\": [{\"description\": \"Oval portrait photograph of Mrs. Leonidas L'Heureux (Laetitia - first wife)\", \"bbox\": [585, 53, 850, 315]}, {\"description\": \"Photograph of Leonidas and Josephine (second wife) L'Heureux\", \"bbox\": [97, 643, 492, 898]}]}",
+          "tokenUsage": {
+            "prompt": 1677,
+            "completion": 107,
+            "total": 1784,
+            "numRequests": 1
+          },
+          "metadata": {
+            "served_model": "gemini-4-argon",
+            "response_id": "lYjbarvfIP34-8YPr9yFuQ4",
+            "usage": {
+              "promptTokenCount": 1677,
+              "candidatesTokenCount": 107,
+              "totalTokenCount": 1784,
+              "promptTokensDetails": [
+                {
+                  "modality": "TEXT",
+                  "tokenCount": 575
+                },
+                {
+                  "modality": "IMAGE",
+                  "tokenCount": 1102
+                }
+              ],
+              "candidatesTokensDetails": [
+                {
+                  "modality": "TEXT",
+                  "tokenCount": 107
+                }
+              ]
+            },
+            "strict_schema": true,
+            "request_sha256": "90cccae0176c545ae3a8fa3f2b1e97fc5e273bbc14a629e3e5cdbbf295318ef9"
+          },
+          "gradingResult": {
+            "pass": true,
+            "score": 0.992,
+            "reason": "All assertions passed",
+            "namedScores": {},
+            "tokensUsed": {
+              "total": 0,
+              "prompt": 0,
+              "completion": 0,
+              "cached": 0,
+              "numRequests": 0
+            },
+            "componentResults": [
+              {
+                "pass": true,
+                "score": 0.992,
+                "reason": "box_count=1.00 (2/2) | iou_mean=0.990 | iou_min=0.986 | coverage=0.993 | total=0.992 | matches=[pred[1]<->gold[0] IoU=0.993, pred[0]<->gold[1] IoU=0.986]",
+                "assertion": {
+                  "type": "python",
+                  "value": "file:///Users/cam/Documents/Projects/doc-web/benchmarks/scorers/image_crop_scorer.py"
+                }
+              }
+            ]
+          },
+          "receipt_sequence": 11,
+          "latency_ms": 6175,
+          "cost_usd": 0.004424,
+          "raw_result": "benchmarks/results/gemini4-argon-20261023/candidate-Image037.json",
+          "raw_result_sha256": "065012421c1b38db10cf95766d194698351f159534af3af28e6d4342e305ccb4",
+          "promptfoo_latency_ms": 6666
+        },
+        {
+          "key": "Image059",
+          "success": true,
+          "score": 0.9943,
+          "output": "{\"images\": [{\"description\": \"A black and white photograph of George and Sophranie L'Heureux standing outdoors in winter coats.\", \"bbox\": [96, 344, 490, 730]}, {\"description\": \"A black and white photograph of Mrs. George L'Heureux (Emilienne) standing outdoors in a field.\", \"bbox\": [513, 631, 910, 896]}]}",
+          "tokenUsage": {
+            "prompt": 1677,
+            "completion": 215,
+            "total": 1892,
+            "numRequests": 1
+          },
+          "metadata": {
+            "served_model": "gemini-4-argon",
+            "response_id": "nojbauBqidHPsg-x4fPBCQ",
+            "usage": {
+              "promptTokenCount": 1677,
+              "candidatesTokenCount": 118,
+              "totalTokenCount": 1892,
+              "promptTokensDetails": [
+                {
+                  "modality": "TEXT",
+                  "tokenCount": 575
+                },
+                {
+                  "modality": "IMAGE",
+                  "tokenCount": 1102
+                }
+              ],
+              "candidatesTokensDetails": [
+                {
+                  "modality": "TEXT",
+                  "tokenCount": 118
+                }
+              ],
+              "thoughtsTokenCount": 97
+            },
+            "strict_schema": true,
+            "request_sha256": "cd5b2f5354dd2129f4750211368046f20667c681a008dbf896335a61ad4e5f01"
+          },
+          "gradingResult": {
+            "pass": true,
+            "score": 0.9943,
+            "reason": "All assertions passed",
+            "namedScores": {},
+            "tokensUsed": {
+              "total": 0,
+              "prompt": 0,
+              "completion": 0,
+              "cached": 0,
+              "numRequests": 0
+            },
+            "componentResults": [
+              {
+                "pass": true,
+                "score": 0.9943,
+                "reason": "box_count=1.00 (2/2) | iou_mean=0.989 | iou_min=0.989 | coverage=0.999 | total=0.994 | matches=[pred[0]<->gold[0] IoU=0.989, pred[1]<->gold[1] IoU=0.989]",
+                "assertion": {
+                  "type": "python",
+                  "value": "file:///Users/cam/Documents/Projects/doc-web/benchmarks/scorers/image_crop_scorer.py"
+                }
+              }
+            ]
+          },
+          "receipt_sequence": 12,
+          "latency_ms": 16591,
+          "cost_usd": 0.005504,
+          "raw_result": "benchmarks/results/gemini4-argon-20261023/candidate-Image059.json",
+          "raw_result_sha256": "7a933ba368b9c4664b3f7abbb8f3a5a20bc9a22c08a5e7a60056262186979ac2",
+          "promptfoo_latency_ms": 17020
+        },
+        {
+          "key": "Image121",
+          "success": true,
+          "score": 0.9881,
+          "output": "{\"images\": [{\"description\": \"A large group photograph outdoors showing ninety members of the L'Heureux family at a reunion in July, 1939.\", \"bbox\": [90, 56, 911, 408]}, {\"description\": \"An oval-shaped studio portrait of two standing men, Moise L'Heureux and his brother Edward.\", \"bbox\": [95, 444, 502, 881]}, {\"description\": \"An oval-shaped portrait of a woman, Sophie L'Heureux, seated with her arm resting on a book.\", \"bbox\": [524, 448, 922, 875]}]}",
+          "tokenUsage": {
+            "prompt": 1677,
+            "completion": 171,
+            "total": 1848,
+            "numRequests": 1
+          },
+          "metadata": {
+            "served_model": "gemini-4-argon",
+            "response_id": "r4jbasLRKaytsOIPptvXyQw",
+            "usage": {
+              "promptTokenCount": 1677,
+              "candidatesTokenCount": 171,
+              "totalTokenCount": 1848,
+              "promptTokensDetails": [
+                {
+                  "modality": "TEXT",
+                  "tokenCount": 575
+                },
+                {
+                  "modality": "IMAGE",
+                  "tokenCount": 1102
+                }
+              ],
+              "candidatesTokensDetails": [
+                {
+                  "modality": "TEXT",
+                  "tokenCount": 171
+                }
+              ]
+            },
+            "strict_schema": true,
+            "request_sha256": "95fe821cabd6ef8e59e7e237b51d40f37292c84cea833a5720506a17f7cce605"
+          },
+          "gradingResult": {
+            "pass": true,
+            "score": 0.9881,
+            "reason": "All assertions passed",
+            "namedScores": {},
+            "tokensUsed": {
+              "total": 0,
+              "prompt": 0,
+              "completion": 0,
+              "cached": 0,
+              "numRequests": 0
+            },
+            "componentResults": [
+              {
+                "pass": true,
+                "score": 0.9881,
+                "reason": "box_count=1.00 (3/3) | iou_mean=0.984 | iou_min=0.970 | coverage=0.995 | total=0.988 | matches=[pred[1]<->gold[1] IoU=0.994, pred[2]<->gold[2] IoU=0.988, pred[0]<->gold[0] IoU=0.970]",
+                "assertion": {
+                  "type": "python",
+                  "value": "file:///Users/cam/Documents/Projects/doc-web/benchmarks/scorers/image_crop_scorer.py"
+                }
+              }
+            ]
+          },
+          "receipt_sequence": 13,
+          "latency_ms": 7981,
+          "cost_usd": 0.005064,
+          "raw_result": "benchmarks/results/gemini4-argon-20261023/candidate-Image121.json",
+          "raw_result_sha256": "369f09cd24dd85bae5c074dae46eb3be73fecd7f6739dee3d5573f63de9e3ec8",
+          "promptfoo_latency_ms": 8407
+        },
+        {
+          "key": "Image124",
+          "success": true,
+          "score": 0.9756,
+          "output": "{\"images\": [{\"description\": \"Line drawing illustration of a covered wagon pulled by two oxen with two people riding in the front, signed Aime.\", \"bbox\": [106, 75, 894, 678]}]}",
+          "tokenUsage": {
+            "prompt": 1677,
+            "completion": 69,
+            "total": 1746,
+            "numRequests": 1
+          },
+          "metadata": {
+            "served_model": "gemini-4-argon",
+            "response_id": "uYjbasXBCaDQ_uMPk8npuQE",
+            "usage": {
+              "promptTokenCount": 1677,
+              "candidatesTokenCount": 69,
+              "totalTokenCount": 1746,
+              "promptTokensDetails": [
+                {
+                  "modality": "TEXT",
+                  "tokenCount": 575
+                },
+                {
+                  "modality": "IMAGE",
+                  "tokenCount": 1102
+                }
+              ],
+              "candidatesTokensDetails": [
+                {
+                  "modality": "TEXT",
+                  "tokenCount": 69
+                }
+              ]
+            },
+            "strict_schema": true,
+            "request_sha256": "5766994d6770fbc9672008298ce38b5c680e61b6c67e1c0f728c5bb3e1681c18"
+          },
+          "gradingResult": {
+            "pass": true,
+            "score": 0.9756,
+            "reason": "All assertions passed",
+            "namedScores": {},
+            "tokensUsed": {
+              "total": 0,
+              "prompt": 0,
+              "completion": 0,
+              "cached": 0,
+              "numRequests": 0
+            },
+            "componentResults": [
+              {
+                "pass": true,
+                "score": 0.9756,
+                "reason": "box_count=1.00 (1/1) | iou_mean=0.971 | iou_min=0.971 | coverage=0.972 | total=0.976 | matches=[pred[0]<->gold[0] IoU=0.971]",
+                "assertion": {
+                  "type": "python",
+                  "value": "file:///Users/cam/Documents/Projects/doc-web/benchmarks/scorers/image_crop_scorer.py"
+                }
+              }
+            ]
+          },
+          "receipt_sequence": 14,
+          "latency_ms": 6003,
+          "cost_usd": 0.004044,
+          "raw_result": "benchmarks/results/gemini4-argon-20261023/candidate-Image124.json",
+          "raw_result_sha256": "c436d680b9881b99ba0973905cc0fef6715ad762ea93d1322361868facc7d38d",
+          "promptfoo_latency_ms": 6434
+        },
+        {
+          "key": "Image126",
+          "success": true,
+          "score": 0.9908,
+          "output": "{\"images\": [{\"description\": \"Color photograph of a stone monument dedicated to Moise & Sophie L'Heureux with three bronze plaques embedded in the stone.\", \"bbox\": [206, 113, 783, 434]}, {\"description\": \"Close-up color photograph of the Canada Post plaque embedded in the stone monument, detailing the establishment of the first post office in the area in 1897.\", \"bbox\": [221, 534, 798, 854]}]}",
+          "tokenUsage": {
+            "prompt": 1677,
+            "completion": 133,
+            "total": 1810,
+            "numRequests": 1
+          },
+          "metadata": {
+            "served_model": "gemini-4-argon",
+            "response_id": "wIjbat_vH5-fz7IP9-qz8AI",
+            "usage": {
+              "promptTokenCount": 1677,
+              "candidatesTokenCount": 133,
+              "totalTokenCount": 1810,
+              "promptTokensDetails": [
+                {
+                  "modality": "TEXT",
+                  "tokenCount": 575
+                },
+                {
+                  "modality": "IMAGE",
+                  "tokenCount": 1102
+                }
+              ],
+              "candidatesTokensDetails": [
+                {
+                  "modality": "TEXT",
+                  "tokenCount": 133
+                }
+              ]
+            },
+            "strict_schema": true,
+            "request_sha256": "620d1398137174bbd1ed5836e945c207b1978a74cfcf665f6ce924eccd86ba40"
+          },
+          "gradingResult": {
+            "pass": true,
+            "score": 0.9908,
+            "reason": "All assertions passed",
+            "namedScores": {},
+            "tokensUsed": {
+              "total": 0,
+              "prompt": 0,
+              "completion": 0,
+              "cached": 0,
+              "numRequests": 0
+            },
+            "componentResults": [
+              {
+                "pass": true,
+                "score": 0.9908,
+                "reason": "box_count=1.00 (2/2) | iou_mean=0.989 | iou_min=0.987 | coverage=0.990 | total=0.991 | matches=[pred[0]<->gold[0] IoU=0.991, pred[1]<->gold[1] IoU=0.987]",
+                "assertion": {
+                  "type": "python",
+                  "value": "file:///Users/cam/Documents/Projects/doc-web/benchmarks/scorers/image_crop_scorer.py"
+                }
+              }
+            ]
+          },
+          "receipt_sequence": 15,
+          "latency_ms": 21141,
+          "cost_usd": 0.004684,
+          "raw_result": "benchmarks/results/gemini4-argon-20261023/candidate-Image126.json",
+          "raw_result_sha256": "1677b4a668044f8ffb9402edb455a8ffaf2521a668ceb79d8e49b0e33c3f8201",
+          "promptfoo_latency_ms": 21546
+        }
+      ],
+      "mean_promptfoo_latency_ms": 26096.46153846154,
+      "median_promptfoo_latency_ms": 10600,
+      "total_cost_usd": 0.06251199999999998,
+      "mean_cost_usd": 0.004808615384615383
+    },
+    "control": {
+      "model": "gemini-3-flash-preview",
+      "cases": 13,
+      "pass_rate": 1,
+      "overall": 0.9583153846153847,
+      "mean_latency_ms": 6586.307692307692,
+      "median_latency_ms": 5844,
+      "rows": [
+        {
+          "key": "Image000",
+          "success": true,
+          "score": 0.8119,
+          "output": "```json\n{\"images\": [{\"description\": \"Front cover art featuring a stylized title 'ONWARD TO THE UNKNOWN 1887-1987' and an illustration of a pioneer landscape with a covered wagon, tree, and clouds, all within a decorative border.\", \"bbox\": [0.045, 0.07, 0.935, 0.945]}]}\n```",
+          "tokenUsage": {
+            "prompt": 1333,
+            "completion": 1167,
+            "total": 2500,
+            "numRequests": 1
+          },
+          "metadata": {
+            "served_model": "gemini-3-flash-preview",
+            "response_id": "Aonbar4V7qDPsg_v7pLpAg",
+            "usage": {
+              "promptTokenCount": 1333,
+              "candidatesTokenCount": 91,
+              "totalTokenCount": 2500,
+              "promptTokensDetails": [
+                {
+                  "modality": "TEXT",
+                  "tokenCount": 231
+                },
+                {
+                  "modality": "IMAGE",
+                  "tokenCount": 1102
+                }
+              ],
+              "thoughtsTokenCount": 1076,
+              "serviceTier": "standard"
+            },
+            "strict_schema": false,
+            "request_sha256": "6239875f0624ff1eb55c31f8a386a40e031168b01f5491acbc81906c2a0651c9"
+          },
+          "gradingResult": {
+            "pass": true,
+            "score": 0.8119,
+            "reason": "All assertions passed",
+            "namedScores": {},
+            "tokensUsed": {
+              "total": 0,
+              "prompt": 0,
+              "completion": 0,
+              "cached": 0,
+              "numRequests": 0
+            },
+            "componentResults": [
+              {
+                "pass": true,
+                "score": 0.8119,
+                "reason": "box_count=1.00 (1/1) | iou_mean=0.779 | iou_min=0.779 | coverage=0.779 | total=0.812 | matches=[pred[0]<->gold[0] IoU=0.779]",
+                "assertion": {
+                  "type": "python",
+                  "value": "file:///Users/cam/Documents/Projects/doc-web/benchmarks/scorers/image_crop_scorer.py"
+                }
+              }
+            ]
+          },
+          "receipt_sequence": 16,
+          "latency_ms": 7855,
+          "cost_usd": 0.0041675,
+          "raw_result": "benchmarks/results/gemini4-argon-20261023/control-Image000.json",
+          "raw_result_sha256": "7ac16d7e622911b6c2612423fe039cd0a778806c501de24721b4505b125071a6",
+          "promptfoo_latency_ms": 8376
+        },
+        {
+          "key": "Image001",
+          "success": true,
+          "score": 0.9211,
+          "output": "```json\n{\"images\": [{\"description\": \"Stylized title text 'ONWARD TO THE UNKNOWN' with dates '1887 - 1987'\", \"bbox\": [0.272, 0.193, 0.383, 0.807]}]}\n```",
+          "tokenUsage": {
+            "prompt": 1333,
+            "completion": 1122,
+            "total": 2455,
+            "numRequests": 1
+          },
+          "metadata": {
+            "served_model": "gemini-3-flash-preview",
+            "response_id": "C4nbasn-ELLyqtsPpr-LgAw",
+            "usage": {
+              "promptTokenCount": 1333,
+              "candidatesTokenCount": 70,
+              "totalTokenCount": 2455,
+              "promptTokensDetails": [
+                {
+                  "modality": "IMAGE",
+                  "tokenCount": 1102
+                },
+                {
+                  "modality": "TEXT",
+                  "tokenCount": 231
+                }
+              ],
+              "thoughtsTokenCount": 1052,
+              "serviceTier": "standard"
+            },
+            "strict_schema": false,
+            "request_sha256": "01b4129b1c68907267cb3e71fc64bd3517497b103f7c28fb085982eef0f5e296"
+          },
+          "gradingResult": {
+            "pass": true,
+            "score": 0.9211,
+            "reason": "All assertions passed",
+            "namedScores": {},
+            "tokensUsed": {
+              "total": 0,
+              "prompt": 0,
+              "completion": 0,
+              "cached": 0,
+              "numRequests": 0
+            },
+            "componentResults": [
+              {
+                "pass": true,
+                "score": 0.9211,
+                "reason": "box_count=1.00 (1/1) | iou_mean=0.905 | iou_min=0.905 | coverage=0.910 | total=0.921 | matches=[pred[0]<->gold[0] IoU=0.905]",
+                "assertion": {
+                  "type": "python",
+                  "value": "file:///Users/cam/Documents/Projects/doc-web/benchmarks/scorers/image_crop_scorer.py"
+                }
+              }
+            ]
+          },
+          "receipt_sequence": 17,
+          "latency_ms": 5809,
+          "cost_usd": 0.0040325,
+          "raw_result": "benchmarks/results/gemini4-argon-20261023/control-Image001.json",
+          "raw_result_sha256": "0a46f5a43398a59bfda2fd6de14e2af1314d66b0b21aa293820c8bd7502755fc",
+          "promptfoo_latency_ms": 6187
+        },
+        {
+          "key": "Image003",
+          "success": true,
+          "score": 0.9814,
+          "output": "```json\n{\"images\": [{\"description\": \"Black and white illustration of a covered wagon pulled by an ox, with a horse standing to the left.\", \"bbox\": [0.061, 0.267, 0.938, 0.458]}]}\n```",
+          "tokenUsage": {
+            "prompt": 1333,
+            "completion": 892,
+            "total": 2225,
+            "numRequests": 1
+          },
+          "metadata": {
+            "served_model": "gemini-3-flash-preview",
+            "response_id": "EonbavLpNe3Q-8YPz47r8As",
+            "usage": {
+              "promptTokenCount": 1333,
+              "candidatesTokenCount": 65,
+              "totalTokenCount": 2225,
+              "promptTokensDetails": [
+                {
+                  "modality": "TEXT",
+                  "tokenCount": 231
+                },
+                {
+                  "modality": "IMAGE",
+                  "tokenCount": 1102
+                }
+              ],
+              "thoughtsTokenCount": 827,
+              "serviceTier": "standard"
+            },
+            "strict_schema": false,
+            "request_sha256": "0678d76e8bbc40b8867facb609d017f95020e5bcb53519e7bb663fe951769366"
+          },
+          "gradingResult": {
+            "pass": true,
+            "score": 0.9814,
+            "reason": "All assertions passed",
+            "namedScores": {},
+            "tokensUsed": {
+              "total": 0,
+              "prompt": 0,
+              "completion": 0,
+              "cached": 0,
+              "numRequests": 0
+            },
+            "componentResults": [
+              {
+                "pass": true,
+                "score": 0.9814,
+                "reason": "box_count=1.00 (1/1) | iou_mean=0.976 | iou_min=0.976 | coverage=0.981 | total=0.981 | matches=[pred[0]<->gold[0] IoU=0.976]",
+                "assertion": {
+                  "type": "python",
+                  "value": "file:///Users/cam/Documents/Projects/doc-web/benchmarks/scorers/image_crop_scorer.py"
+                }
+              }
+            ]
+          },
+          "receipt_sequence": 18,
+          "latency_ms": 5171,
+          "cost_usd": 0.0033425,
+          "raw_result": "benchmarks/results/gemini4-argon-20261023/control-Image003.json",
+          "raw_result_sha256": "62798e01af4abeddeb8f90bbeb813d221636f8d84ee9708f08d908c6c2659bb7",
+          "promptfoo_latency_ms": 5559
+        },
+        {
+          "key": "Image008",
+          "success": true,
+          "score": 0.9966,
+          "output": "```json\n{\"images\": [{\"description\": \"Black and white photograph of Moise and Sophie L'Heureux, dated around 1910.\", \"bbox\": [0.258, 0.217, 0.672, 0.811]}]}\n```",
+          "tokenUsage": {
+            "prompt": 1333,
+            "completion": 657,
+            "total": 1990,
+            "numRequests": 1
+          },
+          "metadata": {
+            "served_model": "gemini-3-flash-preview",
+            "response_id": "GYnbauyZIZqsz7IPovf4kAk",
+            "usage": {
+              "promptTokenCount": 1333,
+              "candidatesTokenCount": 66,
+              "totalTokenCount": 1990,
+              "promptTokensDetails": [
+                {
+                  "modality": "IMAGE",
+                  "tokenCount": 1102
+                },
+                {
+                  "modality": "TEXT",
+                  "tokenCount": 231
+                }
+              ],
+              "thoughtsTokenCount": 591,
+              "serviceTier": "standard"
+            },
+            "strict_schema": false,
+            "request_sha256": "1dfc824d33f35fa451b526b795882a3b0d62f3ac68b43b41e56fa667c7aa9664"
+          },
+          "gradingResult": {
+            "pass": true,
+            "score": 0.9966,
+            "reason": "All assertions passed",
+            "namedScores": {},
+            "tokensUsed": {
+              "total": 0,
+              "prompt": 0,
+              "completion": 0,
+              "cached": 0,
+              "numRequests": 0
+            },
+            "componentResults": [
+              {
+                "pass": true,
+                "score": 0.9966,
+                "reason": "box_count=1.00 (1/1) | iou_mean=0.995 | iou_min=0.995 | coverage=0.998 | total=0.997 | matches=[pred[0]<->gold[0] IoU=0.995]",
+                "assertion": {
+                  "type": "python",
+                  "value": "file:///Users/cam/Documents/Projects/doc-web/benchmarks/scorers/image_crop_scorer.py"
+                }
+              }
+            ]
+          },
+          "receipt_sequence": 19,
+          "latency_ms": 4630,
+          "cost_usd": 0.0026375,
+          "raw_result": "benchmarks/results/gemini4-argon-20261023/control-Image008.json",
+          "raw_result_sha256": "bc09377388b827403e401c2a31db7c8b1140f6fac2756839078b06c6fe56cb92",
+          "promptfoo_latency_ms": 5056
+        },
+        {
+          "key": "Image011",
+          "success": true,
+          "score": 0.9826,
+          "output": "```json\n{\"images\": [{\"description\": \"Celebrate Saskatchewan 1905-1980 logo\", \"bbox\": [0.074, 0.376, 0.234, 0.581]}, {\"description\": \"Official seal and signatures of Hon. Gordon MacMurchy and Hon. Ed Tchorzewski\", \"bbox\": [0.686, 0.118, 0.896, 0.868]}]}\n```",
+          "tokenUsage": {
+            "prompt": 1333,
+            "completion": 1291,
+            "total": 2624,
+            "numRequests": 1
+          },
+          "metadata": {
+            "served_model": "gemini-3-flash-preview",
+            "response_id": "HofbaoXGGIWFz7IP-aP42AI",
+            "usage": {
+              "promptTokenCount": 1333,
+              "candidatesTokenCount": 113,
+              "totalTokenCount": 2624,
+              "promptTokensDetails": [
+                {
+                  "modality": "IMAGE",
+                  "tokenCount": 1102
+                },
+                {
+                  "modality": "TEXT",
+                  "tokenCount": 231
+                }
+              ],
+              "thoughtsTokenCount": 1178,
+              "serviceTier": "standard"
+            },
+            "strict_schema": false,
+            "request_sha256": "242f8833652c89a4b1ac2591289afba7bc19e1ca44556e2c570f5f4648e54994"
+          },
+          "gradingResult": {
+            "pass": true,
+            "score": 0.9826,
+            "reason": "All assertions passed",
+            "namedScores": {},
+            "tokensUsed": {
+              "total": 0,
+              "prompt": 0,
+              "completion": 0,
+              "cached": 0,
+              "numRequests": 0
+            },
+            "componentResults": [
+              {
+                "pass": true,
+                "score": 0.9826,
+                "reason": "box_count=1.00 (2/2) | iou_mean=0.973 | iou_min=0.964 | coverage=0.993 | total=0.983 | matches=[pred[1]<->gold[1] IoU=0.983, pred[0]<->gold[0] IoU=0.964]",
+                "assertion": {
+                  "type": "python",
+                  "value": "file:///Users/cam/Documents/Projects/doc-web/benchmarks/scorers/image_crop_scorer.py"
+                }
+              }
+            ]
+          },
+          "receipt_sequence": 3,
+          "latency_ms": 6793,
+          "cost_usd": 0.0045395,
+          "raw_result": "benchmarks/results/gemini4-argon-20261023/control-Image011.json",
+          "raw_result_sha256": "c3a95e7a8d5f46780a86722363b6b2771d5bea30e83686ac75e078b62db8a168",
+          "promptfoo_latency_ms": 7293
+        },
+        {
+          "key": "Image013",
+          "success": true,
+          "score": 0.9399,
+          "output": "```json\n{\"images\": [{\"description\": \"A black and white photograph of a man and a woman, identified by the caption as Moise and Sophie L'Heureux around 1910.\", \"bbox\": [0.095, 0.415, 0.488, 0.716]}]}\n```",
+          "tokenUsage": {
+            "prompt": 1333,
+            "completion": 1006,
+            "total": 2339,
+            "numRequests": 1
+          },
+          "metadata": {
+            "served_model": "gemini-3-flash-preview",
+            "response_id": "H4nbaqOvKY3xqtsP2oHJiAs",
+            "usage": {
+              "promptTokenCount": 1333,
+              "candidatesTokenCount": 76,
+              "totalTokenCount": 2339,
+              "promptTokensDetails": [
+                {
+                  "modality": "TEXT",
+                  "tokenCount": 231
+                },
+                {
+                  "modality": "IMAGE",
+                  "tokenCount": 1102
+                }
+              ],
+              "thoughtsTokenCount": 930,
+              "serviceTier": "standard"
+            },
+            "strict_schema": false,
+            "request_sha256": "c873916ab505ac44160df5787c20d3486ddd02c31f292d0834eda31e982dcf43"
+          },
+          "gradingResult": {
+            "pass": true,
+            "score": 0.9399,
+            "reason": "All assertions passed",
+            "namedScores": {},
+            "tokensUsed": {
+              "total": 0,
+              "prompt": 0,
+              "completion": 0,
+              "cached": 0,
+              "numRequests": 0
+            },
+            "componentResults": [
+              {
+                "pass": true,
+                "score": 0.9399,
+                "reason": "box_count=1.00 (1/1) | iou_mean=0.883 | iou_min=0.883 | coverage=0.996 | total=0.940 | matches=[pred[0]<->gold[0] IoU=0.883]",
+                "assertion": {
+                  "type": "python",
+                  "value": "file:///Users/cam/Documents/Projects/doc-web/benchmarks/scorers/image_crop_scorer.py"
+                }
+              }
+            ]
+          },
+          "receipt_sequence": 20,
+          "latency_ms": 5844,
+          "cost_usd": 0.0036845,
+          "raw_result": "benchmarks/results/gemini4-argon-20261023/control-Image013.json",
+          "raw_result_sha256": "97e934155bbb2318ccdd454081c8202d3813b1afc43b92414b28041c0ace01b8",
+          "promptfoo_latency_ms": 6255
+        },
+        {
+          "key": "Image020",
+          "success": true,
+          "score": 0.9937,
+          "output": "```json\n{\"images\": [\n  {\"description\": \"Aerial photo of ranch buildings\", \"bbox\": [0.081, 0.061, 0.913, 0.462]},\n  {\"description\": \"Ranch house and barn\", \"bbox\": [0.091, 0.51, 0.904, 0.881]}\n]}\n```",
+          "tokenUsage": {
+            "prompt": 1333,
+            "completion": 1629,
+            "total": 2962,
+            "numRequests": 1
+          },
+          "metadata": {
+            "served_model": "gemini-3-flash-preview",
+            "response_id": "J4nbaszoDZjxqtsP-v_DqQw",
+            "usage": {
+              "promptTokenCount": 1333,
+              "candidatesTokenCount": 96,
+              "totalTokenCount": 2962,
+              "promptTokensDetails": [
+                {
+                  "modality": "TEXT",
+                  "tokenCount": 231
+                },
+                {
+                  "modality": "IMAGE",
+                  "tokenCount": 1102
+                }
+              ],
+              "thoughtsTokenCount": 1533,
+              "serviceTier": "standard"
+            },
+            "strict_schema": false,
+            "request_sha256": "15cf72c367c960515e3e53a7f220a89c9518462615802099d50d467adda099d8"
+          },
+          "gradingResult": {
+            "pass": true,
+            "score": 0.9937,
+            "reason": "All assertions passed",
+            "namedScores": {},
+            "tokensUsed": {
+              "total": 0,
+              "prompt": 0,
+              "completion": 0,
+              "cached": 0,
+              "numRequests": 0
+            },
+            "componentResults": [
+              {
+                "pass": true,
+                "score": 0.9937,
+                "reason": "box_count=1.00 (2/2) | iou_mean=0.992 | iou_min=0.990 | coverage=0.994 | total=0.994 | matches=[pred[0]<->gold[0] IoU=0.995, pred[1]<->gold[1] IoU=0.990]",
+                "assertion": {
+                  "type": "python",
+                  "value": "file:///Users/cam/Documents/Projects/doc-web/benchmarks/scorers/image_crop_scorer.py"
+                }
+              }
+            ]
+          },
+          "receipt_sequence": 21,
+          "latency_ms": 9038,
+          "cost_usd": 0.0055535,
+          "raw_result": "benchmarks/results/gemini4-argon-20261023/control-Image020.json",
+          "raw_result_sha256": "f5ae2a35a5154336b3a59953c7e89d3a5def25f50440df761ace0b352632d194",
+          "promptfoo_latency_ms": 9467
+        },
+        {
+          "key": "Image021",
+          "success": true,
+          "score": 0.9816,
+          "output": "```json\n{\"images\": [{\"description\": \"Black and white photograph of Henry and Alma Alain on their 50th wedding anniversary in 1957.\", \"bbox\": [0.433, 0.105, 0.663, 0.48]}]}\n```",
+          "tokenUsage": {
+            "prompt": 1333,
+            "completion": 503,
+            "total": 1836,
+            "numRequests": 1
+          },
+          "metadata": {
+            "served_model": "gemini-3-flash-preview",
+            "response_id": "MYnbavvNL-ub6dkPoOGHoQo",
+            "usage": {
+              "promptTokenCount": 1333,
+              "candidatesTokenCount": 67,
+              "totalTokenCount": 1836,
+              "promptTokensDetails": [
+                {
+                  "modality": "TEXT",
+                  "tokenCount": 231
+                },
+                {
+                  "modality": "IMAGE",
+                  "tokenCount": 1102
+                }
+              ],
+              "thoughtsTokenCount": 436,
+              "serviceTier": "standard"
+            },
+            "strict_schema": false,
+            "request_sha256": "ede3f7f9999cf06b79e3e9afbfa0ea2f2b999ccc866fb50b0e343c0639ff94cc"
+          },
+          "gradingResult": {
+            "pass": true,
+            "score": 0.9816,
+            "reason": "All assertions passed",
+            "namedScores": {},
+            "tokensUsed": {
+              "total": 0,
+              "prompt": 0,
+              "completion": 0,
+              "cached": 0,
+              "numRequests": 0
+            },
+            "componentResults": [
+              {
+                "pass": true,
+                "score": 0.9816,
+                "reason": "box_count=1.00 (1/1) | iou_mean=0.974 | iou_min=0.974 | coverage=0.984 | total=0.982 | matches=[pred[0]<->gold[0] IoU=0.974]",
+                "assertion": {
+                  "type": "python",
+                  "value": "file:///Users/cam/Documents/Projects/doc-web/benchmarks/scorers/image_crop_scorer.py"
+                }
+              }
+            ]
+          },
+          "receipt_sequence": 22,
+          "latency_ms": 4274,
+          "cost_usd": 0.0021755,
+          "raw_result": "benchmarks/results/gemini4-argon-20261023/control-Image021.json",
+          "raw_result_sha256": "60ee8aaba44993a640cd7cba07dc8c5d9f59fb24e3da68838b83c1450a916619",
+          "promptfoo_latency_ms": 4703
+        },
+        {
+          "key": "Image037",
+          "success": true,
+          "score": 0.9867,
+          "output": "```json\n{\n  \"images\": [\n    {\n      \"description\": \"Oval portrait of Mrs. Leonidas L'Heureux (Laetitia).\",\n      \"bbox\": [0.582, 0.048, 0.853, 0.313]\n    },\n    {\n      \"description\": \"Photograph of Leonidas and Josephine L'Heureux.\",\n      \"bbox\": [0.096, 0.642, 0.493, 0.898]\n    }\n  ]\n}\n```",
+          "tokenUsage": {
+            "prompt": 1333,
+            "completion": 2461,
+            "total": 3794,
+            "numRequests": 1
+          },
+          "metadata": {
+            "served_model": "gemini-3-flash-preview",
+            "response_id": "N4nbavqDLMGtz7IPlsu2gAE",
+            "usage": {
+              "promptTokenCount": 1333,
+              "candidatesTokenCount": 135,
+              "totalTokenCount": 3794,
+              "promptTokensDetails": [
+                {
+                  "modality": "IMAGE",
+                  "tokenCount": 1102
+                },
+                {
+                  "modality": "TEXT",
+                  "tokenCount": 231
+                }
+              ],
+              "thoughtsTokenCount": 2326,
+              "serviceTier": "standard"
+            },
+            "strict_schema": false,
+            "request_sha256": "8003657cc3c5963f0986aedf82e1881a9fc4f9d34b8ed2a6da8c7bf9f2d56d8e"
+          },
+          "gradingResult": {
+            "pass": true,
+            "score": 0.9867,
+            "reason": "All assertions passed",
+            "namedScores": {},
+            "tokensUsed": {
+              "total": 0,
+              "prompt": 0,
+              "completion": 0,
+              "cached": 0,
+              "numRequests": 0
+            },
+            "componentResults": [
+              {
+                "pass": true,
+                "score": 0.9867,
+                "reason": "box_count=1.00 (2/2) | iou_mean=0.978 | iou_min=0.965 | coverage=0.998 | total=0.987 | matches=[pred[1]<->gold[0] IoU=0.992, pred[0]<->gold[1] IoU=0.965]",
+                "assertion": {
+                  "type": "python",
+                  "value": "file:///Users/cam/Documents/Projects/doc-web/benchmarks/scorers/image_crop_scorer.py"
+                }
+              }
+            ]
+          },
+          "receipt_sequence": 23,
+          "latency_ms": 11949,
+          "cost_usd": 0.0080495,
+          "raw_result": "benchmarks/results/gemini4-argon-20261023/control-Image037.json",
+          "raw_result_sha256": "35f5140bd6d56345889882af977d0306d4cd4f6482c8038643627328eb373257",
+          "promptfoo_latency_ms": 12365
+        },
+        {
+          "key": "Image059",
+          "success": true,
+          "score": 0.9922,
+          "output": "```json\n{\"images\": [{\"description\": \"Photograph of George and Sophranie L'Heureux standing outdoors.\", \"bbox\": [0.344, 0.096, 0.73, 0.49]}, {\"description\": \"Portrait photograph of Emilienne, the first wife of George L'Heureux.\", \"bbox\": [0.633, 0.514, 0.898, 0.909]}]}\n```",
+          "tokenUsage": {
+            "prompt": 1333,
+            "completion": 1120,
+            "total": 2453,
+            "numRequests": 1
+          },
+          "metadata": {
+            "served_model": "gemini-3-flash-preview",
+            "response_id": "RYnbaq3uDM6UmtkP7PrKuAk",
+            "usage": {
+              "promptTokenCount": 1333,
+              "candidatesTokenCount": 107,
+              "totalTokenCount": 2453,
+              "promptTokensDetails": [
+                {
+                  "modality": "TEXT",
+                  "tokenCount": 231
+                },
+                {
+                  "modality": "IMAGE",
+                  "tokenCount": 1102
+                }
+              ],
+              "thoughtsTokenCount": 1013,
+              "serviceTier": "standard"
+            },
+            "strict_schema": false,
+            "request_sha256": "8a47a2e83cb5aaf18d298dbd166fb96c12132ffad2e773588357378d1ae57c4d"
+          },
+          "gradingResult": {
+            "pass": true,
+            "score": 0.9922,
+            "reason": "All assertions passed",
+            "namedScores": {},
+            "tokensUsed": {
+              "total": 0,
+              "prompt": 0,
+              "completion": 0,
+              "cached": 0,
+              "numRequests": 0
+            },
+            "componentResults": [
+              {
+                "pass": true,
+                "score": 0.9922,
+                "reason": "box_count=1.00 (2/2) | iou_mean=0.987 | iou_min=0.985 | coverage=0.997 | total=0.992 | matches=[pred[0]<->gold[0] IoU=0.989, pred[1]<->gold[1] IoU=0.985]",
+                "assertion": {
+                  "type": "python",
+                  "value": "file:///Users/cam/Documents/Projects/doc-web/benchmarks/scorers/image_crop_scorer.py"
+                }
+              }
+            ]
+          },
+          "receipt_sequence": 24,
+          "latency_ms": 6685,
+          "cost_usd": 0.0040265,
+          "raw_result": "benchmarks/results/gemini4-argon-20261023/control-Image059.json",
+          "raw_result_sha256": "f6cbb74dbd813b66660759411c3e464e9cb39089c785a6f2532d6e65a5c52d6f",
+          "promptfoo_latency_ms": 7108
+        },
+        {
+          "key": "Image121",
+          "success": true,
+          "score": 0.9757,
+          "output": "{\"images\": [{\"description\": \"Photograph of a large group of people at the L'Heureux family reunion in July 1939.\", \"bbox\": [0.058, 0.094, 0.408, 0.91]}, {\"description\": \"Oval-shaped photograph of Moise L'Heureux and his brother Edward.\", \"bbox\": [0.453, 0.095, 0.874, 0.502]}, {\"description\": \"Oval-shaped photograph of Sophie L'Heureux.\", \"bbox\": [0.453, 0.523, 0.874, 0.921]}]}",
+          "tokenUsage": {
+            "prompt": 1333,
+            "completion": 711,
+            "total": 2044,
+            "numRequests": 1
+          },
+          "metadata": {
+            "served_model": "gemini-3-flash-preview",
+            "response_id": "TYnbavfiJ__rz7IP0KuIqAk",
+            "usage": {
+              "promptTokenCount": 1333,
+              "candidatesTokenCount": 158,
+              "totalTokenCount": 2044,
+              "promptTokensDetails": [
+                {
+                  "modality": "IMAGE",
+                  "tokenCount": 1102
+                },
+                {
+                  "modality": "TEXT",
+                  "tokenCount": 231
+                }
+              ],
+              "thoughtsTokenCount": 553,
+              "serviceTier": "standard"
+            },
+            "strict_schema": false,
+            "request_sha256": "4406971fd4bbf662c9d44c0df1f3e78b2314293f166d9b7a762fa5cc84dc9834"
+          },
+          "gradingResult": {
+            "pass": true,
+            "score": 0.9757,
+            "reason": "All assertions passed",
+            "namedScores": {},
+            "tokensUsed": {
+              "total": 0,
+              "prompt": 0,
+              "completion": 0,
+              "cached": 0,
+              "numRequests": 0
+            },
+            "componentResults": [
+              {
+                "pass": true,
+                "score": 0.9757,
+                "reason": "box_count=1.00 (3/3) | iou_mean=0.971 | iou_min=0.958 | coverage=0.978 | total=0.976 | matches=[pred[2]<->gold[2] IoU=0.983, pred[0]<->gold[0] IoU=0.972, pred[1]<->gold[1] IoU=0.958]",
+                "assertion": {
+                  "type": "python",
+                  "value": "file:///Users/cam/Documents/Projects/doc-web/benchmarks/scorers/image_crop_scorer.py"
+                }
+              }
+            ]
+          },
+          "receipt_sequence": 25,
+          "latency_ms": 5830,
+          "cost_usd": 0.0027995,
+          "raw_result": "benchmarks/results/gemini4-argon-20261023/control-Image121.json",
+          "raw_result_sha256": "d228d8f320fa87dcd18da727a02b06a0167b854b5be84842d6766851858a759b",
+          "promptfoo_latency_ms": 6258
+        },
+        {
+          "key": "Image124",
+          "success": true,
+          "score": 0.9172,
+          "output": "```json\n{\"images\": [{\"description\": \"A black and white ink illustration of a covered wagon pulled by two oxen, with a man and a woman inside, set against a landscape with clouds.\", \"bbox\": [0.082, 0.104, 0.678, 0.848]}]}\n```",
+          "tokenUsage": {
+            "prompt": 1333,
+            "completion": 906,
+            "total": 2239,
+            "numRequests": 1
+          },
+          "metadata": {
+            "served_model": "gemini-3-flash-preview",
+            "response_id": "VInbavT7KLfoz7IPxdyF4QI",
+            "usage": {
+              "promptTokenCount": 1333,
+              "candidatesTokenCount": 74,
+              "totalTokenCount": 2239,
+              "promptTokensDetails": [
+                {
+                  "modality": "IMAGE",
+                  "tokenCount": 1102
+                },
+                {
+                  "modality": "TEXT",
+                  "tokenCount": 231
+                }
+              ],
+              "thoughtsTokenCount": 832,
+              "serviceTier": "standard"
+            },
+            "strict_schema": false,
+            "request_sha256": "34ff8c8cbbb4a97ce12bc31430f7d892e9d36a1a91d820fd518617a4ebc0a214"
+          },
+          "gradingResult": {
+            "pass": true,
+            "score": 0.9172,
+            "reason": "All assertions passed",
+            "namedScores": {},
+            "tokensUsed": {
+              "total": 0,
+              "prompt": 0,
+              "completion": 0,
+              "cached": 0,
+              "numRequests": 0
+            },
+            "componentResults": [
+              {
+                "pass": true,
+                "score": 0.9172,
+                "reason": "box_count=1.00 (1/1) | iou_mean=0.901 | iou_min=0.901 | coverage=0.904 | total=0.917 | matches=[pred[0]<->gold[0] IoU=0.901]",
+                "assertion": {
+                  "type": "python",
+                  "value": "file:///Users/cam/Documents/Projects/doc-web/benchmarks/scorers/image_crop_scorer.py"
+                }
+              }
+            ]
+          },
+          "receipt_sequence": 26,
+          "latency_ms": 6304,
+          "cost_usd": 0.0033845,
+          "raw_result": "benchmarks/results/gemini4-argon-20261023/control-Image124.json",
+          "raw_result_sha256": "c598eb8d95b3b3555cc60651030d0642676df4e363059e32f9fe4f3a43b69561",
+          "promptfoo_latency_ms": 6698
+        },
+        {
+          "key": "Image126",
+          "success": true,
+          "score": 0.9775,
+          "output": "```json\n{\"images\": [{\"description\": \"Photograph of a stone monument with several commemorative plaques.\", \"bbox\": [0.115, 0.206, 0.434, 0.779]}, {\"description\": \"Close-up photograph of a commemorative plaque on the stone monument.\", \"bbox\": [0.537, 0.221, 0.852, 0.795]}]}\n```",
+          "tokenUsage": {
+            "prompt": 1333,
+            "completion": 910,
+            "total": 2243,
+            "numRequests": 1
+          },
+          "metadata": {
+            "served_model": "gemini-3-flash-preview",
+            "response_id": "XInbaqDzHaKe6dkP8fmC6Qo",
+            "usage": {
+              "promptTokenCount": 1333,
+              "candidatesTokenCount": 102,
+              "totalTokenCount": 2243,
+              "promptTokensDetails": [
+                {
+                  "modality": "IMAGE",
+                  "tokenCount": 1102
+                },
+                {
+                  "modality": "TEXT",
+                  "tokenCount": 231
+                }
+              ],
+              "thoughtsTokenCount": 808,
+              "serviceTier": "standard"
+            },
+            "strict_schema": false,
+            "request_sha256": "7342ab06d3a173309298362832fbd334ba0f0c27c46ca5a00da13e46ae0363aa"
+          },
+          "gradingResult": {
+            "pass": true,
+            "score": 0.9775,
+            "reason": "All assertions passed",
+            "namedScores": {},
+            "tokensUsed": {
+              "total": 0,
+              "prompt": 0,
+              "completion": 0,
+              "cached": 0,
+              "numRequests": 0
+            },
+            "componentResults": [
+              {
+                "pass": true,
+                "score": 0.9775,
+                "reason": "box_count=1.00 (2/2) | iou_mean=0.975 | iou_min=0.966 | coverage=0.975 | total=0.977 | matches=[pred[0]<->gold[0] IoU=0.984, pred[1]<->gold[1] IoU=0.966]",
+                "assertion": {
+                  "type": "python",
+                  "value": "file:///Users/cam/Documents/Projects/doc-web/benchmarks/scorers/image_crop_scorer.py"
+                }
+              }
+            ]
+          },
+          "receipt_sequence": 27,
+          "latency_ms": 5440,
+          "cost_usd": 0.0033965,
+          "raw_result": "benchmarks/results/gemini4-argon-20261023/control-Image126.json",
+          "raw_result_sha256": "7ca41d0b4897d1dafb79a18274ca1c76d0cfcf38e3d84cd4f86d3f828e4a99af",
+          "promptfoo_latency_ms": 5829
+        }
+      ],
+      "mean_promptfoo_latency_ms": 7011.846153846154,
+      "median_promptfoo_latency_ms": 6258,
+      "total_cost_usd": 0.0517895,
+      "mean_cost_usd": 0.003983807692307693
+    }
+  },
+  "native": {
+    "sequence": 1,
+    "model": "gemini-4-argon",
+    "served_model": "gemini-4-argon",
+    "status_code": 200,
+    "latency_ms": 23404,
+    "cost_usd": 0.003372,
+    "request_sha256": "35a11c1f30ff4d6b1113873852401e0ed5880771ded3482c8abe572d5b075cbc",
+    "response_sha256": "cacb10489a2f9eb8396248ea21dbedf8b55374e305a97764a522c1b4bd0dad62"
+  },
+  "limits": [
+    "Authoritative bounded13-case detector only; one call per arm/case",
+    "Image000 whole-cover undercoverage retained; border-pixel/source-quality equivalence withheld",
+    "Safety/handwriting/production-route/default changes not measured or performed",
+    "Latency and token-priced cost are descriptive single-run observations, not invoices or repeatability proof"
+  ],
+  "configuration": {
+    "results_dir": "/Users/cam/Documents/Projects/doc-web/benchmarks/results/gemini4-argon-20261023",
+    "cap_usd": 5,
+    "max_calls": 36,
+    "prices": {
+      "gemini-4-argon": [
+        2,
+        0.1,
+        2,
+        10
+      ],
+      "gemini-3-flash-preview": [
+        0.5,
+        0.05,
+        0.5,
+        3
+      ]
+    },
+    "output_limits": {
+      "gemini-4-argon": 32768,
+      "gemini-3-flash-preview": 16384
+    },
+    "endpoints": {
+      "gemini-4-argon": "https://generativelanguage.googleapis.com/v1beta/models/gemini-4-argon:generateContent",
+      "gemini-3-flash-preview": "https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent"
+    },
+    "sources": {
+      "output/triage-20261023-argon-eval/prepare.py": "39a694c65a9c15c403ff6828a715b838bad49e63fdb657ab51fdb916ac03bf6b",
+      "output/triage-20261023-argon-eval/native_probe.py": "40cf9b414c4455bb595b2ecdba34aa31de6936f5279f43a30cbc82154f8dfb87",
+      "benchmarks/providers/gemini4_argon.py": "16022e5885a2c0ac30b2df94ff160e7b5decc13fa1e215e01b4abe7541abda99",
+      "benchmarks/providers/mistral4_guard.py": "7fc2b3d654eb35020b48f6c7369f66c82b3669d3159c089adcfd9851f397bc81",
+      "benchmarks/providers/openrouter_vision_chat.py": "d36fb3ecfd1a389307dde76a880eb12db30730d52eb07bc961a56f60ab48fdd3",
+      "benchmarks/tasks/image-crop-extraction.yaml": "0dbac27f12ed7ab56f840676eb72cb8d79798d8e4e3a6a142da19b26bd8a0531",
+      "benchmarks/prompts/crop-conservative-count.js": "d15c7fd6f20389e5e7b2af9f15dd3697a31c28f47cfea8147c8114fe82f1e8f9",
+      "benchmarks/prompts/_image-helpers.js": "ad723df59a55896922752bd963f50ca7e36e7c77717d568deb5f9fdd1d3e11c0",
+      "benchmarks/scorers/image_crop_scorer.py": "7fcf07e05726bf3ebbc2488a503a9d7f165dde79649890cbd65f12a6ce4c19e7",
+      "benchmarks/golden/image-crops.json": "2ac0a8f01e00a252439da1f4827a85bc5118bf96460a3ff1780e642eafc60f90",
+      "scripts/run_with_doc_web_env.py": "24a7416b2db9f686c37bb9d281116886eee93683cfaa296021f506b14526ba19",
+      "doc_web/env.py": "6153a345dc79252f45075b12f0b2c682c900016ab2558b6c1b074e3a4bd06fe8",
+      "tests/test_mistral4_guard.py": "28ec317dfa140fa28e82c50949acaddd861da6bd005fbf8fdeec622aafc8eee3",
+      "tests/test_gemini4_argon.py": "ba46cf76df15751a16e6fb0b83056996379a1ac45aa1e89c0f94e37edf894fe3",
+      "benchmarks/input/source-pages-b64/Image000.b64.txt": "08b47a53452babd5ee4b23c72c35aedd4b64d1f3491ca371294ff0317d1bf5ff",
+      "benchmarks/results/gemini4-argon-20261023/tasks/candidate-Image000.yaml": "899e3dce268dedd31230577d1116ad97c7cdb9f85384e2d3cd9e445444b020ff",
+      "benchmarks/results/gemini4-argon-20261023/tasks/control-Image000.yaml": "9dd2e91ad03211a3725d94a6f1067eca4488a282a41061218941c890bc7ed140",
+      "benchmarks/input/source-pages-b64/Image001.b64.txt": "ac5e0b041c554e4b0e16acc27f183c171138859dc09434f9c128136d10d9dbaa",
+      "benchmarks/results/gemini4-argon-20261023/tasks/candidate-Image001.yaml": "3ec7e116071c3ea9b11afed122cecf46b0d6536f2fd88af384da71f1ebf1e38a",
+      "benchmarks/results/gemini4-argon-20261023/tasks/control-Image001.yaml": "687cbadf37610112c925a4733336d6494838dbd03650eca20850b6934b8a09e5",
+      "benchmarks/input/source-pages-b64/Image003.b64.txt": "34a5d473bdd2e5edcd5190e946bc6a67cceef82224c437dd82588c57327a9634",
+      "benchmarks/results/gemini4-argon-20261023/tasks/candidate-Image003.yaml": "efbbc7b2ce030fa38df6ab663dc55dbcd265553266b59e889f9b564eac24ee25",
+      "benchmarks/results/gemini4-argon-20261023/tasks/control-Image003.yaml": "9f149e9d89d030dcd052c5efe7b1494e5b6a6212ca63ad421f9e9599e15c2937",
+      "benchmarks/input/source-pages-b64/Image008.b64.txt": "c446337a036972508a0dd4c3dc83191fb6ce2c30e8d0df4090df9cf1f4565464",
+      "benchmarks/results/gemini4-argon-20261023/tasks/candidate-Image008.yaml": "5a280535a5505c0ad8776a6a95f8bf9092e204a5a705f5b55de44018372d4540",
+      "benchmarks/results/gemini4-argon-20261023/tasks/control-Image008.yaml": "64f6be84cc80be6c9c38d0b725db8d11bbd81b349d147a5a6a8de281c7ea2ab9",
+      "benchmarks/input/source-pages-b64/Image011.b64.txt": "71806b69682ae403974ab6090429aa894029c3d3771b77c76bdbe10cb2102f83",
+      "benchmarks/results/gemini4-argon-20261023/tasks/candidate-Image011.yaml": "d73edb7f7d38374dc5d1a32f5d113ad641c74d47585ff5fa7e8b96775369c852",
+      "benchmarks/results/gemini4-argon-20261023/tasks/control-Image011.yaml": "59d81639a4169a329749680f7acab8dfee559936abb568497c7d652e3f6a7f8c",
+      "benchmarks/input/source-pages-b64/Image013.b64.txt": "cddf2ee34357bb29c7d1c46d9c276dd84f694a49e6d00a8a0871f7ac936dfaca",
+      "benchmarks/results/gemini4-argon-20261023/tasks/candidate-Image013.yaml": "43536eff54b77fb485e7d145a0f6aa2928e54009b111fa371f205fc7b1a70183",
+      "benchmarks/results/gemini4-argon-20261023/tasks/control-Image013.yaml": "e5cf9020c44ec2f4b578f0b43aa5207c17e9974b193dccf3ace3ee3e26011a77",
+      "benchmarks/input/source-pages-b64/Image020.b64.txt": "7aa9a0f74ee5be30bef3b0a9fcf8827d6beb56d1f8f0e39e93e9be033271e7cf",
+      "benchmarks/results/gemini4-argon-20261023/tasks/candidate-Image020.yaml": "554c6fd8e86e24547422c0f48521dd58f38287975ae1b5403849103c098535b1",
+      "benchmarks/results/gemini4-argon-20261023/tasks/control-Image020.yaml": "a33da9e88a4fc4271bb0abb988daf59faa20274bab8d329c597de5cf5ab46446",
+      "benchmarks/input/source-pages-b64/Image021.b64.txt": "10cbac03c5666963a197fd93271dd2a50bd079b12a0d79f9257b6e739079957a",
+      "benchmarks/results/gemini4-argon-20261023/tasks/candidate-Image021.yaml": "3516aebaa33bdf0b3e5b618cee04e94a4762652d6d138f5d2020de86c156da81",
+      "benchmarks/results/gemini4-argon-20261023/tasks/control-Image021.yaml": "3dac60de3c3d7f7b6545ed35f871ddfb789c63c21559aeb3379f724aba3fe874",
+      "benchmarks/input/source-pages-b64/Image037.b64.txt": "3aa9dcd4d5221e5f2492d7fe58f9897ebd3a5083449372b12b13e549f00acee8",
+      "benchmarks/results/gemini4-argon-20261023/tasks/candidate-Image037.yaml": "3888fb73f2ea64426361ef962a2b515b926ca552639b3b87a008d55a3c51765e",
+      "benchmarks/results/gemini4-argon-20261023/tasks/control-Image037.yaml": "2a7223ecb39fcbc78289bfc7126e985aa4b2a4631f33bfa3c71372fabe77f74d",
+      "benchmarks/input/source-pages-b64/Image059.b64.txt": "63e8688d334e8aa8f0e0a176bc2ada3100536c69773010086f138b51a830c67c",
+      "benchmarks/results/gemini4-argon-20261023/tasks/candidate-Image059.yaml": "c836905bfccd053730ecd87796abd78dfb9d49cc70a3f83e3f6c3664c0f4077c",
+      "benchmarks/results/gemini4-argon-20261023/tasks/control-Image059.yaml": "32a9958434b9c723f032eb94e7b391a3b4271ad97f1f59603c05d5d7578042c9",
+      "benchmarks/input/source-pages-b64/Image121.b64.txt": "d58cb6142e0c5688b34ba8877ca45f4affb63dea1f44b608b0e2464e7ef5d0ca",
+      "benchmarks/results/gemini4-argon-20261023/tasks/candidate-Image121.yaml": "fa2d09f6605550c2bc5347ab1c1513e28e0327e3065d96b2c432febab6a9c2cb",
+      "benchmarks/results/gemini4-argon-20261023/tasks/control-Image121.yaml": "838b61b1d7f264d2901498e546f60b35bacb1a719123d3e2ec06ddd600c53f48",
+      "benchmarks/input/source-pages-b64/Image124.b64.txt": "4ba5291214f8ccb1a00a7673c48d74f5268503dec113812c2d9b9abc281da6f6",
+      "benchmarks/results/gemini4-argon-20261023/tasks/candidate-Image124.yaml": "ebc9b0b32b35623bb6fe65c4669142dafcb917f69acab4874b5163a30b8573a3",
+      "benchmarks/results/gemini4-argon-20261023/tasks/control-Image124.yaml": "04443b2d8f0fac16d99f957ddf7dbcc8954069f4dcb0e60e974aafed0be84c80",
+      "benchmarks/input/source-pages-b64/Image126.b64.txt": "ac5c5a1e727deb6d9b132e6c994533566fd4942cfc6deeb1ff1154fbd9f56f7e",
+      "benchmarks/results/gemini4-argon-20261023/tasks/candidate-Image126.yaml": "6d313e4400c9fc979445e45c1f249e52849c0ab886fef944e11da1e2a0049321",
+      "benchmarks/results/gemini4-argon-20261023/tasks/control-Image126.yaml": "f299f42382eaca9801093cb1232761d16b22b2b7830147bb7ad7c8bd7d5eac97"
+    }
+  },
+  "latency_definition": "latency_ms is guard HTTP wall time including response read; promptfoo_latency_ms includes provider bridge overhead; neither is driver throughput"
+}

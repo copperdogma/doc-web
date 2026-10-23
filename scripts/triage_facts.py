@@ -139,8 +139,12 @@ def methodology_tooling_facts() -> dict[str, Any]:
         else []
     )
     alias_check_enabled = bool(wrappers)
-    missing_aliases = sorted(set(invocable) - set(wrappers)) if alias_check_enabled else []
-    extra_aliases = sorted(set(wrappers) - set(invocable)) if alias_check_enabled else []
+    missing_aliases = (
+        sorted(set(invocable) - set(wrappers)) if alias_check_enabled else []
+    )
+    extra_aliases = (
+        sorted(set(wrappers) - set(invocable)) if alias_check_enabled else []
+    )
     return {
         "invocable_skill_count": len(invocable),
         "command_alias_status": "present" if alias_check_enabled else "absent",
@@ -169,10 +173,10 @@ def graph_facts(graph: dict[str, Any]) -> dict[str, Any]:
                     "title": item.get("title"),
                     "status": item.get("status"),
                     "posture": (item.get("actionability") or {}).get("posture"),
-                    "why_now": (item.get("actionability") or {}).get("whyNow") or "",
+                    "why_now": (item.get("actionability") or {}).get("why_now") or "",
                 }
                 for item in stories
-                if (item.get("actionability") or {}).get("recommendedNow")
+                if (item.get("actionability") or {}).get("recommended_now")
             ],
             "blocked": [
                 {
@@ -201,40 +205,34 @@ def graph_facts(graph: dict[str, Any]) -> dict[str, Any]:
                     "id": item.get("id"),
                     "name": item.get("name"),
                     "posture": (item.get("actionability") or {}).get("posture"),
-                    "why_now": (item.get("actionability") or {}).get("whyNow") or "",
+                    "why_now": (item.get("actionability") or {}).get("why_now") or "",
                     "retry_trigger_status": (item.get("actionability") or {}).get(
-                        "retryTriggerStatus"
+                        "retry_trigger_status"
                     ),
                 }
                 for item in evals
-                if (item.get("actionability") or {}).get("recommendedNow")
+                if (item.get("actionability") or {}).get("recommended_now")
             ],
-            "retry_ready": [
-                {
-                    "id": item.get("id"),
-                    "ready_triggers": [
-                        retry.get("condition")
-                        for retry in item.get("retryState") or []
-                        if retry.get("status") == "ready"
-                    ],
-                }
-                for item in evals
-                if any(
-                    retry.get("status") == "ready"
-                    for retry in item.get("retryState") or []
-                )
-            ],
+            # Retry conditions describe future triggers, not current readiness.
+            # The graph owns posture; it has no per-trigger retry-state records.
+            "by_retry_trigger_status": count_by(
+                evals,
+                lambda item: (
+                    (item.get("actionability") or {}).get("retry_trigger_status")
+                    or "unavailable"
+                ),
+            ),
             "stale_scores": [
                 {
                     "id": item.get("id"),
-                    "measured": (item.get("latestScore") or {}).get("measured"),
+                    "measured": (item.get("latest_score") or {}).get("measured"),
                     "days_since": days_since(
-                        (item.get("latestScore") or {}).get("measured")
+                        (item.get("latest_score") or {}).get("measured")
                     ),
                 }
                 for item in evals
-                if not (item.get("latestScore") or {}).get("measured")
-                or days_since((item.get("latestScore") or {}).get("measured")) > 30
+                if not (item.get("latest_score") or {}).get("measured")
+                or days_since((item.get("latest_score") or {}).get("measured")) > 30
             ][:20],
         },
         "compromises": {
@@ -249,10 +247,10 @@ def graph_facts(graph: dict[str, Any]) -> dict[str, Any]:
                     "title": item.get("title"),
                     "phase": (item.get("state") or {}).get("phase"),
                     "posture": (item.get("actionability") or {}).get("posture"),
-                    "why_now": (item.get("actionability") or {}).get("whyNow") or "",
+                    "why_now": (item.get("actionability") or {}).get("why_now") or "",
                 }
                 for item in compromises
-                if (item.get("actionability") or {}).get("recommendedNow")
+                if (item.get("actionability") or {}).get("recommended_now")
             ],
         },
     }

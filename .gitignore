@@ -62,3 +62,6 @@ benchmarks/results/gpt6-astra-20260905/
 
 # Attempt061 protected raw receipts, logs and dispatch lock
 /benchmarks/results/mistral-large4-20261006/
+
+# Attempt063 native working receipts and dispatch lock; sealed archive retained in docs.
+/benchmarks/results/gemini4-argon-20261023/

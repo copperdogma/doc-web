@@ -14,4 +14,4 @@ param_schema:
     save_raw:
       type: boolean
       description: "Save raw Unstructured output for debugging"
-notes: "Partition XLSX with Unstructured into elements.jsonl while preserving workbook sheet metadata and HTML table structure."
+notes: "Inspect native worksheet formula/merge features into xlsx_source_features.json; reject unsupported features before partitioning the simple-table slice into elements.jsonl. Diagnostic coordinates do not add exported cell-level provenance."

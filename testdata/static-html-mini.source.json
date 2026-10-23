@@ -1,0 +1,14 @@
+{
+  "title": "Harbor Field Guide",
+  "source_kind": "repo-owned public synthetic fixture",
+  "created": "2026-10-23",
+  "supported_scope": [
+    "Single static local HTML file through the existing checked-HTML recipe",
+    "Heading-based portioning; list/table/emphasis/link markup retained in chapter output",
+    "Source-file/synthetic page provenance plus eleven heading/paragraph/list-item/table block anchors on the structured main fixture"
+  ],
+  "known_gaps": [
+    "No browser/CSS/JavaScript or linked-asset rendering qualification",
+    "No table-cell provenance; tables remain atomic, unstructured main text remains a coarse citation, and broader wrapper/content patterns are unqualified"
+  ]
+}
