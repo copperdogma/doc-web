@@ -1,0 +1,31 @@
+{
+  "status": "pass",
+  "scope": "build evidence and corrected offline verification; formal closure separate",
+  "new_tooling_tests": 26,
+  "presence_correction_tests": 5,
+  "affected_existing_tests": 59,
+  "focused_ruff": "pass",
+  "producing_r5_and_v1_preserved": true,
+  "proof_v2_links_verified": true,
+  "sealed_prior_hashes_verified": {
+    "docs/evals/attempts/083-scout102-kimi-production-contract.md": "2de8f3b8541d3a7cdfc339be75a3ce8016f1606ecaf549d089fb47b7c61a06c6",
+    "docs/evals/evidence/083-scout102-contract/manifest.json": "2cbe5bb84da4a301a5300d7eff920befeeb4927b41e3c49f6bc41094c668ac08",
+    "docs/evals/evidence/083-scout102-contract/native-evidence.tar.gz": "4695264f73030ec0657058d779b1f3bfe2a89776f2171d6de4e3d28333a4ee5b",
+    "docs/evals/evidence/082-scout102/native-evidence.tar.gz": "edaad12d0ba8ac75cda62ea939e2a8d0bb9c50aec7d51a60bb5266d69f3f77e3",
+    "docs/evals/evidence/083-scout102-contract-followup/manifest.json": "190deceaf2c8febc9e6379958d4852be5c9173fa5d09df542781d06cffc200dc"
+  },
+  "provider_calls": 0,
+  "spend_usd": 0,
+  "network_guarded_processes": 4,
+  "blocked_local_probe_count": 1,
+  "review_hold": true,
+  "product_modules_changed": false,
+  "code_sha256": {
+    "scripts/replay_reviewed_visual_intent.py": "1615d499995638a307cbcc97d123ae673ee9de542bbf3cd524705feca2df31d8",
+    "tests/test_reviewed_visual_intent_replay.py": "cd2e97e2eb4d2a2d28fe95fbd518a5b87234ba1ee70a3ae52b0f63e261d77f49"
+  },
+  "methodology_compile": "pass",
+  "methodology_check": "pass",
+  "git_diff_check": "pass",
+  "independent_supervisor_review": "pass; 5 exact crops,34904950 RGB pixels and corrected v1/v2 lineage checked"
+}

@@ -398,7 +398,8 @@
           "252",
           "257",
           "258",
-          "259"
+          "259",
+          "262"
         ],
         "adr_ids": [],
         "eval_ids": [
@@ -409,7 +410,8 @@
           "crop-page-level-deletion-gate",
           "handwritten-notes-transcription",
           "single-model-crop-detection",
-          "jev-document-consistency-classification"
+          "jev-document-consistency-classification",
+          "reviewed-visual-intent-driver"
         ]
       },
       {
@@ -532,7 +534,8 @@
           "256",
           "257",
           "258",
-          "260"
+          "260",
+          "262"
         ],
         "adr_ids": [
           "ADR-001",
@@ -550,7 +553,8 @@
           "auto-book-type-detection",
           "approved-intake-handoff",
           "layout-section-splitting",
-          "born-digital-pdf-quality-surface"
+          "born-digital-pdf-quality-surface",
+          "reviewed-visual-intent-driver"
         ]
       },
       {
@@ -1284,11 +1288,13 @@
           "251",
           "252",
           "257",
-          "258"
+          "258",
+          "262"
         ],
         "eval_ids": [
           "image-crop-extraction",
-          "single-model-crop-detection"
+          "single-model-crop-detection",
+          "reviewed-visual-intent-driver"
         ],
         "actionability": {
           "source_kind": "story",
@@ -1324,11 +1330,13 @@
             "251",
             "252",
             "257",
-            "258"
+            "258",
+            "262"
           ],
           "eval_ids": [
             "image-crop-extraction",
-            "single-model-crop-detection"
+            "single-model-crop-detection",
+            "reviewed-visual-intent-driver"
           ]
         }
       },
@@ -1364,12 +1372,14 @@
           "251",
           "257",
           "258",
-          "259"
+          "259",
+          "262"
         ],
         "eval_ids": [
           "sol-crop-safety-native-public-smoke",
           "crop-validation",
-          "crop-page-level-deletion-gate"
+          "crop-page-level-deletion-gate",
+          "reviewed-visual-intent-driver"
         ],
         "actionability": {
           "source_kind": "story",
@@ -1407,12 +1417,14 @@
             "251",
             "257",
             "258",
-            "259"
+            "259",
+            "262"
           ],
           "eval_ids": [
             "sol-crop-safety-native-public-smoke",
             "crop-validation",
-            "crop-page-level-deletion-gate"
+            "crop-page-level-deletion-gate",
+            "reviewed-visual-intent-driver"
           ]
         }
       },
@@ -15044,6 +15056,67 @@
           "summary": "/validate: no remaining material finding; GradeA, seven of seven"
         }
       }
+    },
+    {
+      "id": "262",
+      "title": "Reviewed visual intent: offline crop driver qualification",
+      "path": "docs/stories/story-262-reviewed-visual-intent-offline-replay.md",
+      "status": "Done",
+      "priority": "High",
+      "ideal_refs": [
+        "req:3",
+        "req:4",
+        "req:6"
+      ],
+      "spec_refs": [
+        "spec:4.1",
+        "spec:4.2",
+        "spec:6"
+      ],
+      "decision_refs": [
+        "ADR-002"
+      ],
+      "adr_ids": [
+        "ADR-002"
+      ],
+      "depends_on": [],
+      "category_refs": [
+        "spec:4",
+        "spec:6"
+      ],
+      "compromise_refs": [
+        "C4",
+        "C5"
+      ],
+      "input_coverage_refs": [
+        "image-directory-scans"
+      ],
+      "architecture_domains": [
+        "doc_web_runtime",
+        "ocr_and_extraction"
+      ],
+      "roadmap_tags": [],
+      "blocker_summary": "",
+      "blocker_evidence": "",
+      "unblock_condition": "",
+      "last_work_log_entry": null,
+      "legacy_build_map_refs": "",
+      "metadata_source": "frontmatter",
+      "missing_frontmatter_keys": [],
+      "actionability": {
+        "source_kind": "story",
+        "source_id": "262",
+        "source_path": "docs/stories/story-262-reviewed-visual-intent-offline-replay.md",
+        "recommended_now": false,
+        "posture": "completed",
+        "why_now": "",
+        "last_relevant_action": {
+          "date": null,
+          "source_type": "story-status",
+          "source": "docs/stories/story-262-reviewed-visual-intent-offline-replay.md",
+          "summary": ""
+        }
+      }
     }
   ],
   "adrs": [
@@ -20466,6 +20539,94 @@
           "source": "docs/evals/registry.yaml",
           "source_id": "001",
           "summary": "Attempt067 complete,62focusedtests/scopedRuff.10native receipt hashes, 2exactcandidate replays,4canonical hashes and realdriver mocked warning/onoff equivalence pass. Zero newcalls/spend/credentials. No fresh modelqua..."
+        }
+      }
+    },
+    {
+      "id": "reviewed-visual-intent-driver",
+      "name": "Source-reviewed authored visual intent through the offline driver",
+      "type": "quality",
+      "command": "PYTHONPATH=. python scripts/replay_reviewed_visual_intent.py --fixture tests/fixtures/reviewed_visual_intent/onward-reviewed-public.json --owner-source-root /absolute/owner/root --result-dir /new/result/path --run-id NEW_ID",
+      "path": "docs/evals/registry.yaml",
+      "description": "Qualify execution of explicit reviewed source rectangles with complete historical OCR custody. This measures authored-intent execution, not automatic admission, model quality, final rendering or publication safety.\n",
+      "spec_refs": [
+        "spec:4.1",
+        "spec:4.2",
+        "spec:6"
+      ],
+      "story_refs": [
+        "262"
+      ],
+      "compromise_refs": [
+        "C4",
+        "C5"
+      ],
+      "category_refs": [
+        "spec:4",
+        "spec:6"
+      ],
+      "scores": [
+        {
+          "model": "No model \u2014 source-reviewed authored intent, existing planner-owned crop",
+          "measured": "2026-10-23",
+          "git_sha": "ec0043b+attempt084",
+          "metrics": {
+            "reviewed_source_rectangle_execution_rate": 1.0,
+            "selected_pages": 5,
+            "targets": 5,
+            "exact_source_rgb": 5,
+            "original_ocr_content_preserved": 5,
+            "schema_defaults_added": 5,
+            "provider_calls": 0,
+            "cost_usd": 0
+          },
+          "note": "Actual driver r5; full title/date retained, external credits/name-date excluded, integral artist signature retained. Review hold; no automatic admission, Kimi qualification, renderer or source deletion. V2 records added literal_fidelity:null schema default; native rows/proof-v1 preserved. Illustration envelope unregistered: explicitly checked by replay verifier, not registered stamping."
+        }
+      ],
+      "latest_score": {
+        "model": "No model \u2014 source-reviewed authored intent, existing planner-owned crop",
+        "measured": "2026-10-23",
+        "git_sha": "ec0043b+attempt084",
+        "metrics": {
+          "reviewed_source_rectangle_execution_rate": 1.0,
+          "selected_pages": 5,
+          "targets": 5,
+          "exact_source_rgb": 5,
+          "original_ocr_content_preserved": 5,
+          "schema_defaults_added": 5,
+          "provider_calls": 0,
+          "cost_usd": 0
+        },
+        "note": "Actual driver r5; full title/date retained, external credits/name-date excluded, integral artist signature retained. Review hold; no automatic admission, Kimi qualification, renderer or source deletion. V2 records added literal_fidelity:null schema default; native rows/proof-v1 preserved. Illustration envelope unregistered: explicitly checked by replay verifier, not registered stamping."
+      },
+      "attempts": [
+        {
+          "id": "084",
+          "date": "2026-10-23",
+          "status": "success",
+          "approach": "Approved offline reviewed-plan recipe, guard and actual driver qualification",
+          "note": "Five authored targets exact; USD0/no inference, unchanged defaults/product modules. Retained operational failures and ENOSPC; final guarded r5 plus offline proof-v2. Automatic/planner/safety/manual/rendering promotion remains independent.",
+          "retry_when": []
+        }
+      ],
+      "retry_when": [],
+      "retry_when_notes": [],
+      "explicit_lineage": true,
+      "actionability": {
+        "source_kind": "eval",
+        "source_id": "reviewed-visual-intent-driver",
+        "source_path": "docs/evals/registry.yaml",
+        "recommended_now": false,
+        "posture": "no-trigger-recorded",
+        "retry_trigger_status": "none",
+        "retry_when": [],
+        "why_now": "",
+        "last_relevant_action": {
+          "date": "2026-10-23",
+          "source_type": "eval-attempt",
+          "source": "docs/evals/registry.yaml",
+          "source_id": "084",
+          "summary": "Five authored targets exact; USD0/no inference, unchanged defaults/product modules. Retained operational failures and ENOSPC; final guarded r5 plus offline proof-v2. Automatic/planner/safety/manual/rendering promotion..."
         }
       }
     }

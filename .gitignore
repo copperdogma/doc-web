@@ -98,3 +98,6 @@ benchmarks/results/scout091-20261013/
 # Scout096 lossless native working receipts; sealed archive in docs/evals/evidence
 /benchmarks/results/scout096-20261016/
 /benchmarks/results/scout096-recovery1-20261016/
+
+# Generated opt-in offline reviewed-intent proof runs; hash-bound local evidence retained.
+/benchmarks/results/reviewed-visual-intent-*/

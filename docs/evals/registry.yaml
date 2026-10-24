@@ -6513,3 +6513,33 @@ evals:
           warning/onoff equivalence pass. Zero newcalls/spend/credentials.
           No fresh modelquality/adoption claim, defaultsunchanged. Evidence
           docs/evals/evidence/067-warning-integration/report.md.
+
+  - id: reviewed-visual-intent-driver
+    name: Source-reviewed authored visual intent through the offline driver
+    type: quality
+    description: >
+      Qualify execution of explicit reviewed source rectangles with complete
+      historical OCR custody. This measures authored-intent execution, not
+      automatic admission, model quality, final rendering or publication safety.
+    pipeline_stage: extract
+    runner: custom
+    command: "PYTHONPATH=. python scripts/replay_reviewed_visual_intent.py --fixture tests/fixtures/reviewed_visual_intent/onward-reviewed-public.json --owner-source-root /absolute/owner/root --result-dir /new/result/path --run-id NEW_ID"
+    story_refs: ["262"]
+    category_refs: ["spec:4", "spec:6"]
+    spec_refs: ["spec:4.1", "spec:4.2", "spec:6"]
+    compromise_refs: ["C4", "C5"]
+    target:
+      metric: reviewed_source_rectangle_execution_rate
+      value: 1.0
+    scores:
+      - model: "No model — source-reviewed authored intent, existing planner-owned crop"
+        measured: '2026-10-23'
+        git_sha: ec0043b+attempt084
+        metrics: {reviewed_source_rectangle_execution_rate: 1.0, selected_pages: 5, targets: 5, exact_source_rgb: 5, original_ocr_content_preserved: 5, schema_defaults_added: 5, provider_calls: 0, cost_usd: 0}
+        note: "Actual driver r5; full title/date retained, external credits/name-date excluded, integral artist signature retained. Review hold; no automatic admission, Kimi qualification, renderer or source deletion. V2 records added literal_fidelity:null schema default; native rows/proof-v1 preserved. Illustration envelope unregistered: explicitly checked by replay verifier, not registered stamping."
+    attempts:
+      - id: "084"
+        date: 2026-10-23
+        status: success
+        approach: "Approved offline reviewed-plan recipe, guard and actual driver qualification"
+        note: "Five authored targets exact; USD0/no inference, unchanged defaults/product modules. Retained operational failures and ENOSPC; final guarded r5 plus offline proof-v2. Automatic/planner/safety/manual/rendering promotion remains independent."

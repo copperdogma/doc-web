@@ -1,0 +1,15 @@
+{
+  "r1": "Loader basename mismatch before crop; retained driver log/frozen inputs",
+  "r2": "Driver crops produced; verifier rejected blocked dependency capability probe",
+  "r3": "Interim loopback bind allowance prototype; superseded; visual image bytes match final",
+  "r4": "ENOSPC preparing first original JPEG; no driver invocation; complete historical OCR copy and fixture retained; no cleanup",
+  "r5": "Final producing all-binds-blocked driver, proof-v1 retained; no rerun for proof-v2",
+  "v2": "Offline presence-aware verifier correction; original fields unchanged plus explicit schema default literal_fidelity:null",
+  "other_failures": [
+    "Guard-suite startup and Ruff once failedENOSPC",
+    "Report creation once failedENOSPC"
+  ],
+  "provider_calls": 0,
+  "spend_usd": 0,
+  "cleanup_performed": false
+}

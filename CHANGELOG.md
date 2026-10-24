@@ -1,3 +1,14 @@
+## [2026-10-23-04] — Qualify reviewed visual intent offline (Story262)
+
+### Added
+- An opt-in recipe and guarded replay runner reuse existing planner ownership
+  through the real driver with complete historical OCR custody and original
+  source pixels. Five reviewed crops preserve title/date, separate ordinary
+  captions and retain integral lettering/signature, with zero inference cost.
+- Preserve authored provenance, registered-schema default additions and explicit
+  publication holds. Automatic admission, detector/defaults, rendering and
+  source-deletion authority remain unchanged and unqualified (Attempt084).
+
 ## [2026-10-23-02] — Preserve rejected artifact evidence (Story 260)
 
 ### Fixed
