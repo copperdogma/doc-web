@@ -1,0 +1,186 @@
+{
+  "evidence_class": "source-reviewed-authored-intent",
+  "publication_status": "review_hold",
+  "reviewer": "Codex source review in user-approved bounded offline workflow",
+  "policy": "Preserve reviewed integral visual-unit extent; keep independent printed captions/prose external. Authored geometry is test input, no native prediction/adoption claim.",
+  "historical_run_unsafe": true,
+  "historical_quarantine_reason": "Run registry unsafe: later empty-page/portion failure. Independently validated selected complete early OCR rows only; no globally trusted OCR claim.",
+  "ocr_artifact": "output/runs/onward-book-r1/02_ocr_ai_gpt51_v1/pages_html.jsonl",
+  "ocr_artifact_sha256": "a90981849a3c5f28c42a78bc008027ea3bf1c26c805538a840b4f7de03fad70b",
+  "cases": [
+    {
+      "page_number": 2,
+      "source": "input/onward-to-the-unknown-images/Image001.jpg",
+      "sha256": "ae9c7705954e419fe884ec636739c0768578da3557acede1c3cb76b579ee2825",
+      "historical_source": "output/runs/onward-book-r1/01_extract_pdf_images_fast_v1/images/page-002.jpg",
+      "historical_sha256": "d6931dffe467ef5875d4c3333ed5bb04406ac535fb84d9bb2e1b37cf50e73a61",
+      "dimensions": [
+        5100,
+        6600
+      ],
+      "ocr_row_sha256": "9b40d64621df3c65ebc3190e3dc954423d25c25198d5141c6eacaf9411a4e8d8",
+      "derivation": "Authored by Codex from the original full-resolution public source visual review; broad source-pixel inspection and conservative edge margin. Coordinates are reviewed test intent, not model prediction or golden import.",
+      "mapping_review": "Original and historical page content/edges reviewed; same 5100x6600 frame and registered glyph/art edges. Coordinate applicability 1:1, distinct JPEG encodings/hashes. Attempt052 consumer contract reused.",
+      "targets": [
+        {
+          "target_id": "reviewed-p002-visual01",
+          "importance": "useful",
+          "role": "other",
+          "description": "Complete stylized title and integral commemorative date",
+          "reason": "Lower author heading is external text; date is part of reviewed title unit.",
+          "nearby_text": "",
+          "expected_visual_contents": [
+            "ONWARD",
+            "TO THE UNKNOWN",
+            "1887 - 1987"
+          ],
+          "contains_text": true,
+          "bbox_pixels": {
+            "x0": 960,
+            "y0": 1760,
+            "x1": 4370,
+            "y1": 2545
+          }
+        }
+      ]
+    },
+    {
+      "page_number": 4,
+      "source": "input/onward-to-the-unknown-images/Image003.jpg",
+      "sha256": "280e415f67e18fd11fee9ddfb1c059da62c5e0b9c4ebe9a911e8ab719b113c5f",
+      "historical_source": "output/runs/onward-book-r1/01_extract_pdf_images_fast_v1/images/page-004.jpg",
+      "historical_sha256": "d1af49f6dedb2485ee9c0291c10ab6479600ace00b6020914b7c576fc0a228e4",
+      "dimensions": [
+        5100,
+        6600
+      ],
+      "ocr_row_sha256": "18fc6866e6cc77bca310ad2a62c8a983876d472b8db71744d4cbbd758ee82a8b",
+      "derivation": "Authored by Codex from the original full-resolution public source visual review; broad source-pixel inspection and conservative edge margin. Coordinates are reviewed test intent, not model prediction or golden import.",
+      "mapping_review": "Original and historical page content/edges reviewed; same 5100x6600 frame and registered glyph/art edges. Coordinate applicability 1:1, distinct JPEG encodings/hashes. Attempt052 consumer contract reused.",
+      "targets": [
+        {
+          "target_id": "reviewed-p004-visual01",
+          "importance": "useful",
+          "role": "other",
+          "description": "Covered wagon, horse and ox illustration",
+          "reason": "Printed illustration credit paragraphs are external and excluded.",
+          "nearby_text": "",
+          "expected_visual_contents": [
+            "All animals",
+            "wagon canopy and ground strokes"
+          ],
+          "contains_text": false,
+          "bbox_pixels": {
+            "x0": 280,
+            "y0": 1740,
+            "x1": 4820,
+            "y1": 3060
+          }
+        }
+      ]
+    },
+    {
+      "page_number": 9,
+      "source": "input/onward-to-the-unknown-images/Image008.jpg",
+      "sha256": "9abb7daefac82f319f52bb5c7994cb586a55ac64c29633264f2994af7bdb14e8",
+      "historical_source": "output/runs/onward-book-r1/01_extract_pdf_images_fast_v1/images/page-009.jpg",
+      "historical_sha256": "4fd67073b61efcc6f58091008043a8d20a7d4893316031bed9926dd3a5a5f3ea",
+      "dimensions": [
+        5100,
+        6600
+      ],
+      "ocr_row_sha256": "73210fa368ebe98a2f545b8d19f2e525ee993e5668794003f8256455c4a377b6",
+      "derivation": "Authored by Codex from the original full-resolution public source visual review; broad source-pixel inspection and conservative edge margin. Coordinates are reviewed test intent, not model prediction or golden import.",
+      "mapping_review": "Original and historical page content/edges reviewed; same 5100x6600 frame and registered glyph/art edges. Coordinate applicability 1:1, distinct JPEG encodings/hashes. Attempt052 consumer contract reused.",
+      "targets": [
+        {
+          "target_id": "reviewed-p009-visual01",
+          "importance": "useful",
+          "role": "other",
+          "description": "Portrait photograph of Moise and Sophie",
+          "reason": "Name/date below portrait and dedication prose are external captions/text.",
+          "nearby_text": "",
+          "expected_visual_contents": [
+            "Complete rectangular portrait"
+          ],
+          "contains_text": false,
+          "bbox_pixels": {
+            "x0": 1100,
+            "y0": 1700,
+            "x1": 4150,
+            "y1": 4440
+          }
+        }
+      ]
+    },
+    {
+      "page_number": 12,
+      "source": "input/onward-to-the-unknown-images/Image011.jpg",
+      "sha256": "2246934ed6dc9fcc2531ca4fa2d0913bbd5fca99eeea40093ce9de623f819265",
+      "historical_source": "output/runs/onward-book-r1/01_extract_pdf_images_fast_v1/images/page-012.jpg",
+      "historical_sha256": "055f8314b0c6c248d5521a316b0589809c41fcf7f093d8d39b1c441f6086516d",
+      "dimensions": [
+        5100,
+        6600
+      ],
+      "ocr_row_sha256": "25a0069cc022dd2ebbd057084d92161542e4466ce405c0149d26bb08907c46f5",
+      "derivation": "Authored by Codex from the original full-resolution public source visual review; broad source-pixel inspection and conservative edge margin. Coordinates are reviewed test intent, not model prediction or golden import.",
+      "mapping_review": "Original and historical page content/edges reviewed; same 5100x6600 frame and registered glyph/art edges. Coordinate applicability 1:1, distinct JPEG encodings/hashes. Attempt052 consumer contract reused.",
+      "targets": [
+        {
+          "target_id": "reviewed-p012-visual01",
+          "importance": "useful",
+          "role": "other",
+          "description": "Celebrate Saskatchewan commemorative logo",
+          "reason": "Award body, seal/signatures are outside this selected target; not full-page figure coverage.",
+          "nearby_text": "",
+          "expected_visual_contents": [
+            "Complete circular lettering and 1905-1980 date"
+          ],
+          "contains_text": true,
+          "bbox_pixels": {
+            "x0": 1890,
+            "y0": 450,
+            "x1": 3010,
+            "y1": 1550
+          }
+        }
+      ]
+    },
+    {
+      "page_number": 125,
+      "source": "input/onward-to-the-unknown-images/Image124.jpg",
+      "sha256": "9822f1dc526c91fce4dd2d6d390503ff4d5414355eb1e29bc5b60a6240b63d63",
+      "historical_source": "output/runs/onward-book-r1/01_extract_pdf_images_fast_v1/images/page-125.jpg",
+      "historical_sha256": "850ddd89c8b3e8d281b7b834f96a16bad479dda3a7f2242c019b1a5a6ddc277f",
+      "dimensions": [
+        5100,
+        6600
+      ],
+      "ocr_row_sha256": "85f1af604c6eae60be341b715ecbb2ed6f5e6b94a4efd9dc70ec68e29718ccb7",
+      "derivation": "Authored by Codex from the original full-resolution public source visual review; broad source-pixel inspection and conservative edge margin. Coordinates are reviewed test intent, not model prediction or golden import.",
+      "mapping_review": "Original and historical page content/edges reviewed; same 5100x6600 frame and registered glyph/art edges. Coordinate applicability 1:1, distinct JPEG encodings/hashes. Attempt052 consumer contract reused.",
+      "targets": [
+        {
+          "target_id": "reviewed-p125-visual01",
+          "importance": "useful",
+          "role": "other",
+          "description": "Covered wagon artwork including integral artist signature",
+          "reason": "Separate printed Illustration by / Aime L’Heureux caption excluded; handwritten signature integral.",
+          "nearby_text": "",
+          "expected_visual_contents": [
+            "Wagon/oxen/figures",
+            "clouds and artist signature"
+          ],
+          "contains_text": true,
+          "bbox_pixels": {
+            "x0": 510,
+            "y0": 450,
+            "x1": 4600,
+            "y1": 4520
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,157 @@
+{
+  "status": "pass",
+  "evidence_class": "source-reviewed-authored-intent driver replay",
+  "driver_run": "/Users/cam/.codex/worktrees/scout102-docweb-20261023/output/runs/reviewed-visual-intent-084-r5",
+  "illustration_manifest": "/Users/cam/.codex/worktrees/scout102-docweb-20261023/output/runs/reviewed-visual-intent-084-r5/03_crop_illustrations_guided_v1/illustration_manifest.jsonl",
+  "ocr_artifact": "/Users/cam/.codex/worktrees/scout102-docweb-20261023/output/runs/reviewed-visual-intent-084-r5/01_load_artifact_v1/selected-ocr-native.jsonl",
+  "spend_usd": 0,
+  "provider_calls": 0,
+  "publication_status": "review_hold",
+  "historical_run_unsafe": true,
+  "automatic_admission_proven": false,
+  "detector_qualification": false,
+  "renderer_or_text_deletion_exercised": false,
+  "ocr_content_comparisons": [
+    {
+      "page_number": 2,
+      "envelope_changes": [
+        "created_at",
+        "run_id"
+      ],
+      "schema_defaults_added": {
+        "literal_fidelity": null
+      },
+      "html_exact": true,
+      "all_original_fields_retained": true
+    },
+    {
+      "page_number": 4,
+      "envelope_changes": [
+        "created_at",
+        "run_id"
+      ],
+      "schema_defaults_added": {
+        "literal_fidelity": null
+      },
+      "html_exact": true,
+      "all_original_fields_retained": true
+    },
+    {
+      "page_number": 9,
+      "envelope_changes": [
+        "created_at",
+        "run_id"
+      ],
+      "schema_defaults_added": {
+        "literal_fidelity": null
+      },
+      "html_exact": true,
+      "all_original_fields_retained": true
+    },
+    {
+      "page_number": 12,
+      "envelope_changes": [
+        "created_at",
+        "run_id"
+      ],
+      "schema_defaults_added": {
+        "literal_fidelity": null
+      },
+      "html_exact": true,
+      "all_original_fields_retained": true
+    },
+    {
+      "page_number": 125,
+      "envelope_changes": [
+        "created_at",
+        "run_id"
+      ],
+      "schema_defaults_added": {
+        "literal_fidelity": null
+      },
+      "html_exact": true,
+      "all_original_fields_retained": true
+    }
+  ],
+  "pixel_checks": [
+    {
+      "target_id": "reviewed-p002-visual01",
+      "asset": "/Users/cam/.codex/worktrees/scout102-docweb-20261023/output/runs/reviewed-visual-intent-084-r5/03_crop_illustrations_guided_v1/images/page-002-000.png",
+      "sha256": "4f2ba66ed4bed50c37432703e26562812db84c419d8c5391836f22776481f077",
+      "exact_rgb": true,
+      "bbox": {
+        "x0": 960,
+        "y0": 1760,
+        "x1": 4370,
+        "y1": 2545,
+        "width": 3410,
+        "height": 785
+      }
+    },
+    {
+      "target_id": "reviewed-p004-visual01",
+      "asset": "/Users/cam/.codex/worktrees/scout102-docweb-20261023/output/runs/reviewed-visual-intent-084-r5/03_crop_illustrations_guided_v1/images/page-004-000.png",
+      "sha256": "1f0012521bdf58d5dab2cec46fbd8a15a91acf629c31b0a05cb3feb54e26548b",
+      "exact_rgb": true,
+      "bbox": {
+        "x0": 280,
+        "y0": 1740,
+        "x1": 4820,
+        "y1": 3060,
+        "width": 4540,
+        "height": 1320
+      }
+    },
+    {
+      "target_id": "reviewed-p009-visual01",
+      "asset": "/Users/cam/.codex/worktrees/scout102-docweb-20261023/output/runs/reviewed-visual-intent-084-r5/03_crop_illustrations_guided_v1/images/page-009-000.png",
+      "sha256": "592961338f3805811542565ce33cdada5c4a81df18439787d3d36a4b3eaf6d1c",
+      "exact_rgb": true,
+      "bbox": {
+        "x0": 1100,
+        "y0": 1700,
+        "x1": 4150,
+        "y1": 4440,
+        "width": 3050,
+        "height": 2740
+      }
+    },
+    {
+      "target_id": "reviewed-p012-visual01",
+      "asset": "/Users/cam/.codex/worktrees/scout102-docweb-20261023/output/runs/reviewed-visual-intent-084-r5/03_crop_illustrations_guided_v1/images/page-012-000.png",
+      "sha256": "8dd66c55cc3bb355531962323b110fb8f79f8e20b8380fb6a0c4a0c3cf8467c8",
+      "exact_rgb": true,
+      "bbox": {
+        "x0": 1890,
+        "y0": 450,
+        "x1": 3010,
+        "y1": 1550,
+        "width": 1120,
+        "height": 1100
+      }
+    },
+    {
+      "target_id": "reviewed-p125-visual01",
+      "asset": "/Users/cam/.codex/worktrees/scout102-docweb-20261023/output/runs/reviewed-visual-intent-084-r5/03_crop_illustrations_guided_v1/images/page-125-000.png",
+      "sha256": "1d11f97bef653b9493d241c14e617d809237763fe349889e1f5737d4b72b3e22",
+      "exact_rgb": true,
+      "bbox": {
+        "x0": 510,
+        "y0": 450,
+        "x1": 4600,
+        "y1": 4520,
+        "width": 4090,
+        "height": 4070
+      }
+    }
+  ],
+  "blocked_local_capability_probes": 1,
+  "successful_network_connections": 0,
+  "network_boundary": "CPython guard in actual driver/module children; not an OS sandbox",
+  "guarded_processes": 4,
+  "verification_revision": 2,
+  "supersedes_proof_sha256": "617774e35a1a11811aee3013036e053da4d131ecbe108f2afc58d75a9b40f187",
+  "unchanged_producing_freeze_sha256": "04e1a70cad1639fc8f252abba5c12f6b12f3526106657223876c9ec24f4e0832",
+  "verifier_sha256": "1615d499995638a307cbcc97d123ae673ee9de542bbf3cd524705feca2df31d8",
+  "revision_reason": "Presence-aware OCR schema-default accounting; no driver/crop rerun"
+}

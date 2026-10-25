@@ -1,0 +1,146 @@
+{
+  "kind": "Scoped offline replay landing closeout; distinct from frozen producing evidence",
+  "base_sha": "ec0043b0a7785719ad900852b076d812775e49cd",
+  "landing_branch": "codex/reviewed-visual-intent-offline-land-20261023",
+  "landing_worktree": "/Users/cam/.codex/worktrees/docweb-reviewed-intent-land-20261023",
+  "original_worktree_preserved": "/Users/cam/.codex/worktrees/scout102-docweb-20261023",
+  "historical_manifest": {
+    "path": "docs/evals/evidence/084-reviewed-visual-intent/manifest.json",
+    "sha256": "3499e9d876dad70963e2018ef614899a3259093d4734ce6e45532e9eae077ee3",
+    "members": 155,
+    "semantics": "Immutable historical build snapshot with paths rooted in original worktree. Its story/graph/changelog/registry hashes include earlier unlanded evaluation context. It is not a current-checkout manifest and must not be regenerated for closure."
+  },
+  "current_candidate_files_excluding_this_record": [
+    {
+      "path": ".gitignore",
+      "sha256": "8bc8dfc182b5e05e855bd5f17f19907efa5e7cb3987e73b4aa84eae3f8e729ad"
+    },
+    {
+      "path": "CHANGELOG.md",
+      "sha256": "f8f231816ba9f3f44bd48def7ca6d6497cac12fb4cdb929b29bf3009353fd5e1"
+    },
+    {
+      "path": "configs/recipes/recipe-reviewed-visual-intent-offline.yaml",
+      "sha256": "a5f6ee6ba35ed41d71f8ae76703e80025154b18f5d71f5dc13d1ab19062aabe8"
+    },
+    {
+      "path": "docs/RUNBOOK.md",
+      "sha256": "b02dae9925e85e6329ca7e929c62f0174f2454d2d3b00826c09b43c0e35b3e63"
+    },
+    {
+      "path": "docs/evals/attempts/084-reviewed-visual-intent-offline-driver.md",
+      "sha256": "e73145c49af57e5ac8d8930bac3f2331c20c350e5345ba391ffde65730ffe129"
+    },
+    {
+      "path": "docs/evals/evidence/084-reviewed-visual-intent/manifest.json",
+      "sha256": "3499e9d876dad70963e2018ef614899a3259093d4734ce6e45532e9eae077ee3"
+    },
+    {
+      "path": "docs/evals/evidence/084-reviewed-visual-intent/producing-runner-v1.py",
+      "sha256": "2e04e069d89252d884a8c3f398df4385a087df6a2780d098232579b1e8b3bec0"
+    },
+    {
+      "path": "docs/evals/evidence/084-reviewed-visual-intent/proof-v1.json",
+      "sha256": "617774e35a1a11811aee3013036e053da4d131ecbe108f2afc58d75a9b40f187"
+    },
+    {
+      "path": "docs/evals/evidence/084-reviewed-visual-intent/proof-v2.json",
+      "sha256": "f3e7f7ba7d511c571dc27080b819e74e1017a45ef2061dea2033234b2617f30d"
+    },
+    {
+      "path": "docs/evals/evidence/084-reviewed-visual-intent/retained-iterations.json",
+      "sha256": "9d338e420ffce91e8887fb48d65e66e5d38f79893ba4b45b9955b05268096bc0"
+    },
+    {
+      "path": "docs/evals/evidence/084-reviewed-visual-intent/source-review.json",
+      "sha256": "167b64e083628f4c37905533d3478e20c93498565df243a13e5e1c14452585e6"
+    },
+    {
+      "path": "docs/evals/evidence/084-reviewed-visual-intent/v1-freeze.json",
+      "sha256": "b1b4212128a9c7e3bb6d08aee97de9ff705f529850772116c669a34232e05793"
+    },
+    {
+      "path": "docs/evals/evidence/084-reviewed-visual-intent/validation.json",
+      "sha256": "8a0f6c71557d45645e7a69c2660b7c48b7a50e1c9e696f77f479daf663aa44ed"
+    },
+    {
+      "path": "docs/evals/registry.yaml",
+      "sha256": "793a5b03855c38d42d479092144e7e81848bcb4a8490c0d1fc6a6a95af39163c"
+    },
+    {
+      "path": "docs/methodology/graph.json",
+      "sha256": "e88d4e70b2e6ee7e6752c97e519fbdefc5b083fb87c70ce2f775e722f1ee1451"
+    },
+    {
+      "path": "docs/stories.md",
+      "sha256": "32714a6d5cb4bef98c029590782e5f7b4d9be201acdd40acd8a23394b045873d"
+    },
+    {
+      "path": "docs/stories/story-262-reviewed-visual-intent-offline-replay.md",
+      "sha256": "8702c019ecb72ef98bbff4da5b2242986f04fbb3473c85093b329a7ee5ea35ab"
+    },
+    {
+      "path": "scripts/replay_reviewed_visual_intent.py",
+      "sha256": "1615d499995638a307cbcc97d123ae673ee9de542bbf3cd524705feca2df31d8"
+    },
+    {
+      "path": "scripts/reviewed_visual_intent_guard/sitecustomize.py",
+      "sha256": "6abe92be98648693a80088abd688f787eef2269c17aedea7afb65cfb0a8bd850"
+    },
+    {
+      "path": "tests/fixtures/reviewed_visual_intent/onward-reviewed-public.json",
+      "sha256": "8a8da07be2b163c8b96a6b9353260dfa96e6c37bc77285e3bebc61531192d18c"
+    },
+    {
+      "path": "tests/test_reviewed_visual_intent_replay.py",
+      "sha256": "cd2e97e2eb4d2a2d28fe95fbd518a5b87234ba1ee70a3ae52b0f63e261d77f49"
+    }
+  ],
+  "frozen_versions": {
+    "proof_v1_sha256": "617774e35a1a11811aee3013036e053da4d131ecbe108f2afc58d75a9b40f187",
+    "proof_v2_sha256": "f3e7f7ba7d511c571dc27080b819e74e1017a45ef2061dea2033234b2617f30d",
+    "producing_runner_v1_sha256": "2e04e069d89252d884a8c3f398df4385a087df6a2780d098232579b1e8b3bec0",
+    "original_frozen_story262_sha256": "f6a0f5c6c5c22f42d1127670317fbe4e265f6b5b6d223df6fac60827dde15f46"
+  },
+  "validation": {
+    "requirements_met": 5,
+    "requirements_total": 5,
+    "grade": "A within bounded reviewed-input scope",
+    "remaining_implementation_gaps": [],
+    "clean_candidate_tests": {
+      "replay_loader_driver_recipe_planner": 61,
+      "critical_crop": 29,
+      "total": 90
+    },
+    "ruff": "pass",
+    "methodology_compile_and_check": "pass after Story262 closure",
+    "git_diff_check": "pass",
+    "codex_review": "No actionable defects;31 focused replay tests and final methodology check pass",
+    "advisory_review_session": "01a16c48-ee96-7b61-88f6-ff8a5420d82e",
+    "findings_ledger": [
+      "Pre-generation stale graph resolved by required closeout compile; final check passes"
+    ],
+    "driver_proof_reused": "Original r5 actual guarded driver; code/config/fixture hashes identical; no inference rerun",
+    "scope_limits": [
+      "Reviewed authored intent only",
+      "Historical original run unsafe; selected curated rows only",
+      "Illustration envelope unregistered; explicit verifier used",
+      "Automatic admission, model deployment, rendering and source deletion unqualified",
+      "Publication remains review_hold"
+    ]
+  },
+  "story262_status": "Done",
+  "workflow_gates": "all checked",
+  "landing_exclusions": [
+    "Story261",
+    "Attempts082/083 and prior native benchmark/router/provider work",
+    "Prior unrelated eval-registry hunks",
+    "Large raw benchmarks/results/r1-r5 copies",
+    "Unrelated inbox/capture"
+  ],
+  "minimal_registry_dependency": "Only reviewed-visual-intent-driver Attempt084 entry needed by owner eval/closure policy",
+  "primary_checkout": "clean and left untouched",
+  "provider_calls": 0,
+  "spend_usd": 0,
+  "commit_identity": "Enclosing Git commit, not embedded to avoid self-reference"
+}

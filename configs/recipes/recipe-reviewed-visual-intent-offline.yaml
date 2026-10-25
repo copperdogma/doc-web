@@ -1,0 +1,76 @@
+description: Opt-in source-reviewed authored intent replay; use scripts/replay_reviewed_visual_intent.py.
+  No automatic admission or publication.
+stages:
+- id: reviewed_ocr
+  stage: extract
+  module: load_artifact_v1
+  out: selected-ocr-native.jsonl
+  params:
+    path: RENDER_COMPLETE_OCR_ROWS
+    schema_version: page_html_v1
+- id: reviewed_intent
+  stage: extract
+  module: load_artifact_v1
+  out: critical-graphics-authored.json
+  params:
+    path: RENDER_AUTHORED_PLAN
+    schema_version: critical_graphics_manifest_v1
+- id: crop_reviewed
+  stage: extract
+  module: crop_illustrations_guided_v1
+  needs:
+  - reviewed_ocr
+  - reviewed_intent
+  inputs:
+    ocr_manifest: reviewed_ocr
+    critical_graphics_manifest: reviewed_intent
+  out: illustration_manifest.jsonl
+  params:
+    transparency: false
+    output_format: png
+    detection_mode: layout
+    white_threshold: 252
+    close_kernel: 31
+    close_iterations: 3
+    score_min_nonwhite: 0.01
+    min_nonwhite_ratio: 0.02
+    max_text_ratio: 0.02
+    text_line_kernel_w: 31
+    text_line_kernel_h: 3
+    text_line_iterations: 1
+    text_block_kernel_w: 25
+    text_block_kernel_h: 3
+    text_block_iterations: 1
+    min_area_ratio: 0.001
+    min_width: 120
+    min_height: 120
+    padding_percent: 0.08
+    text_kernel: 3
+    text_iterations: 1
+    rescue_model: gemini-3-flash-preview
+    rescue_temperature: 0.0
+    rescue_max_tokens: 8192
+    rescue_max_pages: 20
+    rescue_include_alt: true
+    rescue_always: true
+    rescue_caption_second_pass: true
+    rescue_caption_max_tokens: 400
+    refine_with_textlines: false
+    trim_layout_text: true
+    layout_text_model: PP-DocLayout_plus-L
+    layout_text_score_thresh: 0.6
+    layout_text_max_gap_ratio: 0.2
+    layout_text_bottom_band_ratio: 0.35
+    layout_text_top_band_ratio: 0.35
+    layout_text_margin_px: 6
+    layout_text_min_width_ratio: 0.4
+    layout_text_max_height_ratio: 0.2
+    layout_split_text: false
+    layout_split_min_gap_ratio: 0.12
+    layout_split_margin_px: 6
+    trim_text_edges: false
+    trim_ocr_text_edges: false
+    split_when_missing: true
+    trim_caption: false
+    caption_relax_max_gap_ratio: 0.2
+    highres_manifest: RENDER_SELECTED_SOURCE_MANIFEST

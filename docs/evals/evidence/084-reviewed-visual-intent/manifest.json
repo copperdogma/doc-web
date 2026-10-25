@@ -1,0 +1,787 @@
+{
+  "kind": "Attempt084 offline reviewed-intent build evidence; no duplicated archive",
+  "worktree": "/Users/cam/.codex/worktrees/scout102-docweb-20261023",
+  "base_sha": "ec0043b0a7785719ad900852b076d812775e49cd",
+  "story": "262",
+  "spend_usd": 0,
+  "provider_calls": 0,
+  "final_proof": "docs/evals/evidence/084-reviewed-visual-intent/proof-v2.json",
+  "producing_run": "reviewed-visual-intent-084-r5",
+  "members": [
+    {
+      "path": "CHANGELOG.md",
+      "bytes": 261125,
+      "sha256": "5261e62c6a2510575ac729d5eae31980867af5f74960021ea3bb713973c73431"
+    },
+    {
+      "path": "benchmarks/results/reviewed-visual-intent-084-r1/coordinate-mapping.json",
+      "bytes": 4766,
+      "sha256": "1c9c756ff3696b95d86bd66b2d723142ff2e5475fe7aecb4a2e85aef521ae04b"
+    },
+    {
+      "path": "benchmarks/results/reviewed-visual-intent-084-r1/driver.log",
+      "bytes": 686,
+      "sha256": "ca390f3f2212f139d5a7311ff4122a3233b5e8542d92762409cd0552efe0e81d"
+    },
+    {
+      "path": "benchmarks/results/reviewed-visual-intent-084-r1/freeze.json",
+      "bytes": 2775,
+      "sha256": "70344061d6828776dbb4930090b41294e7d9f58b82297b6cd2128c417966005f"
+    },
+    {
+      "path": "benchmarks/results/reviewed-visual-intent-084-r1/guard-audit.jsonl",
+      "bytes": 245,
+      "sha256": "adfa0a057e3d07c581e91c397ffd31ed46724919a80e89d5ab43937e22d3d176"
+    },
+    {
+      "path": "benchmarks/results/reviewed-visual-intent-084-r1/inputs/Image001.jpg",
+      "bytes": 559363,
+      "sha256": "ae9c7705954e419fe884ec636739c0768578da3557acede1c3cb76b579ee2825"
+    },
+    {
+      "path": "benchmarks/results/reviewed-visual-intent-084-r1/inputs/Image003.jpg",
+      "bytes": 1015880,
+      "sha256": "280e415f67e18fd11fee9ddfb1c059da62c5e0b9c4ebe9a911e8ab719b113c5f"
+    },
+    {
+      "path": "benchmarks/results/reviewed-visual-intent-084-r1/inputs/Image008.jpg",
+      "bytes": 3297028,
+      "sha256": "9abb7daefac82f319f52bb5c7994cb586a55ac64c29633264f2994af7bdb14e8"
+    },
+    {
+      "path": "benchmarks/results/reviewed-visual-intent-084-r1/inputs/Image011.jpg",
+      "bytes": 1122475,
+      "sha256": "2246934ed6dc9fcc2531ca4fa2d0913bbd5fca99eeea40093ce9de623f819265"
+    },
+    {
+      "path": "benchmarks/results/reviewed-visual-intent-084-r1/inputs/Image124.jpg",
+      "bytes": 1316060,
+      "sha256": "9822f1dc526c91fce4dd2d6d390503ff4d5414355eb1e29bc5b60a6240b63d63"
+    },
+    {
+      "path": "benchmarks/results/reviewed-visual-intent-084-r1/inputs/critical-graphics-authored.json",
+      "bytes": 5665,
+      "sha256": "5788273711496dd7ec8250d79f8b9c01911e707b5ef96bcbf22a4fdc8d0d4a65"
+    },
+    {
+      "path": "benchmarks/results/reviewed-visual-intent-084-r1/inputs/historical-ocr-native.jsonl",
+      "bytes": 867231,
+      "sha256": "a90981849a3c5f28c42a78bc008027ea3bf1c26c805538a840b4f7de03fad70b"
+    },
+    {
+      "path": "benchmarks/results/reviewed-visual-intent-084-r1/inputs/historical-page-002.jpg",
+      "bytes": 717981,
+      "sha256": "d6931dffe467ef5875d4c3333ed5bb04406ac535fb84d9bb2e1b37cf50e73a61"
+    },
+    {
+      "path": "benchmarks/results/reviewed-visual-intent-084-r1/inputs/historical-page-004.jpg",
+      "bytes": 1588040,
+      "sha256": "d1af49f6dedb2485ee9c0291c10ab6479600ace00b6020914b7c576fc0a228e4"
+    },
+    {
+      "path": "benchmarks/results/reviewed-visual-intent-084-r1/inputs/historical-page-009.jpg",
+      "bytes": 5912593,
+      "sha256": "4fd67073b61efcc6f58091008043a8d20a7d4893316031bed9926dd3a5a5f3ea"
+    },
+    {
+      "path": "benchmarks/results/reviewed-visual-intent-084-r1/inputs/historical-page-012.jpg",
+      "bytes": 1784097,
+      "sha256": "055f8314b0c6c248d5521a316b0589809c41fcf7f093d8d39b1c441f6086516d"
+    },
+    {
+      "path": "benchmarks/results/reviewed-visual-intent-084-r1/inputs/historical-page-125.jpg",
+      "bytes": 2168325,
+      "sha256": "850ddd89c8b3e8d281b7b834f96a16bad479dda3a7f2242c019b1a5a6ddc277f"
+    },
+    {
+      "path": "benchmarks/results/reviewed-visual-intent-084-r1/inputs/reviewed-intent.json",
+      "bytes": 9321,
+      "sha256": "b0e0b75831791c28b585f66ee872636ab602bb51227c7537a570043642dee208"
+    },
+    {
+      "path": "benchmarks/results/reviewed-visual-intent-084-r1/inputs/selected-ocr-native.jsonl",
+      "bytes": 9146,
+      "sha256": "1ff13c56337a24ae605ad22a95c87623b19bff97c48f3916d325c065caf0ee52"
+    },
+    {
+      "path": "benchmarks/results/reviewed-visual-intent-084-r1/inputs/selected-source-manifest.jsonl",
+      "bytes": 768,
+      "sha256": "9583aea1f037e655cbbbabfedc64638691c7af697517f5dcf5f8c25a644b32c3"
+    },
+    {
+      "path": "benchmarks/results/reviewed-visual-intent-084-r1/invocation.json",
+      "bytes": 599,
+      "sha256": "1df9ba91d05a4f152d3230442130e2ea12770fbc5e8359f9eb70744f4256361c"
+    },
+    {
+      "path": "benchmarks/results/reviewed-visual-intent-084-r1/recipe.yaml",
+      "bytes": 2533,
+      "sha256": "c8d63a59191207d37d92ac5b4260c487df21ab85de66e775fff28c6c4a332f91"
+    },
+    {
+      "path": "benchmarks/results/reviewed-visual-intent-084-r2/coordinate-mapping.json",
+      "bytes": 4766,
+      "sha256": "696ea732d925c93f26bbe2af273c1f948057375b986627ad913a872c38e9383f"
+    },
+    {
+      "path": "benchmarks/results/reviewed-visual-intent-084-r2/driver.log",
+      "bytes": 2645,
+      "sha256": "af511bd0141fa6796b9f21d10e52e5472fdacc5a838514c0cd67cd34547aa2d6"
+    },
+    {
+      "path": "benchmarks/results/reviewed-visual-intent-084-r2/freeze.json",
+      "bytes": 2775,
+      "sha256": "ef5313a744ea2dec83b71b14bac4626867d163105c72061ae546500a6e55c80e"
+    },
+    {
+      "path": "benchmarks/results/reviewed-visual-intent-084-r2/guard-audit.jsonl",
+      "bytes": 613,
+      "sha256": "d86c71c394ca7623e29c535e5c6f624b5971d45a9eb832027730f2ac3a06fa71"
+    },
+    {
+      "path": "benchmarks/results/reviewed-visual-intent-084-r2/inputs/Image001.jpg",
+      "bytes": 559363,
+      "sha256": "ae9c7705954e419fe884ec636739c0768578da3557acede1c3cb76b579ee2825"
+    },
+    {
+      "path": "benchmarks/results/reviewed-visual-intent-084-r2/inputs/Image003.jpg",
+      "bytes": 1015880,
+      "sha256": "280e415f67e18fd11fee9ddfb1c059da62c5e0b9c4ebe9a911e8ab719b113c5f"
+    },
+    {
+      "path": "benchmarks/results/reviewed-visual-intent-084-r2/inputs/Image008.jpg",
+      "bytes": 3297028,
+      "sha256": "9abb7daefac82f319f52bb5c7994cb586a55ac64c29633264f2994af7bdb14e8"
+    },
+    {
+      "path": "benchmarks/results/reviewed-visual-intent-084-r2/inputs/Image011.jpg",
+      "bytes": 1122475,
+      "sha256": "2246934ed6dc9fcc2531ca4fa2d0913bbd5fca99eeea40093ce9de623f819265"
+    },
+    {
+      "path": "benchmarks/results/reviewed-visual-intent-084-r2/inputs/Image124.jpg",
+      "bytes": 1316060,
+      "sha256": "9822f1dc526c91fce4dd2d6d390503ff4d5414355eb1e29bc5b60a6240b63d63"
+    },
+    {
+      "path": "benchmarks/results/reviewed-visual-intent-084-r2/inputs/critical-graphics-authored.json",
+      "bytes": 5665,
+      "sha256": "5788273711496dd7ec8250d79f8b9c01911e707b5ef96bcbf22a4fdc8d0d4a65"
+    },
+    {
+      "path": "benchmarks/results/reviewed-visual-intent-084-r2/inputs/historical-ocr-native.jsonl",
+      "bytes": 867231,
+      "sha256": "a90981849a3c5f28c42a78bc008027ea3bf1c26c805538a840b4f7de03fad70b"
+    },
+    {
+      "path": "benchmarks/results/reviewed-visual-intent-084-r2/inputs/historical-page-002.jpg",
+      "bytes": 717981,
+      "sha256": "d6931dffe467ef5875d4c3333ed5bb04406ac535fb84d9bb2e1b37cf50e73a61"
+    },
+    {
+      "path": "benchmarks/results/reviewed-visual-intent-084-r2/inputs/historical-page-004.jpg",
+      "bytes": 1588040,
+      "sha256": "d1af49f6dedb2485ee9c0291c10ab6479600ace00b6020914b7c576fc0a228e4"
+    },
+    {
+      "path": "benchmarks/results/reviewed-visual-intent-084-r2/inputs/historical-page-009.jpg",
+      "bytes": 5912593,
+      "sha256": "4fd67073b61efcc6f58091008043a8d20a7d4893316031bed9926dd3a5a5f3ea"
+    },
+    {
+      "path": "benchmarks/results/reviewed-visual-intent-084-r2/inputs/historical-page-012.jpg",
+      "bytes": 1784097,
+      "sha256": "055f8314b0c6c248d5521a316b0589809c41fcf7f093d8d39b1c441f6086516d"
+    },
+    {
+      "path": "benchmarks/results/reviewed-visual-intent-084-r2/inputs/historical-page-125.jpg",
+      "bytes": 2168325,
+      "sha256": "850ddd89c8b3e8d281b7b834f96a16bad479dda3a7f2242c019b1a5a6ddc277f"
+    },
+    {
+      "path": "benchmarks/results/reviewed-visual-intent-084-r2/inputs/reviewed-intent.json",
+      "bytes": 9321,
+      "sha256": "b0e0b75831791c28b585f66ee872636ab602bb51227c7537a570043642dee208"
+    },
+    {
+      "path": "benchmarks/results/reviewed-visual-intent-084-r2/inputs/selected-ocr-native.jsonl",
+      "bytes": 9146,
+      "sha256": "1ff13c56337a24ae605ad22a95c87623b19bff97c48f3916d325c065caf0ee52"
+    },
+    {
+      "path": "benchmarks/results/reviewed-visual-intent-084-r2/inputs/selected-source-manifest.jsonl",
+      "bytes": 768,
+      "sha256": "0225233a36999384f8e7260540baf770a062a076bc4239e446d2240733684e13"
+    },
+    {
+      "path": "benchmarks/results/reviewed-visual-intent-084-r2/invocation.json",
+      "bytes": 599,
+      "sha256": "130a7a2d0638a7a6211c311f452d8706794df1e59d7f514d6d2f13769dac56b4"
+    },
+    {
+      "path": "benchmarks/results/reviewed-visual-intent-084-r2/recipe.yaml",
+      "bytes": 2542,
+      "sha256": "876ca47acabf4348758b8a4278616b9c73c1df26a5e7bd794a568cc6b4d1d635"
+    },
+    {
+      "path": "benchmarks/results/reviewed-visual-intent-084-r3/coordinate-mapping.json",
+      "bytes": 4766,
+      "sha256": "7285187adbef8e7fba9babee26e7236c38e3fced93b397b69669ec19ea8f0003"
+    },
+    {
+      "path": "benchmarks/results/reviewed-visual-intent-084-r3/driver.log",
+      "bytes": 2644,
+      "sha256": "d35e7ae1b53d0cd93fb6276c9edf41d8819c88f7f999f9e77f95272f6ae2343b"
+    },
+    {
+      "path": "benchmarks/results/reviewed-visual-intent-084-r3/freeze.json",
+      "bytes": 2775,
+      "sha256": "960deca45914e4a05317c5aad732b7731b63fb78db41ecaa51be317950074893"
+    },
+    {
+      "path": "benchmarks/results/reviewed-visual-intent-084-r3/guard-audit.jsonl",
+      "bytes": 634,
+      "sha256": "bb9d7a53e25f2c4fcae1daa3dc56f5b2a0e97373de40d801aeb6202461364d4e"
+    },
+    {
+      "path": "benchmarks/results/reviewed-visual-intent-084-r3/inputs/Image001.jpg",
+      "bytes": 559363,
+      "sha256": "ae9c7705954e419fe884ec636739c0768578da3557acede1c3cb76b579ee2825"
+    },
+    {
+      "path": "benchmarks/results/reviewed-visual-intent-084-r3/inputs/Image003.jpg",
+      "bytes": 1015880,
+      "sha256": "280e415f67e18fd11fee9ddfb1c059da62c5e0b9c4ebe9a911e8ab719b113c5f"
+    },
+    {
+      "path": "benchmarks/results/reviewed-visual-intent-084-r3/inputs/Image008.jpg",
+      "bytes": 3297028,
+      "sha256": "9abb7daefac82f319f52bb5c7994cb586a55ac64c29633264f2994af7bdb14e8"
+    },
+    {
+      "path": "benchmarks/results/reviewed-visual-intent-084-r3/inputs/Image011.jpg",
+      "bytes": 1122475,
+      "sha256": "2246934ed6dc9fcc2531ca4fa2d0913bbd5fca99eeea40093ce9de623f819265"
+    },
+    {
+      "path": "benchmarks/results/reviewed-visual-intent-084-r3/inputs/Image124.jpg",
+      "bytes": 1316060,
+      "sha256": "9822f1dc526c91fce4dd2d6d390503ff4d5414355eb1e29bc5b60a6240b63d63"
+    },
+    {
+      "path": "benchmarks/results/reviewed-visual-intent-084-r3/inputs/critical-graphics-authored.json",
+      "bytes": 5445,
+      "sha256": "0ef2d6146bc71636215d9f1f63b926d238d07356c1517b9a1016ec9362793b9c"
+    },
+    {
+      "path": "benchmarks/results/reviewed-visual-intent-084-r3/inputs/historical-ocr-native.jsonl",
+      "bytes": 867231,
+      "sha256": "a90981849a3c5f28c42a78bc008027ea3bf1c26c805538a840b4f7de03fad70b"
+    },
+    {
+      "path": "benchmarks/results/reviewed-visual-intent-084-r3/inputs/historical-page-002.jpg",
+      "bytes": 717981,
+      "sha256": "d6931dffe467ef5875d4c3333ed5bb04406ac535fb84d9bb2e1b37cf50e73a61"
+    },
+    {
+      "path": "benchmarks/results/reviewed-visual-intent-084-r3/inputs/historical-page-004.jpg",
+      "bytes": 1588040,
+      "sha256": "d1af49f6dedb2485ee9c0291c10ab6479600ace00b6020914b7c576fc0a228e4"
+    },
+    {
+      "path": "benchmarks/results/reviewed-visual-intent-084-r3/inputs/historical-page-009.jpg",
+      "bytes": 5912593,
+      "sha256": "4fd67073b61efcc6f58091008043a8d20a7d4893316031bed9926dd3a5a5f3ea"
+    },
+    {
+      "path": "benchmarks/results/reviewed-visual-intent-084-r3/inputs/historical-page-012.jpg",
+      "bytes": 1784097,
+      "sha256": "055f8314b0c6c248d5521a316b0589809c41fcf7f093d8d39b1c441f6086516d"
+    },
+    {
+      "path": "benchmarks/results/reviewed-visual-intent-084-r3/inputs/historical-page-125.jpg",
+      "bytes": 2168325,
+      "sha256": "850ddd89c8b3e8d281b7b834f96a16bad479dda3a7f2242c019b1a5a6ddc277f"
+    },
+    {
+      "path": "benchmarks/results/reviewed-visual-intent-084-r3/inputs/reviewed-intent.json",
+      "bytes": 9101,
+      "sha256": "8a8da07be2b163c8b96a6b9353260dfa96e6c37bc77285e3bebc61531192d18c"
+    },
+    {
+      "path": "benchmarks/results/reviewed-visual-intent-084-r3/inputs/selected-ocr-native.jsonl",
+      "bytes": 9146,
+      "sha256": "1ff13c56337a24ae605ad22a95c87623b19bff97c48f3916d325c065caf0ee52"
+    },
+    {
+      "path": "benchmarks/results/reviewed-visual-intent-084-r3/inputs/selected-source-manifest.jsonl",
+      "bytes": 768,
+      "sha256": "e5b580bcba8e65a7978a5bc5fbb57384c067d35e2aad32b1ce531da0afdc9558"
+    },
+    {
+      "path": "benchmarks/results/reviewed-visual-intent-084-r3/invocation.json",
+      "bytes": 599,
+      "sha256": "0f45cbd278b3e337e1089e227aa778a54d1b15ac17d84890d4b09fda3bd280b8"
+    },
+    {
+      "path": "benchmarks/results/reviewed-visual-intent-084-r3/proof.json",
+      "bytes": 4210,
+      "sha256": "1bbf0f1193daf442efdf73ed45b369bc8b22e02247fd861a7d5851240d2cca16"
+    },
+    {
+      "path": "benchmarks/results/reviewed-visual-intent-084-r3/recipe.yaml",
+      "bytes": 2542,
+      "sha256": "40c64f4e24adf9ac5786a6c0abedbeb69de759e9b2e588e7d6253af0a8f2935a"
+    },
+    {
+      "path": "benchmarks/results/reviewed-visual-intent-084-r4/inputs/historical-ocr-native.jsonl",
+      "bytes": 867231,
+      "sha256": "a90981849a3c5f28c42a78bc008027ea3bf1c26c805538a840b4f7de03fad70b"
+    },
+    {
+      "path": "benchmarks/results/reviewed-visual-intent-084-r4/inputs/reviewed-intent.json",
+      "bytes": 9101,
+      "sha256": "8a8da07be2b163c8b96a6b9353260dfa96e6c37bc77285e3bebc61531192d18c"
+    },
+    {
+      "path": "benchmarks/results/reviewed-visual-intent-084-r5/coordinate-mapping.json",
+      "bytes": 4766,
+      "sha256": "4a71143f1d0b834b8495c1fa94f64ba01539331a93b2c02e2016b7010a517afa"
+    },
+    {
+      "path": "benchmarks/results/reviewed-visual-intent-084-r5/driver.log",
+      "bytes": 2645,
+      "sha256": "8d4d0bffa55c8cf7998d035456e7a7174b5d4fdfcbf957230fb434afb2416f68"
+    },
+    {
+      "path": "benchmarks/results/reviewed-visual-intent-084-r5/freeze.json",
+      "bytes": 2976,
+      "sha256": "04e1a70cad1639fc8f252abba5c12f6b12f3526106657223876c9ec24f4e0832"
+    },
+    {
+      "path": "benchmarks/results/reviewed-visual-intent-084-r5/guard-audit.jsonl",
+      "bytes": 819,
+      "sha256": "d9a66a9762a354bb86b2c45a2a2887f28c85fcd660bd6d09fa7dc902acfde8a5"
+    },
+    {
+      "path": "benchmarks/results/reviewed-visual-intent-084-r5/inputs/Image001.jpg",
+      "bytes": 559363,
+      "sha256": "ae9c7705954e419fe884ec636739c0768578da3557acede1c3cb76b579ee2825"
+    },
+    {
+      "path": "benchmarks/results/reviewed-visual-intent-084-r5/inputs/Image003.jpg",
+      "bytes": 1015880,
+      "sha256": "280e415f67e18fd11fee9ddfb1c059da62c5e0b9c4ebe9a911e8ab719b113c5f"
+    },
+    {
+      "path": "benchmarks/results/reviewed-visual-intent-084-r5/inputs/Image008.jpg",
+      "bytes": 3297028,
+      "sha256": "9abb7daefac82f319f52bb5c7994cb586a55ac64c29633264f2994af7bdb14e8"
+    },
+    {
+      "path": "benchmarks/results/reviewed-visual-intent-084-r5/inputs/Image011.jpg",
+      "bytes": 1122475,
+      "sha256": "2246934ed6dc9fcc2531ca4fa2d0913bbd5fca99eeea40093ce9de623f819265"
+    },
+    {
+      "path": "benchmarks/results/reviewed-visual-intent-084-r5/inputs/Image124.jpg",
+      "bytes": 1316060,
+      "sha256": "9822f1dc526c91fce4dd2d6d390503ff4d5414355eb1e29bc5b60a6240b63d63"
+    },
+    {
+      "path": "benchmarks/results/reviewed-visual-intent-084-r5/inputs/critical-graphics-authored.json",
+      "bytes": 5445,
+      "sha256": "0ef2d6146bc71636215d9f1f63b926d238d07356c1517b9a1016ec9362793b9c"
+    },
+    {
+      "path": "benchmarks/results/reviewed-visual-intent-084-r5/inputs/historical-ocr-native.jsonl",
+      "bytes": 867231,
+      "sha256": "a90981849a3c5f28c42a78bc008027ea3bf1c26c805538a840b4f7de03fad70b"
+    },
+    {
+      "path": "benchmarks/results/reviewed-visual-intent-084-r5/inputs/historical-page-002.jpg",
+      "bytes": 717981,
+      "sha256": "d6931dffe467ef5875d4c3333ed5bb04406ac535fb84d9bb2e1b37cf50e73a61"
+    },
+    {
+      "path": "benchmarks/results/reviewed-visual-intent-084-r5/inputs/historical-page-004.jpg",
+      "bytes": 1588040,
+      "sha256": "d1af49f6dedb2485ee9c0291c10ab6479600ace00b6020914b7c576fc0a228e4"
+    },
+    {
+      "path": "benchmarks/results/reviewed-visual-intent-084-r5/inputs/historical-page-009.jpg",
+      "bytes": 5912593,
+      "sha256": "4fd67073b61efcc6f58091008043a8d20a7d4893316031bed9926dd3a5a5f3ea"
+    },
+    {
+      "path": "benchmarks/results/reviewed-visual-intent-084-r5/inputs/historical-page-012.jpg",
+      "bytes": 1784097,
+      "sha256": "055f8314b0c6c248d5521a316b0589809c41fcf7f093d8d39b1c441f6086516d"
+    },
+    {
+      "path": "benchmarks/results/reviewed-visual-intent-084-r5/inputs/historical-page-125.jpg",
+      "bytes": 2168325,
+      "sha256": "850ddd89c8b3e8d281b7b834f96a16bad479dda3a7f2242c019b1a5a6ddc277f"
+    },
+    {
+      "path": "benchmarks/results/reviewed-visual-intent-084-r5/inputs/reviewed-intent.json",
+      "bytes": 9101,
+      "sha256": "8a8da07be2b163c8b96a6b9353260dfa96e6c37bc77285e3bebc61531192d18c"
+    },
+    {
+      "path": "benchmarks/results/reviewed-visual-intent-084-r5/inputs/selected-ocr-native.jsonl",
+      "bytes": 9146,
+      "sha256": "1ff13c56337a24ae605ad22a95c87623b19bff97c48f3916d325c065caf0ee52"
+    },
+    {
+      "path": "benchmarks/results/reviewed-visual-intent-084-r5/inputs/selected-source-manifest.jsonl",
+      "bytes": 768,
+      "sha256": "55b307c0fc005d7c7fb26194b686f70e51262b7c06a16375e6271290ded08185"
+    },
+    {
+      "path": "benchmarks/results/reviewed-visual-intent-084-r5/invocation.json",
+      "bytes": 671,
+      "sha256": "0643627d62cb6c7e63c1d8205f3f1875a1097be541be06a53d4fe4c3ff8c3825"
+    },
+    {
+      "path": "benchmarks/results/reviewed-visual-intent-084-r5/proof.json",
+      "bytes": 4380,
+      "sha256": "617774e35a1a11811aee3013036e053da4d131ecbe108f2afc58d75a9b40f187"
+    },
+    {
+      "path": "benchmarks/results/reviewed-visual-intent-084-r5/recipe.yaml",
+      "bytes": 2542,
+      "sha256": "c9cfd92671bb77d92dbef540713aca7eca158867d87aa15903a05bdbb1759a69"
+    },
+    {
+      "path": "configs/recipes/recipe-reviewed-visual-intent-offline.yaml",
+      "bytes": 2204,
+      "sha256": "a5f6ee6ba35ed41d71f8ae76703e80025154b18f5d71f5dc13d1ab19062aabe8"
+    },
+    {
+      "path": "docs/RUNBOOK.md",
+      "bytes": 60556,
+      "sha256": "ec45c9561c9e9f364dce1364672068b8fae5a2f68c2d6c31853efafb75431fb7"
+    },
+    {
+      "path": "docs/evals/attempts/084-reviewed-visual-intent-offline-driver.md",
+      "bytes": 8527,
+      "sha256": "e73145c49af57e5ac8d8930bac3f2331c20c350e5345ba391ffde65730ffe129"
+    },
+    {
+      "path": "docs/evals/evidence/084-reviewed-visual-intent/producing-runner-v1.py",
+      "bytes": 15392,
+      "sha256": "2e04e069d89252d884a8c3f398df4385a087df6a2780d098232579b1e8b3bec0"
+    },
+    {
+      "path": "docs/evals/evidence/084-reviewed-visual-intent/proof-v1.json",
+      "bytes": 4380,
+      "sha256": "617774e35a1a11811aee3013036e053da4d131ecbe108f2afc58d75a9b40f187"
+    },
+    {
+      "path": "docs/evals/evidence/084-reviewed-visual-intent/proof-v2.json",
+      "bytes": 5169,
+      "sha256": "f3e7f7ba7d511c571dc27080b819e74e1017a45ef2061dea2033234b2617f30d"
+    },
+    {
+      "path": "docs/evals/evidence/084-reviewed-visual-intent/retained-iterations.json",
+      "bytes": 822,
+      "sha256": "9d338e420ffce91e8887fb48d65e66e5d38f79893ba4b45b9955b05268096bc0"
+    },
+    {
+      "path": "docs/evals/evidence/084-reviewed-visual-intent/source-review.json",
+      "bytes": 1114,
+      "sha256": "167b64e083628f4c37905533d3478e20c93498565df243a13e5e1c14452585e6"
+    },
+    {
+      "path": "docs/evals/evidence/084-reviewed-visual-intent/v1-freeze.json",
+      "bytes": 186,
+      "sha256": "b1b4212128a9c7e3bb6d08aee97de9ff705f529850772116c669a34232e05793"
+    },
+    {
+      "path": "docs/evals/evidence/084-reviewed-visual-intent/validation.json",
+      "bytes": 1658,
+      "sha256": "8a0f6c71557d45645e7a69c2660b7c48b7a50e1c9e696f77f479daf663aa44ed"
+    },
+    {
+      "path": "docs/evals/registry.yaml",
+      "bytes": 393290,
+      "sha256": "2a712506b71f57ed288ea741619c47bda9583aa1fa91c301689f267133bfc57e"
+    },
+    {
+      "path": "docs/methodology/graph.json",
+      "bytes": 1033493,
+      "sha256": "21c5850b1ecc5fbe3dfe78083cea72d092c8b8f4c8947cbc62c717e9300d3152"
+    },
+    {
+      "path": "docs/stories/story-262-reviewed-visual-intent-offline-replay.md",
+      "bytes": 6301,
+      "sha256": "f6a0f5c6c5c22f42d1127670317fbe4e265f6b5b6d223df6fac60827dde15f46"
+    },
+    {
+      "path": "docs/stories.md",
+      "bytes": 42433,
+      "sha256": "431e8e543d4cd092af1806d5f4bb71f308c5ea4ad8c7275fa010cc3c6239e222"
+    },
+    {
+      "path": "output/runs/reviewed-visual-intent-084-r1/01_load_artifact_v1/selected-ocr-native.jsonl",
+      "bytes": 9221,
+      "sha256": "3ffdd45f3936927915e633452f5dd098727bd83c1409581444a2019c09cefb43"
+    },
+    {
+      "path": "output/runs/reviewed-visual-intent-084-r1/pipeline_events.jsonl",
+      "bytes": 1014,
+      "sha256": "78f9f7cb582a74d378920a49a3e747205dbf6db6b3e3c31d1f033f05da759333"
+    },
+    {
+      "path": "output/runs/reviewed-visual-intent-084-r1/pipeline_state.json",
+      "bytes": 1062,
+      "sha256": "984e916f3f0ef8a57611f8d1a6ad24c24e765f4f714b5d31aec6ec464fb2fe55"
+    },
+    {
+      "path": "output/runs/reviewed-visual-intent-084-r1/snapshots/plan.json",
+      "bytes": 4160,
+      "sha256": "2a032f361d23e687ef16f53ce43b91f231bd96d9e071751efdace5264aeb1557"
+    },
+    {
+      "path": "output/runs/reviewed-visual-intent-084-r1/snapshots/recipe.yaml",
+      "bytes": 2660,
+      "sha256": "9d8a6abe041cf7e70f4d3202e32a4a1a8ab7882c839d046f78352609c301c70e"
+    },
+    {
+      "path": "output/runs/reviewed-visual-intent-084-r1/snapshots/registry.json",
+      "bytes": 24541,
+      "sha256": "3e10e8b1cc3609552450fe241203f68c986937054e2133cfd5cc9745f37f49d8"
+    },
+    {
+      "path": "output/runs/reviewed-visual-intent-084-r2/01_load_artifact_v1/selected-ocr-native.jsonl",
+      "bytes": 9351,
+      "sha256": "559c5c361372b44863d70ef19c7feb90353f26afa81aac6025a958652d607d37"
+    },
+    {
+      "path": "output/runs/reviewed-visual-intent-084-r2/02_load_artifact_v1/critical-graphics-authored.json",
+      "bytes": 5665,
+      "sha256": "5788273711496dd7ec8250d79f8b9c01911e707b5ef96bcbf22a4fdc8d0d4a65"
+    },
+    {
+      "path": "output/runs/reviewed-visual-intent-084-r2/03_crop_illustrations_guided_v1/illustration_manifest.jsonl",
+      "bytes": 7677,
+      "sha256": "0023b80578c62dd24d1d5d4d2bd5f58dadb0a2ebdd46113256e5c095522569f5"
+    },
+    {
+      "path": "output/runs/reviewed-visual-intent-084-r2/03_crop_illustrations_guided_v1/images/page-002-000.png",
+      "bytes": 601278,
+      "sha256": "4f2ba66ed4bed50c37432703e26562812db84c419d8c5391836f22776481f077"
+    },
+    {
+      "path": "output/runs/reviewed-visual-intent-084-r2/03_crop_illustrations_guided_v1/images/page-004-000.png",
+      "bytes": 1705164,
+      "sha256": "1f0012521bdf58d5dab2cec46fbd8a15a91acf629c31b0a05cb3feb54e26548b"
+    },
+    {
+      "path": "output/runs/reviewed-visual-intent-084-r2/03_crop_illustrations_guided_v1/images/page-009-000.png",
+      "bytes": 6893424,
+      "sha256": "592961338f3805811542565ce33cdada5c4a81df18439787d3d36a4b3eaf6d1c"
+    },
+    {
+      "path": "output/runs/reviewed-visual-intent-084-r2/03_crop_illustrations_guided_v1/images/page-012-000.png",
+      "bytes": 223253,
+      "sha256": "8dd66c55cc3bb355531962323b110fb8f79f8e20b8380fb6a0c4a0c3cf8467c8"
+    },
+    {
+      "path": "output/runs/reviewed-visual-intent-084-r2/03_crop_illustrations_guided_v1/images/page-125-000.png",
+      "bytes": 2789412,
+      "sha256": "1d11f97bef653b9493d241c14e617d809237763fe349889e1f5737d4b72b3e22"
+    },
+    {
+      "path": "output/runs/reviewed-visual-intent-084-r2/pipeline_events.jsonl",
+      "bytes": 3621,
+      "sha256": "7003d147f7a373ecd115cf1697a7cce932b12653ca6a0dbfad053d1e0480f21e"
+    },
+    {
+      "path": "output/runs/reviewed-visual-intent-084-r2/pipeline_state.json",
+      "bytes": 2058,
+      "sha256": "234831b26273317bc2427ffb666e19db5571eaecf9072e19eee95d7bd9586268"
+    },
+    {
+      "path": "output/runs/reviewed-visual-intent-084-r2/snapshots/plan.json",
+      "bytes": 4169,
+      "sha256": "df956ce7c56c69eb690430f1893ac7ef0d6fd99dfcfaa2c5e8b58919a7feb89b"
+    },
+    {
+      "path": "output/runs/reviewed-visual-intent-084-r2/snapshots/recipe.yaml",
+      "bytes": 2669,
+      "sha256": "b441604c55418a49c2e4ce6fc2cec986145277e42b745014b235ae5bdadf476f"
+    },
+    {
+      "path": "output/runs/reviewed-visual-intent-084-r2/snapshots/registry.json",
+      "bytes": 24541,
+      "sha256": "3e10e8b1cc3609552450fe241203f68c986937054e2133cfd5cc9745f37f49d8"
+    },
+    {
+      "path": "output/runs/reviewed-visual-intent-084-r2/timing_summary.json",
+      "bytes": 294,
+      "sha256": "3f9b3ceff44dcadf4acc5aab696180cb9f82f413eeaf5f19fb3b26bcab32d64f"
+    },
+    {
+      "path": "output/runs/reviewed-visual-intent-084-r3/01_load_artifact_v1/selected-ocr-native.jsonl",
+      "bytes": 9351,
+      "sha256": "1550021394fcdf45dc394a8d5f2ee4bb415a87e0ac633107e1a2cd059e12d12c"
+    },
+    {
+      "path": "output/runs/reviewed-visual-intent-084-r3/02_load_artifact_v1/critical-graphics-authored.json",
+      "bytes": 5445,
+      "sha256": "0ef2d6146bc71636215d9f1f63b926d238d07356c1517b9a1016ec9362793b9c"
+    },
+    {
+      "path": "output/runs/reviewed-visual-intent-084-r3/03_crop_illustrations_guided_v1/illustration_manifest.jsonl",
+      "bytes": 6332,
+      "sha256": "561353bdc11a8797a1bbebc54051c169184c37687618f91b66db9e3f49301a16"
+    },
+    {
+      "path": "output/runs/reviewed-visual-intent-084-r3/03_crop_illustrations_guided_v1/images/page-002-000.png",
+      "bytes": 601278,
+      "sha256": "4f2ba66ed4bed50c37432703e26562812db84c419d8c5391836f22776481f077"
+    },
+    {
+      "path": "output/runs/reviewed-visual-intent-084-r3/03_crop_illustrations_guided_v1/images/page-004-000.png",
+      "bytes": 1705164,
+      "sha256": "1f0012521bdf58d5dab2cec46fbd8a15a91acf629c31b0a05cb3feb54e26548b"
+    },
+    {
+      "path": "output/runs/reviewed-visual-intent-084-r3/03_crop_illustrations_guided_v1/images/page-009-000.png",
+      "bytes": 6893424,
+      "sha256": "592961338f3805811542565ce33cdada5c4a81df18439787d3d36a4b3eaf6d1c"
+    },
+    {
+      "path": "output/runs/reviewed-visual-intent-084-r3/03_crop_illustrations_guided_v1/images/page-012-000.png",
+      "bytes": 223253,
+      "sha256": "8dd66c55cc3bb355531962323b110fb8f79f8e20b8380fb6a0c4a0c3cf8467c8"
+    },
+    {
+      "path": "output/runs/reviewed-visual-intent-084-r3/03_crop_illustrations_guided_v1/images/page-125-000.png",
+      "bytes": 2789412,
+      "sha256": "1d11f97bef653b9493d241c14e617d809237763fe349889e1f5737d4b72b3e22"
+    },
+    {
+      "path": "output/runs/reviewed-visual-intent-084-r3/pipeline_events.jsonl",
+      "bytes": 3621,
+      "sha256": "2ad2b46586309a6a32a17dabf15a8d80296d6b21d34ffe3b9d51df33fb12d1fd"
+    },
+    {
+      "path": "output/runs/reviewed-visual-intent-084-r3/pipeline_state.json",
+      "bytes": 2058,
+      "sha256": "5bb6fc7b4010bfddfc647fdcfcaabdc0c5ef7dd7774547aa04683da162b662f2"
+    },
+    {
+      "path": "output/runs/reviewed-visual-intent-084-r3/snapshots/plan.json",
+      "bytes": 4169,
+      "sha256": "2bcc23d2894ade6c0efc679f44e8184a99c2fee4634086379869ac5bbff60ec2"
+    },
+    {
+      "path": "output/runs/reviewed-visual-intent-084-r3/snapshots/recipe.yaml",
+      "bytes": 2669,
+      "sha256": "3797ef31cfc605a2986516056ca053513ec07cad6671d4e7ace37fc27320cb89"
+    },
+    {
+      "path": "output/runs/reviewed-visual-intent-084-r3/snapshots/registry.json",
+      "bytes": 24541,
+      "sha256": "3e10e8b1cc3609552450fe241203f68c986937054e2133cfd5cc9745f37f49d8"
+    },
+    {
+      "path": "output/runs/reviewed-visual-intent-084-r3/timing_summary.json",
+      "bytes": 293,
+      "sha256": "6cfa849722f213eab2a5528280610c4b0da2c2b981cdb2b3b46e05a72e5a4dc2"
+    },
+    {
+      "path": "output/runs/reviewed-visual-intent-084-r5/01_load_artifact_v1/selected-ocr-native.jsonl",
+      "bytes": 9351,
+      "sha256": "c45076afebcf8e1431a22190689ebd553fd76e1777a133afceac30c91fe65a77"
+    },
+    {
+      "path": "output/runs/reviewed-visual-intent-084-r5/02_load_artifact_v1/critical-graphics-authored.json",
+      "bytes": 5445,
+      "sha256": "0ef2d6146bc71636215d9f1f63b926d238d07356c1517b9a1016ec9362793b9c"
+    },
+    {
+      "path": "output/runs/reviewed-visual-intent-084-r5/03_crop_illustrations_guided_v1/illustration_manifest.jsonl",
+      "bytes": 6332,
+      "sha256": "03c611159003859c13a6405b7381de50bab7c76abd095dc147cd8fc2afa21680"
+    },
+    {
+      "path": "output/runs/reviewed-visual-intent-084-r5/03_crop_illustrations_guided_v1/images/page-002-000.png",
+      "bytes": 601278,
+      "sha256": "4f2ba66ed4bed50c37432703e26562812db84c419d8c5391836f22776481f077"
+    },
+    {
+      "path": "output/runs/reviewed-visual-intent-084-r5/03_crop_illustrations_guided_v1/images/page-004-000.png",
+      "bytes": 1705164,
+      "sha256": "1f0012521bdf58d5dab2cec46fbd8a15a91acf629c31b0a05cb3feb54e26548b"
+    },
+    {
+      "path": "output/runs/reviewed-visual-intent-084-r5/03_crop_illustrations_guided_v1/images/page-009-000.png",
+      "bytes": 6893424,
+      "sha256": "592961338f3805811542565ce33cdada5c4a81df18439787d3d36a4b3eaf6d1c"
+    },
+    {
+      "path": "output/runs/reviewed-visual-intent-084-r5/03_crop_illustrations_guided_v1/images/page-012-000.png",
+      "bytes": 223253,
+      "sha256": "8dd66c55cc3bb355531962323b110fb8f79f8e20b8380fb6a0c4a0c3cf8467c8"
+    },
+    {
+      "path": "output/runs/reviewed-visual-intent-084-r5/03_crop_illustrations_guided_v1/images/page-125-000.png",
+      "bytes": 2789412,
+      "sha256": "1d11f97bef653b9493d241c14e617d809237763fe349889e1f5737d4b72b3e22"
+    },
+    {
+      "path": "output/runs/reviewed-visual-intent-084-r5/pipeline_events.jsonl",
+      "bytes": 3621,
+      "sha256": "493f3a15865dc8d2fae6ce385aeadbb7f21877138f662fdca717359297204bd9"
+    },
+    {
+      "path": "output/runs/reviewed-visual-intent-084-r5/pipeline_state.json",
+      "bytes": 2058,
+      "sha256": "9b456b6d80ed20a384971aa0a9b2b9e5caebdbec0f37764fb0050d6496b77f13"
+    },
+    {
+      "path": "output/runs/reviewed-visual-intent-084-r5/snapshots/plan.json",
+      "bytes": 4169,
+      "sha256": "c97d013bf9a3765f0ac1562e646152fa209d5701a553903d397d6c3d80ca2fdf"
+    },
+    {
+      "path": "output/runs/reviewed-visual-intent-084-r5/snapshots/recipe.yaml",
+      "bytes": 2669,
+      "sha256": "604f26a561a6a9dd67cecd5f743aad223b5998153be8de268881056927580511"
+    },
+    {
+      "path": "output/runs/reviewed-visual-intent-084-r5/snapshots/registry.json",
+      "bytes": 24541,
+      "sha256": "3e10e8b1cc3609552450fe241203f68c986937054e2133cfd5cc9745f37f49d8"
+    },
+    {
+      "path": "output/runs/reviewed-visual-intent-084-r5/timing_summary.json",
+      "bytes": 294,
+      "sha256": "1ef5dca1f1c47e2f2463284db3a16d222ed7fe5cb2d3dd9115b8122e281f0682"
+    },
+    {
+      "path": "scripts/replay_reviewed_visual_intent.py",
+      "bytes": 16163,
+      "sha256": "1615d499995638a307cbcc97d123ae673ee9de542bbf3cd524705feca2df31d8"
+    },
+    {
+      "path": "scripts/reviewed_visual_intent_guard/sitecustomize.py",
+      "bytes": 3286,
+      "sha256": "6abe92be98648693a80088abd688f787eef2269c17aedea7afb65cfb0a8bd850"
+    },
+    {
+      "path": "tests/fixtures/reviewed_visual_intent/onward-reviewed-public.json",
+      "bytes": 9101,
+      "sha256": "8a8da07be2b163c8b96a6b9353260dfa96e6c37bc77285e3bebc61531192d18c"
+    },
+    {
+      "path": "tests/test_reviewed_visual_intent_replay.py",
+      "bytes": 9679,
+      "sha256": "cd2e97e2eb4d2a2d28fe95fbd518a5b87234ba1ee70a3ae52b0f63e261d77f49"
+    }
+  ]
+}

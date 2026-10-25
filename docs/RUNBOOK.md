@@ -66,6 +66,30 @@ Declare the paid slice with a settings file containing `stage_params: {pdf_to_im
 
 Attempt 062 retains the rejected single-call candidate and records source-review gate accuracy separately from accepted/held coverage. A held table is a safe outcome, not a correct transcription. Qualified clear cases provide bounded evidence, not a guarantee of every document/font. No native text is inserted or source typo corrected. If source review finds disagreement or ambiguity, retain the initial OCR, locate the source region and stop fidelity-qualified export until resolved; working reference links and model confidence are not proof. Do not manually patch artifacts or rerun failed confirmation until it looks favorable.
 
+### Reviewed visual intent — offline crop qualification
+
+For an explicit source-reviewed rectangle test, use the dedicated opt-in runner:
+
+```bash
+env -i PATH=/Users/cam/miniconda3/bin:/usr/bin:/bin HOME=/Users/cam PYTHONPATH=. \
+  /Users/cam/miniconda3/bin/python scripts/replay_reviewed_visual_intent.py \
+  --fixture tests/fixtures/reviewed_visual_intent/onward-reviewed-public.json \
+  --owner-source-root /Users/cam/Documents/Projects/doc-web \
+  --result-dir benchmarks/results/reviewed-visual-intent-NEW --run-id reviewed-visual-intent-NEW
+```
+
+Choose new run/result identities; the runner forbids overwrite/resume. It freezes
+complete selected OCR rows and sources, validates reviewed mappings, renders
+`recipe-reviewed-visual-intent-offline.yaml`, and invokes the actual driver with
+network/env-file access blocked in inherited Python children. No key or credential
+wrapper is needed. This is authored intent, not automatic semantic detection or
+a native model response. The planner-owned path bypasses inference and owned-box
+trimming; normal untargeted defaults remain unchanged. Inspect the PNGs, manifest
+and OCR content comparisons and retain `review_hold`; no renderer/publication or
+source-text deletion is exercised. Attempt084 documents five bounded public
+controls, historical-run quarantine, schema-default additions and the unregistered
+illustration-envelope boundary. A failed replay retains evidence and stops.
+
 ### Runtime Preflight
 
 Use this before downstream pin bumps or consumer integration work:

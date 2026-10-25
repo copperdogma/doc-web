@@ -1,0 +1,17 @@
+{
+  "reviewer": "Codex owning worker; supervisor independently inspected all five final crops",
+  "publication_status": "review_hold",
+  "viewed_final_title": "output/runs/reviewed-visual-intent-084-r5/03_crop_illustrations_guided_v1/images/page-002-000.png",
+  "other_final_images": "Exact SHA256 matches to all five personally viewed r3 PNGs; full original sources inspected",
+  "source_pixels_exact": 34904950,
+  "title_date": "Complete ONWARD / TO THE UNKNOWN / 1887 - 1987, with source edge margin; external author excluded",
+  "negative_controls": "Image003 printed credits and Image008 portrait name/date excluded; Image124 printed credit excluded while integral handwritten signature retained",
+  "integral_text_control": "Image011 complete circular logo text and1905-1980 retained; rest of award outside selected target",
+  "scope_holds": [
+    "Not complete-page illustration coverage",
+    "Image000 physical cover extent unchanged/uncertain",
+    "Automatic admission unproved",
+    "No renderer,source-text deletion or publication",
+    "Historical full run unsafe; bounded curated inputs only"
+  ]
+}
