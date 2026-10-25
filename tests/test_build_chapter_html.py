@@ -39,6 +39,67 @@ from modules.build.build_chapter_html_v1.main import (
 # Fixtures
 # ---------------------------------------------------------------------------
 
+def test_single_document_fallback_owns_source_pages_across_print_label_resets(tmp_path):
+    pages_path = tmp_path / "pages.jsonl"
+    portions_path = tmp_path / "portions.jsonl"
+    out_path = tmp_path / "chapters.jsonl"
+    html_dir = tmp_path / "html"
+    texts = ["Opening record.", "Second record.", "Third record.", "Final record.", "Outside record."]
+    pages = [
+        {"page_number": number, "printed_page_number": label, "html": f"<p>{text}</p>"}
+        for number, label, text in zip(range(11, 16), [11, 1, 1, None, 11], texts)
+    ]
+    pages_path.write_text("".join(json.dumps(row) + "\n" for row in pages))
+    portions_path.write_text(json.dumps({
+        "title": "Document", "page_start": 11, "page_end": 14,
+        "source_pages": [11, 12, 13, 14], "notes": "single-document-fallback",
+    }) + "\n")
+
+    result = subprocess.run([
+        sys.executable, "-m", "modules.build.build_chapter_html_v1.main",
+        "--pages", str(pages_path), "--portions", str(portions_path),
+        "--out", str(out_path), "--output-dir", str(html_dir),
+    ], capture_output=True, text=True)
+    assert result.returncode == 0, result.stdout + result.stderr
+    manifest = [json.loads(line) for line in out_path.read_text().splitlines()]
+    assert [row["source_pages"] for row in manifest] == [[11, 12, 13, 14], [15]]
+    chapter = BeautifulSoup((html_dir / "chapter-001.html").read_text(), "html.parser")
+    assert [tag.get_text() for tag in chapter.select("article p")] == texts[:4]
+    blocks = [json.loads(line) for line in (html_dir / "provenance/blocks.jsonl").read_text().splitlines()]
+    assert [row["source_page_number"] for row in blocks] == list(range(11, 16))
+    assert len({row["block_id"] for row in blocks}) == 5
+
+
+def test_single_document_fallback_preserves_cross_page_paragraph_provenance(tmp_path):
+    pages_path = tmp_path / "pages.jsonl"
+    portions_path = tmp_path / "portions.jsonl"
+    out_path = tmp_path / "chapters.jsonl"
+    html_dir = tmp_path / "html"
+    fragments = ["We walked to the", "harbor."]
+    pages = [
+        {"page_number": number, "html": f"<p>{text}</p>"}
+        for number, text in enumerate(fragments, 1)
+    ]
+    pages_path.write_text("".join(json.dumps(row) + "\n" for row in pages))
+    portions_path.write_text(json.dumps({
+        "title": "Document", "page_start": 1, "page_end": 2,
+        "source_pages": [1, 2], "notes": "single-document-fallback",
+    }) + "\n")
+    result = subprocess.run([
+        sys.executable, "-m", "modules.build.build_chapter_html_v1.main",
+        "--pages", str(pages_path), "--portions", str(portions_path),
+        "--out", str(out_path), "--output-dir", str(html_dir),
+    ], capture_output=True, text=True)
+    assert result.returncode == 0, result.stdout + result.stderr
+    chapter = BeautifulSoup((html_dir / "chapter-001.html").read_text(), "html.parser")
+    blocks = [json.loads(line) for line in (html_dir / "provenance/blocks.jsonl").read_text().splitlines()]
+    assert [tag.get_text() for tag in chapter.select("article p")] == fragments
+    assert [(row["source_page_number"], row["source_element_ids"], row["text_quote"]) for row in blocks] == [
+        (1, ["p001-b1"], fragments[0]),
+        (2, ["p002-b1"], fragments[1]),
+    ]
+
+
 SAMPLE_PAGE_HTML = '<p>Some text.</p><img alt="Photo"><p>More text.</p>'
 SAMPLE_PAGE_HTML_MULTI = '<p>Text.</p><img alt="A"><img alt="B"><p>End.</p>'
 SAMPLE_PAGE_HTML_NO_IMG = '<p>Just text, no images here.</p>'

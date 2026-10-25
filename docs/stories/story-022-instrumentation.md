@@ -3,11 +3,11 @@ title: Pipeline instrumentation (timing & cost)
 status: Done
 priority: Unknown
 ideal_refs: []
-spec_refs: []
+spec_refs: ["spec:2", "spec:8"]
 adr_refs: []
 depends_on: []
-category_refs: []
-compromise_refs: []
+category_refs: ["spec:2", "spec:8"]
+compromise_refs: ["C6", "B3"]
 input_coverage_refs: []
 architecture_domains: []
 roadmap_tags: []
@@ -189,3 +189,166 @@ legacy_system: ''
 - **Result:** Marked all tasks complete and set story status to Done per user direction.
 - **Notes:** Instrumentation feature set implemented; minor UI ordering quirk accepted as out of scope.
 - **Next:** None.
+
+
+## 2026-10-24 continuation: retain recorded spend across resume
+
+### Goal
+
+A logical run keeps its recorded API usage when processing resumes or artifacts
+are rebuilt. Story210 exposed the current inconsistency: its four-event ledger
+retains6144 input/1532 output tokens while a downstream-only resume overwrites the
+summary with zero calls. Re-executing the same stage instead replays old calls
+into that stage's new summary. Story022 owns the same driver instrumentation,
+report contract and validation boundary, so reopen it rather than create another
+story for this repair. The user authorized a continuing triage/build loop.
+
+### Decision and scope
+
+Story022 and dashboard Story100 explicitly promise run-level costs; no document
+establishes invocation-only spend. C6 remains hold and B3 hold; this repair makes
+existing artifact reuse inspectable without adding model calls. Spec2/8 substrate
+exists. Search of `docs/decisions/` found no separate instrumentation ADR; this
+is a repair to the existing declared contract, not a new persistence platform.
+The graph's prior022 entry was Done with empty lineage; current refs now identify
+that existing ownership. No format coverage or model/eval claim changes.
+
+Problem class: rebuilding a derived summary from an append-only usage log after
+restart. [Microsoft's event-sourcing guidance](https://learn.microsoft.com/en-us/azure/architecture/patterns/event-sourcing)
+describes event history as authority and snapshots as rebuildable projections;
+its [materialized-view guidance](https://learn.microsoft.com/en-us/azure/architecture/patterns/materialized-view)
+distinguishes full rebuild from incremental updates. Adapt the full-rebuild
+technique to this small existing JSONL sink; do not import an event framework.
+Count each valid recorded row once per projection, including identical rows that
+could represent separate requests. Missing request IDs prevent independent
+provider-event deduplication. Preserve incomplete trailing rows for later reads,
+and expose malformed/conflicting-run evidence instead of silently claiming a
+complete total. A deterministic projection is the fit: model judgments add no
+useful information to exact accounting.
+
+Cumulative usage/cost and execution state are separate. Prior records may supply
+known metadata/timing, but invalidated artifacts must not become valid because
+cost survives. Run wall/CPU timing remains the current driver invocation;
+stage timing is the latest recorded execution or unknown. Explicit event costs
+remain authoritative; token-only costs are estimates under the displayed price
+sheet, not historical billing receipts. Pricing refresh and missing provider
+request IDs are separate from this replay-correctness repair.
+
+### Acceptance criteria
+
+- [x] Preserve a zero-provider failing reproduction of downstream resume omitting
+  retained usage and same-stage accounting inconsistency.
+- [x] Derive run/stage recorded call/token/cost totals from the retained ledger,
+  with stable repeated refreshes, no double addition of old summary totals, and
+  no loss of failed/rerun/forced-rebuild recorded costs for the same run ID.
+- [x] Reconstruct usage after only the summary is removed; a different run ID
+  remains separate. Preserve invalidated-artifact state and explicitly label
+  timing/estimate scope and incomplete ledger evidence.
+- [x] Add driver integration and narrow projection controls, including failure,
+  forced rebuild, identical distinct rows, foreign/malformed rows and incomplete
+  final lines. Existing instrumentation/report consumers remain compatible.
+- [x] Run a real provider-free driver sequence under `output/runs/`, open both
+  JSON and Markdown reports and manually reconcile them to the event rows.
+- [x] Validate affected driver/report consumers, update docs/work log/changelog
+  and generated methodology views, and close via `/mark-story-done`.
+
+### Tasks and plan
+
+- [x] Diagnose source contract from Story022/100, driver, schemas, tests,
+  state/graph/spec and the actual Story210 mismatch.
+- [x] Compare established approaches and choose ledger-derived full replay;
+  continuing strategy reviewer `/root/resume_strategy` accepted the bounded
+  plan with preservation, status, timing, estimate and malformed-tail conditions.
+- [x] Add the failing provider-free driver tests before runtime changes.
+- [x] Implement a narrow shared projection helper and wire current live/final
+  driver reports to it; keep ledger history through forced artifact rebuilding.
+- [x] Prove controls and manually inspect a real driver report sequence.
+- [x] Update docs, run applicable validation and close the story.
+
+### Workflow Gates
+
+- [x] Build complete
+- [x] Validation complete or explicitly skipped by user
+- [x] Story marked done via `/mark-story-done`
+
+### Central Tenets
+
+- [x] T0: raw recorded usage remains traceable; summaries are derived.
+- [x] T1: exact counting/pricing uses code; no semantic AI decision added.
+- [x] T2: failing local reproduction precedes implementation; no model eval needed.
+- [x] T3: original event bytes survive resume/rebuild unchanged.
+- [x] T4: shared projection fits existing schema/report consumers.
+- [x] T5: actual driver JSON/Markdown and event rows manually inspected.
+
+### Continuation work log
+
+20261024 — selected from fresh post-Story210 triage. Top three: accounting
+consistency (new observed mismatch), authentic scanned-prose qualification
+(larger product gap, pending trustworthy reference), fresh cleanup scan (no
+new concrete defect). One zero-call diagnosis established the hybrid semantics;
+fixing it precedes further paid proof work. Neutral packet by lower-cost
+`/root/resume_inbox_health`; driver test worker `/root/resume_stories_architecture`
+uses gpt-6.1-sol/high for the cross-process boundary. Parent owns runtime/docs and
+final quality. No new commits, provider calls or dependency changes planned.
+
+
+20261024 — reproduction and implementation: the first applicable provider-free
+baseline failed4/5 integration cases (`output/triage-20261024-instrumentation-audit/baseline.log`).
+Downstream resume retained one raw event but reported zero; same-stage rerun
+retained3 events/USD0.625 but reported2/USD0.50; repeated zero-call resumes omitted
+other stages; forced rebuilding erased the ledger. A new run ID control passed.
+The shared `modules/common/run_instrumentation.py` now rebuilds stage/run usage
+from complete valid ledger rows. Forced artifact cleanup retains that ledger.
+Reports preserve known stage metadata without restoring invalidated artifacts,
+expose incomplete/foreign/malformed records, and retain explicit cost versus
+price-sheet estimate distinctions. No provider, pricing-default or schema change.
+The dashboard consumes the same fields, labels recorded cost, and warns on a
+partial ledger. Touched driver lint cleanup removed unused imports/variables and
+redundant string interpolation only.
+
+20261024 — findings-first review: `/root/resume_evals` found skipped stages lost
+actual execution timings. A stamped PageDoc regression reproduced this and also
+showed a second `--skip-done` reran both stages because the first skip changed
+state from done to skipped. The original ElementCore fixture did not meet the
+schema reuse gate and is explicitly excluded from evidence; applicable failures
+are preserved in `skip-baseline-v2.log`. Skipped timing now retains the latest
+known execution or stays unknown; valid done/skipped artifacts remain eligible
+for reuse with existence/schema checks. Independent bounded rereview found the
+accepted issue resolved and no critical related issue. No additional audit or
+provider calls were launched after the user requested finish/push/stop.
+
+20261024 — real driver proof and manual inspection: resumed the existing
+`output/runs/story210-20261024-degraded-fullpath` from `portionize_toc`, without
+OCR or any provider call. Original report and ledger hash are preserved in
+`output/triage-20261024-instrumentation-audit/before-prose-*`; the new JSON/Markdown
+reports reconcile exactly to the unchanged four raw events:6144 input tokens,
+1532 output tokens, estimated USD0.023 under the explicit run-local GPT5.1
+standard price sheet. Original generic-default price estimate remains retained
+in the Story210 audit. `prose-reconciliation.json` records the unchanged ledger
+and totals. Manual report inspection confirmed `ocr_ai` owns all4 calls and its
+lost historical timing is unknown, while the two resumed stages have zero calls
+and current timings. Browser inspection of the actual dashboard showed Recorded
+Cost USD0.0230, Calls4, Tokens6144/1532, with the estimate/reuse scope text.
+The older dashboard progress panel still treats the resume-invalidation warning
+as running and mixes event intervals; that pre-existing status-display issue is
+outside this accounting repair and was not expanded after the user's stop.
+Preview server/tab were stopped. Source/export data stayed unchanged.
+
+20261024 — `/validate`: Grade A for this bounded accounting contract; all6
+continuation AC groups met. Final tests:25 accounting/projection/schema tests
+(including10 real-driver integration controls) passed21.26s;69 affected driver,
+resume, merge, plan, admission, provenance, reference-repair, run-registry,
+run-config, handwritten-eval report consumer and dashboard-path tests passed22.38s.
+`make lint` and explicit driver Ruff pass. Full-suite repetition is unnecessary:
+only the instrumented accounting path, force ledger retention and valid skipped
+artifact reuse changed; all driver integration paths and identified report
+consumers were covered. The preceding274 export tests remain applicable to their
+unchanged module behavior. No new model eval or golden; registry unchanged.
+Learning review considered: no new workflow candidate; existing applicable-proof
+and provider-free regression requirements cover the findings. Closure
+recommendation: Close now, with historical usage gaps and price estimates explicit.
+
+20261024 — `/mark-story-done`: all continuation tasks/ACs and T0–T5 verified,
+workflow gates checked, existing changelog entry extended and generated graph/
+index refreshed. The user now explicitly requests finishing, validation, commit,
+push and then stopping; return to `/finish-and-push`, with no next triage build.

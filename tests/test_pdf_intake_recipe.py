@@ -188,6 +188,18 @@ def test_born_digital_non_toc_recipe_wiring():
     assert portionize_stage["params"]["fallback_mode"] == "single-document"
 
 
+def test_generic_ocr_recipes_opt_into_absent_toc_document_fallback():
+    for path in (PDF_RECIPE, "configs/recipes/recipe-images-ocr-html-mvp.yaml"):
+        recipe = yaml.safe_load(Path(path).read_text())
+        stage = next(stage for stage in recipe["stages"] if stage["id"] == "portionize_toc")
+        assert stage["module"] == "portionize_toc_html_v1"
+        assert stage["params"]["fallback_mode"] == "single-document"
+    for path in (ONWARD_PDF_RECIPE, HANDWRITTEN_RESCUE_PDF_RECIPE):
+        recipe = yaml.safe_load(Path(path).read_text())
+        stage = next(stage for stage in recipe["stages"] if stage["id"] == "portionize_toc")
+        assert stage.get("params", {}).get("fallback_mode", "error") == "error"
+
+
 def test_handwritten_rescue_pdf_recipe_wiring():
     data = yaml.safe_load(Path(HANDWRITTEN_RESCUE_PDF_RECIPE).read_text(encoding="utf-8"))
 

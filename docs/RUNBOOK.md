@@ -13,11 +13,38 @@ bytes, including `_codex` provenance. Unknown/null schemas retain their existing
 behavior; registration is not a claim that every module is schema-validated.
 
 ## 🛑 Critical Safety Rules
-1.  **NEVER use `--force` when resuming.** It deletes the entire run directory.
+1.  **NEVER use `--force` when resuming.** It rebuilds artifacts and state; only recorded API usage is retained.
 2.  **ALWAYS use `run_driver_monitored.sh`** for production runs (handles logging, PID tracking, crash detection).
 3.  **CHECK `pipeline_state.json`** before resuming to confirm the correct `--start-from` stage.
 
 ---
+
+## Recorded Usage Across Resume and Rebuild
+
+With `--instrument`, `instrumentation_calls.jsonl` is the append-only authority
+for recorded API usage in a run. `instrumentation.json` and `.md` project every
+valid event once, including prior stages, failed attempts and reruns. Reusing a
+run ID or rebuilding its artifacts with `--force` keeps this recorded spend.
+A new run ID has its own history. Deleting only a report does not erase the
+ledger; the next instrumented driver invocation reconstructs its usage totals.
+
+Run wall/CPU timing describes the current invocation. Stage timing describes
+the latest recorded execution, or is unknown when only call events survive.
+Skipping a valid artifact preserves its execution timing. Retained cost never
+restores an invalidated artifact or marks its stage done.
+
+Explicit per-event costs are retained. Token-only costs are estimates using the
+price sheet shown in the report; missing models use that sheet's default rate.
+Changing the sheet can change those estimates. They are not billing receipts,
+and a ledger without request IDs cannot independently prove provider-event
+deduplication. Two identical recorded rows count as two events.
+
+Malformed records, conflicting run IDs and an unfinished final line are exposed
+through `totals.ledger_complete` / `ledger_issues`. The Markdown report warns and
+the dashboard labels the cost as partial; totals then cover admitted rows only.
+An unfinished line is reread on later refreshes. Missing historical timing is
+not invented, and observed missing usage history is not presented as complete
+zero cost. Calls made while instrumentation is disabled are not recoverable.
 
 ## 🚀 Standard Execution
 
@@ -184,7 +211,7 @@ scripts/run_driver_monitored.sh \
   -- --instrument --force
 ```
 *   `--instrument`: Enables cost/timing tracking (Required for production).
-*   `--force`: **DELETES** `<run_id>` dir if it exists. Use only for fresh starts.
+*   `--force`: **DELETES** artifacts/state in `<run_id>` if it exists, retaining the API usage ledger. Use only for deliberate artifact rebuilds.
 
 Active recipe examples:
 - `configs/recipes/recipe-images-ocr-html-mvp.yaml`
@@ -353,6 +380,36 @@ Notes:
 - `testdata/tbotb-mini.pdf` proves maintained PDF entry wiring only for a small born-digital PDF.
 - `testdata/scanned-prose-mini.pdf` is a repo-owned image-only simple-prose scanned fixture. Story 167 proved the maintained lane through `ocr_ai` and matched the checked-in source text exactly after normalization on 2026-03-27; broader noisy scanned-prose quality still needs separate validation.
 - `testdata/scanned-prose-degraded.pdf` is a repo-owned image-only degraded/noisy synthetic scanned fixture generated from the same checked-in source text. The current preset is intentionally visibly rougher than the clean scanned-prose slice: softer text, lower contrast, added noise, mild skew, and faint edge shadow. Story 210 widened the bounded support slice on 2026-04-10 with fresh `ocr_ai` proof (`ocr_quality` `0.94-0.96`, normalized text ratio `0.996038`) while still leaving broader real-world degraded scanned-prose quality unclaimed.
+
+### Scanned-Prose Final Bundle Without an Authored TOC
+
+The generic PDF and image OCR recipes explicitly enable `fallback_mode:
+single-document` on `portionize_toc_html_v1`. If no authored TOC evidence exists,
+one document entry retains all explicit source pages in source order. Printed
+page labels do not decide ownership. Page-crossing paragraphs remain separate
+blocks so each citation retains its own source page. The module default remains
+strict; detected TOC evidence with no admitted entries prevents aggregation.
+Existing authored-TOC parsing remains unchanged.
+
+To continue an inspected OCR run without repeating OCR:
+
+```bash
+python tools/run_registry.py check-reuse --run-id <run_id> --scope scanned-prose
+python driver.py \
+  --recipe configs/recipes/recipe-pdf-ocr-html-mvp.yaml \
+  --input-pdf testdata/scanned-prose-degraded.pdf \
+  --run-id <run_id> \
+  --output-dir output/runs/<run_id> \
+  --allow-run-id-reuse --start-from crop_illustrations
+```
+
+Resolve any unsafe reuse finding first. Keep the original input/settings and
+inspect `output/html/chapter-001.html`, `output/html/manifest.json`, and
+`output/html/provenance/blocks.jsonl` within the run. Story210's 2026-10-24 run
+`story210-20261024-degraded-fullpath` preserves all four synthetic source pages,
+1129 words and 13 cited blocks. Three source headings still appear as paragraphs
+in OCR and the final HTML. This proves bounded export preservation, not general
+real-scan fidelity or repaired heading recognition.
 
 ### Repo-Owned DOCX Intake Smoke
 

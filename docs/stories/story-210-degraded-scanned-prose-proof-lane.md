@@ -10,17 +10,25 @@ spec_refs:
   - "spec:2"
   - "spec:2.1"
   - "spec:2.2"
+  - "spec:3"
+  - "spec:6"
+  - "spec:7"
   - "spec:8"
-adr_refs: []
+adr_refs:
+  - "adr-002"
 depends_on:
   - "167"
 category_refs:
   - "spec:1"
   - "spec:2"
+  - "spec:3"
+  - "spec:6"
+  - "spec:7"
   - "spec:8"
 compromise_refs:
   - "C1"
   - "C2"
+  - "C3"
   - "C6"
   - "B1"
 input_coverage_refs:
@@ -35,7 +43,7 @@ legacy_system: ""
 
 **Priority**: High
 **Status**: Done
-**Decision Refs**: `docs/ideal.md`, `docs/spec.md`, `docs/methodology/state.yaml`, `docs/methodology/graph.json`, `docs/RUNBOOK.md`, `docs/runbooks/golden-build.md`, `tests/fixtures/formats/_coverage-matrix.json`, `docs/stories/story-157-pdf-intake-parity-with-image-directory-inputs.md`, `docs/stories/story-167-repo-owned-scanned-prose-pdf-fixture.md`, and `None found after search in docs/decisions/`, `docs/scout/`, and `docs/notes/` for a narrower degraded-scanned-prose proof ADR or note
+**Decision Refs**: `docs/decisions/adr-002-doc-web-runtime-boundary/adr.md` (2026-10-24 export continuation); historical fixture context: `docs/ideal.md`, `docs/spec.md`, `docs/methodology/state.yaml`, `docs/methodology/graph.json`, `docs/RUNBOOK.md`, `docs/runbooks/golden-build.md`, `tests/fixtures/formats/_coverage-matrix.json`, `docs/stories/story-157-pdf-intake-parity-with-image-directory-inputs.md`, `docs/stories/story-167-repo-owned-scanned-prose-pdf-fixture.md`, and `None found after search in docs/decisions/`, `docs/scout/`, and `docs/notes/` for a narrower degraded-scanned-prose proof ADR or note
 **Depends On**: Story 167
 
 > If this story is `Blocked`, replace `N/A` in `Blocker Summary`, `Blocker
@@ -199,3 +207,203 @@ N/A
 20260410-2325 — repo-wide verification + build handoff: regenerated the methodology views with `make methodology-compile`, then ran `make lint`, `make methodology-check`, and `make test`. Results: `ruff` passed cleanly, the methodology graph check reported `docs/methodology/graph.json` current, and the full suite passed (`555 passed, 4 warnings in 654.99s`). The warnings are pre-existing Pydantic V2 deprecations in `modules/portionize/portionize_headers_numeric_v1/main.py`, not regressions from this story. Result: the implementation is build-complete and freshly verified at the repo level, but the story stays `In Progress` with the validation/done gates open for a separate `/validate` / `/mark-story-done` pass. Next step: independent validation of the new degraded scanned-prose support claim and artifact review path.
 20260410-2339 — degraded fixture strengthened after manual visual review: the first committed `degraded` preset looked too close to the clean scanned-prose slice, so the generator was tightened instead of papering over that mismatch in docs. `testdata/generate_scanned_prose_fixture.py` now applies heavier blur, lower contrast, stronger scan noise, mild skew, a downsample/upscale pass, and faint edge shadow to the degraded preset. Visual check on `output/runs/story210-degraded-visual-check/01_extract_pdf_images_fast_v1/images/page-001.jpg` confirmed the page is now visibly rougher than the clean slice while remaining clearly prose, not handwriting. Fresh checks after the stronger preset: `python -m pytest tests/test_pdf_intake_recipe.py -q` passed again (`13 passed in 7.26s`); `testdata/scanned-prose-degraded.pdf` still reports extract-text lengths `[0, 0, 0, 0]`; `python driver.py --recipe configs/recipes/recipe-pdf-ocr-html-mvp.yaml --input-pdf testdata/scanned-prose-degraded.pdf --run-id story210-scanned-prose-degraded-proof --output-dir output/runs/story210-scanned-prose-degraded-proof --allow-run-id-reuse --force --end-at ocr_ai` re-completed successfully. Manual artifact inspection on the rerun showed `output/runs/story210-scanned-prose-degraded-proof/01_extract_pdf_images_fast_v1/pages_images_manifest.jsonl` still stamping all four `page_image_v1` rows back to the committed fixture, and `output/runs/story210-scanned-prose-degraded-proof/02_ocr_ai_gpt51_v1/pages_html.jsonl` now reports lower page-level `ocr_quality` values `0.96`, `0.96`, `0.94`, `0.96` while preserving the same normalized text ratio `0.996038` against `testdata/scanned-prose-mini.md`. Result: the support claim remains widened, but now against a visibly rougher synthetic degraded scan instead of an asset that looked nearly pristine. Next step: refresh the docs/truth surfaces to the new current metrics and rerun lightweight verification (`make lint`, `make methodology-check`) for this final preset adjustment.
 20260411-0008 — story closed via `/mark-story-done`: reran the full validation surface after the stronger degraded preset so the close-out rests on current evidence, not the earlier milder asset. Fresh close-out checks in this pass: `python -m pytest tests/` passed (`555 passed, 4 warnings in 655.99s`), `make lint` passed, `make methodology-compile` regenerated the story/index views, and `make methodology-check` confirmed the compiled graph is current. Fresh artifact evidence remains the same bounded but now visually rougher proof surface: `output/runs/story210-scanned-prose-degraded-proof/01_extract_pdf_images_fast_v1/pages_images_manifest.jsonl` still traces all four `page_image_v1` rows to `testdata/scanned-prose-degraded.pdf`; `output/runs/story210-scanned-prose-degraded-proof/02_ocr_ai_gpt51_v1/pages_html.jsonl` still preserves the prose with normalized ratio `0.996038` while page-level `ocr_quality` sits at `0.96`, `0.96`, `0.94`, and `0.96`; and `output/runs/story210-degraded-visual-check/01_extract_pdf_images_fast_v1/images/page-001.jpg` confirms the final degraded preset now looks meaningfully rougher than the clean scanned-prose slice. Result: Story 210 closes honestly as a bounded support-widening pass for synthetic degraded scanned prose, with the real-world degraded-handwriting / historical-script gap explicitly split into Story 211. Next step: `/check-in-diff`.
+
+
+## 2026-10-24 continuation: scanned prose through the final bundle
+
+The historical clean/degraded OCR results above remain valid only for their stated
+OCR scope. The resumed triage/build goal authorizes this coherent extension on
+the same recipe, source fixtures, artifact chain and operator outcome. The current
+generic route selected by intake fails on documents without a TOC after OCR.
+This continuation establishes usable HTML export; it does not widen real-world
+OCR fidelity or repair degraded heading recognition.
+
+### Acceptance criteria and tasks
+
+- [x] Preserve a failing current-code driver reproduction of the missing-TOC boundary.
+- [x] Add an explicit `single-document` fallback policy to the existing TOC module,
+  opt in only the generic PDF/image OCR recipes, and preserve strict defaults and
+  authored TOC behavior. Detected TOC evidence with no admitted entries prevents aggregation; existing
+  authored-TOC parsing stays unchanged.
+- [x] Require unique positive source page identities; retain every page in source
+  order exactly once through final HTML, including unnumbered pages and repeated,
+  offset or reset printed labels. No inferred section boundaries or source text edits.
+- [x] Add focused regressions covering the policy, invalid input, recipe wiring and
+  builder source ownership; produce real driver proof with a TOC positive control
+  and malformed-TOC negative control.
+- [x] After a successful zero-call continuation probe, run one capped four-page
+  maintained OCR proof on the existing degraded synthetic fixture. Freeze it for
+  downstream reuse, record requests/usage/cost, inspect all four source/output pages,
+  final HTML and citation rows. Preserve OCR errors separately from export fidelity.
+- [x] Update coverage/runbook with the precise final-bundle boundary, validate,
+  and close via `/mark-story-done` without implying real-document qualification.
+
+### Plan and approach decision
+
+1. Preserve `output/triage-20261024-prose-audit/baseline-driver.log` and
+   `output/runs/story210-20261024-no-toc-baseline/`: two valid synthetic page rows
+   pass admission, then `portionize_toc` fails with no TOC entries, and builder
+   does not run. This is a zero-call routing reproduction, not OCR evidence.
+2. Add absent-TOC-only opt-in aggregation to `portionize_toc_html_v1` and its
+   descriptor/tests. Keep detected TOC evidence with no admitted entries fatal.
+3. Enable the explicit policy in generic PDF and image recipes, which share this
+   module/contract. The existing intake planner already selects the generic route;
+   a new manual recipe alone would leave that selected route broken.
+4. Honor `single-document-fallback` source ownership in the builder. Reuse its
+   source-page sorting and provenance emission; test printed-label collisions
+   and uncovered pages without changing ordinary TOC ownership.
+5. Prove the repaired downstream path before the bounded fresh OCR run. Existing
+   Story167/210 OCR outputs are absent here. `onward-book-r1` is unsafe according
+   to current run health (27 empty-page flags); do not manufacture trust by adding
+   a favorable assessment. Four synthetic pages, one OCR attempt each, no SDK
+   retries or challenger, then reuse those artifacts for downstream iterations.
+
+The Ideal gap is usable, faithful, traceable output (requirements 3/5/6/7), under
+spec:1/2/3/6/7/8 and ADR-002. C1/C2/C3 remain climb, C6 hold; no compromise is
+retired. ADR-002 permits a structural document bundle with block citations; it
+does not require invented chapter boundaries. No schema or dependency change is
+planned. A deterministic aggregate is appropriate because it is exact page
+ownership/plumbing, not a semantic judgment: a decision model or language model
+would add uncertainty without information needed to preserve the input.
+
+Bounded research compared structural grouping with conservative aggregation:
+[Unstructured chunking](https://docs.unstructured.io/open-source/core-functionality/chunking)
+retains original elements and offers sequential/title-based approaches;
+[Docling chunking](https://docling-project.github.io/docling/concepts/chunking/)
+separates hierarchy-driven chunks from later size refinement;
+[HTML headings and outlines](https://html.spec.whatwg.org/multipage/sections.html#headings-and-outlines)
+allows heading structure inside one document. These are external design evidence,
+not local correctness proof. Reuse the existing `single-document-fallback` policy
+from the heading portionizer, preserving OCR heading tags inside one bundle entry.
+Do not import a new stack or infer chapter boundaries. Small local controls decide
+whether source-page ownership is preserved. Remaining uncertainty is OCR fidelity,
+especially headings on degraded page boundaries, and arbitrary real-scan breadth.
+
+### Continuation work log
+
+20261024 — resumed triage: all five neutral lanes reviewed, direct facts at
+`output/triage-20261024-resume-facts.json`; top three were scanned-prose final
+bundle gap, real-prose fidelity target qualification, and fresh report-only code
+cleanup. Story226 stays deferred for missing authentic planner images; handwriting
+and model retry blockers are unchanged. No paid retries were triggered by age.
+
+20261024 — baseline and strategy: source-level evidence suggested a TOC-only
+continuation; the real driver diagnostic reproduced the failure with two admitted
+rows and no final bundle. `/loop-review` replacement continuing reviewer
+`/root/resume_strategy` requested gpt-6-astra/ultra (strongest eligible runtime
+configuration; served identity not independently verified) reviewed the plan,
+then accepted absent-TOC-only aggregation on the existing generic route. Prior
+reviewer continuity is summary-based after interruption. Prior finish/landing
+recommendation was fulfilled at ec0043b; renewed user authorization supersedes
+the old stop. Worker `/root/resume_stories_architecture` uses gpt-6.1-sol/high for
+semantic contract implementation; parent owns builder, proof and final quality.
+Next checkpoint: first final bundle or 30 active minutes/three substantive rounds.
+
+
+20261024 — implementation and discriminating controls: added opt-in absent-TOC
+aggregation in the existing TOC module; generic PDF/image recipes opt in while
+the module default and specialized recipes stay strict. Positive unique source
+identities are required. Builder ownership now uses those identities instead of
+printed labels. Read-only review found that ordinary cross-page paragraph
+stitching could attribute both fragments to the first page; the failing CLI
+regression reproduced it. The fallback now bypasses inferred chapter refinement
+and paragraph stitching. `/root/resume_evals` re-reviewed the patch and real
+`story210-20261024-continuation-control/output/html/provenance/blocks.jsonl`:
+`We walked to the` cites page1/`p001-b1`, `harbor.` cites page2/`p002-b1`.
+Ordinary authored-TOC/heading paths retain their prior behavior. Driver controls
+also cover headingless input, mixed/reset printed labels, valid authored TOC,
+and malformed TOC (explicit failed stage, no builder output). The unchanged TOC
+controls remain applicable after the fallback-only builder correction.
+
+20261024 — final pipeline proof: `story210-20261024-degraded-fullpath` ran the
+maintained generic PDF recipe on `testdata/scanned-prose-degraded.pdf`. OCR was
+capped at four pages, one attempt per page, no SDK retries, 4096 output tokens,
+180-second request timeout and concurrency1. Initial sandbox DNS failure is
+retained in `output/triage-20261024-prose-audit/ocr-driver.log`; the same bounded
+request succeeded with network access. Downstream runs reused these four OCR
+rows after checking health (no fatal signals) and recording a scoped partial
+assessment. No further provider calls were made. Source images1–4 were opened
+and visually inspected; final HTML was inspected at top/middle/bottom and the
+index link was exercised in the browser.
+
+Inspected artifacts under `output/runs/story210-20261024-degraded-fullpath/`:
+- `01_extract_pdf_images_fast_v1/pages_images_manifest.jsonl` and its four PNGs:
+  visibly skewed/noisy but legible synthetic source, all pages traced to the PDF.
+- `02_ocr_ai_gpt51_v1/pages_html.jsonl`: 1129 source words preserved in order
+  under whitespace tokenization; `Harbor Ledger Notes` and `Morning Light`
+  retain heading tags. `The Stack Room`, `The Index Table`, and `Closing the
+  Shutters` remain paragraphs. This is the observed OCR limitation, not an
+  export repair or broad real-document qualification.
+- `06_portionize_toc_html_v1/portions_toc.jsonl`: one `document` portion,
+  `single-document-fallback`, source pages `[1,2,3,4]`.
+- `07_build_chapter_html_v1/chapters_manifest.jsonl` and
+  `output/html/{chapter-001.html,manifest.json,provenance/blocks.jsonl}`:
+  one final entry, 13 unique cited blocks, page counts5/3/3/2, exact OCR-to-HTML
+  block text/order/source-page agreement. Samples include page2/`p002-b2`
+  beginning `That morning she was looking for the Holm packet` and
+  page4/`p004-b2` ending `thanked every solid thing that held.`
+
+Comparison records are `output/triage-20261024-prose-audit/ocr-source-comparison.json`
+and `bundle-comparison.json`. No source/OCR artifacts were manually corrected.
+The historical coverage scores are retained; new coverage/runbook notes describe
+only this final-bundle preservation boundary. This is a runtime regression proof,
+not a new model-selection benchmark or changed eval/golden; registry scores are
+unchanged.
+
+20261024 — cost evidence and correction: `instrumentation_calls.jsonl` retains
+four provider-usage events (6144 input, 1532 output tokens) through the shared
+OpenAI wrapper. An initial interpretation that these were estimated counts was
+incorrect and was corrected in the user update and scoped assessment. Request
+IDs and cache-token details are absent. The old default price table lacks
+`gpt-5.1`, producing USD0.018416; standard uncached rates from
+[OpenAI pricing](https://developers.openai.com/api/docs/pricing) yield an
+estimated USD0.023, not a billing receipt. The original pre-resume summary is
+preserved in `output/triage-20261024-prose-audit/ocr-instrumentation-before-resume.json`,
+with the caveat in `ocr-cost-caveat.json`. Final resume instrumentation summarizes
+only resumed stages and reports zero calls despite the retained four-call ledger;
+this is a separate accounting contract question for the next zero-call triage,
+not a claim that the complete pipeline was free.
+
+
+20261024 — `/validate`: Grade A for the bounded continuation; all6 continuation
+requirements met. The changed runtime surface is the TOC fallback policy and
+aggregate builder branch. Final combined checks passed274 tests in82.39s:
+`tests/test_build_chapter_html.py`, `tests/test_portionize_toc_html.py`,
+`tests/test_portionize_headings_html_v1.py`, `tests/test_reference_integration.py`,
+`tests/test_pdf_intake_recipe.py`, and `tests/test_doc_web_bundle_contract.py`.
+`make lint`, `make methodology-compile`, `make methodology-check`, and
+`git diff --check` pass. This exercises complete builder tests plus affected
+heading/reference/bundle consumers and recipe wiring. The previous full-suite
+result at ec0043b applies to unchanged consumers only; it is not claimed as a
+full-suite pass for this patch. No dependencies, schemas or OCR models changed.
+The final descriptor wording/doc-only correction does not invalidate runtime
+checks. Evidence logs are in `output/triage-20261024-prose-audit/`.
+
+Findings-first ledger: accepted provenance finding reproduced and fixed, then
+independently re-reviewed as resolved; no further material findings.
+`codex review --uncommitted` could not start in this sandbox (read-only local
+state/app-server permission errors); `codex-review.log` is an unavailable signal,
+not a clean verdict. Continuing strategy reviewer `/root/resume_strategy` and
+fresh independent milestone reviewer `/root/prose_milestone_review` both found
+the preservation approach aligned. The fresh reviewer requested the now-applied
+claim correction: detected TOC evidence **with no admitted entries** prevents
+aggregation. No claim is made that every partially malformed TOC is rejected.
+Both strategy reviewers requested gpt-6-astra/ultra under the runtime policy;
+served identity was not independently verified. No recursive review or extra
+provider/OCR calls. T0–T5 remain verified for this continuation: exact source
+identities/citations, unchanged AI OCR, failing baseline before repair, unchanged
+source text, explicit modular opt-in, and manual source/output inspection.
+ADR-002 is already accepted; this bounded export fix does not close unrelated
+remaining migration/integration work. Learning review considered: no candidate;
+existing artifact/citation verification rules already cover the accepted defect.
+
+20261024 — closed via `/mark-story-done`: all6 continuation AC/task groups met,
+all workflow gates complete, no remaining implementation gap in this slice.
+Historical OCR acceptance and its limitations remain separate. Existing Story210
+changelog entry was extended with a dated continuation, not duplicated. Closure
+recommendation: Close now. `/finish-and-push` is the available landing route when
+requested; the current authorization continues triage/build without a new commit
+or push. Next loop: one zero-call diagnosis of resumed instrumentation accounting,
+then re-rank against authentic scanned-prose reference qualification.
+
+20261024 — user close-out override: stop the resumed loop after finishing current work, validate, commit and push. Story022 repaired the accounting issue exposed by this run; no authentic-source campaign was started. Return to `/finish-and-push`.

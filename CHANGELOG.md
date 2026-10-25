@@ -1179,6 +1179,7 @@
 
 ### Fixed
 - Fixed the earlier over-strong degraded-fixture claim by strengthening the synthetic preset until the committed asset actually looks degraded, then re-proving the OCR lane against that rougher file instead of preserving the old metrics by inertia
+- 2026-10-24 continuation: fixed the generic PDF/image OCR route failing after OCR when no authored TOC exists; explicit document aggregation preserves source-page ownership and separate page-crossing paragraph citations, while detected TOC evidence with no admitted entries prevents aggregation. Final synthetic four-page bundle inspected; real-scan and heading-fidelity limits remain explicit.
 
 ### Tested
 - `python -m pytest tests/`
@@ -3361,6 +3362,7 @@
 
 ### Changed
 - Story 022 marked Done; README updated with instrumentation enablement notes.
+- 2026-10-24 continuation: preserve recorded run usage across resume, rerun, failure and forced artifact rebuilds; reconstruct summaries from the ledger with explicit timing/estimate scope and incomplete-evidence warnings. Repeated valid skips retain actual execution timing and avoid new calls.
 
 ### Tested
 - `python -m pytest -q tests/test_instrumentation_schema.py`

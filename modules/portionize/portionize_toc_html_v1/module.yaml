@@ -3,9 +3,17 @@ stage: portionize
 entrypoint: modules/portionize/portionize_toc_html_v1/main.py
 input_schema: page_html_v1
 output_schema: portion_hyp_v1
-description: "Portionize chapters by parsing TOC entries from OCR HTML; uses printed page numbers for ranges."
+description: "Portionize chapters from authored TOC entries, with opt-in source-page aggregation only when TOC evidence is absent."
 params:
   - name: min_entries
     type: int
     default: 3
-notes: "Code-first TOC parsing; avoids book-specific rules, but mirrors existing TOC detection patterns."
+  - name: fallback_mode
+    type: string
+    default: error
+    description: "error (default) or single-document. The latter aggregates explicit source pages only when no TOC title or strong entry hints exist."
+  - name: fallback_title
+    type: string
+    default: Document
+    description: "Title for the opt-in single-document fallback."
+notes: "Authored TOC boundaries remain authoritative. Fallback preserves source-page identities, requires positive unique explicit IDs, and refuses aggregation when TOC evidence is detected but no entries were admitted."

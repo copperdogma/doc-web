@@ -707,8 +707,9 @@ def _select_pages_for_portion(portion: Dict[str, Any], pages_sorted: List[Dict[s
     }
     source_matches = [page for page in pages_sorted if _source_page_number(page) in source_pages]
 
-    # Source-only heading portions carry source-page coordinates, not printed-page ones.
-    if portion.get("notes") == "heading-derived-source-pages" and source_matches:
+    # These policies own explicit source pages; printed labels may be absent,
+    # offset or repeated and must not redefine which pages belong to the entry.
+    if portion.get("notes") in {"heading-derived-source-pages", "single-document-fallback"} and source_matches:
         return source_matches
 
     if isinstance(page_start, int):
@@ -1109,6 +1110,7 @@ def _build_segment(
     pages: List[Dict[str, Any]],
     *,
     carry_back: bool = False,
+    preserve_source_page_blocks: bool = False,
 ) -> Dict[str, Any]:
     source_pages = [p["page_number"] for p in pages if isinstance(p.get("page_number"), int)]
     source_printed_pages = [
@@ -1124,7 +1126,11 @@ def _build_segment(
         "page_end": page_end,
         "source_pages": source_pages,
         "source_printed_pages": source_printed_pages,
-        "body_html": _stitch_page_breaks([p["html"] for p in pages]),
+        "body_html": (
+            "\n".join(p["html"] for p in pages)
+            if preserve_source_page_blocks
+            else _stitch_page_breaks([p["html"] for p in pages])
+        ),
         "source_portion_title": portion_title,
         "source_portion_page_start": portion_page_start,
         "source_portion_titles": [portion_title],
@@ -3573,14 +3579,22 @@ def _build(args, html_dir: Path, published_html_dir: Path, run_dir: Path) -> Lis
             entry.get("kind") == "chapter" and _titles_related(title, entry.get("title"))
             for entry in chapter_files
         )
-        refined_segments = _refine_chapter_segments(
-            title,
-            page_start,
-            prepared_pages,
-            candidate_titles,
-            previous_title=chapter_files[-1]["title"] if chapter_files else None,
-            stale_portion=stale_portion,
-        )
+        if portion.get("notes") == "single-document-fallback":
+            # Aggregation owns pages, not inferred chapter boundaries or joined
+            # paragraphs: each block must retain one exact source-page citation.
+            refined_segments = [_build_segment(
+                title, title, page_start, prepared_pages,
+                preserve_source_page_blocks=True,
+            )]
+        else:
+            refined_segments = _refine_chapter_segments(
+                title,
+                page_start,
+                prepared_pages,
+                candidate_titles,
+                previous_title=chapter_files[-1]["title"] if chapter_files else None,
+                stale_portion=stale_portion,
+            )
 
         for segment in refined_segments:
             if segment.get("carry_back") and chapter_files:

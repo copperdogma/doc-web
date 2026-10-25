@@ -71,6 +71,8 @@ stages:
     inputs:
       pages: extract_page_numbers
     out: portions_toc.jsonl
+    params:
+      fallback_mode: single-document
 
   - id: build_chapters
     stage: build

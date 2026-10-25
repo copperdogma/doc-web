@@ -2,6 +2,7 @@
 """
 Portionize chapters from HTML by parsing TOC entries.
 Uses printed page numbers (from extract_page_numbers_html_v1) to set page ranges.
+Can explicitly aggregate documents without TOC evidence using source identities.
 """
 import argparse
 import re
@@ -98,11 +99,58 @@ def _slugify(text: str) -> str:
     return text or "chapter"
 
 
+def _has_strong_toc_hint(soup: BeautifulSoup) -> bool:
+    """Refuse to disguise an incomplete or malformed TOC as a flat document."""
+    for tag in soup.find_all(["h1", "h2", "h3", "h4", "h5", "h6", "p", "li", "td", "th"]):
+        text = tag.get_text(" ", strip=True)
+        if _normalize_ws(text).lower() in TOC_TITLE_PATTERNS:
+            return True
+        # A malformed destination may be Roman or named rather than numeric.
+        # Require an actual leader run and a short destination, not prose ellipses.
+        malformed_leader = re.fullmatch(
+            r".{0,139}?\S\s*\.{4,}\s*(?:[\w?+-]{1,24}(?:\s+[\w?+-]{1,24})?)?\s*", text,
+        )
+        if _looks_like_toc_entry(text) or malformed_leader:
+            return True
+    return False
+
+
+def _single_document_portion(rows: List[Dict[str, Any]], title: str) -> Dict[str, Any]:
+    source_pages = []
+    seen = set()
+    for row_number, row in enumerate(rows, 1):
+        source_page = row.get("page_number")
+        if source_page is None:
+            source_page = row.get("page")
+        if type(source_page) is not int or source_page <= 0:
+            raise SystemExit(f"Invalid source page identity in row {row_number}: {source_page!r}")
+        if source_page in seen:
+            raise SystemExit(f"Duplicate source page identity in row {row_number}: {source_page}")
+        seen.add(source_page)
+        source_pages.append(source_page)
+    source_pages.sort()
+    return {
+        "schema_version": "portion_hyp_v1",
+        "module_id": "portionize_toc_html_v1",
+        "portion_id": "document",
+        "page_start": source_pages[0],
+        "page_end": source_pages[-1],
+        "title": title.strip() or "Document",
+        "type": "chapter",
+        "confidence": 0.5,
+        "notes": "single-document-fallback",
+        "source_pages": source_pages,
+    }
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description="Portionize chapters using TOC entries from HTML pages.")
     parser.add_argument("--pages", required=True, help="page_html_v1 JSONL (with printed_page_number)")
     parser.add_argument("--out", required=True, help="Output portion_hyp_v1 JSONL")
     parser.add_argument("--min-entries", type=int, default=3, help="Minimum TOC-like lines to treat a page as TOC")
+    parser.add_argument("--fallback-mode", choices=["error", "single-document"], default="error",
+                        help="Opt into source-page aggregation only when no TOC evidence exists")
+    parser.add_argument("--fallback-title", default="Document", help="Title for single-document fallback")
     parser.add_argument("--run-id", dest="run_id", default=None, help="Ignored (driver compatibility)")
     parser.add_argument("--state-file", dest="state_file", default=None, help="Ignored (driver compatibility)")
     parser.add_argument("--progress-file", dest="progress_file", default=None, help="Ignored (driver compatibility)")
@@ -111,13 +159,20 @@ def main() -> None:
     rows = list(read_jsonl(args.pages))
     if not rows:
         raise SystemExit(f"Input is empty: {args.pages}")
+    for row_number, row in enumerate(rows, 1):
+        if not isinstance(row, dict):
+            raise SystemExit(f"Input row {row_number} must be an object")
+        if row.get("error"):
+            raise SystemExit(f"Input row {row_number} contains a producer error")
 
     max_printed = max((r.get("printed_page_number") for r in rows if isinstance(r.get("printed_page_number"), int)), default=None)
     entries: List[Dict[str, Any]] = []
+    has_toc_evidence = False
 
     for row in rows:
         html = row.get("html") or row.get("raw_html") or ""
         soup = BeautifulSoup(html, "html.parser")
+        has_toc_evidence = has_toc_evidence or _has_strong_toc_hint(soup)
         lines = [tag.get_text(" ", strip=True) for tag in soup.find_all(["h1", "h2", "h3", "p"])]
         table_entries = _extract_table_entries(soup)
         if not _is_toc_page(lines, args.min_entries, table_entry_count=len(table_entries)):
@@ -132,10 +187,14 @@ def main() -> None:
     entries = [e for e in entries if isinstance(e.get("page_start"), int)]
     entries.sort(key=lambda e: e["page_start"])
 
-    if not entries:
-        raise SystemExit("No TOC entries found; cannot build chapters.")
-
     portions = []
+    if not entries:
+        if args.fallback_mode != "single-document":
+            raise SystemExit("No TOC entries found; cannot build chapters.")
+        if has_toc_evidence:
+            raise SystemExit("TOC evidence is present but no entries were admitted; cannot use single-document fallback.")
+        portions.append(_single_document_portion(rows, args.fallback_title))
+
     for idx, ent in enumerate(entries):
         page_start = ent["page_start"]
         page_end = None

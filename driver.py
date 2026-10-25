@@ -20,12 +20,12 @@ import yaml
 from modules.common.utils import (
     ensure_dir,
     ProgressLogger,
-    append_jsonl,
     read_jsonl,
     save_json,
     utc_now,
 )
 from modules.common.run_registry import record_run_health, record_run_manifest
+from modules.common.run_instrumentation import read_report, retained_stage_metadata, reconcile_usage
 from validate_artifact import SCHEMA_MAP, iter_artifact_rows, validate_artifact_row
 from modules.common.utils import save_jsonl
 from schemas import RunConfig
@@ -125,7 +125,7 @@ def _preload_artifacts_from_state(state_path: str) -> Dict[str, Dict[str, str]]:
     artifacts: Dict[str, Dict[str, str]] = {}
     for sid, st in (state.get("stages") or {}).items():
         art = st.get("artifact")
-        if st.get("status") == "done" and art and os.path.exists(art):
+        if st.get("status") in {"done", "skipped"} and art and os.path.exists(art):
             artifacts[sid] = {"path": art, "schema": st.get("schema_version")}
     return artifacts
 
@@ -180,21 +180,6 @@ def _invalidate_downstream_outputs(
         )
 
 
-def _calc_cost(
-    model: str, prompt_tokens: int, completion_tokens: int, pricing: Dict[str, Any]
-) -> float:
-    if not pricing:
-        return 0.0
-    models = pricing.get("models", {})
-    default = pricing.get("default", {})
-    entry = models.get(model) or default
-    if not entry:
-        return 0.0
-    prompt_rate = entry.get("prompt_per_1k", 0) / 1000
-    completion_rate = entry.get("completion_per_1k", 0) / 1000
-    return round(prompt_tokens * prompt_rate + completion_tokens * completion_rate, 6)
-
-
 def _get_cpu_times():
     if not resource:
         return None
@@ -208,12 +193,17 @@ def _render_instrumentation_md(run_data: Dict[str, Any], path: str):
     lines.append("")
     totals = run_data.get("totals", {})
     currency = (run_data.get("pricing") or {}).get("currency", "USD")
-    lines.append(f"- Run started: {run_data.get('started_at')}")
-    lines.append(f"- Run ended: {run_data.get('ended_at')}")
+    lines.append(f"- Invocation started: {run_data.get('started_at')}")
+    lines.append(f"- Invocation ended: {run_data.get('ended_at')}")
     lines.append(
         f"- Wall time: {totals.get('wall_seconds') or run_data.get('wall_seconds') or 'n/a'} seconds"
     )
-    lines.append(f"- Total cost: {totals.get('cost', 0):.6f} {currency}")
+    lines.append(f"- Recorded run cost: {totals.get('cost', 0):.6f} {currency}")
+    lines.append("- Usage scope: cumulative recorded run history; wall/CPU time: current invocation.")
+    lines.append("- Cost basis: explicit event costs, otherwise estimates under the displayed price sheet.")
+    if totals.get("ledger_complete") is False:
+        lines.append("- WARNING: usage ledger is incomplete; totals cover admitted records only.")
+        lines.extend(f"  - {issue}" for issue in totals.get("ledger_issues", []))
     lines.append("")
     lines.append("## Per-model cost")
     per_model = totals.get("per_model", {})
@@ -227,14 +217,18 @@ def _render_instrumentation_md(run_data: Dict[str, Any], path: str):
     else:
         lines.append("_no LLM calls recorded_")
     lines.append("")
-    lines.append("## Stage timings")
+    lines.append("## Latest recorded stage timings and cumulative usage")
+    lines.append("Unknown timing is not reconstructed from usage events; status reflects current pipeline state.")
     lines.append("| stage | status | wall_s | user_s | sys_s | cost | calls |")
     lines.append("|---|---|---:|---:|---:|---:|---:|")
+    def timing(value):
+        return "unknown" if value is None else f"{value:.3f}"
+
     for st in run_data.get("stages", []):
         lt = st.get("llm_totals", {})
         lines.append(
-            f"| {st.get('id')} | {st.get('status')} | {st.get('wall_seconds') or 0:.3f} | "
-            f"{st.get('cpu_user_seconds') or 0:.3f} | {st.get('cpu_system_seconds') or 0:.3f} | "
+            f"| {st.get('id')} | {st.get('status')} | {timing(st.get('wall_seconds'))} | "
+            f"{timing(st.get('cpu_user_seconds'))} | {timing(st.get('cpu_system_seconds'))} | "
             f"{lt.get('cost', 0):.6f} | {lt.get('calls', 0)} |"
         )
     lines.append("")
@@ -638,7 +632,6 @@ def _default_run_id(base: str = "run") -> str:
     Format: <base>-YYYYMMDD-HHMMSS-<6hex>
     """
     import uuid
-    from datetime import datetime
 
     ts = datetime.now().strftime("%Y%m%d-%H%M%S")
     rand = uuid.uuid4().hex[:6]
@@ -2005,6 +1998,8 @@ def main():
     if instrument_enabled:
         instrumentation_paths = {"json": instr_json_path, "md": instr_md_path}
 
+    previous_instrumentation = read_report(instr_json_path, run_id) if instrument_enabled else {}
+
     apply_reference_resolution(recipe, args.resolve_references)
     plan = build_plan(recipe, registry)
     # Only validate schemas for stages we're actually running (skip validation if starting from a later stage)
@@ -2035,7 +2030,7 @@ def main():
     if os.path.exists(run_dir) and os.listdir(run_dir):
         if not (args.force or args.allow_run_id_reuse):
             print(
-                f"\n❌ ERROR: Output directory already exists and contains files:",
+                "\n❌ ERROR: Output directory already exists and contains files:",
                 file=sys.stderr,
             )
             print(f"  {run_dir}\n", file=sys.stderr)
@@ -2046,7 +2041,7 @@ def main():
             print("data corruption and hard-to-debug failures.\n", file=sys.stderr)
             print("Options:", file=sys.stderr)
             print(
-                "  --force              Delete existing directory and start fresh",
+                "  --force              Rebuild artifacts (retains recorded API usage)",
                 file=sys.stderr,
             )
             print(
@@ -2076,6 +2071,8 @@ def main():
             for item in os.listdir(run_dir):
                 item_path = os.path.join(run_dir, item)
                 item_abs = os.path.abspath(item_path)
+                if item == "instrumentation_calls.jsonl":
+                    continue  # Rebuilding artifacts cannot undo recorded spend.
                 if active_config_abs and item_abs == active_config_abs:
                     continue
                 if os.path.isdir(item_path):
@@ -2145,20 +2142,8 @@ def main():
         if instrument_enabled
         else None
     )
-    if instrument_enabled and args.force and sink_path and os.path.exists(sink_path):
-        os.remove(sink_path)
-    sink_offset = 0
-    stage_call_map: Dict[str, List[Dict[str, Any]]] = {}
     run_validation_failed = False
 
-    run_totals = {
-        "calls": 0,
-        "prompt_tokens": 0,
-        "completion_tokens": 0,
-        "cost": 0.0,
-        "per_model": {},
-        "wall_seconds": 0.0,
-    }
     instrumentation_run = None
     if instrument_enabled:
         instrumentation_run = {
@@ -2168,223 +2153,82 @@ def main():
             "recipe_path": recipe.get("recipe_path"),
             "started_at": run_started_at,
             "pricing": pricing,
-            "stages": [],
-            "totals": run_totals,
+            "stages": retained_stage_metadata(
+                previous_instrumentation, read_report(state_path, run_id)
+            ),
+            "totals": previous_instrumentation.get("totals", {}),
             "env": {"python_version": sys.version, "platform": sys.platform},
         }
 
-    def ingest_sink_events():
-        nonlocal sink_offset
-        if not instrument_enabled or not sink_path or not os.path.exists(sink_path):
-            return
-        with open(sink_path, "r", encoding="utf-8") as f:
-            f.seek(sink_offset)
-            data = f.read()
-            sink_offset = f.tell()
-        if not data:
-            return
-        for line in data.splitlines():
-            if not line.strip():
-                continue
-            try:
-                ev = json.loads(line)
-            except Exception:
-                continue
-            sid = ev.get("stage_id")
-            if sid:
-                stage_call_map.setdefault(sid, []).append(ev)
-
-    def _compute_llm_totals(calls: List[Dict[str, Any]]):
-        prompt_tokens = sum(int(c.get("prompt_tokens", 0)) for c in calls)
-        completion_tokens = sum(int(c.get("completion_tokens", 0)) for c in calls)
-        cost_total = 0.0
-        per_model: Dict[str, Dict[str, Any]] = {}
-        for c in calls:
-            model = c.get("model") or "unknown"
-            ev_cost = c.get("cost")
-            if ev_cost is None:
-                ev_cost = _calc_cost(
-                    model,
-                    int(c.get("prompt_tokens", 0)),
-                    int(c.get("completion_tokens", 0)),
-                    pricing,
-                )
-            cost_total += ev_cost
-            pm = per_model.setdefault(
-                model,
-                {"calls": 0, "prompt_tokens": 0, "completion_tokens": 0, "cost": 0.0},
+    def refresh_instrumentation_usage():
+        if instrument_enabled:
+            reconcile_usage(
+                instrumentation_run, sink_path, plan["nodes"],
+                read_report(state_path, run_id), time.perf_counter() - run_wall_start,
             )
-            pm["calls"] += 1
-            pm["prompt_tokens"] += int(c.get("prompt_tokens", 0))
-            pm["completion_tokens"] += int(c.get("completion_tokens", 0))
-            pm["cost"] += ev_cost
-        llm_totals = {
-            "calls": len(calls),
-            "prompt_tokens": prompt_tokens,
-            "completion_tokens": completion_tokens,
-            "cost": round(cost_total, 6),
-        }
-        return llm_totals, per_model
-
-    def _resolve_stage_calls(stage_id: str, module_id: str):
-        calls = stage_call_map.get(stage_id, [])
-        if calls:
-            return calls, stage_id
-        # Back-compat for OCR: older runs used stage_id="extract"
-        if module_id == "ocr_ai_gpt51_v1" and stage_call_map.get("extract"):
-            return stage_call_map.get("extract", []), "extract"
-        return [], stage_id
 
     def update_live_instrumentation(
-        stage_id: str,
-        module_id: str,
-        stage_description: str,
-        stage_started_at: str,
-        stage_wall_start: float,
-        stage_cpu_start,
-    ):
-        if not instrument_enabled or not instrumentation_run:
-            return
-        ingest_sink_events()
-        calls, call_stage_id = _resolve_stage_calls(stage_id, module_id)
-        llm_totals, per_model = _compute_llm_totals(calls)
-        wall_seconds = round(time.perf_counter() - stage_wall_start, 6)
-
-        # Replace any existing running entry for this stage
-        instrumentation_run["stages"] = [
-            s
-            for s in instrumentation_run["stages"]
-            if not (s.get("id") == stage_id and s.get("status") == "running")
-        ]
-        stage_entry = {
-            "schema_version": "instrumentation_stage_v1",
-            "id": stage_id,
-            "stage": plan["nodes"][stage_id]["stage"],
-            "module_id": module_id,
-            "description": stage_description,
-            "status": "running",
-            "artifact": plan["nodes"][stage_id].get("artifact"),
-            "schema_version_output": plan["nodes"][stage_id].get("output_schema"),
-            "started_at": stage_started_at,
-            "ended_at": None,
-            "wall_seconds": wall_seconds,
-            "cpu_user_seconds": None,
-            "cpu_system_seconds": None,
-            "llm_calls": calls,
-            "llm_totals": llm_totals,
-            "extra": {
-                "per_model": per_model,
-                "calls_stage_id": call_stage_id if call_stage_id != stage_id else None,
-            },
-        }
-        instrumentation_run["stages"].append(stage_entry)
-
-        # Compute live totals (completed stages + current running)
-        live_totals = {
-            "calls": 0,
-            "prompt_tokens": 0,
-            "completion_tokens": 0,
-            "cost": 0.0,
-            "per_model": {},
-            "wall_seconds": 0.0,
-        }
-        for s in instrumentation_run["stages"]:
-            totals = s.get("llm_totals") or {}
-            live_totals["calls"] += int(totals.get("calls", 0))
-            live_totals["prompt_tokens"] += int(totals.get("prompt_tokens", 0))
-            live_totals["completion_tokens"] += int(totals.get("completion_tokens", 0))
-            live_totals["cost"] = round(
-                live_totals["cost"] + float(totals.get("cost", 0.0)), 6
-            )
-            for model, stats in (s.get("extra", {}).get("per_model") or {}).items():
-                agg = live_totals["per_model"].setdefault(
-                    model,
-                    {
-                        "calls": 0,
-                        "prompt_tokens": 0,
-                        "completion_tokens": 0,
-                        "cost": 0.0,
-                    },
-                )
-                agg["calls"] += stats["calls"]
-                agg["prompt_tokens"] += stats["prompt_tokens"]
-                agg["completion_tokens"] += stats["completion_tokens"]
-                agg["cost"] = round(agg["cost"] + stats["cost"], 6)
-        live_totals["wall_seconds"] = round(time.perf_counter() - run_wall_start, 6)
-        instrumentation_run["totals"] = live_totals
-        save_json(instr_json_path, instrumentation_run)
-
-    def record_stage_instrumentation(
-        stage_id: str,
-        module_id: str,
-        status: str,
-        artifact_path: str,
-        schema_version: str,
-        stage_started_at: str,
-        stage_wall_start: float,
-        stage_cpu_start,
+        stage_id: str, module_id: str, stage_description: str,
+        stage_started_at: str, stage_wall_start: float, stage_cpu_start,
     ):
         if not instrument_enabled:
             return
-        ingest_sink_events()
-        ended_at = utc_now()
-        wall_seconds = round(time.perf_counter() - stage_wall_start, 6)
+        stage_entry = {
+            "schema_version": "instrumentation_stage_v1", "id": stage_id,
+            "stage": plan["nodes"][stage_id]["stage"], "module_id": module_id,
+            "description": stage_description, "status": "running",
+            "artifact": plan["nodes"][stage_id].get("artifact"),
+            "schema_version_output": plan["nodes"][stage_id].get("output_schema"),
+            "started_at": stage_started_at, "ended_at": None,
+            "wall_seconds": round(time.perf_counter() - stage_wall_start, 6),
+            "cpu_user_seconds": None, "cpu_system_seconds": None,
+            "extra": {"timing_scope": "current_execution"},
+        }
+        instrumentation_run["stages"] = [
+            stage for stage in instrumentation_run["stages"] if stage.get("id") != stage_id
+        ] + [stage_entry]
+        refresh_instrumentation_usage()
+        save_json(instr_json_path, instrumentation_run)
+
+    def record_stage_instrumentation(
+        stage_id: str, module_id: str, status: str, artifact_path: str,
+        schema_version: str, stage_started_at: str, stage_wall_start: float, stage_cpu_start,
+    ):
+        if not instrument_enabled:
+            return
         cpu_user = cpu_sys = None
         end_cpu = _get_cpu_times()
         if stage_cpu_start and end_cpu:
             cpu_user = round(end_cpu[0] - stage_cpu_start[0], 6)
             cpu_sys = round(end_cpu[1] - stage_cpu_start[1], 6)
-        calls, call_stage_id = _resolve_stage_calls(stage_id, module_id)
-        if call_stage_id != stage_id:
-            stage_call_map.pop(call_stage_id, None)
-        else:
-            stage_call_map.pop(stage_id, None)
-        llm_totals, per_model = _compute_llm_totals(calls)
         stage_entry = {
-            "schema_version": "instrumentation_stage_v1",
-            "id": stage_id,
-            "stage": plan["nodes"][stage_id]["stage"],
-            "module_id": module_id,
+            "schema_version": "instrumentation_stage_v1", "id": stage_id,
+            "stage": plan["nodes"][stage_id]["stage"], "module_id": module_id,
             "description": plan["nodes"][stage_id].get("description"),
-            "status": status,
-            "artifact": artifact_path,
-            "schema_version_output": schema_version,
-            "started_at": stage_started_at,
-            "ended_at": ended_at,
-            "wall_seconds": wall_seconds,
-            "cpu_user_seconds": cpu_user,
-            "cpu_system_seconds": cpu_sys,
-            "llm_calls": calls,
-            "llm_totals": llm_totals,
-            "extra": {
-                "per_model": per_model,
-                "calls_stage_id": call_stage_id if call_stage_id != stage_id else None,
-            },
+            "status": status, "artifact": artifact_path,
+            "schema_version_output": schema_version, "started_at": stage_started_at,
+            "ended_at": utc_now(), "wall_seconds": round(time.perf_counter() - stage_wall_start, 6),
+            "cpu_user_seconds": cpu_user, "cpu_system_seconds": cpu_sys,
+            "extra": {"timing_scope": "current_execution"},
         }
-        # Remove any running entry for this stage before appending final entry.
-        instrumentation_run["stages"] = [
-            s
-            for s in instrumentation_run["stages"]
-            if not (s.get("id") == stage_id and s.get("status") == "running")
-        ]
-        instrumentation_run["stages"].append(stage_entry)
-        run_totals["calls"] += llm_totals["calls"]
-        run_totals["prompt_tokens"] += llm_totals["prompt_tokens"]
-        run_totals["completion_tokens"] += llm_totals["completion_tokens"]
-        run_totals["cost"] = round(run_totals["cost"] + llm_totals["cost"], 6)
-        for model, stats in per_model.items():
-            agg = run_totals["per_model"].setdefault(
-                model,
-                {"calls": 0, "prompt_tokens": 0, "completion_tokens": 0, "cost": 0.0},
+        if status == "skipped":
+            prior = next((entry for entry in instrumentation_run["stages"]
+                          if entry.get("id") == stage_id), {})
+            for key in ("started_at", "ended_at", "wall_seconds", "cpu_user_seconds", "cpu_system_seconds"):
+                stage_entry[key] = prior.get(key)
+            stage_entry["extra"]["timing_scope"] = (
+                "latest_recorded_execution" if prior.get("wall_seconds") is not None else "unknown"
             )
-            agg["calls"] += stats["calls"]
-            agg["prompt_tokens"] += stats["prompt_tokens"]
-            agg["completion_tokens"] += stats["completion_tokens"]
-            agg["cost"] = round(agg["cost"] + stats["cost"], 6)
-        run_totals["wall_seconds"] = round(time.perf_counter() - run_wall_start, 6)
-        instrumentation_run["totals"] = run_totals
+        instrumentation_run["stages"] = [
+            stage for stage in instrumentation_run["stages"] if stage.get("id") != stage_id
+        ] + [stage_entry]
+        refresh_instrumentation_usage()
         save_json(instr_json_path, instrumentation_run)
         _render_instrumentation_md(instrumentation_run, instr_md_path)
+
+    if instrument_enabled:
+        refresh_instrumentation_usage()
+        save_json(instr_json_path, instrumentation_run)
 
     # Build stage ordinal map for module folder naming (01_, 02_, etc.)
     stage_ordinal_map: Dict[str, int] = {}
@@ -2420,7 +2264,7 @@ def main():
                     st = state.get("stages", {}).get(stage_id)
                     if (
                         st
-                        and st.get("status") == "done"
+                        and st.get("status") in {"done", "skipped"}
                         and st.get("artifact")
                         and os.path.exists(st.get("artifact"))
                     ):
@@ -2450,7 +2294,7 @@ def main():
                 st = state.get("stages", {}).get(stage_id)
                 if (
                     st
-                    and st.get("status") == "done"
+                    and st.get("status") in {"done", "skipped"}
                     and os.path.exists(st.get("artifact", ""))
                 ):
                     expensive_stages = {"extract", "intake", "escalate_vision"}
@@ -2495,7 +2339,7 @@ def main():
                 st = state.get("stages", {}).get(stage_id)
                 if (
                     st
-                    and st.get("status") == "done"
+                    and st.get("status") in {"done", "skipped"}
                     and os.path.exists(st.get("artifact", ""))
                     and not args.force
                 ):
@@ -2596,7 +2440,6 @@ def main():
                     else:
                         artifact_inputs[extra_key] = extra_origin
                 # Schema checks
-                pages_schema = artifact_index[pages_from].get("schema")
                 portions_schema = artifact_index[portions_from].get("schema")
                 if (
                     node.get("input_schema")
@@ -2865,7 +2708,7 @@ def main():
         if args.mock and stage == "clean":
             upstream = needs[0] if needs else None
             if not upstream:
-                raise SystemExit(f"Mock clean needs upstream extract output")
+                raise SystemExit("Mock clean needs upstream extract output")
             pages_path = artifact_index[upstream]["path"]
             artifact_path = mock_clean(pages_path, artifact_path, module_id, run_id)
             update_state(
@@ -2894,7 +2737,7 @@ def main():
         if args.mock and stage == "portionize":
             upstream = needs[0] if needs else None
             if not upstream:
-                raise SystemExit(f"Mock portionize needs upstream clean output")
+                raise SystemExit("Mock portionize needs upstream clean output")
             pages_path = artifact_index[upstream]["path"]
             artifact_path = mock_portionize(
                 pages_path, artifact_path, module_id, run_id
@@ -2925,7 +2768,7 @@ def main():
         if args.mock and stage == "consensus":
             upstream = needs[0] if needs else None
             if not upstream:
-                raise SystemExit(f"Mock consensus needs upstream portionize output")
+                raise SystemExit("Mock consensus needs upstream portionize output")
             in_path = artifact_index[upstream]["path"]
             artifact_path = mock_consensus(in_path, artifact_path, module_id, run_id)
             update_state(
@@ -3111,6 +2954,7 @@ def main():
             break
 
     if instrument_enabled and instrumentation_run:
+        refresh_instrumentation_usage()
         instrumentation_run["ended_at"] = utc_now()
         instrumentation_run["wall_seconds"] = round(
             time.perf_counter() - run_wall_start, 6

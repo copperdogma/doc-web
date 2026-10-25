@@ -118,6 +118,7 @@ Grouped by primary `spec:N` category. Stories without category refs remain in an
 | 248 | Experimental sidecar disagreement warning integration | Medium | Done | 233, 234 | [story-248](stories/story-248-experimental-disagreement-warning.md) |
 | 249 | Haiku 5.5 maintained task value evaluation | Medium | Done | 233, 244 | [story-249](stories/story-249-haiku55-maintained-evaluation.md) |
 | 252 | Gemini4 Argon maintained fidelity evaluation | Medium | Done | 245 | [story-252](stories/story-252-gemini4-argon-maintained-fidelity.md) |
+| 022 | Pipeline instrumentation (timing & cost) | Unknown | Done | — | [story-022](stories/story-022-instrumentation.md) |
 
 ### spec:3 — Layout & Structure Understanding
 
@@ -236,7 +237,6 @@ Grouped by primary `spec:N` category. Stories without category refs remain in an
 | 019 | Pipeline visibility dashboard | Unknown | Done | [story-019](stories/story-019-pipeline-visibility.md) |
 | 020 | Module encapsulation & shared common | Unknown | Done | [story-020](stories/story-020-module-encapsulation.md) |
 | 021 | Pipeline dashboard UI polish (highlighting & pane layout) | Unknown | Done | [story-021](stories/story-021-dashboard-ui-polish.md) |
-| 022 | Pipeline instrumentation (timing & cost) | Unknown | Done | [story-022](stories/story-022-instrumentation.md) |
 | 023 | Consolidate section target adapters | Unknown | Done | [story-023](stories/story-023-section-target-guard.md) |
 | 024 | Image Extraction & Section Association | Unknown | Done | [story-024](stories/story-024-image-cropper-followup.md) |
 | 025 | Module pruning & registry hygiene | Unknown | Done | [story-025](stories/story-025-module-prune.md) |

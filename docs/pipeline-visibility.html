@@ -1390,8 +1390,11 @@
         `${stats.failed} failed`,
         getRunDurationHtml(state, events)
       ]));
-      const costCard = makeStatCard("Total Cost", instrumentation ? formatCurrency(instrumentation.totals?.cost, currency) : "N/A", [
+      const costTitle = instrumentation?.totals?.ledger_complete === false ? "Recorded Cost (partial)" : "Recorded Cost";
+      const costCard = makeStatCard(costTitle, instrumentation ? formatCurrency(instrumentation.totals?.cost, currency) : "N/A", [
         instrumentation ? `Currency: ${currency}` : "Instrumentation not found",
+        instrumentation?.totals?.ledger_complete === false ? "Incomplete usage ledger; totals cover admitted records only" : "",
+        instrumentation?.totals?.usage_scope === "recorded_run_history" ? "All recorded calls across resumes; token-based costs are estimates" : "",
         instrumentation ? `Calls: ${instrumentation.totals?.calls || 0}` : "",
         instrumentation ? `Tokens: ${instrumentation.totals?.prompt_tokens || 0} / ${instrumentation.totals?.completion_tokens || 0}` : "",
         `<button class="btn-small" id="toggle-cost-breakdown">${costBreakdownOpen ? "Hide" : "Show"} Cost Breakdown</button>`
@@ -1450,7 +1453,7 @@
         const stats = document.createElement("div");
         stats.className = "meta";
         stats.innerHTML = `
-          <span>Total cost: ${formatCurrency(totals.cost, currency)}</span>
+          <span>Recorded cost${totals.ledger_complete === false ? " (partial)" : ""}: ${formatCurrency(totals.cost, currency)}</span>
           <span>Calls: ${totals.calls || 0}</span>
           <span>Tokens: ${totals.prompt_tokens || 0} / ${totals.completion_tokens || 0}</span>
         `;

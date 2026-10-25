@@ -185,6 +185,7 @@
           "last_reviewed": "2026-04-04"
         },
         "story_ids": [
+          "022",
           "131",
           "134",
           "138",
@@ -315,6 +316,7 @@
           "202",
           "203",
           "206",
+          "210",
           "213",
           "219",
           "220",
@@ -510,6 +512,7 @@
           "203",
           "205",
           "206",
+          "210",
           "213",
           "218",
           "219",
@@ -596,6 +599,7 @@
           "203",
           "205",
           "206",
+          "210",
           "213",
           "218",
           "219",
@@ -635,6 +639,7 @@
           "last_reviewed": "2026-04-09"
         },
         "story_ids": [
+          "022",
           "148",
           "155",
           "169",
@@ -1047,6 +1052,7 @@
           "last_reviewed": "2026-04-04"
         },
         "story_ids": [
+          "022",
           "134",
           "140",
           "141",
@@ -1094,6 +1100,7 @@
             "summary": "MiniMax exact GA via pinned Minimax free route, high32768 requested; strict404 parameter-filter; prompt-only diagnostics capability-only, no production schema parity. Attempt080/Story258: safety diagnostic20/22vsGPT18..."
           },
           "story_ids": [
+            "022",
             "134",
             "140",
             "141",
@@ -1167,6 +1174,7 @@
           "202",
           "203",
           "206",
+          "210",
           "213",
           "219",
           "220",
@@ -1232,6 +1240,7 @@
             "202",
             "203",
             "206",
+            "210",
             "213",
             "219",
             "220",
@@ -1667,23 +1676,25 @@
           "last_reviewed": "2026-04-04"
         },
         "story_ids": [
+          "022",
           "173"
         ],
         "eval_ids": [],
         "actionability": {
           "source_kind": "story",
-          "source_id": "173",
-          "source_path": "docs/stories/story-173-dossier-doc-web-adoption-hardening.md",
+          "source_id": "022",
+          "source_path": "docs/stories/story-022-instrumentation.md",
           "recommended_now": false,
           "posture": "completed",
-          "why_now": "post-close install hardening follow-up: the axios npm compromise made the remaining package-resolution risk concrete, so I audited whether repo-local release-age gating would actually protect this checkout. Verdict: y...",
+          "why_now": "`/mark-story-done`: all continuation tasks/ACs and T0\u2013T5 verified,",
           "last_relevant_action": {
-            "date": "2026-03-31",
+            "date": "2026-10-24",
             "source_type": "story-work-log",
-            "source": "docs/stories/story-173-dossier-doc-web-adoption-hardening.md",
-            "summary": "post-close install hardening follow-up: the axios npm compromise made the remaining package-resolution risk concrete, so I audited whether repo-local release-age gating would actually protect this checkout. Verdict: y..."
+            "source": "docs/stories/story-022-instrumentation.md",
+            "summary": "`/mark-story-done`: all continuation tasks/ACs and T0\u2013T5 verified,"
           },
           "story_ids": [
+            "022",
             "173"
           ],
           "eval_ids": []
@@ -2738,19 +2749,32 @@
       "status": "Done",
       "priority": "Unknown",
       "ideal_refs": [],
-      "spec_refs": [],
+      "spec_refs": [
+        "spec:2",
+        "spec:8"
+      ],
       "decision_refs": [],
       "adr_ids": [],
       "depends_on": [],
-      "category_refs": [],
-      "compromise_refs": [],
+      "category_refs": [
+        "spec:2",
+        "spec:8"
+      ],
+      "compromise_refs": [
+        "B3",
+        "C6"
+      ],
       "input_coverage_refs": [],
       "architecture_domains": [],
       "roadmap_tags": [],
       "blocker_summary": "",
       "blocker_evidence": "",
       "unblock_condition": "",
-      "last_work_log_entry": null,
+      "last_work_log_entry": {
+        "timestamp": "20261024",
+        "date": "2026-10-24",
+        "summary": "`/mark-story-done`: all continuation tasks/ACs and T0\u2013T5 verified,"
+      },
       "legacy_build_map_refs": "",
       "metadata_source": "frontmatter",
       "missing_frontmatter_keys": [],
@@ -2760,12 +2784,12 @@
         "source_path": "docs/stories/story-022-instrumentation.md",
         "recommended_now": false,
         "posture": "completed",
-        "why_now": "",
+        "why_now": "`/mark-story-done`: all continuation tasks/ACs and T0\u2013T5 verified,",
         "last_relevant_action": {
-          "date": null,
-          "source_type": "story-status",
+          "date": "2026-10-24",
+          "source_type": "story-work-log",
           "source": "docs/stories/story-022-instrumentation.md",
-          "summary": ""
+          "summary": "`/mark-story-done`: all continuation tasks/ACs and T0\u2013T5 verified,"
         }
       }
     },
@@ -11567,10 +11591,15 @@
         "spec:2",
         "spec:2.1",
         "spec:2.2",
+        "spec:3",
+        "spec:6",
+        "spec:7",
         "spec:8"
       ],
       "decision_refs": [
-        "`docs/ideal.md`, `docs/spec.md`, `docs/methodology/state.yaml`, `docs/methodology/graph.json`, `docs/RUNBOOK.md`, `docs/runbooks/golden-build.md`, `tests/fixtures/formats/_coverage-matrix.json`, `docs/stories/story-157-pdf-intake-parity-with-image-directory-inputs.md`, `docs/stories/story-167-repo-owned-scanned-prose-pdf-fixture.md`, and `None found after search in docs/decisions/`, `docs/scout/`, and `docs/notes/` for a narrower degraded-scanned-prose proof ADR or note"
+        "`docs/decisions/adr-002-doc-web-runtime-boundary/adr.md` (2026-10-24 export continuation)",
+        "adr-002",
+        "historical fixture context: `docs/ideal.md`, `docs/spec.md`, `docs/methodology/state.yaml`, `docs/methodology/graph.json`, `docs/RUNBOOK.md`, `docs/runbooks/golden-build.md`, `tests/fixtures/formats/_coverage-matrix.json`, `docs/stories/story-157-pdf-intake-parity-with-image-directory-inputs.md`, `docs/stories/story-167-repo-owned-scanned-prose-pdf-fixture.md`, and `None found after search in docs/decisions/`, `docs/scout/`, and `docs/notes/` for a narrower degraded-scanned-prose proof ADR or note"
       ],
       "adr_ids": [],
       "depends_on": [
@@ -11579,12 +11608,16 @@
       "category_refs": [
         "spec:1",
         "spec:2",
+        "spec:3",
+        "spec:6",
+        "spec:7",
         "spec:8"
       ],
       "compromise_refs": [
         "B1",
         "C1",
         "C2",
+        "C3",
         "C6"
       ],
       "input_coverage_refs": [
@@ -11598,9 +11631,9 @@
       "blocker_evidence": "",
       "unblock_condition": "",
       "last_work_log_entry": {
-        "timestamp": "20260411-0008",
-        "date": "2026-04-11",
-        "summary": "story closed via `/mark-story-done`: reran the full validation surface after the stronger degraded preset so the close-out rests on current evidence, not the earlier milder asset. Fresh close-out checks in this pass:..."
+        "timestamp": "20261024",
+        "date": "2026-10-24",
+        "summary": "user close-out override: stop the resumed loop after finishing current work, validate, commit and push. Story022 repaired the accounting issue exposed by this run; no authentic-source campaign was started. Return to `..."
       },
       "legacy_build_map_refs": "",
       "metadata_source": "frontmatter",
@@ -11611,12 +11644,12 @@
         "source_path": "docs/stories/story-210-degraded-scanned-prose-proof-lane.md",
         "recommended_now": false,
         "posture": "completed",
-        "why_now": "story closed via `/mark-story-done`: reran the full validation surface after the stronger degraded preset so the close-out rests on current evidence, not the earlier milder asset. Fresh close-out checks in this pass:...",
+        "why_now": "user close-out override: stop the resumed loop after finishing current work, validate, commit and push. Story022 repaired the accounting issue exposed by this run; no authentic-source campaign was started. Return to `...",
         "last_relevant_action": {
-          "date": "2026-04-11",
+          "date": "2026-10-24",
           "source_type": "story-work-log",
           "source": "docs/stories/story-210-degraded-scanned-prose-proof-lane.md",
-          "summary": "story closed via `/mark-story-done`: reran the full validation surface after the stronger degraded preset so the close-out rests on current evidence, not the earlier milder asset. Fresh close-out checks in this pass:..."
+          "summary": "user close-out override: stop the resumed loop after finishing current work, validate, commit and push. Story022 repaired the accounting issue exposed by this run; no authentic-source campaign was started. Return to `..."
         }
       }
     },
@@ -20506,7 +20539,7 @@
           "provenance_completeness": 1.0,
           "measured": "2026-04-10",
           "provenance_measured": "2026-04-10",
-          "notes": "Story 167 proved the clean repo-owned simple-prose scanned lane as an exact normalized match. Story 210 widened the bounded support slice to one repo-owned synthetic degraded/noisy variant on the same checked-in source text. After strengthening the degraded preset to be visibly rougher, the fresh `driver.py` proof on 2026-04-10 still preserved the prose with normalized text ratio `0.996038` and full provenance, while page-level `ocr_quality` fell to `0.94-0.96` and minor page-boundary section headings still degraded to paragraph tags on some pages. This remains synthetic evidence, not a blanket claim about real-world degraded scanned prose."
+          "notes": "Story 167 proved the clean repo-owned simple-prose scanned lane as an exact normalized match. Story 210 widened the bounded support slice to one repo-owned synthetic degraded/noisy variant on the same checked-in source text. After strengthening the degraded preset to be visibly rougher, the fresh `driver.py` proof on 2026-04-10 still preserved the prose with normalized text ratio `0.996038` and full provenance, while page-level `ocr_quality` fell to `0.94-0.96` and minor page-boundary section headings still degraded to paragraph tags on some pages. This remains synthetic evidence, not a blanket claim about real-world degraded scanned prose. Story 210 continuation on 2026-10-24 additionally proved the generic recipe through final doc-web HTML: one absent-TOC aggregate owns all four source pages, with 13 cited blocks and all 1129 source words preserved in order. This is export-preservation evidence; the three page-boundary heading tags remain paragraphs and real-world scan breadth remains unmeasured. Historical scores above are unchanged."
         },
         "known_gaps": [
           "Current degraded/noisy evidence is still synthetic and simple-prose only; broader real-world degraded scanned-prose quality remains unmeasured.",
