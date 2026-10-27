@@ -1,0 +1,935 @@
+{
+  "cap_usd": 12,
+  "spent_usd": 0.27373875,
+  "calls": [
+    {
+      "stage": "native-table",
+      "model": "gpt-6.1-terra",
+      "reserved_usd": 0.29634,
+      "cost_usd": 0.000794,
+      "request": "benchmarks/results/scout103-20261026/request-001.json",
+      "request_sha256": "67248fa33a7577167f7b8c8be78b562c9f4adb0f8cbfad4a3b741195b6d164e2",
+      "response": "benchmarks/results/scout103-20261026/response-001.json",
+      "response_sha256": "341392e06e44369c4b6e250ad7bc6eb805e4689ab62682ee26bdcd75a18c5fa2",
+      "status_code": 200,
+      "latency_ms": 2515,
+      "usage": {
+        "input_tokens": 604,
+        "input_tokens_details": {
+          "cache_write_tokens": 0,
+          "cached_tokens": 0
+        },
+        "output_tokens": 38,
+        "output_tokens_details": {
+          "reasoning_tokens": 17
+        },
+        "total_tokens": 642
+      },
+      "served_model": "gpt-6.1-terra",
+      "provider": "OpenAI"
+    },
+    {
+      "stage": "native-crop",
+      "model": "gpt-6.1-terra",
+      "reserved_usd": 0.21442,
+      "cost_usd": 0.000683,
+      "request": "benchmarks/results/scout103-20261026/request-002.json",
+      "request_sha256": "9e80d3465e4c5d4e653f6d1eba4d92e2dfe38dff57faa65ceef4b525ba02e52a",
+      "response": "benchmarks/results/scout103-20261026/response-002.json",
+      "response_sha256": "697d88748ddd252f173749a215cc87ef198b608feb6e7f0ef227b23e15308ee9",
+      "status_code": 200,
+      "latency_ms": 3257,
+      "usage": {
+        "input_tokens": 133,
+        "input_tokens_details": {
+          "cache_write_tokens": 0,
+          "cached_tokens": 0
+        },
+        "output_tokens": 110,
+        "output_tokens_details": {
+          "reasoning_tokens": 68
+        },
+        "total_tokens": 243
+      },
+      "served_model": "gpt-6.1-terra",
+      "provider": "OpenAI"
+    },
+    {
+      "stage": "native-ocr",
+      "model": "gpt-6.1-terra",
+      "reserved_usd": 0.29634,
+      "cost_usd": 0.000275,
+      "request": "benchmarks/results/scout103-20261026/request-003.json",
+      "request_sha256": "40d84f1f284fa84fd613edea6868b853694e0f8c6ee98caed86914488f9d383c",
+      "response": "benchmarks/results/scout103-20261026/response-003.json",
+      "response_sha256": "d7259e32e41b896a37ef9add46be42403faa52507c5f9e65dd627a67622bf67a",
+      "status_code": 200,
+      "latency_ms": 1615,
+      "usage": {
+        "input_tokens": 85,
+        "input_tokens_details": {
+          "cache_write_tokens": 0,
+          "cached_tokens": 0
+        },
+        "output_tokens": 38,
+        "output_tokens_details": {
+          "reasoning_tokens": 26
+        },
+        "total_tokens": 123
+      },
+      "served_model": "gpt-6.1-terra",
+      "provider": "OpenAI"
+    },
+    {
+      "stage": "table-image-positive-candidate",
+      "model": "gpt-6.1-terra",
+      "reserved_usd": 0.29634,
+      "cost_usd": 0.0178905,
+      "request": "benchmarks/results/scout103-20261026/request-004.json",
+      "request_sha256": "c4ed545a5bde4cad40292f7c1798cd043c3d2c6f2e8b94d2f7c123b27ca67894",
+      "response": "benchmarks/results/scout103-20261026/response-004.json",
+      "response_sha256": "383fd24fa61df128865ac94a78a2db6ba01ef2e06533def7172b9174dd164ca4",
+      "status_code": 200,
+      "latency_ms": 27560,
+      "usage": {
+        "input_tokens": 5017,
+        "input_tokens_details": {
+          "cache_write_tokens": 5014,
+          "cached_tokens": 0
+        },
+        "output_tokens": 2324,
+        "output_tokens_details": {
+          "reasoning_tokens": 2024
+        },
+        "total_tokens": 7341
+      },
+      "served_model": "gpt-6.1-terra",
+      "provider": "OpenAI"
+    },
+    {
+      "stage": "table-image-positive-control",
+      "model": "gpt-6-astra",
+      "reserved_usd": 1.5,
+      "cost_usd": 0.0811925,
+      "request": "benchmarks/results/scout103-20261026/request-005.json",
+      "request_sha256": "e6235031e3cac69a3f5d01f343d3353c728a73bc7d4e0fa043959507638e9d30",
+      "response": "benchmarks/results/scout103-20261026/response-005.json",
+      "response_sha256": "2bf199175dc2f79015f1e04dc2c72cf2afb0dda8e4b38e9ddffb6e8b016a4678",
+      "status_code": 200,
+      "latency_ms": 9876,
+      "usage": {
+        "input_tokens": 5016,
+        "input_tokens_details": {
+          "cache_write_tokens": 5013,
+          "cached_tokens": 0
+        },
+        "output_tokens": 370,
+        "output_tokens_details": {
+          "reasoning_tokens": 127
+        },
+        "total_tokens": 5386
+      },
+      "served_model": "gpt-6-astra",
+      "provider": "OpenAI"
+    },
+    {
+      "stage": "crop-screen-Image011-candidate",
+      "model": "gpt-6.1-terra",
+      "reserved_usd": 0.21442,
+      "cost_usd": 0.00554925,
+      "request": "benchmarks/results/scout103-20261026/request-006.json",
+      "request_sha256": "6e1748a98b78ef3c19956cf174e721dce116819c6df5fa97972c8f62248ed006",
+      "response": "benchmarks/results/scout103-20261026/response-006.json",
+      "response_sha256": "0e0d6c38c0907ade0d65c362587fe33a0d2c286f9295cd8992f8e8ae6add57fe",
+      "status_code": 200,
+      "latency_ms": 2737,
+      "usage": {
+        "input_tokens": 3984,
+        "input_tokens_details": {
+          "cache_write_tokens": 3981,
+          "cached_tokens": 0
+        },
+        "output_tokens": 114,
+        "output_tokens_details": {
+          "reasoning_tokens": 40
+        },
+        "total_tokens": 4098
+      },
+      "served_model": "gpt-6.1-terra",
+      "provider": "OpenAI"
+    },
+    {
+      "stage": "crop-screen-Image011-control",
+      "model": "gemini-3-flash-preview",
+      "reserved_usd": 0.062152,
+      "cost_usd": 0.0045395,
+      "request": "benchmarks/results/scout103-20261026/request-007.json",
+      "request_sha256": "242f8833652c89a4b1ac2591289afba7bc19e1ca44556e2c570f5f4648e54994",
+      "response": "benchmarks/results/scout103-20261026/response-007.json",
+      "response_sha256": "1741d679f8598b5ff753fe975f6b5da4c70cd45d2473cc61a47711dfd5cd36bd",
+      "status_code": 200,
+      "latency_ms": 7534,
+      "usage": {
+        "promptTokenCount": 1333,
+        "candidatesTokenCount": 113,
+        "totalTokenCount": 2624,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 231
+          },
+          {
+            "modality": "IMAGE",
+            "tokenCount": 1102
+          }
+        ],
+        "thoughtsTokenCount": 1178,
+        "serviceTier": "standard"
+      },
+      "served_model": "gemini-3-flash-preview",
+      "provider": "Google"
+    },
+    {
+      "stage": "crop-screen-Image001-candidate",
+      "model": "gpt-6.1-terra",
+      "reserved_usd": 0.21442,
+      "cost_usd": 0.00582925,
+      "request": "benchmarks/results/scout103-20261026/request-008.json",
+      "request_sha256": "1a00fa281e0598d61812ada49ed4600049364fe22d47f19273c6ae217bf2ffaa",
+      "response": "benchmarks/results/scout103-20261026/response-008.json",
+      "response_sha256": "f2a5e543c13290f7d1a8ace80df25442eff14b71d60b72fd62ffe77b39e9d612",
+      "status_code": 200,
+      "latency_ms": 4345,
+      "usage": {
+        "input_tokens": 3984,
+        "input_tokens_details": {
+          "cache_write_tokens": 3981,
+          "cached_tokens": 0
+        },
+        "output_tokens": 170,
+        "output_tokens_details": {
+          "reasoning_tokens": 114
+        },
+        "total_tokens": 4154
+      },
+      "served_model": "gpt-6.1-terra",
+      "provider": "OpenAI"
+    },
+    {
+      "stage": "crop-screen-Image001-control",
+      "model": "gemini-3-flash-preview",
+      "reserved_usd": 0.062152,
+      "cost_usd": 0.0041105,
+      "request": "benchmarks/results/scout103-20261026/request-009.json",
+      "request_sha256": "01b4129b1c68907267cb3e71fc64bd3517497b103f7c28fb085982eef0f5e296",
+      "response": "benchmarks/results/scout103-20261026/response-009.json",
+      "response_sha256": "21de661c1a44a8ec3fb16eb79231cdeb13f341321910a7e8caf520c0495ca3e9",
+      "status_code": 200,
+      "latency_ms": 6705,
+      "usage": {
+        "promptTokenCount": 1333,
+        "candidatesTokenCount": 70,
+        "totalTokenCount": 2481,
+        "promptTokensDetails": [
+          {
+            "modality": "IMAGE",
+            "tokenCount": 1102
+          },
+          {
+            "modality": "TEXT",
+            "tokenCount": 231
+          }
+        ],
+        "thoughtsTokenCount": 1078,
+        "serviceTier": "standard"
+      },
+      "served_model": "gemini-3-flash-preview",
+      "provider": "Google"
+    },
+    {
+      "stage": "ocr-barney-candidate",
+      "model": "gpt-6.1-terra",
+      "reserved_usd": 0.29634,
+      "cost_usd": 0.02337175,
+      "request": "benchmarks/results/scout103-20261026/request-010.json",
+      "request_sha256": "d9cefbe3382533a4ae7c39c6b658103560c7b5b62dda28f8aacef61b079ef72f",
+      "response": "benchmarks/results/scout103-20261026/response-010.json",
+      "response_sha256": "d5a460db834f271141d18708f660a8cc23c1f63613da57c6d51b27160278465b",
+      "status_code": 200,
+      "latency_ms": 49403,
+      "usage": {
+        "input_tokens": 1302,
+        "input_tokens_details": {
+          "cache_write_tokens": 1299,
+          "cached_tokens": 0
+        },
+        "output_tokens": 4349,
+        "output_tokens_details": {
+          "reasoning_tokens": 3974
+        },
+        "total_tokens": 5651
+      },
+      "served_model": "gpt-6.1-terra",
+      "provider": "OpenAI"
+    },
+    {
+      "stage": "crop-screen-Image000-candidate-recovery1",
+      "model": "gpt-6.1-terra",
+      "reserved_usd": 0.21442,
+      "cost_usd": 0.00542425,
+      "request": "benchmarks/results/scout103-20261026/request-011.json",
+      "request_sha256": "86fce8b029d3f3fbfd24074ad99115d7b78078edc095fc135f97c65f74af3154",
+      "response": "benchmarks/results/scout103-20261026/response-011.json",
+      "response_sha256": "2d81db618a7f1fd8f37dab733aa60f1526ba3699a5d2d85086b7cad2bfe8056d",
+      "status_code": 200,
+      "latency_ms": 3515,
+      "usage": {
+        "input_tokens": 3908,
+        "input_tokens_details": {
+          "cache_write_tokens": 3905,
+          "cached_tokens": 0
+        },
+        "output_tokens": 108,
+        "output_tokens_details": {
+          "reasoning_tokens": 54
+        },
+        "total_tokens": 4016
+      },
+      "served_model": "gpt-6.1-terra",
+      "provider": "OpenAI"
+    },
+    {
+      "stage": "ocr-barney-control",
+      "model": "gemini-3.7-flash",
+      "reserved_usd": 0.08094,
+      "cost_usd": 0.02522925,
+      "request": "benchmarks/results/scout103-20261026/request-012.json",
+      "request_sha256": "367d52133d49c5a8433552634fd7b72e11cfca7ca316539d63ba9699c4892d2b",
+      "response": "benchmarks/results/scout103-20261026/response-012.json",
+      "response_sha256": "94f8ec4fd7504249fb238be657d3997224da3e8a78b8c4ac7cc7722b2001a176",
+      "status_code": 200,
+      "latency_ms": 53199,
+      "usage": {
+        "promptTokenCount": 2029,
+        "candidatesTokenCount": 380,
+        "totalTokenCount": 8351,
+        "promptTokensDetails": [
+          {
+            "modality": "IMAGE",
+            "tokenCount": 1073
+          },
+          {
+            "modality": "TEXT",
+            "tokenCount": 956
+          }
+        ],
+        "thoughtsTokenCount": 5942,
+        "serviceTier": "standard"
+      },
+      "served_model": "gemini-3.8-flash",
+      "provider": "Google"
+    },
+    {
+      "stage": "crop-screen-Image000-control",
+      "model": "gemini-3-flash-preview",
+      "reserved_usd": 0.062152,
+      "cost_usd": 0.0041675,
+      "request": "benchmarks/results/scout103-20261026/request-013.json",
+      "request_sha256": "6239875f0624ff1eb55c31f8a386a40e031168b01f5491acbc81906c2a0651c9",
+      "response": "benchmarks/results/scout103-20261026/response-013.json",
+      "response_sha256": "f4bbaa080b4e41bb2d4704bfd4b314aeb2afc01380499fa2f2aae5d6472b27b2",
+      "status_code": 200,
+      "latency_ms": 7569,
+      "usage": {
+        "promptTokenCount": 1333,
+        "candidatesTokenCount": 91,
+        "totalTokenCount": 2500,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 231
+          },
+          {
+            "modality": "IMAGE",
+            "tokenCount": 1102
+          }
+        ],
+        "thoughtsTokenCount": 1076,
+        "serviceTier": "standard"
+      },
+      "served_model": "gemini-3-flash-preview",
+      "provider": "Google"
+    },
+    {
+      "stage": "crop-screen-Image003-candidate",
+      "model": "gpt-6.1-terra",
+      "reserved_usd": 0.21442,
+      "cost_usd": 0.00545425,
+      "request": "benchmarks/results/scout103-20261026/request-014.json",
+      "request_sha256": "986a801725b3eb144b91f7fa162a86d02304100796a1f3c812e5743ac2e81566",
+      "response": "benchmarks/results/scout103-20261026/response-014.json",
+      "response_sha256": "ce12bbe251fee3f1740545a9053954775a5e863ed26ea02d2431eaf8fbbb1c51",
+      "status_code": 200,
+      "latency_ms": 2788,
+      "usage": {
+        "input_tokens": 3984,
+        "input_tokens_details": {
+          "cache_write_tokens": 3981,
+          "cached_tokens": 0
+        },
+        "output_tokens": 95,
+        "output_tokens_details": {
+          "reasoning_tokens": 42
+        },
+        "total_tokens": 4079
+      },
+      "served_model": "gpt-6.1-terra",
+      "provider": "OpenAI"
+    },
+    {
+      "stage": "crop-screen-Image003-control",
+      "model": "gemini-3-flash-preview",
+      "reserved_usd": 0.062152,
+      "cost_usd": 0.0033425,
+      "request": "benchmarks/results/scout103-20261026/request-015.json",
+      "request_sha256": "0678d76e8bbc40b8867facb609d017f95020e5bcb53519e7bb663fe951769366",
+      "response": "benchmarks/results/scout103-20261026/response-015.json",
+      "response_sha256": "bfce1e0ebc9b06bfe1be2b1da34a432b4576cec5ee03784fcc362da8b5e174a7",
+      "status_code": 200,
+      "latency_ms": 5518,
+      "usage": {
+        "promptTokenCount": 1333,
+        "candidatesTokenCount": 65,
+        "totalTokenCount": 2225,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 231
+          },
+          {
+            "modality": "IMAGE",
+            "tokenCount": 1102
+          }
+        ],
+        "thoughtsTokenCount": 827,
+        "serviceTier": "standard"
+      },
+      "served_model": "gemini-3-flash-preview",
+      "provider": "Google"
+    },
+    {
+      "stage": "crop-screen-Image008-candidate",
+      "model": "gpt-6.1-terra",
+      "reserved_usd": 0.21442,
+      "cost_usd": 0.00543425,
+      "request": "benchmarks/results/scout103-20261026/request-016.json",
+      "request_sha256": "5ba5604ef7080d1e8fe7e752cb0dba6390bca772ccb08af12fd60ea2abd3e8e2",
+      "response": "benchmarks/results/scout103-20261026/response-016.json",
+      "response_sha256": "ea4c20dd6bf058dc761fbae69f40f8dbc0e4e7cf2bf630c5429159644a66c96d",
+      "status_code": 200,
+      "latency_ms": 2921,
+      "usage": {
+        "input_tokens": 3984,
+        "input_tokens_details": {
+          "cache_write_tokens": 3981,
+          "cached_tokens": 0
+        },
+        "output_tokens": 91,
+        "output_tokens_details": {
+          "reasoning_tokens": 37
+        },
+        "total_tokens": 4075
+      },
+      "served_model": "gpt-6.1-terra",
+      "provider": "OpenAI"
+    },
+    {
+      "stage": "crop-screen-Image008-control",
+      "model": "gemini-3-flash-preview",
+      "reserved_usd": 0.062152,
+      "cost_usd": 0.0026375,
+      "request": "benchmarks/results/scout103-20261026/request-017.json",
+      "request_sha256": "1dfc824d33f35fa451b526b795882a3b0d62f3ac68b43b41e56fa667c7aa9664",
+      "response": "benchmarks/results/scout103-20261026/response-017.json",
+      "response_sha256": "96e376c21b891086b88635d5f71725497cb99ead4931afab00153774aa13783f",
+      "status_code": 200,
+      "latency_ms": 5236,
+      "usage": {
+        "promptTokenCount": 1333,
+        "candidatesTokenCount": 66,
+        "totalTokenCount": 1990,
+        "promptTokensDetails": [
+          {
+            "modality": "IMAGE",
+            "tokenCount": 1102
+          },
+          {
+            "modality": "TEXT",
+            "tokenCount": 231
+          }
+        ],
+        "thoughtsTokenCount": 591,
+        "serviceTier": "standard"
+      },
+      "served_model": "gemini-3-flash-preview",
+      "provider": "Google"
+    },
+    {
+      "stage": "crop-screen-Image013-candidate",
+      "model": "gpt-6.1-terra",
+      "reserved_usd": 0.21442,
+      "cost_usd": 0.00543425,
+      "request": "benchmarks/results/scout103-20261026/request-018.json",
+      "request_sha256": "396490516c0b643f7e49bb91d11c626d521cebc5ef686239477c3ce751bc813a",
+      "response": "benchmarks/results/scout103-20261026/response-018.json",
+      "response_sha256": "bd0544c6e138eef9053355dfe31dddc04471c424637f20bf85f1e80a4f5e51c8",
+      "status_code": 200,
+      "latency_ms": 2907,
+      "usage": {
+        "input_tokens": 3984,
+        "input_tokens_details": {
+          "cache_write_tokens": 3981,
+          "cached_tokens": 0
+        },
+        "output_tokens": 91,
+        "output_tokens_details": {
+          "reasoning_tokens": 40
+        },
+        "total_tokens": 4075
+      },
+      "served_model": "gpt-6.1-terra",
+      "provider": "OpenAI"
+    },
+    {
+      "stage": "crop-screen-Image013-control",
+      "model": "gemini-3-flash-preview",
+      "reserved_usd": 0.062152,
+      "cost_usd": 0.0036845,
+      "request": "benchmarks/results/scout103-20261026/request-019.json",
+      "request_sha256": "c873916ab505ac44160df5787c20d3486ddd02c31f292d0834eda31e982dcf43",
+      "response": "benchmarks/results/scout103-20261026/response-019.json",
+      "response_sha256": "2a084456b041d97831ffec5a2aaab70a71c88ba1a5b607e7edb7193429adb14b",
+      "status_code": 200,
+      "latency_ms": 6321,
+      "usage": {
+        "promptTokenCount": 1333,
+        "candidatesTokenCount": 76,
+        "totalTokenCount": 2339,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 231
+          },
+          {
+            "modality": "IMAGE",
+            "tokenCount": 1102
+          }
+        ],
+        "thoughtsTokenCount": 930,
+        "serviceTier": "standard"
+      },
+      "served_model": "gemini-3-flash-preview",
+      "provider": "Google"
+    },
+    {
+      "stage": "crop-screen-Image020-candidate",
+      "model": "gpt-6.1-terra",
+      "reserved_usd": 0.21442,
+      "cost_usd": 0.00560425,
+      "request": "benchmarks/results/scout103-20261026/request-020.json",
+      "request_sha256": "4a0bc28b77fc1eab6e36356aa91313622a0db8ae6c357c775b3251c965e7295b",
+      "response": "benchmarks/results/scout103-20261026/response-020.json",
+      "response_sha256": "0a6e3613755ace9e766a25c409aaafa589f26df434ec11cb00a1186dd7093a1d",
+      "status_code": 200,
+      "latency_ms": 3310,
+      "usage": {
+        "input_tokens": 3984,
+        "input_tokens_details": {
+          "cache_write_tokens": 3981,
+          "cached_tokens": 0
+        },
+        "output_tokens": 125,
+        "output_tokens_details": {
+          "reasoning_tokens": 42
+        },
+        "total_tokens": 4109
+      },
+      "served_model": "gpt-6.1-terra",
+      "provider": "OpenAI"
+    },
+    {
+      "stage": "crop-screen-Image020-control",
+      "model": "gemini-3-flash-preview",
+      "reserved_usd": 0.062152,
+      "cost_usd": 0.0055535,
+      "request": "benchmarks/results/scout103-20261026/request-021.json",
+      "request_sha256": "15cf72c367c960515e3e53a7f220a89c9518462615802099d50d467adda099d8",
+      "response": "benchmarks/results/scout103-20261026/response-021.json",
+      "response_sha256": "59d558881631abfbb281f223c0525b0b197789d34198c7daf08f00c249252398",
+      "status_code": 200,
+      "latency_ms": 8666,
+      "usage": {
+        "promptTokenCount": 1333,
+        "candidatesTokenCount": 96,
+        "totalTokenCount": 2962,
+        "promptTokensDetails": [
+          {
+            "modality": "IMAGE",
+            "tokenCount": 1102
+          },
+          {
+            "modality": "TEXT",
+            "tokenCount": 231
+          }
+        ],
+        "thoughtsTokenCount": 1533,
+        "serviceTier": "standard"
+      },
+      "served_model": "gemini-3-flash-preview",
+      "provider": "Google"
+    },
+    {
+      "stage": "crop-screen-Image021-candidate",
+      "model": "gpt-6.1-terra",
+      "reserved_usd": 0.21442,
+      "cost_usd": 0.00540925,
+      "request": "benchmarks/results/scout103-20261026/request-022.json",
+      "request_sha256": "42ffca0a09373f723e4003884d1efaf828d0b40854416f5bb231d24313443be4",
+      "response": "benchmarks/results/scout103-20261026/response-022.json",
+      "response_sha256": "f8d79ea4a86e42c39cd077ad2fadd506fc7676927ba31d0b69ca174ff3674551",
+      "status_code": 200,
+      "latency_ms": 3087,
+      "usage": {
+        "input_tokens": 3984,
+        "input_tokens_details": {
+          "cache_write_tokens": 3981,
+          "cached_tokens": 0
+        },
+        "output_tokens": 86,
+        "output_tokens_details": {
+          "reasoning_tokens": 35
+        },
+        "total_tokens": 4070
+      },
+      "served_model": "gpt-6.1-terra",
+      "provider": "OpenAI"
+    },
+    {
+      "stage": "crop-screen-Image021-control",
+      "model": "gemini-3-flash-preview",
+      "reserved_usd": 0.062152,
+      "cost_usd": 0.0021755,
+      "request": "benchmarks/results/scout103-20261026/request-023.json",
+      "request_sha256": "ede3f7f9999cf06b79e3e9afbfa0ea2f2b999ccc866fb50b0e343c0639ff94cc",
+      "response": "benchmarks/results/scout103-20261026/response-023.json",
+      "response_sha256": "c169be061e38cf8e5b545b462a5cb19d8ea82b4fc0c7bd288257b7f5bbce31d4",
+      "status_code": 200,
+      "latency_ms": 3819,
+      "usage": {
+        "promptTokenCount": 1333,
+        "candidatesTokenCount": 67,
+        "totalTokenCount": 1836,
+        "promptTokensDetails": [
+          {
+            "modality": "IMAGE",
+            "tokenCount": 1102
+          },
+          {
+            "modality": "TEXT",
+            "tokenCount": 231
+          }
+        ],
+        "thoughtsTokenCount": 436,
+        "serviceTier": "standard"
+      },
+      "served_model": "gemini-3-flash-preview",
+      "provider": "Google"
+    },
+    {
+      "stage": "crop-screen-Image037-candidate",
+      "model": "gpt-6.1-terra",
+      "reserved_usd": 0.21442,
+      "cost_usd": 0.00569925,
+      "request": "benchmarks/results/scout103-20261026/request-024.json",
+      "request_sha256": "2ef9f117732aedbe8fe475bea55e51a721d1d4b76a336130138aee46f93cf67f",
+      "response": "benchmarks/results/scout103-20261026/response-024.json",
+      "response_sha256": "bad6049231ab4ec8c8f5e38e0e87e17eaa2080c0f8ef3c274ff47e41628557b4",
+      "status_code": 200,
+      "latency_ms": 3361,
+      "usage": {
+        "input_tokens": 3984,
+        "input_tokens_details": {
+          "cache_write_tokens": 3981,
+          "cached_tokens": 0
+        },
+        "output_tokens": 144,
+        "output_tokens_details": {
+          "reasoning_tokens": 59
+        },
+        "total_tokens": 4128
+      },
+      "served_model": "gpt-6.1-terra",
+      "provider": "OpenAI"
+    },
+    {
+      "stage": "crop-screen-Image037-control",
+      "model": "gemini-3-flash-preview",
+      "reserved_usd": 0.062152,
+      "cost_usd": 0.0079535,
+      "request": "benchmarks/results/scout103-20261026/request-025.json",
+      "request_sha256": "8003657cc3c5963f0986aedf82e1881a9fc4f9d34b8ed2a6da8c7bf9f2d56d8e",
+      "response": "benchmarks/results/scout103-20261026/response-025.json",
+      "response_sha256": "ac41b5fa51f7ad8db595bc79dfadd297d16e6594837a9bc8566d530ebb9fe86c",
+      "status_code": 200,
+      "latency_ms": 11255,
+      "usage": {
+        "promptTokenCount": 1333,
+        "candidatesTokenCount": 104,
+        "totalTokenCount": 3762,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 231
+          },
+          {
+            "modality": "IMAGE",
+            "tokenCount": 1102
+          }
+        ],
+        "thoughtsTokenCount": 2325,
+        "serviceTier": "standard"
+      },
+      "served_model": "gemini-3-flash-preview",
+      "provider": "Google"
+    },
+    {
+      "stage": "crop-screen-Image059-candidate",
+      "model": "gpt-6.1-terra",
+      "reserved_usd": 0.21442,
+      "cost_usd": 0.00541925,
+      "request": "benchmarks/results/scout103-20261026/request-026.json",
+      "request_sha256": "1defd80c2cf4bf18ac3692d8f5fa4e3525bcf9fa597b63925f5cbb09ece26886",
+      "response": "benchmarks/results/scout103-20261026/response-026.json",
+      "response_sha256": "7bb2fc90be84e54bf62b856de5381a51564ce1c86217ff584988db0e9e4de173",
+      "status_code": 200,
+      "latency_ms": 2640,
+      "usage": {
+        "input_tokens": 3984,
+        "input_tokens_details": {
+          "cache_write_tokens": 3981,
+          "cached_tokens": 0
+        },
+        "output_tokens": 88,
+        "output_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "total_tokens": 4072
+      },
+      "served_model": "gpt-6.1-terra",
+      "provider": "OpenAI"
+    },
+    {
+      "stage": "crop-screen-Image059-control",
+      "model": "gemini-3-flash-preview",
+      "reserved_usd": 0.062152,
+      "cost_usd": 0.0040265,
+      "request": "benchmarks/results/scout103-20261026/request-027.json",
+      "request_sha256": "8a47a2e83cb5aaf18d298dbd166fb96c12132ffad2e773588357378d1ae57c4d",
+      "response": "benchmarks/results/scout103-20261026/response-027.json",
+      "response_sha256": "e900e9d7b5df1c1206248c8ee6ab320357a2c772847b246f1fa52666dac49012",
+      "status_code": 200,
+      "latency_ms": 6333,
+      "usage": {
+        "promptTokenCount": 1333,
+        "candidatesTokenCount": 107,
+        "totalTokenCount": 2453,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 231
+          },
+          {
+            "modality": "IMAGE",
+            "tokenCount": 1102
+          }
+        ],
+        "thoughtsTokenCount": 1013,
+        "serviceTier": "standard"
+      },
+      "served_model": "gemini-3-flash-preview",
+      "provider": "Google"
+    },
+    {
+      "stage": "crop-screen-Image121-candidate",
+      "model": "gpt-6.1-terra",
+      "reserved_usd": 0.21442,
+      "cost_usd": 0.00582925,
+      "request": "benchmarks/results/scout103-20261026/request-028.json",
+      "request_sha256": "f555b0fab30d25b47e4c66bbe72da1d0fddc087e2f01ccbfdd7cba401335db05",
+      "response": "benchmarks/results/scout103-20261026/response-028.json",
+      "response_sha256": "fb293539794fcc39c18f71352f75d2454451109e0eaac7cdaad28d9cefe69646",
+      "status_code": 200,
+      "latency_ms": 3769,
+      "usage": {
+        "input_tokens": 3984,
+        "input_tokens_details": {
+          "cache_write_tokens": 3981,
+          "cached_tokens": 0
+        },
+        "output_tokens": 170,
+        "output_tokens_details": {
+          "reasoning_tokens": 51
+        },
+        "total_tokens": 4154
+      },
+      "served_model": "gpt-6.1-terra",
+      "provider": "OpenAI"
+    },
+    {
+      "stage": "crop-screen-Image121-control",
+      "model": "gemini-3-flash-preview",
+      "reserved_usd": 0.062152,
+      "cost_usd": 0.0031055,
+      "request": "benchmarks/results/scout103-20261026/request-029.json",
+      "request_sha256": "4406971fd4bbf662c9d44c0df1f3e78b2314293f166d9b7a762fa5cc84dc9834",
+      "response": "benchmarks/results/scout103-20261026/response-029.json",
+      "response_sha256": "17ccf15702e089060fe25898fe5a1a40aae1544ea025cdb1bb5ac804c8521337",
+      "status_code": 200,
+      "latency_ms": 5082,
+      "usage": {
+        "promptTokenCount": 1333,
+        "candidatesTokenCount": 154,
+        "totalTokenCount": 2146,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 231
+          },
+          {
+            "modality": "IMAGE",
+            "tokenCount": 1102
+          }
+        ],
+        "thoughtsTokenCount": 659,
+        "serviceTier": "standard"
+      },
+      "served_model": "gemini-3-flash-preview",
+      "provider": "Google"
+    },
+    {
+      "stage": "crop-screen-Image124-candidate",
+      "model": "gpt-6.1-terra",
+      "reserved_usd": 0.21442,
+      "cost_usd": 0.00545425,
+      "request": "benchmarks/results/scout103-20261026/request-030.json",
+      "request_sha256": "a03a0555332cc585fc4f0503bdf840a4908f74891aa296baa3f985e341d005d6",
+      "response": "benchmarks/results/scout103-20261026/response-030.json",
+      "response_sha256": "9cdbb0254e5a03f0818cb04898b5c68f8288475eb30571ac6b5ee7290dcb86d3",
+      "status_code": 200,
+      "latency_ms": 2646,
+      "usage": {
+        "input_tokens": 3984,
+        "input_tokens_details": {
+          "cache_write_tokens": 3981,
+          "cached_tokens": 0
+        },
+        "output_tokens": 95,
+        "output_tokens_details": {
+          "reasoning_tokens": 42
+        },
+        "total_tokens": 4079
+      },
+      "served_model": "gpt-6.1-terra",
+      "provider": "OpenAI"
+    },
+    {
+      "stage": "crop-screen-Image124-control",
+      "model": "gemini-3-flash-preview",
+      "reserved_usd": 0.062152,
+      "cost_usd": 0.0033845,
+      "request": "benchmarks/results/scout103-20261026/request-031.json",
+      "request_sha256": "34ff8c8cbbb4a97ce12bc31430f7d892e9d36a1a91d820fd518617a4ebc0a214",
+      "response": "benchmarks/results/scout103-20261026/response-031.json",
+      "response_sha256": "4a9d632380493cf0f3106c42b2b46bdfe73f0f4512e3dea8e048c38dda53fde9",
+      "status_code": 200,
+      "latency_ms": 6040,
+      "usage": {
+        "promptTokenCount": 1333,
+        "candidatesTokenCount": 74,
+        "totalTokenCount": 2239,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 231
+          },
+          {
+            "modality": "IMAGE",
+            "tokenCount": 1102
+          }
+        ],
+        "thoughtsTokenCount": 832,
+        "serviceTier": "standard"
+      },
+      "served_model": "gemini-3-flash-preview",
+      "provider": "Google"
+    },
+    {
+      "stage": "crop-screen-Image126-candidate",
+      "model": "gpt-6.1-terra",
+      "reserved_usd": 0.21442,
+      "cost_usd": 0.00568425,
+      "request": "benchmarks/results/scout103-20261026/request-032.json",
+      "request_sha256": "71482c2b76a76e6b583e4d35e86a0e8490c49cac7e54dfb9c978e3d69f441d44",
+      "response": "benchmarks/results/scout103-20261026/response-032.json",
+      "response_sha256": "d5326fbf853fb11799ee2a147bb4fc3eb33db8bee358563dcf7eac08ca118d7a",
+      "status_code": 200,
+      "latency_ms": 3414,
+      "usage": {
+        "input_tokens": 3984,
+        "input_tokens_details": {
+          "cache_write_tokens": 3981,
+          "cached_tokens": 0
+        },
+        "output_tokens": 141,
+        "output_tokens_details": {
+          "reasoning_tokens": 60
+        },
+        "total_tokens": 4125
+      },
+      "served_model": "gpt-6.1-terra",
+      "provider": "OpenAI"
+    },
+    {
+      "stage": "crop-screen-Image126-control",
+      "model": "gemini-3-flash-preview",
+      "reserved_usd": 0.062152,
+      "cost_usd": 0.0033965,
+      "request": "benchmarks/results/scout103-20261026/request-033.json",
+      "request_sha256": "7342ab06d3a173309298362832fbd334ba0f0c27c46ca5a00da13e46ae0363aa",
+      "response": "benchmarks/results/scout103-20261026/response-033.json",
+      "response_sha256": "730e14b192cd1a6cfa3e6426c8c2fe8a06f4e61f04287373b5549783f6fdbf48",
+      "status_code": 200,
+      "latency_ms": 4867,
+      "usage": {
+        "promptTokenCount": 1333,
+        "candidatesTokenCount": 102,
+        "totalTokenCount": 2243,
+        "promptTokensDetails": [
+          {
+            "modality": "IMAGE",
+            "tokenCount": 1102
+          },
+          {
+            "modality": "TEXT",
+            "tokenCount": 231
+          }
+        ],
+        "thoughtsTokenCount": 808,
+        "serviceTier": "standard"
+      },
+      "served_model": "gemini-3-flash-preview",
+      "provider": "Google"
+    }
+  ],
+  "closed": true
+}

@@ -1,0 +1,62 @@
+{
+  "cap_usd": 12,
+  "spent_usd": 0.27373875,
+  "unknown_exposure_usd": 0,
+  "dispatches": 33,
+  "subjects_fresh": true,
+  "judge_cost_usd": 0,
+  "crop": {
+    "candidate": {
+      "cases": 13,
+      "tolerant_passes": 13,
+      "mean_score": 0.9785769230769231,
+      "subject_cost_usd": 0.07222525,
+      "native_http_mean_ms": 3187.6923076923076,
+      "native_http_median_ms": 3087,
+      "raw_box_axis_oracle": "maintained scorer unchanged; per-case normalization records retained"
+    },
+    "control": {
+      "cases": 13,
+      "tolerant_passes": 13,
+      "mean_score": 0.9589,
+      "subject_cost_usd": 0.0520775,
+      "native_http_mean_ms": 6534.2307692307695,
+      "native_http_median_ms": 6321,
+      "raw_box_axis_oracle": "maintained scorer unchanged; per-case normalization records retained"
+    },
+    "source_review": {
+      "candidate_integral_content_clear": 12,
+      "cover_extent_unresolved": 1,
+      "definite_integral_amputations": 0,
+      "full_source_acceptance": false
+    }
+  },
+  "tables": {
+    "cases": 1,
+    "candidate_exact_cells": 22,
+    "control_exact_cells": 23,
+    "clear_cells_tested": 23,
+    "candidate_clear_holds": 1,
+    "candidate_accepted_wrong_cells": 0,
+    "later_clear_cells_unmeasured": 13,
+    "genuine_ambiguity_cells_unmeasured": 2
+  },
+  "ocr": {
+    "candidate_barney_ratio": 0.96527,
+    "threshold": 0.99,
+    "control_requested": "gemini-3.7-flash",
+    "control_served": "gemini-3.8-flash",
+    "control_quarantined": true,
+    "fresh_relative_claim": false
+  },
+  "scope_holds": [
+    "Image000 undecorated cover extent unresolved; integral decorated content retained",
+    "both-arm crop scoring uses golden-assisted axis normalization; not native coordinate parity",
+    "Attempt083 production grouping policy hold unchanged; no actual consumer qualification",
+    "handwriting production OpenAI integration not qualified by eval-only shim"
+  ],
+  "credential_custody": "existing owner credentials via normal DOC_WEB_ENV_FILE primary override; no copy/injection/cleanup required",
+  "native_cost_usd": 0.001752,
+  "table_cost_usd": 0.099083,
+  "ocr_cost_usd": 0.048601000000000005
+}

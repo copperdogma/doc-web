@@ -1,0 +1,9 @@
+{
+  "raw": "```json\n{\"images\": [{\"description\": \"A black and white photograph of a man and a woman, identified by the caption as Moise and Sophie L'Heureux around 1910.\", \"bbox\": [0.095, 0.415, 0.488, 0.716]}]}\n```",
+  "score": {
+    "pass": true,
+    "score": 0.9399,
+    "reason": "box_count=1.00 (1/1) | iou_mean=0.883 | iou_min=0.883 | coverage=0.996 | total=0.940 | matches=[pred[0]<->gold[0] IoU=0.883]"
+  },
+  "served": "gemini-3-flash-preview"
+}

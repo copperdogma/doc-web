@@ -1,0 +1,47 @@
+[
+  {
+    "fixture": "barney",
+    "arm": "candidate",
+    "driver_exit": 0,
+    "score": {
+      "transcript_path": "/Users/cam/.codex/worktrees/scout103-terra-20261026/doc-web/testdata/handwritten-notes-barney-real.txt",
+      "artifact_path": "/Users/cam/.codex/worktrees/scout103-terra-20261026/doc-web/output/runs/scout103-ocr-barney-candidate-20261026/02_ocr_ai_gpt51_v1/pages_html.jsonl",
+      "page_count": 1,
+      "missing_pages": [],
+      "extra_pages": [],
+      "overall_ratio": 0.96527,
+      "overall_exact_match": false,
+      "page_min_ratio": 0.96527,
+      "exact_page_matches": 0,
+      "pages": [
+        {
+          "ratio": 0.96527,
+          "exact_match": false,
+          "expected_length": 1395,
+          "actual_length": 1398,
+          "expected_preview": "health, and can again stand among my comrads and in a few days I hope that I shall again feel as well as before,\nyou wrote that it was lonesome times in old gro",
+          "actual_preview": "health, and can again stand among my comrads and in a few days I hope that I shall again feel as well as before, you wrote that it was lonesome times in old gro",
+          "page_number": 1,
+          "artifact_page_found": true,
+          "artifact_metrics": {
+            "ocr_quality": 0.78,
+            "ocr_integrity": 0.98,
+            "continuation_risk": 0.98
+          }
+        }
+      ]
+    }
+  },
+  {
+    "fixture": "barney",
+    "arm": "control",
+    "requested": "gemini-3.7-flash",
+    "served": "gemini-3.8-flash",
+    "status": "quarantined-model-redirect",
+    "capability": "not measured as exact comparator",
+    "cost_usd": 0.02522925,
+    "native_latency_ms": 53199,
+    "response": "benchmarks/results/scout103-20261026/response-012.json",
+    "driver_exit": 1
+  }
+]

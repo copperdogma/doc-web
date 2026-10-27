@@ -1,3 +1,11 @@
+## [2026-10-26-01] — Record GPT-6.1 Terra source-fidelity evaluation (Story 263)
+
+### Added
+- Preserve the bounded fresh detector quality/speed lead against Gemini with
+  explicit cover-extent, axis-oracle and consumer-policy holds; retain defaults.
+- Record the literal-table failure and sub-.99 Barney OCR result, exact comparator
+  redirect, closed spend ledger, full native archive and proportional checks.
+
 ## [2026-10-23-04] — Qualify reviewed visual intent offline (Story262)
 
 ### Added

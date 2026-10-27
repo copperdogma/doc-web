@@ -1,0 +1,9 @@
+{
+  "raw": "{\"images\":[{\"description\":\"Photograph of George and Sophranie L'Heureux standing outdoors in winter.\",\"bbox\":[0.097,0.345,0.49,0.73]},{\"description\":\"Photograph of Emilienne L'Heureux standing in a field.\",\"bbox\":[0.515,0.632,0.91,0.895]}]}",
+  "score": {
+    "pass": true,
+    "score": 0.9962,
+    "reason": "box_count=1.00 (2/2) | iou_mean=0.994 | iou_min=0.994 | coverage=0.997 | total=0.996 | matches=[pred[0]<->gold[0] IoU=0.995, pred[1]<->gold[1] IoU=0.994]"
+  },
+  "served": "gpt-6.1-terra"
+}

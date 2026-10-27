@@ -1,0 +1,36 @@
+{
+  "raw_boxes": [
+    [
+      0.586,
+      0.052,
+      0.851,
+      0.314
+    ],
+    [
+      0.097,
+      0.642,
+      0.492,
+      0.898
+    ]
+  ],
+  "scorer_normalized_boxes": [
+    [
+      0.586,
+      0.052,
+      0.851,
+      0.314
+    ],
+    [
+      0.097,
+      0.642,
+      0.492,
+      0.898
+    ]
+  ],
+  "uses_golden_axis_oracle": true,
+  "runtime_parity": false,
+  "source_image_dimensions": [
+    1545,
+    2000
+  ]
+}

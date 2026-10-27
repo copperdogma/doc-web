@@ -1,0 +1,9 @@
+{
+  "raw": "{\"images\":[{\"description\":\"Ink illustration of two oxen pulling a covered wagon with two people through a landscape.\",\"bbox\":[0.106,0.077,0.896,0.679]}]}",
+  "score": {
+    "pass": true,
+    "score": 0.9763,
+    "reason": "box_count=1.00 (1/1) | iou_mean=0.972 | iou_min=0.972 | coverage=0.973 | total=0.976 | matches=[pred[0]<->gold[0] IoU=0.972]"
+  },
+  "served": "gpt-6.1-terra"
+}

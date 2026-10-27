@@ -1,0 +1,41 @@
+{
+  "scope": "Postcollection style-only closeout; no provider calls or changes to frozen evidence",
+  "files": [
+    {
+      "path": "benchmarks/providers/scout103_guard.py",
+      "before_sha256": "fcdf20217a95ad4a97548990c3972506a139a39585050c45a15fa6ae8d12930e",
+      "producing_snapshot": "docs/evals/evidence/085-scout103/producing-tools/precloseout-scout103_guard.py",
+      "current_sha256": "4fa89caf960102858057c36b637aeb1f6cc63f38352dfacaf528e287cee92d1a",
+      "ast_equivalent": "yes; imports normalized, unused hashlib removal exempted only for offlinefinalizer"
+    },
+    {
+      "path": "benchmarks/scripts/scout103_reading.py",
+      "before_sha256": "731bd834fe11f9fd343bbd804d501749c2bfbb67a743a6caefaa2d96b9947908",
+      "producing_snapshot": "docs/evals/evidence/085-scout103/producing-tools/precloseout-scout103_reading.py",
+      "current_sha256": "32f100eb22d074648416b390208f980d44722a8e91a51eb6577fa51d4584b35b",
+      "ast_equivalent": "yes; imports normalized, unused hashlib removal exempted only for offlinefinalizer"
+    },
+    {
+      "path": "benchmarks/scripts/scout103_overlay.py",
+      "before_sha256": "77d01cef2cbbaf417da5ad7a947c49361c6f3e6ad47b2e15632e6a0ff587264b",
+      "producing_snapshot": "docs/evals/evidence/085-scout103/producing-tools/precloseout-scout103_overlay.py",
+      "current_sha256": "d10b549c8276863b01ee9357379b1019c3477d6bf92c80ce3b66a9ba1ba8ec9f",
+      "ast_equivalent": "yes; imports normalized, unused hashlib removal exempted only for offlinefinalizer"
+    },
+    {
+      "path": "benchmarks/scripts/scout103_finalize.py",
+      "before_sha256": "ef0074be1bafa7938c357f0e13b90e311d577efba96d232660a2ab5e0414824b",
+      "producing_snapshot": "docs/evals/evidence/085-scout103/producing-tools/precloseout-scout103_finalize.py",
+      "current_sha256": "18d64d7c24348d6bb5c7f01275d540c5d479947da28f53dcfea66233c7ba0480",
+      "ast_equivalent": "yes; imports normalized, unused hashlib removal exempted only for offlinefinalizer"
+    },
+    {
+      "path": "tests/test_scout103_campaign.py",
+      "before_sha256": "9feb36b085cfdcfcda7a666c35c64326778495bf0ccbb2d80926e9a913b9153a",
+      "producing_snapshot": "docs/evals/evidence/085-scout103/producing-tools/precloseout-test_scout103_campaign.py",
+      "current_sha256": "49cb529bd9e66604487b258f0f8aff1014ff8a9e96735940227905f1b9f27799",
+      "ast_equivalent": "yes; imports normalized, unused hashlib removal exempted only for offlinefinalizer"
+    }
+  ],
+  "original_archive_unchanged": true
+}

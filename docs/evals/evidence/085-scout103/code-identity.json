@@ -1,0 +1,86 @@
+{
+  "base": "3a7efec9216c7d784700e464a98fc6de9b8a2e02",
+  "guard_epochs": [
+    {
+      "calls": "1-23",
+      "file": "docs/evals/evidence/085-scout103/producing-tools/initial-scout103_guard.py"
+    },
+    {
+      "calls": "24 onward",
+      "file": "benchmarks/providers/scout103_guard.py",
+      "change": "allow explicit decorated-content-pass manual continuation without representing full-source acceptance; no subject/schema/effort/price changes"
+    }
+  ],
+  "files": [
+    {
+      "path": "benchmarks/scripts/scout103_reading.py",
+      "bytes": 19939,
+      "sha256": "731bd834fe11f9fd343bbd804d501749c2bfbb67a743a6caefaa2d96b9947908"
+    },
+    {
+      "path": "benchmarks/providers/scout103_guard.py",
+      "bytes": 4929,
+      "sha256": "fcdf20217a95ad4a97548990c3972506a139a39585050c45a15fa6ae8d12930e"
+    },
+    {
+      "path": "docs/evals/evidence/085-scout103/producing-tools/initial-scout103_guard.py",
+      "bytes": 4896,
+      "sha256": "eee8e8f915b1abb62d85f3ad48348c3c00c38db963b082598a18b2dbaaae47d1"
+    },
+    {
+      "path": "modules/common/table_source_review.py",
+      "bytes": 7221,
+      "sha256": "78599f846eb31b2ad7a1607257458760e6e93e6eaa6d4ab062ffcbd30b879709"
+    },
+    {
+      "path": "modules/common/literal_table_review.py",
+      "bytes": 14664,
+      "sha256": "25085a0937d27e5bae61e3973eddcf2ea6a43496cba814d57fb8af67a0212d67"
+    },
+    {
+      "path": "benchmarks/prompts/crop-conservative-count.js",
+      "bytes": 1782,
+      "sha256": "d15c7fd6f20389e5e7b2af9f15dd3697a31c28f47cfea8147c8114fe82f1e8f9"
+    },
+    {
+      "path": "benchmarks/scorers/image_crop_scorer.py",
+      "bytes": 10333,
+      "sha256": "7fcf07e05726bf3ebbc2488a503a9d7f165dde79649890cbd65f12a6ce4c19e7"
+    },
+    {
+      "path": "benchmarks/golden/image-crops.json",
+      "bytes": 7783,
+      "sha256": "2ac0a8f01e00a252439da1f4827a85bc5118bf96460a3ff1780e642eafc60f90"
+    },
+    {
+      "path": "modules/extract/ocr_ai_gpt51_v1/main.py",
+      "bytes": 35309,
+      "sha256": "bd80f4d050a1eacc6442295471d9727bfd16ff674b84c2d64cec0e491cd96b95"
+    },
+    {
+      "path": "benchmarks/scorers/handwritten_notes_transcription.py",
+      "bytes": 4712,
+      "sha256": "3e8ab803e94b22b139e78d51bd029f6502ecac03a170f2dd7955b86afd67ee6b"
+    },
+    {
+      "path": "testdata/handwritten-notes-barney-real.txt",
+      "bytes": 1397,
+      "sha256": "78827ef175378bd2c55d0405fc35213acfc17e348b5edd48b1e089525a83e2bf"
+    },
+    {
+      "path": "benchmarks/scripts/scout103_overlay.py",
+      "bytes": 1473,
+      "sha256": "77d01cef2cbbaf417da5ad7a947c49361c6f3e6ad47b2e15632e6a0ff587264b"
+    },
+    {
+      "path": "benchmarks/scripts/scout103_finalize.py",
+      "bytes": 3242,
+      "sha256": "ef0074be1bafa7938c357f0e13b90e311d577efba96d232660a2ab5e0414824b"
+    },
+    {
+      "path": "tests/test_scout103_campaign.py",
+      "bytes": 2713,
+      "sha256": "9feb36b085cfdcfcda7a666c35c64326778495bf0ccbb2d80926e9a913b9153a"
+    }
+  ]
+}

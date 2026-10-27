@@ -1,0 +1,9 @@
+{
+  "raw": "{\"images\":[{\"description\":\"Celebrate Saskatchewan 1905–1980 anniversary logo\",\"bbox\":[0.375,0.074,0.581,0.233]},{\"description\":\"Award seal and two signatures\",\"bbox\":[0.119,0.687,0.878,0.896]}]}",
+  "score": {
+    "pass": true,
+    "score": 0.9855,
+    "reason": "box_count=1.00 (2/2) | iou_mean=0.977 | iou_min=0.965 | coverage=0.996 | total=0.986 | matches=[pred[1]<->gold[1] IoU=0.990, pred[0]<->gold[0] IoU=0.965]"
+  },
+  "served": "gpt-6.1-terra"
+}

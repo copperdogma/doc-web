@@ -46,7 +46,7 @@ evals:
     pipeline_stage: extract
     runner: custom
     command: "PYTHONPATH=. python benchmarks/scripts/run_literal_table_fidelity.py --manifest output/story244-eval/development.json --out output/story244-eval/fresh --variant literal"
-    story_refs: ["245", "253", "254", "255", "257", "258"]
+    story_refs: ["245", "253", "254", "255", "257", "258", "263"]
     category_refs: ["spec:2", "spec:3", "spec:6"]
     spec_refs: ["spec:2.1", "spec:2.2", "spec:3.1", "spec:6"]
     compromise_refs: ["C1", "C3", "C6"]
@@ -96,7 +96,34 @@ evals:
         git_sha: bceb2956+attempt079-uncommitted
         metrics: {diagnostic_exact_cells: 22, clear_cells_tested: 23, clear_uncertainty_cells: 0, accepted_wrong_cells: 0, candidate_cases: 1, control_cases: 1}
         note: "Bakery Il1-O0 becomes I11-00; spans preserved, owner safely unresolved. Astra23/23verified. Remaining13clear+2ambiguity cells unmeasured aftervalidstop. RetainAstra. Fullownerrecord attempts/079-scout097-deepseek1017-source-fidelity.md; closedinclusiveUSD.231343868/15 unknown0, no runtime/defaults."
+      - model: gpt-6.1-terra direct Responses high32768 Scout103
+        measured: '2026-10-26'
+        git_sha: 3a7efec9216c7d784700e464a98fc6de9b8a2e02+attempt085-uncommitted
+        metrics:
+          clear_cells_tested: 23
+          exact_cells: 22
+          clear_uncertainty_cells: 1
+          accepted_wrong_cells: 0
+          cases_total: 1
+          latency_ms: 27560
+          cost_usd: 0.0178905
+        note: 'Failed source literal/coverage gate: Il1-O0 becomes Il1-00 with gratuitous clear-cell hold; Astra23/23verified.
+          Owner safely unresolved. Remaining13clear/2genuineambiguity cells unmeasured. RetainAstra; no effort rescue.
+          Fullownerrecord attempts/085-gpt61-terra-source-fidelity.md; inclusiveUSD.27373875/12 unknown0.'
+
     attempts:
+      - id: 085
+        date: '2026-10-26'
+        status: failed
+        approach: Approved Scout103 exact direct Terra high32768, frozen sources/prompt/schema/scorer and fresh maintained
+          comparator.
+        note: 'Failed source literal/coverage gate: Il1-O0 becomes Il1-00 with gratuitous clear-cell hold; Astra23/23verified.
+          Owner safely unresolved. Remaining13clear/2genuineambiguity cells unmeasured. RetainAstra; no effort rescue.
+          No runtime/default/landing. Evidence085 manifest and closedledger retain fullnativeenvelopes.'
+        retry_when:
+        - condition: new-subject-model
+          note: New exact checkpoint or separately approved source-backed configuration/contract change; no unchanged
+            paid repeat.
       - id: "080"
         date: 2026-10-20
         status: inconclusive
@@ -302,7 +329,7 @@ evals:
     config: benchmarks/tasks/image-crop-extraction.yaml
     scorer: benchmarks/scorers/image_crop_scorer.py
     golden: benchmarks/golden/
-    story_refs: ["133", "183", "207", "226", "232", "235", "236", "237", "238", "239", "249", "257", "258"]
+    story_refs: ["133", "183", "207", "226", "232", "235", "236", "237", "238", "239", "249", "257", "258", "263"]
     category_refs: ["spec:4", "spec:8"]
     compromise_refs: ["C4"]
     spec_compromise: C4
@@ -1214,7 +1241,39 @@ evals:
         git_sha: bceb2956+attempt079-uncommitted
         metrics: {overall: 0.8903, pass_rate: 1.0, cases_total: 1, source_complete_cases: 0, fresh_control_score: 0.9826}
         note: "Image011 tolerantpass but sourceconfirmed logo date/rightlettering and outerseal clipped. Sourcebarrier stops beforeImage001/remaining11. No13case orproductionwin; retainGemini3Flash. Fullownerrecord attempts/079-scout097-deepseek1017-source-fidelity.md; closedinclusiveUSD.231343868/15 unknown0, no runtime/defaults."
+      - model: gpt-6.1-terra direct Responses medium16384 Scout103
+        measured: '2026-10-26'
+        git_sha: 3a7efec9216c7d784700e464a98fc6de9b8a2e02+attempt085-uncommitted
+        metrics:
+          overall: 0.9785769230769231
+          pass_rate: 1.0
+          cases_total: 13
+          fresh_control_score: 0.9589
+          latency_ms: 3187.6923076923076
+          cost_usd: 0.07222525
+          source_extent_unresolved_cases: 1
+          definite_integral_amputations: 0
+        note: Fresh13pairs both13/13 tolerantpass; Terra normalizedquality/speed lead vsGemini at38.69%highercost. Botharms
+          golden-assisted axis normalization, not raw-coordinate/runtimeproof. Image000 undecoratedcoverextentUNRESOLVED
+          vsfullcovergold;12clear integralunits, no13/13fullsourceacceptance. HistoricalSol .992731 remains higher/differentrun.
+          Existing consumer/grouping holds; no defaultchange. Fullownerrecord attempts/085-gpt61-terra-source-fidelity.md;
+          inclusiveUSD.27373875/12 unknown0.
+
     attempts:
+      - id: 085
+        date: '2026-10-26'
+        status: succeeded
+        approach: Approved Scout103 exact direct Terra medium16384, frozen sources/prompt/schema/scorer and fresh maintained
+          comparator.
+        note: Fresh13pairs both13/13 tolerantpass; Terra normalizedquality/speed lead vsGemini at38.69%highercost. Botharms
+          golden-assisted axis normalization, not raw-coordinate/runtimeproof. Image000 undecoratedcoverextentUNRESOLVED
+          vsfullcovergold;12clear integralunits, no13/13fullsourceacceptance. HistoricalSol .992731 remains higher/differentrun.
+          Existing consumer/grouping holds; no defaultchange. No runtime/default/landing. Evidence085 manifest and closedledger
+          retain fullnativeenvelopes.
+        retry_when:
+        - condition: new-subject-model
+          note: New exact checkpoint or separately approved source-backed configuration/contract change; no unchanged
+            paid repeat.
       - id: "063"
         date: "2026-10-23"
         status: succeeded
@@ -4035,7 +4094,7 @@ evals:
     command: "python benchmarks/scripts/run_handwritten_notes_eval.py --image-recipe configs/recipes/recipe-images-ocr-html-handwritten-notes-gemini-rescue.yaml --pdf-recipe configs/recipes/recipe-pdf-ocr-html-handwritten-notes-gemini-rescue.yaml --image-case-id image-handwritten-rescue --pdf-case-id pdf-handwritten-rescue --instrument --output benchmarks/results/handwritten-notes-story189-real-expanded.json"
     scorer: benchmarks/scorers/handwritten_notes_transcription.py
     golden: benchmarks/golden/handwritten-notes/corpus.json
-    story_refs: ["179", "182", "185", "186", "189", "191", "192", "208", "230", "238", "239", "249", "257", "258"]
+    story_refs: ["179", "182", "185", "186", "189", "191", "192", "208", "230", "238", "239", "249", "257", "258", "263"]
     category_refs: ["spec:1", "spec:2", "spec:8"]
     compromise_refs: []
 
@@ -4582,7 +4641,34 @@ evals:
         git_sha: bceb2956+attempt079-uncommitted
         metrics: {overall_min_ratio: 0.920977, cases_total: 1, pass_rate: 0.0, alverson_unrun: 1}
         note: "ActualdriverBarney literal/sourceerrors below.99. RequestedexactGemini3.7served3.8quarantined, nofreshrelativequalityclaim. Alversonexcludedpendingseparateadjudication. Fullownerrecord attempts/079-scout097-deepseek1017-source-fidelity.md; closedinclusiveUSD.231343868/15 unknown0, no runtime/defaults."
+      - model: gpt-6.1-terra direct Responses high32768 Scout103
+        measured: '2026-10-26'
+        git_sha: 3a7efec9216c7d784700e464a98fc6de9b8a2e02+attempt085-uncommitted
+        metrics:
+          overall_min_ratio: 0.96527
+          cases_total: 1
+          pass_rate: 0.0
+          latency_ms: 49403
+          cost_usd: 0.02337175
+        note: ActualBarney image-entry driver below.99, source substitutes Williamwaswiththeboys for WilliamandWelthy
+          and normalizeswording. ExactGemini3.7requestserved3.8quarantined; nofreshrelativequalityclaim. Otherfixturesexcluded.
+          RejecttestedTerraOCRreplacement, noeffortrescue. Fullownerrecord attempts/085-gpt61-terra-source-fidelity.md;
+          inclusiveUSD.27373875/12 unknown0.
+
     attempts:
+      - id: 085
+        date: '2026-10-26'
+        status: failed
+        approach: Approved Scout103 exact direct Terra high32768, frozen sources/prompt/schema/scorer and fresh maintained
+          comparator.
+        note: ActualBarney image-entry driver below.99, source substitutes Williamwaswiththeboys for WilliamandWelthy
+          and normalizeswording. ExactGemini3.7requestserved3.8quarantined; nofreshrelativequalityclaim. Otherfixturesexcluded.
+          RejecttestedTerraOCRreplacement, noeffortrescue. No runtime/default/landing. Evidence085 manifest and closedledger
+          retain fullnativeenvelopes.
+        retry_when:
+        - condition: new-subject-model
+          note: New exact checkpoint or separately approved source-backed configuration/contract change; no unchanged
+            paid repeat.
       - id: "080"
         date: 2026-10-20
         status: inconclusive

@@ -1,0 +1,9 @@
+{
+  "raw": "```json\n{\"images\": [{\"description\": \"A black and white ink illustration of a covered wagon pulled by two oxen, with a man and a woman inside, set against a landscape with clouds.\", \"bbox\": [0.082, 0.104, 0.678, 0.848]}]}\n```",
+  "score": {
+    "pass": true,
+    "score": 0.9172,
+    "reason": "box_count=1.00 (1/1) | iou_mean=0.901 | iou_min=0.901 | coverage=0.904 | total=0.917 | matches=[pred[0]<->gold[0] IoU=0.901]"
+  },
+  "served": "gemini-3-flash-preview"
+}

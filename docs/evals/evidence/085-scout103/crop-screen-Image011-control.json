@@ -1,0 +1,9 @@
+{
+  "raw": "```json\n{\"images\": [{\"description\": \"Celebrate Saskatchewan 1905-1980 logo\", \"bbox\": [0.074, 0.376, 0.234, 0.581]}, {\"description\": \"Official seal and signatures of Hon. Gordon MacMurchy and Hon. Ed Tchorzewski\", \"bbox\": [0.686, 0.118, 0.896, 0.868]}]}\n```",
+  "score": {
+    "pass": true,
+    "score": 0.9826,
+    "reason": "box_count=1.00 (2/2) | iou_mean=0.973 | iou_min=0.964 | coverage=0.993 | total=0.983 | matches=[pred[1]<->gold[1] IoU=0.983, pred[0]<->gold[0] IoU=0.964]"
+  },
+  "served": "gemini-3-flash-preview"
+}

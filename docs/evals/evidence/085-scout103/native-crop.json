@@ -1,0 +1,5 @@
+{
+  "raw": "{\"images\":[{\"description\":\"Text reading “TEST”\",\"bbox\":[0.1,0.213,0.183,0.273]}]}",
+  "served": "gpt-6.1-terra",
+  "finish": "stop"
+}

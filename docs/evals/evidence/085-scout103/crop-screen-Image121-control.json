@@ -1,0 +1,9 @@
+{
+  "raw": "```json\n{\"images\": [{\"description\": \"Photograph of the L'Heureux family reunion in July 1939.\", \"bbox\": [0.058, 0.094, 0.408, 0.910]}, {\"description\": \"Oval portrait of Moise L'Heureux and his brother Edward.\", \"bbox\": [0.453, 0.095, 0.874, 0.502]}, {\"description\": \"Oval portrait of Sophie L'Heureux.\", \"bbox\": [0.453, 0.523, 0.874, 0.921]}]}\n```",
+  "score": {
+    "pass": true,
+    "score": 0.9757,
+    "reason": "box_count=1.00 (3/3) | iou_mean=0.971 | iou_min=0.958 | coverage=0.978 | total=0.976 | matches=[pred[2]<->gold[2] IoU=0.983, pred[0]<->gold[0] IoU=0.972, pred[1]<->gold[1] IoU=0.958]"
+  },
+  "served": "gemini-3-flash-preview"
+}

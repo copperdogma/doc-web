@@ -249,7 +249,8 @@
           "255",
           "256",
           "257",
-          "258"
+          "258",
+          "263"
         ],
         "adr_ids": [
           "ADR-001",
@@ -334,7 +335,8 @@
           "255",
           "256",
           "257",
-          "258"
+          "258",
+          "263"
         ],
         "adr_ids": [
           "ADR-001",
@@ -401,7 +403,8 @@
           "257",
           "258",
           "259",
-          "262"
+          "262",
+          "263"
         ],
         "adr_ids": [],
         "eval_ids": [
@@ -538,7 +541,8 @@
           "257",
           "258",
           "260",
-          "262"
+          "262",
+          "263"
         ],
         "adr_ids": [
           "ADR-001",
@@ -960,7 +964,8 @@
           "255",
           "256",
           "257",
-          "258"
+          "258",
+          "263"
         ],
         "eval_ids": [
           "literal-table-fidelity",
@@ -972,16 +977,18 @@
           "source_id": "literal-table-fidelity",
           "source_path": "docs/evals/registry.yaml",
           "recommended_now": false,
-          "posture": "no-trigger-recorded",
-          "retry_trigger_status": "none",
-          "retry_when": [],
+          "posture": "wait-for-trigger",
+          "retry_trigger_status": "waiting",
+          "retry_when": [
+            "new-subject-model"
+          ],
           "why_now": "",
           "last_relevant_action": {
-            "date": "2026-10-20",
+            "date": "2026-10-26",
             "source_type": "eval-attempt",
             "source": "docs/evals/registry.yaml",
-            "source_id": "080",
-            "summary": "MiniMax exact GA via pinned Minimax free route, high32768 requested; strict404 parameter-filter; prompt-only diagnostics capability-only, no production schema parity. Attempt080/Story258: safety diagnostic20/22vsGPT18..."
+            "source_id": "085",
+            "summary": "Failed source literal/coverage gate: Il1-O0 becomes Il1-00 with gratuitous clear-cell hold; Astra23/23verified. Owner safely unresolved. Remaining13clear/2genuineambiguity cells unmeasured. RetainAstra; no effort resc..."
           },
           "story_ids": [
             "131",
@@ -1037,7 +1044,8 @@
             "255",
             "256",
             "257",
-            "258"
+            "258",
+            "263"
           ],
           "eval_ids": [
             "literal-table-fidelity",
@@ -1082,7 +1090,8 @@
           "255",
           "256",
           "257",
-          "258"
+          "258",
+          "263"
         ],
         "eval_ids": [
           "literal-table-fidelity"
@@ -1092,16 +1101,18 @@
           "source_id": "literal-table-fidelity",
           "source_path": "docs/evals/registry.yaml",
           "recommended_now": false,
-          "posture": "no-trigger-recorded",
-          "retry_trigger_status": "none",
-          "retry_when": [],
+          "posture": "wait-for-trigger",
+          "retry_trigger_status": "waiting",
+          "retry_when": [
+            "new-subject-model"
+          ],
           "why_now": "",
           "last_relevant_action": {
-            "date": "2026-10-20",
+            "date": "2026-10-26",
             "source_type": "eval-attempt",
             "source": "docs/evals/registry.yaml",
-            "source_id": "080",
-            "summary": "MiniMax exact GA via pinned Minimax free route, high32768 requested; strict404 parameter-filter; prompt-only diagnostics capability-only, no production schema parity. Attempt080/Story258: safety diagnostic20/22vsGPT18..."
+            "source_id": "085",
+            "summary": "Failed source literal/coverage gate: Il1-O0 becomes Il1-00 with gratuitous clear-cell hold; Astra23/23verified. Owner safely unresolved. Remaining13clear/2genuineambiguity cells unmeasured. RetainAstra; no effort resc..."
           },
           "story_ids": [
             "022",
@@ -1130,7 +1141,8 @@
             "255",
             "256",
             "257",
-            "258"
+            "258",
+            "263"
           ],
           "eval_ids": [
             "literal-table-fidelity"
@@ -1192,7 +1204,8 @@
           "255",
           "256",
           "257",
-          "258"
+          "258",
+          "263"
         ],
         "eval_ids": [
           "literal-table-fidelity",
@@ -1258,7 +1271,8 @@
             "255",
             "256",
             "257",
-            "258"
+            "258",
+            "263"
           ],
           "eval_ids": [
             "literal-table-fidelity",
@@ -1298,7 +1312,8 @@
           "252",
           "257",
           "258",
-          "262"
+          "262",
+          "263"
         ],
         "eval_ids": [
           "image-crop-extraction",
@@ -1340,7 +1355,8 @@
             "252",
             "257",
             "258",
-            "262"
+            "262",
+            "263"
           ],
           "eval_ids": [
             "image-crop-extraction",
@@ -1382,7 +1398,8 @@
           "257",
           "258",
           "259",
-          "262"
+          "262",
+          "263"
         ],
         "eval_ids": [
           "sol-crop-safety-native-public-smoke",
@@ -1427,7 +1444,8 @@
             "257",
             "258",
             "259",
-            "262"
+            "262",
+            "263"
           ],
           "eval_ids": [
             "sol-crop-safety-native-public-smoke",
@@ -15150,6 +15168,79 @@
           "summary": ""
         }
       }
+    },
+    {
+      "id": "263",
+      "title": "Scout103 GPT-6.1 Terra source-fidelity evaluation",
+      "path": "docs/stories/story-263-scout103-terra-evaluation.md",
+      "status": "Done",
+      "priority": "Medium",
+      "ideal_refs": [
+        "req:3",
+        "req:4",
+        "req:6"
+      ],
+      "spec_refs": [
+        "spec:2.1",
+        "spec:3.1",
+        "spec:4.1",
+        "spec:4.2",
+        "spec:6"
+      ],
+      "decision_refs": [
+        "ADR-001",
+        "ADR-002"
+      ],
+      "adr_ids": [
+        "ADR-001",
+        "ADR-002"
+      ],
+      "depends_on": [
+        "258"
+      ],
+      "category_refs": [
+        "spec:2",
+        "spec:3",
+        "spec:4",
+        "spec:6"
+      ],
+      "compromise_refs": [
+        "C1",
+        "C3",
+        "C4",
+        "C5",
+        "C6"
+      ],
+      "input_coverage_refs": [
+        "handwritten-notes",
+        "scanned-pdf-tables"
+      ],
+      "architecture_domains": [
+        "doc_web_runtime",
+        "ocr_and_extraction"
+      ],
+      "roadmap_tags": [],
+      "blocker_summary": "",
+      "blocker_evidence": "",
+      "unblock_condition": "",
+      "last_work_log_entry": null,
+      "legacy_build_map_refs": "",
+      "metadata_source": "frontmatter",
+      "missing_frontmatter_keys": [],
+      "actionability": {
+        "source_kind": "story",
+        "source_id": "263",
+        "source_path": "docs/stories/story-263-scout103-terra-evaluation.md",
+        "recommended_now": false,
+        "posture": "completed",
+        "why_now": "",
+        "last_relevant_action": {
+          "date": null,
+          "source_type": "story-status",
+          "source": "docs/stories/story-263-scout103-terra-evaluation.md",
+          "summary": ""
+        }
+      }
     }
   ],
   "adrs": [
@@ -15289,7 +15380,8 @@
         "254",
         "255",
         "257",
-        "258"
+        "258",
+        "263"
       ],
       "compromise_refs": [
         "C1",
@@ -15443,23 +15535,49 @@
             "control_cases": 1
           },
           "note": "Bakery Il1-O0 becomes I11-00; spans preserved, owner safely unresolved. Astra23/23verified. Remaining13clear+2ambiguity cells unmeasured aftervalidstop. RetainAstra. Fullownerrecord attempts/079-scout097-deepseek1017-source-fidelity.md; closedinclusiveUSD.231343868/15 unknown0, no runtime/defaults."
+        },
+        {
+          "model": "gpt-6.1-terra direct Responses high32768 Scout103",
+          "measured": "2026-10-26",
+          "git_sha": "3a7efec9216c7d784700e464a98fc6de9b8a2e02+attempt085-uncommitted",
+          "metrics": {
+            "clear_cells_tested": 23,
+            "exact_cells": 22,
+            "clear_uncertainty_cells": 1,
+            "accepted_wrong_cells": 0,
+            "cases_total": 1,
+            "latency_ms": 27560,
+            "cost_usd": 0.0178905
+          },
+          "note": "Failed source literal/coverage gate: Il1-O0 becomes Il1-00 with gratuitous clear-cell hold; Astra23/23verified. Owner safely unresolved. Remaining13clear/2genuineambiguity cells unmeasured. RetainAstra; no effort rescue. Fullownerrecord attempts/085-gpt61-terra-source-fidelity.md; inclusiveUSD.27373875/12 unknown0."
         }
       ],
       "latest_score": {
-        "model": "deepseek/deepseek-v4.1-flash-1017 Cloudflare high32768 Scout097",
-        "measured": "2026-10-17",
-        "git_sha": "bceb2956+attempt079-uncommitted",
+        "model": "gpt-6.1-terra direct Responses high32768 Scout103",
+        "measured": "2026-10-26",
+        "git_sha": "3a7efec9216c7d784700e464a98fc6de9b8a2e02+attempt085-uncommitted",
         "metrics": {
-          "diagnostic_exact_cells": 22,
           "clear_cells_tested": 23,
-          "clear_uncertainty_cells": 0,
+          "exact_cells": 22,
+          "clear_uncertainty_cells": 1,
           "accepted_wrong_cells": 0,
-          "candidate_cases": 1,
-          "control_cases": 1
+          "cases_total": 1,
+          "latency_ms": 27560,
+          "cost_usd": 0.0178905
         },
-        "note": "Bakery Il1-O0 becomes I11-00; spans preserved, owner safely unresolved. Astra23/23verified. Remaining13clear+2ambiguity cells unmeasured aftervalidstop. RetainAstra. Fullownerrecord attempts/079-scout097-deepseek1017-source-fidelity.md; closedinclusiveUSD.231343868/15 unknown0, no runtime/defaults."
+        "note": "Failed source literal/coverage gate: Il1-O0 becomes Il1-00 with gratuitous clear-cell hold; Astra23/23verified. Owner safely unresolved. Remaining13clear/2genuineambiguity cells unmeasured. RetainAstra; no effort rescue. Fullownerrecord attempts/085-gpt61-terra-source-fidelity.md; inclusiveUSD.27373875/12 unknown0."
       },
       "attempts": [
+        {
+          "id": "085",
+          "date": "2026-10-26",
+          "status": "failed",
+          "approach": "Approved Scout103 exact direct Terra high32768, frozen sources/prompt/schema/scorer and fresh maintained comparator.",
+          "note": "Failed source literal/coverage gate: Il1-O0 becomes Il1-00 with gratuitous clear-cell hold; Astra23/23verified. Owner safely unresolved. Remaining13clear/2genuineambiguity cells unmeasured. RetainAstra; no effort rescue. No runtime/default/landing. Evidence085 manifest and closedledger retain fullnativeenvelopes.",
+          "retry_when": [
+            "new-subject-model"
+          ]
+        },
         {
           "id": "080",
           "date": "2026-10-20",
@@ -15554,16 +15672,18 @@
         "source_id": "literal-table-fidelity",
         "source_path": "docs/evals/registry.yaml",
         "recommended_now": false,
-        "posture": "no-trigger-recorded",
-        "retry_trigger_status": "none",
-        "retry_when": [],
+        "posture": "wait-for-trigger",
+        "retry_trigger_status": "waiting",
+        "retry_when": [
+          "new-subject-model"
+        ],
         "why_now": "",
         "last_relevant_action": {
-          "date": "2026-10-20",
+          "date": "2026-10-26",
           "source_type": "eval-attempt",
           "source": "docs/evals/registry.yaml",
-          "source_id": "080",
-          "summary": "MiniMax exact GA via pinned Minimax free route, high32768 requested; strict404 parameter-filter; prompt-only diagnostics capability-only, no production schema parity. Attempt080/Story258: safety diagnostic20/22vsGPT18..."
+          "source_id": "085",
+          "summary": "Failed source literal/coverage gate: Il1-O0 becomes Il1-00 with gratuitous clear-cell hold; Astra23/23verified. Owner safely unresolved. Remaining13clear/2genuineambiguity cells unmeasured. RetainAstra; no effort resc..."
         }
       }
     },
@@ -15826,7 +15946,8 @@
         "239",
         "249",
         "257",
-        "258"
+        "258",
+        "263"
       ],
       "compromise_refs": [
         "C4"
@@ -16569,28 +16690,51 @@
             "fresh_control_score": 0.9826
           },
           "note": "Image011 tolerantpass but sourceconfirmed logo date/rightlettering and outerseal clipped. Sourcebarrier stops beforeImage001/remaining11. No13case orproductionwin; retainGemini3Flash. Fullownerrecord attempts/079-scout097-deepseek1017-source-fidelity.md; closedinclusiveUSD.231343868/15 unknown0, no runtime/defaults."
+        },
+        {
+          "model": "gpt-6.1-terra direct Responses medium16384 Scout103",
+          "measured": "2026-10-26",
+          "git_sha": "3a7efec9216c7d784700e464a98fc6de9b8a2e02+attempt085-uncommitted",
+          "metrics": {
+            "overall": 0.9785769230769231,
+            "pass_rate": 1.0,
+            "cases_total": 13,
+            "fresh_control_score": 0.9589,
+            "latency_ms": 3187.6923076923076,
+            "cost_usd": 0.07222525,
+            "source_extent_unresolved_cases": 1,
+            "definite_integral_amputations": 0
+          },
+          "note": "Fresh13pairs both13/13 tolerantpass; Terra normalizedquality/speed lead vsGemini at38.69%highercost. Botharms golden-assisted axis normalization, not raw-coordinate/runtimeproof. Image000 undecoratedcoverextentUNRESOLVED vsfullcovergold;12clear integralunits, no13/13fullsourceacceptance. HistoricalSol .992731 remains higher/differentrun. Existing consumer/grouping holds; no defaultchange. Fullownerrecord attempts/085-gpt61-terra-source-fidelity.md; inclusiveUSD.27373875/12 unknown0."
         }
       ],
       "latest_score": {
-        "model": "gemini-4-argon medium32768 strict integer detector (Attempt063)",
+        "model": "gpt-6.1-terra direct Responses medium16384 Scout103",
+        "measured": "2026-10-26",
+        "git_sha": "3a7efec9216c7d784700e464a98fc6de9b8a2e02+attempt085-uncommitted",
         "metrics": {
-          "overall": 0.978131,
+          "overall": 0.9785769230769231,
           "pass_rate": 1.0,
           "cases_total": 13,
-          "latency_ms": 25633,
-          "median_latency_ms": 10156,
-          "promptfoo_latency_ms": 26096
+          "fresh_control_score": 0.9589,
+          "latency_ms": 3187.6923076923076,
+          "cost_usd": 0.07222525,
+          "source_extent_unresolved_cases": 1,
+          "definite_integral_amputations": 0
         },
-        "cost_usd": 0.004808615384615384,
-        "total_cost_usd": 0.062512,
-        "cost_estimated": true,
-        "measured": "2026-10-23",
-        "git_sha": "19b30b1+attempt063-uncommitted",
-        "result_file": "docs/evals/evidence/063-gemini4-argon-summary.json",
-        "evidence_status": "fresh-bounded-detector-publication-unqualified",
-        "note": "Exact native image/strict schema and owner projection parity qualified; frozen full13 passes versus fresh runtime control .958315. Image000 remains whole-cover model-wrong bounding undercoverage at .8324; artwork/frame appear retained but exact edge equivalence is unresolved. Higher observed cost/latency, no historical Sol leader replacement, safety/handwriting/production-route unmeasured; no default change. HTTP timing includes response read; Promptfoo time adds bridge overhead. See Attempt063 and its closed27-call USD.1176735/5 ledger.\n"
+        "note": "Fresh13pairs both13/13 tolerantpass; Terra normalizedquality/speed lead vsGemini at38.69%highercost. Botharms golden-assisted axis normalization, not raw-coordinate/runtimeproof. Image000 undecoratedcoverextentUNRESOLVED vsfullcovergold;12clear integralunits, no13/13fullsourceacceptance. HistoricalSol .992731 remains higher/differentrun. Existing consumer/grouping holds; no defaultchange. Fullownerrecord attempts/085-gpt61-terra-source-fidelity.md; inclusiveUSD.27373875/12 unknown0."
       },
       "attempts": [
+        {
+          "id": "085",
+          "date": "2026-10-26",
+          "status": "succeeded",
+          "approach": "Approved Scout103 exact direct Terra medium16384, frozen sources/prompt/schema/scorer and fresh maintained comparator.",
+          "note": "Fresh13pairs both13/13 tolerantpass; Terra normalizedquality/speed lead vsGemini at38.69%highercost. Botharms golden-assisted axis normalization, not raw-coordinate/runtimeproof. Image000 undecoratedcoverextentUNRESOLVED vsfullcovergold;12clear integralunits, no13/13fullsourceacceptance. HistoricalSol .992731 remains higher/differentrun. Existing consumer/grouping holds; no defaultchange. No runtime/default/landing. Evidence085 manifest and closedledger retain fullnativeenvelopes.",
+          "retry_when": [
+            "new-subject-model"
+          ]
+        },
         {
           "id": "063",
           "date": "2026-10-23",
@@ -17101,15 +17245,15 @@
         "posture": "wait-for-trigger",
         "retry_trigger_status": "waiting",
         "retry_when": [
-          "new-approach"
+          "new-subject-model"
         ],
         "why_now": "Attempt063 qualified Gemini4 Argon13/13 but leaves cover-edge/source/runtime/safety equivalence unqualified and costs/latency higher than fresh control. New identity alone does not warrant another same-line campaign;...",
         "last_relevant_action": {
-          "date": "2026-10-23",
+          "date": "2026-10-26",
           "source_type": "eval-attempt",
           "source": "docs/evals/registry.yaml",
-          "source_id": "063",
-          "summary": "Both arms13/13; Argon improves bounded numeric score with higher cost and observed latency. Native strict image/parity, complete raw custody and closed27-call USD.1176735/5 ledger retained; source review preserves who..."
+          "source_id": "085",
+          "summary": "Fresh13pairs both13/13 tolerantpass; Terra normalizedquality/speed lead vsGemini at38.69%highercost. Botharms golden-assisted axis normalization, not raw-coordinate/runtimeproof. Image000 undecoratedcoverextentUNRESOL..."
         }
       }
     },
@@ -18512,7 +18656,8 @@
         "239",
         "249",
         "257",
-        "258"
+        "258",
+        "263"
       ],
       "compromise_refs": [],
       "category_refs": [
@@ -18871,21 +19016,45 @@
             "alverson_unrun": 1
           },
           "note": "ActualdriverBarney literal/sourceerrors below.99. RequestedexactGemini3.7served3.8quarantined, nofreshrelativequalityclaim. Alversonexcludedpendingseparateadjudication. Fullownerrecord attempts/079-scout097-deepseek1017-source-fidelity.md; closedinclusiveUSD.231343868/15 unknown0, no runtime/defaults."
+        },
+        {
+          "model": "gpt-6.1-terra direct Responses high32768 Scout103",
+          "measured": "2026-10-26",
+          "git_sha": "3a7efec9216c7d784700e464a98fc6de9b8a2e02+attempt085-uncommitted",
+          "metrics": {
+            "overall_min_ratio": 0.96527,
+            "cases_total": 1,
+            "pass_rate": 0.0,
+            "latency_ms": 49403,
+            "cost_usd": 0.02337175
+          },
+          "note": "ActualBarney image-entry driver below.99, source substitutes Williamwaswiththeboys for WilliamandWelthy and normalizeswording. ExactGemini3.7requestserved3.8quarantined; nofreshrelativequalityclaim. Otherfixturesexcluded. RejecttestedTerraOCRreplacement, noeffortrescue. Fullownerrecord attempts/085-gpt61-terra-source-fidelity.md; inclusiveUSD.27373875/12 unknown0."
         }
       ],
       "latest_score": {
-        "model": "deepseek/deepseek-v4.1-flash-1017 Cloudflare high32768 Scout097",
-        "measured": "2026-10-17",
-        "git_sha": "bceb2956+attempt079-uncommitted",
+        "model": "gpt-6.1-terra direct Responses high32768 Scout103",
+        "measured": "2026-10-26",
+        "git_sha": "3a7efec9216c7d784700e464a98fc6de9b8a2e02+attempt085-uncommitted",
         "metrics": {
-          "overall_min_ratio": 0.920977,
+          "overall_min_ratio": 0.96527,
           "cases_total": 1,
           "pass_rate": 0.0,
-          "alverson_unrun": 1
+          "latency_ms": 49403,
+          "cost_usd": 0.02337175
         },
-        "note": "ActualdriverBarney literal/sourceerrors below.99. RequestedexactGemini3.7served3.8quarantined, nofreshrelativequalityclaim. Alversonexcludedpendingseparateadjudication. Fullownerrecord attempts/079-scout097-deepseek1017-source-fidelity.md; closedinclusiveUSD.231343868/15 unknown0, no runtime/defaults."
+        "note": "ActualBarney image-entry driver below.99, source substitutes Williamwaswiththeboys for WilliamandWelthy and normalizeswording. ExactGemini3.7requestserved3.8quarantined; nofreshrelativequalityclaim. Otherfixturesexcluded. RejecttestedTerraOCRreplacement, noeffortrescue. Fullownerrecord attempts/085-gpt61-terra-source-fidelity.md; inclusiveUSD.27373875/12 unknown0."
       },
       "attempts": [
+        {
+          "id": "085",
+          "date": "2026-10-26",
+          "status": "failed",
+          "approach": "Approved Scout103 exact direct Terra high32768, frozen sources/prompt/schema/scorer and fresh maintained comparator.",
+          "note": "ActualBarney image-entry driver below.99, source substitutes Williamwaswiththeboys for WilliamandWelthy and normalizeswording. ExactGemini3.7requestserved3.8quarantined; nofreshrelativequalityclaim. Otherfixturesexcluded. RejecttestedTerraOCRreplacement, noeffortrescue. No runtime/default/landing. Evidence085 manifest and closedledger retain fullnativeenvelopes.",
+          "retry_when": [
+            "new-subject-model"
+          ]
+        },
         {
           "id": "080",
           "date": "2026-10-20",
@@ -19082,11 +19251,11 @@
         ],
         "why_now": "Retry only when a materially stronger model or OCR substrate appears that could plausibly clear Barney and the corrected Alverson front-page truth surface.",
         "last_relevant_action": {
-          "date": "2026-10-20",
+          "date": "2026-10-26",
           "source_type": "eval-attempt",
           "source": "docs/evals/registry.yaml",
-          "source_id": "080",
-          "summary": "MiniMax exact GA via pinned Minimax free route, high32768 requested; strict404 parameter-filter; prompt-only diagnostics capability-only, no production schema parity. Attempt080/Story258: safety diagnostic20/22vsGPT18..."
+          "source_id": "085",
+          "summary": "ActualBarney image-entry driver below.99, source substitutes Williamwaswiththeboys for WilliamandWelthy and normalizeswording. ExactGemini3.7requestserved3.8quarantined; nofreshrelativequalityclaim. Otherfixturesexclu..."
         }
       }
     },
