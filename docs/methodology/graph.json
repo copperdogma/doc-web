@@ -840,12 +840,12 @@
           "source_path": "docs/stories/story-226-robo-rally-rulebook-semantic-html.md",
           "recommended_now": true,
           "posture": "in-progress",
-          "why_now": "Current packet disposition: defer the exact cached replay. Source",
+          "why_now": "Parent executed the public source-bound Ingester deterministic-emitter",
           "last_relevant_action": {
-            "date": "2026-10-23",
+            "date": "2026-10-26",
             "source_type": "story-work-log",
             "source": "docs/stories/story-226-robo-rally-rulebook-semantic-html.md",
-            "summary": "Current packet disposition: defer the exact cached replay. Source"
+            "summary": "Parent executed the public source-bound Ingester deterministic-emitter"
           },
           "story_ids": [
             "141",
@@ -1205,12 +1205,12 @@
           "source_path": "docs/stories/story-226-robo-rally-rulebook-semantic-html.md",
           "recommended_now": true,
           "posture": "in-progress",
-          "why_now": "Current packet disposition: defer the exact cached replay. Source",
+          "why_now": "Parent executed the public source-bound Ingester deterministic-emitter",
           "last_relevant_action": {
-            "date": "2026-10-23",
+            "date": "2026-10-26",
             "source_type": "story-work-log",
             "source": "docs/stories/story-226-robo-rally-rulebook-semantic-html.md",
-            "summary": "Current packet disposition: defer the exact cached replay. Source"
+            "summary": "Parent executed the public source-bound Ingester deterministic-emitter"
           },
           "story_ids": [
             "135",
@@ -1311,12 +1311,12 @@
           "source_path": "docs/stories/story-226-robo-rally-rulebook-semantic-html.md",
           "recommended_now": true,
           "posture": "in-progress",
-          "why_now": "Current packet disposition: defer the exact cached replay. Source",
+          "why_now": "Parent executed the public source-bound Ingester deterministic-emitter",
           "last_relevant_action": {
-            "date": "2026-10-23",
+            "date": "2026-10-26",
             "source_type": "story-work-log",
             "source": "docs/stories/story-226-robo-rally-rulebook-semantic-html.md",
-            "summary": "Current packet disposition: defer the exact cached replay. Source"
+            "summary": "Parent executed the public source-bound Ingester deterministic-emitter"
           },
           "story_ids": [
             "135",
@@ -1396,12 +1396,12 @@
           "source_path": "docs/stories/story-226-robo-rally-rulebook-semantic-html.md",
           "recommended_now": true,
           "posture": "in-progress",
-          "why_now": "Current packet disposition: defer the exact cached replay. Source",
+          "why_now": "Parent executed the public source-bound Ingester deterministic-emitter",
           "last_relevant_action": {
-            "date": "2026-10-23",
+            "date": "2026-10-26",
             "source_type": "story-work-log",
             "source": "docs/stories/story-226-robo-rally-rulebook-semantic-html.md",
-            "summary": "Current packet disposition: defer the exact cached replay. Source"
+            "summary": "Parent executed the public source-bound Ingester deterministic-emitter"
           },
           "story_ids": [
             "135",
@@ -1592,12 +1592,12 @@
           "source_path": "docs/stories/story-226-robo-rally-rulebook-semantic-html.md",
           "recommended_now": true,
           "posture": "in-progress",
-          "why_now": "Current packet disposition: defer the exact cached replay. Source",
+          "why_now": "Parent executed the public source-bound Ingester deterministic-emitter",
           "last_relevant_action": {
-            "date": "2026-10-23",
+            "date": "2026-10-26",
             "source_type": "story-work-log",
             "source": "docs/stories/story-226-robo-rally-rulebook-semantic-html.md",
-            "summary": "Current packet disposition: defer the exact cached replay. Source"
+            "summary": "Parent executed the public source-bound Ingester deterministic-emitter"
           },
           "story_ids": [
             "148",
@@ -1770,12 +1770,12 @@
           "source_path": "docs/stories/story-226-robo-rally-rulebook-semantic-html.md",
           "recommended_now": true,
           "posture": "in-progress",
-          "why_now": "Current packet disposition: defer the exact cached replay. Source",
+          "why_now": "Parent executed the public source-bound Ingester deterministic-emitter",
           "last_relevant_action": {
-            "date": "2026-10-23",
+            "date": "2026-10-26",
             "source_type": "story-work-log",
             "source": "docs/stories/story-226-robo-rally-rulebook-semantic-html.md",
-            "summary": "Current packet disposition: defer the exact cached replay. Source"
+            "summary": "Parent executed the public source-bound Ingester deterministic-emitter"
           },
           "story_ids": [
             "179",
@@ -1962,12 +1962,12 @@
           "source_path": "docs/stories/story-226-robo-rally-rulebook-semantic-html.md",
           "recommended_now": true,
           "posture": "in-progress",
-          "why_now": "Current packet disposition: defer the exact cached replay. Source",
+          "why_now": "Parent executed the public source-bound Ingester deterministic-emitter",
           "last_relevant_action": {
-            "date": "2026-10-23",
+            "date": "2026-10-26",
             "source_type": "story-work-log",
             "source": "docs/stories/story-226-robo-rally-rulebook-semantic-html.md",
-            "summary": "Current packet disposition: defer the exact cached replay. Source"
+            "summary": "Parent executed the public source-bound Ingester deterministic-emitter"
           },
           "story_ids": [
             "148",
@@ -12783,9 +12783,9 @@
       "blocker_evidence": "",
       "unblock_condition": "",
       "last_work_log_entry": {
-        "timestamp": "20261023",
-        "date": "2026-10-23",
-        "summary": "Current packet disposition: defer the exact cached replay. Source"
+        "timestamp": "20261026",
+        "date": "2026-10-26",
+        "summary": "Parent executed the public source-bound Ingester deterministic-emitter"
       },
       "legacy_build_map_refs": "",
       "metadata_source": "frontmatter",
@@ -12796,12 +12796,12 @@
         "source_path": "docs/stories/story-226-robo-rally-rulebook-semantic-html.md",
         "recommended_now": true,
         "posture": "in-progress",
-        "why_now": "Current packet disposition: defer the exact cached replay. Source",
+        "why_now": "Parent executed the public source-bound Ingester deterministic-emitter",
         "last_relevant_action": {
-          "date": "2026-10-23",
+          "date": "2026-10-26",
           "source_type": "story-work-log",
           "source": "docs/stories/story-226-robo-rally-rulebook-semantic-html.md",
-          "summary": "Current packet disposition: defer the exact cached replay. Source"
+          "summary": "Parent executed the public source-bound Ingester deterministic-emitter"
         }
       }
     },

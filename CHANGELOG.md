@@ -1,3 +1,9 @@
+## [2026-10-28-01] — Preserve manual captions in intake emitter reuse (Story226)
+
+### Fixed
+- Preserve captions when unresolved figure placeholders are removed, and keep split-figure captions on their unique exact owner or in their original location when ownership is ambiguous.
+- Qualify the bounded El Capitan emitter continuation with retained inputs: nine chapters, 24/24 conformance checks and 30 byte-identical crops. Story226 remains open for its wider semantic acceptance work.
+
 ## [2026-10-23-04] — Qualify reviewed visual intent offline (Story262)
 
 ### Added

@@ -2309,6 +2309,11 @@ def _split_labeled_multi_image_figures(soup) -> int:
         imgs = [img for img in figure.find_all("img", recursive=False) if img.get("src")]
         if len(imgs) < 2:
             continue
+        caption = figure.find("figcaption", recursive=False)
+        caption_text = _normalize_ws(caption.get_text(" ", strip=True)) if caption else ""
+        owners = [img for img in imgs if caption_text and _normalize_ws(
+            img.get("data-critical-graphics-nearby-text") or "") == caption_text]
+        caption_owner = owners[0] if len(owners) == 1 else None
         for img in list(imgs):
             crop = _crop_from_img_tag(img)
             if not crop.get("filename"):
@@ -2323,6 +2328,8 @@ def _split_labeled_multi_image_figures(soup) -> int:
             new_figure["class"] = ["inferred-essential-figure"]
             img.extract()
             new_figure.append(img)
+            if img is caption_owner:
+                new_figure.append(caption.extract())
             _annotate_figure_from_crop(new_figure, crop)
             extended_anchor = _extend_anchor_through_nearby_text_run(anchor, crop)
             if extended_anchor is not anchor:
@@ -2331,6 +2338,9 @@ def _split_labeled_multi_image_figures(soup) -> int:
                 _insert_split_figure_near_anchor(new_figure, anchor, figure)
             moved += 1
         if not figure.find("img", src=True):
+            if caption is not None and caption.parent is figure:
+                caption.name = "p"
+                figure.replace_with(caption.extract())
             figure.decompose()
             continue
         remaining_imgs = [img for img in figure.find_all("img", recursive=False) if img.get("src")]
@@ -2591,6 +2601,8 @@ def _remove_unresolved_image_placeholders(soup) -> None:
                     replacement = soup.new_tag("p")
                     replacement.string = caption_text
                 parent.replace_with(replacement)
+                # Destroy the detached subtree before visiting snapshotted descendants.
+                parent.decompose()
             else:
                 parent.decompose()
 

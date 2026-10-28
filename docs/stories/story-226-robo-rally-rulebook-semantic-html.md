@@ -538,3 +538,154 @@ and let another lane earn work from distinct evidence. Story226 stays InProgress
 whole-story completion is not implied. Earlier helper-trim and color proofs
 remain historical, not current path failure evidence. Next strategic checkpoint
 remains after3further substantive rounds or about30active minutes; no automation.
+
+## 20261026 continuation — Detached unresolved-figure cleanup
+
+Linked consumer: Board Game Ingester Story059. This stays in Story226 because
+it repairs the same generic graphics-heavy HTML emitter and figure/caption
+boundary, without a new format, semantic policy, or artifact contract. The
+parent explicitly approved the one-line repair and disjoint owning worktree.
+No new story or model capability eval is needed for deterministic DOM lifecycle
+handling; existing native OCR/planner work already succeeded.
+
+### Context, research and plan
+
+Ideal requirements3/4/6 and spec:4/spec:6 require preserved figures/captions and
+inspectable exports. State/graph report existing substrate; C4/C5 remain
+converge/climb. The born-digital-pdf coverage row remains bounded passing;
+this regression does not broaden it or establish maximum source-pixel fidelity.
+ADR-002's runtime/output boundary remains unchanged. No new ADR is warranted.
+
+General problem: a snapshot of child DOM nodes can outlive replacement of their
+common ancestor. [Beautiful Soup's maintained tree mutation documentation](https://www.crummy.com/software/BeautifulSoup/bs4/doc/#decompose)
+explains that replacement removes but retains the old subtree, whereas
+`decompose` destroys its descendants. The installed library raises on replacing
+a detached node. Two unresolved imgs under one captioned figure reproduce that
+exception; the same function's captionless branch already decomposes the whole
+old figure correctly.
+
+Approved plan: destroy the already-discarded figure immediately after replacing
+it. Remaining snapshotted descendants then hit the existing decomposed-tag
+guard. This preserves first-placeholder callout classification and caption
+replacement exactly. Test two/three unresolved placeholders, caption once,
+captionless cleanup, valid image plus unresolved placeholder, callout behavior
+and idempotence. No fuzzy matching policy, OCR, planner, source pixels, or recipe
+changes. No competing implementation or cleanup framework is introduced.
+
+Pre-edit in-memory check over the retained El Capitan campaign reproduced the
+actual exception only on physical/logical page8; proposed cleanup completed
+`_attach_images` for all12 normalized pages with30 retained crop rows. That is
+helper-level applicable source evidence, not a real driver or full HTML proof.
+Consumer evidence lives under the Ingester worktree's
+`output/runs/story059-elcap-docweb-emitter-repair/` and retains frozen source,
+contract/ledger identity and primary research. The24 valid provider requests
+remain preserved; known cost$0.372788, unknown0. No paid retry is needed.
+
+### Tasks and validation boundary
+
+- [x] Apply the minimal lifecycle repair only in the owning emitter module.
+- [x] Run focused emitter/caption/figure tests and proportional lint (148 passed; scoped Ruff clean).
+- [x] Run a parent-qualified, network-denied real driver continuation from
+  build_chapters using unchanged native OCR/planner/crops; retain failed state,
+  original contract and all24 receipts. This step belongs to the Ingester
+  deterministic-output amendment and is not silently authorized by this patch.
+- [ ] Inspect resulting chapter HTML/provenance against actual source and record
+  conformance/remaining fidelity holds before claiming pipeline completion.
+- [ ] Continuation build/validation complete; whole Story226 stays In Progress.
+
+### Work log
+
+20261026 — Explored current module/callers, Story226, Ideal/state/compiled graph,
+coverage row, spec:4/spec:6 and ADR-002. Existing source and actual native inputs
+prove the detached-ancestor lifecycle failure. Reused documented BS4 destruction
+semantics; chose the smallest cleanup rather than two-pass figure logic. Root
+approved this exact plan before code edits. Shared DocWeb and frozen consumer
+contract remain untouched. Remaining uncertainty is real driver completion and
+source fidelity after explicitly qualified deterministic output continuation.
+
+20261026 — Applied only the discarded-parent destruction and comment in the
+emitter runtime; added five generic parametrized controls. Fresh focused tests
+`test_unresolved_image_placeholders`, `test_build_chapter_html`, and
+`test_catalog_table_figures`:148 passed. Scoped Ruff passed; methodology
+compile/check passed. Old emitter SHA
+f2464f48b89a2d9e0f510388ded85868f490a56370b778182945fbb27b4a5bca;
+repaired SHAf729d8722ab628d62bb19bcda7049259372b676e8c587a74dfef8d985ca21911.
+No source-module changes besides this file; no shared checkout mutation,
+provider calls, commits or push. Actual driver completion remains parent-owned
+and pending the explicit deterministic-emitter amendment; no global readiness
+or all-page semantic/fidelity claim follows from these tests.
+
+20261026 — Parent executed the public source-bound Ingester deterministic-emitter
+amendment under OS network denial: build9chapters in5.66seconds, validation pass,
+zero new inference, original24-request ledger unchanged (known$0.372788,
+unknown0). Native OCR/planner/source inputs remain frozen; the one changed
+emitter and original failure are archived. Amendment receipt SHA
+368f2b04f2f8427c1de9b0104f7fc2b69ededf9f3f9d905ef10b36a7770c150c.
+Actual output:
+`/Users/cam/.codex/worktrees/ai-led-intake/boardgame-ingester/output/runs/story059-elcap-docweb-source-v2/workspace/manual-stages/fresh/runs/manual-4028290c3d2549e7aab9e5f9f9fe864a/output/html/`.
+
+Manual data inspection compared physical page8, chapter007's source8 paragraphs,
+and its3actual PNG figures. Loan/endgame/two-player selected clause controls and
+all3 meaningful panels are retained. All30 crop image files are referenced and
+exact copies of native crops; all local links/fragments resolve. This is not
+all-page visual/semantic/maximum-source-pixel proof. A concrete visible-text
+failure remains: the20-Florin extension caption exists in raw OCR/normalized
+input but only alt/metadata in the final page; the30caption remains visible.
+Read-only helper tracing isolates `_split_labeled_multi_image_figures`: moving
+all resolved images then decomposing their parent drops its caption. This is
+not a defect in the discarded-parent crash repair or numeric tokenization.
+
+Linked full review:
+`/Users/cam/.codex/worktrees/ai-led-intake/boardgame-ingester/docs/reports/story059-elcap-docweb-page8-caption-review-20261026.md`.
+A future generic caption-preservation patch is retained as DATA only alongside
+that report: unique exact source-nearby-text ownership carries the caption;
+otherwise preserve visible text without guessing. In-memory actual page8 test
+restores20and30 visibly once and assigns20to its correct crop; source and
+finalized artifacts remain unchanged. Parent is reviewing the existing literal
+correction/refinement seam for an explicit immutable current-data repair.
+No faithful registration or whole-story completion is claimed. Remaining
+continuation task: preserve the missing visible caption through a source-bound
+correction and independently inspect it before marking this continuation built.
+
+
+### 2026-10-26 — Generic caption preservation and qualified current correction
+
+Implemented the parent-approved caption-preservation fix in the isolated owning
+DocWeb worktree. `_split_labeled_multi_image_figures` preserves the original
+caption on the unique full normalized nearby-text owner (numeric tokens retained).
+Ambiguous or absent ownership keeps the exact caption visible at its original
+position rather than guessing. Three meaningful controls fail before/pass after:
+numeric-distinct owners, ambiguous owners, and absent ownership; markup, image
+retention and idempotence are checked. Focused builder/catalog/unresolved suites:
+151passed; Ruff clean. Current builder SHA256:
+`47e75b159ff11e79d81c82496d51209f983c17163dac1038c722b54e61650c58`.
+
+A separate network-denied retained-input `load_artifact` proof produced9chapters,
+24/24 conformance, no broken local links and30/30 byte-identical native crop files.
+New test run IDs/timestamps are explicit, all remaining source fields are bound;
+this is not fresh native inference or the registered current-data correction.
+Source8 and rendered loan figures were manually inspected:20/30 visible once,
+20owned by crop0. An initial fixture missing its logical-page-map companion gave
+22/24 and is retained; copying the exact companion then validator-only resume
+passed24/24. Original native input files/map/finalized bundle remained unchanged.
+Proof root: `output/runs/story226-elcap-caption-preservation-proof/`, including
+`proof-receipt.json`, `source-bindings.json` and `inspection.md`.
+
+For the already-finalized current Ingester bundle, a separately reviewed existing
+manual_text_corrections `caption_insert` authority restores the exact source8
+20Florin literal, bound to source PDF/ROI/native OCR/crop/figure/provenance. No
+mutation of old emitter output/receipt and no new inference. Current ElCap
+approved-rerun manual receipt SHA256 is
+`5027d19b1c485c007223a38f07053823bdd424a1b75b490f3da55b5663577c4b`.
+A copied478file import replayed FULL_NATIVE with original helper/source workspaces
+unreadable and network denied; original receipt and all file hashes unchanged.
+Native producer accounting remains24calls/$0.372788/unknown0. Qualification retains
+an explicit pinned DocWeb parser dependency, while ordinary curated HTML viewing
+does not. Rules-only admission does not adopt historical game asset inventory,
+and remains needs_review/no human approval. Selected page8 correctness and
+mechanical closure do not establish all-page semantics/max-source-pixel fidelity
+or whole-story completion. Linked Ingester report above now records exact paths.
+
+### 2026-10-28 — Scoped landing validation
+
+The linked Story059 intake request authorizes landing this emitter continuation. Current emitter source SHA256 remains `47e75b159ff11e79d81c82496d51209f983c17163dac1038c722b54e61650c58`; the retained-input proof above remains applicable. The coordinator reran the unresolved-placeholder, split-caption, chapter-builder and catalog-table suites: **151 passed in 28.19s** under Miniconda Python3.11 (`PYTHONPATH=.`). A separate native `codex review --uncommitted` found no actionable regressions and independently ran the same 151 tests. No paid calls or raw-source changes. This closes the bounded emitter fix, not Story226 overall.
