@@ -1,0 +1,9 @@
+{
+  "raw": "{\"images\":[{\"description\":\"Stylized title lettering: “Onward to the Unknown, 1887–1987.”\",\"bbox\":[0.19,0.268,0.855,0.385]}]}",
+  "score": {
+    "pass": true,
+    "score": 0.979,
+    "reason": "box_count=1.00 (1/1) | iou_mean=0.958 | iou_min=0.958 | coverage=1.000 | total=0.979 | matches=[pred[0]<->gold[0] IoU=0.958]"
+  },
+  "served": "gpt-6.1-terra"
+}

@@ -1,0 +1,9 @@
+{
+  "raw": "{\"images\":[{\"description\":\"Aerial photograph of ranch buildings and surrounding fields.\",\"bbox\":[0.08,0.061,0.916,0.462]},{\"description\":\"Photograph of a ranch house, barn, and cattle in a snowy landscape.\",\"bbox\":[0.091,0.508,0.906,0.881]}]}",
+  "score": {
+    "pass": true,
+    "score": 0.9983,
+    "reason": "box_count=1.00 (2/2) | iou_mean=0.997 | iou_min=0.997 | coverage=0.999 | total=0.998 | matches=[pred[1]<->gold[1] IoU=0.998, pred[0]<->gold[0] IoU=0.997]"
+  },
+  "served": "gpt-6.1-terra"
+}

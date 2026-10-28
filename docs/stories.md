@@ -118,6 +118,7 @@ Grouped by primary `spec:N` category. Stories without category refs remain in an
 | 248 | Experimental sidecar disagreement warning integration | Medium | Done | 233, 234 | [story-248](stories/story-248-experimental-disagreement-warning.md) |
 | 249 | Haiku 5.5 maintained task value evaluation | Medium | Done | 233, 244 | [story-249](stories/story-249-haiku55-maintained-evaluation.md) |
 | 252 | Gemini4 Argon maintained fidelity evaluation | Medium | Done | 245 | [story-252](stories/story-252-gemini4-argon-maintained-fidelity.md) |
+| 263 | Scout103 GPT-6.1 Terra source-fidelity evaluation | Medium | Done | 258 | [story-263](stories/story-263-scout103-terra-evaluation.md) |
 | 022 | Pipeline instrumentation (timing & cost) | Unknown | Done | — | [story-022](stories/story-022-instrumentation.md) |
 
 ### spec:3 — Layout & Structure Understanding

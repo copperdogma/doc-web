@@ -1,0 +1,9 @@
+{
+  "raw": "{\"images\":[{\"description\":\"Photograph of a stone monument with commemorative plaques.\",\"bbox\":[0.206,0.114,0.784,0.434]},{\"description\":\"Close-up photograph of a Canada Post historical plaque on the monument.\",\"bbox\":[0.221,0.535,0.798,0.854]}]}",
+  "score": {
+    "pass": true,
+    "score": 0.9903,
+    "reason": "box_count=1.00 (2/2) | iou_mean=0.990 | iou_min=0.984 | coverage=0.990 | total=0.990 | matches=[pred[0]<->gold[0] IoU=0.995, pred[1]<->gold[1] IoU=0.984]"
+  },
+  "served": "gpt-6.1-terra"
+}

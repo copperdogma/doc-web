@@ -1,0 +1,98 @@
+[
+  {
+    "case": "image-positive",
+    "arm": "candidate",
+    "status": "unresolved",
+    "uncertainties": [
+      {
+        "alternatives": [
+          "Il1-00",
+          "Il1-0O",
+          "Il1-O0",
+          "Il1-OO"
+        ],
+        "cell": 1,
+        "reason": "The rounded glyphs after the hyphen are difficult to distinguish as zero or capital O in the image.",
+        "row": 1
+      }
+    ],
+    "literal_score": {
+      "text_pass": false,
+      "structure_pass": true,
+      "pass": false,
+      "text_mismatch_count": 1,
+      "structure_mismatch_count": 0,
+      "text_mismatches": [
+        {
+          "table": 0,
+          "actual_table": 0,
+          "row": 1,
+          "cell": 1,
+          "kind": "cell_text",
+          "expected": "Il1-O0",
+          "actual": "Il1-00"
+        }
+      ],
+      "structure_mismatches": [],
+      "counts": {
+        "golden": {
+          "tables": 1,
+          "rows": 6,
+          "cells": 23
+        },
+        "actual": {
+          "tables": 1,
+          "rows": 6,
+          "cells": 23
+        }
+      },
+      "scope": {
+        "mode": "all_tables",
+        "table_index": null,
+        "golden_table_count": 1,
+        "actual_table_count": 1,
+        "excluded_actual_table_indices": [],
+        "compared_actual_table_count": 1,
+        "document_actual_table_count": 1
+      }
+    },
+    "report": "benchmarks/results/scout103-20261026/table-image-positive-candidate_reports/row-00000-page-00001-original-00001.json"
+  },
+  {
+    "case": "image-positive",
+    "arm": "control",
+    "status": "verified",
+    "uncertainties": [],
+    "literal_score": {
+      "text_pass": true,
+      "structure_pass": true,
+      "pass": true,
+      "text_mismatch_count": 0,
+      "structure_mismatch_count": 0,
+      "text_mismatches": [],
+      "structure_mismatches": [],
+      "counts": {
+        "golden": {
+          "tables": 1,
+          "rows": 6,
+          "cells": 23
+        },
+        "actual": {
+          "tables": 1,
+          "rows": 6,
+          "cells": 23
+        }
+      },
+      "scope": {
+        "mode": "all_tables",
+        "table_index": null,
+        "golden_table_count": 1,
+        "actual_table_count": 1,
+        "excluded_actual_table_indices": [],
+        "compared_actual_table_count": 1,
+        "document_actual_table_count": 1
+      }
+    },
+    "report": "benchmarks/results/scout103-20261026/table-image-positive-control_reports/row-00000-page-00001-original-00001.json"
+  }
+]

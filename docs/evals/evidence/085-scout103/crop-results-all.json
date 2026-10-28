@@ -1,0 +1,288 @@
+[
+  {
+    "key": "Image000",
+    "arm": "candidate",
+    "raw": "{\"images\":[{\"description\":\"Decorative book cover with gold title and illustration of a covered wagon crossing a prairie landscape.\",\"bbox\":[0.07,0.04,0.956,0.94]}]}",
+    "score": {
+      "pass": true,
+      "score": 0.8278,
+      "reason": "box_count=1.00 (1/1) | iou_mean=0.797 | iou_min=0.797 | coverage=0.797 | total=0.828 | matches=[pred[0]<->gold[0] IoU=0.797]"
+    },
+    "served": "gpt-6.1-terra"
+  },
+  {
+    "key": "Image000",
+    "arm": "control",
+    "raw": "```json\n{\"images\": [{\"description\": \"Front cover art featuring a stylized title 'ONWARD TO THE UNKNOWN 1887-1987' and an illustration of a pioneer landscape with a covered wagon, tree, and clouds, all within a decorative border.\", \"bbox\": [0.045, 0.07, 0.935, 0.945]}]}\n```",
+    "score": {
+      "pass": true,
+      "score": 0.8119,
+      "reason": "box_count=1.00 (1/1) | iou_mean=0.779 | iou_min=0.779 | coverage=0.779 | total=0.812 | matches=[pred[0]<->gold[0] IoU=0.779]"
+    },
+    "served": "gemini-3-flash-preview"
+  },
+  {
+    "key": "Image001",
+    "arm": "candidate",
+    "raw": "{\"images\":[{\"description\":\"Stylized title lettering: “Onward to the Unknown, 1887–1987.”\",\"bbox\":[0.19,0.268,0.855,0.385]}]}",
+    "score": {
+      "pass": true,
+      "score": 0.979,
+      "reason": "box_count=1.00 (1/1) | iou_mean=0.958 | iou_min=0.958 | coverage=1.000 | total=0.979 | matches=[pred[0]<->gold[0] IoU=0.958]"
+    },
+    "served": "gpt-6.1-terra"
+  },
+  {
+    "key": "Image001",
+    "arm": "control",
+    "raw": "```json\n{\"images\": [{\"description\": \"Stylized title text 'ONWARD TO THE UNKNOWN' and dates '1887 - 1987'\", \"bbox\": [0.271, 0.192, 0.384, 0.808]}]}\n```",
+    "score": {
+      "pass": true,
+      "score": 0.9265,
+      "reason": "box_count=1.00 (1/1) | iou_mean=0.909 | iou_min=0.909 | coverage=0.921 | total=0.927 | matches=[pred[0]<->gold[0] IoU=0.909]"
+    },
+    "served": "gemini-3-flash-preview"
+  },
+  {
+    "key": "Image003",
+    "arm": "candidate",
+    "raw": "{\"images\":[{\"description\":\"Illustration of a covered wagon pulled by oxen, with a horse following behind.\",\"bbox\":[0.061,0.268,0.938,0.461]}]}",
+    "score": {
+      "pass": true,
+      "score": 0.9971,
+      "reason": "box_count=1.00 (1/1) | iou_mean=0.997 | iou_min=0.997 | coverage=0.997 | total=0.997 | matches=[pred[0]<->gold[0] IoU=0.997]"
+    },
+    "served": "gpt-6.1-terra"
+  },
+  {
+    "key": "Image003",
+    "arm": "control",
+    "raw": "```json\n{\"images\": [{\"description\": \"Black and white illustration of a covered wagon pulled by an ox, with a horse standing to the left.\", \"bbox\": [0.061, 0.267, 0.938, 0.458]}]}\n```",
+    "score": {
+      "pass": true,
+      "score": 0.9814,
+      "reason": "box_count=1.00 (1/1) | iou_mean=0.976 | iou_min=0.976 | coverage=0.981 | total=0.981 | matches=[pred[0]<->gold[0] IoU=0.976]"
+    },
+    "served": "gemini-3-flash-preview"
+  },
+  {
+    "key": "Image008",
+    "arm": "candidate",
+    "raw": "{\"images\":[{\"description\":\"Portrait photograph of Moise and Sophie L'Heureux, circa 1910.\",\"bbox\":[0.217,0.258,0.812,0.671]}]}",
+    "score": {
+      "pass": true,
+      "score": 0.9938,
+      "reason": "box_count=1.00 (1/1) | iou_mean=0.991 | iou_min=0.991 | coverage=0.996 | total=0.994 | matches=[pred[0]<->gold[0] IoU=0.991]"
+    },
+    "served": "gpt-6.1-terra"
+  },
+  {
+    "key": "Image008",
+    "arm": "control",
+    "raw": "```json\n{\"images\": [{\"description\": \"Black and white photograph of Moise and Sophie L'Heureux, dated around 1910.\", \"bbox\": [0.258, 0.217, 0.672, 0.811]}]}\n```",
+    "score": {
+      "pass": true,
+      "score": 0.9966,
+      "reason": "box_count=1.00 (1/1) | iou_mean=0.995 | iou_min=0.995 | coverage=0.998 | total=0.997 | matches=[pred[0]<->gold[0] IoU=0.995]"
+    },
+    "served": "gemini-3-flash-preview"
+  },
+  {
+    "key": "Image011",
+    "arm": "candidate",
+    "raw": "{\"images\":[{\"description\":\"Celebrate Saskatchewan 1905–1980 anniversary logo\",\"bbox\":[0.375,0.074,0.581,0.233]},{\"description\":\"Award seal and two signatures\",\"bbox\":[0.119,0.687,0.878,0.896]}]}",
+    "score": {
+      "pass": true,
+      "score": 0.9855,
+      "reason": "box_count=1.00 (2/2) | iou_mean=0.977 | iou_min=0.965 | coverage=0.996 | total=0.986 | matches=[pred[1]<->gold[1] IoU=0.990, pred[0]<->gold[0] IoU=0.965]"
+    },
+    "served": "gpt-6.1-terra"
+  },
+  {
+    "key": "Image011",
+    "arm": "control",
+    "raw": "```json\n{\"images\": [{\"description\": \"Celebrate Saskatchewan 1905-1980 logo\", \"bbox\": [0.074, 0.376, 0.234, 0.581]}, {\"description\": \"Official seal and signatures of Hon. Gordon MacMurchy and Hon. Ed Tchorzewski\", \"bbox\": [0.686, 0.118, 0.896, 0.868]}]}\n```",
+    "score": {
+      "pass": true,
+      "score": 0.9826,
+      "reason": "box_count=1.00 (2/2) | iou_mean=0.973 | iou_min=0.964 | coverage=0.993 | total=0.983 | matches=[pred[1]<->gold[1] IoU=0.983, pred[0]<->gold[0] IoU=0.964]"
+    },
+    "served": "gemini-3-flash-preview"
+  },
+  {
+    "key": "Image013",
+    "arm": "candidate",
+    "raw": "{\"images\":[{\"description\":\"Black-and-white portrait of Moise and Sophie L’Heureux.\",\"bbox\":[0.097,0.415,0.488,0.684]}]}",
+    "score": {
+      "pass": true,
+      "score": 0.9947,
+      "reason": "box_count=1.00 (1/1) | iou_mean=0.993 | iou_min=0.993 | coverage=0.996 | total=0.995 | matches=[pred[0]<->gold[0] IoU=0.993]"
+    },
+    "served": "gpt-6.1-terra"
+  },
+  {
+    "key": "Image013",
+    "arm": "control",
+    "raw": "```json\n{\"images\": [{\"description\": \"A black and white photograph of a man and a woman, identified by the caption as Moise and Sophie L'Heureux around 1910.\", \"bbox\": [0.095, 0.415, 0.488, 0.716]}]}\n```",
+    "score": {
+      "pass": true,
+      "score": 0.9399,
+      "reason": "box_count=1.00 (1/1) | iou_mean=0.883 | iou_min=0.883 | coverage=0.996 | total=0.940 | matches=[pred[0]<->gold[0] IoU=0.883]"
+    },
+    "served": "gemini-3-flash-preview"
+  },
+  {
+    "key": "Image020",
+    "arm": "candidate",
+    "raw": "{\"images\":[{\"description\":\"Aerial photograph of ranch buildings and surrounding fields.\",\"bbox\":[0.08,0.061,0.916,0.462]},{\"description\":\"Photograph of a ranch house, barn, and cattle in a snowy landscape.\",\"bbox\":[0.091,0.508,0.906,0.881]}]}",
+    "score": {
+      "pass": true,
+      "score": 0.9983,
+      "reason": "box_count=1.00 (2/2) | iou_mean=0.997 | iou_min=0.997 | coverage=0.999 | total=0.998 | matches=[pred[1]<->gold[1] IoU=0.998, pred[0]<->gold[0] IoU=0.997]"
+    },
+    "served": "gpt-6.1-terra"
+  },
+  {
+    "key": "Image020",
+    "arm": "control",
+    "raw": "```json\n{\"images\": [\n  {\"description\": \"Aerial photo of ranch buildings\", \"bbox\": [0.081, 0.061, 0.913, 0.462]},\n  {\"description\": \"Ranch house and barn\", \"bbox\": [0.091, 0.51, 0.904, 0.881]}\n]}\n```",
+    "score": {
+      "pass": true,
+      "score": 0.9937,
+      "reason": "box_count=1.00 (2/2) | iou_mean=0.992 | iou_min=0.990 | coverage=0.994 | total=0.994 | matches=[pred[0]<->gold[0] IoU=0.995, pred[1]<->gold[1] IoU=0.990]"
+    },
+    "served": "gemini-3-flash-preview"
+  },
+  {
+    "key": "Image021",
+    "arm": "candidate",
+    "raw": "{\"images\":[{\"description\":\"Photograph of Henry and Alma Alain on their 50th wedding anniversary.\",\"bbox\":[0.107,0.433,0.479,0.668]}]}",
+    "score": {
+      "pass": true,
+      "score": 0.9959,
+      "reason": "box_count=1.00 (1/1) | iou_mean=0.992 | iou_min=0.992 | coverage=1.000 | total=0.996 | matches=[pred[0]<->gold[0] IoU=0.992]"
+    },
+    "served": "gpt-6.1-terra"
+  },
+  {
+    "key": "Image021",
+    "arm": "control",
+    "raw": "```json\n{\"images\": [{\"description\": \"Black and white photograph of Henry and Alma Alain on their 50th wedding anniversary in 1957.\", \"bbox\": [0.433, 0.105, 0.663, 0.48]}]}\n```",
+    "score": {
+      "pass": true,
+      "score": 0.9816,
+      "reason": "box_count=1.00 (1/1) | iou_mean=0.974 | iou_min=0.974 | coverage=0.984 | total=0.982 | matches=[pred[0]<->gold[0] IoU=0.974]"
+    },
+    "served": "gemini-3-flash-preview"
+  },
+  {
+    "key": "Image037",
+    "arm": "candidate",
+    "raw": "{\"images\":[{\"description\":\"Oval portrait of Laetitia L'Heureux.\",\"bbox\":[0.586,0.052,0.851,0.314]},{\"description\":\"Photograph of Leonidas and Josephine L'Heureux seated together.\",\"bbox\":[0.097,0.642,0.492,0.898]}]}",
+    "score": {
+      "pass": true,
+      "score": 0.9967,
+      "reason": "box_count=1.00 (2/2) | iou_mean=0.996 | iou_min=0.994 | coverage=0.997 | total=0.997 | matches=[pred[1]<->gold[0] IoU=0.997, pred[0]<->gold[1] IoU=0.994]"
+    },
+    "served": "gpt-6.1-terra"
+  },
+  {
+    "key": "Image037",
+    "arm": "control",
+    "raw": "```json\n{\"images\": [{\"description\": \"Portrait photograph of Mrs. Leonidas L'Heureux (Laetitia)\", \"bbox\": [0.585, 0.053, 0.853, 0.312]}, {\"description\": \"Photograph of Leonidas and Josephine L'Heureux\", \"bbox\": [0.096, 0.643, 0.492, 0.9]}]}\n```",
+    "score": {
+      "pass": true,
+      "score": 0.9889,
+      "reason": "box_count=1.00 (2/2) | iou_mean=0.983 | iou_min=0.983 | coverage=0.993 | total=0.989 | matches=[pred[0]<->gold[1] IoU=0.983, pred[1]<->gold[0] IoU=0.983]"
+    },
+    "served": "gemini-3-flash-preview"
+  },
+  {
+    "key": "Image059",
+    "arm": "candidate",
+    "raw": "{\"images\":[{\"description\":\"Photograph of George and Sophranie L'Heureux standing outdoors in winter.\",\"bbox\":[0.097,0.345,0.49,0.73]},{\"description\":\"Photograph of Emilienne L'Heureux standing in a field.\",\"bbox\":[0.515,0.632,0.91,0.895]}]}",
+    "score": {
+      "pass": true,
+      "score": 0.9962,
+      "reason": "box_count=1.00 (2/2) | iou_mean=0.994 | iou_min=0.994 | coverage=0.997 | total=0.996 | matches=[pred[0]<->gold[0] IoU=0.995, pred[1]<->gold[1] IoU=0.994]"
+    },
+    "served": "gpt-6.1-terra"
+  },
+  {
+    "key": "Image059",
+    "arm": "control",
+    "raw": "```json\n{\"images\": [{\"description\": \"Photograph of George and Sophranie L'Heureux standing outdoors.\", \"bbox\": [0.344, 0.096, 0.73, 0.49]}, {\"description\": \"Portrait photograph of Emilienne, the first wife of George L'Heureux.\", \"bbox\": [0.633, 0.514, 0.898, 0.909]}]}\n```",
+    "score": {
+      "pass": true,
+      "score": 0.9922,
+      "reason": "box_count=1.00 (2/2) | iou_mean=0.987 | iou_min=0.985 | coverage=0.997 | total=0.992 | matches=[pred[0]<->gold[0] IoU=0.989, pred[1]<->gold[1] IoU=0.985]"
+    },
+    "served": "gemini-3-flash-preview"
+  },
+  {
+    "key": "Image121",
+    "arm": "candidate",
+    "raw": "{\"images\":[{\"description\":\"Group photograph of the L’Heureux family reunion in 1939.\",\"bbox\":[0.091,0.058,0.912,0.409]},{\"description\":\"Oval portrait of Moise L’Heureux and his brother Edward.\",\"bbox\":[0.095,0.444,0.504,0.881]},{\"description\":\"Oval portrait of Sophie L’Heureux.\",\"bbox\":[0.524,0.449,0.922,0.875]}]}",
+    "score": {
+      "pass": true,
+      "score": 0.9899,
+      "reason": "box_count=1.00 (3/3) | iou_mean=0.986 | iou_min=0.975 | coverage=0.996 | total=0.990 | matches=[pred[1]<->gold[1] IoU=0.993, pred[2]<->gold[2] IoU=0.990, pred[0]<->gold[0] IoU=0.975]"
+    },
+    "served": "gpt-6.1-terra"
+  },
+  {
+    "key": "Image121",
+    "arm": "control",
+    "raw": "```json\n{\"images\": [{\"description\": \"Photograph of the L'Heureux family reunion in July 1939.\", \"bbox\": [0.058, 0.094, 0.408, 0.910]}, {\"description\": \"Oval portrait of Moise L'Heureux and his brother Edward.\", \"bbox\": [0.453, 0.095, 0.874, 0.502]}, {\"description\": \"Oval portrait of Sophie L'Heureux.\", \"bbox\": [0.453, 0.523, 0.874, 0.921]}]}\n```",
+    "score": {
+      "pass": true,
+      "score": 0.9757,
+      "reason": "box_count=1.00 (3/3) | iou_mean=0.971 | iou_min=0.958 | coverage=0.978 | total=0.976 | matches=[pred[2]<->gold[2] IoU=0.983, pred[0]<->gold[0] IoU=0.972, pred[1]<->gold[1] IoU=0.958]"
+    },
+    "served": "gemini-3-flash-preview"
+  },
+  {
+    "key": "Image124",
+    "arm": "candidate",
+    "raw": "{\"images\":[{\"description\":\"Ink illustration of two oxen pulling a covered wagon with two people through a landscape.\",\"bbox\":[0.106,0.077,0.896,0.679]}]}",
+    "score": {
+      "pass": true,
+      "score": 0.9763,
+      "reason": "box_count=1.00 (1/1) | iou_mean=0.972 | iou_min=0.972 | coverage=0.973 | total=0.976 | matches=[pred[0]<->gold[0] IoU=0.972]"
+    },
+    "served": "gpt-6.1-terra"
+  },
+  {
+    "key": "Image124",
+    "arm": "control",
+    "raw": "```json\n{\"images\": [{\"description\": \"A black and white ink illustration of a covered wagon pulled by two oxen, with a man and a woman inside, set against a landscape with clouds.\", \"bbox\": [0.082, 0.104, 0.678, 0.848]}]}\n```",
+    "score": {
+      "pass": true,
+      "score": 0.9172,
+      "reason": "box_count=1.00 (1/1) | iou_mean=0.901 | iou_min=0.901 | coverage=0.904 | total=0.917 | matches=[pred[0]<->gold[0] IoU=0.901]"
+    },
+    "served": "gemini-3-flash-preview"
+  },
+  {
+    "key": "Image126",
+    "arm": "candidate",
+    "raw": "{\"images\":[{\"description\":\"Photograph of a stone monument with commemorative plaques.\",\"bbox\":[0.206,0.114,0.784,0.434]},{\"description\":\"Close-up photograph of a Canada Post historical plaque on the monument.\",\"bbox\":[0.221,0.535,0.798,0.854]}]}",
+    "score": {
+      "pass": true,
+      "score": 0.9903,
+      "reason": "box_count=1.00 (2/2) | iou_mean=0.990 | iou_min=0.984 | coverage=0.990 | total=0.990 | matches=[pred[0]<->gold[0] IoU=0.995, pred[1]<->gold[1] IoU=0.984]"
+    },
+    "served": "gpt-6.1-terra"
+  },
+  {
+    "key": "Image126",
+    "arm": "control",
+    "raw": "```json\n{\"images\": [{\"description\": \"Photograph of a stone monument with several commemorative plaques.\", \"bbox\": [0.115, 0.206, 0.434, 0.779]}, {\"description\": \"Close-up photograph of a commemorative plaque on the stone monument.\", \"bbox\": [0.537, 0.221, 0.852, 0.795]}]}\n```",
+    "score": {
+      "pass": true,
+      "score": 0.9775,
+      "reason": "box_count=1.00 (2/2) | iou_mean=0.975 | iou_min=0.966 | coverage=0.975 | total=0.977 | matches=[pred[0]<->gold[0] IoU=0.984, pred[1]<->gold[1] IoU=0.966]"
+    },
+    "served": "gemini-3-flash-preview"
+  }
+]

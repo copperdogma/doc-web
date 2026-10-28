@@ -1,0 +1,9 @@
+{
+  "raw": "{\"images\":[{\"description\":\"Oval portrait of Laetitia L'Heureux.\",\"bbox\":[0.586,0.052,0.851,0.314]},{\"description\":\"Photograph of Leonidas and Josephine L'Heureux seated together.\",\"bbox\":[0.097,0.642,0.492,0.898]}]}",
+  "score": {
+    "pass": true,
+    "score": 0.9967,
+    "reason": "box_count=1.00 (2/2) | iou_mean=0.996 | iou_min=0.994 | coverage=0.997 | total=0.997 | matches=[pred[1]<->gold[0] IoU=0.997, pred[0]<->gold[1] IoU=0.994]"
+  },
+  "served": "gpt-6.1-terra"
+}

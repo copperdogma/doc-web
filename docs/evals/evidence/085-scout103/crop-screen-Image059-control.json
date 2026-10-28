@@ -1,0 +1,9 @@
+{
+  "raw": "```json\n{\"images\": [{\"description\": \"Photograph of George and Sophranie L'Heureux standing outdoors.\", \"bbox\": [0.344, 0.096, 0.73, 0.49]}, {\"description\": \"Portrait photograph of Emilienne, the first wife of George L'Heureux.\", \"bbox\": [0.633, 0.514, 0.898, 0.909]}]}\n```",
+  "score": {
+    "pass": true,
+    "score": 0.9922,
+    "reason": "box_count=1.00 (2/2) | iou_mean=0.987 | iou_min=0.985 | coverage=0.997 | total=0.992 | matches=[pred[0]<->gold[0] IoU=0.989, pred[1]<->gold[1] IoU=0.985]"
+  },
+  "served": "gemini-3-flash-preview"
+}

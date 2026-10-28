@@ -1,0 +1,9 @@
+{
+  "raw": "```json\n{\"images\": [{\"description\": \"Portrait photograph of Mrs. Leonidas L'Heureux (Laetitia)\", \"bbox\": [0.585, 0.053, 0.853, 0.312]}, {\"description\": \"Photograph of Leonidas and Josephine L'Heureux\", \"bbox\": [0.096, 0.643, 0.492, 0.9]}]}\n```",
+  "score": {
+    "pass": true,
+    "score": 0.9889,
+    "reason": "box_count=1.00 (2/2) | iou_mean=0.983 | iou_min=0.983 | coverage=0.993 | total=0.989 | matches=[pred[0]<->gold[1] IoU=0.983, pred[1]<->gold[0] IoU=0.983]"
+  },
+  "served": "gemini-3-flash-preview"
+}

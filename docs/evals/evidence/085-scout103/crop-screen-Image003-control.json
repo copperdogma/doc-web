@@ -1,0 +1,9 @@
+{
+  "raw": "```json\n{\"images\": [{\"description\": \"Black and white illustration of a covered wagon pulled by an ox, with a horse standing to the left.\", \"bbox\": [0.061, 0.267, 0.938, 0.458]}]}\n```",
+  "score": {
+    "pass": true,
+    "score": 0.9814,
+    "reason": "box_count=1.00 (1/1) | iou_mean=0.976 | iou_min=0.976 | coverage=0.981 | total=0.981 | matches=[pred[0]<->gold[0] IoU=0.976]"
+  },
+  "served": "gemini-3-flash-preview"
+}

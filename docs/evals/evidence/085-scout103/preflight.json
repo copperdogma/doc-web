@@ -1,0 +1,126 @@
+{
+  "base_sha": "3a7efec9216c7d784700e464a98fc6de9b8a2e02",
+  "cap_usd": 12,
+  "candidate": "OpenAI gpt-6.1-terra direct Responses, table/OCRhigh32768 cropmedium16384",
+  "controls": {
+    "table": "gpt-6-astra medium8192 original",
+    "crop": "gemini-3-flash-preview temperature0 max16384 normalized",
+    "ocr": "gemini-3.7-flash maintained default medium max16384"
+  },
+  "cache": "force-fresh no subject reuse except frozen identical initial table OCR",
+  "concurrency": 1,
+  "judge": "independent source review plus deterministic owner assertions; no paid judge",
+  "session_grouping": "one independent native request per case",
+  "crop": [
+    {
+      "key": "Image000",
+      "rendered_sha256": "3e1088ae7b07ecaf506b7fadc64126e1b677acf6b322d2b1e541397fceb80b08",
+      "message_count": 1,
+      "image_count": 1
+    },
+    {
+      "key": "Image001",
+      "rendered_sha256": "73bda39bdf64f6266da81572916f0b478ea9b57541db2c51d1903f18e5d5dd4c",
+      "message_count": 1,
+      "image_count": 1
+    },
+    {
+      "key": "Image003",
+      "rendered_sha256": "58f86fa0ff9a8eaeb43c7e11ed209e005d8f73dad27a8a136af1f0fc1b1eb604",
+      "message_count": 1,
+      "image_count": 1
+    },
+    {
+      "key": "Image008",
+      "rendered_sha256": "282c51513523b079362b876b3fd835678661a5093ef2e1a0f9062b7c5debb54d",
+      "message_count": 1,
+      "image_count": 1
+    },
+    {
+      "key": "Image011",
+      "rendered_sha256": "8d82fade28995e3eb5c70b72401245064e44308c5701e12f001166c9e58ecee6",
+      "message_count": 1,
+      "image_count": 1
+    },
+    {
+      "key": "Image013",
+      "rendered_sha256": "56488a92403c37fde7af2d6da3b8f2049eddd01fd4601a5d2c2d00e5bf6996c6",
+      "message_count": 1,
+      "image_count": 1
+    },
+    {
+      "key": "Image020",
+      "rendered_sha256": "9863b45872ad4a5ffdc48abbd0df54d60e6b843f4d662ea93fc87a672fb4fd40",
+      "message_count": 1,
+      "image_count": 1
+    },
+    {
+      "key": "Image021",
+      "rendered_sha256": "6e6012fa196ddf3db9844451292b121b935e334ecf7177d3ba5feeaeb47cf763",
+      "message_count": 1,
+      "image_count": 1
+    },
+    {
+      "key": "Image037",
+      "rendered_sha256": "414598e6bd2a501a401460ec396c8c07947a72b3536ce143ce123095ae9ee8a2",
+      "message_count": 1,
+      "image_count": 1
+    },
+    {
+      "key": "Image059",
+      "rendered_sha256": "a5c0d46d532d018516f30e7c8aa46c16578b00ec7eadee8b9abc58dec9799d1f",
+      "message_count": 1,
+      "image_count": 1
+    },
+    {
+      "key": "Image121",
+      "rendered_sha256": "f6649326367e5568b83f87b2890e2b7409d6b57aee29ed8f282122259a5f3765",
+      "message_count": 1,
+      "image_count": 1
+    },
+    {
+      "key": "Image124",
+      "rendered_sha256": "d02b51978d1d619a92fea2def36721ba3f6bf251f05bb34e970a47aef840d231",
+      "message_count": 1,
+      "image_count": 1
+    },
+    {
+      "key": "Image126",
+      "rendered_sha256": "add376b34dba0e833d5ffbadf045ee39cfce135f8c2a41cee2f2c18f71db4a63",
+      "message_count": 1,
+      "image_count": 1
+    }
+  ],
+  "tables": [
+    {
+      "case": "image-positive",
+      "initial": "/Users/cam/Documents/Projects/doc-web/output/runs/story244-image-positive-v2/02_ocr_ai_gpt51_v1/pages_html.jsonl",
+      "initial_sha256": "33ca79ec9f005abcba751ad7d1d78066780e8618bbf8848b69c240900b1db51e",
+      "image_sha256": "faf29a9b7cdd8758657bf524beed9067230b6c01e16bc4f41c43332c5dc6c2a9"
+    },
+    {
+      "case": "ambiguity-negative",
+      "initial": "/Users/cam/Documents/Projects/doc-web/output/runs/story244-ambiguity-negative-v2/02_ocr_ai_gpt51_v1/pages_html.jsonl",
+      "initial_sha256": "28e7dcbcd94ba0d51e6a0bc80494ffed12c5efc16632b6cd2d954231463bf74c",
+      "image_sha256": "75458854bfe3331d761c99f9ac67ad35bf1b5c28620074fd31c08ba5d6052adf"
+    },
+    {
+      "case": "native-positive",
+      "initial": "/Users/cam/Documents/Projects/doc-web/output/runs/story244-native-positive-v2/02_ocr_ai_gpt51_v1/pages_html.jsonl",
+      "initial_sha256": "307053d6b43ff4f4755554900c6f89542834408800a1f5ba15a7b79c2375b26e",
+      "image_sha256": "ab4ff79d69653ffb7907326424b7d24a7380a909585eb77c7b803bf99eab3c0f"
+    }
+  ],
+  "schema_sha256": "138cc8a900b2216cb8cfee8d25ada2652d4f9f012695f5bb9fbaf66174c3bcea",
+  "policy_sha256": "507c373fda9d9857a5f9865b9fb31b4a1eb6a9fc47560ed1c3ff07d76c14fc72",
+  "budget_authority": "execution-plan.json full prospective topology and overhead",
+  "no_page_safety": true,
+  "reservation": {
+    "candidate_max18": 5.33412,
+    "controls_max": 5.4,
+    "total": 10.73412,
+    "recovery": 1.26588
+  },
+  "input_contract": "original detail/native bytes, no supplied upstream OCR/goldens in source reader",
+  "scope": "benchmark only; no safety22 or production grouping repeat"
+}

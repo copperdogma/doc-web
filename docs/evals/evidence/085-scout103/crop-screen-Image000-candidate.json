@@ -1,0 +1,9 @@
+{
+  "raw": "{\"images\":[{\"description\":\"Decorative book cover with gold title and illustration of a covered wagon crossing a prairie landscape.\",\"bbox\":[0.07,0.04,0.956,0.94]}]}",
+  "score": {
+    "pass": true,
+    "score": 0.8278,
+    "reason": "box_count=1.00 (1/1) | iou_mean=0.797 | iou_min=0.797 | coverage=0.797 | total=0.828 | matches=[pred[0]<->gold[0] IoU=0.797]"
+  },
+  "served": "gpt-6.1-terra"
+}

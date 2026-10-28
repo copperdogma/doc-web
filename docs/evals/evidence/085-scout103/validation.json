@@ -1,0 +1,40 @@
+{
+  "scope": "documentation and isolated eval tooling only; runtime unchanged",
+  "checks": [
+    {
+      "command": "/usr/local/bin/pytest -q tests/test_scout103_campaign.py tests/test_literal_table_diff.py tests/test_literal_table_review.py tests/test_table_source_review.py tests/test_crop_benchmark_substrate.py",
+      "result": "119 passed (116 unchanged related tests plus3new trust-boundary checks); latest3 rerun after manual-barrier status correction pass"
+    },
+    {
+      "command": "primary .venv python -m compileall -q selected four Scout103 tooling files",
+      "result": "pass"
+    },
+    {
+      "command": "primary .venv python scripts/methodology_graph.py build/check",
+      "result": "pass after experimental score appended rather than prepended; canonical selected coverage stayshistoricalSol, newexperimental record remains visible"
+    },
+    {
+      "command": "git diff --check",
+      "result": "pass"
+    },
+    {
+      "command": "native archive readback",
+      "result": "all115members exactbyte/SHA256verified; no credentials or privatepayload included"
+    }
+  ],
+  "initial_operational_checks": [
+    {
+      "command": "primary .venv python -m pytest",
+      "result": "pytest absent; used existing /usr/local/bin/pytest, no installation"
+    },
+    {
+      "command": "initial methodologybuild afterexperimental prepend",
+      "result": "coverage pointerwoulddrift fromhistoricalselectedSol; repairedrecord placement, no coverage/golden/default adjustment"
+    }
+  ],
+  "provider_calls": 33,
+  "provider_retries": 0,
+  "paid_judges": 0,
+  "runtime_default_changes": false,
+  "commit_push": false
+}

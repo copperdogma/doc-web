@@ -101,3 +101,6 @@ benchmarks/results/scout091-20261013/
 
 # Generated opt-in offline reviewed-intent proof runs; hash-bound local evidence retained.
 /benchmarks/results/reviewed-visual-intent-*/
+
+# Scout103 public/synthetic native working receipts; durable archive in eval evidence.
+/benchmarks/results/scout103-20261026/

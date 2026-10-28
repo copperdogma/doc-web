@@ -1,0 +1,80 @@
+{
+  "table-image-positive": {
+    "status": "fail",
+    "classification": "model-wrong",
+    "source": "testdata/literal-table-fidelity/confirmation-v2/image-positive/page.png",
+    "finding": "Source Olive loaf Lot Il1-O0: capital O has no slash, zero has central stroke; Terra emits Il1-00 and lists O/0 alternatives. Both glyph forms visibly distinguishable in this source; extra uncertainty is gratuitous. Source reviewed full original page. 22/23 exact vs Astra23/23, spans intact; diagnostic uncertain text not accepted by owner. No harmful silent acceptance.",
+    "policy": "genuine indistinguishable I/l is in a separate not-measured ambiguity-negative fixture; do not infer all glyph ambiguity is false."
+  },
+  "crop-Image011": {
+    "status": "pass",
+    "classification": "source-backed",
+    "finding": "Original benchmark overlay inspected: complete Celebrate Saskatchewan lettering/date retained; full lower seal and paired signatures/name labels remain in crop. No source-visible amputation. Candidate .9855 vs freshGemini .9826. Higher tolerant score does not independently establish source correctness.",
+    "overlay": "docs/evals/evidence/085-scout103/Image011-candidate-overlay.jpg"
+  },
+  "crop-Image001": {
+    "status": "pass",
+    "classification": "source-backed",
+    "finding": "Candidate preserves all ONWARD TO THE UNKNOWN display lettering and1887–1987 in one crop. Source native normalized benchmark overlay reviewed. Control smaller region clips title extent; source review separate from tolerant scorer."
+  },
+  "crop-Image000": {
+    "status": "decorated-content-pass",
+    "qualification_hold": "whole-cover exterior cloth margin extent unresolved; no source clipping found in decorated border/art/title/date/author unit. Not full physical-cover preservation proof.",
+    "finding": "Decorative gold border, lettering, title/date and wagon prairie artwork preserved. Current bbox omits exterior undecorated cloth margins, as historical source-bound cover policy uncertainty. Candidate scorer.8278; retain unchanged full-cover golden.",
+    "classification": "ambiguous exterior target, no decisive amputation",
+    "source_extent": "UNRESOLVED",
+    "prior_evidence_tension": "Attempt033 labels inset-cover undercoverage model-wrong; latest Scout102 holds exterior cloth extent unresolved. Selected Scout103 checks lettering/date/seal/signature completeness, not BGI physical outline. Do not change policy/golden after outputs; no fullsource acceptance or automatic promotion.",
+    "full_source_preservation": false
+  },
+  "normalization_policy": {
+    "applies_to": "botharms",
+    "uses_golden_axis_oracle": true,
+    "meaning": "Maintained scorer chooses direct or swapped axes against gold. Overlay shows scorer-normalized geometry, not native-coordinate/runtime parity; raw boxes and per-arm normalization records retained."
+  },
+  "ocr-barney": {
+    "status": "fail",
+    "classification": "model-wrong",
+    "finding": "Original LOC source opened. Terra substitutes William was with the boys for source William and Welthy, normalizes sarrow/hart/imagin and other source wording; maintained ratio.965270 below.99. Actual source image-entry driver ran, native OpenAI receipt preserved.",
+    "source": "testdata/handwritten-notes-barney-real-images/page-001.jpg"
+  },
+  "crop-Image003": {
+    "status": "pass",
+    "finding": "Full wagon/cows/grass illustration retained within normalized box; external illustration credits excluded. Original source and red overlay inspected. Botharms golden-assisted axis normalization is bounded benchmark evidence only."
+  },
+  "crop-Image008": {
+    "status": "pass",
+    "finding": "Full paired portrait including heads and fading lower torso region retained; separate Moise/Sophie caption and body prose excluded. Overlay/source inspected."
+  },
+  "crop-Image013": {
+    "status": "pass",
+    "finding": "Complete paired portrait retained with no head/torso clipping; separate two-line1910 caption and all column prose excluded. Source overlay inspected."
+  },
+  "crop-Image020": {
+    "status": "pass",
+    "finding": "Both complete ranch photographs retained, no building/animal extent omitted, external photo captions excluded. Source overlay inspected."
+  },
+  "crop-Image021": {
+    "status": "pass",
+    "finding": "Paired anniversary photograph fully preserved to source lower edge; separate wedding-anniversary1957 caption and adjacent prose excluded. Overlay inspected."
+  },
+  "crop-Image037": {
+    "status": "pass",
+    "finding": "Both oval single portrait and paired seated portrait retained to original photo boundaries; separate name/caption/body text excluded. Overlay inspected."
+  },
+  "crop-Image059": {
+    "status": "pass",
+    "finding": "Both winter paired full-length portrait and separate woman portrait retained to original edges; external name/caption/column text excluded. Overlay inspected."
+  },
+  "crop-Image121": {
+    "status": "pass",
+    "finding": "Group reunion photograph and both oval portraits retained, including right-edge people and lower hands; separate captions excluded. Source overlay inspected."
+  },
+  "crop-Image124": {
+    "status": "pass",
+    "finding": "All visible wagon/oxen/cloud/hill artwork, low hooves and handwritten artist signature retained; separate Illustration by credit excluded. Source overlay inspected."
+  },
+  "crop-Image126": {
+    "status": "pass",
+    "finding": "Both original monument/plaque photographs fully retained, preserving inscriptions and surrounding photograph content. No smaller central-plaque reinterpretation. Source overlay inspected."
+  }
+}

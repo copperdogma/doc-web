@@ -1,0 +1,9 @@
+{
+  "raw": "```json\n{\"images\": [\n  {\"description\": \"Aerial photo of ranch buildings\", \"bbox\": [0.081, 0.061, 0.913, 0.462]},\n  {\"description\": \"Ranch house and barn\", \"bbox\": [0.091, 0.51, 0.904, 0.881]}\n]}\n```",
+  "score": {
+    "pass": true,
+    "score": 0.9937,
+    "reason": "box_count=1.00 (2/2) | iou_mean=0.992 | iou_min=0.990 | coverage=0.994 | total=0.994 | matches=[pred[0]<->gold[0] IoU=0.995, pred[1]<->gold[1] IoU=0.990]"
+  },
+  "served": "gemini-3-flash-preview"
+}
