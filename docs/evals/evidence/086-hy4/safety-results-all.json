@@ -1,0 +1,110 @@
+[
+  {
+    "key": "page-001-000",
+    "arm": "candidate",
+    "verdict": "pass",
+    "cost_usd": 0.0143107705,
+    "golden": "pass",
+    "false_safe": false,
+    "correct": true
+  },
+  {
+    "key": "page-001-000",
+    "arm": "control",
+    "verdict": "fail",
+    "cost_usd": 0.08309,
+    "golden": "pass",
+    "false_safe": false,
+    "correct": false
+  },
+  {
+    "key": "page-004-000",
+    "arm": "candidate",
+    "verdict": "pass",
+    "cost_usd": 0.0101716075,
+    "golden": "pass",
+    "false_safe": false,
+    "correct": true
+  },
+  {
+    "key": "page-004-000",
+    "arm": "control",
+    "verdict": "fail",
+    "cost_usd": 0.057955,
+    "golden": "pass",
+    "false_safe": false,
+    "correct": false
+  },
+  {
+    "key": "page-009-000",
+    "arm": "candidate",
+    "verdict": "pass",
+    "cost_usd": 0.0059099245,
+    "golden": "pass",
+    "false_safe": false,
+    "correct": true
+  },
+  {
+    "key": "page-009-000",
+    "arm": "control",
+    "verdict": "pass",
+    "cost_usd": 0.073555,
+    "golden": "pass",
+    "false_safe": false,
+    "correct": true
+  },
+  {
+    "key": "page-012-000",
+    "arm": "candidate",
+    "verdict": "pass",
+    "cost_usd": 0.0091928265,
+    "golden": "pass",
+    "false_safe": false,
+    "correct": true
+  },
+  {
+    "key": "page-012-000",
+    "arm": "control",
+    "verdict": "pass",
+    "cost_usd": 0.031005,
+    "golden": "pass",
+    "false_safe": false,
+    "correct": true
+  },
+  {
+    "key": "page-012-001",
+    "arm": "candidate",
+    "verdict": "pass",
+    "cost_usd": 0.0146867525,
+    "golden": "fail",
+    "false_safe": true,
+    "correct": false
+  },
+  {
+    "key": "page-012-001",
+    "arm": "control",
+    "verdict": "pass",
+    "cost_usd": 0.021103,
+    "golden": "fail",
+    "false_safe": true,
+    "correct": false
+  },
+  {
+    "key": "page-122-001",
+    "arm": "candidate",
+    "verdict": "fail",
+    "cost_usd": 0.0044893555,
+    "golden": "fail",
+    "false_safe": false,
+    "correct": true
+  },
+  {
+    "key": "page-122-001",
+    "arm": "control",
+    "verdict": "fail",
+    "cost_usd": 0.083315,
+    "golden": "fail",
+    "false_safe": false,
+    "correct": true
+  }
+]

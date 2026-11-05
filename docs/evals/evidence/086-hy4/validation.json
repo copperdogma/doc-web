@@ -1,0 +1,42 @@
+{
+  "date": "2026-11-05",
+  "scope": "Isolated eval tooling and public/synthetic evidence; no production runtime change",
+  "checks": [
+    {
+      "command": "/usr/local/bin/pytest -q tests/test_hy4_campaign.py",
+      "result": "3 passed in2.53s; current guard unknown-exposure/route controls and raw-before-identity"
+    },
+    {
+      "command": "ruff check campaign guard/reading/safety/overlay/finalize/test files",
+      "result": "pass"
+    },
+    {
+      "command": "python3 -m compileall -q campaign tools",
+      "result": "pass"
+    },
+    {
+      "command": "offline full raw envelope/parity audit",
+      "result": "22 wire hashes/status/usage validated;12 exact safety request/schema/verdict parities;1 exact OCR comparator identity quarantined",
+      "evidence": "raw-audit.json"
+    },
+    {
+      "command": "hy4_finalize archive read-back",
+      "result": "Every archived raw/driver member read back with exact byte/hash equality"
+    },
+    {
+      "command": "make methodology-compile && make methodology-check",
+      "result": "pass; registry diagnostic crop metric recorded as overall, selected coverage source remains historical Sol .992731"
+    },
+    {
+      "command": "git diff --check",
+      "result": "pass"
+    }
+  ],
+  "reused_evidence": {
+    "reported_prior_focused_tests": 89,
+    "basis": "Prior owner Attempt086 report for unchanged semantic/scorer/fixture paths; historical evidence has no retained original pytest transcript. Current3 trust-boundary tests independently rerun after guard provenance discrepancy. No assertion of a new89-test run."
+  },
+  "skipped": "Unrelated full product suites, no runtime change. No paid rerun for provenance. Full reason/flags and actual consumer qualification remain unmeasured.",
+  "producing_epoch_limit": "producing-epochs.json discloses earlier guard bytes missing; exact raw envelopes and retained semantic runner preserved.",
+  "credentials": "Existing owner wrapper only; keys untouched; no temporary key cleanup needed."
+}

@@ -1,0 +1,5 @@
+{
+  "raw": "{\n  \"excessive_blank\": true,\n  \"has_page_text\": true,\n  \"reason\": \"Comparing the TEST image with itself: the only content is the small 'TEST' label near the upper-left, with a large amount of blank white space covering the rest of the page. No differences exist between the two identical images, and no text or content lies near the crop edges, so a crop is safe but the page is mostly empty.\"\n  ,\"verdict\": \"pass\"\n}",
+  "served": "tencent/hy4",
+  "finish": "stop"
+}

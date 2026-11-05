@@ -1,0 +1,5 @@
+{
+  "raw": "{\"images\": [{\"bbox\": [108, 208, 186, 263], \"description\": \"TEST\"}]}",
+  "served": "tencent/hy4",
+  "finish": "stop"
+}

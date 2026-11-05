@@ -1,0 +1,514 @@
+{
+  "cases": [
+    {
+      "key": "page-001-000",
+      "images": [
+        {
+          "sha256": "7500762d6e0b9761b49305b28e0c3609d051af1d5f3eac8ce33028b0b439f325",
+          "dimensions": [
+            1505,
+            2000
+          ]
+        },
+        {
+          "sha256": "67accf0bf3854473e557261d179bce8a4c4519de039460e3c797e52f49e1dfaa",
+          "dimensions": [
+            3786,
+            4479
+          ]
+        }
+      ],
+      "request_sha256": {
+        "candidate": "f7b5c119510a0bc85edeaa73760b5627fb66fcceebce3f603bb7301a72c438b5",
+        "control": "832a87b3b4c93094f9b468fc5de1a30f17c98dd44e7c8d24db0bb901eafae607"
+      }
+    },
+    {
+      "key": "page-004-000",
+      "images": [
+        {
+          "sha256": "ad1807bfdad56d65becf8011137680496f72d564bfc922a8da7d2c021e3ef266",
+          "dimensions": [
+            1545,
+            2000
+          ]
+        },
+        {
+          "sha256": "4cc9a8224d1efbddc1f8f1a5a3f973bb8345f81fe26d03aa3b6d5197ce786209",
+          "dimensions": [
+            4468,
+            1254
+          ]
+        }
+      ],
+      "request_sha256": {
+        "candidate": "8d5cf4c5b04cc7a09439fc044599ea41cabbbbf08ee13240b2e60bf6a3c744fd",
+        "control": "042f728103acae2f14df4b1fd3e98f64ecd5737166916d89b22174f5e0d2780e"
+      }
+    },
+    {
+      "key": "page-009-000",
+      "images": [
+        {
+          "sha256": "da312d69a4c007009c1e696b32e66a3a7a957eac6b9aa3fa67323eeb1c478c31",
+          "dimensions": [
+            1545,
+            2000
+          ]
+        },
+        {
+          "sha256": "4413db90068236ede2835ef29c29359137847e51158266af20ef925938fa7bc0",
+          "dimensions": [
+            3029,
+            2772
+          ]
+        }
+      ],
+      "request_sha256": {
+        "candidate": "b3dbef1a4601a53f049dbd94e9fadec350606aaf0b792c78a413c277112d4520",
+        "control": "cf3947b879fee8dfd0060d208da4f16510fb135053cc566546d13932f2699b12"
+      }
+    },
+    {
+      "key": "page-012-000",
+      "images": [
+        {
+          "sha256": "ae3524cb58ac940c912c7885d65ec9d21221415d97d1ea21d97be9615161a860",
+          "dimensions": [
+            1545,
+            2000
+          ]
+        },
+        {
+          "sha256": "3a2a0f5ac2782b10b066bd4ace50d305ce2bbea1c53e27934205b7cf2a8b93ad",
+          "dimensions": [
+            1056,
+            1049
+          ]
+        }
+      ],
+      "request_sha256": {
+        "candidate": "1435ddc2ce28e3075230568af613a320eecb3a7db09439dfac2d5c3bd10c2543",
+        "control": "2c0a3ecb84935372267ef7043609350825155c4ab6a727a053f22d3f9644a643"
+      }
+    },
+    {
+      "key": "page-012-001",
+      "images": [
+        {
+          "sha256": "ae3524cb58ac940c912c7885d65ec9d21221415d97d1ea21d97be9615161a860",
+          "dimensions": [
+            1545,
+            2000
+          ]
+        },
+        {
+          "sha256": "da367ed32034c950a729fd32707412d2956f01760e2ced6616f2c7306002d7ec",
+          "dimensions": [
+            1397,
+            1096
+          ]
+        }
+      ],
+      "request_sha256": {
+        "candidate": "0021497eca447ea427dfeaa5ec6c5e9cca16e866807b7c741c7884b64bca7bda",
+        "control": "ad3a0323de31ddc147966ae54da6ce5dea97f6407288a768955cb1d23caa94e7"
+      }
+    },
+    {
+      "key": "page-014-000",
+      "images": [
+        {
+          "sha256": "cb53f04abc02441992de4903c079b036c6242a50cd275f696231c89634e6a75b",
+          "dimensions": [
+            1545,
+            2000
+          ]
+        },
+        {
+          "sha256": "4f4af349e0fcc4f3e15065dad7fecc68fe1805df524bf2dac94e56a524886693",
+          "dimensions": [
+            1994,
+            1796
+          ]
+        }
+      ],
+      "request_sha256": {
+        "candidate": "bcd2dee4d7b94e3049d7dbb5fb8a715e9c9c781617d28721ae1c7b997fc8bd9b",
+        "control": "054023e7c63cb656d229fc0ce8888738bd4ec44e963e50b673b5cba9009ec98a"
+      }
+    },
+    {
+      "key": "page-018-000",
+      "images": [
+        {
+          "sha256": "3d069f99adca6caa2039d3a9f4cccc2cb8a44413d5f44023d21baaa42b7ae6d1",
+          "dimensions": [
+            1545,
+            2000
+          ]
+        },
+        {
+          "sha256": "b5c9ee922fe3f6468acf31c7dbe842a4bde8918a4f370c67cf36d5b8546edc0b",
+          "dimensions": [
+            2163,
+            5313
+          ]
+        }
+      ],
+      "request_sha256": {
+        "candidate": "bb93d642a32f5461712868330c8f9196fd81ab006dcf46d0ee10a9cf63e5d898",
+        "control": "3368ee5bd89255e09af82cd185673579cdc57d8ae2b91c893ccd9f64d610608c"
+      }
+    },
+    {
+      "key": "page-021-000",
+      "images": [
+        {
+          "sha256": "5a1f2380a089ff23355ff101b07549bd57abba3a51636a6b58a28a31a4195318",
+          "dimensions": [
+            1545,
+            2000
+          ]
+        },
+        {
+          "sha256": "b03c6e1a9b3e3e6842de1760b97fc3e131b91eea3a2e3d11bedafa53a385f426",
+          "dimensions": [
+            4253,
+            2669
+          ]
+        }
+      ],
+      "request_sha256": {
+        "candidate": "8d30fe0ebb666ca907efe83635f55225af9860762129c06f50ef3fa8b5931105",
+        "control": "d9d1e8a574c3064f374ab9eca6e3489d7665ab32df5dcd350a9f7a6294142cc4"
+      }
+    },
+    {
+      "key": "page-021-001",
+      "images": [
+        {
+          "sha256": "5a1f2380a089ff23355ff101b07549bd57abba3a51636a6b58a28a31a4195318",
+          "dimensions": [
+            1545,
+            2000
+          ]
+        },
+        {
+          "sha256": "7d3af1dc6ffa2a2c731a6f0cdadb791175b25bcb2580c69034dcf2de6c06131e",
+          "dimensions": [
+            4152,
+            2471
+          ]
+        }
+      ],
+      "request_sha256": {
+        "candidate": "be3214b9c4294b1f937b712f070c06a743fa0c37bc119210a407efe86ae9a8be",
+        "control": "d583802875ea8ab5e680f91b1d054931cbf3dd3726556be51a6ff58158c06e41"
+      }
+    },
+    {
+      "key": "page-022-000",
+      "images": [
+        {
+          "sha256": "2f49d83261e2f40d20b736b602cc4de8c36b48780ab944dc96c8e08f83e34332",
+          "dimensions": [
+            1545,
+            2000
+          ]
+        },
+        {
+          "sha256": "c8de7753ebe7d13c9646b62bef02984148f4e9e2260197a56babd46442f61ea9",
+          "dimensions": [
+            1887,
+            1584
+          ]
+        }
+      ],
+      "request_sha256": {
+        "candidate": "07acdde1d7055a9895702a85af0023af9891e43d3baeae9883562bbbfd25806f",
+        "control": "045c440ca28bb9fdb43c0a35f763cafe3a117642e0ef8150a936ac6773cd3f1e"
+      }
+    },
+    {
+      "key": "page-038-000",
+      "images": [
+        {
+          "sha256": "b836c9c90fc650dd0513299652bf1af41fc577544803d9cea64928c890cdfdbe",
+          "dimensions": [
+            1545,
+            2000
+          ]
+        },
+        {
+          "sha256": "09855f57fc1ff367f3174dd0a5bfab433e069195aa1d2596f68212cae163a349",
+          "dimensions": [
+            1372,
+            1706
+          ]
+        }
+      ],
+      "request_sha256": {
+        "candidate": "4b13b26159559d62aaee77894ac4ad76dab344eca93118a4cb9c0359e9917290",
+        "control": "78452d95b722bfd17a47bf8aea17a2a9ecadd02be6643561207f66da15aaab72"
+      }
+    },
+    {
+      "key": "page-038-001",
+      "images": [
+        {
+          "sha256": "b836c9c90fc650dd0513299652bf1af41fc577544803d9cea64928c890cdfdbe",
+          "dimensions": [
+            1545,
+            2000
+          ]
+        },
+        {
+          "sha256": "4eaee1585bba4a4c6309e5d5bd28a57b4dd8c297a0b8dd0a491c8c60d4e66b89",
+          "dimensions": [
+            2014,
+            1712
+          ]
+        }
+      ],
+      "request_sha256": {
+        "candidate": "c85dadb1feab45ce874a58e115ed0229c8daa038821957353f6fe08195ec2a09",
+        "control": "2584fbaff493ff5a1c3a37df1a1ce01faf2b03cfdc929dda51aa01573b178b9f"
+      }
+    },
+    {
+      "key": "page-060-000",
+      "images": [
+        {
+          "sha256": "af4d6f24fc5b026a12697ed4d9da2758257bb8e0ec06c7989a2b2d0625501317",
+          "dimensions": [
+            1545,
+            2000
+          ]
+        },
+        {
+          "sha256": "0e7a4ae8f060dcb0588f647c2e7d51abb7251b91ec81feb6d89a9923f0d4e9b3",
+          "dimensions": [
+            2004,
+            2561
+          ]
+        }
+      ],
+      "request_sha256": {
+        "candidate": "8f27c10512715d8f814cc6a9ddc830edccf07fdc8937ced3b13bf9ecd7971482",
+        "control": "407a6d2a814377e079a0ef9ed78035743ddcd67f4e9d5a4d64a6e8bd5b33939e"
+      }
+    },
+    {
+      "key": "page-060-001",
+      "images": [
+        {
+          "sha256": "af4d6f24fc5b026a12697ed4d9da2758257bb8e0ec06c7989a2b2d0625501317",
+          "dimensions": [
+            1545,
+            2000
+          ]
+        },
+        {
+          "sha256": "f05b5737e373e2b06f0544bd74c59c9e92b096919fc775cdd9cc0bb4642dade6",
+          "dimensions": [
+            2015,
+            1743
+          ]
+        }
+      ],
+      "request_sha256": {
+        "candidate": "981559ba02961f4bfef37285c5fbda2eb33d1e3637916eb64b59b3b6a2c8cdba",
+        "control": "993ad758141fca213f37bd809223b64327fba9c438c81c5e19293ef0b353d6e8"
+      }
+    },
+    {
+      "key": "page-092-000",
+      "images": [
+        {
+          "sha256": "23540ee8136d29922da3f9284d44ddb46a07390fdd41f79f9afbb39989c9c04c",
+          "dimensions": [
+            1545,
+            2000
+          ]
+        },
+        {
+          "sha256": "3d02c44de285d58fd54c3131a5c2c6c13235093c88eef49ac02e2a778b23687c",
+          "dimensions": [
+            1974,
+            2381
+          ]
+        }
+      ],
+      "request_sha256": {
+        "candidate": "8e2448ed8de6bcb6b23f1a38c0bb636b0bddef2a793912f6e4a147493d1f32bf",
+        "control": "38148a794e81f1b5ec804f2a85e437310de7be12f2936ee69063006c539d5c64"
+      }
+    },
+    {
+      "key": "page-122-000",
+      "images": [
+        {
+          "sha256": "04731378a1ff37ffb8e26faf005f87fa2383f9ba91e147ce9caa94e8519d086e",
+          "dimensions": [
+            1545,
+            2000
+          ]
+        },
+        {
+          "sha256": "5ab45f308ea9d353dae2830a574af026b907fd95f6c50e78d48e8921031f6990",
+          "dimensions": [
+            4244,
+            2478
+          ]
+        }
+      ],
+      "request_sha256": {
+        "candidate": "1fdc848fa559928acc301dcaa335a61b52d74b5ff6578eb31f1c82caada989e5",
+        "control": "fc0ad66e529d91bfe3802662a9c83d24ca9d0335760bf5803c728ee35dd424e4"
+      }
+    },
+    {
+      "key": "page-122-001",
+      "images": [
+        {
+          "sha256": "04731378a1ff37ffb8e26faf005f87fa2383f9ba91e147ce9caa94e8519d086e",
+          "dimensions": [
+            1545,
+            2000
+          ]
+        },
+        {
+          "sha256": "7fea918ba336f4cca9bbbb048f97bcc6377febe2afaebd5eddf2eed0c0bfb8d9",
+          "dimensions": [
+            4244,
+            2958
+          ]
+        }
+      ],
+      "request_sha256": {
+        "candidate": "22c6fd1c444a93fd9a1bc6a204b0bcf6401c380401f85283007da8b9af3a6989",
+        "control": "a3137a46a26b718299ba9fb83b9bd9b5069c86bf437a197111e74719374b5126"
+      }
+    },
+    {
+      "key": "page-125-000",
+      "images": [
+        {
+          "sha256": "b35e4c1e660a0ed9029ebe555558341a933a5724740964ca6927f94f77ae2944",
+          "dimensions": [
+            1545,
+            2000
+          ]
+        },
+        {
+          "sha256": "e371aa234263c051dce440c71d0ec3d5a9ed31bd3b1fc9c4dd4dae475dca57ee",
+          "dimensions": [
+            4011,
+            3871
+          ]
+        }
+      ],
+      "request_sha256": {
+        "candidate": "08b376bbfb0b332022eba9ad7c2499611bb2f8d4622c4bc37aa0d13b2d670dab",
+        "control": "a31a35f31a1c0b58abbbb6ee6f3d46bf36707d43e11cac78fed146b2581fa2b4"
+      }
+    },
+    {
+      "key": "page-126-000",
+      "images": [
+        {
+          "sha256": "4f4ac880a5ff48ffa1a6d2a010e763cf022dceb118988b7bf6d0c0a41fab1143",
+          "dimensions": [
+            1545,
+            2000
+          ]
+        },
+        {
+          "sha256": "be267fc173fd8ed502bd6ab4d0be57c0d7d5a0c1556fdcc9f8c34d94aa8715d6",
+          "dimensions": [
+            2933,
+            2116
+          ]
+        }
+      ],
+      "request_sha256": {
+        "candidate": "598476274ac66e57de812abd8845b11244872bbb5671a38e9947396ee1c3e8e3",
+        "control": "7f75bbee0100961e192a8de6091ccec14558474566009a98ced049e8af56ba00"
+      }
+    },
+    {
+      "key": "page-126-001",
+      "images": [
+        {
+          "sha256": "4f4ac880a5ff48ffa1a6d2a010e763cf022dceb118988b7bf6d0c0a41fab1143",
+          "dimensions": [
+            1545,
+            2000
+          ]
+        },
+        {
+          "sha256": "34ceefa5de85865fd864cb3253a38fa73cf6ab5f13ed56daec60e00de20da908",
+          "dimensions": [
+            2123,
+            2940
+          ]
+        }
+      ],
+      "request_sha256": {
+        "candidate": "fe654e09eb9e8ee6ba2ee81146677d90a883e57b1fd6b8fdcef7e7e6c86fc08d",
+        "control": "dcad395d93789d9fdd03669720ab3db670ecb758e40d1650d62dd49455c47291"
+      }
+    },
+    {
+      "key": "page-127-000",
+      "images": [
+        {
+          "sha256": "25042b92e75e09ff2d7aa9330b44b26a092624a9bee19c7f2707a413f6c7f302",
+          "dimensions": [
+            1545,
+            2000
+          ]
+        },
+        {
+          "sha256": "6dcf9cad3998eba4ed72d1a79594431f86113a04c58b0452670ede3e3ec13429",
+          "dimensions": [
+            2924,
+            2081
+          ]
+        }
+      ],
+      "request_sha256": {
+        "candidate": "22d24f25d2fdbe56975bc911e50f69e2790a626b0e588b75f9453b17591c16c3",
+        "control": "dd003987f1f683a8dca8ea4b0add40493bac5cba9e605109bb7fabd209181ab5"
+      }
+    },
+    {
+      "key": "page-127-001",
+      "images": [
+        {
+          "sha256": "25042b92e75e09ff2d7aa9330b44b26a092624a9bee19c7f2707a413f6c7f302",
+          "dimensions": [
+            1545,
+            2000
+          ]
+        },
+        {
+          "sha256": "c98909f5166e46b330e89288f7ed4cd1f4700a98a5b0153996204725cc7ea29e",
+          "dimensions": [
+            2919,
+            2071
+          ]
+        }
+      ],
+      "request_sha256": {
+        "candidate": "5ec2b2821647e1a4ba35a01807bd34ff63f596a22ae2257ca7a537111d53d4dc",
+        "control": "90735967943e04d2836411f6916251d5d0fad5d761edf984d79a3023a6460d5d"
+      }
+    }
+  ],
+  "golden": "benchmarks/golden/crop-page-level-safety-repair-048-source-adjudicated.json",
+  "golden_sha256": "6f32bc513494f1c4454b4c41e74186136212d477ff10c87ccb29244ca21aaa76",
+  "judge": "none/source review and deterministic verdict",
+  "concurrency": 1
+}

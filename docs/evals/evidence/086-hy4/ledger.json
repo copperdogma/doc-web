@@ -1,0 +1,739 @@
+{
+  "cap_usd": 5,
+  "spent_usd": 0.5979048559999998,
+  "calls": [
+    {
+      "stage": "native-table",
+      "model": "tencent/hy4",
+      "reserved_usd": 0.085178384,
+      "cost_usd": 0.0003010205,
+      "request": "benchmarks/results/hy4-20261105/request-001.json",
+      "request_sha256": "8a4d160da5b96f34be1dadb7d332e945dff0151a2265e741b554a298e5ff5411",
+      "response": "benchmarks/results/hy4-20261105/response-001.json",
+      "response_sha256": "92e8fc869aba84881436303f8da4e0b20ede298a2ef7ce4a73b35fa285502c04",
+      "status_code": 200,
+      "latency_ms": 4485,
+      "usage": {
+        "prompt_tokens": 401,
+        "completion_tokens": 107,
+        "total_tokens": 508,
+        "cost": 0.0003010205,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0.0003010205,
+          "upstream_inference_prompt_cost": 0.000167217,
+          "upstream_inference_completions_cost": 0.0001338035
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 94,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        }
+      },
+      "served_model": "tencent/hy4",
+      "provider": "Tencent"
+    },
+    {
+      "stage": "native-crop",
+      "model": "tencent/hy4",
+      "reserved_usd": 0.085178384,
+      "cost_usd": 0.0017753075,
+      "request": "benchmarks/results/hy4-20261105/request-002.json",
+      "request_sha256": "df8df42050f38739837d7ba5fef2fcba0c02d58c57db529a21da7a3029fb20d4",
+      "response": "benchmarks/results/hy4-20261105/response-002.json",
+      "response_sha256": "dad58a7a637589b47f74ee78d83668a83cdd782b94fe7415fcdf0c05d1c09505",
+      "status_code": 200,
+      "latency_ms": 16933,
+      "usage": {
+        "prompt_tokens": 86,
+        "completion_tokens": 1391,
+        "total_tokens": 1477,
+        "cost": 0.0017753075,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0.0017753075,
+          "upstream_inference_prompt_cost": 3.5862e-05,
+          "upstream_inference_completions_cost": 0.0017394455
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 1356,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        }
+      },
+      "served_model": "tencent/hy4",
+      "provider": "Tencent"
+    },
+    {
+      "stage": "native-ocr",
+      "model": "tencent/hy4",
+      "reserved_usd": 0.085178384,
+      "cost_usd": 0.000496463,
+      "request": "benchmarks/results/hy4-20261105/request-003.json",
+      "request_sha256": "9b3d91d0c42de00160db09c08c7eff98c84a7fab6dedb5163e705a2471f4237b",
+      "response": "benchmarks/results/hy4-20261105/response-003.json",
+      "response_sha256": "a27c30386a5a5540ca7ec625e50f716ad9dccfcd28db294ac85045159354bb91",
+      "status_code": 200,
+      "latency_ms": 7207,
+      "usage": {
+        "prompt_tokens": 87,
+        "completion_tokens": 368,
+        "total_tokens": 455,
+        "cost": 0.000496463,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0.000496463,
+          "upstream_inference_prompt_cost": 3.6279e-05,
+          "upstream_inference_completions_cost": 0.000460184
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 360,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        }
+      },
+      "served_model": "tencent/hy4",
+      "provider": "Tencent"
+    },
+    {
+      "stage": "table-image-positive-candidate",
+      "model": "tencent/hy4",
+      "reserved_usd": 0.085178384,
+      "cost_usd": 0.02975466,
+      "request": "benchmarks/results/hy4-20261105/request-004.json",
+      "request_sha256": "eb01497231e868b80edabe162a0851616d2ea0735dd0b2057bc4dc867e6b154b",
+      "response": "benchmarks/results/hy4-20261105/response-004.json",
+      "response_sha256": "cc8227d0767cc7c31646528d3c61dd6a4ba2d9f61ff68d6b3e39d4096e03dbc5",
+      "status_code": 200,
+      "latency_ms": 267148,
+      "usage": {
+        "prompt_tokens": 4079,
+        "completion_tokens": 22434,
+        "total_tokens": 26513,
+        "cost": 0.02975466,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0.02975466,
+          "upstream_inference_prompt_cost": 0.001700943,
+          "upstream_inference_completions_cost": 0.028053717
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 21931,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        }
+      },
+      "served_model": "tencent/hy4",
+      "provider": "Tencent"
+    },
+    {
+      "stage": "table-image-positive-control",
+      "model": "gpt-6-astra",
+      "reserved_usd": 1.5,
+      "cost_usd": 0.0821425,
+      "request": "benchmarks/results/hy4-20261105/request-005.json",
+      "request_sha256": "e6235031e3cac69a3f5d01f343d3353c728a73bc7d4e0fa043959507638e9d30",
+      "response": "benchmarks/results/hy4-20261105/response-005.json",
+      "response_sha256": "58fda98913a53a27f82c7271213346992a7b44b2408da8e0ad39d92af51c2c22",
+      "status_code": 200,
+      "latency_ms": 9136,
+      "usage": {
+        "input_tokens": 5016,
+        "input_tokens_details": {
+          "cache_write_tokens": 5013,
+          "cached_tokens": 0
+        },
+        "output_tokens": 389,
+        "output_tokens_details": {
+          "reasoning_tokens": 146
+        },
+        "total_tokens": 5405
+      },
+      "served_model": "gpt-6-astra",
+      "provider": "OpenAI"
+    },
+    {
+      "stage": "native-safety",
+      "model": "tencent/hy4",
+      "reserved_usd": 0.085178384,
+      "cost_usd": 0.000746146,
+      "request": "benchmarks/results/hy4-20261105/request-006.json",
+      "request_sha256": "f1df095c6d8f4426c2d0442c66a0a80bf3faed31540def40f1c0c366b9942a08",
+      "response": "benchmarks/results/hy4-20261105/response-006.json",
+      "response_sha256": "5a81bf97f9b4c34fa370e429ad2c14dd6baf40a29c66a5cfa2db8843aff6d773",
+      "status_code": 200,
+      "latency_ms": 8158,
+      "usage": {
+        "prompt_tokens": 86,
+        "completion_tokens": 568,
+        "total_tokens": 654,
+        "cost": 0.000746146,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0.000746146,
+          "upstream_inference_prompt_cost": 3.5862e-05,
+          "upstream_inference_completions_cost": 0.000710284
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 458,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        }
+      },
+      "served_model": "tencent/hy4",
+      "provider": "Tencent"
+    },
+    {
+      "stage": "crop-screen-Image011-candidate",
+      "model": "tencent/hy4",
+      "reserved_usd": 0.085178384,
+      "cost_usd": 0.0047599505,
+      "request": "benchmarks/results/hy4-20261105/request-007.json",
+      "request_sha256": "3c20b1cf0c7362a70a46642214a542acb8a197623e1e5990da05e40025f215ad",
+      "response": "benchmarks/results/hy4-20261105/response-007.json",
+      "response_sha256": "51b6af7457e03980d6937f562b6f8bb7219887f062d99d4cf8816ae9623833ab",
+      "status_code": 200,
+      "latency_ms": 33433,
+      "usage": {
+        "prompt_tokens": 3285,
+        "completion_tokens": 2711,
+        "total_tokens": 5996,
+        "cost": 0.0047599505,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0.0047599505,
+          "upstream_inference_prompt_cost": 0.001369845,
+          "upstream_inference_completions_cost": 0.0033901055
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 2615,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        }
+      },
+      "served_model": "tencent/hy4",
+      "provider": "Tencent"
+    },
+    {
+      "stage": "safety-page-122-001-candidate",
+      "model": "tencent/hy4",
+      "reserved_usd": 0.12687838399999998,
+      "cost_usd": 0.0044893555,
+      "request": "benchmarks/results/hy4-20261105/request-008.json",
+      "request_sha256": "22c6fd1c444a93fd9a1bc6a204b0bcf6401c380401f85283007da8b9af3a6989",
+      "response": "benchmarks/results/hy4-20261105/response-008.json",
+      "response_sha256": "bdd90df7f8fa3a1ad0efe5306d08f5635cbb4f4caec26ef67e941b713059f2b7",
+      "status_code": 200,
+      "latency_ms": 21398,
+      "usage": {
+        "prompt_tokens": 7866,
+        "completion_tokens": 967,
+        "total_tokens": 8833,
+        "cost": 0.0044893555,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0.0044893555,
+          "upstream_inference_prompt_cost": 0.003280122,
+          "upstream_inference_completions_cost": 0.0012092335
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 900,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        }
+      },
+      "served_model": "tencent/hy4",
+      "provider": "Tencent"
+    },
+    {
+      "stage": "ocr-barney-candidate",
+      "model": "tencent/hy4",
+      "reserved_usd": 0.085178384,
+      "cost_usd": 0.0363293215,
+      "request": "benchmarks/results/hy4-20261105/request-009.json",
+      "request_sha256": "57eff19bb45c3bfd918529b4a4ab609312d48ea592d4f57fb27f0b76c07bd664",
+      "response": "benchmarks/results/hy4-20261105/response-009.json",
+      "response_sha256": "7ba691fec53a4fb5c573221c31e6fc113fc0413303aa874f81f25369f8333cf8",
+      "status_code": 200,
+      "latency_ms": 288426,
+      "usage": {
+        "prompt_tokens": 1274,
+        "completion_tokens": 28627,
+        "total_tokens": 29901,
+        "cost": 0.0363293215,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0.0363293215,
+          "upstream_inference_prompt_cost": 0.000531258,
+          "upstream_inference_completions_cost": 0.0357980635
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 28259,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        }
+      },
+      "served_model": "tencent/hy4",
+      "provider": "Tencent"
+    },
+    {
+      "stage": "crop-screen-Image011-control",
+      "model": "gemini-3-flash-preview",
+      "reserved_usd": 0.062152,
+      "cost_usd": 0.0099485,
+      "request": "benchmarks/results/hy4-20261105/request-010.json",
+      "request_sha256": "242f8833652c89a4b1ac2591289afba7bc19e1ca44556e2c570f5f4648e54994",
+      "response": "benchmarks/results/hy4-20261105/response-010.json",
+      "response_sha256": "6f6ca6ab9f1d7caa84fec213267bad48b4b86888e60fae9499c61b87331fe0ba",
+      "status_code": 200,
+      "latency_ms": 13542,
+      "usage": {
+        "promptTokenCount": 1333,
+        "candidatesTokenCount": 93,
+        "totalTokenCount": 4427,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 231
+          },
+          {
+            "modality": "IMAGE",
+            "tokenCount": 1102
+          }
+        ],
+        "thoughtsTokenCount": 3001,
+        "serviceTier": "standard"
+      },
+      "served_model": "gemini-3-flash-preview",
+      "provider": "Google"
+    },
+    {
+      "stage": "safety-page-122-001-control",
+      "model": "gpt-5.5",
+      "reserved_usd": 0.29144,
+      "cost_usd": 0.083315,
+      "request": "benchmarks/results/hy4-20261105/request-011.json",
+      "request_sha256": "a3137a46a26b718299ba9fb83b9bd9b5069c86bf437a197111e74719374b5126",
+      "response": "benchmarks/results/hy4-20261105/response-011.json",
+      "response_sha256": "5f78945e045e6bd4a8dbfbfa6283ac9e67f23167bb3e7bcd0765b91d6df6c732",
+      "status_code": 200,
+      "latency_ms": 6309,
+      "billing_unresolved": false,
+      "usage": {
+        "input_tokens": 16333,
+        "input_tokens_details": {
+          "cache_write_tokens": 0,
+          "cached_tokens": 0
+        },
+        "output_tokens": 55,
+        "output_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "total_tokens": 16388
+      },
+      "served_model": "gpt-5.5-2026-04-23",
+      "provider": "OpenAI",
+      "offline_reconciled": "explicit documented exactdated GPT5.5 alias rates; savedterminalresponse"
+    },
+    {
+      "stage": "safety-page-001-000-candidate",
+      "model": "tencent/hy4",
+      "reserved_usd": 0.12687838399999998,
+      "cost_usd": 0.0143107705,
+      "request": "benchmarks/results/hy4-20261105/request-012.json",
+      "request_sha256": "f7b5c119510a0bc85edeaa73760b5627fb66fcceebce3f603bb7301a72c438b5",
+      "response": "benchmarks/results/hy4-20261105/response-012.json",
+      "response_sha256": "f5c5614d114f570d36a9c9e64f6cf4d603e65cecfeeea27f1ce39479a91a238d",
+      "status_code": 200,
+      "latency_ms": 122329,
+      "usage": {
+        "prompt_tokens": 7794,
+        "completion_tokens": 8845,
+        "total_tokens": 16639,
+        "cost": 0.0143107705,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0.0143107705,
+          "upstream_inference_prompt_cost": 0.003250098,
+          "upstream_inference_completions_cost": 0.0110606725
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 8774,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        }
+      },
+      "served_model": "tencent/hy4",
+      "provider": "Tencent"
+    },
+    {
+      "stage": "ocr-barney-control",
+      "model": "gemini-3.7-flash",
+      "reserved_usd": 0.08094,
+      "cost_usd": 0.02286675,
+      "request": "benchmarks/results/hy4-20261105/request-013.json",
+      "request_sha256": "367d52133d49c5a8433552634fd7b72e11cfca7ca316539d63ba9699c4892d2b",
+      "response": "benchmarks/results/hy4-20261105/response-013.json",
+      "response_sha256": "9a8c7c744d76b856fc2859256468184371ca6f689836302697b89d0cc5642ec1",
+      "status_code": 200,
+      "latency_ms": 50092,
+      "usage": {
+        "promptTokenCount": 2029,
+        "candidatesTokenCount": 388,
+        "totalTokenCount": 7721,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 956
+          },
+          {
+            "modality": "IMAGE",
+            "tokenCount": 1073
+          }
+        ],
+        "thoughtsTokenCount": 5304,
+        "serviceTier": "standard"
+      },
+      "served_model": "gemini-3.8-flash",
+      "provider": "Google"
+    },
+    {
+      "stage": "safety-page-001-000-control",
+      "model": "gpt-5.5",
+      "reserved_usd": 0.29144,
+      "cost_usd": 0.08309,
+      "request": "benchmarks/results/hy4-20261105/request-014.json",
+      "request_sha256": "832a87b3b4c93094f9b468fc5de1a30f17c98dd44e7c8d24db0bb901eafae607",
+      "response": "benchmarks/results/hy4-20261105/response-014.json",
+      "response_sha256": "634ed62527969af3f5113d0fa105c035dd3939a8f4d6b3376d532d27c298d4d4",
+      "status_code": 200,
+      "latency_ms": 6056,
+      "billing_unresolved": false,
+      "usage": {
+        "input_tokens": 16198,
+        "input_tokens_details": {
+          "cache_write_tokens": 0,
+          "cached_tokens": 0
+        },
+        "output_tokens": 70,
+        "output_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "total_tokens": 16268
+      },
+      "served_model": "gpt-5.5-2026-04-23",
+      "provider": "OpenAI",
+      "offline_reconciled": "explicit documented exactdated GPT5.5 alias rates; savedterminalresponse"
+    },
+    {
+      "stage": "safety-page-004-000-candidate",
+      "model": "tencent/hy4",
+      "reserved_usd": 0.12687838399999998,
+      "cost_usd": 0.0101716075,
+      "request": "benchmarks/results/hy4-20261105/request-015.json",
+      "request_sha256": "8d5cf4c5b04cc7a09439fc044599ea41cabbbbf08ee13240b2e60bf6a3c744fd",
+      "response": "benchmarks/results/hy4-20261105/response-015.json",
+      "response_sha256": "5beff51775814c4c6065a489831afd31f56658b29e55e0d242ba159e411a88c3",
+      "status_code": 200,
+      "latency_ms": 74238,
+      "usage": {
+        "prompt_tokens": 7778,
+        "completion_tokens": 5743,
+        "total_tokens": 13521,
+        "cost": 0.0101716075,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 640,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0.0101716075,
+          "upstream_inference_prompt_cost": 0.002989986,
+          "upstream_inference_completions_cost": 0.0071816215
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 5671,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        }
+      },
+      "served_model": "tencent/hy4",
+      "provider": "Tencent"
+    },
+    {
+      "stage": "safety-page-004-000-control",
+      "model": "gpt-5.5",
+      "reserved_usd": 0.29144,
+      "cost_usd": 0.057955,
+      "request": "benchmarks/results/hy4-20261105/request-016.json",
+      "request_sha256": "042f728103acae2f14df4b1fd3e98f64ecd5737166916d89b22174f5e0d2780e",
+      "response": "benchmarks/results/hy4-20261105/response-016.json",
+      "response_sha256": "3dfe3ceb9d320ff0ff37996254da904199c3425cf6d57112d68d25ec61af90ef",
+      "status_code": 200,
+      "latency_ms": 4302,
+      "usage": {
+        "input_tokens": 11201,
+        "input_tokens_details": {
+          "cache_write_tokens": 0,
+          "cached_tokens": 0
+        },
+        "output_tokens": 65,
+        "output_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "total_tokens": 11266
+      },
+      "served_model": "gpt-5.5-2026-04-23",
+      "provider": "OpenAI"
+    },
+    {
+      "stage": "safety-page-009-000-candidate",
+      "model": "tencent/hy4",
+      "reserved_usd": 0.12687838399999998,
+      "cost_usd": 0.0059099245,
+      "request": "benchmarks/results/hy4-20261105/request-017.json",
+      "request_sha256": "b3dbef1a4601a53f049dbd94e9fadec350606aaf0b792c78a413c277112d4520",
+      "response": "benchmarks/results/hy4-20261105/response-017.json",
+      "response_sha256": "acc9fc89049c75e58285ffa7598c65ba9e6ec521e0344873518f487307ef3d1f",
+      "status_code": 200,
+      "latency_ms": 34364,
+      "usage": {
+        "prompt_tokens": 7872,
+        "completion_tokens": 2101,
+        "total_tokens": 9973,
+        "cost": 0.0059099245,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0.0059099245,
+          "upstream_inference_prompt_cost": 0.003282624,
+          "upstream_inference_completions_cost": 0.0026273005
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 2038,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        }
+      },
+      "served_model": "tencent/hy4",
+      "provider": "Tencent"
+    },
+    {
+      "stage": "safety-page-009-000-control",
+      "model": "gpt-5.5",
+      "reserved_usd": 0.29144,
+      "cost_usd": 0.073555,
+      "request": "benchmarks/results/hy4-20261105/request-018.json",
+      "request_sha256": "cf3947b879fee8dfd0060d208da4f16510fb135053cc566546d13932f2699b12",
+      "response": "benchmarks/results/hy4-20261105/response-018.json",
+      "response_sha256": "0272540737ef3e99aaab40a3cfd07663afc8418b86173699953a3ed05eeee12a",
+      "status_code": 200,
+      "latency_ms": 4971,
+      "usage": {
+        "input_tokens": 14399,
+        "input_tokens_details": {
+          "cache_write_tokens": 0,
+          "cached_tokens": 0
+        },
+        "output_tokens": 52,
+        "output_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "total_tokens": 14451
+      },
+      "served_model": "gpt-5.5-2026-04-23",
+      "provider": "OpenAI"
+    },
+    {
+      "stage": "safety-page-012-000-candidate",
+      "model": "tencent/hy4",
+      "reserved_usd": 0.12687838399999998,
+      "cost_usd": 0.0091928265,
+      "request": "benchmarks/results/hy4-20261105/request-019.json",
+      "request_sha256": "1435ddc2ce28e3075230568af613a320eecb3a7db09439dfac2d5c3bd10c2543",
+      "response": "benchmarks/results/hy4-20261105/response-019.json",
+      "response_sha256": "f5b404562000c11670a78281130f6a9e1f7805cbbffd2d57fb04e47716262399",
+      "status_code": 200,
+      "latency_ms": 74859,
+      "usage": {
+        "prompt_tokens": 4907,
+        "completion_tokens": 5715,
+        "total_tokens": 10622,
+        "cost": 0.0091928265,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0.0091928265,
+          "upstream_inference_prompt_cost": 0.002046219,
+          "upstream_inference_completions_cost": 0.0071466075
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 5648,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        }
+      },
+      "served_model": "tencent/hy4",
+      "provider": "Tencent"
+    },
+    {
+      "stage": "safety-page-012-000-control",
+      "model": "gpt-5.5",
+      "reserved_usd": 0.29144,
+      "cost_usd": 0.031005,
+      "request": "benchmarks/results/hy4-20261105/request-020.json",
+      "request_sha256": "2c0a3ecb84935372267ef7043609350825155c4ab6a727a053f22d3f9644a643",
+      "response": "benchmarks/results/hy4-20261105/response-020.json",
+      "response_sha256": "83de44ea93fb688e2e0f4d902f75f84836c6a205ef0bbf5cf682643ea7f73127",
+      "status_code": 200,
+      "latency_ms": 3555,
+      "usage": {
+        "input_tokens": 5787,
+        "input_tokens_details": {
+          "cache_write_tokens": 0,
+          "cached_tokens": 0
+        },
+        "output_tokens": 69,
+        "output_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "total_tokens": 5856
+      },
+      "served_model": "gpt-5.5-2026-04-23",
+      "provider": "OpenAI"
+    },
+    {
+      "stage": "safety-page-012-001-candidate",
+      "model": "tencent/hy4",
+      "reserved_usd": 0.12687838399999998,
+      "cost_usd": 0.0146867525,
+      "request": "benchmarks/results/hy4-20261105/request-021.json",
+      "request_sha256": "0021497eca447ea427dfeaa5ec6c5e9cca16e866807b7c741c7884b64bca7bda",
+      "response": "benchmarks/results/hy4-20261105/response-021.json",
+      "response_sha256": "a48893064ea8650f3f246281b857fdaca35b90eff0343c335984f18a04732ccc",
+      "status_code": 200,
+      "latency_ms": 123994,
+      "usage": {
+        "prompt_tokens": 5315,
+        "completion_tokens": 10175,
+        "total_tokens": 15490,
+        "cost": 0.0146867525,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 640,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0.0146867525,
+          "upstream_inference_prompt_cost": 0.001962915,
+          "upstream_inference_completions_cost": 0.0127238375
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 10097,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        }
+      },
+      "served_model": "tencent/hy4",
+      "provider": "Tencent"
+    },
+    {
+      "stage": "safety-page-012-001-control",
+      "model": "gpt-5.5",
+      "reserved_usd": 0.29144,
+      "cost_usd": 0.021103,
+      "request": "benchmarks/results/hy4-20261105/request-022.json",
+      "request_sha256": "ad3a0323de31ddc147966ae54da6ce5dea97f6407288a768955cb1d23caa94e7",
+      "response": "benchmarks/results/hy4-20261105/response-022.json",
+      "response_sha256": "ebff10120fc781282a3021911435aa67ffbfaed3a3c0dd1c81a3b5de78ee9cb9",
+      "status_code": 200,
+      "latency_ms": 2874,
+      "usage": {
+        "input_tokens": 6329,
+        "input_tokens_details": {
+          "cache_write_tokens": 0,
+          "cached_tokens": 2816
+        },
+        "output_tokens": 71,
+        "output_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "total_tokens": 6400
+      },
+      "served_model": "gpt-5.5-2026-04-23",
+      "provider": "OpenAI"
+    }
+  ],
+  "closed": true,
+  "resume": "Rootauthorized afterverified disk1.3GiB; perdispatchminimum256MiB",
+  "prior_stop_reason": "Root disk ENOSPC stop before new calls",
+  "stop_reason": "First valid candidate safety/source-contract failure"
+}

@@ -1,0 +1,16 @@
+[
+  {
+    "key": "Image011",
+    "arm": "candidate",
+    "pass": true,
+    "score": 0.9635,
+    "reason": "box_count=1.00 (2/2) | iou_mean=0.944 | iou_min=0.898 | coverage=0.995 | total=0.963 | matches=[pred[1]<->gold[1] IoU=0.991, pred[0]<->gold[0] IoU=0.898]"
+  },
+  {
+    "key": "Image011",
+    "arm": "control",
+    "pass": true,
+    "score": 0.9854,
+    "reason": "box_count=1.00 (2/2) | iou_mean=0.978 | iou_min=0.977 | coverage=0.990 | total=0.985 | matches=[pred[1]<->gold[1] IoU=0.978, pred[0]<->gold[0] IoU=0.977]"
+  }
+]

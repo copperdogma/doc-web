@@ -1,0 +1,48 @@
+{
+  "literal-bakery": {
+    "status": "fail",
+    "classification": "prompt/pipeline-wrong: model-wrong",
+    "runtime_impact": "not adopted; existing consumer safelyholds",
+    "finding": "Viewed original1700x2200 source crop. Distinctglyphs in Il1-O0 and slashedzeros; candidate Il1-00 plusfourclearcellholds. Astra23/23 exact verified with noholds. Noharmfulacceptededit. Nojudgeretry."
+  },
+  "crop-Image011": {
+    "status": "fail",
+    "classification": "prompt/pipeline-wrong: model-wrong",
+    "runtime_impact": "candidate not adopted; existing detector unchanged",
+    "finding": "Source-only zoom and raw normalized bbox.374,.072,.594,.230 confirm2darksource rows of date5 below exclusivebottom460. Darkcounts12+4 at460/461. Tiny but integral artworkclipping violatespredeclared fullpreservation; tolerantstructural.9635 is not sourcepass. No coordinatechange/retry permitted. Seal group otherwisecomplete."
+  },
+  "safety-page-122-001": {
+    "status": "pass",
+    "finding": "Correctfail, neighboringvisualcondition agreeswithsource-adjudicatedgolden. Explanation calls neighboringportrait separate; nofalse-safe. Doesnotqualifyentirepanel."
+  },
+  "ocr-barney": {
+    "status": "fail",
+    "classification": "prompt/pipeline-wrong: model-wrong",
+    "runtime_impact": "noadoption",
+    "finding": "OriginalpublicLOC two-pageimageinspected againstactualdriverJSONL. Source WilliamandWelthy replaced/omitted with fabricatedguardpost/wearybeat passage; comrads normalizedcomrades. Sourceonlysameimagebytes; exactHy4completeHTML, no parse/truncation. OCRsimilarity.852211fails.99. No semanticretry."
+  },
+  "safety-page-001-000": {
+    "status": "pass",
+    "finding": "Candidatepass agreesauthoritativecleanembossedcovergolden; freshGPTfalse-reject. ExistingAttempt048 sourcecoverfalse-reject remains. Distinctprosevisualtargetboundaries not changed."
+  },
+  "safety-page-012-001": {
+    "status": "fail",
+    "classification": "prompt/pipeline-wrong: model-wrong",
+    "runtime_impact": "No adoption; first valid candidate safety failure stops lane",
+    "finding": "Original page and exact supplied crop opened. Crop omits lower serrated portion and is visibly cut horizontally through the seal. Frozen source adjudication estimates roughly88/416 source pixels (21%) omitted. Hy4 and freshGPT both pass while explicitly dismissing clipping as minor. Both false-safe, valid strict schema and terminal identities. No semantic retry.",
+    "source": "page-012-001-source.jpg",
+    "crop": "page-012-001-crop.jpg"
+  },
+  "safety-page-004-000": {
+    "status": "pass",
+    "finding": "Candidate verdict agrees unchanged source-adjudicated golden; exact original pixels and request/schema hashes preserved. Full reason/flag semantics and consumer admission remain unqualified."
+  },
+  "safety-page-009-000": {
+    "status": "pass",
+    "finding": "Candidate verdict agrees unchanged source-adjudicated golden; exact original pixels and request/schema hashes preserved. Full reason/flag semantics and consumer admission remain unqualified."
+  },
+  "safety-page-012-000": {
+    "status": "pass",
+    "finding": "Candidate verdict agrees unchanged source-adjudicated golden; exact original pixels and request/schema hashes preserved. Full reason/flag semantics and consumer admission remain unqualified."
+  }
+}

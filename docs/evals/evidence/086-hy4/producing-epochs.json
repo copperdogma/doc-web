@@ -1,0 +1,14 @@
+{
+  "safety_runner": {
+    "producing_source": "docs/evals/evidence/086-hy4/producing-code/benchmarks/scripts/hy4_safety.py",
+    "producing_sha256": "69eaff81abc97b5086c0874e0b0af233390ec520779728ced952e945d430dfe3",
+    "current_sha256": "b8ca251fbefb4fb27acc407046138e36a264604ea38997292316d27a2d637419",
+    "normalized_ast_equal": true,
+    "change": "Formatting-only closeout; original producing bytes retained"
+  },
+  "guard": {
+    "early_recorded_sha256": "63d1459760e134fc5a2d111decc37aa9493167dee422c731b04aa5ee4c4d1689",
+    "resumed_and_final_sha256": "2bd6a4c184e7d360f6d7d2d7b464f6de040faa8845d9ce9e9e4acaa04493b131",
+    "limit": "Earlier exact guard bytes not retained; cannot independently prove all epoch differences. Work log records billing alias/disk admission repair. Exact request/response bytes and semantic runner/prompt/scorer/golden hashes preserved; no early score attributed to final guard bytes."
+  }
+}

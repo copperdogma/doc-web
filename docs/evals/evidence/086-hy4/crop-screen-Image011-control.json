@@ -1,0 +1,9 @@
+{
+  "raw": "```json\n{\"images\": [\n  {\"description\": \"Celebrate Saskatchewan logo\", \"bbox\": [0.075, 0.376, 0.232, 0.582]},\n  {\"description\": \"Seal and signatures\", \"bbox\": [0.688, 0.118, 0.895, 0.875]}\n]}\n```",
+  "score": {
+    "pass": true,
+    "score": 0.9854,
+    "reason": "box_count=1.00 (2/2) | iou_mean=0.978 | iou_min=0.977 | coverage=0.990 | total=0.985 | matches=[pred[1]<->gold[1] IoU=0.978, pred[0]<->gold[0] IoU=0.977]"
+  },
+  "served": "gemini-3-flash-preview"
+}

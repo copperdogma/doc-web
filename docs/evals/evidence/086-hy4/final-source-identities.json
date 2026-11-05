@@ -1,0 +1,123 @@
+{
+  "benchmarks/golden/crop-page-level-safety-repair-048-source-adjudicated.json": {
+    "bytes": 5157,
+    "sha256": "6f32bc513494f1c4454b4c41e74186136212d477ff10c87ccb29244ca21aaa76",
+    "prior_recorded_identity": {
+      "sha256": "6f32bc513494f1c4454b4c41e74186136212d477ff10c87ccb29244ca21aaa76",
+      "bytes": 5157
+    },
+    "matches_prior_record": true
+  },
+  "benchmarks/golden/image-crops.json": {
+    "bytes": 7783,
+    "sha256": "2ac0a8f01e00a252439da1f4827a85bc5118bf96460a3ff1780e642eafc60f90",
+    "prior_recorded_identity": {
+      "sha256": "2ac0a8f01e00a252439da1f4827a85bc5118bf96460a3ff1780e642eafc60f90",
+      "bytes": 7783
+    },
+    "matches_prior_record": true
+  },
+  "benchmarks/jev-consistency/decisions_campaign.py": {
+    "bytes": 2707,
+    "sha256": "8753d0c47c786b18deef2bc2f17e35d884e193794c076cd24da4c9011957f233"
+  },
+  "benchmarks/prompts/crop-conservative-count.js": {
+    "bytes": 1782,
+    "sha256": "d15c7fd6f20389e5e7b2af9f15dd3697a31c28f47cfea8147c8114fe82f1e8f9",
+    "prior_recorded_identity": {
+      "sha256": "d15c7fd6f20389e5e7b2af9f15dd3697a31c28f47cfea8147c8114fe82f1e8f9",
+      "bytes": 1782
+    },
+    "matches_prior_record": true
+  },
+  "benchmarks/prompts/validate-page-level-crop.js": {
+    "bytes": 4043,
+    "sha256": "ef4395838929b208fe65f21500d81ade902072bef3f8e53f81ef3d3b83fbc421"
+  },
+  "benchmarks/providers/hy4_guard.py": {
+    "bytes": 7386,
+    "sha256": "2bd6a4c184e7d360f6d7d2d7b464f6de040faa8845d9ce9e9e4acaa04493b131",
+    "prior_recorded_identity": {
+      "sha256": "63d1459760e134fc5a2d111decc37aa9493167dee422c731b04aa5ee4c4d1689",
+      "bytes": 7347
+    },
+    "matches_prior_record": false
+  },
+  "benchmarks/providers/openai_responses_model.py": {
+    "bytes": 17928,
+    "sha256": "3506470ee1eb9c8da8c472f270e3400fd2c6cbd086c6be836a0d974997696240"
+  },
+  "benchmarks/scorers/image_crop_scorer.py": {
+    "bytes": 10333,
+    "sha256": "7fcf07e05726bf3ebbc2488a503a9d7f165dde79649890cbd65f12a6ce4c19e7",
+    "prior_recorded_identity": {
+      "sha256": "7fcf07e05726bf3ebbc2488a503a9d7f165dde79649890cbd65f12a6ce4c19e7",
+      "bytes": 10333
+    },
+    "matches_prior_record": true
+  },
+  "benchmarks/scripts/hy4_finalize.py": {
+    "bytes": 7781,
+    "sha256": "7080a6d9f7fa71b70f8d0b86a0fcf7f4f6874312fd42211c1cae059aef57f77c"
+  },
+  "benchmarks/scripts/hy4_overlay.py": {
+    "bytes": 1867,
+    "sha256": "0132ed732f5b194404f036e0d4c25166b14fd2ed63cdf46258cc94488923127b"
+  },
+  "benchmarks/scripts/hy4_reading.py": {
+    "bytes": 20900,
+    "sha256": "3f8022bee283a1f7a2bf1bf29e572025c9feb7c7734f5e17f1b31a0e5b9b063c",
+    "prior_recorded_identity": {
+      "sha256": "3f8022bee283a1f7a2bf1bf29e572025c9feb7c7734f5e17f1b31a0e5b9b063c",
+      "bytes": 20900
+    },
+    "matches_prior_record": true
+  },
+  "benchmarks/scripts/hy4_safety.py": {
+    "bytes": 5344,
+    "sha256": "b8ca251fbefb4fb27acc407046138e36a264604ea38997292316d27a2d637419",
+    "prior_recorded_identity": {
+      "sha256": "69eaff81abc97b5086c0874e0b0af233390ec520779728ced952e945d430dfe3",
+      "bytes": 5322
+    },
+    "matches_prior_record": false
+  },
+  "benchmarks/scripts/scout096_safety.py": {
+    "bytes": 10555,
+    "sha256": "a5f771e20dc00d4a2f4d35945e3ae7784864e4982edd3cdbea21663e55b8d23a"
+  },
+  "benchmarks/tasks/safety-repair-048-control-full-continuation1.yaml": {
+    "bytes": 7538,
+    "sha256": "cd4cc0a7c70cc70c9cfed3516abdae29509fee36a82622d51293b51c2d2a4654"
+  },
+  "configs/recipes/hy4-ocr-candidate-barney.yaml": {
+    "bytes": 1014,
+    "sha256": "16c5de9e2d4922193cffb6ea423893d5e1dd3c449d20285241e4e9adca965a25"
+  },
+  "configs/recipes/hy4-ocr-control-barney.yaml": {
+    "bytes": 1014,
+    "sha256": "25a5c8994b35cfd13af5b2112c6d4dbefaf1524832f8918bc46eec854358e060"
+  },
+  "modules/common/literal_table_review.py": {
+    "bytes": 14664,
+    "sha256": "25085a0937d27e5bae61e3973eddcf2ea6a43496cba814d57fb8af67a0212d67",
+    "prior_recorded_identity": {
+      "sha256": "25085a0937d27e5bae61e3973eddcf2ea6a43496cba814d57fb8af67a0212d67",
+      "bytes": 14664
+    },
+    "matches_prior_record": true
+  },
+  "modules/common/table_source_review.py": {
+    "bytes": 7221,
+    "sha256": "78599f846eb31b2ad7a1607257458760e6e93e6eaa6d4ab062ffcbd30b879709",
+    "prior_recorded_identity": {
+      "sha256": "78599f846eb31b2ad7a1607257458760e6e93e6eaa6d4ab062ffcbd30b879709",
+      "bytes": 7221
+    },
+    "matches_prior_record": true
+  },
+  "tests/test_hy4_campaign.py": {
+    "bytes": 2895,
+    "sha256": "0b76588198db9f745f760119303775800402f4cf6f22dceb66363b25e2c277ad"
+  }
+}

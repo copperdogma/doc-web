@@ -1,0 +1,71 @@
+{
+  "base_sha": "5622d996961669b5254ff03a82b609a6fb3cf834",
+  "branch": "codex/hy4-20261105-doc-web",
+  "worktree": "/Users/cam/.codex/worktrees/hy4-ripple-20261105/doc-web",
+  "cap_usd": 5,
+  "spent_usd": 0.5979048559999998,
+  "unknown_exposure_usd": 0,
+  "dispatches": 22,
+  "judge_cost_usd": 0,
+  "safety": {
+    "candidate": {
+      "cases": 6,
+      "correct": 5,
+      "false_safe": 1,
+      "errors": 0,
+      "cost_usd": 0.058761237,
+      "native_http_mean_ms": 75197,
+      "native_http_median_ms": 74548.5,
+      "native_http_sum_ms": 451182
+    },
+    "control": {
+      "cases": 6,
+      "correct": 3,
+      "false_safe": 1,
+      "errors": 0,
+      "cost_usd": 0.350023,
+      "native_http_mean_ms": 4677.833333333333,
+      "native_http_median_ms": 4636.5,
+      "native_http_sum_ms": 28067
+    }
+  },
+  "table": {
+    "candidate_exact": 22,
+    "control_exact": 23,
+    "cells": 23,
+    "clear_holds": 4,
+    "accepted_wrong_cells": 0
+  },
+  "crop": {
+    "cases": 1,
+    "candidate_score": 0.9635,
+    "control_score": 0.9854,
+    "full_source_preservation": false,
+    "clipped_integral_rows": 2,
+    "coordinate_oracle": "unchanged golden-assisted axis selection"
+  },
+  "ocr": {
+    "candidate_ratio": 0.852211,
+    "threshold": 0.99,
+    "control_requested": "gemini-3.7-flash",
+    "control_served": "gemini-3.8-flash",
+    "control_quarantined": true,
+    "fresh_relative_claim": false
+  },
+  "credential_custody": "Existing owner wrapper, no key copy/injection/change",
+  "scope_holds": [
+    "Safety verdict benchmark does not qualify full reason/flags semantics",
+    "Attempt081 native source-size, identity and geometry admission gaps persist",
+    "No production consumer/source-deletion/default qualification",
+    "Crop golden-assisted geometry is not raw runtime coordinate parity",
+    "OCR eval-only adapter is not production provider integration"
+  ],
+  "native_cost_usd": 0.003318937,
+  "table_cost_usd": 0.11189716,
+  "crop_cost_usd": 0.014708450500000001,
+  "ocr_cost_usd": 0.0591960715,
+  "safety_cost_usd": 0.408784237,
+  "candidate_subject_cost_usd": 0.129605169,
+  "control_subject_cost_usd": 0.46498075,
+  "quarantined_control_cost_usd": 0.02286675
+}

@@ -104,3 +104,6 @@ benchmarks/results/scout091-20261013/
 
 # Scout103 public/synthetic native working receipts; durable archive in eval evidence.
 /benchmarks/results/scout103-20261026/
+
+# Hy4 public/synthetic native working receipts; durable archive in eval evidence.
+/benchmarks/results/hy4-20261105/

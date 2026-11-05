@@ -1,3 +1,9 @@
+## [2026-11-05-01] — Record official Hy4 source-fidelity evaluation (Story 264)
+
+### Added
+- Retain all22 native calls and frozen source contracts with closed USD.597904856 ledger, exact raw archive, source epochs and hash manifest.
+- Record a bounded safety reference lead (5/6 versus3/6), with one false-safe each; reject tested literal, crop and handwriting arms on source failures. Keep current models and consumer holds.
+
 ## [2026-10-28-01] — Preserve manual captions in intake emitter reuse (Story226)
 
 ### Fixed

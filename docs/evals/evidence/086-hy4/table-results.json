@@ -1,0 +1,135 @@
+[
+  {
+    "case": "image-positive",
+    "arm": "candidate",
+    "status": "unresolved",
+    "uncertainties": [
+      {
+        "alternatives": [
+          "Il1-00",
+          "I11-00",
+          "1l1-00",
+          "Ill-00",
+          "Il1-OO",
+          "Il1-O0",
+          "Il1-0O"
+        ],
+        "cell": 1,
+        "reason": "The three narrow vertical glyphs and two oval glyphs are visually confusable as I/l/1 and O/0; their order and alphanumeric identities cannot be established confidently from the pixels alone.",
+        "row": 1
+      },
+      {
+        "alternatives": [
+          "1+",
+          "I+",
+          "l+"
+        ],
+        "cell": 2,
+        "reason": "The leading narrow vertical glyph could be digit 1, capital I, or lowercase l; the numeric-looking column context is not source evidence.",
+        "row": 1
+      },
+      {
+        "alternatives": [
+          "o0-LI",
+          "oO-LI",
+          "0o-LI",
+          "00-LI",
+          "o0-L1",
+          "o0-Ll",
+          "o0-lI"
+        ],
+        "cell": 1,
+        "reason": "The rounded o/O/0 glyphs and the final narrow I/l/1 glyph are visually confusable in this monospaced face.",
+        "row": 2
+      },
+      {
+        "alternatives": [
+          "0",
+          "O",
+          "o"
+        ],
+        "cell": 2,
+        "reason": "The isolated oval glyph could be digit 0, capital O, or lowercase o; the Trays column context is not source evidence.",
+        "row": 2
+      }
+    ],
+    "literal_score": {
+      "text_pass": false,
+      "structure_pass": true,
+      "pass": false,
+      "text_mismatch_count": 1,
+      "structure_mismatch_count": 0,
+      "text_mismatches": [
+        {
+          "table": 0,
+          "actual_table": 0,
+          "row": 1,
+          "cell": 1,
+          "kind": "cell_text",
+          "expected": "Il1-O0",
+          "actual": "Il1-00"
+        }
+      ],
+      "structure_mismatches": [],
+      "counts": {
+        "golden": {
+          "tables": 1,
+          "rows": 6,
+          "cells": 23
+        },
+        "actual": {
+          "tables": 1,
+          "rows": 6,
+          "cells": 23
+        }
+      },
+      "scope": {
+        "mode": "all_tables",
+        "table_index": null,
+        "golden_table_count": 1,
+        "actual_table_count": 1,
+        "excluded_actual_table_indices": [],
+        "compared_actual_table_count": 1,
+        "document_actual_table_count": 1
+      }
+    },
+    "report": "benchmarks/results/hy4-20261105/table-image-positive-candidate_reports/row-00000-page-00001-original-00001.json"
+  },
+  {
+    "case": "image-positive",
+    "arm": "control",
+    "status": "verified",
+    "uncertainties": [],
+    "literal_score": {
+      "text_pass": true,
+      "structure_pass": true,
+      "pass": true,
+      "text_mismatch_count": 0,
+      "structure_mismatch_count": 0,
+      "text_mismatches": [],
+      "structure_mismatches": [],
+      "counts": {
+        "golden": {
+          "tables": 1,
+          "rows": 6,
+          "cells": 23
+        },
+        "actual": {
+          "tables": 1,
+          "rows": 6,
+          "cells": 23
+        }
+      },
+      "scope": {
+        "mode": "all_tables",
+        "table_index": null,
+        "golden_table_count": 1,
+        "actual_table_count": 1,
+        "excluded_actual_table_indices": [],
+        "compared_actual_table_count": 1,
+        "document_actual_table_count": 1
+      }
+    },
+    "report": "benchmarks/results/hy4-20261105/table-image-positive-control_reports/row-00000-page-00001-original-00001.json"
+  }
+]

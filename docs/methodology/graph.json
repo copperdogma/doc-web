@@ -250,7 +250,8 @@
           "256",
           "257",
           "258",
-          "263"
+          "263",
+          "264"
         ],
         "adr_ids": [
           "ADR-001",
@@ -336,7 +337,8 @@
           "256",
           "257",
           "258",
-          "263"
+          "263",
+          "264"
         ],
         "adr_ids": [
           "ADR-001",
@@ -404,7 +406,8 @@
           "258",
           "259",
           "262",
-          "263"
+          "263",
+          "264"
         ],
         "adr_ids": [],
         "eval_ids": [
@@ -542,7 +545,8 @@
           "258",
           "260",
           "262",
-          "263"
+          "263",
+          "264"
         ],
         "adr_ids": [
           "ADR-001",
@@ -715,12 +719,14 @@
           "241",
           "242",
           "244",
-          "259"
+          "259",
+          "264"
         ],
         "adr_ids": [
           "ADR-002"
         ],
         "eval_ids": [
+          "literal-table-fidelity",
           "sol-crop-safety-native-public-smoke",
           "image-crop-extraction",
           "crop-validation",
@@ -965,7 +971,8 @@
           "256",
           "257",
           "258",
-          "263"
+          "263",
+          "264"
         ],
         "eval_ids": [
           "literal-table-fidelity",
@@ -977,18 +984,16 @@
           "source_id": "literal-table-fidelity",
           "source_path": "docs/evals/registry.yaml",
           "recommended_now": false,
-          "posture": "wait-for-trigger",
-          "retry_trigger_status": "waiting",
-          "retry_when": [
-            "new-subject-model"
-          ],
+          "posture": "no-trigger-recorded",
+          "retry_trigger_status": "none",
+          "retry_when": [],
           "why_now": "",
           "last_relevant_action": {
-            "date": "2026-10-26",
+            "date": "2026-11-05",
             "source_type": "eval-attempt",
             "source": "docs/evals/registry.yaml",
-            "source_id": "085",
-            "summary": "Failed source literal/coverage gate: Il1-O0 becomes Il1-00 with gratuitous clear-cell hold; Astra23/23verified. Owner safely unresolved. Remaining13clear/2genuineambiguity cells unmeasured. RetainAstra; no effort resc..."
+            "source_id": "086",
+            "summary": "Bakery source Il1-O0 becomes Il1-00 plus4 clear holds; Astra23/23verified at9136ms/USD.0821425. Valid source failure; remaining13clear+2ambiguity unmeasured. Retain Astra. Attempt086/Story264; high32768 OpenRouter Ten..."
           },
           "story_ids": [
             "131",
@@ -1045,7 +1050,8 @@
             "256",
             "257",
             "258",
-            "263"
+            "263",
+            "264"
           ],
           "eval_ids": [
             "literal-table-fidelity",
@@ -1091,7 +1097,8 @@
           "256",
           "257",
           "258",
-          "263"
+          "263",
+          "264"
         ],
         "eval_ids": [
           "literal-table-fidelity"
@@ -1101,18 +1108,16 @@
           "source_id": "literal-table-fidelity",
           "source_path": "docs/evals/registry.yaml",
           "recommended_now": false,
-          "posture": "wait-for-trigger",
-          "retry_trigger_status": "waiting",
-          "retry_when": [
-            "new-subject-model"
-          ],
+          "posture": "no-trigger-recorded",
+          "retry_trigger_status": "none",
+          "retry_when": [],
           "why_now": "",
           "last_relevant_action": {
-            "date": "2026-10-26",
+            "date": "2026-11-05",
             "source_type": "eval-attempt",
             "source": "docs/evals/registry.yaml",
-            "source_id": "085",
-            "summary": "Failed source literal/coverage gate: Il1-O0 becomes Il1-00 with gratuitous clear-cell hold; Astra23/23verified. Owner safely unresolved. Remaining13clear/2genuineambiguity cells unmeasured. RetainAstra; no effort resc..."
+            "source_id": "086",
+            "summary": "Bakery source Il1-O0 becomes Il1-00 plus4 clear holds; Astra23/23verified at9136ms/USD.0821425. Valid source failure; remaining13clear+2ambiguity unmeasured. Retain Astra. Attempt086/Story264; high32768 OpenRouter Ten..."
           },
           "story_ids": [
             "022",
@@ -1142,7 +1147,8 @@
             "256",
             "257",
             "258",
-            "263"
+            "263",
+            "264"
           ],
           "eval_ids": [
             "literal-table-fidelity"
@@ -1313,7 +1319,8 @@
           "257",
           "258",
           "262",
-          "263"
+          "263",
+          "264"
         ],
         "eval_ids": [
           "image-crop-extraction",
@@ -1356,7 +1363,8 @@
             "257",
             "258",
             "262",
-            "263"
+            "263",
+            "264"
           ],
           "eval_ids": [
             "image-crop-extraction",
@@ -1399,7 +1407,8 @@
           "258",
           "259",
           "262",
-          "263"
+          "263",
+          "264"
         ],
         "eval_ids": [
           "sol-crop-safety-native-public-smoke",
@@ -1445,7 +1454,8 @@
             "258",
             "259",
             "262",
-            "263"
+            "263",
+            "264"
           ],
           "eval_ids": [
             "sol-crop-safety-native-public-smoke",
@@ -15241,6 +15251,76 @@
           "summary": ""
         }
       }
+    },
+    {
+      "id": "264",
+      "title": "Hy4 official release source fidelity evaluation",
+      "path": "docs/stories/story-264-hy4-source-fidelity-evaluation.md",
+      "status": "Done",
+      "priority": "Medium",
+      "ideal_refs": [
+        "req:3",
+        "req:4",
+        "req:6"
+      ],
+      "spec_refs": [
+        "spec:2.1",
+        "spec:3.1",
+        "spec:4.1",
+        "spec:4.2",
+        "spec:6"
+      ],
+      "decision_refs": [
+        "ADR-001",
+        "ADR-002"
+      ],
+      "adr_ids": [
+        "ADR-001",
+        "ADR-002"
+      ],
+      "depends_on": [],
+      "category_refs": [
+        "spec:2",
+        "spec:3",
+        "spec:4",
+        "spec:6",
+        "spec:8"
+      ],
+      "compromise_refs": [
+        "C1",
+        "C4",
+        "C5",
+        "C6"
+      ],
+      "input_coverage_refs": [
+        "handwritten-notes",
+        "scanned-pdf-tables"
+      ],
+      "architecture_domains": [
+        "ocr_and_extraction"
+      ],
+      "roadmap_tags": [],
+      "blocker_summary": "",
+      "blocker_evidence": "",
+      "unblock_condition": "",
+      "last_work_log_entry": null,
+      "legacy_build_map_refs": "",
+      "metadata_source": "frontmatter",
+      "missing_frontmatter_keys": [],
+      "actionability": {
+        "source_kind": "story",
+        "source_id": "264",
+        "source_path": "docs/stories/story-264-hy4-source-fidelity-evaluation.md",
+        "recommended_now": false,
+        "posture": "completed",
+        "why_now": "",
+        "last_relevant_action": {
+          "date": null,
+          "source_type": "story-status",
+          "source": "docs/stories/story-264-hy4-source-fidelity-evaluation.md",
+          "summary": ""
+        }
+      }
     }
   ],
   "adrs": [
@@ -15381,7 +15461,8 @@
         "255",
         "257",
         "258",
-        "263"
+        "263",
+        "264"
       ],
       "compromise_refs": [
         "C1",
@@ -15392,9 +15473,25 @@
         "spec:2",
         "spec:3",
         "spec:4",
-        "spec:6"
+        "spec:6",
+        "spec:8"
       ],
       "scores": [
+        {
+          "model": "tencent/hy4 Tencent FP4 high32768 Scout105",
+          "measured": "2026-11-05",
+          "git_sha": "5622d996961669b5254ff03a82b609a6fb3cf834+attempt086-uncommitted",
+          "metrics": {
+            "diagnostic_exact_cells": 22,
+            "clear_cells_tested": 23,
+            "clear_uncertainty_cells": 4,
+            "accepted_wrong_cells": 0,
+            "cases_total": 1,
+            "latency_ms": 267148,
+            "cost_usd": 0.02975466
+          },
+          "note": "Bakery source Il1-O0 becomes Il1-00 plus4 clear holds; Astra23/23verified at9136ms/USD.0821425. Valid source failure; remaining13clear+2ambiguity unmeasured. Retain Astra. Attempt086/Story264; high32768 OpenRouter Tencent FP4 official Nov4 release, exact tencent/hy4. Closed22POSTs USD.597904856/5 unknown0; no defaults/commit/push."
+        },
         {
           "model": "meta/muse-wonder-20261012 high-max32768 thinking Scout093",
           "measured": "2026-10-14",
@@ -15553,21 +15650,29 @@
         }
       ],
       "latest_score": {
-        "model": "gpt-6.1-terra direct Responses high32768 Scout103",
-        "measured": "2026-10-26",
-        "git_sha": "3a7efec9216c7d784700e464a98fc6de9b8a2e02+attempt085-uncommitted",
+        "model": "tencent/hy4 Tencent FP4 high32768 Scout105",
+        "measured": "2026-11-05",
+        "git_sha": "5622d996961669b5254ff03a82b609a6fb3cf834+attempt086-uncommitted",
         "metrics": {
+          "diagnostic_exact_cells": 22,
           "clear_cells_tested": 23,
-          "exact_cells": 22,
-          "clear_uncertainty_cells": 1,
+          "clear_uncertainty_cells": 4,
           "accepted_wrong_cells": 0,
           "cases_total": 1,
-          "latency_ms": 27560,
-          "cost_usd": 0.0178905
+          "latency_ms": 267148,
+          "cost_usd": 0.02975466
         },
-        "note": "Failed source literal/coverage gate: Il1-O0 becomes Il1-00 with gratuitous clear-cell hold; Astra23/23verified. Owner safely unresolved. Remaining13clear/2genuineambiguity cells unmeasured. RetainAstra; no effort rescue. Fullownerrecord attempts/085-gpt61-terra-source-fidelity.md; inclusiveUSD.27373875/12 unknown0."
+        "note": "Bakery source Il1-O0 becomes Il1-00 plus4 clear holds; Astra23/23verified at9136ms/USD.0821425. Valid source failure; remaining13clear+2ambiguity unmeasured. Retain Astra. Attempt086/Story264; high32768 OpenRouter Tencent FP4 official Nov4 release, exact tencent/hy4. Closed22POSTs USD.597904856/5 unknown0; no defaults/commit/push."
       },
       "attempts": [
+        {
+          "id": "086",
+          "date": "2026-11-05",
+          "status": "failed",
+          "approach": "Official Hy4 frozen high32768 progressive matched source-fidelity screen",
+          "note": "Bakery source Il1-O0 becomes Il1-00 plus4 clear holds; Astra23/23verified at9136ms/USD.0821425. Valid source failure; remaining13clear+2ambiguity unmeasured. Retain Astra. Attempt086/Story264; high32768 OpenRouter Tencent FP4 official Nov4 release, exact tencent/hy4. Closed22POSTs USD.597904856/5 unknown0; no defaults/commit/push. Evidence docs/evals/evidence/086-hy4/summary.json and manifest.json.",
+          "retry_when": []
+        },
         {
           "id": "085",
           "date": "2026-10-26",
@@ -15672,18 +15777,16 @@
         "source_id": "literal-table-fidelity",
         "source_path": "docs/evals/registry.yaml",
         "recommended_now": false,
-        "posture": "wait-for-trigger",
-        "retry_trigger_status": "waiting",
-        "retry_when": [
-          "new-subject-model"
-        ],
+        "posture": "no-trigger-recorded",
+        "retry_trigger_status": "none",
+        "retry_when": [],
         "why_now": "",
         "last_relevant_action": {
-          "date": "2026-10-26",
+          "date": "2026-11-05",
           "source_type": "eval-attempt",
           "source": "docs/evals/registry.yaml",
-          "source_id": "085",
-          "summary": "Failed source literal/coverage gate: Il1-O0 becomes Il1-00 with gratuitous clear-cell hold; Astra23/23verified. Owner safely unresolved. Remaining13clear/2genuineambiguity cells unmeasured. RetainAstra; no effort resc..."
+          "source_id": "086",
+          "summary": "Bakery source Il1-O0 becomes Il1-00 plus4 clear holds; Astra23/23verified at9136ms/USD.0821425. Valid source failure; remaining13clear+2ambiguity unmeasured. Retain Astra. Attempt086/Story264; high32768 OpenRouter Ten..."
         }
       }
     },
@@ -15947,7 +16050,8 @@
         "249",
         "257",
         "258",
-        "263"
+        "263",
+        "264"
       ],
       "compromise_refs": [
         "C4"
@@ -16706,25 +16810,47 @@
             "definite_integral_amputations": 0
           },
           "note": "Fresh13pairs both13/13 tolerantpass; Terra normalizedquality/speed lead vsGemini at38.69%highercost. Botharms golden-assisted axis normalization, not raw-coordinate/runtimeproof. Image000 undecoratedcoverextentUNRESOLVED vsfullcovergold;12clear integralunits, no13/13fullsourceacceptance. HistoricalSol .992731 remains higher/differentrun. Existing consumer/grouping holds; no defaultchange. Fullownerrecord attempts/085-gpt61-terra-source-fidelity.md; inclusiveUSD.27373875/12 unknown0."
+        },
+        {
+          "model": "tencent/hy4 Tencent FP4 high32768 Scout105",
+          "measured": "2026-11-05",
+          "git_sha": "5622d996961669b5254ff03a82b609a6fb3cf834+attempt086-uncommitted",
+          "metrics": {
+            "cases_total": 1,
+            "overall": 0.9635,
+            "tolerant_passes": 1,
+            "full_source_preservation": false,
+            "clipped_integral_rows": 2,
+            "latency_ms": 33433,
+            "cost_usd": 0.0047599505
+          },
+          "note": "Image011 diagnostic .9635 versus freshGemini .9854/13542ms/USD.0099485. Source2 integral date rows clipped; reject despite tolerant IoU pass. Remaining12 unmeasured; both-arm golden-assisted axis oracle, no runtime coordinate qualification. Attempt086/Story264; high32768 OpenRouter Tencent FP4 official Nov4 release, exact tencent/hy4. Closed22POSTs USD.597904856/5 unknown0; no defaults/commit/push."
         }
       ],
       "latest_score": {
-        "model": "gpt-6.1-terra direct Responses medium16384 Scout103",
-        "measured": "2026-10-26",
-        "git_sha": "3a7efec9216c7d784700e464a98fc6de9b8a2e02+attempt085-uncommitted",
+        "model": "tencent/hy4 Tencent FP4 high32768 Scout105",
+        "measured": "2026-11-05",
+        "git_sha": "5622d996961669b5254ff03a82b609a6fb3cf834+attempt086-uncommitted",
         "metrics": {
-          "overall": 0.9785769230769231,
-          "pass_rate": 1.0,
-          "cases_total": 13,
-          "fresh_control_score": 0.9589,
-          "latency_ms": 3187.6923076923076,
-          "cost_usd": 0.07222525,
-          "source_extent_unresolved_cases": 1,
-          "definite_integral_amputations": 0
+          "cases_total": 1,
+          "overall": 0.9635,
+          "tolerant_passes": 1,
+          "full_source_preservation": false,
+          "clipped_integral_rows": 2,
+          "latency_ms": 33433,
+          "cost_usd": 0.0047599505
         },
-        "note": "Fresh13pairs both13/13 tolerantpass; Terra normalizedquality/speed lead vsGemini at38.69%highercost. Botharms golden-assisted axis normalization, not raw-coordinate/runtimeproof. Image000 undecoratedcoverextentUNRESOLVED vsfullcovergold;12clear integralunits, no13/13fullsourceacceptance. HistoricalSol .992731 remains higher/differentrun. Existing consumer/grouping holds; no defaultchange. Fullownerrecord attempts/085-gpt61-terra-source-fidelity.md; inclusiveUSD.27373875/12 unknown0."
+        "note": "Image011 diagnostic .9635 versus freshGemini .9854/13542ms/USD.0099485. Source2 integral date rows clipped; reject despite tolerant IoU pass. Remaining12 unmeasured; both-arm golden-assisted axis oracle, no runtime coordinate qualification. Attempt086/Story264; high32768 OpenRouter Tencent FP4 official Nov4 release, exact tencent/hy4. Closed22POSTs USD.597904856/5 unknown0; no defaults/commit/push."
       },
       "attempts": [
+        {
+          "id": "086",
+          "date": "2026-11-05",
+          "status": "failed",
+          "approach": "Official Hy4 frozen high32768 progressive matched source-fidelity screen",
+          "note": "Image011 diagnostic .9635 versus freshGemini .9854/13542ms/USD.0099485. Source2 integral date rows clipped; reject despite tolerant IoU pass. Remaining12 unmeasured; both-arm golden-assisted axis oracle, no runtime coordinate qualification. Attempt086/Story264; high32768 OpenRouter Tencent FP4 official Nov4 release, exact tencent/hy4. Closed22POSTs USD.597904856/5 unknown0; no defaults/commit/push. Evidence docs/evals/evidence/086-hy4/summary.json and manifest.json.",
+          "retry_when": []
+        },
         {
           "id": "085",
           "date": "2026-10-26",
@@ -17245,15 +17371,16 @@
         "posture": "wait-for-trigger",
         "retry_trigger_status": "waiting",
         "retry_when": [
+          "golden-fix",
           "new-subject-model"
         ],
         "why_now": "Attempt063 qualified Gemini4 Argon13/13 but leaves cover-edge/source/runtime/safety equivalence unqualified and costs/latency higher than fresh control. New identity alone does not warrant another same-line campaign;...",
         "last_relevant_action": {
-          "date": "2026-10-26",
+          "date": "2026-11-05",
           "source_type": "eval-attempt",
           "source": "docs/evals/registry.yaml",
-          "source_id": "085",
-          "summary": "Fresh13pairs both13/13 tolerantpass; Terra normalizedquality/speed lead vsGemini at38.69%highercost. Botharms golden-assisted axis normalization, not raw-coordinate/runtimeproof. Image000 undecoratedcoverextentUNRESOL..."
+          "source_id": "086",
+          "summary": "Image011 diagnostic .9635 versus freshGemini .9854/13542ms/USD.0099485. Source2 integral date rows clipped; reject despite tolerant IoU pass. Remaining12 unmeasured; both-arm golden-assisted axis oracle, no runtime co..."
         }
       }
     },
@@ -17561,7 +17688,8 @@
         "249",
         "257",
         "258",
-        "259"
+        "259",
+        "264"
       ],
       "compromise_refs": [
         "C5"
@@ -17576,6 +17704,23 @@
         "spec:8"
       ],
       "scores": [
+        {
+          "model": "tencent/hy4 Tencent FP4 high32768 Scout105",
+          "measured": "2026-11-05",
+          "git_sha": "5622d996961669b5254ff03a82b609a6fb3cf834+attempt086-uncommitted",
+          "metrics": {
+            "cases_total": 6,
+            "correct": 5,
+            "false_safe": 1,
+            "latency_ms": 75197,
+            "cost_usd": 0.0097935395,
+            "control_correct": 3,
+            "control_false_safe": 1,
+            "control_latency_ms": 4677.833333333333,
+            "control_cost_usd": 0.05833716666666667
+          },
+          "note": "First valid failure page012001: both pass seal missing roughly21percent. Hy4 5/6 vsGPT5.5 3/6 reference lead, one false-safe each; neither qualifies. Remaining16 unmeasured. Strict schema/terminal qualified; reason/flag semantics and native source-size/identity/geometry consumer admission remain held (Attempt081). Attempt086/Story264; high32768 OpenRouter Tencent FP4 official Nov4 release, exact tencent/hy4. Closed22POSTs USD.597904856/5 unknown0; no defaults/commit/push."
+        },
         {
           "model": "gpt-6.1-sol medium repaired safety (Attempt048)",
           "metrics": {
@@ -18182,21 +18327,31 @@
         }
       ],
       "latest_score": {
-        "model": "deepseek/deepseek-v4.1-flash-1017 Cloudflare high32768 Scout097",
-        "measured": "2026-10-17",
-        "git_sha": "bceb2956+attempt079-uncommitted",
+        "model": "tencent/hy4 Tencent FP4 high32768 Scout105",
+        "measured": "2026-11-05",
+        "git_sha": "5622d996961669b5254ff03a82b609a6fb3cf834+attempt086-uncommitted",
         "metrics": {
-          "adoption_grade_candidate_cases": 0,
-          "accounting_quarantined_cases": 2,
-          "diagnostic_correct": 1,
-          "diagnostic_false_safe": 1,
-          "fresh_control_correct": 2,
-          "fresh_control_false_safe": 0,
-          "remaining_unmeasured": 20
+          "cases_total": 6,
+          "correct": 5,
+          "false_safe": 1,
+          "latency_ms": 75197,
+          "cost_usd": 0.0097935395,
+          "control_correct": 3,
+          "control_false_safe": 1,
+          "control_latency_ms": 4677.833333333333,
+          "control_cost_usd": 0.05833716666666667
         },
-        "note": "ACCOUNTINGAUDIT: nativecompletion616/reasoning711 impossible; clippedseal323/311leaves12visible for231charJSON. Bothsubjectsenvelopesquarantined, capabilitynotmeasured/adoptiondefer. Savedclippedseal false-safe is diagnostic only; qualifiedGPT5.5control2/2correct. No newPOST. See evidence/079-scout097/accounting-audit/report.md. Fullownerrecord attempts/079-scout097-deepseek1017-source-fidelity.md; closedinclusiveUSD.231343868/15 unknown0, no runtime/defaults."
+        "note": "First valid failure page012001: both pass seal missing roughly21percent. Hy4 5/6 vsGPT5.5 3/6 reference lead, one false-safe each; neither qualifies. Remaining16 unmeasured. Strict schema/terminal qualified; reason/flag semantics and native source-size/identity/geometry consumer admission remain held (Attempt081). Attempt086/Story264; high32768 OpenRouter Tencent FP4 official Nov4 release, exact tencent/hy4. Closed22POSTs USD.597904856/5 unknown0; no defaults/commit/push."
       },
       "attempts": [
+        {
+          "id": "086",
+          "date": "2026-11-05",
+          "status": "failed",
+          "approach": "Official Hy4 frozen high32768 progressive matched source-fidelity screen",
+          "note": "First valid failure page012001: both pass seal missing roughly21percent. Hy4 5/6 vsGPT5.5 3/6 reference lead, one false-safe each; neither qualifies. Remaining16 unmeasured. Strict schema/terminal qualified; reason/flag semantics and native source-size/identity/geometry consumer admission remain held (Attempt081). Attempt086/Story264; high32768 OpenRouter Tencent FP4 official Nov4 release, exact tencent/hy4. Closed22POSTs USD.597904856/5 unknown0; no defaults/commit/push. Evidence docs/evals/evidence/086-hy4/summary.json and manifest.json.",
+          "retry_when": []
+        },
         {
           "id": "081",
           "date": "2026-10-20",
@@ -18529,15 +18684,17 @@
         "posture": "trigger-exhausted",
         "retry_trigger_status": "exhausted",
         "retry_when": [
-          "separately-approved-informational-contract-and-native-custody"
+          "golden-fix",
+          "new-subject-model",
+          "runtime-change"
         ],
         "why_now": "Rerun when a materially stronger validator or detector may reduce the current fail-labeled page-context cases. Rerun after any maintained crop/runtime simplification before claiming `trim_layout_text` or bounded capti...",
         "last_relevant_action": {
-          "date": "2026-10-20",
+          "date": "2026-11-05",
           "source_type": "eval-attempt",
           "source": "docs/evals/registry.yaml",
-          "source_id": "081",
-          "summary": "DEFER runtime/paid qualification. Exact unchanged consumer build22/parse44 under OS deny-network:15oversized crops,44native identity rejections,0admitted; full proposer/finalize/release routing not measured without na..."
+          "source_id": "086",
+          "summary": "First valid failure page012001: both pass seal missing roughly21percent. Hy4 5/6 vsGPT5.5 3/6 reference lead, one false-safe each; neither qualifies. Remaining16 unmeasured. Strict schema/terminal qualified; reason/fl..."
         }
       }
     },
@@ -18657,7 +18814,8 @@
         "249",
         "257",
         "258",
-        "263"
+        "263",
+        "264"
       ],
       "compromise_refs": [],
       "category_refs": [
@@ -18670,6 +18828,19 @@
         "spec:8"
       ],
       "scores": [
+        {
+          "model": "tencent/hy4 Tencent FP4 high32768 Scout105",
+          "measured": "2026-11-05",
+          "git_sha": "5622d996961669b5254ff03a82b609a6fb3cf834+attempt086-uncommitted",
+          "metrics": {
+            "cases_total": 1,
+            "score": 0.852211,
+            "target": 0.99,
+            "latency_ms": 288426,
+            "cost_usd": 0.0363293215
+          },
+          "note": "Actual Barney image-entry driver produces source substitutions/normalization/invented passage; reject tested high arm. Requested exactGemini3.7 served3.8 quarantined atUSD.02286675; no fresh relative OCR claim. No effort rescue. Attempt086/Story264; high32768 OpenRouter Tencent FP4 official Nov4 release, exact tencent/hy4. Closed22POSTs USD.597904856/5 unknown0; no defaults/commit/push."
+        },
         {
           "model": "gemini-4-argon medium32768 public LOC Barney Scout092",
           "measured": "2026-10-13",
@@ -19032,19 +19203,27 @@
         }
       ],
       "latest_score": {
-        "model": "gpt-6.1-terra direct Responses high32768 Scout103",
-        "measured": "2026-10-26",
-        "git_sha": "3a7efec9216c7d784700e464a98fc6de9b8a2e02+attempt085-uncommitted",
+        "model": "tencent/hy4 Tencent FP4 high32768 Scout105",
+        "measured": "2026-11-05",
+        "git_sha": "5622d996961669b5254ff03a82b609a6fb3cf834+attempt086-uncommitted",
         "metrics": {
-          "overall_min_ratio": 0.96527,
           "cases_total": 1,
-          "pass_rate": 0.0,
-          "latency_ms": 49403,
-          "cost_usd": 0.02337175
+          "score": 0.852211,
+          "target": 0.99,
+          "latency_ms": 288426,
+          "cost_usd": 0.0363293215
         },
-        "note": "ActualBarney image-entry driver below.99, source substitutes Williamwaswiththeboys for WilliamandWelthy and normalizeswording. ExactGemini3.7requestserved3.8quarantined; nofreshrelativequalityclaim. Otherfixturesexcluded. RejecttestedTerraOCRreplacement, noeffortrescue. Fullownerrecord attempts/085-gpt61-terra-source-fidelity.md; inclusiveUSD.27373875/12 unknown0."
+        "note": "Actual Barney image-entry driver produces source substitutions/normalization/invented passage; reject tested high arm. Requested exactGemini3.7 served3.8 quarantined atUSD.02286675; no fresh relative OCR claim. No effort rescue. Attempt086/Story264; high32768 OpenRouter Tencent FP4 official Nov4 release, exact tencent/hy4. Closed22POSTs USD.597904856/5 unknown0; no defaults/commit/push."
       },
       "attempts": [
+        {
+          "id": "086",
+          "date": "2026-11-05",
+          "status": "failed",
+          "approach": "Official Hy4 frozen high32768 progressive matched source-fidelity screen",
+          "note": "Actual Barney image-entry driver produces source substitutions/normalization/invented passage; reject tested high arm. Requested exactGemini3.7 served3.8 quarantined atUSD.02286675; no fresh relative OCR claim. No effort rescue. Attempt086/Story264; high32768 OpenRouter Tencent FP4 official Nov4 release, exact tencent/hy4. Closed22POSTs USD.597904856/5 unknown0; no defaults/commit/push. Evidence docs/evals/evidence/086-hy4/summary.json and manifest.json.",
+          "retry_when": []
+        },
         {
           "id": "085",
           "date": "2026-10-26",
@@ -19251,11 +19430,11 @@
         ],
         "why_now": "Retry only when a materially stronger model or OCR substrate appears that could plausibly clear Barney and the corrected Alverson front-page truth surface.",
         "last_relevant_action": {
-          "date": "2026-10-26",
+          "date": "2026-11-05",
           "source_type": "eval-attempt",
           "source": "docs/evals/registry.yaml",
-          "source_id": "085",
-          "summary": "ActualBarney image-entry driver below.99, source substitutes Williamwaswiththeboys for WilliamandWelthy and normalizeswording. ExactGemini3.7requestserved3.8quarantined; nofreshrelativequalityclaim. Otherfixturesexclu..."
+          "source_id": "086",
+          "summary": "Actual Barney image-entry driver produces source substitutions/normalization/invented passage; reject tested high arm. Requested exactGemini3.7 served3.8 quarantined atUSD.02286675; no fresh relative OCR claim. No eff..."
         }
       }
     },

@@ -46,7 +46,7 @@ evals:
     pipeline_stage: extract
     runner: custom
     command: "PYTHONPATH=. python benchmarks/scripts/run_literal_table_fidelity.py --manifest output/story244-eval/development.json --out output/story244-eval/fresh --variant literal"
-    story_refs: ["245", "253", "254", "255", "257", "258", "263"]
+    story_refs: ["245", "253", "254", "255", "257", "258", "263", "264"]
     category_refs: ["spec:2", "spec:3", "spec:6"]
     spec_refs: ["spec:2.1", "spec:2.2", "spec:3.1", "spec:6"]
     compromise_refs: ["C1", "C3", "C6"]
@@ -56,6 +56,11 @@ evals:
       silent_substitutions: 0
       harmful_control_changes: 0
     scores:
+      - model: tencent/hy4 Tencent FP4 high32768 Scout105
+        measured: "2026-11-05"
+        git_sha: 5622d996961669b5254ff03a82b609a6fb3cf834+attempt086-uncommitted
+        metrics: {"diagnostic_exact_cells": 22, "clear_cells_tested": 23, "clear_uncertainty_cells": 4, "accepted_wrong_cells": 0, "cases_total": 1, "latency_ms": 267148, "cost_usd": 0.02975466}
+        note: "Bakery source Il1-O0 becomes Il1-00 plus4 clear holds; Astra23/23verified at9136ms/USD.0821425. Valid source failure; remaining13clear+2ambiguity unmeasured. Retain Astra. Attempt086/Story264; high32768 OpenRouter Tencent FP4 official Nov4 release, exact tencent/hy4. Closed22POSTs USD.597904856/5 unknown0; no defaults/commit/push."
       - model: meta/muse-wonder-20261012 high-max32768 thinking Scout093
         measured: 2026-10-14
         git_sha: e44c0a41+attempt075
@@ -112,6 +117,11 @@ evals:
           Fullownerrecord attempts/085-gpt61-terra-source-fidelity.md; inclusiveUSD.27373875/12 unknown0.'
 
     attempts:
+      - id: "086"
+        date: "2026-11-05"
+        status: failed
+        approach: "Official Hy4 frozen high32768 progressive matched source-fidelity screen"
+        note: "Bakery source Il1-O0 becomes Il1-00 plus4 clear holds; Astra23/23verified at9136ms/USD.0821425. Valid source failure; remaining13clear+2ambiguity unmeasured. Retain Astra. Attempt086/Story264; high32768 OpenRouter Tencent FP4 official Nov4 release, exact tencent/hy4. Closed22POSTs USD.597904856/5 unknown0; no defaults/commit/push. Evidence docs/evals/evidence/086-hy4/summary.json and manifest.json."
       - id: 085
         date: '2026-10-26'
         status: failed
@@ -329,7 +339,7 @@ evals:
     config: benchmarks/tasks/image-crop-extraction.yaml
     scorer: benchmarks/scorers/image_crop_scorer.py
     golden: benchmarks/golden/
-    story_refs: ["133", "183", "207", "226", "232", "235", "236", "237", "238", "239", "249", "257", "258", "263"]
+    story_refs: ["133", "183", "207", "226", "232", "235", "236", "237", "238", "239", "249", "257", "258", "263", "264"]
     category_refs: ["spec:4", "spec:8"]
     compromise_refs: ["C4"]
     spec_compromise: C4
@@ -1259,7 +1269,18 @@ evals:
           Existing consumer/grouping holds; no defaultchange. Fullownerrecord attempts/085-gpt61-terra-source-fidelity.md;
           inclusiveUSD.27373875/12 unknown0.
 
+      - model: tencent/hy4 Tencent FP4 high32768 Scout105
+        measured: "2026-11-05"
+        git_sha: 5622d996961669b5254ff03a82b609a6fb3cf834+attempt086-uncommitted
+        metrics: {"cases_total": 1, "overall": 0.9635, "tolerant_passes": 1, "full_source_preservation": false, "clipped_integral_rows": 2, "latency_ms": 33433, "cost_usd": 0.0047599505}
+        note: "Image011 diagnostic .9635 versus freshGemini .9854/13542ms/USD.0099485. Source2 integral date rows clipped; reject despite tolerant IoU pass. Remaining12 unmeasured; both-arm golden-assisted axis oracle, no runtime coordinate qualification. Attempt086/Story264; high32768 OpenRouter Tencent FP4 official Nov4 release, exact tencent/hy4. Closed22POSTs USD.597904856/5 unknown0; no defaults/commit/push."
+
     attempts:
+      - id: "086"
+        date: "2026-11-05"
+        status: failed
+        approach: "Official Hy4 frozen high32768 progressive matched source-fidelity screen"
+        note: "Image011 diagnostic .9635 versus freshGemini .9854/13542ms/USD.0099485. Source2 integral date rows clipped; reject despite tolerant IoU pass. Remaining12 unmeasured; both-arm golden-assisted axis oracle, no runtime coordinate qualification. Attempt086/Story264; high32768 OpenRouter Tencent FP4 official Nov4 release, exact tencent/hy4. Closed22POSTs USD.597904856/5 unknown0; no defaults/commit/push. Evidence docs/evals/evidence/086-hy4/summary.json and manifest.json."
       - id: 085
         date: '2026-10-26'
         status: succeeded
@@ -2628,7 +2649,7 @@ evals:
     config: benchmarks/tasks/crop-page-level-deletion-gate.yaml
     scorer: benchmarks/scorers/crop_validation_scorer.py
     golden: benchmarks/golden/crop-page-level-deletion-gate.json
-    story_refs: ["209", "232", "235", "237", "238", "239", "240", "249", "257", "258", "259"]
+    story_refs: ["209", "232", "235", "237", "238", "239", "240", "249", "257", "258", "259", "264"]
     category_refs: ["spec:4", "spec:8"]
     compromise_refs: ["C5"]
     spec_compromise: C5
@@ -2671,6 +2692,11 @@ evals:
         history are recorded in `benchmarks/golden/crop-eval-provenance.json`.
 
     scores:
+      - model: tencent/hy4 Tencent FP4 high32768 Scout105
+        measured: "2026-11-05"
+        git_sha: 5622d996961669b5254ff03a82b609a6fb3cf834+attempt086-uncommitted
+        metrics: {"cases_total": 6, "correct": 5, "false_safe": 1, "latency_ms": 75197, "cost_usd": 0.0097935395, "control_correct": 3, "control_false_safe": 1, "control_latency_ms": 4677.833333333333, "control_cost_usd": 0.05833716666666667}
+        note: "First valid failure page012001: both pass seal missing roughly21percent. Hy4 5/6 vsGPT5.5 3/6 reference lead, one false-safe each; neither qualifies. Remaining16 unmeasured. Strict schema/terminal qualified; reason/flag semantics and native source-size/identity/geometry consumer admission remain held (Attempt081). Attempt086/Story264; high32768 OpenRouter Tencent FP4 official Nov4 release, exact tencent/hy4. Closed22POSTs USD.597904856/5 unknown0; no defaults/commit/push."
       - model: gpt-6.1-sol medium repaired safety (Attempt048)
         metrics:
           source_adjudicated_pass: 22
@@ -3476,6 +3502,11 @@ evals:
         metrics: {adoption_grade_candidate_cases: 0, accounting_quarantined_cases: 2, diagnostic_correct: 1, diagnostic_false_safe: 1, fresh_control_correct: 2, fresh_control_false_safe: 0, remaining_unmeasured: 20}
         note: "ACCOUNTINGAUDIT: nativecompletion616/reasoning711 impossible; clippedseal323/311leaves12visible for231charJSON. Bothsubjectsenvelopesquarantined, capabilitynotmeasured/adoptiondefer. Savedclippedseal false-safe is diagnostic only; qualifiedGPT5.5control2/2correct. No newPOST. See evidence/079-scout097/accounting-audit/report.md. Fullownerrecord attempts/079-scout097-deepseek1017-source-fidelity.md; closedinclusiveUSD.231343868/15 unknown0, no runtime/defaults."
     attempts:
+      - id: "086"
+        date: "2026-11-05"
+        status: failed
+        approach: "Official Hy4 frozen high32768 progressive matched source-fidelity screen"
+        note: "First valid failure page012001: both pass seal missing roughly21percent. Hy4 5/6 vsGPT5.5 3/6 reference lead, one false-safe each; neither qualifies. Remaining16 unmeasured. Strict schema/terminal qualified; reason/flag semantics and native source-size/identity/geometry consumer admission remain held (Attempt081). Attempt086/Story264; high32768 OpenRouter Tencent FP4 official Nov4 release, exact tencent/hy4. Closed22POSTs USD.597904856/5 unknown0; no defaults/commit/push. Evidence docs/evals/evidence/086-hy4/summary.json and manifest.json."
       - id: "081"
         date: 2026-10-20
         status: inconclusive
@@ -4094,7 +4125,7 @@ evals:
     command: "python benchmarks/scripts/run_handwritten_notes_eval.py --image-recipe configs/recipes/recipe-images-ocr-html-handwritten-notes-gemini-rescue.yaml --pdf-recipe configs/recipes/recipe-pdf-ocr-html-handwritten-notes-gemini-rescue.yaml --image-case-id image-handwritten-rescue --pdf-case-id pdf-handwritten-rescue --instrument --output benchmarks/results/handwritten-notes-story189-real-expanded.json"
     scorer: benchmarks/scorers/handwritten_notes_transcription.py
     golden: benchmarks/golden/handwritten-notes/corpus.json
-    story_refs: ["179", "182", "185", "186", "189", "191", "192", "208", "230", "238", "239", "249", "257", "258", "263"]
+    story_refs: ["179", "182", "185", "186", "189", "191", "192", "208", "230", "238", "239", "249", "257", "258", "263", "264"]
     category_refs: ["spec:1", "spec:2", "spec:8"]
     compromise_refs: []
 
@@ -4104,6 +4135,11 @@ evals:
       note: "The target still marks the desired passing bar, but the widened default corpus now includes two real handwritten fixtures that the maintained rescue seam does not clear."
 
     scores:
+      - model: tencent/hy4 Tencent FP4 high32768 Scout105
+        measured: "2026-11-05"
+        git_sha: 5622d996961669b5254ff03a82b609a6fb3cf834+attempt086-uncommitted
+        metrics: {"cases_total": 1, "score": 0.852211, "target": 0.99, "latency_ms": 288426, "cost_usd": 0.0363293215}
+        note: "Actual Barney image-entry driver produces source substitutions/normalization/invented passage; reject tested high arm. Requested exactGemini3.7 served3.8 quarantined atUSD.02286675; no fresh relative OCR claim. No effort rescue. Attempt086/Story264; high32768 OpenRouter Tencent FP4 official Nov4 release, exact tencent/hy4. Closed22POSTs USD.597904856/5 unknown0; no defaults/commit/push."
       - model: gemini-4-argon medium32768 public LOC Barney Scout092
         measured: 2026-10-13
         git_sha: 91cd9bb1+attempt071
@@ -4656,6 +4692,11 @@ evals:
           inclusiveUSD.27373875/12 unknown0.
 
     attempts:
+      - id: "086"
+        date: "2026-11-05"
+        status: failed
+        approach: "Official Hy4 frozen high32768 progressive matched source-fidelity screen"
+        note: "Actual Barney image-entry driver produces source substitutions/normalization/invented passage; reject tested high arm. Requested exactGemini3.7 served3.8 quarantined atUSD.02286675; no fresh relative OCR claim. No effort rescue. Attempt086/Story264; high32768 OpenRouter Tencent FP4 official Nov4 release, exact tencent/hy4. Closed22POSTs USD.597904856/5 unknown0; no defaults/commit/push. Evidence docs/evals/evidence/086-hy4/summary.json and manifest.json."
       - id: 085
         date: '2026-10-26'
         status: failed

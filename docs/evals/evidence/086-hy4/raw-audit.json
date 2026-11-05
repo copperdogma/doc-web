@@ -1,0 +1,139 @@
+{
+  "calls": [
+    {
+      "stage": "native-table",
+      "status": "verified",
+      "served": "tencent/hy4",
+      "identity_quarantined": false
+    },
+    {
+      "stage": "native-crop",
+      "status": "verified",
+      "served": "tencent/hy4",
+      "identity_quarantined": false
+    },
+    {
+      "stage": "native-ocr",
+      "status": "verified",
+      "served": "tencent/hy4",
+      "identity_quarantined": false
+    },
+    {
+      "stage": "table-image-positive-candidate",
+      "status": "verified",
+      "served": "tencent/hy4",
+      "identity_quarantined": false
+    },
+    {
+      "stage": "table-image-positive-control",
+      "status": "verified",
+      "served": "gpt-6-astra",
+      "identity_quarantined": false
+    },
+    {
+      "stage": "native-safety",
+      "status": "verified",
+      "served": "tencent/hy4",
+      "identity_quarantined": false
+    },
+    {
+      "stage": "crop-screen-Image011-candidate",
+      "status": "verified",
+      "served": "tencent/hy4",
+      "identity_quarantined": false
+    },
+    {
+      "stage": "safety-page-122-001-candidate",
+      "status": "verified",
+      "served": "tencent/hy4",
+      "identity_quarantined": false
+    },
+    {
+      "stage": "ocr-barney-candidate",
+      "status": "verified",
+      "served": "tencent/hy4",
+      "identity_quarantined": false
+    },
+    {
+      "stage": "crop-screen-Image011-control",
+      "status": "verified",
+      "served": "gemini-3-flash-preview",
+      "identity_quarantined": false
+    },
+    {
+      "stage": "safety-page-122-001-control",
+      "status": "verified",
+      "served": "gpt-5.5-2026-04-23",
+      "identity_quarantined": false
+    },
+    {
+      "stage": "safety-page-001-000-candidate",
+      "status": "verified",
+      "served": "tencent/hy4",
+      "identity_quarantined": false
+    },
+    {
+      "stage": "ocr-barney-control",
+      "status": "verified",
+      "served": "gemini-3.8-flash",
+      "identity_quarantined": true
+    },
+    {
+      "stage": "safety-page-001-000-control",
+      "status": "verified",
+      "served": "gpt-5.5-2026-04-23",
+      "identity_quarantined": false
+    },
+    {
+      "stage": "safety-page-004-000-candidate",
+      "status": "verified",
+      "served": "tencent/hy4",
+      "identity_quarantined": false
+    },
+    {
+      "stage": "safety-page-004-000-control",
+      "status": "verified",
+      "served": "gpt-5.5-2026-04-23",
+      "identity_quarantined": false
+    },
+    {
+      "stage": "safety-page-009-000-candidate",
+      "status": "verified",
+      "served": "tencent/hy4",
+      "identity_quarantined": false
+    },
+    {
+      "stage": "safety-page-009-000-control",
+      "status": "verified",
+      "served": "gpt-5.5-2026-04-23",
+      "identity_quarantined": false
+    },
+    {
+      "stage": "safety-page-012-000-candidate",
+      "status": "verified",
+      "served": "tencent/hy4",
+      "identity_quarantined": false
+    },
+    {
+      "stage": "safety-page-012-000-control",
+      "status": "verified",
+      "served": "gpt-5.5-2026-04-23",
+      "identity_quarantined": false
+    },
+    {
+      "stage": "safety-page-012-001-candidate",
+      "status": "verified",
+      "served": "tencent/hy4",
+      "identity_quarantined": false
+    },
+    {
+      "stage": "safety-page-012-001-control",
+      "status": "verified",
+      "served": "gpt-5.5-2026-04-23",
+      "identity_quarantined": false
+    }
+  ],
+  "safety_request_parity": 12,
+  "paid_calls": 0,
+  "quarantined_identity_responses": 1
+}
