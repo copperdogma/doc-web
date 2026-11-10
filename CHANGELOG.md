@@ -1,3 +1,8 @@
+## [2026-11-10-01] — Record Fable5.2 capability panel (Story 265)
+
+### Added
+- Preserve the twelve-case Fable source-fidelity study, original access failures, exact cost exposure and lossless public/protected custody; retain current models and all publication holds.
+
 ## [2026-11-05-01] — Record official Hy4 source-fidelity evaluation (Story 264)
 
 ### Added

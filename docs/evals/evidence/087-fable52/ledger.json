@@ -1,0 +1,769 @@
+{
+  "cap_usd": 30,
+  "spent_usd": 1.61832125,
+  "calls": [
+    {
+      "stage": "native-table",
+      "model": "anthropic/claude-fable-5.2",
+      "reserved_usd": 1.51872,
+      "cost_usd": null,
+      "request": "benchmarks/results/fable52-20261109/request-001.json",
+      "request_sha256": "771ccb62a49a88979094d4464c02d2097f6adac86104ec9cc715b7273aa17d3b",
+      "response": "benchmarks/results/fable52-20261109/response-001.json",
+      "response_sha256": "e1bbfba04b09fb70ec2908d432a64791387a0c8d04564d06630cdd2e463dd3fc",
+      "status_code": 402,
+      "latency_ms": 882,
+      "billing_unresolved": true,
+      "pre_inference_rejection": true,
+      "previous_cost_assumption_usd": 0,
+      "nonbilling_not_independently_proven": true
+    },
+    {
+      "stage": "native-central-table",
+      "model": "anthropic/claude-fable-5.2",
+      "reserved_usd": 1.51872,
+      "cost_usd": null,
+      "request": "benchmarks/results/fable52-20261109/request-002.json",
+      "request_sha256": "771ccb62a49a88979094d4464c02d2097f6adac86104ec9cc715b7273aa17d3b",
+      "response": "benchmarks/results/fable52-20261109/response-002.json",
+      "response_sha256": "e1bbfba04b09fb70ec2908d432a64791387a0c8d04564d06630cdd2e463dd3fc",
+      "status_code": 402,
+      "latency_ms": 893,
+      "billing_unresolved": true,
+      "pre_inference_rejection": true,
+      "previous_cost_assumption_usd": 0,
+      "nonbilling_not_independently_proven": true
+    },
+    {
+      "stage": "table-image-positive-candidate",
+      "model": "claude-fable-5-2",
+      "reserved_usd": 1.72672,
+      "cost_usd": null,
+      "request": "benchmarks/results/fable52-20261109/request-003.json",
+      "request_sha256": "3577f495228492bb491f92a2b2dce88dc2e4d7369a9216e9ef336916c3751240",
+      "response": "benchmarks/results/fable52-20261109/response-003.json",
+      "response_sha256": "2fdf18572ae3a2e220db55115310178ec5d1a4223ad6c7537c70a4879f852997",
+      "status_code": 400,
+      "latency_ms": 308,
+      "billing_unresolved": true,
+      "pre_inference_rejection": true,
+      "previous_cost_assumption_usd": 0,
+      "nonbilling_not_independently_proven": true
+    },
+    {
+      "stage": "table-image-positive-candidate-native-repair1",
+      "model": "claude-fable-5-2",
+      "reserved_usd": 1.72672,
+      "cost_usd": 0.126544,
+      "request": "benchmarks/results/fable52-20261109/request-004.json",
+      "request_sha256": "694a6f22735d634300ffc5f06d58d4c99d8d95cb16cba49f13bbc185a78e731c",
+      "response": "benchmarks/results/fable52-20261109/response-004.json",
+      "response_sha256": "b5725224aa515f679928c53b25c3e0d1ec5e180d4bad978d182217a1c24f501e",
+      "status_code": 200,
+      "latency_ms": 20634,
+      "usage": {
+        "input_tokens": 6173,
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 0,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 0
+        },
+        "output_tokens": 1929,
+        "output_tokens_details": {
+          "thinking_tokens": 1618
+        },
+        "service_tier": "standard",
+        "inference_geo": "global",
+        "speed": "standard"
+      },
+      "served_model": "claude-fable-5-2",
+      "provider": "Anthropic",
+      "thinking_tokens": 1618,
+      "native_tier": "standard"
+    },
+    {
+      "stage": "table-image-positive-control",
+      "model": "gpt-6-astra",
+      "reserved_usd": 1.5,
+      "cost_usd": 0.0826675,
+      "request": "benchmarks/results/fable52-20261109/request-005.json",
+      "request_sha256": "e6235031e3cac69a3f5d01f343d3353c728a73bc7d4e0fa043959507638e9d30",
+      "response": "benchmarks/results/fable52-20261109/response-005.json",
+      "response_sha256": "d620be2808e2f63393e5fbf78f01858501a244d5f93e47197a5a83e61d406062",
+      "status_code": 200,
+      "latency_ms": 9827,
+      "usage": {
+        "input_tokens": 5090,
+        "input_tokens_details": {
+          "cache_write_tokens": 5087,
+          "cached_tokens": 0
+        },
+        "output_tokens": 381,
+        "output_tokens_details": {
+          "reasoning_tokens": 138
+        },
+        "total_tokens": 5471
+      },
+      "served_model": "gpt-6-astra",
+      "provider": "OpenAI"
+    },
+    {
+      "stage": "table-ambiguity-negative-candidate",
+      "model": "claude-fable-5-2",
+      "reserved_usd": 1.72672,
+      "cost_usd": 0.082784,
+      "request": "benchmarks/results/fable52-20261109/request-006.json",
+      "request_sha256": "d0d5dff374e12dc9cf1ba0f46bf163f91e4c31315180a69ac967506a8b0465e7",
+      "response": "benchmarks/results/fable52-20261109/response-006.json",
+      "response_sha256": "04dc80e7bed809b6190c5307e5a5f011ba30ad63c6026ffcb7076d74aa8286cb",
+      "status_code": 200,
+      "latency_ms": 13238,
+      "usage": {
+        "input_tokens": 6173,
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 0,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 0
+        },
+        "output_tokens": 835,
+        "output_tokens_details": {
+          "thinking_tokens": 491
+        },
+        "service_tier": "standard",
+        "inference_geo": "global",
+        "speed": "standard"
+      },
+      "served_model": "claude-fable-5-2",
+      "provider": "Anthropic",
+      "thinking_tokens": 491,
+      "native_tier": "standard"
+    },
+    {
+      "stage": "table-ambiguity-negative-control",
+      "model": "gpt-6-astra",
+      "reserved_usd": 1.5,
+      "cost_usd": 0.0729175,
+      "request": "benchmarks/results/fable52-20261109/request-007.json",
+      "request_sha256": "f327844def7f4d7ad49114964b4302016896b14ee8a31b6bb15a0b0ee5f7a386",
+      "response": "benchmarks/results/fable52-20261109/response-007.json",
+      "response_sha256": "4802597b22da8d43d58a9e9285656556a5f23fe344e73c0c3114fe694488af93",
+      "status_code": 200,
+      "latency_ms": 4791,
+      "usage": {
+        "input_tokens": 5090,
+        "input_tokens_details": {
+          "cache_write_tokens": 5087,
+          "cached_tokens": 0
+        },
+        "output_tokens": 186,
+        "output_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "total_tokens": 5276
+      },
+      "served_model": "gpt-6-astra",
+      "provider": "OpenAI"
+    },
+    {
+      "stage": "table-native-positive-candidate",
+      "model": "claude-fable-5-2",
+      "reserved_usd": 1.72672,
+      "cost_usd": 0.087384,
+      "request": "benchmarks/results/fable52-20261109/request-008.json",
+      "request_sha256": "383c3f355b6f9822d012ae0a9e1f53a85b385046e35ad3c74bab2b54d1bafa25",
+      "response": "benchmarks/results/fable52-20261109/response-008.json",
+      "response_sha256": "0483b61fce1967424f7299f166a9253276c4118ac7f42927a86559f8360f02aa",
+      "status_code": 200,
+      "latency_ms": 18896,
+      "usage": {
+        "input_tokens": 6173,
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 0,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 0
+        },
+        "output_tokens": 950,
+        "output_tokens_details": {
+          "thinking_tokens": 722
+        },
+        "service_tier": "standard",
+        "inference_geo": "global",
+        "speed": "standard"
+      },
+      "served_model": "claude-fable-5-2",
+      "provider": "Anthropic",
+      "thinking_tokens": 722,
+      "native_tier": "standard"
+    },
+    {
+      "stage": "table-native-positive-control",
+      "model": "gpt-6-astra",
+      "reserved_usd": 1.5,
+      "cost_usd": 0.0753175,
+      "request": "benchmarks/results/fable52-20261109/request-009.json",
+      "request_sha256": "b68499fd3b2429923dd5030caf9f633d11365706d0f0c989e29e80c4b4dca14b",
+      "response": "benchmarks/results/fable52-20261109/response-009.json",
+      "response_sha256": "143eda9893660f77a25ffb68eadfe30145a630f641b230df1c55e55c80986df8",
+      "status_code": 200,
+      "latency_ms": 6374,
+      "usage": {
+        "input_tokens": 5090,
+        "input_tokens_details": {
+          "cache_write_tokens": 5087,
+          "cached_tokens": 0
+        },
+        "output_tokens": 234,
+        "output_tokens_details": {
+          "reasoning_tokens": 63
+        },
+        "total_tokens": 5324
+      },
+      "served_model": "gpt-6-astra",
+      "provider": "OpenAI"
+    },
+    {
+      "stage": "crop-screen-Image011-candidate",
+      "model": "claude-fable-5-2",
+      "reserved_usd": 1.72672,
+      "cost_usd": 0.04348,
+      "request": "benchmarks/results/fable52-20261109/request-010.json",
+      "request_sha256": "d4a609518f2d109a24c80ce9a8989d5cc5851e9732e42672da96a535c39e3ada",
+      "response": "benchmarks/results/fable52-20261109/response-010.json",
+      "response_sha256": "19a710f885b3f8c79209f89f733569d429c5ebef57ef7a5c242abe39714ffebc",
+      "status_code": 200,
+      "latency_ms": 5201,
+      "usage": {
+        "input_tokens": 4710,
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 0,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 0
+        },
+        "output_tokens": 145,
+        "output_tokens_details": {
+          "thinking_tokens": 0
+        },
+        "service_tier": "standard",
+        "inference_geo": "global",
+        "speed": "standard"
+      },
+      "served_model": "claude-fable-5-2",
+      "provider": "Anthropic",
+      "thinking_tokens": 0,
+      "native_tier": "standard"
+    },
+    {
+      "stage": "crop-screen-Image011-control",
+      "model": "gemini-3-flash-preview",
+      "reserved_usd": 0.062152,
+      "cost_usd": 0.0090725,
+      "request": "benchmarks/results/fable52-20261109/request-011.json",
+      "request_sha256": "242f8833652c89a4b1ac2591289afba7bc19e1ca44556e2c570f5f4648e54994",
+      "response": "benchmarks/results/fable52-20261109/response-011.json",
+      "response_sha256": "107d5c703fe744fa2dc210c41f0598946430e080666ffcbbe8ff40e53600afb6",
+      "status_code": 200,
+      "latency_ms": 12562,
+      "usage": {
+        "promptTokenCount": 1333,
+        "candidatesTokenCount": 98,
+        "totalTokenCount": 4135,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 231
+          },
+          {
+            "modality": "IMAGE",
+            "tokenCount": 1102
+          }
+        ],
+        "thoughtsTokenCount": 2704,
+        "serviceTier": "standard"
+      },
+      "served_model": "gemini-3-flash-preview",
+      "provider": "Google"
+    },
+    {
+      "stage": "crop-screen-Image001-candidate",
+      "model": "claude-fable-5-2",
+      "reserved_usd": 1.72672,
+      "cost_usd": 0.0562,
+      "request": "benchmarks/results/fable52-20261109/request-012.json",
+      "request_sha256": "e322dbbe2475735afa073e5e7400bde75e9e3fb9fa75970dd5d5ec0821e5559e",
+      "response": "benchmarks/results/fable52-20261109/response-012.json",
+      "response_sha256": "bd4956b76012804083fa49f1979c5a8662fe655d87d7d4b4f720090f259e0337",
+      "status_code": 200,
+      "latency_ms": 8577,
+      "usage": {
+        "input_tokens": 4710,
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 0,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 0
+        },
+        "output_tokens": 463,
+        "output_tokens_details": {
+          "thinking_tokens": 396
+        },
+        "service_tier": "standard",
+        "inference_geo": "global",
+        "speed": "standard"
+      },
+      "served_model": "claude-fable-5-2",
+      "provider": "Anthropic",
+      "thinking_tokens": 396,
+      "native_tier": "standard"
+    },
+    {
+      "stage": "crop-screen-Image001-control",
+      "model": "gemini-3-flash-preview",
+      "reserved_usd": 0.062152,
+      "cost_usd": 0.0036125,
+      "request": "benchmarks/results/fable52-20261109/request-013.json",
+      "request_sha256": "01b4129b1c68907267cb3e71fc64bd3517497b103f7c28fb085982eef0f5e296",
+      "response": "benchmarks/results/fable52-20261109/response-013.json",
+      "response_sha256": "13bfae3cc3a3ea9a87a739734c96e86861383a8220546473d287f2728c0ca467",
+      "status_code": 200,
+      "latency_ms": 5888,
+      "usage": {
+        "promptTokenCount": 1333,
+        "candidatesTokenCount": 67,
+        "totalTokenCount": 2315,
+        "promptTokensDetails": [
+          {
+            "modality": "IMAGE",
+            "tokenCount": 1102
+          },
+          {
+            "modality": "TEXT",
+            "tokenCount": 231
+          }
+        ],
+        "thoughtsTokenCount": 915,
+        "serviceTier": "standard"
+      },
+      "served_model": "gemini-3-flash-preview",
+      "provider": "Google"
+    },
+    {
+      "stage": "safety-page-001-000-candidate",
+      "model": "claude-fable-5-2",
+      "reserved_usd": 2.04672,
+      "cost_usd": 0.153192,
+      "request": "benchmarks/results/fable52-20261109/request-014.json",
+      "request_sha256": "dd144277a07c5bd537cbb1ba62aa9565dc608a363168bbf027aa5e54d20a5024",
+      "response": "benchmarks/results/fable52-20261109/response-014.json",
+      "response_sha256": "3ff7f62afaaf8afdaa92df5f42acc1e5d249bc1d311726dc6ea0292298a8acdd",
+      "status_code": 200,
+      "latency_ms": 30442,
+      "usage": {
+        "input_tokens": 10059,
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 0,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 0
+        },
+        "output_tokens": 1818,
+        "output_tokens_details": {
+          "thinking_tokens": 1695
+        },
+        "service_tier": "standard",
+        "inference_geo": "global",
+        "speed": "standard"
+      },
+      "served_model": "claude-fable-5-2",
+      "provider": "Anthropic",
+      "thinking_tokens": 1695,
+      "native_tier": "standard"
+    },
+    {
+      "stage": "safety-page-001-000-control",
+      "model": "gpt-5.5",
+      "reserved_usd": 0.29144,
+      "cost_usd": 0.08309,
+      "request": "benchmarks/results/fable52-20261109/request-015.json",
+      "request_sha256": "832a87b3b4c93094f9b468fc5de1a30f17c98dd44e7c8d24db0bb901eafae607",
+      "response": "benchmarks/results/fable52-20261109/response-015.json",
+      "response_sha256": "bc041f2289c45b13ba6bdc2d16a7ce2a85366ab72324dda0e6ca8d397c760398",
+      "status_code": 200,
+      "latency_ms": 5109,
+      "usage": {
+        "input_tokens": 16198,
+        "input_tokens_details": {
+          "cache_write_tokens": 0,
+          "cached_tokens": 0
+        },
+        "output_tokens": 70,
+        "output_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "total_tokens": 16268
+      },
+      "served_model": "gpt-5.5-2026-04-23",
+      "provider": "OpenAI"
+    },
+    {
+      "stage": "safety-page-004-000-candidate",
+      "model": "claude-fable-5-2",
+      "reserved_usd": 2.04672,
+      "cost_usd": 0.06608,
+      "request": "benchmarks/results/fable52-20261109/request-016.json",
+      "request_sha256": "e9365878db1a0aad9a3f606f272d014165ee7b5759aceaee64c3418493b472b7",
+      "response": "benchmarks/results/fable52-20261109/response-016.json",
+      "response_sha256": "d450efe0d438a3c0f0da863e51bfbe059df85a6b6538d42a9074038e9e80e5ba",
+      "status_code": 200,
+      "latency_ms": 5023,
+      "usage": {
+        "input_tokens": 7870,
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 0,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 0
+        },
+        "output_tokens": 78,
+        "output_tokens_details": {
+          "thinking_tokens": 0
+        },
+        "service_tier": "standard",
+        "inference_geo": "global",
+        "speed": "standard"
+      },
+      "served_model": "claude-fable-5-2",
+      "provider": "Anthropic",
+      "thinking_tokens": 0,
+      "native_tier": "standard"
+    },
+    {
+      "stage": "safety-page-004-000-control",
+      "model": "gpt-5.5",
+      "reserved_usd": 0.29144,
+      "cost_usd": 0.057925,
+      "request": "benchmarks/results/fable52-20261109/request-017.json",
+      "request_sha256": "042f728103acae2f14df4b1fd3e98f64ecd5737166916d89b22174f5e0d2780e",
+      "response": "benchmarks/results/fable52-20261109/response-017.json",
+      "response_sha256": "856beecd070069230c55629ee0623c24ffd4e71c2608c51e406fa96425f9ce68",
+      "status_code": 200,
+      "latency_ms": 3309,
+      "usage": {
+        "input_tokens": 11201,
+        "input_tokens_details": {
+          "cache_write_tokens": 0,
+          "cached_tokens": 0
+        },
+        "output_tokens": 64,
+        "output_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "total_tokens": 11265
+      },
+      "served_model": "gpt-5.5-2026-04-23",
+      "provider": "OpenAI"
+    },
+    {
+      "stage": "safety-page-009-000-candidate",
+      "model": "claude-fable-5-2",
+      "reserved_usd": 2.04672,
+      "cost_usd": 0.08512,
+      "request": "benchmarks/results/fable52-20261109/request-018.json",
+      "request_sha256": "3c65f1c79e33b9c71f33f138deceb8dceff9377e881bdd572e6f9e0ceecd0818",
+      "response": "benchmarks/results/fable52-20261109/response-018.json",
+      "response_sha256": "3a92e6aa08fe1c2ebb3a343937e33ba7b39a69e545600864365970b1c2333324",
+      "status_code": 200,
+      "latency_ms": 5234,
+      "usage": {
+        "input_tokens": 10230,
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 0,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 0
+        },
+        "output_tokens": 82,
+        "output_tokens_details": {
+          "thinking_tokens": 0
+        },
+        "service_tier": "standard",
+        "inference_geo": "global",
+        "speed": "standard"
+      },
+      "served_model": "claude-fable-5-2",
+      "provider": "Anthropic",
+      "thinking_tokens": 0,
+      "native_tier": "standard"
+    },
+    {
+      "stage": "safety-page-009-000-control",
+      "model": "gpt-5.5",
+      "reserved_usd": 0.29144,
+      "cost_usd": 0.073615,
+      "request": "benchmarks/results/fable52-20261109/request-019.json",
+      "request_sha256": "cf3947b879fee8dfd0060d208da4f16510fb135053cc566546d13932f2699b12",
+      "response": "benchmarks/results/fable52-20261109/response-019.json",
+      "response_sha256": "59d15b3d551c5af4078cf7bb3a64b3cf8b32eb1d38740912dd8bc5ce27b8ae82",
+      "status_code": 200,
+      "latency_ms": 4003,
+      "usage": {
+        "input_tokens": 14399,
+        "input_tokens_details": {
+          "cache_write_tokens": 0,
+          "cached_tokens": 0
+        },
+        "output_tokens": 54,
+        "output_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "total_tokens": 14453
+      },
+      "served_model": "gpt-5.5-2026-04-23",
+      "provider": "OpenAI"
+    },
+    {
+      "stage": "safety-page-012-000-candidate",
+      "model": "claude-fable-5-2",
+      "reserved_usd": 2.04672,
+      "cost_usd": 0.062816,
+      "request": "benchmarks/results/fable52-20261109/request-020.json",
+      "request_sha256": "67418c852f30f81ed55f2fed015713cd5dcce0b97b7d3879fdaecbbe8e137dde",
+      "response": "benchmarks/results/fable52-20261109/response-020.json",
+      "response_sha256": "fe1b342f53d03954ca55b5dca2236b26b800581742a14960e085267015ebfaef",
+      "status_code": 200,
+      "latency_ms": 5529,
+      "usage": {
+        "input_tokens": 6922,
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 0,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 0
+        },
+        "output_tokens": 186,
+        "output_tokens_details": {
+          "thinking_tokens": 91
+        },
+        "service_tier": "standard",
+        "inference_geo": "global",
+        "speed": "standard"
+      },
+      "served_model": "claude-fable-5-2",
+      "provider": "Anthropic",
+      "thinking_tokens": 91,
+      "native_tier": "standard"
+    },
+    {
+      "stage": "safety-page-012-000-control",
+      "model": "gpt-5.5",
+      "reserved_usd": 0.29144,
+      "cost_usd": 0.030885,
+      "request": "benchmarks/results/fable52-20261109/request-021.json",
+      "request_sha256": "2c0a3ecb84935372267ef7043609350825155c4ab6a727a053f22d3f9644a643",
+      "response": "benchmarks/results/fable52-20261109/response-021.json",
+      "response_sha256": "c716505a001173ca30b693f4eaedd610edc9446c89a24de5b1f4b098d1c51fab",
+      "status_code": 200,
+      "latency_ms": 2397,
+      "usage": {
+        "input_tokens": 5787,
+        "input_tokens_details": {
+          "cache_write_tokens": 0,
+          "cached_tokens": 0
+        },
+        "output_tokens": 65,
+        "output_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "total_tokens": 5852
+      },
+      "served_model": "gpt-5.5-2026-04-23",
+      "provider": "OpenAI"
+    },
+    {
+      "stage": "safety-page-122-001-candidate",
+      "model": "claude-fable-5-2",
+      "reserved_usd": 2.04672,
+      "cost_usd": 0.089432,
+      "request": "benchmarks/results/fable52-20261109/request-022.json",
+      "request_sha256": "5c38502c1259e6d157083aa90861e72a14eb1c06751ce6ede183c069aa38d064",
+      "response": "benchmarks/results/fable52-20261109/response-022.json",
+      "response_sha256": "37b11a17662d818714a5912925cb2fc7d6554c5a820c7baf65370f5c6d7d0fe1",
+      "status_code": 200,
+      "latency_ms": 4918,
+      "usage": {
+        "input_tokens": 10234,
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 0,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 0
+        },
+        "output_tokens": 189,
+        "output_tokens_details": {
+          "thinking_tokens": 81
+        },
+        "service_tier": "standard",
+        "inference_geo": "global",
+        "speed": "standard"
+      },
+      "served_model": "claude-fable-5-2",
+      "provider": "Anthropic",
+      "thinking_tokens": 81,
+      "native_tier": "standard"
+    },
+    {
+      "stage": "safety-page-122-001-control",
+      "model": "gpt-5.5",
+      "reserved_usd": 0.29144,
+      "cost_usd": 0.083435,
+      "request": "benchmarks/results/fable52-20261109/request-023.json",
+      "request_sha256": "a3137a46a26b718299ba9fb83b9bd9b5069c86bf437a197111e74719374b5126",
+      "response": "benchmarks/results/fable52-20261109/response-023.json",
+      "response_sha256": "51de8218127157c4806f9e2a36ed9b0ce7e72b827f29c47663c370a01b54fe77",
+      "status_code": 200,
+      "latency_ms": 4507,
+      "usage": {
+        "input_tokens": 16333,
+        "input_tokens_details": {
+          "cache_write_tokens": 0,
+          "cached_tokens": 0
+        },
+        "output_tokens": 59,
+        "output_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "total_tokens": 16392
+      },
+      "served_model": "gpt-5.5-2026-04-23",
+      "provider": "OpenAI"
+    },
+    {
+      "stage": "safety-page-012-001-candidate",
+      "model": "claude-fable-5-2",
+      "reserved_usd": 2.04672,
+      "cost_usd": 0.079824,
+      "request": "benchmarks/results/fable52-20261109/request-024.json",
+      "request_sha256": "1cecdf9f2d67c381517cda17d98b81e561b4e05fd8bbfc8c80fab916d840ffe1",
+      "response": "benchmarks/results/fable52-20261109/response-024.json",
+      "response_sha256": "8ebe1240c1a83047406b1a90effca7d344c1b5e4e300a433d5a7462bf05ed938",
+      "status_code": 200,
+      "latency_ms": 9318,
+      "usage": {
+        "input_tokens": 7478,
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 0,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 0
+        },
+        "output_tokens": 500,
+        "output_tokens_details": {
+          "thinking_tokens": 399
+        },
+        "service_tier": "standard",
+        "inference_geo": "global",
+        "speed": "standard"
+      },
+      "served_model": "claude-fable-5-2",
+      "provider": "Anthropic",
+      "thinking_tokens": 399,
+      "native_tier": "standard"
+    },
+    {
+      "stage": "safety-page-012-001-control",
+      "model": "gpt-5.5",
+      "reserved_usd": 0.29144,
+      "cost_usd": 0.021133,
+      "request": "benchmarks/results/fable52-20261109/request-025.json",
+      "request_sha256": "ad3a0323de31ddc147966ae54da6ce5dea97f6407288a768955cb1d23caa94e7",
+      "response": "benchmarks/results/fable52-20261109/response-025.json",
+      "response_sha256": "cfff8327f5f0ac3147854ffe4fa5c683ef2b38084524ae4011d4d536df4694f5",
+      "status_code": 200,
+      "latency_ms": 2810,
+      "usage": {
+        "input_tokens": 6329,
+        "input_tokens_details": {
+          "cache_write_tokens": 0,
+          "cached_tokens": 2816
+        },
+        "output_tokens": 72,
+        "output_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "total_tokens": 6401
+      },
+      "served_model": "gpt-5.5-2026-04-23",
+      "provider": "OpenAI"
+    },
+    {
+      "stage": "ocr-barney-candidate",
+      "model": "claude-fable-5-2",
+      "reserved_usd": 1.72672,
+      "cost_usd": 0.075648,
+      "request": "benchmarks/results/fable52-20261109/request-026.json",
+      "request_sha256": "ddb136b8bb1efa7f07b3e3eab6b7e993673b2341253bb6f1f9649ee74801d870",
+      "response": "benchmarks/results/fable52-20261109/response-026.json",
+      "response_sha256": "543f29023ee486e94fa4aee8c81b73d24f64725abc09444e0556496d57042d42",
+      "status_code": 200,
+      "latency_ms": 15234,
+      "usage": {
+        "input_tokens": 1806,
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 0,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 0
+        },
+        "output_tokens": 1530,
+        "output_tokens_details": {
+          "thinking_tokens": 1025
+        },
+        "service_tier": "standard",
+        "inference_geo": "global",
+        "speed": "standard"
+      },
+      "served_model": "claude-fable-5-2",
+      "provider": "Anthropic",
+      "thinking_tokens": 1025,
+      "native_tier": "standard"
+    },
+    {
+      "stage": "ocr-barney-control",
+      "model": "gemini-3.7-flash",
+      "reserved_usd": 0.08094,
+      "cost_usd": 0.01614675,
+      "request": "benchmarks/results/fable52-20261109/request-027.json",
+      "request_sha256": "367d52133d49c5a8433552634fd7b72e11cfca7ca316539d63ba9699c4892d2b",
+      "response": "benchmarks/results/fable52-20261109/response-027.json",
+      "response_sha256": "d3d58be813e150ce522ea8878360ce2cb4eab99256f1320ee7f5a863e14571e6",
+      "status_code": 200,
+      "latency_ms": 28979,
+      "usage": {
+        "promptTokenCount": 2029,
+        "candidatesTokenCount": 395,
+        "totalTokenCount": 5929,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 956
+          },
+          {
+            "modality": "IMAGE",
+            "tokenCount": 1073
+          }
+        ],
+        "thoughtsTokenCount": 3505,
+        "serviceTier": "standard"
+      },
+      "served_model": "gemini-3.8-flash",
+      "provider": "Google"
+    }
+  ],
+  "closed": true,
+  "stop_reason": "Completed12selected candidatecases,11validcontrols and1identityquarantinedOCRcontrol; conditionalmaxnottriggered",
+  "unknown_exposure_usd": 4.76416,
+  "continuation": "coordinator authorized existing owner nativeAnthropic route recovery same30USD; OR blocked evidence retained"
+}

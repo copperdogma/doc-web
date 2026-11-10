@@ -1,0 +1,847 @@
+[
+  {
+    "path": "docs/evals/evidence/087-fable52/Image001-candidate-normalization.json",
+    "bytes": 304,
+    "sha256": "7cf531028dd6d092e5032dfcffa2525b5b3049a706dc7a6d2c57c43c19e69762"
+  },
+  {
+    "path": "docs/evals/evidence/087-fable52/Image001-candidate-overlay.jpg",
+    "bytes": 93011,
+    "sha256": "ab8f88674225872acef264e9d2dd9820af2c6e4b759fd422130c510022b16d7a"
+  },
+  {
+    "path": "docs/evals/evidence/087-fable52/Image001-control-normalization.json",
+    "bytes": 304,
+    "sha256": "826bc2e39646d0297808cb35658bdbcb3fbd18d14197418c5d4c1986e8281fa3"
+  },
+  {
+    "path": "docs/evals/evidence/087-fable52/Image001-control-overlay.jpg",
+    "bytes": 94846,
+    "sha256": "0226d2b1d593313780ab56062841afb9e5fb0382f90d3d37ee608a68421c90dc"
+  },
+  {
+    "path": "docs/evals/evidence/087-fable52/Image001-source.png",
+    "bytes": 98292,
+    "sha256": "5ea14ade4d46389c09466db250870753ee21260a0397b705421f2ddd0a3a02a6"
+  },
+  {
+    "path": "docs/evals/evidence/087-fable52/Image011-candidate-normalization.json",
+    "bytes": 428,
+    "sha256": "c574e2855a8c92baec74692c4b9c783e960988dc41dcde1f4d6b76a66076ae98"
+  },
+  {
+    "path": "docs/evals/evidence/087-fable52/Image011-candidate-overlay.jpg",
+    "bytes": 228732,
+    "sha256": "627c8fe9281d6e27615575ebe4792f028e5014c8f4d7ef0a821fa9fb621449b4"
+  },
+  {
+    "path": "docs/evals/evidence/087-fable52/Image011-control-normalization.json",
+    "bytes": 432,
+    "sha256": "a55ed44fb2bc7718b4b33da55356ac1a44be9cd8c834a7102745786208640386"
+  },
+  {
+    "path": "docs/evals/evidence/087-fable52/Image011-control-overlay.jpg",
+    "bytes": 226371,
+    "sha256": "036e79a327e6a5dc1e78c17410acaa0f134c612c72ef7637615089f031caad15"
+  },
+  {
+    "path": "docs/evals/evidence/087-fable52/Image011-source.png",
+    "bytes": 325415,
+    "sha256": "5bfe5116d5065cc9e7ac0e787a8c2a1731df2142dd818c7d62597603a7fa0d37"
+  },
+  {
+    "path": "docs/evals/evidence/087-fable52/ambiguity-negative-source-view.png",
+    "bytes": 28099,
+    "sha256": "a18aaf907b541639196cfebc658f67877ce40ff7dcc782dca5b040398b6bfcfc"
+  },
+  {
+    "path": "docs/evals/evidence/087-fable52/barney-source-zoom.png",
+    "bytes": 1713995,
+    "sha256": "7bdcdd7fe1624994d8263df6cee331cb482d496827916add64726ad08b15e520"
+  },
+  {
+    "path": "docs/evals/evidence/087-fable52/catalog.json",
+    "bytes": 1971,
+    "sha256": "d09d2473ed38c92de149acf3cee8daff79f706f92bd6a138e74c9e9465e374ce"
+  },
+  {
+    "path": "docs/evals/evidence/087-fable52/crop-screen-Image001-candidate.json",
+    "bytes": 386,
+    "sha256": "8985ad210aa1b5d08bf55e2c1c3588df525374dc5400b05670c8a60c32432e65"
+  },
+  {
+    "path": "docs/evals/evidence/087-fable52/crop-screen-Image001-control.json",
+    "bytes": 400,
+    "sha256": "83f2682b475d2c4a96691cf8bb51ade276dd6881265196ba3544cd6ab0fde7dc"
+  },
+  {
+    "path": "docs/evals/evidence/087-fable52/crop-screen-Image011-candidate.json",
+    "bytes": 570,
+    "sha256": "64cd80469e8c88ef4cb6855803ee236b4ff2ea3b1383ac32f66b68126d13d393"
+  },
+  {
+    "path": "docs/evals/evidence/087-fable52/crop-screen-Image011-control.json",
+    "bytes": 504,
+    "sha256": "2c06ab12bab0f3cc33d77c1dceb89e1cbf332cefa0e9c48be0652e1768f939d5"
+  },
+  {
+    "path": "docs/evals/evidence/087-fable52/crop-screen-results.json",
+    "bytes": 473,
+    "sha256": "79d8ea91ef389bdf52fa125ae8ae1ff0c507dd21558b20ccfbc17981aa4bcfcc"
+  },
+  {
+    "path": "docs/evals/evidence/087-fable52/direct-key-presence.json",
+    "bytes": 128,
+    "sha256": "57ab6519fb55177759db443b35b555a7e6143eb7a5bc4204c3e383f5b403072a"
+  },
+  {
+    "path": "docs/evals/evidence/087-fable52/driver-artifacts/fable52-ocr-barney-candidate-20261109/01_images_dir_to_manifest_v1/pages_images_manifest.jsonl",
+    "bytes": 494,
+    "sha256": "fb2722a8d6bc86bb7e8b856375dc7db818aa895e45ad1530c08e31adffe81aac"
+  },
+  {
+    "path": "docs/evals/evidence/087-fable52/driver-artifacts/fable52-ocr-barney-candidate-20261109/02_ocr_ai_gpt51_v1/pages_html.jsonl",
+    "bytes": 3676,
+    "sha256": "e06464558453c0f48710e83554a2ca7beedbcc948c7f79048db8e8fb9966c4d9"
+  },
+  {
+    "path": "docs/evals/evidence/087-fable52/driver-artifacts/fable52-ocr-barney-candidate-20261109/instrumentation.json",
+    "bytes": 3649,
+    "sha256": "87de2f619eb1e92a735cd63b1464a86d9c49836455111053e50fd89af7456ed3"
+  },
+  {
+    "path": "docs/evals/evidence/087-fable52/driver-artifacts/fable52-ocr-barney-candidate-20261109/instrumentation.md",
+    "bytes": 818,
+    "sha256": "ea2a72bbfa44fe7b0cefe927339428b690099bf3c3156ab4593a3152efdc418a"
+  },
+  {
+    "path": "docs/evals/evidence/087-fable52/driver-artifacts/fable52-ocr-barney-candidate-20261109/pipeline_events.jsonl",
+    "bytes": 9461,
+    "sha256": "3cd3a14f84a34c66925e732ed9b3dd8aadcefae87f8ec7ad1c6a55c09a8d7f76"
+  },
+  {
+    "path": "docs/evals/evidence/087-fable52/driver-artifacts/fable52-ocr-barney-candidate-20261109/pipeline_state.json",
+    "bytes": 1412,
+    "sha256": "8a18c1c7677315a3dc6f35eddd268bd0dbb0d01e53f4040b9a903a71b5d4b900"
+  },
+  {
+    "path": "docs/evals/evidence/087-fable52/driver-artifacts/fable52-ocr-barney-candidate-20261109/snapshots/plan.json",
+    "bytes": 2104,
+    "sha256": "a06563431156b343588c416a11fb6fa8013ab4e16083e0dada52f8908113867a"
+  },
+  {
+    "path": "docs/evals/evidence/087-fable52/driver-artifacts/fable52-ocr-barney-candidate-20261109/snapshots/pricing.yaml",
+    "bytes": 381,
+    "sha256": "5b480d2aba569392a1f4e538bf67e28685bc91e8eced00d4737b0ff30c38bffd"
+  },
+  {
+    "path": "docs/evals/evidence/087-fable52/driver-artifacts/fable52-ocr-barney-candidate-20261109/snapshots/recipe.yaml",
+    "bytes": 1077,
+    "sha256": "4f2e4a2a7d2b8da3e51f6e2d4541ae0f6aba29d6950132dfed9b11005528258b"
+  },
+  {
+    "path": "docs/evals/evidence/087-fable52/driver-artifacts/fable52-ocr-barney-candidate-20261109/snapshots/registry.json",
+    "bytes": 4243,
+    "sha256": "83daf66bc2a0ad36ec360d9d63b0cd5ff55e30b9506961dafe1cae6f148e5247"
+  },
+  {
+    "path": "docs/evals/evidence/087-fable52/driver-artifacts/fable52-ocr-barney-candidate-20261109/timing_summary.json",
+    "bytes": 432,
+    "sha256": "472872a3c0834bbe48f0640ba46c8777572c816c3a2fa0311bd2643cbc8c033b"
+  },
+  {
+    "path": "docs/evals/evidence/087-fable52/driver-artifacts/fable52-ocr-barney-control-20261109/01_images_dir_to_manifest_v1/pages_images_manifest.jsonl",
+    "bytes": 492,
+    "sha256": "71f2587f55dae18aa636ec2b2ad7045ca941109472d2d05c76089033bb430c37"
+  },
+  {
+    "path": "docs/evals/evidence/087-fable52/driver-artifacts/fable52-ocr-barney-control-20261109/instrumentation.json",
+    "bytes": 3503,
+    "sha256": "2e3516b1b50b20ed6554fc44dcbaf67edef245c9df79c059eec0cb0ce983a9e8"
+  },
+  {
+    "path": "docs/evals/evidence/087-fable52/driver-artifacts/fable52-ocr-barney-control-20261109/instrumentation.md",
+    "bytes": 794,
+    "sha256": "96e4a5c07aa3481c3ca7d5becc002100f10a64d67d0906152b7b03c0e76efd37"
+  },
+  {
+    "path": "docs/evals/evidence/087-fable52/driver-artifacts/fable52-ocr-barney-control-20261109/pipeline_events.jsonl",
+    "bytes": 4690,
+    "sha256": "8a02c3a168f24883ebbc54fd61da593dd0253abb654d603c09e063b2d05e1c16"
+  },
+  {
+    "path": "docs/evals/evidence/087-fable52/driver-artifacts/fable52-ocr-barney-control-20261109/pipeline_state.json",
+    "bytes": 1475,
+    "sha256": "b50e2654ba89d694a206b79da29af80e3658e5bc1a1b4de4f3dd06ed2bea7324"
+  },
+  {
+    "path": "docs/evals/evidence/087-fable52/driver-artifacts/fable52-ocr-barney-control-20261109/snapshots/plan.json",
+    "bytes": 2104,
+    "sha256": "d4ab7b673a1ce8161a13b58d9e2ad064b82c5e3124c145735d2f9f69560cbf1a"
+  },
+  {
+    "path": "docs/evals/evidence/087-fable52/driver-artifacts/fable52-ocr-barney-control-20261109/snapshots/pricing.yaml",
+    "bytes": 381,
+    "sha256": "5b480d2aba569392a1f4e538bf67e28685bc91e8eced00d4737b0ff30c38bffd"
+  },
+  {
+    "path": "docs/evals/evidence/087-fable52/driver-artifacts/fable52-ocr-barney-control-20261109/snapshots/recipe.yaml",
+    "bytes": 1075,
+    "sha256": "1345d3f579ff4ce2c94bed39e1fe112fc3a3247ecd1ec7eabff157655e619235"
+  },
+  {
+    "path": "docs/evals/evidence/087-fable52/driver-artifacts/fable52-ocr-barney-control-20261109/snapshots/registry.json",
+    "bytes": 4243,
+    "sha256": "83daf66bc2a0ad36ec360d9d63b0cd5ff55e30b9506961dafe1cae6f148e5247"
+  },
+  {
+    "path": "docs/evals/evidence/087-fable52/endpoints.json",
+    "bytes": 6372,
+    "sha256": "8b3a1b3d4a83b99a824ab46f46ee8c20d9caf2d9deb215e00efee45655a843ac"
+  },
+  {
+    "path": "docs/evals/evidence/087-fable52/execution-plan.json",
+    "bytes": 3930,
+    "sha256": "95c22952f6466731ea7eaa3474a2e6db31eeb0a6376cf228f0716c8449c9ea02"
+  },
+  {
+    "path": "docs/evals/evidence/087-fable52/format-before-ast.json",
+    "bytes": 876,
+    "sha256": "68f538a4ccfdea8dd32d4da0e347d97f96a1ccb5967b4539c2cf97201bec8286"
+  },
+  {
+    "path": "docs/evals/evidence/087-fable52/format-equivalence.json",
+    "bytes": 1157,
+    "sha256": "4451962417fbf92ca789cab79bf2a1b944b7999aaa0ec3fea8622c653a789923"
+  },
+  {
+    "path": "docs/evals/evidence/087-fable52/image-positive-source-view.png",
+    "bytes": 44992,
+    "sha256": "dd1d20ff38f85a462b8bc1d97083abdf364c651c711718cfa150deeab5bf6a86"
+  },
+  {
+    "path": "docs/evals/evidence/087-fable52/initial-ambiguity-negative.json",
+    "bytes": 1443,
+    "sha256": "66362bd4c686282825386655a60e7aa76424765d4f205c26ceb0d28cbd1afe89"
+  },
+  {
+    "path": "docs/evals/evidence/087-fable52/initial-image-positive.json",
+    "bytes": 1959,
+    "sha256": "0da06b37d5d00e38d438f26066b08d5748cd8afc926d405cf3e358e8122450d3"
+  },
+  {
+    "path": "docs/evals/evidence/087-fable52/initial-native-positive.json",
+    "bytes": 1717,
+    "sha256": "541f3d8c0590164e9c7bdf5c573f10bf00cf746cc09c67226903c9aafb966727"
+  },
+  {
+    "path": "docs/evals/evidence/087-fable52/ledger-superseded-access-only.json",
+    "bytes": 1462,
+    "sha256": "9b1bfb0aa8ae6adaa99f81bc680676f079c225b262c957a411df1e4ae56ed85f"
+  },
+  {
+    "path": "docs/evals/evidence/087-fable52/ledger.json",
+    "bytes": 27398,
+    "sha256": "9c01924252615e9d181cab4a013c630e84c8623b8dbe9429291bd15a7916c88a"
+  },
+  {
+    "path": "docs/evals/evidence/087-fable52/native-positive-source-view.png",
+    "bytes": 36931,
+    "sha256": "45083876843a1f03d4538008d096e3345e7d34b56d39510f8f7b918e40a3d075"
+  },
+  {
+    "path": "docs/evals/evidence/087-fable52/ocr-results.json",
+    "bytes": 1379,
+    "sha256": "fcf6fedcfe12507bc020960277c8587f752bc0dc1a012ab3ddc2514ff63a6874"
+  },
+  {
+    "path": "docs/evals/evidence/087-fable52/page-001-000-input1.png",
+    "bytes": 5198972,
+    "sha256": "7423424d906b838b8b07c982b4f2ff5fcbfc788930113fadc1fbe2ac2ec6bf4f"
+  },
+  {
+    "path": "docs/evals/evidence/087-fable52/page-001-000-input2.png",
+    "bytes": 28896837,
+    "sha256": "6ac9a70675d636592c81be33cde5c70f834b9e770ce842b434fd9b01a723222f"
+  },
+  {
+    "path": "docs/evals/evidence/087-fable52/page-001-000-pair.png",
+    "bytes": 1833009,
+    "sha256": "7db83481c4a665ec817e99d8d634d8bc96d8f085ceef0d70f8d51d617fa8aa2a"
+  },
+  {
+    "path": "docs/evals/evidence/087-fable52/page-004-000-input1.png",
+    "bytes": 266191,
+    "sha256": "d0ee9b013825d5be9a2e81cf2776f71ac090568a772d478ba750c189edd6efd0"
+  },
+  {
+    "path": "docs/evals/evidence/087-fable52/page-004-000-input2.png",
+    "bytes": 1666426,
+    "sha256": "f8546bd7853b8343ff5439fa2f0ec689695b24b2a28dbe6de5cdd21ef23ec748"
+  },
+  {
+    "path": "docs/evals/evidence/087-fable52/page-004-000-pair.png",
+    "bytes": 222843,
+    "sha256": "ca0e2184d882d1f57f1a1167cc6682decd3e6280c88f789de47d53ceba65381c"
+  },
+  {
+    "path": "docs/evals/evidence/087-fable52/page-009-000-input1.png",
+    "bytes": 971387,
+    "sha256": "54e1e3c08271858220453ecdd7897d0d1e31dc203592ffefa2511dda4f7ca014"
+  },
+  {
+    "path": "docs/evals/evidence/087-fable52/page-009-000-input2.png",
+    "bytes": 6682522,
+    "sha256": "f54778053a363f1b8508fbcee61932204d2b6a97ed6fe7dad30d4c190e4ee06b"
+  },
+  {
+    "path": "docs/evals/evidence/087-fable52/page-009-000-pair.png",
+    "bytes": 647847,
+    "sha256": "2c8abc1f9b02b97ea2c21a2f26d753bd7b01a157b1b2c45aa10af1e349af3ab3"
+  },
+  {
+    "path": "docs/evals/evidence/087-fable52/page-012-000-input1.png",
+    "bytes": 325415,
+    "sha256": "5bfe5116d5065cc9e7ac0e787a8c2a1731df2142dd818c7d62597603a7fa0d37"
+  },
+  {
+    "path": "docs/evals/evidence/087-fable52/page-012-000-input2.png",
+    "bytes": 243072,
+    "sha256": "e255e74779c4394de33fba21b429d7bbc4145280957b0f62656d1c1b8ddeadb3"
+  },
+  {
+    "path": "docs/evals/evidence/087-fable52/page-012-000-pair.png",
+    "bytes": 305818,
+    "sha256": "98491c574735153ad641145a33f3727ac9507c311eb94820bd1b79765e61ff17"
+  },
+  {
+    "path": "docs/evals/evidence/087-fable52/page-012-001-input1.png",
+    "bytes": 325415,
+    "sha256": "5bfe5116d5065cc9e7ac0e787a8c2a1731df2142dd818c7d62597603a7fa0d37"
+  },
+  {
+    "path": "docs/evals/evidence/087-fable52/page-012-001-input2.png",
+    "bytes": 390432,
+    "sha256": "9cc98f77b1351702ea97c57cfd7a71ef1132088003b7fd9612cb70f0b2ec4e08"
+  },
+  {
+    "path": "docs/evals/evidence/087-fable52/page-012-001-pair.png",
+    "bytes": 293631,
+    "sha256": "0b279b6834bd4d6edb1ce072fbede0a1ef71a4814c5578f15688c6f45b040010"
+  },
+  {
+    "path": "docs/evals/evidence/087-fable52/page-122-001-input1.png",
+    "bytes": 1773805,
+    "sha256": "0732dba34b0877e38bd6986a22a4b1f0074887031d366cb4446af0f458d151f3"
+  },
+  {
+    "path": "docs/evals/evidence/087-fable52/page-122-001-input2.png",
+    "bytes": 8161380,
+    "sha256": "7b53173c5936ed7ff2788280290ca7974049c10ffe85ca8959036d790a471374"
+  },
+  {
+    "path": "docs/evals/evidence/087-fable52/page-122-001-pair.png",
+    "bytes": 543635,
+    "sha256": "76c1f957f02a126866e49eb71dee69203177e017bbafc2b3cda02263663a7a7e"
+  },
+  {
+    "path": "docs/evals/evidence/087-fable52/preflight.json",
+    "bytes": 4664,
+    "sha256": "228cd70ba235383100846a0914b1ec43477eda11e9ccf54db48e33d18c04467a"
+  },
+  {
+    "path": "docs/evals/evidence/087-fable52/producing-epochs/direct1/benchmarks/providers/fable52_guard.py",
+    "bytes": 8346,
+    "sha256": "64027c2a4332bf2c7afc931df14bb6347b038cfaf48f85da1a8e8fede4411b01"
+  },
+  {
+    "path": "docs/evals/evidence/087-fable52/producing-epochs/direct1/benchmarks/scripts/fable52_native.py",
+    "bytes": 1802,
+    "sha256": "bb8a564852bd203acb30bf0bc854fe72f8176941beb55c8adb8c75273b5e2cee"
+  },
+  {
+    "path": "docs/evals/evidence/087-fable52/producing-epochs/direct1/benchmarks/scripts/fable52_reading.py",
+    "bytes": 21487,
+    "sha256": "0abd5a82b0fb37b08ee27927309938692fc5cff9cab62fed4fb81fffd04f2fe7"
+  },
+  {
+    "path": "docs/evals/evidence/087-fable52/producing-epochs/direct1/benchmarks/scripts/fable52_safety.py",
+    "bytes": 6637,
+    "sha256": "0be71e13d08199507c5ee4eca68025af3e67079ad589303c98a1c47b912751a2"
+  },
+  {
+    "path": "docs/evals/evidence/087-fable52/producing-epochs/final-before-format/benchmarks/providers/fable52_guard.py",
+    "bytes": 8348,
+    "sha256": "a223f6298219b3e6408ae1c0dd05ca883c3a948b94e2ef3ec72336b29f6e82c5"
+  },
+  {
+    "path": "docs/evals/evidence/087-fable52/producing-epochs/final-before-format/benchmarks/scripts/fable52_audit.py",
+    "bytes": 8591,
+    "sha256": "b6211d52ca913863a45920bd979744b3ac673e090770c8bdb89317ce6c177c65"
+  },
+  {
+    "path": "docs/evals/evidence/087-fable52/producing-epochs/final-before-format/benchmarks/scripts/fable52_native.py",
+    "bytes": 1802,
+    "sha256": "bb8a564852bd203acb30bf0bc854fe72f8176941beb55c8adb8c75273b5e2cee"
+  },
+  {
+    "path": "docs/evals/evidence/087-fable52/producing-epochs/final-before-format/benchmarks/scripts/fable52_overlay.py",
+    "bytes": 1871,
+    "sha256": "e564815bad4a90be7e5124b7fedd496c5df3563aac1e4dc1636d00ac35f8bd2c"
+  },
+  {
+    "path": "docs/evals/evidence/087-fable52/producing-epochs/final-before-format/benchmarks/scripts/fable52_reading.py",
+    "bytes": 21506,
+    "sha256": "632596a3aaf6b7bd8260df31212726ed2ab002289f53900f91dd3e24d5ad6905"
+  },
+  {
+    "path": "docs/evals/evidence/087-fable52/producing-epochs/final-before-format/benchmarks/scripts/fable52_run.py",
+    "bytes": 601,
+    "sha256": "9640b146bf7c9c727f73fe75a5ba5c47ec71d8391c23d9b9a032a536d9091fab"
+  },
+  {
+    "path": "docs/evals/evidence/087-fable52/producing-epochs/final-before-format/benchmarks/scripts/fable52_safety.py",
+    "bytes": 6637,
+    "sha256": "0be71e13d08199507c5ee4eca68025af3e67079ad589303c98a1c47b912751a2"
+  },
+  {
+    "path": "docs/evals/evidence/087-fable52/producing-epochs/final-before-format/tests/test_fable52_campaign.py",
+    "bytes": 4693,
+    "sha256": "9d15ed394c9528242506f32dada7ef749b53a53bb2ef49da62ee7a71c849b399"
+  },
+  {
+    "path": "docs/evals/evidence/087-fable52/provenance.json",
+    "bytes": 1336,
+    "sha256": "51de3a39f6aee591a9a426a931bd34be8f4b14689bd299df41e3756f59ba3252"
+  },
+  {
+    "path": "docs/evals/evidence/087-fable52/raw-audit.json",
+    "bytes": 5558,
+    "sha256": "35d6d597b4a805a14bd6fe1ecc9a22113f4ed213fa4e3a7daac1fc10f0576fec"
+  },
+  {
+    "path": "docs/evals/evidence/087-fable52/request-001.json",
+    "bytes": 4454,
+    "sha256": "771ccb62a49a88979094d4464c02d2097f6adac86104ec9cc715b7273aa17d3b"
+  },
+  {
+    "path": "docs/evals/evidence/087-fable52/request-002.json",
+    "bytes": 4454,
+    "sha256": "771ccb62a49a88979094d4464c02d2097f6adac86104ec9cc715b7273aa17d3b"
+  },
+  {
+    "path": "docs/evals/evidence/087-fable52/request-003.json",
+    "bytes": 103814,
+    "sha256": "3577f495228492bb491f92a2b2dce88dc2e4d7369a9216e9ef336916c3751240"
+  },
+  {
+    "path": "docs/evals/evidence/087-fable52/request-004.json",
+    "bytes": 103897,
+    "sha256": "694a6f22735d634300ffc5f06d58d4c99d8d95cb16cba49f13bbc185a78e731c"
+  },
+  {
+    "path": "docs/evals/evidence/087-fable52/request-005.json",
+    "bytes": 103967,
+    "sha256": "e6235031e3cac69a3f5d01f343d3353c728a73bc7d4e0fa043959507638e9d30"
+  },
+  {
+    "path": "docs/evals/evidence/087-fable52/request-006.json",
+    "bytes": 65941,
+    "sha256": "d0d5dff374e12dc9cf1ba0f46bf163f91e4c31315180a69ac967506a8b0465e7"
+  },
+  {
+    "path": "docs/evals/evidence/087-fable52/request-007.json",
+    "bytes": 66011,
+    "sha256": "f327844def7f4d7ad49114964b4302016896b14ee8a31b6bb15a0b0ee5f7a386"
+  },
+  {
+    "path": "docs/evals/evidence/087-fable52/request-008.json",
+    "bytes": 85061,
+    "sha256": "383c3f355b6f9822d012ae0a9e1f53a85b385046e35ad3c74bab2b54d1bafa25"
+  },
+  {
+    "path": "docs/evals/evidence/087-fable52/request-009.json",
+    "bytes": 85131,
+    "sha256": "b68499fd3b2429923dd5030caf9f633d11365706d0f0c989e29e80c4b4dca14b"
+  },
+  {
+    "path": "docs/evals/evidence/087-fable52/request-010.json",
+    "bytes": 311822,
+    "sha256": "d4a609518f2d109a24c80ce9a8989d5cc5851e9732e42672da96a535c39e3ada"
+  },
+  {
+    "path": "docs/evals/evidence/087-fable52/request-011.json",
+    "bytes": 311335,
+    "sha256": "242f8833652c89a4b1ac2591289afba7bc19e1ca44556e2c570f5f4648e54994"
+  },
+  {
+    "path": "docs/evals/evidence/087-fable52/request-012.json",
+    "bytes": 107954,
+    "sha256": "e322dbbe2475735afa073e5e7400bde75e9e3fb9fa75970dd5d5ec0821e5559e"
+  },
+  {
+    "path": "docs/evals/evidence/087-fable52/request-013.json",
+    "bytes": 107467,
+    "sha256": "01b4129b1c68907267cb3e71fc64bd3517497b103f7c28fb085982eef0f5e296"
+  },
+  {
+    "path": "docs/evals/evidence/087-fable52/request-014.json",
+    "bytes": 9116155,
+    "sha256": "dd144277a07c5bd537cbb1ba62aa9565dc608a363168bbf027aa5e54d20a5024"
+  },
+  {
+    "path": "docs/evals/evidence/087-fable52/request-015.json",
+    "bytes": 9116242,
+    "sha256": "832a87b3b4c93094f9b468fc5de1a30f17c98dd44e7c8d24db0bb901eafae607"
+  },
+  {
+    "path": "docs/evals/evidence/087-fable52/request-016.json",
+    "bytes": 1591059,
+    "sha256": "e9365878db1a0aad9a3f606f272d014165ee7b5759aceaee64c3418493b472b7"
+  },
+  {
+    "path": "docs/evals/evidence/087-fable52/request-017.json",
+    "bytes": 1591146,
+    "sha256": "042f728103acae2f14df4b1fd3e98f64ecd5737166916d89b22174f5e0d2780e"
+  },
+  {
+    "path": "docs/evals/evidence/087-fable52/request-018.json",
+    "bytes": 5921371,
+    "sha256": "3c65f1c79e33b9c71f33f138deceb8dceff9377e881bdd572e6f9e0ceecd0818"
+  },
+  {
+    "path": "docs/evals/evidence/087-fable52/request-019.json",
+    "bytes": 5921458,
+    "sha256": "cf3947b879fee8dfd0060d208da4f16510fb135053cc566546d13932f2699b12"
+  },
+  {
+    "path": "docs/evals/evidence/087-fable52/request-020.json",
+    "bytes": 549879,
+    "sha256": "67418c852f30f81ed55f2fed015713cd5dcce0b97b7d3879fdaecbbe8e137dde"
+  },
+  {
+    "path": "docs/evals/evidence/087-fable52/request-021.json",
+    "bytes": 549966,
+    "sha256": "2c0a3ecb84935372267ef7043609350825155c4ab6a727a053f22d3f9644a643"
+  },
+  {
+    "path": "docs/evals/evidence/087-fable52/request-022.json",
+    "bytes": 8501903,
+    "sha256": "5c38502c1259e6d157083aa90861e72a14eb1c06751ce6ede183c069aa38d064"
+  },
+  {
+    "path": "docs/evals/evidence/087-fable52/request-023.json",
+    "bytes": 8501990,
+    "sha256": "a3137a46a26b718299ba9fb83b9bd9b5069c86bf437a197111e74719374b5126"
+  },
+  {
+    "path": "docs/evals/evidence/087-fable52/request-024.json",
+    "bytes": 605187,
+    "sha256": "1cecdf9f2d67c381517cda17d98b81e561b4e05fd8bbfc8c80fab916d840ffe1"
+  },
+  {
+    "path": "docs/evals/evidence/087-fable52/request-025.json",
+    "bytes": 605274,
+    "sha256": "ad3a0323de31ddc147966ae54da6ce5dea97f6407288a768955cb1d23caa94e7"
+  },
+  {
+    "path": "docs/evals/evidence/087-fable52/request-026.json",
+    "bytes": 204621,
+    "sha256": "ddb136b8bb1efa7f07b3e3eab6b7e993673b2341253bb6f1f9649ee74801d870"
+  },
+  {
+    "path": "docs/evals/evidence/087-fable52/request-027.json",
+    "bytes": 204582,
+    "sha256": "367d52133d49c5a8433552634fd7b72e11cfca7ca316539d63ba9699c4892d2b"
+  },
+  {
+    "path": "docs/evals/evidence/087-fable52/request-parity.json",
+    "bytes": 2920,
+    "sha256": "8638edca3b741a04542764b2bfed46c1177877872cbae904451c82984af7696a"
+  },
+  {
+    "path": "docs/evals/evidence/087-fable52/response-001.json",
+    "bytes": 481,
+    "sha256": "e1bbfba04b09fb70ec2908d432a64791387a0c8d04564d06630cdd2e463dd3fc"
+  },
+  {
+    "path": "docs/evals/evidence/087-fable52/response-002.json",
+    "bytes": 481,
+    "sha256": "e1bbfba04b09fb70ec2908d432a64791387a0c8d04564d06630cdd2e463dd3fc"
+  },
+  {
+    "path": "docs/evals/evidence/087-fable52/response-003.json",
+    "bytes": 228,
+    "sha256": "2fdf18572ae3a2e220db55115310178ec5d1a4223ad6c7537c70a4879f852997"
+  },
+  {
+    "path": "docs/evals/evidence/087-fable52/response-004.json",
+    "bytes": 7233,
+    "sha256": "b5725224aa515f679928c53b25c3e0d1ec5e180d4bad978d182217a1c24f501e"
+  },
+  {
+    "path": "docs/evals/evidence/087-fable52/response-005.json",
+    "bytes": 9418,
+    "sha256": "d620be2808e2f63393e5fbf78f01858501a244d5f93e47197a5a83e61d406062"
+  },
+  {
+    "path": "docs/evals/evidence/087-fable52/response-006.json",
+    "bytes": 3827,
+    "sha256": "04dc80e7bed809b6190c5307e5a5f011ba30ad63c6026ffcb7076d74aa8286cb"
+  },
+  {
+    "path": "docs/evals/evidence/087-fable52/response-007.json",
+    "bytes": 5311,
+    "sha256": "4802597b22da8d43d58a9e9285656556a5f23fe344e73c0c3114fe694488af93"
+  },
+  {
+    "path": "docs/evals/evidence/087-fable52/response-008.json",
+    "bytes": 4259,
+    "sha256": "0483b61fce1967424f7299f166a9253276c4118ac7f42927a86559f8360f02aa"
+  },
+  {
+    "path": "docs/evals/evidence/087-fable52/response-009.json",
+    "bytes": 8509,
+    "sha256": "143eda9893660f77a25ffb68eadfe30145a630f641b230df1c55e55c80986df8"
+  },
+  {
+    "path": "docs/evals/evidence/087-fable52/response-010.json",
+    "bytes": 840,
+    "sha256": "19a710f885b3f8c79209f89f733569d429c5ebef57ef7a5c242abe39714ffebc"
+  },
+  {
+    "path": "docs/evals/evidence/087-fable52/response-011.json",
+    "bytes": 10666,
+    "sha256": "107d5c703fe744fa2dc210c41f0598946430e080666ffcbbe8ff40e53600afb6"
+  },
+  {
+    "path": "docs/evals/evidence/087-fable52/response-012.json",
+    "bytes": 2748,
+    "sha256": "bd4956b76012804083fa49f1979c5a8662fe655d87d7d4b4f720090f259e0337"
+  },
+  {
+    "path": "docs/evals/evidence/087-fable52/response-013.json",
+    "bytes": 4410,
+    "sha256": "13bfae3cc3a3ea9a87a739734c96e86861383a8220546473d287f2728c0ca467"
+  },
+  {
+    "path": "docs/evals/evidence/087-fable52/response-014.json",
+    "bytes": 7339,
+    "sha256": "3ff7f62afaaf8afdaa92df5f42acc1e5d249bc1d311726dc6ea0292298a8acdd"
+  },
+  {
+    "path": "docs/evals/evidence/087-fable52/response-015.json",
+    "bytes": 3124,
+    "sha256": "bc041f2289c45b13ba6bdc2d16a7ce2a85366ab72324dda0e6ca8d397c760398"
+  },
+  {
+    "path": "docs/evals/evidence/087-fable52/response-016.json",
+    "bytes": 775,
+    "sha256": "d450efe0d438a3c0f0da863e51bfbe059df85a6b6538d42a9074038e9e80e5ba"
+  },
+  {
+    "path": "docs/evals/evidence/087-fable52/response-017.json",
+    "bytes": 3081,
+    "sha256": "856beecd070069230c55629ee0623c24ffd4e71c2608c51e406fa96425f9ce68"
+  },
+  {
+    "path": "docs/evals/evidence/087-fable52/response-018.json",
+    "bytes": 787,
+    "sha256": "3a92e6aa08fe1c2ebb3a343937e33ba7b39a69e545600864365970b1c2333324"
+  },
+  {
+    "path": "docs/evals/evidence/087-fable52/response-019.json",
+    "bytes": 3056,
+    "sha256": "59d15b3d551c5af4078cf7bb3a64b3cf8b32eb1d38740912dd8bc5ce27b8ae82"
+  },
+  {
+    "path": "docs/evals/evidence/087-fable52/response-020.json",
+    "bytes": 1942,
+    "sha256": "fe1b342f53d03954ca55b5dca2236b26b800581742a14960e085267015ebfaef"
+  },
+  {
+    "path": "docs/evals/evidence/087-fable52/response-021.json",
+    "bytes": 3097,
+    "sha256": "c716505a001173ca30b693f4eaedd610edc9446c89a24de5b1f4b098d1c51fab"
+  },
+  {
+    "path": "docs/evals/evidence/087-fable52/response-022.json",
+    "bytes": 2062,
+    "sha256": "37b11a17662d818714a5912925cb2fc7d6554c5a820c7baf65370f5c6d7d0fe1"
+  },
+  {
+    "path": "docs/evals/evidence/087-fable52/response-023.json",
+    "bytes": 3065,
+    "sha256": "51de8218127157c4806f9e2a36ed9b0ce7e72b827f29c47663c370a01b54fe77"
+  },
+  {
+    "path": "docs/evals/evidence/087-fable52/response-024.json",
+    "bytes": 3024,
+    "sha256": "8ebe1240c1a83047406b1a90effca7d344c1b5e4e300a433d5a7462bf05ed938"
+  },
+  {
+    "path": "docs/evals/evidence/087-fable52/response-025.json",
+    "bytes": 3140,
+    "sha256": "cfff8327f5f0ac3147854ffe4fa5c683ef2b38084524ae4011d4d536df4694f5"
+  },
+  {
+    "path": "docs/evals/evidence/087-fable52/response-026.json",
+    "bytes": 6969,
+    "sha256": "543f29023ee486e94fa4aee8c81b73d24f64725abc09444e0556496d57042d42"
+  },
+  {
+    "path": "docs/evals/evidence/087-fable52/response-027.json",
+    "bytes": 19088,
+    "sha256": "d3d58be813e150ce522ea8878360ce2cb4eab99256f1320ee7f5a863e14571e6"
+  },
+  {
+    "path": "docs/evals/evidence/087-fable52/safety-other-source-montage.png",
+    "bytes": 1420194,
+    "sha256": "3b57ff8127b24d88651e1fc51e98125fa457807c3aeb2e6ec62fd01f1e71b828"
+  },
+  {
+    "path": "docs/evals/evidence/087-fable52/safety-page-001-000.json",
+    "bytes": 353,
+    "sha256": "9a76650657944cdfbf42e9412849693871d303d8c882090d03149de5b66854cf"
+  },
+  {
+    "path": "docs/evals/evidence/087-fable52/safety-page-004-000.json",
+    "bytes": 353,
+    "sha256": "3414292b1137c6bdb66c183fb1c35bc8b660a603cc1461beaf0984c1ba684dbc"
+  },
+  {
+    "path": "docs/evals/evidence/087-fable52/safety-page-009-000.json",
+    "bytes": 352,
+    "sha256": "3639c3a9de6c83ca2d58909e85e9bbcd4b902964576cfc2eba9ed07e9d33f568"
+  },
+  {
+    "path": "docs/evals/evidence/087-fable52/safety-page-012-000.json",
+    "bytes": 353,
+    "sha256": "911b25c1467a1419403e980ea9ef72100ca2a5980d0eca26e4695d9850b468e2"
+  },
+  {
+    "path": "docs/evals/evidence/087-fable52/safety-page-012-001.json",
+    "bytes": 353,
+    "sha256": "4b8556df00f3a758001fd5ca92bddd14a51d019168529f6d0bd41e3fdfcca05d"
+  },
+  {
+    "path": "docs/evals/evidence/087-fable52/safety-page-122-001.json",
+    "bytes": 353,
+    "sha256": "a070a8260d0e0865f7cb253d5597d0d4ca66c91324cf18ed3d10059056a54dfe"
+  },
+  {
+    "path": "docs/evals/evidence/087-fable52/safety-preflight.json",
+    "bytes": 14379,
+    "sha256": "bdc9213f79c511ae4f2f29eb478fed8159f831301e80876e38444409ebaf912c"
+  },
+  {
+    "path": "docs/evals/evidence/087-fable52/source-review.json",
+    "bytes": 2385,
+    "sha256": "daa0ccbb3a53676c9a93ed085af09ccfb4f34504dc1d549cd1f6e0d03b1c51ea"
+  },
+  {
+    "path": "docs/evals/evidence/087-fable52/source-snapshots/benchmarks/golden/crop-page-level-safety-repair-048-source-adjudicated.json",
+    "bytes": 5157,
+    "sha256": "6f32bc513494f1c4454b4c41e74186136212d477ff10c87ccb29244ca21aaa76"
+  },
+  {
+    "path": "docs/evals/evidence/087-fable52/source-snapshots/benchmarks/golden/image-crops.json",
+    "bytes": 7783,
+    "sha256": "2ac0a8f01e00a252439da1f4827a85bc5118bf96460a3ff1780e642eafc60f90"
+  },
+  {
+    "path": "docs/evals/evidence/087-fable52/source-snapshots/benchmarks/prompts/crop-conservative-count.js",
+    "bytes": 1782,
+    "sha256": "d15c7fd6f20389e5e7b2af9f15dd3697a31c28f47cfea8147c8114fe82f1e8f9"
+  },
+  {
+    "path": "docs/evals/evidence/087-fable52/source-snapshots/benchmarks/providers/fable52_guard.py",
+    "bytes": 8414,
+    "sha256": "a7a1b7914b3243080e6c832d0552dba74563f8a92504f2a083e4721cadf88a2b"
+  },
+  {
+    "path": "docs/evals/evidence/087-fable52/source-snapshots/benchmarks/scorers/handwritten_notes_transcription.py",
+    "bytes": 4712,
+    "sha256": "3e8ab803e94b22b139e78d51bd029f6502ecac03a170f2dd7955b86afd67ee6b"
+  },
+  {
+    "path": "docs/evals/evidence/087-fable52/source-snapshots/benchmarks/scorers/image_crop_scorer.py",
+    "bytes": 10333,
+    "sha256": "7fcf07e05726bf3ebbc2488a503a9d7f165dde79649890cbd65f12a6ce4c19e7"
+  },
+  {
+    "path": "docs/evals/evidence/087-fable52/source-snapshots/benchmarks/scripts/fable52_audit.py",
+    "bytes": 11009,
+    "sha256": "44cb9c5e64851519a4d2dba6ea5ab89a988f919b7f7642d9f8e373d0c6daeea6"
+  },
+  {
+    "path": "docs/evals/evidence/087-fable52/source-snapshots/benchmarks/scripts/fable52_native.py",
+    "bytes": 2599,
+    "sha256": "1bda7cd8d1077aed639d8f9c836449ffb05fc399b1e6b62982bdc1648c0b8662"
+  },
+  {
+    "path": "docs/evals/evidence/087-fable52/source-snapshots/benchmarks/scripts/fable52_overlay.py",
+    "bytes": 1871,
+    "sha256": "e564815bad4a90be7e5124b7fedd496c5df3563aac1e4dc1636d00ac35f8bd2c"
+  },
+  {
+    "path": "docs/evals/evidence/087-fable52/source-snapshots/benchmarks/scripts/fable52_reading.py",
+    "bytes": 21713,
+    "sha256": "c79385edf668524353650ae95c4d9819475149ce295fc0ea402e3fe93b586904"
+  },
+  {
+    "path": "docs/evals/evidence/087-fable52/source-snapshots/benchmarks/scripts/fable52_run.py",
+    "bytes": 601,
+    "sha256": "9640b146bf7c9c727f73fe75a5ba5c47ec71d8391c23d9b9a032a536d9091fab"
+  },
+  {
+    "path": "docs/evals/evidence/087-fable52/source-snapshots/benchmarks/scripts/fable52_safety.py",
+    "bytes": 7302,
+    "sha256": "570fee45d8a0ba3aaef856063227848889188459bc556af6c6e11979daa2ba72"
+  },
+  {
+    "path": "docs/evals/evidence/087-fable52/source-snapshots/modules/common/literal_table_review.py",
+    "bytes": 14664,
+    "sha256": "25085a0937d27e5bae61e3973eddcf2ea6a43496cba814d57fb8af67a0212d67"
+  },
+  {
+    "path": "docs/evals/evidence/087-fable52/source-snapshots/modules/common/table_source_review.py",
+    "bytes": 7221,
+    "sha256": "78599f846eb31b2ad7a1607257458760e6e93e6eaa6d4ab062ffcbd30b879709"
+  },
+  {
+    "path": "docs/evals/evidence/087-fable52/source-snapshots/testdata/handwritten-notes-barney-real.txt",
+    "bytes": 1397,
+    "sha256": "78827ef175378bd2c55d0405fc35213acfc17e348b5edd48b1e089525a83e2bf"
+  },
+  {
+    "path": "docs/evals/evidence/087-fable52/source-snapshots/tests/test_fable52_campaign.py",
+    "bytes": 5030,
+    "sha256": "42aaf607241487fee41e4b909fa32964baf2e4db60931730003378b5d07d9e67"
+  },
+  {
+    "path": "docs/evals/evidence/087-fable52/summary-superseded-access-only.json",
+    "bytes": 1930,
+    "sha256": "0f57be3502a35744e66800f50b42541d6c7754409b0dd974ecd950b41345f7a9"
+  },
+  {
+    "path": "docs/evals/evidence/087-fable52/summary.json",
+    "bytes": 5380,
+    "sha256": "19e30c6cdbea4b0a15e4f8521292f5839658816170bba72377b88be00a759474"
+  },
+  {
+    "path": "docs/evals/evidence/087-fable52/table-results-infra-quarantined.json",
+    "bytes": 7943,
+    "sha256": "6ab57ed22c5b4e30feeb96ac0dc4c0615cfb412a779fe43c65bef175e7427c69"
+  },
+  {
+    "path": "docs/evals/evidence/087-fable52/table-results.json",
+    "bytes": 7446,
+    "sha256": "fdf4076a66ac7d7b39783f8bf0b76b98ffa11bf43b51d8c97c02bee1178900c2"
+  },
+  {
+    "path": "docs/evals/evidence/087-fable52/validation.json",
+    "bytes": 1249,
+    "sha256": "c17b566a4dc3c4bec8bbf79de7b6c3f0495a2a80b193b51337b004a446bd7368"
+  }
+]

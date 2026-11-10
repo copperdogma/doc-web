@@ -1,0 +1,16 @@
+{
+  "base": "5bd3ba777d70347eb8dd84b9aa18a6b3ba025193",
+  "native_producing_epoch": "producing-epochs/direct1; finalimportpathfix only affectsOCRstartup; guardunknownaccountingcorrection no semanticpayloadchanges",
+  "request_custody": "Complete JSONvalue reserializedwithsortedkeys; sourcebase64exact; notoriginallexicalwirebytes. FullHTTPresponsebytesexact. Noauthorizationheadersretained.",
+  "semantics": "Maintainedpolicies/prompt/sourcepixels/goldens/scorers unchanged atbase; SDKschemaadaptation documented. Original SourcePageReviewandcrop+safetycontracts validatedoffline on rawoutputs.",
+  "python": "Nativecandidate/controlmain python interpreter; primaryvenv lacksanthropic/pytest. python hasanthropic0.79.0. OCRdriveractualsitecustomize shim, notproductionmodelattribution.",
+  "commands": [
+    "DOC_WEB_ENV_FILE=/Users/cam/Documents/Projects/doc-web/.env FABLE52_ROUTE=direct python scripts/run_with_doc_web_env.py python benchmarks/scripts/fable52_reading.py tables CASE [ARM]",
+    "... fable52_reading.py screen Image011/Image001",
+    "... fable52_safety.py page-NNN-NNN",
+    "... fable52_reading.py ocr",
+    "python -m pytest tests/test_fable52_campaign.py -q",
+    "python benchmarks/scripts/fable52_audit.py"
+  ],
+  "replay": "Auditonlyoffline; closedledger forbidsanyfreshinference underretainedrunidentity."
+}

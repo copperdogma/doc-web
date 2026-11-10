@@ -1,0 +1,45 @@
+{
+  "policy": "Public/synthetic source, complete native envelopes, codeepochs and driverartifacts sealed losslessly. Expanded working copies remain retained/ignored; no producerbytes rewritten. Private account identifiers are excluded from Git and preserved in protected durable owner archive.",
+  "public": {
+    "parts": [
+      {
+        "path": "docs/evals/evidence/087-fable52-custody.tar.gz.part01",
+        "bytes": 41943040,
+        "sha256": "8cfde6ca76423f57bf6520127abac493d76904beee43afb40bcb5cdd35688ebe"
+      },
+      {
+        "path": "docs/evals/evidence/087-fable52-custody.tar.gz.part02",
+        "bytes": 41943040,
+        "sha256": "17855b54d0fe52c3a3b21f10a71a4ba3c3544eecf24003c075a25cfa19a8570c"
+      },
+      {
+        "path": "docs/evals/evidence/087-fable52-custody.tar.gz.part03",
+        "bytes": 41943040,
+        "sha256": "e6dc08d37321037aeab81cc7e1876dae45eaa362466d35f4d777244451d7c383"
+      },
+      {
+        "path": "docs/evals/evidence/087-fable52-custody.tar.gz.part04",
+        "bytes": 18122445,
+        "sha256": "c60a10c596c099a5d912def489d7acb50d25bb137b636ea1eaeae31410b0ed85"
+      }
+    ],
+    "joined_sha256": "a60b38b74f971bb0d3ccc6efd7a8fcae990daf3709766e1bde90d9f5ac1c0c7e",
+    "members": 241
+  },
+  "protected_account_metadata": {
+    "path": "/Users/cam/.codex/archives/doc-web/fable-finish-20261110/attempt087-account-metadata.tar.gz",
+    "bytes": 855,
+    "sha256": "f72cac9cfdffc1ac9a6fd0df038d175d989d592f3ab446f8165bc709fe95c5cf",
+    "mode": "0600 under0700 directory",
+    "members": [
+      "benchmarks/results/fable52-20261109/native-central-table-decoded.json",
+      "benchmarks/results/fable52-20261109/native-table-decoded.json",
+      "benchmarks/results/fable52-20261109/response-001.json",
+      "benchmarks/results/fable52-20261109/response-002.json",
+      "docs/evals/evidence/087-fable52/response-001.json",
+      "docs/evals/evidence/087-fable52/response-002.json"
+    ]
+  },
+  "original_run_manifest": "manifest.json",
+  "restore": "Verify each part SHA256, concatenate in listed order and extract at repo root; all members are relative regular files. Restore protected account-metadata archive separately only when auditing the rejected access envelopes."
+}

@@ -1,0 +1,5 @@
+{
+  "owner_native_anthropic_key_present": true,
+  "method": "normal ownerwrapper presenceonly",
+  "no_other_key_source": true
+}

@@ -1,0 +1,29 @@
+{
+  "base_sha": "5bd3ba777d70347eb8dd84b9aa18a6b3ba025193",
+  "worktree": "/Users/cam/.codex/worktrees/fable52-20261109/doc-web",
+  "branch": "codex/fable52-20261109-doc-web",
+  "requested_model": "anthropic/claude-fable-5.2",
+  "catalog_canonical": "anthropic/claude-fable-5.2-20261109",
+  "effort_requested": "xhigh",
+  "output_budget": 32768,
+  "served_model": null,
+  "cap_usd": 30,
+  "spent_usd": 0,
+  "unknown_exposure_usd": 0,
+  "posts": 2,
+  "access": "blocked: account credits; both owner and central evaluation custody paths rejected",
+  "transport": "unqualified: no subject output produced",
+  "reliability": "not measured",
+  "capability": "not measured on all12cases; conditional2max untriggered",
+  "economics": "native admission latencies882ms/893ms only; inference economics unmeasured",
+  "adoption": "defer; retain maintained models and production gates",
+  "winner": "none demonstrated; no current candidate/control superiority claim",
+  "credentials": {
+    "owner": "existing primary wrapper preserved unchanged",
+    "central": "isolated .env temporary DOC_WEB_OPENROUTER_API_KEY helper-injected after coordinator access-recovery authorization; removed and name-only absence verified",
+    "account_settings": "unchanged"
+  },
+  "resume_trigger": "authorized account has enough spendable credits for selected32768and65536 reservations; then new campaign identity on frozen12case matrix; no lower-output substitution",
+  "tests": "3focused offline tests passed /usr/local/bin/pytest tests/test_fable52_campaign.py -q; primaryvenv lacks pytest; fallback global pytest succeeded",
+  "code_epoch": "First probe owner-stage; second probe only stage renamed native-central-table plus credential override. Exact outgoing bodies same requestSHA256, both rawHTTP402sameSHA256; neither produced any semantic result. Source snapshots are final continuation scaffolding, not claimed completed harness qualification."
+}

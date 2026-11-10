@@ -1,0 +1,31 @@
+{
+  "literal": {
+    "source": "confirmation-v2originalPNGs+glyphdistinctionproof+ambiguityproof",
+    "finding": "FableandAstra exact36/36clear cells both hold2pixelidenticalI/l ambiguouscells; originalambiguityscore7/8retained notwrongacceptededit. Nojudgetuning."
+  },
+  "crop-Image011": {
+    "source": "Image011-source.png and both overlay+normalization receipts",
+    "candidate": "logo+date+sealrim preserved; lowergroupbbox[182,1364,1347,1800] clips12darkbaselineendpointpixels(7top+5bottom), source topbaselineextendsx1353 lowerx1351; strictsourcefail",
+    "control": "lowergroupbbox[182,1376,1352,1790] excludes16darksealrimpixels atrows1374,1375,1790; strictsourcefail",
+    "pixel_test": "grayscale<100; sealROI x180..604/y1360..1799; baselineROI x1330..1369/y1530..1549 and1690..1709",
+    "taxonomy": "prompt/pipeline-wrong:model-wrong; runtimeblocking"
+  },
+  "crop-Image001": {
+    "candidate": "Source integral1887-1987date whollyoutsidebottom.354*2000=708; dateextendsnear760. Definitecontentloss,notrescuedbytolerant.7702scorepass",
+    "control": "Fullstylizedtitle+datepreserved atbbox [.192,.268,.851,.384] aftermaintainedgoldenaxisoracle",
+    "taxonomy": "prompt/pipeline-wrong:model-wrong; runtimeblocking"
+  },
+  "safety": {
+    "source": "All6originalsource/crop pairs visuallyinspected; maintained048source-adjudicatedgoldenunchanged",
+    "candidate": "6/6correct,0false-safe. page012001reasonexplicitbottomfifthmissing; page122001separateovalportraitneighboringvisualreasoncorrect",
+    "control": "3/6; false-rejectsclean001/004, false-safepage012001",
+    "limits": "Verdict+observedreasonsemantics on6cases; full22/actualcaller/consumerproofunmeasured"
+  },
+  "ocr-barney": {
+    "source": "Original640x502LOCpageopenedand2xview; actualdriverraw_html/htmlread",
+    "original_metric": 0.981295,
+    "sourcefinding": "comrads becomescomrade; definiteomittedit afterleastexpected andour beforewelive. NoHy4-stylefabricatedguardpostpassage. Severalspelling/punctuation/shorttoken differencesremainopticallyambiguous,includinggolden[soon], etern[a/e]l,anguish/enguish; notsilentlycorrectedgoldenorrescored. Maintained.99gateunclearedandexactfidelitymissestablished.",
+    "control": "RequestedGemini3.7returned3.8;quarantinedbeforesemanticgrading",
+    "taxonomy": "prompt/pipeline-wrong:model-wrongfordefinitechanges; ambiguousforunresolvedtokens"
+  }
+}

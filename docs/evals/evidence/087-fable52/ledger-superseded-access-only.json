@@ -1,0 +1,37 @@
+{
+  "cap_usd": 30,
+  "spent_usd": 0,
+  "calls": [
+    {
+      "stage": "native-table",
+      "model": "anthropic/claude-fable-5.2",
+      "reserved_usd": 1.51872,
+      "cost_usd": 0,
+      "request": "benchmarks/results/fable52-20261109/request-001.json",
+      "request_sha256": "771ccb62a49a88979094d4464c02d2097f6adac86104ec9cc715b7273aa17d3b",
+      "response": "benchmarks/results/fable52-20261109/response-001.json",
+      "response_sha256": "e1bbfba04b09fb70ec2908d432a64791387a0c8d04564d06630cdd2e463dd3fc",
+      "status_code": 402,
+      "latency_ms": 882,
+      "billing_unresolved": false,
+      "pre_inference_rejection": true
+    },
+    {
+      "stage": "native-central-table",
+      "model": "anthropic/claude-fable-5.2",
+      "reserved_usd": 1.51872,
+      "cost_usd": 0,
+      "request": "benchmarks/results/fable52-20261109/request-002.json",
+      "request_sha256": "771ccb62a49a88979094d4464c02d2097f6adac86104ec9cc715b7273aa17d3b",
+      "response": "benchmarks/results/fable52-20261109/response-002.json",
+      "response_sha256": "e1bbfba04b09fb70ec2908d432a64791387a0c8d04564d06630cdd2e463dd3fc",
+      "status_code": 402,
+      "latency_ms": 893,
+      "billing_unresolved": false,
+      "pre_inference_rejection": true
+    }
+  ],
+  "closed": true,
+  "stop_reason": "Owner and isolated central eval credential both rejected by OpenRouter credit admission before inference; no billing changes authorized",
+  "unknown_exposure_usd": 0
+}

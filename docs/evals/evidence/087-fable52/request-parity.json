@@ -1,0 +1,92 @@
+[
+  {
+    "stage": "table-image-positive-candidate-native-repair1",
+    "exact_source_sha256": [
+      "faf29a9b7cdd8758657bf524beed9067230b6c01e16bc4f41c43332c5dc6c2a9"
+    ],
+    "maintained_prompt_parity": true
+  },
+  {
+    "stage": "table-ambiguity-negative-candidate",
+    "exact_source_sha256": [
+      "75458854bfe3331d761c99f9ac67ad35bf1b5c28620074fd31c08ba5d6052adf"
+    ],
+    "maintained_prompt_parity": true
+  },
+  {
+    "stage": "table-native-positive-candidate",
+    "exact_source_sha256": [
+      "ab4ff79d69653ffb7907326424b7d24a7380a909585eb77c7b803bf99eab3c0f"
+    ],
+    "maintained_prompt_parity": true
+  },
+  {
+    "stage": "crop-screen-Image011-candidate",
+    "exact_source_sha256": [
+      "ae3524cb58ac940c912c7885d65ec9d21221415d97d1ea21d97be9615161a860"
+    ],
+    "maintained_prompt_parity": true
+  },
+  {
+    "stage": "crop-screen-Image001-candidate",
+    "exact_source_sha256": [
+      "6427c2e707203017ecacdbeeba9a7432d803fef5872b4c5e11fc517d341033b6"
+    ],
+    "maintained_prompt_parity": true
+  },
+  {
+    "stage": "safety-page-001-000-candidate",
+    "exact_source_sha256": [
+      "7500762d6e0b9761b49305b28e0c3609d051af1d5f3eac8ce33028b0b439f325",
+      "67accf0bf3854473e557261d179bce8a4c4519de039460e3c797e52f49e1dfaa"
+    ],
+    "maintained_prompt_parity": true
+  },
+  {
+    "stage": "safety-page-004-000-candidate",
+    "exact_source_sha256": [
+      "ad1807bfdad56d65becf8011137680496f72d564bfc922a8da7d2c021e3ef266",
+      "4cc9a8224d1efbddc1f8f1a5a3f973bb8345f81fe26d03aa3b6d5197ce786209"
+    ],
+    "maintained_prompt_parity": true
+  },
+  {
+    "stage": "safety-page-009-000-candidate",
+    "exact_source_sha256": [
+      "da312d69a4c007009c1e696b32e66a3a7a957eac6b9aa3fa67323eeb1c478c31",
+      "4413db90068236ede2835ef29c29359137847e51158266af20ef925938fa7bc0"
+    ],
+    "maintained_prompt_parity": true
+  },
+  {
+    "stage": "safety-page-012-000-candidate",
+    "exact_source_sha256": [
+      "ae3524cb58ac940c912c7885d65ec9d21221415d97d1ea21d97be9615161a860",
+      "3a2a0f5ac2782b10b066bd4ace50d305ce2bbea1c53e27934205b7cf2a8b93ad"
+    ],
+    "maintained_prompt_parity": true
+  },
+  {
+    "stage": "safety-page-122-001-candidate",
+    "exact_source_sha256": [
+      "04731378a1ff37ffb8e26faf005f87fa2383f9ba91e147ce9caa94e8519d086e",
+      "7fea918ba336f4cca9bbbb048f97bcc6377febe2afaebd5eddf2eed0c0bfb8d9"
+    ],
+    "maintained_prompt_parity": true
+  },
+  {
+    "stage": "safety-page-012-001-candidate",
+    "exact_source_sha256": [
+      "ae3524cb58ac940c912c7885d65ec9d21221415d97d1ea21d97be9615161a860",
+      "da367ed32034c950a729fd32707412d2956f01760e2ced6616f2c7306002d7ec"
+    ],
+    "maintained_prompt_parity": true
+  },
+  {
+    "stage": "ocr-barney-candidate",
+    "exact_source_sha256": [
+      "aaf212e6091d913ded7117dd61f1437a83c57af4f974809e7fb96c11a813d9c5"
+    ],
+    "maintained_prompt_parity": "actualdrivergenerated; sourcesnapshots retained"
+  }
+]
