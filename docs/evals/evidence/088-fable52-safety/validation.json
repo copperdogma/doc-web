@@ -1,0 +1,13 @@
+{
+  "tests": {
+    "affected_consumer": "220passed via callerworker, includes38newcontract/driver/authority/anchorcases",
+    "combined": "7passed in .50s",
+    "total": 227
+  },
+  "lint": "Scoped Ruff allchangedPythonincludingofflineaudit PASS",
+  "compile": "Allchanged/newPython compile PASS",
+  "methodology": "build/check PASS",
+  "raw_and_driver_audit": "48exactnativewire/response receipts SHAverified, currentstrictparsers+request/sourceparity+pricing math,2livecaller independentanchors revalidated+6savedholds, source text/assets/zerocandidatepage exact",
+  "independent_review": "RootAstra cleared final scopedreceipt/authorityimplementation before4livecalls and all22 originalsourcepairs/full44classifierpayloads; rootindependentlychecked48ledger/96rawhashes andactualHTML/assets",
+  "remaining": "No actualpaidretries/recovery; no broad unrelatedsuite reruns. SyntheticmechanicsnotCamapproval; bothS3modelpolicyfails."
+}

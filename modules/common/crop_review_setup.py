@@ -201,6 +201,13 @@ def finalize(root, operator_input, proposals, run_id):
     root = safe_root(root)
     inventory = json.loads((root / "inventory.json").read_text())
     authority = json.loads((root / "authority.json").read_text())
+    from modules.common.crop_safety import evaluation_contract, qualification_context
+
+    if evaluation_contract() or qualification_context():
+        require(
+            authority.get("synthetic_test") is True,
+            "Evaluation receipts require synthetic test authority",
+        )
     value = json.loads(Path(operator_input).read_text())
     require(
         inventory.get("complete") is False
@@ -239,7 +246,10 @@ def finalize(root, operator_input, proposals, run_id):
         )
     pages = read_bound(root, inventory["pages_artifact"])
     read_bound(root, inventory["portions_artifact"])
-    numbers = [p.get("page") if p.get("page_number") is None else p["page_number"] for p in read_jsonl(pages)]
+    numbers = [
+        p.get("page") if p.get("page_number") is None else p["page_number"]
+        for p in read_jsonl(pages)
+    ]
     require(
         len(numbers) == len(set(numbers))
         and set(numbers) == {p["source_page"] for p in inventory["pages"]},

@@ -1,0 +1,196 @@
+{
+  "origin": "existing Attempt081 originalpixel sourceadjudication, frozen before newinference",
+  "cases": {
+    "page-001-000": {
+      "verdict": "pass",
+      "has_page_text": false,
+      "excessive_blank": false,
+      "reason": "Cover landscape/cloud/wagon artwork is isolated; title, author and outer cover border are excluded. Minor decorative line-art edge framing does not show a large missing intended visual under this policy. Red cloth is integral image background.",
+      "boundary_uncertainty": "none material for this source pair under frozen prompt; no operator authority asserted",
+      "review_scope": "Original exact request source/crop bytes decoded and individually viewed; full saved payloads inspected; fresh agent judgment, not Cam approval"
+    },
+    "page-004-000": {
+      "verdict": "pass",
+      "has_page_text": false,
+      "excessive_blank": false,
+      "reason": "Complete wagon, left horse, right ox and grass are retained. External illustration credits and page number are excluded. GPT invents large missing animal parts; source does not show them outside the crop.",
+      "boundary_uncertainty": "none material for this source pair under frozen prompt; no operator authority asserted",
+      "review_scope": "Original exact request source/crop bytes decoded and individually viewed; full saved payloads inspected; fresh agent judgment, not Cam approval"
+    },
+    "page-009-000": {
+      "verdict": "pass",
+      "has_page_text": false,
+      "excessive_blank": false,
+      "reason": "Complete Moise/Sophie portrait rectangle retained, with halftone studio backdrop and both people. External caption, introductory prose and dedication are excluded.",
+      "boundary_uncertainty": "none material for this source pair under frozen prompt; no operator authority asserted",
+      "review_scope": "Original exact request source/crop bytes decoded and individually viewed; full saved payloads inspected; fresh agent judgment, not Cam approval"
+    },
+    "page-012-000": {
+      "verdict": "pass",
+      "has_page_text": false,
+      "excessive_blank": false,
+      "reason": "Complete Celebrate Saskatchewan anniversary logo and 1905-1980 lettering retained. Lettering is integral logo content; no surrounding certificate prose.",
+      "boundary_uncertainty": "none material for this source pair under frozen prompt; no operator authority asserted",
+      "review_scope": "Original exact request source/crop bytes decoded and individually viewed; full saved payloads inspected; fresh agent judgment, not Cam approval"
+    },
+    "page-012-001": {
+      "verdict": "fail",
+      "has_page_text": false,
+      "excessive_blank": false,
+      "reason": "Full certificate source shows a circular embossed seal. Crop omits a substantial lower arc, leaving straight cut through its lower portion. Neither surrounding certificate prose nor excessive blank margin is present.",
+      "boundary_uncertainty": "none material for this source pair under frozen prompt; no operator authority asserted",
+      "review_scope": "Original exact request source/crop bytes decoded and individually viewed; full saved payloads inspected; fresh agent judgment, not Cam approval"
+    },
+    "page-014-000": {
+      "verdict": "pass",
+      "has_page_text": false,
+      "excessive_blank": false,
+      "reason": "Complete portrait photograph including both heads and lower shoulders/background retained. The external caption and two-column prose remain outside.",
+      "boundary_uncertainty": "none material for this source pair under frozen prompt; no operator authority asserted",
+      "review_scope": "Original exact request source/crop bytes decoded and individually viewed; full saved payloads inspected; fresh agent judgment, not Cam approval"
+    },
+    "page-018-000": {
+      "verdict": "fail",
+      "has_page_text": true,
+      "excessive_blank": true,
+      "reason": "Crop clips a large right portion of the original family photograph, includes external caption lines, and leaves a blank full-width bottom band. Native crop2163x5313: y3000..5312 alone is43.5347% blank paper, independently exceeding40%.",
+      "boundary_uncertainty": "none material for this source pair under frozen prompt; no operator authority asserted",
+      "review_scope": "Original exact request source/crop bytes decoded and individually viewed; full saved payloads inspected; fresh agent judgment, not Cam approval"
+    },
+    "page-021-000": {
+      "verdict": "pass",
+      "has_page_text": false,
+      "excessive_blank": false,
+      "reason": "Whole upper aerial ranch photograph retained without its external caption, lower photograph or page text. Light snow/terrain is photographic content.",
+      "boundary_uncertainty": "none material for this source pair under frozen prompt; no operator authority asserted",
+      "review_scope": "Original exact request source/crop bytes decoded and individually viewed; full saved payloads inspected; fresh agent judgment, not Cam approval"
+    },
+    "page-021-001": {
+      "verdict": "pass",
+      "has_page_text": false,
+      "excessive_blank": false,
+      "reason": "The page has two separately captioned ranch photographs. The crop keeps the complete lower winter ranch photograph, including house at left, barn at right, cattle/fence, snow and broad sky; it excludes both caption and upper photograph. The light sky is photographic content.",
+      "boundary_uncertainty": "none material under supplied prompt; source composition is determinate",
+      "review_scope": "Exact decoded original request source and crop opened individually with view_image; historical montage also inspected. This is a fresh agent source judgment, not Cam approval."
+    },
+    "page-022-000": {
+      "verdict": "pass",
+      "has_page_text": false,
+      "excessive_blank": false,
+      "reason": "The page contains a rectangular couple photograph in the left article column. The crop retains both heads, their torsos and hands to the original lower photographic edge, while excluding the bold anniversary caption and article text. No neighboring visual is included.",
+      "boundary_uncertainty": "none material under supplied prompt; source composition is determinate",
+      "review_scope": "Exact decoded original request source and crop opened individually with view_image; historical montage also inspected. This is a fresh agent source judgment, not Cam approval."
+    },
+    "page-038-000": {
+      "verdict": "pass",
+      "has_page_text": false,
+      "excessive_blank": false,
+      "reason": "The page has a separately captioned upper-right oval portrait and a lower-left couple photograph. The crop retains the full oval portrait, including hair, shoulders and oval outline. White corners outside the oval are limited and surrounding caption/prose is excluded.",
+      "boundary_uncertainty": "none material under supplied prompt; source composition is determinate",
+      "review_scope": "Exact decoded original request source and crop opened individually with view_image; historical montage also inspected. This is a fresh agent source judgment, not Cam approval."
+    },
+    "page-038-001": {
+      "verdict": "pass",
+      "has_page_text": false,
+      "excessive_blank": false,
+      "reason": "The lower-left source photograph shows a seated woman and man. The crop retains both heads, both torsos, their arms/hands, lap/legs and chair through the original lower edge; the source photo itself already frames their legs. It excludes the external caption and upper oval. No large missing part is demonstrated by the source.",
+      "boundary_uncertainty": "none material under supplied prompt; source composition is determinate",
+      "review_scope": "Exact decoded original request source and crop opened individually with view_image; historical montage also inspected. This is a fresh agent source judgment, not Cam approval."
+    },
+    "page-060-000": {
+      "verdict": "pass",
+      "has_page_text": false,
+      "excessive_blank": false,
+      "reason": "The source has a left standing-couple snow photograph and a lower-right separate woman photograph. The crop retains the complete left photograph, including heads, coats, the woman feet and man lower framing exactly as source. Caption/prose and the separate right photograph are excluded.",
+      "boundary_uncertainty": "none material under supplied prompt; source composition is determinate",
+      "review_scope": "Exact decoded original request source and crop opened individually with view_image; historical montage also inspected. This is a fresh agent source judgment, not Cam approval."
+    },
+    "page-060-001": {
+      "verdict": "pass",
+      "has_page_text": false,
+      "excessive_blank": false,
+      "reason": "The crop retains the complete lower-right woman photograph. Her head, arms/hands, dress and pale photographic sky/background match the source framing. The caption and adjacent article/standing-couple image remain outside the crop. Light photo background is image content.",
+      "boundary_uncertainty": "none material under supplied prompt; source composition is determinate",
+      "review_scope": "Exact decoded original request source and crop opened individually with view_image; historical montage also inspected. This is a fresh agent source judgment, not Cam approval."
+    },
+    "page-092-000": {
+      "verdict": "fail",
+      "has_page_text": true,
+      "excessive_blank": false,
+      "reason": "The source contains a full wedding-couple portrait beneath left-column prose. The crop instead contains substantial paragraph text across both columns and only the man/right part of the portrait. The woman and most of the intended photograph are unmistakably absent. Text leakage is observed; margins do not dominate.",
+      "boundary_uncertainty": "none material under supplied prompt; source composition is determinate",
+      "review_scope": "Exact decoded original request source and crop opened individually with view_image; historical montage also inspected. This is a fresh agent source judgment, not Cam approval."
+    },
+    "page-122-000": {
+      "verdict": "fail",
+      "has_page_text": true,
+      "excessive_blank": false,
+      "reason": "The source has an upper group photograph followed by a separate caption, and two lower oval portraits. The crop keeps the full upper photograph and also its page caption beneath the photographic boundary. It excludes the lower ovals. Caption leakage establishes failure; the light sky remains image content.",
+      "boundary_uncertainty": "none material under supplied prompt; source composition is determinate",
+      "review_scope": "Exact decoded original request source and crop opened individually with view_image; historical montage also inspected. This is a fresh agent source judgment, not Cam approval."
+    },
+    "page-122-001": {
+      "verdict": "fail",
+      "has_page_text": false,
+      "excessive_blank": false,
+      "reason": "Crop groups both whole oval portraits although source presents them separately with distinct captions: Moise/brother Edward and Sophie. No caption text leaks into crop. GPT part-of-neighbor wording understates extent but identifies the correct neighboring-visual boundary failure; retained as minor imprecision, not another categorical defect.",
+      "boundary_uncertainty": "none material for this source pair under frozen prompt; no operator authority asserted",
+      "review_scope": "Original exact request source/crop bytes decoded and individually viewed; full saved payloads inspected; fresh agent judgment, not Cam approval"
+    },
+    "page-125-000": {
+      "verdict": "pass",
+      "has_page_text": false,
+      "excessive_blank": false,
+      "reason": "The page has one oxen/covered-wagon line illustration, integral artist signature, separate printed credit and page number. The crop keeps oxen, people, wagon, wheel, ground strokes and cloud/landscape composition, excluding printed credit and page number. Some faint cloud/landscape strokes reach the tight boundary, but no large missing part is shown; internal white illustration areas do not establish empty margins over 40 percent.",
+      "boundary_uncertainty": "none material under supplied prompt; source composition is determinate",
+      "review_scope": "Exact decoded original request source and crop opened individually with view_image; historical montage also inspected. This is a fresh agent source judgment, not Cam approval."
+    },
+    "page-126-000": {
+      "verdict": "pass",
+      "has_page_text": false,
+      "excessive_blank": false,
+      "reason": "The page presents two separate photographs. The upper photograph already contains a central veterans plaque and partial left/top plaques on the same continuous stone monument; the crop retains that entire upper photographic composition and excludes the lower separately presented photograph. These side/top plaques are subjects within the same photograph, not separately presented page visuals or page-layout text. Current prompt explicitly preserves objects within the same photograph.",
+      "boundary_uncertainty": "none material under supplied prompt; source composition is determinate",
+      "review_scope": "Exact decoded original request source and crop opened individually with view_image; historical montage also inspected. This is a fresh agent source judgment, not Cam approval."
+    },
+    "page-126-001": {
+      "verdict": "pass",
+      "has_page_text": false,
+      "excessive_blank": false,
+      "reason": "The lower separately presented photograph is fully retained, including complete Moise and Sophie plaque, stone surround and incidental lower-left pale marks. Inscription text is integral to the photographed monument. The upper separate photograph and surrounding page are excluded.",
+      "boundary_uncertainty": "none material under supplied prompt; source composition is determinate",
+      "review_scope": "Exact decoded original request source and crop opened individually with view_image; historical montage also inspected. This is a fresh agent source judgment, not Cam approval."
+    },
+    "page-127-000": {
+      "verdict": "pass",
+      "has_page_text": false,
+      "excessive_blank": false,
+      "reason": "The upper photograph shows the whole stone monument with three plaques, sky, field and plinth. The crop retains that unified photograph and excludes the separate lower close-up photograph. All lettering belongs to plaques within the same photograph.",
+      "boundary_uncertainty": "none material under supplied prompt; source composition is determinate",
+      "review_scope": "Exact decoded original request source and crop opened individually with view_image; historical montage also inspected. This is a fresh agent source judgment, not Cam approval."
+    },
+    "page-127-001": {
+      "verdict": "pass",
+      "has_page_text": false,
+      "excessive_blank": false,
+      "reason": "The lower photograph shows a Canada Post plaque plus stone surround. The crop retains that distinct photograph, including whole plaque and inscription, and excludes the upper photograph/page margins. Visible lettering is integral inscription text.",
+      "boundary_uncertainty": "none material under supplied prompt; source composition is determinate",
+      "review_scope": "Exact decoded original request source and crop opened individually with view_image; historical montage also inspected. This is a fresh agent source judgment, not Cam approval."
+    }
+  },
+  "caller": {
+    "S3": {
+      "verdict": "fail",
+      "has_page_text": false,
+      "excessive_blank": false,
+      "reason": "Unresolved coherent grouping/ownership; explicitly decline under frozen uncertainty policy, no invented physicalleakage"
+    },
+    "S4": {
+      "verdict": "pass",
+      "has_page_text": false,
+      "excessive_blank": false,
+      "reason": "Integral FIELD STATION badge lettering, no externalpagetext"
+    }
+  },
+  "flags_semantics": "Observed conditions only; faildoesnot imply has_page_text/excessive_blank."
+}

@@ -1,0 +1,3287 @@
+[
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/approved-coordinator-plan.md",
+    "bytes": 17338,
+    "sha256": "635c8235316479a4889fc7729becc558d79ed1ccae5f419c8dba391e4fa58588"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/base-crop_safety.py",
+    "bytes": 7831,
+    "sha256": "680faf9674fe2335199a8924b2b2cf552345dc34ae9dac96d7f61a8702c946a6"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/caller-code-freeze.json",
+    "bytes": 1498,
+    "sha256": "fb307979a81d6a91cf6728a56551f6127a11cc911d5baa500321b6c303aa09df"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/candidate-tracked.patch",
+    "bytes": 27826,
+    "sha256": "b35ba1010cf192fbfdc45010b36b688245ba30a224894824b4fd9f80b83ca80e"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/classifier-payload-comparison.json",
+    "bytes": 25862,
+    "sha256": "61c6ddd3bd0a69ecfd7c728e8695e601e649b8d85b88b68831a62557920f03f9"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/classifier-results.json",
+    "bytes": 19171,
+    "sha256": "3a9396e93692b78a5c181fc63c900ecc290fe1d785ef12638a4b63942f20e492"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/classifier-source-review.json",
+    "bytes": 37673,
+    "sha256": "422f99d9913e97ab4e603962610947abf598facee85d9c0c60421d1ce767908b"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/classifier-strict-revalidation.json",
+    "bytes": 17631,
+    "sha256": "6a995b83405384a35ed7565f1e9306d40d5b2e4e8b8ab65f8853879209e5e43b"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/code/073fd96410f7d54ea0237eeeb710d2994ea7becb86dbd74d8360f4653d2adabf-run_safety_qual_caller.py",
+    "bytes": 13167,
+    "sha256": "073fd96410f7d54ea0237eeeb710d2994ea7becb86dbd74d8360f4653d2adabf"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/code/26130a993c19a4790451059d7a21dbfdc1aa2f86524e9df17e45f71777252e2f-main.py",
+    "bytes": 14016,
+    "sha256": "26130a993c19a4790451059d7a21dbfdc1aa2f86524e9df17e45f71777252e2f"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/code/2758fb1792385fd1bc4b357b25b0a047e01b10c58fa6d6f49f39cfd4be1484a1-crop_safety.py",
+    "bytes": 10721,
+    "sha256": "2758fb1792385fd1bc4b357b25b0a047e01b10c58fa6d6f49f39cfd4be1484a1"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/code/30158d61c06863493981b5bd86c9090d71772b6dea08ac33fb55d70b141ce1c0-safety_qual_088.py",
+    "bytes": 13736,
+    "sha256": "30158d61c06863493981b5bd86c9090d71772b6dea08ac33fb55d70b141ce1c0"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/code/3506470ee1eb9c8da8c472f270e3400fd2c6cbd086c6be836a0d974997696240-openai_responses_model.py",
+    "bytes": 17928,
+    "sha256": "3506470ee1eb9c8da8c472f270e3400fd2c6cbd086c6be836a0d974997696240"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/code/3e586a187d0439b1cfe39360e9bef0135d09992dbe6d7cdc5bad0bd0d17d5637-crop_review.py",
+    "bytes": 15407,
+    "sha256": "3e586a187d0439b1cfe39360e9bef0135d09992dbe6d7cdc5bad0bd0d17d5637"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/code/73489354393b062ea00c843880ad812f40461936f0f7068e4457792d74386ee5-safety_qual_088.py",
+    "bytes": 13807,
+    "sha256": "73489354393b062ea00c843880ad812f40461936f0f7068e4457792d74386ee5"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/code/74c6bf5cd5670d26c13176ff63bcc06e1e05763f63eda70962f4d7be690a2199-crop_review_setup.py",
+    "bytes": 12843,
+    "sha256": "74c6bf5cd5670d26c13176ff63bcc06e1e05763f63eda70962f4d7be690a2199"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/code/876768b290a2f94f06b96fbe805c57620c9a673ad01af58dc42e5546eee7af03-crop_safety.py",
+    "bytes": 9770,
+    "sha256": "876768b290a2f94f06b96fbe805c57620c9a673ad01af58dc42e5546eee7af03"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/code/9bb182a0d4033baf14e4da05b4a2cee9785cc09fe17fa614d919f374c30cac8a-crop_safety.py",
+    "bytes": 9169,
+    "sha256": "9bb182a0d4033baf14e4da05b4a2cee9785cc09fe17fa614d919f374c30cac8a"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/code/9d9107f4f15d0ad2efa32bbabfda7f9d1d97f98c336186d409501abac88dfda5-main.py",
+    "bytes": 14297,
+    "sha256": "9d9107f4f15d0ad2efa32bbabfda7f9d1d97f98c336186d409501abac88dfda5"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/code/a01e809f918529c81d85a90c2fe633d14fa469b780c9b5698685cd6d139b2920-crop_safety_fable_eval.py",
+    "bytes": 10638,
+    "sha256": "a01e809f918529c81d85a90c2fe633d14fa469b780c9b5698685cd6d139b2920"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/code/b6a5f40fd3bd288fdee5bd9e091084dc477c38369d69bd27722c0b5194849482-main.py",
+    "bytes": 14132,
+    "sha256": "b6a5f40fd3bd288fdee5bd9e091084dc477c38369d69bd27722c0b5194849482"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/code/ccb6f1a87271a747c998929edfa5353a7db358dc370ce482600bb84bd3c62af0-safety_qual_088.py",
+    "bytes": 13293,
+    "sha256": "ccb6f1a87271a747c998929edfa5353a7db358dc370ce482600bb84bd3c62af0"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifact-proof.json",
+    "bytes": 6613,
+    "sha256": "a4aa26dffebaa0c50653709cc06c1ebe6f43b16679171469224647600390a057"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-live-20261109/01_load_artifact_v1/pages.ndjson",
+    "bytes": 619,
+    "sha256": "bf02ef32dcbcb3e0c954bb2b3adf6d43ca3a4d0e7ce8d872a6c8c0cbc6965009"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-live-20261109/02_load_artifact_v1/portions.ndjson",
+    "bytes": 216,
+    "sha256": "da881acae180fea61c65f7dc7aa789880fa0d0c8998f42108e6836c00cab1c01"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-live-20261109/03_propose_crop_safety_v1/proposals.jsonl",
+    "bytes": 3856,
+    "sha256": "9e4c6c20a3b9ffc32403666e7c1fb4bba50d41575dbee60b0d96cbafdefba921"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-live-20261109/04_finalize_crop_review_v1/review_finalized.json",
+    "bytes": 134,
+    "sha256": "b67661da49062b5f98a751f3319f72353b66f3d83e87eb103ef41509a33af5e5"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-live-20261109/05_release_reviewed_crops_v1/crop_review_release.json",
+    "bytes": 1338,
+    "sha256": "3f5847b9ee9be81e2ee716d5dcc00cc1d3ca9e65509e220ff39bc88313576ef6"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-live-20261109/05_release_reviewed_crops_v1/illustration_manifest.jsonl",
+    "bytes": 1646,
+    "sha256": "f21025506a0eeea38ea2baba4c9fe67d0a30ae5affbbd475da31f64413e6358f"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-live-20261109/05_release_reviewed_crops_v1/images/S3.png",
+    "bytes": 28577,
+    "sha256": "11d98294ac8a19c8e77490998a933add2ddf8de6fdbeb8e7156159e201a87bfe"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-live-20261109/05_release_reviewed_crops_v1/images/S4.png",
+    "bytes": 11352,
+    "sha256": "9d310a44f961da0f05d01212dd3ba077a49054f5582bd8db393d5ae8670648a8"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-live-20261109/06_build_chapter_html_v1/chapters_manifest.jsonl",
+    "bytes": 670,
+    "sha256": "3e072b3c64b6613fa83f4265f5959273a93614048831d77826b1fa8ee00f1321"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-live-20261109/output/html/chapter-001.html",
+    "bytes": 5066,
+    "sha256": "eb282eae75961fe3d9d1ce36d2d1b8c42d07621885c49ad80d2a3e2071c93799"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-live-20261109/output/html/images/S3.png",
+    "bytes": 28577,
+    "sha256": "11d98294ac8a19c8e77490998a933add2ddf8de6fdbeb8e7156159e201a87bfe"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-live-20261109/output/html/images/S4.png",
+    "bytes": 11352,
+    "sha256": "9d310a44f961da0f05d01212dd3ba077a49054f5582bd8db393d5ae8670648a8"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-live-20261109/output/html/index.html",
+    "bytes": 4004,
+    "sha256": "4461aebc60ccfe21f99c060fe2263a6482c54b34b7f58bda728a05ffcd728a1d"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-live-20261109/output/html/navigation_resolution_report.json",
+    "bytes": 641,
+    "sha256": "a6915d143e5903c5466cb182ab5e43e654452c1d7ce0a3f9d9d906d51e520c34"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-live-20261109/output/html/provenance/blocks.jsonl",
+    "bytes": 2392,
+    "sha256": "e55607269577a4a5e313f1e76cd94789f08ff3064f08146c30adaa2f3193ff08"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-live-20261109/pipeline_events.jsonl",
+    "bytes": 7150,
+    "sha256": "4d4bb15ef5f72cf7a8a66b2ec1f21c6922faff1c05a64bd6c4c702d93e6b7951"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-live-20261109/pipeline_state.json",
+    "bytes": 3642,
+    "sha256": "9a3e93deb11c9eb0169b1ab091c99f9c8b8781c2540ca3cd26cde044e6ed50af"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-live-20261109/snapshots/plan.json",
+    "bytes": 5924,
+    "sha256": "78c19eef9b45eabfb4bca8157c859af659890ff7ee708594c4ad0f7a767c00d3"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-live-20261109/snapshots/recipe.yaml",
+    "bytes": 3736,
+    "sha256": "ea8ecca26b9a5529549d1de417f905710ca2237a9c15b17d58cb76b7a6874654"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-live-20261109/snapshots/registry.json",
+    "bytes": 8680,
+    "sha256": "e531d37346a362b97c36ff331508b5a36e9f5d5bcd57a9c6f827caae6fa01365"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-live-20261109/timing_summary.json",
+    "bytes": 332,
+    "sha256": "ee44157578746df6bb5fcc00bb2dbc40a0591e11e5cf0a80a1ef3f86f8642af0"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-live-20261109-fixture/custody/authority-template.json",
+    "bytes": 189,
+    "sha256": "12977ff1969ab0ef0c6a8c82891b91b62472142d6a76cd6505b408a6ba1cb82b"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-live-20261109-fixture/custody/authority.json",
+    "bytes": 455,
+    "sha256": "89e3a330d01c7d8ef1d2c15d777fb32d985bf3dd54a1f34b271ef7054e74990a"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-live-20261109-fixture/custody/custody_provenance.json",
+    "bytes": 3630,
+    "sha256": "34e79b6b271b03097aba2c007e354416b6d3cd7da35c71c16600f19aa28e4801"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-live-20261109-fixture/custody/decisions.jsonl",
+    "bytes": 2434,
+    "sha256": "f6d89ede1b39ea9c464da995262f27635b2bc45ad9a0c467d173a19665c43567"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-live-20261109-fixture/custody/human-review-001.json",
+    "bytes": 249,
+    "sha256": "3d87d691b386568a6092b96ad40694e683338e9f3c6aab7b78a6e75f6eee1b12"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-live-20261109-fixture/custody/human-review-002.json",
+    "bytes": 249,
+    "sha256": "ac722da2894b7b182acd87d831eafc3f0248053ccc07bd12e6be1b02c5322852"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-live-20261109-fixture/custody/images/S3.png",
+    "bytes": 28577,
+    "sha256": "11d98294ac8a19c8e77490998a933add2ddf8de6fdbeb8e7156159e201a87bfe"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-live-20261109-fixture/custody/images/S4.png",
+    "bytes": 11352,
+    "sha256": "9d310a44f961da0f05d01212dd3ba077a49054f5582bd8db393d5ae8670648a8"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-live-20261109-fixture/custody/inventory-review-template.json",
+    "bytes": 1381,
+    "sha256": "2f66d30a7702489d394eb4372934cb0fca09fb2a6ae7f20b1ff91b18b967c301"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-live-20261109-fixture/custody/inventory.json",
+    "bytes": 3966,
+    "sha256": "2c9d88f4944799135a74c1a5db35796691dc9c1702d8ff94e08f6e057d750cbc"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-live-20261109-fixture/custody/manifest.jsonl",
+    "bytes": 1646,
+    "sha256": "f21025506a0eeea38ea2baba4c9fe67d0a30ae5affbbd475da31f64413e6358f"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-live-20261109-fixture/custody/native-receipts/ledger.json",
+    "bytes": 1339,
+    "sha256": "206bca7fc95951d2b5f810747ffab7a83a21e34d0c3d01b5e9733bb1ad7c4f0f"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-live-20261109-fixture/custody/native-receipts/request-001.json",
+    "bytes": 89674,
+    "sha256": "fd3cc5e86efbcf16214953a9d4eb65a9476fca3724244adc255fe4a0f8f8b906"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-live-20261109-fixture/custody/native-receipts/request-002.json",
+    "bytes": 45834,
+    "sha256": "198d677f3c5b3edb9c89da8e8f86eb33ecb130c3bfafdbd7e4696ff50d19640f"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-live-20261109-fixture/custody/native-receipts/response-001.json",
+    "bytes": 2518,
+    "sha256": "452901d2a160683d7b300ae9c5c766bc74cfab62dd20ba2c95e7daf4e0ee431c"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-live-20261109-fixture/custody/native-receipts/response-002.json",
+    "bytes": 793,
+    "sha256": "4106d714c5f556b5c66f78805db34920f39f390fd869c4177b09c485d31ae296"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-live-20261109-fixture/custody/operator-authority-input.json",
+    "bytes": 274,
+    "sha256": "3010896739a14a541c15d565cf3a1484a7fd8391f4dc05b2fd69ef9f5f1f151a"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-live-20261109-fixture/custody/operator-source-review-input.json",
+    "bytes": 1727,
+    "sha256": "6b394c66bfb68f1f630852d76403f24f417ea54d351074ed8f267936f025287c"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-live-20261109-fixture/custody/originals/manifest.jsonl",
+    "bytes": 1220,
+    "sha256": "3bcb7b3253d509186fa0cd2939eb42ee78a2a298502a08076963104081b2feb1"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-live-20261109-fixture/custody/originals/pages.ndjson",
+    "bytes": 619,
+    "sha256": "bf02ef32dcbcb3e0c954bb2b3adf6d43ca3a4d0e7ce8d872a6c8c0cbc6965009"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-live-20261109-fixture/custody/originals/portions.ndjson",
+    "bytes": 216,
+    "sha256": "da881acae180fea61c65f7dc7aa789880fa0d0c8998f42108e6836c00cab1c01"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-live-20261109-fixture/custody/originals/source_map.json",
+    "bytes": 614,
+    "sha256": "eb46ca4d05e0b4dcd967d8753714d53accb16377cafd28c32efaa27e417121fd"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-live-20261109-fixture/custody/pages.jsonl",
+    "bytes": 619,
+    "sha256": "bf02ef32dcbcb3e0c954bb2b3adf6d43ca3a4d0e7ce8d872a6c8c0cbc6965009"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-live-20261109-fixture/custody/pending-inventory.json",
+    "bytes": 3720,
+    "sha256": "081863ec2e3e3d5352dab1c2970e974eb387d2b15f105deb5f608ae45e039bbe"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-live-20261109-fixture/custody/portions.jsonl",
+    "bytes": 216,
+    "sha256": "da881acae180fea61c65f7dc7aa789880fa0d0c8998f42108e6836c00cab1c01"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-live-20261109-fixture/custody/proposals.jsonl",
+    "bytes": 3856,
+    "sha256": "9e4c6c20a3b9ffc32403666e7c1fb4bba50d41575dbee60b0d96cbafdefba921"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-live-20261109-fixture/custody/source-1.png",
+    "bytes": 35359,
+    "sha256": "4cb7ceb9d8a3045951ce9c2da00eb1afb02ad91d1d3bad722283c0f96fa5ce84"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-live-20261109-fixture/custody/source-2.png",
+    "bytes": 19706,
+    "sha256": "381e784398327ecbe0d0e9b84a506d814d7b6ef4928e3d0f769946b64430ac33"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-live-20261109-fixture/custody/source-3.png",
+    "bytes": 6863,
+    "sha256": "449d8509b752ea899c4c6248d919c9ebe4859ffdb0596052c915fc2f06aa54a9"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-live-20261109-fixture/driver-proposals.log",
+    "bytes": 1470,
+    "sha256": "cf9d041309652dd910b991629a8e7861e63378d98748884d86fdfef7f935ba15"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-live-20261109-fixture/driver-review-build.log",
+    "bytes": 726,
+    "sha256": "e9eab614eabfc10a26213eba0aeffe51239a62182075fa9ffc982b764ae7ee88"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-live-20261109-fixture/input/S3-source.png",
+    "bytes": 35359,
+    "sha256": "4cb7ceb9d8a3045951ce9c2da00eb1afb02ad91d1d3bad722283c0f96fa5ce84"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-live-20261109-fixture/input/S4-source.png",
+    "bytes": 19706,
+    "sha256": "381e784398327ecbe0d0e9b84a506d814d7b6ef4928e3d0f769946b64430ac33"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-live-20261109-fixture/input/images/S3.png",
+    "bytes": 28577,
+    "sha256": "11d98294ac8a19c8e77490998a933add2ddf8de6fdbeb8e7156159e201a87bfe"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-live-20261109-fixture/input/images/S4.png",
+    "bytes": 11352,
+    "sha256": "9d310a44f961da0f05d01212dd3ba077a49054f5582bd8db393d5ae8670648a8"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-live-20261109-fixture/input/manifest.jsonl",
+    "bytes": 1220,
+    "sha256": "3bcb7b3253d509186fa0cd2939eb42ee78a2a298502a08076963104081b2feb1"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-live-20261109-fixture/input/pages.ndjson",
+    "bytes": 619,
+    "sha256": "bf02ef32dcbcb3e0c954bb2b3adf6d43ca3a4d0e7ce8d872a6c8c0cbc6965009"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-live-20261109-fixture/input/portions.ndjson",
+    "bytes": 216,
+    "sha256": "da881acae180fea61c65f7dc7aa789880fa0d0c8998f42108e6836c00cab1c01"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-live-20261109-fixture/input/source-map.json",
+    "bytes": 614,
+    "sha256": "eb46ca4d05e0b4dcd967d8753714d53accb16377cafd28c32efaa27e417121fd"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-live-20261109-fixture/input/text-only-page.png",
+    "bytes": 6863,
+    "sha256": "449d8509b752ea899c4c6248d919c9ebe4859ffdb0596052c915fc2f06aa54a9"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-live-20261109-fixture/model-policy-before-operator.json",
+    "bytes": 1309,
+    "sha256": "ff30d8ff82040809803d032bb4968e74aee09739d8e222eda461984076b07471"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-live-20261109-fixture/recipe.yaml",
+    "bytes": 3582,
+    "sha256": "5aa169893cbcbb14b929480f313a0f6964eba7ff7f1405e6b19f2cf1f73f2f94"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-live-20261109-fixture/replay/mapping.json",
+    "bytes": 716,
+    "sha256": "a0937df3cca9ce070f38d847e2089ebc548fd923750d089d598fc4728fb02b22"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-live-20261109-fixture/replay/request-068.json",
+    "bytes": 89707,
+    "sha256": "06eeae84c01a8ef0d70a190295cb77b9f22d36511d678524da77a381500073cd"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-live-20261109-fixture/replay/request-069.json",
+    "bytes": 45867,
+    "sha256": "a5b045f757d1b9df3e2541130decaa2daa5bbc19b0a67fa80646d917239179f9"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-live-20261109-fixture/replay/response-068.json",
+    "bytes": 4466,
+    "sha256": "99ef270f399ae6075a33615cd2fd7b9f444eaef200a644f48b5c1b5672fdcae2"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-live-20261109-fixture/replay/response-069.json",
+    "bytes": 2984,
+    "sha256": "087c6b29c0eded0f7f7409226e00af5c53842aeee7cd09159876a13c52b0bbc0"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-live-20261109-fixture/result.json",
+    "bytes": 697,
+    "sha256": "bca1ea033bddaea6ceb184957ee5fa13906a18f6378a4ebdb9f1c689075e1f4a"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-live-20261109-fixture/synthetic-authority.json",
+    "bytes": 274,
+    "sha256": "3010896739a14a541c15d565cf3a1484a7fd8391f4dc05b2fd69ef9f5f1f151a"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-live-20261109-fixture/synthetic-review.json",
+    "bytes": 1727,
+    "sha256": "6b394c66bfb68f1f630852d76403f24f417ea54d351074ed8f267936f025287c"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-saved-error-20261109/01_load_artifact_v1/pages.ndjson",
+    "bytes": 619,
+    "sha256": "bf02ef32dcbcb3e0c954bb2b3adf6d43ca3a4d0e7ce8d872a6c8c0cbc6965009"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-saved-error-20261109/02_load_artifact_v1/portions.ndjson",
+    "bytes": 216,
+    "sha256": "da881acae180fea61c65f7dc7aa789880fa0d0c8998f42108e6836c00cab1c01"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-saved-error-20261109/03_propose_crop_safety_v1/proposals.jsonl",
+    "bytes": 1374,
+    "sha256": "40d24cea9ee933be398bf97535b12160f4f73bce0e85b419319bab134dbdf6cf"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-saved-error-20261109/pipeline_events.jsonl",
+    "bytes": 3726,
+    "sha256": "f10cc576286c04059292d61adf8934a6fcc0d837211d5db38a8ea0da89603230"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-saved-error-20261109/pipeline_state.json",
+    "bytes": 1870,
+    "sha256": "bea4408187162c69de88749e995bfacdcd8703bd16d1db340c494523f57b03d8"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-saved-error-20261109/snapshots/plan.json",
+    "bytes": 6222,
+    "sha256": "1aa6dccdca0b8689e09117be166d2feccd2ff6aace4de82b0d691e5a589ee39b"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-saved-error-20261109/snapshots/recipe.yaml",
+    "bytes": 4039,
+    "sha256": "8050edb40709621b5ab6c53b1809650ace51359434238901acf4a3b4d5e9d2bc"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-saved-error-20261109/snapshots/registry.json",
+    "bytes": 8680,
+    "sha256": "e531d37346a362b97c36ff331508b5a36e9f5d5bcd57a9c6f827caae6fa01365"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-saved-error-20261109-fixture/custody/authority-template.json",
+    "bytes": 196,
+    "sha256": "b6420186e2450f18021d127fa2ee84d2c645850e36daf5e5062672b051c07e6c"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-saved-error-20261109-fixture/custody/custody_provenance.json",
+    "bytes": 3700,
+    "sha256": "788e06b2e9d1c0c7ca73add40821d0dfce871143b71f17e1f4da35ff8c0e4c8b"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-saved-error-20261109-fixture/custody/decisions.jsonl",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-saved-error-20261109-fixture/custody/images/S3.png",
+    "bytes": 28577,
+    "sha256": "11d98294ac8a19c8e77490998a933add2ddf8de6fdbeb8e7156159e201a87bfe"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-saved-error-20261109-fixture/custody/images/S4.png",
+    "bytes": 11352,
+    "sha256": "9d310a44f961da0f05d01212dd3ba077a49054f5582bd8db393d5ae8670648a8"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-saved-error-20261109-fixture/custody/inventory-review-template.json",
+    "bytes": 1388,
+    "sha256": "260e922267f5d54f81901ae1f8d6bb0cdb26b6cf999ba123019502eedfd5047b"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-saved-error-20261109-fixture/custody/inventory.json",
+    "bytes": 3776,
+    "sha256": "aca65e7ce7434b177ae065ad84d4ca41ce61e942cdaa6878bc8c0d2ee09f9cbb"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-saved-error-20261109-fixture/custody/manifest.jsonl",
+    "bytes": 1674,
+    "sha256": "3c1c2dda2e8609b1e09473f34ed62bb050c74419ed875d6604176d2b3cba6fd4"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-saved-error-20261109-fixture/custody/native-receipts/ledger.json",
+    "bytes": 754,
+    "sha256": "743ae34d7676e2e755b47829b3c080005752b7f37f085bebd47ffa4502be3cf3"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-saved-error-20261109-fixture/custody/native-receipts/request-001.json",
+    "bytes": 89674,
+    "sha256": "fd3cc5e86efbcf16214953a9d4eb65a9476fca3724244adc255fe4a0f8f8b906"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-saved-error-20261109-fixture/custody/native-receipts/response-001.json",
+    "bytes": 2571,
+    "sha256": "6615c98fed2554374d8c0d86535b01788057eb49b9cae472165111b0e6e23ebf"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-saved-error-20261109-fixture/custody/originals/manifest.jsonl",
+    "bytes": 1234,
+    "sha256": "935b09096772139c7b52cb3459191282d5c967af911b8bd11d359fae255c23ab"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-saved-error-20261109-fixture/custody/originals/pages.ndjson",
+    "bytes": 619,
+    "sha256": "bf02ef32dcbcb3e0c954bb2b3adf6d43ca3a4d0e7ce8d872a6c8c0cbc6965009"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-saved-error-20261109-fixture/custody/originals/portions.ndjson",
+    "bytes": 216,
+    "sha256": "da881acae180fea61c65f7dc7aa789880fa0d0c8998f42108e6836c00cab1c01"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-saved-error-20261109-fixture/custody/originals/source_map.json",
+    "bytes": 635,
+    "sha256": "19257e950abe3354c19b1f273db68552d2deec8c0ee028d010f7a405b49e86e4"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-saved-error-20261109-fixture/custody/pages.jsonl",
+    "bytes": 619,
+    "sha256": "bf02ef32dcbcb3e0c954bb2b3adf6d43ca3a4d0e7ce8d872a6c8c0cbc6965009"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-saved-error-20261109-fixture/custody/portions.jsonl",
+    "bytes": 216,
+    "sha256": "da881acae180fea61c65f7dc7aa789880fa0d0c8998f42108e6836c00cab1c01"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-saved-error-20261109-fixture/custody/source-1.png",
+    "bytes": 35359,
+    "sha256": "4cb7ceb9d8a3045951ce9c2da00eb1afb02ad91d1d3bad722283c0f96fa5ce84"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-saved-error-20261109-fixture/custody/source-2.png",
+    "bytes": 19706,
+    "sha256": "381e784398327ecbe0d0e9b84a506d814d7b6ef4928e3d0f769946b64430ac33"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-saved-error-20261109-fixture/custody/source-3.png",
+    "bytes": 6863,
+    "sha256": "449d8509b752ea899c4c6248d919c9ebe4859ffdb0596052c915fc2f06aa54a9"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-saved-error-20261109-fixture/driver-proposals.log",
+    "bytes": 1278,
+    "sha256": "10e8ee48cbc3c4226bea58b6d9fbe3a0b5eb118d5aa248e983318b72f85cfec6"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-saved-error-20261109-fixture/input/S3-source.png",
+    "bytes": 35359,
+    "sha256": "4cb7ceb9d8a3045951ce9c2da00eb1afb02ad91d1d3bad722283c0f96fa5ce84"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-saved-error-20261109-fixture/input/S4-source.png",
+    "bytes": 19706,
+    "sha256": "381e784398327ecbe0d0e9b84a506d814d7b6ef4928e3d0f769946b64430ac33"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-saved-error-20261109-fixture/input/images/S3.png",
+    "bytes": 28577,
+    "sha256": "11d98294ac8a19c8e77490998a933add2ddf8de6fdbeb8e7156159e201a87bfe"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-saved-error-20261109-fixture/input/images/S4.png",
+    "bytes": 11352,
+    "sha256": "9d310a44f961da0f05d01212dd3ba077a49054f5582bd8db393d5ae8670648a8"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-saved-error-20261109-fixture/input/manifest.jsonl",
+    "bytes": 1234,
+    "sha256": "935b09096772139c7b52cb3459191282d5c967af911b8bd11d359fae255c23ab"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-saved-error-20261109-fixture/input/pages.ndjson",
+    "bytes": 619,
+    "sha256": "bf02ef32dcbcb3e0c954bb2b3adf6d43ca3a4d0e7ce8d872a6c8c0cbc6965009"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-saved-error-20261109-fixture/input/portions.ndjson",
+    "bytes": 216,
+    "sha256": "da881acae180fea61c65f7dc7aa789880fa0d0c8998f42108e6836c00cab1c01"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-saved-error-20261109-fixture/input/source-map.json",
+    "bytes": 635,
+    "sha256": "19257e950abe3354c19b1f273db68552d2deec8c0ee028d010f7a405b49e86e4"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-saved-error-20261109-fixture/input/text-only-page.png",
+    "bytes": 6863,
+    "sha256": "449d8509b752ea899c4c6248d919c9ebe4859ffdb0596052c915fc2f06aa54a9"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-saved-error-20261109-fixture/model-policy-before-operator.json",
+    "bytes": 427,
+    "sha256": "33a1e801641bff4054b5f6ef92909067420cf21b52dadb2dc0afd723c78f8725"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-saved-error-20261109-fixture/qualification-replay/mapping.json",
+    "bytes": 714,
+    "sha256": "2b5f436d427d5134fa8aabde598094b1da2cec06f7faff7bdec6e5547d2ccc0e"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-saved-error-20261109-fixture/qualification-replay/request-001.json",
+    "bytes": 89674,
+    "sha256": "fd3cc5e86efbcf16214953a9d4eb65a9476fca3724244adc255fe4a0f8f8b906"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-saved-error-20261109-fixture/qualification-replay/request-002.json",
+    "bytes": 45834,
+    "sha256": "198d677f3c5b3edb9c89da8e8f86eb33ecb130c3bfafdbd7e4696ff50d19640f"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-saved-error-20261109-fixture/qualification-replay/response-001.json",
+    "bytes": 2571,
+    "sha256": "6615c98fed2554374d8c0d86535b01788057eb49b9cae472165111b0e6e23ebf"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-saved-error-20261109-fixture/qualification-replay/response-002.json",
+    "bytes": 793,
+    "sha256": "4106d714c5f556b5c66f78805db34920f39f390fd869c4177b09c485d31ae296"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-saved-error-20261109-fixture/recipe.yaml",
+    "bytes": 3878,
+    "sha256": "6bec2de8e09f1b2d76234982fd2e409c76e870f7db74a74c65f10f1b5ebeb839"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-saved-error-20261109-fixture/replay/mapping.json",
+    "bytes": 716,
+    "sha256": "a0937df3cca9ce070f38d847e2089ebc548fd923750d089d598fc4728fb02b22"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-saved-error-20261109-fixture/replay/request-068.json",
+    "bytes": 89707,
+    "sha256": "06eeae84c01a8ef0d70a190295cb77b9f22d36511d678524da77a381500073cd"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-saved-error-20261109-fixture/replay/request-069.json",
+    "bytes": 45867,
+    "sha256": "a5b045f757d1b9df3e2541130decaa2daa5bbc19b0a67fa80646d917239179f9"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-saved-error-20261109-fixture/replay/response-068.json",
+    "bytes": 4466,
+    "sha256": "99ef270f399ae6075a33615cd2fd7b9f444eaef200a644f48b5c1b5672fdcae2"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-saved-error-20261109-fixture/replay/response-069.json",
+    "bytes": 2984,
+    "sha256": "087c6b29c0eded0f7f7409226e00af5c53842aeee7cd09159876a13c52b0bbc0"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-saved-error-20261109-fixture/result.json",
+    "bytes": 722,
+    "sha256": "68f5eae98eb6a605f20ada67b09a519b4e62c1a2056b789bbe493b49a5cd4a04"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-saved-error-20261109-fixture/synthetic-authority.json",
+    "bytes": 281,
+    "sha256": "84b52805b423336190da5266ebbcf25f20584df1e87db3db0394051eadceaddf"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-saved-error-20261109-fixture/synthetic-review.json",
+    "bytes": 1734,
+    "sha256": "b4460b3666871aed18b0d6f0a543e93589aec28b66d83b9c0e2a3f83324edc75"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-saved-held-20261109/01_load_artifact_v1/pages.ndjson",
+    "bytes": 619,
+    "sha256": "bf02ef32dcbcb3e0c954bb2b3adf6d43ca3a4d0e7ce8d872a6c8c0cbc6965009"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-saved-held-20261109/02_load_artifact_v1/portions.ndjson",
+    "bytes": 216,
+    "sha256": "da881acae180fea61c65f7dc7aa789880fa0d0c8998f42108e6836c00cab1c01"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-saved-held-20261109/03_propose_crop_safety_v1/proposals.jsonl",
+    "bytes": 3938,
+    "sha256": "77c84f076d0a3df1ee157c769dde5725ea8d1d0fd038de0ca0a7cc11fc226f83"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-saved-held-20261109/04_finalize_crop_review_v1/review_finalized.json",
+    "bytes": 140,
+    "sha256": "f5c81996040831330281033aa0b54aa9c2c49e728feab7f18ee68d80aed2658d"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-saved-held-20261109/05_release_reviewed_crops_v1/crop_review_held.json",
+    "bytes": 306,
+    "sha256": "91d10bfcfa1f14efcb15a81d2dd16220105c0614fce1620fee28f016d35c0409"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-saved-held-20261109/pipeline_events.jsonl",
+    "bytes": 5794,
+    "sha256": "f8dcb4bcc2f6be8df42619bf993b6813a4600ef63400af35e3bd7fc1f6d62023"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-saved-held-20261109/pipeline_state.json",
+    "bytes": 2943,
+    "sha256": "f300e94a647e1341a8537c13f061f1343856f117d6b582db5647f0cf9692565b"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-saved-held-20261109/snapshots/plan.json",
+    "bytes": 6209,
+    "sha256": "0d476daceac537d17863cd5aec308639050b81ce0faf52c7d84d2a23e3f0508b"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-saved-held-20261109/snapshots/recipe.yaml",
+    "bytes": 4024,
+    "sha256": "fa9e813f34b7f6ed50264bfca18549baa3043166d15f3f74dfa84e67534172f2"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-saved-held-20261109/snapshots/registry.json",
+    "bytes": 8680,
+    "sha256": "e531d37346a362b97c36ff331508b5a36e9f5d5bcd57a9c6f827caae6fa01365"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-saved-held-20261109/timing_summary.json",
+    "bytes": 242,
+    "sha256": "3c2ec7610a37b7e3624c870d038c13d5c8a81235bdfb689a4563b0ab9463ca75"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-saved-held-20261109-fixture/custody/authority-template.json",
+    "bytes": 195,
+    "sha256": "fe5ea4db63a44c5c50d21f829d2334461bd0d6c647ffedbc09a2af88865d1036"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-saved-held-20261109-fixture/custody/authority.json",
+    "bytes": 461,
+    "sha256": "1de46a801867faf44ba67992d1d3273db4ba67d2b77fa7a6eb56abeaea083e6b"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-saved-held-20261109-fixture/custody/custody_provenance.json",
+    "bytes": 3690,
+    "sha256": "26ba985458ff5eb06ccaa1a081d5e825c50870c25218073dcd59282e4884140d"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-saved-held-20261109-fixture/custody/decisions.jsonl",
+    "bytes": 2445,
+    "sha256": "9269bdac9c1f191d7b2586b04f59b0b86ee58bf860a19bb27c81a657802be674"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-saved-held-20261109-fixture/custody/human-review-001.json",
+    "bytes": 248,
+    "sha256": "2b1ee1a64a7b8bbc653420cf3586d038bdf63f2278e5844897e6488eaa7d5a77"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-saved-held-20261109-fixture/custody/human-review-002.json",
+    "bytes": 249,
+    "sha256": "40f98afe7fe85ed4aee7f22a621eb94c5085956021dc94366552d308cebee9d6"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-saved-held-20261109-fixture/custody/images/S3.png",
+    "bytes": 28577,
+    "sha256": "11d98294ac8a19c8e77490998a933add2ddf8de6fdbeb8e7156159e201a87bfe"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-saved-held-20261109-fixture/custody/images/S4.png",
+    "bytes": 11352,
+    "sha256": "9d310a44f961da0f05d01212dd3ba077a49054f5582bd8db393d5ae8670648a8"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-saved-held-20261109-fixture/custody/inventory-review-template.json",
+    "bytes": 1387,
+    "sha256": "f18e027ff2ad44970eade36f78d3f2c36bfa07bda3fbb2719003ba7a58936b7d"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-saved-held-20261109-fixture/custody/inventory.json",
+    "bytes": 4014,
+    "sha256": "526106280f5462c00dd2f9a142c9e52465664f2f7e1a0e14839740b10e229b57"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-saved-held-20261109-fixture/custody/manifest.jsonl",
+    "bytes": 1670,
+    "sha256": "7441f64cc2f44c5c9f2a139ffa61846afba0305c922ddd362baa35ce5f434370"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-saved-held-20261109-fixture/custody/native-receipts/ledger.json",
+    "bytes": 1260,
+    "sha256": "7adef67bcc2a5729f025e876755dc0352a6ff8ae7111cfa79b1fe415f6c1ffad"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-saved-held-20261109-fixture/custody/native-receipts/request-001.json",
+    "bytes": 89674,
+    "sha256": "fd3cc5e86efbcf16214953a9d4eb65a9476fca3724244adc255fe4a0f8f8b906"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-saved-held-20261109-fixture/custody/native-receipts/request-002.json",
+    "bytes": 45834,
+    "sha256": "198d677f3c5b3edb9c89da8e8f86eb33ecb130c3bfafdbd7e4696ff50d19640f"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-saved-held-20261109-fixture/custody/native-receipts/response-001.json",
+    "bytes": 2518,
+    "sha256": "452901d2a160683d7b300ae9c5c766bc74cfab62dd20ba2c95e7daf4e0ee431c"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-saved-held-20261109-fixture/custody/native-receipts/response-002.json",
+    "bytes": 793,
+    "sha256": "4106d714c5f556b5c66f78805db34920f39f390fd869c4177b09c485d31ae296"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-saved-held-20261109-fixture/custody/operator-authority-input.json",
+    "bytes": 280,
+    "sha256": "23ccc0bbb2eb90a5f51b040bd2237ebff69f204c1eb427a04a6eb1bc6b91603b"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-saved-held-20261109-fixture/custody/operator-source-review-input.json",
+    "bytes": 1732,
+    "sha256": "cc1fcd2f305f5e91a5285faea2aff64a2a451f97dce6f42c89b9447155544cb0"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-saved-held-20261109-fixture/custody/originals/manifest.jsonl",
+    "bytes": 1232,
+    "sha256": "f206d082ae40d2dc713c4dd6c85cf6d883a71c882551253b8f8bccca99537edf"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-saved-held-20261109-fixture/custody/originals/pages.ndjson",
+    "bytes": 619,
+    "sha256": "bf02ef32dcbcb3e0c954bb2b3adf6d43ca3a4d0e7ce8d872a6c8c0cbc6965009"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-saved-held-20261109-fixture/custody/originals/portions.ndjson",
+    "bytes": 216,
+    "sha256": "da881acae180fea61c65f7dc7aa789880fa0d0c8998f42108e6836c00cab1c01"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-saved-held-20261109-fixture/custody/originals/source_map.json",
+    "bytes": 632,
+    "sha256": "a18a21d3d3ca8c2973211ba6304c3e5918f0795d3ecc212a0d490497b20068a7"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-saved-held-20261109-fixture/custody/pages.jsonl",
+    "bytes": 619,
+    "sha256": "bf02ef32dcbcb3e0c954bb2b3adf6d43ca3a4d0e7ce8d872a6c8c0cbc6965009"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-saved-held-20261109-fixture/custody/pending-inventory.json",
+    "bytes": 3768,
+    "sha256": "671ea9acd69c34e4fa52b23a28a992e73c30e83b823bb980169b062b1192a3a8"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-saved-held-20261109-fixture/custody/portions.jsonl",
+    "bytes": 216,
+    "sha256": "da881acae180fea61c65f7dc7aa789880fa0d0c8998f42108e6836c00cab1c01"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-saved-held-20261109-fixture/custody/proposals.jsonl",
+    "bytes": 3938,
+    "sha256": "77c84f076d0a3df1ee157c769dde5725ea8d1d0fd038de0ca0a7cc11fc226f83"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-saved-held-20261109-fixture/custody/source-1.png",
+    "bytes": 35359,
+    "sha256": "4cb7ceb9d8a3045951ce9c2da00eb1afb02ad91d1d3bad722283c0f96fa5ce84"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-saved-held-20261109-fixture/custody/source-2.png",
+    "bytes": 19706,
+    "sha256": "381e784398327ecbe0d0e9b84a506d814d7b6ef4928e3d0f769946b64430ac33"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-saved-held-20261109-fixture/custody/source-3.png",
+    "bytes": 6863,
+    "sha256": "449d8509b752ea899c4c6248d919c9ebe4859ffdb0596052c915fc2f06aa54a9"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-saved-held-20261109-fixture/driver-proposals.log",
+    "bytes": 1506,
+    "sha256": "a4e99a9e0a1cacfb1c089117cea88cb497423b5a25996db26f42d3e9574bfd55"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-saved-held-20261109-fixture/driver-review-build.log",
+    "bytes": 706,
+    "sha256": "9a7f25a481c73629813aae7a6d033b1cf53e174930dab366e31447bbcb5fca20"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-saved-held-20261109-fixture/input/S3-source.png",
+    "bytes": 35359,
+    "sha256": "4cb7ceb9d8a3045951ce9c2da00eb1afb02ad91d1d3bad722283c0f96fa5ce84"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-saved-held-20261109-fixture/input/S4-source.png",
+    "bytes": 19706,
+    "sha256": "381e784398327ecbe0d0e9b84a506d814d7b6ef4928e3d0f769946b64430ac33"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-saved-held-20261109-fixture/input/images/S3.png",
+    "bytes": 28577,
+    "sha256": "11d98294ac8a19c8e77490998a933add2ddf8de6fdbeb8e7156159e201a87bfe"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-saved-held-20261109-fixture/input/images/S4.png",
+    "bytes": 11352,
+    "sha256": "9d310a44f961da0f05d01212dd3ba077a49054f5582bd8db393d5ae8670648a8"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-saved-held-20261109-fixture/input/manifest.jsonl",
+    "bytes": 1232,
+    "sha256": "f206d082ae40d2dc713c4dd6c85cf6d883a71c882551253b8f8bccca99537edf"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-saved-held-20261109-fixture/input/pages.ndjson",
+    "bytes": 619,
+    "sha256": "bf02ef32dcbcb3e0c954bb2b3adf6d43ca3a4d0e7ce8d872a6c8c0cbc6965009"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-saved-held-20261109-fixture/input/portions.ndjson",
+    "bytes": 216,
+    "sha256": "da881acae180fea61c65f7dc7aa789880fa0d0c8998f42108e6836c00cab1c01"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-saved-held-20261109-fixture/input/source-map.json",
+    "bytes": 632,
+    "sha256": "a18a21d3d3ca8c2973211ba6304c3e5918f0795d3ecc212a0d490497b20068a7"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-saved-held-20261109-fixture/input/text-only-page.png",
+    "bytes": 6863,
+    "sha256": "449d8509b752ea899c4c6248d919c9ebe4859ffdb0596052c915fc2f06aa54a9"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-saved-held-20261109-fixture/model-policy-before-operator.json",
+    "bytes": 1309,
+    "sha256": "1c54b9fc0c11f428fd0071081ec99b173dc113d92bdfd6f1fb143544593e65d1"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-saved-held-20261109-fixture/qualification-replay/mapping.json",
+    "bytes": 716,
+    "sha256": "addb986ad4963c304d8939305656f40fdfba77ad57b0352c8524567f141b2110"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-saved-held-20261109-fixture/qualification-replay/request-001.json",
+    "bytes": 89674,
+    "sha256": "fd3cc5e86efbcf16214953a9d4eb65a9476fca3724244adc255fe4a0f8f8b906"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-saved-held-20261109-fixture/qualification-replay/request-002.json",
+    "bytes": 45834,
+    "sha256": "198d677f3c5b3edb9c89da8e8f86eb33ecb130c3bfafdbd7e4696ff50d19640f"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-saved-held-20261109-fixture/qualification-replay/response-001.json",
+    "bytes": 2518,
+    "sha256": "452901d2a160683d7b300ae9c5c766bc74cfab62dd20ba2c95e7daf4e0ee431c"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-saved-held-20261109-fixture/qualification-replay/response-002.json",
+    "bytes": 793,
+    "sha256": "4106d714c5f556b5c66f78805db34920f39f390fd869c4177b09c485d31ae296"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-saved-held-20261109-fixture/recipe.yaml",
+    "bytes": 3864,
+    "sha256": "0f6d2cebd00a73d8e14ef443d9f1fec6b64124bdd4b2b2dca8a830f1a15bb732"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-saved-held-20261109-fixture/replay/mapping.json",
+    "bytes": 716,
+    "sha256": "a0937df3cca9ce070f38d847e2089ebc548fd923750d089d598fc4728fb02b22"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-saved-held-20261109-fixture/replay/request-068.json",
+    "bytes": 89707,
+    "sha256": "06eeae84c01a8ef0d70a190295cb77b9f22d36511d678524da77a381500073cd"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-saved-held-20261109-fixture/replay/request-069.json",
+    "bytes": 45867,
+    "sha256": "a5b045f757d1b9df3e2541130decaa2daa5bbc19b0a67fa80646d917239179f9"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-saved-held-20261109-fixture/replay/response-068.json",
+    "bytes": 4466,
+    "sha256": "99ef270f399ae6075a33615cd2fd7b9f444eaef200a644f48b5c1b5672fdcae2"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-saved-held-20261109-fixture/replay/response-069.json",
+    "bytes": 2984,
+    "sha256": "087c6b29c0eded0f7f7409226e00af5c53842aeee7cd09159876a13c52b0bbc0"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-saved-held-20261109-fixture/result.json",
+    "bytes": 719,
+    "sha256": "be9ba027fc3e9c5e920d2df29e758e1c8bf4405096df89be05de2debdc5c7184"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-saved-held-20261109-fixture/synthetic-authority.json",
+    "bytes": 280,
+    "sha256": "23ccc0bbb2eb90a5f51b040bd2237ebff69f204c1eb427a04a6eb1bc6b91603b"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-saved-held-20261109-fixture/synthetic-review.json",
+    "bytes": 1732,
+    "sha256": "cc1fcd2f305f5e91a5285faea2aff64a2a451f97dce6f42c89b9447155544cb0"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-saved-recrop-20261109/01_load_artifact_v1/pages.ndjson",
+    "bytes": 619,
+    "sha256": "bf02ef32dcbcb3e0c954bb2b3adf6d43ca3a4d0e7ce8d872a6c8c0cbc6965009"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-saved-recrop-20261109/02_load_artifact_v1/portions.ndjson",
+    "bytes": 216,
+    "sha256": "da881acae180fea61c65f7dc7aa789880fa0d0c8998f42108e6836c00cab1c01"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-saved-recrop-20261109/03_propose_crop_safety_v1/proposals.jsonl",
+    "bytes": 3942,
+    "sha256": "133dea6063f1980bbd4befbfba5ed730c64c5d338b59ea25da14938fd1836b68"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-saved-recrop-20261109/04_finalize_crop_review_v1/review_finalized.json",
+    "bytes": 142,
+    "sha256": "9a2165b21aee8ad7186db19d7ace7462475c9ae00ed28e3e6775c13a6c25492a"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-saved-recrop-20261109/05_release_reviewed_crops_v1/crop_review_held.json",
+    "bytes": 308,
+    "sha256": "ae2c047b671a0327c026376a639af981fdb6d1105c952606f6d46d2d5ba92b6c"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-saved-recrop-20261109/pipeline_events.jsonl",
+    "bytes": 5838,
+    "sha256": "cf6aa5b0c3e923d7a5ae1293c3c5081a1b1d8cea96a1854cc2dc6f73f58f155f"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-saved-recrop-20261109/pipeline_state.json",
+    "bytes": 2955,
+    "sha256": "238547bf4af15db67bef8fd4abb193385da803a0388b89c839b1da3aa467be4a"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-saved-recrop-20261109/snapshots/plan.json",
+    "bytes": 6239,
+    "sha256": "a4ceb9a53974f1e2eb0fcd6e466a25e8e1f9e190392376174fa317e4be5db987"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-saved-recrop-20261109/snapshots/recipe.yaml",
+    "bytes": 4058,
+    "sha256": "4890e76e39a0f283865fecc8b034569d2129344638b4120cc9113374dd44187b"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-saved-recrop-20261109/snapshots/registry.json",
+    "bytes": 8680,
+    "sha256": "e531d37346a362b97c36ff331508b5a36e9f5d5bcd57a9c6f827caae6fa01365"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-saved-recrop-20261109/timing_summary.json",
+    "bytes": 242,
+    "sha256": "3c2ec7610a37b7e3624c870d038c13d5c8a81235bdfb689a4563b0ab9463ca75"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-saved-recrop-20261109-fixture/custody/authority-template.json",
+    "bytes": 197,
+    "sha256": "37938d34df372d3d3ffa9d12677239063eae67d2811e1804d2bc295170948fb0"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-saved-recrop-20261109-fixture/custody/authority.json",
+    "bytes": 463,
+    "sha256": "d14b1f73186d9bbae9e5588ffbbb7fee758cf1435916aef6dd32eca4713ac02e"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-saved-recrop-20261109-fixture/custody/custody_provenance.json",
+    "bytes": 3710,
+    "sha256": "45fb73e2df985b47e190e8d8f4d4f317c6ab48858714d437c870190ceca21fd0"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-saved-recrop-20261109-fixture/custody/decisions.jsonl",
+    "bytes": 2443,
+    "sha256": "3cdbdef4aa851a07ee8edede19b288236167d3908d640ce58e441f1dc00daf8a"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-saved-recrop-20261109-fixture/custody/human-review-001.json",
+    "bytes": 242,
+    "sha256": "bc12b6b8ff65215b23bb014798deb36c64341eff1d112eb073c6391dbaf189b5"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-saved-recrop-20261109-fixture/custody/human-review-002.json",
+    "bytes": 249,
+    "sha256": "c8487279174f882faf1eff7ed9f81dc692e30ead37483c628a040727f03684de"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-saved-recrop-20261109-fixture/custody/images/S3.png",
+    "bytes": 28577,
+    "sha256": "11d98294ac8a19c8e77490998a933add2ddf8de6fdbeb8e7156159e201a87bfe"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-saved-recrop-20261109-fixture/custody/images/S4.png",
+    "bytes": 11352,
+    "sha256": "9d310a44f961da0f05d01212dd3ba077a49054f5582bd8db393d5ae8670648a8"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-saved-recrop-20261109-fixture/custody/inventory-review-template.json",
+    "bytes": 1389,
+    "sha256": "0391bdae0112c31fb75a7e7fb447f3f174644b1547ab7053f14e49c57b9dbe97"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-saved-recrop-20261109-fixture/custody/inventory.json",
+    "bytes": 4030,
+    "sha256": "3eee1cf5b1170c7fbd15924d133e673eed3df068b852194456a5b1af871d0e21"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-saved-recrop-20261109-fixture/custody/manifest.jsonl",
+    "bytes": 1678,
+    "sha256": "9c893e648895c2fc088ce18cae37195024a2077a3f60345a9b47795a6886b3fe"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-saved-recrop-20261109-fixture/custody/native-receipts/ledger.json",
+    "bytes": 1262,
+    "sha256": "938100b163dd55452562c94447dd275d0fcb8763d071dee6d4ed2a8d5992a603"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-saved-recrop-20261109-fixture/custody/native-receipts/request-001.json",
+    "bytes": 89674,
+    "sha256": "fd3cc5e86efbcf16214953a9d4eb65a9476fca3724244adc255fe4a0f8f8b906"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-saved-recrop-20261109-fixture/custody/native-receipts/request-002.json",
+    "bytes": 45834,
+    "sha256": "198d677f3c5b3edb9c89da8e8f86eb33ecb130c3bfafdbd7e4696ff50d19640f"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-saved-recrop-20261109-fixture/custody/native-receipts/response-001.json",
+    "bytes": 2518,
+    "sha256": "452901d2a160683d7b300ae9c5c766bc74cfab62dd20ba2c95e7daf4e0ee431c"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-saved-recrop-20261109-fixture/custody/native-receipts/response-002.json",
+    "bytes": 793,
+    "sha256": "4106d714c5f556b5c66f78805db34920f39f390fd869c4177b09c485d31ae296"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-saved-recrop-20261109-fixture/custody/operator-authority-input.json",
+    "bytes": 282,
+    "sha256": "a3c92c0c4af64364b997a9f91514f4bfc37341c66a114f4a8130dc9e2421358e"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-saved-recrop-20261109-fixture/custody/operator-source-review-input.json",
+    "bytes": 1728,
+    "sha256": "84014aa4f51e8086d98896528b6a06680876c1932742499c4fcfd6e7e23726ec"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-saved-recrop-20261109-fixture/custody/originals/manifest.jsonl",
+    "bytes": 1236,
+    "sha256": "b243be443c34beb91816d4cdecc1a78f0181200e5b8d7767f701fa944012a6d1"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-saved-recrop-20261109-fixture/custody/originals/pages.ndjson",
+    "bytes": 619,
+    "sha256": "bf02ef32dcbcb3e0c954bb2b3adf6d43ca3a4d0e7ce8d872a6c8c0cbc6965009"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-saved-recrop-20261109-fixture/custody/originals/portions.ndjson",
+    "bytes": 216,
+    "sha256": "da881acae180fea61c65f7dc7aa789880fa0d0c8998f42108e6836c00cab1c01"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-saved-recrop-20261109-fixture/custody/originals/source_map.json",
+    "bytes": 638,
+    "sha256": "f7b000db2fae29d0e8d1f6c1de3f78eb22c8443eca4e4ff5924cc02d19409a08"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-saved-recrop-20261109-fixture/custody/pages.jsonl",
+    "bytes": 619,
+    "sha256": "bf02ef32dcbcb3e0c954bb2b3adf6d43ca3a4d0e7ce8d872a6c8c0cbc6965009"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-saved-recrop-20261109-fixture/custody/pending-inventory.json",
+    "bytes": 3784,
+    "sha256": "5df822adb5f59a9bcde974de5366c2d938ce47f1622a48a5cb67d9ff77cdc273"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-saved-recrop-20261109-fixture/custody/portions.jsonl",
+    "bytes": 216,
+    "sha256": "da881acae180fea61c65f7dc7aa789880fa0d0c8998f42108e6836c00cab1c01"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-saved-recrop-20261109-fixture/custody/proposals.jsonl",
+    "bytes": 3942,
+    "sha256": "133dea6063f1980bbd4befbfba5ed730c64c5d338b59ea25da14938fd1836b68"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-saved-recrop-20261109-fixture/custody/source-1.png",
+    "bytes": 35359,
+    "sha256": "4cb7ceb9d8a3045951ce9c2da00eb1afb02ad91d1d3bad722283c0f96fa5ce84"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-saved-recrop-20261109-fixture/custody/source-2.png",
+    "bytes": 19706,
+    "sha256": "381e784398327ecbe0d0e9b84a506d814d7b6ef4928e3d0f769946b64430ac33"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-saved-recrop-20261109-fixture/custody/source-3.png",
+    "bytes": 6863,
+    "sha256": "449d8509b752ea899c4c6248d919c9ebe4859ffdb0596052c915fc2f06aa54a9"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-saved-recrop-20261109-fixture/driver-proposals.log",
+    "bytes": 1518,
+    "sha256": "e163bc472df63000e9eed098b3c14260fce2aabf2c07601a684af18a7b7fe0a0"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-saved-recrop-20261109-fixture/driver-review-build.log",
+    "bytes": 706,
+    "sha256": "9a7f25a481c73629813aae7a6d033b1cf53e174930dab366e31447bbcb5fca20"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-saved-recrop-20261109-fixture/input/S3-source.png",
+    "bytes": 35359,
+    "sha256": "4cb7ceb9d8a3045951ce9c2da00eb1afb02ad91d1d3bad722283c0f96fa5ce84"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-saved-recrop-20261109-fixture/input/S4-source.png",
+    "bytes": 19706,
+    "sha256": "381e784398327ecbe0d0e9b84a506d814d7b6ef4928e3d0f769946b64430ac33"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-saved-recrop-20261109-fixture/input/images/S3.png",
+    "bytes": 28577,
+    "sha256": "11d98294ac8a19c8e77490998a933add2ddf8de6fdbeb8e7156159e201a87bfe"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-saved-recrop-20261109-fixture/input/images/S4.png",
+    "bytes": 11352,
+    "sha256": "9d310a44f961da0f05d01212dd3ba077a49054f5582bd8db393d5ae8670648a8"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-saved-recrop-20261109-fixture/input/manifest.jsonl",
+    "bytes": 1236,
+    "sha256": "b243be443c34beb91816d4cdecc1a78f0181200e5b8d7767f701fa944012a6d1"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-saved-recrop-20261109-fixture/input/pages.ndjson",
+    "bytes": 619,
+    "sha256": "bf02ef32dcbcb3e0c954bb2b3adf6d43ca3a4d0e7ce8d872a6c8c0cbc6965009"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-saved-recrop-20261109-fixture/input/portions.ndjson",
+    "bytes": 216,
+    "sha256": "da881acae180fea61c65f7dc7aa789880fa0d0c8998f42108e6836c00cab1c01"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-saved-recrop-20261109-fixture/input/source-map.json",
+    "bytes": 638,
+    "sha256": "f7b000db2fae29d0e8d1f6c1de3f78eb22c8443eca4e4ff5924cc02d19409a08"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-saved-recrop-20261109-fixture/input/text-only-page.png",
+    "bytes": 6863,
+    "sha256": "449d8509b752ea899c4c6248d919c9ebe4859ffdb0596052c915fc2f06aa54a9"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-saved-recrop-20261109-fixture/model-policy-before-operator.json",
+    "bytes": 1309,
+    "sha256": "1c54b9fc0c11f428fd0071081ec99b173dc113d92bdfd6f1fb143544593e65d1"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-saved-recrop-20261109-fixture/qualification-replay/mapping.json",
+    "bytes": 716,
+    "sha256": "addb986ad4963c304d8939305656f40fdfba77ad57b0352c8524567f141b2110"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-saved-recrop-20261109-fixture/qualification-replay/request-001.json",
+    "bytes": 89674,
+    "sha256": "fd3cc5e86efbcf16214953a9d4eb65a9476fca3724244adc255fe4a0f8f8b906"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-saved-recrop-20261109-fixture/qualification-replay/request-002.json",
+    "bytes": 45834,
+    "sha256": "198d677f3c5b3edb9c89da8e8f86eb33ecb130c3bfafdbd7e4696ff50d19640f"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-saved-recrop-20261109-fixture/qualification-replay/response-001.json",
+    "bytes": 2518,
+    "sha256": "452901d2a160683d7b300ae9c5c766bc74cfab62dd20ba2c95e7daf4e0ee431c"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-saved-recrop-20261109-fixture/qualification-replay/response-002.json",
+    "bytes": 793,
+    "sha256": "4106d714c5f556b5c66f78805db34920f39f390fd869c4177b09c485d31ae296"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-saved-recrop-20261109-fixture/recipe.yaml",
+    "bytes": 3896,
+    "sha256": "5931f52e0763e3f4108bc2aaba8349ba459627eab82a8d64510883bc06161953"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-saved-recrop-20261109-fixture/replay/mapping.json",
+    "bytes": 716,
+    "sha256": "a0937df3cca9ce070f38d847e2089ebc548fd923750d089d598fc4728fb02b22"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-saved-recrop-20261109-fixture/replay/request-068.json",
+    "bytes": 89707,
+    "sha256": "06eeae84c01a8ef0d70a190295cb77b9f22d36511d678524da77a381500073cd"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-saved-recrop-20261109-fixture/replay/request-069.json",
+    "bytes": 45867,
+    "sha256": "a5b045f757d1b9df3e2541130decaa2daa5bbc19b0a67fa80646d917239179f9"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-saved-recrop-20261109-fixture/replay/response-068.json",
+    "bytes": 4466,
+    "sha256": "99ef270f399ae6075a33615cd2fd7b9f444eaef200a644f48b5c1b5672fdcae2"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-saved-recrop-20261109-fixture/replay/response-069.json",
+    "bytes": 2984,
+    "sha256": "087c6b29c0eded0f7f7409226e00af5c53842aeee7cd09159876a13c52b0bbc0"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-saved-recrop-20261109-fixture/result.json",
+    "bytes": 729,
+    "sha256": "5a9087eb438c62f6275176da7e6e3e98bf7884c320fa9c6141d742df3ad60199"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-saved-recrop-20261109-fixture/synthetic-authority.json",
+    "bytes": 282,
+    "sha256": "a3c92c0c4af64364b997a9f91514f4bfc37341c66a114f4a8130dc9e2421358e"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-fable-saved-recrop-20261109-fixture/synthetic-review.json",
+    "bytes": 1728,
+    "sha256": "84014aa4f51e8086d98896528b6a06680876c1932742499c4fcfd6e7e23726ec"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-live-20261109/01_load_artifact_v1/pages.ndjson",
+    "bytes": 619,
+    "sha256": "bf02ef32dcbcb3e0c954bb2b3adf6d43ca3a4d0e7ce8d872a6c8c0cbc6965009"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-live-20261109/02_load_artifact_v1/portions.ndjson",
+    "bytes": 216,
+    "sha256": "da881acae180fea61c65f7dc7aa789880fa0d0c8998f42108e6836c00cab1c01"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-live-20261109/03_propose_crop_safety_v1/proposals.jsonl",
+    "bytes": 3452,
+    "sha256": "054d4859366661b302936b971da963981bcc60329c5f7149b5e67aa6f50de6a0"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-live-20261109/04_finalize_crop_review_v1/review_finalized.json",
+    "bytes": 132,
+    "sha256": "3abbb2bddcbf7e081b41f83983e97dc0828d7490ada28fa159bc2850de14bdb7"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-live-20261109/05_release_reviewed_crops_v1/crop_review_release.json",
+    "bytes": 1332,
+    "sha256": "eafc841e6111bc4193186b4706c8e09c3268311400d87770998ee81ade48f737"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-live-20261109/05_release_reviewed_crops_v1/illustration_manifest.jsonl",
+    "bytes": 1638,
+    "sha256": "4618da56519e5f9c743d8f0dd3774dfb44ab3dc448615d86d5636aa948b576a0"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-live-20261109/05_release_reviewed_crops_v1/images/S3.png",
+    "bytes": 28577,
+    "sha256": "11d98294ac8a19c8e77490998a933add2ddf8de6fdbeb8e7156159e201a87bfe"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-live-20261109/05_release_reviewed_crops_v1/images/S4.png",
+    "bytes": 11352,
+    "sha256": "9d310a44f961da0f05d01212dd3ba077a49054f5582bd8db393d5ae8670648a8"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-live-20261109/06_build_chapter_html_v1/chapters_manifest.jsonl",
+    "bytes": 666,
+    "sha256": "89157900a26352ff826a28d98c48d8556ad9de0f31d149261558d4fe7b97fabb"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-live-20261109/output/html/chapter-001.html",
+    "bytes": 5066,
+    "sha256": "eb282eae75961fe3d9d1ce36d2d1b8c42d07621885c49ad80d2a3e2071c93799"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-live-20261109/output/html/images/S3.png",
+    "bytes": 28577,
+    "sha256": "11d98294ac8a19c8e77490998a933add2ddf8de6fdbeb8e7156159e201a87bfe"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-live-20261109/output/html/images/S4.png",
+    "bytes": 11352,
+    "sha256": "9d310a44f961da0f05d01212dd3ba077a49054f5582bd8db393d5ae8670648a8"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-live-20261109/output/html/index.html",
+    "bytes": 4004,
+    "sha256": "4461aebc60ccfe21f99c060fe2263a6482c54b34b7f58bda728a05ffcd728a1d"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-live-20261109/output/html/navigation_resolution_report.json",
+    "bytes": 641,
+    "sha256": "8d52ecd0cc44628bbc06459c47b08af6d4543cf905f8eaa7ed059b4fe14d6024"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-live-20261109/output/html/provenance/blocks.jsonl",
+    "bytes": 2382,
+    "sha256": "c19cf48c6bf07773ae50a4c5b4cf93389e32b4f069ffa9de56db7ed328c04ecd"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-live-20261109/pipeline_events.jsonl",
+    "bytes": 7098,
+    "sha256": "02508906bd0cd49c259611649630d888c6cc26fb6a1b1e578bf4c4d9cc341944"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-live-20261109/pipeline_state.json",
+    "bytes": 3628,
+    "sha256": "192ddf58ed5984ad824e18ce48257521344f232e4d86f83527229a3c054a4477"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-live-20261109/snapshots/plan.json",
+    "bytes": 5896,
+    "sha256": "5f5f38d6587c7418e09805e31dbb6edf23301a59d533c1bf54c76c41b4dcb7cb"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-live-20261109/snapshots/recipe.yaml",
+    "bytes": 3704,
+    "sha256": "63485bc847bdae9228329dc5167f6db204a4759fb23b2585c36372f54790ccc6"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-live-20261109/snapshots/registry.json",
+    "bytes": 8680,
+    "sha256": "e531d37346a362b97c36ff331508b5a36e9f5d5bcd57a9c6f827caae6fa01365"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-live-20261109/timing_summary.json",
+    "bytes": 330,
+    "sha256": "77c626ea00d6e52263a56060e40eeb76b0a09af8f6b77944d9e13cadda96078d"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-live-20261109-fixture/custody/authority-template.json",
+    "bytes": 187,
+    "sha256": "42aed293307d7ac72f87d7d32b7904b3d525d50c3392d41b5ee5301d8966edec"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-live-20261109-fixture/custody/authority.json",
+    "bytes": 453,
+    "sha256": "379eb04203387da11f99aa317222d1eecb0f87e1ed913a212c6abeba6376c440"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-live-20261109-fixture/custody/custody_provenance.json",
+    "bytes": 3610,
+    "sha256": "cdb3371d77de78494f256666a11041b206be95a9b8dca8680f7f5a4fbcefed56"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-live-20261109-fixture/custody/decisions.jsonl",
+    "bytes": 2430,
+    "sha256": "3377de1cabc035df79671255d7a3e170921b2b64975e243292338f7c91fa54d3"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-live-20261109-fixture/custody/human-review-001.json",
+    "bytes": 249,
+    "sha256": "3fdadb64487e8f71da79a42087028a0f89eca141824d663a3a4860edeca9297e"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-live-20261109-fixture/custody/human-review-002.json",
+    "bytes": 249,
+    "sha256": "61de21e47f357fa0766f6addeaf1219dcba8afb5dc5c01640bbd73c35ee7b825"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-live-20261109-fixture/custody/images/S3.png",
+    "bytes": 28577,
+    "sha256": "11d98294ac8a19c8e77490998a933add2ddf8de6fdbeb8e7156159e201a87bfe"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-live-20261109-fixture/custody/images/S4.png",
+    "bytes": 11352,
+    "sha256": "9d310a44f961da0f05d01212dd3ba077a49054f5582bd8db393d5ae8670648a8"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-live-20261109-fixture/custody/inventory-review-template.json",
+    "bytes": 1379,
+    "sha256": "15b7c0cd579909ad899b2ecddcfe47e8053942ff132557ab72ab816512fb7968"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-live-20261109-fixture/custody/inventory.json",
+    "bytes": 3950,
+    "sha256": "b48a3196b24fde92c7feb758853fee2c0d9ca963fdc3966005ce3cff06939f72"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-live-20261109-fixture/custody/manifest.jsonl",
+    "bytes": 1638,
+    "sha256": "4618da56519e5f9c743d8f0dd3774dfb44ab3dc448615d86d5636aa948b576a0"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-live-20261109-fixture/custody/native-receipts/ledger.json",
+    "bytes": 1336,
+    "sha256": "35a595288ee140cf56a6c733808d3ef405b43080462cad45753ba1707d647195"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-live-20261109-fixture/custody/native-receipts/request-001.json",
+    "bytes": 89734,
+    "sha256": "66a7028a580d0c2128a55f321182317f3a840b0c6ffe53e028fa59d151fb0659"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-live-20261109-fixture/custody/native-receipts/request-002.json",
+    "bytes": 45894,
+    "sha256": "5da6be681d48a77ad707964591586eb92bbd47ec7c7230c7f4abb2c54cefd468"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-live-20261109-fixture/custody/native-receipts/response-001.json",
+    "bytes": 5872,
+    "sha256": "b13396e7e651dadc5591134ce6126fca875956084f2d7d46cb8fd627d8518d26"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-live-20261109-fixture/custody/native-receipts/response-002.json",
+    "bytes": 3065,
+    "sha256": "d677ecd5398df56459937bbed015de657a9db787dd1dc7ea72cf8c6ec25cfc8a"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-live-20261109-fixture/custody/operator-authority-input.json",
+    "bytes": 272,
+    "sha256": "3f9413ec9cefc0f5a9e9e8f481fdd22a96fe72588bd6bcb4448987247774c950"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-live-20261109-fixture/custody/operator-source-review-input.json",
+    "bytes": 1725,
+    "sha256": "052493b0ab1e5963dc7a4f9a192c6297889124222b302c51a94a4e11b56a08dd"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-live-20261109-fixture/custody/originals/manifest.jsonl",
+    "bytes": 1216,
+    "sha256": "0020edd513d505baf425a53724f96e4903e7f931378aa458ea48183ea1661ab2"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-live-20261109-fixture/custody/originals/pages.ndjson",
+    "bytes": 619,
+    "sha256": "bf02ef32dcbcb3e0c954bb2b3adf6d43ca3a4d0e7ce8d872a6c8c0cbc6965009"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-live-20261109-fixture/custody/originals/portions.ndjson",
+    "bytes": 216,
+    "sha256": "da881acae180fea61c65f7dc7aa789880fa0d0c8998f42108e6836c00cab1c01"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-live-20261109-fixture/custody/originals/source_map.json",
+    "bytes": 608,
+    "sha256": "ea6298b9f6e7a4fcd60c64be83aa61fbd90f5845b0c0027f3ac6f65f34496978"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-live-20261109-fixture/custody/pages.jsonl",
+    "bytes": 619,
+    "sha256": "bf02ef32dcbcb3e0c954bb2b3adf6d43ca3a4d0e7ce8d872a6c8c0cbc6965009"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-live-20261109-fixture/custody/pending-inventory.json",
+    "bytes": 3704,
+    "sha256": "b25cc5dbaa21713425721dbd916a08caab7594d3955dedc90007ead1932b7a2b"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-live-20261109-fixture/custody/portions.jsonl",
+    "bytes": 216,
+    "sha256": "da881acae180fea61c65f7dc7aa789880fa0d0c8998f42108e6836c00cab1c01"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-live-20261109-fixture/custody/proposals.jsonl",
+    "bytes": 3452,
+    "sha256": "054d4859366661b302936b971da963981bcc60329c5f7149b5e67aa6f50de6a0"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-live-20261109-fixture/custody/source-1.png",
+    "bytes": 35359,
+    "sha256": "4cb7ceb9d8a3045951ce9c2da00eb1afb02ad91d1d3bad722283c0f96fa5ce84"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-live-20261109-fixture/custody/source-2.png",
+    "bytes": 19706,
+    "sha256": "381e784398327ecbe0d0e9b84a506d814d7b6ef4928e3d0f769946b64430ac33"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-live-20261109-fixture/custody/source-3.png",
+    "bytes": 6863,
+    "sha256": "449d8509b752ea899c4c6248d919c9ebe4859ffdb0596052c915fc2f06aa54a9"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-live-20261109-fixture/driver-proposals.log",
+    "bytes": 1458,
+    "sha256": "1641d3d3b6405b3c30b9b8b7557165d17655e72e7516a724d87ba73ffc6d6e81"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-live-20261109-fixture/driver-review-build.log",
+    "bytes": 724,
+    "sha256": "31b9a9065c13d445ea76e9287f63e9b270946fe35e0459c46a5bdd5434d01349"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-live-20261109-fixture/input/S3-source.png",
+    "bytes": 35359,
+    "sha256": "4cb7ceb9d8a3045951ce9c2da00eb1afb02ad91d1d3bad722283c0f96fa5ce84"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-live-20261109-fixture/input/S4-source.png",
+    "bytes": 19706,
+    "sha256": "381e784398327ecbe0d0e9b84a506d814d7b6ef4928e3d0f769946b64430ac33"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-live-20261109-fixture/input/images/S3.png",
+    "bytes": 28577,
+    "sha256": "11d98294ac8a19c8e77490998a933add2ddf8de6fdbeb8e7156159e201a87bfe"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-live-20261109-fixture/input/images/S4.png",
+    "bytes": 11352,
+    "sha256": "9d310a44f961da0f05d01212dd3ba077a49054f5582bd8db393d5ae8670648a8"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-live-20261109-fixture/input/manifest.jsonl",
+    "bytes": 1216,
+    "sha256": "0020edd513d505baf425a53724f96e4903e7f931378aa458ea48183ea1661ab2"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-live-20261109-fixture/input/pages.ndjson",
+    "bytes": 619,
+    "sha256": "bf02ef32dcbcb3e0c954bb2b3adf6d43ca3a4d0e7ce8d872a6c8c0cbc6965009"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-live-20261109-fixture/input/portions.ndjson",
+    "bytes": 216,
+    "sha256": "da881acae180fea61c65f7dc7aa789880fa0d0c8998f42108e6836c00cab1c01"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-live-20261109-fixture/input/source-map.json",
+    "bytes": 608,
+    "sha256": "ea6298b9f6e7a4fcd60c64be83aa61fbd90f5845b0c0027f3ac6f65f34496978"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-live-20261109-fixture/input/text-only-page.png",
+    "bytes": 6863,
+    "sha256": "449d8509b752ea899c4c6248d919c9ebe4859ffdb0596052c915fc2f06aa54a9"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-live-20261109-fixture/model-policy-before-operator.json",
+    "bytes": 1235,
+    "sha256": "962116db103c7c76407194e0986037cfe5a71bd3e6b06f0a10812551b6905ead"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-live-20261109-fixture/recipe.yaml",
+    "bytes": 3552,
+    "sha256": "0601aac25af95670b6477efab1696391122b5b17c91c11649f9786c7d1cac166"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-live-20261109-fixture/replay/mapping.json",
+    "bytes": 716,
+    "sha256": "a0937df3cca9ce070f38d847e2089ebc548fd923750d089d598fc4728fb02b22"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-live-20261109-fixture/replay/request-068.json",
+    "bytes": 89707,
+    "sha256": "06eeae84c01a8ef0d70a190295cb77b9f22d36511d678524da77a381500073cd"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-live-20261109-fixture/replay/request-069.json",
+    "bytes": 45867,
+    "sha256": "a5b045f757d1b9df3e2541130decaa2daa5bbc19b0a67fa80646d917239179f9"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-live-20261109-fixture/replay/response-068.json",
+    "bytes": 4466,
+    "sha256": "99ef270f399ae6075a33615cd2fd7b9f444eaef200a644f48b5c1b5672fdcae2"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-live-20261109-fixture/replay/response-069.json",
+    "bytes": 2984,
+    "sha256": "087c6b29c0eded0f7f7409226e00af5c53842aeee7cd09159876a13c52b0bbc0"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-live-20261109-fixture/result.json",
+    "bytes": 687,
+    "sha256": "d60d4b8fb6080d148fbe3b0c52da439206d94c43b0db21d46f375d6ba092294e"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-live-20261109-fixture/synthetic-authority.json",
+    "bytes": 272,
+    "sha256": "3f9413ec9cefc0f5a9e9e8f481fdd22a96fe72588bd6bcb4448987247774c950"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-live-20261109-fixture/synthetic-review.json",
+    "bytes": 1725,
+    "sha256": "052493b0ab1e5963dc7a4f9a192c6297889124222b302c51a94a4e11b56a08dd"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-saved-error-20261109/01_load_artifact_v1/pages.ndjson",
+    "bytes": 619,
+    "sha256": "bf02ef32dcbcb3e0c954bb2b3adf6d43ca3a4d0e7ce8d872a6c8c0cbc6965009"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-saved-error-20261109/02_load_artifact_v1/portions.ndjson",
+    "bytes": 216,
+    "sha256": "da881acae180fea61c65f7dc7aa789880fa0d0c8998f42108e6836c00cab1c01"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-saved-error-20261109/03_propose_crop_safety_v1/proposals.jsonl",
+    "bytes": 1304,
+    "sha256": "3a7e0959690295b762acebb4d3cbc7c4a096a8f2bd6f0e96716b266ac91ada6c"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-saved-error-20261109/pipeline_events.jsonl",
+    "bytes": 3698,
+    "sha256": "8b55bbc9cddf2747aeb5868dfd653f516d448a5cb0baa4b1fb5260ae39b86da8"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-saved-error-20261109/pipeline_state.json",
+    "bytes": 1862,
+    "sha256": "660b1961be22d7c088800203cacdca91e651a037204ecd4f9fd8296cfc2b85e7"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-saved-error-20261109/snapshots/plan.json",
+    "bytes": 6192,
+    "sha256": "5df74dc9e958009f7efae5f04db68bf3b9441927a631dff256804cf4f2dae14c"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-saved-error-20261109/snapshots/recipe.yaml",
+    "bytes": 4005,
+    "sha256": "c7e056e15514c330624505483f921167c412372c6bac55a866f0228654974c69"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-saved-error-20261109/snapshots/registry.json",
+    "bytes": 8680,
+    "sha256": "e531d37346a362b97c36ff331508b5a36e9f5d5bcd57a9c6f827caae6fa01365"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-saved-error-20261109-fixture/custody/authority-template.json",
+    "bytes": 194,
+    "sha256": "cd243c08fb33fbbd33ccc6ac4eeeb9496586d8a49874c8d6417494fa398ea7e7"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-saved-error-20261109-fixture/custody/custody_provenance.json",
+    "bytes": 3680,
+    "sha256": "81e7bd10cf71b86cb07ee3e1290f58a133e858dfd2c16c4031775aa8f17b1c5c"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-saved-error-20261109-fixture/custody/decisions.jsonl",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-saved-error-20261109-fixture/custody/images/S3.png",
+    "bytes": 28577,
+    "sha256": "11d98294ac8a19c8e77490998a933add2ddf8de6fdbeb8e7156159e201a87bfe"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-saved-error-20261109-fixture/custody/images/S4.png",
+    "bytes": 11352,
+    "sha256": "9d310a44f961da0f05d01212dd3ba077a49054f5582bd8db393d5ae8670648a8"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-saved-error-20261109-fixture/custody/inventory-review-template.json",
+    "bytes": 1386,
+    "sha256": "64be904ebc1a124f6014d15109285489bc2aaed32cece646c0478e143f3d1625"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-saved-error-20261109-fixture/custody/inventory.json",
+    "bytes": 3760,
+    "sha256": "8fddc54b503766850251843ff47e1abc12320d695bb5ce80669e786e97a6713e"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-saved-error-20261109-fixture/custody/manifest.jsonl",
+    "bytes": 1666,
+    "sha256": "945906c538355e74af117038fd819000f4fee0b13982dc484b4432244c3e41ec"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-saved-error-20261109-fixture/custody/native-receipts/ledger.json",
+    "bytes": 752,
+    "sha256": "0c9b93ac019022e8221a48bbea65bfd8693c858534ae4b3a67d7e6a2cf54057b"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-saved-error-20261109-fixture/custody/native-receipts/request-001.json",
+    "bytes": 89734,
+    "sha256": "66a7028a580d0c2128a55f321182317f3a840b0c6ffe53e028fa59d151fb0659"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-saved-error-20261109-fixture/custody/native-receipts/response-001.json",
+    "bytes": 5122,
+    "sha256": "48c28eed7a6ef4a9c13137a64d29730830d3a5c032d7e53da0bebb5761574b72"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-saved-error-20261109-fixture/custody/originals/manifest.jsonl",
+    "bytes": 1230,
+    "sha256": "5c4c6972457081f9f9d1ce9f77b26b47771c21942f11abfc09a41319278cf083"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-saved-error-20261109-fixture/custody/originals/pages.ndjson",
+    "bytes": 619,
+    "sha256": "bf02ef32dcbcb3e0c954bb2b3adf6d43ca3a4d0e7ce8d872a6c8c0cbc6965009"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-saved-error-20261109-fixture/custody/originals/portions.ndjson",
+    "bytes": 216,
+    "sha256": "da881acae180fea61c65f7dc7aa789880fa0d0c8998f42108e6836c00cab1c01"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-saved-error-20261109-fixture/custody/originals/source_map.json",
+    "bytes": 629,
+    "sha256": "a6c6868e0cb9f4fc8198308723fc2c47852ffeac1caa5cc4a3a262fbe8604263"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-saved-error-20261109-fixture/custody/pages.jsonl",
+    "bytes": 619,
+    "sha256": "bf02ef32dcbcb3e0c954bb2b3adf6d43ca3a4d0e7ce8d872a6c8c0cbc6965009"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-saved-error-20261109-fixture/custody/portions.jsonl",
+    "bytes": 216,
+    "sha256": "da881acae180fea61c65f7dc7aa789880fa0d0c8998f42108e6836c00cab1c01"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-saved-error-20261109-fixture/custody/source-1.png",
+    "bytes": 35359,
+    "sha256": "4cb7ceb9d8a3045951ce9c2da00eb1afb02ad91d1d3bad722283c0f96fa5ce84"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-saved-error-20261109-fixture/custody/source-2.png",
+    "bytes": 19706,
+    "sha256": "381e784398327ecbe0d0e9b84a506d814d7b6ef4928e3d0f769946b64430ac33"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-saved-error-20261109-fixture/custody/source-3.png",
+    "bytes": 6863,
+    "sha256": "449d8509b752ea899c4c6248d919c9ebe4859ffdb0596052c915fc2f06aa54a9"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-saved-error-20261109-fixture/driver-proposals.log",
+    "bytes": 1266,
+    "sha256": "ab54fbfd159756f21c4ef811ff63a45d00f2c6dc5b5759e67ae442aec9d3aaa6"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-saved-error-20261109-fixture/input/S3-source.png",
+    "bytes": 35359,
+    "sha256": "4cb7ceb9d8a3045951ce9c2da00eb1afb02ad91d1d3bad722283c0f96fa5ce84"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-saved-error-20261109-fixture/input/S4-source.png",
+    "bytes": 19706,
+    "sha256": "381e784398327ecbe0d0e9b84a506d814d7b6ef4928e3d0f769946b64430ac33"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-saved-error-20261109-fixture/input/images/S3.png",
+    "bytes": 28577,
+    "sha256": "11d98294ac8a19c8e77490998a933add2ddf8de6fdbeb8e7156159e201a87bfe"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-saved-error-20261109-fixture/input/images/S4.png",
+    "bytes": 11352,
+    "sha256": "9d310a44f961da0f05d01212dd3ba077a49054f5582bd8db393d5ae8670648a8"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-saved-error-20261109-fixture/input/manifest.jsonl",
+    "bytes": 1230,
+    "sha256": "5c4c6972457081f9f9d1ce9f77b26b47771c21942f11abfc09a41319278cf083"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-saved-error-20261109-fixture/input/pages.ndjson",
+    "bytes": 619,
+    "sha256": "bf02ef32dcbcb3e0c954bb2b3adf6d43ca3a4d0e7ce8d872a6c8c0cbc6965009"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-saved-error-20261109-fixture/input/portions.ndjson",
+    "bytes": 216,
+    "sha256": "da881acae180fea61c65f7dc7aa789880fa0d0c8998f42108e6836c00cab1c01"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-saved-error-20261109-fixture/input/source-map.json",
+    "bytes": 629,
+    "sha256": "a6c6868e0cb9f4fc8198308723fc2c47852ffeac1caa5cc4a3a262fbe8604263"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-saved-error-20261109-fixture/input/text-only-page.png",
+    "bytes": 6863,
+    "sha256": "449d8509b752ea899c4c6248d919c9ebe4859ffdb0596052c915fc2f06aa54a9"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-saved-error-20261109-fixture/model-policy-before-operator.json",
+    "bytes": 425,
+    "sha256": "baf34eff700ab8e32744b996e565ebd83719387f5bf012f473a4375e2e412d9d"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-saved-error-20261109-fixture/qualification-replay/mapping.json",
+    "bytes": 714,
+    "sha256": "de818eeb2535c18527d5b2b470e12429bc9892208120c5323990ab7ddf997c73"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-saved-error-20261109-fixture/qualification-replay/request-001.json",
+    "bytes": 89734,
+    "sha256": "66a7028a580d0c2128a55f321182317f3a840b0c6ffe53e028fa59d151fb0659"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-saved-error-20261109-fixture/qualification-replay/request-002.json",
+    "bytes": 45894,
+    "sha256": "5da6be681d48a77ad707964591586eb92bbd47ec7c7230c7f4abb2c54cefd468"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-saved-error-20261109-fixture/qualification-replay/response-001.json",
+    "bytes": 5122,
+    "sha256": "48c28eed7a6ef4a9c13137a64d29730830d3a5c032d7e53da0bebb5761574b72"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-saved-error-20261109-fixture/qualification-replay/response-002.json",
+    "bytes": 3065,
+    "sha256": "d677ecd5398df56459937bbed015de657a9db787dd1dc7ea72cf8c6ec25cfc8a"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-saved-error-20261109-fixture/recipe.yaml",
+    "bytes": 3846,
+    "sha256": "66b4bc602d1e09ef19690002c3cc642f07f365413724d522758807a85a1822d3"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-saved-error-20261109-fixture/replay/mapping.json",
+    "bytes": 716,
+    "sha256": "a0937df3cca9ce070f38d847e2089ebc548fd923750d089d598fc4728fb02b22"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-saved-error-20261109-fixture/replay/request-068.json",
+    "bytes": 89707,
+    "sha256": "06eeae84c01a8ef0d70a190295cb77b9f22d36511d678524da77a381500073cd"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-saved-error-20261109-fixture/replay/request-069.json",
+    "bytes": 45867,
+    "sha256": "a5b045f757d1b9df3e2541130decaa2daa5bbc19b0a67fa80646d917239179f9"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-saved-error-20261109-fixture/replay/response-068.json",
+    "bytes": 4466,
+    "sha256": "99ef270f399ae6075a33615cd2fd7b9f444eaef200a644f48b5c1b5672fdcae2"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-saved-error-20261109-fixture/replay/response-069.json",
+    "bytes": 2984,
+    "sha256": "087c6b29c0eded0f7f7409226e00af5c53842aeee7cd09159876a13c52b0bbc0"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-saved-error-20261109-fixture/result.json",
+    "bytes": 712,
+    "sha256": "131213c93ebc2067e114a1508e39b066fc4ad37f0296a04eab6dd1b4aaf4d4fa"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-saved-error-20261109-fixture/synthetic-authority.json",
+    "bytes": 279,
+    "sha256": "190b593b57c22dc7a35ec34c24e161cb574e8dba51a90dffbe01548644460a09"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-saved-error-20261109-fixture/synthetic-review.json",
+    "bytes": 1732,
+    "sha256": "1bde0aab6b65d1cd17868c7b3e6da258a585f8a4b5cb95cf0552206f805771d6"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-saved-held-20261109/01_load_artifact_v1/pages.ndjson",
+    "bytes": 619,
+    "sha256": "bf02ef32dcbcb3e0c954bb2b3adf6d43ca3a4d0e7ce8d872a6c8c0cbc6965009"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-saved-held-20261109/02_load_artifact_v1/portions.ndjson",
+    "bytes": 216,
+    "sha256": "da881acae180fea61c65f7dc7aa789880fa0d0c8998f42108e6836c00cab1c01"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-saved-held-20261109/03_propose_crop_safety_v1/proposals.jsonl",
+    "bytes": 3534,
+    "sha256": "839560d27b801256021592cdf904fc24e267bcf8f00c0ef452585a0f9982f082"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-saved-held-20261109/04_finalize_crop_review_v1/review_finalized.json",
+    "bytes": 138,
+    "sha256": "91ce26936d1164a91bf49e7f65acaee9bb0cc518fa63cfdd31454d399f7ff10b"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-saved-held-20261109/05_release_reviewed_crops_v1/crop_review_held.json",
+    "bytes": 304,
+    "sha256": "e24c6abf7a075641c1015b0380b56b50a54ff56978b4dcd1d0ce9951f827b187"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-saved-held-20261109/pipeline_events.jsonl",
+    "bytes": 5750,
+    "sha256": "0d6e7be2bcc2004abd3b4cb6f80776092de26652658a429284729de5bc253311"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-saved-held-20261109/pipeline_state.json",
+    "bytes": 2931,
+    "sha256": "2fe95c2da0c9114b41f28760a4da60ff082c52928bfc042c2f2bf2105fc82307"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-saved-held-20261109/snapshots/plan.json",
+    "bytes": 6179,
+    "sha256": "986d7c2069b623a012631e8b503f4bc6471d49d43e79617bf6245bd0e1f6a5e1"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-saved-held-20261109/snapshots/recipe.yaml",
+    "bytes": 3990,
+    "sha256": "2103f57f3b32e1e107a2ea1166fe8cc000d71a558233a0cb1446bcc60362c5eb"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-saved-held-20261109/snapshots/registry.json",
+    "bytes": 8680,
+    "sha256": "e531d37346a362b97c36ff331508b5a36e9f5d5bcd57a9c6f827caae6fa01365"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-saved-held-20261109/timing_summary.json",
+    "bytes": 242,
+    "sha256": "3c2ec7610a37b7e3624c870d038c13d5c8a81235bdfb689a4563b0ab9463ca75"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-saved-held-20261109-fixture/custody/authority-template.json",
+    "bytes": 193,
+    "sha256": "adc1b4ab0a69d8c92cf9be9ebfb7f30e80992017bfb14cfce25be906c655d2b8"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-saved-held-20261109-fixture/custody/authority.json",
+    "bytes": 459,
+    "sha256": "981d525058f5e8f398fab002a25b0c677fc1af29d2dbd03230f7358041c9d592"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-saved-held-20261109-fixture/custody/custody_provenance.json",
+    "bytes": 3670,
+    "sha256": "7c8c24f18e92e9a64696a449b3016c06630ac97589997ab21b42b4f6e5a6616d"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-saved-held-20261109-fixture/custody/decisions.jsonl",
+    "bytes": 2441,
+    "sha256": "e7bc0230c8fe7b17e681b962c92ae0e977967372025dd88c425a267c47fa6694"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-saved-held-20261109-fixture/custody/human-review-001.json",
+    "bytes": 248,
+    "sha256": "636e605092d007e2657b37682dfc300962ed7efe154a871ad4e437b16839c7a8"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-saved-held-20261109-fixture/custody/human-review-002.json",
+    "bytes": 249,
+    "sha256": "363718ecbfb1037b95c0ce44d40cbd4b6e94b0e9037b518fb3283adede1bb312"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-saved-held-20261109-fixture/custody/images/S3.png",
+    "bytes": 28577,
+    "sha256": "11d98294ac8a19c8e77490998a933add2ddf8de6fdbeb8e7156159e201a87bfe"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-saved-held-20261109-fixture/custody/images/S4.png",
+    "bytes": 11352,
+    "sha256": "9d310a44f961da0f05d01212dd3ba077a49054f5582bd8db393d5ae8670648a8"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-saved-held-20261109-fixture/custody/inventory-review-template.json",
+    "bytes": 1385,
+    "sha256": "e95be6ff5f5dc086eaf9e99cba5a4ddda34703c6db3c93c9166a5f89b0e91216"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-saved-held-20261109-fixture/custody/inventory.json",
+    "bytes": 3998,
+    "sha256": "47bfe1d4dbf8615e722ba20ef49db7613180ec0cb1c317053b1d7c9d904406ac"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-saved-held-20261109-fixture/custody/manifest.jsonl",
+    "bytes": 1662,
+    "sha256": "5ee07c65d9cd473dca35c3cc5366b767cb2562421ed2cdeaa507e70a0e1351fa"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-saved-held-20261109-fixture/custody/native-receipts/ledger.json",
+    "bytes": 1258,
+    "sha256": "0c52f087af0a03b43ab21ab9590c51cd68d4dc9c820864af7519f0bab6c68f85"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-saved-held-20261109-fixture/custody/native-receipts/request-001.json",
+    "bytes": 89734,
+    "sha256": "66a7028a580d0c2128a55f321182317f3a840b0c6ffe53e028fa59d151fb0659"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-saved-held-20261109-fixture/custody/native-receipts/request-002.json",
+    "bytes": 45894,
+    "sha256": "5da6be681d48a77ad707964591586eb92bbd47ec7c7230c7f4abb2c54cefd468"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-saved-held-20261109-fixture/custody/native-receipts/response-001.json",
+    "bytes": 5872,
+    "sha256": "b13396e7e651dadc5591134ce6126fca875956084f2d7d46cb8fd627d8518d26"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-saved-held-20261109-fixture/custody/native-receipts/response-002.json",
+    "bytes": 3065,
+    "sha256": "d677ecd5398df56459937bbed015de657a9db787dd1dc7ea72cf8c6ec25cfc8a"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-saved-held-20261109-fixture/custody/operator-authority-input.json",
+    "bytes": 278,
+    "sha256": "29d8a263c05510696a48555563b84907b2443f686b6c9f73d4f4e1b22b360383"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-saved-held-20261109-fixture/custody/operator-source-review-input.json",
+    "bytes": 1730,
+    "sha256": "7a32cb768fc11f458de45c62d7c367d6d39c8b498b2db3c1f939b3839486b93a"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-saved-held-20261109-fixture/custody/originals/manifest.jsonl",
+    "bytes": 1228,
+    "sha256": "99cc2fe853f45b398cec82ce3bbafe626d021827d62a3ec4714828047957ef37"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-saved-held-20261109-fixture/custody/originals/pages.ndjson",
+    "bytes": 619,
+    "sha256": "bf02ef32dcbcb3e0c954bb2b3adf6d43ca3a4d0e7ce8d872a6c8c0cbc6965009"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-saved-held-20261109-fixture/custody/originals/portions.ndjson",
+    "bytes": 216,
+    "sha256": "da881acae180fea61c65f7dc7aa789880fa0d0c8998f42108e6836c00cab1c01"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-saved-held-20261109-fixture/custody/originals/source_map.json",
+    "bytes": 626,
+    "sha256": "705fe533d43f7d219f5bdabbd859d70ce76d44ba949ee73fdff7d9e1d43fac2f"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-saved-held-20261109-fixture/custody/pages.jsonl",
+    "bytes": 619,
+    "sha256": "bf02ef32dcbcb3e0c954bb2b3adf6d43ca3a4d0e7ce8d872a6c8c0cbc6965009"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-saved-held-20261109-fixture/custody/pending-inventory.json",
+    "bytes": 3752,
+    "sha256": "a61bb1b9b18a7955473587c26efecfcbca11cfcc846b852c54a9bc5ee44f4266"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-saved-held-20261109-fixture/custody/portions.jsonl",
+    "bytes": 216,
+    "sha256": "da881acae180fea61c65f7dc7aa789880fa0d0c8998f42108e6836c00cab1c01"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-saved-held-20261109-fixture/custody/proposals.jsonl",
+    "bytes": 3534,
+    "sha256": "839560d27b801256021592cdf904fc24e267bcf8f00c0ef452585a0f9982f082"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-saved-held-20261109-fixture/custody/source-1.png",
+    "bytes": 35359,
+    "sha256": "4cb7ceb9d8a3045951ce9c2da00eb1afb02ad91d1d3bad722283c0f96fa5ce84"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-saved-held-20261109-fixture/custody/source-2.png",
+    "bytes": 19706,
+    "sha256": "381e784398327ecbe0d0e9b84a506d814d7b6ef4928e3d0f769946b64430ac33"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-saved-held-20261109-fixture/custody/source-3.png",
+    "bytes": 6863,
+    "sha256": "449d8509b752ea899c4c6248d919c9ebe4859ffdb0596052c915fc2f06aa54a9"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-saved-held-20261109-fixture/driver-proposals.log",
+    "bytes": 1494,
+    "sha256": "50cdb9af255ab77c50d56cfaef03a5669e900014eb09b58b83f669f2a7772670"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-saved-held-20261109-fixture/driver-review-build.log",
+    "bytes": 706,
+    "sha256": "9a7f25a481c73629813aae7a6d033b1cf53e174930dab366e31447bbcb5fca20"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-saved-held-20261109-fixture/input/S3-source.png",
+    "bytes": 35359,
+    "sha256": "4cb7ceb9d8a3045951ce9c2da00eb1afb02ad91d1d3bad722283c0f96fa5ce84"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-saved-held-20261109-fixture/input/S4-source.png",
+    "bytes": 19706,
+    "sha256": "381e784398327ecbe0d0e9b84a506d814d7b6ef4928e3d0f769946b64430ac33"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-saved-held-20261109-fixture/input/images/S3.png",
+    "bytes": 28577,
+    "sha256": "11d98294ac8a19c8e77490998a933add2ddf8de6fdbeb8e7156159e201a87bfe"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-saved-held-20261109-fixture/input/images/S4.png",
+    "bytes": 11352,
+    "sha256": "9d310a44f961da0f05d01212dd3ba077a49054f5582bd8db393d5ae8670648a8"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-saved-held-20261109-fixture/input/manifest.jsonl",
+    "bytes": 1228,
+    "sha256": "99cc2fe853f45b398cec82ce3bbafe626d021827d62a3ec4714828047957ef37"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-saved-held-20261109-fixture/input/pages.ndjson",
+    "bytes": 619,
+    "sha256": "bf02ef32dcbcb3e0c954bb2b3adf6d43ca3a4d0e7ce8d872a6c8c0cbc6965009"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-saved-held-20261109-fixture/input/portions.ndjson",
+    "bytes": 216,
+    "sha256": "da881acae180fea61c65f7dc7aa789880fa0d0c8998f42108e6836c00cab1c01"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-saved-held-20261109-fixture/input/source-map.json",
+    "bytes": 626,
+    "sha256": "705fe533d43f7d219f5bdabbd859d70ce76d44ba949ee73fdff7d9e1d43fac2f"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-saved-held-20261109-fixture/input/text-only-page.png",
+    "bytes": 6863,
+    "sha256": "449d8509b752ea899c4c6248d919c9ebe4859ffdb0596052c915fc2f06aa54a9"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-saved-held-20261109-fixture/model-policy-before-operator.json",
+    "bytes": 1235,
+    "sha256": "3b15ef1ae637e080f626d91049eaa186df76868f2eeae944bede6d674939b3de"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-saved-held-20261109-fixture/qualification-replay/mapping.json",
+    "bytes": 716,
+    "sha256": "7f082bea698e467f40511b62b5d56df683a0ea384c61f10ceccb2db75a0c7175"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-saved-held-20261109-fixture/qualification-replay/request-001.json",
+    "bytes": 89734,
+    "sha256": "66a7028a580d0c2128a55f321182317f3a840b0c6ffe53e028fa59d151fb0659"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-saved-held-20261109-fixture/qualification-replay/request-002.json",
+    "bytes": 45894,
+    "sha256": "5da6be681d48a77ad707964591586eb92bbd47ec7c7230c7f4abb2c54cefd468"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-saved-held-20261109-fixture/qualification-replay/response-001.json",
+    "bytes": 5872,
+    "sha256": "b13396e7e651dadc5591134ce6126fca875956084f2d7d46cb8fd627d8518d26"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-saved-held-20261109-fixture/qualification-replay/response-002.json",
+    "bytes": 3065,
+    "sha256": "d677ecd5398df56459937bbed015de657a9db787dd1dc7ea72cf8c6ec25cfc8a"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-saved-held-20261109-fixture/recipe.yaml",
+    "bytes": 3832,
+    "sha256": "2c4d9f06290c427fcab778c421da5f77d9b0a03138138a1096a7d885056f2d80"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-saved-held-20261109-fixture/replay/mapping.json",
+    "bytes": 716,
+    "sha256": "a0937df3cca9ce070f38d847e2089ebc548fd923750d089d598fc4728fb02b22"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-saved-held-20261109-fixture/replay/request-068.json",
+    "bytes": 89707,
+    "sha256": "06eeae84c01a8ef0d70a190295cb77b9f22d36511d678524da77a381500073cd"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-saved-held-20261109-fixture/replay/request-069.json",
+    "bytes": 45867,
+    "sha256": "a5b045f757d1b9df3e2541130decaa2daa5bbc19b0a67fa80646d917239179f9"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-saved-held-20261109-fixture/replay/response-068.json",
+    "bytes": 4466,
+    "sha256": "99ef270f399ae6075a33615cd2fd7b9f444eaef200a644f48b5c1b5672fdcae2"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-saved-held-20261109-fixture/replay/response-069.json",
+    "bytes": 2984,
+    "sha256": "087c6b29c0eded0f7f7409226e00af5c53842aeee7cd09159876a13c52b0bbc0"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-saved-held-20261109-fixture/result.json",
+    "bytes": 709,
+    "sha256": "c8092c8862796b683534a0b86a8c22f70afd6c0f62df0b9c1b030c83d5c82954"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-saved-held-20261109-fixture/synthetic-authority.json",
+    "bytes": 278,
+    "sha256": "29d8a263c05510696a48555563b84907b2443f686b6c9f73d4f4e1b22b360383"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-saved-held-20261109-fixture/synthetic-review.json",
+    "bytes": 1730,
+    "sha256": "7a32cb768fc11f458de45c62d7c367d6d39c8b498b2db3c1f939b3839486b93a"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-saved-recrop-20261109/01_load_artifact_v1/pages.ndjson",
+    "bytes": 619,
+    "sha256": "bf02ef32dcbcb3e0c954bb2b3adf6d43ca3a4d0e7ce8d872a6c8c0cbc6965009"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-saved-recrop-20261109/02_load_artifact_v1/portions.ndjson",
+    "bytes": 216,
+    "sha256": "da881acae180fea61c65f7dc7aa789880fa0d0c8998f42108e6836c00cab1c01"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-saved-recrop-20261109/03_propose_crop_safety_v1/proposals.jsonl",
+    "bytes": 3538,
+    "sha256": "fe8641d3a096a7e0d12aa6b27d05595d25e1c51b03b51862a38cc5f6bac68b4d"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-saved-recrop-20261109/04_finalize_crop_review_v1/review_finalized.json",
+    "bytes": 140,
+    "sha256": "e1ef7fe08e4964a58bc9ff2e43a85ae1e5955a5ca92b9cf3a6d6fded1f58959a"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-saved-recrop-20261109/05_release_reviewed_crops_v1/crop_review_held.json",
+    "bytes": 306,
+    "sha256": "62bd07e23ee28a5cf5766e203ba78919b310a16c7b58de93098695a6471f4840"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-saved-recrop-20261109/pipeline_events.jsonl",
+    "bytes": 5794,
+    "sha256": "4f43b60edda473c5a9b80db64c98eea2d23a890b36b93ee5cb4269bda6efba4b"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-saved-recrop-20261109/pipeline_state.json",
+    "bytes": 2943,
+    "sha256": "ce1d73c29f2d94838c5a54cd93d7f29994ff3dac96a0ed3b7908b228fbb4fcd2"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-saved-recrop-20261109/snapshots/plan.json",
+    "bytes": 6209,
+    "sha256": "ef83bdb6c6d3a909f4ffe1126d4d5fba10d86d77e9a4f46976d9678a504f39ec"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-saved-recrop-20261109/snapshots/recipe.yaml",
+    "bytes": 4024,
+    "sha256": "e21ff77319dd66c12e62ea02ff39a65098b157bb340ab1a15ba2728934ec8527"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-saved-recrop-20261109/snapshots/registry.json",
+    "bytes": 8680,
+    "sha256": "e531d37346a362b97c36ff331508b5a36e9f5d5bcd57a9c6f827caae6fa01365"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-saved-recrop-20261109/timing_summary.json",
+    "bytes": 242,
+    "sha256": "3c2ec7610a37b7e3624c870d038c13d5c8a81235bdfb689a4563b0ab9463ca75"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-saved-recrop-20261109-fixture/custody/authority-template.json",
+    "bytes": 195,
+    "sha256": "5b41987c8dc5ac3ba3089d5cac2fed65c3d9ab0800934d36edb96b7c1304b002"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-saved-recrop-20261109-fixture/custody/authority.json",
+    "bytes": 461,
+    "sha256": "3aef03dcaddb956e728229222aa52cdd4c60e3f3cac04532a14d491f2c2e6b0b"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-saved-recrop-20261109-fixture/custody/custody_provenance.json",
+    "bytes": 3690,
+    "sha256": "809ecc90e35898c5b0c23c358da0f53213e2008e4fdfc0308b9406c8cd31286d"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-saved-recrop-20261109-fixture/custody/decisions.jsonl",
+    "bytes": 2439,
+    "sha256": "183ba6d8726dc038a89a40cd49159c4fa0ddc0cd9085e11b7ae64d11da5ee3f8"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-saved-recrop-20261109-fixture/custody/human-review-001.json",
+    "bytes": 242,
+    "sha256": "17d173217a802270b949a9decba527335b53b1e252698a620bb662a009b847f3"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-saved-recrop-20261109-fixture/custody/human-review-002.json",
+    "bytes": 249,
+    "sha256": "d5b9bef791ea6e21fea12f482fc37859d0f0e18171fd1addb1f13a31bd779bf9"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-saved-recrop-20261109-fixture/custody/images/S3.png",
+    "bytes": 28577,
+    "sha256": "11d98294ac8a19c8e77490998a933add2ddf8de6fdbeb8e7156159e201a87bfe"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-saved-recrop-20261109-fixture/custody/images/S4.png",
+    "bytes": 11352,
+    "sha256": "9d310a44f961da0f05d01212dd3ba077a49054f5582bd8db393d5ae8670648a8"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-saved-recrop-20261109-fixture/custody/inventory-review-template.json",
+    "bytes": 1387,
+    "sha256": "45aa7e0496e171399c76d70968cd0e72cd08cab7b1f094f79198c4518ee256e6"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-saved-recrop-20261109-fixture/custody/inventory.json",
+    "bytes": 4014,
+    "sha256": "542de74aa4e62996bf2cb6ed9e14dbf3b2337af26c2310bd6c271a593d8d1827"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-saved-recrop-20261109-fixture/custody/manifest.jsonl",
+    "bytes": 1670,
+    "sha256": "19b6774b5546d4be600c6b999898ba05a6c5917d2831fc00087dbf29e1f433e4"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-saved-recrop-20261109-fixture/custody/native-receipts/ledger.json",
+    "bytes": 1260,
+    "sha256": "560aa8ab27ab7f2f08dc67fd243ed9cd36507786708a8b86c715070db8f1945a"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-saved-recrop-20261109-fixture/custody/native-receipts/request-001.json",
+    "bytes": 89734,
+    "sha256": "66a7028a580d0c2128a55f321182317f3a840b0c6ffe53e028fa59d151fb0659"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-saved-recrop-20261109-fixture/custody/native-receipts/request-002.json",
+    "bytes": 45894,
+    "sha256": "5da6be681d48a77ad707964591586eb92bbd47ec7c7230c7f4abb2c54cefd468"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-saved-recrop-20261109-fixture/custody/native-receipts/response-001.json",
+    "bytes": 5872,
+    "sha256": "b13396e7e651dadc5591134ce6126fca875956084f2d7d46cb8fd627d8518d26"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-saved-recrop-20261109-fixture/custody/native-receipts/response-002.json",
+    "bytes": 3065,
+    "sha256": "d677ecd5398df56459937bbed015de657a9db787dd1dc7ea72cf8c6ec25cfc8a"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-saved-recrop-20261109-fixture/custody/operator-authority-input.json",
+    "bytes": 280,
+    "sha256": "7c186bff264cafbd187af95c7cb8126706e242e2b091b82ab9a52e59ca163c90"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-saved-recrop-20261109-fixture/custody/operator-source-review-input.json",
+    "bytes": 1726,
+    "sha256": "3cca306bc17111aba8adf16338ce56466df1a4f788108a905a96ca62a21d69ea"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-saved-recrop-20261109-fixture/custody/originals/manifest.jsonl",
+    "bytes": 1232,
+    "sha256": "7525fa87ee81ca0bd6a490aef8f167c123e672fa5d2d15f9acfa5e3a9316f05d"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-saved-recrop-20261109-fixture/custody/originals/pages.ndjson",
+    "bytes": 619,
+    "sha256": "bf02ef32dcbcb3e0c954bb2b3adf6d43ca3a4d0e7ce8d872a6c8c0cbc6965009"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-saved-recrop-20261109-fixture/custody/originals/portions.ndjson",
+    "bytes": 216,
+    "sha256": "da881acae180fea61c65f7dc7aa789880fa0d0c8998f42108e6836c00cab1c01"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-saved-recrop-20261109-fixture/custody/originals/source_map.json",
+    "bytes": 632,
+    "sha256": "3d0aa6912615a78abae96795003376bd55530d1fbc454e54a896818f2b544983"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-saved-recrop-20261109-fixture/custody/pages.jsonl",
+    "bytes": 619,
+    "sha256": "bf02ef32dcbcb3e0c954bb2b3adf6d43ca3a4d0e7ce8d872a6c8c0cbc6965009"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-saved-recrop-20261109-fixture/custody/pending-inventory.json",
+    "bytes": 3768,
+    "sha256": "e633edff4a181169388c2c2d6f70cc77ac019590d679fb5e1667d701cb6dd026"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-saved-recrop-20261109-fixture/custody/portions.jsonl",
+    "bytes": 216,
+    "sha256": "da881acae180fea61c65f7dc7aa789880fa0d0c8998f42108e6836c00cab1c01"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-saved-recrop-20261109-fixture/custody/proposals.jsonl",
+    "bytes": 3538,
+    "sha256": "fe8641d3a096a7e0d12aa6b27d05595d25e1c51b03b51862a38cc5f6bac68b4d"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-saved-recrop-20261109-fixture/custody/source-1.png",
+    "bytes": 35359,
+    "sha256": "4cb7ceb9d8a3045951ce9c2da00eb1afb02ad91d1d3bad722283c0f96fa5ce84"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-saved-recrop-20261109-fixture/custody/source-2.png",
+    "bytes": 19706,
+    "sha256": "381e784398327ecbe0d0e9b84a506d814d7b6ef4928e3d0f769946b64430ac33"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-saved-recrop-20261109-fixture/custody/source-3.png",
+    "bytes": 6863,
+    "sha256": "449d8509b752ea899c4c6248d919c9ebe4859ffdb0596052c915fc2f06aa54a9"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-saved-recrop-20261109-fixture/driver-proposals.log",
+    "bytes": 1506,
+    "sha256": "d7d73c7523bfe22b76836c0a261c8a9738c6d5ea098aadebcca63b55d0a6c5c0"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-saved-recrop-20261109-fixture/driver-review-build.log",
+    "bytes": 706,
+    "sha256": "9a7f25a481c73629813aae7a6d033b1cf53e174930dab366e31447bbcb5fca20"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-saved-recrop-20261109-fixture/input/S3-source.png",
+    "bytes": 35359,
+    "sha256": "4cb7ceb9d8a3045951ce9c2da00eb1afb02ad91d1d3bad722283c0f96fa5ce84"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-saved-recrop-20261109-fixture/input/S4-source.png",
+    "bytes": 19706,
+    "sha256": "381e784398327ecbe0d0e9b84a506d814d7b6ef4928e3d0f769946b64430ac33"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-saved-recrop-20261109-fixture/input/images/S3.png",
+    "bytes": 28577,
+    "sha256": "11d98294ac8a19c8e77490998a933add2ddf8de6fdbeb8e7156159e201a87bfe"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-saved-recrop-20261109-fixture/input/images/S4.png",
+    "bytes": 11352,
+    "sha256": "9d310a44f961da0f05d01212dd3ba077a49054f5582bd8db393d5ae8670648a8"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-saved-recrop-20261109-fixture/input/manifest.jsonl",
+    "bytes": 1232,
+    "sha256": "7525fa87ee81ca0bd6a490aef8f167c123e672fa5d2d15f9acfa5e3a9316f05d"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-saved-recrop-20261109-fixture/input/pages.ndjson",
+    "bytes": 619,
+    "sha256": "bf02ef32dcbcb3e0c954bb2b3adf6d43ca3a4d0e7ce8d872a6c8c0cbc6965009"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-saved-recrop-20261109-fixture/input/portions.ndjson",
+    "bytes": 216,
+    "sha256": "da881acae180fea61c65f7dc7aa789880fa0d0c8998f42108e6836c00cab1c01"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-saved-recrop-20261109-fixture/input/source-map.json",
+    "bytes": 632,
+    "sha256": "3d0aa6912615a78abae96795003376bd55530d1fbc454e54a896818f2b544983"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-saved-recrop-20261109-fixture/input/text-only-page.png",
+    "bytes": 6863,
+    "sha256": "449d8509b752ea899c4c6248d919c9ebe4859ffdb0596052c915fc2f06aa54a9"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-saved-recrop-20261109-fixture/model-policy-before-operator.json",
+    "bytes": 1235,
+    "sha256": "3b15ef1ae637e080f626d91049eaa186df76868f2eeae944bede6d674939b3de"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-saved-recrop-20261109-fixture/qualification-replay/mapping.json",
+    "bytes": 716,
+    "sha256": "7f082bea698e467f40511b62b5d56df683a0ea384c61f10ceccb2db75a0c7175"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-saved-recrop-20261109-fixture/qualification-replay/request-001.json",
+    "bytes": 89734,
+    "sha256": "66a7028a580d0c2128a55f321182317f3a840b0c6ffe53e028fa59d151fb0659"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-saved-recrop-20261109-fixture/qualification-replay/request-002.json",
+    "bytes": 45894,
+    "sha256": "5da6be681d48a77ad707964591586eb92bbd47ec7c7230c7f4abb2c54cefd468"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-saved-recrop-20261109-fixture/qualification-replay/response-001.json",
+    "bytes": 5872,
+    "sha256": "b13396e7e651dadc5591134ce6126fca875956084f2d7d46cb8fd627d8518d26"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-saved-recrop-20261109-fixture/qualification-replay/response-002.json",
+    "bytes": 3065,
+    "sha256": "d677ecd5398df56459937bbed015de657a9db787dd1dc7ea72cf8c6ec25cfc8a"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-saved-recrop-20261109-fixture/recipe.yaml",
+    "bytes": 3864,
+    "sha256": "b13cb803055405352e75439c4396e260a7329784c5892cb0e853c8e9aaad928c"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-saved-recrop-20261109-fixture/replay/mapping.json",
+    "bytes": 716,
+    "sha256": "a0937df3cca9ce070f38d847e2089ebc548fd923750d089d598fc4728fb02b22"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-saved-recrop-20261109-fixture/replay/request-068.json",
+    "bytes": 89707,
+    "sha256": "06eeae84c01a8ef0d70a190295cb77b9f22d36511d678524da77a381500073cd"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-saved-recrop-20261109-fixture/replay/request-069.json",
+    "bytes": 45867,
+    "sha256": "a5b045f757d1b9df3e2541130decaa2daa5bbc19b0a67fa80646d917239179f9"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-saved-recrop-20261109-fixture/replay/response-068.json",
+    "bytes": 4466,
+    "sha256": "99ef270f399ae6075a33615cd2fd7b9f444eaef200a644f48b5c1b5672fdcae2"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-saved-recrop-20261109-fixture/replay/response-069.json",
+    "bytes": 2984,
+    "sha256": "087c6b29c0eded0f7f7409226e00af5c53842aeee7cd09159876a13c52b0bbc0"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-saved-recrop-20261109-fixture/result.json",
+    "bytes": 719,
+    "sha256": "ccec6260f1691df9802b5265ce572d06f6eac3bca86891fa0b83085ad751e2f8"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-saved-recrop-20261109-fixture/synthetic-authority.json",
+    "bytes": 280,
+    "sha256": "7c186bff264cafbd187af95c7cb8126706e242e2b091b82ab9a52e59ca163c90"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/driver-artifacts/safety-qual088-sol-saved-recrop-20261109-fixture/synthetic-review.json",
+    "bytes": 1726,
+    "sha256": "3cca306bc17111aba8adf16338ce56466df1a4f788108a905a96ca62a21d69ea"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/final-raw-contract-audit.json",
+    "bytes": 19665,
+    "sha256": "6a6793bb2e1e2995fb0744b4f445e211798a55f2021039294a8302f3146de26f"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/final-source-snapshots/benchmarks/golden/crop-page-level-safety-repair-048-source-adjudicated.json",
+    "bytes": 5157,
+    "sha256": "6f32bc513494f1c4454b4c41e74186136212d477ff10c87ccb29244ca21aaa76"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/final-source-snapshots/benchmarks/prompts/validate-page-level-crop.js",
+    "bytes": 4043,
+    "sha256": "ef4395838929b208fe65f21500d81ade902072bef3f8e53f81ef3d3b83fbc421"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/final-source-snapshots/benchmarks/providers/openai_responses_model.py",
+    "bytes": 17928,
+    "sha256": "3506470ee1eb9c8da8c472f270e3400fd2c6cbd086c6be836a0d974997696240"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/final-source-snapshots/benchmarks/scripts/safety_qual_088.py",
+    "bytes": 19166,
+    "sha256": "bdf90bceaeabe08e0735e33aeb549f4ad5ddc2ee5d858f4b39f703c76150c0f1"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/final-source-snapshots/benchmarks/scripts/safety_qual_088_audit.py",
+    "bytes": 9929,
+    "sha256": "712551f8d896ae98bb42e436d774ae4b362350981981ca587f1cde7d97710d66"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/final-source-snapshots/benchmarks/tasks/safety-repair-048-sol-full-continuation1.yaml",
+    "bytes": 7494,
+    "sha256": "72307c1de8c0968f167756f98f023287ca38ecd25669c6153eb60b6eb74153d4"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/final-source-snapshots/docs/evals/attempts/088-fable52-safety-qualification.md",
+    "bytes": 8721,
+    "sha256": "e2aa86b6416e8d8b6ee8e539cf125d4a18cacd37d759205df5ada516ef807a20"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/final-source-snapshots/docs/stories/story-266-fable52-safety-qualification.md",
+    "bytes": 2626,
+    "sha256": "e93d2011bc814fe3d4b081fa5a9a1c12483fb62081600c23f68e67ba817cd02b"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/final-source-snapshots/modules/common/crop_review.py",
+    "bytes": 15407,
+    "sha256": "3e586a187d0439b1cfe39360e9bef0135d09992dbe6d7cdc5bad0bd0d17d5637"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/final-source-snapshots/modules/common/crop_review_setup.py",
+    "bytes": 12843,
+    "sha256": "74c6bf5cd5670d26c13176ff63bcc06e1e05763f63eda70962f4d7be690a2199"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/final-source-snapshots/modules/common/crop_safety.py",
+    "bytes": 10721,
+    "sha256": "2758fb1792385fd1bc4b357b25b0a047e01b10c58fa6d6f49f39cfd4be1484a1"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/final-source-snapshots/modules/common/crop_safety_fable_eval.py",
+    "bytes": 10638,
+    "sha256": "a01e809f918529c81d85a90c2fe633d14fa469b780c9b5698685cd6d139b2920"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/final-source-snapshots/modules/transform/propose_crop_safety_v1/main.py",
+    "bytes": 14297,
+    "sha256": "9d9107f4f15d0ad2efa32bbabfda7f9d1d97f98c336186d409501abac88dfda5"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/final-source-snapshots/modules/transform/propose_crop_safety_v1/prompt.txt",
+    "bytes": 3658,
+    "sha256": "9931ded6b7e732687b0889e6959ef9a873e6f459a292c132443db0f6bc9a7371"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/final-source-snapshots/tests/test_crop_safety_fable_eval.py",
+    "bytes": 15464,
+    "sha256": "4ae452b6109caf8441e470a55dae91e6c669cc51fa1c7a07be8ec5fe7a4e9bf0"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/final-source-snapshots/tests/test_safety_qual_088.py",
+    "bytes": 5535,
+    "sha256": "fc7f1c2de8fdccdb3d1f27156637113afab38281465bc9ff55c558821bca0357"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/final-source-snapshots/tools/prepare_crop_review_fixture.py",
+    "bytes": 7947,
+    "sha256": "d371861fb2fce40a3ddcb00707b4c1d530cbd8530d5c329742f2dec0dd00ac01"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/final-source-snapshots/tools/run_safety_qual_caller.py",
+    "bytes": 13167,
+    "sha256": "073fd96410f7d54ea0237eeeb710d2994ea7becb86dbd74d8360f4653d2adabf"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/full-payload-expectations.json",
+    "bytes": 16063,
+    "sha256": "05ff54f07d33f450f842b940268cbc839f7226289c79916bc6349799fd40e8d4"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/ledger.json",
+    "bytes": 80832,
+    "sha256": "7f42549a30d15c2256f1b6691885f7b610407541be6a389d9c662ea67834c454"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/ledger.lock",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/preflight.json",
+    "bytes": 24763,
+    "sha256": "5e9198b1b51d2f3d292bd24d2f196e5357278f58c402c4001086f4d863ad992a"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/provenance.json",
+    "bytes": 2087,
+    "sha256": "91a9864abab7ca4644adcaf263fb50f21c524201459f0f488282225ddc7eb820"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/raw/001-request.json",
+    "bytes": 9116125,
+    "sha256": "391944009506014bbc28fc12464b7e5b8af52e0456f42ff544df510353df06b3"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/raw/001-response.json",
+    "bytes": 5963,
+    "sha256": "0cee9c2ee5e6b4f5f6b85498c6a1b99222ce22a1b53731cec964387cd62cf00c"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/raw/002-request.json",
+    "bytes": 9116184,
+    "sha256": "ea5869d0ea0897cf48bff3163467d48e487b81d42a174bcf32635fce36ae3355"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/raw/002-response.json",
+    "bytes": 6434,
+    "sha256": "9520c6d99d16c4b9e71a007585c748600aa8fc2d9d85ebcb9772ef06248945b2"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/raw/003-request.json",
+    "bytes": 1591029,
+    "sha256": "5bfd68ec1e41373ec832ef05953e281dc00a80f4681f4d3e47ff7be1e1dfd992"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/raw/003-response.json",
+    "bytes": 780,
+    "sha256": "8ead11f0ef955489acb193ba186037641e9c5e0143270597e1ebd51f0a46bf44"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/raw/004-request.json",
+    "bytes": 1591088,
+    "sha256": "246fdcbd2c4f3fcf124d56a9b9dd5c28596d940b1462716e7e68f6da8f928aff"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/raw/004-response.json",
+    "bytes": 3085,
+    "sha256": "ed588906376c61a455429bfd9890ee8c83799c7a635e4f15bb411ae23f875e43"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/raw/005-request.json",
+    "bytes": 5921341,
+    "sha256": "072c37f4c6210fb5023c80f3e93c8dd5298bb1398a14753f87954f5d150d0d00"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/raw/005-response.json",
+    "bytes": 771,
+    "sha256": "420111f3490cedb52b91338b7234c22245774f5315160895f936498d0424eb95"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/raw/006-request.json",
+    "bytes": 5921400,
+    "sha256": "5256016dca80ce1088b67e4f24cbe9b1830d2a71f423d04ebb84a8f109bf2254"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/raw/006-response.json",
+    "bytes": 3030,
+    "sha256": "e2e5d7b23d0abb15ff2aed1d322e1e6194da891c9c73afde91d5f59a40d50fac"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/raw/007-request.json",
+    "bytes": 549849,
+    "sha256": "e0d245c8041ee1fc7511fe9ce8f2d58cd31e600736dd009cb46abfdbe028b96f"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/raw/007-response.json",
+    "bytes": 1783,
+    "sha256": "7163eec1130a4725a2c63c827933ae35dfb61ad60f418e2f3a36fe9f9b05948c"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/raw/008-request.json",
+    "bytes": 549908,
+    "sha256": "f1a76419f453919fedf10a811477ceb8a969418e44b09d7f11740c49ef8cf3a9"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/raw/008-response.json",
+    "bytes": 3089,
+    "sha256": "a795da38fd4e6bcd6143a93b82948a5fa0a6f17f8acb29bf1a676664ba152230"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/raw/009-request.json",
+    "bytes": 605157,
+    "sha256": "7be457617844d9af1c1ac58a860c07c5ed99d9e33aa1d86a6553542f1048fa50"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/raw/009-response.json",
+    "bytes": 3142,
+    "sha256": "d232977921131b88efda943ee52c54b068f81bb066cdf55bcd184663e9eefbad"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/raw/010-request.json",
+    "bytes": 605216,
+    "sha256": "988d7dbd6bdfdb8acefc47bcc5f2c15c260cdcff5e13f02a832b581603522bab"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/raw/010-response.json",
+    "bytes": 4569,
+    "sha256": "772106225d0a8c3101e3d45c77555d3a3abbd6d1b83adb0cff3183a16d193761"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/raw/011-request.json",
+    "bytes": 3424937,
+    "sha256": "312fd2eec1f2e5a11a666f2b84bfbc9ff2cf7ee25a0fa1a1f1ea745bc36fec2d"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/raw/011-response.json",
+    "bytes": 1968,
+    "sha256": "3aec63e5aec28ad4d679e3751441a1a44863299a9b29cb775a7972a9f91d114e"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/raw/012-request.json",
+    "bytes": 3424996,
+    "sha256": "ba0fcfee77caee2359610a8754a2867915f3a9033feb81df3d7b3bab53668b44"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/raw/012-response.json",
+    "bytes": 3084,
+    "sha256": "cff32695d7d598e1c90fbe894aa082ac336ca3c66795da1ced0b9740b891dd8e"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/raw/013-request.json",
+    "bytes": 4717969,
+    "sha256": "d6f946b537a37df999c0eb3b847baf9fa98a4d45eeae70b57ceb9c624de7812a"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/raw/013-response.json",
+    "bytes": 839,
+    "sha256": "72868a294429817c481ad55eaacb7ed33c865bb5d0ec2e7eef6d7396723a5178"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/raw/014-request.json",
+    "bytes": 4718028,
+    "sha256": "66db612bbdb2a0a12c8ab5f4b72c6005f2b9cc17063dd96a714e051d96e05a8c"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/raw/014-response.json",
+    "bytes": 3074,
+    "sha256": "face696005835800e2b3efda825261c5c9e6c5e8b25d8a43b9cfba82f14b4eaf"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/raw/015-request.json",
+    "bytes": 9799313,
+    "sha256": "9350cfe74784c8d0e9237e604d29ee59270f061879f35d77e475f1c59f762a30"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/raw/015-response.json",
+    "bytes": 1796,
+    "sha256": "564be45cad66b5b356efe92eea30bac4c2a60ed59716433ba601967fe7209973"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/raw/016-request.json",
+    "bytes": 9799372,
+    "sha256": "0f25f5801a4bfcb66cd7fb035a86abbba75fa738e7e9635bff5bdf34427476d4"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/raw/016-response.json",
+    "bytes": 3089,
+    "sha256": "d105bf1b59c9b2ddce4d3d4b05b5a702d2a66406561863139960dac41ebbf6e2"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/raw/017-request.json",
+    "bytes": 8173209,
+    "sha256": "299e27bf2673f2acf18369014129f4fd8adb3b084b40c735098aeca45ca8098c"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/raw/017-response.json",
+    "bytes": 825,
+    "sha256": "46b2da984ac542d32421232508dcf60bd7a6cbaa767a1ee637f0a54df69fb1da"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/raw/018-request.json",
+    "bytes": 8173268,
+    "sha256": "bd98cc4b51c30f796aabf61f7b273148754e40f6f725ad0636b621b897b8a86c"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/raw/018-response.json",
+    "bytes": 3088,
+    "sha256": "92f94c3a0b96ce4c58e8eaef8ac5a5151fbe13991f804fd2590bbfd097f57949"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/raw/019-request.json",
+    "bytes": 2869009,
+    "sha256": "059058f3cf43782067bb6d533d11d3a15e717797ad3f5e11812bbe38a1154371"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/raw/019-response.json",
+    "bytes": 795,
+    "sha256": "8b9c808421923c751032c0228e14b1d00321ef492d936dad798d878f2d22bc22"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/raw/020-request.json",
+    "bytes": 2869068,
+    "sha256": "b3c2db7ce51ef70b8225ea395c3976f57c7fc5fa9c99a3fd9771271565ab27c0"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/raw/020-response.json",
+    "bytes": 3066,
+    "sha256": "7d1cb8fe3e92ac602930b673539cdf1e68ae412462fd2ac822f5d2c5ca75d824"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/raw/021-request.json",
+    "bytes": 2256585,
+    "sha256": "614c5fb00aad48a5a8fef43b611ee9f2e8e5eade13c6ee8f7bfbe0345e4e0735"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/raw/021-response.json",
+    "bytes": 797,
+    "sha256": "084aeab517a642e971880a44d1e69a8565124957bc69d7eb1e296c5b90b16afc"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/raw/022-request.json",
+    "bytes": 2256644,
+    "sha256": "c2f3ae438bdf0f892c0d01b1ab211adfd3e1a4815b293d6b475d924ad3c1dbaa"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/raw/022-response.json",
+    "bytes": 3035,
+    "sha256": "e1b81bdfcd578962e298aa8b8fc5b5f55c47d0a8af95405b358671408f84cab5"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/raw/023-request.json",
+    "bytes": 3255401,
+    "sha256": "2a99a1419092fc48760e52d0dd93409282691faddbe925b5e7fe4d8cbef493fa"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/raw/023-response.json",
+    "bytes": 3627,
+    "sha256": "89aa385b3e4ade85a3500b8debd53f2ba7562335c086ec01c85e0dd3d7d28be7"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/raw/024-request.json",
+    "bytes": 3255460,
+    "sha256": "c034f723aaf70ccc09963ce2890f307ba76ee7e645a720e4951673a1fb056b63"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/raw/024-response.json",
+    "bytes": 3042,
+    "sha256": "4fea8824760c05624812f4af65a78d2961c88eb9b5c7f69ab731581909ae6119"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/raw/025-request.json",
+    "bytes": 4181121,
+    "sha256": "a331e3f91c518f434893e76d18e510783581a6b8e076d400f159fad6005e7180"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/raw/025-response.json",
+    "bytes": 2897,
+    "sha256": "e1ebc9a9af3d181b1b477303061aea7a980369259fbe6e82a8e251bd73825131"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/raw/026-request.json",
+    "bytes": 4181180,
+    "sha256": "e1492d72935392773fb3292514c7f98d4c58a66a567c59250df9df35746e53ce"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/raw/026-response.json",
+    "bytes": 3057,
+    "sha256": "f791bc70888b9384090285247c19c9a1d5e3dca2db9828124d7259b8827f3891"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/raw/027-request.json",
+    "bytes": 3433213,
+    "sha256": "ee3d7c6b83013c2ef94d9cb297fbe197b068943c2e91f29c9871a2a3daad060d"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/raw/027-response.json",
+    "bytes": 768,
+    "sha256": "0dc3d977ae0db3656d671355f4971f5a5a91dd68a646fda8f9461798600f5181"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/raw/028-request.json",
+    "bytes": 3433272,
+    "sha256": "1b5829ecb6fc66a752a1945bb3a9d673aa34b3f84a43b6d883a4f7a0cb401d47"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/raw/028-response.json",
+    "bytes": 3067,
+    "sha256": "4ae0df8ada8ce6c02a5fabacc3d3341dc9c55a487ec911cc9380861e9e95a558"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/raw/029-request.json",
+    "bytes": 2550345,
+    "sha256": "8e6d3356d44b988e6637ee5c2403c1f267d50c74872300d5bd815c05f1f3867f"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/raw/029-response.json",
+    "bytes": 818,
+    "sha256": "3f2681a79cab8687329b4f5654f631bde234408209244ae2ad1fc2764182b24f"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/raw/030-request.json",
+    "bytes": 2550404,
+    "sha256": "539ebe30b8c17a63cef9882288c9079bf1bc9daf21ac0603ed45c4433932998d"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/raw/030-response.json",
+    "bytes": 3076,
+    "sha256": "5394a7e87cbe31ed2a9cc28172dd4756d462f3645d51ee3dd370f8c5a7a97038"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/raw/031-request.json",
+    "bytes": 8577925,
+    "sha256": "dd1a3cd4905664967a7040a6b0e660fee3c664e4ae6304cfe1586e22e8093572"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/raw/031-response.json",
+    "bytes": 788,
+    "sha256": "f7c7380e70e4c2a5fbec08cefc6a846da9260fd7633e28be6b23d76369dda17f"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/raw/032-request.json",
+    "bytes": 8577984,
+    "sha256": "caf6dc54283d1897ccd6ff660b3fbb0d5c4bd10bc1bb382a0264439744400ebd"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/raw/032-response.json",
+    "bytes": 3019,
+    "sha256": "55c7cbaf26fc2a7e52614cfac65cd988be344d252ba46a60f9d52a5db3403d13"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/raw/033-request.json",
+    "bytes": 8501873,
+    "sha256": "61332ab2a82245af6fb6ce11b616d3a3dc0327dbab2997426af9c75294b634ea"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/raw/033-response.json",
+    "bytes": 2106,
+    "sha256": "1dc75542d65ea2284b7ff8f9d1ab324a055f36707ec69d8019ad839982301955"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/raw/034-request.json",
+    "bytes": 8501932,
+    "sha256": "117c8bcdc3edaf76a7464061e9b97266e494afdb8d3956964f3ee7ad8db58cce"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/raw/034-response.json",
+    "bytes": 3075,
+    "sha256": "249b25038524bf0f3c2d9e419c6ab2a1e28655e99fe2462c848948e9e5dd1809"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/raw/035-request.json",
+    "bytes": 2733689,
+    "sha256": "bed24e45dd211883da84a686f4c4f9585c857c0061518c07986aad2a5ff2961c"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/raw/035-response.json",
+    "bytes": 2508,
+    "sha256": "b0d47c85e7bab3a889606614cd41f832d40ba98450c91fcedc15fce263dc6b8a"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/raw/036-request.json",
+    "bytes": 2733748,
+    "sha256": "763208d833cab9460ca0c93fb286120cb159f05f15e2f652fccc95b16b9908ce"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/raw/036-response.json",
+    "bytes": 3124,
+    "sha256": "66f50a8a82b843eb18ad6fe65aeeeee4b9b390c94cd5ad81def86f3219a31298"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/raw/037-request.json",
+    "bytes": 2182293,
+    "sha256": "8f4051863068cdace65f32af093b491acac7df378aabe58ab8dc48f136e1ce5b"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/raw/037-response.json",
+    "bytes": 3216,
+    "sha256": "3ee00806656c94cc0ff5ff048393252c6eb4164af2026d4e3bc18ed9d2ac1836"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/raw/038-request.json",
+    "bytes": 2182352,
+    "sha256": "1c1e0fcf819c172384cd00874f65aaaa3918a4cab569b1030a0aae5156ae4827"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/raw/038-response.json",
+    "bytes": 6089,
+    "sha256": "df9c88d6008b2a38cee0990d10f86729ad8717de6c244dbe716386dcb18bdcab"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/raw/039-request.json",
+    "bytes": 2268041,
+    "sha256": "bc7bd441e47ca0e05ce5aa3a1f5946e391688e239a92b0c408308f167d4891d9"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/raw/039-response.json",
+    "bytes": 1896,
+    "sha256": "819fa6e991d4ecb4522fb9582423f200ba282b4b50b9009a87c5c48a398b800e"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/raw/040-request.json",
+    "bytes": 2268100,
+    "sha256": "249f437b187c82e88a4550ec5658ec5bfae395ff2929e0547ce17e965f0f3276"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/raw/040-response.json",
+    "bytes": 3072,
+    "sha256": "8fdd1c0022e961c87941c66e3bf22f509e8ed6cc5503deb522da5b32579ec612"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/raw/041-request.json",
+    "bytes": 1912521,
+    "sha256": "64a4b1800796a7d54acd3cbc969b9548e5b2d4fb729c159e2ce56dd1bdfb4d02"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/raw/041-response.json",
+    "bytes": 1985,
+    "sha256": "4c34b558195911c5e942d503e274c69c3057c8a3611b25e4ef178e471a446909"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/raw/042-request.json",
+    "bytes": 1912580,
+    "sha256": "d2445d69d64ad2d6d0dac3d9664f5de4f97872836f2555a2c7affd00563c1b26"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/raw/042-response.json",
+    "bytes": 3083,
+    "sha256": "42cfaff8da6f8696155ecf105e4039e89c7ab9bc541e18c4f1fe4690823f8047"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/raw/043-request.json",
+    "bytes": 2282909,
+    "sha256": "bb6c78a657806d81f14a10d4a3740a8f8907c2d0cc90fb00f7fb09acd32d5592"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/raw/043-response.json",
+    "bytes": 867,
+    "sha256": "3e47bf0b3675f4b04f26a7486dc22a0c4dc7d502e60b25c328cc4a1b798afe2a"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/raw/044-request.json",
+    "bytes": 2282968,
+    "sha256": "d100b85755649a80bc371b6f6c986039b85100521fec835d90e7f756cf7e45c6"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/raw/044-response.json",
+    "bytes": 3073,
+    "sha256": "f14cb2a39b8180aa0073720e26d485751b4cdefce6435e35d780908a96679b51"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/raw/045-request.json",
+    "bytes": 89611,
+    "sha256": "bafedb358559f12763818c0e6358ea9e6ed14d0bc468d6b230d8d784cbc57b22"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/raw/045-response.json",
+    "bytes": 2518,
+    "sha256": "452901d2a160683d7b300ae9c5c766bc74cfab62dd20ba2c95e7daf4e0ee431c"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/raw/046-request.json",
+    "bytes": 45771,
+    "sha256": "79bf7875801066e3bd99dd3439bb78c7e58ec8c0acca8c2b032386b9393ac3ee"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/raw/046-response.json",
+    "bytes": 793,
+    "sha256": "4106d714c5f556b5c66f78805db34920f39f390fd869c4177b09c485d31ae296"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/raw/047-request.json",
+    "bytes": 89670,
+    "sha256": "f2c9d0e8be6e58151d55511bc583b24627bc40a4e24c78e6a9958a19c4995a9d"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/raw/047-response.json",
+    "bytes": 5872,
+    "sha256": "b13396e7e651dadc5591134ce6126fca875956084f2d7d46cb8fd627d8518d26"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/raw/048-request.json",
+    "bytes": 45830,
+    "sha256": "c2b1d4dbe7802eabcb6b3c60cd109dac0e08121a9c27824b0fefc6f7b81043bf"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/raw/048-response.json",
+    "bytes": 3065,
+    "sha256": "d677ecd5398df56459937bbed015de657a9db787dd1dc7ea72cf8c6ec25cfc8a"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/summary.json",
+    "bytes": 3213,
+    "sha256": "b20fd3f1d1402173a4ecc9a0e85080fc0fcfbd603513b0f2d945c007ed8412d4"
+  },
+  {
+    "path": "docs/evals/evidence/088-fable52-safety/validation.json",
+    "bytes": 934,
+    "sha256": "ffda5a2939a73f8b52aa59f371c4c57392d697e779aa39274c813794c2058c50"
+  }
+]

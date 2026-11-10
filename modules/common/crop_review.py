@@ -110,6 +110,15 @@ def evaluate(root, paths, run_id):
         "Incomplete review contract",
     )
     authority = json.loads(files["authority"].read_text())
+    from modules.common.crop_safety import evaluation_contract, qualification_context
+
+    eval_contract = evaluation_contract()
+    qualification = qualification_context()
+    if eval_contract or qualification:
+        require(
+            authority.get("synthetic_test") is True,
+            "Evaluation receipts require synthetic test authority",
+        )
     require(authority.get("run_id") == run_id, "Authority run mismatch")
     require(
         authority.get("trust_boundary") == "trusted_local_operator",
@@ -142,7 +151,10 @@ def evaluate(root, paths, run_id):
     pages_path = read_bound(root, inventory["pages_artifact"])
     portions_path = read_bound(root, inventory["portions_artifact"])
     pages = list(read_jsonl(pages_path))
-    actual_page_numbers = [x.get("page") if x.get("page_number") is None else x["page_number"] for x in pages]
+    actual_page_numbers = [
+        x.get("page") if x.get("page_number") is None else x["page_number"]
+        for x in pages
+    ]
     require(
         len(actual_page_numbers) == len(set(actual_page_numbers)),
         "Duplicate source pages",
@@ -202,6 +214,26 @@ def evaluate(root, paths, run_id):
     )
     expected = {x["candidate_id"]: x for x in bindings}
     for proposal in proposals:
+        if (
+            eval_contract
+            or qualification
+            or proposal.get("evaluation_contract") is not None
+            or proposal.get("qualification_context") is not None
+        ):
+            require(
+                proposal.get("evaluation_contract") == eval_contract
+                and bool(proposal.get("qualification_context")) == qualification,
+                "Evaluation receipt requires matching external context",
+            )
+            require(
+                authority.get("synthetic_test") is True,
+                "Evaluation receipts require synthetic test authority",
+            )
+            require(
+                proposal.get("origin")
+                in ("native_crop_safety", "replayed_crop_safety", "mock_crop_safety"),
+                "Evaluation receipt requires validated native origin",
+            )
         require(
             proposal.get("binding") == expected[proposal["candidate_id"]],
             "Stale model proposal binding",

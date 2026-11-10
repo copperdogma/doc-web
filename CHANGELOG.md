@@ -1,3 +1,9 @@
+## [2026-11-10-02] — Qualify native safety caller and retain Sol (Story 266)
+
+### Added
+- Qualify default-off genuine native Fable/Sol caller receipt and synthetic-authority checks through the actual driver, including rehashed substitution and mode/origin downgrade negatives.
+- Record the fresh22/22 classifier tie and both ambiguity-policy failures; retain cheaper/faster Sol and manual review.
+
 ## [2026-11-05-01] — Record official Hy4 source-fidelity evaluation (Story 264)
 
 ### Added

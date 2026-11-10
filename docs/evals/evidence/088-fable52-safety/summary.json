@@ -1,0 +1,81 @@
+{
+  "base_sha": "5bd3ba777d70347eb8dd84b9aa18a6b3ba025193",
+  "worktree": "/Users/cam/.codex/worktrees/fable52-safety-qualification-20261109/doc-web",
+  "branch": "codex/fable52-safety-qualification-20261109-doc-web",
+  "cap_usd": 60,
+  "known_spend_usd": 2.371752,
+  "unknown_exposure_usd": 0,
+  "calls": 48,
+  "recovery_calls": 0,
+  "judge_calls": 0,
+  "ledger_closed": true,
+  "winner": "Retain Sol: classifier/fullpayloadtie, both ambiguitypolicyfail, Sol cheaper/faster; no usefulFablequalitygain demonstrated",
+  "access": "bothdirectnativeavailable",
+  "transport": "48strictnativeenvelopes qualified; actualcaller nativebounds/operator/independentreceiptanchors qualified inexplicitdefaultoffsyntheticevaluationcontext",
+  "reliability": "48/48complete singleattempts; no reruns; exposed serialstudyonly",
+  "classifier": {
+    "fable": {
+      "cases": 22,
+      "cost_usd": 1.9225440000000003,
+      "mean_http_latency_ms": 7030.727272727273,
+      "thinking_tokens": 3538,
+      "verdict_correct": 22,
+      "false_safe": 0,
+      "flag_errors": 0,
+      "full_payload_pass": 22,
+      "original_canonical_correct": 20,
+      "intermediate048_correct": 21,
+      "source_adjudicated_correct": 22
+    },
+    "sol": {
+      "cases": 22,
+      "cost_usd": 0.369622,
+      "mean_http_latency_ms": 4925.136363636364,
+      "thinking_tokens": 155,
+      "verdict_correct": 22,
+      "false_safe": 0,
+      "flag_errors": 0,
+      "full_payload_pass": 22,
+      "original_canonical_correct": 20,
+      "intermediate048_correct": 21,
+      "source_adjudicated_correct": 22
+    }
+  },
+  "caller": {
+    "fable": {
+      "cases": 2,
+      "cost_usd": 0.06662399999999999,
+      "mean_http_latency_ms": 4445.5,
+      "thinking_tokens": 239,
+      "policy_pass": 1,
+      "policy_cases": 2,
+      "S3": "passwithcertainty; uncertaintydeclinerequirementfailed",
+      "S4": "passintegralbadge; correct"
+    },
+    "sol": {
+      "cases": 2,
+      "cost_usd": 0.012962,
+      "mean_http_latency_ms": 3299.5,
+      "thinking_tokens": 19,
+      "policy_pass": 1,
+      "policy_cases": 2,
+      "S3": "passwithcertainty; uncertaintydeclinerequirementfailed",
+      "S4": "passintegralbadge; correct"
+    }
+  },
+  "mechanics": "Both liveactualdriverapproved syntheticchains succeeded;6savedliveheld/recrop/errorvariants blockpublishing; zeroadditionalPOSTs; pages/assets/textpreserved",
+  "adoption": "Do not switch toFable. RetainSol asreviewproposal model; both remainunqualified for autonomousuncertaintydecisions. No realpublication/default/C5deletion qualification",
+  "tests": {
+    "affected_consumer": 220,
+    "combined_guard": 7,
+    "total": 227
+  },
+  "credentials": "Existingownerwrappernativekeys only; no copied/injected/changed keys/accountsettings; no cleanupneeded",
+  "scope_holds": [
+    "22exposedclassifierpairs not unseen reliability",
+    "15oversizecrops remainclassifieronly; no resize/currentcallerboundchange",
+    "S3sourceinterpretationphysicallyplausible butdeclareduncertaintydeclinepolicyfailed separately",
+    "SyntheticoperatorapprovalisnotCamapprovalanddoesnotrepairmodelpolicy",
+    "C5requiresseparate50pagedetectorproof; trimmer/source-deletion/manualhold/defaultsretained"
+  ]
+}

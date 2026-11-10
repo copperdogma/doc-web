@@ -146,8 +146,7 @@ def prepare(root, run_id):
         },
     )
     shutil.copyfile(
-        REPO
-        / "benchmarks/results/safety-repair-048-20260929-continuation1/response-068.json",
+        REPO / "tests/fixtures/crop_safety_runtime/native/response-068.json",
         root / "saved-S3-pass.json",
     )
     write(

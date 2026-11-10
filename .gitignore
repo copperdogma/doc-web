@@ -107,3 +107,24 @@ benchmarks/results/scout091-20261013/
 
 # Hy4 public/synthetic native working receipts; durable archive in eval evidence.
 /benchmarks/results/hy4-20261105/
+
+# Attempt088 expanded custody is sealed in tracked lossless public archive parts.
+/docs/evals/evidence/088-fable52-safety/**
+!/docs/evals/evidence/088-fable52-safety/README.md
+!/docs/evals/evidence/088-fable52-safety/approved-coordinator-plan.md
+!/docs/evals/evidence/088-fable52-safety/caller-code-freeze.json
+!/docs/evals/evidence/088-fable52-safety/classifier-payload-comparison.json
+!/docs/evals/evidence/088-fable52-safety/classifier-results.json
+!/docs/evals/evidence/088-fable52-safety/classifier-source-review.json
+!/docs/evals/evidence/088-fable52-safety/classifier-strict-revalidation.json
+!/docs/evals/evidence/088-fable52-safety/custody-index.json
+!/docs/evals/evidence/088-fable52-safety/driver-artifact-proof.json
+!/docs/evals/evidence/088-fable52-safety/final-raw-contract-audit.json
+!/docs/evals/evidence/088-fable52-safety/full-payload-expectations.json
+!/docs/evals/evidence/088-fable52-safety/ledger.json
+!/docs/evals/evidence/088-fable52-safety/manifest.json
+!/docs/evals/evidence/088-fable52-safety/preflight.json
+!/docs/evals/evidence/088-fable52-safety/provenance.json
+!/docs/evals/evidence/088-fable52-safety/summary.json
+!/docs/evals/evidence/088-fable52-safety/validation.json
+!/docs/evals/evidence/088-fable52-safety/closeout.json

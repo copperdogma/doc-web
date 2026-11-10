@@ -1,0 +1,32 @@
+{
+  "policy": "Public/synthetic source, complete native envelopes, codeepochs and driverartifacts sealed losslessly. Expanded working copies remain retained/ignored; no producerbytes rewritten. Private account identifiers are excluded from Git and preserved in protected durable owner archive.",
+  "public": {
+    "parts": [
+      {
+        "path": "docs/evals/evidence/088-fable52-safety-custody.tar.gz.part01",
+        "bytes": 41943040,
+        "sha256": "0c8a034a20c36126ad1505d19ba747d155b8a1453a36dc0d2483b305c9c2d795"
+      },
+      {
+        "path": "docs/evals/evidence/088-fable52-safety-custody.tar.gz.part02",
+        "bytes": 41943040,
+        "sha256": "fbb055d885c6e2afa7538a8b3f25f60622d7869b2f3158cef81e7f902da2d204"
+      },
+      {
+        "path": "docs/evals/evidence/088-fable52-safety-custody.tar.gz.part03",
+        "bytes": 41943040,
+        "sha256": "3ae5f5f725f171ca4c451691b8bd98504b1fb1b691b24129a6e6b24c57927ad4"
+      },
+      {
+        "path": "docs/evals/evidence/088-fable52-safety-custody.tar.gz.part04",
+        "bytes": 14410578,
+        "sha256": "4a2839b9f13c8a960654e2cada574835f067a011fc7fb18ddee726ce39a52d33"
+      }
+    ],
+    "joined_sha256": "273e7521dbebea06358722a8810efb4b424186461c1eac25f53d0544bac58897",
+    "members": 660
+  },
+  "protected_account_metadata": null,
+  "original_run_manifest": "manifest.json",
+  "restore": "Verify each part SHA256, concatenate in listed order and extract at repo root; all members are relative regular files. Restore protected account-metadata archive separately only when auditing the rejected access envelopes."
+}

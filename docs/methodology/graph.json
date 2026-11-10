@@ -407,7 +407,8 @@
           "259",
           "262",
           "263",
-          "264"
+          "264",
+          "266"
         ],
         "adr_ids": [],
         "eval_ids": [
@@ -546,7 +547,8 @@
           "260",
           "262",
           "263",
-          "264"
+          "264",
+          "266"
         ],
         "adr_ids": [
           "ADR-001",
@@ -556,6 +558,7 @@
         "eval_ids": [
           "literal-table-fidelity",
           "reference-resolution",
+          "sol-crop-safety-native-public-smoke",
           "image-crop-extraction",
           "crop-page-level-deletion-gate",
           "handwritten-notes-transcription",
@@ -720,7 +723,8 @@
           "242",
           "244",
           "259",
-          "264"
+          "264",
+          "266"
         ],
         "adr_ids": [
           "ADR-002"
@@ -1408,7 +1412,8 @@
           "259",
           "262",
           "263",
-          "264"
+          "264",
+          "266"
         ],
         "eval_ids": [
           "sol-crop-safety-native-public-smoke",
@@ -1455,7 +1460,8 @@
             "259",
             "262",
             "263",
-            "264"
+            "264",
+            "266"
           ],
           "eval_ids": [
             "sol-crop-safety-native-public-smoke",
@@ -15321,6 +15327,68 @@
           "summary": ""
         }
       }
+    },
+    {
+      "id": "266",
+      "title": "Fable5.2 full safety and native caller qualification",
+      "path": "docs/stories/story-266-fable52-safety-qualification.md",
+      "status": "Done",
+      "priority": "Medium",
+      "ideal_refs": [
+        "req:4",
+        "req:6"
+      ],
+      "spec_refs": [
+        "spec:4.1",
+        "spec:4.2",
+        "spec:6"
+      ],
+      "decision_refs": [
+        "ADR-001",
+        "ADR-002"
+      ],
+      "adr_ids": [
+        "ADR-001",
+        "ADR-002"
+      ],
+      "depends_on": [],
+      "category_refs": [
+        "spec:4",
+        "spec:6",
+        "spec:8"
+      ],
+      "compromise_refs": [
+        "C5"
+      ],
+      "input_coverage_refs": [
+        "image-directory-scans",
+        "scanned-pdf-tables"
+      ],
+      "architecture_domains": [
+        "ocr_and_extraction"
+      ],
+      "roadmap_tags": [],
+      "blocker_summary": "",
+      "blocker_evidence": "",
+      "unblock_condition": "",
+      "last_work_log_entry": null,
+      "legacy_build_map_refs": "",
+      "metadata_source": "frontmatter",
+      "missing_frontmatter_keys": [],
+      "actionability": {
+        "source_kind": "story",
+        "source_id": "266",
+        "source_path": "docs/stories/story-266-fable52-safety-qualification.md",
+        "recommended_now": false,
+        "posture": "completed",
+        "why_now": "",
+        "last_relevant_action": {
+          "date": null,
+          "source_type": "story-status",
+          "source": "docs/stories/story-266-fable52-safety-qualification.md",
+          "summary": ""
+        }
+      }
     }
   ],
   "adrs": [
@@ -15952,13 +16020,15 @@
       "description": "Exposed public synthetic S3/S4 only. Native strict Responses adapter and all-candidate source-review preparation; not representative scan quality or autonomous publication. Cam explicitly approved both crops and complete3-page source inventory; local offline chapter built.\n",
       "spec_refs": [],
       "story_refs": [
-        "242"
+        "242",
+        "266"
       ],
       "compromise_refs": [
         "C5"
       ],
       "category_refs": [
         "spec:4",
+        "spec:6",
         "spec:8"
       ],
       "scores": [
@@ -15993,6 +16063,14 @@
       },
       "attempts": [
         {
+          "id": "088",
+          "date": "2026-11-09",
+          "status": "completed",
+          "approach": "Approved full22 fresh Fablexhigh32768 vsSolmedium4096high plus genuine native caller qualification",
+          "note": "Both22/22source-adjudicated fullpayload,0false-safe; originalcanonical20/22/intermediate21/22 retained. Fableclassifier1.922544/7030.7ms vsSol.369622/4925.1ms. BothliveS3policyfail,S4correct(1/2), independent of successfulsyntheticactualdriverchains. Sixsavedliveheld/recrop/errorvariants blockrelease. Closed48POSTs USD2.371752/60 unknown0,recovery0/judge0.227tests,Ruff/compile; defaultoffreceipt/authority/anchor checks. RetainSol,manualuncertainty/C5holds/defaults. Story266/Attempt088; docs/evals/evidence/088-fable52-safety/summary.json.",
+          "retry_when": []
+        },
+        {
           "id": "049",
           "date": "2026-09-30",
           "status": "succeeded",
@@ -16020,11 +16098,11 @@
         ],
         "why_now": "No repeats authorized. Future adapter/corpus campaign needs a new explicit bounded plan; preserve exhausted run and receipts.",
         "last_relevant_action": {
-          "date": "2026-09-30",
+          "date": "2026-11-09",
           "source_type": "eval-attempt",
           "source": "docs/evals/registry.yaml",
-          "source_id": "049",
-          "summary": "Adapter and actual-Cam-approved offline release/build succeeded. All native receipts/authority/source bindings remain required. Exact receipts/upper ledger and unfilled operator package in docs/evals/evidence/story242..."
+          "source_id": "088",
+          "summary": "Both22/22source-adjudicated fullpayload,0false-safe; originalcanonical20/22/intermediate21/22 retained. Fableclassifier1.922544/7030.7ms vsSol.369622/4925.1ms. BothliveS3policyfail,S4correct(1/2), independent of succe..."
         }
       }
     },
@@ -17689,7 +17767,8 @@
         "257",
         "258",
         "259",
-        "264"
+        "264",
+        "266"
       ],
       "compromise_refs": [
         "C5"
@@ -18345,6 +18424,14 @@
       },
       "attempts": [
         {
+          "id": "088",
+          "date": "2026-11-09",
+          "status": "completed",
+          "approach": "Approved full22 fresh Fablexhigh32768 vsSolmedium4096high plus genuine native caller qualification",
+          "note": "Both22/22source-adjudicated fullpayload,0false-safe; originalcanonical20/22/intermediate21/22 retained. Fableclassifier1.922544/7030.7ms vsSol.369622/4925.1ms. BothliveS3policyfail,S4correct(1/2), independent of successfulsyntheticactualdriverchains. Sixsavedliveheld/recrop/errorvariants blockrelease. Closed48POSTs USD2.371752/60 unknown0,recovery0/judge0.227tests,Ruff/compile; defaultoffreceipt/authority/anchor checks. RetainSol,manualuncertainty/C5holds/defaults. Story266/Attempt088; docs/evals/evidence/088-fable52-safety/summary.json.",
+          "retry_when": []
+        },
+        {
           "id": "086",
           "date": "2026-11-05",
           "status": "failed",
@@ -18690,11 +18777,11 @@
         ],
         "why_now": "Rerun when a materially stronger validator or detector may reduce the current fail-labeled page-context cases. Rerun after any maintained crop/runtime simplification before claiming `trim_layout_text` or bounded capti...",
         "last_relevant_action": {
-          "date": "2026-11-05",
+          "date": "2026-11-09",
           "source_type": "eval-attempt",
           "source": "docs/evals/registry.yaml",
-          "source_id": "086",
-          "summary": "First valid failure page012001: both pass seal missing roughly21percent. Hy4 5/6 vsGPT5.5 3/6 reference lead, one false-safe each; neither qualifies. Remaining16 unmeasured. Strict schema/terminal qualified; reason/fl..."
+          "source_id": "088",
+          "summary": "Both22/22source-adjudicated fullpayload,0false-safe; originalcanonical20/22/intermediate21/22 retained. Fableclassifier1.922544/7030.7ms vsSol.369622/4925.1ms. BothliveS3policyfail,S4correct(1/2), independent of succe..."
         }
       }
     },

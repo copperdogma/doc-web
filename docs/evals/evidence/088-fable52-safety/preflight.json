@@ -1,0 +1,786 @@
+{
+  "base_sha": "5bd3ba777d70347eb8dd84b9aa18a6b3ba025193",
+  "approved": "Conductor Scout107 DocWeb safetyqualification USD60",
+  "cap_usd": 60,
+  "max_calls": 52,
+  "planned_calls": 48,
+  "recovery_calls": {
+    "fable": 2,
+    "sol": 2
+  },
+  "reserved_plan_usd": 57.26968,
+  "case_matrix": [
+    {
+      "key": "page-001-000",
+      "verdict": "pass",
+      "golden_relpath": "golden/crop-page-level-safety-repair-048-source-adjudicated.json",
+      "images": [
+        {
+          "bytes": 889368,
+          "sha256": "7500762d6e0b9761b49305b28e0c3609d051af1d5f3eac8ce33028b0b439f325",
+          "dimensions": [
+            1505,
+            2000
+          ]
+        },
+        {
+          "bytes": 5944454,
+          "sha256": "67accf0bf3854473e557261d179bce8a4c4519de039460e3c797e52f49e1dfaa",
+          "dimensions": [
+            3786,
+            4479
+          ]
+        }
+      ]
+    },
+    {
+      "key": "page-004-000",
+      "verdict": "pass",
+      "golden_relpath": "golden/crop-page-level-safety-repair-048-source-adjudicated.json",
+      "images": [
+        {
+          "bytes": 180512,
+          "sha256": "ad1807bfdad56d65becf8011137680496f72d564bfc922a8da7d2c021e3ef266",
+          "dimensions": [
+            1545,
+            2000
+          ]
+        },
+        {
+          "bytes": 1009487,
+          "sha256": "4cc9a8224d1efbddc1f8f1a5a3f973bb8345f81fe26d03aa3b6d5197ce786209",
+          "dimensions": [
+            4468,
+            1254
+          ]
+        }
+      ]
+    },
+    {
+      "key": "page-009-000",
+      "verdict": "pass",
+      "golden_relpath": "golden/crop-page-level-safety-repair-048-source-adjudicated.json",
+      "images": [
+        {
+          "bytes": 473427,
+          "sha256": "da312d69a4c007009c1e696b32e66a3a7a957eac6b9aa3fa67323eeb1c478c31",
+          "dimensions": [
+            1545,
+            2000
+          ]
+        },
+        {
+          "bytes": 3964307,
+          "sha256": "4413db90068236ede2835ef29c29359137847e51158266af20ef925938fa7bc0",
+          "dimensions": [
+            3029,
+            2772
+          ]
+        }
+      ]
+    },
+    {
+      "key": "page-012-000",
+      "verdict": "pass",
+      "golden_relpath": "golden/crop-page-level-safety-repair-048-source-adjudicated.json",
+      "images": [
+        {
+          "bytes": 232594,
+          "sha256": "ae3524cb58ac940c912c7885d65ec9d21221415d97d1ea21d97be9615161a860",
+          "dimensions": [
+            1545,
+            2000
+          ]
+        },
+        {
+          "bytes": 176520,
+          "sha256": "3a2a0f5ac2782b10b066bd4ace50d305ce2bbea1c53e27934205b7cf2a8b93ad",
+          "dimensions": [
+            1056,
+            1049
+          ]
+        }
+      ]
+    },
+    {
+      "key": "page-012-001",
+      "verdict": "fail",
+      "golden_relpath": "golden/crop-page-level-safety-repair-048-source-adjudicated.json",
+      "images": [
+        {
+          "bytes": 232594,
+          "sha256": "ae3524cb58ac940c912c7885d65ec9d21221415d97d1ea21d97be9615161a860",
+          "dimensions": [
+            1545,
+            2000
+          ]
+        },
+        {
+          "bytes": 217999,
+          "sha256": "da367ed32034c950a729fd32707412d2956f01760e2ced6616f2c7306002d7ec",
+          "dimensions": [
+            1397,
+            1096
+          ]
+        }
+      ]
+    },
+    {
+      "key": "page-014-000",
+      "verdict": "pass",
+      "golden_relpath": "golden/crop-page-level-safety-repair-048-source-adjudicated.json",
+      "images": [
+        {
+          "bytes": 732237,
+          "sha256": "cb53f04abc02441992de4903c079b036c6242a50cd275f696231c89634e6a75b",
+          "dimensions": [
+            1545,
+            2000
+          ]
+        },
+        {
+          "bytes": 1833195,
+          "sha256": "4f4af349e0fcc4f3e15065dad7fecc68fe1805df524bf2dac94e56a524886693",
+          "dimensions": [
+            1994,
+            1796
+          ]
+        }
+      ]
+    },
+    {
+      "key": "page-018-000",
+      "verdict": "fail",
+      "golden_relpath": "golden/crop-page-level-safety-repair-048-source-adjudicated.json",
+      "images": [
+        {
+          "bytes": 511731,
+          "sha256": "3d069f99adca6caa2039d3a9f4cccc2cb8a44413d5f44023d21baaa42b7ae6d1",
+          "dimensions": [
+            1545,
+            2000
+          ]
+        },
+        {
+          "bytes": 3023475,
+          "sha256": "b5c9ee922fe3f6468acf31c7dbe842a4bde8918a4f370c67cf36d5b8546edc0b",
+          "dimensions": [
+            2163,
+            5313
+          ]
+        }
+      ]
+    },
+    {
+      "key": "page-021-000",
+      "verdict": "pass",
+      "golden_relpath": "golden/crop-page-level-safety-repair-048-source-adjudicated.json",
+      "images": [
+        {
+          "bytes": 913190,
+          "sha256": "5a1f2380a089ff23355ff101b07549bd57abba3a51636a6b58a28a31a4195318",
+          "dimensions": [
+            1545,
+            2000
+          ]
+        },
+        {
+          "bytes": 6433021,
+          "sha256": "b03c6e1a9b3e3e6842de1760b97fc3e131b91eea3a2e3d11bedafa53a385f426",
+          "dimensions": [
+            4253,
+            2669
+          ]
+        }
+      ]
+    },
+    {
+      "key": "page-021-001",
+      "verdict": "pass",
+      "golden_relpath": "golden/crop-page-level-safety-repair-048-source-adjudicated.json",
+      "images": [
+        {
+          "bytes": 913190,
+          "sha256": "5a1f2380a089ff23355ff101b07549bd57abba3a51636a6b58a28a31a4195318",
+          "dimensions": [
+            1545,
+            2000
+          ]
+        },
+        {
+          "bytes": 5213443,
+          "sha256": "7d3af1dc6ffa2a2c731a6f0cdadb791175b25bcb2580c69034dcf2de6c06131e",
+          "dimensions": [
+            4152,
+            2471
+          ]
+        }
+      ]
+    },
+    {
+      "key": "page-022-000",
+      "verdict": "pass",
+      "golden_relpath": "golden/crop-page-level-safety-repair-048-source-adjudicated.json",
+      "images": [
+        {
+          "bytes": 722546,
+          "sha256": "2f49d83261e2f40d20b736b602cc4de8c36b48780ab944dc96c8e08f83e34332",
+          "dimensions": [
+            1545,
+            2000
+          ]
+        },
+        {
+          "bytes": 1425938,
+          "sha256": "c8de7753ebe7d13c9646b62bef02984148f4e9e2260197a56babd46442f61ea9",
+          "dimensions": [
+            1887,
+            1584
+          ]
+        }
+      ]
+    },
+    {
+      "key": "page-038-000",
+      "verdict": "pass",
+      "golden_relpath": "golden/crop-page-level-safety-repair-048-source-adjudicated.json",
+      "images": [
+        {
+          "bytes": 730755,
+          "sha256": "b836c9c90fc650dd0513299652bf1af41fc577544803d9cea64928c890cdfdbe",
+          "dimensions": [
+            1545,
+            2000
+          ]
+        },
+        {
+          "bytes": 958411,
+          "sha256": "09855f57fc1ff367f3174dd0a5bfab433e069195aa1d2596f68212cae163a349",
+          "dimensions": [
+            1372,
+            1706
+          ]
+        }
+      ]
+    },
+    {
+      "key": "page-038-001",
+      "verdict": "pass",
+      "golden_relpath": "golden/crop-page-level-safety-repair-048-source-adjudicated.json",
+      "images": [
+        {
+          "bytes": 730755,
+          "sha256": "b836c9c90fc650dd0513299652bf1af41fc577544803d9cea64928c890cdfdbe",
+          "dimensions": [
+            1545,
+            2000
+          ]
+        },
+        {
+          "bytes": 1707524,
+          "sha256": "4eaee1585bba4a4c6309e5d5bd28a57b4dd8c297a0b8dd0a491c8c60d4e66b89",
+          "dimensions": [
+            2014,
+            1712
+          ]
+        }
+      ]
+    },
+    {
+      "key": "page-060-000",
+      "verdict": "pass",
+      "golden_relpath": "golden/crop-page-level-safety-repair-048-source-adjudicated.json",
+      "images": [
+        {
+          "bytes": 793636,
+          "sha256": "af4d6f24fc5b026a12697ed4d9da2758257bb8e0ec06c7989a2b2d0625501317",
+          "dimensions": [
+            1545,
+            2000
+          ]
+        },
+        {
+          "bytes": 2338932,
+          "sha256": "0e7a4ae8f060dcb0588f647c2e7d51abb7251b91ec81feb6d89a9923f0d4e9b3",
+          "dimensions": [
+            2004,
+            2561
+          ]
+        }
+      ]
+    },
+    {
+      "key": "page-060-001",
+      "verdict": "pass",
+      "golden_relpath": "golden/crop-page-level-safety-repair-048-source-adjudicated.json",
+      "images": [
+        {
+          "bytes": 793636,
+          "sha256": "af4d6f24fc5b026a12697ed4d9da2758257bb8e0ec06c7989a2b2d0625501317",
+          "dimensions": [
+            1545,
+            2000
+          ]
+        },
+        {
+          "bytes": 1778000,
+          "sha256": "f05b5737e373e2b06f0544bd74c59c9e92b096919fc775cdd9cc0bb4642dade6",
+          "dimensions": [
+            2015,
+            1743
+          ]
+        }
+      ]
+    },
+    {
+      "key": "page-092-000",
+      "verdict": "fail",
+      "golden_relpath": "golden/crop-page-level-safety-repair-048-source-adjudicated.json",
+      "images": [
+        {
+          "bytes": 675402,
+          "sha256": "23540ee8136d29922da3f9284d44ddb46a07390fdd41f79f9afbb39989c9c04c",
+          "dimensions": [
+            1545,
+            2000
+          ]
+        },
+        {
+          "bytes": 1234084,
+          "sha256": "3d02c44de285d58fd54c3131a5c2c6c13235093c88eef49ac02e2a778b23687c",
+          "dimensions": [
+            1974,
+            2381
+          ]
+        }
+      ]
+    },
+    {
+      "key": "page-122-000",
+      "verdict": "fail",
+      "golden_relpath": "golden/crop-page-level-safety-repair-048-source-adjudicated.json",
+      "images": [
+        {
+          "bytes": 849762,
+          "sha256": "04731378a1ff37ffb8e26faf005f87fa2383f9ba91e147ce9caa94e8519d086e",
+          "dimensions": [
+            1545,
+            2000
+          ]
+        },
+        {
+          "bytes": 5580411,
+          "sha256": "5ab45f308ea9d353dae2830a574af026b907fd95f6c50e78d48e8921031f6990",
+          "dimensions": [
+            4244,
+            2478
+          ]
+        }
+      ]
+    },
+    {
+      "key": "page-122-001",
+      "verdict": "fail",
+      "golden_relpath": "golden/crop-page-level-safety-repair-048-source-adjudicated.json",
+      "images": [
+        {
+          "bytes": 849762,
+          "sha256": "04731378a1ff37ffb8e26faf005f87fa2383f9ba91e147ce9caa94e8519d086e",
+          "dimensions": [
+            1545,
+            2000
+          ]
+        },
+        {
+          "bytes": 5523372,
+          "sha256": "7fea918ba336f4cca9bbbb048f97bcc6377febe2afaebd5eddf2eed0c0bfb8d9",
+          "dimensions": [
+            4244,
+            2958
+          ]
+        }
+      ]
+    },
+    {
+      "key": "page-125-000",
+      "verdict": "pass",
+      "golden_relpath": "golden/crop-page-level-safety-repair-048-source-adjudicated.json",
+      "images": [
+        {
+          "bytes": 269225,
+          "sha256": "b35e4c1e660a0ed9029ebe555558341a933a5724740964ca6927f94f77ae2944",
+          "dimensions": [
+            1545,
+            2000
+          ]
+        },
+        {
+          "bytes": 1777768,
+          "sha256": "e371aa234263c051dce440c71d0ec3d5a9ed31bd3b1fc9c4dd4dae475dca57ee",
+          "dimensions": [
+            4011,
+            3871
+          ]
+        }
+      ]
+    },
+    {
+      "key": "page-126-000",
+      "verdict": "pass",
+      "golden_relpath": "golden/crop-page-level-safety-repair-048-source-adjudicated.json",
+      "images": [
+        {
+          "bytes": 382952,
+          "sha256": "4f4ac880a5ff48ffa1a6d2a010e763cf022dceb118988b7bf6d0c0a41fab1143",
+          "dimensions": [
+            1545,
+            2000
+          ]
+        },
+        {
+          "bytes": 1250494,
+          "sha256": "be267fc173fd8ed502bd6ab4d0be57c0d7d5a0c1556fdcc9f8c34d94aa8715d6",
+          "dimensions": [
+            2933,
+            2116
+          ]
+        }
+      ]
+    },
+    {
+      "key": "page-126-001",
+      "verdict": "pass",
+      "golden_relpath": "golden/crop-page-level-safety-repair-048-source-adjudicated.json",
+      "images": [
+        {
+          "bytes": 382952,
+          "sha256": "4f4ac880a5ff48ffa1a6d2a010e763cf022dceb118988b7bf6d0c0a41fab1143",
+          "dimensions": [
+            1545,
+            2000
+          ]
+        },
+        {
+          "bytes": 1314806,
+          "sha256": "34ceefa5de85865fd864cb3253a38fa73cf6ab5f13ed56daec60e00de20da908",
+          "dimensions": [
+            2123,
+            2940
+          ]
+        }
+      ]
+    },
+    {
+      "key": "page-127-000",
+      "verdict": "pass",
+      "golden_relpath": "golden/crop-page-level-safety-repair-048-source-adjudicated.json",
+      "images": [
+        {
+          "bytes": 292143,
+          "sha256": "25042b92e75e09ff2d7aa9330b44b26a092624a9bee19c7f2707a413f6c7f302",
+          "dimensions": [
+            1545,
+            2000
+          ]
+        },
+        {
+          "bytes": 1138976,
+          "sha256": "6dcf9cad3998eba4ed72d1a79594431f86113a04c58b0452670ede3e3ec13429",
+          "dimensions": [
+            2924,
+            2081
+          ]
+        }
+      ]
+    },
+    {
+      "key": "page-127-001",
+      "verdict": "pass",
+      "golden_relpath": "golden/crop-page-level-safety-repair-048-source-adjudicated.json",
+      "images": [
+        {
+          "bytes": 292143,
+          "sha256": "25042b92e75e09ff2d7aa9330b44b26a092624a9bee19c7f2707a413f6c7f302",
+          "dimensions": [
+            1545,
+            2000
+          ]
+        },
+        {
+          "bytes": 1416767,
+          "sha256": "c98909f5166e46b330e89288f7ed4cd1f4700a98a5b0153996204725cc7ea29e",
+          "dimensions": [
+            2919,
+            2071
+          ]
+        }
+      ]
+    }
+  ],
+  "caller": [
+    "S3 uncertaintyfail beforeoperator",
+    "S4 integralbadgepass beforeoperator",
+    "zerocandidatepageinventory no paidcall"
+  ],
+  "request_sources": {
+    "classifier:fable:page-001-000": [
+      "7500762d6e0b9761b49305b28e0c3609d051af1d5f3eac8ce33028b0b439f325",
+      "67accf0bf3854473e557261d179bce8a4c4519de039460e3c797e52f49e1dfaa"
+    ],
+    "classifier:sol:page-001-000": [
+      "7500762d6e0b9761b49305b28e0c3609d051af1d5f3eac8ce33028b0b439f325",
+      "67accf0bf3854473e557261d179bce8a4c4519de039460e3c797e52f49e1dfaa"
+    ],
+    "classifier:fable:page-004-000": [
+      "ad1807bfdad56d65becf8011137680496f72d564bfc922a8da7d2c021e3ef266",
+      "4cc9a8224d1efbddc1f8f1a5a3f973bb8345f81fe26d03aa3b6d5197ce786209"
+    ],
+    "classifier:sol:page-004-000": [
+      "ad1807bfdad56d65becf8011137680496f72d564bfc922a8da7d2c021e3ef266",
+      "4cc9a8224d1efbddc1f8f1a5a3f973bb8345f81fe26d03aa3b6d5197ce786209"
+    ],
+    "classifier:fable:page-009-000": [
+      "da312d69a4c007009c1e696b32e66a3a7a957eac6b9aa3fa67323eeb1c478c31",
+      "4413db90068236ede2835ef29c29359137847e51158266af20ef925938fa7bc0"
+    ],
+    "classifier:sol:page-009-000": [
+      "da312d69a4c007009c1e696b32e66a3a7a957eac6b9aa3fa67323eeb1c478c31",
+      "4413db90068236ede2835ef29c29359137847e51158266af20ef925938fa7bc0"
+    ],
+    "classifier:fable:page-012-000": [
+      "ae3524cb58ac940c912c7885d65ec9d21221415d97d1ea21d97be9615161a860",
+      "3a2a0f5ac2782b10b066bd4ace50d305ce2bbea1c53e27934205b7cf2a8b93ad"
+    ],
+    "classifier:sol:page-012-000": [
+      "ae3524cb58ac940c912c7885d65ec9d21221415d97d1ea21d97be9615161a860",
+      "3a2a0f5ac2782b10b066bd4ace50d305ce2bbea1c53e27934205b7cf2a8b93ad"
+    ],
+    "classifier:fable:page-012-001": [
+      "ae3524cb58ac940c912c7885d65ec9d21221415d97d1ea21d97be9615161a860",
+      "da367ed32034c950a729fd32707412d2956f01760e2ced6616f2c7306002d7ec"
+    ],
+    "classifier:sol:page-012-001": [
+      "ae3524cb58ac940c912c7885d65ec9d21221415d97d1ea21d97be9615161a860",
+      "da367ed32034c950a729fd32707412d2956f01760e2ced6616f2c7306002d7ec"
+    ],
+    "classifier:fable:page-014-000": [
+      "cb53f04abc02441992de4903c079b036c6242a50cd275f696231c89634e6a75b",
+      "4f4af349e0fcc4f3e15065dad7fecc68fe1805df524bf2dac94e56a524886693"
+    ],
+    "classifier:sol:page-014-000": [
+      "cb53f04abc02441992de4903c079b036c6242a50cd275f696231c89634e6a75b",
+      "4f4af349e0fcc4f3e15065dad7fecc68fe1805df524bf2dac94e56a524886693"
+    ],
+    "classifier:fable:page-018-000": [
+      "3d069f99adca6caa2039d3a9f4cccc2cb8a44413d5f44023d21baaa42b7ae6d1",
+      "b5c9ee922fe3f6468acf31c7dbe842a4bde8918a4f370c67cf36d5b8546edc0b"
+    ],
+    "classifier:sol:page-018-000": [
+      "3d069f99adca6caa2039d3a9f4cccc2cb8a44413d5f44023d21baaa42b7ae6d1",
+      "b5c9ee922fe3f6468acf31c7dbe842a4bde8918a4f370c67cf36d5b8546edc0b"
+    ],
+    "classifier:fable:page-021-000": [
+      "5a1f2380a089ff23355ff101b07549bd57abba3a51636a6b58a28a31a4195318",
+      "b03c6e1a9b3e3e6842de1760b97fc3e131b91eea3a2e3d11bedafa53a385f426"
+    ],
+    "classifier:sol:page-021-000": [
+      "5a1f2380a089ff23355ff101b07549bd57abba3a51636a6b58a28a31a4195318",
+      "b03c6e1a9b3e3e6842de1760b97fc3e131b91eea3a2e3d11bedafa53a385f426"
+    ],
+    "classifier:fable:page-021-001": [
+      "5a1f2380a089ff23355ff101b07549bd57abba3a51636a6b58a28a31a4195318",
+      "7d3af1dc6ffa2a2c731a6f0cdadb791175b25bcb2580c69034dcf2de6c06131e"
+    ],
+    "classifier:sol:page-021-001": [
+      "5a1f2380a089ff23355ff101b07549bd57abba3a51636a6b58a28a31a4195318",
+      "7d3af1dc6ffa2a2c731a6f0cdadb791175b25bcb2580c69034dcf2de6c06131e"
+    ],
+    "classifier:fable:page-022-000": [
+      "2f49d83261e2f40d20b736b602cc4de8c36b48780ab944dc96c8e08f83e34332",
+      "c8de7753ebe7d13c9646b62bef02984148f4e9e2260197a56babd46442f61ea9"
+    ],
+    "classifier:sol:page-022-000": [
+      "2f49d83261e2f40d20b736b602cc4de8c36b48780ab944dc96c8e08f83e34332",
+      "c8de7753ebe7d13c9646b62bef02984148f4e9e2260197a56babd46442f61ea9"
+    ],
+    "classifier:fable:page-038-000": [
+      "b836c9c90fc650dd0513299652bf1af41fc577544803d9cea64928c890cdfdbe",
+      "09855f57fc1ff367f3174dd0a5bfab433e069195aa1d2596f68212cae163a349"
+    ],
+    "classifier:sol:page-038-000": [
+      "b836c9c90fc650dd0513299652bf1af41fc577544803d9cea64928c890cdfdbe",
+      "09855f57fc1ff367f3174dd0a5bfab433e069195aa1d2596f68212cae163a349"
+    ],
+    "classifier:fable:page-038-001": [
+      "b836c9c90fc650dd0513299652bf1af41fc577544803d9cea64928c890cdfdbe",
+      "4eaee1585bba4a4c6309e5d5bd28a57b4dd8c297a0b8dd0a491c8c60d4e66b89"
+    ],
+    "classifier:sol:page-038-001": [
+      "b836c9c90fc650dd0513299652bf1af41fc577544803d9cea64928c890cdfdbe",
+      "4eaee1585bba4a4c6309e5d5bd28a57b4dd8c297a0b8dd0a491c8c60d4e66b89"
+    ],
+    "classifier:fable:page-060-000": [
+      "af4d6f24fc5b026a12697ed4d9da2758257bb8e0ec06c7989a2b2d0625501317",
+      "0e7a4ae8f060dcb0588f647c2e7d51abb7251b91ec81feb6d89a9923f0d4e9b3"
+    ],
+    "classifier:sol:page-060-000": [
+      "af4d6f24fc5b026a12697ed4d9da2758257bb8e0ec06c7989a2b2d0625501317",
+      "0e7a4ae8f060dcb0588f647c2e7d51abb7251b91ec81feb6d89a9923f0d4e9b3"
+    ],
+    "classifier:fable:page-060-001": [
+      "af4d6f24fc5b026a12697ed4d9da2758257bb8e0ec06c7989a2b2d0625501317",
+      "f05b5737e373e2b06f0544bd74c59c9e92b096919fc775cdd9cc0bb4642dade6"
+    ],
+    "classifier:sol:page-060-001": [
+      "af4d6f24fc5b026a12697ed4d9da2758257bb8e0ec06c7989a2b2d0625501317",
+      "f05b5737e373e2b06f0544bd74c59c9e92b096919fc775cdd9cc0bb4642dade6"
+    ],
+    "classifier:fable:page-092-000": [
+      "23540ee8136d29922da3f9284d44ddb46a07390fdd41f79f9afbb39989c9c04c",
+      "3d02c44de285d58fd54c3131a5c2c6c13235093c88eef49ac02e2a778b23687c"
+    ],
+    "classifier:sol:page-092-000": [
+      "23540ee8136d29922da3f9284d44ddb46a07390fdd41f79f9afbb39989c9c04c",
+      "3d02c44de285d58fd54c3131a5c2c6c13235093c88eef49ac02e2a778b23687c"
+    ],
+    "classifier:fable:page-122-000": [
+      "04731378a1ff37ffb8e26faf005f87fa2383f9ba91e147ce9caa94e8519d086e",
+      "5ab45f308ea9d353dae2830a574af026b907fd95f6c50e78d48e8921031f6990"
+    ],
+    "classifier:sol:page-122-000": [
+      "04731378a1ff37ffb8e26faf005f87fa2383f9ba91e147ce9caa94e8519d086e",
+      "5ab45f308ea9d353dae2830a574af026b907fd95f6c50e78d48e8921031f6990"
+    ],
+    "classifier:fable:page-122-001": [
+      "04731378a1ff37ffb8e26faf005f87fa2383f9ba91e147ce9caa94e8519d086e",
+      "7fea918ba336f4cca9bbbb048f97bcc6377febe2afaebd5eddf2eed0c0bfb8d9"
+    ],
+    "classifier:sol:page-122-001": [
+      "04731378a1ff37ffb8e26faf005f87fa2383f9ba91e147ce9caa94e8519d086e",
+      "7fea918ba336f4cca9bbbb048f97bcc6377febe2afaebd5eddf2eed0c0bfb8d9"
+    ],
+    "classifier:fable:page-125-000": [
+      "b35e4c1e660a0ed9029ebe555558341a933a5724740964ca6927f94f77ae2944",
+      "e371aa234263c051dce440c71d0ec3d5a9ed31bd3b1fc9c4dd4dae475dca57ee"
+    ],
+    "classifier:sol:page-125-000": [
+      "b35e4c1e660a0ed9029ebe555558341a933a5724740964ca6927f94f77ae2944",
+      "e371aa234263c051dce440c71d0ec3d5a9ed31bd3b1fc9c4dd4dae475dca57ee"
+    ],
+    "classifier:fable:page-126-000": [
+      "4f4ac880a5ff48ffa1a6d2a010e763cf022dceb118988b7bf6d0c0a41fab1143",
+      "be267fc173fd8ed502bd6ab4d0be57c0d7d5a0c1556fdcc9f8c34d94aa8715d6"
+    ],
+    "classifier:sol:page-126-000": [
+      "4f4ac880a5ff48ffa1a6d2a010e763cf022dceb118988b7bf6d0c0a41fab1143",
+      "be267fc173fd8ed502bd6ab4d0be57c0d7d5a0c1556fdcc9f8c34d94aa8715d6"
+    ],
+    "classifier:fable:page-126-001": [
+      "4f4ac880a5ff48ffa1a6d2a010e763cf022dceb118988b7bf6d0c0a41fab1143",
+      "34ceefa5de85865fd864cb3253a38fa73cf6ab5f13ed56daec60e00de20da908"
+    ],
+    "classifier:sol:page-126-001": [
+      "4f4ac880a5ff48ffa1a6d2a010e763cf022dceb118988b7bf6d0c0a41fab1143",
+      "34ceefa5de85865fd864cb3253a38fa73cf6ab5f13ed56daec60e00de20da908"
+    ],
+    "classifier:fable:page-127-000": [
+      "25042b92e75e09ff2d7aa9330b44b26a092624a9bee19c7f2707a413f6c7f302",
+      "6dcf9cad3998eba4ed72d1a79594431f86113a04c58b0452670ede3e3ec13429"
+    ],
+    "classifier:sol:page-127-000": [
+      "25042b92e75e09ff2d7aa9330b44b26a092624a9bee19c7f2707a413f6c7f302",
+      "6dcf9cad3998eba4ed72d1a79594431f86113a04c58b0452670ede3e3ec13429"
+    ],
+    "classifier:fable:page-127-001": [
+      "25042b92e75e09ff2d7aa9330b44b26a092624a9bee19c7f2707a413f6c7f302",
+      "c98909f5166e46b330e89288f7ed4cd1f4700a98a5b0153996204725cc7ea29e"
+    ],
+    "classifier:sol:page-127-001": [
+      "25042b92e75e09ff2d7aa9330b44b26a092624a9bee19c7f2707a413f6c7f302",
+      "c98909f5166e46b330e89288f7ed4cd1f4700a98a5b0153996204725cc7ea29e"
+    ],
+    "caller:fable:S3": [
+      "4cb7ceb9d8a3045951ce9c2da00eb1afb02ad91d1d3bad722283c0f96fa5ce84",
+      "11d98294ac8a19c8e77490998a933add2ddf8de6fdbeb8e7156159e201a87bfe"
+    ],
+    "caller:fable:S4": [
+      "381e784398327ecbe0d0e9b84a506d814d7b6ef4928e3d0f769946b64430ac33",
+      "9d310a44f961da0f05d01212dd3ba077a49054f5582bd8db393d5ae8670648a8"
+    ],
+    "caller:sol:S3": [
+      "4cb7ceb9d8a3045951ce9c2da00eb1afb02ad91d1d3bad722283c0f96fa5ce84",
+      "11d98294ac8a19c8e77490998a933add2ddf8de6fdbeb8e7156159e201a87bfe"
+    ],
+    "caller:sol:S4": [
+      "381e784398327ecbe0d0e9b84a506d814d7b6ef4928e3d0f769946b64430ac33",
+      "9d310a44f961da0f05d01212dd3ba077a49054f5582bd8db393d5ae8670648a8"
+    ]
+  },
+  "prompt_sha256": "9931ded6b7e732687b0889e6959ef9a873e6f459a292c132443db0f6bc9a7371",
+  "golden_sha256": "6f32bc513494f1c4454b4c41e74186136212d477ff10c87ccb29244ca21aaa76",
+  "schema": {
+    "type": "json_schema",
+    "name": "page_context_validation",
+    "strict": true,
+    "schema": {
+      "type": "object",
+      "properties": {
+        "verdict": {
+          "type": "string",
+          "enum": [
+            "pass",
+            "fail"
+          ]
+        },
+        "has_page_text": {
+          "type": "boolean"
+        },
+        "excessive_blank": {
+          "type": "boolean"
+        },
+        "reason": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "verdict",
+        "has_page_text",
+        "excessive_blank",
+        "reason"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "models": {
+    "fable": "claude-fable-5-2 standard xhigh32768",
+    "sol": "gpt-6.1-sol medium4096 high detail defaulttier storefalse"
+  },
+  "prices_usd_per_million": {
+    "fable": [
+      8,
+      0.2,
+      16,
+      40
+    ],
+    "sol": [
+      2,
+      0.1,
+      2.5,
+      10
+    ]
+  },
+  "reservation_usd_per_dispatch": {
+    "fable": 2.04672,
+    "sol": 0.15596
+  },
+  "judge": "none; deterministicverdict+originalpixel fullpayloadreview",
+  "topology": "serial independentrequests no subjectcache",
+  "privacy": "Only publicOnward and existing authoredsynthetic; standard30dayAnthropicretention disclosed; no privatepayload/accountchanges",
+  "promotion": "classifier22/22pluszero false-safe/fullpayload; S3/S4modelpolicy separatefrom operatormechanics; all production/C5holds preserved",
+  "sources": [
+    "https://platform.claude.com/docs/en/models/fable-5-2/overview",
+    "https://platform.openai.com/pricing"
+  ],
+  "maxeffort": "unmeasured/unauthorized no sweep",
+  "native_fable_service_tier": "standard_only"
+}
