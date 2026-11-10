@@ -1,0 +1,50 @@
+{
+  "date": "2026-11-10",
+  "scope": [
+    "Attempt087/Story265",
+    "Attempt088/Story266 default-off native caller"
+  ],
+  "source_commits": {
+    "087": "b384ba8",
+    "088": "02d5a46"
+  },
+  "integration_parent_commit": "c62dd1032a8cb6b4aa099b053b2fb396e956fbb1",
+  "remote_base": "5bd3ba777d70347eb8dd84b9aa18a6b3ba025193",
+  "integration_branch": "codex/fable-finish-20261110-doc-web",
+  "integration_worktree": "/Users/cam/.codex/worktrees/fable-finish-20261110/doc-web",
+  "validation": {
+    "consumer_evidence_reused": "088220 affectedconsumer tests: modules/doc_web/driver/schemas/tools/callerconfig/testinputs byte-identical to02d5a46; actuallive+saveddriver artifacts/raw/codeepochs preserved",
+    "integration_tests": "python -m pytest tests/test_fable52_campaign.py tests/test_safety_qual_088.py -q:12passed1.13s; verifies combinedguard/importinteraction",
+    "lint": "Scoped Ruff acrossall087/088new/changedPython PASS",
+    "methodology": "make methodology-check PASS aftercombined regeneration",
+    "diff": "git diff --check PASS; fullhistory vsorigin/main reviewed",
+    "custody": "All8publicarchivepartSHA+joinedSHAverified inintegration; originalrunmanifests unchanged andprevious fullmemberreadback passed; protected087packet size/SHA/mode0600 verified outsideworktrees",
+    "provider_calls": 0,
+    "inbox": "Primaryclean; no inbox-only edits to reconcile",
+    "CI": "No .github workflows; mainbranchprotection404/unprotected and branchrulesempty; no requiredreview/CI gates discovered"
+  },
+  "retained_worktrees": [
+    {
+      "path": "/Users/cam/.codex/worktrees/fable52-20261109/doc-web",
+      "owner": "Doc Web Attempt087",
+      "branch": "codex/fable52-20261109-doc-web",
+      "commit": "b384ba8",
+      "disposition": "Retained, originalexpandedraw+protectedpointer, no cleanuprequested"
+    },
+    {
+      "path": "/Users/cam/.codex/worktrees/fable52-safety-qualification-20261109/doc-web",
+      "owner": "Doc Web Attempt088",
+      "branch": "codex/fable52-safety-qualification-20261109-doc-web",
+      "commit": "02d5a46",
+      "disposition": "Retained, originalraw/driverproof, no cleanuprequested"
+    },
+    {
+      "path": "/Users/cam/.codex/worktrees/fable-finish-20261110/doc-web",
+      "owner": "Doc Web finish-and-push integration",
+      "branch": "codex/fable-finish-20261110-doc-web",
+      "disposition": "Retained candidate awaitingcoordinatorallrepo preflight; no pushyet"
+    }
+  ],
+  "primary": "/Users/cam/Documents/Projects/doc-web untouched; activebranch preserved",
+  "landing": "Prepared, not pushed; waitforrootPhase2 authorization"
+}
