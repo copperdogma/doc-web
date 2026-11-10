@@ -251,7 +251,8 @@
           "257",
           "258",
           "263",
-          "264"
+          "264",
+          "265"
         ],
         "adr_ids": [
           "ADR-001",
@@ -338,7 +339,8 @@
           "257",
           "258",
           "263",
-          "264"
+          "264",
+          "265"
         ],
         "adr_ids": [
           "ADR-001",
@@ -407,7 +409,8 @@
           "259",
           "262",
           "263",
-          "264"
+          "264",
+          "265"
         ],
         "adr_ids": [],
         "eval_ids": [
@@ -546,7 +549,8 @@
           "260",
           "262",
           "263",
-          "264"
+          "264",
+          "265"
         ],
         "adr_ids": [
           "ADR-001",
@@ -720,7 +724,8 @@
           "242",
           "244",
           "259",
-          "264"
+          "264",
+          "265"
         ],
         "adr_ids": [
           "ADR-002"
@@ -972,7 +977,8 @@
           "257",
           "258",
           "263",
-          "264"
+          "264",
+          "265"
         ],
         "eval_ids": [
           "literal-table-fidelity",
@@ -989,11 +995,11 @@
           "retry_when": [],
           "why_now": "",
           "last_relevant_action": {
-            "date": "2026-11-05",
+            "date": "2026-11-09",
             "source_type": "eval-attempt",
             "source": "docs/evals/registry.yaml",
-            "source_id": "086",
-            "summary": "Bakery source Il1-O0 becomes Il1-00 plus4 clear holds; Astra23/23verified at9136ms/USD.0821425. Valid source failure; remaining13clear+2ambiguity unmeasured. Retain Astra. Attempt086/Story264; high32768 OpenRouter Ten..."
+            "source_id": "087",
+            "summary": "Threecases:36/36clearcells+bothgenuineambiguityholds forFableandfreshAstra. Qualitytie;Fable.296712/17.589smean vsAstra.2309025/6.997s. Maxnottriggered; retainAstra. Attempt087/Story265. Full12candidatecases,11validco..."
           },
           "story_ids": [
             "131",
@@ -1051,7 +1057,8 @@
             "257",
             "258",
             "263",
-            "264"
+            "264",
+            "265"
           ],
           "eval_ids": [
             "literal-table-fidelity",
@@ -1098,7 +1105,8 @@
           "257",
           "258",
           "263",
-          "264"
+          "264",
+          "265"
         ],
         "eval_ids": [
           "literal-table-fidelity"
@@ -1113,11 +1121,11 @@
           "retry_when": [],
           "why_now": "",
           "last_relevant_action": {
-            "date": "2026-11-05",
+            "date": "2026-11-09",
             "source_type": "eval-attempt",
             "source": "docs/evals/registry.yaml",
-            "source_id": "086",
-            "summary": "Bakery source Il1-O0 becomes Il1-00 plus4 clear holds; Astra23/23verified at9136ms/USD.0821425. Valid source failure; remaining13clear+2ambiguity unmeasured. Retain Astra. Attempt086/Story264; high32768 OpenRouter Ten..."
+            "source_id": "087",
+            "summary": "Threecases:36/36clearcells+bothgenuineambiguityholds forFableandfreshAstra. Qualitytie;Fable.296712/17.589smean vsAstra.2309025/6.997s. Maxnottriggered; retainAstra. Attempt087/Story265. Full12candidatecases,11validco..."
           },
           "story_ids": [
             "022",
@@ -1148,7 +1156,8 @@
             "257",
             "258",
             "263",
-            "264"
+            "264",
+            "265"
           ],
           "eval_ids": [
             "literal-table-fidelity"
@@ -1320,7 +1329,8 @@
           "258",
           "262",
           "263",
-          "264"
+          "264",
+          "265"
         ],
         "eval_ids": [
           "image-crop-extraction",
@@ -1364,7 +1374,8 @@
             "258",
             "262",
             "263",
-            "264"
+            "264",
+            "265"
           ],
           "eval_ids": [
             "image-crop-extraction",
@@ -1408,7 +1419,8 @@
           "259",
           "262",
           "263",
-          "264"
+          "264",
+          "265"
         ],
         "eval_ids": [
           "sol-crop-safety-native-public-smoke",
@@ -1455,7 +1467,8 @@
             "259",
             "262",
             "263",
-            "264"
+            "264",
+            "265"
           ],
           "eval_ids": [
             "sol-crop-safety-native-public-smoke",
@@ -15321,6 +15334,75 @@
           "summary": ""
         }
       }
+    },
+    {
+      "id": "265",
+      "title": "Fable5.2 source fidelity capability panel",
+      "path": "docs/stories/story-265-fable52-source-fidelity.md",
+      "status": "Done",
+      "priority": "Medium",
+      "ideal_refs": [
+        "req:3",
+        "req:4",
+        "req:6"
+      ],
+      "spec_refs": [
+        "spec:2.1",
+        "spec:4.1",
+        "spec:4.2",
+        "spec:6"
+      ],
+      "decision_refs": [
+        "ADR-001",
+        "ADR-002"
+      ],
+      "adr_ids": [
+        "ADR-001",
+        "ADR-002"
+      ],
+      "depends_on": [],
+      "category_refs": [
+        "spec:2",
+        "spec:3",
+        "spec:4",
+        "spec:6",
+        "spec:8"
+      ],
+      "compromise_refs": [
+        "C1",
+        "C4",
+        "C5",
+        "C6"
+      ],
+      "input_coverage_refs": [
+        "handwritten-notes",
+        "scanned-pdf-tables"
+      ],
+      "architecture_domains": [
+        "ocr_and_extraction"
+      ],
+      "roadmap_tags": [],
+      "blocker_summary": "",
+      "blocker_evidence": "",
+      "unblock_condition": "",
+      "last_work_log_entry": null,
+      "legacy_build_map_refs": "",
+      "metadata_source": "frontmatter",
+      "missing_frontmatter_keys": [],
+      "actionability": {
+        "source_kind": "story",
+        "source_id": "265",
+        "source_path": "docs/stories/story-265-fable52-source-fidelity.md",
+        "recommended_now": false,
+        "posture": "completed",
+        "why_now": "",
+        "last_relevant_action": {
+          "date": null,
+          "source_type": "story-status",
+          "source": "docs/stories/story-265-fable52-source-fidelity.md",
+          "summary": ""
+        }
+      }
     }
   ],
   "adrs": [
@@ -15462,7 +15544,8 @@
         "257",
         "258",
         "263",
-        "264"
+        "264",
+        "265"
       ],
       "compromise_refs": [
         "C1",
@@ -15666,6 +15749,14 @@
       },
       "attempts": [
         {
+          "id": "087",
+          "date": "2026-11-09",
+          "status": "completed",
+          "approach": "Scout107 revision2 native Anthropic Fable5.2 xhigh32768 capability panel; authorized OR access recovery",
+          "note": "Threecases:36/36clearcells+bothgenuineambiguityholds forFableandfreshAstra. Qualitytie;Fable.296712/17.589smean vsAstra.2309025/6.997s. Maxnottriggered; retainAstra. Attempt087/Story265. Full12candidatecases,11validcontrols+1identityquarantine. Known1.61832125+unknown4.76416=6.38248125/30 closed27POSTs. OR402/native400 retained, directstandard exactmodel; APIstructure+originalhostbounds. No defaults/commit/push. Evidence docs/evals/evidence/087-fable52/summary.json.",
+          "retry_when": []
+        },
+        {
           "id": "086",
           "date": "2026-11-05",
           "status": "failed",
@@ -15782,11 +15873,11 @@
         "retry_when": [],
         "why_now": "",
         "last_relevant_action": {
-          "date": "2026-11-05",
+          "date": "2026-11-09",
           "source_type": "eval-attempt",
           "source": "docs/evals/registry.yaml",
-          "source_id": "086",
-          "summary": "Bakery source Il1-O0 becomes Il1-00 plus4 clear holds; Astra23/23verified at9136ms/USD.0821425. Valid source failure; remaining13clear+2ambiguity unmeasured. Retain Astra. Attempt086/Story264; high32768 OpenRouter Ten..."
+          "source_id": "087",
+          "summary": "Threecases:36/36clearcells+bothgenuineambiguityholds forFableandfreshAstra. Qualitytie;Fable.296712/17.589smean vsAstra.2309025/6.997s. Maxnottriggered; retainAstra. Attempt087/Story265. Full12candidatecases,11validco..."
         }
       }
     },
@@ -16051,7 +16142,8 @@
         "257",
         "258",
         "263",
-        "264"
+        "264",
+        "265"
       ],
       "compromise_refs": [
         "C4"
@@ -16844,6 +16936,14 @@
       },
       "attempts": [
         {
+          "id": "087",
+          "date": "2026-11-09",
+          "status": "completed",
+          "approach": "Scout107 revision2 native Anthropic Fable5.2 xhigh32768 capability panel; authorized OR access recovery",
+          "note": "Image011.9478/Image001.7702 tolerantoriginalscores; strictsource0/2:12baselineendpointpixelsclipped andentiretitledateomitted. Gemini.9839/.9829,strict1/2 with16sealrimpixelsclipped. Retainmanualholds; no detectorqualification. Attempt087/Story265. Full12candidatecases,11validcontrols+1identityquarantine. Known1.61832125+unknown4.76416=6.38248125/30 closed27POSTs. OR402/native400 retained, directstandard exactmodel; APIstructure+originalhostbounds. No defaults/commit/push. Evidence docs/evals/evidence/087-fable52/summary.json.",
+          "retry_when": []
+        },
+        {
           "id": "086",
           "date": "2026-11-05",
           "status": "failed",
@@ -17376,11 +17476,11 @@
         ],
         "why_now": "Attempt063 qualified Gemini4 Argon13/13 but leaves cover-edge/source/runtime/safety equivalence unqualified and costs/latency higher than fresh control. New identity alone does not warrant another same-line campaign;...",
         "last_relevant_action": {
-          "date": "2026-11-05",
+          "date": "2026-11-09",
           "source_type": "eval-attempt",
           "source": "docs/evals/registry.yaml",
-          "source_id": "086",
-          "summary": "Image011 diagnostic .9635 versus freshGemini .9854/13542ms/USD.0099485. Source2 integral date rows clipped; reject despite tolerant IoU pass. Remaining12 unmeasured; both-arm golden-assisted axis oracle, no runtime co..."
+          "source_id": "087",
+          "summary": "Image011.9478/Image001.7702 tolerantoriginalscores; strictsource0/2:12baselineendpointpixelsclipped andentiretitledateomitted. Gemini.9839/.9829,strict1/2 with16sealrimpixelsclipped. Retainmanualholds; no detectorqual..."
         }
       }
     },
@@ -17689,7 +17789,8 @@
         "257",
         "258",
         "259",
-        "264"
+        "264",
+        "265"
       ],
       "compromise_refs": [
         "C5"
@@ -18345,6 +18446,14 @@
       },
       "attempts": [
         {
+          "id": "087",
+          "date": "2026-11-09",
+          "status": "completed",
+          "approach": "Scout107 revision2 native Anthropic Fable5.2 xhigh32768 capability panel; authorized OR access recovery",
+          "note": "Fullselected6cases: Fable6/6zero false-safe vsfreshGPT5.5 3/6onefalse-safe. Correctlyrejectspage012001bottomfifthsealtruncation. Fable.536464/10.077smean vsGPT.350083/3.689s. Prioritizefull22+consumerqualification, no C5deletion. Attempt087/Story265. Full12candidatecases,11validcontrols+1identityquarantine. Known1.61832125+unknown4.76416=6.38248125/30 closed27POSTs. OR402/native400 retained, directstandard exactmodel; APIstructure+originalhostbounds. No defaults/commit/push. Evidence docs/evals/evidence/087-fable52/summary.json.",
+          "retry_when": []
+        },
+        {
           "id": "086",
           "date": "2026-11-05",
           "status": "failed",
@@ -18690,11 +18799,11 @@
         ],
         "why_now": "Rerun when a materially stronger validator or detector may reduce the current fail-labeled page-context cases. Rerun after any maintained crop/runtime simplification before claiming `trim_layout_text` or bounded capti...",
         "last_relevant_action": {
-          "date": "2026-11-05",
+          "date": "2026-11-09",
           "source_type": "eval-attempt",
           "source": "docs/evals/registry.yaml",
-          "source_id": "086",
-          "summary": "First valid failure page012001: both pass seal missing roughly21percent. Hy4 5/6 vsGPT5.5 3/6 reference lead, one false-safe each; neither qualifies. Remaining16 unmeasured. Strict schema/terminal qualified; reason/fl..."
+          "source_id": "087",
+          "summary": "Fullselected6cases: Fable6/6zero false-safe vsfreshGPT5.5 3/6onefalse-safe. Correctlyrejectspage012001bottomfifthsealtruncation. Fable.536464/10.077smean vsGPT.350083/3.689s. Prioritizefull22+consumerqualification, no..."
         }
       }
     },
@@ -18815,7 +18924,8 @@
         "257",
         "258",
         "263",
-        "264"
+        "264",
+        "265"
       ],
       "compromise_refs": [],
       "category_refs": [
@@ -19217,6 +19327,14 @@
       },
       "attempts": [
         {
+          "id": "087",
+          "date": "2026-11-09",
+          "status": "completed",
+          "approach": "Scout107 revision2 native Anthropic Fable5.2 xhigh32768 capability panel; authorized OR access recovery",
+          "note": "ActualBarneydriverFable.981295 below.99;definitecomrads substitutionandit omission. .075648/15.234s. ExactGemini3.7served3.8quarantinedat.01614675; nofreshrelativeOCRclaim. Retaincurrentmodels. Attempt087/Story265. Full12candidatecases,11validcontrols+1identityquarantine. Known1.61832125+unknown4.76416=6.38248125/30 closed27POSTs. OR402/native400 retained, directstandard exactmodel; APIstructure+originalhostbounds. No defaults/commit/push. Evidence docs/evals/evidence/087-fable52/summary.json.",
+          "retry_when": []
+        },
+        {
           "id": "086",
           "date": "2026-11-05",
           "status": "failed",
@@ -19430,11 +19548,11 @@
         ],
         "why_now": "Retry only when a materially stronger model or OCR substrate appears that could plausibly clear Barney and the corrected Alverson front-page truth surface.",
         "last_relevant_action": {
-          "date": "2026-11-05",
+          "date": "2026-11-09",
           "source_type": "eval-attempt",
           "source": "docs/evals/registry.yaml",
-          "source_id": "086",
-          "summary": "Actual Barney image-entry driver produces source substitutions/normalization/invented passage; reject tested high arm. Requested exactGemini3.7 served3.8 quarantined atUSD.02286675; no fresh relative OCR claim. No eff..."
+          "source_id": "087",
+          "summary": "ActualBarneydriverFable.981295 below.99;definitecomrads substitutionandit omission. .075648/15.234s. ExactGemini3.7served3.8quarantinedat.01614675; nofreshrelativeOCRclaim. Retaincurrentmodels. Attempt087/Story265. Fu..."
         }
       }
     },

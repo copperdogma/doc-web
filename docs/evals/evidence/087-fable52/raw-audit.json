@@ -1,0 +1,218 @@
+[
+  {
+    "stage": "native-table",
+    "http": 402,
+    "served": null,
+    "semantic_eligible": false,
+    "request_object_lossless": true,
+    "complete_raw_response": true
+  },
+  {
+    "stage": "native-central-table",
+    "http": 402,
+    "served": null,
+    "semantic_eligible": false,
+    "request_object_lossless": true,
+    "complete_raw_response": true
+  },
+  {
+    "stage": "table-image-positive-candidate",
+    "http": 400,
+    "served": null,
+    "semantic_eligible": false,
+    "request_object_lossless": true,
+    "complete_raw_response": true
+  },
+  {
+    "stage": "table-image-positive-candidate-native-repair1",
+    "http": 200,
+    "served": "claude-fable-5-2",
+    "semantic_eligible": true,
+    "request_object_lossless": true,
+    "complete_raw_response": true
+  },
+  {
+    "stage": "table-image-positive-control",
+    "http": 200,
+    "served": "gpt-6-astra",
+    "semantic_eligible": true,
+    "request_object_lossless": true,
+    "complete_raw_response": true
+  },
+  {
+    "stage": "table-ambiguity-negative-candidate",
+    "http": 200,
+    "served": "claude-fable-5-2",
+    "semantic_eligible": true,
+    "request_object_lossless": true,
+    "complete_raw_response": true
+  },
+  {
+    "stage": "table-ambiguity-negative-control",
+    "http": 200,
+    "served": "gpt-6-astra",
+    "semantic_eligible": true,
+    "request_object_lossless": true,
+    "complete_raw_response": true
+  },
+  {
+    "stage": "table-native-positive-candidate",
+    "http": 200,
+    "served": "claude-fable-5-2",
+    "semantic_eligible": true,
+    "request_object_lossless": true,
+    "complete_raw_response": true
+  },
+  {
+    "stage": "table-native-positive-control",
+    "http": 200,
+    "served": "gpt-6-astra",
+    "semantic_eligible": true,
+    "request_object_lossless": true,
+    "complete_raw_response": true
+  },
+  {
+    "stage": "crop-screen-Image011-candidate",
+    "http": 200,
+    "served": "claude-fable-5-2",
+    "semantic_eligible": true,
+    "request_object_lossless": true,
+    "complete_raw_response": true
+  },
+  {
+    "stage": "crop-screen-Image011-control",
+    "http": 200,
+    "served": "gemini-3-flash-preview",
+    "semantic_eligible": true,
+    "request_object_lossless": true,
+    "complete_raw_response": true
+  },
+  {
+    "stage": "crop-screen-Image001-candidate",
+    "http": 200,
+    "served": "claude-fable-5-2",
+    "semantic_eligible": true,
+    "request_object_lossless": true,
+    "complete_raw_response": true
+  },
+  {
+    "stage": "crop-screen-Image001-control",
+    "http": 200,
+    "served": "gemini-3-flash-preview",
+    "semantic_eligible": true,
+    "request_object_lossless": true,
+    "complete_raw_response": true
+  },
+  {
+    "stage": "safety-page-001-000-candidate",
+    "http": 200,
+    "served": "claude-fable-5-2",
+    "semantic_eligible": true,
+    "request_object_lossless": true,
+    "complete_raw_response": true
+  },
+  {
+    "stage": "safety-page-001-000-control",
+    "http": 200,
+    "served": "gpt-5.5-2026-04-23",
+    "semantic_eligible": true,
+    "request_object_lossless": true,
+    "complete_raw_response": true
+  },
+  {
+    "stage": "safety-page-004-000-candidate",
+    "http": 200,
+    "served": "claude-fable-5-2",
+    "semantic_eligible": true,
+    "request_object_lossless": true,
+    "complete_raw_response": true
+  },
+  {
+    "stage": "safety-page-004-000-control",
+    "http": 200,
+    "served": "gpt-5.5-2026-04-23",
+    "semantic_eligible": true,
+    "request_object_lossless": true,
+    "complete_raw_response": true
+  },
+  {
+    "stage": "safety-page-009-000-candidate",
+    "http": 200,
+    "served": "claude-fable-5-2",
+    "semantic_eligible": true,
+    "request_object_lossless": true,
+    "complete_raw_response": true
+  },
+  {
+    "stage": "safety-page-009-000-control",
+    "http": 200,
+    "served": "gpt-5.5-2026-04-23",
+    "semantic_eligible": true,
+    "request_object_lossless": true,
+    "complete_raw_response": true
+  },
+  {
+    "stage": "safety-page-012-000-candidate",
+    "http": 200,
+    "served": "claude-fable-5-2",
+    "semantic_eligible": true,
+    "request_object_lossless": true,
+    "complete_raw_response": true
+  },
+  {
+    "stage": "safety-page-012-000-control",
+    "http": 200,
+    "served": "gpt-5.5-2026-04-23",
+    "semantic_eligible": true,
+    "request_object_lossless": true,
+    "complete_raw_response": true
+  },
+  {
+    "stage": "safety-page-122-001-candidate",
+    "http": 200,
+    "served": "claude-fable-5-2",
+    "semantic_eligible": true,
+    "request_object_lossless": true,
+    "complete_raw_response": true
+  },
+  {
+    "stage": "safety-page-122-001-control",
+    "http": 200,
+    "served": "gpt-5.5-2026-04-23",
+    "semantic_eligible": true,
+    "request_object_lossless": true,
+    "complete_raw_response": true
+  },
+  {
+    "stage": "safety-page-012-001-candidate",
+    "http": 200,
+    "served": "claude-fable-5-2",
+    "semantic_eligible": true,
+    "request_object_lossless": true,
+    "complete_raw_response": true
+  },
+  {
+    "stage": "safety-page-012-001-control",
+    "http": 200,
+    "served": "gpt-5.5-2026-04-23",
+    "semantic_eligible": true,
+    "request_object_lossless": true,
+    "complete_raw_response": true
+  },
+  {
+    "stage": "ocr-barney-candidate",
+    "http": 200,
+    "served": "claude-fable-5-2",
+    "semantic_eligible": true,
+    "request_object_lossless": true,
+    "complete_raw_response": true
+  },
+  {
+    "stage": "ocr-barney-control",
+    "http": 200,
+    "served": "gemini-3.8-flash",
+    "semantic_eligible": false,
+    "request_object_lossless": true,
+    "complete_raw_response": true
+  }
+]

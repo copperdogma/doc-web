@@ -1,0 +1,29 @@
+{
+  "schema_version": "page_html_v1",
+  "module_id": "ocr_ai_gpt51_v1",
+  "run_id": "story244-native-positive-v2",
+  "source": [
+    "/Users/cam/Documents/Projects/doc-web/output/story244-phase2-confirmation-sealed/native-positive/native.pdf"
+  ],
+  "created_at": "2026-10-06T21:16:24.509029Z",
+  "page": 1,
+  "page_number": 1,
+  "original_page_number": 1,
+  "image": "/Users/cam/Documents/Projects/doc-web/output/runs/story244-native-positive-v2/01_extract_pdf_images_capped_v1/images/page-001.png",
+  "spread_side": null,
+  "ocr_quality": 1.0,
+  "ocr_integrity": 1.0,
+  "continuation_risk": 0.0,
+  "ocr_metadata_warning": null,
+  "ocr_metadata_tag": null,
+  "ocr_metadata_missing": null,
+  "ocr_empty": null,
+  "ocr_empty_reason": null,
+  "raw_html": "<h1>Library accession checklist</h1>\n<table>\n<thead>\n<tr><th>Collection</th><th>Accession</th><th>Review</th></tr>\n</thead>\n<tbody>\n<tr><td>Botany</td><td>Ab-21</td><td>“Complete”</td></tr>\n<tr><td>Poetry</td><td>AB-21</td><td>cataloge</td></tr>\n<tr><td>Maps</td><td>M/07</td><td>Checked; ready.</td></tr>\n<tr><td colspan=\"3\">Preserve printed labels.</td></tr>\n</tbody>\n</table>",
+  "html": "<h1>Library accession checklist</h1>\n<table>\n<thead>\n<tr><th>Collection</th><th>Accession</th><th>Review</th></tr>\n</thead>\n<tbody>\n<tr><td>Botany</td><td>Ab-21</td><td>“Complete”</td></tr>\n<tr><td>Poetry</td><td>AB-21</td><td>cataloge</td></tr>\n<tr><td>Maps</td><td>M/07</td><td>Checked; ready.</td></tr>\n<tr><td colspan=\"3\">Preserve printed labels.</td></tr>\n</tbody>\n</table>\n",
+  "printed_page_number": null,
+  "printed_page_number_text": null,
+  "printed_page_number_inferred": null,
+  "images": null,
+  "literal_fidelity": null
+}

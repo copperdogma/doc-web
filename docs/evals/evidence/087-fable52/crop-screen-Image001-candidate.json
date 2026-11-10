@@ -1,0 +1,9 @@
+{
+  "raw": "{\"images\":[{\"description\":\"Stylized western-style display title reading 'ONWARD TO THE UNKNOWN'\",\"bbox\":[0.188,0.266,0.858,0.354]}]}",
+  "score": {
+    "pass": true,
+    "score": 0.7702,
+    "reason": "box_count=1.00 (1/1) | iou_mean=0.717 | iou_min=0.717 | coverage=0.748 | total=0.770 | matches=[pred[0]<->gold[0] IoU=0.717]"
+  },
+  "served": "claude-fable-5-2"
+}

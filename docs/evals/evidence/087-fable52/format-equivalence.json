@@ -1,0 +1,42 @@
+[
+  {
+    "path": "benchmarks/providers/fable52_guard.py",
+    "AST_equal_after_import_split_normalization": true,
+    "exception": null
+  },
+  {
+    "path": "benchmarks/scripts/fable52_reading.py",
+    "AST_equal_after_import_split_normalization": true,
+    "exception": null
+  },
+  {
+    "path": "benchmarks/scripts/fable52_safety.py",
+    "AST_equal_after_import_split_normalization": true,
+    "exception": null
+  },
+  {
+    "path": "benchmarks/scripts/fable52_run.py",
+    "AST_equal_after_import_split_normalization": true,
+    "exception": null
+  },
+  {
+    "path": "benchmarks/scripts/fable52_overlay.py",
+    "AST_equal_after_import_split_normalization": true,
+    "exception": null
+  },
+  {
+    "path": "benchmarks/scripts/fable52_audit.py",
+    "AST_equal_after_import_split_normalization": false,
+    "exception": "offlineauditonlyunusedbase64/tarfileimportsremoved"
+  },
+  {
+    "path": "benchmarks/scripts/fable52_native.py",
+    "AST_equal_after_import_split_normalization": true,
+    "exception": null
+  },
+  {
+    "path": "tests/test_fable52_campaign.py",
+    "AST_equal_after_import_split_normalization": true,
+    "exception": null
+  }
+]

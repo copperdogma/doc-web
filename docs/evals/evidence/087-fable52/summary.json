@@ -1,0 +1,173 @@
+{
+  "base_sha": "5bd3ba777d70347eb8dd84b9aa18a6b3ba025193",
+  "branch": "codex/fable52-20261109-doc-web",
+  "worktree": "/Users/cam/.codex/worktrees/fable52-20261109/doc-web",
+  "owner": "Doc Web",
+  "cap_usd": 30,
+  "spent_usd": 1.61832125,
+  "unknown_exposure_usd": 4.76416,
+  "accounted_maximum_usd": 6.3824812500000005,
+  "posts": 27,
+  "candidate_cases": 12,
+  "valid_controls": 11,
+  "quarantined_controls": 1,
+  "judge_calls": 0,
+  "route": "Direct Anthropic claude-fable-5-2 xhigh32768; coordinator-authorized recovery from OR402; no OpenRouter qualification",
+  "native_standard": true,
+  "effort_calibration": "max65536 not triggered: all36clear cells exact and2realambiguities held; lower levels unmeasured",
+  "access": "direct available; selected OR account blocked",
+  "transport": "native Messages structural API schema + documented SDK transform and original host schema validation; original OR and broad runtime integration unqualified",
+  "reliability": "12/12 native subject responses terminal; pre-inference2OR402+1native400 retained; OCR shim importerror repaired before POST; population/concurrency unmeasured",
+  "adoption": "Prioritize nativeFable safety for broader22case+consumer qualification; retain current defaults. Tablequalitytie withAstra but highercost/slower; cropsourcefailure and OCR.99miss forbid replacement.",
+  "safety": {
+    "economics": {
+      "candidate": {
+        "calls": 6,
+        "cost_usd": 0.536464,
+        "latency_ms": [
+          30442,
+          5023,
+          5234,
+          5529,
+          4918,
+          9318
+        ],
+        "mean_latency_ms": 10077.333333333334,
+        "thinking_tokens": 2266
+      },
+      "control": {
+        "calls": 6,
+        "cost_usd": 0.350083,
+        "latency_ms": [
+          5109,
+          3309,
+          4003,
+          2397,
+          4507,
+          2810
+        ],
+        "mean_latency_ms": 3689.1666666666665,
+        "thinking_tokens": 0
+      }
+    },
+    "candidate": {
+      "cases": 6,
+      "correct": 6,
+      "false_safe": 0
+    },
+    "control": {
+      "cases": 6,
+      "correct": 3,
+      "false_safe": 1
+    }
+  },
+  "table": {
+    "clear_cells": 36,
+    "candidate_exact": 36,
+    "control_exact": 36,
+    "genuine_ambiguous_cells": 2,
+    "candidate_holds": 2,
+    "control_holds": 2,
+    "accepted_wrong_cells": 0,
+    "original_ambiguity_text_score": "7/8 both; raw placeholders differ from authored codepoints; both correcthold",
+    "economics": {
+      "candidate": {
+        "calls": 3,
+        "cost_usd": 0.296712,
+        "latency_ms": [
+          20634,
+          13238,
+          18896
+        ],
+        "mean_latency_ms": 17589.333333333332,
+        "thinking_tokens": 2831
+      },
+      "control": {
+        "calls": 3,
+        "cost_usd": 0.2309025,
+        "latency_ms": [
+          9827,
+          4791,
+          6374
+        ],
+        "mean_latency_ms": 6997.333333333333,
+        "thinking_tokens": 0
+      }
+    }
+  },
+  "crop": {
+    "candidate_scores": {
+      "Image011": 0.9478,
+      "Image001": 0.7702
+    },
+    "control_scores": {
+      "Image011": 0.9839,
+      "Image001": 0.9829
+    },
+    "candidate_source_pass_cases": 0,
+    "control_source_pass_cases": 1,
+    "Image011": "Fabledate/sealrim preserved but12darkpixels at two integral baselineends clipped; Gemini16sealrimpixels clipped at source rows1374,1375,1790. Bothfailstrictfullsource.",
+    "Image001": "Fableomitsentire1887-1987date; Geminipreservesfulltitle/date.",
+    "coordinate_limit": "Maintained scorer uses golden-assisted axisoracle; not runtimecoordinate qualification",
+    "economics": {
+      "candidate": {
+        "calls": 2,
+        "cost_usd": 0.09967999999999999,
+        "latency_ms": [
+          5201,
+          8577
+        ],
+        "mean_latency_ms": 6889,
+        "thinking_tokens": 396
+      },
+      "control": {
+        "calls": 2,
+        "cost_usd": 0.012685,
+        "latency_ms": [
+          12562,
+          5888
+        ],
+        "mean_latency_ms": 9225,
+        "thinking_tokens": 0
+      }
+    }
+  },
+  "ocr": {
+    "candidate_ratio": 0.981295,
+    "threshold": 0.99,
+    "candidate_source_review": "comrads→comrade and omittedit/our definite; no broad fabricatedpassage. Some smallgolden spelling/token ambiguities remain; no golden/scorer change or invented correctedscore.",
+    "control_requested": "gemini-3.7-flash",
+    "control_served": "gemini-3.8-flash",
+    "control_quarantined": true,
+    "relative_claim": false,
+    "economics": {
+      "candidate": {
+        "calls": 1,
+        "cost_usd": 0.075648,
+        "latency_ms": [
+          15234
+        ],
+        "mean_latency_ms": 15234,
+        "thinking_tokens": 1025
+      },
+      "control": {
+        "calls": 1,
+        "cost_usd": 0.01614675,
+        "latency_ms": [
+          28979
+        ],
+        "mean_latency_ms": 28979,
+        "thinking_tokens": 0
+      }
+    }
+  },
+  "credential_custody": "Existingownerwrapper preserved; central OR temporaryisolatedvar removed verifiedabsent; directexistingownerkey nevercopied/changed",
+  "limits": [
+    "Singleexposedresponsepercase,notproductionreliability",
+    "No13crop/22safetyfullqualification",
+    "No400pageOCR/C1deletion",
+    "Nooriginalsizecaller/grouping/geometry consumerqualification",
+    "NoOpenRouterservingproof",
+    "No implementedruntime routing/default/deploy/commit/push"
+  ]
+}

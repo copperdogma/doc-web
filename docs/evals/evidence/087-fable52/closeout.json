@@ -1,0 +1,11 @@
+{
+  "date": "2026-11-10",
+  "authority": "Explicit Check in and push; no further provider evaluation",
+  "original_manifest_sha256": "12c28a53d6f5b81af0fda6119361c92be1bae260bfeac5fcc200b8d949447ede",
+  "original_manifest_entries_verified": 169,
+  "custody_index_sha256": "f94a4c2167fa4ee5a0911906a6503e7dfebfa728fafb0062d07d284d21ae36d5",
+  "source_policy": "All scored public/synthetic responses portable in lossless public parts. Private rejected-access account identifiers only in protected external packet. No keys/headers copied.",
+  "validation": "Existing focused/consumer tests and actual driver evidence reused for unchanged producing content; generated closure records checked. Integration checks follow separately.",
+  "worktree_disposition": "Retained; no cleanup requested; primary/source epochs preserved",
+  "phase": "Prepared for local commit/integration; no pushes until coordinator clears all-repo preflight"
+}

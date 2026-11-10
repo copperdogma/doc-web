@@ -1,0 +1,81 @@
+{
+  "approved": "Scout107 revision2 item2",
+  "base": "5bd3ba777d70347eb8dd84b9aa18a6b3ba025193",
+  "cap_usd": 30,
+  "candidate": "anthropic/claude-fable-5.2",
+  "route": "OpenRouter Anthropic standard only; no fallback; max prices8/40",
+  "effort": "xhigh32768",
+  "safety": [
+    "page-001-000",
+    "page-004-000",
+    "page-009-000",
+    "page-012-000",
+    "page-122-001",
+    "page-012-001"
+  ],
+  "tables": [
+    "image-positive",
+    "ambiguity-negative",
+    "native-positive"
+  ],
+  "ocr": [
+    "barney"
+  ],
+  "crop": [
+    "Image011",
+    "Image001"
+  ],
+  "controls": {
+    "safety": "gpt-5.5 maintained",
+    "table": "gpt-6-astra medium8192",
+    "ocr": "exact gemini-3.7-flash no redirect scoring",
+    "crop": "gemini-3-flash-preview temp0 16384"
+  },
+  "privacy": "public Onward/public LOC Barney/authored synthetic confirmation-v2 only; mandatory30day retention and router uncertainty approved",
+  "topology": "one independent request/case serial; no cache; no paid judge",
+  "quality": "zero false-safe; exact clear cells ownership glyphs with genuine holds; OCR>=.99 no invention; complete integral crop lettering/date/rim; original deterministic scores and source adjudication separately",
+  "calibration": {
+    "trigger": "valid informative xhigh literal fidelity miss after source and scorer validation",
+    "cases": [
+      "image-positive",
+      "native-positive"
+    ],
+    "setting": "max65536 combined output/effort config comparison;2 calls maximum",
+    "selection": "exposed calibration; never favorable repeat selection"
+  },
+  "reservations": {
+    "six_safety": 10.07232,
+    "six_other": 9.11232,
+    "max_two": 5.65888,
+    "controls": 3,
+    "qualification_recovery": 2.15648
+  },
+  "operational_recovery": "finite at most4 additional inference attempts within30USD; preserve every response/error; unknown exposure fully reserved",
+  "stop": "hard cap/privacy/irreparable transport only; quality or old economics fail retains misses and continues complementary panel",
+  "frozen": {
+    "benchmarks/providers/fable52_guard.py": "d291d07b8b418cb3503f04d4d8e9a260525b4ce3100ba11cf6a66db133a33880",
+    "benchmarks/scripts/fable52_reading.py": "b49a2e1b0c3492291dc42a9113c93d6d9e96c046a0be82abd14ee7d881100443",
+    "benchmarks/scripts/fable52_safety.py": "0af86c77a007cec37f00e8dfc5b0699c9ea2950a3ef14faffa03818667ce4bad",
+    "modules/common/table_source_review.py": "78599f846eb31b2ad7a1607257458760e6e93e6eaa6d4ab062ffcbd30b879709",
+    "modules/common/literal_table_review.py": "25085a0937d27e5bae61e3973eddcf2ea6a43496cba814d57fb8af67a0212d67",
+    "benchmarks/golden/crop-page-level-safety-repair-048-source-adjudicated.json": "6f32bc513494f1c4454b4c41e74186136212d477ff10c87ccb29244ca21aaa76",
+    "benchmarks/golden/image-crops.json": "2ac0a8f01e00a252439da1f4827a85bc5118bf96460a3ff1780e642eafc60f90"
+  },
+  "direct_route_recovery": {
+    "authorized_by": "coordinator after both OR402; before nativecalls",
+    "model": "claude-fable-5-2 exact",
+    "endpoint": "https://api.anthropic.com/v1/messages",
+    "effort": "output_config.effort xhigh",
+    "schema": "output_config.format json_schema, strict API enforcement",
+    "output": 32768,
+    "price": "8/M input40/M output no cache directives",
+    "privacy": "same public/synthetic; standard commercial30day retention",
+    "first_case": "image-positive actual strict qualifier doubles as score; no extra tinycalls",
+    "ORqualification": "unmeasured; direct qualification separately",
+    "schema_adapter": "Official anthropic.transform_schema for unsupported array bounds; API-enforced structural schema and original SourcePageReview host validation. Unsupported constraints preserved in descriptions. Original400 quarantined.",
+    "research": [
+      "https://platform.claude.com/docs/en/build-with-claude/structured-outputs",
+      "https://platform.claude.com/docs/en/models/fable-5-2/whats-new-fable-5-2"
+    ]
+  }
+}

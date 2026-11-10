@@ -1,0 +1,10 @@
+{
+  "benchmarks/providers/fable52_guard.py": "c064fc2443f17023af6a8c4c8cd0f280be6d92f03faa018336689d482381f5e2",
+  "benchmarks/scripts/fable52_reading.py": "b96099693f1582b485eb11607de3c089f72a26c5558412493b7e365b7c85fbbe",
+  "benchmarks/scripts/fable52_safety.py": "63f0a97c69ca6624da1f458e7b4065fe9b2290fc82f1eef01ea2b883e911c548",
+  "benchmarks/scripts/fable52_run.py": "2b552b9aa11b7ece4d8009566d6c6354dffdc235f70f5d0cd623d6c0db368f78",
+  "benchmarks/scripts/fable52_overlay.py": "45dadab4e7d1161a486fbf56071595cef93b637c6ca2d983d4c6be166a9c2b6e",
+  "benchmarks/scripts/fable52_audit.py": "460f837f3fa0243f927c8c789832b69ecee4c53dcbbdeae7ea937efbe1cb901d",
+  "benchmarks/scripts/fable52_native.py": "c5d69bcbf3a7f223785c33aed41cbdedddeedbdb39e363303d10522e07b200bc",
+  "tests/test_fable52_campaign.py": "66f3e6d991aa2ef45216ebe93f6b9e7f6a49802c5b3ce3fd398a9cdc66b6ae02"
+}

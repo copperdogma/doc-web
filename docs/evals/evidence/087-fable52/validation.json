@@ -1,0 +1,16 @@
+{
+  "focused_tests": {
+    "command": "python -m pytest tests/test_fable52_campaign.py -q",
+    "result": "5passed .81s"
+  },
+  "lint": {
+    "command": "ruff check benchmarks/providers/fable52_guard.py benchmarks/scripts/fable52*.py tests/test_fable52_campaign.py",
+    "result": "Allcheckspassed"
+  },
+  "compile": "python -m compileall -q benchmarks/scripts/fable52* benchmarks/providers/fable52_guard.py passed",
+  "methodology": "python scripts/methodology_graph.py build; check passed",
+  "raw_audit": "python benchmarks/scripts/fable52_audit.py;27receipts originalcontracts identity+cost+unknownreservation passed",
+  "source_parity": "12/12native sourceimagebytes exact; table/crop/safety maintainedpromptparity; actualOCRdriver sourcepath and code snapshots",
+  "credentials": "OnlyinjectedDOC_WEB_OPENROUTER_API_KEY removed; absentverified; ownerprimary unchanged",
+  "prior_failed_checks": "Primaryvenvpytest/anthropicmissing; globalpytest3passedinitial then newnativetestlackedAnthropic; finalsameCondaPythonasnative withSDK0.79.0all5pass. Registrypartialscoreentriesdidnotmeetfullcorpuscoveragemetric; removed ratherthaninventoverall and keptboundedattemptmetrics/prose. Firstblockedstorygraphschemafixedbyfinalcompletedstudystatus."
+}
