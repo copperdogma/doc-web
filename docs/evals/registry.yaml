@@ -311,7 +311,7 @@ evals:
     pipeline_stage: validate
     runner: custom
     command: "See docs/runbooks/sol-crop-safety-pilot.md; live execution requires explicit capped approval"
-    story_refs: ["242"]
+    story_refs: ["242", "266"]
     category_refs: ["spec:4", "spec:8"]
     compromise_refs: ["C5"]
     target:
@@ -323,6 +323,12 @@ evals:
         metrics: {completed_receipts: 2, attempted: 2, latency_ms: 4070.5, cost_usd: 0.006511, cost_estimated: true, ledger_upper_total_usd: 0.013025, unknown_reserved_usd: 0}
         note: "Native2 passes are physically source-compatible; S3 grouping plausible, no uncertainty-policy qualification. Actual Cam assertions bound; offline driver released/built exact2crops once with page3. No default change."
     attempts:
+      - id: "088"
+        date: 2026-11-09
+        status: completed
+        approach: "Approved full22 fresh Fablexhigh32768 vsSolmedium4096high plus genuine native caller qualification"
+        note: "Both22/22source-adjudicated fullpayload,0false-safe; originalcanonical20/22/intermediate21/22 retained. Fableclassifier1.922544/7030.7ms vsSol.369622/4925.1ms. BothliveS3policyfail,S4correct(1/2), independent of successfulsyntheticactualdriverchains. Sixsavedliveheld/recrop/errorvariants blockrelease. Closed48POSTs USD2.371752/60 unknown0,recovery0/judge0.227tests,Ruff/compile; defaultoffreceipt/authority/anchor checks. RetainSol,manualuncertainty/C5holds/defaults. Story266/Attempt088; docs/evals/evidence/088-fable52-safety/summary.json."
+
       - id: "049"
         date: 2026-09-30
         status: succeeded
@@ -2663,7 +2669,7 @@ evals:
     config: benchmarks/tasks/crop-page-level-deletion-gate.yaml
     scorer: benchmarks/scorers/crop_validation_scorer.py
     golden: benchmarks/golden/crop-page-level-deletion-gate.json
-    story_refs: ["209", "232", "235", "237", "238", "239", "240", "249", "257", "258", "259", "264", "265"]
+    story_refs: ["209", "232", "235", "237", "238", "239", "240", "249", "257", "258", "259", "264", "265", "266"]
     category_refs: ["spec:4", "spec:8"]
     compromise_refs: ["C5"]
     spec_compromise: C5
@@ -3516,6 +3522,12 @@ evals:
         metrics: {adoption_grade_candidate_cases: 0, accounting_quarantined_cases: 2, diagnostic_correct: 1, diagnostic_false_safe: 1, fresh_control_correct: 2, fresh_control_false_safe: 0, remaining_unmeasured: 20}
         note: "ACCOUNTINGAUDIT: nativecompletion616/reasoning711 impossible; clippedseal323/311leaves12visible for231charJSON. Bothsubjectsenvelopesquarantined, capabilitynotmeasured/adoptiondefer. Savedclippedseal false-safe is diagnostic only; qualifiedGPT5.5control2/2correct. No newPOST. See evidence/079-scout097/accounting-audit/report.md. Fullownerrecord attempts/079-scout097-deepseek1017-source-fidelity.md; closedinclusiveUSD.231343868/15 unknown0, no runtime/defaults."
     attempts:
+      - id: "088"
+        date: 2026-11-09
+        status: completed
+        approach: "Approved full22 fresh Fablexhigh32768 vsSolmedium4096high plus genuine native caller qualification"
+        note: "Both22/22source-adjudicated fullpayload,0false-safe; originalcanonical20/22/intermediate21/22 retained. Fableclassifier1.922544/7030.7ms vsSol.369622/4925.1ms. BothliveS3policyfail,S4correct(1/2), independent of successfulsyntheticactualdriverchains. Sixsavedliveheld/recrop/errorvariants blockrelease. Closed48POSTs USD2.371752/60 unknown0,recovery0/judge0.227tests,Ruff/compile; defaultoffreceipt/authority/anchor checks. RetainSol,manualuncertainty/C5holds/defaults. Story266/Attempt088; docs/evals/evidence/088-fable52-safety/summary.json."
+
       - id: "087"
         date: 2026-11-09
         status: completed

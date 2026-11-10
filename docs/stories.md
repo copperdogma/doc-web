@@ -155,6 +155,7 @@ Grouped by primary `spec:N` category. Stories without category refs remain in an
 | 241 | Offline opt-in crop review gate | Medium | Done | 240 | [story-241](stories/story-241-offline-crop-review-gate.md) |
 | 242 | Opt-in Sol crop safety proposals with mandatory source review | Medium | Done | 240, 241 | [story-242](stories/story-242-sol-crop-safety-review-integration.md) |
 | 259 | Scout099 saved safety consumer feasibility | Medium | Done | 242 | [story-259](stories/story-259-scout099-safety-consumer-feasibility.md) |
+| 266 | Fable5.2 full safety and native caller qualification | Medium | Done | — | [story-266](stories/story-266-fable52-safety-qualification.md) |
 
 ### spec:5 — Document Consistency Planning
 

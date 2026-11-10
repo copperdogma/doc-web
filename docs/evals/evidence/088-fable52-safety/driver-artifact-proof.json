@@ -1,0 +1,154 @@
+[
+  {
+    "arm": "fable",
+    "actual_html": "/Users/cam/.codex/worktrees/fable52-safety-qualification-20261109/doc-web/output/runs/safety-qual088-fable-live-20261109/output/html/chapter-001.html",
+    "html_sha256": "eb282eae75961fe3d9d1ce36d2d1b8c42d07621885c49ad80d2a3e2071c93799",
+    "images": [
+      {
+        "name": "S3.png",
+        "sha256": "11d98294ac8a19c8e77490998a933add2ddf8de6fdbeb8e7156159e201a87bfe",
+        "bytes": 28577
+      },
+      {
+        "name": "S4.png",
+        "sha256": "9d310a44f961da0f05d01212dd3ba077a49054f5582bd8db393d5ae8670648a8",
+        "bytes": 11352
+      }
+    ],
+    "source_text_preserved": [
+      "Offline review fixture",
+      "Offline review fixture",
+      "Text-only source page: no illustration."
+    ],
+    "zero_candidate_page_preserved": true,
+    "independent_native_anchor_revalidated_at_final_audit": true,
+    "policy_before_operator": {
+      "arm": "fable",
+      "live_subjects": true,
+      "saved_live_replay": false,
+      "synthetic_authority_only": true,
+      "cases": [
+        {
+          "case": "S3",
+          "expected_model_verdict": "fail",
+          "answer_before_operator": {
+            "verdict": "pass",
+            "has_page_text": false,
+            "excessive_blank": false,
+            "reason": "The crop tightly isolates the page's only visual, a two-panel graphic with X shapes, in full. No surrounding page text or neighboring visuals are included, and there is minimal blank margin."
+          },
+          "status": "completed",
+          "verdict_and_flags_pass": false,
+          "grounded_reason_review": "manual source-first review required; no operator action can repair model semantics"
+        },
+        {
+          "case": "S4",
+          "expected_model_verdict": "pass",
+          "answer_before_operator": {
+            "verdict": "pass",
+            "has_page_text": false,
+            "excessive_blank": false,
+            "reason": "The crop isolates the bordered badge illustration exactly; the 'FIELD STATION' text is integral to the badge, and the page caption 'Figure C: badge' is excluded."
+          },
+          "status": "completed",
+          "verdict_and_flags_pass": true,
+          "grounded_reason_review": "manual source-first review required; no operator action can repair model semantics"
+        }
+      ]
+    },
+    "mechanics_variants": [
+      {
+        "disposition": "held",
+        "held_no_html_no_released_manifest": true,
+        "result": "/Users/cam/.codex/worktrees/fable52-safety-qualification-20261109/doc-web/output/runs/safety-qual088-fable-saved-held-20261109-fixture/result.json"
+      },
+      {
+        "disposition": "recrop",
+        "held_no_html_no_released_manifest": true,
+        "result": "/Users/cam/.codex/worktrees/fable52-safety-qualification-20261109/doc-web/output/runs/safety-qual088-fable-saved-recrop-20261109-fixture/result.json"
+      },
+      {
+        "disposition": "error",
+        "held_no_html_no_released_manifest": true,
+        "result": "/Users/cam/.codex/worktrees/fable52-safety-qualification-20261109/doc-web/output/runs/safety-qual088-fable-saved-error-20261109-fixture/result.json"
+      }
+    ],
+    "fixture_title_note": "Historical Sol fixturebooktitle retained forboth arms; actual nativeprovider identity livesin bound genuine receipts, not fixturetitle."
+  },
+  {
+    "arm": "sol",
+    "actual_html": "/Users/cam/.codex/worktrees/fable52-safety-qualification-20261109/doc-web/output/runs/safety-qual088-sol-live-20261109/output/html/chapter-001.html",
+    "html_sha256": "eb282eae75961fe3d9d1ce36d2d1b8c42d07621885c49ad80d2a3e2071c93799",
+    "images": [
+      {
+        "name": "S3.png",
+        "sha256": "11d98294ac8a19c8e77490998a933add2ddf8de6fdbeb8e7156159e201a87bfe",
+        "bytes": 28577
+      },
+      {
+        "name": "S4.png",
+        "sha256": "9d310a44f961da0f05d01212dd3ba077a49054f5582bd8db393d5ae8670648a8",
+        "bytes": 11352
+      }
+    ],
+    "source_text_preserved": [
+      "Offline review fixture",
+      "Offline review fixture",
+      "Text-only source page: no illustration."
+    ],
+    "zero_candidate_page_preserved": true,
+    "independent_native_anchor_revalidated_at_final_audit": true,
+    "policy_before_operator": {
+      "arm": "sol",
+      "live_subjects": true,
+      "saved_live_replay": false,
+      "synthetic_authority_only": true,
+      "cases": [
+        {
+          "case": "S3",
+          "expected_model_verdict": "fail",
+          "answer_before_operator": {
+            "verdict": "pass",
+            "has_page_text": false,
+            "excessive_blank": false,
+            "reason": "The crop preserves the complete paired graphic and its connecting lines, with no surrounding text or unrelated visuals and minimal blank margin."
+          },
+          "status": "completed",
+          "verdict_and_flags_pass": false,
+          "grounded_reason_review": "manual source-first review required; no operator action can repair model semantics"
+        },
+        {
+          "case": "S4",
+          "expected_model_verdict": "pass",
+          "answer_before_operator": {
+            "verdict": "pass",
+            "has_page_text": false,
+            "excessive_blank": false,
+            "reason": "The crop isolates the complete badge, including its integral FIELD STATION text, and excludes the page caption and surrounding margins."
+          },
+          "status": "completed",
+          "verdict_and_flags_pass": true,
+          "grounded_reason_review": "manual source-first review required; no operator action can repair model semantics"
+        }
+      ]
+    },
+    "mechanics_variants": [
+      {
+        "disposition": "held",
+        "held_no_html_no_released_manifest": true,
+        "result": "/Users/cam/.codex/worktrees/fable52-safety-qualification-20261109/doc-web/output/runs/safety-qual088-sol-saved-held-20261109-fixture/result.json"
+      },
+      {
+        "disposition": "recrop",
+        "held_no_html_no_released_manifest": true,
+        "result": "/Users/cam/.codex/worktrees/fable52-safety-qualification-20261109/doc-web/output/runs/safety-qual088-sol-saved-recrop-20261109-fixture/result.json"
+      },
+      {
+        "disposition": "error",
+        "held_no_html_no_released_manifest": true,
+        "result": "/Users/cam/.codex/worktrees/fable52-safety-qualification-20261109/doc-web/output/runs/safety-qual088-sol-saved-error-20261109-fixture/result.json"
+      }
+    ],
+    "fixture_title_note": "Historical Sol fixturebooktitle retained forboth arms; actual nativeprovider identity livesin bound genuine receipts, not fixturetitle."
+  }
+]

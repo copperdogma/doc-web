@@ -1,0 +1,16 @@
+{
+  "approval": "PreparedselectedStage2plan; scopedindependentAstrareviewcleared;38focused+actualdrivertests passed beforelive",
+  "files": {
+    "benchmarks/scripts/safety_qual_088.py": "73489354393b062ea00c843880ad812f40461936f0f7068e4457792d74386ee5",
+    "modules/common/crop_safety.py": "2758fb1792385fd1bc4b357b25b0a047e01b10c58fa6d6f49f39cfd4be1484a1",
+    "modules/common/crop_safety_fable_eval.py": "a01e809f918529c81d85a90c2fe633d14fa469b780c9b5698685cd6d139b2920",
+    "modules/common/crop_review.py": "3e586a187d0439b1cfe39360e9bef0135d09992dbe6d7cdc5bad0bd0d17d5637",
+    "modules/common/crop_review_setup.py": "74c6bf5cd5670d26c13176ff63bcc06e1e05763f63eda70962f4d7be690a2199",
+    "modules/transform/propose_crop_safety_v1/main.py": "9d9107f4f15d0ad2efa32bbabfda7f9d1d97f98c336186d409501abac88dfda5",
+    "tools/run_safety_qual_caller.py": "073fd96410f7d54ea0237eeeb710d2994ea7becb86dbd74d8360f4653d2adabf",
+    "tests/test_crop_safety_fable_eval.py": "4ae452b6109caf8441e470a55dae91e6c669cc51fa1c7a07be8ec5fe7a4e9bf0"
+  },
+  "requirements": "externalcontext+requiredindependentanchor+nativeorigin+syntheticauthority, modelpolicyscorebeforeoperator; no default/productionauthoritychange",
+  "source": "https://cwe.mitre.org/data/definitions/345.html",
+  "research_decision": "Independentoriginaldispatchreceipts anchor authenticity; selfsuppliedproposalhashes cannot confergenuineness. Coordinatedmode/origin downgrade andfullyrehashedsubstitutions rejected. No signingframework."
+}

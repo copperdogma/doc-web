@@ -1,0 +1,618 @@
+[
+  {
+    "key": "page-001-000",
+    "arm": "fable",
+    "http": 200,
+    "answer": {
+      "verdict": "pass",
+      "has_page_text": false,
+      "excessive_blank": false,
+      "reason": "The crop isolates the gold-stamped cover illustration (clouds, hills, wagon, tree) and excludes the title and the author names. The bottom grass tufts are slightly clipped to avoid the author text, which is minor edge clipping rather than a large missing part."
+    },
+    "golden": "pass",
+    "correct": true,
+    "false_safe": false
+  },
+  {
+    "key": "page-001-000",
+    "arm": "sol",
+    "http": 200,
+    "answer": {
+      "verdict": "pass",
+      "has_page_text": false,
+      "excessive_blank": false,
+      "reason": "The crop isolates the cover's landscape illustration without title or other page text. Minor edge clipping does not omit a large part of the artwork."
+    },
+    "golden": "pass",
+    "correct": true,
+    "false_safe": false
+  },
+  {
+    "key": "page-004-000",
+    "arm": "fable",
+    "http": 200,
+    "answer": {
+      "verdict": "pass",
+      "has_page_text": false,
+      "excessive_blank": false,
+      "reason": "Crop tightly isolates the covered wagon line illustration with horse and ox; no caption or page text included, and the full illustration is present."
+    },
+    "golden": "pass",
+    "correct": true,
+    "false_safe": false
+  },
+  {
+    "key": "page-004-000",
+    "arm": "sol",
+    "http": 200,
+    "answer": {
+      "verdict": "pass",
+      "has_page_text": false,
+      "excessive_blank": false,
+      "reason": "The crop isolates the complete wagon-and-animals illustration without page text or neighboring visuals. Tight framing causes only negligible edge clipping."
+    },
+    "golden": "pass",
+    "correct": true,
+    "false_safe": false
+  },
+  {
+    "key": "page-009-000",
+    "arm": "fable",
+    "http": 200,
+    "answer": {
+      "verdict": "pass",
+      "has_page_text": false,
+      "excessive_blank": false,
+      "reason": "Crop isolates the portrait photograph of the couple with no caption or body text included; light vignette background is part of the photo."
+    },
+    "golden": "pass",
+    "correct": true,
+    "false_safe": false
+  },
+  {
+    "key": "page-009-000",
+    "arm": "sol",
+    "http": 200,
+    "answer": {
+      "verdict": "pass",
+      "has_page_text": false,
+      "excessive_blank": false,
+      "reason": "The crop isolates the complete portrait photograph, excluding its caption and surrounding page text."
+    },
+    "golden": "pass",
+    "correct": true,
+    "false_safe": false
+  },
+  {
+    "key": "page-012-000",
+    "arm": "fable",
+    "http": 200,
+    "answer": {
+      "verdict": "pass",
+      "has_page_text": false,
+      "excessive_blank": false,
+      "reason": "The crop cleanly isolates the Celebrate Saskatchewan 1905-1980 logo. The circular text is integral to the logo, and no certificate text or other page elements are included."
+    },
+    "golden": "pass",
+    "correct": true,
+    "false_safe": false
+  },
+  {
+    "key": "page-012-000",
+    "arm": "sol",
+    "http": 200,
+    "answer": {
+      "verdict": "pass",
+      "has_page_text": false,
+      "excessive_blank": false,
+      "reason": "The crop cleanly isolates the complete anniversary logo. All visible text is integral to the logo, with no surrounding certificate text or neighboring visuals."
+    },
+    "golden": "pass",
+    "correct": true,
+    "false_safe": false
+  },
+  {
+    "key": "page-012-001",
+    "arm": "fable",
+    "http": 200,
+    "answer": {
+      "verdict": "fail",
+      "has_page_text": false,
+      "excessive_blank": false,
+      "reason": "The crop isolates the embossed seal with no page text, but the bottom of the seal (roughly a fifth, including its lower scalloped edge) is clearly cut off compared with the full page, so the visual is obviously incomplete."
+    },
+    "golden": "fail",
+    "correct": true,
+    "false_safe": false
+  },
+  {
+    "key": "page-012-001",
+    "arm": "sol",
+    "http": 200,
+    "answer": {
+      "verdict": "fail",
+      "has_page_text": false,
+      "excessive_blank": false,
+      "reason": "The crop cuts off a substantial lower portion of the seal that is fully visible on the source page."
+    },
+    "golden": "fail",
+    "correct": true,
+    "false_safe": false
+  },
+  {
+    "key": "page-014-000",
+    "arm": "fable",
+    "http": 200,
+    "answer": {
+      "verdict": "pass",
+      "has_page_text": false,
+      "excessive_blank": false,
+      "reason": "The crop isolates the portrait photograph of the couple. The caption and surrounding body text are excluded, and only a thin white strip remains at the bottom edge."
+    },
+    "golden": "pass",
+    "correct": true,
+    "false_safe": false
+  },
+  {
+    "key": "page-014-000",
+    "arm": "sol",
+    "http": 200,
+    "answer": {
+      "verdict": "pass",
+      "has_page_text": false,
+      "excessive_blank": false,
+      "reason": "The crop isolates the complete portrait photograph, excluding its caption and surrounding page text, with no neighboring visuals or excessive blank space."
+    },
+    "golden": "pass",
+    "correct": true,
+    "false_safe": false
+  },
+  {
+    "key": "page-018-000",
+    "arm": "fable",
+    "http": 200,
+    "answer": {
+      "verdict": "fail",
+      "has_page_text": true,
+      "excessive_blank": true,
+      "reason": "Crop contains only the left portion of the family photograph (large part of the photo cut off on the right and top), includes page caption text below the photo, and more than half the crop is blank page space."
+    },
+    "golden": "fail",
+    "correct": true,
+    "false_safe": false
+  },
+  {
+    "key": "page-018-000",
+    "arm": "sol",
+    "http": 200,
+    "answer": {
+      "verdict": "fail",
+      "has_page_text": true,
+      "excessive_blank": true,
+      "reason": "The crop includes page caption text and excessive blank paper, while omitting a large portion of the photograph on the right and clipping its top."
+    },
+    "golden": "fail",
+    "correct": true,
+    "false_safe": false
+  },
+  {
+    "key": "page-021-000",
+    "arm": "fable",
+    "http": 200,
+    "answer": {
+      "verdict": "pass",
+      "has_page_text": false,
+      "excessive_blank": false,
+      "reason": "The crop isolates the top aerial photograph in full, with no caption text and no part of the lower photo. The light areas are image content, not blank page."
+    },
+    "golden": "pass",
+    "correct": true,
+    "false_safe": false
+  },
+  {
+    "key": "page-021-000",
+    "arm": "sol",
+    "http": 200,
+    "answer": {
+      "verdict": "pass",
+      "has_page_text": false,
+      "excessive_blank": false,
+      "reason": "The crop isolates the upper aerial photograph without its caption or the neighboring photograph. Light snowy areas are part of the image, not blank page space."
+    },
+    "golden": "pass",
+    "correct": true,
+    "false_safe": false
+  },
+  {
+    "key": "page-021-001",
+    "arm": "fable",
+    "http": 200,
+    "answer": {
+      "verdict": "pass",
+      "has_page_text": false,
+      "excessive_blank": false,
+      "reason": "Crop isolates the lower photograph (ranch house and barn) cleanly, excluding the caption, page number, and the upper aerial photo. Light sky area is part of the photograph's halftone content."
+    },
+    "golden": "pass",
+    "correct": true,
+    "false_safe": false
+  },
+  {
+    "key": "page-021-001",
+    "arm": "sol",
+    "http": 200,
+    "answer": {
+      "verdict": "pass",
+      "has_page_text": false,
+      "excessive_blank": false,
+      "reason": "The crop isolates the complete lower photograph without its caption or neighboring image. The light sky and snow are photograph content, not blank page space."
+    },
+    "golden": "pass",
+    "correct": true,
+    "false_safe": false
+  },
+  {
+    "key": "page-022-000",
+    "arm": "fable",
+    "http": 200,
+    "answer": {
+      "verdict": "pass",
+      "has_page_text": false,
+      "excessive_blank": false,
+      "reason": "The crop isolates the single photograph of the couple, excluding the caption and surrounding paragraph text, with only a thin sliver of white margin at the bottom."
+    },
+    "golden": "pass",
+    "correct": true,
+    "false_safe": false
+  },
+  {
+    "key": "page-022-000",
+    "arm": "sol",
+    "http": 200,
+    "answer": {
+      "verdict": "pass",
+      "has_page_text": false,
+      "excessive_blank": false,
+      "reason": "The crop isolates the complete photograph of the couple, excluding the caption and surrounding page text, with no excessive blank space."
+    },
+    "golden": "pass",
+    "correct": true,
+    "false_safe": false
+  },
+  {
+    "key": "page-038-000",
+    "arm": "fable",
+    "http": 200,
+    "answer": {
+      "verdict": "pass",
+      "has_page_text": false,
+      "excessive_blank": false,
+      "reason": "The crop tightly isolates the oval portrait of Mrs. Leonidas L'Heureux with no caption or body text included; white corners are just the oval's surround and minimal."
+    },
+    "golden": "pass",
+    "correct": true,
+    "false_safe": false
+  },
+  {
+    "key": "page-038-000",
+    "arm": "sol",
+    "http": 200,
+    "answer": {
+      "verdict": "pass",
+      "has_page_text": false,
+      "excessive_blank": false,
+      "reason": "The crop isolates the oval portrait without caption text, surrounding paragraphs, or neighboring visuals."
+    },
+    "golden": "pass",
+    "correct": true,
+    "false_safe": false
+  },
+  {
+    "key": "page-038-001",
+    "arm": "fable",
+    "http": 200,
+    "answer": {
+      "verdict": "pass",
+      "has_page_text": false,
+      "excessive_blank": false,
+      "reason": "The crop isolates the bottom-left photograph of the seated couple. It excludes the caption and the body text above, and shows only a negligible white strip at the bottom edge."
+    },
+    "golden": "pass",
+    "correct": true,
+    "false_safe": false
+  },
+  {
+    "key": "page-038-001",
+    "arm": "sol",
+    "http": 200,
+    "answer": {
+      "verdict": "pass",
+      "has_page_text": false,
+      "excessive_blank": false,
+      "reason": "The crop isolates the lower photograph of the seated couple, excluding its caption and surrounding page content."
+    },
+    "golden": "pass",
+    "correct": true,
+    "false_safe": false
+  },
+  {
+    "key": "page-060-000",
+    "arm": "fable",
+    "http": 200,
+    "answer": {
+      "verdict": "pass",
+      "has_page_text": false,
+      "excessive_blank": false,
+      "reason": "The crop isolates the photograph of the couple in the snow. The caption below and the paragraph text above are excluded, and the light snow areas are image content, not blank page."
+    },
+    "golden": "pass",
+    "correct": true,
+    "false_safe": false
+  },
+  {
+    "key": "page-060-000",
+    "arm": "sol",
+    "http": 200,
+    "answer": {
+      "verdict": "pass",
+      "has_page_text": false,
+      "excessive_blank": false,
+      "reason": "The crop isolates the complete left-hand photograph, excluding its caption, surrounding paragraphs, and neighboring photograph."
+    },
+    "golden": "pass",
+    "correct": true,
+    "false_safe": false
+  },
+  {
+    "key": "page-060-001",
+    "arm": "fable",
+    "http": 200,
+    "answer": {
+      "verdict": "pass",
+      "has_page_text": false,
+      "excessive_blank": false,
+      "reason": "Crop isolates the photograph of Mrs. George L'Heureux without including the caption or paragraph text; light sky area is image content."
+    },
+    "golden": "pass",
+    "correct": true,
+    "false_safe": false
+  },
+  {
+    "key": "page-060-001",
+    "arm": "sol",
+    "http": 200,
+    "answer": {
+      "verdict": "pass",
+      "has_page_text": false,
+      "excessive_blank": false,
+      "reason": "The crop isolates the lower-right photograph, excluding its caption and surrounding page content. Light areas are part of the photograph."
+    },
+    "golden": "pass",
+    "correct": true,
+    "false_safe": false
+  },
+  {
+    "key": "page-092-000",
+    "arm": "fable",
+    "http": 200,
+    "answer": {
+      "verdict": "fail",
+      "has_page_text": true,
+      "excessive_blank": false,
+      "reason": "The crop contains large amounts of body paragraph text from both columns and only a partial fragment of the wedding photograph (the man's head), omitting the woman and most of the photo."
+    },
+    "golden": "fail",
+    "correct": true,
+    "false_safe": false
+  },
+  {
+    "key": "page-092-000",
+    "arm": "sol",
+    "http": 200,
+    "answer": {
+      "verdict": "fail",
+      "has_page_text": true,
+      "excessive_blank": false,
+      "reason": "The crop contains extensive surrounding paragraph text and only a partial view of the wedding photograph, omitting the woman and much of the image."
+    },
+    "golden": "fail",
+    "correct": true,
+    "false_safe": false
+  },
+  {
+    "key": "page-122-000",
+    "arm": "fable",
+    "http": 200,
+    "answer": {
+      "verdict": "fail",
+      "has_page_text": true,
+      "excessive_blank": false,
+      "reason": "The crop includes the page-level caption text 'L'Heureux family re-union — July, 1939. Ninety members of the family were present.' beneath the photograph."
+    },
+    "golden": "fail",
+    "correct": true,
+    "false_safe": false
+  },
+  {
+    "key": "page-122-000",
+    "arm": "sol",
+    "http": 200,
+    "answer": {
+      "verdict": "fail",
+      "has_page_text": true,
+      "excessive_blank": false,
+      "reason": "The crop includes the page-level caption beneath the photograph, which should be excluded."
+    },
+    "golden": "fail",
+    "correct": true,
+    "false_safe": false
+  },
+  {
+    "key": "page-122-001",
+    "arm": "fable",
+    "http": 200,
+    "answer": {
+      "verdict": "fail",
+      "has_page_text": false,
+      "excessive_blank": false,
+      "reason": "The crop combines two separately presented oval portraits, each with its own caption on the page (Moise and Edward on the left, Sophie on the right). They are distinct visuals, not one unified figure, so the crop contains a neighboring illustration."
+    },
+    "golden": "fail",
+    "correct": true,
+    "false_safe": false
+  },
+  {
+    "key": "page-122-001",
+    "arm": "sol",
+    "http": 200,
+    "answer": {
+      "verdict": "fail",
+      "has_page_text": false,
+      "excessive_blank": false,
+      "reason": "The crop combines two separately presented oval photographs with independent captions on the source page, rather than isolating one illustration."
+    },
+    "golden": "fail",
+    "correct": true,
+    "false_safe": false
+  },
+  {
+    "key": "page-125-000",
+    "arm": "fable",
+    "http": 200,
+    "answer": {
+      "verdict": "pass",
+      "has_page_text": false,
+      "excessive_blank": false,
+      "reason": "The crop isolates the covered-wagon line drawing and excludes the 'Illustration by Aime L'Heureux' caption and the page number. The only text is the artist's signature inside the artwork, and the edge clipping of the line art is minor."
+    },
+    "golden": "pass",
+    "correct": true,
+    "false_safe": false
+  },
+  {
+    "key": "page-125-000",
+    "arm": "sol",
+    "http": 200,
+    "answer": {
+      "verdict": "pass",
+      "has_page_text": false,
+      "excessive_blank": false,
+      "reason": "The crop isolates the wagon illustration without the page credit or page number. The signature is integral to the artwork, and minor edge clipping does not omit a substantial part of the visual."
+    },
+    "golden": "pass",
+    "correct": true,
+    "false_safe": false
+  },
+  {
+    "key": "page-126-000",
+    "arm": "fable",
+    "http": 200,
+    "answer": {
+      "verdict": "pass",
+      "has_page_text": false,
+      "excessive_blank": false,
+      "reason": "The crop matches the full top photograph of the plaque in the stone wall. The partial neighboring plaques at the left and top edges are inside that same photograph, so their text is integral image content, not page text. The second photograph on the page is excluded, and only a thin sliver of white margin remains."
+    },
+    "golden": "pass",
+    "correct": true,
+    "false_safe": false
+  },
+  {
+    "key": "page-126-000",
+    "arm": "sol",
+    "http": 200,
+    "answer": {
+      "verdict": "pass",
+      "has_page_text": false,
+      "excessive_blank": false,
+      "reason": "The crop isolates the complete upper photograph without the separate lower photograph. All visible lettering, including partial plaques at the edges, is integral to the original photograph."
+    },
+    "golden": "pass",
+    "correct": true,
+    "false_safe": false
+  },
+  {
+    "key": "page-126-001",
+    "arm": "fable",
+    "http": 200,
+    "answer": {
+      "verdict": "pass",
+      "has_page_text": false,
+      "excessive_blank": false,
+      "reason": "The crop isolates the lower photograph of the Moise & Sophie L'Heureux plaque. All visible text is the plaque inscription within the photo, and no part of the neighboring upper photo or any page text is included."
+    },
+    "golden": "pass",
+    "correct": true,
+    "false_safe": false
+  },
+  {
+    "key": "page-126-001",
+    "arm": "sol",
+    "http": 200,
+    "answer": {
+      "verdict": "pass",
+      "has_page_text": false,
+      "excessive_blank": false,
+      "reason": "The crop isolates the lower photograph without neighboring visuals or page text. All visible lettering is integral to the photographed plaque."
+    },
+    "golden": "pass",
+    "correct": true,
+    "false_safe": false
+  },
+  {
+    "key": "page-127-000",
+    "arm": "fable",
+    "http": 200,
+    "answer": {
+      "verdict": "pass",
+      "has_page_text": false,
+      "excessive_blank": false,
+      "reason": "The crop isolates the top photograph of the stone monument. The only visible text is the plaque inscriptions, which are integral to the photo. The separate lower photo is excluded and there is no significant blank margin."
+    },
+    "golden": "pass",
+    "correct": true,
+    "false_safe": false
+  },
+  {
+    "key": "page-127-000",
+    "arm": "sol",
+    "http": 200,
+    "answer": {
+      "verdict": "pass",
+      "has_page_text": false,
+      "excessive_blank": false,
+      "reason": "The crop isolates the complete upper photograph without the separate lower image or page text. All visible lettering is integral to the monument plaques."
+    },
+    "golden": "pass",
+    "correct": true,
+    "false_safe": false
+  },
+  {
+    "key": "page-127-001",
+    "arm": "fable",
+    "http": 200,
+    "answer": {
+      "verdict": "pass",
+      "has_page_text": false,
+      "excessive_blank": false,
+      "reason": "The crop isolates the lower photograph of the Canada Post plaque; the only visible text is the plaque inscription, which is integral to the photo. No neighboring photo or page text is included, and there is no excessive blank margin."
+    },
+    "golden": "pass",
+    "correct": true,
+    "false_safe": false
+  },
+  {
+    "key": "page-127-001",
+    "arm": "sol",
+    "http": 200,
+    "answer": {
+      "verdict": "pass",
+      "has_page_text": false,
+      "excessive_blank": false,
+      "reason": "The crop isolates the lower photograph without neighboring visuals or page text. The plaque lettering is integral to the photographed monument."
+    },
+    "golden": "pass",
+    "correct": true,
+    "false_safe": false
+  }
+]

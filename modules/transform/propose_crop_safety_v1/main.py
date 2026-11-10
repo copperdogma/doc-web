@@ -14,7 +14,16 @@ from modules.common.crop_review import (
     digest,
     require,
 )
-from modules.common.crop_safety import RESERVE_USD, build_request, parse_response
+from modules.common.crop_safety import (
+    build_request,
+    parse_response,
+    reservation_usd,
+    evaluation_contract,
+    request_is_live,
+    replay_live_contract,
+    qualification_context,
+    qualification_anchor_required,
+)
 from modules.common.utils import read_jsonl, save_jsonl
 
 
@@ -39,6 +48,14 @@ def persist(path, data):
 def live_send(body):
     # This function is unreachable from replay and mock; import/getenv happen
     # only after explicit live admission and a durable unknown reservation.
+    if os.environ.get("DOC_WEB_SAFETY_QUAL_088_TRANSPORT") == "1":
+        from modules.common.crop_safety_fable_eval import qualification_send
+
+        return qualification_send(body)
+    require(
+        not (evaluation_contract() or qualification_context()),
+        "Safety evaluation requires explicit combined campaign transport",
+    )
     import httpx
 
     key = os.environ.get("DOC_WEB_OPENAI_API_KEY") or os.environ.get("OPENAI_API_KEY")
@@ -64,6 +81,8 @@ def propose(
     max_calls=None,
     transport=None,
 ):
+    reserve_usd = reservation_usd()
+    contract = evaluation_contract()
     root_arg = Path(root).absolute()
     require(
         ".." not in root_arg.parts
@@ -101,7 +120,7 @@ def propose(
         build_request(
             custody_path(root, r["source_image"]),
             manifest.parent / "images" / r["filename"],
-            live=mode == "live",
+            live=request_is_live(mode),
         )
         for r in rows
     ]
@@ -149,7 +168,7 @@ def propose(
             and isinstance(cap_usd, (int, float))
             and math.isfinite(cap_usd)
             and cap_usd > 0
-            and len(rows) * RESERVE_USD <= cap_usd,
+            and len(rows) * reserve_usd <= cap_usd,
             "Explicit sufficient live call/dollar caps required",
         )
     if mode == "live":
@@ -228,7 +247,7 @@ def propose(
         )
         if mode == "live":
             require(
-                len(ledger["calls"]) < max_calls and exposure + RESERVE_USD <= cap_usd,
+                len(ledger["calls"]) < max_calls and exposure + reserve_usd <= cap_usd,
                 "Live admission cap exceeded",
             )
         sequence = len(ledger["calls"]) + 1
@@ -239,7 +258,7 @@ def propose(
             "sequence": sequence,
             "candidate_id": b["candidate_id"],
             "request_sha256": digest(request_path),
-            "reserved_usd": RESERVE_USD if mode == "live" else 0,
+            "reserved_usd": reserve_usd if mode == "live" else 0,
             "settled_upper_usd": None,
             "status": "reserved",
         }
@@ -260,11 +279,24 @@ def propose(
                 "path": str(request_path.relative_to(root)),
                 "sha256": digest(request_path),
             },
-            "prompt_sha256": body["input"][0]["content"][0]["text"]
-            and __import__("hashlib")
-            .sha256(body["input"][0]["content"][0]["text"].encode())
+            "prompt_sha256": __import__("hashlib")
+            .sha256(
+                (
+                    body["messages"][0]["content"][0]["text"]
+                    if contract
+                    else body["input"][0]["content"][0]["text"]
+                ).encode()
+            )
             .hexdigest(),
         }
+        if contract:
+            proposal["evaluation_contract"] = contract
+        if qualification_context():
+            proposal["qualification_context"] = True
+        if qualification_anchor_required():
+            proposal["requires_dispatch_anchor"] = True
+        if mode != "live" and replay_live_contract():
+            proposal["request_live_contract"] = True
         started = time.monotonic()
         try:
             if mode == "live":
@@ -282,7 +314,7 @@ def propose(
                 status_code=status,
             )
             record.update(response_sha256=digest(response_path), status_code=status)
-            answer, data, cost = parse_response(raw, status, live=mode == "live")
+            answer, data, cost = parse_response(raw, status, live=request_is_live(mode))
             proposal.update(
                 status="completed",
                 verdict=answer["verdict"],

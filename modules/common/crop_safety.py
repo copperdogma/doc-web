@@ -44,10 +44,65 @@ def image_uri(path):
     return f"data:{mime};base64," + base64.b64encode(Path(path).read_bytes()).decode()
 
 
+def evaluation_contract():
+    from modules.common.crop_safety_fable_eval import active_contract
+
+    return active_contract()
+
+
+def qualification_context():
+    import os
+
+    value = (
+        os.environ["DOC_WEB_SAFETY_QUAL_088_CONTEXT"]
+        if "DOC_WEB_SAFETY_QUAL_088_CONTEXT" in os.environ
+        else None
+    )
+    require(value in (None, "", "1"), "Unknown qualification context")
+    return value == "1"
+
+
+def qualification_anchor_required():
+    import os
+
+    key = "DOC_WEB_SAFETY_QUAL_088_REQUIRE_ANCHOR"
+    value = os.environ[key] if key in os.environ else None
+    require(value in (None, "", "1"), "Unknown qualification anchor requirement")
+    return value == "1"
+
+
+def replay_live_contract():
+    import os
+
+    value = (
+        os.environ["DOC_WEB_SAFETY_QUAL_088_REPLAY_LIVE"]
+        if "DOC_WEB_SAFETY_QUAL_088_REPLAY_LIVE" in os.environ
+        else None
+    )
+    require(value in (None, "", "1"), "Unknown saved-live evaluation contract")
+    return value == "1"
+
+
+def request_is_live(mode):
+    return mode == "live" or replay_live_contract() or qualification_anchor_required()
+
+
+def reservation_usd():
+    if evaluation_contract():
+        from modules.common.crop_safety_fable_eval import RESERVE_USD as reserve
+
+        return reserve
+    return RESERVE_USD
+
+
 def build_request(source, crop, *, live=False):
     require(digest(PROMPT_PATH) == PROMPT_SHA, "Measured safety prompt changed")
     text = PROMPT_PATH.read_text()
     require("${" not in text, "Unsupported prompt interpolation")
+    if evaluation_contract():
+        from modules.common.crop_safety_fable_eval import build_request as build_fable
+
+        return build_fable(source, crop, image_uri, text, FORMAT["schema"])
     body = {
         "model": MODEL,
         "input": [
@@ -85,6 +140,10 @@ def build_request(source, crop, *, live=False):
 
 
 def parse_response(raw, status_code=200, *, live=False):
+    if evaluation_contract():
+        from modules.common.crop_safety_fable_eval import parse_response as parse_fable
+
+        return parse_fable(raw, status_code, live=live)
     require(status_code == 200, "Native HTTP failure")
     data = json.loads(raw)
     require(isinstance(data, dict), "Native envelope must be an object")
@@ -181,6 +240,10 @@ def validate_native_proposal(root, proposal, row, manifest):
     """Recheck exact native receipts at release/build; verdict is only a proposal."""
     from modules.common.crop_review import custody_path, read_bound
 
+    require(
+        proposal.get("evaluation_contract") == evaluation_contract(),
+        "Evaluation contract requires matching external opt-in",
+    )
     expected_origin = {
         "live": "native_crop_safety",
         "replay": "replayed_crop_safety",
@@ -192,20 +255,45 @@ def validate_native_proposal(root, proposal, row, manifest):
         "Native proposal mode/origin mismatch",
     )
     require(proposal.get("status") == "completed", "Native proposal unavailable")
+    require(
+        bool(proposal.get("qualification_context")) == qualification_context(),
+        "Qualification receipt requires matching external context",
+    )
+    require(
+        proposal.get("request_live_contract", False)
+        == (mode != "live" and replay_live_contract()),
+        "Saved-live contract requires matching external opt-in",
+    )
+    require(
+        proposal.get("requires_dispatch_anchor", False)
+        is qualification_anchor_required(),
+        "Qualification anchor requirement differs from external phase",
+    )
+    if qualification_anchor_required():
+        require(
+            mode in ("replay", "mock") if replay_live_contract() else mode == "live",
+            "Native mode differs from external qualification phase",
+        )
     request = read_bound(root, proposal["request"])
     response = read_bound(root, proposal["receipt"])
     body = json.loads(request.read_bytes())
     expected = build_request(
         custody_path(root, row["source_image"]),
         Path(manifest).parent / "images" / row["filename"],
-        live=mode == "live",
+        live=request_is_live(mode),
     )
     require(
         body == expected and proposal.get("prompt_sha256") == PROMPT_SHA,
         "Native request is not the frozen source/crop contract",
     )
+    if qualification_anchor_required() or (
+        (evaluation_contract() or qualification_context()) and request_is_live(mode)
+    ):
+        from modules.common.crop_safety_fable_eval import validate_dispatch_anchor
+
+        validate_dispatch_anchor(body, response.read_bytes())
     answer, data, _ = parse_response(
-        response.read_bytes(), proposal["status_code"], live=mode == "live"
+        response.read_bytes(), proposal["status_code"], live=request_is_live(mode)
     )
     require(
         proposal.get("answer") == answer

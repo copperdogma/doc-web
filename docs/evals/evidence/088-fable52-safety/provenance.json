@@ -1,0 +1,19 @@
+{
+  "base_sha": "5bd3ba777d70347eb8dd84b9aa18a6b3ba025193",
+  "branch": "codex/fable52-safety-qualification-20261109-doc-web",
+  "worktree": "/Users/cam/.codex/worktrees/fable52-safety-qualification-20261109/doc-web",
+  "owner": "Doc Web",
+  "disposition": "Retained uncommitted forreview; all work scopedhere, primary/closed087untouched",
+  "producing_code": "Perdispatch code_sha256 points to exact E/code copies. Classifier initialqualifier/batchscript epochs retained. Caller4requests used frozennewcontract afterindependentreview; callerfreezehashes retained.",
+  "loaded_helper_nuance": "Classifier imported only FORMAT value, exactly frozen preflight.schema; delegateedited otherhelperfunctions concurrently. Perdispatch helperfilesare on-disk snapshots, not assertions thatlaterhelperfunctions were loaded orusedby earlierclassifier. Initialbasehelper preserved, fullwire/schema/prompt/sourcebytes bound.",
+  "review_epoch": "Afterclassifierbatch, rawoutputs revalidated with strictcurrentactualcallerparsers. Theseparsersdidnotproduce earlierresponses; no subjectreruns.",
+  "final_cleanup": "Finalformat/unusedimport-only cleanup afterclosedlivecalls isdistinctfrom producingepochs; rawcodeepochssaved.",
+  "money": "Combinedledger soleprovider-spendauthority; conservative callerlocalwallets are sameHTTPs notadditionalspend; previouscampaignledgerleftuntouched",
+  "commands": [
+    "DOC_WEB_ENV_FILE=/Users/cam/Documents/Projects/doc-web/.env python scripts/run_with_doc_web_env.py python benchmarks/scripts/safety_qual_088.py panel",
+    "DOC_WEB_ENV_FILE=/Users/cam/Documents/Projects/doc-web/.env python scripts/run_with_doc_web_env.py python tools/run_safety_qual_caller.py --arm ARM --run-id safety-qual088-ARM-live-20261109 --execute",
+    "python tools/run_safety_qual_caller.py --arm ARM --run-id NEW_ID --saved-live-fixture ABSOLUTE_BASE_FIXTURE --disposition held|recrop|error",
+    "python benchmarks/scripts/safety_qual_088_audit.py"
+  ],
+  "reproduction": "Ledgerclosed; inferencecommands require newlyauthorized runidentity. Audit only remainsfree/offline."
+}
