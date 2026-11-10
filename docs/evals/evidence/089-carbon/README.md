@@ -1,0 +1,13 @@
+# Attempt089 public/synthetic evidence
+
+Carbon source-preservation panel, Story267, approved Scout109 item3 USD10 inclusive. Original24 inference responses completed once; no runtime defaults changed.
+
+- `summary.json`, `ledger.json`, and source reviews hold the original bounded verdicts and spend. `preflight.json` freezes the original matrix/settings/source hashes; `execution-plan.json` is a later index of that authority.
+- Six public `../089-carbon-custody.tar.gz.partNN` files preserve209 members,43,592,824 compressed bytes. They include24 exact outgoing requests,7 unchanged responses,17 provider-state-redacted response projections and2 redacted nested report copies. All190 other members remain byte-identical to the protected original archive.
+- The19 projections are **not exact original response/report bytes**. Only15 Google `thoughtSignature` fields and4 OpenAI `encrypted_content` occurrences were redacted. No continuation_token/continuationToken/access/refresh/id-token/signedURL matches occurred. Subject outputs,usage,model,finish,source and producing epochs remain unchanged.
+- Exact original sixparts/209members are preserved at `/Users/cam/.codex/archives/carbon-20261110/doc-web/provider-state-originals` with directory0700/files0600. The original native audits remain historical native evidence. `provider-state-redaction.json` binds original/public hashes and field locations without values.
+- `custody-index.json` binds every public archive path/hash/size and part hash. `manifest.json` records protected-original custody and public recovery. `provenance.json` separates original producing code from later hardening, formatting and custody repair.
+- `raw-audit-public-projection.json` revalidates all24 output/schema/usage/model/finish contracts from the public package. `raw-audit.json` and `raw-audit-custody.json` retain original private-envelope hash proofs; they do not relabel redacted bytes as originals.
+- `local-recovery-events.json` records pre-HTTP admission failures; no extra inference occurred. Initial17 focused checks remain applicable to unchanged producer inputs;4 new custody tests and the public24-case audit cover the post-run redaction boundary.
+
+Recovery: preserve existing files, choose an empty approved destination, concatenate six public parts in lexical order and extract with `tar -xz -C DESTINATION`. Restore alongside the owner source and run `python benchmarks/scripts/carbon_audit.py --public-projection` without inference. Exact originals require protected custody. Planned JSON objects recover semantically from exact outgoing wire; pretty whitespace/object-key order may differ. A live rerun requires a new approved identity/budget; never reopen this closed ledger.

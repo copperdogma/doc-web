@@ -1,0 +1,251 @@
+{
+  "scope": "All six frozen full original source/crop pairs pre-reviewed independently before outputs; no golden changes",
+  "golden_sha256": "6f32bc513494f1c4454b4c41e74186136212d477ff10c87ccb29244ca21aaa76",
+  "expectation": "Four pass;012001/122001 fail; both observed flags false on all6",
+  "candidate": "6/6 verdicts,zero false-safe,allflagsfalse/correct; all reasons materially source-supported; bottomfifthseal and separate neighboringoval correctly identified",
+  "control": "4/6,zero false-safe; false reject cover001 and wagon004 with source-contradictory incompleteness reasons; other4correct. Both flag fieldsfalse/correct onall6",
+  "taxonomy": "prompt/pipeline-wrong:model-wrong for control false rejects; no source/scorer repair",
+  "limits": "CurrentSol full22 and actualcaller S3policy from088 not matched or superseded; selectedsix is notpublicationqualification",
+  "rows": [
+    {
+      "key": "page-009-000",
+      "arm": "candidate",
+      "raw": "{\"verdict\": \"pass\", \"has_page_text\": false, \"excessive_blank\": false, \"reason\": \"The crop cleanly isolates the halftone portrait photograph while excluding the surrounding page text and the caption below.\"}",
+      "parsed": {
+        "verdict": "pass",
+        "has_page_text": false,
+        "excessive_blank": false,
+        "reason": "The crop cleanly isolates the halftone portrait photograph while excluding the surrounding page text and the caption below."
+      },
+      "verdict": "pass",
+      "golden": "pass",
+      "correct": true,
+      "false_safe": false,
+      "cost_usd": 0.010726,
+      "latency_ms": 11702,
+      "served": "gemini-4-carbon",
+      "native_contract": true,
+      "rendered_payload_parity": true
+    },
+    {
+      "key": "page-009-000",
+      "arm": "control",
+      "raw": "{\"verdict\":\"pass\",\"has_page_text\":false,\"excessive_blank\":false,\"reason\":\"Crop isolates the main photograph of Moise and Sophie without including surrounding page text or caption. The light areas are part of the photo background, not blank page margin.\"}",
+      "parsed": {
+        "verdict": "pass",
+        "has_page_text": false,
+        "excessive_blank": false,
+        "reason": "Crop isolates the main photograph of Moise and Sophie without including surrounding page text or caption. The light areas are part of the photo background, not blank page margin."
+      },
+      "verdict": "pass",
+      "golden": "pass",
+      "correct": true,
+      "false_safe": false,
+      "cost_usd": 0.073915,
+      "latency_ms": 3286,
+      "served": "gpt-5.5-2026-04-23",
+      "native_contract": true,
+      "rendered_payload_parity": true
+    },
+    {
+      "key": "page-122-001",
+      "arm": "candidate",
+      "raw": "{\"verdict\": \"fail\", \"has_page_text\": false, \"excessive_blank\": false, \"reason\": \"The crop combines two separately presented oval portraits from the source page that have distinct boundaries and independent captions.\"}",
+      "parsed": {
+        "verdict": "fail",
+        "has_page_text": false,
+        "excessive_blank": false,
+        "reason": "The crop combines two separately presented oval portraits from the source page that have distinct boundaries and independent captions."
+      },
+      "verdict": "fail",
+      "golden": "fail",
+      "correct": true,
+      "false_safe": false,
+      "cost_usd": 0.01596,
+      "latency_ms": 35470,
+      "served": "gemini-4-carbon",
+      "native_contract": true,
+      "rendered_payload_parity": true
+    },
+    {
+      "key": "page-122-001",
+      "arm": "control",
+      "raw": "{\"verdict\":\"fail\",\"has_page_text\":false,\"excessive_blank\":false,\"reason\":\"Crop includes part of the neighboring Sophie L'Heureux portrait on the right; the full page shows it is a separate visual element from the intended Moise L'Heureux and brother Edward portrait.\"}",
+      "parsed": {
+        "verdict": "fail",
+        "has_page_text": false,
+        "excessive_blank": false,
+        "reason": "Crop includes part of the neighboring Sophie L'Heureux portrait on the right; the full page shows it is a separate visual element from the intended Moise L'Heureux and brother Edward portrait."
+      },
+      "verdict": "fail",
+      "golden": "fail",
+      "correct": true,
+      "false_safe": false,
+      "cost_usd": 0.083855,
+      "latency_ms": 4159,
+      "served": "gpt-5.5-2026-04-23",
+      "native_contract": true,
+      "rendered_payload_parity": true
+    },
+    {
+      "key": "page-012-000",
+      "arm": "candidate",
+      "raw": "{\"verdict\": \"pass\", \"has_page_text\": false, \"excessive_blank\": false, \"reason\": \"The crop cleanly isolates the circular Celebrate Saskatchewan logo from the top of the page, with only integral logo text visible and tight framing.\"}",
+      "parsed": {
+        "verdict": "pass",
+        "has_page_text": false,
+        "excessive_blank": false,
+        "reason": "The crop cleanly isolates the circular Celebrate Saskatchewan logo from the top of the page, with only integral logo text visible and tight framing."
+      },
+      "verdict": "pass",
+      "golden": "pass",
+      "correct": true,
+      "false_safe": false,
+      "cost_usd": 0.020918,
+      "latency_ms": 26409,
+      "served": "gemini-4-carbon",
+      "native_contract": true,
+      "rendered_payload_parity": true
+    },
+    {
+      "key": "page-012-000",
+      "arm": "control",
+      "raw": "{\"verdict\":\"pass\",\"has_page_text\":false,\"excessive_blank\":false,\"reason\":\"Crop isolates the top Celebrate Saskatchewan logo/emblem; the visible text is integral to that emblem, with no surrounding page text or neighboring visuals included.\"}",
+      "parsed": {
+        "verdict": "pass",
+        "has_page_text": false,
+        "excessive_blank": false,
+        "reason": "Crop isolates the top Celebrate Saskatchewan logo/emblem; the visible text is integral to that emblem, with no surrounding page text or neighboring visuals included."
+      },
+      "verdict": "pass",
+      "golden": "pass",
+      "correct": true,
+      "false_safe": false,
+      "cost_usd": 0.030735,
+      "latency_ms": 2230,
+      "served": "gpt-5.5-2026-04-23",
+      "native_contract": true,
+      "rendered_payload_parity": true
+    },
+    {
+      "key": "page-012-001",
+      "arm": "candidate",
+      "raw": "{\"verdict\":\"fail\",\"has_page_text\":false,\"excessive_blank\":false,\"reason\":\"The crop is incomplete, cutting off approximately the bottom fifth of the circular seal, including its lower outer text ring and serrated border that are clearly intact on the full page.\"}",
+      "parsed": {
+        "verdict": "fail",
+        "has_page_text": false,
+        "excessive_blank": false,
+        "reason": "The crop is incomplete, cutting off approximately the bottom fifth of the circular seal, including its lower outer text ring and serrated border that are clearly intact on the full page."
+      },
+      "verdict": "fail",
+      "golden": "fail",
+      "correct": true,
+      "false_safe": false,
+      "cost_usd": 0.031076,
+      "latency_ms": 35062,
+      "served": "gemini-4-carbon",
+      "native_contract": true,
+      "rendered_payload_parity": true
+    },
+    {
+      "key": "page-012-001",
+      "arm": "control",
+      "raw": "{\"verdict\":\"fail\",\"has_page_text\":false,\"excessive_blank\":false,\"reason\":\"The crop is an incomplete close-up of the seal/rosette; the full page shows the entire circular seal, while the crop cuts off a substantial lower portion and surrounding boundary of the same visual element.\"}",
+      "parsed": {
+        "verdict": "fail",
+        "has_page_text": false,
+        "excessive_blank": false,
+        "reason": "The crop is an incomplete close-up of the seal/rosette; the full page shows the entire circular seal, while the crop cuts off a substantial lower portion and surrounding boundary of the same visual element."
+      },
+      "verdict": "fail",
+      "golden": "fail",
+      "correct": true,
+      "false_safe": false,
+      "cost_usd": 0.017101,
+      "latency_ms": 2399,
+      "served": "gpt-5.5-2026-04-23",
+      "native_contract": true,
+      "rendered_payload_parity": true
+    },
+    {
+      "key": "page-004-000",
+      "arm": "candidate",
+      "raw": "{\"verdict\":\"pass\",\"has_page_text\":false,\"excessive_blank\":false,\"reason\":\"The crop cleanly and tightly isolates the complete covered wagon line-art illustration while excluding all surrounding page text and margins.\"}",
+      "parsed": {
+        "verdict": "pass",
+        "has_page_text": false,
+        "excessive_blank": false,
+        "reason": "The crop cleanly and tightly isolates the complete covered wagon line-art illustration while excluding all surrounding page text and margins."
+      },
+      "verdict": "pass",
+      "golden": "pass",
+      "correct": true,
+      "false_safe": false,
+      "cost_usd": 0.014212,
+      "latency_ms": 13809,
+      "served": "gemini-4-carbon",
+      "native_contract": true,
+      "rendered_payload_parity": true
+    },
+    {
+      "key": "page-004-000",
+      "arm": "control",
+      "raw": "{\"verdict\":\"fail\",\"has_page_text\":false,\"excessive_blank\":false,\"reason\":\"The crop contains only a zoomed-in portion of the wagon illustration and omits large, unmistakable parts of the same visual, including much of the horses and right side, so the intended illustration is incomplete.\"}",
+      "parsed": {
+        "verdict": "fail",
+        "has_page_text": false,
+        "excessive_blank": false,
+        "reason": "The crop contains only a zoomed-in portion of the wagon illustration and omits large, unmistakable parts of the same visual, including much of the horses and right side, so the intended illustration is incomplete."
+      },
+      "verdict": "fail",
+      "golden": "pass",
+      "correct": false,
+      "false_safe": false,
+      "cost_usd": 0.058195,
+      "latency_ms": 2407,
+      "served": "gpt-5.5-2026-04-23",
+      "native_contract": true,
+      "rendered_payload_parity": true
+    },
+    {
+      "key": "page-001-000",
+      "arm": "candidate",
+      "raw": "{\"verdict\":\"pass\",\"has_page_text\":false,\"excessive_blank\":false,\"reason\":\"The crop cleanly isolates the cover illustration while excluding the surrounding title, bottom cover text, and decorative border, with only minor bottom-edge clipping on the foreground grass to avoid the adjacent text.\"}",
+      "parsed": {
+        "verdict": "pass",
+        "has_page_text": false,
+        "excessive_blank": false,
+        "reason": "The crop cleanly isolates the cover illustration while excluding the surrounding title, bottom cover text, and decorative border, with only minor bottom-edge clipping on the foreground grass to avoid the adjacent text."
+      },
+      "verdict": "pass",
+      "golden": "pass",
+      "correct": true,
+      "false_safe": false,
+      "cost_usd": 0.03652,
+      "latency_ms": 45966,
+      "served": "gemini-4-carbon",
+      "native_contract": true,
+      "rendered_payload_parity": true
+    },
+    {
+      "key": "page-001-000",
+      "arm": "control",
+      "raw": "{\"verdict\":\"fail\",\"has_page_text\":false,\"excessive_blank\":false,\"reason\":\"The crop is only a partial section of the book-cover illustration; the full page shows a larger coherent visual including the title, border, and lower landscape/cart scene outside the crop.\"}",
+      "parsed": {
+        "verdict": "fail",
+        "has_page_text": false,
+        "excessive_blank": false,
+        "reason": "The crop is only a partial section of the book-cover illustration; the full page shows a larger coherent visual including the title, border, and lower landscape/cart scene outside the crop."
+      },
+      "verdict": "fail",
+      "golden": "pass",
+      "correct": false,
+      "false_safe": false,
+      "cost_usd": 0.083,
+      "latency_ms": 5218,
+      "served": "gpt-5.5-2026-04-23",
+      "native_contract": true,
+      "rendered_payload_parity": true
+    }
+  ]
+}

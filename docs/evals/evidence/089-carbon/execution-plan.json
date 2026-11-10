@@ -1,0 +1,29 @@
+{
+  "authority": "Cam YES allsixUSD63; Scout109 selecteditem3 USD10inclusive supersedesownerdefault5",
+  "preflight": "preflight.json originalprospective24requestmatrix andhashes",
+  "candidate": "exactnativeGoogle gemini-4-carbon HIGH32768 GenerateContent",
+  "surfaces": {
+    "safety": 6,
+    "table": 3,
+    "crop": 2,
+    "ocr": 1
+  },
+  "freshcontrols": {
+    "safety": "gpt-5.5 none2048",
+    "table": "gpt-6-astra medium8192 original",
+    "crop": "gemini-3-flash-preview temperature0 max16384",
+    "ocr": "gemini-3.8-flash temperature0 max16384 exactcurrentidentity"
+  },
+  "budget": {
+    "candidate": 4.79616,
+    "control_pool": 3,
+    "qualification_recovery": 2.20384
+  },
+  "effort": "HIGHonly;noarmsweep",
+  "privacy": "publicOnward/publicLOC/authoredsyntheticconfirmation-v2 only; Googlepaidterms loggingdisclosed; no private/accountchanges",
+  "native_qualification": "firstrealresponse eachmateriallydistinctschema doubles as contract/maintained-adapter qualifier; strict flags and complete lossless wire/native envelope retained before scoring",
+  "source_gate": "originalglyph/ownership/ambiguity/OCR.99 andcompleteintegrallettering/date/rim preserved; IoU alone insufficient",
+  "scope_limits": "no full22/actualcaller;currentSolrole from088 notmatched; no defaults/deploy/commit/push",
+  "topology_change": "topology-epoch3.json; coordinatorapproved2outstanding, noextra calls; localadmission refusals hadzeroPOSTs; fixedwait/reload preservespendingreservations",
+  "creation": "Post-run index of original pre-inference preflight and approved authority, not a replacement prospectus"
+}

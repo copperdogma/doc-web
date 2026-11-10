@@ -1,0 +1,26 @@
+[
+  {
+    "id": "gemini-3-flash-preview",
+    "provider": "google",
+    "display_name": "Gemini 3 Flash Preview",
+    "input_token_limit": 1048576,
+    "output_token_limit": 65536,
+    "tier": "mid"
+  },
+  {
+    "id": "gemini-3.8-flash",
+    "provider": "google",
+    "display_name": "Gemini 3.8 Flash",
+    "input_token_limit": 1048576,
+    "output_token_limit": 65536,
+    "tier": "mid"
+  },
+  {
+    "id": "gemini-4-carbon",
+    "provider": "google",
+    "display_name": "Gemini 4 Carbon",
+    "input_token_limit": 1048576,
+    "output_token_limit": 32768,
+    "tier": "mid"
+  }
+]

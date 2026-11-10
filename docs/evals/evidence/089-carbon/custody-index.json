@@ -1,0 +1,1571 @@
+{
+  "archive_sha256": "5b1d446e733a049ccef69e539e1958bc780d47f2fedaaa545c2782edecb212cb",
+  "archive_bytes": 43592824,
+  "parts": [
+    {
+      "path": "docs/evals/evidence/089-carbon-custody.tar.gz.part01",
+      "bytes": 7265471,
+      "sha256": "c381eb7e4a16742c8a0a12c76c7ad325185b8c5ee4bd90eed48fb73627e29c8c"
+    },
+    {
+      "path": "docs/evals/evidence/089-carbon-custody.tar.gz.part02",
+      "bytes": 7265471,
+      "sha256": "2da2e5e6efc08893fd4a7d7edf87c2807cddeb3cd357d59c707b13527d98be44"
+    },
+    {
+      "path": "docs/evals/evidence/089-carbon-custody.tar.gz.part03",
+      "bytes": 7265471,
+      "sha256": "4da70964ff56b853734621149982416025b308b126f973ade53feb7f4d6d48f2"
+    },
+    {
+      "path": "docs/evals/evidence/089-carbon-custody.tar.gz.part04",
+      "bytes": 7265471,
+      "sha256": "ccba4e7e7f013935195cdc8d3f0a0799fec0d7d7e014582bac39d5185a6f87ca"
+    },
+    {
+      "path": "docs/evals/evidence/089-carbon-custody.tar.gz.part05",
+      "bytes": 7265471,
+      "sha256": "e8d37d5c0a6cae825978a481e6da60f85dca749877babcc087aafa0a835b7115"
+    },
+    {
+      "path": "docs/evals/evidence/089-carbon-custody.tar.gz.part06",
+      "bytes": 7265469,
+      "sha256": "126da23157ce65f3c29da5c16d0e4603fd4ddf46a3d211a89dce710bb45f4f7b"
+    }
+  ],
+  "files": [
+    {
+      "path": "benchmarks/results/carbon-20261110/carbon-ocr-barney-candidate-20261110.log",
+      "bytes": 955,
+      "sha256": "c261850839475ec7ccaf5f61858a7e8699d1210d73f6f6da0b5bc19f126c9f75",
+      "privacy": "public/synthetic; provider state redacted where indexed"
+    },
+    {
+      "path": "benchmarks/results/carbon-20261110/carbon-ocr-barney-control-20261110.log",
+      "bytes": 945,
+      "sha256": "75463e177367669dc9e7b50dff3e1cb250e80a43a3fd7455d54eb604e8c44d71",
+      "privacy": "public/synthetic; provider state redacted where indexed"
+    },
+    {
+      "path": "benchmarks/results/carbon-20261110/ledger.json",
+      "bytes": 32447,
+      "sha256": "32b9f026bf7a44aeabffe64f194f100c580c162eaa2b06627e3234e131caa3e2",
+      "privacy": "public/synthetic; provider state redacted where indexed"
+    },
+    {
+      "path": "benchmarks/results/carbon-20261110/missing-cases.log",
+      "bytes": 10006,
+      "sha256": "7e22596e6b7fb16384d25c009ba66f41229872744a639fc06b2e9d0512ebf8ed",
+      "privacy": "public/synthetic; provider state redacted where indexed"
+    },
+    {
+      "path": "benchmarks/results/carbon-20261110/request-001.json",
+      "bytes": 103819,
+      "sha256": "7136f152bd3c98da4f64a34506920645197c39eddfb2c7a231e058c6b53e5770",
+      "privacy": "public/synthetic; provider state redacted where indexed"
+    },
+    {
+      "path": "benchmarks/results/carbon-20261110/request-002.json",
+      "bytes": 103822,
+      "sha256": "a3f7e7b0c98c08aad517b00d6467a7ff6ed6802e6031feb50eee974deef04e8c",
+      "privacy": "public/synthetic; provider state redacted where indexed"
+    },
+    {
+      "path": "benchmarks/results/carbon-20261110/request-003.json",
+      "bytes": 65863,
+      "sha256": "bb46edbcbe63587ee50b2db9092fa4d6f4818143d9be9afe7eae72860e28e587",
+      "privacy": "public/synthetic; provider state redacted where indexed"
+    },
+    {
+      "path": "benchmarks/results/carbon-20261110/request-004.json",
+      "bytes": 65866,
+      "sha256": "92a0b2de8495c16c2397727b655a385107c4ca7b4be54efb8c6df60359aab141",
+      "privacy": "public/synthetic; provider state redacted where indexed"
+    },
+    {
+      "path": "benchmarks/results/carbon-20261110/request-005.json",
+      "bytes": 84983,
+      "sha256": "d89631ded64a5a60a062a164052944b65511f08579bf5ad4b7e21ec6e665e7b5",
+      "privacy": "public/synthetic; provider state redacted where indexed"
+    },
+    {
+      "path": "benchmarks/results/carbon-20261110/request-006.json",
+      "bytes": 84986,
+      "sha256": "8bbadbaeadee11c002c89e14278d30208281e9ab9b6b8f2079070078d3c63855",
+      "privacy": "public/synthetic; provider state redacted where indexed"
+    },
+    {
+      "path": "benchmarks/results/carbon-20261110/request-007.json",
+      "bytes": 311778,
+      "sha256": "a85b6a56c7d58dad6b1d5360405678eb68224a14b1552bdf84792ba32aedfcc8",
+      "privacy": "public/synthetic; provider state redacted where indexed"
+    },
+    {
+      "path": "benchmarks/results/carbon-20261110/request-008.json",
+      "bytes": 107910,
+      "sha256": "bd4e1100a13f370f603dd03810d44048b13a0c0c8641b4c47ec1330410640cf1",
+      "privacy": "public/synthetic; provider state redacted where indexed"
+    },
+    {
+      "path": "benchmarks/results/carbon-20261110/request-009.json",
+      "bytes": 204609,
+      "sha256": "7d6adf96aff848bcb2ebef418170416d2f14e536f742c9378a8ddf7873b413d1",
+      "privacy": "public/synthetic; provider state redacted where indexed"
+    },
+    {
+      "path": "benchmarks/results/carbon-20261110/request-010.json",
+      "bytes": 311335,
+      "sha256": "b51d8425e881aa5871b0968b208e7e86aed01d7aaad3f574b169ccec0f78c078",
+      "privacy": "public/synthetic; provider state redacted where indexed"
+    },
+    {
+      "path": "benchmarks/results/carbon-20261110/request-011.json",
+      "bytes": 107467,
+      "sha256": "ed7492690b74bba7302fecb3f17a87aeb48b985a9659fcc3f0474a4d0fcd22b7",
+      "privacy": "public/synthetic; provider state redacted where indexed"
+    },
+    {
+      "path": "benchmarks/results/carbon-20261110/request-012.json",
+      "bytes": 9116093,
+      "sha256": "0b36e86aedbc82cde774f083e4d22a00489318839877a9af965dd69ee25f8201",
+      "privacy": "public/synthetic; provider state redacted where indexed"
+    },
+    {
+      "path": "benchmarks/results/carbon-20261110/request-013.json",
+      "bytes": 1590997,
+      "sha256": "7780e6627277765fcaff048831b1f80941da910df6a611de5c66950d2e6e4e81",
+      "privacy": "public/synthetic; provider state redacted where indexed"
+    },
+    {
+      "path": "benchmarks/results/carbon-20261110/request-014.json",
+      "bytes": 9116242,
+      "sha256": "93e1cb9ea3cfa6c80f1e02f459178827ad1524d84044b5021e8900b26fcc0e51",
+      "privacy": "public/synthetic; provider state redacted where indexed"
+    },
+    {
+      "path": "benchmarks/results/carbon-20261110/request-015.json",
+      "bytes": 1591146,
+      "sha256": "910fcb1d7a251ee49d26ad04a3b961066279f148a05367889198c31b913bba77",
+      "privacy": "public/synthetic; provider state redacted where indexed"
+    },
+    {
+      "path": "benchmarks/results/carbon-20261110/request-016.json",
+      "bytes": 5921309,
+      "sha256": "7979ddaa89b01e5d02f8c43e0b6c933625b372392b3f3c3d4a45e7075ddf2382",
+      "privacy": "public/synthetic; provider state redacted where indexed"
+    },
+    {
+      "path": "benchmarks/results/carbon-20261110/request-017.json",
+      "bytes": 549817,
+      "sha256": "6bdbc244f39dd52317ee4cc350e2a83ddb21c92ff366f07948ff3f1097398d97",
+      "privacy": "public/synthetic; provider state redacted where indexed"
+    },
+    {
+      "path": "benchmarks/results/carbon-20261110/request-018.json",
+      "bytes": 5921458,
+      "sha256": "6e7b3f7ec4c7403cf0d32744c56e954359f686484c16ff224e3ee12d6e56bd79",
+      "privacy": "public/synthetic; provider state redacted where indexed"
+    },
+    {
+      "path": "benchmarks/results/carbon-20261110/request-019.json",
+      "bytes": 549966,
+      "sha256": "386f4674e8da078618fff1e80ac5841e8466280de0b1ce9af72d3f1609bf812c",
+      "privacy": "public/synthetic; provider state redacted where indexed"
+    },
+    {
+      "path": "benchmarks/results/carbon-20261110/request-020.json",
+      "bytes": 8501841,
+      "sha256": "bca2197346410c5c161277952fa6056d0fd004bdbd6e906e4d11a407beff6ea8",
+      "privacy": "public/synthetic; provider state redacted where indexed"
+    },
+    {
+      "path": "benchmarks/results/carbon-20261110/request-021.json",
+      "bytes": 605125,
+      "sha256": "4c3de0146cf7b3014a8d68eda53060fef9598365c84db88b89f820f16324a47c",
+      "privacy": "public/synthetic; provider state redacted where indexed"
+    },
+    {
+      "path": "benchmarks/results/carbon-20261110/request-022.json",
+      "bytes": 8501990,
+      "sha256": "e4e7e01e5927355f4d949b473885406ae43d555c11cd2b135b80462741160f46",
+      "privacy": "public/synthetic; provider state redacted where indexed"
+    },
+    {
+      "path": "benchmarks/results/carbon-20261110/request-023.json",
+      "bytes": 605274,
+      "sha256": "8b750600aed0267a4fe765ee1ec71cbeafc01f5aa5d657302024b2daa4215620",
+      "privacy": "public/synthetic; provider state redacted where indexed"
+    },
+    {
+      "path": "benchmarks/results/carbon-20261110/request-024.json",
+      "bytes": 204582,
+      "sha256": "f74e87ca5be38aa66841dbdfcdeedc3618c7e7ce2ebeb7b9d2c65717ee81b40b",
+      "privacy": "public/synthetic; provider state redacted where indexed"
+    },
+    {
+      "path": "benchmarks/results/carbon-20261110/response-001.json",
+      "bytes": 1071,
+      "sha256": "3a770bf3f070eef1c06073e6e16409fcfbcf5afd17d1b28f55d2010a4ad8ffa8",
+      "privacy": "public/synthetic; provider state redacted where indexed",
+      "original_sha256": "5e751c698a7b5c3e64ba6b25493c0c4da3cc0f1894fc2d71ab6ddbbd4ed526d1",
+      "redacted_fields": [
+        "/candidates/0/content/parts/0/thoughtSignature"
+      ],
+      "projection": "provider-state-redacted; not exact original response bytes"
+    },
+    {
+      "path": "benchmarks/results/carbon-20261110/response-002.json",
+      "bytes": 3471,
+      "sha256": "8f4ce6ade31048a16843bfa7d651419ce7418588e4e59b4db3df2e474d1e9700",
+      "privacy": "public/synthetic; provider state redacted where indexed",
+      "original_sha256": "3a011820808355fb8d235ba648b4bbc2db4a439f6b4ae354973e82c188d1c14a",
+      "redacted_fields": [
+        "/output/0/encrypted_content"
+      ],
+      "projection": "provider-state-redacted; not exact original response bytes"
+    },
+    {
+      "path": "benchmarks/results/carbon-20261110/response-003.json",
+      "bytes": 1211,
+      "sha256": "35e69a43408b487e55baf85b2f0c7298f616426b13bd91f0ad6db427a182c497",
+      "privacy": "public/synthetic; provider state redacted where indexed",
+      "original_sha256": "c62b2fc5d8f6043a8ae80f38e3df89b5c08543ebb59e1fb3dca8cbd4ba356a0f",
+      "redacted_fields": [
+        "/candidates/0/content/parts/0/thoughtSignature"
+      ],
+      "projection": "provider-state-redacted; not exact original response bytes"
+    },
+    {
+      "path": "benchmarks/results/carbon-20261110/response-004.json",
+      "bytes": 5317,
+      "sha256": "59048a89fae64a566b2a171cf9b23e6b5a936e05e53fb7dc0ff76e15130963e9",
+      "privacy": "public/synthetic; provider state redacted where indexed"
+    },
+    {
+      "path": "benchmarks/results/carbon-20261110/response-005.json",
+      "bytes": 951,
+      "sha256": "0f9af7889c20114b85b4819aa888ae60c5bfc3ee3bc3f9160a5d204eb0ac1c0a",
+      "privacy": "public/synthetic; provider state redacted where indexed",
+      "original_sha256": "56d3257a66335838b232a411e3ebdbe1bf623a7f0b37ce78d6f11a1c5b6e55d1",
+      "redacted_fields": [
+        "/candidates/0/content/parts/0/thoughtSignature"
+      ],
+      "projection": "provider-state-redacted; not exact original response bytes"
+    },
+    {
+      "path": "benchmarks/results/carbon-20261110/response-006.json",
+      "bytes": 3350,
+      "sha256": "d486c55c17acf7528130aa1e3d84d59b30610636e39dcb37b341afc6495f64e1",
+      "privacy": "public/synthetic; provider state redacted where indexed",
+      "original_sha256": "e00142168ebd6b1dfefc5912b8230a59c392ffb2d62e244829e929372907f08e",
+      "redacted_fields": [
+        "/output/0/encrypted_content"
+      ],
+      "projection": "provider-state-redacted; not exact original response bytes"
+    },
+    {
+      "path": "benchmarks/results/carbon-20261110/response-007.json",
+      "bytes": 901,
+      "sha256": "15c95bf1aa0b86d4b558a47b49f81e8ca526364b301ac796176b808e87b0f170",
+      "privacy": "public/synthetic; provider state redacted where indexed",
+      "original_sha256": "a3045a51d05db85a33b5071dc844208dbf43c8ebfcf6f183d4d126285e37b3b7",
+      "redacted_fields": [
+        "/candidates/0/content/parts/0/thoughtSignature"
+      ],
+      "projection": "provider-state-redacted; not exact original response bytes"
+    },
+    {
+      "path": "benchmarks/results/carbon-20261110/response-008.json",
+      "bytes": 664,
+      "sha256": "97169cd9f582e8bad40c0c0ac867b92b8a836fa01fbb492bc4830ebf5bcbec8f",
+      "privacy": "public/synthetic; provider state redacted where indexed",
+      "original_sha256": "37b2cb4014a7667aa5b67b56e74ee147a36057fef29da53175f4ac8c2532b43e",
+      "redacted_fields": [
+        "/candidates/0/content/parts/0/thoughtSignature"
+      ],
+      "projection": "provider-state-redacted; not exact original response bytes"
+    },
+    {
+      "path": "benchmarks/results/carbon-20261110/response-009.json",
+      "bytes": 2204,
+      "sha256": "c05d2a1511d7bee48a23b68c5be8fc02ba383b500e449fef1b419b8e241e53f5",
+      "privacy": "public/synthetic; provider state redacted where indexed",
+      "original_sha256": "73e4e76f1efeab08401ac9932e75d62fe5a29fac51fefe963423abb524adb5a2",
+      "redacted_fields": [
+        "/candidates/0/content/parts/0/thoughtSignature"
+      ],
+      "projection": "provider-state-redacted; not exact original response bytes"
+    },
+    {
+      "path": "benchmarks/results/carbon-20261110/response-010.json",
+      "bytes": 691,
+      "sha256": "41857a7a3dfa91f21f568bc62243ed06ca450487eea3cd41e7a463f4527f9b39",
+      "privacy": "public/synthetic; provider state redacted where indexed",
+      "original_sha256": "ce998a72b87d75ad1a68a43460bce181bdc177a7a7b7226bf6da369cf01f6139",
+      "redacted_fields": [
+        "/candidates/0/content/parts/0/thoughtSignature"
+      ],
+      "projection": "provider-state-redacted; not exact original response bytes"
+    },
+    {
+      "path": "benchmarks/results/carbon-20261110/response-011.json",
+      "bytes": 627,
+      "sha256": "e29a853b8800bcc715df0c1f9fdfc0207dc522a15829dfd7169c86426df8c115",
+      "privacy": "public/synthetic; provider state redacted where indexed",
+      "original_sha256": "ad12a6a255b6ac5baf98ace4552c132545dd124d6db9b7fa67d192eebaaaa398",
+      "redacted_fields": [
+        "/candidates/0/content/parts/0/thoughtSignature"
+      ],
+      "projection": "provider-state-redacted; not exact original response bytes"
+    },
+    {
+      "path": "benchmarks/results/carbon-20261110/response-012.json",
+      "bytes": 807,
+      "sha256": "9b848ee82dc1ea96a8504569caaf6c854e6292e4bcea938fb39f821207a97502",
+      "privacy": "public/synthetic; provider state redacted where indexed",
+      "original_sha256": "8d228d74e2ada904280b3d18e4f44da21e39ddb54a177f02e3db1c52c01195db",
+      "redacted_fields": [
+        "/candidates/0/content/parts/0/thoughtSignature"
+      ],
+      "projection": "provider-state-redacted; not exact original response bytes"
+    },
+    {
+      "path": "benchmarks/results/carbon-20261110/response-013.json",
+      "bytes": 729,
+      "sha256": "7dfd9c640fb0761aa8e1c35805708961d4344721c82d79031d6679b62af6b397",
+      "privacy": "public/synthetic; provider state redacted where indexed",
+      "original_sha256": "dcc8c12e58dee297f3b42f709ba74b10e4c8fc1744b23f37830b71240d0b8b3f",
+      "redacted_fields": [
+        "/candidates/0/content/parts/0/thoughtSignature"
+      ],
+      "projection": "provider-state-redacted; not exact original response bytes"
+    },
+    {
+      "path": "benchmarks/results/carbon-20261110/response-014.json",
+      "bytes": 3101,
+      "sha256": "0ee79fc1349e4142a361d7b8c0b9122376f52c2b46a8572ad6909cf0cd79cbec",
+      "privacy": "public/synthetic; provider state redacted where indexed"
+    },
+    {
+      "path": "benchmarks/results/carbon-20261110/response-015.json",
+      "bytes": 3125,
+      "sha256": "aa18ed819a93e66dfcd1e9f35cfb4095a0e6d8546359d243ca59a2671d11046d",
+      "privacy": "public/synthetic; provider state redacted where indexed"
+    },
+    {
+      "path": "benchmarks/results/carbon-20261110/response-016.json",
+      "bytes": 718,
+      "sha256": "53c9c0d2c757258e001b29ddebd8026284fd7e56e6d1bb158da554fd340b7134",
+      "privacy": "public/synthetic; provider state redacted where indexed",
+      "original_sha256": "3dbc1f1d778db56a16456fc46437a0f780eeb9deec31ea41d3321f95a0cc458d",
+      "redacted_fields": [
+        "/candidates/0/content/parts/0/thoughtSignature"
+      ],
+      "projection": "provider-state-redacted; not exact original response bytes"
+    },
+    {
+      "path": "benchmarks/results/carbon-20261110/response-017.json",
+      "bytes": 744,
+      "sha256": "66adb661627482c7b715e0c5f8824ab1766e9e32399c55e928bcb09fe416d799",
+      "privacy": "public/synthetic; provider state redacted where indexed",
+      "original_sha256": "444ef2d666315b60ba8c39834bec61f56a9cbcd73867ee4823009c5ec5690c29",
+      "redacted_fields": [
+        "/candidates/0/content/parts/0/thoughtSignature"
+      ],
+      "projection": "provider-state-redacted; not exact original response bytes"
+    },
+    {
+      "path": "benchmarks/results/carbon-20261110/response-018.json",
+      "bytes": 3090,
+      "sha256": "0883d6efe58815f63f1b86af171ffddad566bc6ddab4765a288e51aff01b6152",
+      "privacy": "public/synthetic; provider state redacted where indexed"
+    },
+    {
+      "path": "benchmarks/results/carbon-20261110/response-019.json",
+      "bytes": 3075,
+      "sha256": "d487404d341818a8eadf69b59c7581f6fdc865d889329cb2c1128c9d2f7d475c",
+      "privacy": "public/synthetic; provider state redacted where indexed"
+    },
+    {
+      "path": "benchmarks/results/carbon-20261110/response-020.json",
+      "bytes": 729,
+      "sha256": "a366585f40b4942866b5b821ca399b26d445f4f796024d5f92b7f2b1d5caef9f",
+      "privacy": "public/synthetic; provider state redacted where indexed",
+      "original_sha256": "4b4c6f320cb5993fb6eba3810f84e9a4ce209d219713cffd325f8979cd312ae6",
+      "redacted_fields": [
+        "/candidates/0/content/parts/0/thoughtSignature"
+      ],
+      "projection": "provider-state-redacted; not exact original response bytes"
+    },
+    {
+      "path": "benchmarks/results/carbon-20261110/response-021.json",
+      "bytes": 775,
+      "sha256": "09612de73bca1829e3693e458b793cc672705f9d8c8aac37308506bc167ade65",
+      "privacy": "public/synthetic; provider state redacted where indexed",
+      "original_sha256": "14650bb49f04fdd3661d6a624bb096273e73b0e09ea4760ea1613540f9d1feee",
+      "redacted_fields": [
+        "/candidates/0/content/parts/0/thoughtSignature"
+      ],
+      "projection": "provider-state-redacted; not exact original response bytes"
+    },
+    {
+      "path": "benchmarks/results/carbon-20261110/response-022.json",
+      "bytes": 3104,
+      "sha256": "b708cf1012b37b411f5780dc004dbe9afc804e9c20491e5d96862e0f21cee03e",
+      "privacy": "public/synthetic; provider state redacted where indexed"
+    },
+    {
+      "path": "benchmarks/results/carbon-20261110/response-023.json",
+      "bytes": 3119,
+      "sha256": "b014454f5003eabc599bedcb50e4d1acd0d65a7ab840c8e68772137c6596da26",
+      "privacy": "public/synthetic; provider state redacted where indexed"
+    },
+    {
+      "path": "benchmarks/results/carbon-20261110/response-024.json",
+      "bytes": 1989,
+      "sha256": "e21d371137af7ea5a1db3c73e44077a672e94b9f2ff8624cf8c81430277ad6ec",
+      "privacy": "public/synthetic; provider state redacted where indexed",
+      "original_sha256": "4925425c6423fcc3126f38d8280f08857965ef069687d9ad5be44c15d593e5d9",
+      "redacted_fields": [
+        "/candidates/0/content/parts/0/thoughtSignature"
+      ],
+      "projection": "provider-state-redacted; not exact original response bytes"
+    },
+    {
+      "path": "benchmarks/results/carbon-20261110/startup/sitecustomize.py",
+      "bytes": 158,
+      "sha256": "fb2b3335c2b3176f068d033cf8001a3a2215fc2ad6e88bce119f6a2885c9a8f9",
+      "privacy": "public/synthetic; provider state redacted where indexed"
+    },
+    {
+      "path": "benchmarks/results/carbon-20261110/table-ambiguity-negative-candidate.jsonl",
+      "bytes": 2015,
+      "sha256": "50b5c73fe2da255a015e4fccf2736ab4f353cfa54e568b3ca66c7db7c9b80d03",
+      "privacy": "public/synthetic; provider state redacted where indexed"
+    },
+    {
+      "path": "benchmarks/results/carbon-20261110/table-ambiguity-negative-candidate_reports/row-00000-page-00001-original-00001.json",
+      "bytes": 3394,
+      "sha256": "e8c41a9f9d91ac4357f516aef2cde2c308c5de06a6760d73bf3aeb62345a9b14",
+      "privacy": "public/synthetic; provider state redacted where indexed"
+    },
+    {
+      "path": "benchmarks/results/carbon-20261110/table-ambiguity-negative-control.jsonl",
+      "bytes": 2009,
+      "sha256": "67500835ae476605da565d9c7d48585eb80d1d8dcda7198670c10f22af7786ab",
+      "privacy": "public/synthetic; provider state redacted where indexed"
+    },
+    {
+      "path": "benchmarks/results/carbon-20261110/table-ambiguity-negative-control_reports/row-00000-page-00001-original-00001.json",
+      "bytes": 9880,
+      "sha256": "c26de7d421ecbd3ea5ff213e7d526b07faa2d8f1300f6e73889a527973d7b57f",
+      "privacy": "public/synthetic; provider state redacted where indexed"
+    },
+    {
+      "path": "benchmarks/results/carbon-20261110/table-image-positive-candidate.jsonl",
+      "bytes": 2525,
+      "sha256": "6adee1afff7b0c64d906ed48837d7ac1042b5b521e5b54f72b7a1b59f603a337",
+      "privacy": "public/synthetic; provider state redacted where indexed"
+    },
+    {
+      "path": "benchmarks/results/carbon-20261110/table-image-positive-candidate_reports/row-00000-page-00001-original-00001.json",
+      "bytes": 3349,
+      "sha256": "1909cef50fe4c6236404d59ee5b6ee2ce2a45dcf316fb80582539d20713722b8",
+      "privacy": "public/synthetic; provider state redacted where indexed"
+    },
+    {
+      "path": "benchmarks/results/carbon-20261110/table-image-positive-control.jsonl",
+      "bytes": 2519,
+      "sha256": "26ddc10a0c3b197bba859124b2804ced4caf387ba2cc178c5855142d6201af32",
+      "privacy": "public/synthetic; provider state redacted where indexed"
+    },
+    {
+      "path": "benchmarks/results/carbon-20261110/table-image-positive-control_reports/row-00000-page-00001-original-00001.json",
+      "bytes": 7905,
+      "sha256": "b96a95f4fcbee1541cbcfca31545dde84ab7fc2f2e6de1146b962d62ad788cba",
+      "privacy": "public/synthetic; provider state redacted where indexed",
+      "original_sha256": "def88a1f5f2a740d76882fa4096f875856857b408de6757bce9ad571c9a930f9",
+      "redacted_fields": [
+        "/requests/0/native_response_json [nested-json]/output/0/encrypted_content"
+      ],
+      "projection": "provider-state-redacted; not exact original response bytes"
+    },
+    {
+      "path": "benchmarks/results/carbon-20261110/table-native-positive-candidate.jsonl",
+      "bytes": 2288,
+      "sha256": "4ab0e8f44a441d04d8d9580898d8d0086f07f917f513585c249bacf23224fca6",
+      "privacy": "public/synthetic; provider state redacted where indexed"
+    },
+    {
+      "path": "benchmarks/results/carbon-20261110/table-native-positive-candidate_reports/row-00000-page-00001-original-00001.json",
+      "bytes": 2989,
+      "sha256": "ee936d8218d15f6e86e3742809a3b975ba8614bf7cbb62d1311b29047143f364",
+      "privacy": "public/synthetic; provider state redacted where indexed"
+    },
+    {
+      "path": "benchmarks/results/carbon-20261110/table-native-positive-control.jsonl",
+      "bytes": 2282,
+      "sha256": "48389a7d31022483a2ca8528720773b39d5fd604c585aa5c49fdca35821a7114",
+      "privacy": "public/synthetic; provider state redacted where indexed"
+    },
+    {
+      "path": "benchmarks/results/carbon-20261110/table-native-positive-control_reports/row-00000-page-00001-original-00001.json",
+      "bytes": 7422,
+      "sha256": "d6d0f1da8f006671b6c2d83ee0ba376086dbef8c8e755effaeccfd9b6ce35e0e",
+      "privacy": "public/synthetic; provider state redacted where indexed",
+      "original_sha256": "4bf461f70aba764dc81253c09dd00b117ad8c358b9c93e8e7c703ceb8adf4a90",
+      "redacted_fields": [
+        "/requests/0/native_response_json [nested-json]/output/0/encrypted_content"
+      ],
+      "projection": "provider-state-redacted; not exact original response bytes"
+    },
+    {
+      "path": "docs/evals/evidence/089-carbon/Image001-candidate-actualcrop.png",
+      "bytes": 132954,
+      "sha256": "72296efa647623fb2a63e3d89b6c0d5ca952942cef0f1f7cc56477317c126251",
+      "privacy": "public/synthetic; provider state redacted where indexed"
+    },
+    {
+      "path": "docs/evals/evidence/089-carbon/Image001-candidate-independent-review-crop-0.png",
+      "bytes": 132926,
+      "sha256": "947cee51b007d080f1b7d3fd68741b7e416ee23ab028450b38a934eb650ce5bc",
+      "privacy": "public/synthetic; provider state redacted where indexed"
+    },
+    {
+      "path": "docs/evals/evidence/089-carbon/Image001-candidate-normalization.json",
+      "bytes": 304,
+      "sha256": "2f29deb407b149814492ac6874060bd8139be6026d29dc326f484b94600ab6e6",
+      "privacy": "public/synthetic; provider state redacted where indexed"
+    },
+    {
+      "path": "docs/evals/evidence/089-carbon/Image001-candidate-overlay.jpg",
+      "bytes": 97057,
+      "sha256": "ccfa0c9e6acac74966c68ed06d28311ddfde58c442fc1918d2bca72360387f1e",
+      "privacy": "public/synthetic; provider state redacted where indexed"
+    },
+    {
+      "path": "docs/evals/evidence/089-carbon/Image001-control-actualcrop.png",
+      "bytes": 132711,
+      "sha256": "c4dfc524aac6da0db5720f4d0a1986e982ba2dc40c53c09d83ecc641ed82ad00",
+      "privacy": "public/synthetic; provider state redacted where indexed"
+    },
+    {
+      "path": "docs/evals/evidence/089-carbon/Image001-control-independent-review-crop-0.png",
+      "bytes": 132745,
+      "sha256": "9ada4eb9ffab1d43ed3263ea4181006806a735599fe533f0dd979e4213040125",
+      "privacy": "public/synthetic; provider state redacted where indexed"
+    },
+    {
+      "path": "docs/evals/evidence/089-carbon/Image001-control-normalization.json",
+      "bytes": 302,
+      "sha256": "e0cf6adc2da1e326e6204d130f43de4b029b89a7ba7a55d7197c6f9a7c1319c3",
+      "privacy": "public/synthetic; provider state redacted where indexed"
+    },
+    {
+      "path": "docs/evals/evidence/089-carbon/Image001-control-overlay.jpg",
+      "bytes": 92940,
+      "sha256": "56240ba4c3d652021e8014f1795537701823ea456c6f370dfff06d052b7068cb",
+      "privacy": "public/synthetic; provider state redacted where indexed"
+    },
+    {
+      "path": "docs/evals/evidence/089-carbon/Image001-final-N-control-boundary.png",
+      "bytes": 19191,
+      "sha256": "e3eb70914e6a0c826349a6577b1bf2ab061b7a1af07b9ab0a69fc07b5694322f",
+      "privacy": "public/synthetic; provider state redacted where indexed"
+    },
+    {
+      "path": "docs/evals/evidence/089-carbon/Image001-source.png",
+      "bytes": 190776,
+      "sha256": "5d6240b0db4a07adbd9f9959ca88501180ed076a568f91ea657b97e36c7aa28f",
+      "privacy": "public/synthetic; provider state redacted where indexed"
+    },
+    {
+      "path": "docs/evals/evidence/089-carbon/Image011-candidate-independent-review-crop-0.png",
+      "bytes": 70351,
+      "sha256": "74545d670986ed386a4b3ad90ee69b8d7abcb6aa28d3199027a05b73d1129fe2",
+      "privacy": "public/synthetic; provider state redacted where indexed"
+    },
+    {
+      "path": "docs/evals/evidence/089-carbon/Image011-candidate-independent-review-crop-1.png",
+      "bytes": 224973,
+      "sha256": "bb9bbd2a80e6beb2fe1ac6e4dd68c04919ca0cacb6365590a5f470eaefb0a1d1",
+      "privacy": "public/synthetic; provider state redacted where indexed"
+    },
+    {
+      "path": "docs/evals/evidence/089-carbon/Image011-candidate-normalization.json",
+      "bytes": 432,
+      "sha256": "0d7fc8eee3050524e8f9b2ff9f0c241bf1cb3211aae54fa277ec445fb63ff26a",
+      "privacy": "public/synthetic; provider state redacted where indexed"
+    },
+    {
+      "path": "docs/evals/evidence/089-carbon/Image011-candidate-overlay.jpg",
+      "bytes": 228816,
+      "sha256": "b2d16c5d1b58c20ca37ff99e5551312af41928ed62d2dd7c3d39aed165fde041",
+      "privacy": "public/synthetic; provider state redacted where indexed"
+    },
+    {
+      "path": "docs/evals/evidence/089-carbon/Image011-candidate-source-crop-0.png",
+      "bytes": 70351,
+      "sha256": "74545d670986ed386a4b3ad90ee69b8d7abcb6aa28d3199027a05b73d1129fe2",
+      "privacy": "public/synthetic; provider state redacted where indexed"
+    },
+    {
+      "path": "docs/evals/evidence/089-carbon/Image011-candidate-source-crop-1.png",
+      "bytes": 224973,
+      "sha256": "bb9bbd2a80e6beb2fe1ac6e4dd68c04919ca0cacb6365590a5f470eaefb0a1d1",
+      "privacy": "public/synthetic; provider state redacted where indexed"
+    },
+    {
+      "path": "docs/evals/evidence/089-carbon/Image011-candidate-source-overlay.jpg",
+      "bytes": 370927,
+      "sha256": "d5893222d4a41f8fb137af09675eac365942d6b213d0c628efcaf57773462dd9",
+      "privacy": "public/synthetic; provider state redacted where indexed"
+    },
+    {
+      "path": "docs/evals/evidence/089-carbon/Image011-control-independent-review-crop-0.png",
+      "bytes": 70845,
+      "sha256": "50caf4b24beb04162b95be33dcab5b92e308314124fa4a760915fab67d1e590a",
+      "privacy": "public/synthetic; provider state redacted where indexed"
+    },
+    {
+      "path": "docs/evals/evidence/089-carbon/Image011-control-independent-review-crop-1.png",
+      "bytes": 225287,
+      "sha256": "0221c5e1be16e9cc692428c43ac860b27fa087e9d5826f8c8df7552cd24ab643",
+      "privacy": "public/synthetic; provider state redacted where indexed"
+    },
+    {
+      "path": "docs/evals/evidence/089-carbon/Image011-control-normalization.json",
+      "bytes": 432,
+      "sha256": "e3dccf20ed47575d81737fdfd11d73672d1035887aa93918effec88ef5df1ca9",
+      "privacy": "public/synthetic; provider state redacted where indexed"
+    },
+    {
+      "path": "docs/evals/evidence/089-carbon/Image011-control-overlay.jpg",
+      "bytes": 226027,
+      "sha256": "463f2c50bb971981af5c1f337b016c614976c6b5beab716e8fee3623b9dc4586",
+      "privacy": "public/synthetic; provider state redacted where indexed"
+    },
+    {
+      "path": "docs/evals/evidence/089-carbon/Image011-source.png",
+      "bytes": 649910,
+      "sha256": "1d7b9b8a96f761bd607d100c93ff251079a829a329b259be1bf806fad6f7c10b",
+      "privacy": "public/synthetic; provider state redacted where indexed"
+    },
+    {
+      "path": "docs/evals/evidence/089-carbon/carbon-new.md",
+      "bytes": 21105,
+      "sha256": "2a5898f508792d615a1f40f20ab34c6aa0737d3b2c124abd64a916068825a511",
+      "privacy": "public/synthetic; provider state redacted where indexed"
+    },
+    {
+      "path": "docs/evals/evidence/089-carbon/carbon.md",
+      "bytes": 4846,
+      "sha256": "eaec9eeec2cc6762b304ef3e1e023c6fa3c719fbbab65667aae40ae0594d953b",
+      "privacy": "public/synthetic; provider state redacted where indexed"
+    },
+    {
+      "path": "docs/evals/evidence/089-carbon/catalog.json",
+      "bytes": 582,
+      "sha256": "b4495428b0882e1a305c2f5678b2bbd1cae077ee978257f0cac0877791b0ad9f",
+      "privacy": "public/synthetic; provider state redacted where indexed"
+    },
+    {
+      "path": "docs/evals/evidence/089-carbon/counts/crop-screen-Image001-candidate.json",
+      "bytes": 207,
+      "sha256": "5c429c0b9a4355ea790d9167b307c8f5609f9b457b8c58a4c7eaed1fdd210128",
+      "privacy": "public/synthetic; provider state redacted where indexed"
+    },
+    {
+      "path": "docs/evals/evidence/089-carbon/counts/crop-screen-Image001-control.json",
+      "bytes": 207,
+      "sha256": "6363cb30500bc40b1baee3cf90230480e20953abd47cb3769e22623bd3c5c4bc",
+      "privacy": "public/synthetic; provider state redacted where indexed"
+    },
+    {
+      "path": "docs/evals/evidence/089-carbon/counts/crop-screen-Image011-candidate.json",
+      "bytes": 207,
+      "sha256": "5c429c0b9a4355ea790d9167b307c8f5609f9b457b8c58a4c7eaed1fdd210128",
+      "privacy": "public/synthetic; provider state redacted where indexed"
+    },
+    {
+      "path": "docs/evals/evidence/089-carbon/counts/crop-screen-Image011-control.json",
+      "bytes": 207,
+      "sha256": "6363cb30500bc40b1baee3cf90230480e20953abd47cb3769e22623bd3c5c4bc",
+      "privacy": "public/synthetic; provider state redacted where indexed"
+    },
+    {
+      "path": "docs/evals/evidence/089-carbon/counts/ocr-barney-candidate.json",
+      "bytes": 207,
+      "sha256": "51201b9fd69d8b5e15c64c2134ee372ee6c1ecfeafaa1ba34cab2d541bfaedf4",
+      "privacy": "public/synthetic; provider state redacted where indexed"
+    },
+    {
+      "path": "docs/evals/evidence/089-carbon/counts/ocr-barney-control.json",
+      "bytes": 207,
+      "sha256": "66f413c1f4ca560d1df971357e68bf7de2aeb573367d25249897ccf4b8d74f71",
+      "privacy": "public/synthetic; provider state redacted where indexed"
+    },
+    {
+      "path": "docs/evals/evidence/089-carbon/counts/safety-page-001-000-candidate.json",
+      "bytes": 207,
+      "sha256": "d6006994038ba51be07af67ca92307f501f2d01c08251b6b09a1586e1dcd91d2",
+      "privacy": "public/synthetic; provider state redacted where indexed"
+    },
+    {
+      "path": "docs/evals/evidence/089-carbon/counts/safety-page-004-000-candidate.json",
+      "bytes": 207,
+      "sha256": "d6006994038ba51be07af67ca92307f501f2d01c08251b6b09a1586e1dcd91d2",
+      "privacy": "public/synthetic; provider state redacted where indexed"
+    },
+    {
+      "path": "docs/evals/evidence/089-carbon/counts/safety-page-009-000-candidate.json",
+      "bytes": 207,
+      "sha256": "d6006994038ba51be07af67ca92307f501f2d01c08251b6b09a1586e1dcd91d2",
+      "privacy": "public/synthetic; provider state redacted where indexed"
+    },
+    {
+      "path": "docs/evals/evidence/089-carbon/counts/safety-page-012-000-candidate.json",
+      "bytes": 207,
+      "sha256": "d6006994038ba51be07af67ca92307f501f2d01c08251b6b09a1586e1dcd91d2",
+      "privacy": "public/synthetic; provider state redacted where indexed"
+    },
+    {
+      "path": "docs/evals/evidence/089-carbon/counts/safety-page-012-001-candidate.json",
+      "bytes": 207,
+      "sha256": "d6006994038ba51be07af67ca92307f501f2d01c08251b6b09a1586e1dcd91d2",
+      "privacy": "public/synthetic; provider state redacted where indexed"
+    },
+    {
+      "path": "docs/evals/evidence/089-carbon/counts/safety-page-122-001-candidate.json",
+      "bytes": 207,
+      "sha256": "d6006994038ba51be07af67ca92307f501f2d01c08251b6b09a1586e1dcd91d2",
+      "privacy": "public/synthetic; provider state redacted where indexed"
+    },
+    {
+      "path": "docs/evals/evidence/089-carbon/counts/table-ambiguity-negative-candidate.json",
+      "bytes": 207,
+      "sha256": "0d71ce8a30ed54f6e102becc4b5a2a4337701b84be9e7fca216a3b4b9f5db7fc",
+      "privacy": "public/synthetic; provider state redacted where indexed"
+    },
+    {
+      "path": "docs/evals/evidence/089-carbon/counts/table-image-positive-candidate.json",
+      "bytes": 207,
+      "sha256": "0d71ce8a30ed54f6e102becc4b5a2a4337701b84be9e7fca216a3b4b9f5db7fc",
+      "privacy": "public/synthetic; provider state redacted where indexed"
+    },
+    {
+      "path": "docs/evals/evidence/089-carbon/counts/table-image-positive-rejected-count-schema.json",
+      "bytes": 455,
+      "sha256": "db6a2ea53c73f0c2fbc14b05adef074d81d36107e0ee3ec7386fe3a0739e5fb8",
+      "privacy": "public/synthetic; provider state redacted where indexed"
+    },
+    {
+      "path": "docs/evals/evidence/089-carbon/counts/table-native-positive-candidate.json",
+      "bytes": 207,
+      "sha256": "0d71ce8a30ed54f6e102becc4b5a2a4337701b84be9e7fca216a3b4b9f5db7fc",
+      "privacy": "public/synthetic; provider state redacted where indexed"
+    },
+    {
+      "path": "docs/evals/evidence/089-carbon/crop-screen-Image001-candidate.json",
+      "bytes": 409,
+      "sha256": "3dc86469e8af3b2d1735dfcf156780a43ab273c7ef075215846a5b83a79ce7b0",
+      "privacy": "public/synthetic; provider state redacted where indexed"
+    },
+    {
+      "path": "docs/evals/evidence/089-carbon/crop-screen-Image001-control.json",
+      "bytes": 412,
+      "sha256": "81506b08bfda11add2c4efd58f4948bade3ea179245aee4945a5a60ac40682f2",
+      "privacy": "public/synthetic; provider state redacted where indexed"
+    },
+    {
+      "path": "docs/evals/evidence/089-carbon/crop-screen-Image011-candidate.json",
+      "bytes": 673,
+      "sha256": "3761db167414c242d2cf088ed159ace5dc73029992acfbb73c365d32fb0c805c",
+      "privacy": "public/synthetic; provider state redacted where indexed"
+    },
+    {
+      "path": "docs/evals/evidence/089-carbon/crop-screen-Image011-control.json",
+      "bytes": 504,
+      "sha256": "05bc65329b452a3f12d537046c6efacc75e61d54cd2ddc94510af2f20393cc88",
+      "privacy": "public/synthetic; provider state redacted where indexed"
+    },
+    {
+      "path": "docs/evals/evidence/089-carbon/crop-screen-results.json",
+      "bytes": 237,
+      "sha256": "3d58b5ce6c43f0cc74c4be00740c13b9a014742905bdea260f949e4eaede57f4",
+      "privacy": "public/synthetic; provider state redacted where indexed"
+    },
+    {
+      "path": "docs/evals/evidence/089-carbon/dispatch-code/1fedfb177d57e18eda934ae6cb387b75e8c20dffae90700cb0d0fdd789a35804-carbon_guard.py",
+      "bytes": 11924,
+      "sha256": "1fedfb177d57e18eda934ae6cb387b75e8c20dffae90700cb0d0fdd789a35804",
+      "privacy": "public/synthetic; provider state redacted where indexed"
+    },
+    {
+      "path": "docs/evals/evidence/089-carbon/dispatch-code/721e551a42e60c238bcb26f25ae80256ff7342f962ee7348fbe36a68ca2d7f30-carbon_guard.py",
+      "bytes": 11411,
+      "sha256": "721e551a42e60c238bcb26f25ae80256ff7342f962ee7348fbe36a68ca2d7f30",
+      "privacy": "public/synthetic; provider state redacted where indexed"
+    },
+    {
+      "path": "docs/evals/evidence/089-carbon/dispatch-code/a642968e378da65b9e3e7d346ae2459e3ea9e7e704ec339b8571bbc0d9c8f4a9-carbon_guard.py",
+      "bytes": 10724,
+      "sha256": "a642968e378da65b9e3e7d346ae2459e3ea9e7e704ec339b8571bbc0d9c8f4a9",
+      "privacy": "public/synthetic; provider state redacted where indexed"
+    },
+    {
+      "path": "docs/evals/evidence/089-carbon/execution-plan.json",
+      "bytes": 1610,
+      "sha256": "a297cb3ed455d6d1a52efa44f95e9fe18f148264cefad0ad706efa023486ed62",
+      "privacy": "public/synthetic; provider state redacted where indexed"
+    },
+    {
+      "path": "docs/evals/evidence/089-carbon/fcntl-research.html",
+      "bytes": 50928,
+      "sha256": "436d16291aa071de97bb91fddb2a6e622405291dd4dedede7f29c6c211f57519",
+      "privacy": "public/synthetic; provider state redacted where indexed"
+    },
+    {
+      "path": "docs/evals/evidence/089-carbon/final-sources/benchmarks/providers/carbon_guard.py",
+      "bytes": 12490,
+      "sha256": "916fced46705413a509486ea43d4815e005da7e42e8932559b487506fd9cd4e5",
+      "privacy": "public/synthetic; provider state redacted where indexed"
+    },
+    {
+      "path": "docs/evals/evidence/089-carbon/final-sources/benchmarks/scripts/carbon_audit.py",
+      "bytes": 7107,
+      "sha256": "3f718a1b33fff07ba8575ab5e3eb737ddaabd60fa8dc77436c151f6d1c1bf480",
+      "privacy": "public/synthetic; provider state redacted where indexed"
+    },
+    {
+      "path": "docs/evals/evidence/089-carbon/final-sources/benchmarks/scripts/carbon_continue_two.py",
+      "bytes": 1820,
+      "sha256": "725507da220d85e226611a90b4136397505e3d206d2094744ebc8284c01131ea",
+      "privacy": "public/synthetic; provider state redacted where indexed"
+    },
+    {
+      "path": "docs/evals/evidence/089-carbon/final-sources/benchmarks/scripts/carbon_missing_cases.py",
+      "bytes": 1490,
+      "sha256": "d14239392666a48256a038c32ae482b0f3d7e0413787176de4862c0a99ea4efa",
+      "privacy": "public/synthetic; provider state redacted where indexed"
+    },
+    {
+      "path": "docs/evals/evidence/089-carbon/final-sources/benchmarks/scripts/carbon_native.py",
+      "bytes": 3541,
+      "sha256": "cf8e3ff2793924e22562b25a1576709ff7fa7dde0120acef0049a8745fd02df4",
+      "privacy": "public/synthetic; provider state redacted where indexed"
+    },
+    {
+      "path": "docs/evals/evidence/089-carbon/final-sources/benchmarks/scripts/carbon_overlay.py",
+      "bytes": 1870,
+      "sha256": "2af89a10e4b82351f68e343d237fee4dc005da7007e463a0734a9f999ce5b1da",
+      "privacy": "public/synthetic; provider state redacted where indexed"
+    },
+    {
+      "path": "docs/evals/evidence/089-carbon/final-sources/benchmarks/scripts/carbon_panel.py",
+      "bytes": 1432,
+      "sha256": "fb2476b39f7202a69f983ca40f882b9e9f22c615f38d631b74aa31d6199092bf",
+      "privacy": "public/synthetic; provider state redacted where indexed"
+    },
+    {
+      "path": "docs/evals/evidence/089-carbon/final-sources/benchmarks/scripts/carbon_preflight.py",
+      "bytes": 8702,
+      "sha256": "f6dcb53c3030d8a49bf00b4e61408005905d89a962d485b6040f4b51b452bec7",
+      "privacy": "public/synthetic; provider state redacted where indexed"
+    },
+    {
+      "path": "docs/evals/evidence/089-carbon/final-sources/benchmarks/scripts/carbon_reading.py",
+      "bytes": 12702,
+      "sha256": "f77b6671d038dcb074763c50efd8fcc7ea40c5f81d8665c942c41a58a1a17be9",
+      "privacy": "public/synthetic; provider state redacted where indexed"
+    },
+    {
+      "path": "docs/evals/evidence/089-carbon/final-sources/benchmarks/scripts/carbon_safety.py",
+      "bytes": 2882,
+      "sha256": "6c32d553199d21272d41387a768c23801c81e2160892f80a9872e67ee58c3298",
+      "privacy": "public/synthetic; provider state redacted where indexed"
+    },
+    {
+      "path": "docs/evals/evidence/089-carbon/final-sources/tests/test_carbon_campaign.py",
+      "bytes": 9665,
+      "sha256": "9b60ed1e0c7d591c1bab6d317d8dce80efd67f0c5301cea2f52b70942394f239",
+      "privacy": "public/synthetic; provider state redacted where indexed"
+    },
+    {
+      "path": "docs/evals/evidence/089-carbon/flash38.md",
+      "bytes": 4263,
+      "sha256": "53a3ba46aa82c9cc7f2414959352376660b156aa5c5e114d61b9917351d4ad11",
+      "privacy": "public/synthetic; provider state redacted where indexed"
+    },
+    {
+      "path": "docs/evals/evidence/089-carbon/guard-accounting-epoch1.json",
+      "bytes": 419,
+      "sha256": "2a0d59bab864d380909e78db0c3c7aceed05bf1effa1c8c438070be33a48ccde",
+      "privacy": "public/synthetic; provider state redacted where indexed"
+    },
+    {
+      "path": "docs/evals/evidence/089-carbon/guard-accounting-epoch2.json",
+      "bytes": 392,
+      "sha256": "d5edfe78bbf6b792cc8a72527d327e951d031d6f1981ae55dc9f7e96240748ee",
+      "privacy": "public/synthetic; provider state redacted where indexed"
+    },
+    {
+      "path": "docs/evals/evidence/089-carbon/initial-ambiguity-negative.json",
+      "bytes": 1443,
+      "sha256": "66362bd4c686282825386655a60e7aa76424765d4f205c26ceb0d28cbd1afe89",
+      "privacy": "public/synthetic; provider state redacted where indexed"
+    },
+    {
+      "path": "docs/evals/evidence/089-carbon/initial-image-positive.json",
+      "bytes": 1959,
+      "sha256": "0da06b37d5d00e38d438f26066b08d5748cd8afc926d405cf3e358e8122450d3",
+      "privacy": "public/synthetic; provider state redacted where indexed"
+    },
+    {
+      "path": "docs/evals/evidence/089-carbon/initial-native-positive.json",
+      "bytes": 1717,
+      "sha256": "541f3d8c0590164e9c7bdf5c573f10bf00cf746cc09c67226903c9aafb966727",
+      "privacy": "public/synthetic; provider state redacted where indexed"
+    },
+    {
+      "path": "docs/evals/evidence/089-carbon/ledger.json",
+      "bytes": 32447,
+      "sha256": "32b9f026bf7a44aeabffe64f194f100c580c162eaa2b06627e3234e131caa3e2",
+      "privacy": "public/synthetic; provider state redacted where indexed"
+    },
+    {
+      "path": "docs/evals/evidence/089-carbon/local-recovery-events.json",
+      "bytes": 1234,
+      "sha256": "d77a520a02f83c622c6f0f7590ff663e341b4839df5fcacb67fd53efda45d87b",
+      "privacy": "public/synthetic; provider state redacted where indexed"
+    },
+    {
+      "path": "docs/evals/evidence/089-carbon/ocr-results.json",
+      "bytes": 2737,
+      "sha256": "3f8e9e392c762800f33ca71ca1adc1855294af25f8a4d578965e8865971a4521",
+      "privacy": "public/synthetic; provider state redacted where indexed"
+    },
+    {
+      "path": "docs/evals/evidence/089-carbon/post-inference-format-epoch.json",
+      "bytes": 1283,
+      "sha256": "87e57c00fb88ee41e0ba68e450114dc7f123dc356656f967ca09eee95c14c55a",
+      "privacy": "public/synthetic; provider state redacted where indexed"
+    },
+    {
+      "path": "docs/evals/evidence/089-carbon/pre-format-sources/benchmarks/providers/carbon_guard.py",
+      "bytes": 11924,
+      "sha256": "1fedfb177d57e18eda934ae6cb387b75e8c20dffae90700cb0d0fdd789a35804",
+      "privacy": "public/synthetic; provider state redacted where indexed"
+    },
+    {
+      "path": "docs/evals/evidence/089-carbon/pre-format-sources/benchmarks/scripts/carbon_continue_two.py",
+      "bytes": 1470,
+      "sha256": "ee36f4fb320124439dca4f9d5abbfd5e9f27086061f2e70e809ad0e392e66bec",
+      "privacy": "public/synthetic; provider state redacted where indexed"
+    },
+    {
+      "path": "docs/evals/evidence/089-carbon/pre-format-sources/benchmarks/scripts/carbon_missing_cases.py",
+      "bytes": 1328,
+      "sha256": "b4de61b6080901fee2f294f2f5a71e55cdf0abdf93daa5cf30d51756ab6a790b",
+      "privacy": "public/synthetic; provider state redacted where indexed"
+    },
+    {
+      "path": "docs/evals/evidence/089-carbon/pre-format-sources/benchmarks/scripts/carbon_native.py",
+      "bytes": 3127,
+      "sha256": "3cb99d2dedf64a6ecb9ead0a62472dedbf302d71dafb91e8fb12027a74de45ed",
+      "privacy": "public/synthetic; provider state redacted where indexed"
+    },
+    {
+      "path": "docs/evals/evidence/089-carbon/pre-format-sources/benchmarks/scripts/carbon_overlay.py",
+      "bytes": 1870,
+      "sha256": "2af89a10e4b82351f68e343d237fee4dc005da7007e463a0734a9f999ce5b1da",
+      "privacy": "public/synthetic; provider state redacted where indexed"
+    },
+    {
+      "path": "docs/evals/evidence/089-carbon/pre-format-sources/benchmarks/scripts/carbon_panel.py",
+      "bytes": 1288,
+      "sha256": "76bf27288a29c805eb6041b9f2aae3837038285ed07a70ed0c3df288db3d14de",
+      "privacy": "public/synthetic; provider state redacted where indexed"
+    },
+    {
+      "path": "docs/evals/evidence/089-carbon/pre-format-sources/benchmarks/scripts/carbon_preflight.py",
+      "bytes": 6454,
+      "sha256": "3b318a4fa80c64aa3a7a278ac112d2cda54567a48394c8a62b0e6e42116282ef",
+      "privacy": "public/synthetic; provider state redacted where indexed"
+    },
+    {
+      "path": "docs/evals/evidence/089-carbon/pre-format-sources/benchmarks/scripts/carbon_reading.py",
+      "bytes": 12767,
+      "sha256": "505444f2c3fd6dfbd6346618387a46d28819138701f6e6d29baef301c41e0793",
+      "privacy": "public/synthetic; provider state redacted where indexed"
+    },
+    {
+      "path": "docs/evals/evidence/089-carbon/pre-format-sources/benchmarks/scripts/carbon_safety.py",
+      "bytes": 2325,
+      "sha256": "b4eb784cbfc860589b7c6ec9502bf21701c55f14dcf9ef83a058db2fd35f718a",
+      "privacy": "public/synthetic; provider state redacted where indexed"
+    },
+    {
+      "path": "docs/evals/evidence/089-carbon/pre-format-sources/tests/test_carbon_campaign.py",
+      "bytes": 7443,
+      "sha256": "5f7d5bd0c9d71a0f78dfd00bd3d7c35eea2da34c63086927a70465bd86c52256",
+      "privacy": "public/synthetic; provider state redacted where indexed"
+    },
+    {
+      "path": "docs/evals/evidence/089-carbon/preflight.json",
+      "bytes": 13089,
+      "sha256": "e005f1fc43025eed195d623796642706f971c8d64d0e2dc189bf20533950f70c",
+      "privacy": "public/synthetic; provider state redacted where indexed"
+    },
+    {
+      "path": "docs/evals/evidence/089-carbon/pricing.md",
+      "bytes": 109133,
+      "sha256": "5449451e56c7825a511b4f60ebe956a6d1a1119f904a7bfc9a8aa89a8f6f4535",
+      "privacy": "public/synthetic; provider state redacted where indexed"
+    },
+    {
+      "path": "docs/evals/evidence/089-carbon/producing-sources/benchmarks/golden/crop-page-level-safety-repair-048-source-adjudicated.json",
+      "bytes": 5157,
+      "sha256": "6f32bc513494f1c4454b4c41e74186136212d477ff10c87ccb29244ca21aaa76",
+      "privacy": "public/synthetic; provider state redacted where indexed"
+    },
+    {
+      "path": "docs/evals/evidence/089-carbon/producing-sources/benchmarks/golden/image-crops.json",
+      "bytes": 7783,
+      "sha256": "2ac0a8f01e00a252439da1f4827a85bc5118bf96460a3ff1780e642eafc60f90",
+      "privacy": "public/synthetic; provider state redacted where indexed"
+    },
+    {
+      "path": "docs/evals/evidence/089-carbon/producing-sources/benchmarks/prompts/crop-conservative-count.js",
+      "bytes": 1782,
+      "sha256": "d15c7fd6f20389e5e7b2af9f15dd3697a31c28f47cfea8147c8114fe82f1e8f9",
+      "privacy": "public/synthetic; provider state redacted where indexed"
+    },
+    {
+      "path": "docs/evals/evidence/089-carbon/producing-sources/benchmarks/prompts/validate-page-level-crop.js",
+      "bytes": 4043,
+      "sha256": "ef4395838929b208fe65f21500d81ade902072bef3f8e53f81ef3d3b83fbc421",
+      "privacy": "public/synthetic; provider state redacted where indexed"
+    },
+    {
+      "path": "docs/evals/evidence/089-carbon/producing-sources/benchmarks/providers/carbon_guard.py",
+      "bytes": 9557,
+      "sha256": "bb94cf4b3e6df53cdbc628ac138c40544dd3e5b1b745f29cd72fe06473634c8f",
+      "privacy": "public/synthetic; provider state redacted where indexed"
+    },
+    {
+      "path": "docs/evals/evidence/089-carbon/producing-sources/benchmarks/scorers/image_crop_scorer.py",
+      "bytes": 10333,
+      "sha256": "7fcf07e05726bf3ebbc2488a503a9d7f165dde79649890cbd65f12a6ce4c19e7",
+      "privacy": "public/synthetic; provider state redacted where indexed"
+    },
+    {
+      "path": "docs/evals/evidence/089-carbon/producing-sources/benchmarks/scripts/carbon_native.py",
+      "bytes": 3011,
+      "sha256": "96b3b313325715c2944d8bfea85c8bc0d5a2a72496883b52d876566f33c78b8a",
+      "privacy": "public/synthetic; provider state redacted where indexed"
+    },
+    {
+      "path": "docs/evals/evidence/089-carbon/producing-sources/benchmarks/scripts/carbon_preflight.py",
+      "bytes": 6454,
+      "sha256": "3b318a4fa80c64aa3a7a278ac112d2cda54567a48394c8a62b0e6e42116282ef",
+      "privacy": "public/synthetic; provider state redacted where indexed"
+    },
+    {
+      "path": "docs/evals/evidence/089-carbon/producing-sources/benchmarks/scripts/carbon_reading.py",
+      "bytes": 12767,
+      "sha256": "505444f2c3fd6dfbd6346618387a46d28819138701f6e6d29baef301c41e0793",
+      "privacy": "public/synthetic; provider state redacted where indexed"
+    },
+    {
+      "path": "docs/evals/evidence/089-carbon/producing-sources/benchmarks/scripts/carbon_safety.py",
+      "bytes": 2325,
+      "sha256": "b4eb784cbfc860589b7c6ec9502bf21701c55f14dcf9ef83a058db2fd35f718a",
+      "privacy": "public/synthetic; provider state redacted where indexed"
+    },
+    {
+      "path": "docs/evals/evidence/089-carbon/producing-sources/modules/common/literal_table_review.py",
+      "bytes": 14664,
+      "sha256": "25085a0937d27e5bae61e3973eddcf2ea6a43496cba814d57fb8af67a0212d67",
+      "privacy": "public/synthetic; provider state redacted where indexed"
+    },
+    {
+      "path": "docs/evals/evidence/089-carbon/producing-sources/modules/common/table_source_review.py",
+      "bytes": 7221,
+      "sha256": "78599f846eb31b2ad7a1607257458760e6e93e6eaa6d4ab062ffcbd30b879709",
+      "privacy": "public/synthetic; provider state redacted where indexed"
+    },
+    {
+      "path": "docs/evals/evidence/089-carbon/producing-sources-epoch1/benchmarks/providers/carbon_guard.py",
+      "bytes": 9995,
+      "sha256": "b8b416fc73d90d28983ea5f5d8a8172d14433e0e47b3809da4470e0dd8092374",
+      "privacy": "public/synthetic; provider state redacted where indexed"
+    },
+    {
+      "path": "docs/evals/evidence/089-carbon/producing-sources-epoch2/benchmarks/providers/carbon_guard.py",
+      "bytes": 10724,
+      "sha256": "a642968e378da65b9e3e7d346ae2459e3ea9e7e704ec339b8571bbc0d9c8f4a9",
+      "privacy": "public/synthetic; provider state redacted where indexed"
+    },
+    {
+      "path": "docs/evals/evidence/089-carbon/producing-sources-epoch2/benchmarks/scripts/carbon_native.py",
+      "bytes": 3127,
+      "sha256": "3cb99d2dedf64a6ecb9ead0a62472dedbf302d71dafb91e8fb12027a74de45ed",
+      "privacy": "public/synthetic; provider state redacted where indexed"
+    },
+    {
+      "path": "docs/evals/evidence/089-carbon/producing-sources-epoch3/benchmarks/providers/carbon_guard.py",
+      "bytes": 11411,
+      "sha256": "721e551a42e60c238bcb26f25ae80256ff7342f962ee7348fbe36a68ca2d7f30",
+      "privacy": "public/synthetic; provider state redacted where indexed"
+    },
+    {
+      "path": "docs/evals/evidence/089-carbon/producing-sources-epoch3/benchmarks/scripts/carbon_native.py",
+      "bytes": 3127,
+      "sha256": "3cb99d2dedf64a6ecb9ead0a62472dedbf302d71dafb91e8fb12027a74de45ed",
+      "privacy": "public/synthetic; provider state redacted where indexed"
+    },
+    {
+      "path": "docs/evals/evidence/089-carbon/producing-sources-epoch4/benchmarks/providers/carbon_guard.py",
+      "bytes": 11924,
+      "sha256": "1fedfb177d57e18eda934ae6cb387b75e8c20dffae90700cb0d0fdd789a35804",
+      "privacy": "public/synthetic; provider state redacted where indexed"
+    },
+    {
+      "path": "docs/evals/evidence/089-carbon/provenance.json",
+      "bytes": 4796,
+      "sha256": "05460855ee996c3d06fedc5e62e2dd0ce248b68bec7795f94c7c1a558b6cdafd",
+      "privacy": "public/synthetic; provider state redacted where indexed"
+    },
+    {
+      "path": "docs/evals/evidence/089-carbon/raw-audit.json",
+      "bytes": 8054,
+      "sha256": "6a77bf34020ea23ff3490c6ca414db0b363cda57fa01f195022fe9e5b8fa8bcb",
+      "privacy": "public/synthetic; provider state redacted where indexed"
+    },
+    {
+      "path": "docs/evals/evidence/089-carbon/safety-page-001-000.json",
+      "bytes": 1878,
+      "sha256": "ea573fd4f0af25030311079589c929947bdb4a42f80144d5d792ec1da89db0ca",
+      "privacy": "public/synthetic; provider state redacted where indexed"
+    },
+    {
+      "path": "docs/evals/evidence/089-carbon/safety-page-004-000.json",
+      "bytes": 1776,
+      "sha256": "2ac5a673e5b4f8553ad51aa3e13de757636849a0e52e072c5ba249fd6d0434b0",
+      "privacy": "public/synthetic; provider state redacted where indexed"
+    },
+    {
+      "path": "docs/evals/evidence/089-carbon/safety-page-009-000.json",
+      "bytes": 1676,
+      "sha256": "017478bcd7cee596b90f2fe5e87b5b4ba6dc41bd9a1151dc274cf0c19222aef0",
+      "privacy": "public/synthetic; provider state redacted where indexed"
+    },
+    {
+      "path": "docs/evals/evidence/089-carbon/safety-page-012-000.json",
+      "bytes": 1700,
+      "sha256": "dce00ab2cf9db6057a455b14ce00d5dd44c5c0bed35051fe848ed5ac62cf1136",
+      "privacy": "public/synthetic; provider state redacted where indexed"
+    },
+    {
+      "path": "docs/evals/evidence/089-carbon/safety-page-012-001.json",
+      "bytes": 1851,
+      "sha256": "66a6d077829adf468c34a2224cd5d4342830e6db2842df7a638bbbf5e1d9cfe3",
+      "privacy": "public/synthetic; provider state redacted where indexed"
+    },
+    {
+      "path": "docs/evals/evidence/089-carbon/safety-page-122-001.json",
+      "bytes": 1725,
+      "sha256": "0171dd8aefabfca5d8107e2986e82ca08faf02e7a44854f2ebdbd2fd1075b8a5",
+      "privacy": "public/synthetic; provider state redacted where indexed"
+    },
+    {
+      "path": "docs/evals/evidence/089-carbon/source-review-Image011-candidate.json",
+      "bytes": 4790,
+      "sha256": "c728a76917e142f17a3c2bdbf3bdfe1a2423179c21b239c100573a185e58bf5e",
+      "privacy": "public/synthetic; provider state redacted where indexed"
+    },
+    {
+      "path": "docs/evals/evidence/089-carbon/source-review-crops.json",
+      "bytes": 18203,
+      "sha256": "7424d0326d51e902b228026bf859c024d767bb0385ede50dfba2b304d1e8c4ef",
+      "privacy": "public/synthetic; provider state redacted where indexed"
+    },
+    {
+      "path": "docs/evals/evidence/089-carbon/source-review-ocr.json",
+      "bytes": 5893,
+      "sha256": "064b71f984db70613d1f5f180bd0a01bc70c8104d78c87330aa4af7e53f9e772",
+      "privacy": "public/synthetic; provider state redacted where indexed"
+    },
+    {
+      "path": "docs/evals/evidence/089-carbon/source-review-safety.json",
+      "bytes": 11970,
+      "sha256": "3fe4c15560151196eb4282a912ad41a6d5b69eb532ff8038174e6ca3a0eff40c",
+      "privacy": "public/synthetic; provider state redacted where indexed"
+    },
+    {
+      "path": "docs/evals/evidence/089-carbon/source-review-tables.json",
+      "bytes": 603,
+      "sha256": "4a7d0b56b3498d6df9b121ed3164d68b9d4ec7db473539329fd60427a2f08eb6",
+      "privacy": "public/synthetic; provider state redacted where indexed"
+    },
+    {
+      "path": "docs/evals/evidence/089-carbon/structure.md",
+      "bytes": 61094,
+      "sha256": "3e8c358b73f5e21075829027bc092366d479048687c994d4f196d782eb5c1377",
+      "privacy": "public/synthetic; provider state redacted where indexed"
+    },
+    {
+      "path": "docs/evals/evidence/089-carbon/summary.json",
+      "bytes": 2890,
+      "sha256": "7bad5a825fc8a4d8a9a38f45dc0b1d928487fc21bf9190008551a9e53ad8ab67",
+      "privacy": "public/synthetic; provider state redacted where indexed"
+    },
+    {
+      "path": "docs/evals/evidence/089-carbon/table-results.json",
+      "bytes": 7327,
+      "sha256": "27b463b3318d28585c0b3dbbdc92d7affcc15be7aa24da6d5ad3f9035b178e41",
+      "privacy": "public/synthetic; provider state redacted where indexed"
+    },
+    {
+      "path": "docs/evals/evidence/089-carbon/thinking.md",
+      "bytes": 35965,
+      "sha256": "b1e2a284806bc38e5b9b11ef3333aa28cc8d43a6e0ca64a075fcc480d255b4bc",
+      "privacy": "public/synthetic; provider state redacted where indexed"
+    },
+    {
+      "path": "docs/evals/evidence/089-carbon/token-api.md",
+      "bytes": 922,
+      "sha256": "80fe595e467202883564a0749e95d7c9bece860006ee9622727eefd0aa0d6d11",
+      "privacy": "public/synthetic; provider state redacted where indexed"
+    },
+    {
+      "path": "docs/evals/evidence/089-carbon/tokens.md",
+      "bytes": 35572,
+      "sha256": "c22a64e757d2bd936f77d5eb64a6daaaaa1ed00fe953905c022e70226d3dfa8b",
+      "privacy": "public/synthetic; provider state redacted where indexed"
+    },
+    {
+      "path": "docs/evals/evidence/089-carbon/topology-epoch3.json",
+      "bytes": 949,
+      "sha256": "b72e800e80ce4a046cdc746b41214792317bebd98286c72b4fa7217a8a919731",
+      "privacy": "public/synthetic; provider state redacted where indexed"
+    },
+    {
+      "path": "output/runs/carbon-ocr-barney-candidate-20261110/01_images_dir_to_manifest_v1/pages_images_manifest.jsonl",
+      "bytes": 491,
+      "sha256": "22953010d246376852b08c6985fcbcb61f92daa75efa03f82fa88929a019c88f",
+      "privacy": "public/synthetic; provider state redacted where indexed"
+    },
+    {
+      "path": "output/runs/carbon-ocr-barney-candidate-20261110/02_ocr_ai_gpt51_v1/pages_html.jsonl",
+      "bytes": 3643,
+      "sha256": "9b4612a5d3f37abdaba151ceb865ef52b419c8974fe2ab50d60285e29d95612a",
+      "privacy": "public/synthetic; provider state redacted where indexed"
+    },
+    {
+      "path": "output/runs/carbon-ocr-barney-candidate-20261110/instrumentation.json",
+      "bytes": 3648,
+      "sha256": "eab76aa44ff18588c52351f165e826dbe018534058d1e3a46ed78c53b0dc5c17",
+      "privacy": "public/synthetic; provider state redacted where indexed"
+    },
+    {
+      "path": "output/runs/carbon-ocr-barney-candidate-20261110/instrumentation.md",
+      "bytes": 819,
+      "sha256": "76e1741ebdccd1fe13cd66ce1e2dd50e53b379d13368f1d261f62f69590219c0",
+      "privacy": "public/synthetic; provider state redacted where indexed"
+    },
+    {
+      "path": "output/runs/carbon-ocr-barney-candidate-20261110/pipeline_events.jsonl",
+      "bytes": 4692,
+      "sha256": "ae5315eec6f946a42bebdb27ff50dccf9e003ebd0d608089bd6465f20d1011b9",
+      "privacy": "public/synthetic; provider state redacted where indexed"
+    },
+    {
+      "path": "output/runs/carbon-ocr-barney-candidate-20261110/pipeline_state.json",
+      "bytes": 1409,
+      "sha256": "3ef9bd9d6087b49f5c0306327c9bcd0299347158f49c6979bb90b153c1d32a47",
+      "privacy": "public/synthetic; provider state redacted where indexed"
+    },
+    {
+      "path": "output/runs/carbon-ocr-barney-candidate-20261110/snapshots/plan.json",
+      "bytes": 2104,
+      "sha256": "df55f7ed75dd91cf539582ef24dbf9c7257b1dac68454a59bd6b3b8213405f4b",
+      "privacy": "public/synthetic; provider state redacted where indexed"
+    },
+    {
+      "path": "output/runs/carbon-ocr-barney-candidate-20261110/snapshots/pricing.yaml",
+      "bytes": 381,
+      "sha256": "5b480d2aba569392a1f4e538bf67e28685bc91e8eced00d4737b0ff30c38bffd",
+      "privacy": "public/synthetic; provider state redacted where indexed"
+    },
+    {
+      "path": "output/runs/carbon-ocr-barney-candidate-20261110/snapshots/recipe.yaml",
+      "bytes": 1076,
+      "sha256": "c5245a5805d56e41b3d40ec218268bd146b01249890b7097590ef9106485edf6",
+      "privacy": "public/synthetic; provider state redacted where indexed"
+    },
+    {
+      "path": "output/runs/carbon-ocr-barney-candidate-20261110/snapshots/registry.json",
+      "bytes": 4243,
+      "sha256": "83daf66bc2a0ad36ec360d9d63b0cd5ff55e30b9506961dafe1cae6f148e5247",
+      "privacy": "public/synthetic; provider state redacted where indexed"
+    },
+    {
+      "path": "output/runs/carbon-ocr-barney-candidate-20261110/timing_summary.json",
+      "bytes": 432,
+      "sha256": "1ae044304edfb07455cf6d2e1332df4596a0d5b734617f7c074d64f31616415b",
+      "privacy": "public/synthetic; provider state redacted where indexed"
+    },
+    {
+      "path": "output/runs/carbon-ocr-barney-control-20261110/01_images_dir_to_manifest_v1/pages_images_manifest.jsonl",
+      "bytes": 489,
+      "sha256": "ab3a8e003697a0e81b54b792a7546bb821b360afed2cbf935b3c94f97340b044",
+      "privacy": "public/synthetic; provider state redacted where indexed"
+    },
+    {
+      "path": "output/runs/carbon-ocr-barney-control-20261110/02_ocr_ai_gpt51_v1/pages_html.jsonl",
+      "bytes": 3671,
+      "sha256": "e0808819fd8f2d2fcac26d0091d65df6767da266f2dea6f9a697dfe50b0c9410",
+      "privacy": "public/synthetic; provider state redacted where indexed"
+    },
+    {
+      "path": "output/runs/carbon-ocr-barney-control-20261110/instrumentation.json",
+      "bytes": 3638,
+      "sha256": "db7600cd82edce36ed632c2a1b306c5eb28ad8d7b56e4d95448c409217e664d8",
+      "privacy": "public/synthetic; provider state redacted where indexed"
+    },
+    {
+      "path": "output/runs/carbon-ocr-barney-control-20261110/instrumentation.md",
+      "bytes": 815,
+      "sha256": "d652f11c85c149237218c30ec17dc9e36c0af0b15cc9d2cfd8dc08ed63f42acc",
+      "privacy": "public/synthetic; provider state redacted where indexed"
+    },
+    {
+      "path": "output/runs/carbon-ocr-barney-control-20261110/pipeline_events.jsonl",
+      "bytes": 4658,
+      "sha256": "f4f7c7c4f0d819b9b9d55891d7c72b626261e0ccaadf6c27e507f440013e25da",
+      "privacy": "public/synthetic; provider state redacted where indexed"
+    },
+    {
+      "path": "output/runs/carbon-ocr-barney-control-20261110/pipeline_state.json",
+      "bytes": 1403,
+      "sha256": "01e37f7031d092a60c1a33c98dabeb1ed573fdad63fc32796c1c609df1c94255",
+      "privacy": "public/synthetic; provider state redacted where indexed"
+    },
+    {
+      "path": "output/runs/carbon-ocr-barney-control-20261110/snapshots/plan.json",
+      "bytes": 2104,
+      "sha256": "f38101df8ef3444339cde31717313223cf6510dd174b9135c5ab9b4940827062",
+      "privacy": "public/synthetic; provider state redacted where indexed"
+    },
+    {
+      "path": "output/runs/carbon-ocr-barney-control-20261110/snapshots/pricing.yaml",
+      "bytes": 381,
+      "sha256": "5b480d2aba569392a1f4e538bf67e28685bc91e8eced00d4737b0ff30c38bffd",
+      "privacy": "public/synthetic; provider state redacted where indexed"
+    },
+    {
+      "path": "output/runs/carbon-ocr-barney-control-20261110/snapshots/recipe.yaml",
+      "bytes": 1074,
+      "sha256": "da172433df7b1eec6da61461db7029b0f76342faa72ed9eb35e9f01fcb6daf3c",
+      "privacy": "public/synthetic; provider state redacted where indexed"
+    },
+    {
+      "path": "output/runs/carbon-ocr-barney-control-20261110/snapshots/registry.json",
+      "bytes": 4243,
+      "sha256": "83daf66bc2a0ad36ec360d9d63b0cd5ff55e30b9506961dafe1cae6f148e5247",
+      "privacy": "public/synthetic; provider state redacted where indexed"
+    },
+    {
+      "path": "output/runs/carbon-ocr-barney-control-20261110/timing_summary.json",
+      "bytes": 428,
+      "sha256": "79b0df77d076f0a94addb406d4f413b8480883bd52e76f397e8c0c1f09fe6529",
+      "privacy": "public/synthetic; provider state redacted where indexed"
+    }
+  ],
+  "regenerable_rendered_cases": [
+    {
+      "rendered": "docs/evals/evidence/089-carbon/rendered/safety-page-001-000-candidate.json",
+      "original_rendered_lexical_sha256": "dc23f460104c550dd5fbb4721cb99edc389df0d0bafdf0ee06755c5f04eaac0d",
+      "from_exact_wire": "benchmarks/results/carbon-20261110/request-012.json",
+      "semantic_sha256": "46fe82a928f581b23de7078e5670d9234512f42948ad47a604ad3f243b77cd9a",
+      "recovery": "Parse exact archived wire JSON. Semantic JSON equals planned object; pretty whitespace/object-key order may differ. Arrays, source bytes and prompt strings unchanged."
+    },
+    {
+      "rendered": "docs/evals/evidence/089-carbon/rendered/safety-page-001-000-control.json",
+      "original_rendered_lexical_sha256": "1817b0ff96fa032f8275e27de9807ab9bd60e9c683002eaa991bc05ec038327c",
+      "from_exact_wire": "benchmarks/results/carbon-20261110/request-014.json",
+      "semantic_sha256": "698084844eff0867c537b76bf86784e04b790b4cba43a04f660e1762e2706997",
+      "recovery": "Parse exact archived wire JSON. Semantic JSON equals planned object; pretty whitespace/object-key order may differ. Arrays, source bytes and prompt strings unchanged."
+    },
+    {
+      "rendered": "docs/evals/evidence/089-carbon/rendered/safety-page-004-000-candidate.json",
+      "original_rendered_lexical_sha256": "849119cd9e8de005a247abb442b040e917abd0744dbc685603f4dd6ee69ca60a",
+      "from_exact_wire": "benchmarks/results/carbon-20261110/request-013.json",
+      "semantic_sha256": "7c1741712665aad1ece76f7bfb718fa081970c41e16447c693799c20d1eb72cb",
+      "recovery": "Parse exact archived wire JSON. Semantic JSON equals planned object; pretty whitespace/object-key order may differ. Arrays, source bytes and prompt strings unchanged."
+    },
+    {
+      "rendered": "docs/evals/evidence/089-carbon/rendered/safety-page-004-000-control.json",
+      "original_rendered_lexical_sha256": "76f9da85ec005c71f1179e0a96b4dddf420b95f89712e9f728d9ab31797a191f",
+      "from_exact_wire": "benchmarks/results/carbon-20261110/request-015.json",
+      "semantic_sha256": "cd3fc4a84b8751433c053dec6e39e1188ed56eb4d5cc1808f19ed593d2039bb5",
+      "recovery": "Parse exact archived wire JSON. Semantic JSON equals planned object; pretty whitespace/object-key order may differ. Arrays, source bytes and prompt strings unchanged."
+    },
+    {
+      "rendered": "docs/evals/evidence/089-carbon/rendered/safety-page-009-000-candidate.json",
+      "original_rendered_lexical_sha256": "3de02c559f3749951f9803d1afb12af0ed7285c62ac32f808f4be8e7a2a59e93",
+      "from_exact_wire": "benchmarks/results/carbon-20261110/request-016.json",
+      "semantic_sha256": "e01e76ec0ab8a14d2f8ba4f4440b989cd78d6316422e9244165f747776453af2",
+      "recovery": "Parse exact archived wire JSON. Semantic JSON equals planned object; pretty whitespace/object-key order may differ. Arrays, source bytes and prompt strings unchanged."
+    },
+    {
+      "rendered": "docs/evals/evidence/089-carbon/rendered/safety-page-009-000-control.json",
+      "original_rendered_lexical_sha256": "aa2ddb7c536bac296c83f2023e635439e67d29c1aa1158567bca1b8f97422cfb",
+      "from_exact_wire": "benchmarks/results/carbon-20261110/request-018.json",
+      "semantic_sha256": "27da855749323a15e83932a8b8a699d5ea7e458e6212079ca6d7e24717eda860",
+      "recovery": "Parse exact archived wire JSON. Semantic JSON equals planned object; pretty whitespace/object-key order may differ. Arrays, source bytes and prompt strings unchanged."
+    },
+    {
+      "rendered": "docs/evals/evidence/089-carbon/rendered/safety-page-012-000-candidate.json",
+      "original_rendered_lexical_sha256": "fd131e2afb29d3d4b6771a9a251d9769e1559061d2b51f217e8d8f471ea173d9",
+      "from_exact_wire": "benchmarks/results/carbon-20261110/request-017.json",
+      "semantic_sha256": "fce1597a232ead7ca9d1f52df6ca810b4b36783e9ab070329dcdddec99dbc6d8",
+      "recovery": "Parse exact archived wire JSON. Semantic JSON equals planned object; pretty whitespace/object-key order may differ. Arrays, source bytes and prompt strings unchanged."
+    },
+    {
+      "rendered": "docs/evals/evidence/089-carbon/rendered/safety-page-012-000-control.json",
+      "original_rendered_lexical_sha256": "871ef6f5e6d023bd091f8b25401c0e8e4ed41bcc5addb71219458616698d637d",
+      "from_exact_wire": "benchmarks/results/carbon-20261110/request-019.json",
+      "semantic_sha256": "6d0788d5e19d9fe21e38855af9ed85908909d7625625e668364ba473fd4221f9",
+      "recovery": "Parse exact archived wire JSON. Semantic JSON equals planned object; pretty whitespace/object-key order may differ. Arrays, source bytes and prompt strings unchanged."
+    },
+    {
+      "rendered": "docs/evals/evidence/089-carbon/rendered/safety-page-122-001-candidate.json",
+      "original_rendered_lexical_sha256": "2b56203ca6d293f8ce7cad7c31e58a71e7700b5db45a8dffacb324b105fb419e",
+      "from_exact_wire": "benchmarks/results/carbon-20261110/request-020.json",
+      "semantic_sha256": "53028a544690b9d8c2fec65fd8713d2cb4de6a22870831269600e1b403119af7",
+      "recovery": "Parse exact archived wire JSON. Semantic JSON equals planned object; pretty whitespace/object-key order may differ. Arrays, source bytes and prompt strings unchanged."
+    },
+    {
+      "rendered": "docs/evals/evidence/089-carbon/rendered/safety-page-122-001-control.json",
+      "original_rendered_lexical_sha256": "46f6db05f8c511ec6b0624c84473cbffca6478e3a68b4e0ea6680e48c58b3ef3",
+      "from_exact_wire": "benchmarks/results/carbon-20261110/request-022.json",
+      "semantic_sha256": "0e8ae02c43a55511f3280f00d61f7c76b0c74b109ee08bdd9bc8b1c0afec6aa4",
+      "recovery": "Parse exact archived wire JSON. Semantic JSON equals planned object; pretty whitespace/object-key order may differ. Arrays, source bytes and prompt strings unchanged."
+    },
+    {
+      "rendered": "docs/evals/evidence/089-carbon/rendered/safety-page-012-001-candidate.json",
+      "original_rendered_lexical_sha256": "c26ce948ca74515c5fbc4d98c67ae05a6bddaaea6e10e80beb59a25a96564823",
+      "from_exact_wire": "benchmarks/results/carbon-20261110/request-021.json",
+      "semantic_sha256": "01ba6421524a4823c56f9b03c04d5c38b563de8091755a7594715bf315f1cfff",
+      "recovery": "Parse exact archived wire JSON. Semantic JSON equals planned object; pretty whitespace/object-key order may differ. Arrays, source bytes and prompt strings unchanged."
+    },
+    {
+      "rendered": "docs/evals/evidence/089-carbon/rendered/safety-page-012-001-control.json",
+      "original_rendered_lexical_sha256": "96b8166ea0946846bfdcc272b856e319bedc24bb70cbc4bc3d5d2d739161be9d",
+      "from_exact_wire": "benchmarks/results/carbon-20261110/request-023.json",
+      "semantic_sha256": "d6e5df839a626f71026536d42dbc89f287dec713d10827d4beaafad01e2aa5ea",
+      "recovery": "Parse exact archived wire JSON. Semantic JSON equals planned object; pretty whitespace/object-key order may differ. Arrays, source bytes and prompt strings unchanged."
+    },
+    {
+      "rendered": "docs/evals/evidence/089-carbon/rendered/table-image-positive-candidate.json",
+      "original_rendered_lexical_sha256": "ded95ffb716f367b45c467f1b38eda365b3c8e0f4ff02389edee0094d1a7e0c0",
+      "from_exact_wire": "benchmarks/results/carbon-20261110/request-001.json",
+      "semantic_sha256": "f50b5fd9d5f244fe3676cd7a226f9c9fffbd563e5a95ce10de4ff1ce3a0011db",
+      "recovery": "Parse exact archived wire JSON. Semantic JSON equals planned object; pretty whitespace/object-key order may differ. Arrays, source bytes and prompt strings unchanged."
+    },
+    {
+      "rendered": "docs/evals/evidence/089-carbon/rendered/table-image-positive-control.json",
+      "original_rendered_lexical_sha256": "2cfeaf2a6606e194667a524e2e8e97083cf4a3f710f59c06e01138f90a6a654c",
+      "from_exact_wire": "benchmarks/results/carbon-20261110/request-002.json",
+      "semantic_sha256": "a88cf1f30fed9cef5600f7bb7a42a3f1788fbac1ae80f06f0151240b1cb79275",
+      "recovery": "Parse exact archived wire JSON. Semantic JSON equals planned object; pretty whitespace/object-key order may differ. Arrays, source bytes and prompt strings unchanged."
+    },
+    {
+      "rendered": "docs/evals/evidence/089-carbon/rendered/table-ambiguity-negative-candidate.json",
+      "original_rendered_lexical_sha256": "cff28ddab54567e9006da2d6c115dac33d469f5768f45cf8084cd44622d9387d",
+      "from_exact_wire": "benchmarks/results/carbon-20261110/request-003.json",
+      "semantic_sha256": "4d7543ebce6b8a11e97fe6e2c5c6e193258327babfe2e1e8f398a802bb3c0bf0",
+      "recovery": "Parse exact archived wire JSON. Semantic JSON equals planned object; pretty whitespace/object-key order may differ. Arrays, source bytes and prompt strings unchanged."
+    },
+    {
+      "rendered": "docs/evals/evidence/089-carbon/rendered/table-ambiguity-negative-control.json",
+      "original_rendered_lexical_sha256": "594fce2b949624e6aad8feba05df2d9d402f2f3b14a7c4d4f6d55bb6a1f5455d",
+      "from_exact_wire": "benchmarks/results/carbon-20261110/request-004.json",
+      "semantic_sha256": "950d322b09693b663ba309027a42ef1d4fb64c119275a6ee70c0f1d0d0f1664f",
+      "recovery": "Parse exact archived wire JSON. Semantic JSON equals planned object; pretty whitespace/object-key order may differ. Arrays, source bytes and prompt strings unchanged."
+    },
+    {
+      "rendered": "docs/evals/evidence/089-carbon/rendered/table-native-positive-candidate.json",
+      "original_rendered_lexical_sha256": "e2b35fe17f0e5cb1e0d272bc45ccd66ce423a3d45b8c1a01197702321f06e1ef",
+      "from_exact_wire": "benchmarks/results/carbon-20261110/request-005.json",
+      "semantic_sha256": "23fb82059eedbedaf7d7bc7201182cdf4d61b1b21b4e8515c9545dc5f351e1fb",
+      "recovery": "Parse exact archived wire JSON. Semantic JSON equals planned object; pretty whitespace/object-key order may differ. Arrays, source bytes and prompt strings unchanged."
+    },
+    {
+      "rendered": "docs/evals/evidence/089-carbon/rendered/table-native-positive-control.json",
+      "original_rendered_lexical_sha256": "2768b95091342db6ce86fc03e415e913b8008e6af973d6fc86d707906c9f5888",
+      "from_exact_wire": "benchmarks/results/carbon-20261110/request-006.json",
+      "semantic_sha256": "8fdcc4b18a90ed893330862863d5b081f59b18fa54f7862b283c2926f39f3784",
+      "recovery": "Parse exact archived wire JSON. Semantic JSON equals planned object; pretty whitespace/object-key order may differ. Arrays, source bytes and prompt strings unchanged."
+    },
+    {
+      "rendered": "docs/evals/evidence/089-carbon/rendered/crop-screen-Image011-candidate.json",
+      "original_rendered_lexical_sha256": "4a837008f86dce829eca26595220a521c0096ee4b2e41198d77c60b8c8fb350f",
+      "from_exact_wire": "benchmarks/results/carbon-20261110/request-007.json",
+      "semantic_sha256": "e75ab8e0c75fa96dedc0d21c8e21c758c920d617229434fd2ff111c858c3a1c3",
+      "recovery": "Parse exact archived wire JSON. Semantic JSON equals planned object; pretty whitespace/object-key order may differ. Arrays, source bytes and prompt strings unchanged."
+    },
+    {
+      "rendered": "docs/evals/evidence/089-carbon/rendered/crop-screen-Image011-control.json",
+      "original_rendered_lexical_sha256": "f9d7ab0bd3c2614d787f0997c389d8ccfb7791283ff3185a98dc24cc635b74b8",
+      "from_exact_wire": "benchmarks/results/carbon-20261110/request-010.json",
+      "semantic_sha256": "792b099fff79008edb965df952e78587514627e09680a1e942e1a55a7dff1b87",
+      "recovery": "Parse exact archived wire JSON. Semantic JSON equals planned object; pretty whitespace/object-key order may differ. Arrays, source bytes and prompt strings unchanged."
+    },
+    {
+      "rendered": "docs/evals/evidence/089-carbon/rendered/crop-screen-Image001-candidate.json",
+      "original_rendered_lexical_sha256": "99ff8526a2405e4a91f119796592e5276a4c12482fa202de26bf03afdd6b7e32",
+      "from_exact_wire": "benchmarks/results/carbon-20261110/request-008.json",
+      "semantic_sha256": "d4b56b07889d8822b9176084ef64c8b2c1ef9d02deb5522a4e719b26a5cd1e80",
+      "recovery": "Parse exact archived wire JSON. Semantic JSON equals planned object; pretty whitespace/object-key order may differ. Arrays, source bytes and prompt strings unchanged."
+    },
+    {
+      "rendered": "docs/evals/evidence/089-carbon/rendered/crop-screen-Image001-control.json",
+      "original_rendered_lexical_sha256": "1b6738e4a868b08b66426fe4f4c39d2b69c6d8a80e1d98bcd061d17567a32cc0",
+      "from_exact_wire": "benchmarks/results/carbon-20261110/request-011.json",
+      "semantic_sha256": "198a5261f8448da45916da98410c5d68ad2a1d91db6e70e64a2c6cd1ab021e39",
+      "recovery": "Parse exact archived wire JSON. Semantic JSON equals planned object; pretty whitespace/object-key order may differ. Arrays, source bytes and prompt strings unchanged."
+    },
+    {
+      "rendered": "docs/evals/evidence/089-carbon/rendered/ocr-barney-candidate.json",
+      "original_rendered_lexical_sha256": "feed8f917d7cc67c2ec3c83f112e602b4053a5ac1beb31be37093a9eda0ce7f0",
+      "from_exact_wire": "benchmarks/results/carbon-20261110/request-009.json",
+      "semantic_sha256": "2658e33780e7944d0a950ad5833aef7f5e682bb5e9975b46174485f13f234fe3",
+      "recovery": "Parse exact archived wire JSON. Semantic JSON equals planned object; pretty whitespace/object-key order may differ. Arrays, source bytes and prompt strings unchanged."
+    },
+    {
+      "rendered": "docs/evals/evidence/089-carbon/rendered/ocr-barney-control.json",
+      "original_rendered_lexical_sha256": "f4482092b0954d423a511c1e929d3ab4fc29cde2ea058a37ffc39454b4fdd1ea",
+      "from_exact_wire": "benchmarks/results/carbon-20261110/request-024.json",
+      "semantic_sha256": "cdc1ca6f42004d2e98cfb5c44f99651b64a8626a783b3f653737e08b47c2962a",
+      "recovery": "Parse exact archived wire JSON. Semantic JSON equals planned object; pretty whitespace/object-key order may differ. Arrays, source bytes and prompt strings unchanged."
+    }
+  ],
+  "verified": "all190unaffectedmembers byte-identical; affected19objects equal originals afteronlyexplicitstatefieldredaction; outputtext/usage/model/finish/source/producerepoch unchanged",
+  "excluded": "duplicate E request/response copies; original pretty-rendered lexical whitespace/object-key order not archived, exact outgoing wire bytes retained. Source strings, prompt text and arrays exact. Regenerable Python bytecode/lockfiles excluded. Expanded originals retained in worktree.",
+  "research_decision": "RFC8259 objects are unordered collections; arrays are ordered. Preserve exact outgoing wire lexical bytes and verify planned JSON semantic equality, not SDK pretty-object key order.",
+  "research_url": "https://www.rfc-editor.org/rfc/rfc8259#section-4",
+  "recovery": "From an empty approved destination concatenate parts in lexical order and tar -xz -C DESTINATION; preserve existing files before restore. Offline audit --custody-only uses exact wire plus sealed semantic index.",
+  "archive_kind": "public token-redacted projection; 19members are not exact original bytes",
+  "original_protected_custody": {
+    "directory": "/Users/cam/.codex/archives/carbon-20261110/doc-web/provider-state-originals",
+    "permissions": "directory0700/files0600",
+    "archive_sha256": "2bb1a59f7cec6eefecc257a199d71b084c1f8ba857381e70312d21f8d57e79ca",
+    "index": "protected-index.json",
+    "members": 209
+  },
+  "provider_state_redaction": "provider-state-redaction.json"
+}

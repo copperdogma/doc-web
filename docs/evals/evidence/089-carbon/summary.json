@@ -1,0 +1,77 @@
+{
+  "base_sha": "1c3f3e31158ec753e057e79839f438d021500214",
+  "scope": "Scout109 item3 original12subjects +12freshcontrols",
+  "inference_posts": 24,
+  "known_usd": 1.68741625,
+  "unknown_usd": 0,
+  "paid_judges": 0,
+  "recovery_inference_posts": 0,
+  "cap_usd": 10,
+  "control_pool_usd": 0.60379025,
+  "cache": "no subject output reuse; implicit3712inputtokens on GPT5.5 sealcontrol, recorded in native usage; candidatecache0",
+  "thinking": "Carbon HIGH32768 only; no effort comparison",
+  "topology": "initial tables serial, remaining mixed serial/concurrency2; no clean isolated serial latency superiority claim",
+  "reliability": "24/24 terminal contract-valid inference; local admission refusals recovered before POST, not provider failures",
+  "tasks": {
+    "table": {
+      "candidate": {
+        "n": 3,
+        "usd": 0.495076,
+        "http_mean_s": 198.028
+      },
+      "control": {
+        "n": 3,
+        "usd": 0.2316525,
+        "http_mean_s": 7.662
+      },
+      "result": "tie:36positiveclearcells exact plus6clear ambiguitycasecells;2trueambiguityholds each; originalambiguityscore7/8 retained",
+      "action": "retain Astra; Carbon high slower/more costly"
+    },
+    "crop": {
+      "candidate": {
+        "n": 2,
+        "usd": 0.132678,
+        "http_mean_s": 93.289
+      },
+      "control": {
+        "n": 2,
+        "usd": 0.009145,
+        "http_mean_s": 7.538
+      },
+      "result": "strict Carbon1/2 vs Gemini0/2; Image0111endpointpixel lost,Image001complete; controls lose5or7Image011pixels by declaredround/floorpolicy and18finalNpixels onImage001; originaloverlap .9931/.9805 vs .9752/.9735",
+      "action": "retain detector/manual holds; no raw runtime coordinate parity or full detector qualification"
+    },
+    "safety": {
+      "candidate": {
+        "n": 6,
+        "usd": 0.129412,
+        "http_mean_s": 28.07
+      },
+      "control": {
+        "n": 6,
+        "usd": 0.346801,
+        "http_mean_s": 3.283
+      },
+      "result": "Carbon6/6 vsfreshGPT5.5 4/6;zero false-safe each;controlfalse rejects001/004;source flags/reasons reviewed",
+      "action": "bounded lead versus GPT5.5 only; retain currentSol,Attempt088 full22/actualcaller context untested for Carbon"
+    },
+    "ocr": {
+      "candidate": {
+        "n": 1,
+        "usd": 0.32646,
+        "http_mean_s": 396.192
+      },
+      "control": {
+        "n": 1,
+        "usd": 0.01619175,
+        "http_mean_s": 31.71
+      },
+      "result": "Carbon.987360 vs exactGemini3.8 .983830;bothbelow.99;definite omissions/substitutions remain; originalsource/goldenunchanged",
+      "action": "retain currentOCR; no qualified replacement"
+    }
+  },
+  "candidate_usd": 1.083626,
+  "december_same_usage_total_usd": 2.77104225,
+  "adoption": "retain runtime defaults; safety/crop bounded capability leads, tabletie, OCRgatefail; source deletion/publication/fullcaller not qualified",
+  "custody_classification": "Exact originals protected external0700/0600; public209member package has19state-redacted members (17responses+2nestedreportcopies), not exact original bytes for those19.15Google thoughtSignature+4OpenAI encrypted_content occurrences; semantic/output/usage/model/finish/source/produceridentity unchanged."
+}

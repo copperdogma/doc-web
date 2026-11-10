@@ -1,0 +1,8 @@
+{
+  "reason": "independent reviewer stage-model/hash binding and invalid cache parsing tightened; no semantic changes",
+  "current_ledger_calls": 3,
+  "changes": {
+    "benchmarks/providers/carbon_guard.py": "a642968e378da65b9e3e7d346ae2459e3ea9e7e704ec339b8571bbc0d9c8f4a9",
+    "benchmarks/scripts/carbon_native.py": "3cb99d2dedf64a6ecb9ead0a62472dedbf302d71dafb91e8fb12027a74de45ed"
+  }
+}

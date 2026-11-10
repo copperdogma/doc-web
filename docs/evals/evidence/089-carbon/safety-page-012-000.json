@@ -1,0 +1,42 @@
+[
+  {
+    "key": "page-012-000",
+    "arm": "candidate",
+    "raw": "{\"verdict\": \"pass\", \"has_page_text\": false, \"excessive_blank\": false, \"reason\": \"The crop cleanly isolates the circular Celebrate Saskatchewan logo from the top of the page, with only integral logo text visible and tight framing.\"}",
+    "parsed": {
+      "verdict": "pass",
+      "has_page_text": false,
+      "excessive_blank": false,
+      "reason": "The crop cleanly isolates the circular Celebrate Saskatchewan logo from the top of the page, with only integral logo text visible and tight framing."
+    },
+    "verdict": "pass",
+    "golden": "pass",
+    "correct": true,
+    "false_safe": false,
+    "cost_usd": 0.020918,
+    "latency_ms": 26409,
+    "served": "gemini-4-carbon",
+    "native_contract": true,
+    "rendered_payload_parity": true
+  },
+  {
+    "key": "page-012-000",
+    "arm": "control",
+    "raw": "{\"verdict\":\"pass\",\"has_page_text\":false,\"excessive_blank\":false,\"reason\":\"Crop isolates the top Celebrate Saskatchewan logo/emblem; the visible text is integral to that emblem, with no surrounding page text or neighboring visuals included.\"}",
+    "parsed": {
+      "verdict": "pass",
+      "has_page_text": false,
+      "excessive_blank": false,
+      "reason": "Crop isolates the top Celebrate Saskatchewan logo/emblem; the visible text is integral to that emblem, with no surrounding page text or neighboring visuals included."
+    },
+    "verdict": "pass",
+    "golden": "pass",
+    "correct": true,
+    "false_safe": false,
+    "cost_usd": 0.030735,
+    "latency_ms": 2230,
+    "served": "gpt-5.5-2026-04-23",
+    "native_contract": true,
+    "rendered_payload_parity": true
+  }
+]

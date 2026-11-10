@@ -1,0 +1,68 @@
+[
+  {
+    "fixture": "barney",
+    "arm": "candidate",
+    "driver_exit": 0,
+    "score": {
+      "transcript_path": "/Users/cam/.codex/worktrees/carbon-20261110/doc-web/testdata/handwritten-notes-barney-real.txt",
+      "artifact_path": "/Users/cam/.codex/worktrees/carbon-20261110/doc-web/output/runs/carbon-ocr-barney-candidate-20261110/02_ocr_ai_gpt51_v1/pages_html.jsonl",
+      "page_count": 1,
+      "missing_pages": [],
+      "extra_pages": [],
+      "overall_ratio": 0.98736,
+      "overall_exact_match": false,
+      "page_min_ratio": 0.98736,
+      "exact_page_matches": 0,
+      "pages": [
+        {
+          "ratio": 0.98736,
+          "exact_match": false,
+          "expected_length": 1395,
+          "actual_length": 1374,
+          "expected_preview": "health, and can again stand among my comrads and in a few days I hope that I shall again feel as well as before,\nyou wrote that it was lonesome times in old gro",
+          "actual_preview": "health, and can again stand among my comrads and in a few days I hope that I shall again feel as well as before, you wrote that it was lonesome times in old gro",
+          "page_number": 1,
+          "artifact_page_found": true,
+          "artifact_metrics": {
+            "ocr_quality": 0.85,
+            "ocr_integrity": 0.95,
+            "continuation_risk": 1.0
+          }
+        }
+      ]
+    }
+  },
+  {
+    "fixture": "barney",
+    "arm": "control",
+    "driver_exit": 0,
+    "score": {
+      "transcript_path": "/Users/cam/.codex/worktrees/carbon-20261110/doc-web/testdata/handwritten-notes-barney-real.txt",
+      "artifact_path": "/Users/cam/.codex/worktrees/carbon-20261110/doc-web/output/runs/carbon-ocr-barney-control-20261110/02_ocr_ai_gpt51_v1/pages_html.jsonl",
+      "page_count": 1,
+      "missing_pages": [],
+      "extra_pages": [],
+      "overall_ratio": 0.98383,
+      "overall_exact_match": false,
+      "page_min_ratio": 0.98383,
+      "exact_page_matches": 0,
+      "pages": [
+        {
+          "ratio": 0.98383,
+          "exact_match": false,
+          "expected_length": 1395,
+          "actual_length": 1388,
+          "expected_preview": "health, and can again stand among my comrads and in a few days I hope that I shall again feel as well as before,\nyou wrote that it was lonesome times in old gro",
+          "actual_preview": "health, and can again stand among my comrads and in a few days I hope that I shall again feel as well as before, you wrote that it was lonesome times in ald gro",
+          "page_number": 1,
+          "artifact_page_found": true,
+          "artifact_metrics": {
+            "ocr_quality": 0.9,
+            "ocr_integrity": 1.0,
+            "continuation_risk": 1.0
+          }
+        }
+      ]
+    }
+  }
+]

@@ -1,0 +1,81 @@
+{
+  "base_sha": "1c3f3e31158ec753e057e79839f438d021500214",
+  "model_subject": "nativeGoogle gemini-4-carbon HIGH32768",
+  "call_guard_epochs": {
+    "table-image-positive-candidate": "producing-sources/benchmarks/providers/carbon_guard.py",
+    "table-image-positive-control": "producing-sources-epoch1/benchmarks/providers/carbon_guard.py",
+    "table-ambiguity-negative-candidate": "producing-sources-epoch1/benchmarks/providers/carbon_guard.py",
+    "table-ambiguity-negative-control": "a642968e378da65b9e3e7d346ae2459e3ea9e7e704ec339b8571bbc0d9c8f4a9",
+    "table-native-positive-candidate": "a642968e378da65b9e3e7d346ae2459e3ea9e7e704ec339b8571bbc0d9c8f4a9",
+    "table-native-positive-control": "a642968e378da65b9e3e7d346ae2459e3ea9e7e704ec339b8571bbc0d9c8f4a9",
+    "crop-screen-Image011-candidate": "721e551a42e60c238bcb26f25ae80256ff7342f962ee7348fbe36a68ca2d7f30",
+    "crop-screen-Image001-candidate": "721e551a42e60c238bcb26f25ae80256ff7342f962ee7348fbe36a68ca2d7f30",
+    "ocr-barney-candidate": "721e551a42e60c238bcb26f25ae80256ff7342f962ee7348fbe36a68ca2d7f30",
+    "crop-screen-Image011-control": "1fedfb177d57e18eda934ae6cb387b75e8c20dffae90700cb0d0fdd789a35804",
+    "crop-screen-Image001-control": "1fedfb177d57e18eda934ae6cb387b75e8c20dffae90700cb0d0fdd789a35804",
+    "safety-page-001-000-candidate": "1fedfb177d57e18eda934ae6cb387b75e8c20dffae90700cb0d0fdd789a35804",
+    "safety-page-004-000-candidate": "1fedfb177d57e18eda934ae6cb387b75e8c20dffae90700cb0d0fdd789a35804",
+    "safety-page-001-000-control": "1fedfb177d57e18eda934ae6cb387b75e8c20dffae90700cb0d0fdd789a35804",
+    "safety-page-004-000-control": "1fedfb177d57e18eda934ae6cb387b75e8c20dffae90700cb0d0fdd789a35804",
+    "safety-page-009-000-candidate": "1fedfb177d57e18eda934ae6cb387b75e8c20dffae90700cb0d0fdd789a35804",
+    "safety-page-012-000-candidate": "1fedfb177d57e18eda934ae6cb387b75e8c20dffae90700cb0d0fdd789a35804",
+    "safety-page-009-000-control": "1fedfb177d57e18eda934ae6cb387b75e8c20dffae90700cb0d0fdd789a35804",
+    "safety-page-012-000-control": "1fedfb177d57e18eda934ae6cb387b75e8c20dffae90700cb0d0fdd789a35804",
+    "safety-page-122-001-candidate": "1fedfb177d57e18eda934ae6cb387b75e8c20dffae90700cb0d0fdd789a35804",
+    "safety-page-012-001-candidate": "1fedfb177d57e18eda934ae6cb387b75e8c20dffae90700cb0d0fdd789a35804",
+    "safety-page-122-001-control": "1fedfb177d57e18eda934ae6cb387b75e8c20dffae90700cb0d0fdd789a35804",
+    "safety-page-012-001-control": "1fedfb177d57e18eda934ae6cb387b75e8c20dffae90700cb0d0fdd789a35804",
+    "ocr-barney-control": "1fedfb177d57e18eda934ae6cb387b75e8c20dffae90700cb0d0fdd789a35804"
+  },
+  "final_sources": {
+    "benchmarks/scripts/carbon_missing_cases.py": {
+      "sha256": "d14239392666a48256a038c32ae482b0f3d7e0413787176de4862c0a99ea4efa",
+      "bytes": 1490
+    },
+    "benchmarks/scripts/carbon_safety.py": {
+      "sha256": "6c32d553199d21272d41387a768c23801c81e2160892f80a9872e67ee58c3298",
+      "bytes": 2882
+    },
+    "benchmarks/scripts/carbon_panel.py": {
+      "sha256": "fb2476b39f7202a69f983ca40f882b9e9f22c615f38d631b74aa31d6199092bf",
+      "bytes": 1432
+    },
+    "benchmarks/scripts/carbon_audit.py": {
+      "sha256": "3f718a1b33fff07ba8575ab5e3eb737ddaabd60fa8dc77436c151f6d1c1bf480",
+      "bytes": 7107
+    },
+    "benchmarks/scripts/carbon_native.py": {
+      "sha256": "cf8e3ff2793924e22562b25a1576709ff7fa7dde0120acef0049a8745fd02df4",
+      "bytes": 3541
+    },
+    "benchmarks/scripts/carbon_continue_two.py": {
+      "sha256": "725507da220d85e226611a90b4136397505e3d206d2094744ebc8284c01131ea",
+      "bytes": 1820
+    },
+    "benchmarks/scripts/carbon_preflight.py": {
+      "sha256": "f6dcb53c3030d8a49bf00b4e61408005905d89a962d485b6040f4b51b452bec7",
+      "bytes": 8702
+    },
+    "benchmarks/scripts/carbon_overlay.py": {
+      "sha256": "2af89a10e4b82351f68e343d237fee4dc005da7007e463a0734a9f999ce5b1da",
+      "bytes": 1870
+    },
+    "benchmarks/scripts/carbon_reading.py": {
+      "sha256": "f77b6671d038dcb074763c50efd8fcc7ea40c5f81d8665c942c41a58a1a17be9",
+      "bytes": 12702
+    },
+    "benchmarks/providers/carbon_guard.py": {
+      "sha256": "916fced46705413a509486ea43d4815e005da7e42e8932559b487506fd9cd4e5",
+      "bytes": 12490
+    },
+    "tests/test_carbon_campaign.py": {
+      "sha256": "9b60ed1e0c7d591c1bab6d317d8dce80efd67f0c5301cea2f52b70942394f239",
+      "bytes": 9665
+    }
+  },
+  "no_product_modules_changed": true,
+  "final_formatting": "afterall24responses; earlier actualproducing sources retained separately; no inference reruns",
+  "subject_sources": "alloriginaltext/sourcebyte/schema/golden/scorer hashes remain in preflight/actualwire/rawaudit",
+  "raw_custody": "request.content exact outgoing JSON and complete HTTPX decoded response-body bytes beforeparsing, noheaders/keys",
+  "post_run_public_custody": "Exact originals protected external0700/0600; public209member package has19state-redacted members (17responses+2nestedreportcopies), not exact original bytes for those19.15Google thoughtSignature+4OpenAI encrypted_content occurrences; semantic/output/usage/model/finish/source/produceridentity unchanged."
+}

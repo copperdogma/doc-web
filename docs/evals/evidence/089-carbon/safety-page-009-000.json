@@ -1,0 +1,42 @@
+[
+  {
+    "key": "page-009-000",
+    "arm": "candidate",
+    "raw": "{\"verdict\": \"pass\", \"has_page_text\": false, \"excessive_blank\": false, \"reason\": \"The crop cleanly isolates the halftone portrait photograph while excluding the surrounding page text and the caption below.\"}",
+    "parsed": {
+      "verdict": "pass",
+      "has_page_text": false,
+      "excessive_blank": false,
+      "reason": "The crop cleanly isolates the halftone portrait photograph while excluding the surrounding page text and the caption below."
+    },
+    "verdict": "pass",
+    "golden": "pass",
+    "correct": true,
+    "false_safe": false,
+    "cost_usd": 0.010726,
+    "latency_ms": 11702,
+    "served": "gemini-4-carbon",
+    "native_contract": true,
+    "rendered_payload_parity": true
+  },
+  {
+    "key": "page-009-000",
+    "arm": "control",
+    "raw": "{\"verdict\":\"pass\",\"has_page_text\":false,\"excessive_blank\":false,\"reason\":\"Crop isolates the main photograph of Moise and Sophie without including surrounding page text or caption. The light areas are part of the photo background, not blank page margin.\"}",
+    "parsed": {
+      "verdict": "pass",
+      "has_page_text": false,
+      "excessive_blank": false,
+      "reason": "Crop isolates the main photograph of Moise and Sophie without including surrounding page text or caption. The light areas are part of the photo background, not blank page margin."
+    },
+    "verdict": "pass",
+    "golden": "pass",
+    "correct": true,
+    "false_safe": false,
+    "cost_usd": 0.073915,
+    "latency_ms": 3286,
+    "served": "gpt-5.5-2026-04-23",
+    "native_contract": true,
+    "rendered_payload_parity": true
+  }
+]

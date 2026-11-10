@@ -252,7 +252,8 @@
           "258",
           "263",
           "264",
-          "265"
+          "265",
+          "267"
         ],
         "adr_ids": [
           "ADR-001",
@@ -340,7 +341,8 @@
           "258",
           "263",
           "264",
-          "265"
+          "265",
+          "267"
         ],
         "adr_ids": [
           "ADR-001",
@@ -411,7 +413,8 @@
           "263",
           "264",
           "265",
-          "266"
+          "266",
+          "267"
         ],
         "adr_ids": [],
         "eval_ids": [
@@ -552,7 +555,8 @@
           "263",
           "264",
           "265",
-          "266"
+          "266",
+          "267"
         ],
         "adr_ids": [
           "ADR-001",
@@ -729,7 +733,8 @@
           "259",
           "264",
           "265",
-          "266"
+          "266",
+          "267"
         ],
         "adr_ids": [
           "ADR-002"
@@ -982,7 +987,8 @@
           "258",
           "263",
           "264",
-          "265"
+          "265",
+          "267"
         ],
         "eval_ids": [
           "literal-table-fidelity",
@@ -999,11 +1005,11 @@
           "retry_when": [],
           "why_now": "",
           "last_relevant_action": {
-            "date": "2026-11-09",
+            "date": "2026-11-10",
             "source_type": "eval-attempt",
             "source": "docs/evals/registry.yaml",
-            "source_id": "087",
-            "summary": "Threecases:36/36clearcells+bothgenuineambiguityholds forFableandfreshAstra. Qualitytie;Fable.296712/17.589smean vsAstra.2309025/6.997s. Maxnottriggered; retainAstra. Attempt087/Story265. Full12candidatecases,11validco..."
+            "source_id": "089",
+            "summary": "Carbon/freshAstra tie:36positive clearcells exact plus6clear ambiguity-case cells;both genuineambiguity cells held. Original7/8 ambiguitydiagnostic retained. CarbonUSD.495076/198.028smean vsAstra.2316525/7.662s. Retai..."
           },
           "story_ids": [
             "131",
@@ -1062,7 +1068,8 @@
             "258",
             "263",
             "264",
-            "265"
+            "265",
+            "267"
           ],
           "eval_ids": [
             "literal-table-fidelity",
@@ -1110,7 +1117,8 @@
           "258",
           "263",
           "264",
-          "265"
+          "265",
+          "267"
         ],
         "eval_ids": [
           "literal-table-fidelity"
@@ -1125,11 +1133,11 @@
           "retry_when": [],
           "why_now": "",
           "last_relevant_action": {
-            "date": "2026-11-09",
+            "date": "2026-11-10",
             "source_type": "eval-attempt",
             "source": "docs/evals/registry.yaml",
-            "source_id": "087",
-            "summary": "Threecases:36/36clearcells+bothgenuineambiguityholds forFableandfreshAstra. Qualitytie;Fable.296712/17.589smean vsAstra.2309025/6.997s. Maxnottriggered; retainAstra. Attempt087/Story265. Full12candidatecases,11validco..."
+            "source_id": "089",
+            "summary": "Carbon/freshAstra tie:36positive clearcells exact plus6clear ambiguity-case cells;both genuineambiguity cells held. Original7/8 ambiguitydiagnostic retained. CarbonUSD.495076/198.028smean vsAstra.2316525/7.662s. Retai..."
           },
           "story_ids": [
             "022",
@@ -1161,7 +1169,8 @@
             "258",
             "263",
             "264",
-            "265"
+            "265",
+            "267"
           ],
           "eval_ids": [
             "literal-table-fidelity"
@@ -1334,7 +1343,8 @@
           "262",
           "263",
           "264",
-          "265"
+          "265",
+          "267"
         ],
         "eval_ids": [
           "image-crop-extraction",
@@ -1379,7 +1389,8 @@
             "262",
             "263",
             "264",
-            "265"
+            "265",
+            "267"
           ],
           "eval_ids": [
             "image-crop-extraction",
@@ -1425,7 +1436,8 @@
           "263",
           "264",
           "265",
-          "266"
+          "266",
+          "267"
         ],
         "eval_ids": [
           "sol-crop-safety-native-public-smoke",
@@ -1474,7 +1486,8 @@
             "263",
             "264",
             "265",
-            "266"
+            "266",
+            "267"
           ],
           "eval_ids": [
             "sol-crop-safety-native-public-smoke",
@@ -15471,6 +15484,75 @@
           "summary": ""
         }
       }
+    },
+    {
+      "id": "267",
+      "title": "Carbon source fidelity capability panel",
+      "path": "docs/stories/story-267-carbon-source-fidelity.md",
+      "status": "Done",
+      "priority": "Medium",
+      "ideal_refs": [
+        "req:3",
+        "req:4",
+        "req:6"
+      ],
+      "spec_refs": [
+        "spec:2.1",
+        "spec:4.1",
+        "spec:4.2",
+        "spec:6"
+      ],
+      "decision_refs": [
+        "ADR-001",
+        "ADR-002"
+      ],
+      "adr_ids": [
+        "ADR-001",
+        "ADR-002"
+      ],
+      "depends_on": [],
+      "category_refs": [
+        "spec:2",
+        "spec:3",
+        "spec:4",
+        "spec:6",
+        "spec:8"
+      ],
+      "compromise_refs": [
+        "C1",
+        "C4",
+        "C5",
+        "C6"
+      ],
+      "input_coverage_refs": [
+        "handwritten-notes",
+        "scanned-pdf-tables"
+      ],
+      "architecture_domains": [
+        "ocr_and_extraction"
+      ],
+      "roadmap_tags": [],
+      "blocker_summary": "",
+      "blocker_evidence": "",
+      "unblock_condition": "",
+      "last_work_log_entry": null,
+      "legacy_build_map_refs": "",
+      "metadata_source": "frontmatter",
+      "missing_frontmatter_keys": [],
+      "actionability": {
+        "source_kind": "story",
+        "source_id": "267",
+        "source_path": "docs/stories/story-267-carbon-source-fidelity.md",
+        "recommended_now": false,
+        "posture": "completed",
+        "why_now": "",
+        "last_relevant_action": {
+          "date": null,
+          "source_type": "story-status",
+          "source": "docs/stories/story-267-carbon-source-fidelity.md",
+          "summary": ""
+        }
+      }
     }
   ],
   "adrs": [
@@ -15613,7 +15695,8 @@
         "258",
         "263",
         "264",
-        "265"
+        "265",
+        "267"
       ],
       "compromise_refs": [
         "C1",
@@ -15817,6 +15900,14 @@
       },
       "attempts": [
         {
+          "id": "089",
+          "date": "2026-11-10",
+          "status": "completed",
+          "approach": "Scout109 native Carbon HIGH32768 original source-preservation panel, exact current fresh controls",
+          "note": "Carbon/freshAstra tie:36positive clearcells exact plus6clear ambiguity-case cells;both genuineambiguity cells held. Original7/8 ambiguitydiagnostic retained. CarbonUSD.495076/198.028smean vsAstra.2316525/7.662s. RetainAstra; no effort comparison. Attempt089/Story267; nativeGoogle Carbon HIGH32768 exactidentity/terminal/originalschema qualified,12candidate+12freshcontrol responses. Closed24POSTs USD1.68741625/10 unknown0,paidjudges0,recoveryPOSTs0; local admission faults recovered beforePOST. Initialserial then concurrency2; observedHTTP times not isolatedserial superiority. No defaults/commit/push. docs/evals/evidence/089-carbon/summary.json.",
+          "retry_when": []
+        },
+        {
           "id": "087",
           "date": "2026-11-09",
           "status": "completed",
@@ -15941,11 +16032,11 @@
         "retry_when": [],
         "why_now": "",
         "last_relevant_action": {
-          "date": "2026-11-09",
+          "date": "2026-11-10",
           "source_type": "eval-attempt",
           "source": "docs/evals/registry.yaml",
-          "source_id": "087",
-          "summary": "Threecases:36/36clearcells+bothgenuineambiguityholds forFableandfreshAstra. Qualitytie;Fable.296712/17.589smean vsAstra.2309025/6.997s. Maxnottriggered; retainAstra. Attempt087/Story265. Full12candidatecases,11validco..."
+          "source_id": "089",
+          "summary": "Carbon/freshAstra tie:36positive clearcells exact plus6clear ambiguity-case cells;both genuineambiguity cells held. Original7/8 ambiguitydiagnostic retained. CarbonUSD.495076/198.028smean vsAstra.2316525/7.662s. Retai..."
         }
       }
     },
@@ -16221,7 +16312,8 @@
         "258",
         "263",
         "264",
-        "265"
+        "265",
+        "267"
       ],
       "compromise_refs": [
         "C4"
@@ -17014,6 +17106,14 @@
       },
       "attempts": [
         {
+          "id": "089",
+          "date": "2026-11-10",
+          "status": "completed",
+          "approach": "Scout109 native Carbon HIGH32768 original source-preservation panel, exact current fresh controls",
+          "note": "Originalscores Carbon.9931/.9805 vsfreshGemini.9752/.9735; strictsource1/2vs0/2. CarbonImage011 loses1signatureendpointpixel,Image001title/date complete; control loses5or7Image011pixels under declaredround/floorpolicy and18finalNpixels onImage001. Golden-assisted axisoracle remainsruntime-unqualified. Retain detector/manualholds. Attempt089/Story267; nativeGoogle Carbon HIGH32768 exactidentity/terminal/originalschema qualified,12candidate+12freshcontrol responses. Closed24POSTs USD1.68741625/10 unknown0,paidjudges0,recoveryPOSTs0; local admission faults recovered beforePOST. Initialserial then concurrency2; observedHTTP times not isolatedserial superiority. No defaults/commit/push. docs/evals/evidence/089-carbon/summary.json.",
+          "retry_when": []
+        },
+        {
           "id": "087",
           "date": "2026-11-09",
           "status": "completed",
@@ -17554,11 +17654,11 @@
         ],
         "why_now": "Attempt063 qualified Gemini4 Argon13/13 but leaves cover-edge/source/runtime/safety equivalence unqualified and costs/latency higher than fresh control. New identity alone does not warrant another same-line campaign;...",
         "last_relevant_action": {
-          "date": "2026-11-09",
+          "date": "2026-11-10",
           "source_type": "eval-attempt",
           "source": "docs/evals/registry.yaml",
-          "source_id": "087",
-          "summary": "Image011.9478/Image001.7702 tolerantoriginalscores; strictsource0/2:12baselineendpointpixelsclipped andentiretitledateomitted. Gemini.9839/.9829,strict1/2 with16sealrimpixelsclipped. Retainmanualholds; no detectorqual..."
+          "source_id": "089",
+          "summary": "Originalscores Carbon.9931/.9805 vsfreshGemini.9752/.9735; strictsource1/2vs0/2. CarbonImage011 loses1signatureendpointpixel,Image001title/date complete; control loses5or7Image011pixels under declaredround/floorpolicy..."
         }
       }
     },
@@ -17869,7 +17969,8 @@
         "259",
         "264",
         "265",
-        "266"
+        "266",
+        "267"
       ],
       "compromise_refs": [
         "C5"
@@ -18525,6 +18626,14 @@
       },
       "attempts": [
         {
+          "id": "089",
+          "date": "2026-11-10",
+          "status": "completed",
+          "approach": "Scout109 native Carbon HIGH32768 original source-preservation panel, exact current fresh controls",
+          "note": "Selectedsix Carbon6/6 vsfreshGPT5.5 4/6,zero false-safe each. GPTfalse rejects001/004. Bothflagfields correct; Carbonreasons source-supported. Boundedlead versusGPT5.5 only; currentSol full22/caller from088 notmatched; no autonomouspublication/C5deletion. Attempt089/Story267; nativeGoogle Carbon HIGH32768 exactidentity/terminal/originalschema qualified,12candidate+12freshcontrol responses. Closed24POSTs USD1.68741625/10 unknown0,paidjudges0,recoveryPOSTs0; local admission faults recovered beforePOST. Initialserial then concurrency2; observedHTTP times not isolatedserial superiority. No defaults/commit/push. docs/evals/evidence/089-carbon/summary.json.",
+          "retry_when": []
+        },
+        {
           "id": "088",
           "date": "2026-11-09",
           "status": "completed",
@@ -18886,11 +18995,11 @@
         ],
         "why_now": "Rerun when a materially stronger validator or detector may reduce the current fail-labeled page-context cases. Rerun after any maintained crop/runtime simplification before claiming `trim_layout_text` or bounded capti...",
         "last_relevant_action": {
-          "date": "2026-11-09",
+          "date": "2026-11-10",
           "source_type": "eval-attempt",
           "source": "docs/evals/registry.yaml",
-          "source_id": "088",
-          "summary": "Both22/22source-adjudicated fullpayload,0false-safe; originalcanonical20/22/intermediate21/22 retained. Fableclassifier1.922544/7030.7ms vsSol.369622/4925.1ms. BothliveS3policyfail,S4correct(1/2), independent of succe..."
+          "source_id": "089",
+          "summary": "Selectedsix Carbon6/6 vsfreshGPT5.5 4/6,zero false-safe each. GPTfalse rejects001/004. Bothflagfields correct; Carbonreasons source-supported. Boundedlead versusGPT5.5 only; currentSol full22/caller from088 notmatched..."
         }
       }
     },
@@ -19012,7 +19121,8 @@
         "258",
         "263",
         "264",
-        "265"
+        "265",
+        "267"
       ],
       "compromise_refs": [],
       "category_refs": [
@@ -19414,6 +19524,14 @@
       },
       "attempts": [
         {
+          "id": "089",
+          "date": "2026-11-10",
+          "status": "completed",
+          "approach": "Scout109 native Carbon HIGH32768 original source-preservation panel, exact current fresh controls",
+          "note": "ActualBarney driver Carbon.987360 vs exactGemini3.8.983830, bothbelow.99; bothomit it afterleast expected; Carbonomitsour, controlsubstitutesfor. No broadinventedpassage; opticallyambiguousgoldentokens retained. CarbonUSD.32646/396.192s vsGemini.01619175/31.710s. RetainOCR. Attempt089/Story267; nativeGoogle Carbon HIGH32768 exactidentity/terminal/originalschema qualified,12candidate+12freshcontrol responses. Closed24POSTs USD1.68741625/10 unknown0,paidjudges0,recoveryPOSTs0; local admission faults recovered beforePOST. Initialserial then concurrency2; observedHTTP times not isolatedserial superiority. No defaults/commit/push. docs/evals/evidence/089-carbon/summary.json.",
+          "retry_when": []
+        },
+        {
           "id": "087",
           "date": "2026-11-09",
           "status": "completed",
@@ -19635,11 +19753,11 @@
         ],
         "why_now": "Retry only when a materially stronger model or OCR substrate appears that could plausibly clear Barney and the corrected Alverson front-page truth surface.",
         "last_relevant_action": {
-          "date": "2026-11-09",
+          "date": "2026-11-10",
           "source_type": "eval-attempt",
           "source": "docs/evals/registry.yaml",
-          "source_id": "087",
-          "summary": "ActualBarneydriverFable.981295 below.99;definitecomrads substitutionandit omission. .075648/15.234s. ExactGemini3.7served3.8quarantinedat.01614675; nofreshrelativeOCRclaim. Retaincurrentmodels. Attempt087/Story265. Fu..."
+          "source_id": "089",
+          "summary": "ActualBarney driver Carbon.987360 vs exactGemini3.8.983830, bothbelow.99; bothomit it afterleast expected; Carbonomitsour, controlsubstitutesfor. No broadinventedpassage; opticallyambiguousgoldentokens retained. Carbo..."
         }
       }
     },

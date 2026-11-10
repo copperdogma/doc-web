@@ -1,0 +1,32 @@
+{
+  "kind": "safe summary from captured tool stderr and dispatcher outcome; not original stdout wire bytes",
+  "provider_posts_added": 0,
+  "events": [
+    {
+      "dispatcher": "carbon_panel.py",
+      "action": "terminated dispatcher only to switch topology; active Image011HTTP child preserved"
+    },
+    {
+      "dispatcher": "carbon_continue_two.py",
+      "exit": 1,
+      "cause": "at-most2local admission refused seven queued stages beforeHTTP while pending calls occupiedslots",
+      "stages": [
+        "crop-screen-Image011-control",
+        "safety-page-001-000-candidate",
+        "safety-page-004-000-candidate",
+        "safety-page-009-000-candidate",
+        "safety-page-012-000-candidate",
+        "safety-page-122-001-candidate",
+        "safety-page-012-001-candidate"
+      ]
+    },
+    {
+      "dispatcher": "carbon_missing_cases.py",
+      "exit": 0,
+      "log": "benchmarks/results/carbon-20261110/missing-cases.log",
+      "result": "same frozen seven stages completed once; zero duplicatePOSTs"
+    }
+  ],
+  "fix": "whilelocalcapacityfull releaseflock/wait/reacquire/reload; allmoneyandmodelguardsremain",
+  "assertion": "closedledgercontains exact24prospectiveunique stages and noadditionalinference"
+}

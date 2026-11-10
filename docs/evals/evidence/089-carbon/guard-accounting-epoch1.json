@@ -1,0 +1,6 @@
+{
+  "first_dispatch": "table-image-positive-candidate",
+  "first_dispatch_guard": "producing-sources/benchmarks/providers/carbon_guard.py",
+  "subsequent_guard_sha256": "b8b416fc73d90d28983ea5f5d8a8172d14433e0e47b3809da4470e0dd8092374",
+  "reason": "independent review: missing candidatesTokenCount and invalid cache counters must retain full unknown exposure; no change to prompts/settings/schema/source or scoring"
+}

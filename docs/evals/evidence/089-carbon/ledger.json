@@ -1,0 +1,902 @@
+{
+  "cap_usd": 10,
+  "spent_usd": 1.6874162499999998,
+  "calls": [
+    {
+      "stage": "table-image-positive-candidate",
+      "model": "gemini-4-carbon",
+      "reserved_usd": 0.37968,
+      "cost_usd": 0.206682,
+      "request": "benchmarks/results/carbon-20261110/request-001.json",
+      "request_sha256": "7136f152bd3c98da4f64a34506920645197c39eddfb2c7a231e058c6b53e5770",
+      "request_url": "https://generativelanguage.googleapis.com/v1beta/models/gemini-4-carbon:generateContent",
+      "response": "benchmarks/results/carbon-20261110/response-001.json",
+      "response_sha256": "5e751c698a7b5c3e64ba6b25493c0c4da3cc0f1894fc2d71ab6ddbbd4ed526d1",
+      "status_code": 200,
+      "latency_ms": 232116,
+      "usage": {
+        "promptTokenCount": 1941,
+        "candidatesTokenCount": 177,
+        "totalTokenCount": 22221,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 839
+          },
+          {
+            "modality": "IMAGE",
+            "tokenCount": 1102
+          }
+        ],
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 177
+          }
+        ],
+        "thoughtsTokenCount": 20103
+      },
+      "served_model": "gemini-4-carbon",
+      "provider": "Google",
+      "output_tokens_including_thinking": 20280,
+      "input_tokens": 1941,
+      "december_cost_usd": 0.413364
+    },
+    {
+      "stage": "table-image-positive-control",
+      "model": "gpt-6-astra",
+      "reserved_usd": 0.7346,
+      "cost_usd": 0.0821675,
+      "request": "benchmarks/results/carbon-20261110/request-002.json",
+      "request_sha256": "a3f7e7b0c98c08aad517b00d6467a7ff6ed6802e6031feb50eee974deef04e8c",
+      "request_url": "https://api.openai.com/v1/responses",
+      "response": "benchmarks/results/carbon-20261110/response-002.json",
+      "response_sha256": "3a011820808355fb8d235ba648b4bbc2db4a439f6b4ae354973e82c188d1c14a",
+      "status_code": 200,
+      "latency_ms": 10169,
+      "usage": {
+        "input_tokens": 5090,
+        "input_tokens_details": {
+          "cache_write_tokens": 5087,
+          "cached_tokens": 0
+        },
+        "output_tokens": 371,
+        "output_tokens_details": {
+          "reasoning_tokens": 128
+        },
+        "total_tokens": 5461
+      },
+      "served_model": "gpt-6-astra",
+      "provider": "OpenAI",
+      "output_tokens_including_thinking": 371,
+      "input_tokens": 5090,
+      "december_cost_usd": 0.0821675
+    },
+    {
+      "stage": "table-ambiguity-negative-candidate",
+      "model": "gemini-4-carbon",
+      "reserved_usd": 0.37968,
+      "cost_usd": 0.137592,
+      "request": "benchmarks/results/carbon-20261110/request-003.json",
+      "request_sha256": "bb46edbcbe63587ee50b2db9092fa4d6f4818143d9be9afe7eae72860e28e587",
+      "request_url": "https://generativelanguage.googleapis.com/v1beta/models/gemini-4-carbon:generateContent",
+      "response": "benchmarks/results/carbon-20261110/response-003.json",
+      "response_sha256": "c62b2fc5d8f6043a8ae80f38e3df89b5c08543ebb59e1fb3dca8cbd4ba356a0f",
+      "status_code": 200,
+      "latency_ms": 175628,
+      "usage": {
+        "promptTokenCount": 1941,
+        "candidatesTokenCount": 180,
+        "totalTokenCount": 15312,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 839
+          },
+          {
+            "modality": "IMAGE",
+            "tokenCount": 1102
+          }
+        ],
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 180
+          }
+        ],
+        "thoughtsTokenCount": 13191
+      },
+      "served_model": "gemini-4-carbon",
+      "provider": "Google",
+      "output_tokens_including_thinking": 13371,
+      "input_tokens": 1941,
+      "december_cost_usd": 0.275184
+    },
+    {
+      "producing_guard_sha256": "a642968e378da65b9e3e7d346ae2459e3ea9e7e704ec339b8571bbc0d9c8f4a9",
+      "stage": "table-ambiguity-negative-control",
+      "model": "gpt-6-astra",
+      "reserved_usd": 0.7346,
+      "cost_usd": 0.0729175,
+      "request": "benchmarks/results/carbon-20261110/request-004.json",
+      "request_sha256": "92a0b2de8495c16c2397727b655a385107c4ca7b4be54efb8c6df60359aab141",
+      "request_url": "https://api.openai.com/v1/responses",
+      "response": "benchmarks/results/carbon-20261110/response-004.json",
+      "response_sha256": "59048a89fae64a566b2a171cf9b23e6b5a936e05e53fb7dc0ff76e15130963e9",
+      "status_code": 200,
+      "latency_ms": 5897,
+      "usage": {
+        "input_tokens": 5090,
+        "input_tokens_details": {
+          "cache_write_tokens": 5087,
+          "cached_tokens": 0
+        },
+        "output_tokens": 186,
+        "output_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "total_tokens": 5276
+      },
+      "served_model": "gpt-6-astra",
+      "provider": "OpenAI",
+      "output_tokens_including_thinking": 186,
+      "input_tokens": 5090,
+      "december_cost_usd": 0.0729175
+    },
+    {
+      "producing_guard_sha256": "a642968e378da65b9e3e7d346ae2459e3ea9e7e704ec339b8571bbc0d9c8f4a9",
+      "stage": "table-native-positive-candidate",
+      "model": "gemini-4-carbon",
+      "reserved_usd": 0.37968,
+      "cost_usd": 0.150802,
+      "request": "benchmarks/results/carbon-20261110/request-005.json",
+      "request_sha256": "d89631ded64a5a60a062a164052944b65511f08579bf5ad4b7e21ec6e665e7b5",
+      "request_url": "https://generativelanguage.googleapis.com/v1beta/models/gemini-4-carbon:generateContent",
+      "response": "benchmarks/results/carbon-20261110/response-005.json",
+      "response_sha256": "56d3257a66335838b232a411e3ebdbe1bf623a7f0b37ce78d6f11a1c5b6e55d1",
+      "status_code": 200,
+      "latency_ms": 186339,
+      "usage": {
+        "promptTokenCount": 1941,
+        "candidatesTokenCount": 135,
+        "totalTokenCount": 16633,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 839
+          },
+          {
+            "modality": "IMAGE",
+            "tokenCount": 1102
+          }
+        ],
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 135
+          }
+        ],
+        "thoughtsTokenCount": 14557
+      },
+      "served_model": "gemini-4-carbon",
+      "provider": "Google",
+      "output_tokens_including_thinking": 14692,
+      "input_tokens": 1941,
+      "december_cost_usd": 0.301604
+    },
+    {
+      "producing_guard_sha256": "a642968e378da65b9e3e7d346ae2459e3ea9e7e704ec339b8571bbc0d9c8f4a9",
+      "stage": "table-native-positive-control",
+      "model": "gpt-6-astra",
+      "reserved_usd": 0.7346,
+      "cost_usd": 0.0765675,
+      "request": "benchmarks/results/carbon-20261110/request-006.json",
+      "request_sha256": "8bbadbaeadee11c002c89e14278d30208281e9ab9b6b8f2079070078d3c63855",
+      "request_url": "https://api.openai.com/v1/responses",
+      "response": "benchmarks/results/carbon-20261110/response-006.json",
+      "response_sha256": "e00142168ebd6b1dfefc5912b8230a59c392ffb2d62e244829e929372907f08e",
+      "status_code": 200,
+      "latency_ms": 6919,
+      "usage": {
+        "input_tokens": 5090,
+        "input_tokens_details": {
+          "cache_write_tokens": 5087,
+          "cached_tokens": 0
+        },
+        "output_tokens": 259,
+        "output_tokens_details": {
+          "reasoning_tokens": 88
+        },
+        "total_tokens": 5349
+      },
+      "served_model": "gpt-6-astra",
+      "provider": "OpenAI",
+      "output_tokens_including_thinking": 259,
+      "input_tokens": 5090,
+      "december_cost_usd": 0.0765675
+    },
+    {
+      "producing_guard_sha256": "721e551a42e60c238bcb26f25ae80256ff7342f962ee7348fbe36a68ca2d7f30",
+      "stage": "crop-screen-Image011-candidate",
+      "model": "gemini-4-carbon",
+      "reserved_usd": 0.37968,
+      "cost_usd": 0.059964,
+      "in_flight": false,
+      "request": "benchmarks/results/carbon-20261110/request-007.json",
+      "request_sha256": "a85b6a56c7d58dad6b1d5360405678eb68224a14b1552bdf84792ba32aedfcc8",
+      "request_url": "https://generativelanguage.googleapis.com/v1beta/models/gemini-4-carbon:generateContent",
+      "response": "benchmarks/results/carbon-20261110/response-007.json",
+      "response_sha256": "a3045a51d05db85a33b5071dc844208dbf43c8ebfcf6f183d4d126285e37b3b7",
+      "status_code": 200,
+      "latency_ms": 77081,
+      "usage": {
+        "promptTokenCount": 1617,
+        "candidatesTokenCount": 143,
+        "totalTokenCount": 7290,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 515
+          },
+          {
+            "modality": "IMAGE",
+            "tokenCount": 1102
+          }
+        ],
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 143
+          }
+        ],
+        "thoughtsTokenCount": 5530
+      },
+      "served_model": "gemini-4-carbon",
+      "provider": "Google",
+      "output_tokens_including_thinking": 5673,
+      "input_tokens": 1617,
+      "december_cost_usd": 0.119928
+    },
+    {
+      "producing_guard_sha256": "721e551a42e60c238bcb26f25ae80256ff7342f962ee7348fbe36a68ca2d7f30",
+      "stage": "crop-screen-Image001-candidate",
+      "model": "gemini-4-carbon",
+      "reserved_usd": 0.37968,
+      "cost_usd": 0.072714,
+      "in_flight": false,
+      "request": "benchmarks/results/carbon-20261110/request-008.json",
+      "request_sha256": "bd4e1100a13f370f603dd03810d44048b13a0c0c8641b4c47ec1330410640cf1",
+      "request_url": "https://generativelanguage.googleapis.com/v1beta/models/gemini-4-carbon:generateContent",
+      "response": "benchmarks/results/carbon-20261110/response-008.json",
+      "response_sha256": "37b2cb4014a7667aa5b67b56e74ee147a36057fef29da53175f4ac8c2532b43e",
+      "status_code": 200,
+      "latency_ms": 109497,
+      "usage": {
+        "promptTokenCount": 1617,
+        "candidatesTokenCount": 83,
+        "totalTokenCount": 8565,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 515
+          },
+          {
+            "modality": "IMAGE",
+            "tokenCount": 1102
+          }
+        ],
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 83
+          }
+        ],
+        "thoughtsTokenCount": 6865
+      },
+      "served_model": "gemini-4-carbon",
+      "provider": "Google",
+      "output_tokens_including_thinking": 6948,
+      "input_tokens": 1617,
+      "december_cost_usd": 0.145428
+    },
+    {
+      "producing_guard_sha256": "721e551a42e60c238bcb26f25ae80256ff7342f962ee7348fbe36a68ca2d7f30",
+      "stage": "ocr-barney-candidate",
+      "model": "gemini-4-carbon",
+      "reserved_usd": 0.37968,
+      "cost_usd": 0.32646,
+      "in_flight": false,
+      "request": "benchmarks/results/carbon-20261110/request-009.json",
+      "request_sha256": "7d6adf96aff848bcb2ebef418170416d2f14e536f742c9378a8ddf7873b413d1",
+      "request_url": "https://generativelanguage.googleapis.com/v1beta/models/gemini-4-carbon:generateContent",
+      "response": "benchmarks/results/carbon-20261110/response-009.json",
+      "response_sha256": "73e4e76f1efeab08401ac9932e75d62fe5a29fac51fefe963423abb524adb5a2",
+      "status_code": 200,
+      "latency_ms": 396192,
+      "usage": {
+        "promptTokenCount": 2055,
+        "candidatesTokenCount": 387,
+        "totalTokenCount": 34290,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 982
+          },
+          {
+            "modality": "IMAGE",
+            "tokenCount": 1073
+          }
+        ],
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 387
+          }
+        ],
+        "thoughtsTokenCount": 31848
+      },
+      "served_model": "gemini-4-carbon",
+      "provider": "Google",
+      "output_tokens_including_thinking": 32235,
+      "input_tokens": 2055,
+      "december_cost_usd": 0.65292
+    },
+    {
+      "producing_guard_sha256": "1fedfb177d57e18eda934ae6cb387b75e8c20dffae90700cb0d0fdd789a35804",
+      "stage": "crop-screen-Image011-control",
+      "model": "gemini-3-flash-preview",
+      "reserved_usd": 0.062152,
+      "cost_usd": 0.0058355,
+      "in_flight": false,
+      "request": "benchmarks/results/carbon-20261110/request-010.json",
+      "request_sha256": "b51d8425e881aa5871b0968b208e7e86aed01d7aaad3f574b169ccec0f78c078",
+      "request_url": "https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent",
+      "response": "benchmarks/results/carbon-20261110/response-010.json",
+      "response_sha256": "ce998a72b87d75ad1a68a43460bce181bdc177a7a7b7226bf6da369cf01f6139",
+      "status_code": 200,
+      "latency_ms": 8865,
+      "usage": {
+        "promptTokenCount": 1333,
+        "candidatesTokenCount": 98,
+        "totalTokenCount": 3056,
+        "promptTokensDetails": [
+          {
+            "modality": "IMAGE",
+            "tokenCount": 1102
+          },
+          {
+            "modality": "TEXT",
+            "tokenCount": 231
+          }
+        ],
+        "thoughtsTokenCount": 1625,
+        "serviceTier": "standard"
+      },
+      "served_model": "gemini-3-flash-preview",
+      "provider": "Google",
+      "output_tokens_including_thinking": 1723,
+      "input_tokens": 1333,
+      "december_cost_usd": 0.0058355
+    },
+    {
+      "producing_guard_sha256": "1fedfb177d57e18eda934ae6cb387b75e8c20dffae90700cb0d0fdd789a35804",
+      "stage": "crop-screen-Image001-control",
+      "model": "gemini-3-flash-preview",
+      "reserved_usd": 0.062152,
+      "cost_usd": 0.0033095,
+      "in_flight": false,
+      "request": "benchmarks/results/carbon-20261110/request-011.json",
+      "request_sha256": "ed7492690b74bba7302fecb3f17a87aeb48b985a9659fcc3f0474a4d0fcd22b7",
+      "request_url": "https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent",
+      "response": "benchmarks/results/carbon-20261110/response-011.json",
+      "response_sha256": "ad12a6a255b6ac5baf98ace4552c132545dd124d6db9b7fa67d192eebaaaa398",
+      "status_code": 200,
+      "latency_ms": 6212,
+      "usage": {
+        "promptTokenCount": 1333,
+        "candidatesTokenCount": 69,
+        "totalTokenCount": 2214,
+        "promptTokensDetails": [
+          {
+            "modality": "IMAGE",
+            "tokenCount": 1102
+          },
+          {
+            "modality": "TEXT",
+            "tokenCount": 231
+          }
+        ],
+        "thoughtsTokenCount": 812,
+        "serviceTier": "standard"
+      },
+      "served_model": "gemini-3-flash-preview",
+      "provider": "Google",
+      "output_tokens_including_thinking": 881,
+      "input_tokens": 1333,
+      "december_cost_usd": 0.0033095
+    },
+    {
+      "producing_guard_sha256": "1fedfb177d57e18eda934ae6cb387b75e8c20dffae90700cb0d0fdd789a35804",
+      "stage": "safety-page-001-000-candidate",
+      "model": "gemini-4-carbon",
+      "reserved_usd": 0.41968,
+      "cost_usd": 0.03652,
+      "in_flight": false,
+      "request": "benchmarks/results/carbon-20261110/request-012.json",
+      "request_sha256": "0b36e86aedbc82cde774f083e4d22a00489318839877a9af965dd69ee25f8201",
+      "request_url": "https://generativelanguage.googleapis.com/v1beta/models/gemini-4-carbon:generateContent",
+      "response": "benchmarks/results/carbon-20261110/response-012.json",
+      "response_sha256": "8d228d74e2ada904280b3d18e4f44da21e39ddb54a177f02e3db1c52c01195db",
+      "status_code": 200,
+      "latency_ms": 45966,
+      "usage": {
+        "promptTokenCount": 3205,
+        "candidatesTokenCount": 77,
+        "totalTokenCount": 6216,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 1023
+          },
+          {
+            "modality": "IMAGE",
+            "tokenCount": 2182
+          }
+        ],
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 77
+          }
+        ],
+        "thoughtsTokenCount": 2934
+      },
+      "served_model": "gemini-4-carbon",
+      "provider": "Google",
+      "output_tokens_including_thinking": 3011,
+      "input_tokens": 3205,
+      "december_cost_usd": 0.07304
+    },
+    {
+      "producing_guard_sha256": "1fedfb177d57e18eda934ae6cb387b75e8c20dffae90700cb0d0fdd789a35804",
+      "stage": "safety-page-004-000-candidate",
+      "model": "gemini-4-carbon",
+      "reserved_usd": 0.41968,
+      "cost_usd": 0.014212,
+      "in_flight": false,
+      "request": "benchmarks/results/carbon-20261110/request-013.json",
+      "request_sha256": "7780e6627277765fcaff048831b1f80941da910df6a611de5c66950d2e6e4e81",
+      "request_url": "https://generativelanguage.googleapis.com/v1beta/models/gemini-4-carbon:generateContent",
+      "response": "benchmarks/results/carbon-20261110/response-013.json",
+      "response_sha256": "dcc8c12e58dee297f3b42f709ba74b10e4c8fc1744b23f37830b71240d0b8b3f",
+      "status_code": 200,
+      "latency_ms": 13809,
+      "usage": {
+        "promptTokenCount": 3196,
+        "candidatesTokenCount": 62,
+        "totalTokenCount": 3978,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 1023
+          },
+          {
+            "modality": "IMAGE",
+            "tokenCount": 2173
+          }
+        ],
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 62
+          }
+        ],
+        "thoughtsTokenCount": 720
+      },
+      "served_model": "gemini-4-carbon",
+      "provider": "Google",
+      "output_tokens_including_thinking": 782,
+      "input_tokens": 3196,
+      "december_cost_usd": 0.028424
+    },
+    {
+      "producing_guard_sha256": "1fedfb177d57e18eda934ae6cb387b75e8c20dffae90700cb0d0fdd789a35804",
+      "stage": "safety-page-001-000-control",
+      "model": "gpt-5.5",
+      "reserved_usd": 0.29144,
+      "cost_usd": 0.083,
+      "in_flight": false,
+      "request": "benchmarks/results/carbon-20261110/request-014.json",
+      "request_sha256": "93e1cb9ea3cfa6c80f1e02f459178827ad1524d84044b5021e8900b26fcc0e51",
+      "request_url": "https://api.openai.com/v1/responses",
+      "response": "benchmarks/results/carbon-20261110/response-014.json",
+      "response_sha256": "0ee79fc1349e4142a361d7b8c0b9122376f52c2b46a8572ad6909cf0cd79cbec",
+      "status_code": 200,
+      "latency_ms": 5218,
+      "usage": {
+        "input_tokens": 16198,
+        "input_tokens_details": {
+          "cache_write_tokens": 0,
+          "cached_tokens": 0
+        },
+        "output_tokens": 67,
+        "output_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "total_tokens": 16265
+      },
+      "served_model": "gpt-5.5-2026-04-23",
+      "provider": "OpenAI",
+      "output_tokens_including_thinking": 67,
+      "input_tokens": 16198,
+      "december_cost_usd": 0.083
+    },
+    {
+      "producing_guard_sha256": "1fedfb177d57e18eda934ae6cb387b75e8c20dffae90700cb0d0fdd789a35804",
+      "stage": "safety-page-004-000-control",
+      "model": "gpt-5.5",
+      "reserved_usd": 0.29144,
+      "cost_usd": 0.058195,
+      "in_flight": false,
+      "request": "benchmarks/results/carbon-20261110/request-015.json",
+      "request_sha256": "910fcb1d7a251ee49d26ad04a3b961066279f148a05367889198c31b913bba77",
+      "request_url": "https://api.openai.com/v1/responses",
+      "response": "benchmarks/results/carbon-20261110/response-015.json",
+      "response_sha256": "aa18ed819a93e66dfcd1e9f35cfb4095a0e6d8546359d243ca59a2671d11046d",
+      "status_code": 200,
+      "latency_ms": 2407,
+      "usage": {
+        "input_tokens": 11201,
+        "input_tokens_details": {
+          "cache_write_tokens": 0,
+          "cached_tokens": 0
+        },
+        "output_tokens": 73,
+        "output_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "total_tokens": 11274
+      },
+      "served_model": "gpt-5.5-2026-04-23",
+      "provider": "OpenAI",
+      "output_tokens_including_thinking": 73,
+      "input_tokens": 11201,
+      "december_cost_usd": 0.058195
+    },
+    {
+      "producing_guard_sha256": "1fedfb177d57e18eda934ae6cb387b75e8c20dffae90700cb0d0fdd789a35804",
+      "stage": "safety-page-009-000-candidate",
+      "model": "gemini-4-carbon",
+      "reserved_usd": 0.41968,
+      "cost_usd": 0.010726,
+      "in_flight": false,
+      "request": "benchmarks/results/carbon-20261110/request-016.json",
+      "request_sha256": "7979ddaa89b01e5d02f8c43e0b6c933625b372392b3f3c3d4a45e7075ddf2382",
+      "request_url": "https://generativelanguage.googleapis.com/v1beta/models/gemini-4-carbon:generateContent",
+      "response": "benchmarks/results/carbon-20261110/response-016.json",
+      "response_sha256": "3dbc1f1d778db56a16456fc46437a0f780eeb9deec31ea41d3321f95a0cc458d",
+      "status_code": 200,
+      "latency_ms": 11702,
+      "usage": {
+        "promptTokenCount": 3213,
+        "candidatesTokenCount": 63,
+        "totalTokenCount": 3643,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 1023
+          },
+          {
+            "modality": "IMAGE",
+            "tokenCount": 2190
+          }
+        ],
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 63
+          }
+        ],
+        "thoughtsTokenCount": 367
+      },
+      "served_model": "gemini-4-carbon",
+      "provider": "Google",
+      "output_tokens_including_thinking": 430,
+      "input_tokens": 3213,
+      "december_cost_usd": 0.021452
+    },
+    {
+      "producing_guard_sha256": "1fedfb177d57e18eda934ae6cb387b75e8c20dffae90700cb0d0fdd789a35804",
+      "stage": "safety-page-012-000-candidate",
+      "model": "gemini-4-carbon",
+      "reserved_usd": 0.41968,
+      "cost_usd": 0.020918,
+      "in_flight": false,
+      "request": "benchmarks/results/carbon-20261110/request-017.json",
+      "request_sha256": "6bdbc244f39dd52317ee4cc350e2a83ddb21c92ff366f07948ff3f1097398d97",
+      "request_url": "https://generativelanguage.googleapis.com/v1beta/models/gemini-4-carbon:generateContent",
+      "response": "benchmarks/results/carbon-20261110/response-017.json",
+      "response_sha256": "444ef2d666315b60ba8c39834bec61f56a9cbcd73867ee4823009c5ec5690c29",
+      "status_code": 200,
+      "latency_ms": 26409,
+      "usage": {
+        "promptTokenCount": 3214,
+        "candidatesTokenCount": 70,
+        "totalTokenCount": 4663,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 1023
+          },
+          {
+            "modality": "IMAGE",
+            "tokenCount": 2191
+          }
+        ],
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 70
+          }
+        ],
+        "thoughtsTokenCount": 1379
+      },
+      "served_model": "gemini-4-carbon",
+      "provider": "Google",
+      "output_tokens_including_thinking": 1449,
+      "input_tokens": 3214,
+      "december_cost_usd": 0.041836
+    },
+    {
+      "producing_guard_sha256": "1fedfb177d57e18eda934ae6cb387b75e8c20dffae90700cb0d0fdd789a35804",
+      "stage": "safety-page-009-000-control",
+      "model": "gpt-5.5",
+      "reserved_usd": 0.29144,
+      "cost_usd": 0.073915,
+      "in_flight": false,
+      "request": "benchmarks/results/carbon-20261110/request-018.json",
+      "request_sha256": "6e7b3f7ec4c7403cf0d32744c56e954359f686484c16ff224e3ee12d6e56bd79",
+      "request_url": "https://api.openai.com/v1/responses",
+      "response": "benchmarks/results/carbon-20261110/response-018.json",
+      "response_sha256": "0883d6efe58815f63f1b86af171ffddad566bc6ddab4765a288e51aff01b6152",
+      "status_code": 200,
+      "latency_ms": 3286,
+      "usage": {
+        "input_tokens": 14399,
+        "input_tokens_details": {
+          "cache_write_tokens": 0,
+          "cached_tokens": 0
+        },
+        "output_tokens": 64,
+        "output_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "total_tokens": 14463
+      },
+      "served_model": "gpt-5.5-2026-04-23",
+      "provider": "OpenAI",
+      "output_tokens_including_thinking": 64,
+      "input_tokens": 14399,
+      "december_cost_usd": 0.073915
+    },
+    {
+      "producing_guard_sha256": "1fedfb177d57e18eda934ae6cb387b75e8c20dffae90700cb0d0fdd789a35804",
+      "stage": "safety-page-012-000-control",
+      "model": "gpt-5.5",
+      "reserved_usd": 0.29144,
+      "cost_usd": 0.030735,
+      "in_flight": false,
+      "request": "benchmarks/results/carbon-20261110/request-019.json",
+      "request_sha256": "386f4674e8da078618fff1e80ac5841e8466280de0b1ce9af72d3f1609bf812c",
+      "request_url": "https://api.openai.com/v1/responses",
+      "response": "benchmarks/results/carbon-20261110/response-019.json",
+      "response_sha256": "d487404d341818a8eadf69b59c7581f6fdc865d889329cb2c1128c9d2f7d475c",
+      "status_code": 200,
+      "latency_ms": 2230,
+      "usage": {
+        "input_tokens": 5787,
+        "input_tokens_details": {
+          "cache_write_tokens": 0,
+          "cached_tokens": 0
+        },
+        "output_tokens": 60,
+        "output_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "total_tokens": 5847
+      },
+      "served_model": "gpt-5.5-2026-04-23",
+      "provider": "OpenAI",
+      "output_tokens_including_thinking": 60,
+      "input_tokens": 5787,
+      "december_cost_usd": 0.030735
+    },
+    {
+      "producing_guard_sha256": "1fedfb177d57e18eda934ae6cb387b75e8c20dffae90700cb0d0fdd789a35804",
+      "stage": "safety-page-122-001-candidate",
+      "model": "gemini-4-carbon",
+      "reserved_usd": 0.41968,
+      "cost_usd": 0.01596,
+      "in_flight": false,
+      "request": "benchmarks/results/carbon-20261110/request-020.json",
+      "request_sha256": "bca2197346410c5c161277952fa6056d0fd004bdbd6e906e4d11a407beff6ea8",
+      "request_url": "https://generativelanguage.googleapis.com/v1beta/models/gemini-4-carbon:generateContent",
+      "response": "benchmarks/results/carbon-20261110/response-020.json",
+      "response_sha256": "4b4c6f320cb5993fb6eba3810f84e9a4ce209d219713cffd325f8979cd312ae6",
+      "status_code": 200,
+      "latency_ms": 35470,
+      "usage": {
+        "promptTokenCount": 3205,
+        "candidatesTokenCount": 65,
+        "totalTokenCount": 4160,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 1023
+          },
+          {
+            "modality": "IMAGE",
+            "tokenCount": 2182
+          }
+        ],
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 65
+          }
+        ],
+        "thoughtsTokenCount": 890
+      },
+      "served_model": "gemini-4-carbon",
+      "provider": "Google",
+      "output_tokens_including_thinking": 955,
+      "input_tokens": 3205,
+      "december_cost_usd": 0.03192
+    },
+    {
+      "producing_guard_sha256": "1fedfb177d57e18eda934ae6cb387b75e8c20dffae90700cb0d0fdd789a35804",
+      "stage": "safety-page-012-001-candidate",
+      "model": "gemini-4-carbon",
+      "reserved_usd": 0.41968,
+      "cost_usd": 0.031076,
+      "in_flight": false,
+      "request": "benchmarks/results/carbon-20261110/request-021.json",
+      "request_sha256": "4c3de0146cf7b3014a8d68eda53060fef9598365c84db88b89f820f16324a47c",
+      "request_url": "https://generativelanguage.googleapis.com/v1beta/models/gemini-4-carbon:generateContent",
+      "response": "benchmarks/results/carbon-20261110/response-021.json",
+      "response_sha256": "14650bb49f04fdd3661d6a624bb096273e73b0e09ea4760ea1613540f9d1feee",
+      "status_code": 200,
+      "latency_ms": 35062,
+      "usage": {
+        "promptTokenCount": 3198,
+        "candidatesTokenCount": 73,
+        "totalTokenCount": 5666,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 1023
+          },
+          {
+            "modality": "IMAGE",
+            "tokenCount": 2175
+          }
+        ],
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 73
+          }
+        ],
+        "thoughtsTokenCount": 2395
+      },
+      "served_model": "gemini-4-carbon",
+      "provider": "Google",
+      "output_tokens_including_thinking": 2468,
+      "input_tokens": 3198,
+      "december_cost_usd": 0.062152
+    },
+    {
+      "producing_guard_sha256": "1fedfb177d57e18eda934ae6cb387b75e8c20dffae90700cb0d0fdd789a35804",
+      "stage": "safety-page-122-001-control",
+      "model": "gpt-5.5",
+      "reserved_usd": 0.29144,
+      "cost_usd": 0.083855,
+      "in_flight": false,
+      "request": "benchmarks/results/carbon-20261110/request-022.json",
+      "request_sha256": "e4e7e01e5927355f4d949b473885406ae43d555c11cd2b135b80462741160f46",
+      "request_url": "https://api.openai.com/v1/responses",
+      "response": "benchmarks/results/carbon-20261110/response-022.json",
+      "response_sha256": "b708cf1012b37b411f5780dc004dbe9afc804e9c20491e5d96862e0f21cee03e",
+      "status_code": 200,
+      "latency_ms": 4159,
+      "usage": {
+        "input_tokens": 16333,
+        "input_tokens_details": {
+          "cache_write_tokens": 0,
+          "cached_tokens": 0
+        },
+        "output_tokens": 73,
+        "output_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "total_tokens": 16406
+      },
+      "served_model": "gpt-5.5-2026-04-23",
+      "provider": "OpenAI",
+      "output_tokens_including_thinking": 73,
+      "input_tokens": 16333,
+      "december_cost_usd": 0.083855
+    },
+    {
+      "producing_guard_sha256": "1fedfb177d57e18eda934ae6cb387b75e8c20dffae90700cb0d0fdd789a35804",
+      "stage": "safety-page-012-001-control",
+      "model": "gpt-5.5",
+      "reserved_usd": 0.29144,
+      "cost_usd": 0.017101,
+      "in_flight": false,
+      "request": "benchmarks/results/carbon-20261110/request-023.json",
+      "request_sha256": "8b750600aed0267a4fe765ee1ec71cbeafc01f5aa5d657302024b2daa4215620",
+      "request_url": "https://api.openai.com/v1/responses",
+      "response": "benchmarks/results/carbon-20261110/response-023.json",
+      "response_sha256": "b014454f5003eabc599bedcb50e4d1acd0d65a7ab840c8e68772137c6596da26",
+      "status_code": 200,
+      "latency_ms": 2399,
+      "usage": {
+        "input_tokens": 6329,
+        "input_tokens_details": {
+          "cache_write_tokens": 0,
+          "cached_tokens": 3712
+        },
+        "output_tokens": 72,
+        "output_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "total_tokens": 6401
+      },
+      "served_model": "gpt-5.5-2026-04-23",
+      "provider": "OpenAI",
+      "output_tokens_including_thinking": 72,
+      "input_tokens": 6329,
+      "december_cost_usd": 0.017101
+    },
+    {
+      "producing_guard_sha256": "1fedfb177d57e18eda934ae6cb387b75e8c20dffae90700cb0d0fdd789a35804",
+      "stage": "ocr-barney-control",
+      "model": "gemini-3.8-flash",
+      "reserved_usd": 0.08094,
+      "cost_usd": 0.01619175,
+      "in_flight": false,
+      "request": "benchmarks/results/carbon-20261110/request-024.json",
+      "request_sha256": "f74e87ca5be38aa66841dbdfcdeedc3618c7e7ce2ebeb7b9d2c65717ee81b40b",
+      "request_url": "https://generativelanguage.googleapis.com/v1beta/models/gemini-3.8-flash:generateContent",
+      "response": "benchmarks/results/carbon-20261110/response-024.json",
+      "response_sha256": "4925425c6423fcc3126f38d8280f08857965ef069687d9ad5be44c15d593e5d9",
+      "status_code": 200,
+      "latency_ms": 31710,
+      "usage": {
+        "promptTokenCount": 2029,
+        "candidatesTokenCount": 389,
+        "totalTokenCount": 5941,
+        "promptTokensDetails": [
+          {
+            "modality": "IMAGE",
+            "tokenCount": 1073
+          },
+          {
+            "modality": "TEXT",
+            "tokenCount": 956
+          }
+        ],
+        "thoughtsTokenCount": 3523,
+        "serviceTier": "standard"
+      },
+      "served_model": "gemini-3.8-flash",
+      "provider": "Google",
+      "output_tokens_including_thinking": 3912,
+      "input_tokens": 2029,
+      "december_cost_usd": 0.01619175
+    }
+  ],
+  "closed": true,
+  "closure": "Selected12candidate+12control responses complete; no further paid calls; unknown0; local predispatch admission errors recovered without POST"
+}

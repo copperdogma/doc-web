@@ -1,3 +1,9 @@
+## [2026-11-10-03] — Record Carbon source-preservation capability panel (Story 267)
+
+### Added
+- Preserve all24 fresh native candidate/control responses, actual OCR driver artifacts, source reviews and closed USD1.68741625/10 ledger with lossless custody.
+- Record a bounded safety lead and partial crop-preservation lead, literal-table tie and handwriting gate failure; retain runtime roles and publication holds.
+
 ## [2026-11-10-02] — Qualify native safety caller and retain Sol (Story 266)
 
 ### Added

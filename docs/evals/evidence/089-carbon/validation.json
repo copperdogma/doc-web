@@ -1,0 +1,73 @@
+{
+  "selection": "isolated evaluation tooling and evidence; no product modules changed",
+  "tests": {
+    "command": "/Users/cam/miniconda3/bin/python -m pytest tests/test_carbon_campaign.py tests/test_fable52_campaign.py -q",
+    "result": "17passed",
+    "coverage": "hardUSD10 unknownreservations,URLmodel/renderhash binding,invalidusage/cache/nonJSON retention,originalnative schema/source,2process atomicreservation/custody,maintained sharedreader campaign"
+  },
+  "ruff": {
+    "command": "python -m ruff check benchmarks/scripts/carbon*.py benchmarks/providers/carbon_guard.py tests/test_carbon_campaign.py",
+    "result": "pass"
+  },
+  "compile": {
+    "result": "pass for changed Python files; audit/custody executed on real offline evidence"
+  },
+  "native_audit": {
+    "result": "24/24 exact renderedpayloads/wire+responsehashes/identity/terminal/schema/usage/bounds/cost verified; no calls",
+    "path": "raw-audit.json"
+  },
+  "recovery_audit": {
+    "command": "python benchmarks/scripts/carbon_audit.py --custody-only",
+    "result": "24/24 semantic plannedinputs verified against sealedindex and exactwire; no prettykeyorder identity claim",
+    "path": "raw-audit-custody.json"
+  },
+  "custody": {
+    "result": "6parts43,949,702bytes;209archivedmembers read/hash-verified;24req+24resp originals;allactualdriverartifacts",
+    "path": "custody-index.json"
+  },
+  "methodology": {
+    "commands": [
+      "make methodology-compile PYTHON=/Users/cam/miniconda3/bin/python",
+      "make methodology-check PYTHON=/Users/cam/miniconda3/bin/python"
+    ],
+    "result": "pass afterStory267Done andregistry089 lineage"
+  },
+  "manual": "alloriginal sourceclasses/source-first reviews; bothdriverraw_html/html andderivedactualcrops inspected",
+  "git_diff_check": "pass",
+  "skipped": "unrelated runtime/frontend/fullproduct suites: no productmodule/default changes; no paid evaluations repeated for validation",
+  "environment": {
+    "python": "3.11.5",
+    "httpx": "0.27.2",
+    "pydantic": "2.12.5",
+    "google-genai": "1.63.0",
+    "openai": "2.21.0",
+    "pytest": "9.0.2",
+    "ruff": "0.15.2"
+  },
+  "final_code": {
+    "benchmarks/scripts/carbon_missing_cases.py": "d14239392666a48256a038c32ae482b0f3d7e0413787176de4862c0a99ea4efa",
+    "benchmarks/scripts/carbon_safety.py": "6c32d553199d21272d41387a768c23801c81e2160892f80a9872e67ee58c3298",
+    "benchmarks/scripts/carbon_custody.py": "a54f0cb2f12eee3396ef9a69e82a9aa0e2f0ec1472758515a2cbd7dc2ed94ba0",
+    "benchmarks/scripts/carbon_panel.py": "fb2476b39f7202a69f983ca40f882b9e9f22c615f38d631b74aa31d6199092bf",
+    "benchmarks/scripts/carbon_audit.py": "d820d46544a3081af9376116383fc431e125afd305d4870f855109c751cccadf",
+    "benchmarks/scripts/carbon_native.py": "cf8e3ff2793924e22562b25a1576709ff7fa7dde0120acef0049a8745fd02df4",
+    "benchmarks/scripts/carbon_continue_two.py": "725507da220d85e226611a90b4136397505e3d206d2094744ebc8284c01131ea",
+    "benchmarks/scripts/carbon_preflight.py": "f6dcb53c3030d8a49bf00b4e61408005905d89a962d485b6040f4b51b452bec7",
+    "benchmarks/scripts/carbon_overlay.py": "2af89a10e4b82351f68e343d237fee4dc005da7007e463a0734a9f999ce5b1da",
+    "benchmarks/scripts/carbon_reading.py": "f77b6671d038dcb074763c50efd8fcc7ea40c5f81d8665c942c41a58a1a17be9",
+    "benchmarks/providers/carbon_guard.py": "916fced46705413a509486ea43d4815e005da7e42e8932559b487506fd9cd4e5",
+    "tests/test_carbon_campaign.py": "9b60ed1e0c7d591c1bab6d317d8dce80efd67f0c5301cea2f52b70942394f239"
+  },
+  "post_run_custody_repair": {
+    "reused": "17focusedtests and24nativeoriginalaudits remain nativeproducer evidence; onlyofflineaudittool andnewstatecustodyhelper changed",
+    "new_tests": "4passed tests/test_carbon_state_custody.py",
+    "public_audit": "24/24 output/schema/usage/model/finish contracts pass onpublicprojections",
+    "projection_archive": "6parts43,592,824bytes/209members;190byte-identical+19state-onlyprojections;protectedoriginals0700/0600",
+    "code": {
+      "benchmarks/scripts/carbon_audit.py": "b8909ae3267a26989595a54edf2365b4941845991e1458d378f670c572219bab",
+      "benchmarks/scripts/carbon_state_custody.py": "d34d79f9ab66b2f0714cb4b9535f1f5e19cd8ba1b591773d41593af8877bde36",
+      "tests/test_carbon_state_custody.py": "b0909e3fa1c6d3c1a2e2d5d92e6c13d56777b0921a726a65b5fb588dbf00a011"
+    },
+    "no_provider_calls": true
+  }
+}

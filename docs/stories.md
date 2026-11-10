@@ -121,6 +121,7 @@ Grouped by primary `spec:N` category. Stories without category refs remain in an
 | 263 | Scout103 GPT-6.1 Terra source-fidelity evaluation | Medium | Done | 258 | [story-263](stories/story-263-scout103-terra-evaluation.md) |
 | 264 | Hy4 official release source fidelity evaluation | Medium | Done | — | [story-264](stories/story-264-hy4-source-fidelity-evaluation.md) |
 | 265 | Fable5.2 source fidelity capability panel | Medium | Done | — | [story-265](stories/story-265-fable52-source-fidelity.md) |
+| 267 | Carbon source fidelity capability panel | Medium | Done | — | [story-267](stories/story-267-carbon-source-fidelity.md) |
 | 022 | Pipeline instrumentation (timing & cost) | Unknown | Done | — | [story-022](stories/story-022-instrumentation.md) |
 
 ### spec:3 — Layout & Structure Understanding

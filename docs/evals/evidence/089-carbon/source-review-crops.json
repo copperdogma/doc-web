@@ -1,0 +1,586 @@
+{
+  "scope": "Independent source-first review of Image011/Image001, candidate and fresh control; no provider calls, prompts/goldens unchanged.",
+  "pixel_policy": "PIL RGB\u2192L grayscale<100; int(normalized*dimension), half-open xyxy crops; frozen essential ROIs plus full Image001 title/date ROI",
+  "cases": {
+    "Image011": {
+      "source": "docs/evals/evidence/089-carbon/Image011-source.png",
+      "source_sha256": "1d7b9b8a96f761bd607d100c93ff251079a829a329b259be1bf806fad6f7c10b",
+      "source_dimensions": [
+        1545,
+        2000
+      ],
+      "arms": {
+        "candidate": {
+          "raw_boxes": [
+            [
+              0.377,
+              0.074,
+              0.581,
+              0.231
+            ],
+            [
+              0.119,
+              0.686,
+              0.876,
+              0.896
+            ]
+          ],
+          "scorer_normalized_boxes": [
+            [
+              0.377,
+              0.074,
+              0.581,
+              0.231
+            ],
+            [
+              0.119,
+              0.686,
+              0.876,
+              0.896
+            ]
+          ],
+          "axis_swap_applied": false,
+          "uses_golden_axis_oracle": true,
+          "runtime_parity": false,
+          "pixel_boxes": [
+            [
+              582,
+              148,
+              897,
+              462
+            ],
+            [
+              183,
+              1372,
+              1353,
+              1792
+            ]
+          ],
+          "rois": [
+            {
+              "name": "upper_logo_lettering_date",
+              "roi_half_open_xyxy": [
+                560,
+                130,
+                920,
+                480
+              ],
+              "source_dark_pixels": 25077,
+              "excluded_dark_pixels": 0,
+              "excluded_extent_inclusive_xyxy": null,
+              "source_dark_extent_inclusive_xyxy": [
+                584,
+                151,
+                894,
+                461
+              ]
+            },
+            {
+              "name": "lower_seal",
+              "roi_half_open_xyxy": [
+                180,
+                1360,
+                605,
+                1800
+              ],
+              "source_dark_pixels": 119369,
+              "excluded_dark_pixels": 0,
+              "excluded_extent_inclusive_xyxy": null,
+              "source_dark_extent_inclusive_xyxy": [
+                187,
+                1374,
+                602,
+                1790
+              ]
+            },
+            {
+              "name": "top_signature_baseline_endpoint",
+              "roi_half_open_xyxy": [
+                1330,
+                1530,
+                1370,
+                1550
+              ],
+              "source_dark_pixels": 25,
+              "excluded_dark_pixels": 1,
+              "excluded_extent_inclusive_xyxy": [
+                1353,
+                1539,
+                1353,
+                1539
+              ],
+              "source_dark_extent_inclusive_xyxy": [
+                1330,
+                1538,
+                1353,
+                1539
+              ]
+            },
+            {
+              "name": "bottom_signature_baseline_endpoint",
+              "roi_half_open_xyxy": [
+                1330,
+                1690,
+                1370,
+                1710
+              ],
+              "source_dark_pixels": 25,
+              "excluded_dark_pixels": 0,
+              "excluded_extent_inclusive_xyxy": null,
+              "source_dark_extent_inclusive_xyxy": [
+                1330,
+                1697,
+                1351,
+                1698
+              ]
+            }
+          ],
+          "strict_verdict": "fail",
+          "maintained_scorer": {
+            "pass": true,
+            "score": 0.9931,
+            "reason": "box_count=1.00 (2/2) | iou_mean=0.990 | iou_min=0.985 | coverage=0.997 | total=0.993 | matches=[pred[1]<->gold[1] IoU=0.994, pred[0]<->gold[0] IoU=0.985]"
+          },
+          "derivative_crops": [
+            "docs/evals/evidence/089-carbon/Image011-candidate-independent-review-crop-0.png",
+            "docs/evals/evidence/089-carbon/Image011-candidate-independent-review-crop-1.png"
+          ],
+          "visual_review": "Opened original-source-derived crops. Full upper logo/lettering/date, seal, signatures and titles visibly present. Strict fail: upper baseline final dark pixel (1353,1539) excluded; no frozen-ROI seal/date loss.",
+          "excluded_dark_pixels_in_declared_rois": 1,
+          "round_coordinate_sensitivity": {
+            "policy": "round(normalized*dimension), PIL half-open xyxy",
+            "pixel_boxes": [
+              [
+                582,
+                148,
+                898,
+                462
+              ],
+              [
+                184,
+                1372,
+                1353,
+                1792
+              ]
+            ],
+            "roi_loss_counts": [
+              {
+                "name": "upper_logo_lettering_date",
+                "excluded_dark_pixels": 0,
+                "excluded_extent_inclusive_xyxy": null
+              },
+              {
+                "name": "lower_seal",
+                "excluded_dark_pixels": 0,
+                "excluded_extent_inclusive_xyxy": null
+              },
+              {
+                "name": "top_signature_baseline_endpoint",
+                "excluded_dark_pixels": 1,
+                "excluded_extent_inclusive_xyxy": [
+                  1353,
+                  1539,
+                  1353,
+                  1539
+                ]
+              },
+              {
+                "name": "bottom_signature_baseline_endpoint",
+                "excluded_dark_pixels": 0,
+                "excluded_extent_inclusive_xyxy": null
+              }
+            ],
+            "excluded_dark_pixels_in_declared_rois": 1,
+            "strict_verdict": "fail"
+          }
+        },
+        "control": {
+          "raw_boxes": [
+            [
+              0.075,
+              0.375,
+              0.235,
+              0.585
+            ],
+            [
+              0.685,
+              0.115,
+              0.895,
+              0.875
+            ]
+          ],
+          "scorer_normalized_boxes": [
+            [
+              0.375,
+              0.075,
+              0.585,
+              0.235
+            ],
+            [
+              0.115,
+              0.685,
+              0.875,
+              0.895
+            ]
+          ],
+          "axis_swap_applied": true,
+          "uses_golden_axis_oracle": true,
+          "runtime_parity": false,
+          "pixel_boxes": [
+            [
+              579,
+              150,
+              903,
+              470
+            ],
+            [
+              177,
+              1370,
+              1351,
+              1790
+            ]
+          ],
+          "rois": [
+            {
+              "name": "upper_logo_lettering_date",
+              "roi_half_open_xyxy": [
+                560,
+                130,
+                920,
+                480
+              ],
+              "source_dark_pixels": 25077,
+              "excluded_dark_pixels": 0,
+              "excluded_extent_inclusive_xyxy": null,
+              "source_dark_extent_inclusive_xyxy": [
+                584,
+                151,
+                894,
+                461
+              ]
+            },
+            {
+              "name": "lower_seal",
+              "roi_half_open_xyxy": [
+                180,
+                1360,
+                605,
+                1800
+              ],
+              "source_dark_pixels": 119369,
+              "excluded_dark_pixels": 3,
+              "excluded_extent_inclusive_xyxy": [
+                385,
+                1790,
+                387,
+                1790
+              ],
+              "source_dark_extent_inclusive_xyxy": [
+                187,
+                1374,
+                602,
+                1790
+              ]
+            },
+            {
+              "name": "top_signature_baseline_endpoint",
+              "roi_half_open_xyxy": [
+                1330,
+                1530,
+                1370,
+                1550
+              ],
+              "source_dark_pixels": 25,
+              "excluded_dark_pixels": 3,
+              "excluded_extent_inclusive_xyxy": [
+                1351,
+                1539,
+                1353,
+                1539
+              ],
+              "source_dark_extent_inclusive_xyxy": [
+                1330,
+                1538,
+                1353,
+                1539
+              ]
+            },
+            {
+              "name": "bottom_signature_baseline_endpoint",
+              "roi_half_open_xyxy": [
+                1330,
+                1690,
+                1370,
+                1710
+              ],
+              "source_dark_pixels": 25,
+              "excluded_dark_pixels": 1,
+              "excluded_extent_inclusive_xyxy": [
+                1351,
+                1697,
+                1351,
+                1697
+              ],
+              "source_dark_extent_inclusive_xyxy": [
+                1330,
+                1697,
+                1351,
+                1698
+              ]
+            }
+          ],
+          "strict_verdict": "fail",
+          "maintained_scorer": {
+            "pass": true,
+            "score": 0.9752,
+            "reason": "box_count=1.00 (2/2) | iou_mean=0.960 | iou_min=0.941 | coverage=0.995 | total=0.975 | matches=[pred[1]<->gold[1] IoU=0.979, pred[0]<->gold[0] IoU=0.941]"
+          },
+          "derivative_crops": [
+            "docs/evals/evidence/089-carbon/Image011-control-independent-review-crop-0.png",
+            "docs/evals/evidence/089-carbon/Image011-control-independent-review-crop-1.png"
+          ],
+          "visual_review": "Opened original-source-derived crops. Upper logo/lettering/date intact. Lower group broadly present, but strict fail: 3 dark seal-rim pixels at y1790, 3 upper-baseline endpoint pixels at y1539, and 1 lower-baseline endpoint pixel at y1697 excluded. These are small edge losses, not a missing broad seal segment.",
+          "excluded_dark_pixels_in_declared_rois": 7,
+          "round_coordinate_sensitivity": {
+            "policy": "round(normalized*dimension), PIL half-open xyxy",
+            "pixel_boxes": [
+              [
+                579,
+                150,
+                904,
+                470
+              ],
+              [
+                178,
+                1370,
+                1352,
+                1790
+              ]
+            ],
+            "roi_loss_counts": [
+              {
+                "name": "upper_logo_lettering_date",
+                "excluded_dark_pixels": 0,
+                "excluded_extent_inclusive_xyxy": null
+              },
+              {
+                "name": "lower_seal",
+                "excluded_dark_pixels": 3,
+                "excluded_extent_inclusive_xyxy": [
+                  385,
+                  1790,
+                  387,
+                  1790
+                ]
+              },
+              {
+                "name": "top_signature_baseline_endpoint",
+                "excluded_dark_pixels": 2,
+                "excluded_extent_inclusive_xyxy": [
+                  1352,
+                  1539,
+                  1353,
+                  1539
+                ]
+              },
+              {
+                "name": "bottom_signature_baseline_endpoint",
+                "excluded_dark_pixels": 0,
+                "excluded_extent_inclusive_xyxy": null
+              }
+            ],
+            "excluded_dark_pixels_in_declared_rois": 5,
+            "strict_verdict": "fail"
+          }
+        }
+      }
+    },
+    "Image001": {
+      "source": "docs/evals/evidence/089-carbon/Image001-source.png",
+      "source_sha256": "5d6240b0db4a07adbd9f9959ca88501180ed076a568f91ea657b97e36c7aa28f",
+      "source_dimensions": [
+        1545,
+        2000
+      ],
+      "arms": {
+        "candidate": {
+          "raw_boxes": [
+            [
+              0.191,
+              0.267,
+              0.853,
+              0.384
+            ]
+          ],
+          "scorer_normalized_boxes": [
+            [
+              0.191,
+              0.267,
+              0.853,
+              0.384
+            ]
+          ],
+          "axis_swap_applied": false,
+          "uses_golden_axis_oracle": true,
+          "runtime_parity": false,
+          "pixel_boxes": [
+            [
+              295,
+              534,
+              1317,
+              768
+            ]
+          ],
+          "rois": [
+            {
+              "name": "full_stylized_title_and_date",
+              "roi_half_open_xyxy": [
+                260,
+                525,
+                1370,
+                780
+              ],
+              "source_dark_pixels": 62723,
+              "excluded_dark_pixels": 0,
+              "excluded_extent_inclusive_xyxy": null,
+              "source_dark_extent_inclusive_xyxy": [
+                298,
+                541,
+                1315,
+                762
+              ]
+            }
+          ],
+          "strict_verdict": "pass",
+          "maintained_scorer": {
+            "pass": true,
+            "score": 0.9805,
+            "reason": "box_count=1.00 (1/1) | iou_mean=0.961 | iou_min=0.961 | coverage=0.999 | total=0.980 | matches=[pred[0]<->gold[0] IoU=0.961]"
+          },
+          "derivative_crops": [
+            "docs/evals/evidence/089-carbon/Image001-candidate-independent-review-crop-0.png"
+          ],
+          "visual_review": "Opened original-source-derived crop. Complete stylized ONWARD / TO THE UNKNOWN / 1887 - 1987 retained. Full title/date ROI contains 62723 dark pixels with zero excluded; all glyphs and date visibly present. Strict pass on this declared source-preservation contract.",
+          "excluded_dark_pixels_in_declared_rois": 0,
+          "round_coordinate_sensitivity": {
+            "policy": "round(normalized*dimension), PIL half-open xyxy",
+            "pixel_boxes": [
+              [
+                295,
+                534,
+                1318,
+                768
+              ]
+            ],
+            "roi_loss_counts": [
+              {
+                "name": "full_stylized_title_and_date",
+                "excluded_dark_pixels": 0,
+                "excluded_extent_inclusive_xyxy": null
+              }
+            ],
+            "excluded_dark_pixels_in_declared_rois": 0,
+            "strict_verdict": "pass"
+          }
+        },
+        "control": {
+          "raw_boxes": [
+            [
+              0.268,
+              0.192,
+              0.386,
+              0.85
+            ]
+          ],
+          "scorer_normalized_boxes": [
+            [
+              0.192,
+              0.268,
+              0.85,
+              0.386
+            ]
+          ],
+          "axis_swap_applied": true,
+          "uses_golden_axis_oracle": true,
+          "runtime_parity": false,
+          "pixel_boxes": [
+            [
+              296,
+              536,
+              1313,
+              772
+            ]
+          ],
+          "rois": [
+            {
+              "name": "full_stylized_title_and_date",
+              "roi_half_open_xyxy": [
+                260,
+                525,
+                1370,
+                780
+              ],
+              "source_dark_pixels": 62723,
+              "excluded_dark_pixels": 18,
+              "excluded_extent_inclusive_xyxy": [
+                1313,
+                639,
+                1315,
+                647
+              ],
+              "source_dark_extent_inclusive_xyxy": [
+                298,
+                541,
+                1315,
+                762
+              ]
+            }
+          ],
+          "strict_verdict": "fail",
+          "maintained_scorer": {
+            "pass": true,
+            "score": 0.9735,
+            "reason": "box_count=1.00 (1/1) | iou_mean=0.950 | iou_min=0.950 | coverage=0.995 | total=0.973 | matches=[pred[0]<->gold[0] IoU=0.950]"
+          },
+          "derivative_crops": [
+            "docs/evals/evidence/089-carbon/Image001-control-independent-review-crop-0.png"
+          ],
+          "visual_review": "Opened original-source-derived crop. Date is retained, but the final N in UNKNOWN touches the right crop edge. Strict fail: 18 dark pixels of the final N rightmost lower serif/stroke are excluded at x1313..1315,y639..647. This is title-letter loss, not date loss.",
+          "excluded_dark_pixels_in_declared_rois": 18,
+          "round_coordinate_sensitivity": {
+            "policy": "round(normalized*dimension), PIL half-open xyxy",
+            "pixel_boxes": [
+              [
+                297,
+                536,
+                1313,
+                772
+              ]
+            ],
+            "roi_loss_counts": [
+              {
+                "name": "full_stylized_title_and_date",
+                "excluded_dark_pixels": 18,
+                "excluded_extent_inclusive_xyxy": [
+                  1313,
+                  639,
+                  1315,
+                  647
+                ]
+              }
+            ],
+            "excluded_dark_pixels_in_declared_rois": 18,
+            "strict_verdict": "fail"
+          },
+          "final_N_boundary_detail": "docs/evals/evidence/089-carbon/Image001-final-N-control-boundary.png"
+        }
+      }
+    }
+  },
+  "summary": {
+    "candidate_strict_preservation": "1/2 (Image001 pass; Image011 fail)",
+    "control_strict_preservation": "0/2",
+    "limits": "Maintained scorer uses golden-assisted axis normalization; control boxes axis-swapped, candidate boxes not swapped. These reviews establish bounded original-source preservation under frozen ROIs, grayscale<100, int/half-open crop policy. They do not qualify production coordinate handling or broader detector corpus. Raw maintained scores remain separate and unchanged."
+  },
+  "coordinate_policy_note": "Main pixel_boxes and loss counts use int/floor, as in prior frozen source reviews. Also computed round/half-open sensitivity to match supplied preview boxes; all four verdicts are invariant. Image011 control total loss is7 under floor versus5 under round; report policy with counts."
+}

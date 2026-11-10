@@ -46,7 +46,7 @@ evals:
     pipeline_stage: extract
     runner: custom
     command: "PYTHONPATH=. python benchmarks/scripts/run_literal_table_fidelity.py --manifest output/story244-eval/development.json --out output/story244-eval/fresh --variant literal"
-    story_refs: ["245", "253", "254", "255", "257", "258", "263", "264", "265"]
+    story_refs: ["245", "253", "254", "255", "257", "258", "263", "264", "265", "267"]
     category_refs: ["spec:2", "spec:3", "spec:6"]
     spec_refs: ["spec:2.1", "spec:2.2", "spec:3.1", "spec:6"]
     compromise_refs: ["C1", "C3", "C6"]
@@ -117,6 +117,14 @@ evals:
           Fullownerrecord attempts/085-gpt61-terra-source-fidelity.md; inclusiveUSD.27373875/12 unknown0.'
 
     attempts:
+      - id: "089"
+        date: 2026-11-10
+        status: completed
+        bounded_quality_only: true
+        git_sha: 1c3f3e31158ec753e057e79839f438d021500214+attempt089-uncommitted
+        approach: "Scout109 native Carbon HIGH32768 original source-preservation panel, exact current fresh controls"
+        note: "Carbon/freshAstra tie:36positive clearcells exact plus6clear ambiguity-case cells;both genuineambiguity cells held. Original7/8 ambiguitydiagnostic retained. CarbonUSD.495076/198.028smean vsAstra.2316525/7.662s. RetainAstra; no effort comparison. Attempt089/Story267; nativeGoogle Carbon HIGH32768 exactidentity/terminal/originalschema qualified,12candidate+12freshcontrol responses. Closed24POSTs USD1.68741625/10 unknown0,paidjudges0,recoveryPOSTs0; local admission faults recovered beforePOST. Initialserial then concurrency2; observedHTTP times not isolatedserial superiority. No defaults/commit/push. docs/evals/evidence/089-carbon/summary.json."
+
       - id: "087"
         date: 2026-11-09
         status: completed
@@ -352,7 +360,7 @@ evals:
     config: benchmarks/tasks/image-crop-extraction.yaml
     scorer: benchmarks/scorers/image_crop_scorer.py
     golden: benchmarks/golden/
-    story_refs: ["133", "183", "207", "226", "232", "235", "236", "237", "238", "239", "249", "257", "258", "263", "264", "265"]
+    story_refs: ["133", "183", "207", "226", "232", "235", "236", "237", "238", "239", "249", "257", "258", "263", "264", "265", "267"]
     category_refs: ["spec:4", "spec:8"]
     compromise_refs: ["C4"]
     spec_compromise: C4
@@ -1289,6 +1297,14 @@ evals:
         note: "Image011 diagnostic .9635 versus freshGemini .9854/13542ms/USD.0099485. Source2 integral date rows clipped; reject despite tolerant IoU pass. Remaining12 unmeasured; both-arm golden-assisted axis oracle, no runtime coordinate qualification. Attempt086/Story264; high32768 OpenRouter Tencent FP4 official Nov4 release, exact tencent/hy4. Closed22POSTs USD.597904856/5 unknown0; no defaults/commit/push."
 
     attempts:
+      - id: "089"
+        date: 2026-11-10
+        status: completed
+        bounded_quality_only: true
+        git_sha: 1c3f3e31158ec753e057e79839f438d021500214+attempt089-uncommitted
+        approach: "Scout109 native Carbon HIGH32768 original source-preservation panel, exact current fresh controls"
+        note: "Originalscores Carbon.9931/.9805 vsfreshGemini.9752/.9735; strictsource1/2vs0/2. CarbonImage011 loses1signatureendpointpixel,Image001title/date complete; control loses5or7Image011pixels under declaredround/floorpolicy and18finalNpixels onImage001. Golden-assisted axisoracle remainsruntime-unqualified. Retain detector/manualholds. Attempt089/Story267; nativeGoogle Carbon HIGH32768 exactidentity/terminal/originalschema qualified,12candidate+12freshcontrol responses. Closed24POSTs USD1.68741625/10 unknown0,paidjudges0,recoveryPOSTs0; local admission faults recovered beforePOST. Initialserial then concurrency2; observedHTTP times not isolatedserial superiority. No defaults/commit/push. docs/evals/evidence/089-carbon/summary.json."
+
       - id: "087"
         date: 2026-11-09
         status: completed
@@ -2669,7 +2685,7 @@ evals:
     config: benchmarks/tasks/crop-page-level-deletion-gate.yaml
     scorer: benchmarks/scorers/crop_validation_scorer.py
     golden: benchmarks/golden/crop-page-level-deletion-gate.json
-    story_refs: ["209", "232", "235", "237", "238", "239", "240", "249", "257", "258", "259", "264", "265", "266"]
+    story_refs: ["209", "232", "235", "237", "238", "239", "240", "249", "257", "258", "259", "264", "265", "266", "267"]
     category_refs: ["spec:4", "spec:8"]
     compromise_refs: ["C5"]
     spec_compromise: C5
@@ -3522,6 +3538,14 @@ evals:
         metrics: {adoption_grade_candidate_cases: 0, accounting_quarantined_cases: 2, diagnostic_correct: 1, diagnostic_false_safe: 1, fresh_control_correct: 2, fresh_control_false_safe: 0, remaining_unmeasured: 20}
         note: "ACCOUNTINGAUDIT: nativecompletion616/reasoning711 impossible; clippedseal323/311leaves12visible for231charJSON. Bothsubjectsenvelopesquarantined, capabilitynotmeasured/adoptiondefer. Savedclippedseal false-safe is diagnostic only; qualifiedGPT5.5control2/2correct. No newPOST. See evidence/079-scout097/accounting-audit/report.md. Fullownerrecord attempts/079-scout097-deepseek1017-source-fidelity.md; closedinclusiveUSD.231343868/15 unknown0, no runtime/defaults."
     attempts:
+      - id: "089"
+        date: 2026-11-10
+        status: completed
+        bounded_quality_only: true
+        git_sha: 1c3f3e31158ec753e057e79839f438d021500214+attempt089-uncommitted
+        approach: "Scout109 native Carbon HIGH32768 original source-preservation panel, exact current fresh controls"
+        note: "Selectedsix Carbon6/6 vsfreshGPT5.5 4/6,zero false-safe each. GPTfalse rejects001/004. Bothflagfields correct; Carbonreasons source-supported. Boundedlead versusGPT5.5 only; currentSol full22/caller from088 notmatched; no autonomouspublication/C5deletion. Attempt089/Story267; nativeGoogle Carbon HIGH32768 exactidentity/terminal/originalschema qualified,12candidate+12freshcontrol responses. Closed24POSTs USD1.68741625/10 unknown0,paidjudges0,recoveryPOSTs0; local admission faults recovered beforePOST. Initialserial then concurrency2; observedHTTP times not isolatedserial superiority. No defaults/commit/push. docs/evals/evidence/089-carbon/summary.json."
+
       - id: "088"
         date: 2026-11-09
         status: completed
@@ -4158,7 +4182,7 @@ evals:
     command: "python benchmarks/scripts/run_handwritten_notes_eval.py --image-recipe configs/recipes/recipe-images-ocr-html-handwritten-notes-gemini-rescue.yaml --pdf-recipe configs/recipes/recipe-pdf-ocr-html-handwritten-notes-gemini-rescue.yaml --image-case-id image-handwritten-rescue --pdf-case-id pdf-handwritten-rescue --instrument --output benchmarks/results/handwritten-notes-story189-real-expanded.json"
     scorer: benchmarks/scorers/handwritten_notes_transcription.py
     golden: benchmarks/golden/handwritten-notes/corpus.json
-    story_refs: ["179", "182", "185", "186", "189", "191", "192", "208", "230", "238", "239", "249", "257", "258", "263", "264", "265"]
+    story_refs: ["179", "182", "185", "186", "189", "191", "192", "208", "230", "238", "239", "249", "257", "258", "263", "264", "265", "267"]
     category_refs: ["spec:1", "spec:2", "spec:8"]
     compromise_refs: []
 
@@ -4725,6 +4749,14 @@ evals:
           inclusiveUSD.27373875/12 unknown0.
 
     attempts:
+      - id: "089"
+        date: 2026-11-10
+        status: completed
+        bounded_quality_only: true
+        git_sha: 1c3f3e31158ec753e057e79839f438d021500214+attempt089-uncommitted
+        approach: "Scout109 native Carbon HIGH32768 original source-preservation panel, exact current fresh controls"
+        note: "ActualBarney driver Carbon.987360 vs exactGemini3.8.983830, bothbelow.99; bothomit it afterleast expected; Carbonomitsour, controlsubstitutesfor. No broadinventedpassage; opticallyambiguousgoldentokens retained. CarbonUSD.32646/396.192s vsGemini.01619175/31.710s. RetainOCR. Attempt089/Story267; nativeGoogle Carbon HIGH32768 exactidentity/terminal/originalschema qualified,12candidate+12freshcontrol responses. Closed24POSTs USD1.68741625/10 unknown0,paidjudges0,recoveryPOSTs0; local admission faults recovered beforePOST. Initialserial then concurrency2; observedHTTP times not isolatedserial superiority. No defaults/commit/push. docs/evals/evidence/089-carbon/summary.json."
+
       - id: "087"
         date: 2026-11-09
         status: completed

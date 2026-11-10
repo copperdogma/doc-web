@@ -1,0 +1,42 @@
+[
+  {
+    "key": "page-001-000",
+    "arm": "candidate",
+    "raw": "{\"verdict\":\"pass\",\"has_page_text\":false,\"excessive_blank\":false,\"reason\":\"The crop cleanly isolates the cover illustration while excluding the surrounding title, bottom cover text, and decorative border, with only minor bottom-edge clipping on the foreground grass to avoid the adjacent text.\"}",
+    "parsed": {
+      "verdict": "pass",
+      "has_page_text": false,
+      "excessive_blank": false,
+      "reason": "The crop cleanly isolates the cover illustration while excluding the surrounding title, bottom cover text, and decorative border, with only minor bottom-edge clipping on the foreground grass to avoid the adjacent text."
+    },
+    "verdict": "pass",
+    "golden": "pass",
+    "correct": true,
+    "false_safe": false,
+    "cost_usd": 0.03652,
+    "latency_ms": 45966,
+    "served": "gemini-4-carbon",
+    "native_contract": true,
+    "rendered_payload_parity": true
+  },
+  {
+    "key": "page-001-000",
+    "arm": "control",
+    "raw": "{\"verdict\":\"fail\",\"has_page_text\":false,\"excessive_blank\":false,\"reason\":\"The crop is only a partial section of the book-cover illustration; the full page shows a larger coherent visual including the title, border, and lower landscape/cart scene outside the crop.\"}",
+    "parsed": {
+      "verdict": "fail",
+      "has_page_text": false,
+      "excessive_blank": false,
+      "reason": "The crop is only a partial section of the book-cover illustration; the full page shows a larger coherent visual including the title, border, and lower landscape/cart scene outside the crop."
+    },
+    "verdict": "fail",
+    "golden": "pass",
+    "correct": false,
+    "false_safe": false,
+    "cost_usd": 0.083,
+    "latency_ms": 5218,
+    "served": "gpt-5.5-2026-04-23",
+    "native_contract": true,
+    "rendered_payload_parity": true
+  }
+]

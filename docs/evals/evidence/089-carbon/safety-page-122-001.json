@@ -1,0 +1,42 @@
+[
+  {
+    "key": "page-122-001",
+    "arm": "candidate",
+    "raw": "{\"verdict\": \"fail\", \"has_page_text\": false, \"excessive_blank\": false, \"reason\": \"The crop combines two separately presented oval portraits from the source page that have distinct boundaries and independent captions.\"}",
+    "parsed": {
+      "verdict": "fail",
+      "has_page_text": false,
+      "excessive_blank": false,
+      "reason": "The crop combines two separately presented oval portraits from the source page that have distinct boundaries and independent captions."
+    },
+    "verdict": "fail",
+    "golden": "fail",
+    "correct": true,
+    "false_safe": false,
+    "cost_usd": 0.01596,
+    "latency_ms": 35470,
+    "served": "gemini-4-carbon",
+    "native_contract": true,
+    "rendered_payload_parity": true
+  },
+  {
+    "key": "page-122-001",
+    "arm": "control",
+    "raw": "{\"verdict\":\"fail\",\"has_page_text\":false,\"excessive_blank\":false,\"reason\":\"Crop includes part of the neighboring Sophie L'Heureux portrait on the right; the full page shows it is a separate visual element from the intended Moise L'Heureux and brother Edward portrait.\"}",
+    "parsed": {
+      "verdict": "fail",
+      "has_page_text": false,
+      "excessive_blank": false,
+      "reason": "Crop includes part of the neighboring Sophie L'Heureux portrait on the right; the full page shows it is a separate visual element from the intended Moise L'Heureux and brother Edward portrait."
+    },
+    "verdict": "fail",
+    "golden": "fail",
+    "correct": true,
+    "false_safe": false,
+    "cost_usd": 0.083855,
+    "latency_ms": 4159,
+    "served": "gpt-5.5-2026-04-23",
+    "native_contract": true,
+    "rendered_payload_parity": true
+  }
+]

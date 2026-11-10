@@ -1,0 +1,161 @@
+{
+  "source": "benchmarks/input/source-pages-b64/Image011.b64.txt",
+  "source_decoded_sha256": "ae3524cb58ac940c912c7885d65ec9d21221415d97d1ea21d97be9615161a860",
+  "source_dimensions": [
+    1545,
+    2000
+  ],
+  "candidate_result": "docs/evals/evidence/089-carbon/crop-screen-Image011-candidate.json",
+  "candidate_raw": "{\"images\": [{\"description\": \"Circular emblem logo for Celebrate Saskatchewan 1905-1980 featuring a stylized sheaf design.\", \"bbox\": [0.377, 0.074, 0.581, 0.231]}, {\"description\": \"Official serrated circular seal of the Saskatchewan Department of Agriculture alongside the signatures and titles of Hon. Gordon MacMurchy and Hon. Ed Tchorzewski.\", \"bbox\": [0.119, 0.686, 0.876, 0.896]}]}",
+  "raw_boxes": [
+    [
+      0.377,
+      0.074,
+      0.581,
+      0.231
+    ],
+    [
+      0.119,
+      0.686,
+      0.876,
+      0.896
+    ]
+  ],
+  "scorer_normalized_boxes": [
+    [
+      0.377,
+      0.074,
+      0.581,
+      0.231
+    ],
+    [
+      0.119,
+      0.686,
+      0.876,
+      0.896
+    ]
+  ],
+  "uses_golden_axis_oracle": true,
+  "axis_swap_applied": false,
+  "runtime_parity": false,
+  "pixel_coordinate_policy": "int(normalized*dimension), PIL half-open xyxy; direct original-source crops, no bbox expansion",
+  "pixel_boxes": [
+    [
+      582,
+      148,
+      897,
+      462
+    ],
+    [
+      183,
+      1372,
+      1353,
+      1792
+    ]
+  ],
+  "rois": [
+    {
+      "name": "upper_logo_lettering_date",
+      "roi_half_open_xyxy": [
+        560,
+        130,
+        920,
+        480
+      ],
+      "threshold": "PIL RGB\u2192L grayscale<100",
+      "source_dark_pixels": 25077,
+      "excluded_dark_pixels": 0,
+      "excluded_extent_inclusive_xyxy": null,
+      "source_dark_extent_inclusive_xyxy": [
+        584,
+        151,
+        894,
+        461
+      ]
+    },
+    {
+      "name": "lower_seal",
+      "roi_half_open_xyxy": [
+        180,
+        1360,
+        605,
+        1800
+      ],
+      "threshold": "PIL RGB\u2192L grayscale<100",
+      "source_dark_pixels": 119369,
+      "excluded_dark_pixels": 0,
+      "excluded_extent_inclusive_xyxy": null,
+      "source_dark_extent_inclusive_xyxy": [
+        187,
+        1374,
+        602,
+        1790
+      ]
+    },
+    {
+      "name": "top_signature_baseline_endpoint",
+      "roi_half_open_xyxy": [
+        1330,
+        1530,
+        1370,
+        1550
+      ],
+      "threshold": "PIL RGB\u2192L grayscale<100",
+      "source_dark_pixels": 25,
+      "excluded_dark_pixels": 1,
+      "excluded_extent_inclusive_xyxy": [
+        1353,
+        1539,
+        1353,
+        1539
+      ],
+      "source_dark_extent_inclusive_xyxy": [
+        1330,
+        1538,
+        1353,
+        1539
+      ]
+    },
+    {
+      "name": "bottom_signature_baseline_endpoint",
+      "roi_half_open_xyxy": [
+        1330,
+        1690,
+        1370,
+        1710
+      ],
+      "threshold": "PIL RGB\u2192L grayscale<100",
+      "source_dark_pixels": 25,
+      "excluded_dark_pixels": 0,
+      "excluded_extent_inclusive_xyxy": null,
+      "source_dark_extent_inclusive_xyxy": [
+        1330,
+        1697,
+        1351,
+        1698
+      ]
+    }
+  ],
+  "visual_inspection": "Opened both derived original-source crops at native pixels. Upper emblem lettering and 1905-1980 date are visibly present; lower serrated seal, both signatures and all titles are visibly present. Frozen dark-pixel ROIs show no upper-logo/date loss, no seal loss and no lower-baseline-end loss. Upper signature baseline reaches the right crop edge and loses its final dark source pixel at (1353,1539). Broad semantic visual preservation is strong, but strict full integral-source preservation fails by that one endpoint pixel.",
+  "source_preservation_verdict": "fail",
+  "maintained_scorer": {
+    "pass": true,
+    "score": 0.9931,
+    "reason": "box_count=1.00 (2/2) | iou_mean=0.990 | iou_min=0.985 | coverage=0.997 | total=0.993 | matches=[pred[1]<->gold[1] IoU=0.994, pred[0]<->gold[0] IoU=0.985]"
+  },
+  "strict_failure": {
+    "kind": "integral_signature_baseline_endpoint_clipped",
+    "excluded_dark_pixels": 1,
+    "source_pixel": [
+      1353,
+      1539
+    ],
+    "crop_right_exclusive": 1353
+  },
+  "limits": "Source adjudication on original b64-decoded source and declared PIL/int crop policy. Scorer 0.9931 pass is reported separately and does not rescue source loss. Maintained golden-assisted axis oracle was invoked; no axes were swapped for this candidate. No production-caller coordinate qualification, prompt changes or semantic rescue.",
+  "derivative_artifacts": [
+    "docs/evals/evidence/089-carbon/Image011-candidate-source-crop-0.png",
+    "docs/evals/evidence/089-carbon/Image011-candidate-source-crop-1.png",
+    "docs/evals/evidence/089-carbon/Image011-candidate-source-overlay.jpg"
+  ]
+}

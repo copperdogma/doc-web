@@ -1,0 +1,42 @@
+[
+  {
+    "key": "page-004-000",
+    "arm": "candidate",
+    "raw": "{\"verdict\":\"pass\",\"has_page_text\":false,\"excessive_blank\":false,\"reason\":\"The crop cleanly and tightly isolates the complete covered wagon line-art illustration while excluding all surrounding page text and margins.\"}",
+    "parsed": {
+      "verdict": "pass",
+      "has_page_text": false,
+      "excessive_blank": false,
+      "reason": "The crop cleanly and tightly isolates the complete covered wagon line-art illustration while excluding all surrounding page text and margins."
+    },
+    "verdict": "pass",
+    "golden": "pass",
+    "correct": true,
+    "false_safe": false,
+    "cost_usd": 0.014212,
+    "latency_ms": 13809,
+    "served": "gemini-4-carbon",
+    "native_contract": true,
+    "rendered_payload_parity": true
+  },
+  {
+    "key": "page-004-000",
+    "arm": "control",
+    "raw": "{\"verdict\":\"fail\",\"has_page_text\":false,\"excessive_blank\":false,\"reason\":\"The crop contains only a zoomed-in portion of the wagon illustration and omits large, unmistakable parts of the same visual, including much of the horses and right side, so the intended illustration is incomplete.\"}",
+    "parsed": {
+      "verdict": "fail",
+      "has_page_text": false,
+      "excessive_blank": false,
+      "reason": "The crop contains only a zoomed-in portion of the wagon illustration and omits large, unmistakable parts of the same visual, including much of the horses and right side, so the intended illustration is incomplete."
+    },
+    "verdict": "fail",
+    "golden": "pass",
+    "correct": false,
+    "false_safe": false,
+    "cost_usd": 0.058195,
+    "latency_ms": 2407,
+    "served": "gpt-5.5-2026-04-23",
+    "native_contract": true,
+    "rendered_payload_parity": true
+  }
+]

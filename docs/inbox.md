@@ -17,6 +17,16 @@ This file captures ideas, insights, and potential architectural improvements dis
 
 ## Processed
 
+- 2026-11-10 — Completed Conductor Scout109 item3 as Story267/Attempt089.
+  Native Carbon HIGH32768 has a bounded six-case safety lead over fresh GPT5.5
+  (6/6 versus4/6, zero false-safe each), ties Astra on literal-table fidelity,
+  preserves one of two complete lettering crops versus Gemini's zero, and
+  remains below the Barney handwriting gate (.987360 versus exact Gemini3.8
+  .983830; required.99). Retain current runtime roles and publication/manual
+  review holds; current Sol/full22/actual-caller qualification is not superseded.
+  All24 fresh responses and source findings are preserved with a closed
+  USD1.68741625/10 ledger. Proof: `docs/evals/attempts/089-carbon-source-fidelity.md`.
+
 - 2026-07-20 — Closed the older Conductor Scout 028 Grok item with a newer
   Grok 4.5 direct-xAI evaluation. The model was callable with image input and
   valid Responses output, but the maintained detector scored only `0.8026` and

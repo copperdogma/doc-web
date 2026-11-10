@@ -1,0 +1,7 @@
+{
+  "source": "three authored synthetic confirmation-v2 originalPNGs and frozen glyph/ambiguity proofs",
+  "positive_cases": "imagepositive23cells andnativepositive13cells; botharms36/36exact source glyph/case/punctuation/spans/ownership,noholds",
+  "ambiguity": "botharms6unambiguouscells exact; two identicalpixel I/l cells remainexplicit holds; originalscorer7/8diagnostictext retained,notforcedacceptedcorrection",
+  "candidate_and_control": "qualitytie, no prompt/golden/scorer change",
+  "taxonomy": "ambiguous for two optically identical isolated glyphs; no model failure from retaining holds"
+}

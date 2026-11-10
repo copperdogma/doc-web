@@ -1,0 +1,42 @@
+[
+  {
+    "key": "page-012-001",
+    "arm": "candidate",
+    "raw": "{\"verdict\":\"fail\",\"has_page_text\":false,\"excessive_blank\":false,\"reason\":\"The crop is incomplete, cutting off approximately the bottom fifth of the circular seal, including its lower outer text ring and serrated border that are clearly intact on the full page.\"}",
+    "parsed": {
+      "verdict": "fail",
+      "has_page_text": false,
+      "excessive_blank": false,
+      "reason": "The crop is incomplete, cutting off approximately the bottom fifth of the circular seal, including its lower outer text ring and serrated border that are clearly intact on the full page."
+    },
+    "verdict": "fail",
+    "golden": "fail",
+    "correct": true,
+    "false_safe": false,
+    "cost_usd": 0.031076,
+    "latency_ms": 35062,
+    "served": "gemini-4-carbon",
+    "native_contract": true,
+    "rendered_payload_parity": true
+  },
+  {
+    "key": "page-012-001",
+    "arm": "control",
+    "raw": "{\"verdict\":\"fail\",\"has_page_text\":false,\"excessive_blank\":false,\"reason\":\"The crop is an incomplete close-up of the seal/rosette; the full page shows the entire circular seal, while the crop cuts off a substantial lower portion and surrounding boundary of the same visual element.\"}",
+    "parsed": {
+      "verdict": "fail",
+      "has_page_text": false,
+      "excessive_blank": false,
+      "reason": "The crop is an incomplete close-up of the seal/rosette; the full page shows the entire circular seal, while the crop cuts off a substantial lower portion and surrounding boundary of the same visual element."
+    },
+    "verdict": "fail",
+    "golden": "fail",
+    "correct": true,
+    "false_safe": false,
+    "cost_usd": 0.017101,
+    "latency_ms": 2399,
+    "served": "gpt-5.5-2026-04-23",
+    "native_contract": true,
+    "rendered_payload_parity": true
+  }
+]

@@ -1,0 +1,264 @@
+{
+  "authority": "Scout109 selected item3 USD10 inclusive; allsix YES",
+  "base": "1c3f3e31158ec753e057e79839f438d021500214",
+  "candidate": "native gemini-4-carbon HIGH32768 GenerateContent",
+  "safety": [
+    "page-001-000",
+    "page-004-000",
+    "page-009-000",
+    "page-012-000",
+    "page-122-001",
+    "page-012-001"
+  ],
+  "matrix": [
+    {
+      "stage": "safety-page-001-000-candidate",
+      "model": "gemini-4-carbon",
+      "request_path": "docs/evals/evidence/089-carbon/rendered/safety-page-001-000-candidate.json",
+      "request_sha256": "dc23f460104c550dd5fbb4721cb99edc389df0d0bafdf0ee06755c5f04eaac0d",
+      "independent_session": true,
+      "input_bound": 46000,
+      "count_scope": "contents plus system text serialized as user parts for counting only; excludes schema; +512 schema/role margin",
+      "native_count": 3014
+    },
+    {
+      "stage": "safety-page-001-000-control",
+      "model": "gpt-5.5",
+      "request_path": "docs/evals/evidence/089-carbon/rendered/safety-page-001-000-control.json",
+      "request_sha256": "1817b0ff96fa032f8275e27de9807ab9bd60e9c683002eaa991bc05ec038327c",
+      "independent_session": true,
+      "input_bound": 46000
+    },
+    {
+      "stage": "safety-page-004-000-candidate",
+      "model": "gemini-4-carbon",
+      "request_path": "docs/evals/evidence/089-carbon/rendered/safety-page-004-000-candidate.json",
+      "request_sha256": "849119cd9e8de005a247abb442b040e917abd0744dbc685603f4dd6ee69ca60a",
+      "independent_session": true,
+      "input_bound": 46000,
+      "count_scope": "contents plus system text serialized as user parts for counting only; excludes schema; +512 schema/role margin",
+      "native_count": 3014
+    },
+    {
+      "stage": "safety-page-004-000-control",
+      "model": "gpt-5.5",
+      "request_path": "docs/evals/evidence/089-carbon/rendered/safety-page-004-000-control.json",
+      "request_sha256": "76f9da85ec005c71f1179e0a96b4dddf420b95f89712e9f728d9ab31797a191f",
+      "independent_session": true,
+      "input_bound": 46000
+    },
+    {
+      "stage": "safety-page-009-000-candidate",
+      "model": "gemini-4-carbon",
+      "request_path": "docs/evals/evidence/089-carbon/rendered/safety-page-009-000-candidate.json",
+      "request_sha256": "3de02c559f3749951f9803d1afb12af0ed7285c62ac32f808f4be8e7a2a59e93",
+      "independent_session": true,
+      "input_bound": 46000,
+      "count_scope": "contents plus system text serialized as user parts for counting only; excludes schema; +512 schema/role margin",
+      "native_count": 3014
+    },
+    {
+      "stage": "safety-page-009-000-control",
+      "model": "gpt-5.5",
+      "request_path": "docs/evals/evidence/089-carbon/rendered/safety-page-009-000-control.json",
+      "request_sha256": "aa2ddb7c536bac296c83f2023e635439e67d29c1aa1158567bca1b8f97422cfb",
+      "independent_session": true,
+      "input_bound": 46000
+    },
+    {
+      "stage": "safety-page-012-000-candidate",
+      "model": "gemini-4-carbon",
+      "request_path": "docs/evals/evidence/089-carbon/rendered/safety-page-012-000-candidate.json",
+      "request_sha256": "fd131e2afb29d3d4b6771a9a251d9769e1559061d2b51f217e8d8f471ea173d9",
+      "independent_session": true,
+      "input_bound": 46000,
+      "count_scope": "contents plus system text serialized as user parts for counting only; excludes schema; +512 schema/role margin",
+      "native_count": 3014
+    },
+    {
+      "stage": "safety-page-012-000-control",
+      "model": "gpt-5.5",
+      "request_path": "docs/evals/evidence/089-carbon/rendered/safety-page-012-000-control.json",
+      "request_sha256": "871ef6f5e6d023bd091f8b25401c0e8e4ed41bcc5addb71219458616698d637d",
+      "independent_session": true,
+      "input_bound": 46000
+    },
+    {
+      "stage": "safety-page-122-001-candidate",
+      "model": "gemini-4-carbon",
+      "request_path": "docs/evals/evidence/089-carbon/rendered/safety-page-122-001-candidate.json",
+      "request_sha256": "2b56203ca6d293f8ce7cad7c31e58a71e7700b5db45a8dffacb324b105fb419e",
+      "independent_session": true,
+      "input_bound": 46000,
+      "count_scope": "contents plus system text serialized as user parts for counting only; excludes schema; +512 schema/role margin",
+      "native_count": 3014
+    },
+    {
+      "stage": "safety-page-122-001-control",
+      "model": "gpt-5.5",
+      "request_path": "docs/evals/evidence/089-carbon/rendered/safety-page-122-001-control.json",
+      "request_sha256": "46f6db05f8c511ec6b0624c84473cbffca6478e3a68b4e0ea6680e48c58b3ef3",
+      "independent_session": true,
+      "input_bound": 46000
+    },
+    {
+      "stage": "safety-page-012-001-candidate",
+      "model": "gemini-4-carbon",
+      "request_path": "docs/evals/evidence/089-carbon/rendered/safety-page-012-001-candidate.json",
+      "request_sha256": "c26ce948ca74515c5fbc4d98c67ae05a6bddaaea6e10e80beb59a25a96564823",
+      "independent_session": true,
+      "input_bound": 46000,
+      "count_scope": "contents plus system text serialized as user parts for counting only; excludes schema; +512 schema/role margin",
+      "native_count": 3014
+    },
+    {
+      "stage": "safety-page-012-001-control",
+      "model": "gpt-5.5",
+      "request_path": "docs/evals/evidence/089-carbon/rendered/safety-page-012-001-control.json",
+      "request_sha256": "96b8166ea0946846bfdcc272b856e319bedc24bb70cbc4bc3d5d2d739161be9d",
+      "independent_session": true,
+      "input_bound": 46000
+    },
+    {
+      "stage": "table-image-positive-candidate",
+      "model": "gemini-4-carbon",
+      "request_path": "docs/evals/evidence/089-carbon/rendered/table-image-positive-candidate.json",
+      "request_sha256": "ded95ffb716f367b45c467f1b38eda365b3c8e0f4ff02389edee0094d1a7e0c0",
+      "independent_session": true,
+      "input_bound": 26000,
+      "count_scope": "contents plus system text serialized as user parts for counting only; excludes schema; +512 schema/role margin",
+      "native_count": 1485
+    },
+    {
+      "stage": "table-image-positive-control",
+      "model": "gpt-6-astra",
+      "request_path": "docs/evals/evidence/089-carbon/rendered/table-image-positive-control.json",
+      "request_sha256": "2cfeaf2a6606e194667a524e2e8e97083cf4a3f710f59c06e01138f90a6a654c",
+      "independent_session": true,
+      "input_bound": 26000
+    },
+    {
+      "stage": "table-ambiguity-negative-candidate",
+      "model": "gemini-4-carbon",
+      "request_path": "docs/evals/evidence/089-carbon/rendered/table-ambiguity-negative-candidate.json",
+      "request_sha256": "cff28ddab54567e9006da2d6c115dac33d469f5768f45cf8084cd44622d9387d",
+      "independent_session": true,
+      "input_bound": 26000,
+      "count_scope": "contents plus system text serialized as user parts for counting only; excludes schema; +512 schema/role margin",
+      "native_count": 1485
+    },
+    {
+      "stage": "table-ambiguity-negative-control",
+      "model": "gpt-6-astra",
+      "request_path": "docs/evals/evidence/089-carbon/rendered/table-ambiguity-negative-control.json",
+      "request_sha256": "594fce2b949624e6aad8feba05df2d9d402f2f3b14a7c4d4f6d55bb6a1f5455d",
+      "independent_session": true,
+      "input_bound": 26000
+    },
+    {
+      "stage": "table-native-positive-candidate",
+      "model": "gemini-4-carbon",
+      "request_path": "docs/evals/evidence/089-carbon/rendered/table-native-positive-candidate.json",
+      "request_sha256": "e2b35fe17f0e5cb1e0d272bc45ccd66ce423a3d45b8c1a01197702321f06e1ef",
+      "independent_session": true,
+      "input_bound": 26000,
+      "count_scope": "contents plus system text serialized as user parts for counting only; excludes schema; +512 schema/role margin",
+      "native_count": 1485
+    },
+    {
+      "stage": "table-native-positive-control",
+      "model": "gpt-6-astra",
+      "request_path": "docs/evals/evidence/089-carbon/rendered/table-native-positive-control.json",
+      "request_sha256": "2768b95091342db6ce86fc03e415e913b8008e6af973d6fc86d707906c9f5888",
+      "independent_session": true,
+      "input_bound": 26000
+    },
+    {
+      "stage": "crop-screen-Image011-candidate",
+      "model": "gemini-4-carbon",
+      "request_path": "docs/evals/evidence/089-carbon/rendered/crop-screen-Image011-candidate.json",
+      "request_sha256": "4a837008f86dce829eca26595220a521c0096ee4b2e41198d77c60b8c8fb350f",
+      "independent_session": true,
+      "input_bound": 26000,
+      "count_scope": "contents plus system text serialized as user parts for counting only; excludes schema; +512 schema/role margin",
+      "native_count": 1377
+    },
+    {
+      "stage": "crop-screen-Image011-control",
+      "model": "gemini-3-flash-preview",
+      "request_path": "docs/evals/evidence/089-carbon/rendered/crop-screen-Image011-control.json",
+      "request_sha256": "f9d7ab0bd3c2614d787f0997c389d8ccfb7791283ff3185a98dc24cc635b74b8",
+      "independent_session": true,
+      "input_bound": 26000,
+      "count_scope": "contents plus system text serialized as user parts for counting only; excludes schema; +512 schema/role margin",
+      "native_count": 1333
+    },
+    {
+      "stage": "crop-screen-Image001-candidate",
+      "model": "gemini-4-carbon",
+      "request_path": "docs/evals/evidence/089-carbon/rendered/crop-screen-Image001-candidate.json",
+      "request_sha256": "99ff8526a2405e4a91f119796592e5276a4c12482fa202de26bf03afdd6b7e32",
+      "independent_session": true,
+      "input_bound": 26000,
+      "count_scope": "contents plus system text serialized as user parts for counting only; excludes schema; +512 schema/role margin",
+      "native_count": 1377
+    },
+    {
+      "stage": "crop-screen-Image001-control",
+      "model": "gemini-3-flash-preview",
+      "request_path": "docs/evals/evidence/089-carbon/rendered/crop-screen-Image001-control.json",
+      "request_sha256": "1b6738e4a868b08b66426fe4f4c39d2b69c6d8a80e1d98bcd061d17567a32cc0",
+      "independent_session": true,
+      "input_bound": 26000,
+      "count_scope": "contents plus system text serialized as user parts for counting only; excludes schema; +512 schema/role margin",
+      "native_count": 1333
+    },
+    {
+      "stage": "ocr-barney-candidate",
+      "model": "gemini-4-carbon",
+      "request_path": "docs/evals/evidence/089-carbon/rendered/ocr-barney-candidate.json",
+      "request_sha256": "feed8f917d7cc67c2ec3c83f112e602b4053a5ac1beb31be37093a9eda0ce7f0",
+      "independent_session": true,
+      "input_bound": 26000,
+      "count_scope": "contents plus system text serialized as user parts for counting only; excludes schema; +512 schema/role margin",
+      "native_count": 2095
+    },
+    {
+      "stage": "ocr-barney-control",
+      "model": "gemini-3.8-flash",
+      "request_path": "docs/evals/evidence/089-carbon/rendered/ocr-barney-control.json",
+      "request_sha256": "f4482092b0954d423a511c1e929d3ab4fc29cde2ea058a37ffc39454b4fdd1ea",
+      "independent_session": true,
+      "input_bound": 26000,
+      "count_scope": "contents plus system text serialized as user parts for counting only; excludes schema; +512 schema/role margin",
+      "native_count": 2029
+    }
+  ],
+  "calls": 24,
+  "candidate_cases": 12,
+  "control_cases": 12,
+  "reservation": {
+    "candidate": 4.79616,
+    "control_pool": 3,
+    "qualification_recovery": 2.20384
+  },
+  "cache": "no subject cache; no explicit caching; actual implicit hits recorded",
+  "concurrency": 1,
+  "judge": "none paid; source review + maintained deterministic assertions",
+  "effort": "high only; no sweep or semantic repair",
+  "qualification": "first real request per distinct schema doubles as native qualifier; raw native contract and lossless rendered input parity checked before scoring",
+  "source_hashes": {
+    "benchmarks/scripts/carbon_native.py": "96b3b313325715c2944d8bfea85c8bc0d5a2a72496883b52d876566f33c78b8a",
+    "benchmarks/scripts/carbon_reading.py": "505444f2c3fd6dfbd6346618387a46d28819138701f6e6d29baef301c41e0793",
+    "benchmarks/scripts/carbon_preflight.py": "3b318a4fa80c64aa3a7a278ac112d2cda54567a48394c8a62b0e6e42116282ef",
+    "benchmarks/providers/carbon_guard.py": "bb94cf4b3e6df53cdbc628ac138c40544dd3e5b1b745f29cd72fe06473634c8f",
+    "benchmarks/prompts/validate-page-level-crop.js": "ef4395838929b208fe65f21500d81ade902072bef3f8e53f81ef3d3b83fbc421",
+    "benchmarks/prompts/crop-conservative-count.js": "d15c7fd6f20389e5e7b2af9f15dd3697a31c28f47cfea8147c8114fe82f1e8f9",
+    "benchmarks/golden/crop-page-level-safety-repair-048-source-adjudicated.json": "6f32bc513494f1c4454b4c41e74186136212d477ff10c87ccb29244ca21aaa76",
+    "benchmarks/golden/image-crops.json": "2ac0a8f01e00a252439da1f4827a85bc5118bf96460a3ff1780e642eafc60f90",
+    "modules/common/table_source_review.py": "78599f846eb31b2ad7a1607257458760e6e93e6eaa6d4ab062ffcbd30b879709",
+    "modules/common/literal_table_review.py": "25085a0937d27e5bae61e3973eddcf2ea6a43496cba814d57fb8af67a0212d67",
+    "benchmarks/scorers/image_crop_scorer.py": "7fcf07e05726bf3ebbc2488a503a9d7f165dde79649890cbd65f12a6ce4c19e7",
+    "benchmarks/scripts/carbon_safety.py": "b4eb784cbfc860589b7c6ec9502bf21701c55f14dcf9ef83a058db2fd35f718a"
+  }
+}

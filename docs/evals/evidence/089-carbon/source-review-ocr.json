@@ -1,0 +1,123 @@
+{
+  "scope": "Independent bounded source-first Barney review. Original 640x502 source image and 2x inspection derivative opened; both actual driver artifacts raw_html/html read. Golden, scorer and outputs unchanged; no provider calls or rescore.",
+  "source": {
+    "path": "testdata/handwritten-notes-barney-real-images/page-001.jpg",
+    "sha256": "aaf212e6091d913ded7117dd61f1437a83c57af4f974809e7fb96c11a813d9c5",
+    "dimensions": [
+      640,
+      502
+    ],
+    "identity": "Public LOC Barney pages2-3 spread; not the complete letter",
+    "inspection_derivative": "/tmp/carbon-barney-source-2x.png"
+  },
+  "frozen_transcript": {
+    "path": "testdata/handwritten-notes-barney-real.txt",
+    "sha256": "78827ef175378bd2c55d0405fc35213acfc17e348b5edd48b1e089525a83e2bf",
+    "role": "Maintained expected text; optically ambiguous tokens not treated as unquestionable source truth"
+  },
+  "artifacts": {
+    "candidate": {
+      "artifact_path": "output/runs/carbon-ocr-barney-candidate-20261110/02_ocr_ai_gpt51_v1/pages_html.jsonl",
+      "artifact_sha256": "9b4612a5d3f37abdaba151ceb865ef52b419c8974fe2ab50d60285e29d95612a",
+      "fields_inspected": [
+        "raw_html",
+        "html"
+      ],
+      "raw_html_equals_html_ignoring_outer_whitespace": true,
+      "raw_html_sha256": "750ca7c13ce2c269f78b1252f5c3b603a0ebf4f7da0607d832d32fe164129f92",
+      "html_sha256": "fc96e2fac8390579ed5d02932a0a94f056fb03c73cfdc57597d2a338bee79f77"
+    },
+    "control": {
+      "artifact_path": "output/runs/carbon-ocr-barney-control-20261110/02_ocr_ai_gpt51_v1/pages_html.jsonl",
+      "artifact_sha256": "e0808819fd8f2d2fcac26d0091d65df6767da266f2dea6f9a697dfe50b0c9410",
+      "fields_inspected": [
+        "raw_html",
+        "html"
+      ],
+      "raw_html_equals_html_ignoring_outer_whitespace": true,
+      "raw_html_sha256": "a0b97c5911ded8282e4aa3b1fb37035c497fe1f2edbf64aaaf717c63f9bd2552",
+      "html_sha256": "ce7cf5cf57672fbbce55a3ff595b7999af186db078e964c790fc8df0e28a2156"
+    }
+  },
+  "maintained_scores": {
+    "candidate": 0.98736,
+    "control": 0.98383,
+    "threshold": 0.99,
+    "rescored": false,
+    "gate": "both below maintained threshold"
+  },
+  "definite_findings": [
+    {
+      "arms": [
+        "candidate",
+        "control"
+      ],
+      "kind": "omission",
+      "source_anchor": "those, that I least expected it were cut down",
+      "observed": "Both emit least expected were cut down, omitting it",
+      "basis": "Frozen prior original-source adjudication identifies visible it; current artifacts both lack it; original source inspected again. Preserved as a definite source-fidelity finding rather than a scorer-only mismatch."
+    },
+    {
+      "arms": [
+        "candidate"
+      ],
+      "kind": "omission",
+      "source_anchor": "but I will try, our we live in tents",
+      "observed": "but I will try we live in tents",
+      "basis": "Source word our immediately before we live is visible in the right-column opening; candidate drops it."
+    },
+    {
+      "arms": [
+        "control"
+      ],
+      "kind": "substitution",
+      "source_anchor": "but I will try, our we live in tents",
+      "observed": "but I will try for we live in tents",
+      "basis": "Control replaces source our with for; contextually fluent but unsupported substitution."
+    }
+  ],
+  "preserved_source_features": [
+    "Both retain source comrads rather than correcting it to comrade.",
+    "Both keep the broad contents and reading order of the left and right pages: health/lonesomeness, deaths and sorrow, then circumstances/tents/bedding/food.",
+    "Both stop at the visible boundary but we should not have.",
+    "No broad fabricated guardpost passage or invented continuation observed in either artifact."
+  ],
+  "optically_ambiguous_or_not_adjudicated": [
+    {
+      "token_or_region": "golden [soon] after william and welthy",
+      "candidate": "omits a corresponding explicit token",
+      "control": "Wm.",
+      "verdict": "Unresolved historical golden/source ambiguity; do not label Wm. a definite invention or candidate omission without stronger source proof."
+    },
+    {
+      "token_or_region": "etern[a/e]l",
+      "golden": "eternal",
+      "candidate": "eternel",
+      "control": "eternel",
+      "verdict": "Source vowel unresolved at original resolution; frozen golden retained."
+    },
+    {
+      "token_or_region": "anguish/enguish",
+      "golden": "anguish",
+      "candidate": "anguish",
+      "control": "enguish",
+      "verdict": "Source vowel unresolved; no corrected metric."
+    },
+    {
+      "token_or_region": "sarrow/sorrow and small spelling/punctuation/case/word-boundary differences",
+      "examples": [
+        "candidate rong vs golden rung",
+        "candidate autum vs golden autumn",
+        "candidate made vs golden mede",
+        "candidate coffe vs golden coffee",
+        "control ald vs golden old",
+        "control it makes us a vs golden it makes a",
+        "control circumstanses/expcted/beans/suger vs maintained spellings",
+        "both over whelmed vs golden overwhelmed"
+      ],
+      "verdict": "Differences observed in actual artifacts, but this bounded review does not promote all to definitive source errors. Small cursive strokes, overwriting and punctuation remain uncertain; spelling normalization and inference must not be used to rescue output."
+    }
+  ],
+  "verdict": "Exact source fidelity uncleared for both arms: definite omitted or substituted source tokens remain, and both unchanged maintained scores fall below0.99. Candidate improves maintained metric on this one spread, which is not a source-perfect or broad handwriting qualification.",
+  "limits": "No golden edits, normalization rescue, rescoring, extra inference, or full-letter/general handwriting claim. Definite finding it also has explicit frozen prior adjudication provenance; unresolved tokens remain unresolved."
+}

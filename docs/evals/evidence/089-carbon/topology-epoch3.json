@@ -1,0 +1,13 @@
+{
+  "authorization": "coordinator approved at most2 independent cases concurrency; zero extra subject calls",
+  "checked": "12 focused offline tests pass, including two-process reservation barrier and unique request/response custody",
+  "research": "https://docs.python.org/3/library/fcntl.html",
+  "decision": "atomic reserve under flock; unlock during HTTP; reacquire and reload ledger for settlement; at most2 in-flight, known+unknown inclusive cap unchanged",
+  "previous_dispatcher_pid": 48211,
+  "pending_http": "crop-screen-Image011-candidate untouched; original ledger/full reservation retained",
+  "timing_limit": "mixed serial/concurrency2 cannot support clean serial latency superiority",
+  "source_hashes": {
+    "benchmarks/providers/carbon_guard.py": "721e551a42e60c238bcb26f25ae80256ff7342f962ee7348fbe36a68ca2d7f30",
+    "benchmarks/scripts/carbon_native.py": "3cb99d2dedf64a6ecb9ead0a62472dedbf302d71dafb91e8fb12027a74de45ed"
+  }
+}

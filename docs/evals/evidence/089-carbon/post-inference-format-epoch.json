@@ -1,0 +1,16 @@
+{
+  "after_all24_responses": true,
+  "purpose": "format/import cleanup only; earlier producing sources remain immutable; no provider reruns",
+  "before": {
+    "benchmarks/scripts/carbon_missing_cases.py": "b4de61b6080901fee2f294f2f5a71e55cdf0abdf93daa5cf30d51756ab6a790b",
+    "benchmarks/scripts/carbon_safety.py": "b4eb784cbfc860589b7c6ec9502bf21701c55f14dcf9ef83a058db2fd35f718a",
+    "benchmarks/scripts/carbon_panel.py": "76bf27288a29c805eb6041b9f2aae3837038285ed07a70ed0c3df288db3d14de",
+    "benchmarks/scripts/carbon_native.py": "3cb99d2dedf64a6ecb9ead0a62472dedbf302d71dafb91e8fb12027a74de45ed",
+    "benchmarks/scripts/carbon_continue_two.py": "ee36f4fb320124439dca4f9d5abbfd5e9f27086061f2e70e809ad0e392e66bec",
+    "benchmarks/scripts/carbon_preflight.py": "3b318a4fa80c64aa3a7a278ac112d2cda54567a48394c8a62b0e6e42116282ef",
+    "benchmarks/scripts/carbon_overlay.py": "2af89a10e4b82351f68e343d237fee4dc005da7007e463a0734a9f999ce5b1da",
+    "benchmarks/scripts/carbon_reading.py": "505444f2c3fd6dfbd6346618387a46d28819138701f6e6d29baef301c41e0793",
+    "benchmarks/providers/carbon_guard.py": "1fedfb177d57e18eda934ae6cb387b75e8c20dffae90700cb0d0fdd789a35804",
+    "tests/test_carbon_campaign.py": "5f7d5bd0c9d71a0f78dfd00bd3d7c35eea2da34c63086927a70465bd86c52256"
+  }
+}

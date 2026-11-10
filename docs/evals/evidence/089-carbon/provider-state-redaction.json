@@ -1,0 +1,281 @@
+{
+  "classification": "15Google thoughtSignature and4OpenAI encrypted_content occurrences redacted (2responses+2nestedreportcopies); no continuation_token/continuationToken/access/refresh/id-token/signedURL matches",
+  "originals": {
+    "directory": "/Users/cam/.codex/archives/carbon-20261110/doc-web/provider-state-originals",
+    "permissions": "directory0700/files0600",
+    "archive_sha256": "2bb1a59f7cec6eefecc257a199d71b084c1f8ba857381e70312d21f8d57e79ca",
+    "index": "protected-index.json",
+    "members": 209
+  },
+  "public_archive": {
+    "kind": "token-redacted projection; not exact original response bytes for19indexed members (17responses+2nestedreportcopies)",
+    "members": 209,
+    "archive_sha256": "5b1d446e733a049ccef69e539e1958bc780d47f2fedaaa545c2782edecb212cb",
+    "archive_bytes": 43592824,
+    "parts": [
+      {
+        "path": "docs/evals/evidence/089-carbon-custody.tar.gz.part01",
+        "bytes": 7265471,
+        "sha256": "c381eb7e4a16742c8a0a12c76c7ad325185b8c5ee4bd90eed48fb73627e29c8c"
+      },
+      {
+        "path": "docs/evals/evidence/089-carbon-custody.tar.gz.part02",
+        "bytes": 7265471,
+        "sha256": "2da2e5e6efc08893fd4a7d7edf87c2807cddeb3cd357d59c707b13527d98be44"
+      },
+      {
+        "path": "docs/evals/evidence/089-carbon-custody.tar.gz.part03",
+        "bytes": 7265471,
+        "sha256": "4da70964ff56b853734621149982416025b308b126f973ade53feb7f4d6d48f2"
+      },
+      {
+        "path": "docs/evals/evidence/089-carbon-custody.tar.gz.part04",
+        "bytes": 7265471,
+        "sha256": "ccba4e7e7f013935195cdc8d3f0a0799fec0d7d7e014582bac39d5185a6f87ca"
+      },
+      {
+        "path": "docs/evals/evidence/089-carbon-custody.tar.gz.part05",
+        "bytes": 7265471,
+        "sha256": "e8d37d5c0a6cae825978a481e6da60f85dca749877babcc087aafa0a835b7115"
+      },
+      {
+        "path": "docs/evals/evidence/089-carbon-custody.tar.gz.part06",
+        "bytes": 7265469,
+        "sha256": "126da23157ce65f3c29da5c16d0e4603fd4ddf46a3d211a89dce710bb45f4f7b"
+      }
+    ]
+  },
+  "affected": [
+    {
+      "path": "benchmarks/results/carbon-20261110/response-001.json",
+      "original_sha256": "5e751c698a7b5c3e64ba6b25493c0c4da3cc0f1894fc2d71ab6ddbbd4ed526d1",
+      "original_bytes": 82209,
+      "projection_sha256": "3a770bf3f070eef1c06073e6e16409fcfbcf5afd17d1b28f55d2010a4ad8ffa8",
+      "projection_bytes": 1071,
+      "redacted_fields": [
+        "/candidates/0/content/parts/0/thoughtSignature"
+      ],
+      "class": "Google thoughtSignature or OpenAI encrypted_content providerstate",
+      "projection": "not exact original response bytes; semantic/output/usage/model/finish fields preserved"
+    },
+    {
+      "path": "benchmarks/results/carbon-20261110/response-002.json",
+      "original_sha256": "3a011820808355fb8d235ba648b4bbc2db4a439f6b4ae354973e82c188d1c14a",
+      "original_bytes": 9250,
+      "projection_sha256": "8f4ce6ade31048a16843bfa7d651419ce7418588e4e59b4db3df2e474d1e9700",
+      "projection_bytes": 3471,
+      "redacted_fields": [
+        "/output/0/encrypted_content"
+      ],
+      "class": "Google thoughtSignature or OpenAI encrypted_content providerstate",
+      "projection": "not exact original response bytes; semantic/output/usage/model/finish fields preserved"
+    },
+    {
+      "path": "benchmarks/results/carbon-20261110/response-003.json",
+      "original_sha256": "c62b2fc5d8f6043a8ae80f38e3df89b5c08543ebb59e1fb3dca8cbd4ba356a0f",
+      "original_bytes": 56457,
+      "projection_sha256": "35e69a43408b487e55baf85b2f0c7298f616426b13bd91f0ad6db427a182c497",
+      "projection_bytes": 1211,
+      "redacted_fields": [
+        "/candidates/0/content/parts/0/thoughtSignature"
+      ],
+      "class": "Google thoughtSignature or OpenAI encrypted_content providerstate",
+      "projection": "not exact original response bytes; semantic/output/usage/model/finish fields preserved"
+    },
+    {
+      "path": "benchmarks/results/carbon-20261110/response-005.json",
+      "original_sha256": "56d3257a66335838b232a411e3ebdbe1bf623a7f0b37ce78d6f11a1c5b6e55d1",
+      "original_bytes": 60501,
+      "projection_sha256": "0f9af7889c20114b85b4819aa888ae60c5bfc3ee3bc3f9160a5d204eb0ac1c0a",
+      "projection_bytes": 951,
+      "redacted_fields": [
+        "/candidates/0/content/parts/0/thoughtSignature"
+      ],
+      "class": "Google thoughtSignature or OpenAI encrypted_content providerstate",
+      "projection": "not exact original response bytes; semantic/output/usage/model/finish fields preserved"
+    },
+    {
+      "path": "benchmarks/results/carbon-20261110/response-006.json",
+      "original_sha256": "e00142168ebd6b1dfefc5912b8230a59c392ffb2d62e244829e929372907f08e",
+      "original_bytes": 8745,
+      "projection_sha256": "d486c55c17acf7528130aa1e3d84d59b30610636e39dcb37b341afc6495f64e1",
+      "projection_bytes": 3350,
+      "redacted_fields": [
+        "/output/0/encrypted_content"
+      ],
+      "class": "Google thoughtSignature or OpenAI encrypted_content providerstate",
+      "projection": "not exact original response bytes; semantic/output/usage/model/finish fields preserved"
+    },
+    {
+      "path": "benchmarks/results/carbon-20261110/response-007.json",
+      "original_sha256": "a3045a51d05db85a33b5071dc844208dbf43c8ebfcf6f183d4d126285e37b3b7",
+      "original_bytes": 23747,
+      "projection_sha256": "15c95bf1aa0b86d4b558a47b49f81e8ca526364b301ac796176b808e87b0f170",
+      "projection_bytes": 901,
+      "redacted_fields": [
+        "/candidates/0/content/parts/0/thoughtSignature"
+      ],
+      "class": "Google thoughtSignature or OpenAI encrypted_content providerstate",
+      "projection": "not exact original response bytes; semantic/output/usage/model/finish fields preserved"
+    },
+    {
+      "path": "benchmarks/results/carbon-20261110/response-008.json",
+      "original_sha256": "37b2cb4014a7667aa5b67b56e74ee147a36057fef29da53175f4ac8c2532b43e",
+      "original_bytes": 30862,
+      "projection_sha256": "97169cd9f582e8bad40c0c0ac867b92b8a836fa01fbb492bc4830ebf5bcbec8f",
+      "projection_bytes": 664,
+      "redacted_fields": [
+        "/candidates/0/content/parts/0/thoughtSignature"
+      ],
+      "class": "Google thoughtSignature or OpenAI encrypted_content providerstate",
+      "projection": "not exact original response bytes; semantic/output/usage/model/finish fields preserved"
+    },
+    {
+      "path": "benchmarks/results/carbon-20261110/response-009.json",
+      "original_sha256": "73e4e76f1efeab08401ac9932e75d62fe5a29fac51fefe963423abb524adb5a2",
+      "original_bytes": 127020,
+      "projection_sha256": "c05d2a1511d7bee48a23b68c5be8fc02ba383b500e449fef1b419b8e241e53f5",
+      "projection_bytes": 2204,
+      "redacted_fields": [
+        "/candidates/0/content/parts/0/thoughtSignature"
+      ],
+      "class": "Google thoughtSignature or OpenAI encrypted_content providerstate",
+      "projection": "not exact original response bytes; semantic/output/usage/model/finish fields preserved"
+    },
+    {
+      "path": "benchmarks/results/carbon-20261110/response-010.json",
+      "original_sha256": "ce998a72b87d75ad1a68a43460bce181bdc177a7a7b7226bf6da369cf01f6139",
+      "original_bytes": 6934,
+      "projection_sha256": "41857a7a3dfa91f21f568bc62243ed06ca450487eea3cd41e7a463f4527f9b39",
+      "projection_bytes": 691,
+      "redacted_fields": [
+        "/candidates/0/content/parts/0/thoughtSignature"
+      ],
+      "class": "Google thoughtSignature or OpenAI encrypted_content providerstate",
+      "projection": "not exact original response bytes; semantic/output/usage/model/finish fields preserved"
+    },
+    {
+      "path": "benchmarks/results/carbon-20261110/response-011.json",
+      "original_sha256": "ad12a6a255b6ac5baf98ace4552c132545dd124d6db9b7fa67d192eebaaaa398",
+      "original_bytes": 4098,
+      "projection_sha256": "e29a853b8800bcc715df0c1f9fdfc0207dc522a15829dfd7169c86426df8c115",
+      "projection_bytes": 627,
+      "redacted_fields": [
+        "/candidates/0/content/parts/0/thoughtSignature"
+      ],
+      "class": "Google thoughtSignature or OpenAI encrypted_content providerstate",
+      "projection": "not exact original response bytes; semantic/output/usage/model/finish fields preserved"
+    },
+    {
+      "path": "benchmarks/results/carbon-20261110/response-012.json",
+      "original_sha256": "8d228d74e2ada904280b3d18e4f44da21e39ddb54a177f02e3db1c52c01195db",
+      "original_bytes": 16689,
+      "projection_sha256": "9b848ee82dc1ea96a8504569caaf6c854e6292e4bcea938fb39f821207a97502",
+      "projection_bytes": 807,
+      "redacted_fields": [
+        "/candidates/0/content/parts/0/thoughtSignature"
+      ],
+      "class": "Google thoughtSignature or OpenAI encrypted_content providerstate",
+      "projection": "not exact original response bytes; semantic/output/usage/model/finish fields preserved"
+    },
+    {
+      "path": "benchmarks/results/carbon-20261110/response-013.json",
+      "original_sha256": "dcc8c12e58dee297f3b42f709ba74b10e4c8fc1744b23f37830b71240d0b8b3f",
+      "original_bytes": 5275,
+      "projection_sha256": "7dfd9c640fb0761aa8e1c35805708961d4344721c82d79031d6679b62af6b397",
+      "projection_bytes": 729,
+      "redacted_fields": [
+        "/candidates/0/content/parts/0/thoughtSignature"
+      ],
+      "class": "Google thoughtSignature or OpenAI encrypted_content providerstate",
+      "projection": "not exact original response bytes; semantic/output/usage/model/finish fields preserved"
+    },
+    {
+      "path": "benchmarks/results/carbon-20261110/response-016.json",
+      "original_sha256": "3dbc1f1d778db56a16456fc46437a0f780eeb9deec31ea41d3321f95a0cc458d",
+      "original_bytes": 3232,
+      "projection_sha256": "53c9c0d2c757258e001b29ddebd8026284fd7e56e6d1bb158da554fd340b7134",
+      "projection_bytes": 718,
+      "redacted_fields": [
+        "/candidates/0/content/parts/0/thoughtSignature"
+      ],
+      "class": "Google thoughtSignature or OpenAI encrypted_content providerstate",
+      "projection": "not exact original response bytes; semantic/output/usage/model/finish fields preserved"
+    },
+    {
+      "path": "benchmarks/results/carbon-20261110/response-017.json",
+      "original_sha256": "444ef2d666315b60ba8c39834bec61f56a9cbcd73867ee4823009c5ec5690c29",
+      "original_bytes": 9042,
+      "projection_sha256": "66adb661627482c7b715e0c5f8824ab1766e9e32399c55e928bcb09fe416d799",
+      "projection_bytes": 744,
+      "redacted_fields": [
+        "/candidates/0/content/parts/0/thoughtSignature"
+      ],
+      "class": "Google thoughtSignature or OpenAI encrypted_content providerstate",
+      "projection": "not exact original response bytes; semantic/output/usage/model/finish fields preserved"
+    },
+    {
+      "path": "benchmarks/results/carbon-20261110/response-020.json",
+      "original_sha256": "4b4c6f320cb5993fb6eba3810f84e9a4ce209d219713cffd325f8979cd312ae6",
+      "original_bytes": 5847,
+      "projection_sha256": "a366585f40b4942866b5b821ca399b26d445f4f796024d5f92b7f2b1d5caef9f",
+      "projection_bytes": 729,
+      "redacted_fields": [
+        "/candidates/0/content/parts/0/thoughtSignature"
+      ],
+      "class": "Google thoughtSignature or OpenAI encrypted_content providerstate",
+      "projection": "not exact original response bytes; semantic/output/usage/model/finish fields preserved"
+    },
+    {
+      "path": "benchmarks/results/carbon-20261110/response-021.json",
+      "original_sha256": "14650bb49f04fdd3661d6a624bb096273e73b0e09ea4760ea1613540f9d1feee",
+      "original_bytes": 14517,
+      "projection_sha256": "09612de73bca1829e3693e458b793cc672705f9d8c8aac37308506bc167ade65",
+      "projection_bytes": 775,
+      "redacted_fields": [
+        "/candidates/0/content/parts/0/thoughtSignature"
+      ],
+      "class": "Google thoughtSignature or OpenAI encrypted_content providerstate",
+      "projection": "not exact original response bytes; semantic/output/usage/model/finish fields preserved"
+    },
+    {
+      "path": "benchmarks/results/carbon-20261110/response-024.json",
+      "original_sha256": "4925425c6423fcc3126f38d8280f08857965ef069687d9ad5be44c15d593e5d9",
+      "original_bytes": 18978,
+      "projection_sha256": "e21d371137af7ea5a1db3c73e44077a672e94b9f2ff8624cf8c81430277ad6ec",
+      "projection_bytes": 1989,
+      "redacted_fields": [
+        "/candidates/0/content/parts/0/thoughtSignature"
+      ],
+      "class": "Google thoughtSignature or OpenAI encrypted_content providerstate",
+      "projection": "not exact original response bytes; semantic/output/usage/model/finish fields preserved"
+    },
+    {
+      "path": "benchmarks/results/carbon-20261110/table-image-positive-control_reports/row-00000-page-00001-original-00001.json",
+      "original_sha256": "def88a1f5f2a740d76882fa4096f875856857b408de6757bce9ad571c9a930f9",
+      "original_bytes": 13888,
+      "projection_sha256": "b96a95f4fcbee1541cbcfca31545dde84ab7fc2f2e6de1146b962d62ad788cba",
+      "projection_bytes": 7905,
+      "redacted_fields": [
+        "/requests/0/native_response_json [nested-json]/output/0/encrypted_content"
+      ],
+      "class": "Google thoughtSignature or OpenAI encrypted_content providerstate",
+      "projection": "not exact original response bytes; semantic/output/usage/model/finish fields preserved"
+    },
+    {
+      "path": "benchmarks/results/carbon-20261110/table-native-positive-control_reports/row-00000-page-00001-original-00001.json",
+      "original_sha256": "4bf461f70aba764dc81253c09dd00b117ad8c358b9c93e8e7c703ceb8adf4a90",
+      "original_bytes": 13021,
+      "projection_sha256": "d6d0f1da8f006671b6c2d83ee0ba376086dbef8c8e755effaeccfd9b6ce35e0e",
+      "projection_bytes": 7422,
+      "redacted_fields": [
+        "/requests/0/native_response_json [nested-json]/output/0/encrypted_content"
+      ],
+      "class": "Google thoughtSignature or OpenAI encrypted_content providerstate",
+      "projection": "not exact original response bytes; semantic/output/usage/model/finish fields preserved"
+    }
+  ],
+  "proof": "all190unaffectedmembers byte-identical; affected19objects equal originals afteronlyexplicitstatefieldredaction; outputtext/usage/model/finish/source/producerepoch unchanged",
+  "inference": "none; original ledger and producingbase unchanged",
+  "history": "supersedes unpublishedlocal9cc5551; do not push that ancestor"
+}

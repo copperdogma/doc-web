@@ -1,0 +1,57 @@
+{
+  "base_sha": "1c3f3e31158ec753e057e79839f438d021500214",
+  "worktree": "/Users/cam/.codex/worktrees/carbon-20261110/doc-web",
+  "branch": "codex/carbon-20261110-doc-web",
+  "owner": "DocWeb Story267 Scout109item3",
+  "retained": "committedcandidate pendingcoordinatorLANDGO; alltreesretained; no runtime/default/deploy/accountchanges",
+  "archive_parts": [
+    {
+      "path": "docs/evals/evidence/089-carbon-custody.tar.gz.part01",
+      "bytes": 7265471,
+      "sha256": "c381eb7e4a16742c8a0a12c76c7ad325185b8c5ee4bd90eed48fb73627e29c8c"
+    },
+    {
+      "path": "docs/evals/evidence/089-carbon-custody.tar.gz.part02",
+      "bytes": 7265471,
+      "sha256": "2da2e5e6efc08893fd4a7d7edf87c2807cddeb3cd357d59c707b13527d98be44"
+    },
+    {
+      "path": "docs/evals/evidence/089-carbon-custody.tar.gz.part03",
+      "bytes": 7265471,
+      "sha256": "4da70964ff56b853734621149982416025b308b126f973ade53feb7f4d6d48f2"
+    },
+    {
+      "path": "docs/evals/evidence/089-carbon-custody.tar.gz.part04",
+      "bytes": 7265471,
+      "sha256": "ccba4e7e7f013935195cdc8d3f0a0799fec0d7d7e014582bac39d5185a6f87ca"
+    },
+    {
+      "path": "docs/evals/evidence/089-carbon-custody.tar.gz.part05",
+      "bytes": 7265471,
+      "sha256": "e8d37d5c0a6cae825978a481e6da60f85dca749877babcc087aafa0a835b7115"
+    },
+    {
+      "path": "docs/evals/evidence/089-carbon-custody.tar.gz.part06",
+      "bytes": 7265469,
+      "sha256": "126da23157ce65f3c29da5c16d0e4603fd4ddf46a3d211a89dce710bb45f4f7b"
+    }
+  ],
+  "custody_index": "docs/evals/evidence/089-carbon/custody-index.json",
+  "raw_requests": 24,
+  "raw_responses": 24,
+  "actual_driver_runs": [
+    "output/runs/carbon-ocr-barney-candidate-20261110",
+    "output/runs/carbon-ocr-barney-control-20261110"
+  ],
+  "producing_sources": "provenance.json plus archived producing-sources*,dispatch-code,pre-format-sources; final-sources postinference",
+  "regenerate": "Recover publicparts and run carbon_audit.py --public-projection. Exact originals remain externalprotected0700/0600 custody; no inference authorized.",
+  "archive_kind": "public projection;17responseenvelopes+2nestedreportcopies token-redacted, notexactoriginalbytes",
+  "original_protected_custody": {
+    "directory": "/Users/cam/.codex/archives/carbon-20261110/doc-web/provider-state-originals",
+    "permissions": "directory0700/files0600",
+    "archive_sha256": "2bb1a59f7cec6eefecc257a199d71b084c1f8ba857381e70312d21f8d57e79ca",
+    "index": "protected-index.json",
+    "members": 209
+  },
+  "provider_state_redaction": "docs/evals/evidence/089-carbon/provider-state-redaction.json"
+}

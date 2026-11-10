@@ -1,0 +1,19 @@
+{
+  "owner": "DocWeb Story267 Scout109item3",
+  "status": "complete measurement;retainruntime defaults",
+  "worktrees": [
+    {
+      "path": "/Users/cam/.codex/worktrees/carbon-20261110/doc-web",
+      "owner": "DocWeb Carbon evaluation worker",
+      "branch": "codex/carbon-20261110-doc-web",
+      "base": "1c3f3e31158ec753e057e79839f438d021500214",
+      "disposition": "retaineduncommitted",
+      "reason": "ownerreview/evidence;no cleanup or landing authorized"
+    }
+  ],
+  "primary_and_prior_worktrees": "untouched;primarybranchstory245-literal-table-fidelity observed;primary behindfreshmain protected",
+  "provider_keys": "existingowner DOC_WEB_GEMINI_API_KEY/DOC_WEB_OPENAI_API_KEY through normalwrapper withDOC_WEB_ENV_FILE;no secretscopied,injected,removedorprinted",
+  "inference": "closed24POSTUSD1.68741625 unknown0;nofurthercalls",
+  "adoption": "safety boundedleadvsGPT5.5,tabletie,croppartiallead,OCRgatefail;currentSol/full22/caller notsuperseded",
+  "next": "ownerreview before separatelyauthorizedfinish-and-push; no morepaid calls onunchangedsubjects recommended"
+}
