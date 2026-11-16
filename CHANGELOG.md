@@ -1,3 +1,12 @@
+## [2026-11-16-01] — Qualify reviewed Hydrogen handwriting job (Story 272)
+
+### Added
+- Record two public LOC OCR wins above .99, ordinary exact-native opt-in recipes and actual SDK consumer proof, with higher measured cost/latency and source uncertainty disclosed.
+- Preserve safety/literal/assisted-crop failures,14POST ledger and protected original custody; defaults and publication holds retained.
+
+### Fixed
+- Exact Hydrogen opt-in sends provider-valid HIGH thinking control through supported SDK native-body override and records billed thinking/cache cost.
+
 ## [2026-11-10-03] — Record Carbon source-preservation capability panel (Story 267)
 
 ### Added

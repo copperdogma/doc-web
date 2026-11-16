@@ -1,6 +1,10 @@
 currency: USD
 updated_at: 2025-11-22
 models:
+  # Gemini Developer API standard pricing checked 2026-11-16; output includes thinking.
+  gemini-4-hydrogen:
+    prompt_per_1k: 0.0015
+    completion_per_1k: 0.0075
   gpt-4.1:
     prompt_per_1k: 0.005
     completion_per_1k: 0.015

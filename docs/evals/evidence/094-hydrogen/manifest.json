@@ -1,0 +1,1732 @@
+{
+  "scope": "protected originals including provider state; manifest is safe paths/hashes/sizes only",
+  "originals": [
+    {
+      "path": "benchmarks/results/hydrogen-20261115/caller-startup/sitecustomize.py",
+      "sha256": "2815904333d4fac5de4d8d5aaabd35127e6761453c233d7986fb4069eae80e26",
+      "bytes": 151
+    },
+    {
+      "path": "benchmarks/results/hydrogen-20261115/hydrogen-ocr-alverson-candidate-20261115.log",
+      "sha256": "d070d748d3f89fbf4deb800a656e5f3fdc94267eda4328ca678478ceccdf468a",
+      "bytes": 970
+    },
+    {
+      "path": "benchmarks/results/hydrogen-20261115/hydrogen-ocr-alverson-control-20261115.log",
+      "sha256": "ce2a02dbbac9a5cdfea10d6082d096ef0da37619b37016de9c8a2ccbfc73efb5",
+      "bytes": 961
+    },
+    {
+      "path": "benchmarks/results/hydrogen-20261115/hydrogen-ocr-barney-candidate-20261115.log",
+      "sha256": "25d9759a80abdf583b30a7151984eeadc36a96833e76e7ef32d647c786b8f213",
+      "bytes": 962
+    },
+    {
+      "path": "benchmarks/results/hydrogen-20261115/hydrogen-ocr-barney-control-20261115.log",
+      "sha256": "6b9c8469b56ef1cf1fbf0aa4d4e2bdfd20e11a8f89555246eb23b9b6b73b9764",
+      "bytes": 952
+    },
+    {
+      "path": "benchmarks/results/hydrogen-20261115/ledger.json",
+      "sha256": "119318adfb7184d33b2650c5fca1b70d983d28dff4781a27ca16bb968e117f09",
+      "bytes": 19430
+    },
+    {
+      "path": "benchmarks/results/hydrogen-20261115/ledger.lock",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "benchmarks/results/hydrogen-20261115/ocr-replay-alverson-actual-body.json",
+      "sha256": "dcae3b3943f17ea01379e5ce21fc6db63cc87082c0cafbf9e1626e3bbdd3d405",
+      "bytes": 568241
+    },
+    {
+      "path": "benchmarks/results/hydrogen-20261115/ocr-replay-alverson.log",
+      "sha256": "0f0076927388d6ebf66118fc1a1d590c24e99bb3b54471b795236c682c887522",
+      "bytes": 1042
+    },
+    {
+      "path": "benchmarks/results/hydrogen-20261115/ocr-replay-barney-actual-body.json",
+      "sha256": "61b297621e3ecdd22335d35b26e82531460eef90a102f99b7e9166156068a064",
+      "bytes": 204625
+    },
+    {
+      "path": "benchmarks/results/hydrogen-20261115/ocr-replay-barney.log",
+      "sha256": "180df64561e7cb85023cb2bc436a21ca402eec3487b0bfec7f040093e519b45a",
+      "bytes": 1034
+    },
+    {
+      "path": "benchmarks/results/hydrogen-20261115/ocr-replay-startup/sitecustomize.py",
+      "sha256": "b977d0a501f8e5c560b116b23b4d7c48c988d229c3ba2201d0b46b39daf112a5",
+      "bytes": 155
+    },
+    {
+      "path": "benchmarks/results/hydrogen-20261115/request-002.json",
+      "sha256": "ec9ea3d918a2705bc3ff106af05b9055eb6beddd09c4a159756e516f039bae3b",
+      "bytes": 89579
+    },
+    {
+      "path": "benchmarks/results/hydrogen-20261115/request-003.json",
+      "sha256": "9d3732741c9d9a75ecdf05fbeeee266c73ec0c81d3658cae7354456332fb872c",
+      "bytes": 89734
+    },
+    {
+      "path": "benchmarks/results/hydrogen-20261115/request-004.json",
+      "sha256": "7136f152bd3c98da4f64a34506920645197c39eddfb2c7a231e058c6b53e5770",
+      "bytes": 103819
+    },
+    {
+      "path": "benchmarks/results/hydrogen-20261115/request-005.json",
+      "sha256": "a3f7e7b0c98c08aad517b00d6467a7ff6ed6802e6031feb50eee974deef04e8c",
+      "bytes": 103822
+    },
+    {
+      "path": "benchmarks/results/hydrogen-20261115/request-006.json",
+      "sha256": "a85b6a56c7d58dad6b1d5360405678eb68224a14b1552bdf84792ba32aedfcc8",
+      "bytes": 311778
+    },
+    {
+      "path": "benchmarks/results/hydrogen-20261115/request-007.json",
+      "sha256": "b51d8425e881aa5871b0968b208e7e86aed01d7aaad3f574b169ccec0f78c078",
+      "bytes": 311335
+    },
+    {
+      "path": "benchmarks/results/hydrogen-20261115/request-008.json",
+      "sha256": "7d6adf96aff848bcb2ebef418170416d2f14e536f742c9378a8ddf7873b413d1",
+      "bytes": 204609
+    },
+    {
+      "path": "benchmarks/results/hydrogen-20261115/request-009.json",
+      "sha256": "f74e87ca5be38aa66841dbdfcdeedc3618c7e7ce2ebeb7b9d2c65717ee81b40b",
+      "bytes": 204582
+    },
+    {
+      "path": "benchmarks/results/hydrogen-20261115/request-010.json",
+      "sha256": "4d2bf878c3a6136d9992f9499247e29bbdcaa2cfaf09a0e8b8dd9e9789bea974",
+      "bytes": 568225
+    },
+    {
+      "path": "benchmarks/results/hydrogen-20261115/request-011.json",
+      "sha256": "bff5953d42aae1c64d338eb4f6e9e4fa8bbb26d61df3690f18df8f04414dfb9f",
+      "bytes": 568198
+    },
+    {
+      "path": "benchmarks/results/hydrogen-20261115/request-012.json",
+      "sha256": "fd9d5f160c03880fee8c908aa61d57c31b471229c9aa44958f15daebb5887506",
+      "bytes": 1500876
+    },
+    {
+      "path": "benchmarks/results/hydrogen-20261115/request-013.json",
+      "sha256": "16e73bcba8a4d6d9cad84564be271c54628a7e68a34401daa4e02c4a0741fa19",
+      "bytes": 1497621
+    },
+    {
+      "path": "benchmarks/results/hydrogen-20261115/request-014.json",
+      "sha256": "fae751f585c6e62797112ce67a625198a58872ae5143cb4c34225f12a98336b6",
+      "bytes": 1497599
+    },
+    {
+      "path": "benchmarks/results/hydrogen-20261115/response-002.json",
+      "sha256": "5aebc4597b3c97b8479bc3f87c3afc4f737dd5ef126811639002cb18e1f9fcb0",
+      "bytes": 2188
+    },
+    {
+      "path": "benchmarks/results/hydrogen-20261115/response-003.json",
+      "sha256": "533c2939892001c54ccf6a6a43a3fb6002569a7cd0a4f35c7e5b2bf24c4c67ee",
+      "bytes": 6074
+    },
+    {
+      "path": "benchmarks/results/hydrogen-20261115/response-004.json",
+      "sha256": "dd3b1c69374d03cddd99583c5d57b64f5cc0fe97d35e0a6255a8ac13ed7a9cbf",
+      "bytes": 9868
+    },
+    {
+      "path": "benchmarks/results/hydrogen-20261115/response-005.json",
+      "sha256": "197e5a3f4992d23c1d90de36300f0a8e590f2386ddea06f0ecf97141b1153345",
+      "bytes": 9067
+    },
+    {
+      "path": "benchmarks/results/hydrogen-20261115/response-006.json",
+      "sha256": "6905da36c6a7737e650da9d1a0e8f5bd11e92dad8f6170f84a86e7b6cd291aa4",
+      "bytes": 3859
+    },
+    {
+      "path": "benchmarks/results/hydrogen-20261115/response-007.json",
+      "sha256": "6d4cfc636d5a87fe92d3de2ee19c06328d3568caeeb2b2ae07101165095369e9",
+      "bytes": 6934
+    },
+    {
+      "path": "benchmarks/results/hydrogen-20261115/response-008.json",
+      "sha256": "f04f252a34aeee764066fb9a8f311ce3b7b20fba8510a1131b9f4e6b0121e9b5",
+      "bytes": 32100
+    },
+    {
+      "path": "benchmarks/results/hydrogen-20261115/response-009.json",
+      "sha256": "2598aedc1bc099431cca364777b75fdc30293ee9dd091970b286c75fb9b6c0e5",
+      "bytes": 12319
+    },
+    {
+      "path": "benchmarks/results/hydrogen-20261115/response-010.json",
+      "sha256": "1e608c671376986a1281ea5b0bc801d3e29c4e3df1de5f77365e33c95c8ee6bf",
+      "bytes": 12586
+    },
+    {
+      "path": "benchmarks/results/hydrogen-20261115/response-011.json",
+      "sha256": "4117a931c75c1c144440ef8fd7c4f2a38fdcc70adcf0c4370fa71796a325fa93",
+      "bytes": 6144
+    },
+    {
+      "path": "benchmarks/results/hydrogen-20261115/response-012.json",
+      "sha256": "4e21cf2a8c688b875daf2e8653bdd69dd2ebff4f4dc52c0d56806e40e3b44557",
+      "bytes": 7517
+    },
+    {
+      "path": "benchmarks/results/hydrogen-20261115/response-013.json",
+      "sha256": "31d6709a734461f1c92d53e4c6e92d643a4e2d12fa51f841d0a74284c739cd1a",
+      "bytes": 2829
+    },
+    {
+      "path": "benchmarks/results/hydrogen-20261115/response-014.json",
+      "sha256": "7731a5c63f08bdc425bd6b127bb31440f34a23dfae13b2d284fa4b9b3c2c768c",
+      "bytes": 16325
+    },
+    {
+      "path": "benchmarks/results/hydrogen-20261115/startup/sitecustomize.py",
+      "sha256": "5c46ade1173691e6963181348a51d9335d825b258ff03c3842a85c911e9164a9",
+      "bytes": 162
+    },
+    {
+      "path": "benchmarks/results/hydrogen-20261115/table-image-positive-candidate.jsonl",
+      "sha256": "7cffb67c2e7e4d00583b562883c01bf86e88e6caf602f3241f57dec98e1e0fdb",
+      "bytes": 2537
+    },
+    {
+      "path": "benchmarks/results/hydrogen-20261115/table-image-positive-candidate_reports/row-00000-page-00001-original-00001.json",
+      "sha256": "9db4992236551056ee7dfb1ddbe6fe6e3f7279c9ac532e80e834bf70dfe3cdea",
+      "bytes": 3612
+    },
+    {
+      "path": "benchmarks/results/hydrogen-20261115/table-image-positive-control.jsonl",
+      "sha256": "a0dd877b727686ada5b72f847b5523a6e4402c2e4aa0654b30fcf100ab772bd9",
+      "bytes": 2529
+    },
+    {
+      "path": "benchmarks/results/hydrogen-20261115/table-image-positive-control_reports/row-00000-page-00001-original-00001.json",
+      "sha256": "8059066e10f1cfcd9516b31aa6d86a7e04fc70d695be01d74cd9b440b1562189",
+      "bytes": 13790
+    },
+    {
+      "path": "output/fixtures/hydrogen-detector-094-runtime/Image000.jpg",
+      "sha256": "7500762d6e0b9761b49305b28e0c3609d051af1d5f3eac8ce33028b0b439f325",
+      "bytes": 889368
+    },
+    {
+      "path": "output/fixtures/hydrogen-detector-094-runtime/Image011.jpg",
+      "sha256": "ae3524cb58ac940c912c7885d65ec9d21221415d97d1ea21d97be9615161a860",
+      "bytes": 232594
+    },
+    {
+      "path": "output/fixtures/hydrogen-detector-094-runtime/Image121.jpg",
+      "sha256": "04731378a1ff37ffb8e26faf005f87fa2383f9ba91e147ce9caa94e8519d086e",
+      "bytes": 849762
+    },
+    {
+      "path": "output/fixtures/hydrogen-detector-094-runtime/Image124.jpg",
+      "sha256": "b35e4c1e660a0ed9029ebe555558341a933a5724740964ca6927f94f77ae2944",
+      "bytes": 269225
+    },
+    {
+      "path": "output/fixtures/hydrogen-detector-094-runtime/candidate-p12.yaml",
+      "sha256": "f4c3ed01a60f6f310b0a86cc267776181c226d6076d0a45e113604260e696873",
+      "bytes": 2060
+    },
+    {
+      "path": "output/fixtures/hydrogen-detector-094-runtime/candidate.yaml",
+      "sha256": "bc92037ab577e7ed1761408cd405f032e1bbfb220b0ce60256e906aaf9baa5e0",
+      "bytes": 2039
+    },
+    {
+      "path": "output/fixtures/hydrogen-detector-094-runtime/control.yaml",
+      "sha256": "935aaa48b3d2a53dc66428211e1feb8bdca1335730ed43c94956e39f155bf0df",
+      "bytes": 1960
+    },
+    {
+      "path": "output/fixtures/hydrogen-detector-094-runtime/guided_with_meta_provenance.py",
+      "sha256": "ca19a29a403e04fbdb831b6b9468b4b6dfec104104ee4031439a6dd10b08a264",
+      "bytes": 240054
+    },
+    {
+      "path": "output/fixtures/hydrogen-detector-094-runtime/pages_html.jsonl",
+      "sha256": "a75253a93030ac6be94e5f9f47399e1637b068182901cb484b5f6c2108a346f0",
+      "bytes": 2801
+    },
+    {
+      "path": "output/fixtures/hydrogen-detector-094-runtime/registry.yaml",
+      "sha256": "ea657ddf3ef1dca852929f235374b4ad8b371e3ca1f0483643cdd020ef8c8054",
+      "bytes": 19661
+    },
+    {
+      "path": "output/runs/hydrogen-ocr-alverson-candidate-20261115/01_images_dir_to_manifest_v1/pages_images_manifest.jsonl",
+      "sha256": "5155d66417e681144a25d4663e25229b45937c3a394e19d0735b2a8c73d766aa",
+      "bytes": 503
+    },
+    {
+      "path": "output/runs/hydrogen-ocr-alverson-candidate-20261115/02_ocr_ai_gpt51_v1/pages_html.jsonl",
+      "sha256": "4160a18d511270fc390ad9552b48ae3044a42006ff4d5f4be1313d1c0f06b4d9",
+      "bytes": 2638
+    },
+    {
+      "path": "output/runs/hydrogen-ocr-alverson-candidate-20261115/instrumentation.json",
+      "sha256": "08d474455f10766f98868eccafc28e7e0d85654b892f6d527d957eb348e2c473",
+      "bytes": 3661
+    },
+    {
+      "path": "output/runs/hydrogen-ocr-alverson-candidate-20261115/instrumentation.md",
+      "sha256": "c8aa2f4c5fd79d771e2fb872221fcd96784d023ebcd4fd692f4fc5606b86e7a1",
+      "bytes": 821
+    },
+    {
+      "path": "output/runs/hydrogen-ocr-alverson-candidate-20261115/pipeline_events.jsonl",
+      "sha256": "66796f87d80f32945f97ba8be951186529f3a88852ac08612465c3d503d18e53",
+      "bytes": 4762
+    },
+    {
+      "path": "output/runs/hydrogen-ocr-alverson-candidate-20261115/pipeline_state.json",
+      "sha256": "58b48c490fac6fe700545d0ba2e9190c3c527f070f9a30c6adfbdf8d7036a23d",
+      "bytes": 1421
+    },
+    {
+      "path": "output/runs/hydrogen-ocr-alverson-candidate-20261115/snapshots/plan.json",
+      "sha256": "dff7a918ac8656f82916847141b973479901936576a6df6f266de452f5ef8837",
+      "bytes": 2106
+    },
+    {
+      "path": "output/runs/hydrogen-ocr-alverson-candidate-20261115/snapshots/pricing.yaml",
+      "sha256": "5b480d2aba569392a1f4e538bf67e28685bc91e8eced00d4737b0ff30c38bffd",
+      "bytes": 381
+    },
+    {
+      "path": "output/runs/hydrogen-ocr-alverson-candidate-20261115/snapshots/recipe.yaml",
+      "sha256": "0a5228e94ccbf403d263ef11d7537844d90e2318f322cae8e483baa0686962f5",
+      "bytes": 1084
+    },
+    {
+      "path": "output/runs/hydrogen-ocr-alverson-candidate-20261115/snapshots/registry.json",
+      "sha256": "83daf66bc2a0ad36ec360d9d63b0cd5ff55e30b9506961dafe1cae6f148e5247",
+      "bytes": 4243
+    },
+    {
+      "path": "output/runs/hydrogen-ocr-alverson-candidate-20261115/timing_summary.json",
+      "sha256": "335132b0f7036e39515d23d95e97f96b74891571e9b850c3af7e0eebfcfa8787",
+      "bytes": 435
+    },
+    {
+      "path": "output/runs/hydrogen-ocr-alverson-control-20261115/01_images_dir_to_manifest_v1/pages_images_manifest.jsonl",
+      "sha256": "ff03982b3bdcc9972b23d13ca12c9c7cd1b426e8a725a06badb7685f8269ee0d",
+      "bytes": 501
+    },
+    {
+      "path": "output/runs/hydrogen-ocr-alverson-control-20261115/02_ocr_ai_gpt51_v1/pages_html.jsonl",
+      "sha256": "460620b7f32aca065cf14ea444317d15603dda236b1780628aedf74e6c586059",
+      "bytes": 2705
+    },
+    {
+      "path": "output/runs/hydrogen-ocr-alverson-control-20261115/instrumentation.json",
+      "sha256": "f64445e29e19ba7912d1b7721ff5e2f06152b97d376fc83ecc2e7aa2a9304bb5",
+      "bytes": 3654
+    },
+    {
+      "path": "output/runs/hydrogen-ocr-alverson-control-20261115/instrumentation.md",
+      "sha256": "172f4652813c895ede961136c846ac297013ac2902c7ef1d0424599ce53de500",
+      "bytes": 819
+    },
+    {
+      "path": "output/runs/hydrogen-ocr-alverson-control-20261115/pipeline_events.jsonl",
+      "sha256": "e5b71d256b84c44674738357df95e774aa129eac2ce895645cb11384c39221ad",
+      "bytes": 4728
+    },
+    {
+      "path": "output/runs/hydrogen-ocr-alverson-control-20261115/pipeline_state.json",
+      "sha256": "93d92040bd0ce5771e7cff8bb22877adca8f10e4f8ca0a4ef39839e93aa02c9b",
+      "bytes": 1415
+    },
+    {
+      "path": "output/runs/hydrogen-ocr-alverson-control-20261115/snapshots/plan.json",
+      "sha256": "1b573f64d22b228b1cfd03593edc186b7474a5c261b763dcc9606778a9adab2d",
+      "bytes": 2106
+    },
+    {
+      "path": "output/runs/hydrogen-ocr-alverson-control-20261115/snapshots/pricing.yaml",
+      "sha256": "5b480d2aba569392a1f4e538bf67e28685bc91e8eced00d4737b0ff30c38bffd",
+      "bytes": 381
+    },
+    {
+      "path": "output/runs/hydrogen-ocr-alverson-control-20261115/snapshots/recipe.yaml",
+      "sha256": "43a4dc52b8eee42cfe810e0f0312d29c8d526f430c8b56cd97f8472c7768e28b",
+      "bytes": 1082
+    },
+    {
+      "path": "output/runs/hydrogen-ocr-alverson-control-20261115/snapshots/registry.json",
+      "sha256": "83daf66bc2a0ad36ec360d9d63b0cd5ff55e30b9506961dafe1cae6f148e5247",
+      "bytes": 4243
+    },
+    {
+      "path": "output/runs/hydrogen-ocr-alverson-control-20261115/timing_summary.json",
+      "sha256": "217ef61755b0765d75a0cafe86fab6324cbc62e4062e85597bb2c5f2c0222a86",
+      "bytes": 432
+    },
+    {
+      "path": "output/runs/hydrogen-ocr-barney-candidate-20261115/01_images_dir_to_manifest_v1/pages_images_manifest.jsonl",
+      "sha256": "2ec62515388d2f76f6b079a096f0bf8ba6461645332b19f0f46c81bb9003f39d",
+      "bytes": 497
+    },
+    {
+      "path": "output/runs/hydrogen-ocr-barney-candidate-20261115/02_ocr_ai_gpt51_v1/pages_html.jsonl",
+      "sha256": "39d177df2f15c65cde6212ccc64357c2389ec16fe6c83b6f0e9a37ceeec9232d",
+      "bytes": 3650
+    },
+    {
+      "path": "output/runs/hydrogen-ocr-barney-candidate-20261115/instrumentation.json",
+      "sha256": "cfc377fcf8c70805c38912cbfbff27f271530c9c77980d0e16adf94b2164f0cc",
+      "bytes": 3653
+    },
+    {
+      "path": "output/runs/hydrogen-ocr-barney-candidate-20261115/instrumentation.md",
+      "sha256": "9ef71ff209874d203d3d34141014e99b4ac666298336b801bd7c9576852cf0fd",
+      "bytes": 819
+    },
+    {
+      "path": "output/runs/hydrogen-ocr-barney-candidate-20261115/pipeline_events.jsonl",
+      "sha256": "b325929303e7b8c1f8792d99e9cf405686071d62d43134a992ef939111202939",
+      "bytes": 4726
+    },
+    {
+      "path": "output/runs/hydrogen-ocr-barney-candidate-20261115/pipeline_state.json",
+      "sha256": "41de95a372c4649e5fc624c7354f4dbdb4c14ffd4b4cca6585c193a98ca2d6aa",
+      "bytes": 1415
+    },
+    {
+      "path": "output/runs/hydrogen-ocr-barney-candidate-20261115/snapshots/plan.json",
+      "sha256": "df55f7ed75dd91cf539582ef24dbf9c7257b1dac68454a59bd6b3b8213405f4b",
+      "bytes": 2104
+    },
+    {
+      "path": "output/runs/hydrogen-ocr-barney-candidate-20261115/snapshots/pricing.yaml",
+      "sha256": "5b480d2aba569392a1f4e538bf67e28685bc91e8eced00d4737b0ff30c38bffd",
+      "bytes": 381
+    },
+    {
+      "path": "output/runs/hydrogen-ocr-barney-candidate-20261115/snapshots/recipe.yaml",
+      "sha256": "0b5b8144cb7d81d5e2c05695d0e02daf81d0bfb4b92126c7f96aac3c23231f50",
+      "bytes": 1078
+    },
+    {
+      "path": "output/runs/hydrogen-ocr-barney-candidate-20261115/snapshots/registry.json",
+      "sha256": "83daf66bc2a0ad36ec360d9d63b0cd5ff55e30b9506961dafe1cae6f148e5247",
+      "bytes": 4243
+    },
+    {
+      "path": "output/runs/hydrogen-ocr-barney-candidate-20261115/timing_summary.json",
+      "sha256": "b87e196f78e0e672a3e5e8549d54e095fc6ca6db346dcce21bdcef0636d04ac5",
+      "bytes": 433
+    },
+    {
+      "path": "output/runs/hydrogen-ocr-barney-control-20261115/01_images_dir_to_manifest_v1/pages_images_manifest.jsonl",
+      "sha256": "539d7e77211bdfff0c3b0bc212f6a5903870b049ef3099c23d6d36a92e17b618",
+      "bytes": 495
+    },
+    {
+      "path": "output/runs/hydrogen-ocr-barney-control-20261115/02_ocr_ai_gpt51_v1/pages_html.jsonl",
+      "sha256": "c84efd596ad7a1b2fb4b76c582666541966a14b67f8e52a8c14eff42c829b672",
+      "bytes": 3676
+    },
+    {
+      "path": "output/runs/hydrogen-ocr-barney-control-20261115/instrumentation.json",
+      "sha256": "0ed2997dea239d83d7f376b5d52ac924d4c5822442339844a3cef5a93f4ff939",
+      "bytes": 3645
+    },
+    {
+      "path": "output/runs/hydrogen-ocr-barney-control-20261115/instrumentation.md",
+      "sha256": "0b3e08516be31833ae12dbb497e8b210ef05c0c83be0977f3de5943ba62815fb",
+      "bytes": 817
+    },
+    {
+      "path": "output/runs/hydrogen-ocr-barney-control-20261115/pipeline_events.jsonl",
+      "sha256": "270921b618ed3c03bec8e9f36f81d72ef8d80ca3192967f36674bf62845756f9",
+      "bytes": 4692
+    },
+    {
+      "path": "output/runs/hydrogen-ocr-barney-control-20261115/pipeline_state.json",
+      "sha256": "3e7a1bcf578a70b9f1e655e4c313d2679c309e4f62ca6163a5fbb0b1327d9926",
+      "bytes": 1409
+    },
+    {
+      "path": "output/runs/hydrogen-ocr-barney-control-20261115/snapshots/plan.json",
+      "sha256": "f38101df8ef3444339cde31717313223cf6510dd174b9135c5ab9b4940827062",
+      "bytes": 2104
+    },
+    {
+      "path": "output/runs/hydrogen-ocr-barney-control-20261115/snapshots/pricing.yaml",
+      "sha256": "5b480d2aba569392a1f4e538bf67e28685bc91e8eced00d4737b0ff30c38bffd",
+      "bytes": 381
+    },
+    {
+      "path": "output/runs/hydrogen-ocr-barney-control-20261115/snapshots/recipe.yaml",
+      "sha256": "8facf97e8aaf6eb4ac15ad25db21ecd48f0ee981cfe77cf8148bb86e0e042da7",
+      "bytes": 1076
+    },
+    {
+      "path": "output/runs/hydrogen-ocr-barney-control-20261115/snapshots/registry.json",
+      "sha256": "83daf66bc2a0ad36ec360d9d63b0cd5ff55e30b9506961dafe1cae6f148e5247",
+      "bytes": 4243
+    },
+    {
+      "path": "output/runs/hydrogen-ocr-barney-control-20261115/timing_summary.json",
+      "sha256": "8a42c8f7bbef7ac0df552d8bbc576b627430c6e03c47b4d6ac0cd20b363e3f24",
+      "bytes": 429
+    },
+    {
+      "path": "output/runs/hydrogen094-candidate-S3-live/01_load_artifact_v1/pages.ndjson",
+      "sha256": "e693d8d89c5603c9683c5cc013944efee96e007771ad0544b61687d40ea4aae8",
+      "bytes": 321
+    },
+    {
+      "path": "output/runs/hydrogen094-candidate-S3-live/02_load_artifact_v1/portions.ndjson",
+      "sha256": "db7e32f11c5551f6eb763b93a872622b8f9f9b144af1930b94e8e17f27833e1e",
+      "bytes": 127
+    },
+    {
+      "path": "output/runs/hydrogen094-candidate-S3-live/03_propose_crop_safety_v1/proposals.jsonl",
+      "sha256": "ca6593d541c1a30005c2b840672cdd568eefa2687b3d39b42a3f8515ac4ea202",
+      "bytes": 1186
+    },
+    {
+      "path": "output/runs/hydrogen094-candidate-S3-live/pipeline_events.jsonl",
+      "sha256": "7939f768785cc2c654ab5eeb28d507e12652d43bdb1fe55a0da12ef435c3c0fb",
+      "bytes": 3418
+    },
+    {
+      "path": "output/runs/hydrogen094-candidate-S3-live/pipeline_state.json",
+      "sha256": "2775caf6d93be1412d4e6a6e59031dafa47389e4656d0a42f915277b48ecbfe7",
+      "bytes": 1762
+    },
+    {
+      "path": "output/runs/hydrogen094-candidate-S3-live/snapshots/plan.json",
+      "sha256": "4c9ab01015ecb5d5a9182004e9c5e027b83e13a8cc09bcfa1221f2ffe2f38ae6",
+      "bytes": 5584
+    },
+    {
+      "path": "output/runs/hydrogen094-candidate-S3-live/snapshots/recipe.yaml",
+      "sha256": "b2fa5307816fac9bbaf9d831416ba13e34d47b17a8e7af910d9c6b29330e2439",
+      "bytes": 3343
+    },
+    {
+      "path": "output/runs/hydrogen094-candidate-S3-live/snapshots/registry.json",
+      "sha256": "e531d37346a362b97c36ff331508b5a36e9f5d5bcd57a9c6f827caae6fa01365",
+      "bytes": 8680
+    },
+    {
+      "path": "output/runs/hydrogen094-candidate-S3-live-fixture/custody/authority-template.json",
+      "sha256": "1dc03ff0cfc6714c4fc1d6f4a2924c6304e0c722c9e5a958a5765d6fff5e88dc",
+      "bytes": 184
+    },
+    {
+      "path": "output/runs/hydrogen094-candidate-S3-live-fixture/custody/custody_provenance.json",
+      "sha256": "9382d693611ad6a736a7d075319b2b3da3951c7432c55414fe4043bd0a932f28",
+      "bytes": 2608
+    },
+    {
+      "path": "output/runs/hydrogen094-candidate-S3-live-fixture/custody/decisions.jsonl",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "output/runs/hydrogen094-candidate-S3-live-fixture/custody/images/S3.png",
+      "sha256": "11d98294ac8a19c8e77490998a933add2ddf8de6fdbeb8e7156159e201a87bfe",
+      "bytes": 28577
+    },
+    {
+      "path": "output/runs/hydrogen094-candidate-S3-live-fixture/custody/inventory-review-template.json",
+      "sha256": "dcac300d39259c5226e74c7747f92695a3ce91c3a15e4354332547294cbb74a4",
+      "bytes": 872
+    },
+    {
+      "path": "output/runs/hydrogen094-candidate-S3-live-fixture/custody/inventory.json",
+      "sha256": "e3c319cc2ffc5c95c259aebdf64847e137ebf88906c051c588f59cc99a5a8c13",
+      "bytes": 2936
+    },
+    {
+      "path": "output/runs/hydrogen094-candidate-S3-live-fixture/custody/manifest.jsonl",
+      "sha256": "47f7c84491af85327bbcd0cd40199fccd4698aa6272e47bcd13bb3cac243e484",
+      "bytes": 802
+    },
+    {
+      "path": "output/runs/hydrogen094-candidate-S3-live-fixture/custody/native-receipts/ledger.json",
+      "sha256": "8edd71d0e838ba7eb214690e1491d20fb0bca32ef6137268b7a890e882650140",
+      "bytes": 745
+    },
+    {
+      "path": "output/runs/hydrogen094-candidate-S3-live-fixture/custody/native-receipts/request-001.json",
+      "sha256": "2098eb231af47065ac09ee89382568cfada45dee84cc3a0d15723f5b8e228a4d",
+      "bytes": 89740
+    },
+    {
+      "path": "output/runs/hydrogen094-candidate-S3-live-fixture/custody/native-receipts/response-001.json",
+      "sha256": "e103e6ab0cc1988a8f2f51585cfb68ce3bb8f83b3d87eb5b96bedd0fbdac655f",
+      "bytes": 202
+    },
+    {
+      "path": "output/runs/hydrogen094-candidate-S3-live-fixture/custody/originals/manifest.jsonl",
+      "sha256": "fa2a71ed58edc48214e2f0333751f95305456a2dab6d46f63ff44a20a5b6a22b",
+      "bytes": 594
+    },
+    {
+      "path": "output/runs/hydrogen094-candidate-S3-live-fixture/custody/originals/pages.ndjson",
+      "sha256": "e693d8d89c5603c9683c5cc013944efee96e007771ad0544b61687d40ea4aae8",
+      "bytes": 321
+    },
+    {
+      "path": "output/runs/hydrogen094-candidate-S3-live-fixture/custody/originals/portions.ndjson",
+      "sha256": "db7e32f11c5551f6eb763b93a872622b8f9f9b144af1930b94e8e17f27833e1e",
+      "bytes": 127
+    },
+    {
+      "path": "output/runs/hydrogen094-candidate-S3-live-fixture/custody/originals/source_map.json",
+      "sha256": "4c1f48ba65f18279725007161731095745eb02836634dc45b99cd165f0050c4e",
+      "bytes": 362
+    },
+    {
+      "path": "output/runs/hydrogen094-candidate-S3-live-fixture/custody/pages.jsonl",
+      "sha256": "e693d8d89c5603c9683c5cc013944efee96e007771ad0544b61687d40ea4aae8",
+      "bytes": 321
+    },
+    {
+      "path": "output/runs/hydrogen094-candidate-S3-live-fixture/custody/portions.jsonl",
+      "sha256": "db7e32f11c5551f6eb763b93a872622b8f9f9b144af1930b94e8e17f27833e1e",
+      "bytes": 127
+    },
+    {
+      "path": "output/runs/hydrogen094-candidate-S3-live-fixture/custody/source-1.png",
+      "sha256": "4cb7ceb9d8a3045951ce9c2da00eb1afb02ad91d1d3bad722283c0f96fa5ce84",
+      "bytes": 35359
+    },
+    {
+      "path": "output/runs/hydrogen094-candidate-S3-live-fixture/custody/source-2.png",
+      "sha256": "449d8509b752ea899c4c6248d919c9ebe4859ffdb0596052c915fc2f06aa54a9",
+      "bytes": 6863
+    },
+    {
+      "path": "output/runs/hydrogen094-candidate-S3-live-fixture/driver.log",
+      "sha256": "4e32d07d06bdea0e0906f30e652150cbe41dbcb4aeba214bdc988714fc3c493b",
+      "bytes": 1377
+    },
+    {
+      "path": "output/runs/hydrogen094-candidate-S3-live-fixture/input/S3-source.png",
+      "sha256": "4cb7ceb9d8a3045951ce9c2da00eb1afb02ad91d1d3bad722283c0f96fa5ce84",
+      "bytes": 35359
+    },
+    {
+      "path": "output/runs/hydrogen094-candidate-S3-live-fixture/input/images/S3.png",
+      "sha256": "11d98294ac8a19c8e77490998a933add2ddf8de6fdbeb8e7156159e201a87bfe",
+      "bytes": 28577
+    },
+    {
+      "path": "output/runs/hydrogen094-candidate-S3-live-fixture/input/manifest.jsonl",
+      "sha256": "fa2a71ed58edc48214e2f0333751f95305456a2dab6d46f63ff44a20a5b6a22b",
+      "bytes": 594
+    },
+    {
+      "path": "output/runs/hydrogen094-candidate-S3-live-fixture/input/pages.ndjson",
+      "sha256": "e693d8d89c5603c9683c5cc013944efee96e007771ad0544b61687d40ea4aae8",
+      "bytes": 321
+    },
+    {
+      "path": "output/runs/hydrogen094-candidate-S3-live-fixture/input/portions.ndjson",
+      "sha256": "db7e32f11c5551f6eb763b93a872622b8f9f9b144af1930b94e8e17f27833e1e",
+      "bytes": 127
+    },
+    {
+      "path": "output/runs/hydrogen094-candidate-S3-live-fixture/input/source-map.json",
+      "sha256": "4c1f48ba65f18279725007161731095745eb02836634dc45b99cd165f0050c4e",
+      "bytes": 362
+    },
+    {
+      "path": "output/runs/hydrogen094-candidate-S3-live-fixture/input/text-only-page.png",
+      "sha256": "449d8509b752ea899c4c6248d919c9ebe4859ffdb0596052c915fc2f06aa54a9",
+      "bytes": 6863
+    },
+    {
+      "path": "output/runs/hydrogen094-candidate-S3-live-fixture/recipe.yaml",
+      "sha256": "9f82ac2b12e588b6cf98519e049767d903849e386f8d323a3219fe9406531df4",
+      "bytes": 3214
+    },
+    {
+      "path": "output/runs/hydrogen094-candidate-S3-live-transport1/01_load_artifact_v1/pages.ndjson",
+      "sha256": "e693d8d89c5603c9683c5cc013944efee96e007771ad0544b61687d40ea4aae8",
+      "bytes": 321
+    },
+    {
+      "path": "output/runs/hydrogen094-candidate-S3-live-transport1/02_load_artifact_v1/portions.ndjson",
+      "sha256": "db7e32f11c5551f6eb763b93a872622b8f9f9b144af1930b94e8e17f27833e1e",
+      "bytes": 127
+    },
+    {
+      "path": "output/runs/hydrogen094-candidate-S3-live-transport1/03_propose_crop_safety_v1/proposals.jsonl",
+      "sha256": "38fa4a458c603b69f774fa5e9a91f4d6dc3bb0f7566904bef432d18c47fdaff6",
+      "bytes": 1000
+    },
+    {
+      "path": "output/runs/hydrogen094-candidate-S3-live-transport1/pipeline_events.jsonl",
+      "sha256": "dac62af026762920adcd5e367987532b3efba9b001e0324a625b41be91930404",
+      "bytes": 3572
+    },
+    {
+      "path": "output/runs/hydrogen094-candidate-S3-live-transport1/pipeline_state.json",
+      "sha256": "dd6b9879b25264995a8616d8d5c49184d84bfd7715ee4457a0185f2f81cb1624",
+      "bytes": 1806
+    },
+    {
+      "path": "output/runs/hydrogen094-candidate-S3-live-transport1/snapshots/plan.json",
+      "sha256": "3becbacb2b230d4f4da98caa304434ba23b9cafe5d13eaae0f7bb09ac3f3b892",
+      "bytes": 5738
+    },
+    {
+      "path": "output/runs/hydrogen094-candidate-S3-live-transport1/snapshots/recipe.yaml",
+      "sha256": "1126b33a4d6a0d44823e313d901050be8b5577638009c8958b2471b9497e925d",
+      "bytes": 3519
+    },
+    {
+      "path": "output/runs/hydrogen094-candidate-S3-live-transport1/snapshots/registry.json",
+      "sha256": "e531d37346a362b97c36ff331508b5a36e9f5d5bcd57a9c6f827caae6fa01365",
+      "bytes": 8680
+    },
+    {
+      "path": "output/runs/hydrogen094-candidate-S3-live-transport1-fixture/custody/authority-template.json",
+      "sha256": "858fec31ae8f83d1c532c79c8d346778a55d05a2eb3c1ecd4d223c1eaade5d17",
+      "bytes": 195
+    },
+    {
+      "path": "output/runs/hydrogen094-candidate-S3-live-transport1-fixture/custody/custody_provenance.json",
+      "sha256": "03a0d9521853e8be808a13ab1b7b00f793649685cd5879f4d49839ab64959cdf",
+      "bytes": 2696
+    },
+    {
+      "path": "output/runs/hydrogen094-candidate-S3-live-transport1-fixture/custody/decisions.jsonl",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "output/runs/hydrogen094-candidate-S3-live-transport1-fixture/custody/images/S3.png",
+      "sha256": "11d98294ac8a19c8e77490998a933add2ddf8de6fdbeb8e7156159e201a87bfe",
+      "bytes": 28577
+    },
+    {
+      "path": "output/runs/hydrogen094-candidate-S3-live-transport1-fixture/custody/inventory-review-template.json",
+      "sha256": "f19685b9e7101b38251cc3dedb2f578c37a0b0d968326b50af53e6397c64b21f",
+      "bytes": 883
+    },
+    {
+      "path": "output/runs/hydrogen094-candidate-S3-live-transport1-fixture/custody/inventory.json",
+      "sha256": "21c2a16918b8581ebb49c42af2ca86f3440e718b277b6ca8b8feb72e5a2d23a2",
+      "bytes": 3013
+    },
+    {
+      "path": "output/runs/hydrogen094-candidate-S3-live-transport1-fixture/custody/manifest.jsonl",
+      "sha256": "059e7a30fbdbb04040e27e6c038d6330f03a5ea7388bb0906a02b63221dc74a2",
+      "bytes": 824
+    },
+    {
+      "path": "output/runs/hydrogen094-candidate-S3-live-transport1-fixture/custody/native-receipts/ledger.json",
+      "sha256": "74ca7c151d5f7cd0de86cf274dd4139901580f0ee71099aec382436528bcf6ad",
+      "bytes": 634
+    },
+    {
+      "path": "output/runs/hydrogen094-candidate-S3-live-transport1-fixture/custody/native-receipts/request-001.json",
+      "sha256": "2098eb231af47065ac09ee89382568cfada45dee84cc3a0d15723f5b8e228a4d",
+      "bytes": 89740
+    },
+    {
+      "path": "output/runs/hydrogen094-candidate-S3-live-transport1-fixture/custody/originals/manifest.jsonl",
+      "sha256": "c83400d83f0936a9e98e1be466eeffb39712d4f8d866b5a08bd41e377f4876b0",
+      "bytes": 605
+    },
+    {
+      "path": "output/runs/hydrogen094-candidate-S3-live-transport1-fixture/custody/originals/pages.ndjson",
+      "sha256": "e693d8d89c5603c9683c5cc013944efee96e007771ad0544b61687d40ea4aae8",
+      "bytes": 321
+    },
+    {
+      "path": "output/runs/hydrogen094-candidate-S3-live-transport1-fixture/custody/originals/portions.ndjson",
+      "sha256": "db7e32f11c5551f6eb763b93a872622b8f9f9b144af1930b94e8e17f27833e1e",
+      "bytes": 127
+    },
+    {
+      "path": "output/runs/hydrogen094-candidate-S3-live-transport1-fixture/custody/originals/source_map.json",
+      "sha256": "3d1627282c8595ffe5168d02d396ce3ed8daeb331abce163795a0d3f95fff41c",
+      "bytes": 384
+    },
+    {
+      "path": "output/runs/hydrogen094-candidate-S3-live-transport1-fixture/custody/pages.jsonl",
+      "sha256": "e693d8d89c5603c9683c5cc013944efee96e007771ad0544b61687d40ea4aae8",
+      "bytes": 321
+    },
+    {
+      "path": "output/runs/hydrogen094-candidate-S3-live-transport1-fixture/custody/portions.jsonl",
+      "sha256": "db7e32f11c5551f6eb763b93a872622b8f9f9b144af1930b94e8e17f27833e1e",
+      "bytes": 127
+    },
+    {
+      "path": "output/runs/hydrogen094-candidate-S3-live-transport1-fixture/custody/source-1.png",
+      "sha256": "4cb7ceb9d8a3045951ce9c2da00eb1afb02ad91d1d3bad722283c0f96fa5ce84",
+      "bytes": 35359
+    },
+    {
+      "path": "output/runs/hydrogen094-candidate-S3-live-transport1-fixture/custody/source-2.png",
+      "sha256": "449d8509b752ea899c4c6248d919c9ebe4859ffdb0596052c915fc2f06aa54a9",
+      "bytes": 6863
+    },
+    {
+      "path": "output/runs/hydrogen094-candidate-S3-live-transport1-fixture/driver.log",
+      "sha256": "d72da7dba61c7bda030f36ba98b3d600df6aca9413d087ad11f34eff968cefa2",
+      "bytes": 1152
+    },
+    {
+      "path": "output/runs/hydrogen094-candidate-S3-live-transport1-fixture/input/S3-source.png",
+      "sha256": "4cb7ceb9d8a3045951ce9c2da00eb1afb02ad91d1d3bad722283c0f96fa5ce84",
+      "bytes": 35359
+    },
+    {
+      "path": "output/runs/hydrogen094-candidate-S3-live-transport1-fixture/input/images/S3.png",
+      "sha256": "11d98294ac8a19c8e77490998a933add2ddf8de6fdbeb8e7156159e201a87bfe",
+      "bytes": 28577
+    },
+    {
+      "path": "output/runs/hydrogen094-candidate-S3-live-transport1-fixture/input/manifest.jsonl",
+      "sha256": "c83400d83f0936a9e98e1be466eeffb39712d4f8d866b5a08bd41e377f4876b0",
+      "bytes": 605
+    },
+    {
+      "path": "output/runs/hydrogen094-candidate-S3-live-transport1-fixture/input/pages.ndjson",
+      "sha256": "e693d8d89c5603c9683c5cc013944efee96e007771ad0544b61687d40ea4aae8",
+      "bytes": 321
+    },
+    {
+      "path": "output/runs/hydrogen094-candidate-S3-live-transport1-fixture/input/portions.ndjson",
+      "sha256": "db7e32f11c5551f6eb763b93a872622b8f9f9b144af1930b94e8e17f27833e1e",
+      "bytes": 127
+    },
+    {
+      "path": "output/runs/hydrogen094-candidate-S3-live-transport1-fixture/input/source-map.json",
+      "sha256": "3d1627282c8595ffe5168d02d396ce3ed8daeb331abce163795a0d3f95fff41c",
+      "bytes": 384
+    },
+    {
+      "path": "output/runs/hydrogen094-candidate-S3-live-transport1-fixture/input/text-only-page.png",
+      "sha256": "449d8509b752ea899c4c6248d919c9ebe4859ffdb0596052c915fc2f06aa54a9",
+      "bytes": 6863
+    },
+    {
+      "path": "output/runs/hydrogen094-candidate-S3-live-transport1-fixture/recipe.yaml",
+      "sha256": "cbc757cab7eb59c6554c54ea6b991b773816990b1b927a60f1fd9f8b3ab3265a",
+      "bytes": 3379
+    },
+    {
+      "path": "output/runs/hydrogen094-candidate-S3-live-transport2/01_load_artifact_v1/pages.ndjson",
+      "sha256": "e693d8d89c5603c9683c5cc013944efee96e007771ad0544b61687d40ea4aae8",
+      "bytes": 321
+    },
+    {
+      "path": "output/runs/hydrogen094-candidate-S3-live-transport2/02_load_artifact_v1/portions.ndjson",
+      "sha256": "db7e32f11c5551f6eb763b93a872622b8f9f9b144af1930b94e8e17f27833e1e",
+      "bytes": 127
+    },
+    {
+      "path": "output/runs/hydrogen094-candidate-S3-live-transport2/03_propose_crop_safety_v1/proposals.jsonl",
+      "sha256": "0370e28965fcbc2ed2d1f84c01943b26c38cb229b6ba77ed0f5f81a0c756049c",
+      "bytes": 1812
+    },
+    {
+      "path": "output/runs/hydrogen094-candidate-S3-live-transport2/pipeline_events.jsonl",
+      "sha256": "456490fa5ba66c2803877d2700f24a9567e7c21270613558b88b6222be3ee750",
+      "bytes": 3046
+    },
+    {
+      "path": "output/runs/hydrogen094-candidate-S3-live-transport2/pipeline_state.json",
+      "sha256": "ab0bb87d43ea3b572621beb28ab72c0afeddaeaa7ac9289f1c958cb3434a93ff",
+      "bytes": 1730
+    },
+    {
+      "path": "output/runs/hydrogen094-candidate-S3-live-transport2/snapshots/plan.json",
+      "sha256": "9b5401999fa468f05e7c5c28e8b2f9866ba0e05e321fa02d94f41d5630aeeff0",
+      "bytes": 5738
+    },
+    {
+      "path": "output/runs/hydrogen094-candidate-S3-live-transport2/snapshots/recipe.yaml",
+      "sha256": "917174e28e49cc162c0626ad2483101d6444168e34ea2477cb2d92a724033fad",
+      "bytes": 3519
+    },
+    {
+      "path": "output/runs/hydrogen094-candidate-S3-live-transport2/snapshots/registry.json",
+      "sha256": "e531d37346a362b97c36ff331508b5a36e9f5d5bcd57a9c6f827caae6fa01365",
+      "bytes": 8680
+    },
+    {
+      "path": "output/runs/hydrogen094-candidate-S3-live-transport2/timing_summary.json",
+      "sha256": "c63e92898aeb8d4ec0265fda788c9ea679428bcf746568601e2f02fe65562ee2",
+      "bytes": 244
+    },
+    {
+      "path": "output/runs/hydrogen094-candidate-S3-live-transport2-fixture/custody/authority-template.json",
+      "sha256": "7b26b305409608de058b606102047c6b5ed0ec4116f3ffb9f24556f5f445b880",
+      "bytes": 195
+    },
+    {
+      "path": "output/runs/hydrogen094-candidate-S3-live-transport2-fixture/custody/custody_provenance.json",
+      "sha256": "91d7ddd205d01ca42f4e51cd26cef5b112d03aea1f263e05938f865f92d3e5a9",
+      "bytes": 2696
+    },
+    {
+      "path": "output/runs/hydrogen094-candidate-S3-live-transport2-fixture/custody/decisions.jsonl",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "output/runs/hydrogen094-candidate-S3-live-transport2-fixture/custody/images/S3.png",
+      "sha256": "11d98294ac8a19c8e77490998a933add2ddf8de6fdbeb8e7156159e201a87bfe",
+      "bytes": 28577
+    },
+    {
+      "path": "output/runs/hydrogen094-candidate-S3-live-transport2-fixture/custody/inventory-review-template.json",
+      "sha256": "d00b137ce3ad00845f126e51c5bc68bc94e4118ca9aa5dd7d7bb50c196610b5a",
+      "bytes": 883
+    },
+    {
+      "path": "output/runs/hydrogen094-candidate-S3-live-transport2-fixture/custody/inventory.json",
+      "sha256": "3cd3a30bdf6f4f4d5bc4189b19b4974a8a8cf840978081edf468865faeb2d9b7",
+      "bytes": 3013
+    },
+    {
+      "path": "output/runs/hydrogen094-candidate-S3-live-transport2-fixture/custody/manifest.jsonl",
+      "sha256": "ba1aab56d14b525645176fe34b5f38eb4e1c9a7d3fc0c4c84b5b5c269312f1f5",
+      "bytes": 824
+    },
+    {
+      "path": "output/runs/hydrogen094-candidate-S3-live-transport2-fixture/custody/native-receipts/ledger.json",
+      "sha256": "84eeea8a225c1a6ddef3ee909ecf176f13ae853aac589346590a0cc72161f4da",
+      "bytes": 811
+    },
+    {
+      "path": "output/runs/hydrogen094-candidate-S3-live-transport2-fixture/custody/native-receipts/request-001.json",
+      "sha256": "2098eb231af47065ac09ee89382568cfada45dee84cc3a0d15723f5b8e228a4d",
+      "bytes": 89740
+    },
+    {
+      "path": "output/runs/hydrogen094-candidate-S3-live-transport2-fixture/custody/native-receipts/response-001.json",
+      "sha256": "5aebc4597b3c97b8479bc3f87c3afc4f737dd5ef126811639002cb18e1f9fcb0",
+      "bytes": 2188
+    },
+    {
+      "path": "output/runs/hydrogen094-candidate-S3-live-transport2-fixture/custody/originals/manifest.jsonl",
+      "sha256": "81fc668607e6ebd91d1c98541af145534dac686c4f10e416d9a96f7654c557e9",
+      "bytes": 605
+    },
+    {
+      "path": "output/runs/hydrogen094-candidate-S3-live-transport2-fixture/custody/originals/pages.ndjson",
+      "sha256": "e693d8d89c5603c9683c5cc013944efee96e007771ad0544b61687d40ea4aae8",
+      "bytes": 321
+    },
+    {
+      "path": "output/runs/hydrogen094-candidate-S3-live-transport2-fixture/custody/originals/portions.ndjson",
+      "sha256": "db7e32f11c5551f6eb763b93a872622b8f9f9b144af1930b94e8e17f27833e1e",
+      "bytes": 127
+    },
+    {
+      "path": "output/runs/hydrogen094-candidate-S3-live-transport2-fixture/custody/originals/source_map.json",
+      "sha256": "23fa6052bb411ff5c9cda4d0078ba813f1e76ecc2b9f8d22df6b458698c8d2fa",
+      "bytes": 384
+    },
+    {
+      "path": "output/runs/hydrogen094-candidate-S3-live-transport2-fixture/custody/pages.jsonl",
+      "sha256": "e693d8d89c5603c9683c5cc013944efee96e007771ad0544b61687d40ea4aae8",
+      "bytes": 321
+    },
+    {
+      "path": "output/runs/hydrogen094-candidate-S3-live-transport2-fixture/custody/portions.jsonl",
+      "sha256": "db7e32f11c5551f6eb763b93a872622b8f9f9b144af1930b94e8e17f27833e1e",
+      "bytes": 127
+    },
+    {
+      "path": "output/runs/hydrogen094-candidate-S3-live-transport2-fixture/custody/source-1.png",
+      "sha256": "4cb7ceb9d8a3045951ce9c2da00eb1afb02ad91d1d3bad722283c0f96fa5ce84",
+      "bytes": 35359
+    },
+    {
+      "path": "output/runs/hydrogen094-candidate-S3-live-transport2-fixture/custody/source-2.png",
+      "sha256": "449d8509b752ea899c4c6248d919c9ebe4859ffdb0596052c915fc2f06aa54a9",
+      "bytes": 6863
+    },
+    {
+      "path": "output/runs/hydrogen094-candidate-S3-live-transport2-fixture/driver.log",
+      "sha256": "7ba1f9dc3afb2e9e7a7d48deac4d4f9a6968dd0e9ff23ecd3a6bba1f80bb0744",
+      "bytes": 1388
+    },
+    {
+      "path": "output/runs/hydrogen094-candidate-S3-live-transport2-fixture/input/S3-source.png",
+      "sha256": "4cb7ceb9d8a3045951ce9c2da00eb1afb02ad91d1d3bad722283c0f96fa5ce84",
+      "bytes": 35359
+    },
+    {
+      "path": "output/runs/hydrogen094-candidate-S3-live-transport2-fixture/input/images/S3.png",
+      "sha256": "11d98294ac8a19c8e77490998a933add2ddf8de6fdbeb8e7156159e201a87bfe",
+      "bytes": 28577
+    },
+    {
+      "path": "output/runs/hydrogen094-candidate-S3-live-transport2-fixture/input/manifest.jsonl",
+      "sha256": "81fc668607e6ebd91d1c98541af145534dac686c4f10e416d9a96f7654c557e9",
+      "bytes": 605
+    },
+    {
+      "path": "output/runs/hydrogen094-candidate-S3-live-transport2-fixture/input/pages.ndjson",
+      "sha256": "e693d8d89c5603c9683c5cc013944efee96e007771ad0544b61687d40ea4aae8",
+      "bytes": 321
+    },
+    {
+      "path": "output/runs/hydrogen094-candidate-S3-live-transport2-fixture/input/portions.ndjson",
+      "sha256": "db7e32f11c5551f6eb763b93a872622b8f9f9b144af1930b94e8e17f27833e1e",
+      "bytes": 127
+    },
+    {
+      "path": "output/runs/hydrogen094-candidate-S3-live-transport2-fixture/input/source-map.json",
+      "sha256": "23fa6052bb411ff5c9cda4d0078ba813f1e76ecc2b9f8d22df6b458698c8d2fa",
+      "bytes": 384
+    },
+    {
+      "path": "output/runs/hydrogen094-candidate-S3-live-transport2-fixture/input/text-only-page.png",
+      "sha256": "449d8509b752ea899c4c6248d919c9ebe4859ffdb0596052c915fc2f06aa54a9",
+      "bytes": 6863
+    },
+    {
+      "path": "output/runs/hydrogen094-candidate-S3-live-transport2-fixture/recipe.yaml",
+      "sha256": "714d806c25bd30827c373fbdbba2bb6335d8e6d031eb9cc66cf6617a9897b5e0",
+      "bytes": 3379
+    },
+    {
+      "path": "output/runs/hydrogen094-control-S3-live-transport2/01_load_artifact_v1/pages.ndjson",
+      "sha256": "e693d8d89c5603c9683c5cc013944efee96e007771ad0544b61687d40ea4aae8",
+      "bytes": 321
+    },
+    {
+      "path": "output/runs/hydrogen094-control-S3-live-transport2/02_load_artifact_v1/portions.ndjson",
+      "sha256": "db7e32f11c5551f6eb763b93a872622b8f9f9b144af1930b94e8e17f27833e1e",
+      "bytes": 127
+    },
+    {
+      "path": "output/runs/hydrogen094-control-S3-live-transport2/03_propose_crop_safety_v1/proposals.jsonl",
+      "sha256": "e608d808d4ad1338b4d3be9337a744da5175e64f9d2b6cf43ae741ac2eff502c",
+      "bytes": 1729
+    },
+    {
+      "path": "output/runs/hydrogen094-control-S3-live-transport2/pipeline_events.jsonl",
+      "sha256": "e498145911b93ff24cc8e148a3638c0ed50cc198c81815111d971f4c1e666f31",
+      "bytes": 3022
+    },
+    {
+      "path": "output/runs/hydrogen094-control-S3-live-transport2/pipeline_state.json",
+      "sha256": "d30abdb7febc105032777ffadd53e97d4a548f769bd99c3a50c2abaa79d36b61",
+      "bytes": 1722
+    },
+    {
+      "path": "output/runs/hydrogen094-control-S3-live-transport2/snapshots/plan.json",
+      "sha256": "f55132bf9b54d8f6fdf870247ef883ccca3c5bb1586c6c4e7f9e89472b978554",
+      "bytes": 5710
+    },
+    {
+      "path": "output/runs/hydrogen094-control-S3-live-transport2/snapshots/recipe.yaml",
+      "sha256": "db5c46bbdb1824f61e9c19a8ec69d275521c91eb5fb0e71a26c3d038b2ccc685",
+      "bytes": 3487
+    },
+    {
+      "path": "output/runs/hydrogen094-control-S3-live-transport2/snapshots/registry.json",
+      "sha256": "e531d37346a362b97c36ff331508b5a36e9f5d5bcd57a9c6f827caae6fa01365",
+      "bytes": 8680
+    },
+    {
+      "path": "output/runs/hydrogen094-control-S3-live-transport2/timing_summary.json",
+      "sha256": "c1bac85e96ebb65eece03482a0d93ef0cab638abde4b7962c4cdcfd19f363fa3",
+      "bytes": 242
+    },
+    {
+      "path": "output/runs/hydrogen094-control-S3-live-transport2-fixture/custody/authority-template.json",
+      "sha256": "b34cdff8b12f06b29833f98684f17b891b848ab8c4ff6f8a11db0b9341a05330",
+      "bytes": 193
+    },
+    {
+      "path": "output/runs/hydrogen094-control-S3-live-transport2-fixture/custody/custody_provenance.json",
+      "sha256": "29173615671408c90f626a89e6d8bae6a9e392e71d1cc044cd74949d6ded0d61",
+      "bytes": 2680
+    },
+    {
+      "path": "output/runs/hydrogen094-control-S3-live-transport2-fixture/custody/decisions.jsonl",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "output/runs/hydrogen094-control-S3-live-transport2-fixture/custody/images/S3.png",
+      "sha256": "11d98294ac8a19c8e77490998a933add2ddf8de6fdbeb8e7156159e201a87bfe",
+      "bytes": 28577
+    },
+    {
+      "path": "output/runs/hydrogen094-control-S3-live-transport2-fixture/custody/inventory-review-template.json",
+      "sha256": "a7b7ca0b74f8b2d79343433c9e268b8e5790d09b30d251de1e13a9ed687fdd3e",
+      "bytes": 881
+    },
+    {
+      "path": "output/runs/hydrogen094-control-S3-live-transport2-fixture/custody/inventory.json",
+      "sha256": "0d40d8e46687ba621c575076c597ce7ff5092f3f05620262c50215db891186bd",
+      "bytes": 2999
+    },
+    {
+      "path": "output/runs/hydrogen094-control-S3-live-transport2-fixture/custody/manifest.jsonl",
+      "sha256": "9335bd97d3dacfd5509c3d9aa40dd3d4660b9f040613636ba29d95a05d26cfea",
+      "bytes": 820
+    },
+    {
+      "path": "output/runs/hydrogen094-control-S3-live-transport2-fixture/custody/native-receipts/ledger.json",
+      "sha256": "b9ae1e245a6150c3af756c4fbbb12476217953ff60f97eddeb55c172952387f9",
+      "bytes": 808
+    },
+    {
+      "path": "output/runs/hydrogen094-control-S3-live-transport2-fixture/custody/native-receipts/request-001.json",
+      "sha256": "66a7028a580d0c2128a55f321182317f3a840b0c6ffe53e028fa59d151fb0659",
+      "bytes": 89734
+    },
+    {
+      "path": "output/runs/hydrogen094-control-S3-live-transport2-fixture/custody/native-receipts/response-001.json",
+      "sha256": "533c2939892001c54ccf6a6a43a3fb6002569a7cd0a4f35c7e5b2bf24c4c67ee",
+      "bytes": 6074
+    },
+    {
+      "path": "output/runs/hydrogen094-control-S3-live-transport2-fixture/custody/originals/manifest.jsonl",
+      "sha256": "ee82236942549376044435b66e27d8ca2b8648bf65620e78fb220a85408c7698",
+      "bytes": 603
+    },
+    {
+      "path": "output/runs/hydrogen094-control-S3-live-transport2-fixture/custody/originals/pages.ndjson",
+      "sha256": "e693d8d89c5603c9683c5cc013944efee96e007771ad0544b61687d40ea4aae8",
+      "bytes": 321
+    },
+    {
+      "path": "output/runs/hydrogen094-control-S3-live-transport2-fixture/custody/originals/portions.ndjson",
+      "sha256": "db7e32f11c5551f6eb763b93a872622b8f9f9b144af1930b94e8e17f27833e1e",
+      "bytes": 127
+    },
+    {
+      "path": "output/runs/hydrogen094-control-S3-live-transport2-fixture/custody/originals/source_map.json",
+      "sha256": "c93f3741800fa4f39d732169d7af6112d9b644ec3968e7aa60d440e558cdaa9d",
+      "bytes": 380
+    },
+    {
+      "path": "output/runs/hydrogen094-control-S3-live-transport2-fixture/custody/pages.jsonl",
+      "sha256": "e693d8d89c5603c9683c5cc013944efee96e007771ad0544b61687d40ea4aae8",
+      "bytes": 321
+    },
+    {
+      "path": "output/runs/hydrogen094-control-S3-live-transport2-fixture/custody/portions.jsonl",
+      "sha256": "db7e32f11c5551f6eb763b93a872622b8f9f9b144af1930b94e8e17f27833e1e",
+      "bytes": 127
+    },
+    {
+      "path": "output/runs/hydrogen094-control-S3-live-transport2-fixture/custody/source-1.png",
+      "sha256": "4cb7ceb9d8a3045951ce9c2da00eb1afb02ad91d1d3bad722283c0f96fa5ce84",
+      "bytes": 35359
+    },
+    {
+      "path": "output/runs/hydrogen094-control-S3-live-transport2-fixture/custody/source-2.png",
+      "sha256": "449d8509b752ea899c4c6248d919c9ebe4859ffdb0596052c915fc2f06aa54a9",
+      "bytes": 6863
+    },
+    {
+      "path": "output/runs/hydrogen094-control-S3-live-transport2-fixture/driver.log",
+      "sha256": "de958ddcfca8a7a86a4ee7af874809159f655aa0705634ac46240fdb278bb4e2",
+      "bytes": 1374
+    },
+    {
+      "path": "output/runs/hydrogen094-control-S3-live-transport2-fixture/input/S3-source.png",
+      "sha256": "4cb7ceb9d8a3045951ce9c2da00eb1afb02ad91d1d3bad722283c0f96fa5ce84",
+      "bytes": 35359
+    },
+    {
+      "path": "output/runs/hydrogen094-control-S3-live-transport2-fixture/input/images/S3.png",
+      "sha256": "11d98294ac8a19c8e77490998a933add2ddf8de6fdbeb8e7156159e201a87bfe",
+      "bytes": 28577
+    },
+    {
+      "path": "output/runs/hydrogen094-control-S3-live-transport2-fixture/input/manifest.jsonl",
+      "sha256": "ee82236942549376044435b66e27d8ca2b8648bf65620e78fb220a85408c7698",
+      "bytes": 603
+    },
+    {
+      "path": "output/runs/hydrogen094-control-S3-live-transport2-fixture/input/pages.ndjson",
+      "sha256": "e693d8d89c5603c9683c5cc013944efee96e007771ad0544b61687d40ea4aae8",
+      "bytes": 321
+    },
+    {
+      "path": "output/runs/hydrogen094-control-S3-live-transport2-fixture/input/portions.ndjson",
+      "sha256": "db7e32f11c5551f6eb763b93a872622b8f9f9b144af1930b94e8e17f27833e1e",
+      "bytes": 127
+    },
+    {
+      "path": "output/runs/hydrogen094-control-S3-live-transport2-fixture/input/source-map.json",
+      "sha256": "c93f3741800fa4f39d732169d7af6112d9b644ec3968e7aa60d440e558cdaa9d",
+      "bytes": 380
+    },
+    {
+      "path": "output/runs/hydrogen094-control-S3-live-transport2-fixture/input/text-only-page.png",
+      "sha256": "449d8509b752ea899c4c6248d919c9ebe4859ffdb0596052c915fc2f06aa54a9",
+      "bytes": 6863
+    },
+    {
+      "path": "output/runs/hydrogen094-control-S3-live-transport2-fixture/recipe.yaml",
+      "sha256": "ce3115ec87f426a69fb1e309b2887fab1c116128272d6a544cd76ce501c32c89",
+      "bytes": 3349
+    },
+    {
+      "path": "output/runs/hydrogen094-ocr-native-consumer-alverson-replay-transport3/01_images_dir_to_manifest_v1/pages_images_manifest.jsonl",
+      "sha256": "8fe8481e4fdb39e490e49e6ae964d9809b89f9619ce4430f16c9874627cd1617",
+      "bytes": 521
+    },
+    {
+      "path": "output/runs/hydrogen094-ocr-native-consumer-alverson-replay-transport3/02_ocr_ai_gpt51_v1/pages_html.jsonl",
+      "sha256": "6b4bcfe33ab8cc540b7e49fecfdb50c8eb70cc663d15f0e3568ff634327e0aa5",
+      "bytes": 2656
+    },
+    {
+      "path": "output/runs/hydrogen094-ocr-native-consumer-alverson-replay-transport3/instrumentation.json",
+      "sha256": "c927e60c69bf4ef30c5e610b0b46467086c5d52a185eb36e794d6d0c38561d1f",
+      "bytes": 4577
+    },
+    {
+      "path": "output/runs/hydrogen094-ocr-native-consumer-alverson-replay-transport3/instrumentation.md",
+      "sha256": "1e1efcb0f8345a8356837f05b101412158ee8a92c4e1758b1991e508a63066e6",
+      "bytes": 934
+    },
+    {
+      "path": "output/runs/hydrogen094-ocr-native-consumer-alverson-replay-transport3/instrumentation_calls.jsonl",
+      "sha256": "e041abdec0096bac1fb5146ec06894442492dbc8e4bcf91401b273a6333a54bd",
+      "bytes": 363
+    },
+    {
+      "path": "output/runs/hydrogen094-ocr-native-consumer-alverson-replay-transport3/pipeline_events.jsonl",
+      "sha256": "ff1aeab05dd735d3bc7f285850c6a614d547fa0cf8415c978935552fc7f19320",
+      "bytes": 5069
+    },
+    {
+      "path": "output/runs/hydrogen094-ocr-native-consumer-alverson-replay-transport3/pipeline_state.json",
+      "sha256": "abda5a05dc63485c05c0c650a5c21db217319bdfcc4e9e7be2974c117e735944",
+      "bytes": 1475
+    },
+    {
+      "path": "output/runs/hydrogen094-ocr-native-consumer-alverson-replay-transport3/snapshots/plan.json",
+      "sha256": "3fa89773cb7e73d05dba7aa5ebf7215e2cd2aa3ae7d8a7fbfd58e3bdde347e20",
+      "bytes": 2107
+    },
+    {
+      "path": "output/runs/hydrogen094-ocr-native-consumer-alverson-replay-transport3/snapshots/pricing.yaml",
+      "sha256": "5b480d2aba569392a1f4e538bf67e28685bc91e8eced00d4737b0ff30c38bffd",
+      "bytes": 381
+    },
+    {
+      "path": "output/runs/hydrogen094-ocr-native-consumer-alverson-replay-transport3/snapshots/recipe.yaml",
+      "sha256": "c171474791211938beff865bc9547c5fa2faebcf05b62f11a44decd371082220",
+      "bytes": 1085
+    },
+    {
+      "path": "output/runs/hydrogen094-ocr-native-consumer-alverson-replay-transport3/snapshots/registry.json",
+      "sha256": "83daf66bc2a0ad36ec360d9d63b0cd5ff55e30b9506961dafe1cae6f148e5247",
+      "bytes": 4243
+    },
+    {
+      "path": "output/runs/hydrogen094-ocr-native-consumer-alverson-replay-transport3/timing_summary.json",
+      "sha256": "ecd4df693e12ef4afa84953b949f7f5761d58b4bc2812383a7197cb9158c7e7c",
+      "bytes": 453
+    },
+    {
+      "path": "output/runs/hydrogen094-ocr-native-consumer-barney-replay/01_images_dir_to_manifest_v1/pages_images_manifest.jsonl",
+      "sha256": "838daa8d26a0fef3a93594b46fb933fc6723e8eea9883b8557c008070fc77ff4",
+      "bytes": 504
+    },
+    {
+      "path": "output/runs/hydrogen094-ocr-native-consumer-barney-replay/instrumentation.json",
+      "sha256": "3ea5a09f18aa3b4b3182a0f17e1606288756e1d354b4a471321e3c3fc35bfa76",
+      "bytes": 3535
+    },
+    {
+      "path": "output/runs/hydrogen094-ocr-native-consumer-barney-replay/instrumentation.md",
+      "sha256": "1274aa121a0564c721d4cf864382165e8817d30776d636e085c8de775a8743b7",
+      "bytes": 803
+    },
+    {
+      "path": "output/runs/hydrogen094-ocr-native-consumer-barney-replay/pipeline_events.jsonl",
+      "sha256": "89af7557b9ec79e156f9478184840f8729d61966d0a17b31769eb34aa8efb385",
+      "bytes": 4850
+    },
+    {
+      "path": "output/runs/hydrogen094-ocr-native-consumer-barney-replay/pipeline_state.json",
+      "sha256": "b2e79e96c73cb00c06ee3143dec99540f5d277fb51d077495c837f50ec9cbc38",
+      "bytes": 1504
+    },
+    {
+      "path": "output/runs/hydrogen094-ocr-native-consumer-barney-replay/snapshots/plan.json",
+      "sha256": "e1fa3853401dfe7d1037f66a42e773a39eec548cb032fe1b5e1e007ec4edd9a0",
+      "bytes": 2105
+    },
+    {
+      "path": "output/runs/hydrogen094-ocr-native-consumer-barney-replay/snapshots/pricing.yaml",
+      "sha256": "5b480d2aba569392a1f4e538bf67e28685bc91e8eced00d4737b0ff30c38bffd",
+      "bytes": 381
+    },
+    {
+      "path": "output/runs/hydrogen094-ocr-native-consumer-barney-replay/snapshots/recipe.yaml",
+      "sha256": "939192e45e22333933d30311383047e564e73953b79edcdfe330a8b5044cd1cc",
+      "bytes": 1079
+    },
+    {
+      "path": "output/runs/hydrogen094-ocr-native-consumer-barney-replay/snapshots/registry.json",
+      "sha256": "83daf66bc2a0ad36ec360d9d63b0cd5ff55e30b9506961dafe1cae6f148e5247",
+      "bytes": 4243
+    },
+    {
+      "path": "output/runs/hydrogen094-ocr-native-consumer-barney-replay-transport1/01_images_dir_to_manifest_v1/pages_images_manifest.jsonl",
+      "sha256": "6047cb867bc215a243467b098fd0a20741faad6487d6d66bda9aac00594cb061",
+      "bytes": 515
+    },
+    {
+      "path": "output/runs/hydrogen094-ocr-native-consumer-barney-replay-transport1/instrumentation.json",
+      "sha256": "f0687c2216d70c4c6c6af09f71ca30cd18e15a7e72c8826004e386286afb3715",
+      "bytes": 3567
+    },
+    {
+      "path": "output/runs/hydrogen094-ocr-native-consumer-barney-replay-transport1/instrumentation.md",
+      "sha256": "cb9c6e2821f5abcf3bc4143bf271a8447cda4231a11fabf7c09bc4567bdeff3b",
+      "bytes": 814
+    },
+    {
+      "path": "output/runs/hydrogen094-ocr-native-consumer-barney-replay-transport1/pipeline_events.jsonl",
+      "sha256": "9f25d5678e34080a36ab498040af2d230b3b623e569ea63840c54d2dede7647b",
+      "bytes": 5026
+    },
+    {
+      "path": "output/runs/hydrogen094-ocr-native-consumer-barney-replay-transport1/pipeline_state.json",
+      "sha256": "f7962f3868da6fa8f422761e028f857c6ce60e33f5494b54e39f616a0ea706db",
+      "bytes": 1537
+    },
+    {
+      "path": "output/runs/hydrogen094-ocr-native-consumer-barney-replay-transport1/snapshots/plan.json",
+      "sha256": "e1fa3853401dfe7d1037f66a42e773a39eec548cb032fe1b5e1e007ec4edd9a0",
+      "bytes": 2105
+    },
+    {
+      "path": "output/runs/hydrogen094-ocr-native-consumer-barney-replay-transport1/snapshots/pricing.yaml",
+      "sha256": "5b480d2aba569392a1f4e538bf67e28685bc91e8eced00d4737b0ff30c38bffd",
+      "bytes": 381
+    },
+    {
+      "path": "output/runs/hydrogen094-ocr-native-consumer-barney-replay-transport1/snapshots/recipe.yaml",
+      "sha256": "939192e45e22333933d30311383047e564e73953b79edcdfe330a8b5044cd1cc",
+      "bytes": 1079
+    },
+    {
+      "path": "output/runs/hydrogen094-ocr-native-consumer-barney-replay-transport1/snapshots/registry.json",
+      "sha256": "83daf66bc2a0ad36ec360d9d63b0cd5ff55e30b9506961dafe1cae6f148e5247",
+      "bytes": 4243
+    },
+    {
+      "path": "output/runs/hydrogen094-ocr-native-consumer-barney-replay-transport2/01_images_dir_to_manifest_v1/pages_images_manifest.jsonl",
+      "sha256": "029a1430df7ec49bd750cb449f552104b1d2dec128e4478fc293ce8b2f12df28",
+      "bytes": 515
+    },
+    {
+      "path": "output/runs/hydrogen094-ocr-native-consumer-barney-replay-transport2/instrumentation.json",
+      "sha256": "5e8c1a53041e4e763df8badc0749603ea43828b6776204b560ba44bd97d08397",
+      "bytes": 3568
+    },
+    {
+      "path": "output/runs/hydrogen094-ocr-native-consumer-barney-replay-transport2/instrumentation.md",
+      "sha256": "71d9872edddd343db1f71dabce1c890050312474c4dde275ed6038ba80be8620",
+      "bytes": 814
+    },
+    {
+      "path": "output/runs/hydrogen094-ocr-native-consumer-barney-replay-transport2/pipeline_events.jsonl",
+      "sha256": "9cefef52d81917c56ee4ba8f717c21991631086dc02dd462fd97a9ecd6ebdd00",
+      "bytes": 5026
+    },
+    {
+      "path": "output/runs/hydrogen094-ocr-native-consumer-barney-replay-transport2/pipeline_state.json",
+      "sha256": "9635367e2b0e4dc67f3a3b20e9b579ea170be67d4d414004d5b65e644d35147c",
+      "bytes": 1537
+    },
+    {
+      "path": "output/runs/hydrogen094-ocr-native-consumer-barney-replay-transport2/snapshots/plan.json",
+      "sha256": "e1fa3853401dfe7d1037f66a42e773a39eec548cb032fe1b5e1e007ec4edd9a0",
+      "bytes": 2105
+    },
+    {
+      "path": "output/runs/hydrogen094-ocr-native-consumer-barney-replay-transport2/snapshots/pricing.yaml",
+      "sha256": "5b480d2aba569392a1f4e538bf67e28685bc91e8eced00d4737b0ff30c38bffd",
+      "bytes": 381
+    },
+    {
+      "path": "output/runs/hydrogen094-ocr-native-consumer-barney-replay-transport2/snapshots/recipe.yaml",
+      "sha256": "939192e45e22333933d30311383047e564e73953b79edcdfe330a8b5044cd1cc",
+      "bytes": 1079
+    },
+    {
+      "path": "output/runs/hydrogen094-ocr-native-consumer-barney-replay-transport2/snapshots/registry.json",
+      "sha256": "83daf66bc2a0ad36ec360d9d63b0cd5ff55e30b9506961dafe1cae6f148e5247",
+      "bytes": 4243
+    },
+    {
+      "path": "output/runs/hydrogen094-ocr-native-consumer-barney-replay-transport3/01_images_dir_to_manifest_v1/pages_images_manifest.jsonl",
+      "sha256": "308d7f0c316f3c69dc7b1cedfbfad43cd3b11c1fb091ede0be881d9529eb013f",
+      "bytes": 515
+    },
+    {
+      "path": "output/runs/hydrogen094-ocr-native-consumer-barney-replay-transport3/02_ocr_ai_gpt51_v1/pages_html.jsonl",
+      "sha256": "cc66d3126dd679d48200c68b2f8761b60d36f62f6997ff8dcebf37b057e35ee5",
+      "bytes": 3668
+    },
+    {
+      "path": "output/runs/hydrogen094-ocr-native-consumer-barney-replay-transport3/instrumentation.json",
+      "sha256": "a8452b7a0eeddc22f88794cd4422228b32d202ff00d0d2559536326b359e5e4a",
+      "bytes": 4565
+    },
+    {
+      "path": "output/runs/hydrogen094-ocr-native-consumer-barney-replay-transport3/instrumentation.md",
+      "sha256": "d74b8c6a3663977b9bde8e0b6ec7b467e2b1ade847acfa1671e4f02e241321f7",
+      "bytes": 932
+    },
+    {
+      "path": "output/runs/hydrogen094-ocr-native-consumer-barney-replay-transport3/instrumentation_calls.jsonl",
+      "sha256": "195eb8d26f91a7a96ff3f6be7df8ebfcb6b36d3d912a2cca59c4f47f0be03b2f",
+      "bytes": 361
+    },
+    {
+      "path": "output/runs/hydrogen094-ocr-native-consumer-barney-replay-transport3/pipeline_events.jsonl",
+      "sha256": "fef3be6924ae2042ca190e319e04222d1154c1ae8f447ee3a4f8cf1a3c4b8f73",
+      "bytes": 5033
+    },
+    {
+      "path": "output/runs/hydrogen094-ocr-native-consumer-barney-replay-transport3/pipeline_state.json",
+      "sha256": "4dff5c1227c0a3d454724bf4e6bdde5ca7b65e36f8c185e19adf661e07799eca",
+      "bytes": 1469
+    },
+    {
+      "path": "output/runs/hydrogen094-ocr-native-consumer-barney-replay-transport3/snapshots/plan.json",
+      "sha256": "e1fa3853401dfe7d1037f66a42e773a39eec548cb032fe1b5e1e007ec4edd9a0",
+      "bytes": 2105
+    },
+    {
+      "path": "output/runs/hydrogen094-ocr-native-consumer-barney-replay-transport3/snapshots/pricing.yaml",
+      "sha256": "5b480d2aba569392a1f4e538bf67e28685bc91e8eced00d4737b0ff30c38bffd",
+      "bytes": 381
+    },
+    {
+      "path": "output/runs/hydrogen094-ocr-native-consumer-barney-replay-transport3/snapshots/recipe.yaml",
+      "sha256": "939192e45e22333933d30311383047e564e73953b79edcdfe330a8b5044cd1cc",
+      "bytes": 1079
+    },
+    {
+      "path": "output/runs/hydrogen094-ocr-native-consumer-barney-replay-transport3/snapshots/registry.json",
+      "sha256": "83daf66bc2a0ad36ec360d9d63b0cd5ff55e30b9506961dafe1cae6f148e5247",
+      "bytes": 4243
+    },
+    {
+      "path": "output/runs/hydrogen094-ocr-native-consumer-barney-replay-transport3/timing_summary.json",
+      "sha256": "2d9a7b6415c14f7629eb0687fa2f3d857c52838e0af26e089396dc82efba8962",
+      "bytes": 451
+    },
+    {
+      "path": "output/runs/hydrogen094-runtime-candidate-p12/01_load_artifact_v1/pages_html.jsonl",
+      "sha256": "d6c3274700c64873496fc49a276e9756c14e35e9b39d12d1f6f5f37819203845",
+      "bytes": 4465
+    },
+    {
+      "path": "output/runs/hydrogen094-runtime-candidate-p12/02_crop_illustrations_guided_v1/illustration_manifest.jsonl",
+      "sha256": "ae1f7d18e4c54b727a2c765e63fc9cb375d079c303ba411cd9d6d4cd421015e5",
+      "bytes": 5061
+    },
+    {
+      "path": "output/runs/hydrogen094-runtime-candidate-p12/02_crop_illustrations_guided_v1/images/page-001-000.jpg",
+      "sha256": "1ebb3326f774cfc5ae78d0438fcc2220c537aff33541b221462f0920704d42dd",
+      "bytes": 7948685
+    },
+    {
+      "path": "output/runs/hydrogen094-runtime-candidate-p12/02_crop_illustrations_guided_v1/images/page-012-000.jpg",
+      "sha256": "83d6c14b6e115e83f5b981cb74645c0aafbf9920b7a51d05fa24b4400f318ec9",
+      "bytes": 173270
+    },
+    {
+      "path": "output/runs/hydrogen094-runtime-candidate-p12/02_crop_illustrations_guided_v1/images/page-012-001.jpg",
+      "sha256": "e45e8aeea47ae164c69b183804c4446b4a031388aab9a1969bd6465a7a319d0e",
+      "bytes": 236143
+    },
+    {
+      "path": "output/runs/hydrogen094-runtime-candidate-p12/02_crop_illustrations_guided_v1/images/page-012-002.jpg",
+      "sha256": "b5000ee7f8f56f815b1fdeb694300905526f75433262a3f9db6420e230823628",
+      "bytes": 110366
+    },
+    {
+      "path": "output/runs/hydrogen094-runtime-candidate-p12/02_crop_illustrations_guided_v1/images/page-012-003.jpg",
+      "sha256": "d0569e2b8629c0eea5808c775d91f288b83cee6225176e1cd83356f4195bf9af",
+      "bytes": 70178
+    },
+    {
+      "path": "output/runs/hydrogen094-runtime-candidate-p12/pipeline_events.jsonl",
+      "sha256": "f5c3603fbee3601e28df116444be729718e0f959acc7cf08f1d3526626bcb9cb",
+      "bytes": 2364
+    },
+    {
+      "path": "output/runs/hydrogen094-runtime-candidate-p12/pipeline_state.json",
+      "sha256": "89eca3e5574f140b1ffb8c3ff2a8c5721fe5a2c0f1a9975c56469d78ca62f72d",
+      "bytes": 1379
+    },
+    {
+      "path": "output/runs/hydrogen094-runtime-candidate-p12/snapshots/plan.json",
+      "sha256": "55b10e55062c55df157eb0b4a213b087fe22b9c48504e31b51b7059a33a3cdcf",
+      "bytes": 3448
+    },
+    {
+      "path": "output/runs/hydrogen094-runtime-candidate-p12/snapshots/recipe.yaml",
+      "sha256": "dfd4492997039e1ff39037ebed1be34473f70129617039c824776c4cf06a372a",
+      "bytes": 2192
+    },
+    {
+      "path": "output/runs/hydrogen094-runtime-candidate-p12/snapshots/registry.json",
+      "sha256": "8637d99d178fc6b60d62734df81cd056fa1549b6d27183a21fd4dbec33262b06",
+      "bytes": 24633
+    },
+    {
+      "path": "output/runs/hydrogen094-runtime-candidate-p12/timing_summary.json",
+      "sha256": "f6d14e2acdbd820627174a2f269972000cad3f0b91efda73c6ace96e3bc9eae0",
+      "bytes": 195
+    },
+    {
+      "path": "output/runs/hydrogen094-runtime-candidate-p12-transport1/01_load_artifact_v1/pages_html.jsonl",
+      "sha256": "2c57b258219d736922e1685aff4bba190a3cc9c4aa2e2a7d043e2304166233dc",
+      "bytes": 4509
+    },
+    {
+      "path": "output/runs/hydrogen094-runtime-candidate-p12-transport1/02_crop_illustrations_guided_v1/images/page-001-000.jpg",
+      "sha256": "1ebb3326f774cfc5ae78d0438fcc2220c537aff33541b221462f0920704d42dd",
+      "bytes": 7948685
+    },
+    {
+      "path": "output/runs/hydrogen094-runtime-candidate-p12-transport1/pipeline_events.jsonl",
+      "sha256": "ae4dfce72e82be5642f10d6b9ed9343d11d8369c162785043b5a6ae169b44162",
+      "bytes": 2962
+    },
+    {
+      "path": "output/runs/hydrogen094-runtime-candidate-p12-transport1/pipeline_state.json",
+      "sha256": "5aadb66011e6275f08754ddb2d5fea189c728fb5e43da5a98c88b47b8758a26f",
+      "bytes": 1493
+    },
+    {
+      "path": "output/runs/hydrogen094-runtime-candidate-p12-transport1/snapshots/plan.json",
+      "sha256": "55b10e55062c55df157eb0b4a213b087fe22b9c48504e31b51b7059a33a3cdcf",
+      "bytes": 3448
+    },
+    {
+      "path": "output/runs/hydrogen094-runtime-candidate-p12-transport1/snapshots/recipe.yaml",
+      "sha256": "dfd4492997039e1ff39037ebed1be34473f70129617039c824776c4cf06a372a",
+      "bytes": 2192
+    },
+    {
+      "path": "output/runs/hydrogen094-runtime-candidate-p12-transport1/snapshots/registry.json",
+      "sha256": "8637d99d178fc6b60d62734df81cd056fa1549b6d27183a21fd4dbec33262b06",
+      "bytes": 24633
+    },
+    {
+      "path": "output/runs/hydrogen094-runtime-candidate-p12-transport2/01_load_artifact_v1/pages_html.jsonl",
+      "sha256": "3e57d0b82815883f9ead5bdc8125eb983fec8d1cb637859afaaad9236958b29d",
+      "bytes": 4509
+    },
+    {
+      "path": "output/runs/hydrogen094-runtime-candidate-p12-transport2/02_crop_illustrations_guided_v1/illustration_manifest.jsonl",
+      "sha256": "33882885b18f1c0b2662686385c9e7c3cdea49bc3242476451a90fe9079c2409",
+      "bytes": 5692
+    },
+    {
+      "path": "output/runs/hydrogen094-runtime-candidate-p12-transport2/02_crop_illustrations_guided_v1/images/page-001-000.jpg",
+      "sha256": "1ebb3326f774cfc5ae78d0438fcc2220c537aff33541b221462f0920704d42dd",
+      "bytes": 7948685
+    },
+    {
+      "path": "output/runs/hydrogen094-runtime-candidate-p12-transport2/02_crop_illustrations_guided_v1/images/page-012-000.jpg",
+      "sha256": "83d6c14b6e115e83f5b981cb74645c0aafbf9920b7a51d05fa24b4400f318ec9",
+      "bytes": 173270
+    },
+    {
+      "path": "output/runs/hydrogen094-runtime-candidate-p12-transport2/02_crop_illustrations_guided_v1/images/page-012-001.jpg",
+      "sha256": "e45e8aeea47ae164c69b183804c4446b4a031388aab9a1969bd6465a7a319d0e",
+      "bytes": 236143
+    },
+    {
+      "path": "output/runs/hydrogen094-runtime-candidate-p12-transport2/02_crop_illustrations_guided_v1/images/page-012-002.jpg",
+      "sha256": "b5000ee7f8f56f815b1fdeb694300905526f75433262a3f9db6420e230823628",
+      "bytes": 110366
+    },
+    {
+      "path": "output/runs/hydrogen094-runtime-candidate-p12-transport2/02_crop_illustrations_guided_v1/images/page-012-003.jpg",
+      "sha256": "d0569e2b8629c0eea5808c775d91f288b83cee6225176e1cd83356f4195bf9af",
+      "bytes": 70178
+    },
+    {
+      "path": "output/runs/hydrogen094-runtime-candidate-p12-transport2/pipeline_events.jsonl",
+      "sha256": "686c3b8a299f9063a6d85b36d62510e3b525ca0467259546b4f4e710c0c8d5b6",
+      "bytes": 2452
+    },
+    {
+      "path": "output/runs/hydrogen094-runtime-candidate-p12-transport2/pipeline_state.json",
+      "sha256": "429b406a92dfeab53581d6027a84903eea8c34b71cb894a7fdad8e07d694985a",
+      "bytes": 1412
+    },
+    {
+      "path": "output/runs/hydrogen094-runtime-candidate-p12-transport2/snapshots/plan.json",
+      "sha256": "55b10e55062c55df157eb0b4a213b087fe22b9c48504e31b51b7059a33a3cdcf",
+      "bytes": 3448
+    },
+    {
+      "path": "output/runs/hydrogen094-runtime-candidate-p12-transport2/snapshots/recipe.yaml",
+      "sha256": "dfd4492997039e1ff39037ebed1be34473f70129617039c824776c4cf06a372a",
+      "bytes": 2192
+    },
+    {
+      "path": "output/runs/hydrogen094-runtime-candidate-p12-transport2/snapshots/registry.json",
+      "sha256": "8637d99d178fc6b60d62734df81cd056fa1549b6d27183a21fd4dbec33262b06",
+      "bytes": 24633
+    },
+    {
+      "path": "output/runs/hydrogen094-runtime-candidate-p12-transport2/timing_summary.json",
+      "sha256": "229717a6ce2e3a4fbb9c5cef1fee62928ff60c90fc3a009ed1960ac6d1ec1843",
+      "bytes": 196
+    }
+  ],
+  "archive": {
+    "path": "output/eval-custody/hydrogen-094/native-originals.tar.gz",
+    "sha256": "cf1a0a540577db87d3f02a4366a46ace511208de9281a0fa8866db984f8d7a7b",
+    "bytes": 32829908,
+    "mode": "0600 parent0700"
+  },
+  "recovery": "Verify archive hash, then tar -xzf native-originals.tar.gz in a new protected owner recovery directory. Do not publish provider state or overwrite originals. Reconstruct public source images from exact saved wire inlineData if necessary. Existing retained worktree is authoritative.",
+  "final_code_epoch": [
+    {
+      "path": "benchmarks/providers/hydrogen_guard.py",
+      "sha256": "c5afc1e7cde0e59ed1afb9b5f3f0fc54feab6dbd3ea4191e9987b42627ba74ea",
+      "bytes": 13254
+    },
+    {
+      "path": "benchmarks/scripts/hydrogen_caller.py",
+      "sha256": "86204e4968f6daaeeec2fb7f96e6d6f43880304613d3c1631c2e2b9a75532047",
+      "bytes": 2891
+    },
+    {
+      "path": "benchmarks/scripts/hydrogen_custody.py",
+      "sha256": "d048b5506331170944607d044d0c2f7eac0fb05e37d7e1f80ebfa47e4dd8b4f8",
+      "bytes": 5706
+    },
+    {
+      "path": "benchmarks/scripts/hydrogen_final_crop_audit.py",
+      "sha256": "dac2b59ece131f6d976279a4545e4eac48dbbda9138c71c54e55b4a4ab390b3f",
+      "bytes": 2657
+    },
+    {
+      "path": "benchmarks/scripts/hydrogen_native.py",
+      "sha256": "5fd7aa844ea069e2b5b7da24e4d6d38a1c8b7c8d26cbff325b0673054ad243ea",
+      "bytes": 3549
+    },
+    {
+      "path": "benchmarks/scripts/hydrogen_ocr_replay.py",
+      "sha256": "1c852ac7f75de90c7d95d1467511a6cc5fa72d5382b3d65537b29715984436e2",
+      "bytes": 3475
+    },
+    {
+      "path": "benchmarks/scripts/hydrogen_preflight.py",
+      "sha256": "9300c108074b52e2adcf3499aed3e5733fe4a735f44baec0bc1e59ab0bf94216",
+      "bytes": 4402
+    },
+    {
+      "path": "benchmarks/scripts/hydrogen_reading.py",
+      "sha256": "b5c13e90a838c51d18893f61feb5da5b69b703c5562eb035ad79a3d898e566ff",
+      "bytes": 12853
+    },
+    {
+      "path": "benchmarks/scripts/hydrogen_run_caller.py",
+      "sha256": "d14fd6b73453214bf907fd0f0db7ecd90be704cb35a6ea91c93a6b00bb124ad2",
+      "bytes": 6129
+    },
+    {
+      "path": "benchmarks/scripts/hydrogen_runtime_transport.py",
+      "sha256": "d8a74c7841fc235710de15a2edfb707513de5211fedf323acabb6a51937ec8d2",
+      "bytes": 1542
+    },
+    {
+      "path": "benchmarks/scripts/hydrogen_source_pixels.py",
+      "sha256": "96667c1cd4391c2018b2202445348879e22a5585f4874c8f3731fe480189dce5",
+      "bytes": 4140
+    },
+    {
+      "path": "benchmarks/scripts/hydrogen_transport_probe.py",
+      "sha256": "a03d0da5d2336b7c4f29452a9ecb91b334befc18584caf401c9654f71da6c269",
+      "bytes": 1612
+    },
+    {
+      "path": "configs/pricing.default.yaml",
+      "sha256": "5d942ae828c30453de744c149234cfb56c9b199932a00fae882338abd98f6920",
+      "bytes": 546
+    },
+    {
+      "path": "configs/recipes/hydrogen-ocr-candidate-alverson.yaml",
+      "sha256": "1872c0f2a6f2b45e80606892258d9a5cde680427abec646da74767424b2eae4e",
+      "bytes": 1019
+    },
+    {
+      "path": "configs/recipes/hydrogen-ocr-candidate-barney.yaml",
+      "sha256": "c2e2d7947fe12288467a5aed3c4c59b76c4d5ea56d840c31fc001b95a331dfc7",
+      "bytes": 1015
+    },
+    {
+      "path": "configs/recipes/hydrogen-ocr-control-alverson.yaml",
+      "sha256": "afbf8ec91f39a507712e3699057e782e2114e0387a13fef990de7f3cf79ec22d",
+      "bytes": 1018
+    },
+    {
+      "path": "configs/recipes/hydrogen-ocr-control-barney.yaml",
+      "sha256": "79a75543c1a0ea8dfb54fe63bc3637f215dad3ecdec62fd80ce471f9b0b9a1fb",
+      "bytes": 1014
+    },
+    {
+      "path": "modules/common/google_client.py",
+      "sha256": "68702a31156d22ebb2dc63a716055e4ceca63d066fda9c7552104619cccdb828",
+      "bytes": 7388
+    },
+    {
+      "path": "tests/test_google_client.py",
+      "sha256": "484f0149acd0d6a000749e2fcccc0e3aea140d974034f41e416a1f9fe8b794a8",
+      "bytes": 5892
+    },
+    {
+      "path": "tools/hydrogen_detector_094_runtime.py",
+      "sha256": "185aae5245ffdeed929e47ef26d7235edaf6942d6355ef2180dd7eb95d7b93b4",
+      "bytes": 14648
+    }
+  ],
+  "producer_epochs": "Original dispatch guard sources saved under dispatch-code before each valid live request. Exact original wire/native receipts authoritative; final formatting/accounting/recipe additions are later epochs, not retroactively producer claims.",
+  "layout_weights": {
+    "path": "/Users/cam/.codex/worktrees/hydrogen-20261115/doc-web/output/fixtures/hydrogen-detector-094-runtime/paddle-cache/official_models/PP-DocLayout_plus-L/inference.pdiparams",
+    "sha256": "24ca3e2e442164505e250deef59f7ee9a54ea12dd32875c9cd6155d959dc97da",
+    "retention": "local checked weights; not duplicated in archive"
+  },
+  "privacy": "public Onward/public LOC/authored synthetic only; raw provider state remains protected; no keys/headers recorded",
+  "no_new_provider_calls": true
+}

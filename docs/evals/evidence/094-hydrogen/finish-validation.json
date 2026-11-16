@@ -1,0 +1,28 @@
+{
+  "checked_at_utc": "2026-11-16T14:02:04.340277+00:00",
+  "authorization": "User Yes to checkin and push Doc Web opt-in OCR patch and evaluation evidence; defaults unchanged",
+  "base": "c65346e4be7d757fa1130cb23fd8efc2fa41a191",
+  "origin_main": "c65346e4be7d757fa1130cb23fd8efc2fa41a191",
+  "scope": "Doc Web only; existing Hydrogen worktree; unrelated checkouts and other owner repos not landed",
+  "validation": {
+    "focused_command": "/Users/cam/miniconda3/bin/python -m pytest -q tests/test_google_client.py tests/test_handwritten_notes_eval.py tests/test_ocr_ai_gpt51_schema.py tests/test_ocr_ai_gpt51_sanitize.py",
+    "focused_result": "23 passed in 3.56s",
+    "lint": "Scoped Ruff all checks passed",
+    "methodology": "scripts/methodology_graph.py check current; regenerate after closing work log",
+    "native_contract_reused": "Two original real-driver subjects and two normal native-SDK network-denied consumer replays reused: runtime/client/recipes match original final_code_epoch hashes",
+    "identities_rechecked": 342,
+    "archive_sha256": "cf1a0a540577db87d3f02a4366a46ace511208de9281a0fa8866db984f8d7a7b",
+    "independent_review": "Read-only candidate review found no actionable blockers; no secret/opaque-state JSON fields in committable evidence"
+  },
+  "public_evidence_addition": {
+    "path": "docs/evals/evidence/094-hydrogen/ocr-reviewed-outputs.json",
+    "sha256": "88712de0d2a2d0c9b9bdf42ad8f0c49eaa41002a1f0003fb44ef16dde6054dd5",
+    "records": 4,
+    "source": "Raw and stamped HTML copied unchanged from actual protected driver artifacts; exact artifact/image/native hashes retained; no opaque provider fields"
+  },
+  "provider_calls": 0,
+  "inference_wallet": "closed; no paid re-evaluation",
+  "defaults_changed": false,
+  "protected_originals": "Not staged; archive/worktree retained with existing hashes and permissions",
+  "sdk_version": "1.63.0"
+}

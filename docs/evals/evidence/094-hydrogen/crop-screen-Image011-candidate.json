@@ -1,0 +1,9 @@
+{
+  "raw": "{\"images\": [{\"description\": \"Celebrate Saskatchewan 1905-1980 circular logo with stylized wheat emblem\", \"bbox\": [0.371, 0.072, 0.587, 0.234]}, {\"description\": \"Department of Agriculture embossed seal with signatures and titles of Hon. Gordon MacMurchy and Hon. Ed Tchorzewski\", \"bbox\": [0.116, 0.68, 0.873, 0.896]}]}",
+  "score": {
+    "pass": true,
+    "score": 0.96,
+    "reason": "box_count=1.00 (2/2) | iou_mean=0.931 | iou_min=0.903 | coverage=0.996 | total=0.960 | matches=[pred[1]<->gold[1] IoU=0.959, pred[0]<->gold[0] IoU=0.903]"
+  },
+  "served": "gemini-4-hydrogen"
+}

@@ -226,3 +226,6 @@ benchmarks/results/scout091-20261013/
 !/docs/evals/evidence/089-carbon/finish-preflight.json
 !/docs/evals/evidence/089-carbon/provider-state-redaction.json
 !/docs/evals/evidence/089-carbon/raw-audit-public-projection.json
+
+# Protected native Hydrogen evaluation envelopes and provider state
+/benchmarks/results/hydrogen-20261115/

@@ -1,0 +1,91 @@
+{
+  "calls": [
+    {
+      "stage": "caller-S3-candidate-misrouted-infrastructure",
+      "request_sha256": "2098eb231af47065ac09ee89382568cfada45dee84cc3a0d15723f5b8e228a4d",
+      "response_sha256": "e103e6ab0cc1988a8f2f51585cfb68ce3bb8f83b3d87eb5b96bedd0fbdac655f",
+      "cost_usd": null
+    },
+    {
+      "stage": "caller-S3-candidate",
+      "request_sha256": "ec9ea3d918a2705bc3ff106af05b9055eb6beddd09c4a159756e516f039bae3b",
+      "response_sha256": "5aebc4597b3c97b8479bc3f87c3afc4f737dd5ef126811639002cb18e1f9fcb0",
+      "cost_usd": 0.006573
+    },
+    {
+      "stage": "caller-S3-control",
+      "request_sha256": "9d3732741c9d9a75ecdf05fbeeee266c73ec0c81d3658cae7354456332fb872c",
+      "response_sha256": "533c2939892001c54ccf6a6a43a3fb6002569a7cd0a4f35c7e5b2bf24c4c67ee",
+      "cost_usd": 0.006625
+    },
+    {
+      "stage": "table-image-positive-candidate",
+      "request_sha256": "7136f152bd3c98da4f64a34506920645197c39eddfb2c7a231e058c6b53e5770",
+      "response_sha256": "dd3b1c69374d03cddd99583c5d57b64f5cc0fe97d35e0a6255a8ac13ed7a9cbf",
+      "cost_usd": 0.0198315
+    },
+    {
+      "stage": "table-image-positive-control",
+      "request_sha256": "a3f7e7b0c98c08aad517b00d6467a7ff6ed6802e6031feb50eee974deef04e8c",
+      "response_sha256": "197e5a3f4992d23c1d90de36300f0a8e590f2386ddea06f0ecf97141b1153345",
+      "cost_usd": 0.0801175
+    },
+    {
+      "stage": "crop-screen-Image011-candidate",
+      "request_sha256": "a85b6a56c7d58dad6b1d5360405678eb68224a14b1552bdf84792ba32aedfcc8",
+      "response_sha256": "6905da36c6a7737e650da9d1a0e8f5bd11e92dad8f6170f84a86e7b6cd291aa4",
+      "cost_usd": 0.0087105
+    },
+    {
+      "stage": "crop-screen-Image011-control",
+      "request_sha256": "b51d8425e881aa5871b0968b208e7e86aed01d7aaad3f574b169ccec0f78c078",
+      "response_sha256": "6d4cfc636d5a87fe92d3de2ee19c06328d3568caeeb2b2ae07101165095369e9",
+      "cost_usd": 0.0058355
+    },
+    {
+      "stage": "ocr-barney-candidate",
+      "request_sha256": "7d6adf96aff848bcb2ebef418170416d2f14e536f742c9378a8ddf7873b413d1",
+      "response_sha256": "f04f252a34aeee764066fb9a8f311ce3b7b20fba8510a1131b9f4e6b0121e9b5",
+      "cost_usd": 0.0639975
+    },
+    {
+      "stage": "ocr-barney-control",
+      "request_sha256": "f74e87ca5be38aa66841dbdfcdeedc3618c7e7ce2ebeb7b9d2c65717ee81b40b",
+      "response_sha256": "2598aedc1bc099431cca364777b75fdc30293ee9dd091970b286c75fb9b6c0e5",
+      "cost_usd": 0.011088
+    },
+    {
+      "stage": "ocr-alverson-candidate",
+      "request_sha256": "4d2bf878c3a6136d9992f9499247e29bbdcaa2cfaf09a0e8b8dd9e9789bea974",
+      "response_sha256": "1e608c671376986a1281ea5b0bc801d3e29c4e3df1de5f77365e33c95c8ee6bf",
+      "cost_usd": 0.0251835
+    },
+    {
+      "stage": "ocr-alverson-control",
+      "request_sha256": "bff5953d42aae1c64d338eb4f6e9e4fa8bbb26d61df3690f18df8f04414dfb9f",
+      "response_sha256": "4117a931c75c1c144440ef8fd7c4f2a38fdcc70adcf0c4370fa71796a325fa93",
+      "cost_usd": 0.0062685
+    },
+    {
+      "stage": "runtime-12-candidate-detector-4",
+      "request_sha256": "fd9d5f160c03880fee8c908aa61d57c31b471229c9aa44958f15daebb5887506",
+      "response_sha256": "4e21cf2a8c688b875daf2e8653bdd69dd2ebff4f4dc52c0d56806e40e3b44557",
+      "cost_usd": 0.019602
+    },
+    {
+      "stage": "runtime-12-candidate-caption-4",
+      "request_sha256": "16e73bcba8a4d6d9cad84564be271c54628a7e68a34401daa4e02c4a0741fa19",
+      "response_sha256": "31d6709a734461f1c92d53e4c6e92d643a4e2d12fa51f841d0a74284c739cd1a",
+      "cost_usd": 0.001839
+    },
+    {
+      "stage": "runtime-12-candidate-caption-4-adequate8192",
+      "request_sha256": "fae751f585c6e62797112ce67a625198a58872ae5143cb4c34225f12a98336b6",
+      "response_sha256": "7731a5c63f08bdc425bd6b127bb31440f34a23dfae13b2d284fa4b9b3c2c768c",
+      "cost_usd": 0.014142
+    }
+  ],
+  "wire_matrix_parity": true,
+  "provider_calls": 0,
+  "complete_originals_protected": true
+}

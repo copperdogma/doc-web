@@ -1,0 +1,9 @@
+{
+  "raw": "```json\n{\"images\": [{\"description\": \"Celebrate Saskatchewan 1905-1980 logo\", \"bbox\": [0.075, 0.375, 0.235, 0.585]}, {\"description\": \"Official seal and signatures\", \"bbox\": [0.685, 0.115, 0.895, 0.875]}]}\n```",
+  "score": {
+    "pass": true,
+    "score": 0.9752,
+    "reason": "box_count=1.00 (2/2) | iou_mean=0.960 | iou_min=0.941 | coverage=0.995 | total=0.975 | matches=[pred[1]<->gold[1] IoU=0.979, pred[0]<->gold[0] IoU=0.941]"
+  },
+  "served": "gemini-3-flash-preview"
+}

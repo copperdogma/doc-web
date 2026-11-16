@@ -1,0 +1,77 @@
+{
+  "arm": "candidate",
+  "case": "S3",
+  "driver_exit": 0,
+  "proposals": "output/runs/hydrogen094-candidate-S3-live-transport2/03_propose_crop_safety_v1/proposals.jsonl",
+  "rows": [
+    {
+      "candidate_id": "f3f4fb2aeb8e4b5ef6387d8cacb10b442ce43d7d8abc5796eb0d470ce261c082",
+      "binding": {
+        "candidate_id": "f3f4fb2aeb8e4b5ef6387d8cacb10b442ce43d7d8abc5796eb0d470ce261c082",
+        "run_id": "hydrogen094-candidate-S3-live-transport2",
+        "source_page": 1,
+        "source_image": "source-1.png",
+        "source_sha256": "4cb7ceb9d8a3045951ce9c2da00eb1afb02ad91d1d3bad722283c0f96fa5ce84",
+        "crop_sha256": "11d98294ac8a19c8e77490998a933add2ddf8de6fdbeb8e7156159e201a87bfe",
+        "bbox": {
+          "x0": 220,
+          "y0": 200,
+          "x1": 780,
+          "y1": 700
+        },
+        "row_sha256": "bfba5cc0b9746798d71391dd719eed5e82d35ea31c003f25c384c3003acf4be6",
+        "source_dimensions": [
+          1000,
+          1000
+        ],
+        "coordinate_system": "source_pixels"
+      },
+      "origin": "native_crop_safety",
+      "mode": "live",
+      "verdict": "pass",
+      "status": "completed",
+      "request": {
+        "path": "native-receipts/request-001.json",
+        "sha256": "2098eb231af47065ac09ee89382568cfada45dee84cc3a0d15723f5b8e228a4d"
+      },
+      "prompt_sha256": "9931ded6b7e732687b0889e6959ef9a873e6f459a292c132443db0f6bc9a7371",
+      "receipt": {
+        "path": "native-receipts/response-001.json",
+        "sha256": "5aebc4597b3c97b8479bc3f87c3afc4f737dd5ef126811639002cb18e1f9fcb0"
+      },
+      "status_code": 200,
+      "answer": {
+        "verdict": "pass",
+        "has_page_text": false,
+        "excessive_blank": false,
+        "reason": "The crop tightly isolates the single symmetric illustration from the page, including the thin central crossing lines that connect both halves, with no page text or excessive blank space."
+      },
+      "served_model": "gemini-4-hydrogen",
+      "response_id": "b5z6arzCEqGUmtkPl8Ps4Ag",
+      "usage": {
+        "promptTokenCount": 3197,
+        "candidatesTokenCount": 76,
+        "totalTokenCount": 3434,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 1023
+          },
+          {
+            "modality": "IMAGE",
+            "tokenCount": 2174
+          }
+        ],
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 76
+          }
+        ],
+        "thoughtsTokenCount": 161,
+        "serviceTier": "standard"
+      }
+    }
+  ],
+  "operator_action": false
+}

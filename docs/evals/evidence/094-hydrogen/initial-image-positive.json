@@ -1,0 +1,29 @@
+{
+  "schema_version": "page_html_v1",
+  "module_id": "ocr_ai_gpt51_v1",
+  "run_id": "story244-image-positive-v2",
+  "source": [
+    "/Users/cam/Documents/Projects/doc-web/output/story244-phase2-confirmation-sealed/image-positive/image-only.pdf"
+  ],
+  "created_at": "2026-10-06T21:16:28.143460Z",
+  "page": 1,
+  "page_number": 1,
+  "original_page_number": 1,
+  "image": "/Users/cam/Documents/Projects/doc-web/output/runs/story244-image-positive-v2/01_extract_pdf_images_capped_v1/images/page-001.png",
+  "spread_side": null,
+  "ocr_quality": 0.99,
+  "ocr_integrity": 1.0,
+  "continuation_risk": 0.0,
+  "ocr_metadata_warning": null,
+  "ocr_metadata_tag": null,
+  "ocr_metadata_missing": null,
+  "ocr_empty": null,
+  "ocr_empty_reason": null,
+  "raw_html": "<h1>Bakery production register</h1>\n<table>\n<thead>\n<tr><th>Product</th><th>Lot</th><th>Trays</th><th>Note</th></tr>\n</thead>\n<tbody>\n<tr><td>Olive loaf</td><td>Il1-O0</td><td>1+</td><td>Cooling</td></tr>\n<tr><td>Rye loaf</td><td>o0-LI</td><td>0</td><td>recieve</td></tr>\n<tr><td>Oat roll</td><td>aB-9</td><td></td><td>“Ready”</td></tr>\n<tr><td>Oat roll</td><td>AB-9</td><td>-</td><td>Ready; hold.</td></tr>\n<tr><td colspan=\"2\">Evening batch</td><td>2</td><td>No change</td></tr>\n</tbody>\n</table>",
+  "html": "<h1>Bakery production register</h1>\n<table>\n<thead>\n<tr><th>Product</th><th>Lot</th><th>Trays</th><th>Note</th></tr>\n</thead>\n<tbody>\n<tr><td>Olive loaf</td><td>Il1-O0</td><td>1+</td><td>Cooling</td></tr>\n<tr><td>Rye loaf</td><td>o0-LI</td><td>0</td><td>recieve</td></tr>\n<tr><td>Oat roll</td><td>aB-9</td><td></td><td>“Ready”</td></tr>\n<tr><td>Oat roll</td><td>AB-9</td><td>-</td><td>Ready; hold.</td></tr>\n<tr><td colspan=\"2\">Evening batch</td><td>2</td><td>No change</td></tr>\n</tbody>\n</table>\n",
+  "printed_page_number": null,
+  "printed_page_number_text": null,
+  "printed_page_number_inferred": null,
+  "images": null,
+  "literal_fidelity": null
+}

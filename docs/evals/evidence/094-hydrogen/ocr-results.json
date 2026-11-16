@@ -1,0 +1,134 @@
+[
+  {
+    "fixture": "barney",
+    "arm": "candidate",
+    "driver_exit": 0,
+    "score": {
+      "transcript_path": "/Users/cam/.codex/worktrees/hydrogen-20261115/doc-web/testdata/handwritten-notes-barney-real.txt",
+      "artifact_path": "/Users/cam/.codex/worktrees/hydrogen-20261115/doc-web/output/runs/hydrogen-ocr-barney-candidate-20261115/02_ocr_ai_gpt51_v1/pages_html.jsonl",
+      "page_count": 1,
+      "missing_pages": [],
+      "extra_pages": [],
+      "overall_ratio": 0.990641,
+      "overall_exact_match": false,
+      "page_min_ratio": 0.990641,
+      "exact_page_matches": 0,
+      "pages": [
+        {
+          "ratio": 0.990641,
+          "exact_match": false,
+          "expected_length": 1395,
+          "actual_length": 1383,
+          "expected_preview": "health, and can again stand among my comrads and in a few days I hope that I shall again feel as well as before,\nyou wrote that it was lonesome times in old gro",
+          "actual_preview": "health, and can again stand among my comrads and in a few days I hope that I shall again feel as well as before, you wrote that it was lonesome times in old gro",
+          "page_number": 1,
+          "artifact_page_found": true,
+          "artifact_metrics": {
+            "ocr_quality": 0.85,
+            "ocr_integrity": 1.0,
+            "continuation_risk": 1.0
+          }
+        }
+      ]
+    }
+  },
+  {
+    "fixture": "barney",
+    "arm": "control",
+    "driver_exit": 0,
+    "score": {
+      "transcript_path": "/Users/cam/.codex/worktrees/hydrogen-20261115/doc-web/testdata/handwritten-notes-barney-real.txt",
+      "artifact_path": "/Users/cam/.codex/worktrees/hydrogen-20261115/doc-web/output/runs/hydrogen-ocr-barney-control-20261115/02_ocr_ai_gpt51_v1/pages_html.jsonl",
+      "page_count": 1,
+      "missing_pages": [],
+      "extra_pages": [],
+      "overall_ratio": 0.985632,
+      "overall_exact_match": false,
+      "page_min_ratio": 0.985632,
+      "exact_page_matches": 0,
+      "pages": [
+        {
+          "ratio": 0.985632,
+          "exact_match": false,
+          "expected_length": 1395,
+          "actual_length": 1389,
+          "expected_preview": "health, and can again stand among my comrads and in a few days I hope that I shall again feel as well as before,\nyou wrote that it was lonesome times in old gro",
+          "actual_preview": "health, and can again stand among my comrads and in a few days I hope that I shall again feel as well as before, you wrote that it was lonesome times in old Gro",
+          "page_number": 1,
+          "artifact_page_found": true,
+          "artifact_metrics": {
+            "ocr_quality": 0.9,
+            "ocr_integrity": 0.95,
+            "continuation_risk": 1.0
+          }
+        }
+      ]
+    }
+  },
+  {
+    "fixture": "alverson",
+    "arm": "candidate",
+    "driver_exit": 0,
+    "score": {
+      "transcript_path": "/Users/cam/.codex/worktrees/hydrogen-20261115/doc-web/testdata/handwritten-notes-alverson-real.txt",
+      "artifact_path": "/Users/cam/.codex/worktrees/hydrogen-20261115/doc-web/output/runs/hydrogen-ocr-alverson-candidate-20261115/02_ocr_ai_gpt51_v1/pages_html.jsonl",
+      "page_count": 1,
+      "missing_pages": [],
+      "extra_pages": [],
+      "overall_ratio": 0.991716,
+      "overall_exact_match": false,
+      "page_min_ratio": 0.991716,
+      "exact_page_matches": 0,
+      "pages": [
+        {
+          "ratio": 0.991716,
+          "exact_match": false,
+          "expected_length": 848,
+          "actual_length": 842,
+          "expected_preview": "Danville Va Nov 18th 1863\n        Dear Father and Mother\n                      As I now I have an opertunity I will let you know where I am I was\ncaptured at th",
+          "actual_preview": "Danville Va Nov 18th 1863\n\n\nDear Father and Mother\n\n\nAs I now have an oppertunity I will let you know where I am I was captured at the battle of Chickamauga the",
+          "page_number": 1,
+          "artifact_page_found": true,
+          "artifact_metrics": {
+            "ocr_quality": 0.8,
+            "ocr_integrity": 0.95,
+            "continuation_risk": 1.0
+          }
+        }
+      ]
+    }
+  },
+  {
+    "fixture": "alverson",
+    "arm": "control",
+    "driver_exit": 0,
+    "score": {
+      "transcript_path": "/Users/cam/.codex/worktrees/hydrogen-20261115/doc-web/testdata/handwritten-notes-alverson-real.txt",
+      "artifact_path": "/Users/cam/.codex/worktrees/hydrogen-20261115/doc-web/output/runs/hydrogen-ocr-alverson-control-20261115/02_ocr_ai_gpt51_v1/pages_html.jsonl",
+      "page_count": 1,
+      "missing_pages": [],
+      "extra_pages": [],
+      "overall_ratio": 0.98409,
+      "overall_exact_match": false,
+      "page_min_ratio": 0.98409,
+      "exact_page_matches": 0,
+      "pages": [
+        {
+          "ratio": 0.98409,
+          "exact_match": false,
+          "expected_length": 848,
+          "actual_length": 849,
+          "expected_preview": "Danville Va Nov 18th 1863\n        Dear Father and Mother\n                      As I now I have an opertunity I will let you know where I am I was\ncaptured at th",
+          "actual_preview": "clothing\n\n\nDanville Va Nov 18th 1863\n\n\nDear Father and Mother\n\n\nAs I now have an opertunity I will let you know where I am I was captured at the battle of Chick",
+          "page_number": 1,
+          "artifact_page_found": true,
+          "artifact_metrics": {
+            "ocr_quality": 0.85,
+            "ocr_integrity": 0.95,
+            "continuation_risk": 1.0
+          }
+        }
+      ]
+    }
+  }
+]

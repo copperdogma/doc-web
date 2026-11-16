@@ -1,0 +1,536 @@
+{
+  "cap_usd": 18,
+  "spent_usd": 0.26981349999999993,
+  "calls": [
+    {
+      "stage": "caller-S3-candidate-misrouted-infrastructure",
+      "model": "gemini-4-hydrogen",
+      "actual_endpoint": "api.openai.com/v1/responses",
+      "reserved_usd": 0.31476,
+      "cost_usd": null,
+      "in_flight": false,
+      "status_code": 404,
+      "pre_inference_rejection": true,
+      "classification": "runpy hook namespace; capability unmeasured",
+      "request": "output/runs/hydrogen094-candidate-S3-live-fixture/custody/native-receipts/request-001.json",
+      "response": "output/runs/hydrogen094-candidate-S3-live-fixture/custody/native-receipts/response-001.json"
+    },
+    {
+      "producing_guard_sha256": "23f8a44a83890781de52080ef6c0822b5152bee2fef69abfde7c8aac3254fc2d",
+      "stage": "caller-S3-candidate",
+      "model": "gemini-4-hydrogen",
+      "reserved_usd": 0.31476,
+      "cost_usd": 0.006573,
+      "in_flight": false,
+      "request": "benchmarks/results/hydrogen-20261115/request-002.json",
+      "request_sha256": "ec9ea3d918a2705bc3ff106af05b9055eb6beddd09c4a159756e516f039bae3b",
+      "request_url": "https://generativelanguage.googleapis.com/v1beta/models/gemini-4-hydrogen:generateContent",
+      "response": "benchmarks/results/hydrogen-20261115/response-002.json",
+      "response_sha256": "5aebc4597b3c97b8479bc3f87c3afc4f737dd5ef126811639002cb18e1f9fcb0",
+      "status_code": 200,
+      "latency_ms": 11501,
+      "usage": {
+        "promptTokenCount": 3197,
+        "candidatesTokenCount": 76,
+        "totalTokenCount": 3434,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 1023
+          },
+          {
+            "modality": "IMAGE",
+            "tokenCount": 2174
+          }
+        ],
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 76
+          }
+        ],
+        "thoughtsTokenCount": 161,
+        "serviceTier": "standard"
+      },
+      "served_model": "gemini-4-hydrogen",
+      "provider": "Google",
+      "output_tokens_including_thinking": 237,
+      "input_tokens": 3197,
+      "december_cost_usd": 0.006573
+    },
+    {
+      "producing_guard_sha256": "23f8a44a83890781de52080ef6c0822b5152bee2fef69abfde7c8aac3254fc2d",
+      "stage": "caller-S3-control",
+      "model": "gpt-6.1-sol",
+      "reserved_usd": 0.15596,
+      "cost_usd": 0.006625,
+      "in_flight": false,
+      "request": "benchmarks/results/hydrogen-20261115/request-003.json",
+      "request_sha256": "9d3732741c9d9a75ecdf05fbeeee266c73ec0c81d3658cae7354456332fb872c",
+      "request_url": "https://api.openai.com/v1/responses",
+      "response": "benchmarks/results/hydrogen-20261115/response-003.json",
+      "response_sha256": "533c2939892001c54ccf6a6a43a3fb6002569a7cd0a4f35c7e5b2bf24c4c67ee",
+      "status_code": 200,
+      "latency_ms": 4376,
+      "usage": {
+        "input_tokens": 2350,
+        "input_tokens_details": {
+          "cache_write_tokens": 2347,
+          "cache_write_tokens_details": {
+            "ttl_12h_tokens": 0,
+            "ttl_30m_tokens": 2347
+          },
+          "cached_tokens": 0
+        },
+        "output_tokens": 75,
+        "output_tokens_details": {
+          "reasoning_tokens": 19
+        },
+        "total_tokens": 2425
+      },
+      "served_model": "gpt-6.1-sol",
+      "provider": "OpenAI",
+      "output_tokens_including_thinking": 75,
+      "input_tokens": 2350,
+      "december_cost_usd": 0.006625
+    },
+    {
+      "producing_guard_sha256": "23f8a44a83890781de52080ef6c0822b5152bee2fef69abfde7c8aac3254fc2d",
+      "stage": "table-image-positive-candidate",
+      "model": "gemini-4-hydrogen",
+      "reserved_usd": 0.28476,
+      "cost_usd": 0.0198315,
+      "in_flight": false,
+      "request": "benchmarks/results/hydrogen-20261115/request-004.json",
+      "request_sha256": "7136f152bd3c98da4f64a34506920645197c39eddfb2c7a231e058c6b53e5770",
+      "request_url": "https://generativelanguage.googleapis.com/v1beta/models/gemini-4-hydrogen:generateContent",
+      "response": "benchmarks/results/hydrogen-20261115/response-004.json",
+      "response_sha256": "dd3b1c69374d03cddd99583c5d57b64f5cc0fe97d35e0a6255a8ac13ed7a9cbf",
+      "status_code": 200,
+      "latency_ms": 13827,
+      "usage": {
+        "promptTokenCount": 1941,
+        "candidatesTokenCount": 177,
+        "totalTokenCount": 4197,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 839
+          },
+          {
+            "modality": "IMAGE",
+            "tokenCount": 1102
+          }
+        ],
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 177
+          }
+        ],
+        "thoughtsTokenCount": 2079,
+        "serviceTier": "standard"
+      },
+      "served_model": "gemini-4-hydrogen",
+      "provider": "Google",
+      "output_tokens_including_thinking": 2256,
+      "input_tokens": 1941,
+      "december_cost_usd": 0.0198315
+    },
+    {
+      "producing_guard_sha256": "23f8a44a83890781de52080ef6c0822b5152bee2fef69abfde7c8aac3254fc2d",
+      "stage": "table-image-positive-control",
+      "model": "gpt-6-astra",
+      "reserved_usd": 0.7346,
+      "cost_usd": 0.0801175,
+      "in_flight": false,
+      "request": "benchmarks/results/hydrogen-20261115/request-005.json",
+      "request_sha256": "a3f7e7b0c98c08aad517b00d6467a7ff6ed6802e6031feb50eee974deef04e8c",
+      "request_url": "https://api.openai.com/v1/responses",
+      "response": "benchmarks/results/hydrogen-20261115/response-005.json",
+      "response_sha256": "197e5a3f4992d23c1d90de36300f0a8e590f2386ddea06f0ecf97141b1153345",
+      "status_code": 200,
+      "latency_ms": 7792,
+      "usage": {
+        "input_tokens": 5090,
+        "input_tokens_details": {
+          "cache_write_tokens": 5087,
+          "cache_write_tokens_details": {
+            "ttl_12h_tokens": 0,
+            "ttl_30m_tokens": 5087
+          },
+          "cached_tokens": 0
+        },
+        "output_tokens": 330,
+        "output_tokens_details": {
+          "reasoning_tokens": 87
+        },
+        "total_tokens": 5420
+      },
+      "served_model": "gpt-6-astra",
+      "provider": "OpenAI",
+      "output_tokens_including_thinking": 330,
+      "input_tokens": 5090,
+      "december_cost_usd": 0.0801175
+    },
+    {
+      "producing_guard_sha256": "23f8a44a83890781de52080ef6c0822b5152bee2fef69abfde7c8aac3254fc2d",
+      "stage": "crop-screen-Image011-candidate",
+      "model": "gemini-4-hydrogen",
+      "reserved_usd": 0.28476,
+      "cost_usd": 0.0087105,
+      "in_flight": false,
+      "request": "benchmarks/results/hydrogen-20261115/request-006.json",
+      "request_sha256": "a85b6a56c7d58dad6b1d5360405678eb68224a14b1552bdf84792ba32aedfcc8",
+      "request_url": "https://generativelanguage.googleapis.com/v1beta/models/gemini-4-hydrogen:generateContent",
+      "response": "benchmarks/results/hydrogen-20261115/response-006.json",
+      "response_sha256": "6905da36c6a7737e650da9d1a0e8f5bd11e92dad8f6170f84a86e7b6cd291aa4",
+      "status_code": 200,
+      "latency_ms": 6413,
+      "usage": {
+        "promptTokenCount": 1617,
+        "candidatesTokenCount": 133,
+        "totalTokenCount": 2455,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 515
+          },
+          {
+            "modality": "IMAGE",
+            "tokenCount": 1102
+          }
+        ],
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 133
+          }
+        ],
+        "thoughtsTokenCount": 705,
+        "serviceTier": "standard"
+      },
+      "served_model": "gemini-4-hydrogen",
+      "provider": "Google",
+      "output_tokens_including_thinking": 838,
+      "input_tokens": 1617,
+      "december_cost_usd": 0.0087105
+    },
+    {
+      "producing_guard_sha256": "23f8a44a83890781de52080ef6c0822b5152bee2fef69abfde7c8aac3254fc2d",
+      "stage": "crop-screen-Image011-control",
+      "model": "gemini-3-flash-preview",
+      "reserved_usd": 0.062152,
+      "cost_usd": 0.0058355,
+      "in_flight": false,
+      "request": "benchmarks/results/hydrogen-20261115/request-007.json",
+      "request_sha256": "b51d8425e881aa5871b0968b208e7e86aed01d7aaad3f574b169ccec0f78c078",
+      "request_url": "https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent",
+      "response": "benchmarks/results/hydrogen-20261115/response-007.json",
+      "response_sha256": "6d4cfc636d5a87fe92d3de2ee19c06328d3568caeeb2b2ae07101165095369e9",
+      "status_code": 200,
+      "latency_ms": 8215,
+      "usage": {
+        "promptTokenCount": 1333,
+        "candidatesTokenCount": 98,
+        "totalTokenCount": 3056,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 231
+          },
+          {
+            "modality": "IMAGE",
+            "tokenCount": 1102
+          }
+        ],
+        "thoughtsTokenCount": 1625,
+        "serviceTier": "standard"
+      },
+      "served_model": "gemini-3-flash-preview",
+      "provider": "Google",
+      "output_tokens_including_thinking": 1723,
+      "input_tokens": 1333,
+      "december_cost_usd": 0.0058355
+    },
+    {
+      "producing_guard_sha256": "23f8a44a83890781de52080ef6c0822b5152bee2fef69abfde7c8aac3254fc2d",
+      "stage": "ocr-barney-candidate",
+      "model": "gemini-4-hydrogen",
+      "reserved_usd": 0.28476,
+      "cost_usd": 0.0639975,
+      "in_flight": false,
+      "request": "benchmarks/results/hydrogen-20261115/request-008.json",
+      "request_sha256": "7d6adf96aff848bcb2ebef418170416d2f14e536f742c9378a8ddf7873b413d1",
+      "request_url": "https://generativelanguage.googleapis.com/v1beta/models/gemini-4-hydrogen:generateContent",
+      "response": "benchmarks/results/hydrogen-20261115/response-008.json",
+      "response_sha256": "f04f252a34aeee764066fb9a8f311ce3b7b20fba8510a1131b9f4e6b0121e9b5",
+      "status_code": 200,
+      "latency_ms": 39627,
+      "usage": {
+        "promptTokenCount": 2055,
+        "candidatesTokenCount": 383,
+        "totalTokenCount": 10177,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 982
+          },
+          {
+            "modality": "IMAGE",
+            "tokenCount": 1073
+          }
+        ],
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 383
+          }
+        ],
+        "thoughtsTokenCount": 7739,
+        "serviceTier": "standard"
+      },
+      "served_model": "gemini-4-hydrogen",
+      "provider": "Google",
+      "output_tokens_including_thinking": 8122,
+      "input_tokens": 2055,
+      "december_cost_usd": 0.0639975
+    },
+    {
+      "producing_guard_sha256": "23f8a44a83890781de52080ef6c0822b5152bee2fef69abfde7c8aac3254fc2d",
+      "stage": "ocr-barney-control",
+      "model": "gemini-3.8-flash",
+      "reserved_usd": 0.08094,
+      "cost_usd": 0.011088,
+      "in_flight": false,
+      "request": "benchmarks/results/hydrogen-20261115/request-009.json",
+      "request_sha256": "f74e87ca5be38aa66841dbdfcdeedc3618c7e7ce2ebeb7b9d2c65717ee81b40b",
+      "request_url": "https://generativelanguage.googleapis.com/v1beta/models/gemini-3.8-flash:generateContent",
+      "response": "benchmarks/results/hydrogen-20261115/response-009.json",
+      "response_sha256": "2598aedc1bc099431cca364777b75fdc30293ee9dd091970b286c75fb9b6c0e5",
+      "status_code": 200,
+      "latency_ms": 21408,
+      "usage": {
+        "promptTokenCount": 2029,
+        "candidatesTokenCount": 388,
+        "totalTokenCount": 4580,
+        "promptTokensDetails": [
+          {
+            "modality": "IMAGE",
+            "tokenCount": 1073
+          },
+          {
+            "modality": "TEXT",
+            "tokenCount": 956
+          }
+        ],
+        "thoughtsTokenCount": 2163,
+        "serviceTier": "standard"
+      },
+      "served_model": "gemini-3.8-flash",
+      "provider": "Google",
+      "output_tokens_including_thinking": 2551,
+      "input_tokens": 2029,
+      "december_cost_usd": 0.011088
+    },
+    {
+      "producing_guard_sha256": "23f8a44a83890781de52080ef6c0822b5152bee2fef69abfde7c8aac3254fc2d",
+      "stage": "ocr-alverson-candidate",
+      "model": "gemini-4-hydrogen",
+      "reserved_usd": 0.28476,
+      "cost_usd": 0.0251835,
+      "in_flight": false,
+      "request": "benchmarks/results/hydrogen-20261115/request-010.json",
+      "request_sha256": "4d2bf878c3a6136d9992f9499247e29bbdcaa2cfaf09a0e8b8dd9e9789bea974",
+      "request_url": "https://generativelanguage.googleapis.com/v1beta/models/gemini-4-hydrogen:generateContent",
+      "response": "benchmarks/results/hydrogen-20261115/response-010.json",
+      "response_sha256": "1e608c671376986a1281ea5b0bc801d3e29c4e3df1de5f77365e33c95c8ee6bf",
+      "status_code": 200,
+      "latency_ms": 18900,
+      "usage": {
+        "promptTokenCount": 2074,
+        "candidatesTokenCount": 296,
+        "totalTokenCount": 5017,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 982
+          },
+          {
+            "modality": "IMAGE",
+            "tokenCount": 1092
+          }
+        ],
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 296
+          }
+        ],
+        "thoughtsTokenCount": 2647,
+        "serviceTier": "standard"
+      },
+      "served_model": "gemini-4-hydrogen",
+      "provider": "Google",
+      "output_tokens_including_thinking": 2943,
+      "input_tokens": 2074,
+      "december_cost_usd": 0.0251835
+    },
+    {
+      "producing_guard_sha256": "23f8a44a83890781de52080ef6c0822b5152bee2fef69abfde7c8aac3254fc2d",
+      "stage": "ocr-alverson-control",
+      "model": "gemini-3.8-flash",
+      "reserved_usd": 0.08094,
+      "cost_usd": 0.0062685,
+      "in_flight": false,
+      "request": "benchmarks/results/hydrogen-20261115/request-011.json",
+      "request_sha256": "bff5953d42aae1c64d338eb4f6e9e4fa8bbb26d61df3690f18df8f04414dfb9f",
+      "request_url": "https://generativelanguage.googleapis.com/v1beta/models/gemini-3.8-flash:generateContent",
+      "response": "benchmarks/results/hydrogen-20261115/response-011.json",
+      "response_sha256": "4117a931c75c1c144440ef8fd7c4f2a38fdcc70adcf0c4370fa71796a325fa93",
+      "status_code": 200,
+      "latency_ms": 10472,
+      "usage": {
+        "promptTokenCount": 2048,
+        "candidatesTokenCount": 308,
+        "totalTokenCount": 3310,
+        "promptTokensDetails": [
+          {
+            "modality": "IMAGE",
+            "tokenCount": 1092
+          },
+          {
+            "modality": "TEXT",
+            "tokenCount": 956
+          }
+        ],
+        "thoughtsTokenCount": 954,
+        "serviceTier": "standard"
+      },
+      "served_model": "gemini-3.8-flash",
+      "provider": "Google",
+      "output_tokens_including_thinking": 1262,
+      "input_tokens": 2048,
+      "december_cost_usd": 0.0062685
+    },
+    {
+      "producing_guard_sha256": "23f8a44a83890781de52080ef6c0822b5152bee2fef69abfde7c8aac3254fc2d",
+      "stage": "runtime-12-candidate-detector-4",
+      "model": "gemini-4-hydrogen",
+      "reserved_usd": 0.28476,
+      "cost_usd": 0.019602,
+      "in_flight": false,
+      "request": "benchmarks/results/hydrogen-20261115/request-012.json",
+      "request_sha256": "fd9d5f160c03880fee8c908aa61d57c31b471229c9aa44958f15daebb5887506",
+      "request_url": "https://generativelanguage.googleapis.com/v1beta/models/gemini-4-hydrogen:generateContent",
+      "response": "benchmarks/results/hydrogen-20261115/response-012.json",
+      "response_sha256": "4e21cf2a8c688b875daf2e8653bdd69dd2ebff4f4dc52c0d56806e40e3b44557",
+      "status_code": 200,
+      "latency_ms": 12807,
+      "usage": {
+        "promptTokenCount": 2543,
+        "candidatesTokenCount": 592,
+        "totalTokenCount": 4648,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 1441
+          },
+          {
+            "modality": "IMAGE",
+            "tokenCount": 1102
+          }
+        ],
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 592
+          }
+        ],
+        "thoughtsTokenCount": 1513,
+        "serviceTier": "standard"
+      },
+      "served_model": "gemini-4-hydrogen",
+      "provider": "Google",
+      "output_tokens_including_thinking": 2105,
+      "input_tokens": 2543,
+      "december_cost_usd": 0.019602
+    },
+    {
+      "producing_guard_sha256": "5e6ea488c03573d5fa426d42fb51fde8c088d8dabb3c95faa220215ba75f6ae8",
+      "stage": "runtime-12-candidate-caption-4",
+      "model": "gemini-3-flash-preview",
+      "reserved_usd": 0.0142,
+      "cost_usd": 0.001839,
+      "in_flight": false,
+      "request": "benchmarks/results/hydrogen-20261115/request-013.json",
+      "request_sha256": "16e73bcba8a4d6d9cad84564be271c54628a7e68a34401daa4e02c4a0741fa19",
+      "request_url": "https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent",
+      "response": "benchmarks/results/hydrogen-20261115/response-013.json",
+      "response_sha256": "31d6709a734461f1c92d53e4c6e92d643a4e2d12fa51f841d0a74284c739cd1a",
+      "status_code": 200,
+      "latency_ms": 3756,
+      "usage": {
+        "promptTokenCount": 1302,
+        "candidatesTokenCount": 15,
+        "totalTokenCount": 1698,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 200
+          },
+          {
+            "modality": "IMAGE",
+            "tokenCount": 1102
+          }
+        ],
+        "thoughtsTokenCount": 381,
+        "serviceTier": "standard"
+      },
+      "served_model": "gemini-3-flash-preview",
+      "provider": "Google",
+      "output_tokens_including_thinking": 396,
+      "input_tokens": 1302,
+      "december_cost_usd": 0.001839
+    },
+    {
+      "producing_guard_sha256": "5e6ea488c03573d5fa426d42fb51fde8c088d8dabb3c95faa220215ba75f6ae8",
+      "stage": "runtime-12-candidate-caption-4-adequate8192",
+      "model": "gemini-3-flash-preview",
+      "reserved_usd": 0.037576,
+      "cost_usd": 0.014142,
+      "in_flight": false,
+      "request": "benchmarks/results/hydrogen-20261115/request-014.json",
+      "request_sha256": "fae751f585c6e62797112ce67a625198a58872ae5143cb4c34225f12a98336b6",
+      "request_url": "https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent",
+      "response": "benchmarks/results/hydrogen-20261115/response-014.json",
+      "response_sha256": "7731a5c63f08bdc425bd6b127bb31440f34a23dfae13b2d284fa4b9b3c2c768c",
+      "status_code": 200,
+      "latency_ms": 21010,
+      "usage": {
+        "promptTokenCount": 1302,
+        "candidatesTokenCount": 188,
+        "totalTokenCount": 5799,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 200
+          },
+          {
+            "modality": "IMAGE",
+            "tokenCount": 1102
+          }
+        ],
+        "thoughtsTokenCount": 4309,
+        "serviceTier": "standard"
+      },
+      "served_model": "gemini-3-flash-preview",
+      "provider": "Google",
+      "output_tokens_including_thinking": 4497,
+      "input_tokens": 1302,
+      "december_cost_usd": 0.014142
+    }
+  ],
+  "closed": true,
+  "unknown_usd": 0.31476
+}

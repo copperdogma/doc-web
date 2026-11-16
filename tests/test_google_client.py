@@ -67,12 +67,18 @@ def test_gemini_crop_response_retains_raw_and_rejects_truncation(
         text="[]",
         response_id="gemini-response-1",
         model_version="gemini-3-flash-preview",
-        usage_metadata=SimpleNamespace(prompt_token_count=100, candidates_token_count=2),
-        candidates=[SimpleNamespace(finish_reason=SimpleNamespace(value=finish_reason))],
+        usage_metadata=SimpleNamespace(
+            prompt_token_count=100, candidates_token_count=2
+        ),
+        candidates=[
+            SimpleNamespace(finish_reason=SimpleNamespace(value=finish_reason))
+        ],
         model_dump_json=lambda: '{"response_id":"gemini-response-1"}',
     )
     calls = []
-    models = SimpleNamespace(generate_content=lambda **kwargs: calls.append(kwargs) or response)
+    models = SimpleNamespace(
+        generate_content=lambda **kwargs: calls.append(kwargs) or response
+    )
     monkeypatch.setattr(
         google_client,
         "genai",
@@ -96,6 +102,7 @@ def test_gemini_crop_response_retains_raw_and_rejects_truncation(
     monkeypatch.setenv("GEMINI_CROP_RAW_ENVELOPE_DIR", str(tmp_path))
 
     client = google_client.GeminiVisionClient(api_key="dummy")
+
     def call():
         return client.generate_vision(
             "gemini-3-flash-preview",
@@ -104,6 +111,7 @@ def test_gemini_crop_response_retains_raw_and_rejects_truncation(
             "data:image/jpeg;base64,YWJj",
             max_tokens=2048,
         )
+
     if finish_reason == "MAX_TOKENS":
         with pytest.raises(RuntimeError, match="did not finish normally"):
             call()
@@ -112,3 +120,59 @@ def test_gemini_crop_response_retains_raw_and_rejects_truncation(
     assert calls[0]["contents"][0].parts[1].data == b"abc"
     assert calls[0]["contents"][0].parts[1].mime_type == "image/jpeg"
     assert len(list(tmp_path.glob("*.json"))) == 1
+
+
+def test_hydrogen_opt_in_uses_evaluated_controls_and_bills_thinking(monkeypatch):
+    calls, logs = [], []
+    response = SimpleNamespace(
+        text="<p>source</p>",
+        response_id="hydrogen-native",
+        model_version="gemini-4-hydrogen",
+        usage_metadata=SimpleNamespace(
+            prompt_token_count=100, candidates_token_count=5, thoughts_token_count=17
+        ),
+        candidates=[SimpleNamespace(finish_reason=SimpleNamespace(value="STOP"))],
+    )
+    monkeypatch.setattr(
+        google_client,
+        "genai",
+        SimpleNamespace(
+            Client=lambda **_: SimpleNamespace(
+                models=SimpleNamespace(
+                    generate_content=lambda **kw: calls.append(kw) or response
+                )
+            )
+        ),
+    )
+    monkeypatch.setattr(
+        google_client,
+        "types",
+        SimpleNamespace(
+            Part=SimpleNamespace(from_bytes=lambda **kw: kw, from_text=lambda **kw: kw),
+            Content=lambda **kw: kw,
+            GenerateContentConfig=lambda **kw: kw,
+            HttpOptions=lambda **kw: kw,
+        ),
+    )
+    monkeypatch.setattr(google_client, "log_llm_usage", lambda **kw: logs.append(kw))
+    monkeypatch.delenv("GEMINI_CROP_RAW_ENVELOPE_DIR", raising=False)
+    output = google_client.GeminiVisionClient(api_key="synthetic").generate_vision(
+        "gemini-4-hydrogen",
+        "original-system",
+        "original-text",
+        "data:image/png;base64,YWJj",
+        max_tokens=32768,
+    )
+    assert output[0] == "<p>source</p>"
+    assert calls[0]["config"] == {
+        "system_instruction": "original-system",
+        "max_output_tokens": 32768,
+        "response_mime_type": "text/plain",
+        "http_options": {
+            "extra_body": {
+                "generationConfig": {"thinkingConfig": {"thinkingLevel": "HIGH"}}
+            }
+        },
+    }
+    assert logs[0]["completion_tokens"] == 22
+    assert logs[0]["cost"] == pytest.approx((100 * 1.5 + 22 * 7.5) / 1e6)

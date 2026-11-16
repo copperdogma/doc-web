@@ -1,0 +1,106 @@
+{
+  "status": "decision-complete; default-off reviewed handwriting job recommended, other tested uses rejected",
+  "candidate": "gemini-4-hydrogen",
+  "setting": "HIGH32768",
+  "effort_comparison": "none; other levels unmeasured, no semantic rescue",
+  "owner": "doc-web",
+  "story": "272",
+  "attempt": "094",
+  "base": "c65346e4be7d757fa1130cb23fd8efc2fa41a191",
+  "worktree": "/Users/cam/.codex/worktrees/hydrogen-20261115/doc-web",
+  "branch": "codex/hydrogen-20261115-doc-web",
+  "retention": "retained uncommitted; evidence and opt-in review patch; no cleanup authorized",
+  "cap_usd": 18,
+  "known_usd": 0.26981349999999993,
+  "unknown_reserved_usd": 0.31476,
+  "maximum_accounted_usd": 0.5845734999999999,
+  "inference_posts": 14,
+  "candidate_requested_posts": 7,
+  "candidate_native_valid_posts": 6,
+  "candidate_known_usd": 0.143898,
+  "control_known_usd": 0.12591549999999999,
+  "judges_usd": 0,
+  "inflight": 0,
+  "temporary_keys": "none; existing owner wrapper only",
+  "tasks": {
+    "safety": {
+      "decision": "retain Sol/manual holds; reject tested Hydrogen uncertainty policy",
+      "fresh_matched": "S3 genuine driver proposer both0/1 requiredhold, plausible physical grouping; no downstream operator action",
+      "quality": "candidate PASS and controlPASS; expected mandatoryfail hold",
+      "candidate_usd": 0.006573,
+      "candidate_ms": 11501,
+      "control_usd": 0.006625,
+      "control_ms": 4376,
+      "unmeasured": "S4/six/full22/heldout due declared stop"
+    },
+    "literal": {
+      "decision": "retain Astra, reject tested Hydrogen reader",
+      "quality": "22/23 vs23/23 clearcells; structurepass both; source Il1-O0->Il1-00 with no hold",
+      "candidate_usd": 0.0198315,
+      "candidate_ms": 13827,
+      "control_usd": 0.0801175,
+      "control_ms": 7792,
+      "unmeasured": "other2tables after clearcellstop"
+    },
+    "detector": {
+      "decision": "retain current detector/manual holds; reject tested assisted path",
+      "bare_image011": "tolerant .960 vs .9752; fixedXYXY candidate10darkpixels lost; control axisambiguity explicitly notqualified",
+      "actualconsumer": "native strict currentprompt+genuinecaption+Paddle cleanup final4page12crops;740integralsignature endpointdarkpixelslost, printedcaptioncontamination",
+      "source_review": "docs/evals/evidence/094-hydrogen/final-crop-source-review.json",
+      "unmeasured": "full13, Image001title, heldout after finalhardgatefailure"
+    },
+    "ocr": {
+      "decision": "prefer HydrogenHIGH32768 for bounded reviewed public historicalhandwriting job; optinpatch ready for review, defaultsretained",
+      "fresh_matched_cases": 2,
+      "candidate_ratios": [
+        0.990641,
+        0.991716
+      ],
+      "control_ratios": [
+        0.985632,
+        0.98409
+      ],
+      "candidate_usd": [
+        0.0639975,
+        0.0251835
+      ],
+      "control_usd": [
+        0.011088,
+        0.0062685
+      ],
+      "candidate_ms": [
+        39627,
+        18900
+      ],
+      "control_ms": [
+        21408,
+        10472
+      ],
+      "gate": ">=.99 similarity, source uncertainty preserved; not exacttranscription",
+      "consumer": "normal exactHydrogen recipe and actualSDK networkdenied original-native-envelope replay BOTH raw/stampedHTML exact; no evallabel substitution",
+      "review_patch": [
+        "modules/common/google_client.py",
+        "configs/recipes/hydrogen-ocr-candidate-barney.yaml",
+        "configs/recipes/hydrogen-ocr-candidate-alverson.yaml",
+        "configs/pricing.default.yaml",
+        "docs/runbooks/hydrogen-handwriting-ocr.md"
+      ],
+      "limits": "two publicLOC sources only, imperfections/ambiguousnames remain, highercost/latency; no private or wholebook/default claim"
+    }
+  },
+  "operational_failures": [
+    "First genuinecaller importedmodule hook missed runpy __main__; modelname misroutedOpenAI404, .31476unknown held; no semanticoutput",
+    "SharedHTTP startup stopped locally on oldenvspelling before network; corrected with networkdenied proof",
+    "Caption fakeSDK render initially reached liveguard stale stage; locally stopped before captionPOST; MockTransport+fakekey bypass only",
+    "Actualcaption400 budget MAX_TOKENS381thinking+15partial; one8192repair, originaldetector response reused, no subjectretry",
+    "NormalSDK replay detected snake_case nestedThinkingConfig serialization; supportedextra_body nativewire qualified offline, no dependencyupgrade"
+  ],
+  "validation": "23 focused tests pass; normal nativeSDK consumer replay2/2; fresh-runpy network-denied endpoint proof; Ruff/compile;14POST exactwire/hash audit; finalnativepixels/source review; methodology graph build/check",
+  "no_changes": [
+    "runtime defaults",
+    "deployment",
+    "provider accounts",
+    "commits",
+    "pushes"
+  ]
+}

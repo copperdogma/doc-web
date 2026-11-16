@@ -253,7 +253,8 @@
           "263",
           "264",
           "265",
-          "267"
+          "267",
+          "272"
         ],
         "adr_ids": [
           "ADR-001",
@@ -262,6 +263,7 @@
         ],
         "eval_ids": [
           "literal-table-fidelity",
+          "sol-crop-safety-native-public-smoke",
           "image-crop-extraction",
           "crop-page-level-deletion-gate",
           "ocr-model-genealogy",
@@ -342,7 +344,8 @@
           "263",
           "264",
           "265",
-          "267"
+          "267",
+          "272"
         ],
         "adr_ids": [
           "ADR-001",
@@ -352,6 +355,7 @@
         "eval_ids": [
           "literal-table-fidelity",
           "reference-resolution",
+          "sol-crop-safety-native-public-smoke",
           "image-crop-extraction",
           "crop-page-level-deletion-gate",
           "ocr-model-genealogy",
@@ -414,7 +418,8 @@
           "264",
           "265",
           "266",
-          "267"
+          "267",
+          "272"
         ],
         "adr_ids": [],
         "eval_ids": [
@@ -556,7 +561,8 @@
           "264",
           "265",
           "266",
-          "267"
+          "267",
+          "272"
         ],
         "adr_ids": [
           "ADR-001",
@@ -734,7 +740,8 @@
           "264",
           "265",
           "266",
-          "267"
+          "267",
+          "272"
         ],
         "adr_ids": [
           "ADR-002"
@@ -988,7 +995,8 @@
           "263",
           "264",
           "265",
-          "267"
+          "267",
+          "272"
         ],
         "eval_ids": [
           "literal-table-fidelity",
@@ -1069,7 +1077,8 @@
             "263",
             "264",
             "265",
-            "267"
+            "267",
+            "272"
           ],
           "eval_ids": [
             "literal-table-fidelity",
@@ -1118,7 +1127,8 @@
           "263",
           "264",
           "265",
-          "267"
+          "267",
+          "272"
         ],
         "eval_ids": [
           "literal-table-fidelity"
@@ -1170,7 +1180,8 @@
             "263",
             "264",
             "265",
-            "267"
+            "267",
+            "272"
           ],
           "eval_ids": [
             "literal-table-fidelity"
@@ -1344,7 +1355,8 @@
           "263",
           "264",
           "265",
-          "267"
+          "267",
+          "272"
         ],
         "eval_ids": [
           "image-crop-extraction",
@@ -1390,7 +1402,8 @@
             "263",
             "264",
             "265",
-            "267"
+            "267",
+            "272"
           ],
           "eval_ids": [
             "image-crop-extraction",
@@ -1437,7 +1450,8 @@
           "264",
           "265",
           "266",
-          "267"
+          "267",
+          "272"
         ],
         "eval_ids": [
           "sol-crop-safety-native-public-smoke",
@@ -1487,7 +1501,8 @@
             "264",
             "265",
             "266",
-            "267"
+            "267",
+            "272"
           ],
           "eval_ids": [
             "sol-crop-safety-native-public-smoke",
@@ -15553,6 +15568,75 @@
           "summary": ""
         }
       }
+    },
+    {
+      "id": "272",
+      "title": "Hydrogen source fidelity evaluation",
+      "path": "docs/stories/story-272-hydrogen-source-fidelity.md",
+      "status": "Done",
+      "priority": "Medium",
+      "ideal_refs": [
+        "req:3",
+        "req:4",
+        "req:6"
+      ],
+      "spec_refs": [
+        "spec:2.1",
+        "spec:4.1",
+        "spec:4.2",
+        "spec:6"
+      ],
+      "decision_refs": [
+        "ADR-001",
+        "ADR-002"
+      ],
+      "adr_ids": [
+        "ADR-001",
+        "ADR-002"
+      ],
+      "depends_on": [],
+      "category_refs": [
+        "spec:2",
+        "spec:3",
+        "spec:4",
+        "spec:6",
+        "spec:8"
+      ],
+      "compromise_refs": [
+        "C1",
+        "C4",
+        "C5",
+        "C6"
+      ],
+      "input_coverage_refs": [
+        "handwritten-notes",
+        "scanned-pdf-tables"
+      ],
+      "architecture_domains": [
+        "ocr_and_extraction"
+      ],
+      "roadmap_tags": [],
+      "blocker_summary": "",
+      "blocker_evidence": "",
+      "unblock_condition": "",
+      "last_work_log_entry": null,
+      "legacy_build_map_refs": "",
+      "metadata_source": "frontmatter",
+      "missing_frontmatter_keys": [],
+      "actionability": {
+        "source_kind": "story",
+        "source_id": "272",
+        "source_path": "docs/stories/story-272-hydrogen-source-fidelity.md",
+        "recommended_now": false,
+        "posture": "completed",
+        "why_now": "",
+        "last_relevant_action": {
+          "date": null,
+          "source_type": "story-status",
+          "source": "docs/stories/story-272-hydrogen-source-fidelity.md",
+          "summary": ""
+        }
+      }
     }
   ],
   "adrs": [
@@ -15696,7 +15780,8 @@
         "263",
         "264",
         "265",
-        "267"
+        "267",
+        "272"
       ],
       "compromise_refs": [
         "C1",
@@ -15711,6 +15796,17 @@
         "spec:8"
       ],
       "scores": [
+        {
+          "model": "gemini-4-hydrogen native HIGH32768 Scout111",
+          "measured": "2026-11-16",
+          "git_sha": "c65346e4+attempt094-uncommitted",
+          "metrics": {
+            "provider_cap_usd": 18,
+            "campaign_known_usd": 0.2698135,
+            "campaign_unknown_reserved_usd": 0.31476
+          },
+          "note": "Bakery22/23 clearcells vsAstra23/23, nohold on O->0; retainAstra. Other2tables unmeasured. Attempt094/Story272; evidence docs/evals/evidence/094-hydrogen/summary.json. No defaults/commit/push."
+        },
         {
           "model": "tencent/hy4 Tencent FP4 high32768 Scout105",
           "measured": "2026-11-05",
@@ -15884,19 +15980,15 @@
         }
       ],
       "latest_score": {
-        "model": "tencent/hy4 Tencent FP4 high32768 Scout105",
-        "measured": "2026-11-05",
-        "git_sha": "5622d996961669b5254ff03a82b609a6fb3cf834+attempt086-uncommitted",
+        "model": "gemini-4-hydrogen native HIGH32768 Scout111",
+        "measured": "2026-11-16",
+        "git_sha": "c65346e4+attempt094-uncommitted",
         "metrics": {
-          "diagnostic_exact_cells": 22,
-          "clear_cells_tested": 23,
-          "clear_uncertainty_cells": 4,
-          "accepted_wrong_cells": 0,
-          "cases_total": 1,
-          "latency_ms": 267148,
-          "cost_usd": 0.02975466
+          "provider_cap_usd": 18,
+          "campaign_known_usd": 0.2698135,
+          "campaign_unknown_reserved_usd": 0.31476
         },
-        "note": "Bakery source Il1-O0 becomes Il1-00 plus4 clear holds; Astra23/23verified at9136ms/USD.0821425. Valid source failure; remaining13clear+2ambiguity unmeasured. Retain Astra. Attempt086/Story264; high32768 OpenRouter Tencent FP4 official Nov4 release, exact tencent/hy4. Closed22POSTs USD.597904856/5 unknown0; no defaults/commit/push."
+        "note": "Bakery22/23 clearcells vsAstra23/23, nohold on O->0; retainAstra. Other2tables unmeasured. Attempt094/Story272; evidence docs/evals/evidence/094-hydrogen/summary.json. No defaults/commit/push."
       },
       "attempts": [
         {
@@ -16203,17 +16295,31 @@
       "spec_refs": [],
       "story_refs": [
         "242",
-        "266"
+        "266",
+        "272"
       ],
       "compromise_refs": [
         "C5"
       ],
       "category_refs": [
+        "spec:2",
+        "spec:3",
         "spec:4",
         "spec:6",
         "spec:8"
       ],
       "scores": [
+        {
+          "model": "gemini-4-hydrogen native HIGH32768 Scout111",
+          "measured": "2026-11-16",
+          "git_sha": "c65346e4+attempt094-uncommitted",
+          "metrics": {
+            "provider_cap_usd": 18,
+            "campaign_known_usd": 0.2698135,
+            "campaign_unknown_reserved_usd": 0.31476
+          },
+          "note": "Genuine S3 driverproposer exactnative both0/1 requireduncertaintyhold vsfreshSol; rejecttestedpolicy, nooperatoraction. Attempt094/Story272; evidence docs/evals/evidence/094-hydrogen/summary.json. No defaults/commit/push."
+        },
         {
           "model": "gpt-6.1-sol medium4096/high/default Standard",
           "measured": "2026-09-30",
@@ -16230,18 +16336,15 @@
         }
       ],
       "latest_score": {
-        "model": "gpt-6.1-sol medium4096/high/default Standard",
-        "measured": "2026-09-30",
+        "model": "gemini-4-hydrogen native HIGH32768 Scout111",
+        "measured": "2026-11-16",
+        "git_sha": "c65346e4+attempt094-uncommitted",
         "metrics": {
-          "completed_receipts": 2,
-          "attempted": 2,
-          "latency_ms": 4070.5,
-          "cost_usd": 0.006511,
-          "cost_estimated": true,
-          "ledger_upper_total_usd": 0.013025,
-          "unknown_reserved_usd": 0
+          "provider_cap_usd": 18,
+          "campaign_known_usd": 0.2698135,
+          "campaign_unknown_reserved_usd": 0.31476
         },
-        "note": "Native2 passes are physically source-compatible; S3 grouping plausible, no uncertainty-policy qualification. Actual Cam assertions bound; offline driver released/built exact2crops once with page3. No default change."
+        "note": "Genuine S3 driverproposer exactnative both0/1 requireduncertaintyhold vsfreshSol; rejecttestedpolicy, nooperatoraction. Attempt094/Story272; evidence docs/evals/evidence/094-hydrogen/summary.json. No defaults/commit/push."
       },
       "attempts": [
         {
@@ -16313,7 +16416,8 @@
         "263",
         "264",
         "265",
-        "267"
+        "267",
+        "272"
       ],
       "compromise_refs": [
         "C4"
@@ -17087,22 +17191,29 @@
             "cost_usd": 0.0047599505
           },
           "note": "Image011 diagnostic .9635 versus freshGemini .9854/13542ms/USD.0099485. Source2 integral date rows clipped; reject despite tolerant IoU pass. Remaining12 unmeasured; both-arm golden-assisted axis oracle, no runtime coordinate qualification. Attempt086/Story264; high32768 OpenRouter Tencent FP4 official Nov4 release, exact tencent/hy4. Closed22POSTs USD.597904856/5 unknown0; no defaults/commit/push."
+        },
+        {
+          "model": "gemini-4-hydrogen native HIGH32768 Scout111",
+          "measured": "2026-11-16",
+          "git_sha": "c65346e4+attempt094-uncommitted",
+          "metrics": {
+            "provider_cap_usd": 18,
+            "campaign_known_usd": 0.2698135,
+            "campaign_unknown_reserved_usd": 0.31476
+          },
+          "note": "Image011 bounded .960 vsGemini.9752 tolerant; fixedXYXY10lost intermediatepixels. Actualgenuineassistedhighresrecipe loses740endpointdarkpixels andincludesprintedcaptions; rejecttestedassistedpath, nofull13/titleclaim. Attempt094/Story272; evidence docs/evals/evidence/094-hydrogen/summary.json. No defaults/commit/push."
         }
       ],
       "latest_score": {
-        "model": "tencent/hy4 Tencent FP4 high32768 Scout105",
-        "measured": "2026-11-05",
-        "git_sha": "5622d996961669b5254ff03a82b609a6fb3cf834+attempt086-uncommitted",
+        "model": "gemini-4-hydrogen native HIGH32768 Scout111",
+        "measured": "2026-11-16",
+        "git_sha": "c65346e4+attempt094-uncommitted",
         "metrics": {
-          "cases_total": 1,
-          "overall": 0.9635,
-          "tolerant_passes": 1,
-          "full_source_preservation": false,
-          "clipped_integral_rows": 2,
-          "latency_ms": 33433,
-          "cost_usd": 0.0047599505
+          "provider_cap_usd": 18,
+          "campaign_known_usd": 0.2698135,
+          "campaign_unknown_reserved_usd": 0.31476
         },
-        "note": "Image011 diagnostic .9635 versus freshGemini .9854/13542ms/USD.0099485. Source2 integral date rows clipped; reject despite tolerant IoU pass. Remaining12 unmeasured; both-arm golden-assisted axis oracle, no runtime coordinate qualification. Attempt086/Story264; high32768 OpenRouter Tencent FP4 official Nov4 release, exact tencent/hy4. Closed22POSTs USD.597904856/5 unknown0; no defaults/commit/push."
+        "note": "Image011 bounded .960 vsGemini.9752 tolerant; fixedXYXY10lost intermediatepixels. Actualgenuineassistedhighresrecipe loses740endpointdarkpixels andincludesprintedcaptions; rejecttestedassistedpath, nofull13/titleclaim. Attempt094/Story272; evidence docs/evals/evidence/094-hydrogen/summary.json. No defaults/commit/push."
       },
       "attempts": [
         {
@@ -17970,7 +18081,8 @@
         "264",
         "265",
         "266",
-        "267"
+        "267",
+        "272"
       ],
       "compromise_refs": [
         "C5"
@@ -17985,6 +18097,17 @@
         "spec:8"
       ],
       "scores": [
+        {
+          "model": "gemini-4-hydrogen native HIGH32768 Scout111",
+          "measured": "2026-11-16",
+          "git_sha": "c65346e4+attempt094-uncommitted",
+          "metrics": {
+            "provider_cap_usd": 18,
+            "campaign_known_usd": 0.2698135,
+            "campaign_unknown_reserved_usd": 0.31476
+          },
+          "note": "S3 actualcaller uncertaintyhold0/1 both; full22unmeasured underdeclaredstop. No sixcase or classifierscore substituted for genuinepolicy. Attempt094/Story272; evidence docs/evals/evidence/094-hydrogen/summary.json. No defaults/commit/push."
+        },
         {
           "model": "tencent/hy4 Tencent FP4 high32768 Scout105",
           "measured": "2026-11-05",
@@ -18608,21 +18731,15 @@
         }
       ],
       "latest_score": {
-        "model": "tencent/hy4 Tencent FP4 high32768 Scout105",
-        "measured": "2026-11-05",
-        "git_sha": "5622d996961669b5254ff03a82b609a6fb3cf834+attempt086-uncommitted",
+        "model": "gemini-4-hydrogen native HIGH32768 Scout111",
+        "measured": "2026-11-16",
+        "git_sha": "c65346e4+attempt094-uncommitted",
         "metrics": {
-          "cases_total": 6,
-          "correct": 5,
-          "false_safe": 1,
-          "latency_ms": 75197,
-          "cost_usd": 0.0097935395,
-          "control_correct": 3,
-          "control_false_safe": 1,
-          "control_latency_ms": 4677.833333333333,
-          "control_cost_usd": 0.05833716666666667
+          "provider_cap_usd": 18,
+          "campaign_known_usd": 0.2698135,
+          "campaign_unknown_reserved_usd": 0.31476
         },
-        "note": "First valid failure page012001: both pass seal missing roughly21percent. Hy4 5/6 vsGPT5.5 3/6 reference lead, one false-safe each; neither qualifies. Remaining16 unmeasured. Strict schema/terminal qualified; reason/flag semantics and native source-size/identity/geometry consumer admission remain held (Attempt081). Attempt086/Story264; high32768 OpenRouter Tencent FP4 official Nov4 release, exact tencent/hy4. Closed22POSTs USD.597904856/5 unknown0; no defaults/commit/push."
+        "note": "S3 actualcaller uncertaintyhold0/1 both; full22unmeasured underdeclaredstop. No sixcase or classifierscore substituted for genuinepolicy. Attempt094/Story272; evidence docs/evals/evidence/094-hydrogen/summary.json. No defaults/commit/push."
       },
       "attempts": [
         {
@@ -19122,7 +19239,8 @@
         "263",
         "264",
         "265",
-        "267"
+        "267",
+        "272"
       ],
       "compromise_refs": [],
       "category_refs": [
@@ -19135,6 +19253,17 @@
         "spec:8"
       ],
       "scores": [
+        {
+          "model": "gemini-4-hydrogen native HIGH32768 Scout111",
+          "measured": "2026-11-16",
+          "git_sha": "c65346e4+attempt094-uncommitted",
+          "metrics": {
+            "provider_cap_usd": 18,
+            "campaign_known_usd": 0.2698135,
+            "campaign_unknown_reserved_usd": 0.31476
+          },
+          "note": "PublicLOCBarney/Alverson .990641/.991716 vsfreshGemini3.8 .985632/.984090;2/2above.99 onlycandidate. Highercost/latency; preferboundedreviewedjob optinHIGH32768. NormalnativeSDKconsumer originalresponse replay2/2 exactraw/stampedHTML; defaults/private/wholebook unqualified. Attempt094/Story272; evidence docs/evals/evidence/094-hydrogen/summary.json. No defaults/commit/push."
+        },
         {
           "model": "tencent/hy4 Tencent FP4 high32768 Scout105",
           "measured": "2026-11-05",
@@ -19510,17 +19639,15 @@
         }
       ],
       "latest_score": {
-        "model": "tencent/hy4 Tencent FP4 high32768 Scout105",
-        "measured": "2026-11-05",
-        "git_sha": "5622d996961669b5254ff03a82b609a6fb3cf834+attempt086-uncommitted",
+        "model": "gemini-4-hydrogen native HIGH32768 Scout111",
+        "measured": "2026-11-16",
+        "git_sha": "c65346e4+attempt094-uncommitted",
         "metrics": {
-          "cases_total": 1,
-          "score": 0.852211,
-          "target": 0.99,
-          "latency_ms": 288426,
-          "cost_usd": 0.0363293215
+          "provider_cap_usd": 18,
+          "campaign_known_usd": 0.2698135,
+          "campaign_unknown_reserved_usd": 0.31476
         },
-        "note": "Actual Barney image-entry driver produces source substitutions/normalization/invented passage; reject tested high arm. Requested exactGemini3.7 served3.8 quarantined atUSD.02286675; no fresh relative OCR claim. No effort rescue. Attempt086/Story264; high32768 OpenRouter Tencent FP4 official Nov4 release, exact tencent/hy4. Closed22POSTs USD.597904856/5 unknown0; no defaults/commit/push."
+        "note": "PublicLOCBarney/Alverson .990641/.991716 vsfreshGemini3.8 .985632/.984090;2/2above.99 onlycandidate. Highercost/latency; preferboundedreviewedjob optinHIGH32768. NormalnativeSDKconsumer originalresponse replay2/2 exactraw/stampedHTML; defaults/private/wholebook unqualified. Attempt094/Story272; evidence docs/evals/evidence/094-hydrogen/summary.json. No defaults/commit/push."
       },
       "attempts": [
         {

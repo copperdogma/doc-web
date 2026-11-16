@@ -1,0 +1,70 @@
+{
+  "arm": "control",
+  "case": "S3",
+  "driver_exit": 0,
+  "proposals": "output/runs/hydrogen094-control-S3-live-transport2/03_propose_crop_safety_v1/proposals.jsonl",
+  "rows": [
+    {
+      "candidate_id": "cce6418b80220ecb5c6172c1325929866107be8c94acb3f595fa3cee80c42020",
+      "binding": {
+        "candidate_id": "cce6418b80220ecb5c6172c1325929866107be8c94acb3f595fa3cee80c42020",
+        "run_id": "hydrogen094-control-S3-live-transport2",
+        "source_page": 1,
+        "source_image": "source-1.png",
+        "source_sha256": "4cb7ceb9d8a3045951ce9c2da00eb1afb02ad91d1d3bad722283c0f96fa5ce84",
+        "crop_sha256": "11d98294ac8a19c8e77490998a933add2ddf8de6fdbeb8e7156159e201a87bfe",
+        "bbox": {
+          "x0": 220,
+          "y0": 200,
+          "x1": 780,
+          "y1": 700
+        },
+        "row_sha256": "ccbb9abcf4100430f7dd3de70ef69f3d77d38497bd178e00c5f44106c9d368d5",
+        "source_dimensions": [
+          1000,
+          1000
+        ],
+        "coordinate_system": "source_pixels"
+      },
+      "origin": "native_crop_safety",
+      "mode": "live",
+      "verdict": "pass",
+      "status": "completed",
+      "request": {
+        "path": "native-receipts/request-001.json",
+        "sha256": "66a7028a580d0c2128a55f321182317f3a840b0c6ffe53e028fa59d151fb0659"
+      },
+      "prompt_sha256": "9931ded6b7e732687b0889e6959ef9a873e6f459a292c132443db0f6bc9a7371",
+      "receipt": {
+        "path": "native-receipts/response-001.json",
+        "sha256": "533c2939892001c54ccf6a6a43a3fb6002569a7cd0a4f35c7e5b2bf24c4c67ee"
+      },
+      "status_code": 200,
+      "answer": {
+        "verdict": "pass",
+        "has_page_text": false,
+        "excessive_blank": false,
+        "reason": "The crop preserves the complete, coherent two-part diagram and its connecting lines, with no page text or unrelated visuals."
+      },
+      "served_model": "gpt-6.1-sol",
+      "response_id": "resp_0612be61254d81f8016afa9c87343487d099ac5f5763b7d754",
+      "usage": {
+        "input_tokens": 2350,
+        "input_tokens_details": {
+          "cache_write_tokens": 2347,
+          "cache_write_tokens_details": {
+            "ttl_12h_tokens": 0,
+            "ttl_30m_tokens": 2347
+          },
+          "cached_tokens": 0
+        },
+        "output_tokens": 75,
+        "output_tokens_details": {
+          "reasoning_tokens": 19
+        },
+        "total_tokens": 2425
+      }
+    }
+  ],
+  "operator_action": false
+}

@@ -46,7 +46,7 @@ evals:
     pipeline_stage: extract
     runner: custom
     command: "PYTHONPATH=. python benchmarks/scripts/run_literal_table_fidelity.py --manifest output/story244-eval/development.json --out output/story244-eval/fresh --variant literal"
-    story_refs: ["245", "253", "254", "255", "257", "258", "263", "264", "265", "267"]
+    story_refs: ["245", "253", "254", "255", "257", "258", "263", "264", "265", "267", "272"]
     category_refs: ["spec:2", "spec:3", "spec:6"]
     spec_refs: ["spec:2.1", "spec:2.2", "spec:3.1", "spec:6"]
     compromise_refs: ["C1", "C3", "C6"]
@@ -56,6 +56,11 @@ evals:
       silent_substitutions: 0
       harmful_control_changes: 0
     scores:
+      - model: "gemini-4-hydrogen native HIGH32768 Scout111"
+        measured: "2026-11-16"
+        git_sha: "c65346e4+attempt094-uncommitted"
+        metrics: {provider_cap_usd: 18, campaign_known_usd: 0.2698135, campaign_unknown_reserved_usd: 0.31476}
+        note: "Bakery22/23 clearcells vsAstra23/23, nohold on O->0; retainAstra. Other2tables unmeasured. Attempt094/Story272; evidence docs/evals/evidence/094-hydrogen/summary.json. No defaults/commit/push."
       - model: tencent/hy4 Tencent FP4 high32768 Scout105
         measured: "2026-11-05"
         git_sha: 5622d996961669b5254ff03a82b609a6fb3cf834+attempt086-uncommitted
@@ -319,13 +324,18 @@ evals:
     pipeline_stage: validate
     runner: custom
     command: "See docs/runbooks/sol-crop-safety-pilot.md; live execution requires explicit capped approval"
-    story_refs: ["242", "266"]
+    story_refs: ["242", "266", "272"]
     category_refs: ["spec:4", "spec:8"]
     compromise_refs: ["C5"]
     target:
       metric: complete_native_contract_receipts
       value: "2/2; source review mandatory before release"
     scores:
+      - model: "gemini-4-hydrogen native HIGH32768 Scout111"
+        measured: "2026-11-16"
+        git_sha: "c65346e4+attempt094-uncommitted"
+        metrics: {provider_cap_usd: 18, campaign_known_usd: 0.2698135, campaign_unknown_reserved_usd: 0.31476}
+        note: "Genuine S3 driverproposer exactnative both0/1 requireduncertaintyhold vsfreshSol; rejecttestedpolicy, nooperatoraction. Attempt094/Story272; evidence docs/evals/evidence/094-hydrogen/summary.json. No defaults/commit/push."
       - model: "gpt-6.1-sol medium4096/high/default Standard"
         measured: 2026-09-30
         metrics: {completed_receipts: 2, attempted: 2, latency_ms: 4070.5, cost_usd: 0.006511, cost_estimated: true, ledger_upper_total_usd: 0.013025, unknown_reserved_usd: 0}
@@ -360,7 +370,7 @@ evals:
     config: benchmarks/tasks/image-crop-extraction.yaml
     scorer: benchmarks/scorers/image_crop_scorer.py
     golden: benchmarks/golden/
-    story_refs: ["133", "183", "207", "226", "232", "235", "236", "237", "238", "239", "249", "257", "258", "263", "264", "265", "267"]
+    story_refs: ["133", "183", "207", "226", "232", "235", "236", "237", "238", "239", "249", "257", "258", "263", "264", "265", "267", "272"]
     category_refs: ["spec:4", "spec:8"]
     compromise_refs: ["C4"]
     spec_compromise: C4
@@ -1296,6 +1306,11 @@ evals:
         metrics: {"cases_total": 1, "overall": 0.9635, "tolerant_passes": 1, "full_source_preservation": false, "clipped_integral_rows": 2, "latency_ms": 33433, "cost_usd": 0.0047599505}
         note: "Image011 diagnostic .9635 versus freshGemini .9854/13542ms/USD.0099485. Source2 integral date rows clipped; reject despite tolerant IoU pass. Remaining12 unmeasured; both-arm golden-assisted axis oracle, no runtime coordinate qualification. Attempt086/Story264; high32768 OpenRouter Tencent FP4 official Nov4 release, exact tencent/hy4. Closed22POSTs USD.597904856/5 unknown0; no defaults/commit/push."
 
+      - model: "gemini-4-hydrogen native HIGH32768 Scout111"
+        measured: "2026-11-16"
+        git_sha: "c65346e4+attempt094-uncommitted"
+        metrics: {provider_cap_usd: 18, campaign_known_usd: 0.2698135, campaign_unknown_reserved_usd: 0.31476}
+        note: "Image011 bounded .960 vsGemini.9752 tolerant; fixedXYXY10lost intermediatepixels. Actualgenuineassistedhighresrecipe loses740endpointdarkpixels andincludesprintedcaptions; rejecttestedassistedpath, nofull13/titleclaim. Attempt094/Story272; evidence docs/evals/evidence/094-hydrogen/summary.json. No defaults/commit/push."
     attempts:
       - id: "089"
         date: 2026-11-10
@@ -2685,7 +2700,7 @@ evals:
     config: benchmarks/tasks/crop-page-level-deletion-gate.yaml
     scorer: benchmarks/scorers/crop_validation_scorer.py
     golden: benchmarks/golden/crop-page-level-deletion-gate.json
-    story_refs: ["209", "232", "235", "237", "238", "239", "240", "249", "257", "258", "259", "264", "265", "266", "267"]
+    story_refs: ["209", "232", "235", "237", "238", "239", "240", "249", "257", "258", "259", "264", "265", "266", "267", "272"]
     category_refs: ["spec:4", "spec:8"]
     compromise_refs: ["C5"]
     spec_compromise: C5
@@ -2728,6 +2743,11 @@ evals:
         history are recorded in `benchmarks/golden/crop-eval-provenance.json`.
 
     scores:
+      - model: "gemini-4-hydrogen native HIGH32768 Scout111"
+        measured: "2026-11-16"
+        git_sha: "c65346e4+attempt094-uncommitted"
+        metrics: {provider_cap_usd: 18, campaign_known_usd: 0.2698135, campaign_unknown_reserved_usd: 0.31476}
+        note: "S3 actualcaller uncertaintyhold0/1 both; full22unmeasured underdeclaredstop. No sixcase or classifierscore substituted for genuinepolicy. Attempt094/Story272; evidence docs/evals/evidence/094-hydrogen/summary.json. No defaults/commit/push."
       - model: tencent/hy4 Tencent FP4 high32768 Scout105
         measured: "2026-11-05"
         git_sha: 5622d996961669b5254ff03a82b609a6fb3cf834+attempt086-uncommitted
@@ -4182,7 +4202,7 @@ evals:
     command: "python benchmarks/scripts/run_handwritten_notes_eval.py --image-recipe configs/recipes/recipe-images-ocr-html-handwritten-notes-gemini-rescue.yaml --pdf-recipe configs/recipes/recipe-pdf-ocr-html-handwritten-notes-gemini-rescue.yaml --image-case-id image-handwritten-rescue --pdf-case-id pdf-handwritten-rescue --instrument --output benchmarks/results/handwritten-notes-story189-real-expanded.json"
     scorer: benchmarks/scorers/handwritten_notes_transcription.py
     golden: benchmarks/golden/handwritten-notes/corpus.json
-    story_refs: ["179", "182", "185", "186", "189", "191", "192", "208", "230", "238", "239", "249", "257", "258", "263", "264", "265", "267"]
+    story_refs: ["179", "182", "185", "186", "189", "191", "192", "208", "230", "238", "239", "249", "257", "258", "263", "264", "265", "267", "272"]
     category_refs: ["spec:1", "spec:2", "spec:8"]
     compromise_refs: []
 
@@ -4192,6 +4212,11 @@ evals:
       note: "The target still marks the desired passing bar, but the widened default corpus now includes two real handwritten fixtures that the maintained rescue seam does not clear."
 
     scores:
+      - model: "gemini-4-hydrogen native HIGH32768 Scout111"
+        measured: "2026-11-16"
+        git_sha: "c65346e4+attempt094-uncommitted"
+        metrics: {provider_cap_usd: 18, campaign_known_usd: 0.2698135, campaign_unknown_reserved_usd: 0.31476}
+        note: "PublicLOCBarney/Alverson .990641/.991716 vsfreshGemini3.8 .985632/.984090;2/2above.99 onlycandidate. Highercost/latency; preferboundedreviewedjob optinHIGH32768. NormalnativeSDKconsumer originalresponse replay2/2 exactraw/stampedHTML; defaults/private/wholebook unqualified. Attempt094/Story272; evidence docs/evals/evidence/094-hydrogen/summary.json. No defaults/commit/push."
       - model: tencent/hy4 Tencent FP4 high32768 Scout105
         measured: "2026-11-05"
         git_sha: 5622d996961669b5254ff03a82b609a6fb3cf834+attempt086-uncommitted

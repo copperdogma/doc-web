@@ -73,9 +73,7 @@ class GeminiVisionClient:
             ) from _GENAI_IMPORT_ERROR
         self._api_key = api_key or get_doc_web_api_key("gemini")
         if not self._api_key:
-            raise RuntimeError(
-                "DOC_WEB_GEMINI_API_KEY must be set in the environment"
-            )
+            raise RuntimeError("DOC_WEB_GEMINI_API_KEY must be set in the environment")
         self._client = genai.Client(
             api_key=self._api_key,
             http_options=get_gemini_client_http_options(),
@@ -106,6 +104,25 @@ class GeminiVisionClient:
         image_bytes, mime_type = _decode_data_uri(image_data)
         image_part = types.Part.from_bytes(data=image_bytes, mime_type=mime_type)
 
+        # An exact opt-in model selection preserves the evaluated Hydrogen
+        # configuration; existing recipes keep their own generation settings.
+        config = dict(
+            system_instruction=system_prompt,
+            max_output_tokens=max_tokens,
+            response_mime_type="text/plain",
+        )
+        if model == "gemini-4-hydrogen":
+            # The maintained SDK serializes nested ThinkingConfig with a
+            # snake_case field. Its supported native-body override preserves
+            # the exact provider contract qualified by the evaluation.
+            config["http_options"] = types.HttpOptions(
+                extra_body={
+                    "generationConfig": {"thinkingConfig": {"thinkingLevel": "HIGH"}}
+                }
+            )
+        else:
+            config["temperature"] = temperature
+
         resp = self._client.models.generate_content(
             model=model,
             contents=[
@@ -117,19 +134,16 @@ class GeminiVisionClient:
                     ],
                 ),
             ],
-            config=types.GenerateContentConfig(
-                system_instruction=system_prompt,
-                temperature=temperature,
-                max_output_tokens=max_tokens,
-                response_mime_type="text/plain",
-            ),
+            config=types.GenerateContentConfig(**config),
         )
 
         raw_dir = os.environ.get("GEMINI_CROP_RAW_ENVELOPE_DIR")
         if raw_dir:
             dump = getattr(resp, "model_dump_json", None)
             if not callable(dump):
-                raise RuntimeError("Gemini crop response cannot be retained before parsing")
+                raise RuntimeError(
+                    "Gemini crop response cannot be retained before parsing"
+                )
             raw_envelope = dump().encode("utf-8")
             destination = Path(raw_dir)
             destination.mkdir(parents=True, exist_ok=True, mode=0o700)
@@ -148,12 +162,25 @@ class GeminiVisionClient:
         if usage_meta:
             prompt_tokens = getattr(usage_meta, "prompt_token_count", 0) or 0
             completion_tokens = getattr(usage_meta, "candidates_token_count", 0) or 0
+            if model == "gemini-4-hydrogen":
+                completion_tokens += getattr(usage_meta, "thoughts_token_count", 0) or 0
 
+        cost = None
+        if model == "gemini-4-hydrogen" and usage_meta:
+            cached_tokens = getattr(usage_meta, "cached_content_token_count", 0) or 0
+            if not 0 <= cached_tokens <= prompt_tokens:
+                raise RuntimeError("Invalid Hydrogen cache usage")
+            cost = (
+                (prompt_tokens - cached_tokens) * 1.5
+                + cached_tokens * 0.075
+                + completion_tokens * 7.5
+            ) / 1_000_000
         log_llm_usage(
             model=model,
             prompt_tokens=prompt_tokens,
             completion_tokens=completion_tokens,
             provider="google",
+            cost=cost,
         )
 
         served_model = getattr(resp, "model_version", None)

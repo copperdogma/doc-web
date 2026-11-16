@@ -1,0 +1,382 @@
+{
+  "source_decoded_sha256": "ae3524cb58ac940c912c7885d65ec9d21221415d97d1ea21d97be9615161a860",
+  "dimensions": [
+    1545,
+    2000
+  ],
+  "frozen_rois_from": "089-carbon/source-review-crops.json",
+  "uses_golden_axis_oracle": false,
+  "runtime_coordinate_parity": "fixed prompt-declared normalized XYXY; downstream cleanup not inferred",
+  "arms": {
+    "candidate": {
+      "raw_boxes": [
+        [
+          0.371,
+          0.072,
+          0.587,
+          0.234
+        ],
+        [
+          0.116,
+          0.68,
+          0.873,
+          0.896
+        ]
+      ],
+      "normalized_boxes": [
+        [
+          0.371,
+          0.072,
+          0.587,
+          0.234
+        ],
+        [
+          0.116,
+          0.68,
+          0.873,
+          0.896
+        ]
+      ],
+      "maintained_scorer": {
+        "pass": true,
+        "score": 0.96,
+        "reason": "box_count=1.00 (2/2) | iou_mean=0.931 | iou_min=0.903 | coverage=0.996 | total=0.960 | matches=[pred[1]<->gold[1] IoU=0.959, pred[0]<->gold[0] IoU=0.903]"
+      },
+      "policies": {
+        "int": {
+          "pixel_boxes": [
+            [
+              573,
+              144,
+              906,
+              468
+            ],
+            [
+              179,
+              1360,
+              1348,
+              1792
+            ]
+          ],
+          "rois": [
+            {
+              "name": "upper_logo_lettering_date",
+              "roi_half_open_xyxy": [
+                560,
+                130,
+                920,
+                480
+              ],
+              "excluded_dark_pixels": 0,
+              "excluded_extent_inclusive_xyxy": null
+            },
+            {
+              "name": "lower_seal",
+              "roi_half_open_xyxy": [
+                180,
+                1360,
+                605,
+                1800
+              ],
+              "excluded_dark_pixels": 0,
+              "excluded_extent_inclusive_xyxy": null
+            },
+            {
+              "name": "top_signature_baseline_endpoint",
+              "roi_half_open_xyxy": [
+                1330,
+                1530,
+                1370,
+                1550
+              ],
+              "excluded_dark_pixels": 6,
+              "excluded_extent_inclusive_xyxy": [
+                1348,
+                1539,
+                1353,
+                1539
+              ]
+            },
+            {
+              "name": "bottom_signature_baseline_endpoint",
+              "roi_half_open_xyxy": [
+                1330,
+                1690,
+                1370,
+                1710
+              ],
+              "excluded_dark_pixels": 4,
+              "excluded_extent_inclusive_xyxy": [
+                1348,
+                1697,
+                1351,
+                1697
+              ]
+            }
+          ],
+          "total_excluded": 10,
+          "strict_preservation_pass": false
+        },
+        "round": {
+          "pixel_boxes": [
+            [
+              573,
+              144,
+              907,
+              468
+            ],
+            [
+              179,
+              1360,
+              1349,
+              1792
+            ]
+          ],
+          "rois": [
+            {
+              "name": "upper_logo_lettering_date",
+              "roi_half_open_xyxy": [
+                560,
+                130,
+                920,
+                480
+              ],
+              "excluded_dark_pixels": 0,
+              "excluded_extent_inclusive_xyxy": null
+            },
+            {
+              "name": "lower_seal",
+              "roi_half_open_xyxy": [
+                180,
+                1360,
+                605,
+                1800
+              ],
+              "excluded_dark_pixels": 0,
+              "excluded_extent_inclusive_xyxy": null
+            },
+            {
+              "name": "top_signature_baseline_endpoint",
+              "roi_half_open_xyxy": [
+                1330,
+                1530,
+                1370,
+                1550
+              ],
+              "excluded_dark_pixels": 5,
+              "excluded_extent_inclusive_xyxy": [
+                1349,
+                1539,
+                1353,
+                1539
+              ]
+            },
+            {
+              "name": "bottom_signature_baseline_endpoint",
+              "roi_half_open_xyxy": [
+                1330,
+                1690,
+                1370,
+                1710
+              ],
+              "excluded_dark_pixels": 3,
+              "excluded_extent_inclusive_xyxy": [
+                1349,
+                1697,
+                1351,
+                1697
+              ]
+            }
+          ],
+          "total_excluded": 8,
+          "strict_preservation_pass": false
+        }
+      }
+    },
+    "control": {
+      "raw_boxes": [
+        [
+          0.075,
+          0.375,
+          0.235,
+          0.585
+        ],
+        [
+          0.685,
+          0.115,
+          0.895,
+          0.875
+        ]
+      ],
+      "normalized_boxes": [
+        [
+          0.075,
+          0.375,
+          0.235,
+          0.585
+        ],
+        [
+          0.685,
+          0.115,
+          0.895,
+          0.875
+        ]
+      ],
+      "maintained_scorer": {
+        "pass": true,
+        "score": 0.9752,
+        "reason": "box_count=1.00 (2/2) | iou_mean=0.960 | iou_min=0.941 | coverage=0.995 | total=0.975 | matches=[pred[1]<->gold[1] IoU=0.979, pred[0]<->gold[0] IoU=0.941]"
+      },
+      "policies": {
+        "int": {
+          "pixel_boxes": [
+            [
+              115,
+              750,
+              363,
+              1170
+            ],
+            [
+              1058,
+              230,
+              1382,
+              1750
+            ]
+          ],
+          "rois": [
+            {
+              "name": "upper_logo_lettering_date",
+              "roi_half_open_xyxy": [
+                560,
+                130,
+                920,
+                480
+              ],
+              "excluded_dark_pixels": 25077,
+              "excluded_extent_inclusive_xyxy": [
+                584,
+                151,
+                894,
+                461
+              ]
+            },
+            {
+              "name": "lower_seal",
+              "roi_half_open_xyxy": [
+                180,
+                1360,
+                605,
+                1800
+              ],
+              "excluded_dark_pixels": 119369,
+              "excluded_extent_inclusive_xyxy": [
+                187,
+                1374,
+                602,
+                1790
+              ]
+            },
+            {
+              "name": "top_signature_baseline_endpoint",
+              "roi_half_open_xyxy": [
+                1330,
+                1530,
+                1370,
+                1550
+              ],
+              "excluded_dark_pixels": 0,
+              "excluded_extent_inclusive_xyxy": null
+            },
+            {
+              "name": "bottom_signature_baseline_endpoint",
+              "roi_half_open_xyxy": [
+                1330,
+                1690,
+                1370,
+                1710
+              ],
+              "excluded_dark_pixels": 0,
+              "excluded_extent_inclusive_xyxy": null
+            }
+          ],
+          "total_excluded": 144446,
+          "strict_preservation_pass": false
+        },
+        "round": {
+          "pixel_boxes": [
+            [
+              116,
+              750,
+              363,
+              1170
+            ],
+            [
+              1058,
+              230,
+              1383,
+              1750
+            ]
+          ],
+          "rois": [
+            {
+              "name": "upper_logo_lettering_date",
+              "roi_half_open_xyxy": [
+                560,
+                130,
+                920,
+                480
+              ],
+              "excluded_dark_pixels": 25077,
+              "excluded_extent_inclusive_xyxy": [
+                584,
+                151,
+                894,
+                461
+              ]
+            },
+            {
+              "name": "lower_seal",
+              "roi_half_open_xyxy": [
+                180,
+                1360,
+                605,
+                1800
+              ],
+              "excluded_dark_pixels": 119369,
+              "excluded_extent_inclusive_xyxy": [
+                187,
+                1374,
+                602,
+                1790
+              ]
+            },
+            {
+              "name": "top_signature_baseline_endpoint",
+              "roi_half_open_xyxy": [
+                1330,
+                1530,
+                1370,
+                1550
+              ],
+              "excluded_dark_pixels": 0,
+              "excluded_extent_inclusive_xyxy": null
+            },
+            {
+              "name": "bottom_signature_baseline_endpoint",
+              "roi_half_open_xyxy": [
+                1330,
+                1690,
+                1370,
+                1710
+              ],
+              "excluded_dark_pixels": 0,
+              "excluded_extent_inclusive_xyxy": null
+            }
+          ],
+          "total_excluded": 144446,
+          "strict_preservation_pass": false
+        }
+      }
+    }
+  }
+}

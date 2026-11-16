@@ -1,0 +1,14 @@
+{
+  "network_denied": true,
+  "actual_sdk": true,
+  "exact_native_model": "gemini-4-hydrogen",
+  "original_prompt_image_and_controls_equal": true,
+  "sdk_serialization_differences": [
+    "explicit text/plain",
+    "systemInstruction role user",
+    "equivalent URL-safe image base64"
+  ],
+  "original_response_sha256": "f04f252a34aeee764066fb9a8f311ce3b7b20fba8510a1131b9f4e6b0121e9b5",
+  "provider_calls": 0,
+  "sdk_mock_requests": 1
+}

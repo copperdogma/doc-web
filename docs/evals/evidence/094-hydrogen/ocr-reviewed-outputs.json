@@ -1,0 +1,62 @@
+{
+  "scope": "Visible output and safe receipt references only, copied from preserved actual-driver outputs; all public LOC sources. No provider opaque state or authorization fields.",
+  "records": [
+    {
+      "fixture": "barney",
+      "arm": "candidate",
+      "model": "gemini-4-hydrogen",
+      "source_image_sha256": "aaf212e6091d913ded7117dd61f1437a83c57af4f974809e7fb96c11a813d9c5",
+      "driver_artifact": "output/runs/hydrogen-ocr-barney-candidate-20261115/02_ocr_ai_gpt51_v1/pages_html.jsonl",
+      "driver_artifact_sha256": "39d177df2f15c65cde6212ccc64357c2389ec16fe6c83b6f0e9a37ceeec9232d",
+      "native_response_sha256": "f04f252a34aeee764066fb9a8f311ce3b7b20fba8510a1131b9f4e6b0121e9b5",
+      "page_number": 1,
+      "raw_html": "<p>health, and can again stand among my comrads and in a few days I hope that I shall again feel as well as before, you wrote that it was lonesome times in old grove and I should think so to for though far away I can well imagin how lonesome it must seem, you wrote that alvira and welington was dead, and william and welthy son, I should think by the way you wrote was sick and Harlem was sick at geneseo and father had gone to see him. I have herd since that he had gone to his long and eternel home. oh, how unexpected was this news to me and how it stung my soul with anguish, when I thought that I was the most in danger my self. those, that I least expected were cut down like a flower in autumn. this is the first thing that ever oover whelmed me it is the first time that I ever knew real sarrow and it is the first time that I ever felt sick at hart and god knows that I hope it will be the last.</p>\n<p>you wrote that you should like to know my true circumstances I do not know that I can explain all of them to you, but I will try We live in tents mede of cloth, our beds are straw and cedar brush and it makes a very good bed for a soldier, our living is as good as could be expected. it consists princeply of bread meat rice beens sugar molasses coffee and tea, think not that we suffer here on the acount of some thing to eat for we fare well for soldiers, but we should not have</p>",
+      "html": "<p>health, and can again stand among my comrads and in a few days I hope that I shall again feel as well as before, you wrote that it was lonesome times in old grove and I should think so to for though far away I can well imagin how lonesome it must seem, you wrote that alvira and welington was dead, and william and welthy son, I should think by the way you wrote was sick and Harlem was sick at geneseo and father had gone to see him. I have herd since that he had gone to his long and eternel home. oh, how unexpected was this news to me and how it stung my soul with anguish, when I thought that I was the most in danger my self. those, that I least expected were cut down like a flower in autumn. this is the first thing that ever oover whelmed me it is the first time that I ever knew real sarrow and it is the first time that I ever felt sick at hart and god knows that I hope it will be the last.</p>\n<p>you wrote that you should like to know my true circumstances I do not know that I can explain all of them to you, but I will try We live in tents mede of cloth, our beds are straw and cedar brush and it makes a very good bed for a soldier, our living is as good as could be expected. it consists princeply of bread meat rice beens sugar molasses coffee and tea, think not that we suffer here on the acount of some thing to eat for we fare well for soldiers, but we should not have</p>\n",
+      "native_latency_ms": 39627,
+      "native_cost_usd": 0.0639975
+    },
+    {
+      "fixture": "barney",
+      "arm": "control",
+      "model": "gemini-3.8-flash",
+      "source_image_sha256": "aaf212e6091d913ded7117dd61f1437a83c57af4f974809e7fb96c11a813d9c5",
+      "driver_artifact": "output/runs/hydrogen-ocr-barney-control-20261115/02_ocr_ai_gpt51_v1/pages_html.jsonl",
+      "driver_artifact_sha256": "c84efd596ad7a1b2fb4b76c582666541966a14b67f8e52a8c14eff42c829b672",
+      "native_response_sha256": "2598aedc1bc099431cca364777b75fdc30293ee9dd091970b286c75fb9b6c0e5",
+      "page_number": 1,
+      "raw_html": "<p>health, and can again stand among my comrads and in a few days I hope that I shall again feel as well as before, you wrote that it was lonesome times in old Grove and I should think so to for though far away I can well imagin how lonesome it must seem, you wrote that alvira and welington was dead and William and welthy son, I should think by the way you wrote was sick and Harlem was sick at geneseo and father was had gone to see him, I have herd since that he had gone to his long and eternel home. oh, how unexpected was this news to me and how it rung my soul with enguish, when I thought that I was the most in danger my self. those that I least expected were cut down like a flower in autumn.</p>\n<p>this is the first thing that ever over whelmed me it is the first time that I ever knew real sorrow and it is the first time that I ever felt sick at hart and god knows that I hope it will be the last.-</p>\n<p>you wrote that you should like to know my true circumstances I do not know that I can explain all of them to you, but I will try for we live in tents mede of cloth, our beds are straw and cedar brush and it makes us a very good bed for a soldier, our living is as good as could be expeted. it consists princeply of bread meat rice beens suger molasses coffe and tea, think not that we suffer here on the acount of some thing to eat for we fare well for soldiers, but we should not have</p>",
+      "html": "<p>health, and can again stand among my comrads and in a few days I hope that I shall again feel as well as before, you wrote that it was lonesome times in old Grove and I should think so to for though far away I can well imagin how lonesome it must seem, you wrote that alvira and welington was dead and William and welthy son, I should think by the way you wrote was sick and Harlem was sick at geneseo and father was had gone to see him, I have herd since that he had gone to his long and eternel home. oh, how unexpected was this news to me and how it rung my soul with enguish, when I thought that I was the most in danger my self. those that I least expected were cut down like a flower in autumn.</p>\n<p>this is the first thing that ever over whelmed me it is the first time that I ever knew real sorrow and it is the first time that I ever felt sick at hart and god knows that I hope it will be the last.-</p>\n<p>you wrote that you should like to know my true circumstances I do not know that I can explain all of them to you, but I will try for we live in tents mede of cloth, our beds are straw and cedar brush and it makes us a very good bed for a soldier, our living is as good as could be expeted. it consists princeply of bread meat rice beens suger molasses coffe and tea, think not that we suffer here on the acount of some thing to eat for we fare well for soldiers, but we should not have</p>\n",
+      "native_latency_ms": 21408,
+      "native_cost_usd": 0.011088
+    },
+    {
+      "fixture": "alverson",
+      "arm": "candidate",
+      "model": "gemini-4-hydrogen",
+      "source_image_sha256": "74876a4568c5fdc459b78fde2b6e3216038fcd6e247972432d31207fcc94c198",
+      "driver_artifact": "output/runs/hydrogen-ocr-alverson-candidate-20261115/02_ocr_ai_gpt51_v1/pages_html.jsonl",
+      "driver_artifact_sha256": "4160a18d511270fc390ad9552b48ae3044a42006ff4d5f4be1313d1c0f06b4d9",
+      "native_response_sha256": "1e608c671376986a1281ea5b0bc801d3e29c4e3df1de5f77365e33c95c8ee6bf",
+      "page_number": 1,
+      "raw_html": "<p>Danville Va Nov 18th 1863</p>\n<p>Dear Father and Mother</p>\n<p>As I now have an oppertunity I will let you know where I am I was captured at the battle of Chickamauga the 20th Sept. I am well and hope this may find you the same</p>\n<p>The authoraties here allow prisoners to recieve boxes from home providing no contraband article is sent, and as there is a good prospect of our having to stay a long time and I need some things, I would like for you to express me a box, send 1 pair Drawers &amp; Under Shirt, 2 prs. Socks 2 Handkerchiefs, 2 Towels, some paper pens, Envelopes, stamps &amp; Ink; thread &amp; kneedles, some of the lates novels in town, Butter, Cheese, Crackers a good hunk of meat, buiscuits, Onions, Tea, Coffee, Salt, Pepper, Sausage, dried Beef, Shugar, a box Mustard stick in other things that you have handy some Tobacco &amp; Cigars will be exceptable and</p>",
+      "html": "<p>Danville Va Nov 18th 1863</p>\n<p>Dear Father and Mother</p>\n<p>As I now have an oppertunity I will let you know where I am I was captured at the battle of Chickamauga the 20th Sept. I am well and hope this may find you the same</p>\n<p>The authoraties here allow prisoners to recieve boxes from home providing no contraband article is sent, and as there is a good prospect of our having to stay a long time and I need some things, I would like for you to express me a box, send 1 pair Drawers &amp; Under Shirt, 2 prs. Socks 2 Handkerchiefs, 2 Towels, some paper pens, Envelopes, stamps &amp; Ink; thread &amp; kneedles, some of the lates novels in town, Butter, Cheese, Crackers a good hunk of meat, buiscuits, Onions, Tea, Coffee, Salt, Pepper, Sausage, dried Beef, Shugar, a box Mustard stick in other things that you have handy some Tobacco &amp; Cigars will be exceptable and</p>\n",
+      "native_latency_ms": 18900,
+      "native_cost_usd": 0.0251835
+    },
+    {
+      "fixture": "alverson",
+      "arm": "control",
+      "model": "gemini-3.8-flash",
+      "source_image_sha256": "74876a4568c5fdc459b78fde2b6e3216038fcd6e247972432d31207fcc94c198",
+      "driver_artifact": "output/runs/hydrogen-ocr-alverson-control-20261115/02_ocr_ai_gpt51_v1/pages_html.jsonl",
+      "driver_artifact_sha256": "460620b7f32aca065cf14ea444317d15603dda236b1780628aedf74e6c586059",
+      "native_response_sha256": "4117a931c75c1c144440ef8fd7c4f2a38fdcc70adcf0c4370fa71796a325fa93",
+      "page_number": 1,
+      "raw_html": "<p>clothing</p>\n\n<p>Danville Va Nov 18<sup>th</sup> 1863</p>\n\n<p>Dear Father and Mother</p>\n\n<p>As I now have an opertunity I will let you know where I am I was captured at the battle of Chickamauga the 20<sup>th</sup> Sept. I am well and hope this may find you the same</p>\n\n<p>The authoraties here allow prisoners to recieve boxes from home providing no contraband article is sent, and as there is a good prospect of our having to stay a long time and I need some things, I would like for you to express me a box, send 1 pair Drawers &amp; Under Shirt, 2 pr. Socks 2 Handkerchiefs, 2 Towels, some paper pens, Envelopes, Stamps &amp; Ink, Thread &amp; needles, some of the lates novels in town, Butter, Cheese, Crackers a good hunk of meat, biscuits, Onions, Tea, Coffee, Salt, Pepper, Sausage, dried Beef, &amp; Sugar, a box Mustard stick in other things that you have handy some Tobacco &amp; Cigars will be excepatable and</p>",
+      "html": "<p>clothing</p>\n<p>Danville Va Nov 18th 1863</p>\n<p>Dear Father and Mother</p>\n<p>As I now have an opertunity I will let you know where I am I was captured at the battle of Chickamauga the 20th Sept. I am well and hope this may find you the same</p>\n<p>The authoraties here allow prisoners to recieve boxes from home providing no contraband article is sent, and as there is a good prospect of our having to stay a long time and I need some things, I would like for you to express me a box, send 1 pair Drawers &amp; Under Shirt, 2 pr. Socks 2 Handkerchiefs, 2 Towels, some paper pens, Envelopes, Stamps &amp; Ink, Thread &amp; needles, some of the lates novels in town, Butter, Cheese, Crackers a good hunk of meat, biscuits, Onions, Tea, Coffee, Salt, Pepper, Sausage, dried Beef, &amp; Sugar, a box Mustard stick in other things that you have handy some Tobacco &amp; Cigars will be excepatable and</p>\n",
+      "native_latency_ms": 10472,
+      "native_cost_usd": 0.0062685
+    }
+  ],
+  "qualification": "Imperfect handwriting; two-source >=.99 comparison only, reviewed opt-in job. Original native envelopes and driver bytes remain protected under manifest."
+}

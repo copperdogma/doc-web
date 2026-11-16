@@ -1,0 +1,327 @@
+{
+  "authority": "Scout111 allsix YES, DocWeb18USD, max40candidates",
+  "matrix": [
+    {
+      "stage": "caller-S3-candidate",
+      "model": "gemini-4-hydrogen",
+      "request_path": "docs/evals/evidence/094-hydrogen/rendered/caller-S3-candidate.json",
+      "request_sha256": "f67284cff7d98f094692d64b683dcddc394c3af051bab6fe703454e713591ea2",
+      "independent_session": true
+    },
+    {
+      "stage": "caller-S3-control",
+      "model": "gpt-6.1-sol",
+      "request_path": "docs/evals/evidence/094-hydrogen/rendered/caller-S3-control.json",
+      "request_sha256": "09d20945b74fd308c26adc508ba66052d3e091992b26cb514a47407a0ed86a8e",
+      "independent_session": true
+    },
+    {
+      "stage": "table-image-positive-candidate",
+      "model": "gemini-4-hydrogen",
+      "request_path": "docs/evals/evidence/094-hydrogen/rendered/table-image-positive-candidate.json",
+      "request_sha256": "ded95ffb716f367b45c467f1b38eda365b3c8e0f4ff02389edee0094d1a7e0c0",
+      "independent_session": true
+    },
+    {
+      "stage": "table-image-positive-control",
+      "model": "gpt-6-astra",
+      "request_path": "docs/evals/evidence/094-hydrogen/rendered/table-image-positive-control.json",
+      "request_sha256": "2cfeaf2a6606e194667a524e2e8e97083cf4a3f710f59c06e01138f90a6a654c",
+      "independent_session": true
+    },
+    {
+      "stage": "table-ambiguity-negative-candidate",
+      "model": "gemini-4-hydrogen",
+      "request_path": "docs/evals/evidence/094-hydrogen/rendered/table-ambiguity-negative-candidate.json",
+      "request_sha256": "cff28ddab54567e9006da2d6c115dac33d469f5768f45cf8084cd44622d9387d",
+      "independent_session": true
+    },
+    {
+      "stage": "table-ambiguity-negative-control",
+      "model": "gpt-6-astra",
+      "request_path": "docs/evals/evidence/094-hydrogen/rendered/table-ambiguity-negative-control.json",
+      "request_sha256": "594fce2b949624e6aad8feba05df2d9d402f2f3b14a7c4d4f6d55bb6a1f5455d",
+      "independent_session": true
+    },
+    {
+      "stage": "table-native-positive-candidate",
+      "model": "gemini-4-hydrogen",
+      "request_path": "docs/evals/evidence/094-hydrogen/rendered/table-native-positive-candidate.json",
+      "request_sha256": "e2b35fe17f0e5cb1e0d272bc45ccd66ce423a3d45b8c1a01197702321f06e1ef",
+      "independent_session": true
+    },
+    {
+      "stage": "table-native-positive-control",
+      "model": "gpt-6-astra",
+      "request_path": "docs/evals/evidence/094-hydrogen/rendered/table-native-positive-control.json",
+      "request_sha256": "2768b95091342db6ce86fc03e415e913b8008e6af973d6fc86d707906c9f5888",
+      "independent_session": true
+    },
+    {
+      "stage": "crop-screen-Image011-candidate",
+      "model": "gemini-4-hydrogen",
+      "request_path": "docs/evals/evidence/094-hydrogen/rendered/crop-screen-Image011-candidate.json",
+      "request_sha256": "4a837008f86dce829eca26595220a521c0096ee4b2e41198d77c60b8c8fb350f",
+      "independent_session": true
+    },
+    {
+      "stage": "crop-screen-Image011-control",
+      "model": "gemini-3-flash-preview",
+      "request_path": "docs/evals/evidence/094-hydrogen/rendered/crop-screen-Image011-control.json",
+      "request_sha256": "f9d7ab0bd3c2614d787f0997c389d8ccfb7791283ff3185a98dc24cc635b74b8",
+      "independent_session": true
+    },
+    {
+      "stage": "crop-screen-Image001-candidate",
+      "model": "gemini-4-hydrogen",
+      "request_path": "docs/evals/evidence/094-hydrogen/rendered/crop-screen-Image001-candidate.json",
+      "request_sha256": "99ff8526a2405e4a91f119796592e5276a4c12482fa202de26bf03afdd6b7e32",
+      "independent_session": true
+    },
+    {
+      "stage": "crop-screen-Image001-control",
+      "model": "gemini-3-flash-preview",
+      "request_path": "docs/evals/evidence/094-hydrogen/rendered/crop-screen-Image001-control.json",
+      "request_sha256": "1b6738e4a868b08b66426fe4f4c39d2b69c6d8a80e1d98bcd061d17567a32cc0",
+      "independent_session": true
+    },
+    {
+      "stage": "ocr-barney-candidate",
+      "model": "gemini-4-hydrogen",
+      "request_path": "docs/evals/evidence/094-hydrogen/rendered/ocr-barney-candidate.json",
+      "request_sha256": "feed8f917d7cc67c2ec3c83f112e602b4053a5ac1beb31be37093a9eda0ce7f0",
+      "independent_session": true
+    },
+    {
+      "stage": "ocr-barney-control",
+      "model": "gemini-3.8-flash",
+      "request_path": "docs/evals/evidence/094-hydrogen/rendered/ocr-barney-control.json",
+      "request_sha256": "f4482092b0954d423a511c1e929d3ab4fc29cde2ea058a37ffc39454b4fdd1ea",
+      "independent_session": true
+    },
+    {
+      "stage": "ocr-alverson-candidate",
+      "model": "gemini-4-hydrogen",
+      "request_path": "docs/evals/evidence/094-hydrogen/rendered/ocr-alverson-candidate.json",
+      "request_sha256": "ffe297b68ea7dc279cd669c894e5b5a0e5fce7b102309c74aca9b50d1dcdf65e",
+      "independent_confirmation": true
+    },
+    {
+      "stage": "ocr-alverson-control",
+      "model": "gemini-3.8-flash",
+      "request_path": "docs/evals/evidence/094-hydrogen/rendered/ocr-alverson-control.json",
+      "request_sha256": "9ae0c91026148143e0e5cb7a2a5a764c7a5c3c45347db878bfa6dcc3aacaeaf7",
+      "independent_confirmation": true
+    },
+    {
+      "stage": "runtime-12-candidate-detector-4",
+      "model": "gemini-4-hydrogen",
+      "request_path": "docs/evals/evidence/094-hydrogen/rendered/runtime-12-candidate-detector-4.json",
+      "request_sha256": "d13759bc1f43e65a88b8c30afaf4b9439d49b1476e567ec9d5354392819a3762",
+      "role": "detector",
+      "source_sha256": "2246934ed6dc9fcc2531ca4fa2d0913bbd5fca99eeea40093ce9de623f819265",
+      "pipeline": "candidate",
+      "input_bound": 26000
+    },
+    {
+      "stage": "runtime-12-candidate-caption-1",
+      "model": "gemini-3-flash-preview",
+      "request_path": "docs/evals/evidence/094-hydrogen/rendered/runtime-12-candidate-caption-1.json",
+      "request_sha256": "5a944e759a43563fdf8fb827f3a8e15b9c25a466be04c2cb85072e1a1e6b7b46",
+      "role": "caption",
+      "source_sha256": "2246934ed6dc9fcc2531ca4fa2d0913bbd5fca99eeea40093ce9de623f819265",
+      "pipeline": "candidate",
+      "input_bound": 26000
+    },
+    {
+      "stage": "runtime-12-candidate-caption-2",
+      "model": "gemini-3-flash-preview",
+      "request_path": "docs/evals/evidence/094-hydrogen/rendered/runtime-12-candidate-caption-2.json",
+      "request_sha256": "0bb7d15438679f626fa067f9e1044a9f932f44079161a1daf79336c19a97f118",
+      "role": "caption",
+      "source_sha256": "2246934ed6dc9fcc2531ca4fa2d0913bbd5fca99eeea40093ce9de623f819265",
+      "pipeline": "candidate",
+      "input_bound": 26000
+    },
+    {
+      "stage": "runtime-12-candidate-caption-3",
+      "model": "gemini-3-flash-preview",
+      "request_path": "docs/evals/evidence/094-hydrogen/rendered/runtime-12-candidate-caption-3.json",
+      "request_sha256": "10d554564bf4b754effe5ed494c67b70f8639d4dad617e2638135fd99c1aa701",
+      "role": "caption",
+      "source_sha256": "2246934ed6dc9fcc2531ca4fa2d0913bbd5fca99eeea40093ce9de623f819265",
+      "pipeline": "candidate",
+      "input_bound": 26000
+    },
+    {
+      "stage": "runtime-12-candidate-caption-4",
+      "model": "gemini-3-flash-preview",
+      "request_path": "docs/evals/evidence/094-hydrogen/rendered/runtime-12-candidate-caption-4.json",
+      "request_sha256": "3a8b8f3d9261f5519ccd035f300199c344e75dfb16bf2a31a1cc23969b477893",
+      "role": "caption",
+      "source_sha256": "2246934ed6dc9fcc2531ca4fa2d0913bbd5fca99eeea40093ce9de623f819265",
+      "pipeline": "candidate",
+      "input_bound": 26000
+    },
+    {
+      "stage": "runtime-12-control-detector-4",
+      "model": "gemini-3-flash-preview",
+      "request_path": "docs/evals/evidence/094-hydrogen/rendered/runtime-12-control-detector-4.json",
+      "request_sha256": "afeea3671ab7483db7325ecdd92fd3cfeb578f72e9c317744a16d1b94f43dfb1",
+      "role": "detector",
+      "source_sha256": "2246934ed6dc9fcc2531ca4fa2d0913bbd5fca99eeea40093ce9de623f819265",
+      "pipeline": "control",
+      "input_bound": 26000
+    },
+    {
+      "stage": "runtime-12-control-caption-1",
+      "model": "gemini-3-flash-preview",
+      "request_path": "docs/evals/evidence/094-hydrogen/rendered/runtime-12-control-caption-1.json",
+      "request_sha256": "5a944e759a43563fdf8fb827f3a8e15b9c25a466be04c2cb85072e1a1e6b7b46",
+      "role": "caption",
+      "source_sha256": "2246934ed6dc9fcc2531ca4fa2d0913bbd5fca99eeea40093ce9de623f819265",
+      "pipeline": "control",
+      "input_bound": 26000
+    },
+    {
+      "stage": "runtime-12-control-caption-2",
+      "model": "gemini-3-flash-preview",
+      "request_path": "docs/evals/evidence/094-hydrogen/rendered/runtime-12-control-caption-2.json",
+      "request_sha256": "0bb7d15438679f626fa067f9e1044a9f932f44079161a1daf79336c19a97f118",
+      "role": "caption",
+      "source_sha256": "2246934ed6dc9fcc2531ca4fa2d0913bbd5fca99eeea40093ce9de623f819265",
+      "pipeline": "control",
+      "input_bound": 26000
+    },
+    {
+      "stage": "runtime-12-control-caption-3",
+      "model": "gemini-3-flash-preview",
+      "request_path": "docs/evals/evidence/094-hydrogen/rendered/runtime-12-control-caption-3.json",
+      "request_sha256": "10d554564bf4b754effe5ed494c67b70f8639d4dad617e2638135fd99c1aa701",
+      "role": "caption",
+      "source_sha256": "2246934ed6dc9fcc2531ca4fa2d0913bbd5fca99eeea40093ce9de623f819265",
+      "pipeline": "control",
+      "input_bound": 26000
+    },
+    {
+      "stage": "runtime-12-control-caption-4",
+      "model": "gemini-3-flash-preview",
+      "request_path": "docs/evals/evidence/094-hydrogen/rendered/runtime-12-control-caption-4.json",
+      "request_sha256": "3a8b8f3d9261f5519ccd035f300199c344e75dfb16bf2a31a1cc23969b477893",
+      "role": "caption",
+      "source_sha256": "2246934ed6dc9fcc2531ca4fa2d0913bbd5fca99eeea40093ce9de623f819265",
+      "pipeline": "control",
+      "input_bound": 26000
+    },
+    {
+      "stage": "runtime-12-candidate-caption-1-adequate8192",
+      "model": "gemini-3-flash-preview",
+      "request_path": "docs/evals/evidence/094-hydrogen/rendered/runtime-12-candidate-caption-1-adequate8192.json",
+      "request_sha256": "7b64d235a4191eb9759929c3cab821ff2686187a136d321324237f5246bdd0d7",
+      "role": "caption",
+      "source_sha256": "2246934ed6dc9fcc2531ca4fa2d0913bbd5fca99eeea40093ce9de623f819265",
+      "pipeline": "candidate",
+      "input_bound": 26000,
+      "repair": "Original400-token caption exhausted on thinking381+visible15, no semanticanswer; one8192 recovery per caption, saved detector reused"
+    },
+    {
+      "stage": "runtime-12-candidate-caption-2-adequate8192",
+      "model": "gemini-3-flash-preview",
+      "request_path": "docs/evals/evidence/094-hydrogen/rendered/runtime-12-candidate-caption-2-adequate8192.json",
+      "request_sha256": "0b3ba644153a8f9b4c0242dc6fc2c6d48cc2fb357aa27504f7d86a883c87532f",
+      "role": "caption",
+      "source_sha256": "2246934ed6dc9fcc2531ca4fa2d0913bbd5fca99eeea40093ce9de623f819265",
+      "pipeline": "candidate",
+      "input_bound": 26000,
+      "repair": "Original400-token caption exhausted on thinking381+visible15, no semanticanswer; one8192 recovery per caption, saved detector reused"
+    },
+    {
+      "stage": "runtime-12-candidate-caption-3-adequate8192",
+      "model": "gemini-3-flash-preview",
+      "request_path": "docs/evals/evidence/094-hydrogen/rendered/runtime-12-candidate-caption-3-adequate8192.json",
+      "request_sha256": "d35d99d97402ac965c70625be2f34f03da48b5c5f6a08ccfe777ee9d29071444",
+      "role": "caption",
+      "source_sha256": "2246934ed6dc9fcc2531ca4fa2d0913bbd5fca99eeea40093ce9de623f819265",
+      "pipeline": "candidate",
+      "input_bound": 26000,
+      "repair": "Original400-token caption exhausted on thinking381+visible15, no semanticanswer; one8192 recovery per caption, saved detector reused"
+    },
+    {
+      "stage": "runtime-12-candidate-caption-4-adequate8192",
+      "model": "gemini-3-flash-preview",
+      "request_path": "docs/evals/evidence/094-hydrogen/rendered/runtime-12-candidate-caption-4-adequate8192.json",
+      "request_sha256": "b9a7d52e2ab429747fd76891afb611e26627fd2f344be93ef8cb92a2f7839985",
+      "role": "caption",
+      "source_sha256": "2246934ed6dc9fcc2531ca4fa2d0913bbd5fca99eeea40093ce9de623f819265",
+      "pipeline": "candidate",
+      "input_bound": 26000,
+      "repair": "Original400-token caption exhausted on thinking381+visible15, no semanticanswer; one8192 recovery per caption, saved detector reused"
+    },
+    {
+      "stage": "runtime-12-control-caption-1-adequate8192",
+      "model": "gemini-3-flash-preview",
+      "request_path": "docs/evals/evidence/094-hydrogen/rendered/runtime-12-control-caption-1-adequate8192.json",
+      "request_sha256": "7b64d235a4191eb9759929c3cab821ff2686187a136d321324237f5246bdd0d7",
+      "role": "caption",
+      "source_sha256": "2246934ed6dc9fcc2531ca4fa2d0913bbd5fca99eeea40093ce9de623f819265",
+      "pipeline": "control",
+      "input_bound": 26000,
+      "repair": "Original400-token caption exhausted on thinking381+visible15, no semanticanswer; one8192 recovery per caption, saved detector reused"
+    },
+    {
+      "stage": "runtime-12-control-caption-2-adequate8192",
+      "model": "gemini-3-flash-preview",
+      "request_path": "docs/evals/evidence/094-hydrogen/rendered/runtime-12-control-caption-2-adequate8192.json",
+      "request_sha256": "0b3ba644153a8f9b4c0242dc6fc2c6d48cc2fb357aa27504f7d86a883c87532f",
+      "role": "caption",
+      "source_sha256": "2246934ed6dc9fcc2531ca4fa2d0913bbd5fca99eeea40093ce9de623f819265",
+      "pipeline": "control",
+      "input_bound": 26000,
+      "repair": "Original400-token caption exhausted on thinking381+visible15, no semanticanswer; one8192 recovery per caption, saved detector reused"
+    },
+    {
+      "stage": "runtime-12-control-caption-3-adequate8192",
+      "model": "gemini-3-flash-preview",
+      "request_path": "docs/evals/evidence/094-hydrogen/rendered/runtime-12-control-caption-3-adequate8192.json",
+      "request_sha256": "d35d99d97402ac965c70625be2f34f03da48b5c5f6a08ccfe777ee9d29071444",
+      "role": "caption",
+      "source_sha256": "2246934ed6dc9fcc2531ca4fa2d0913bbd5fca99eeea40093ce9de623f819265",
+      "pipeline": "control",
+      "input_bound": 26000,
+      "repair": "Original400-token caption exhausted on thinking381+visible15, no semanticanswer; one8192 recovery per caption, saved detector reused"
+    },
+    {
+      "stage": "runtime-12-control-caption-4-adequate8192",
+      "model": "gemini-3-flash-preview",
+      "request_path": "docs/evals/evidence/094-hydrogen/rendered/runtime-12-control-caption-4-adequate8192.json",
+      "request_sha256": "b9a7d52e2ab429747fd76891afb611e26627fd2f344be93ef8cb92a2f7839985",
+      "role": "caption",
+      "source_sha256": "2246934ed6dc9fcc2531ca4fa2d0913bbd5fca99eeea40093ce9de623f819265",
+      "pipeline": "control",
+      "input_bound": 26000,
+      "repair": "Original400-token caption exhausted on thinking381+visible15, no semanticanswer; one8192 recovery per caption, saved detector reused"
+    }
+  ],
+  "concurrency": 1,
+  "judge": "none paid",
+  "source_policy": "public Onward/public LOC/authored synthetic only",
+  "conditional": "S3 first; failure stops safety only; independent other tasks continue; promising screen triggers bounded independent native consumer confirmation",
+  "candidate": "gemini-4-hydrogen HIGH32768",
+  "cache": "no subject outputs; implicit native usage recorded",
+  "base": "c65346e4be7d757fa1130cb23fd8efc2fa41a191",
+  "ocr_confirmation": {
+    "source": "public LOC Alverson previously independently source-checked Attempt061",
+    "gate": ">=.99 maintained original similarity/no invented wording",
+    "source_policy_url": "https://www.loc.gov/pictures/item/2023637835/",
+    "no_tuning": "same original recipe/prompt/settings; candidate outputs unseen",
+    "reserve": "two bounded calls<.5 subject/control plus existingcap18"
+  },
+  "runtime_confirmation": {
+    "case": "actual public highresolution page12, original Story231 hints and params",
+    "criteria": "all integral logo/date/seal/signature strokes, exclude printed body/captions; final crop zero material loss",
+    "fixed_before_output": true,
+    "no_golden_axis_oracle": true,
+    "original_cleanup": "caption assist and real Paddle layout text trim retained",
+    "scope": "targeted genuine currentconsumer, not freshheldout/full13"
+  }
+}

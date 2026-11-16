@@ -1,0 +1,95 @@
+{
+  "actual_driver": true,
+  "original_recipe_geometry_and_layout_model": true,
+  "source_sha256": "2246934ed6dc9fcc2531ca4fa2d0913bbd5fca99eeea40093ce9de623f819265",
+  "dimensions": [
+    5100,
+    6600
+  ],
+  "manifest": "output/runs/hydrogen094-runtime-candidate-p12-transport2/02_crop_illustrations_guided_v1/illustration_manifest.jsonl",
+  "source_roi_basis": "Existing source-reviewed ROI fractions mapped to genuine highresolution source, native darkpixels counted in fixed regions",
+  "final_boxes": [
+    {
+      "x0": 1918,
+      "y0": 488,
+      "x1": 2963,
+      "y1": 1531,
+      "width": 1045,
+      "height": 1043
+    },
+    {
+      "x0": 607,
+      "y0": 4528,
+      "x1": 1994,
+      "y1": 5914,
+      "width": 1387,
+      "height": 1386
+    },
+    {
+      "x0": 2208,
+      "y0": 4759,
+      "x1": 3692,
+      "y1": 5293,
+      "width": 1484,
+      "height": 534
+    },
+    {
+      "x0": 2270,
+      "y0": 5240,
+      "x1": 3376,
+      "y1": 5619,
+      "width": 1106,
+      "height": 379
+    }
+  ],
+  "rois": [
+    {
+      "name": "upper_logo_lettering_date",
+      "source_roi_half_open_xyxy": [
+        1849,
+        429,
+        3037,
+        1584
+      ],
+      "source_dark_pixels": 277677,
+      "lost_final_source_dark_pixels": 0
+    },
+    {
+      "name": "lower_seal",
+      "source_roi_half_open_xyxy": [
+        594,
+        4488,
+        1997,
+        5940
+      ],
+      "source_dark_pixels": 1305157,
+      "lost_final_source_dark_pixels": 0
+    },
+    {
+      "name": "top_signature_baseline_endpoint",
+      "source_roi_half_open_xyxy": [
+        4390,
+        5049,
+        4522,
+        5115
+      ],
+      "source_dark_pixels": 444,
+      "lost_final_source_dark_pixels": 444
+    },
+    {
+      "name": "bottom_signature_baseline_endpoint",
+      "source_roi_half_open_xyxy": [
+        4390,
+        5577,
+        4522,
+        5643
+      ],
+      "source_dark_pixels": 296,
+      "lost_final_source_dark_pixels": 296
+    }
+  ],
+  "source_material_loss": 740,
+  "printed_caption_contamination": true,
+  "visual_review": "Final page-012-002 contains printed Hon.Gordon MacMurchy/Minister of Agriculture, right-edge signature/underline cut; source image and crop visually reviewed. This is final assisted artifact, not bare-box failure.",
+  "decision": "Reject tested assisted detector path; retain current detector/manual holds. No full13 or further detector semantic calls."
+}
