@@ -1,0 +1,64 @@
+{
+  "worktree": "/Users/cam/.codex/worktrees/gpt62-astra-20261117/doc-web",
+  "branch": "codex/gpt62-astra-20261117",
+  "base": "56564d95cd2cf9ce498aaaca84537a64b1e89f31",
+  "candidate": "gpt-6.2-astra",
+  "configured_reasoning": "high",
+  "effort_calibration": false,
+  "access": "exact authenticated catalog HTTP 200 and valid native inference",
+  "cost_usd": 0.8579997500000002,
+  "cap_usd": 64,
+  "held_usd": 0,
+  "valid_inference_posts": 15,
+  "provider_request_ledgers_by_scope": {
+    "ocr": {
+      "inference_posts": 3,
+      "estimated_usd": 0.19257075,
+      "held_usd": 0
+    },
+    "table": {
+      "inference_posts": 8,
+      "estimated_usd": 0.562536,
+      "held_usd": 0
+    },
+    "crop": {
+      "inference_posts": 4,
+      "estimated_usd": 0.102893,
+      "held_usd": 0
+    }
+  },
+  "review_patch": "configs/recipes/recipe-pdf-literal-tables-html-astra62.yaml",
+  "table": {
+    "decision": "Qualified OpenAI opt-in source reader, existing initial OCR retained",
+    "matched_pairs": 4,
+    "exact_clear_cells_per_arm": 56,
+    "ambiguity_holds_per_arm": 2,
+    "independent_heldout_cells": 20,
+    "candidate_usd": 0.247616,
+    "maintained_usd": 0.31492
+  },
+  "ocr": {
+    "decision": "Reject tested high handwriting OCR, retain reviewed Hydrogen option",
+    "candidate_barney": 0.96217,
+    "hydrogen_barney": 0.988497,
+    "gemini38_barney": 0.982406,
+    "alverson": "not measured"
+  },
+  "crop": {
+    "decision": "Retain assisted detector; bounded candidate geometry lead; original-detail native transport blocked",
+    "matched_tolerant_scores": {
+      "candidate": [
+        0.9972,
+        0.994
+      ],
+      "gemini": [
+        0.9839,
+        0.9829
+      ]
+    },
+    "original_patch_count": 33120,
+    "native_patch_limit": 30000,
+    "full_13": "not measured"
+  },
+  "owner_credentials": "Existing DOC_WEB_OPENAI_API_KEY and DOC_WEB_GEMINI_API_KEY by normal owner wrapper. No transfer or injection."
+}

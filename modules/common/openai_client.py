@@ -91,6 +91,13 @@ class _ResponsesProxy:
         self._logger(response, kwargs.get("model"))
         return response
 
+    def count_input_tokens(self, **kwargs):
+        """Use the native counter with SDK versions that predate its typed resource."""
+        result = self._client.post("/responses/input_tokens", cast_to=object, body=kwargs)
+        if not isinstance(result, dict) or result.get("object") != "response.input_tokens":
+            raise ValueError("Invalid OpenAI input token count response")
+        return result.get("input_tokens")
+
     @property
     def with_raw_response(self):
         """Supported SDK path; callers retain HTTP bytes before parsing."""

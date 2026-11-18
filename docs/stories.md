@@ -123,6 +123,7 @@ Grouped by primary `spec:N` category. Stories without category refs remain in an
 | 265 | Fable5.2 source fidelity capability panel | Medium | Done | — | [story-265](stories/story-265-fable52-source-fidelity.md) |
 | 267 | Carbon source fidelity capability panel | Medium | Done | — | [story-267](stories/story-267-carbon-source-fidelity.md) |
 | 272 | Hydrogen source fidelity evaluation | Medium | Done | — | [story-272](stories/story-272-hydrogen-source-fidelity.md) |
+| 273 | GPT-6.2 Astra source fidelity evaluation | Medium | Done | — | [story-273](stories/story-273-gpt62-astra-source-fidelity.md) |
 | 022 | Pipeline instrumentation (timing & cost) | Unknown | Done | — | [story-022](stories/story-022-instrumentation.md) |
 
 ### spec:3 — Layout & Structure Understanding

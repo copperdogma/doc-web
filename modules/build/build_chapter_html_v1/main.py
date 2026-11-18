@@ -3363,7 +3363,7 @@ def main() -> None:
                         help="Crop-review release receipt bound to the illustration manifest")
     parser.add_argument("--require-literal-fidelity", action="store_true", default=False,
                         help="Require source-only literal table receipts before qualified export")
-    parser.add_argument("--literal-reader-model", default="gpt-6-astra", choices=["gpt-6-astra", "gemini-4-argon"],
+    parser.add_argument("--literal-reader-model", default="gpt-6-astra", choices=["gpt-6-astra", "gpt-6.2-astra", "gemini-4-argon"],
                         help="Explicit source-review authority for this build; Astra remains default")
     parser.add_argument("--images-subdir", dest="images_subdir", default="images",
                         help="Subdir under output/html for cropped images (default: images)")

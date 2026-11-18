@@ -1,0 +1,17 @@
+{
+  "source": "/Users/cam/.codex/worktrees/gpt62-astra-20261117/doc-web/docs/evals/evidence/097-astra62/heldout-table.source.json",
+  "font": "Courier",
+  "rows": 6,
+  "columns": 4,
+  "pages": 1,
+  "raster_dpi": 200,
+  "native_literal_witness_checked": true,
+  "image_only_text_chars": 0,
+  "sha256": {
+    "heldout-table.source.json": "bfc6cd057adc036fc72f2ff2fcb642d52fb1d45c8c2993c8bba574a7bf9162fa",
+    "golden.html": "cb7770301dd8a601e8fccb6d42efedaf94f668bbd5ea504c9c5c09c2017fe2a8",
+    "native.pdf": "0ca254101fccf102186742a16db598706727f7c4fe8b0e20b0fe3868244c60b1",
+    "page.png": "55c78365c86b8bcff1541db5b0a35e0856b65b115feba883e226b27658e5445b",
+    "image-only.pdf": "3c644d11f8717899f4a4ec9d259cbffcfa3490514b1a0d7646878ec12647960c"
+  }
+}

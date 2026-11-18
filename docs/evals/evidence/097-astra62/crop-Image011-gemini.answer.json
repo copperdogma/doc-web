@@ -1,0 +1,5 @@
+{
+  "raw": "```json\n{\"images\": [{\"description\": \"Celebrate Saskatchewan 1905-1980 logo\", \"bbox\": [0.075, 0.375, 0.232, 0.582]}, {\"description\": \"Official seal and signatures\", \"bbox\": [0.688, 0.118, 0.895, 0.875]}]}\n```",
+  "model": "gemini-3-flash-preview",
+  "native_sha256": "d396f2bc64dc7317a3e7ea76175cee527a343ef4dcd2322abc995054c84e18d8"
+}

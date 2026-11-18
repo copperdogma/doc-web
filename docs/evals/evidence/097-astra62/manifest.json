@@ -1,0 +1,1387 @@
+{
+  "base": "56564d95cd2cf9ce498aaaca84537a64b1e89f31",
+  "protected_root": "/Users/cam/.codex/worktrees/gpt62-astra-20261117/doc-web/output/fixtures/scout116-astra62",
+  "protected_scope": "Retained owner worktree, 0700 root, original public/synthetic native bytes and provider response state. Do not move or remove without separately authorized preservation. No headers or keys.",
+  "native_code_sha256": "2710b0790ca47d880abfda897c341e2fc4584f49eef066f38ca58c43bcf0812f",
+  "tracked_code": [
+    {
+      "path": "benchmarks/scripts/scout116_crop_runtime_matrix.py",
+      "sha256": "9d69ad63795484ca78c560a88ed6990908cd070be97e8ab145980c3f84fde22f",
+      "bytes": 1414
+    },
+    {
+      "path": "benchmarks/scripts/scout116_doc_web.py",
+      "sha256": "2710b0790ca47d880abfda897c341e2fc4584f49eef066f38ca58c43bcf0812f",
+      "bytes": 11769
+    },
+    {
+      "path": "benchmarks/scripts/scout116_doc_web_score.py",
+      "sha256": "56e250da5250900aac1be02151bc755a45881339ff01e92ce95f6b975070b579",
+      "bytes": 3527
+    },
+    {
+      "path": "benchmarks/scripts/scout116_table_confirmation.py",
+      "sha256": "11f5c2c23cd4da8abd19eba271a4c9854fcecf1e8f27d78e676d1667ab5fd686",
+      "bytes": 2131
+    },
+    {
+      "path": "benchmarks/scripts/scout116_table_consumer.py",
+      "sha256": "1737ad633ef4849560b94efbfc12e60fab6d1d4fd64fb2ad0ee1601850b2eec6",
+      "bytes": 7384
+    },
+    {
+      "path": "configs/recipes/recipe-pdf-literal-tables-html-astra62.yaml",
+      "sha256": "f5e9a4df0e6057ad91887e4123a8fd09c666960c73dbf41982b974aa7dd8ee29",
+      "bytes": 2535
+    },
+    {
+      "path": "modules/build/build_chapter_html_v1/main.py",
+      "sha256": "c5c8b50819d31dfb8fec8153c5015946f938a59179c83c9b494ae934390a5050",
+      "bytes": 148695
+    },
+    {
+      "path": "modules/build/build_chapter_html_v1/module.yaml",
+      "sha256": "3ec17f532d274439f9fac43a119965aca2c1a0ef70b980a8e2ee17df323e14fc",
+      "bytes": 2805
+    },
+    {
+      "path": "modules/common/google_table_source_review.py",
+      "sha256": "fbd83c992cf8c27cb2bd57098eec929d00a29d5e40cba95a546a5a315ebfe1f1",
+      "bytes": 16583
+    },
+    {
+      "path": "modules/common/openai_client.py",
+      "sha256": "86a10068a1cfcf2dfc8697af3836c21cea442a1e072d0272e0f52f5ea3d94017",
+      "bytes": 4653
+    },
+    {
+      "path": "modules/common/table_source_review.py",
+      "sha256": "87dd0a76984e3472c87ce3ea919856c6425e0a705c2657f12e253fafb399ee73",
+      "bytes": 8667
+    }
+  ],
+  "protected_files": [
+    {
+      "path": "output/fixtures/scout116-astra62/consumer/heldout.input.jsonl",
+      "sha256": "8c3c5ae93c2ea1876bf391af8860278270adc59d855209c8720300429198c20a",
+      "bytes": 1327
+    },
+    {
+      "path": "output/fixtures/scout116-astra62/consumer/heldout.log",
+      "sha256": "e415beb4e30fddbda401e168db975840a94f9d5c77d8da7216b5fcef79ba3b1b",
+      "bytes": 760
+    },
+    {
+      "path": "output/fixtures/scout116-astra62/consumer/heldout.manifest.json",
+      "sha256": "41390b2684b2383c428abdbe45630edb86f2115cd919a998f63b72cecba90b8f",
+      "bytes": 437
+    },
+    {
+      "path": "output/fixtures/scout116-astra62/consumer/heldout.receipt.json",
+      "sha256": "dce058267fbdb0acefa6368dfe13e1329ff18b85b67262664134c61cf3c3aa9b",
+      "bytes": 12102
+    },
+    {
+      "path": "output/fixtures/scout116-astra62/consumer/heldout.yaml",
+      "sha256": "b83873b200123af598f0e431948f06c73038f88578cdb5798086616b260551a1",
+      "bytes": 1548
+    },
+    {
+      "path": "output/fixtures/scout116-astra62/consumer/run_health.jsonl",
+      "sha256": "54acf43e0850febf3c58eda77f8844786dd74ef0a932345b53e90ec2e4e07d44",
+      "bytes": 1121
+    },
+    {
+      "path": "output/fixtures/scout116-astra62/consumer/run_manifest.jsonl",
+      "sha256": "1a27945ea2a3fe323f3efaa47a9348970b1b8c4c65e1782f7676257529cc43ff",
+      "bytes": 374
+    },
+    {
+      "path": "output/fixtures/scout116-astra62/consumer/runs/scout116-astra62-heldout/01_load_artifact_v1/heldout.input.jsonl",
+      "sha256": "b6cd7d95aac10fa61ad52eff29595a6f35d96e5e31b7f58be95ceb5fd6075fe2",
+      "bytes": 1410
+    },
+    {
+      "path": "output/fixtures/scout116-astra62/consumer/runs/scout116-astra62-heldout/pipeline_events.jsonl",
+      "sha256": "0954f57d3a6d8857379979fecfa17a60fd70fed129ba0a25a8072069b6663b33",
+      "bytes": 1060
+    },
+    {
+      "path": "output/fixtures/scout116-astra62/consumer/runs/scout116-astra62-heldout/pipeline_state.json",
+      "sha256": "ef7cc0139f604f4ebf4d422565c7f2e98d861f99933ea94c6ee18ba19e94a848",
+      "bytes": 1153
+    },
+    {
+      "path": "output/fixtures/scout116-astra62/consumer/runs/scout116-astra62-heldout/snapshots/plan.json",
+      "sha256": "a1563f64b8cb9558d6f782a8a81c004350872ef5daa287cdce40dce1d0c51df4",
+      "bytes": 4184
+    },
+    {
+      "path": "output/fixtures/scout116-astra62/consumer/runs/scout116-astra62-heldout/snapshots/recipe.yaml",
+      "sha256": "bdfa0e40008c2721681acf6e4840dadd36694ce64fc277b09c2b98455b90e231",
+      "bytes": 1673
+    },
+    {
+      "path": "output/fixtures/scout116-astra62/consumer/runs/scout116-astra62-heldout/snapshots/registry.json",
+      "sha256": "261dbe286a515c2052bfe7f34fd79b3b2269ea3c1211f2826177175875f6d7fc",
+      "bytes": 8080
+    },
+    {
+      "path": "output/fixtures/scout116-astra62/consumer/startup/__pycache__/sitecustomize.cpython-311.pyc",
+      "sha256": "af6d1d19dd42a9d8ce04aa1dd51f33e69088baadb5465901103c468c7dd6575b",
+      "bytes": 604
+    },
+    {
+      "path": "output/fixtures/scout116-astra62/consumer/startup/sitecustomize.py",
+      "sha256": "9a6555753faef160e455bc344c28831b9867db890c2bdba73b2475c7ec0a9003",
+      "bytes": 184
+    },
+    {
+      "path": "output/fixtures/scout116-astra62/consumer-2/heldout/pages_html.jsonl",
+      "sha256": "8c3c5ae93c2ea1876bf391af8860278270adc59d855209c8720300429198c20a",
+      "bytes": 1327
+    },
+    {
+      "path": "output/fixtures/scout116-astra62/consumer-2/heldout.log",
+      "sha256": "3ce45136a06945ab9bb297e1e38629c9a49477f4ecd5f30568d9e6b30325aa00",
+      "bytes": 2320
+    },
+    {
+      "path": "output/fixtures/scout116-astra62/consumer-2/heldout.manifest.json",
+      "sha256": "02d22772f7325d79fd51a0d40f2bffa71c3e5603a7e595dbde2da6cd1c43f4af",
+      "bytes": 439
+    },
+    {
+      "path": "output/fixtures/scout116-astra62/consumer-2/heldout.receipt.json",
+      "sha256": "1f5009174a0f9c86549c89872d1fce2e649385c864baf5c27e9c8e9ee9fc2168",
+      "bytes": 12103
+    },
+    {
+      "path": "output/fixtures/scout116-astra62/consumer-2/heldout.yaml",
+      "sha256": "3f002a7121c64c12cf8768d501fae0e1a961c2a7c5d0730baa1e2ea6e8daf3f9",
+      "bytes": 1557
+    },
+    {
+      "path": "output/fixtures/scout116-astra62/consumer-2/run_health.jsonl",
+      "sha256": "7c6b0122e363b8ff620d165c6272a316d2fab78a54ff8d028ef4f798f2327ce1",
+      "bytes": 970
+    },
+    {
+      "path": "output/fixtures/scout116-astra62/consumer-2/run_manifest.jsonl",
+      "sha256": "c32e1453cbeb6547f4de2950d1b7918548c63ecdefcaa46efabf9903247cadc2",
+      "bytes": 374
+    },
+    {
+      "path": "output/fixtures/scout116-astra62/consumer-2/runs/scout116-astra62-heldout/01_load_artifact_v1/pages_html.jsonl",
+      "sha256": "4f9910b88fda4eba92aaa63544cd9f9ac3711a41c9a4e3cdf746d513568d8b61",
+      "bytes": 1776
+    },
+    {
+      "path": "output/fixtures/scout116-astra62/consumer-2/runs/scout116-astra62-heldout/02_literal_table_review_v1/pages_html_reviewed.jsonl",
+      "sha256": "132a7a9a14e554027db36dea11a050e4fdd110943ca02ce174c68b9045895778",
+      "bytes": 2629
+    },
+    {
+      "path": "output/fixtures/scout116-astra62/consumer-2/runs/scout116-astra62-heldout/02_literal_table_review_v1/pages_html_reviewed_reports/row-00000-page-00001-original-00001.json",
+      "sha256": "7c40cf70c7fd09feaf584fb57c942735eae1e1580742c08bc2275a5a77d043e6",
+      "bytes": 14150
+    },
+    {
+      "path": "output/fixtures/scout116-astra62/consumer-2/runs/scout116-astra62-heldout/03_extract_page_numbers_html_v1/pages_html_with_page_numbers.jsonl",
+      "sha256": "6416231df49f6da83b37fe8f6bdebf14b2f96051eb76641f0fcc10e2fc24aea9",
+      "bytes": 2630
+    },
+    {
+      "path": "output/fixtures/scout116-astra62/consumer-2/runs/scout116-astra62-heldout/04_portionize_headings_html_v1/portions_headings.jsonl",
+      "sha256": "dbc90920d23591cc0c3cbdb8637d1408a15b1790bd58dc48c8f9a44ce0a30b8d",
+      "bytes": 409
+    },
+    {
+      "path": "output/fixtures/scout116-astra62/consumer-2/runs/scout116-astra62-heldout/pipeline_events.jsonl",
+      "sha256": "60a126d81932c541a4974801fd6265385435bd65eeff46c3e29cf2cc8f063d1c",
+      "bytes": 9692
+    },
+    {
+      "path": "output/fixtures/scout116-astra62/consumer-2/runs/scout116-astra62-heldout/pipeline_state.json",
+      "sha256": "103144c7c991c06f7cd8fa52179e03eb172b6f896ce46749ccbf2cc27941a007",
+      "bytes": 3719
+    },
+    {
+      "path": "output/fixtures/scout116-astra62/consumer-2/runs/scout116-astra62-heldout/snapshots/plan.json",
+      "sha256": "5439ba8e60e4ac1c0cbbc4b6557a9ce4f2ebb773c783a1d3276cec849bc7bace",
+      "bytes": 4193
+    },
+    {
+      "path": "output/fixtures/scout116-astra62/consumer-2/runs/scout116-astra62-heldout/snapshots/recipe.yaml",
+      "sha256": "71931ee8b530a6ba95766d9642f594ad3b6f93ed76ac9adb9367d11954a4c8c3",
+      "bytes": 1684
+    },
+    {
+      "path": "output/fixtures/scout116-astra62/consumer-2/runs/scout116-astra62-heldout/snapshots/registry.json",
+      "sha256": "261dbe286a515c2052bfe7f34fd79b3b2269ea3c1211f2826177175875f6d7fc",
+      "bytes": 8080
+    },
+    {
+      "path": "output/fixtures/scout116-astra62/consumer-2/startup/__pycache__/sitecustomize.cpython-311.pyc",
+      "sha256": "c69a8a56a9b11b7c47f2759b5e93e1c1e82060d39f102a5121323cca4bd3e434",
+      "bytes": 606
+    },
+    {
+      "path": "output/fixtures/scout116-astra62/consumer-2/startup/sitecustomize.py",
+      "sha256": "9a6555753faef160e455bc344c28831b9867db890c2bdba73b2475c7ec0a9003",
+      "bytes": 184
+    },
+    {
+      "path": "output/fixtures/scout116-astra62/consumer-3/ambiguity-negative/pages_html.jsonl",
+      "sha256": "5b38c2137ce3a593a9ef5fecd4717c494439f85a47aad056ba07120075817740",
+      "bytes": 885
+    },
+    {
+      "path": "output/fixtures/scout116-astra62/consumer-3/ambiguity-negative.log",
+      "sha256": "e1cdea0baee2b27d49ac43bb998036e46266e4c5197b63ea5a88e6450ca85c0d",
+      "bytes": 679
+    },
+    {
+      "path": "output/fixtures/scout116-astra62/consumer-3/ambiguity-negative.manifest.json",
+      "sha256": "a19186f6cff8eacc0cac8228f39d303ed8bace3928b586dea4b728e8075cc8f7",
+      "bytes": 450
+    },
+    {
+      "path": "output/fixtures/scout116-astra62/consumer-3/ambiguity-negative.receipt.json",
+      "sha256": "0a2c13bb3c12d4fb1da2e956c96d16292ccbaf54ae674a86db3676e9e878afd8",
+      "bytes": 8598
+    },
+    {
+      "path": "output/fixtures/scout116-astra62/consumer-3/ambiguity-negative.yaml",
+      "sha256": "0a8809a101e76f55e041e44964ea8ff949301a3791522c42bbba0887bdc8c69e",
+      "bytes": 1619
+    },
+    {
+      "path": "output/fixtures/scout116-astra62/consumer-3/heldout/pages_html.jsonl",
+      "sha256": "8c3c5ae93c2ea1876bf391af8860278270adc59d855209c8720300429198c20a",
+      "bytes": 1327
+    },
+    {
+      "path": "output/fixtures/scout116-astra62/consumer-3/heldout.log",
+      "sha256": "e3d9b20f0f84ea40fd05c2de2f2383bf015b18076b5c37dce8d4f581919d7e5f",
+      "bytes": 2277
+    },
+    {
+      "path": "output/fixtures/scout116-astra62/consumer-3/heldout.manifest.json",
+      "sha256": "09b1ad7804d83ec7f3e01fe8c68d29bb4cdad431fa0a57507765b5c04c5b8180",
+      "bytes": 439
+    },
+    {
+      "path": "output/fixtures/scout116-astra62/consumer-3/heldout.receipt.json",
+      "sha256": "b9c5df7163c1eab7dab52af996d906f584409a517c92b22bc7effb84d9750976",
+      "bytes": 12103
+    },
+    {
+      "path": "output/fixtures/scout116-astra62/consumer-3/heldout.yaml",
+      "sha256": "af2848960253ffca1e621bbc68bcfba7168ebf90b18aebee3cac7a08695fc8d8",
+      "bytes": 1597
+    },
+    {
+      "path": "output/fixtures/scout116-astra62/consumer-3/run_health.jsonl",
+      "sha256": "04a40a3c8985ea1ba5a564ce0277d0b69e4d06e5a4129a79850d9b8794393263",
+      "bytes": 1876
+    },
+    {
+      "path": "output/fixtures/scout116-astra62/consumer-3/run_manifest.jsonl",
+      "sha256": "a54e67ecc35711e3edc2e122e2ce02a94ec363bcc565c0eb8ed92979d13b03bb",
+      "bytes": 814
+    },
+    {
+      "path": "output/fixtures/scout116-astra62/consumer-3/runs/scout116-astra62-ambiguity-negative/01_load_artifact_v1/pages_html.jsonl",
+      "sha256": "2f3c7f1b94e7518a346774da10cfc1b4e497f9e0e7580e2051481d1653c01593",
+      "bytes": 1345
+    },
+    {
+      "path": "output/fixtures/scout116-astra62/consumer-3/runs/scout116-astra62-ambiguity-negative/02_literal_table_review_v1/pages_html_reviewed.jsonl",
+      "sha256": "a93cea4d142ef1a93324268d025163d7359ebc26d70e48714f9beac332e0ce1a",
+      "bytes": 2222
+    },
+    {
+      "path": "output/fixtures/scout116-astra62/consumer-3/runs/scout116-astra62-ambiguity-negative/02_literal_table_review_v1/pages_html_reviewed_reports/row-00000-page-00001-original-00001.json",
+      "sha256": "cae83a95c6288a176a904329ba1ca833a1d511cc62b248e8e60640a8320e5d91",
+      "bytes": 10769
+    },
+    {
+      "path": "output/fixtures/scout116-astra62/consumer-3/runs/scout116-astra62-ambiguity-negative/pipeline_events.jsonl",
+      "sha256": "5e82109855a07d1e7f08b4f0f0425f81a3d950e9dafcbf39e3624c15f6615db4",
+      "bytes": 4120
+    },
+    {
+      "path": "output/fixtures/scout116-astra62/consumer-3/runs/scout116-astra62-ambiguity-negative/pipeline_state.json",
+      "sha256": "9063c3dc324036a43dc0f39def63dd691b2404401e7f8a6539f4f8931c8047d3",
+      "bytes": 1503
+    },
+    {
+      "path": "output/fixtures/scout116-astra62/consumer-3/runs/scout116-astra62-ambiguity-negative/snapshots/plan.json",
+      "sha256": "c2f9eea0eddbd129ee19e9b6adb17ecc6db1465813cfdf4a11519c28cc11dcf4",
+      "bytes": 4264
+    },
+    {
+      "path": "output/fixtures/scout116-astra62/consumer-3/runs/scout116-astra62-ambiguity-negative/snapshots/recipe.yaml",
+      "sha256": "21fbe7fbf8b229080d76b4738168972fc51464ca6c3f916bfadb994f836b3363",
+      "bytes": 1757
+    },
+    {
+      "path": "output/fixtures/scout116-astra62/consumer-3/runs/scout116-astra62-ambiguity-negative/snapshots/registry.json",
+      "sha256": "fd77dc125e9aaabcae0b6ceed3b89b9bc4866ca4375c6c6f9ec83fc4a9c253f3",
+      "bytes": 8111
+    },
+    {
+      "path": "output/fixtures/scout116-astra62/consumer-3/runs/scout116-astra62-heldout/01_load_artifact_v1/pages_html.jsonl",
+      "sha256": "c15a3ffa6e55f3f8d0a5514d4a0b5517b2e139e521038426821fb400a09c0ad9",
+      "bytes": 1776
+    },
+    {
+      "path": "output/fixtures/scout116-astra62/consumer-3/runs/scout116-astra62-heldout/02_literal_table_review_v1/pages_html_reviewed.jsonl",
+      "sha256": "7c8004b4616ba02b86c960d922534e7fb7ed95349201dd587f385c8eb26c9cff",
+      "bytes": 2629
+    },
+    {
+      "path": "output/fixtures/scout116-astra62/consumer-3/runs/scout116-astra62-heldout/02_literal_table_review_v1/pages_html_reviewed_reports/row-00000-page-00001-original-00001.json",
+      "sha256": "9d41340911c37f76ca25691e1fcb9293263832fcf2bdea78966b36780fab5b3e",
+      "bytes": 14150
+    },
+    {
+      "path": "output/fixtures/scout116-astra62/consumer-3/runs/scout116-astra62-heldout/03_extract_page_numbers_html_v1/pages_html_with_page_numbers.jsonl",
+      "sha256": "fb0b815a9bc747d26b37794133bfbda1b4ff66e0fc05333590d3998ddc23486e",
+      "bytes": 2630
+    },
+    {
+      "path": "output/fixtures/scout116-astra62/consumer-3/runs/scout116-astra62-heldout/04_portionize_headings_html_v1/portions_headings.jsonl",
+      "sha256": "c20f1f8f72168c0a357c15262df55b4082fd8edca9b62dd165db50f04cf8f740",
+      "bytes": 409
+    },
+    {
+      "path": "output/fixtures/scout116-astra62/consumer-3/runs/scout116-astra62-heldout/05_build_chapter_html_v1/chapters_manifest.jsonl",
+      "sha256": "24145e07902ee9761cbe39673dcfe893160783f0a3a1443749f73ff4b446f634",
+      "bytes": 679
+    },
+    {
+      "path": "output/fixtures/scout116-astra62/consumer-3/runs/scout116-astra62-heldout/output/html/chapter-001.html",
+      "sha256": "d3cdd5fe5c1b7d346d74de843f964344e87dd27e2be2df99cf7d9ee6f264435a",
+      "bytes": 4752
+    },
+    {
+      "path": "output/fixtures/scout116-astra62/consumer-3/runs/scout116-astra62-heldout/output/html/index.html",
+      "sha256": "162a96918626b09204d17d54cda4c72d176554bea29e7fc2d3171bc736507021",
+      "bytes": 3921
+    },
+    {
+      "path": "output/fixtures/scout116-astra62/consumer-3/runs/scout116-astra62-heldout/output/html/manifest.json",
+      "sha256": "57fbd743963ff9c9025b17b6af18e05c7c0e71c47e43b664e94756fabe5bf70d",
+      "bytes": 1444
+    },
+    {
+      "path": "output/fixtures/scout116-astra62/consumer-3/runs/scout116-astra62-heldout/output/html/navigation_resolution_report.json",
+      "sha256": "ada7df46d51c70063fce7d00ffa67c57f7f2f1e9cad73c1c36f9a3a464e456fd",
+      "bytes": 640
+    },
+    {
+      "path": "output/fixtures/scout116-astra62/consumer-3/runs/scout116-astra62-heldout/output/html/provenance/blocks.jsonl",
+      "sha256": "db540caf246228ed6617e4e1a14d526db79677f7e307f00ecd99c3e0b46e8b73",
+      "bytes": 911
+    },
+    {
+      "path": "output/fixtures/scout116-astra62/consumer-3/runs/scout116-astra62-heldout/output/html/provenance/literal-fidelity/page-0001.json",
+      "sha256": "9d41340911c37f76ca25691e1fcb9293263832fcf2bdea78966b36780fab5b3e",
+      "bytes": 14150
+    },
+    {
+      "path": "output/fixtures/scout116-astra62/consumer-3/runs/scout116-astra62-heldout/output/html/provenance/literal-fidelity/qualification.json",
+      "sha256": "bbeefbb666d19575de9ee440b7ed29c1a1064ba3107e9fff2c22e229fbde5c62",
+      "bytes": 673
+    },
+    {
+      "path": "output/fixtures/scout116-astra62/consumer-3/runs/scout116-astra62-heldout/pipeline_events.jsonl",
+      "sha256": "03733c465782ac61858e6d9f715b73c56778a77968e2883dbca1ab461778442b",
+      "bytes": 9625
+    },
+    {
+      "path": "output/fixtures/scout116-astra62/consumer-3/runs/scout116-astra62-heldout/pipeline_state.json",
+      "sha256": "48c027cc602910106becebcce92932b78e7a54b6fdb8eead18bab01e23604ed5",
+      "bytes": 3643
+    },
+    {
+      "path": "output/fixtures/scout116-astra62/consumer-3/runs/scout116-astra62-heldout/snapshots/plan.json",
+      "sha256": "1e7d7093ad21fb608e4c9732b7292323b411e16c0b025b08c1595e0c7fbd5dc6",
+      "bytes": 4242
+    },
+    {
+      "path": "output/fixtures/scout116-astra62/consumer-3/runs/scout116-astra62-heldout/snapshots/recipe.yaml",
+      "sha256": "c0479c64aa403d25c45590a070ab56ccb5bb17eb4005daebb27eb97418e3582f",
+      "bytes": 1724
+    },
+    {
+      "path": "output/fixtures/scout116-astra62/consumer-3/runs/scout116-astra62-heldout/snapshots/registry.json",
+      "sha256": "fd77dc125e9aaabcae0b6ceed3b89b9bc4866ca4375c6c6f9ec83fc4a9c253f3",
+      "bytes": 8111
+    },
+    {
+      "path": "output/fixtures/scout116-astra62/consumer-3/runs/scout116-astra62-heldout/timing_summary.json",
+      "sha256": "d1cf1dcc5ad24a4ea6d5cb55058180781aa1b3f8e4b4438e11543173a7dac16c",
+      "bytes": 1017
+    },
+    {
+      "path": "output/fixtures/scout116-astra62/consumer-3/startup/__pycache__/sitecustomize.cpython-311.pyc",
+      "sha256": "9c2d96e6a9fb907c6b5b93c4f142bc535d689967582b2a864580cf698a83b1a6",
+      "bytes": 606
+    },
+    {
+      "path": "output/fixtures/scout116-astra62/consumer-3/startup/sitecustomize.py",
+      "sha256": "9a6555753faef160e455bc344c28831b9867db890c2bdba73b2475c7ec0a9003",
+      "bytes": 184
+    },
+    {
+      "path": "output/fixtures/scout116-astra62/consumer-4/ambiguity-negative/pages_html.jsonl",
+      "sha256": "5b38c2137ce3a593a9ef5fecd4717c494439f85a47aad056ba07120075817740",
+      "bytes": 885
+    },
+    {
+      "path": "output/fixtures/scout116-astra62/consumer-4/ambiguity-negative.log",
+      "sha256": "5cb978ff0cb5b728cf52d089f17386a3fd3eda0a3a2f85e696877f1cae7a5bf0",
+      "bytes": 679
+    },
+    {
+      "path": "output/fixtures/scout116-astra62/consumer-4/ambiguity-negative.manifest.json",
+      "sha256": "ab00357d0bbabf27c3280f9a1c5dadb8efc7773e4d1edfa3dbf20b00ff46ef45",
+      "bytes": 450
+    },
+    {
+      "path": "output/fixtures/scout116-astra62/consumer-4/ambiguity-negative.receipt.json",
+      "sha256": "9105523ce6f900fd6259142901f40cc9d9e0df3650cf78cac8f2cffacda51a65",
+      "bytes": 8643
+    },
+    {
+      "path": "output/fixtures/scout116-astra62/consumer-4/ambiguity-negative.yaml",
+      "sha256": "52453675c9fba5596065e52537326a5ee2b33cc978190e8d74173723683325b6",
+      "bytes": 1619
+    },
+    {
+      "path": "output/fixtures/scout116-astra62/consumer-4/heldout/pages_html.jsonl",
+      "sha256": "8c3c5ae93c2ea1876bf391af8860278270adc59d855209c8720300429198c20a",
+      "bytes": 1327
+    },
+    {
+      "path": "output/fixtures/scout116-astra62/consumer-4/heldout.log",
+      "sha256": "282c2a7122021c87ec634c699eb08d088c2e0d1f04f9c8c1cc94b1ebee5610ba",
+      "bytes": 2279
+    },
+    {
+      "path": "output/fixtures/scout116-astra62/consumer-4/heldout.manifest.json",
+      "sha256": "5d5491b7fd8c53a189bc21d186b17f49916641f25912997fbf23acdb175e2e5d",
+      "bytes": 439
+    },
+    {
+      "path": "output/fixtures/scout116-astra62/consumer-4/heldout.receipt.json",
+      "sha256": "8df678f1e6e1ebf605ba5d501ff5e1ea8d2232025b4433fa9c95fba6faab5e36",
+      "bytes": 12149
+    },
+    {
+      "path": "output/fixtures/scout116-astra62/consumer-4/heldout.yaml",
+      "sha256": "f48ee7bd8ca85cacb63edc5ed4bc1332350c99583de96a9f5fb70780a305bfb8",
+      "bytes": 1597
+    },
+    {
+      "path": "output/fixtures/scout116-astra62/consumer-4/run_health.jsonl",
+      "sha256": "a1b62491650a318697536d8ff071098077d8a99ee05b6a130137935e6c92f97b",
+      "bytes": 1876
+    },
+    {
+      "path": "output/fixtures/scout116-astra62/consumer-4/run_manifest.jsonl",
+      "sha256": "41049b6036a9ff648e861caed810dd3063227e36c1a1b6a68e7c26ef59a47abb",
+      "bytes": 814
+    },
+    {
+      "path": "output/fixtures/scout116-astra62/consumer-4/runs/scout116-astra62-ambiguity-negative/01_load_artifact_v1/pages_html.jsonl",
+      "sha256": "3111dd978f76abdcf6078643665fc0910faef07c06c9adb5f283c113eeb370ec",
+      "bytes": 1345
+    },
+    {
+      "path": "output/fixtures/scout116-astra62/consumer-4/runs/scout116-astra62-ambiguity-negative/02_literal_table_review_v1/pages_html_reviewed.jsonl",
+      "sha256": "c2f1bec9d12ba3fa0997445ac7ab6e5e796cc1712d5bdec405f13345cee980bc",
+      "bytes": 2222
+    },
+    {
+      "path": "output/fixtures/scout116-astra62/consumer-4/runs/scout116-astra62-ambiguity-negative/02_literal_table_review_v1/pages_html_reviewed_reports/row-00000-page-00001-original-00001.json",
+      "sha256": "1470bf1766ef45a868a42f9bdac120a5c006dc4c600b5abcde7b7506f34f4957",
+      "bytes": 10810
+    },
+    {
+      "path": "output/fixtures/scout116-astra62/consumer-4/runs/scout116-astra62-ambiguity-negative/pipeline_events.jsonl",
+      "sha256": "1f471298c4717941b81d3a0d888979cf1cf14e7eb0b557411f08f4c9e7588da3",
+      "bytes": 4119
+    },
+    {
+      "path": "output/fixtures/scout116-astra62/consumer-4/runs/scout116-astra62-ambiguity-negative/pipeline_state.json",
+      "sha256": "ef2795007a9d7d611449752734468957b03d3b5c500daaf29ecd88523f9b7a62",
+      "bytes": 1503
+    },
+    {
+      "path": "output/fixtures/scout116-astra62/consumer-4/runs/scout116-astra62-ambiguity-negative/snapshots/plan.json",
+      "sha256": "ecb8a03ddba014ace8c50bf82012dcfad9716d43348b51efbf80a3ff351feed8",
+      "bytes": 4264
+    },
+    {
+      "path": "output/fixtures/scout116-astra62/consumer-4/runs/scout116-astra62-ambiguity-negative/snapshots/recipe.yaml",
+      "sha256": "cf6ef557adcf1ce4f8418cd965f0e830d4878df21efd3f9d721e45fdbf037f42",
+      "bytes": 1757
+    },
+    {
+      "path": "output/fixtures/scout116-astra62/consumer-4/runs/scout116-astra62-ambiguity-negative/snapshots/registry.json",
+      "sha256": "fd77dc125e9aaabcae0b6ceed3b89b9bc4866ca4375c6c6f9ec83fc4a9c253f3",
+      "bytes": 8111
+    },
+    {
+      "path": "output/fixtures/scout116-astra62/consumer-4/runs/scout116-astra62-heldout/01_load_artifact_v1/pages_html.jsonl",
+      "sha256": "b745240597b3fd8fb20c72c3efebeec529b56992313df61aee4ad7f2794bfdcd",
+      "bytes": 1776
+    },
+    {
+      "path": "output/fixtures/scout116-astra62/consumer-4/runs/scout116-astra62-heldout/02_literal_table_review_v1/pages_html_reviewed.jsonl",
+      "sha256": "812338e5cbd278ce73dc1d56ab4a0a34921570b743c78fca4da2c4e2f64b495e",
+      "bytes": 2629
+    },
+    {
+      "path": "output/fixtures/scout116-astra62/consumer-4/runs/scout116-astra62-heldout/02_literal_table_review_v1/pages_html_reviewed_reports/row-00000-page-00001-original-00001.json",
+      "sha256": "010d02008d20c1b834850e95a2ed1618bbe74757e2d9375d979382973cd8a4e5",
+      "bytes": 14192
+    },
+    {
+      "path": "output/fixtures/scout116-astra62/consumer-4/runs/scout116-astra62-heldout/03_extract_page_numbers_html_v1/pages_html_with_page_numbers.jsonl",
+      "sha256": "6de99fc1ca516377be4b3f5c7974c791fdfa743d7e8df305feaa088dbbfc449a",
+      "bytes": 2630
+    },
+    {
+      "path": "output/fixtures/scout116-astra62/consumer-4/runs/scout116-astra62-heldout/04_portionize_headings_html_v1/portions_headings.jsonl",
+      "sha256": "7e3cc7bc7bc9397ca8619e6d7c653d62f2920099b11cdeaa5416211550d41cc6",
+      "bytes": 409
+    },
+    {
+      "path": "output/fixtures/scout116-astra62/consumer-4/runs/scout116-astra62-heldout/05_build_chapter_html_v1/chapters_manifest.jsonl",
+      "sha256": "2972019408bbbeec2e5045064ef1319016e07fabf2f67646016a20e12b1e8b4a",
+      "bytes": 679
+    },
+    {
+      "path": "output/fixtures/scout116-astra62/consumer-4/runs/scout116-astra62-heldout/output/html/chapter-001.html",
+      "sha256": "d3cdd5fe5c1b7d346d74de843f964344e87dd27e2be2df99cf7d9ee6f264435a",
+      "bytes": 4752
+    },
+    {
+      "path": "output/fixtures/scout116-astra62/consumer-4/runs/scout116-astra62-heldout/output/html/index.html",
+      "sha256": "162a96918626b09204d17d54cda4c72d176554bea29e7fc2d3171bc736507021",
+      "bytes": 3921
+    },
+    {
+      "path": "output/fixtures/scout116-astra62/consumer-4/runs/scout116-astra62-heldout/output/html/manifest.json",
+      "sha256": "cb56af7733e865ce240b3a9645495399336db1ee25969483cc865a5d6e8beebd",
+      "bytes": 1444
+    },
+    {
+      "path": "output/fixtures/scout116-astra62/consumer-4/runs/scout116-astra62-heldout/output/html/navigation_resolution_report.json",
+      "sha256": "446ce7e28549a84ee738effb468010b7f6b0f910aa4b758fe98dc01cef00dbb7",
+      "bytes": 641
+    },
+    {
+      "path": "output/fixtures/scout116-astra62/consumer-4/runs/scout116-astra62-heldout/output/html/provenance/blocks.jsonl",
+      "sha256": "5eae68d332432a2f7f984e75a14e34118614c5792c5fa00876ee246d1ec5684a",
+      "bytes": 911
+    },
+    {
+      "path": "output/fixtures/scout116-astra62/consumer-4/runs/scout116-astra62-heldout/output/html/provenance/literal-fidelity/page-0001.json",
+      "sha256": "010d02008d20c1b834850e95a2ed1618bbe74757e2d9375d979382973cd8a4e5",
+      "bytes": 14192
+    },
+    {
+      "path": "output/fixtures/scout116-astra62/consumer-4/runs/scout116-astra62-heldout/output/html/provenance/literal-fidelity/qualification.json",
+      "sha256": "cdf04959d5c110179179bec321d642c6df32c7c3620f869ff4152be0e3681d00",
+      "bytes": 673
+    },
+    {
+      "path": "output/fixtures/scout116-astra62/consumer-4/runs/scout116-astra62-heldout/pipeline_events.jsonl",
+      "sha256": "e6cffb4b0b21e59e782c5feb74951b83b78ea4e606b71d89d973f00cddf92e3d",
+      "bytes": 9625
+    },
+    {
+      "path": "output/fixtures/scout116-astra62/consumer-4/runs/scout116-astra62-heldout/pipeline_state.json",
+      "sha256": "5506c866b008ac228140c2874af28f1e6e25002b6307664899b957af98a4cd47",
+      "bytes": 3643
+    },
+    {
+      "path": "output/fixtures/scout116-astra62/consumer-4/runs/scout116-astra62-heldout/snapshots/plan.json",
+      "sha256": "72c3cf8adb0a1773ac99e4e1e40f67805c1310eee64a7e401a70c24291d0ef30",
+      "bytes": 4242
+    },
+    {
+      "path": "output/fixtures/scout116-astra62/consumer-4/runs/scout116-astra62-heldout/snapshots/recipe.yaml",
+      "sha256": "9b662662818e6c828dfbcbc88dc9367e9beed5c3002835f4d6b21884eee60e80",
+      "bytes": 1724
+    },
+    {
+      "path": "output/fixtures/scout116-astra62/consumer-4/runs/scout116-astra62-heldout/snapshots/registry.json",
+      "sha256": "fd77dc125e9aaabcae0b6ceed3b89b9bc4866ca4375c6c6f9ec83fc4a9c253f3",
+      "bytes": 8111
+    },
+    {
+      "path": "output/fixtures/scout116-astra62/consumer-4/runs/scout116-astra62-heldout/timing_summary.json",
+      "sha256": "11b0ffd3ff85702e6be80267b6a2e771e2b994edc5f1ba7f2a832a7a53cb32b9",
+      "bytes": 1019
+    },
+    {
+      "path": "output/fixtures/scout116-astra62/consumer-4/startup/__pycache__/sitecustomize.cpython-311.pyc",
+      "sha256": "3af8b3bbb5c5f1583eb6347caad997dfc8eb17fb853e2a2f32d260844676ead5",
+      "bytes": 606
+    },
+    {
+      "path": "output/fixtures/scout116-astra62/consumer-4/startup/sitecustomize.py",
+      "sha256": "9a6555753faef160e455bc344c28831b9867db890c2bdba73b2475c7ec0a9003",
+      "bytes": 184
+    },
+    {
+      "path": "output/fixtures/scout116-astra62/consumer-5/ambiguity-negative/pages_html.jsonl",
+      "sha256": "5b38c2137ce3a593a9ef5fecd4717c494439f85a47aad056ba07120075817740",
+      "bytes": 885
+    },
+    {
+      "path": "output/fixtures/scout116-astra62/consumer-5/ambiguity-negative.log",
+      "sha256": "f730efb4deb324ade6df7bb6ad319f3b6bfc4fbac167e105465c6097d9926131",
+      "bytes": 679
+    },
+    {
+      "path": "output/fixtures/scout116-astra62/consumer-5/ambiguity-negative.manifest.json",
+      "sha256": "9cb85063d60842a9823e22ca59e9ae4f729c950b71ccf212a2635e0d5bfe9af7",
+      "bytes": 450
+    },
+    {
+      "path": "output/fixtures/scout116-astra62/consumer-5/ambiguity-negative.receipt.json",
+      "sha256": "2ca0095aba6d3f505f32f9811a1d8924b0f30ee9736a3bf6c559bae2e9b550a4",
+      "bytes": 8643
+    },
+    {
+      "path": "output/fixtures/scout116-astra62/consumer-5/ambiguity-negative.yaml",
+      "sha256": "b2a563f21990f0512b68a66f7cc0e624ef7340c73bff1aaee5729075197177b8",
+      "bytes": 1619
+    },
+    {
+      "path": "output/fixtures/scout116-astra62/consumer-5/heldout/pages_html.jsonl",
+      "sha256": "8c3c5ae93c2ea1876bf391af8860278270adc59d855209c8720300429198c20a",
+      "bytes": 1327
+    },
+    {
+      "path": "output/fixtures/scout116-astra62/consumer-5/heldout.log",
+      "sha256": "f3cb523a8e5a9a092dabf8c69652b6862282140650d206fe94e55d0611c5ff0b",
+      "bytes": 2280
+    },
+    {
+      "path": "output/fixtures/scout116-astra62/consumer-5/heldout.manifest.json",
+      "sha256": "ef08e2972e6a7bc273c1bee05bf877ea17d0889ac79e48ee8fb922fb60908f21",
+      "bytes": 439
+    },
+    {
+      "path": "output/fixtures/scout116-astra62/consumer-5/heldout.receipt.json",
+      "sha256": "bc19f4508f8b938d75e62c9ad5abfa3246cdb0ff81a99655ac039603d0226819",
+      "bytes": 12148
+    },
+    {
+      "path": "output/fixtures/scout116-astra62/consumer-5/heldout.yaml",
+      "sha256": "50657ff0787966737ae992acf17e131859e7f20c8f6153a10b90412f939df6ab",
+      "bytes": 1597
+    },
+    {
+      "path": "output/fixtures/scout116-astra62/consumer-5/run_health.jsonl",
+      "sha256": "48d5fce2dc8c0a053ae570b53e356aa58becd606396e501e692128e3fb9a8fb0",
+      "bytes": 1876
+    },
+    {
+      "path": "output/fixtures/scout116-astra62/consumer-5/run_manifest.jsonl",
+      "sha256": "63537ff43689ab67477094cf7ba9669398d347e3a4a35b4b1983bea5f7484d6b",
+      "bytes": 814
+    },
+    {
+      "path": "output/fixtures/scout116-astra62/consumer-5/runs/scout116-astra62-ambiguity-negative/01_load_artifact_v1/pages_html.jsonl",
+      "sha256": "9700e3a825bc677df847fd2dc151ba32e69990d1bf098a09be3cde593fd965d2",
+      "bytes": 1345
+    },
+    {
+      "path": "output/fixtures/scout116-astra62/consumer-5/runs/scout116-astra62-ambiguity-negative/02_literal_table_review_v1/pages_html_reviewed.jsonl",
+      "sha256": "1d1f4751a9f11c36c0bda233d960adff1dceb1921a09064e2d33784b42c9c4a2",
+      "bytes": 2222
+    },
+    {
+      "path": "output/fixtures/scout116-astra62/consumer-5/runs/scout116-astra62-ambiguity-negative/02_literal_table_review_v1/pages_html_reviewed_reports/row-00000-page-00001-original-00001.json",
+      "sha256": "ec0323ed29e08cb2b930ffb5cdeddcd49ee0b2c4793564ce32419ff819ed4500",
+      "bytes": 10810
+    },
+    {
+      "path": "output/fixtures/scout116-astra62/consumer-5/runs/scout116-astra62-ambiguity-negative/pipeline_events.jsonl",
+      "sha256": "9ab0d682b390f91fa8db4275bd7af83d2f52f47274ff6b9df644caa39eb3394c",
+      "bytes": 4120
+    },
+    {
+      "path": "output/fixtures/scout116-astra62/consumer-5/runs/scout116-astra62-ambiguity-negative/pipeline_state.json",
+      "sha256": "b5fae4c4bc7953c1602e118cbba3c2e3cb6821d966daa8d09f03da599f14f6a1",
+      "bytes": 1503
+    },
+    {
+      "path": "output/fixtures/scout116-astra62/consumer-5/runs/scout116-astra62-ambiguity-negative/snapshots/plan.json",
+      "sha256": "f67d592b76a2e6b64c29d8d7ff78c2bfec4cfdc15b3756552e13a07c0317c0cc",
+      "bytes": 4264
+    },
+    {
+      "path": "output/fixtures/scout116-astra62/consumer-5/runs/scout116-astra62-ambiguity-negative/snapshots/recipe.yaml",
+      "sha256": "0e5f25a262f0676eec7a17268877b9ef82a37e4cd96f39513c4c1566bdfe6c98",
+      "bytes": 1757
+    },
+    {
+      "path": "output/fixtures/scout116-astra62/consumer-5/runs/scout116-astra62-ambiguity-negative/snapshots/registry.json",
+      "sha256": "fd77dc125e9aaabcae0b6ceed3b89b9bc4866ca4375c6c6f9ec83fc4a9c253f3",
+      "bytes": 8111
+    },
+    {
+      "path": "output/fixtures/scout116-astra62/consumer-5/runs/scout116-astra62-heldout/01_load_artifact_v1/pages_html.jsonl",
+      "sha256": "476b75fda3578c58b745ca04b276a445ced30db9bef44af691dbbb5e5b6b340a",
+      "bytes": 1776
+    },
+    {
+      "path": "output/fixtures/scout116-astra62/consumer-5/runs/scout116-astra62-heldout/02_literal_table_review_v1/pages_html_reviewed.jsonl",
+      "sha256": "042d86bb5e4dc94cee30e4d6120362d7dcd39dfa43d3cc755ce6404b01853298",
+      "bytes": 2629
+    },
+    {
+      "path": "output/fixtures/scout116-astra62/consumer-5/runs/scout116-astra62-heldout/02_literal_table_review_v1/pages_html_reviewed_reports/row-00000-page-00001-original-00001.json",
+      "sha256": "907eee7795b14e04f041ceac53e5392543fba92cc832545bb98cd3530cfaa16d",
+      "bytes": 14191
+    },
+    {
+      "path": "output/fixtures/scout116-astra62/consumer-5/runs/scout116-astra62-heldout/03_extract_page_numbers_html_v1/pages_html_with_page_numbers.jsonl",
+      "sha256": "964c519aff8494a1156e3382a0170077f680a3b2a418d36884d11fd3b7034789",
+      "bytes": 2630
+    },
+    {
+      "path": "output/fixtures/scout116-astra62/consumer-5/runs/scout116-astra62-heldout/04_portionize_headings_html_v1/portions_headings.jsonl",
+      "sha256": "c12c3f8ad6b1c696812a0c4a6dd13de6a61aa31fa92e17527416504c4f9cf6f2",
+      "bytes": 409
+    },
+    {
+      "path": "output/fixtures/scout116-astra62/consumer-5/runs/scout116-astra62-heldout/05_build_chapter_html_v1/chapters_manifest.jsonl",
+      "sha256": "128e90bc8e1c62d63426401165eb782462e02429c19a0e536becc822fcf1bfbb",
+      "bytes": 679
+    },
+    {
+      "path": "output/fixtures/scout116-astra62/consumer-5/runs/scout116-astra62-heldout/output/html/chapter-001.html",
+      "sha256": "d3cdd5fe5c1b7d346d74de843f964344e87dd27e2be2df99cf7d9ee6f264435a",
+      "bytes": 4752
+    },
+    {
+      "path": "output/fixtures/scout116-astra62/consumer-5/runs/scout116-astra62-heldout/output/html/index.html",
+      "sha256": "162a96918626b09204d17d54cda4c72d176554bea29e7fc2d3171bc736507021",
+      "bytes": 3921
+    },
+    {
+      "path": "output/fixtures/scout116-astra62/consumer-5/runs/scout116-astra62-heldout/output/html/manifest.json",
+      "sha256": "39ecabb6c0e99c41ff4de1b846db9094bc929de8d2e36ee3193b8836056ba245",
+      "bytes": 1444
+    },
+    {
+      "path": "output/fixtures/scout116-astra62/consumer-5/runs/scout116-astra62-heldout/output/html/navigation_resolution_report.json",
+      "sha256": "847e5aae24833de52e1aa36e8602c38e5200b89816c9b4ef3d1f7e409cfa8850",
+      "bytes": 640
+    },
+    {
+      "path": "output/fixtures/scout116-astra62/consumer-5/runs/scout116-astra62-heldout/output/html/provenance/blocks.jsonl",
+      "sha256": "d926b3dbaf1edde4b5b633972a1c5bfc0b2a399f461077c66c1e7d75bd172581",
+      "bytes": 911
+    },
+    {
+      "path": "output/fixtures/scout116-astra62/consumer-5/runs/scout116-astra62-heldout/output/html/provenance/literal-fidelity/page-0001.json",
+      "sha256": "907eee7795b14e04f041ceac53e5392543fba92cc832545bb98cd3530cfaa16d",
+      "bytes": 14191
+    },
+    {
+      "path": "output/fixtures/scout116-astra62/consumer-5/runs/scout116-astra62-heldout/output/html/provenance/literal-fidelity/qualification.json",
+      "sha256": "c0c28340d8940087c4396a8dc8972c334473e9ed794141a64961e0f67bc4ee97",
+      "bytes": 673
+    },
+    {
+      "path": "output/fixtures/scout116-astra62/consumer-5/runs/scout116-astra62-heldout/pipeline_events.jsonl",
+      "sha256": "4eebd77d4d23e087701da60c8ea18f61557d5ad2d9c61e65f4ecd1d5859b8ffc",
+      "bytes": 9625
+    },
+    {
+      "path": "output/fixtures/scout116-astra62/consumer-5/runs/scout116-astra62-heldout/pipeline_state.json",
+      "sha256": "68f89498649adc9343c8e1c9771af3b75c8b44890a2e8c7cf109bc5453b910a8",
+      "bytes": 3643
+    },
+    {
+      "path": "output/fixtures/scout116-astra62/consumer-5/runs/scout116-astra62-heldout/snapshots/plan.json",
+      "sha256": "f8d66f38db9904530de2a1b5eab15d89ad38a9d253722e5f9f6b64e2f6bcfeb4",
+      "bytes": 4242
+    },
+    {
+      "path": "output/fixtures/scout116-astra62/consumer-5/runs/scout116-astra62-heldout/snapshots/recipe.yaml",
+      "sha256": "3e16279229316af6670c05294e80da668c56758a9d45b5dabccced00c9b20dfd",
+      "bytes": 1724
+    },
+    {
+      "path": "output/fixtures/scout116-astra62/consumer-5/runs/scout116-astra62-heldout/snapshots/registry.json",
+      "sha256": "fd77dc125e9aaabcae0b6ceed3b89b9bc4866ca4375c6c6f9ec83fc4a9c253f3",
+      "bytes": 8111
+    },
+    {
+      "path": "output/fixtures/scout116-astra62/consumer-5/runs/scout116-astra62-heldout/timing_summary.json",
+      "sha256": "854831f607f6e930ad7ae23039890ad0722420521ba00a6b8a68ed6bca0e12fc",
+      "bytes": 1020
+    },
+    {
+      "path": "output/fixtures/scout116-astra62/consumer-5/startup/__pycache__/sitecustomize.cpython-311.pyc",
+      "sha256": "08b7224571bf1c423c532dace3147df6be969041b10a67767b730792dcb41127",
+      "bytes": 606
+    },
+    {
+      "path": "output/fixtures/scout116-astra62/consumer-5/startup/sitecustomize.py",
+      "sha256": "9a6555753faef160e455bc344c28831b9867db890c2bdba73b2475c7ec0a9003",
+      "bytes": 184
+    },
+    {
+      "path": "output/fixtures/scout116-astra62/crop-Image000-astra62.request.json",
+      "sha256": "fbc30ce1f74db61b71073ece0e24ffbd2b978d15c69b49f1b6d7db96ebecb450",
+      "bytes": 1188218
+    },
+    {
+      "path": "output/fixtures/scout116-astra62/crop-Image000-gemini.request.json",
+      "sha256": "1b709676be4f91f3268c641a9e6982e1a91df9940caba014ad9b01672b204167",
+      "bytes": 1187173
+    },
+    {
+      "path": "output/fixtures/scout116-astra62/crop-Image001-astra62.request.json",
+      "sha256": "ae97aa9edde327b0abc38f1a6236967f09918339018d984bc44b4b9a3267db85",
+      "bytes": 108654
+    },
+    {
+      "path": "output/fixtures/scout116-astra62/crop-Image001-astra62.response.json",
+      "sha256": "6c2329d99d444754bfdb93d2d820381ae880b2f3dd134c8745ac3762c9fc3e1a",
+      "bytes": 3360
+    },
+    {
+      "path": "output/fixtures/scout116-astra62/crop-Image001-gemini.request.json",
+      "sha256": "1b6738e4a868b08b66426fe4f4c39d2b69c6d8a80e1d98bcd061d17567a32cc0",
+      "bytes": 107609
+    },
+    {
+      "path": "output/fixtures/scout116-astra62/crop-Image001-gemini.response.json",
+      "sha256": "be3a8ec01bff4f540be2e0e80072f839778b5aa3859e7bfb843a448909078356",
+      "bytes": 4466
+    },
+    {
+      "path": "output/fixtures/scout116-astra62/crop-Image003-astra62.request.json",
+      "sha256": "451951469307324c904c63ed698665b7b1ad9d516e6ed2a959db7a8743d7ee32",
+      "bytes": 243078
+    },
+    {
+      "path": "output/fixtures/scout116-astra62/crop-Image003-gemini.request.json",
+      "sha256": "261df94bf506994a631a32b84ee71dfb781938c8b96d5938e1db3927d3a6709a",
+      "bytes": 242033
+    },
+    {
+      "path": "output/fixtures/scout116-astra62/crop-Image008-astra62.request.json",
+      "sha256": "f4254883239e5b09af372f98817e193ac410e61f39bf30b8d06c78ef98aecf45",
+      "bytes": 633630
+    },
+    {
+      "path": "output/fixtures/scout116-astra62/crop-Image008-gemini.request.json",
+      "sha256": "5388ac0d66dae759afb777cc51b2cb605ddb56fc410bd2c2b45c1eb1e2a940b9",
+      "bytes": 632585
+    },
+    {
+      "path": "output/fixtures/scout116-astra62/crop-Image011-astra62.request.json",
+      "sha256": "1035b134c70f5591a26d4d6b89c9f07f4d8e440e0df6879f1f18ffd98040ea36",
+      "bytes": 312522
+    },
+    {
+      "path": "output/fixtures/scout116-astra62/crop-Image011-astra62.response.json",
+      "sha256": "5147bb69e08e7830928197a8c61192313f80fed24cdedf23ce41bcb522b1c92b",
+      "bytes": 6742
+    },
+    {
+      "path": "output/fixtures/scout116-astra62/crop-Image011-gemini.request.json",
+      "sha256": "f9d7ab0bd3c2614d787f0997c389d8ccfb7791283ff3185a98dc24cc635b74b8",
+      "bytes": 311477
+    },
+    {
+      "path": "output/fixtures/scout116-astra62/crop-Image011-gemini.response.json",
+      "sha256": "d396f2bc64dc7317a3e7ea76175cee527a343ef4dcd2322abc995054c84e18d8",
+      "bytes": 10722
+    },
+    {
+      "path": "output/fixtures/scout116-astra62/crop-Image013-astra62.request.json",
+      "sha256": "ca1bcf509aca0eaefab07cea7ebeebe15cf1380625100a1a0ee1cd9843af120e",
+      "bytes": 978710
+    },
+    {
+      "path": "output/fixtures/scout116-astra62/crop-Image013-gemini.request.json",
+      "sha256": "fdde07c344cfa0a4883ba792c4053ff70ca4cabcf923d34593a567530bd04fed",
+      "bytes": 977665
+    },
+    {
+      "path": "output/fixtures/scout116-astra62/crop-Image020-astra62.request.json",
+      "sha256": "935ae182e26e6057d69822e6184df24bd17b4e246f452c6d6e451db386c8d57b",
+      "bytes": 1219982
+    },
+    {
+      "path": "output/fixtures/scout116-astra62/crop-Image020-gemini.request.json",
+      "sha256": "b6b3cc95941f509b3ee40e2ecbe30bd9bfb729a3fc67e949d593043fe3ab086a",
+      "bytes": 1218937
+    },
+    {
+      "path": "output/fixtures/scout116-astra62/crop-Image021-astra62.request.json",
+      "sha256": "ca54b9d088d179bb636d5ed4605436ec3a8cd1b27d8d3d66d23025a97a1137a2",
+      "bytes": 965790
+    },
+    {
+      "path": "output/fixtures/scout116-astra62/crop-Image021-gemini.request.json",
+      "sha256": "2d7e4430744bf413946baf47937b80a501befed6f7eee774578a73d0359760da",
+      "bytes": 964745
+    },
+    {
+      "path": "output/fixtures/scout116-astra62/crop-Image037-astra62.request.json",
+      "sha256": "f18960ff0f788e2d60b57333f93a494b11b4d5a90f30f7228afaa5eb05102fcc",
+      "bytes": 976734
+    },
+    {
+      "path": "output/fixtures/scout116-astra62/crop-Image037-gemini.request.json",
+      "sha256": "65ad1f9aff395dc6ad6c91227cca70b11e874dd922a5de3adf8de19881752485",
+      "bytes": 975689
+    },
+    {
+      "path": "output/fixtures/scout116-astra62/crop-Image059-astra62.request.json",
+      "sha256": "0f5ca4b5ce80a000d539f6bc377f7ee2c530e71385a377132f0ba051d7c6d872",
+      "bytes": 1060578
+    },
+    {
+      "path": "output/fixtures/scout116-astra62/crop-Image059-gemini.request.json",
+      "sha256": "fb75028ccdc27401cf6bee740ebf1bba220abac08f62ddb7d4283689b96534fd",
+      "bytes": 1059533
+    },
+    {
+      "path": "output/fixtures/scout116-astra62/crop-Image121-astra62.request.json",
+      "sha256": "5370ef1e04584fbd90a62d934eef605f628b7dde3a66c1910e539320cd10ed83",
+      "bytes": 1135410
+    },
+    {
+      "path": "output/fixtures/scout116-astra62/crop-Image121-gemini.request.json",
+      "sha256": "69f5b9e9d2551fb04b47539872e9e5a552fb5297ad639442cc74141a5ded52f6",
+      "bytes": 1134365
+    },
+    {
+      "path": "output/fixtures/scout116-astra62/crop-Image124-astra62.request.json",
+      "sha256": "b06b6279c6511db5717dda8ab5397c9e8f20d544cdbf4cc07606a6f6dc2c22af",
+      "bytes": 361362
+    },
+    {
+      "path": "output/fixtures/scout116-astra62/crop-Image124-gemini.request.json",
+      "sha256": "b9160a3fe00ac5b31096df16c512f1b570bc0264326a31dde5ecaa1e90c47181",
+      "bytes": 360317
+    },
+    {
+      "path": "output/fixtures/scout116-astra62/crop-Image126-astra62.request.json",
+      "sha256": "26fd911d58468d37c9c562b990c69a3792de89f8e5f2f26612aeaf7ab0079063",
+      "bytes": 391918
+    },
+    {
+      "path": "output/fixtures/scout116-astra62/crop-Image126-gemini.request.json",
+      "sha256": "911156ff74228049fae643b78c68c9bda4f0dbf12c0cda32a53ea534ad090a2e",
+      "bytes": 390873
+    },
+    {
+      "path": "output/fixtures/scout116-astra62/crop-runtime12-astra62.request.json",
+      "sha256": "ab61d792c8ec1901abd231ae177e235b72b64382b21b87a9a3c9557d6345ff73",
+      "bytes": 1503775
+    },
+    {
+      "path": "output/fixtures/scout116-astra62/crop-runtime12-caption1.request.json",
+      "sha256": "7b64d235a4191eb9759929c3cab821ff2686187a136d321324237f5246bdd0d7",
+      "bytes": 1497813
+    },
+    {
+      "path": "output/fixtures/scout116-astra62/crop-runtime12-caption2.request.json",
+      "sha256": "0b3ba644153a8f9b4c0242dc6fc2c6d48cc2fb357aa27504f7d86a883c87532f",
+      "bytes": 1497813
+    },
+    {
+      "path": "output/fixtures/scout116-astra62/crop-runtime12-caption3.request.json",
+      "sha256": "d35d99d97402ac965c70625be2f34f03da48b5c5f6a08ccfe777ee9d29071444",
+      "bytes": 1497813
+    },
+    {
+      "path": "output/fixtures/scout116-astra62/crop-runtime12-caption4.request.json",
+      "sha256": "b9a7d52e2ab429747fd76891afb611e26627fd2f344be93ef8cb92a2f7839985",
+      "bytes": 1497813
+    },
+    {
+      "path": "output/fixtures/scout116-astra62/ocr-alverson-astra62.request.json",
+      "sha256": "78fd0a2834b091ba7f3a422f78e9057f389e83bf965280c3f9de4470941ae8a3",
+      "bytes": 568543
+    },
+    {
+      "path": "output/fixtures/scout116-astra62/ocr-alverson-gemini38.request.json",
+      "sha256": "9ae0c91026148143e0e5cb7a2a5a764c7a5c3c45347db878bfa6dcc3aacaeaf7",
+      "bytes": 568378
+    },
+    {
+      "path": "output/fixtures/scout116-astra62/ocr-alverson-hydrogen.request.json",
+      "sha256": "ffe297b68ea7dc279cd669c894e5b5a0e5fce7b102309c74aca9b50d1dcdf65e",
+      "bytes": 568417
+    },
+    {
+      "path": "output/fixtures/scout116-astra62/ocr-barney-astra62.request.json",
+      "sha256": "d32fa8e026d775e2d28c57494fb0c2b45a9d70597f9e35a04891d823be12a908",
+      "bytes": 204927
+    },
+    {
+      "path": "output/fixtures/scout116-astra62/ocr-barney-astra62.response.json",
+      "sha256": "94705c19194f96b540fafe2c47b40486cf6e75e223cad3c83337239bcb1d088a",
+      "bytes": 43666
+    },
+    {
+      "path": "output/fixtures/scout116-astra62/ocr-barney-gemini38.request.json",
+      "sha256": "f4482092b0954d423a511c1e929d3ab4fc29cde2ea058a37ffc39454b4fdd1ea",
+      "bytes": 204762
+    },
+    {
+      "path": "output/fixtures/scout116-astra62/ocr-barney-gemini38.response.json",
+      "sha256": "21b7e2052135f8847594b9bd844f0214a01302d421e8f2c46dc773d3aa24864e",
+      "bytes": 26396
+    },
+    {
+      "path": "output/fixtures/scout116-astra62/ocr-barney-hydrogen.request.json",
+      "sha256": "feed8f917d7cc67c2ec3c83f112e602b4053a5ac1beb31be37093a9eda0ce7f0",
+      "bytes": 204801
+    },
+    {
+      "path": "output/fixtures/scout116-astra62/ocr-barney-hydrogen.response.json",
+      "sha256": "8e33cc93f32b099be1cea737a0c828cf19e1ddad30f58346c45d310bc58e3efc",
+      "bytes": 24742
+    },
+    {
+      "path": "output/fixtures/scout116-astra62/table-ambiguity-negative-astra.request.json",
+      "sha256": "594fce2b949624e6aad8feba05df2d9d402f2f3b14a7c4d4f6d55bb6a1f5455d",
+      "bytes": 67500
+    },
+    {
+      "path": "output/fixtures/scout116-astra62/table-ambiguity-negative-astra.response.json",
+      "sha256": "d39658c4b89c3371d07458db9d7418d74c2759526f4bd43cf5cc7fd070c542d3",
+      "bytes": 5461
+    },
+    {
+      "path": "output/fixtures/scout116-astra62/table-ambiguity-negative-astra62.request.json",
+      "sha256": "17e668e20b86965d440b959490c7f0649ad085288fd8a3f78f59cd14e0b1dc67",
+      "bytes": 67501
+    },
+    {
+      "path": "output/fixtures/scout116-astra62/table-ambiguity-negative-astra62.response.json",
+      "sha256": "22c3199f37f0d5ce935e79632262f57bc86b29a0d51b525dd3912f9c6c9a4c91",
+      "bytes": 5637
+    },
+    {
+      "path": "output/fixtures/scout116-astra62/table-heldout-astra.request.json",
+      "sha256": "0a4e45976fe7d3dc987b4809168eda7f6769c0dfcfffd87955f8a30341a2b2ef",
+      "bytes": 89764
+    },
+    {
+      "path": "output/fixtures/scout116-astra62/table-heldout-astra.response.json",
+      "sha256": "e5fd969d2f62f2e8fc9c1852938d41e87b8b7fe52d42aeab6753bbc5b3ac51b9",
+      "bytes": 9149
+    },
+    {
+      "path": "output/fixtures/scout116-astra62/table-heldout-astra62.request.json",
+      "sha256": "d19da6f24d76ba8987d5e3afcf611a5f4b6757fab5c8b3e9ee2e588143ac4ebf",
+      "bytes": 89765
+    },
+    {
+      "path": "output/fixtures/scout116-astra62/table-heldout-astra62.response.json",
+      "sha256": "dd034bcd9f27541318b6e281b9531aeb55df14faaa107b7afd1e325bd335102e",
+      "bytes": 9380
+    },
+    {
+      "path": "output/fixtures/scout116-astra62/table-image-positive-astra.request.json",
+      "sha256": "2cfeaf2a6606e194667a524e2e8e97083cf4a3f710f59c06e01138f90a6a654c",
+      "bytes": 105456
+    },
+    {
+      "path": "output/fixtures/scout116-astra62/table-image-positive-astra.response.json",
+      "sha256": "88588f2f24e29bd42a1870b0f310b7d07198142358382167fb35623fe226c003",
+      "bytes": 9556
+    },
+    {
+      "path": "output/fixtures/scout116-astra62/table-image-positive-astra62.request.json",
+      "sha256": "cf05499e746abd07e3abbdaa55a03b41d521fdd782ac01dcb4cbae205c6b00ab",
+      "bytes": 105457
+    },
+    {
+      "path": "output/fixtures/scout116-astra62/table-image-positive-astra62.response.json",
+      "sha256": "4de272de041d572a770ef77869f1d7efb60eb835147273e36f0a3c04465fa4b3",
+      "bytes": 8845
+    },
+    {
+      "path": "output/fixtures/scout116-astra62/table-native-positive-astra.request.json",
+      "sha256": "2768b95091342db6ce86fc03e415e913b8008e6af973d6fc86d707906c9f5888",
+      "bytes": 86620
+    },
+    {
+      "path": "output/fixtures/scout116-astra62/table-native-positive-astra.response.json",
+      "sha256": "25862ec9d40c0a79ff2b541682155fda950736e9431656cfa63a0b206daab9a3",
+      "bytes": 9884
+    },
+    {
+      "path": "output/fixtures/scout116-astra62/table-native-positive-astra62.request.json",
+      "sha256": "f11c29cc2b48af9897a20ef3d54fafef9f3fbb39e4de8ccc258b426f4d3ebf1d",
+      "bytes": 86621
+    },
+    {
+      "path": "output/fixtures/scout116-astra62/table-native-positive-astra62.response.json",
+      "sha256": "3888a688a085c38698dd4771d0767c23438a6d2942420dd21bd965eb16731750",
+      "bytes": 5331
+    }
+  ],
+  "tracked_projection": [
+    {
+      "path": "docs/evals/evidence/097-astra62/Image001-astra62-crop-0.png",
+      "sha256": "74347a06bf61ff42d37f8c1baca8a2c516a2283e3ae54fff465525a50d9075a2",
+      "bytes": 131234
+    },
+    {
+      "path": "docs/evals/evidence/097-astra62/Image001-gemini-crop-0.png",
+      "sha256": "60bbd5f29a3f4a1f757a668f52bb98b64a8d579707bf42e65ae9bf38add53329",
+      "bytes": 22307
+    },
+    {
+      "path": "docs/evals/evidence/097-astra62/Image011-astra62-crop-0.png",
+      "sha256": "e3cd0e2f6a8800a6e57b6752742c6cbe2ab14fbeca8bc916be1cdb63073c0fb2",
+      "bytes": 70233
+    },
+    {
+      "path": "docs/evals/evidence/097-astra62/Image011-astra62-crop-1.png",
+      "sha256": "35aa46fc3637eb76dd784af757d9f264a9abe34e84e112ea29e6087679aedee2",
+      "bytes": 224923
+    },
+    {
+      "path": "docs/evals/evidence/097-astra62/Image011-gemini-crop-0.png",
+      "sha256": "af0b79d37fe035c36b8e15c876ba4839370847b17f10f59a89d2d7daa6940bf7",
+      "bytes": 26999
+    },
+    {
+      "path": "docs/evals/evidence/097-astra62/Image011-gemini-crop-1.png",
+      "sha256": "2bd8a2655acfde56dd38355cd0aeabe87f7c36d9c12088cc3ca0f394a35fa8c7",
+      "bytes": 70430
+    },
+    {
+      "path": "docs/evals/evidence/097-astra62/crop-Image001-astra62.answer.json",
+      "sha256": "711b37dfef5b348b20591d2eb087cd1259ba7d54ecd1c19d2c5fe719a3f0036f",
+      "bytes": 307
+    },
+    {
+      "path": "docs/evals/evidence/097-astra62/crop-Image001-astra62.score.json",
+      "sha256": "b8317c329e2b94c265da612e3d0aaa9e0ee3f17e998466e2b836551ac2c6508f",
+      "bytes": 397
+    },
+    {
+      "path": "docs/evals/evidence/097-astra62/crop-Image001-gemini.answer.json",
+      "sha256": "83be119e6c94cc8a8256a6a740c96e6840d9787c225de00dd029559134549261",
+      "bytes": 288
+    },
+    {
+      "path": "docs/evals/evidence/097-astra62/crop-Image001-gemini.score.json",
+      "sha256": "e786e3e322bba28a854268bce74a6f98776e762da7bed2112b6feb6f4894d5c0",
+      "bytes": 403
+    },
+    {
+      "path": "docs/evals/evidence/097-astra62/crop-Image011-astra62.answer.json",
+      "sha256": "094e40bb2704537d2f439842e6c2678222c22487878158863caeca0e6cde7be1",
+      "bytes": 538
+    },
+    {
+      "path": "docs/evals/evidence/097-astra62/crop-Image011-astra62.score.json",
+      "sha256": "229f3c98a951bf1630596667d6d92ca4a6d4b8a8fe0bbe045ad3a9f051f678dc",
+      "bytes": 595
+    },
+    {
+      "path": "docs/evals/evidence/097-astra62/crop-Image011-gemini.answer.json",
+      "sha256": "3b33f5b7b932c9193995fe8cda18a1c4fd38460d16d63d7461c8d9e711729f70",
+      "bytes": 363
+    },
+    {
+      "path": "docs/evals/evidence/097-astra62/crop-Image011-gemini.score.json",
+      "sha256": "f716d052a9ac5bfd089e897b8ca6993ba12a5ba0168c0c5de90b14307ddfbe3a",
+      "bytes": 606
+    },
+    {
+      "path": "docs/evals/evidence/097-astra62/crop-runtime12-astra62-count-stop.json",
+      "sha256": "d40fff0526e045e71a262d1c1765a1d98c272a4c6cbefd11a993f34ba393cd82",
+      "bytes": 256
+    },
+    {
+      "path": "docs/evals/evidence/097-astra62/heldout-table/golden.html",
+      "sha256": "cb7770301dd8a601e8fccb6d42efedaf94f668bbd5ea504c9c5c09c2017fe2a8",
+      "bytes": 448
+    },
+    {
+      "path": "docs/evals/evidence/097-astra62/heldout-table/image-only.pdf",
+      "sha256": "3c644d11f8717899f4a4ec9d259cbffcfa3490514b1a0d7646878ec12647960c",
+      "bytes": 116829
+    },
+    {
+      "path": "docs/evals/evidence/097-astra62/heldout-table/metadata.json",
+      "sha256": "86800f90701ebf7cfd5ce23980dce25a8afd5d875350f018d5a67a766990e362",
+      "bytes": 756
+    },
+    {
+      "path": "docs/evals/evidence/097-astra62/heldout-table/native.pdf",
+      "sha256": "0ca254101fccf102186742a16db598706727f7c4fe8b0e20b0fe3868244c60b1",
+      "bytes": 1960
+    },
+    {
+      "path": "docs/evals/evidence/097-astra62/heldout-table/page.png",
+      "sha256": "55c78365c86b8bcff1541db5b0a35e0856b65b115feba883e226b27658e5445b",
+      "bytes": 63687
+    },
+    {
+      "path": "docs/evals/evidence/097-astra62/heldout-table.source.json",
+      "sha256": "bfc6cd057adc036fc72f2ff2fcb642d52fb1d45c8c2993c8bba574a7bf9162fa",
+      "bytes": 1198
+    },
+    {
+      "path": "docs/evals/evidence/097-astra62/ledger.json",
+      "sha256": "d937624485adb1c294b9d26d73864dafaf23d172c39baa367bf6eb9368ce0159",
+      "bytes": 11121
+    },
+    {
+      "path": "docs/evals/evidence/097-astra62/ocr-barney-astra62.answer.json",
+      "sha256": "1943f542f30d10fbec3bab4c674cb4d922ce011e4581ae58de4821a194ab53b7",
+      "bytes": 1678
+    },
+    {
+      "path": "docs/evals/evidence/097-astra62/ocr-barney-astra62.score.json",
+      "sha256": "43e1008e4b30a5ef4eb1d004b5255ad0a1d638a70ebb4d09053bbd3ba7d64c45",
+      "bytes": 2047
+    },
+    {
+      "path": "docs/evals/evidence/097-astra62/ocr-barney-gemini38.answer.json",
+      "sha256": "d26658cb075bd29d631ea873a3e5e1a87f50e3901ff5216d2702b05f36f96848",
+      "bytes": 1658
+    },
+    {
+      "path": "docs/evals/evidence/097-astra62/ocr-barney-gemini38.score.json",
+      "sha256": "e073ddf78d061c3ab514a1ae7c27092d8aa9c7ce0f314681cc12d05dcb483709",
+      "bytes": 2024
+    },
+    {
+      "path": "docs/evals/evidence/097-astra62/ocr-barney-hydrogen.answer.json",
+      "sha256": "203d5610d7fdd35e0a1bb41fe52105965c33751b8ae70dabe38312aa57d843ae",
+      "bytes": 1654
+    },
+    {
+      "path": "docs/evals/evidence/097-astra62/ocr-barney-hydrogen.score.json",
+      "sha256": "8b65085e02c134159b22a5944e7af081868f6af14d87c77e341bd71cdf9b8f6a",
+      "bytes": 2023
+    },
+    {
+      "path": "docs/evals/evidence/097-astra62/preflight.json",
+      "sha256": "13ff72ea8319c8132705a27a7318bc37548e9df1422e8566045f24f28f0d003b",
+      "bytes": 21150
+    },
+    {
+      "path": "docs/evals/evidence/097-astra62/summary.json",
+      "sha256": "177fe13682e4dfc6fe1c77cc0d997e2fbe414bd02a619d46dd7d31839ac98017",
+      "bytes": 1941
+    },
+    {
+      "path": "docs/evals/evidence/097-astra62/table-ambiguity-negative-astra.answer.json",
+      "sha256": "70465da217d4c29d02eb3f6d8c8db8e00951a5008b8b99182265dcb1d5746523",
+      "bytes": 770
+    },
+    {
+      "path": "docs/evals/evidence/097-astra62/table-ambiguity-negative-astra.score.json",
+      "sha256": "9dd86f617f0d7a15cae58be1f0ca0d785fcd6cf9bae6d8d0720479220dc9488d",
+      "bytes": 1294
+    },
+    {
+      "path": "docs/evals/evidence/097-astra62/table-ambiguity-negative-astra62.answer.json",
+      "sha256": "36a9607b542fa44e6d57b6ddcc542f604e8c6fb5e5a316ed03ffd174ace2753b",
+      "bytes": 948
+    },
+    {
+      "path": "docs/evals/evidence/097-astra62/table-ambiguity-negative-astra62.score.json",
+      "sha256": "2a05cdbea9b8d81485afdb6cc8260df425fb782eeb4dacec52384c0dcf50591c",
+      "bytes": 1258
+    },
+    {
+      "path": "docs/evals/evidence/097-astra62/table-consumer.json",
+      "sha256": "efdcb7bfcb0c7f057cd00643d040672e0a63e5063768ce7384684bc7b9ea97d8",
+      "bytes": 1975
+    },
+    {
+      "path": "docs/evals/evidence/097-astra62/table-heldout-astra.answer.json",
+      "sha256": "b57b6a54d918dcf75cf0ae9095cfea9959bb4facc662246cd2ba890ed921824c",
+      "bytes": 680
+    },
+    {
+      "path": "docs/evals/evidence/097-astra62/table-heldout-astra.score.json",
+      "sha256": "e3932251c43816cda004e78c0bba0b0a40b638ebedae2023955341e3352f3a5e",
+      "bytes": 711
+    },
+    {
+      "path": "docs/evals/evidence/097-astra62/table-heldout-astra62.answer.json",
+      "sha256": "5c2305d1ee1dfdc2f11c35690b61330e302b414a994ba025b9651c52640b930e",
+      "bytes": 740
+    },
+    {
+      "path": "docs/evals/evidence/097-astra62/table-heldout-astra62.score.json",
+      "sha256": "e3932251c43816cda004e78c0bba0b0a40b638ebedae2023955341e3352f3a5e",
+      "bytes": 711
+    },
+    {
+      "path": "docs/evals/evidence/097-astra62/table-image-positive-astra.answer.json",
+      "sha256": "e4d39a535fedba7a60d8877a6f0bb76eccea6836f67c38a52884045d819b645b",
+      "bytes": 696
+    },
+    {
+      "path": "docs/evals/evidence/097-astra62/table-image-positive-astra.score.json",
+      "sha256": "784c49cde60423e5d95b4bed017661ca52cf6a6a980637fb992ac337b47ecd13",
+      "bytes": 657
+    },
+    {
+      "path": "docs/evals/evidence/097-astra62/table-image-positive-astra62.answer.json",
+      "sha256": "a7e5e3c9ac87ba53b9929ff4da3888bb1b72d16a0e7a2be3c1d6d5123c520953",
+      "bytes": 756
+    },
+    {
+      "path": "docs/evals/evidence/097-astra62/table-image-positive-astra62.score.json",
+      "sha256": "784c49cde60423e5d95b4bed017661ca52cf6a6a980637fb992ac337b47ecd13",
+      "bytes": 657
+    },
+    {
+      "path": "docs/evals/evidence/097-astra62/table-native-positive-astra.answer.json",
+      "sha256": "b17b02dddd8e03dde4935b53aeea0290260b9baf9ee841a44566df3bc593e8eb",
+      "bytes": 576
+    },
+    {
+      "path": "docs/evals/evidence/097-astra62/table-native-positive-astra.score.json",
+      "sha256": "253b73b18957d33ffe03d810967eb361697e8dde7e0c5575f14342410e3f4f84",
+      "bytes": 657
+    },
+    {
+      "path": "docs/evals/evidence/097-astra62/table-native-positive-astra62.answer.json",
+      "sha256": "7bdd7417601f8882331da8e9bf34c0be6b31cc66bc797fd95d671f1b392b56ff",
+      "bytes": 636
+    },
+    {
+      "path": "docs/evals/evidence/097-astra62/table-native-positive-astra62.score.json",
+      "sha256": "253b73b18957d33ffe03d810967eb361697e8dde7e0c5575f14342410e3f4f84",
+      "bytes": 657
+    }
+  ]
+}

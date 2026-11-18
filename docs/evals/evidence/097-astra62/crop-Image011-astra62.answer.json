@@ -1,0 +1,5 @@
+{
+  "raw": "{\n  \"images\": [\n    {\n      \"description\": \"Anniversary logo with a striped emblem encircled by “Celebrate Saskatchewan” and the dates 1905–1980.\",\n      \"bbox\": [0.377, 0.075, 0.580, 0.231]\n    },\n    {\n      \"description\": \"Serrated circular award seal alongside the signatures of Gordon MacMurchy and Ed Tchorzewski.\",\n      \"bbox\": [0.120, 0.686, 0.877, 0.896]\n    }\n  ]\n}",
+  "model": "gpt-6.2-astra",
+  "native_sha256": "5147bb69e08e7830928197a8c61192313f80fed24cdedf23ce41bcb522b1c92b"
+}

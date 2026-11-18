@@ -1,0 +1,5 @@
+{
+  "raw": "{\"source_table_count\":1,\"tables\":[{\"bbox\":[149,299,1551,790],\"html\":\"<table><thead><tr><th>Location</th><th>Stamp</th></tr></thead><tbody><tr><td>West rack</td><td>I</td></tr><tr><td>East rack</td><td>I</td></tr><tr><td>Check status</td><td>Reviewed</td></tr></tbody></table>\",\"uncertain_cells\":[{\"row\":1,\"cell\":1,\"reason\":\"The single plain vertical glyph does not distinguish uppercase I from lowercase l in this font.\",\"alternatives\":[\"I\",\"l\"]},{\"row\":2,\"cell\":1,\"reason\":\"The single plain vertical glyph does not distinguish uppercase I from lowercase l in this font.\",\"alternatives\":[\"I\",\"l\"]}]}]}",
+  "model": "gpt-6-astra",
+  "native_sha256": "d39658c4b89c3371d07458db9d7418d74c2759526f4bd43cf5cc7fd070c542d3"
+}

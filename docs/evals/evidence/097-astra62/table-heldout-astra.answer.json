@@ -1,0 +1,5 @@
+{
+  "raw": "{\"source_table_count\":1,\"tables\":[{\"bbox\":[149,299,1551,868],\"html\":\"<table><thead><tr><th>Rack</th><th>Seal</th><th>Count</th><th>Inspector</th></tr></thead><tbody><tr><td rowspan=\\\"2\\\">Port</td><td>B8-S5</td><td>0</td><td>reread</td></tr><tr><td>B6-S3</td><td></td><td>Re-read</td></tr><tr><td>Starboard</td><td>Q2-Z7</td><td>-</td><td>pre load</td></tr><tr><td>Reserve</td><td>q2-z7</td><td>+1</td><td>pre-load</td></tr><tr><td colspan=\\\"4\\\">Keep marked spaces and empty cells.</td></tr></tbody></table>\",\"uncertain_cells\":[]}]}",
+  "model": "gpt-6-astra",
+  "native_sha256": "e5fd969d2f62f2e8fc9c1852938d41e87b8b7fe52d42aeab6753bbc5b3ac51b9"
+}

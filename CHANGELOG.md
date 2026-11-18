@@ -1,3 +1,9 @@
+## [2026-11-17-01] — Add opt-in Astra 6.2 literal table reader (Story 273)
+
+### Added
+- Add a reviewed table recipe with exact source and model receipts, ambiguity holds, and an input-token spend check.
+- Record four matched comparisons against the previous Astra reader, with 56 exact clear cells and both required holds per model. Astra 6.2 used 21% less reader spend.
+
 ## [2026-11-16-01] — Qualify reviewed Hydrogen handwriting job (Story 272)
 
 ### Added

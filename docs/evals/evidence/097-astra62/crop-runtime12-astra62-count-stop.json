@@ -1,0 +1,7 @@
+{
+  "status": 400,
+  "error_code": "invalid_value",
+  "inferences": 0,
+  "detail": "The image you provided requires 33120 patches after processing, exceeding the limit of 30000. Please resize the image and try again.",
+  "confirmation_count_status": 400
+}

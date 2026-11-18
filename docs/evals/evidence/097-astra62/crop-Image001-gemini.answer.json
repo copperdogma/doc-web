@@ -1,0 +1,5 @@
+{
+  "raw": "```json\n{\"images\": [{\"description\": \"Stylized title text 'ONWARD TO THE UNKNOWN 1887 - 1987'\", \"bbox\": [0.268, 0.192, 0.384, 0.851]}]}\n```",
+  "model": "gemini-3-flash-preview",
+  "native_sha256": "be3a8ec01bff4f540be2e0e80072f839778b5aa3859e7bfb843a448909078356"
+}

@@ -1,0 +1,28 @@
+{
+  "structural": {
+    "pass": true,
+    "score": 0.9972,
+    "reason": "box_count=1.00 (2/2) | iou_mean=0.996 | iou_min=0.996 | coverage=0.998 | total=0.997 | matches=[pred[1]<->gold[1] IoU=0.996, pred[0]<->gold[0] IoU=0.996]"
+  },
+  "fixed_normalized_xyxy": true,
+  "boxes": [
+    [
+      0.377,
+      0.075,
+      0.58,
+      0.231
+    ],
+    [
+      0.12,
+      0.686,
+      0.877,
+      0.896
+    ]
+  ],
+  "frozen_dark_pixel_roi_losses": {
+    "upper_logo_lettering_date": 0,
+    "lower_seal": 0,
+    "top_signature_baseline_endpoint": 0,
+    "bottom_signature_baseline_endpoint": 0
+  }
+}

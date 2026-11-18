@@ -1,0 +1,5 @@
+{
+  "raw": "{\n  \"source_table_count\": 1,\n  \"tables\": [\n    {\n      \"bbox\": [149, 299, 1551, 790],\n      \"html\": \"<table><thead><tr><th>Location</th><th>Stamp</th></tr></thead><tbody><tr><td>West rack</td><td>I</td></tr><tr><td>East rack</td><td>I</td></tr><tr><td>Check status</td><td>Reviewed</td></tr></tbody></table>\",\n      \"uncertain_cells\": [\n        {\n          \"row\": 1,\n          \"cell\": 1,\n          \"reason\": \"The single vertical stroke does not distinguish uppercase I from lowercase l.\",\n          \"alternatives\": [\"I\", \"l\"]\n        },\n        {\n          \"row\": 2,\n          \"cell\": 1,\n          \"reason\": \"The single vertical stroke does not distinguish uppercase I from lowercase l.\",\n          \"alternatives\": [\"I\", \"l\"]\n        }\n      ]\n    }\n  ]\n}",
+  "model": "gpt-6.2-astra",
+  "native_sha256": "22c3199f37f0d5ce935e79632262f57bc86b29a0d51b525dd3912f9c6c9a4c91"
+}

@@ -1,0 +1,90 @@
+{
+  "title": "Independent ferry inventory",
+  "font": "Courier",
+  "widths": [
+    150,
+    118,
+    101,
+    135
+  ],
+  "rows": [
+    [
+      {
+        "text": "Rack",
+        "header": true
+      },
+      {
+        "text": "Seal",
+        "header": true
+      },
+      {
+        "text": "Count",
+        "header": true
+      },
+      {
+        "text": "Inspector",
+        "header": true
+      }
+    ],
+    [
+      {
+        "text": "Port",
+        "rowspan": 2
+      },
+      {
+        "text": "B8-S5"
+      },
+      {
+        "text": "0"
+      },
+      {
+        "text": "reread"
+      }
+    ],
+    [
+      {
+        "text": "B6-S3"
+      },
+      {
+        "text": ""
+      },
+      {
+        "text": "Re-read"
+      }
+    ],
+    [
+      {
+        "text": "Starboard"
+      },
+      {
+        "text": "Q2-Z7"
+      },
+      {
+        "text": "-"
+      },
+      {
+        "text": "pre load"
+      }
+    ],
+    [
+      {
+        "text": "Reserve"
+      },
+      {
+        "text": "q2-z7"
+      },
+      {
+        "text": "+1"
+      },
+      {
+        "text": "pre-load"
+      }
+    ],
+    [
+      {
+        "text": "Keep marked spaces and empty cells.",
+        "colspan": 4
+      }
+    ]
+  ]
+}

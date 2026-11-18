@@ -12,7 +12,7 @@ from PIL import Image
 from doc_web.env import get_doc_web_api_key
 from doc_web.literal_fidelity import SourcePageReview
 from modules.common.ocr_request_receipt import require_completed_identity
-from modules.common.table_source_review import POLICY, astra_request
+from modules.common.table_source_review import ASTRA_READER_PROFILES, POLICY, astra_request
 
 ARGON = "gemini-4-argon"
 ASTRA = "gpt-6-astra"
@@ -118,16 +118,19 @@ def validate_source_record(record, *, model, image_sha256, image_path=None):
         or record.get("response_schema_sha256") != schema_digest()
     ):
         raise ValueError("Source-read policy/schema changed")
-    if model == ASTRA:
+    if model in ASTRA_READER_PROFILES:
+        profile, effort, output_limit, _ = ASTRA_READER_PROFILES[model]
         if (
             record.get("provider") != "openai"
-            or record.get("authority_profile") != ASTRA_PROFILE
+            or record.get("authority_profile") != profile
         ):
             raise ValueError("Unqualified OpenAI source-read authority profile")
         require_completed_identity(record)
+        if model == "gpt-6.2-astra" and record.get("served_model") != model:
+            raise ValueError("Source-read must serve the qualified Astra 6.2 identity")
         if (
             record.get("image_detail") != "original"
-            or record.get("reasoning") != {"effort": "medium"}
+            or record.get("reasoning") != {"effort": effort}
             or record.get("service_tier") != "default"
         ):
             raise ValueError("Unqualified Astra source-read configuration")
@@ -152,7 +155,7 @@ def validate_source_record(record, *, model, image_sha256, image_path=None):
             for k in ("input_tokens", "output_tokens")
         ):
             raise ValueError("Source-read native usage missing/invalid")
-        if usage["output_tokens"] > 8192:
+        if usage["output_tokens"] > output_limit:
             raise ValueError("Source-read native output allowance exceeded")
         visible = []
         for output in data.get("output", []):
@@ -171,7 +174,7 @@ def validate_source_record(record, *, model, image_sha256, image_path=None):
         if (
             "".join(visible) != raw
             or not visible
-            or record.get("max_output_tokens") != 8192
+            or record.get("max_output_tokens") != output_limit
         ):
             raise ValueError(
                 "Source-read raw output/configuration differs from native response"
@@ -184,7 +187,7 @@ def validate_source_record(record, *, model, image_sha256, image_path=None):
             raise ValueError("Native Astra source review requires actual bound image")
         if digest(Path(image_path).read_bytes()) != image_sha256 or record.get(
             "request_sha256"
-        ) != digest(json.dumps(astra_request(image_path), sort_keys=True).encode()):
+        ) != digest(json.dumps(astra_request(image_path, model), sort_keys=True).encode()):
             raise ValueError(
                 "Source-read native request differs from selected policy/image/schema"
             )
@@ -367,11 +370,11 @@ class RetainedSourceOnlyReader:
             ):
                 raise ValueError("Retained source-review record changed/missing")
             record = json.loads(path.read_text())
-            if model == ASTRA and record.get("authority_profile") != ASTRA_PROFILE:
+            if model in ASTRA_READER_PROFILES and record.get("authority_profile") != ASTRA_READER_PROFILES[model][0]:
                 raise ValueError(
                     "Retained Astra review requires native request/envelope lineage"
                 )
-            if model != ASTRA:
+            if model not in ASTRA_READER_PROFILES:
                 validate_source_record(record, model=model, image_sha256=key)
             self.records[key] = record
 

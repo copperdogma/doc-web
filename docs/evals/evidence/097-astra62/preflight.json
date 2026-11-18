@@ -1,0 +1,544 @@
+{
+  "matrix": {
+    "ocr-barney-astra62": {
+      "lane": "ocr",
+      "model": "gpt-6.2-astra",
+      "request_sha256": "d32fa8e026d775e2d28c57494fb0c2b45a9d70597f9e35a04891d823be12a908",
+      "body_path": "output/fixtures/scout116-astra62/ocr-barney-astra62.request.json",
+      "independent": true,
+      "image_dimensions": [
+        640,
+        502
+      ],
+      "image_sha256": "aaf212e6091d913ded7117dd61f1437a83c57af4f974809e7fb96c11a813d9c5"
+    },
+    "ocr-barney-hydrogen": {
+      "lane": "ocr",
+      "model": "gemini-4-hydrogen",
+      "request_sha256": "feed8f917d7cc67c2ec3c83f112e602b4053a5ac1beb31be37093a9eda0ce7f0",
+      "body_path": "output/fixtures/scout116-astra62/ocr-barney-hydrogen.request.json",
+      "independent": true,
+      "image_dimensions": [
+        640,
+        502
+      ],
+      "image_sha256": "aaf212e6091d913ded7117dd61f1437a83c57af4f974809e7fb96c11a813d9c5"
+    },
+    "ocr-barney-gemini38": {
+      "lane": "ocr",
+      "model": "gemini-3.8-flash",
+      "request_sha256": "f4482092b0954d423a511c1e929d3ab4fc29cde2ea058a37ffc39454b4fdd1ea",
+      "body_path": "output/fixtures/scout116-astra62/ocr-barney-gemini38.request.json",
+      "independent": true,
+      "image_dimensions": [
+        640,
+        502
+      ],
+      "image_sha256": "aaf212e6091d913ded7117dd61f1437a83c57af4f974809e7fb96c11a813d9c5"
+    },
+    "ocr-alverson-astra62": {
+      "lane": "ocr",
+      "model": "gpt-6.2-astra",
+      "request_sha256": "78fd0a2834b091ba7f3a422f78e9057f389e83bf965280c3f9de4470941ae8a3",
+      "body_path": "output/fixtures/scout116-astra62/ocr-alverson-astra62.request.json",
+      "independent": true,
+      "image_dimensions": [
+        638,
+        1024
+      ],
+      "image_sha256": "74876a4568c5fdc459b78fde2b6e3216038fcd6e247972432d31207fcc94c198"
+    },
+    "ocr-alverson-hydrogen": {
+      "lane": "ocr",
+      "model": "gemini-4-hydrogen",
+      "request_sha256": "ffe297b68ea7dc279cd669c894e5b5a0e5fce7b102309c74aca9b50d1dcdf65e",
+      "body_path": "output/fixtures/scout116-astra62/ocr-alverson-hydrogen.request.json",
+      "independent": true,
+      "image_dimensions": [
+        638,
+        1024
+      ],
+      "image_sha256": "74876a4568c5fdc459b78fde2b6e3216038fcd6e247972432d31207fcc94c198"
+    },
+    "ocr-alverson-gemini38": {
+      "lane": "ocr",
+      "model": "gemini-3.8-flash",
+      "request_sha256": "9ae0c91026148143e0e5cb7a2a5a764c7a5c3c45347db878bfa6dcc3aacaeaf7",
+      "body_path": "output/fixtures/scout116-astra62/ocr-alverson-gemini38.request.json",
+      "independent": true,
+      "image_dimensions": [
+        638,
+        1024
+      ],
+      "image_sha256": "74876a4568c5fdc459b78fde2b6e3216038fcd6e247972432d31207fcc94c198"
+    },
+    "table-image-positive-astra": {
+      "lane": "table",
+      "model": "gpt-6-astra",
+      "request_sha256": "2cfeaf2a6606e194667a524e2e8e97083cf4a3f710f59c06e01138f90a6a654c",
+      "body_path": "output/fixtures/scout116-astra62/table-image-positive-astra.request.json",
+      "independent": true,
+      "image_dimensions": [
+        1700,
+        2200
+      ],
+      "image_sha256": "faf29a9b7cdd8758657bf524beed9067230b6c01e16bc4f41c43332c5dc6c2a9"
+    },
+    "table-image-positive-astra62": {
+      "lane": "table",
+      "model": "gpt-6.2-astra",
+      "request_sha256": "cf05499e746abd07e3abbdaa55a03b41d521fdd782ac01dcb4cbae205c6b00ab",
+      "body_path": "output/fixtures/scout116-astra62/table-image-positive-astra62.request.json",
+      "independent": true,
+      "image_dimensions": [
+        1700,
+        2200
+      ],
+      "image_sha256": "faf29a9b7cdd8758657bf524beed9067230b6c01e16bc4f41c43332c5dc6c2a9"
+    },
+    "table-native-positive-astra": {
+      "lane": "table",
+      "model": "gpt-6-astra",
+      "request_sha256": "2768b95091342db6ce86fc03e415e913b8008e6af973d6fc86d707906c9f5888",
+      "body_path": "output/fixtures/scout116-astra62/table-native-positive-astra.request.json",
+      "independent": true,
+      "image_dimensions": [
+        1700,
+        2200
+      ],
+      "image_sha256": "ab4ff79d69653ffb7907326424b7d24a7380a909585eb77c7b803bf99eab3c0f"
+    },
+    "table-native-positive-astra62": {
+      "lane": "table",
+      "model": "gpt-6.2-astra",
+      "request_sha256": "f11c29cc2b48af9897a20ef3d54fafef9f3fbb39e4de8ccc258b426f4d3ebf1d",
+      "body_path": "output/fixtures/scout116-astra62/table-native-positive-astra62.request.json",
+      "independent": true,
+      "image_dimensions": [
+        1700,
+        2200
+      ],
+      "image_sha256": "ab4ff79d69653ffb7907326424b7d24a7380a909585eb77c7b803bf99eab3c0f"
+    },
+    "table-ambiguity-negative-astra": {
+      "lane": "table",
+      "model": "gpt-6-astra",
+      "request_sha256": "594fce2b949624e6aad8feba05df2d9d402f2f3b14a7c4d4f6d55bb6a1f5455d",
+      "body_path": "output/fixtures/scout116-astra62/table-ambiguity-negative-astra.request.json",
+      "independent": true,
+      "image_dimensions": [
+        1700,
+        2200
+      ],
+      "image_sha256": "75458854bfe3331d761c99f9ac67ad35bf1b5c28620074fd31c08ba5d6052adf"
+    },
+    "table-ambiguity-negative-astra62": {
+      "lane": "table",
+      "model": "gpt-6.2-astra",
+      "request_sha256": "17e668e20b86965d440b959490c7f0649ad085288fd8a3f78f59cd14e0b1dc67",
+      "body_path": "output/fixtures/scout116-astra62/table-ambiguity-negative-astra62.request.json",
+      "independent": true,
+      "image_dimensions": [
+        1700,
+        2200
+      ],
+      "image_sha256": "75458854bfe3331d761c99f9ac67ad35bf1b5c28620074fd31c08ba5d6052adf"
+    },
+    "crop-Image011-astra62": {
+      "lane": "crop",
+      "model": "gpt-6.2-astra",
+      "request_sha256": "1035b134c70f5591a26d4d6b89c9f07f4d8e440e0df6879f1f18ffd98040ea36",
+      "body_path": "output/fixtures/scout116-astra62/crop-Image011-astra62.request.json",
+      "independent": true,
+      "image_dimensions": [
+        1545,
+        2000
+      ],
+      "image_sha256": "ae3524cb58ac940c912c7885d65ec9d21221415d97d1ea21d97be9615161a860"
+    },
+    "crop-Image011-gemini": {
+      "lane": "crop",
+      "model": "gemini-3-flash-preview",
+      "request_sha256": "f9d7ab0bd3c2614d787f0997c389d8ccfb7791283ff3185a98dc24cc635b74b8",
+      "body_path": "output/fixtures/scout116-astra62/crop-Image011-gemini.request.json",
+      "independent": true,
+      "image_dimensions": [
+        1545,
+        2000
+      ],
+      "image_sha256": "ae3524cb58ac940c912c7885d65ec9d21221415d97d1ea21d97be9615161a860"
+    },
+    "crop-Image001-astra62": {
+      "lane": "crop",
+      "model": "gpt-6.2-astra",
+      "request_sha256": "ae97aa9edde327b0abc38f1a6236967f09918339018d984bc44b4b9a3267db85",
+      "body_path": "output/fixtures/scout116-astra62/crop-Image001-astra62.request.json",
+      "independent": true,
+      "image_dimensions": [
+        1545,
+        2000
+      ],
+      "image_sha256": "6427c2e707203017ecacdbeeba9a7432d803fef5872b4c5e11fc517d341033b6"
+    },
+    "crop-Image001-gemini": {
+      "lane": "crop",
+      "model": "gemini-3-flash-preview",
+      "request_sha256": "1b6738e4a868b08b66426fe4f4c39d2b69c6d8a80e1d98bcd061d17567a32cc0",
+      "body_path": "output/fixtures/scout116-astra62/crop-Image001-gemini.request.json",
+      "independent": true,
+      "image_dimensions": [
+        1545,
+        2000
+      ],
+      "image_sha256": "6427c2e707203017ecacdbeeba9a7432d803fef5872b4c5e11fc517d341033b6"
+    },
+    "crop-Image000-astra62": {
+      "lane": "crop",
+      "model": "gpt-6.2-astra",
+      "request_sha256": "fbc30ce1f74db61b71073ece0e24ffbd2b978d15c69b49f1b6d7db96ebecb450",
+      "body_path": "output/fixtures/scout116-astra62/crop-Image000-astra62.request.json",
+      "independent": true,
+      "image_dimensions": [
+        1505,
+        2000
+      ],
+      "image_sha256": "7500762d6e0b9761b49305b28e0c3609d051af1d5f3eac8ce33028b0b439f325"
+    },
+    "crop-Image000-gemini": {
+      "lane": "crop",
+      "model": "gemini-3-flash-preview",
+      "request_sha256": "1b709676be4f91f3268c641a9e6982e1a91df9940caba014ad9b01672b204167",
+      "body_path": "output/fixtures/scout116-astra62/crop-Image000-gemini.request.json",
+      "independent": true,
+      "image_dimensions": [
+        1505,
+        2000
+      ],
+      "image_sha256": "7500762d6e0b9761b49305b28e0c3609d051af1d5f3eac8ce33028b0b439f325"
+    },
+    "crop-Image003-astra62": {
+      "lane": "crop",
+      "model": "gpt-6.2-astra",
+      "request_sha256": "451951469307324c904c63ed698665b7b1ad9d516e6ed2a959db7a8743d7ee32",
+      "body_path": "output/fixtures/scout116-astra62/crop-Image003-astra62.request.json",
+      "independent": true,
+      "image_dimensions": [
+        1545,
+        2000
+      ],
+      "image_sha256": "ad1807bfdad56d65becf8011137680496f72d564bfc922a8da7d2c021e3ef266"
+    },
+    "crop-Image003-gemini": {
+      "lane": "crop",
+      "model": "gemini-3-flash-preview",
+      "request_sha256": "261df94bf506994a631a32b84ee71dfb781938c8b96d5938e1db3927d3a6709a",
+      "body_path": "output/fixtures/scout116-astra62/crop-Image003-gemini.request.json",
+      "independent": true,
+      "image_dimensions": [
+        1545,
+        2000
+      ],
+      "image_sha256": "ad1807bfdad56d65becf8011137680496f72d564bfc922a8da7d2c021e3ef266"
+    },
+    "crop-Image008-astra62": {
+      "lane": "crop",
+      "model": "gpt-6.2-astra",
+      "request_sha256": "f4254883239e5b09af372f98817e193ac410e61f39bf30b8d06c78ef98aecf45",
+      "body_path": "output/fixtures/scout116-astra62/crop-Image008-astra62.request.json",
+      "independent": true,
+      "image_dimensions": [
+        1545,
+        2000
+      ],
+      "image_sha256": "da312d69a4c007009c1e696b32e66a3a7a957eac6b9aa3fa67323eeb1c478c31"
+    },
+    "crop-Image008-gemini": {
+      "lane": "crop",
+      "model": "gemini-3-flash-preview",
+      "request_sha256": "5388ac0d66dae759afb777cc51b2cb605ddb56fc410bd2c2b45c1eb1e2a940b9",
+      "body_path": "output/fixtures/scout116-astra62/crop-Image008-gemini.request.json",
+      "independent": true,
+      "image_dimensions": [
+        1545,
+        2000
+      ],
+      "image_sha256": "da312d69a4c007009c1e696b32e66a3a7a957eac6b9aa3fa67323eeb1c478c31"
+    },
+    "crop-Image013-astra62": {
+      "lane": "crop",
+      "model": "gpt-6.2-astra",
+      "request_sha256": "ca1bcf509aca0eaefab07cea7ebeebe15cf1380625100a1a0ee1cd9843af120e",
+      "body_path": "output/fixtures/scout116-astra62/crop-Image013-astra62.request.json",
+      "independent": true,
+      "image_dimensions": [
+        1545,
+        2000
+      ],
+      "image_sha256": "cb53f04abc02441992de4903c079b036c6242a50cd275f696231c89634e6a75b"
+    },
+    "crop-Image013-gemini": {
+      "lane": "crop",
+      "model": "gemini-3-flash-preview",
+      "request_sha256": "fdde07c344cfa0a4883ba792c4053ff70ca4cabcf923d34593a567530bd04fed",
+      "body_path": "output/fixtures/scout116-astra62/crop-Image013-gemini.request.json",
+      "independent": true,
+      "image_dimensions": [
+        1545,
+        2000
+      ],
+      "image_sha256": "cb53f04abc02441992de4903c079b036c6242a50cd275f696231c89634e6a75b"
+    },
+    "crop-Image020-astra62": {
+      "lane": "crop",
+      "model": "gpt-6.2-astra",
+      "request_sha256": "935ae182e26e6057d69822e6184df24bd17b4e246f452c6d6e451db386c8d57b",
+      "body_path": "output/fixtures/scout116-astra62/crop-Image020-astra62.request.json",
+      "independent": true,
+      "image_dimensions": [
+        1545,
+        2000
+      ],
+      "image_sha256": "5a1f2380a089ff23355ff101b07549bd57abba3a51636a6b58a28a31a4195318"
+    },
+    "crop-Image020-gemini": {
+      "lane": "crop",
+      "model": "gemini-3-flash-preview",
+      "request_sha256": "b6b3cc95941f509b3ee40e2ecbe30bd9bfb729a3fc67e949d593043fe3ab086a",
+      "body_path": "output/fixtures/scout116-astra62/crop-Image020-gemini.request.json",
+      "independent": true,
+      "image_dimensions": [
+        1545,
+        2000
+      ],
+      "image_sha256": "5a1f2380a089ff23355ff101b07549bd57abba3a51636a6b58a28a31a4195318"
+    },
+    "crop-Image021-astra62": {
+      "lane": "crop",
+      "model": "gpt-6.2-astra",
+      "request_sha256": "ca54b9d088d179bb636d5ed4605436ec3a8cd1b27d8d3d66d23025a97a1137a2",
+      "body_path": "output/fixtures/scout116-astra62/crop-Image021-astra62.request.json",
+      "independent": true,
+      "image_dimensions": [
+        1545,
+        2000
+      ],
+      "image_sha256": "2f49d83261e2f40d20b736b602cc4de8c36b48780ab944dc96c8e08f83e34332"
+    },
+    "crop-Image021-gemini": {
+      "lane": "crop",
+      "model": "gemini-3-flash-preview",
+      "request_sha256": "2d7e4430744bf413946baf47937b80a501befed6f7eee774578a73d0359760da",
+      "body_path": "output/fixtures/scout116-astra62/crop-Image021-gemini.request.json",
+      "independent": true,
+      "image_dimensions": [
+        1545,
+        2000
+      ],
+      "image_sha256": "2f49d83261e2f40d20b736b602cc4de8c36b48780ab944dc96c8e08f83e34332"
+    },
+    "crop-Image037-astra62": {
+      "lane": "crop",
+      "model": "gpt-6.2-astra",
+      "request_sha256": "f18960ff0f788e2d60b57333f93a494b11b4d5a90f30f7228afaa5eb05102fcc",
+      "body_path": "output/fixtures/scout116-astra62/crop-Image037-astra62.request.json",
+      "independent": true,
+      "image_dimensions": [
+        1545,
+        2000
+      ],
+      "image_sha256": "b836c9c90fc650dd0513299652bf1af41fc577544803d9cea64928c890cdfdbe"
+    },
+    "crop-Image037-gemini": {
+      "lane": "crop",
+      "model": "gemini-3-flash-preview",
+      "request_sha256": "65ad1f9aff395dc6ad6c91227cca70b11e874dd922a5de3adf8de19881752485",
+      "body_path": "output/fixtures/scout116-astra62/crop-Image037-gemini.request.json",
+      "independent": true,
+      "image_dimensions": [
+        1545,
+        2000
+      ],
+      "image_sha256": "b836c9c90fc650dd0513299652bf1af41fc577544803d9cea64928c890cdfdbe"
+    },
+    "crop-Image059-astra62": {
+      "lane": "crop",
+      "model": "gpt-6.2-astra",
+      "request_sha256": "0f5ca4b5ce80a000d539f6bc377f7ee2c530e71385a377132f0ba051d7c6d872",
+      "body_path": "output/fixtures/scout116-astra62/crop-Image059-astra62.request.json",
+      "independent": true,
+      "image_dimensions": [
+        1545,
+        2000
+      ],
+      "image_sha256": "af4d6f24fc5b026a12697ed4d9da2758257bb8e0ec06c7989a2b2d0625501317"
+    },
+    "crop-Image059-gemini": {
+      "lane": "crop",
+      "model": "gemini-3-flash-preview",
+      "request_sha256": "fb75028ccdc27401cf6bee740ebf1bba220abac08f62ddb7d4283689b96534fd",
+      "body_path": "output/fixtures/scout116-astra62/crop-Image059-gemini.request.json",
+      "independent": true,
+      "image_dimensions": [
+        1545,
+        2000
+      ],
+      "image_sha256": "af4d6f24fc5b026a12697ed4d9da2758257bb8e0ec06c7989a2b2d0625501317"
+    },
+    "crop-Image121-astra62": {
+      "lane": "crop",
+      "model": "gpt-6.2-astra",
+      "request_sha256": "5370ef1e04584fbd90a62d934eef605f628b7dde3a66c1910e539320cd10ed83",
+      "body_path": "output/fixtures/scout116-astra62/crop-Image121-astra62.request.json",
+      "independent": true,
+      "image_dimensions": [
+        1545,
+        2000
+      ],
+      "image_sha256": "04731378a1ff37ffb8e26faf005f87fa2383f9ba91e147ce9caa94e8519d086e"
+    },
+    "crop-Image121-gemini": {
+      "lane": "crop",
+      "model": "gemini-3-flash-preview",
+      "request_sha256": "69f5b9e9d2551fb04b47539872e9e5a552fb5297ad639442cc74141a5ded52f6",
+      "body_path": "output/fixtures/scout116-astra62/crop-Image121-gemini.request.json",
+      "independent": true,
+      "image_dimensions": [
+        1545,
+        2000
+      ],
+      "image_sha256": "04731378a1ff37ffb8e26faf005f87fa2383f9ba91e147ce9caa94e8519d086e"
+    },
+    "crop-Image124-astra62": {
+      "lane": "crop",
+      "model": "gpt-6.2-astra",
+      "request_sha256": "b06b6279c6511db5717dda8ab5397c9e8f20d544cdbf4cc07606a6f6dc2c22af",
+      "body_path": "output/fixtures/scout116-astra62/crop-Image124-astra62.request.json",
+      "independent": true,
+      "image_dimensions": [
+        1545,
+        2000
+      ],
+      "image_sha256": "b35e4c1e660a0ed9029ebe555558341a933a5724740964ca6927f94f77ae2944"
+    },
+    "crop-Image124-gemini": {
+      "lane": "crop",
+      "model": "gemini-3-flash-preview",
+      "request_sha256": "b9160a3fe00ac5b31096df16c512f1b570bc0264326a31dde5ecaa1e90c47181",
+      "body_path": "output/fixtures/scout116-astra62/crop-Image124-gemini.request.json",
+      "independent": true,
+      "image_dimensions": [
+        1545,
+        2000
+      ],
+      "image_sha256": "b35e4c1e660a0ed9029ebe555558341a933a5724740964ca6927f94f77ae2944"
+    },
+    "crop-Image126-astra62": {
+      "lane": "crop",
+      "model": "gpt-6.2-astra",
+      "request_sha256": "26fd911d58468d37c9c562b990c69a3792de89f8e5f2f26612aeaf7ab0079063",
+      "body_path": "output/fixtures/scout116-astra62/crop-Image126-astra62.request.json",
+      "independent": true,
+      "image_dimensions": [
+        1545,
+        2000
+      ],
+      "image_sha256": "25042b92e75e09ff2d7aa9330b44b26a092624a9bee19c7f2707a413f6c7f302"
+    },
+    "crop-Image126-gemini": {
+      "lane": "crop",
+      "model": "gemini-3-flash-preview",
+      "request_sha256": "911156ff74228049fae643b78c68c9bda4f0dbf12c0cda32a53ea534ad090a2e",
+      "body_path": "output/fixtures/scout116-astra62/crop-Image126-gemini.request.json",
+      "independent": true,
+      "image_dimensions": [
+        1545,
+        2000
+      ],
+      "image_sha256": "25042b92e75e09ff2d7aa9330b44b26a092624a9bee19c7f2707a413f6c7f302"
+    },
+    "table-heldout-astra": {
+      "lane": "table",
+      "model": "gpt-6-astra",
+      "request_sha256": "0a4e45976fe7d3dc987b4809168eda7f6769c0dfcfffd87955f8a30341a2b2ef",
+      "body_path": "output/fixtures/scout116-astra62/table-heldout-astra.request.json",
+      "independent": true,
+      "image_sha256": "55c78365c86b8bcff1541db5b0a35e0856b65b115feba883e226b27658e5445b",
+      "golden_sha256": "cb7770301dd8a601e8fccb6d42efedaf94f668bbd5ea504c9c5c09c2017fe2a8"
+    },
+    "table-heldout-astra62": {
+      "lane": "table",
+      "model": "gpt-6.2-astra",
+      "request_sha256": "d19da6f24d76ba8987d5e3afcf611a5f4b6757fab5c8b3e9ee2e588143ac4ebf",
+      "body_path": "output/fixtures/scout116-astra62/table-heldout-astra62.request.json",
+      "independent": true,
+      "image_sha256": "55c78365c86b8bcff1541db5b0a35e0856b65b115feba883e226b27658e5445b",
+      "golden_sha256": "cb7770301dd8a601e8fccb6d42efedaf94f668bbd5ea504c9c5c09c2017fe2a8"
+    },
+    "crop-runtime12-astra62": {
+      "lane": "crop",
+      "model": "gpt-6.2-astra",
+      "request_sha256": "ab61d792c8ec1901abd231ae177e235b72b64382b21b87a9a3c9557d6345ff73",
+      "body_path": "output/fixtures/scout116-astra62/crop-runtime12-astra62.request.json",
+      "independent": true
+    },
+    "crop-runtime12-caption1": {
+      "lane": "crop",
+      "model": "gemini-3-flash-preview",
+      "request_sha256": "7b64d235a4191eb9759929c3cab821ff2686187a136d321324237f5246bdd0d7",
+      "body_path": "output/fixtures/scout116-astra62/crop-runtime12-caption1.request.json",
+      "independent": true
+    },
+    "crop-runtime12-caption2": {
+      "lane": "crop",
+      "model": "gemini-3-flash-preview",
+      "request_sha256": "0b3ba644153a8f9b4c0242dc6fc2c6d48cc2fb357aa27504f7d86a883c87532f",
+      "body_path": "output/fixtures/scout116-astra62/crop-runtime12-caption2.request.json",
+      "independent": true
+    },
+    "crop-runtime12-caption3": {
+      "lane": "crop",
+      "model": "gemini-3-flash-preview",
+      "request_sha256": "d35d99d97402ac965c70625be2f34f03da48b5c5f6a08ccfe777ee9d29071444",
+      "body_path": "output/fixtures/scout116-astra62/crop-runtime12-caption3.request.json",
+      "independent": true
+    },
+    "crop-runtime12-caption4": {
+      "lane": "crop",
+      "model": "gemini-3-flash-preview",
+      "request_sha256": "b9a7d52e2ab429747fd76891afb611e26627fd2f344be93ef8cb92a2f7839985",
+      "body_path": "output/fixtures/scout116-astra62/crop-runtime12-caption4.request.json",
+      "independent": true
+    }
+  },
+  "caps": {
+    "ocr": [
+      12,
+      4,
+      106000
+    ],
+    "table": [
+      10,
+      5,
+      26000
+    ],
+    "crop": [
+      42,
+      16,
+      106000
+    ]
+  },
+  "base": "56564d95cd2cf9ce498aaaca84537a64b1e89f31",
+  "source": "Attempt094 LOC Barney/Alverson public, authored confirmation-v2, public Onward registered crops",
+  "producer_sha256": "2710b0790ca47d880abfda897c341e2fc4584f49eef066f38ca58c43bcf0812f",
+  "concurrency": 1,
+  "judge": null,
+  "subject_cache": false,
+  "heldout_table_provenance": {
+    "generator": "8438dee0f47d067bfefa14a5987ad7239abcc72e265470e7e5158e93fef964c8",
+    "fixture_source": "bfc6cd057adc036fc72f2ff2fcb642d52fb1d45c8c2993c8bba574a7bf9162fa",
+    "rendered_fixture": "55c78365c86b8bcff1541db5b0a35e0856b65b115feba883e226b27658e5445b",
+    "before_extension_matrix_sha256": "c22b774a9051161314e225430d71502e223dd02b0e7496bbfb73ddcce8b7aa2e"
+  },
+  "assisted_runtime_scope": "Only native page 12 with original qualified public pixels and frozen Story231 OCR hints; caption calls at driver-requested cardinality, never substituted.",
+  "before_runtime_extension_matrix_sha256": "5e58e351a7d1ced534dda50b99d66f08e2a1ba9032491ff57658d74afd2e0a88"
+}

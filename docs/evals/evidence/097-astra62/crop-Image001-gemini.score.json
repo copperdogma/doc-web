@@ -1,0 +1,19 @@
+{
+  "structural": {
+    "pass": true,
+    "score": 0.9829,
+    "reason": "box_count=1.00 (1/1) | iou_mean=0.968 | iou_min=0.968 | coverage=0.996 | total=0.983 | matches=[pred[0]<->gold[0] IoU=0.968]"
+  },
+  "fixed_normalized_xyxy": true,
+  "boxes": [
+    [
+      0.268,
+      0.192,
+      0.384,
+      0.851
+    ]
+  ],
+  "frozen_dark_pixel_roi_losses": {
+    "full_stylized_title_and_date": 54275
+  }
+}

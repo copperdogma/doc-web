@@ -87,7 +87,7 @@ param_schema:
       type: boolean
     literal_reader_model:
       type: string
-      enum: [gpt-6-astra, gemini-4-argon]
+      enum: [gpt-6-astra, gpt-6.2-astra, gemini-4-argon]
     crop_review_release:
       type: string
     images_subdir:
