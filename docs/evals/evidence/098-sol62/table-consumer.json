@@ -1,0 +1,60 @@
+{
+  "over_reservation_count_only": {
+    "input_tokens": 26001,
+    "inference_calls": 0
+  },
+  "heldout": {
+    "driver_returncode": 0,
+    "qualification_files": 1,
+    "native_response_sha256": "99e4c6b0482cf6906b6b6d2d272151f6d9f4a692af595ce7bae1c03d2f084e64",
+    "sdk_live_http_requests": 0,
+    "mock_requests": 2,
+    "input_page_sha256": "a2eb4efe29b56245a7ace6386fab7b23a9320d0e1898ccac623d20c122fcb149",
+    "driver_recipe_sha256": "8190530432a0c031a598ef945dc3acf0038edebf7283648d87de546767be9c0a",
+    "native_pdf_sha256": "28ee6f4374b72bf91c2b89e4f78665924b6b346e0954928018cc847469ce7a7d",
+    "paid_source_image_sha256": "104484d177cb0c2d59abf8e5c93ac807d3db20e5cc844ee9086f58c4d65861b1",
+    "pdf_rerender_sha256": "104484d177cb0c2d59abf8e5c93ac807d3db20e5cc844ee9086f58c4d65861b1",
+    "table_comparison": {
+      "text_pass": true,
+      "structure_pass": true,
+      "pass": true,
+      "text_mismatch_count": 0,
+      "structure_mismatch_count": 0,
+      "text_mismatches": [],
+      "structure_mismatches": [],
+      "counts": {
+        "golden": {
+          "tables": 1,
+          "rows": 6,
+          "cells": 20
+        },
+        "actual": {
+          "tables": 1,
+          "rows": 6,
+          "cells": 20
+        }
+      },
+      "scope": {
+        "mode": "all_tables",
+        "table_index": null,
+        "golden_table_count": 1,
+        "actual_table_count": 1,
+        "excluded_actual_table_indices": [],
+        "compared_actual_table_count": 1,
+        "document_actual_table_count": 1
+      }
+    },
+    "qualification_sha256": "b36a257de4944e2b841d56a61f96299b84cf50937701bf4d6d0c06414eb17dee",
+    "final_html_sha256": "f985023c32102b35a7012a7a6252530186bd44ba88fd39d8461a283e99c146bf"
+  },
+  "ambiguity-negative": {
+    "driver_returncode": 1,
+    "qualification_files": 0,
+    "native_response_sha256": "cea9d6fdd71c4309a9019808f425ba0f14de8855a1f7529289db01180a3f00bb",
+    "sdk_live_http_requests": 0,
+    "mock_requests": 2,
+    "input_page_sha256": "b11944894ee919f6d4c873a18728a15fb3da1ebdd5ae23867b075ba2ac277028",
+    "driver_recipe_sha256": "8a69fb5ae8b35f86656daad505052cbb6f932555f3a25834f80961d794661306",
+    "unresolved_report_sha256": "4fb2412616ca0588f7869f19aa315b892a946d359c092aacdeb5b874c1dffb26"
+  }
+}

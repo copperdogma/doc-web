@@ -17,7 +17,7 @@ sys.path.insert(0, str(ROOT))
 sys.path.insert(0, str(ROOT / "benchmarks/providers"))
 import hydrogen_guard as guard
 from doc_web.literal_fidelity import SourcePageReview
-from modules.common.table_source_review import POLICY, SourceOnlyReader
+from benchmarks.providers.historical_literal_readers.table_source_review import POLICY, SourceOnlyReader
 from modules.common.literal_table_review import review_literal_tables
 from benchmarks.scorers.image_crop_scorer import get_assert as crop_score
 

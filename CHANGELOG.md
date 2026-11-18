@@ -1,3 +1,8 @@
+## [2026-11-17-02] — Replace the literal table source reader with Sol 6.2 (Story 274)
+
+- The normal PDF table recipe now uses a single Sol 6.2 medium source reader with count-bound original-image requests and strict hash-bound publication receipts. Superseded Astra and Argon source-reader selections are retired from the product.
+- The four matched requests preserved 56 clear cells and held both ambiguous glyphs. Sol reduced reader spend by 81% and mean inference latency by 56% versus the older Astra control. Handwriting and crop detection keep their current owners.
+
 ## [2026-11-17-01] — Add opt-in Astra 6.2 literal table reader (Story 273)
 
 ### Added

@@ -49,11 +49,10 @@ stages:
       pages: ocr_ai
     out: pages_html_reviewed.jsonl
     params:
-      model: gpt-6-astra
       max_pages: 3
       max_tables: 8
       max_requests: 3
-      budget_usd: 4.5
+      budget_usd: 1.5
 
   - id: extract_page_numbers
     stage: transform

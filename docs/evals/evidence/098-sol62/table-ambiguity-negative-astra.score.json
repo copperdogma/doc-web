@@ -1,0 +1,63 @@
+{
+  "text_pass": false,
+  "structure_pass": true,
+  "pass": false,
+  "text_mismatch_count": 1,
+  "structure_mismatch_count": 0,
+  "text_mismatches": [
+    {
+      "table": 0,
+      "actual_table": 0,
+      "row": 2,
+      "cell": 1,
+      "kind": "cell_text",
+      "expected": "l",
+      "actual": "I"
+    }
+  ],
+  "structure_mismatches": [],
+  "counts": {
+    "golden": {
+      "tables": 1,
+      "rows": 4,
+      "cells": 8
+    },
+    "actual": {
+      "tables": 1,
+      "rows": 4,
+      "cells": 8
+    }
+  },
+  "scope": {
+    "mode": "all_tables",
+    "table_index": null,
+    "golden_table_count": 1,
+    "actual_table_count": 1,
+    "excluded_actual_table_indices": [],
+    "compared_actual_table_count": 1,
+    "document_actual_table_count": 1
+  },
+  "source_table_count": 1,
+  "uncertainties": [
+    [
+      {
+        "row": 1,
+        "cell": 1,
+        "reason": "The single plain vertical glyph cannot be distinguished confidently between uppercase I and lowercase l in this font.",
+        "alternatives": [
+          "I",
+          "l"
+        ]
+      },
+      {
+        "row": 2,
+        "cell": 1,
+        "reason": "The single plain vertical glyph cannot be distinguished confidently between uppercase I and lowercase l in this font.",
+        "alternatives": [
+          "I",
+          "l"
+        ]
+      }
+    ]
+  ]
+}

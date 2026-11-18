@@ -1,0 +1,99 @@
+{
+  "cases": {
+    "table-image-positive-sol62": {
+      "gate": true,
+      "exact_clear_cells": 23
+    },
+    "table-image-positive-astra": {
+      "gate": true,
+      "exact_clear_cells": 23
+    },
+    "table-native-positive-sol62": {
+      "gate": true,
+      "exact_clear_cells": 13
+    },
+    "table-native-positive-astra": {
+      "gate": true,
+      "exact_clear_cells": 13
+    },
+    "table-ambiguity-negative-sol62": {
+      "gate": true,
+      "safe_hold_count": 2,
+      "uncertainties": 2
+    },
+    "table-ambiguity-negative-astra": {
+      "gate": true,
+      "safe_hold_count": 2,
+      "uncertainties": 2
+    },
+    "ocr-barney-sol62": {
+      "gate": false,
+      "ratio": 0.973439
+    },
+    "ocr-barney-hydrogen": {
+      "gate": false,
+      "ratio": 0.989201
+    },
+    "ocr-barney-gemini38": {
+      "gate": false,
+      "ratio": 0.984881
+    },
+    "table-heldout-sol62": {
+      "gate": true,
+      "exact_clear_cells": 20
+    },
+    "table-heldout-astra": {
+      "gate": true,
+      "exact_clear_cells": 20
+    }
+  },
+  "pools": {
+    "table": {
+      "known_usd": 0.38418399999999997,
+      "reserved_unsettled_usd": 0.0,
+      "valid": 8,
+      "models": {
+        "gpt-6-astra": {
+          "known_usd": 0.32316999999999996,
+          "mean_seconds": 9.836928885251837,
+          "calls": 4
+        },
+        "gpt-6.2-sol": {
+          "known_usd": 0.061014,
+          "mean_seconds": 4.33686609374854,
+          "calls": 4
+        }
+      }
+    },
+    "ocr": {
+      "known_usd": 0.08528775,
+      "reserved_unsettled_usd": 0.0,
+      "valid": 3,
+      "models": {
+        "gemini-3.8-flash": {
+          "known_usd": 0.02441925,
+          "mean_seconds": 45.7464869159885,
+          "calls": 1
+        },
+        "gemini-4-hydrogen": {
+          "known_usd": 0.035715,
+          "mean_seconds": 25.739778334012954,
+          "calls": 1
+        },
+        "gpt-6.2-sol": {
+          "known_usd": 0.025153500000000002,
+          "mean_seconds": 25.336332083010348,
+          "calls": 1
+        }
+      }
+    },
+    "crop": {
+      "known_usd": 0,
+      "reserved_unsettled_usd": 0,
+      "valid": 0,
+      "models": {}
+    }
+  },
+  "known_total": 0.46947174999999997,
+  "held_total": 0.0
+}

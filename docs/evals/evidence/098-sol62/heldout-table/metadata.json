@@ -1,0 +1,17 @@
+{
+  "source": "/Users/cam/.codex/worktrees/gpt62-sol-20261117/doc-web/docs/evals/evidence/098-sol62/heldout-table.source.json",
+  "font": "Courier",
+  "rows": 6,
+  "columns": 4,
+  "pages": 1,
+  "raster_dpi": 200,
+  "native_literal_witness_checked": true,
+  "image_only_text_chars": 0,
+  "sha256": {
+    "heldout-table.source.json": "5373c9b7032c08ac2935f3af580d43a43a8c7c644e1312e0acfa95282fb38c29",
+    "golden.html": "a6b2544efa77693b1d160604c2b64c3d172161c7387018e69352ff6d07fbecc0",
+    "native.pdf": "28ee6f4374b72bf91c2b89e4f78665924b6b346e0954928018cc847469ce7a7d",
+    "page.png": "104484d177cb0c2d59abf8e5c93ac807d3db20e5cc844ee9086f58c4d65861b1",
+    "image-only.pdf": "ff17da785677f6583859eac76945ce4e75903ab233c03fc2663596ca2277726c"
+  }
+}

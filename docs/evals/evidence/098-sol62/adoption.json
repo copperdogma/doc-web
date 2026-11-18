@@ -1,0 +1,328 @@
+{
+  "base": "0a9dc6055e5ebe8e30f1b8ce3549050251bdb1a1",
+  "adoption": "Replace normal source-only literal-table reader with gpt-6.2-sol medium/32768. One product authority across live and retained paths. Earlier Astra and Argon direct readers are historical benchmarks.",
+  "added_paid_requests": 0,
+  "added_usd": 0,
+  "previous_campaign_usd": 0.46947175,
+  "runtime_hashes": {
+    "modules/common/table_source_review.py": "f8df50c8ea4f0999c974798c217f7f33058608fb47003b4f30fcfed32ace6ee2",
+    "modules/common/literal_table_review.py": "5098bf67335969e2a38a43555fdf6de4dc55997d1e23aea97de410c5e8b86560",
+    "modules/common/literal_fidelity_bundle.py": "5a3f027c194c4980e87562768a4e5c095a63cac932c6c21cc820ef9242f02d07",
+    "modules/adapter/literal_table_review_v1/main.py": "ee1070cb15d48177ed28354acaa510394bc806df5b070efdde2c111aeaa9db17",
+    "modules/adapter/literal_table_review_v1/module.yaml": "adaf572a37b008110a41a620e019fb9950432bbc97fb3438b4b3d5ee037d3ac2",
+    "modules/build/build_chapter_html_v1/main.py": "a6e9ba0b273f6ea87e3afe5420dd03e839d26a8a22530c376c0a98200376f4c9",
+    "modules/build/build_chapter_html_v1/module.yaml": "8dc51278e2ed9132635b98def96532e4ac1a02df731e2c249fe64ac389df9ef9",
+    "configs/recipes/recipe-pdf-literal-tables-html.yaml": "18231159a9bc509d9b0857d214e60a842b9056228fce6e203d5d0b113a6afb8b",
+    "benchmarks/scripts/scout117_table_consumer.py": "ec12ead2cd2dfddb46a6708cdaea0e412ff90f690159f803c0dd6aa15c15217c"
+  },
+  "actual_canonical_recipe_replays": {
+    "1.109.1": {
+      "sha256": "37194d623013848e27d9c9b4bdcd7eaa0b1cf88af8ba88fa75f98d139d1536ed",
+      "path": "output/fixtures/scout117-sol62/canonical-adopted-sdk109/canonical-consumer.json",
+      "cases": [
+        {
+          "case": "heldout",
+          "recipe_sha256": "18231159a9bc509d9b0857d214e60a842b9056228fce6e203d5d0b113a6afb8b",
+          "command": [
+            "/Volumes/Cam-Mac-SSD/Projects/shared-dependency-cache-offload-217/projects/doc-web/.venv/bin/python",
+            "driver.py",
+            "--recipe",
+            "/Users/cam/.codex/worktrees/gpt62-sol-20261117/doc-web/configs/recipes/recipe-pdf-literal-tables-html.yaml",
+            "--input-pdf",
+            "/Users/cam/.codex/worktrees/gpt62-sol-20261117/doc-web/docs/evals/evidence/098-sol62/heldout-table/native.pdf",
+            "--output-dir",
+            "/Users/cam/.codex/worktrees/gpt62-sol-20261117/doc-web/output/fixtures/scout117-sol62/canonical-adopted-sdk109/runs",
+            "--run-id",
+            "canonical-sol-table-heldout",
+            "--allow-run-id-reuse",
+            "--start-from",
+            "literal_table_review"
+          ],
+          "driver_returncode": 0,
+          "source_sha256": "104484d177cb0c2d59abf8e5c93ac807d3db20e5cc844ee9086f58c4d65861b1",
+          "native_pdf_sha256": "28ee6f4374b72bf91c2b89e4f78665924b6b346e0954928018cc847469ce7a7d",
+          "report": "output/fixtures/scout117-sol62/canonical-adopted-sdk109/runs/canonical-sol-table-heldout/03_literal_table_review_v1/pages_html_reviewed_reports/row-00000-page-00001-original-00001.json",
+          "native_receipt_sha256": "99e4c6b0482cf6906b6b6d2d272151f6d9f4a692af595ce7bae1c03d2f084e64",
+          "mock_http_routes": [
+            "/v1/responses/input_tokens",
+            "/v1/responses"
+          ],
+          "live_network_calls": 0,
+          "status": "verified",
+          "html": "output/fixtures/scout117-sol62/canonical-adopted-sdk109/runs/canonical-sol-table-heldout/output/html/chapter-001.html",
+          "html_sha256": "f985023c32102b35a7012a7a6252530186bd44ba88fd39d8461a283e99c146bf",
+          "qualification": "output/fixtures/scout117-sol62/canonical-adopted-sdk109/runs/canonical-sol-table-heldout/output/html/provenance/literal-fidelity/qualification.json",
+          "qualification_sha256": "60ab093b79ee6c08d2c15d4595df928a7c4c6b6fe78b10ef8c5ce1b2e6625b46",
+          "comparison": {
+            "text_pass": true,
+            "structure_pass": true,
+            "pass": true,
+            "text_mismatch_count": 0,
+            "structure_mismatch_count": 0,
+            "text_mismatches": [],
+            "structure_mismatches": [],
+            "counts": {
+              "golden": {
+                "tables": 1,
+                "rows": 6,
+                "cells": 20
+              },
+              "actual": {
+                "tables": 1,
+                "rows": 6,
+                "cells": 20
+              }
+            },
+            "scope": {
+              "mode": "all_tables",
+              "table_index": null,
+              "golden_table_count": 1,
+              "actual_table_count": 1,
+              "excluded_actual_table_indices": [],
+              "compared_actual_table_count": 1,
+              "document_actual_table_count": 1
+            }
+          }
+        },
+        {
+          "case": "ambiguity-negative",
+          "recipe_sha256": "18231159a9bc509d9b0857d214e60a842b9056228fce6e203d5d0b113a6afb8b",
+          "command": [
+            "/Volumes/Cam-Mac-SSD/Projects/shared-dependency-cache-offload-217/projects/doc-web/.venv/bin/python",
+            "driver.py",
+            "--recipe",
+            "/Users/cam/.codex/worktrees/gpt62-sol-20261117/doc-web/configs/recipes/recipe-pdf-literal-tables-html.yaml",
+            "--input-pdf",
+            "/Users/cam/.codex/worktrees/gpt62-sol-20261117/doc-web/testdata/literal-table-fidelity/confirmation-v2/ambiguity-negative/native.pdf",
+            "--output-dir",
+            "/Users/cam/.codex/worktrees/gpt62-sol-20261117/doc-web/output/fixtures/scout117-sol62/canonical-adopted-sdk109/runs",
+            "--run-id",
+            "canonical-sol-table-ambiguity-negative",
+            "--allow-run-id-reuse",
+            "--start-from",
+            "literal_table_review"
+          ],
+          "driver_returncode": 1,
+          "source_sha256": "75458854bfe3331d761c99f9ac67ad35bf1b5c28620074fd31c08ba5d6052adf",
+          "native_pdf_sha256": "5145a04eb39c7234e5a75bd86461e3b02217dcc9cfec0339343fb2c10e85821a",
+          "report": "output/fixtures/scout117-sol62/canonical-adopted-sdk109/runs/canonical-sol-table-ambiguity-negative/03_literal_table_review_v1/pages_html_reviewed_reports/row-00000-page-00001-original-00001.json",
+          "native_receipt_sha256": "cea9d6fdd71c4309a9019808f425ba0f14de8855a1f7529289db01180a3f00bb",
+          "mock_http_routes": [
+            "/v1/responses/input_tokens",
+            "/v1/responses"
+          ],
+          "live_network_calls": 0,
+          "status": "unresolved",
+          "holds": [
+            {
+              "alternatives": [
+                "I",
+                "l"
+              ],
+              "cell": 1,
+              "reason": "The glyph is a plain vertical stroke; uppercase I and lowercase l cannot be distinguished from its visible shape.",
+              "row": 1
+            },
+            {
+              "alternatives": [
+                "I",
+                "l"
+              ],
+              "cell": 1,
+              "reason": "The glyph is a plain vertical stroke; uppercase I and lowercase l cannot be distinguished from its visible shape.",
+              "row": 2
+            }
+          ]
+        },
+        {
+          "case": "oversize",
+          "recipe_sha256": "18231159a9bc509d9b0857d214e60a842b9056228fce6e203d5d0b113a6afb8b",
+          "command": [
+            "/Volumes/Cam-Mac-SSD/Projects/shared-dependency-cache-offload-217/projects/doc-web/.venv/bin/python",
+            "driver.py",
+            "--recipe",
+            "/Users/cam/.codex/worktrees/gpt62-sol-20261117/doc-web/configs/recipes/recipe-pdf-literal-tables-html.yaml",
+            "--input-pdf",
+            "/Users/cam/.codex/worktrees/gpt62-sol-20261117/doc-web/docs/evals/evidence/098-sol62/heldout-table/native.pdf",
+            "--output-dir",
+            "/Users/cam/.codex/worktrees/gpt62-sol-20261117/doc-web/output/fixtures/scout117-sol62/canonical-adopted-sdk109/runs",
+            "--run-id",
+            "canonical-sol-table-oversize",
+            "--allow-run-id-reuse",
+            "--start-from",
+            "literal_table_review"
+          ],
+          "driver_returncode": 1,
+          "source_sha256": "104484d177cb0c2d59abf8e5c93ac807d3db20e5cc844ee9086f58c4d65861b1",
+          "native_pdf_sha256": "28ee6f4374b72bf91c2b89e4f78665924b6b346e0954928018cc847469ce7a7d",
+          "report": "output/fixtures/scout117-sol62/canonical-adopted-sdk109/runs/canonical-sol-table-oversize/03_literal_table_review_v1/pages_html_reviewed_reports/row-00000-page-00001-original-00001.json",
+          "native_receipt_sha256": "99e4c6b0482cf6906b6b6d2d272151f6d9f4a692af595ce7bae1c03d2f084e64",
+          "mock_http_routes": [
+            "/v1/responses/input_tokens"
+          ],
+          "live_network_calls": 0,
+          "status": "unresolved"
+        }
+      ]
+    },
+    "2.21.0": {
+      "sha256": "b0be0995d73c21024cf2f8e9a91dda07eacc8f9664354cc346dc5b8aaa053d1c",
+      "path": "output/fixtures/scout117-sol62/canonical-adopted-sdk221/canonical-consumer.json",
+      "cases": [
+        {
+          "case": "heldout",
+          "recipe_sha256": "18231159a9bc509d9b0857d214e60a842b9056228fce6e203d5d0b113a6afb8b",
+          "command": [
+            "/Users/cam/miniconda3/bin/python",
+            "driver.py",
+            "--recipe",
+            "/Users/cam/.codex/worktrees/gpt62-sol-20261117/doc-web/configs/recipes/recipe-pdf-literal-tables-html.yaml",
+            "--input-pdf",
+            "/Users/cam/.codex/worktrees/gpt62-sol-20261117/doc-web/docs/evals/evidence/098-sol62/heldout-table/native.pdf",
+            "--output-dir",
+            "/Users/cam/.codex/worktrees/gpt62-sol-20261117/doc-web/output/fixtures/scout117-sol62/canonical-adopted-sdk221/runs",
+            "--run-id",
+            "canonical-sol-table-heldout",
+            "--allow-run-id-reuse",
+            "--start-from",
+            "literal_table_review"
+          ],
+          "driver_returncode": 0,
+          "source_sha256": "104484d177cb0c2d59abf8e5c93ac807d3db20e5cc844ee9086f58c4d65861b1",
+          "native_pdf_sha256": "28ee6f4374b72bf91c2b89e4f78665924b6b346e0954928018cc847469ce7a7d",
+          "report": "output/fixtures/scout117-sol62/canonical-adopted-sdk221/runs/canonical-sol-table-heldout/03_literal_table_review_v1/pages_html_reviewed_reports/row-00000-page-00001-original-00001.json",
+          "native_receipt_sha256": "99e4c6b0482cf6906b6b6d2d272151f6d9f4a692af595ce7bae1c03d2f084e64",
+          "mock_http_routes": [
+            "/v1/responses/input_tokens",
+            "/v1/responses"
+          ],
+          "live_network_calls": 0,
+          "status": "verified",
+          "html": "output/fixtures/scout117-sol62/canonical-adopted-sdk221/runs/canonical-sol-table-heldout/output/html/chapter-001.html",
+          "html_sha256": "f985023c32102b35a7012a7a6252530186bd44ba88fd39d8461a283e99c146bf",
+          "qualification": "output/fixtures/scout117-sol62/canonical-adopted-sdk221/runs/canonical-sol-table-heldout/output/html/provenance/literal-fidelity/qualification.json",
+          "qualification_sha256": "dedfce7469ce479dec5961556546dac95f864c0479b4cfe7c4d3665834ca5e4e",
+          "comparison": {
+            "text_pass": true,
+            "structure_pass": true,
+            "pass": true,
+            "text_mismatch_count": 0,
+            "structure_mismatch_count": 0,
+            "text_mismatches": [],
+            "structure_mismatches": [],
+            "counts": {
+              "golden": {
+                "tables": 1,
+                "rows": 6,
+                "cells": 20
+              },
+              "actual": {
+                "tables": 1,
+                "rows": 6,
+                "cells": 20
+              }
+            },
+            "scope": {
+              "mode": "all_tables",
+              "table_index": null,
+              "golden_table_count": 1,
+              "actual_table_count": 1,
+              "excluded_actual_table_indices": [],
+              "compared_actual_table_count": 1,
+              "document_actual_table_count": 1
+            }
+          }
+        },
+        {
+          "case": "ambiguity-negative",
+          "recipe_sha256": "18231159a9bc509d9b0857d214e60a842b9056228fce6e203d5d0b113a6afb8b",
+          "command": [
+            "/Users/cam/miniconda3/bin/python",
+            "driver.py",
+            "--recipe",
+            "/Users/cam/.codex/worktrees/gpt62-sol-20261117/doc-web/configs/recipes/recipe-pdf-literal-tables-html.yaml",
+            "--input-pdf",
+            "/Users/cam/.codex/worktrees/gpt62-sol-20261117/doc-web/testdata/literal-table-fidelity/confirmation-v2/ambiguity-negative/native.pdf",
+            "--output-dir",
+            "/Users/cam/.codex/worktrees/gpt62-sol-20261117/doc-web/output/fixtures/scout117-sol62/canonical-adopted-sdk221/runs",
+            "--run-id",
+            "canonical-sol-table-ambiguity-negative",
+            "--allow-run-id-reuse",
+            "--start-from",
+            "literal_table_review"
+          ],
+          "driver_returncode": 1,
+          "source_sha256": "75458854bfe3331d761c99f9ac67ad35bf1b5c28620074fd31c08ba5d6052adf",
+          "native_pdf_sha256": "5145a04eb39c7234e5a75bd86461e3b02217dcc9cfec0339343fb2c10e85821a",
+          "report": "output/fixtures/scout117-sol62/canonical-adopted-sdk221/runs/canonical-sol-table-ambiguity-negative/03_literal_table_review_v1/pages_html_reviewed_reports/row-00000-page-00001-original-00001.json",
+          "native_receipt_sha256": "cea9d6fdd71c4309a9019808f425ba0f14de8855a1f7529289db01180a3f00bb",
+          "mock_http_routes": [
+            "/v1/responses/input_tokens",
+            "/v1/responses"
+          ],
+          "live_network_calls": 0,
+          "status": "unresolved",
+          "holds": [
+            {
+              "alternatives": [
+                "I",
+                "l"
+              ],
+              "cell": 1,
+              "reason": "The glyph is a plain vertical stroke; uppercase I and lowercase l cannot be distinguished from its visible shape.",
+              "row": 1
+            },
+            {
+              "alternatives": [
+                "I",
+                "l"
+              ],
+              "cell": 1,
+              "reason": "The glyph is a plain vertical stroke; uppercase I and lowercase l cannot be distinguished from its visible shape.",
+              "row": 2
+            }
+          ]
+        },
+        {
+          "case": "oversize",
+          "recipe_sha256": "18231159a9bc509d9b0857d214e60a842b9056228fce6e203d5d0b113a6afb8b",
+          "command": [
+            "/Users/cam/miniconda3/bin/python",
+            "driver.py",
+            "--recipe",
+            "/Users/cam/.codex/worktrees/gpt62-sol-20261117/doc-web/configs/recipes/recipe-pdf-literal-tables-html.yaml",
+            "--input-pdf",
+            "/Users/cam/.codex/worktrees/gpt62-sol-20261117/doc-web/docs/evals/evidence/098-sol62/heldout-table/native.pdf",
+            "--output-dir",
+            "/Users/cam/.codex/worktrees/gpt62-sol-20261117/doc-web/output/fixtures/scout117-sol62/canonical-adopted-sdk221/runs",
+            "--run-id",
+            "canonical-sol-table-oversize",
+            "--allow-run-id-reuse",
+            "--start-from",
+            "literal_table_review"
+          ],
+          "driver_returncode": 1,
+          "source_sha256": "104484d177cb0c2d59abf8e5c93ac807d3db20e5cc844ee9086f58c4d65861b1",
+          "native_pdf_sha256": "28ee6f4374b72bf91c2b89e4f78665924b6b346e0954928018cc847469ce7a7d",
+          "report": "output/fixtures/scout117-sol62/canonical-adopted-sdk221/runs/canonical-sol-table-oversize/03_literal_table_review_v1/pages_html_reviewed_reports/row-00000-page-00001-original-00001.json",
+          "native_receipt_sha256": "99e4c6b0482cf6906b6b6d2d272151f6d9f4a692af595ce7bae1c03d2f084e64",
+          "mock_http_routes": [
+            "/v1/responses/input_tokens"
+          ],
+          "live_network_calls": 0,
+          "status": "unresolved"
+        }
+      ]
+    }
+  },
+  "upstream_scope": "Driver resumed from separately owned authored upstream OCR artifact. Native PDF rerender reproduced paid original PNG. Initial OCR was outside the replaced role.",
+  "manual_source_review": "Bench A two-row span, T4-N7 and T4-M7, blank count versus 0, re-check versus Recheck, K3-X2 versus k3-x2, shade cloth versus shade-cloth and four-column footer preserved on final export.",
+  "validation": [
+    "269 focused tests passed in 22.57s on the final production tree, including 14 native-receipt negatives and an independent exact-text uncertainty-only builder test",
+    "Dual SDK canonical driver positive/negative/count-only and methodology build/check passed",
+    "git diff --check passed"
+  ],
+  "rollback": "Revert the scoped adoption commit. Historical authorizations stay closed.",
+  "worktree": "/Users/cam/.codex/worktrees/gpt62-sol-20261117/doc-web",
+  "custody": "Owner retained raw envelopes only in ignored output. No credentials copied/injected. No deployment."
+}

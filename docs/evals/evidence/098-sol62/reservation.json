@@ -1,0 +1,40 @@
+{
+  "admitted": {
+    "crop": false,
+    "table": true,
+    "ocr": true
+  },
+  "reservations": {
+    "table": {
+      "candidate_finite_max": 1.7020250000000001,
+      "controls_finite_max": 1.8929,
+      "total": 3.594925,
+      "max_candidate": 5,
+      "max_controls": 4,
+      "wallet": 4
+    },
+    "ocr": {
+      "candidate_finite_max": 1.32758,
+      "controls_finite_max": 1.46868,
+      "total": 2.79626,
+      "max_candidate": 4,
+      "max_controls": 4,
+      "wallet": 4
+    }
+  },
+  "candidate_and_table_control_owner_request_parity": [
+    "ocr-barney-sol62",
+    "ocr-alverson-sol62",
+    "table-image-positive-sol62",
+    "table-image-positive-astra",
+    "table-native-positive-sol62",
+    "table-native-positive-astra",
+    "table-ambiguity-negative-sol62",
+    "table-ambiguity-negative-astra",
+    "table-heldout-sol62",
+    "table-heldout-astra"
+  ],
+  "google_controls": "Immutable exact owner-local opt-in/control request replays from Attempt094, matched input images. Fresh independent requests.",
+  "executor_sha256": "61e8bb0be14a9d8a02efd8427c5f5fbbc2ada1deba5bf3a6e718414c5d0ee873",
+  "count_source": "exact real provider input counters over full request; controls reserve extra Google thought tokens"
+}

@@ -11,13 +11,11 @@ from PIL import Image
 import pytest
 
 from doc_web.literal_fidelity import SourcePageReview
-from modules.common.google_table_source_review import (
+from benchmarks.providers.historical_literal_readers.google_table_source_review import (
     ARGON, ASTRA, ASTRA_PROFILE, PROFILE, GoogleSourceOnlyReader, RetainedSourceOnlyReader,
     digest, native_google_output, validate_source_record,
 )
-from modules.common.literal_fidelity_bundle import validate_literal_fidelity_inputs
-from modules.common.literal_table_review import review_literal_tables
-from modules.common.table_source_review import POLICY, SourceOnlyReader
+from benchmarks.providers.historical_literal_readers.table_source_review import POLICY, SourceOnlyReader
 
 
 HTML = '<table><tr><td>Literal r2l3</td><td>1+</td></tr></table>'
@@ -106,16 +104,6 @@ def manifest_for(tmp_path, record, *, model=ARGON):
     return manifest_path, record_path, manifest
 
 
-def reviewed_row(tmp_path, image_path, *, review=None):
-    record, _, _ = successful_record(image_path, review=review)
-    manifest, _, _ = manifest_for(tmp_path, record)
-    source = tmp_path / "source.pdf"
-    source.write_bytes(b"bounded source PDF identity")
-    row = {"page": 19, "page_number": 1, "original_page_number": 19,
-           "image": str(image_path), "source": [str(source)], "raw_html": HTML, "html": HTML}
-    rows = review_literal_tables([row], out_path=tmp_path / "reviewed.jsonl", run_id="native-test",
-                                model=ARGON, source_review_receipts=manifest)
-    return rows[0]
 
 
 def test_actual_native_post_is_lossless_image_only_with_strict_bounded_policy(image_path):
@@ -280,56 +268,10 @@ def test_google_receipt_fields_and_native_envelope_cannot_be_mutated(image_path,
         validate_source_record(record, model=ARGON, image_sha256=digest(image_path.read_bytes()), image_path=image_path)
 
 
-def test_builder_google_authority_requires_explicit_selection_and_retained_review(image_path, tmp_path):
-    row = reviewed_row(tmp_path, image_path)
-    assert row["literal_fidelity"]["status"] == "verified"
-    assert row["html"] == row["raw_html"] == HTML
-    with pytest.raises(ValueError, match="identity/status"):
-        validate_literal_fidelity_inputs([row], run_id="native-test", required=True)
-    assert validate_literal_fidelity_inputs([row], run_id="native-test", required=True, reader_model=ARGON)
 
 
-@pytest.mark.parametrize("mutation", ["source", "image", "prompt", "schema", "request", "native", "effort"])
-def test_builder_rejects_bound_source_or_reader_mutations_even_with_resealed_report(image_path, tmp_path, mutation):
-    row = reviewed_row(tmp_path, image_path)
-    report_path = Path(row["literal_fidelity"]["report_path"])
-    report = json.loads(report_path.read_text())
-    if mutation == "source":
-        Path(row["source"][0]).write_bytes(b"changed PDF")
-    elif mutation == "image":
-        Image.new("RGB", (100, 60), "black").save(image_path)
-    else:
-        record = report["requests"][0]
-        key, value = {"prompt": ("prompt_sha256", "0" * 64), "schema": ("response_schema_sha256", "0" * 64),
-                      "request": ("request_sha256", "0" * 64),
-                      "native": ("native_response_json", "{}"), "effort": ("thinking_config", {"thinkingLevel": "high"})}[mutation]
-        record[key] = value
-        report_path.write_text(json.dumps(report))
-        row["literal_fidelity"]["report_sha256"] = digest(report_path.read_bytes())
-    with pytest.raises(ValueError):
-        validate_literal_fidelity_inputs([row], run_id="native-test", required=True, reader_model=ARGON)
 
 
-def test_native_uncertainty_is_retained_and_holds_builder_qualification(image_path, tmp_path):
-    row = reviewed_row(tmp_path, image_path, review=review_dict(uncertain=True))
-    assert row["literal_fidelity"]["status"] == "unresolved"
-    report = json.loads(Path(row["literal_fidelity"]["report_path"]).read_text())
-    assert report["tables"][0]["review"]["uncertain_cells"][0]["alternatives"] == ["r2l3", "r213"]
-    assert row["html"] == HTML
-    with pytest.raises(ValueError, match="unresolved receipt"):
-        validate_literal_fidelity_inputs([row], run_id="native-test", required=True, reader_model=ARGON)
-
-    # A forged green summary must not hide the raw native reader's uncertainty.
-    report["status"] = "verified"
-    report["unresolved_count"] = 0
-    report["errors"] = []
-    report["tables"][0]["decision"] = "initial_agrees_B"
-    report_path = Path(row["literal_fidelity"]["report_path"])
-    report_path.write_text(json.dumps(report))
-    row["literal_fidelity"].update(status="verified", unresolved_count=0,
-                                    report_sha256=digest(report_path.read_bytes()))
-    with pytest.raises(ValueError, match="certain exact agreement"):
-        validate_literal_fidelity_inputs([row], run_id="native-test", required=True, reader_model=ARGON)
 
 
 @pytest.mark.parametrize("max_requests,budget", [(1, 4.5), (3, 0.37968)])
@@ -380,67 +322,10 @@ def test_astra_and_google_cannot_impersonate_each_other_by_relabeling_model(imag
         validate_source_record(astra, model=ARGON, image_sha256=digest(image_path.read_bytes()), image_path=image_path)
 
 
-def astra_reviewed_row(tmp_path, image_path):
-    record, _ = successful_astra_record(image_path)
-    manifest, _, _ = manifest_for(tmp_path, record, model=ASTRA)
-    row = {"page": 19, "page_number": 1, "original_page_number": 19,
-           "image": str(image_path), "raw_html": HTML, "html": HTML}
-    rows = review_literal_tables([row], out_path=tmp_path / "astra-reviewed.jsonl",
-                                run_id="astra-test", source_review_receipts=manifest)
-    assert rows[0]["literal_fidelity"]["status"] == "verified"
-    return rows[0]
 
 
-def test_retained_native_astra_qualifies_default_builder_without_post(image_path, tmp_path, monkeypatch):
-    monkeypatch.setattr(httpx.Client, "post", lambda *args, **kwargs: pytest.fail("retained read must not POST"))
-    row = astra_reviewed_row(tmp_path, image_path)
-    qualified = validate_literal_fidelity_inputs([row], run_id="astra-test", required=True)
-    assert qualified
-    report = json.loads(qualified[0]["report_bytes"])
-    assert report["requests"][0]["provider"] == "openai"
-    assert report["requests"][0]["authority_profile"] == ASTRA_PROFILE
-    assert report["requests"][0]["service_tier"] == "default"
-    with pytest.raises(ValueError):
-        validate_literal_fidelity_inputs([row], run_id="astra-test", required=True, reader_model=ARGON)
 
 
-@pytest.mark.parametrize("mutation", [
-    "missing-provider", "foreign-provider", "missing-profile", "foreign-profile",
-    "missing-native", "foreign-native", "missing-native-hash", "foreign-native-hash",
-    "missing-request-hash", "foreign-request-hash", "missing-tier", "foreign-tier",
-    "missing-native-tier", "foreign-native-tier", "foreign-native-model", "foreign-native-id",
-])
-def test_default_builder_rejects_astra_metadata_or_native_mutation_in_resealed_report(image_path, tmp_path, mutation):
-    row = astra_reviewed_row(tmp_path, image_path)
-    report_path = Path(row["literal_fidelity"]["report_path"])
-    report = json.loads(report_path.read_bytes())
-    record = report["requests"][0]
-    if mutation in {"missing-native-tier", "foreign-native-tier", "foreign-native-model", "foreign-native-id"}:
-        native = json.loads(record["native_response_json"])
-        if mutation == "missing-native-tier":
-            native.pop("service_tier")
-        elif mutation == "foreign-native-tier":
-            native["service_tier"] = "priority"
-        elif mutation == "foreign-native-model":
-            native["model"] = ARGON
-        else:
-            native["id"] = "foreign-response"
-        record["native_response_json"] = json.dumps(native)
-        record["native_response_sha256"] = digest(record["native_response_json"].encode())
-    else:
-        field = {"provider": "provider", "profile": "authority_profile", "native": "native_response_json",
-                 "native-hash": "native_response_sha256", "request-hash": "request_sha256",
-                 "tier": "service_tier"}[mutation.split("-", 1)[1]]
-        if mutation.startswith("missing-"):
-            record.pop(field)
-        else:
-            record[field] = {"provider": "google", "authority_profile": PROFILE,
-                             "native_response_json": "{}", "native_response_sha256": "0" * 64,
-                             "request_sha256": "0" * 64, "service_tier": "priority"}[field]
-    report_path.write_text(json.dumps(report))
-    row["literal_fidelity"]["report_sha256"] = digest(report_path.read_bytes())
-    with pytest.raises(ValueError):
-        validate_literal_fidelity_inputs([row], run_id="astra-test", required=True)
 
 
 def test_native_astra_actual_image_is_required_for_direct_validation(image_path):

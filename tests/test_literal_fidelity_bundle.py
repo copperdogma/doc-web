@@ -11,7 +11,7 @@ import pytest
 from PIL import Image
 
 from doc_web.literal_tables import canonical_table_digest, compare_tables
-from modules.common.table_source_review import SourceOnlyReader
+from modules.common.table_source_review import SourceOnlyReader, source_request
 from modules.common.literal_fidelity_bundle import (
     finalize_literal_fidelity_bundle,
     validate_literal_fidelity_inputs,
@@ -65,16 +65,19 @@ def evidence(tmp_path):
              "input_tokens_details": {"cached_tokens": 0},
              "output_tokens_details": {"reasoning_tokens": 10}}
     native = {"id": "astra-response-test", "object": "response", "created_at": 0,
-              "status": "completed", "model": "gpt-6-astra", "service_tier": "default",
+              "status": "completed", "model": "gpt-6.2-sol", "service_tier": "default",
               "error": None, "incomplete_details": None, "usage": usage,
               "output": [{"id": "message-test", "type": "message", "role": "assistant",
                           "status": "completed", "content": [{"type": "output_text",
                                                                 "text": raw, "annotations": []}]}]}
-    response = SimpleNamespace(output_text=raw, status="completed", model="gpt-6-astra",
+    body = source_request(image)
+    native.update({k:body[k] for k in ("store","reasoning","max_output_tokens","text")})
+    response = SimpleNamespace(output_text=raw, status="completed", model="gpt-6.2-sol",
                                id=native["id"], usage=usage, service_tier="default",
                                model_dump_json=lambda: json.dumps(native))
     raw_response = SimpleNamespace(content=json.dumps(native).encode(), parse=lambda: response)
     client = SimpleNamespace(responses=SimpleNamespace(
+        count_input_tokens=lambda **kwargs:40,
         with_raw_response=SimpleNamespace(create=lambda **kwargs: raw_response)))
     SourceOnlyReader(client=client)(image, report["requests"])
     reseal()
@@ -333,3 +336,19 @@ def test_literal_only_build_cannot_overwrite_validated_bundle_files(evidence, tm
     assert result.returncode != 0 and "Reviewed build paths blocked" in result.stderr
     assert not output.exists() and not manifest.exists()
     assert not (tmp_path / "shared.json").exists()
+
+
+def test_publication_holds_matching_text_when_native_reader_marks_it_uncertain(evidence):
+    row, report, reseal = evidence
+    reviewed = report["tables"][0]["review"]
+    assert reviewed["html"] == report["tables"][0]["initial_html"]
+    reviewed["uncertain_cells"] = [{"row": 0, "cell": 0, "reason": "glyph ambiguity", "alternatives": ["Literal r2l3", "Literal r213"]}]
+    record, = report["requests"]
+    native = json.loads(record["native_response_json"])
+    updated = json.dumps({"source_table_count": 1, "tables": [reviewed]})
+    native["output"][0]["content"][0]["text"] = record["raw_response"] = updated
+    record["native_response_json"] = json.dumps(native)
+    record["native_response_sha256"] = digest(record["native_response_json"].encode())
+    reseal()
+    with pytest.raises(ValueError, match="B lacks certain exact agreement"):
+        qualify(row)

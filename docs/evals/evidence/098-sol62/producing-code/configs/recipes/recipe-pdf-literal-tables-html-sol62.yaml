@@ -50,11 +50,11 @@ stages:
       pages: ocr_ai
     out: pages_html_reviewed.jsonl
     params:
-      model: gpt-6.2-astra
+      model: gpt-6.2-sol
       max_pages: 3
       max_tables: 8
       max_requests: 3
-      budget_usd: 6.0
+      budget_usd: 1.5
 
   - id: extract_page_numbers
     stage: transform
@@ -88,6 +88,6 @@ stages:
     params:
       images_subdir: images
       require_literal_fidelity: true
-      literal_reader_model: gpt-6.2-astra
+      literal_reader_model: gpt-6.2-sol
       book_title: ""
       book_author: ""

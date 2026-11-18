@@ -1,0 +1,46 @@
+{
+  "worktree": "/Users/cam/.codex/worktrees/gpt62-sol-20261117/doc-web",
+  "branch": "codex/gpt62-sol-20261117",
+  "base": "0a9dc6055e5ebe8e30f1b8ce3549050251bdb1a1",
+  "closed_wallets_usd": {
+    "table": 0.384184,
+    "ocr": 0.08528775,
+    "detector": 0
+  },
+  "known_total_usd": 0.46947175,
+  "unsettled_usd": 0,
+  "inference_posts": 11,
+  "sdk_replays": [
+    "2.21.0 consumer-final-sdk221",
+    "locked 1.109.1 consumer-final-locked"
+  ],
+  "positive_export": true,
+  "negative_no_qualified_html": true,
+  "focus_suite": "223 passed plus 3 setup errors (missing output/runs); created normal ignored output directory then entire affected file 8/8 passed, 226 unique passing tests",
+  "focused_logs": [
+    "output/fixtures/scout117-sol62/focused-tests.log",
+    "output/fixtures/scout117-sol62/offline-suite-rerun.log"
+  ],
+  "methodology_graph": "build and check pass",
+  "git_diff_check": "pass",
+  "credential_custody": "Existing owner variables DOC_WEB_OPENAI_API_KEY and DOC_WEB_GEMINI_API_KEY present through normal wrapper. No copy, injection or cleanup.",
+  "review_patch_sha256": {
+    "modules/common/table_source_review.py": "c4579efade606eb304d8c722edf20b519b6f203078927b0ba401b25ef5072339",
+    "modules/common/google_table_source_review.py": "786605f9b7f904e0d3806455cfcc90013e13c788df5e6b02663ae293fd023e26",
+    "modules/build/build_chapter_html_v1/main.py": "1f5cd421b3db78a2d4d92b2d5247a827175823e7456194febf9352852a11ac5c",
+    "modules/build/build_chapter_html_v1/module.yaml": "3bea65b09324b8bcbc52a6ee6e8d72c5e4b411875ac94541f56ef33caa55c964",
+    "configs/recipes/recipe-pdf-literal-tables-html-sol62.yaml": "155d3dd334f63c96c93c8706648f4bf7684ceffe4526388e50e3e296c52636b2",
+    "benchmarks/scripts/scout117_table_consumer.py": "46f7b5e88dcaaea1a06d5412538a132cc6e08d2f81f522737ca9a9ae3378cc4a",
+    "benchmarks/scripts/scout117_reservation.py": "61e8bb0be14a9d8a02efd8427c5f5fbbc2ada1deba5bf3a6e718414c5d0ee873",
+    "benchmarks/scripts/scout117_reconcile.py": "9bd7ee567cc784acb9c2440d69aaee73684eef6a72ffa563f0971b4ed0bfcafd",
+    "docs/runbooks/sol62-literal-table-reader.md": "fe12b60d789629a8338275fcd6f4fbed1ce211f01e4f8caffc64fdca4174a709"
+  },
+  "frozen_producers_recoverable": true,
+  "no_remote_writes": true,
+  "retained": "Retain for review-only opt-in and immutable paid output custody.",
+  "final_profile_tests": "116/116 passed after final receipt-hardening; 6/6 independently altered saved count/effort/schema/strict/store/output-cap controls correctly refused",
+  "final_consumer_summaries": {
+    "output/fixtures/scout117-sol62/consumer-final-sdk221/table-consumer.json": "34a82c8ab3859e2cfa4d8c9506b0d92e6e083b7bb73b29af932f5db1dbb887f9",
+    "output/fixtures/scout117-sol62/consumer-final-locked/table-consumer.json": "efaff12ac88fcfac3ca1b95c0d7fdeb9c8862ee4b0451a9b02fd499343dc4d23"
+  }
+}

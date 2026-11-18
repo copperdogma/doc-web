@@ -1,0 +1,34 @@
+{
+  "text_pass": true,
+  "structure_pass": true,
+  "pass": true,
+  "text_mismatch_count": 0,
+  "structure_mismatch_count": 0,
+  "text_mismatches": [],
+  "structure_mismatches": [],
+  "counts": {
+    "golden": {
+      "tables": 1,
+      "rows": 6,
+      "cells": 20
+    },
+    "actual": {
+      "tables": 1,
+      "rows": 6,
+      "cells": 20
+    }
+  },
+  "scope": {
+    "mode": "all_tables",
+    "table_index": null,
+    "golden_table_count": 1,
+    "actual_table_count": 1,
+    "excluded_actual_table_indices": [],
+    "compared_actual_table_count": 1,
+    "document_actual_table_count": 1
+  },
+  "source_table_count": 1,
+  "uncertainties": [
+    []
+  ]
+}

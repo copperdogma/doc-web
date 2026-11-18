@@ -126,8 +126,8 @@ def validate_source_record(record, *, model, image_sha256, image_path=None):
         ):
             raise ValueError("Unqualified OpenAI source-read authority profile")
         require_completed_identity(record)
-        if model == "gpt-6.2-astra" and record.get("served_model") != model:
-            raise ValueError("Source-read must serve the qualified Astra 6.2 identity")
+        if model in ("gpt-6.2-astra", "gpt-6.2-sol") and record.get("served_model") != model:
+            raise ValueError("Source-read must serve the qualified 6.2 identity")
         if (
             record.get("image_detail") != "original"
             or record.get("reasoning") != {"effort": effort}
@@ -155,6 +155,19 @@ def validate_source_record(record, *, model, image_sha256, image_path=None):
             for k in ("input_tokens", "output_tokens")
         ):
             raise ValueError("Source-read native usage missing/invalid")
+        if model == "gpt-6.2-sol":
+            native_format = (data.get("text") or {}).get("format") or {}
+            if (
+                not 0 < usage["input_tokens"] <= 26_000
+                or record.get("exact_input_tokens_before_dispatch") != usage["input_tokens"]
+                or (data.get("reasoning") or {}).get("effort") != effort
+                or data.get("max_output_tokens") != output_limit
+                or data.get("store") is not False
+                or native_format.get("type") != "json_schema"
+                or native_format.get("strict") is not True
+                or native_format.get("schema") != SourcePageReview.model_json_schema()
+            ):
+                raise ValueError("Sol source-read native contract or input-count mismatch")
         if usage["output_tokens"] > output_limit:
             raise ValueError("Source-read native output allowance exceeded")
         visible = []

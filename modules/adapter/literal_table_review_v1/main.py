@@ -13,12 +13,11 @@ def main() -> None:
     input_group.add_argument("--pages", help="page_html_v1 JSONL input")
     input_group.add_argument("--inputs", nargs="+", help="Driver-compatible page artifact inputs")
     parser.add_argument("--out", required=True, help="Output page_html_v1 JSONL path")
-    parser.add_argument("--model", default="gpt-6-astra")
     parser.add_argument("--source-review-receipts", help="Hash-bound native source receipts; consumes without inference")
     parser.add_argument("--max-pages", type=int, default=3)
     parser.add_argument("--max-tables", type=int, default=8)
-    parser.add_argument("--max-requests", type=int, default=10)
-    parser.add_argument("--budget-usd", type=float, default=15.0)
+    parser.add_argument("--max-requests", type=int, default=3)
+    parser.add_argument("--budget-usd", type=float, default=1.5)
     parser.add_argument("--run-id", required=True, help="Current driver run ID")
     parser.add_argument("--state-file")
     parser.add_argument("--progress-file")
@@ -40,7 +39,6 @@ def main() -> None:
         rows,
         out_path=Path(args.out),
         run_id=args.run_id,
-        model=args.model,
         max_pages=args.max_pages,
         max_tables=args.max_tables,
         max_requests=args.max_requests,

@@ -46,7 +46,7 @@ evals:
     pipeline_stage: extract
     runner: custom
     command: "PYTHONPATH=. python benchmarks/scripts/run_literal_table_fidelity.py --manifest output/story244-eval/development.json --out output/story244-eval/fresh --variant literal"
-    story_refs: ["245", "253", "254", "255", "257", "258", "263", "264", "265", "267", "272", "273"]
+    story_refs: ["245", "253", "254", "255", "257", "258", "263", "264", "265", "267", "272", "273", "274"]
     category_refs: ["spec:2", "spec:3", "spec:6"]
     spec_refs: ["spec:2.1", "spec:2.2", "spec:3.1", "spec:6"]
     compromise_refs: ["C1", "C3", "C6"]
@@ -56,6 +56,11 @@ evals:
       silent_substitutions: 0
       harmful_control_changes: 0
     scores:
+      - model: "gpt-6.2-sol native medium/32768 Scout117"
+        measured: "2026-11-17"
+        git_sha: "0a9dc605+attempt098-uncommitted"
+        metrics: {matched_pairs: 4, exact_clear_cells_per_arm: 56, mandatory_holds_per_arm: 2, candidate_total_usd: 0.061014, control_total_usd: 0.323170, candidate_mean_ms: 4337, control_mean_ms: 9837}
+        note: "Canonical Sol source-only reader replaces older product readers. Independent20 source and real default-driver export/holds passed. Economics compared to executable older Astra. Attempt098/Story274."
       - model: "gpt-6.2-astra native HIGH32768 Scout116"
         measured: "2026-11-17"
         git_sha: "56564d95+attempt097-uncommitted"
@@ -375,7 +380,7 @@ evals:
     config: benchmarks/tasks/image-crop-extraction.yaml
     scorer: benchmarks/scorers/image_crop_scorer.py
     golden: benchmarks/golden/
-    story_refs: ["133", "183", "207", "226", "232", "235", "236", "237", "238", "239", "249", "257", "258", "263", "264", "265", "267", "272", "273"]
+    story_refs: ["133", "183", "207", "226", "232", "235", "236", "237", "238", "239", "249", "257", "258", "263", "264", "265", "267", "272", "273", "274"]
     category_refs: ["spec:4", "spec:8"]
     compromise_refs: ["C4"]
     spec_compromise: C4
@@ -400,6 +405,11 @@ evals:
         evidence_status: fresh-bounded-detector-publication-unqualified
         note: Frozen fresh same-source detector ranking Sol, Luna, Gemini. Page safety/publication
           gates remain failed; runtime retained. See Attempt044 and tracked crop sheets.
+      - model: "gpt-6.2-sol native high/32768 Scout117"
+        measured: "2026-11-17"
+        git_sha: "0a9dc605+attempt098-uncommitted"
+        metrics: {inferences: 0, source_width: 5100, source_height: 6600, required_patches: 33120, limit_patches: 30000, cost_usd: 0}
+        note: "Native original assisted detector input count rejected; geometry and final crop capability unmeasured. Retain current detector. Attempt098/Story274."
       - model: "gpt-6.2-astra native HIGH32768 Scout116"
         measured: "2026-11-17"
         git_sha: "56564d95+attempt097-uncommitted"
@@ -4213,7 +4223,7 @@ evals:
     command: "python benchmarks/scripts/run_handwritten_notes_eval.py --image-recipe configs/recipes/recipe-images-ocr-html-handwritten-notes-gemini-rescue.yaml --pdf-recipe configs/recipes/recipe-pdf-ocr-html-handwritten-notes-gemini-rescue.yaml --image-case-id image-handwritten-rescue --pdf-case-id pdf-handwritten-rescue --instrument --output benchmarks/results/handwritten-notes-story189-real-expanded.json"
     scorer: benchmarks/scorers/handwritten_notes_transcription.py
     golden: benchmarks/golden/handwritten-notes/corpus.json
-    story_refs: ["179", "182", "185", "186", "189", "191", "192", "208", "230", "238", "239", "249", "257", "258", "263", "264", "265", "267", "272", "273"]
+    story_refs: ["179", "182", "185", "186", "189", "191", "192", "208", "230", "238", "239", "249", "257", "258", "263", "264", "265", "267", "272", "273", "274"]
     category_refs: ["spec:1", "spec:2", "spec:8"]
     compromise_refs: []
 
@@ -4223,6 +4233,11 @@ evals:
       note: "The target still marks the desired passing bar, but the widened default corpus now includes two real handwritten fixtures that the maintained rescue seam does not clear."
 
     scores:
+      - model: "gpt-6.2-sol native high/32768 Scout117"
+        measured: "2026-11-17"
+        git_sha: "0a9dc605+attempt098-uncommitted"
+        metrics: {candidate_barney_ratio: 0.973439, hydrogen_barney_ratio: 0.989201, gemini38_barney_ratio: 0.984881, candidate_cost_usd: 0.0251535, latency_ms: 25336}
+        note: "Valid Barney miss below .99; retain prior reviewed Hydrogen option. No Alverson or other effort. Attempt098/Story274."
       - model: "gpt-6.2-astra native HIGH32768 Scout116"
         measured: "2026-11-17"
         git_sha: "56564d95+attempt097-uncommitted"

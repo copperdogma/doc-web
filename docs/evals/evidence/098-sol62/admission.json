@@ -1,0 +1,83 @@
+{
+  "crop-assisted-Image011-sol62": {
+    "http": 400,
+    "count": null,
+    "request_sha256": "763dcd0042a9e5a22600a3f180fcf48faf2caa4c9f5808705b5f5d15d9bf0036",
+    "error": {
+      "code": "invalid_value",
+      "type": "invalid_request_error",
+      "param": "input",
+      "message": "The image you provided requires 33120 patches after processing, exceeding the limit of 30000. Please resize the image and try again."
+    }
+  },
+  "ocr-barney-sol62": {
+    "http": 200,
+    "count": 1302,
+    "request_sha256": "21a5931210fcd89c329fb5bfd9fb3564cc6d40372617e021cb0ae6cd72a53149"
+  },
+  "ocr-barney-hydrogen": {
+    "http": 200,
+    "count": 2100,
+    "request_sha256": "feed8f917d7cc67c2ec3c83f112e602b4053a5ac1beb31be37093a9eda0ce7f0"
+  },
+  "ocr-barney-gemini38": {
+    "http": 200,
+    "count": 2029,
+    "request_sha256": "f4482092b0954d423a511c1e929d3ab4fc29cde2ea058a37ffc39454b4fdd1ea"
+  },
+  "ocr-alverson-sol62": {
+    "http": 200,
+    "count": 1686,
+    "request_sha256": "51c14ad07af011a2f02b0b5f627c524bb3aa115add9ee42ea0919f33150ae245"
+  },
+  "ocr-alverson-hydrogen": {
+    "http": 200,
+    "count": 2100,
+    "request_sha256": "ffe297b68ea7dc279cd669c894e5b5a0e5fce7b102309c74aca9b50d1dcdf65e"
+  },
+  "ocr-alverson-gemini38": {
+    "http": 200,
+    "count": 2048,
+    "request_sha256": "9ae0c91026148143e0e5cb7a2a5a764c7a5c3c45347db878bfa6dcc3aacaeaf7"
+  },
+  "table-image-positive-sol62": {
+    "http": 200,
+    "count": 5090,
+    "request_sha256": "d215a39ae6147477a471663497ee7c1ac2a3195175265fa7e0fae280a2a61830"
+  },
+  "table-image-positive-astra": {
+    "http": 200,
+    "count": 5090,
+    "request_sha256": "2cfeaf2a6606e194667a524e2e8e97083cf4a3f710f59c06e01138f90a6a654c"
+  },
+  "table-native-positive-sol62": {
+    "http": 200,
+    "count": 5090,
+    "request_sha256": "1ef80683c9f09072cead585c1389c67e06d26d73077ac39cbeb3894d902eed8f"
+  },
+  "table-native-positive-astra": {
+    "http": 200,
+    "count": 5090,
+    "request_sha256": "2768b95091342db6ce86fc03e415e913b8008e6af973d6fc86d707906c9f5888"
+  },
+  "table-ambiguity-negative-sol62": {
+    "http": 200,
+    "count": 5090,
+    "request_sha256": "780fe549d572e8d6db1097e7b071eeef125dbfab8f35370dff47e89a3c453d77"
+  },
+  "table-ambiguity-negative-astra": {
+    "http": 200,
+    "count": 5090,
+    "request_sha256": "594fce2b949624e6aad8feba05df2d9d402f2f3b14a7c4d4f6d55bb6a1f5455d"
+  },
+  "table-heldout-sol62": {
+    "http": 200,
+    "count": 5090,
+    "request_sha256": "8b715e7ff8ad62ace8276aad87f096952d12a2437ba07b971fe2f995b59f7697"
+  },
+  "table-heldout-astra": {
+    "http": 200,
+    "count": 5090,
+    "request_sha256": "b4acaf1edc7abec796a3926a78c5ddd3632c9f5d34b31b63c1d9e1b915f63e0b"
+  }
+}

@@ -211,7 +211,7 @@ def test_driver_build_command_routes_one_page_input_and_run_identity(tmp_path):
 
     artifact, command, _ = build_command(
         entrypoint="modules/adapter/literal_table_review_v1/main.py",
-        params={"model": "gpt-6-astra", "max_pages": 3, "max_tables": 8},
+        params={"max_pages": 3, "max_tables": 8},
         stage_conf={
             "id": "literal_table_review",
             "stage": "adapter",

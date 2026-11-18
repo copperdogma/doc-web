@@ -17,6 +17,8 @@ This file captures ideas, insights, and potential architectural improvements dis
 
 ## Processed
 
+- 2026-11-17 — Scout117 / Story274: Cam approved the canonical Sol 6.2 source-only table reader. Four matched comparisons and the canonical driver qualified this role. Handwriting and detector retain their current routes. [Attempt 098](evals/attempts/098-gpt62-sol-source-fidelity.md)
+
 - 2026-11-16 — Cam authorized landing Story272/Attempt094 and the opt-in reviewed Hydrogen OCR patch/evidence. Focused23tests, original native-consumer proof, archive identities and independent privacy review cover the candidate; defaults unchanged. Safe visible output projection added for Git review.
 
 - 2026-11-16 — Scout111 selected Hydrogen study complete, Story272/Attempt094. Prefer exactnativeHIGH32768 for the bounded reviewed public historicalhandwriting job:2/2above.99 vsGemini0/2; more expensive/slower. Defaultoff recipes/client patch and normalnativeSDK consumer proof ready. Safety/literal/actualassistedcrop gates rejecttestedarms; retain runtime defaults/manualholds.14POSTs USD.2698135known+.31476unknownheld/18; protected originals/worktree retained, no commits/push.

@@ -8,8 +8,7 @@ from PIL import Image
 
 from doc_web.literal_fidelity import LiteralFidelityReceipt, LiteralFidelityReport, SourcePageReview
 from doc_web.literal_tables import _parse, canonical_table_digest, compare_tables
-from modules.common.table_source_review import POLICY
-from modules.common.google_table_source_review import validate_source_record
+from modules.common.table_source_review import POLICY, validate_source_record
 
 
 def _require(condition, message):
@@ -31,12 +30,12 @@ def _certain_agreement(initial, review):
     return not review.uncertain_cells and compare_tables(initial, review.html)["pass"]
 
 
-def _validate_report_authority(report, html, reader_model, image_path):
+def _validate_report_authority(report, html, image_path):
     _require(report.policy_version == "source-only-table-review-v1", "unqualified source-review policy version")
     _require(len(report.requests) == 1, "exactly one independent source-read receipt required")
     request = report.requests[0]
     try:
-        source_review = validate_source_record(request, model=reader_model, image_sha256=report.image_sha256, image_path=image_path)
+        source_review = validate_source_record(request, image_sha256=report.image_sha256, image_path=image_path)
     except (KeyError, TypeError, RuntimeError, ValueError) as exc:
         raise ValueError("Literal fidelity: invalid source-read served identity/status") from exc
     _require(request.get("submitted_image_sha256") == report.image_sha256, "source-read image identity mismatch")
@@ -72,7 +71,7 @@ def _validate_report_authority(report, html, reader_model, image_path):
             raise ValueError("Literal fidelity: unresolved table decision")
 
 
-def validate_literal_fidelity_inputs(pages, *, run_id, required=False, reader_model="gpt-6-astra"):
+def validate_literal_fidelity_inputs(pages, *, run_id, required=False):
     """Read and verify every receipt before the builder creates output files."""
     has_receipt = any(page.get("literal_fidelity") is not None for page in pages)
     if not required and not has_receipt:
@@ -117,7 +116,7 @@ def validate_literal_fidelity_inputs(pages, *, run_id, required=False, reader_mo
                      "source PDF identity missing or changed")
         else:
             _require(receipt.source_pdf_sha256 is None, "source PDF receipt lacks report identity")
-        _validate_report_authority(report, html, reader_model, page["image"])
+        _validate_report_authority(report, html, page["image"])
         qualified.append({"receipt": receipt, "report_bytes": report_bytes, "html": html,
                           "image_path": page["image"], "report_path": str(report_path),
                           "source_pdf": report.source_pdf, "source_paths": page.get("source") or []})

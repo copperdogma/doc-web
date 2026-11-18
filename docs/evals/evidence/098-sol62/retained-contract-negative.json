@@ -1,0 +1,12 @@
+{
+  "original_valid": true,
+  "rejected": [
+    "count",
+    "effort",
+    "strict",
+    "store",
+    "native_cap",
+    "schema"
+  ],
+  "provider_calls": 0
+}

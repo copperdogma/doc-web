@@ -15,7 +15,7 @@ from PIL import Image
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT))
 from doc_web.literal_fidelity import SourcePageReview
-from modules.common.table_source_review import POLICY, SourceOnlyReader, astra_request
+from benchmarks.providers.historical_literal_readers.table_source_review import POLICY, SourceOnlyReader, astra_request
 from modules.common.literal_table_review import review_literal_tables
 from doc_web.literal_tables import compare_tables
 

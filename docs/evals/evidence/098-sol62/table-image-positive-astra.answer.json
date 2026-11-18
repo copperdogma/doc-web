@@ -1,0 +1,5 @@
+{
+  "raw": "{\"source_table_count\":1,\"tables\":[{\"bbox\":[149,299,1551,1034],\"html\":\"<table><thead><tr><th>Product</th><th>Lot</th><th>Trays</th><th>Note</th></tr></thead><tbody><tr><td>Olive loaf</td><td>Il1-O0</td><td>1+</td><td>Cooling</td></tr><tr><td>Rye loaf</td><td>o0-LI</td><td>0</td><td>recieve</td></tr><tr><td>Oat roll</td><td>aB-9</td><td></td><td>“Ready”</td></tr><tr><td>Oat roll</td><td>AB-9</td><td>-</td><td>Ready; hold.</td></tr><tr><td colspan=\\\"2\\\">Evening batch</td><td>2</td><td>No change</td></tr></tbody></table>\",\"uncertain_cells\":[]}]}",
+  "model": "gpt-6-astra",
+  "native_sha256": "6c0262b457c83b51088d50c765ae517a20938cd19cfe0d17c6add054020c2c87"
+}

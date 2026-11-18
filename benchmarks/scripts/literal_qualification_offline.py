@@ -350,6 +350,7 @@ def run_proof(result_root=None, namespace="offline"):
     sys.path.insert(0, str(ROOT))
     from benchmarks.scripts import qualify_argon_literal as h
 
+    h.require_historical_driver()
     result_root = Path(result_root or h.RESULTS / "offline").resolve()
     if result_root.exists():
         raise RuntimeError("Fresh offline result root required; retain prior evidence")

@@ -7,9 +7,10 @@ import httpx
 from PIL import Image
 import pytest
 
-from modules.common.google_table_source_review import GoogleSourceOnlyReader
+from benchmarks.providers.historical_literal_readers.google_table_source_review import GoogleSourceOnlyReader
+from doc_web.literal_fidelity import SourcePageReview
 from modules.common.openai_client import OpenAI
-from modules.common.table_source_review import SourceOnlyReader, astra_request
+from modules.common.table_source_review import SourceOnlyReader, source_request
 
 
 REVIEW = {"source_table_count": 1, "tables": [{
@@ -18,10 +19,11 @@ REVIEW = {"source_table_count": 1, "tables": [{
 }]}
 
 
-def astra_native():
+def sol_native():
     return {"id": "resp_offline_usage", "object": "response", "created_at": 0,
-            "status": "completed", "model": "gpt-6-astra", "service_tier": "default",
-            "error": None, "incomplete_details": None,
+            "status": "completed", "model": "gpt-6.2-sol", "service_tier": "default",
+            "error": None, "incomplete_details": None, "reasoning":{"effort":"medium"},
+            "store":False, "max_output_tokens":32768, "text":{"format":{"type":"json_schema","name":"source_page_tables","strict":True,"schema":SourcePageReview.model_json_schema()}},
             "output": [{"id": "msg_offline_usage", "type": "message", "role": "assistant",
                         "status": "completed", "content": [{"type": "output_text",
                         "text": json.dumps(REVIEW), "annotations": []}]}],
@@ -47,6 +49,8 @@ def native_client(payload):
 
     def dispatch(request):
         calls.append(request)
+        if request.url.path.endswith("/input_tokens"):
+            return httpx.Response(200, json={"object":"response.input_tokens","input_tokens":40})
         return httpx.Response(200, content=raw, headers={"content-type": "application/json"})
 
     client = OpenAI(api_key="offline-placeholder", max_retries=0,
@@ -56,8 +60,8 @@ def native_client(payload):
 
 def test_raw_sdk_content_precedes_parse_and_cached_parse_logs_once(source_and_sink):
     image, sink = source_and_sink
-    client, raw, calls = native_client(astra_native())
-    native = client.responses.with_raw_response.create(**astra_request(image))
+    client, raw, calls = native_client(sol_native())
+    native = client.responses.with_raw_response.create(**source_request(image))
     assert native.content == raw
     assert native.http_response.content == raw
     assert not sink.exists()
@@ -73,13 +77,13 @@ def test_raw_sdk_content_precedes_parse_and_cached_parse_logs_once(source_and_si
 
 def test_source_reader_raw_authority_and_usage_sink_survive_together(source_and_sink, tmp_path):
     image, sink = source_and_sink
-    client, raw, calls = native_client(astra_native())
+    client, raw, calls = native_client(sol_native())
     records = []
     result = SourceOnlyReader(client=client, ledger_path=tmp_path / "ledger.json")(image, records)
     assert result.source_table_count == 1
     assert records[0]["native_response_json"].encode() == raw
     assert records[0]["native_response_sha256"] == hashlib.sha256(raw).hexdigest()
-    assert len(calls) == len(sink.read_text().splitlines()) == 1
+    assert len(calls) == 2 and len(sink.read_text().splitlines()) == 1
 
 
 @pytest.mark.parametrize("malformed_answer", [False, True])

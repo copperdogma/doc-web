@@ -1,0 +1,90 @@
+{
+  "title": "Independent greenhouse tray register",
+  "font": "Courier",
+  "widths": [
+    155,
+    115,
+    116,
+    156
+  ],
+  "rows": [
+    [
+      {
+        "text": "Zone",
+        "header": true
+      },
+      {
+        "text": "Tag",
+        "header": true
+      },
+      {
+        "text": "Trays",
+        "header": true
+      },
+      {
+        "text": "Treatment",
+        "header": true
+      }
+    ],
+    [
+      {
+        "text": "Bench A",
+        "rowspan": 2
+      },
+      {
+        "text": "T4-N7"
+      },
+      {
+        "text": "0"
+      },
+      {
+        "text": "re-check"
+      }
+    ],
+    [
+      {
+        "text": "T4-M7"
+      },
+      {
+        "text": ""
+      },
+      {
+        "text": "Recheck"
+      }
+    ],
+    [
+      {
+        "text": "East"
+      },
+      {
+        "text": "K3-X2"
+      },
+      {
+        "text": "-"
+      },
+      {
+        "text": "shade cloth"
+      }
+    ],
+    [
+      {
+        "text": "West"
+      },
+      {
+        "text": "k3-x2"
+      },
+      {
+        "text": "+2"
+      },
+      {
+        "text": "shade-cloth"
+      }
+    ],
+    [
+      {
+        "text": "Log empty trays before noon.",
+        "colspan": 4
+      }
+    ]
+  ]
+}

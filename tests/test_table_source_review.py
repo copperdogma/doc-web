@@ -28,7 +28,7 @@ def review_dict():
     ]}
 
 
-def fake_client(*, output=None, status="completed", model="gpt-6-astra", error=None):
+def fake_client(*, output=None, status="completed", model="gpt-6.2-sol", error=None):
     calls = []
 
     def create(**kwargs):
@@ -42,6 +42,7 @@ def fake_client(*, output=None, status="completed", model="gpt-6-astra", error=N
         native = {"id": "source-test-response", "object": "response", "created_at": 0,
                   "status": status, "model": model, "service_tier": "default",
                   "error": None, "incomplete_details": None, "usage": usage,
+                  **{k:kwargs[k] for k in ("store","reasoning","max_output_tokens","text")},
                   "output": [{"id": "message-test", "type": "message", "role": "assistant",
                               "status": status, "content": [{"type": "output_text",
                                                              "text": output_text, "annotations": []}]}]}
@@ -51,7 +52,7 @@ def fake_client(*, output=None, status="completed", model="gpt-6-astra", error=N
         )
         return SimpleNamespace(content=(json.dumps(native, indent=3) + "\n").encode(), parse=lambda: response)
 
-    return SimpleNamespace(responses=SimpleNamespace(with_raw_response=SimpleNamespace(create=create))), calls
+    return SimpleNamespace(responses=SimpleNamespace(count_input_tokens=lambda **kwargs:40, with_raw_response=SimpleNamespace(create=create))), calls
 
 
 def test_only_image_dimensions_and_generic_policy_are_submitted(image_path):
@@ -60,10 +61,10 @@ def test_only_image_dimensions_and_generic_policy_are_submitted(image_path):
     result = SourceOnlyReader(client=client)(image_path, records)
     assert isinstance(result, SourcePageReview)
     request = calls[0]
-    assert request["model"] == "gpt-6-astra"
+    assert request["model"] == "gpt-6.2-sol"
     assert request["store"] is False
     assert request["reasoning"] == {"effort": "medium"}
-    assert request["max_output_tokens"] == 8192
+    assert request["max_output_tokens"] == 32768
     assert request["service_tier"] == "default"
     assert request["text"]["format"] == {
         "type": "json_schema", "name": "source_page_tables", "strict": True,
@@ -113,11 +114,11 @@ def test_success_receipt_hashes_request_and_preserves_raw_response(image_path, t
     schema = calls[0]["text"]["format"]["schema"]
     assert record["response_schema_sha256"] == hashlib.sha256(json.dumps(schema, sort_keys=True).encode()).hexdigest()
     assert json.loads(record["raw_response"]) == review_dict()
-    assert record["served_model"] == record["requested_model"] == "gpt-6-astra"
+    assert record["served_model"] == record["requested_model"] == "gpt-6.2-sol"
     assert record["status"] == "completed"
     assert record["image_detail"] == "original"
     assert record["provider"] == "openai"
-    assert record["authority_profile"] == "openai-native-astra-source-only-medium-v1"
+    assert record["authority_profile"] == "openai-native-sol62-source-only-medium-v1"
     assert record["service_tier"] == "default"
     assert record["request_sha256"] == hashlib.sha256(json.dumps(calls[0], sort_keys=True).encode()).hexdigest()
     assert record["native_response_sha256"] == hashlib.sha256(record["native_response_json"].encode()).hexdigest()
@@ -128,7 +129,7 @@ def test_success_receipt_hashes_request_and_preserves_raw_response(image_path, t
     assert native["usage"] == record["usage"] and native["service_tier"] == "default"
     ledger = json.loads(ledger_path.read_text())
     assert ledger["calls"] == 1
-    assert ledger["reserved_usd"] == 1.5
+    assert ledger["reserved_usd"] == 0.5
     assert ledger["entries"][0]["status"] == "completed"
 
 
@@ -144,7 +145,7 @@ def test_actual_native_bytes_are_retained_before_sdk_parse_failure(image_path, t
         calls.append(kwargs)
         return SimpleNamespace(content=raw, parse=parse)
 
-    client = SimpleNamespace(responses=SimpleNamespace(with_raw_response=SimpleNamespace(create=create)))
+    client = SimpleNamespace(responses=SimpleNamespace(count_input_tokens=lambda **kwargs:40, with_raw_response=SimpleNamespace(create=create)))
     reader = SourceOnlyReader(client=client, ledger_path=tmp_path / "ledger.json")
     records = []
     with pytest.raises(ValueError, match="SDK response parsing failed"):
@@ -154,7 +155,7 @@ def test_actual_native_bytes_are_retained_before_sdk_parse_failure(image_path, t
     assert records[0]["native_response_sha256"] == hashlib.sha256(raw).hexdigest()
     assert records[0]["error_type"] == "ValueError"
     assert reader.entries[0]["status"] == "failed"
-    assert json.loads((tmp_path / "ledger.json").read_text())["reserved_usd"] == 1.5
+    assert json.loads((tmp_path / "ledger.json").read_text())["reserved_usd"] == 0.5
 
 
 @pytest.mark.parametrize("status", [None, "incomplete", "failed", "in_progress"])
@@ -227,7 +228,7 @@ def test_complete_inventory_and_uncertainty_are_typed():
         SourcePageReview.model_validate(data)
 
 
-@pytest.mark.parametrize("max_requests,budget", [(1, 15), (10, 1.5)])
+@pytest.mark.parametrize("max_requests,budget", [(1, 15), (10, 0.5)])
 def test_no_dispatch_after_request_or_reservation_cap(image_path, max_requests, budget):
     client, calls = fake_client()
     reader = SourceOnlyReader(client=client, max_requests=max_requests, budget_usd=budget)
@@ -241,7 +242,7 @@ def test_no_dispatch_after_request_or_reservation_cap(image_path, max_requests, 
 def test_insufficient_reservation_budget_prevents_any_attempt(image_path):
     client, calls = fake_client()
     records = []
-    reader = SourceOnlyReader(client=client, budget_usd=1.49)
+    reader = SourceOnlyReader(client=client, budget_usd=0.49)
     with pytest.raises(RuntimeError, match="cap reached"):
         reader(image_path, records)
     assert calls == records == reader.entries == []
@@ -266,7 +267,7 @@ def test_existing_ledger_cannot_reset_spend_or_resume_silently(image_path, tmp_p
     with pytest.raises(ValueError, match="Fresh source-review ledger required"):
         SourceOnlyReader(client=client, ledger_path=ledger)
     assert len(calls) == 1
-    assert json.loads(ledger.read_text())["reserved_usd"] == 1.5
+    assert json.loads(ledger.read_text())["reserved_usd"] == 0.5
 
 
 @pytest.mark.parametrize("model", ["gpt-6.1-sol", "gpt-6-astra-2026-10-06", "unknown"])
@@ -275,7 +276,7 @@ def test_unknown_or_unevaluated_model_rejected_before_client_creation(monkeypatc
         pytest.fail("client should not be constructed for unevaluated model")
 
     monkeypatch.setattr(table_source_review, "OpenAI", forbidden)
-    with pytest.raises(ValueError, match="requires gpt-6-astra"):
+    with pytest.raises(TypeError, match="unexpected keyword"):
         SourceOnlyReader(model=model)
 
 
@@ -290,3 +291,49 @@ def test_oversized_input_rejected_before_request_or_reservation(image_path):
     with pytest.raises(ValueError, match="bounded review size"):
         reader(image_path, records)
     assert calls == records == reader.entries == []
+
+
+@pytest.mark.parametrize("mutation", [
+    "missing-id", "empty-id", "wrong-object", "user-message", "duplicate-message",
+    "schema-name", "float-count", "wrong-count", "wrong-authority", "wrong-effort",
+    "non-strict", "stored", "wrong-output-limit", "wrong-schema",
+])
+def test_resealed_unqualified_native_receipt_cannot_authorize_publication(image_path, mutation):
+    client, _ = fake_client()
+    records = []
+    SourceOnlyReader(client=client)(image_path, records)
+    record, = records
+    native = json.loads(record["native_response_json"])
+    if mutation == "missing-id":
+        del native["id"]
+        del record["response_id"]
+    elif mutation == "empty-id":
+        native["id"] = record["response_id"] = " "
+    elif mutation == "wrong-object":
+        native["object"] = "not-a-response"
+    elif mutation == "user-message":
+        native["output"][0]["role"] = "user"
+    elif mutation == "duplicate-message":
+        native["output"].append(native["output"][0])
+    elif mutation == "schema-name":
+        native["text"]["format"]["name"] = "another_schema"
+    elif mutation == "float-count":
+        record["exact_input_tokens_before_dispatch"] = float(native["usage"]["input_tokens"])
+    elif mutation == "wrong-count":
+        record["exact_input_tokens_before_dispatch"] = 26_001
+    elif mutation == "wrong-authority":
+        native["model"] = record["served_model"] = record["requested_model"] = "gpt-6-astra"
+    elif mutation == "wrong-effort":
+        native["reasoning"]["effort"] = "high"
+    elif mutation == "non-strict":
+        native["text"]["format"]["strict"] = False
+    elif mutation == "stored":
+        native["store"] = True
+    elif mutation == "wrong-output-limit":
+        native["max_output_tokens"] = 8192
+    else:
+        native["text"]["format"]["schema"] = {}
+    record["native_response_json"] = json.dumps(native)
+    record["native_response_sha256"] = hashlib.sha256(record["native_response_json"].encode()).hexdigest()
+    with pytest.raises(ValueError):
+        table_source_review.validate_source_record(record, image_sha256=record["submitted_image_sha256"], image_path=image_path)

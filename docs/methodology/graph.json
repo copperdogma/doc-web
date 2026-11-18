@@ -255,7 +255,8 @@
           "265",
           "267",
           "272",
-          "273"
+          "273",
+          "274"
         ],
         "adr_ids": [
           "ADR-001",
@@ -347,7 +348,8 @@
           "265",
           "267",
           "272",
-          "273"
+          "273",
+          "274"
         ],
         "adr_ids": [
           "ADR-001",
@@ -422,7 +424,8 @@
           "266",
           "267",
           "272",
-          "273"
+          "273",
+          "274"
         ],
         "adr_ids": [],
         "eval_ids": [
@@ -566,7 +569,8 @@
           "266",
           "267",
           "272",
-          "273"
+          "273",
+          "274"
         ],
         "adr_ids": [
           "ADR-001",
@@ -746,7 +750,8 @@
           "266",
           "267",
           "272",
-          "273"
+          "273",
+          "274"
         ],
         "adr_ids": [
           "ADR-002"
@@ -1002,7 +1007,8 @@
           "265",
           "267",
           "272",
-          "273"
+          "273",
+          "274"
         ],
         "eval_ids": [
           "literal-table-fidelity",
@@ -1085,7 +1091,8 @@
             "265",
             "267",
             "272",
-            "273"
+            "273",
+            "274"
           ],
           "eval_ids": [
             "literal-table-fidelity",
@@ -1136,7 +1143,8 @@
           "265",
           "267",
           "272",
-          "273"
+          "273",
+          "274"
         ],
         "eval_ids": [
           "literal-table-fidelity"
@@ -1190,7 +1198,8 @@
             "265",
             "267",
             "272",
-            "273"
+            "273",
+            "274"
           ],
           "eval_ids": [
             "literal-table-fidelity"
@@ -1366,7 +1375,8 @@
           "265",
           "267",
           "272",
-          "273"
+          "273",
+          "274"
         ],
         "eval_ids": [
           "image-crop-extraction",
@@ -1414,7 +1424,8 @@
             "265",
             "267",
             "272",
-            "273"
+            "273",
+            "274"
           ],
           "eval_ids": [
             "image-crop-extraction",
@@ -15716,6 +15727,74 @@
           "summary": ""
         }
       }
+    },
+    {
+      "id": "274",
+      "title": "GPT-6.2 Sol source fidelity evaluation",
+      "path": "docs/stories/story-274-gpt62-sol-source-fidelity.md",
+      "status": "Done",
+      "priority": "Medium",
+      "ideal_refs": [
+        "req:3",
+        "req:4",
+        "req:6"
+      ],
+      "spec_refs": [
+        "spec:2.1",
+        "spec:4.1",
+        "spec:4.2",
+        "spec:6"
+      ],
+      "decision_refs": [
+        "ADR-001",
+        "ADR-002"
+      ],
+      "adr_ids": [
+        "ADR-001",
+        "ADR-002"
+      ],
+      "depends_on": [],
+      "category_refs": [
+        "spec:2",
+        "spec:3",
+        "spec:4",
+        "spec:6",
+        "spec:8"
+      ],
+      "compromise_refs": [
+        "C1",
+        "C4",
+        "C6"
+      ],
+      "input_coverage_refs": [
+        "handwritten-notes",
+        "scanned-pdf-tables"
+      ],
+      "architecture_domains": [
+        "ocr_and_extraction"
+      ],
+      "roadmap_tags": [],
+      "blocker_summary": "",
+      "blocker_evidence": "",
+      "unblock_condition": "",
+      "last_work_log_entry": null,
+      "legacy_build_map_refs": "",
+      "metadata_source": "frontmatter",
+      "missing_frontmatter_keys": [],
+      "actionability": {
+        "source_kind": "story",
+        "source_id": "274",
+        "source_path": "docs/stories/story-274-gpt62-sol-source-fidelity.md",
+        "recommended_now": false,
+        "posture": "completed",
+        "why_now": "",
+        "last_relevant_action": {
+          "date": null,
+          "source_type": "story-status",
+          "source": "docs/stories/story-274-gpt62-sol-source-fidelity.md",
+          "summary": ""
+        }
+      }
     }
   ],
   "adrs": [
@@ -15861,7 +15940,8 @@
         "265",
         "267",
         "272",
-        "273"
+        "273",
+        "274"
       ],
       "compromise_refs": [
         "C1",
@@ -15876,6 +15956,21 @@
         "spec:8"
       ],
       "scores": [
+        {
+          "model": "gpt-6.2-sol native medium/32768 Scout117",
+          "measured": "2026-11-17",
+          "git_sha": "0a9dc605+attempt098-uncommitted",
+          "metrics": {
+            "matched_pairs": 4,
+            "exact_clear_cells_per_arm": 56,
+            "mandatory_holds_per_arm": 2,
+            "candidate_total_usd": 0.061014,
+            "control_total_usd": 0.32317,
+            "candidate_mean_ms": 4337,
+            "control_mean_ms": 9837
+          },
+          "note": "Canonical Sol source-only reader replaces older product readers. Independent20 source and real default-driver export/holds passed. Economics compared to executable older Astra. Attempt098/Story274."
+        },
         {
           "model": "gpt-6.2-astra native HIGH32768 Scout116",
           "measured": "2026-11-17",
@@ -16075,19 +16170,19 @@
         }
       ],
       "latest_score": {
-        "model": "gpt-6.2-astra native HIGH32768 Scout116",
+        "model": "gpt-6.2-sol native medium/32768 Scout117",
         "measured": "2026-11-17",
-        "git_sha": "56564d95+attempt097-uncommitted",
+        "git_sha": "0a9dc605+attempt098-uncommitted",
         "metrics": {
           "matched_pairs": 4,
           "exact_clear_cells_per_arm": 56,
           "mandatory_holds_per_arm": 2,
-          "candidate_total_usd": 0.247616,
-          "control_total_usd": 0.31492,
-          "candidate_mean_ms": 6205.477,
-          "control_mean_ms": 7436.917
+          "candidate_total_usd": 0.061014,
+          "control_total_usd": 0.32317,
+          "candidate_mean_ms": 4337,
+          "control_mean_ms": 9837
         },
-        "note": "Stage parity and 21.37% lower source-reader cost vs maintained Astra; independent20/20 and actual SDK/driver export and hold replays pass. Optional exact OpenAI reader only. Argon separate; defaults unchanged. Attempt097/Story273."
+        "note": "Canonical Sol source-only reader replaces older product readers. Independent20 source and real default-driver export/holds passed. Economics compared to executable older Astra. Attempt098/Story274."
       },
       "attempts": [
         {
@@ -16517,7 +16612,8 @@
         "265",
         "267",
         "272",
-        "273"
+        "273",
+        "274"
       ],
       "compromise_refs": [
         "C4"
@@ -16549,6 +16645,20 @@
           "result_file": "benchmarks/results/gpt6-image-rerun-20260927/gpt6-sol-detector-full.json",
           "evidence_status": "fresh-bounded-detector-publication-unqualified",
           "note": "Frozen fresh same-source detector ranking Sol, Luna, Gemini. Page safety/publication gates remain failed; runtime retained. See Attempt044 and tracked crop sheets."
+        },
+        {
+          "model": "gpt-6.2-sol native high/32768 Scout117",
+          "measured": "2026-11-17",
+          "git_sha": "0a9dc605+attempt098-uncommitted",
+          "metrics": {
+            "inferences": 0,
+            "source_width": 5100,
+            "source_height": 6600,
+            "required_patches": 33120,
+            "limit_patches": 30000,
+            "cost_usd": 0
+          },
+          "note": "Native original assisted detector input count rejected; geometry and final crop capability unmeasured. Retain current detector. Attempt098/Story274."
         },
         {
           "model": "gpt-6.2-astra native HIGH32768 Scout116",
@@ -17320,19 +17430,18 @@
         }
       ],
       "latest_score": {
-        "model": "gpt-6.2-astra native HIGH32768 Scout116",
+        "model": "gpt-6.2-sol native high/32768 Scout117",
         "measured": "2026-11-17",
-        "git_sha": "56564d95+attempt097-uncommitted",
-        "evidence_status": "bounded-geometry-consumer-original-detail-transport-blocked",
+        "git_sha": "0a9dc605+attempt098-uncommitted",
         "metrics": {
-          "matched_pairs": 2,
-          "candidate_mean_tolerant_score": 0.9956,
-          "control_mean_tolerant_score": 0.9834,
-          "candidate_roi_dark_pixel_loss": 0,
-          "assisted_image_patches": 33120,
-          "provider_limit_patches": 30000
+          "inferences": 0,
+          "source_width": 5100,
+          "source_height": 6600,
+          "required_patches": 33120,
+          "limit_patches": 30000,
+          "cost_usd": 0
         },
-        "note": "Geometry leads on Image011/001, paired raw caption leakage still requires cleanup. Original Detail exact token count HTTP400, no assisted inference, full13 unmeasured. Retain detector/manual review. Attempt097/Story273."
+        "note": "Native original assisted detector input count rejected; geometry and final crop capability unmeasured. Retain current detector. Attempt098/Story274."
       },
       "attempts": [
         {
@@ -19360,7 +19469,8 @@
         "265",
         "267",
         "272",
-        "273"
+        "273",
+        "274"
       ],
       "compromise_refs": [],
       "category_refs": [
@@ -19373,6 +19483,19 @@
         "spec:8"
       ],
       "scores": [
+        {
+          "model": "gpt-6.2-sol native high/32768 Scout117",
+          "measured": "2026-11-17",
+          "git_sha": "0a9dc605+attempt098-uncommitted",
+          "metrics": {
+            "candidate_barney_ratio": 0.973439,
+            "hydrogen_barney_ratio": 0.989201,
+            "gemini38_barney_ratio": 0.984881,
+            "candidate_cost_usd": 0.0251535,
+            "latency_ms": 25336
+          },
+          "note": "Valid Barney miss below .99; retain prior reviewed Hydrogen option. No Alverson or other effort. Attempt098/Story274."
+        },
         {
           "model": "gpt-6.2-astra native HIGH32768 Scout116",
           "measured": "2026-11-17",
@@ -19773,18 +19896,17 @@
         }
       ],
       "latest_score": {
-        "model": "gpt-6.2-astra native HIGH32768 Scout116",
+        "model": "gpt-6.2-sol native high/32768 Scout117",
         "measured": "2026-11-17",
-        "git_sha": "56564d95+attempt097-uncommitted",
+        "git_sha": "0a9dc605+attempt098-uncommitted",
         "metrics": {
-          "cases": 1,
-          "candidate_barney_ratio": 0.96217,
-          "hydrogen_barney_ratio": 0.988497,
-          "gemini38_barney_ratio": 0.982406,
-          "candidate_cost_usd": 0.119454,
-          "latency_ms": 67836
+          "candidate_barney_ratio": 0.973439,
+          "hydrogen_barney_ratio": 0.989201,
+          "gemini38_barney_ratio": 0.984881,
+          "candidate_cost_usd": 0.0251535,
+          "latency_ms": 25336
         },
-        "note": "Valid literal handwriting miss below .99; retain prior reviewed Hydrogen option, fresh Hydrogen variability measured. Alverson unmeasured. Attempt097/Story273."
+        "note": "Valid Barney miss below .99; retain prior reviewed Hydrogen option. No Alverson or other effort. Attempt098/Story274."
       },
       "attempts": [
         {

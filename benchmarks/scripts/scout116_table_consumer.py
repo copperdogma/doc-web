@@ -15,7 +15,10 @@ from scout116_doc_web import E, RAW, ROOT, CANDIDATE, digest, write
 
 from doc_web.literal_tables import compare_tables
 from modules.common import openai_client
-from modules.common.table_source_review import SourceOnlyReader
+from benchmarks.providers.historical_literal_readers.table_source_review import SourceOnlyReader
+
+if not (ROOT/"configs/recipes/recipe-pdf-literal-tables-html-astra62.yaml").is_file():
+    raise SystemExit("Retired Astra 6.2 driver replay: use isolated revision 0a9dc6055e5ebe8e30f1b8ce3549050251bdb1a1 plus the retained Attempt097 evidence.")
 
 fixture_root=RAW/(sys.argv[1] if len(sys.argv)>1 else "consumer")
 fixture_root.mkdir(mode=0o700,exist_ok=False)

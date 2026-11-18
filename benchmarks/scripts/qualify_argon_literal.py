@@ -17,8 +17,8 @@ import time
 
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT))
-from modules.common.google_table_source_review import google_request
-from modules.common.table_source_review import astra_request
+from benchmarks.providers.historical_literal_readers.google_table_source_review import google_request
+from benchmarks.providers.historical_literal_readers.table_source_review import astra_request
 from modules.extract.ocr_ai_gpt51_v1.main import build_system_prompt
 from doc_web.literal_tables import compare_tables
 
@@ -30,6 +30,16 @@ ORDER = ["N1", "A1", "N2", "N3", "R1", "R2", "R3", "A2"]
 ASTRA_FIRST = {"N1", "N3", "R3", "A2"}
 REPEATS = ["N3", "R1", "R3", "A1"]
 MODELS = {"astra": "gpt-6-astra", "argon": "gemini-4-argon"}
+
+
+def require_historical_driver():
+    if not (ROOT / "configs/recipes/recipe-pdf-literal-tables-html-argon.yaml").is_file():
+        raise RuntimeError(
+            "Retired Astra/Argon comparison: reproduce the historical driver in an "
+            "isolated checkout of 0a9dc6055e5ebe8e30f1b8ce3549050251bdb1a1. "
+            "See docs/evals/evidence/073-argon-literal-qualification/ for the frozen provenance. "
+            "A closed evaluation does not authorize new inference."
+        )
 
 
 def sha(data):
@@ -128,6 +138,7 @@ def token_bound(case, body, google=False):
 
 
 def prepare():
+    require_historical_driver()
     if (EVIDENCE / "freeze.json").exists():
         raise RuntimeError("Existing freeze is immutable")
     matrix, bounds = [], {}
@@ -262,6 +273,7 @@ def prepare():
 
 
 def check_freeze():
+    require_historical_driver()
     frozen = json.loads((EVIDENCE / "freeze.json").read_text())
     for group in ("code_sha256", "fixture_sha256"):
         for path, digest in frozen[group].items():
@@ -271,6 +283,7 @@ def check_freeze():
 
 
 def run_command(command, stage, *, live=True, namespace="live"):
+    require_historical_driver()
     if live:
         check_freeze()
         if (
@@ -543,6 +556,7 @@ def export_group(group, arm, namespace="live", source_namespace=None):
 
 
 def main():
+    require_historical_driver()
     parser = argparse.ArgumentParser()
     parser.add_argument(
         "operation", choices=["prepare", "ocr", "reader", "repeat", "export"]

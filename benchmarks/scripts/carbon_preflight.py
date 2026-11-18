@@ -18,7 +18,7 @@ sys.path.insert(0, str(ROOT / "benchmarks/scripts"))
 import carbon_reading as reading
 import carbon_native as native
 import scout096_safety as safety
-from modules.common.table_source_review import POLICY, astra_request
+from benchmarks.providers.historical_literal_readers.table_source_review import POLICY, astra_request
 from doc_web.literal_fidelity import SourcePageReview
 from modules.extract.ocr_ai_gpt51_v1.main import build_system_prompt
 

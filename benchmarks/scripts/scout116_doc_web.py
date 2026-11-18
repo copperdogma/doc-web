@@ -19,7 +19,7 @@ import yaml
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT))
 from benchmarks.scripts.hydrogen_reading import CROP_SCHEMA, render_crop
-from modules.common.table_source_review import astra_request
+from benchmarks.providers.historical_literal_readers.table_source_review import astra_request
 
 E = ROOT / "docs/evals/evidence/097-astra62"
 RAW = ROOT / "output/fixtures/scout116-astra62"

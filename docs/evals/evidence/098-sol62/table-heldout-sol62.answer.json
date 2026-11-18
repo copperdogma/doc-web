@@ -1,0 +1,5 @@
+{
+  "raw": "{\n  \"source_table_count\": 1,\n  \"tables\": [\n    {\n      \"bbox\": [96, 299, 1604, 868],\n      \"html\": \"<table><thead><tr><th>Zone</th><th>Tag</th><th>Trays</th><th>Treatment</th></tr></thead><tbody><tr><td rowspan=\\\"2\\\">Bench A</td><td>T4-N7</td><td>0</td><td>re-check</td></tr><tr><td>T4-M7</td><td></td><td>Recheck</td></tr><tr><td>East</td><td>K3-X2</td><td>-</td><td>shade cloth</td></tr><tr><td>West</td><td>k3-x2</td><td>+2</td><td>shade-cloth</td></tr><tr><td colspan=\\\"4\\\">Log empty trays before noon.</td></tr></tbody></table>\",\n      \"uncertain_cells\": []\n    }\n  ]\n}",
+  "model": "gpt-6.2-sol",
+  "native_sha256": "99e4c6b0482cf6906b6b6d2d272151f6d9f4a692af595ce7bae1c03d2f084e64"
+}

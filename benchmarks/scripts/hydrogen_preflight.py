@@ -13,7 +13,7 @@ from benchmarks.scripts import (
     hydrogen_caller as caller,
 )
 from modules.common import crop_safety
-from modules.common.table_source_review import POLICY, astra_request
+from benchmarks.providers.historical_literal_readers.table_source_review import POLICY, astra_request
 from doc_web.literal_fidelity import SourcePageReview
 from PIL import Image
 

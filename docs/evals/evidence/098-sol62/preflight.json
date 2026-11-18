@@ -1,0 +1,232 @@
+{
+  "base": "0a9dc6055e5ebe8e30f1b8ce3549050251bdb1a1",
+  "matrix": {
+    "crop-assisted-Image011-sol62": {
+      "lane": "crop",
+      "model": "gpt-6.2-sol",
+      "body_path": "output/fixtures/scout117-sol62/crop-assisted-Image011-sol62.request.json",
+      "request_sha256": "763dcd0042a9e5a22600a3f180fcf48faf2caa4c9f5808705b5f5d15d9bf0036",
+      "image_dimensions": [
+        5100,
+        6600
+      ],
+      "image_sha256": "2246934ed6dc9fcc2531ca4fa2d0913bbd5fca99eeea40093ce9de623f819265"
+    },
+    "ocr-barney-sol62": {
+      "lane": "ocr",
+      "model": "gpt-6.2-sol",
+      "body_path": "output/fixtures/scout117-sol62/ocr-barney-sol62.request.json",
+      "request_sha256": "21a5931210fcd89c329fb5bfd9fb3564cc6d40372617e021cb0ae6cd72a53149",
+      "image_dimensions": [
+        640,
+        502
+      ],
+      "image_sha256": "aaf212e6091d913ded7117dd61f1437a83c57af4f974809e7fb96c11a813d9c5",
+      "golden": "testdata/handwritten-notes-barney-real.txt",
+      "golden_sha256": "78827ef175378bd2c55d0405fc35213acfc17e348b5edd48b1e089525a83e2bf"
+    },
+    "ocr-barney-hydrogen": {
+      "lane": "ocr",
+      "model": "gemini-4-hydrogen",
+      "body_path": "output/fixtures/scout117-sol62/ocr-barney-hydrogen.request.json",
+      "request_sha256": "feed8f917d7cc67c2ec3c83f112e602b4053a5ac1beb31be37093a9eda0ce7f0",
+      "image_dimensions": [
+        640,
+        502
+      ],
+      "image_sha256": "aaf212e6091d913ded7117dd61f1437a83c57af4f974809e7fb96c11a813d9c5",
+      "golden": "testdata/handwritten-notes-barney-real.txt",
+      "golden_sha256": "78827ef175378bd2c55d0405fc35213acfc17e348b5edd48b1e089525a83e2bf"
+    },
+    "ocr-barney-gemini38": {
+      "lane": "ocr",
+      "model": "gemini-3.8-flash",
+      "body_path": "output/fixtures/scout117-sol62/ocr-barney-gemini38.request.json",
+      "request_sha256": "f4482092b0954d423a511c1e929d3ab4fc29cde2ea058a37ffc39454b4fdd1ea",
+      "image_dimensions": [
+        640,
+        502
+      ],
+      "image_sha256": "aaf212e6091d913ded7117dd61f1437a83c57af4f974809e7fb96c11a813d9c5",
+      "golden": "testdata/handwritten-notes-barney-real.txt",
+      "golden_sha256": "78827ef175378bd2c55d0405fc35213acfc17e348b5edd48b1e089525a83e2bf"
+    },
+    "ocr-alverson-sol62": {
+      "lane": "ocr",
+      "model": "gpt-6.2-sol",
+      "body_path": "output/fixtures/scout117-sol62/ocr-alverson-sol62.request.json",
+      "request_sha256": "51c14ad07af011a2f02b0b5f627c524bb3aa115add9ee42ea0919f33150ae245",
+      "image_dimensions": [
+        638,
+        1024
+      ],
+      "image_sha256": "74876a4568c5fdc459b78fde2b6e3216038fcd6e247972432d31207fcc94c198",
+      "golden": "testdata/handwritten-notes-alverson-real.txt",
+      "golden_sha256": "54291e20b842e2299fee392cd881a202f181263da10f4e85cb8ca49dfe74ac27"
+    },
+    "ocr-alverson-hydrogen": {
+      "lane": "ocr",
+      "model": "gemini-4-hydrogen",
+      "body_path": "output/fixtures/scout117-sol62/ocr-alverson-hydrogen.request.json",
+      "request_sha256": "ffe297b68ea7dc279cd669c894e5b5a0e5fce7b102309c74aca9b50d1dcdf65e",
+      "image_dimensions": [
+        638,
+        1024
+      ],
+      "image_sha256": "74876a4568c5fdc459b78fde2b6e3216038fcd6e247972432d31207fcc94c198",
+      "golden": "testdata/handwritten-notes-alverson-real.txt",
+      "golden_sha256": "54291e20b842e2299fee392cd881a202f181263da10f4e85cb8ca49dfe74ac27"
+    },
+    "ocr-alverson-gemini38": {
+      "lane": "ocr",
+      "model": "gemini-3.8-flash",
+      "body_path": "output/fixtures/scout117-sol62/ocr-alverson-gemini38.request.json",
+      "request_sha256": "9ae0c91026148143e0e5cb7a2a5a764c7a5c3c45347db878bfa6dcc3aacaeaf7",
+      "image_dimensions": [
+        638,
+        1024
+      ],
+      "image_sha256": "74876a4568c5fdc459b78fde2b6e3216038fcd6e247972432d31207fcc94c198",
+      "golden": "testdata/handwritten-notes-alverson-real.txt",
+      "golden_sha256": "54291e20b842e2299fee392cd881a202f181263da10f4e85cb8ca49dfe74ac27"
+    },
+    "table-image-positive-sol62": {
+      "lane": "table",
+      "model": "gpt-6.2-sol",
+      "body_path": "output/fixtures/scout117-sol62/table-image-positive-sol62.request.json",
+      "request_sha256": "d215a39ae6147477a471663497ee7c1ac2a3195175265fa7e0fae280a2a61830",
+      "image_dimensions": [
+        1700,
+        2200
+      ],
+      "image_sha256": "faf29a9b7cdd8758657bf524beed9067230b6c01e16bc4f41c43332c5dc6c2a9",
+      "golden": "testdata/literal-table-fidelity/confirmation-v2/image-positive/golden.html",
+      "golden_sha256": "f475d70caf451d94b9346e449fa23ea125c73e016440063e46b01a7103358162"
+    },
+    "table-image-positive-astra": {
+      "lane": "table",
+      "model": "gpt-6-astra",
+      "body_path": "output/fixtures/scout117-sol62/table-image-positive-astra.request.json",
+      "request_sha256": "2cfeaf2a6606e194667a524e2e8e97083cf4a3f710f59c06e01138f90a6a654c",
+      "image_dimensions": [
+        1700,
+        2200
+      ],
+      "image_sha256": "faf29a9b7cdd8758657bf524beed9067230b6c01e16bc4f41c43332c5dc6c2a9",
+      "golden": "testdata/literal-table-fidelity/confirmation-v2/image-positive/golden.html",
+      "golden_sha256": "f475d70caf451d94b9346e449fa23ea125c73e016440063e46b01a7103358162"
+    },
+    "table-native-positive-sol62": {
+      "lane": "table",
+      "model": "gpt-6.2-sol",
+      "body_path": "output/fixtures/scout117-sol62/table-native-positive-sol62.request.json",
+      "request_sha256": "1ef80683c9f09072cead585c1389c67e06d26d73077ac39cbeb3894d902eed8f",
+      "image_dimensions": [
+        1700,
+        2200
+      ],
+      "image_sha256": "ab4ff79d69653ffb7907326424b7d24a7380a909585eb77c7b803bf99eab3c0f",
+      "golden": "testdata/literal-table-fidelity/confirmation-v2/native-positive/golden.html",
+      "golden_sha256": "d951fa83a93a2aa489301fb0407f1f76fda6839e5e7bff2718d224795ff4c0ba"
+    },
+    "table-native-positive-astra": {
+      "lane": "table",
+      "model": "gpt-6-astra",
+      "body_path": "output/fixtures/scout117-sol62/table-native-positive-astra.request.json",
+      "request_sha256": "2768b95091342db6ce86fc03e415e913b8008e6af973d6fc86d707906c9f5888",
+      "image_dimensions": [
+        1700,
+        2200
+      ],
+      "image_sha256": "ab4ff79d69653ffb7907326424b7d24a7380a909585eb77c7b803bf99eab3c0f",
+      "golden": "testdata/literal-table-fidelity/confirmation-v2/native-positive/golden.html",
+      "golden_sha256": "d951fa83a93a2aa489301fb0407f1f76fda6839e5e7bff2718d224795ff4c0ba"
+    },
+    "table-ambiguity-negative-sol62": {
+      "lane": "table",
+      "model": "gpt-6.2-sol",
+      "body_path": "output/fixtures/scout117-sol62/table-ambiguity-negative-sol62.request.json",
+      "request_sha256": "780fe549d572e8d6db1097e7b071eeef125dbfab8f35370dff47e89a3c453d77",
+      "image_dimensions": [
+        1700,
+        2200
+      ],
+      "image_sha256": "75458854bfe3331d761c99f9ac67ad35bf1b5c28620074fd31c08ba5d6052adf",
+      "golden": "testdata/literal-table-fidelity/confirmation-v2/ambiguity-negative/golden.html",
+      "golden_sha256": "131d0c4b32d751505fde26346bd11c4be57fd0d06aa495490a3373b4eff4b68d"
+    },
+    "table-ambiguity-negative-astra": {
+      "lane": "table",
+      "model": "gpt-6-astra",
+      "body_path": "output/fixtures/scout117-sol62/table-ambiguity-negative-astra.request.json",
+      "request_sha256": "594fce2b949624e6aad8feba05df2d9d402f2f3b14a7c4d4f6d55bb6a1f5455d",
+      "image_dimensions": [
+        1700,
+        2200
+      ],
+      "image_sha256": "75458854bfe3331d761c99f9ac67ad35bf1b5c28620074fd31c08ba5d6052adf",
+      "golden": "testdata/literal-table-fidelity/confirmation-v2/ambiguity-negative/golden.html",
+      "golden_sha256": "131d0c4b32d751505fde26346bd11c4be57fd0d06aa495490a3373b4eff4b68d"
+    },
+    "table-heldout-sol62": {
+      "lane": "table",
+      "model": "gpt-6.2-sol",
+      "body_path": "output/fixtures/scout117-sol62/table-heldout-sol62.request.json",
+      "request_sha256": "8b715e7ff8ad62ace8276aad87f096952d12a2437ba07b971fe2f995b59f7697",
+      "image_dimensions": [
+        1700,
+        2200
+      ],
+      "image_sha256": "104484d177cb0c2d59abf8e5c93ac807d3db20e5cc844ee9086f58c4d65861b1",
+      "golden": "docs/evals/evidence/098-sol62/heldout-table/golden.html",
+      "golden_sha256": "a6b2544efa77693b1d160604c2b64c3d172161c7387018e69352ff6d07fbecc0"
+    },
+    "table-heldout-astra": {
+      "lane": "table",
+      "model": "gpt-6-astra",
+      "body_path": "output/fixtures/scout117-sol62/table-heldout-astra.request.json",
+      "request_sha256": "b4acaf1edc7abec796a3926a78c5ddd3632c9f5d34b31b63c1d9e1b915f63e0b",
+      "image_dimensions": [
+        1700,
+        2200
+      ],
+      "image_sha256": "104484d177cb0c2d59abf8e5c93ac807d3db20e5cc844ee9086f58c4d65861b1",
+      "golden": "docs/evals/evidence/098-sol62/heldout-table/golden.html",
+      "golden_sha256": "a6b2544efa77693b1d160604c2b64c3d172161c7387018e69352ff6d07fbecc0"
+    }
+  },
+  "caps": {
+    "ocr": [
+      4,
+      4,
+      106000
+    ],
+    "table": [
+      4,
+      5,
+      26000
+    ],
+    "crop": [
+      12,
+      16,
+      106000
+    ]
+  },
+  "producer_hashes": {
+    "benchmarks/scripts/scout117_doc_web.py": "71c913e18417365ebc64b082b6714c64e6100af42bb88fbd500d0f22c1742c24",
+    "benchmarks/scripts/scout116_doc_web.py": "2710b0790ca47d880abfda897c341e2fc4584f49eef066f38ca58c43bcf0812f",
+    "benchmarks/scripts/scout116_doc_web_score.py": "56e250da5250900aac1be02151bc755a45881339ff01e92ce95f6b975070b579",
+    "benchmarks/scripts/hydrogen_native.py": "5fd7aa844ea069e2b5b7da24e4d6d38a1c8b7c8d26cbff325b0673054ad243ea",
+    "modules/common/table_source_review.py": "a5ed54165c02d4684bf7a4e75f1195efda11ee072f0705e0ef68fdea10c4909f",
+    "modules/common/openai_crop_vision.py": "877a46b2b5a17a94209886380c6907ac59073b308a10252b69b9003280a1821b",
+    "doc_web/literal_tables.py": "f88035148e70db6e32332a459459da04088660aab4444d97ab6af9dc256dfffb",
+    "benchmarks/scorers/handwritten_notes_transcription.py": "3e8ab803e94b22b139e78d51bd029f6502ecac03a170f2dd7955b86afd67ee6b",
+    "testdata/generate_literal_table_fixtures.py": "8438dee0f47d067bfefa14a5987ad7239abcc72e265470e7e5158e93fef964c8"
+  },
+  "concurrency": 1,
+  "judge": null,
+  "subject_cache": false,
+  "service": "Standard",
+  "fresh": true,
+  "heldout_source": "5373c9b7032c08ac2935f3af580d43a43a8c7c644e1312e0acfa95282fb38c29"
+}
