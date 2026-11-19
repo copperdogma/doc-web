@@ -125,6 +125,7 @@ Grouped by primary `spec:N` category. Stories without category refs remain in an
 | 272 | Hydrogen source fidelity evaluation | Medium | Done | — | [story-272](stories/story-272-hydrogen-source-fidelity.md) |
 | 273 | GPT-6.2 Astra source fidelity evaluation | Medium | Done | — | [story-273](stories/story-273-gpt62-astra-source-fidelity.md) |
 | 274 | GPT-6.2 Sol source fidelity evaluation | Medium | Done | — | [story-274](stories/story-274-gpt62-sol-source-fidelity.md) |
+| 275 | Gemini 4 Neon source fidelity evaluation | Medium | Done | — | [story-275](stories/story-275-neon-source-fidelity.md) |
 | 022 | Pipeline instrumentation (timing & cost) | Unknown | Done | — | [story-022](stories/story-022-instrumentation.md) |
 
 ### spec:3 — Layout & Structure Understanding

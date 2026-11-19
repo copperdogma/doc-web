@@ -1,0 +1,10 @@
+{
+  "ocr": {
+    "all_frozen_pairs_and_one_recovery_nanousd": 3238080000,
+    "cap_nanousd": 4000000000
+  },
+  "crop": {
+    "all_frozen_pairs_and_one_recovery_nanousd": 3336384000,
+    "cap_nanousd": 8000000000
+  }
+}

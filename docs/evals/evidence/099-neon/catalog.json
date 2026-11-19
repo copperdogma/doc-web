@@ -1,0 +1,39 @@
+{
+  "gemini-4-neon": {
+    "status": 200,
+    "identity": "models/gemini-4-neon",
+    "methods": [
+      "generateContent",
+      "countTokens",
+      "batchGenerateContent"
+    ],
+    "error": {
+      "reason": []
+    }
+  },
+  "gemini-4-hydrogen": {
+    "status": 200,
+    "identity": "models/gemini-4-hydrogen",
+    "methods": [
+      "generateContent",
+      "countTokens",
+      "batchGenerateContent"
+    ],
+    "error": {
+      "reason": []
+    }
+  },
+  "gemini-3-flash-preview": {
+    "status": 200,
+    "identity": "models/gemini-3-flash-preview",
+    "methods": [
+      "generateContent",
+      "countTokens",
+      "createCachedContent",
+      "batchGenerateContent"
+    ],
+    "error": {
+      "reason": []
+    }
+  }
+}

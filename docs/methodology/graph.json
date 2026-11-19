@@ -256,7 +256,8 @@
           "267",
           "272",
           "273",
-          "274"
+          "274",
+          "275"
         ],
         "adr_ids": [
           "ADR-001",
@@ -425,7 +426,8 @@
           "267",
           "272",
           "273",
-          "274"
+          "274",
+          "275"
         ],
         "adr_ids": [],
         "eval_ids": [
@@ -570,7 +572,8 @@
           "267",
           "272",
           "273",
-          "274"
+          "274",
+          "275"
         ],
         "adr_ids": [
           "ADR-001",
@@ -751,7 +754,8 @@
           "267",
           "272",
           "273",
-          "274"
+          "274",
+          "275"
         ],
         "adr_ids": [
           "ADR-002"
@@ -1008,7 +1012,8 @@
           "267",
           "272",
           "273",
-          "274"
+          "274",
+          "275"
         ],
         "eval_ids": [
           "literal-table-fidelity",
@@ -1092,7 +1097,8 @@
             "267",
             "272",
             "273",
-            "274"
+            "274",
+            "275"
           ],
           "eval_ids": [
             "literal-table-fidelity",
@@ -1376,7 +1382,8 @@
           "267",
           "272",
           "273",
-          "274"
+          "274",
+          "275"
         ],
         "eval_ids": [
           "image-crop-extraction",
@@ -1425,7 +1432,8 @@
             "267",
             "272",
             "273",
-            "274"
+            "274",
+            "275"
           ],
           "eval_ids": [
             "image-crop-extraction",
@@ -15795,6 +15803,71 @@
           "summary": ""
         }
       }
+    },
+    {
+      "id": "275",
+      "title": "Gemini 4 Neon source fidelity evaluation",
+      "path": "docs/stories/story-275-neon-source-fidelity.md",
+      "status": "Done",
+      "priority": "Medium",
+      "ideal_refs": [
+        "req:3",
+        "req:4",
+        "req:6"
+      ],
+      "spec_refs": [
+        "spec:2.1",
+        "spec:4.1",
+        "spec:4.2",
+        "spec:6"
+      ],
+      "decision_refs": [
+        "ADR-001",
+        "ADR-002"
+      ],
+      "adr_ids": [
+        "ADR-001",
+        "ADR-002"
+      ],
+      "depends_on": [],
+      "category_refs": [
+        "spec:2",
+        "spec:4",
+        "spec:6",
+        "spec:8"
+      ],
+      "compromise_refs": [
+        "C1",
+        "C4"
+      ],
+      "input_coverage_refs": [
+        "handwritten-notes"
+      ],
+      "architecture_domains": [
+        "ocr_and_extraction"
+      ],
+      "roadmap_tags": [],
+      "blocker_summary": "",
+      "blocker_evidence": "",
+      "unblock_condition": "",
+      "last_work_log_entry": null,
+      "legacy_build_map_refs": "",
+      "metadata_source": "frontmatter",
+      "missing_frontmatter_keys": [],
+      "actionability": {
+        "source_kind": "story",
+        "source_id": "275",
+        "source_path": "docs/stories/story-275-neon-source-fidelity.md",
+        "recommended_now": false,
+        "posture": "completed",
+        "why_now": "",
+        "last_relevant_action": {
+          "date": null,
+          "source_type": "story-status",
+          "source": "docs/stories/story-275-neon-source-fidelity.md",
+          "summary": ""
+        }
+      }
     }
   ],
   "adrs": [
@@ -16613,7 +16686,8 @@
         "267",
         "272",
         "273",
-        "274"
+        "274",
+        "275"
       ],
       "compromise_refs": [
         "C4"
@@ -16645,6 +16719,20 @@
           "result_file": "benchmarks/results/gpt6-image-rerun-20260927/gpt6-sol-detector-full.json",
           "evidence_status": "fresh-bounded-detector-publication-unqualified",
           "note": "Frozen fresh same-source detector ranking Sol, Luna, Gemini. Page safety/publication gates remain failed; runtime retained. See Attempt044 and tracked crop sheets."
+        },
+        {
+          "model": "gemini-4-neon native HIGH/32768 Scout119",
+          "measured": "2026-11-18",
+          "git_sha": "4376bb7+attempt099-uncommitted",
+          "metrics": {
+            "original_assisted_pairs": 1,
+            "candidate_integral_roi_pixel_loss": 740,
+            "control_integral_roi_pixel_loss": 999,
+            "candidate_outside_caption_roi_dark_pixels": 26308,
+            "control_outside_caption_roi_dark_pixels": 26308,
+            "candidate_detector_cost_usd": 0.085404
+          },
+          "note": "Native original Image011 admitted. Actual assisted driver loses signature endpoint pixels and includes printed caption on both arms. Retain the current reviewed route. Portrait and full corpus unmeasured. Attempt099/Story275."
         },
         {
           "model": "gpt-6.2-sol native high/32768 Scout117",
@@ -17430,18 +17518,18 @@
         }
       ],
       "latest_score": {
-        "model": "gpt-6.2-sol native high/32768 Scout117",
-        "measured": "2026-11-17",
-        "git_sha": "0a9dc605+attempt098-uncommitted",
+        "model": "gemini-4-neon native HIGH/32768 Scout119",
+        "measured": "2026-11-18",
+        "git_sha": "4376bb7+attempt099-uncommitted",
         "metrics": {
-          "inferences": 0,
-          "source_width": 5100,
-          "source_height": 6600,
-          "required_patches": 33120,
-          "limit_patches": 30000,
-          "cost_usd": 0
+          "original_assisted_pairs": 1,
+          "candidate_integral_roi_pixel_loss": 740,
+          "control_integral_roi_pixel_loss": 999,
+          "candidate_outside_caption_roi_dark_pixels": 26308,
+          "control_outside_caption_roi_dark_pixels": 26308,
+          "candidate_detector_cost_usd": 0.085404
         },
-        "note": "Native original assisted detector input count rejected; geometry and final crop capability unmeasured. Retain current detector. Attempt098/Story274."
+        "note": "Native original Image011 admitted. Actual assisted driver loses signature endpoint pixels and includes printed caption on both arms. Retain the current reviewed route. Portrait and full corpus unmeasured. Attempt099/Story275."
       },
       "attempts": [
         {
@@ -19470,7 +19558,8 @@
         "267",
         "272",
         "273",
-        "274"
+        "274",
+        "275"
       ],
       "compromise_refs": [],
       "category_refs": [
@@ -19483,6 +19572,18 @@
         "spec:8"
       ],
       "scores": [
+        {
+          "model": "gemini-4-neon native HIGH/32768 Scout119",
+          "measured": "2026-11-18",
+          "git_sha": "4376bb7+attempt099-uncommitted",
+          "metrics": {
+            "candidate_barney_ratio": 0.988125,
+            "hydrogen_barney_ratio": 0.987415,
+            "candidate_cost_usd": 0.141825,
+            "latency_ms": 87964
+          },
+          "note": "Both exact served terminal runs miss the .99 threshold on matched public LOC Barney. Neon literal omissions and an added word fail source review. Retain reviewed Hydrogen configuration. Alverson and further confirmation unmeasured. Attempt099/Story275."
+        },
         {
           "model": "gpt-6.2-sol native high/32768 Scout117",
           "measured": "2026-11-17",
@@ -19896,17 +19997,16 @@
         }
       ],
       "latest_score": {
-        "model": "gpt-6.2-sol native high/32768 Scout117",
-        "measured": "2026-11-17",
-        "git_sha": "0a9dc605+attempt098-uncommitted",
+        "model": "gemini-4-neon native HIGH/32768 Scout119",
+        "measured": "2026-11-18",
+        "git_sha": "4376bb7+attempt099-uncommitted",
         "metrics": {
-          "candidate_barney_ratio": 0.973439,
-          "hydrogen_barney_ratio": 0.989201,
-          "gemini38_barney_ratio": 0.984881,
-          "candidate_cost_usd": 0.0251535,
-          "latency_ms": 25336
+          "candidate_barney_ratio": 0.988125,
+          "hydrogen_barney_ratio": 0.987415,
+          "candidate_cost_usd": 0.141825,
+          "latency_ms": 87964
         },
-        "note": "Valid Barney miss below .99; retain prior reviewed Hydrogen option. No Alverson or other effort. Attempt098/Story274."
+        "note": "Both exact served terminal runs miss the .99 threshold on matched public LOC Barney. Neon literal omissions and an added word fail source review. Retain reviewed Hydrogen configuration. Alverson and further confirmation unmeasured. Attempt099/Story275."
       },
       "attempts": [
         {

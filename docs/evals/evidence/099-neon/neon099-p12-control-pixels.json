@@ -1,0 +1,50 @@
+{
+  "manifest": "output/runs/neon099-p12-control/02_crop_illustrations_guided_v1/illustration_manifest.jsonl",
+  "source_sha256": "2246934ed6dc9fcc2531ca4fa2d0913bbd5fca99eeea40093ce9de623f819265",
+  "dimensions": [
+    5100,
+    6600
+  ],
+  "boxes_normalized_xyxy": [
+    [
+      0.3749019607843137,
+      0.07393939393939394,
+      0.5790196078431372,
+      0.23106060606060605
+    ],
+    [
+      0.11803921568627451,
+      0.686060606060606,
+      0.39098039215686275,
+      0.8939393939393939
+    ],
+    [
+      0.43098039215686273,
+      0.7210606060606061,
+      0.7250980392156863,
+      0.798939393939394
+    ],
+    [
+      0.44509803921568625,
+      0.793939393939394,
+      0.6590196078431373,
+      0.8504545454545455
+    ]
+  ],
+  "final_crop_geometry": {
+    "pass": false,
+    "score": 0.5215,
+    "reason": "box_count=0.00 (4/2) | iou_mean=0.664 | iou_min=0.353 | coverage=0.674 | total=0.522 | matches=[pred[0]<->gold[0] IoU=0.976, pred[1]<->gold[1] IoU=0.353, +2 extra predicted]"
+  },
+  "geometry_limit": "Descriptive only: maintained no-hints benchmark grouping differs from assisted final crop count.",
+  "integral_roi_loss": {
+    "upper_logo_lettering_date": 22,
+    "lower_seal": 237,
+    "top_signature_baseline_endpoint": 444,
+    "bottom_signature_baseline_endpoint": 296
+  },
+  "nonintegral_caption_pixels_inside": {
+    "printed_minister_caption": 26308,
+    "printed_minister_in_charge_caption": 0
+  }
+}

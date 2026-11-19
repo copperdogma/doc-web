@@ -1,0 +1,137 @@
+{
+  "ocr-barney-gemini-4-neon": {
+    "http": 200,
+    "count": 2100,
+    "request_sha256": "16c4e0e6a0e9a90799149eb8dfa87407977d7add34d8c76d944c742f303e7ec0",
+    "admitted": true,
+    "error": {
+      "reason": []
+    }
+  },
+  "ocr-barney-gemini-4-hydrogen": {
+    "http": 200,
+    "count": 2100,
+    "request_sha256": "16c4e0e6a0e9a90799149eb8dfa87407977d7add34d8c76d944c742f303e7ec0",
+    "admitted": true,
+    "error": {
+      "reason": []
+    }
+  },
+  "ocr-alverson-gemini-4-neon": {
+    "http": 200,
+    "count": 2100,
+    "request_sha256": "172811fbf165da683314bb545ae52e4b42e81ebceded7d5f056e9cae5360b701",
+    "admitted": true,
+    "error": {
+      "reason": []
+    }
+  },
+  "ocr-alverson-gemini-4-hydrogen": {
+    "http": 200,
+    "count": 2100,
+    "request_sha256": "172811fbf165da683314bb545ae52e4b42e81ebceded7d5f056e9cae5360b701",
+    "admitted": true,
+    "error": {
+      "reason": []
+    }
+  },
+  "runtime-12-candidate-detector-4": {
+    "http": 200,
+    "count": 1947,
+    "request_sha256": "c943c0bd54b8f67f987a0d6235d56bd6a1ddf9552d1860521b02c6ccf1088c25",
+    "admitted": true,
+    "error": {
+      "reason": []
+    }
+  },
+  "runtime-122-candidate-detector-3": {
+    "http": 200,
+    "count": 1926,
+    "request_sha256": "4f1fc1ec01fd52dd74e5a375952d5021dc08a072a127edb28ac173b78bc2aa55",
+    "admitted": true,
+    "error": {
+      "reason": []
+    }
+  },
+  "runtime-12-control-detector-4": {
+    "http": 200,
+    "count": 1795,
+    "request_sha256": "c3239d023e9a7439ac0a5b7a3dfffc381333918ed9bdb49b885735f1acd8c20d",
+    "admitted": true,
+    "error": {
+      "reason": []
+    }
+  },
+  "runtime-12-control-caption-1": {
+    "http": 200,
+    "count": 1302,
+    "request_sha256": "d07180467cf1c95a0eb6e12998e97d9f6a29e1db9d14ec71d551159a08dfef6d",
+    "admitted": true,
+    "error": {
+      "reason": []
+    }
+  },
+  "runtime-12-control-caption-2": {
+    "http": 200,
+    "count": 1302,
+    "request_sha256": "b8c4381b8d4643bd8d0dcbf0854e7f32f202956cb580c01b8b6ed13948733a80",
+    "admitted": true,
+    "error": {
+      "reason": []
+    }
+  },
+  "runtime-12-control-caption-3": {
+    "http": 200,
+    "count": 1302,
+    "request_sha256": "311aefecd035b0dffc0cc425f59467f7a10c4c96c1cd8d9bf41d7382427cb201",
+    "admitted": true,
+    "error": {
+      "reason": []
+    }
+  },
+  "runtime-12-control-caption-4": {
+    "http": 200,
+    "count": 1302,
+    "request_sha256": "fae751f585c6e62797112ce67a625198a58872ae5143cb4c34225f12a98336b6",
+    "admitted": true,
+    "error": {
+      "reason": []
+    }
+  },
+  "runtime-122-control-detector-3": {
+    "http": 200,
+    "count": 1774,
+    "request_sha256": "b37984917ea1510f4bbe98ec7db1356d7d2f8617185a1abee6937d3292db3b3a",
+    "admitted": true,
+    "error": {
+      "reason": []
+    }
+  },
+  "runtime-122-control-caption-1": {
+    "http": 200,
+    "count": 1281,
+    "request_sha256": "ac340ba820c8ce65cd3908e5b8e080781590adcfc6689eda5cd95c4f8824a505",
+    "admitted": true,
+    "error": {
+      "reason": []
+    }
+  },
+  "runtime-122-control-caption-2": {
+    "http": 200,
+    "count": 1281,
+    "request_sha256": "3ae8f4bc17de384ef136dcd8d145576a9b7bb7eb28443771a4dd73a0f3f49eb7",
+    "admitted": true,
+    "error": {
+      "reason": []
+    }
+  },
+  "runtime-122-control-caption-3": {
+    "http": 200,
+    "count": 1281,
+    "request_sha256": "547781084edde43880313c8efeb40e1c8d9020294827d343f30051e987d044a1",
+    "admitted": true,
+    "error": {
+      "reason": []
+    }
+  }
+}

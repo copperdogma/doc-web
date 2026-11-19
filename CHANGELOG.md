@@ -1,3 +1,10 @@
+## [2026-11-18-01] — Measure Gemini 4 Neon source fidelity (Story 275)
+
+### Added
+
+- Record the paired Barney handwriting and original Image011 assisted crop
+  screen, native usage, and source-pixel failures. Retain both reviewed routes.
+
 ## [2026-11-17-02] — Replace the literal table source reader with Sol 6.2 (Story 274)
 
 - The normal PDF table recipe now uses a single Sol 6.2 medium source reader with count-bound original-image requests and strict hash-bound publication receipts. Superseded Astra and Argon source-reader selections are retired from the product.

@@ -1,0 +1,229 @@
+{
+  "closed": true,
+  "calls": [
+    {
+      "lane": "ocr",
+      "case": "barney",
+      "model": "gemini-4-neon",
+      "request": "output/fixtures/scout119-neon/ocr-barney-gemini-4-neon.request.json",
+      "sha256": "16c4e0e6a0e9a90799149eb8dfa87407977d7add34d8c76d944c742f303e7ec0",
+      "reserve_nanousd": 809520000,
+      "attempt": "ocr-barney-gemini-4-neon",
+      "cost_nanousd": 141825000,
+      "in_flight": false,
+      "http": 200,
+      "response": "output/fixtures/scout119-neon/ocr-barney-gemini-4-neon.response.json",
+      "response_sha256": "f701e674eef68c6f851b344937d9ad4183b589f7cc9a05b00264329114147835",
+      "error": {
+        "reason": []
+      },
+      "served_model": "gemini-4-neon",
+      "finish": [
+        "STOP"
+      ],
+      "usage": {
+        "promptTokenCount": 2055,
+        "candidatesTokenCount": 392,
+        "totalTokenCount": 11099,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 982
+          },
+          {
+            "modality": "IMAGE",
+            "tokenCount": 1073
+          }
+        ],
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 392
+          }
+        ],
+        "thoughtsTokenCount": 8652,
+        "serviceTier": "standard"
+      },
+      "confidence": "eligible",
+      "latency_ms": 87964
+    },
+    {
+      "lane": "ocr",
+      "case": "barney",
+      "model": "gemini-4-hydrogen",
+      "request": "output/fixtures/scout119-neon/ocr-barney-gemini-4-hydrogen.request.json",
+      "sha256": "16c4e0e6a0e9a90799149eb8dfa87407977d7add34d8c76d944c742f303e7ec0",
+      "reserve_nanousd": 404760000,
+      "attempt": "ocr-barney-gemini-4-hydrogen",
+      "cost_nanousd": 94867500,
+      "in_flight": false,
+      "http": 200,
+      "response": "output/fixtures/scout119-neon/ocr-barney-gemini-4-hydrogen.response.json",
+      "response_sha256": "b40d99279214a738c673549c4523b87cf5312ba531b572cdaef4b6d7d2b0dd5c",
+      "error": {
+        "reason": []
+      },
+      "served_model": "gemini-4-hydrogen",
+      "finish": [
+        "STOP"
+      ],
+      "usage": {
+        "promptTokenCount": 2055,
+        "candidatesTokenCount": 386,
+        "totalTokenCount": 14293,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 982
+          },
+          {
+            "modality": "IMAGE",
+            "tokenCount": 1073
+          }
+        ],
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 386
+          }
+        ],
+        "thoughtsTokenCount": 11852,
+        "serviceTier": "standard"
+      },
+      "confidence": "eligible",
+      "latency_ms": 69337
+    },
+    {
+      "lane": "crop",
+      "case": 12,
+      "model": "gemini-4-neon",
+      "request": "output/fixtures/scout119-neon/runtime-12-candidate-detector-4.request.json",
+      "sha256": "c943c0bd54b8f67f987a0d6235d56bd6a1ddf9552d1860521b02c6ccf1088c25",
+      "reserve_nanousd": 809520000,
+      "attempt": "runtime-12-candidate-detector-4",
+      "cost_nanousd": 85404000,
+      "in_flight": false,
+      "http": 200,
+      "response": "output/fixtures/scout119-neon/runtime-12-candidate-detector-4.response.json",
+      "response_sha256": "f9e8031baac52d5ccfcc3e43039d785def0e067c06a77d1ba37968644f66811d",
+      "error": {
+        "reason": []
+      },
+      "served_model": "gemini-4-neon",
+      "finish": [
+        "STOP"
+      ],
+      "usage": {
+        "promptTokenCount": 2543,
+        "candidatesTokenCount": 582,
+        "totalTokenCount": 7728,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 1441
+          },
+          {
+            "modality": "IMAGE",
+            "tokenCount": 1102
+          }
+        ],
+        "candidatesTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 582
+          }
+        ],
+        "thoughtsTokenCount": 4603,
+        "serviceTier": "standard"
+      },
+      "confidence": "eligible",
+      "latency_ms": 50643
+    },
+    {
+      "lane": "crop",
+      "case": 12,
+      "model": "gemini-3-flash-preview",
+      "request": "output/fixtures/scout119-neon/runtime-12-control-caption-4.request.json",
+      "sha256": "fae751f585c6e62797112ce67a625198a58872ae5143cb4c34225f12a98336b6",
+      "reserve_nanousd": 151304000,
+      "attempt": "runtime-12-control-caption-4",
+      "cost_nanousd": 8523000,
+      "in_flight": false,
+      "http": 200,
+      "response": "output/fixtures/scout119-neon/runtime-12-control-caption-4.response.json",
+      "response_sha256": "eb054a9a5550594e403b2e7db8ff628b0c08f8b69883809da30ad9c3255651dc",
+      "error": {
+        "reason": []
+      },
+      "served_model": "gemini-3-flash-preview",
+      "finish": [
+        "STOP"
+      ],
+      "usage": {
+        "promptTokenCount": 1302,
+        "candidatesTokenCount": 144,
+        "totalTokenCount": 3926,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 200
+          },
+          {
+            "modality": "IMAGE",
+            "tokenCount": 1102
+          }
+        ],
+        "thoughtsTokenCount": 2480,
+        "serviceTier": "standard"
+      },
+      "confidence": "eligible",
+      "latency_ms": 12314
+    },
+    {
+      "lane": "crop",
+      "case": 12,
+      "model": "gemini-3-flash-preview",
+      "request": "output/fixtures/scout119-neon/runtime-12-control-detector-4.request.json",
+      "sha256": "c3239d023e9a7439ac0a5b7a3dfffc381333918ed9bdb49b885735f1acd8c20d",
+      "reserve_nanousd": 151304000,
+      "attempt": "runtime-12-control-detector-4",
+      "cost_nanousd": 20061500,
+      "in_flight": false,
+      "http": 200,
+      "response": "output/fixtures/scout119-neon/runtime-12-control-detector-4.response.json",
+      "response_sha256": "014142974344435955f774cef42f724e2bf774d42bdb30bf6357f24b16d072c0",
+      "error": {
+        "reason": []
+      },
+      "served_model": "gemini-3-flash-preview",
+      "finish": [
+        "STOP"
+      ],
+      "usage": {
+        "promptTokenCount": 1795,
+        "candidatesTokenCount": 690,
+        "totalTokenCount": 8183,
+        "promptTokensDetails": [
+          {
+            "modality": "IMAGE",
+            "tokenCount": 1102
+          },
+          {
+            "modality": "TEXT",
+            "tokenCount": 693
+          }
+        ],
+        "thoughtsTokenCount": 5698,
+        "serviceTier": "standard"
+      },
+      "confidence": "eligible",
+      "latency_ms": 25679
+    }
+  ],
+  "known_cost_usd": 0.350681,
+  "unknown_exposure_usd": 0,
+  "pools_cost_usd": {
+    "ocr": 0.2366925,
+    "crop": 0.1139885
+  }
+}

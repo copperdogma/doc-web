@@ -1,0 +1,168 @@
+{
+  "classification": "Public source input. Complete native envelopes, artifacts and visible answers remain in ignored custody.",
+  "owner": "doc-web",
+  "worktree": "/Users/cam/.codex/worktrees/neon-20261118/doc-web",
+  "branch": "codex/neon-20261118",
+  "base": "4376bb7eb988eb91a6218ba819e5e99c5c113d6b",
+  "worktree_state": "Retained producing worktree. Primary checkout untouched.",
+  "native_artifacts_ignored": [
+    {
+      "path": "output/fixtures/scout119-neon/ocr-barney-gemini-4-neon.request.json",
+      "bytes": 204586,
+      "sha256": "16c4e0e6a0e9a90799149eb8dfa87407977d7add34d8c76d944c742f303e7ec0"
+    },
+    {
+      "path": "output/fixtures/scout119-neon/ocr-barney-gemini-4-neon.response.json",
+      "bytes": 37218,
+      "sha256": "f701e674eef68c6f851b344937d9ad4183b589f7cc9a05b00264329114147835"
+    },
+    {
+      "path": "output/fixtures/scout119-neon/ocr-barney-gemini-4-neon.answer.txt",
+      "bytes": 1511,
+      "sha256": "043e6667aba6ae57fcfba7ff28dbf2cf5587e8d0485fdfb3ed85549dd18701f7"
+    },
+    {
+      "path": "output/fixtures/scout119-neon/ocr-barney-gemini-4-hydrogen.request.json",
+      "bytes": 204586,
+      "sha256": "16c4e0e6a0e9a90799149eb8dfa87407977d7add34d8c76d944c742f303e7ec0"
+    },
+    {
+      "path": "output/fixtures/scout119-neon/ocr-barney-gemini-4-hydrogen.response.json",
+      "bytes": 46931,
+      "sha256": "b40d99279214a738c673549c4523b87cf5312ba531b572cdaef4b6d7d2b0dd5c"
+    },
+    {
+      "path": "output/fixtures/scout119-neon/ocr-barney-gemini-4-hydrogen.answer.txt",
+      "bytes": 1508,
+      "sha256": "d44dfa0449984f3fd0966dfb93dc7a60b85296a3c17fa9d77e8f824f5bbe227b"
+    },
+    {
+      "path": "output/fixtures/scout119-neon/runtime-12-candidate-detector-4.request.json",
+      "bytes": 1500876,
+      "sha256": "c943c0bd54b8f67f987a0d6235d56bd6a1ddf9552d1860521b02c6ccf1088c25"
+    },
+    {
+      "path": "output/fixtures/scout119-neon/runtime-12-candidate-detector-4.response.json",
+      "bytes": 19934,
+      "sha256": "f9e8031baac52d5ccfcc3e43039d785def0e067c06a77d1ba37968644f66811d"
+    },
+    {
+      "path": "output/fixtures/scout119-neon/runtime-12-candidate-detector-4.answer.txt",
+      "bytes": 1424,
+      "sha256": "3ff6f4a38d5d80401f788ae52dab249b58ad407c4cfd58989212bf0d6d0940fa"
+    },
+    {
+      "path": "output/fixtures/scout119-neon/runtime-12-control-caption-4.request.json",
+      "bytes": 1497599,
+      "sha256": "fae751f585c6e62797112ce67a625198a58872ae5143cb4c34225f12a98336b6"
+    },
+    {
+      "path": "output/fixtures/scout119-neon/runtime-12-control-caption-4.response.json",
+      "bytes": 10605,
+      "sha256": "eb054a9a5550594e403b2e7db8ff628b0c08f8b69883809da30ad9c3255651dc"
+    },
+    {
+      "path": "output/fixtures/scout119-neon/runtime-12-control-caption-4.answer.txt",
+      "bytes": 190,
+      "sha256": "87f613beb3b11311593927ecb87aff2a69885d7c52111f813e030eb6584f2463"
+    },
+    {
+      "path": "output/fixtures/scout119-neon/runtime-12-control-detector-4.request.json",
+      "bytes": 1499717,
+      "sha256": "c3239d023e9a7439ac0a5b7a3dfffc381333918ed9bdb49b885735f1acd8c20d"
+    },
+    {
+      "path": "output/fixtures/scout119-neon/runtime-12-control-detector-4.response.json",
+      "bytes": 23935,
+      "sha256": "014142974344435955f774cef42f724e2bf774d42bdb30bf6357f24b16d072c0"
+    },
+    {
+      "path": "output/fixtures/scout119-neon/runtime-12-control-detector-4.answer.txt",
+      "bytes": 1551,
+      "sha256": "b119c5320ed29028fdfb13bf4af2c63bd3729e3b3b895fa09ea2320454667b2f"
+    },
+    {
+      "path": "output/runs/neon099-p12-candidate/02_crop_illustrations_guided_v1/illustration_manifest.jsonl",
+      "bytes": 5561,
+      "sha256": "010107788fad814ba069af83d4013fab00d27b15cb8fa77811b624ad4df64b47"
+    },
+    {
+      "path": "output/runs/neon099-p12-candidate/02_crop_illustrations_guided_v1/images/page-012-000.jpg",
+      "bytes": 190538,
+      "sha256": "0e89ac16d4e35968ab4ba72710f8a23fdf4bb149536f2e2e548c1b9984079035"
+    },
+    {
+      "path": "output/runs/neon099-p12-candidate/02_crop_illustrations_guided_v1/images/page-012-001.jpg",
+      "bytes": 262053,
+      "sha256": "2fc8438a03760344fdb7fd61546578d83cebb22fd08f4b834d00d9766cabc52f"
+    },
+    {
+      "path": "output/runs/neon099-p12-candidate/02_crop_illustrations_guided_v1/images/page-012-002.jpg",
+      "bytes": 109895,
+      "sha256": "4cce7269d9e64c2cdec7f8d9360d65e02fb90753402275c7bcfe431a5619b794"
+    },
+    {
+      "path": "output/runs/neon099-p12-candidate/02_crop_illustrations_guided_v1/images/page-012-003.jpg",
+      "bytes": 73533,
+      "sha256": "cbe280374178e45924115c21f560624e8becbe918b23414a0b332abb387bb750"
+    },
+    {
+      "path": "output/runs/neon099-p12-control/02_crop_illustrations_guided_v1/illustration_manifest.jsonl",
+      "bytes": 5513,
+      "sha256": "20930ef9ea30c37c270bf75016f32e1e92704005e2d13348bfe2dd8e07eb9af5"
+    },
+    {
+      "path": "output/runs/neon099-p12-control/02_crop_illustrations_guided_v1/images/page-012-000.jpg",
+      "bytes": 143906,
+      "sha256": "0c278ee8e646d42d04fd0b8a3e109bf06325499bc75ad6cac6ab5c24f371a342"
+    },
+    {
+      "path": "output/runs/neon099-p12-control/02_crop_illustrations_guided_v1/images/page-012-001.jpg",
+      "bytes": 241862,
+      "sha256": "d387a2e85d3e6d2c18babd0e2d6804bda2dec6ab8103d1cd12e12a77e911ee70"
+    },
+    {
+      "path": "output/runs/neon099-p12-control/02_crop_illustrations_guided_v1/images/page-012-002.jpg",
+      "bytes": 116776,
+      "sha256": "979aea17f322250d38e2c2afa03fed60aec61cbbfe0609be80265284039c0923"
+    },
+    {
+      "path": "output/runs/neon099-p12-control/02_crop_illustrations_guided_v1/images/page-012-003.jpg",
+      "bytes": 68403,
+      "sha256": "0423d9e8734dcd69b714d6d4dcc8a6ea6e21b484369ea11da0db54569cea9ba6"
+    },
+    {
+      "path": "/Users/cam/Documents/Projects/doc-web/input/onward-to-the-unknown-images/Image011.jpg",
+      "bytes": 1122475,
+      "sha256": "2246934ed6dc9fcc2531ca4fa2d0913bbd5fca99eeea40093ce9de623f819265"
+    }
+  ],
+  "wire_and_producer_hashes": "matrix.json",
+  "commands": {
+    "interpreter": "/Users/cam/miniconda3/bin/python",
+    "owner_wrapper": "DOC_WEB_ENV_FILE=/Users/cam/Documents/Projects/doc-web/.env python3 scripts/run_with_doc_web_env.py <interpreter> <command>",
+    "offline_first": [
+      "benchmarks/scripts/scout119_doc_web.py freeze",
+      "tools/neon_detector_099_runtime.py prepare"
+    ],
+    "native_admission": "benchmarks/scripts/scout119_doc_web.py admit",
+    "generation_order": [
+      "benchmarks/scripts/scout119_doc_web.py send ocr-barney-gemini-4-neon",
+      "benchmarks/scripts/scout119_doc_web.py send ocr-barney-gemini-4-hydrogen",
+      "tools/neon_detector_099_runtime.py driver candidate neon099-p12-candidate 12",
+      "tools/neon_detector_099_runtime.py driver control neon099-p12-control 12"
+    ],
+    "offline_scoring": [
+      "benchmarks/scripts/scout119_doc_web.py score <OCR slot>",
+      "benchmarks/scripts/scout119_crop_audit.py <driver run id> 12"
+    ],
+    "wallet_state": "closed. Any future fresh computation uses a new authorized attempt ID, preflight, and budget"
+  },
+  "published_replay": {
+    "command": "python benchmarks/scripts/scout119_replay.py",
+    "native_artifact_files_required": false,
+    "input_projection_sha256": "37471a85131e6639ebe70665b60ed73b2489d278a654b6faf2db17d2904a46e3",
+    "replay_source_sha256": "0e171207845b25f90792b5630d24834743c02c988b459effd5e57bb1ee044226",
+    "boundary": "Reproduce the frozen OCR score, aggregate ROI counts relative to final geometry, and native usage costing offline. Full provider envelopes and native image bytes require the owner retained custody."
+  }
+}

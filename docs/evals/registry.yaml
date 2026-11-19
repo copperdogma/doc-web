@@ -380,7 +380,7 @@ evals:
     config: benchmarks/tasks/image-crop-extraction.yaml
     scorer: benchmarks/scorers/image_crop_scorer.py
     golden: benchmarks/golden/
-    story_refs: ["133", "183", "207", "226", "232", "235", "236", "237", "238", "239", "249", "257", "258", "263", "264", "265", "267", "272", "273", "274"]
+    story_refs: ["133", "183", "207", "226", "232", "235", "236", "237", "238", "239", "249", "257", "258", "263", "264", "265", "267", "272", "273", "274", "275"]
     category_refs: ["spec:4", "spec:8"]
     compromise_refs: ["C4"]
     spec_compromise: C4
@@ -405,6 +405,11 @@ evals:
         evidence_status: fresh-bounded-detector-publication-unqualified
         note: Frozen fresh same-source detector ranking Sol, Luna, Gemini. Page safety/publication
           gates remain failed; runtime retained. See Attempt044 and tracked crop sheets.
+      - model: "gemini-4-neon native HIGH/32768 Scout119"
+        measured: "2026-11-18"
+        git_sha: "4376bb7+attempt099-uncommitted"
+        metrics: {original_assisted_pairs: 1, candidate_integral_roi_pixel_loss: 740, control_integral_roi_pixel_loss: 999, candidate_outside_caption_roi_dark_pixels: 26308, control_outside_caption_roi_dark_pixels: 26308, candidate_detector_cost_usd: 0.085404}
+        note: "Native original Image011 admitted. Actual assisted driver loses signature endpoint pixels and includes printed caption on both arms. Retain the current reviewed route. Portrait and full corpus unmeasured. Attempt099/Story275."
       - model: "gpt-6.2-sol native high/32768 Scout117"
         measured: "2026-11-17"
         git_sha: "0a9dc605+attempt098-uncommitted"
@@ -4223,7 +4228,7 @@ evals:
     command: "python benchmarks/scripts/run_handwritten_notes_eval.py --image-recipe configs/recipes/recipe-images-ocr-html-handwritten-notes-gemini-rescue.yaml --pdf-recipe configs/recipes/recipe-pdf-ocr-html-handwritten-notes-gemini-rescue.yaml --image-case-id image-handwritten-rescue --pdf-case-id pdf-handwritten-rescue --instrument --output benchmarks/results/handwritten-notes-story189-real-expanded.json"
     scorer: benchmarks/scorers/handwritten_notes_transcription.py
     golden: benchmarks/golden/handwritten-notes/corpus.json
-    story_refs: ["179", "182", "185", "186", "189", "191", "192", "208", "230", "238", "239", "249", "257", "258", "263", "264", "265", "267", "272", "273", "274"]
+    story_refs: ["179", "182", "185", "186", "189", "191", "192", "208", "230", "238", "239", "249", "257", "258", "263", "264", "265", "267", "272", "273", "274", "275"]
     category_refs: ["spec:1", "spec:2", "spec:8"]
     compromise_refs: []
 
@@ -4233,6 +4238,11 @@ evals:
       note: "The target still marks the desired passing bar, but the widened default corpus now includes two real handwritten fixtures that the maintained rescue seam does not clear."
 
     scores:
+      - model: "gemini-4-neon native HIGH/32768 Scout119"
+        measured: "2026-11-18"
+        git_sha: "4376bb7+attempt099-uncommitted"
+        metrics: {candidate_barney_ratio: 0.988125, hydrogen_barney_ratio: 0.987415, candidate_cost_usd: 0.141825, latency_ms: 87964}
+        note: "Both exact served terminal runs miss the .99 threshold on matched public LOC Barney. Neon literal omissions and an added word fail source review. Retain reviewed Hydrogen configuration. Alverson and further confirmation unmeasured. Attempt099/Story275."
       - model: "gpt-6.2-sol native high/32768 Scout117"
         measured: "2026-11-17"
         git_sha: "0a9dc605+attempt098-uncommitted"

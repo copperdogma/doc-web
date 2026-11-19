@@ -1,0 +1,150 @@
+{
+  "base": "4376bb7eb988eb91a6218ba819e5e99c5c113d6b",
+  "cases": {
+    "ocr-barney-gemini-4-neon": {
+      "lane": "ocr",
+      "case": "barney",
+      "model": "gemini-4-neon",
+      "request": "output/fixtures/scout119-neon/ocr-barney-gemini-4-neon.request.json",
+      "sha256": "16c4e0e6a0e9a90799149eb8dfa87407977d7add34d8c76d944c742f303e7ec0",
+      "reserve_nanousd": 809520000
+    },
+    "ocr-barney-gemini-4-hydrogen": {
+      "lane": "ocr",
+      "case": "barney",
+      "model": "gemini-4-hydrogen",
+      "request": "output/fixtures/scout119-neon/ocr-barney-gemini-4-hydrogen.request.json",
+      "sha256": "16c4e0e6a0e9a90799149eb8dfa87407977d7add34d8c76d944c742f303e7ec0",
+      "reserve_nanousd": 404760000
+    },
+    "ocr-alverson-gemini-4-neon": {
+      "lane": "ocr",
+      "case": "alverson",
+      "model": "gemini-4-neon",
+      "request": "output/fixtures/scout119-neon/ocr-alverson-gemini-4-neon.request.json",
+      "sha256": "172811fbf165da683314bb545ae52e4b42e81ebceded7d5f056e9cae5360b701",
+      "reserve_nanousd": 809520000
+    },
+    "ocr-alverson-gemini-4-hydrogen": {
+      "lane": "ocr",
+      "case": "alverson",
+      "model": "gemini-4-hydrogen",
+      "request": "output/fixtures/scout119-neon/ocr-alverson-gemini-4-hydrogen.request.json",
+      "sha256": "172811fbf165da683314bb545ae52e4b42e81ebceded7d5f056e9cae5360b701",
+      "reserve_nanousd": 404760000
+    },
+    "runtime-12-candidate-detector-4": {
+      "lane": "crop",
+      "case": 12,
+      "model": "gemini-4-neon",
+      "request": "output/fixtures/scout119-neon/runtime-12-candidate-detector-4.request.json",
+      "sha256": "c943c0bd54b8f67f987a0d6235d56bd6a1ddf9552d1860521b02c6ccf1088c25",
+      "reserve_nanousd": 809520000
+    },
+    "runtime-122-candidate-detector-3": {
+      "lane": "crop",
+      "case": 122,
+      "model": "gemini-4-neon",
+      "request": "output/fixtures/scout119-neon/runtime-122-candidate-detector-3.request.json",
+      "sha256": "4f1fc1ec01fd52dd74e5a375952d5021dc08a072a127edb28ac173b78bc2aa55",
+      "reserve_nanousd": 809520000
+    },
+    "runtime-12-control-detector-4": {
+      "lane": "crop",
+      "case": 12,
+      "model": "gemini-3-flash-preview",
+      "request": "output/fixtures/scout119-neon/runtime-12-control-detector-4.request.json",
+      "sha256": "c3239d023e9a7439ac0a5b7a3dfffc381333918ed9bdb49b885735f1acd8c20d",
+      "reserve_nanousd": 151304000
+    },
+    "runtime-12-control-caption-1": {
+      "lane": "crop",
+      "case": 12,
+      "model": "gemini-3-flash-preview",
+      "request": "output/fixtures/scout119-neon/runtime-12-control-caption-1.request.json",
+      "sha256": "d07180467cf1c95a0eb6e12998e97d9f6a29e1db9d14ec71d551159a08dfef6d",
+      "reserve_nanousd": 151304000
+    },
+    "runtime-12-control-caption-2": {
+      "lane": "crop",
+      "case": 12,
+      "model": "gemini-3-flash-preview",
+      "request": "output/fixtures/scout119-neon/runtime-12-control-caption-2.request.json",
+      "sha256": "b8c4381b8d4643bd8d0dcbf0854e7f32f202956cb580c01b8b6ed13948733a80",
+      "reserve_nanousd": 151304000
+    },
+    "runtime-12-control-caption-3": {
+      "lane": "crop",
+      "case": 12,
+      "model": "gemini-3-flash-preview",
+      "request": "output/fixtures/scout119-neon/runtime-12-control-caption-3.request.json",
+      "sha256": "311aefecd035b0dffc0cc425f59467f7a10c4c96c1cd8d9bf41d7382427cb201",
+      "reserve_nanousd": 151304000
+    },
+    "runtime-12-control-caption-4": {
+      "lane": "crop",
+      "case": 12,
+      "model": "gemini-3-flash-preview",
+      "request": "output/fixtures/scout119-neon/runtime-12-control-caption-4.request.json",
+      "sha256": "fae751f585c6e62797112ce67a625198a58872ae5143cb4c34225f12a98336b6",
+      "reserve_nanousd": 151304000
+    },
+    "runtime-122-control-detector-3": {
+      "lane": "crop",
+      "case": 122,
+      "model": "gemini-3-flash-preview",
+      "request": "output/fixtures/scout119-neon/runtime-122-control-detector-3.request.json",
+      "sha256": "b37984917ea1510f4bbe98ec7db1356d7d2f8617185a1abee6937d3292db3b3a",
+      "reserve_nanousd": 151304000
+    },
+    "runtime-122-control-caption-1": {
+      "lane": "crop",
+      "case": 122,
+      "model": "gemini-3-flash-preview",
+      "request": "output/fixtures/scout119-neon/runtime-122-control-caption-1.request.json",
+      "sha256": "ac340ba820c8ce65cd3908e5b8e080781590adcfc6689eda5cd95c4f8824a505",
+      "reserve_nanousd": 151304000
+    },
+    "runtime-122-control-caption-2": {
+      "lane": "crop",
+      "case": 122,
+      "model": "gemini-3-flash-preview",
+      "request": "output/fixtures/scout119-neon/runtime-122-control-caption-2.request.json",
+      "sha256": "3ae8f4bc17de384ef136dcd8d145576a9b7bb7eb28443771a4dd73a0f3f49eb7",
+      "reserve_nanousd": 151304000
+    },
+    "runtime-122-control-caption-3": {
+      "lane": "crop",
+      "case": 122,
+      "model": "gemini-3-flash-preview",
+      "request": "output/fixtures/scout119-neon/runtime-122-control-caption-3.request.json",
+      "sha256": "547781084edde43880313c8efeb40e1c8d9020294827d343f30051e987d044a1",
+      "reserve_nanousd": 151304000
+    }
+  },
+  "providers": "Google Developer API Standard paid",
+  "concurrency": 1,
+  "caps_nanousd": {
+    "ocr": 4000000000,
+    "crop": 8000000000
+  },
+  "candidate_call_limits": {
+    "ocr": 4,
+    "crop": 5
+  },
+  "judge": null,
+  "source_output_cache": false,
+  "producer_sha256": {
+    "benchmarks/scripts/scout119_doc_web.py": "165f0049158f24573d562f1b6ff7898cb9488bcd80fb59fa6168e97219f64bbd",
+    "benchmarks/scripts/scout116_doc_web_score.py": "56e250da5250900aac1be02151bc755a45881339ff01e92ce95f6b975070b579",
+    "benchmarks/scorers/handwritten_notes_transcription.py": "3e8ab803e94b22b139e78d51bd029f6502ecac03a170f2dd7955b86afd67ee6b",
+    "tools/neon_detector_099_runtime.py": "786fc24b1e6395b9d564793f12fc9f97892df8d2a35c601742d5699bf88c702b",
+    "tools/hydrogen_detector_094_runtime.py": "185aae5245ffdeed929e47ef26d7235edaf6942d6355ef2180dd7eb95d7b93b4",
+    "modules/common/google_client.py": "68702a31156d22ebb2dc63a716055e4ceca63d066fda9c7552104619cccdb828",
+    "modules/extract/crop_illustrations_guided_v1/main.py": "925e666d8e541631bdbabca39cec49e20d3cfd1d262699340d2cb10be33cf165",
+    "scripts/prepare_story231_crop_fixture.py": "9bce77c04b0327938233b502c73e2bebc30f4fc46fa0ae8b51027899e4bad646",
+    "configs/recipes/story-231-gemini-crop-runtime-validate.yaml": "cf25bd7d42b6bb299827762bf078717b55cd7ffd4bba460b796b9d777c56c2d1",
+    "testdata/handwritten-notes-barney-real.txt": "78827ef175378bd2c55d0405fc35213acfc17e348b5edd48b1e089525a83e2bf",
+    "testdata/handwritten-notes-alverson-real.txt": "54291e20b842e2299fee392cd881a202f181263da10f4e85cb8ca49dfe74ac27"
+  }
+}
